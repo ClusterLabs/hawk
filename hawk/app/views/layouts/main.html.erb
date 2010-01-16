@@ -1,0 +1,26 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title><%=h @title %></title>
+<%= stylesheet_link_tag "base" %>
+<%= javascript_include_tag :defaults %>
+<%= yield :head %> 
+</head>
+<body>
+<div id="container">
+  <div id="header">
+    <%= image_tag 'logo.png', :alt => '', :id => 'logo' %>
+    <span id="header-links"><%= link_to _('Help'), { :action => 'help' }, :id => 'help-link' %></span>
+    <h1 id="header-title"><%=h @title %></h1>
+  </div>
+  <div id="content">
+  <%= yield %>
+  </div>
+  <div id="footer">
+    <span id="hostinfo"><%= _('Host: %s') % @host %></span>
+    <span id="copyright"><%= _('Copyright &copy; 2009-2010 Novell, Inc.') %></span>
+  </div>
+</div>
+</body>
+</html>

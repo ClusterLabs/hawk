@@ -1,0 +1,118 @@
+<% content_for :head do %>
+<!-- extra head content here -->
+<% end %>
+<% if @err %>
+<div class="error">
+<%=h @err %>
+</div>
+<% else %>
+
+<div> <!-- this div is probably unnecessary -->
+  <% # TODO: this is rough as guts - for another approach see
+     # http://www.kleenecode.net/2008/03/01/valid-and-accessible-collapsible-panels-with-scriptaculous/
+  %>
+  <div style="cursor: pointer;" onclick="toggle_collapse('nodelist');"><div id="nodelist::button" class="tri-<%= if @expand_nodes then 'open' else 'closed' end %>"></div><%= _('%d nodes configured') % @nodes.count %></div>
+  <div id="nodelist"<%= ' style="display: none;" class="closed"' unless @expand_nodes %>>
+  <% @nodes.each do |uname,node| %>
+    <div id="node-<%=h uname %>" class="node ns-<%=h node[:state] %>">
+      <% # TODO: localize state? %>
+      <%=h uname %>: <span id="node-<%=h uname %>::state"><%=h node[:state] %></span>
+    </div>
+  <% end %>
+  </div>
+</div>
+
+<div> <!-- this div is also probably unnecessary -->
+  <div style="cursor: pointer;" onclick="toggle_collapse('reslist');"><div id="reslist::button" class="tri-<%= if @expand_resources then 'open' else 'closed' end %>"></div><%= _('%d resources configured') % @resources.count %></div>
+  <div id="reslist"<%= ' style="display: none;" class="closed"' unless @expand_resources %>>
+  <% for res in @resources %>
+  <%= render :partial => res[:restype], :locals => { :res => res } %>
+  <% end %>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+// returns true if auto-expand required
+function update_node(id, node) {
+  if (!$("node-" + id).hasClassName("ns-" + node.state)) {
+    $("node-" + id).className = "node ns-" + node.state;
+    $("node-" + id + "::state").update(node.state);
+    // If the node state has changed and it's no longer online, expand the node list
+    if (node.state != "online") {
+      return true;
+    }
+  }
+  return false;
+}
+
+function update_nodes(nodelist) {
+  var expand = false;
+  for (var id in nodelist) {
+    if (update_node(id, nodelist[id])) {
+      expand = true;
+    }
+  }
+  return expand;
+}
+
+// returns true if auto-expand required
+function update_primitive(prim) {
+  var class = prim.running_on ? "rs-running" : "rs-stopped";
+  // Always set state string (might be running on a different host)
+  $("prim-" + prim.id + "::state").update(prim.running_on ? "Started " + prim.running_on : "unknown");
+  if (!$("prim-" + prim.id).hasClassName(class)) {
+    $("prim-" + prim.id).className = "res-primitive " + class;    
+    // State changed, and not running anymore, need to expand everything above it...
+    if (!prim.running_on) {
+      return true;
+    }
+  }
+  return false;
+}
+
+function update_resources(reslist) {
+  var expand = false;
+  for (var i =0; i < reslist.length; i++) {
+    if (reslist[i].children) {
+      if (update_resources(reslist[i].children)) {
+        if ($(reslist[i].restype + "-" + reslist[i].id).hasClassName("closed")) {
+          expand_block(reslist[i].restype + "-" + reslist[i].id);
+        }
+        expand = true;
+      }
+    } else if (reslist[i].restype == 'primitive') {
+      if (update_primitive(reslist[i])) {
+        expand = true;
+      }
+    }
+  }
+  return expand;
+}
+
+// TODO: Um...  what's "object" for?
+function handle_update(request, object) {
+  if (request.responseJSON) {
+    if (update_nodes(request.responseJSON.nodes)) {
+      if ($("nodelist").hasClassName("closed")) {
+        expand_block("nodelist");
+      }
+    }
+    if (update_resources(request.responseJSON.resources)) {
+      if ($("reslist").hasClassName("closed")) {
+        expand_block("reslist");
+      }
+    }
+  }
+  do_update();
+}
+
+function do_update() {
+  setTimeout("new Ajax.Request('/main/status', { parameters: 'format=json', asynchronous: true, onComplete: handle_update });", 15000);
+}
+
+Event.observe(window, 'load', function() { do_update(); });
+
+</script>
+<% end %>
+

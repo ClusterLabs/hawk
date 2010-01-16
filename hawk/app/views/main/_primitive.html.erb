@@ -1,0 +1,4 @@
+<div id="prim-<%=h res[:id] %>" class="res-primitive <%= if res[:running_on] then "rs-running" else "rs-stopped" end %>">
+  <% # TODO: localize %>
+  <%=h res[:id] %>: <span id="prim-<%=h res[:id] %>::state"><%= if res[:running_on] then "Started #{res[:running_on]}" else "unknown" end %></span>
+</div>
