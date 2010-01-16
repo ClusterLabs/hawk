@@ -1,0 +1,88 @@
+======================================================================
+                        Hawk - HA Web Konsole
+ --------------------------------------------------------------------
+            A web-based GUI for monitoring the Pacemaker
+             High-Availability cluster resource manager
+
+ Copyright (c) 2009-2010 Novell Inc., Tim Serong <tserong@novell.com>
+                        All Rights Reserved.
+
+ This program is free software; you can redistribute it and/or modify
+ it under the terms of version 2 of the GNU General Public License as
+ published by the Free Software Foundation.
+
+ This program is distributed in the hope that it would be useful, but
+ WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+ Further, this software is distributed without any warranty that it is
+ free of the rightful claim of any third person regarding infringement
+ or the like.  Any license provided herein, whether implied or
+ otherwise, applies only to this software file.  Patent licenses, if
+ any, provided herein do not apply to combinations of this program with
+ other software, or any other product whatsoever.
+
+ You should have received a copy of the GNU General Public License
+ along with this program; if not, write the Free Software Foundation,
+ Inc., 59 Temple Place - Suite 330, Boston MA 02111-1307, USA.
+
+======================================================================
+
+Status as at 2010-01-16:
+
+It's early days; currently this will give you a web-based GUI with
+a display roughly analagous to crm_mon, in terms of status of cluster
+resources.  It will show you running/dead/standby nodes, and the
+resources (clones, groups & primitives) running on those nodes.
+
+It does not yet provide information about failed resources/nodes,
+other than the fact that they are not running.
+
+Display of nodes & resources is collapsible (collapsed by default),
+but if something breaks while you are looking at it, the display will
+expand to show the broken nodes and/or resources.
+
+Hawk is intended to run on each node in your cluster.  You can then
+access it by pointing your web browser at the IP address of any
+cluster node, or the address of any IPaddr(2) resource you may have
+configured.
+
+Minimally, to see it in action, you will need the following packages
+and their dependencies (names per openSUSE/SLES):
+
+  - ruby
+  - rubygem-rails-2_3
+  - rubygem-gettext_rails
+
+Once you've got those installed, run the following command:
+
+  # hawk/script/server
+
+Then, point your browser at http://your-server:3000/ to see the
+status of your cluster.
+
+Ultimately, hawk is intended to be installed and run as a regular
+system service via /etc/init.d/hawk.  To do this, you will need
+the following additional packages:
+
+  - lighttpd
+  - lighttpd-mod_magnet
+  - ruby-fcgi
+  - rubygem-rake
+
+Then, try the following, but READ THE MAKEFILE FIRST!  "make install"
+(and the rest of the build system for that matter) is frightfully
+primitive at the moment:
+
+  # make
+  # sudo make install
+  # /etc/init.d/hawk start
+
+Then, point your browser at http://your-server:4444/ to see the
+status of your cluster.
+
+Good luck.  Please direct comments, feedback, questions, etc. to
+tserong@novell.com and/or the Pacemaker mailing list.
+
+======================================================================
+
