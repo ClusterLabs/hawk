@@ -10,6 +10,8 @@ install:
 	mkdir -p $(DESTDIR)/srv/www/hawk/tmp/pids
 	mkdir -p $(DESTDIR)/srv/www/hawk/tmp/sessions
 	mkdir -p $(DESTDIR)/srv/www/hawk/tmp/sockets
+	# Get rid of cruft from packed gems
+	find hawk/vendor -name '*bak' -o -name '*~' | xargs rm
 	cp -a hawk/* $(DESTDIR)/srv/www/hawk
 	-chown -R hacluster.haclient $(DESTDIR)/srv/www/hawk
 	install -D -m 0755 scripts/hawk $(DESTDIR)/etc/init.d/hawk
