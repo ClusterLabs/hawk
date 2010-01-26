@@ -25,15 +25,33 @@ class MainController < ApplicationController
     end
   end
   
+  def get_property(doc, property, default = nil)
+    # TODO: theoretically this xpath is a bit loose.
+    e = doc.elements["//nvpair[@name='#{property}']"]
+    e ? e.attributes['value'] : default
+  end
+
   def get_cluster_status
     # TODO: error check this
     doc = REXML::Document.new(%x[/usr/sbin/cibadmin -Ql])
 
-    #@stack      = doc.elements['//nvpair[@name="cluster-infrastructure"]'].attributes['value']
-    #@dc_version = doc.elements['//nvpair[@name="dc-version"]'].attributes['value']
-    #@dc         = dc = %x[/usr/sbin/crmadmin -D].strip
-    #s = dc.rindex(' ')
-    #dc.slice!(0, s + 1) if s
+    # TODO: encapsulate all this in 'summary' hash
+    @stack      = get_property(doc, 'cluster-infrastructure')
+    @dc_version = get_property(doc, 'dc-version')
+    # trim version back to 12 chars (same length hg usually shows),
+    # enough to know what's going on, and less screen real-estate
+    ver_trimmed = @dc_version.match(/.*-[a-f0-9]{12}/)
+    @dc_version = ver_trimmed[0] if ver_trimmed
+    # crmadmin will wait a long time if the cluster isn't up yet - cap it at 100ms
+    @dc         = %x[/usr/sbin/crmadmin -t 100 -D 2>/dev/null].strip
+    s = @dc.rindex(' ')
+    @dc.slice!(0, s + 1) if s
+    @dc = _('unknown') if @dc.empty?
+    # default values per pacemaker 1.0 docs
+    @stickiness = get_property(doc, 'default-resource-stickiness', '0') # TODO: is this documented?
+    @stonith    = get_property(doc, 'stonith-enabled', 'true')
+    @symmetric  = get_property(doc, 'symmetric-cluster', 'true')
+    @no_quorum  = get_property(doc, 'no-quorum-policy', 'stop')
 
     # Possible node states (per print_status in crm_mon.c):
     #  - UNCLEAN (online)       (unclean && online)

@@ -81,6 +81,20 @@ html, body
   padding-left: 1em;
 }
 
+#summary
+{
+  float: right;
+  border: 1px solid #666;
+  padding: 0.25em 0.5em;
+  color: #666;
+}
+
+th /* used in summary */
+{
+  font-weight: normal;
+  text-align: left;
+}
+
 .error
 {
   border: 1px solid #000;
