@@ -53,46 +53,46 @@ class MainController < ApplicationController
 
     @nodes = {}
     @expand_nodes = false
-    doc.elements.each('cib/status/node_state') do |ns|
-      # TODO: this is a bit rough...
-      state = ''
-      if ns.attributes['crmd'] == 'online'
-        state = 'online'
-        if ns.attributes['expected'] != 'member' || ns.attributes['join'] != 'member'
-          # TODO: this may be considered a lie
-          state = 'unclean'
-        end
-      else
-        if ns.attributes['expected'] == 'member'
-          state = 'unclean'
-        elsif (ns.attributes['expected'] == ns.attributes['join']) || ns.attributes['expected'].empty?
-          state = 'offline'
-        else
-          state = 'unclean'
-        end
-      end
-      # TODO: should this be 'id' not 'uname'?
-      @nodes[ns.attributes['uname']] = {
-        :state => state
-      }
-    end
-    # figure out standby (god, what a mess)
+    # Have to use cib/configuration/nodes/node as authoritative source,
+    # because cib/status/node_state doesn't exist yet if cluster is
+    # coming online.
     doc.elements.each('cib/configuration/nodes/node') do |n|
-      if @nodes[n.attributes['uname']][:state] == 'online'
-        n.elements.each('instance_attributes') do |ia|
-          ia.elements.each('nvpair') do |p|
-            if p.attributes['name'] == 'standby' &&
-               ['true', 'yes', '1', 'on'].include?(p.attributes['value'])
-              # TODO: is the above actually a sane test?
-              @nodes[n.attributes['uname']][:state] = 'standby'
+      uname = n.attributes['uname']
+      state = 'unclean'
+      ns = doc.elements["cib/status/node_state[@uname='#{uname}']"]
+      if ns
+        # TODO: this is a bit rough...
+        if ns.attributes['crmd'] == 'online'
+          state = 'online'
+          if ns.attributes['expected'] != 'member' || ns.attributes['join'] != 'member'
+            # TODO: this may be considered a lie
+            state = 'unclean'
+          end
+        else
+          if ns.attributes['expected'] == 'member'
+            state = 'unclean'
+          elsif (ns.attributes['expected'] == ns.attributes['join']) || ns.attributes['expected'].empty?
+            state = 'offline'
+          else
+            state = 'unclean'
+          end
+        end
+        # figure out standby (god, what a mess)
+        if state == 'online'
+          n.elements.each('instance_attributes') do |ia|
+            ia.elements.each('nvpair') do |p|
+              if p.attributes['name'] == 'standby' &&
+                 ['true', 'yes', '1', 'on'].include?(p.attributes['value'])
+                # TODO: is the above actually a sane test?
+                state = 'standby'
+              end
             end
           end
         end
       end
+      @nodes[uname] = { :state => state }
       # if anything is not online, expand by default
-      if @nodes[n.attributes['uname']][:state] != 'online'
-        @expand_nodes = true
-      end
+      @expand_nodes = true if state != 'online'
     end
 
     @expand_resources = false
