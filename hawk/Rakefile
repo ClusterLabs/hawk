@@ -12,7 +12,8 @@ require 'tasks/rails'
 desc "Update pot/po files."
 task :updatepo do
   require 'gettext_rails/tools'
-  GetText.update_pofiles("hawk", Dir.glob("{app,lib}/**/*.{rb,erb,rhtml}"), "hawk 0.1.0")
+  GetText.update_pofiles("hawk", Dir.glob("{app,lib}/**/*.{rb,erb,rhtml}"),
+      "hawk #{ENV['BUILD_TAG'] ? ENV['BUILD_TAG'] : '0.0.0'}")
 end
 
 desc "Create mo-files"
