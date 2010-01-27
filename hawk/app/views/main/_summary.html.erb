@@ -4,8 +4,8 @@
     <tr><th><%= _('Version:') %></th>   <td><%=h @dc_version %></td></tr>
     <tr><th><%= _('Current DC:') %></th><td><%=h @dc %></td></tr>
     <tr><th><%= _('Stickiness:') %></th><td><%=h @stickiness %></td></tr>
-    <tr><th><%= _('STONITH:') %></th>   <td><%=h @stonith %></td></tr>
-    <tr><th><%= _('Symmetric:') %></th> <td><%=h @symmetric %></td></tr>
+    <tr><th><%= _('STONITH:') %></th>   <td><%=h @stonith ? _('Enabled') : _('Disabled') %></td></tr>
+    <tr><th><%= _('Cluster is:') %></th><td><%=h @symmetric ? _('Symmetric') : _('Asymmetric') %></td></tr>
     <tr><th><%= _('No Quorum:') %></th> <td><%=h @no_quorum %></td></tr>
   </table>
 </div>
