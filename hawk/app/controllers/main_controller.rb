@@ -14,9 +14,9 @@ class MainController < ApplicationController
     ['true', 'false'].include?(v.class == String ? v.downcase : v) ? v.downcase == 'true' : v
   end
   
-  def get_property(doc, property, default = nil)
+  def get_property(property, default = nil)
     # TODO: theoretically this xpath is a bit loose.
-    e = doc.elements["//nvpair[@name='#{property}']"]
+    e = @cib.elements["//nvpair[@name='#{property}']"]
     e ? get_xml_attr(e, 'value', default) : default
   end
 
@@ -92,11 +92,11 @@ class MainController < ApplicationController
 
   def get_cluster_status
     # TODO: error check this
-    doc = REXML::Document.new(%x[/usr/sbin/cibadmin -Ql])
+    @cib = REXML::Document.new(%x[/usr/sbin/cibadmin -Ql])
 
     # TODO: encapsulate all this in 'summary' hash
-    @stack      = get_property(doc, 'cluster-infrastructure')
-    @dc_version = get_property(doc, 'dc-version')
+    @stack      = get_property('cluster-infrastructure')
+    @dc_version = get_property('dc-version')
     # trim version back to 12 chars (same length hg usually shows),
     # enough to know what's going on, and less screen real-estate
     ver_trimmed = @dc_version.match(/.*-[a-f0-9]{12}/) if @dc_version
@@ -107,10 +107,10 @@ class MainController < ApplicationController
     @dc.slice!(0, s + 1) if s
     @dc = _('unknown') if @dc.empty?
     # default values per pacemaker 1.0 docs
-    @stickiness = get_property(doc, 'default-resource-stickiness', '0') # TODO: is this documented?
-    @stonith    = get_property(doc, 'stonith-enabled', 'true')
-    @symmetric  = get_property(doc, 'symmetric-cluster', 'true')
-    @no_quorum  = get_property(doc, 'no-quorum-policy', 'stop')
+    @stickiness = get_property('default-resource-stickiness', '0') # TODO: is this documented?
+    @stonith    = get_property('stonith-enabled', 'true')
+    @symmetric  = get_property('symmetric-cluster', 'true')
+    @no_quorum  = get_property('no-quorum-policy', 'stop')
 
     # See unpack_nodes in pengine.c for cleanliness
     # - if "startup-fencing" is false, unseen nodes are not unclean (dangerous)
@@ -137,10 +137,10 @@ class MainController < ApplicationController
     # Have to use cib/configuration/nodes/node as authoritative source,
     # because cib/status/node_state doesn't exist yet if cluster is
     # coming online.
-    doc.elements.each('cib/configuration/nodes/node') do |n|
+    @cib.elements.each('cib/configuration/nodes/node') do |n|
       uname = n.attributes['uname']
       state = 'unclean'
-      ns = doc.elements["cib/status/node_state[@uname='#{uname}']"]
+      ns = @cib.elements["cib/status/node_state[@uname='#{uname}']"]
       if ns
         state = @stonith == 'true' ? determine_online_status_fencing(ns) : determine_online_status_no_fencing(ns)
         # figure out standby (god, what a mess)
@@ -163,15 +163,115 @@ class MainController < ApplicationController
 
     @expand_resources = false
 
+    # States are:
+    #  - Unknown
+    #  - Stopped
+    #  - Started
+    #  - Slave
+    #  - Master
+    # State is determined by looking at ops for that resource, sorted
+    # in reverse chronological order by call-id
+    # possible operations are:
+    #  pacemaker/include/crm/crm.h:#define CRMD_ACTION_DELETE		"delete"
+    #  pacemaker/include/crm/crm.h:#define CRMD_ACTION_CANCEL		"cancel"
+    #  pacemaker/include/crm/crm.h:#define CRMD_ACTION_MIGRATE		"migrate_to"
+    #  pacemaker/include/crm/crm.h:#define CRMD_ACTION_MIGRATED	"migrate_from"
+    #  pacemaker/include/crm/crm.h:#define CRMD_ACTION_START		  "start"
+    #  pacemaker/include/crm/crm.h:#define CRMD_ACTION_STARTED		"running"
+    #  pacemaker/include/crm/crm.h:#define CRMD_ACTION_STOP		  "stop"
+    #  pacemaker/include/crm/crm.h:#define CRMD_ACTION_STOPPED		"stopped"
+    #  pacemaker/include/crm/crm.h:#define CRMD_ACTION_PROMOTE		"promote"
+    #  pacemaker/include/crm/crm.h:#define CRMD_ACTION_PROMOTED	"promoted"
+    #  pacemaker/include/crm/crm.h:#define CRMD_ACTION_DEMOTE		"demote"
+    #  pacemaker/include/crm/crm.h:#define CRMD_ACTION_DEMOTED		"demoted"
+    #  pacemaker/include/crm/crm.h:#define CRMD_ACTION_NOTIFY		"notify"
+    #  pacemaker/include/crm/crm.h:#define CRMD_ACTION_NOTIFIED	"notified"
+    #  pacemaker/include/crm/crm.h:#define CRMD_ACTION_STATUS		"monitor"
+    # statues are (glue/include/lrm/raexec.h):
+    #  EXECRA_EXEC_UNKNOWN_ERROR = -2,
+    #  EXECRA_NO_RA = -1,
+    #  EXECRA_OK = 0,
+    #  EXECRA_UNKNOWN_ERROR = 1,
+    #  EXECRA_INVALID_PARAM = 2,
+    #  EXECRA_UNIMPLEMENT_FEATURE = 3,
+    #  EXECRA_INSUFFICIENT_PRIV = 4,
+    #  EXECRA_NOT_INSTALLED = 5,
+    #  EXECRA_NOT_CONFIGURED = 6,
+    #  EXECRA_NOT_RUNNING = 7,
+    #  EXECRA_RUNNING_MASTER = 8,
+    #  EXECRA_FAILED_MASTER = 9,
+    #
+    # TODO: this is very primitive; there's lots more here we can
+    # learn about resources from op history, that we're not displaying.
+    # But it's better than invoking crm_resource all the time...
+    #
+    # So...  For the moment, the rule is:
+    # - if it's running anywhere (regardless of master/slave), it's Started
+    # - if it's not running anywhere, but we have status, it's Stopped
+    # - if we have no lrm_resource or no ops, it's Unknown, but we report
+    #   this as Stopped, because anything else will be confusing.
+    #
+    # Return value is array of nodes on which the resource is running,
+    # (empty if stopped)
+    #
     def resource_state(id)
-      # TODO: unsafe string?
-      m = %x[/usr/sbin/crm_resource -W -r #{id}].match(/is running on: (\S+)/)
-      if m
-        return m[1]
-      else
-        @expand_resources = true
-        return nil
+
+      running_on = []
+
+      @nodes.each do |uname,node|
+        lrm_resource = @cib.elements["cib/status/node_state[@uname='#{uname}']/lrm/lrm_resources/lrm_resource[@id='#{id}']"]
+        next unless lrm_resource
+        ops = {}
+        lrm_resource.elements.each('lrm_rsc_op') do |op|
+          ops[op.attributes['call-id'].to_i] = {
+            :operation  => op.attributes['operation'],
+            :rc_code    => op.attributes['rc-code'].to_i,
+            :interval   => op.attributes['interval'].to_i
+          }
+        end
+        # logic derived somewhat from pacemaker/lib/pengine/unpack.c:unpack_rsc_op()
+        is_running = false
+        ops.keys.sort.each do |call_id|
+          next if ops[call_id][:operation] == 'notify'
+
+          # logger.debug "node #{uname} resource #{id}: call-id=#{call_id} operation=#{ops[call_id][:operation]} rc-code=#{ops[call_id][:rc_code]}\n"
+
+          # do we need this?
+          is_probe = ops[call_id][:operation] == 'monitor' && ops[call_id][:interval] == 0
+
+          # TODO: what's this about expired failures? (unpack.c:1323)
+
+          # TODO: evil magic numbers!
+          case ops[call_id][:rc_code]
+          when 7
+            # not running on this node
+            is_running = false
+          when 8
+            # master on this node
+            is_running = true
+          when 0
+            # ok
+            if ops[call_id][:operation] == 'stop'
+              is_running = false
+            else
+              # anything other than a stop means we're running (although might be
+              # master or slave after a promote or demote)
+              is_running = true
+            end
+          else
+            # busted somehow
+            # TODO: deal with this?
+          end
+        end
+        running_on << uname if is_running
       end
+
+      if running_on.empty?
+        # it's either unknown or not running, expand
+        @expand_resources = true
+      end
+
+      return running_on
     end
 
     def get_primitive(res, instance = nil)
@@ -195,7 +295,7 @@ class MainController < ApplicationController
       children = []
       res.elements.each('primitive') do |p|
         c = get_primitive(p, instance)
-        @expand_groups.push id unless c[:running_on]
+        @expand_groups.push id unless !c[:running_on].empty?
         children.push c
       end
       {
@@ -215,7 +315,7 @@ class MainController < ApplicationController
       if res.elements['primitive']
         for i in 0..clone_max.to_i-1 do
           c = get_primitive(res.elements['primitive'], i)
-          @expand_clones.push id unless c[:running_on]
+          @expand_clones.push id unless !c[:running_on].empty?
           children.push c
         end
       elsif res.elements['group']
@@ -235,7 +335,7 @@ class MainController < ApplicationController
     end
 
     @resources = []
-    doc.elements.each('cib/configuration/resources/*') do |res|
+    @cib.elements.each('cib/configuration/resources/*') do |res|
       case res.name
         when 'primitive'
           @resources.push get_primitive(res)
@@ -256,6 +356,8 @@ class MainController < ApplicationController
   def initialize
     require 'socket'
     @host = Socket.gethostname  # should be short hostname
+
+    @cib = nil
 
     # TODO: Need more deps than this (see crm)
     if File.exists?('/usr/sbin/crm_mon')

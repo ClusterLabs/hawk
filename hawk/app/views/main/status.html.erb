@@ -60,13 +60,13 @@ function update_nodes(nodelist) {
 
 // returns true if auto-expand required
 function update_primitive(prim) {
-  var class = prim.running_on ? "rs-running" : "rs-stopped";
+  var class = prim.running_on.length ? "rs-running" : "rs-stopped";
   // Always set state string (might be running on a different host)
-  $("prim-" + prim.id + "::state").update(prim.running_on ? "Started " + prim.running_on : "unknown");
+  $("prim-" + prim.id + "::state").update(prim.running_on.length ? "<%=h _('Started: ') %>" + prim.running_on.join(', ') : "<%=h _('Stopped') %>");
   if (!$("prim-" + prim.id).hasClassName(class)) {
     $("prim-" + prim.id).className = "res-primitive " + class;    
     // State changed, and not running anymore, need to expand everything above it...
-    if (!prim.running_on) {
+    if (prim.running_on.length == 0) {
       return true;
     }
   }
