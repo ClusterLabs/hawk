@@ -1,3 +1,5 @@
+require 'natcmp'
+
 class MainController < ApplicationController
   #before_filter :ensure_login
 
@@ -218,7 +220,7 @@ class MainController < ApplicationController
 
       running_on = []
 
-      @nodes.each do |uname,node|
+      @nodes.sort{|a,b| a[0].natcmp(b[0], true)}.each do |uname,node|
         lrm_resource = @cib.elements["cib/status/node_state[@uname='#{uname}']/lrm/lrm_resources/lrm_resource[@id='#{id}']"]
         next unless lrm_resource
         ops = {}
