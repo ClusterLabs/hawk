@@ -34,6 +34,9 @@ install:
 	-chown -R hacluster.haclient $(DESTDIR)/srv/www/hawk
 	install -D -m 0755 scripts/hawk $(DESTDIR)/etc/init.d/hawk
 
+# Make a tar.bz2 named for the most recent human-readable tag
+archive:
+	$(HG) archive -t tbz2 hawk-$(BUILD_TAG).tar.bz2
 pot:
 	(cd hawk; rake BUILD_TAG=$(BUILD_TAG) updatepo)
 
