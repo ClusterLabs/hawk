@@ -96,23 +96,22 @@ class MainController < ApplicationController
     # TODO: error check this
     @cib = REXML::Document.new(%x[/usr/sbin/cibadmin -Ql])
 
-    # TODO: encapsulate all this in 'summary' hash
-    @stack      = get_property('cluster-infrastructure')
-    @dc_version = get_property('dc-version')
+    @summary[:stack]    = get_property('cluster-infrastructure')
+    @summary[:version]  = get_property('dc-version')
     # trim version back to 12 chars (same length hg usually shows),
     # enough to know what's going on, and less screen real-estate
-    ver_trimmed = @dc_version.match(/.*-[a-f0-9]{12}/) if @dc_version
-    @dc_version = ver_trimmed[0] if ver_trimmed
+    ver_trimmed = @summary[:version].match(/.*-[a-f0-9]{12}/) if @summary[:version]
+    @summary[:version]  = ver_trimmed[0] if ver_trimmed
     # crmadmin will wait a long time if the cluster isn't up yet - cap it at 100ms
-    @dc         = %x[/usr/sbin/crmadmin -t 100 -D 2>/dev/null].strip
-    s = @dc.rindex(' ')
-    @dc.slice!(0, s + 1) if s
-    @dc = _('unknown') if @dc.empty?
+    @summary[:dc]       = %x[/usr/sbin/crmadmin -t 100 -D 2>/dev/null].strip
+    s = @summary[:dc].rindex(' ')
+    @summary[:dc].slice!(0, s + 1) if s
+    @summary[:dc]       = _('unknown') if @summary[:dc].empty?
     # default values per pacemaker 1.0 docs
-    @stickiness = get_property('default-resource-stickiness', '0') # TODO: is this documented?
-    @stonith    = get_property('stonith-enabled', 'true')
-    @symmetric  = get_property('symmetric-cluster', 'true')
-    @no_quorum  = get_property('no-quorum-policy', 'stop')
+    @summary[:default_resource_stickiness] = get_property('default-resource-stickiness', '0') # TODO: is this documented?
+    @summary[:stonith_enabled]             = get_property('stonith-enabled', 'true') ? _('Enabled') : _('Disabled')
+    @summary[:symmetric_cluster]           = get_property('symmetric-cluster', 'true') ? _('Symmetric') : _('Asymmetric')
+    @summary[:no_quorum_policy]            = get_property('no-quorum-policy', 'stop')
 
     # See unpack_nodes in pengine.c for cleanliness
     # - if "startup-fencing" is false, unseen nodes are not unclean (dangerous)
@@ -234,7 +233,8 @@ class MainController < ApplicationController
         # logic derived somewhat from pacemaker/lib/pengine/unpack.c:unpack_rsc_op()
         is_running = false
         ops.keys.sort.each do |call_id|
-          next if ops[call_id][:operation] == 'notify'
+          # skip pending ops and notifies
+          next if call_id == -1 || ops[call_id][:operation] == 'notify'
 
           # logger.debug "node #{uname} resource #{id}: call-id=#{call_id} operation=#{ops[call_id][:operation]} rc-code=#{ops[call_id][:rc_code]}\n"
 
@@ -263,6 +263,9 @@ class MainController < ApplicationController
           else
             # busted somehow
             # TODO: deal with this?
+            # TODO: localize
+            @errors << "Failed op: node #{uname} resource #{id}: call-id=#{call_id} operation=#{ops[call_id][:operation]} rc-code=#{ops[call_id][:rc_code]}"
+            # logger.debug "node #{uname} resource #{id}: call-id=#{call_id} operation=#{ops[call_id][:operation]} rc-code=#{ops[call_id][:rc_code]}\n"
           end
         end
         running_on << uname if is_running
@@ -297,8 +300,8 @@ class MainController < ApplicationController
       children = []
       res.elements.each('primitive') do |p|
         c = get_primitive(p, instance)
-        @expand_groups.push id unless !c[:running_on].empty?
-        children.push c
+        @expand_groups << id unless !c[:running_on].empty?
+        children << c
       end
       {
         :id         => id,
@@ -317,14 +320,14 @@ class MainController < ApplicationController
       if res.elements['primitive']
         for i in 0..clone_max.to_i-1 do
           c = get_primitive(res.elements['primitive'], i)
-          @expand_clones.push id unless !c[:running_on].empty?
-          children.push c
+          @expand_clones << id unless !c[:running_on].empty?
+          children << c
         end
       elsif res.elements['group']
         for i in 0..clone_max.to_i-1 do
           c = get_group(res.elements['group'], i)
-          @expand_clones.push id if @expand_groups.include?(c[:id])
-          children.push c
+          @expand_clones << id if @expand_groups.include?(c[:id])
+          children << c
         end
       else
         # Again, this can't happen
@@ -337,14 +340,15 @@ class MainController < ApplicationController
     end
 
     @resources = []
+    # TODO: need failed nodes too
     @cib.elements.each('cib/configuration/resources/*') do |res|
       case res.name
         when 'primitive'
-          @resources.push get_primitive(res)
+          @resources << get_primitive(res)
         when 'clone'
-          @resources.push get_clone(res)
+          @resources << get_clone(res)
         when 'group'
-          @resources.push get_group(res)
+          @resources << get_group(res)
         else
           # This can't happen
           # TODO: whine
@@ -360,6 +364,12 @@ class MainController < ApplicationController
     @host = Socket.gethostname  # should be short hostname
 
     @cib = nil
+    
+    # Everything we're showing status of
+    @errors     = []
+    @summary    = {}
+#    @nodes      = []
+#    @resources  = []
 
     # TODO: Need more deps than this (see crm)
     if File.exists?('/usr/sbin/crm_mon')
@@ -367,17 +377,17 @@ class MainController < ApplicationController
         @crm_status = %x[/usr/sbin/crm_mon -s 2>&1].chomp
         # TODO: this is dubious (WAR: crm_mon -s giving "status: 1, output was: Warning:offline node: hex-14")
         if $?.exitstatus == 10 || $?.exitstatus == 11
-          @err = _('%{cmd} failed (status: %{status}, output was: %{output})') %
-                   {:cmd    => '/usr/sbin/crm_mon',
-                    :status => $?.exitstatus,
-                    :output => @crm_status }
+          @errors << _('%{cmd} failed (status: %{status}, output was: %{output})') %
+                        {:cmd    => '/usr/sbin/crm_mon',
+                         :status => $?.exitstatus,
+                         :output => @crm_status }
         end
       else
-        @err = _('Unable to execute %{cmd}') % {:cmd => '/usr/sbin/crm_mon' }
+        @errors << _('Unable to execute %{cmd}') % {:cmd => '/usr/sbin/crm_mon' }
       end
     else
-      @err = _('Pacemaker does not appear to be installed (%{cmd} not found)') %
-               {:cmd => '/usr/sbin/crm_mon' }
+      @errors << _('Pacemaker does not appear to be installed (%{cmd} not found)') %
+                    {:cmd => '/usr/sbin/crm_mon' }
     end
   end
 
@@ -395,7 +405,14 @@ class MainController < ApplicationController
     
     respond_to do |format|
       format.html # status.html.erb
-      format.json { render :json => { :nodes => @nodes, :resources => @resources } }
+      format.json {
+        render :json => {
+          :errors     => @errors,
+          :summary    => @summary,
+          :nodes      => @nodes,
+          :resources  => @resources
+        }
+      }
     end
   end
   

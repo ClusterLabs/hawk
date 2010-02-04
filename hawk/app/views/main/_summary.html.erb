@@ -1,12 +1,12 @@
-<div id="summary">
+<div id="summary"<%= ' style="display: none"' unless @summary[:stack] %>>
   <table>
-    <tr><th><%= _('Stack:') %></th>     <td><%=h @stack %></td></tr>
-    <tr><th><%= _('Version:') %></th>   <td><%=h @dc_version %></td></tr>
-    <tr><th><%= _('Current DC:') %></th><td><%=h @dc %></td></tr>
-    <tr><th><%= _('Stickiness:') %></th><td><%=h @stickiness %></td></tr>
-    <tr><th><%= _('STONITH:') %></th>   <td><%=h @stonith ? _('Enabled') : _('Disabled') %></td></tr>
-    <tr><th><%= _('Cluster is:') %></th><td><%=h @symmetric ? _('Symmetric') : _('Asymmetric') %></td></tr>
-    <tr><th><%= _('No Quorum:') %></th> <td><%=h @no_quorum %></td></tr>
+    <tr><th><%= _('Stack:') %></th>     <td><span id="summary::stack"><%=h @summary[:stack] %></span></td></tr>
+    <tr><th><%= _('Version:') %></th>   <td><span id="summary::version"><%=h @summary[:version] %></span></td></tr>
+    <tr><th><%= _('Current DC:') %></th><td><span id="summary::dc"><%=h @summary[:dc] %></span></td></tr>
+    <tr><th><%= _('Stickiness:') %></th><td><span id="summary::default_resource_stickiness"><%=h @summary[:default_resource_stickiness] %></span></td></tr>
+    <tr><th><%= _('STONITH:') %></th>   <td><span id="summary::stonith_enabled"><%=h @summary[:stonith_enabled] %></span></td></tr>
+    <tr><th><%= _('Cluster is:') %></th><td><span id="summary::symmetric_cluster"><%=h @summary[:symmetric_cluster] %></span></td></tr>
+    <tr><th><%= _('No Quorum:') %></th> <td><span id="summary::no_quorum_policy"><%=h @summary[:no_quorum_policy] %></td></tr>
   </table>
 </div>
 

@@ -1,15 +1,10 @@
 <% content_for :head do %>
 <!-- extra head content here -->
 <% end %>
-<% if @err %>
-<div class="error">
-<%=h @err %>
-</div>
-<% else %>
 
 <%= render :partial => 'summary' %>
 
-<div> <!-- this div is probably unnecessary -->
+<div<%= ' style="display: none"' unless @summary[:stack] %>>
   <% # TODO: this is rough as guts - for another approach see
      # http://www.kleenecode.net/2008/03/01/valid-and-accessible-collapsible-panels-with-scriptaculous/
   %>
@@ -24,7 +19,7 @@
   </div>
 </div>
 
-<div> <!-- this div is also probably unnecessary -->
+<div<%= ' style="display: none"' unless @summary[:stack] %>>
   <div style="cursor: pointer;" onclick="toggle_collapse('reslist');"><div id="reslist::button" class="tri-<%= if @expand_resources then 'open' else 'closed' end %>"></div><%= _('%d resources configured') % @resources.count %></div>
   <div id="reslist"<%= ' style="display: none;" class="closed"' unless @expand_resources %>>
   <% for res in @resources %>
@@ -34,12 +29,50 @@
 </div>
 
 <script type="text/javascript">
+/*
+  OK, so we've got the following areas we need to update:
+  
+  [         error bar        ]
+  [node list]        [summary]
+  [resource list]
+
+  Any/all of this stuff may be empty.  If it's empty, it's
+  invisible.  (zero nodes == don't show that box at all,
+  likewise resources, etc.)
+  
+  Summary is easy; the list of properties doesn't change, only the
+  values.  We have:
+  
+    stack
+    dc-version
+    dc-node
+    default-resource-stickiness (integer)
+    stonith-enabled (true/false, but false should go scary red)
+    symmetric-cluster (true/false)
+    no-quorum-policy (string)
+    
+  Everything else is tricky, because we have to insert/delete pieces (maybe).
+
+  That's somewhat OK for nodes and resources, because everything will have a
+  unique identifier (so worst case we can walk through what's there and add
+  or remove as necessary (although it's a shame to have somewhat duplicated
+  HTML generation in RoR templates and JS.  Come on, *someone* must have solved
+  this one years ago...  *sigh*)
+
+  Trickier for errors; would need semi-persistent list of current errors.
+  Actually, we want that anyway, so that they're dismissable...  But for now,
+  let's just blat out the whole section.
+
+*/
+
 
 // returns true if auto-expand required
 function update_node(id, node) {
   if (!$("node-" + id).hasClassName("ns-" + node.state)) {
     $("node-" + id).className = "node ns-" + node.state;
     $("node-" + id + "::state").update(node.state);
+    // doesn't *quite* work; background color reverts to prior, not new, color
+    //new Effect.Highlight($("node-" + id));
     // If the node state has changed and it's no longer online, expand the node list
     if (node.state != "online") {
       return true;
@@ -64,7 +97,9 @@ function update_primitive(prim) {
   // Always set state string (might be running on a different host)
   $("prim-" + prim.id + "::state").update(prim.running_on.length ? "<%=h _('Started: ') %>" + prim.running_on.join(', ') : "<%=h _('Stopped') %>");
   if (!$("prim-" + prim.id).hasClassName(class)) {
-    $("prim-" + prim.id).className = "res-primitive " + class;    
+    $("prim-" + prim.id).className = "res-primitive " + class;
+    // doesn't *quite* work; background color reverts to prior, not new, color (also doesn't flash migrations)
+    // new Effect.Highlight($("prim-" + prim.id));
     // State changed, and not running anymore, need to expand everything above it...
     if (prim.running_on.length == 0) {
       return true;
@@ -92,18 +127,46 @@ function update_resources(reslist) {
   return expand;
 }
 
+function update_summary(summary) {
+  if (summary.stack) {
+    for (var e in summary) {
+      $("summary::" + e).update(summary[e]);
+    }
+    $("summary").show();
+  } else {
+    $("summary").hide();
+  }
+}
+
+function update_errors(errors) {
+  $("errorbar").update("");
+  errors.each(function(e) {
+    $("errorbar").insert($(document.createElement("div")).addClassName('error').update(e));
+  });
+}
+
 // TODO: Um...  what's "object" for?
 function handle_update(request, object) {
   if (request.responseJSON) {
-    if (update_nodes(request.responseJSON.nodes)) {
-      if ($("nodelist").hasClassName("closed")) {
-        expand_block("nodelist");
+    update_errors(request.responseJSON.errors);
+    update_summary(request.responseJSON.summary);
+    
+    if (request.responseJSON.summary.stack) {
+      $($("nodelist").parentNode).show();
+      $($("reslist").parentNode).show();
+      if (update_nodes(request.responseJSON.nodes)) {
+        if ($("nodelist").hasClassName("closed")) {
+          expand_block("nodelist");
+        }
       }
-    }
-    if (update_resources(request.responseJSON.resources)) {
-      if ($("reslist").hasClassName("closed")) {
-        expand_block("reslist");
+      if (update_resources(request.responseJSON.resources)) {
+        if ($("reslist").hasClassName("closed")) {
+          expand_block("reslist");
+        }
       }
+    } else {
+      $($("nodelist").parentNode).hide();
+      $($("reslist").parentNode).hide();
     }
   }
   do_update();
@@ -116,5 +179,4 @@ function do_update() {
 Event.observe(window, 'load', function() { do_update(); });
 
 </script>
-<% end %>
 

@@ -51,6 +51,19 @@ html, body
   padding: 1em 1em 3em; /* for footer */
 }
 
+/* TODO: too many errors push overflow past footer */
+#errorbar
+{
+}
+
+.error
+{
+  color: #000;
+  border-bottom: 1px solid #933;
+  background-color: #c66;
+  padding: 0.2em 1em;
+}
+
 #content p
 {
   margin-top: 0;
@@ -93,13 +106,6 @@ th /* used in summary */
 {
   font-weight: normal;
   text-align: left;
-}
-
-.error
-{
-  border: 1px solid #000;
-  padding: 1em 2em;
-  color: #f00;
 }
 
 code
