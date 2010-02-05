@@ -8,7 +8,7 @@
   <% # TODO: this is rough as guts - for another approach see
      # http://www.kleenecode.net/2008/03/01/valid-and-accessible-collapsible-panels-with-scriptaculous/
   %>
-  <div style="cursor: pointer;" onclick="toggle_collapse('nodelist');"><div id="nodelist::button" class="tri-<%= if @expand_nodes then 'open' else 'closed' end %>"></div><%= _('%d nodes configured') % @nodes.count %></div>
+  <div style="cursor: pointer;" onclick="toggle_collapse('nodelist');"><div id="nodelist::button" class="tri-<%= if @expand_nodes then 'open' else 'closed' end %>"></div><%= _('<span id="nodecount">%d</span> nodes configured') % @nodes.count %></div>
   <div id="nodelist"<%= ' style="display: none;" class="closed"' unless @expand_nodes %>>
   <% for node in @nodes %>
   <%= render :partial => 'node', :locals => { :node => node } %>
@@ -17,7 +17,7 @@
 </div>
 
 <div<%= ' style="display: none"' unless @summary[:stack] %>>
-  <div style="cursor: pointer;" onclick="toggle_collapse('reslist');"><div id="reslist::button" class="tri-<%= if @expand_resources then 'open' else 'closed' end %>"></div><%= _('%d resources configured') % @resources.count %></div>
+  <div style="cursor: pointer;" onclick="toggle_collapse('reslist');"><div id="reslist::button" class="tri-<%= if @expand_resources then 'open' else 'closed' end %>"></div><%= _('<span id="rescount">%d</span> resources configured') % @resources.count %></div>
   <div id="reslist"<%= ' style="display: none;" class="closed"' unless @expand_resources %>>
   <% for res in @resources %>
   <%= render :partial => res[:restype], :locals => { :res => res } %>
@@ -80,11 +80,39 @@ function update_node(node) {
 
 function update_nodes(nodelist) {
   var expand = false;
-  for (var i = 0; i < nodelist.length; i++) {
-    if (update_node(nodelist[i])) {
+  var c = $("nodelist").firstDescendant();
+  nodelist.each(function(n) {
+    id = "node-" + n.uname;
+    if (!c || c.readAttribute("id") != id) {
+      var d;
+      if ($(id)) {
+        // already got one for this node, tear it out and reuse it.
+        d = $(id).remove();
+      } else {
+        // brand spanking new
+        d = $(document.createElement("div")).writeAttribute("id", id).addClassName("node");
+        // TODO: n.state might not be HTML-safe (yeah, right...)
+        d.update(n.uname + ': <span id="node-' + n.uname + '::state">' + n.state + '</span>');
+      }
+      if (!c) {
+        $("nodelist").insert(d);
+      } else {
+        c.insert({before: d});
+      }
+    } else {
+      c = c.next();
+    }
+    if (update_node(n)) {
       expand = true;
     }
+  });
+  // If there's any children left, get rid of 'em
+  while (c) {
+    var nc = c.next();
+    c.remove();
+    c = nc;
   }
+  $("nodecount").update(nodelist.size());
   return expand;
 }
 
