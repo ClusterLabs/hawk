@@ -1,6 +1,6 @@
-<div class="res-clone">
-  <div style="cursor: pointer;" onclick="toggle_collapse('clone-<%=h res[:id] %>');"><div id="clone-<%=h res[:id] %>::button" class="tri-<%= if  @expand_clones.include?(res[:id]) then 'open' else 'closed' end %>"></div><%= _("Clone Set: %{id}") % { :id => res[:id] } %></div>
-  <div id="clone-<%=h res[:id] %>"<%= ' style="display: none" class="closed"' unless @expand_clones.include?(res[:id]) %>>
+<div id="clone-<%=h res[:id] %>" class="res-clone">
+  <div style="cursor: pointer;" onclick="toggle_collapse('clone-<%=h res[:id] %>::children');"><div id="clone-<%=h res[:id] %>::children::button" class="tri-<%= if  @expand_clones.include?(res[:id]) then 'open' else 'closed' end %>"></div><%= _("Clone Set: %{id}") % { :id => res[:id] } %></div>
+  <div id="clone-<%=h res[:id] %>::children"<%= ' style="display: none" class="closed"' unless @expand_clones.include?(res[:id]) %>>
     <% for child in res[:children] %>
     <%= render :partial => child[:restype], :locals => { :res => child } %>
     <% end %>

@@ -120,11 +120,11 @@ function update_nodes(nodelist) {
 function update_primitive(prim) {
   var class = prim.running_on.length ? "rs-running" : "rs-stopped";
   // Always set state string (might be running on a different host)
-  $("prim-" + prim.id + "::state").update(prim.running_on.length ? "<%=h _('Started: ') %>" + prim.running_on.join(', ') : "<%=h _('Stopped') %>");
-  if (!$("prim-" + prim.id).hasClassName(class)) {
-    $("prim-" + prim.id).className = "res-primitive " + class;
+  $("primitive-" + prim.id + "::state").update(prim.running_on.length ? "<%=h _('Started: ') %>" + prim.running_on.join(', ') : "<%=h _('Stopped') %>");
+  if (!$("primitive-" + prim.id).hasClassName(class)) {
+    $("primitive-" + prim.id).className = "res-primitive " + class;
     // doesn't *quite* work; background color reverts to prior, not new, color (also doesn't flash migrations)
-    // new Effect.Highlight($("prim-" + prim.id));
+    // new Effect.Highlight($("primitive-" + prim.id));
     // State changed, and not running anymore, need to expand everything above it...
     if (prim.running_on.length == 0) {
       return true;
@@ -133,21 +133,70 @@ function update_primitive(prim) {
   return false;
 }
 
-function update_resources(reslist) {
+// TODO: suspiciously similar to update_nodes function; consolidate these
+function update_resources(reslist, parent) {
   var expand = false;
-  for (var i = 0; i < reslist.length; i++) {
-    if (reslist[i].children) {
-      if (update_resources(reslist[i].children)) {
-        if ($(reslist[i].restype + "-" + reslist[i].id).hasClassName("closed")) {
-          expand_block(reslist[i].restype + "-" + reslist[i].id);
+  if (!parent) {
+    parent = $("reslist");
+    $("rescount").update(reslist.size());
+  }
+  var c = parent.firstDescendant();
+  reslist.each(function(res) {
+    id = res.restype + "-" + res.id;
+    if (!c || c.readAttribute("id") != id) {
+      var d;
+      if ($(id)) {
+        // already got one for this resource, tear it out and reuse it.
+        d = $(id).remove();
+      } else {
+        // brand spanking new
+        switch (res.restype) {
+          case 'group':
+            d = $(document.createElement("div")).writeAttribute("id", id).addClassName("res-group");
+            // TODO: localize "Group"
+            // TODO: res.id not HTML safe
+            // TODO: children::button is unbelievably wrong
+            d.update('<div style="cursor: pointer;" onclick="toggle_collapse(\'group-' + res.id + '::children\');"><div id="group-' + res.id + '::children::button" class="tri-closed"></div>Group: ' + res.id + '</div></div><div id="group-' + res.id + '::children" style="display:none;" class="closed"></div>');
+            break;
+          case 'clone':
+            d = $(document.createElement("div")).writeAttribute("id", id).addClassName("res-clone");
+            // TODO: localize "Clone Set"
+            // TODO: res.id not HTML safe
+            // TODO: children::button is unbelievably wrong
+            d.update('<div style="cursor: pointer;" onclick="toggle_collapse(\'clone-' + res.id + '::children\');"><div id="clone-' + res.id + '::children::button" class="tri-closed"></div>Clone Set: ' + res.id + '</div></div><div id="clone-' + res.id + '::children" style="display:none;" class="closed"></div>');
+            break;
+          case 'primitive':
+            d = $(document.createElement("div")).writeAttribute("id", id).addClassName("res-primitive");
+            d.update(res.id + ': <span id="primitive-' + res.id + '::state"></span>');
+            break;
+        }
+      }
+      if (!c) {
+        parent.insert(d);
+      } else {
+        c.insert({before: d});
+      }
+    } else {
+      c = c.next();
+    }
+    if (res.children) {
+      if (update_resources(res.children, $(res.restype + '-' + res.id + '::children'))) {
+        if ($(res.restype + "-" + res.id + "::children").hasClassName("closed")) {
+          expand_block(res.restype + "-" + res.id + "::children");
         }
         expand = true;
       }
-    } else if (reslist[i].restype == 'primitive') {
-      if (update_primitive(reslist[i])) {
+    } else if (res.restype == 'primitive') {
+      if (update_primitive(res)) {
         expand = true;
       }
     }
+  });
+  // If there's any children left, get rid of 'em
+  while (c) {
+    var nc = c.next();
+    c.remove();
+    c = nc;
   }
   return expand;
 }
