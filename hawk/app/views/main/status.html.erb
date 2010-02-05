@@ -11,10 +11,7 @@
   <div style="cursor: pointer;" onclick="toggle_collapse('nodelist');"><div id="nodelist::button" class="tri-<%= if @expand_nodes then 'open' else 'closed' end %>"></div><%= _('%d nodes configured') % @nodes.count %></div>
   <div id="nodelist"<%= ' style="display: none;" class="closed"' unless @expand_nodes %>>
   <% for node in @nodes %>
-    <div id="node-<%=h node[:uname] %>" class="node ns-<%=h node[:state] %>">
-      <% # TODO: localize state? %>
-      <%=h node[:uname] %>: <span id="node-<%=h node[:uname] %>::state"><%=h node[:state] %></span>
-    </div>
+  <%= render :partial => 'node', :locals => { :node => node } %>
   <% end %>
   </div>
 </div>
