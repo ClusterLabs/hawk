@@ -133,7 +133,9 @@ class MainController < ApplicationController
     #  - crmd="offline" expected="member"               (unclean)
     #
 
-    @nodes = {}
+    # hash, to sort by name
+    nodes = {}
+
     @expand_nodes = false
     # Have to use cib/configuration/nodes/node as authoritative source,
     # because cib/status/node_state doesn't exist yet if cluster is
@@ -157,9 +159,17 @@ class MainController < ApplicationController
           end
         end
       end
-      @nodes[uname] = { :state => state }
+      nodes[uname] = {
+        :uname => uname,
+        :state => state
+      }
       # if anything is not online, expand by default
       @expand_nodes = true if state != 'online'
+    end
+
+    # sorted node list to array
+    nodes.sort{|a,b| a[0].natcmp(b[0], true)}.each do |uname,node|
+      @nodes << node
     end
 
     @expand_resources = false
@@ -219,8 +229,8 @@ class MainController < ApplicationController
 
       running_on = []
 
-      @nodes.sort{|a,b| a[0].natcmp(b[0], true)}.each do |uname,node|
-        lrm_resource = @cib.elements["cib/status/node_state[@uname='#{uname}']/lrm/lrm_resources/lrm_resource[@id='#{id}']"]
+      for node in @nodes
+        lrm_resource = @cib.elements["cib/status/node_state[@uname='#{node[:uname]}']/lrm/lrm_resources/lrm_resource[@id='#{id}']"]
         next unless lrm_resource
         ops = {}
         lrm_resource.elements.each('lrm_rsc_op') do |op|
@@ -236,7 +246,7 @@ class MainController < ApplicationController
           # skip pending ops and notifies
           next if call_id == -1 || ops[call_id][:operation] == 'notify'
 
-          # logger.debug "node #{uname} resource #{id}: call-id=#{call_id} operation=#{ops[call_id][:operation]} rc-code=#{ops[call_id][:rc_code]}\n"
+          # logger.debug "node #{node[:uname]} resource #{id}: call-id=#{call_id} operation=#{ops[call_id][:operation]} rc-code=#{ops[call_id][:rc_code]}\n"
 
           # do we need this?
           is_probe = ops[call_id][:operation] == 'monitor' && ops[call_id][:interval] == 0
@@ -262,13 +272,12 @@ class MainController < ApplicationController
             end
           else
             # busted somehow
-            # TODO: deal with this?
             # TODO: localize
-            @errors << "Failed op: node #{uname} resource #{id}: call-id=#{call_id} operation=#{ops[call_id][:operation]} rc-code=#{ops[call_id][:rc_code]}"
-            # logger.debug "node #{uname} resource #{id}: call-id=#{call_id} operation=#{ops[call_id][:operation]} rc-code=#{ops[call_id][:rc_code]}\n"
+            @errors << "Failed op: node #{node[:uname]} resource #{id}: call-id=#{call_id} operation=#{ops[call_id][:operation]} rc-code=#{ops[call_id][:rc_code]}"
+            # logger.debug "node #{node[:uname]} resource #{id}: call-id=#{call_id} operation=#{ops[call_id][:operation]} rc-code=#{ops[call_id][:rc_code]}\n"
           end
         end
-        running_on << uname if is_running
+        running_on << node[:uname] if is_running
       end
 
       if running_on.empty?
@@ -339,7 +348,6 @@ class MainController < ApplicationController
       }
     end
 
-    @resources = []
     # TODO: need failed nodes too
     @cib.elements.each('cib/configuration/resources/*') do |res|
       case res.name
@@ -368,8 +376,8 @@ class MainController < ApplicationController
     # Everything we're showing status of
     @errors     = []
     @summary    = {}
-#    @nodes      = []
-#    @resources  = []
+    @nodes      = []
+    @resources  = []
 
     # TODO: Need more deps than this (see crm)
     if File.exists?('/usr/sbin/crm_mon')

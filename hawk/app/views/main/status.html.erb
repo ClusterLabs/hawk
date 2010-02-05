@@ -10,10 +10,10 @@
   %>
   <div style="cursor: pointer;" onclick="toggle_collapse('nodelist');"><div id="nodelist::button" class="tri-<%= if @expand_nodes then 'open' else 'closed' end %>"></div><%= _('%d nodes configured') % @nodes.count %></div>
   <div id="nodelist"<%= ' style="display: none;" class="closed"' unless @expand_nodes %>>
-  <% @nodes.sort{|a,b| a[0].natcmp(b[0], true)}.each do |uname,node| %>
-    <div id="node-<%=h uname %>" class="node ns-<%=h node[:state] %>">
+  <% for node in @nodes %>
+    <div id="node-<%=h node[:uname] %>" class="node ns-<%=h node[:state] %>">
       <% # TODO: localize state? %>
-      <%=h uname %>: <span id="node-<%=h uname %>::state"><%=h node[:state] %></span>
+      <%=h node[:uname] %>: <span id="node-<%=h node[:uname] %>::state"><%=h node[:state] %></span>
     </div>
   <% end %>
   </div>
@@ -67,12 +67,12 @@
 
 
 // returns true if auto-expand required
-function update_node(id, node) {
-  if (!$("node-" + id).hasClassName("ns-" + node.state)) {
-    $("node-" + id).className = "node ns-" + node.state;
-    $("node-" + id + "::state").update(node.state);
+function update_node(node) {
+  if (!$("node-" + node.uname).hasClassName("ns-" + node.state)) {
+    $("node-" + node.uname).className = "node ns-" + node.state;
+    $("node-" + node.uname + "::state").update(node.state);
     // doesn't *quite* work; background color reverts to prior, not new, color
-    //new Effect.Highlight($("node-" + id));
+    //new Effect.Highlight($("node-" + node.uname));
     // If the node state has changed and it's no longer online, expand the node list
     if (node.state != "online") {
       return true;
@@ -83,8 +83,8 @@ function update_node(id, node) {
 
 function update_nodes(nodelist) {
   var expand = false;
-  for (var id in nodelist) {
-    if (update_node(id, nodelist[id])) {
+  for (var i = 0; i < nodelist.length; i++) {
+    if (update_node(nodelist[i])) {
       expand = true;
     }
   }
@@ -110,7 +110,7 @@ function update_primitive(prim) {
 
 function update_resources(reslist) {
   var expand = false;
-  for (var i =0; i < reslist.length; i++) {
+  for (var i = 0; i < reslist.length; i++) {
     if (reslist[i].children) {
       if (update_resources(reslist[i].children)) {
         if ($(reslist[i].restype + "-" + reslist[i].id).hasClassName("closed")) {
