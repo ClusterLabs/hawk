@@ -169,7 +169,13 @@ class MainController < ApplicationController
 
     # sorted node list to array
     nodes.sort{|a,b| a[0].natcmp(b[0], true)}.each do |uname,node|
-      @nodes << node
+      @nodes << {
+        :uname  => node[:uname],              # needed for resource status, not used by renderer
+        :id     => "node-#{node[:uname]}",
+        :class  => "node ns-#{node[:state]}",
+        # TODO: localize?  HTML-safe?
+        :label  => "#{node[:uname]}: #{node[:state]}"
+      }
     end
 
     @expand_resources = false
@@ -291,10 +297,15 @@ class MainController < ApplicationController
     def get_primitive(res, instance = nil)
       id = res.attributes['id']
       id += ":#{instance}" if instance
+      running_on = resource_state(id)
       {
-        :id         => id,
-        :restype    => res.name,
-        :running_on => resource_state(id)
+        :id         => "primitive-#{id}",
+        :class      => "res-primitive rs-" + if running_on.empty? then 'stopped' else 'running' end,
+        # TODO: localize?  HTML-safe?
+        :label      => "#{id}: " + if running_on.empty? then _('Stopped') else _('Started: ') + running_on.join(', ') end,
+        
+        :restype    => res.name,    # Can we get rid of this crap?
+        :running_on => running_on   # Likewise?
       }
     end
 
@@ -307,15 +318,20 @@ class MainController < ApplicationController
       # TODO: get rid of this, it's probably weird.  Also, make sure DIV ids only contain
       # valid characaters for HTML IDs and JavaScript strings, etc.
       children = []
+      open = false
       res.elements.each('primitive') do |p|
         c = get_primitive(p, instance)
-        @expand_groups << id unless !c[:running_on].empty?
+        open = true if c[:running_on].empty?
         children << c
       end
       {
-        :id         => id,
-        :restype    => res.name,
-        :children   => children
+        :id         => "group-#{id}",
+        :class      => 'res-group',
+        :label      => _("Group: %{id}") % { :id => id },
+        :open       => open,
+        :children   => children,
+        
+        :restype    => res.name   # TODO: removable?
       }
     end
 
@@ -326,25 +342,29 @@ class MainController < ApplicationController
       children = []
       # TODO: is this the correct way to determine clone instance IDs?
       clone_max = res.attributes['clone-max'] || @nodes.count
+      open = false
       if res.elements['primitive']
         for i in 0..clone_max.to_i-1 do
           c = get_primitive(res.elements['primitive'], i)
-          @expand_clones << id unless !c[:running_on].empty?
+          open = true if c[:running_on].empty?
           children << c
         end
       elsif res.elements['group']
         for i in 0..clone_max.to_i-1 do
           c = get_group(res.elements['group'], i)
-          @expand_clones << id if @expand_groups.include?(c[:id])
+          open = true if c[:open]
           children << c
         end
       else
         # Again, this can't happen
       end
       {
-        :id         => id,
-        :restype    => res.name,
-        :children   => children
+        :id         => "clone-#{id}",
+        :class      => 'res-clone',
+        :label      => _("Clone Set: %{id}") % { :id => id },
+        :open       => open,
+        :children   => children,
+        :restype    => res.name   # TODO: removable?
       }
     end
 
@@ -411,14 +431,34 @@ class MainController < ApplicationController
     
     get_cluster_status
     
+    @node_panel = {
+      :id       => 'nodelist',
+      :class    => '',
+      :style    => @summary[:stack] ? '' : 'display: none;',
+      # TODO: localization can't cope with singular/plural here
+      :label    => _('<span id="nodecount">%d</span> nodes configured') % @nodes.count,
+      :open     => @expand_nodes,
+      :children => @nodes
+    }
+    
+    @resource_panel = {
+      :id       => 'reslist',
+      :class    => '',
+      :style    => @summary[:stack] ? '' : 'display: none;',
+      # TODO: localization can't cope with singular/plural here
+      :label    => _('<span id="rescount">%d</span> resources configured') % @resources.count,
+      :open     => @expand_resources,
+      :children => @resources
+    }
+    
     respond_to do |format|
       format.html # status.html.erb
       format.json {
         render :json => {
           :errors     => @errors,
           :summary    => @summary,
-          :nodes      => @nodes,
-          :resources  => @resources
+          :nodes      => @node_panel,
+          :resources  => @resource_panel
         }
       }
     end

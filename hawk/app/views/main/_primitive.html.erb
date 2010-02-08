@@ -1,4 +1,0 @@
-<div id="primitive-<%=h res[:id] %>" class="res-primitive <%= if res[:running_on].empty? then 'rs-stopped' else 'rs-running' end %>">
-  <% # TODO: localize (', ') ? %>
-  <%=h res[:id] %>: <span id="primitive-<%=h res[:id] %>::state"><%= if res[:running_on].empty? then _('Stopped') else _('Started: ') + res[:running_on].join(', ') end %></span>
-</div>

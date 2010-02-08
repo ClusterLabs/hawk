@@ -1,8 +1,0 @@
-<div id="group-<%=h res[:id] %>::children" class="res-group">
-  <div style="cursor: pointer;" onclick="toggle_collapse('group-<%=h res[:id] %>::children');"><div id="group-<%=h res[:id] %>::children::button" class="tri-<%= if  @expand_groups.include?(res[:id]) then 'open' else 'closed' end %>"></div><%= _("Group: %{id}") % { :id => res[:id] } %></div>
-  <div id="group-<%=h res[:id] %>::children"<%= ' style="display: none" class="closed"' unless @expand_groups.include?(res[:id]) %>>
-    <% for child in res[:children] %>
-    <%= render :partial => child[:restype], :locals => { :res => child } %>
-    <% end %>
-  </div>
-</div>
