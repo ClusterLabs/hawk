@@ -1,4 +1,4 @@
-<div id="<%=h panel[:id] %>" class="<%=h panel[:class] %>" style="<%=h panel[:style] %>">
+<div id="<%=h panel[:id] %>" class="<%=h panel[:className] %>" style="<%=h panel[:style] %>">
   <% if panel[:children] %>
     <div class="clickable" onclick="toggle_collapse('<%=h panel[:id] %>');"><div id="<%=h panel[:id] %>::button" class="tri-<%= panel[:open] ? 'open' : 'closed' %>"></div><span id="<%=h panel[:id] %>::label"><%= panel[:label] %></span></div>
     <div id="<%=h panel[:id] %>::children"<%= ' style="display: none;" class="closed"' unless panel[:open] %>>

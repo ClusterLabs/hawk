@@ -170,11 +170,11 @@ class MainController < ApplicationController
     # sorted node list to array
     nodes.sort{|a,b| a[0].natcmp(b[0], true)}.each do |uname,node|
       @nodes << {
-        :uname  => node[:uname],              # needed for resource status, not used by renderer
-        :id     => "node-#{node[:uname]}",
-        :class  => "node ns-#{node[:state]}",
+        :uname      => node[:uname],              # needed for resource status, not used by renderer
+        :id         => "node-#{node[:uname]}",
+        :className  => "node ns-#{node[:state]}",
         # TODO: localize?  HTML-safe?
-        :label  => "#{node[:uname]}: #{node[:state]}"
+        :label      => "#{node[:uname]}: #{node[:state]}"
       }
     end
 
@@ -300,7 +300,7 @@ class MainController < ApplicationController
       running_on = resource_state(id)
       {
         :id         => "primitive-#{id}",
-        :class      => "res-primitive rs-" + if running_on.empty? then 'stopped' else 'running' end,
+        :className  => "res-primitive rs-" + if running_on.empty? then 'stopped' else 'running' end,
         # TODO: localize?  HTML-safe?
         :label      => "#{id}: " + if running_on.empty? then _('Stopped') else _('Started: ') + running_on.join(', ') end,
         :active     => !running_on.empty?
@@ -324,7 +324,7 @@ class MainController < ApplicationController
       end
       {
         :id         => "group-#{id}",
-        :class      => 'res-group',
+        :className  => 'res-group',
         :label      => _("Group: %{id}") % { :id => id },
         :open       => open,
         :children   => children
@@ -356,7 +356,7 @@ class MainController < ApplicationController
       end
       {
         :id         => "clone-#{id}",
-        :class      => 'res-clone',
+        :className  => 'res-clone',
         :label      => _("Clone Set: %{id}") % { :id => id },
         :open       => open,
         :children   => children
@@ -427,23 +427,23 @@ class MainController < ApplicationController
     get_cluster_status
     
     @node_panel = {
-      :id       => 'nodelist',
-      :class    => '',
-      :style    => @summary[:stack] ? '' : 'display: none;',
+      :id         => 'nodelist',
+      :className  => '',
+      :style      => @summary[:stack] ? '' : 'display: none;',
       # TODO: localization can't cope with singular/plural here
-      :label    => _('<span id="nodecount">%d</span> nodes configured') % @nodes.count,
-      :open     => @expand_nodes,
-      :children => @nodes
+      :label      => _('%d nodes configured') % @nodes.count,
+      :open       => @expand_nodes,
+      :children   => @nodes
     }
     
     @resource_panel = {
-      :id       => 'reslist',
-      :class    => '',
-      :style    => @summary[:stack] ? '' : 'display: none;',
+      :id         => 'reslist',
+      :className  => '',
+      :style      => @summary[:stack] ? '' : 'display: none;',
       # TODO: localization can't cope with singular/plural here
-      :label    => _('<span id="rescount">%d</span> resources configured') % @resources.count,
-      :open     => @expand_resources,
-      :children => @resources
+      :label      => _('%d resources configured') % @resources.count,
+      :open       => @expand_resources,
+      :children   => @resources
     }
     
     respond_to do |format|

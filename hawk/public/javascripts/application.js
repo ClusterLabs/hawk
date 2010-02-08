@@ -47,7 +47,7 @@ function update_summary(summary) {
 
 // need to pass parent in with open flag (e.g.: nodelist, reslist)
 function update_panel(panel) {
-  $(panel.id).className = panel.class;
+  $(panel.id).className = panel.className;
   $(panel.id+"::label").update(panel.label);
   if (!panel.children) return false;
 
