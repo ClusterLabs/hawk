@@ -1,8 +1,5 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
-Event.observe(window, 'load', function() {
-  $('help-link').observe('click', function(event) { alert('Not implemented'); event.stop(); });
-});
 
 function expand_block(id)
 {
