@@ -303,9 +303,7 @@ class MainController < ApplicationController
         :class      => "res-primitive rs-" + if running_on.empty? then 'stopped' else 'running' end,
         # TODO: localize?  HTML-safe?
         :label      => "#{id}: " + if running_on.empty? then _('Stopped') else _('Started: ') + running_on.join(', ') end,
-        
-        :restype    => res.name,    # Can we get rid of this crap?
-        :running_on => running_on   # Likewise?
+        :active     => !running_on.empty?
       }
     end
 
@@ -321,7 +319,7 @@ class MainController < ApplicationController
       open = false
       res.elements.each('primitive') do |p|
         c = get_primitive(p, instance)
-        open = true if c[:running_on].empty?
+        open = true unless c[:active]
         children << c
       end
       {
@@ -329,9 +327,7 @@ class MainController < ApplicationController
         :class      => 'res-group',
         :label      => _("Group: %{id}") % { :id => id },
         :open       => open,
-        :children   => children,
-        
-        :restype    => res.name   # TODO: removable?
+        :children   => children
       }
     end
 
@@ -346,7 +342,7 @@ class MainController < ApplicationController
       if res.elements['primitive']
         for i in 0..clone_max.to_i-1 do
           c = get_primitive(res.elements['primitive'], i)
-          open = true if c[:running_on].empty?
+          open = true unless c[:active]
           children << c
         end
       elsif res.elements['group']
@@ -363,8 +359,7 @@ class MainController < ApplicationController
         :class      => 'res-clone',
         :label      => _("Clone Set: %{id}") % { :id => id },
         :open       => open,
-        :children   => children,
-        :restype    => res.name   # TODO: removable?
+        :children   => children
       }
     end
 
