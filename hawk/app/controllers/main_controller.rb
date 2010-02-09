@@ -243,6 +243,7 @@ class MainController < ApplicationController
           ops[op.attributes['call-id'].to_i] = {
             :operation  => op.attributes['operation'],
             :rc_code    => op.attributes['rc-code'].to_i,
+            :expected   => op.attributes['transition-key'].split(':')[2].to_i,
             :interval   => op.attributes['interval'].to_i
           }
         end
@@ -276,7 +277,8 @@ class MainController < ApplicationController
               # master or slave after a promote or demote)
               is_running = true
             end
-          else
+          end
+          if !is_running && ops[call_id][:rc_code] != ops[call_id][:expected]
             # busted somehow
             # TODO: localize
             @errors << "Failed op: node #{node[:uname]} resource #{id}: call-id=#{call_id} operation=#{ops[call_id][:operation]} rc-code=#{ops[call_id][:rc_code]}"
