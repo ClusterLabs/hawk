@@ -35,7 +35,7 @@ function update_errors(errors) {
 }
 
 function update_summary(summary) {
-  if (summary.stack) {
+  if (summary.version) {
     for (var e in summary) {
       $("summary::" + e).update(summary[e]);
     }
@@ -101,7 +101,7 @@ function handle_update(request, object) {
     update_errors(request.responseJSON.errors);
     update_summary(request.responseJSON.summary);
 
-    if (request.responseJSON.summary.stack) {
+    if (request.responseJSON.summary.version) {
       $("nodelist").show();
       if (update_panel(request.responseJSON.nodes)) {
         if ($("nodelist::children").hasClassName("closed")) {
