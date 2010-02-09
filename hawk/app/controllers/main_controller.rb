@@ -96,7 +96,8 @@ class MainController < ApplicationController
     # TODO: error check this
     @cib = REXML::Document.new(%x[/usr/sbin/cibadmin -Ql])
 
-    @summary[:stack]    = get_property('cluster-infrastructure')
+    stack = get_property('cluster-infrastructure')
+    @summary[:stack]    = stack if stack              # cope with pre-cluster-infrastructure Pacemaker
     @summary[:version]  = get_property('dc-version')
     # trim version back to 12 chars (same length hg usually shows),
     # enough to know what's going on, and less screen real-estate
@@ -431,7 +432,7 @@ class MainController < ApplicationController
     @node_panel = {
       :id         => 'nodelist',
       :className  => '',
-      :style      => @summary[:stack] ? '' : 'display: none;',
+      :style      => @summary[:version] ? '' : 'display: none;',
       # TODO: localization can't cope with singular/plural here
       :label      => _('%d nodes configured') % @nodes.count,
       :open       => @expand_nodes,
@@ -441,7 +442,7 @@ class MainController < ApplicationController
     @resource_panel = {
       :id         => 'reslist',
       :className  => '',
-      :style      => @summary[:stack] ? '' : 'display: none;',
+      :style      => @summary[:version] ? '' : 'display: none;',
       # TODO: localization can't cope with singular/plural here
       :label      => _('%d resources configured') % @resources.count,
       :open       => @expand_resources,
