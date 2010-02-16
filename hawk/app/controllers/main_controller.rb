@@ -93,15 +93,18 @@ class MainController < ApplicationController
   end
 
   def get_cluster_status
-    # TODO: error check this
-    @cib = REXML::Document.new(%x[/usr/sbin/cibadmin -Ql])
+    @cib = REXML::Document.new(%x[/usr/sbin/cibadmin -Ql 2>/dev/null])
+    # If this failed, there'll be no root element; bail out leaving
+    # everything empty.  Status display can key off non-empty @summary
+    return unless @cib.root
 
-    stack = get_property('cluster-infrastructure')
-    @summary[:stack]    = stack if stack              # cope with pre-cluster-infrastructure Pacemaker
-    @summary[:version]  = get_property('dc-version')
+    @cib_up = true
+
+    @summary[:stack]    = get_property('cluster-infrastructure') || _('unknown')
+    @summary[:version]  = get_property('dc-version') || _('unknown')
     # trim version back to 12 chars (same length hg usually shows),
     # enough to know what's going on, and less screen real-estate
-    ver_trimmed = @summary[:version].match(/.*-[a-f0-9]{12}/) if @summary[:version]
+    ver_trimmed = @summary[:version].match(/.*-[a-f0-9]{12}/)
     @summary[:version]  = ver_trimmed[0] if ver_trimmed
     # crmadmin will wait a long time if the cluster isn't up yet - cap it at 100ms
     @summary[:dc]       = %x[/usr/sbin/crmadmin -t 100 -D 2>/dev/null].strip
@@ -392,6 +395,7 @@ class MainController < ApplicationController
     @cib = nil
     
     # Everything we're showing status of
+    @cib_up     = false
     @errors     = []
     @summary    = {}
     @nodes      = []
@@ -453,6 +457,7 @@ class MainController < ApplicationController
       format.html # status.html.erb
       format.json {
         render :json => {
+          :cib_up     => @cib_up,
           :errors     => @errors,
           :summary    => @summary,
           :nodes      => @node_panel,

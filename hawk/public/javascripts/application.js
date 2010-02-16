@@ -35,13 +35,8 @@ function update_errors(errors) {
 }
 
 function update_summary(summary) {
-  if (summary.version) {
-    for (var e in summary) {
-      $("summary::" + e).update(summary[e]);
-    }
-    $("summary").show();
-  } else {
-    $("summary").hide();
+  for (var e in summary) {
+    $("summary::" + e).update(summary[e]);
   }
 }
 
@@ -99,15 +94,18 @@ function update_panel(panel) {
 function handle_update(request, object) {
   if (request.responseJSON) {
     update_errors(request.responseJSON.errors);
-    update_summary(request.responseJSON.summary);
 
-    if (request.responseJSON.summary.version) {
+    if (request.responseJSON.cib_up) {
+      $("summary").show();
+      update_summary(request.responseJSON.summary);
+
       $("nodelist").show();
       if (update_panel(request.responseJSON.nodes)) {
         if ($("nodelist::children").hasClassName("closed")) {
           expand_block("nodelist");
         }
       }
+
       $("reslist").show();
       if (update_panel(request.responseJSON.resources)) {
         if ($("reslist::children").hasClassName("closed")) {
@@ -115,6 +113,7 @@ function handle_update(request, object) {
         }
       }
     } else {
+      $("summary").hide();
       $("nodelist").hide();
       $("reslist").hide();
     }

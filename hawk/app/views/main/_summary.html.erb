@@ -1,8 +1,6 @@
-<div id="summary"<%= ' style="display: none"' unless @summary[:version] %>>
+<div id="summary"<%= ' style="display: none"' unless @cib_up %>>
   <table>
-  <% if @summary[:stack] %>
     <tr><th><%= _('Stack:') %></th>     <td><span id="summary::stack"><%=h @summary[:stack] %></span></td></tr>
-  <% end %>
     <tr><th><%= _('Version:') %></th>   <td><span id="summary::version"><%=h @summary[:version] %></span></td></tr>
     <tr><th><%= _('Current DC:') %></th><td><span id="summary::dc"><%=h @summary[:dc] %></span></td></tr>
     <tr><th><%= _('Stickiness:') %></th><td><span id="summary::default_resource_stickiness"><%=h @summary[:default_resource_stickiness] %></span></td></tr>
