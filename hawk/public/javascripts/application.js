@@ -29,9 +29,14 @@ function toggle_collapse(id)
 
 function update_errors(errors) {
   $("errorbar").update("");
-  errors.each(function(e) {
-    $("errorbar").insert($(document.createElement("div")).addClassName('error').update(e));
-  });
+  if (errors.size()) {
+    $("errorbar").show();
+    errors.each(function(e) {
+      $("errorbar").insert($(document.createElement("div")).addClassName('error').update(e));
+    });
+  } else {
+    $("errorbar").hide();
+  }
 }
 
 function update_summary(summary) {

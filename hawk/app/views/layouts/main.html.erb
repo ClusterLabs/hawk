@@ -14,7 +14,7 @@
     <span id="header-links"><!--<%= link_to _('Help'), { :action => 'help' }, :id => 'help-link' %>--></span>
     <h1 id="header-title"><%=h @title %></h1>
   </div>
-  <div id="errorbar">
+  <div id="errorbar"<%= ' style="display: none;"' if @errors.empty? %>>
     <% @errors.each do |msg| %>
       <div class="error"><%= msg %></div>
     <% end if @errors %>
