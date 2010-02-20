@@ -173,12 +173,30 @@ class MainController < ApplicationController
 
     # sorted node list to array
     nodes.sort{|a,b| a[0].natcmp(b[0], true)}.each do |uname,node|
+      # map actal states back to generic visuals
+      case node[:state]
+      when 'online'
+        className = 'active'
+      when 'offline'
+        className = 'inactive'
+      when 'pending'
+        className = 'transient'
+      when 'standby'
+        className = 'inactive'
+      when 'unclean'
+        className = 'error'
+      else
+        # This can't happen...
+        className = 'error'
+      end
+
       @nodes << {
         :uname      => node[:uname],              # needed for resource status, not used by renderer
         :id         => "node-#{node[:uname]}",
-        :className  => "node ns-#{node[:state]}",
+        :className  => "node ns-#{className}",
         # TODO: localize?  HTML-safe?
-        :label      => "#{node[:uname]}: #{node[:state]}"
+        :label      => "#{node[:uname]}: #{node[:state]}",
+        :menu       => true
       }
     end
 
@@ -306,7 +324,7 @@ class MainController < ApplicationController
       running_on = resource_state(id)
       {
         :id         => "primitive-#{id}",
-        :className  => "res-primitive rs-" + if running_on.empty? then 'stopped' else 'running' end,
+        :className  => "res-primitive rs-" + if running_on.empty? then 'inactive' else 'active' end,
         # TODO: localize?  HTML-safe?
         :label      => "#{id}: " + if running_on.empty? then _('Stopped') else _('Started: ') + running_on.join(', ') end,
         :active     => !running_on.empty?
@@ -466,5 +484,5 @@ class MainController < ApplicationController
       }
     end
   end
-  
+
 end

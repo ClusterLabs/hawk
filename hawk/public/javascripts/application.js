@@ -65,10 +65,11 @@ function update_panel(panel) {
         if (item.children) {
           // TODO: HTML-safe?
           d.update('<div class="clickable" onclick="toggle_collapse(\'' + item.id + '\');">' +
-            '<div id="' + item.id + '::button" class="tri-' + (item.open ? 'open' : 'closed') + '"></div><span id="' + item.id + '::label"></span></div>' +
+            '<div id="' + item.id + '::button" class="tri-' + (item.open ? 'open' : 'closed') + '"></div><span id="' + item.id + '::label"></span>' +
+              '<a id="' + item.id + '::menu"><img src="/images/transparent-16x16.gif" class="action-icon" alt="" /></a></div>' +
             '<div id="' + item.id + '::children"' + (item.open ? ' style="display: none;" class="closed"' : '') + '</div>');
         } else {
-          d.update('<span id="' + item.id + '::label"></span>');
+          d.update('<span id="' + item.id + '::label"></span><a id="' + item.id + '::menu"><img src="/images/transparent-16x16.gif" class="action-icon" alt="" /></a>');
         }
       }
       if (!c) {

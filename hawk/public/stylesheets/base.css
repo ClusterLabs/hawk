@@ -160,29 +160,24 @@ h2
   max-width: 20em;
 }
 
-.ns-online
+.ns-active
 {
   background-color: #6c6;
 }
 
-.ns-standby
+.ns-inactive
 {
   background-color: #ccc;
 }
 
-.ns-pending
-{
-  background-color: #fc6;
-}
-
-.ns-offline
-{
-  background-color: #ccc;
-}
-
-.ns-unclean
+.ns-error
 {
   background-color: #c66;
+}
+
+.ns-transient
+{
+  background-color: #fc6;
 }
 
 .res-primitive
@@ -209,17 +204,17 @@ h2
   max-width: 20em;
 }
 
-.rs-running
+.rs-active
 {
   background-color: #6c6;
 }
 
-.rs-stopped
+.rs-inactive
 {
   background-color: #ccc;
 }
 
-.rs-unknown
+.rs-error
 {
   background-color: #c66;
 }
@@ -244,5 +239,15 @@ h2
 .clickable
 {
   cursor: pointer;
+}
+
+.action-icon
+{
+  float: right;
+}
+
+img
+{
+  border: none;
 }
 
