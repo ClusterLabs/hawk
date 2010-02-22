@@ -73,11 +73,12 @@ function update_panel(panel) {
         if (item.children) {
           // TODO: HTML-safe?
           d.update('<div class="clickable" onclick="toggle_collapse(\'' + item.id + '\');">' +
-            '<div id="' + item.id + '::button" class="tri-' + (item.open ? 'open' : 'closed') + '"></div><span id="' + item.id + '::label"></span>' +
-              '<a id="' + item.id + '::menu"><img src="/images/transparent-16x16.gif" class="action-icon" alt="" /></a></div>' +
+            '<div id="' + item.id + '::button" class="tri-' + (item.open ? 'open' : 'closed') + '"></div>' +
+              '<a id="' + item.id + '::menu"><img src="/images/transparent-16x16.gif" class="action-icon" alt="" /></a>' +
+              '<span id="' + item.id + '::label"></span></div>' +
             '<div id="' + item.id + '::children"' + (item.open ? ' style="display: none;" class="closed"' : '') + '</div>');
         } else {
-          d.update('<span id="' + item.id + '::label"></span><a id="' + item.id + '::menu"><img src="/images/transparent-16x16.gif" class="action-icon" alt="" /></a>');
+          d.update('<a id="' + item.id + '::menu"><img src="/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="' + item.id + '::label"></span>');
         }
       }
       if (!c) {
@@ -180,10 +181,10 @@ function init_menus() {
   menu = $(document.createElement("div")).writeAttribute("id", "menu::node").addClassName("menu").setStyle({display: "none"});
   // TODO: Localize!
   menu.update("<ul>" +
-      '<li id="menu::node::online" class="menu-item"><a class="icon-start enabled">Online</a></li>\n' +
-      '<li id="menu::node::standby" class="menu-item"><a class="icon-pause enabled">Standby</a></li>\n' +
-      '<li id="menu::node::fence" class="menu-item"><a class="icon-kill enabled">Fence Node</a></li>\n' +
-//      '<li id="menu::node::mark" class="menu-item"><a class="icon-mark-dead enabled">Mark Node Fenced</a></li>\n' +
+      '<li id="menu::node::online" class="menu-item"><a class="icon-start enabled" href="#" onclick="return false;">Online</a></li>\n' +
+      '<li id="menu::node::standby" class="menu-item"><a class="icon-pause enabled" href="#" onclick="return false;">Standby</a></li>\n' +
+      '<li id="menu::node::fence" class="menu-item"><a class="icon-kill enabled" href="#" onclick="return false;">Fence Node</a></li>\n' +
+//      '<li id="menu::node::mark" class="menu-item"><a class="icon-mark-dead enabled" href="#" onclick="return false;">Mark Node Fenced</a></li>\n' +
     "</ul>");
   $("content").insert(menu);
   $("menu::node").hawkNode = null;
