@@ -163,6 +163,19 @@ function popup_node_menu(e)
   Event.stop(e);
 }
 
+function popup_resource_menu(e)
+{
+  var target = Event.element(e);
+  var pos = target.cumulativeOffset();
+
+  var parts = dc_split(target.parentNode.id);
+  $("menu::resource").hawkResource = parts[1];
+  $("menu::resource").hawkResourceType = parts[0];
+
+  $("menu::resource").setStyle({left: pos.left+"px", top: pos.top+"px"}).show();
+  Event.stop(e);
+}
+
 function node_menu_item_click(e)
 {
   var state = "neutral";
@@ -176,10 +189,24 @@ function node_menu_item_click(e)
   new Ajax.Request("/main/node_" + dc_split(Event.element(e).parentNode.id)[2], { parameters: "node=" + $("menu::node").hawkNode });
 }
 
+// TODO: Consolidate with node_menu_*
+function resource_menu_item_click(e)
+{
+  var state = "neutral";
+  var c = $($("menu::resource").hawkResourceType + "::" + $("menu::resource").hawkResource);
+  if (c.hasClassName("rs-active"))         state = "active";
+  else if(c.hasClassName("rs-inactive"))  state = "inactive";
+  else if(c.hasClassName("rs-error"))     state = "error";
+  $($("menu::resource").hawkResourceType + "::" + $("menu::resource").hawkResource + "::menu").firstDescendant().src = "/images/spinner-16x16-" + state + ".gif";
+
+  new Ajax.Request("/main/resource_" + dc_split(Event.element(e).parentNode.id)[2], { parameters: "resource=" + $("menu::resource").hawkResource });
+}
+
 function init_menus() {
 
   menu = $(document.createElement("div")).writeAttribute("id", "menu::node").addClassName("menu").setStyle({display: "none"});
   // TODO: Localize!
+  // (The href/onlick garbage is here to make the hover style work in IE)
   menu.update("<ul>" +
       '<li id="menu::node::online" class="menu-item"><a class="icon-start enabled" href="#" onclick="return false;">Online</a></li>\n' +
       '<li id="menu::node::standby" class="menu-item"><a class="icon-pause enabled" href="#" onclick="return false;">Standby</a></li>\n' +
@@ -194,8 +221,25 @@ function init_menus() {
   $("menu::node::fence").firstDescendant().observe("click", node_menu_item_click);
 //  $("menu::node::mark").firstDescendant().observe("click", node_menu_item_click);
 
+  menu = $(document.createElement("div")).writeAttribute("id", "menu::resource").addClassName("menu").setStyle({display: "none"});
+  // TODO: Localize!
+  // (The href/onlick garbage is here to make the hover style work in IE)
+  menu.update("<ul>" +
+      '<li id="menu::resource::start" class="menu-item"><a class="icon-start enabled" href="#" onclick="return false;">Start</a></li>\n' +
+      '<li id="menu::resource::stop" class="menu-item"><a class="icon-stop enabled" href="#" onclick="return false;">Stop</a></li>\n' +
+      '<li id="menu::resource::cleanup" class="menu-item"><a class="icon-cleanup enabled" href="#" onclick="return false;">Clean Up</a></li>\n' +
+    "</ul>");
+  $("content").insert(menu);
+  $("menu::resource").hawkResource = null;
+  $("menu::resource").hawkResourceType = null;
+
+  $("menu::resource::start").firstDescendant().observe("click", resource_menu_item_click);
+  $("menu::resource::stop").firstDescendant().observe("click", resource_menu_item_click);
+  $("menu::resource::cleanup").firstDescendant().observe("click", resource_menu_item_click);
+
   document.observe('click', function(e) {
     $("menu::node").hide();
+    $("menu::resource").hide();
   });
 
   $$(".menu-link").each(function(e) {
@@ -204,6 +248,27 @@ function init_menus() {
         e.addClassName("clickable");
         e.observe("click", popup_node_menu);
         e.firstDescendant().src = "/images/icons/properties.png";
+        break;
+      case "clone":
+        e.addClassName("clickable");
+        e.observe("click", popup_resource_menu);
+        e.firstDescendant().src = "/images/icons/properties.png";
+        break;
+      case "primitive":
+        isClone = false;
+        var n = e.parentNode;
+        while (n && n.id != "") {
+          if (dc_split(n.id)[0] == "clone") {
+            isClone = true;
+            break;
+          }
+          n = n.parentNode;
+        }
+        if (!isClone) {
+          e.addClassName("clickable");
+          e.observe("click", popup_resource_menu);
+          e.firstDescendant().src = "/images/icons/properties.png";
+        }
         break;
     }
   });

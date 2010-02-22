@@ -336,6 +336,7 @@ class MainController < ApplicationController
     def get_group(res, instance = nil)
       id = res.attributes['id']
       id += ":#{instance}" if instance
+      status_class = 'rs-active'
       # Arguably, the above is not really true (but we need it for DIV ids for collapsibles)
       # TODO: get rid of this, it's probably weird.  Also, make sure DIV ids only contain
       # valid characaters for HTML IDs and JavaScript strings, etc.
@@ -344,11 +345,12 @@ class MainController < ApplicationController
       res.elements.each('primitive') do |p|
         c = get_primitive(p, instance)
         open = true unless c[:active]
+          status_class = 'rs-inactive' unless c[:className].include? 'rs-active'    # TODO: only handles two states - do we care?
         children << c
       end
       {
         :id         => "group::#{id}",
-        :className  => 'res-group',
+        :className  => "res-group #{status_class}",
         :label      => _("Group: %{id}") % { :id => id },
         :open       => open,
         :children   => children
@@ -360,6 +362,7 @@ class MainController < ApplicationController
     def get_clone(res)
       id = res.attributes['id']
       children = []
+      status_class = 'rs-active'
       # TODO: is this the correct way to determine clone instance IDs?
       clone_max = res.attributes['clone-max'] || @nodes.count
       open = false
@@ -367,12 +370,14 @@ class MainController < ApplicationController
         for i in 0..clone_max.to_i-1 do
           c = get_primitive(res.elements['primitive'], i)
           open = true unless c[:active]
+          status_class = 'rs-inactive' unless c[:className].include? 'rs-active'    # TODO: only handles two states - do we care?
           children << c
         end
       elsif res.elements['group']
         for i in 0..clone_max.to_i-1 do
           c = get_group(res.elements['group'], i)
           open = true if c[:open]
+          status_class = 'rs-inactive' unless c[:className].include? 'rs-active'    # TODO: only handles two states - do we care?
           children << c
         end
       else
@@ -380,7 +385,7 @@ class MainController < ApplicationController
       end
       {
         :id         => "clone::#{id}",
-        :className  => 'res-clone',
+        :className  => "res-clone #{status_class}",
         :label      => _("Clone Set: %{id}") % { :id => id },
         :open       => open,
         :children   => children
@@ -521,5 +526,60 @@ class MainController < ApplicationController
 #  def node_mark
 #    head :ok
 #  end
+
+  # TODO: as above
+  def resource_start
+    if @enable_mgmt
+      cib = REXML::Document.new(%x[/usr/sbin/cibadmin -Ql --scope resources 2>/dev/null])
+      # TODO: Safe? (at least, can't be executed...)
+      e = cib.elements["//[@id='#{params[:resource]}']"]
+      if e
+        res = params[:resource]
+        if e.name == "clone"
+          res = e.elements['primitive'].attributes['id']
+        end
+        system('/usr/sbin/crm_resource', '--meta', '-r', res, '-p', 'target-role', '-v', 'Started');
+        head :ok
+      else
+        # this is a lie
+        head :forbidden
+      end
+    else
+      head :forbidden
+    end
+  end
+
+  # TODO: as above
+  # TODO: consolidate with resource_start
+  def resource_stop
+    if @enable_mgmt
+      cib = REXML::Document.new(%x[/usr/sbin/cibadmin -Ql --scope resources 2>/dev/null])
+      # TODO: Safe? (at least, can't be executed...)
+      e = cib.elements["//[@id='#{params[:resource]}']"]
+      if e
+        res = params[:resource]
+        if e.name == "clone"
+          res = e.elements['primitive'].attributes['id']
+        end
+        system('/usr/sbin/crm_resource', '--meta', '-r', res, '-p', 'target-role', '-v', 'Stopped');
+        head :ok
+      else
+        # this is a lie
+        head :forbidden
+      end
+    else
+      head :forbidden
+    end
+  end
+
+  # TODO: as above
+  def resource_cleanup
+    if @enable_mgmt
+      system('/usr/sbin/crm', 'resource', 'cleanup', params[:resource]);
+      head :ok
+    else
+      head :forbidden
+    end
+  end
 
 end
