@@ -192,7 +192,7 @@ class MainController < ApplicationController
 
       @nodes << {
         :uname      => node[:uname],              # needed for resource status, not used by renderer
-        :id         => "node-#{node[:uname]}",
+        :id         => "node::#{node[:uname]}",
         :className  => "node ns-#{className}",
         # TODO: localize?  HTML-safe?
         :label      => "#{node[:uname]}: #{node[:state]}",
@@ -323,7 +323,7 @@ class MainController < ApplicationController
       id += ":#{instance}" if instance
       running_on = resource_state(id)
       {
-        :id         => "primitive-#{id}",
+        :id         => "primitive::#{id}",
         :className  => "res-primitive rs-" + if running_on.empty? then 'inactive' else 'active' end,
         # TODO: localize?  HTML-safe?
         :label      => "#{id}: " + if running_on.empty? then _('Stopped') else _('Started: ') + running_on.join(', ') end,
@@ -347,7 +347,7 @@ class MainController < ApplicationController
         children << c
       end
       {
-        :id         => "group-#{id}",
+        :id         => "group::#{id}",
         :className  => 'res-group',
         :label      => _("Group: %{id}") % { :id => id },
         :open       => open,
@@ -379,7 +379,7 @@ class MainController < ApplicationController
         # Again, this can't happen
       end
       {
-        :id         => "clone-#{id}",
+        :id         => "clone::#{id}",
         :className  => 'res-clone',
         :label      => _("Clone Set: %{id}") % { :id => id },
         :open       => open,
@@ -418,6 +418,8 @@ class MainController < ApplicationController
     @summary    = {}
     @nodes      = []
     @resources  = []
+
+    @enable_mgmt = (defined?(ALLOW_INSECURE_MGMT_OPS) && ALLOW_INSECURE_MGMT_OPS) ? true : false
 
     # TODO: Need more deps than this (see crm)
     if File.exists?('/usr/sbin/crm_mon')
@@ -484,5 +486,40 @@ class MainController < ApplicationController
       }
     end
   end
+
+  def node_standby
+    if @enable_mgmt
+      system('/usr/sbin/crm_standby', '-N', params[:node], '-v', 'on');
+      # TODO: if this fails, make noise
+      head :ok
+    else
+      # TODO: look at exceptions ala http://pivotallabs.com/users/nick/blog/articles/272-access-control-permissions-in-rails
+      head :forbidden
+    end
+  end
+
+  # TODO: as above
+  def node_online
+    if @enable_mgmt
+      system('/usr/sbin/crm_standby', '-N', params[:node], '-v', 'off');
+      head :ok
+    else
+      head :forbidden
+    end
+  end
+
+  # TODO: as above
+  def node_fence
+    if @enable_mgmt
+      system('/usr/sbin/crm_attribute', '-t', 'status', '-U', params[:node], '-n', 'terminate', '-v', 'true');
+      head :ok
+    else
+      head :forbidden
+    end
+  end
+
+#  def node_mark
+#    head :ok
+#  end
 
 end

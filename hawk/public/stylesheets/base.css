@@ -251,3 +251,68 @@ img
   border: none;
 }
 
+
+/* based on http://yura.thinkweb2.com/scripting/contextMenu/proto.menu.0.6.css */
+.menu
+{
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* specific style below */
+  width: 12em;
+  background: #ccc;
+  border: 1px solid #888;
+  padding: 0;
+}
+
+.menu a
+{
+  display: block;
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  /* specific style below */
+  padding: 3px 0 3px 25px;
+  border: 1px solid #ccc;
+}
+
+.menu a.enabled:hover
+{
+  /* specific style below */
+  background-color: #008;
+  color: #fff;
+}
+
+.menu ul, .menu li
+{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  /* specific style below */
+}
+
+.menu-item
+{
+  /* specific style below */
+}
+
+.menu a.icon-pause
+{
+  background: #ccc url(../images/icons/pause.png) 2px 50% no-repeat;
+}
+
+.menu a.icon-start
+{
+  background: #ccc url(../images/icons/start.png) 2px 50% no-repeat;
+}
+
+.menu a.icon-kill
+{
+  background: #ccc url(../images/icons/kill.png) 2px 50% no-repeat;
+}
+
+.menu a.icon-mark-dead
+{
+  background: #ccc url(../images/icons/mark-dead.png) 2px 50% no-repeat;
+}
+

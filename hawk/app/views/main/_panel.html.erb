@@ -1,13 +1,13 @@
 <div id="<%=h panel[:id] %>" class="<%=h panel[:className] %>" style="<%=h panel[:style] %>">
   <% if panel[:children] %>
-    <div class="clickable" onclick="toggle_collapse('<%=h panel[:id] %>');"><div id="<%=h panel[:id] %>::button" class="tri-<%= panel[:open] ? 'open' : 'closed' %>"></div><span id="<%=h panel[:id] %>::label"><%= panel[:label] %></span><a id="<%=h panel[:id] %>::menu"><%= image_tag 'transparent-16x16.gif', :class => 'action-icon', :alt => '' %></a></div>
+    <div class="clickable" onclick="toggle_collapse('<%=h panel[:id] %>');"><div id="<%=h panel[:id] %>::button" class="tri-<%= panel[:open] ? 'open' : 'closed' %>"></div><span id="<%=h panel[:id] %>::label"><%= panel[:label] %></span><a id="<%=h panel[:id] %>::menu" class="menu-link"><%= image_tag 'transparent-16x16.gif', :class => 'action-icon', :alt => '' %></a></div>
     <div id="<%=h panel[:id] %>::children"<%= ' style="display: none;" class="closed"' unless panel[:open] %>>
       <% for child in panel[:children] %>
         <%= render :partial => 'panel', :locals => { :panel => child } %>
       <% end %>
     </div>
   <% else %>
-    <span id="<%=h panel[:id] %>::label"><%= panel[:label] %></span><a id="<%=h panel[:id] %>::menu"><%= image_tag 'transparent-16x16.gif', :class => 'action-icon', :alt => '' %></a>
+    <span id="<%=h panel[:id] %>::label"><%= panel[:label] %></span><a id="<%=h panel[:id] %>::menu" class="menu-link"><%= image_tag 'transparent-16x16.gif', :class => 'action-icon', :alt => '' %></a>
   <% end %>
 </div>
 

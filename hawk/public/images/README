@@ -1,0 +1,46 @@
+WAIT SPINNERS
+
+  Wait spinner icons generated at http://www.ajaxload.info/
+
+    Indicator Type:          Roller
+    Background Color:        Various, see below
+    Transparent Background:  No (but doesn't matter either way)
+    Foreground Color:        #000000
+
+  Spinner filenames are in the form:
+
+    spinner-(res)-(state).gif
+
+  There are five possible node/resource states, giving, by default:
+
+    spinner-16x16-active.gif
+    spinner-16x16-inactive.gif
+    spinner-16x16-error.gif
+    spinner-16x16-transient.gif
+    spinner-16x16-neutral.gif
+
+  Meanings of states and default colors are:
+
+    active:     node/resource online/started (green, #6c6)
+    inactive:   node/resource intentionally offline/stopped (grey, #ccc)
+    error:      node/resource unintentionally offline/stopped (red, #c66)
+    transient:  node/resource changing state (yellow, #fc6)
+    neutral:    only used for groups/clones, (white, #fff)
+
+  The "neutral" state really shouldn't be there - the group/clone
+  should reflect the state of its children, so there will eventually
+  be no need for this...
+
+
+MENU ICONS
+
+  Default set is taken from the gnome-icon-theme package 16x16 icons.
+  Thank you, GPL.  Initial mappings are (generic / gnome):
+
+    start.png       media-playback-start.png
+    stop.png        media-playback-stop.png
+    pause.png       media-playback-pause.png
+    properties.png  document-properties.png
+    kill.png        process-stop.png
+    mark-dead.png   window-close.png
+
