@@ -1,12 +1,19 @@
 # Be sure to restart your server when you modify this file.
 
+SESSION_SECRET_FILE = File.join(RAILS_ROOT, 'tmp', 'session_secret')
+
 # Your secret key for verifying cookie session data integrity.
-# If you change this key, all old sessions will become invalid!
-# Make sure the secret is at least 30 characters and all random, 
-# no regular words or you'll be exposed to dictionary attacks.
+# Uses contents of $RAILS_ROOT/tmp/session_secret.  Creates this
+# file with suitable random contents if it doesn't already exist.
 ActionController::Base.session = {
   :key         => '_hawk_session',
-  :secret      => '219f16f183be16eefd22aeb5ba01ebb0eaf74baae18a17d5f942bb47354fd18b883a6f3218b8267e7af2562b0dfc852d3c5c1e6ba593b022dfa3ec7b89be3f5d'
+  :secret      => if File.exist?(SESSION_SECRET_FILE)
+                    File.read(SESSION_SECRET_FILE)
+                  else
+                    secret = ActiveSupport::SecureRandom.hex(64)
+                    File.open(SESSION_SECRET_FILE, 'w', 0600) { |f| f.write(secret) }
+                    secret
+                  end
 }
 
 # Use the database for sessions instead of the cookie-based default,
