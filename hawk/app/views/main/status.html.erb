@@ -9,6 +9,6 @@
 <%= render :partial => 'panel', :locals => { :panel => @resource_panel } %>
 
 <script type="text/javascript"><!--
-Event.observe(window, 'load', function() { <%= 'init_menus();' if @enable_mgmt %> do_update(); });
+Event.observe(window, 'load', function() { init_menus(); do_update(); });
 //--></script>
 

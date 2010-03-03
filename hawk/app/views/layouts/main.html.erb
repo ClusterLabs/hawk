@@ -11,19 +11,26 @@
 <div id="container">
   <div id="header">
     <%= image_tag 'logo.png', :alt => '', :id => 'logo' %>
-    <span id="header-links"><!--<%= link_to _('Help'), { :action => 'help' }, :id => 'help-link' %>--></span>
+    <span id="header-links">
+    <% if logged_in? %>
+      User: <%=h current_user %>
+      <%= link_to _('Log Out'), logout_path %>
+    <% end %>
+    </span>
     <h1 id="header-title"><%=h @title %></h1>
   </div>
-  <div id="errorbar"<%= ' style="display: none;"' if @errors.empty? %>>
-    <% @errors.each do |msg| %>
-      <div class="error"><%= msg %></div>
-    <% end if @errors %>
-  </div>
+  <% if defined? @errors %>
+    <div id="errorbar"<%= ' style="display: none;"' if @errors.empty? %>>
+      <% @errors.each do |msg| %>
+        <div class="error"><%= msg %></div>
+      <% end if @errors %>
+    </div>
+  <% end %>
   <div id="content">
-  <%= yield %>
+    <%= yield %>
   </div>
   <div id="footer">
-    <span id="hostinfo"><%= _('Host: %s') % @host %></span>
+    <span id="hostinfo"><%= (_('Host: %s') % @host) if @host %></span>
     <span id="copyright"><%= _('Copyright &copy; 2009-2010 Novell, Inc.') %></span>
   </div>
 </div>

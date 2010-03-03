@@ -1,7 +1,7 @@
 require 'natcmp'
 
 class MainController < ApplicationController
-  #before_filter :ensure_login
+  before_filter :login_required
 
   # TODO: all this private stuff really belongs elsewhere
   # (models for cluster, nodes, resources anybody?)
@@ -424,8 +424,6 @@ class MainController < ApplicationController
     @nodes      = []
     @resources  = []
 
-    @enable_mgmt = (defined?(ALLOW_INSECURE_MGMT_OPS) && ALLOW_INSECURE_MGMT_OPS) ? true : false
-
     # TODO: Need more deps than this (see crm)
     if File.exists?('/usr/sbin/crm_mon')
       if File.executable?('/usr/sbin/crm_mon')
@@ -493,34 +491,21 @@ class MainController < ApplicationController
   end
 
   def node_standby
-    if @enable_mgmt
-      system('/usr/sbin/crm_standby', '-N', params[:node], '-v', 'on');
-      # TODO: if this fails, make noise
-      head :ok
-    else
-      # TODO: look at exceptions ala http://pivotallabs.com/users/nick/blog/articles/272-access-control-permissions-in-rails
-      head :forbidden
-    end
+    system('/usr/sbin/crm_standby', '-N', params[:node], '-v', 'on');
+    # TODO: if this fails, make noise
+    head :ok
   end
 
   # TODO: as above
   def node_online
-    if @enable_mgmt
-      system('/usr/sbin/crm_standby', '-N', params[:node], '-v', 'off');
-      head :ok
-    else
-      head :forbidden
-    end
+    system('/usr/sbin/crm_standby', '-N', params[:node], '-v', 'off');
+    head :ok
   end
 
   # TODO: as above
   def node_fence
-    if @enable_mgmt
-      system('/usr/sbin/crm_attribute', '-t', 'status', '-U', params[:node], '-n', 'terminate', '-v', 'true');
-      head :ok
-    else
-      head :forbidden
-    end
+    system('/usr/sbin/crm_attribute', '-t', 'status', '-U', params[:node], '-n', 'terminate', '-v', 'true');
+    head :ok
   end
 
 #  def node_mark
@@ -529,22 +514,18 @@ class MainController < ApplicationController
 
   # TODO: as above
   def resource_start
-    if @enable_mgmt
-      cib = REXML::Document.new(%x[/usr/sbin/cibadmin -Ql --scope resources 2>/dev/null])
-      # TODO: Safe? (at least, can't be executed...)
-      e = cib.elements["//[@id='#{params[:resource]}']"]
-      if e
-        res = params[:resource]
-        if e.name == "clone"
-          res = e.elements['primitive'].attributes['id']
-        end
-        system('/usr/sbin/crm_resource', '--meta', '-r', res, '-p', 'target-role', '-v', 'Started');
-        head :ok
-      else
-        # this is a lie
-        head :forbidden
+    cib = REXML::Document.new(%x[/usr/sbin/cibadmin -Ql --scope resources 2>/dev/null])
+    # TODO: Safe? (at least, can't be executed...)
+    e = cib.elements["//[@id='#{params[:resource]}']"]
+    if e
+      res = params[:resource]
+      if e.name == "clone"
+        res = e.elements['primitive'].attributes['id']
       end
+      system('/usr/sbin/crm_resource', '--meta', '-r', res, '-p', 'target-role', '-v', 'Started');
+      head :ok
     else
+      # this is a lie
       head :forbidden
     end
   end
@@ -552,34 +533,26 @@ class MainController < ApplicationController
   # TODO: as above
   # TODO: consolidate with resource_start
   def resource_stop
-    if @enable_mgmt
-      cib = REXML::Document.new(%x[/usr/sbin/cibadmin -Ql --scope resources 2>/dev/null])
-      # TODO: Safe? (at least, can't be executed...)
-      e = cib.elements["//[@id='#{params[:resource]}']"]
-      if e
-        res = params[:resource]
-        if e.name == "clone"
-          res = e.elements['primitive'].attributes['id']
-        end
-        system('/usr/sbin/crm_resource', '--meta', '-r', res, '-p', 'target-role', '-v', 'Stopped');
-        head :ok
-      else
-        # this is a lie
-        head :forbidden
+    cib = REXML::Document.new(%x[/usr/sbin/cibadmin -Ql --scope resources 2>/dev/null])
+    # TODO: Safe? (at least, can't be executed...)
+    e = cib.elements["//[@id='#{params[:resource]}']"]
+    if e
+      res = params[:resource]
+      if e.name == "clone"
+        res = e.elements['primitive'].attributes['id']
       end
+      system('/usr/sbin/crm_resource', '--meta', '-r', res, '-p', 'target-role', '-v', 'Stopped');
+      head :ok
     else
+      # this is a lie
       head :forbidden
     end
   end
 
   # TODO: as above
   def resource_cleanup
-    if @enable_mgmt
-      system('/usr/sbin/crm', 'resource', 'cleanup', params[:resource]);
-      head :ok
-    else
-      head :forbidden
-    end
+    system('/usr/sbin/crm', 'resource', 'cleanup', params[:resource]);
+    head :ok
   end
 
 end

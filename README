@@ -28,6 +28,21 @@
 
 ======================================================================
 
+Status as at 2010-03-04:
+
+Things have moved on somewhat.  Major noticeable changes are:
+
+  - You need to log in to be able to do anything.  Same rules as
+    the python GUI; you need to log in as a user in the 'haclient'
+    group (the easiest thing to do is assign a password to the
+    'hacluster' user, then log in using that account).
+
+  - Basic management operations can be performed:
+
+    - node: standby, online, fence
+
+    - resource: start, stop, cleanup
+
 Status as at 2010-01-25:
 
 It's early days; currently this will give you a web-based GUI with
