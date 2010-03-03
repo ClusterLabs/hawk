@@ -520,7 +520,7 @@ class MainController < ApplicationController
     if e
       res = params[:resource]
       if e.name == "clone"
-        res = e.elements['primitive'].attributes['id']
+        res = e.elements['primitive'].attributes['id'] if e.elements['primitive']
       end
       system('/usr/sbin/crm_resource', '--meta', '-r', res, '-p', 'target-role', '-v', 'Started');
       head :ok
@@ -539,7 +539,7 @@ class MainController < ApplicationController
     if e
       res = params[:resource]
       if e.name == "clone"
-        res = e.elements['primitive'].attributes['id']
+        res = e.elements['primitive'].attributes['id'] if e.elements['primitive']
       end
       system('/usr/sbin/crm_resource', '--meta', '-r', res, '-p', 'target-role', '-v', 'Stopped');
       head :ok
