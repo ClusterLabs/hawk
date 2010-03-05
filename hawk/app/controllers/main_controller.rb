@@ -393,7 +393,7 @@ class MainController < ApplicationController
       id = res.attributes['id']
       children = []
       status_class = 'rs-active'
-      # TODO(must): is this the correct way to determine clone instance IDs?
+      # TODO(must): this is *not* the correct way to determine clone IDs: there may be gaps, and there may be more than clone-max!
       clone_max = res.attributes['clone-max'] || @nodes.count
       open = false
       if res.elements['primitive']
