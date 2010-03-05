@@ -64,13 +64,15 @@ protected
 
   def access_denied
     respond_to do |format|
-      format.html do
-        store_location
-        redirect_to new_session_path
-      end
-      format.any do
+      format.json do
         # This will kill e.g. JSON requests when not logged in.
         head :forbidden
+      end
+      format.any do
+	# Have to use format.any not format.html due to stupid IE accept
+	# header brokenness.
+        store_location
+        redirect_to new_session_path
       end
     end
   end
