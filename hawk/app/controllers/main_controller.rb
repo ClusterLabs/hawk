@@ -1,29 +1,59 @@
+#======================================================================
+#                        HA Web Konsole (Hawk)
+# --------------------------------------------------------------------
+#            A web-based GUI for managing and monitoring the
+#          Pacemaker High-Availability cluster resource manager
+#
+# Copyright (c) 2009-2010 Novell Inc., Tim Serong <tserong@novell.com>
+#                        All Rights Reserved.
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of version 2 of the GNU General Public License as
+# published by the Free Software Foundation.
+#
+# This program is distributed in the hope that it would be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# Further, this software is distributed without any warranty that it is
+# free of the rightful claim of any third person regarding infringement
+# or the like.  Any license provided herein, whether implied or
+# otherwise, applies only to this software file.  Patent licenses, if
+# any, provided herein do not apply to combinations of this program with
+# other software, or any other product whatsoever.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write the Free Software Foundation,
+# Inc., 59 Temple Place - Suite 330, Boston MA 02111-1307, USA.
+#
+#======================================================================
+
 require 'natcmp'
 
 class MainController < ApplicationController
   before_filter :login_required
 
-  # TODO: all this private stuff really belongs elsewhere
+  # TODO(should): all this private stuff really belongs elsewhere
   # (models for cluster, nodes, resources anybody?)
   private
 
   # Gives back a string, boolean if value is "true" or "false",
   # or nil if attribute doesn't exist and there's no default
   # (roughly equivalent to crm_element_value() in Pacemaker)
-  # TODO: be nice to get integers auto-converted too
+  # TODO(should): be nice to get integers auto-converted too
   def get_xml_attr(elem, name, default = nil)
     v = elem.attributes[name] || default
     ['true', 'false'].include?(v.class == String ? v.downcase : v) ? v.downcase == 'true' : v
   end
   
   def get_property(property, default = nil)
-    # TODO: theoretically this xpath is a bit loose.
+    # TODO(could): theoretically this xpath is a bit loose.
     e = @cib.elements["//nvpair[@name='#{property}']"]
     e ? get_xml_attr(e, 'value', default) : default
   end
 
   # transliteration of pacemaker/lib/pengine/unpack.c:determine_online_status_fencing()
-  # TODO: constants for states? (dead, active, etc.)
+  # TODO(could): constants for states? (dead, active, etc.)
   # ns is node_state element from CIB
   def determine_online_status_fencing(ns)
     ha_state    = get_xml_attr(ns, 'ha', 'dead')
@@ -60,9 +90,9 @@ class MainController < ApplicationController
   end
 
   # transliteration of pacemaker/lib/pengine/unpack.c:determine_online_status_no_fencing()
-  # TODO: constants for states? (dead, active, etc.)
+  # TODO(could): constants for states? (dead, active, etc.)
   # ns is node_state element from CIB
-  # TODO: can we consolidate this with determine_online_status_fencing?
+  # TODO(could): can we consolidate this with determine_online_status_fencing?
   def determine_online_status_no_fencing(ns)
     ha_state    = get_xml_attr(ns, 'ha', 'dead')
     in_ccm      = get_xml_attr(ns, 'in_ccm')
@@ -112,7 +142,7 @@ class MainController < ApplicationController
     @summary[:dc].slice!(0, s + 1) if s
     @summary[:dc]       = _('unknown') if @summary[:dc].empty?
     # default values per pacemaker 1.0 docs
-    @summary[:default_resource_stickiness] = get_property('default-resource-stickiness', '0') # TODO: is this documented?
+    @summary[:default_resource_stickiness] = get_property('default-resource-stickiness', '0') # TODO(could): is this documented?
     @summary[:stonith_enabled]             = get_property('stonith-enabled', 'true') ? _('Enabled') : _('Disabled')
     @summary[:symmetric_cluster]           = get_property('symmetric-cluster', 'true') ? _('Symmetric') : _('Asymmetric')
     @summary[:no_quorum_policy]            = get_property('no-quorum-policy', 'stop')
@@ -156,7 +186,7 @@ class MainController < ApplicationController
             ia.elements.each('nvpair') do |p|
               if p.attributes['name'] == 'standby' &&
                  ['true', 'yes', '1', 'on'].include?(p.attributes['value'])
-                # TODO: is the above actually a sane test?
+                # TODO(could): is the above actually a sane test?
                 state = 'standby'
               end
             end
@@ -194,7 +224,7 @@ class MainController < ApplicationController
         :uname      => node[:uname],              # needed for resource status, not used by renderer
         :id         => "node::#{node[:uname]}",
         :className  => "node ns-#{className}",
-        # TODO: localize?  HTML-safe?
+        # TODO(must): localize?  HTML-safe?
         :label      => "#{node[:uname]}: #{node[:state]}",
         :menu       => true
       }
@@ -240,7 +270,7 @@ class MainController < ApplicationController
     #  EXECRA_RUNNING_MASTER = 8,
     #  EXECRA_FAILED_MASTER = 9,
     #
-    # TODO: this is very primitive; there's lots more here we can
+    # TODO(should): this is very primitive; there's lots more here we can
     # learn about resources from op history, that we're not displaying.
     # But it's better than invoking crm_resource all the time...
     #
@@ -280,9 +310,9 @@ class MainController < ApplicationController
           # do we need this?
           is_probe = ops[call_id][:operation] == 'monitor' && ops[call_id][:interval] == 0
 
-          # TODO: what's this about expired failures? (unpack.c:1323)
+          # TODO(should): what's this about expired failures? (unpack.c:1323)
 
-          # TODO: evil magic numbers!
+          # TODO(should): evil magic numbers!
           case ops[call_id][:rc_code]
           when 7
             # not running on this node
@@ -302,7 +332,7 @@ class MainController < ApplicationController
           end
           if !is_running && ops[call_id][:rc_code] != ops[call_id][:expected]
             # busted somehow
-            # TODO: localize
+            # TODO(must): localize
             @errors << "Failed op: node #{node[:uname]} resource #{id}: call-id=#{call_id} operation=#{ops[call_id][:operation]} rc-code=#{ops[call_id][:rc_code]}"
             # logger.debug "node #{node[:uname]} resource #{id}: call-id=#{call_id} operation=#{ops[call_id][:operation]} rc-code=#{ops[call_id][:rc_code]}\n"
           end
@@ -325,7 +355,7 @@ class MainController < ApplicationController
       {
         :id         => "primitive::#{id}",
         :className  => "res-primitive rs-" + if running_on.empty? then 'inactive' else 'active' end,
-        # TODO: localize?  HTML-safe?
+        # TODO(must): localize?  HTML-safe?
         :label      => "#{id}: " + if running_on.empty? then _('Stopped') else _('Started: ') + running_on.join(', ') end,
         :active     => !running_on.empty?
       }
@@ -338,14 +368,14 @@ class MainController < ApplicationController
       id += ":#{instance}" if instance
       status_class = 'rs-active'
       # Arguably, the above is not really true (but we need it for DIV ids for collapsibles)
-      # TODO: get rid of this, it's probably weird.  Also, make sure DIV ids only contain
+      # TODO(should): get rid of this, it's probably weird.  Also, make sure DIV ids only contain
       # valid characaters for HTML IDs and JavaScript strings, etc.
       children = []
       open = false
       res.elements.each('primitive') do |p|
         c = get_primitive(p, instance)
         open = true unless c[:active]
-          status_class = 'rs-inactive' unless c[:className].include? 'rs-active'    # TODO: only handles two states - do we care?
+          status_class = 'rs-inactive' unless c[:className].include? 'rs-active'    # TODO(could): only handles two states - do we care?
         children << c
       end
       {
@@ -363,21 +393,21 @@ class MainController < ApplicationController
       id = res.attributes['id']
       children = []
       status_class = 'rs-active'
-      # TODO: is this the correct way to determine clone instance IDs?
+      # TODO(must): is this the correct way to determine clone instance IDs?
       clone_max = res.attributes['clone-max'] || @nodes.count
       open = false
       if res.elements['primitive']
         for i in 0..clone_max.to_i-1 do
           c = get_primitive(res.elements['primitive'], i)
           open = true unless c[:active]
-          status_class = 'rs-inactive' unless c[:className].include? 'rs-active'    # TODO: only handles two states - do we care?
+          status_class = 'rs-inactive' unless c[:className].include? 'rs-active'    # TODO(should): only handles two states - do we care?
           children << c
         end
       elsif res.elements['group']
         for i in 0..clone_max.to_i-1 do
           c = get_group(res.elements['group'], i)
           open = true if c[:open]
-          status_class = 'rs-inactive' unless c[:className].include? 'rs-active'    # TODO: only handles two states - do we care?
+          status_class = 'rs-inactive' unless c[:className].include? 'rs-active'    # TODO(should): only handles two states - do we care?
           children << c
         end
       else
@@ -392,7 +422,6 @@ class MainController < ApplicationController
       }
     end
 
-    # TODO: need failed nodes too
     @cib.elements.each('cib/configuration/resources/*') do |res|
       case res.name
         when 'primitive'
@@ -403,7 +432,7 @@ class MainController < ApplicationController
           @resources << get_group(res)
         else
           # This can't happen
-          # TODO: whine
+          # TODO(could): whine
       end
     end
 
@@ -424,11 +453,11 @@ class MainController < ApplicationController
     @nodes      = []
     @resources  = []
 
-    # TODO: Need more deps than this (see crm)
+    # TODO(should): Need more deps than this (see crm)
     if File.exists?('/usr/sbin/crm_mon')
       if File.executable?('/usr/sbin/crm_mon')
         @crm_status = %x[/usr/sbin/crm_mon -s 2>&1].chomp
-        # TODO: this is dubious (WAR: crm_mon -s giving "status: 1, output was: Warning:offline node: hex-14")
+        # TODO(should): this is dubious (WAR: crm_mon -s giving "status: 1, output was: Warning:offline node: hex-14")
         if $?.exitstatus == 10 || $?.exitstatus == 11
           @errors << _('%{cmd} failed (status: %{status}, output was: %{output})') %
                         {:cmd    => '/usr/sbin/crm_mon',
@@ -460,7 +489,7 @@ class MainController < ApplicationController
       :id         => 'nodelist',
       :className  => '',
       :style      => @summary[:version] ? '' : 'display: none;',
-      # TODO: localization can't cope with singular/plural here
+      # TODO(must): localization can't cope with singular/plural here
       :label      => _('%d nodes configured') % @nodes.count,
       :open       => @expand_nodes,
       :children   => @nodes
@@ -470,7 +499,7 @@ class MainController < ApplicationController
       :id         => 'reslist',
       :className  => '',
       :style      => @summary[:version] ? '' : 'display: none;',
-      # TODO: localization can't cope with singular/plural here
+      # TODO(must): localization can't cope with singular/plural here
       :label      => _('%d resources configured') % @resources.count,
       :open       => @expand_resources,
       :children   => @resources
@@ -492,17 +521,17 @@ class MainController < ApplicationController
 
   def node_standby
     system('/usr/sbin/crm_standby', '-N', params[:node], '-v', 'on');
-    # TODO: if this fails, make noise
+    # TODO(should): if this fails, make noise
     head :ok
   end
 
-  # TODO: as above
+  # TODO(should): as above
   def node_online
     system('/usr/sbin/crm_standby', '-N', params[:node], '-v', 'off');
     head :ok
   end
 
-  # TODO: as above
+  # TODO(should): as above
   def node_fence
     system('/usr/sbin/crm_attribute', '-t', 'status', '-U', params[:node], '-n', 'terminate', '-v', 'true');
     head :ok
@@ -512,10 +541,10 @@ class MainController < ApplicationController
 #    head :ok
 #  end
 
-  # TODO: as above
+  # TODO(should): as above
   def resource_start
     cib = REXML::Document.new(%x[/usr/sbin/cibadmin -Ql --scope resources 2>/dev/null])
-    # TODO: Safe? (at least, can't be executed...)
+    # TODO(could): Safe? (at least, can't be executed...)
     e = cib.elements["//[@id='#{params[:resource]}']"]
     if e
       res = params[:resource]
@@ -530,11 +559,11 @@ class MainController < ApplicationController
     end
   end
 
-  # TODO: as above
-  # TODO: consolidate with resource_start
+  # TODO(should): as above
+  # TODO(should): consolidate with resource_start
   def resource_stop
     cib = REXML::Document.new(%x[/usr/sbin/cibadmin -Ql --scope resources 2>/dev/null])
-    # TODO: Safe? (at least, can't be executed...)
+    # TODO(could): Safe? (at least, can't be executed...)
     e = cib.elements["//[@id='#{params[:resource]}']"]
     if e
       res = params[:resource]
@@ -549,7 +578,7 @@ class MainController < ApplicationController
     end
   end
 
-  # TODO: as above
+  # TODO(should): as above
   def resource_cleanup
     system('/usr/sbin/crm', 'resource', 'cleanup', params[:resource]);
     head :ok

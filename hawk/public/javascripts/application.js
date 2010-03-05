@@ -1,5 +1,32 @@
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
+//======================================================================
+//                        HA Web Konsole (Hawk)
+// --------------------------------------------------------------------
+//            A web-based GUI for managing and monitoring the
+//          Pacemaker High-Availability cluster resource manager
+//
+// Copyright (c) 2009-2010 Novell Inc., Tim Serong <tserong@novell.com>
+//                        All Rights Reserved.
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of version 2 of the GNU General Public License as
+// published by the Free Software Foundation.
+//
+// This program is distributed in the hope that it would be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+//
+// Further, this software is distributed without any warranty that it is
+// free of the rightful claim of any third person regarding infringement
+// or the like.  Any license provided herein, whether implied or
+// otherwise, applies only to this software file.  Patent licenses, if
+// any, provided herein do not apply to combinations of this program with
+// other software, or any other product whatsoever.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write the Free Software Foundation,
+// Inc., 59 Temple Place - Suite 330, Boston MA 02111-1307, USA.
+//
+//======================================================================
 
 function expand_block(id)
 {
@@ -15,7 +42,7 @@ function collapse_block(id)
   $(id+'::button').removeClassName('tri-open').addClassName('tri-closed');
 }
 
-// TODO: for another approach to expand/contract, see
+// TODO(should): for another approach to expand/contract, see
 // http://www.kleenecode.net/2008/03/01/valid-and-accessible-collapsible-panels-with-scriptaculous/
 function toggle_collapse(id)
 {
@@ -71,7 +98,7 @@ function update_panel(panel) {
         // brand spanking new
         d = $(document.createElement("div")).writeAttribute("id", item.id);
         if (item.children) {
-          // TODO: HTML-safe?
+          // TODO(should): HTML-safe?
           d.update('<div class="clickable" onclick="toggle_collapse(\'' + item.id + '\');">' +
             '<div id="' + item.id + '::button" class="tri-' + (item.open ? 'open' : 'closed') + '"></div>' +
               '<a id="' + item.id + '::menu"><img src="/images/transparent-16x16.gif" class="action-icon" alt="" /></a>' +
@@ -105,7 +132,7 @@ function update_panel(panel) {
   return expand;
 }
 
-// TODO: Um...  what's "object" for?
+// Um...  what's "object" for?
 function handle_update(request, object) {
   if (request.responseJSON) {
     update_errors(request.responseJSON.errors);
@@ -137,7 +164,7 @@ function handle_update(request, object) {
 }
 
 // Like string.split, but breaks on '::'
-// TODO: think about changing our naming conventions so we don't need this.
+// TODO(could): think about changing our naming conventions so we don't need this.
 function dc_split(str) {
   parts = new Array();
   var s = 0;
@@ -189,7 +216,7 @@ function node_menu_item_click(e)
   new Ajax.Request("/main/node_" + dc_split(Event.element(e).parentNode.id)[2], { parameters: "node=" + $("menu::node").hawkNode });
 }
 
-// TODO: Consolidate with node_menu_*
+// TODO(should): Consolidate with node_menu_*
 function resource_menu_item_click(e)
 {
   var state = "neutral";
@@ -205,7 +232,7 @@ function resource_menu_item_click(e)
 function init_menus() {
 
   menu = $(document.createElement("div")).writeAttribute("id", "menu::node").addClassName("menu").setStyle({display: "none"});
-  // TODO: Localize!
+  // TODO(must): Localize!
   // (The href/onlick garbage is here to make the hover style work in IE)
   menu.update("<ul>" +
       '<li id="menu::node::online" class="menu-item"><a class="icon-start enabled" href="#" onclick="return false;">Online</a></li>\n' +
@@ -222,7 +249,7 @@ function init_menus() {
 //  $("menu::node::mark").firstDescendant().observe("click", node_menu_item_click);
 
   menu = $(document.createElement("div")).writeAttribute("id", "menu::resource").addClassName("menu").setStyle({display: "none"});
-  // TODO: Localize!
+  // TODO(must): Localize!
   // (The href/onlick garbage is here to make the hover style work in IE)
   menu.update("<ul>" +
       '<li id="menu::resource::start" class="menu-item"><a class="icon-start enabled" href="#" onclick="return false;">Start</a></li>\n' +
