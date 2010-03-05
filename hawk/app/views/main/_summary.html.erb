@@ -1,12 +1,12 @@
 <div id="summary"<%= ' style="display: none"' unless @cib_up %>>
   <table>
-    <tr><th><%= _('Stack:') %></th>     <td><span id="summary::stack"><%=h @summary[:stack] %></span></td></tr>
-    <tr><th><%= _('Version:') %></th>   <td><span id="summary::version"><%=h @summary[:version] %></span></td></tr>
-    <tr><th><%= _('Current DC:') %></th><td><span id="summary::dc"><%=h @summary[:dc] %></span></td></tr>
-    <tr><th><%= _('Stickiness:') %></th><td><span id="summary::default_resource_stickiness"><%=h @summary[:default_resource_stickiness] %></span></td></tr>
-    <tr><th><%= _('STONITH:') %></th>   <td><span id="summary::stonith_enabled"><%=h @summary[:stonith_enabled] %></span></td></tr>
-    <tr><th><%= _('Cluster is:') %></th><td><span id="summary::symmetric_cluster"><%=h @summary[:symmetric_cluster] %></span></td></tr>
-    <tr><th><%= _('No Quorum:') %></th> <td><span id="summary::no_quorum_policy"><%=h @summary[:no_quorum_policy] %></span></td></tr>
+    <tr><th><%= _('Cluster Stack:') %></th>       <td><span id="summary::stack"><%=h @summary[:stack] %></span></td></tr>
+    <tr><th><%= _('Pacemaker Version:') %></th>   <td><span id="summary::version"><%=h @summary[:version] %></span></td></tr>
+    <tr><th><%= _('Current DC:') %></th>          <td><span id="summary::dc"><%=h @summary[:dc] %></span></td></tr>
+    <tr><th><%= _('Resource Stickiness:') %></th> <td><span id="summary::default_resource_stickiness"><%=h @summary[:default_resource_stickiness] %></span></td></tr>
+    <tr><th><%= _('STONITH Enabled:') %></th>     <td><span id="summary::stonith_enabled"><%=h @summary[:stonith_enabled] %></span></td></tr>
+    <tr><th><%= _('Symmetric Cluster:') %></th>   <td><span id="summary::symmetric_cluster"><%=h @summary[:symmetric_cluster] %></span></td></tr>
+    <tr><th><%= _('No Quorum Policy:') %></th>    <td><span id="summary::no_quorum_policy"><%=h @summary[:no_quorum_policy] %></span></td></tr>
   </table>
 </div>
 

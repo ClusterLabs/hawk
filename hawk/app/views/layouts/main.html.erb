@@ -13,7 +13,7 @@
     <%= image_tag 'logo.png', :alt => '', :id => 'logo' %>
     <span id="header-links">
     <% if logged_in? %>
-      User: <%=h current_user %>
+      <%=h _('User: %{user}') % { :user => current_user } %>
       <%= link_to _('Log Out'), logout_path %>
     <% end %>
     </span>

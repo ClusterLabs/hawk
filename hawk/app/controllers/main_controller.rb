@@ -130,8 +130,8 @@ class MainController < ApplicationController
 
     @cib_up = true
 
-    @summary[:stack]    = get_property('cluster-infrastructure') || _('unknown')
-    @summary[:version]  = get_property('dc-version') || _('unknown')
+    @summary[:stack]    = get_property('cluster-infrastructure') || _('Unknown')
+    @summary[:version]  = get_property('dc-version') || _('Unknown')
     # trim version back to 12 chars (same length hg usually shows),
     # enough to know what's going on, and less screen real-estate
     ver_trimmed = @summary[:version].match(/.*-[a-f0-9]{12}/)
@@ -140,11 +140,11 @@ class MainController < ApplicationController
     @summary[:dc]       = %x[/usr/sbin/crmadmin -t 100 -D 2>/dev/null].strip
     s = @summary[:dc].rindex(' ')
     @summary[:dc].slice!(0, s + 1) if s
-    @summary[:dc]       = _('unknown') if @summary[:dc].empty?
+    @summary[:dc]       = _('Unknown') if @summary[:dc].empty?
     # default values per pacemaker 1.0 docs
     @summary[:default_resource_stickiness] = get_property('default-resource-stickiness', '0') # TODO(could): is this documented?
-    @summary[:stonith_enabled]             = get_property('stonith-enabled', 'true') ? _('Enabled') : _('Disabled')
-    @summary[:symmetric_cluster]           = get_property('symmetric-cluster', 'true') ? _('Symmetric') : _('Asymmetric')
+    @summary[:stonith_enabled]             = get_property('stonith-enabled', 'true') ? _('Yes') : _('No')
+    @summary[:symmetric_cluster]           = get_property('symmetric-cluster', 'true') ? _('Yes') : _('No')
     @summary[:no_quorum_policy]            = get_property('no-quorum-policy', 'stop')
 
     # See unpack_nodes in pengine.c for cleanliness
@@ -203,18 +203,24 @@ class MainController < ApplicationController
 
     # sorted node list to array
     nodes.sort{|a,b| a[0].natcmp(b[0], true)}.each do |uname,node|
-      # map actal states back to generic visuals
+      # map actual states back to generic visuals
       case node[:state]
       when 'online'
         className = 'active'
+        label = _('Online')
       when 'offline'
         className = 'inactive'
+        label = _('Offline')
       when 'pending'
         className = 'transient'
+        label = _('Pending')
       when 'standby'
         className = 'inactive'
+        label = _('Standby')
       when 'unclean'
         className = 'error'
+        ## FOO
+        label = _('Unclean')
       else
         # This can't happen...
         className = 'error'
@@ -224,8 +230,7 @@ class MainController < ApplicationController
         :uname      => node[:uname],              # needed for resource status, not used by renderer
         :id         => "node::#{node[:uname]}",
         :className  => "node ns-#{className}",
-        # TODO(must): localize?  HTML-safe?
-        :label      => "#{node[:uname]}: #{node[:state]}",
+        :label      => _('%{node}: %{status}') % { :node => node[:uname], :status => label },
         :menu       => true
       }
     end
@@ -332,9 +337,8 @@ class MainController < ApplicationController
           end
           if !is_running && ops[call_id][:rc_code] != ops[call_id][:expected]
             # busted somehow
-            # TODO(must): localize
-            @errors << "Failed op: node #{node[:uname]} resource #{id}: call-id=#{call_id} operation=#{ops[call_id][:operation]} rc-code=#{ops[call_id][:rc_code]}"
-            # logger.debug "node #{node[:uname]} resource #{id}: call-id=#{call_id} operation=#{ops[call_id][:operation]} rc-code=#{ops[call_id][:rc_code]}\n"
+            @errors << _('Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}') %
+              { :node => node[:uname], :resource => id, :call_id => call_id, :op => ops[call_id][:operation], :rc_code => ops[call_id][:rc_code] }
           end
         end
         running_on << node[:uname] if is_running
@@ -352,11 +356,15 @@ class MainController < ApplicationController
       id = res.attributes['id']
       id += ":#{instance}" if instance
       running_on = resource_state(id)
+      if running_on.empty? then
+        label = _('%{id}: Stopped') % { :id => id }
+      else
+        label = _('%{id}: Started: %{nodelist}') % { :id => id, :nodelist => running_on.join(', ') }
+      end
       {
         :id         => "primitive::#{id}",
         :className  => "res-primitive rs-" + if running_on.empty? then 'inactive' else 'active' end,
-        # TODO(must): localize?  HTML-safe?
-        :label      => "#{id}: " + if running_on.empty? then _('Stopped') else _('Started: ') + running_on.join(', ') end,
+        :label      => label,
         :active     => !running_on.empty?
       }
     end
@@ -489,8 +497,7 @@ class MainController < ApplicationController
       :id         => 'nodelist',
       :className  => '',
       :style      => @summary[:version] ? '' : 'display: none;',
-      # TODO(must): localization can't cope with singular/plural here
-      :label      => _('%d nodes configured') % @nodes.count,
+      :label      => n_('1 node configured', '%{num} nodes configured', @nodes.count) % { :num => @nodes.count },
       :open       => @expand_nodes,
       :children   => @nodes
     }
@@ -499,8 +506,7 @@ class MainController < ApplicationController
       :id         => 'reslist',
       :className  => '',
       :style      => @summary[:version] ? '' : 'display: none;',
-      # TODO(must): localization can't cope with singular/plural here
-      :label      => _('%d resources configured') % @resources.count,
+      :label      => n_('1 resource configured', '%{num} resources configured', @resources.count) % { :num => @resources.count },
       :open       => @expand_resources,
       :children   => @resources
     }
