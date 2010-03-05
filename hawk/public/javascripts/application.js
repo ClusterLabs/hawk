@@ -231,35 +231,14 @@ function resource_menu_item_click(e)
 
 function init_menus() {
 
-  menu = $(document.createElement("div")).writeAttribute("id", "menu::node").addClassName("menu").setStyle({display: "none"});
-  // TODO(must): Localize!
-  // (The href/onlick garbage is here to make the hover style work in IE)
-  menu.update("<ul>" +
-      '<li id="menu::node::online" class="menu-item"><a class="icon-start enabled" href="#" onclick="return false;">Online</a></li>\n' +
-      '<li id="menu::node::standby" class="menu-item"><a class="icon-pause enabled" href="#" onclick="return false;">Standby</a></li>\n' +
-      '<li id="menu::node::fence" class="menu-item"><a class="icon-kill enabled" href="#" onclick="return false;">Fence Node</a></li>\n' +
-//      '<li id="menu::node::mark" class="menu-item"><a class="icon-mark-dead enabled" href="#" onclick="return false;">Mark Node Fenced</a></li>\n' +
-    "</ul>");
-  $("content").insert(menu);
   $("menu::node").hawkNode = null;
-
   $("menu::node::standby").firstDescendant().observe("click", node_menu_item_click);
   $("menu::node::online").firstDescendant().observe("click", node_menu_item_click);
   $("menu::node::fence").firstDescendant().observe("click", node_menu_item_click);
 //  $("menu::node::mark").firstDescendant().observe("click", node_menu_item_click);
 
-  menu = $(document.createElement("div")).writeAttribute("id", "menu::resource").addClassName("menu").setStyle({display: "none"});
-  // TODO(must): Localize!
-  // (The href/onlick garbage is here to make the hover style work in IE)
-  menu.update("<ul>" +
-      '<li id="menu::resource::start" class="menu-item"><a class="icon-start enabled" href="#" onclick="return false;">Start</a></li>\n' +
-      '<li id="menu::resource::stop" class="menu-item"><a class="icon-stop enabled" href="#" onclick="return false;">Stop</a></li>\n' +
-      '<li id="menu::resource::cleanup" class="menu-item"><a class="icon-cleanup enabled" href="#" onclick="return false;">Clean Up</a></li>\n' +
-    "</ul>");
-  $("content").insert(menu);
   $("menu::resource").hawkResource = null;
   $("menu::resource").hawkResourceType = null;
-
   $("menu::resource::start").firstDescendant().observe("click", resource_menu_item_click);
   $("menu::resource::stop").firstDescendant().observe("click", resource_menu_item_click);
   $("menu::resource::cleanup").firstDescendant().observe("click", resource_menu_item_click);

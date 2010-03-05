@@ -1,0 +1,16 @@
+<!-- (The href/onlick garbage in menus is to make the hover style work in IE) -->
+<div id="menu::node" class="menu" style="display: none;">
+  <ul>
+    <li id="menu::node::online" class="menu-item"><a class="icon-start enabled" href="#" onclick="return false;"><%=h _('Online') %></a></li>
+    <li id="menu::node::standby" class="menu-item"><a class="icon-pause enabled" href="#" onclick="return false;"><%=h _('Standby') %></a></li>
+    <li id="menu::node::fence" class="menu-item"><a class="icon-kill enabled" href="#" onclick="return false;"><%=h _('Fence Node') %></a></li>
+  </ul>
+</div>
+<div id="menu::resource" class="menu" style="display: none;">
+  <ul>
+    <li id="menu::resource::start" class="menu-item"><a class="icon-start enabled" href="#" onclick="return false;"><%=h _('Start') %></a></li>
+    <li id="menu::resource::stop" class="menu-item"><a class="icon-stop enabled" href="#" onclick="return false;"><%=h _('Stop') %></a></li>
+    <li id="menu::resource::cleanup" class="menu-item"><a class="icon-cleanup enabled" href="#" onclick="return false;"><%=h _('Clean Up') %></a></li>
+  </ul>
+</div>
+
