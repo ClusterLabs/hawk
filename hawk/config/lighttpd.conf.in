@@ -7,7 +7,7 @@
 ##
 
 #var.log_root    = "/var/log/lighttpd"
-#var.server_root = "/srv/www"
+#var.server_root = "@WWW_BASE@"
 var.state_dir   = "/var/run"
 #var.home_dir    = "/var/lib/lighttpd"
 #var.conf_dir    = "/etc/lighttpd"
@@ -29,7 +29,7 @@ var.state_dir   = "/var/run"
 #var.vhosts_dir  = "/vhosts"
 #var.conf_dir    = "/etc"
 #
-#server.chroot   = "/srv/www"
+#server.chroot   = "@WWW_BASE@"
 
 ##
 ## Some additional variables to make the configuration easier
@@ -126,10 +126,10 @@ server.pid-file = state_dir + "/hawk.pid"
 server.modules           = ( "mod_rewrite", "mod_access", "mod_accesslog", "mod_fastcgi", "mod_compress", "mod_expire" )
 
 server.error-handler-404 = "/dispatch.fcgi"
-server.document-root     = "/srv/www/hawk/public/"
+server.document-root     = "@WWW_BASE@/hawk/public/"
 
-server.errorlog          = "/srv/www/hawk/log/lighttpd.error.log"
-accesslog.filename       = "/srv/www/hawk/log/lighttpd.access.log"
+server.errorlog          = "@WWW_BASE@/hawk/log/lighttpd.error.log"
+accesslog.filename       = "@WWW_BASE@/hawk/log/lighttpd.access.log"
 
 # if this is in, it seems to break /rails/info/properties
 #url.rewrite              = ( "^/$" => "index.html", "^([^.]+)$" => "$1.html" )
@@ -137,7 +137,7 @@ accesslog.filename       = "/srv/www/hawk/log/lighttpd.access.log"
 #url.rewrite              = ( "^/$" => "index.html" )
 
 compress.filetype        = ( "text/plain", "text/html", "text/css", "text/javascript" )
-compress.cache-dir       = "/srv/www/hawk/tmp/cache"
+compress.cache-dir       = "@WWW_BASE@/hawk/tmp/cache"
 
 expire.url               = ( "/favicon.ico"  => "access 3 days",
                              "/images/"      => "access 3 days",
@@ -149,8 +149,8 @@ expire.url               = ( "/favicon.ico"  => "access 3 days",
 fastcgi.server      = ( ".fcgi" => ( "localhost" => (
   "min-procs"       => 1,
   "max-procs"       => 1,
-  "socket"          => "/srv/www/hawk/tmp/sockets/fcgi.socket",
-  "bin-path"        => "/srv/www/hawk/public/dispatch.fcgi",
+  "socket"          => "@WWW_BASE@/hawk/tmp/sockets/fcgi.socket",
+  "bin-path"        => "@WWW_BASE@/hawk/public/dispatch.fcgi",
   "bin-environment" => ( "RAILS_ENV" => "production" )
 ) ) )
 
@@ -392,7 +392,7 @@ static-file.exclude-extensions = ( ".php", ".pl", ".fcgi", ".scgi" )
 ## Format: <errorfile-prefix><status-code>.html
 ## -> ..../status-404.html for 'File not found'
 ##
-#server.errorfile-prefix    = "/srv/www/htdocs/errors/status-"
+#server.errorfile-prefix    = "@WWW_BASE@/htdocs/errors/status-"
 
 ##
 ## mimetype mapping
@@ -443,7 +443,7 @@ server.upload-dirs = ( "/var/tmp" )
 ##     ssl.pemfile                 = "/etc/ssl/private/www.example.com.pem"
 ##     server.name                 = "www.example.com"
 ##
-##     server.document-root        = "/srv/www/vhosts/example.com/www/"
+##     server.document-root        = "@WWW_BASE@/vhosts/example.com/www/"
 ##   }
 ##
 

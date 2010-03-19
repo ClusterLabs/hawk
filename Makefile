@@ -42,26 +42,36 @@ ifeq "$(BUILD_TAG)" ""
 BUILD_TAG = 0.0.0
 endif
 
-all:
+# Override this when invoking make to install elsewhere, e.g.:
+#   make WWW_BASE=/var/www install
+WWW_BASE = /srv/www
+
+all: scripts/hawk hawk/config/lighttpd.conf
 	(cd hawk; rake makemo; rake rails:freeze:gems; rake gems:unpack)
+
+%: %.in
+	sed -e 's|@WWW_BASE@|$(WWW_BASE)|' $< > $@
 
 clean:
 	rm -rf hawk/locale
 	rm -rf hawk/vendor
+	rm -f hawk/config/lighttpd.conf
+	rm -f scripts/hawk
 
 install:
-	mkdir -p $(DESTDIR)/srv/www/hawk/log
-	mkdir -p $(DESTDIR)/srv/www/hawk/tmp
-	mkdir -p $(DESTDIR)/srv/www/hawk/locale
-	mkdir -p $(DESTDIR)/srv/www/hawk/tmp
-	mkdir -p $(DESTDIR)/srv/www/hawk/tmp/cache
-	mkdir -p $(DESTDIR)/srv/www/hawk/tmp/pids
-	mkdir -p $(DESTDIR)/srv/www/hawk/tmp/sessions
-	mkdir -p $(DESTDIR)/srv/www/hawk/tmp/sockets
+	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/log
+	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp
+	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/locale
+	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp
+	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/cache
+	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/pids
+	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/sessions
+	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/sockets
 	# Get rid of cruft from packed gems
 	find hawk/vendor -name '*bak' -o -name '*~' -o -name '#*#' | xargs rm
-	cp -a hawk/* $(DESTDIR)/srv/www/hawk
-	-chown -R hacluster.haclient $(DESTDIR)/srv/www/hawk
+	cp -a hawk/* $(DESTDIR)$(WWW_BASE)/hawk
+	rm $(DESTDIR)$(WWW_BASE)/hawk/config/lighttpd.conf.in
+	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk
 	install -D -m 0755 scripts/hawk $(DESTDIR)/etc/init.d/hawk
 
 # Make a tar.bz2 named for the most recent human-readable tag
