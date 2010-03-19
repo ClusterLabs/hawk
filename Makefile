@@ -68,7 +68,7 @@ install:
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/sessions
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/sockets
 	# Get rid of cruft from packed gems
-	find hawk/vendor -name '*bak' -o -name '*~' -o -name '#*#' | xargs rm
+	-find hawk/vendor -name '*bak' -o -name '*~' -o -name '#*#' | xargs rm
 	cp -a hawk/* $(DESTDIR)$(WWW_BASE)/hawk
 	rm $(DESTDIR)$(WWW_BASE)/hawk/config/lighttpd.conf.in
 	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk
