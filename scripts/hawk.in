@@ -101,7 +101,7 @@ CONF
 	rc=$?
 	if [ $rc -eq 0 ]; then
 		cat $cert_key_file $cert_file > $combined_cert_file
-		$c_rehash_bin $(dirname $combined_cert_file) >/dev/null 2>&1
+		[ -x "$c_rehash_bin" ] && $c_rehash_bin $(dirname $combined_cert_file) >/dev/null 2>&1
 	else
 		echo "Could not generate certificate.  Please see $log_file for details"
 	fi
