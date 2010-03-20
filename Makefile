@@ -46,7 +46,10 @@ endif
 #   make WWW_BASE=/var/www install
 WWW_BASE = /srv/www
 
-all: scripts/hawk hawk/config/lighttpd.conf
+# Override this to get a different init script (e.g. "redhat")
+INIT_STYLE = suse
+
+all: scripts/hawk.$(INIT_STYLE) hawk/config/lighttpd.conf
 	(cd hawk; rake makemo; rake rails:freeze:gems; rake gems:unpack)
 
 %: %.in
@@ -56,7 +59,7 @@ clean:
 	rm -rf hawk/locale
 	rm -rf hawk/vendor
 	rm -f hawk/config/lighttpd.conf
-	rm -f scripts/hawk
+	rm -f scripts/hawk.{suse,redhat}
 
 install:
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/log
@@ -72,7 +75,7 @@ install:
 	cp -a hawk/* $(DESTDIR)$(WWW_BASE)/hawk
 	rm $(DESTDIR)$(WWW_BASE)/hawk/config/lighttpd.conf.in
 	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk
-	install -D -m 0755 scripts/hawk $(DESTDIR)/etc/init.d/hawk
+	install -D -m 0755 scripts/hawk.$(INIT_STYLE) $(DESTDIR)/etc/init.d/hawk
 
 # Make a tar.bz2 named for the most recent human-readable tag
 archive:

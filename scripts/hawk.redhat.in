@@ -1,0 +1,148 @@
+#!/bin/sh
+#
+#     RedHat system startup script for hawk
+#
+#     Copyright (C) 2010  Tim Serong, SUSE / Novell Inc.
+#          
+#     This library is free software; you can redistribute it and/or modify it
+#     under the terms of the GNU Lesser General Public License as published by
+#     the Free Software Foundation; either version 2.1 of the License, or (at
+#     your option) any later version.
+#			      
+#     This library is distributed in the hope that it will be useful, but
+#     WITHOUT ANY WARRANTY; without even the implied warranty of
+#     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+#     Lesser General Public License for more details.
+#      
+#     You should have received a copy of the GNU Lesser General Public
+#     License along with this library; if not, write to the Free Software
+#     Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307,
+#     USA.
+#
+### BEGIN INIT INFO
+# Provides:          hawk
+# Required-Start:    $syslog $remote_fs
+# Should-Start:      $time
+# Required-Stop:     $syslog $remote_fs
+# Should-Stop:       $time
+# Default-Start:     3 5
+# Default-Stop:      0 1 2 6
+# Short-Description: hawk daemon providing web GUI for Pacemaker HA clusters
+# Description:       Start hawk to provide a web GUI for the Pacemaker
+#	High-Availability cluster resource manager.
+### END INIT INFO
+
+
+# Check for missing binaries (stale symlinks should not happen)
+# Note: Special treatment of stop for LSB conformance
+LIGHTTPD_BIN=/usr/sbin/lighttpd
+test -x $LIGHTTPD_BIN || { echo "$LIGHTTPD_BIN not installed"; 
+	if [ "$1" = "stop" ]; then exit 0;
+	else exit 5; fi; }
+
+# Check for existence of needed config file and read it
+LIGHTTPD_CONFIG=@WWW_BASE@/hawk/config/lighttpd.conf
+test -r $LIGHTTPD_CONFIG || { echo "$LIGHTTPD_CONFIG does not exist";
+	if [ "$1" = "stop" ]; then exit 0;
+	else exit 6; fi; }
+
+PID_FILE=/var/run/hawk.pid
+
+# Generate a self-signed SSL certificate if necessary.  Will not
+# generate certificate if one already exists, so administrator can
+# install a "real" certificate by simply replacing the generated
+# (combined) one at /etc/lighttpd/certs/hawk-combined.pem
+# NOTE: This is essentially a heavily stripped-back shell version
+# of the more generic check-create-certificate.pl script from WebYaST.
+# If this latter script becomes generally available, we should prefer
+# using it over this little function here.
+generate_ssl_cert() {
+	openssl_bin=/usr/bin/openssl
+	c_rehash_bin=/usr/bin/c_rehash
+	cert_file=/etc/lighttpd/certs/hawk.pem
+	cert_key_file=/etc/lighttpd/certs/hawk.key
+	combined_cert_file=/etc/lighttpd/certs/hawk-combined.pem
+	log_file=@WWW_BASE@/hawk/log/certificate.log
+	[ -e "$combined_cert_file" ] && return 0
+
+	echo "No certificate found. Creating one now."
+	mkdir -p $(dirname $combined_cert_file)
+
+	old_mask=$(umask)
+	umask 177
+	CN=$(hostname -f)
+	[ -z "$CN" ] && CN=$(hostname)
+	[ -z "$CN" ] && CN=localhost
+	$openssl_bin req -newkey rsa:2048 -x509 -nodes -days 1095 -batch -config /dev/fd/0 -out $cert_file -keyout $cert_key_file >$log_file 2>&1 <<CONF
+[req]
+distinguished_name = user_dn
+prompt = no
+[user_dn]
+commonName=$CN
+emailAddress=root@$CN
+organizationName=HA Web Konsole
+organizationalUnitName=Automatically Generated Certificate
+CONF
+	rc=$?
+	if [ $rc -eq 0 ]; then
+		cat $cert_key_file $cert_file > $combined_cert_file
+		[ -x "$c_rehash_bin" ] && $c_rehash_bin $(dirname $combined_cert_file) >/dev/null 2>&1
+	else
+		echo "Could not generate certificate.  Please see $log_file for details"
+	fi
+	umask $old_mask
+	return $rc
+}
+
+# Source LSB init functions
+. /etc/rc.d/init.d/functions
+
+case "$1" in
+    start)
+    	generate_ssl_cert || {
+		exit 1
+    	}
+	echo -n "Starting hawk "
+	daemon --pidfile $PID_FILE $LIGHTTPD_BIN -f $LIGHTTPD_CONFIG
+	RETVAL=$?
+	echo
+	;;
+    stop)
+	echo -n "Shutting down hawk "
+	killproc -p $PID_FILE $LIGHTTPD_BIN
+	RETVAL=$?
+	echo
+	;;
+    try-restart|condrestart)
+	$0 status || exit 0
+	$0 restart
+	RETVAL=$?
+	;;
+    restart)
+	$0 stop
+	$0 start
+	RETVAL=$?
+	;;
+    force-reload)
+	echo -n "Reload service hawk "
+	killproc -p $PID_FILE $LIGHTTPD_BIN -HUP
+	RETVAL=$?
+	echo
+	;;
+    reload)
+	echo -n "Reload service hawk "
+	killproc -p $PID_FILE $LIGHTTPD_BIN -HUP
+	RETVAL=$?
+	;;
+    status)
+	echo -n "Checking for service hawk "
+	status -p $PID_FILE $LIGHTTPD_BIN
+	RETVAL=$?
+	echo
+	;;
+    *)
+	echo "Usage: $0 {start|stop|status|try-restart|restart|force-reload|reload|probe}"
+	exit 1
+	;;
+esac
+exit $RETVAL
