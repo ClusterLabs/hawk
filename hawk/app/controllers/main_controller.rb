@@ -29,6 +29,7 @@
 #======================================================================
 
 require 'natcmp'
+require 'rexml/document' unless defined? REXML::Document
 
 class MainController < ApplicationController
   before_filter :login_required
@@ -402,7 +403,7 @@ class MainController < ApplicationController
       children = []
       status_class = 'rs-active'
       # TODO(must): this is *not* the correct way to determine clone IDs: there may be gaps, and there may be more than clone-max!
-      clone_max = res.attributes['clone-max'] || @nodes.count
+      clone_max = res.attributes['clone-max'] || @nodes.length
       open = false
       if res.elements['primitive']
         for i in 0..clone_max.to_i-1 do
@@ -497,7 +498,7 @@ class MainController < ApplicationController
       :id         => 'nodelist',
       :className  => '',
       :style      => @summary[:version] ? '' : 'display: none;',
-      :label      => n_('1 node configured', '%{num} nodes configured', @nodes.count) % { :num => @nodes.count },
+      :label      => n_('1 node configured', '%{num} nodes configured', @nodes.length) % { :num => @nodes.length },
       :open       => @expand_nodes,
       :children   => @nodes
     }
@@ -506,7 +507,7 @@ class MainController < ApplicationController
       :id         => 'reslist',
       :className  => '',
       :style      => @summary[:version] ? '' : 'display: none;',
-      :label      => n_('1 resource configured', '%{num} resources configured', @resources.count) % { :num => @resources.count },
+      :label      => n_('1 resource configured', '%{num} resources configured', @resources.length) % { :num => @resources.length },
       :open       => @expand_resources,
       :children   => @resources
     }
