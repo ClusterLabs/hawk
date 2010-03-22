@@ -101,11 +101,11 @@ function update_panel(panel) {
           // TODO(should): HTML-safe?
           d.update('<div class="clickable" onclick="toggle_collapse(\'' + item.id + '\');">' +
             '<div id="' + item.id + '::button" class="tri-' + (item.open ? 'open' : 'closed') + '"></div>' +
-              '<a id="' + item.id + '::menu"><img src="/images/transparent-16x16.gif" class="action-icon" alt="" /></a>' +
+              '<a id="' + item.id + '::menu" class="menu-link"><img src="/images/transparent-16x16.gif" class="action-icon" alt="" /></a>' +
               '<span id="' + item.id + '::label"></span></div>' +
             '<div id="' + item.id + '::children"' + (item.open ? ' style="display: none;" class="closed"' : '') + '</div>');
         } else {
-          d.update('<a id="' + item.id + '::menu"><img src="/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="' + item.id + '::label"></span>');
+          d.update('<a id="' + item.id + '::menu" class="menu-link"><img src="/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="' + item.id + '::label"></span>');
         }
       }
       if (!c) {
@@ -113,6 +113,7 @@ function update_panel(panel) {
       } else {
         c.insert({before: d});
       }
+      add_mgmt_menu($(item.id + "::menu"));
     } else {
       c = c.next();
     }
@@ -229,6 +230,37 @@ function resource_menu_item_click(e)
   new Ajax.Request("/main/resource_" + dc_split(Event.element(e).parentNode.id)[2], { parameters: "resource=" + $("menu::resource").hawkResource });
 }
 
+function add_mgmt_menu(e) {
+  switch (dc_split(e.id)[0]) {
+    case "node":
+      e.addClassName("clickable");
+      e.observe("click", popup_node_menu);
+      e.firstDescendant().src = "/images/icons/properties.png";
+      break;
+    case "clone":
+      e.addClassName("clickable");
+      e.observe("click", popup_resource_menu);
+      e.firstDescendant().src = "/images/icons/properties.png";
+      break;
+    case "primitive":
+      isClone = false;
+      var n = e.parentNode;
+      while (n && n.id != "") {
+        if (dc_split(n.id)[0] == "clone") {
+          isClone = true;
+          break;
+        }
+        n = n.parentNode;
+      }
+      if (!isClone) {
+        e.addClassName("clickable");
+        e.observe("click", popup_resource_menu);
+        e.firstDescendant().src = "/images/icons/properties.png";
+      }
+      break;
+  }
+}
+
 function init_menus() {
 
   $("menu::node").hawkNode = null;
@@ -248,36 +280,7 @@ function init_menus() {
     $("menu::resource").hide();
   });
 
-  $$(".menu-link").each(function(e) {
-    switch (dc_split(e.id)[0]) {
-      case "node":
-        e.addClassName("clickable");
-        e.observe("click", popup_node_menu);
-        e.firstDescendant().src = "/images/icons/properties.png";
-        break;
-      case "clone":
-        e.addClassName("clickable");
-        e.observe("click", popup_resource_menu);
-        e.firstDescendant().src = "/images/icons/properties.png";
-        break;
-      case "primitive":
-        isClone = false;
-        var n = e.parentNode;
-        while (n && n.id != "") {
-          if (dc_split(n.id)[0] == "clone") {
-            isClone = true;
-            break;
-          }
-          n = n.parentNode;
-        }
-        if (!isClone) {
-          e.addClassName("clickable");
-          e.observe("click", popup_resource_menu);
-          e.firstDescendant().src = "/images/icons/properties.png";
-        }
-        break;
-    }
-  });
+  $$(".menu-link").each(add_mgmt_menu);
 }
 
 function do_update() {
