@@ -135,6 +135,8 @@ function update_panel(panel) {
 
 // Um...  what's "object" for?
 function handle_update(request, object) {
+  // TODO(should): really should be using Ajax.Request onSuccess to
+  // trigger this callback...
   if (request.responseJSON) {
     update_errors(request.responseJSON.errors);
 
@@ -227,7 +229,27 @@ function resource_menu_item_click(e)
   else if(c.hasClassName("rs-error"))     state = "error";
   $($("menu::resource").hawkResourceType + "::" + $("menu::resource").hawkResource + "::menu").firstDescendant().src = "/images/spinner-16x16-" + state + ".gif";
 
-  new Ajax.Request("/main/resource_" + dc_split(Event.element(e).parentNode.id)[2], { parameters: "resource=" + $("menu::resource").hawkResource });
+  new Ajax.Request("/main/resource_" + dc_split(Event.element(e).parentNode.id)[2], {
+    parameters: "resource=" + $("menu::resource").hawkResource,
+    onSuccess:  function(request) {
+      // Do nothing (spinner will stop when next full refresh occurs
+    },
+    onFailure:  function(request) {
+      // Remove spinner
+      $($("menu::resource").hawkResourceType + "::" + $("menu::resource").hawkResource + "::menu").firstDescendant().src = "/images/icons/properties.png";
+      if (request.responseJSON) {
+        // TODO(should): want pretty in-page modal popup ("lightbox" style), not ugly alerts
+        var err = request.responseJSON.error;
+        if (request.responseJSON.stderr && request.responseJSON.stderr.size()) {
+          err += "\n\n" + request.responseJSON.stderr.join("\n");
+        }
+        alert(err);
+      } else {
+        // TODO(must): Localize this somehow (not that this error path will ever be invoked...)
+        alert("Unexpected server error: " + request.status);
+      }
+    }
+  });
 }
 
 function add_mgmt_menu(e) {

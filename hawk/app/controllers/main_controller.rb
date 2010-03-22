@@ -29,6 +29,7 @@
 #======================================================================
 
 require 'natcmp'
+require 'util'
 require 'rexml/document' unless defined? REXML::Document
 
 class MainController < ApplicationController
@@ -548,47 +549,56 @@ class MainController < ApplicationController
 #    head :ok
 #  end
 
-  # TODO(should): as above
+  # TODO(should): exceptions to handle missing params
   def resource_start
-    cib = REXML::Document.new(%x[/usr/sbin/cibadmin -Ql --scope resources 2>/dev/null])
-    # TODO(could): Safe? (at least, can't be executed...)
-    e = cib.elements["//[@id='#{params[:resource]}']"]
-    if e
-      res = params[:resource]
-      if e.name == "clone"
-        res = e.elements['primitive'].attributes['id'] if e.elements['primitive']
+    if params[:resource]
+      stdin, stdout, stderr = Util.popen3('/usr/sbin/crm', 'resource', 'start', params[:resource])
+      if $?.exitstatus == 0
+        head :ok
+      else
+        render :status => 500, :json => {
+          :error  => _('%{cmd} failed (status: %{status})') % { :cmd => '/usr/sbin/crm', :status => $?.exitstatus },
+          :stderr => stderr.readlines
+        }
       end
-      system('/usr/sbin/crm_resource', '--meta', '-r', res, '-p', 'target-role', '-v', 'Started');
-      head :ok
     else
-      # this is a lie
-      head :forbidden
+      render :status => 400, :json => {
+        :error => _('Required parameter "resource" not specified')
+      }
     end
   end
 
-  # TODO(should): as above
   # TODO(should): consolidate with resource_start
   def resource_stop
-    cib = REXML::Document.new(%x[/usr/sbin/cibadmin -Ql --scope resources 2>/dev/null])
-    # TODO(could): Safe? (at least, can't be executed...)
-    e = cib.elements["//[@id='#{params[:resource]}']"]
-    if e
-      res = params[:resource]
-      if e.name == "clone"
-        res = e.elements['primitive'].attributes['id'] if e.elements['primitive']
+    if params[:resource]
+      stdin, stdout, stderr = Util.popen3('/usr/sbin/crm', 'resource', 'stop', params[:resource])
+      if $?.exitstatus == 0
+        head :ok
+      else
+        render :status => 500, :json => {
+          :error  => _('%{cmd} failed (status: %{status})') % { :cmd => '/usr/sbin/crm', :status => $?.exitstatus },
+          :stderr => stderr.readlines
+        }
       end
-      system('/usr/sbin/crm_resource', '--meta', '-r', res, '-p', 'target-role', '-v', 'Stopped');
-      head :ok
     else
-      # this is a lie
-      head :forbidden
+      render :status => 400, :json => {
+        :error => _('Required parameter "resource" not specified')
+      }
     end
   end
 
-  # TODO(should): as above
+  # TODO(should): consolidate with resource_start
   def resource_cleanup
-    system('/usr/sbin/crm', 'resource', 'cleanup', params[:resource]);
-    head :ok
+    if params[:resource]
+      stdin, stdout, stderr = Util.popen3('/usr/sbin/crm', 'resource', 'cleanup', params[:resource])
+      # This might be a lie, but for some reason "crm resource cleanup" always
+      # gives exit status 1, so we don't actually know if it worked or not...
+      head :ok
+    else
+      render :status => 400, :json => {
+        :error => _('Required parameter "resource" not specified')
+      }
+    end
   end
 
 end
