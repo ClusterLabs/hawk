@@ -216,7 +216,27 @@ function node_menu_item_click(e)
   else if(c.hasClassName("ns-transient")) state = "transient";
   $("node::" + $("menu::node").hawkNode + "::menu").firstDescendant().src = "/images/spinner-16x16-" + state + ".gif";
 
-  new Ajax.Request("/main/node_" + dc_split(Event.element(e).parentNode.id)[2], { parameters: "node=" + $("menu::node").hawkNode });
+  new Ajax.Request("/main/node_" + dc_split(Event.element(e).parentNode.id)[2], {
+    parameters: "node=" + $("menu::node").hawkNode,
+    onSuccess:  function(request) {
+      // Do nothing (spinner will stop when next full refresh occurs
+    },
+    onFailure:  function(request) {
+      // Remove spinner
+      $("node::" + $("menu::node").hawkNode + "::menu").firstDescendant().src = "/images/icons/properties.png";
+      if (request.responseJSON) {
+        // TODO(should): want pretty in-page modal popup ("lightbox" style), not ugly alerts
+        var err = request.responseJSON.error;
+        if (request.responseJSON.stderr && request.responseJSON.stderr.size()) {
+          err += "\n\n" + request.responseJSON.stderr.join("\n");
+        }
+        alert(err);
+      } else {
+        // TODO(must): Localize this somehow (not that this error path will ever be invoked...)
+        alert("Unexpected server error: " + request.status);
+      }
+    }
+  });
 }
 
 // TODO(should): Consolidate with node_menu_*

@@ -39,6 +39,19 @@ class MainController < ApplicationController
   # (models for cluster, nodes, resources anybody?)
   private
 
+  # Invoke some command, returning OK or JSON error as appropriate
+  def invoke(*cmd)
+    stdin, stdout, stderr = Util.popen3(*cmd)
+    if $?.exitstatus == 0
+      head :ok
+    else
+      render :status => 500, :json => {
+        :error  => _('%{cmd} failed (status: %{status})') % { :cmd => cmd.join(' '), :status => $?.exitstatus },
+        :stderr => stderr.readlines
+      }
+    end
+  end
+
   # Gives back a string, boolean if value is "true" or "false",
   # or nil if attribute doesn't exist and there's no default
   # (roughly equivalent to crm_element_value() in Pacemaker)
@@ -528,21 +541,35 @@ class MainController < ApplicationController
   end
 
   def node_standby
-    system('/usr/sbin/crm_standby', '-N', params[:node], '-v', 'on');
-    # TODO(should): if this fails, make noise
-    head :ok
+    if params[:node]
+      invoke '/usr/sbin/crm_standby', '-N', params[:node], '-v', 'on'
+    else
+      render :status => 400, :json => {
+        :error => _('Required parameter "resource" not specified')
+      }
+    end
   end
 
-  # TODO(should): as above
+  # TODO(should): consolidate...
   def node_online
-    system('/usr/sbin/crm_standby', '-N', params[:node], '-v', 'off');
-    head :ok
+    if params[:node]
+      invoke '/usr/sbin/crm_standby', '-N', params[:node], '-v', 'off'
+    else
+      render :status => 400, :json => {
+        :error => _('Required parameter "resource" not specified')
+      }
+    end
   end
 
   # TODO(should): as above
   def node_fence
-    system('/usr/sbin/crm_attribute', '-t', 'status', '-U', params[:node], '-n', 'terminate', '-v', 'true');
-    head :ok
+    if params[:node]
+      invoke '/usr/sbin/crm_attribute', '-t', 'status', '-U', params[:node], '-n', 'terminate', '-v', 'true'
+    else
+      render :status => 400, :json => {
+        :error => _('Required parameter "resource" not specified')
+      }
+    end
   end
 
 #  def node_mark
@@ -552,15 +579,7 @@ class MainController < ApplicationController
   # TODO(should): exceptions to handle missing params
   def resource_start
     if params[:resource]
-      stdin, stdout, stderr = Util.popen3('/usr/sbin/crm', 'resource', 'start', params[:resource])
-      if $?.exitstatus == 0
-        head :ok
-      else
-        render :status => 500, :json => {
-          :error  => _('%{cmd} failed (status: %{status})') % { :cmd => '/usr/sbin/crm', :status => $?.exitstatus },
-          :stderr => stderr.readlines
-        }
-      end
+      invoke '/usr/sbin/crm', 'resource', 'start', params[:resource]
     else
       render :status => 400, :json => {
         :error => _('Required parameter "resource" not specified')
@@ -568,18 +587,10 @@ class MainController < ApplicationController
     end
   end
 
-  # TODO(should): consolidate with resource_start
+  # TODO(should): seriously, we have three almost identical functions here, this is just silly...
   def resource_stop
     if params[:resource]
-      stdin, stdout, stderr = Util.popen3('/usr/sbin/crm', 'resource', 'stop', params[:resource])
-      if $?.exitstatus == 0
-        head :ok
-      else
-        render :status => 500, :json => {
-          :error  => _('%{cmd} failed (status: %{status})') % { :cmd => '/usr/sbin/crm', :status => $?.exitstatus },
-          :stderr => stderr.readlines
-        }
-      end
+      invoke '/usr/sbin/crm', 'resource', 'stop', params[:resource]
     else
       render :status => 400, :json => {
         :error => _('Required parameter "resource" not specified')
@@ -587,7 +598,7 @@ class MainController < ApplicationController
     end
   end
 
-  # TODO(should): consolidate with resource_start
+  # TODO(should): consolidate with resource_start, once crm is returning 0 when expected
   def resource_cleanup
     if params[:resource]
       stdin, stdout, stderr = Util.popen3('/usr/sbin/crm', 'resource', 'cleanup', params[:resource])
