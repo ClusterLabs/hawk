@@ -225,15 +225,11 @@ function node_menu_item_click(e)
       // Remove spinner
       $("node::" + $("menu::node").hawkNode + "::menu").firstDescendant().src = "/images/icons/properties.png";
       if (request.responseJSON) {
-        // TODO(should): want pretty in-page modal popup ("lightbox" style), not ugly alerts
-        var err = request.responseJSON.error;
-        if (request.responseJSON.stderr && request.responseJSON.stderr.size()) {
-          err += "\n\n" + request.responseJSON.stderr.join("\n");
-        }
-        alert(err);
+        modal_dialog(request.responseJSON.error,
+          { body: (request.responseJSON.stderr && request.responseJSON.stderr.size()) ? request.responseJSON.stderr.join("\n") : null });
       } else {
         // TODO(must): Localize this somehow (not that this error path will ever be invoked...)
-        alert("Unexpected server error: " + request.status);
+        modal_dialog("Unexpected server error: " + request.status);
       }
     }
   });
@@ -258,15 +254,11 @@ function resource_menu_item_click(e)
       // Remove spinner
       $($("menu::resource").hawkResourceType + "::" + $("menu::resource").hawkResource + "::menu").firstDescendant().src = "/images/icons/properties.png";
       if (request.responseJSON) {
-        // TODO(should): want pretty in-page modal popup ("lightbox" style), not ugly alerts
-        var err = request.responseJSON.error;
-        if (request.responseJSON.stderr && request.responseJSON.stderr.size()) {
-          err += "\n\n" + request.responseJSON.stderr.join("\n");
-        }
-        alert(err);
+        modal_dialog(request.responseJSON.error,
+          { body: (request.responseJSON.stderr && request.responseJSON.stderr.size()) ? request.responseJSON.stderr.join("\n") : null });
       } else {
         // TODO(must): Localize this somehow (not that this error path will ever be invoked...)
-        alert("Unexpected server error: " + request.status);
+        modal_dialog("Unexpected server error: " + request.status);
       }
     }
   });
@@ -325,15 +317,23 @@ function init_menus() {
   $$(".menu-link").each(add_mgmt_menu);
 }
 
-function modal_dialog() {
-  // Click dialog to get rid of it (temporary)
-  $("dialog").stopObserving('click');
-  $("dialog").observe('click', function(e) { $("dialog").hide(); $("overlay").hide(); });
+function modal_dialog(msg, params) {
+  params = params || {};
+
+  $("dialog-message").update(msg.escapeHTML());
+  if (params.body) {
+    $("dialog-body").update(params.body.escapeHTML().replace(/\n/g, "<br />")).show();
+  } else {
+    $("dialog-body").hide();
+  }
+
+  // TODO(must): localize
+  $("dialog-buttons").update('<button onclick="$(\'dialog\').hide(); $(\'overlay\').hide();">OK</button>');
 
   // Dialog is always 100px below viewport top, but need to center it
   // TODO(could): can this be done with CSS only?
   // TODO(should): move horizontally when window resizes
-  style = {left: (document.viewport.getWidth() / 2 - $("dialog").getWidth() / 2) + 'px'};
+  var style = { left: (document.viewport.getWidth() / 2 - $("dialog").getWidth() / 2) + 'px' };
   if ($("dialog").getStyle("position") == "absolute") {
     // Hacks to make IE6 suck a little bit less.
     var offsets = document.viewport.getScrollOffsets();
