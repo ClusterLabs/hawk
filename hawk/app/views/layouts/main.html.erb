@@ -4,6 +4,7 @@
 <head>
 <title><%=h @title %></title>
 <%= stylesheet_link_tag "base" %>
+<!--[if lt IE 7]><%= stylesheet_link_tag "ie6" %><![endif]-->
 <%= javascript_include_tag :defaults %>
 <%= yield :head %> 
 </head>
@@ -33,6 +34,8 @@
     <span id="hostinfo"><%= (_('Host: %s') % @host) if @host %></span>
     <span id="copyright"><%= _('Copyright &copy; 2009-2010 Novell, Inc.') %></span>
   </div>
+  <div id="overlay" style="display: none;"></div>
+  <div id="dialog" style="display: none;"></div>
 </div>
 </body>
 </html>

@@ -325,6 +325,29 @@ function init_menus() {
   $$(".menu-link").each(add_mgmt_menu);
 }
 
+function modal_dialog() {
+  // Click dialog to get rid of it (temporary)
+  $("dialog").stopObserving('click');
+  $("dialog").observe('click', function(e) { $("dialog").hide(); $("overlay").hide(); });
+
+  // Dialog is always 100px below viewport top, but need to center it
+  // TODO(could): can this be done with CSS only?
+  // TODO(should): move horizontally when window resizes
+  style = {left: (document.viewport.getWidth() / 2 - $("dialog").getWidth() / 2) + 'px'};
+  if ($("dialog").getStyle("position") == "absolute") {
+    // Hacks to make IE6 suck a little bit less.
+    var offsets = document.viewport.getScrollOffsets();
+    // It doesn't support fixed position, so move the dialog so it's 100px below
+    // the top of the viewport:
+    style.top = (offsets.top + 100) + 'px';
+    // It also treats 100% width and height of overlay as relative to viewport,
+    // not document, so move the overlay so it's in the current viewport.
+    $("overlay").setStyle({left: offsets.left + 'px', top: offsets.top + 'px'});
+  }
+  $("overlay").setOpacity(0.5).show();
+  $("dialog").setStyle(style).show();
+}
+
 function do_update() {
   setTimeout("new Ajax.Request('/main/status', { parameters: 'format=json', asynchronous: true, onComplete: handle_update });", 15000);
 }
