@@ -1,0 +1,194 @@
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hawk\n"
+"POT-Creation-Date: 2010-03-06 00:44+1100\n"
+"PO-Revision-Date: 2010-03-24 15:28\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: app/controllers/main_controller.rb:133
+#: app/controllers/main_controller.rb:134
+#: app/controllers/main_controller.rb:143
+msgid "Unknown"
+msgstr "未知"
+
+#: app/controllers/main_controller.rb:146
+#: app/controllers/main_controller.rb:147
+msgid "Yes"
+msgstr "是"
+
+#: app/controllers/main_controller.rb:146
+#: app/controllers/main_controller.rb:147
+msgid "No"
+msgstr "否"
+
+#: app/controllers/main_controller.rb:210 app/views/main/_menus.html.erb:4
+msgid "Online"
+msgstr "上線"
+
+#: app/controllers/main_controller.rb:213
+msgid "Offline"
+msgstr "離線"
+
+#: app/controllers/main_controller.rb:216
+msgid "Pending"
+msgstr "等待中"
+
+#: app/controllers/main_controller.rb:219 app/views/main/_menus.html.erb:5
+msgid "Standby"
+msgstr "待機"
+
+#: app/controllers/main_controller.rb:223
+msgid "Unclean"
+msgstr "未清理"
+
+#: app/controllers/main_controller.rb:233
+msgid "%{node}: %{status}"
+msgstr "%{node}：%{status}"
+
+#: app/controllers/main_controller.rb:340
+msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
+msgstr "作業失敗：節點=%{node}，資源=%{resource}，呼叫 ID=%{call_id}，作業=%{op}，資源代碼=%{rc_code}"
+
+#: app/controllers/main_controller.rb:360
+msgid "%{id}: Stopped"
+msgstr "%{id}：已停止"
+
+#: app/controllers/main_controller.rb:362
+msgid "%{id}: Started: %{nodelist}"
+msgstr "%{id}︰已啟動︰%{nodelist}"
+
+#: app/controllers/main_controller.rb:392
+msgid "Group: %{id}"
+msgstr "群組︰%{id}"
+
+#: app/controllers/main_controller.rb:427
+msgid "Clone Set: %{id}"
+msgstr "複製集︰%{id}"
+
+#: app/controllers/main_controller.rb:470
+msgid "%{cmd} failed (status: %{status}, output was: %{output})"
+msgstr "%{cmd} 失敗 (狀態︰%{status}，輸出為︰%{output})"
+
+#: app/controllers/main_controller.rb:476
+msgid "Unable to execute %{cmd}"
+msgstr "無法執行 %{cmd}"
+
+#: app/controllers/main_controller.rb:479
+msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
+msgstr "似乎未安裝 Pacemaker (找不到 %{cmd})"
+
+#: app/controllers/main_controller.rb:492
+msgid "Cluster Status"
+msgstr "叢集狀態"
+
+#: app/controllers/main_controller.rb:500
+msgid "1 node configured"
+msgid_plural "%{num} nodes configured"
+msgstr[0] "已設定 1 個節點"
+
+#: app/controllers/main_controller.rb:509
+msgid "1 resource configured"
+msgid_plural "%{num} resources configured"
+msgstr[0] "已設定 1 個資源"
+
+#: app/controllers/sessions_controller.rb:35
+#: app/views/sessions/new.html.erb:16
+msgid "Log In"
+msgstr "登入"
+
+#: app/controllers/sessions_controller.rb:54
+msgid "Username not specified"
+msgstr "未指定使用者名稱"
+
+#: app/controllers/sessions_controller.rb:58
+msgid "Invalid username"
+msgstr "無效的使用者名稱"
+
+#: app/controllers/sessions_controller.rb:61
+msgid "Password not specified"
+msgstr "未指定密碼"
+
+#: app/controllers/sessions_controller.rb:76
+msgid "Invalid username or password"
+msgstr "無效的使用者名稱或密碼"
+
+#: app/controllers/sessions_controller.rb:80
+msgid "%s is not installed"
+msgstr "%s 未安裝"
+
+#: app/views/sessions/new.html.erb:8
+msgid "Username:"
+msgstr "使用者名稱："
+
+#: app/views/sessions/new.html.erb:12
+msgid "Password:"
+msgstr "密碼："
+
+#: app/views/layouts/main.html.erb:16
+msgid "User: %{user}"
+msgstr "使用者︰%{user}"
+
+#: app/views/layouts/main.html.erb:17
+msgid "Log Out"
+msgstr "登出"
+
+#: app/views/layouts/main.html.erb:33
+msgid "Host: %s"
+msgstr "主機：%s"
+
+#: app/views/layouts/main.html.erb:34
+msgid "Copyright &copy; 2009-2010 Novell, Inc."
+msgstr "版權所有 &copy; 2009-2010 Novell, Inc."
+
+#: app/views/main/_summary.html.erb:3
+msgid "Cluster Stack:"
+msgstr "叢集堆疊︰"
+
+#: app/views/main/_summary.html.erb:4
+msgid "Pacemaker Version:"
+msgstr "Pacemaker 版本︰"
+
+#: app/views/main/_summary.html.erb:5
+msgid "Current DC:"
+msgstr "目前 DC︰"
+
+#: app/views/main/_summary.html.erb:6
+msgid "Resource Stickiness:"
+msgstr "資源綁定︰"
+
+#: app/views/main/_summary.html.erb:7
+msgid "STONITH Enabled:"
+msgstr "已啟用 STONITH︰"
+
+#: app/views/main/_summary.html.erb:8
+msgid "Symmetric Cluster:"
+msgstr "對稱式叢集︰"
+
+#: app/views/main/_summary.html.erb:9
+msgid "No Quorum Policy:"
+msgstr "無最低節點數規則︰"
+
+#: app/views/main/_menus.html.erb:6
+msgid "Fence Node"
+msgstr "圍籬區隔節點"
+
+#: app/views/main/_menus.html.erb:11
+msgid "Start"
+msgstr "啟動"
+
+#: app/views/main/_menus.html.erb:12
+msgid "Stop"
+msgstr "停止"
+
+#: app/views/main/_menus.html.erb:13
+msgid "Clean Up"
+msgstr "清理"
+

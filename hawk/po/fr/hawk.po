@@ -1,0 +1,196 @@
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hawk\n"
+"POT-Creation-Date: 2010-03-06 00:44+1100\n"
+"PO-Revision-Date: 2010-03-24 13:02\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n > 1);\n"
+
+#: app/controllers/main_controller.rb:133
+#: app/controllers/main_controller.rb:134
+#: app/controllers/main_controller.rb:143
+msgid "Unknown"
+msgstr "Inconnu"
+
+#: app/controllers/main_controller.rb:146
+#: app/controllers/main_controller.rb:147
+msgid "Yes"
+msgstr "Oui"
+
+#: app/controllers/main_controller.rb:146
+#: app/controllers/main_controller.rb:147
+msgid "No"
+msgstr "Non"
+
+#: app/controllers/main_controller.rb:210 app/views/main/_menus.html.erb:4
+msgid "Online"
+msgstr "En ligne"
+
+#: app/controllers/main_controller.rb:213
+msgid "Offline"
+msgstr "Hors ligne"
+
+#: app/controllers/main_controller.rb:216
+msgid "Pending"
+msgstr "En attente"
+
+#: app/controllers/main_controller.rb:219 app/views/main/_menus.html.erb:5
+msgid "Standby"
+msgstr "Veille"
+
+#: app/controllers/main_controller.rb:223
+msgid "Unclean"
+msgstr "Non propre"
+
+#: app/controllers/main_controller.rb:233
+msgid "%{node}: %{status}"
+msgstr "%{node} : %{status}"
+
+#: app/controllers/main_controller.rb:340
+msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
+msgstr "Échec : noeud=%{node}, ressource=%{resource}, ID appel=%{call_id}, opération=%{op}, code RC=%{rc_code}"
+
+#: app/controllers/main_controller.rb:360
+msgid "%{id}: Stopped"
+msgstr "%{id} : arrêté"
+
+#: app/controllers/main_controller.rb:362
+msgid "%{id}: Started: %{nodelist}"
+msgstr "%{id} : démarré : %{nodelist}"
+
+#: app/controllers/main_controller.rb:392
+msgid "Group: %{id}"
+msgstr "Groupe : %{id}"
+
+#: app/controllers/main_controller.rb:427
+msgid "Clone Set: %{id}"
+msgstr "Ensemble de clones : %{id}"
+
+#: app/controllers/main_controller.rb:470
+msgid "%{cmd} failed (status: %{status}, output was: %{output})"
+msgstr "Échec %{cmd} (état : %{status}, la sortie était : %{output})"
+
+#: app/controllers/main_controller.rb:476
+msgid "Unable to execute %{cmd}"
+msgstr "Impossible d'exécuter %{cmd}"
+
+#: app/controllers/main_controller.rb:479
+msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
+msgstr "Il semble que Pacemaker ne soit pas installé (%{cmd} introuvable)"
+
+#: app/controllers/main_controller.rb:492
+msgid "Cluster Status"
+msgstr "État de la grappe"
+
+#: app/controllers/main_controller.rb:500
+msgid "1 node configured"
+msgid_plural "%{num} nodes configured"
+msgstr[0] "1 noeud configuré"
+msgstr[1] "%{num} noeuds configurés"
+
+#: app/controllers/main_controller.rb:509
+msgid "1 resource configured"
+msgid_plural "%{num} resources configured"
+msgstr[0] "1 ressource configurée"
+msgstr[1] "%{num} ressources configurées"
+
+#: app/controllers/sessions_controller.rb:35
+#: app/views/sessions/new.html.erb:16
+msgid "Log In"
+msgstr "Se connecter"
+
+#: app/controllers/sessions_controller.rb:54
+msgid "Username not specified"
+msgstr "Nom d'utilisateur non spécifié"
+
+#: app/controllers/sessions_controller.rb:58
+msgid "Invalid username"
+msgstr "Nom d'utilisateur non valide"
+
+#: app/controllers/sessions_controller.rb:61
+msgid "Password not specified"
+msgstr "Mot de passe non spécifié"
+
+#: app/controllers/sessions_controller.rb:76
+msgid "Invalid username or password"
+msgstr "Nom d'utilisateur ou mot de passe non valide"
+
+#: app/controllers/sessions_controller.rb:80
+msgid "%s is not installed"
+msgstr "%s n'est pas installé"
+
+#: app/views/sessions/new.html.erb:8
+msgid "Username:"
+msgstr "Nom d'utilisateur :"
+
+#: app/views/sessions/new.html.erb:12
+msgid "Password:"
+msgstr "Mot de passe :"
+
+#: app/views/layouts/main.html.erb:16
+msgid "User: %{user}"
+msgstr "Utilisateur : %{user}"
+
+#: app/views/layouts/main.html.erb:17
+msgid "Log Out"
+msgstr "Se déconnecter"
+
+#: app/views/layouts/main.html.erb:33
+msgid "Host: %s"
+msgstr "Hôte : %s"
+
+#: app/views/layouts/main.html.erb:34
+msgid "Copyright &copy; 2009-2010 Novell, Inc."
+msgstr "Copyright &copy; 2009-2010 Novell, Inc."
+
+#: app/views/main/_summary.html.erb:3
+msgid "Cluster Stack:"
+msgstr "Pile de grappes :"
+
+#: app/views/main/_summary.html.erb:4
+msgid "Pacemaker Version:"
+msgstr "Version Pacemaker :"
+
+#: app/views/main/_summary.html.erb:5
+msgid "Current DC:"
+msgstr "DC actuel :"
+
+#: app/views/main/_summary.html.erb:6
+msgid "Resource Stickiness:"
+msgstr "Attractivité des ressources :"
+
+#: app/views/main/_summary.html.erb:7
+msgid "STONITH Enabled:"
+msgstr "STONITH activé :"
+
+#: app/views/main/_summary.html.erb:8
+msgid "Symmetric Cluster:"
+msgstr "Grappe symétrique :"
+
+#: app/views/main/_summary.html.erb:9
+msgid "No Quorum Policy:"
+msgstr "Pas de stratégie de quorum :"
+
+#: app/views/main/_menus.html.erb:6
+msgid "Fence Node"
+msgstr "Noeud délimiteur"
+
+#: app/views/main/_menus.html.erb:11
+msgid "Start"
+msgstr "Démarrer"
+
+#: app/views/main/_menus.html.erb:12
+msgid "Stop"
+msgstr "Arrêter"
+
+#: app/views/main/_menus.html.erb:13
+msgid "Clean Up"
+msgstr "Nettoyer"
+

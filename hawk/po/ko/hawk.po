@@ -1,0 +1,194 @@
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
+# This file is distributed under the same license as the package.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hawk\n"
+"POT-Creation-Date: 2010-03-06 00:44+1100\n"
+"PO-Revision-Date: 2010-03-25 07:52\n"
+"Last-Translator: Novell Language <language@novell.com>\n"
+"Language-Team: Novell Language <language@novell.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+
+#: app/controllers/main_controller.rb:133
+#: app/controllers/main_controller.rb:134
+#: app/controllers/main_controller.rb:143
+msgid "Unknown"
+msgstr "알 수 없음"
+
+#: app/controllers/main_controller.rb:146
+#: app/controllers/main_controller.rb:147
+msgid "Yes"
+msgstr "예"
+
+#: app/controllers/main_controller.rb:146
+#: app/controllers/main_controller.rb:147
+msgid "No"
+msgstr "아니오"
+
+#: app/controllers/main_controller.rb:210 app/views/main/_menus.html.erb:4
+msgid "Online"
+msgstr "온라인"
+
+#: app/controllers/main_controller.rb:213
+msgid "Offline"
+msgstr "오프라인"
+
+#: app/controllers/main_controller.rb:216
+msgid "Pending"
+msgstr "보류 중"
+
+#: app/controllers/main_controller.rb:219 app/views/main/_menus.html.erb:5
+msgid "Standby"
+msgstr "대기"
+
+#: app/controllers/main_controller.rb:223
+msgid "Unclean"
+msgstr "불완전"
+
+#: app/controllers/main_controller.rb:233
+msgid "%{node}: %{status}"
+msgstr "%{node}: %{status}"
+
+#: app/controllers/main_controller.rb:340
+msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
+msgstr "실패한 작업: 노드=%{node}, 리소스=%{resource}, 호출 ID=%{call_id}, 작업=%{op}, RC 코드=%{rc_code}"
+
+#: app/controllers/main_controller.rb:360
+msgid "%{id}: Stopped"
+msgstr "%{id}: 중지됨"
+
+#: app/controllers/main_controller.rb:362
+msgid "%{id}: Started: %{nodelist}"
+msgstr "%{id}: 시작됨: %{nodelist}"
+
+#: app/controllers/main_controller.rb:392
+msgid "Group: %{id}"
+msgstr "그룹: %{id}"
+
+#: app/controllers/main_controller.rb:427
+msgid "Clone Set: %{id}"
+msgstr "복제 집합: %{id}"
+
+#: app/controllers/main_controller.rb:470
+msgid "%{cmd} failed (status: %{status}, output was: %{output})"
+msgstr "%{cmd} 실패됨(상태: %{status}, 출력: %{output})"
+
+#: app/controllers/main_controller.rb:476
+msgid "Unable to execute %{cmd}"
+msgstr "%{cmd}을(를) 실행할 수 없습니다."
+
+#: app/controllers/main_controller.rb:479
+msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
+msgstr "페이스메이커가 설치된 것 같지 않습니다(%{cmd} 없음)."
+
+#: app/controllers/main_controller.rb:492
+msgid "Cluster Status"
+msgstr "클러스터 상태"
+
+#: app/controllers/main_controller.rb:500
+msgid "1 node configured"
+msgid_plural "%{num} nodes configured"
+msgstr[0] "1개 노드가 구성되었습니다."
+
+#: app/controllers/main_controller.rb:509
+msgid "1 resource configured"
+msgid_plural "%{num} resources configured"
+msgstr[0] "1개 리소스가 구성되었습니다."
+
+#: app/controllers/sessions_controller.rb:35
+#: app/views/sessions/new.html.erb:16
+msgid "Log In"
+msgstr "로그인"
+
+#: app/controllers/sessions_controller.rb:54
+msgid "Username not specified"
+msgstr "사용자 이름이 지정되지 않았습니다."
+
+#: app/controllers/sessions_controller.rb:58
+msgid "Invalid username"
+msgstr "사용자 이름이 잘못되었습니다."
+
+#: app/controllers/sessions_controller.rb:61
+msgid "Password not specified"
+msgstr "비밀번호가 지정되지 않았습니다."
+
+#: app/controllers/sessions_controller.rb:76
+msgid "Invalid username or password"
+msgstr "사용자 이름 또는 비밀번호가 잘못되었습니다."
+
+#: app/controllers/sessions_controller.rb:80
+msgid "%s is not installed"
+msgstr "%s이(가) 설치되지 않았습니다."
+
+#: app/views/sessions/new.html.erb:8
+msgid "Username:"
+msgstr "사용자 이름:"
+
+#: app/views/sessions/new.html.erb:12
+msgid "Password:"
+msgstr "비밀번호:"
+
+#: app/views/layouts/main.html.erb:16
+msgid "User: %{user}"
+msgstr "사용자: %{user}"
+
+#: app/views/layouts/main.html.erb:17
+msgid "Log Out"
+msgstr "로그아웃"
+
+#: app/views/layouts/main.html.erb:33
+msgid "Host: %s"
+msgstr "호스트: %s"
+
+#: app/views/layouts/main.html.erb:34
+msgid "Copyright &copy; 2009-2010 Novell, Inc."
+msgstr "Copyright &copy; 2009-2010 Novell, Inc."
+
+#: app/views/main/_summary.html.erb:3
+msgid "Cluster Stack:"
+msgstr "클러스터 스택:"
+
+#: app/views/main/_summary.html.erb:4
+msgid "Pacemaker Version:"
+msgstr "페이스메이커 버전:"
+
+#: app/views/main/_summary.html.erb:5
+msgid "Current DC:"
+msgstr "현재 DC:"
+
+#: app/views/main/_summary.html.erb:6
+msgid "Resource Stickiness:"
+msgstr "리소스 고착성:"
+
+#: app/views/main/_summary.html.erb:7
+msgid "STONITH Enabled:"
+msgstr "STONITH 활성화됨:"
+
+#: app/views/main/_summary.html.erb:8
+msgid "Symmetric Cluster:"
+msgstr "대칭 클러스터:"
+
+#: app/views/main/_summary.html.erb:9
+msgid "No Quorum Policy:"
+msgstr "쿼럼 정책 없음:"
+
+#: app/views/main/_menus.html.erb:6
+msgid "Fence Node"
+msgstr "펜스 노드"
+
+#: app/views/main/_menus.html.erb:11
+msgid "Start"
+msgstr "시작"
+
+#: app/views/main/_menus.html.erb:12
+msgid "Stop"
+msgstr "중지"
+
+#: app/views/main/_menus.html.erb:13
+msgid "Clean Up"
+msgstr "정리"
+

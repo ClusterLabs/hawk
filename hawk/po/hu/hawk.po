@@ -1,0 +1,205 @@
+# HA Web Konsole (Hawk)
+#
+# Copyright (c) 2009-2010 Novell Inc., Tim Serong
+#
+# This file is distributed under the same license as the Hawk package.
+#
+#
+# Kalman Kemenczy <kkemenczy@novell.com>, 2010.
+msgid ""
+msgstr ""
+"Project-Id-Version: hawk 0.3.1\n"
+"POT-Creation-Date: 2010-03-06 00:44+1100\n"
+"PO-Revision-Date: 2010-03-18 10:46+0100\n"
+"Last-Translator: Kalman Kemenczy <kkemenczy@novell.com>\n"
+"Language-Team: collection <kde-i18n-doc@kde.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
+"X-Generator: Lokalize 1.0\n"
+
+#: app/controllers/main_controller.rb:133
+#: app/controllers/main_controller.rb:134
+#: app/controllers/main_controller.rb:143
+msgid "Unknown"
+msgstr "Ismeretlen"
+
+#: app/controllers/main_controller.rb:146
+#: app/controllers/main_controller.rb:147
+msgid "Yes"
+msgstr "Igen"
+
+#: app/controllers/main_controller.rb:146
+#: app/controllers/main_controller.rb:147
+msgid "No"
+msgstr "Nem"
+
+#: app/controllers/main_controller.rb:210 app/views/main/_menus.html.erb:4
+msgid "Online"
+msgstr "Elérhető"
+
+#: app/controllers/main_controller.rb:213
+msgid "Offline"
+msgstr "Kilépett"
+
+#: app/controllers/main_controller.rb:216
+msgid "Pending"
+msgstr "Függő"
+
+#: app/controllers/main_controller.rb:219 app/views/main/_menus.html.erb:5
+msgid "Standby"
+msgstr "Készenlét"
+
+#: app/controllers/main_controller.rb:223
+msgid "Unclean"
+msgstr "Tisztázatlan"
+
+#: app/controllers/main_controller.rb:233
+msgid "%{node}: %{status}"
+msgstr "%{node}: %{status}"
+
+#: app/controllers/main_controller.rb:340
+msgid ""
+"Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation="
+"%{op}, rc-code=%{rc_code}"
+msgstr ""
+"Hibás művelet: csomópont=%{node}, erőforrás=%{resource}, azonosító=%"
+"{call_id}, művelet=%{op}, visszatérési érték=%{rc_code}"
+
+#: app/controllers/main_controller.rb:360
+msgid "%{id}: Stopped"
+msgstr "%{id}: Leállítva"
+
+#: app/controllers/main_controller.rb:362
+msgid "%{id}: Started: %{nodelist}"
+msgstr "%{id}: Elindítva: %{nodelist}"
+
+#: app/controllers/main_controller.rb:392
+msgid "Group: %{id}"
+msgstr "Csoport: %{id}"
+
+#: app/controllers/main_controller.rb:427
+msgid "Clone Set: %{id}"
+msgstr "Klóncsoport: %{id}"
+
+#: app/controllers/main_controller.rb:470
+msgid "%{cmd} failed (status: %{status}, output was: %{output})"
+msgstr "%{cmd} sikertelen (status: %{status}, kimenet: %{output})"
+
+#: app/controllers/main_controller.rb:476
+msgid "Unable to execute %{cmd}"
+msgstr "Nem futtatható parancs %{cmd}"
+
+#: app/controllers/main_controller.rb:479
+msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
+msgstr "A Pacemaker nincs telepítve (%{cmd} parancs nem található)"
+
+#: app/controllers/main_controller.rb:492
+msgid "Cluster Status"
+msgstr "Jelenlegi állapot"
+
+#: app/controllers/main_controller.rb:500
+msgid "1 node configured"
+msgid_plural "%{num} nodes configured"
+msgstr[0] "1 csomópont beállítva"
+msgstr[1] "%{num} csomópont beállítva"
+
+#: app/controllers/main_controller.rb:509
+msgid "1 resource configured"
+msgid_plural "%{num} resources configured"
+msgstr[0] "1 erőforrás beállítva"
+msgstr[1] "%{num} erőforrás beállítva"
+
+#: app/controllers/sessions_controller.rb:35
+#: app/views/sessions/new.html.erb:16
+msgid "Log In"
+msgstr "Belépés"
+
+#: app/controllers/sessions_controller.rb:54
+msgid "Username not specified"
+msgstr "Nincs megadva felhasználónév"
+
+#: app/controllers/sessions_controller.rb:58
+msgid "Invalid username"
+msgstr "Érvénytelen felhasználónév"
+
+#: app/controllers/sessions_controller.rb:61
+msgid "Password not specified"
+msgstr "Nincs megadva jelszó"
+
+#: app/controllers/sessions_controller.rb:76
+msgid "Invalid username or password"
+msgstr "Érvénytelen felhasználónév vagy jelszó"
+
+#: app/controllers/sessions_controller.rb:80
+msgid "%s is not installed"
+msgstr "%s nincs telepítve"
+
+#: app/views/sessions/new.html.erb:8
+msgid "Username:"
+msgstr "Felhasználónév: "
+
+#: app/views/sessions/new.html.erb:12
+msgid "Password:"
+msgstr "Jelszó:"
+
+#: app/views/layouts/main.html.erb:16
+msgid "User: %{user}"
+msgstr "Felhasználó: %{user}"
+
+#: app/views/layouts/main.html.erb:17
+msgid "Log Out"
+msgstr "Kilépés"
+
+#: app/views/layouts/main.html.erb:33
+msgid "Host: %s"
+msgstr "Gép: %s"
+
+#: app/views/layouts/main.html.erb:34
+msgid "Copyright &copy; 2009-2010 Novell, Inc."
+msgstr "Copyright &copy; 2009-2010 Novell, Inc."
+
+#: app/views/main/_summary.html.erb:3
+msgid "Cluster Stack:"
+msgstr "Fürt:"
+
+#: app/views/main/_summary.html.erb:4
+msgid "Pacemaker Version:"
+msgstr "Pacemaker verzió:"
+
+#: app/views/main/_summary.html.erb:5
+msgid "Current DC:"
+msgstr "Aktuális DC:"
+
+#: app/views/main/_summary.html.erb:6
+msgid "Resource Stickiness:"
+msgstr "Erőforrás mozgathatósága:"
+
+#: app/views/main/_summary.html.erb:7
+msgid "STONITH Enabled:"
+msgstr "STONITH engedélyezve:"
+
+#: app/views/main/_summary.html.erb:8
+msgid "Symmetric Cluster:"
+msgstr "Szimetrikus fürt:"
+
+#: app/views/main/_summary.html.erb:9
+msgid "No Quorum Policy:"
+msgstr "Quorum nélküli irányelv:"
+
+#: app/views/main/_menus.html.erb:6
+msgid "Fence Node"
+msgstr "Csomópont leválasztása"
+
+#: app/views/main/_menus.html.erb:11
+msgid "Start"
+msgstr "Indítás"
+
+#: app/views/main/_menus.html.erb:12
+msgid "Stop"
+msgstr "Leállítás"
+
+#: app/views/main/_menus.html.erb:13
+msgid "Clean Up"
+msgstr "Tisztítás"
