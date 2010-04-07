@@ -601,10 +601,7 @@ class MainController < ApplicationController
   # TODO(should): consolidate with resource_start, once crm is returning 0 when expected
   def resource_cleanup
     if params[:resource]
-      stdin, stdout, stderr = Util.popen3('/usr/sbin/crm', 'resource', 'cleanup', params[:resource])
-      # This might be a lie, but for some reason "crm resource cleanup" always
-      # gives exit status 1, so we don't actually know if it worked or not...
-      head :ok
+      invoke '/usr/sbin/crm', 'resource', 'cleanup', params[:resource]
     else
       render :status => 400, :json => {
         :error => _('Required parameter "resource" not specified')
