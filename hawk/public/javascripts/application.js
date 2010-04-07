@@ -54,7 +54,8 @@ function toggle_collapse(id)
 }
 
 
-function update_errors(errors) {
+function update_errors(errors)
+{
   $("errorbar").update("");
   if (errors.size()) {
     $("errorbar").show();
@@ -66,14 +67,16 @@ function update_errors(errors) {
   }
 }
 
-function update_summary(summary) {
+function update_summary(summary)
+{
   for (var e in summary) {
     $("summary::" + e).update(summary[e]);
   }
 }
 
 // need to pass parent in with open flag (e.g.: nodelist, reslist)
-function update_panel(panel) {
+function update_panel(panel)
+{
   var changed = ($(panel.id).className != panel.className || $(panel.id+"::label").innerHTML != panel.label);
 
   $(panel.id).className = panel.className;
@@ -134,7 +137,8 @@ function update_panel(panel) {
 }
 
 // Um...  what's "object" for?
-function handle_update(request, object) {
+function handle_update(request, object)
+{
   // TODO(should): really should be using Ajax.Request onSuccess to
   // trigger this callback...
   if (request.responseJSON) {
@@ -168,7 +172,8 @@ function handle_update(request, object) {
 
 // Like string.split, but breaks on '::'
 // TODO(could): think about changing our naming conventions so we don't need this.
-function dc_split(str) {
+function dc_split(str)
+{
   parts = new Array();
   var s = 0;
   for (;;) {
@@ -262,7 +267,8 @@ function resource_menu_item_click(e)
   });
 }
 
-function add_mgmt_menu(e) {
+function add_mgmt_menu(e)
+{
   switch (dc_split(e.id)[0]) {
     case "node":
       e.addClassName("clickable");
@@ -293,7 +299,8 @@ function add_mgmt_menu(e) {
   }
 }
 
-function init_menus() {
+function init_menus()
+{
 
   $("menu::node").hawkNode = null;
   $("menu::node::standby").firstDescendant().observe("click", node_menu_item_click);
@@ -315,7 +322,8 @@ function init_menus() {
   $$(".menu-link").each(add_mgmt_menu);
 }
 
-function modal_dialog(msg, params) {
+function modal_dialog(msg, params)
+{
   params = params || {};
 
   $("dialog-message").update(msg.escapeHTML());
@@ -345,7 +353,8 @@ function modal_dialog(msg, params) {
   $("dialog").setStyle(style).show();
 }
 
-function do_update() {
+function do_update()
+{
   setTimeout("new Ajax.Request('/main/status', { parameters: 'format=json', asynchronous: true, onComplete: handle_update });", 15000);
 }
 
