@@ -1,6 +1,25 @@
 <script type="text/javascript">
 var GETTEXT = {
-  ok: function() { return "<%= _('OK') %>"; },
-  err_unexpected: function(msg) { return "<%= _('Unexpected server error: %s') % '_MSG_' %>".replace('_MSG_', msg); }
+  ok: function() {
+    return "<%= _('OK') %>";
+  },
+  yes: function() {
+    return "<%= _('Yes') %>";
+  },
+  no: function() {
+    return "<%= _('No') %>";
+  },
+  node_online: function(node) {
+    return "<%= _('This will bring node %s online if it is currently on standby.  Do you want to continue?') % '_NODE_' %>".replace('_NODE_', node);
+  },
+  node_standby: function(node) {
+    return "<%= _('This will put node %s on standby.  All resources will be stopped and/or migrated to another node.  Do you want to continue?') % '_NODE_' %>".replace('_NODE_', node);
+  },
+  node_fence: function(node) {
+    return "<%= _('This will attempt to immediately fence node %s.  Do you want to continue?') % '_NODE_' %>".replace('_NODE_', node);
+  },
+  err_unexpected: function(msg) {
+    return "<%= _('Unexpected server error: %s') % '_MSG_' %>".replace('_MSG_', msg);
+  }
 };
 </script>

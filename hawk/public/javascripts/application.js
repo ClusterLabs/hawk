@@ -213,22 +213,34 @@ function popup_resource_menu(e)
 
 function node_menu_item_click(e)
 {
+  var op = dc_split(Event.element(e).parentNode.id)[2];
+  modal_dialog(GETTEXT["node_" + op]($("menu::node").hawkNode),
+    { buttons: [
+      // TODO(should): This is a bit hairy - we'd be better off passing
+      // functions around than doing this generated onclick code thing...
+      { label: GETTEXT.yes(), action: "perform_node_op('" + $("menu::node").hawkNode + "','" + op + "');" },
+      { label: GETTEXT.no() }
+    ] });
+}
+
+function perform_node_op(node, op)
+{
   var state = "neutral";
-  var c = $("node::" + $("menu::node").hawkNode);
+  var c = $("node::" + node);
   if (c.hasClassName("ns-active"))         state = "active";
   else if(c.hasClassName("ns-inactive"))  state = "inactive";
   else if(c.hasClassName("ns-error"))     state = "error";
   else if(c.hasClassName("ns-transient")) state = "transient";
-  $("node::" + $("menu::node").hawkNode + "::menu").firstDescendant().src = "/images/spinner-16x16-" + state + ".gif";
+  $("node::" + node + "::menu").firstDescendant().src = "/images/spinner-16x16-" + state + ".gif";
 
-  new Ajax.Request("/main/node_" + dc_split(Event.element(e).parentNode.id)[2], {
-    parameters: "node=" + $("menu::node").hawkNode,
+  new Ajax.Request("/main/node_" + op, {
+    parameters: "node=" + node,
     onSuccess:  function(request) {
       // Do nothing (spinner will stop when next full refresh occurs
     },
     onFailure:  function(request) {
       // Remove spinner
-      $("node::" + $("menu::node").hawkNode + "::menu").firstDescendant().src = "/images/icons/properties.png";
+      $("node::" + node + "::menu").firstDescendant().src = "/images/icons/properties.png";
       if (request.responseJSON) {
         modal_dialog(request.responseJSON.error,
           { body: (request.responseJSON.stderr && request.responseJSON.stderr.size()) ? request.responseJSON.stderr.join("\n") : null });
@@ -322,6 +334,12 @@ function init_menus()
   $$(".menu-link").each(add_mgmt_menu);
 }
 
+function hide_modal_dialog()
+{
+  $("dialog").hide();
+  $("overlay").hide();
+}
+
 function modal_dialog(msg, params)
 {
   params = params || {};
@@ -333,7 +351,15 @@ function modal_dialog(msg, params)
     $("dialog-body").hide();
   }
 
-  $("dialog-buttons").update('<button onclick="$(\'dialog\').hide(); $(\'overlay\').hide();">' + GETTEXT.ok() + '</button>');
+  if (params.buttons) {
+    var html = "";
+    params.buttons.each(function(button) {
+      html += '<button onclick="' + (button.action ? button.action : '') + ' hide_modal_dialog();">' + button.label + '</button> ';
+    });
+    $("dialog-buttons").update(html);
+  } else {
+    $("dialog-buttons").update('<button onclick="hide_modal_dialog();">' + GETTEXT.ok() + '</button>');
+  }
 
   // Dialog is always 100px below viewport top, but need to center it
   // TODO(could): can this be done with CSS only?
