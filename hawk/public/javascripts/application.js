@@ -228,8 +228,7 @@ function node_menu_item_click(e)
         modal_dialog(request.responseJSON.error,
           { body: (request.responseJSON.stderr && request.responseJSON.stderr.size()) ? request.responseJSON.stderr.join("\n") : null });
       } else {
-        // TODO(must): Localize this somehow (not that this error path will ever be invoked...)
-        modal_dialog("Unexpected server error: " + request.status);
+        modal_dialog(GETTEXT.err_unexpected(request.status));
       }
     }
   });
@@ -257,8 +256,7 @@ function resource_menu_item_click(e)
         modal_dialog(request.responseJSON.error,
           { body: (request.responseJSON.stderr && request.responseJSON.stderr.size()) ? request.responseJSON.stderr.join("\n") : null });
       } else {
-        // TODO(must): Localize this somehow (not that this error path will ever be invoked...)
-        modal_dialog("Unexpected server error: " + request.status);
+        modal_dialog(GETTEXT.err_unexpected(request.status));
       }
     }
   });
@@ -327,8 +325,7 @@ function modal_dialog(msg, params) {
     $("dialog-body").hide();
   }
 
-  // TODO(must): localize
-  $("dialog-buttons").update('<button onclick="$(\'dialog\').hide(); $(\'overlay\').hide();">OK</button>');
+  $("dialog-buttons").update('<button onclick="$(\'dialog\').hide(); $(\'overlay\').hide();">' + GETTEXT.ok() + '</button>');
 
   // Dialog is always 100px below viewport top, but need to center it
   // TODO(could): can this be done with CSS only?
