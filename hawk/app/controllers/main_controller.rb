@@ -377,7 +377,7 @@ class MainController < ApplicationController
         label = _('%{id}: Started: %{nodelist}') % { :id => id, :nodelist => running_on.join(', ') }
       end
       {
-        :id         => "primitive::#{id}",
+        :id         => "resource::#{id}",
         :className  => "res-primitive rs-" + if running_on.empty? then 'inactive' else 'active' end,
         :label      => label,
         :active     => !running_on.empty?
@@ -402,7 +402,7 @@ class MainController < ApplicationController
         children << c
       end
       {
-        :id         => "group::#{id}",
+        :id         => "resource::#{id}",
         :className  => "res-group #{status_class}",
         :label      => _("Group: %{id}") % { :id => id },
         :open       => open,
@@ -437,7 +437,7 @@ class MainController < ApplicationController
         # Again, this can't happen
       end
       {
-        :id         => "clone::#{id}",
+        :id         => "resource::#{id}",
         :className  => "res-clone #{status_class}",
         :label      => _("Clone Set: %{id}") % { :id => id },
         :open       => open,

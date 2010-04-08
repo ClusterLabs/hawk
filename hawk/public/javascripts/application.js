@@ -205,7 +205,6 @@ function popup_resource_menu(e)
 
   var parts = dc_split(target.parentNode.id);
   $("menu::resource").hawkResource = parts[1];
-  $("menu::resource").hawkResourceType = parts[0];
 
   $("menu::resource").setStyle({left: pos.left+"px", top: pos.top+"px"}).show();
   Event.stop(e);
@@ -258,20 +257,20 @@ function resource_menu_item_click(e)
     { buttons: [
       // TODO(should): This is a bit hairy - we'd be better off passing
       // functions around than doing this generated onclick code thing...
-      { label: GETTEXT.yes(), action: "perform_resource_op('" + $("menu::resource").hawkResource + "','" + $("menu::resource").hawkResourceType + "','" + op + "');" },
+      { label: GETTEXT.yes(), action: "perform_resource_op('" + $("menu::resource").hawkResource + "','" + op + "');" },
       { label: GETTEXT.no() }
     ] });
 }
 
 // TODO(should): Consolidate with node_menu_*
-function perform_resource_op(res, type, op)
+function perform_resource_op(res, op)
 {
   var state = "neutral";
-  var c = $(type + "::" + res);
+  var c = $("resource::" + res);
   if (c.hasClassName("rs-active"))         state = "active";
   else if(c.hasClassName("rs-inactive"))  state = "inactive";
   else if(c.hasClassName("rs-error"))     state = "error";
-  $(type + "::" + res + "::menu").firstDescendant().src = "/images/spinner-16x16-" + state + ".gif";
+  $("resource::" + res + "::menu").firstDescendant().src = "/images/spinner-16x16-" + state + ".gif";
 
   new Ajax.Request("/main/resource_" + op, {
     parameters: "resource=" + res,
@@ -280,7 +279,7 @@ function perform_resource_op(res, type, op)
     },
     onFailure:  function(request) {
       // Remove spinner
-      $(type + "::" + res + "::menu").firstDescendant().src = "/images/icons/properties.png";
+      $("resource::" + res + "::menu").firstDescendant().src = "/images/icons/properties.png";
       if (request.responseJSON) {
         modal_dialog(request.responseJSON.error,
           { body: (request.responseJSON.stderr && request.responseJSON.stderr.size()) ? request.responseJSON.stderr.join("\n") : null });
@@ -299,25 +298,26 @@ function add_mgmt_menu(e)
       e.observe("click", popup_node_menu);
       e.firstDescendant().src = "/images/icons/properties.png";
       break;
-    case "clone":
-      e.addClassName("clickable");
-      e.observe("click", popup_resource_menu);
-      e.firstDescendant().src = "/images/icons/properties.png";
-      break;
-    case "primitive":
-      isClone = false;
-      var n = e.parentNode;
-      while (n && n.id != "") {
-        if (dc_split(n.id)[0] == "clone") {
-          isClone = true;
-          break;
-        }
-        n = n.parentNode;
-      }
-      if (!isClone) {
+    case "resource":
+      if (e.parentNode.parentNode.hasClassName("res-clone")) {
         e.addClassName("clickable");
         e.observe("click", popup_resource_menu);
         e.firstDescendant().src = "/images/icons/properties.png";
+      } else if (e.parentNode.hasClassName("res-primitive")) {
+        isClone = false;
+        var n = e.parentNode;
+        while (n && n.id != "") {
+          if (n.hasClassName("res-clone")) {
+            isClone = true;
+            break;
+          }
+          n = n.parentNode;
+        }
+        if (!isClone) {
+          e.addClassName("clickable");
+          e.observe("click", popup_resource_menu);
+          e.firstDescendant().src = "/images/icons/properties.png";
+        }
       }
       break;
   }
@@ -333,7 +333,6 @@ function init_menus()
 //  $("menu::node::mark").firstDescendant().observe("click", node_menu_item_click);
 
   $("menu::resource").hawkResource = null;
-  $("menu::resource").hawkResourceType = null;
   $("menu::resource::start").firstDescendant().observe("click", resource_menu_item_click);
   $("menu::resource::stop").firstDescendant().observe("click", resource_menu_item_click);
   $("menu::resource::cleanup").firstDescendant().observe("click", resource_menu_item_click);
