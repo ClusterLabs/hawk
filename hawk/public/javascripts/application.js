@@ -28,6 +28,9 @@
 //
 //======================================================================
 
+// Currently selected resource/node when menu is open
+var activeItem = null;
+
 function expand_block(id)
 {
   new Effect.BlindDown($(id+'::children'), { duration: 0.3, fps: 100 });
@@ -189,97 +192,51 @@ function dc_split(str)
   return parts;
 }
 
-function popup_node_menu(e)
+function popup_op_menu(e)
 {
   var target = Event.element(e);
   var pos = target.cumulativeOffset();
-  $("menu::node").hawkNode = dc_split(target.parentNode.id)[1];
-  $("menu::node").setStyle({left: pos.left+"px", top: pos.top+"px"}).show();
-  Event.stop(e);
-}
-
-function popup_resource_menu(e)
-{
-  var target = Event.element(e);
-  var pos = target.cumulativeOffset();
-
+  // parts[0] is "node" or "resource", parts[1] is op
   var parts = dc_split(target.parentNode.id);
-  $("menu::resource").hawkResource = parts[1];
-
-  $("menu::resource").setStyle({left: pos.left+"px", top: pos.top+"px"}).show();
+  activeItem = parts[1];
+  $("menu::" + parts[0]).setStyle({left: pos.left+"px", top: pos.top+"px"}).show();
   Event.stop(e);
 }
 
-function node_menu_item_click(e)
+function menu_item_click(e)
 {
-  var op = dc_split(Event.element(e).parentNode.id)[2];
-  modal_dialog(GETTEXT["node_" + op]($("menu::node").hawkNode),
+  // parts[1] is "node" or "resource", parts[2] is op
+  var parts = dc_split(Event.element(e).parentNode.id);
+  modal_dialog(GETTEXT[parts[1] + "_" + parts[2]](activeItem),
     { buttons: [
-      // TODO(should): This is a bit hairy - we'd be better off passing
+      // TODO(should): This is a bit hairy - we might be better off passing
       // functions around than doing this generated onclick code thing...
-      { label: GETTEXT.yes(), action: "perform_node_op('" + $("menu::node").hawkNode + "','" + op + "');" },
+      { label: GETTEXT.yes(), action: "perform_op('" + parts[1] + "','" + activeItem + "','" + parts[2] + "');" },
       { label: GETTEXT.no() }
     ] });
 }
 
-function perform_node_op(node, op)
+function perform_op(type, id, op)
 {
   var state = "neutral";
-  var c = $("node::" + node);
+  var c = $(type + "::" + id);
   if (c.hasClassName("ns-active"))         state = "active";
   else if(c.hasClassName("ns-inactive"))  state = "inactive";
   else if(c.hasClassName("ns-error"))     state = "error";
   else if(c.hasClassName("ns-transient")) state = "transient";
-  $("node::" + node + "::menu").firstDescendant().src = "/images/spinner-16x16-" + state + ".gif";
-
-  new Ajax.Request("/main/node_" + op, {
-    parameters: "node=" + node,
-    onSuccess:  function(request) {
-      // Do nothing (spinner will stop when next full refresh occurs
-    },
-    onFailure:  function(request) {
-      // Remove spinner
-      $("node::" + node + "::menu").firstDescendant().src = "/images/icons/properties.png";
-      if (request.responseJSON) {
-        modal_dialog(request.responseJSON.error,
-          { body: (request.responseJSON.stderr && request.responseJSON.stderr.size()) ? request.responseJSON.stderr.join("\n") : null });
-      } else {
-        modal_dialog(GETTEXT.err_unexpected(request.status));
-      }
-    }
-  });
-}
-
-function resource_menu_item_click(e)
-{
-  var op = dc_split(Event.element(e).parentNode.id)[2];
-  modal_dialog(GETTEXT["resource_" + op]($("menu::resource").hawkResource),
-    { buttons: [
-      // TODO(should): This is a bit hairy - we'd be better off passing
-      // functions around than doing this generated onclick code thing...
-      { label: GETTEXT.yes(), action: "perform_resource_op('" + $("menu::resource").hawkResource + "','" + op + "');" },
-      { label: GETTEXT.no() }
-    ] });
-}
-
-// TODO(should): Consolidate with node_menu_*
-function perform_resource_op(res, op)
-{
-  var state = "neutral";
-  var c = $("resource::" + res);
-  if (c.hasClassName("rs-active"))         state = "active";
+  else if(c.hasClassName("rs-active"))    state = "active";
   else if(c.hasClassName("rs-inactive"))  state = "inactive";
   else if(c.hasClassName("rs-error"))     state = "error";
-  $("resource::" + res + "::menu").firstDescendant().src = "/images/spinner-16x16-" + state + ".gif";
+  $(type + "::" + id + "::menu").firstDescendant().src = "/images/spinner-16x16-" + state + ".gif";
 
-  new Ajax.Request("/main/resource_" + op, {
-    parameters: "resource=" + res,
+  new Ajax.Request("/main/" + type + "_" + op, {
+    parameters: type + "=" + id,
     onSuccess:  function(request) {
       // Do nothing (spinner will stop when next full refresh occurs
     },
     onFailure:  function(request) {
       // Remove spinner
-      $("resource::" + res + "::menu").firstDescendant().src = "/images/icons/properties.png";
+      $(type + "::" + id + "::menu").firstDescendant().src = "/images/icons/properties.png";
       if (request.responseJSON) {
         modal_dialog(request.responseJSON.error,
           { body: (request.responseJSON.stderr && request.responseJSON.stderr.size()) ? request.responseJSON.stderr.join("\n") : null });
@@ -295,13 +252,13 @@ function add_mgmt_menu(e)
   switch (dc_split(e.id)[0]) {
     case "node":
       e.addClassName("clickable");
-      e.observe("click", popup_node_menu);
+      e.observe("click", popup_op_menu);
       e.firstDescendant().src = "/images/icons/properties.png";
       break;
     case "resource":
       if (e.parentNode.parentNode.hasClassName("res-clone")) {
         e.addClassName("clickable");
-        e.observe("click", popup_resource_menu);
+        e.observe("click", popup_op_menu);
         e.firstDescendant().src = "/images/icons/properties.png";
       } else if (e.parentNode.hasClassName("res-primitive")) {
         isClone = false;
@@ -315,7 +272,7 @@ function add_mgmt_menu(e)
         }
         if (!isClone) {
           e.addClassName("clickable");
-          e.observe("click", popup_resource_menu);
+          e.observe("click", popup_op_menu);
           e.firstDescendant().src = "/images/icons/properties.png";
         }
       }
@@ -325,17 +282,14 @@ function add_mgmt_menu(e)
 
 function init_menus()
 {
+  $("menu::node::standby").firstDescendant().observe("click", menu_item_click);
+  $("menu::node::online").firstDescendant().observe("click", menu_item_click);
+  $("menu::node::fence").firstDescendant().observe("click", menu_item_click);
+//  $("menu::node::mark").firstDescendant().observe("click", menu_item_click);
 
-  $("menu::node").hawkNode = null;
-  $("menu::node::standby").firstDescendant().observe("click", node_menu_item_click);
-  $("menu::node::online").firstDescendant().observe("click", node_menu_item_click);
-  $("menu::node::fence").firstDescendant().observe("click", node_menu_item_click);
-//  $("menu::node::mark").firstDescendant().observe("click", node_menu_item_click);
-
-  $("menu::resource").hawkResource = null;
-  $("menu::resource::start").firstDescendant().observe("click", resource_menu_item_click);
-  $("menu::resource::stop").firstDescendant().observe("click", resource_menu_item_click);
-  $("menu::resource::cleanup").firstDescendant().observe("click", resource_menu_item_click);
+  $("menu::resource::start").firstDescendant().observe("click", menu_item_click);
+  $("menu::resource::stop").firstDescendant().observe("click", menu_item_click);
+  $("menu::resource::cleanup").firstDescendant().observe("click", menu_item_click);
 
   document.observe('click', function(e) {
     $("menu::node").hide();
