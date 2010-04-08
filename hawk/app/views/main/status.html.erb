@@ -1,5 +1,5 @@
 <% content_for :head do %>
-<%= gettext_js %>
+<script type="text/javascript" src="<%= url_for(:action => 'gettext', :format => 'js') %>"></script>
 <% end %>
 
 <%= render :partial => 'summary' %>

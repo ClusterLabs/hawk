@@ -503,6 +503,10 @@ class MainController < ApplicationController
     redirect_to :action => 'status'
   end
 
+  def gettext
+    render :partial => 'gettext'
+  end
+
   def status
     @title = _('Cluster Status')
     
