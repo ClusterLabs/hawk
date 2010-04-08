@@ -251,24 +251,36 @@ function perform_node_op(node, op)
   });
 }
 
-// TODO(should): Consolidate with node_menu_*
 function resource_menu_item_click(e)
 {
+  var op = dc_split(Event.element(e).parentNode.id)[2];
+  modal_dialog(GETTEXT["resource_" + op]($("menu::resource").hawkResource),
+    { buttons: [
+      // TODO(should): This is a bit hairy - we'd be better off passing
+      // functions around than doing this generated onclick code thing...
+      { label: GETTEXT.yes(), action: "perform_resource_op('" + $("menu::resource").hawkResource + "','" + $("menu::resource").hawkResourceType + "','" + op + "');" },
+      { label: GETTEXT.no() }
+    ] });
+}
+
+// TODO(should): Consolidate with node_menu_*
+function perform_resource_op(res, type, op)
+{
   var state = "neutral";
-  var c = $($("menu::resource").hawkResourceType + "::" + $("menu::resource").hawkResource);
+  var c = $(type + "::" + res);
   if (c.hasClassName("rs-active"))         state = "active";
   else if(c.hasClassName("rs-inactive"))  state = "inactive";
   else if(c.hasClassName("rs-error"))     state = "error";
-  $($("menu::resource").hawkResourceType + "::" + $("menu::resource").hawkResource + "::menu").firstDescendant().src = "/images/spinner-16x16-" + state + ".gif";
+  $(type + "::" + res + "::menu").firstDescendant().src = "/images/spinner-16x16-" + state + ".gif";
 
-  new Ajax.Request("/main/resource_" + dc_split(Event.element(e).parentNode.id)[2], {
-    parameters: "resource=" + $("menu::resource").hawkResource,
+  new Ajax.Request("/main/resource_" + op, {
+    parameters: "resource=" + res,
     onSuccess:  function(request) {
       // Do nothing (spinner will stop when next full refresh occurs
     },
     onFailure:  function(request) {
       // Remove spinner
-      $($("menu::resource").hawkResourceType + "::" + $("menu::resource").hawkResource + "::menu").firstDescendant().src = "/images/icons/properties.png";
+      $(type + "::" + res + "::menu").firstDescendant().src = "/images/icons/properties.png";
       if (request.responseJSON) {
         modal_dialog(request.responseJSON.error,
           { body: (request.responseJSON.stderr && request.responseJSON.stderr.size()) ? request.responseJSON.stderr.join("\n") : null });

@@ -1,4 +1,5 @@
 var GETTEXT = {
+  // Dialog buttons
   ok: function() {
     return "<%= _('OK') %>";
   },
@@ -8,6 +9,7 @@ var GETTEXT = {
   no: function() {
     return "<%= _('No') %>";
   },
+  // Node ops
   node_online: function(node) {
     return "<%= _('This will bring node %s online if it is currently on standby.  Do you want to continue?') % '_NODE_' %>".replace('_NODE_', node);
   },
@@ -17,6 +19,17 @@ var GETTEXT = {
   node_fence: function(node) {
     return "<%= _('This will attempt to immediately fence node %s.  Do you want to continue?') % '_NODE_' %>".replace('_NODE_', node);
   },
+  // Resource ops
+  resource_start: function(res) {
+    return "<%= _('This will start the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
+  },
+  resource_stop: function(res) {
+    return "<%= _('This will stop the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
+  },
+  resource_cleanup: function(res) {
+    return "<%= _('This will clean up the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
+  },
+  // Errors
   err_unexpected: function(msg) {
     return "<%= _('Unexpected server error: %s') % '_MSG_' %>".replace('_MSG_', msg);
   }
