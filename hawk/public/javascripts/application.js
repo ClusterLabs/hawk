@@ -80,6 +80,8 @@ function update_summary(summary)
 // need to pass parent in with open flag (e.g.: nodelist, reslist)
 function update_panel(panel)
 {
+  // TODO(must): doesn't notice if a group is already stopped (child stopped) and you then stop the group
+  // Fixing this isn't as easy as just digging around for changed children...
   var changed = ($(panel.id).className != panel.className || $(panel.id+"::label").innerHTML != panel.label);
 
   $(panel.id).className = panel.className;
