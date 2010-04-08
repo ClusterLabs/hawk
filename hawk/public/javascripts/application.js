@@ -260,10 +260,10 @@ function add_mgmt_menu(e)
         e.addClassName("clickable");
         e.observe("click", popup_op_menu);
         e.firstDescendant().src = "/images/icons/properties.png";
-      } else if (e.parentNode.hasClassName("res-primitive")) {
+      } else {
         isClone = false;
         var n = e.parentNode;
-        while (n && n.id != "") {
+        while (n && n.id != "reslist") {
           if (n.hasClassName("res-clone")) {
             isClone = true;
             break;
