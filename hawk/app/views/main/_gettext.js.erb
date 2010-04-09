@@ -3,6 +3,9 @@ var GETTEXT = {
   ok: function() {
     return "<%= _('OK') %>";
   },
+  cancel: function() {
+    return "<%= _('Cancel') %>";
+  },
   yes: function() {
     return "<%= _('Yes') %>";
   },
@@ -25,6 +28,18 @@ var GETTEXT = {
   },
   resource_stop: function(res) {
     return "<%= _('This will stop the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
+  },
+  resource_migrate: function(res) {
+    return "<%= _('Migrate resource %s:') % '_RES_' %>".replace('_RES_', res);
+  },
+  resource_migrate_to: function(node) {
+    return "<%= _('To node %s') % '_NODE_' %>".replace('_NODE_', node);
+  },
+  resource_migrate_away: function() {
+    return "<%= _('Away from current node') %>";
+  },
+  resource_unmigrate: function(res) {
+    return "<%= _('This will clear any migration constraints set on the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
   },
   resource_cleanup: function(res) {
     return "<%= _('This will clean up the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);

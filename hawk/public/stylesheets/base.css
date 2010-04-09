@@ -356,6 +356,17 @@ img
   background: #ccc url(../images/icons/cleanup.png) 2px 50% no-repeat;
 }
 
+.menu a.icon-migrate
+{
+  background: #ccc url(../images/icons/migrate.png) 2px 50% no-repeat;
+}
+
+.menu a.icon-unmigrate
+{
+  background: #ccc url(../images/icons/unmigrate.png) 2px 50% no-repeat;
+}
+
+
 .flash-warning
 {
   margin: 0 auto;
@@ -415,6 +426,10 @@ img
 {
   margin: 0em 2.5em;
   height: 4em;
+}
+
+#dialog-body.message
+{
   overflow: auto;
   background-color: #eee;
   border: 1px solid #ccc;

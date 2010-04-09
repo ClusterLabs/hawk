@@ -602,7 +602,27 @@ class MainController < ApplicationController
     end
   end
 
-  # TODO(should): consolidate with resource_start, once crm is returning 0 when expected
+  def resource_migrate
+    if params[:resource] && params[:node]
+      invoke '/usr/sbin/crm', 'resource', 'migrate', params[:resource], params[:node]
+    else
+      render :status => 400, :json => {
+        :error => _('Required parameters "resource" and "node" not specified')
+      }
+    end
+  end
+
+  def resource_unmigrate
+    if params[:resource]
+      invoke '/usr/sbin/crm', 'resource', 'unmigrate', params[:resource]
+    else
+      render :status => 400, :json => {
+        :error => _('Required parameter "resource" not specified')
+      }
+    end
+  end
+
+  # TODO(should): do I really need to keep saying this?
   def resource_cleanup
     if params[:resource]
       invoke '/usr/sbin/crm', 'resource', 'cleanup', params[:resource]

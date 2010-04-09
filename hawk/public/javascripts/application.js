@@ -80,17 +80,8 @@ function update_summary(summary)
 // need to pass parent in with open flag (e.g.: nodelist, reslist)
 function update_panel(panel)
 {
-  // TODO(must): doesn't notice if a group is already stopped (child stopped) and you then stop the group
-  // Fixing this isn't as easy as just digging around for changed children...
-  var changed = ($(panel.id).className != panel.className || $(panel.id+"::label").innerHTML != panel.label);
-
   $(panel.id).className = panel.className;
   $(panel.id+"::label").update(panel.label);
-
-  // If something changed, turn the spinner back into a properties icon
-  if (changed && $(panel.id+"::menu").firstDescendant().src.indexOf("spinner") != -1) {
-    $(panel.id+"::menu").firstDescendant().src = "/images/icons/properties.png";
-  }
 
   if (!panel.children) return false;
 
@@ -201,6 +192,27 @@ function popup_op_menu(e)
   // parts[0] is "node" or "resource", parts[1] is op
   var parts = dc_split(target.parentNode.id);
   activeItem = parts[1];
+  // Special case to show/hide migrate (only visible at top level, not children of groups)
+  // TODO(should): in general we need a better way of understanding the cluster hierarchy
+  // from here than walking the DOM tree - it's too dependant on too many things.
+  if (parts[0] == "resource") {
+    var c = 0;
+    var n = target.parentNode;
+    while (n && n.id != "reslist") {
+      if (n.hasClassName("res-primitive") || n.hasClassName("res-clone") || n.hasClassName("res-group")) {
+        c++;
+      }
+      n = n.parentNode;
+    }
+    if (c == 1) {
+      // Top-level item (for primitive in group this would be 2)
+      $("menu::resource::migrate").show();
+      $("menu::resource::unmigrate").show();
+    } else {
+      $("menu::resource::migrate").hide();
+      $("menu::resource::unmigrate").hide();
+    }
+  }
   $("menu::" + parts[0]).setStyle({left: pos.left+"px", top: pos.top+"px"}).show();
   Event.stop(e);
 }
@@ -218,7 +230,27 @@ function menu_item_click(e)
     ] });
 }
 
-function perform_op(type, id, op)
+function menu_item_click_migrate(e)
+{
+  // parts[1] is "node" or "resource", parts[2] is op
+  var parts = dc_split(Event.element(e).parentNode.id);
+  var html = '<form><select id="migrate-to" size="4" style="width: 100%;">';
+  // TODO(should): Again, too much dependence on DOM structure here
+  $("nodelist::children").childElements().each(function(e) {
+    var node = dc_split(e.id)[1];
+    html += '<option value="' + node + '">' + GETTEXT.resource_migrate_to(node) + "</option>\n";
+  });
+  html += '<option selected="selected" value="">' + GETTEXT.resource_migrate_away() + "</option>\n";
+  html += "</form></select>";
+  modal_dialog(GETTEXT[parts[1] + "_" + parts[2]](activeItem),
+    { body_raw: html,
+      buttons: [
+      { label: GETTEXT.ok(), action: "perform_op('" + parts[1] + "','" + activeItem + "','" + parts[2] + "','node=' + $('migrate-to').getValue());" },
+      { label: GETTEXT.cancel() }
+    ] });
+}
+
+function perform_op(type, id, op, extra)
 {
   var state = "neutral";
   var c = $(type + "::" + id);
@@ -232,13 +264,15 @@ function perform_op(type, id, op)
   $(type + "::" + id + "::menu").firstDescendant().src = "/images/spinner-16x16-" + state + ".gif";
 
   new Ajax.Request("/main/" + type + "_" + op, {
-    parameters: type + "=" + id,
+    parameters: type + "=" + id + (extra ? "&" + extra : ""),
     onSuccess:  function(request) {
-      // Do nothing (spinner will stop when next full refresh occurs
+      // Remove spinner (a spinner that stops too early is marginally better than one that never stops)
+      $(type + "::" + id + "::menu").firstDescendant().src = "/images/icons/properties.png";
     },
     onFailure:  function(request) {
       // Remove spinner
       $(type + "::" + id + "::menu").firstDescendant().src = "/images/icons/properties.png";
+      // Display error
       if (request.responseJSON) {
         modal_dialog(request.responseJSON.error,
           { body: (request.responseJSON.stderr && request.responseJSON.stderr.size()) ? request.responseJSON.stderr.join("\n") : null });
@@ -258,15 +292,15 @@ function add_mgmt_menu(e)
       e.firstDescendant().src = "/images/icons/properties.png";
       break;
     case "resource":
-      if (e.parentNode.parentNode.hasClassName("res-clone")) {
+      if ($(e.parentNode.parentNode).hasClassName("res-clone")) {
         e.addClassName("clickable");
         e.observe("click", popup_op_menu);
         e.firstDescendant().src = "/images/icons/properties.png";
       } else {
-        isClone = false;
+        var isClone = false;
         var n = e.parentNode;
         while (n && n.id != "reslist") {
-          if (n.hasClassName("res-clone")) {
+          if ($(n).hasClassName("res-clone")) {
             isClone = true;
             break;
           }
@@ -291,6 +325,8 @@ function init_menus()
 
   $("menu::resource::start").firstDescendant().observe("click", menu_item_click);
   $("menu::resource::stop").firstDescendant().observe("click", menu_item_click);
+  $("menu::resource::migrate").firstDescendant().observe("click", menu_item_click_migrate);
+  $("menu::resource::unmigrate").firstDescendant().observe("click", menu_item_click);
   $("menu::resource::cleanup").firstDescendant().observe("click", menu_item_click);
 
   document.observe('click', function(e) {
@@ -312,8 +348,15 @@ function modal_dialog(msg, params)
   params = params || {};
 
   $("dialog-message").update(msg.escapeHTML());
+
   if (params.body) {
+    if (!$("dialog-body").hasClassName("message")) {
+      $("dialog-body").addClassName("message");
+    }
     $("dialog-body").update(params.body.escapeHTML().replace(/\n/g, "<br />")).show();
+  } else if (params.body_raw) {
+    $("dialog-body").removeClassName("message");
+    $("dialog-body").update(params.body_raw).show();
   } else {
     $("dialog-body").hide();
   }
