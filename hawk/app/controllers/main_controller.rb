@@ -398,7 +398,7 @@ class MainController < ApplicationController
       res.elements.each('primitive') do |p|
         c = get_primitive(p, instance)
         open = true unless c[:active]
-          status_class = 'rs-inactive' unless c[:className].include? 'rs-active'    # TODO(could): only handles two states - do we care?
+        status_class = 'rs-inactive' unless c[:className].include? 'rs-active'    # TODO(could): only handles two states - do we care?
         children << c
       end
       {
@@ -439,7 +439,7 @@ class MainController < ApplicationController
       {
         :id         => "resource::#{id}",
         :className  => "res-clone #{status_class}",
-        :label      => _("Clone Set: %{id}") % { :id => id },
+        :label      => res.name == 'master' ? _("Master/Slave Set: %{id}") % { :id => id } : _("Clone Set: %{id}") % { :id => id },
         :open       => open,
         :children   => children
       }
@@ -449,7 +449,7 @@ class MainController < ApplicationController
       case res.name
         when 'primitive'
           @resources << get_primitive(res)
-        when 'clone'
+        when 'clone', 'master'
           @resources << get_clone(res)
         when 'group'
           @resources << get_group(res)
