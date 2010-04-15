@@ -27,8 +27,11 @@ Rails::Initializer.run do |config|
   # The below is necessary for "rake gems:unpack" to include gettext_activerecord,
   # which is required for rake to run, even thought we don't use active_record...(?!?)
   config.gem "gettext_activerecord"
-  # Likewise...
-  config.gem "rack"
+  # Explicitly require any rack version in the 1.0 series.  This is necessary because
+  # ActionPack 2.3.5 explicitly specifies this as well, so if we run on a system with
+  # rack 1.1, it all breaks horribly if we don't force it back to 1.0 here.  Some further
+  # discussion is at https://rails.lighthouseapp.com/projects/8994/tickets/3685-actionpack-235-gem-declares-incompatibility-with-rack-110
+  config.gem "rack", :version => '~> 1.0.0'
 
   # Only load the plugins named here, in the order given (default is alphabetical).
   # :all can be used as a placeholder for all plugins not explicitly named
