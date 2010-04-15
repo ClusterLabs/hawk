@@ -18,6 +18,11 @@
 #   # Custom log path, normal GC behavior.
 #   RailsFCGIHandler.process! '/var/log/myapp_fcgi_crash.log'
 #
+
+# get the vendor directory into the load path well in advance, so
+# we can pull rubygems from there
+$LOAD_PATH.unshift(File.dirname(__FILE__) + "/../vendor")
+
 require File.dirname(__FILE__) + "/../config/environment"
 require 'fcgi_handler'
 
