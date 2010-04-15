@@ -42,6 +42,11 @@ ifeq "$(BUILD_TAG)" ""
 BUILD_TAG = 0.0.0
 endif
 
+RPM_ROOT = $(shell pwd)
+RPM_OPTS = --define "_sourcedir $(RPM_ROOT)"	\
+	   --define "_specdir	$(RPM_ROOT)"	\
+	   --define "_srcrpmdir	$(RPM_ROOT)"
+
 # Override this when invoking make to install elsewhere, e.g.:
 #   make WWW_BASE=/var/www install
 WWW_BASE = /srv/www
@@ -79,7 +84,15 @@ install:
 
 # Make a tar.bz2 named for the most recent human-readable tag
 archive:
+	rm -f hawk-$(BUILD_TAG).tar.bz2
 	$(HG) archive -t tbz2 hawk-$(BUILD_TAG).tar.bz2
 pot:
 	(cd hawk; rake BUILD_TAG=$(BUILD_TAG) updatepo)
+
+srpm: archive hawk.spec
+	rm -f *.src.rpm
+	rpmbuild -bs $(RPM_OPTS) hawk.spec
+
+rpm: srpm
+	rpmbuild --rebuild $(RPM_ROOT)/*.src.rpm
 
