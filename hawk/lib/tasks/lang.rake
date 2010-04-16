@@ -28,17 +28,16 @@
 #
 #======================================================================
 
-# Make sure tmp etc. exist (won't be there for clean source checkouts from hg)
-FileUtils.mkdir_p [ 'tmp/sessions', 'tmp/sockets', 'tmp/cache', 'tmp/pids' ]
+desc "Update pot/po files."
+task :updatepo do
+  require 'gettext_rails/tools'
+  GetText.update_pofiles("hawk", Dir.glob("{app,lib}/**/*.{rb,erb,rhtml}"),
+      "hawk #{ENV['BUILD_TAG'] ? ENV['BUILD_TAG'] : '0.0.0'}")
+end
 
-# Add your own tasks in files placed in lib/tasks ending in .rake,
-# for example lib/tasks/capistrano.rake, and they will automatically be available to Rake.
-
-require(File.join(File.dirname(__FILE__), 'config', 'boot'))
-
-require 'rake'
-require 'rake/testtask'
-require 'rake/rdoctask'
-
-require 'tasks/rails'
+desc "Create mo-files"
+task :makemo do
+  require 'gettext_rails/tools'
+  GetText.create_mofiles
+end
 

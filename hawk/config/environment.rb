@@ -24,9 +24,6 @@ Rails::Initializer.run do |config|
   config.gem "locale_rails"
   config.gem "gettext"
   config.gem "gettext_rails"
-  # The below is necessary for "rake gems:unpack" to include gettext_activerecord,
-  # which is required for rake to run, even thought we don't use active_record...(?!?)
-  config.gem "gettext_activerecord"
   # Explicitly require any rack version in the 1.0 series.  This is necessary because
   # ActionPack 2.3.5 explicitly specifies this as well, so if we run on a system with
   # rack 1.1, it all breaks horribly if we don't force it back to 1.0 here.  Some further

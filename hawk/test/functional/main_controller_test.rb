@@ -1,10 +1,10 @@
 require 'test_helper'
 
 class MainControllerTest < ActionController::TestCase
-  # Replace this with your real tests.
-  def test_index_displays_status
+
+  def test_index_requires_login
     get :index
-    assert_response :success
-    assert_template 'status'
+    assert_response :forbidden
   end
+
 end

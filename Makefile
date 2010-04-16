@@ -63,6 +63,8 @@ all: scripts/hawk.$(INIT_STYLE) hawk/config/lighttpd.conf
 clean:
 	rm -rf hawk/locale
 	rm -rf hawk/vendor
+	rm -rf hawk/tmp
+	rm -rf hawk/log
 	rm -f hawk/config/lighttpd.conf
 	rm -f scripts/hawk.{suse,redhat}
 
