@@ -114,7 +114,6 @@ rm -rf %{buildroot}%{www_base}/hawk/vendor/gems/*/test
 # be "share/locale", not just "locale", and it also doesn't support appending to %{name}.lang)
 %find_lang %{name} %{name}.lang
 %find_lang rgettext %{name}.lang
-%find_lang gettext_activerecord %{name}.lang
 %find_lang gettext_rails %{name}.lang
 # hard link duplicate files
 %fdupes %{buildroot}
