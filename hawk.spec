@@ -49,8 +49,8 @@ Requires:	lighttpd >= 1.4.20
 BuildRequires:	rubygems
 BuildRequires:	rubygem-rake
 BuildRequires:	rubygem-gettext_rails
+BuildRequires:	pam-devel
 %if 0%{?suse_version}
-Requires:	pam-modules
 BuildRequires:	ruby-fcgi
 BuildRequires:	rubygem-rails-2_3
 BuildRequires:	fdupes
@@ -155,6 +155,7 @@ rm -rf %{buildroot}
 
 %files -f %{name}.lang
 %defattr(-,root,root)
+%attr(4750, root, %{gname})%{_sbindir}/hawk_chkpwd
 %dir %{www_base}/hawk
 %{www_base}/hawk/app
 %{www_base}/hawk/config

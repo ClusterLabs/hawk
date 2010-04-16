@@ -48,7 +48,7 @@ class SessionsController < ApplicationController
   end
 
   # called from login screen
-  UNIX2_CHKPWD = '/sbin/unix2_chkpwd'
+  HAWK_CHKPWD = '/usr/sbin/hawk_chkpwd'
   def create
     if params[:username].blank?
       flash[:warning] = _('Username not specified')
@@ -61,12 +61,12 @@ class SessionsController < ApplicationController
       flash[:warning] = _('Password not specified')
       redirect_to :action => 'new', :username => params[:username]
     else
-      if File.exists?(UNIX2_CHKPWD) && File.executable?(UNIX2_CHKPWD)
-        IO.popen("#{UNIX2_CHKPWD} passwd '#{params[:username]}'", 'w+') do |pipe|
+      if File.exists?(HAWK_CHKPWD) && File.executable?(HAWK_CHKPWD)
+        IO.popen("#{HAWK_CHKPWD} passwd '#{params[:username]}'", 'w+') do |pipe|
           pipe.write params[:password]
           pipe.close_write
         end
-        if $?.exitstatus == 0 && allow_group(params[:username])
+        if $?.exitstatus == 0
           # The user can log in, and they're in our required group
           reset_session
           session[:username] = params[:username]
@@ -77,7 +77,7 @@ class SessionsController < ApplicationController
           redirect_to :action => 'new', :username => params[:username]
         end
       else
-        flash[:warning] = _('%s is not installed') % UNIX2_CHKPWD
+        flash[:warning] = _('%s is not installed') % HAWK_CHKPWD
         redirect_to :action => 'new', :username => params[:username]
       end
     end
@@ -89,27 +89,4 @@ class SessionsController < ApplicationController
     redirect_to :action => 'new'
   end
 
-  # TODO(could): build-time, not hard-coded
-  ALLOW_GROUP = 'haclient'
-
-  # Logic here is straight out of pygui /mgmt/daemon/mgmtd.c
-  # (yeah, I know it reads ugly...)
-  # TODO(should): exceptions
-  private
-  def allow_group(username)
-    require 'etc'
-
-    pwnam = Etc.getpwnam(username)
-    return false unless pwnam
-
-    grgid = Etc.getgrgid(pwnam.gid)
-    return false unless grgid
-
-    return true if grgid.name == ALLOW_GROUP
-
-    grnam = Etc.getgrnam(ALLOW_GROUP)
-    return false unless grnam
-
-    return grnam.mem.include?(username)
-  end
 end

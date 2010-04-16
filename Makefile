@@ -54,11 +54,15 @@ WWW_BASE = /srv/www
 # Override this to get a different init script (e.g. "redhat")
 INIT_STYLE = suse
 
-all: scripts/hawk.$(INIT_STYLE) hawk/config/lighttpd.conf
+all: scripts/hawk.$(INIT_STYLE) hawk/config/lighttpd.conf tools/hawk_chkpwd
 	(cd hawk; rake makemo; rake freeze:rails; rake freeze:gems)
 
 %: %.in
 	sed -e 's|@WWW_BASE@|$(WWW_BASE)|' $< > $@
+
+tools/hawk_chkpwd: tools/hawk_chkpwd.c
+	gcc -o $@ $< -lpam
+
 
 clean:
 	rm -rf hawk/locale
@@ -83,6 +87,8 @@ install:
 	rm $(DESTDIR)$(WWW_BASE)/hawk/config/lighttpd.conf.in
 	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk
 	install -D -m 0755 scripts/hawk.$(INIT_STYLE) $(DESTDIR)/etc/init.d/hawk
+	install -D -m 4750 tools/hawk_chkpwd $(DESTDIR)/usr/sbin/hawk_chkpwd
+	-chown root.haclient $(DESTDIR)/usr/sbin/hawk_chkpwd
 
 # Make a tar.bz2 named for the most recent human-readable tag
 archive:
