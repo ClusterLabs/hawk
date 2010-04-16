@@ -55,7 +55,7 @@ WWW_BASE = /srv/www
 INIT_STYLE = suse
 
 all: scripts/hawk.$(INIT_STYLE) hawk/config/lighttpd.conf
-	(cd hawk; rake makemo; rake rails:freeze:gems; rake gems:unpack)
+	(cd hawk; rake makemo; rake freeze:rails; rake freeze:gems)
 
 %: %.in
 	sed -e 's|@WWW_BASE@|$(WWW_BASE)|' $< > $@
