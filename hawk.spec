@@ -38,9 +38,11 @@ Release:	0
 License:	GPL v2 only
 Group:		%{pkg_group}
 Source:		%{name}-%{version}.tar.bz2
+%if 0%{?suse_version}
 Source1:	filter-requires.sh
 %define		_use_internal_dependency_generator 0
 %define		__find_requires /bin/sh %{SOURCE1}
+%endif
 BuildRoot:	%{_tmppath}/%{name}-%{version}-build
 AutoReqProv:	on
 Requires:	pacemaker
