@@ -17,7 +17,7 @@ var GETTEXT = {
     return "<%= _('This will bring node %s online if it is currently on standby.  Do you want to continue?') % '_NODE_' %>".replace('_NODE_', node);
   },
   node_standby: function(node) {
-    return "<%= _('This will put node %s on standby.  All resources will be stopped and/or migrated to another node.  Do you want to continue?') % '_NODE_' %>".replace('_NODE_', node);
+    return "<%= _('This will put node %s on standby.  All resources will be stopped and/or moved to another node.  Do you want to continue?') % '_NODE_' %>".replace('_NODE_', node);
   },
   node_fence: function(node) {
     return "<%= _('This will attempt to immediately fence node %s.  Do you want to continue?') % '_NODE_' %>".replace('_NODE_', node);
@@ -30,7 +30,7 @@ var GETTEXT = {
     return "<%= _('This will stop the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
   },
   resource_migrate: function(res) {
-    return "<%= _('Migrate resource %s:') % '_RES_' %>".replace('_RES_', res);
+    return "<%= _('Move resource %s:') % '_RES_' %>".replace('_RES_', res);
   },
   resource_migrate_to: function(node) {
     return "<%= _('To node %s') % '_NODE_' %>".replace('_NODE_', node);
@@ -39,7 +39,7 @@ var GETTEXT = {
     return "<%= _('Away from current node') %>";
   },
   resource_unmigrate: function(res) {
-    return "<%= _('This will clear any migration constraints set on the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
+    return "<%= _('This will clear any relocation constraints set on the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
   },
   resource_cleanup: function(res) {
     return "<%= _('This will clean up the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
