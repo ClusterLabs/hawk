@@ -398,6 +398,12 @@ function modal_dialog(msg, params)
     // not document, so move the overlay so it's in the current viewport.
     $("overlay").setStyle({left: offsets.left + 'px', top: offsets.top + 'px'});
   }
+  if (Prototype.Browser.MobileSafari) {
+    // Hack to fold back to absolute positioning on e.g. Android
+    // which can't cope with fixed position when zoomed in.  Not
+    // optimal, but better than a dialog you can't use!
+    style.position = "absolute";
+  }
   $("overlay").setOpacity(0.5).show();
   $("dialog").setStyle(style).show();
 }
