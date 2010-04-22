@@ -295,17 +295,23 @@ class MainController < ApplicationController
     # But it's better than invoking crm_resource all the time...
     #
     # So...  For the moment, the rule is:
-    # - if it's running anywhere (regardless of master/slave), it's Started
+    # - if it's running anywhere Started or Master
     # - if it's not running anywhere, but we have status, it's Stopped
     # - if we have no lrm_resource or no ops, it's Unknown, but we report
     #   this as Stopped, because anything else will be confusing.
     #
-    # Return value is array of nodes on which the resource is running,
-    # (empty if stopped)
+    # Return value is hash of arrays of nodes on which the resource is running or master
+    # (arrays are empty if stopped)
+    #
+    # TODO(should): This actually all needs reworking - we should probably just be
+    # reading the LRM status section then synthesizing primitive instances from there
+    # rather than relying on what we think is configured (we'll miss orphans with current
+    # implementation, also it's harder to cope with gaps in clone instance IDs, etc.)
     #
     def resource_state(id)
 
       running_on = []
+      master_on  = []
 
       for node in @nodes
         lrm_resource = @cib.elements["cib/status/node_state[@uname='#{node[:uname]}']/lrm/lrm_resources/lrm_resource[@id='#{id}']"]
@@ -320,7 +326,7 @@ class MainController < ApplicationController
           }
         end
         # logic derived somewhat from pacemaker/lib/pengine/unpack.c:unpack_rsc_op()
-        is_running = false
+        state = :unknown
         ops.keys.sort.each do |call_id|
           # skip pending ops and notifies
           next if call_id == -1 || ops[call_id][:operation] == 'notify'
@@ -336,57 +342,68 @@ class MainController < ApplicationController
           case ops[call_id][:rc_code]
           when 7
             # not running on this node
-            is_running = false
+            state = :stopped
           when 8
             # master on this node
-            is_running = true
+            state = :master
           when 0
             # ok
             if ops[call_id][:operation] == 'stop'
-              is_running = false
+              state = :stopped
+            elsif ops[call_id][:operation] == 'promote'
+              state = :master
             else
               # anything other than a stop means we're running (although might be
               # master or slave after a promote or demote)
-              is_running = true
+              state = :running
             end
           end
-          if !is_running && ops[call_id][:rc_code] != ops[call_id][:expected]
+          if state != :running && state != :master && ops[call_id][:rc_code] != ops[call_id][:expected]
             # busted somehow
             @errors << _('Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}') %
               { :node => node[:uname], :resource => id, :call_id => call_id, :op => ops[call_id][:operation], :rc_code => ops[call_id][:rc_code] }
           end
         end
-        running_on << node[:uname] if is_running
+        running_on << node[:uname] if state == :running
+        master_on  << node[:uname] if state == :master
       end
 
-      if running_on.empty?
+      if running_on.empty? && master_on.empty?
         # it's either unknown or not running, expand
         @expand_resources = true
       end
 
-      return running_on
+      return { :started => running_on, :master => master_on }
     end
 
-    def get_primitive(res, instance = nil)
+    # TODO(should): this is_ms thing is a bit ugly (see comment above resource_state about reworking this)
+    def get_primitive(res, instance = nil, is_ms = false)
       id = res.attributes['id']
       id += ":#{instance}" if instance
       running_on = resource_state(id)
-      if running_on.empty? then
-        label = _('%{id}: Stopped') % { :id => id }
+      active = !running_on[:master].empty? || !running_on[:started].empty?
+      if !running_on[:master].empty? then
+        label = _('%{id}: Master: %{nodelist}') % { :id => id, :nodelist => running_on[:master].join(', ') }
+      elsif !running_on[:started].empty? then
+        if is_ms
+          label = _('%{id}: Slave: %{nodelist}') % { :id => id, :nodelist => running_on[:started].join(', ') }
+        else
+          label = _('%{id}: Started: %{nodelist}') % { :id => id, :nodelist => running_on[:started].join(', ') }
+        end
       else
-        label = _('%{id}: Started: %{nodelist}') % { :id => id, :nodelist => running_on.join(', ') }
+        label = _('%{id}: Stopped') % { :id => id }
       end
       {
         :id         => "resource::#{id}",
-        :className  => "res-primitive rs-" + if running_on.empty? then 'inactive' else 'active' end,
+        :className  => "res-primitive rs-" + (active ? 'active' : 'inactive'),
         :label      => label,
-        :active     => !running_on.empty?
+        :active     => active
       }
     end
 
     @expand_groups = []
 
-    def get_group(res, instance = nil)
+    def get_group(res, instance = nil, is_ms = false)
       id = res.attributes['id']
       id += ":#{instance}" if instance
       status_class = 'rs-active'
@@ -396,7 +413,7 @@ class MainController < ApplicationController
       children = []
       open = false
       res.elements.each('primitive') do |p|
-        c = get_primitive(p, instance)
+        c = get_primitive(p, instance, is_ms)
         open = true unless c[:active]
         status_class = 'rs-inactive' unless c[:className].include? 'rs-active'    # TODO(could): only handles two states - do we care?
         children << c
@@ -421,14 +438,14 @@ class MainController < ApplicationController
       open = false
       if res.elements['primitive']
         for i in 0..clone_max.to_i-1 do
-          c = get_primitive(res.elements['primitive'], i)
+          c = get_primitive(res.elements['primitive'], i, res.name == 'master')
           open = true unless c[:active]
           status_class = 'rs-inactive' unless c[:className].include? 'rs-active'    # TODO(should): only handles two states - do we care?
           children << c
         end
       elsif res.elements['group']
         for i in 0..clone_max.to_i-1 do
-          c = get_group(res.elements['group'], i)
+          c = get_group(res.elements['group'], i, res.name == 'master')
           open = true if c[:open]
           status_class = 'rs-inactive' unless c[:className].include? 'rs-active'    # TODO(should): only handles two states - do we care?
           children << c
