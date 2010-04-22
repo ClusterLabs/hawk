@@ -197,10 +197,14 @@ function popup_op_menu(e)
   // from here than walking the DOM tree - it's too dependant on too many things.
   if (parts[0] == "resource") {
     var c = 0;
+    var isMs = false;
     var n = target.parentNode;
     while (n && n.id != "reslist") {
       if (n.hasClassName("res-primitive") || n.hasClassName("res-clone") || n.hasClassName("res-group")) {
         c++;
+      }
+      if (n.hasClassName("res-ms")) {
+        isMs = true;
       }
       n = n.parentNode;
     }
@@ -211,6 +215,13 @@ function popup_op_menu(e)
     } else {
       $("menu::resource::migrate").hide();
       $("menu::resource::unmigrate").hide();
+    }
+    if (isMs) {
+      $("menu::resource::promote").show();
+      $("menu::resource::demote").show();
+    } else {
+      $("menu::resource::promote").hide();
+      $("menu::resource::demote").hide();
     }
   }
   $("menu::" + parts[0]).setStyle({left: pos.left+"px", top: pos.top+"px"}).show();
@@ -327,6 +338,8 @@ function init_menus()
   $("menu::resource::stop").firstDescendant().observe("click", menu_item_click);
   $("menu::resource::migrate").firstDescendant().observe("click", menu_item_click_migrate);
   $("menu::resource::unmigrate").firstDescendant().observe("click", menu_item_click);
+  $("menu::resource::promote").firstDescendant().observe("click", menu_item_click);
+  $("menu::resource::demote").firstDescendant().observe("click", menu_item_click);
   $("menu::resource::cleanup").firstDescendant().observe("click", menu_item_click);
 
   document.observe('click', function(e) {

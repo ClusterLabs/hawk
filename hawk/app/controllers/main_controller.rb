@@ -381,23 +381,27 @@ class MainController < ApplicationController
       id = res.attributes['id']
       id += ":#{instance}" if instance
       running_on = resource_state(id)
-      active = !running_on[:master].empty? || !running_on[:started].empty?
+      status_class = 'res-primitive'
       if !running_on[:master].empty? then
         label = _('%{id}: Master: %{nodelist}') % { :id => id, :nodelist => running_on[:master].join(', ') }
+        status_class += ' rs-active rs-master'
       elsif !running_on[:started].empty? then
+        status_class += ' rs-active'
         if is_ms
           label = _('%{id}: Slave: %{nodelist}') % { :id => id, :nodelist => running_on[:started].join(', ') }
+          status_class += ' rs-slave'
         else
           label = _('%{id}: Started: %{nodelist}') % { :id => id, :nodelist => running_on[:started].join(', ') }
         end
       else
         label = _('%{id}: Stopped') % { :id => id }
+        status_class += ' rs-inactive'
       end
       {
         :id         => "resource::#{id}",
-        :className  => "res-primitive rs-" + (active ? 'active' : 'inactive'),
+        :className  => status_class,
         :label      => label,
-        :active     => active
+        :active     => !running_on[:master].empty? || !running_on[:started].empty?
       }
     end
 
@@ -453,6 +457,7 @@ class MainController < ApplicationController
       else
         # Again, this can't happen
       end
+      status_class += ' res-ms' if res.name == 'master'
       {
         :id         => "resource::#{id}",
         :className  => "res-clone #{status_class}",
@@ -632,6 +637,26 @@ class MainController < ApplicationController
   def resource_unmigrate
     if params[:resource]
       invoke '/usr/sbin/crm', 'resource', 'unmigrate', params[:resource]
+    else
+      render :status => 400, :json => {
+        :error => _('Required parameter "resource" not specified')
+      }
+    end
+  end
+
+  def resource_promote
+    if params[:resource]
+      invoke '/usr/sbin/crm', 'resource', 'promote', params[:resource]
+    else
+      render :status => 400, :json => {
+        :error => _('Required parameter "resource" not specified')
+      }
+    end
+  end
+
+  def resource_demote
+    if params[:resource]
+      invoke '/usr/sbin/crm', 'resource', 'demote', params[:resource]
     else
       render :status => 400, :json => {
         :error => _('Required parameter "resource" not specified')

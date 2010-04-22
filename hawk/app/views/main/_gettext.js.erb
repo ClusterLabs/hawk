@@ -41,6 +41,12 @@ var GETTEXT = {
   resource_unmigrate: function(res) {
     return "<%= _('This will clear any relocation constraints set on the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
   },
+  resource_promote: function(res) {
+    return "<%= _('This will promote the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
+  },
+  resource_demote: function(res) {
+    return "<%= _('This will demote the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
+  },
   resource_cleanup: function(res) {
     return "<%= _('This will clean up the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
   },
