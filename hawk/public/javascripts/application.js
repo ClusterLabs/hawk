@@ -198,7 +198,7 @@ function popup_op_menu(e)
   if (parts[0] == "resource") {
     var c = 0;
     var isMs = false;
-    var n = target.parentNode;
+    var n = $(target.parentNode);
     while (n && n.id != "reslist") {
       if (n.hasClassName("res-primitive") || n.hasClassName("res-clone") || n.hasClassName("res-group")) {
         c++;
@@ -206,7 +206,7 @@ function popup_op_menu(e)
       if (n.hasClassName("res-ms")) {
         isMs = true;
       }
-      n = n.parentNode;
+      n = $(n.parentNode);
     }
     if (c == 1) {
       // Top-level item (for primitive in group this would be 2)
