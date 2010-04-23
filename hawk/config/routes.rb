@@ -37,14 +37,28 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resource :session
 
+  # TODO(should): resources & nodes become Rails resources, look at RESTful routing
+  map.with_options :controller => 'main' do |main|
+    # status, etc.
+    main.default      'main',              :action => 'index'
+    main.index        'main/index',        :action => 'index'
+    main.status       'main/status',       :action => 'status'
+    main.gettext      'main/gettext',      :action => 'gettext'
+
+    # resoruce ops
+    main.resource_op  'main/resource/:op', :action => 'resource_op', :conditions => { :method => :post },
+                      :op => /(start|stop|unmigrate|promote|demote|cleanup)/
+    main.resource_migrate 'main/resource/migrate', :action => 'resource_migrate', :conditions => { :method => :post }
+
+    # node ops
+    main.node_standby 'main/node/:op',     :action => 'node_standby', :conditions => { :method => :post },
+                      :op => /(standby|online)/
+    main.node_fence   'main/node/fence',   :action => 'node_fence',  :conditions => { :method => :post }
+  end
+
   map.root :controller => "main"
 
   map.login '/login', :controller => 'sessions', :action => 'new'
   map.logout '/logout', :controller => 'sessions', :action => 'destroy'
 
-  # Install the default routes as the lowest priority.
-  # Note: These default routes make all actions in every controller accessible via GET requests. You should
-  # consider removing or commenting them out if you're using named routes and resources.
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
 end

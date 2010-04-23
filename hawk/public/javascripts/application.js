@@ -274,7 +274,7 @@ function perform_op(type, id, op, extra)
   else if(c.hasClassName("rs-error"))     state = "error";
   $(type + "::" + id + "::menu").firstDescendant().src = "/images/spinner-16x16-" + state + ".gif";
 
-  new Ajax.Request("/main/" + type + "_" + op, {
+  new Ajax.Request("/main/" + type + "/" + op, {
     parameters: type + "=" + id + (extra ? "&" + extra : ""),
     onSuccess:  function(request) {
       // Remove spinner (a spinner that stops too early is marginally better than one that never stops)

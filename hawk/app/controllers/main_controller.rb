@@ -566,34 +566,23 @@ class MainController < ApplicationController
     end
   end
 
+  # standby/online (op validity guaranteed by routes)
   def node_standby
     if params[:node]
-      invoke '/usr/sbin/crm_standby', '-N', params[:node], '-v', 'on'
+      invoke '/usr/sbin/crm_standby', '-N', params[:node], '-v', params[:op] == 'standby' ? 'on' : 'off'
     else
       render :status => 400, :json => {
-        :error => _('Required parameter "resource" not specified')
+        :error => _('Required parameter "node" not specified')
       }
     end
   end
 
-  # TODO(should): consolidate...
-  def node_online
-    if params[:node]
-      invoke '/usr/sbin/crm_standby', '-N', params[:node], '-v', 'off'
-    else
-      render :status => 400, :json => {
-        :error => _('Required parameter "resource" not specified')
-      }
-    end
-  end
-
-  # TODO(should): as above
   def node_fence
     if params[:node]
       invoke '/usr/sbin/crm_attribute', '-t', 'status', '-U', params[:node], '-n', 'terminate', '-v', 'true'
     else
       render :status => 400, :json => {
-        :error => _('Required parameter "resource" not specified')
+        :error => _('Required parameter "node" not specified')
       }
     end
   end
@@ -602,21 +591,11 @@ class MainController < ApplicationController
 #    head :ok
 #  end
 
+  # start, stop, etc. (op validity guaranteed by routes)
   # TODO(should): exceptions to handle missing params
-  def resource_start
+  def resource_op
     if params[:resource]
-      invoke '/usr/sbin/crm', 'resource', 'start', params[:resource]
-    else
-      render :status => 400, :json => {
-        :error => _('Required parameter "resource" not specified')
-      }
-    end
-  end
-
-  # TODO(should): seriously, we have three almost identical functions here, this is just silly...
-  def resource_stop
-    if params[:resource]
-      invoke '/usr/sbin/crm', 'resource', 'stop', params[:resource]
+      invoke '/usr/sbin/crm', 'resource', params[:op], params[:resource]
     else
       render :status => 400, :json => {
         :error => _('Required parameter "resource" not specified')
@@ -630,47 +609,6 @@ class MainController < ApplicationController
     else
       render :status => 400, :json => {
         :error => _('Required parameters "resource" and "node" not specified')
-      }
-    end
-  end
-
-  def resource_unmigrate
-    if params[:resource]
-      invoke '/usr/sbin/crm', 'resource', 'unmigrate', params[:resource]
-    else
-      render :status => 400, :json => {
-        :error => _('Required parameter "resource" not specified')
-      }
-    end
-  end
-
-  def resource_promote
-    if params[:resource]
-      invoke '/usr/sbin/crm', 'resource', 'promote', params[:resource]
-    else
-      render :status => 400, :json => {
-        :error => _('Required parameter "resource" not specified')
-      }
-    end
-  end
-
-  def resource_demote
-    if params[:resource]
-      invoke '/usr/sbin/crm', 'resource', 'demote', params[:resource]
-    else
-      render :status => 400, :json => {
-        :error => _('Required parameter "resource" not specified')
-      }
-    end
-  end
-
-  # TODO(should): do I really need to keep saying this?
-  def resource_cleanup
-    if params[:resource]
-      invoke '/usr/sbin/crm', 'resource', 'cleanup', params[:resource]
-    else
-      render :status => 400, :json => {
-        :error => _('Required parameter "resource" not specified')
       }
     end
   end
