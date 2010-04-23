@@ -35,16 +35,13 @@ class SessionsController < ApplicationController
     @title = _('Log In')
   end
 
-  def index
-    new
-    return
-  end
-
   def show
+    redirect_to :action => 'new'
   end
 
   def new
-    # render login screen
+    # render login screen if not already logged in
+    redirect_back_or_default root_url if authorized?
   end
 
   # called from login screen
