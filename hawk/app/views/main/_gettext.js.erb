@@ -1,58 +1,58 @@
 var GETTEXT = {
   // Dialog buttons
   ok: function() {
-    return "<%= _('OK') %>";
+    return "<%= escape_javascript _('OK') %>";
   },
   cancel: function() {
-    return "<%= _('Cancel') %>";
+    return "<%= escape_javascript _('Cancel') %>";
   },
   yes: function() {
-    return "<%= _('Yes') %>";
+    return "<%= escape_javascript _('Yes') %>";
   },
   no: function() {
-    return "<%= _('No') %>";
+    return "<%= escape_javascript _('No') %>";
   },
   // Node ops
   node_online: function(node) {
-    return "<%= _('This will bring node %s online if it is currently on standby.  Do you want to continue?') % '_NODE_' %>".replace('_NODE_', node);
+    return "<%= escape_javascript _('This will bring node %s online if it is currently on standby.  Do you want to continue?') % '_NODE_' %>".replace('_NODE_', node);
   },
   node_standby: function(node) {
-    return "<%= _('This will put node %s on standby.  All resources will be stopped and/or moved to another node.  Do you want to continue?') % '_NODE_' %>".replace('_NODE_', node);
+    return "<%= escape_javascript _('This will put node %s on standby.  All resources will be stopped and/or moved to another node.  Do you want to continue?') % '_NODE_' %>".replace('_NODE_', node);
   },
   node_fence: function(node) {
-    return "<%= _('This will attempt to immediately fence node %s.  Do you want to continue?') % '_NODE_' %>".replace('_NODE_', node);
+    return "<%= escape_javascript _('This will attempt to immediately fence node %s.  Do you want to continue?') % '_NODE_' %>".replace('_NODE_', node);
   },
   // Resource ops
   resource_start: function(res) {
-    return "<%= _('This will start the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
+    return "<%= escape_javascript _('This will start the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
   },
   resource_stop: function(res) {
-    return "<%= _('This will stop the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
+    return "<%= escape_javascript _('This will stop the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
   },
   resource_migrate: function(res) {
-    return "<%= _('Move resource %s:') % '_RES_' %>".replace('_RES_', res);
+    return "<%= escape_javascript _('Move resource %s:') % '_RES_' %>".replace('_RES_', res);
   },
   resource_migrate_to: function(node) {
-    return "<%= _('To node %s') % '_NODE_' %>".replace('_NODE_', node);
+    return "<%= escape_javascript _('To node %s') % '_NODE_' %>".replace('_NODE_', node);
   },
   resource_migrate_away: function() {
-    return "<%= _('Away from current node') %>";
+    return "<%= escape_javascript _('Away from current node') %>";
   },
   resource_unmigrate: function(res) {
-    return "<%= _('This will clear any relocation constraints set on the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
+    return "<%= escape_javascript _('This will clear any relocation constraints set on the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
   },
   resource_promote: function(res) {
-    return "<%= _('This will promote the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
+    return "<%= escape_javascript _('This will promote the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
   },
   resource_demote: function(res) {
-    return "<%= _('This will demote the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
+    return "<%= escape_javascript _('This will demote the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
   },
   resource_cleanup: function(res) {
-    return "<%= _('This will clean up the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
+    return "<%= escape_javascript _('This will clean up the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
   },
   // Errors
   err_unexpected: function(msg) {
-    return "<%= _('Unexpected server error: %s') % '_MSG_' %>".replace('_MSG_', msg);
+    return "<%= escape_javascript _('Unexpected server error: %s') % '_MSG_' %>".replace('_MSG_', msg);
   }
 };
 
