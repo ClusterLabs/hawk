@@ -1,5 +1,5 @@
 #
-# spec file for package hawk (Version 0.3.4)
+# spec file for package hawk (Version 0.3.5)
 #
 # Copyright (c) 2010 SUSE LINUX Products GmbH, Nuernberg, Germany.
 #
@@ -33,7 +33,7 @@
 
 Name:		hawk
 Summary:	HA Web Konsole
-Version:	0.3.4
+Version:	0.3.5
 Release:	0
 License:	GPL v2 only
 Group:		%{pkg_group}
