@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
-"POT-Creation-Date: 2010-03-06 00:44+1100\n"
-"PO-Revision-Date: 2010-03-25 08:04\n"
+"POT-Creation-Date: 2010-04-23 19:45+1000\n"
+"PO-Revision-Date: 2010-05-06 13:58\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,116 +13,145 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/main_controller.rb:133
-#: app/controllers/main_controller.rb:134
-#: app/controllers/main_controller.rb:143
+#: app/controllers/main_controller.rb:49
+msgid "%{cmd} failed (status: %{status})"
+msgstr "%{cmd} mislukt (status: %{status})"
+
+#: app/controllers/main_controller.rb:148
+#: app/controllers/main_controller.rb:149
+#: app/controllers/main_controller.rb:158
 msgid "Unknown"
 msgstr "Onbekend"
 
-#: app/controllers/main_controller.rb:146
-#: app/controllers/main_controller.rb:147
+#: app/controllers/main_controller.rb:161
+#: app/controllers/main_controller.rb:162 app/views/main/_gettext.js.erb:10
 msgid "Yes"
 msgstr "Ja"
 
-#: app/controllers/main_controller.rb:146
-#: app/controllers/main_controller.rb:147
+#: app/controllers/main_controller.rb:161
+#: app/controllers/main_controller.rb:162 app/views/main/_gettext.js.erb:13
 msgid "No"
 msgstr "Nee"
 
-#: app/controllers/main_controller.rb:210 app/views/main/_menus.html.erb:4
+#: app/controllers/main_controller.rb:225 app/views/main/_menus.html.erb:4
 msgid "Online"
 msgstr "Online"
 
-#: app/controllers/main_controller.rb:213
+#: app/controllers/main_controller.rb:228
 msgid "Offline"
 msgstr "Offline"
 
-#: app/controllers/main_controller.rb:216
+#: app/controllers/main_controller.rb:231
 msgid "Pending"
 msgstr "Onderweg"
 
-#: app/controllers/main_controller.rb:219 app/views/main/_menus.html.erb:5
+#: app/controllers/main_controller.rb:234 app/views/main/_menus.html.erb:5
 msgid "Standby"
 msgstr "Standby"
 
-#: app/controllers/main_controller.rb:223
+#: app/controllers/main_controller.rb:238
 msgid "Unclean"
 msgstr "Niet opgeschoond"
 
-#: app/controllers/main_controller.rb:233
+#: app/controllers/main_controller.rb:248
 msgid "%{node}: %{status}"
 msgstr "%{node}: %{status}"
 
-#: app/controllers/main_controller.rb:340
+#: app/controllers/main_controller.rb:363
 msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
 msgstr "Mislukte bewerking: knooppunt=%{node}, resource=%{resource}, gespreks-id=%{call_id}, bewerking=%{op}, rc-code=%{rc_code}"
 
-#: app/controllers/main_controller.rb:360
-msgid "%{id}: Stopped"
-msgstr "%{id}: Gestopt"
+#: app/controllers/main_controller.rb:386
+msgid "%{id}: Master: %{nodelist}"
+msgstr "%{id}: Master: %{nodelist}"
 
-#: app/controllers/main_controller.rb:362
+#: app/controllers/main_controller.rb:391
+msgid "%{id}: Slave: %{nodelist}"
+msgstr "%{id}: Slave: %{nodelist}"
+
+#: app/controllers/main_controller.rb:394
 msgid "%{id}: Started: %{nodelist}"
 msgstr "%{id}: Gestart: %{nodelist}"
 
-#: app/controllers/main_controller.rb:392
+#: app/controllers/main_controller.rb:397
+msgid "%{id}: Stopped"
+msgstr "%{id}: Gestopt"
+
+#: app/controllers/main_controller.rb:428
 msgid "Group: %{id}"
 msgstr "Groep: %{id}"
 
-#: app/controllers/main_controller.rb:427
+#: app/controllers/main_controller.rb:464
+msgid "Master/Slave Set: %{id}"
+msgstr "Master-/slaveset: %{id}"
+
+#: app/controllers/main_controller.rb:464
 msgid "Clone Set: %{id}"
 msgstr "Kloonset: %{id}"
 
-#: app/controllers/main_controller.rb:470
+#: app/controllers/main_controller.rb:507
 msgid "%{cmd} failed (status: %{status}, output was: %{output})"
 msgstr "%{cmd} mislukt (status: %{status}, uitvoer was: %{output})"
 
-#: app/controllers/main_controller.rb:476
+#: app/controllers/main_controller.rb:513
 msgid "Unable to execute %{cmd}"
 msgstr "Kan %{cmd} niet uitvoeren"
 
-#: app/controllers/main_controller.rb:479
+#: app/controllers/main_controller.rb:516
 msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
 msgstr "Pacemaker lijkt niet geïnstalleerd (%{cmd} niet gevonden)"
 
-#: app/controllers/main_controller.rb:492
+#: app/controllers/main_controller.rb:533
 msgid "Cluster Status"
 msgstr "Clusterstatus"
 
-#: app/controllers/main_controller.rb:500
+#: app/controllers/main_controller.rb:541
 msgid "1 node configured"
 msgid_plural "%{num} nodes configured"
 msgstr[0] "1 knooppunt geconfigureerd"
 msgstr[1] "%{num} knooppunten geconfigureerd"
 
-#: app/controllers/main_controller.rb:509
+#: app/controllers/main_controller.rb:550
 msgid "1 resource configured"
 msgid_plural "%{num} resources configured"
 msgstr[0] "1 resource geconfigureerd"
 msgstr[1] "%{num} resources geconfigureerd"
+
+#: app/controllers/main_controller.rb:575
+#: app/controllers/main_controller.rb:585
+msgid "Required parameter \"node\" not specified"
+msgstr "Vereiste parameter \"node\" is niet opgegeven"
+
+#: app/controllers/main_controller.rb:601
+msgid "Required parameter \"resource\" not specified"
+msgstr "Vereiste parameter \"resource\" is niet opgegeven"
+
+#: app/controllers/main_controller.rb:611
+msgid "Required parameters \"resource\" and \"node\" not specified"
+msgstr "Vereiste parameters \"resource\" en \"node\" zijn niet opgegeven"
 
 #: app/controllers/sessions_controller.rb:35
 #: app/views/sessions/new.html.erb:16
 msgid "Log In"
 msgstr "Aanmelden"
 
-#: app/controllers/sessions_controller.rb:54
+#: app/controllers/sessions_controller.rb:51
 msgid "Username not specified"
 msgstr "Gebruikersnaam is niet opgegeven."
 
-#: app/controllers/sessions_controller.rb:58
+#: app/controllers/sessions_controller.rb:55
 msgid "Invalid username"
 msgstr "Ongeldige gebruikersnaam"
 
-#: app/controllers/sessions_controller.rb:61
+#: app/controllers/sessions_controller.rb:58
 msgid "Password not specified"
 msgstr "Geen wachtwoord opgegeven"
 
-#: app/controllers/sessions_controller.rb:76
+#: app/controllers/sessions_controller.rb:73
 msgid "Invalid username or password"
 msgstr "Ongeldige gebruikersnaam of ongeldig wachtwoord"
 
-#: app/controllers/sessions_controller.rb:80
+#: app/controllers/sessions_controller.rb:77
 msgid "%s is not installed"
 msgstr "%s is niet geïnstalleerd."
 
@@ -134,19 +163,19 @@ msgstr "Gebruikersnaam:"
 msgid "Password:"
 msgstr "Wachtwoord:"
 
-#: app/views/layouts/main.html.erb:16
+#: app/views/layouts/main.html.erb:17
 msgid "User: %{user}"
 msgstr "Gebruiker: %{user}"
 
-#: app/views/layouts/main.html.erb:17
+#: app/views/layouts/main.html.erb:18
 msgid "Log Out"
 msgstr "Afmelden"
 
-#: app/views/layouts/main.html.erb:33
+#: app/views/layouts/main.html.erb:34
 msgid "Host: %s"
 msgstr "Host: %s"
 
-#: app/views/layouts/main.html.erb:34
+#: app/views/layouts/main.html.erb:35
 msgid "Copyright &copy; 2009-2010 Novell, Inc."
 msgstr "Copyright &copy; 2009-2010 Novell, Inc."
 
@@ -191,6 +220,82 @@ msgid "Stop"
 msgstr "Stoppen"
 
 #: app/views/main/_menus.html.erb:13
+msgid "Move..."
+msgstr "Verplaatsen..."
+
+#: app/views/main/_menus.html.erb:14
+msgid "Drop Relocation Rule"
+msgstr "Verplaatsingsregel negeren"
+
+#: app/views/main/_menus.html.erb:15
+msgid "Promote"
+msgstr "Bevorderen"
+
+#: app/views/main/_menus.html.erb:16
+msgid "Demote"
+msgstr "Degraderen"
+
+#: app/views/main/_menus.html.erb:17
 msgid "Clean Up"
 msgstr "Opruimen"
+
+#: app/views/main/_gettext.js.erb:4
+msgid "OK"
+msgstr "Ok"
+
+#: app/views/main/_gettext.js.erb:7
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: app/views/main/_gettext.js.erb:17
+msgid "This will bring node %s online if it is currently on standby.  Do you want to continue?"
+msgstr "Hiermee wordt knooppunt %s online geplaatst als het momenteel stand-by is. Wilt u verdergaan?"
+
+#: app/views/main/_gettext.js.erb:20
+msgid "This will put node %s on standby.  All resources will be stopped and/or moved to another node.  Do you want to continue?"
+msgstr "Hiermee wordt knooppunt %s in stand-by gezet. Alle resources worden gestopt en/of verplaatst naar een ander knooppunt. Wilt u verdergaan?"
+
+#: app/views/main/_gettext.js.erb:23
+msgid "This will attempt to immediately fence node %s.  Do you want to continue?"
+msgstr "Hiermee wordt geprobeerd knooppunt %s in te perken. Wilt u verdergaan?"
+
+#: app/views/main/_gettext.js.erb:27
+msgid "This will start the resource %s.  Do you want to continue?"
+msgstr "Hiermee wordt resource %s gestart. Wilt u verdergaan?"
+
+#: app/views/main/_gettext.js.erb:30
+msgid "This will stop the resource %s.  Do you want to continue?"
+msgstr "Hiermee wordt resource %s gestopt. Wilt u verdergaan?"
+
+#: app/views/main/_gettext.js.erb:33
+msgid "Move resource %s:"
+msgstr "resource %s verplaatsen:"
+
+#: app/views/main/_gettext.js.erb:36
+msgid "To node %s"
+msgstr "Naar knooppunt %s"
+
+#: app/views/main/_gettext.js.erb:39
+msgid "Away from current node"
+msgstr "Weg van huidig knooppunt"
+
+#: app/views/main/_gettext.js.erb:42
+msgid "This will clear any relocation constraints set on the resource %s.  Do you want to continue?"
+msgstr "Hiermee worden verplaatsingsbeperkingen voor faciliteit %s gewist."
+
+#: app/views/main/_gettext.js.erb:45
+msgid "This will promote the resource %s.  Do you want to continue?"
+msgstr "Hiermee wordt de resource %s bevorderd. Wilt u verdergaan?"
+
+#: app/views/main/_gettext.js.erb:48
+msgid "This will demote the resource %s.  Do you want to continue?"
+msgstr "Hiermee wordt de resource %s gedegradeerd. Wilt u verdergaan?"
+
+#: app/views/main/_gettext.js.erb:51
+msgid "This will clean up the resource %s.  Do you want to continue?"
+msgstr "Hiermee wordt de resource %s opgeschoond. Wilt u verdergaan?"
+
+#: app/views/main/_gettext.js.erb:55
+msgid "Unexpected server error: %s"
+msgstr "Onverwachte serverfout: %s"
 

@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
-"POT-Creation-Date: 2010-03-06 00:44+1100\n"
-"PO-Revision-Date: 2010-03-24 12:28\n"
+"POT-Creation-Date: 2010-04-23 19:45+1000\n"
+"PO-Revision-Date: 2010-05-06 08:02\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "MIME-Version: 1.0\n"
@@ -13,116 +13,145 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: app/controllers/main_controller.rb:133
-#: app/controllers/main_controller.rb:134
-#: app/controllers/main_controller.rb:143
+#: app/controllers/main_controller.rb:49
+msgid "%{cmd} failed (status: %{status})"
+msgstr "%{cmd} ha fallado (estado: %{status})"
+
+#: app/controllers/main_controller.rb:148
+#: app/controllers/main_controller.rb:149
+#: app/controllers/main_controller.rb:158
 msgid "Unknown"
 msgstr "Desconocido"
 
-#: app/controllers/main_controller.rb:146
-#: app/controllers/main_controller.rb:147
+#: app/controllers/main_controller.rb:161
+#: app/controllers/main_controller.rb:162 app/views/main/_gettext.js.erb:10
 msgid "Yes"
 msgstr "Sí"
 
-#: app/controllers/main_controller.rb:146
-#: app/controllers/main_controller.rb:147
+#: app/controllers/main_controller.rb:161
+#: app/controllers/main_controller.rb:162 app/views/main/_gettext.js.erb:13
 msgid "No"
 msgstr "No"
 
-#: app/controllers/main_controller.rb:210 app/views/main/_menus.html.erb:4
+#: app/controllers/main_controller.rb:225 app/views/main/_menus.html.erb:4
 msgid "Online"
 msgstr "Conectado"
 
-#: app/controllers/main_controller.rb:213
+#: app/controllers/main_controller.rb:228
 msgid "Offline"
 msgstr "Desconectado"
 
-#: app/controllers/main_controller.rb:216
+#: app/controllers/main_controller.rb:231
 msgid "Pending"
 msgstr "Pendiente"
 
-#: app/controllers/main_controller.rb:219 app/views/main/_menus.html.erb:5
+#: app/controllers/main_controller.rb:234 app/views/main/_menus.html.erb:5
 msgid "Standby"
 msgstr "En espera"
 
-#: app/controllers/main_controller.rb:223
+#: app/controllers/main_controller.rb:238
 msgid "Unclean"
 msgstr "No está vacío"
 
-#: app/controllers/main_controller.rb:233
+#: app/controllers/main_controller.rb:248
 msgid "%{node}: %{status}"
 msgstr "%{node}: %{status}"
 
-#: app/controllers/main_controller.rb:340
+#: app/controllers/main_controller.rb:363
 msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
 msgstr "Error en la operación: nodo=%{node}, recurso=%{resource}, ID de llamada=%{call_id}, operación=%{op}, código de rc=%{rc_code}"
 
-#: app/controllers/main_controller.rb:360
-msgid "%{id}: Stopped"
-msgstr "%{id}: Detenido"
+#: app/controllers/main_controller.rb:386
+msgid "%{id}: Master: %{nodelist}"
+msgstr "%{id}: Principal: %{nodelist}"
 
-#: app/controllers/main_controller.rb:362
+#: app/controllers/main_controller.rb:391
+msgid "%{id}: Slave: %{nodelist}"
+msgstr "%{id}: Esclavo: %{nodelist}"
+
+#: app/controllers/main_controller.rb:394
 msgid "%{id}: Started: %{nodelist}"
 msgstr "%{id}: Iniciado: %{nodelist}"
 
-#: app/controllers/main_controller.rb:392
+#: app/controllers/main_controller.rb:397
+msgid "%{id}: Stopped"
+msgstr "%{id}: Detenido"
+
+#: app/controllers/main_controller.rb:428
 msgid "Group: %{id}"
 msgstr "Grupo: %{id}"
 
-#: app/controllers/main_controller.rb:427
+#: app/controllers/main_controller.rb:464
+msgid "Master/Slave Set: %{id}"
+msgstr "Principal/Conjunto esclavo: %{id}"
+
+#: app/controllers/main_controller.rb:464
 msgid "Clone Set: %{id}"
 msgstr "Clonar conjunto: %{id}"
 
-#: app/controllers/main_controller.rb:470
+#: app/controllers/main_controller.rb:507
 msgid "%{cmd} failed (status: %{status}, output was: %{output})"
 msgstr "Error de %{cmd} (estado: %{status}, la salida fue: %{output})"
 
-#: app/controllers/main_controller.rb:476
+#: app/controllers/main_controller.rb:513
 msgid "Unable to execute %{cmd}"
 msgstr "No es posible ejecutar %{cmd}"
 
-#: app/controllers/main_controller.rb:479
+#: app/controllers/main_controller.rb:516
 msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
 msgstr "Parece que Pacemaker no está instalado (no se encuentra %{cmd})"
 
-#: app/controllers/main_controller.rb:492
+#: app/controllers/main_controller.rb:533
 msgid "Cluster Status"
 msgstr "Estado del clúster"
 
-#: app/controllers/main_controller.rb:500
+#: app/controllers/main_controller.rb:541
 msgid "1 node configured"
 msgid_plural "%{num} nodes configured"
 msgstr[0] "1 nodo configurado"
 msgstr[1] "%{num} nodos configurados"
 
-#: app/controllers/main_controller.rb:509
+#: app/controllers/main_controller.rb:550
 msgid "1 resource configured"
 msgid_plural "%{num} resources configured"
 msgstr[0] "1 recurso configurado"
 msgstr[1] "%{num} recursos configurados"
+
+#: app/controllers/main_controller.rb:575
+#: app/controllers/main_controller.rb:585
+msgid "Required parameter \"node\" not specified"
+msgstr "Parámetro requerido \"node\" no especificado"
+
+#: app/controllers/main_controller.rb:601
+msgid "Required parameter \"resource\" not specified"
+msgstr "Parámetro requerido \"resource\" no especificado"
+
+#: app/controllers/main_controller.rb:611
+msgid "Required parameters \"resource\" and \"node\" not specified"
+msgstr "Parámetros requeridos \"resource\" y \"node\" no especificados"
 
 #: app/controllers/sessions_controller.rb:35
 #: app/views/sessions/new.html.erb:16
 msgid "Log In"
 msgstr "Entrar"
 
-#: app/controllers/sessions_controller.rb:54
+#: app/controllers/sessions_controller.rb:51
 msgid "Username not specified"
 msgstr "No se ha especificado el nombre de usuario"
 
-#: app/controllers/sessions_controller.rb:58
+#: app/controllers/sessions_controller.rb:55
 msgid "Invalid username"
 msgstr "Nombre de usuario no válido"
 
-#: app/controllers/sessions_controller.rb:61
+#: app/controllers/sessions_controller.rb:58
 msgid "Password not specified"
 msgstr "No se ha especificado la contraseña"
 
-#: app/controllers/sessions_controller.rb:76
+#: app/controllers/sessions_controller.rb:73
 msgid "Invalid username or password"
 msgstr "Nombre de usuario o contraseña no válidos"
 
-#: app/controllers/sessions_controller.rb:80
+#: app/controllers/sessions_controller.rb:77
 msgid "%s is not installed"
 msgstr "%s no está instalado"
 
@@ -134,19 +163,19 @@ msgstr "Usuario:"
 msgid "Password:"
 msgstr "Contraseña:"
 
-#: app/views/layouts/main.html.erb:16
+#: app/views/layouts/main.html.erb:17
 msgid "User: %{user}"
 msgstr "usuario: %{user}"
 
-#: app/views/layouts/main.html.erb:17
+#: app/views/layouts/main.html.erb:18
 msgid "Log Out"
 msgstr "Salir"
 
-#: app/views/layouts/main.html.erb:33
+#: app/views/layouts/main.html.erb:34
 msgid "Host: %s"
 msgstr "Host: %s"
 
-#: app/views/layouts/main.html.erb:34
+#: app/views/layouts/main.html.erb:35
 msgid "Copyright &copy; 2009-2010 Novell, Inc."
 msgstr "Copyright &copy; 2009-2010 Novell, Inc."
 
@@ -191,6 +220,82 @@ msgid "Stop"
 msgstr "Detener"
 
 #: app/views/main/_menus.html.erb:13
+msgid "Move..."
+msgstr "Mover…"
+
+#: app/views/main/_menus.html.erb:14
+msgid "Drop Relocation Rule"
+msgstr "Regla para trasladar al soltar"
+
+#: app/views/main/_menus.html.erb:15
+msgid "Promote"
+msgstr "Subir"
+
+#: app/views/main/_menus.html.erb:16
+msgid "Demote"
+msgstr "Bajar"
+
+#: app/views/main/_menus.html.erb:17
 msgid "Clean Up"
 msgstr "Limpiar"
+
+#: app/views/main/_gettext.js.erb:4
+msgid "OK"
+msgstr "Aceptar"
+
+#: app/views/main/_gettext.js.erb:7
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: app/views/main/_gettext.js.erb:17
+msgid "This will bring node %s online if it is currently on standby.  Do you want to continue?"
+msgstr "Esta acción hará que el nodo %s pase a estar en línea si actualmente está en modo de espera. ¿Desea continuar?"
+
+#: app/views/main/_gettext.js.erb:20
+msgid "This will put node %s on standby.  All resources will be stopped and/or moved to another node.  Do you want to continue?"
+msgstr "Esta acción hará que el nodo %s pase a modo de espera. Todos los recursos se detendrán o moverán a otro nodo. ¿Desea continuar?"
+
+#: app/views/main/_gettext.js.erb:23
+msgid "This will attempt to immediately fence node %s.  Do you want to continue?"
+msgstr "Esta acción intentará delimitar el nodo %s inmediatamente. ¿Desea continuar?"
+
+#: app/views/main/_gettext.js.erb:27
+msgid "This will start the resource %s.  Do you want to continue?"
+msgstr "Esta acción iniciará el recurso %s. ¿Desea continuar?"
+
+#: app/views/main/_gettext.js.erb:30
+msgid "This will stop the resource %s.  Do you want to continue?"
+msgstr "Esta acción detendrá el recurso %s. ¿Desea continuar?"
+
+#: app/views/main/_gettext.js.erb:33
+msgid "Move resource %s:"
+msgstr "Mover recurso %s:"
+
+#: app/views/main/_gettext.js.erb:36
+msgid "To node %s"
+msgstr "Al nodo %s"
+
+#: app/views/main/_gettext.js.erb:39
+msgid "Away from current node"
+msgstr "Lejos del nodo actual"
+
+#: app/views/main/_gettext.js.erb:42
+msgid "This will clear any relocation constraints set on the resource %s.  Do you want to continue?"
+msgstr "Esta acción eliminará cualquier restricción de traslado definida en el recurso %s. ¿Desea continuar?"
+
+#: app/views/main/_gettext.js.erb:45
+msgid "This will promote the resource %s.  Do you want to continue?"
+msgstr "Esta acción hará subir el recurso %s. ¿Desea continuar?"
+
+#: app/views/main/_gettext.js.erb:48
+msgid "This will demote the resource %s.  Do you want to continue?"
+msgstr "Esta acción hará bajar el recurso %s. ¿Desea continuar?"
+
+#: app/views/main/_gettext.js.erb:51
+msgid "This will clean up the resource %s.  Do you want to continue?"
+msgstr "Esta acción limpiará el recurso %s. ¿Desea continuar?"
+
+#: app/views/main/_gettext.js.erb:55
+msgid "Unexpected server error: %s"
+msgstr "Error inesperado en el servidor: %s"
 
