@@ -1,4 +1,4 @@
-<div id="summary"<%= ' style="display: none"' unless @cib_up %>>
+<div id="summary"<%= ' style="display: none"' if @cib_epoch.empty? %>>
   <table>
     <tr><th><%= _('Cluster Stack:') %></th>       <td><span id="summary::stack"><%=h @summary[:stack] %></span></td></tr>
     <tr><th><%= _('Pacemaker Version:') %></th>   <td><span id="summary::version"><%=h @summary[:version] %></span></td></tr>

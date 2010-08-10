@@ -123,7 +123,7 @@ server.groupname = "haclient"
 ##
 server.pid-file = state_dir + "/hawk.pid"
 
-server.modules           = ( "mod_rewrite", "mod_access", "mod_accesslog", "mod_fastcgi", "mod_compress", "mod_expire" )
+server.modules           = ( "mod_rewrite", "mod_access", "mod_accesslog", "mod_cgi", "mod_fastcgi", "mod_compress", "mod_expire" )
 
 server.error-handler-404 = "/dispatch.fcgi"
 server.document-root     = "@WWW_BASE@/hawk/public/"
@@ -153,6 +153,8 @@ fastcgi.server      = ( ".fcgi" => ( "localhost" => (
   "bin-path"        => "@WWW_BASE@/hawk/public/dispatch.fcgi",
   "bin-environment" => ( "RAILS_ENV" => "production" )
 ) ) )
+
+cgi.assign = ( "/monitor" => "" )
 
 mimetype.assign = (
   ".css"        =>  "text/css",

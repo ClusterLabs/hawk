@@ -143,7 +143,7 @@ class MainController < ApplicationController
     # everything empty.  Status display can key off non-empty @summary
     return unless @cib.root
 
-    @cib_up = true
+    @cib_epoch = "#{get_xml_attr(@cib.root, 'admin_epoch')}:#{get_xml_attr(@cib.root, 'epoch')}:#{get_xml_attr(@cib.root, 'num_updates')}"
 
     @summary[:stack]    = get_property('cluster-infrastructure') || _('Unknown')
     @summary[:version]  = get_property('dc-version') || _('Unknown')
@@ -492,7 +492,7 @@ class MainController < ApplicationController
     @cib = nil
     
     # Everything we're showing status of
-    @cib_up     = false
+    @cib_epoch  = ""
     @errors     = []
     @summary    = {}
     @nodes      = []
@@ -556,7 +556,7 @@ class MainController < ApplicationController
       format.html # status.html.erb
       format.json {
         render :json => {
-          :cib_up     => @cib_up,
+          :cib_epoch  => @cib_epoch,
           :errors     => @errors,
           :summary    => @summary,
           :nodes      => @node_panel,

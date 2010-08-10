@@ -135,12 +135,14 @@ function update_panel(panel)
 // Um...  what's "object" for?
 function handle_update(request, object)
 {
+  var new_epoch = "";
   // TODO(should): really should be using Ajax.Request onSuccess to
   // trigger this callback...
   if (request.responseJSON) {
     update_errors(request.responseJSON.errors);
 
-    if (request.responseJSON.cib_up) {
+    new_epoch = request.responseJSON.cib_epoch;
+    if (new_epoch != "") {
       $("summary").show();
       update_summary(request.responseJSON.summary);
 
@@ -163,7 +165,7 @@ function handle_update(request, object)
       $("reslist").hide();
     }
   }
-  do_update();
+  do_update(new_epoch);
 }
 
 // Like string.split, but breaks on '::'
@@ -408,8 +410,14 @@ function modal_dialog(msg, params)
   $("dialog").setStyle(style).show();
 }
 
-function do_update()
+function do_update(cur_epoch)
 {
-  setTimeout("new Ajax.Request('/main/status', { parameters: 'format=json', asynchronous: true, onComplete: handle_update });", 15000);
+  new Ajax.Request('/monitor?' + cur_epoch, { method: 'get', onSuccess: function(transport) {
+    if (transport.responseJSON && transport.responseJSON.epoch != cur_epoch) {
+      new Ajax.Request('/main/status', { parameters: 'format=json', asynchronous: true, onComplete: handle_update });
+    } else {
+      do_update(transport.responseJSON.epoch);
+    }
+  } });
 }
 

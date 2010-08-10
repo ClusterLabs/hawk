@@ -11,6 +11,6 @@
 <%= render :partial => 'menus' %>
 
 <script type="text/javascript"><!--
-Event.observe(window, 'load', function() { init_menus(); do_update(); });
+Event.observe(window, 'load', function() { init_menus(); do_update('<%= @cib_epoch %>'); });
 //--></script>
 

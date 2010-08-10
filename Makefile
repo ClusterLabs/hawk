@@ -54,7 +54,7 @@ WWW_BASE = /srv/www
 # Override this to get a different init script (e.g. "redhat")
 INIT_STYLE = suse
 
-all: scripts/hawk.$(INIT_STYLE) hawk/config/lighttpd.conf tools/hawk_chkpwd
+all: scripts/hawk.$(INIT_STYLE) hawk/config/lighttpd.conf tools/hawk_chkpwd tools/hawk_monitor
 	(cd hawk; rake makemo; rake freeze:rails; rake freeze:gems)
 
 %: %.in
@@ -63,6 +63,11 @@ all: scripts/hawk.$(INIT_STYLE) hawk/config/lighttpd.conf tools/hawk_chkpwd
 tools/hawk_chkpwd: tools/hawk_chkpwd.c
 	gcc -o $@ $< -lpam
 
+tools/hawk_monitor: tools/hawk_monitor.c
+	gcc $(shell pkg-config --cflags glib-2.0) $(shell pkg-config --libs glib-2.0) \
+		-I/usr/include/pacemaker -I/usr/include/heartbeat \
+		-lcib -lcrmcommon -Wall \
+		-o $@ $<
 
 clean:
 	rm -rf hawk/locale
@@ -71,6 +76,8 @@ clean:
 	rm -rf hawk/log
 	rm -f hawk/config/lighttpd.conf
 	rm -f scripts/hawk.{suse,redhat}
+	rm -f tools/hawk_chkpwd
+	rm -f tools/hawk_monitor
 
 install:
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/log
@@ -89,6 +96,8 @@ install:
 	install -D -m 0755 scripts/hawk.$(INIT_STYLE) $(DESTDIR)/etc/init.d/hawk
 	install -D -m 4750 tools/hawk_chkpwd $(DESTDIR)/usr/sbin/hawk_chkpwd
 	-chown root.haclient $(DESTDIR)/usr/sbin/hawk_chkpwd
+	install -D -m 0755 tools/hawk_monitor $(DESTDIR)/usr/sbin/hawk_monitor
+	ln -s /usr/sbin/hawk_monitor $(DESTDIR)$(WWW_BASE)/hawk/public/monitor
 
 # Make a tar.bz2 named for the most recent human-readable tag
 archive:
