@@ -132,42 +132,6 @@ function update_panel(panel)
   return expand;
 }
 
-// Um...  what's "object" for?
-function handle_update(request, object)
-{
-  var new_epoch = "";
-  // TODO(should): really should be using Ajax.Request onSuccess to
-  // trigger this callback...
-  if (request.responseJSON) {
-    update_errors(request.responseJSON.errors);
-
-    new_epoch = request.responseJSON.cib_epoch;
-    if (new_epoch != "") {
-      $("summary").show();
-      update_summary(request.responseJSON.summary);
-
-      $("nodelist").show();
-      if (update_panel(request.responseJSON.nodes)) {
-        if ($("nodelist::children").hasClassName("closed")) {
-          expand_block("nodelist");
-        }
-      }
-
-      $("reslist").show();
-      if (update_panel(request.responseJSON.resources)) {
-        if ($("reslist::children").hasClassName("closed")) {
-          expand_block("reslist");
-        }
-      }
-    } else {
-      $("summary").hide();
-      $("nodelist").hide();
-      $("reslist").hide();
-    }
-  }
-  do_update(new_epoch);
-}
-
 // Like string.split, but breaks on '::'
 // TODO(could): think about changing our naming conventions so we don't need this.
 function dc_split(str)
@@ -412,12 +376,47 @@ function modal_dialog(msg, params)
 
 function do_update(cur_epoch)
 {
-  new Ajax.Request('/monitor?' + cur_epoch, { method: 'get', onSuccess: function(transport) {
-    if (transport.responseJSON && transport.responseJSON.epoch != cur_epoch) {
-      new Ajax.Request('/main/status', { parameters: 'format=json', asynchronous: true, onComplete: handle_update });
-    } else {
-      do_update(transport.responseJSON.epoch);
+  new Ajax.Request('/monitor?' + cur_epoch, { method: 'get',
+    onSuccess: function(transport) {
+      var new_epoch = transport.responseJSON ? transport.responseJSON.epoch : "";
+      if (new_epoch != cur_epoch) {
+        new Ajax.Request('/main/status?format=json', { method: 'get',
+          onSuccess: function(transport) {
+            var new_epoch = "";
+            if (transport.responseJSON) {
+              update_errors(transport.responseJSON.errors);
+
+              new_epoch = transport.responseJSON.cib_epoch;
+              if (new_epoch != "") {
+                $("summary").show();
+                update_summary(transport.responseJSON.summary);
+
+                $("nodelist").show();
+                if (update_panel(transport.responseJSON.nodes)) {
+                  if ($("nodelist::children").hasClassName("closed")) {
+                    expand_block("nodelist");
+                  }
+                }
+
+                $("reslist").show();
+                if (update_panel(transport.responseJSON.resources)) {
+                  if ($("reslist::children").hasClassName("closed")) {
+                    expand_block("reslist");
+                  }
+                }
+              } else {
+                $("summary").hide();
+                $("nodelist").hide();
+                $("reslist").hide();
+              }
+            }
+            do_update(new_epoch);
+          }
+        });
+      } else {
+        do_update(new_epoch);
+      }
     }
-  } });
+  });
 }
 
