@@ -56,6 +56,7 @@ BuildRequires:	pam-devel
 BuildRequires:	ruby-fcgi
 BuildRequires:	rubygem-rails-2_3
 BuildRequires:	fdupes
+BuildRequires:	glib2-devel libpacemaker-devel libxml2-devel
 # Require startproc respecting -p, bnc#559534#c44
 %if 0%{?suse_version} > 1110
 # 11.2 or newer; 
