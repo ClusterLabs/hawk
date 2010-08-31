@@ -312,34 +312,50 @@ class MainController < ApplicationController
 
       running_on = []
       master_on  = []
+      pending_on = []
 
       for node in @nodes
         lrm_resource = @cib.elements["cib/status/node_state[@uname='#{node[:uname]}']/lrm/lrm_resources/lrm_resource[@id='#{id}']"]
         next unless lrm_resource
-        ops = {}
-        lrm_resource.elements.each('lrm_rsc_op') do |op|
-          ops[op.attributes['call-id'].to_i] = {
-            :operation  => op.attributes['operation'],
-            :rc_code    => op.attributes['rc-code'].to_i,
-            :expected   => op.attributes['transition-key'].split(':')[2].to_i,
-            :interval   => op.attributes['interval'].to_i
-          }
-        end
+
         # logic derived somewhat from pacemaker/lib/pengine/unpack.c:unpack_rsc_op()
         state = :unknown
-        ops.keys.sort.each do |call_id|
-          # skip pending ops and notifies
-          next if call_id == -1 || ops[call_id][:operation] == 'notify'
+        ops = []
+        lrm_resource.elements.each('lrm_rsc_op') do |op|
+          ops << op
+        end
+        ops.sort{|a,b|
+          if a.attributes['transition-key'] == b.attributes['transition-key']
+            # transition keys match, newer call-id wins (ensures bogus pending
+            # ops lose to subsequent start/stop, see lf#2481)
+            a.attributes['call-id'].to_i <=> b.attributes['call-id'].to_i
+          elsif a.attributes['call-id'] == b.attributes['call-id']
+            # call-ids match, this should only happen if there's more than
+            # one bogus pending migrate op, e.g.: a resource has migrated
+            # away and back.  In this case, the larger graph number wins
+            a.attributes['transition-key'].split(':')[1].to_i <=> b.attributes['transition-key'].split(':')[1].to_i
+          elsif a.attributes['call-id'].to_i == -1
+            1                                         # make pending op most recent
+          elsif b.attributes['call-id'].to_i == -1
+            -1                                        # likewise
+          else
+            a.attributes['call-id'].to_i <=> b.attributes['call-id'].to_i
+          end
+        }.each do |op|
+          operation = op.attributes['operation']
+          rc_code = op.attributes['rc-code'].to_i
+          expected = op.attributes['transition-key'].split(':')[2].to_i
 
-          # logger.debug "node #{node[:uname]} resource #{id}: call-id=#{call_id} operation=#{ops[call_id][:operation]} rc-code=#{ops[call_id][:rc_code]}\n"
+          # skip notifies
+          next if operation == 'notify'
 
-          # do we need this?
-          is_probe = ops[call_id][:operation] == 'monitor' && ops[call_id][:interval] == 0
-
-          # TODO(should): what's this about expired failures? (unpack.c:1323)
+          if op.attributes['call-id'].to_i == -1
+            state = :pending
+            next
+          end
 
           # TODO(should): evil magic numbers!
-          case ops[call_id][:rc_code]
+          case rc_code
           when 7
             # not running on this node
             state = :stopped
@@ -348,9 +364,9 @@ class MainController < ApplicationController
             state = :master
           when 0
             # ok
-            if ops[call_id][:operation] == 'stop'
+            if operation == 'stop'
               state = :stopped
-            elsif ops[call_id][:operation] == 'promote'
+            elsif operation == 'promote'
               state = :master
             else
               # anything other than a stop means we're running (although might be
@@ -358,22 +374,23 @@ class MainController < ApplicationController
               state = :running
             end
           end
-          if state != :running && state != :master && ops[call_id][:rc_code] != ops[call_id][:expected]
+          if state != :running && state != :master && rc_code != expected
             # busted somehow
             @errors << _('Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}') %
-              { :node => node[:uname], :resource => id, :call_id => call_id, :op => ops[call_id][:operation], :rc_code => ops[call_id][:rc_code] }
+              { :node => node[:uname], :resource => id, :call_id => op.attributes['call-id'], :op => operation, :rc_code => rc_code }
           end
         end
         running_on << node[:uname] if state == :running
         master_on  << node[:uname] if state == :master
+        pending_on << node[:uname] if state == :pending
       end
 
       if running_on.empty? && master_on.empty?
-        # it's either unknown or not running, expand
+        # it's either unknown, not running, or pending expand
         @expand_resources = true
       end
 
-      return { :started => running_on, :master => master_on }
+      return { :started => running_on, :master => master_on, :pending => pending_on }
     end
 
     # TODO(should): this is_ms thing is a bit ugly (see comment above resource_state about reworking this)
@@ -385,6 +402,9 @@ class MainController < ApplicationController
       if !running_on[:master].empty? then
         label = _('%{id}: Master: %{nodelist}') % { :id => id, :nodelist => running_on[:master].join(', ') }
         status_class += ' rs-active rs-master'
+      elsif !running_on[:pending].empty? then
+        label = _('%{id}: Pending: %{nodelist}') % { :id => id, :nodelist => running_on[:pending].join(', ') }
+        status_class += ' rs-transient'
       elsif !running_on[:started].empty? then
         status_class += ' rs-active'
         if is_ms
