@@ -109,7 +109,10 @@ class CibController < ApplicationController
 
   def show
     # Only provide the live CIB (no shadow functionality yet)
-    head :not_found unless params[:id] == 'live'
+    unless params[:id] == 'live'
+      head :not_found
+      return
+    end
 
     @cib = REXML::Document.new(%x[/usr/sbin/cibadmin -Ql 2>/dev/null])
     # If this failed, there'll be no root element
