@@ -123,6 +123,29 @@ class CibController < ApplicationController
 
   public
 
+  def initialize
+    @errors = []
+
+    # TODO(should): Need more deps than this (see crm)
+    if File.exists?('/usr/sbin/crm_mon')
+      if File.executable?('/usr/sbin/crm_mon')
+        crm_status = %x[/usr/sbin/crm_mon -s 2>&1].chomp
+        # TODO(should): this is dubious (WAR: crm_mon -s giving "status: 1, output was: Warning:offline node: hex-14")
+        if $?.exitstatus == 10 || $?.exitstatus == 11
+          @errors << _('%{cmd} failed (status: %{status}, output was: %{output})') %
+                        {:cmd    => '/usr/sbin/crm_mon',
+                         :status => $?.exitstatus,
+                         :output => crm_status }
+        end
+      else
+        @errors << _('Unable to execute %{cmd}') % {:cmd => '/usr/sbin/crm_mon' }
+      end
+    else
+      @errors << _('Pacemaker does not appear to be installed (%{cmd} not found)') %
+                    {:cmd => '/usr/sbin/crm_mon' }
+    end
+  end
+
   def index
     render :json => [ 'live' ]
   end
@@ -145,9 +168,6 @@ class CibController < ApplicationController
       head :not_found
       return
     end
-
-    # TODO(must): Doesn't really belong here
-    @errors = []
 
     @cib = REXML::Document.new(%x[/usr/sbin/cibadmin -Ql 2>/dev/null])
     # If this failed, there'll be no root element
@@ -297,6 +317,7 @@ class CibController < ApplicationController
         :epoch  => "#{get_xml_attr(@cib.root, 'admin_epoch')}:#{get_xml_attr(@cib.root, 'epoch')}:#{get_xml_attr(@cib.root, 'num_updates')}",
         :dc     => dc
       },
+      :errors => @errors,
       :crm_config => crm_config,
       :nodes => nodes,
       :resources => resources
