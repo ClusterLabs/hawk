@@ -23,8 +23,10 @@ class CibController < ApplicationController
 
   def get_resource(elem)
     res = {
-      :id => elem.attributes['id']
+      :id => elem.attributes['id'],
+      :state => {}
     }
+    @resources_by_id[elem.attributes['id']] = res
     case elem.name
     when 'primitive'
       res[:class]    = elem.attributes['class']
@@ -144,6 +146,9 @@ class CibController < ApplicationController
       return
     end
 
+    # TODO(must): Doesn't really belong here
+    @errors = []
+
     @cib = REXML::Document.new(%x[/usr/sbin/cibadmin -Ql 2>/dev/null])
     # If this failed, there'll be no root element
     unless @cib.root
@@ -170,7 +175,7 @@ class CibController < ApplicationController
       crm_config[sym] = get_xml_attr(p, 'value')
     end
 
-    nodes = {}
+    nodes = []
     @cib.elements.each('cib/configuration/nodes/node') do |n|
       uname = n.attributes['uname']
       state = :unclean
@@ -185,14 +190,96 @@ class CibController < ApplicationController
           end
         end
       end
-      nodes[uname] = {
+      nodes << {
+        :uname => uname,
         :state => state
       }
     end
 
     resources = []
+    @resources_by_id = {}
     @cib.elements.each('cib/configuration/resources/*') do |r|
       resources << get_resource(r)
+    end
+
+    for node in nodes
+      @cib.elements.each("cib/status/node_state[@uname='#{node[:uname]}']/lrm/lrm_resources/lrm_resource") do |lrm_resource|
+        id = lrm_resource.attributes['id']
+        # logic derived somewhat from pacemaker/lib/pengine/unpack.c:unpack_rsc_op()
+        state = :unknown
+        ops = []
+        lrm_resource.elements.each('lrm_rsc_op') do |op|
+          ops << op
+        end
+        ops.sort{|a,b|
+          if a.attributes['transition-key'] == b.attributes['transition-key']
+            # transition keys match, newer call-id wins (ensures bogus pending
+            # ops lose to subsequent start/stop, see lf#2481)
+            a.attributes['call-id'].to_i <=> b.attributes['call-id'].to_i
+          elsif a.attributes['call-id'] == b.attributes['call-id']
+            # call-ids match, this should only happen if there's more than
+            # one bogus pending migrate op, e.g.: a resource has migrated
+            # away and back.  In this case, the larger graph number wins
+            a.attributes['transition-key'].split(':')[1].to_i <=> b.attributes['transition-key'].split(':')[1].to_i
+          elsif a.attributes['call-id'].to_i == -1
+            1                                         # make pending op most recent
+          elsif b.attributes['call-id'].to_i == -1
+            -1                                        # likewise
+          else
+            a.attributes['call-id'].to_i <=> b.attributes['call-id'].to_i
+          end
+        }.each do |op|
+          operation = op.attributes['operation']
+          rc_code = op.attributes['rc-code'].to_i
+          expected = op.attributes['transition-key'].split(':')[2].to_i
+
+          # skip notifies
+          next if operation == 'notify'
+
+          if op.attributes['call-id'].to_i == -1
+            state = :pending
+            next
+          end
+
+          # TODO(should): evil magic numbers!
+          case rc_code
+          when 7
+            # not running on this node
+            state = :stopped
+          when 8
+            # master on this node
+            state = :master
+          when 0
+            # ok
+            if operation == 'stop'
+              state = :stopped
+            elsif operation == 'promote'
+              state = :master
+            else
+              # anything other than a stop means we're running (although might be
+              # master or slave after a promote or demote)
+              state = :running
+            end
+          end
+          if state != :running && state != :master && rc_code != expected
+            # busted somehow
+            @errors << _('Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}') %
+              { :node => node[:uname], :resource => id, :call_id => op.attributes['call-id'], :op => operation, :rc_code => rc_code }
+          end
+        end
+
+        # TODO(should): want some sort of assert "status != :unknown" here
+
+        # Now we've got the status on this node, let's stash it away
+        (id, instance) = id.split(':')
+        if @resources_by_id[id]
+          # instance will be nil here for regular primitives
+          @resources_by_id[id][:state][node[:uname]] = { state => instance }
+        else
+          # It's an orphan
+          # TODO(should): display this somewhere? (at least log it during testing)
+        end
+      end
     end
 
     # TODO(should): Can we just use cib attribute dc-uuid?  Or is that not viable
