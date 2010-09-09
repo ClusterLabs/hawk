@@ -69,8 +69,8 @@ protected
         head :forbidden
       end
       format.any do
-	# Have to use format.any not format.html due to stupid IE accept
-	# header brokenness.
+        # Have to use format.any not format.html due to stupid IE accept
+        # header brokenness.
         store_location
         redirect_to new_session_path
       end

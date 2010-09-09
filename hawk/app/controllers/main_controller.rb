@@ -35,8 +35,6 @@ require 'rexml/document' unless defined? REXML::Document
 class MainController < ApplicationController
   before_filter :login_required
 
-  # TODO(should): all this private stuff really belongs elsewhere
-  # (models for cluster, nodes, resources anybody?)
   private
 
   # Invoke some command, returning OK or JSON error as appropriate
@@ -52,91 +50,7 @@ class MainController < ApplicationController
     end
   end
 
-  # Gives back a string, boolean if value is "true" or "false",
-  # or nil if attribute doesn't exist and there's no default
-  # (roughly equivalent to crm_element_value() in Pacemaker)
-  # TODO(should): be nice to get integers auto-converted too
-  def get_xml_attr(elem, name, default = nil)
-    v = elem.attributes[name] || default
-    ['true', 'false'].include?(v.class == String ? v.downcase : v) ? v.downcase == 'true' : v
-  end
-  
-  def get_property(property, default = nil)
-    # TODO(could): theoretically this xpath is a bit loose.
-    e = @cib.elements["//nvpair[@name='#{property}']"]
-    e ? get_xml_attr(e, 'value', default) : default
-  end
-
-  # transliteration of pacemaker/lib/pengine/unpack.c:determine_online_status_fencing()
-  # TODO(could): constants for states? (dead, active, etc.)
-  # ns is node_state element from CIB
-  def determine_online_status_fencing(ns)
-    ha_state    = get_xml_attr(ns, 'ha', 'dead')
-    in_ccm      = get_xml_attr(ns, 'in_ccm')
-    crm_state   = get_xml_attr(ns, 'crmd')
-    join_state  = get_xml_attr(ns, 'join')
-    exp_state   = get_xml_attr(ns, 'expected')
-
-    # expect it to be up (more or less) if 'shutdown' is '0' or unspecified
-    expected_up = get_xml_attr(ns, 'shutdown', '0') == 0
-
-    state = 'unclean'
-    if in_ccm && ha_state == 'active' && crm_state == 'online'
-      case join_state
-      when 'member'         # rock 'n' roll (online)
-        state = 'online'
-      when exp_state        # coming up (!online)
-        state = 'offline'
-      when 'pending'        # technically online, but not ready to run resources
-        state = 'pending'   # (online + pending + standby)
-      when 'banned'         # not allowed to be part of the cluster
-        state = 'standby'   # (online + pending + standby)
-      else                  # unexpectedly down (unclean)
-        state = 'unclean'
-      end
-    elsif !in_ccm && ha_state =='dead' && crm_state == 'offline' && !expected_up
-      state = 'offline'     # not online, but cleanly
-    elsif expected_up
-      state = 'unclean'     # expected to be up, mark it unclean
-    else
-      state = 'offline'     # offline
-    end
-    return state
-  end
-
-  # transliteration of pacemaker/lib/pengine/unpack.c:determine_online_status_no_fencing()
-  # TODO(could): constants for states? (dead, active, etc.)
-  # ns is node_state element from CIB
-  # TODO(could): can we consolidate this with determine_online_status_fencing?
-  def determine_online_status_no_fencing(ns)
-    ha_state    = get_xml_attr(ns, 'ha', 'dead')
-    in_ccm      = get_xml_attr(ns, 'in_ccm')
-    crm_state   = get_xml_attr(ns, 'crmd')
-    join_state  = get_xml_attr(ns, 'join')
-    exp_state   = get_xml_attr(ns, 'expected')
-
-    # expect it to be up (more or less) if 'shutdown' is '0' or unspecified
-    expected_up = get_xml_attr(ns, 'shutdown', '0') == 0
-
-    state = 'unclean'
-    if !in_ccm || ha_state == 'dead'
-      state = 'offline'
-    elsif crm_state == 'online'
-      if join_state == 'member'
-        state = 'online'
-      else
-        # not ready yet (should this break down to pending/banned like
-        # determine_online_status_fencing?  It doesn't in unpack.c...)
-        state = 'offline'
-      end
-    elsif !expected_up
-      state = 'offline'
-    else
-      state = 'unclean'
-    end
-    return state
-  end
-
+=begin
   def get_cluster_status
     @cib = REXML::Document.new(%x[/usr/sbin/cibadmin -Ql 2>/dev/null])
     # If this failed, there'll be no root element; bail out leaving
@@ -506,40 +420,12 @@ class MainController < ApplicationController
     end
 
   end
-
+=end
   public
 
   def initialize
     require 'socket'
     @host = Socket.gethostname  # should be short hostname
-
-    @cib = nil
-    
-    # Everything we're showing status of
-    @cib_epoch  = ""
-    @errors     = []
-    @summary    = {}
-    @nodes      = []
-    @resources  = []
-
-    # TODO(should): Need more deps than this (see crm)
-    if File.exists?('/usr/sbin/crm_mon')
-      if File.executable?('/usr/sbin/crm_mon')
-        @crm_status = %x[/usr/sbin/crm_mon -s 2>&1].chomp
-        # TODO(should): this is dubious (WAR: crm_mon -s giving "status: 1, output was: Warning:offline node: hex-14")
-        if $?.exitstatus == 10 || $?.exitstatus == 11
-          @errors << _('%{cmd} failed (status: %{status}, output was: %{output})') %
-                        {:cmd    => '/usr/sbin/crm_mon',
-                         :status => $?.exitstatus,
-                         :output => @crm_status }
-        end
-      else
-        @errors << _('Unable to execute %{cmd}') % {:cmd => '/usr/sbin/crm_mon' }
-      end
-    else
-      @errors << _('Pacemaker does not appear to be installed (%{cmd} not found)') %
-                    {:cmd => '/usr/sbin/crm_mon' }
-    end
   end
 
   # Render cluster status by default
@@ -555,6 +441,7 @@ class MainController < ApplicationController
 
   def status
     @title = _('Cluster Status')
+=begin
     
     get_cluster_status
     
@@ -588,6 +475,7 @@ class MainController < ApplicationController
         }
       }
     end
+=end
   end
 
   # standby/online (op validity guaranteed by routes)
