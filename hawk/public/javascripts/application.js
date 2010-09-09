@@ -422,6 +422,58 @@ function do_update(cur_epoch)
 
 var cib = null;
 
+function cib_to_nodelist_panel(nodes)
+{
+  var panel = {
+    id:         "nodelist",
+    className:  "",
+    style:      "",
+    label:      nodes.size() + " nodes configured (NLS)",
+    open:       false,
+    children:   []
+  };
+  nodes.each(function(n) {
+    var className;
+    var label;
+    switch (n.state) {
+      case "online":
+        className = "active";
+        label = "Online";
+        break;
+      case "offline":
+        className = "inactive";
+        label = "Offline";
+        break;
+      case "pending":
+        className = "transient";
+        label = "Pending";
+        break;
+      case "standby":
+        className = "inactive";
+        label = "Standby";
+        break;
+      case "unclean":
+        className = "error";
+        label = "Unclean";
+        break;
+      default:
+        // This can't happen
+        className = "error";
+        break;
+    }
+    if (n.state != "online") {
+      panel.open = true;
+    }
+    panel.children.push({
+      id:         "node::" + n.uname,
+      className:  "node ns-" + className,
+      label:      n.uname + ": " + label + " (NLS)",
+      menu:       true
+    });
+  });
+  return panel;
+}
+
 function hawk_init()
 {
   init_menus();
@@ -441,7 +493,10 @@ function hawk_init()
   sp.hide();
   $("content").insert({top: sp});
   var np = $(document.createElement("div")).writeAttribute("id", "nodelist");
-  np.update('<a id="nodelist::menu" class="menu-link"><img src="/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="nodelist::label">NONLOCALIZED STRING</span>');
+  np.update(
+    '<div class="clickable" onclick="toggle_collapse(\'nodelist\');"><div id="nodelist::button" class="tri-closed"></div><a id="nodelist::menu" class="menu-link"><img src="/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="nodelist::label">NONLOCALIZED STRING</span></div>' +
+      '<div id="nodelist::children" style="display: none;" class="closed"></div>' +
+    '</div>');
   np.hide();
   sp.insert({after: np});
   var rp = $(document.createElement("div")).writeAttribute("id", "reslist");
@@ -471,7 +526,11 @@ function hawk_init()
           }
 
           $("nodelist").show();
-          // TODO(must): populate nodelist
+          if (update_panel(cib_to_nodelist_panel(cib.nodes))) {
+            if ($("nodelist::children").hasClassName("closed")) {
+              expand_block("nodelist");
+            }
+          }
 
           $("reslist").show();
           // TODO(must): populate reslist

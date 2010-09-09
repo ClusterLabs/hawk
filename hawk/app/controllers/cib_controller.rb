@@ -214,6 +214,7 @@ class CibController < ApplicationController
         :state => state
       }
     end
+    nodes.sort!{|a,b| a[:uname].natcmp(b[:uname], true)}
 
     resources = []
     @resources_by_id = {}
