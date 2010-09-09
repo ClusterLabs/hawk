@@ -420,3 +420,73 @@ function do_update(cur_epoch)
   });
 }
 
+var cib = null;
+
+function hawk_init()
+{
+  init_menus();
+
+  // This is just a temporary hack to create necessary panels
+  var sp = $(document.createElement("div")).writeAttribute("id", "summary");
+  sp.update(
+    '<table>' +
+      '<tr><th>Cluster Stack (NLS):</th><td><span id="summary::cluster_infrastructure"></span></td></tr>' +
+      '<tr><th>Pacemaker Version (NLS):</th><td><span id="summary::dc_version"></span></td></tr>' +
+      '<tr><th>Current DC (NLS):</th><td><span id="summary::dc"></span></td></tr>' +
+      '<tr><th>Resource Stickiness (NLS):</th><td><span id="summary::default_resource_stickiness"></span></td></tr>' +
+      '<tr><th>STONITH Enabled (NLS):</th><td><span id="summary::stonith_enabled"></span></td></tr>' +
+      '<tr><th>Symmetric Cluster (NLS):</th><td><span id="summary::symmetric_cluster"></span></td></tr>' +
+      '<tr><th>No Quorum Policy (NLS):</th><td><span id="summary::no_quorum_policy"></span></td></tr>' +
+    '</table>');
+  sp.hide();
+  $("content").insert({top: sp});
+  var np = $(document.createElement("div")).writeAttribute("id", "nodelist");
+  np.update('<a id="nodelist::menu" class="menu-link"><img src="/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="nodelist::label">NONLOCALIZED STRING</span>');
+  np.hide();
+  sp.insert({after: np});
+  var rp = $(document.createElement("div")).writeAttribute("id", "reslist");
+  rp.update('<a id="reslist::menu" class="menu-link"><img src="/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="reslist::label">NONLOCALIZED STRING</span>');
+  rp.hide();
+  np.insert({after: rp});
+
+  // TODO(must): show big spinny thing for initial load
+  new Ajax.Request("/cib/live", { method: "get",
+    onSuccess: function(transport) {
+      if (transport.responseJSON) {
+        cib = transport.responseJSON;
+        update_errors(cib.errors);
+        if (cib.meta) {
+          $("summary").show();
+          $("summary::dc").update(cib.meta.dc);
+          for (var e in cib.crm_config) {
+            if (!$("summary::" + e)) continue;
+            if (typeof(cib.crm_config[e]) == "boolean") {
+              $("summary::" + e).update(cib.crm_config[e] ? "Yes (NLS)" : "No (NLS)")
+            } else if(e == "dc_version") {
+              var v = cib.crm_config[e];
+              $("summary::" + e).update(cib.crm_config[e].match(/.*-[a-f0-9]{12}/));
+            } else {
+              $("summary::" + e).update(cib.crm_config[e].toString());
+            }
+          }
+
+          $("nodelist").show();
+          // TODO(must): populate nodelist
+
+          $("reslist").show();
+          // TODO(must): populate reslist
+
+        } else {
+          // TODO(must): is it possible to get here with empty cib.errors?
+          $("summary").hide();
+          $("nodelist").hide();
+          $("reslist").hide();
+        }
+      } else {
+        // TODO(must): figure out if we need to handle this
+      }
+    }
+  });
+  // TODO(must): handle failure - re-request?
+  /* do_update('<%= @cib_epoch %>'); */
+}

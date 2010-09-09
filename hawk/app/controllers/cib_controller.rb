@@ -1,8 +1,7 @@
 require 'rexml/document' unless defined? REXML::Document
 
 class CibController < ApplicationController
-  # TODO: uncomment this for security!
-  #before_filter :login_required
+  before_filter :login_required
 
   protected
 
@@ -172,7 +171,7 @@ class CibController < ApplicationController
     @cib = REXML::Document.new(%x[/usr/sbin/cibadmin -Ql 2>/dev/null])
     # If this failed, there'll be no root element
     unless @cib.root
-      render :json => nil
+      render :json => { :errors => @errors }
       return
     end
 
@@ -232,26 +231,30 @@ class CibController < ApplicationController
           ops << op
         end
         ops.sort{|a,b|
-          if a.attributes['transition-key'] == b.attributes['transition-key']
-            # transition keys match, newer call-id wins (ensures bogus pending
-            # ops lose to subsequent start/stop, see lf#2481)
+          if a.attributes['call-id'].to_i != -1 && b.attributes['call-id'] != -1
+            # Normal case, neither op is pending, call-id wins
             a.attributes['call-id'].to_i <=> b.attributes['call-id'].to_i
-          elsif a.attributes['call-id'] == b.attributes['call-id']
-            # call-ids match, this should only happen if there's more than
-            # one bogus pending migrate op, e.g.: a resource has migrated
-            # away and back.  In this case, the larger graph number wins
+          elsif a.attributes['operation'].starts_with?('migrate_') || b.attributes['operation'].starts_with?('migrate_')
+            # Special case for pending migrate ops, beacuse stale ops hang around
+            # in the CIB (see lf#2481), we assume the larger graph number is the
+            # most recent op.  Previous solution was to pair up pending migrate
+            # with subsequent start/stop by matching transition keys, but that
+            # doesn't work after a second start/stop (*sigh*)
             a.attributes['transition-key'].split(':')[1].to_i <=> b.attributes['transition-key'].split(':')[1].to_i
           elsif a.attributes['call-id'].to_i == -1
-            1                                         # make pending op most recent
+            1                                         # make pending start/stop op most recent
           elsif b.attributes['call-id'].to_i == -1
             -1                                        # likewise
           else
+            # This can't happen...
             a.attributes['call-id'].to_i <=> b.attributes['call-id'].to_i
           end
         }.each do |op|
           operation = op.attributes['operation']
           rc_code = op.attributes['rc-code'].to_i
           expected = op.attributes['transition-key'].split(':')[2].to_i
+
+          is_probe = operation == 'monitor' && op.attributes['interval'].to_i == 0
 
           # skip notifies
           next if operation == 'notify'
@@ -281,7 +284,7 @@ class CibController < ApplicationController
               state = :running
             end
           end
-          if state != :running && state != :master && rc_code != expected
+          if !is_probe && rc_code != expected
             # busted somehow
             @errors << _('Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}') %
               { :node => node[:uname], :resource => id, :call_id => op.attributes['call-id'], :op => operation, :rc_code => rc_code }

@@ -2,15 +2,9 @@
 <script type="text/javascript" src="<%= url_for(:action => 'gettext', :format => 'js') %>"></script>
 <% end %>
 
-<%= render :partial => 'summary' %>
-
-<%= render :partial => 'panel', :locals => { :panel => @node_panel } %>
-
-<%= render :partial => 'panel', :locals => { :panel => @resource_panel } %>
-
 <%= render :partial => 'menus' %>
 
 <script type="text/javascript"><!--
-Event.observe(window, 'load', function() { init_menus(); do_update('<%= @cib_epoch %>'); });
+Event.observe(window, 'load', function() { hawk_init(); });
 //--></script>
 
