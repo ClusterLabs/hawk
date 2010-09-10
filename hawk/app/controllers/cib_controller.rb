@@ -232,22 +232,43 @@ class CibController < ApplicationController
           ops << op
         end
         ops.sort{|a,b|
-          if a.attributes['call-id'].to_i != -1 && b.attributes['call-id'] != -1
+          if a.attributes['call-id'].to_i != -1 && b.attributes['call-id'].to_i != -1
             # Normal case, neither op is pending, call-id wins
             a.attributes['call-id'].to_i <=> b.attributes['call-id'].to_i
           elsif a.attributes['operation'].starts_with?('migrate_') || b.attributes['operation'].starts_with?('migrate_')
             # Special case for pending migrate ops, beacuse stale ops hang around
-            # in the CIB (see lf#2481), we assume the larger graph number is the
-            # most recent op.  Previous solution was to pair up pending migrate
-            # with subsequent start/stop by matching transition keys, but that
-            # doesn't work after a second start/stop (*sigh*)
-            a.attributes['transition-key'].split(':')[1].to_i <=> b.attributes['transition-key'].split(':')[1].to_i
+            # in the CIB (see lf#2481).  There's a couple of things to do here:
+            a_key = a.attributes['transition-key'].split(':')
+            b_key = b.attributes['transition-key'].split(':')
+            if a.attributes['transition-key'] == b.attributes['transition-key']
+              # 1) if the transition keys match, newer call-id wins (ensures bogus
+              # pending ops lose to immediately subsequent start/stop).
+              a.attributes['call-id'].to_i <=> b.attributes['call-id'].to_i
+            elsif a_key[3] == b_key[3]
+              # 2) if the transition keys don't match but the transitioner UUIDs
+              # *do* match, the migrate is either old (predating a start/stop that
+              # occurred after a migrate's regular start/stop), or new (the current
+              # pending op), in which case we assume the larger graph number is the
+              # most recent op (this will break if uint64_t ever wraps).
+              a_key[1].to_i <=> b_key[1].to_i
+            else
+              # If the transitioner UUIDs *don't* match (different instances
+              # of crmd), we make the pending op most recent (reverse sort
+              # call id), because experiment seems to indicate this is the
+              # least-worst choice.  Pending migrate ops for a node evaporate
+              # if Pacemaker is stopped on that node, so after a UUID change,
+              # there should be at most one outstanding pending migrate op
+              # that doesn't hit one of the other rules above - if this is
+              # the case, this pending migrate op is what's happening right
+              # *now*
+              b.attributes['call-id'].to_i <=> a.attributes['call-id'].to_i
+            end
           elsif a.attributes['call-id'].to_i == -1
             1                                         # make pending start/stop op most recent
           elsif b.attributes['call-id'].to_i == -1
             -1                                        # likewise
           else
-            # This can't happen...
+            logger.error "Inexplicable op sort error (this can't happen)"
             a.attributes['call-id'].to_i <=> b.attributes['call-id'].to_i
           end
         }.each do |op|
@@ -282,7 +303,7 @@ class CibController < ApplicationController
             else
               # anything other than a stop means we're running (although might be
               # master or slave after a promote or demote)
-              state = :running
+              state = :started
             end
           end
           if !is_probe && rc_code != expected
@@ -298,7 +319,8 @@ class CibController < ApplicationController
         (id, instance) = id.split(':')
         if @resources_by_id[id]
           # instance will be nil here for regular primitives
-          @resources_by_id[id][:state][node[:uname]] = { state => instance }
+          # TODO(should): this structure is a bit wacky...
+          @resources_by_id[id][:state][node[:uname]] = { :state => state, :instance => instance }
         else
           # It's an orphan
           # TODO(should): display this somewhere? (at least log it during testing)

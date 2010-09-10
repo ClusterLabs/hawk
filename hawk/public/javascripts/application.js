@@ -102,7 +102,7 @@ function update_panel(panel)
             '<div id="' + item.id + '::button" class="tri-' + (item.open ? 'open' : 'closed') + '"></div>' +
               '<a id="' + item.id + '::menu" class="menu-link"><img src="/images/transparent-16x16.gif" class="action-icon" alt="" /></a>' +
               '<span id="' + item.id + '::label"></span></div>' +
-            '<div id="' + item.id + '::children"' + (item.open ? ' style="display: none;" class="closed"' : '') + '</div>');
+            '<div id="' + item.id + '::children"' + (item.open ? '' : ' style="display: none;" class="closed"') + '</div>');
         } else {
           d.update('<a id="' + item.id + '::menu" class="menu-link"><img src="/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="' + item.id + '::label"></span>');
         }
@@ -474,6 +474,127 @@ function cib_to_nodelist_panel(nodes)
   return panel;
 }
 
+// TODO(must): doesn't handle slave state
+function get_primitive(res)
+{
+  var label;
+  var status_class = "res-primitive";
+  var master = [];
+  var pending = [];
+  var started = [];
+  for (var node in res.state) {
+    if (res.state[node].state == "master") master.push(node);
+    if (res.state[node].state == "pending") pending.push(node);
+    if (res.state[node].state == "started") started.push(node);
+  }
+  if (master.size()) {
+    label = res.id + ": Master: " + master.join(", ");
+    status_class += " rs-active rs-master";
+  } else if (pending.size()) {
+    label = res.id + ": Pending: " + pending.join(", ");
+    status_class += " rs-transient";
+  } else if (started.size()) {
+    status_class += " rs-active";
+    label = res.id + ": Started: " + started.join(", ");
+  } else {
+    label = res.id + ": Stopped"
+    status_class += " rs-inactive";
+  }
+
+  return {
+    id:         "resource::" + res.id,
+    className:  status_class,
+    label:      label + " (NLS)",
+    active:     master.size() || started.size()
+  };
+}
+
+// Need instance for it to work as now with clone-of-group
+function get_group(res)
+{
+  var status_class = "rs-active";
+  var children = [];
+  var open = false;
+  res.children.each(function(p) {
+    var c = get_primitive(p);
+    if (!c.active) {
+      open = true;
+      status_class = "rs-inactive";
+    }
+    children.push(c);
+  });
+  return {
+    id:         "resource::" + res.id,
+    className:  "res-group " + status_class,
+    label:      "Group: " + res.id + " (NLS)",
+    open:       open,
+    children:   children
+  };
+}
+
+function get_clone(res)
+{
+  var status_class = "rs-active";
+  var children = [];
+  var open = false;
+  res.children.each(function(p) {
+    var c = null;
+    if (p.type == "group") {
+      c = get_group(p);
+      if (c.open) open = true;
+      if (c.className.indexOf("rs-active") == -1) status_class = "rs-inactive";
+    } else {
+      c = get_primitive(p);
+      if (!c.active) {
+        open = true;
+        status_class = "rs-inactive";
+      }
+    }
+    children.push(c);
+  });
+  if (res.type == "master") {
+    status_class += " res-ms";
+  }
+  return {
+    id:         "resource::" + res.id,
+    className:  "res-clone " + status_class,
+    label:      (res.type == "master" ? "Master/Slave Set: " : "Clone Set") + " " + res.id + " (NLS)",
+    open:       open,
+    children:   children
+  };
+}
+
+function cib_to_reslist_panel(resources)
+{
+  var panel = {
+    id:         "reslist",
+    className:  "",
+    style:      "",
+    label:      resources.size() + " resources configured (NLS)",
+    open:       false,
+    children:   []
+  };
+  resources.each(function(res) {
+    var c = null;
+    if (res.children) {
+      if (res.type == "group") {
+        c = get_group(res);
+        if (c.open) panel.open = true;
+      } else if (res.type == "clone" || res.type == "master") {
+        c = get_clone(res);
+        if (c.open) panel.open = true;
+      }
+    } else {
+      c = get_primitive(res);
+      if (!c.active) panel.open = true;
+    }
+    if (c) {
+      panel.children.push(c);
+    }
+  });
+  return panel;
+}
+
 function hawk_init()
 {
   init_menus();
@@ -500,7 +621,10 @@ function hawk_init()
   np.hide();
   sp.insert({after: np});
   var rp = $(document.createElement("div")).writeAttribute("id", "reslist");
-  rp.update('<a id="reslist::menu" class="menu-link"><img src="/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="reslist::label">NONLOCALIZED STRING</span>');
+  rp.update(
+    '<div class="clickable" onclick="toggle_collapse(\'reslist\');"><div id="reslist::button" class="tri-closed"></div><a id="reslist::menu" class="menu-link"><img src="/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="reslist::label">NONLOCALIZED STRING</span></div>' +
+      '<div id="reslist::children" style="display: none;" class="closed"></div>' +
+    '</div>');
   rp.hide();
   np.insert({after: rp});
 
@@ -533,7 +657,11 @@ function hawk_init()
           }
 
           $("reslist").show();
-          // TODO(must): populate reslist
+          if (update_panel(cib_to_reslist_panel(cib.resources))) {
+            if ($("reslist::children").hasClassName("closed")) {
+              expand_block("reslist");
+            }
+          }
 
         } else {
           // TODO(must): is it possible to get here with empty cib.errors?
