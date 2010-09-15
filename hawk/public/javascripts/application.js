@@ -474,62 +474,79 @@ function cib_to_nodelist_panel(nodes)
   return panel;
 }
 
-// TODO(must): doesn't handle slave state
+// TODO(must): sort order for injected instances might be wrong
 function get_primitive(res)
 {
-  var label;
-  var status_class = "res-primitive";
-  var master = [];
-  var pending = [];
-  var started = [];
-  for (var node in res.state) {
-    if (res.state[node].state == "master") master.push(node);
-    if (res.state[node].state == "pending") pending.push(node);
-    if (res.state[node].state == "started") started.push(node);
+  var set = [];
+  for (var i in res.instances) {
+    var id = res.id;
+    if (i != "default") id += ":" + i;
+    var status_class = "res-primitive";
+    var label;
+    var active = false;
+    if (res.instances[i].master) {
+      label = id + ": Master: " + res.instances[i].master.join(", ");
+      status_class += " rs-active rs-master";
+      active = true;
+    } else if (res.instances[i].pending) {
+      label = id + ": Pending: " + res.instances[i].pending.join(", ");
+      status_class += " rs-transient";
+    } else if (res.instances[i].started) {
+      status_class += " rs-active";
+      label = id + ": Started: " + res.instances[i].started.join(", ");
+      active = true;
+    } else if (res.instances[i].slave) {
+      status_class += " rs-active rs-slave";
+      label = id + ": Slave: " + res.instances[i].slave.join(", ");
+      active = true;
+    } else {
+      label = id + ": Stopped"
+      status_class += " rs-inactive";
+    }
+    set.push({
+      id:         "resource::" + id,
+      instance:   i,
+      className:  status_class,
+      label:      label + " (NLS)",
+      active:     active
+    });
   }
-  if (master.size()) {
-    label = res.id + ": Master: " + master.join(", ");
-    status_class += " rs-active rs-master";
-  } else if (pending.size()) {
-    label = res.id + ": Pending: " + pending.join(", ");
-    status_class += " rs-transient";
-  } else if (started.size()) {
-    status_class += " rs-active";
-    label = res.id + ": Started: " + started.join(", ");
-  } else {
-    label = res.id + ": Stopped"
-    status_class += " rs-inactive";
-  }
-
-  return {
-    id:         "resource::" + res.id,
-    className:  status_class,
-    label:      label + " (NLS)",
-    active:     master.size() || started.size()
-  };
+  return set;
 }
 
-// Need instance for it to work as now with clone-of-group
 function get_group(res)
 {
-  var status_class = "rs-active";
-  var children = [];
-  var open = false;
-  res.children.each(function(p) {
-    var c = get_primitive(p);
-    if (!c.active) {
-      open = true;
-      status_class = "rs-inactive";
-    }
-    children.push(c);
+  var instances = [];
+  var groups = {};
+  res.children.each(function(c) {
+    var set = get_primitive(c);
+    set.each(function(i) {
+      if (!groups[i.instance]) {
+        instances.push(i.instance);
+        groups[i.instance] = {
+          id:        "resource::" + res.id,
+          className: "res-group rs-active",
+          label:     "Group (NLS): " + res.id,
+          open:      false,
+          children:  []
+        };
+        if (i.instance != "default") {
+          groups[i.instance].id += ":" + i.instance;
+          groups[i.instance].label += ":" + i.instance;
+        }
+      }
+      if (!i.active) {
+        groups[i.instance].open = true;
+        groups[i.instance].className = "res-group rs-inactive";
+      }
+      groups[i.instance].children.push(i);
+    });
   });
-  return {
-    id:         "resource::" + res.id,
-    className:  "res-group " + status_class,
-    label:      "Group: " + res.id + " (NLS)",
-    open:       open,
-    children:   children
-  };
+  set = []
+  instances.sort().each(function(i) {
+    set.push(groups[i]);
+  });
+  return set;
 }
 
 function get_clone(res)
@@ -538,19 +555,23 @@ function get_clone(res)
   var children = [];
   var open = false;
   res.children.each(function(p) {
-    var c = null;
     if (p.type == "group") {
-      c = get_group(p);
-      if (c.open) open = true;
-      if (c.className.indexOf("rs-active") == -1) status_class = "rs-inactive";
+      var set = get_group(p);
+      set.each(function(c) {
+        if (c.open) open = true;
+        if (c.className.indexOf("rs-active") == -1) status_class = "rs-inactive";
+        children.push(c);
+      });
     } else {
-      c = get_primitive(p);
-      if (!c.active) {
-        open = true;
-        status_class = "rs-inactive";
-      }
+      var set = get_primitive(p);
+      set.each(function(c) {
+        if (!c.active) {
+          open = true;
+          status_class = "rs-inactive";
+        }
+        children.push(c);
+      });
     }
-    children.push(c);
   });
   if (res.type == "master") {
     status_class += " res-ms";
@@ -578,14 +599,14 @@ function cib_to_reslist_panel(resources)
     var c = null;
     if (res.children) {
       if (res.type == "group") {
-        c = get_group(res);
+        c = get_group(res)[0];
         if (c.open) panel.open = true;
       } else if (res.type == "clone" || res.type == "master") {
         c = get_clone(res);
         if (c.open) panel.open = true;
       }
     } else {
-      c = get_primitive(res);
+      c = get_primitive(res)[0];
       if (!c.active) panel.open = true;
     }
     if (c) {

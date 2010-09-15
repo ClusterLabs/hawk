@@ -20,36 +20,62 @@ class CibController < ApplicationController
     e ? get_xml_attr(e, 'value', default) : default
   end
 
-  def get_resource(elem)
+  def get_resource(elem, clone_max = nil, is_ms = false)
     res = {
-      :id => elem.attributes['id'],
-      :state => {}
+      :id => elem.attributes['id']
     }
     @resources_by_id[elem.attributes['id']] = res
     case elem.name
     when 'primitive'
-      res[:class]    = elem.attributes['class']
-      res[:provider] = elem.attributes['provider'] # This will be nil for LSB resources
-      res[:type]     = elem.attributes['type']
+      res[:class]     = elem.attributes['class']
+      res[:provider]  = elem.attributes['provider'] # This will be nil for LSB resources
+      res[:type]      = elem.attributes['type']
+      res[:instances] = {}
+      # This is a bit of a hack to ensure we have a complete set of instances later
+      res[:clone_max] = clone_max if clone_max
+      # Likewise to s/started/slave/
+      res[:is_ms]     = is_ms
     when 'group', 'clone', 'master'
       # For non-primitives we overload :type (it's not a primitive if
       # it has children, or, for that matter, if it has no class)
       res[:type]     = elem.name
       res[:children] = []
+      if elem.name == 'clone' || elem.name == 'master'
+        nvpair = elem.elements["meta_attributes/nvpair[@name='clone-max']"]
+        clone_max = nvpair ? nvpair.attributes['value'].to_i : @nodes.length
+      end
       if elem.elements['primitive']
         elem.elements.each('primitive') do |p|
-          res[:children] << get_resource(p)
+          res[:children] << get_resource(p, clone_max, is_ms || elem.name == 'master')
         end
       elsif elem.elements['group']
-        res[:children] << get_resource(elem.elements['group'])
+        res[:children] << get_resource(elem.elements['group'], clone_max, is_ms || elem.name == 'master')
       else
         # This can't happen
+        logger.error "Got #{elem.name} without 'primitive' or 'group' child"
       end
     else
       # This can't happen
-      # TODO(could): whine
+        logger.error "Unknown resource type: #{elem.name}"
     end
     res
+  end
+
+  # Hack to inject additional instances for clones if there's no LRM state for them
+  def inject_stopped_clone_instances(resources)
+    for res in resources
+      if res[:clone_max]
+        instance = 0
+        while res[:instances].length < res[:clone_max]
+          while res[:instances].has_key?(instance.to_s)
+            instance += 1
+          end
+          res[:instances][instance] = {}
+        end
+        res.delete :clone_max
+      end
+      inject_stopped_clone_instances(res[:children]) if res[:children]
+    end
   end
 
   # transliteration of pacemaker/lib/pengine/unpack.c:determine_online_status_fencing()
@@ -194,7 +220,7 @@ class CibController < ApplicationController
       crm_config[sym] = get_xml_attr(p, 'value')
     end
 
-    nodes = []
+    @nodes = []
     @cib.elements.each('cib/configuration/nodes/node') do |n|
       uname = n.attributes['uname']
       state = :unclean
@@ -209,20 +235,20 @@ class CibController < ApplicationController
           end
         end
       end
-      nodes << {
+      @nodes << {
         :uname => uname,
         :state => state
       }
     end
-    nodes.sort!{|a,b| a[:uname].natcmp(b[:uname], true)}
+    @nodes.sort!{|a,b| a[:uname].natcmp(b[:uname], true)}
 
-    resources = []
+    @resources = []
     @resources_by_id = {}
     @cib.elements.each('cib/configuration/resources/*') do |r|
-      resources << get_resource(r)
+      @resources << get_resource(r)
     end
 
-    for node in nodes
+    for node in @nodes
       @cib.elements.each("cib/status/node_state[@uname='#{node[:uname]}']/lrm/lrm_resources/lrm_resource") do |lrm_resource|
         id = lrm_resource.attributes['id']
         # logic derived somewhat from pacemaker/lib/pengine/unpack.c:unpack_rsc_op()
@@ -302,7 +328,8 @@ class CibController < ApplicationController
               state = :master
             else
               # anything other than a stop means we're running (although might be
-              # master or slave after a promote or demote)
+              # slave after a demote)
+              # TODO(must): verify this demote business
               state = :started
             end
           end
@@ -318,14 +345,25 @@ class CibController < ApplicationController
         # Now we've got the status on this node, let's stash it away
         (id, instance) = id.split(':')
         if @resources_by_id[id]
+          # m/s slave state hack (*sigh*)
+          state = :slave if @resources_by_id[id][:is_ms] && state == :started
           # instance will be nil here for regular primitives
-          # TODO(should): this structure is a bit wacky...
-          @resources_by_id[id][:state][node[:uname]] = { :state => state, :instance => instance }
+          instance = :default unless instance
+          @resources_by_id[id][:instances][instance] = {} unless @resources_by_id[id][:instances][instance]
+          @resources_by_id[id][:instances][instance][state] = [] unless @resources_by_id[id][:instances][instance][state]
+          @resources_by_id[id][:instances][instance][state] << node[:uname]
         else
           # It's an orphan
           # TODO(should): display this somewhere? (at least log it during testing)
         end
       end
+    end
+
+    inject_stopped_clone_instances @resources
+
+    # More hack
+    for res in @resources
+      res.delete :is_ms
     end
 
     # TODO(should): Can we just use cib attribute dc-uuid?  Or is that not viable
@@ -345,8 +383,8 @@ class CibController < ApplicationController
       },
       :errors => @errors,
       :crm_config => crm_config,
-      :nodes => nodes,
-      :resources => resources
+      :nodes => @nodes,
+      :resources => @resources
       # also constraints, op_defaults, rsc_defaults, ...
     }
   end
