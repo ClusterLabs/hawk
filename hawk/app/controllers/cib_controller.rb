@@ -70,7 +70,7 @@ class CibController < ApplicationController
           while res[:instances].has_key?(instance.to_s)
             instance += 1
           end
-          res[:instances][instance] = {}
+          res[:instances][instance.to_s] = {}
         end
         res.delete :clone_max
       end
