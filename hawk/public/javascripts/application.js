@@ -35,23 +35,23 @@ var cib = null;
 
 function expand_block(id)
 {
-  new Effect.BlindDown($(id+'::children'), { duration: 0.3, fps: 100 });
-  $(id+'::children').removeClassName('closed');
-  $(id+'::button').removeClassName('tri-closed').addClassName('tri-open');
+  new Effect.BlindDown($(id+"::children"), { duration: 0.3, fps: 100 });
+  $(id+"::children").removeClassName("closed");
+  $(id+"::button").removeClassName("tri-closed").addClassName("tri-open");
 }
 
 function collapse_block(id)
 {
-  new Effect.BlindUp($(id+'::children'), { duration: 0.3, fps: 100 });
-  $(id+'::children').addClassName('closed');
-  $(id+'::button').removeClassName('tri-open').addClassName('tri-closed');
+  new Effect.BlindUp($(id+"::children"), { duration: 0.3, fps: 100 });
+  $(id+"::children").addClassName("closed");
+  $(id+"::button").removeClassName("tri-open").addClassName("tri-closed");
 }
 
 // TODO(should): for another approach to expand/contract, see
 // http://www.kleenecode.net/2008/03/01/valid-and-accessible-collapsible-panels-with-scriptaculous/
 function toggle_collapse(id)
 {
-  if ($(id+'::children').hasClassName('closed')) {
+  if ($(id+"::children").hasClassName("closed")) {
     expand_block(id);
   } else {
     collapse_block(id);
@@ -65,7 +65,7 @@ function update_errors(errors)
   if (errors.size()) {
     $("errorbar").show();
     errors.each(function(e) {
-      $("errorbar").insert($(document.createElement("div")).addClassName('error').update(e));
+      $("errorbar").insert($(document.createElement("div")).addClassName("error").update(e));
     });
   } else {
     $("errorbar").hide();
@@ -134,7 +134,7 @@ function update_panel(panel)
   return expand;
 }
 
-// Like string.split, but breaks on '::'
+// Like string.split, but breaks on "::"
 // TODO(could): think about changing our naming conventions so we don't need this.
 function dc_split(str)
 {
@@ -310,7 +310,7 @@ function init_menus()
   $("menu::resource::demote").firstDescendant().observe("click", menu_item_click);
   $("menu::resource::cleanup").firstDescendant().observe("click", menu_item_click);
 
-  document.observe('click', function(e) {
+  document.observe("click", function(e) {
     $("menu::node").hide();
     $("menu::resource").hide();
   });
@@ -349,22 +349,22 @@ function modal_dialog(msg, params)
     });
     $("dialog-buttons").update(html);
   } else {
-    $("dialog-buttons").update('<button onclick="hide_modal_dialog();">' + GETTEXT.ok() + '</button>');
+    $("dialog-buttons").update('<button onclick="hide_modal_dialog();">' + GETTEXT.ok() + "</button>");
   }
 
   // Dialog is always 100px below viewport top, but need to center it
   // TODO(could): can this be done with CSS only?
   // TODO(should): move horizontally when window resizes
-  var style = { left: (document.viewport.getWidth() / 2 - $("dialog").getWidth() / 2) + 'px' };
+  var style = { left: (document.viewport.getWidth() / 2 - $("dialog").getWidth() / 2) + "px" };
   if ($("dialog").getStyle("position") == "absolute") {
     // Hacks to make IE6 suck a little bit less.
     var offsets = document.viewport.getScrollOffsets();
     // It doesn't support fixed position, so move the dialog so it's 100px below
     // the top of the viewport:
-    style.top = (offsets.top + 100) + 'px';
+    style.top = (offsets.top + 100) + "px";
     // It also treats 100% width and height of overlay as relative to viewport,
     // not document, so move the overlay so it's in the current viewport.
-    $("overlay").setStyle({left: offsets.left + 'px', top: offsets.top + 'px'});
+    $("overlay").setStyle({left: offsets.left + "px", top: offsets.top + "px"});
   }
   if (Prototype.Browser.MobileSafari) {
     // Hack to fold back to absolute positioning on e.g. Android
@@ -652,7 +652,6 @@ function hawk_init()
 {
   init_menus();
 
-  // This is just a temporary hack to create necessary panels
   var sp = $(document.createElement("div")).writeAttribute("id", "summary");
   sp.update(
     '<table>' +
