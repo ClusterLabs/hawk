@@ -380,12 +380,22 @@ function do_update(cur_epoch)
 {
   new Ajax.Request("/monitor?" + cur_epoch, { method: "get",
     onSuccess: function(transport) {
-      var new_epoch = transport.responseJSON ? transport.responseJSON.epoch : "";
-      if (new_epoch != cur_epoch) {
-        update_cib();
+      if (transport.responseJSON) {
+        var new_epoch = transport.responseJSON ? transport.responseJSON.epoch : "";
+        if (new_epoch != cur_epoch) {
+          update_cib();
+        } else {
+          do_update(new_epoch);
+        }
       } else {
-        do_update(new_epoch);
+        // This can occur when onSuccess is called erroneously
+        // on network failure; re-request in 15 seconds
+        setTimeout("do_update('" + cur_epoch + "')", 15000);
       }
+    },
+    onFailure: function(transport) {
+      // Busted, retry in 15 seconds.
+      setTimeout("do_update('" + cur_epoch + "')", 15000);
     }
   });
 }
@@ -626,14 +636,15 @@ function update_cib()
           $("nodelist").hide();
           $("reslist").hide();
         }
-      } else {
-        // TODO(must): figure out if we need to handle this
       }
       do_update(cib.meta ? cib.meta.epoch : "");
+    },
+    onFailure: function(transport) {
+      // Busted, try monitor immeidately (which will back off to
+      // every 15 seconds if the server is completely fried).
+      do_update("");
     }
   });
-  // TODO(must): handle failure - re-request?
-  /* do_update('<%= @cib_epoch %>'); */
 }
 
 function hawk_init()
