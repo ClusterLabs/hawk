@@ -607,7 +607,7 @@ function update_cib()
           for (var e in cib.crm_config) {
             if (!$("summary::" + e)) continue;
             if (typeof(cib.crm_config[e]) == "boolean") {
-              $("summary::" + e).update(cib.crm_config[e] ? "Yes (NLS)" : "No (NLS)")
+              $("summary::" + e).update(cib.crm_config[e] ? GETTEXT.yes() : GETTEXT.no())
             } else if(e == "dc_version") {
               var v = cib.crm_config[e];
               $("summary::" + e).update(cib.crm_config[e].match(/.*-[a-f0-9]{12}/));
@@ -655,13 +655,13 @@ function hawk_init()
   var sp = $(document.createElement("div")).writeAttribute("id", "summary");
   sp.update(
     '<table>' +
-      '<tr><th>Cluster Stack (NLS):</th><td><span id="summary::cluster_infrastructure"></span></td></tr>' +
-      '<tr><th>Pacemaker Version (NLS):</th><td><span id="summary::dc_version"></span></td></tr>' +
-      '<tr><th>Current DC (NLS):</th><td><span id="summary::dc"></span></td></tr>' +
-      '<tr><th>Resource Stickiness (NLS):</th><td><span id="summary::default_resource_stickiness"></span></td></tr>' +
-      '<tr><th>STONITH Enabled (NLS):</th><td><span id="summary::stonith_enabled"></span></td></tr>' +
-      '<tr><th>Symmetric Cluster (NLS):</th><td><span id="summary::symmetric_cluster"></span></td></tr>' +
-      '<tr><th>No Quorum Policy (NLS):</th><td><span id="summary::no_quorum_policy"></span></td></tr>' +
+      '<tr><th>' + GETTEXT.summary_stack() + '</th><td><span id="summary::cluster_infrastructure"></span></td></tr>' +
+      '<tr><th>' + GETTEXT.summary_version() + '</th><td><span id="summary::dc_version"></span></td></tr>' +
+      '<tr><th>' + GETTEXT.summary_dc() + '</th><td><span id="summary::dc"></span></td></tr>' +
+      '<tr><th>' + GETTEXT.summary_stickiness() + '</th><td><span id="summary::default_resource_stickiness"></span></td></tr>' +
+      '<tr><th>' + GETTEXT.summary_stonith_enabled() + '</th><td><span id="summary::stonith_enabled"></span></td></tr>' +
+      '<tr><th>' + GETTEXT.summary_symmetric() + '</th><td><span id="summary::symmetric_cluster"></span></td></tr>' +
+      '<tr><th>' + GETTEXT.summary_no_quorum_policy() + '</th><td><span id="summary::no_quorum_policy"></span></td></tr>' +
     '</table>');
   sp.hide();
   $("content").insert({top: sp});

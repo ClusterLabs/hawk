@@ -1,5 +1,5 @@
 var GETTEXT = {
-  // Dialog buttons
+  // Dialog buttons, status indicators
   ok: function() {
     return "<%= escape_javascript _('OK') %>";
   },
@@ -53,6 +53,28 @@ var GETTEXT = {
   // Errors
   err_unexpected: function(msg) {
     return "<%= escape_javascript _('Unexpected server error: %s') % '_MSG_' %>".replace('_MSG_', msg);
+  },
+  // Cluster summary labels
+  summary_stack: function() {
+    return "<%= escape_javascript _('Cluster Stack:') %>";
+  },
+  summary_version: function() {
+    return "<%= escape_javascript _('Pacemaker Version:') %>";
+  },
+  summary_dc: function() {
+    return "<%= escape_javascript _('Current DC:') %>";
+  },
+  summary_stickiness: function() {
+    return "<%= escape_javascript _('Resource Stickiness:') %>";
+  },
+  summary_stonith_enabled: function() {
+    return "<%= escape_javascript _('STONITH Enabled:') %>";
+  },
+  summary_symmetric: function() {
+    return "<%= escape_javascript _('Symmetric Cluster:') %>";
+  },
+  summary_no_quorum_policy: function() {
+    return "<%= escape_javascript _('No Quorum Policy:') %>";
   }
 };
 
