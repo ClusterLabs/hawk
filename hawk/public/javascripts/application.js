@@ -31,6 +31,8 @@
 // Currently selected resource/node when menu is open
 var activeItem = null;
 
+var cib = null;
+
 function expand_block(id)
 {
   new Effect.BlindDown($(id+'::children'), { duration: 0.3, fps: 100 });
@@ -376,51 +378,17 @@ function modal_dialog(msg, params)
 
 function do_update(cur_epoch)
 {
-  new Ajax.Request('/monitor?' + cur_epoch, { method: 'get',
+  new Ajax.Request("/monitor?" + cur_epoch, { method: "get",
     onSuccess: function(transport) {
       var new_epoch = transport.responseJSON ? transport.responseJSON.epoch : "";
       if (new_epoch != cur_epoch) {
-        new Ajax.Request('/main/status?format=json', { method: 'get',
-          onSuccess: function(transport) {
-            var new_epoch = "";
-            if (transport.responseJSON) {
-              update_errors(transport.responseJSON.errors);
-
-              new_epoch = transport.responseJSON.cib_epoch;
-              if (new_epoch != "") {
-                $("summary").show();
-                update_summary(transport.responseJSON.summary);
-
-                $("nodelist").show();
-                if (update_panel(transport.responseJSON.nodes)) {
-                  if ($("nodelist::children").hasClassName("closed")) {
-                    expand_block("nodelist");
-                  }
-                }
-
-                $("reslist").show();
-                if (update_panel(transport.responseJSON.resources)) {
-                  if ($("reslist::children").hasClassName("closed")) {
-                    expand_block("reslist");
-                  }
-                }
-              } else {
-                $("summary").hide();
-                $("nodelist").hide();
-                $("reslist").hide();
-              }
-            }
-            do_update(new_epoch);
-          }
-        });
+        update_cib();
       } else {
         do_update(new_epoch);
       }
     }
   });
 }
-
-var cib = null;
 
 function cib_to_nodelist_panel(nodes)
 {
@@ -616,40 +584,8 @@ function cib_to_reslist_panel(resources)
   return panel;
 }
 
-function hawk_init()
+function update_cib()
 {
-  init_menus();
-
-  // This is just a temporary hack to create necessary panels
-  var sp = $(document.createElement("div")).writeAttribute("id", "summary");
-  sp.update(
-    '<table>' +
-      '<tr><th>Cluster Stack (NLS):</th><td><span id="summary::cluster_infrastructure"></span></td></tr>' +
-      '<tr><th>Pacemaker Version (NLS):</th><td><span id="summary::dc_version"></span></td></tr>' +
-      '<tr><th>Current DC (NLS):</th><td><span id="summary::dc"></span></td></tr>' +
-      '<tr><th>Resource Stickiness (NLS):</th><td><span id="summary::default_resource_stickiness"></span></td></tr>' +
-      '<tr><th>STONITH Enabled (NLS):</th><td><span id="summary::stonith_enabled"></span></td></tr>' +
-      '<tr><th>Symmetric Cluster (NLS):</th><td><span id="summary::symmetric_cluster"></span></td></tr>' +
-      '<tr><th>No Quorum Policy (NLS):</th><td><span id="summary::no_quorum_policy"></span></td></tr>' +
-    '</table>');
-  sp.hide();
-  $("content").insert({top: sp});
-  var np = $(document.createElement("div")).writeAttribute("id", "nodelist");
-  np.update(
-    '<div class="clickable" onclick="toggle_collapse(\'nodelist\');"><div id="nodelist::button" class="tri-closed"></div><a id="nodelist::menu" class="menu-link"><img src="/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="nodelist::label">NONLOCALIZED STRING</span></div>' +
-      '<div id="nodelist::children" style="display: none;" class="closed"></div>' +
-    '</div>');
-  np.hide();
-  sp.insert({after: np});
-  var rp = $(document.createElement("div")).writeAttribute("id", "reslist");
-  rp.update(
-    '<div class="clickable" onclick="toggle_collapse(\'reslist\');"><div id="reslist::button" class="tri-closed"></div><a id="reslist::menu" class="menu-link"><img src="/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="reslist::label">NONLOCALIZED STRING</span></div>' +
-      '<div id="reslist::children" style="display: none;" class="closed"></div>' +
-    '</div>');
-  rp.hide();
-  np.insert({after: rp});
-
-  // TODO(must): show big spinny thing for initial load
   new Ajax.Request("/cib/live", { method: "get",
     onSuccess: function(transport) {
       if (transport.responseJSON) {
@@ -693,8 +629,46 @@ function hawk_init()
       } else {
         // TODO(must): figure out if we need to handle this
       }
+      do_update(cib.meta ? cib.meta.epoch : "");
     }
   });
   // TODO(must): handle failure - re-request?
   /* do_update('<%= @cib_epoch %>'); */
+}
+
+function hawk_init()
+{
+  init_menus();
+
+  // This is just a temporary hack to create necessary panels
+  var sp = $(document.createElement("div")).writeAttribute("id", "summary");
+  sp.update(
+    '<table>' +
+      '<tr><th>Cluster Stack (NLS):</th><td><span id="summary::cluster_infrastructure"></span></td></tr>' +
+      '<tr><th>Pacemaker Version (NLS):</th><td><span id="summary::dc_version"></span></td></tr>' +
+      '<tr><th>Current DC (NLS):</th><td><span id="summary::dc"></span></td></tr>' +
+      '<tr><th>Resource Stickiness (NLS):</th><td><span id="summary::default_resource_stickiness"></span></td></tr>' +
+      '<tr><th>STONITH Enabled (NLS):</th><td><span id="summary::stonith_enabled"></span></td></tr>' +
+      '<tr><th>Symmetric Cluster (NLS):</th><td><span id="summary::symmetric_cluster"></span></td></tr>' +
+      '<tr><th>No Quorum Policy (NLS):</th><td><span id="summary::no_quorum_policy"></span></td></tr>' +
+    '</table>');
+  sp.hide();
+  $("content").insert({top: sp});
+  var np = $(document.createElement("div")).writeAttribute("id", "nodelist");
+  np.update(
+    '<div class="clickable" onclick="toggle_collapse(\'nodelist\');"><div id="nodelist::button" class="tri-closed"></div><a id="nodelist::menu" class="menu-link"><img src="/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="nodelist::label">NONLOCALIZED STRING</span></div>' +
+      '<div id="nodelist::children" style="display: none;" class="closed"></div>' +
+    '</div>');
+  np.hide();
+  sp.insert({after: np});
+  var rp = $(document.createElement("div")).writeAttribute("id", "reslist");
+  rp.update(
+    '<div class="clickable" onclick="toggle_collapse(\'reslist\');"><div id="reslist::button" class="tri-closed"></div><a id="reslist::menu" class="menu-link"><img src="/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="reslist::label">NONLOCALIZED STRING</span></div>' +
+      '<div id="reslist::children" style="display: none;" class="closed"></div>' +
+    '</div>');
+  rp.hide();
+  np.insert({after: rp});
+
+  // TODO(must): show big spinny thing for initial load
+  update_cib();
 }
