@@ -598,6 +598,7 @@ function update_cib()
 {
   new Ajax.Request("/cib/live", { method: "get",
     onSuccess: function(transport) {
+      $("onload-spinner").hide();
       if (transport.responseJSON) {
         cib = transport.responseJSON;
         update_errors(cib.errors);
@@ -680,6 +681,5 @@ function hawk_init()
   rp.hide();
   np.insert({after: rp});
 
-  // TODO(must): show big spinny thing for initial load
   update_cib();
 }
