@@ -75,6 +75,60 @@ var GETTEXT = {
   },
   summary_no_quorum_policy: function() {
     return "<%= escape_javascript _('No Quorum Policy:') %>";
+  },
+  // Node & resource labels
+  nodes_configured: function(num) {
+    var s = <%= [1,'_NUM_'].map {|n| n_('1 node configured', '%{num} nodes configured', n) % { :num => n } }.to_json %>;
+    return num == 1 ? s[0] : s[1].replace('_NUM_', num);
+  },
+  node_state: function(node, state) {
+    return "<%= escape_javascript _('%{node}: %{state}') % { :node => '_NODE_', :state => '_STATE_' } %>".replace('_NODE_', node).replace('_STATE_', state);
+  },
+  node_state_online: function() {
+    return "<%= escape_javascript _('Online') %>";
+  },
+  node_state_offline: function() {
+    return "<%= escape_javascript _('Offline') %>";
+  },
+  node_state_pending: function() {
+    return "<%= escape_javascript _('Pending') %>";
+  },
+  node_state_standby: function() {
+    return "<%= escape_javascript _('Standby') %>";
+  },
+  node_state_unclean: function() {
+    return "<%= escape_javascript _('Unclean') %>";
+  },
+  node_state_unknown: function() {
+    return "<%= escape_javascript _('Unknown') %>";
+  },
+  resources_configured: function(num) {
+    var s = <%= [1,'_NUM_'].map {|n| n_('1 resource configured', '%{num} resources configured', n) % { :num => n } }.to_json %>;
+    return num == 1 ? s[0] : s[1].replace('_NUM_', num);
+  },
+  resource_state_master: function(res, nodes) {
+    return "<%= escape_javascript _('%{id}: Master: %{nodelist}') % { :id => '_RES_', :nodelist => '_NODELIST_' } %>".replace('_RES_', res).replace('_NODELIST_', nodes.join(", "));
+  },
+  resource_state_slave: function(res, nodes) {
+    return "<%= escape_javascript _('%{id}: Slave: %{nodelist}') % { :id => '_RES_', :nodelist => '_NODELIST_' } %>".replace('_RES_', res).replace('_NODELIST_', nodes.join(", "));
+  },
+  resource_state_started: function(res, nodes) {
+    return "<%= escape_javascript _('%{id}: Started: %{nodelist}') % { :id => '_RES_', :nodelist => '_NODELIST_' } %>".replace('_RES_', res).replace('_NODELIST_', nodes.join(", "));
+  },
+  resource_state_pending: function(res, nodes) {
+    return "<%= escape_javascript _('%{id}: Pending: %{nodelist}') % { :id => '_RES_', :nodelist => '_NODELIST_' } %>".replace('_RES_', res).replace('_NODELIST_', nodes.join(", "));
+  },
+  resource_state_stopped: function(res) {
+    return "<%= escape_javascript _('%{id}: Stopped') % { :id => '_RES_' } %>".replace('_RES_', res);
+  },
+  resource_group: function(res) {
+    return "<%= escape_javascript _('Group: %{id}') % { :id => '_RES_' } %>".replace('_RES_', res);
+  },
+  resource_master: function(res) {
+    return "<%= escape_javascript _('Master/Slave Set: %{id}') % { :id => '_RES_' } %>".replace('_RES_', res);
+  },
+  resource_clone: function(res) {
+    return "<%= escape_javascript _('Clone Set: %{id}') % { :id => '_RES_' } %>".replace('_RES_', res);
   }
 };
 

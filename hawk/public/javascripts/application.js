@@ -406,33 +406,33 @@ function cib_to_nodelist_panel(nodes)
     id:         "nodelist",
     className:  "",
     style:      "",
-    label:      nodes.size() + " nodes configured (NLS)",
+    label:      GETTEXT.nodes_configured(nodes.size()),
     open:       false,
     children:   []
   };
   nodes.each(function(n) {
     var className;
-    var label;
+    var label = GETTEXT.node_state_unknown();
     switch (n.state) {
       case "online":
         className = "active";
-        label = "Online";
+        label = GETTEXT.node_state_online();
         break;
       case "offline":
         className = "inactive";
-        label = "Offline";
+        label = GETTEXT.node_state_offline();
         break;
       case "pending":
         className = "transient";
-        label = "Pending";
+        label = GETTEXT.node_state_pending();
         break;
       case "standby":
         className = "inactive";
-        label = "Standby";
+        label = GETTEXT.node_state_standby();
         break;
       case "unclean":
         className = "error";
-        label = "Unclean";
+        label = GETTEXT.node_state_unclean();
         break;
       default:
         // This can't happen
@@ -445,7 +445,7 @@ function cib_to_nodelist_panel(nodes)
     panel.children.push({
       id:         "node::" + n.uname,
       className:  "node ns-" + className,
-      label:      n.uname + ": " + label + " (NLS)",
+      label:      GETTEXT.node_state(n.uname, label),
       menu:       true
     });
   });
@@ -463,29 +463,29 @@ function get_primitive(res)
     var label;
     var active = false;
     if (res.instances[i].master) {
-      label = id + ": Master: " + res.instances[i].master.join(", ");
+      label = GETTEXT.resource_state_master(id, res.instances[i].master);
       status_class += " rs-active rs-master";
       active = true;
-    } else if (res.instances[i].pending) {
-      label = id + ": Pending: " + res.instances[i].pending.join(", ");
-      status_class += " rs-transient";
-    } else if (res.instances[i].started) {
-      status_class += " rs-active";
-      label = id + ": Started: " + res.instances[i].started.join(", ");
-      active = true;
     } else if (res.instances[i].slave) {
+      label = GETTEXT.resource_state_slave(id, res.instances[i].slave);
       status_class += " rs-active rs-slave";
-      label = id + ": Slave: " + res.instances[i].slave.join(", ");
       active = true;
+    } else if (res.instances[i].started) {
+      label = GETTEXT.resource_state_started(id, res.instances[i].started);
+      status_class += " rs-active";
+      active = true;
+    } else if (res.instances[i].pending) {
+      label = GETTEXT.resource_state_pending(id, res.instances[i].pending);
+      status_class += " rs-transient";
     } else {
-      label = id + ": Stopped"
+      label = GETTEXT.resource_state_stopped(id);
       status_class += " rs-inactive";
     }
     set.push({
       id:         "resource::" + id,
       instance:   i,
       className:  status_class,
-      label:      label + " (NLS)",
+      label:      label,
       active:     active
     });
   }
@@ -504,7 +504,7 @@ function get_group(res)
         groups[i.instance] = {
           id:        "resource::" + res.id,
           className: "res-group rs-active",
-          label:     "Group (NLS): " + res.id,
+          label:     GETTEXT.resource_group(res.id),
           open:      false,
           children:  []
         };
@@ -557,7 +557,7 @@ function get_clone(res)
   return {
     id:         "resource::" + res.id,
     className:  "res-clone " + status_class,
-    label:      (res.type == "master" ? "Master/Slave Set: " : "Clone Set") + " " + res.id + " (NLS)",
+    label:      (res.type == "master" ? GETTEXT.resource_master(res.id) : GETTEXT.resource_clone(res.id)),
     open:       open,
     children:   children
   };
@@ -569,7 +569,7 @@ function cib_to_reslist_panel(resources)
     id:         "reslist",
     className:  "",
     style:      "",
-    label:      resources.size() + " resources configured (NLS)",
+    label:      GETTEXT.resources_configured(resources.size()),
     open:       false,
     children:   []
   };
