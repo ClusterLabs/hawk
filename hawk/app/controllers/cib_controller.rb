@@ -322,7 +322,7 @@ class CibController < ApplicationController
             state = :master
           when 0
             # ok
-            if operation == 'stop'
+            if operation == 'stop' || operation == 'migrate_to'
               state = :stopped
             elsif operation == 'promote'
               state = :master
