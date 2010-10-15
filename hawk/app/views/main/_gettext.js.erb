@@ -30,7 +30,7 @@ var GETTEXT = {
     return "<%= escape_javascript _('This will stop the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
   },
   resource_migrate: function(res) {
-    return "<%= escape_javascript _('Move resource %s:') % '_RES_' %>".replace('_RES_', res);
+    return "<%= escape_javascript _('Move resource %s') % '_RES_' %>".replace('_RES_', res);
   },
   resource_migrate_to: function(node) {
     return "<%= escape_javascript _('To node %s') % '_NODE_' %>".replace('_NODE_', node);
@@ -51,6 +51,9 @@ var GETTEXT = {
     return "<%= escape_javascript _('This will clean up the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
   },
   // Errors
+  error: function() {
+    return "<%= escape_javascript _('Error') %>";
+  },
   err_unexpected: function(msg) {
     return "<%= escape_javascript _('Unexpected server error: %s') % '_MSG_' %>".replace('_MSG_', msg);
   },
