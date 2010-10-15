@@ -412,43 +412,9 @@ img
   width: 12em;
 }
 
-#overlay
-{
-  position: absolute;
-  overflow: hidden;
-  left: 0px;
-  top: 0px;
-  width: 100%;
-  height: 100%;
-  background-color: #000;
-  z-index: 10;
-}
-
-#dialog
-{
-  border: 1px solid #000;
-  -moz-box-shadow: 0 0 16px #000;
-  -webkit-box-shadow: 0 0 16px #000;
-  box-shadow: 0 0 16px #000;
-  background-color: #fff;
-  top: 100px;
-  position: fixed;
-  z-index: 20;
-  width: 30em;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#dialog-message
-{
-  margin: 1em 2em;
-  font-size: 120%;
-  font-weight: bold;
-}
-
 #dialog-body
 {
-  margin: 0em 2.5em;
+  margin-top: 0.5em;
   height: 4em;
 }
 
@@ -457,13 +423,6 @@ img
   overflow: auto;
   background-color: #eee;
   border: 1px solid #ccc;
-}
-
-#dialog-buttons
-{
-  width: 26em;
-  margin: 1.5em 2em;
-  text-align: right;
 }
 
 #onload-spinner

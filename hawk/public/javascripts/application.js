@@ -200,13 +200,16 @@ function menu_item_click(e)
 {
   // parts[1] is "node" or "resource", parts[2] is op
   var parts = dc_split(Event.element(e).parentNode.id);
-  modal_dialog(GETTEXT[parts[1] + "_" + parts[2]](activeItem),
-    { buttons: [
-      // TODO(should): This is a bit hairy - we might be better off passing
-      // functions around than doing this generated onclick code thing...
-      { label: GETTEXT.yes(), action: "perform_op('" + parts[1] + "','" + activeItem + "','" + parts[2] + "');" },
-      { label: GETTEXT.no() }
-    ] });
+  $j("#dialog").html(GETTEXT[parts[1] + "_" + parts[2]](activeItem));
+  // TODO(could): Is there a neater construct for this localized button thing?
+  var b = {};
+  b[GETTEXT.yes()]  = function() { perform_op(parts[1], activeItem, parts[2]); $j(this).dialog("close"); };
+  b[GETTEXT.no()]   = function() { $j(this).dialog("close"); }
+  $j("#dialog").dialog("option", {
+    title:    Event.element(e).innerHTML,
+    buttons:  b
+  });
+  $j("#dialog").dialog("open");
 }
 
 function menu_item_click_migrate(e)
@@ -221,12 +224,21 @@ function menu_item_click_migrate(e)
   });
   html += '<option selected="selected" value="">' + GETTEXT.resource_migrate_away() + "</option>\n";
   html += "</form></select>";
-  modal_dialog(GETTEXT[parts[1] + "_" + parts[2]](activeItem),
-    { body_raw: html,
-      buttons: [
-      { label: GETTEXT.ok(), action: "perform_op('" + parts[1] + "','" + activeItem + "','" + parts[2] + "','node=' + $('migrate-to').getValue());" },
-      { label: GETTEXT.cancel() }
-    ] });
+  $j("#dialog").html(html);
+  // TODO(could): Is there a neater construct for this localized button thing?
+  var b = {};
+  b[GETTEXT.ok()] = function() {
+    perform_op(parts[1], activeItem, parts[2], "node=" + $("migrate-to").getValue());
+    $j(this).dialog("close");
+  };
+  b[GETTEXT.cancel()] = function() {
+    $j(this).dialog("close");
+  };
+  $j("#dialog").dialog("option", {
+    title:    GETTEXT[parts[1] + "_" + parts[2]](activeItem),
+    buttons:  b
+  });
+  $j("#dialog").dialog("open");
 }
 
 function perform_op(type, id, op, extra)
@@ -253,10 +265,10 @@ function perform_op(type, id, op, extra)
       $(type + "::" + id + "::menu").firstDescendant().src = "../images/icons/properties.png";
       // Display error
       if (request.responseJSON) {
-        modal_dialog(request.responseJSON.error,
-          { body: (request.responseJSON.stderr && request.responseJSON.stderr.size()) ? request.responseJSON.stderr.join("\n") : null });
+        error_dialog(request.responseJSON.error,
+          (request.responseJSON.stderr && request.responseJSON.stderr.size()) ? request.responseJSON.stderr.join("\n") : null);
       } else {
-        modal_dialog(GETTEXT.err_unexpected(request.status));
+        error_dialog(GETTEXT.err_unexpected(request.status));
       }
     }
   });
@@ -318,62 +330,21 @@ function init_menus()
   $$(".menu-link").each(add_mgmt_menu);
 }
 
-function hide_modal_dialog()
+function error_dialog(msg, body)
 {
-  $("dialog").hide();
-  $("overlay").hide();
-}
-
-function modal_dialog(msg, params)
-{
-  params = params || {};
-
-  $("dialog-message").update(msg.escapeHTML());
-
-  if (params.body) {
-    if (!$("dialog-body").hasClassName("message")) {
-      $("dialog-body").addClassName("message");
-    }
-    $("dialog-body").update(params.body.escapeHTML().replace(/\n/g, "<br />")).show();
-  } else if (params.body_raw) {
-    $("dialog-body").removeClassName("message");
-    $("dialog-body").update(params.body_raw).show();
-  } else {
-    $("dialog-body").hide();
+  if (body) {
+    // TODO(should): theme this properly
+    msg += '<div id="dialog-body" class="message">' + body.escapeHTML().replace(/\n/g, "<br />") + "</div>";
   }
-
-  if (params.buttons) {
-    var html = "";
-    params.buttons.each(function(button) {
-      html += '<button onclick="' + (button.action ? button.action : '') + ' hide_modal_dialog();">' + button.label + '</button> ';
-    });
-    $("dialog-buttons").update(html);
-  } else {
-    $("dialog-buttons").update('<button onclick="hide_modal_dialog();">' + GETTEXT.ok() + "</button>");
-  }
-
-  // Dialog is always 100px below viewport top, but need to center it
-  // TODO(could): can this be done with CSS only?
-  // TODO(should): move horizontally when window resizes
-  var style = { left: (document.viewport.getWidth() / 2 - $("dialog").getWidth() / 2) + "px" };
-  if ($("dialog").getStyle("position") == "absolute") {
-    // Hacks to make IE6 suck a little bit less.
-    var offsets = document.viewport.getScrollOffsets();
-    // It doesn't support fixed position, so move the dialog so it's 100px below
-    // the top of the viewport:
-    style.top = (offsets.top + 100) + "px";
-    // It also treats 100% width and height of overlay as relative to viewport,
-    // not document, so move the overlay so it's in the current viewport.
-    $("overlay").setStyle({left: offsets.left + "px", top: offsets.top + "px"});
-  }
-  if (Prototype.Browser.MobileSafari) {
-    // Hack to fold back to absolute positioning on e.g. Android
-    // which can't cope with fixed position when zoomed in.  Not
-    // optimal, but better than a dialog you can't use!
-    style.position = "absolute";
-  }
-  $("overlay").setOpacity(0.5).show();
-  $("dialog").setStyle(style).show();
+  $j("#dialog").html(msg);
+  // TODO(could): Is there a neater construct for this localized button thing?
+  var b = {};
+  b[GETTEXT.ok()]   = function() { $j(this).dialog("close"); }
+  $j("#dialog").dialog("option", {
+    title:    GETTEXT.error(),
+    buttons:  b
+  });
+  $j("#dialog").dialog("open");
 }
 
 function do_update(cur_epoch)
@@ -651,6 +622,15 @@ function update_cib()
 function hawk_init()
 {
   init_menus();
+
+  $j("#dialog").dialog({
+    resizable:      false,
+    width:          "30em",
+    draggable:      false,
+    modal:          true,
+    autoOpen:       false,
+    closeOnEscape:  true
+  });
 
   var sp = $(document.createElement("div")).writeAttribute("id", "summary");
   sp.update(

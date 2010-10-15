@@ -45,7 +45,7 @@ class MainController < ApplicationController
     else
       render :status => 500, :json => {
         :error  => _('%{cmd} failed (status: %{status})') % { :cmd => cmd.join(' '), :status => $?.exitstatus },
-        :stderr => stderr.readlines
+        :stderr => stderr.read().split("\n")
       }
     end
   end
