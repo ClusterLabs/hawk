@@ -650,6 +650,7 @@ function update_cib()
     onFailure: function(transport) {
       // Busted, try monitor immeidately (which will back off to
       // every 15 seconds if the server is completely fried).
+      update_errors([GETTEXT.err_unexpected(transport.status + " " + transport.statusText)]);
       do_update("");
     }
   });
