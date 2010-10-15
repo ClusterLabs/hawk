@@ -35,11 +35,10 @@ Layout based on http://www.xs4all.nl/~peterned/examples/css/layout1.css
 html, body
 {
   font-family: sans-serif;
-  font-size: 10pt;
+  font-size: 10pt; /* TOTHEME? */
   margin: 0;
   padding: 0;
   height: 100%;
-  color: #000;
 }
 
 #container
@@ -54,13 +53,14 @@ html, body
 
 #header
 {
-  font-size: 10pt;
-  border-bottom: 1px solid #000;
+  border-top: none !important;
+  border-left: none !important;
+  border-right: none !important;
   width: 100%;
   left: 0px;
   top: 0px;
   height: 36px;
-  background-color: #ccc;
+  background-color: #ccc; /* TOTHEME */
 }
 
 #header-links
@@ -69,11 +69,12 @@ html, body
   line-height: 36px;
   padding-right: 1em;
   font-size: 80%;
+  font-weight: normal;
 }
 
 #header-links a
 {
-  color: #000;
+  color: #000; /* TOTHEME */
 }
 
 #content
@@ -83,13 +84,13 @@ html, body
 
 #errorbar
 {
-  background-color: #c66;
+  background-color: #c66; /* TOTHEME */
 }
 
 .error
 {
-  color: #000;
-  border-bottom: 1px solid #933;
+  color: #000; /* TOTHEME */
+  border-bottom: 1px solid #933; /* TOTHEME */
   padding: 0.2em 1em;
 }
 
@@ -102,12 +103,15 @@ html, body
 {
   font-size: 8pt;
   position: absolute;
-  border-top: 1px solid #000;
+  border-bottom: none !important;
+  border-left: none !important;
+  border-right: none !important;
   bottom: 0px;
   left: 0px;
   width: 100%;
   height: 2em;
-  background-color: #ccc;
+  background-color: #ccc; /* TOTHEME */
+  font-weight: normal !important;
 }
 
 #hostinfo
@@ -126,10 +130,7 @@ html, body
 #summary
 {
   float: right;
-  border: 1px solid #666;
   padding: 0.25em 0.5em;
-  color: #666;
-  background: #fff;
 }
 
 th /* used in summary */
@@ -169,6 +170,8 @@ h2
   font-size: 10pt;
   font-weight: bold;
 }
+
+/* TOTHEME: audit below */
 
 #nodelist
 {
@@ -303,8 +306,8 @@ img
   left: 0;
   top: 0;
   /* specific style below */
-  width: 12em;
-  background: #ccc;
+  width: 13em;
+  background: #ddd;
   border: 1px solid #888;
   padding: 0;
   z-index: 1;
@@ -318,7 +321,7 @@ img
   cursor: pointer;
   /* specific style below */
   padding: 3px 0 3px 25px;
-  border: 1px solid #ccc;
+  border: 1px solid #ddd;
 }
 
 .menu a.enabled:hover
@@ -343,52 +346,52 @@ img
 
 .menu a.icon-pause
 {
-  background: #ccc url(../images/icons/pause.png) 2px 50% no-repeat;
+  background: #ddd url(../images/icons/pause.png) 2px 50% no-repeat;
 }
 
 .menu a.icon-start
 {
-  background: #ccc url(../images/icons/start.png) 2px 50% no-repeat;
+  background: #ddd url(../images/icons/start.png) 2px 50% no-repeat;
 }
 
 .menu a.icon-stop
 {
-  background: #ccc url(../images/icons/stop.png) 2px 50% no-repeat;
+  background: #ddd url(../images/icons/stop.png) 2px 50% no-repeat;
 }
 
 .menu a.icon-kill
 {
-  background: #ccc url(../images/icons/kill.png) 2px 50% no-repeat;
+  background: #ddd url(../images/icons/kill.png) 2px 50% no-repeat;
 }
 
 .menu a.icon-mark-dead
 {
-  background: #ccc url(../images/icons/mark-dead.png) 2px 50% no-repeat;
+  background: #ddd url(../images/icons/mark-dead.png) 2px 50% no-repeat;
 }
 
 .menu a.icon-cleanup
 {
-  background: #ccc url(../images/icons/cleanup.png) 2px 50% no-repeat;
+  background: #ddd url(../images/icons/cleanup.png) 2px 50% no-repeat;
 }
 
 .menu a.icon-migrate
 {
-  background: #ccc url(../images/icons/migrate.png) 2px 50% no-repeat;
+  background: #ddd url(../images/icons/migrate.png) 2px 50% no-repeat;
 }
 
 .menu a.icon-unmigrate
 {
-  background: #ccc url(../images/icons/unmigrate.png) 2px 50% no-repeat;
+  background: #ddd url(../images/icons/unmigrate.png) 2px 50% no-repeat;
 }
 
 .menu a.icon-promote
 {
-  background: #ccc url(../images/icons/promote.png) 2px 50% no-repeat;
+  background: #ddd url(../images/icons/promote.png) 2px 50% no-repeat;
 }
 
 .menu a.icon-demote
 {
-  background: #ccc url(../images/icons/demote.png) 2px 50% no-repeat;
+  background: #ddd url(../images/icons/demote.png) 2px 50% no-repeat;
 }
 
 .flash-warning
@@ -412,43 +415,9 @@ img
   width: 12em;
 }
 
-#overlay
-{
-  position: absolute;
-  overflow: hidden;
-  left: 0px;
-  top: 0px;
-  width: 100%;
-  height: 100%;
-  background-color: #000;
-  z-index: 10;
-}
-
-#dialog
-{
-  border: 1px solid #000;
-  -moz-box-shadow: 0 0 16px #000;
-  -webkit-box-shadow: 0 0 16px #000;
-  box-shadow: 0 0 16px #000;
-  background-color: #fff;
-  top: 100px;
-  position: fixed;
-  z-index: 20;
-  width: 30em;
-  margin-left: auto;
-  margin-right: auto;
-}
-
-#dialog-message
-{
-  margin: 1em 2em;
-  font-size: 120%;
-  font-weight: bold;
-}
-
 #dialog-body
 {
-  margin: 0em 2.5em;
+  margin-top: 0.5em;
   height: 4em;
 }
 
@@ -457,13 +426,6 @@ img
   overflow: auto;
   background-color: #eee;
   border: 1px solid #ccc;
-}
-
-#dialog-buttons
-{
-  width: 26em;
-  margin: 1.5em 2em;
-  text-align: right;
 }
 
 #onload-spinner
