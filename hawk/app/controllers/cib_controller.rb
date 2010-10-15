@@ -194,7 +194,7 @@ class CibController < ApplicationController
       # If this failed, there'll be no root element
       unless @cib.root
         # TODO(should): clean up this error (not enough information)
-        @errors << _('Error invoking %{cmd}') % {:cmd => '/usr/sbin/cibadmin -Ql' }
+        @errors << _('Error invoking %{cmd}') % {:cmd => '/usr/sbin/cibadmin -Ql' } if @errors.empty?
         render :json => { :errors => @errors }
         return
       end
