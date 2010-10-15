@@ -383,6 +383,9 @@ class CibController < ApplicationController
     # More hack
     for res in @resources
       res.delete :is_ms
+      # Need to inject a default instance if we don't have any state
+      # (e.g. during cluster bringup) else the panel renderer chokes.
+      res[:instances][:default] = {} if res[:instances].empty?
     end
 
     # TODO(should): Can we just use cib attribute dc-uuid?  Or is that not viable
