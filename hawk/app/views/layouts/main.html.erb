@@ -13,7 +13,7 @@
 </head>
 <body>
 <div id="container">
-  <div id="header">
+  <div id="header" class="ui-widget-header">
     <%= image_tag 'logo.png', :alt => '', :id => 'logo' %>
     <span id="header-links">
     <% if logged_in? %>
@@ -27,7 +27,7 @@
   <div id="content">
     <%= yield %>
   </div>
-  <div id="footer">
+  <div id="footer" class="ui-widget-header">
     <span id="hostinfo"><%= (_('Host: %s') % @host) if @host %></span>
     <span id="copyright"><%= _('Copyright &copy; 2009-2010 Novell, Inc.') %></span>
   </div>

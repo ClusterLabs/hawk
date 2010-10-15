@@ -82,7 +82,7 @@ function update_summary(summary)
 // need to pass parent in with open flag (e.g.: nodelist, reslist)
 function update_panel(panel)
 {
-  $(panel.id).className = panel.className;
+  $(panel.id).className = "ui-corner-all " + panel.className;
   $(panel.id+"::label").update(panel.label);
 
   if (!panel.children) return false;
@@ -633,6 +633,7 @@ function hawk_init()
   });
 
   var sp = $(document.createElement("div")).writeAttribute("id", "summary");
+  sp.addClassName("ui-widget-content").addClassName("ui-corner-all");
   sp.update(
     '<table>' +
       '<tr><th>' + GETTEXT.summary_stack() + '</th><td><span id="summary::cluster_infrastructure"></span></td></tr>' +
@@ -646,6 +647,7 @@ function hawk_init()
   sp.hide();
   $("content").insert({top: sp});
   var np = $(document.createElement("div")).writeAttribute("id", "nodelist");
+  np.addClassName("ui-corner-all");
   np.update(
     '<div class="clickable" onclick="toggle_collapse(\'nodelist\');"><div id="nodelist::button" class="tri-closed"></div><a id="nodelist::menu" class="menu-link"><img src="../images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="nodelist::label"></span></div>' +
       '<div id="nodelist::children" style="display: none;" class="closed"></div>' +
@@ -653,6 +655,7 @@ function hawk_init()
   np.hide();
   sp.insert({after: np});
   var rp = $(document.createElement("div")).writeAttribute("id", "reslist");
+  rp.addClassName("ui-corner-all");
   rp.update(
     '<div class="clickable" onclick="toggle_collapse(\'reslist\');"><div id="reslist::button" class="tri-closed"></div><a id="reslist::menu" class="menu-link"><img src="../images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="reslist::label"></span></div>' +
       '<div id="reslist::children" style="display: none;" class="closed"></div>' +
