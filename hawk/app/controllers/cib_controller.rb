@@ -188,16 +188,35 @@ class CibController < ApplicationController
   end
 
   def show
-    # Only provide the live CIB (no shadow functionality yet)
-    unless params[:id] == 'live'
+    # Only provide the live CIB and static test files (no shadow functionality yet)
+    if params[:id] == 'live'
+      @cib = REXML::Document.new(%x[/usr/sbin/cibadmin -Ql 2>/dev/null])
+      # If this failed, there'll be no root element
+      unless @cib.root
+        # TODO(should): clean up this error (not enough information)
+        @errors << _('Error invoking %{cmd}') % {:cmd => '/usr/sbin/cibadmin -Ql' }
+        render :json => { :errors => @errors }
+        return
+      end
+    elsif params[:debug] == 'file'
+      cib_path = params[:id]
+      # TODO(must): This is a bit rough
+      cib_path.gsub! /[^\w-]/, ''
+      cib_path = "#{RAILS_ROOT}/test/cib/#{cib_path}.xml"
+      unless File.exist?(cib_path)
+        @errors << _('CIB file "%{path}" not found') % {:path => cib_path }
+        render :json => { :errors => @errors }
+        return
+      end
+      @cib = REXML::Document.new(File.new(cib_path))
+      unless @cib.root
+        # TODO(should): clean up this error (not enough information)
+        @errors << _('Unable to parse CIB file "%{path}"') % {:path => cib_path }
+        render :json => { :errors => @errors }
+        return
+      end
+    else
       head :not_found
-      return
-    end
-
-    @cib = REXML::Document.new(%x[/usr/sbin/cibadmin -Ql 2>/dev/null])
-    # If this failed, there'll be no root element
-    unless @cib.root
-      render :json => { :errors => @errors }
       return
     end
 

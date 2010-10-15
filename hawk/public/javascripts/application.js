@@ -32,6 +32,7 @@
 var activeItem = null;
 
 var cib = null;
+var cib_file = false;
 
 function expand_block(id)
 {
@@ -114,7 +115,10 @@ function update_panel(panel)
       } else {
         c.insert({before: d});
       }
-      add_mgmt_menu($(item.id + "::menu"));
+      if (!cib_file) {
+        // Only add menus if this isn't a static test
+        add_mgmt_menu($(item.id + "::menu"));
+      }
     } else {
       c = c.next();
     }
@@ -378,6 +382,9 @@ function modal_dialog(msg, params)
 
 function do_update(cur_epoch)
 {
+  // No refresh if this is a static test
+  if (cib_file) return;
+
   new Ajax.Request("../monitor?" + cur_epoch, { method: "get",
     onSuccess: function(transport) {
       if (transport.responseJSON) {
@@ -596,7 +603,7 @@ function cib_to_reslist_panel(resources)
 
 function update_cib()
 {
-  new Ajax.Request("../cib/live", { method: "get",
+  new Ajax.Request("../cib/" + (cib_file ? cib_file + "?debug=file" : "live"), { method: "get",
     onSuccess: function(transport) {
       $("onload-spinner").hide();
       if (transport.responseJSON) {
@@ -650,6 +657,11 @@ function update_cib()
 
 function hawk_init()
 {
+  var q = window.location.search.parseQuery();
+  if (q.cib_file) {
+    cib_file = q.cib_file;
+  }
+
   init_menus();
 
   var sp = $(document.createElement("div")).writeAttribute("id", "summary");
