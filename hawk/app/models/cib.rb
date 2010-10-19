@@ -4,6 +4,12 @@ require 'rexml/document' unless defined? REXML::Document
 class Cib
   include GetText
 
+  # Need this to behave like an instance of ActiveRecord
+  attr_reader :id
+  def to_param
+    (id = self.id) ? id.to_s : nil
+  end
+
   protected
 
   # Gives back a string, boolean if value is "true" or "false",
@@ -176,8 +182,10 @@ class Cib
       raise RuntimeError, _('Error invoking %{cmd}') % {:cmd => '/usr/sbin/cibadmin -Ql' } unless @xml.root
     else
       # Only provide the live CIB and static test files (no shadow functionality yet)
-      raise ArgumentError
+      raise ArgumentError, _('Only the live CIB is supported')
     end
+
+    @id = id
 
     # Special-case properties we always want to see
     @crm_config = {
@@ -358,5 +366,14 @@ class Cib
     @epoch = "#{get_xml_attr(@xml.root, 'admin_epoch')}:#{get_xml_attr(@xml.root, 'epoch')}:#{get_xml_attr(@xml.root, 'num_updates')}";
     
   end
-  
+
+  # If we were using ActiveRecord, we'd be able to use has_many etc. and
+  # magically have cib.crm_configs.find.  But we're not, so we have this
+  # thing instead.  Note that there is no particular error checking here;
+  # if you ask for a crm_config that doesn't exist, you'll get back an
+  # empty CrmConfig model.
+  def find_crm_config(id)
+    CrmConfig.new(@xml.elements['cib/configuration/crm_config'], id)
+  end
+
 end

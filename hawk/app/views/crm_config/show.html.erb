@@ -1,0 +1,12 @@
+<div class="ui-widget-content ui-corner-all" style="padding: 0.5em;">
+<% if @crm_config.props.empty? %>
+<p><%=h _("No cluster properties set in %{group}") % { :group => @crm_config.id } %></p>
+<% else %>
+<table>
+<%   @crm_config.all_props.each do |p| %>
+<%     next unless @crm_config.props[p] %>
+<tr><th><%=h p %></th><td><%=h @crm_config.props[p] %></td></tr>
+<%   end %>
+</table>
+<% end %>
+</div>
