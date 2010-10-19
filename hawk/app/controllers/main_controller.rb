@@ -28,7 +28,6 @@
 #
 #======================================================================
 
-require 'natcmp'
 require 'util'
 require 'rexml/document' unless defined? REXML::Document
 

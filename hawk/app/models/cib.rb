@@ -1,3 +1,4 @@
+require 'natcmp'
 require 'rexml/document' unless defined? REXML::Document
 
 class Cib
