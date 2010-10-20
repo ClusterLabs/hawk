@@ -8,5 +8,6 @@
 <tr><th><%=h p %></th><td><%=h @crm_config.props[p] %></td></tr>
 <%   end %>
 </table>
+<div><%= link_to _('Edit'), edit_cib_crm_config_path(@cib, @crm_config) %> | <%= link_to _('Back'), status_path %></div>
 <% end %>
 </div>

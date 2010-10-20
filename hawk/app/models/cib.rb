@@ -155,6 +155,9 @@ class Cib
 
   public
 
+  # Notes that errors here overloads what ActiveRecord would
+  # use for reporting errors when editing resources.  This
+  # should almost certainly be changed.
   attr_reader :dc, :epoch, :nodes, :resources, :crm_config, :errors
 
   def initialize(id, use_file = false)

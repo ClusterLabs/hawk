@@ -656,7 +656,7 @@ function hawk_init()
       '<tr><th>' + GETTEXT.summary_stonith_enabled() + '</th><td><span id="summary::stonith_enabled"></span></td></tr>' +
       '<tr><th>' + GETTEXT.summary_symmetric() + '</th><td><span id="summary::symmetric_cluster"></span></td></tr>' +
       '<tr><th>' + GETTEXT.summary_no_quorum_policy() + '</th><td><span id="summary::no_quorum_policy"></span></td></tr>' +
-    '</table>');
+    '</table><div><a href="../cib/live/crm_config/cib-bootstrap-options">More... (NLS, rel)</a></div>');
   sp.hide();
   $("content").insert({top: sp});
   var np = $(document.createElement("div")).writeAttribute("id", "nodelist");
