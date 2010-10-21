@@ -1,12 +1,72 @@
 <div class="ui-widget-content ui-corner-all" style="padding: 0.5em;">
+<style type="text/css">
+/* TODO: this does not belong here */
+button { font-size: 0.7em !important; }
+</style>
+<script type="text/javascript">
+function init_prop_del(e) {
+  e.button({
+    icons: {
+      primary: "ui-icon-circle-minus"
+    },
+    text: false
+  });
+  e.click(function() {
+    $j(this).parent().parent().remove();
+    return false;
+  });
+}
+$j(function() {
+  // TODO: behaviour of ENTER key is counterintuitive in some cases.
+  init_prop_del($j(".prop-del"));
+  $j(".prop-add").button({
+    icons: {
+      primary: "ui-icon-circle-plus"
+    },
+    text: false
+  });
+  $j(".prop-add").click(function() {
+    var line = $j("#empty-prop").clone().show().removeAttr("id");
+    // Can't use clone(true) above to pick up events, because
+    // it conflicts with Prototype.  Need to get rid of Prototype,
+    // but in the meantime, we use init_prop_del(), and *don't*
+    // set the button class to prop-del in the source HTML.
+    init_prop_del(line.find("button"));
+    var new_name  = $j("#new-prop").val();
+    var new_value = $j("#new-value").val();
+    line.children("th").append(new_name);
+    line.find("input").attr("id", "props_" + new_name).attr("name", "props[" + new_name + "]").val(new_value);
+    $j("#empty-prop").before(line);
+    return false;
+  });
+});
+</script>
 <% form_for([ @cib, @crm_config ]) do |f| %>
   <table>
     <% @crm_config.props.each do |n,v| %>
       <tr>
         <th><%= label_tag "props[#{n}]", n %></th>
         <td><%= text_field_tag "props[#{n}]", v %></td>
+        <td><button class="prop-del" type="button"><%=h _("Delete Property") %></button></td>
       </tr>
     <% end %>
+    <tr id="empty-prop" style="display: none;">
+      <th></th><td><%= text_field_tag 'empty-value' %></td><td><button type="button"><%=h _("Delete Property") %></button></td>
+    </tr>
+    <tr>
+      <td colspan="3"><hr /></td>
+    </tr>
+    <tr>
+      <td colspan="3"><%=h _('Add property:') %></td>
+    </tr>
+    <tr>
+      <th><%= select_tag 'new-prop', options_for_select(@crm_config.all_props) %></td>
+      <td><%= text_field_tag 'new-value' %></td>
+      <td><button class="prop-add" type="button"><%=h _("Add Property") %></button></td>
+    </tr>
+    <tr>
+      <td colspan="2"><hr /></td>
+    </tr>
   </table>
   <div><%= f.submit %></div>
 <% end %>
