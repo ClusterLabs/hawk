@@ -1,10 +1,10 @@
 <div class="ui-widget-content ui-corner-all" style="padding: 0.5em;">
 <% form_for([ @cib, @crm_config ]) do |f| %>
   <table>
-    <% @crm_config.all_props.each do |p| %>
+    <% @crm_config.props.each do |n,v| %>
       <tr>
-        <th><%= label_tag "props[#{p}]", p %></th>
-        <td><%= text_field_tag "props[#{p}]", @crm_config.props[p] %></td>
+        <th><%= label_tag "props[#{n}]", n %></th>
+        <td><%= text_field_tag "props[#{n}]", v %></td>
       </tr>
     <% end %>
   </table>

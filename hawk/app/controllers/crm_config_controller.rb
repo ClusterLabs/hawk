@@ -62,7 +62,7 @@ class CrmConfigController < ApplicationController
       f << " #{n}='#{v}'" if !v.empty?
     end
     f.close
-    @result = %x[/usr/sbin/crm configure load update #{f.path}]
+    @result = %x[/usr/sbin/crm -F configure load update #{f.path}]
     f.unlink
     
     # So we actually need to either go to show (with "updated" message)

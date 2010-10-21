@@ -3,10 +3,9 @@
 <p><%=h _("No cluster properties set in %{group}") % { :group => @crm_config.id } %></p>
 <% else %>
 <table>
-<%   @crm_config.all_props.each do |p| %>
-<%     next unless @crm_config.props[p] %>
-<tr><th><%=h p %></th><td><%=h @crm_config.props[p] %></td></tr>
-<%   end %>
+  <% @crm_config.props.each do |n,v| %>
+    <tr><th><%=h n %></th><td><%=h v %></td></tr>
+  <% end %>
 </table>
 <div><%= link_to _('Edit'), edit_cib_crm_config_path(@cib, @crm_config) %> | <%= link_to _('Back'), status_path %></div>
 <% end %>
