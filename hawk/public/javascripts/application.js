@@ -647,16 +647,18 @@ function hawk_init()
 
   var sp = $(document.createElement("div")).writeAttribute("id", "summary");
   sp.addClassName("ui-widget-content").addClassName("ui-corner-all");
+  // TOTHEME
   sp.update(
     '<table>' +
       '<tr><th>' + GETTEXT.summary_stack() + '</th><td><span id="summary::cluster_infrastructure"></span></td></tr>' +
       '<tr><th>' + GETTEXT.summary_version() + '</th><td><span id="summary::dc_version"></span></td></tr>' +
       '<tr><th>' + GETTEXT.summary_dc() + '</th><td><span id="summary::dc"></span></td></tr>' +
-      '<tr><th>' + GETTEXT.summary_stickiness() + '</th><td><span id="summary::default_resource_stickiness"></span></td></tr>' +
+      '<tr><td colspan="2" style="border-top: 1px solid #aaa;"></td></tr>' +
+      '<tr><th>' + GETTEXT.summary_stickiness() + '</th><td><a href="../cib/live/crm_config/cib-bootstrap-options/edit"><img src="../images/icons/edit.png" class="action-icon" alt="' + GETTEXT.configure() + '" title="' + GETTEXT.configure() + '" style="float: right;" /></a><span id="summary::default_resource_stickiness"></span></td></tr>' +
       '<tr><th>' + GETTEXT.summary_stonith_enabled() + '</th><td><span id="summary::stonith_enabled"></span></td></tr>' +
       '<tr><th>' + GETTEXT.summary_symmetric() + '</th><td><span id="summary::symmetric_cluster"></span></td></tr>' +
       '<tr><th>' + GETTEXT.summary_no_quorum_policy() + '</th><td><span id="summary::no_quorum_policy"></span></td></tr>' +
-    '</table><div><a href="../cib/live/crm_config/cib-bootstrap-options">More... (NLS, rel)</a></div>');
+    '</table>');
   sp.hide();
   $("content").insert({top: sp});
   var np = $(document.createElement("div")).writeAttribute("id", "nodelist");

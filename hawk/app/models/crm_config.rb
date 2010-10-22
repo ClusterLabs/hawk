@@ -23,8 +23,9 @@ class CrmConfig
         @all_props << name
         content = param.elements['content']
         @all_types[name] = {
-          :type => content.attributes['type'],
-          :default => content.attributes['default']
+          :type     => content.attributes['type'],
+          :readonly => false,
+          :default  => content.attributes['default']
         }
       end
       break
@@ -45,6 +46,12 @@ class CrmConfig
 
     load_meta 'pengine'
     load_meta 'crmd'
+    @all_props.sort! {|a,b| a.to_s <=> b.to_s }
+    # These are meant to be read-only; should we hide them
+    # in the editor?  grey them out? ...?
+    [:"dc-version", :"expected-quorum-votes"].each do |n|
+      @all_types[n][:readonly] = true
+    end
 
     @elem = parent_elem.elements["cluster_property_set[@id='#{id}']"]
     # @elem will be nil here if there's no property set with that ID

@@ -4,49 +4,109 @@
 button { font-size: 0.7em !important; }
 </style>
 <script type="text/javascript">
+function enable_apply() {
+  $j("#crm_config_submit").removeAttr("disabled");
+  $j("#crm_config_revert").removeAttr("disabled");
+}
 function init_prop_del(e) {
   e.button({
     icons: {
-      primary: "ui-icon-circle-minus"
+      primary: "ui-icon-minus"
     },
     text: false
   });
   e.click(function() {
-    $j(this).parent().parent().remove();
+    enable_apply();
+    $j(this).parent().parent().fadeOut("fast", function() {
+      $j(this).remove();
+    });
     return false;
   });
 }
+function init_prop_edit(e) {
+  e.keydown(enable_apply);
+  e.change(enable_apply);
+  e.keypress(function(event) {
+    // ENTER to submit the form on property edits is counterintuitive
+    event.stopPropagation();
+    return event.keyCode != 13;
+  });
+}
+function add_new_prop() {
+  var new_name  = $j("#new-prop").val();
+  var new_value = $j.trim($j("#new-value").val());
+  if (!new_value) {
+    $j("#no-value").fadeIn('fast');
+    $j("#new-value").focus();
+    return;
+  }
+
+  $j("#no-value").fadeOut('fast');
+  var line = $j("#empty-prop").clone().removeAttr("id");
+  // Can't use clone(true) above to pick up events, because
+  // it conflicts with Prototype.  Need to get rid of Prototype,
+  // but in the meantime, we use init_prop_del(), and *don't*
+  // set the button class to prop-del in the source HTML.
+  init_prop_del(line.find("button"));
+  line.children("th").append(new_name);
+  var field = line.find("input");
+  init_prop_edit(field);
+  field.attr("id", "props_" + new_name).attr("name", "props[" + new_name + "]").val(new_value);
+  $j("#empty-prop").before(line);
+  line.effect("highlight", {}, 1000);
+  enable_apply();
+  $j("#new-value").val("");
+}
 $j(function() {
-  // TODO: behaviour of ENTER key is counterintuitive in some cases.
   init_prop_del($j(".prop-del"));
+  init_prop_edit($j(".prop-edit"));
   $j(".prop-add").button({
     icons: {
-      primary: "ui-icon-circle-plus"
+      primary: "ui-icon-plus"
     },
     text: false
   });
   $j(".prop-add").click(function() {
-    var line = $j("#empty-prop").clone().show().removeAttr("id");
-    // Can't use clone(true) above to pick up events, because
-    // it conflicts with Prototype.  Need to get rid of Prototype,
-    // but in the meantime, we use init_prop_del(), and *don't*
-    // set the button class to prop-del in the source HTML.
-    init_prop_del(line.find("button"));
-    var new_name  = $j("#new-prop").val();
-    var new_value = $j("#new-value").val();
-    line.children("th").append(new_name);
-    line.find("input").attr("id", "props_" + new_name).attr("name", "props[" + new_name + "]").val(new_value);
-    $j("#empty-prop").before(line);
+    add_new_prop();
+    return false;
+  });
+  $j("#new-value").keydown(function() {
+    $j("#no-value").fadeOut('fast');
+  });
+  $j("#new-value").keypress(function(event) {
+    // ENTER in the new value field needs to add the property
+    if (event.keyCode != 13) return true;
+    add_new_prop();
     return false;
   });
 });
 </script>
 <% form_for([ @cib, @crm_config ]) do |f| %>
   <table>
-    <% @crm_config.props.each do |n,v| %>
+<% flash.each do |flash_type, message| %>
+    <tr id="flash-<%= flash_type %>">
+      <td colspan="3"><div class="ui-state-<%= flash_type %> ui-corner-all" style="padding: 0.5em; margin-bottom: 0.5em;"><%=h message %></div></td>
+    </tr>
+<% end %>
+    <tr>
+      <td colspan="3"><b><%=h _('Add new property:') %></b></td>
+    </tr>
+    <tr>
+      <th><%= select_tag 'new-prop', options_for_select(@crm_config.all_props) %></td>
+      <td><%= text_field_tag 'new-value' %></td>
+      <td><button class="prop-add" type="button"><%=h _("Add Property") %></button></td>
+      <td><div id="no-value" class="ui-state-error ui-corner-all" style="font-size: 0.8em; padding: 0.3em; display: none;"><%=h _('You must enter a value') %></div></td>
+    </tr>
+    <tr>
+      <td colspan="3">&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="3"><b><%=h _('Edit current properties:') %></b></td>
+    </tr>
+    <% @crm_config.props.sort{|a,b| a.to_s <=> b.to_s}.each do |n,v| %>
       <tr>
         <th><%= label_tag "props[#{n}]", n %></th>
-        <td><%= text_field_tag "props[#{n}]", v %></td>
+        <td><%= text_field_tag "props[#{n}]", v, { :class => 'prop-edit' } %></td>
         <td><button class="prop-del" type="button"><%=h _("Delete Property") %></button></td>
       </tr>
     <% end %>
@@ -54,20 +114,15 @@ $j(function() {
       <th></th><td><%= text_field_tag 'empty-value' %></td><td><button type="button"><%=h _("Delete Property") %></button></td>
     </tr>
     <tr>
-      <td colspan="3"><hr /></td>
+      <td colspan="3">&nbsp;</td>
     </tr>
     <tr>
-      <td colspan="3"><%=h _('Add property:') %></td>
-    </tr>
-    <tr>
-      <th><%= select_tag 'new-prop', options_for_select(@crm_config.all_props) %></td>
-      <td><%= text_field_tag 'new-value' %></td>
-      <td><button class="prop-add" type="button"><%=h _("Add Property") %></button></td>
-    </tr>
-    <tr>
-      <td colspan="2"><hr /></td>
+      <td colspan="3" style="text-align: right">
+        <%= f.submit _('Apply Changes'), { :disabled => true } %>
+        <%= f.submit _('Revert Changes'), { :id => 'crm_config_revert', :name => 'revert', :disabled => true } %>
+        <%= f.submit _('Back'), { :id => 'crm_config_cancel', :name => 'cancel' } %>
+      </td>
     </tr>
   </table>
-  <div><%= f.submit %></div>
 <% end %>
 </div>
