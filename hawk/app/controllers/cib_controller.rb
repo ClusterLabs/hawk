@@ -1,3 +1,4 @@
+require 'util'
 require 'rexml/document' unless defined? REXML::Document
 
 class CibController < ApplicationController
@@ -190,12 +191,26 @@ class CibController < ApplicationController
   def show
     # Only provide the live CIB and static test files (no shadow functionality yet)
     if params[:id] == 'live'
-      @cib = REXML::Document.new(%x[/usr/sbin/cibadmin -Ql 2>/dev/null])
-      # If this failed, there'll be no root element
-      unless @cib.root
-        # TODO(should): clean up this error (not enough information)
-        @errors << _('Error invoking %{cmd}') % {:cmd => '/usr/sbin/cibadmin -Ql' } if @errors.empty?
-        render :json => { :errors => @errors }
+      stdin, stdout, stderr = Util.run_as(current_user, '/usr/sbin/cibadmin', '-Ql')
+      case $?.exitstatus
+      when 0
+        @cib = REXML::Document.new(stdout.read())
+        # If this failed, there'll be no root element
+        unless @cib.root
+          # TODO(should): clean up this error (not enough information)
+          @errors << _('Error invoking %{cmd}') % {:cmd => '/usr/sbin/cibadmin -Ql' } if @errors.empty?
+          render :status => 500, :json => { :errors => @errors }
+          return
+        end
+        # Otherwise everything is fine, and we carry on
+      when 54
+        # 54 is cib_permission_denied
+        @errors << _('Permission denied for user %{user}') % {:user => current_user}
+        render :status => :forbidden, :json => { :errors => @errors }
+        return
+      else
+        @errors << _('Error invoking %{cmd}: %{msg}') % {:cmd => '/usr/sbin/cibadmin -Ql', :msg => stderr.read() }
+        render :status => 500, :json => { :errors => @errors }
         return
       end
     elsif params[:debug] == 'file'

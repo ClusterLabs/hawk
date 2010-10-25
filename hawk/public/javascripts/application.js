@@ -648,10 +648,18 @@ function update_cib()
       do_update(cib.meta ? cib.meta.epoch : "");
     },
     onFailure: function(transport) {
-      // Busted, try monitor immeidately (which will back off to
-      // every 15 seconds if the server is completely fried).
-      update_errors([GETTEXT.err_unexpected(transport.status + " " + transport.statusText)]);
-      do_update("");
+      if (transport.responseJSON && transport.responseJSON.errors) {
+        // Sane response (server not dead, but actual error, e.g.:
+        // access denied):
+        update_errors(transport.responseJSON.errors);
+      } else {
+        // Unexpectedly busted (e.g.: server fried):
+        update_errors([GETTEXT.err_unexpected(transport.status + " " + transport.statusText)]);
+      }
+      // Try again in 15 seconds.  No need for roundtrip through
+      // the monitor function in this case (it'll just hammer the
+      // server unnecessarily)
+      setTimeout(update_cib, 15000);
     }
   });
 }

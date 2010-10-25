@@ -39,7 +39,7 @@ class MainController < ApplicationController
 
   # Invoke some command, returning OK or JSON error as appropriate
   def invoke(*cmd)
-    stdin, stdout, stderr = Util.popen3(*cmd)
+    stdin, stdout, stderr = Util.run_as(current_user, *cmd)
     if $?.exitstatus == 0
       head :ok
     else

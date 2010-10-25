@@ -79,4 +79,20 @@ module Util
   end
   module_function :popen3
 
+  # Same as popen3, but sets CRM_USER beforehand
+  def run_as(user, *cmd)
+    ENV['CRM_USER'] = user
+    pi = popen3(*cmd)
+    ENV.delete('CRM_USER')
+    if defined? yield
+      begin
+        return yield(*pi)
+      ensure
+        pi.each{|p| p.close unless p.closed?}
+      end
+    end
+    pi
+  end
+  module_function :run_as
+
 end
