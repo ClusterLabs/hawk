@@ -656,10 +656,14 @@ function update_cib()
         // Unexpectedly busted (e.g.: server fried):
         update_errors([GETTEXT.err_unexpected(transport.status + " " + transport.statusText)]);
       }
-      // Try again in 15 seconds.  No need for roundtrip through
-      // the monitor function in this case (it'll just hammer the
-      // server unnecessarily)
-      setTimeout(update_cib, 15000);
+      if (cib_file) {
+        $("onload-spinner").hide();
+      } else {
+        // Try again in 15 seconds.  No need for roundtrip through
+        // the monitor function in this case (it'll just hammer the
+        // server unnecessarily)
+        setTimeout(update_cib, 15000);
+      }
     }
   });
 }

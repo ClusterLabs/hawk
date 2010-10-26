@@ -220,14 +220,14 @@ class CibController < ApplicationController
       cib_path = "#{RAILS_ROOT}/test/cib/#{cib_path}.xml"
       unless File.exist?(cib_path)
         @errors << _('CIB file "%{path}" not found') % {:path => cib_path }
-        render :json => { :errors => @errors }
+        render :status => :not_found, :json => { :errors => @errors }
         return
       end
       @cib = REXML::Document.new(File.new(cib_path))
       unless @cib.root
         # TODO(should): clean up this error (not enough information)
         @errors << _('Unable to parse CIB file "%{path}"') % {:path => cib_path }
-        render :json => { :errors => @errors }
+        render :status => 500, :json => { :errors => @errors }
         return
       end
     else
