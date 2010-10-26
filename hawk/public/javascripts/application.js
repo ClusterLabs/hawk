@@ -103,11 +103,11 @@ function update_panel(panel)
           // TODO(should): HTML-safe?
           d.update('<div class="clickable" onclick="toggle_collapse(\'' + item.id + '\');">' +
             '<div id="' + item.id + '::button" class="tri-' + (item.open ? 'open' : 'closed') + '"></div>' +
-              '<a id="' + item.id + '::menu" class="menu-link"><img src="../images/transparent-16x16.gif" class="action-icon" alt="" /></a>' +
+              '<a id="' + item.id + '::menu" class="menu-link"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a>' +
               '<span id="' + item.id + '::label"></span></div>' +
             '<div id="' + item.id + '::children"' + (item.open ? '' : ' style="display: none;" class="closed"') + '</div>');
         } else {
-          d.update('<a id="' + item.id + '::menu" class="menu-link"><img src="../images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="' + item.id + '::label"></span>');
+          d.update('<a id="' + item.id + '::menu" class="menu-link"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="' + item.id + '::label"></span>');
         }
       }
       if (!c) {
@@ -244,17 +244,17 @@ function perform_op(type, id, op, extra)
   else if(c.hasClassName("rs-active"))    state = "active";
   else if(c.hasClassName("rs-inactive"))  state = "inactive";
   else if(c.hasClassName("rs-error"))     state = "error";
-  $(type + "::" + id + "::menu").firstDescendant().src = "../images/spinner-16x16-" + state + ".gif";
+  $(type + "::" + id + "::menu").firstDescendant().src = url_root + "/images/spinner-16x16-" + state + ".gif";
 
-  new Ajax.Request("../main/" + type + "/" + op, {
+  new Ajax.Request(url_root + "/main/" + type + "/" + op, {
     parameters: type + "=" + id + (extra ? "&" + extra : ""),
     onSuccess:  function(request) {
       // Remove spinner (a spinner that stops too early is marginally better than one that never stops)
-      $(type + "::" + id + "::menu").firstDescendant().src = "../images/icons/properties.png";
+      $(type + "::" + id + "::menu").firstDescendant().src = url_root + "/images/icons/properties.png";
     },
     onFailure:  function(request) {
       // Remove spinner
-      $(type + "::" + id + "::menu").firstDescendant().src = "../images/icons/properties.png";
+      $(type + "::" + id + "::menu").firstDescendant().src = url_root + "/images/icons/properties.png";
       // Display error
       if (request.responseJSON) {
         modal_dialog(request.responseJSON.error,
@@ -272,13 +272,13 @@ function add_mgmt_menu(e)
     case "node":
       e.addClassName("clickable");
       e.observe("click", popup_op_menu);
-      e.firstDescendant().src = "../images/icons/properties.png";
+      e.firstDescendant().src = url_root + "/images/icons/properties.png";
       break;
     case "resource":
       if ($(e.parentNode.parentNode).hasClassName("res-clone")) {
         e.addClassName("clickable");
         e.observe("click", popup_op_menu);
-        e.firstDescendant().src = "../images/icons/properties.png";
+        e.firstDescendant().src = url_root + "/images/icons/properties.png";
       } else {
         var isClone = false;
         var n = e.parentNode;
@@ -292,7 +292,7 @@ function add_mgmt_menu(e)
         if (!isClone) {
           e.addClassName("clickable");
           e.observe("click", popup_op_menu);
-          e.firstDescendant().src = "../images/icons/properties.png";
+          e.firstDescendant().src = url_root + "/images/icons/properties.png";
         }
       }
       break;
@@ -385,7 +385,7 @@ function do_update(cur_epoch)
   // No refresh if this is a static test
   if (cib_file) return;
 
-  new Ajax.Request("../monitor?" + cur_epoch, { method: "get",
+  new Ajax.Request(url_root + "/monitor?" + cur_epoch, { method: "get",
     onSuccess: function(transport) {
       if (transport.responseJSON) {
         var new_epoch = transport.responseJSON ? transport.responseJSON.epoch : "";
@@ -603,7 +603,7 @@ function cib_to_reslist_panel(resources)
 
 function update_cib()
 {
-  new Ajax.Request("../cib/" + (cib_file ? cib_file + "?debug=file" : "live"), { method: "get",
+  new Ajax.Request(url_root + "/cib/" + (cib_file ? cib_file + "?debug=file" : "live"), { method: "get",
     onSuccess: function(transport) {
       $("onload-spinner").hide();
       if (transport.responseJSON) {
@@ -688,14 +688,14 @@ function hawk_init()
   $("content").insert({top: sp});
   var np = $(document.createElement("div")).writeAttribute("id", "nodelist");
   np.update(
-    '<div class="clickable" onclick="toggle_collapse(\'nodelist\');"><div id="nodelist::button" class="tri-closed"></div><a id="nodelist::menu" class="menu-link"><img src="../images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="nodelist::label"></span></div>' +
+    '<div class="clickable" onclick="toggle_collapse(\'nodelist\');"><div id="nodelist::button" class="tri-closed"></div><a id="nodelist::menu" class="menu-link"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="nodelist::label"></span></div>' +
       '<div id="nodelist::children" style="display: none;" class="closed"></div>' +
     '</div>');
   np.hide();
   sp.insert({after: np});
   var rp = $(document.createElement("div")).writeAttribute("id", "reslist");
   rp.update(
-    '<div class="clickable" onclick="toggle_collapse(\'reslist\');"><div id="reslist::button" class="tri-closed"></div><a id="reslist::menu" class="menu-link"><img src="../images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="reslist::label"></span></div>' +
+    '<div class="clickable" onclick="toggle_collapse(\'reslist\');"><div id="reslist::button" class="tri-closed"></div><a id="reslist::menu" class="menu-link"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="reslist::label"></span></div>' +
       '<div id="reslist::children" style="display: none;" class="closed"></div>' +
     '</div>');
   rp.hide();
