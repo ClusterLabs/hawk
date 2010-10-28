@@ -81,8 +81,11 @@ class SessionsController < ApplicationController
   end
 
   def destroy
+    previous_user = session[:username]
     session[:username] = nil
     reset_session
+    flash[:warning] =
+      _('Permission denied for user %{user}') % {:user => previous_user} if params[:reason] == 'forbidden'
     redirect_to :action => 'new'
   end
 

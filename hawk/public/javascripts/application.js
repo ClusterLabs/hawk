@@ -648,21 +648,26 @@ function update_cib()
       do_update(cib.meta ? cib.meta.epoch : "");
     },
     onFailure: function(transport) {
-      if (transport.responseJSON && transport.responseJSON.errors) {
-        // Sane response (server not dead, but actual error, e.g.:
-        // access denied):
-        update_errors(transport.responseJSON.errors);
+      if (transport.status == 403) {
+        // 403 == permission denied, boot the user out
+        window.location.replace(url_root + "/logout?reason=forbidden");
       } else {
-        // Unexpectedly busted (e.g.: server fried):
-        update_errors([GETTEXT.err_unexpected(transport.status + " " + transport.statusText)]);
-      }
-      if (cib_file) {
-        $("onload-spinner").hide();
-      } else {
-        // Try again in 15 seconds.  No need for roundtrip through
-        // the monitor function in this case (it'll just hammer the
-        // server unnecessarily)
-        setTimeout(update_cib, 15000);
+        if (transport.responseJSON && transport.responseJSON.errors) {
+          // Sane response (server not dead, but actual error, e.g.:
+          // access denied):
+          update_errors(transport.responseJSON.errors);
+        } else {
+          // Unexpectedly busted (e.g.: server fried):
+          update_errors([GETTEXT.err_unexpected(transport.status + " " + transport.statusText)]);
+        }
+        if (cib_file) {
+          $("onload-spinner").hide();
+        } else {
+          // Try again in 15 seconds.  No need for roundtrip through
+          // the monitor function in this case (it'll just hammer the
+          // server unnecessarily)
+          setTimeout(update_cib, 15000);
+        }
       }
     }
   });
