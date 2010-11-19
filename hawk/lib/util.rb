@@ -82,6 +82,9 @@ module Util
   # Same as popen3, but sets CRM_USER beforehand
   def run_as(user, *cmd)
     ENV['CRM_USER'] = user
+    # crm shell always wants to open/generate help index, so we
+    # let it have our tmp directory
+    ENV['HOME'] = File.join(RAILS_ROOT, 'tmp')
     pi = popen3(*cmd)
     ENV.delete('CRM_USER')
     if defined? yield
