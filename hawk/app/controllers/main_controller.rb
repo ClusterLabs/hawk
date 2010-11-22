@@ -39,13 +39,17 @@ class MainController < ApplicationController
 
   # Invoke some command, returning OK or JSON error as appropriate
   def invoke(*cmd)
-    stdin, stdout, stderr = Util.run_as(current_user, *cmd)
-    if $?.exitstatus == 0
+    stdin, stdout, stderr, thread = Util.run_as(current_user, *cmd)
+    stdin.close
+    stdout.close
+    err = stderr.read()
+    stderr.close
+    if thread.value.exitstatus == 0
       head :ok
     else
       render :status => 500, :json => {
-        :error  => _('%{cmd} failed (status: %{status})') % { :cmd => cmd.join(' '), :status => $?.exitstatus },
-        :stderr => stderr.readlines
+        :error  => _('%{cmd} failed (status: %{status})') % { :cmd => cmd.join(' '), :status => thread.value.exitstatus },
+        :stderr => err
       }
     end
   end

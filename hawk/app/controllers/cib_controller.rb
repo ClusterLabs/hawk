@@ -191,10 +191,15 @@ class CibController < ApplicationController
   def show
     # Only provide the live CIB and static test files (no shadow functionality yet)
     if params[:id] == 'live'
-      stdin, stdout, stderr = Util.run_as(current_user, '/usr/sbin/cibadmin', '-Ql')
-      case $?.exitstatus
+      stdin, stdout, stderr, thread = Util.run_as(current_user, '/usr/sbin/cibadmin', '-Ql')
+      stdin.close
+      out = stdout.read()
+      stdout.close
+      err = stderr.read()
+      stderr.close
+      case thread.value.exitstatus
       when 0
-        @cib = REXML::Document.new(stdout.read())
+        @cib = REXML::Document.new(out)
         # If this failed, there'll be no root element
         unless @cib.root
           # TODO(should): clean up this error (not enough information)
@@ -209,7 +214,7 @@ class CibController < ApplicationController
         render :status => :forbidden, :json => { :errors => @errors }
         return
       else
-        @errors << _('Error invoking %{cmd}: %{msg}') % {:cmd => '/usr/sbin/cibadmin -Ql', :msg => stderr.read() }
+        @errors << _('Error invoking %{cmd}: %{msg}') % {:cmd => '/usr/sbin/cibadmin -Ql', :msg => err }
         render :status => 500, :json => { :errors => @errors }
         return
       end
