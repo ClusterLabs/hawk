@@ -288,6 +288,7 @@ class CibController < ApplicationController
     end
 
     for node in @nodes
+      next unless node[:state] == :online
       @cib.elements.each("cib/status/node_state[@uname='#{node[:uname]}']/lrm/lrm_resources/lrm_resource") do |lrm_resource|
         id = lrm_resource.attributes['id']
         # logic derived somewhat from pacemaker/lib/pengine/unpack.c:unpack_rsc_op()
