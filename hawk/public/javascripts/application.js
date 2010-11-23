@@ -247,7 +247,7 @@ function perform_op(type, id, op, extra)
   $(type + "::" + id + "::menu").firstDescendant().src = url_root + "/images/spinner-16x16-" + state + ".gif";
 
   new Ajax.Request(url_root + "/main/" + type + "/" + op, {
-    parameters: type + "=" + id + (extra ? "&" + extra : ""),
+    parameters: "format=json&" + type + "=" + id + (extra ? "&" + extra : ""),
     onSuccess:  function(request) {
       // Remove spinner (a spinner that stops too early is marginally better than one that never stops)
       $(type + "::" + id + "::menu").firstDescendant().src = url_root + "/images/icons/properties.png";
@@ -260,7 +260,12 @@ function perform_op(type, id, op, extra)
         modal_dialog(request.responseJSON.error,
           { body: (request.responseJSON.stderr && request.responseJSON.stderr.size()) ? request.responseJSON.stderr.join("\n") : null });
       } else {
-        modal_dialog(GETTEXT.err_unexpected(request.status));
+        if (request.status == 403) {
+          // 403 == permission denied
+          modal_dialog(GETTEXT.err_denied());
+        } else {
+          modal_dialog(GETTEXT.err_unexpected(request.status));
+        }
       }
     }
   });
@@ -603,7 +608,8 @@ function cib_to_reslist_panel(resources)
 
 function update_cib()
 {
-  new Ajax.Request(url_root + "/cib/" + (cib_file ? cib_file + "?debug=file" : "live"), { method: "get",
+  new Ajax.Request(url_root + "/cib/" + (cib_file ? cib_file : "live"), { method: "get",
+    parameters: "format=json" + (cib_file ? "&debug=file" : ""),
     onSuccess: function(transport) {
       $("onload-spinner").hide();
       if (transport.responseJSON) {

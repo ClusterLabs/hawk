@@ -84,8 +84,15 @@ class SessionsController < ApplicationController
     previous_user = session[:username]
     session[:username] = nil
     reset_session
-    flash[:warning] =
-      _('Permission denied for user %{user}') % {:user => previous_user} if params[:reason] == 'forbidden'
+    if params[:reason] == 'forbidden'
+      if previous_user
+        flash[:warning] =
+          _('Permission denied for user %{user}') % {:user => previous_user}
+      else
+        flash[:warning] =
+          _('You have been logged out')
+      end
+    end
     redirect_to :action => 'new'
   end
 
