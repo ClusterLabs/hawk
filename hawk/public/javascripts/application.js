@@ -258,7 +258,7 @@ function perform_op(type, id, op, extra)
       // Display error
       if (request.responseJSON) {
         modal_dialog(request.responseJSON.error,
-          { body: (request.responseJSON.stderr && request.responseJSON.stderr.size()) ? request.responseJSON.stderr.join("\n") : null });
+          { body: request.responseJSON.stderr ? request.responseJSON.stderr : null });
       } else {
         if (request.status == 403) {
           // 403 == permission denied
