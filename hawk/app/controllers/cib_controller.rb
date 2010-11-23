@@ -214,7 +214,7 @@ class CibController < ApplicationController
         render :status => :forbidden, :json => { :errors => @errors }
         return
       else
-        @errors << _('Error invoking %{cmd}: %{msg}') % {:cmd => '/usr/sbin/cibadmin -Ql', :msg => err }
+        @errors << _('Error invoking %{cmd}: %{msg}') % {:cmd => '/usr/sbin/cibadmin -Ql', :msg => err } if @errors.empty?
         render :status => 500, :json => { :errors => @errors }
         return
       end

@@ -660,6 +660,9 @@ function update_cib()
           // Unexpectedly busted (e.g.: server fried):
           update_errors([GETTEXT.err_unexpected(transport.status + " " + transport.statusText)]);
         }
+        $("summary").hide();
+        $("nodelist").hide();
+        $("reslist").hide();
         if (cib_file) {
           $("onload-spinner").hide();
         } else {
