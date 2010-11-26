@@ -61,6 +61,9 @@ var GETTEXT = {
   err_unexpected: function(msg) {
     return "<%= escape_javascript _('Unexpected server error: %s') % '_MSG_' %>".replace('_MSG_', msg);
   },
+  err_denied: function() {
+    return "<%= escape_javascript _('Permission denied') %>";
+  },
   // Cluster summary labels
   summary_stack: function() {
     return "<%= escape_javascript _('Cluster Stack:') %>";

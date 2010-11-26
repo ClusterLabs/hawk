@@ -31,9 +31,12 @@
 # Random utilities
 module Util
 
-  # From Ruby's lib/open3.rb, but actually sets $?
-  # TODO(should): submit this as a patch to Ruby.  Refer to
-  # rejected bug http://redmine.ruby-lang.org/issues/show/1287
+  # Derived from Ruby 1.8's and 1.9's lib/open3.rb.  Returns
+  # [stdin, stdout, stderr, thread].  thread.value.exitstatus
+  # has the exit value of the child, but if you're calling it
+  # in non-block form, you need to close stdin, out and err
+  # else the process won't be complete when you try to get the
+  # exit status.
   def popen3(*cmd)
     pw = IO::pipe   # pipe[0] for read, pipe[1] for write
     pr = IO::pipe
@@ -41,42 +44,56 @@ module Util
 
     pid = fork{
       # child
-      fork{
-        # grandchild
-        pw[1].close
-        STDIN.reopen(pw[0])
-        pw[0].close
+      pw[1].close
+      STDIN.reopen(pw[0])
+      pw[0].close
 
-        pr[0].close
-        STDOUT.reopen(pr[1])
-        pr[1].close
+      pr[0].close
+      STDOUT.reopen(pr[1])
+      pr[1].close
 
-        pe[0].close
-        STDERR.reopen(pe[1])
-        pe[1].close
+      pe[0].close
+      STDERR.reopen(pe[1])
+      pe[1].close
 
-        exec(*cmd)
-      }
-      # Originally the below was just "exit!(0)"
-      Process.wait
-      exit!($?.exitstatus)
+      exec(*cmd)
     }
+    wait_thr = Process.detach(pid)
 
     pw[0].close
     pr[1].close
     pe[1].close
-    Process.waitpid(pid)
-    pi = [pw[1], pr[0], pe[0]]
+    pi = [pw[1], pr[0], pe[0], wait_thr]
     pw[1].sync = true
     if defined? yield
       begin
         return yield(*pi)
       ensure
-        pi.each{|p| p.close unless p.closed?}
+        pi.each{|p| p.close if p.respond_to?(:closed) && !p.closed?}
+        wait_thr.join
       end
     end
     pi
   end
   module_function :popen3
+
+  # Same as popen3, but sets CRM_USER beforehand
+  def run_as(user, *cmd)
+    ENV['CRM_USER'] = user
+    # crm shell always wants to open/generate help index, so we
+    # let it have our tmp directory
+    ENV['HOME'] = File.join(RAILS_ROOT, 'tmp')
+    pi = popen3(*cmd)
+    ENV.delete('CRM_USER')
+    if defined? yield
+      begin
+        return yield(*pi)
+      ensure
+        pi.each{|p| p.close if p.respond_to?(:closed) && !p.closed?}
+      end
+    end
+    pi
+  end
+  module_function :run_as
 
 end

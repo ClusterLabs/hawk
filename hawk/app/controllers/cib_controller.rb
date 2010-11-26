@@ -19,12 +19,15 @@ class CibController < ApplicationController
 
   def show
     begin
-      cib = Cib.new(params[:id], params[:debug] == 'file')
-    rescue ArgumentError
-      head :not_found
+      cib = Cib.new(params[:id], current_user, params[:debug] == 'file')
+    rescue ArgumentError => e
+      render :status => :not_found, :json => { :errors => [ e.message ] }
+      return
+    rescue SecurityError => e
+      render :status => :forbidden, :json => { :errors => [ e.message ] }
       return
     rescue RuntimeError => e
-      render :json => { :errors => [ e.message ] }
+      render :status => 500, :json => { :errors => [ e.message ] }
       return
     end
     

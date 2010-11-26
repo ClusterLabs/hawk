@@ -89,5 +89,7 @@ protected
   # Make some methods accessible to the view
   helper_method :logged_in?
   helper_method :current_user
+  # TODO(should): This may go away in Rails 3
+  helper_method :relative_url_root
 
 end

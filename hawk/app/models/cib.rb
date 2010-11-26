@@ -1,3 +1,4 @@
+require 'util'
 require 'natcmp'
 require 'rexml/document' unless defined? REXML::Document
 
@@ -160,7 +161,7 @@ class Cib
   # should almost certainly be changed.
   attr_reader :dc, :epoch, :nodes, :resources, :crm_config, :errors
 
-  def initialize(id, use_file = false)
+  def initialize(id, user, use_file = false)
     @errors = []
 
     if use_file
@@ -168,7 +169,7 @@ class Cib
       # TODO(must): This is a bit rough
       cib_path.gsub! /[^\w-]/, ''
       cib_path = "#{RAILS_ROOT}/test/cib/#{cib_path}.xml"
-      raise RuntimeError, _('CIB file "%{path}" not found') % {:path => cib_path } unless File.exist?(cib_path)
+      raise ArgumentError, _('CIB file "%{path}" not found') % {:path => cib_path } unless File.exist?(cib_path)
       @xml = REXML::Document.new(File.new(cib_path))
       raise RuntimeError, _('Unable to parse CIB file "%{path}"') % {:path => cib_path } unless @xml.root
     elsif id == 'live'
@@ -181,8 +182,22 @@ class Cib
                         {:cmd    => '/usr/sbin/crm_mon',
                          :status => $?.exitstatus,
                          :output => crm_status } if $?.exitstatus == 10 || $?.exitstatus == 11
-      @xml = REXML::Document.new(%x[/usr/sbin/cibadmin -Ql 2>/dev/null])
-      raise RuntimeError, _('Error invoking %{cmd}') % {:cmd => '/usr/sbin/cibadmin -Ql' } unless @xml.root
+      stdin, stdout, stderr, thread = Util.run_as(user, '/usr/sbin/cibadmin', '-Ql')
+      stdin.close
+      out = stdout.read()
+      stdout.close
+      err = stderr.read()
+      stderr.close
+      case thread.value.exitstatus
+      when 0
+        @xml = REXML::Document.new(out)
+        raise RuntimeError, _('Error invoking %{cmd}') % {:cmd => '/usr/sbin/cibadmin -Ql' } unless @xml.root
+      when 54
+        # 54 is cib_permission_denied
+        raise SecurityError, _('Permission denied for user %{user}') % {:user => user}
+      else
+        raise RuntimeError, _('Error invoking %{cmd}: %{msg}') % {:cmd => '/usr/sbin/cibadmin -Ql', :msg => err }
+      end
     else
       # Only provide the live CIB and static test files (no shadow functionality yet)
       raise ArgumentError, _('Only the live CIB is supported')
@@ -238,6 +253,7 @@ class Cib
     end
 
     for node in @nodes
+      next unless node[:state] == :online
       @xml.elements.each("cib/status/node_state[@uname='#{node[:uname]}']/lrm/lrm_resources/lrm_resource") do |lrm_resource|
         id = lrm_resource.attributes['id']
         # logic derived somewhat from pacemaker/lib/pengine/unpack.c:unpack_rsc_op()
@@ -351,11 +367,11 @@ class Cib
     inject_stopped_clone_instances @resources
 
     # More hack
-    for res in @resources
-      res.delete :is_ms
+    @resources_by_id.each do |k,v|
+      @resources_by_id[k].delete :is_ms
       # Need to inject a default instance if we don't have any state
       # (e.g. during cluster bringup) else the panel renderer chokes.
-      res[:instances][:default] = {} if res[:instances] && res[:instances].empty?
+      @resources_by_id[k][:instances][:default] = {} if @resources_by_id[k][:instances] && @resources_by_id[k][:instances].empty?
     end
 
     # TODO(should): Can we just use cib attribute dc-uuid?  Or is that not viable

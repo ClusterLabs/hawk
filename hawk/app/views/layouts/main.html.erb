@@ -4,6 +4,7 @@
 <head>
 <title><%=h @title %></title>
 <%= stylesheet_link_tag "base" %>
+<%= javascript_tag "var url_root='#{relative_url_root}';" %>
 <%= javascript_include_tag :defaults %>
 <%= javascript_include_tag 'jquery-1.4.2.min.js' %>
 <script type="text/javascript">var $j = jQuery.noConflict();</script>
