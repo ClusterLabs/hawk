@@ -5,7 +5,7 @@ class CrmConfigController < ApplicationController
   before_filter :get_cib
 
   def get_cib
-    @cib = Cib.new params[:cib_id]
+    @cib = Cib.new params[:cib_id], current_user
   end
 
   def initialize
