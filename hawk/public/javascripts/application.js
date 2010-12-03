@@ -595,44 +595,43 @@ function update_cib()
   new Ajax.Request(url_root + "/cib/" + (cib_file ? cib_file : "live"), { method: "get",
     parameters: "format=json" + (cib_file ? "&debug=file" : ""),
     onSuccess: function(transport) {
-      $("onload-spinner").hide();
+      $j("#onload-spinner").hide();
       if (transport.responseJSON) {
         cib = transport.responseJSON;
         update_errors(cib.errors);
         if (cib.meta) {
-          $("summary").show();
-          $("summary::dc").update(cib.meta.dc);
+          $j("#summary").show();
+          $j(jq("summary::dc")).html(cib.meta.dc);
           for (var e in cib.crm_config) {
-            if (!$("summary::" + e)) continue;
+            if (!$j(jq("summary::" + e))) continue;
             if (typeof(cib.crm_config[e]) == "boolean") {
-              $("summary::" + e).update(cib.crm_config[e] ? GETTEXT.yes() : GETTEXT.no())
+              $j(jq("summary::" + e)).html(cib.crm_config[e] ? GETTEXT.yes() : GETTEXT.no())
             } else if(e == "dc_version") {
-              var v = cib.crm_config[e];
-              $("summary::" + e).update(cib.crm_config[e].match(/.*-[a-f0-9]{12}/));
+              $j(jq("summary::" + e)).html(cib.crm_config[e].match(/.*-[a-f0-9]{12}/).toString());
             } else {
-              $("summary::" + e).update(cib.crm_config[e].toString());
+              $j(jq("summary::" + e)).html(cib.crm_config[e].toString());
             }
           }
 
-          $("nodelist").show();
+          $j("#nodelist").show();
           if (update_panel(cib_to_nodelist_panel(cib.nodes))) {
-            if ($("nodelist::children").hasClassName("closed")) {
+            if ($j(jq("nodelist::children")).hasClass("closed")) {
               expand_block("nodelist");
             }
           }
 
-          $("reslist").show();
+          $j("#reslist").show();
           if (update_panel(cib_to_reslist_panel(cib.resources))) {
-            if ($("reslist::children").hasClassName("closed")) {
+            if ($j(jq("reslist::children")).hasClass("closed")) {
               expand_block("reslist");
             }
           }
 
         } else {
           // TODO(must): is it possible to get here with empty cib.errors?
-          $("summary").hide();
-          $("nodelist").hide();
-          $("reslist").hide();
+          $j("#summary").hide();
+          $j("#nodelist").hide();
+          $j("#reslist").hide();
         }
       }
       do_update(cib.meta ? cib.meta.epoch : "");
@@ -650,11 +649,11 @@ function update_cib()
           // Unexpectedly busted (e.g.: server fried):
           update_errors([GETTEXT.err_unexpected(transport.status + " " + transport.statusText)]);
         }
-        $("summary").hide();
-        $("nodelist").hide();
-        $("reslist").hide();
+        $j("#summary").hide();
+        $j("#nodelist").hide();
+        $j("#reslist").hide();
         if (cib_file) {
-          $("onload-spinner").hide();
+          $j("#onload-spinner").hide();
         } else {
           // Try again in 15 seconds.  No need for roundtrip through
           // the monitor function in this case (it'll just hammer the
