@@ -65,24 +65,17 @@ function toggle_collapse(id)
   }
 }
 
-
 function update_errors(errors)
 {
-  $("errorbar").update("");
+  $j("#errorbar").html("");
   if (errors.size()) {
-    $("errorbar").show();
+    $j("#errorbar").show();
     errors.each(function(e) {
-      $("errorbar").insert($(document.createElement("div")).addClassName("error").update(e));
+      // TODO(must): is this escaped?
+      $j("#errorbar").append($j('<div class="error">' + e.escapeHTML() + '</div>'));
     });
   } else {
-    $("errorbar").hide();
-  }
-}
-
-function update_summary(summary)
-{
-  for (var e in summary) {
-    $("summary::" + e).update(summary[e]);
+    $j("#errorbar").hide();
   }
 }
 
