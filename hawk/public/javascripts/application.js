@@ -34,6 +34,12 @@ var activeItem = null;
 var cib = null;
 var cib_file = false;
 
+function jq(id)
+{
+  return "#" + id.replace(/(:|\.)/g,'\\$1');
+}
+
+
 function expand_block(id)
 {
   new Effect.BlindDown($(id+"::children"), { duration: 0.3, fps: 100 });
@@ -159,6 +165,11 @@ function dc_split(str)
 
 function popup_op_menu(e)
 {
+  // Hide everything first (otherwise it's actually possible to have
+  // node and resource context menus visible simultaneously
+  $j(jq("menu::node")).hide();
+  $j(jq("menu::resource")).hide();
+
   var target = Event.element(e);
   var pos = target.cumulativeOffset();
   // parts[0] is "node" or "resource", parts[1] is op
@@ -318,25 +329,27 @@ function add_mgmt_menu(e)
 
 function init_menus()
 {
-  $("menu::node::standby").firstDescendant().observe("click", menu_item_click);
-  $("menu::node::online").firstDescendant().observe("click", menu_item_click);
-  $("menu::node::fence").firstDescendant().observe("click", menu_item_click);
-//  $("menu::node::mark").firstDescendant().observe("click", menu_item_click);
+  $j(jq("menu::node::standby")).first().click(menu_item_click);
+  $j(jq("menu::node::online")).first().click(menu_item_click);
+  $j(jq("menu::node::fence")).first().click(menu_item_click);
+//  $j(jq("menu::node::mark")).first().click(menu_item_click);
 
-  $("menu::resource::start").firstDescendant().observe("click", menu_item_click);
-  $("menu::resource::stop").firstDescendant().observe("click", menu_item_click);
-  $("menu::resource::migrate").firstDescendant().observe("click", menu_item_click_migrate);
-  $("menu::resource::unmigrate").firstDescendant().observe("click", menu_item_click);
-  $("menu::resource::promote").firstDescendant().observe("click", menu_item_click);
-  $("menu::resource::demote").firstDescendant().observe("click", menu_item_click);
-  $("menu::resource::cleanup").firstDescendant().observe("click", menu_item_click);
+  $j(jq("menu::resource::start")).first().click(menu_item_click);
+  $j(jq("menu::resource::stop")).first().click(menu_item_click);
+  $j(jq("menu::resource::migrate")).first().click(menu_item_click_migrate);
+  $j(jq("menu::resource::unmigrate")).first().click(menu_item_click);
+  $j(jq("menu::resource::promote")).first().click(menu_item_click);
+  $j(jq("menu::resource::demote")).first().click(menu_item_click);
+  $j(jq("menu::resource::cleanup")).first().click(menu_item_click);
 
-  document.observe("click", function(e) {
-    $("menu::node").hide();
-    $("menu::resource").hide();
+  $j(document).click(function() {
+    $j(jq("menu::node")).hide();
+    $j(jq("menu::resource")).hide();
   });
 
-  $$(".menu-link").each(add_mgmt_menu);
+  $j(".menu-link").each(function() {
+    add_mgmt_menu(this);
+  });
 }
 
 function error_dialog(msg, body)
