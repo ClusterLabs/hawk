@@ -687,13 +687,11 @@ function hawk_init()
     '</div>' +
     '<div id="nodelist" class="ui-corner-all" style="display: none;">' +
       '<div class="clickable" onclick="toggle_collapse(\'nodelist\');"><div id="nodelist::button" class="tri-closed"></div><a id="nodelist::menu" class="menu-link"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="nodelist::label"></span></div>' +
-        '<div id="nodelist::children" style="display: none;" class="closed"></div>' +
-      '</div>' +
+      '<div id="nodelist::children" style="display: none;" class="closed"></div>' +
     '</div>' +
     '<div id="reslist" class="ui-corner-all" style="display: none;">' +
       '<div class="clickable" onclick="toggle_collapse(\'reslist\');"><div id="reslist::button" class="tri-closed"></div><a id="reslist::menu" class="menu-link"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="reslist::label"></span></div>' +
-        '<div id="reslist::children" style="display: none;" class="closed"></div>' +
-      '</div>' +
+      '<div id="reslist::children" style="display: none;" class="closed"></div>' +
     '</div>'));
 
   update_cib();
