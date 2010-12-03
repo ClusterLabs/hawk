@@ -671,38 +671,30 @@ function hawk_init()
     closeOnEscape:  true
   });
 
-  var sp = $(document.createElement("div")).writeAttribute("id", "summary");
-  sp.addClassName("ui-widget-content").addClassName("ui-corner-all");
   // TOTHEME
-  sp.update(
-    '<table>' +
-      '<tr><th>' + GETTEXT.summary_stack() + '</th><td><span id="summary::cluster_infrastructure"></span></td></tr>' +
-      '<tr><th>' + GETTEXT.summary_version() + '</th><td><span id="summary::dc_version"></span></td></tr>' +
-      '<tr><th>' + GETTEXT.summary_dc() + '</th><td><span id="summary::dc"></span></td></tr>' +
-      '<tr><td colspan="2" style="border-top: 1px solid #aaa;"></td></tr>' +
-      '<tr><th>' + GETTEXT.summary_stickiness() + '</th><td><a href="../cib/live/crm_config/cib-bootstrap-options/edit"><img src="../images/icons/edit.png" class="action-icon" alt="' + GETTEXT.configure() + '" title="' + GETTEXT.configure() + '" style="float: right;" /></a><span id="summary::default_resource_stickiness"></span></td></tr>' +
-      '<tr><th>' + GETTEXT.summary_stonith_enabled() + '</th><td><span id="summary::stonith_enabled"></span></td></tr>' +
-      '<tr><th>' + GETTEXT.summary_symmetric() + '</th><td><span id="summary::symmetric_cluster"></span></td></tr>' +
-      '<tr><th>' + GETTEXT.summary_no_quorum_policy() + '</th><td><span id="summary::no_quorum_policy"></span></td></tr>' +
-    '</table>');
-  sp.hide();
-  $("content").insert({top: sp});
-  var np = $(document.createElement("div")).writeAttribute("id", "nodelist");
-  np.addClassName("ui-corner-all");
-  np.update(
-    '<div class="clickable" onclick="toggle_collapse(\'nodelist\');"><div id="nodelist::button" class="tri-closed"></div><a id="nodelist::menu" class="menu-link"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="nodelist::label"></span></div>' +
-      '<div id="nodelist::children" style="display: none;" class="closed"></div>' +
-    '</div>');
-  np.hide();
-  sp.insert({after: np});
-  var rp = $(document.createElement("div")).writeAttribute("id", "reslist");
-  rp.addClassName("ui-corner-all");
-  rp.update(
-    '<div class="clickable" onclick="toggle_collapse(\'reslist\');"><div id="reslist::button" class="tri-closed"></div><a id="reslist::menu" class="menu-link"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="reslist::label"></span></div>' +
-      '<div id="reslist::children" style="display: none;" class="closed"></div>' +
-    '</div>');
-  rp.hide();
-  np.insert({after: rp});
+  $j("#content").prepend($j(
+    '<div id="summary" class="ui-widget-content ui-corner-all" style="display: none;">' +
+      '<table>' +
+        '<tr><th>' + GETTEXT.summary_stack() + '</th><td><span id="summary::cluster_infrastructure"></span></td></tr>' +
+        '<tr><th>' + GETTEXT.summary_version() + '</th><td><span id="summary::dc_version"></span></td></tr>' +
+        '<tr><th>' + GETTEXT.summary_dc() + '</th><td><span id="summary::dc"></span></td></tr>' +
+        '<tr><td colspan="2" style="border-top: 1px solid #aaa;"></td></tr>' +
+        '<tr><th>' + GETTEXT.summary_stickiness() + '</th><td><a href="../cib/live/crm_config/cib-bootstrap-options/edit"><img src="../images/icons/edit.png" class="action-icon" alt="' + GETTEXT.configure() + '" title="' + GETTEXT.configure() + '" style="float: right;" /></a><span id="summary::default_resource_stickiness"></span></td></tr>' +
+        '<tr><th>' + GETTEXT.summary_stonith_enabled() + '</th><td><span id="summary::stonith_enabled"></span></td></tr>' +
+        '<tr><th>' + GETTEXT.summary_symmetric() + '</th><td><span id="summary::symmetric_cluster"></span></td></tr>' +
+        '<tr><th>' + GETTEXT.summary_no_quorum_policy() + '</th><td><span id="summary::no_quorum_policy"></span></td></tr>' +
+      '</table>' +
+    '</div>' +
+    '<div id="nodelist" class="ui-corner-all" style="display: none;">' +
+      '<div class="clickable" onclick="toggle_collapse(\'nodelist\');"><div id="nodelist::button" class="tri-closed"></div><a id="nodelist::menu" class="menu-link"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="nodelist::label"></span></div>' +
+        '<div id="nodelist::children" style="display: none;" class="closed"></div>' +
+      '</div>' +
+    '</div>' +
+    '<div id="reslist" class="ui-corner-all" style="display: none;">' +
+      '<div class="clickable" onclick="toggle_collapse(\'reslist\');"><div id="reslist::button" class="tri-closed"></div><a id="reslist::menu" class="menu-link"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="reslist::label"></span></div>' +
+        '<div id="reslist::children" style="display: none;" class="closed"></div>' +
+      '</div>' +
+    '</div>'));
 
   update_cib();
 }
