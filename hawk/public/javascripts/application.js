@@ -668,7 +668,7 @@ function update_cib()
 
 function hawk_init()
 {
-  var q = window.location.search.parseQuery();
+  var q = $j.parseQuery();
   if (q.cib_file) {
     cib_file = q.cib_file;
   }
