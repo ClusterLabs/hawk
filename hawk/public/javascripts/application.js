@@ -82,37 +82,37 @@ function update_errors(errors)
 // need to pass parent in with open flag (e.g.: nodelist, reslist)
 function update_panel(panel)
 {
-  $(panel.id).className = "ui-corner-all " + panel.className;
-  $(panel.id+"::label").update(panel.label);
+  $j(jq(panel.id)).attr("class", "ui-corner-all " + panel.className);
+  $j(jq(panel.id+"::label")).html(panel.label);
 
   if (!panel.children) return false;
 
   var expand = panel.open ? true : false;   // do we really need to be this obscure?
-  var c = $(panel.id+"::children").firstDescendant();
+  var c = $j(jq(panel.id+"::children")).children(":first");
   panel.children.each(function(item) {
-    if (!c || c.readAttribute("id") != item.id) {
+    if (!c.length || c.attr("id") != item.id) {
       var d;
-      if ($(item.id)) {
+      if ($j(jq(item.id)).length) {
         // already got one for this resource, tear it out and reuse it.
-        d = $(item.id).remove();
+        d = $j(jq(item.id)).detach();
       } else {
         // brand spanking new
-        d = $(document.createElement("div")).writeAttribute("id", item.id);
+        d = $j('<div id="' + item.id + '"/>');
         if (item.children) {
           // TODO(should): HTML-safe?
-          d.update('<div class="clickable" onclick="toggle_collapse(\'' + item.id + '\');">' +
+          d.html('<div class="clickable" onclick="toggle_collapse(\'' + item.id + '\');">' +
             '<div id="' + item.id + '::button" class="tri-' + (item.open ? 'open' : 'closed') + '"></div>' +
               '<a id="' + item.id + '::menu" class="menu-link"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a>' +
               '<span id="' + item.id + '::label"></span></div>' +
             '<div id="' + item.id + '::children"' + (item.open ? '' : ' style="display: none;" class="closed"') + '</div>');
         } else {
-          d.update('<a id="' + item.id + '::menu" class="menu-link"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="' + item.id + '::label"></span>');
+          d.html('<a id="' + item.id + '::menu" class="menu-link"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="' + item.id + '::label"></span>');
         }
       }
-      if (!c) {
-        $(panel.id+"::children").insert(d);
+      if (!c.length) {
+        $j(jq(panel.id+"::children")).append(d);
       } else {
-        c.insert({before: d});
+        c.before(d);
       }
       if (!cib_file) {
         // Only add menus if this isn't a static test
@@ -122,14 +122,14 @@ function update_panel(panel)
       c = c.next();
     }
     if (update_panel(item)) {
-      if ($(item.id + "::children").hasClassName("closed")) {
-        expand_block(item.id);
+      if ($j(jq(item.id + "::children")).hasClass("closed")) {
+        expand_block(item.attr("id"));
       }
       expand = true;
     }
   });
   // If there's any child nodes left, get rid of 'em
-  while (c) {
+  while (c.length) {
     var nc = c.next();
     c.remove();
     c = nc;
