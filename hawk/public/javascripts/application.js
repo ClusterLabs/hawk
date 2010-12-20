@@ -39,26 +39,24 @@ function jq(id)
   return "#" + id.replace(/(:|\.)/g,'\\$1');
 }
 
-
+// TODO(should): clean up these three...
 function expand_block(id)
 {
-  new Effect.BlindDown($(id+"::children"), { duration: 0.3, fps: 100 });
-  $(id+"::children").removeClassName("closed");
-  $(id+"::button").removeClassName("tri-closed").addClassName("tri-open");
+  $j(jq(id+"::children")).show("blind", {}, "fast");
+  $j(jq(id+"::children")).removeClass("closed");
+  $j(jq(id+"::button")).removeClass("tri-closed").addClass("tri-open");
 }
 
 function collapse_block(id)
 {
-  new Effect.BlindUp($(id+"::children"), { duration: 0.3, fps: 100 });
-  $(id+"::children").addClassName("closed");
-  $(id+"::button").removeClassName("tri-open").addClassName("tri-closed");
+  $j(jq(id+"::children")).hide("blind", {}, "fast");
+  $j(jq(id+"::children")).addClass("closed");
+  $j(jq(id+"::button")).removeClass("tri-open").addClass("tri-closed");
 }
 
-// TODO(should): for another approach to expand/contract, see
-// http://www.kleenecode.net/2008/03/01/valid-and-accessible-collapsible-panels-with-scriptaculous/
 function toggle_collapse(id)
 {
-  if ($(id+"::children").hasClassName("closed")) {
+  if ($j(jq(id+"::children")).hasClass("closed")) {
     expand_block(id);
   } else {
     collapse_block(id);
