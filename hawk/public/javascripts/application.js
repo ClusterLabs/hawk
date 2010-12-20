@@ -116,7 +116,7 @@ function update_panel(panel)
       }
       if (!cib_file) {
         // Only add menus if this isn't a static test
-        add_mgmt_menu($(item.id + "::menu"));
+        add_mgmt_menu($j(jq(item.id + "::menu")));
       }
     } else {
       c = c.next();
@@ -174,33 +174,33 @@ function popup_op_menu(e)
   if (parts[0] == "resource") {
     var c = 0;
     var isMs = false;
-    var n = $(target.parentNode);
-    while (n && n.id != "reslist") {
-      if (n.hasClassName("res-primitive") || n.hasClassName("res-clone") || n.hasClassName("res-group")) {
+    var n = $j(target.parentNode);
+    while (n && n.attr("id") != "reslist") {
+      if (n.hasClass("res-primitive") || n.hasClass("res-clone") || n.hasClass("res-group")) {
         c++;
       }
-      if (n.hasClassName("res-ms")) {
+      if (n.hasClass("res-ms")) {
         isMs = true;
       }
-      n = $(n.parentNode);
+      n = n.parent();
     }
     if (c == 1) {
       // Top-level item (for primitive in group this would be 2)
-      $("menu::resource::migrate").show();
-      $("menu::resource::unmigrate").show();
+      $j(jq("menu::resource::migrate")).show();
+      $j(jq("menu::resource::unmigrate")).show();
     } else {
-      $("menu::resource::migrate").hide();
-      $("menu::resource::unmigrate").hide();
+      $j(jq("menu::resource::migrate")).hide();
+      $j(jq("menu::resource::unmigrate")).hide();
     }
     if (isMs) {
-      $("menu::resource::promote").show();
-      $("menu::resource::demote").show();
+      $j(jq("menu::resource::promote")).show();
+      $j(jq("menu::resource::demote")).show();
     } else {
-      $("menu::resource::promote").hide();
-      $("menu::resource::demote").hide();
+      $j(jq("menu::resource::promote")).hide();
+      $j(jq("menu::resource::demote")).hide();
     }
   }
-  $("menu::" + parts[0]).setStyle({left: pos.left+"px", top: pos.top+"px"}).show();
+  $j(jq("menu::" + parts[0])).css({left: pos.left+"px", top: pos.top+"px"}).show();
   Event.stop(e);
 }
 
@@ -252,25 +252,25 @@ function menu_item_click_migrate(e)
 function perform_op(type, id, op, extra)
 {
   var state = "neutral";
-  var c = $(type + "::" + id);
-  if (c.hasClassName("ns-active"))         state = "active";
-  else if(c.hasClassName("ns-inactive"))  state = "inactive";
-  else if(c.hasClassName("ns-error"))     state = "error";
-  else if(c.hasClassName("ns-transient")) state = "transient";
-  else if(c.hasClassName("rs-active"))    state = "active";
-  else if(c.hasClassName("rs-inactive"))  state = "inactive";
-  else if(c.hasClassName("rs-error"))     state = "error";
-  $(type + "::" + id + "::menu").firstDescendant().src = url_root + "/images/spinner-16x16-" + state + ".gif";
+  var c = $j(jq(type + "::" + id));
+  if (c.hasClass("ns-active"))        state = "active";
+  else if(c.hasClass("ns-inactive"))  state = "inactive";
+  else if(c.hasClass("ns-error"))     state = "error";
+  else if(c.hasClass("ns-transient")) state = "transient";
+  else if(c.hasClass("rs-active"))    state = "active";
+  else if(c.hasClass("rs-inactive"))  state = "inactive";
+  else if(c.hasClass("rs-error"))     state = "error";
+  $j(jq(type + "::" + id + "::menu")).children(":first").attr("src", url_root + "/images/spinner-16x16-" + state + ".gif");
 
   new Ajax.Request(url_root + "/main/" + type + "/" + op, {
     parameters: "format=json&" + type + "=" + id + (extra ? "&" + extra : ""),
     onSuccess:  function(request) {
       // Remove spinner (a spinner that stops too early is marginally better than one that never stops)
-      $(type + "::" + id + "::menu").firstDescendant().src = url_root + "/images/icons/properties.png";
+      $j(jq(type + "::" + id + "::menu")).children(":first").attr("src", url_root + "/images/icons/properties.png");
     },
     onFailure:  function(request) {
       // Remove spinner
-      $(type + "::" + id + "::menu").firstDescendant().src = url_root + "/images/icons/properties.png";
+      $j(jq(type + "::" + id + "::menu")).children(":first").attr("src", url_root + "/images/icons/properties.png");
       // Display error
       if (request.responseJSON) {
         error_dialog(request.responseJSON.error,
@@ -289,31 +289,31 @@ function perform_op(type, id, op, extra)
 
 function add_mgmt_menu(e)
 {
-  switch (dc_split(e.id)[0]) {
+  switch (dc_split(e.attr("id"))[0]) {
     case "node":
-      e.addClassName("clickable");
-      e.observe("click", popup_op_menu);
-      e.firstDescendant().src = url_root + "/images/icons/properties.png";
+      e.addClass("clickable");
+      e.click(popup_op_menu);
+      e.children(":first").attr("src", url_root + "/images/icons/properties.png");
       break;
     case "resource":
-      if ($(e.parentNode.parentNode).hasClassName("res-clone")) {
-        e.addClassName("clickable");
-        e.observe("click", popup_op_menu);
-        e.firstDescendant().src = url_root + "/images/icons/properties.png";
+      if (e.parent().parent().hasClass("res-clone")) {
+        e.addClass("clickable");
+        e.click(popup_op_menu);
+        e.children(":first").attr("src", url_root + "/images/icons/properties.png");
       } else {
         var isClone = false;
-        var n = e.parentNode;
-        while (n && n.id != "reslist") {
-          if ($(n).hasClassName("res-clone")) {
+        var n = e.parent();
+        while (n && n.attr("id") != "reslist") {
+          if (n.hasClass("res-clone")) {
             isClone = true;
             break;
           }
-          n = n.parentNode;
+          n = n.parent();
         }
         if (!isClone) {
-          e.addClassName("clickable");
-          e.observe("click", popup_op_menu);
-          e.firstDescendant().src = url_root + "/images/icons/properties.png";
+          e.addClass("clickable");
+          e.click(popup_op_menu);
+          e.children(":first").attr("src", url_root + "/images/icons/properties.png");
         }
       }
       break;
@@ -322,6 +322,7 @@ function add_mgmt_menu(e)
 
 function init_menus()
 {
+  // TODO(should): re-evaluate use of 'first' here
   $j(jq("menu::node::standby")).first().click(menu_item_click);
   $j(jq("menu::node::online")).first().click(menu_item_click);
   $j(jq("menu::node::fence")).first().click(menu_item_click);
@@ -338,10 +339,6 @@ function init_menus()
   $j(document).click(function() {
     $j(jq("menu::node")).hide();
     $j(jq("menu::resource")).hide();
-  });
-
-  $j(".menu-link").each(function() {
-    add_mgmt_menu(this);
   });
 }
 
