@@ -154,17 +154,17 @@ function dc_split(str)
   return parts;
 }
 
-function popup_op_menu(e)
+function popup_op_menu()
 {
   // Hide everything first (otherwise it's actually possible to have
   // node and resource context menus visible simultaneously
   $j(jq("menu::node")).hide();
   $j(jq("menu::resource")).hide();
 
-  var target = Event.element(e);
-  var pos = target.cumulativeOffset();
+  var target = $j(this);
+  var pos = target.children(":first").offset();
   // parts[0] is "node" or "resource", parts[1] is op
-  var parts = dc_split(target.parentNode.id);
+  var parts = dc_split(target.attr("id"));
   activeItem = parts[1];
   // Special case to show/hide migrate (only visible at top level, not children of groups)
   // TODO(should): in general we need a better way of understanding the cluster hierarchy
@@ -172,8 +172,8 @@ function popup_op_menu(e)
   if (parts[0] == "resource") {
     var c = 0;
     var isMs = false;
-    var n = $j(target.parentNode);
-    while (n && n.attr("id") != "reslist") {
+    var n = target.parent();
+    while (n.length && n.attr("id") != "reslist") {
       if (n.hasClass("res-primitive") || n.hasClass("res-clone") || n.hasClass("res-group")) {
         c++;
       }
@@ -199,29 +199,30 @@ function popup_op_menu(e)
     }
   }
   $j(jq("menu::" + parts[0])).css({left: pos.left+"px", top: pos.top+"px"}).show();
-  Event.stop(e);
+  // Stop propagation
+  return false;
 }
 
-function menu_item_click(e)
+function menu_item_click()
 {
   // parts[1] is "node" or "resource", parts[2] is op
-  var parts = dc_split(Event.element(e).parentNode.id);
+  var parts = dc_split($j(this).attr("id"));
   $j("#dialog").html(GETTEXT[parts[1] + "_" + parts[2]](activeItem));
   // TODO(could): Is there a neater construct for this localized button thing?
   var b = {};
   b[GETTEXT.yes()]  = function() { perform_op(parts[1], activeItem, parts[2]); $j(this).dialog("close"); };
   b[GETTEXT.no()]   = function() { $j(this).dialog("close"); }
   $j("#dialog").dialog("option", {
-    title:    Event.element(e).innerHTML,
+    title:    $j(this).children(":first").html(),
     buttons:  b
   });
   $j("#dialog").dialog("open");
 }
 
-function menu_item_click_migrate(e)
+function menu_item_click_migrate()
 {
   // parts[1] is "node" or "resource", parts[2] is op
-  var parts = dc_split(Event.element(e).parentNode.id);
+  var parts = dc_split($j(this).attr("id"));
   var html = '<form><select id="migrate-to" size="4" style="width: 100%;">';
   // TODO(should): Again, too much dependence on DOM structure here
   $("nodelist::children").childElements().each(function(e) {
