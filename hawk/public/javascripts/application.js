@@ -261,19 +261,27 @@ function perform_op(type, id, op, extra)
   else if(c.hasClass("rs-error"))     state = "error";
   $j(jq(type + "::" + id + "::menu")).children(":first").attr("src", url_root + "/images/spinner-16x16-" + state + ".gif");
 
-  new Ajax.Request(url_root + "/main/" + type + "/" + op, {
-    parameters: "format=json&" + type + "=" + id + (extra ? "&" + extra : ""),
-    onSuccess:  function(request) {
+  $j.ajax({ url: url_root + "/main/" + type + "/" + op,
+    data: "format=json&" + type + "=" + id + (extra ? "&" + extra : ""),
+    type: "POST",
+    success: function() {
       // Remove spinner (a spinner that stops too early is marginally better than one that never stops)
       $j(jq(type + "::" + id + "::menu")).children(":first").attr("src", url_root + "/images/icons/properties.png");
     },
-    onFailure:  function(request) {
+    error: function(request) {
       // Remove spinner
       $j(jq(type + "::" + id + "::menu")).children(":first").attr("src", url_root + "/images/icons/properties.png");
-      // Display error
-      if (request.responseJSON) {
-        error_dialog(request.responseJSON.error,
-          request.responseJSON.stderr ? request.responseJSON.stderr : null);
+      var json = null;
+      try {
+        // Shame jQuery doesn't seem to give us JSON automatically
+        // in the case of an error...
+        json = $j.parseJSON(request.responseText);
+      }
+      catch (e) {
+        // This should never happen (malformed JSON)
+      }
+      if (json) {
+        error_dialog(json.error, json.stderr ? json.stderr : null);
       } else {
         if (request.status == 403) {
           // 403 == permission denied
