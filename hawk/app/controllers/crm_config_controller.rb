@@ -39,6 +39,7 @@ class CrmConfigController < ApplicationController
   end
 
   def initialize
+    super
     @title = _('Cluster Configuration')
   end
 

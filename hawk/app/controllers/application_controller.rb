@@ -40,6 +40,11 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password
 
+  def initialize
+    require 'socket'
+    @host = Socket.gethostname  # should be short hostname
+  end
+
 protected
 
   # This login system is a heavily-stripped-back form of what would

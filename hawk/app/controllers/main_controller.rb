@@ -55,11 +55,6 @@ class MainController < ApplicationController
 
   public
 
-  def initialize
-    require 'socket'
-    @host = Socket.gethostname  # should be short hostname
-  end
-
   # Render cluster status by default
   # (can't just render :action => 'status',
   # or we don't get the instance variables)

@@ -32,6 +32,7 @@ class SessionsController < ApplicationController
   layout 'main'
 
   def initialize
+    super
     @title = _('Log In')
   end
 
