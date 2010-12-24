@@ -39,6 +39,17 @@ function jq(id)
   return "#" + id.replace(/(:|\.)/g,'\\$1');
 }
 
+// Shame jQuery doesn't seem to give us JSON automatically in the case of an error...
+function json_from_request(request)
+{
+  try {
+    return $j.parseJSON(request.responseText);
+  } catch (e) {
+    // This'll happen if the JSON is malformed somehow
+    return null;
+  }
+}
+
 // TODO(should): clean up these three...
 function expand_block(id)
 {
@@ -271,15 +282,7 @@ function perform_op(type, id, op, extra)
     error: function(request) {
       // Remove spinner
       $j(jq(type + "::" + id + "::menu")).children(":first").attr("src", url_root + "/images/icons/properties.png");
-      var json = null;
-      try {
-        // Shame jQuery doesn't seem to give us JSON automatically
-        // in the case of an error...
-        json = $j.parseJSON(request.responseText);
-      }
-      catch (e) {
-        // This should never happen (malformed JSON)
-      }
+      var json = json_from_request(request);
       if (json) {
         error_dialog(json.error, json.stderr ? json.stderr : null);
       } else {
@@ -371,22 +374,26 @@ function do_update(cur_epoch)
   // No refresh if this is a static test
   if (cib_file) return;
 
-  new Ajax.Request(url_root + "/monitor?" + cur_epoch, { method: "get",
-    onSuccess: function(transport) {
-      if (transport.responseJSON) {
-        var new_epoch = transport.responseJSON ? transport.responseJSON.epoch : "";
-        if (new_epoch != cur_epoch) {
+  $j.ajax({ url: url_root + "/monitor?" + cur_epoch,
+    type: "GET",
+    success: function(data) {
+      if (data) {
+        if (data.epoch != cur_epoch) {
           update_cib();
         } else {
-          do_update(new_epoch);
+          do_update(data.epoch);
         }
       } else {
         // This can occur when onSuccess is called erroneously
         // on network failure; re-request in 15 seconds
+        // TODO(should): this was originally observed when using Prototype,
+        // is it still a problem with jQuery?  If no, this can be deleted
+        // (but may need "new_epoch = data ? data.epoch : '';" above
+        // instead of direct use of data.epoch).
         setTimeout("do_update('" + cur_epoch + "')", 15000);
       }
     },
-    onFailure: function(transport) {
+    error: function() {
       // Busted, retry in 15 seconds.
       setTimeout("do_update('" + cur_epoch + "')", 15000);
     }
@@ -589,12 +596,13 @@ function cib_to_reslist_panel(resources)
 
 function update_cib()
 {
-  new Ajax.Request(url_root + "/cib/" + (cib_file ? cib_file : "live"), { method: "get",
-    parameters: "format=json" + (cib_file ? "&debug=file" : ""),
-    onSuccess: function(transport) {
+  $j.ajax({ url: url_root + "/cib/" + (cib_file ? cib_file : "live"),
+    data: "format=json" + (cib_file ? "&debug=file" : ""),
+    type: "GET",
+    success: function(data) {
       $j("#onload-spinner").hide();
-      if (transport.responseJSON) {
-        cib = transport.responseJSON;
+      if (data) {   // When is it possible for this to not be set?
+        cib = data;
         update_errors(cib.errors);
         if (cib.meta) {
           $j("#summary").show();
@@ -633,18 +641,19 @@ function update_cib()
       }
       do_update(cib.meta ? cib.meta.epoch : "");
     },
-    onFailure: function(transport) {
-      if (transport.status == 403) {
+    error: function(request) {
+      if (request.status == 403) {
         // 403 == permission denied, boot the user out
         window.location.replace(url_root + "/logout?reason=forbidden");
       } else {
-        if (transport.responseJSON && transport.responseJSON.errors) {
+        var json = json_from_request(request);
+        if (json && json.errors) {
           // Sane response (server not dead, but actual error, e.g.:
           // access denied):
-          update_errors(transport.responseJSON.errors);
+          update_errors(json.errors);
         } else {
           // Unexpectedly busted (e.g.: server fried):
-          update_errors([GETTEXT.err_unexpected(transport.status + " " + transport.statusText)]);
+          update_errors([GETTEXT.err_unexpected(request.status + " " + request.statusText)]);
         }
         $j("#summary").hide();
         $j("#nodelist").hide();
