@@ -602,6 +602,16 @@ function update_resources_by_id()
   });
 }
 
+function hide_status()
+{
+  $("#dc_current").hide();
+  $("#dc_version").hide();
+  $("#dc_stack").hide();
+  $("#summary").hide();
+  $("#nodelist").hide();
+  $("#reslist").hide();
+}
+
 function update_cib()
 {
   $.ajax({ url: url_root + "/cib/" + (cib_file ? cib_file : "live"),
@@ -614,14 +624,15 @@ function update_cib()
         update_resources_by_id();
         update_errors(cib.errors);
         if (cib.meta) {
+          $("#dc_current").html(GETTEXT.dc_current(cib.meta.dc)).show();
+          $("#dc_version").html(GETTEXT.dc_version(cib.crm_config["dc_version"].match(/.*-[a-f0-9]{12}/).toString())).show();
+          $("#dc_stack").html(GETTEXT.dc_stack(cib.crm_config["cluster_infrastructure"])).show();
+
           $("#summary").show();
-          $(jq("summary::dc")).html(cib.meta.dc);
           for (var e in cib.crm_config) {
             if (!$(jq("summary::" + e))) continue;
             if (typeof(cib.crm_config[e]) == "boolean") {
               $(jq("summary::" + e)).html(cib.crm_config[e] ? GETTEXT.yes() : GETTEXT.no())
-            } else if(e == "dc_version") {
-              $(jq("summary::" + e)).html(cib.crm_config[e].match(/.*-[a-f0-9]{12}/).toString());
             } else {
               $(jq("summary::" + e)).html(cib.crm_config[e].toString());
             }
@@ -643,9 +654,7 @@ function update_cib()
 
         } else {
           // TODO(must): is it possible to get here with empty cib.errors?
-          $("#summary").hide();
-          $("#nodelist").hide();
-          $("#reslist").hide();
+          hide_status();
         }
       }
       if (update_period) {
@@ -669,9 +678,7 @@ function update_cib()
           // Unexpectedly busted (e.g.: server fried):
           update_errors([GETTEXT.err_unexpected(request.status + " " + request.statusText)]);
         }
-        $("#summary").hide();
-        $("#nodelist").hide();
-        $("#reslist").hide();
+        hide_status();
         if (cib_file) {
           $("#onload-spinner").hide();
         } else {
@@ -710,10 +717,6 @@ function hawk_init()
   $("#content").prepend($(
     '<div id="summary" class="ui-widget-content ui-corner-all" style="display: none;">' +
       '<table>' +
-        '<tr><th>' + GETTEXT.summary_stack() + '</th><td><span id="summary::cluster_infrastructure"></span></td></tr>' +
-        '<tr><th>' + GETTEXT.summary_version() + '</th><td><span id="summary::dc_version"></span></td></tr>' +
-        '<tr><th>' + GETTEXT.summary_dc() + '</th><td><span id="summary::dc"></span></td></tr>' +
-//        '<tr><td colspan="2" style="border-top: 1px solid #aaa;"></td></tr>' +
         '<tr><th>' + GETTEXT.summary_stickiness() + '</th><td>' +
 //          '<a href="../cib/live/crm_config/cib-bootstrap-options/edit"><img src="../images/icons/edit.png" class="action-icon" alt="' + GETTEXT.configure() + '" title="' + GETTEXT.configure() + '" style="float: right;" /></a>' +
           '<span id="summary::default_resource_stickiness"></span></td></tr>' +

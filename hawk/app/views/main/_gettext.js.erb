@@ -64,16 +64,17 @@ var GETTEXT = {
   err_denied: function() {
     return "<%= escape_javascript _('Permission denied') %>";
   },
+  // DC Info
+  dc_current: function(dc) {
+    return "<%= escape_javascript _('DC: %s') % '_DC_' %>".replace('_DC_', dc);
+  },
+  dc_version: function(version) {
+    return "<%= escape_javascript _('Version: %s') % '_VERSION_' %>".replace('_VERSION_', version);
+  },
+  dc_stack: function(stack) {
+    return "<%= escape_javascript _('Stack: %s') % '_STACK_' %>".replace('_STACK_', stack);
+  },
   // Cluster summary labels
-  summary_stack: function() {
-    return "<%= escape_javascript _('Cluster Stack:') %>";
-  },
-  summary_version: function() {
-    return "<%= escape_javascript _('Pacemaker Version:') %>";
-  },
-  summary_dc: function() {
-    return "<%= escape_javascript _('Current DC:') %>";
-  },
   summary_stickiness: function() {
     return "<%= escape_javascript _('Resource Stickiness:') %>";
   },

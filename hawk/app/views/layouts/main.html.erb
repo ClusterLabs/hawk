@@ -29,7 +29,11 @@
     <%= yield %>
   </div>
   <div id="footer" class="ui-widget-header">
-    <span id="hostinfo"><%= (_('Host: %s') % @host) if @host %></span>
+    <span id="hostinfo">
+      <span id="dc_current" style="display: none; padding-right: 1em;"></span>
+      <span id="dc_version" style="display: none; padding-right: 1em;"></span>
+      <span id="dc_stack" style="display: none; padding-right: 1em;"></span>
+      <%= (_('UI Host: %s') % @host) if @host %></span>
     <span id="copyright"><%= _('Copyright &copy; 2009-2010 Novell, Inc.') %></span>
   </div>
   <div id="dialog" style="display: none;"></div>
