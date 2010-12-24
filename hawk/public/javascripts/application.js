@@ -50,6 +50,11 @@ function json_from_request(request)
   }
 }
 
+function escape_html(str)
+{
+  return $j("<div/>").text(str).html();
+}
+
 // TODO(should): clean up these three...
 function expand_block(id)
 {
@@ -80,8 +85,7 @@ function update_errors(errors)
   if (errors.size()) {
     $j("#errorbar").show();
     errors.each(function(e) {
-      // TODO(must): is this escaped?
-      $j("#errorbar").append($j('<div class="error">' + e.escapeHTML() + '</div>'));
+      $j("#errorbar").append($j('<div class="error">' + escape_html(e) + '</div>'));
     });
   } else {
     $j("#errorbar").hide();
@@ -356,7 +360,7 @@ function error_dialog(msg, body)
 {
   if (body) {
     // TODO(should): theme this properly
-    msg += '<div id="dialog-body" class="message">' + body.escapeHTML().replace(/\n/g, "<br />") + "</div>";
+    msg += '<div id="dialog-body" class="message">' + escape_html(body).replace(/\n/g, "<br />") + "</div>";
   }
   $j("#dialog").html(msg);
   // TODO(could): Is there a neater construct for this localized button thing?
