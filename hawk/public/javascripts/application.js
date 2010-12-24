@@ -32,6 +32,8 @@
 var activeItem = null;
 
 var cib = null;
+var resources_by_id = null;
+
 var cib_file = false;
 var update_period = 0;
 
@@ -179,42 +181,37 @@ function popup_op_menu()
 
   var target = $(this);
   var pos = target.children(":first").offset();
-  // parts[0] is "node" or "resource", parts[1] is op
+
+  // parts[0] is "node" or "resource", parts[1] is node or resource ID
   var parts = dc_split(target.attr("id"));
-  activeItem = parts[1];
-  // Special case to show/hide migrate (only visible at top level, not children of groups)
-  // TODO(should): in general we need a better way of understanding the cluster hierarchy
-  // from here than walking the DOM tree - it's too dependant on too many things.
+
+  // Special case for resources (different menus based on type/hierarchy)
   if (parts[0] == "resource") {
-    var c = 0;
-    var isMs = false;
-    var n = target.parent();
-    while (n.length && n.attr("id") != "reslist") {
-      if (n.hasClass("res-primitive") || n.hasClass("res-clone") || n.hasClass("res-group")) {
-        c++;
-      }
-      if (n.hasClass("res-ms")) {
-        isMs = true;
-      }
-      n = n.parent();
-    }
-    if (c == 1) {
-      // Top-level item (for primitive in group this would be 2)
+
+    // Hide promote/demote by default
+    $(jq("menu::resource::promote")).hide();
+    $(jq("menu::resource::demote")).hide();
+
+    if (resources_by_id[parts[1]]) {
+      // Top-level item, thus migratable
       $(jq("menu::resource::migrate")).show();
       $(jq("menu::resource::unmigrate")).show();
+
+      if (resources_by_id[parts[1]].children && resources_by_id[parts[1]].type == "master") {
+        // Paranoid check for has children + type == "master" (else one day someone
+        // will make an RA called "master", and we'd think it was a primitive).
+        $(jq("menu::resource::promote")).show();
+        $(jq("menu::resource::demote")).show();
+      }
     } else {
+      // Not present in cib.resources, thus it's a child and not migratable.
       $(jq("menu::resource::migrate")).hide();
       $(jq("menu::resource::unmigrate")).hide();
     }
-    if (isMs) {
-      $(jq("menu::resource::promote")).show();
-      $(jq("menu::resource::demote")).show();
-    } else {
-      $(jq("menu::resource::promote")).hide();
-      $(jq("menu::resource::demote")).hide();
-    }
   }
+
   $(jq("menu::" + parts[0])).css({left: pos.left+"px", top: pos.top+"px"}).show();
+
   // Stop propagation
   return false;
 }
@@ -594,6 +591,17 @@ function cib_to_reslist_panel(resources)
   return panel;
 }
 
+// Specifically only does top-level resources, because that's all we
+// care about in popup_op_menu().  If it turns out we need something
+// more extensive later, the logic in popup_op_menu() will have to change.
+function update_resources_by_id()
+{
+  resources_by_id = {};
+  $.each(cib.resources, function() {
+    resources_by_id[this.id] = this;
+  });
+}
+
 function update_cib()
 {
   $.ajax({ url: url_root + "/cib/" + (cib_file ? cib_file : "live"),
@@ -603,6 +611,7 @@ function update_cib()
       $("#onload-spinner").hide();
       if (data) {   // When is it possible for this to not be set?
         cib = data;
+        update_resources_by_id();
         update_errors(cib.errors);
         if (cib.meta) {
           $("#summary").show();
