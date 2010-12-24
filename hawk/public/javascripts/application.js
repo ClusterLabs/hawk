@@ -248,7 +248,7 @@ function menu_item_click_migrate()
   // TODO(could): Is there a neater construct for this localized button thing?
   var b = {};
   b[GETTEXT.ok()] = function() {
-    perform_op(parts[1], activeItem, parts[2], "node=" + $("migrate-to").getValue());
+    perform_op(parts[1], activeItem, parts[2], "node=" + $("#migrate-to").val());
     $(this).dialog("close");
   };
   b[GETTEXT.cancel()] = function() {
