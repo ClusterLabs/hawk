@@ -239,10 +239,8 @@ function menu_item_click_migrate()
   // parts[1] is "node" or "resource", parts[2] is op
   var parts = dc_split($(this).attr("id"));
   var html = '<form><select id="migrate-to" size="4" style="width: 100%;">';
-  // TODO(should): Again, too much dependence on DOM structure here
-  $(jq("nodelist::children")).children().each(function() {
-    var node = dc_split($(this).attr("id"))[1];
-    html += '<option value="' + node + '">' + GETTEXT.resource_migrate_to(node) + "</option>\n";
+  $.each(cib.nodes, function() {
+    html += '<option value="' + this.uname + '">' + GETTEXT.resource_migrate_to(this.uname) + "</option>\n";
   });
   html += '<option selected="selected" value="">' + GETTEXT.resource_migrate_away() + "</option>\n";
   html += "</form></select>";
