@@ -82,7 +82,7 @@ function toggle_collapse(id)
 function update_errors(errors)
 {
   $j("#errorbar").html("");
-  if (errors.size()) {
+  if (errors.length) {
     $j("#errorbar").show();
     errors.each(function(e) {
       $j("#errorbar").append($j('<div class="error">' + escape_html(e) + '</div>'));
@@ -410,7 +410,7 @@ function cib_to_nodelist_panel(nodes)
     id:         "nodelist",
     className:  "",
     style:      "",
-    label:      GETTEXT.nodes_configured(nodes.size()),
+    label:      GETTEXT.nodes_configured(nodes.length),
     open:       false,
     children:   []
   };
@@ -573,7 +573,7 @@ function cib_to_reslist_panel(resources)
     id:         "reslist",
     className:  "",
     style:      "",
-    label:      GETTEXT.resources_configured(resources.size()),
+    label:      GETTEXT.resources_configured(resources.length),
     open:       false,
     children:   []
   };
