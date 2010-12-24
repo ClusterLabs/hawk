@@ -43,7 +43,7 @@ function jq(id)
 function json_from_request(request)
 {
   try {
-    return $j.parseJSON(request.responseText);
+    return $.parseJSON(request.responseText);
   } catch (e) {
     // This'll happen if the JSON is malformed somehow
     return null;
@@ -52,27 +52,27 @@ function json_from_request(request)
 
 function escape_html(str)
 {
-  return $j("<div/>").text(str).html();
+  return $("<div/>").text(str).html();
 }
 
 // TODO(should): clean up these three...
 function expand_block(id)
 {
-  $j(jq(id+"::children")).show("blind", {}, "fast");
-  $j(jq(id+"::children")).removeClass("closed");
-  $j(jq(id+"::button")).removeClass("tri-closed").addClass("tri-open");
+  $(jq(id+"::children")).show("blind", {}, "fast");
+  $(jq(id+"::children")).removeClass("closed");
+  $(jq(id+"::button")).removeClass("tri-closed").addClass("tri-open");
 }
 
 function collapse_block(id)
 {
-  $j(jq(id+"::children")).hide("blind", {}, "fast");
-  $j(jq(id+"::children")).addClass("closed");
-  $j(jq(id+"::button")).removeClass("tri-open").addClass("tri-closed");
+  $(jq(id+"::children")).hide("blind", {}, "fast");
+  $(jq(id+"::children")).addClass("closed");
+  $(jq(id+"::button")).removeClass("tri-open").addClass("tri-closed");
 }
 
 function toggle_collapse(id)
 {
-  if ($j(jq(id+"::children")).hasClass("closed")) {
+  if ($(jq(id+"::children")).hasClass("closed")) {
     expand_block(id);
   } else {
     collapse_block(id);
@@ -81,36 +81,36 @@ function toggle_collapse(id)
 
 function update_errors(errors)
 {
-  $j("#errorbar").html("");
+  $("#errorbar").html("");
   if (errors.length) {
-    $j("#errorbar").show();
-    $j.each(errors, function() {
-      $j("#errorbar").append($j('<div class="error">' + escape_html(this.toString()) + '</div>'));
+    $("#errorbar").show();
+    $.each(errors, function() {
+      $("#errorbar").append($('<div class="error">' + escape_html(this.toString()) + '</div>'));
     });
   } else {
-    $j("#errorbar").hide();
+    $("#errorbar").hide();
   }
 }
 
 // need to pass parent in with open flag (e.g.: nodelist, reslist)
 function update_panel(panel)
 {
-  $j(jq(panel.id)).attr("class", "ui-corner-all " + panel.className);
-  $j(jq(panel.id+"::label")).html(panel.label);
+  $(jq(panel.id)).attr("class", "ui-corner-all " + panel.className);
+  $(jq(panel.id+"::label")).html(panel.label);
 
   if (!panel.children) return false;
 
   var expand = panel.open ? true : false;   // do we really need to be this obscure?
-  var c = $j(jq(panel.id+"::children")).children(":first");
-  $j.each(panel.children, function() {
+  var c = $(jq(panel.id+"::children")).children(":first");
+  $.each(panel.children, function() {
     if (!c.length || c.attr("id") != this.id) {
       var d;
-      if ($j(jq(this.id)).length) {
+      if ($(jq(this.id)).length) {
         // already got one for this resource, tear it out and reuse it.
-        d = $j(jq(this.id)).detach();
+        d = $(jq(this.id)).detach();
       } else {
         // brand spanking new
-        d = $j('<div id="' + this.id + '"/>');
+        d = $('<div id="' + this.id + '"/>');
         if (this.children) {
           // TODO(should): HTML-safe?
           d.html('<div class="clickable" onclick="toggle_collapse(\'' + this.id + '\');">' +
@@ -123,19 +123,19 @@ function update_panel(panel)
         }
       }
       if (!c.length) {
-        $j(jq(panel.id+"::children")).append(d);
+        $(jq(panel.id+"::children")).append(d);
       } else {
         c.before(d);
       }
       if (!cib_file) {
         // Only add menus if this isn't a static test
-        add_mgmt_menu($j(jq(this.id + "::menu")));
+        add_mgmt_menu($(jq(this.id + "::menu")));
       }
     } else {
       c = c.next();
     }
     if (update_panel(this)) {
-      if ($j(jq(this.id + "::children")).hasClass("closed")) {
+      if ($(jq(this.id + "::children")).hasClass("closed")) {
         expand_block(this.attr("id"));
       }
       expand = true;
@@ -173,10 +173,10 @@ function popup_op_menu()
 {
   // Hide everything first (otherwise it's actually possible to have
   // node and resource context menus visible simultaneously
-  $j(jq("menu::node")).hide();
-  $j(jq("menu::resource")).hide();
+  $(jq("menu::node")).hide();
+  $(jq("menu::resource")).hide();
 
-  var target = $j(this);
+  var target = $(this);
   var pos = target.children(":first").offset();
   // parts[0] is "node" or "resource", parts[1] is op
   var parts = dc_split(target.attr("id"));
@@ -199,21 +199,21 @@ function popup_op_menu()
     }
     if (c == 1) {
       // Top-level item (for primitive in group this would be 2)
-      $j(jq("menu::resource::migrate")).show();
-      $j(jq("menu::resource::unmigrate")).show();
+      $(jq("menu::resource::migrate")).show();
+      $(jq("menu::resource::unmigrate")).show();
     } else {
-      $j(jq("menu::resource::migrate")).hide();
-      $j(jq("menu::resource::unmigrate")).hide();
+      $(jq("menu::resource::migrate")).hide();
+      $(jq("menu::resource::unmigrate")).hide();
     }
     if (isMs) {
-      $j(jq("menu::resource::promote")).show();
-      $j(jq("menu::resource::demote")).show();
+      $(jq("menu::resource::promote")).show();
+      $(jq("menu::resource::demote")).show();
     } else {
-      $j(jq("menu::resource::promote")).hide();
-      $j(jq("menu::resource::demote")).hide();
+      $(jq("menu::resource::promote")).hide();
+      $(jq("menu::resource::demote")).hide();
     }
   }
-  $j(jq("menu::" + parts[0])).css({left: pos.left+"px", top: pos.top+"px"}).show();
+  $(jq("menu::" + parts[0])).css({left: pos.left+"px", top: pos.top+"px"}).show();
   // Stop propagation
   return false;
 }
@@ -221,52 +221,52 @@ function popup_op_menu()
 function menu_item_click()
 {
   // parts[1] is "node" or "resource", parts[2] is op
-  var parts = dc_split($j(this).attr("id"));
-  $j("#dialog").html(GETTEXT[parts[1] + "_" + parts[2]](activeItem));
+  var parts = dc_split($(this).attr("id"));
+  $("#dialog").html(GETTEXT[parts[1] + "_" + parts[2]](activeItem));
   // TODO(could): Is there a neater construct for this localized button thing?
   var b = {};
-  b[GETTEXT.yes()]  = function() { perform_op(parts[1], activeItem, parts[2]); $j(this).dialog("close"); };
-  b[GETTEXT.no()]   = function() { $j(this).dialog("close"); }
-  $j("#dialog").dialog("option", {
-    title:    $j(this).children(":first").html(),
+  b[GETTEXT.yes()]  = function() { perform_op(parts[1], activeItem, parts[2]); $(this).dialog("close"); };
+  b[GETTEXT.no()]   = function() { $(this).dialog("close"); }
+  $("#dialog").dialog("option", {
+    title:    $(this).children(":first").html(),
     buttons:  b
   });
-  $j("#dialog").dialog("open");
+  $("#dialog").dialog("open");
 }
 
 function menu_item_click_migrate()
 {
   // parts[1] is "node" or "resource", parts[2] is op
-  var parts = dc_split($j(this).attr("id"));
+  var parts = dc_split($(this).attr("id"));
   var html = '<form><select id="migrate-to" size="4" style="width: 100%;">';
   // TODO(should): Again, too much dependence on DOM structure here
-  $j(jq("nodelist::children")).children().each(function() {
-    var node = dc_split($j(this).attr("id"))[1];
+  $(jq("nodelist::children")).children().each(function() {
+    var node = dc_split($(this).attr("id"))[1];
     html += '<option value="' + node + '">' + GETTEXT.resource_migrate_to(node) + "</option>\n";
   });
   html += '<option selected="selected" value="">' + GETTEXT.resource_migrate_away() + "</option>\n";
   html += "</form></select>";
-  $j("#dialog").html(html);
+  $("#dialog").html(html);
   // TODO(could): Is there a neater construct for this localized button thing?
   var b = {};
   b[GETTEXT.ok()] = function() {
     perform_op(parts[1], activeItem, parts[2], "node=" + $("migrate-to").getValue());
-    $j(this).dialog("close");
+    $(this).dialog("close");
   };
   b[GETTEXT.cancel()] = function() {
-    $j(this).dialog("close");
+    $(this).dialog("close");
   };
-  $j("#dialog").dialog("option", {
+  $("#dialog").dialog("option", {
     title:    GETTEXT[parts[1] + "_" + parts[2]](activeItem),
     buttons:  b
   });
-  $j("#dialog").dialog("open");
+  $("#dialog").dialog("open");
 }
 
 function perform_op(type, id, op, extra)
 {
   var state = "neutral";
-  var c = $j(jq(type + "::" + id));
+  var c = $(jq(type + "::" + id));
   if (c.hasClass("ns-active"))        state = "active";
   else if(c.hasClass("ns-inactive"))  state = "inactive";
   else if(c.hasClass("ns-error"))     state = "error";
@@ -274,18 +274,18 @@ function perform_op(type, id, op, extra)
   else if(c.hasClass("rs-active"))    state = "active";
   else if(c.hasClass("rs-inactive"))  state = "inactive";
   else if(c.hasClass("rs-error"))     state = "error";
-  $j(jq(type + "::" + id + "::menu")).children(":first").attr("src", url_root + "/images/spinner-16x16-" + state + ".gif");
+  $(jq(type + "::" + id + "::menu")).children(":first").attr("src", url_root + "/images/spinner-16x16-" + state + ".gif");
 
-  $j.ajax({ url: url_root + "/main/" + type + "/" + op,
+  $.ajax({ url: url_root + "/main/" + type + "/" + op,
     data: "format=json&" + type + "=" + id + (extra ? "&" + extra : ""),
     type: "POST",
     success: function() {
       // Remove spinner (a spinner that stops too early is marginally better than one that never stops)
-      $j(jq(type + "::" + id + "::menu")).children(":first").attr("src", url_root + "/images/icons/properties.png");
+      $(jq(type + "::" + id + "::menu")).children(":first").attr("src", url_root + "/images/icons/properties.png");
     },
     error: function(request) {
       // Remove spinner
-      $j(jq(type + "::" + id + "::menu")).children(":first").attr("src", url_root + "/images/icons/properties.png");
+      $(jq(type + "::" + id + "::menu")).children(":first").attr("src", url_root + "/images/icons/properties.png");
       var json = json_from_request(request);
       if (json) {
         error_dialog(json.error, json.stderr ? json.stderr : null);
@@ -337,22 +337,22 @@ function add_mgmt_menu(e)
 function init_menus()
 {
   // TODO(should): re-evaluate use of 'first' here
-  $j(jq("menu::node::standby")).first().click(menu_item_click);
-  $j(jq("menu::node::online")).first().click(menu_item_click);
-  $j(jq("menu::node::fence")).first().click(menu_item_click);
-//  $j(jq("menu::node::mark")).first().click(menu_item_click);
+  $(jq("menu::node::standby")).first().click(menu_item_click);
+  $(jq("menu::node::online")).first().click(menu_item_click);
+  $(jq("menu::node::fence")).first().click(menu_item_click);
+//  $(jq("menu::node::mark")).first().click(menu_item_click);
 
-  $j(jq("menu::resource::start")).first().click(menu_item_click);
-  $j(jq("menu::resource::stop")).first().click(menu_item_click);
-  $j(jq("menu::resource::migrate")).first().click(menu_item_click_migrate);
-  $j(jq("menu::resource::unmigrate")).first().click(menu_item_click);
-  $j(jq("menu::resource::promote")).first().click(menu_item_click);
-  $j(jq("menu::resource::demote")).first().click(menu_item_click);
-  $j(jq("menu::resource::cleanup")).first().click(menu_item_click);
+  $(jq("menu::resource::start")).first().click(menu_item_click);
+  $(jq("menu::resource::stop")).first().click(menu_item_click);
+  $(jq("menu::resource::migrate")).first().click(menu_item_click_migrate);
+  $(jq("menu::resource::unmigrate")).first().click(menu_item_click);
+  $(jq("menu::resource::promote")).first().click(menu_item_click);
+  $(jq("menu::resource::demote")).first().click(menu_item_click);
+  $(jq("menu::resource::cleanup")).first().click(menu_item_click);
 
-  $j(document).click(function() {
-    $j(jq("menu::node")).hide();
-    $j(jq("menu::resource")).hide();
+  $(document).click(function() {
+    $(jq("menu::node")).hide();
+    $(jq("menu::resource")).hide();
   });
 }
 
@@ -362,15 +362,15 @@ function error_dialog(msg, body)
     // TODO(should): theme this properly
     msg += '<div id="dialog-body" class="message">' + escape_html(body).replace(/\n/g, "<br />") + "</div>";
   }
-  $j("#dialog").html(msg);
+  $("#dialog").html(msg);
   // TODO(could): Is there a neater construct for this localized button thing?
   var b = {};
-  b[GETTEXT.ok()]   = function() { $j(this).dialog("close"); }
-  $j("#dialog").dialog("option", {
+  b[GETTEXT.ok()]   = function() { $(this).dialog("close"); }
+  $("#dialog").dialog("option", {
     title:    GETTEXT.error(),
     buttons:  b
   });
-  $j("#dialog").dialog("open");
+  $("#dialog").dialog("open");
 }
 
 function do_update(cur_epoch)
@@ -378,7 +378,7 @@ function do_update(cur_epoch)
   // No refresh if this is a static test
   if (cib_file) return;
 
-  $j.ajax({ url: url_root + "/monitor?" + cur_epoch,
+  $.ajax({ url: url_root + "/monitor?" + cur_epoch,
     type: "GET",
     success: function(data) {
       if (data) {
@@ -414,7 +414,7 @@ function cib_to_nodelist_panel(nodes)
     open:       false,
     children:   []
   };
-  $j.each(nodes, function() {
+  $.each(nodes, function() {
     var className;
     var label = GETTEXT.node_state_unknown();
     switch (this.state) {
@@ -500,8 +500,8 @@ function get_group(res)
 {
   var instances = [];
   var groups = {};
-  $j.each(res.children, function() {
-    $j.each(get_primitive(this), function() {
+  $.each(res.children, function() {
+    $.each(get_primitive(this), function() {
       if (!groups[this.instance]) {
         instances.push(this.instance);
         groups[this.instance] = {
@@ -524,7 +524,7 @@ function get_group(res)
     });
   });
   set = []
-  $j.each(instances.sort(), function() {
+  $.each(instances.sort(), function() {
     set.push(groups[this]);
   });
   return set;
@@ -535,15 +535,15 @@ function get_clone(res)
   var status_class = "rs-active";
   var children = [];
   var open = false;
-  $j.each(res.children, function() {
+  $.each(res.children, function() {
     if (this.type == "group") {
-      $j.each(get_group(this), function() {
+      $.each(get_group(this), function() {
         if (this.open) open = true;
         if (this.className.indexOf("rs-active") == -1) status_class = "rs-inactive";
         children.push(this);
       });
     } else {
-      $j.each(get_primitive(this), function() {
+      $.each(get_primitive(this), function() {
         if (!this.active) {
           open = true;
           status_class = "rs-inactive";
@@ -574,7 +574,7 @@ function cib_to_reslist_panel(resources)
     open:       false,
     children:   []
   };
-  $j.each(resources, function() {
+  $.each(resources, function() {
     var c = null;
     if (this.children) {
       if (this.type == "group") {
@@ -597,47 +597,47 @@ function cib_to_reslist_panel(resources)
 
 function update_cib()
 {
-  $j.ajax({ url: url_root + "/cib/" + (cib_file ? cib_file : "live"),
+  $.ajax({ url: url_root + "/cib/" + (cib_file ? cib_file : "live"),
     data: "format=json" + (cib_file ? "&debug=file" : ""),
     type: "GET",
     success: function(data) {
-      $j("#onload-spinner").hide();
+      $("#onload-spinner").hide();
       if (data) {   // When is it possible for this to not be set?
         cib = data;
         update_errors(cib.errors);
         if (cib.meta) {
-          $j("#summary").show();
-          $j(jq("summary::dc")).html(cib.meta.dc);
+          $("#summary").show();
+          $(jq("summary::dc")).html(cib.meta.dc);
           for (var e in cib.crm_config) {
-            if (!$j(jq("summary::" + e))) continue;
+            if (!$(jq("summary::" + e))) continue;
             if (typeof(cib.crm_config[e]) == "boolean") {
-              $j(jq("summary::" + e)).html(cib.crm_config[e] ? GETTEXT.yes() : GETTEXT.no())
+              $(jq("summary::" + e)).html(cib.crm_config[e] ? GETTEXT.yes() : GETTEXT.no())
             } else if(e == "dc_version") {
-              $j(jq("summary::" + e)).html(cib.crm_config[e].match(/.*-[a-f0-9]{12}/).toString());
+              $(jq("summary::" + e)).html(cib.crm_config[e].match(/.*-[a-f0-9]{12}/).toString());
             } else {
-              $j(jq("summary::" + e)).html(cib.crm_config[e].toString());
+              $(jq("summary::" + e)).html(cib.crm_config[e].toString());
             }
           }
 
-          $j("#nodelist").show();
+          $("#nodelist").show();
           if (update_panel(cib_to_nodelist_panel(cib.nodes))) {
-            if ($j(jq("nodelist::children")).hasClass("closed")) {
+            if ($(jq("nodelist::children")).hasClass("closed")) {
               expand_block("nodelist");
             }
           }
 
-          $j("#reslist").show();
+          $("#reslist").show();
           if (update_panel(cib_to_reslist_panel(cib.resources))) {
-            if ($j(jq("reslist::children")).hasClass("closed")) {
+            if ($(jq("reslist::children")).hasClass("closed")) {
               expand_block("reslist");
             }
           }
 
         } else {
           // TODO(must): is it possible to get here with empty cib.errors?
-          $j("#summary").hide();
-          $j("#nodelist").hide();
-          $j("#reslist").hide();
+          $("#summary").hide();
+          $("#nodelist").hide();
+          $("#reslist").hide();
         }
       }
       do_update(cib.meta ? cib.meta.epoch : "");
@@ -656,11 +656,11 @@ function update_cib()
           // Unexpectedly busted (e.g.: server fried):
           update_errors([GETTEXT.err_unexpected(request.status + " " + request.statusText)]);
         }
-        $j("#summary").hide();
-        $j("#nodelist").hide();
-        $j("#reslist").hide();
+        $("#summary").hide();
+        $("#nodelist").hide();
+        $("#reslist").hide();
         if (cib_file) {
-          $j("#onload-spinner").hide();
+          $("#onload-spinner").hide();
         } else {
           // Try again in 15 seconds.  No need for roundtrip through
           // the monitor function in this case (it'll just hammer the
@@ -674,14 +674,14 @@ function update_cib()
 
 function hawk_init()
 {
-  var q = $j.parseQuery();
+  var q = $.parseQuery();
   if (q.cib_file) {
     cib_file = q.cib_file;
   }
 
   init_menus();
 
-  $j("#dialog").dialog({
+  $("#dialog").dialog({
     resizable:      false,
     width:          "30em",
     draggable:      false,
@@ -691,7 +691,7 @@ function hawk_init()
   });
 
   // TOTHEME
-  $j("#content").prepend($j(
+  $("#content").prepend($(
     '<div id="summary" class="ui-widget-content ui-corner-all" style="display: none;">' +
       '<table>' +
         '<tr><th>' + GETTEXT.summary_stack() + '</th><td><span id="summary::cluster_infrastructure"></span></td></tr>' +

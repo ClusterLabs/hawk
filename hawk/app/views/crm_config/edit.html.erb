@@ -5,8 +5,8 @@ button { font-size: 0.7em !important; }
 </style>
 <script type="text/javascript">
 function enable_apply() {
-  $j("#crm_config_submit").removeAttr("disabled");
-  $j("#crm_config_revert").removeAttr("disabled");
+  $("#crm_config_submit").removeAttr("disabled");
+  $("#crm_config_revert").removeAttr("disabled");
 }
 function init_prop_del(e) {
   e.button({
@@ -17,8 +17,8 @@ function init_prop_del(e) {
   });
   e.click(function() {
     enable_apply();
-    $j(this).parent().parent().fadeOut("fast", function() {
-      $j(this).remove();
+    $(this).parent().parent().fadeOut("fast", function() {
+      $(this).remove();
     });
     return false;
   });
@@ -33,16 +33,16 @@ function init_prop_edit(e) {
   });
 }
 function add_new_prop() {
-  var new_name  = $j("#new-prop").val();
-  var new_value = $j.trim($j("#new-value").val());
+  var new_name  = $("#new-prop").val();
+  var new_value = $.trim($("#new-value").val());
   if (!new_value) {
-    $j("#no-value").fadeIn('fast');
-    $j("#new-value").focus();
+    $("#no-value").fadeIn('fast');
+    $("#new-value").focus();
     return;
   }
 
-  $j("#no-value").fadeOut('fast');
-  var line = $j("#empty-prop").clone().removeAttr("id");
+  $("#no-value").fadeOut('fast');
+  var line = $("#empty-prop").clone().removeAttr("id");
   // Can't use clone(true) above to pick up events, because
   // it conflicts with Prototype.  Need to get rid of Prototype,
   // but in the meantime, we use init_prop_del(), and *don't*
@@ -52,28 +52,28 @@ function add_new_prop() {
   var field = line.find("input");
   init_prop_edit(field);
   field.attr("id", "props_" + new_name).attr("name", "props[" + new_name + "]").val(new_value);
-  $j("#empty-prop").before(line);
+  $("#empty-prop").before(line);
   line.effect("highlight", {}, 1000);
   enable_apply();
-  $j("#new-value").val("");
+  $("#new-value").val("");
 }
-$j(function() {
-  init_prop_del($j(".prop-del"));
-  init_prop_edit($j(".prop-edit"));
-  $j(".prop-add").button({
+$(function() {
+  init_prop_del($(".prop-del"));
+  init_prop_edit($(".prop-edit"));
+  $(".prop-add").button({
     icons: {
       primary: "ui-icon-plus"
     },
     text: false
   });
-  $j(".prop-add").click(function() {
+  $(".prop-add").click(function() {
     add_new_prop();
     return false;
   });
-  $j("#new-value").keydown(function() {
-    $j("#no-value").fadeOut('fast');
+  $("#new-value").keydown(function() {
+    $("#no-value").fadeOut('fast');
   });
-  $j("#new-value").keypress(function(event) {
+  $("#new-value").keypress(function(event) {
     // ENTER in the new value field needs to add the property
     if (event.keyCode != 13) return true;
     add_new_prop();
