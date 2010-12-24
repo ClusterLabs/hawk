@@ -33,6 +33,7 @@ var activeItem = null;
 
 var cib = null;
 var cib_file = false;
+var update_period = 0;
 
 function jq(id)
 {
@@ -638,7 +639,12 @@ function update_cib()
           $("#reslist").hide();
         }
       }
-      do_update(cib.meta ? cib.meta.epoch : "");
+      if (update_period) {
+        // Handy when debugging...
+        setTimeout(update_cib, update_period);
+      } else {
+        do_update(cib.meta ? cib.meta.epoch : "");
+      }
     },
     error: function(request) {
       if (request.status == 403) {
@@ -675,6 +681,9 @@ function hawk_init()
   var q = $.parseQuery();
   if (q.cib_file) {
     cib_file = q.cib_file;
+  }
+  if (q.update_period) {
+    update_period = isNaN(q.update_period) ? 0 : parseInt(q.update_period) * 1000;
   }
 
   init_menus();
