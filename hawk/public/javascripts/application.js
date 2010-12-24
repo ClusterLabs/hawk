@@ -84,8 +84,8 @@ function update_errors(errors)
   $j("#errorbar").html("");
   if (errors.length) {
     $j("#errorbar").show();
-    errors.each(function(e) {
-      $j("#errorbar").append($j('<div class="error">' + escape_html(e) + '</div>'));
+    $j.each(errors, function() {
+      $j("#errorbar").append($j('<div class="error">' + escape_html(this.toString()) + '</div>'));
     });
   } else {
     $j("#errorbar").hide();
@@ -102,24 +102,24 @@ function update_panel(panel)
 
   var expand = panel.open ? true : false;   // do we really need to be this obscure?
   var c = $j(jq(panel.id+"::children")).children(":first");
-  panel.children.each(function(item) {
-    if (!c.length || c.attr("id") != item.id) {
+  $j.each(panel.children, function() {
+    if (!c.length || c.attr("id") != this.id) {
       var d;
-      if ($j(jq(item.id)).length) {
+      if ($j(jq(this.id)).length) {
         // already got one for this resource, tear it out and reuse it.
-        d = $j(jq(item.id)).detach();
+        d = $j(jq(this.id)).detach();
       } else {
         // brand spanking new
-        d = $j('<div id="' + item.id + '"/>');
-        if (item.children) {
+        d = $j('<div id="' + this.id + '"/>');
+        if (this.children) {
           // TODO(should): HTML-safe?
-          d.html('<div class="clickable" onclick="toggle_collapse(\'' + item.id + '\');">' +
-            '<div id="' + item.id + '::button" class="tri-' + (item.open ? 'open' : 'closed') + '"></div>' +
-              '<a id="' + item.id + '::menu" class="menu-link"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a>' +
-              '<span id="' + item.id + '::label"></span></div>' +
-            '<div id="' + item.id + '::children"' + (item.open ? '' : ' style="display: none;" class="closed"') + '</div>');
+          d.html('<div class="clickable" onclick="toggle_collapse(\'' + this.id + '\');">' +
+            '<div id="' + this.id + '::button" class="tri-' + (this.open ? 'open' : 'closed') + '"></div>' +
+              '<a id="' + this.id + '::menu" class="menu-link"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a>' +
+              '<span id="' + this.id + '::label"></span></div>' +
+            '<div id="' + this.id + '::children"' + (this.open ? '' : ' style="display: none;" class="closed"') + '</div>');
         } else {
-          d.html('<a id="' + item.id + '::menu" class="menu-link"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="' + item.id + '::label"></span>');
+          d.html('<a id="' + this.id + '::menu" class="menu-link"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="' + this.id + '::label"></span>');
         }
       }
       if (!c.length) {
@@ -129,14 +129,14 @@ function update_panel(panel)
       }
       if (!cib_file) {
         // Only add menus if this isn't a static test
-        add_mgmt_menu($j(jq(item.id + "::menu")));
+        add_mgmt_menu($j(jq(this.id + "::menu")));
       }
     } else {
       c = c.next();
     }
-    if (update_panel(item)) {
-      if ($j(jq(item.id + "::children")).hasClass("closed")) {
-        expand_block(item.attr("id"));
+    if (update_panel(this)) {
+      if ($j(jq(this.id + "::children")).hasClass("closed")) {
+        expand_block(this.attr("id"));
       }
       expand = true;
     }
@@ -240,8 +240,8 @@ function menu_item_click_migrate()
   var parts = dc_split($j(this).attr("id"));
   var html = '<form><select id="migrate-to" size="4" style="width: 100%;">';
   // TODO(should): Again, too much dependence on DOM structure here
-  $("nodelist::children").childElements().each(function(e) {
-    var node = dc_split(e.id)[1];
+  $j(jq("nodelist::children")).children().each(function() {
+    var node = dc_split($j(this).attr("id"))[1];
     html += '<option value="' + node + '">' + GETTEXT.resource_migrate_to(node) + "</option>\n";
   });
   html += '<option selected="selected" value="">' + GETTEXT.resource_migrate_away() + "</option>\n";
@@ -414,10 +414,10 @@ function cib_to_nodelist_panel(nodes)
     open:       false,
     children:   []
   };
-  nodes.each(function(n) {
+  $j.each(nodes, function() {
     var className;
     var label = GETTEXT.node_state_unknown();
-    switch (n.state) {
+    switch (this.state) {
       case "online":
         className = "active";
         label = GETTEXT.node_state_online();
@@ -443,13 +443,13 @@ function cib_to_nodelist_panel(nodes)
         className = "error";
         break;
     }
-    if (n.state != "online") {
+    if (this.state != "online") {
       panel.open = true;
     }
     panel.children.push({
-      id:         "node::" + n.uname,
+      id:         "node::" + this.uname,
       className:  "node ns-" + className,
-      label:      GETTEXT.node_state(n.uname, label),
+      label:      GETTEXT.node_state(this.uname, label),
       menu:       true
     });
   });
@@ -500,33 +500,32 @@ function get_group(res)
 {
   var instances = [];
   var groups = {};
-  res.children.each(function(c) {
-    var set = get_primitive(c);
-    set.each(function(i) {
-      if (!groups[i.instance]) {
-        instances.push(i.instance);
-        groups[i.instance] = {
+  $j.each(res.children, function() {
+    $j.each(get_primitive(this), function() {
+      if (!groups[this.instance]) {
+        instances.push(this.instance);
+        groups[this.instance] = {
           id:        "resource::" + res.id,
           className: "res-group rs-active",
           label:     GETTEXT.resource_group(res.id),
           open:      false,
           children:  []
         };
-        if (i.instance != "default") {
-          groups[i.instance].id += ":" + i.instance;
-          groups[i.instance].label += ":" + i.instance;
+        if (this.instance != "default") {
+          groups[this.instance].id += ":" + this.instance;
+          groups[this.instance].label += ":" + this.instance;
         }
       }
-      if (!i.active) {
-        groups[i.instance].open = true;
-        groups[i.instance].className = "res-group rs-inactive";
+      if (!this.active) {
+        groups[this.instance].open = true;
+        groups[this.instance].className = "res-group rs-inactive";
       }
-      groups[i.instance].children.push(i);
+      groups[this.instance].children.push(this);
     });
   });
   set = []
-  instances.sort().each(function(i) {
-    set.push(groups[i]);
+  $j.each(instances.sort(), function() {
+    set.push(groups[this]);
   });
   return set;
 }
@@ -536,22 +535,20 @@ function get_clone(res)
   var status_class = "rs-active";
   var children = [];
   var open = false;
-  res.children.each(function(p) {
-    if (p.type == "group") {
-      var set = get_group(p);
-      set.each(function(c) {
-        if (c.open) open = true;
-        if (c.className.indexOf("rs-active") == -1) status_class = "rs-inactive";
-        children.push(c);
+  $j.each(res.children, function() {
+    if (this.type == "group") {
+      $j.each(get_group(this), function() {
+        if (this.open) open = true;
+        if (this.className.indexOf("rs-active") == -1) status_class = "rs-inactive";
+        children.push(this);
       });
     } else {
-      var set = get_primitive(p);
-      set.each(function(c) {
-        if (!c.active) {
+      $j.each(get_primitive(this), function() {
+        if (!this.active) {
           open = true;
           status_class = "rs-inactive";
         }
-        children.push(c);
+        children.push(this);
       });
     }
   });
@@ -577,18 +574,18 @@ function cib_to_reslist_panel(resources)
     open:       false,
     children:   []
   };
-  resources.each(function(res) {
+  $j.each(resources, function() {
     var c = null;
-    if (res.children) {
-      if (res.type == "group") {
-        c = get_group(res)[0];
+    if (this.children) {
+      if (this.type == "group") {
+        c = get_group(this)[0];
         if (c.open) panel.open = true;
-      } else if (res.type == "clone" || res.type == "master") {
-        c = get_clone(res);
+      } else if (this.type == "clone" || this.type == "master") {
+        c = get_clone(this);
         if (c.open) panel.open = true;
       }
     } else {
-      c = get_primitive(res)[0];
+      c = get_primitive(this)[0];
       if (!c.active) panel.open = true;
     }
     if (c) {
