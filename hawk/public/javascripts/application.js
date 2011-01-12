@@ -184,6 +184,7 @@ function popup_op_menu()
 
   // parts[0] is "node" or "resource", parts[1] is node or resource ID
   var parts = dc_split(target.attr("id"));
+  activeItem = parts[1];
 
   // Special case for resources (different menus based on type/hierarchy)
   if (parts[0] == "resource") {
