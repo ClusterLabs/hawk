@@ -73,7 +73,7 @@ class MainController < ApplicationController
   # standby/online (op validity guaranteed by routes)
   def node_standby
     if params[:node]
-      invoke '/usr/sbin/crm_standby', '-N', params[:node], '-v', params[:op] == 'standby' ? 'on' : 'off'
+      invoke '/usr/sbin/crm_attribute', '-N', params[:node], '-n', 'standby', '-v', params[:op] == 'standby' ? 'on' : 'off', '-l', 'forever'
     else
       render :status => 400, :json => {
         :error => _('Required parameter "node" not specified')
