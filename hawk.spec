@@ -159,6 +159,7 @@ rm -rf %{buildroot}
 %files -f %{name}.lang
 %defattr(-,root,root)
 %attr(4750, root, %{gname})%{_sbindir}/hawk_chkpwd
+%attr(4750, root, %{gname})%{_sbindir}/hawk_invoke
 %{_sbindir}/hawk_monitor
 %dir %{www_base}/hawk
 %{www_base}/hawk/app

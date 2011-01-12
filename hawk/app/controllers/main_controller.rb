@@ -73,7 +73,7 @@ class MainController < ApplicationController
   # standby/online (op validity guaranteed by routes)
   def node_standby
     if params[:node]
-      invoke '/usr/sbin/crm_attribute', '-N', params[:node], '-n', 'standby', '-v', params[:op] == 'standby' ? 'on' : 'off', '-l', 'forever'
+      invoke 'crm_attribute', '-N', params[:node], '-n', 'standby', '-v', params[:op] == 'standby' ? 'on' : 'off', '-l', 'forever'
     else
       render :status => 400, :json => {
         :error => _('Required parameter "node" not specified')
@@ -83,7 +83,7 @@ class MainController < ApplicationController
 
   def node_fence
     if params[:node]
-      invoke '/usr/sbin/crm_attribute', '-t', 'status', '-U', params[:node], '-n', 'terminate', '-v', 'true'
+      invoke 'crm_attribute', '-t', 'status', '-U', params[:node], '-n', 'terminate', '-v', 'true'
     else
       render :status => 400, :json => {
         :error => _('Required parameter "node" not specified')
@@ -99,7 +99,7 @@ class MainController < ApplicationController
   # TODO(should): exceptions to handle missing params
   def resource_op
     if params[:resource]
-      invoke '/usr/sbin/crm', 'resource', params[:op], params[:resource]
+      invoke 'crm', 'resource', params[:op], params[:resource]
     else
       render :status => 400, :json => {
         :error => _('Required parameter "resource" not specified')
@@ -109,7 +109,7 @@ class MainController < ApplicationController
 
   def resource_migrate
     if params[:resource] && params[:node]
-      invoke '/usr/sbin/crm', 'resource', 'migrate', params[:resource], params[:node]
+      invoke 'crm', 'resource', 'migrate', params[:resource], params[:node]
     else
       render :status => 400, :json => {
         :error => _('Required parameters "resource" and "node" not specified')

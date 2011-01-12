@@ -77,14 +77,12 @@ module Util
   end
   module_function :popen3
 
-  # Same as popen3, but sets CRM_USER beforehand
+  # Like popen3, but via /usr/sbin/hawk_invoke
   def run_as(user, *cmd)
-    ENV['CRM_USER'] = user
     # crm shell always wants to open/generate help index, so we
     # let it have our tmp directory
     ENV['HOME'] = File.join(RAILS_ROOT, 'tmp')
-    pi = popen3(*cmd)
-    ENV.delete('CRM_USER')
+    pi = popen3('/usr/sbin/hawk_invoke', user, *cmd)
     if defined? yield
       begin
         return yield(*pi)

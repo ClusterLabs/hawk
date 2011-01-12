@@ -212,7 +212,7 @@ class Cib
                         {:cmd    => '/usr/sbin/crm_mon',
                          :status => $?.exitstatus,
                          :output => crm_status } if $?.exitstatus == 10 || $?.exitstatus == 11
-      stdin, stdout, stderr, thread = Util.run_as(user, '/usr/sbin/cibadmin', '-Ql')
+      stdin, stdout, stderr, thread = Util.run_as(user, 'cibadmin', '-Ql')
       stdin.close
       out = stdout.read()
       stdout.close

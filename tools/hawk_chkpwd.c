@@ -38,14 +38,12 @@
 #include <signal.h>
 #include <fcntl.h>
 #include <ctype.h>
+#include "common.h"
 
 enum {
 	UNIX_PASSED = 0,
 	UNIX_FAILED = 1
 };
-
-const char * const HACLUSTER	= "hacluster";
-const char * const HACLIENT	= "haclient";
 
 static char *	program_name;
 static char	pass[64];

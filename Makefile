@@ -54,13 +54,13 @@ WWW_BASE = /srv/www
 # Override this to get a different init script (e.g. "redhat")
 INIT_STYLE = suse
 
-all: scripts/hawk.$(INIT_STYLE) hawk/config/lighttpd.conf tools/hawk_chkpwd tools/hawk_monitor
+all: scripts/hawk.$(INIT_STYLE) hawk/config/lighttpd.conf tools/hawk_chkpwd tools/hawk_monitor tools/hawk_invoke
 	(cd hawk; rake makemo; rake freeze:rails; rake freeze:gems)
 
 %: %.in
 	sed -e 's|@WWW_BASE@|$(WWW_BASE)|' $< > $@
 
-tools/hawk_chkpwd: tools/hawk_chkpwd.c
+tools/hawk_chkpwd: tools/hawk_chkpwd.c tools/common.h
 	gcc -o $@ $< -lpam
 
 tools/hawk_monitor: tools/hawk_monitor.c
@@ -68,6 +68,10 @@ tools/hawk_monitor: tools/hawk_monitor.c
 		-I/usr/include/pacemaker -I/usr/include/heartbeat \
 		-o $@ $< \
 		-lcib -lcrmcommon -Wall
+
+# TODO(must): This is inching towards becoming annoying: want better build infrastructure/deps
+tools/hawk_invoke: tools/hawk_invoke.c tools/common.h
+	gcc -o $@ $< -DLIBDIR=$(shell [ -d "/usr/lib64" ] && echo "/usr/lib64" || echo "/usr/lib")
 
 clean:
 	rm -rf hawk/locale
@@ -96,6 +100,8 @@ install:
 	install -D -m 0755 scripts/hawk.$(INIT_STYLE) $(DESTDIR)/etc/init.d/hawk
 	install -D -m 4750 tools/hawk_chkpwd $(DESTDIR)/usr/sbin/hawk_chkpwd
 	-chown root.haclient $(DESTDIR)/usr/sbin/hawk_chkpwd
+	install -D -m 4750 tools/hawk_invoke $(DESTDIR)/usr/sbin/hawk_invoke
+	-chown root.haclient $(DESTDIR)/usr/sbin/hawk_invoke
 	install -D -m 0755 tools/hawk_monitor $(DESTDIR)/usr/sbin/hawk_monitor
 	ln -s /usr/sbin/hawk_monitor $(DESTDIR)$(WWW_BASE)/hawk/public/monitor
 
