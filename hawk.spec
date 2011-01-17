@@ -168,7 +168,12 @@ rm -rf %{buildroot}
 %{www_base}/hawk/doc
 %{www_base}/hawk/lib
 %attr(0750, %{uname},%{gname})%{www_base}/hawk/log
-%attr(0750, %{uname},%{gname})%{www_base}/hawk/tmp
+%dir %attr(0750, %{uname},%{gname})%{www_base}/hawk/tmp
+%attr(0750, %{uname},%{gname})%{www_base}/hawk/tmp/cache
+%attr(0770, %{uname},%{gname})%{www_base}/hawk/tmp/home
+%attr(0750, %{uname},%{gname})%{www_base}/hawk/tmp/pids
+%attr(0750, %{uname},%{gname})%{www_base}/hawk/tmp/sessions
+%attr(0750, %{uname},%{gname})%{www_base}/hawk/tmp/sockets
 %{www_base}/hawk/po
 %{www_base}/hawk/public
 %{www_base}/hawk/Rakefile

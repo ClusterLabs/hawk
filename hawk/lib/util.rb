@@ -80,8 +80,9 @@ module Util
   # Like popen3, but via /usr/sbin/hawk_invoke
   def run_as(user, *cmd)
     # crm shell always wants to open/generate help index, so we
-    # let it have our tmp directory
-    ENV['HOME'] = File.join(RAILS_ROOT, 'tmp')
+    # let it use a group-writable subdirectory of our tmp directory
+    # so unprivileged users can actually invoke crm without warnings
+    ENV['HOME'] = File.join(RAILS_ROOT, 'tmp', 'home')
     pi = popen3('/usr/sbin/hawk_invoke', user, *cmd)
     if defined? yield
       begin

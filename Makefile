@@ -104,11 +104,13 @@ install:
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/pids
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/sessions
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/sockets
+	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/home
 	# Get rid of cruft from packed gems
 	-find hawk/vendor -name '*bak' -o -name '*~' -o -name '#*#' | xargs rm
 	cp -a hawk/* $(DESTDIR)$(WWW_BASE)/hawk
 	rm $(DESTDIR)$(WWW_BASE)/hawk/config/lighttpd.conf.in
 	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk
+	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/home
 	install -D -m 0755 scripts/hawk.$(INIT_STYLE) $(DESTDIR)/etc/init.d/hawk
 	install -D -m 4750 tools/hawk_chkpwd $(DESTDIR)/usr/sbin/hawk_chkpwd
 	-chown root.haclient $(DESTDIR)/usr/sbin/hawk_chkpwd
