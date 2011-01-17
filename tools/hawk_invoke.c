@@ -64,15 +64,6 @@
 #include <grp.h>
 #include "common.h"
 
-/* I hate macros like this... */
-#define QUOTEME_(x) #x
-#define QUOTEME(x) QUOTEME_(x)
-
-/* ...but not as much as I hate "lib" vs. "lib64" */
-#ifndef LIBDIR
-#error LIBDIR must be set to something sensible (/usr/lib or /usr/lib64)
-#endif
-
 struct cmd_map
 {
 	const char *name;	/* Short name of command */
@@ -80,13 +71,13 @@ struct cmd_map
 };
 
 static struct cmd_map commands[] = {
-	{"cibadmin",		"/usr/sbin/cibadmin"},
-	{"crm",			"/usr/sbin/crm"},
-	{"crmadmin",		"/usr/sbin/crmadmin"},
-	{"crmd",		QUOTEME(LIBDIR)"/heartbeat/crmd"},
-	{"crm_attribute",	"/usr/sbin/crm_attribute"},
-	{"crm_mon",		"/usr/sbin/crm_mon"},
-	{"pengine",		QUOTEME(LIBDIR)"/heartbeat/pengine"},
+	{"cibadmin",		SBINDIR"/cibadmin"},
+	{"crm",			SBINDIR"/crm"},
+	{"crmadmin",		SBINDIR"/crmadmin"},
+	{"crmd",		LIBDIR"/heartbeat/crmd"},
+	{"crm_attribute",	SBINDIR"/crm_attribute"},
+	{"crm_mon",		SBINDIR"/crm_mon"},
+	{"pengine",		LIBDIR"/heartbeat/pengine"},
 	{NULL, NULL}
 };
 

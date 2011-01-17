@@ -81,7 +81,7 @@ Authors: Tim Serong <tserong@novell.com>
 %setup
 
 %build
-make WWW_BASE=%{www_base} INIT_STYLE=%{init_style}
+make WWW_BASE=%{www_base} INIT_STYLE=%{init_style} LIBDIR=%{_libdir} SBINDIR=%{_sbindir}
 
 %install
 make WWW_BASE=%{www_base} INIT_STYLE=%{init_style} DESTDIR=%{buildroot} install

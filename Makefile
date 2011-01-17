@@ -54,11 +54,21 @@ WWW_BASE = /srv/www
 # Override this to get a different init script (e.g. "redhat")
 INIT_STYLE = suse
 
+# Base paths for Pacemaker binaries (note: overriding these will change
+# paths used by hawk_invoke, but will have no effect on hard-coded paths
+# in the rails app)
+LIBDIR = /usr/lib
+SBINDIR = /usr/sbin
+
 all: scripts/hawk.$(INIT_STYLE) hawk/config/lighttpd.conf tools/hawk_chkpwd tools/hawk_monitor tools/hawk_invoke
 	(cd hawk; rake makemo; rake freeze:rails; rake freeze:gems)
 
-%: %.in
-	sed -e 's|@WWW_BASE@|$(WWW_BASE)|' $< > $@
+%:: %.in
+	sed \
+		-e 's|@WWW_BASE@|$(WWW_BASE)|' \
+		-e 's|@LIBDIR@|$(LIBDIR)|' \
+		-e 's|@SBINDIR@|$(SBINDIR)|' \
+		$< > $@
 
 tools/hawk_chkpwd: tools/hawk_chkpwd.c tools/common.h
 	gcc -o $@ $< -lpam
@@ -71,7 +81,7 @@ tools/hawk_monitor: tools/hawk_monitor.c
 
 # TODO(must): This is inching towards becoming annoying: want better build infrastructure/deps
 tools/hawk_invoke: tools/hawk_invoke.c tools/common.h
-	gcc -o $@ $< -DLIBDIR=$(shell [ -d "/usr/lib64" ] && echo "/usr/lib64" || echo "/usr/lib")
+	gcc -o $@ $< 
 
 clean:
 	rm -rf hawk/locale
@@ -82,6 +92,8 @@ clean:
 	rm -f scripts/hawk.{suse,redhat}
 	rm -f tools/hawk_chkpwd
 	rm -f tools/hawk_monitor
+	rm -f tools/hawk_invoke
+	rm -f tools/common.h
 
 install:
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/log
