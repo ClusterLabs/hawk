@@ -75,6 +75,9 @@ var GETTEXT = {
     return "<%= escape_javascript _('Stack: %s') % '_STACK_' %>".replace('_STACK_', stack);
   },
   // Cluster summary labels
+  summary_label: function() {
+    return "<%= escape_javascript _('Cluster Configuration') %>";
+  },
   summary_stickiness: function() {
     return "<%= escape_javascript _('Resource Stickiness:') %>";
   },
