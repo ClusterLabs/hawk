@@ -717,12 +717,13 @@ function hawk_init()
   // TOTHEME
   $("#content").prepend($(
     '<div id="summary" class="ui-corner-all" style="display: none;">' +
-      '<div class="clickable" onclick="toggle_collapse(\'summary\');"><div id="summary::button" class="tri-closed"></div><a id="summary::menu" class="menu-link"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="summary::label">' + GETTEXT.summary_label() + '</span></div>' +
+      '<div class="clickable" onclick="toggle_collapse(\'summary\');"><div id="summary::button" class="tri-closed"></div>' +
+        // TODO(should): fix this messy event canceling to stop the panel expanding/contracting when menu clicked
+        '<a id="summary::menu" onclick="event.stopPropagation();" href="' + url_root + '/cib/live/crm_config/cib-bootstrap-options/edit"><img src="' + url_root + '/images/icons/edit.png" class="action-icon" alt="' + GETTEXT.configure() + '" title="' + GETTEXT.configure() + '" /></a>' +
+        '<span id="summary::label">' + GETTEXT.summary_label() + '</span></div>' +
       '<div id="summary::children" style="display: none;" class="closed">' +
       '<table style="padding: 0.25em 0.5em">' +
-        '<tr><th>' + GETTEXT.summary_stickiness() + '</th><td>' +
-//          '<a href="../cib/live/crm_config/cib-bootstrap-options/edit"><img src="../images/icons/edit.png" class="action-icon" alt="' + GETTEXT.configure() + '" title="' + GETTEXT.configure() + '" style="float: right;" /></a>' +
-          '<span id="summary::default_resource_stickiness"></span></td></tr>' +
+        '<tr><th>' + GETTEXT.summary_stickiness() + '</th><td><span id="summary::default_resource_stickiness"></span></td></tr>' +
         '<tr><th>' + GETTEXT.summary_stonith_enabled() + '</th><td><span id="summary::stonith_enabled"></span></td></tr>' +
         '<tr><th>' + GETTEXT.summary_symmetric() + '</th><td><span id="summary::symmetric_cluster"></span></td></tr>' +
         '<tr><th>' + GETTEXT.summary_no_quorum_policy() + '</th><td><span id="summary::no_quorum_policy"></span></td></tr>' +
