@@ -139,7 +139,7 @@ function update_panel(panel)
     }
     if (update_panel(this)) {
       if ($(jq(this.id + "::children")).hasClass("closed")) {
-        expand_block(this.attr("id"));
+        expand_block(this.id);
       }
       expand = true;
     }
