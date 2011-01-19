@@ -106,10 +106,22 @@ class CrmConfigController < ApplicationController
       f << " #{n}='#{v}'" if !v.empty?
     end if params[:props]
     f.close
-    @result = %x[/usr/sbin/crm -F configure load update #{f.path} 2>&1]
+    # Evil to allow unprivileged user running crm shell to read the file
+    # TODO(should): can we just allow group (probably ok live, but no
+    # good for testing when running as root), or some other alternative
+    # with piping data to crm?
+    File.chmod(0666, f.path)
+    %x[/bin/cp #{f.path} /tmp/foo]
+    # TODO(should): consolidate with MainController::invoke
+    # TODO(must): crm lies about failed update when run with R/O access!
+    stdin, stdout, stderr, thread = Util.run_as(current_user, 'crm', '-F', 'configure', 'load', 'update', f.path)
+    stdin.close
+    stdout.close
+    @result = stderr.read()
+    stderr.close
     f.unlink
     
-    if $?.exitstatus == 0
+    if thread.value.exitstatus == 0
       flash[:highlight] = _('Your changes have been saved')
     else
       flash[:error] = _('Unable to apply changes: %{msg}') % { :msg => @result }

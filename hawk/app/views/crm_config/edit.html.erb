@@ -82,12 +82,10 @@ $(function() {
 });
 </script>
 <% form_for([ @cib, @crm_config ]) do |f| %>
-  <table>
 <% flash.each do |flash_type, message| %>
-    <tr id="flash-<%= flash_type %>">
-      <td colspan="3"><div class="ui-state-<%= flash_type %> ui-corner-all" style="padding: 0.5em; margin-bottom: 0.5em;"><%=h message %></div></td>
-    </tr>
+  <div id="flash-<%= flash_type %>" class="ui-state-<%= flash_type %> ui-corner-all" style="padding: 0.5em; margin-bottom: 0.5em;"><%=h message %></div>
 <% end %>
+  <table>
     <tr>
       <td colspan="3"><b><%=h _('Add new property:') %></b></td>
     </tr>

@@ -76,6 +76,7 @@ class CrmConfig
 
     load_meta 'pengine'
     load_meta 'crmd'
+    load_meta 'cib'
     @all_props.sort! {|a,b| a.to_s <=> b.to_s }
     # These are meant to be read-only; should we hide them
     # in the editor?  grey them out? ...?
