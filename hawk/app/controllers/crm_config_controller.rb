@@ -32,7 +32,7 @@ class CrmConfigController < ApplicationController
   before_filter :login_required
 
   layout 'main'
-  before_filter :get_cib
+  before_filter :get_cib    # TODO(should): only do this when absolutely necessary, e.g.: edit but not update
 
   def get_cib
     @cib = Cib.new params[:cib_id], current_user
@@ -132,6 +132,15 @@ class CrmConfigController < ApplicationController
 
   def destroy
     head :forbidden
+  end
+
+  # TODO(must): this really does not belong here.  All the static crm_config
+  # info belongs well outside this class, and should be generically accessible,
+  # once, without loading the cib or finding a given crm_config instance.
+  # When this is fixed, config/routes.rb needs to be changed to match, as
+  # does crm_config/edit.html.erb.
+  def info
+    render :json => @cib.find_crm_config(params[:id]).all_types
   end
 
 end

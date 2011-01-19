@@ -41,6 +41,8 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :cib, :has_many => :crm_config
 
+  map.crm_config_info '/cib/:cib_id/crm_config/:id/info', :controller => 'crm_config', :action => 'info'
+
   # TODO(should): resources & nodes become Rails resources, look at RESTful routing
   map.with_options :controller => 'main' do |main|
     # status, etc.

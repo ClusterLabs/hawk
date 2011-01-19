@@ -53,14 +53,16 @@ class CrmConfig
         @all_props << name
         content   = param.elements['content']
         # TODO(should): select by language (en)
-        shortdesc = param.elements['shortdesc']
-        longdesc  = param.elements['longdesc']
+        shortdesc = param.elements['shortdesc'].text || ''
+        longdesc  = param.elements['longdesc'].text || ''
         @all_types[name] = {
-          :type     => content.attributes['type'],
-          :readonly => false,
-          :advanced => (shortdesc.text && shortdesc.text.match(/advanced use only/i)) ||
-                       (longdesc.text && longdesc.text.match(/advanced use only/i)),
-          :default  => content.attributes['default']
+          :type       => content.attributes['type'],
+          :readonly   => false,
+          :shortdesc  => shortdesc,
+          :longdesc   => longdesc,
+          :advanced   => (shortdesc.match(/advanced use only/i)) ||
+                         (longdesc.match(/advanced use only/i)),
+          :default    => content.attributes['default']
         }
       end
       break

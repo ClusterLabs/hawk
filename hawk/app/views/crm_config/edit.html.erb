@@ -57,6 +57,20 @@ function add_new_prop() {
   enable_apply();
   $("#new-value").val("");
 }
+
+var props = null;
+
+function show_help(p) {
+  if (props && props[p] && (props[p].shortdesc || props[p].longdesc)) {
+    $("#help-name").html(escape_html(p));
+    $("#help-shortdesc").html(escape_html(props[p].shortdesc));
+    $("#help-longdesc").html(props[p].longdesc != props[p].shortdesc ? escape_html(props[p].longdesc) : "");
+    $("#help").show();
+  } else {
+    $("#help").hide();
+  }
+}
+
 $(function() {
   init_prop_del($(".prop-del"));
   init_prop_edit($(".prop-edit"));
@@ -79,6 +93,20 @@ $(function() {
     add_new_prop();
     return false;
   });
+  $("#new-prop").change(function() {
+    show_help($(this).val());
+  });
+  $("#new-prop").keyup(function() {
+    show_help($(this).val());
+  });
+  $("#new-value").focus(function() {
+    show_help($("#new-prop").val());
+  });
+  $(".prop-edit").focus(function() {
+    // Is there a better way to do this?
+    show_help($(this).parent().prev().children().html());
+  });
+  $.getJSON('<%= crm_config_info_path %>', function(data) { props = data; });
 });
 </script>
 <% form_for([ @cib, @crm_config ]) do |f| %>
@@ -88,16 +116,23 @@ $(function() {
   <table>
     <tr>
       <td colspan="3"><b><%=h _('Add new property:') %></b></td>
+      <td rowspan="20" style="padding: 1em; vertical-align: top;">
+        <div id="help" class="ui-state-highlight ui-corner-all" style="padding: 0.5em; display: none;">
+          <div id="help-name" style="padding-bottom: 0.5em;"></div>
+          <div id="help-shortdesc" style="padding-bottom: 0.5em;"></div>
+          <div id="help-longdesc"></div>
+        </div>
+      </tr>
     </tr>
     <tr>
       <th><%= select_tag 'new-prop', options_for_select(@crm_config.all_props.select {|p|
         !(@crm_config.all_types[p][:readonly] || @crm_config.all_types[p][:advanced]) }) %></td>
       <td><%= text_field_tag 'new-value' %></td>
       <td><button class="prop-add" type="button"><%=h _("Add Property") %></button></td>
-      <td><div id="no-value" class="ui-state-error ui-corner-all" style="font-size: 0.8em; padding: 0.3em; display: none;"><%=h _('You must enter a value') %></div></td>
     </tr>
     <tr>
-      <td colspan="3">&nbsp;</td>
+      <td>&nbsp;</td>
+      <td style="text-align: center;"><div id="no-value" class="ui-state-error ui-corner-all" style="font-size: 0.8em; padding: 0.3em; display: none;"><%=h _('You must enter a value') %></div></td>
     </tr>
     <tr>
       <td colspan="3"><b><%=h _('Edit current properties:') %></b></td>
