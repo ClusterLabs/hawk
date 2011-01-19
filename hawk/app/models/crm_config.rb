@@ -51,10 +51,15 @@ class CrmConfig
       xml.elements.each('//parameter') do |param|
         name = param.attributes['name'].to_sym
         @all_props << name
-        content = param.elements['content']
+        content   = param.elements['content']
+        # TODO(should): select by language (en)
+        shortdesc = param.elements['shortdesc']
+        longdesc  = param.elements['longdesc']
         @all_types[name] = {
           :type     => content.attributes['type'],
           :readonly => false,
+          :advanced => (shortdesc.text && shortdesc.text.match(/advanced use only/i)) ||
+                       (longdesc.text && longdesc.text.match(/advanced use only/i)),
           :default  => content.attributes['default']
         }
       end
@@ -80,7 +85,7 @@ class CrmConfig
     @all_props.sort! {|a,b| a.to_s <=> b.to_s }
     # These are meant to be read-only; should we hide them
     # in the editor?  grey them out? ...?
-    [:"dc-version", :"expected-quorum-votes"].each do |n|
+    [:"cluster-infrastructure", :"dc-version", :"expected-quorum-votes"].each do |n|
       @all_types[n][:readonly] = true
     end
 
