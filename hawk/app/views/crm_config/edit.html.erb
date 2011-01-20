@@ -18,7 +18,27 @@ function init_prop_del(e) {
   e.click(function() {
     enable_apply();
     $(this).parent().parent().fadeOut("fast", function() {
+      var deleted_name = $(this).children(":first").text();
       $(this).remove();
+      // Inject the property back into the new properties list
+      var new_option = "<option value='" + deleted_name + "'>" + deleted_name + "</option>";
+      var options = $("#new-prop")[0].options;
+      var i = 0;
+      for (i = 0; i < options.length; i++)
+      {
+        if (options[i].value == deleted_name) {
+          // It's possible to click a fading button fast enough to insert dupes...
+          return;
+        }
+        if (options[i].value > deleted_name) break;
+      }
+      if (i >= options.length) {
+        // Last item
+        $("#new-prop").append(new_option);
+      } else {
+        $("#new-prop option:eq(" + i + ")").before(new_option);
+      }
+      $("#new-prop,#new-value,#prop-add").removeAttr("disabled");
     });
     return false;
   });
@@ -31,9 +51,21 @@ function init_prop_edit(e) {
     event.stopPropagation();
     return event.keyCode != 13;
   });
+  e.focus(function() {
+    // Is there a better way to do this?
+    show_help($(this).parent().prev().text());
+  });
 }
+
+function disable_new_prop() {
+  if ($("#new-prop option").length == 0) {
+    $("#new-prop,#new-value,#prop-add").attr("disabled", "disabled");
+  }
+}
+
 function add_new_prop() {
   var new_name  = $("#new-prop").val();
+  if (!new_name) return;
   var new_value = $.trim($("#new-value").val());
   if (!new_value) {
     $("#no-value").fadeIn('fast');
@@ -47,6 +79,7 @@ function add_new_prop() {
   // it conflicts with Prototype.  Need to get rid of Prototype,
   // but in the meantime, we use init_prop_del(), and *don't*
   // set the button class to prop-del in the source HTML.
+  // 2011-01-20: Prototype is gone, can fix this now!
   init_prop_del(line.find("button"));
   line.children("th").append(new_name);
   var field = line.find("input");
@@ -56,6 +89,10 @@ function add_new_prop() {
   line.effect("highlight", {}, 1000);
   enable_apply();
   $("#new-value").val("");
+
+  // Remove newly added property from drop-down
+  $("#new-prop option[value='" + new_name + "']").remove();
+  disable_new_prop();
 }
 
 var props = null;
@@ -102,10 +139,7 @@ $(function() {
   $("#new-value").focus(function() {
     show_help($("#new-prop").val());
   });
-  $(".prop-edit").focus(function() {
-    // Is there a better way to do this?
-    show_help($(this).parent().prev().children().html());
-  });
+  disable_new_prop();
   $.getJSON('<%= crm_config_info_path %>', function(data) { props = data; });
 });
 </script>
@@ -126,7 +160,10 @@ $(function() {
     </tr>
     <tr>
       <th><%= select_tag 'new-prop', options_for_select(@crm_config.all_props.select {|p|
-        !(@crm_config.all_types[p][:readonly] || @crm_config.all_types[p][:advanced]) }) %></td>
+        # Don't list readonly, advanced or already-set properties in drop-down
+        !(@crm_config.all_types[p][:readonly] ||
+          @crm_config.all_types[p][:advanced] ||
+          @crm_config.props[p]) }) %></td>
       <td><%= text_field_tag 'new-value' %></td>
       <td><button class="prop-add" type="button"><%=h _("Add Property") %></button></td>
     </tr>
