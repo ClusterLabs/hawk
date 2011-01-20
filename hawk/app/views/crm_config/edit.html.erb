@@ -5,6 +5,7 @@ button { font-size: 0.7em !important; }
 </style>
 <script type="text/javascript">
 function enable_apply() {
+  $("#flash-highlight").fadeOut('fast');    // Hide "saved changes" message
   $("#crm_config_submit").removeAttr("disabled");
   $("#crm_config_revert").removeAttr("disabled");
 }
