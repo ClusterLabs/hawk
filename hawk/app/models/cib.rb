@@ -90,11 +90,11 @@ class Cib
         res[:children] << get_resource(elem.elements['group'], clone_max, is_ms || elem.name == 'master')
       else
         # This can't happen
-        logger.error "Got #{elem.name} without 'primitive' or 'group' child"
+        RAILS_DEFAULT_LOGGER.error "Got #{elem.name} without 'primitive' or 'group' child"
       end
     else
       # This can't happen
-        logger.error "Unknown resource type: #{elem.name}"
+        RAILS_DEFAULT_LOGGER.error "Unknown resource type: #{elem.name}"
     end
     res
   end
@@ -329,7 +329,7 @@ class Cib
           elsif b.attributes['call-id'].to_i == -1
             -1                                        # likewise
           else
-            logger.error "Inexplicable op sort error (this can't happen)"
+            RAILS_DEFAULT_LOGGER.error "Inexplicable op sort error (this can't happen)"
             a.attributes['call-id'].to_i <=> b.attributes['call-id'].to_i
           end
         }.each do |op|
