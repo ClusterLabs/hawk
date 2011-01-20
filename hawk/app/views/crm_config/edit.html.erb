@@ -138,7 +138,7 @@ $(function() {
       <td colspan="3"><b><%=h _('Edit current properties:') %></b></td>
     </tr>
     <% @crm_config.props.sort{|a,b| a.to_s <=> b.to_s}.each do |n,v| %>
-      <% next if @crm_config.all_types[n][:readonly] %>
+      <% next if !@crm_config.all_types[n] || @crm_config.all_types[n][:readonly] %>
       <tr>
         <th><%= label_tag "props[#{n}]", n %></th>
         <td><%= text_field_tag "props[#{n}]", v, { :class => 'prop-edit' } %></td>
