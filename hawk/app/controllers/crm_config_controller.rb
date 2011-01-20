@@ -32,7 +32,8 @@ class CrmConfigController < ApplicationController
   before_filter :login_required
 
   layout 'main'
-  before_filter :get_cib    # TODO(should): only do this when absolutely necessary, e.g.: edit but not update
+  # Need cib for both edit and update (but ultimateyl want to minimize the amount of processing...)
+  before_filter :get_cib
 
   def get_cib
     @cib = Cib.new params[:cib_id], current_user
@@ -87,17 +88,32 @@ class CrmConfigController < ApplicationController
     #  - Can't just replace the whole XML chunk, there might
     #    be rules and scores and things we don't understand,
     #    so really we need to do a merge of nvpairs.
-    # Really we can mostly rely on the shell here.  Shame we
+    # Really we want to mostly rely on the shell here.  Shame we
     # can't use the shell to remove properties by specifying
-    # a null value to "crm configure property ..."
+    # a null value to "crm configure property ...", or by
+    # replacing sections.
     #
     # TODO(must): die if not operating on local CIB
     # TODO(must): die if operating on non-existent property set
     # TODO(should): if the user deletes all the properties, this
-    #               leaves an empty property set lying around.
+    #               may leave an empty property set lying around.
     #               should "crm configure delete" it, but it
     #               might be a bit unsafe.
     #
+
+    current_config = @cib.find_crm_config(params[:id])
+
+    # Want to delete properties that currently exist, aren't readonly
+    # or advanced (invisible in editor), and aren't in the list of
+    # properties the user has just set in the edit form.  Note: this
+    # (obviously) must complement the constraints in the edit form!
+    props_to_delete = current_config.props.keys.select {|p|
+      current_config.all_types[p] && !current_config.all_types[p][:readonly] &&
+        (!params[:props] || !params[:props].has_key?(p))
+        # (the above line means: no properties passed in, *or* the
+        # properties passed in don't include this property)
+    }
+
     require 'tempfile.rb'
     f = Tempfile.new 'crm_config_update'
     f << "property $id='#{params[:id]}'"
@@ -121,6 +137,10 @@ class CrmConfigController < ApplicationController
     f.unlink
     
     if thread.value.exitstatus == 0
+      props_to_delete.each do |p|
+        # TODO(must): does not report errors!
+        Util.run_as(current_user, 'crm_attribute', '--attr-name', p.to_s, '--delete-attr')
+      end
       flash[:highlight] = _('Your changes have been saved')
     else
       flash[:error] = _('Unable to apply changes: %{msg}') % { :msg => @result }

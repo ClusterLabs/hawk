@@ -160,7 +160,7 @@ $(function() {
     </tr>
     <tr>
       <th><%= select_tag 'new-prop', options_for_select(@crm_config.all_props.select {|p|
-        # Don't list readonly, advanced or already-set properties in drop-down
+        # Don't list readonly, advanced or already-set properties in drop-down (must match CrmConfigController::update!)
         !(@crm_config.all_types[p][:readonly] ||
           @crm_config.all_types[p][:advanced] ||
           @crm_config.props[p]) }) %></td>
@@ -175,7 +175,10 @@ $(function() {
       <td colspan="3"><b><%=h _('Edit current properties:') %></b></td>
     </tr>
     <% @crm_config.props.sort{|a,b| a.to_s <=> b.to_s}.each do |n,v| %>
-      <% next if !@crm_config.all_types[n] || @crm_config.all_types[n][:readonly] %>
+      <%
+        # Don't allow edit of unknown, readonly or advanced properties for edit (must match CrmConfigController::update!)
+        next if !@crm_config.all_types[n] || @crm_config.all_types[n][:readonly] || @crm_config.all_types[n][:advanced]
+      %>
       <tr>
         <th><%= label_tag "props[#{n}]", n %></th>
         <td><%= text_field_tag "props[#{n}]", v, { :class => 'prop-edit' } %></td>
