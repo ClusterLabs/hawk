@@ -111,7 +111,6 @@ class CrmConfigController < ApplicationController
     # good for testing when running as root), or some other alternative
     # with piping data to crm?
     File.chmod(0666, f.path)
-    %x[/bin/cp #{f.path} /tmp/foo]
     # TODO(should): consolidate with MainController::invoke
     # TODO(must): crm lies about failed update when run with R/O access!
     stdin, stdout, stderr, thread = Util.run_as(current_user, 'crm', '-F', 'configure', 'load', 'update', f.path)
