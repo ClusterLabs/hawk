@@ -719,7 +719,7 @@ function hawk_init()
     '<div id="summary" class="ui-corner-all" style="display: none;">' +
       '<div class="clickable" onclick="toggle_collapse(\'summary\');"><div id="summary::button" class="tri-closed"></div>' +
         // TODO(should): fix this messy event canceling to stop the panel expanding/contracting when menu clicked
-        '<a id="summary::menu" onclick="event.stopPropagation();" href="' + url_root + '/cib/live/crm_config/cib-bootstrap-options/edit"><img src="' + url_root + '/images/icons/edit.png" class="action-icon" alt="' + GETTEXT.configure() + '" title="' + GETTEXT.configure() + '" /></a>' +
+        '<a id="summary::menu" onclick="if ($.browser.msie) { event.cancelBubble = true; } else { event.stopPropagation(); }" href="' + url_root + '/cib/live/crm_config/cib-bootstrap-options/edit"><img src="' + url_root + '/images/icons/edit.png" class="action-icon" alt="' + GETTEXT.configure() + '" title="' + GETTEXT.configure() + '" /></a>' +
         '<span id="summary::label">' + GETTEXT.summary_label() + '</span></div>' +
       '<div id="summary::children" style="display: none;" class="closed">' +
       '<table style="padding: 0.25em 0.5em">' +
