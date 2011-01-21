@@ -1,0 +1,156 @@
+Testing Hawk
+============
+Tim Serong <tserong@novell.com>
+
+== Introduction
+
+Following is a series of manual test plans to verify that Hawk's basic
+functionality behaves as expected.  These should be run on a variety
+of web browsers, but at a minimum at least:
+
+* Firefox 3
+* Internet Explorer 7
+
+It would be best to also run these on:
+
+* Google Chrome
+* Safari
+* Konqueror 
+
+Once basic functionality has been verified, more specific tests (e.g.:
+correct behaviour for ACLs, testing for specific error messages from
+underlying tools, etc.) can generally be performed in the browser of
+your choice.
+
+Note that one should always be on the lookout for weird display
+artifacts at every step, even though this is not explicitly stated
+in any of the tests.
+
+== Tests for Basic Functionality
+
+=== Login/Logout
+
+. Go to https://SERVER:7630/
+. Hit "Log In", verify it fails with "Username not specified" and
+  "Password not specified" if those fields are empty.
+. Verify login fails when invalid username/password entered.
+. Verify login succeeds as "hacluster", and you're redirected to
+  the main status page.
+. Verify "logout" takes you back to the login page.
+. Verify https://SERVER:7630/main/status redirects you to the
+  login page.
+. Verify https://SERVER:7630/cib/live/crm_config/cib-bootstrap-options/edit
+  redirects you to the login page.
+. Log in as "hacluster", then right-click the logout link to open
+  it in a new tab.  Try to perform some operation (e.g.: put a node
+  on standby), verify you get a "Permission denied" error.
+. While still looking at the (now invalid) status page, ssh to the
+  cluster node and stop a resource, or do something to change the
+  cluster state - in your web browser, you should be immediately
+  bounced back to the login page with the message "you have been
+  logged out".
+
+=== Cluster Status Display
+
+. Log in as "hacluster" and go to
+  https://SERVER:7630/main/status?cib_file=all-resource-types.xml
+. Verify all three panels are expandable, and all clone/group children
+  are expandable.
+. Verify both nodes show online, and all resources show started.
+  The Master/Slave resource should be promoted on one node.
+. Go to https://SERVER:7630/main/status?cib_file=all-resource-types-demoted.xml
+  and verify both instances of the Master/Slave resources are slaves.
+. Go to https://SERVER:7630/main/status?cib_file=all-resource-types-failed-child.xml
+  and verify the resource panel expands automatically to show the
+  non-running filesys resource, and there is a Failed op reported
+  at the top of the screen.
+. Return to https://SERVER:7630/main/status, then ssh to the cluster
+  node and stop the cluster.  The status display should show everything
+  stopping, then ultimately say "Connection to cluster failed".
+. Start the cluster again, within 15 seconds the status display
+  should come up again.
+  
+=== Basic Management Operations
+
+_Note_: This requires a cluster with at least two nodes, a single
+primitive, a group, a clone, a master/slave set, and working STONITH.
+We assume everything is running at the start of this test.
+
+. Log in as "hacluster".
+. Put one node on standby.  Resource panel should expand to show
+  stopped resources, and node should go into Standby mode.
+. Bring node online again, resources should start again, and all
+  should show green.
+. Fence one node, it should show OFFLINE and all resources should
+  stop as in the standby test.  When it comes back online, everything
+  should go green again.
+. Stop a primitive resource, it should show as stopped.
+. Start the resource again, it should show as started.
+. Move the resource to the other node, verify it moves.
+. Drop the relocation rule for that resource, use "crm configure show"
+  on the node to verify the location rule is gone.
+. Fail a resource (e.g.: "crm_resource -F -r d0 -N node-0", verify a
+  failed op appears.  Cleanup the resource using Hawk, verify the failed
+  op disappears.
+. Verify children of the group can be started and stopped, but the
+  Move and Drop Relocation Rule ops are not available.
+. Demote the master/slave set, verify all instances are slaves.
+. Promote the master/slave set, verify one instance becomes master.
+. Verify the instances of the master/slave set and clone don't have
+  op menus.
+
+=== Cluster Configuration Editor
+
+. Log in as "hacluster".
+. Click the properties icon in the Configuration panel to get to
+  the configuration editor.
+. Click in each text field, verify that Help text appears.
+. Remove a couple of properties, verify that they now appear in
+  the "add new property" drop-down list (where they didn't before).
+. Add a couple of properties, verify that they no longer appear in
+  the "add new property" drop-down list. 
+. Click "Revert Changes", verify proeprties are back how they were
+  originally.
+. Remove one property, change one property and add one property
+  (or some variation thereof).  Click "Apply Changes", verify
+  properties are changed.
+. Click "Back", you should be back at the cluster status page.
+
+== Tests for ACL Support
+
+_Note_: You should use the same cluster as for the Basic Functionality
+Basic Management Operations tests, but will need to enable ACL support
+and have three users (in the "haclient" group) as follows:
+
+. "alice", with no ACLs defined.
+. "bob", with a "read" ACL for the entire cluster.
+. "carol", with a "write" ACL for the entire cluster.
+
+=== Login/Logout
+
+. Log in as "alice".  Login should proceed, then you should be bounced
+  back to the login page with a permission denied error.
+. Log in as "bob".  You should land on the status page as usual.
+. Log in as "carol".  You should land on the status page as usual.
+
+=== Basic Management Operations
+
+. Log in as "bob".  Try to put a node on standby.  You should see a
+  permission denied error.  Likewise for each of the other node and
+  resource ops.  As at 2011-01-21, in some cases the op may silently
+  fail (e.g.: node fence).  Just so long as it doesn't _succed_
+  we're good.  TODO: flesh this out.
+. Log in as "carol".  Try the various management ops.  They should all
+  succeed as in Basic Functionality tests.
+
+=== Cluster Configuration Editor
+
+. Log in as "bob".  Try to edit the cluster configuration.  You should
+  get a permission denied error when applying the changes (or if it
+  says it succeeded due to shell return code being wrong, at least
+  no changes should have been made.
+. Log in as "carol".  Try to edit the cluster configuration.  This
+  should succeed as in the Basic Functionality tests.
+
+
+
