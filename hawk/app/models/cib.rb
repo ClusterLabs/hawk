@@ -235,23 +235,21 @@ class Cib
 
     @id = id
 
-    # Special-case properties we always want to see
+    # Special-case defaults for properties we always want to see
     @crm_config = {
-      :cluster_infrastructure       => get_property('cluster-infrastructure') || _('Unknown'),
-      :dc_version                   => get_property('dc-version') || _('Unknown'),
-      :default_resource_stickiness  => get_property('default-resource-stickiness', 0), # TODO(could): is this documented?
-      :stonith_enabled              => get_property('stonith-enabled', true),
-      :symmetric_cluster            => get_property('symmetric-cluster', true),
-      :no_quorum_policy             => get_property('no-quorum-policy', 'stop'),
+      :"cluster-infrastructure"       => _('Unknown'),
+      :"dc-version"                   => _('Unknown'),
+      :"default-resource-stickiness"  => 0, # TODO(could): is this documented?
+      :"stonith-enabled"              => true,
+      :"symmetric-cluster"            => true,
+      :"no-quorum-policy"             => 'stop'
     }
 
     # Pull in everything else
     # TODO(should): This gloms together all cluster property sets; really
     # probably only want cib-bootstrap-options?
     @xml.elements.each('cib/configuration/crm_config//nvpair') do |p|
-      sym = p.attributes['name'].tr('-', '_').to_sym
-      next if @crm_config[sym]
-      @crm_config[sym] = get_xml_attr(p, 'value')
+      @crm_config[p.attributes['name'].to_sym] = get_xml_attr(p, 'value')
     end
 
     @nodes = []

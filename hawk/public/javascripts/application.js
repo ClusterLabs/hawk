@@ -626,16 +626,17 @@ function update_cib()
         update_errors(cib.errors);
         if (cib.meta) {
           $("#dc_current").html(GETTEXT.dc_current(cib.meta.dc)).show();
-          $("#dc_version").html(GETTEXT.dc_version(cib.crm_config["dc_version"].match(/.*-[a-f0-9]{12}/).toString())).show();
-          $("#dc_stack").html(GETTEXT.dc_stack(cib.crm_config["cluster_infrastructure"])).show();
+          $("#dc_version").html(GETTEXT.dc_version(cib.crm_config["dc-version"].match(/.*-[a-f0-9]{12}/).toString())).show();
+          $("#dc_stack").html(GETTEXT.dc_stack(cib.crm_config["cluster-infrastructure"])).show();
 
           $("#summary").show();
           for (var e in cib.crm_config) {
-            if (!$(jq("summary::" + e))) continue;
+            var s = e.replace(/-/g,"_")
+            if (!$(jq("summary::" + s))) continue;
             if (typeof(cib.crm_config[e]) == "boolean") {
-              $(jq("summary::" + e)).html(cib.crm_config[e] ? GETTEXT.yes() : GETTEXT.no())
+              $(jq("summary::" + s)).html(cib.crm_config[e] ? GETTEXT.yes() : GETTEXT.no())
             } else {
-              $(jq("summary::" + e)).html(cib.crm_config[e].toString());
+              $(jq("summary::" + s)).html(cib.crm_config[e].toString());
             }
           }
 
