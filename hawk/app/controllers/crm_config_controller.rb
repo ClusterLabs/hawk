@@ -80,6 +80,13 @@ class CrmConfigController < ApplicationController
       return
     end
 
+    # Don't let weird IDs through.
+    if params[:id].match(/[^a-zA-Z0-9_-]/)
+      flash[:error] = _('Invalid property set ID: %{id}') % { :id => params[:id] }
+      redirect_to :action => 'edit'
+      return
+    end
+
     #
     # This is (logically) a replace of the entire contents
     # of the existing property set with whatever is submitted.
@@ -118,8 +125,16 @@ class CrmConfigController < ApplicationController
     f = Tempfile.new 'crm_config_update'
     f << "property $id='#{params[:id]}'"
     params[:props].each do |n, v|
-      # TODO(must): escape values (and ID above, for that matter)
-      f << " #{n}='#{v}'" if !v.empty?
+      next if v.empty?
+      sq = v.index("'")
+      dq = v.index('"')
+      if sq && dq
+        flash[:error] = _("Can't set property %{p}, because the value contains both single and double quotes") % { :p => n }
+      elsif sq
+        f << " #{n}=\"#{v}\""
+      else
+        f << " #{n}='#{v}'"
+      end
     end if params[:props]
     f.close
     # Evil to allow unprivileged user running crm shell to read the file
