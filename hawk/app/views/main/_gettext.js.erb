@@ -78,18 +78,6 @@ var GETTEXT = {
   summary_label: function() {
     return "<%= escape_javascript _('Cluster Configuration') %>";
   },
-  summary_stickiness: function() {
-    return "<%= escape_javascript _('Resource Stickiness:') %>";
-  },
-  summary_stonith_enabled: function() {
-    return "<%= escape_javascript _('STONITH Enabled:') %>";
-  },
-  summary_symmetric: function() {
-    return "<%= escape_javascript _('Symmetric Cluster:') %>";
-  },
-  summary_no_quorum_policy: function() {
-    return "<%= escape_javascript _('No Quorum Policy:') %>";
-  },
   // Node & resource labels
   nodes_configured: function(num) {
     var s = <%= [1,'_NUM_'].map {|n| n_('1 node configured', '%{num} nodes configured', n) % { :num => n } }.to_json %>;

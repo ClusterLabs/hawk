@@ -133,10 +133,20 @@ html, body
   padding: 0.25em 0.5em;
 }
 
-th /* used in summary */
+th /* used in summary, crm_property editor */
 {
   font-weight: normal;
   text-align: left;
+}
+
+#summary th, td
+{
+  white-space: nowrap;
+}
+
+#summary th
+{
+  padding-right: 0.5em;
 }
 
 code

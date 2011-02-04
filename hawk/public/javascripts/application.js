@@ -630,15 +630,23 @@ function update_cib()
           $("#dc_stack").html(GETTEXT.dc_stack(cib.crm_config["cluster-infrastructure"])).show();
 
           $("#summary").show();
+          var props = [];
           for (var e in cib.crm_config) {
-            var s = e.replace(/-/g,"_")
-            if (!$(jq("summary::" + s))) continue;
-            if (typeof(cib.crm_config[e]) == "boolean") {
-              $(jq("summary::" + s)).html(cib.crm_config[e] ? GETTEXT.yes() : GETTEXT.no())
-            } else {
-              $(jq("summary::" + s)).html(cib.crm_config[e].toString());
+            if (e == "cluster-infrastructure" ||
+                e == "dc-version" ||
+                e == "last-lrm-refresh") {
+              // TODO(should): This is a bit rough - consolidate with crm_config editor props
+              continue;
             }
+            props.push(e);
           }
+          props.sort();
+          var rows = $("<tbody/>");
+          for (var i = 0; i < props.length; i++) {
+            rows.append("<tr><th>" + props[i] + "</td><td>" + escape_html(cib.crm_config[props[i]].toString()) + "</td></tr>");
+          }
+          $(jq("summary::props")).children().remove();
+          $(jq("summary::props")).append(rows);
 
           $("#nodelist").show();
           if (update_panel(cib_to_nodelist_panel(cib.nodes))) {
@@ -723,12 +731,7 @@ function hawk_init()
         '<a id="summary::menu" onclick="if ($.browser.msie) { event.cancelBubble = true; } else { event.stopPropagation(); }" href="' + url_root + '/cib/live/crm_config/cib-bootstrap-options/edit"><img src="' + url_root + '/images/icons/edit.png" class="action-icon" alt="' + GETTEXT.configure() + '" title="' + GETTEXT.configure() + '" /></a>' +
         '<span id="summary::label">' + GETTEXT.summary_label() + '</span></div>' +
       '<div id="summary::children" style="display: none;" class="closed">' +
-      '<table style="padding: 0.25em 0.5em">' +
-        '<tr><th>' + GETTEXT.summary_stickiness() + '</th><td><span id="summary::default_resource_stickiness"></span></td></tr>' +
-        '<tr><th>' + GETTEXT.summary_stonith_enabled() + '</th><td><span id="summary::stonith_enabled"></span></td></tr>' +
-        '<tr><th>' + GETTEXT.summary_symmetric() + '</th><td><span id="summary::symmetric_cluster"></span></td></tr>' +
-        '<tr><th>' + GETTEXT.summary_no_quorum_policy() + '</th><td><span id="summary::no_quorum_policy"></span></td></tr>' +
-      '</table>' +
+      '<table id="summary::props" style="padding: 0.25em 0.5em;"></table>' +
       '</div>' +
     '</div>' +
     '<div id="nodelist" class="ui-corner-all" style="display: none;">' +
