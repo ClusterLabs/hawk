@@ -110,6 +110,14 @@ class CrmConfigController < ApplicationController
 
     current_config = @cib.find_crm_config(params[:id])
 
+    # Inject unchecked checkboxes (*sigh*)
+    params[:names].each do |n, v|
+      next unless current_config.all_types[n.to_sym]
+      if current_config.all_types[n.to_sym][:type] == 'boolean' && !params[:props].has_key?(n)
+        params[:props][n] = 'false'
+      end
+    end
+
     # Want to delete properties that currently exist, aren't readonly
     # or advanced (invisible in editor), and aren't in the list of
     # properties the user has just set in the edit form.  Note: this
@@ -120,6 +128,9 @@ class CrmConfigController < ApplicationController
         # (the above line means: no properties passed in, *or* the
         # properties passed in don't include this property)
     }
+
+    # TODO(must): the above two blocks use a mix of string and symbol
+    # hash keys.  This is wildly confusing.  Must deconfustificate this.
 
     require 'tempfile.rb'
     f = Tempfile.new 'crm_config_update'

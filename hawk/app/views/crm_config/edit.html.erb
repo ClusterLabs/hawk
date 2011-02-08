@@ -1,7 +1,9 @@
-<div class="ui-widget-content ui-corner-all" style="padding: 0.5em;">
 <style type="text/css">
-/* TODO: this does not belong here */
+/* TODO: this does not belong here (but note non-specificity of "select") */
 button { font-size: 0.7em !important; }
+select { width: 13em; }
+input[type=text] { width: 13em; }
+td.prop { text-align: center; }
 </style>
 <script type="text/javascript">
 function enable_apply() {
@@ -40,6 +42,7 @@ function init_prop_del(e) {
         $("#new-prop option:eq(" + i + ")").before(new_option);
       }
       $("#new-prop,#new-value,#prop-add").removeAttr("disabled");
+      init_new_value_field();
     });
     return false;
   });
@@ -64,6 +67,37 @@ function disable_new_prop() {
   }
 }
 
+function init_new_value_field() {
+  $("#new-value").remove();
+  var next_new_name = $("#new-prop").val();
+  if (!next_new_name) return;
+  switch(props[next_new_name].type) {
+    case "boolean":
+      $("#new-value-td").append(
+        '<input type="checkbox" id="new-value" name="new-value" class="prop-edit" value="true"' +
+          (props[next_new_name]["default"] == "true" ? ' checked="checked"' : '') + '"/>');
+      break;
+    case "enum":
+      var select='<select id="new-value" name="new-value">';
+      for (var i = 0; i < props[next_new_name]["values"].length; i++) {
+        select += '<option value="' + props[next_new_name]["values"][i] + '">' + props[next_new_name]["values"][i] + "</option>";
+      }
+      select += "</select>";
+      $("#new-value-td").append(select);
+      $("#new-value").val(props[next_new_name]["default"]);
+      break;
+    default:
+      $("#new-value-td").append(
+        '<input type="text" id="new-value" name="new-value" class="prop-edit" value="' +
+          props[next_new_name]["default"] + '"/>');
+      break;
+  }
+  init_prop_edit($("#new-value"));
+  $("#new-value").focus(function() {
+    show_help($("#new-prop").val());
+  });
+}
+
 function add_new_prop() {
   var new_name  = $("#new-prop").val();
   if (!new_name) return;
@@ -73,27 +107,23 @@ function add_new_prop() {
     $("#new-value").focus();
     return;
   }
-
   $("#no-value").fadeOut('fast');
   var line = $("#empty-prop").clone().removeAttr("id");
-  // Can't use clone(true) above to pick up events, because
-  // it conflicts with Prototype.  Need to get rid of Prototype,
-  // but in the meantime, we use init_prop_del(), and *don't*
-  // set the button class to prop-del in the source HTML.
-  // 2011-01-20: Prototype is gone, can fix this now!
   init_prop_del(line.find("button"));
   line.children("th").append(new_name);
-  var field = line.find("input");
-  init_prop_edit(field);
-  field.attr("id", "props_" + new_name).attr("name", "props[" + new_name + "]").val(new_value);
+  line.find("input[type=text]").replaceWith(
+    $("#new-value").clone().attr("id", "props_" + new_name).attr("name", "props[" + new_name + "]").val(new_value));
+  field = line.find("input[type=hidden]");
+  field.attr("id", "names_" + new_name).attr("name", "names[" + new_name + "]");
   $("#empty-prop").before(line);
   line.effect("highlight", {}, 1000);
   enable_apply();
-  $("#new-value").val("");
 
   // Remove newly added property from drop-down
   $("#new-prop option[value='" + new_name + "']").remove();
   disable_new_prop();
+
+  init_new_value_field();
 }
 
 var props = null;
@@ -132,22 +162,50 @@ $(function() {
     return false;
   });
   $("#new-prop").change(function() {
+    init_new_value_field();
     show_help($(this).val());
   });
   $("#new-prop").keyup(function() {
+    init_new_value_field();
     show_help($(this).val());
   });
   $("#new-value").focus(function() {
     show_help($("#new-prop").val());
   });
   disable_new_prop();
-  $.getJSON('<%= crm_config_info_path %>', function(data) { props = data; });
+  // TODO: disable everything here until we have the property info, else we won't be
+  // able to do the right thing with types...?
+  $.getJSON('<%= crm_config_info_path %>', function(data) {
+    props = data;
+    $("#onload-spinner").hide();
+    $("#editor").show();
+  });
 });
 </script>
+<div id="onload-spinner"><%= image_tag 'spinner-32x32.gif', :alt => '' %></div>
+<div id="editor" class="ui-widget-content ui-corner-all" style="padding: 0.5em; display: none;">
 <% form_for([ @cib, @crm_config ]) do |f| %>
 <% flash.each do |flash_type, message| %>
   <div id="flash-<%= flash_type %>" class="ui-state-<%= flash_type %> ui-corner-all" style="padding: 0.5em; margin-bottom: 0.5em;"><%=h message %></div>
 <% end %>
+<%
+# TODO(should): move this elsewhere (or just use JavaScript to set this up)
+def field_for_property(n, v, id="props[#{n}]")
+  case @crm_config.all_types[n][:type]
+  when 'boolean'
+    check_box_tag id, true, v == 'true', { :class => 'prop-edit' }
+  when 'enum'
+    if @crm_config.all_types[n][:values] && @crm_config.all_types[n][:values].include?(v)
+      select_tag id, options_for_select(@crm_config.all_types[n][:values], v), { :class => 'prop-edit' }
+    else
+      text_field_tag id, v, { :class => 'prop-edit' }
+    end
+  else
+    # integer, time
+    text_field_tag id, v, { :class => 'prop-edit' }
+  end
+end
+%>
   <table>
     <tr>
       <td colspan="3"><b><%=h _('Add new property:') %></b></td>
@@ -160,12 +218,14 @@ $(function() {
       </tr>
     </tr>
     <tr>
-      <th><%= select_tag 'new-prop', options_for_select(@crm_config.all_props.select {|p|
-        # Don't list readonly, advanced or already-set properties in drop-down (must match CrmConfigController::update!)
-        !(@crm_config.all_types[p][:readonly] ||
-          @crm_config.all_types[p][:advanced] ||
-          @crm_config.props[p]) }) %></td>
-      <td><%= text_field_tag 'new-value' %></td>
+      <th><%
+        available_props = @crm_config.all_props.select {|p|
+          # Don't list readonly, advanced or already-set properties in drop-down (must match CrmConfigController::update!)
+          !(@crm_config.all_types[p][:readonly] ||
+            @crm_config.all_types[p][:advanced] ||
+            @crm_config.props[p]) }
+        %><%= select_tag 'new-prop', options_for_select(available_props) %></td>
+      <td id="new-value-td" class="prop"><%= available_props.empty? ? '' : field_for_property(available_props[0], @crm_config.all_types[available_props[0]][:default], 'new-value') %></td>
       <td><button class="prop-add" type="button"><%=h _("Add Property") %></button></td>
     </tr>
     <tr>
@@ -182,12 +242,12 @@ $(function() {
       %>
       <tr>
         <th><%= label_tag "props[#{n}]", n %></th>
-        <td><%= text_field_tag "props[#{n}]", v, { :class => 'prop-edit' } %></td>
+        <td class="prop"><%= hidden_field_tag "names[#{n}]", true %><%= field_for_property n, v %></td>
         <td><button class="prop-del" type="button"><%=h _("Delete Property") %></button></td>
       </tr>
     <% end %>
     <tr id="empty-prop" style="display: none;">
-      <th></th><td><%= text_field_tag 'empty-value' %></td><td><button type="button"><%=h _("Delete Property") %></button></td>
+      <th></th><td class="prop"><%= hidden_field_tag "empty-name", true %><%= text_field_tag 'empty-value' %></td><td><button type="button"><%=h _("Delete Property") %></button></td>
     </tr>
     <tr>
       <td colspan="3">&nbsp;</td>

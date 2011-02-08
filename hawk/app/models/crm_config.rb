@@ -56,14 +56,20 @@ class CrmConfig
         shortdesc = param.elements['shortdesc'].text || ''
         longdesc  = param.elements['longdesc'].text || ''
         @all_types[name] = {
-          :type       => content.attributes['type'],
+          :type       => content.attributes['type'],  # boolean, enum, integer, time
           :readonly   => false,
           :shortdesc  => shortdesc,
           :longdesc   => longdesc,
           :advanced   => (shortdesc.match(/advanced use only/i)) ||
-                         (longdesc.match(/advanced use only/i)),
+                         (longdesc.match(/advanced use only/i)) ? true : false,
           :default    => content.attributes['default']
         }
+        if @all_types[name][:type] == 'enum'
+          m = longdesc.match(/Allowed values:(.*)/i)
+          values = m[1].split(',').map {|v| v.strip}.select {|v| !v.empty?} if m
+          # Yes, this next is paranoid.  But hey, we're parsing arbitrary text here...
+          @all_types[name][:values] = values unless values.empty?
+        end
       end
       break
     end
