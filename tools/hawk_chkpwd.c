@@ -68,7 +68,11 @@ static void
 su_sighandler(int sig)
 {
 	if (sig > 0) {
-		_log_err(LOG_NOTICE, "caught signal %d.", sig);
+		/*
+		 * Don't call non-reentrant functions in signal handler
+		 * per bnc#665045 - dmesg will catch SEGV etc. anyway
+		 */
+		/* _log_err(LOG_NOTICE, "caught signal %d.", sig); */
 		exit(sig);
 	}
 }
