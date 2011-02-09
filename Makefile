@@ -58,6 +58,7 @@ INIT_STYLE = suse
 # paths used by hawk_invoke, but will have no effect on hard-coded paths
 # in the rails app)
 LIBDIR = /usr/lib
+BINDIR = /usr/bin
 SBINDIR = /usr/sbin
 
 all: scripts/hawk.$(INIT_STYLE) hawk/config/lighttpd.conf tools/hawk_chkpwd tools/hawk_monitor tools/hawk_invoke
@@ -67,6 +68,7 @@ all: scripts/hawk.$(INIT_STYLE) hawk/config/lighttpd.conf tools/hawk_chkpwd tool
 	sed \
 		-e 's|@WWW_BASE@|$(WWW_BASE)|' \
 		-e 's|@LIBDIR@|$(LIBDIR)|' \
+		-e 's|@BINDIR@|$(BINDIR)|' \
 		-e 's|@SBINDIR@|$(SBINDIR)|' \
 		$< > $@
 

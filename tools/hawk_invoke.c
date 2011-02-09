@@ -60,6 +60,7 @@
 #include <stdio.h>
 #include <stdarg.h>
 #include <stdlib.h>
+#include <string.h>
 #include <pwd.h>
 #include <grp.h>
 #include "common.h"
@@ -99,6 +100,7 @@ int main(int argc, char **argv)
 	int i;
 	int found = 0;
 	struct cmd_map *cmd;
+	char *home = NULL;
 
 	if (argc < 3) {
 		die("Usage: %s <username> <command> [args ...]\n", argv[0]);
@@ -192,6 +194,19 @@ int main(int argc, char **argv)
 	 */
 	endpwent();
 	endgrent();
+
+	/* Clean up environment */
+	home = getenv("HOME");
+	if (home != NULL) {
+		home = strdup(home);
+	}
+	if (clearenv() != 0) {
+		die("ERROR: Can't clear environment");
+	}
+	setenv("PATH", SBINDIR":"BINDIR, 1);
+	if (home != NULL) {
+		setenv("HOME", home, 1);
+	}
 
 	/* And away we go... */
 	execv(argv[2], &argv[2]);
