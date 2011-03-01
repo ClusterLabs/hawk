@@ -300,6 +300,8 @@
 
       self.new_attr_row.before(new_row);
 
+      self._scroll_into_view();
+
       return new_row;
     },
 
@@ -311,6 +313,7 @@
       var v = f.val();
       if (!v) {
         self.no_value.fadeIn("fast");
+        self._scroll_into_view();
         f.focus();
         return;
       }
@@ -338,6 +341,10 @@
       } else {
         $("#help").hide();
       }
+    },
+
+    _scroll_into_view: function() {
+      this.element.scrollTop(this.element.find("table tr:last").position().top);
     }
   });
 })(jQuery);
