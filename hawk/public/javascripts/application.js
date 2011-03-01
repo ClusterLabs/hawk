@@ -58,6 +58,10 @@ function escape_html(str)
   return $("<div/>").text(str).html();
 }
 
+function escape_field(s) {
+  return escape_html(s).replace(/"/g, "&quot;").replace(/'/g, "&#39;");
+}
+
 // TODO(should): clean up these three...
 function expand_block(id)
 {
