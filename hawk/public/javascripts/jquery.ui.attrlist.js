@@ -117,19 +117,19 @@
       }).click(function() {
         self._add_attr();
       });;
-      self.new_attr_select.change(function() {
-        self.no_value.fadeOut("fast");
-        self._init_new_value_field();
-        self._show_help($(this).val());
-      }).keydown(function() {
+      self.new_attr_select.keydown(function() {
         self.keypress_hack = $(this).val();
-      }).keyup(function() {
-        // Keyboard equivalent of "change".  Without
-        // tracking the value manually (keypress_hack),
-        // this would trigger when hitting ESC or TAB,
-        // which would re-initialize the field, even
-        // though nothing has changed.
+      }).bind("keyup change", function() {
+        // Need both keyup and change.  Unfortunately we have
+        // to track the value manually (keypress_hack), else
+        // this would trigger when hitting ESC or TAB, which
+        // would re-initialize the field, even though nothing
+        // has changed.  We use the same event for "change",
+        // to again avoid double triggering on losing field
+        // focus after a keypress.
+        // TODO(should): Find a cleaner way to do this.
         if ($(this).val() != self.keypress_hack) {
+          self.keypress_hack = $(this).val();
           self.no_value.fadeOut("fast");
           self._init_new_value_field();
           self._show_help($(this).val());
