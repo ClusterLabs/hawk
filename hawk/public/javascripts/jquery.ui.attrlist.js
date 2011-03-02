@@ -62,8 +62,13 @@
 // set attributes and their values, "labels" which are for
 // localized text display, and "dirty" which is a callback invoked
 // when an attribute is added or removed, or a value is changed.
+// The dirty callback is passed the browser event and a hash
+// containing "field" and "name", being the field that changed and
+// the name of the corresponding attribute.  field will be null
+// when a row is deleted.
 //
 
+// TODO(should): ESC key on field to hide no_value error
 // TODO(should): cope with yes/no booleans
 // TODO(should): something better (position-wise) with "you must enter a value"?
 // TODO(should): focus value field on select (maybe)
@@ -114,8 +119,8 @@
         },
         text: false,
         disabled: true
-      }).click(function() {
-        self._add_attr();
+      }).click(function(event) {
+        self._add_attr(event);
       });;
       self.new_attr_select.keydown(function() {
         self.keypress_hack = $(this).val();
@@ -144,6 +149,7 @@
       self.new_attr_select.children().remove();
       self.new_attr_select.append($("<option></option>"))
       self.new_attr_td.children().remove();
+      self.no_value.hide();
 
       self._sort_attrs();
 
@@ -226,8 +232,8 @@
       }).focus(function() {
         // Is there a better way to do this?
         self._show_help($(this).parent().prev().text());
-      }).bind("keydown change", function() {
-        self._trigger("dirty");
+      }).bind("keyup change", function(event) {
+        self._trigger("dirty", event, { field: $(this), name: n });
       });
 
     },
@@ -246,10 +252,10 @@
 
       var self = this;
       // Don't want generic field event handlers here
-      this.new_attr_td.children(":last").unbind().keypress(function(e) {
+      this.new_attr_td.children(":last").unbind().keypress(function(event) {
         // Use ENTER to add the new attribute row
-        if (e.keyCode != 13) return true;
-        self._add_attr();
+        if (event.keyCode != 13) return true;
+        self._add_attr(event);
         return false;
       }).focus(function() {
         self._show_help(self.new_attr_select.val());
@@ -270,7 +276,7 @@
         },
         text: false,
         disabled: disabled
-      }).click(function() {
+      }).click(function(event) {
         $(this).parent().parent().fadeOut("fast", function() {
           var deleted_name = $(this).children(":first").text();
           $(this).remove();
@@ -293,7 +299,7 @@
             self.new_attr_select.children("option:eq(" + i + ")").before(new_option);
           }
           self._init_new_value_field();
-          self._trigger("dirty");
+          self._trigger("dirty", event, { field: null, name: deleted_name } );
         });
       });;
       self._init_value_field($(new_row.children("td")[0]), n, v);
@@ -305,7 +311,7 @@
       return new_row;
     },
 
-    _add_attr: function() {
+    _add_attr: function(event) {
       var self = this;
       var n = self.new_attr_select.val();
       if (!n) return;
@@ -326,7 +332,7 @@
       self.new_attr_select.val("");
       self._init_new_value_field();
 
-      self._trigger("dirty");
+      self._trigger("dirty", event, { field: f, name: n });
     },
 
     _show_help: function(n) {
