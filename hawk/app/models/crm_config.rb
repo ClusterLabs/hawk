@@ -30,13 +30,7 @@
 
 require 'rexml/document' unless defined? REXML::Document
 
-class CrmConfig
-
-  # Need this to behave like an instance of ActiveRecord
-  attr_reader :id
-  def to_param
-    (id = self.id) ? id.to_s : nil
-  end
+class CrmConfig < CibObject
 
   private
 

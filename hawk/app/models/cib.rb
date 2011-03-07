@@ -32,14 +32,8 @@ require 'util'
 require 'natcmp'
 require 'rexml/document' unless defined? REXML::Document
 
-class Cib
+class Cib < CibObject
   include GetText
-
-  # Need this to behave like an instance of ActiveRecord
-  attr_reader :id
-  def to_param
-    (id = self.id) ? id.to_s : nil
-  end
 
   protected
 

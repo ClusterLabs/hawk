@@ -41,6 +41,12 @@ class ApplicationController < ActionController::Base
   filter_parameter_logging :password
 
   def initialize
+    # Handle CibObject exceptions
+    rescue_responses.update({
+      'CibObject::RecordNotFound'   => :not_found,
+      'CibObject::PermissionDenied' => :forbidden
+    })
+
     require 'socket'
     @host = Socket.gethostname  # should be short hostname
   end
