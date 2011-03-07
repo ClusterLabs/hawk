@@ -28,12 +28,17 @@
 #
 #======================================================================
 
+class NotFoundError < RuntimeError
+end
+
 #
 # Singleton class for invoking crm configuration tools as the current
 # user, obtained by trickery from ApplicationController, which injects
 # a "current_user" method into this class.
 #
 class Invoker
+  include GetText
+
   @@instance = Invoker.new
   def self.instance
     return @@instance
@@ -52,6 +57,28 @@ class Invoker
     result = stderr.read()
     stderr.close
     thread.value.exitstatus == 0 ? true : result
+  end
+
+  # Invoke cibadmin with command line arguments.  Returns stdout as string,
+  # Raises NotFoundError, SecurityError or RuntimeError on failure.
+  def cibadmin(*cmd)
+    stdin, stdout, stderr, thread = run_as(current_user, 'cibadmin', *cmd)
+    stdin.close
+    out = stdout.read()
+    stdout.close
+    err = stderr.read()
+    stderr.close
+    case thread.value.exitstatus
+    when 0
+      return out
+    when 22 # cib_NOTEXISTS
+      raise NotFoundError, _('The object/attribute does not exist (cibadmin %{cmd})') % {:cmd => cmd.inspect}
+    when 54 # cib_permission_denied
+      raise SecurityError, _('Permission denied for user %{user}') % {:user => current_user}
+    else
+      raise RuntimeError, _('Error invoking cibadmin %{cmd}: %{msg}') % {:cmd => cmd.inspect, :msg => err}
+    end
+    # Never reached
   end
 end
 
