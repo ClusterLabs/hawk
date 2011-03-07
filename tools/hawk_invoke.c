@@ -203,7 +203,7 @@ int main(int argc, char **argv)
 	if (clearenv() != 0) {
 		die("ERROR: Can't clear environment");
 	}
-	setenv("PATH", SBINDIR":"BINDIR, 1);
+	setenv("PATH", SBINDIR":"BINDIR":/bin", 1);
 	if (home != NULL) {
 		setenv("HOME", home, 1);
 	}
