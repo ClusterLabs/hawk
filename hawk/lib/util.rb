@@ -95,4 +95,30 @@ module Util
   end
   module_function :run_as
 
+  # Like %x[...], but without risk of shell injection.  Returns STDOUT
+  # as a string.  STDERR is ignored. $?.exitstatus is set appropriately.
+  # May block indefinitely if the command executed is expecting something
+  # on STDIN (untested)
+  def safe_x(*cmd)
+    pr = IO::pipe   # pipe[0] for read, pipe[1] for write
+    pid = fork{
+      # child
+      fork{
+        # grandchild
+        pr[0].close
+        STDOUT.reopen(pr[1])
+        pr[1].close
+        exec(*cmd)
+      }
+      Process.wait
+      exit!($?.exitstatus)
+    }
+    Process.waitpid(pid)
+    pr[1].close
+    out = pr[0].read()
+    pr[0].close
+    out
+  end
+  module_function :safe_x
+
 end
