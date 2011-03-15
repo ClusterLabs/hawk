@@ -47,6 +47,10 @@ ActionController::Routing::Routes.draw do |map|
   map.primitives_types '/cib/:cib_id/primitives/new/types', :controller => 'primitives', :action => 'types'
   map.primitives_meta  '/cib/:cib_id/primitives/new/meta', :controller => 'primitives', :action => 'meta'
 
+  map.resources :cib, :has_many => :groups
+  map.resources :cib, :has_many => :clones
+  map.resources :cib, :has_many => :masters
+
   # TODO(should): resources & nodes become Rails resources, look at RESTful routing
   # As of 2011-02-21 we now have a split here, resource editor uses the above
   map.with_options :controller => 'main' do |main|
