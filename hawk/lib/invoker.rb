@@ -80,5 +80,27 @@ class Invoker
     end
     # Never reached
   end
+
+  # Invoke "cibadmin -p --replace"
+  # TODO(should): Can this be conveniently consolidated with the above?
+  def cibadmin_replace(xml)
+    stdin, stdout, stderr, thread = run_as(current_user, 'cibadmin', '-p', '--replace')
+    stdin.write(xml)
+    stdin.close
+    stdout.close
+    err = stderr.read()
+    stderr.close
+    case thread.value.exitstatus
+    when 0
+      return true
+    when 22 # cib_NOTEXISTS
+      raise NotFoundError, _('The object/attribute does not exist (cibadmin %{cmd})') % {:cmd => cmd.inspect}
+    when 54 # cib_permission_denied
+      raise SecurityError, _('Permission denied for user %{user}') % {:user => current_user}
+    else
+      raise RuntimeError, _('Error invoking cibadmin %{cmd}: %{msg}') % {:cmd => cmd.inspect, :msg => err}
+    end
+    # Never reached
+  end
 end
 
