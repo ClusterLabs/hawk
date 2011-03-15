@@ -35,21 +35,6 @@ require 'rexml/document' unless defined? REXML::Document
 class Primitive < CibObject
   include GetText
 
-  # TODO(should) new_record, error, errors probably belong in CibObject
-  def new_record?
-    @new_record || false
-  end
-
-  # Strictly, this should be protected
-  def error(msg)
-    @errors ||= []
-    @errors << msg
-  end
-
-  def errors
-    @errors ||= []
-  end
-
   # Using r_class to avoid collision with class reserved word.
   # Using r_provider and r_type for consistency with r_class.
   attr_accessor :r_class, :r_provider, :r_type, :params

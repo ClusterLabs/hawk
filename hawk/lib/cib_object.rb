@@ -47,5 +47,20 @@ class CibObject
     (id = self.id) ? id.to_s : nil
   end
 
+  def new_record?
+    @new_record || false
+  end
+
+  def errors
+    @errors ||= []
+  end
+
+  protected
+
+  def error(msg)
+    @errors ||= []
+    @errors << msg
+  end
+
 end
 
