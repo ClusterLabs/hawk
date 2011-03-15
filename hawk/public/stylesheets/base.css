@@ -362,6 +362,18 @@ img
   /* specific style below */
 }
 
+.menu-separator
+{
+  margin: 0;
+  padding: 0;
+  height: 1px;
+  display: block;
+  overflow: hidden;
+  font-size: 1px;
+  line-height: 1px;
+  border-top: 1px solid #888;
+}
+
 .menu a.icon-pause
 {
   background: #ddd url(../images/icons/pause.png) 2px 50% no-repeat;
@@ -410,6 +422,16 @@ img
 .menu a.icon-demote
 {
   background: #ddd url(../images/icons/demote.png) 2px 50% no-repeat;
+}
+
+.menu a.icon-edit
+{
+  background: #ddd url(../images/icons/edit.png) 2px 50% no-repeat;
+}
+
+.menu a.icon-add
+{
+  background: #ddd url(../images/icons/add.png) 2px 50% no-repeat;
 }
 
 .flash-warning

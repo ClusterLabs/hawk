@@ -188,7 +188,9 @@ function popup_op_menu()
 
   // parts[0] is "node" or "resource", parts[1] is node or resource ID
   var parts = dc_split(target.attr("id"));
-  activeItem = parts[1];
+  var id_parts = parts[1].split(":");
+  var is_clone_instance = id_parts.length == 2
+  activeItem = id_parts[0];
 
   // Special case for resources (different menus based on type/hierarchy)
   if (parts[0] == "resource") {
@@ -197,21 +199,43 @@ function popup_op_menu()
     $(jq("menu::resource::promote")).hide();
     $(jq("menu::resource::demote")).hide();
 
-    if (resources_by_id[parts[1]].toplevel) {
-      // Top-level item, thus migratable
-      $(jq("menu::resource::migrate")).show();
-      $(jq("menu::resource::unmigrate")).show();
-
-      if (resources_by_id[parts[1]].children && resources_by_id[parts[1]].type == "master") {
-        // Paranoid check for has children + type == "master" (else one day someone
-        // will make an RA called "master", and we'd think it was a primitive).
-        $(jq("menu::resource::promote")).show();
-        $(jq("menu::resource::demote")).show();
-      }
+    if (resources_by_id[activeItem].children) {
+      // Not a primitive, no edit yet
+      $(jq("menu::resource::separator")).hide();
+      $(jq("menu::resource::edit")).hide();
     } else {
-      // It's a child and not migratable.
-      $(jq("menu::resource::migrate")).hide();
-      $(jq("menu::resource::unmigrate")).hide();
+      $(jq("menu::resource::separator")).show();
+      $(jq("menu::resource::edit")).show();
+    }
+
+    if (is_clone_instance) {
+       $(jq("menu::resource::start")).hide();
+       $(jq("menu::resource::stop")).hide();
+       $(jq("menu::resource::cleanup")).hide();
+       $(jq("menu::resource::migrate")).hide();
+       $(jq("menu::resource::unmigrate")).hide();
+       $(jq("menu::resource::separator")).hide();
+    } else {
+       $(jq("menu::resource::start")).show();
+       $(jq("menu::resource::stop")).show();
+       $(jq("menu::resource::cleanup")).show();
+
+      if (resources_by_id[activeItem].toplevel) {
+        // Top-level item, thus migratable
+        $(jq("menu::resource::migrate")).show();
+        $(jq("menu::resource::unmigrate")).show();
+
+        if (resources_by_id[activeItem].children && resources_by_id[activeItem].type == "master") {
+          // Paranoid check for has children + type == "master" (else one day someone
+          // will make an RA called "master", and we'd think it was a primitive).
+          $(jq("menu::resource::promote")).show();
+          $(jq("menu::resource::demote")).show();
+        }
+      } else {
+        // It's a child and not migratable.
+        $(jq("menu::resource::migrate")).hide();
+        $(jq("menu::resource::unmigrate")).hide();
+      }
     }
   }
 
@@ -304,14 +328,19 @@ function perform_op(type, id, op, extra)
 
 function add_mgmt_menu(e)
 {
-  switch (dc_split(e.attr("id"))[0]) {
+  var parts = dc_split(e.attr("id"));
+  switch (parts[0]) {
     case "node":
       e.addClass("clickable");
       e.click(popup_op_menu);
       e.children(":first").attr("src", url_root + "/images/icons/properties.png");
       break;
     case "resource":
-      if (e.parent().parent().hasClass("res-clone")) {
+      // This mess here will evaporate once everyhing has a menu on it - right now
+      // we're excluding only group children of clones.
+      var id_parts = parts[1].split(":"); // will only have 2 parts if clone instance
+      var is_primitive = (!resources_by_id[id_parts[0]].children);
+      if (e.parent().parent().hasClass("res-clone") || is_primitive) {
         e.addClass("clickable");
         e.click(popup_op_menu);
         e.children(":first").attr("src", url_root + "/images/icons/properties.png");
@@ -325,7 +354,7 @@ function add_mgmt_menu(e)
           }
           n = n.parent();
         }
-        if (!isClone) {
+        if (!isClone || e.parent().hasClass("res-primitive")) {
           e.addClass("clickable");
           e.click(popup_op_menu);
           e.children(":first").attr("src", url_root + "/images/icons/properties.png");
@@ -343,6 +372,10 @@ function init_menus()
   $(jq("menu::node::fence")).first().click(menu_item_click);
 //  $(jq("menu::node::mark")).first().click(menu_item_click);
 
+  $(jq("menu::reslist::new-primitive")).first().click(function() {
+    window.location.assign(url_root + "/cib/live/primitives/new");
+  });
+
   $(jq("menu::resource::start")).first().click(menu_item_click);
   $(jq("menu::resource::stop")).first().click(menu_item_click);
   $(jq("menu::resource::migrate")).first().click(menu_item_click_migrate);
@@ -350,9 +383,13 @@ function init_menus()
   $(jq("menu::resource::promote")).first().click(menu_item_click);
   $(jq("menu::resource::demote")).first().click(menu_item_click);
   $(jq("menu::resource::cleanup")).first().click(menu_item_click);
+  $(jq("menu::resource::edit")).first().click(function() {
+    window.location.assign(url_root + "/cib/live/primitives/" + activeItem + "/edit");
+  });
 
   $(document).click(function() {
     $(jq("menu::node")).hide();
+    $(jq("menu::reslist")).hide();
     $(jq("menu::resource")).hide();
   });
 }
@@ -749,9 +786,17 @@ function hawk_init()
       '<div id="nodelist::children" style="display: none;" class="closed"></div>' +
     '</div>' +
     '<div id="reslist" class="ui-corner-all" style="display: none;">' +
-      '<div class="clickable" onclick="toggle_collapse(\'reslist\');"><div id="reslist::button" class="tri-closed"></div><a id="reslist::menu"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="reslist::label"></span></div>' +
+      '<div class="clickable" onclick="toggle_collapse(\'reslist\');"><div id="reslist::button" class="tri-closed"></div><a id="reslist::menu"><img src="' + url_root + '/images/icons/properties.png" class="action-icon" alt="" /></a><span id="reslist::label"></span></div>' +
       '<div id="reslist::children" style="display: none;" class="closed"></div>' +
     '</div>'));
+
+  $(jq("reslist::menu")).click(function(event) {
+    var target = $(this);
+    var pos = target.children(":first").offset();
+    $(jq("menu::reslist")).css({left: pos.left+"px", top: pos.top+"px"}).show();
+    // Stop propagation
+    return false;
+  });
 
   update_cib();
 }
