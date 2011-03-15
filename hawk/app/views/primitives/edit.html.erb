@@ -1,0 +1,12 @@
+<%= render 'form' %>
+<script type="text/javascript">
+$(function() {
+  $("#primitive_submit").val("<%= escape_javascript(_('Apply Changes')) %>")
+  $("#primitive_revert").show();
+  $("#primitive_id").attr("disabled", "disabled");
+  $("#primitive_r_class").attr("disabled", "disabled");
+  $("#primitive_r_provider").attr("disabled", "disabled");
+  $("#primitive_r_type").attr("disabled", "disabled");
+});
+</script>
+

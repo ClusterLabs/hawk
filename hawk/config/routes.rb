@@ -40,10 +40,15 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :cib
 
   map.resources :cib, :has_many => :crm_config
-
   map.crm_config_info '/cib/:cib_id/crm_config/:id/info', :controller => 'crm_config', :action => 'info'
 
+  map.resources :cib, :has_many => :primitives
+  # TODO(should): Don't need primitive ID for these...
+  map.primitives_types '/cib/:cib_id/primitives/new/types', :controller => 'primitives', :action => 'types'
+  map.primitives_meta  '/cib/:cib_id/primitives/new/meta', :controller => 'primitives', :action => 'meta'
+
   # TODO(should): resources & nodes become Rails resources, look at RESTful routing
+  # As of 2011-02-21 we now have a split here, resource editor uses the above
   map.with_options :controller => 'main' do |main|
     # status, etc.
     main.default      'main',              :action => 'index'
