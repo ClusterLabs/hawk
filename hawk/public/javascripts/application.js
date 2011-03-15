@@ -197,7 +197,7 @@ function popup_op_menu()
     $(jq("menu::resource::promote")).hide();
     $(jq("menu::resource::demote")).hide();
 
-    if (resources_by_id[parts[1]]) {
+    if (resources_by_id[parts[1]].toplevel) {
       // Top-level item, thus migratable
       $(jq("menu::resource::migrate")).show();
       $(jq("menu::resource::unmigrate")).show();
@@ -209,7 +209,7 @@ function popup_op_menu()
         $(jq("menu::resource::demote")).show();
       }
     } else {
-      // Not present in cib.resources, thus it's a child and not migratable.
+      // It's a child and not migratable.
       $(jq("menu::resource::migrate")).hide();
       $(jq("menu::resource::unmigrate")).hide();
     }
@@ -596,14 +596,20 @@ function cib_to_reslist_panel(resources)
   return panel;
 }
 
-// Specifically only does top-level resources, because that's all we
-// care about in popup_op_menu().  If it turns out we need something
-// more extensive later, the logic in popup_op_menu() will have to change.
-function update_resources_by_id()
+function update_resources_by_id(resources)
 {
-  resources_by_id = {};
-  $.each(cib.resources, function() {
+  var toplevel = false;
+  if (!resources) {
+    resources_by_id = {};
+    resources = cib.resources;
+    toplevel = true;
+  }
+  $.each(resources, function() {
     resources_by_id[this.id] = this;
+    resources_by_id[this.id].toplevel = toplevel;
+    if (this.children) {
+      update_resources_by_id(this.children);
+    }
   });
 }
 
