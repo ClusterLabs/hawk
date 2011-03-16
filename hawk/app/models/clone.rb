@@ -73,8 +73,8 @@ class Clone < CibObject
       return true
     else
       # Saving an existing group
-      unless Group.exists?(id)
-        error _('Group ID "%{id}" does not exist') % { :id => @id }
+      unless Clone.exists?(id)
+        error _('Clone ID "%{id}" does not exist') % { :id => @id }
         return false
       end
 
