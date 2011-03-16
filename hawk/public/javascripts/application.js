@@ -199,7 +199,8 @@ function popup_op_menu()
     $(jq("menu::resource::promote")).hide();
     $(jq("menu::resource::demote")).hide();
 
-    if (resources_by_id[activeItem].children && resources_by_id[activeItem].type != "clone") {
+    if (resources_by_id[activeItem].children && resources_by_id[activeItem].type != "clone" &&
+      resources_by_id[activeItem].type != "master") {
       // Not a primitive, no edit yet
       $(jq("menu::resource::separator")).hide();
       $(jq("menu::resource::edit")).hide();
@@ -387,6 +388,20 @@ function init_menus()
       window.location.assign(url_root + "/cib/live/clones/new");
     } else {
       error_dialog(GETTEXT.err_cant_clone());
+    }
+  });
+  $(jq("menu::reslist::new-master")).first().click(function() {
+    var has_primitives = false;
+    $.each(cib.resources, function() {
+      if (!this.children || (this.children && this.type == "group")) {
+        has_primitives = true;
+        return false;
+      }
+    });
+    if (has_primitives) {
+      window.location.assign(url_root + "/cib/live/masters/new");
+    } else {
+      error_dialog(GETTEXT.err_cant_master());
     }
   });
 

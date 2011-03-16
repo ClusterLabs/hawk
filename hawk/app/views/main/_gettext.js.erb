@@ -67,6 +67,9 @@ var GETTEXT = {
   err_cant_clone: function(type) {
     return "<%= escape_javascript _("Can't create clone, there are no primitives or groups available.") %>";
   },
+  err_cant_master: function(type) {
+    return "<%= escape_javascript _("Can't create master/slave, there are no primitives or groups available.") %>";
+  },
   // DC Info
   dc_current: function(dc) {
     return "<%= escape_javascript _('DC: %s') % '_DC_' %>".replace('_DC_', dc);
