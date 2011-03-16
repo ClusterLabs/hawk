@@ -64,6 +64,9 @@ var GETTEXT = {
   err_denied: function() {
     return "<%= escape_javascript _('Permission denied') %>";
   },
+  err_cant_clone: function(type) {
+    return "<%= escape_javascript _("Can't create clone, there are no primitives or groups available.") %>";
+  },
   // DC Info
   dc_current: function(dc) {
     return "<%= escape_javascript _('DC: %s') % '_DC_' %>".replace('_DC_', dc);
