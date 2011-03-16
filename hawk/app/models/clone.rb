@@ -66,13 +66,13 @@ class Clone < CibObject
 
       result = Invoker.instance.crm_configure cmd
       unless result == true
-        error _('Unable to create group: %{msg}') % { :msg => result }
+        error _('Unable to create clone: %{msg}') % { :msg => result }
         return false
       end
 
       return true
     else
-      # Saving an existing group
+      # Saving an existing clone
       unless Clone.exists?(id)
         error _('Clone ID "%{id}" does not exist') % { :id => @id }
         return false

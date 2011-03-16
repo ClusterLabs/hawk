@@ -66,13 +66,13 @@ class Master < CibObject
 
       result = Invoker.instance.crm_configure cmd
       unless result == true
-        error _('Unable to create group: %{msg}') % { :msg => result }
+        error _('Unable to create master/slave: %{msg}') % { :msg => result }
         return false
       end
 
       return true
     else
-      # Saving an existing group
+      # Saving an existing master
       unless Master.exists?(id)
         error _('Master/Slave ID "%{id}" does not exist') % { :id => @id }
         return false
