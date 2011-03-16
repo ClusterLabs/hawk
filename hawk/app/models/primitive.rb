@@ -68,7 +68,7 @@ class Primitive < CibObject
     return false if errors.any?
 
     if new_record?
-      if Primitive.id_exists?(id)
+      if CibObject.id_exists?(id)
         error _('The ID "%{id}" is already in use') % { :id => @id }
         return false
       end
@@ -172,13 +172,6 @@ class Primitive < CibObject
     def exists?(id)
       # TODO(must): sanitize ID
       %x[/usr/sbin/cibadmin -Ql --xpath '//primitive[@id="#{id}"]' 2>/dev/null].index('<primitive') ? true : false
-    end
-
-    # Check whether anything with the given ID exists (not just resources)
-    # TODO(should): Strictly, this belongs in Cib.
-    def id_exists?(id)
-      # TODO(must): sanitize ID
-      %x[/usr/sbin/cibadmin -Ql --xpath '//configuration//*[@id="#{id}"]' 2>/dev/null].chomp != '<null>'
     end
 
     # Find a primitive by ID and return it.  Note that if the current
