@@ -393,6 +393,43 @@ function init_menus()
     }
     window.location.assign(url_root + "/cib/live/" + type + "/" + activeItem + "/edit");
   });
+  $(jq("menu::resource::delete")).first().click(function() {
+    // TODO(must): A lot of this is very similar to perform_op() - consolidate!
+    var id = activeItem;
+    var state = "neutral";
+    var c = $(jq("resource::" + id));
+    if (c.hasClass("ns-active"))        state = "active";
+    else if(c.hasClass("ns-inactive"))  state = "inactive";
+    else if(c.hasClass("ns-error"))     state = "error";
+    else if(c.hasClass("ns-transient")) state = "transient";
+    else if(c.hasClass("rs-active"))    state = "active";
+    else if(c.hasClass("rs-inactive"))  state = "inactive";
+    else if(c.hasClass("rs-error"))     state = "error";
+    $(jq("resource::" + id + "::menu")).children(":first").attr("src", url_root + "/images/spinner-16x16-" + state + ".gif");
+    $.ajax({ url: url_root + "/main/resource/delete",
+      data: "format=json&resource=" + id,
+      type: "POST",
+      success: function() {
+        // Remove spinner (a spinner that stops too early is marginally better than one that never stops)
+        $(jq("resource::" + id + "::menu")).children(":first").attr("src", url_root + "/images/icons/properties.png");
+      },
+      error: function(request) {
+        // Remove spinner
+        $(jq("resource::" + id + "::menu")).children(":first").attr("src", url_root + "/images/icons/properties.png");
+        var json = json_from_request(request);
+        if (json) {
+          error_dialog(json.error, json.stderr ? json.stderr : null);
+        } else {
+          if (request.status == 403) {
+            // 403 == permission denied
+            error_dialog(GETTEXT.err_denied());
+          } else {
+            error_dialog(GETTEXT.err_unexpected(request.status));
+          }
+        }
+      }
+    });
+  });
 
   $(document).click(function() {
     $(jq("menu::node")).hide();

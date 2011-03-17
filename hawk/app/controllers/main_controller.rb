@@ -117,4 +117,23 @@ class MainController < ApplicationController
     end
   end
 
+  def resource_delete
+    if params[:resource]
+      result = Invoker.instance.crm 'configure', 'delete', params[:resource]
+      if result == true
+        head :ok
+      else
+        render :status => 500, :json => {
+          # Strictly, this may not be an error (see Invoker::crm comments)
+          :error  => _('Error deleting resource'),
+          :stderr => result
+        }
+      end
+    else
+      render :status => 400, :json => {
+        :error => _('Required parameter "resource" not specified')
+      }
+    end
+  end
+
 end

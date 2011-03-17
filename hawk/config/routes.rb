@@ -64,6 +64,7 @@ ActionController::Routing::Routes.draw do |map|
     main.resource_op  'main/resource/:op', :action => 'resource_op', :conditions => { :method => :post },
                       :op => /(start|stop|unmigrate|promote|demote|cleanup)/
     main.resource_migrate 'main/resource/migrate', :action => 'resource_migrate', :conditions => { :method => :post }
+    main.resource_delete  'main/resource/delete',  :action => 'resource_delete',  :conditions => { :method => :post }
 
     # node ops
     main.node_standby 'main/node/:op',     :action => 'node_standby', :conditions => { :method => :post },
