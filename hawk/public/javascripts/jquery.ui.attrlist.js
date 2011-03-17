@@ -83,7 +83,9 @@
       labels: {
         add: "Add",
         remove: "Remove",
-        no_value: "You must enter a value"
+        no_value: "You must enter a value",
+        heading_add: null,
+        heading_edit: null
       },
       prefix: "",
       dirty: null
@@ -100,6 +102,7 @@
       // TODO(should): add ui-widget class (but style it properly first; fonts don't match the rest of Hawk yet)
       e.addClass("ui-attrlist");
       e.append($("<table><tr>" +
+          (self.options.labels.heading_add ? '<th class="label" colspan="3" style="padding-top: 1em;">' + escape_html(self.options.labels.heading_add) + "</th></tr><tr>" : '') +
           "<th><select><option></option></select></th>" +     // must have empty option, or IE can't manipulate this (*gah*)
           '<td class="value"></td>' +
           '<td><button type="button">' + escape_html(self.options.labels.add) + "</button></td>" +
@@ -265,7 +268,9 @@
     _insert_row: function(n, v, disabled) {
       disabled = disabled || false;
       var self = this;
-      var new_row = $('<tr class="attrlist-del">' +
+      var new_row = $(
+        ($(".attrlist-del").length == 0 && self.options.labels.heading_edit ? '<tr class="attrlist-del"><th class="label" colspan="3" style="padding-top: 1em;">' + escape_html(self.options.labels.heading_edit) + "</th></tr>" : '') +
+          '<tr class="attrlist-del">' +
           "<th>" + escape_html(n) + "</th>" +
           '<td class="value"></td>' +
           '<td><button type="button">' + self.options.labels.remove + "</button></td>" +
@@ -299,6 +304,9 @@
             self.new_attr_select.children("option:eq(" + i + ")").before(new_option);
           }
           self._init_new_value_field();
+          if (self.options.labels.heading_edit && $(".attrlist-del").length == 1) {
+            $(".attrlist-del").remove();
+          }
           self._trigger("dirty", event, { field: null, name: deleted_name } );
         });
       });;

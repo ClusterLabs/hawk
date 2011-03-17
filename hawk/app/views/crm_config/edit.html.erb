@@ -20,7 +20,9 @@ $(function() {
       labels: {
         add: "<%= escape_javascript _('Add') %>",
         remove: "<%= escape_javascript _('Remove') %>",
-        no_value: "<%= escape_javascript _('You must enter a value') %>"
+        no_value: "<%= escape_javascript _('You must enter a value') %>",
+        heading_add: "<%= escape_javascript _('Add new property:') %>",
+        heading_edit: "<%= escape_javascript _('Edit current properties:') %>"
       },
       dirty: function() {
         $("#flash-highlight").fadeOut('fast');    // Hide "saved changes" message
@@ -41,18 +43,15 @@ $(function() {
 <% end %>
   <table>
     <tr>
-      <th><%=h _('CRM Configuration') %></th>
+      <td>
+        <div id="crm_config"></div>
+      </td>
       <td rowspan="3" style="padding: 1em; vertical-align: top;">
         <div id="help" class="ui-state-highlight ui-corner-all" style="padding: 0.5em; display: none;">
           <div id="help-name" style="padding-bottom: 0.5em;"></div>
           <div id="help-shortdesc" style="padding-bottom: 0.5em;"></div>
           <div id="help-longdesc"></div>
         </div>
-      </td>
-    </tr>
-    <tr>
-      <td>
-        <div id="crm_config"></div>
       </td>
     </tr>
     <tr>
