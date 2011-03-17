@@ -199,16 +199,6 @@ function popup_op_menu()
     $(jq("menu::resource::promote")).hide();
     $(jq("menu::resource::demote")).hide();
 
-    if (resources_by_id[activeItem].children && resources_by_id[activeItem].type != "clone" &&
-      resources_by_id[activeItem].type != "master") {
-      // Not a primitive, no edit yet
-      $(jq("menu::resource::separator")).hide();
-      $(jq("menu::resource::edit")).hide();
-    } else {
-      $(jq("menu::resource::separator")).show();
-      $(jq("menu::resource::edit")).show();
-    }
-
     if (is_clone_instance) {
        $(jq("menu::resource::start")).hide();
        $(jq("menu::resource::stop")).hide();
@@ -220,6 +210,7 @@ function popup_op_menu()
        $(jq("menu::resource::start")).show();
        $(jq("menu::resource::stop")).show();
        $(jq("menu::resource::cleanup")).show();
+       $(jq("menu::resource::separator")).show();
 
       if (resources_by_id[activeItem].toplevel) {
         // Top-level item, thus migratable
@@ -329,40 +320,9 @@ function perform_op(type, id, op, extra)
 
 function add_mgmt_menu(e)
 {
-  var parts = dc_split(e.attr("id"));
-  switch (parts[0]) {
-    case "node":
-      e.addClass("clickable");
-      e.click(popup_op_menu);
-      e.children(":first").attr("src", url_root + "/images/icons/properties.png");
-      break;
-    case "resource":
-      // This mess here will evaporate once everyhing has a menu on it - right now
-      // we're excluding only group children of clones.
-      var id_parts = parts[1].split(":"); // will only have 2 parts if clone instance
-      var is_primitive = (!resources_by_id[id_parts[0]].children);
-      if (e.parent().parent().hasClass("res-clone") || is_primitive) {
-        e.addClass("clickable");
-        e.click(popup_op_menu);
-        e.children(":first").attr("src", url_root + "/images/icons/properties.png");
-      } else {
-        var isClone = false;
-        var n = e.parent();
-        while (n && n.attr("id") != "reslist") {
-          if (n.hasClass("res-clone")) {
-            isClone = true;
-            break;
-          }
-          n = n.parent();
-        }
-        if (!isClone || e.parent().hasClass("res-primitive")) {
-          e.addClass("clickable");
-          e.click(popup_op_menu);
-          e.children(":first").attr("src", url_root + "/images/icons/properties.png");
-        }
-      }
-      break;
-  }
+  e.addClass("clickable");
+  e.click(popup_op_menu);
+  e.children(":first").attr("src", url_root + "/images/icons/properties.png");
 }
 
 function init_menus()
@@ -375,6 +335,20 @@ function init_menus()
 
   $(jq("menu::reslist::new-primitive")).first().click(function() {
     window.location.assign(url_root + "/cib/live/primitives/new");
+  });
+  $(jq("menu::reslist::new-group")).first().click(function() {
+    var has_primitives = false;
+    $.each(cib.resources, function() {
+      if (!this.children) {
+        has_primitives = true;
+        return false;
+      }
+    });
+    if (has_primitives) {
+      window.location.assign(url_root + "/cib/live/groups/new");
+    } else {
+      error_dialog(GETTEXT.err_cant_group());
+    }
   });
   $(jq("menu::reslist::new-clone")).first().click(function() {
     var has_primitives = false;

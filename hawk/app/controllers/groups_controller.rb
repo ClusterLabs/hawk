@@ -29,5 +29,64 @@
 #======================================================================
 
 class GroupsController < ApplicationController
+  before_filter :login_required
+
+  layout 'main'
+
+  before_filter :get_cib
+
+  def get_cib
+    # This is overkill - we actually only need the cib for its id,
+    # and for getting a list of primitives that can be group
+    # children when creating a new group.
+    @cib = Cib.new params[:cib_id], current_user
+  end
+
+  def initialize
+    super
+    @title = _('Edit Group')
+  end
+
+  def new
+    @title = _('Create Group')
+    @res = Group.new
+  end
+
+  def create
+    @title = _('Create Group')
+    unless params[:cancel].blank?
+      redirect_to status_path
+      return
+    end
+    @res = Group.new params[:group]
+    if @res.save
+      flash[:highlight] = _('Group created successfully')
+      redirect_to :action => 'edit', :id => @res.id
+    else
+      render :action => 'new'
+    end
+  end
+
+  def edit
+    @res = Group.find params[:id]
+  end
+
+  def update
+    unless params[:revert].blank?
+      redirect_to :action => 'edit'
+      return
+    end
+    unless params[:cancel].blank?
+      redirect_to status_path
+      return
+    end
+    @res = Group.find params[:id]
+    if @res.update_attributes(params[:group])
+      flash[:highlight] = _('Group updated successfully')
+      redirect_to :action => 'edit', :id => @res.id
+    else
+      render :action => 'edit'
+    end
+  end
 
 end
