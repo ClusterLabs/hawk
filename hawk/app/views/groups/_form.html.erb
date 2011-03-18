@@ -102,21 +102,27 @@ $(function() {
   </tr>
   <tr><td>&nbsp;</td></tr>
   <tr>
-    <th><%=h _('Group Children') %></th>
-    <td></td>
-    <th><%=h _('Available Primitives') %></th>
-  </tr>
-  <tr>
-    <td><%= f.select :children, options_for_select(@res.children, @res.children), {},
-        { :multiple => true, :size => 5 } %></td>
     <td>
-      <button id="child-add">&lt;</button>
-      <br/><br/>
-      <button id="child-remove">&gt;</button>
+      <table>
+        <tr>
+          <th><%=h _('Group Children') %></th>
+          <td></td>
+          <th><%=h _('Available Primitives') %></th>
+        </tr>
+        <tr>
+          <td><%= f.select :children, options_for_select(@res.children, @res.children), {},
+              { :multiple => true, :size => 5 } %></td>
+          <td>
+            <button id="child-add">&lt;</button>
+            <br/><br/>
+            <button id="child-remove">&gt;</button>
+          </td>
+          <td><%= select_tag 'available', options_for_select(@cib.resources.select {|r|
+              !r.has_key?(:children) }.map{|r| r[:id] }.sort{|a,b| a.natcmp(b, true)}, []),
+              { :multiple => true, :size => 5 } %></td>
+        </tr>
+      </table>
     </td>
-    <td><%= select_tag 'available', options_for_select(@cib.resources.select {|r|
-        !r.has_key?(:children) }.map{|r| r[:id] }.sort{|a,b| a.natcmp(b, true)}, []),
-        { :multiple => true, :size => 5 } %></td>
   </tr>
   <tr><td>&nbsp;</td></tr>
   <tr>
@@ -124,7 +130,7 @@ $(function() {
   </tr>
   <tr>
     <td colspan="4">
-      <div id="meta" class="ui-widget-content ui-corner-all" style="padding: 0.5em; height: 8em; overflow: auto;"></div>
+      <div id="meta" class="ui-widget-content ui-corner-all" style="padding: 0.5em; height: 8em; width: 31em; overflow: auto;"></div>
     </td>
   </tr>
   <tr><td>&nbsp;</td></tr>
