@@ -48,18 +48,18 @@ class Invoker
   include Util
 
   # Run "crm [...]"
-  # Returns 'true' on successful execution, or STDOUT+STDERR output on
+  # Returns 'true' on successful execution, or STDERR output on
   # failure.  Note that this is horribly rough - "crm configure delete"
   # returns 0 (success) if a resource can't be deleted because it's
   # running, so we assume failure if the command output includes
   # "WARNING" or "ERROR".  *sigh*
+  # Actually, the above should be fixed as of 2011-03-17 (bnc#680401)
   # TODO(should): Can this be conveniently consolidated with the below?
   def crm(*cmd)
     stdin, stdout, stderr, thread = run_as(current_user, 'crm', *cmd)
     stdin.close
-    result = stdout.read()
     stdout.close
-    result += stderr.read()
+    result = stderr.read()
     stderr.close
     thread.value.exitstatus == 0 && !(result.index("ERROR") || result.index("WARNING")) ? true : result
   end
