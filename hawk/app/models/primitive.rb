@@ -37,7 +37,7 @@ class Primitive < CibObject
 
   # Using r_class to avoid collision with class reserved word.
   # Using r_provider and r_type for consistency with r_class.
-  attr_accessor :r_class, :r_provider, :r_type, :params
+  attr_accessor :r_class, :r_provider, :r_type, :params, :meta
 
   def initialize(attributes = nil)
     @new_record = true
@@ -46,8 +46,9 @@ class Primitive < CibObject
     @r_provider = 'heartbeat'
     @r_type     = ''
     @params     = {}
+    @meta       = {}
     unless attributes.nil?
-      ['id', 'r_class', 'r_provider', 'r_type', 'params'].each do |n|
+      ['id', 'r_class', 'r_provider', 'r_type', 'params', 'meta'].each do |n|
         instance_variable_set("@#{n}".to_sym, attributes[n]) if attributes.has_key?(n)
       end
     end
@@ -65,6 +66,12 @@ class Primitive < CibObject
       end
     end
 
+    @meta.each do |n,v|
+      if v.index("'") && v.index('"')
+        error _("Can't set meta attribute %{p}, because the value contains both single and double quotes") % { :p => n }
+      end
+    end
+
     return false if errors.any?
 
     if new_record?
@@ -79,6 +86,16 @@ class Primitive < CibObject
       unless @params.empty?
         cmd += " params"
         @params.each do |n,v|
+          if v.index("'")
+            cmd += " #{n}=\"#{v}\""
+          else
+            cmd += " #{n}='#{v}'"
+          end
+        end
+      end
+      unless @meta.empty?
+        cmd += " meta"
+        @meta.each do |n,v|
           if v.index("'")
             cmd += " #{n}=\"#{v}\""
           else
@@ -108,33 +125,8 @@ class Primitive < CibObject
         # are parameters (instance_attributes).
 
         p = @xml.elements['primitive']
-        if @params.empty?
-          # No parameters to set, get rid of
-          # instance_attributes (if it exists)
-          p.elements['instance_attributes'].remove if p.elements['instance_attributes']
-        else
-          # Get rid of any attributes that are no longer set
-          if p.elements['instance_attributes']
-            p.elements['instance_attributes'].elements.each {|e|
-              e.remove unless @params.keys.include? e.attributes['name'] }
-          else
-            # Add new instance attributes child
-            p.add_element 'instance_attributes', { 'id' => "#{p.attributes['id']}-instance_attributes" }
-          end
-          @params.each do |n,v|
-            # update existing, or add new
-            nvp = p.elements["instance_attributes/nvpair[@name=\"#{n}\"]"]
-            if nvp
-              nvp.attributes['value'] = v
-            else
-              p.elements['instance_attributes'].add_element 'nvpair', {
-                'id' => "#{p.elements['instance_attributes'].attributes['id']}-#{n}",
-                'name' => n,
-                'value' => v
-              }
-            end
-          end
-        end
+        merge_nvpairs(p, 'instance_attributes', @params)
+        merge_nvpairs(p, 'meta_attributes', @meta)
 
         # TODO(should): Really should only do this if we're
         # certain something has changed.
@@ -154,9 +146,10 @@ class Primitive < CibObject
     # Need to explicitly initialize this in case it's not passed
     # in ('save' method assumes @params is sane)
     @params = {}
+    @meta = {}
     # TODO(must): consolidate with initializes
     unless attributes.nil?
-      ['id', 'r_class', 'r_provider', 'r_type', 'params'].each do |n|
+      ['id', 'r_class', 'r_provider', 'r_type', 'params', 'meta'].each do |n|
         instance_variable_set("@#{n}".to_sym, attributes[n]) if attributes.has_key?(n)
       end
     end
@@ -195,6 +188,9 @@ class Primitive < CibObject
         res.instance_variable_set(:@params,     p.elements['instance_attributes'] ?
           Hash[p.elements['instance_attributes'].elements.collect {|e|
             [e.attributes['name'], e.attributes['value']] }] : {})
+        res.instance_variable_set(:@meta,       p.elements['meta_attributes'] ?
+          Hash[p.elements['meta_attributes'].elements.collect {|e|
+            [e.attributes['name'], e.attributes['value']] }] : {})
         res.instance_variable_set(:@xml, xml)
         res
       rescue SecurityError => e
@@ -228,8 +224,60 @@ class Primitive < CibObject
       @@r_types ||= Util.safe_x('/usr/sbin/crm', 'ra', 'list', c, p).split(/\s+/).sort {|a,b| a.natcmp(b, true)}
     end
 
-    def meta(c, p, t)
-      m = { :parameters => {}, :actions => {} }
+    def metadata(c, p, t)
+      m = {
+        :parameters => {},
+        :actions => {},
+        :meta => {
+          "allow-migrate" => {
+            :type     => "boolean",
+            :default  => "false"
+          },
+          "is-managed" => {
+            :type     => "boolean",
+            :default  => "true"
+          },
+          "interval-origin" => {
+            :type     => "integer",
+            :default  => "0"
+          },
+          "migration-threshold" => {
+            :type     => "integer",
+            :default  => "0"
+          },
+          "priority" => {
+            :type     => "integer",
+            :default  => "0"
+          },
+          "multiple-active" => {
+            :type     => "enum",
+            :default  => "stop_start",
+            :values   => [ "block", "stop_only", "stop_start" ]
+          },
+          "failure-timeout" => {
+            :type     => "integer",
+            :default  => "0"
+          },
+          "resource-stickiness" => {
+            :type     => "integer",
+            :default  => "0"
+          },
+          "target-role" => {
+            :type     => "enum",
+            :default  => "Started",
+            :values   => [ "Started", "Stopped", "Master" ]
+          },
+          "restart-type" => {
+            :type     => "enum",
+            :default  => "ignore",
+            :values   => [ "ignore", "restart" ]
+          },
+          "description" => {
+            :type     => "string",
+            :default  => ""
+          }
+        }
+      }
       return m if c.empty? or t.empty?
       p = 'NULL' if p.empty?
       xml = REXML::Document.new(Util.safe_x('/usr/sbin/lrmadmin', '-M', c, t, p, 'meta'))

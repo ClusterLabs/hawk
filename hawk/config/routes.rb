@@ -45,7 +45,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :cib, :has_many => :primitives
   # TODO(should): Don't need primitive ID for these...
   map.primitives_types '/cib/:cib_id/primitives/new/types', :controller => 'primitives', :action => 'types'
-  map.primitives_meta  '/cib/:cib_id/primitives/new/meta', :controller => 'primitives', :action => 'meta'
+  map.primitives_metadata  '/cib/:cib_id/primitives/new/metadata', :controller => 'primitives', :action => 'metadata'
 
   map.resources :cib, :has_many => :groups
   map.resources :cib, :has_many => :clones

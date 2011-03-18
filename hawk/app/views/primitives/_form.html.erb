@@ -16,7 +16,7 @@ var r_info = <%= Primitive.classes_and_providers.to_json %>;
 
 var req = null;
 
-var r_meta = <%= Primitive.meta(@res.r_class, @res.r_provider, @res.r_type).to_json %>;
+var r_meta = <%= Primitive.metadata(@res.r_class, @res.r_provider, @res.r_type).to_json %>;
 
 var keypress_hack = {
   r_class: "<%= escape_javascript(@res.r_class) %>",
@@ -71,7 +71,7 @@ function update_params() {
     $("#type-spinner").show();
     disable_apply();
     if (req) req.abort();
-    req = $.getJSON('<%= primitives_meta_path %>', "r_class=" + escape(c) + "&r_provider=" + escape(p) + "&r_type=" + escape(t), function(data) {
+    req = $.getJSON('<%= primitives_metadata_path %>', "r_class=" + escape(c) + "&r_provider=" + escape(p) + "&r_type=" + escape(t), function(data) {
       // First two probably not necessary
       r_meta = data;
 
@@ -151,6 +151,21 @@ $(function() {
     }
   });
 
+  $("#meta").attrlist({
+    all_attrs: r_meta.meta,
+    set_attrs: <%= @res.meta.to_json %>,
+    prefix: "primitive[meta]",
+    labels: {
+      add: "<%= escape_javascript _('Add') %>",
+      remove: "<%= escape_javascript _('Remove') %>",
+      no_value: "<%= escape_javascript _('You must enter a value') %>"
+    },
+    dirty: function(event, info) {
+      // This might be a bit event-heavy
+      enable_apply();
+    }
+  });
+
   $("#primitive_id")
     .bind("keyup change", function() {
       enable_apply();
@@ -192,6 +207,15 @@ $(function() {
   <tr>
     <td colspan="4">
       <div id="parameters" class="ui-widget-content ui-corner-all" style="padding: 0.5em; height: 8em; overflow: auto;"></div>
+    </td>
+  </tr>
+  <tr><td>&nbsp;</td></tr>
+  <tr>
+    <th colspan="4"><%=h _('Meta Attributes') %></th>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div id="meta" class="ui-widget-content ui-corner-all" style="padding: 0.5em; height: 8em; overflow: auto;"></div>
     </td>
   </tr>
 <% if false %>

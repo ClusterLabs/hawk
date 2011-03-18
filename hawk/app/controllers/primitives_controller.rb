@@ -91,7 +91,7 @@ class PrimitivesController < ApplicationController
     render :json => Primitive.types(params[:r_class], params.has_key?(:r_provider) ? params[:r_provider] : '')
   end
 
-  def meta
-    render :json => Primitive.meta(params[:r_class], params.has_key?(:r_provider) ? params[:r_provider] : '', params[:r_type])
+  def metadata
+    render :json => Primitive.metadata(params[:r_class], params.has_key?(:r_provider) ? params[:r_provider] : '', params[:r_type])
   end
 end

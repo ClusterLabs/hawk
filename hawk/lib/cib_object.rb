@@ -70,5 +70,34 @@ class CibObject
     @errors << msg
   end
 
+  def merge_nvpairs(parent, list, attrs)
+    if attrs.empty?
+      # No attributes to set, get rid of the list (if it exists)
+      parent.elements[list].remove if parent.elements[list]
+    else
+      # Get rid of any attributes that are no longer set
+      if parent.elements[list]
+        parent.elements[list].elements.each {|e|
+          e.remove unless attrs.keys.include? e.attributes['name'] }
+      else
+        # Add new instance attributes child
+        parent.add_element list, { 'id' => "#{parent.attributes['id']}-#{list}" }
+      end
+      attrs.each do |n,v|
+        # update existing, or add new
+        nvp = parent.elements["#{list}/nvpair[@name=\"#{n}\"]"]
+        if nvp
+          nvp.attributes['value'] = v
+        else
+          parent.elements[list].add_element 'nvpair', {
+            'id' => "#{parent.elements[list].attributes['id']}-#{n}",
+            'name' => n,
+            'value' => v
+          }
+        end
+      end
+    end
+  end
+
 end
 
