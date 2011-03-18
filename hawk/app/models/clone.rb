@@ -140,7 +140,7 @@ class Clone < CibObject
         c = xml.elements['clone']
         res = allocate
         res.instance_variable_set(:@id, id)
-        res.instance_variable_set(:@child, c.elements[1].attributes['id'])
+        res.instance_variable_set(:@child, c.elements['primitive|group'].attributes['id'])
         res.instance_variable_set(:@meta,  c.elements['meta_attributes'] ?
           Hash[c.elements['meta_attributes'].elements.collect {|e|
             [e.attributes['name'], e.attributes['value']] }] : {})

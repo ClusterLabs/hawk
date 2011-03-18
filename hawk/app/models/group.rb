@@ -143,7 +143,7 @@ class Group < CibObject
         g = xml.elements['group']
         res = allocate
         res.instance_variable_set(:@id, id)
-        res.instance_variable_set(:@children, g.elements.map {|e| e.attributes['id'] })
+        res.instance_variable_set(:@children, g.elements.collect('primitive') {|e| e.attributes['id'] })
         res.instance_variable_set(:@meta,     g.elements['meta_attributes'] ?
           Hash[g.elements['meta_attributes'].elements.collect {|e|
             [e.attributes['name'], e.attributes['value']] }] : {})
