@@ -31,14 +31,15 @@
 class Group < CibObject
   include GetText
 
-  attr_accessor :children
+  attr_accessor :children, :meta
 
   def initialize(attributes = nil)
     @new_record = true
     @id         = nil
     @children   = []
+    @meta       = {}
     unless attributes.nil?
-      ['id', 'children'].each do |n|
+      ['id', 'children', 'meta'].each do |n|
         instance_variable_set("@#{n}".to_sym, attributes[n]) if attributes.has_key?(n)
       end
     end
@@ -47,6 +48,12 @@ class Group < CibObject
   def save
     if @id.match(/[^a-zA-Z0-9_-]/)
       error _('Invalid Resource ID "%{id}"') % { :id => @id }
+    end
+
+    @meta.each do |n,v|
+      if v.index("'") && v.index('"')
+        error _("Can't set meta attribute %{p}, because the value contains both single and double quotes") % { :p => n }
+      end
     end
 
     if @children.empty?
@@ -66,6 +73,16 @@ class Group < CibObject
       @children.each do |c|
         cmd += " #{c}"
       end
+      unless @meta.empty?
+        cmd += " meta"
+        @meta.each do |n,v|
+          if v.index("'")
+            cmd += " #{n}=\"#{v}\""
+          else
+            cmd += " #{n}='#{v}'"
+          end
+        end
+      end
       cmd += "\ncommit\n"
 
       result = Invoker.instance.crm_configure cmd
@@ -82,8 +99,16 @@ class Group < CibObject
         return false
       end
 
-      # Actually nothing to do here - groups once created can't
-      # be edited (yet)
+      begin
+        g = @xml.elements['group']
+        merge_nvpairs(g, 'meta_attributes', @meta)
+
+        Invoker.instance.cibadmin_replace @xml.to_s
+      rescue StandardError => e
+        error e.message
+        return false
+      end
+
       return true
     end
 
@@ -91,7 +116,13 @@ class Group < CibObject
   end
 
   def update_attributes(attributes)
-    # Nothing to do here (yet)
+    @meta = {}
+    # TODO(must): consolidate with initializes
+    unless attributes.nil?
+      ['meta'].each do |n|
+        instance_variable_set("@#{n}".to_sym, attributes[n]) if attributes.has_key?(n)
+      end
+    end
     save
   end
 
@@ -113,6 +144,10 @@ class Group < CibObject
         res = allocate
         res.instance_variable_set(:@id, id)
         res.instance_variable_set(:@children, g.elements.map {|e| e.attributes['id'] })
+        res.instance_variable_set(:@meta,     g.elements['meta_attributes'] ?
+          Hash[g.elements['meta_attributes'].elements.collect {|e|
+            [e.attributes['name'], e.attributes['value']] }] : {})
+        res.instance_variable_set(:@xml, xml)
         res
       rescue SecurityError => e
         raise CibObject::PermissionDenied, e.message
@@ -122,6 +157,28 @@ class Group < CibObject
         raise CibObject::CibObjectError, e.message
       end
     end
+
+    def metadata
+      # TODO(must): are other meta attributes for group valid?
+      {
+        :meta => {
+          "is-managed" => {
+            :type     => "boolean",
+            :default  => "true"
+          },
+          "priority" => {
+            :type     => "integer",
+            :default  => "0"
+          },
+          "target-role" => {
+            :type     => "enum",
+            :default  => "Started",
+            :values   => [ "Started", "Stopped", "Master" ]
+          }
+        }
+      }
+    end
+
   end
 
 end

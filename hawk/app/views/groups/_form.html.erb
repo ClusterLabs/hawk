@@ -1,4 +1,6 @@
 <% content_for :head do %>
+<%= stylesheet_link_tag 'ui.attrlist.css' %>
+<%= javascript_include_tag 'jquery.ui.attrlist.js' %>
 <style type="text/css">
 /* TODO(should): this does not belong here (also need to remove
    inline style from various elements) */
@@ -11,6 +13,8 @@ select { width: 13em; }
 
 // TODO(must): make sure add/remove works correctly in IE (no initial option!)
 // TODO(should): ENTER in group ID field triggers click on add/remove button (damn!)
+
+var r_meta = <%= Group.metadata.to_json %>;
 
 function enable_apply() {
   if ($("#group_id").val() != "" && $("#group_children")[0].options.length) {
@@ -64,6 +68,20 @@ $(function() {
       $("#child-add").attr("disabled", "disabled");
     }
   });
+  $("#meta").attrlist({
+    all_attrs: r_meta.meta,
+    set_attrs: <%= @res.meta.to_json %>,
+    prefix: "group[meta]",
+    labels: {
+      add: "<%= escape_javascript _('Add') %>",
+      remove: "<%= escape_javascript _('Remove') %>",
+      no_value: "<%= escape_javascript _('You must enter a value') %>"
+    },
+    dirty: function(event, info) {
+      // This might be a bit event-heavy
+      enable_apply();
+    }
+  });
   enable_apply();
 });
 </script>
@@ -99,6 +117,15 @@ $(function() {
     <td><%= select_tag 'available', options_for_select(@cib.resources.select {|r|
         !r.has_key?(:children) }.map{|r| r[:id] }.sort{|a,b| a.natcmp(b, true)}, []),
         { :multiple => true, :size => 5 } %></td>
+  </tr>
+  <tr><td>&nbsp;</td></tr>
+  <tr>
+    <th colspan="4"><%=h _('Meta Attributes') %></th>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div id="meta" class="ui-widget-content ui-corner-all" style="padding: 0.5em; height: 8em; overflow: auto;"></div>
+    </td>
   </tr>
   <tr><td>&nbsp;</td></tr>
   <tr>
