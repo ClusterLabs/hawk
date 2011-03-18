@@ -113,9 +113,9 @@ $(function() {
           <td><%= f.select :children, options_for_select(@res.children, @res.children), {},
               { :multiple => true, :size => 5 } %></td>
           <td>
-            <button id="child-add">&lt;</button>
+            <button id="child-add" type="button">&lt;</button>
             <br/><br/>
-            <button id="child-remove">&gt;</button>
+            <button id="child-remove" type="button">&gt;</button>
           </td>
           <td><%= select_tag 'available', options_for_select(@cib.resources.select {|r|
               !r.has_key?(:children) }.map{|r| r[:id] }.sort{|a,b| a.natcmp(b, true)}, []),
