@@ -1,4 +1,6 @@
 <% content_for :head do %>
+<%= stylesheet_link_tag 'ui.attrlist.css' %>
+<%= javascript_include_tag 'jquery.ui.attrlist.js' %>
 <style type="text/css">
 /* TODO(should): this does not belong here (also need to remove
    inline style from various elements) */
@@ -8,6 +10,9 @@ select { width: 13em; }
 </style>
 <% end %>
 <script type="text/javascript">
+
+var r_meta = <%= Clone.metadata.to_json %>;
+
 function enable_apply() {
   if ($("#clone_id").val() != "" && $("#clone_child").val() != "") {
     $("#clone_submit").removeAttr("disabled");
@@ -27,6 +32,20 @@ $(function() {
     .bind("keyup change", function() {
       enable_apply();
     }).focus();
+  $("#meta").attrlist({
+    all_attrs: r_meta.meta,
+    set_attrs: <%= @res.meta.to_json %>,
+    prefix: "clone[meta]",
+    labels: {
+      add: "<%= escape_javascript _('Add') %>",
+      remove: "<%= escape_javascript _('Remove') %>",
+      no_value: "<%= escape_javascript _('You must enter a value') %>"
+    },
+    dirty: function(event, info) {
+      // This might be a bit event-heavy
+      enable_apply();
+    }
+  });
 });
 </script>
 <div class="ui-widget-content ui-corner-all" style="padding: 0.5em;">
@@ -47,6 +66,15 @@ $(function() {
     <td><%= f.select :child, options_for_select(([@res.child] + @cib.resources.select {|r|
         !r.has_key?(:children) || (r.has_key?(:children) && r[:type] == 'group')
       }.map{|r| r[:id] }).sort{|a,b| a.natcmp(b, true)}, @res.child) %></td>
+  </tr>
+  <tr><td>&nbsp;</td></tr>
+  <tr>
+    <th colspan="4"><%=h _('Meta Attributes') %></th>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div id="meta" class="ui-widget-content ui-corner-all" style="padding: 0.5em; height: 8em; overflow: auto;"></div>
+    </td>
   </tr>
   <tr><td>&nbsp;</td></tr>
   <tr>
