@@ -111,11 +111,11 @@ class Invoker
     when 0
       return true
     when 22 # cib_NOTEXISTS
-      raise NotFoundError, _('The object/attribute does not exist (cibadmin %{cmd})') % {:cmd => cmd.inspect}
+      raise NotFoundError, _('The object/attribute does not exist: %{msg}') % {:msg => err}
     when 54 # cib_permission_denied
       raise SecurityError, _('Permission denied for user %{user}') % {:user => current_user}
     else
-      raise RuntimeError, _('Error invoking cibadmin %{cmd}: %{msg}') % {:cmd => cmd.inspect, :msg => err}
+      raise RuntimeError, _('Error invoking cibadmin --replace: %{msg}') % {:msg => err}
     end
     # Never reached
   end
