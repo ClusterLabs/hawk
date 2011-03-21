@@ -1,6 +1,8 @@
 <% content_for :head do %>
 <%= stylesheet_link_tag 'ui.attrlist.css' %>
+<%= stylesheet_link_tag 'ui.oplist.css' %>
 <%= javascript_include_tag 'jquery.ui.attrlist.js' %>
+<%= javascript_include_tag 'jquery.ui.oplist.js' %>
 <style type="text/css">
 /* TODO(should): this does not belong here (also need to remove
    inline style from various elements) */
@@ -65,6 +67,7 @@ function update_params() {
   var t = $("#primitive_r_type").val();
   keypress_hack.r_type = t;
   $("#parameters").attrlist({ all_attrs: {}});
+  $("#operations").oplist({ all_ops: {}});
   if (t) {
     var c = $("#primitive_r_class").val();
     var p = $("#primitive_r_provider").val() || "";
@@ -76,6 +79,18 @@ function update_params() {
       r_meta = data;
 
       $("#parameters").attrlist({ all_attrs: r_meta.parameters });
+      var default_ops = {};
+      $.each(r_meta.ops, function(n, v) {
+        switch (n) {
+          case "start":
+          case "stop":
+          case "monitor":
+            default_ops[n] = v;
+            break;
+        }
+      });
+      $("#operations").oplist({ all_ops: r_meta.ops, set_ops: default_ops });
+
       $("#type-spinner").hide();
 
       enable_apply();
@@ -151,6 +166,21 @@ $(function() {
     }
   });
 
+  $("#operations").oplist({
+    all_ops: r_meta.ops,
+    set_ops: <%= @res.ops.to_json %>,
+    prefix: "primitive[ops]",
+    labels: {
+      add: "<%= escape_javascript _('Add') %>",
+      edit: "<%= escape_javascript _('Edit') %>",
+      remove: "<%= escape_javascript _('Remove') %>"
+    },
+    dirty: function(event, info) {
+      // This might be a bit event-heavy
+      enable_apply();
+    }
+  });
+
   $("#meta").attrlist({
     all_attrs: r_meta.meta,
     set_attrs: <%= @res.meta.to_json %>,
@@ -211,16 +241,6 @@ $(function() {
   </tr>
   <tr><td>&nbsp;</td></tr>
   <tr>
-    <th colspan="4"><%=h _('Meta Attributes') %></th>
-  </tr>
-  <tr>
-    <td colspan="4">
-      <div id="meta" class="ui-widget-content ui-corner-all" style="padding: 0.5em; height: 8em; width: 31em; overflow: auto; position: relative;"></div>
-    </td>
-  </tr>
-<% if false %>
-  <tr><td>&nbsp;</td></tr>
-  <tr>
     <th colspan="4"><%=h _('Operations') %></th>
   </tr>
   <tr>
@@ -228,7 +248,15 @@ $(function() {
       <div id="operations" class="ui-widget-content ui-corner-all" style="padding: 0.5em; height: 8em; width: 31em; overflow: auto; position: relative;"></div>
     </td>
   </tr>
-<% end %>
+  <tr><td>&nbsp;</td></tr>
+  <tr>
+    <th colspan="4"><%=h _('Meta Attributes') %></th>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div id="meta" class="ui-widget-content ui-corner-all" style="padding: 0.5em; height: 8em; width: 31em; overflow: auto; position: relative;"></div>
+    </td>
+  </tr>
   <tr><td>&nbsp;</td></tr>
   <tr>
     <td colspan="4" style="text-align: right;">

@@ -37,7 +37,7 @@ class Primitive < CibObject
 
   # Using r_class to avoid collision with class reserved word.
   # Using r_provider and r_type for consistency with r_class.
-  attr_accessor :r_class, :r_provider, :r_type, :params, :meta
+  attr_accessor :r_class, :r_provider, :r_type, :params, :ops, :meta
 
   def initialize(attributes = nil)
     @new_record = true
@@ -46,9 +46,10 @@ class Primitive < CibObject
     @r_provider = 'heartbeat'
     @r_type     = ''
     @params     = {}
+    @ops        = {}
     @meta       = {}
     unless attributes.nil?
-      ['id', 'r_class', 'r_provider', 'r_type', 'params', 'meta'].each do |n|
+      ['id', 'r_class', 'r_provider', 'r_type', 'params', 'ops', 'meta'].each do |n|
         instance_variable_set("@#{n}".to_sym, attributes[n]) if attributes.has_key?(n)
       end
     end
@@ -63,6 +64,14 @@ class Primitive < CibObject
     @params.each do |n,v|
       if v.index("'") && v.index('"')
         error _("Can't set parameter %{p}, because the value contains both single and double quotes") % { :p => n }
+      end
+    end
+
+    @ops.each do |op,attrlist|
+      attrlist.each do |n,v|
+        if v.index("'") && v.index('"')
+          error _("Can't set op %{o} attribute {%a}, because the value contains both single and double quotes") % { :o => op, :a => n }
+        end
       end
     end
 
@@ -90,6 +99,18 @@ class Primitive < CibObject
             cmd += " #{n}=\"#{v}\""
           else
             cmd += " #{n}='#{v}'"
+          end
+        end
+      end
+      unless @ops.empty?
+        @ops.each do |op, attrlist|
+          cmd += " op #{op}"
+          attrlist.each do |n,v|
+            if v.index("'")
+              cmd += " #{n}=\"#{v}\""
+            else
+              cmd += " #{n}='#{v}'"
+            end
           end
         end
       end
@@ -121,11 +142,9 @@ class Primitive < CibObject
       end
 
       begin
-        # The only thing we can actually change right now (2011-03-15)
-        # are parameters (instance_attributes).
-
         p = @xml.elements['primitive']
         merge_nvpairs(p, 'instance_attributes', @params)
+        merge_ops(p, @ops)
         merge_nvpairs(p, 'meta_attributes', @meta)
 
         # TODO(should): Really should only do this if we're
@@ -146,14 +165,46 @@ class Primitive < CibObject
     # Need to explicitly initialize this in case it's not passed
     # in ('save' method assumes @params is sane)
     @params = {}
+    @ops = {}
     @meta = {}
     # TODO(must): consolidate with initializes
     unless attributes.nil?
-      ['id', 'r_class', 'r_provider', 'r_type', 'params', 'meta'].each do |n|
+      ['id', 'r_class', 'r_provider', 'r_type', 'params', 'ops', 'meta'].each do |n|
         instance_variable_set("@#{n}".to_sym, attributes[n]) if attributes.has_key?(n)
       end
     end
     save
+  end
+
+  # This is remarkably cimilar to CibObject::merge_nvpairs
+  def merge_ops(parent, ops)
+    if ops.empty?
+      parent.elements['operations'].remove if parent.elements['operations']
+    else
+      if parent.elements['operations']
+        parent.elements['operations'].elements.each {|e|
+          e.remove unless ops.keys.include? e.attributes['name'] }
+      else
+        parent.add_element 'operations'
+      end
+      ops.each do |op_name,attrlist|
+        # Everything needs an interval
+        attrlist['interval'] = '0' unless attrlist.keys.include?('interval')
+        op = parent.elements["operations/op[@name=\"#{op_name}\"]"]
+        unless op
+          op = parent.elements['operations'].add_element 'op', {
+            'id' => "#{parent.attributes['id']}-#{op_name}-#{attrlist['interval']}",
+            'name' => op_name
+          }
+        end
+        op.attributes.each do |n,v|
+          op.attributes.delete(n) unless n == 'id' || n == 'name' || attrlist.keys.include?(n)
+        end
+        attrlist.each do |n,v|
+          op.attributes[n] = v
+        end
+      end
+    end
   end
 
   class << self
@@ -188,6 +239,11 @@ class Primitive < CibObject
         res.instance_variable_set(:@params,     p.elements['instance_attributes'] ?
           Hash[p.elements['instance_attributes'].elements.collect {|e|
             [e.attributes['name'], e.attributes['value']] }] : {})
+        res.instance_variable_set(:@ops,        p.elements['operations'] ?
+          Hash[p.elements['operations'].elements.collect {|e|
+            [e.attributes['name'], Hash[
+              e.attributes.collect.select {|n| n[0] != 'name' && n[0] != 'id' }]
+            ] }] : {})
         res.instance_variable_set(:@meta,       p.elements['meta_attributes'] ?
           Hash[p.elements['meta_attributes'].elements.collect {|e|
             [e.attributes['name'], e.attributes['value']] }] : {})
@@ -227,7 +283,7 @@ class Primitive < CibObject
     def metadata(c, p, t)
       m = {
         :parameters => {},
-        :actions => {},
+        :ops => {},
         :meta => {
           "allow-migrate" => {
             :type     => "boolean",
@@ -290,9 +346,9 @@ class Primitive < CibObject
         }
       end
       xml.elements.each('//action') do |e|
-        m[:actions][e.attributes['name']] = {}
-        ['timeout', 'interval', 'depth'].each do |a|
-          m[:actions][e.attributes['name']][a.to_sym] = e.attributes[a] if e.attributes[a]
+        m[:ops][e.attributes['name']] = {}
+        ['timeout', 'interval'].each do |a|
+          m[:ops][e.attributes['name']][a.to_sym] = e.attributes[a] if e.attributes[a]
         end
       end
       m
