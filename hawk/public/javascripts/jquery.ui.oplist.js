@@ -28,8 +28,10 @@
 //
 //======================================================================
 
+// Note: this requires ui.attrlist
+
 // TODO(must): keypress_hack for new_op_select
-// TODO(must): field for dirty event?
+// TODO(must): do we care about field for dirty event?
 
 (function($) {
   $.widget("ui.oplist", {
@@ -40,7 +42,10 @@
       labels: {
         add: "Add",
         edit: "Edit",
-        remove: "Remove"
+        remove: "Remove",
+        no_value: "You must enter a value",
+        ok: "OK",
+        cancel: "Cancel"
       },
       prefix: "",
       dirty: null
@@ -56,7 +61,7 @@
         '<td class="value"></td>' +
         '<td class="button"></td>' +
         '<td class="button"><button type="button">' + escape_html(self.options.labels.add) + "</button></td>" +
-        "</tr></table>"));
+        '</tr></table><div><div style="height: 12em; overflow: auto; position: relative;"></div></div>'));
       self.new_op_row = $(e.find("tr")[0]);
       self.new_op_select = e.find("select");
       self.new_op_td = $(e.find("td")[0]);
@@ -72,6 +77,15 @@
       });;
       self.new_op_select.change(function() {
         self._init_new_op();
+      });
+      self.dialog = $(e.find("div")[0]);
+      self.dialog.dialog({
+        resizable:      false,
+        width:          "34em",
+        draggable:      false,
+        modal:          true,
+        autoOpen:       false,
+        closeOnEscape:  true
       });
     },
 
@@ -149,6 +163,103 @@
           primary: "ui-icon-pencil"
         },
         text: false
+      }).click(function() {
+        var this_row = $(this).parent().parent();
+        var op = this_row.children(":first").text();
+        var set_attrs = {};
+        this_row.find("input").each(function() {
+          var n = this.name.match(/.*\[([^\]]+)\]$/)[1];
+          if (op != "monitor" && n == "interval" && this.value == "0") {
+            // Exclude interval=0 from the list of set attributes
+            // if we're not editing a monitor op (it'll ultimately
+            // be set anyway, but the UI is cleaner without this)
+          } else {
+            set_attrs[n] = this.value;
+          }
+        });
+        self.dialog.children(":first").attrlist({
+          labels: {
+            add: self.options.labels.add,
+            remove: self.options.labels.remove,
+            no_value: self.options.labels.no_value
+          },
+          all_attrs: {
+            "interval": {
+              "type":     "string",
+              "default":  self.options.all_ops[op]["interval"] || 0,
+              "required": op == "monitor"
+            },
+            "timeout": {
+              "type":     "string",
+              "default":  self.options.all_ops[op]["timeout"],
+              "required": true
+            },
+            // Default for "requires" is actually "nothing" for STONITH
+            // resources, and for everything else "fencing" if STONITH
+            // is enabled, otherwise "quorum".
+            "requires": {
+              "type":     "enum",
+              "default":  "fencing",
+              "values":   ["nothing", "quorum", "fencing"]
+            },
+            "enabled": {
+              "type":     "boolean",
+              "default":  "true"
+            },
+            // TODO(should): remove "role"?  Somewhat advanced, methinks...
+            "role": {
+              "type":     "enum",
+              "default":  "",
+              "values":   ["Stopped", "Started", "Slave", "Master"]
+            },
+            // Default for "on-fail" for "stop" ops is "fence" when
+            // STONITH is enabled and "block" otherwise.  All other ops
+            // default to "stop".
+            "on-fail": {
+              "type":     "enum",
+              "default":  "stop",
+              "values":   ["ignore", "block", "stop", "restart", "standby", "fence"]
+            },
+            "start-delay": {
+              "type":     "string",
+              "default":  "0"
+            },
+            "interval-origin": {
+              "type":     "string",
+              "default":  "0"
+            },
+            "record-pending": {
+              "type":     "boolean",
+              "default":  "false"
+            },
+            "description": {
+              "type":     "string",
+              "default":  ""
+            }
+          },
+          set_attrs: set_attrs,
+          prefix: "op_attrs"
+        });
+        var b = {};
+        // TODO(must): OK must not be allowed if any fields have empty values!
+        b[self.options.labels.ok] = function(event) {
+          var v = self.dialog.children(":first").attrlist("val");
+          $(this_row.children("td")[0]).html(self._op_value_string(op, v) + self._op_fields(op, v));
+          $(this).dialog("close");
+          self._trigger("dirty", event, { field: null, name: op } );
+        };
+        b[self.options.labels.cancel] = function() {
+          $(this).dialog("close");
+        };
+        self.dialog.dialog("option", {
+          title:    op,
+          buttons:  b,
+          close:    function() {
+            // Get rid of attrlist when dialog closes, else it pollutes
+            // the parent form with hidden fields).
+            self.dialog.children(":first").attrlist({ all_attrs: {}});
+          }
+        }).dialog("open");
       });
       $(buttons[1]).button({
         icons: {

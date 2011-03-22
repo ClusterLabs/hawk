@@ -68,6 +68,7 @@
 // when a row is deleted.
 //
 
+// TODO(should): Actually support "destroy" (see ui.oplist dialog close handler)
 // TODO(should): ESC key on field to hide no_value error
 // TODO(should): cope with yes/no booleans
 // TODO(should): something better (position-wise) with "you must enter a value"?
@@ -359,7 +360,20 @@
 
     _scroll_into_view: function() {
       this.element.scrollTop(this.element.find("table tr:last").position().top);
+    },
+
+    // Returns a hash (same format as set_attrs), for
+    // all values currently present in the attrlist
+    val: function() {
+      var v = {};
+      this.element.find(".attrlist-del").each(function() {
+        var f = $(this).children("td.value").children(":last");
+        var n = f[0].name.match(/.*\[([^\]]+)\]$/)[1];
+        v[n] = f[0].type == "checkbox" ? f[0].checked : f.val();
+      });
+      return v;
     }
+
   });
 })(jQuery);
 
