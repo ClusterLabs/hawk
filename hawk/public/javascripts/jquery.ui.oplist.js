@@ -30,8 +30,7 @@
 
 // Note: this requires ui.attrlist
 
-// TODO(must): keypress_hack for new_op_select
-// TODO(must): do we care about field for dirty event?
+// TODO(should): do we care about field for dirty event?
 
 (function($) {
   $.widget("ui.oplist", {
@@ -50,6 +49,7 @@
       prefix: "",
       dirty: null
     },
+    keypress_hack: "",
 
     _create: function() {
       var self = this;
@@ -75,8 +75,13 @@
       }).click(function(event) {
         self._add_op(event);
       });;
-      self.new_op_select.change(function() {
-        self._init_new_op();
+      self.new_op_select.keydown(function() {
+        self.keypress_hack = $(this).val();
+      }).bind("keyup change", function() {
+        if ($(this).val() != self.keypress_hack) {
+          self.keypress_hack = $(this).val();
+          self._init_new_op();
+        }
       });
       self.dialog = $(e.find("div")[0]);
       self.dialog.dialog({
