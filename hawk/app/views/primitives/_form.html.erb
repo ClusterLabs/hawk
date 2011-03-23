@@ -206,6 +206,12 @@ $(function() {
     .bind("keyup change", function() {
       enable_apply();
     }).focus();
+
+  // Prevent page reload from causing e.g.: provider to remain ocfs2,
+  // but type list is back on heartbeat types.
+  $("#primitive_r_class").val(keypress_hack.r_class);
+  $("#primitive_r_provider").val(keypress_hack.r_provider);
+  $("#primitive_r_type").val(keypress_hack.r_type);
 });
 </script>
 <div class="ui-widget-content ui-corner-all" style="padding: 0.5em;">
