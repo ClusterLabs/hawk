@@ -28,6 +28,8 @@ var keypress_hack = {
 
 function update_provider() {
   keypress_hack.r_class = $("#primitive_r_class").val()
+  keypress_hack.r_provider = "";
+  keypress_hack.r_type = "";
   $("#parameters").attrlist({ all_attrs: {}});
   $("#primitive_r_provider option").remove();
   if (r_info.r_providers[$("#primitive_r_class").val()]) {
@@ -45,6 +47,7 @@ function update_type() {
   var c = $("#primitive_r_class").val();
   var p = $("#primitive_r_provider").val() || "";
   keypress_hack.r_provider = p;
+  keypress_hack.r_type = "";
   $("#parameters").attrlist({ all_attrs: {}});
   $("#primitive_r_type option").remove();
   // Always have the first type blank (forces user to select something before populating parameters)
