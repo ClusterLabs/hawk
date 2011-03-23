@@ -104,7 +104,7 @@ class Group < CibObject
         merge_nvpairs(g, 'meta_attributes', @meta)
 
         Invoker.instance.cibadmin_replace @xml.to_s
-      rescue StandardError => e
+      rescue NotFoundError, SecurityError, RuntimeError => e
         error e.message
         return false
       end

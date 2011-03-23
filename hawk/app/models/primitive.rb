@@ -150,7 +150,7 @@ class Primitive < CibObject
         # TODO(should): Really should only do this if we're
         # certain something has changed.
         Invoker.instance.cibadmin_replace @xml.to_s
-      rescue StandardError => e
+      rescue NotFoundError, SecurityError, RuntimeError => e
         error e.message
         return false
       end
