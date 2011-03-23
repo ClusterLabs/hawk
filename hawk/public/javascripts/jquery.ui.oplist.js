@@ -243,10 +243,24 @@
             }
           },
           set_attrs: set_attrs,
-          prefix: "op_attrs"
+          prefix: "op_attrs",
+          dirty: function() {
+            // Make sure everything has values
+            var enabled = true;
+            $.each(self.dialog.children(":first").attrlist("val"), function(n,v) {
+              if (v === "") {
+                enabled = false;
+                return false;
+              }
+            });
+            if (enabled) {
+              self.dialog.parent().find(".ui-dialog-buttonpane button:first").removeAttr("disabled");
+            } else {
+              self.dialog.parent().find(".ui-dialog-buttonpane button:first").attr("disabled", "disabled");
+            }
+          }
         });
         var b = {};
-        // TODO(must): OK must not be allowed if any fields have empty values!
         b[self.options.labels.ok] = function(event) {
           var v = self.dialog.children(":first").attrlist("val");
           $(this_row.children("td")[0]).html(self._op_value_string(op, v) + self._op_fields(op, v));
@@ -259,6 +273,9 @@
         self.dialog.dialog("option", {
           title:    op,
           buttons:  b,
+          open:     function() {
+            $(this).parent().find(".ui-dialog-buttonpane button:first").attr("disabled", "disabled");
+          },
           close:    function() {
             // Get rid of attrlist when dialog closes, else it pollutes
             // the parent form with hidden fields).
