@@ -1,11 +1,31 @@
-<!-- (The href/onlick garbage in menus is to make the hover style work in IE) -->
-<div id="menu::node" class="menu" style="display: none;">
-  <ul>
-    <li id="menu::node::online" class="menu-item"><a class="icon-start enabled" href="#" onclick="return false;"><%=h _('Online') %></a></li>
-    <li id="menu::node::standby" class="menu-item"><a class="icon-pause enabled" href="#" onclick="return false;"><%=h _('Standby') %></a></li>
-    <li id="menu::node::fence" class="menu-item"><a class="icon-kill enabled" href="#" onclick="return false;"><%=h _('Fence Node') %></a></li>
-  </ul>
-</div>
+<div id="menu::node" style="display: none;"></div>
+<script type="text/javascript">
+$(function() {
+  $(jq("menu::node")).popupmenu({ iconroot: url_root + "/images/icons/", items: [
+    {
+      label: "<%=h escape_javascript _('Online') %>",
+      icon: "start.png",
+      click: function(target) {
+        confirm_op(this.label, dc_split(target.attr("id"))[1], "node", "online");
+      }
+    },
+    {
+      label: "<%=h escape_javascript _('Standby') %>",
+      icon: "pause.png",
+      click: function(target) {
+        confirm_op(this.label, dc_split(target.attr("id"))[1], "node", "standby");
+      }
+    },
+    {
+      label: "<%=h escape_javascript _('Fence Node') %>",
+      icon: "kill.png",
+      click: function(target) {
+        confirm_op(this.label, dc_split(target.attr("id"))[1], "node", "fence");
+      }
+    }
+  ]});
+});
+</script>
 <div id="menu::reslist" class="menu" style="display: none;">
   <ul>
     <li id="menu::reslist::new-primitive" class="menu-item"><a class="icon-add enabled" href="#" onclick="return false;"><%=h _('New Primitive') %></a></li>

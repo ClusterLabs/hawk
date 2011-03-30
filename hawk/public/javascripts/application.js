@@ -241,13 +241,22 @@ function menu_item_click()
 {
   // parts[1] is "node" or "resource", parts[2] is op
   var parts = dc_split($(this).attr("id"));
-  $("#dialog").html(GETTEXT[parts[1] + "_" + parts[2]](activeItem));
+  confirm_op($(this).children(":first").html(), activeItem, parts[1], parts[2]);
+}
+
+// title: dialog title
+// id:    node or resource id
+// type:  either "node" or "resource"
+// op:    op to perform
+function confirm_op(title, id, type, op)
+{
+  $("#dialog").html(GETTEXT[type + "_" + op](id));
   // TODO(could): Is there a neater construct for this localized button thing?
   var b = {};
-  b[GETTEXT.yes()]  = function() { perform_op(parts[1], activeItem, parts[2]); $(this).dialog("close"); };
+  b[GETTEXT.yes()]  = function() { perform_op(type, id, op); $(this).dialog("close"); };
   b[GETTEXT.no()]   = function() { $(this).dialog("close"); }
   $("#dialog").dialog("option", {
-    title:    $(this).children(":first").html(),
+    title:    title,
     buttons:  b
   });
   $("#dialog").dialog("open");
@@ -321,7 +330,13 @@ function perform_op(type, id, op, extra)
 function add_mgmt_menu(e)
 {
   e.addClass("clickable");
-  e.click(popup_op_menu);
+  if (e.attr("id").indexOf("node") >= 0) {
+    e.click(function() {
+      return $(jq("menu::node")).popupmenu("popup", $(this));
+    });
+  } else {
+    e.click(popup_op_menu);
+  }
   e.children(":first").attr("src", url_root + "/images/icons/properties.png");
 }
 
