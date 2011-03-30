@@ -82,8 +82,15 @@
     // want to use to activate the popup.  Bases position on the
     // first child of the A element (i.e. works with <a><img/></a>).
     // 'target' must be the jQuery object for the A element.
-    popup: function(target) {
+    // 'hide_items' is an array of indices of menu items to hide.
+    popup: function(target, hide_items) {
       var pos = target.children(":first").offset();
+      $(this.list.children().show());
+      if (hide_items) {
+        for (var i = 0; i < hide_items.length; i++) {
+          $(this.list.children()[hide_items[i]]).hide();
+        }
+      }
       this.target = target;
       this.element.css({left: pos.left+"px", top: pos.top+"px"}).show();
       return false; // Stop propagation

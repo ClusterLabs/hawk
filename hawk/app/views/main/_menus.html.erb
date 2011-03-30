@@ -1,5 +1,6 @@
 <div id="menu::node" style="display: none;"></div>
 <div id="menu::reslist" style="display: none;"></div>
+<div id="menu::resource" style="display: none;"></div>
 <script type="text/javascript">
 $(function() {
   $(jq("menu::node")).popupmenu({ iconroot: url_root + "/images/icons/", items: [
@@ -88,20 +89,134 @@ $(function() {
       }
     }
   ]});
+  $(jq("menu::resource")).popupmenu({ iconroot: url_root + "/images/icons/", items: [
+    {
+      label: "<%=h escape_javascript _('Start') %>",
+      icon: "start.png",
+      click: function(target) {
+        confirm_op(this.label, dc_split(target.attr("id"))[1], "resource", "start");
+      }
+    },
+    {
+      label: "<%=h escape_javascript _('Stop') %>",
+      icon: "stop.png",
+      click: function(target) {
+        confirm_op(this.label, dc_split(target.attr("id"))[1], "resource", "stop");
+      }
+    },
+    {
+      label: "<%=h escape_javascript _('Move...') %>",
+      icon: "migrate.png",
+      click: function(target) {
+        var id = dc_split(target.attr("id"))[1];
+        var html = '<form><select id="migrate-to" size="4" style="width: 100%;">';
+        $.each(cib.nodes, function() {
+          html += '<option value="' + this.uname + '">' + GETTEXT.resource_migrate_to(this.uname) + "</option>\n";
+        });
+        html += '<option selected="selected" value="">' + GETTEXT.resource_migrate_away() + "</option>\n";
+        html += "</form></select>";
+        $("#dialog").html(html);
+        // TODO(could): Is there a neater construct for this localized button thing?
+        var b = {};
+        b[GETTEXT.ok()] = function() {
+          perform_op("resource", id, "migrate", "node=" + $("#migrate-to").val());
+          $(this).dialog("close");
+        };
+        b[GETTEXT.cancel()] = function() {
+          $(this).dialog("close");
+        };
+        $("#dialog").dialog("option", {
+          title:    GETTEXT.resource_migrate(id),
+          buttons:  b
+        });
+        $("#dialog").dialog("open");
+      }
+    },
+    {
+      label: "<%=h escape_javascript _('Drop Relocation Rule') %>",
+      icon: "unmigrate.png",
+      click: function(target) {
+        confirm_op(this.label, dc_split(target.attr("id"))[1], "resource", "unmigrate");
+      }
+    },
+    {
+      label: "<%=h escape_javascript _('Promote') %>",
+      icon: "promote.png",
+      click: function(target) {
+        confirm_op(this.label, dc_split(target.attr("id"))[1], "resource", "promote");
+      }
+    },
+    {
+      label: "<%=h escape_javascript _('Demote') %>",
+      icon: "demote.png",
+      click: function(target) {
+        confirm_op(this.label, dc_split(target.attr("id"))[1], "resource", "demote");
+      }
+    },
+    {
+      label: "<%=h escape_javascript _('Clean Up') %>",
+      icon: "cleanup.png",
+      click: function(target) {
+        confirm_op(this.label, dc_split(target.attr("id"))[1], "resource", "cleanup");
+      }
+    },
+    {
+      separator: true
+    },
+    {
+      label: "<%=h escape_javascript _('Edit Resource') %>",
+      icon: "edit.png",
+      click: function(target) {
+        var id = dc_split(target.attr("id"))[1];
+        var type="primitives";
+        if (resources_by_id[id].children) {
+          type = resources_by_id[id].type + "s"
+        }
+        window.location.assign(url_root + "/cib/live/" + type + "/" + id + "/edit");
+      }
+    },
+    {
+      label: "<%=h escape_javascript _('Delete Resource') %>",
+      icon: "remove.png",
+      click: function(target) {
+        // TODO(must): A lot of this is very similar to perform_op() - consolidate!
+        var id = dc_split(target.attr("id"))[1];
+        var state = "neutral";
+        var c = $(jq("resource::" + id));
+        if (c.hasClass("ns-active"))        state = "active";
+        else if(c.hasClass("ns-inactive"))  state = "inactive";
+        else if(c.hasClass("ns-error"))     state = "error";
+        else if(c.hasClass("ns-transient")) state = "transient";
+        else if(c.hasClass("rs-active"))    state = "active";
+        else if(c.hasClass("rs-inactive"))  state = "inactive";
+        else if(c.hasClass("rs-error"))     state = "error";
+        $(jq("resource::" + id + "::menu")).children(":first").attr("src", url_root + "/images/spinner-16x16-" + state + ".gif");
+        $.ajax({ url: url_root + "/main/resource/delete",
+          data: "format=json&resource=" + id,
+          type: "POST",
+          success: function() {
+            // Remove spinner (a spinner that stops too early is marginally better than one that never stops)
+            $(jq("resource::" + id + "::menu")).children(":first").attr("src", url_root + "/images/icons/properties.png");
+          },
+          error: function(request) {
+            // Remove spinner
+            $(jq("resource::" + id + "::menu")).children(":first").attr("src", url_root + "/images/icons/properties.png");
+            var json = json_from_request(request);
+            if (json) {
+              error_dialog(json.error, json.stderr ? json.stderr : null);
+            } else {
+              if (request.status == 403) {
+                // 403 == permission denied
+                error_dialog(GETTEXT.err_denied());
+              } else {
+                error_dialog(GETTEXT.err_unexpected(request.status));
+              }
+            }
+          }
+        });
+      }
+    }
+  ]});
 });
 </script>
-<div id="menu::resource" class="menu" style="display: none;">
-  <ul>
-    <li id="menu::resource::start" class="menu-item"><a class="icon-start enabled" href="#" onclick="return false;"><%=h _('Start') %></a></li>
-    <li id="menu::resource::stop" class="menu-item"><a class="icon-stop enabled" href="#" onclick="return false;"><%=h _('Stop') %></a></li>
-    <li id="menu::resource::migrate" class="menu-item"><a class="icon-migrate enabled" href="#" onclick="return false;"><%=h _('Move...') %></a></li>
-    <li id="menu::resource::unmigrate" class="menu-item"><a class="icon-unmigrate enabled" href="#" onclick="return false;"><%=h _('Drop Relocation Rule') %></a></li>
-    <li id="menu::resource::promote" class="menu-item"><a class="icon-promote enabled" href="#" onclick="return false;"><%=h _('Promote') %></a></li>
-    <li id="menu::resource::demote" class="menu-item"><a class="icon-demote enabled" href="#" onclick="return false;"><%=h _('Demote') %></a></li>
-    <li id="menu::resource::cleanup" class="menu-item"><a class="icon-cleanup enabled" href="#" onclick="return false;"><%=h _('Clean Up') %></a></li>
-    <li id="menu::resource::separator" class="menu-separator"></li>
-    <li id="menu::resource::edit" class="menu-item"><a class="icon-edit enabled" href="#" onclick="return false;"><%=h _('Edit Resource') %></a></li>
-    <li id="menu::resource::delete" class="menu-item"><a class="icon-remove enabled" href="#" onclick="return false;"><%=h _('Delete Resource') %></a></li>
-  </ul>
-</div>
 

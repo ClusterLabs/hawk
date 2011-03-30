@@ -28,9 +28,6 @@
 //
 //======================================================================
 
-// Currently selected resource/node when menu is open
-var activeItem = null;
-
 var cib = null;
 var resources_by_id = null;
 
@@ -176,74 +173,6 @@ function dc_split(str)
   return parts;
 }
 
-function popup_op_menu()
-{
-  // Hide everything first (otherwise it's actually possible to have
-  // node and resource context menus visible simultaneously
-  $(jq("menu::node")).hide();
-  $(jq("menu::resource")).hide();
-
-  var target = $(this);
-  var pos = target.children(":first").offset();
-
-  // parts[0] is "node" or "resource", parts[1] is node or resource ID
-  var parts = dc_split(target.attr("id"));
-  var id_parts = parts[1].split(":");
-  var is_clone_instance = id_parts.length == 2
-  activeItem = id_parts[0];
-
-  // Special case for resources (different menus based on type/hierarchy)
-  if (parts[0] == "resource") {
-
-    // Hide promote/demote by default
-    $(jq("menu::resource::promote")).hide();
-    $(jq("menu::resource::demote")).hide();
-
-    if (is_clone_instance) {
-       $(jq("menu::resource::start")).hide();
-       $(jq("menu::resource::stop")).hide();
-       $(jq("menu::resource::cleanup")).hide();
-       $(jq("menu::resource::migrate")).hide();
-       $(jq("menu::resource::unmigrate")).hide();
-       $(jq("menu::resource::separator")).hide();
-    } else {
-       $(jq("menu::resource::start")).show();
-       $(jq("menu::resource::stop")).show();
-       $(jq("menu::resource::cleanup")).show();
-       $(jq("menu::resource::separator")).show();
-
-      if (resources_by_id[activeItem].toplevel) {
-        // Top-level item, thus migratable
-        $(jq("menu::resource::migrate")).show();
-        $(jq("menu::resource::unmigrate")).show();
-
-        if (resources_by_id[activeItem].children && resources_by_id[activeItem].type == "master") {
-          // Paranoid check for has children + type == "master" (else one day someone
-          // will make an RA called "master", and we'd think it was a primitive).
-          $(jq("menu::resource::promote")).show();
-          $(jq("menu::resource::demote")).show();
-        }
-      } else {
-        // It's a child and not migratable.
-        $(jq("menu::resource::migrate")).hide();
-        $(jq("menu::resource::unmigrate")).hide();
-      }
-    }
-  }
-
-  $(jq("menu::" + parts[0])).css({left: pos.left+"px", top: pos.top+"px"}).show();
-
-  // Stop propagation
-  return false;
-}
-
-function menu_item_click()
-{
-  // parts[1] is "node" or "resource", parts[2] is op
-  var parts = dc_split($(this).attr("id"));
-  confirm_op($(this).children(":first").html(), activeItem, parts[1], parts[2]);
-}
-
 // title: dialog title
 // id:    node or resource id
 // type:  either "node" or "resource"
@@ -257,33 +186,6 @@ function confirm_op(title, id, type, op)
   b[GETTEXT.no()]   = function() { $(this).dialog("close"); }
   $("#dialog").dialog("option", {
     title:    title,
-    buttons:  b
-  });
-  $("#dialog").dialog("open");
-}
-
-function menu_item_click_migrate()
-{
-  // parts[1] is "node" or "resource", parts[2] is op
-  var parts = dc_split($(this).attr("id"));
-  var html = '<form><select id="migrate-to" size="4" style="width: 100%;">';
-  $.each(cib.nodes, function() {
-    html += '<option value="' + this.uname + '">' + GETTEXT.resource_migrate_to(this.uname) + "</option>\n";
-  });
-  html += '<option selected="selected" value="">' + GETTEXT.resource_migrate_away() + "</option>\n";
-  html += "</form></select>";
-  $("#dialog").html(html);
-  // TODO(could): Is there a neater construct for this localized button thing?
-  var b = {};
-  b[GETTEXT.ok()] = function() {
-    perform_op(parts[1], activeItem, parts[2], "node=" + $("#migrate-to").val());
-    $(this).dialog("close");
-  };
-  b[GETTEXT.cancel()] = function() {
-    $(this).dialog("close");
-  };
-  $("#dialog").dialog("option", {
-    title:    GETTEXT[parts[1] + "_" + parts[2]](activeItem),
     buttons:  b
   });
   $("#dialog").dialog("open");
@@ -330,73 +232,44 @@ function perform_op(type, id, op, extra)
 function add_mgmt_menu(e)
 {
   e.addClass("clickable");
-  if (e.attr("id").indexOf("node") >= 0) {
+  e.children(":first").attr("src", url_root + "/images/icons/properties.png");
+  // parts[0] is "node" or "resource", parts[1] is node or resource ID
+  var parts = dc_split(e.attr("id"));
+  if (parts[0] == "node") {
     e.click(function() {
       return $(jq("menu::node")).popupmenu("popup", $(this));
     });
   } else {
-    e.click(popup_op_menu);
-  }
-  e.children(":first").attr("src", url_root + "/images/icons/properties.png");
-}
-
-function init_menus()
-{
-  $(jq("menu::resource::start")).first().click(menu_item_click);
-  $(jq("menu::resource::stop")).first().click(menu_item_click);
-  $(jq("menu::resource::migrate")).first().click(menu_item_click_migrate);
-  $(jq("menu::resource::unmigrate")).first().click(menu_item_click);
-  $(jq("menu::resource::promote")).first().click(menu_item_click);
-  $(jq("menu::resource::demote")).first().click(menu_item_click);
-  $(jq("menu::resource::cleanup")).first().click(menu_item_click);
-  $(jq("menu::resource::edit")).first().click(function() {
-    var type="primitives";
-    if (resources_by_id[activeItem].children) {
-      type = resources_by_id[activeItem].type + "s"
-    }
-    window.location.assign(url_root + "/cib/live/" + type + "/" + activeItem + "/edit");
-  });
-  $(jq("menu::resource::delete")).first().click(function() {
-    // TODO(must): A lot of this is very similar to perform_op() - consolidate!
-    var id = activeItem;
-    var state = "neutral";
-    var c = $(jq("resource::" + id));
-    if (c.hasClass("ns-active"))        state = "active";
-    else if(c.hasClass("ns-inactive"))  state = "inactive";
-    else if(c.hasClass("ns-error"))     state = "error";
-    else if(c.hasClass("ns-transient")) state = "transient";
-    else if(c.hasClass("rs-active"))    state = "active";
-    else if(c.hasClass("rs-inactive"))  state = "inactive";
-    else if(c.hasClass("rs-error"))     state = "error";
-    $(jq("resource::" + id + "::menu")).children(":first").attr("src", url_root + "/images/spinner-16x16-" + state + ".gif");
-    $.ajax({ url: url_root + "/main/resource/delete",
-      data: "format=json&resource=" + id,
-      type: "POST",
-      success: function() {
-        // Remove spinner (a spinner that stops too early is marginally better than one that never stops)
-        $(jq("resource::" + id + "::menu")).children(":first").attr("src", url_root + "/images/icons/properties.png");
-      },
-      error: function(request) {
-        // Remove spinner
-        $(jq("resource::" + id + "::menu")).children(":first").attr("src", url_root + "/images/icons/properties.png");
-        var json = json_from_request(request);
-        if (json) {
-          error_dialog(json.error, json.stderr ? json.stderr : null);
+    var id_parts = parts[1].split(":");
+    var is_clone_instance = id_parts.length == 2
+    if (id_parts.length == 2) {
+      // It's a clone instance, hide everything except Edit and Delete
+      e.click(function() {
+        return $(jq("menu::resource")).popupmenu("popup", $(this), [0, 1, 2, 3, 4, 5, 6, 7]);
+      });
+    } else {
+      if (resources_by_id[id_parts[0]].toplevel) {
+        // Top-level item, thus migratable
+        if (resources_by_id[id_parts[0]].children && resources_by_id[id_parts[0]].type == "master") {
+          // Paranoid check for has children + type == "master" (else one day someone
+          // will make an RA called "master", and we'd think it was a primitive).
+          e.click(function() {
+            return $(jq("menu::resource")).popupmenu("popup", $(this));
+          });
         } else {
-          if (request.status == 403) {
-            // 403 == permission denied
-            error_dialog(GETTEXT.err_denied());
-          } else {
-            error_dialog(GETTEXT.err_unexpected(request.status));
-          }
+          // Top-level, non-MS.
+          e.click(function() {
+            return $(jq("menu::resource")).popupmenu("popup", $(this), [4, 5]);
+          });
         }
+      } else {
+        // It's a child and not migratable
+        e.click(function() {
+          return $(jq("menu::resource")).popupmenu("popup", $(this), [2, 3, 4, 5]);
+        });
       }
-    });
-  });
-
-  $(document).click(function() {
-    $(jq("menu::resource")).hide();
-  });
+    }
+  }
 }
 
 function error_dialog(msg, body)
@@ -763,8 +636,6 @@ function hawk_init()
   if (q.update_period) {
     update_period = isNaN(q.update_period) ? 0 : parseInt(q.update_period) * 1000;
   }
-
-  init_menus();
 
   $("#dialog").dialog({
     resizable:      false,
