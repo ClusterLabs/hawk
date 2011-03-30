@@ -92,6 +92,7 @@
         }
       }
       this.target = target;
+      $(document).click(); // Hide any other popup menus first
       this.element.css({left: pos.left+"px", top: pos.top+"px"}).show();
       return false; // Stop propagation
     }
