@@ -154,6 +154,13 @@ function dc_split(str)
   return parts;
 }
 
+// When given an element ID in the form "type::id(:n)", return "id"
+// (suitable for extracting node and resource IDs, minus clone instance if any)
+function item_id(str)
+{
+  return dc_split(str)[1].split(":")[0];
+}
+
 // title: dialog title
 // id:    node or resource id
 // type:  either "node" or "resource"

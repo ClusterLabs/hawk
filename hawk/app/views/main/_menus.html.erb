@@ -8,21 +8,21 @@ $(function() {
       label: "<%=h escape_javascript _('Online') %>",
       icon: "start.png",
       click: function(target) {
-        confirm_op(this.label, dc_split(target.attr("id"))[1], "node", "online");
+        confirm_op(this.label, item_id(target.attr("id")), "node", "online");
       }
     },
     {
       label: "<%=h escape_javascript _('Standby') %>",
       icon: "pause.png",
       click: function(target) {
-        confirm_op(this.label, dc_split(target.attr("id"))[1], "node", "standby");
+        confirm_op(this.label, item_id(target.attr("id")), "node", "standby");
       }
     },
     {
       label: "<%=h escape_javascript _('Fence Node') %>",
       icon: "kill.png",
       click: function(target) {
-        confirm_op(this.label, dc_split(target.attr("id"))[1], "node", "fence");
+        confirm_op(this.label, item_id(target.attr("id")), "node", "fence");
       }
     }
   ]});
@@ -94,21 +94,21 @@ $(function() {
       label: "<%=h escape_javascript _('Start') %>",
       icon: "start.png",
       click: function(target) {
-        confirm_op(this.label, dc_split(target.attr("id"))[1], "resource", "start");
+        confirm_op(this.label, item_id(target.attr("id")), "resource", "start");
       }
     },
     {
       label: "<%=h escape_javascript _('Stop') %>",
       icon: "stop.png",
       click: function(target) {
-        confirm_op(this.label, dc_split(target.attr("id"))[1], "resource", "stop");
+        confirm_op(this.label, item_id(target.attr("id")), "resource", "stop");
       }
     },
     {
       label: "<%=h escape_javascript _('Move...') %>",
       icon: "migrate.png",
       click: function(target) {
-        var id = dc_split(target.attr("id"))[1];
+        var id = item_id(target.attr("id"));
         var html = '<form><select id="migrate-to" size="4" style="width: 100%;">';
         $.each(cib.nodes, function() {
           html += '<option value="' + this.uname + '">' + GETTEXT.resource_migrate_to(this.uname) + "</option>\n";
@@ -136,28 +136,28 @@ $(function() {
       label: "<%=h escape_javascript _('Drop Relocation Rule') %>",
       icon: "unmigrate.png",
       click: function(target) {
-        confirm_op(this.label, dc_split(target.attr("id"))[1], "resource", "unmigrate");
+        confirm_op(this.label, item_id(target.attr("id")), "resource", "unmigrate");
       }
     },
     {
       label: "<%=h escape_javascript _('Promote') %>",
       icon: "promote.png",
       click: function(target) {
-        confirm_op(this.label, dc_split(target.attr("id"))[1], "resource", "promote");
+        confirm_op(this.label, item_id(target.attr("id")), "resource", "promote");
       }
     },
     {
       label: "<%=h escape_javascript _('Demote') %>",
       icon: "demote.png",
       click: function(target) {
-        confirm_op(this.label, dc_split(target.attr("id"))[1], "resource", "demote");
+        confirm_op(this.label, item_id(target.attr("id")), "resource", "demote");
       }
     },
     {
       label: "<%=h escape_javascript _('Clean Up') %>",
       icon: "cleanup.png",
       click: function(target) {
-        confirm_op(this.label, dc_split(target.attr("id"))[1], "resource", "cleanup");
+        confirm_op(this.label, item_id(target.attr("id")), "resource", "cleanup");
       }
     },
     {
@@ -167,7 +167,7 @@ $(function() {
       label: "<%=h escape_javascript _('Edit Resource') %>",
       icon: "edit.png",
       click: function(target) {
-        var id = dc_split(target.attr("id"))[1];
+        var id = item_id(target.attr("id"));
         var type="primitives";
         if (resources_by_id[id].children) {
           type = resources_by_id[id].type + "s"
@@ -180,7 +180,7 @@ $(function() {
       icon: "remove.png",
       click: function(target) {
         // TODO(must): A lot of this is very similar to perform_op() - consolidate!
-        var id = dc_split(target.attr("id"))[1];
+        var id = item_id(target.attr("id"));
         var state = "neutral";
         var c = $(jq("resource::" + id));
         if (c.hasClass("ns-active"))        state = "active";
