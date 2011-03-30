@@ -1,4 +1,5 @@
 <div id="menu::node" style="display: none;"></div>
+<div id="menu::reslist" style="display: none;"></div>
 <script type="text/javascript">
 $(function() {
   $(jq("menu::node")).popupmenu({ iconroot: url_root + "/images/icons/", items: [
@@ -24,16 +25,71 @@ $(function() {
       }
     }
   ]});
+  $(jq("menu::reslist")).popupmenu({ iconroot: url_root + "/images/icons/", items: [
+    {
+      label: "<%=h escape_javascript _('New Primitive') %>",
+      icon: "add.png",
+      click: function(target) {
+        window.location.assign(url_root + "/cib/live/primitives/new");
+      }
+    },
+    {
+      label: "<%=h escape_javascript _('New Group') %>",
+      icon: "add.png",
+      click: function(target) {
+        var has_primitives = false;
+        $.each(cib.resources, function() {
+          if (!this.children) {
+            has_primitives = true;
+            return false;
+          }
+        });
+        if (has_primitives) {
+          window.location.assign(url_root + "/cib/live/groups/new");
+        } else {
+          error_dialog("<%= escape_javascript _("Can't create group, there are no primitives available.") %>");
+        }
+      }
+    },
+    {
+      label: "<%=h escape_javascript _('New Clone') %>",
+      icon: "add.png",
+      click: function(target) {
+        var has_primitives = false;
+        $.each(cib.resources, function() {
+          if (!this.children || (this.children && this.type == "group")) {
+            has_primitives = true;
+            return false;
+          }
+        });
+        if (has_primitives) {
+          window.location.assign(url_root + "/cib/live/clones/new");
+        } else {
+          error_dialog("<%= escape_javascript _("Can't create clone, there are no primitives or groups available.") %>");
+        }
+      }
+    },
+    {
+      label: "<%=h escape_javascript _('New Master/Slave') %>",
+      icon: "add.png",
+      click: function(target) {
+        var has_primitives = false;
+        $.each(cib.resources, function() {
+          if (!this.children || (this.children && this.type == "group")) {
+            has_primitives = true;
+            return false;
+          }
+        });
+        if (has_primitives) {
+          window.location.assign(url_root + "/cib/live/masters/new");
+        } else {
+          error_dialog("<%= escape_javascript _("Can't create master/slave, there are no primitives or groups available.") %>");
+        }
+      }
+    }
+  ]});
 });
 </script>
-<div id="menu::reslist" class="menu" style="display: none;">
-  <ul>
-    <li id="menu::reslist::new-primitive" class="menu-item"><a class="icon-add enabled" href="#" onclick="return false;"><%=h _('New Primitive') %></a></li>
-    <li id="menu::reslist::new-group" class="menu-item"><a class="icon-add enabled" href="#" onclick="return false;"><%=h _('New Group') %></a></li>
-    <li id="menu::reslist::new-clone" class="menu-item"><a class="icon-add enabled" href="#" onclick="return false;"><%=h _('New Clone') %></a></li>
-    <li id="menu::reslist::new-master" class="menu-item"><a class="icon-add enabled" href="#" onclick="return false;"><%=h _('New Master/Slave') %></a></li>
-  </ul>
-</div>
 <div id="menu::resource" class="menu" style="display: none;">
   <ul>
     <li id="menu::resource::start" class="menu-item"><a class="icon-start enabled" href="#" onclick="return false;"><%=h _('Start') %></a></li>

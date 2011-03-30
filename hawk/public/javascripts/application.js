@@ -342,58 +342,6 @@ function add_mgmt_menu(e)
 
 function init_menus()
 {
-  // TODO(should): re-evaluate use of 'first' here
-  $(jq("menu::node::standby")).first().click(menu_item_click);
-  $(jq("menu::node::online")).first().click(menu_item_click);
-  $(jq("menu::node::fence")).first().click(menu_item_click);
-//  $(jq("menu::node::mark")).first().click(menu_item_click);
-
-  $(jq("menu::reslist::new-primitive")).first().click(function() {
-    window.location.assign(url_root + "/cib/live/primitives/new");
-  });
-  $(jq("menu::reslist::new-group")).first().click(function() {
-    var has_primitives = false;
-    $.each(cib.resources, function() {
-      if (!this.children) {
-        has_primitives = true;
-        return false;
-      }
-    });
-    if (has_primitives) {
-      window.location.assign(url_root + "/cib/live/groups/new");
-    } else {
-      error_dialog(GETTEXT.err_cant_group());
-    }
-  });
-  $(jq("menu::reslist::new-clone")).first().click(function() {
-    var has_primitives = false;
-    $.each(cib.resources, function() {
-      if (!this.children || (this.children && this.type == "group")) {
-        has_primitives = true;
-        return false;
-      }
-    });
-    if (has_primitives) {
-      window.location.assign(url_root + "/cib/live/clones/new");
-    } else {
-      error_dialog(GETTEXT.err_cant_clone());
-    }
-  });
-  $(jq("menu::reslist::new-master")).first().click(function() {
-    var has_primitives = false;
-    $.each(cib.resources, function() {
-      if (!this.children || (this.children && this.type == "group")) {
-        has_primitives = true;
-        return false;
-      }
-    });
-    if (has_primitives) {
-      window.location.assign(url_root + "/cib/live/masters/new");
-    } else {
-      error_dialog(GETTEXT.err_cant_master());
-    }
-  });
-
   $(jq("menu::resource::start")).first().click(menu_item_click);
   $(jq("menu::resource::stop")).first().click(menu_item_click);
   $(jq("menu::resource::migrate")).first().click(menu_item_click_migrate);
@@ -447,8 +395,6 @@ function init_menus()
   });
 
   $(document).click(function() {
-    $(jq("menu::node")).hide();
-    $(jq("menu::reslist")).hide();
     $(jq("menu::resource")).hide();
   });
 }
@@ -850,11 +796,7 @@ function hawk_init()
     '</div>'));
 
   $(jq("reslist::menu")).click(function(event) {
-    var target = $(this);
-    var pos = target.children(":first").offset();
-    $(jq("menu::reslist")).css({left: pos.left+"px", top: pos.top+"px"}).show();
-    // Stop propagation
-    return false;
+   return $(jq("menu::reslist")).popupmenu("popup", $(this));
   });
 
   update_cib();
