@@ -1,0 +1,38 @@
+.ui-panel
+{
+  border: 1px solid #000;
+  padding: 0.25em 0.5em;
+  margin: 0.5em;
+}
+
+.ui-panel .tri-closed
+{
+  background: url(../images/triangle-right.png);
+  width: 16px;
+  height: 16px;
+  float: left;
+}
+
+.ui-panel .tri-open
+{
+  background: url(../images/triangle-down.png);
+  width: 16px;
+  height: 16px;
+  float: left;
+}
+
+.ui-panel .clickable
+{
+  cursor: pointer;
+}
+
+.action-icon
+{
+  float: right;
+}
+
+.ui-panel img
+{
+  border: none;
+}
+
