@@ -59,30 +59,6 @@ function escape_field(s) {
   return escape_html(s).replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 }
 
-// TODO(should): clean up these three...
-function expand_block(id)
-{
-  $(jq(id+"::children")).show("blind", {}, "fast");
-  $(jq(id+"::children")).removeClass("closed");
-  $(jq(id+"::button")).removeClass("tri-closed").addClass("tri-open");
-}
-
-function collapse_block(id)
-{
-  $(jq(id+"::children")).hide("blind", {}, "fast");
-  $(jq(id+"::children")).addClass("closed");
-  $(jq(id+"::button")).removeClass("tri-open").addClass("tri-closed");
-}
-
-function toggle_collapse(id)
-{
-  if ($(jq(id+"::children")).hasClass("closed")) {
-    expand_block(id);
-  } else {
-    collapse_block(id);
-  }
-}
-
 function update_errors(errors)
 {
   $("#errorbar").html("");
@@ -99,13 +75,21 @@ function update_errors(errors)
 // need to pass parent in with open flag (e.g.: nodelist, reslist)
 function update_panel(panel)
 {
-  $(jq(panel.id)).attr("class", "ui-corner-all " + panel.className);
-  $(jq(panel.id+"::label")).html(panel.label);
+  if ($(jq(panel.id)).data("panel")) {
+    // "Real" ui.panel expandable panel
+    $(jq(panel.id)).panel("set_class", panel.className);
+    $(jq(panel.id)).panel("set_label", panel.label);
+  } else {
+    // Individual (non-ui.panel) resources/nodes
+    $(jq(panel.id)).attr("class", "ui-corner-all " + panel.className);
+    $(jq(panel.id+"::label")).html(panel.label);
+  }
 
   if (!panel.children) return false;
 
   var expand = panel.open ? true : false;   // do we really need to be this obscure?
-  var c = $(jq(panel.id+"::children")).children(":first");
+  var b = $(jq(panel.id)).panel("body_element");
+  var c = b.children(":first");
   $.each(panel.children, function() {
     if (!c.length || c.attr("id") != this.id) {
       var d;
@@ -116,18 +100,17 @@ function update_panel(panel)
         // brand spanking new
         d = $('<div id="' + this.id + '"/>');
         if (this.children) {
-          // TODO(should): HTML-safe?
-          d.html('<div class="clickable" onclick="toggle_collapse(\'' + this.id + '\');">' +
-            '<div id="' + this.id + '::button" class="tri-' + (this.open ? 'open' : 'closed') + '"></div>' +
-              '<a id="' + this.id + '::menu"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a>' +
-              '<span id="' + this.id + '::label"></span></div>' +
-            '<div id="' + this.id + '::children"' + (this.open ? '' : ' style="display: none;" class="closed"') + '</div>');
+          d.panel({
+            menu_icon: url_root + "/images/transparent-16x16.gif",
+            menu_id:   this.id + "::menu",
+            open:      this.open
+          });
         } else {
           d.html('<a id="' + this.id + '::menu"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="' + this.id + '::label"></span>');
         }
       }
       if (!c.length) {
-        $(jq(panel.id+"::children")).append(d);
+        b.append(d);
       } else {
         c.before(d);
       }
@@ -139,9 +122,7 @@ function update_panel(panel)
       c = c.next();
     }
     if (update_panel(this)) {
-      if ($(jq(this.id + "::children")).hasClass("closed")) {
-        expand_block(this.id);
-      }
+      $(jq(panel.id)).panel("expand");
       expand = true;
     }
   });
@@ -575,16 +556,12 @@ function update_cib()
 
           $("#nodelist").show();
           if (update_panel(cib_to_nodelist_panel(cib.nodes))) {
-            if ($(jq("nodelist::children")).hasClass("closed")) {
-              expand_block("nodelist");
-            }
+            $("#nodelist").panel("expand");
           }
 
           $("#reslist").show();
           if (update_panel(cib_to_reslist_panel(cib.resources))) {
-            if ($(jq("reslist::children")).hasClass("closed")) {
-              expand_block("reslist");
-            }
+            $("#reslist").panel("expand");
           }
 
         } else {
@@ -646,28 +623,25 @@ function hawk_init()
     closeOnEscape:  true
   });
 
-  // TOTHEME
   $("#content").prepend($(
-    '<div id="summary" class="ui-corner-all" style="display: none;">' +
-      '<div class="clickable" onclick="toggle_collapse(\'summary\');"><div id="summary::button" class="tri-closed"></div>' +
-        // TODO(should): fix this messy event canceling to stop the panel expanding/contracting when menu clicked
-        '<a id="summary::menu" onclick="if ($.browser.msie) { event.cancelBubble = true; } else { event.stopPropagation(); }" href="' + url_root + '/cib/live/crm_config/cib-bootstrap-options/edit"><img src="' + url_root + '/images/icons/edit.png" class="action-icon" alt="' + GETTEXT.configure() + '" title="' + GETTEXT.configure() + '" /></a>' +
-        '<span id="summary::label">' + GETTEXT.summary_label() + '</span></div>' +
-      '<div id="summary::children" style="display: none;" class="closed">' +
-      '<table id="summary::props" style="padding: 0.25em 0.5em;"></table>' +
-      '</div>' +
-    '</div>' +
-    '<div id="nodelist" class="ui-corner-all" style="display: none;">' +
-      '<div class="clickable" onclick="toggle_collapse(\'nodelist\');"><div id="nodelist::button" class="tri-closed"></div><a id="nodelist::menu"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="nodelist::label"></span></div>' +
-      '<div id="nodelist::children" style="display: none;" class="closed"></div>' +
-    '</div>' +
-    '<div id="reslist" class="ui-corner-all" style="display: none;">' +
-      '<div class="clickable" onclick="toggle_collapse(\'reslist\');"><div id="reslist::button" class="tri-closed"></div><a id="reslist::menu"><img src="' + url_root + '/images/icons/properties.png" class="action-icon" alt="" /></a><span id="reslist::label"></span></div>' +
-      '<div id="reslist::children" style="display: none;" class="closed"></div>' +
-    '</div>'));
-
-  $(jq("reslist::menu")).click(function(event) {
-   return $(jq("menu::reslist")).popupmenu("popup", $(this));
+    '<div id="summary" style="display: none;"></div>' +
+    '<div id="nodelist" style="display: none;"></div>' +
+    '<div id="reslist" style="display: none;"></div>'));
+  $("#summary").panel({
+    menu_href: url_root + "/cib/live/crm_config/cib-bootstrap-options/edit",
+    menu_icon: url_root + "/images/icons/edit.png",
+    menu_alt:  GETTEXT.configure(),
+    label:     GETTEXT.summary_label(),
+    body:      $('<table id="summary::props" style="padding: 0.25em 0.5em;"></table>')
+  });
+  $("#nodelist").panel({
+    menu_icon: url_root + "/images/transparent-16x16.gif"
+  });
+  $("#reslist").panel({
+    menu_icon: url_root + "/images/icons/properties.png",
+    menu_click: function(event) {
+      return $(jq("menu::reslist")).popupmenu("popup", $(this));
+    }
   });
 
   update_cib();
