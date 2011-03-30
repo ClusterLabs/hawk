@@ -1,0 +1,47 @@
+.ui-popupmenu
+{
+  position: absolute;
+  left: 0;
+  top: 0;
+  /* specific style below */
+  width: 13em;
+  background: #ddd;
+  border: 1px solid #888;
+  padding: 0;
+  z-index: 1;
+}
+
+.ui-popupmenu a
+{
+  display: block;
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+  /* specific style below */
+  padding: 3px 0 3px 25px;
+  border: 1px solid #ddd;
+  background-color: #ddd;
+  background-repeat: no-repeat;
+  background-position: 2px 50%;
+}
+
+.ui-popupmenu a.enabled:hover
+{
+  /* specific style below */
+  background-color: #008;
+  color: #fff;
+}
+
+.ui-popupmenu ul, .ui-popupmenu li
+{
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  /* specific style below */
+}
+
+.ui-popupmenu .menu-item
+{
+  /* specific style below */
+}
+
