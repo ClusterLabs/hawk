@@ -336,6 +336,10 @@
 
     _scroll_into_view: function() {
       this.element.scrollTop(this.element.find("table tr:last").position().top);
+    },
+
+    empty: function() {
+      return this.element.find(".oplist-del").length == 0;
     }
 
   });

@@ -372,6 +372,10 @@
         v[n] = f[0].type == "checkbox" ? f[0].checked : f.val();
       });
       return v;
+    },
+
+    empty: function() {
+      return this.element.find(".attrlist-del").length == 0;
     }
 
   });
