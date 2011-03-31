@@ -15,7 +15,7 @@
 <body>
 <div id="container">
   <div id="header" class="ui-widget-header">
-    <%= image_tag 'logo.png', :alt => '', :id => 'logo' %>
+    <%= link_to image_tag('logo.png', :alt => '', :id => 'logo'), status_path %>
     <span id="header-links">
     <% if logged_in? %>
       <%=h _('User: %{user}') % { :user => current_user } %>
