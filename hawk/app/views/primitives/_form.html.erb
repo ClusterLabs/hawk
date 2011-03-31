@@ -1,8 +1,10 @@
 <% content_for :head do %>
 <%= stylesheet_link_tag 'ui.attrlist.css' %>
 <%= stylesheet_link_tag 'ui.oplist.css' %>
+<%= stylesheet_link_tag 'ui.panel.css' %>
 <%= javascript_include_tag 'jquery.ui.attrlist.js' %>
 <%= javascript_include_tag 'jquery.ui.oplist.js' %>
+<%= javascript_include_tag 'jquery.ui.panel.js' %>
 <style type="text/css">
 /* TODO(should): this does not belong here (also need to remove
    inline style from various elements) */
@@ -30,7 +32,7 @@ function update_provider() {
   keypress_hack.r_class = $("#primitive_r_class").val()
   keypress_hack.r_provider = "";
   keypress_hack.r_type = "";
-  $("#parameters").attrlist({ all_attrs: {}});
+  $("#parameters").panel("body_element").attrlist({ all_attrs: {}});
   $("#primitive_r_provider option").remove();
   if (r_info.r_providers[$("#primitive_r_class").val()]) {
     $.each(r_info.r_providers[$("#primitive_r_class").val()], function() {
@@ -48,7 +50,7 @@ function update_type() {
   var p = $("#primitive_r_provider").val() || "";
   keypress_hack.r_provider = p;
   keypress_hack.r_type = "";
-  $("#parameters").attrlist({ all_attrs: {}});
+  $("#parameters").panel("body_element").attrlist({ all_attrs: {}});
   $("#primitive_r_type option").remove();
   // Always have the first type blank (forces user to select something before populating parameters)
   $("#primitive_r_type").append('<option value=""></option>');
@@ -69,8 +71,8 @@ function update_type() {
 function update_params() {
   var t = $("#primitive_r_type").val();
   keypress_hack.r_type = t;
-  $("#parameters").attrlist({ all_attrs: {}});
-  $("#operations").oplist({ all_ops: {}});
+  $("#parameters").panel("body_element").attrlist({ all_attrs: {}});
+  $("#operations").panel("body_element").oplist({ all_ops: {}});
   if (t) {
     var c = $("#primitive_r_class").val();
     var p = $("#primitive_r_provider").val() || "";
@@ -81,7 +83,10 @@ function update_params() {
       // First two probably not necessary
       r_meta = data;
 
-      $("#parameters").attrlist({ all_attrs: r_meta.parameters });
+      $("#parameters").panel("body_element").attrlist({ all_attrs: r_meta.parameters });
+      if (!$("#parameters").panel("body_element").attrlist("empty")) {
+        $("#parameters").panel("expand");
+      }
       var default_ops = {};
       $.each(r_meta.ops, function(n, v) {
         switch (n) {
@@ -92,7 +97,8 @@ function update_params() {
             break;
         }
       });
-      $("#operations").oplist({ all_ops: r_meta.ops, set_ops: default_ops });
+      $("#operations").panel("body_element").oplist({ all_ops: r_meta.ops, set_ops: default_ops });
+      $("#operations").panel("expand");
 
       $("#type-spinner").hide();
 
@@ -154,7 +160,8 @@ $(function() {
       keypress_hack.r_type = $(this).val();
     });
 
-  $("#parameters").attrlist({
+  $("#parameters").panel({ label: "<%=h escape_javascript _('Parameters') %>" });
+  $("#parameters").panel("body_element").attrlist({
     all_attrs: r_meta.parameters,
     set_attrs: <%= @res.params.to_json %>,
     prefix: "primitive[params]",
@@ -168,8 +175,12 @@ $(function() {
       enable_apply();
     }
   });
+  if (!$("#parameters").panel("body_element").attrlist("empty")) {
+    $("#parameters").panel("expand");
+  }
 
-  $("#operations").oplist({
+  $("#operations").panel({ label: "<%=h escape_javascript _('Operations') %>" });
+  $("#operations").panel("body_element").oplist({
     all_ops: r_meta.ops,
     set_ops: <%= @res.ops.to_json %>,
     prefix: "primitive[ops]",
@@ -186,8 +197,12 @@ $(function() {
       enable_apply();
     }
   });
+  if (!$("#operations").panel("body_element").oplist("empty")) {
+    $("#operations").panel("expand");
+  }
 
-  $("#meta").attrlist({
+  $("#meta").panel({ label: "<%=h escape_javascript _('Meta Attributes') %>" });
+  $("#meta").panel("body_element").attrlist({
     all_attrs: r_meta.meta,
     set_attrs: <%= @res.meta.to_json %>,
     prefix: "primitive[meta]",
@@ -201,6 +216,9 @@ $(function() {
       enable_apply();
     }
   });
+  if (!$("#meta").panel("body_element").attrlist("empty")) {
+    $("#meta").panel("expand");
+  }
 
   $("#primitive_id")
     .bind("keyup change", function() {
@@ -242,31 +260,19 @@ $(function() {
       {}, { :class => 'type' } %></td>
     <td><span id="type-spinner" style="display: none;"><%= image_tag 'spinner-16x16.gif', :alt => '' %></span></td>
   </tr>
-  <tr><td>&nbsp;</td></tr>
-  <tr>
-    <th colspan="4"><%=h _('Parameters') %></th>
-  </tr>
   <tr>
     <td colspan="4">
-      <div id="parameters" class="ui-widget-content ui-corner-all" style="padding: 0.5em; height: 8em; width: 31em; overflow: auto; position: relative;"></div>
+      <div id="parameters"></div>
     </td>
   </tr>
-  <tr><td>&nbsp;</td></tr>
-  <tr>
-    <th colspan="4"><%=h _('Operations') %></th>
-  </tr>
   <tr>
     <td colspan="4">
-      <div id="operations" class="ui-widget-content ui-corner-all" style="padding: 0.5em; height: 8em; width: 31em; overflow: auto; position: relative;"></div>
+      <div id="operations"></div>
     </td>
   </tr>
-  <tr><td>&nbsp;</td></tr>
-  <tr>
-    <th colspan="4"><%=h _('Meta Attributes') %></th>
-  </tr>
   <tr>
     <td colspan="4">
-      <div id="meta" class="ui-widget-content ui-corner-all" style="padding: 0.5em; height: 8em; width: 31em; overflow: auto; position: relative;"></div>
+      <div id="meta"></div>
     </td>
   </tr>
   <tr><td>&nbsp;</td></tr>

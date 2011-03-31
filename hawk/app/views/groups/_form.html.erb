@@ -1,6 +1,8 @@
 <% content_for :head do %>
 <%= stylesheet_link_tag 'ui.attrlist.css' %>
+<%= stylesheet_link_tag 'ui.panel.css' %>
 <%= javascript_include_tag 'jquery.ui.attrlist.js' %>
+<%= javascript_include_tag 'jquery.ui.panel.js' %>
 <style type="text/css">
 /* TODO(should): this does not belong here (also need to remove
    inline style from various elements) */
@@ -68,7 +70,8 @@ $(function() {
       $("#child-add").attr("disabled", "disabled");
     }
   });
-  $("#meta").attrlist({
+  $("#meta").panel({ label: "<%=h escape_javascript _('Meta Attributes') %>" });
+  $("#meta").panel("body_element").attrlist({
     all_attrs: r_meta.meta,
     set_attrs: <%= @res.meta.to_json %>,
     prefix: "group[meta]",
@@ -82,6 +85,9 @@ $(function() {
       enable_apply();
     }
   });
+  if (!$("#meta").panel("body_element").attrlist("empty")) {
+    $("#meta").panel("expand");
+  }
   enable_apply();
 });
 </script>
@@ -124,13 +130,9 @@ $(function() {
       </table>
     </td>
   </tr>
-  <tr><td>&nbsp;</td></tr>
-  <tr>
-    <th colspan="4"><%=h _('Meta Attributes') %></th>
-  </tr>
   <tr>
     <td colspan="4">
-      <div id="meta" class="ui-widget-content ui-corner-all" style="padding: 0.5em; height: 8em; width: 31em; overflow: auto; position: relative;"></div>
+      <div id="meta"></div>
     </td>
   </tr>
   <tr><td>&nbsp;</td></tr>
