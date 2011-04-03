@@ -97,6 +97,7 @@
     _init: function() {
       var self = this;
 
+      self.element.find(".oplist-del").remove();
       self.new_op_select.children().remove();
       self.new_op_select.append($("<option></option>"));
 
