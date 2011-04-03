@@ -72,7 +72,6 @@ function update_params() {
   var t = $("#primitive_r_type").val();
   keypress_hack.r_type = t;
   $("#parameters").panel("body_element").attrlist({ all_attrs: {}});
-  $("#operations").panel("body_element").oplist({ all_ops: {}});
   if (t) {
     var c = $("#primitive_r_class").val();
     var p = $("#primitive_r_provider").val() || "";
