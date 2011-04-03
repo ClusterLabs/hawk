@@ -362,15 +362,14 @@ class Primitive < CibObject
       xml.elements.each('//action') do |e|
         m[:ops][e.attributes['name']] = {}
         ['timeout', 'interval'].each do |a|
-          if e.attributes[a]
-            m[:ops][e.attributes['name']][a.to_sym] = e.attributes[a]
-          else
-            # There's at least one case (ocf:ocfs2:o2cb) where the
-            # monitor op doesn't specify an interval, so we set a
-            # "reasonable" default
-            m[:ops][e.attributes['name']][a.to_sym] = "20"
-          end
+          m[:ops][e.attributes['name']][a.to_sym] = e.attributes[a] if e.attributes[a]
         end
+      end
+      if m[:ops]['monitor'] && !m[:ops]['monitor'].has_key?(:interval)
+        # There's at least one case (ocf:ocfs2:o2cb) where the
+        # monitor op doesn't specify an interval, so we set a
+        # "reasonable" default
+        m[:ops]['monitor'][:interval] = "20"
       end
       m
     end
