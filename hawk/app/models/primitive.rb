@@ -259,27 +259,39 @@ class Primitive < CibObject
     end
 
     def classes_and_providers
-      @@classes_and_providers ||= begin
-        cp = {
-          :r_classes   => [],
-          :r_providers => {}
-        }
-        all_classes = %x[/usr/sbin/crm ra classes].split(/\n/).sort {|a,b| a.natcmp(b, true)}
-        # Cheap hack to get rid of heartbeat class if there's no RAs of that type present
-        all_classes.delete('heartbeat') unless File.exists?('/etc/ha.d/resource.d')
-        all_classes.each do |c|
-          if m = c.match('(.*)/(.*)')
-            c = m[1].strip
-            cp[:r_providers][c] = m[2].strip.split(' ').sort {|a,b| a.natcmp(b, true)}
-          end
-          cp[:r_classes].push c
+      # TODO(should): Save to static variable, but see comment in types()
+      # below for issues (test with "mkdir /usr/lib/ocf/resource.d/foo",
+      # then reload the new primitive page).
+      cp = {
+        :r_classes   => [],
+        :r_providers => {}
+      }
+      all_classes = %x[/usr/sbin/crm ra classes].split(/\n/).sort {|a,b| a.natcmp(b, true)}
+      # Cheap hack to get rid of heartbeat class if there's no RAs of that type present
+      all_classes.delete('heartbeat') unless File.exists?('/etc/ha.d/resource.d')
+      all_classes.each do |c|
+        if m = c.match('(.*)/(.*)')
+          c = m[1].strip
+          cp[:r_providers][c] = m[2].strip.split(' ').sort {|a,b| a.natcmp(b, true)}
         end
-        cp
+        cp[:r_classes].push c
       end
+      cp
     end
 
     def types(c, p='')
-      @@r_types ||= Util.safe_x('/usr/sbin/crm', 'ra', 'list', c, p).split(/\s+/).sort {|a,b| a.natcmp(b, true)}
+      # TODO(should): Optimally this would be saved to a static variable,
+      # e.g.: "@@r_types ||= Util.safe_x(...)", except that this lives for
+      # the entire life of Hawk when run under lighttpd, which has two
+      # problems:
+      # 1) Unless we save it per-class-provider (@@r_types[c][p] ||= ...)
+      #    it's impossible to get the RA list for any combination of c/p
+      #    except for the first time we call the function.
+      # 2) Even if we fixed that, if a new RA is installed, Hawk still
+      #    shows the old list.
+      # This suggests the need for some sort of expiring cache of RAs,
+      # which is a performance optimization we can worry about later...
+      Util.safe_x('/usr/sbin/crm', 'ra', 'list', c, p).split(/\s+/).sort {|a,b| a.natcmp(b, true)}
     end
 
     def metadata(c, p, t)
