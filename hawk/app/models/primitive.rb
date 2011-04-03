@@ -265,6 +265,8 @@ class Primitive < CibObject
           :r_providers => {}
         }
         all_classes = %x[/usr/sbin/crm ra classes].split(/\n/).sort {|a,b| a.natcmp(b, true)}
+        # Cheap hack to get rid of heartbeat class if there's no RAs of that type present
+        all_classes.delete('heartbeat') unless File.exists?('/etc/ha.d/resource.d')
         all_classes.each do |c|
           if m = c.match('(.*)/(.*)')
             c = m[1].strip
