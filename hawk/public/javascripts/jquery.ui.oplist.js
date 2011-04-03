@@ -149,7 +149,7 @@
       var f = "";
       for (var i in op) {
         var fn = this.options.prefix + "[" + n + "][" + i + "]";
-        var fid = fn.replace(/]/g, "").replace(/\[/g, "_") + '"';
+        var fid = fn.replace(/]/g, "").replace(/\[/g, "_");
         f += '<input type="hidden" id="' + fid + '" name="' + fn + '" value="' + escape_field(op[i]) + '"/>';
       }
       return f;
