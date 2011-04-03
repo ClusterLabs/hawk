@@ -48,6 +48,7 @@ class PrimitivesController < ApplicationController
   def new
     @title = _('Create Resource')
     @res = Primitive.new
+    @res.meta['target-role'] = 'Stopped' if @cib.id == 'live'
   end
 
   def create

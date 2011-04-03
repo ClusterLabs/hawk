@@ -50,6 +50,7 @@ class GroupsController < ApplicationController
   def new
     @title = _('Create Group')
     @res = Group.new
+    @res.meta['target-role'] = 'Stopped' if @cib.id == 'live'
   end
 
   def create

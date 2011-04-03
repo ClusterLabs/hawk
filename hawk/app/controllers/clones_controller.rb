@@ -50,6 +50,7 @@ class ClonesController < ApplicationController
   def new
     @title = _('Create Clone')
     @res = Clone.new
+    @res.meta['target-role'] = 'Stopped' if @cib.id == 'live'
   end
 
   def create
