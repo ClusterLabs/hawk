@@ -67,10 +67,12 @@ class Primitive < CibObject
       end
     end
 
-    @ops.each do |op,attrlist|
-      attrlist.each do |n,v|
-        if v.index("'") && v.index('"')
-          error _("Can't set op %{o} attribute {%a}, because the value contains both single and double quotes") % { :o => op, :a => n }
+    @ops.each do |op,instances|
+      instances.each do |i, attrlist|
+        attrlist.each do |n,v|
+          if v.index("'") && v.index('"')
+            error _("Can't set op %{o} attribute {%a}, because the value contains both single and double quotes") % { :o => op, :a => n }
+          end
         end
       end
     end
@@ -103,13 +105,15 @@ class Primitive < CibObject
         end
       end
       unless @ops.empty?
-        @ops.each do |op, attrlist|
-          cmd += " op #{op}"
-          attrlist.each do |n,v|
-            if v.index("'")
-              cmd += " #{n}=\"#{v}\""
-            else
-              cmd += " #{n}='#{v}'"
+        @ops.each do |op, instances|
+          instances.each do |i, attrlist|
+            cmd += " op #{op}"
+            attrlist.each do |n,v|
+              if v.index("'")
+                cmd += " #{n}=\"#{v}\""
+              else
+                cmd += " #{n}='#{v}'"
+              end
             end
           end
         end
@@ -176,32 +180,34 @@ class Primitive < CibObject
     save
   end
 
-  # This is remarkably cimilar to CibObject::merge_nvpairs
+  # This is somewhat similar to CibObject::merge_nvpairs
   def merge_ops(parent, ops)
     if ops.empty?
       parent.elements['operations'].remove if parent.elements['operations']
     else
       if parent.elements['operations']
         parent.elements['operations'].elements.each {|e|
-          e.remove unless ops.keys.include? e.attributes['name'] }
+          e.remove unless ops[e.attributes['name']] && ops[e.attributes['name']][e.attributes['interval']] }
       else
         parent.add_element 'operations'
       end
-      ops.each do |op_name,attrlist|
-        # Everything needs an interval
-        attrlist['interval'] = '0' unless attrlist.keys.include?('interval')
-        op = parent.elements["operations/op[@name=\"#{op_name}\"]"]
-        unless op
-          op = parent.elements['operations'].add_element 'op', {
-            'id' => "#{parent.attributes['id']}-#{op_name}-#{attrlist['interval']}",
-            'name' => op_name
-          }
-        end
-        op.attributes.each do |n,v|
-          op.attributes.delete(n) unless n == 'id' || n == 'name' || attrlist.keys.include?(n)
-        end
-        attrlist.each do |n,v|
-          op.attributes[n] = v
+      ops.each do |op_name,instances|
+        instances.each do |i,attrlist|
+          # Everything needs an interval
+          attrlist['interval'] = '0' unless attrlist.keys.include?('interval')
+          op = parent.elements["operations/op[@name=\"#{op_name}\" and @interval=\"#{attrlist['interval']}\"]"]
+          unless op
+            op = parent.elements['operations'].add_element 'op', {
+              'id' => "#{parent.attributes['id']}-#{op_name}-#{attrlist['interval']}",
+              'name' => op_name
+            }
+          end
+          op.attributes.each do |n,v|
+            op.attributes.delete(n) unless n == 'id' || n == 'name' || attrlist.keys.include?(n)
+          end
+          attrlist.each do |n,v|
+            op.attributes[n] = v
+          end
         end
       end
     end
@@ -239,11 +245,17 @@ class Primitive < CibObject
         res.instance_variable_set(:@params,     p.elements['instance_attributes'] ?
           Hash[p.elements['instance_attributes'].elements.collect {|e|
             [e.attributes['name'], e.attributes['value']] }] : {})
-        res.instance_variable_set(:@ops,        p.elements['operations'] ?
-          Hash[p.elements['operations'].elements.collect {|e|
-            [e.attributes['name'], Hash[
-              e.attributes.collect.select {|n| n[0] != 'name' && n[0] != 'id' }]
-            ] }] : {})
+        # This bit is suspiciously similar to the action bit of metadata()
+        ops = {}
+        p.elements['operations'].elements.each do |e|
+          name = e.attributes['name']
+          ops[name] = [] unless ops[name]
+          op = Hash[e.attributes.collect]
+          op.delete 'name'
+          op.delete 'id'
+          ops[name].push op
+        end
+        res.instance_variable_set(:@ops,        ops)
         res.instance_variable_set(:@meta,       p.elements['meta_attributes'] ?
           Hash[p.elements['meta_attributes'].elements.collect {|e|
             [e.attributes['name'], e.attributes['value']] }] : {})
@@ -360,16 +372,18 @@ class Primitive < CibObject
         }
       end
       xml.elements.each('//action') do |e|
-        m[:ops][e.attributes['name']] = {}
-        ['timeout', 'interval'].each do |a|
-          m[:ops][e.attributes['name']][a.to_sym] = e.attributes[a] if e.attributes[a]
-        end
-      end
-      if m[:ops]['monitor'] && !m[:ops]['monitor'].has_key?(:interval)
+        name = e.attributes['name']
+        m[:ops][name] = [] unless m[:ops][name]
+        op = Hash[e.attributes.collect]
+        op.delete 'name'
+        op.delete 'depth'
         # There's at least one case (ocf:ocfs2:o2cb) where the
         # monitor op doesn't specify an interval, so we set a
         # "reasonable" default
-        m[:ops]['monitor'][:interval] = "20"
+        if name == 'monitor' && !op.has_key?('interval')
+          op['interval'] = '20'
+        end
+        m[:ops][name].push op
       end
       m
     end

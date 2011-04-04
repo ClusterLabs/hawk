@@ -87,12 +87,15 @@ function update_params() {
         $("#parameters").panel("expand");
       }
       var default_ops = {};
-      $.each(r_meta.ops, function(n, v) {
+      $.each(r_meta.ops, function(n, ops) {
         switch (n) {
           case "start":
           case "stop":
           case "monitor":
-            default_ops[n] = v;
+            if (!default_ops[n]) default_ops[n] = [];
+            $.each(ops, function(i, op) {
+              default_ops[n].push(op);
+            });
             break;
         }
       });
@@ -188,6 +191,7 @@ $(function() {
       edit: "<%= escape_javascript _('Edit') %>",
       remove: "<%= escape_javascript _('Remove') %>",
       no_value: "<%= escape_javascript _('You must enter a value') %>",
+      duplicate_interval: "<%= escape_javascript _('There is already a monitor op with this interval.') %>",
       ok: "<%= escape_javascript _('OK') %>",
       cancel: "<%= escape_javascript _('Cancel') %>"
     },

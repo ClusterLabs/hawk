@@ -30,6 +30,47 @@
 
 // Note: this requires ui.attrlist
 
+//
+// Everything would be much easier if it weren't possible to have
+// multiple monitor ops.  We need to be able to handle creating and
+// editing multiple monitor ops, and also (potentially) to handle
+// multiple ops in RA metadata.  So all_ops and set_ops look like
+// this:
+//
+//    {
+//      start: [
+//        { timeout: "20s" }
+//      ],
+//      stop: [
+//        { timeout: "20s" }
+//      ],
+//      monitor: [
+//        { interval: "10s", timeout: "20s" },
+//        { interval: "20s", timeout: "20s" }
+//      ]
+//    }
+//
+// i.e. it's a hash of arrays of ops.  Note that the implementation
+// specifically only allows multiple monitor ops (no other op type
+// can have multiple instances), and there's some hackery to ensure
+// a unique interval is used for each monitor op.
+//
+// Note also that the hidden fields generated (almost) reflect this
+// structure, the difference being the "array" part is indexed by
+// the op interval, i.e.:
+//
+//    <input name="...[monitor][10][timeout]"/>
+//    <input name="...[monitor][10][interval]"/>
+//    <input name="...[monitor][20][timeout]"/>
+//    <input name="...[monitor][20][interval]"/>
+//    <!-- etc -->
+//
+// This inconsistency (array in, hash out) is intentional, it makes
+// some implementation details slightly easier.
+//
+// TODO(should): fix the aforementioned inconsistency :)
+//
+
 // TODO(should): do we care about field for dirty event?
 
 (function($) {
@@ -43,6 +84,7 @@
         edit: "Edit",
         remove: "Remove",
         no_value: "You must enter a value",
+        duplicate_interval: "There is already a monitor op with this interval.",
         ok: "OK",
         cancel: "Cancel"
       },
@@ -104,9 +146,14 @@
       self._sort_ops();
 
       $.each(self.ops, function(i, n) {
+        var inserted = false;
         if (n in self.options.set_ops) {
-          self._insert_row(n, self.options.set_ops[n]);
-        } else {
+          $.each(self.options.set_ops[n], function(j, op) {
+            self._insert_row(n, op);
+          });
+          inserted = true;
+        }
+        if (!inserted || n == "monitor") {
           self.new_op_select.append($('<option value="' + escape_field(n) + '">' + escape_html(n) + "</option>"));
         }
       });
@@ -126,7 +173,7 @@
       var n = this.new_op_select.val();
       this.new_op_add.button("option", "disabled", n ? false : true);
       if (n) {
-        this.new_op_td.text(this._op_value_string(n, this.options.all_ops[n]));
+        this.new_op_td.text(this._op_value_string(n, this._filter_monitor_interval(n, this.options.all_ops[n][0])));
       } else {
         this.new_op_td.text("");
       }
@@ -138,8 +185,9 @@
     },
 
     _op_value_string: function(n, op) {
-      var v = "timeout: " + op.timeout;
-      if (n == "monitor") {
+      var v = "";
+      if ("timeout" in op) { v += "timeout: " + op.timeout + " "; }
+      if (n == "monitor" && "interval" in op) {
         v += " interval: " + op.interval;
       }
       return v;
@@ -148,11 +196,18 @@
     _op_fields: function(n, op) {
       var f = "";
       for (var i in op) {
-        var fn = this.options.prefix + "[" + n + "][" + i + "]";
+        if (i == "name") continue;
+        var fn = this.options.prefix + "[" + n + "][" + (op.interval ? op.interval : "0") + "][" + i + "]";
         var fid = fn.replace(/]/g, "").replace(/\[/g, "_");
         f += '<input type="hidden" id="' + fid + '" name="' + fn + '" value="' + escape_field(op[i]) + '"/>';
       }
       return f;
+    },
+
+    // Returns an array of rows which contain monitor ops that already have the given interval.
+    _monitor_rows_with_interval: function(i) {
+      var id = this.options.prefix.replace(/]/g, "").replace(/\[/g, "_") + "_monitor_" + i + "_interval";
+      return this.element.find("input#" + id).parent().parent();
     },
 
     _insert_row: function(n, v) {
@@ -171,11 +226,11 @@
         text: false
       }).click(function() {
         var this_row = $(this).parent().parent();
-        var op = this_row.children(":first").text();
+        var op_name = this_row.children(":first").text();
         var set_attrs = {};
         this_row.find("input").each(function() {
           var n = this.name.match(/.*\[([^\]]+)\]$/)[1];
-          if (op != "monitor" && n == "interval" && this.value == "0") {
+          if (op_name != "monitor" && n == "interval" && this.value == "0") {
             // Exclude interval=0 from the list of set attributes
             // if we're not editing a monitor op (it'll ultimately
             // be set anyway, but the UI is cleaner without this)
@@ -192,12 +247,12 @@
           all_attrs: {
             "interval": {
               "type":     "string",
-              "default":  self.options.all_ops[op]["interval"] || 0,
-              "required": op == "monitor"
+              "default":  self.options.all_ops[op_name][0]["interval"] || 0,
+              "required": op_name == "monitor"
             },
             "timeout": {
               "type":     "string",
-              "default":  self.options.all_ops[op]["timeout"],
+              "default":  self.options.all_ops[op_name][0]["timeout"],
               "required": true
             },
             // Default for "requires" is actually "nothing" for STONITH
@@ -262,17 +317,34 @@
           }
         });
         var b = {};
+        // TODO(must): trim interval!
         b[self.options.labels.ok] = function(event) {
           var v = self.dialog.children(":first").attrlist("val");
-          $(this_row.children("td")[0]).html(self._op_value_string(op, v) + self._op_fields(op, v));
+          if (op_name == "monitor") {
+            // ensure there's no duplicate intervals for monitor ops
+            var duplicate = false;
+            self._monitor_rows_with_interval(v.interval).each(function() {
+              if (this != this_row[0]) {
+                duplicate = true;
+                return false;
+              }
+            });
+            if (duplicate) {
+              // TODO(should): Integrate this error display into the dialog
+              // rather than having an (ugly) alert box.
+              alert(self.options.labels.duplicate_interval);
+              return;
+            }
+          }
+          $(this_row.children("td")[0]).html(self._op_value_string(op_name, v) + self._op_fields(op_name, v));
           $(this).dialog("close");
-          self._trigger("dirty", event, { field: null, name: op } );
+          self._trigger("dirty", event, { field: null, name: op_name } );
         };
         b[self.options.labels.cancel] = function() {
           $(this).dialog("close");
         };
         self.dialog.dialog("option", {
-          title:    op,
+          title:    op_name,
           buttons:  b,
           open:     function() {
             $(this).parent().find(".ui-dialog-buttonpane button:first").attr("disabled", "disabled");
@@ -293,21 +365,23 @@
         $(this).parent().parent().fadeOut("fast", function() {
           var deleted_name = $(this).children(":first").text();
           $(this).remove();
-          var new_option = "<option value='" + escape_field(deleted_name) + "'>" + escape_html(deleted_name) + "</option>";
-          var options = self.new_op_select[0].options;
-          var i = 0;
-          for (i = 0; i < options.length; i++) {
-            if (options[i].value == deleted_name) {
-              // It's possible to click a fading button fast enough to insert dupes...
-              return;
+          if (deleted_name != "monitor") {
+            var new_option = "<option value='" + escape_field(deleted_name) + "'>" + escape_html(deleted_name) + "</option>";
+            var options = self.new_op_select[0].options;
+            var i = 0;
+            for (i = 0; i < options.length; i++) {
+              if (options[i].value == deleted_name) {
+                // It's possible to click a fading button fast enough to insert dupes...
+                return;
+              }
+              if (options[i].value > deleted_name) break;
             }
-            if (options[i].value > deleted_name) break;
-          }
-          if (i >= options.length) {
-            // Last item
-            self.new_op_select.append(new_option);
-          } else {
-            self.new_op_select.children("option:eq(" + i + ")").before(new_option);
+            if (i >= options.length) {
+              // Last item
+              self.new_op_select.append(new_option);
+            } else {
+              self.new_op_select.children("option:eq(" + i + ")").before(new_option);
+            }
           }
           self._init_new_op();
           self._trigger("dirty", event, { field: null, name: deleted_name } );
@@ -321,14 +395,35 @@
       return new_row;
     },
 
+    // Returns a new monitor op, with a unique interval (or just a copy
+    // of the op passed in if this is not a monitor op).
+    // TODO(should): it's a bit freakish having this called from both
+    // _add_op() and _init_new_op()
+    _filter_monitor_interval: function(n, op) {
+      if (n != "monitor") return op;
+      var mop = $.extend(true, {}, op);
+      while (this._monitor_rows_with_interval(mop.interval).length != 0) {
+        // Conversion to/from String here is probably over-paranoid
+        var m = new String(mop.interval).match(/([0-9]+)(.*)/);
+        mop.interval = new String(parseInt(m[1]) + 1);
+        if (m.length == 3) {
+          mop.interval += m[2];
+        }
+      }
+      return mop;
+    },
+
     _add_op: function(event) {
       var self = this;
       var n = self.new_op_select.val();
       if (!n) return;
 
-      self._insert_row(n, self.options.all_ops[n]).effect("highlight", {}, 1000);
+      self._insert_row(n, self._filter_monitor_interval(n, self.options.all_ops[n][0])).effect("highlight", {}, 1000);
+      if (n != "monitor") {
+        self.new_op_select.children("option[value='" + n + "']").remove();
+      }
 
-      self.new_op_select.children("option[value='" + n + "']").remove();
+      self.keypress_hack = "";
       self.new_op_select.val("");
       self._init_new_op();
 
