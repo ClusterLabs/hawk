@@ -34,7 +34,7 @@ $(function() {
     .bind("keyup change", function() {
       enable_apply();
     }).focus();
-  $("#meta").panel({ label: "<%=h escape_javascript _('Meta Attributes') %>" });
+  $("#meta").panel({ label: "<%=h escape_javascript _('Meta Attributes') %>", menu_icon: url_root + "/images/transparent-16x16.gif" });
   $("#meta").panel("body_element").attrlist({
     all_attrs: r_meta.meta,
     set_attrs: <%= @res.meta.to_json %>,
