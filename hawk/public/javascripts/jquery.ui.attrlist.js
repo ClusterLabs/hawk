@@ -68,6 +68,7 @@
 // when a row is deleted.
 //
 
+// TODO(must): Support regex validation (esp. for interval when used in ui.oplist)
 // TODO(should): Actually support "destroy" (see ui.oplist dialog close handler)
 // TODO(should): ESC key on field to hide no_value error
 // TODO(should): cope with yes/no booleans
@@ -226,7 +227,7 @@
           break;
         default:
           td.append(
-            "<input" + fid + fn + ' type="text" value="' + escape_field(v) + '"/>');
+            "<input" + fid + fn + ' type="text" value="' + escape_field(v) + '" onblur="this.value = $.trim(this.value);"/>');
           break;
       }
       var self = this;
