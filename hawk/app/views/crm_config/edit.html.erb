@@ -36,7 +36,7 @@ $(function() {
 });
 </script>
 <div id="onload-spinner"><%= image_tag 'spinner-32x32.gif', :alt => '' %></div>
-<div id="editor" class="ui-widget-content ui-corner-all" style="padding: 0.5em; display: none;">
+<div id="editor" style="display: none;">
 <% form_for([ @cib, @crm_config ]) do |f| %>
 <% flash.each do |flash_type, message| %>
   <div id="flash-<%= flash_type %>" class="ui-state-<%= flash_type %> ui-corner-all" style="padding: 0.5em; margin-bottom: 0.5em;"><%=h message %></div>
