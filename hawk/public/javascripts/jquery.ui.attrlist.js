@@ -227,7 +227,7 @@
           break;
         default:
           td.append(
-            "<input" + fid + fn + ' type="text" value="' + escape_field(v) + '" onblur="this.value = $.trim(this.value);"/>');
+            "<input" + fid + fn + ' type="text" value="' + escape_field(v) + '"/>');
           break;
       }
       var self = this;
@@ -239,8 +239,15 @@
         self._show_help($(this).parent().prev().text());
       }).bind("keyup change", function(event) {
         self._trigger("dirty", event, { field: $(this), name: n });
+      }).blur(function(event) {
+        if (this.type == "text") {
+          var v = $.trim(this.value);
+          if (v != this.value) {
+            this.value = v;
+            self._trigger("dirty", event, { field: $(this), name: n });
+          }
+        }
       });
-
     },
 
     // Initialize the value field for adding a new attr/value row
