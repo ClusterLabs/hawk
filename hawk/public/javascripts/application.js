@@ -38,3 +38,15 @@ function escape_field(s) {
   return escape_html(s).replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 }
 
+$(function() {
+  // Always initialize dialog (it's in the main layout after all...)
+  $("#dialog").dialog({
+    resizable:      false,
+    width:          "30em",
+    draggable:      false,
+    modal:          true,
+    autoOpen:       false,
+    closeOnEscape:  true
+  });
+});
+

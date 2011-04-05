@@ -612,15 +612,6 @@ function hawk_init()
     update_period = isNaN(q.update_period) ? 0 : parseInt(q.update_period) * 1000;
   }
 
-  $("#dialog").dialog({
-    resizable:      false,
-    width:          "30em",
-    draggable:      false,
-    modal:          true,
-    autoOpen:       false,
-    closeOnEscape:  true
-  });
-
   $("#content").prepend($(
     '<div id="summary" style="display: none;"></div>' +
     '<div id="nodelist" style="display: none;"></div>' +
