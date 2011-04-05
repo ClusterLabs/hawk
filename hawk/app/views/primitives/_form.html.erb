@@ -35,6 +35,8 @@ function update_provider() {
   keypress_hack.r_class = $("#primitive_r_class").val()
   keypress_hack.r_provider = "";
   keypress_hack.r_type = "";
+  $("#help").hide();
+  $("#info").hide();
   $("#parameters").panel("body_element").attrlist({ all_attrs: {}});
   $("#primitive_r_provider option").remove();
   if (r_info.r_providers[$("#primitive_r_class").val()]) {
@@ -53,6 +55,8 @@ function update_type() {
   var p = $("#primitive_r_provider").val() || "";
   keypress_hack.r_provider = p;
   keypress_hack.r_type = "";
+  $("#help").hide();
+  $("#info").hide();
   $("#parameters").panel("body_element").attrlist({ all_attrs: {}});
   $("#primitive_r_type option").remove();
   // Always have the first type blank (forces user to select something before populating parameters)
@@ -74,6 +78,8 @@ function update_type() {
 function update_params() {
   var t = $("#primitive_r_type").val();
   keypress_hack.r_type = t;
+  $("#help").hide();
+  $("#info").hide();
   $("#parameters").panel("body_element").attrlist({ all_attrs: {}});
   if (t) {
     var c = $("#primitive_r_class").val();
@@ -107,10 +113,22 @@ function update_params() {
 
       $("#type-spinner").hide();
 
+      show_info();
+
       enable_apply();
     });
   } else {
     enable_apply();
+  }
+}
+
+function show_info() {
+  if (r_meta.shortdesc || r_meta.longdesc) {
+    $("#info-shortdesc").html(escape_html(r_meta.shortdesc));
+    $("#info-longdesc").html(r_meta.longdesc != r_meta.shortdesc ? escape_html(r_meta.longdesc) : "");
+    $("#info").show();
+  } else {
+    $("#info").hide();
   }
 }
 
@@ -238,6 +256,8 @@ $(function() {
   $("#primitive_r_provider").val(keypress_hack.r_provider);
   $("#primitive_r_type").val(keypress_hack.r_type);
 
+  show_info();
+
 <%= render :partial => 'shared/confirm_revert', :locals => { :button_ids => '#primitive_revert,#primitive_cancel' } %>
 });
 </script>
@@ -254,6 +274,20 @@ $(function() {
     <th><%=h f.label :r_class, _('Class') %></th>
     <th><%=h f.label :r_provider, _('Provider') %></th>
     <th><%=h f.label :r_type, _('Type') %></th>
+    <td></td>
+    <td rowspan="7" style="padding: 1em; vertical-align: top;">
+      <!-- info block for this RA -->
+      <div id="info" class="ui-state-highlight ui-corner-all" style="padding: 0.5em; display: none; margin-bottom: 1em;">
+        <div id="info-shortdesc" style="padding-bottom: 0.5em;"></div>
+        <div id="info-longdesc"></div>
+      </div>
+      <!-- generic help block for use by ui.attrlist -->
+      <div id="help" class="ui-state-highlight ui-corner-all" style="padding: 0.5em; display: none;">
+        <div id="help-name" style="padding-bottom: 0.5em;"></div>
+        <div id="help-shortdesc" style="padding-bottom: 0.5em;"></div>
+        <div id="help-longdesc"></div>
+      </div>
+    </td>
   </tr>
   <tr>
     <td><%= f.text_field :id %></td>

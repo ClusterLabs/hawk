@@ -308,6 +308,8 @@ class Primitive < CibObject
 
     def metadata(c, p, t)
       m = {
+        :shortdesc => '',
+        :longdesc => '',
         :parameters => {},
         :ops => {},
         :meta => {
@@ -364,8 +366,13 @@ class Primitive < CibObject
       p = 'NULL' if p.empty?
       xml = REXML::Document.new(Util.safe_x('/usr/sbin/lrmadmin', '-M', c, t, p, 'meta'))
       return m unless xml.root
+      # TODO(should): select by language (en), likewise below
+      m[:shortdesc] = xml.root.elements['shortdesc'].text.strip || ''
+      m[:longdesc] = xml.root.elements['longdesc'].text.strip || ''
       xml.elements.each('//parameter') do |e|
         m[:parameters][e.attributes['name']] = {
+          :shortdesc => e.elements['shortdesc'].text.strip || '',
+          :longdesc  => e.elements['longdesc'].text.strip || '',
           :type     => e.elements['content'].attributes['type'],
           :default  => e.elements['content'].attributes['default'],
           :required => e.attributes['required'].to_i == 1 ? true : false
