@@ -254,7 +254,7 @@ class Primitive < CibObject
           op.delete 'name'
           op.delete 'id'
           ops[name].push op
-        end
+        end if p.elements['operations']
         res.instance_variable_set(:@ops,        ops)
         res.instance_variable_set(:@meta,       p.elements['meta_attributes'] ?
           Hash[p.elements['meta_attributes'].elements.collect {|e|
