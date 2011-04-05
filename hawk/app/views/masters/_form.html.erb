@@ -13,9 +13,12 @@ select { width: 13em; }
 <% end %>
 <script type="text/javascript">
 
+var anything_changed = false;
+
 var r_meta = <%= Master.metadata.to_json %>;
 
 function enable_apply() {
+  anything_changed = true;
   if ($("#master_id").val() != "" && $("#master_child").val() != "") {
     $("#master_submit").removeAttr("disabled");
     $("#master_revert").removeAttr("disabled");
@@ -52,6 +55,7 @@ $(function() {
   if (!$("#meta").panel("body_element").attrlist("empty")) {
     $("#meta").panel("expand");
   }
+<%= render :partial => 'shared/confirm_revert', :locals => { :button_ids => '#master_revert,#master_cancel' } %>
 });
 </script>
 <% form_for([ @cib, @res ]) do |f| %>

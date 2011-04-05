@@ -16,6 +16,9 @@ select.type { width: 13em; }
 <% end %>
 <script type="text/javascript">
 
+// Shotgun approach
+var anything_changed = false;
+
 var r_info = <%= Primitive.classes_and_providers.to_json %>;
 
 var req = null;
@@ -113,6 +116,7 @@ function update_params() {
 
 // conditionally enable form submit
 function enable_apply() {
+  anything_changed = true;
   var enable = $("#primitive_id").val() != "" && $("#primitive_r_type").val() != "";
   $.each(r_meta.parameters, function(n, v) {
     if (v.required && $("#primitive_params_" + n).val() == "") {
@@ -233,6 +237,8 @@ $(function() {
   $("#primitive_r_class").val(keypress_hack.r_class);
   $("#primitive_r_provider").val(keypress_hack.r_provider);
   $("#primitive_r_type").val(keypress_hack.r_type);
+
+<%= render :partial => 'shared/confirm_revert', :locals => { :button_ids => '#primitive_revert,#primitive_cancel' } %>
 });
 </script>
 <% form_for([ @cib, @res ]) do |f| %>

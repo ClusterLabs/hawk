@@ -1,0 +1,16 @@
+  $("<%= button_ids %>").click(function(event, do_click) {
+    if (!anything_changed) return true;
+    var button = $(this);
+    $("#dialog").html("<%=h escape_javascript _('Any changes will be lost - do you wish to proceed?') %>");
+    $("#dialog").dialog("option", {
+      title:          button.val(),
+      buttons: {
+        "<%=h escape_javascript _('Yes') %>": function() { $(this).dialog("close"); button.trigger("click", [ true ]); },
+        "<%=h escape_javascript _('No') %>":  function() { $(this).dialog("close"); }
+      }
+    }).dialog("open");
+    // do_click will be undefined when this event fires normally.
+    // It'll be true when fired as a result of the dialog functions.
+    return do_click ? true : false;
+  });
+

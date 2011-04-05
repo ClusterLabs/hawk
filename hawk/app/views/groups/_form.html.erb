@@ -16,9 +16,12 @@ select { width: 13em; }
 // TODO(must): make sure add/remove works correctly in IE (no initial option!)
 // TODO(should): ENTER in group ID field triggers click on add/remove button (damn!)
 
+var anything_changed = false;
+
 var r_meta = <%= Group.metadata.to_json %>;
 
 function enable_apply() {
+  anything_changed = true;
   if ($("#group_id").val() != "" && $("#group_children")[0].options.length) {
     $("#group_submit").removeAttr("disabled");
     $("#group_revert").removeAttr("disabled");
@@ -88,7 +91,7 @@ $(function() {
   if (!$("#meta").panel("body_element").attrlist("empty")) {
     $("#meta").panel("expand");
   }
-  enable_apply();
+<%= render :partial => 'shared/confirm_revert', :locals => { :button_ids => '#group_revert,#group_cancel' } %>
 });
 </script>
 <% form_for([ @cib, @res ]) do |f| %>
