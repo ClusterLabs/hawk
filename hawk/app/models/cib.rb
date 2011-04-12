@@ -93,8 +93,13 @@ class Cib < CibObject
     res
   end
 
-  # Hack to inject additional instances for clones if there's no LRM state for them
-  def inject_stopped_clone_instances(resources)
+  # Hack to:
+  # - inject additional instances for clones if there's no LRM state for them
+  # - remove default instance for clones (shouldn't be there, but will be due
+  #   to orphans if you create a clone from a running primitive or group).
+  # - remove clone instances from primitives (shouldn't be there, but will be
+  #   due to orphans if you un-clone a running cloned primitive or group)
+  def fix_clone_instances(resources)
     for res in resources
       if res[:clone_max]
         instance = 0
@@ -104,9 +109,12 @@ class Cib < CibObject
           end
           res[:instances][instance.to_s] = {}
         end
+        res[:instances].delete(:default) if res[:instances].has_key?(:default)
         res.delete :clone_max
+      else
+        res[:instances].delete_if {|k, v| k != :default} if res.has_key?(:instances)
       end
-      inject_stopped_clone_instances(res[:children]) if res[:children]
+      fix_clone_instances(res[:children]) if res[:children]
     end
   end
 
@@ -386,7 +394,7 @@ class Cib < CibObject
       end
     end
 
-    inject_stopped_clone_instances @resources
+    fix_clone_instances @resources
 
     # More hack
     @resources_by_id.each do |k,v|
