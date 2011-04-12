@@ -76,7 +76,9 @@ tools/hawk_chkpwd: tools/hawk_chkpwd.c tools/common.h
 	gcc -o $@ $< -lpam
 
 tools/hawk_monitor: tools/hawk_monitor.c
-	gcc $(shell pkg-config --cflags glib-2.0) $(shell pkg-config --libs glib-2.0) \
+	gcc \
+		$(shell pkg-config --cflags glib-2.0) $(shell pkg-config --libs glib-2.0) \
+		$(shell pkg-config --cflags libxml-2.0) $(shell pkg-config --libs libxml-2.0) \
 		-I/usr/include/pacemaker -I/usr/include/heartbeat \
 		-o $@ $< \
 		-lcib -lcrmcommon -Wall
