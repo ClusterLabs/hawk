@@ -45,6 +45,19 @@ namespace :freeze do
   desc "Freeze Gems (but actually fail if there's an error)"
   task :gems do
     do_or_die 'gems:unpack'
+    # This little bit of nastiness forces global score for Locale in
+    # locale_Rails/i18n.rb, without which we get the error
+    # "NoMethodError: undefined method `clear' for I18n::Locale:Module"
+    # when running on FC14.  See rhbz#623697 for details.  It's actually
+    # fixed in the (unpacked) gem shipped as rubygem-locale_rails.rpm
+    # (/usr/lib/ruby/gems/1.8/gems/locale_rails-2.0.5/lib/locale_rails/i18n.rb),
+    # but *not* fixed in the .gem file embedded in the RPM
+    # (/usr/lib/ruby/gems/1.8/cache/locale_rails-2.0.5.gem), which is
+    # what gems:unpack uses as its source.  Presumably this is beacuse
+    # the fix isn't/wasn't upstream yet when locale_rails-2.0.5 was
+    # packaged on Fedora.
+    sh %q{sed -i -e 's/\([^:]\)\(Locale[\.:]\)/\1::\2/g' \
+          vendor/gems/locale_rails-*/lib/locale_rails/i18n.rb}
   end
 end
 
