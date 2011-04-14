@@ -52,11 +52,12 @@ BuildRequires:	rubygems
 BuildRequires:	rubygem-rake
 BuildRequires:	rubygem-gettext_rails
 BuildRequires:	pam-devel
+BuildRequires:	glib2-devel libxml2-devel
 %if 0%{?suse_version}
 BuildRequires:	ruby-fcgi
-BuildRequires:	rubygem-rails-2_3
 BuildRequires:	fdupes
-BuildRequires:	glib2-devel libpacemaker-devel libxml2-devel
+BuildRequires:	rubygem-rails-2_3
+BuildRequires:	libpacemaker-devel
 # Require startproc respecting -p, bnc#559534#c44
 %if 0%{?suse_version} > 1110
 # 11.2 or newer; 
@@ -67,6 +68,7 @@ Requires:	sysvinit > 2.86-195.3.1
 %endif
 %else
 BuildRequires:  rubygem-rails >= 2.3
+BuildRequires:	pacemaker-libs-devel
 %endif
 
 %description
