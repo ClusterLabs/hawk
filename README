@@ -1,10 +1,11 @@
-======================================================================
+/////////////////////////////////////////////////////////////////////
+
                         HA Web Konsole (Hawk)
- --------------------------------------------------------------------
+
             A web-based GUI for managing and monitoring the
           Pacemaker High-Availability cluster resource manager
 
- Copyright (c) 2009-2010 Novell Inc., Tim Serong <tserong@novell.com>
+ Copyright (c) 2009-2011 Novell Inc., Tim Serong <tserong@novell.com>
                         All Rights Reserved.
 
  This program is free software; you can redistribute it and/or modify
@@ -26,85 +27,195 @@
  along with this program; if not, write the Free Software Foundation,
  Inc., 59 Temple Place - Suite 330, Boston MA 02111-1307, USA.
 
-======================================================================
-
-Status as at 2010-04-05:
-
-Port number registration with IANA came through.  The registered
-port is 7630, so use:
-
-  https://your-server:7630/
+/////////////////////////////////////////////////////////////////////
 
 
-Status as at 2010-03-04:
+HA Web Konsole (Hawk)
+=====================
+Tim Serong <tserong@novell.com>
 
-Things have moved on somewhat.  Major noticeable changes are:
 
-  - You need to log in to be able to do anything.  Same rules as
-    the python GUI; you need to log in as a user in the 'haclient'
-    group (the easiest thing to do is assign a password to the
-    'hacluster' user, then log in using that account).
+== Overview ==
 
-  - Basic management operations can be performed:
+Hawk is a web-based GUI for managing and monitoring Pacemaker HA
+clusters.  It is generally intended to be run on every node in the
+cluster, so that you can just point your web browser at any node
+to access it, e.g.:
 
-    - node: standby, online, fence
+https://your-server:7630/
 
-    - resource: start, stop, cleanup
+Hawk requires users to log in prior to providing access to the
+cluster.  The same rules apply as for the python GUI; you need to
+log in as a user in the +haclient+ group.  The easiest thing to do
+is assign a password to the +hacluster+ user, then log in using
+that account.  Note that you will need to configure this user
+account on every node you want to use Hawk on.
 
-Status as at 2010-01-25:
+Once logged in, you will see the currently configured nodes and
+resources in expandable panels, much like the +crm_mon+ display.
+The panels will be collapsed by default, unless any resource or
+node is stopped or failed, in which case they will automatically
+expand.
 
-It's early days; currently this will give you a web-based GUI with
-a display roughly analagous to crm_mon, in terms of status of cluster
-resources.  It will show you running/dead/standby nodes, and the
-resources (clones, groups & primitives) running on those nodes.
+Management operations (start, stop, online, standby, etc.) can be
+performed by clicking the little menu icon to the right of any
+node or resource.  New resources can be created using the top level
+menu on the Resources panel.  crm_config options can be changed
+by clicking the icon in the Cluster Configuration panel.
 
-It does not yet provide information about failed resources/nodes,
-other than the fact that they are not running.
 
-Display of nodes & resources is collapsible (collapsed by default),
-but if something breaks while you are looking at it, the display will
-expand to show the broken nodes and/or resources.
+== Installation ==
 
-Hawk is intended to run on each node in your cluster.  You can then
-access it by pointing your web browser at the IP address of any
-cluster node, or the address of any IPaddr(2) resource you may have
-configured.
+=== Dependencies ===
 
-Minimally, to see it in action, you will need the following packages
-and their dependencies (names per openSUSE/SLES):
+Hawk is a Ruby on Rails app which runs from a standalone instance
+of lighttpd.  All required Ruby gems are frozen into the Hawk package
+at build time.  Its runtime dependencies are thus:
 
-  - ruby
-  - rubygem-rails-2_3
-  - rubygem-gettext_rails
+* pacemaker
+* lighttpd
+* ruby
 
-Once you've got those installed, run the following command:
+When building Hawk from source, you will also need:
 
-  # hawk/script/server
+* rubygems
+* rubygem-rake
+* rubygem-rails >= 2.3
+* rubygem-gettext_rails
+* ruby-fcgi (openSUSE/SLES only)
+* fdupes (openSUSE/SLES only)
+* pam-devel
+* glib2-devel
+* libxml2-devel
+* libpacemaker-devel (openSUSE/SLES)
+* pacemaker-libs-devel (Fedora)
 
-Then, point your browser at http://your-server:3000/ to see the
-status of your cluster.
 
-Ultimately, hawk is intended to be installed and run as a regular
-system service via /etc/init.d/hawk.  To do this, you will need
-the following additional packages:
+=== Installing The Easy Way ===
 
-  - lighttpd
-  - ruby-fcgi
-  - rubygem-rake
+Hawk is included with SLE HAE 11 SP1 and openSUSE 11.4. Just
+install the RPM, then run:
 
-Then, try the following, but READ THE MAKEFILE FIRST!  "make install"
-(and the rest of the build system for that matter) is frightfully
-primitive at the moment:
+--------------------------------------
+# chkconfig hawk on
+# rchawk start
+--------------------------------------
 
-  # make
-  # sudo make install
-  # /etc/init.d/hawk start
 
-Then, point your browser at http://your-server:4444/ to see the
-status of your cluster.
+=== Installing The Other Easy Way ===
 
-Good luck.  Please direct comments, feedback, questions, etc. to
-tserong@novell.com and/or the Pacemaker mailing list.
+If you have a recent SUSE- or Fedora-based system, you can build
+an RPM easily from the source tree:
 
-======================================================================
+--------------------------------------
+# hg clone http://hg.clusterlabs.org/pacemaker/hawk
+# cd hawk
+# hg update tip
+# make rpm
+--------------------------------------
+
+Then install the RPM on your cluster nodes and:
+
+--------------------------------------
+# chkconfig hawk on
+# /etc/init.d/hawk start
+--------------------------------------
+
+
+=== The Hard Way ===
+
+If the above RPM build doesn't work for you, you can build and install
+straight from the source tree, but _read the Makefile first_ to ensure
+you'll be happy with the outcome.
+
+--------------------------------------
+# hg clone http://hg.clusterlabs.org/pacemaker/hawk
+# cd hawk
+# hg update tip
+# make
+# sudo make install
+--------------------------------------
+
+The above will install in +/srv/www/hawk+ and run from a SUSE-style init
+script.  To install somewhere else (e.g.: +/var/www/hawk+) and/or to
+use a Red Hat-style init script, try:
+
+--------------------------------------
+# make WWW_BASE=/var/www INIT_STYLE=redhat
+# sudo make WWW_BASE=/var/www INIT_STYLE=redhat install
+--------------------------------------
+
+
+== A Note on SSL Certificates ==
+
+The Hawk init script will automatically generate a self-signed SSL
+certificate, in +/etc/lighttpd/certs/hawk-combined.pem+.  If you want
+to use your own certificate, simply replace this file with one of
+your creation.  Note that this is a combined key and certificate, i.e.
+you'll need to +cat key cert > hawk-combined.pem+.
+
+
+== Hacking Hawk ==
+
+Hacking an instance of Hawk that was installed from an RPM is annoying,
+not least because you have to keep restarting it to have any changed
+files reloaded.  Instead, it's easiest to just run it under WEBrick
+from within the source tree, but first you need to run +make+ to build
+the +hawk_chkpwd+ and +hawk_invoke+ helper binaries, then install them
+setuid-root, group=haclient in /usr/sbin.  You should end up with
+something like:
+
+--------------------------------------
+# ls /usr/sbin/hawk_* -l
+-rwsr-x--- 1 root haclient 9884 2011-04-14 22:56 /usr/sbin/hawk_chkpwd
+-rwsr-x--- 1 root haclient 9928 2011-04-14 22:56 /usr/sbin/hawk_invoke
+-rwxr-xr-x 1 root root     9992 2011-04-14 22:56 /usr/sbin/hawk_monitor
+--------------------------------------
+
++hawk_chkpwd+ is almost identical to +unix2_chkpwd+, except it restricts
+acccess to users in the +haclient+ group, and doesn't inject any delay
+when invoked by the +hacluster+ user (which is the user Hawk's lighttpd
+instance runs as).
+
++hawk_invoke+ allows the +hacluster+ user to run a small assortment
+of Pacemaker CLI tools as another user in order to support Pacemaker's
+ACL feature.  It is used by Hawk when performing various management
+tasks.
+
++hawk_monitor+ is not installed setuid-root.  It exists to be polled
+by the web browser, to facilitate near-realtime updates of the cluster
+status display.  It is not used when running Hawk via WEBrick.
+
+Once you've got the above built and installed, run:
+
+--------------------------------------
+# sudo -u hacluster hawk/script/server
+--------------------------------------
+
+This will give you Hawk running via HTTP (_not_ HTTPS), on port 3000,
+e.g.:
+
+http://your-dev-system:3000/
+
+Note that automatic status updates won't work in this mode, because
+requests for +/monitor+ aren't routed to +/usr/sbin/hawk_monitor+.
+To force a status update every few seconds, try:
+
+http://your-dev-system:3000/main/status?update_period=5
+
+Finally, an alternative to running WEBrick as hacluster (which may
+require fiddling with file permissions in your source directory,
+depending on how restrictive your defaults are), you can just rsync
+the source tree to a development cluster node, then and run it as
+root there.
+
+
+== Questions, Feedback, etc. ==
+
+Please direct comments, feedback, questions etc. to tserong@novell.com
+and/or the Pacemaker mailing list.
+
+Bug reports and enhancement requests can be submitted at:
+
+http://developerbugs.linux-foundation.org/enter_bug.cgi?product=Hawk
 
