@@ -56,10 +56,12 @@ class CibObject
   end
 
   class << self
-    # Check whether anything with the given ID exists (not just resources)
-    def id_exists?(id)
-      # TODO(must): sanitize ID
-      %x[/usr/sbin/cibadmin -Ql --xpath '//configuration//*[@id="#{id}"]' 2>/dev/null].chomp != '<null>'
+    # Check whether anything with the given ID exists, or for a specific
+    # element with that ID if type is specified.  Note that we run as
+    # hacluster, because we need to verify existence regardless of whether
+    # the current user can actually see the object in quesion.
+    def exists?(id, type='*')
+      Util.safe_x('/usr/sbin/cibadmin', '-Ql', '--xpath', "//configuration//#{type}[@id='#{id}']").chomp != '<null>'
     end
   end
 

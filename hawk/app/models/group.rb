@@ -63,7 +63,7 @@ class Group < CibObject
     return false if errors.any?
 
     if new_record?
-      if CibObject.id_exists?(id)
+      if CibObject.exists?(id)
         error _('The ID "%{id}" is already in use') % { :id => @id }
         return false
       end
@@ -94,7 +94,7 @@ class Group < CibObject
       return true
     else
       # Saving an existing group
-      unless Group.exists?(id)
+      unless CibObject.exists?(id, 'group')
         error _('Group ID "%{id}" does not exist') % { :id => @id }
         return false
       end
@@ -127,13 +127,6 @@ class Group < CibObject
   end
 
   class << self
-
-    # Check whether a group with the given ID exists
-    # TODO(must): Consolidate with Primitive.exists, move to CibObject?
-    def exists?(id)
-      # TODO(must): sanitize ID
-      %x[/usr/sbin/cibadmin -Ql --xpath '//group[@id="#{id}"]' 2>/dev/null].index('<group') ? true : false
-    end
 
     def find(id)
       begin

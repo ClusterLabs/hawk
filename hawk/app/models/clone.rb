@@ -63,7 +63,7 @@ class Clone < CibObject
     return false if errors.any?
 
     if new_record?
-      if CibObject.id_exists?(id)
+      if CibObject.exists?(id)
         error _('The ID "%{id}" is already in use') % { :id => @id }
         return false
       end
@@ -91,7 +91,7 @@ class Clone < CibObject
       return true
     else
       # Saving an existing clone
-      unless Clone.exists?(id)
+      unless CibObject.exists?(id, 'clone')
         error _('Clone ID "%{id}" does not exist') % { :id => @id }
         return false
       end
@@ -124,13 +124,6 @@ class Clone < CibObject
   end
 
   class << self
-
-    # Check whether a clone with the given ID exists
-    # TODO(must): Consolidate with Primitive.exists, move to CibObject?
-    def exists?(id)
-      # TODO(must): sanitize ID
-      %x[/usr/sbin/cibadmin -Ql --xpath '//clone[@id="#{id}"]' 2>/dev/null].index('<clone') ? true : false
-    end
 
     def find(id)
       begin

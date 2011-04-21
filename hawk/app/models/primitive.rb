@@ -86,7 +86,7 @@ class Primitive < CibObject
     return false if errors.any?
 
     if new_record?
-      if CibObject.id_exists?(id)
+      if CibObject.exists?(id)
         error _('The ID "%{id}" is already in use') % { :id => @id }
         return false
       end
@@ -140,7 +140,7 @@ class Primitive < CibObject
 
     else
       # Saving an existing primitive
-      unless Primitive.exists?(id)
+      unless CibObject.exists?(id, 'primitive')
         error _('Resource ID "%{id}" does not exist') % { :id => @id }
         return false
       end
@@ -214,15 +214,6 @@ class Primitive < CibObject
   end
 
   class << self
-
-    # Check whether a primitive with the given ID exists
-    # Note that we run as hacluster, because we need to verify existence
-    # regardless of whether the current user can actually see the object
-    # in quesion.
-    def exists?(id)
-      # TODO(must): sanitize ID
-      %x[/usr/sbin/cibadmin -Ql --xpath '//primitive[@id="#{id}"]' 2>/dev/null].index('<primitive') ? true : false
-    end
 
     # Find a primitive by ID and return it.  Note that if the current
     # user doesn't have read access to the primitive, it appears to

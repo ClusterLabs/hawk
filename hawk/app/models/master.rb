@@ -63,7 +63,7 @@ class Master < CibObject
     return false if errors.any?
 
     if new_record?
-      if CibObject.id_exists?(id)
+      if CibObject.exists?(id)
         error _('The ID "%{id}" is already in use') % { :id => @id }
         return false
       end
@@ -91,7 +91,7 @@ class Master < CibObject
       return true
     else
       # Saving an existing master
-      unless Master.exists?(id)
+      unless CibObject.exists?(id, 'master')
         error _('Master/Slave ID "%{id}" does not exist') % { :id => @id }
         return false
       end
@@ -124,13 +124,6 @@ class Master < CibObject
   end
 
   class << self
-
-    # Check whether a master with the given ID exists
-    # TODO(must): Consolidate with Primitive.exists, move to CibObject?
-    def exists?(id)
-      # TODO(must): sanitize ID
-      %x[/usr/sbin/cibadmin -Ql --xpath '//master[@id="#{id}"]' 2>/dev/null].index('<master') ? true : false
-    end
 
     def find(id)
       begin
