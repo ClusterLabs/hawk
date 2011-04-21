@@ -56,6 +56,7 @@ class CibObject
   end
 
   class << self
+
     # Check whether anything with the given ID exists, or for a specific
     # element with that ID if type is specified.  Note that we run as
     # hacluster, because we need to verify existence regardless of whether
@@ -63,6 +64,46 @@ class CibObject
     def exists?(id, type='*')
       Util.safe_x('/usr/sbin/cibadmin', '-Ql', '--xpath', "//configuration//#{type}[@id='#{id}']").chomp != '<null>'
     end
+
+    # Find a CIB object by ID and return an instance of the appropriate
+    # class.  Note that if the current user doesn't have read access to
+    # the primitive, it appears to result in CibObject::RecordNotFound,
+    # due to the way the CIB ACL filtering works internally.
+    # TODO(must): really, in the context this is used, we already have
+    # a parsed CIB in the Cib object.  We should either *use* this, or
+    # ensure CIB in Cib isn't parsed unless actually needed for the
+    # status page.
+    def find(id)
+      begin
+        xml = REXML::Document.new(Invoker.instance.cibadmin('-Ql', '--xpath',
+          "//configuration//*[self::primitive or self::clone or self::group or self::master][@id='#{id}']"))
+        raise CibObject::CibObjectError, _('Unable to parse cibadmin output') unless xml.root
+        elem = xml.elements[1]
+        obj = class_from_element_name(elem.name).instantiate(elem)
+        obj.instance_variable_set(:@id, elem.attributes['id'])
+        obj.instance_variable_set(:@xml, elem)
+        obj
+      rescue SecurityError => e
+        raise CibObject::PermissionDenied, e.message
+      rescue NotFoundError => e
+        raise CibObject::RecordNotFound, e.message
+      rescue RuntimeError => e
+        raise CibObject::CibObjectError, e.message
+      end
+    end
+
+    private
+    
+    def class_from_element_name(name)
+      @@map = {
+        'primitive' => Primitive,
+        'clone'     => Clone,
+        'group'     => Group,
+        'master'    => Master
+      }
+      @@map[name]
+    end
+    
   end
 
   protected

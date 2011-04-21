@@ -146,10 +146,9 @@ class Primitive < CibObject
       end
 
       begin
-        p = @xml.elements['primitive']
-        merge_nvpairs(p, 'instance_attributes', @params)
-        merge_ops(p, @ops)
-        merge_nvpairs(p, 'meta_attributes', @meta)
+        merge_nvpairs(@xml, 'instance_attributes', @params)
+        merge_ops(@xml, @ops)
+        merge_nvpairs(@xml, 'meta_attributes', @meta)
 
         # TODO(should): Really should only do this if we're
         # certain something has changed.
@@ -215,50 +214,32 @@ class Primitive < CibObject
 
   class << self
 
-    # Find a primitive by ID and return it.  Note that if the current
-    # user doesn't have read access to the primitive, it appears to
-    # result in CibObject::RecordNotFound, due to the way the CIB ACL
-    # filtering works internally.
-    def find(id)
-      begin
-        xml = REXML::Document.new(Invoker.instance.cibadmin('-Ql', '--xpath', "//primitive[@id='#{id}']"))
-        raise CibObject::CibObjectError, _('Unable to parse cibadmin output') unless xml.root
-
-        # TODO(must): cope with missing/invalid class, type etc.
-        # TODO(must): this may not handle multiple sets of instance attributes
-        # TODO(should): do something sane with "invalid" (unknown) instance attributes
-        p = xml.elements['primitive']
-        res = allocate
-        res.instance_variable_set(:@id, id)
-        res.instance_variable_set(:@r_class,    p.attributes['class'] || '')
-        res.instance_variable_set(:@r_provider, p.attributes['provider'] || '')
-        res.instance_variable_set(:@r_type,     p.attributes['type'] || '')
-        res.instance_variable_set(:@params,     p.elements['instance_attributes'] ?
-          Hash[p.elements['instance_attributes'].elements.collect {|e|
-            [e.attributes['name'], e.attributes['value']] }] : {})
-        # This bit is suspiciously similar to the action bit of metadata()
-        ops = {}
-        p.elements['operations'].elements.each do |e|
-          name = e.attributes['name']
-          ops[name] = [] unless ops[name]
-          op = Hash[e.attributes.collect]
-          op.delete 'name'
-          op.delete 'id'
-          ops[name].push op
-        end if p.elements['operations']
-        res.instance_variable_set(:@ops,        ops)
-        res.instance_variable_set(:@meta,       p.elements['meta_attributes'] ?
-          Hash[p.elements['meta_attributes'].elements.collect {|e|
-            [e.attributes['name'], e.attributes['value']] }] : {})
-        res.instance_variable_set(:@xml, xml)
-        res
-      rescue SecurityError => e
-        raise CibObject::PermissionDenied, e.message
-      rescue NotFoundError => e
-        raise CibObject::RecordNotFound, e.message
-      rescue RuntimeError => e
-        raise CibObject::CibObjectError, e.message
-      end
+    def instantiate(xml)
+      # TODO(must): cope with missing/invalid class, type etc.
+      # TODO(must): this may not handle multiple sets of instance attributes
+      # TODO(should): do something sane with "invalid" (unknown) instance attributes
+      res = allocate
+      res.instance_variable_set(:@r_class,    xml.attributes['class'] || '')
+      res.instance_variable_set(:@r_provider, xml.attributes['provider'] || '')
+      res.instance_variable_set(:@r_type,     xml.attributes['type'] || '')
+      res.instance_variable_set(:@params,     xml.elements['instance_attributes'] ?
+        Hash[xml.elements['instance_attributes'].elements.collect {|e|
+          [e.attributes['name'], e.attributes['value']] }] : {})
+      # This bit is suspiciously similar to the action bit of metadata()
+      ops = {}
+      xml.elements['operations'].elements.each do |e|
+        name = e.attributes['name']
+        ops[name] = [] unless ops[name]
+        op = Hash[e.attributes.collect]
+        op.delete 'name'
+        op.delete 'id'
+        ops[name].push op
+      end if xml.elements['operations']
+      res.instance_variable_set(:@ops,        ops)
+      res.instance_variable_set(:@meta,       xml.elements['meta_attributes'] ?
+        Hash[xml.elements['meta_attributes'].elements.collect {|e|
+          [e.attributes['name'], e.attributes['value']] }] : {})
+      res
     end
 
     def classes_and_providers

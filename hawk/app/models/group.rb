@@ -100,8 +100,7 @@ class Group < CibObject
       end
 
       begin
-        g = @xml.elements['group']
-        merge_nvpairs(g, 'meta_attributes', @meta)
+        merge_nvpairs(@xml, 'meta_attributes', @meta)
 
         Invoker.instance.cibadmin_replace @xml.to_s
       rescue NotFoundError, SecurityError, RuntimeError => e
@@ -128,27 +127,13 @@ class Group < CibObject
 
   class << self
 
-    def find(id)
-      begin
-        xml = REXML::Document.new(Invoker.instance.cibadmin('-Ql', '--xpath', "//group[@id='#{id}']"))
-        raise CibObject::CibObjectError, _('Unable to parse cibadmin output') unless xml.root
-
-        g = xml.elements['group']
-        res = allocate
-        res.instance_variable_set(:@id, id)
-        res.instance_variable_set(:@children, g.elements.collect('primitive') {|e| e.attributes['id'] })
-        res.instance_variable_set(:@meta,     g.elements['meta_attributes'] ?
-          Hash[g.elements['meta_attributes'].elements.collect {|e|
-            [e.attributes['name'], e.attributes['value']] }] : {})
-        res.instance_variable_set(:@xml, xml)
-        res
-      rescue SecurityError => e
-        raise CibObject::PermissionDenied, e.message
-      rescue NotFoundError => e
-        raise CibObject::RecordNotFound, e.message
-      rescue RuntimeError => e
-        raise CibObject::CibObjectError, e.message
-      end
+    def instantiate(xml)
+      res = allocate
+      res.instance_variable_set(:@children, xml.elements.collect('primitive') {|e| e.attributes['id'] })
+      res.instance_variable_set(:@meta,     xml.elements['meta_attributes'] ?
+        Hash[xml.elements['meta_attributes'].elements.collect {|e|
+          [e.attributes['name'], e.attributes['value']] }] : {})
+      res
     end
 
     def metadata
