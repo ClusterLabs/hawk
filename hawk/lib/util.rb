@@ -126,4 +126,12 @@ module Util
   end
   module_function :safe_x
 
+  # Gives back a string, boolean if value is "true" or "false", or nil
+  # if initial value was nil (or boolean false) and there's no default
+  # TODO(should): be nice to get integers auto-converted too
+  def unstring(v, default = nil)
+    v ||= default
+    ['true', 'false'].include?(v.class == String ? v.downcase : v) ? v.downcase == 'true' : v
+  end
+  module_function :unstring
 end

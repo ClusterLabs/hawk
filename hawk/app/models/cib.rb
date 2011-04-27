@@ -37,13 +37,9 @@ class Cib < CibObject
 
   protected
 
-  # Gives back a string, boolean if value is "true" or "false",
-  # or nil if attribute doesn't exist and there's no default
-  # (roughly equivalent to crm_element_value() in Pacemaker)
-  # TODO(should): be nice to get integers auto-converted too
+  # Roughly equivalent to crm_element_value() in Pacemaker
   def get_xml_attr(elem, name, default = nil)
-    v = elem.attributes[name] || default
-    ['true', 'false'].include?(v.class == String ? v.downcase : v) ? v.downcase == 'true' : v
+    Util.unstring(elem.attributes[name], default)
   end
 
   def get_property(property, default = nil)
