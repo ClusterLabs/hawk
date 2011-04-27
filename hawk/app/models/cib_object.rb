@@ -99,6 +99,28 @@ class CibObject
       end
     end
 
+    # Return all objects of a given type
+    def all(type)
+      begin
+        a = []
+        xml = REXML::Document.new(Invoker.instance.cibadmin('-Ql', '--xpath', "//#{type}"))
+        raise CibObject::CibObjectError, _('Unable to parse cibadmin output') unless xml.root
+        xml.elements[1].elements.each do |e|
+          obj = class_from_element_name(e.name).instantiate(e)
+          obj.instance_variable_set(:@id, e.attributes['id'])
+          obj.instance_variable_set(:@xml, e)
+          a << obj
+        end
+        a
+      rescue SecurityError => e
+        raise CibObject::PermissionDenied, e.message
+      rescue NotFoundError => e
+        raise CibObject::RecordNotFound, e.message
+      rescue RuntimeError => e
+        raise CibObject::CibObjectError, e.message
+      end
+    end
+
     private
     
     def class_from_element_name(name)
