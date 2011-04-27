@@ -101,6 +101,7 @@ module Util
   # on STDIN (untested)
   def safe_x(*cmd)
     pr = IO::pipe   # pipe[0] for read, pipe[1] for write
+    pe = IO::pipe
     pid = fork{
       # child
       fork{
@@ -108,6 +109,9 @@ module Util
         pr[0].close
         STDOUT.reopen(pr[1])
         pr[1].close
+        pe[0].close
+        STDERR.reopen(pe[1])
+        pe[1].close
         exec(*cmd)
       }
       Process.wait
@@ -115,6 +119,7 @@ module Util
     }
     Process.waitpid(pid)
     pr[1].close
+    pe[1].close
     out = pr[0].read()
     pr[0].close
     out
