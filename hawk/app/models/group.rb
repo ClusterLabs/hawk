@@ -31,98 +31,80 @@
 class Group < CibObject
   include GetText
 
-  attr_accessor :children, :meta
+  @attributes = :children, :meta 
+  attr_accessor *@attributes
 
   def initialize(attributes = nil)
-    @new_record = true
-    @id         = nil
     @children   = []
     @meta       = {}
-    unless attributes.nil?
-      ['id', 'children', 'meta'].each do |n|
-        instance_variable_set("@#{n}".to_sym, attributes[n]) if attributes.has_key?(n)
-      end
-    end
+    super
   end
 
-  def save
-    if @id.match(/[^a-zA-Z0-9_-]/)
-      error _('Invalid Resource ID "%{id}"') % { :id => @id }
-    end
+  def validate
+    error _('No group children specified') if @children.empty?
+  end
 
+  def create
     @meta.each do |n,v|
       if v.index("'") && v.index('"')
         error _("Can't set meta attribute %{p}, because the value contains both single and double quotes") % { :p => n }
       end
     end
-
-    if @children.empty?
-      error _('No group children specified')
-    end
-
     return false if errors.any?
 
-    if new_record?
-      if CibObject.exists?(id)
-        error _('The ID "%{id}" is already in use') % { :id => @id }
-        return false
-      end
-
-      # TODO(must): Ensure children are sanitized
-      cmd = "group #{@id}"
-      @children.each do |c|
-        cmd += " #{c}"
-      end
-      unless @meta.empty?
-        cmd += " meta"
-        @meta.each do |n,v|
-          if v.index("'")
-            cmd += " #{n}=\"#{v}\""
-          else
-            cmd += " #{n}='#{v}'"
-          end
-        end
-      end
-      cmd += "\ncommit\n"
-
-      result = Invoker.instance.crm_configure cmd
-      unless result == true
-        error _('Unable to create group: %{msg}') % { :msg => result }
-        return false
-      end
-
-      return true
-    else
-      # Saving an existing group
-      unless CibObject.exists?(id, 'group')
-        error _('Group ID "%{id}" does not exist') % { :id => @id }
-        return false
-      end
-
-      begin
-        merge_nvpairs(@xml, 'meta_attributes', @meta)
-
-        Invoker.instance.cibadmin_replace @xml.to_s
-      rescue NotFoundError, SecurityError, RuntimeError => e
-        error e.message
-        return false
-      end
-
-      return true
+    if CibObject.exists?(id)
+      error _('The ID "%{id}" is already in use') % { :id => @id }
+      return false
     end
 
-    false  # Never reached
+    # TODO(must): Ensure children are sanitized
+    cmd = "group #{@id}"
+    @children.each do |c|
+      cmd += " #{c}"
+    end
+    unless @meta.empty?
+      cmd += " meta"
+      @meta.each do |n,v|
+        if v.index("'")
+          cmd += " #{n}=\"#{v}\""
+        else
+          cmd += " #{n}='#{v}'"
+        end
+      end
+    end
+    cmd += "\ncommit\n"
+
+    result = Invoker.instance.crm_configure cmd
+    unless result == true
+      error _('Unable to create group: %{msg}') % { :msg => result }
+      return false
+    end
+
+    true
+  end
+  
+  def update
+    # Saving an existing group
+    unless CibObject.exists?(id, 'group')
+      error _('Group ID "%{id}" does not exist') % { :id => @id }
+      return false
+    end
+
+    begin
+      merge_nvpairs(@xml, 'meta_attributes', @meta)
+
+      Invoker.instance.cibadmin_replace @xml.to_s
+    rescue NotFoundError, SecurityError, RuntimeError => e
+      error e.message
+      return false
+    end
+
+    true
   end
 
   def update_attributes(attributes)
     @meta = {}
-    # TODO(must): consolidate with initializes
-    unless attributes.nil?
-      ['meta'].each do |n|
-        instance_variable_set("@#{n}".to_sym, attributes[n]) if attributes.has_key?(n)
-      end
-    end
-    save
+    super
   end
 
   class << self

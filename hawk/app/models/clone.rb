@@ -31,95 +31,77 @@
 class Clone < CibObject
   include GetText
 
-  attr_accessor :child, :meta
+  @attributes = :child, :meta
+  attr_accessor *@attributes
 
   def initialize(attributes = nil)
-    @new_record = true
-    @id         = nil
     @child      = ''
     @meta       = {}
-    unless attributes.nil?
-      ['id', 'child', 'meta'].each do |n|
-        instance_variable_set("@#{n}".to_sym, attributes[n]) if attributes.has_key?(n)
-      end
-    end
+    super
   end
 
-  def save
-    if @id.match(/[^a-zA-Z0-9_-]/)
-      error _('Invalid Resource ID "%{id}"') % { :id => @id }
-    end
+  def validate
+    error _('No clone child specified') if @child.empty?
+  end
 
+  def create
     @meta.each do |n,v|
       if v.index("'") && v.index('"')
         error _("Can't set meta attribute %{p}, because the value contains both single and double quotes") % { :p => n }
       end
     end
-
-    if @child.empty?
-      error _('No clone child specified')
-    end
-
     return false if errors.any?
 
-    if new_record?
-      if CibObject.exists?(id)
-        error _('The ID "%{id}" is already in use') % { :id => @id }
-        return false
-      end
-
-      # TODO(must): Ensure child is sanitized
-      cmd = "clone #{@id} #{@child}"
-      unless @meta.empty?
-        cmd += " meta"
-        @meta.each do |n,v|
-          if v.index("'")
-            cmd += " #{n}=\"#{v}\""
-          else
-            cmd += " #{n}='#{v}'"
-          end
-        end
-      end
-      cmd += "\ncommit\n"
-
-      result = Invoker.instance.crm_configure cmd
-      unless result == true
-        error _('Unable to create clone: %{msg}') % { :msg => result }
-        return false
-      end
-
-      return true
-    else
-      # Saving an existing clone
-      unless CibObject.exists?(id, 'clone')
-        error _('Clone ID "%{id}" does not exist') % { :id => @id }
-        return false
-      end
-
-      begin
-        merge_nvpairs(@xml, 'meta_attributes', @meta)
-
-        Invoker.instance.cibadmin_replace @xml.to_s
-      rescue NotFoundError, SecurityError, RuntimeError => e
-        error e.message
-        return false
-      end
-
-      return true
+    if CibObject.exists?(id)
+      error _('The ID "%{id}" is already in use') % { :id => @id }
+      return false
     end
 
-    false  # Never reached
+    # TODO(must): Ensure child is sanitized
+    cmd = "clone #{@id} #{@child}"
+    unless @meta.empty?
+      cmd += " meta"
+      @meta.each do |n,v|
+        if v.index("'")
+          cmd += " #{n}=\"#{v}\""
+        else
+          cmd += " #{n}='#{v}'"
+        end
+      end
+    end
+    cmd += "\ncommit\n"
+
+    result = Invoker.instance.crm_configure cmd
+    unless result == true
+      error _('Unable to create clone: %{msg}') % { :msg => result }
+      return false
+    end
+
+    true
   end
+
+  def update
+    # Saving an existing clone
+    unless CibObject.exists?(id, 'clone')
+      error _('Clone ID "%{id}" does not exist') % { :id => @id }
+      return false
+    end
+
+    begin
+      merge_nvpairs(@xml, 'meta_attributes', @meta)
+
+      Invoker.instance.cibadmin_replace @xml.to_s
+    rescue NotFoundError, SecurityError, RuntimeError => e
+      error e.message
+      return false
+    end
+
+    true
+   end
 
   def update_attributes(attributes)
     @meta = {}
-    # TODO(must): consolidate with initializes
-    unless attributes.nil?
-      ['meta'].each do |n|
-        instance_variable_set("@#{n}".to_sym, attributes[n]) if attributes.has_key?(n)
-      end
-    end
-    save
+    super
   end
 
   class << self

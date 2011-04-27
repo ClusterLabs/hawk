@@ -55,6 +55,13 @@ class CibObject
     @errors ||= []
   end
 
+  def save
+    error _('Invalid Resource ID "%{id}"') % { :id => @id } unless @id.match(/[a-zA-Z0-9_-]/)
+    validate
+    return false if errors.any?
+    create_or_update
+  end
+
   class << self
 
     # Check whether anything with the given ID exists, or for a specific
@@ -111,6 +118,34 @@ class CibObject
   def error(msg)
     @errors ||= []
     @errors << msg
+  end
+
+  def initialize(attributes = nil)
+    @new_record = true
+    @id = nil
+    set_attributes(attributes)
+  end
+
+  def set_attributes(attributes = nil)
+    return if attributes.nil?
+    ['id', *self.class.instance_variable_get('@attributes')].each do |n|
+      instance_variable_set("@#{n}".to_sym, attributes[n]) if attributes.has_key?(n)
+    end
+  end
+
+  # Override this to add extra validation on save (it's enough
+  # to call 'error', no need to return anything in particular)
+  def validate
+  end
+
+  def create_or_update
+    result = new_record? ? create : update
+    result != false
+  end
+
+  def update_attributes(attributes = nil)
+    set_attributes(attributes)
+    save  # must be defined in subclass
   end
 
   def merge_nvpairs(parent, list, attrs)

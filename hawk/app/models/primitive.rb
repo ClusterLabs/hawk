@@ -37,30 +37,20 @@ class Primitive < CibObject
 
   # Using r_class to avoid collision with class reserved word.
   # Using r_provider and r_type for consistency with r_class.
-  attr_accessor :r_class, :r_provider, :r_type, :params, :ops, :meta
+  @attributes = :r_class, :r_provider, :r_type, :params, :ops, :meta
+  attr_accessor *@attributes
 
   def initialize(attributes = nil)
-    @new_record = true
-    @id         = nil
     @r_class    = 'ocf'
     @r_provider = 'heartbeat'
     @r_type     = ''
     @params     = {}
     @ops        = {}
     @meta       = {}
-    unless attributes.nil?
-      ['id', 'r_class', 'r_provider', 'r_type', 'params', 'ops', 'meta'].each do |n|
-        instance_variable_set("@#{n}".to_sym, attributes[n]) if attributes.has_key?(n)
-      end
-    end
+    super
   end
 
-  def save
-    if @id.match(/[^a-zA-Z0-9_-]/)
-      error _('Invalid Resource ID "%{id}"') % { :id => @id }
-    end
-
-    # TODO(must): This error is only true for initial creation (using crm shell)
+  def create
     @params.each do |n,v|
       if v.index("'") && v.index('"')
         error _("Can't set parameter %{p}, because the value contains both single and double quotes") % { :p => n }
@@ -85,83 +75,80 @@ class Primitive < CibObject
 
     return false if errors.any?
 
-    if new_record?
-      if CibObject.exists?(id)
-        error _('The ID "%{id}" is already in use') % { :id => @id }
-        return false
-      end
+    if CibObject.exists?(id)
+      error _('The ID "%{id}" is already in use') % { :id => @id }
+      return false
+    end
 
-      # TODO(must): Ensure r_class, r_provider and r_type are sanitized
-      provider = @r_provider.empty? ? '' : @r_provider + ':'
-      cmd = "primitive #{@id} #{@r_class}:#{provider}#{@r_type}"
-      unless @params.empty?
-        cmd += " params"
-        @params.each do |n,v|
-          if v.index("'")
-            cmd += " #{n}=\"#{v}\""
-          else
-            cmd += " #{n}='#{v}'"
-          end
+    # TODO(must): Ensure r_class, r_provider and r_type are sanitized
+    provider = @r_provider.empty? ? '' : @r_provider + ':'
+    cmd = "primitive #{@id} #{@r_class}:#{provider}#{@r_type}"
+    unless @params.empty?
+      cmd += " params"
+      @params.each do |n,v|
+        if v.index("'")
+          cmd += " #{n}=\"#{v}\""
+        else
+          cmd += " #{n}='#{v}'"
         end
       end
-      unless @ops.empty?
-        @ops.each do |op, instances|
-          instances.each do |i, attrlist|
-            cmd += " op #{op}"
-            attrlist.each do |n,v|
-              if v.index("'")
-                cmd += " #{n}=\"#{v}\""
-              else
-                cmd += " #{n}='#{v}'"
-              end
+    end
+    unless @ops.empty?
+      @ops.each do |op, instances|
+        instances.each do |i, attrlist|
+          cmd += " op #{op}"
+          attrlist.each do |n,v|
+            if v.index("'")
+              cmd += " #{n}=\"#{v}\""
+            else
+              cmd += " #{n}='#{v}'"
             end
           end
         end
       end
-      unless @meta.empty?
-        cmd += " meta"
-        @meta.each do |n,v|
-          if v.index("'")
-            cmd += " #{n}=\"#{v}\""
-          else
-            cmd += " #{n}='#{v}'"
-          end
+    end
+    unless @meta.empty?
+      cmd += " meta"
+      @meta.each do |n,v|
+        if v.index("'")
+          cmd += " #{n}=\"#{v}\""
+        else
+          cmd += " #{n}='#{v}'"
         end
       end
-      cmd += "\ncommit\n"
+    end
+    cmd += "\ncommit\n"
 
-      result = Invoker.instance.crm_configure cmd
-      unless result == true
-        error _('Unable to create resource: %{msg}') % { :msg => result }
-        return false
-      end
-
-      return true
-
-    else
-      # Saving an existing primitive
-      unless CibObject.exists?(id, 'primitive')
-        error _('Resource ID "%{id}" does not exist') % { :id => @id }
-        return false
-      end
-
-      begin
-        merge_nvpairs(@xml, 'instance_attributes', @params)
-        merge_ops(@xml, @ops)
-        merge_nvpairs(@xml, 'meta_attributes', @meta)
-
-        # TODO(should): Really should only do this if we're
-        # certain something has changed.
-        Invoker.instance.cibadmin_replace @xml.to_s
-      rescue NotFoundError, SecurityError, RuntimeError => e
-        error e.message
-        return false
-      end
-
-      return true
+    result = Invoker.instance.crm_configure cmd
+    unless result == true
+      error _('Unable to create resource: %{msg}') % { :msg => result }
+      return false
     end
 
-    false  # Never reached
+    true
+  end
+
+  def update
+    # Saving an existing primitive
+    unless CibObject.exists?(id, 'primitive')
+      error _('Resource ID "%{id}" does not exist') % { :id => @id }
+      return false
+    end
+
+    begin
+      merge_nvpairs(@xml, 'instance_attributes', @params)
+      merge_ops(@xml, @ops)
+      merge_nvpairs(@xml, 'meta_attributes', @meta)
+
+      # TODO(should): Really should only do this if we're
+      # certain something has changed.
+      Invoker.instance.cibadmin_replace @xml.to_s
+    rescue NotFoundError, SecurityError, RuntimeError => e
+      error e.message
+      return false
+    end
+
+    true
   end
 
   def update_attributes(attributes)
@@ -170,13 +157,7 @@ class Primitive < CibObject
     @params = {}
     @ops = {}
     @meta = {}
-    # TODO(must): consolidate with initializes
-    unless attributes.nil?
-      ['id', 'r_class', 'r_provider', 'r_type', 'params', 'ops', 'meta'].each do |n|
-        instance_variable_set("@#{n}".to_sym, attributes[n]) if attributes.has_key?(n)
-      end
-    end
-    save
+    super
   end
 
   # This is somewhat similar to CibObject::merge_nvpairs
