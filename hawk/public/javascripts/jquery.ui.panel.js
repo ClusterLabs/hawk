@@ -43,6 +43,7 @@
     _create: function() {
       var e = this.element;
       e.addClass("ui-panel ui-corner-all");
+      var c = e.children().remove();  // preserve existing children
       e.append($(
         '<div class="clickable">' +
           '<div class="tri-closed"></div>' +
@@ -55,6 +56,7 @@
       this.menu_img   = e.find("img");
       this.label      = e.find("span");
       this.body       = e.children(":last");
+      this.body.append(c);
       var self = this;
       this.header.click(function() {
         self.toggle();
