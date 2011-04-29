@@ -78,14 +78,14 @@ class Location < Constraint
             :role             => rule_elem.attributes['role'] || nil,
             :score            => rule_elem.attributes['score'] || nil,
             :score_attribute  => rule_elem.attributes['score-attribute'] || nil,
-            :boolean_op       => rule_elem.attributes['boolean-op'] || nil,
+            :boolean_op       => rule_elem.attributes['boolean-op'] || 'and',
             :expressions      => []
           }
           rule_elem.elements.each do |expr_elem|
             rule[:expressions] << {
               :value      => expr_elem.attributes['value'] || nil,
               :attribute  => expr_elem.attributes['attribute'] || nil,
-              :type       => expr_elem.attributes['type'] || nil,
+              :type       => expr_elem.attributes['type'] || 'string',
               :operation  => expr_elem.attributes['operation'] || nil
             }
           end
