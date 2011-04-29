@@ -1,0 +1,95 @@
+<% content_for :head do %>
+<%= stylesheet_link_tag 'ui.panel.css' %>
+<%= javascript_include_tag 'jquery.ui.panel.js' %>
+<style type="text/css">
+/* TODO(should): move to stylesheet */
+td {
+  vertical-align: top;
+  white-space: nowrap;
+}
+td span {
+  border: 1px solid #000;
+  padding: 0 0.5em;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  font-family: monospace;
+  white-space: nowrap;
+}
+th {
+  padding-top: 0.5em;
+  font-weight: bold;
+}
+img {
+  vertical-align: middle;
+}
+</style>
+<% end %>
+<script type="text/javascript">
+$(function() {
+  $("#locations").panel({ label: "<%=h escape_javascript _('Location') %>",
+    menu_icon: url_root + "/images/transparent-16x16.gif", open: <%= @locations.any? ? 'true' : 'false' %> });
+  $("#colocations").panel({ label: "<%=h escape_javascript _('Colocation') %>",
+    menu_icon: url_root + "/images/transparent-16x16.gif", open: <%= @colocations.any? ? 'true' : 'false' %> });
+  <%= '$("#colocations").panel("expand");' if @colocations.any? %>
+  $("#orders").panel({ label: "<%=h escape_javascript _('Order') %>",
+    menu_icon: url_root + "/images/transparent-16x16.gif", open: <%= @orders.any? ? 'true' : 'false' %> });
+});
+</script>
+
+<div id="locations">
+<table>
+<% @locations.sort{|a,b| a.id.natcmp(b.id, true)}.each do |loc| %>
+  <tr>
+    <td rowspan="<%= loc.rules.length %>"><%=h loc.id %></td>
+    <td rowspan="<%= loc.rules.length %>"><%=h loc.rsc %></td>
+  <%
+    first = true
+    loc.rules.each do |rule|
+      if first ; first=false ; else concat "<tr>" ; end
+  %>
+    <td><%=h rule[:score] || rule[:score_attribute] %></td>
+    <td><%=
+      rule[:expressions].map {|e|
+        h(e[:attribute]) + " " + h(e[:operation]) + " " + h(e[:value])
+      }.join(h(" #{rule[:boolean_op]} "))
+    %></td>
+  </tr>
+  <% end %>
+<% end %>
+<% if !@locations.any? %>
+  <tr><td><%=h _('(No location constraints defined)') %></td></tr>
+<% end %>
+</table>
+</div>
+
+<div id="colocations">
+<table>
+<% @colocations.sort{|a,b| a.id.natcmp(b.id, true)}.each do |col| %>
+  <tr>
+    <td><%=h col.id %></td>
+    <td><%=h col.score %></td>
+    <td><%= rsc_set(col) %></td>
+  </tr>
+<% end %>
+<% if !@colocations.any? %>
+  <tr><td><%=h _('(No colocation constraints defined)') %></td></tr>
+<% end %>
+</table>
+</div>
+
+<div id="orders">
+<table>
+<% @orders.sort{|a,b| a.id.natcmp(b.id, true)}.each do |ord| %>
+  <tr>
+    <td><%=h ord.id %></td>
+    <td><%=h ord.score %></td>
+    <td><%= rsc_set(ord) %></td>
+  </tr>
+<% end %>
+<% if !@orders.any? %>
+  <tr><td><%=h _('(No order constraints defined)') %></td></tr>
+<% end %>
+</table>
+</div>
+

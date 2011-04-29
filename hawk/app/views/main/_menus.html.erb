@@ -87,6 +87,16 @@ $(function() {
           error_dialog("<%= escape_javascript _("Can't create master/slave, there are no primitives or groups available.") %>");
         }
       }
+    },
+    {
+      separator: true,
+    },
+    {
+      label: "<%=h escape_javascript _('Edit Constraints') %>",
+      icon: "constraints.png",
+      click: function(target) {
+        window.location.assign(url_root + "/cib/live/constraints");
+      }
     }
   ]});
   $(jq("menu::resource")).popupmenu({ iconroot: url_root + "/images/icons/", items: [
