@@ -1,0 +1,93 @@
+diff -r 430f3c42e1cc hawk/app/controllers/constraints_controller.rb
+--- a/hawk/app/controllers/constraints_controller.rb	Sat Apr 30 02:00:29 2011 +1000
++++ b/hawk/app/controllers/constraints_controller.rb	Sat Apr 30 02:49:03 2011 +1000
+@@ -50,4 +50,60 @@ class ConstraintsController < Applicatio
+     @orders       = constraints.select {|c| c.class == Order}
+   end
+ 
++  def visualize
++    g='digraph "g" {
++#"X" -> "Y" [label="ord"]
++#"A" -> "B" [label="ord"]
++#"B" -> "C" [label="ord"]
++#"B" -> "D" [label="ord"]
++#"B" -> "E" [label="ord"]
++#"C" -> "F" [label="ord"]
++#"D" -> "F" [label="ord"]
++#"E" -> "F" [label="ord"]
++#"F" -> "G" [label="ord"]
++
++#"Y" -> "X" [label="col"]
++#"G" -> "F" [label="col"]
++#"F" -> "C" [label="col"]
++#"F" -> "D" [label="col"]
++#"F" -> "E" [label="col"]
++#"C" -> "B" [label="col"]
++#"D" -> "B" [label="col"]
++#"E" -> "B" [label="col"]
++#"B" -> "A" [label="col"]
++
++p0 [label=""]
++p1 [label=""]
++"p0" -> "C" -> "p1" [dir="none"]
++"p0" -> "D" -> "p1" [dir="none"]
++"p0" -> "E" -> "p1" [dir="none"]
++
++"X" -> "Y" [label="ord"]
++"A" -> "B" -> "p1" [label="ord"]
++"p0" -> "F" -> "G" [label="ord"]
++
++"Y" -> "X" [label="col"]
++"G" -> "F" -> "p0" [label="col"]
++"p1" -> "B" -> "A" [label="col"]
++
++#"Y" -> "X" [headlabel="col",taillabel="ord",dir="both",minlen="2"]
++#"G" -> "F" -> "p0" [headlabel="col",taillabel="ord",dir="both",minlen="2"]
++#"p0" -> "C" -> "p1" [dir="none"]
++#"p0" -> "D" -> "p1" [dir="none"]
++#"p0" -> "E" -> "p1" [dir="none"]
++#"p1" -> "B" -> "A" [headlabel="col",taillabel="ord",dir="both",minlen="2"]
++
++}'
++    stdin, stdout, stderr, thread = Util.popen3('/usr/bin/dot', '-Tpng')
++    stdin.write(g)
++    stdin.close
++    png = stdout.read
++    stdout.close
++    err = stderr.read   # TODO(must): do something with this?
++    stderr.close
++    # TODO(must): check thread.value.exitstatus
++
++    send_data png, :type => 'image/png', :disposition => 'inline'
++  end
++
+ end
+diff -r 430f3c42e1cc hawk/app/views/main/_menus.html.erb
+--- a/hawk/app/views/main/_menus.html.erb	Sat Apr 30 02:00:29 2011 +1000
++++ b/hawk/app/views/main/_menus.html.erb	Sat Apr 30 02:49:03 2011 +1000
+@@ -97,6 +97,13 @@
+       click: function(target) {
+         window.location.assign(url_root + "/cib/live/constraints");
+       }
++    },
++    {
++      label: "<%=h escape_javascript _('Visualize Constraints') %>",
++      icon: "constraints.png",
++      click: function(target) {
++        window.open(url_root + "/cib/live/constraints/new/visualize", "hawk_visualize");
++      }
+     }
+   ]});
+   $(jq("menu::resource")).popupmenu({ iconroot: url_root + "/images/icons/", items: [
+diff -r 430f3c42e1cc hawk/config/routes.rb
+--- a/hawk/config/routes.rb	Sat Apr 30 02:00:29 2011 +1000
++++ b/hawk/config/routes.rb	Sat Apr 30 02:49:03 2011 +1000
+@@ -52,6 +52,8 @@ ActionController::Routing::Routes.draw d
+   map.resources :cib, :has_many => :masters
+ 
+   map.resources :cib, :has_many => :constraints
++  # TODO(should): Again with the wacky ID
++  map.constraints_viz '/cib/:cib_id/constraints/new/visualize', :controller => 'constraints', :action => 'visualize'
+ 
+   # TODO(should): resources & nodes become Rails resources, look at RESTful routing
+   # As of 2011-02-21 we now have a split here, resource editor uses the above
