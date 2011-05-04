@@ -60,6 +60,8 @@ resources =
 #   order.resources = [ 'A', 'B', 'C' ];
 #   colocation.resources = [ 'C', 'B', 'A' ];
 
+# TODO(should): Expose Symmetrical attribute, put possibly only if
+# explicitly set
 class Order < Constraint
   @attributes = :score, :resources
   attr_accessor *@attributes
