@@ -31,6 +31,7 @@
 # Shim to get similar behaviour as ActiveRecord
 
 class CibObject
+  include GetText
 
   class CibObjectError < StandardError
   end
@@ -56,7 +57,7 @@ class CibObject
   end
 
   def save
-    error _('Invalid Resource ID "%{id}"') % { :id => @id } unless @id.match(/[a-zA-Z0-9_-]/)
+    error _('Invalid Resource ID "%{id}"') % { :id => @id } unless @id.match(/^[a-zA-Z0-9_-]+$/)
     validate
     return false if errors.any?
     create_or_update
