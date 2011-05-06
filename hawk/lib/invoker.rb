@@ -92,7 +92,7 @@ class Invoker
     stdin, stdout, stderr, thread = run_as(current_user, 'crm', '-F', 'configure', 'load', 'update', f.path)
     stdin.close
     stdout.close
-    @result = stderr.read()
+    result = stderr.read()
     stderr.close
     f.unlink
     thread.value.exitstatus == 0 ? true : result
