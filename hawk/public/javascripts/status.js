@@ -251,23 +251,6 @@ function add_mgmt_menu(e)
   }
 }
 
-function error_dialog(msg, body)
-{
-  if (body) {
-    // TODO(should): theme this properly
-    msg += '<div id="dialog-body" class="message">' + escape_html(body).replace(/\n/g, "<br />") + "</div>";
-  }
-  $("#dialog").html(msg);
-  // TODO(could): Is there a neater construct for this localized button thing?
-  var b = {};
-  b[GETTEXT.ok()]   = function() { $(this).dialog("close"); }
-  $("#dialog").dialog("option", {
-    title:    GETTEXT.error(),
-    buttons:  b
-  });
-  $("#dialog").dialog("open");
-}
-
 function do_update(cur_epoch)
 {
   // No refresh if this is a static test
