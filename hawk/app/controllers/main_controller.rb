@@ -37,6 +37,7 @@ class MainController < ApplicationController
   private
 
   # Invoke some command, returning OK or JSON error as appropriate
+  # TODO(must): move this to Invoker (or reuse existing Invoker methods)
   def invoke(*cmd)
     stdin, stdout, stderr, thread = Util.run_as(current_user, *cmd)
     stdin.close

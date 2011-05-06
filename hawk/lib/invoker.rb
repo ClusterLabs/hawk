@@ -76,6 +76,28 @@ class Invoker
     thread.value.exitstatus == 0 ? true : result
   end
 
+  # Run "crm -F configure load update"
+  # Returns 'true' on successful execution, or STDERR output on failure.
+  def crm_configure_load_update(cmd)
+    require 'tempfile.rb'
+    f = Tempfile.new 'crm_config_update'
+    f << cmd
+    f.close
+    # Evil to allow unprivileged user running crm shell to read the file
+    # TODO(should): can we just allow group (probably ok live, but no
+    # good for testing when running as root), or some other alternative
+    # with piping data to crm?
+    File.chmod(0666, f.path)
+    # TODO(must): crm lies about failed update when run with R/O access!
+    stdin, stdout, stderr, thread = run_as(current_user, 'crm', '-F', 'configure', 'load', 'update', f.path)
+    stdin.close
+    stdout.close
+    @result = stderr.read()
+    stderr.close
+    f.unlink
+    thread.value.exitstatus == 0 ? true : result
+  end
+
   # Invoke cibadmin with command line arguments.  Returns stdout as string,
   # Raises NotFoundError, SecurityError or RuntimeError on failure.
   def cibadmin(*cmd)
