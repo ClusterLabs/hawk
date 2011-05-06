@@ -68,3 +68,14 @@ function error_dialog(msg, body)
   $("#dialog").dialog("open");
 }
 
+// Shame jQuery doesn't seem to give us JSON automatically in the case of an error...
+function json_from_request(request)
+{
+  try {
+    return $.parseJSON(request.responseText);
+  } catch (e) {
+    // This'll happen if the JSON is malformed somehow
+    return null;
+  }
+}
+

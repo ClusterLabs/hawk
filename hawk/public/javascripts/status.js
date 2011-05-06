@@ -39,17 +39,6 @@ function jq(id)
   return "#" + id.replace(/(:|\.)/g,'\\$1');
 }
 
-// Shame jQuery doesn't seem to give us JSON automatically in the case of an error...
-function json_from_request(request)
-{
-  try {
-    return $.parseJSON(request.responseText);
-  } catch (e) {
-    // This'll happen if the JSON is malformed somehow
-    return null;
-  }
-}
-
 function update_errors(errors)
 {
   $("#errorbar").html("");
