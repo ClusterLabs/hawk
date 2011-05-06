@@ -141,7 +141,8 @@ $(function() {
       loc.too_complex? ? h(_('[Constraint is too complex to display]')) :
         (rule[:role] ? "(#{rule[:role]}) " : '') +
         rule[:expressions].map {|e|
-          h(e[:attribute]) + " " + h(e[:operation]) + " " + h(e[:value])
+          e[:value] ? h("#{e[:attribute]} #{e[:operation]} #{e[:value]}") :
+            h("#{e[:operation]} #{e[:attribute]}")
         }.join(h(" #{rule[:boolean_op]} "))
     %></td>
     <td class="button" rowspan="<%= loc.rules.length %>"><% unless loc.too_complex? %><a class="clickable" name="<%=h loc.id %>"><%= image_tag 'icons/properties.png', :alt => '' %></a><% end %></td>
