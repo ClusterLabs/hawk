@@ -3,6 +3,7 @@
 <%= stylesheet_link_tag 'ui.popupmenu.css' %>
 <%= javascript_include_tag 'jquery.ui.panel.js' %>
 <%= javascript_include_tag 'jquery.ui.popupmenu.js' %>
+<script src="<%= url_for(:controller => 'main', :action => 'gettext', :format => 'js') %>" type="text/javascript"></script>
 <style type="text/css">
 /* TODO(should): move to stylesheet */
 td {
@@ -39,6 +40,7 @@ td.button {
 }
 </style>
 <% end %>
+
 <script type="text/javascript">
 
 $(function() {
@@ -61,6 +63,8 @@ $(function() {
         var id = target.attr("name");
         target.children(":first").attr("src", url_root + "/images/spinner-16x16-neutral.gif");
         // Abuse of /main/resource/delete, which is generic enough to delete anything
+        // TODO(should): Fix error message (refers to "error deleting resource")
+        // TODO(should): Consolidate this request stuff, esp. the error case.
         $.ajax({ url: url_root + "/main/resource/delete",
           data: "format=json&resource=" + id,
           type: "POST",
@@ -78,17 +82,13 @@ $(function() {
             target.children(":first").attr("src", url_root + "/images/icons/properties.png");
             var json = json_from_request(request);
             if (json) {
-              alert(json.error + "\n" + json.stderr ? json.stderr : "");
-// TODO(must): Use real error dialog
-//              error_dialog(json.error, json.stderr ? json.stderr : null);
+              error_dialog(json.error, json.stderr ? json.stderr : null);
             } else {
               if (request.status == 403) {
                 // 403 == permission denied
-                alert("<%= escape_javascript _('Permission denied') %>");
-//                error_dialog(GETTEXT.err_denied());
+                error_dialog(GETTEXT.err_denied());
               } else {
-                alert("<%= escape_javascript _('Unexpected server error: %s') % '_MSG_' %>".replace('_MSG_', request.status));
-//                error_dialog(GETTEXT.err_unexpected(request.status));
+                error_dialog(GETTEXT.err_unexpected(request.status));
               }
             }
           }
