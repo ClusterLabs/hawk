@@ -67,7 +67,10 @@ $(function() {
           success: function() {
             // Remove spinner (a spinner that stops too early is marginally better than one that never stops)
             target.children(":first").attr("src", url_root + "/images/icons/properties.png");
-// TODO(must): Reinject "no constraints defined" line
+            // Show "no constraints defined" if we're about to get rid of the last one
+            if (target.closest("table")[0].rows.length == 2) {
+              target.closest("table").find("tr").show();
+            }
             target.closest("tr").remove();
           },
           error: function(request) {
@@ -123,6 +126,7 @@ $(function() {
 <div id="constraint" style="display: none;"></div>
 <div id="locations">
 <table>
+  <tr<%= ' style="display: none;"' if @locations.any? %>><td><%=h _('(No location constraints defined)') %></td></tr>
 <% @locations.sort{|a,b| a.id.natcmp(b.id, true)}.each do |loc| %>
   <tr>
     <td class="id" rowspan="<%= loc.rules.length %>"><%=h loc.id %></td>
@@ -142,14 +146,12 @@ $(function() {
   </tr>
   <% end %>
 <% end %>
-<% if !@locations.any? %>
-  <tr><td><%=h _('(No location constraints defined)') %></td></tr>
-<% end %>
 </table>
 </div>
 
 <div id="colocations">
 <table>
+  <tr<%= ' style="display: none;"' if @colocations.any? %>><td><%=h _('(No colocation constraints defined)') %></td></tr>
 <% @colocations.sort{|a,b| a.id.natcmp(b.id, true)}.each do |col| %>
   <tr>
     <td class="id"><%=h col.id %></td>
@@ -158,14 +160,12 @@ $(function() {
     <td class="button"><a class="clickable" name="<%=h col.id %>"><%= image_tag 'icons/properties.png', :alt => '' %></a></td>
   </tr>
 <% end %>
-<% if !@colocations.any? %>
-  <tr><td><%=h _('(No colocation constraints defined)') %></td></tr>
-<% end %>
 </table>
 </div>
 
 <div id="orders">
 <table>
+  <tr<%= ' style="display: none;"' if @orders.any? %>><td><%=h _('(No order constraints defined)') %></td></tr>
 <% @orders.sort{|a,b| a.id.natcmp(b.id, true)}.each do |ord| %>
   <tr>
     <td class="id"><%=h ord.id %></td>
@@ -173,9 +173,6 @@ $(function() {
     <td><%= rsc_set(ord) %></td>
     <td class="button"><a class="clickable" name="<%=h ord.id %>"><%= image_tag 'icons/properties.png', :alt => '' %></a></td>
   </tr>
-<% end %>
-<% if !@orders.any? %>
-  <tr><td><%=h _('(No order constraints defined)') %></td></tr>
 <% end %>
 </table>
 </div>
