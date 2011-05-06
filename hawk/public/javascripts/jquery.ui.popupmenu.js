@@ -93,6 +93,10 @@
       }
       this.target = target;
       $(document).click(); // Hide any other popup menus first
+      var over_wide = pos.left + 8 + this.element.outerWidth() - $(document).width();
+      if (over_wide > 0) pos.left -= over_wide;
+      var over_high = pos.top + 8 + this.element.outerHeight() - $(document).height();
+      if (over_high > 0) pos.top -= over_high;
       this.element.css({left: pos.left+"px", top: pos.top+"px"}).show();
       return false; // Stop propagation
     }
