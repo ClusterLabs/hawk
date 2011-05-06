@@ -93,3 +93,11 @@ $(function() {
 </table>
 </div>
 
+<% form_tag status_path, :method => 'get' do %>
+<br/>
+<!-- temporary back button, not pretty, but just for the sake of an
+     obvious way back to the status screen, right now -->
+<%= submit_tag _('Back'), { :name => nil } %>
+<% end %>
+
+
