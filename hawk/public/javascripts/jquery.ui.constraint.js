@@ -75,6 +75,7 @@
         cut: "Break set",
         heading_add: "Add resource to constraint"
       },
+      prefix: "",
       dirty: null
     },
     in_chain: {}, // temp, only valid during init
@@ -205,7 +206,10 @@
     _set_link_row: function() {
       var self = this;
       // Note: border: none, background none, makes it "smaller" than regular resource manipulation buttons
-      var r = $('<tr class="chain-rel"><td class="rel" colspan="2"><img src="' + self.options.imgroot + 'arrow-down.png" alt="&darr;" /></td>' +
+      var r = $('<tr class="chain-rel">' +
+          '<td class="rel" colspan="2">' +
+            '<input type="hidden" ' + self._field_name() + ' value="rel"/>' +
+            '<img src="' + self.options.imgroot + 'arrow-down.png" alt="&darr;" /></td>' +
           '<td><button type="button" style="border: none; background: none;">' + self.options.labels.link + "</button></td>" +
         '</tr>');
       r.find("button").button({
@@ -325,6 +329,12 @@
       return new_row;
     },
 
+    _field_name: function(n) {
+      var self = this;
+      n = self.options.prefix + "[]" + (n ? "[" + n + "]" : "");
+      return 'id="' + n.replace(/]/g, "").replace(/\[/g, "_") + '" name="' + n + '"';
+    },
+
     _append_row: function(res_id, action, class_l, class_r) {
       var self = this;
 
@@ -337,12 +347,14 @@
       class_r = class_r || "ui-corner-right res r";
 
       var new_row = $('<tr class="chain-res">' +
-          '<td class="' + class_l + '">' + escape_html(res_id) + "</td>" +
-          '<td class="' + class_r + '"><select><option></option>' + actions + "</select></td>" +
+          '<td class="' + class_l + '"><input type="hidden" ' + self._field_name("id") + ' value="' + escape_field(res_id) + '"/>' +
+            escape_html(res_id) + "</td>" +
+          '<td class="' + class_r + '"><select ' + self._field_name("action") + "><option></option>" + actions + "</select></td>" +
           '<td><button type="button">' + self.options.labels.remove + "</button></td>" +
         "</tr>");
-      new_row.find("select").change(function() {
+      new_row.find("select").change(function(event) {
         self._normalize_action($(this).parent().parent());
+        self._trigger("dirty", event, {});
       });
       new_row.find("button").button({
         icons: {
