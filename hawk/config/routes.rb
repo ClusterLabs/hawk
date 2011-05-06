@@ -52,6 +52,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :cib, :has_many => :masters
 
   map.resources :cib, :has_many => :constraints
+  map.resources :cib, :has_many => :colocations
   map.resources :cib, :has_many => :orders
 
   # TODO(should): resources & nodes become Rails resources, look at RESTful routing

@@ -44,11 +44,54 @@ class Colocation < Constraint
     @resources  = []
     super
   end
-  
+
+  def validate
+    @score.strip!
+    unless ['mandatory', 'advisory', 'inf', '-inf', 'infinity', '-infinity'].include? @score.downcase
+      unless @score.match(/^-?[0-9]+$/)
+        error _('Invalid score')
+      end
+    end
+    if @resources.length < 2
+      error _('Constraint must consist of at least two separate resources')
+    end
+  end
+
   def create
+    if CibObject.exists?(id)
+      error _('The ID "%{id}" is already in use') % { :id => @id }
+      return false
+    end
+
+    cmd = shell_syntax
+    cmd += "\ncommit\n"
+
+    result = Invoker.instance.crm_configure cmd
+    unless result == true
+      error _('Unable to create constraint: %{msg}') % { :msg => result }
+      return false
+    end
+
+    true
   end
   
   def update
+    unless CibObject.exists?(id, 'rsc_colocation')
+      error _('Constraint ID "%{id}" does not exist') % { :id => @id }
+      return false
+    end
+
+    # Can just use crm configure load update here, it's trivial enough (because
+    # we basically replace the object every time, rather than having to merge
+    # like primitive, ms, etc.)
+
+    result = Invoker.instance.crm_configure_load_update shell_syntax
+    unless result == true
+      error _('Unable to update constraint: %{msg}') % { :msg => result }
+      return false
+    end
+
+    true
   end
   
   def update_attributes(attributes = nil)
@@ -96,6 +139,71 @@ class Colocation < Constraint
       con.instance_variable_set(:@resources, resources)
       con
     end
+  end
+
+  private
+
+  def shell_syntax
+    cmd = "colocation #{@id} #{@score}:"
+
+    #
+    # crm syntax matches nasty inconsistency in CIB, i.e. to get:
+    #
+    #   d6 -> d5 -> ( d4 d3 ) -> d2 -> d1 -> d0
+    #
+    # you use:
+    #
+    #   colocation <id> <score>: d5 d6 ( d3 d4 ) d0 d1 d2
+    #
+    # except when using simple constrains, i.e. to get:
+    #
+    #   d1 -> d0
+    #
+    # you use:
+    #
+    #   colocation <id> <score>: d1 d0
+    #
+    # To further confuse matters, duplicate roles in complex chains
+    # are collapsed to sets, so for:
+    #
+    #   d2:Master -> d1:Started -> d0:Started
+    #
+    # you use:
+    #
+    #   colocation <id> <score>: d2:Master d0:Started d1:Started
+    #
+    # To deal with this, we need to collapse all the sets first
+    # then iterate through them (unlike the Order model, where
+    # this is unnecessary)
+
+    collapsed = [ @resources.first ]
+    @resources.last(@resources.length - 1).each do |set|
+      if collapsed.last[:sequential] == set[:sequential] &&
+         collapsed.last[:role] == set[:role]
+        collapsed.last[:resources] += set[:resources]
+      else
+        collapsed << set
+      end
+    end
+
+    if collapsed.length == 1 && collapsed[0][:resources].length == 2
+      # simple constraint (it's already in reverse order so
+      # don't flip around the other way like we do below)
+      collapsed[0][:resources].each do |r|
+        cmd += " #{r[:id]}"
+        cmd += ":#{set[:role]}" if collapsed[0][:role]
+      end
+    else
+      collapsed.each do |set|
+        cmd += " ( " unless set[:sequential]
+        set[:resources].reverse.each do |r|
+          cmd += " #{r[:id]}"
+          cmd += ":#{set[:role]}" if set[:role]
+        end
+        cmd += " )" unless set[:sequential]
+      end
+    end
+    cmd
   end
 end
 
