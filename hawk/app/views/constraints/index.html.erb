@@ -138,6 +138,7 @@ $(function() {
   %>
     <td class="score"><%=h rule[:score] || rule[:score_attribute] %></td>
     <td><%=
+      (rule[:role] ? "(#{rule[:role]}) " : '') +
       rule[:expressions].map {|e|
         h(e[:attribute]) + " " + h(e[:operation]) + " " + h(e[:value])
       }.join(h(" #{rule[:boolean_op]} "))
