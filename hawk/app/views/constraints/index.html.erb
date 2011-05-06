@@ -138,12 +138,13 @@ $(function() {
   %>
     <td class="score"><%=h rule[:score] || rule[:score_attribute] %></td>
     <td><%=
-      (rule[:role] ? "(#{rule[:role]}) " : '') +
-      rule[:expressions].map {|e|
-        h(e[:attribute]) + " " + h(e[:operation]) + " " + h(e[:value])
-      }.join(h(" #{rule[:boolean_op]} "))
+      loc.too_complex? ? h(_('[Constraint is too complex to display]')) :
+        (rule[:role] ? "(#{rule[:role]}) " : '') +
+        rule[:expressions].map {|e|
+          h(e[:attribute]) + " " + h(e[:operation]) + " " + h(e[:value])
+        }.join(h(" #{rule[:boolean_op]} "))
     %></td>
-    <td class="button" rowspan="<%= loc.rules.length %>"><a class="clickable" name="<%=h loc.id %>"><%= image_tag 'icons/properties.png', :alt => '' %></a></td>
+    <td class="button" rowspan="<%= loc.rules.length %>"><% unless loc.too_complex? %><a class="clickable" name="<%=h loc.id %>"><%= image_tag 'icons/properties.png', :alt => '' %></a><% end %></td>
   </tr>
   <% end %>
 <% end %>

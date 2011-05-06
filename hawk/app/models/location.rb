@@ -38,6 +38,10 @@ class Location < Constraint
     super
   end
 
+  def validate
+    error _('Constraint is too complex - it contains nested rules') if too_complex?
+  end
+
   def create
   end
   
@@ -50,9 +54,8 @@ class Location < Constraint
     super
   end
 
-  # Gives score for constraints with only one rule, or nil for more complex constrains.
-  def score(index = 0)
-    @rules[0][:score] || nil
+  def too_complex?
+    @too_complex ||= false
   end
 
   class << self
@@ -71,7 +74,6 @@ class Location < Constraint
         }
       else
         # Rule notation
-        # TODO(must): cope with nested rules (at least, don't mangle them)
         xml.elements.each do |rule_elem|
           rule = {
             :id               => rule_elem.attributes['id'],
@@ -82,6 +84,10 @@ class Location < Constraint
             :expressions      => []
           }
           rule_elem.elements.each do |expr_elem|
+            if expr_elem.name == 'rule'
+              con.instance_variable_set(:@too_complex, true)
+              next
+            end
             rule[:expressions] << {
               :value      => expr_elem.attributes['value'] || nil,
               :attribute  => expr_elem.attributes['attribute'] || nil,
