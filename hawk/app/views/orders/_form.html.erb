@@ -61,11 +61,12 @@ $(function() {
         cut: "<%= escape_javascript _('Break set') %>",
         heading_add: "<%= escape_javascript _('Add resource to constraint') %>"
       },
+      prefix: "order[resources]",
       dirty: function(event, info) {
         enable_apply();
       }
     });
-  $("#order_id,#order_score")
+  $("#order_id,#order_score,#order_symmetrical")
     .bind("keyup change", function() {
       enable_apply();
     }).focus();
@@ -88,6 +89,12 @@ $(function() {
   <tr>
     <td><%= f.text_field :id %></td>
     <td><%= f.text_field :score %></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2"><%= f.check_box :symmetrical, {}, 'true', 'false' %> <%=h f.label :symmetrical, _('Symmetrical') %></td>
   </tr>
   <tr>
     <td>&nbsp;</td>

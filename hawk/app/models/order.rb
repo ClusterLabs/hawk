@@ -60,27 +60,70 @@ resources =
 #   order.resources = [ 'A', 'B', 'C' ];
 #   colocation.resources = [ 'C', 'B', 'A' ];
 
-# TODO(should): Expose Symmetrical attribute, put possibly only if
-# explicitly set
 class Order < Constraint
-  @attributes = :score, :resources
+  @attributes = :score, :resources, :symmetrical
   attr_accessor *@attributes
   
   def initialize(attributes = nil)
-    @score      = nil
-    @resources  = []
+    @score        = nil
+    @resources    = []
+    @symmetrical  = true
     super
   end
-  
+
+  def validate
+    @score.strip!
+    unless ['mandatory', 'advisory', 'inf', '-inf', 'infinity', '-infinity'].include? @score.downcase
+      unless @score.match(/^-?[0-9]+$/)
+        error _('Invalid score')
+      end
+    end
+    if @resources.length < 2
+      error _('Constraint must consist of at least two separate resources')
+    end
+  end
+
   def create
+    if CibObject.exists?(id)
+      error _('The ID "%{id}" is already in use') % { :id => @id }
+      return false
+    end
+
+    cmd = shell_syntax
+    cmd += "\ncommit\n"
+
+    result = Invoker.instance.crm_configure cmd
+    unless result == true
+      error _('Unable to create constraint: %{msg}') % { :msg => result }
+      return false
+    end
+
+    true
   end
   
   def update
+    unless CibObject.exists?(id, 'rsc_order')
+      error _('Constraint ID "%{id}" does not exist') % { :id => @id }
+      return false
+    end
+
+    # Can just use crm configure load update here, it's trivial enough (because
+    # we basically replace the object every time, rather than having to merge
+    # like primitive, ms, etc.)
+
+    result = Invoker.instance.crm_configure_load_update shell_syntax
+    unless result == true
+      error _('Unable to update constraint: %{msg}') % { :msg => result }
+      return false
+    end
+
+    true
   end
   
   def update_attributes(attributes = nil)
-    @score      = nil
-    @resources  = []
+    @score        = nil
+    @resources    = []
+    @symmetrical  = true
     super
   end
 
@@ -116,8 +159,25 @@ class Order < Constraint
         end
       end
       con.instance_variable_set(:@resources, resources)
+      con.instance_variable_set(:@symmetrical, Util.unstring(xml.attributes['symmetrical'], true))
       con
     end
+  end
+
+  private
+
+  def shell_syntax
+    cmd = "order #{@id} #{@score}:"
+    @resources.each do |set|
+      cmd += " ( " unless set[:sequential]
+      set[:resources].each do |r|
+        cmd += " #{r[:id]}"
+        cmd += ":#{set[:action]}" if set[:action]
+      end
+      cmd += " )" unless set[:sequential]
+    end
+    cmd += " symmetrical=false" unless @symmetrical
+    cmd
   end
 end
 

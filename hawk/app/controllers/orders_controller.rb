@@ -54,6 +54,8 @@ class OrdersController < ApplicationController
       redirect_to cib_constraints_path
       return
     end
+    params[:order][:symmetrical] = params[:order][:symmetrical] == "true" ? true : false
+    normalize_resources!(params[:order])
     @ord = Order.new params[:order]
     if @ord.save
       flash[:highlight] = _('Constraint created successfully')
@@ -73,10 +75,12 @@ class OrdersController < ApplicationController
       return
     end
     unless params[:cancel].blank?
-      redirect_to cib_constraints_path    # TODO(must): may not work
+      redirect_to cib_constraints_path
       return
     end
     @ord = Order.find params[:id]
+    params[:order][:symmetrical] = params[:order][:symmetrical] == "true" ? true : false
+    normalize_resources!(params[:order])
     if @ord.update_attributes(params[:order])
       flash[:highlight] = _('Constraint updated successfully')
       redirect_to :action => 'edit', :id => @ord.id
@@ -85,4 +89,42 @@ class OrdersController < ApplicationController
     end
   end
 
+  private
+
+  # Pass params[:order], to map from form-style:
+  #  [
+  #    {"action"=>"", "id"=>"foo"},
+  #    "rel",
+  #    {"action"=>"", "id"=>"bar"},
+  #    {"action"=>"", "id"=>"baz"}
+  #  ]
+  # to model-style:
+  #  [
+  #    {:resources => [ { :id => 'foo' } ]
+  #    {:sequential => false,
+  #     :resources => [ { :id => 'foo' }, { :id => 'bar' } ]
+  #  ]
+  # Note that nonsequential sets will never be collapsed
+  # (this is intentional, it's up to the model to collapse
+  # these if it wants to).  Note also that incoming actions
+  # in sequential sets must already all be the same within
+  # a set.
+  def normalize_resources!(p)
+    m = []
+    set = {}
+    p[:resources].each do |r|
+      if r == 'rel'
+        set[:sequential] = set[:resources].length == 1
+        m << set
+        set = {}
+      else
+        set[:action] = r[:action] != "" ? r[:action] : nil
+        set[:resources] ||= []
+        set[:resources] << { :id => r[:id] }
+      end
+    end
+    set[:sequential] = set[:resources].length == 1
+    m << set
+    p[:resources] = m
+  end
 end
