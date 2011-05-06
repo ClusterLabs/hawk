@@ -1,6 +1,8 @@
 <% content_for :head do %>
 <%= stylesheet_link_tag 'ui.panel.css' %>
+<%= stylesheet_link_tag 'ui.popupmenu.css' %>
 <%= javascript_include_tag 'jquery.ui.panel.js' %>
+<%= javascript_include_tag 'jquery.ui.popupmenu.js' %>
 <style type="text/css">
 /* TODO(should): move to stylesheet */
 td {
@@ -23,37 +25,120 @@ th {
 img {
   vertical-align: middle;
 }
+table {
+  width: 100%;
+}
+td.id {
+  width: 5em;
+}
+td.score {
+  width: 5em;
+}
+td.button {
+  text-align: right;
+}
 </style>
 <% end %>
 <script type="text/javascript">
+
 $(function() {
-  $("#locations").panel({ label: "<%=h escape_javascript _('Location') %>",
-    menu_icon: url_root + "/images/transparent-16x16.gif", open: <%= @locations.any? ? 'true' : 'false' %> });
-  $("#colocations").panel({ label: "<%=h escape_javascript _('Colocation') %>",
-    menu_icon: url_root + "/images/transparent-16x16.gif", open: <%= @colocations.any? ? 'true' : 'false' %> });
-  <%= '$("#colocations").panel("expand");' if @colocations.any? %>
-  $("#orders").panel({ label: "<%=h escape_javascript _('Order') %>",
-    menu_icon: url_root + "/images/transparent-16x16.gif", open: <%= @orders.any? ? 'true' : 'false' %> });
+  $("#constraint").popupmenu({ iconroot: url_root + "/images/icons/", items: [
+    {
+      label: "<%=h escape_javascript _('Edit Constraint') %>",
+      icon: "edit.png",
+      click: function(target) {
+        // Using name, not id, in case there's conflicts between constraint
+        // ID and other bits of HTML.
+        var id = target.attr("name");
+        var type = target.closest(".ui-panel").attr("id");
+        window.location.assign(url_root + "/cib/live/" + type + "/" + id + "/edit");
+      }
+    },
+    {
+      label: "<%=h escape_javascript _('Delete Constraint') %>",
+      icon: "remove.png",
+      click: function(target) {
+        var id = target.attr("name");
+        target.children(":first").attr("src", url_root + "/images/spinner-16x16-neutral.gif");
+        // Abuse of /main/resource/delete, which is generic enough to delete anything
+        $.ajax({ url: url_root + "/main/resource/delete",
+          data: "format=json&resource=" + id,
+          type: "POST",
+          success: function() {
+            // Remove spinner (a spinner that stops too early is marginally better than one that never stops)
+            target.children(":first").attr("src", url_root + "/images/icons/properties.png");
+// TODO(must): Reinject "no constraints defined" line
+            target.closest("tr").remove();
+          },
+          error: function(request) {
+            // Remove spinner
+            target.children(":first").attr("src", url_root + "/images/icons/properties.png");
+            var json = json_from_request(request);
+            if (json) {
+              alert(json.error + "\n" + json.stderr ? json.stderr : "");
+// TODO(must): Use real error dialog
+//              error_dialog(json.error, json.stderr ? json.stderr : null);
+            } else {
+              if (request.status == 403) {
+                // 403 == permission denied
+                alert("<%= escape_javascript _('Permission denied') %>");
+//                error_dialog(GETTEXT.err_denied());
+              } else {
+                alert("<%= escape_javascript _('Unexpected server error: %s') % '_MSG_' %>".replace('_MSG_', request.status));
+//                error_dialog(GETTEXT.err_unexpected(request.status));
+              }
+            }
+          }
+        });
+      }
+    }
+  ]});
+  $("#locations").panel({
+    menu_href:  url_root + "/cib/live/locations/new",
+    menu_icon:  url_root + "/images/icons/add.png",
+    menu_alt:   "<%= escape_javascript _('New Constraint') %>",
+    label:      "<%=h escape_javascript _('Location') %>",
+    open:       <%= @locations.any? ? 'true' : 'false' %> });
+  $("#colocations").panel({
+    menu_href:  url_root + "/cib/live/colocations/new",
+    menu_icon:  url_root + "/images/icons/add.png",
+    menu_alt:   "<%= escape_javascript _('New Constraint') %>",
+    label: "<%=h escape_javascript _('Colocation') %>",
+    open: <%= @colocations.any? ? 'true' : 'false' %> });
+  $("#orders").panel({
+    menu_href:  url_root + "/cib/live/orders/new",
+    menu_icon:  url_root + "/images/icons/add.png",
+    menu_alt:   "<%= escape_javascript _('New Constraint') %>",
+    label: "<%=h escape_javascript _('Order') %>",
+    open: <%= @orders.any? ? 'true' : 'false' %> });
+
+  // Have to set these up after the panels (panel initializer fiddles with DOM
+  // in a way which breaks event handlers if added before panel init)
+  $("a.clickable").click(function() {
+    return $("#constraint").popupmenu("popup", $(this));
+  });
+
 });
 </script>
-
+<div id="constraint" style="display: none;"></div>
 <div id="locations">
 <table>
 <% @locations.sort{|a,b| a.id.natcmp(b.id, true)}.each do |loc| %>
   <tr>
-    <td rowspan="<%= loc.rules.length %>"><%=h loc.id %></td>
-    <td rowspan="<%= loc.rules.length %>"><%=h loc.rsc %></td>
+    <td class="id" rowspan="<%= loc.rules.length %>"><%=h loc.id %></td>
+    <td class="id" rowspan="<%= loc.rules.length %>"><%=h loc.rsc %></td>
   <%
     first = true
     loc.rules.each do |rule|
       if first ; first=false ; else concat "<tr>" ; end
   %>
-    <td><%=h rule[:score] || rule[:score_attribute] %></td>
+    <td class="score"><%=h rule[:score] || rule[:score_attribute] %></td>
     <td><%=
       rule[:expressions].map {|e|
         h(e[:attribute]) + " " + h(e[:operation]) + " " + h(e[:value])
       }.join(h(" #{rule[:boolean_op]} "))
     %></td>
+    <td class="button" rowspan="<%= loc.rules.length %>"><a class="clickable" name="<%=h loc.id %>"><%= image_tag 'icons/properties.png', :alt => '' %></a></td>
   </tr>
   <% end %>
 <% end %>
@@ -67,9 +152,10 @@ $(function() {
 <table>
 <% @colocations.sort{|a,b| a.id.natcmp(b.id, true)}.each do |col| %>
   <tr>
-    <td><%=h col.id %></td>
-    <td><%=h col.score %></td>
+    <td class="id"><%=h col.id %></td>
+    <td class="score"><%=h col.score %></td>
     <td><%= rsc_set(col) %></td>
+    <td class="button"><a class="clickable" name="<%=h col.id %>"><%= image_tag 'icons/properties.png', :alt => '' %></a></td>
   </tr>
 <% end %>
 <% if !@colocations.any? %>
@@ -82,9 +168,10 @@ $(function() {
 <table>
 <% @orders.sort{|a,b| a.id.natcmp(b.id, true)}.each do |ord| %>
   <tr>
-    <td><%=h ord.id %></td>
-    <td><%=h ord.score %></td>
+    <td class="id"><%=h ord.id %></td>
+    <td class="score"><%=h ord.score %></td>
     <td><%= rsc_set(ord) %></td>
+    <td class="button"><a class="clickable" name="<%=h ord.id %>"><%= image_tag 'icons/properties.png', :alt => '' %></a></td>
   </tr>
 <% end %>
 <% if !@orders.any? %>
