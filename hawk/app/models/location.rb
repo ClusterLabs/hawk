@@ -54,6 +54,14 @@ class Location < Constraint
     super
   end
 
+  # Can this rule be folded back to "location <id> <res> <score>: <node>
+  def simple?
+    @rules.length == 1 && rules[0][:expressions].length == 1 &&
+      rules[0][:score] && rules[0][:expressions][0][:value] &&
+      rules[0][:expressions][0][:attribute] == '#uname' &&
+      rules[0][:expressions][0][:operation] == 'eq'
+  end
+
   def too_complex?
     @too_complex ||= false
   end
