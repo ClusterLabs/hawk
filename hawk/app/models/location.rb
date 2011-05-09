@@ -78,8 +78,7 @@ class Location < Constraint
           rule = {
             :id               => rule_elem.attributes['id'],
             :role             => rule_elem.attributes['role'] || nil,
-            :score            => rule_elem.attributes['score'] || nil,
-            :score_attribute  => rule_elem.attributes['score-attribute'] || nil,
+            :score            => rule_elem.attributes['score'] || rule_elem.attributes['score-attribute'] || nil,
             :boolean_op       => rule_elem.attributes['boolean-op'] || 'and',
             :expressions      => []
           }

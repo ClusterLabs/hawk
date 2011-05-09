@@ -136,7 +136,7 @@ $(function() {
     loc.rules.each do |rule|
       concat "<tr>" unless first
   %>
-    <td class="score"><%=h rule[:score] || rule[:score_attribute] %></td>
+    <td class="score"><%=h rule[:score] %></td>
     <td><%=
       loc.too_complex? ? h(_('[Constraint is too complex to display]')) :
         (rule[:role] ? "(#{rule[:role]}) " : '') +
