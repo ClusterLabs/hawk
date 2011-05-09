@@ -39,13 +39,63 @@ class Location < Constraint
   end
 
   def validate
+    # TODO(must): implement.
+    error "RULES NOT YET IMPLEMENTED" unless simple?
+
     error _('Constraint is too complex - it contains nested rules') if too_complex?
+
+    error _('No rules specified') if @rules.empty?
+
+    @rsc.strip!
+    error _("No resource specified") if @rsc.empty?
+
+    @rules.each do |rule|
+      rule[:score].strip!
+      unless ['mandatory', 'advisory', 'inf', '-inf', 'infinity', '-infinity'].include? rule[:score].downcase
+        unless rule[:score].match(/^-?[0-9]+$/)
+          error _('Invalid score "%{score}"') % { :score => rule[:score] }
+        end
+      end
+      error _('No expressions specified') if rule[:expressions].empty?
+    end
   end
 
   def create
+    if CibObject.exists?(id)
+      error _('The ID "%{id}" is already in use') % { :id => @id }
+      return false
+    end
+
+    cmd = shell_syntax
+    cmd += "\ncommit\n"
+
+    result = Invoker.instance.crm_configure cmd
+    unless result == true
+      error _('Unable to create constraint: %{msg}') % { :msg => result }
+      return false
+    end
+
+    true
   end
   
   def update
+    unless CibObject.exists?(id, 'rsc_location')
+      error _('Constraint ID "%{id}" does not exist') % { :id => @id }
+      return false
+    end
+
+    # Can just use crm configure load update here, it's trivial enough (because
+    # we basically replace the object every time, rather than having to merge
+    # like primitive, ms, etc.)
+
+    # TODO(must): preserve rule IDs
+    result = Invoker.instance.crm_configure_load_update shell_syntax
+    unless result == true
+      error _('Unable to update constraint: %{msg}') % { :msg => result }
+      return false
+    end
+
+    true
   end
   
   def update_attributes(attributes = nil)
@@ -111,6 +161,19 @@ class Location < Constraint
       con.instance_variable_set(:@rsc,   xml.attributes['rsc'])
       con.instance_variable_set(:@rules, rules)
       con
+    end
+  end
+
+  private
+
+  # Note: caller must ensure valid rule before calling this
+  def shell_syntax
+    cmd = "location #{@id} #{@rsc}"
+
+    if simple?
+      cmd += " #{@rules[0][:score]}: #{@rules[0][:expressions][0][:value]}"
+    else
+      # TBI
     end
   end
 end

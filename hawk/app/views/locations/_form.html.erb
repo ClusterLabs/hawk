@@ -1,8 +1,11 @@
 <% content_for :head do %>
+<%= stylesheet_link_tag 'ui.location.css' %>
+<%= javascript_include_tag 'jquery.ui.location.js' %>
 <style type="text/css">
 /* TODO(should): this does not belong here, also get rid of inline style */
 th { font-weight: bold; }
 input[type=text] { width: 13em; }
+select { width: 13em; }
 </style>
 <% end %>
 <script type="text/javascript">
@@ -11,7 +14,11 @@ var anything_changed = false;
 
 function enable_apply() {
   anything_changed = true;
-  var enable = $("#location_id").val() != "" && $("#location_score").val() != "";
+  var enable = $("#location_id").val() != "" && $("#location_score").val() != "" &&
+    $("#location_rsc").val() != "";
+  if (!$("#constraint").location("valid")) {
+    enable = false;
+  }
   if (enable) {
     $("#location_submit").removeAttr("disabled");
     $("#location_revert").removeAttr("disabled");
@@ -26,7 +33,19 @@ function disable_apply() {
 }
 
 $(function() {
-  $("#location_id,#location_score")
+  $("#constraint").location({
+    rules: <%= @loc.rules.to_json %>,
+    nodes: <%= @cib.nodes.map{|n| n[:uname] }.to_json %>,
+    labels: {
+      score: "<%= escape_javascript _('Score') %>",
+      node: "<%= escape_javascript _('Node') %>",
+    },
+    prefix: "location[rules]",
+    dirty: function(event, info) {
+      enable_apply();
+    }
+  });
+  $("#location_id,#location_score,#location_rsc")
     .bind("keyup change", function() {
       enable_apply();
     }).focus();
@@ -44,9 +63,20 @@ $(function() {
 <table>
   <tr>
     <th><%=h f.label :id, _('Constraint ID') %></th>
+    <th><%=h f.label :rsc, _('Resource') %></th>
   </tr>
   <tr>
     <td><%= f.text_field :id %></td>
+    <td><%= f.select :rsc, options_for_select(([@loc.rsc] + @cib.resources.map{|r|
+          r[:id] }).uniq.sort{|a,b| a.natcmp(b, true)}, @loc.rsc) %></td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <div id="constraint"></div>
+    </td>
   </tr>
   <tr>
     <td>&nbsp;</td>
