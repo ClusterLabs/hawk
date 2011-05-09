@@ -136,9 +136,9 @@ class Location < Constraint
         xml.elements.each do |rule_elem|
           rule = {
             :id               => rule_elem.attributes['id'],
-            :role             => rule_elem.attributes['role'] || nil,
-            :score            => rule_elem.attributes['score'] || rule_elem.attributes['score-attribute'] || nil,
-            :boolean_op       => rule_elem.attributes['boolean-op'] || 'and',
+            :role             => rule_elem.attributes['role'] || "",
+            :score            => rule_elem.attributes['score'] || rule_elem.attributes['score-attribute'] || "",
+            :boolean_op       => rule_elem.attributes['boolean-op'] || "",  # default behaviour is "and"
             :expressions      => []
           }
           rule_elem.elements.each do |expr_elem|
@@ -149,10 +149,10 @@ class Location < Constraint
               next
             end
             rule[:expressions] << {
-              :value      => expr_elem.attributes['value'] || nil,
-              :attribute  => expr_elem.attributes['attribute'] || nil,
-              :type       => expr_elem.attributes['type'] || 'string',
-              :operation  => expr_elem.attributes['operation'] || nil
+              :value      => expr_elem.attributes['value'] || "",
+              :attribute  => expr_elem.attributes['attribute'] || "",
+              :type       => expr_elem.attributes['type'] || "",  # default behaviour is "string"
+              :operation  => expr_elem.attributes['operation'] || ""
             }
           end
           rules << rule
