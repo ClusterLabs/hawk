@@ -91,7 +91,9 @@ class Location < Constraint
             :expressions      => []
           }
           rule_elem.elements.each do |expr_elem|
-            if expr_elem.name == 'rule'
+            if expr_elem.name != 'expression'
+              # Considers nested rules and date_expression to be too complex
+              # TODO(should): Handle date expressions
               con.instance_variable_set(:@too_complex, true)
               next
             end
