@@ -34,7 +34,7 @@ class Location < Constraint
   
   def initialize(attributes = nil)
     @rules  = []
-    @rsc    = nil
+    @rsc    = ''
     super
   end
 
@@ -50,16 +50,17 @@ class Location < Constraint
   
   def update_attributes(attributes = nil)
     @rules  = []
-    @rsc    = nil
+    @rsc    = ''
     super
   end
 
   # Can this rule be folded back to "location <id> <res> <score>: <node>
   def simple?
-    @rules.length == 1 && rules[0][:expressions].length == 1 &&
-      rules[0][:score] && rules[0][:expressions][0][:value] &&
-      rules[0][:expressions][0][:attribute] == '#uname' &&
-      rules[0][:expressions][0][:operation] == 'eq'
+    @rules.none? ||
+      @rules.length == 1 && rules[0][:expressions].length == 1 &&
+        rules[0][:score] && rules[0][:expressions][0][:value] &&
+        rules[0][:expressions][0][:attribute] == '#uname' &&
+        rules[0][:expressions][0][:operation] == 'eq'
   end
 
   def too_complex?
