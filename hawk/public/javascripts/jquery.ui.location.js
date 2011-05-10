@@ -158,7 +158,7 @@
           "</tr>" +
         "</table>"));
       e.find("div").expression({
-          exprs: [],
+          exprs: self.options.rules.length ? self.options.rules[0].expressions : [],
           // TODO(must): Labels
           prefix: self.options.prefix + "[][expressions]",
           dirty: function(e, o) { self._trigger("dirty", e, o); }

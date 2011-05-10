@@ -47,12 +47,11 @@
       e.append($(
         "<table>" +
           "<tr>" +
-            '<td colspan="4"><select>' +
-                '<option value=""></option>' +
-                '<option value="uname">#uname</option>' +
-                '<option value="attr-val">[attribute] = [value]</option>' +
-                '<option value="attr-def">[attribute] defined</option>' +
-              "</select>" +
+            '<td colspan="4">' + self._select("", [
+                {k:""},
+                {k:"uname", v:"#uname"},
+                {k:"attr-val", v:"[attribute] = [value]"},
+                {k:"attr-def", v:"[attribute] defined"} ]) +
             "</td>" +
             '<td><button type="button">' + escape_html(self.options.labels.add) + "</button></td>" +
           "</tr>" +
@@ -78,6 +77,13 @@
       var self = this;
       self.element.find(".exprlist-del").remove();
       self.new_expr_select.val("");
+      $.each(self.options.exprs, function() {
+        if (this.operation == "defined" || this.operation == "not_defined") {
+          self._append_row(self._row_attr_def(this));
+        } else {
+          self._append_row(self._row_attr_val(this));
+        }
+      });
     },
 
     // Note: Surprisingly similar to function in ui.constraint.js
@@ -85,6 +91,17 @@
       var self = this;
       n = self.options.prefix + "[][" + n + "]";
       return 'id="' + n.replace(/]/g, "").replace(/\[/g, "_") + '" name="' + n + '"';
+    },
+
+    // Note: Surprisingly similar to function in ui.location.js
+    _select: function(idn, opts, value, class) {
+      var s = "<select " + (idn ? idn : "") + (class ? ' class="' + class + '"' : "") + ">";
+      $.each(opts, function() {
+        s += '<option value="' + escape_field(this.k) + '"' +
+          (this.k == value ? ' selected="selected"' : "") + ">" + ( this.v ? this.v : this.k ) + "</option>";
+      });
+      s += "</select>";
+      return s;
     },
 
     _remove_row: function(event) {
@@ -95,46 +112,45 @@
       });
     },
 
-    _row_attr_val: function() {
+    _row_attr_val: function(expr) {
       var self = this;
+      var attr  = (expr ? expr.attribute : "") || "";
+      var op    = (expr ? expr.operation : "") || "";
+      var value = (expr ? expr.value : "") || "";
+      var type  = (expr ? expr.type : "") || "";
       return $(
         "<tr>" +
-          '<td><input class="req" ' + self._field_name("attribute") + ' type="text"></td>' +
-          '<td>' +
-            '<select class="req" ' + self._field_name("operation") + ">" +
-              '<option></option>' +
-              '<option value="eq" selected="selected">=</option>' +
-              '<option value="ne">&ne;</option>' +
-              '<option value="lt">&lt;</option>' +
-              '<option value="lte">&le;</option>' +
-              '<option value="gte">&ge;</option>' +
-              '<option value="gt">&gt;</option>' +
-            "</select>" +
+          '<td><input class="req" ' + self._field_name("attribute") + ' type="text" value="' + escape_field(attr) + '"></td>' +
+          '<td>' + self._select(self._field_name("operation"), [
+              {k:"eq", v:"="},
+              {k:"ne", v:"&ne;"},
+              {k:"lt", v:"&lt;"},
+              {k:"lte", v:"&le;"},
+              {k:"gte", v:"&ge;"},
+              {k:"gt", v:"&gt;"} ], op, "req") +
           "</td>" +
-          '<td><input class="req" ' + self._field_name("value") + ' type="text"></td>' +
-          '<td>(' +
-            '<select ' + self._field_name("type") + ">" +
-              '<option></option>' +
-              '<option>string</option>' +
-              '<option>integer</option>' +
-              '<option>version</option>' +
-            "</select>)" +
+          '<td><input class="req" ' + self._field_name("value") + ' type="text" value="' + escape_field(value) + '"></td>' +
+          '<td>(' + self._select(self._field_name("type"), [
+              {k:""},
+              {k:"string"},
+              {k:"integer"},
+              {k:"version"} ], type) + ")" +
           "</td>" +
           '<td class="button"><button type="button">' + self.options.labels.remove + "</button></td>" +
         "</tr>"
       );
     },
 
-    _row_attr_def: function() {
+    _row_attr_def: function(expr) {
       var self = this;
+      var attr  = (expr ? expr.attribute : "") || "";
+      var op    = (expr ? expr.operation : "") || "";
       return $(
         "<tr>" +
-          '<td><input class="req" ' + self._field_name("attribute") + ' type="text"></td>' +
-          '<td colspan="3">' +
-            '<select ' + self._field_name("operation") + ">" +
-              '<option value="defined">is defined</option>' +
-              '<option value="not_defined">is not defined</option>' +
-            "</select>" +
+          '<td><input class="req" ' + self._field_name("attribute") + ' type="text" value="' + escape_field(attr) + '"></td>' +
+          '<td colspan="3">' + self._select(self._field_name("operation"), [
+            {k:"defined", v:"is defined"},
+            {k:"not_defined", v:"is not defined"} ], op, "req") +
             '<input type="hidden" ' + self._field_name("value") + ' value=""/>' +
             '<input type="hidden" ' + self._field_name("type") + ' value=""/>' +
           "</td>" +
