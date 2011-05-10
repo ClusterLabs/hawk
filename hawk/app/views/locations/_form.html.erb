@@ -1,5 +1,7 @@
 <% content_for :head do %>
+<%= stylesheet_link_tag 'ui.expression.css' %>
 <%= stylesheet_link_tag 'ui.location.css' %>
+<%= javascript_include_tag 'jquery.ui.expression.js' %>
 <%= javascript_include_tag 'jquery.ui.location.js' %>
 <style type="text/css">
 /* TODO(should): this does not belong here, also get rid of inline style */
@@ -39,6 +41,9 @@ $(function() {
     labels: {
       score: "<%= escape_javascript _('Score') %>",
       node: "<%= escape_javascript _('Node') %>",
+      role: "<%= escape_javascript _('Role') %>",
+      bool_op: "<%= escape_javascript _('Boolean Op') %>",
+      expr: "<%= escape_javascript _('Expression') %>"
     },
     prefix: "location[rules]",
     dirty: function(event, info) {
