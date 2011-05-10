@@ -139,9 +139,9 @@ $(function() {
     <td class="score"><%=h rule[:score] %></td>
     <td><%=
       loc.too_complex? ? h(_('[Constraint is too complex to display]')) :
-        (rule[:role] ? "(#{rule[:role]}) " : '') +
+        (rule[:role] && rule[:role].any? ? "(#{rule[:role]}) " : '') +
         rule[:expressions].map {|e|
-          e[:value] ? h("#{e[:attribute]} #{e[:operation]} #{e[:value]}") :
+          e[:value].any? ? h("#{e[:attribute]} #{e[:operation]} #{e[:value]}") :
             h("#{e[:operation]} #{e[:attribute]}")
         }.join(h(" #{rule[:boolean_op]} "))
     %></td>
