@@ -28,6 +28,8 @@
 //
 //======================================================================
 
+// Note: this requires ui.expression
+
 (function($) {
   $.widget("ui.location", {
     options: {
@@ -35,7 +37,10 @@
       nodes: [],
       labels: {
         score: "Score",
-        node: "Node"
+        node: "Node",
+        role: "Role",
+        bool_op: "Boolean Op",
+        expr: "Expression"
       },
       prefix: "",
       dirty: null
@@ -43,13 +48,25 @@
 
     valid: function() {
       var self = this;
-      var rules = self.options.rules;
-      return self._is_simple() &&
-        // TODO(must): get rid of this wacky hard coded junk
-        $("#location_rules__score").val() != "" &&
-        $("#location_rules__expressions__value").val() != "";
+      // It's valid if all required fields have a value,
+      // and for copmlex constraints if all rules have at least
+      // one expression.
+      var valid = true;
+      $(".req").each(function() {
+        if (!$.trim($(this).val())) {
+          valid = false;
+          return false;
+        }
+      });
+      if (valid && !self._is_simple()) {
+        // This test only works if there's a single rule.
+        valid = $(".req").length > 1;
+      }
+      return valid;
     },
 
+    // This will need to be changed to work based on the form once
+    // we have the ability to switch between simple and advanced views.
     _is_simple: function() {
       var self = this;
       var rules = self.options.rules;
@@ -71,8 +88,7 @@
       if (self._is_simple()) {
         self._init_simple();
       } else {
-        self.element.children().remove();
-        self.element.append($("<div>NOT YET IMPLEMENTED</div>"));
+        self._init_complex();
       }
     },
 
@@ -90,12 +106,63 @@
       e.append($("<table>" +
           "<tr><th>" + escape_html(self.options.labels.score) + "</th><th>" + escape_html(self.options.labels.node) + "</th></tr>" +
           "<tr>" +
-            '<td><input type="text" ' + self._field_name("[score]") + ' value="' + escape_field(score) + '"/></td>' +
-            "<td>" + self._select(self._field_name("[expressions][][value]"), self.options.nodes, node) +
-              '<input type="hidden" ' + self._field_name("[expressions][][attribute]") + ' value="#uname"/>' +
-              '<input type="hidden" ' + self._field_name("[expressions][][operation]") + ' value="eq"/></td>' +
+            '<td><input class="req" type="text" ' + self._field_name("score") + ' value="' + escape_field(score) + '"/></td>' +
+            "<td>" + self._select(self._field_name("expressions", "value"), self.options.nodes, node, "req") +
+              '<input type="hidden" ' + self._field_name("expressions", "attribute") + ' value="#uname"/>' +
+              '<input type="hidden" ' + self._field_name("expressions", "operation") + ' value="eq"/></td>' +
           "</tr>" +
         "</table>"));
+      e.find("input[type=text]").bind("keyup change", function(event) {
+        self._trigger("dirty", event, {});
+      }).blur(function(event) {
+        var v = $.trim(this.value);
+        if (v != this.value) {
+          this.value = v;
+          self._trigger("dirty", event, {});
+        }
+      });
+      e.find("select").change(function(event) {
+        self._trigger("dirty", event, {});
+      });
+    },
+
+    _init_complex: function() {
+      var self = this;
+
+      var score = "";
+      var role = "";
+      var bool_op = "";
+      if (self.options.rules.length) {
+        score = self.options.rules[0].score;
+        role = self.options.rules[0].role;
+        bool_op = self.options.rules[0].boolean_op;
+      }
+      var e = self.element;
+      e.children().remove();
+      e.append($("<table>" +
+          "<tr>" +
+            "<th>" + escape_html(self.options.labels.score) + "</th>" +
+            "<th>" + escape_html(self.options.labels.role) + "</th>" +
+            "<th>" + escape_html(self.options.labels.bool_op) + "</th>" +
+          "</tr>" +
+          "<tr>" +
+            '<td><input class="req" type="text" ' + self._field_name("score") + ' value="' + escape_field(score) + '"/></td>' +
+            "<td>" + self._select(self._field_name("role"), ["", "Started", "Master", "Slave"], role, "short") + "</td>" +
+            "<td>" + self._select(self._field_name("boolean_op"), ["", "and", "or"], bool_op, "short") + "</td>" +
+          "</tr>" +
+          "<tr>" +
+            '<th colspan="3" style="padding-top: 0.5em;">' + escape_html(self.options.labels.expr) + "</th>" +
+          "</tr>" +
+          "<tr>" +
+            '<td colspan="3"><div></div></td>' +
+          "</tr>" +
+        "</table>"));
+      e.find("div").expression({
+          exprs: [],
+          // TODO(must): Labels
+          prefix: self.options.prefix + "[][expressions]",
+          dirty: function(e, o) { self._trigger("dirty", e, o); }
+        });
       e.find("input[type=text]").bind("keyup change", function(event) {
         self._trigger("dirty", event, {});
       });
@@ -105,15 +172,15 @@
     },
 
     // Note: Surprisingly similar to function in ui.constraint.js
-    _field_name: function(n) {
+    _field_name: function(n, x) {
       var self = this;
-      n = self.options.prefix + "[]" + n;
+      n = self.options.prefix + "[][" + n + "]" + (x ? "[][" + x + "]" : "");
       return 'id="' + n.replace(/]/g, "").replace(/\[/g, "_") + '" name="' + n + '"';
     },
 
-    _select: function(idn, opts, value) {
-      var s = "<select " + idn + ">";
-      if (value == "") {
+    _select: function(idn, opts, value, class) {
+      var s = "<select " + idn + (class ? ' class="' + class + '"' : "") + ">";
+      if (value == "" && !$.inArray(value, "")) {
         s += "<option></option>";
       } else if ($.inArray(value, opts) == -1) {
         s += "<option>" + escape_html(value) + "</option>";
