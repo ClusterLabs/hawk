@@ -39,9 +39,6 @@ class Location < Constraint
   end
 
   def validate
-    # TODO(must): implement.
-    error "RULES NOT YET IMPLEMENTED" unless simple?
-
     error _('Constraint is too complex - it contains nested rules') if too_complex?
 
     error _('No rules specified') if @rules.empty?
@@ -49,6 +46,8 @@ class Location < Constraint
     @rsc.strip!
     error _("No resource specified") if @rsc.empty?
 
+    # TODO(should): break out early if there's errors - it can get quite noisy
+    # otherwise if there's lots of invalid input
     @rules.each do |rule|
       rule[:score].strip!
       unless ['mandatory', 'advisory', 'inf', '-inf', 'infinity', '-infinity'].include? rule[:score].downcase
@@ -57,6 +56,12 @@ class Location < Constraint
         end
       end
       error _('No expressions specified') if rule[:expressions].empty?
+      rule[:expressions].each do |e|
+        e[:attribute].strip!
+        e[:value].strip!
+        error _("Attribute contains both single and double quotes") if unquotable? e[:attribute]
+        error _("Value contains both single and double quotes") if unquotable? e[:value]
+      end
     end
   end
 
@@ -166,6 +171,21 @@ class Location < Constraint
 
   private
 
+  # TODO(must): Move this somewhere else and reuse in other models
+  # TODO(should): Don't add quotes if unnecessary (e.g. no whitespace in val)
+  def crm_quote(str)
+    if str.index("'")
+      "\"#{str}\""
+    else
+      "'#{str}'"
+    end
+  end
+
+  # TODO(must): As above, move this elsewhere for reuse
+  def unquotable?(str)
+    str.index("'") && str.index('"')
+  end
+
   # Note: caller must ensure valid rule before calling this
   def shell_syntax
     cmd = "location #{@id} #{@rsc}"
@@ -173,7 +193,22 @@ class Location < Constraint
     if simple?
       cmd += " #{@rules[0][:score]}: #{@rules[0][:expressions][0][:value]}"
     else
-      # TBI
+      @rules.each do |rule|
+        op = rule[:boolean_op]
+        op = "and" if op == ""
+        cmd += " rule"
+        cmd += " $role=\"#{rule[:role]}\"" unless rule[:role].empty?
+        cmd += " #{crm_quote(rule[:score])}:"
+        cmd += rule[:expressions].map {|e|
+          if ["defined", "not_defined"].include? e[:operation]
+            " #{e[:operation]} #{crm_quote(e[:attribute])} "
+          else
+            " #{crm_quote(e[:attribute])} " +
+              (e[:type] != "" ? "#{e[:type]}:" : "") +
+            "#{e[:operation]} #{crm_quote(e[:value])} "
+          end
+        }.join(op)
+      end
     end
   end
 end
