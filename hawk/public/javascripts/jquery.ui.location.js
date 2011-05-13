@@ -40,7 +40,11 @@
         node: "Node",
         role: "Role",
         bool_op: "Boolean Op",
-        expr: "Expression"
+        expr: "Expression",
+        add: "Add",
+        remove: "Remove",
+        add_rule: "Add Rule",
+        remove_rule: "Remove Rule"
       },
       prefix: "",
       dirty: null
@@ -48,9 +52,7 @@
 
     valid: function() {
       var self = this;
-      // It's valid if all required fields have a value,
-      // and for copmlex constraints if all rules have at least
-      // one expression.
+      // It's valid if all required fields have a value...
       var valid = true;
       $(".req").each(function() {
         if (!$.trim($(this).val())) {
@@ -59,8 +61,19 @@
         }
       });
       if (valid && !self._is_simple()) {
-        // This test only works if there's a single rule.
-        valid = $(".req").length > 1;
+        // ...and for copmlex constraints if there is at least
+        // one rule...
+        if ($(".rule").length == 0) {
+          valid = false;
+        } else {
+          // ...and if all rules have at least one expression
+          $(".rule").each(function() {
+            if ($(this).find(".req").length == 0) {
+              valid = false;
+              return false;
+            }
+          });
+        }
       }
       return valid;
     },
@@ -129,21 +142,49 @@
     _init_complex: function() {
       var self = this;
 
+      var e = self.element;
+      e.children().remove();
+      e.append($('<table class="ui-corner-all rule-add">' +
+          "<tr>" +
+            "<td>" + escape_html(self.options.labels.add_rule) + "</td>" +
+            '<td class="button"><button type="button">' + escape_html(self.options.labels.add) + "</button></td>" +
+          "</tr>" +
+        "</table>"));
+      e.find("button").button({
+        icons: {
+          primary: "ui-icon-plus"
+        },
+        text: false
+      }).click(function(event) {
+        self._append_rule().effect("highlight", {}, 1000).find("input")[0].focus();
+      });
+      if (self.options.rules.length) {
+        $.each(self.options.rules, function() {
+          self._append_rule(this);
+        });
+      } else {
+        self._append_rule();
+      }
+    },
+
+    _append_rule: function(rule)
+    {
+      var self = this;
+
       var score = "";
       var role = "";
       var bool_op = "";
-      if (self.options.rules.length) {
-        score = self.options.rules[0].score;
-        role = self.options.rules[0].role;
-        bool_op = self.options.rules[0].boolean_op;
+      if (rule) {
+        score = rule.score;
+        role = rule.role;
+        bool_op = rule.boolean_op;
       }
-      var e = self.element;
-      e.children().remove();
-      e.append($("<table>" +
+      var new_rule = $('<table class="ui-corner-all rule">' +
           "<tr>" +
             "<th>" + escape_html(self.options.labels.score) + "</th>" +
             "<th>" + escape_html(self.options.labels.role) + "</th>" +
             "<th>" + escape_html(self.options.labels.bool_op) + "</th>" +
+            '<td class="button" colspan="4"><button type="button">' + escape_html(self.options.labels.remove_rule) + "</button></td>" +
           "</tr>" +
           "<tr>" +
             '<td><input class="req" type="text" ' + self._field_name("score") + ' value="' + escape_field(score) + '"/></td>' +
@@ -156,19 +197,32 @@
           "<tr>" +
             '<td colspan="3"><div></div></td>' +
           "</tr>" +
-        "</table>"));
-      e.find("div").expression({
-          exprs: self.options.rules.length ? self.options.rules[0].expressions : [],
-          // TODO(must): Labels
+        "</table>");
+      new_rule.find("button").button({
+        icons: {
+          primary: "ui-icon-minus"
+        },
+        text: false
+      }).click(function(event) {
+        $(this).closest("table").fadeOut("fast", function() {
+          $(this).remove();
+          self._trigger("dirty", event, {} );
+        });
+      });
+      new_rule.find("div").expression({
+          exprs: rule ? rule.expressions : [],
+          labels: self.options.labels,
           prefix: self.options.prefix + "[][expressions]",
           dirty: function(e, o) { self._trigger("dirty", e, o); }
         });
-      e.find("input[type=text]").bind("keyup change", function(event) {
+      new_rule.find("input[type=text]").bind("keyup change", function(event) {
         self._trigger("dirty", event, {});
       });
-      e.find("select").change(function(event) {
+      new_rule.find("select").change(function(event) {
         self._trigger("dirty", event, {});
       });
+      self.element.children(":last").before(new_rule);
+      return new_rule;
     },
 
     // Note: Surprisingly similar to function in ui.constraint.js

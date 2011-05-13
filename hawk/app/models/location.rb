@@ -51,8 +51,14 @@ class Location < Constraint
     @rules.each do |rule|
       rule[:score].strip!
       unless ['mandatory', 'advisory', 'inf', '-inf', 'infinity', '-infinity'].include? rule[:score].downcase
-        unless rule[:score].match(/^-?[0-9]+$/)
-          error _('Invalid score "%{score}"') % { :score => rule[:score] }
+        if simple?
+          unless rule[:score].match(/^-?[0-9]+$/)
+            error _('Invalid score "%{score}"') % { :score => rule[:score] }
+          end
+        else
+          # We're allowing any old junk for scores for complex resources,
+          # because you're allowed to use score-attribute here.
+          # TODO(must): Tighten this up if possible
         end
       end
       error _('No expressions specified') if rule[:expressions].empty?
@@ -210,6 +216,7 @@ class Location < Constraint
         }.join(op)
       end
     end
+    cmd
   end
 end
 
