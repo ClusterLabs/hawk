@@ -99,7 +99,8 @@ class Location < Constraint
     # we basically replace the object every time, rather than having to merge
     # like primitive, ms, etc.)
 
-    # TODO(must): preserve rule IDs
+    # TODO(should): double-check rule id preservation (seems the shell does
+    # this by magic, and we get it for free!)
     result = Invoker.instance.crm_configure_load_update shell_syntax
     unless result == true
       error _('Unable to update constraint: %{msg}') % { :msg => result }
