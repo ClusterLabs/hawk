@@ -266,7 +266,7 @@
 
     _set_cut_row: function() {
       var self = this;
-      var r = $('<tr class="chain-set"><td class="set set-m" colspan="2"></td>' +
+      var r = $('<tr class="chain-set"><td class="set set-m" colspan="2">&nbsp;</td>' +
           '<td><button type="button" style="border: none; background: none;">' + self.options.labels.cut + "</button></td>" +
         '</tr>');
       r.find("button").button({
