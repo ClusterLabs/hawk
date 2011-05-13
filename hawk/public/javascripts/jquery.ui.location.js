@@ -210,18 +210,20 @@
           self._trigger("dirty", event, {} );
         });
       });
-      new_rule.find("div").expression({
-          exprs: rule ? rule.expressions : [],
-          labels: self.options.labels,
-          prefix: self.options.prefix + "[][expressions]",
-          dirty: function(e, o) { self._trigger("dirty", e, o); }
-        });
       new_rule.find("input[type=text]").bind("keyup change", function(event) {
         self._trigger("dirty", event, {});
       });
       new_rule.find("select").change(function(event) {
         self._trigger("dirty", event, {});
       });
+      // Add expression *last*, else the above binds will find controls in
+      // the expression editor.
+      new_rule.find("div").expression({
+          exprs: rule ? rule.expressions : [],
+          labels: self.options.labels,
+          prefix: self.options.prefix + "[][expressions]",
+          dirty: function(e, o) { self._trigger("dirty", e, o); }
+        });
       self.element.children(":last").before(new_rule);
       return new_rule;
     },
