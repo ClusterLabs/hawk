@@ -205,12 +205,12 @@
       var e = self.element;
       e.children().remove();
       e.append($('<div class="mode"><label><input type="checkbox" checked="checked"/> ' + self.options.labels.advanced + "</label></div>" +
-        '<table class="ui-corner-all rule-add">' +
+        '<div class="ui-corner-all rule-add"><table class="full">' +
           "<tr>" +
             "<td>" + escape_html(self.options.labels.add_rule) + "</td>" +
             '<td class="button"><button type="button">' + escape_html(self.options.labels.add) + "</button></td>" +
           "</tr>" +
-        "</table>"));
+        "</table></div>"));
       e.find("button").button({
         icons: {
           primary: "ui-icon-plus"
@@ -259,7 +259,7 @@
         role = rule.role;
         bool_op = rule.boolean_op;
       }
-      var new_rule = $('<table class="ui-corner-all rule">' +
+      var new_rule = $('<div class="ui-corner-all rule"><table class="full">' +
           "<tr>" +
             "<th>" + escape_html(self.options.labels.score) + "</th>" +
             "<th>" + escape_html(self.options.labels.role) + "</th>" +
@@ -277,14 +277,14 @@
           "<tr>" +
             '<td colspan="3"><div></div></td>' +
           "</tr>" +
-        "</table>");
+        "</table></div>");
       new_rule.find("button").button({
         icons: {
           primary: "ui-icon-minus"
         },
         text: false
       }).click(function(event) {
-        $(this).closest("table").fadeOut("fast", function() {
+        $(this).closest("div").fadeOut("fast", function() {
           $(this).remove();
           self._enable_simplify();
           self._trigger("dirty", event, {} );
