@@ -44,7 +44,8 @@
         add: "Add",
         remove: "Remove",
         add_rule: "Add Rule",
-        remove_rule: "Remove Rule"
+        remove_rule: "Remove Rule",
+        advanced: "Show Rule Editor"
       },
       prefix: "",
       dirty: null
@@ -79,8 +80,7 @@
       return valid;
     },
 
-    // This will need to be changed to work based on the form once
-    // we have the ability to switch between simple and advanced views.
+    // This check is based on self.options.rules
     _is_simple: function() {
       var self = this;
       var rules = self.options.rules;
@@ -89,6 +89,49 @@
         rules[0].score && rules[0].expressions[0].value &&
         rules[0].expressions[0].attribute == "#uname" &&
         rules[0].expressions[0].operation == "eq";
+    },
+
+    // This check is based on what's present in the editor.  For complex
+    // constraints, can only switch back to simple editor if:
+    // - there are no rules,
+    //   - or there is only one rule with no role specified, and:
+    // - there are no expressions,
+    //   - or there is only one "#uname eq" expression
+    _can_be_simplified: function() {
+      var self = this;
+      var e = self.element;
+      var checked = e.find("input[type=checkbox]")[0].checked;
+      if (!checked) return true;
+
+      // Check number of rules
+      var num_rules = $(".rule").length;
+      if (num_rules == 0) return true;
+      if (num_rules > 1) return false;
+
+      // Check role
+      if ($(e.find("select")[0]).val()) return false;
+
+      // Check number of expressions
+      var num_exprs = $(".expr").length;
+      if (num_exprs == 0) return true;
+      if (num_exprs > 1) return false;
+
+      // Ensure expression is #uname eq
+      if ($(e.find("input[type=text]")[1]).val() != "#uname") return false;
+      if ($(e.find("select")[2]).val() != "eq") return false;
+
+      return true;
+    },
+
+    _enable_simplify: function() {
+      var self = this;
+      if (self._can_be_simplified()) {
+        self.element.find("input[type=checkbox]").removeAttr("disabled");
+        self.element.find(".mode").removeClass("disabled");
+      } else {
+        self.element.find("input[type=checkbox]").attr("disabled", "disabled");
+        self.element.find(".mode").addClass("disabled");
+      }
     },
 
     _create: function() {
@@ -125,7 +168,7 @@
               '<input type="hidden" ' + self._field_name("expressions", "attribute") + ' value="#uname"/>' +
               '<input type="hidden" ' + self._field_name("expressions", "operation") + ' value="eq"/></td>' +
           "</tr>" +
-        "</table>"));
+        '</table><div class="mode"><input type="checkbox"/> ' + self.options.labels.advanced + "</div>"));
       e.find("input[type=text]").bind("keyup change", function(event) {
         self._trigger("dirty", event, {});
       }).blur(function(event) {
@@ -138,6 +181,21 @@
       e.find("select").change(function(event) {
         self._trigger("dirty", event, {});
       });
+      e.find("input[type=checkbox]").change(function() {
+        if (!this.checked) return;
+        self.options.rules = [{
+          score: e.find("input[type=text]:first").val(),
+          role: "",
+          boolean_op: "",
+          expressions: [{
+            type: "",
+            attribute: "#uname",
+            value: e.find("select:first").val(),
+            operation: "eq"
+          }]
+        }];
+        self._init_complex();
+      });
     },
 
     _init_complex: function() {
@@ -145,7 +203,8 @@
 
       var e = self.element;
       e.children().remove();
-      e.append($('<table class="ui-corner-all rule-add">' +
+      e.append($('<div class="mode"><input type="checkbox" checked="checked"/> ' + self.options.labels.advanced + "</div>" +
+        '<table class="ui-corner-all rule-add">' +
           "<tr>" +
             "<td>" + escape_html(self.options.labels.add_rule) + "</td>" +
             '<td class="button"><button type="button">' + escape_html(self.options.labels.add) + "</button></td>" +
@@ -158,6 +217,24 @@
         text: false
       }).click(function(event) {
         self._append_rule().effect("highlight", {}, 1000).find("input")[0].focus();
+        self._enable_simplify();
+      });
+      e.find("input[type=checkbox]").change(function() {
+        if (this.checked) return;
+        var score = e.find("input[type=text]:first").val() || "";
+        var node = $(e.find("input[type=text]")[2]).val() || "";
+        self.options.rules = [{
+          score: score,
+          role: "",
+          boolean_op: "",
+          expressions: [{
+            type: "",
+            attribute: "#uname",
+            value: node,
+            operation: "eq"
+          }]
+        }];
+        self._init_simple();
       });
       if (self.options.rules.length) {
         $.each(self.options.rules, function() {
@@ -166,6 +243,7 @@
       } else {
         self._append_rule();
       }
+      self._enable_simplify();
     },
 
     _append_rule: function(rule)
@@ -207,6 +285,7 @@
       }).click(function(event) {
         $(this).closest("table").fadeOut("fast", function() {
           $(this).remove();
+          self._enable_simplify();
           self._trigger("dirty", event, {} );
         });
       });
@@ -214,6 +293,7 @@
         self._trigger("dirty", event, {});
       });
       new_rule.find("select").change(function(event) {
+        self._enable_simplify();
         self._trigger("dirty", event, {});
       });
       // Add expression *last*, else the above binds will find controls in
@@ -222,7 +302,10 @@
           exprs: rule ? rule.expressions : [],
           labels: self.options.labels,
           prefix: self.options.prefix + "[][expressions]",
-          dirty: function(e, o) { self._trigger("dirty", e, o); }
+          dirty: function(e, o) {
+            self._enable_simplify();
+            self._trigger("dirty", e, o);
+          }
         });
       self.element.children(":last").before(new_rule);
       return new_rule;

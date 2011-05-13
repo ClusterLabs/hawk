@@ -67,6 +67,7 @@
         disabled: true
       }).click(function(event) {
         self._add_expr(event);
+        self._trigger("dirty", event, {} );
       });
       self.new_expr_select.change(function() {
         self.new_expr_add.button("option", "disabled", $(this).val() ? false : true);
@@ -119,7 +120,7 @@
       var value = (expr ? expr.value : "") || "";
       var type  = (expr ? expr.type : "") || "";
       return $(
-        "<tr>" +
+        '<tr class="expr">' +
           '<td><input class="req" ' + self._field_name("attribute") + ' type="text" value="' + escape_field(attr) + '"></td>' +
           '<td>' + self._select(self._field_name("operation"), [
               {k:"eq", v:"="},
@@ -146,7 +147,7 @@
       var attr  = (expr ? expr.attribute : "") || "";
       var op    = (expr ? expr.operation : "") || "";
       return $(
-        "<tr>" +
+        '<tr class="expr">' +
           '<td><input class="req" ' + self._field_name("attribute") + ' type="text" value="' + escape_field(attr) + '"></td>' +
           '<td colspan="3">' + self._select(self._field_name("operation"), [
             {k:"defined", v:"is defined"},
