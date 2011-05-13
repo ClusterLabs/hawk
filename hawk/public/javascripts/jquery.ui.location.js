@@ -160,7 +160,7 @@
       }
       var e = self.element;
       e.children().remove();
-      e.append($('<div class="mode"><input type="checkbox"/> ' + self.options.labels.advanced + "</div>" +
+      e.append($('<div class="mode"><label><input type="checkbox"/> ' + self.options.labels.advanced + "</label></div>" +
         "<table>" +
           "<tr><th>" + escape_html(self.options.labels.score) + "</th><th>" + escape_html(self.options.labels.node) + "</th></tr>" +
           "<tr>" +
@@ -204,7 +204,7 @@
 
       var e = self.element;
       e.children().remove();
-      e.append($('<div class="mode"><input type="checkbox" checked="checked"/> ' + self.options.labels.advanced + "</div>" +
+      e.append($('<div class="mode"><label><input type="checkbox" checked="checked"/> ' + self.options.labels.advanced + "</label></div>" +
         '<table class="ui-corner-all rule-add">' +
           "<tr>" +
             "<td>" + escape_html(self.options.labels.add_rule) + "</td>" +
