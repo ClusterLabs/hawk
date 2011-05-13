@@ -101,9 +101,11 @@
       e.addClass("ui-constraint");
       e.append($('<table cellpadding="0" cellspacing="0">' +
           '<tr><th class="label" colspan="2">' + escape_html(self.options.labels.heading_add) + ":</td></tr>" +
-          '<th colspan="2"><select><option></option></select></th>' +
-          '<td><button type="button">' + escape_html(self.options.labels.add) + "</button></td>" +
-        "</tr><table>"));
+          "<tr>" +
+            '<th colspan="2"><select><option></option></select></th>' +
+            '<td><button type="button">' + escape_html(self.options.labels.add) + "</button></td>" +
+          "</tr>" +
+        "</table>"));
       self.new_item_select = e.find("select");
       self.new_item_row = $(e.find("tr")[0]);
       self.new_item_add = e.find("button");
