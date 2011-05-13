@@ -73,6 +73,7 @@
         remove: "Remove",
         link: "Link set",
         cut: "Break set",
+        swap: "Swap Resources",
         heading_add: "Add resource to constraint"
       },
       prefix: "",
@@ -205,6 +206,38 @@
       }
     },
 
+    _swap_text: function(a, b) {
+      var t = a.text();
+      a.text(b.text());
+      b.text(t);
+    },
+
+    _swap_fields: function(a, b) {
+      var t = a.val();
+      a.val(b.val());
+      b.val(t);
+    },
+
+    _swap: function(event) {
+      var self = event.data;
+      var row = $(this).parent().parent();
+      if (!row.prev().hasClass("chain-res") || !row.next().hasClass("chain-res")) {
+        // Do nothing if there's not a resource on either side of the relation
+        // (i.e. it's a dangling relation)
+        return;
+      }
+
+      var pr = row.prev();
+      var nr = row.next();
+      self._swap_fields(pr.find("input"), nr.find("input"));
+      self._swap_fields(pr.find("select"), nr.find("select"));
+      self._swap_text($(pr.find("span")[0]), $(nr.find("span")[0]));
+      self._normalize_action(pr);
+      self._normalize_action(nr);
+
+      self._trigger("dirty", event, {});
+    },
+
     _set_link_row: function() {
       var self = this;
       // Note: border: none, background none, makes it "smaller" than regular resource manipulation buttons
@@ -213,13 +246,20 @@
             '<input type="hidden" ' + self._field_name() + ' value="rel"/>' +
             '<img src="' + self.options.imgroot + 'arrow-down.png" alt="&darr;" /></td>' +
           '<td><button type="button" style="border: none; background: none;">' + self.options.labels.link + "</button></td>" +
+          '<td><button type="button" style="border: none; background: none;">' + self.options.labels.swap + "</button></td>" +
         '</tr>');
-      r.find("button").button({
+      $(r.find("button")[0]).button({
         icons: {
           primary: "ui-icon-link"
         },
         text: false
       }).bind("click", self, self._set_link);
+      $(r.find("button")[1]).button({
+        icons: {
+          primary: "ui-icon-arrow-2-n-s"
+        },
+        text: false
+      }).bind("click", self, self._swap);
       return r;
     },
 
@@ -268,13 +308,20 @@
       var self = this;
       var r = $('<tr class="chain-set"><td class="set set-m" colspan="2">&nbsp;</td>' +
           '<td><button type="button" style="border: none; background: none;">' + self.options.labels.cut + "</button></td>" +
+          '<td><button type="button" style="border: none; background: none;">' + self.options.labels.swap + "</button></td>" +
         '</tr>');
-      r.find("button").button({
+      $(r.find("button")[0]).button({
         icons: {
           primary: "ui-icon-scissors"
         },
         text: false
       }).bind("click", self, self._set_cut);
+      $(r.find("button")[1]).button({
+        icons: {
+          primary: "ui-icon-arrow-2-n-s"
+        },
+        text: false
+      }).bind("click", self, self._swap);
       return r;
     },
 
@@ -350,7 +397,7 @@
 
       var new_row = $('<tr class="chain-res">' +
           '<td class="' + class_l + '"><input type="hidden" ' + self._field_name("id") + ' value="' + escape_field(res_id) + '"/>' +
-            escape_html(res_id) + "</td>" +
+            "<span>" + escape_html(res_id) + "</span></td>" +
           '<td class="' + class_r + '"><select ' + self._field_name("action") + "><option></option>" + actions + "</select></td>" +
           '<td><button type="button">' + self.options.labels.remove + "</button></td>" +
         "</tr>");
