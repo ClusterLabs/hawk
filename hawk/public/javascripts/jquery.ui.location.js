@@ -160,7 +160,8 @@
       }
       var e = self.element;
       e.children().remove();
-      e.append($("<table>" +
+      e.append($('<div class="mode"><input type="checkbox"/> ' + self.options.labels.advanced + "</div>" +
+        "<table>" +
           "<tr><th>" + escape_html(self.options.labels.score) + "</th><th>" + escape_html(self.options.labels.node) + "</th></tr>" +
           "<tr>" +
             '<td><input class="req" type="text" ' + self._field_name("score") + ' value="' + escape_field(score) + '"/></td>' +
@@ -168,7 +169,7 @@
               '<input type="hidden" ' + self._field_name("expressions", "attribute") + ' value="#uname"/>' +
               '<input type="hidden" ' + self._field_name("expressions", "operation") + ' value="eq"/></td>' +
           "</tr>" +
-        '</table><div class="mode"><input type="checkbox"/> ' + self.options.labels.advanced + "</div>"));
+        "</table>"));
       e.find("input[type=text]").bind("keyup change", function(event) {
         self._trigger("dirty", event, {});
       }).blur(function(event) {
