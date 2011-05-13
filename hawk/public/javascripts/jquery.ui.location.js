@@ -67,7 +67,8 @@
           valid = false;
         } else {
           // ...and if all rules have at least one expression
-          $(".rule").each(function() {
+          // including some required values
+          $(".ui-expression").each(function() {
             if ($(this).find(".req").length == 0) {
               valid = false;
               return false;
