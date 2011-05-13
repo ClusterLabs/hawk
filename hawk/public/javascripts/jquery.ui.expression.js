@@ -95,8 +95,8 @@
     },
 
     // Note: Surprisingly similar to function in ui.location.js
-    _select: function(idn, opts, value, class) {
-      var s = "<select " + (idn ? idn : "") + (class ? ' class="' + class + '"' : "") + ">";
+    _select: function(idn, opts, value, className) {
+      var s = "<select " + (idn ? idn : "") + (className ? ' class="' + className + '"' : "") + ">";
       $.each(opts, function() {
         s += '<option value="' + escape_field(this.k) + '"' +
           (this.k == value ? ' selected="selected"' : "") + ">" + ( this.v ? this.v : this.k ) + "</option>";

@@ -319,8 +319,8 @@
       return 'id="' + n.replace(/]/g, "").replace(/\[/g, "_") + '" name="' + n + '"';
     },
 
-    _select: function(idn, opts, value, class) {
-      var s = "<select " + idn + (class ? ' class="' + class + '"' : "") + ">";
+    _select: function(idn, opts, value, className) {
+      var s = "<select " + idn + (className ? ' class="' + className + '"' : "") + ">";
       if (value == "" && !$.inArray(value, "")) {
         s += "<option></option>";
       } else if ($.inArray(value, opts) == -1) {
