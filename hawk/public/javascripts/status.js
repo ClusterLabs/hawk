@@ -502,7 +502,9 @@ function update_cib()
         update_errors(cib.errors);
         if (cib.meta) {
           $("#dc_current").html(GETTEXT.dc_current(cib.meta.dc)).show();
-          $("#dc_version").html(GETTEXT.dc_version(cib.crm_config["dc-version"].match(/.*-[a-f0-9]{12}/).toString())).show();
+          var dc_version = cib.crm_config["dc-version"].match(/.*-[a-f0-9]{12}/);
+          if (!dc_version) dc_version = cib.crm_config["dc-version"];
+          $("#dc_version").html(GETTEXT.dc_version(dc_version.toString())).show();
           $("#dc_stack").html(GETTEXT.dc_stack(cib.crm_config["cluster-infrastructure"])).show();
 
           $("#summary").show();
