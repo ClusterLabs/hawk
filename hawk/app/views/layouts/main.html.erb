@@ -10,6 +10,7 @@
 <%= javascript_include_tag 'jquery-parsequery.min.js' %>
 <%= javascript_tag "var url_root='#{relative_url_root}';" %>
 <%= javascript_include_tag 'application.js' %>
+<%= csrf_meta_tag if defined? csrf_meta_tag %>
 <%= yield :head %> 
 </head>
 <body>
