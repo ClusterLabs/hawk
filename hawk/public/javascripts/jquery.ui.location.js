@@ -86,6 +86,7 @@
       var rules = self.options.rules;
       return rules.length == 0 ||
         rules.length == 1 && rules[0].expressions.length == 1 &&
+        !rules[0].role &&
         rules[0].score && rules[0].expressions[0].value &&
         rules[0].expressions[0].attribute == "#uname" &&
         rules[0].expressions[0].operation == "eq";

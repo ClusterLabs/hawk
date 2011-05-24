@@ -120,6 +120,7 @@ class Location < Constraint
   def simple?
     @rules.none? ||
       @rules.length == 1 && rules[0][:expressions].length == 1 &&
+        (!rules[0].has_key?(:role) || rules[0][:role].empty?) &&
         rules[0][:score] && rules[0][:expressions][0][:value] &&
         rules[0][:expressions][0][:attribute] == '#uname' &&
         rules[0][:expressions][0][:operation] == 'eq'
