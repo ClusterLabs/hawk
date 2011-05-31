@@ -230,9 +230,8 @@ function hide_status()
   $("#dc_current").hide();
   $("#dc_version").hide();
   $("#dc_stack").hide();
-  $("#summary").hide();
-  $("#nodelist").hide();
-  $("#reslist").hide();
+
+  panel_view.hide();
 }
 
 function update_cib()
@@ -253,35 +252,7 @@ function update_cib()
           $("#dc_version").html(GETTEXT.dc_version(dc_version.toString())).show();
           $("#dc_stack").html(GETTEXT.dc_stack(cib.crm_config["cluster-infrastructure"])).show();
 
-          $("#summary").show();
-          var props = [];
-          for (var e in cib.crm_config) {
-            if (e == "cluster-infrastructure" ||
-                e == "dc-version" ||
-                e == "last-lrm-refresh") {
-              // TODO(should): This is a bit rough - consolidate with crm_config editor props
-              continue;
-            }
-            props.push(e);
-          }
-          props.sort();
-          var rows = $("<tbody/>");
-          for (var i = 0; i < props.length; i++) {
-            rows.append("<tr><th>" + props[i] + "</td><td>" + escape_html(cib.crm_config[props[i]].toString()) + "</td></tr>");
-          }
-          $(jq("summary::props")).children().remove();
-          $(jq("summary::props")).append(rows);
-
-          $("#nodelist").show();
-          if (update_panel(cib_to_nodelist_panel(cib.nodes))) {
-            $("#nodelist").panel("expand");
-          }
-
-          $("#reslist").show();
-          if (update_panel(cib_to_reslist_panel(cib.resources))) {
-            $("#reslist").panel("expand");
-          }
-
+          panel_view.update();
         } else {
           // TODO(must): is it possible to get here with empty cib.errors?
           hide_status();
@@ -332,26 +303,7 @@ function hawk_init()
     update_period = isNaN(q.update_period) ? 0 : parseInt(q.update_period) * 1000;
   }
 
-  $("#content").prepend($(
-    '<div id="summary" style="display: none;"></div>' +
-    '<div id="nodelist" style="display: none;"></div>' +
-    '<div id="reslist" style="display: none;"></div>'));
-  $("#summary").panel({
-    menu_href: url_root + "/cib/live/crm_config/cib-bootstrap-options/edit",
-    menu_icon: url_root + "/images/icons/edit.png",
-    menu_alt:  GETTEXT.configure(),
-    label:     GETTEXT.summary_label(),
-    body:      $('<table id="summary::props" style="padding: 0.25em 0.5em;"></table>')
-  });
-  $("#nodelist").panel({
-    menu_icon: url_root + "/images/transparent-16x16.gif"
-  });
-  $("#reslist").panel({
-    menu_icon: url_root + "/images/icons/properties.png",
-    menu_click: function(event) {
-      return $(jq("menu::reslist")).popupmenu("popup", $(this));
-    }
-  });
+  panel_view.create();
 
   update_cib();
 }
