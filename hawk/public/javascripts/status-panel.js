@@ -35,15 +35,15 @@ var panel_view = {
         '<input type="checkbox" id="show-active" checked="checked"/> Show Active&nbsp;&nbsp;' +
         '<input type="checkbox" id="show-inactive" checked="checked"/> Show Inactive' +
       "</div>" +
-      '<div id="summary" style="display: none;"></div>' +
+      '<div id="config" style="display: none;"></div>' +
       '<div id="nodelist" style="display: none;"></div>' +
       '<div id="reslist" style="display: none;"></div>'));
-    $("#summary").panel({
+    $("#config").panel({
       menu_href: url_root + "/cib/live/crm_config/cib-bootstrap-options/edit",
       menu_icon: url_root + "/images/icons/edit.png",
       menu_alt:  GETTEXT.configure(),
       label:     GETTEXT.summary_label(),
-      body:      $('<table id="summary::props" style="padding: 0.25em 0.5em;"></table>')
+      body:      $('<table id="config::props" style="padding: 0.25em 0.5em;"></table>')
     });
     $("#nodelist").panel({
       menu_icon: url_root + "/images/transparent-16x16.gif"
@@ -87,7 +87,7 @@ var panel_view = {
   },
   update: function() {
     var self = this;
-    $("#summary").show();
+    $("#config").show();
     $("#filter").show();
     var props = [];
     for (var e in cib.crm_config) {
@@ -104,8 +104,8 @@ var panel_view = {
     for (var i = 0; i < props.length; i++) {
       rows.append("<tr><th>" + props[i] + "</td><td>" + escape_html(cib.crm_config[props[i]].toString()) + "</td></tr>");
     }
-    $(jq("summary::props")).children().remove();
-    $(jq("summary::props")).append(rows);
+    $(jq("config::props")).children().remove();
+    $(jq("config::props")).append(rows);
 
     $("#nodelist").show();
     if (self._update_panel(self._cib_to_nodelist_panel(cib.nodes))) {
@@ -118,7 +118,7 @@ var panel_view = {
     }
   },
   hide: function() {
-    $("#summary").hide();
+    $("#config").hide();
     $("#nodelist").hide();
     $("#reslist").hide();
     $("#filter").hide();
