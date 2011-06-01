@@ -345,7 +345,7 @@ var panel_view = {
       id:         "reslist",
       className:  "",
       style:      "",
-      label:      GETTEXT.resources_configured(resources.length),
+      label:      GETTEXT.resources_configured(resource_count),
       open:       false,
       children:   []
     };

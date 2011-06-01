@@ -30,6 +30,7 @@
 
 var cib = null;
 var resources_by_id = null;
+var resource_count = 0;
 
 var cib_file = false;
 var update_period = 0;
@@ -217,12 +218,18 @@ function update_resources_by_id(resources)
     resources_by_id = {};
     resources = cib.resources;
     toplevel = true;
+    resource_count = 0;
   }
   $.each(resources, function() {
     resources_by_id[this.id] = this;
     resources_by_id[this.id].toplevel = toplevel;
     if (this.children) {
       update_resources_by_id(this.children);
+    }
+    if (this.instances) {
+      $.each(this.instances, function() {
+        resource_count++;
+      });
     }
   });
 }
@@ -305,11 +312,13 @@ function hawk_init()
     update_period = isNaN(q.update_period) ? 0 : parseInt(q.update_period) * 1000;
   }
 
-  // Default to panel view (need this in init, not raw, else we're dependent
-  // on status-panel.js being included before status.js)
-  current_view = panel_view;
+  summary_view.create();
+  panel_view.create();
+  table_view.create();
 
-  current_view.create();
+  // Default to summary view (need this in init, not raw, else we're dependent
+  // on status-summary.js being included before status.js)
+  current_view = summary_view;
 
   update_cib();
 }

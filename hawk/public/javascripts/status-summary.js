@@ -30,14 +30,92 @@
 
 var summary_view = {
   create: function() {
+    // Summary needs to show:
+    // stonith enabled
+    // no quorum policy
+    // symmetric
+    // stickiness(?)
+    // maintenance mode
+    $("#content").prepend($(
+      '<div id="summary" style="display: none;">' +
+        '<h1>Summary</h1>' +
+        '<div id="nodesum"><span id="nodesum-label"></span>' +
+          "<table>" +
+            '<tr id="nodesum-pending"><td>' + GETTEXT.node_state_pending() + ":</td><td></td></tr>" +
+            '<tr id="nodesum-online"><td>' + GETTEXT.node_state_online() + ":</td><td></td></tr>" +
+            '<tr id="nodesum-standby"><td>' + GETTEXT.node_state_standby() + ":</td><td></td></tr>" +
+            '<tr id="nodesum-offline"><td>' + GETTEXT.node_state_offline() + ":</td><td></td></tr>" +
+            '<tr id="nodesum-unclean"><td>' + GETTEXT.node_state_unclean() + ":</td><td></td></tr>" +
+          "</table>" +
+        "</div>" +
+        '<div id="ressum"><span id="ressum-label"></span>' +
+          "<table>" +
+            // TODO(must): Localize
+            '<tr id="ressum-pending"><td>Pending:</td><td></td></tr>' +
+            '<tr id="ressum-started"><td>Started:</td><td></td></tr>' +
+            '<tr id="ressum-master"><td>Master:</td><td></td></tr>' +
+            '<tr id="ressum-slave"><td>Slave:</td><td></td></tr>' +
+            '<tr id="ressum-stopped"><td>Stopped:</td><td></td></tr>' +
+          "</table>" +
+        "</div>" +
+        '<div id="errorsum">' +
+        "</div>" +
+      "</div>"));
+    $("#summary").find("tr").hide();
   },
   destroy: function() {
     // NYI
   },
   update: function() {
-    // Add/update nodes, then add/update resources
+    var self = this;
+
+    $("#summary").show();
+
+    $("#nodesum-label").html(escape_html(GETTEXT.nodes_configured(cib.nodes.length)));
+    self._zero_counters("#nodesum");
+    $.each(cib.nodes, function() {
+      self._increment_counter("#nodesum-" + this.state);
+    });
+    self._show_counters("#nodesum");
+
+    $("#ressum-label").html(escape_html(GETTEXT.resources_configured(resource_count)));
+    self._zero_counters("#ressum");
+    $.each(resources_by_id, function() {
+      if (!this.instances) return;
+      $.each(this.instances, function() {
+        if (this.master) {
+          self._increment_counter("#ressum-master");
+        } else if (this.slave) {
+          self._increment_counter("#ressum-slave");
+        } else if (this.started) {
+          self._increment_counter("#ressum-started");
+        } else if (this.pending) {
+          self._increment_counter("#ressum-pending");
+        } else {
+          self._increment_counter("#ressum-stopped");
+        }
+      });
+    });
+    self._show_counters("#ressum");
   },
   hide: function() {
+  },
+  _zero_counters: function(parent_id) {
+    $(parent_id).children("table").find("tr").each(function() {
+      $(this).children(":last").text("0");
+    });
+  },
+  _increment_counter: function(row_id) {
+    $(row_id).children(":last").text(parseInt($(row_id).children(":last").text()) + 1);
+  },
+  _show_counters: function(parent_id) {
+    $(parent_id).children("table").find("tr").each(function() {
+      if (parseInt($(this).children(":last").text())) {
+        $(this).show();
+      } else {
+        $(this).hide();
+      }
+    });
   }
 };
 
