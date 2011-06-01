@@ -34,6 +34,8 @@ var resources_by_id = null;
 var cib_file = false;
 var update_period = 0;
 
+var current_view = null;
+
 function jq(id)
 {
   return "#" + id.replace(/(:|\.)/g,'\\$1');
@@ -231,7 +233,7 @@ function hide_status()
   $("#dc_version").hide();
   $("#dc_stack").hide();
 
-  panel_view.hide();
+  current_view.hide();
 }
 
 function update_cib()
@@ -252,7 +254,7 @@ function update_cib()
           $("#dc_version").html(GETTEXT.dc_version(dc_version.toString())).show();
           $("#dc_stack").html(GETTEXT.dc_stack(cib.crm_config["cluster-infrastructure"])).show();
 
-          panel_view.update();
+          current_view.update();
         } else {
           // TODO(must): is it possible to get here with empty cib.errors?
           hide_status();
@@ -303,7 +305,11 @@ function hawk_init()
     update_period = isNaN(q.update_period) ? 0 : parseInt(q.update_period) * 1000;
   }
 
-  panel_view.create();
+  // Default to panel view (need this in init, not raw, else we're dependent
+  // on status-panel.js being included before status.js)
+  current_view = panel_view;
+
+  current_view.create();
 
   update_cib();
 }
