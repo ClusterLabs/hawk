@@ -302,6 +302,12 @@ function update_cib()
   });
 }
 
+function change_view(new_view) {
+  current_view.hide();
+  current_view = new_view;
+  current_view.update();
+}
+
 function hawk_init()
 {
   var q = $.parseQuery();

@@ -68,6 +68,7 @@ var summary_view = {
             '<tr id="ressum-stopped" class="rs-inactive"><td>Stopped:</td><td></td></tr>' +
           "</table>" +
         "</div>" +
+        '<div style="text-align: right"><a href="javascript:change_view(panel_view);">View Details...</a></div>' +
       "</div>"));
     $("#summary").find("tr").hide();
   },
@@ -127,6 +128,7 @@ var summary_view = {
     self._show_counters("#ressum");
   },
   hide: function() {
+    $("#summary").hide();
   },
   _zero_counters: function(parent_id) {
     $(parent_id).children("table").find("tr").each(function() {

@@ -32,6 +32,7 @@ var panel_view = {
   create: function() {
     $("#content").prepend($(
       '<div id="filter" style="display: none; width: 100%;">' +
+        '<a href="javascript:change_view(summary_view);">View Summary...</a>&nbsp;&nbsp;&nbsp;' +
         '<input type="checkbox" id="show-active" checked="checked"/> Show Active&nbsp;&nbsp;' +
         '<input type="checkbox" id="show-inactive" checked="checked"/> Show Inactive' +
       "</div>" +
