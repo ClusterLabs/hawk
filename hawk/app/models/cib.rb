@@ -106,6 +106,13 @@ class Cib < CibObject
           res[:instances][instance.to_s] = {}
         end
         res[:instances].delete(:default) if res[:instances].has_key?(:default)
+        # strip any instances outside 0..clone_max if they're not running (these
+        # can be present if, e.g.: you have a clone running on all nodes, then
+        # set clone-max < num_nodes, in which case there'll be stopped orphans).
+        res[:instances].keys.select{|i| i.to_i >= res[:clone_max]}.each do |k|
+          # safe to delete if the instance is present and its only state is stopped
+          res[:instances].delete(k) if res[:instances][k].keys.length == 1 && res[:instances][k].has_key?(:stopped)
+        end
         res.delete :clone_max
       else
         res[:instances].delete_if {|k, v| k != :default} if res.has_key?(:instances)
