@@ -46,7 +46,7 @@ just add divs for resources.
 */
 var table_view = {
   create: function() {
-    $("#content").prepend($('<div id="table"><table style="display: none;"><tr><td></td></tr></div>'));
+    $("#content").prepend($('<div id="table" style="display: none;"><table style="display: none;"><tr><td></td></tr></div>'));
   },
   destroy: function() {
     // NYI
