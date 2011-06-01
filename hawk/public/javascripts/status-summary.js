@@ -39,26 +39,34 @@ var summary_view = {
     $("#content").prepend($(
       '<div id="summary" style="display: none;">' +
         '<h1>Summary</h1>' +
-        '<div id="nodesum"><span id="nodesum-label"></span>' +
-          "<table>" +
-            '<tr id="nodesum-pending"><td>' + GETTEXT.node_state_pending() + ":</td><td></td></tr>" +
-            '<tr id="nodesum-online"><td>' + GETTEXT.node_state_online() + ":</td><td></td></tr>" +
-            '<tr id="nodesum-standby"><td>' + GETTEXT.node_state_standby() + ":</td><td></td></tr>" +
-            '<tr id="nodesum-offline"><td>' + GETTEXT.node_state_offline() + ":</td><td></td></tr>" +
-            '<tr id="nodesum-unclean"><td>' + GETTEXT.node_state_unclean() + ":</td><td></td></tr>" +
-          "</table>" +
-        "</div>" +
-        '<div id="ressum"><span id="ressum-label"></span>' +
-          "<table>" +
+        '<div id="confsum" class="summary"><h2 id="confsum-label">' + GETTEXT.summary_label() + "</h2>" +
+          '<table cellpadding="0" cellspacing="0">' +
             // TODO(must): Localize
-            '<tr id="ressum-pending"><td>Pending:</td><td></td></tr>' +
-            '<tr id="ressum-started"><td>Started:</td><td></td></tr>' +
-            '<tr id="ressum-master"><td>Master:</td><td></td></tr>' +
-            '<tr id="ressum-slave"><td>Slave:</td><td></td></tr>' +
-            '<tr id="ressum-stopped"><td>Stopped:</td><td></td></tr>' +
+            '<tr id="confsum-stonith-enabled"><td>STONITH Enabled:</td><td></td></tr>' +
+            '<tr id="confsum-no-quorum-policy"><td>No Quorum Policy:</td><td></td></tr>' +
+            '<tr id="confsum-symmetric-cluster"><td>Symmetric Cluster:</td><td></td></tr>' +
+            '<tr id="confsum-default-resource-stickiness"><td>Resource Stickiness:</td><td></td></tr>' +
+            '<tr id="confsum-maintenance-mode"><td>Maintenance Mode:</td><td></td></tr>' +
           "</table>" +
         "</div>" +
-        '<div id="errorsum">' +
+        '<div id="nodesum" class="summary"><h2 id="nodesum-label"></h2>' +
+          '<table cellpadding="0" cellspacing="0">' +
+            '<tr id="nodesum-pending" class="ns-transient"><td>' + GETTEXT.node_state_pending() + ":</td><td></td></tr>" +
+            '<tr id="nodesum-online" class="ns-active"><td>' + GETTEXT.node_state_online() + ":</td><td></td></tr>" +
+            '<tr id="nodesum-standby" class="ns-inactive"><td>' + GETTEXT.node_state_standby() + ":</td><td></td></tr>" +
+            '<tr id="nodesum-offline" class="ns-inactive"><td>' + GETTEXT.node_state_offline() + ":</td><td></td></tr>" +
+            '<tr id="nodesum-unclean" class="ns-error"><td>' + GETTEXT.node_state_unclean() + ":</td><td></td></tr>" +
+          "</table>" +
+        "</div>" +
+        '<div id="ressum" class="summary"><h2 id="ressum-label"></h2>' +
+          '<table cellpadding="0" cellspacing="0">' +
+            // TODO(must): Localize
+            '<tr id="ressum-pending" class="rs-transient"><td>Pending:</td><td></td></tr>' +
+            '<tr id="ressum-started" class="rs-active"><td>Started:</td><td></td></tr>' +
+            '<tr id="ressum-master" class="rs-master"><td>Master:</td><td></td></tr>' +
+            '<tr id="ressum-slave" class="rs-slave"><td>Slave:</td><td></td></tr>' +
+            '<tr id="ressum-stopped" class="rs-inactive"><td>Stopped:</td><td></td></tr>' +
+          "</table>" +
         "</div>" +
       "</div>"));
     $("#summary").find("tr").hide();
@@ -70,6 +78,26 @@ var summary_view = {
     var self = this;
 
     $("#summary").show();
+    $.each(["stonith-enabled", "no-quorum-policy", "symmetric-cluster",
+            "default-resource-stickiness", "maintenance-mode"], function() {
+      var p = this.toString();
+      if (cib.crm_config[p] != null) {
+        $("#confsum-" + p).show().children(":last").html(escape_html(cib.crm_config[p].toString()));
+      } else {
+        $("#confsum-" + p).hide();
+      }
+    });
+    // Special case for important highlights
+    if (cib.crm_config["stonith-enabled"]) {
+      $("#confsum-stonith-enabled").removeClass("rs-error");
+    } else {
+      $("#confsum-stonith-enabled").addClass("rs-error");
+    }
+    if (cib.crm_config["maintenance-mode"]) {
+      $("#confsum-maintenance-mode").addClass("rs-transient");
+    } else {
+      $("#confsum-maintenance-mode").removeClass("rs-transient");
+    }
 
     $("#nodesum-label").html(escape_html(GETTEXT.nodes_configured(cib.nodes.length)));
     self._zero_counters("#nodesum");

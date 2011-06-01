@@ -332,9 +332,17 @@ img
 
 /* summary_view */
 
-#nodesum {
+.summary {
+  padding-left: 1em;
+  padding-bottom: 0.5em;
+}
+
+.summary table {
+  width: 18em;
   padding-left: 1em;
 }
-#ressum {
-  padding-left: 1em;
+
+.summary td {
+  padding: 0 1em;
 }
+
