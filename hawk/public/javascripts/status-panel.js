@@ -31,6 +31,10 @@
 var panel_view = {
   create: function() {
     $("#content").prepend($(
+      '<div id="filter" style="display: none; width: 100%;">' +
+        '<input type="checkbox" id="show-active" checked="checked"/> Show Active&nbsp;&nbsp;' +
+        '<input type="checkbox" id="show-inactive" checked="checked"/> Show Inactive' +
+      "</div>" +
       '<div id="summary" style="display: none;"></div>' +
       '<div id="nodelist" style="display: none;"></div>' +
       '<div id="reslist" style="display: none;"></div>'));
@@ -50,6 +54,33 @@ var panel_view = {
         return $(jq("menu::reslist")).popupmenu("popup", $(this));
       }
     });
+    // Filter problems:
+    // - visibility not applied to new resources or resources that
+    //   change state (say you're showing active and not stopped, and
+    //   an active resource stops - it'll still be visible in the new
+    //   stopped state)
+    // - panel headings still show expanded even though there's nothing
+    //   inside.  need to add something like:
+    //   - " 3 active resources/nodes hidden"
+    //   - " 3 inactive resources/nodes hidden"
+    $("#show-active").click(function() {
+      if (this.checked) {
+        $(".rs-active").show();
+        $(".ns-active").show();
+      } else {
+        $(".rs-active").hide();
+        $(".ns-active").hide();
+      }
+    });
+    $("#show-inactive").click(function() {
+      if (this.checked) {
+        $(".rs-inactive").show();
+        $(".ns-inactive").show();
+      } else {
+        $(".rs-inactive").hide();
+        $(".ns-inactive").hide();
+      }
+    });
   },
   destroy: function() {
     // NYI
@@ -57,6 +88,7 @@ var panel_view = {
   update: function() {
     var self = this;
     $("#summary").show();
+    $("#filter").show();
     var props = [];
     for (var e in cib.crm_config) {
       if (e == "cluster-infrastructure" ||
@@ -89,6 +121,7 @@ var panel_view = {
     $("#summary").hide();
     $("#nodelist").hide();
     $("#reslist").hide();
+    $("#filter").hide();
   },
   // need to pass parent in with open flag (e.g.: nodelist, reslist)
   _update_panel: function(panel) {
