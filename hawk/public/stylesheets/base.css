@@ -80,6 +80,9 @@ html, body
 #content
 {
   padding: 1em 1em 3em; /* for footer */
+  /* Explicitly specifying overflow:auto ensures floated elements inside
+   * content DIV don't overflow out the bottom and underrun the footer */
+  overflow: auto;
 }
 
 #errorbar
