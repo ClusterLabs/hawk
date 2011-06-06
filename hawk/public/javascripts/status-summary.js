@@ -29,7 +29,9 @@
 //======================================================================
 
 var summary_view = {
+  active_detail: null,
   create: function() {
+    var self = this;
     // Summary needs to show:
     // stonith enabled
     // no quorum policy
@@ -74,36 +76,11 @@ var summary_view = {
     $("#summary").find("tr").each(function() {
       $(this).hide();
       if ($(this).hasClass("clickable")) {
+        $(this).css("textDecoration", "underline");
         $(this).click(function() {
-          $("#itemlist").children().remove();
-          var parts = $(this).attr("id").split("-");
-          if (parts[0] == "nodesum") {
-            $("#itemlist").append($("<h1>Nodes</h1>")); // TODO(must): Localize
-            $.each(cib.nodes, function() {
-              if (this.state == parts[1]) {
-                $("#itemlist").append($('<div class="item ui-corner-all">' + escape_html(this.uname) + "</div>"));
-              }
-            });
-          } else {
-            $("#itemlist").append($("<h1>Resources</h1>")); // TODO(must): Localize
-            $.each(resources_by_id, function() {
-              if (!this.instances) return;
-              var res = this;
-              $.each(this.instances, function(i) {
-                if (this.master) {
-                  if (parts[1] == "master") $("#itemlist").append($('<div class="item ui-corner-all">' + escape_html(res.id) + (i == "default" ? "" : ":" + i) + "</div>"));
-                } else if (this.slave) {
-                  if (parts[1] == "slave") $("#itemlist").append($('<div class="item ui-corner-all">' + escape_html(res.id) + (i == "default" ? "" : ":" + i) + "</div>"));
-                } else if (this.started) {
-                  if (parts[1] == "started") $("#itemlist").append($('<div class="item ui-corner-all">' + escape_html(res.id) + (i == "default" ? "" : ":" + i) + "</div>"));
-                } else if (this.pending) {
-                  if (parts[1] == "pending") $("#itemlist").append($('<div class="item ui-corner-all">' + escape_html(res.id) + (i == "default" ? "" : ":" + i) + "</div>"));
-                } else {
-                  if (parts[1] == "stopped") $("#itemlist").append($('<div class="item ui-corner-all">' + escape_html(res.id) + (i == "default" ? "" : ":" + i) + "</div>"));
-                }
-              });
-            });
-          }
+          self.active_detail = $(this).attr("id");
+          $("#itemlist").children().hide();
+          $("#itemlist").children("." + self.active_detail).show();
           $("#itemlist").show();
         });
       }
@@ -137,10 +114,47 @@ var summary_view = {
       $("#confsum-maintenance-mode").removeClass("rs-transient");
     }
 
+    // Rebuild item list each time
+    $("#itemlist").children().remove();
+
     $("#nodesum-label").html(escape_html(GETTEXT.nodes_configured(cib.nodes.length)));
     self._zero_counters("#nodesum");
     $.each(cib.nodes, function() {
       self._increment_counter("#nodesum-" + this.state);
+      // Switch cribbed from _cib_to_nodelist_panel()
+      var className;
+      var label = GETTEXT.node_state_unknown();
+      switch (this.state) {
+        case "online":
+          className = "active nodesum-online";
+          label = GETTEXT.node_state_online();
+          break;
+        case "offline":
+          className = "inactive nodesum-offline";
+          label = GETTEXT.node_state_offline();
+          break;
+        case "pending":
+          className = "transient nodesum-pending";
+          label = GETTEXT.node_state_pending();
+          break;
+        case "standby":
+          className = "inactive nodesum-standby";
+          label = GETTEXT.node_state_standby();
+          break;
+        case "unclean":
+          className = "error nodesum-unclean";
+          label = GETTEXT.node_state_unclean();
+          break;
+      }
+      var display = 'none';
+      if (self.active_detail && className.indexOf(self.active_detail) >= 0) {
+        display = "auto";
+      }
+      var d = $(
+        '<div id="node::' + this.uname + '" class="ui-corner-all node ns-' + className + '" style="display: ' + display + '">' +
+            '<a id="node::' + this.uname + '::menu"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="node::' + this.uname + '::label">' + escape_html(GETTEXT.node_state(this.uname, label)) + '</span>' +
+        "</div>");
+      $("#itemlist").append(d);
     });
     self._show_counters("#nodesum");
 
@@ -148,25 +162,60 @@ var summary_view = {
     self._zero_counters("#ressum");
     $.each(resources_by_id, function() {
       if (!this.instances) return;
-      $.each(this.instances, function() {
+      var res_id = this.id;
+      $.each(this.instances, function(k) {
+        var id = res_id;
+        if (k != "default") {
+          id += ":" + k;
+        }
+        // Display logic same as _get_primitive()
+        var status_class = "res-primitive";
+        var label = "";
         if (this.master) {
           self._increment_counter("#ressum-master");
+          label = GETTEXT.resource_state_master(id, this.master);
+          status_class += " rs-active rs-master ressum-master";
         } else if (this.slave) {
           self._increment_counter("#ressum-slave");
+          label = GETTEXT.resource_state_slave(id, this.slave);
+          status_class += " rs-active rs-slave ressum-slave";
         } else if (this.started) {
           self._increment_counter("#ressum-started");
+          label = GETTEXT.resource_state_started(id, this.started);
+          status_class += " rs-active ressum-started";
         } else if (this.pending) {
           self._increment_counter("#ressum-pending");
+          label = GETTEXT.resource_state_pending(id, this.pending);
+          status_class += " rs-transient ressum-pending";
         } else {
           self._increment_counter("#ressum-stopped");
+          label = GETTEXT.resource_state_stopped(id);
+          status_class += " rs-inactive ressum-stopped";
         }
+        var display = 'none';
+        if (self.active_detail && status_class.indexOf(self.active_detail) >= 0) {
+          display = "auto";
+        }
+        var d = $(
+          '<div id="resource::' + id + '" class="ui-corner-all ' + status_class + '" style="display: ' + display + '">' +
+              '<a id="resource::' + id + '::menu"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="resource::' + id + '::label">' + escape_html(label) + '</span>' +
+          "</div>");
+        $("#itemlist").append(d);
       });
     });
     self._show_counters("#ressum");
+
+    // Hide item list if there's nothing to show
+    if ($("#itemlist").children(":visible").length == 0) {
+      $("#itemlist").hide();
+      self.active_detail = null;
+    }
   },
   hide: function() {
     $("#summary").hide();
     $("#itemlist").hide();
+    $("#itemlist").children().remove();
+    this.active_detail = null;
   },
   _zero_counters: function(parent_id) {
     $(parent_id).children("table").find("tr").each(function() {

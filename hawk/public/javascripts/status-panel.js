@@ -123,6 +123,12 @@ var panel_view = {
     $("#config").hide();
     $("#nodelist").hide();
     $("#reslist").hide();
+    // Need to remove nodes and resources, because we're reusing the IDs in
+    // summary_view.  Unfortunate side-effect is that the panel view reverts
+    // to whatever the default expansion state would be when you switch views,
+    // rather than remaining how the user had expanded things.
+    $("#nodelist").panel("body_element").children().remove();
+    $("#reslist").panel("body_element").children().remove();
 //    $("#filter").hide();
   },
   // need to pass parent in with open flag (e.g.: nodelist, reslist)
