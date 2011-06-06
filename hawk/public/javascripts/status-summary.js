@@ -39,11 +39,11 @@ var summary_view = {
     // stickiness(?)
     // maintenance mode
     $("#content").prepend($(
+      // TODO(must): Localize
       '<div id="summary" style="display: none;" class="ui-corner-all">' +
         '<h1>Summary</h1>' +
         '<div id="confsum" class="summary"><h2 id="confsum-label">' + GETTEXT.summary_label() + "</h2>" +
           '<table cellpadding="0" cellspacing="0">' +
-            // TODO(must): Localize
             '<tr id="confsum-stonith-enabled"><td>STONITH Enabled:</td><td></td></tr>' +
             '<tr id="confsum-no-quorum-policy"><td>No Quorum Policy:</td><td></td></tr>' +
             '<tr id="confsum-symmetric-cluster"><td>Symmetric Cluster:</td><td></td></tr>' +
@@ -62,7 +62,6 @@ var summary_view = {
         "</div>" +
         '<div id="ressum" class="summary"><h2 id="ressum-label"></h2>' +
           '<table cellpadding="0" cellspacing="0">' +
-            // TODO(must): Localize
             '<tr id="ressum-pending" class="rs-transient clickable"><td>Pending:</td><td></td></tr>' +
             '<tr id="ressum-started" class="rs-active clickable"><td>Started:</td><td></td></tr>' +
             '<tr id="ressum-master" class="rs-master clickable"><td>Master:</td><td></td></tr>' +
@@ -71,7 +70,9 @@ var summary_view = {
           "</table>" +
         "</div>" +
       "</div>" +
-      '<div id="itemlist" style="display: none;" class="ui-corner-all">' +
+      '<div id="details" style="display: none;" class="ui-corner-all">' +
+        '<div style="float: right;"><button type="button" style="border: none; background: none; font-size: 0.7em; margin-right: -0.5em;">Close</button></div><h1>Details</h1>' +
+        '<div id="itemlist"></div>' +
       "</div>"));
     $("#summary").find("tr").each(function() {
       $(this).hide();
@@ -81,9 +82,18 @@ var summary_view = {
           self.active_detail = $(this).attr("id");
           $("#itemlist").children().hide();
           $("#itemlist").children("." + self.active_detail).show();
-          $("#itemlist").show();
+          $("#details").show();
         });
       }
+    });
+    $("#details").find("button").button({
+      text: false,
+      icons: {
+        primary: "ui-icon-close"
+      }
+    }).click(function() {
+        $("#details").hide();
+        self.active_detail = null;
     });
   },
   destroy: function() {
@@ -207,13 +217,13 @@ var summary_view = {
 
     // Hide item list if there's nothing to show
     if ($("#itemlist").children(":visible").length == 0) {
-      $("#itemlist").hide();
+      $("#details").hide();
       self.active_detail = null;
     }
   },
   hide: function() {
     $("#summary").hide();
-    $("#itemlist").hide();
+    $("#details").hide();
     $("#itemlist").children().remove();
     this.active_detail = null;
   },
