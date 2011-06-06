@@ -335,7 +335,7 @@ function hawk_init()
       // TODO(must): Localize
       '<input id="view-summary" name="view-radio" type="radio" checked="checked" /><label for="view-summary">Summary View</label>' +
       '<input id="view-panel" name="view-radio" type="radio" /><label for="view-panel">Tree View</label>' +
-      //'<input id="view-table" name="view-radio" type="radio" /><label for="view-table">Table View</label>' +
+      '<input id="view-table" name="view-radio" type="radio" /><label for="view-table">Table View</label>' +
     "</form></div"));
   $("#view-switcher").buttonset();
   $("#view-summary").button("option", { icons: { primary: "icon-view-summary" }, text: false }).click(function() {
@@ -344,9 +344,9 @@ function hawk_init()
   $("#view-panel").button("option", { icons: { primary: "icon-view-panel" }, text: false }).click(function() {
     change_view(panel_view);
   });
-  //$("#view-table").button("option", { icons: { primary: "icon-view-table" }, text: false }).click(function() {
-  //  change_view(table_view);
-  //});
+  $("#view-table").button("option", { icons: { primary: "icon-view-table" }, text: false }).click(function() {
+    change_view(table_view);
+  });
   $("#view-switcher").hide();
 
   // Default to summary view (need this in init, not raw, else we're dependent

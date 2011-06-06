@@ -46,16 +46,108 @@ just add divs for resources.
 */
 var table_view = {
   create: function() {
-    $("#content").prepend($('<div id="table" style="display: none;"><table style="display: none;"><tr><td></td></tr></div>'));
+    var self = this;
+    $("#content").prepend($('<div id="table" style="display: none;"><table><tr style="vertical-align: top;"><td></td></tr></div>'));
+    self.inactive = $("#table").find("td");
   },
   destroy: function() {
     // NYI
   },
   update: function() {
+    var self = this;
     // Add/update nodes, then add/update resources
+    $("#table").show();
+    // Temporary shotgun:
+    $("#table").find(".ncol").remove();
+    self.inactive.children().remove();
+    $.each(cib.nodes, function() {
+      // Switch cribbed from _cib_to_nodelist_panel()
+      var className;
+      var label = GETTEXT.node_state_unknown();
+      switch (this.state) {
+        case "online":
+          className = "active";
+          label = GETTEXT.node_state_online();
+          break;
+        case "offline":
+          className = "inactive";
+          label = GETTEXT.node_state_offline();
+          break;
+        case "pending":
+          className = "transient";
+          label = GETTEXT.node_state_pending();
+          break;
+        case "standby":
+          className = "inactive";
+          label = GETTEXT.node_state_standby();
+          break;
+        case "unclean":
+          className = "error";
+          label = GETTEXT.node_state_unclean();
+          break;
+      }
+      var d = $(
+        '<td class="ncol"><div id="node::' + this.uname + '" class="ui-corner-all node ns-' + className + '">' +
+            '<a id="node::' + this.uname + '::menu"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="node::' + this.uname + '::label">' + escape_html(GETTEXT.node_state(this.uname, label)) + '</span>' +
+        "</div></td>");
+      self.inactive.before(d);
+      if (!cib_file) {
+        add_mgmt_menu($(jq("node::" + this.uname + "::menu")));
+      }
+    });
+    
+    $.each(resources_by_id, function() {
+      if (!this.instances) return;
+      var res_id = this.id;
+      $.each(this.instances, function(k) {
+        var id = res_id;
+        if (k != "default") {
+          id += ":" + k;
+        }
+        // Display logic same as _get_primitive()
+        var node = null;
+        var status_class = "res-primitive";
+        var label = "";
+        if (this.master) {
+          label = GETTEXT.resource_state_master(id, this.master);
+          node = this.master;
+          status_class += " rs-active rs-master";
+        } else if (this.slave) {
+          label = GETTEXT.resource_state_slave(id, this.slave);
+          node = this.slave;
+          status_class += " rs-active rs-slave";
+        } else if (this.started) {
+          label = GETTEXT.resource_state_started(id, this.started);
+          node = this.started;
+          status_class += " rs-active";
+        } else if (this.pending) {
+          label = GETTEXT.resource_state_pending(id, this.pending);
+          node = this.pending;
+          status_class += " rs-transient";
+        } else {
+          label = GETTEXT.resource_state_stopped(id);
+          status_class += " rs-inactive";
+        }
+        var d = $(
+          '<div id="resource::' + id + '" class="ui-corner-all ' + status_class + '">' +
+              '<a id="resource::' + id + '::menu"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="resource::' + id + '::label">' + escape_html(label) + '</span>' +
+          "</div>");
+        if (node) {
+          $(jq("node::" + node)).parent().append(d);
+        } else {
+          self.inactive.append(d);
+        }
+        if (!cib_file) {
+          add_mgmt_menu($(jq("resource::" + id + "::menu")));
+        }
+      });
+    });    
   },
   hide: function() {
+    var self = this;
     $("#table").hide();
+    $("#table").find(".ncol").remove();
+    self.inactive.children().remove();
   }
 };
 
