@@ -57,7 +57,7 @@ var summary_view = {
             '<tr id="nodesum-online" class="ns-active clickable"><td>' + GETTEXT.node_state_online() + ":</td><td></td></tr>" +
             '<tr id="nodesum-standby" class="ns-inactive clickable"><td>' + GETTEXT.node_state_standby() + ":</td><td></td></tr>" +
             '<tr id="nodesum-offline" class="ns-inactive clickable"><td>' + GETTEXT.node_state_offline() + ":</td><td></td></tr>" +
-            '<tr id="nodesum-unclean" class="ns-error" clickable><td>' + GETTEXT.node_state_unclean() + ":</td><td></td></tr>" +
+            '<tr id="nodesum-unclean" class="ns-error clickable"><td>' + GETTEXT.node_state_unclean() + ":</td><td></td></tr>" +
           "</table>" +
         "</div>" +
         '<div id="ressum" class="summary"><h2 id="ressum-label"></h2>' +
