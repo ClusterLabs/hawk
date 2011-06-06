@@ -109,19 +109,19 @@ var table_view = {
         var status_class = "res-primitive";
         var label = "";
         if (this.master) {
-          label = GETTEXT.resource_state_master(id, this.master);
+          label = GETTEXT.resource_state_master(id);
           node = this.master;
           status_class += " rs-active rs-master";
         } else if (this.slave) {
-          label = GETTEXT.resource_state_slave(id, this.slave);
+          label = GETTEXT.resource_state_slave(id);
           node = this.slave;
           status_class += " rs-active rs-slave";
         } else if (this.started) {
-          label = GETTEXT.resource_state_started(id, this.started);
+          label = GETTEXT.resource_state_started(id);
           node = this.started;
           status_class += " rs-active";
         } else if (this.pending) {
-          label = GETTEXT.resource_state_pending(id, this.pending);
+          label = GETTEXT.resource_state_pending(id);
           node = this.pending;
           status_class += " rs-transient";
         } else {
