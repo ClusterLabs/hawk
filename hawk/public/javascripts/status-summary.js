@@ -68,7 +68,6 @@ var summary_view = {
             '<tr id="ressum-stopped" class="rs-inactive clickable"><td>Stopped:</td><td></td></tr>' +
           "</table>" +
         "</div>" +
-        '<div style="font-size: 50%"><br/><a href="javascript:change_view(panel_view);">View Details...</a></div>' +
       "</div>" +
       '<div id="itemlist" style="display: none;" class="ui-corner-all">' +
       "</div>"));
