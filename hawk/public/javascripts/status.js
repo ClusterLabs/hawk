@@ -309,6 +309,11 @@ function change_view(new_view) {
   current_view.hide();
   current_view = new_view;
   current_view.update();
+  switch(current_view) {
+    case panel_view:   $.cookie("hawk-status-view", "panel");   break;
+    case table_view:   $.cookie("hawk-status-view", "table");   break;
+    case summary_view: $.cookie("hawk-status-view", "summary"); break;
+  }
 }
 
 function hawk_init()
@@ -346,7 +351,12 @@ function hawk_init()
 
   // Default to summary view (need this in init, not raw, else we're dependent
   // on status-summary.js being included before status.js)
-  current_view = summary_view;
+  switch($.cookie("hawk-status-view")) {
+    case "panel":   current_view = panel_view;   break;
+    case "table":   current_view = table_view;   break;
+    case "summary": // Summary is the default view
+    default:        current_view = summary_view; break;
+  }
 
   update_cib();
 }
