@@ -42,7 +42,9 @@ var summary_view = {
       // TODO(must): Localize
       '<div id="summary" style="display: none;" class="ui-corner-all">' +
         '<h1>Summary</h1>' +
-        '<div id="confsum" class="summary"><h2 id="confsum-label">' + GETTEXT.summary_label() + "</h2>" +
+        '<div id="confsum" class="summary">' +
+          '<a><img class="action-icon" alt="" /></a>' +
+          '<h2 id="confsum-label">' + GETTEXT.summary_label() + "</h2>" +
           '<table cellpadding="0" cellspacing="0">' +
             '<tr id="confsum-stonith-enabled"><td>STONITH Enabled:</td><td></td></tr>' +
             '<tr id="confsum-no-quorum-policy"><td>No Quorum Policy:</td><td></td></tr>' +
@@ -51,7 +53,8 @@ var summary_view = {
             '<tr id="confsum-maintenance-mode"><td>Maintenance Mode:</td><td></td></tr>' +
           "</table>" +
         "</div>" +
-        '<div id="nodesum" class="summary"><h2 id="nodesum-label"></h2>' +
+        '<div id="nodesum" class="summary">' +
+          '<h2 id="nodesum-label"></h2>' +
           '<table cellpadding="0" cellspacing="0">' +
             '<tr id="nodesum-pending" class="ns-transient clickable"><td>' + GETTEXT.node_state_pending() + ":</td><td></td></tr>" +
             '<tr id="nodesum-online" class="ns-active clickable"><td>' + GETTEXT.node_state_online() + ":</td><td></td></tr>" +
@@ -60,7 +63,9 @@ var summary_view = {
             '<tr id="nodesum-unclean" class="ns-error clickable"><td>' + GETTEXT.node_state_unclean() + ":</td><td></td></tr>" +
           "</table>" +
         "</div>" +
-        '<div id="ressum" class="summary"><h2 id="ressum-label"></h2>' +
+        '<div id="ressum" class="summary">' +
+          '<a><img class="action-icon" alt="" /></a>' +
+          '<h2 id="ressum-label"></h2>' +
           '<table cellpadding="0" cellspacing="0">' +
             '<tr id="ressum-pending" class="rs-transient clickable"><td>Pending:</td><td></td></tr>' +
             '<tr id="ressum-started" class="rs-active clickable"><td>Started:</td><td></td></tr>' +
@@ -94,6 +99,22 @@ var summary_view = {
     }).click(function() {
         $("#details").hide();
         self.active_detail = null;
+    });
+    // Menu setup cribbed from jquery.ui.panel
+    var ma = $("#summary").find("a");
+    var mi = ma.children(":first");
+    mi.attr("src", url_root + "/images/icons/edit.png");
+    mi.attr("alt", GETTEXT.configure());
+    mi.attr("title", GETTEXT.configure());
+    ma.attr("href", url_root + "/cib/live/crm_config/cib-bootstrap-options/edit");
+    ma.click(function(event) {
+      event.stopPropagation();
+    });
+    ma = $("#ressum").find("a");
+    mi = ma.children(":first");
+    mi.attr("src", url_root + "/images/icons/properties.png");
+    ma.click(function(event) {
+      return $(jq("menu::reslist")).popupmenu("popup", $(this));
     });
   },
   destroy: function() {
@@ -165,6 +186,9 @@ var summary_view = {
             '<a id="node::' + this.uname + '::menu"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="node::' + this.uname + '::label">' + escape_html(GETTEXT.node_state(this.uname, label)) + '</span>' +
         "</div>");
       $("#itemlist").append(d);
+      if (!cib_file) {
+        add_mgmt_menu($(jq("node::" + this.uname + "::menu")));
+      }
     });
     self._show_counters("#nodesum");
 
@@ -211,6 +235,9 @@ var summary_view = {
               '<a id="resource::' + id + '::menu"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="resource::' + id + '::label">' + escape_html(label) + '</span>' +
           "</div>");
         $("#itemlist").append(d);
+        if (!cib_file) {
+          add_mgmt_menu($(jq("resource::" + id + "::menu")));
+        }
       });
     });
     self._show_counters("#ressum");
