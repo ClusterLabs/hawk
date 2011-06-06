@@ -336,20 +336,35 @@ img
 /* summary_view */
 
 #summary {
-  width: 25em;
+  border: 1px solid #000;
+  float: left;
+  margin-right: 1em;
+  margin-bottom: 1em;
+  padding: 1em;
+  width: 18em;
 }
 
-.summary {
-  padding-left: 1em;
-  padding-bottom: 0.5em;
+#itemlist {
+  border: 1px solid #000;
+  float: left;
+  margin-right: 1em;
+  margin-bottom: 1em;
+  padding: 1em;
+  width: 18em;
 }
 
 .summary table {
   width: 18em;
-  padding-left: 1em;
+  padding: 0 1em;
 }
 
 .summary td {
   padding: 0 1em;
 }
 
+/* TODO: need a better name than this - means "resource instance or node" */
+.item {
+  border: 1px solid #000;
+  padding: 0.25em 0.5em;
+  margin: 0.5em;
+}

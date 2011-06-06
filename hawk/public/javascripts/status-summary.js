@@ -37,7 +37,7 @@ var summary_view = {
     // stickiness(?)
     // maintenance mode
     $("#content").prepend($(
-      '<div id="summary" style="display: none;">' +
+      '<div id="summary" style="display: none;" class="ui-corner-all">' +
         '<h1>Summary</h1>' +
         '<div id="confsum" class="summary"><h2 id="confsum-label">' + GETTEXT.summary_label() + "</h2>" +
           '<table cellpadding="0" cellspacing="0">' +
@@ -51,26 +51,64 @@ var summary_view = {
         "</div>" +
         '<div id="nodesum" class="summary"><h2 id="nodesum-label"></h2>' +
           '<table cellpadding="0" cellspacing="0">' +
-            '<tr id="nodesum-pending" class="ns-transient"><td>' + GETTEXT.node_state_pending() + ":</td><td></td></tr>" +
-            '<tr id="nodesum-online" class="ns-active"><td>' + GETTEXT.node_state_online() + ":</td><td></td></tr>" +
-            '<tr id="nodesum-standby" class="ns-inactive"><td>' + GETTEXT.node_state_standby() + ":</td><td></td></tr>" +
-            '<tr id="nodesum-offline" class="ns-inactive"><td>' + GETTEXT.node_state_offline() + ":</td><td></td></tr>" +
-            '<tr id="nodesum-unclean" class="ns-error"><td>' + GETTEXT.node_state_unclean() + ":</td><td></td></tr>" +
+            '<tr id="nodesum-pending" class="ns-transient clickable"><td>' + GETTEXT.node_state_pending() + ":</td><td></td></tr>" +
+            '<tr id="nodesum-online" class="ns-active clickable"><td>' + GETTEXT.node_state_online() + ":</td><td></td></tr>" +
+            '<tr id="nodesum-standby" class="ns-inactive clickable"><td>' + GETTEXT.node_state_standby() + ":</td><td></td></tr>" +
+            '<tr id="nodesum-offline" class="ns-inactive clickable"><td>' + GETTEXT.node_state_offline() + ":</td><td></td></tr>" +
+            '<tr id="nodesum-unclean" class="ns-error" clickable><td>' + GETTEXT.node_state_unclean() + ":</td><td></td></tr>" +
           "</table>" +
         "</div>" +
         '<div id="ressum" class="summary"><h2 id="ressum-label"></h2>' +
           '<table cellpadding="0" cellspacing="0">' +
             // TODO(must): Localize
-            '<tr id="ressum-pending" class="rs-transient"><td>Pending:</td><td></td></tr>' +
-            '<tr id="ressum-started" class="rs-active"><td>Started:</td><td></td></tr>' +
-            '<tr id="ressum-master" class="rs-master"><td>Master:</td><td></td></tr>' +
-            '<tr id="ressum-slave" class="rs-slave"><td>Slave:</td><td></td></tr>' +
-            '<tr id="ressum-stopped" class="rs-inactive"><td>Stopped:</td><td></td></tr>' +
+            '<tr id="ressum-pending" class="rs-transient clickable"><td>Pending:</td><td></td></tr>' +
+            '<tr id="ressum-started" class="rs-active clickable"><td>Started:</td><td></td></tr>' +
+            '<tr id="ressum-master" class="rs-master clickable"><td>Master:</td><td></td></tr>' +
+            '<tr id="ressum-slave" class="rs-slave clickable"><td>Slave:</td><td></td></tr>' +
+            '<tr id="ressum-stopped" class="rs-inactive clickable"><td>Stopped:</td><td></td></tr>' +
           "</table>" +
         "</div>" +
-        '<div style="text-align: right"><a href="javascript:change_view(panel_view);">View Details...</a></div>' +
+        '<div style="font-size: 50%"><br/><a href="javascript:change_view(panel_view);">View Details...</a></div>' +
+      "</div>" +
+      '<div id="itemlist" style="display: none;" class="ui-corner-all">' +
       "</div>"));
-    $("#summary").find("tr").hide();
+    $("#summary").find("tr").each(function() {
+      $(this).hide();
+      if ($(this).hasClass("clickable")) {
+        $(this).click(function() {
+          $("#itemlist").children().remove();
+          var parts = $(this).attr("id").split("-");
+          if (parts[0] == "nodesum") {
+            $("#itemlist").append($("<h1>Nodes</h1>")); // TODO(must): Localize
+            $.each(cib.nodes, function() {
+              if (this.state == parts[1]) {
+                $("#itemlist").append($('<div class="item ui-corner-all">' + escape_html(this.uname) + "</div>"));
+              }
+            });
+          } else {
+            $("#itemlist").append($("<h1>Resources</h1>")); // TODO(must): Localize
+            $.each(resources_by_id, function() {
+              if (!this.instances) return;
+              var res = this;
+              $.each(this.instances, function(i) {
+                if (this.master) {
+                  if (parts[1] == "master") $("#itemlist").append($('<div class="item ui-corner-all">' + escape_html(res.id) + (i == "default" ? "" : ":" + i) + "</div>"));
+                } else if (this.slave) {
+                  if (parts[1] == "slave") $("#itemlist").append($('<div class="item ui-corner-all">' + escape_html(res.id) + (i == "default" ? "" : ":" + i) + "</div>"));
+                } else if (this.started) {
+                  if (parts[1] == "started") $("#itemlist").append($('<div class="item ui-corner-all">' + escape_html(res.id) + (i == "default" ? "" : ":" + i) + "</div>"));
+                } else if (this.pending) {
+                  if (parts[1] == "pending") $("#itemlist").append($('<div class="item ui-corner-all">' + escape_html(res.id) + (i == "default" ? "" : ":" + i) + "</div>"));
+                } else {
+                  if (parts[1] == "stopped") $("#itemlist").append($('<div class="item ui-corner-all">' + escape_html(res.id) + (i == "default" ? "" : ":" + i) + "</div>"));
+                }
+              });
+            });
+          }
+          $("#itemlist").show();
+        });
+      }
+    });
   },
   destroy: function() {
     // NYI
@@ -129,6 +167,7 @@ var summary_view = {
   },
   hide: function() {
     $("#summary").hide();
+    $("#itemlist").hide();
   },
   _zero_counters: function(parent_id) {
     $(parent_id).children("table").find("tr").each(function() {
