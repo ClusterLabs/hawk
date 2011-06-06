@@ -250,6 +250,7 @@ function update_cib()
     type: "GET",
     success: function(data) {
       $("#onload-spinner").hide();
+      $("#view-switcher").show();
       if (data) {   // When is it possible for this to not be set?
         cib = data;
         update_resources_by_id();
@@ -291,6 +292,7 @@ function update_cib()
         hide_status();
         if (cib_file) {
           $("#onload-spinner").hide();
+          $("#view-switcher").show();
         } else {
           // Try again in 15 seconds.  No need for roundtrip through
           // the monitor function in this case (it'll just hammer the
@@ -340,6 +342,7 @@ function hawk_init()
   //$("#view-table").button("option", { icons: { primary: "icon-view-table" }, text: false }).click(function() {
   //  change_view(table_view);
   //});
+  $("#view-switcher").hide();
 
   // Default to summary view (need this in init, not raw, else we're dependent
   // on status-summary.js being included before status.js)
