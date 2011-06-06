@@ -31,10 +31,10 @@
 var panel_view = {
   create: function() {
     $("#content").prepend($(
-      '<div id="filter" style="display: none; width: 100%;">' +
-        '<input type="checkbox" id="show-active" checked="checked"/> Show Active&nbsp;&nbsp;' +
-        '<input type="checkbox" id="show-inactive" checked="checked"/> Show Inactive' +
-      "</div>" +
+//      '<div id="filter" style="display: none; width: 100%;">' +
+//        '<input type="checkbox" id="show-active" checked="checked"/> Show Active&nbsp;&nbsp;' +
+//        '<input type="checkbox" id="show-inactive" checked="checked"/> Show Inactive' +
+//      "</div>" +
       '<div id="config" style="display: none;"></div>' +
       '<div id="nodelist" style="display: none;"></div>' +
       '<div id="reslist" style="display: none;"></div>'));
@@ -54,6 +54,7 @@ var panel_view = {
         return $(jq("menu::reslist")).popupmenu("popup", $(this));
       }
     });
+/*    
     // Filter problems:
     // - visibility not applied to new resources or resources that
     //   change state (say you're showing active and not stopped, and
@@ -81,6 +82,7 @@ var panel_view = {
         $(".ns-inactive").hide();
       }
     });
+*/    
   },
   destroy: function() {
     // NYI
@@ -88,7 +90,7 @@ var panel_view = {
   update: function() {
     var self = this;
     $("#config").show();
-    $("#filter").show();
+//    $("#filter").show();
     var props = [];
     for (var e in cib.crm_config) {
       if (e == "cluster-infrastructure" ||
@@ -121,7 +123,7 @@ var panel_view = {
     $("#config").hide();
     $("#nodelist").hide();
     $("#reslist").hide();
-    $("#filter").hide();
+//    $("#filter").hide();
   },
   // need to pass parent in with open flag (e.g.: nodelist, reslist)
   _update_panel: function(panel) {
