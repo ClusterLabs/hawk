@@ -110,72 +110,35 @@ var table_view = {
     node_row.append($('<td style="text-align: center; vertical-align: middle; color: #888;">Inactive Resources</td>'));
     res_row.append($("<td></td>"));
 
-    $.each(resources_by_id, function() {
-      if (!this.instances) return;
-      var res_id = this.id;
-      $.each(this.instances, function(k) {
-        var id = res_id;
-        var is_clone_instance = false;
-        if (k != "default") {
-          id += ":" + k;
-          is_clone_instance = true;
-        }
-        // Display logic same as _get_primitive()
-        // TODO(must): This does not handle instances active on more than one node simultaneously!
-        var node = null;
-        var status_class = "res-primitive";
-        var label = "";
-        if (this.master) {
-          label = GETTEXT.resource_state_master(id);
-          node = this.master[0];
-          status_class += " rs-active rs-master";
-        } else if (this.slave) {
-          label = GETTEXT.resource_state_slave(id);
-          node = this.slave[0];
-          status_class += " rs-active rs-slave";
-        } else if (this.started) {
-          label = GETTEXT.resource_state_started(id);
-          node = this.started[0];
-          status_class += " rs-active";
-        } else if (this.pending) {
-          label = GETTEXT.resource_state_pending(id);
-          node = this.pending[0];
-          status_class += " rs-transient";
-        } else {
-          label = GETTEXT.resource_state_stopped(id);
-          status_class += " rs-inactive";
-        }
-        var d = $(
-          '<div id="resource::' + id + '" class="ui-corner-all ' + status_class + '">' +
-              '<a id="resource::' + id + '::menu"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="resource::' + id + '::label">' + escape_html(label) + '</span>' +
-          "</div>");
-        var append_to = null;
-        if (is_clone_instance) {
-          if ($(jq("crow::" + res_id)).length == 0) {
-            // TODO(must): localize
-            // TODO(must): will always say clone, even for ms
-            res_row.before($('<tr><td class="ncol" style="font-size: 80%;">' + GETTEXT.resource_clone(res_id) + "</td></tr>"));
-            res_row.before($('<tr class="crow" id="crow::' + res_id + '"></tr>'));
+    $.each(cib.resources, function() {
+      var c = null;
+      if (this.children) {
+        if (this.type == "group") {
+          $.each(this.children, function() {
+            self._append_primitive(this, res_row);
+          });
+        } else if (this.type == "clone" || this.type == "master") {
+          if (this.children.length != 1) return;  // can't happen
+          var jq_crow_id = jq("crow::" + this.id);
+          if ($(jq_crow_id).length == 0) {
+            res_row.before($('<tr><td class="ncol" style="font-size: 80%;">' +
+              (this.type == "clone" ? GETTEXT.resource_clone(this.id) : GETTEXT.resource_master(this.id)) + "</td></tr>"));
+            res_row.before($('<tr class="crow" id="crow::' + this.id + '"></tr>'));
             for (var i = 0; i < cib.nodes.length; i++) {
-              if (i > 0) $(jq("crow::" + res_id)).prev().append($('<td class="ncol"></td>'));
-              $(jq("crow::" + res_id)).append($('<td class="ncol"></td>'));
+              if (i > 0) $(jq_crow_id).prev().append($('<td class="ncol"></td>'));
+              $(jq_crow_id).append($('<td class="ncol"></td>'));
             }
-            $(jq("crow::" + res_id)).prev().append($("<td></td>"));
-            $(jq("crow::" + res_id)).append($("<td></td>"));
+            $(jq_crow_id).prev().append($("<td></td>"));
+            $(jq_crow_id).append($("<td></td>"));
           }
-          append_to = $(jq("crow::" + res_id));
-        } else {
-          append_to = res_row;
+          var primitives = this.children[0].type == "group" ? this.children[0].children : this.children;
+          $.each(primitives, function() {
+            self._append_primitive(this, $(jq_crow_id));
+          });
         }
-        if (node) {
-          $(append_to.children()[$(jq("ncol::" + node)).index()]).append(d);
-        } else {
-          append_to.children(":last").append(d);
-        }
-        if (!cib_file) {
-          add_mgmt_menu($(jq("resource::" + id + "::menu")));
-        }
-      });
+      } else {
+        self._append_primitive(this, res_row);
+      }
     });
   },
   hide: function() {
@@ -183,6 +146,53 @@ var table_view = {
     $("#table").hide();
     self.tbody.children().remove();
     $("#table").find(".ncol").remove();
+  },
+  _append_primitive: function(res, row) {
+    $.each(res.instances, function(k) {
+      var id = res.id;
+      var is_clone_instance = false;
+      if (k != "default") {
+        id += ":" + k;
+        is_clone_instance = true;
+      }
+      // Display logic same as _get_primitive()
+      // TODO(must): This does not handle instances active on more than one node simultaneously!
+      var node = null;
+      var status_class = "res-primitive";
+      var label = "";
+      if (this.master) {
+        label = GETTEXT.resource_state_master(id);
+        node = this.master[0];
+        status_class += " rs-active rs-master";
+      } else if (this.slave) {
+        label = GETTEXT.resource_state_slave(id);
+        node = this.slave[0];
+        status_class += " rs-active rs-slave";
+      } else if (this.started) {
+        label = GETTEXT.resource_state_started(id);
+        node = this.started[0];
+        status_class += " rs-active";
+      } else if (this.pending) {
+        label = GETTEXT.resource_state_pending(id);
+        node = this.pending[0];
+        status_class += " rs-transient";
+      } else {
+        label = GETTEXT.resource_state_stopped(id);
+        status_class += " rs-inactive";
+      }
+      var d = $(
+        '<div id="resource::' + id + '" class="ui-corner-all ' + status_class + '">' +
+            '<a id="resource::' + id + '::menu"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="resource::' + id + '::label">' + escape_html(label) + '</span>' +
+        "</div>");
+      if (node) {
+        $(row.children()[$(jq("ncol::" + node)).index()]).append(d);
+      } else {
+        row.children(":last").append(d);
+      }
+      if (!cib_file) {
+        add_mgmt_menu($(jq("resource::" + id + "::menu")));
+      }
+    });
   }
 };
 
