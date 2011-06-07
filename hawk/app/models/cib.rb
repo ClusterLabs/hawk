@@ -338,7 +338,10 @@ class Cib < CibObject
         }.each do |op|
           operation = op.attributes['operation']
           rc_code = op.attributes['rc-code'].to_i
-          expected = op.attributes['transition-key'].split(':')[2].to_i
+          # Cope with missing transition key (e.g.: in multi1.xml CIB from pengine/test10)
+          # TODO(should): Can we handle this better?  When is it valid for the transition
+          # key to not be there?
+          expected = op.attributes.has_key?('transition-key') ? op.attributes['transition-key'].split(':')[2].to_i : rc_code
 
           is_probe = operation == 'monitor' && op.attributes['interval'].to_i == 0
 
