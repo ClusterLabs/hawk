@@ -153,12 +153,14 @@ var table_view = {
         if (is_clone_instance) {
           if ($(jq("crow::" + res_id)).length == 0) {
             // TODO(must): localize
-//            // TODO(must): will always say clone, even for ms
-//            res_row.before($('<tr><td style="font-size: 80%;">' + GETTEXT.resource_clone(res_id) + "</td></tr>"));
+            // TODO(must): will always say clone, even for ms
+            res_row.before($('<tr><td class="ncol" style="font-size: 80%;">' + GETTEXT.resource_clone(res_id) + "</td></tr>"));
             res_row.before($('<tr class="crow" id="crow::' + res_id + '"></tr>'));
             for (var i = 0; i < cib.nodes.length; i++) {
+              if (i > 0) $(jq("crow::" + res_id)).prev().append($('<td class="ncol"></td>'));
               $(jq("crow::" + res_id)).append($('<td class="ncol"></td>'));
             }
+            $(jq("crow::" + res_id)).prev().append($("<td></td>"));
             $(jq("crow::" + res_id)).append($("<td></td>"));
           }
           append_to = $(jq("crow::" + res_id));
