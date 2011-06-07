@@ -372,6 +372,15 @@ img
   width: 15em;
 }
 
+#table tr {
+  vertical-align: top;
+}
+
 .ncol {
   border-right: 1px dotted #888;
 }
+
+.nrow td, .crow td {
+  border-bottom: 1px dotted #888;
+}
+
