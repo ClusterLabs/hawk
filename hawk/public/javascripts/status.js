@@ -330,12 +330,24 @@ function hawk_init()
   panel_view.create();
   table_view.create();
 
+  var sc = "";
+  var pc = "";
+  var tc = "";
+  // Default to summary view (need this in init, not raw, else we're dependent
+  // on status-summary.js being included before status.js)
+  switch($.cookie("hawk-status-view")) {
+    case "panel":   current_view = panel_view;   pc = ' checked="checked"'; break;
+    case "table":   current_view = table_view;   tc = ' checked="checked"'; break;
+    case "summary": // Summary is the default view
+    default:        current_view = summary_view; sc = ' checked="checked"'; break;
+  }
+
   $("#content").prepend($(
     '<div id="view-switcher" style="float: right;"><form>' +
       // TODO(must): Localize
-      '<input id="view-summary" name="view-radio" type="radio" checked="checked" /><label for="view-summary">Summary View</label>' +
-      '<input id="view-panel" name="view-radio" type="radio" /><label for="view-panel">Tree View</label>' +
-      '<input id="view-table" name="view-radio" type="radio" /><label for="view-table">Table View</label>' +
+      '<input id="view-summary" name="view-radio" type="radio"' + sc + ' /><label for="view-summary">Summary View</label>' +
+      '<input id="view-panel" name="view-radio" type="radio"' + pc + ' /><label for="view-panel">Tree View</label>' +
+      '<input id="view-table" name="view-radio" type="radio"' + tc + ' /><label for="view-table">Table View</label>' +
     "</form></div"));
   $("#view-switcher").buttonset();
   $("#view-summary").button("option", { icons: { primary: "icon-view-summary" }, text: false }).click(function() {
@@ -348,15 +360,6 @@ function hawk_init()
     change_view(table_view);
   });
   $("#view-switcher").hide();
-
-  // Default to summary view (need this in init, not raw, else we're dependent
-  // on status-summary.js being included before status.js)
-  switch($.cookie("hawk-status-view")) {
-    case "panel":   current_view = panel_view;   break;
-    case "table":   current_view = table_view;   break;
-    case "summary": // Summary is the default view
-    default:        current_view = summary_view; break;
-  }
 
   update_cib();
 }
