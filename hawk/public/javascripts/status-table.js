@@ -156,25 +156,24 @@ var table_view = {
         is_clone_instance = true;
       }
       // Display logic same as _get_primitive()
-      // TODO(must): This does not handle instances active on more than one node simultaneously!
-      var node = null;
+      var node = [];
       var status_class = "res-primitive";
       var label = "";
       if (this.master) {
         label = GETTEXT.resource_state_master(id);
-        node = this.master[0];
+        node = this.master;
         status_class += " rs-active rs-master";
       } else if (this.slave) {
         label = GETTEXT.resource_state_slave(id);
-        node = this.slave[0];
+        node = this.slave;
         status_class += " rs-active rs-slave";
       } else if (this.started) {
         label = GETTEXT.resource_state_started(id);
-        node = this.started[0];
+        node = this.started;
         status_class += " rs-active";
       } else if (this.pending) {
         label = GETTEXT.resource_state_pending(id);
-        node = this.pending[0];
+        node = this.pending;
         status_class += " rs-transient";
       } else {
         label = GETTEXT.resource_state_stopped(id);
@@ -184,10 +183,17 @@ var table_view = {
         '<div id="resource::' + id + '" class="ui-corner-all ' + status_class + '">' +
             '<a id="resource::' + id + '::menu"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="resource::' + id + '::label">' + escape_html(label) + '</span>' +
         "</div>");
-      if (node) {
-        $(row.children()[$(jq("ncol::" + node)).index()]).append(d);
-      } else {
+      if (node.length == 0) {
         row.children(":last").append(d);
+      } else {
+        $(row.children()[$(jq("ncol::" + node[0])).index()]).append(d);
+        for (var i = 1; i < node.length; i++) {
+          // Add multiply active instances, sans ID stuff
+          $(row.children()[$(jq("ncol::" + node[i])).index()]).append($(
+            '<div class="ui-corner-all ' + status_class + '">' +
+              '<span>' + escape_html(label) + '</span>' +
+            "</div>"));
+        }
       }
       if (!cib_file) {
         add_mgmt_menu($(jq("resource::" + id + "::menu")));
