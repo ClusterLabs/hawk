@@ -86,8 +86,18 @@ function new_item_div(id) {
   return $(
     '<div id="' + id + '">' +
       '<a id="' + id + '::menu"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a>' +
+      '<div id="' + id + '::error" style="float: right; width: 16px; height: 16px;"></div>' +
       '<span id="' + id + '::label"></span>' +
     "</div>");
+}
+
+// Mark items with errors (just an icon at this stage, "error" is boolean)
+function flag_error(id, error) {
+  if (error) {
+    $(jq(id+"::error")).addClass("ui-icon ui-icon-alert");
+  } else {
+    $(jq(id+"::error")).removeClass("ui-icon ui-icon-alert");
+  }
 }
 
 // title: dialog title

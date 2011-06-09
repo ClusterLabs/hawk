@@ -234,6 +234,7 @@ var summary_view = {
         d.attr("class", "ui-corner-all " + status_class).css("display", display);
         d.find("span").html(escape_html(label));
         $("#itemlist").append(d);
+        flag_error("resource::" + id, this.failed_ops.length > 0);
         if (!cib_file) {
           add_mgmt_menu($(jq("resource::" + id + "::menu")));
         }
