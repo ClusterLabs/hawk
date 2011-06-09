@@ -81,6 +81,15 @@ function item_id(str)
   return dc_split(str)[1].split(":")[0];
 }
 
+// Generic individual item (node or resource)
+function new_item_div(id) {
+  return $(
+    '<div id="' + id + '">' +
+      '<a id="' + id + '::menu"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a>' +
+      '<span id="' + id + '::label"></span>' +
+    "</div>");
+}
+
 // title: dialog title
 // id:    node or resource id
 // type:  either "node" or "resource"

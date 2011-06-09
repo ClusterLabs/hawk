@@ -230,10 +230,9 @@ var summary_view = {
         if (self.active_detail && status_class.indexOf(self.active_detail) >= 0) {
           display = "auto";
         }
-        var d = $(
-          '<div id="resource::' + id + '" class="ui-corner-all ' + status_class + '" style="display: ' + display + '">' +
-              '<a id="resource::' + id + '::menu"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="resource::' + id + '::label">' + escape_html(label) + '</span>' +
-          "</div>");
+        var d = new_item_div("resource::" + id);
+        d.attr("class", "ui-corner-all " + status_class).css("display", display);
+        d.find("span").html(escape_html(label));
         $("#itemlist").append(d);
         if (!cib_file) {
           add_mgmt_menu($(jq("resource::" + id + "::menu")));

@@ -157,15 +157,15 @@ var panel_view = {
           d = $(jq(this.id)).detach();
         } else {
           // brand spanking new
-          d = $('<div id="' + this.id + '"/>');
           if (this.children) {
+            d = $('<div id="' + this.id + '"/>');
             d.panel({
               menu_icon: url_root + "/images/transparent-16x16.gif",
               menu_id:   this.id + "::menu",
               open:      this.open
             });
           } else {
-            d.html('<a id="' + this.id + '::menu"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="' + this.id + '::label"></span>');
+            d = new_item_div(this.id);
           }
         }
         if (!c.length) {

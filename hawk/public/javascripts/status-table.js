@@ -94,10 +94,10 @@ var table_view = {
           label = GETTEXT.node_state_unclean();
           break;
       }
-      var d = $(
-        '<td class="ncol" id="ncol::' + this.uname + '"><div id="node::' + this.uname + '" class="ui-corner-all node ns-' + className + '">' +
-            '<a id="node::' + this.uname + '::menu"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="node::' + this.uname + '::label">' + escape_html(GETTEXT.node_state(this.uname, label)) + '</span>' +
-        "</div></td>");
+      var d = $('<td class="ncol" id="ncol::' + this.uname + '"></td>');
+      d.append(new_item_div("node::" + this.uname));
+      d.children(":first").attr("class", "ui-corner-all node ns-" + className);
+      d.find("span").html(escape_html(GETTEXT.node_state(this.uname, label)));
       node_row.append(d);
       res_row.append($('<td class="ncol"></td>'));
       if (!cib_file) {
@@ -179,10 +179,9 @@ var table_view = {
         label = GETTEXT.resource_state_stopped(id);
         status_class += " rs-inactive";
       }
-      var d = $(
-        '<div id="resource::' + id + '" class="ui-corner-all ' + status_class + '">' +
-            '<a id="resource::' + id + '::menu"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="resource::' + id + '::label">' + escape_html(label) + '</span>' +
-        "</div>");
+      var d = new_item_div("resource::" + id);
+      d.attr("class", "ui-corner-all " + status_class);
+      d.find("span").html(escape_html(label));
       if (node.length == 0) {
         row.children(":last").append(d);
       } else {
