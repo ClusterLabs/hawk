@@ -291,6 +291,7 @@ class Cib < CibObject
         id = lrm_resource.attributes['id']
         # logic derived somewhat from pacemaker/lib/pengine/unpack.c:unpack_rsc_op()
         state = :unknown
+        failed_ops = []
         ops = []
         lrm_resource.elements.each('lrm_rsc_op') do |op|
           ops << op
@@ -376,6 +377,7 @@ class Cib < CibObject
           end
           if !is_probe && rc_code != expected
             # busted somehow
+            failed_ops << { :node => node[:uname], :call_id => op.attributes['call-id'], :op => operation, :rc_code => rc_code }
             @errors << _('Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}') %
               { :node => node[:uname], :resource => id, :call_id => op.attributes['call-id'], :op => operation, :rc_code => rc_code }
           end
@@ -393,6 +395,8 @@ class Cib < CibObject
           @resources_by_id[id][:instances][instance] = {} unless @resources_by_id[id][:instances][instance]
           @resources_by_id[id][:instances][instance][state] = [] unless @resources_by_id[id][:instances][instance][state]
           @resources_by_id[id][:instances][instance][state] << node[:uname]
+          @resources_by_id[id][:instances][instance][:failed_ops] = [] unless @resources_by_id[id][:instances][instance][:failed_ops]
+          @resources_by_id[id][:instances][instance][:failed_ops].concat failed_ops
         else
           # It's an orphan
           # TODO(should): display this somewhere? (at least log it during testing)
