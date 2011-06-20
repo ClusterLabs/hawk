@@ -185,14 +185,10 @@ h2
 
 /* TOTHEME: audit below */
 
-#nodelist
+#nodereslist
 {
-  width: 25em;
-}
-
-#reslist
-{
-  width: 25em;
+  float: left;
+  min-width: 25em;
 }
 
 #config
@@ -205,6 +201,7 @@ h2
   border: 1px solid #000;
   padding: 0.25em 0.5em;
   margin: 0.5em;
+  white-space: nowrap;
 }
 
 .ns-active
@@ -232,6 +229,7 @@ h2
   border: 1px solid #000;
   padding: 0.25em 0.5em;
   margin: 0.5em;
+  white-space: nowrap;
 }
 
 .res-clone
@@ -239,6 +237,7 @@ h2
   border: 1px solid #000;
   padding: 0.25em 0.5em;
   margin: 0.5em;
+  white-space: nowrap;
 }
 
 .res-group
@@ -246,6 +245,7 @@ h2
   border: 1px solid #000;
   padding: 0.25em 0.5em;
   margin: 0.5em;
+  white-space: nowrap;
 }
 
 .rs-active
@@ -356,7 +356,7 @@ img
   margin-right: 1em;
   margin-bottom: 1em;
   padding: 1em;
-  width: 18em;
+  min-width: 18em;
 }
 
 .summary table {
@@ -369,7 +369,7 @@ img
 }
 
 #table td {
-  width: 15em;
+  min-width: 15em;
 }
 
 #table tr {

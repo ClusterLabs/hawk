@@ -36,8 +36,10 @@ var panel_view = {
 //        '<input type="checkbox" id="show-inactive" checked="checked"/> Show Inactive' +
 //      "</div>" +
       '<div id="config" style="display: none;"></div>' +
-      '<div id="nodelist" style="display: none;"></div>' +
-      '<div id="reslist" style="display: none;"></div>'));
+      '<div id="nodereslist" style="display: none;">' +
+        '<div id="nodelist"></div>' +
+        '<div id="reslist"></div>' +
+      "</div>"));
     $("#config").panel({
       menu_href: url_root + "/cib/live/crm_config/cib-bootstrap-options/edit",
       menu_icon: url_root + "/images/icons/edit.png",
@@ -109,20 +111,19 @@ var panel_view = {
     $(jq("config::props")).children().remove();
     $(jq("config::props")).append(rows);
 
-    $("#nodelist").show();
+    $("#nodereslist").show();
+
     if (self._update_panel(self._cib_to_nodelist_panel(cib.nodes))) {
       $("#nodelist").panel("expand");
     }
 
-    $("#reslist").show();
     if (self._update_panel(self._cib_to_reslist_panel(cib.resources))) {
       $("#reslist").panel("expand");
     }
   },
   hide: function() {
     $("#config").hide();
-    $("#nodelist").hide();
-    $("#reslist").hide();
+    $("#nodereslist").hide();
     // Need to remove nodes and resources, because we're reusing the IDs in
     // summary_view.  Unfortunate side-effect is that the panel view reverts
     // to whatever the default expansion state would be when you switch views,
