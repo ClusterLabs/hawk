@@ -43,8 +43,7 @@ var summary_view = {
       '<div id="summary" style="display: none;" class="ui-corner-all">' +
         '<h1>Summary</h1>' +
         '<div id="confsum" class="summary">' +
-          '<a><img class="action-icon" alt="" /></a>' +
-          '<h2 id="confsum-label">' + GETTEXT.summary_label() + "</h2>" +
+          '<h2><a><img class="action-icon" alt="" /></a><span id="confsum-label">' + GETTEXT.summary_label() + "</span></h2>" +
           '<table cellpadding="0" cellspacing="0">' +
             '<tr id="confsum-stonith-enabled"><td>STONITH Enabled:</td><td></td></tr>' +
             '<tr id="confsum-no-quorum-policy"><td>No Quorum Policy:</td><td></td></tr>' +
@@ -64,8 +63,7 @@ var summary_view = {
           "</table>" +
         "</div>" +
         '<div id="ressum" class="summary">' +
-          '<a><img class="action-icon" alt="" /></a>' +
-          '<h2 id="ressum-label"></h2>' +
+          '<h2><a><img class="action-icon" alt="" /></a><span id="ressum-label"></span></h2>' +
           '<table cellpadding="0" cellspacing="0">' +
             '<tr id="ressum-pending" class="rs-transient clickable"><td>Pending:</td><td></td></tr>' +
             '<tr id="ressum-started" class="rs-active clickable"><td>Started:</td><td></td></tr>' +
