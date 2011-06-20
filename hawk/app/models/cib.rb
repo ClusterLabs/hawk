@@ -103,7 +103,7 @@ class Cib < CibObject
           while res[:instances].has_key?(instance.to_s)
             instance += 1
           end
-          res[:instances][instance.to_s] = {}
+          res[:instances][instance.to_s] = { :failed_ops => [] }
         end
         res[:instances].delete(:default) if res[:instances].has_key?(:default)
         # strip any instances outside 0..clone_max if they're not running (these
