@@ -194,7 +194,7 @@ var table_view = {
             "</div>"));
         }
       }
-      flag_error("resource::" + id, this.failed_ops.length > 0);
+      flag_error("resource::" + id, this.failed_ops);
       if (!cib_file) {
         add_mgmt_menu($(jq("resource::" + id + "::menu")));
       }

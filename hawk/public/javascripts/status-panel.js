@@ -142,7 +142,7 @@ var panel_view = {
       // Individual (non-ui.panel) resources/nodes
       $(jq(panel.id)).attr("class", "ui-corner-all " + panel.className);
       $(jq(panel.id+"::label")).html(panel.label);
-      flag_error(panel.id, panel.error ? true : false);
+      flag_error(panel.id, panel.error ? panel.error : []);
     }
 
     if (!panel.children) return false;
@@ -278,7 +278,7 @@ var panel_view = {
         className:  status_class,
         label:      label,
         active:     active,
-        error:      res.instances[i].failed_ops.length ? true : false
+        error:      res.instances[i].failed_ops
       });
     }
     return set;

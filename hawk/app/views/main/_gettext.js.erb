@@ -64,6 +64,9 @@ var GETTEXT = {
   err_denied: function() {
     return "<%= escape_javascript _('Permission denied') %>";
   },
+  err_failed_op: function(op, node, rc) {
+    return "<%= escape_javascript _('%{op} failed on %{node} (rc=%{rc})') % { :op => '_OP_', :node => '_NODE_', :rc => '_RC_' } %>".replace('_OP_', op).replace('_NODE_', node).replace('_RC_', rc);
+  },
   // DC Info
   dc_current: function(dc) {
     return "<%= escape_javascript _('DC: %s') % '_DC_' %>".replace('_DC_', dc);
