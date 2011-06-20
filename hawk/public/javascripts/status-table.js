@@ -99,7 +99,7 @@ var table_view = {
       d.children(":first").attr("class", "ui-corner-all node ns-" + className);
       d.find("span").html(escape_html(GETTEXT.node_state(this.uname, label)));
       node_row.append(d);
-      res_row.append($('<td class="ncol"></td>'));
+      res_row.append($('<td class="ncol">&nbsp;</td>'));
       if (!cib_file) {
         add_mgmt_menu($(jq("node::" + this.uname + "::menu")));
       }
@@ -108,7 +108,7 @@ var table_view = {
     // Inactive column
     // TODO(must): localize
     node_row.append($('<td style="text-align: center; vertical-align: middle; color: #888;">Inactive Resources</td>'));
-    res_row.append($("<td></td>"));
+    res_row.append($("<td>&nbsp;</td>"));
 
     $.each(cib.resources, function() {
       var c = null;
@@ -125,11 +125,11 @@ var table_view = {
               (this.type == "clone" ? GETTEXT.resource_clone(this.id) : GETTEXT.resource_master(this.id)) + "</td></tr>"));
             res_row.before($('<tr class="crow" id="crow::' + this.id + '"></tr>'));
             for (var i = 0; i < cib.nodes.length; i++) {
-              if (i > 0) $(jq_crow_id).prev().append($('<td class="ncol"></td>'));
-              $(jq_crow_id).append($('<td class="ncol"></td>'));
+              if (i > 0) $(jq_crow_id).prev().append($('<td class="ncol">&nbsp;</td>'));
+              $(jq_crow_id).append($('<td class="ncol">&nbsp;</td>'));
             }
-            $(jq_crow_id).prev().append($("<td></td>"));
-            $(jq_crow_id).append($("<td></td>"));
+            $(jq_crow_id).prev().append($("<td>&nbsp;</td>"));
+            $(jq_crow_id).append($("<td>&nbsp;</td>"));
           }
           var primitives = this.children[0].type == "group" ? this.children[0].children : this.children;
           $.each(primitives, function() {
@@ -147,7 +147,16 @@ var table_view = {
     self.tbody.children().remove();
     $("#table").find(".ncol").remove();
   },
+  // &nbsp; is inserted in empty cells so IE will render borders properly,
+  // but we need to strip this before actually inserting DIVs, else we end up
+  // with gaps in the display (*sigh*).
+  _clean_cell: function(elem) {
+    if (elem.children().length == 0) {
+      elem.html("");
+    }
+  },
   _append_primitive: function(res, row) {
+    var self = this;
     $.each(res.instances, function(k) {
       var id = res.id;
       var is_clone_instance = false;
@@ -183,11 +192,14 @@ var table_view = {
       d.attr("class", "ui-corner-all " + status_class);
       d.find("span").html(escape_html(label));
       if (node.length == 0) {
+        self._clean_cell(row.children(":last"));
         row.children(":last").append(d);
       } else {
+        self._clean_cell($(row.children()[$(jq("ncol::" + node[0])).index()]));
         $(row.children()[$(jq("ncol::" + node[0])).index()]).append(d);
         for (var i = 1; i < node.length; i++) {
           // Add multiply active instances, sans ID stuff
+          self._clean_cell($(row.children()[$(jq("ncol::" + node[i])).index()]));
           $(row.children()[$(jq("ncol::" + node[i])).index()]).append($(
             '<div class="ui-corner-all ' + status_class + '">' +
               '<span>' + escape_html(label) + '</span>' +
