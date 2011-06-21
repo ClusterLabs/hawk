@@ -94,14 +94,14 @@ function new_item_div(id) {
 // Mark items with errors (just an icon at this stage, "error" is boolean)
 function flag_error(id, failed_ops) {
   if (failed_ops.length > 0) {
-    $(jq(id+"::error")).addClass("ui-icon ui-icon-alert clickable");
+    $(jq(id+"::error")).addClass("ui-icon ui-icon-alert");
     var errs = [];
     $.each(failed_ops, function() {
       errs.push(escape_html(GETTEXT.err_failed_op(this.op, this.node, this.rc_code)));
     });
     $(jq(id+"::error")).attr("title", errs.join(", "));
   } else {
-    $(jq(id+"::error")).removeClass("ui-icon ui-icon-alert clickable");
+    $(jq(id+"::error")).removeClass("ui-icon ui-icon-alert");
     $(jq(id+"::error")).removeAttr("title");
   }
 }
