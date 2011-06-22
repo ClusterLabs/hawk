@@ -65,7 +65,7 @@ ActionController::Routing::Routes.draw do |map|
     main.status       'main/status',       :action => 'status'
     main.gettext      'main/gettext',      :action => 'gettext'
 
-    # resoruce ops
+    # resource ops
     main.resource_op  'main/resource/:op', :action => 'resource_op', :conditions => { :method => :post },
                       :op => /(start|stop|unmigrate|promote|demote|cleanup)/
     main.resource_migrate 'main/resource/migrate', :action => 'resource_migrate', :conditions => { :method => :post }

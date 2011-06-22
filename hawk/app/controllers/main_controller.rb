@@ -71,6 +71,12 @@ class MainController < ApplicationController
     @title = _('Cluster Status')
   end
 
+  # TODO(should): Node ops, resource ops, arguably belong in separate
+  # node and resource controllers/models.  Note this would change the
+  # class hierarchy for primitve, group, etc., e.g.:
+  #   Primitive < Resource < CibObject
+  # (see also related comment in config/routes.rb)
+
   # standby/online (op validity guaranteed by routes)
   def node_standby
     if params[:node]
