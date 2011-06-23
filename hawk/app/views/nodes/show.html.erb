@@ -1,0 +1,31 @@
+<h2><%=h _('Utilization') %></h2>
+<% if @node.utilization.any? %>
+<table cellpadding="0">
+<% @node.utilization.keys.sort{|a,b| a.natcmp(b, true) }.each do |k| %>
+  <tr>
+    <th><%=h k %></th>
+    <td class="bargraph"><div class="barfill" style="width: <%=
+      (@node.utilization[k][:total] - @node.utilization[k][:remaining]).to_f / @node.utilization[k][:total].to_f * 100
+      %>%;">&nbsp;</div></td>
+    <td>(<%=h @node.utilization[k][:total] - @node.utilization[k][:remaining] %> / <%=h @node.utilization[k][:total] %>)</td>
+  </tr>
+<% end %>
+</table>
+<% else %>
+<%=h _('No utilization defined') %>
+<% end %>
+
+<h2><%=h _('Attributes') %></h2>
+<% if @node.attrs.any? %>
+<table>
+<% @node.attrs.keys.sort{|a,b| a.natcmp(b, true) }.each do |k| %>
+  <tr>
+    <th><%=h k %></th>
+    <td><%=h @node.attrs[k] %></td>
+  </tr>
+<% end %>
+</table>
+<% else %>
+<%=h _('No attributes defined') %>
+<% end %>
+

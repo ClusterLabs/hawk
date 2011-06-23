@@ -56,6 +56,8 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :cib, :has_many => :colocations
   map.resources :cib, :has_many => :orders
 
+  map.resources :cib, :has_many => :nodes
+
   # TODO(should): resources & nodes become Rails resources, look at RESTful routing
   # As of 2011-02-21 we now have a split here, resource editor uses the above
   map.with_options :controller => 'main' do |main|
