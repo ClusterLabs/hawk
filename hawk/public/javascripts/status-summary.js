@@ -179,10 +179,9 @@ var summary_view = {
       if (self.active_detail && className.indexOf(self.active_detail) >= 0) {
         display = "auto";
       }
-      var d = $(
-        '<div id="node::' + this.uname + '" class="ui-corner-all node ns-' + className + '" style="display: ' + display + '">' +
-            '<a id="node::' + this.uname + '::menu"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a><span id="node::' + this.uname + '::label">' + escape_html(GETTEXT.node_state(this.uname, label)) + '</span>' +
-        "</div>");
+      var d = new_item_div("node::" + this.uname);
+      d.attr("class", "ui-corner-all node ns-" + className).css("display", display);
+      d.find("span").html(escape_html(GETTEXT.node_state(this.uname, label)));
       $("#itemlist").append(d);
       if (!cib_file) {
         add_mgmt_menu($(jq("node::" + this.uname + "::menu")));
