@@ -3,7 +3,7 @@
 <table cellpadding="0">
 <% @node.utilization.keys.sort{|a,b| a.natcmp(b, true) }.each do |k| %>
   <tr>
-    <th><%=h k %></th>
+    <th style="padding-right: 1em;"><%=h k %></th>
     <td class="bargraph"><div class="barfill" style="width: <%=
       (@node.utilization[k][:total] - @node.utilization[k][:remaining]).to_f / @node.utilization[k][:total].to_f * 100
       %>%;">&nbsp;</div></td>
@@ -20,7 +20,7 @@
 <table>
 <% @node.attrs.keys.sort{|a,b| a.natcmp(b, true) }.each do |k| %>
   <tr>
-    <th><%=h k %></th>
+    <th style="padding-right: 1em;"><%=h k %></th>
     <td><%=h @node.attrs[k] %></td>
   </tr>
 <% end %>
