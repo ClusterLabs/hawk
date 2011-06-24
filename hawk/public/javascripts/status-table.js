@@ -55,6 +55,7 @@ var table_view = {
     var self = this;
     $("#content").prepend($('<div id="table" style="display: none;"><table cellpadding="0" cellspacing="0"><tbody></tbody></div>'));
     self.tbody = $("#table").find("tbody");
+    $(window).resize(self._fix_max_height);
   },
   destroy: function() {
     // NYI
@@ -62,6 +63,7 @@ var table_view = {
   update: function() {
     var self = this;
     // Add/update nodes, then add/update resources
+    self._fix_max_height();
     $("#table").show();
     // Temporary shotgun:
     self.tbody.children().remove();
@@ -146,6 +148,13 @@ var table_view = {
     $("#table").hide();
     self.tbody.children().remove();
     $("#table").find(".ncol").remove();
+  },
+  _fix_max_height: function() {
+    var mh = $(window).height() - $("#content").position().top -
+      parseInt($("#content").css("paddingTop")) -
+      parseInt($("#content").css("paddingBottom")) -
+      $("#view-switcher").height();
+    $("#table").css("max-height", mh + "px");
   },
   // &nbsp; is inserted in empty cells so IE will render borders properly,
   // but we need to strip this before actually inserting DIVs, else we end up
