@@ -108,8 +108,7 @@ var table_view = {
     });
     
     // Inactive column
-    // TODO(must): localize
-    node_row.append($('<td style="text-align: center; vertical-align: middle; color: #888;">Inactive Resources</td>'));
+    node_row.append($('<td style="text-align: center; vertical-align: middle; color: #888;">' + GETTEXT.inactive_heading() + "</td>"));
     res_row.append($("<td>&nbsp;</td>"));
 
     $.each(cib.resources, function() {

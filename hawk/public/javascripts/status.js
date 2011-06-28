@@ -369,10 +369,9 @@ function hawk_init()
 
   $("#content").prepend($(
     '<div id="view-switcher" style="float: right;"><form>' +
-      // TODO(must): Localize
-      '<input id="view-summary" name="view-radio" type="radio"' + sc + ' /><label for="view-summary">Summary View</label>' +
-      '<input id="view-panel" name="view-radio" type="radio"' + pc + ' /><label for="view-panel">Tree View</label>' +
-      '<input id="view-table" name="view-radio" type="radio"' + tc + ' /><label for="view-table">Table View</label>' +
+      '<input id="view-summary" name="view-radio" type="radio"' + sc + ' /><label for="view-summary">' + GETTEXT.summary_view() + "</label>" +
+      '<input id="view-panel" name="view-radio" type="radio"' + pc + ' /><label for="view-panel">' + GETTEXT.tree_view() + "</label>" +
+      '<input id="view-table" name="view-radio" type="radio"' + tc + ' /><label for="view-table">' + GETTEXT.table_view() + "</label>" +
     "</form></div"));
   $("#view-switcher").buttonset();
   $("#view-summary").button("option", { icons: { primary: "icon-view-summary" }, text: false }).click(function() {

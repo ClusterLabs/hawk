@@ -44,7 +44,7 @@ var panel_view = {
       menu_href: url_root + "/cib/live/crm_config/cib-bootstrap-options/edit",
       menu_icon: url_root + "/images/icons/edit.png",
       menu_alt:  GETTEXT.configure(),
-      label:     GETTEXT.summary_label(),
+      label:     GETTEXT.cluster_config(),
       body:      $('<table id="config::props" style="padding: 0.25em 0.5em;"></table>')
     });
     $("#nodelist").panel({

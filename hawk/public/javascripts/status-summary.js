@@ -39,17 +39,16 @@ var summary_view = {
     // stickiness(?)
     // maintenance mode
     $("#content").prepend($(
-      // TODO(must): Localize
       '<div id="summary" style="display: none;" class="ui-corner-all">' +
-        '<h1>Summary</h1>' +
+        "<h1>" + GETTEXT.summary() + "</h1>" +
         '<div id="confsum" class="summary">' +
-          '<h2><a><img class="action-icon" alt="" /></a><span id="confsum-label">' + GETTEXT.summary_label() + "</span></h2>" +
+          '<h2><a><img class="action-icon" alt="" /></a><span id="confsum-label">' + GETTEXT.cluster_config() + "</span></h2>" +
           '<table cellpadding="0" cellspacing="0">' +
-            '<tr id="confsum-stonith-enabled"><td>STONITH Enabled:</td><td></td></tr>' +
-            '<tr id="confsum-no-quorum-policy"><td>No Quorum Policy:</td><td></td></tr>' +
-            '<tr id="confsum-symmetric-cluster"><td>Symmetric Cluster:</td><td></td></tr>' +
-            '<tr id="confsum-default-resource-stickiness"><td>Resource Stickiness:</td><td></td></tr>' +
-            '<tr id="confsum-maintenance-mode"><td>Maintenance Mode:</td><td></td></tr>' +
+            '<tr id="confsum-stonith-enabled"><td>' + GETTEXT.stonith_enabled() + ":</td><td></td></tr>" +
+            '<tr id="confsum-no-quorum-policy"><td>' + GETTEXT.no_quorum_policy() + ":</td><td></td></tr>" +
+            '<tr id="confsum-symmetric-cluster"><td>' + GETTEXT.symmetric_cluster() + ":</td><td></td></tr>" +
+            '<tr id="confsum-default-resource-stickiness"><td>' + GETTEXT.resource_stickiness() + ":</td><td></td></tr>" +
+            '<tr id="confsum-maintenance-mode"><td>' + GETTEXT.maintenance_mode() + ":</td><td></td></tr>" +
           "</table>" +
         "</div>" +
         '<div id="nodesum" class="summary">' +
@@ -65,16 +64,17 @@ var summary_view = {
         '<div id="ressum" class="summary">' +
           '<h2><a><img class="action-icon" alt="" /></a><span id="ressum-label"></span></h2>' +
           '<table cellpadding="0" cellspacing="0">' +
-            '<tr id="ressum-pending" class="rs-transient clickable"><td>Pending:</td><td></td></tr>' +
-            '<tr id="ressum-started" class="rs-active clickable"><td>Started:</td><td></td></tr>' +
-            '<tr id="ressum-master" class="rs-master clickable"><td>Master:</td><td></td></tr>' +
-            '<tr id="ressum-slave" class="rs-slave clickable"><td>Slave:</td><td></td></tr>' +
-            '<tr id="ressum-stopped" class="rs-inactive clickable"><td>Stopped:</td><td></td></tr>' +
+            '<tr id="ressum-pending" class="rs-transient clickable"><td>' + GETTEXT.resource_state_pending() + ":</td><td></td></tr>" +
+            '<tr id="ressum-started" class="rs-active clickable"><td>' + GETTEXT.resource_state_started() + ":</td><td></td></tr>" +
+            '<tr id="ressum-master" class="rs-master clickable"><td>' + GETTEXT.resource_state_master() + ":</td><td></td></tr>" +
+            '<tr id="ressum-slave" class="rs-slave clickable"><td>' + GETTEXT.resource_state_slave() + ":</td><td></td></tr>" +
+            '<tr id="ressum-stopped" class="rs-inactive clickable"><td>' + GETTEXT.resource_state_stopped() + ":</td><td></td></tr>" +
           "</table>" +
         "</div>" +
       "</div>" +
       '<div id="details" style="display: none;" class="ui-corner-all">' +
-        '<div style="float: right;"><button type="button" style="border: none; background: none; font-size: 0.7em; margin-right: -0.5em;">Close</button></div><h1>Details</h1>' +
+        '<div style="float: right;"><button type="button" style="border: none; background: none; font-size: 0.7em; margin-right: -0.5em;">' +
+          GETTEXT.close() + "</button></div><h1>" + GETTEXT.details() + "</h1>" +
         '<div id="itemlist"></div>' +
       "</div>"));
     $("#summary").find("tr").each(function() {

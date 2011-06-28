@@ -81,8 +81,42 @@ var GETTEXT = {
     return "<%= escape_javascript _('Stack: %s') % '_STACK_' %>".replace('_STACK_', stack);
   },
   // Cluster summary labels
-  summary_label: function() {
+  cluster_config: function() {
     return "<%= escape_javascript _('Cluster Configuration') %>";
+  },
+  inactive_heading: function() {
+    return "<%= escape_javascript _('Inactive Resources') %>";
+  },
+  summary: function() {
+    return "<%= escape_javascript _('Summary') %>";
+  },
+  details: function() {
+    return "<%= escape_javascript _('Details') %>";
+  },
+  stonith_enabled: function() {
+    return "<%= escape_javascript _('STONITH Enabled') %>";
+  },
+  no_quorum_policy:function() {
+    return "<%= escape_javascript _('No Quorum Policy') %>";
+  },
+  symmetric_cluster: function() {
+    return "<%= escape_javascript _('Symmetric Cluster') %>";
+  },
+  resource_stickiness: function() {
+    return "<%= escape_javascript _('Resource Stickiness') %>";
+  },
+  maintenance_mode: function() {
+    return "<%= escape_javascript _('Maintenance Mode') %>";
+  },
+  // View switcher
+  summary_view: function() {
+    return "<%= escape_javascript _('Summary View') %>";
+  },
+  tree_view: function() {
+    return "<%= escape_javascript _('Tree View') %>";
+  },
+  table_view: function() {
+    return "<%= escape_javascript _('Table View') %>";
   },
   // Node & resource labels
   nodes_configured: function(num) {
@@ -114,23 +148,29 @@ var GETTEXT = {
     var s = <%= [1,'_NUM_'].map {|n| n_('1 resource configured', '%{num} resources configured', n) % { :num => n } }.to_json %>;
     return num == 1 ? s[0] : s[1].replace('_NUM_', num);
   },
+  // TODO(should): fold these back similar to node_state() & node_state_*() above
   resource_state_master: function(res, nodes) {
+    if (!res) return "<%= escape_javascript _('Master') %>";
     if (nodes) return "<%= escape_javascript _('%{id}: Master: %{nodelist}') % { :id => '_RES_', :nodelist => '_NODELIST_' } %>".replace('_RES_', res).replace('_NODELIST_', nodes.join(", "));
     else return "<%= escape_javascript _('%{id}: Master') % { :id => '_RES_' } %>".replace('_RES_', res);
   },
   resource_state_slave: function(res, nodes) {
+    if (!res) return "<%= escape_javascript _('Slave') %>";
     if (nodes) return "<%= escape_javascript _('%{id}: Slave: %{nodelist}') % { :id => '_RES_', :nodelist => '_NODELIST_' } %>".replace('_RES_', res).replace('_NODELIST_', nodes.join(", "));
     else return "<%= escape_javascript _('%{id}: Slave') % { :id => '_RES_' } %>".replace('_RES_', res);
   },
   resource_state_started: function(res, nodes) {
+    if (!res) return "<%= escape_javascript _('Started') %>";
     if (nodes) return "<%= escape_javascript _('%{id}: Started: %{nodelist}') % { :id => '_RES_', :nodelist => '_NODELIST_' } %>".replace('_RES_', res).replace('_NODELIST_', nodes.join(", "));
     else return "<%= escape_javascript _('%{id}: Started') % { :id => '_RES_' } %>".replace('_RES_', res);
   },
   resource_state_pending: function(res, nodes) {
+    if (!res) return "<%= escape_javascript _('Pending') %>";
     if (nodes) return "<%= escape_javascript _('%{id}: Pending: %{nodelist}') % { :id => '_RES_', :nodelist => '_NODELIST_' } %>".replace('_RES_', res).replace('_NODELIST_', nodes.join(", "));
     else return "<%= escape_javascript _('%{id}: Pending') % { :id => '_RES_' } %>".replace('_RES_', res);
   },
   resource_state_stopped: function(res) {
+    if (!res) return "<%= escape_javascript _('Stopped') %>";
     return "<%= escape_javascript _('%{id}: Stopped') % { :id => '_RES_' } %>".replace('_RES_', res);
   },
   resource_group: function(res) {
