@@ -10,6 +10,11 @@ ActionController::Base.session = {
   :secret      => if File.exist?(SESSION_SECRET_FILE)
                     File.read(SESSION_SECRET_FILE)
                   else
+                    # mkdir tmp here if it doesn't already exist (necessary when
+                    # running from a source checkout, wherein tmp does not exist,
+                    # which breaks script/generate...)
+                    d = File.join(RAILS_ROOT, 'tmp')
+                    Dir.mkdir d unless File.directory? d
                     secret = ActiveSupport::SecureRandom.hex(64)
                     File.open(SESSION_SECRET_FILE, 'w', 0600) { |f| f.write(secret) }
                     secret
