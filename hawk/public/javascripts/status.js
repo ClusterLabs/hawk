@@ -351,11 +351,10 @@ function hawk_init()
     update_period = isNaN(q.update_period) ? 0 : parseInt(q.update_period) * 1000;
   }
 
-//  summary_view.create();
+  summary_view.create();
   panel_view.create();
-  current_view = panel_view;
-//  table_view.create();
-/*
+  table_view.create();
+
   var sc = "";
   var pc = "";
   var tc = "";
@@ -385,6 +384,6 @@ function hawk_init()
     change_view(table_view);
   });
   $("#view-switcher").hide();
-*/
+
   update_cib();
 }
