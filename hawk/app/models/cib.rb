@@ -346,8 +346,8 @@ class Cib < CibObject
 
           is_probe = operation == 'monitor' && op.attributes['interval'].to_i == 0
 
-          # skip notifies
-          next if operation == 'notify'
+          # skip notifies, deletes, cancels
+          next if operation == 'notify' || operation == 'delete' || operation == 'cancel'
 
           if op.attributes['call-id'].to_i == -1
             state = :pending
