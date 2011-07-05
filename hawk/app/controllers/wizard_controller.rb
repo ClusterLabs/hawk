@@ -104,28 +104,12 @@ class WizardController < ApplicationController
       # Actually, no...  Don't want ui.attrlist, mostly because it's
       # not quite friendly enough.  We never want the add/remove row
       # functionality in the wizard, because it's too dense.
-      @workflow_xml.root.elements.each('parameters/parameter') do |e|
-        @step_params[e.attributes['name']] = {
-          :shortdesc => e.elements['shortdesc[@lang="en"]'].text.strip || '',
-          :longdesc  => e.elements['longdesc[@lang="en"]'].text.strip || '',
-          :type     => e.elements['content'].attributes['type'],
-          :default  => e.elements['content'].attributes['default'],
-          :required => e.attributes['required'].to_i == 1 ? true : false
-        }
-      end
+      set_step_params(@workflow_xml.root)
     when "template"
       # sp[1] has the template id, basically same thing as for params,
       # but get the param list from the template
-      @templates_xml[sp[1]].root.elements.each('parameters/parameter') do |e|
-        override = @workflow_xml.root.elements["templates/template[@name='#{sp[1]}']/override[@name='#{e.attributes['name']}']"]
-        @step_params[e.attributes['name']] = {
-          :shortdesc => e.elements['shortdesc[@lang="en"]'].text.strip || '',
-          :longdesc  => e.elements['longdesc[@lang="en"]'].text.strip || '',
-          :type     => e.elements['content'].attributes['type'],
-          :default  => override ? override.attributes['value'] : e.elements['content'].attributes['default'],
-          :required => e.attributes['required'].to_i == 1 ? true : false
-        }
-      end
+      set_step_params(@templates_xml[sp[1]].root,
+        @workflow_xml.root.elements["templates/template[@name='#{sp[1]}']"])
     when "confirm"
       # print out everything that's been set up
       # how?  what did we specify?  do we do it in chunks (what you just entered)
@@ -181,7 +165,7 @@ class WizardController < ApplicationController
     @workflows.each do |w|
       f = File.join(@confdir, "workflows", "#{w}.xml")
       xml = REXML::Document.new(File.new(f))
-      # TODO(should): select by language instead of forcing en (likewise above)
+      # TODO(should): select by language instead of forcing en
       sd = xml.root.elements['shortdesc[@lang="en"]']
       next unless sd
       d = { :shortdesc => sd.text.strip }
@@ -194,6 +178,23 @@ class WizardController < ApplicationController
   end
 
   private
+
+  def set_step_params(root, override_with = nil)
+    root.elements.each('parameters/parameter') do |e|
+      override = override_with ?
+        override_with.elements["override[@name='#{e.attributes['name']}']"] : nil
+      @step_params[e.attributes['name']] = {
+        # TODO(should): select by language instead of forcing en
+        :shortdesc => e.elements['shortdesc[@lang="en"]'].text.strip || '',
+        :longdesc  => e.elements['longdesc[@lang="en"]'].text.strip || '',
+        :type     => e.elements['content'].attributes['type'],
+        :default  => e.elements['content'].attributes['default'],
+        :default  => override ?
+          override.attributes['value'] : e.elements['content'].attributes['default'],
+        :required => e.attributes['required'].to_i == 1 ? true : false
+      }
+    end
+  end
 
   def load_wizard_config
     ["templates", "workflows"].each do |d|
