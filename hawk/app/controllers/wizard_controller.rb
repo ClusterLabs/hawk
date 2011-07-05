@@ -66,17 +66,6 @@ class WizardController < ApplicationController
     @step_params = {}     # possible params for current step
   end
 
-  # TODO(should): next/prev are a bit light on error checking...
-  def next_step
-    i = @steps.index(@step)
-    @step = @steps[i + 1] if i < @steps.length - 1
-  end
-  
-  def prev_step
-    i = @steps.index(@step)
-    @step = @steps[i - 1] if i > 0
-  end
-
   def run
     @step = params[:step] if params[:step]
 
@@ -156,6 +145,8 @@ class WizardController < ApplicationController
     end
   end
 
+  private
+
   def start
     @descs = {}
     @workflows.each do |w|
@@ -173,7 +164,16 @@ class WizardController < ApplicationController
     render "start"
   end
 
-  private
+  # TODO(should): next/prev are a bit light on error checking...
+  def next_step
+    i = @steps.index(@step)
+    @step = @steps[i + 1] if i < @steps.length - 1
+  end
+
+  def prev_step
+    i = @steps.index(@step)
+    @step = @steps[i - 1] if i > 0
+  end
 
   def set_step_params(root, override_with = nil)
     root.elements.each('parameters/parameter') do |e|
