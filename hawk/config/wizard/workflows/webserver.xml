@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<workflow name="webserver">
+
+<shortdesc lang="en">Web Server</shortdesc>
+<longdesc lang="en">
+Configure the Apache web server and a virtual IP address.
+Includes the option to group these together with a Filesystem
+(think: active/passive where the filesystem fails over too).
+</longdesc>
+
+<parameters>
+<parameter name="id" required="1">
+<shortdesc lang="en">Resource ID</shortdesc>
+<longdesc lang="en">
+Unique ID for this resoruce in the cluster.
+</longdesc>
+<content type="string" default="web-server"/>
+</parameter>
+</parameters>
+
+<templates>
+<template name="filesystem" required="0"/>
+<template name="virtual-ip" required="1"/>
+<template name="apache" required="1"/>
+</templates>
+
+<crm_script>
+group <insert param="id"/>
+<if template_used="filesystem">
+  <insert param="id" from_template="filesystem"/>
+</if>
+  <insert param="id" from_template="virtual-ip"/>
+  <insert param="id" from_template="apache"/>
+</crm_script>
+
+</workflow>

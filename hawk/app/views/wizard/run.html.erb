@@ -1,0 +1,70 @@
+<% if @step_params.any? %>
+<% content_for :head do %>
+<%= stylesheet_link_tag 'ui.attrlist.css' %>
+<%= javascript_include_tag 'jquery.ui.attrlist.js' %>
+<style type="text/css">
+/* TODO(should): this does not belong here (also need to remove
+   inline style from various elements) */
+th { font-weight: bold; }
+input[type=text] { width: 13em; }
+select { width: 6.5em; }
+select.type { width: 13em; }
+</style>
+<% end %>
+<script type="text/javascript">
+
+function enable_apply() {
+  // TBD
+}
+
+$(function() {
+  $("#parameters").attrlist({
+    all_attrs: <%= @step_params.to_json %>,
+    set_attrs: <%= (@all_params[@step] || []).to_json %>,
+    prefix: "step_params",
+    labels: {
+      add: "<%= escape_javascript _('Add') %>",
+      remove: "<%= escape_javascript _('Remove') %>",
+      no_value: "<%= escape_javascript _('You must enter a value') %>"
+    },
+    dirty: function(event, info) {
+      // This might be a bit event-heavy
+      enable_apply();
+    }
+  });
+  
+  $("#next").removeAttr("disabled");
+});
+</script>
+<% end %>
+<% form_tag(:action => 'run') do %>
+<%= hidden_field_tag "workflow", params[:workflow] %>
+<%= hidden_field_tag "step", @step %><%= hash_as_hidden_fields(:all_params => @all_params) %>
+<table>
+  <tr>
+    <td colspan="2">
+      <% if @step_params.any? %>
+      <div id="parameters"></div>
+      <% end %>
+      <% if @crm_script %>
+      <pre><%=h @crm_script %></pre>
+      <script type="text/javascript">
+      $(function() {
+        $("#next").removeAttr("disabled");
+      });
+      </script>
+      <% end %>
+      <% if @msg %>
+      <%=h @msg %>
+      <% end %>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <%= submit_tag _('< Back'), { :id => "back", :name => "back" } %>
+      <%= submit_tag _('Next >'), { :id => "next", :name => "next", :disabled => true } %>
+    </td>
+  </tr>
+</table>
+<% end %>
+

@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<workflow name="ocfs2">
+
+<shortdesc lang="en">OCFS2 Filesystem</shortdesc>
+<longdesc lang="en">
+Configure an OCFS2 filesystem, along with all
+required dependencies (DLM, etc.)
+</longdesc>
+
+<parameters>
+<parameter name="id" required="1">
+<shortdesc lang="en">Resource ID</shortdesc>
+<longdesc lang="en">
+Unique ID for this resoruce in the cluster.
+</longdesc>
+<content type="string" default="clusterfs"/>
+</parameter>
+</parameters>
+
+<templates>
+<template name="filesystem" required="1">
+<override name="fstype" value="ocfs2"/>
+</template>
+</templates>
+
+<crm_script>
+group <insert param="id"/>
+  <insert param="id" from_template="filesystem"/>
+</crm_script>
+
+</workflow>

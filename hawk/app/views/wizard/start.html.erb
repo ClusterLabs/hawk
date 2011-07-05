@@ -1,0 +1,46 @@
+<% if @descs.empty? %>
+<div class="ui-state-error ui-corner-all" style="padding: 0.5em; margin-bottom: 0.5em;"><%=h _('No workflow descriptions found') %></div>
+<div><%= link_to _('Back'), status_path %></div>
+<% else %>
+<script type="text/javascript">
+var descs = <%= @descs.to_json %>;
+function enable_next() {
+  var w = $("#workflow").val();
+  if (w) {
+    $("#next").removeAttr("disabled");
+  }
+  if (descs[w] && descs[w].longdesc) {
+    $("#info-longdesc").html(escape_html(descs[w].longdesc));
+    $("#info-longdesc").show();
+  } else {
+    $("#info-longdesc").hide();
+  }
+}
+$(function() {
+  enable_next();
+  $("#workflow").change(enable_next);
+});
+</script>
+<% form_tag(:action => 'run') do %>
+<%= hidden_field_tag "step", @step %><%= hash_as_hidden_fields(:all_params => @all_params) %>
+<table>
+  <tr style="vertical-align: top;">
+    <td><%= select_tag "workflow",
+        options_for_select(@descs.map{|k,d| [d[:shortdesc], k]}, params[:workflow]),
+        { :size => 10, :style => "min-width: 10em" }
+      %></td>
+    <td style="padding-left: 1em; max-width: 20em;">
+      <div id="info-longdesc" class="ui-state-highlight ui-corner-all" style="padding: 0.5em; display: none; margin-bottom: 1em;"></div>
+    </td>
+  </tr>
+  <tr>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td colspan="2">
+      <%= submit_tag _('Next >'), { :id => "next", :name => "next", :disabled => true } %>
+    </td>
+  </tr>
+</table>
+<% end %>
+<% end %>

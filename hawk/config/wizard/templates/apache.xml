@@ -1,0 +1,34 @@
+<?xml version="1.0"?>
+<template name="apache">
+
+<shortdesc lang="en">Apache Web Server</shortdesc>
+<longdesc lang="en">
+Create a single primitive resource of type apache.
+</longdesc>
+
+<parameters>
+
+<parameter name="id" required="1">
+<shortdesc lang="en">Resource ID</shortdesc>
+<longdesc lang="en">
+Unique ID for this resoruce in the cluster.
+</longdesc>
+<content type="string" default="apache"/>
+</parameter>
+
+<parameter name="configfile" required="1">
+<shortdesc lang="en">Apache configuration file</shortdesc>
+<longdesc lang="en">
+Full pathname of the Apache configuration file</longdesc>
+<content type="string" default=""/>
+</parameter>
+
+</parameters>
+
+<crm_script>
+primitive <insert param="id"/> ocf:heartbeat:apache
+  params
+    configfile=<insert param="configfile"/>
+</crm_script>
+
+</template>
