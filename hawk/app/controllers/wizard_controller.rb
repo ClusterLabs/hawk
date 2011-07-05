@@ -99,11 +99,7 @@ class WizardController < ApplicationController
     when "workflow"
       start
     when "params"
-      # get params & help from workflow (like we do for primitive),
-      # show using ui.attrlist.
-      # Actually, no...  Don't want ui.attrlist, mostly because it's
-      # not quite friendly enough.  We never want the add/remove row
-      # functionality in the wizard, because it's too dense.
+      # get params & help from workflow
       set_step_params(@workflow_xml.root)
     when "template"
       # sp[1] has the template id, basically same thing as for params,
