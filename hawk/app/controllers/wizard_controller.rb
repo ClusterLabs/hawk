@@ -51,7 +51,7 @@ require "rexml/document" unless defined? REXML::Document
 #
 
 class WizardController < ApplicationController
-  before_filter :login_required, :verify_wizard_config
+  before_filter :login_required, :load_wizard_config
 
   layout "main"
 
@@ -104,7 +104,7 @@ class WizardController < ApplicationController
       # Actually, no...  Don't want ui.attrlist, mostly because it's
       # not quite friendly enough.  We never want the add/remove row
       # functionality in the wizard, because it's too dense.
-      @workflow.root.elements.each('parameters/parameter') do |e|
+      @workflow_xml.root.elements.each('parameters/parameter') do |e|
         @step_params[e.attributes['name']] = {
           :shortdesc => e.elements['shortdesc[@lang="en"]'].text.strip || '',
           :longdesc  => e.elements['longdesc[@lang="en"]'].text.strip || '',
@@ -116,10 +116,8 @@ class WizardController < ApplicationController
     when "template"
       # sp[1] has the template id, basically same thing as for params,
       # but get the param list from the template
-      f = File.join(@confdir, "templates", "#{sp[1]}.xml")
-      @t = REXML::Document.new(File.new(f))
-      @t.root.elements.each('parameters/parameter') do |e|
-        override = @workflow.root.elements["templates/template[@name='#{sp[1]}']/override[@name='#{e.attributes['name']}']"]
+      @templates_xml[sp[1]].root.elements.each('parameters/parameter') do |e|
+        override = @workflow_xml.root.elements["templates/template[@name='#{sp[1]}']/override[@name='#{e.attributes['name']}']"]
         @step_params[e.attributes['name']] = {
           :shortdesc => e.elements['shortdesc[@lang="en"]'].text.strip || '',
           :longdesc  => e.elements['longdesc[@lang="en"]'].text.strip || '',
@@ -128,7 +126,6 @@ class WizardController < ApplicationController
           :required => e.attributes['required'].to_i == 1 ? true : false
         }
       end
-      # TODO(must): cope with missing/corrupt template
     when "confirm"
       # print out everything that's been set up
       # how?  what did we specify?  do we do it in chunks (what you just entered)
@@ -141,26 +138,22 @@ class WizardController < ApplicationController
       #   extant params, really, but this'll work for a POC).
       #   Should really just load all templates each time through...
       # - Generate crm script for each one
-      @workflow.root.elements.each('templates/template') do |e|
-        f = File.join(@confdir, "templates", "#{e.attributes['name']}.xml")
-        t = REXML::Document.new(File.new(f))
-        @crm_script += get_crm_script(t.root.elements["crm_script"], "template_#{e.attributes['name']}", false)
+      @workflow_xml.root.elements.each('templates/template') do |e|
+        @crm_script += get_crm_script(@templates_xml[e.attributes['name']].root.elements["crm_script"], "template_#{e.attributes['name']}", false)
       end
 
       # - Generate crm script for workflow
-      @crm_script += get_crm_script(@workflow.root.elements["crm_script"], "params", false)
+      @crm_script += get_crm_script(@workflow_xml.root.elements["crm_script"], "params", false)
       
     when "commit"
     
       crm_script = ""
-      @workflow.root.elements.each('templates/template') do |e|
-        f = File.join(@confdir, "templates", "#{e.attributes['name']}.xml")
-        t = REXML::Document.new(File.new(f))
-        crm_script += get_crm_script(t.root.elements["crm_script"], "template_#{e.attributes['name']}")
+      @workflow_xml.root.elements.each('templates/template') do |e|
+        crm_script += get_crm_script(@templates_xml[e.attributes['name']].root.elements["crm_script"], "template_#{e.attributes['name']}")
       end
 
       # - Generate crm script for workflow
-      crm_script += get_crm_script(@workflow.root.elements["crm_script"], "params")
+      crm_script += get_crm_script(@workflow_xml.root.elements["crm_script"], "params")
       
       crm_script += "\ncommit\n"
       
@@ -202,7 +195,7 @@ class WizardController < ApplicationController
 
   private
 
-  def verify_wizard_config
+  def load_wizard_config
     ["templates", "workflows"].each do |d|
       files = Dir.glob(File.join(@confdir, d, "*.xml"))
       if files.empty?
@@ -217,11 +210,15 @@ class WizardController < ApplicationController
         @errors << _('Workflow "%s" not found') % params[:workflow]
       else
         f = File.join(@confdir, "workflows", "#{params[:workflow]}.xml")
-        @workflow = REXML::Document.new(File.new(f))
-        if @workflow.root
-          @steps.insert(@steps.rindex("confirm"), "params") if @workflow.root.elements['parameters']
-          @workflow.root.elements.each('templates/template') do |e|
+        @workflow_xml = REXML::Document.new(File.new(f))
+        if @workflow_xml.root
+          @steps.insert(@steps.rindex("confirm"), "params") if @workflow_xml.root.elements['parameters']
+          @workflow_xml.root.elements.each('templates/template') do |e|
             @steps.insert(@steps.rindex("confirm"), "template_#{e.attributes['name']}")
+            tf = File.join(@confdir, "templates", "#{e.attributes['name']}.xml")
+            @templates_xml ||= {}
+            @templates_xml[e.attributes['name']] = REXML::Document.new(File.new(tf))
+            @errors << _('Error parsing template "%s"') % e.attributes['name'] unless @templates_xml[e.attributes['name']].root
           end
         else
           @errors << _('Error parsing workflow "%s"') % params[:workflow]
