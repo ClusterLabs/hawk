@@ -62,8 +62,8 @@ class WizardController < ApplicationController
     @steps = ["workflow", "confirm", "commit"]
     @step = "workflow"
     @errors = []
-    @all_params = {}
-    @step_params = {}
+    @all_params = {}      # everything that's set, by step
+    @step_params = {}     # possible params for current step
   end
 
   # TODO(should): next/prev are a bit light on error checking...
