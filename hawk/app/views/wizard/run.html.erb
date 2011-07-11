@@ -13,13 +13,26 @@ select.type { width: 13em; }
 <% end %>
 <script type="text/javascript">
 
+var step_params = <%= @step_params.to_json %>;
+
 function enable_apply() {
-  // TBD
+  enable = true;
+  $.each(step_params, function(n, v) {
+    if (v.required && $.trim($("#step_params_" + n).val()) == "") {
+      enable = false;
+      return false;
+    }
+  });
+  if (enable) {
+    $("#next").removeAttr("disabled");
+  } else {
+    $("#next").attr("disabled", "disabled");
+  }
 }
 
 $(function() {
   $("#parameters").attrlist({
-    all_attrs: <%= @step_params.to_json %>,
+    all_attrs: step_params,
     set_attrs: <%= (@all_params[@step] || []).to_json %>,
     prefix: "step_params",
     labels: {
@@ -32,8 +45,7 @@ $(function() {
       enable_apply();
     }
   });
-  
-  $("#next").removeAttr("disabled");
+  enable_apply();
 });
 </script>
 <% end %>
