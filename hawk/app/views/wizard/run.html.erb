@@ -82,8 +82,10 @@ $(function() {
       });
       </script>
       <% end %>
-      <% if @msg %>
-      <%=h @msg %>
+      <% if @commit_error %>
+      <div class="ui-state-error ui-corner-all" style="padding: 0.5em; margin-bottom: 0.5em;"><%=h _("Error applying configuration:") %>
+      <pre><%=h @commit_error %></pre>
+      </div>
       <% end %>
     </td>
     <td>

@@ -138,7 +138,6 @@ class WizardController < ApplicationController
       if result == true
         render "done"
       else
-        @msg = _("It didn't work: %{msg}") % { :msg => result }
         # Errors come back like:
         #   WARNING: asyncmon: operation not recognized
         #   ERROR: 6: filesystem: id is already in use
@@ -147,6 +146,7 @@ class WizardController < ApplicationController
         #   ERROR: 18: web-server: id is already in use
         #   INFO: 20: apparently there is nothing to commit
         #   INFO: 20: try changing something first        
+        @commit_error = result
       end
     else
       # This can't happen
