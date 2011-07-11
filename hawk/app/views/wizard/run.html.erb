@@ -49,6 +49,13 @@ $(function() {
 });
 </script>
 <% end %>
+<script type="text/javascript">
+$(function() {
+  $("#next").click(function() {
+    $("#next").attr("disabled", "disabled");  // Prevent double-submit
+  });
+});
+</script>
 <% @errors.each do |message| %>
   <div class="ui-state-error ui-corner-all" style="padding: 0.5em; margin-bottom: 0.5em;"><%=h message %></div>
 <% end %>

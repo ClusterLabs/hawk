@@ -73,10 +73,11 @@ class WizardController < ApplicationController
     @all_params[@step] = params[:step_params] if params[:step_params]
 
     if params[:workflow]
-      if params[:next]
-        next_step
-      elsif params[:back]
+      if params[:back]
         prev_step
+      else
+        # Next is implicit (it's disabled on click, so we don't see the field here)
+        next_step
       end
     end
 
