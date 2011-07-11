@@ -47,6 +47,16 @@ $(function() {
   ]});
   $(jq("menu::reslist")).popupmenu({ iconroot: url_root + "/images/icons/", items: [
     {
+      label: "<%=h escape_javascript _('Setup Wizard') %>",
+      icon: "wizard.png",
+      click: function(target) {
+        window.location.assign(url_root + "/wizard");
+      }
+    },
+    {
+      separator: true
+    },
+    {
       label: "<%=h escape_javascript _('New Primitive') %>",
       icon: "add.png",
       click: function(target) {
