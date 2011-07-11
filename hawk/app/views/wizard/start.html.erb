@@ -21,6 +21,7 @@ $(function() {
   $("#workflow").change(enable_next);
 });
 </script>
+<h2><%=h _("Choose Configuration") %></h2>
 <% form_tag(:action => 'run') do %>
 <%= hidden_field_tag "step", @step %>
 <table>

@@ -86,14 +86,18 @@ class WizardController < ApplicationController
     when "workflow"
       start
     when "params"
+      @step_shortdesc = _("Parameters")
       # get params & help from workflow
       set_step_params(@workflow_xml.root)
     when "template"
+      # TODO(should): select by language instead of forcing en  
+      @step_shortdesc = @templates_xml[sp[1]].root.elements['shortdesc[@lang="en"]'].text.strip
       # sp[1] has the template id, basically same thing as for params,
       # but get the param list from the template
       set_step_params(@templates_xml[sp[1]].root,
         @workflow_xml.root.elements["templates/template[@name='#{sp[1]}']"])
     when "confirm"
+      @step_shortdesc = _("Confirm")
       # print out everything that's been set up
       # how?  what did we specify?  do we do it in chunks (what you just entered)
       # or as crm config we're about to apply?  (less friendly)
@@ -113,7 +117,8 @@ class WizardController < ApplicationController
       @crm_script += get_crm_script(@workflow_xml.root.elements["crm_script"], "params", false)
       
     when "commit"
-    
+      @step_shortdesc = _("Commit")
+
       crm_script = ""
       @workflow_xml.root.elements.each('templates/template') do |e|
         crm_script += get_crm_script(@templates_xml[e.attributes['name']].root.elements["crm_script"], "template_#{e.attributes['name']}")
@@ -229,6 +234,8 @@ class WizardController < ApplicationController
         f = File.join(@confdir, "workflows", "#{params[:workflow]}.xml")
         @workflow_xml = REXML::Document.new(File.new(f))
         if @workflow_xml.root
+          # TODO(should): select by language instead of forcing en
+          @workflow_shortdesc = @workflow_xml.root.elements['shortdesc[@lang="en"]'].text.strip
           @steps.insert(@steps.rindex("confirm"), "params") if @workflow_xml.root.elements['parameters']
           @workflow_xml.root.elements.each('templates/template') do |e|
             @steps.insert(@steps.rindex("confirm"), "template_#{e.attributes['name']}")

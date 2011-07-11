@@ -56,6 +56,7 @@ $(function() {
   });
 });
 </script>
+<h2><%=h _("%{workflow}: %{step}") % { :workflow => @workflow_shortdesc, :step => @step_shortdesc } %></h2>
 <% @errors.each do |message| %>
   <div class="ui-state-error ui-corner-all" style="padding: 0.5em; margin-bottom: 0.5em;"><%=h message %></div>
 <% end %>
