@@ -64,8 +64,8 @@ $(function() {
 <%= hidden_field_tag "workflow", params[:workflow] %>
 <%= hidden_field_tag "step", @step %><%= hash_as_hidden_fields(:all_params => @all_params) %>
 <table>
-  <tr>
-    <td colspan="2">
+  <tr style="vertical-align: top;">
+    <td>
       <% if @step_params.any? %>
       <div id="parameters"></div>
       <% end %>
@@ -80,6 +80,13 @@ $(function() {
       <% if @msg %>
       <%=h @msg %>
       <% end %>
+    </td>
+    <td>
+      <div id="help" class="ui-state-highlight ui-corner-all" style="padding: 0.5em; display: none;">
+        <div id="help-name" style="padding-bottom: 0.5em;"></div>
+        <div id="help-shortdesc" style="padding-bottom: 0.5em;"></div>
+        <div id="help-longdesc"></div>
+      </div>
     </td>
   </tr>
   <tr>
