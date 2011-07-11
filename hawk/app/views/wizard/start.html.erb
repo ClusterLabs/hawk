@@ -22,6 +22,7 @@ $(function() {
 });
 </script>
 <h2><%=h _("Choose Configuration") %></h2>
+<p><%=h _("This wizard will guide you through the steps necessary to add one of the following configurations to the cluster.") %></p>
 <% form_tag(:action => 'run') do %>
 <%= hidden_field_tag "step", @step %>
 <table>
@@ -37,8 +38,11 @@ $(function() {
   <tr>
     <td>&nbsp;</td>
   </tr>
+</table>
+<table>
   <tr>
-    <td colspan="2">
+    <td style="width: 30em; text-align: right;">
+      <%= submit_tag _('Cancel'), { :id => "cancel", :name => "cancel" } %>
       <%= submit_tag _('Next >'), { :id => "next", :name => "next", :disabled => true } %>
     </td>
   </tr>

@@ -67,6 +67,11 @@ class WizardController < ApplicationController
   end
 
   def run
+    if params[:cancel] || params[:done]
+      redirect_to status_path
+      return
+    end
+
     @step = params[:step] if params[:step]
 
     @all_params = params[:all_params] || {}
@@ -117,7 +122,7 @@ class WizardController < ApplicationController
       @crm_script += get_crm_script(@workflow_xml.root.elements["crm_script"], "params", false)
       
     when "commit"
-      @step_shortdesc = _("Commit")
+      @step_shortdesc = _("Done")
 
       crm_script = ""
       @workflow_xml.root.elements.each('templates/template') do |e|
@@ -131,7 +136,7 @@ class WizardController < ApplicationController
       
       result = Invoker.instance.crm_configure crm_script
       if result == true
-        @msg = _("Done, shiny")
+        render "done"
       else
         @msg = _("It didn't work: %{msg}") % { :msg => result }
         # Errors come back like:

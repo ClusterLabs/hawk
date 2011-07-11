@@ -1,0 +1,12 @@
+<h2><%=h _("%{workflow}: %{step}") % { :workflow => @workflow_shortdesc, :step => @step_shortdesc } %></h2>
+<p><%=h _("The configuration has been applied.") %></p>
+<% form_tag(:action => 'run') do %>
+<%= hidden_field_tag "step", @step %>
+<table>
+  <tr>
+    <td style="width: 30em; text-align: right;">
+      <%= submit_tag _('Done'), { :id => "done", :name => "done" } %>
+    </td>
+  </tr>
+</table>
+<% end %>

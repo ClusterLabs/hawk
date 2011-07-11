@@ -50,13 +50,18 @@ $(function() {
 </script>
 <% end %>
 <script type="text/javascript">
+var anything_changed = true;  // fake, for confirm_revert
 $(function() {
+<%= render :partial => 'shared/confirm_revert', :locals => { :button_ids => '#cancel' } %>
   $("#next").click(function() {
     $("#next").attr("disabled", "disabled");  // Prevent double-submit
   });
 });
 </script>
 <h2><%=h _("%{workflow}: %{step}") % { :workflow => @workflow_shortdesc, :step => @step_shortdesc } %></h2>
+<% if @step == "confirm" %>
+<p><%=h _("The following configuration will be applied to the cluster:") %></p>
+<% end %>
 <% @errors.each do |message| %>
   <div class="ui-state-error ui-corner-all" style="padding: 0.5em; margin-bottom: 0.5em;"><%=h message %></div>
 <% end %>
@@ -90,7 +95,13 @@ $(function() {
     </td>
   </tr>
   <tr>
-    <td colspan="2">
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<table>
+  <tr>
+    <td style="width: 30em; text-align: right;">
+      <%= submit_tag _('Cancel'), { :id => "cancel", :name => "cancel" } %>
       <%= submit_tag _('< Back'), { :id => "back", :name => "back" } %>
       <%= submit_tag _('Next >'), { :id => "next", :name => "next", :disabled => true } %>
     </td>
