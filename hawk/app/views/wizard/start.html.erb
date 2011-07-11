@@ -22,7 +22,7 @@ $(function() {
 });
 </script>
 <% form_tag(:action => 'run') do %>
-<%= hidden_field_tag "step", @step %><%= hash_as_hidden_fields(:all_params => @all_params) %>
+<%= hidden_field_tag "step", @step %>
 <table>
   <tr style="vertical-align: top;">
     <td><%= select_tag "workflow",
