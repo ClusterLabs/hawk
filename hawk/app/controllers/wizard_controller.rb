@@ -74,14 +74,11 @@ class WizardController < ApplicationController
 
     if params[:workflow]
       if params[:next]
-        # TODO(must): validate or error (req: error on run page)
         next_step
       elsif params[:back]
         prev_step
       end
     end
-
-    # @step is the new step from here on
 
     sp = @step.split("_", 2)
     case sp[0]
@@ -164,8 +161,19 @@ class WizardController < ApplicationController
     render "start"
   end
 
-  # TODO(should): next/prev are a bit light on error checking...
+  # TODO(should): next/prev are a bit light on error checking of step names...
   def next_step
+    # Trying to go to the next step, must validate current step first
+    sp = @step.split("_", 2)
+    case sp[0]
+    when "params"
+      validate_params(@workflow_xml.root, "params")
+    when "template"
+      validate_params(@templates_xml[sp[1]].root, @step)
+    end
+
+    return if @errors.any?
+
     i = @steps.index(@step)
     @step = @steps[i + 1] if i < @steps.length - 1
   end
@@ -189,6 +197,17 @@ class WizardController < ApplicationController
           override.attributes['value'] : e.elements['content'].attributes['default'],
         :required => e.attributes['required'].to_i == 1 ? true : false
       }
+    end
+  end
+
+  def validate_params(root, step)
+    root.elements.each('parameters/parameter') do |e|
+      if e.attributes['required'].to_i == 1
+        if !@all_params[step].has_key?(e.attributes['name']) ||
+           @all_params[step][e.attributes['name']].strip.empty?
+          @errors << _('Required parameter "%{param}" not specified') % { :param => e.attributes['name'] }
+        end
+      end
     end
   end
 
