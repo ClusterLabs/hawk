@@ -106,6 +106,13 @@ class WizardController < ApplicationController
       # but get the param list from the template
       set_step_params(@templates_xml[sp[1]].root,
         @workflow_xml.root.elements["templates/template[@name='#{sp[1]}']"])
+
+      # TODO(must): Make use of this ("skip this step" checkbox, but need to
+      # remember step was skipped so it remains checked if you go back)
+      if @workflow_xml.root.elements["templates/template[@name='#{sp[1]}']"].attributes["required"].to_i != 1
+        @step_is_skippable = true
+      end
+
     when "confirm"
       @step_shortdesc = _("Confirm")
       # print out everything that's been set up
