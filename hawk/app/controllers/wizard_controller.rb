@@ -304,7 +304,7 @@ class WizardController < ApplicationController
         when "if"
           # Takes set="param_name" or template_used="template_name"
           # TODO(must): This check is (probably) wrong for determining template used
-          if (c.attributes["set"] && @all_params[context][c.attributes["set"]]) ||
+          if (c.attributes["set"] && @all_params[context][c.attributes["set"]] && !@all_params[context][c.attributes["set"]].empty?) ||
              (c.attributes["template_used"] && @all_params["template_#{c.attributes['template_used']}"])
             s += generate_crm_script(c, context)
           end
