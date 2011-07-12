@@ -31,19 +31,29 @@ function enable_apply() {
 }
 
 $(function() {
-  $("#parameters").attrlist({
-    all_attrs: step_params,
-    set_attrs: <%= (@all_params[@step] || []).to_json %>,
-    prefix: "step_params",
-    labels: {
-      add: "<%= escape_javascript _('Add') %>",
-      remove: "<%= escape_javascript _('Remove') %>",
-      no_value: "<%= escape_javascript _('You must enter a value') %>"
-    },
-    dirty: function(event, info) {
-      // This might be a bit event-heavy
+  $.each(step_params, function(n, v) {
+    $("#step_params_" + n).keypress(function(e) {
+      return e.keyCode != 13;
+    }).focus(function() {
+      if (step_params[n].shortdesc || step_params[n].longdesc) {
+        $("#help-shortdesc").html(escape_html(step_params[n].shortdesc));
+        $("#help-longdesc").html(step_params[n].longdesc != step_params[n].shortdesc
+          ? escape_html(step_params[n].longdesc) : "");
+        $("#help").show();
+      } else {
+        $("#help").hide();
+      }
+    }).bind("keyup change", function() {
       enable_apply();
-    }
+    }).blur(function() {
+      if (this.type =="text") {
+        var v = $.trim(this.value);
+        if (v != this.value) {
+          this.value = v;
+          enable_apply();
+        }
+      }
+    });
   });
   enable_apply();
 });
@@ -73,7 +83,13 @@ $(function() {
   <tr style="vertical-align: top;">
     <td>
       <% if @step_params.any? %>
-      <div id="parameters"></div>
+      <table>
+        <% @step_required.each {|param| concat render :partial => 'param_row', :locals => { :id => param, :param => @step_params[param] } } %>
+        <% if @step_optional.any? %>
+        <tr><td colspan="2"><%=h _("Optional:") %></td>
+        <% @step_optional.each {|param| concat render :partial => 'param_row', :locals => { :id => param, :param => @step_params[param] } } %>
+        <% end %>
+      </table>
       <% end %>
       <% if @crm_script %>
       <pre><%=h @crm_script %></pre>
@@ -91,7 +107,6 @@ $(function() {
     </td>
     <td>
       <div id="help" class="ui-state-highlight ui-corner-all" style="padding: 0.5em; display: none;">
-        <div id="help-name" style="padding-bottom: 0.5em;"></div>
         <div id="help-shortdesc" style="padding-bottom: 0.5em;"></div>
         <div id="help-longdesc"></div>
       </div>

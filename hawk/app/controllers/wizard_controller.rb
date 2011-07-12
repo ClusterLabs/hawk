@@ -64,6 +64,11 @@ class WizardController < ApplicationController
     @errors = []
     @all_params = {}      # everything that's set, by step
     @step_params = {}     # possible params for current step
+
+    # required and optional param names broken out into arrays to
+    # ensure UI order matches order defined in template/workflow
+    @step_required = []
+    @step_optional = []
   end
 
   def run
@@ -198,6 +203,7 @@ class WizardController < ApplicationController
     root.elements.each('parameters/parameter') do |e|
       override = override_with ?
         override_with.elements["override[@name='#{e.attributes['name']}']"] : nil
+      required = e.attributes['required'].to_i == 1 ? true : false
       @step_params[e.attributes['name']] = {
         # TODO(should): select by language instead of forcing en
         :shortdesc => e.elements['shortdesc[@lang="en"]'].text.strip || '',
@@ -206,8 +212,13 @@ class WizardController < ApplicationController
         :default  => e.elements['content'].attributes['default'],
         :default  => override ?
           override.attributes['value'] : e.elements['content'].attributes['default'],
-        :required => e.attributes['required'].to_i == 1 ? true : false
+        :required => required
       }
+      if required
+        @step_required << e.attributes['name']
+      else
+        @step_optional << e.attributes['name']
+      end
     end
   end
 

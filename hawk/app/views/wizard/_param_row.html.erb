@@ -1,0 +1,19 @@
+<%
+if @all_params[@step] && @all_params[@step].has_key?(id)
+  val = @all_params[@step][id]
+else
+  val = param[:default]
+end
+# TODO(should): Support enum type (select field)
+%><tr>
+  <th><%=h param[:shortdesc] %>:</th>
+  <td>
+  <% case param[:type]
+     when "boolean" %>
+    <%= hidden_field_tag "step_params[#{id}]", "false", { :id => nil } %>
+    <%= check_box_tag "step_params[#{id}]", "true", (val == "true" || val == true) %>
+  <% else %>
+    <%= text_field_tag "step_params[#{id}]", val %>
+  <% end %>
+  </td>
+</tr>
