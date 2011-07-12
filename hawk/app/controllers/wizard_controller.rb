@@ -97,11 +97,17 @@ class WizardController < ApplicationController
       start
     when "params"
       @step_shortdesc = _("Parameters")
+      if @workflow_xml.root.elements["parameters/stepdesc[@lang='en']"]
+        @step_longdesc = @workflow_xml.root.elements["parameters/stepdesc[@lang='en']"].text.strip
+      end
       # get params & help from workflow
       set_step_params(@workflow_xml.root)
     when "template"
       # TODO(should): select by language instead of forcing en  
       @step_shortdesc = @templates_xml[sp[1]].root.elements['shortdesc[@lang="en"]'].text.strip
+      if @workflow_xml.root.elements["templates/template[@name='#{sp[1]}']/stepdesc[@lang='en']"]
+        @step_longdesc = @workflow_xml.root.elements["templates/template[@name='#{sp[1]}']/stepdesc[@lang='en']"].text.strip
+      end
       # sp[1] has the template id, basically same thing as for params,
       # but get the param list from the template
       set_step_params(@templates_xml[sp[1]].root,

@@ -72,6 +72,8 @@ $(function() {
 <div id="wizard-body">
 <% if @step == "confirm" %>
 <p><%=h _("The following configuration will be applied to the cluster:") %></p>
+<% elsif @step_longdesc %>
+<p><%=h @step_longdesc %></p>
 <% end %>
 <% @errors.each do |message| %>
   <div class="ui-state-error ui-corner-all" style="padding: 0.5em; margin-bottom: 0.5em;"><%=h message %></div>
