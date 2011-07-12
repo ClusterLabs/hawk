@@ -22,6 +22,7 @@ $(function() {
 });
 </script>
 <h2><%=h _("Choose Configuration") %></h2>
+<div id="wizard-body">
 <p><%=h _("This wizard will guide you through the steps necessary to add one of the following configurations to the cluster.") %></p>
 <% form_tag(:action => 'run') do %>
 <%= hidden_field_tag "step", @step %>
@@ -29,16 +30,14 @@ $(function() {
   <tr style="vertical-align: top;">
     <td><%= select_tag "workflow",
         options_for_select(@descs.map{|k,d| [d[:shortdesc], k]}, params[:workflow]),
-        { :size => 10, :style => "min-width: 10em" }
+        { :size => 9, :style => "min-width: 10em" }
       %></td>
     <td style="padding-left: 1em; max-width: 20em;">
       <div id="info-longdesc" class="ui-state-highlight ui-corner-all" style="padding: 0.5em; display: none; margin-bottom: 1em;"></div>
     </td>
   </tr>
-  <tr>
-    <td>&nbsp;</td>
-  </tr>
 </table>
+</div>
 <table>
   <tr>
     <td style="width: 30em; text-align: right;">

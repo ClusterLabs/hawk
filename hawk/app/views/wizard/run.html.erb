@@ -59,6 +59,7 @@ $(function() {
 });
 </script>
 <h2><%=h _("%{workflow}: %{step}") % { :workflow => @workflow_shortdesc, :step => @step_shortdesc } %></h2>
+<div id="wizard-body">
 <% if @step == "confirm" %>
 <p><%=h _("The following configuration will be applied to the cluster:") %></p>
 <% end %>
@@ -96,10 +97,8 @@ $(function() {
       </div>
     </td>
   </tr>
-  <tr>
-    <td>&nbsp;</td>
-  </tr>
 </table>
+</div>
 <table>
   <tr>
     <td style="width: 30em; text-align: right;">
