@@ -83,12 +83,9 @@ $(function() {
   <tr style="vertical-align: top;">
     <td>
       <% if @step_params.any? %>
-      <table>
+      <table class="wizard-param">
         <% @step_required.each {|param| concat render :partial => 'param_row', :locals => { :id => param, :param => @step_params[param] } } %>
-        <% if @step_optional.any? %>
-        <tr><td colspan="2"><%=h _("Optional:") %></td>
         <% @step_optional.each {|param| concat render :partial => 'param_row', :locals => { :id => param, :param => @step_params[param] } } %>
-        <% end %>
       </table>
       <% end %>
       <% if @crm_script %>
@@ -105,7 +102,7 @@ $(function() {
       </div>
       <% end %>
     </td>
-    <td>
+    <td style="padding-left: 1em; max-width: 30em;">
       <div id="help" class="ui-state-highlight ui-corner-all" style="padding: 0.5em; display: none;">
         <div id="help-shortdesc" style="padding-bottom: 0.5em;"></div>
         <div id="help-longdesc"></div>

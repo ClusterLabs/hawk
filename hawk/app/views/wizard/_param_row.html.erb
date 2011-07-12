@@ -6,7 +6,7 @@ else
 end
 # TODO(should): Support enum type (select field)
 %><tr>
-  <th><%=h param[:shortdesc] %>:</th>
+  <th<%= @step_params[id][:required] ? "" : ' class="optional"' %>><%=h param[:shortdesc] %>:</th>
   <td>
   <% case param[:type]
      when "boolean" %>
