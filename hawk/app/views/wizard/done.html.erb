@@ -3,6 +3,7 @@
 <p><%=h _("The configuration has been applied.") %></p>
 <% form_tag(:action => 'run') do %>
 <%= hidden_field_tag "step", @step %>
+</div>
 <table>
   <tr>
     <td style="width: 30em; text-align: right;">
@@ -10,5 +11,4 @@
     </td>
   </tr>
 </table>
-</div>
 <% end %>
