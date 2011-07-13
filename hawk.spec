@@ -83,6 +83,8 @@ Authors: Tim Serong <tserong@novell.com>
 %setup
 
 %build
+CFLAGS="${CFLAGS} ${RPM_OPT_FLAGS}"
+export CFLAGS
 make WWW_BASE=%{www_base} INIT_STYLE=%{init_style} LIBDIR=%{_libdir} BINDIR=%{_bindir} SBINDIR=%{_sbindir}
 
 %install
