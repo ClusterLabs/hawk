@@ -4,28 +4,33 @@
 <shortdesc lang="en">OCFS2 Filesystem</shortdesc>
 <longdesc lang="en">
 Configure an OCFS2 filesystem, along with all
-required dependencies (DLM, etc.)
+required and suggested dependencies (O2CB, DLM, CLVM,
+cmirrord)
 </longdesc>
-
-<parameters>
-<parameter name="id" required="1">
-<shortdesc lang="en">Resource ID</shortdesc>
-<longdesc lang="en">
-Unique ID for this resoruce in the cluster.
-</longdesc>
-<content type="string" default="clusterfs"/>
-</parameter>
-</parameters>
 
 <templates>
 <template name="filesystem" required="1">
+<stepdesc lang="en">
+Note that an OCFS2 filesystem must already exist on the block device you specify here.
+</stepdesc>
+<override name="id" value="clusterfs"/>
 <override name="fstype" value="ocfs2"/>
 </template>
 </templates>
 
 <crm_script>
-group <insert param="id"/>
-  <insert param="id" from_template="filesystem"/>
+primitive dlm ocf:pacemaker:controld
+  op start timeout="90" op stop timeout="100"
+primitive clvm ocf:lvm2:clvmd
+  op start timeout="90" op stop timeout="100"
+primitive cmirror ocf:lvm2:cmirrord
+  op start timeout="90" op stop timeout="100"
+primitive o2cb ocf:ocfs2:o2cb
+  op start timeout="90" op stop timeout="100"
+group g-<insert param="id" from_template="filesystem"/>
+  dlm clvm o2cb cmirror <insert param="id" from_template="filesystem"/>
+clone c-<insert param="id" from_template="filesystem"/> g-<insert param="id" from_template="filesystem"/>
+  meta interleave="true"
 </crm_script>
 
 </workflow>

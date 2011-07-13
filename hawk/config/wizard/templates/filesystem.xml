@@ -11,7 +11,7 @@ Create a single primitive resource of type Filesystem.
 <parameter name="id" required="1">
 <shortdesc lang="en">Resource ID</shortdesc>
 <longdesc lang="en">
-Unique ID for this resoruce in the cluster.
+Unique ID for this filesystem resource in the cluster.
 </longdesc>
 <content type="string" default="filesystem"/>
 </parameter>
@@ -50,12 +50,14 @@ Any additional options to be given as -o options to the mount command.
 <crm_script>
 primitive <insert param="id"/> ocf:heartbeat:Filesystem
   params
-    device=<insert param="device"/>
-    directory=<insert param="directory"/>
-    fstype=<insert param="fstype"/>
+    device="<insert param="device"/>"
+    directory="<insert param="directory"/>"
+    fstype="<insert param="fstype"/>"
 <if set="options">
-    options=<insert param="options"/>
+    options="<insert param="options"/>"
 </if>
+  op start timeout="60" op stop timeout="60"
+  op monitor interval="20" timeout="40"
 </crm_script>
 
 </template>

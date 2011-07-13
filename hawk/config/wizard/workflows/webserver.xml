@@ -3,32 +3,43 @@
 
 <shortdesc lang="en">Web Server</shortdesc>
 <longdesc lang="en">
-Configure the Apache web server and a virtual IP address.
-Includes the option to group these together with a Filesystem
-(think: active/passive where the filesystem fails over too).
+Configure a resource group containing a virtual IP address and
+an instance of the Apache web server.  You may wish to use this
+in conjunction with a filesystem resource; in this case you will
+need to separately configure the filesystem then add colocation
+and ordering constraints to have it start before the resource
+group you create here.
 </longdesc>
 
 <parameters>
+<stepdesc lang="en">
+The ID specified here is for the web server resource group.
+</stepdesc>
 <parameter name="id" required="1">
-<shortdesc lang="en">Resource ID</shortdesc>
+<shortdesc lang="en">Group ID</shortdesc>
 <longdesc lang="en">
-Unique ID for this resoruce in the cluster.
+Unique ID for the web server resource group in the cluster.
 </longdesc>
 <content type="string" default="web-server"/>
 </parameter>
 </parameters>
 
 <templates>
-<template name="filesystem" required="0"/>
-<template name="virtual-ip" required="1"/>
-<template name="apache" required="1"/>
+<template name="virtual-ip" required="1">
+<stepdesc lang="en">
+The IP address configured here will start before the Apache instance.
+</stepdesc>
+</template>
+<template name="apache" required="1">
+<stepdesc lang="en">
+The Apache configuration file specified here must be available via the
+same path on all cluster nodes.
+</stepdesc>
+</template>
 </templates>
 
 <crm_script>
 group <insert param="id"/>
-<if template_used="filesystem">
-  <insert param="id" from_template="filesystem"/>
-</if>
   <insert param="id" from_template="virtual-ip"/>
   <insert param="id" from_template="apache"/>
 </crm_script>
