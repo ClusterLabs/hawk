@@ -54,6 +54,7 @@ BuildRequires:	rubygem-gettext_rails
 BuildRequires:	pam-devel
 BuildRequires:	glib2-devel libxml2-devel
 %if 0%{?suse_version}
+PreReq:			permissions
 BuildRequires:	ruby-fcgi
 BuildRequires:	fdupes
 BuildRequires:	rubygem-rails-2_3
@@ -72,8 +73,8 @@ BuildRequires:	pacemaker-libs-devel
 %endif
 
 %description
-A web-based GUI for monitoring the Pacemaker High-Availability cluster
-resource manager
+A web-based GUI for managing and monitoring the Pacemaker
+High-Availability cluster resource manager.
 
 Authors: Tim Serong <tserong@novell.com>
 
@@ -118,7 +119,7 @@ rm -rf %{buildroot}%{www_base}/hawk/vendor/gems/*/samples
 rm -rf %{buildroot}%{www_base}/hawk/vendor/gems/*/test
 %if 0%{?suse_version}
 # mark .mo files as such (works on SUSE but not FC12, as the latter wants directory to
-# be "share/locale", not just "locale", and it also doesn't support appending to %{name}.lang)
+# be "share/locale", not just "locale", and it also doesn't support appending to %%{name}.lang)
 %find_lang %{name} %{name}.lang
 %find_lang rgettext %{name}.lang
 %find_lang gettext_rails %{name}.lang
@@ -131,6 +132,10 @@ touch %{name}.lang
 # more cruft to clean up (WTF?)
 rm -f %{buildroot}%{www_base}/hawk/log/*
 find %{buildroot}%{www_base}/hawk/vendor/rails -type f -name '*.css' -o -name '*.js' -o -name '*LICENSE' | xargs chmod a-x
+# get rid of packed gem specification files
+rm -f %{buildroot}%{www_base}/hawk/vendor/gems/*/.specification
+# likewise emtpy files (again, I say, WTF?)
+find %{buildroot}%{www_base}/hawk/vendor -type f -empty | xargs rm
 # init script
 %{__install} -d -m 0755 \
 	%{buildroot}%{_sbindir}
@@ -146,7 +151,14 @@ rm -rf %{buildroot}
 %if 0%{?suse_version}
 # TODO(must): Determine sensible non-SUSE versions of these,
 # in particular restart_on_update and stop_on_removal.
+
+%verifyscript
+%verify_permissions -e %{_sbindir}/hawk_chkpwd
+%verify_permissions -e %{_sbindir}/hawk_invoke
+
 %post
+%set_permissions %{_sbindir}/hawk_chkpwd
+%set_permissions %{_sbindir}/hawk_invoke
 %fillup_and_insserv hawk
 
 %preun
@@ -185,9 +197,11 @@ rm -rf %{buildroot}
 %{www_base}/hawk/script
 %{www_base}/hawk/test
 %if 0%{?suse_version}
-# itemizing content in %{www_base}/hawk/vendor and locale to avoid
+# itemizing content in %%{www_base}/hawk/vendor and locale to avoid
 # duplicate files that would otherwise be the result of including hawk.lang
 %dir %{www_base}/hawk/locale
+%dir %{www_base}/hawk/locale/*
+%dir %{www_base}/hawk/locale/*/*
 %dir %{www_base}/hawk/vendor
 %{www_base}/hawk/vendor/*rb
 # architecture-specific .so files
@@ -198,8 +212,9 @@ rm -rf %{buildroot}
 %dir %{www_base}/hawk/vendor/gems/*
 %dir %{www_base}/hawk/vendor/gems/*/data
 %dir %{www_base}/hawk/vendor/gems/*/data/locale
+%dir %{www_base}/hawk/vendor/gems/*/data/locale/*
+%dir %{www_base}/hawk/vendor/gems/*/data/locale/*/*
 %{www_base}/hawk/vendor/gems/*/[!d]*
-%{www_base}/hawk/vendor/gems/*/.specification
 %{www_base}/hawk/vendor/rails
 %{www_base}/hawk/vendor/rbconfig
 %{www_base}/hawk/vendor/rubygems
