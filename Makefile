@@ -73,7 +73,7 @@ all: scripts/hawk.$(INIT_STYLE) hawk/config/lighttpd.conf tools/hawk_chkpwd tool
 		$< > $@
 
 tools/hawk_chkpwd: tools/hawk_chkpwd.c tools/common.h
-	gcc $(CFLAGS) -o $@ $< -lpam
+	gcc -fpie -pie $(CFLAGS) -o $@ $< -lpam
 
 tools/hawk_monitor: tools/hawk_monitor.c
 	gcc $(CFLAGS) \
@@ -85,7 +85,7 @@ tools/hawk_monitor: tools/hawk_monitor.c
 
 # TODO(must): This is inching towards becoming annoying: want better build infrastructure/deps
 tools/hawk_invoke: tools/hawk_invoke.c tools/common.h
-	gcc $(CFLAGS) -o $@ $<
+	gcc -fpie -pie $(CFLAGS) -o $@ $<
 
 clean:
 	rm -rf hawk/locale
