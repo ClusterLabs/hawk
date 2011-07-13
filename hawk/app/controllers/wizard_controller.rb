@@ -151,7 +151,7 @@ class WizardController < ApplicationController
       crm_script += get_crm_script(@workflow_xml.root.elements["crm_script"], "params")
       
       crm_script += "\ncommit\n"
-      
+
       result = Invoker.instance.crm_configure crm_script
       if result == true
         render "done"
@@ -283,9 +283,29 @@ class WizardController < ApplicationController
   end
 
   def get_crm_script(element, context, runnable=true)
-    s = generate_crm_script(element, context)
-    # strip blank lines, inject continuation \ if desired
-    s.split("\n").select{|line| !line.strip.empty?}.join(runnable ? " \\\n" : "\n") + "\n"
+    raw_lines = generate_crm_script(element, context).split("\n").select{|s| !s.strip.empty?}
+    if runnable
+      script = ""
+      current_line = ""
+      raw_lines.each do |s|
+        if s.match(/^\s/)
+          # leading whitespace (continues line)
+          current_line += s
+        else
+          # no leading whitespace, append current line to script and start next line
+          if !current_line.empty?
+            script += current_line + "\n"
+          end
+          current_line = s
+        end
+      end
+      if !current_line.empty?
+        script += current_line + "\n"
+      end
+      script
+    else
+      raw_lines.join("\n")
+    end
   end
 
   def generate_crm_script(element, context)
