@@ -304,7 +304,7 @@ class WizardController < ApplicationController
       end
       script
     else
-      raw_lines.join("\n")
+      raw_lines.join("\n") + "\n"
     end
   end
 
