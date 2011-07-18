@@ -41,9 +41,10 @@ var panel_view = {
         '<div id="reslist"></div>' +
       "</div>"));
     $("#config").panel({
-      menu_href: url_root + "/cib/live/crm_config/cib-bootstrap-options/edit",
-      menu_icon: url_root + "/images/icons/edit.png",
-      menu_alt:  GETTEXT.configure(),
+      menu_icon: url_root + "/images/icons/properties.png",
+      menu_click: function(event) {
+        return $(jq("menu::cluster")).popupmenu("popup", $(this));
+      },
       label:     GETTEXT.cluster_config(),
       body:      $('<table id="config::props" style="padding: 0.25em 0.5em;"></table>')
     });

@@ -1,0 +1,2 @@
+module HbReportsHelper
+end

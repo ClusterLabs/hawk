@@ -42,7 +42,7 @@ var summary_view = {
       '<div id="summary" style="display: none;" class="ui-corner-all">' +
         "<h1>" + GETTEXT.summary() + "</h1>" +
         '<div id="confsum" class="summary">' +
-          '<h2><a><img class="action-icon" alt="" /></a><span id="confsum-label">' + GETTEXT.cluster_config() + "</span></h2>" +
+          '<h2><a class="clickable"><img class="action-icon" alt="" /></a><span id="confsum-label">' + GETTEXT.cluster_config() + "</span></h2>" +
           '<table cellpadding="0" cellspacing="0">' +
             '<tr id="confsum-stonith-enabled"><td>' + GETTEXT.stonith_enabled() + ":</td><td></td></tr>" +
             '<tr id="confsum-no-quorum-policy"><td>' + GETTEXT.no_quorum_policy() + ":</td><td></td></tr>" +
@@ -62,7 +62,7 @@ var summary_view = {
           "</table>" +
         "</div>" +
         '<div id="ressum" class="summary">' +
-          '<h2><a><img class="action-icon" alt="" /></a><span id="ressum-label"></span></h2>' +
+          '<h2><a class="clickable"><img class="action-icon" alt="" /></a><span id="ressum-label"></span></h2>' +
           '<table cellpadding="0" cellspacing="0">' +
             '<tr id="ressum-pending" class="rs-transient clickable"><td>' + GETTEXT.resource_state_pending() + ":</td><td></td></tr>" +
             '<tr id="ressum-started" class="rs-active clickable"><td>' + GETTEXT.resource_state_started() + ":</td><td></td></tr>" +
@@ -101,12 +101,9 @@ var summary_view = {
     // Menu setup cribbed from jquery.ui.panel
     var ma = $("#summary").find("a");
     var mi = ma.children(":first");
-    mi.attr("src", url_root + "/images/icons/edit.png");
-    mi.attr("alt", GETTEXT.configure());
-    mi.attr("title", GETTEXT.configure());
-    ma.attr("href", url_root + "/cib/live/crm_config/cib-bootstrap-options/edit");
+    mi.attr("src", url_root + "/images/icons/properties.png");
     ma.click(function(event) {
-      event.stopPropagation();
+      return $(jq("menu::cluster")).popupmenu("popup", $(this));
     });
     ma = $("#ressum").find("a");
     mi = ma.children(":first");

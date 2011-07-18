@@ -58,6 +58,9 @@ ActionController::Routing::Routes.draw do |map|
 
   map.resources :cib, :has_many => :nodes
 
+  map.resources :hb_reports
+  map.hb_reports_status '/hb_reports/new/status', :controller => 'hb_reports', :action => 'status'
+
   map.wizard '/wizard', :controller => 'wizard', :action => 'run'
 
   # TODO(should): resources & nodes become Rails resources, look at RESTful routing

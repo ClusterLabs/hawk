@@ -40,6 +40,8 @@
  *   user for the purposes of cluster administration.
  * - Will not allow the "hacluster" user to become a more-privileged
  *   user.
+ * - The single exception here is for the execution of hb_report, which
+ *   can (actually, must) be run as "root".
  * - Will not allow arbitrary commands to be executed as any other
  *   user.
  *
@@ -80,6 +82,7 @@ static struct cmd_map commands[] = {
 	{"crm_attribute",	SBINDIR"/crm_attribute"},
 	{"crm_mon",		SBINDIR"/crm_mon"},
 	{"pengine",		LIBDIR"/heartbeat/pengine"},
+	{"hb_report",		SBINDIR"/hb_report"},
 	{NULL, NULL}
 };
 
@@ -128,36 +131,48 @@ int main(int argc, char **argv)
 		die("ERROR: User '%s' not found\n", argv[1]);
 	}
 
-	/*
-	 * Don't become root!
-	 * (Is there really any sense checking for pw_name == "root"?
-	 */
-	if (pwd->pw_uid == 0 || strcmp(pwd->pw_name, "root") == 0) {
-		die("ERROR: Thou shalt not become root\n");
-	}
+	if ((pwd->pw_uid == 0 || strcmp(pwd->pw_name, "root") == 0) &&
+	    strcmp(argv[2], "hb_report") == 0) {
 
-	/* Make sure the new user is in the haclient group */
-	grp = getgrgid(pwd->pw_gid);
-	if (grp == NULL) {
-		die("ERROR: Can't determine group for user '%s'\n", pwd->pw_name);
-	}
-	if (strcmp(grp->gr_name, HACLIENT) != 0) {
-		/* Not the primary group, let's check the others */
+		/*
+		 * Single special case to become root when running
+		 * hb_report, and we force group to HACLIENT.
+		 */
 		grp = getgrnam(HACLIENT);
+
+	} else {
+
+		/*
+		 * Don't become root!
+		 * (Is there really any sense checking for pw_name == "root"?
+		 */
+		if (pwd->pw_uid == 0 || strcmp(pwd->pw_name, "root") == 0) {
+			die("ERROR: Thou shalt not become root\n");
+		}
+
+		/* Make sure the new user is in the haclient group */
+		grp = getgrgid(pwd->pw_gid);
 		if (grp == NULL) {
-			die("ERROR: Group '%s' does not exist\n", HACLIENT);
+			die("ERROR: Can't determine group for user '%s'\n", pwd->pw_name);
 		}
-		i = 0;
-		found = 0;
-		while ((grp_user = grp->gr_mem[i]) != NULL) {
-			if (strcmp(grp_user, pwd->pw_name) == 0) {
-				found = 1;
-				break;
+		if (strcmp(grp->gr_name, HACLIENT) != 0) {
+			/* Not the primary group, let's check the others */
+			grp = getgrnam(HACLIENT);
+			if (grp == NULL) {
+				die("ERROR: Group '%s' does not exist\n", HACLIENT);
 			}
-			i++;
-		}
-		if (!found) {
-			die("ERROR: User '%s' is not in the '%s' group\n", pwd->pw_name, HACLIENT);
+			i = 0;
+			found = 0;
+			while ((grp_user = grp->gr_mem[i]) != NULL) {
+				if (strcmp(grp_user, pwd->pw_name) == 0) {
+					found = 1;
+					break;
+				}
+				i++;
+			}
+			if (!found) {
+				die("ERROR: User '%s' is not in the '%s' group\n", pwd->pw_name, HACLIENT);
+			}
 		}
 	}
 

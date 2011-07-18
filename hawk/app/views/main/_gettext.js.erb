@@ -15,10 +15,6 @@ var GETTEXT = {
   close: function() {
     return "<%= escape_javascript _('Close') %>";
   },
-  // Tooltips
-  configure: function() {
-    return "<%= escape_javascript _('Configure...') %>";
-  },
   // Node ops
   node_online: function(node) {
     return "<%= escape_javascript _('This will bring node %s online if it is currently on standby.  Do you want to continue?') % '_NODE_' %>".replace('_NODE_', node);

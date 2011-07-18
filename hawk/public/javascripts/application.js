@@ -92,3 +92,11 @@ if ("ajaxPrefilter" in $) {
   $(document).ajaxSend(function(e, xhr) { CSRFProtection(xhr); });
 }
 
+jQuery.fn.submitWithAjax = function() {
+  this.submit(function() {
+    $.post(this.action, $(this).serialize(), null, "script");
+    return false;
+  })
+  return this;
+};
+

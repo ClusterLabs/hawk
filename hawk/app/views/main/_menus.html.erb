@@ -1,6 +1,7 @@
 <div id="menu::node" style="display: none;"></div>
 <div id="menu::reslist" style="display: none;"></div>
 <div id="menu::resource" style="display: none;"></div>
+<div id="menu::cluster" style="display: none;"></div>
 <script type="text/javascript">
 $(function() {
   $(jq("menu::node")).popupmenu({ iconroot: url_root + "/images/icons/", items: [
@@ -253,6 +254,33 @@ $(function() {
             }
           }
         });
+      }
+    }
+  ]});
+  $(jq("menu::cluster")).popupmenu({ iconroot: url_root + "/images/icons/", items: [
+    {
+      label: "<%=h escape_javascript _('Cluster Properties') %>",
+      icon: "edit.png",
+      click: function(target) {
+        window.location.assign(url_root + "/cib/live/crm_config/cib-bootstrap-options/edit");
+      }
+    },
+    {
+      label: "<%=h escape_javascript _('Generate hb_report...') %>",
+      icon: "properties.png",
+      click: function(target) {
+        $("#dialog").html('<div style="text-align: center;">' +
+          '<img src="' + url_root + '/images/spinner-32x32.gif" alt="" /></div>');
+        $("#dialog").load(url_root + "/hb_reports/new");
+        var b = {};
+        b[GETTEXT.close()] = function() {
+          $(this).dialog("close");
+        };
+        $("#dialog").dialog("option", {
+          title:    "<%=h escape_javascript _('Generate hb_report') %>",
+          buttons:  b
+        });
+        $("#dialog").dialog("open");
       }
     }
   ]});
