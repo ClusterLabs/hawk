@@ -99,6 +99,8 @@ clean:
 	rm -f tools/hawk_invoke
 	rm -f tools/common.h
 
+# Note: chown & chmod here are only necessary if *not* doing an RPM build
+# (the spec sets file ownership/perms for RPMs).
 install:
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/log
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp
@@ -113,13 +115,16 @@ install:
 	-find hawk/vendor -name '*bak' -o -name '*~' -o -name '#*#' | xargs rm
 	cp -a hawk/* $(DESTDIR)$(WWW_BASE)/hawk
 	rm $(DESTDIR)$(WWW_BASE)/hawk/config/lighttpd.conf.in
-	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk
+	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/log
+	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/tmp
 	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/home
 	install -D -m 0755 scripts/hawk.$(INIT_STYLE) $(DESTDIR)/etc/init.d/hawk
 	install -D -m 4750 tools/hawk_chkpwd $(DESTDIR)/usr/sbin/hawk_chkpwd
 	-chown root.haclient $(DESTDIR)/usr/sbin/hawk_chkpwd
+	-chmod u+s $(DESTDIR)/usr/sbin/hawk_chkpwd
 	install -D -m 4750 tools/hawk_invoke $(DESTDIR)/usr/sbin/hawk_invoke
 	-chown root.haclient $(DESTDIR)/usr/sbin/hawk_invoke
+	-chmod u+s $(DESTDIR)/usr/sbin/hawk_invoke
 	install -D -m 0755 tools/hawk_monitor $(DESTDIR)/usr/sbin/hawk_monitor
 	ln -s /usr/sbin/hawk_monitor $(DESTDIR)$(WWW_BASE)/hawk/public/monitor
 
