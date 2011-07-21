@@ -123,9 +123,23 @@ protected
     session[:return_to] = nil
   end
 
+  # Check if some feature is supported by the installed version of pacemaker.
+  # TODO(should): expand to include other checks (e.g. pcmk installed, used
+  # by Cib model, in which case this probably needs to go to lib).
+  def has_feature?(feature)
+    case feature
+    when :crm_history
+      %x[echo quit | /usr/sbin/crm history 2>&1]
+      $?.exitstatus == 0
+    else
+      false
+    end
+  end
+
   # Make some methods accessible to the view
   helper_method :logged_in?
   helper_method :current_user
+  helper_method :has_feature?
   # TODO(should): This may go away in Rails 3
   helper_method :relative_url_root
 
