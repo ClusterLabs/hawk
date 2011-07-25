@@ -40,8 +40,8 @@
  *   user for the purposes of cluster administration.
  * - Will not allow the "hacluster" user to become a more-privileged
  *   user.
- * - The single exception here is for the execution of hb_report, which
- *   can (actually, must) be run as "root".
+ * - The only exception here is for the execution of hb_report and
+ *   "crm history", which must be run as "root", or they won't work.
  * - Will not allow arbitrary commands to be executed as any other
  *   user.
  *
@@ -132,11 +132,14 @@ int main(int argc, char **argv)
 	}
 
 	if ((pwd->pw_uid == 0 || strcmp(pwd->pw_name, "root") == 0) &&
-	    strcmp(argv[2], "hb_report") == 0) {
+	    (strcmp(argv[2], "hb_report") == 0 ||
+	     (argc >= 4 &&
+	      strcmp(argv[2], "crm") == 0 &&
+	      strcmp(argv[3], "history") == 0))) {
 
 		/*
-		 * Single special case to become root when running
-		 * hb_report, and we force group to HACLIENT.
+		 * Special case to become root when running hb_report
+		 * or "crm history", and we force group to HACLIENT.
 		 */
 		grp = getgrnam(HACLIENT);
 
