@@ -126,9 +126,7 @@ protected
   # Check if the user is sufficiently privileged to access sensitive
   # information (syslog via hb_report/crm_report, "crm history")
   def is_god?
-    unless current_user == "hacluster" || current_user == "root"
-      render :permission_denied
-    end
+    return current_user == "hacluster" || current_user == "root"
   end
 
   # Check if some feature is supported by the installed version of pacemaker.

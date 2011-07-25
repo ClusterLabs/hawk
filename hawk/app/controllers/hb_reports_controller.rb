@@ -30,7 +30,7 @@
 #======================================================================
 
 class HbReportsController < ApplicationController
-  before_filter :login_required, :is_god?
+  before_filter :login_required, :ensure_godlike
 
   # Not specifying layout because all we do ATM is show individual node details
   # layout 'main'
@@ -128,5 +128,11 @@ class HbReportsController < ApplicationController
     # and stderr aren't available until the run is complete.
     true
   end
-end
 
+  # TODO(should): Look at shifting this logic completely to ApplicationController (see login_required)
+  def ensure_godlike
+    unless is_god?
+      render :permission_denied
+    end
+  end
+end
