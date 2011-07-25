@@ -30,7 +30,7 @@
 #======================================================================
 
 class HbReportsController < ApplicationController
-  before_filter :login_required, :is_god
+  before_filter :login_required, :is_god?
 
   # Not specifying layout because all we do ATM is show individual node details
   # layout 'main'

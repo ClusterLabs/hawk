@@ -125,7 +125,7 @@ protected
 
   # Check if the user is sufficiently privileged to access sensitive
   # information (syslog via hb_report/crm_report, "crm history")
-  def is_god
+  def is_god?
     unless current_user == "hacluster" || current_user == "root"
       render :permission_denied
     end
@@ -147,6 +147,7 @@ protected
   # Make some methods accessible to the view
   helper_method :logged_in?
   helper_method :current_user
+  helper_method :is_god?
   helper_method :has_feature?
   # TODO(should): This may go away in Rails 3
   helper_method :relative_url_root
