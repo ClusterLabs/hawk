@@ -128,11 +128,5 @@ class HbReportsController < ApplicationController
     # and stderr aren't available until the run is complete.
     true
   end
-
-  def is_god
-    unless current_user == "hacluster" || current_user == "root"
-      render :permission_denied
-    end
-  end
 end
 
