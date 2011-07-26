@@ -1,0 +1,86 @@
+<%
+do_refresh = true
+if CrmHistory.active?
+  # some crm history command is running
+%>
+$("#res-log-wait").show();
+$("#res-log-none").hide();
+$("#res-log").hide();
+<%
+  if CrmHistory.active_cmd == ["resource", params[:id]]
+    # It's our crm history command
+%>
+$("#res-log-us").show();
+$("#res-log-them").hide();
+<%
+  else
+    # It's someone else's crm history command
+%>
+$("#res-log-them").show();
+$("#res-log-us").hide();
+<%
+  end
+else
+  # no command running; either kick off a new run, or show the results of the
+  # last run if they're recent enough (and are our run).
+  lrc = CrmHistory.last_run_cmd
+  lrr = CrmHistory.last_run_result
+  if lrc.empty? || lrr.empty? || lrc.slice(1,2) != ["resource", params[:id]] || Time.now - lrc[0] > 30
+    # no last run, or it's not ours, or it's more than 30 seconds old,
+    # kick off a new run
+    CrmHistory.run("resource", params[:id])
+%>
+$("#res-log-wait").show();
+$("#res-log-us").show();
+$("#res-log-none").hide();
+$("#res-log").hide();
+<%
+  else
+    # got it, show it.
+    do_refresh = false
+    if lrr[0] == 0
+      # clean run
+      if lrr[1].empty?
+        # no output
+%>
+$("#res-log-none").show();
+$("#res-log").hide();
+$("#res-log-wait").hide();
+<%
+      else
+        # got something
+%>
+$("#res-log").html("<pre>" + escape_html("<%= escape_javascript lrr[1] %>") + "</pre>");
+$("#res-log").show();
+$("#res-log-wait").hide();
+$("#res-log-none").hide();
+$("#dialog").dialog({
+  width: $(window).width() - 32,
+  height: $(window).height() - 32,
+  position: "center",
+  resizable: true,
+  draggable: true
+});
+<%
+      end
+%>
+<%
+    else
+      # failed run
+%>
+$("#res-log").html("<pre>" + escape_html("<%= escape_javascript lrr[2] + "\n" + lrr[1] %>") + "</pre>");
+$("#res-log").show();
+$("#res-log-wait").hide();
+$("#res-log-none").hide();
+<%
+    end
+  end
+end
+if do_refresh
+%>
+setTimeout(function() {
+  $.get("<%= resource_events_path(params[:cib_id], params[:id]) %>", "format=json", null, "script");
+}, 2000);
+<%
+end
+%>

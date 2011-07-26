@@ -176,7 +176,7 @@ function add_mgmt_menu(e)
     var id_parts = parts[1].split(":");
     var is_clone_instance = id_parts.length == 2
     if (id_parts.length == 2) {
-      // It's a clone instance, hide everything except Edit and Delete
+      // It's a clone instance, hide everything except Edit, Delete, View Details/Events
       e.click(function() {
         return $(jq("menu::resource")).popupmenu("popup", $(this), [0, 1, 2, 3, 4, 5, 6, 7]);
       });

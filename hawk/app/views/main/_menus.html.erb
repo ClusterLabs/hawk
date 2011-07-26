@@ -284,6 +284,40 @@ $(function() {
         });
       }
     }
+    <% if has_feature?(:crm_history) && is_god? %>
+    ,
+    {
+      separator: true
+    },
+    {
+      label: "<%=h escape_javascript _('View Recent Events...') %>",
+      icon: "details.png",
+      click: function(target) {
+        $("#dialog").html('<div style="text-align: center;">' +
+          '<img src="' + url_root + '/images/spinner-32x32.gif" alt="" /></div>');
+        // Note that this picks up history of all clone instances (instance ID is dropped).
+        // This is necessary else cloned groups show no history (group instance ID doesn't
+        // appear in logs).
+        $("#dialog").load(url_root + "/cib/" + (cib_file ? cib_file : "live") + "/resources/" + item_id(target.attr("id")) + "/events");
+        var b = {};
+        b[GETTEXT.close()]   = function() {
+          $(this).dialog({
+            width: "30em",
+            height: "auto",
+            position: "center",
+            resizable: false,
+            draggable: false
+          });
+          $(this).dialog("close");
+        }
+        $("#dialog").dialog("option", {
+          title:    item_id(target.attr("id")),
+          buttons:  b
+        });
+        $("#dialog").dialog("open");
+      }
+    }
+    <% end %>
   ]});
   $(jq("menu::cluster")).popupmenu({ iconroot: url_root + "/images/icons/", items: [
     {
