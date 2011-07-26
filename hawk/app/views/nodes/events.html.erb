@@ -1,0 +1,21 @@
+<script type="text/javascript">
+$(function() {
+  $.get("<%= node_events_path(params[:cib_id], params[:id]) %>", "format=json", null, "script");
+});
+</script>
+<div id="node-log-wait">
+<table style="width: 100%;">
+  <tr style="vertical-align: middle;">
+    <td>
+      <span id="node-log-us"><%=h _("Getting recent events (last hour)...") %></span>
+      <span id="node-log-them" style="display: none;"><%=h _('Another "crm history" operation is in progress...') %></span>
+    </td>
+    <td><%= image_tag 'spinner-16x16-neutral.gif', :alt => '' %></td>
+  </tr>
+</table>
+</div>
+<div id="node-log-none" style="display: none;">
+<%=h _("No events found in last hour.") %>
+</div>
+<div id="node-log" style="display: none;">
+</div>

@@ -45,6 +45,34 @@ $(function() {
         $("#dialog").dialog("open");
       }
     }
+    <% if has_feature?(:crm_history) && is_god? %>
+    ,
+    {
+      label: "<%=h escape_javascript _('View Recent Events...') %>",
+      icon: "details.png",
+      click: function(target) {
+        $("#dialog").html('<div style="text-align: center;">' +
+          '<img src="' + url_root + '/images/spinner-32x32.gif" alt="" /></div>');
+        $("#dialog").load(url_root + "/cib/" + (cib_file ? cib_file : "live") + "/nodes/" + item_id(target.attr("id")) + "/events");
+        var b = {};
+        b[GETTEXT.close()]   = function() {
+          $(this).dialog({
+            width: "30em",
+            height: "auto",
+            position: "center",
+            resizable: false,
+            draggable: false
+          });
+          $(this).dialog("close");
+        }
+        $("#dialog").dialog("option", {
+          title:    parts[1],
+          buttons:  b
+        });
+        $("#dialog").dialog("open");
+      }
+    }
+    <% end %>
   ]});
   $(jq("menu::reslist")).popupmenu({ iconroot: url_root + "/images/icons/", items: [
     {

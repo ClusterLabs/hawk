@@ -57,6 +57,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :cib, :has_many => :orders
 
   map.resources :cib, :has_many => :nodes
+  map.node_events '/cib/:cib_id/nodes/:id/events', :controller => 'nodes', :action => 'events'
 
   map.resources :hb_reports
   map.hb_reports_status '/hb_reports/new/status', :controller => 'hb_reports', :action => 'status'

@@ -47,4 +47,17 @@ class NodesController < ApplicationController
   def show
     @node = Node.find params[:id]
   end
+
+  # Don't strictly need CIB for this...
+  def events
+    respond_to do |format|
+      format.json do
+        render "events.js"
+      end
+      format.any do
+        render "events.html"
+      end
+    end
+  end
+
 end
