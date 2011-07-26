@@ -18,7 +18,9 @@ end
 $(function() {
   $($("#generate")[0].form).submitWithAjax();
   <% if File.exists?(@pidfile) %>
-  $.get("<%= hb_reports_status_path %>", "", null, "script");
+  if ($("#dialog").dialog("isOpen")) {
+    $("#dialog").data("req", $.get("<%= hb_reports_status_path %>", "", null, "script"));
+  }
   <% else %>
   $("#hbreport-form").show();
   <% end %>

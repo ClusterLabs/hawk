@@ -69,6 +69,8 @@ $(function() {
               draggable: false
             });
           }
+          var req = $(this).data("req");
+          if (req) req.abort();
           $(this).dialog("close");
         }
         $("#dialog").dialog("option", {
@@ -307,7 +309,6 @@ $(function() {
         $("#dialog").load(url_root + "/cib/" + (cib_file ? cib_file : "live") + "/resources/" + item_id(target.attr("id")) + "/events");
         var b = {};
         b[GETTEXT.close()]   = function() {
-          console.log($(this).dialog("option", "draggable"));
           if ($(this).dialog("option", "draggable")) {
             // Reset dialog, but only if it's been changed by the history viewer
             $(this).dialog("option", {
@@ -318,6 +319,8 @@ $(function() {
               draggable: false
             });
           }
+          var req = $(this).data("req");
+          if (req) req.abort();
           $(this).dialog("close");
         }
         $("#dialog").dialog("option", {
@@ -346,6 +349,8 @@ $(function() {
         $("#dialog").load(url_root + "/hb_reports/new");
         var b = {};
         b[GETTEXT.close()] = function() {
+          var req = $(this).data("req");
+          if (req) req.abort();
           $(this).dialog("close");
         };
         $("#dialog").dialog("option", {

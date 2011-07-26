@@ -79,7 +79,9 @@ end
 if do_refresh
 %>
 setTimeout(function() {
-  $.get("<%= node_events_path(params[:cib_id], params[:id]) %>", "format=json", null, "script");
+  if ($("#dialog").dialog("isOpen")) {
+    $("#dialog").data("req", $.get("<%= node_events_path(params[:cib_id], params[:id]) %>", "format=json", null, "script"));
+  }
 }, 2000);
 <%
 end

@@ -20,7 +20,9 @@ $("#hbreport-status").hide();
 $("#hbreport-download").hide();
 $("#hbreport-wait").show();
 setTimeout(function() {
-  $.get("<%= hb_reports_status_path %>", "", null, "script");
+  if ($("#dialog").dialog("isOpen")) {
+    $("#dialog").data("req", $.get("<%= hb_reports_status_path %>", "", null, "script"));
+  }
 }, 2000);
 <% end %>
 <% end %>
