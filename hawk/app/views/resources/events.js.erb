@@ -54,7 +54,7 @@ $("#res-log").html("<pre>" + escape_html("<%= escape_javascript lrr[1] %>") + "<
 $("#res-log").show();
 $("#res-log-wait").hide();
 $("#res-log-none").hide();
-$("#dialog").dialog({
+$("#dialog").dialog("option", {
   width: $(window).width() - 32,
   height: $(window).height() - 32,
   position: "center",

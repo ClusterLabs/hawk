@@ -54,7 +54,7 @@ $("#node-log").html("<pre>" + escape_html("<%= escape_javascript lrr[1] %>") + "
 $("#node-log").show();
 $("#node-log-wait").hide();
 $("#node-log-none").hide();
-$("#dialog").dialog({
+$("#dialog").dialog("option", {
   width: $(window).width() - 32,
   height: $(window).height() - 32,
   position: "center",
