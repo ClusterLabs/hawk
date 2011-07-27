@@ -50,6 +50,11 @@ class NodesController < ApplicationController
 
   # Don't strictly need CIB for this...
   def events
+    unless is_god?
+      # TODO(should): duplicates hb_report, resources_controller: consolidate
+      render :permission_denied
+      return
+    end
     respond_to do |format|
       format.json do
         render "events.js"
