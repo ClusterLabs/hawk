@@ -92,6 +92,17 @@ CONF
 	return $rc
 }
 
+print_hawk_url() {
+	IFC=$(LC_ALL=C route | grep "^default" | tr -s " " | cut -d " " -f 8)
+	IP=$(LC_ALL=C ifconfig $IFC | grep "inet addr" | cut -d ":" -f 2 | cut -d " " -f 1)
+	PORT=$(LC_ALL=C grep "^server.port" $LIGHTTPD_CONFIG | cut -d " " -f 3)
+	if [ -n "$IP" ]; then
+		echo -e "\thawk is running at https://$IP:$PORT/"
+	else
+		echo -e "\thawk could not determine the IP address for $IFC"
+	fi
+}
+
 # Source LSB init functions
 . /etc/rc.d/init.d/functions
 
@@ -104,6 +115,10 @@ case "$1" in
 	daemon --pidfile $PID_FILE $LIGHTTPD_BIN -f $LIGHTTPD_CONFIG
 	RETVAL=$?
 	echo
+
+	if test "$RETVAL" -eq 0; then
+		print_hawk_url
+	fi
 	;;
     stop)
 	echo -n "Shutting down hawk "
@@ -137,6 +152,10 @@ case "$1" in
 	status -p $PID_FILE $LIGHTTPD_BIN
 	RETVAL=$?
 	echo
+
+	if test "$RETVAL" -eq 0; then
+		print_hawk_url
+	fi
 	;;
     *)
 	echo "Usage: $0 {start|stop|status|try-restart|restart|force-reload|reload|probe}"

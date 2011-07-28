@@ -107,6 +107,17 @@ CONF
 	return $rc
 }
 
+print_hawk_url() {
+	IFC=$(LC_ALL=C route | grep "^default" | tr -s " " | cut -d " " -f 8)
+	IP=$(LC_ALL=C ifconfig $IFC | grep "inet addr" | cut -d ":" -f 2 | cut -d " " -f 1)
+	PORT=$(LC_ALL=C grep "^server.port" $LIGHTTPD_CONFIG | cut -d " " -f 3)
+	if [ -n "$IP" ]; then
+		echo -e "\t${done}hawk is running at https://$IP:$PORT/${norm}"
+	else
+		echo -e "\t${warn}hawk could not determine the IP address for $IFC${norm}"
+	fi
+}
+
 # Source LSB init functions
 # providing start_daemon, killproc, pidofproc, 
 # log_success_msg, log_failure_msg and log_warning_msg.
@@ -162,6 +173,10 @@ case "$1" in
 
 	# Remember status and be verbose
 	rc_status -v
+
+	if test "$?" -eq 0; then
+		print_hawk_url
+	fi
 	;;
     stop)
 	echo -n "Shutting down hawk "
@@ -230,6 +245,10 @@ case "$1" in
 	# NOTE: rc_status knows that we called this init script with
 	# "status" option and adapts its messages accordingly.
 	rc_status -v
+
+	if test "$?" -eq 0; then
+		print_hawk_url
+	fi
 	;;
     *)
 	echo "Usage: $0 {start|stop|status|try-restart|restart|force-reload|reload|probe}"
