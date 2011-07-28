@@ -114,11 +114,11 @@ var panel_view = {
 
     $("#nodereslist").show();
 
-    if (self._update_panel(self._cib_to_nodelist_panel(cib.nodes))) {
+    if (self._update_panel(self._cib_to_nodelist_panel(cib.nodes, cib.nodes_label))) {
       $("#nodelist").panel("expand");
     }
 
-    if (self._update_panel(self._cib_to_reslist_panel(cib.resources))) {
+    if (self._update_panel(self._cib_to_reslist_panel(cib.resources, cib.resources_label))) {
       $("#reslist").panel("expand");
     }
   },
@@ -196,12 +196,12 @@ var panel_view = {
     }
     return expand;
   },
-  _cib_to_nodelist_panel: function(nodes) {
+  _cib_to_nodelist_panel: function(nodes, label) {
     var panel = {
       id:         "nodelist",
       className:  "",
       style:      "",
-      label:      GETTEXT.nodes_configured(nodes.length),
+      label:      label,
       open:       false,
       children:   []
     };
@@ -351,13 +351,13 @@ var panel_view = {
       children:   children
     };
   },
-  _cib_to_reslist_panel: function(resources) {
+  _cib_to_reslist_panel: function(resources, label) {
     var self = this;
     var panel = {
       id:         "reslist",
       className:  "",
       style:      "",
-      label:      GETTEXT.resources_configured(resource_count),
+      label:      label,
       open:       false,
       children:   []
     };

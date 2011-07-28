@@ -143,7 +143,7 @@ var summary_view = {
     // Rebuild item list each time
     $("#itemlist").children().remove();
 
-    $("#nodesum-label").html(escape_html(GETTEXT.nodes_configured(cib.nodes.length)));
+    $("#nodesum-label").html(escape_html(cib.nodes_label));
     self._zero_counters("#nodesum");
     $.each(cib.nodes, function() {
       self._increment_counter("#nodesum-" + this.state);
@@ -186,7 +186,7 @@ var summary_view = {
     });
     self._show_counters("#nodesum");
 
-    $("#ressum-label").html(escape_html(GETTEXT.resources_configured(resource_count)));
+    $("#ressum-label").html(escape_html(cib.resources_label));
     self._zero_counters("#ressum");
     $.each(resources_by_id, function() {
       if (!this.instances) return;

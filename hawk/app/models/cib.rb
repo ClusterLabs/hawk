@@ -95,6 +95,7 @@ class Cib < CibObject
   #   to orphans if you create a clone from a running primitive or group).
   # - remove clone instances from primitives (shouldn't be there, but will be
   #   due to orphans if you un-clone a running cloned primitive or group)
+  # - count total number of configured resource instances
   def fix_clone_instances(resources)
     for res in resources
       if res[:clone_max]
@@ -117,6 +118,7 @@ class Cib < CibObject
       else
         res[:instances].delete_if {|k, v| k != :default} if res.has_key?(:instances)
       end
+      @resource_count += res[:instances].count if res[:instances]
       fix_clone_instances(res[:children]) if res[:children]
     end
   end
@@ -194,7 +196,7 @@ class Cib < CibObject
   # Notes that errors here overloads what ActiveRecord would
   # use for reporting errors when editing resources.  This
   # should almost certainly be changed.
-  attr_reader :dc, :epoch, :nodes, :resources, :crm_config, :errors
+  attr_reader :dc, :epoch, :nodes, :resources, :crm_config, :errors, :resource_count
 
   def initialize(id, user, use_file = false)
     @errors = []
@@ -281,6 +283,7 @@ class Cib < CibObject
 
     @resources = []
     @resources_by_id = {}
+    @resource_count = 0
     @xml.elements.each('cib/configuration/resources/*') do |r|
       @resources << get_resource(r)
     end

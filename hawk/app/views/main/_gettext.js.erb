@@ -115,10 +115,6 @@ var GETTEXT = {
     return "<%= escape_javascript _('Table View') %>";
   },
   // Node & resource labels
-  nodes_configured: function(num) {
-    var s = <%= [1,'_NUM_'].map {|n| n_('1 node configured', '%{num} nodes configured', n) % { :num => n } }.to_json %>;
-    return num == 1 ? s[0] : s[1].replace('_NUM_', num);
-  },
   node_state: function(node, state) {
     return "<%= escape_javascript _('%{node}: %{state}') % { :node => '_NODE_', :state => '_STATE_' } %>".replace('_NODE_', node).replace('_STATE_', state);
   },
@@ -139,10 +135,6 @@ var GETTEXT = {
   },
   node_state_unknown: function() {
     return "<%= escape_javascript _('Unknown') %>";
-  },
-  resources_configured: function(num) {
-    var s = <%= [1,'_NUM_'].map {|n| n_('1 resource configured', '%{num} resources configured', n) % { :num => n } }.to_json %>;
-    return num == 1 ? s[0] : s[1].replace('_NUM_', num);
   },
   // TODO(should): fold these back similar to node_state() & node_state_*() above
   resource_state_master: function(res, nodes) {
