@@ -86,6 +86,11 @@ ActionController::Routing::Routes.draw do |map|
     main.node_standby 'main/node/:op',     :action => 'node_standby', :conditions => { :method => :post },
                       :op => /(standby|online)/
     main.node_fence   'main/node/fence',   :action => 'node_fence',  :conditions => { :method => :post }
+
+    # simulation mode
+    main.sim_reset    'main/sim_reset',    :action => 'sim_reset'
+    main.sim_run      'main/sim_run',      :action => 'sim_run'
+    main.sim_get      'main/sim_get',      :action => 'sim_get'
   end
 
   map.root :controller => "main"

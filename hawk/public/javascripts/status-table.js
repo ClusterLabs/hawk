@@ -102,7 +102,7 @@ var table_view = {
       d.find("span").html(escape_html(GETTEXT.node_state(this.uname, label)));
       node_row.append(d);
       res_row.append($('<td class="ncol">&nbsp;</td>'));
-      if (!cib_file) {
+      if (cib_source == "live") {
         add_mgmt_menu($(jq("node::" + this.uname + "::menu")));
       }
     });
@@ -215,7 +215,7 @@ var table_view = {
         }
       }
       flag_error("resource::" + id, this.failed_ops);
-      if (!cib_file) {
+      if (cib_source == "live") {
         add_mgmt_menu($(jq("resource::" + id + "::menu")));
       }
     });

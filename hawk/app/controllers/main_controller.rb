@@ -143,4 +143,105 @@ class MainController < ApplicationController
     end
   end
 
+  # TODO(must): these both need exception handler for invoker runs
+  # TODO(must): only one user at a time can run sims (they stomp on each other)
+  def sim_reset
+    f = File.new("#{RAILS_ROOT}/tmp/sim.in", "w")
+    f.write(Invoker.instance.cibadmin('-Ql'))
+    f.close
+    head :ok
+  end
+
+  def sim_run
+    # TODO(must): sanitize input a bit
+    injections = []
+    params[:injections].each do |i|
+      parts = i.split(/\s+/)
+      case parts[0]
+      when "node":
+        case parts[2]
+        when "online"
+          injections << "-u" << parts[1]
+        when "offline"
+          injections << "-d" << parts[1]
+        when "unclean"
+          injections << "-f" << parts[1]
+        end
+      when "op":
+        # TODO(should): map to be static somewhere (must match map in status.js)
+        rc_map = {
+          "success" => 0,
+          "err_generic" => 1,
+          "err_args" => 2,
+          "err_unimplemented" => 3,
+          "err_perm" => 4,
+          "err_installed" => 5,
+          "err_configured" => 6,
+          "not_running" => 7,
+          "running_master" => 8,
+          "failed_master" => 9
+        }
+        # we have something like:
+        #  "op monitor:0 stonith-sbd success node-0"
+        parts[1].sub!(":", "_")
+        injections << "-i" << "#{parts[2]}_#{parts[1]}@#{parts[4]}=#{rc_map[parts[3]]}"
+      end
+    end
+    f = File.new("#{RAILS_ROOT}/tmp/sim.info", "w")
+    # TODO(must): Bloody loses transition summary (it's on STDOUT)
+    stdout = Util.safe_x("/usr/sbin/crm_simulate",
+      "-R",
+      "-x", "#{RAILS_ROOT}/tmp/sim.in",
+      "-O", "#{RAILS_ROOT}/tmp/sim.out",
+      "-G", "#{RAILS_ROOT}/tmp/sim.graph",
+      "-D", "#{RAILS_ROOT}/tmp/sim.dot",
+      *injections)
+    f.write(stdout)
+    f.close
+    head :ok
+  end
+
+  # TODO(must): make sure dot is installed
+  def sim_get
+    case params[:file]
+    when "info"
+      info = { :mods => "", :summary => "", :exec => "" }
+      section = nil
+      File.new("#{RAILS_ROOT}/tmp/sim.info").read.split(/\n/).each do |line|
+        case line
+          when /^Performing requested modifications/i
+            section = :mods
+#          when /^Transition Summary/i
+#            section = :summary
+          when /^Executing cluster transition/i
+            section = :exec
+          when /^\s*$/
+            section = nil
+        end
+        next unless section
+        info[section] += line + "\n"
+      end
+      send_data [info[:mods], info[:summary], info[:exec]].select{|s| !s.empty?}.join("\n"),
+        :type => "text/plain", :disposition => "inline"
+    when "in"
+      send_data File.new("#{RAILS_ROOT}/tmp/sim.in").read, :type => "text/xml", :disposition => "inline"
+    when "out"
+      send_data File.new("#{RAILS_ROOT}/tmp/sim.out").read, :type => "text/xml", :disposition => "inline"
+    when "graph"
+      if params[:format] == "xml"
+        send_data File.new("#{RAILS_ROOT}/tmp/sim.graph").read, :type => "text/xml", :disposition => "inline"
+      else
+        stdin, stdout, stderr, thread = Util.popen3("/usr/bin/dot", "-Tpng", "#{RAILS_ROOT}/tmp/sim.dot")
+        stdin.close
+        png = stdout.read
+        stdout.close
+        stderr.close
+        # TODO(must): check thread.value.exitstatus
+        send_data png, :type => "image/png", :disposition => "inline"
+      end
+    else
+      head :not_found
+    end
+  end
+
 end

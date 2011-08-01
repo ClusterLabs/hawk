@@ -176,8 +176,8 @@ var panel_view = {
         } else {
           c.before(d);
         }
-        if (!cib_file) {
-          // Only add menus if this isn't a static test
+        if (cib_source == "live") {
+          // Only add menus when running on live CIB
           add_mgmt_menu($(jq(this.id + "::menu")));
         }
       } else {

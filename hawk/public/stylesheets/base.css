@@ -41,6 +41,11 @@ html, body
   height: 100%;
 }
 
+body
+{
+  background-color: #fff;
+}
+
 #container
 {
   position: relative;
@@ -191,8 +196,19 @@ h2
   min-width: 25em;
 }
 
+#nodelist
+{
+  background-color: #fff;
+}
+
+#reslist
+{
+  background-color: #fff;
+}
+
 #config
 {
+  background-color: #fff;
   width: 25em;
 }
 
@@ -348,6 +364,7 @@ img
   margin-bottom: 1em;
   padding: 1em;
   width: 18em;
+  background-color: #fff;
 }
 
 #details {
@@ -357,6 +374,7 @@ img
   margin-bottom: 1em;
   padding: 1em;
   min-width: 18em;
+  background-color: #fff;
 }
 
 .summary table {
@@ -374,6 +392,7 @@ img
   float: left;
   overflow: auto;
   max-width: 100%;
+  background-color: #fff;
 }
 
 #table td {
@@ -408,3 +427,11 @@ img
 .wizard-param th { width: 10em; }
 .wizard-param th.optional { font-weight: normal; }
 
+.sim {
+  background-color: #ff8;
+}
+
+a.disabled {
+  text-decoration: none;
+  color: #ccc !important;
+}
