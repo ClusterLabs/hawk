@@ -172,6 +172,94 @@ var GETTEXT = {
   },
   resource_clone: function(res) {
     return "<%= escape_javascript _('Clone Set: %{id}') % { :id => '_RES_' } %>".replace('_RES_', res);
+  },
+  // Simulator dialog
+  sim_init: function() {
+    return "<%= escape_javascript _('Simulator (initial state)') %>";
+  },
+  sim_busy: function() {
+    return "<%= escape_javascript _('Simulator (busy...)') %>";
+  },
+  sim_final: function() {
+    return "<%= escape_javascript _('Simulator (final state)') %>";
+  },
+  sim_injected: function() {
+    return "<%= escape_javascript _('Injected State:') %>";
+  },
+  sim_inject_node: function() {
+    return "<%= escape_javascript _('+ Node') %>";
+  },
+  sim_inject_op: function() {
+    return "<%= escape_javascript _('+ Op') %>";
+  },
+  sim_run: function() {
+    return "<%= escape_javascript _('Run >') %>";
+  },
+  sim_details: function() {
+    return "<%= escape_javascript _('Details') %>";
+  },
+  sim_cib_in: function() {
+    return "<%= escape_javascript _('CIB (in)') %>";
+  },
+  sim_cib_out: function() {
+    return "<%= escape_javascript _('CIB (out)') %>";
+  },
+  sim_graph: function() {
+    return "<%= escape_javascript _('Graph') %>";
+  },
+  sim_node_inject: function() {
+    return "<%= escape_javascript _('Inject Node State') %>";
+  },
+  sim_node_node: function() {
+    return "<%= escape_javascript _('Node:') %>";
+  },
+  sim_node_state: function() {
+    return "<%= escape_javascript _('State:') %>";
+  },
+  sim_op_inject: function() {
+    return "<%= escape_javascript _('Inject Operation') %>";
+  },
+  sim_op_operation: function() {
+    return "<%= escape_javascript _('Operation:') %>";
+  },
+  sim_op_interval: function() {
+    return "<%= escape_javascript _('Interval:') %>";
+  },
+  sim_op_resource: function() {
+    return "<%= escape_javascript _('Resource:') %>";
+  },
+  sim_op_result: function() {
+    return "<%= escape_javascript _('Result:') %>";
+  },
+  sim_result_success: function() {
+    return "<%= escape_javascript _('Success') %>";
+  },
+  sim_result_unknown: function() {
+    return "<%= escape_javascript _('Generic Error') %>";
+  },
+  sim_result_args: function() {
+    return "<%= escape_javascript _('Wrong Argument(s)') %>";
+  },
+  sim_result_unimplemented: function() {
+    return "<%= escape_javascript _('Not Implemented') %>";
+  },
+  sim_result_perm: function() {
+    return "<%= escape_javascript _('Permission Denied') %>";
+  },
+  sim_result_installed: function() {
+    return "<%= escape_javascript _('Not Installed') %>";
+  },
+  sim_result_configured: function() {
+    return "<%= escape_javascript _('Not Configured') %>";
+  },
+  sim_result_not_running: function() {
+    return "<%= escape_javascript _('Not Running') %>";
+  },
+  sim_result_master: function() {
+    return "<%= escape_javascript _('Running Master') %>";
+  },
+  sim_result_failed_master: function() {
+    return "<%= escape_javascript _('Failed Master') %>";
   }
 };
 
