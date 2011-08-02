@@ -171,14 +171,14 @@ class MainController < ApplicationController
         # TODO(should): map to be static somewhere (must match map in status.js)
         rc_map = {
           "success" => 0,
-          "err_generic" => 1,
-          "err_args" => 2,
-          "err_unimplemented" => 3,
-          "err_perm" => 4,
-          "err_installed" => 5,
-          "err_configured" => 6,
+          "unknown" => 1,
+          "args" => 2,
+          "unimplemented" => 3,
+          "perm" => 4,
+          "installed" => 5,
+          "configured" => 6,
           "not_running" => 7,
-          "running_master" => 8,
+          "master" => 8,
           "failed_master" => 9
         }
         # we have something like:

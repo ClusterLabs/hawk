@@ -123,14 +123,14 @@ var simulator = {
 
       html += '<tr><th>Result:</th><td><select id="inject-op-result">' +
           '<option value="success">Success</option>' +
-          '<option value="err_generic">Generic Error</option>' +
-          '<option value="err_args">Wrong Argument(s)</option>' +
-          '<option value="err_unimplemented">Not Implemented</option>' +
-          '<option value="err_perm">Permission Denied</option>' +
-          '<option value="err_installed">Not Installed</option>' +
-          '<option value="err_configured">Not Configured</option>' +
+          '<option value="unknown">Generic Error</option>' +
+          '<option value="args">Wrong Argument(s)</option>' +
+          '<option value="unimplemented">Not Implemented</option>' +
+          '<option value="perm">Permission Denied</option>' +
+          '<option value="installed">Not Installed</option>' +
+          '<option value="configured">Not Configured</option>' +
           '<option value="not_running">Not Running</option>' +
-          '<option value="running_master">Running Master</option>' +
+          '<option value="master">Running Master</option>' +
           '<option value="failed_master">Failed Master</option>' +
           "</select></td></tr>";
 
