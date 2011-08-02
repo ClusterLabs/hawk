@@ -205,20 +205,10 @@ var simulator = {
     });
   },
   activate: function() {
+    var self = this;
     var b = {};
-    b[GETTEXT.reset()] = function () {
-      $("#sim-get-info").addClass("disabled").removeAttr("href");
-      $("#sim-get-in").addClass("disabled").removeAttr("href");
-      $("#sim-get-out").addClass("disabled").removeAttr("href");
-      $("#sim-get-graph").addClass("disabled").removeAttr("href");
-      $("#sim-get-graph-xml").addClass("disabled").removeAttr("href");
-      $("#sim-run").attr("disabled", "disabled");
-      $("#sim-injections").children().remove();
-      $.get(url_root + "/main/sim_reset", function() {
-        // TODO(must): spinner in dialog
-        cib_source = "sim:in";
-        update_cib();
-      });
+    b[GETTEXT.reset()] = function() {
+      self._reset();
     },
     b[GETTEXT.close()] = function() {
       $(document.body).removeClass("sim");
@@ -234,7 +224,12 @@ var simulator = {
     });
     hide_status();
     $("#onload-spinner").show();
-    // TODO(should): pretty much a dupe of above reset function; consolidate
+    self._reset(function() {
+      $(document.body).addClass("sim");
+      $("#simulator").dialog("open");
+    });
+  },
+  _reset: function(callback) {
     $("#sim-get-info").addClass("disabled").removeAttr("href");
     $("#sim-get-in").addClass("disabled").removeAttr("href");
     $("#sim-get-out").addClass("disabled").removeAttr("href");
@@ -243,10 +238,12 @@ var simulator = {
     $("#sim-run").attr("disabled", "disabled");
     $("#sim-injections").children().remove();
     $.get(url_root + "/main/sim_reset", function() {
+      // TODO(must): spinner in dialog
       cib_source = "sim:in";
       update_cib();
-      $(document.body).addClass("sim");
-      $("#simulator").dialog("open");
+      if (callback) {
+        callback();
+      }
     });
   }
 };
