@@ -363,50 +363,8 @@ $(function() {
     {
       label: "<%=h escape_javascript _('Simulator') %>",
       icon: "properties.png",   // TODO(must): Need simulator icon!
-      click: function(target) {
-        var b = {};
-        b[GETTEXT.reset()] = function () {
-          $("#sim-get-info").addClass("disabled").removeAttr("href");
-          $("#sim-get-in").addClass("disabled").removeAttr("href");
-          $("#sim-get-out").addClass("disabled").removeAttr("href");
-          $("#sim-get-graph").addClass("disabled").removeAttr("href");
-          $("#sim-get-graph-xml").addClass("disabled").removeAttr("href");
-          $("#sim-run").attr("disabled", "disabled");
-          $("#sim-injections").children().remove();
-          $.get(url_root + "/main/sim_reset", function() {
-            // TODO(must): spinner in dialog
-            cib_source = "sim:in";
-            update_cib();
-          });
-        },
-        b[GETTEXT.close()] = function() {
-          $(document.body).removeClass("sim");
-          $(this).dialog("close");
-          hide_status();
-          $("#onload-spinner").show();
-          cib_source = "live";
-          update_cib();
-        };
-        $("#simulator").dialog("option", {
-          title:    "<%=h escape_javascript _('Simulator') %>",
-          buttons:  b
-        });
-        hide_status();
-        $("#onload-spinner").show();
-        // TODO(should): pretty much a dupe of above reset function; consolidate
-        $("#sim-get-info").addClass("disabled").removeAttr("href");
-        $("#sim-get-in").addClass("disabled").removeAttr("href");
-        $("#sim-get-out").addClass("disabled").removeAttr("href");
-        $("#sim-get-graph").addClass("disabled").removeAttr("href");
-        $("#sim-get-graph-xml").addClass("disabled").removeAttr("href");
-        $("#sim-run").attr("disabled", "disabled");
-        $("#sim-injections").children().remove();
-        $.get(url_root + "/main/sim_reset", function() {
-          cib_source = "sim:in";
-          update_cib();
-          $(document.body).addClass("sim");
-          $("#simulator").dialog("open");
-        });
+      click: function() {
+        simulator.activate();
       }
     }
   ]});
