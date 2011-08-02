@@ -118,7 +118,7 @@ var simulator = {
       });
       html += "</select></td></tr>";
 
-      html += '<tr><th>' + escape_html(GETTEXT.sim_op_resource()) + '</th><td><select id="inject-op-result">' +
+      html += '<tr><th>' + escape_html(GETTEXT.sim_op_result()) + '</th><td><select id="inject-op-result">' +
           '<option value="success">' + escape_html(GETTEXT.sim_result_success()) + '</option>' +
           '<option value="unknown">' + escape_html(GETTEXT.sim_result_unknown()) + '</option>' +
           '<option value="args">' + escape_html(GETTEXT.sim_result_args()) + '</option>' +
