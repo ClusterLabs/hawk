@@ -33,12 +33,12 @@ var simulator = {
   create: function() {
     $("#container").append($(
       '<div id="simulator" style="display: none; font-size: 80%;">' +
-        "<form><table>" +
+        '<form><table style="width: 100%;">' +
           "<tr>" +
             "<th>" + escape_html(GETTEXT.sim_injected()) + "</th>" +
           "</tr>" +
           "<tr>" +
-            '<td><select id="sim-injections" multiple="multiple" size="4" style="width: 15em;"><option></option></select></td>' +
+            '<td><select id="sim-injections" multiple="multiple" size="4" style="width: 100%;"><option></option></select></td>' +
             '<td style="padding-left: 1em;">' +
               '<button id="sim-run" type="button" style="min-width: 6em;" disabled="disabled">' + escape_html(GETTEXT.sim_run()) + '</button> ' +
             "</td>" +
