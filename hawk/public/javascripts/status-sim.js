@@ -167,7 +167,7 @@ var simulator = {
       $.each($("#sim-injections").val() || [], function() {
         $("#sim-injections").children("option[value='" + this.toString() + "']").remove();
       });
-      if (!$("#sim-injections").val()) {
+      if (!$("#sim-injections").children().length) {
         $("#sim-run").attr("disabled", "disabled");
       }
     });
