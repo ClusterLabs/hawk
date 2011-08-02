@@ -75,7 +75,8 @@ var simulator = {
       $("#dialog").html(html);
       var b = {}
       b[GETTEXT.ok()] = function() {
-        $("#sim-injections").append($("<option>node " + $("#inject-node-uname").val() + " " + $("#inject-node-state").val() + "</option>"));
+        var s = "node " + $("#inject-node-uname").val() + " " + $("#inject-node-state").val();
+        $("#sim-injections").append($('<option title="' + s + '" value="' + s + '">' + s + "</option>"));
         $("#sim-run").removeAttr("disabled");
         $(this).dialog("close");
       };
