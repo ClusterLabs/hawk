@@ -63,7 +63,7 @@ $(function() {
 var anything_changed = true;  // fake, for confirm_revert
 $(function() {
 <%= render :partial => 'shared/confirm_revert', :locals => { :button_ids => '#cancel' } %>
-  $("#next").click(function() {
+  $($("#next")[0].form).submit(function() {
     $("#next").attr("disabled", "disabled");  // Prevent double-submit
   });
 });
