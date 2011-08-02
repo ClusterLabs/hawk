@@ -177,7 +177,7 @@ var simulator = {
     });
 
     $("#sim-run").click(function() {
-      // TODO(must): Spinner
+      $("#simulator").dialog("option", "title", "Simulator (busy...)");
       var i = [];
       $("#sim-injections").children().each(function() {
         i.push($(this).val());
@@ -190,6 +190,7 @@ var simulator = {
         $("#sim-get-out").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=out");
         $("#sim-get-graph").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=graph");
         $("#sim-get-graph-xml").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=graph&format=xml");
+        $("#simulator").dialog("option", "title", "Simulator (final state)");
       });
       return false;
     });
@@ -219,7 +220,7 @@ var simulator = {
       update_cib();
     };
     $("#simulator").dialog("option", {
-      title:    "Simulator",
+      title:    "Simulator (initial state)",
       buttons:  b
     });
     hide_status();
@@ -230,6 +231,7 @@ var simulator = {
     });
   },
   _reset: function(callback) {
+    $("#simulator").dialog("option", "title", "Simulator (busy...)");
     $("#sim-get-info").addClass("disabled").removeAttr("href");
     $("#sim-get-in").addClass("disabled").removeAttr("href");
     $("#sim-get-out").addClass("disabled").removeAttr("href");
@@ -238,12 +240,12 @@ var simulator = {
     $("#sim-run").attr("disabled", "disabled");
     $("#sim-injections").children().remove();
     $.get(url_root + "/main/sim_reset", function() {
-      // TODO(must): spinner in dialog
       cib_source = "sim:in";
       update_cib();
       if (callback) {
         callback();
       }
+      $("#simulator").dialog("option", "title", "Simulator (initial state)");
     });
   }
 };
