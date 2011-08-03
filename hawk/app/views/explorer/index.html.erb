@@ -1,0 +1,12 @@
+<% form_tag(explorer_path, :method => :get) do %>
+<div style="float: right;"><%= submit_tag(_('Back'), { :id => 'back', :name => 'back' }) %></div>
+<table>
+  <tr>
+    <th><label for="from_time"><%=h _("Start Time:") %></label></th>
+    <td><%= text_field_tag "from_time", @from_time, :size => 5 %></td>
+    <th><label for="to_time"><%=h _("End Time:") %></label></th>
+    <td><%= text_field_tag "to_time", @to_time, :size => 5 %></td>
+    <td><%= submit_tag(_('Display'), { :id => 'display', :name => 'display' }) %></td>
+  </tr>
+</table>
+<% end %>

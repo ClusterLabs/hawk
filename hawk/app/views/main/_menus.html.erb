@@ -366,6 +366,13 @@ $(function() {
       click: function() {
         simulator.activate();
       }
+    },
+    {
+      label: "<%=h escape_javascript _('History Explorer') %>",
+      icon: "properties.png",
+      click: function(target) {
+        window.location.assign(url_root + "/explorer");
+      }
     }
   ]});
 });

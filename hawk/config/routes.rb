@@ -67,6 +67,10 @@ ActionController::Routing::Routes.draw do |map|
 
   map.wizard '/wizard', :controller => 'wizard', :action => 'run'
 
+  map.with_options :controller => 'explorer' do |explorer|
+    explorer.explorer 'explorer',          :action => 'index'
+  end
+
   # TODO(should): resources & nodes become Rails resources, look at RESTful routing
   # As of 2011-02-21 we now have a split here, resource editor uses the above
   map.with_options :controller => 'main' do |main|
