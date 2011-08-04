@@ -366,7 +366,9 @@ $(function() {
       click: function() {
         simulator.activate();
       }
-    },
+    }
+    <% if has_feature?(:crm_history) && is_god? %>
+    ,
     {
       label: "<%=h escape_javascript _('History Explorer') %>",
       icon: "properties.png",
@@ -374,6 +376,7 @@ $(function() {
         window.location.assign(url_root + "/explorer");
       }
     }
+    <% end %>
   ]});
 });
 </script>
