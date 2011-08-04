@@ -69,6 +69,7 @@ ActionController::Routing::Routes.draw do |map|
 
   map.with_options :controller => 'explorer' do |explorer|
     explorer.explorer 'explorer',          :action => 'index'
+    explorer.pe_get   'explorer/get',      :action => 'get'
   end
 
   # TODO(should): resources & nodes become Rails resources, look at RESTful routing

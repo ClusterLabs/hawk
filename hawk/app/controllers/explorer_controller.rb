@@ -28,8 +28,11 @@
 #
 #======================================================================
 
+# Necessary for Time.parse in Ruby 1.8 (should be unnecessary in 1.9)
+require "time"
+
 class ExplorerController < ApplicationController
-  before_filter :login_required, :ensure_godlike
+  before_filter :login_required, :ensure_godlike, :init_params
 
   layout 'main'
 
@@ -43,8 +46,97 @@ class ExplorerController < ApplicationController
       redirect_to status_path
       return
     end
-    @from_time = params[:from_time] || ""
-    @to_time = params[:to_time] || ""
+
+    if params[:display]
+      # Now we either generate if a report for that time doesn't exist, or display if one does.
+      if File.exists?(@report_path)
+        @peinputs = []
+        stdin, stdout, stderr, thread = Util.run_as("root", "crm", "history")
+        stdin.write("source #{@report_path}\npeinputs list\n")
+        stdin.close
+        peinputs_raw = stdout.read()
+        stdout.close
+        stderr.close
+        if thread.value.exitstatus == 0
+          peinputs_raw.split(/\n/).each do |line|
+            path = line.split(/\s+/)[-1]
+            @peinputs << {
+              :timestamp => File.mtime(path).strftime("%Y-%m-%d %H:%M:%S"),
+              :basename  => File.basename(path, ".bz2"),
+              # Node here is a bit rough (relies firmly on hb_report directory structure)
+              :node      => path.split(File::SEPARATOR)[-3]
+            }
+          end
+          # sort is going to be off for identical mtimes (stripped back to the second),
+          # so need secondary sort by filename
+        else
+          # TODO(must): show error
+        end
+      else
+        # generate
+      end
+    end
+  end
+
+  # Remarkably similar to MainController::sim_get
+  def get
+    unless params[:basename] && params[:node]
+      # strictly, missing params
+      return :not_found
+    end
+    # next two are a bit rough
+    params[:basename].gsub!(/[^\w-]/, "")
+    params[:node].gsub!(/[^\w_-]/, "")
+    tnum = params[:basename].split("-")[-1]
+    case params[:file]
+    when "pe-input"
+      # nasty - reliant on hb_report structure & file extension
+      send_file "/tmp/#{@report_name}/#{params[:node]}/pengine/#{params[:basename]}.bz2", :type => "application/x-bzip"
+    when "info"
+      stdin, stdout, stderr, thread = Util.run_as("root", "crm", "history")
+      stdin.write("source #{@report_path}\ntransition show #{tnum} nograph\n")
+      stdin.close
+      info = stdout.read()
+      stdout.close
+      info += stderr.read()
+      stderr.close
+      if thread.value.exitstatus == 0
+        send_data info, :type => "text/plain", :disposition => "inline"
+      else
+        # TODO(must): handle error
+        head :not_found
+      end
+    when "graph"
+      # apparently we can't rely on the dot file existing in the hb_report, so we
+      # just use ptest to generate it, although, again, this is nasty as above as
+      # it's reliant on hb_report structure.  Also, it'll fail if hacluster doesn't
+      # have read access to the pengine files (although, this should be OK, because
+      # they're created by hacluster by default).
+      require "tempfile"
+      tmpfile = Tempfile.new("hawk_dot")
+      tmpfile.close
+      Util.safe_x("/usr/sbin/ptest",
+        "-x", "/tmp/#{@report_name}/#{params[:node]}/pengine/#{params[:basename]}.bz2",
+        params[:format] == "xml" ? "-G" : "-D", tmpfile.path)
+      # TODO(must): handle failure of above
+
+      if params[:format] == "xml"
+        # Can't use send_file here, server whines about file not existing(?!?)
+        send_data File.new(tmpfile.path).read, :type => "text/xml", :disposition => "inline"
+      else
+        stdin, stdout, stderr, thread = Util.popen3("/usr/bin/dot", "-Tpng", tmpfile.path)
+        stdin.close
+        png = stdout.read
+        stdout.close
+        stderr.close
+        # TODO(must): check thread.value.exitstatus
+        send_data png, :type => "image/png", :disposition => "inline"
+      end
+
+      tmpfile.unlink
+    else
+      head :not_found
+    end
   end
 
   private
@@ -54,6 +146,18 @@ class ExplorerController < ApplicationController
     unless is_god?
       render :permission_denied
     end
+  end
+
+  def init_params
+    # start 24 hours ago by default
+    @from_time = params[:from_time] ? Time.parse(params[:from_time]) : Time.now - 86400
+    @to_time = params[:to_time] ? Time.parse(params[:to_time]) : Time.now
+    # and now back to a string
+    @from_time = @from_time.strftime("%Y-%m-%d %H:%M")
+    @to_time = @to_time.strftime("%Y-%m-%d %H:%M")
+
+    @report_name = "hb_report-hawk-#{@from_time.sub(' ','_')}-#{@to_time.sub(' ','_')}"
+    @report_path = "/tmp/#{@report_name}.tar.bz2"
   end
 
 end
