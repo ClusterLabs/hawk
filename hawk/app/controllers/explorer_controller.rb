@@ -30,6 +30,7 @@
 
 # Necessary for Time.parse in Ruby 1.8 (should be unnecessary in 1.9)
 require "time"
+require "natcmp"
 
 class ExplorerController < ApplicationController
   before_filter :login_required, :ensure_godlike, :init_params
