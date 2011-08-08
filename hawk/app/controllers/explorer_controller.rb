@@ -40,6 +40,12 @@ class ExplorerController < ApplicationController
   def initialize
     super
     @title = _('History Explorer')
+
+    @pidfile = "#{RAILS_ROOT}/tmp/pids/history_report.pid"
+    @outfile = "#{RAILS_ROOT}/tmp/pids/history_report.stdout"
+    @errfile = "#{RAILS_ROOT}/tmp/pids/history_report.stderr"
+    @exitfile = "#{RAILS_ROOT}/tmp/pids/history_report.exit"
+    @timefile = "#{RAILS_ROOT}/tmp/pids/history_report.time"
   end
 
   def index
@@ -48,7 +54,7 @@ class ExplorerController < ApplicationController
       return
     end
 
-    if params[:display]
+    if params[:display] && !File.exists?(@pidfile)
       # Now we either generate if a report for that time doesn't exist, or display if one does.
       if File.exists?(@report_path)
         @peinputs = []
@@ -74,7 +80,7 @@ class ExplorerController < ApplicationController
           # TODO(must): show error
         end
       else
-        # generate
+        generate
       end
     end
   end
@@ -150,15 +156,70 @@ class ExplorerController < ApplicationController
   end
 
   def init_params
-    # start 24 hours ago by default
-    @from_time = params[:from_time] ? Time.parse(params[:from_time]) : Time.now - 86400
-    @to_time = params[:to_time] ? Time.parse(params[:to_time]) : Time.now
-    # and now back to a string
-    @from_time = @from_time.strftime("%Y-%m-%d %H:%M")
-    @to_time = @to_time.strftime("%Y-%m-%d %H:%M")
+    if File.exists?(@pidfile) && File.exists?(@timefile)
+      # If we're already running, use the last run time & date
+      @from_time, @to_time = File.new(@timefile).read.split(",")
+    else
+      # Start 24 hours ago by default
+      @from_time = params[:from_time] ? Time.parse(params[:from_time]) : Time.now - 86400
+      @to_time = params[:to_time] ? Time.parse(params[:to_time]) : Time.now
+      
+      # Ensure from_time is earlier than to_time.  Should probably make sure they're
+      # not idendical (kind of pointless doing a zero minute hb_report...)
+      @from_time, @to_time = @to_time, @from_time if @from_time > @to_time
+      
+      # ...and now back to a string
+      @from_time = @from_time.strftime("%Y-%m-%d %H:%M")
+      @to_time = @to_time.strftime("%Y-%m-%d %H:%M")
+    end
 
     @report_name = "hb_report-hawk-#{@from_time.sub(' ','_')}-#{@to_time.sub(' ','_')}"
     @report_path = "/tmp/#{@report_name}.tar.bz2"
+  end
+
+  # Note: This assumes pidfile doesn't exist (will always blow away what's there),
+  # so there's a possibility of a race (or lost hb_report status) if two users kick
+  # off generation at almost exactly the same time.
+  # THIS IS (ALMOST) A FLAT OUT COPY OF HbReportsController::generate...
+  def generate
+    [@outfile, @errfile, @exitfile].each do |fn|
+      File.unlink(fn) if File.exists?(fn)
+    end
+
+    pid = fork {
+      f = File.new(@pidfile, "w")
+      f.write(Process.pid)
+      f.close
+
+      f = File.new(@timefile, "w")
+      f.write("#{@from_time},#{@to_time}")
+      f.close
+
+      args = ["-f", @from_time]
+      args.push "-t", @to_time
+      # TODO(must): consolidate with paths above
+      args.push "/tmp/#{@report_name}"
+      stdin, stdout, stderr, thread = Util.run_as("root", "hb_report", *args)
+      stdin.close
+      f = File.new(@outfile, "w")
+      f.write(stdout.read())
+      f.close
+      stdout.close
+      f = File.new(@errfile, "w")
+      f.write(stderr.read())
+      f.close
+      stderr.close
+
+      # Record exit status
+      f = File.new(@exitfile, "w")
+      f.write(thread.value.exitstatus)
+      f.close
+      # TODO(must): somehow record a failed run -- "/tmp/#{@report_name}.err" ?
+
+      # Delete pidfile
+      File.unlink(@pidfile)
+    }
+    Process.detach(pid)
   end
 
 end

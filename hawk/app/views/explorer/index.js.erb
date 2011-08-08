@@ -1,0 +1,20 @@
+<% if File.exists?(@pidfile) %>
+$("#filter-form").hide();
+$("#filter-wait").show();
+$("#filter-progress").html(escape_html("<%= escape_javascript(in_progress_msg) %>"));
+setTimeout(function() {
+  // Should this be a GET or POST?
+  $.get("<%= explorer_path %>", {
+    "from_time": "<%= escape_javascript(@from_time) %>",
+    "to_time": "<%= escape_javascript(@to_time) %>",
+    "display": true }, null, "script");
+}, 10000);  // Somewhat arbitrary, but this is generally long-running
+<% else %>
+$("#filter-wait").hide();
+$("#filter-form").show();
+<% if @peinputs %>
+$("#from_time").val("<%= escape_javascript(@from_time) %>");
+$("#to_time").val("<%= escape_javascript(@to_time) %>");
+$("#pe-list").html("<%= escape_javascript(render(:partial => "pe_list")) %>");
+<% end %>
+<% end %>
