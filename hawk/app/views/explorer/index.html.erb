@@ -41,7 +41,7 @@ $(function() {
   </tr>
 </table>
 <div id="filter-wait" style="<%= File.exists?(@pidfile) ? "" : "display: none;" %>">
-<table style="width: 100%;">
+<table>
   <tr style="vertical-align: middle;">
     <td id="filter-progress"><%=h in_progress_msg %></td>
     <td><%= image_tag 'spinner-16x16-neutral.gif', :alt => '' %></td>
