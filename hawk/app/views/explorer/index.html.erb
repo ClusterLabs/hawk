@@ -26,7 +26,23 @@ $(function() {
     $("#pe-list").children().remove();
   });
   $("#filter").submitWithAjax();
+  inline_detail_links();  // just in case
 });
+function inline_detail_links() {
+  $(".pe-detail").live("click", function(event) {
+    event.preventDefault(); // may not be necessary
+    event.stopPropagation();
+    $("#pe-detail-name").text($(this).parent().prev().prev().text());
+    $("#pe-detail-spinner").show();
+    $("#pe-detail-log").hide();
+    $("#pe-detail").show();
+    $.get($(this).attr("href"), "", function(data) {
+      $("#pe-detail-spinner").hide();
+      $("#pe-detail-log").html("<pre>" + escape_html(data) + "</pre>").show();
+    });
+    return false;
+  });
+}
 </script>
 <div style="float: left;">
 <% form_tag(explorer_path, :method => :get, :id => "filter") do %>
