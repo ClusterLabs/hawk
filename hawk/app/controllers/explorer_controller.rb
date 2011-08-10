@@ -63,6 +63,7 @@ class ExplorerController < ApplicationController
         stdin.close
         peinputs_raw = stdout.read()
         stdout.close
+        err = stderr.read()
         stderr.close
         if thread.value.exitstatus == 0
           peinputs_raw.split(/\n/).each do |path|
@@ -75,7 +76,9 @@ class ExplorerController < ApplicationController
           # sort is going to be off for identical mtimes (stripped back to the second),
           # so need secondary sort by filename
         else
-          # TODO(must): show error
+          # exitstatus will be 1 if (somehow) there's no peinputs, but this shouldn't
+          # be reported as an error.
+          @error = err unless err.empty?
         end
       else
         generate
@@ -88,8 +91,9 @@ class ExplorerController < ApplicationController
   # here will need to change too.
   def get
     unless params[:basename] && params[:node]
-      # strictly, missing params
-      return :not_found
+      render :status => 400, :content_type => "text/plain",
+        :inline => _('Required parameters "basename" and "node" not specified')
+      return
     end
     # next two are a bit rough
     params[:basename].gsub!(/[^\w-]/, "")
@@ -110,8 +114,7 @@ class ExplorerController < ApplicationController
       if thread.value.exitstatus == 0
         send_data info, :type => "text/plain", :disposition => "inline"
       else
-        # TODO(must): handle error
-        head :not_found
+        render :status => 500, :content_type => "text/plain", :inline => _("Error:") + "\n#{info}"
       end
     when "graph"
       # Apparently we can't rely on the dot file existing in the hb_report, so we
@@ -133,9 +136,13 @@ class ExplorerController < ApplicationController
         stdin.close
         png = stdout.read
         stdout.close
+        err = stderr.read
         stderr.close
-        # TODO(must): check thread.value.exitstatus
-        send_data png, :type => "image/png", :disposition => "inline"
+        if thread.value.exitstatus == 0
+          send_data png, :type => "image/png", :disposition => "inline"
+        else
+          render :status => 500, :content_type => "text/plain", :inline => _("Error:") + "\n#{err}"
+        end
       end
 
       tmpfile.unlink

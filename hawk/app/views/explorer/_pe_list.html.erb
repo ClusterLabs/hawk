@@ -1,6 +1,9 @@
+<% if @error %>
+<div class="ui-state-error ui-corner-all" style="padding: 0.5em; margin-bottom: 0.5em;"><%=h @error %></div>
+<% end %>
 <% if @peinputs %>
   <% if @peinputs.empty? %>
-<%=h _("No transitions found for the specified time period.") %>
+<span><%=h _("No transitions found for the specified time period.") %></span>
   <% else %>
 <table id="peinputs">
   <tr>
