@@ -427,7 +427,10 @@ class Cib < CibObject
       @resources_by_id[k].delete :is_ms
       # Need to inject a default instance if we don't have any state
       # (e.g. during cluster bringup) else the panel renderer chokes.
-      @resources_by_id[k][:instances][:default] = {} if @resources_by_id[k][:instances] && @resources_by_id[k][:instances].empty?
+      if @resources_by_id[k][:instances] && @resources_by_id[k][:instances].empty?
+        # Always include empty failed_ops array (JS status updater relies on it)
+        @resources_by_id[k][:instances][:default] = { :failed_ops => [] }
+      end
     end
 
     # TODO(should): Can we just use cib attribute dc-uuid?  Or is that not viable
