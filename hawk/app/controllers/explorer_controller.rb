@@ -59,18 +59,16 @@ class ExplorerController < ApplicationController
       if File.exists?(@report_path)
         @peinputs = []
         stdin, stdout, stderr, thread = Util.run_as("root", "crm", "history")
-        stdin.write("source #{@report_path}\npeinputs list\n")
+        stdin.write("source #{@report_path}\npeinputs\n")
         stdin.close
         peinputs_raw = stdout.read()
         stdout.close
         stderr.close
         if thread.value.exitstatus == 0
-          peinputs_raw.split(/\n/).each do |line|
-            path = line.split(/\s+/)[-1]
+          peinputs_raw.split(/\n/).each do |path|
             @peinputs << {
               :timestamp => File.mtime(path).strftime("%Y-%m-%d %H:%M:%S"),
               :basename  => File.basename(path, ".bz2"),
-              # Node here is a bit rough (relies firmly on hb_report directory structure)
               :node      => path.split(File::SEPARATOR)[-3]
             }
           end
@@ -86,6 +84,8 @@ class ExplorerController < ApplicationController
   end
 
   # Remarkably similar to MainController::sim_get
+  # Note reliance on hb_report directory strucutre - if that ever changes, code
+  # here will need to change too.
   def get
     unless params[:basename] && params[:node]
       # strictly, missing params
@@ -94,14 +94,14 @@ class ExplorerController < ApplicationController
     # next two are a bit rough
     params[:basename].gsub!(/[^\w-]/, "")
     params[:node].gsub!(/[^\w_-]/, "")
-    tnum = params[:basename].split("-")[-1]
+    tname = "#{params[:node]}/pengine/#{params[:basename]}.bz2"
+    tpath = "/tmp/#{@report_name}/#{tname}"
     case params[:file]
     when "pe-input"
-      # nasty - reliant on hb_report structure & file extension
-      send_file "/tmp/#{@report_name}/#{params[:node]}/pengine/#{params[:basename]}.bz2", :type => "application/x-bzip"
+      send_file tpath, :type => "application/x-bzip"
     when "info"
       stdin, stdout, stderr, thread = Util.run_as("root", "crm", "history")
-      stdin.write("source #{@report_path}\ntransition show #{tnum} nograph\n")
+      stdin.write("source #{@report_path}\ntransition #{tname} nograph\n")
       stdin.close
       info = stdout.read()
       stdout.close
@@ -114,16 +114,14 @@ class ExplorerController < ApplicationController
         head :not_found
       end
     when "graph"
-      # apparently we can't rely on the dot file existing in the hb_report, so we
-      # just use ptest to generate it, although, again, this is nasty as above as
-      # it's reliant on hb_report structure.  Also, it'll fail if hacluster doesn't
+      # Apparently we can't rely on the dot file existing in the hb_report, so we
+      # just use ptest to generate it.  Note that this will fail if hacluster doesn't
       # have read access to the pengine files (although, this should be OK, because
       # they're created by hacluster by default).
       require "tempfile"
       tmpfile = Tempfile.new("hawk_dot")
       tmpfile.close
-      Util.safe_x("/usr/sbin/ptest",
-        "-x", "/tmp/#{@report_name}/#{params[:node]}/pengine/#{params[:basename]}.bz2",
+      Util.safe_x("/usr/sbin/ptest", "-x", tpath,
         params[:format] == "xml" ? "-G" : "-D", tmpfile.path)
       # TODO(must): handle failure of above
 
@@ -197,6 +195,7 @@ class ExplorerController < ApplicationController
 
       args = ["-f", @from_time]
       args.push "-t", @to_time
+      args.push "-Z"  # Remove destination directories if they exist
       # TODO(must): consolidate with paths above
       args.push "/tmp/#{@report_name}"
       stdin, stdout, stderr, thread = Util.run_as("root", "hb_report", *args)
