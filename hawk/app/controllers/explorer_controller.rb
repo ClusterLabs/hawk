@@ -111,11 +111,14 @@ class ExplorerController < ApplicationController
       stdout.close
       info += stderr.read()
       stderr.close
-      if thread.value.exitstatus == 0
-        send_data info, :type => "text/plain", :disposition => "inline"
-      else
-        render :status => 500, :content_type => "text/plain", :inline => _("Error:") + "\n#{info}"
-      end
+
+      info.strip!
+      # TODO(should): option to increase verbosity level
+      info = _("No details available") if info.empty?
+
+      info.insert(0, _("Error:") + "\n") unless thread.value.exitstatus == 0
+
+      send_data info, :type => "text/plain", :disposition => "inline"
     when "graph"
       # Apparently we can't rely on the dot file existing in the hb_report, so we
       # just use ptest to generate it.  Note that this will fail if hacluster doesn't

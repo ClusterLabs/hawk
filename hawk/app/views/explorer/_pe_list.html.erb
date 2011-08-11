@@ -12,18 +12,7 @@
     <th><%=h _('PE Input') %></th>
     <th><%=h _('Node') %></th>
   </tr>
-    <% @peinputs.sort{|a,b|
-        if a[:timestamp] != b[:timestamp]
-          # reverse chronological if timestamps not equal
-          b[:timestamp] <=> a[:timestamp]
-        elsif a[:node] != b[:node]
-          # ascending node uname if different nodes
-          a[:node].natcmp(b[:node], true)
-        else
-          # descending name if timestamp and node are the same
-          b[:basename].natcmp(a[:basename], true)
-        end
-       }.each do |peinput| %>
+    <% @peinputs.reverse.each do |peinput| %>
   <tr>
     <td><%=h peinput[:timestamp] %></td>
     <td><%= link_to peinput[:basename], pe_get_path(
