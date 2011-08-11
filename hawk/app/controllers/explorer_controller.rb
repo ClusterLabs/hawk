@@ -67,6 +67,7 @@ class ExplorerController < ApplicationController
         stderr.close
         if thread.value.exitstatus == 0
           peinputs_raw.split(/\n/).each do |path|
+            next unless File.exists?(path)
             @peinputs << {
               :timestamp => File.mtime(path).strftime("%Y-%m-%d %H:%M:%S"),
               :basename  => File.basename(path, ".bz2"),
