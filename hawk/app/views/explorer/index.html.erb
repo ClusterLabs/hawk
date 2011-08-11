@@ -25,6 +25,13 @@ $(function() {
   $("#filter").submit(function() {
     $("#pe-list").children().remove();
   });
+  $(".cache a").click(function(event) {
+    // Clicking any cache link puts chosen times into form, hides all
+    // cached lines and updates the display.  Not quite optimal, but workable.
+    $(".cache").hide();
+    $("#from_time").val($(this).parent().prev().prev().prev().text());
+    $("#to_time").val($(this).parent().prev().text());
+  });
   $("#filter").submitWithAjax();
   inline_detail_links();  // just in case
 });
@@ -32,7 +39,9 @@ function inline_detail_links() {
   $(".pe-detail").live("click", function(event) {
     event.preventDefault(); // may not be necessary
     event.stopPropagation();
-    $("#pe-detail-name").text($(this).parent().prev().prev().text());
+    var peinput = $(this).parent().prev().prev().text();
+    var node = $(this).parent().prev().text();
+    $("#pe-detail-name").text(peinput + " (" + node + ")");
     $("#pe-detail-spinner").show();
     $("#pe-detail-log").hide();
     // Fixed position breaks overflow scrollbar (*sigh*)
@@ -52,11 +61,24 @@ function inline_detail_links() {
 <% form_tag(explorer_path, :method => :get, :id => "filter") do %>
 <%= hidden_field_tag "display", "true" %>
 <table id="filter-form" style="<%= File.exists?(@pidfile) ? "display: none;" : "" %>">
+<% unless params[:display] %>
+<% @cache.each do |c| %>
+  <tr class="cache">
+    <td><%=h _("Start Time:") %></td>
+    <td><%=h c[:from_time] %></td>
+    <td><%=h _("End Time:") %></td>
+    <td><%=h c[:to_time] %></td>
+    <td><%= link_to ("Display"), explorer_path(
+      :from_time => c[:from_time], :to_time => c[:to_time],
+      :display => true) %></td>
+  </tr>
+<% end %>
+<% end %>
   <tr>
     <th><label for="from_time"><%=h _("Start Time:") %></label></th>
-    <td><%= text_field_tag "from_time", @from_time, :size => 14 %></td>
+    <td><%= text_field_tag "from_time", @cache.any? && !params[:display] ? "" : @from_time, :size => 14 %></td>
     <th><label for="to_time"><%=h _("End Time:") %></label></th>
-    <td><%= text_field_tag "to_time", @to_time, :size => 14 %></td>
+    <td><%= text_field_tag "to_time", @cache.any? && !params[:display] ? "" : @to_time, :size => 14 %></td>
     <td><%= submit_tag(_('Display')) %></td>
   </tr>
 </table>

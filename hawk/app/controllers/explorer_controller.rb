@@ -54,6 +54,18 @@ class ExplorerController < ApplicationController
       return
     end
 
+    @cache = []
+
+    ts_re = "[0-9]{4}-[0-9]{2}-[0-9]{2}_[0-9]{2}:[0-9]{2}"
+    Dir.entries("/tmp").sort.reverse.each do |f|
+      m = f.match(/^hb_report-hawk-(#{ts_re})-(#{ts_re}).tar.bz2$/)
+      next unless m
+      @cache << {
+        :from_time => m[1].sub("_", " "),
+        :to_time =>   m[2].sub("_", " "),
+      }
+    end
+
     if params[:display] && !File.exists?(@pidfile)
       # Now we either generate if a report for that time doesn't exist, or display if one does.
       if File.exists?(@report_path)
