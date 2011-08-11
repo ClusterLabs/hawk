@@ -1,11 +1,38 @@
 Random Notes
 ============
 
-* New MVC (e.g.: for Constraints):
+== Components / Commit Messages ==
+
+As seen in commit messages, there's four broad classifications:
+
+* GUI: generally anything you can actually see in the web browser.
+* Build: build infrastructure etc.
+* Doc: documentation, generally internal/developer (so far).
+* Misc: anything else.  This includes changes to models where no
+  GUI visible changes are made.
+
+Within that, we generally narrow it down a bit, e.g.:
+
+* GUI: explorer: (not "history", despite a handful of commit messages
+  to the contrary)
+* GUI: simulator: 
+* GUI: wizard:
+* GUI: summary_view:
+* GUI: ui.location:
+* etc.
+
+This categorization is somewhat arbitrary, but tends to be either
+functional area for larger changes or component/file name for
+smaller changes.
+
+== Hacking ==
+
+=== New MVC (e.g.: for Constraints) ===
 
 ----------------------------------------
 # script/generate controller Constraints
 # vim app/models/constraint.rb
 # vim test/unit/constraint_test.rb
 ----------------------------------------
+
 
