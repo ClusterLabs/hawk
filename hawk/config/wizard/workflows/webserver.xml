@@ -33,7 +33,10 @@ The IP address configured here will start before the Apache instance.
 <template name="apache" required="1">
 <stepdesc lang="en">
 The Apache configuration file specified here must be available via the
-same path on all cluster nodes.
+same path on all cluster nodes, and Apache must be configured with
+mod_status enabled.  If in doubt, try running Apache manually via
+its init script first, and ensure http://localhost:80/server-status is
+accessible.
 </stepdesc>
 </template>
 </templates>
