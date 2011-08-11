@@ -35,10 +35,11 @@ function inline_detail_links() {
     $("#pe-detail-name").text($(this).parent().prev().prev().text());
     $("#pe-detail-spinner").show();
     $("#pe-detail-log").hide();
-    $("#pe-detail").css({
+    // Fixed position breaks overflow scrollbar (*sigh*)
+    $("#pe-detail")./*css({
       left: $("#peinputs").parent().position().left + $("#peinputs").parent().outerWidth(),
       position: "fixed"
-    }).show();
+    }).*/show();
     $.get($(this).attr("href"), "", function(data) {
       $("#pe-detail-spinner").hide();
       $("#pe-detail-log").html("<pre>" + escape_html(data) + "</pre>").show();
