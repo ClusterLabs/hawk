@@ -435,3 +435,8 @@ a.disabled {
   text-decoration: none;
   color: #ccc !important;
 }
+
+/* Calendar is too chunky without this */
+#ui-datepicker-div {
+  font-size: 80%;
+}
