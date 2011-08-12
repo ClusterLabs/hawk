@@ -99,6 +99,10 @@ class Cib < CibObject
   def fix_clone_instances(resources)
     for res in resources
       if res[:clone_max]
+        # There'll be a stale default instance lying around if the resource was
+        # started before it was cloned (bnc#711180), so ditch it.  This is all
+        # getting a bit convoluted - need to rethink...
+        res[:instances].delete(:default)
         instance = 0
         while res[:instances].length < res[:clone_max]
           while res[:instances].has_key?(instance.to_s)
