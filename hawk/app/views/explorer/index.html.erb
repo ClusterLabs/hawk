@@ -1,4 +1,6 @@
 <% content_for :head do %>
+<%= stylesheet_link_tag 'jquery-ui-timepicker-addon.css' %>
+<%= javascript_include_tag 'jquery-ui-timepicker-addon.js' %>
 <style type="text/css">
 /* TODO(should): move to stylesheet */
 #peinputs th {
@@ -34,6 +36,18 @@ $(function() {
   });
   $("#filter").submitWithAjax();
   inline_detail_links();  // just in case
+  $("#from_time").datetimepicker({
+    dateFormat: "yy-mm-dd",
+    showOn: "button",
+    buttonImage: url_root + "/images/icons/calendar.png",
+    buttonImageOnly: true
+  });
+  $("#to_time").datetimepicker({
+    dateFormat: "yy-mm-dd",
+    showOn: "button",
+    buttonImage: url_root + "/images/icons/calendar.png",
+    buttonImageOnly: true
+  });
 });
 function inline_detail_links() {
   $(".pe-detail").live("click", function(event) {
