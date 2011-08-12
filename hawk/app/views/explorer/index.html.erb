@@ -25,6 +25,7 @@ $(function() {
   }, 10000);  // Somewhat arbitrary, but this is generally long-running
 <% end %>
   $("#filter").submit(function() {
+    $(".cache").hide();
     $("#pe-list").children().remove();
   });
   $(".cache a").click(function(event) {
