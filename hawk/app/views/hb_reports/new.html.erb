@@ -17,6 +17,18 @@ end
 <script type="text/javascript">
 $(function() {
   $($("#generate")[0].form).submitWithAjax();
+  $("#from_time").datetimepicker({
+    dateFormat: "yy-mm-dd",
+    showOn: "button",
+    buttonImage: url_root + "/images/icons/calendar.png",
+    buttonImageOnly: true
+  });
+  $("#to_time").datetimepicker({
+    dateFormat: "yy-mm-dd",
+    showOn: "button",
+    buttonImage: url_root + "/images/icons/calendar.png",
+    buttonImageOnly: true
+  });
   <% if File.exists?(@pidfile) %>
   if ($("#dialog").dialog("isOpen")) {
     $("#dialog").data("req", $.get("<%= hb_reports_status_path %>", "", null, "script"));
@@ -35,12 +47,12 @@ $(function() {
 <table style="width: 100%;">
   <tr>
     <th><label for="from_time"><%=h _("Start Time:") %></label></th>
-    <td><%= text_field_tag "from_time", from_time, :size => 5 %></td>
-    <th><label for="to_time"><%=h _("End Time:") %></label></th>
-    <td><%= text_field_tag "to_time", to_time, :size => 5 %></td>
+    <td><%= text_field_tag "from_time", from_time, :size => 14 %></td>
+    <td style="text-align: right;"><%= submit_tag(_("Generate"), { :id => "generate" }) %></td>
   </tr>
   <tr>
-    <td colspan="4" style="text-align: right;"><%= submit_tag(_("Generate"), { :id => "generate" }) %></td>
+    <th><label for="to_time"><%=h _("End Time:") %></label></th>
+    <td><%= text_field_tag "to_time", to_time, :size => 14 %></td>
   </tr>
 </table>
 <% end %>
