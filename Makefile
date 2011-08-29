@@ -77,11 +77,13 @@ tools/hawk_chkpwd: tools/hawk_chkpwd.c tools/common.h
 
 tools/hawk_monitor: tools/hawk_monitor.c
 	gcc $(CFLAGS) \
-		$(shell pkg-config --cflags glib-2.0) $(shell pkg-config --libs glib-2.0) \
-		$(shell pkg-config --cflags libxml-2.0) $(shell pkg-config --libs libxml-2.0) \
+		$(shell pkg-config --cflags glib-2.0) \
+		$(shell pkg-config --cflags libxml-2.0) \
 		-I/usr/include/pacemaker -I/usr/include/heartbeat \
 		-o $@ $< \
-		-lcib -lcrmcommon -Wall
+		-lcib -lcrmcommon -Wall \
+		$(shell pkg-config --libs glib-2.0) \
+		$(shell pkg-config --libs libxml-2.0)
 
 # TODO(must): This is inching towards becoming annoying: want better build infrastructure/deps
 tools/hawk_invoke: tools/hawk_invoke.c tools/common.h
