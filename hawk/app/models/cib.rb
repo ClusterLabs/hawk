@@ -410,8 +410,25 @@ class Cib < CibObject
         if @resources_by_id[id]
           # m/s slave state hack (*sigh*)
           state = :slave if @resources_by_id[id][:is_ms] && state == :started
-          # instance will be nil here for regular primitives
-          instance = :default unless instance
+          if instance
+            # For clones, it's possible we need to rename an instance if
+            # there's already a running instance with this ID.  An instance
+            # is not running if any of the following are true:
+            # - @resources_by_id[id][:instances][instance] doesn't exist
+            # - it exists, but the only state keys are :stopped or :unknown
+            alt_i = instance
+            while @resources_by_id[id][:instances][alt_i] &&
+                  @resources_by_id[id][:instances][alt_i].count{|k,v| k != :stopped && k != :unknown} > 0
+              alt_i = (alt_i.to_i + 1).to_s
+            end
+            if alt_i != instance
+              RAILS_DEFAULT_LOGGER.debug "Internally renamed #{id}:#{instance} to #{id}:#{alt_i} on #{node[:uname]}"
+              instance = alt_i
+            end
+          else
+            # instance will be nil here for regular primitives
+            instance = :default
+          end
           @resources_by_id[id][:instances][instance] = {} unless @resources_by_id[id][:instances][instance]
           @resources_by_id[id][:instances][instance][state] = [] unless @resources_by_id[id][:instances][instance][state]
           @resources_by_id[id][:instances][instance][state] << node[:uname]
