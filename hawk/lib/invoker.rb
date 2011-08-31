@@ -48,32 +48,15 @@ class Invoker
   include Util
 
   # Run "crm [...]"
-  # Returns 'true' on successful execution, or STDERR output on
-  # failure.  Note that this is horribly rough - "crm configure delete"
-  # returns 0 (success) if a resource can't be deleted because it's
-  # running, so we assume failure if the command output includes
-  # "WARNING" or "ERROR".  *sigh*
-  # Actually, the above should be fixed as of 2011-03-17 (bnc#680401)
-  # TODO(should): Can this be conveniently consolidated with the below?
+  # Returns 'true' on successful execution, or STDERR output on failure.
   def crm(*cmd)
-    stdin, stdout, stderr, thread = run_as(current_user, 'crm', *cmd)
-    stdin.close
-    stdout.close
-    result = stderr.read()
-    stderr.close
-    thread.value.exitstatus == 0 && !(result.index("ERROR") || result.index("WARNING")) ? true : result
+    invoke_crm(nil, *cmd)
   end
 
   # Run "crm configure", passing input via STDIN.
   # Returns 'true' on successful execution, or STDERR output on failure.
-  def crm_configure(cmd)
-    stdin, stdout, stderr, thread = run_as(current_user, 'crm', 'configure')
-    stdin.write(cmd)
-    stdin.close
-    stdout.close
-    result = stderr.read()
-    stderr.close
-    thread.value.exitstatus == 0 ? true : result
+  def crm_configure(input)
+    invoke_crm(input, "configure")
   end
 
   # Run "crm -F configure load update"
@@ -88,14 +71,9 @@ class Invoker
     # good for testing when running as root), or some other alternative
     # with piping data to crm?
     File.chmod(0666, f.path)
-    # TODO(must): crm lies about failed update when run with R/O access!
-    stdin, stdout, stderr, thread = run_as(current_user, 'crm', '-F', 'configure', 'load', 'update', f.path)
-    stdin.close
-    stdout.close
-    result = stderr.read()
-    stderr.close
+    result = crm('-F', 'configure', 'load', 'update', f.path)
     f.unlink
-    thread.value.exitstatus == 0 ? true : result
+    result
   end
 
   # Invoke cibadmin with command line arguments.  Returns stdout as string,
@@ -140,6 +118,26 @@ class Invoker
       raise RuntimeError, _('Error invoking cibadmin --replace: %{msg}') % {:msg => err}
     end
     # Never reached
+  end
+
+  private
+
+  # Returns 'true' on successful execution, or STDERR output on
+  # failure.  Note that this is horribly rough - "crm configure delete"
+  # returns 0 (success) if a resource can't be deleted because it's
+  # running, so we assume failure if the command output includes
+  # "WARNING" or "ERROR".  *sigh*
+  # Actually, the above should be fixed as of 2011-03-17 (bnc#680401)
+  # ...but as of 2011-08-31, it's not fixed at least in the case of
+  # "Call cib_replace failed (-54): Permission Denied"...
+  def invoke_crm(input, *cmd)
+    stdin, stdout, stderr, thread = run_as(current_user, 'crm', *cmd)
+    stdin.write(input) if input
+    stdin.close
+    stdout.close
+    result = stderr.read()
+    stderr.close
+    thread.value.exitstatus == 0 && !(result.index("ERROR") || result.index("WARNING")) ? true : result
   end
 end
 
