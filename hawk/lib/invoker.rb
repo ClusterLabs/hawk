@@ -47,6 +47,19 @@ class Invoker
 
   include Util
 
+  # Invoke some command, returning true or [exitstatus, message]
+  # as appropriate (refactored somewhat from MainController::invoke,
+  # and suspiciously similar to invoke_crm - obviously this can be
+  # cleaned up further)
+  def run(*cmd)
+    stdin, stdout, stderr, thread = Util.run_as(current_user, *cmd)
+    stdin.close
+    stdout.close
+    result = stderr.read()
+    stderr.close
+    fudge_error(thread.value.exitstatus, result)
+  end
+
   # Run "crm [...]"
   # Returns 'true' on successful execution, or STDERR output on failure.
   def crm(*cmd)
@@ -122,14 +135,7 @@ class Invoker
 
   private
 
-  # Returns 'true' on successful execution, or STDERR output on
-  # failure.  Note that this is horribly rough - "crm configure delete"
-  # returns 0 (success) if a resource can't be deleted because it's
-  # running, so we assume failure if the command output includes
-  # "WARNING" or "ERROR".  *sigh*
-  # Actually, the above should be fixed as of 2011-03-17 (bnc#680401)
-  # ...but as of 2011-08-31, it's not fixed at least in the case of
-  # "Call cib_replace failed (-54): Permission Denied"...
+  # Returns 'true' on successful execution, or STDERR output on failure.
   def invoke_crm(input, *cmd)
     stdin, stdout, stderr, thread = run_as(current_user, 'crm', *cmd)
     stdin.write(input) if input
@@ -137,7 +143,26 @@ class Invoker
     stdout.close
     result = stderr.read()
     stderr.close
-    thread.value.exitstatus == 0 && !(result.index("ERROR") || result.index("WARNING")) ? true : result
+    result = fudge_error(thread.value.exitstatus, result)
+    result == true ? true : result[1]
+  end
+
+  # Note that this is horribly rough - "crm configure delete"
+  # returns 0 (success) if a resource can't be deleted because it's
+  # running, so we assume failure if the command output includes
+  # "WARNING" or "ERROR".  *sigh*
+  # Actually, the above should be fixed as of 2011-03-17 (bnc#680401)
+  # ...but as of 2011-08-31, it's not fixed at least in the case of
+  # "Call cib_replace failed (-54): Permission Denied"...
+  def fudge_error(exitstatus, stderr)
+    if exitstatus == 0 && !(stderr.index("ERROR") || stderr.index("WARNING"))
+      true
+    else
+      if stderr.match(/-54.*permission denied/i)
+        stderr = _('Permission denied for user %{user}') % {:user => current_user}
+      end
+      [exitstatus, stderr]
+    end
   end
 end
 
