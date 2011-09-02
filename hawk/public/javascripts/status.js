@@ -97,7 +97,9 @@ function flag_error(id, failed_ops) {
     $(jq(id+"::error")).addClass("ui-icon ui-icon-alert");
     var errs = [];
     $.each(failed_ops, function() {
-      errs.push(escape_html(GETTEXT.err_failed_op(this.op, this.node, this.rc_code)));
+      // TODO(should): Localize "ignored"
+      var err = GETTEXT.err_failed_op(this.op, this.node, this.rc_code) + (this.ignored ? " (ignored)" : "");
+      errs.push(escape_html(err));
     });
     $(jq(id+"::error")).attr("title", errs.join(", "));
   } else {

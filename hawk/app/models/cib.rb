@@ -390,6 +390,7 @@ class Cib < CibObject
               { :node => node[:uname], :resource => id, :call_id => op.attributes['call-id'], :op => operation, :rc_code => rc_code }
 
             if ignore_failure
+              failed_ops[-1][:ignored] = true
               rc_code = expected
             end
           end
