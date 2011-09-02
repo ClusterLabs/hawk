@@ -427,12 +427,12 @@ class Cib < CibObject
           if instance
             # For clones, it's possible we need to rename an instance if
             # there's already a running instance with this ID.  An instance
-            # is not running if any of the following are true:
-            # - @resources_by_id[id][:instances][instance] doesn't exist
-            # - it exists, but the only state keys are :stopped or :unknown
+            # is running iff:
+            # - @resources_by_id[id][:instances][instance] exists, and,
+            # - there are state keys other than :stopped, :unknown or :failed_ops present
             alt_i = instance
             while @resources_by_id[id][:instances][alt_i] &&
-                  @resources_by_id[id][:instances][alt_i].count{|k,v| k != :stopped && k != :unknown} > 0
+                  @resources_by_id[id][:instances][alt_i].count{|k,v| (k != :stopped && k != :unknown && k != :failed_ops)} > 0
               alt_i = (alt_i.to_i + 1).to_s
             end
             if alt_i != instance
@@ -448,6 +448,7 @@ class Cib < CibObject
           @resources_by_id[id][:instances][instance][state] << node[:uname]
           @resources_by_id[id][:instances][instance][:failed_ops] = [] unless @resources_by_id[id][:instances][instance][:failed_ops]
           @resources_by_id[id][:instances][instance][:failed_ops].concat failed_ops
+          # NOTE: Do *not* add any more keys here without adjusting the renamer above
         else
           # It's an orphan
           # TODO(should): display this somewhere? (at least log it during testing)
