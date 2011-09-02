@@ -374,6 +374,26 @@ class Cib < CibObject
             next
           end
 
+          if !is_probe && rc_code != expected
+            # busted somehow
+
+            # if on-fail == ignore for this op, pretend it succeeded for the purposes of state calculation
+            ignore_failure = false
+            @xml.elements.each("cib/configuration//primitive[@id='#{id.split(":")[0]}']/operations/op[@name='#{operation}']") do |e|
+              next unless e.attributes["on-fail"] && e.attributes["on-fail"] == "ignore"
+              # TODO(must): Verify interval is correct
+              ignore_failure = true
+            end
+
+            failed_ops << { :node => node[:uname], :call_id => op.attributes['call-id'], :op => operation, :rc_code => rc_code }
+            @errors << _('Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}') %
+              { :node => node[:uname], :resource => id, :call_id => op.attributes['call-id'], :op => operation, :rc_code => rc_code }
+
+            if ignore_failure
+              rc_code = expected
+            end
+          end
+
           # TODO(should): evil magic numbers!
           case rc_code
           when 7
@@ -394,12 +414,6 @@ class Cib < CibObject
               # TODO(must): verify this demote business
               state = :started
             end
-          end
-          if !is_probe && rc_code != expected
-            # busted somehow
-            failed_ops << { :node => node[:uname], :call_id => op.attributes['call-id'], :op => operation, :rc_code => rc_code }
-            @errors << _('Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}') %
-              { :node => node[:uname], :resource => id, :call_id => op.attributes['call-id'], :op => operation, :rc_code => rc_code }
           end
         end
 
