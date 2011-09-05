@@ -50,6 +50,11 @@ Requires:       hawk-templates >= %{version}-%{release}
 Requires:	pacemaker
 Requires:	ruby
 Requires:	lighttpd >= 1.4.20
+Requires:	graphviz
+Requires:	graphviz-gd
+%if 0%{?suse_version}
+Recommends:	graphviz-gnome
+%endif
 BuildRequires:	rubygems
 BuildRequires:	rubygem-rake
 BuildRequires:	rubygem-gettext_rails
