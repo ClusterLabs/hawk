@@ -1,0 +1,406 @@
+<cib epoch="667" num_updates="118" admin_epoch="0" validate-with="pacemaker-1.2" crm_feature_set="3.0.5" have-quorum="1" cib-last-written="Thu Jul 28 14:37:21 2011" dc-uuid="node02">
+  <configuration>
+    <crm_config>
+      <cluster_property_set id="cib-bootstrap-options">
+        <nvpair id="cib-bootstrap-options-dc-version" name="dc-version" value="1.1.5-5bd2b9154d7d9f86d7f56fe0a74072a5a6590c60"/>
+        <nvpair id="cib-bootstrap-options-cluster-infrastructure" name="cluster-infrastructure" value="openais"/>
+        <nvpair id="cib-bootstrap-options-expected-quorum-votes" name="expected-quorum-votes" value="2"/>
+        <nvpair id="cib-bootstrap-options-stop-all-resources" name="stop-all-resources" value="false"/>
+        <nvpair id="cib-bootstrap-options-no-quorum-policy" name="no-quorum-policy" value="ignore"/>
+        <nvpair id="cib-bootstrap-options-stonith-enabled" name="stonith-enabled" value="true"/>
+        <nvpair id="cib-bootstrap-options-last-lrm-refresh" name="last-lrm-refresh" value="1314496998"/>
+        <nvpair id="cib-bootstrap-options-default-resource-stickiness" name="default-resource-stickiness" value="100"/>
+        <nvpair id="cib-bootstrap-options-default-action-timeout" name="default-action-timeout" value="60s"/>
+        <nvpair id="cib-bootstrap-options-stonith-action" name="stonith-action" value="poweroff"/>
+        <nvpair id="cib-bootstrap-options-dc-deadtime" name="dc-deadtime" value="90s"/>
+        <nvpair id="cib-bootstrap-options-maintenance-mode" name="maintenance-mode" value="off"/>
+      </cluster_property_set>
+    </crm_config>
+    <nodes>
+      <node id="node02" type="normal" uname="node02">
+        <instance_attributes id="nodes-node02">
+          <nvpair id="nodes-node02-standby" name="standby" value="off"/>
+        </instance_attributes>
+      </node>
+      <node id="node01" type="normal" uname="node01">
+        <instance_attributes id="node01-instance_attributes">
+          <nvpair id="node01-instance_attributes-standby" name="standby" value="off"/>
+        </instance_attributes>
+      </node>
+    </nodes>
+    <resources>
+      <master id="ms_drbd_wwwdata">
+        <meta_attributes id="ms_drbd_wwwdata-meta_attributes">
+          <nvpair id="ms_drbd_wwwdata-meta_attributes-master-max" name="master-max" value="2"/>
+          <nvpair id="ms_drbd_wwwdata-meta_attributes-master-node-max" name="master-node-max" value="1"/>
+          <nvpair id="ms_drbd_wwwdata-meta_attributes-clone-max" name="clone-max" value="2"/>
+          <nvpair id="ms_drbd_wwwdata-meta_attributes-clone-node-max" name="clone-node-max" value="1"/>
+          <nvpair id="ms_drbd_wwwdata-meta_attributes-target-role" name="target-role" value="Master"/>
+          <nvpair id="ms_drbd_wwwdata-meta_attributes-is-managed" name="is-managed" value="true"/>
+          <nvpair id="ms_drbd_wwwdata-meta_attributes-notify" name="notify" value="true"/>
+        </meta_attributes>
+        <primitive class="ocf" id="p_drbd_wwwdata" provider="linbit" type="drbd">
+          <instance_attributes id="p_drbd_wwwdata-instance_attributes">
+            <nvpair id="p_drbd_wwwdata-instance_attributes-drbd_resource" name="drbd_resource" value="wwwdata"/>
+          </instance_attributes>
+          <operations>
+            <op id="p_drbd_wwwdata-monitor-60" interval="60" name="monitor" role="Master" timeout="50"/>
+            <op id="p_drbd_wwwdata-monitor-90" interval="90" name="monitor" role="Slave" timeout="75"/>
+            <op id="p_drbd_wwwdata-notify-0" interval="0" name="notify" timeout="90"/>
+            <op id="p_drbd_wwwdata-start-0" interval="0" name="start" timeout="240s"/>
+            <op id="p_drbd_wwwdata-stop-0" interval="0" name="stop" timeout="360s"/>
+          </operations>
+        </primitive>
+      </master>
+      <master id="ms_drbd_mysql">
+        <meta_attributes id="ms_drbd_mysql-meta_attributes">
+          <nvpair id="ms_drbd_mysql-meta_attributes-master-max" name="master-max" value="2"/>
+          <nvpair id="ms_drbd_mysql-meta_attributes-master-node-max" name="master-node-max" value="1"/>
+          <nvpair id="ms_drbd_mysql-meta_attributes-clone-max" name="clone-max" value="2"/>
+          <nvpair id="ms_drbd_mysql-meta_attributes-clone-node-max" name="clone-node-max" value="1"/>
+          <nvpair id="ms_drbd_mysql-meta_attributes-is-managed" name="is-managed" value="true"/>
+          <nvpair id="ms_drbd_mysql-meta_attributes-notify" name="notify" value="true"/>
+          <nvpair id="ms_drbd_mysql-meta_attributes-target-role" name="target-role" value="Started"/>
+        </meta_attributes>
+        <primitive class="ocf" id="p_drbd_mysql" provider="linbit" type="drbd">
+          <instance_attributes id="p_drbd_mysql-instance_attributes">
+            <nvpair id="p_drbd_mysql-instance_attributes-drbd_resource" name="drbd_resource" value="mysql"/>
+          </instance_attributes>
+          <operations>
+            <op id="p_drbd_mysql-monitor-60" interval="60" name="monitor" role="Master" timeout="50"/>
+            <op id="p_drbd_mysql-monitor-90" interval="90" name="monitor" role="Slave" timeout="75"/>
+            <op id="p_drbd_mysql-notify-0" interval="0" name="notify" timeout="90"/>
+            <op id="p_drbd_mysql-start-0" interval="0" name="start" timeout="240s"/>
+            <op id="p_drbd_mysql-stop-0" interval="0" name="stop" timeout="100s"/>
+          </operations>
+        </primitive>
+      </master>
+      <primitive class="stonith" id="p_st_ibmrsa01" type="external/ibmrsa-telnet">
+        <instance_attributes id="p_st_ibmrsa-instance_attributes">
+          <nvpair id="p_st_ibmrsa-instance_attributes-nodename" name="nodename" value="node01"/>
+          <nvpair id="p_st_ibmrsa-instance_attributes-ip_address" name="ip_address" value="10.14.97.117"/>
+          <nvpair id="p_st_ibmrsa-instance_attributes-username" name="username" value="user"/>
+          <nvpair id="p_st_ibmrsa-instance_attributes-password" name="password" value="pass"/>
+        </instance_attributes>
+        <meta_attributes id="p_st_ibmrsa-meta_attributes">
+          <nvpair id="p_st_ibmrsa-meta_attributes-target-role" name="target-role" value="Started"/>
+          <nvpair id="p_st_ibmrsa-meta_attributes-is-managed" name="is-managed" value="true"/>
+        </meta_attributes>
+        <operations>
+          <op id="p_st_ibmrsa01-monitor-86400s" interval="86400s" name="monitor" timeout="120s"/>
+        </operations>
+      </primitive>
+      <primitive class="stonith" id="p_st_ibmrsa02" type="external/ibmrsa-telnet">
+        <instance_attributes id="p_st_ibmrsa02-instance_attributes">
+          <nvpair id="p_st_ibmrsa02-instance_attributes-nodename" name="nodename" value="node02"/>
+          <nvpair id="p_st_ibmrsa02-instance_attributes-ip_address" name="ip_address" value="10.14.97.116"/>
+          <nvpair id="p_st_ibmrsa02-instance_attributes-username" name="username" value="user"/>
+          <nvpair id="p_st_ibmrsa02-instance_attributes-password" name="password" value="pass"/>
+        </instance_attributes>
+        <operations>
+          <op id="p_st_ibmrsa02-monitor-86400s" interval="86400s" name="monitor" timeout="120s"/>
+        </operations>
+        <meta_attributes id="p_st_ibmrsa02-meta_attributes">
+          <nvpair id="p_st_ibmrsa02-meta_attributes-is-managed" name="is-managed" value="true"/>
+          <nvpair id="p_st_ibmrsa02-meta_attributes-target-role" name="target-role" value="Started"/>
+        </meta_attributes>
+      </primitive>
+      <group id="g_mysql">
+        <meta_attributes id="g_mysql-meta_attributes">
+          <nvpair id="g_mysql-meta_attributes-target-role" name="target-role" value="Started"/>
+          <nvpair id="g_mysql-meta_attributes-is-managed" name="is-managed" value="true"/>
+        </meta_attributes>
+        <primitive class="ocf" id="p_fs_mysql" provider="heartbeat" type="Filesystem">
+          <instance_attributes id="p_fs_mysql-instance_attributes">
+            <nvpair id="p_fs_mysql-instance_attributes-device" name="device" value="/dev/drbd/by-res/mysql"/>
+            <nvpair id="p_fs_mysql-instance_attributes-directory" name="directory" value="/data/mysql"/>
+            <nvpair id="p_fs_mysql-instance_attributes-fstype" name="fstype" value="xfs"/>
+            <nvpair id="p_fs_mysql-instance_attributes-options" name="options" value="rw,noatime"/>
+          </instance_attributes>
+          <operations>
+            <op id="p_fs_mysql-start-0" interval="0" name="start" timeout="90s"/>
+            <op id="p_fs_mysql-stop-0" interval="0" name="stop" timeout="100s"/>
+          </operations>
+          <meta_attributes id="p_fs_mysql-meta_attributes">
+            <nvpair id="p_fs_mysql-meta_attributes-is-managed" name="is-managed" value="true"/>
+          </meta_attributes>
+        </primitive>
+        <primitive class="ocf" id="p_srv_mysqld" provider="heartbeat" type="mysql">
+          <instance_attributes id="p_srv_mysqld-instance_attributes">
+            <nvpair id="p_srv_mysqld-instance_attributes-binary" name="binary" value="/usr/bin/mysqld_safe"/>
+            <nvpair id="p_srv_mysqld-instance_attributes-config" name="config" value="/data/mysql/my.cnf"/>
+            <nvpair id="p_srv_mysqld-instance_attributes-datadir" name="datadir" value="/data/mysql"/>
+            <nvpair id="p_srv_mysqld-instance_attributes-test_user" name="test_user" value="user"/>
+            <nvpair id="p_srv_mysqld-instance_attributes-test_passwd" name="test_passwd" value="pass"/>
+          </instance_attributes>
+          <operations>
+            <op id="p_srv_mysqld-monitor-120s" interval="120s" name="monitor" timeout="60s"/>
+            <op id="p_srv_mysqld-start-0" interval="0" name="start" timeout="120s"/>
+            <op id="p_srv_mysqld-stop-0" interval="0" name="stop" timeout="300s"/>
+          </operations>
+          <meta_attributes id="p_srv_mysqld-meta_attributes">
+            <nvpair id="p_srv_mysqld-meta_attributes-is-managed" name="is-managed" value="true"/>
+            <nvpair id="p_srv_mysqld-meta_attributes-target-role" name="target-role" value="Started"/>
+          </meta_attributes>
+        </primitive>
+      </group>
+      <clone id="c_ocfs2mgmt">
+        <meta_attributes id="cl_ocfs2mgmt-meta_attributes">
+          <nvpair id="cl_ocfs2mgmt-meta_attributes-interleave" name="interleave" value="true"/>
+          <nvpair id="cl_ocfs2mgmt-meta_attributes-target-role" name="target-role" value="Started"/>
+          <nvpair id="cl_ocfs2mgmt-meta_attributes-is-managed" name="is-managed" value="true"/>
+        </meta_attributes>
+        <group id="g_ocfs2mgmt">
+          <primitive class="ocf" id="p_controld" provider="pacemaker" type="controld">
+            <operations>
+              <op id="p_controld-monitor-100" interval="100" name="monitor" timeout="90s"/>
+              <op id="p_controld-start-0" interval="0" name="start" timeout="90s"/>
+              <op id="p_controld-stop-0" interval="0" name="stop" timeout="100s"/>
+            </operations>
+            <meta_attributes id="p_controld-meta_attributes">
+              <nvpair id="p_controld-meta_attributes-is-managed" name="is-managed" value="true"/>
+            </meta_attributes>
+          </primitive>
+          <primitive class="ocf" id="p_o2cb" provider="ocfs2" type="o2cb">
+            <operations>
+              <op id="p_o2cb-monitor-120s" interval="120s" name="monitor" timeout="100s"/>
+              <op id="p_o2cb-start-0" interval="0" name="start" timeout="90s"/>
+              <op id="p_o2cb-stop-0" interval="0" name="stop" timeout="100s"/>
+            </operations>
+            <meta_attributes id="p_o2cb-meta_attributes">
+              <nvpair id="p_o2cb-meta_attributes-target-role" name="target-role" value="Started"/>
+              <nvpair id="p_o2cb-meta_attributes-is-managed" name="is-managed" value="true"/>
+            </meta_attributes>
+          </primitive>
+        </group>
+      </clone>
+      <clone id="c_fs_wwwdata">
+        <instance_attributes id="cl_fs_wwwdata-instance_attributes">
+          <nvpair id="cl_fs_wwwdata-instance_attributes-master-max" name="master-max" value="2"/>
+          <nvpair id="cl_fs_wwwdata-instance_attributes-clone-max" name="clone-max" value="2"/>
+        </instance_attributes>
+        <meta_attributes id="c_fs_wwwdata-meta_attributes">
+          <nvpair id="c_fs_wwwdata-meta_attributes-target-role" name="target-role" value="Started"/>
+          <nvpair id="c_fs_wwwdata-meta_attributes-is-managed" name="is-managed" value="true"/>
+        </meta_attributes>
+        <primitive class="ocf" id="p_fs_wwwdata" provider="heartbeat" type="Filesystem">
+          <instance_attributes id="p_fs_wwwdata-instance_attributes">
+            <nvpair id="p_fs_wwwdata-instance_attributes-device" name="device" value="/dev/drbd/by-res/wwwdata"/>
+            <nvpair id="p_fs_wwwdata-instance_attributes-directory" name="directory" value="/data/www"/>
+            <nvpair id="p_fs_wwwdata-instance_attributes-fstype" name="fstype" value="ocfs2"/>
+            <nvpair id="p_fs_wwwdata-instance_attributes-options" name="options" value="rw,noatime,noacl,nouser_xattr,commit=30,data=writeback"/>
+          </instance_attributes>
+          <operations>
+            <op id="p_fs_wwwdata-start-0" interval="0" name="start" timeout="90s"/>
+            <op id="p_fs_wwwdata-stop-0" interval="0" name="stop" timeout="300s"/>
+          </operations>
+        </primitive>
+      </clone>
+      <primitive class="ocf" id="p_ip_float_cluster" provider="heartbeat" type="IPaddr2">
+        <instance_attributes id="p_ip_float_cluster-instance_attributes">
+          <nvpair id="p_ip_float_cluster-instance_attributes-ip" name="ip" value="xxx.xxx.xxx.xxx"/>
+          <nvpair id="p_ip_float_cluster-instance_attributes-nic" name="nic" value="bond0"/>
+          <nvpair id="p_ip_float_cluster-instance_attributes-cidr_netmask" name="cidr_netmask" value="24"/>
+          <nvpair id="p_ip_float_cluster-instance_attributes-flush_routes" name="flush_routes" value="true"/>
+        </instance_attributes>
+        <meta_attributes id="p_ip_float_cluster-meta_attributes">
+          <nvpair id="p_ip_float_cluster-meta_attributes-target-role" name="target-role" value="Started"/>
+        </meta_attributes>
+      </primitive>
+      <primitive class="ocf" id="p_srv_nfsserver" provider="heartbeat" type="nfsserver">
+        <instance_attributes id="p_srv_nfsserver-instance_attributes">
+          <nvpair id="p_srv_nfsserver-instance_attributes-nfs_ip" name="nfs_ip" value="xxx.xxx.xxx.xxx"/>
+          <nvpair id="p_srv_nfsserver-instance_attributes-nfs_shared_infodir" name="nfs_shared_infodir" value="/data/www/.nfsserver_failover"/>
+        </instance_attributes>
+        <operations>
+          <op id="p_srv_nfsserver-monitor-300s" interval="300s" name="monitor" on-fail="ignore" timeout="270s"/>
+          <op id="p_srv_nfsserver-start-0" interval="0" name="start" on-fail="restart" timeout="90s"/>
+          <op id="p_srv_nfsserver-stop-0" interval="0" name="stop" on-fail="ignore" timeout="100s"/>
+        </operations>
+        <meta_attributes id="p_srv_nfsserver-meta_attributes">
+          <nvpair id="p_srv_nfsserver-meta_attributes-is-managed" name="is-managed" value="true"/>
+          <nvpair id="p_srv_nfsserver-meta_attributes-target-role" name="target-role" value="Started"/>
+        </meta_attributes>
+      </primitive>
+      <primitive class="ocf" id="p_crontabs_activenode" provider="heartbeat" type="symlink">
+        <instance_attributes id="p_crontabs_activenode-instance_attributes">
+          <nvpair id="p_crontabs_activenode-instance_attributes-link" name="link" value="/var/spool/cron/tabs"/>
+          <nvpair id="p_crontabs_activenode-instance_attributes-target" name="target" value="/var/spool/cron/tabs.activenode"/>
+          <nvpair id="p_crontabs_activenode-instance_attributes-backup_suffix" name="backup_suffix" value="backup"/>
+        </instance_attributes>
+        <operations>
+          <op id="p_crontabs_activenode-monitor-300s" interval="300s" name="monitor" on-fail="ignore" timeout="270s"/>
+          <op id="p_crontabs_activenode-start-0" interval="0" name="start" on-fail="restart" timeout="20s"/>
+          <op id="p_crontabs_activenode-stop-0" interval="0" name="stop" on-fail="stop" timeout="20s"/>
+        </operations>
+        <meta_attributes id="p_crontabs_activenode-meta_attributes">
+          <nvpair id="p_crontabs_activenode-meta_attributes-is-managed" name="is-managed" value="true"/>
+          <nvpair id="p_crontabs_activenode-meta_attributes-target-role" name="target-role" value="Started"/>
+        </meta_attributes>
+      </primitive>
+      <primitive class="ocf" id="p_crontabs_standbynode" provider="heartbeat" type="symlink">
+        <instance_attributes id="p_crontabs_standbynode-instance_attributes">
+          <nvpair id="p_crontabs_standbynode-instance_attributes-link" name="link" value="/var/spool/cron/tabs"/>
+          <nvpair id="p_crontabs_standbynode-instance_attributes-target" name="target" value="/var/spool/cron/tabs.standbynode"/>
+          <nvpair id="p_crontabs_standbynode-instance_attributes-backup_suffix" name="backup_suffix" value="backup"/>
+        </instance_attributes>
+        <operations>
+          <op id="p_crontabs_standbynode-monitor-300s" interval="300s" name="monitor" on-fail="ignore" timeout="270s"/>
+          <op id="p_crontabs_standbynode-start-0" interval="0" name="start" on-fail="restart" timeout="20s"/>
+          <op id="p_crontabs_standbynode-stop-0" interval="0" name="stop" on-fail="stop" timeout="20s"/>
+        </operations>
+        <meta_attributes id="p_crontabs_standbynode-meta_attributes">
+          <nvpair id="p_crontabs_standbynode-meta_attributes-is-managed" name="is-managed" value="true"/>
+          <nvpair id="p_crontabs_standbynode-meta_attributes-target-role" name="target-role" value="Started"/>
+        </meta_attributes>
+      </primitive>
+    </resources>
+    <constraints>
+      <rsc_colocation id="cl_mysql" rsc="g_mysql" rsc-role="Started" score="INFINITY" with-rsc="ms_drbd_mysql" with-rsc-role="Master"/>
+      <rsc_order first="ms_drbd_mysql" first-action="promote" id="o_mysql" score="INFINITY" then="g_mysql" then-action="start"/>
+      <rsc_location id="l_st_ibmrsa01" node="node01" rsc="p_st_ibmrsa01" score="-INFINITY"/>
+      <rsc_location id="l_st_ibmrsa02" node="node02" rsc="p_st_ibmrsa02" score="-INFINITY"/>
+      <rsc_order first="ms_drbd_wwwdata" first-action="promote" id="o_wwwdata" score="INFINITY" then="c_fs_wwwdata" then-action="start"/>
+      <rsc_colocation id="cl_wwwdata" rsc="c_fs_wwwdata" rsc-role="Started" score="INFINITY" with-rsc="ms_drbd_wwwdata" with-rsc-role="Master"/>
+      <rsc_colocation id="cl_mysqld_clusterip" rsc="p_ip_float_cluster" rsc-role="Started" score="100000" with-rsc="g_mysql" with-rsc-role="Started"/>
+      <rsc_colocation id="cl_nfssrv_wwwdata" rsc="p_srv_nfsserver" score="INFINITY" with-rsc="c_fs_wwwdata" with-rsc-role="Started"/>
+      <rsc_colocation id="cl_nfssrv_clusterip" rsc="p_srv_nfsserver" score="10000" with-rsc="p_ip_float_cluster"/>
+      <rsc_order first="p_crontabs_activenode" first-action="stop" id="o_crontabs_act2sby" score="INFINITY" then="p_crontabs_standbynode" then-action="start"/>
+      <rsc_order first="p_crontabs_standbynode" first-action="stop" id="o_crontabs_sby2act" score="INFINITY" then="p_crontabs_activenode" then-action="start"/>
+      <rsc_colocation id="cl_crontabs_sby" rsc="p_crontabs_standbynode" score="-1000" with-rsc="p_ip_float_cluster"/>
+      <rsc_colocation id="cl_crontabs_act" rsc="p_crontabs_activenode" score="1000" with-rsc="p_ip_float_cluster"/>
+      <rsc_order first="p_srv_nfsserver" first-action="stop" id="o_nfssrv_before_wwwdata_stop" score="INFINITY" then="c_fs_wwwdata" then-action="stop"/>
+      <rsc_colocation id="cl_crontabs" rsc="p_crontabs_standbynode" score="-INFINITY" with-rsc="p_crontabs_activenode"/>
+    </constraints>
+    <rsc_defaults/>
+  </configuration>
+  <status>
+    <node_state id="node01" uname="node01" ha="active" in_ccm="true" crmd="online" join="member" expected="member" crm-debug-origin="do_update_resource" shutdown="0">
+      <transient_attributes id="node01">
+        <instance_attributes id="status-node01">
+          <nvpair id="status-node01-master-p_drbd_wwwdata:0" name="master-p_drbd_wwwdata:0" value="10000"/>
+          <nvpair id="status-node01-master-p_drbd_mysql:0" name="master-p_drbd_mysql:0" value="10000"/>
+          <nvpair id="status-node01-master-p_drbd_wwwdata:1" name="master-p_drbd_wwwdata:1" value="10000"/>
+          <nvpair id="status-node01-master-p_drbd_mysql:1" name="master-p_drbd_mysql:1" value="10000"/>
+          <nvpair id="status-node01-probe_complete" name="probe_complete" value="true"/>
+        </instance_attributes>
+      </transient_attributes>
+      <lrm id="node01">
+        <lrm_resources>
+          <lrm_resource id="p_fs_wwwdata:0" type="Filesystem" class="ocf" provider="heartbeat">
+            <lrm_rsc_op id="p_fs_wwwdata:0_monitor_0" operation="monitor" crm-debug-origin="build_active_RAs" crm_feature_set="3.0.5" transition-key="5:33:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:0;5:33:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="45" rc-code="0" op-status="0" interval="0" last-run="1314496997" last-rc-change="1314496997" exec-time="30" queue-time="0" op-digest="fe054268b13f4647af82e1ab011cfcc0"/>
+          </lrm_resource>
+          <lrm_resource id="p_st_ibmrsa01" type="external/ibmrsa-telnet" class="stonith">
+            <lrm_rsc_op id="p_st_ibmrsa01_monitor_0" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="7:35:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:7;7:35:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="48" rc-code="7" op-status="0" interval="0" last-run="1314497044" last-rc-change="1314497044" exec-time="0" queue-time="0" op-digest="eed49edf8bba49adb99f2b1790ed3662"/>
+          </lrm_resource>
+          <lrm_resource id="p_srv_mysqld" type="mysql" class="ocf" provider="heartbeat">
+            <lrm_rsc_op id="p_srv_mysqld_monitor_0" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="10:35:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:7;10:35:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="51" rc-code="7" op-status="0" interval="0" last-run="1314497043" last-rc-change="1314497043" exec-time="20" queue-time="0" op-digest="05e9f21ea6552f466c22594fbe80e513"/>
+          </lrm_resource>
+          <lrm_resource id="p_fs_mysql" type="Filesystem" class="ocf" provider="heartbeat">
+            <lrm_rsc_op id="p_fs_mysql_monitor_0" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="9:35:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:7;9:35:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="50" rc-code="7" op-status="0" interval="0" last-run="1314497043" last-rc-change="1314497043" exec-time="30" queue-time="0" op-digest="eaa49f23b2c12964e43cbf8c3437db5f"/>
+          </lrm_resource>
+          <lrm_resource id="p_drbd_mysql:1" type="drbd" class="ocf" provider="linbit">
+            <lrm_rsc_op id="p_drbd_mysql:1_monitor_0" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="6:35:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:8;6:35:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="47" rc-code="8" op-status="0" interval="0" last-run="1314497043" last-rc-change="1314497043" exec-time="70" queue-time="0" op-digest="cda1836a05a8188b9dfd7ded69520b15"/>
+            <lrm_rsc_op id="p_drbd_mysql:1_monitor_60000" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="53:36:8:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:8;53:36:8:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="59" rc-code="8" op-status="0" interval="60000" last-rc-change="1314497048" exec-time="60" queue-time="0" op-digest="89824b34a25885f7c9e6482c925eb24e"/>
+            <lrm_rsc_op id="p_drbd_mysql:1_pre_notify_start_0" operation="notify" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="148:39:0:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:0;148:39:0:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="65" rc-code="0" op-status="0" interval="0" last-run="1314497539" last-rc-change="1314497539" exec-time="30" queue-time="0" op-digest="cda1836a05a8188b9dfd7ded69520b15"/>
+          </lrm_resource>
+          <lrm_resource id="p_drbd_wwwdata:1" type="drbd" class="ocf" provider="linbit">
+            <lrm_rsc_op id="p_drbd_wwwdata:1_monitor_0" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="5:35:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:8;5:35:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="46" rc-code="8" op-status="0" interval="0" last-run="1314497043" last-rc-change="1314497043" exec-time="70" queue-time="0" op-digest="bc5c2e08730036ec602d79a958821da4"/>
+            <lrm_rsc_op id="p_drbd_wwwdata:1_monitor_60000" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="19:36:8:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:8;19:36:8:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="58" rc-code="8" op-status="0" interval="60000" last-rc-change="1314497048" exec-time="50" queue-time="0" op-digest="588170e1fce0a61849ba61e2689a40e5"/>
+            <lrm_rsc_op id="p_drbd_wwwdata:1_pre_notify_start_0" operation="notify" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="137:39:0:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:0;137:39:0:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="64" rc-code="0" op-status="0" interval="0" last-run="1314497539" last-rc-change="1314497539" exec-time="30" queue-time="0" op-digest="bc5c2e08730036ec602d79a958821da4"/>
+          </lrm_resource>
+          <lrm_resource id="p_controld:1" type="controld" class="ocf" provider="pacemaker">
+            <lrm_rsc_op id="p_controld:1_monitor_0" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="11:35:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:0;11:35:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="52" rc-code="0" op-status="0" interval="0" last-run="1314497044" last-rc-change="1314497044" exec-time="20" queue-time="1000" op-digest="f2317cad3d54cec5d7d7aa7d0bf35cf8"/>
+            <lrm_rsc_op id="p_controld:1_monitor_100000" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="101:36:0:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:0;101:36:0:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="61" rc-code="0" op-status="0" interval="100000" last-rc-change="1314497048" exec-time="10" queue-time="0" op-digest="8f6a313464b7f9e3a31cb448458b700e"/>
+          </lrm_resource>
+          <lrm_resource id="p_o2cb:1" type="o2cb" class="ocf" provider="ocfs2">
+            <lrm_rsc_op id="p_o2cb:1_monitor_0" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="12:35:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:0;12:35:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="53" rc-code="0" op-status="0" interval="0" last-run="1314497044" last-rc-change="1314497044" exec-time="20" queue-time="1000" op-digest="f2317cad3d54cec5d7d7aa7d0bf35cf8"/>
+            <lrm_rsc_op id="p_o2cb:1_monitor_120000" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="104:36:0:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:0;104:36:0:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="62" rc-code="0" op-status="0" interval="120000" last-rc-change="1314497048" exec-time="20" queue-time="0" op-digest="2d296eeac3e5f7d1cfdb1557b8eb3457"/>
+          </lrm_resource>
+          <lrm_resource id="p_ip_float_cluster" type="IPaddr2" class="ocf" provider="heartbeat">
+            <lrm_rsc_op id="p_ip_float_cluster_monitor_0" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="13:35:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:7;13:35:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="54" rc-code="7" op-status="0" interval="0" last-run="1314497044" last-rc-change="1314497044" exec-time="30" queue-time="1000" op-digest="c45b3456181d583d319520f3558d7322"/>
+          </lrm_resource>
+          <lrm_resource id="p_srv_nfsserver" type="nfsserver" class="ocf" provider="heartbeat">
+            <lrm_rsc_op id="p_srv_nfsserver_monitor_0" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="14:35:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:7;14:35:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="55" rc-code="7" op-status="0" interval="0" last-run="1314497044" last-rc-change="1314497044" exec-time="40" queue-time="1000" op-digest="ca0836ee47e3c93676b6d9839a903bc7"/>
+          </lrm_resource>
+          <lrm_resource id="p_crontabs_activenode" type="symlink" class="ocf" provider="heartbeat">
+            <lrm_rsc_op id="p_crontabs_activenode_monitor_0" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="15:35:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:7;15:35:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="56" rc-code="7" op-status="0" interval="0" last-run="1314497045" last-rc-change="1314497045" exec-time="10" queue-time="2000" op-digest="fb0524fe786385aa81e3469e433ebd99"/>
+          </lrm_resource>
+          <lrm_resource id="p_crontabs_standbynode" type="symlink" class="ocf" provider="heartbeat">
+            <lrm_rsc_op id="p_crontabs_standbynode_monitor_0" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="16:35:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:0;16:35:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="57" rc-code="0" op-status="0" interval="0" last-run="1314497045" last-rc-change="1314497045" exec-time="10" queue-time="2000" op-digest="00ed014dd617f429315fb5fdb441c6ed"/>
+            <lrm_rsc_op id="p_crontabs_standbynode_monitor_300000" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="129:36:0:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:0;129:36:0:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="63" rc-code="0" op-status="0" interval="300000" last-rc-change="1314497049" exec-time="10" queue-time="1000" op-digest="9166106840580cc61d0b422041f2217e"/>
+          </lrm_resource>
+          <lrm_resource id="p_st_ibmrsa02" type="external/ibmrsa-telnet" class="stonith">
+            <lrm_rsc_op id="p_st_ibmrsa02_monitor_0" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="8:35:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:0;8:35:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="49" rc-code="0" op-status="0" interval="0" last-run="1314497044" last-rc-change="1314497044" exec-time="4380" queue-time="0" op-digest="93b1a1d674dd5820211cc53b4298478b"/>
+            <lrm_rsc_op id="p_st_ibmrsa02_monitor_86400000" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="82:36:0:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:0;82:36:0:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="60" rc-code="0" op-status="0" interval="86400000" last-rc-change="1314497048" exec-time="3200" queue-time="0" op-digest="9042ac3ac6548f3d83d4dc947bfce4d2"/>
+          </lrm_resource>
+        </lrm_resources>
+      </lrm>
+    </node_state>
+    <node_state id="node02" uname="node02" crmd="online" crm-debug-origin="do_update_resource" ha="active" in_ccm="true" join="member" expected="member" shutdown="0">
+      <transient_attributes id="node02">
+        <instance_attributes id="status-node02">
+          <nvpair id="status-node02-master-p_drbd_mysql:1" name="master-p_drbd_mysql:1" value="10000"/>
+          <nvpair id="status-node02-master-p_drbd_wwwdata:1" name="master-p_drbd_wwwdata:1" value="10000"/>
+          <nvpair id="status-node02-master-p_drbd_mysql:0" name="master-p_drbd_mysql:0" value="10000"/>
+          <nvpair id="status-node02-master-p_drbd_wwwdata:0" name="master-p_drbd_wwwdata:0" value="10000"/>
+          <nvpair id="status-node02-last-failure-p_fs_wwwdata:0" name="last-failure-p_fs_wwwdata:0" value="1314496635"/>
+          <nvpair id="status-node02-fail-count-p_srv_nfsserver" name="fail-count-p_srv_nfsserver" value="1"/>
+          <nvpair id="status-node02-last-failure-p_srv_nfsserver" name="last-failure-p_srv_nfsserver" value="1314496865"/>
+          <nvpair id="status-node02-probe_complete" name="probe_complete" value="true"/>
+        </instance_attributes>
+      </transient_attributes>
+      <lrm id="node02">
+        <lrm_resources>
+          <lrm_resource id="p_st_ibmrsa02" type="external/ibmrsa-telnet" class="stonith">
+            <lrm_rsc_op id="p_st_ibmrsa02_monitor_0" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="13:39:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:7;13:39:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="121" rc-code="7" op-status="0" interval="0" last-run="1314497538" last-rc-change="1314497538" exec-time="1760" queue-time="0" op-digest="93b1a1d674dd5820211cc53b4298478b"/>
+          </lrm_resource>
+          <lrm_resource id="p_drbd_mysql:0" type="drbd" class="ocf" provider="linbit">
+            <lrm_rsc_op id="p_drbd_mysql:0_monitor_0" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="11:39:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:8;11:39:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="119" rc-code="8" op-status="0" interval="0" last-run="1314497536" last-rc-change="1314497536" exec-time="3080" queue-time="0" op-digest="cda1836a05a8188b9dfd7ded69520b15"/>
+            <lrm_rsc_op id="p_drbd_mysql:0_monitor_60000" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="48:40:8:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:8;48:40:8:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="132" rc-code="8" op-status="0" interval="60000" last-rc-change="1314497543" exec-time="440" queue-time="0" op-digest="89824b34a25885f7c9e6482c925eb24e"/>
+          </lrm_resource>
+          <lrm_resource id="p_srv_mysqld" type="mysql" class="ocf" provider="heartbeat">
+            <lrm_rsc_op id="p_srv_mysqld_monitor_0" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="15:39:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:0;15:39:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="123" rc-code="0" op-status="0" interval="0" last-run="1314497539" last-rc-change="1314497539" exec-time="520" queue-time="0" op-digest="05e9f21ea6552f466c22594fbe80e513"/>
+            <lrm_rsc_op id="p_srv_mysqld_monitor_120000" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="86:40:0:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:0;86:40:0:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="134" rc-code="0" op-status="0" interval="120000" last-rc-change="1314497543" exec-time="420" queue-time="0" op-digest="f5abd8ffe0c53a78278d32bd756e3a8b"/>
+          </lrm_resource>
+          <lrm_resource id="p_drbd_wwwdata:0" type="drbd" class="ocf" provider="linbit">
+            <lrm_rsc_op id="p_drbd_wwwdata:0_monitor_0" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="10:39:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:8;10:39:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="118" rc-code="8" op-status="0" interval="0" last-run="1314497536" last-rc-change="1314497536" exec-time="3490" queue-time="0" op-digest="bc5c2e08730036ec602d79a958821da4"/>
+            <lrm_rsc_op id="p_drbd_wwwdata:0_monitor_60000" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="15:40:8:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:8;15:40:8:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="131" rc-code="8" op-status="0" interval="60000" last-rc-change="1314497543" exec-time="440" queue-time="0" op-digest="588170e1fce0a61849ba61e2689a40e5"/>
+          </lrm_resource>
+          <lrm_resource id="p_fs_mysql" type="Filesystem" class="ocf" provider="heartbeat">
+            <lrm_rsc_op id="p_fs_mysql_monitor_0" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="14:39:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:0;14:39:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="122" rc-code="0" op-status="0" interval="0" last-run="1314497538" last-rc-change="1314497538" exec-time="1900" queue-time="0" op-digest="eaa49f23b2c12964e43cbf8c3437db5f"/>
+          </lrm_resource>
+          <lrm_resource id="p_o2cb:0" type="o2cb" class="ocf" provider="ocfs2">
+            <lrm_rsc_op id="p_o2cb:0_monitor_0" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="17:39:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:0;17:39:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="125" rc-code="0" op-status="0" interval="0" last-run="1314497540" last-rc-change="1314497540" exec-time="20" queue-time="1000" op-digest="f2317cad3d54cec5d7d7aa7d0bf35cf8"/>
+            <lrm_rsc_op id="p_o2cb:0_monitor_120000" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="96:40:0:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:0;96:40:0:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="136" rc-code="0" op-status="0" interval="120000" last-rc-change="1314497543" exec-time="20" queue-time="1000" op-digest="2d296eeac3e5f7d1cfdb1557b8eb3457"/>
+          </lrm_resource>
+          <lrm_resource id="p_controld:0" type="controld" class="ocf" provider="pacemaker">
+            <lrm_rsc_op id="p_controld:0_monitor_0" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="16:39:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:0;16:39:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="124" rc-code="0" op-status="0" interval="0" last-run="1314497540" last-rc-change="1314497540" exec-time="20" queue-time="1000" op-digest="f2317cad3d54cec5d7d7aa7d0bf35cf8"/>
+            <lrm_rsc_op id="p_controld:0_monitor_100000" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="93:40:0:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:0;93:40:0:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="135" rc-code="0" op-status="0" interval="100000" last-rc-change="1314497542" exec-time="10" queue-time="0" op-digest="8f6a313464b7f9e3a31cb448458b700e"/>
+          </lrm_resource>
+          <lrm_resource id="p_fs_wwwdata:0" type="Filesystem" class="ocf" provider="heartbeat">
+            <lrm_rsc_op id="p_fs_wwwdata:0_monitor_0" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="18:39:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:0;18:39:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="126" rc-code="0" op-status="0" interval="0" last-run="1314497540" last-rc-change="1314497540" exec-time="30" queue-time="1000" op-digest="fe054268b13f4647af82e1ab011cfcc0"/>
+          </lrm_resource>
+          <lrm_resource id="p_ip_float_cluster" type="IPaddr2" class="ocf" provider="heartbeat">
+            <lrm_rsc_op id="p_ip_float_cluster_monitor_0" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="19:39:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:0;19:39:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="127" rc-code="0" op-status="0" interval="0" last-run="1314497540" last-rc-change="1314497540" exec-time="30" queue-time="1000" op-digest="c45b3456181d583d319520f3558d7322"/>
+          </lrm_resource>
+          <lrm_resource id="p_crontabs_standbynode" type="symlink" class="ocf" provider="heartbeat">
+            <lrm_rsc_op id="p_crontabs_standbynode_monitor_0" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="22:39:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:7;22:39:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="130" rc-code="7" op-status="0" interval="0" last-run="1314497541" last-rc-change="1314497541" exec-time="20" queue-time="2000" op-digest="00ed014dd617f429315fb5fdb441c6ed"/>
+          </lrm_resource>
+          <lrm_resource id="p_crontabs_activenode" type="symlink" class="ocf" provider="heartbeat">
+            <lrm_rsc_op id="p_crontabs_activenode_monitor_0" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="21:39:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:0;21:39:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="129" rc-code="0" op-status="0" interval="0" last-run="1314497541" last-rc-change="1314497541" exec-time="20" queue-time="2000" op-digest="fb0524fe786385aa81e3469e433ebd99"/>
+            <lrm_rsc_op id="p_crontabs_activenode_monitor_300000" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="128:40:0:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:0;128:40:0:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="138" rc-code="0" op-status="0" interval="300000" last-rc-change="1314497543" exec-time="10" queue-time="1000" op-digest="a387aede6239aa7c4335ba52e07fb7e3"/>
+          </lrm_resource>
+          <lrm_resource id="p_srv_nfsserver" type="nfsserver" class="ocf" provider="heartbeat">
+            <lrm_rsc_op id="p_srv_nfsserver_monitor_0" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="20:39:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:0;20:39:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="128" rc-code="0" op-status="0" interval="0" last-run="1314497541" last-rc-change="1314497541" exec-time="40" queue-time="2000" op-digest="ca0836ee47e3c93676b6d9839a903bc7"/>
+            <lrm_rsc_op id="p_srv_nfsserver_monitor_300000" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="125:40:0:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:0;125:40:0:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="137" rc-code="0" op-status="0" interval="300000" last-rc-change="1314497543" exec-time="30" queue-time="1000" op-digest="b17b0a5656d2a61b57f3c9e8ef825e43"/>
+          </lrm_resource>
+          <lrm_resource id="p_st_ibmrsa01" type="external/ibmrsa-telnet" class="stonith">
+            <lrm_rsc_op id="p_st_ibmrsa01_monitor_0" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="12:39:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:0;12:39:7:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="120" rc-code="0" op-status="0" interval="0" last-run="1314497537" last-rc-change="1314497537" exec-time="5710" queue-time="0" op-digest="eed49edf8bba49adb99f2b1790ed3662"/>
+            <lrm_rsc_op id="p_st_ibmrsa01_monitor_86400000" operation="monitor" crm-debug-origin="do_update_resource" crm_feature_set="3.0.5" transition-key="79:40:0:cd6addad-fbd8-4ebc-87f5-73465dad9197" transition-magic="0:0;79:40:0:cd6addad-fbd8-4ebc-87f5-73465dad9197" call-id="133" rc-code="0" op-status="0" interval="86400000" last-rc-change="1314497543" exec-time="3760" queue-time="0" op-digest="33491b6dcf0f2794113832a267c70235"/>
+          </lrm_resource>
+        </lrm_resources>
+      </lrm>
+    </node_state>
+  </status>
+</cib>
