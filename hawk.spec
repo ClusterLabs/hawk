@@ -36,6 +36,7 @@ Summary:	HA Web Konsole
 Version:	0.4.1
 Release:	0
 License:	GPL v2 only
+Url:		http://www.clusterlabs.org/wiki/Hawk
 Group:		%{pkg_group}
 Source:		%{name}-%{version}.tar.bz2
 %if 0%{?suse_version}
@@ -45,6 +46,7 @@ Source1:	filter-requires.sh
 %endif
 BuildRoot:	%{_tmppath}/%{name}-%{version}-build
 AutoReqProv:	on
+Requires:       hawk-templates >= %{version}-%{release}
 Requires:	pacemaker
 Requires:	ruby
 Requires:	lighttpd >= 1.4.20
@@ -76,8 +78,17 @@ BuildRequires:	pacemaker-libs-devel
 A web-based GUI for managing and monitoring the Pacemaker
 High-Availability cluster resource manager.
 
-Authors: Tim Serong <tserong@novell.com>
+Authors: Tim Serong <tserong@suse.com>
 
+
+%package templates
+Summary:        Hawk Setup Wizard Templates
+Group:          Productivity/Clustering/HA
+
+%description templates
+Template files for Hawk's cluster setup wizard.
+
+Authors: Tim Serong <tserong@suse.com>
 
 
 %prep
@@ -180,6 +191,8 @@ rm -rf %{buildroot}
 %dir %{www_base}/hawk
 %{www_base}/hawk/app
 %{www_base}/hawk/config
+# Packaged in hawk-templates
+%exclude %{www_base}/hawk/config/wizard
 %{www_base}/hawk/db
 %{www_base}/hawk/doc
 %{www_base}/hawk/lib
@@ -226,5 +239,9 @@ rm -rf %{buildroot}
 %if 0%{?suse_version}
 %attr(-,root,root) %{_sbindir}/rchawk
 %endif
+
+%files templates
+%defattr(-,root,root)
+%{www_base}/hawk/config/wizard
 
 %changelog
