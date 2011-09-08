@@ -1,0 +1,83 @@
+NOTE: THIS FILE EXISTS FOR POSTERITY; SOME DETAILS MAY BE INCORRECT WRT
+ACTUAL CURRENT/DESIRED IMPLEMENTATION (2011-09-08).
+
+
+== Implementation Details ==
+
+- generic log viewer dialog, states:
+  - "Getting recent events (last hour) ..."
+  - "Another 'crm history' operation is in progress ..." (then switch to "getting recent events")
+  - "No events found in last hour" (if exit == 0 and stdout empty)
+    - Future: option to pick timeframe?
+  - Show logs, dialog expands to fill screen (minus sensible border) (if exit == 0 and stdout !empty)
+    - Must remember size to restore to when closing
+  - if exit == 1
+    - show stderr + stdout
+
+  - need files
+    - crm_history.exit
+    - crm_history.stdout
+    - crm_history.stderr
+    - crm_history.pid (while running)
+    - crm_history.cmd (command executed - use mtime of this to see if we need to run again)
+
+- Any invocation of "crm history" may potentially take some time
+- Only allow one at a time, ala hb_report
+  - Need to know what command *was* run, to know if its the status we're looking for
+  - What about when an invocation is complete (we have output), but another invocation
+    is requested?  It'll blow away the previous invocation, which may not have been
+    displayed yet...
+  - Possibly/probably need to delete the last run info once its displayed, or it'll
+    just live forever.
+    - Or keep it for a little while
+    - Or keep different runs per function
+- Add menu to resource, node
+  - View recent events (just "crm history resource <foo>" or "crm history node <foo>")
+    - Limitation: only last hour, no good if failure was ealier
+
+- For getting longer periods, need "crm history limit", but probably not honoured between
+  restarts; so need to pipe "limit foo bar\n(...whatevever...)\nquit".  Jesus.
+  - Or, for transition timeline, ask for times, then hb_report for that period, then
+    interrogate that (but this still probably requires piped invocation)
+  - Definitely have to run off hb_report, else it regenerates every time.  e.g.: try:
+      # echo -e "limit 00:00 17:00\npeinputs list" | crm history
+  - Instead:
+      # hb_report -f 00:00 -t 18:00 /tmp/hb_report-00:00-18:00
+      # echo -e "source /tmp/hb_report-00:00-18:00.tar.bz2\npeinputs list" | crm history
+    - Note: unzips to /tmp/hb_report-00:00-18:00, leaving that directory present
+
+- Could add history to node, resource controllers (except we don't have a resource controller ATM)
+  - But, that actually does make sense
+  - And we want a resource controller anyway, for showing resource details
+
+- May want verbosity increase on detail link!
+
+For transition history...
+
+- need hb_report to be run separately, probably shifting it outside hb_reports_controller.rb
+  - need to cope with existing target directory (will be created by crm history when viewing tarball)
+- need ability to invoke & parse crm history with that as source
+- when showing page, need to know if a current display job is running/updating
+  - ability to kill job?
+- when time entered, becomes "Gathering data for $from to $to... [/]"
+- list current available time periods (by hb_report name)
+- selected time period is highlighted
+  
+- remind me why i didn't put hb_report in $RAILS_ROOT/tmp ?
+
+* really want details to show inline in window, with selected line highlighted
+
+- page load:
+  - show form
+    - or spinner if currently running
+  - iff display selected and file exists, and nothing running, render immediately
+- form submit:
+  - show form with spinner until complete (may immediately complete)
+  - when complete, update list and re-enable form
+
+* date & time must be <=> correctly
+
+== Um... ===
+
+- Permissions are problematic, delays are problematic
+

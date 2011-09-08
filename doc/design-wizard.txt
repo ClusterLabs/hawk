@@ -1,0 +1,83 @@
+NOTE: THIS FILE EXISTS FOR POSTERITY; SOME DETAILS MAY BE INCORRECT WRT
+ACTUAL CURRENT/DESIRED IMPLEMENTATION (2011-09-08).
+
+
+== inital design pretty much good ==
+
+workflows wrap templates
+  something like RNG, with alternate steps(?):
+    - allows DRBD as optional base instead of assuming SAN
+    - use GFS2 instead of OCFS2?
+    - use LVM devices instead of filesystem for VM stores?
+    
+minimal implementation (template):
+  - munge together RA metadata with crm template
+  - will probably duplicate crm templates, can pull these out
+    later to some generic form
+  - timeouts if not specified in templates should come from
+    RA defaults
+  - need general template description, plus description of each option
+  
+minimal implementation (workflow):
+  - general workflow description
+  - ordered set of templates
+  - possible additional configuration to chain templates together
+    (e.g.: location/ordering constraints).
+    
+other setup:
+  - walkthrough of initial cluster setup options:
+    - STONITH enabled / STONITH resource configured
+    - stickiness etc.
+
+Experience is thus:
+
+  1) What do you want to do?
+  
+     - Configure cluster options
+     - Create (big thing):
+        - CTDB server (OCFS2 + CTDB + IPs?)
+        - NFS server (Filesystem + NFS + IP?)
+        - Web server (IP + Apache)
+     - Create (little thing):
+        - Virtual IP (+ starts (before|after X) ...)
+        - (...just about any resource, with more description, less options...)
+        
+  2) Initial description, saying what you get, and what you need to
+     configure yourself (e.g.: setup apache config).
+     
+        [< Prev] [Next >]
+     
+  3) For each configuration "chunk", e.g.: IP address, or filesystem:
+  
+      [parameters]
+      
+      [< Prev] [Next >]
+
+     (need to verify IDs aren't already in use at each step)
+
+  4) Confirmation, summary of everything entered.
+  
+  5) Submit creates, or:
+  
+      - displays error, try again to ... what?  go back in the wizard?
+      - or, highlight the broken thing on the confirmation screen?
+
+If we do this all as one page with JS to go between "screens", it's quicker for
+the user to interact with, but more complex(?) to do validation as we go.
+
+If we do separate request per page, there's great piles of junk to pass around
+as hidden fields between each step.
+
+Really we want the whole thing to be driven by the workflows/templates, so
+actually "Configure cluster options", "Create CTDB server", "Create Web
+Server" as listed above are actually the workflows.
+
+  - Possibly the templates and workflows could be just as easily (more easily?)
+    done in a Ruby DSL than as XML.
+    - Maybe, but that would pretty much preclude using them anywhere else,
+      any we *like* keeping the RA metadata format...
+  - Maybe it should be XSLT that generates the config snippets...
+  
+  
+
+

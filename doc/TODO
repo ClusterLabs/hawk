@@ -1,0 +1,277 @@
+TODO
+====
+
+== Missing Features ==
+
+* rsc_ticket support
+* resource templates
+* new style constraints (rsc_*)?
+
+
+== Core/General == 
+
+* Write a real changelog!
+* Need to verify/match op interval when ignoring ops
+* Translate simple errors from crm (bnc#713917)
+** Already did permission denied, but need to check what other simple failures
+   we can translate.
+* Possibility of stale pidfiles with crm_history, hb_report, history_report
+  (need to confirm process and pidfile existence)
+* Use begin/ensure/end around file ops, see e.g. unlink at:
+  http://ruby-doc.org/stdlib/libdoc/tempfile/rdoc/index.html
+* Use X-Sendfile for delivering cibs, bz2s etc. in explorer & simulator
+  (see http://www.therailsway.com/2009/2/22/file-downloads-done-right)
+* Consolidate templates etc. for primitive, etc. as much as possible (not
+  DRY enough).
+* Root might not be able to be root via hawk_invoke (may need to remap
+  requests for root to hacluster)
+* NodesController, HbReportController - login_required may result in login
+  page embedded in dialog
+* primitive meta :required => e.attributes['required'].to_i == 1 : needs real
+  bool conversion thing (1/0/true/false ala ocf_is_true)
+* Does not support < 1.0 schema (do we care?  God I hope not).
+* Verify rpm post upgrade restarts hawk if necessary (but not if someone's
+  configured it to run as an LSB resource inside the cluster - not intended
+  to run that way, but...)
+* Doesn't work with SELinux enforcing (does work with permissive)
+* Verify do_or_die in lib/tasks really does do or die.
+* RAILS_DEFAULT_LOGGER deprecated
+* Move logfiles to /var/log/hawk
+* Nasty permission denied error if bob enables ACLs
+* Warn if config changed out from under you while saving?  (In all cases,
+  editing resources, crm_config, ...)
+* Add ability to edit rsc_defaults, op_defaults.
+* Need real field validation on all fields.
+* DC etc. not present in footer on all pages except main status page.
+* Style/theme need fine-tuning/cleaning (dialog titles, buttons etc. rather
+  large, among other things).
+* need to cancel running refresh for node details dialog
+** actually, need to be able to cancel initial load for any dialog.  crap.
+   this is getting kind of messy.
+* look for redundant "foo.select.map"
+* Clean up error display from all crm* invocations (can be smooshed onto
+  one long error line, which is a bit ugly to read).
+* Support all operations on shadow CIBs.
+* remove current_user from cib.rb
+* use clearTimeout(?) to hose anything set with setTimeout to avoid
+  duplicate requests (should never happen, but might if you run e.g.:
+  update_cib() from firebug).
+* look at memory usage; hawk running under mongrel eventually goes OOM
+
+
+== UI Controls ==
+
+* ".attrlist-del" to add "Add" and "Edit" headings to ui.attrlist searches
+  whole bloody document, so will break if there's more than one attrlist on
+  a page.
+* mention that ui.oplist, ui.attrlist etc. require escape_html, escape_field
+
+
+== GUI: Explorer ==
+
+* Cache list might still apepar if you come back to the history page during
+  generation (*sigh*)
+* Ability to delete cached reports?
+* Move to tmp directory in hawk, not /tmp?  (May not work if not all nodes
+  have Hawk).
+* "Another 'crm history' is running" thing works (node recent events?), but
+  there's a flash of both "us" and "them" during update.
+* May want verbosity increase on detail link
+* Really want details to show with selected line highligted, and "fixed"
+  position so it floats down the page (positioning is horribly annoying :-/)
+
+
+== GUI: Simulator ==
+
+* stdout duplicate lines somehow (wtf?)
+* don't use yellow background (baby's bedroom colour)
+* remove injected state button removes all duplicate entries, not just the one
+  you selected
+* want < > VCR controls
+** but really need ability to stack new changes on top of new computed state.
+
+
+== GUI: Wizard ==
+
+* Add ability for templates to call non-crm commands, e.g.: mkdir on all
+  nodes, and deploy custom configuration files, e.g. httpd.conf
+  (see bnc#710959)
+* clean up templates, esp. add ops with timeouts
+** split OCFS2 base out from filesystem
+** see also bnc#710959
+* ability to have optional steps
+* list of steps on LHS?
+
+
+== GUI: hb_report ==
+
+* hb_report; fails if desination dir /tmp/hb_report-hawk already exists,
+  but you don't see the error if /tmp/hb_report-hawk.tar.bz2 exists
+  (existence check must be overriding failed run check when complete?!?)
+* hb_report: $("#hbreport-status").html doesn't use escape_html...?
+* Ability to generate, keep, download multiple hb_reports (not just last one)
+** Ability to delete old reports.
+* Probably want to run with "hb_report -Z"
+* Ability to use crm_report instead?  (Or use one or the other, depending on
+  what's installed)?
+* Consider renaming hb_report class to crm_report or similar?
+* "Generate hb_report" menu item etc. -- different nomenclature?  Cluster
+  Report?  Debug Report?
+
+
+== GUI: status ==
+
+* Recent events, details.  dialog should say "$node recent events",
+  "$node details" etc.
+* Can't delete/set target-role of child of clone of group
+* Need confirmation on delete resource
+* Disable unavailable context menus (no primitives - can't create group)
+** (Unless we have group creation go wizard-style to create primitives)
+* Ideas:
+** Sort by expected time when coming online
+** Timeout-based progress bar on resources for pending ops
+** Filter textbox to show only resources/nodes of given name/type/etc.
+* bnc#703380
+** Need "parent" ops for clone instances, m/s instances, group children in
+   popup menu on summary & table.
+** no groups visible in table, clone/group not visibile in summary detail view
+* can use pin icon to indicate migrated
+* need some other icon to indicate target role set (tooltip to show target
+  role)
+* footer breaks over lines if screen too narrow (can live with it for now...)
+* likewise error bar
+* table view dodgy in IE with big resource names
+** view switcher buttons on IE jump up & down (how did we fix that in the
+   forms?  some overflow property as well?)
+*** position: relative on parent, but can't use this on #content, or it
+    screws up the offsets for popup menus
+*** (a bit better with IE specific stylesheet, but still some jagging on
+    699806.xml)
+* confirm_op params don't match perform_op params
+* Add ability to view resource details (like node details).
+* Panel view, lots of space in the middle.  Could flow better (resources
+  in column next to nodes if space allows).
+* Summary view, probably want red/broken things expanded by default.
+** Requires ability to display both nodes and resources simultaneously
+** ...but this would tie-in nicely with a filter textbox
+* Vertically align various fields in each resource (name, instance, state,
+  node it's on).  It's most obvious this is a problem in the table view.
+* Icons for cluster config menu items are wrong (generic spanner for three
+  of them).
+* #content's overflow: auto seems to be preventing horizontal scrollbar from
+  appearing on table view (try 699806.xml)
+** actually, the scrollbar appears behind the footer(!)
+** and on IE, you get an extra vertical scrollbar too.
+*** try "padding-bottom: 2em" on container (done, but it's still fragged in IE)
+*** also this pushes the footer always off the bottom of the screen.  bloody hell
+*** fixed-ish with overflow: auto on #table (but probably still not perfect)
+* Ensure popup menus are hidden for test CIBs.
+* For fatal errors on pageload, do we really want to keep the spinner?
+** Probably, if the problem might go away...
+  
+
+== GUI: crm_config Editor ==
+
+* ACL support for crm_config editor lies about successful write
+** Actually, it may lie about successful write if some stuff is written but
+   some not in the general case.
+** crm_attribute can fail silently when deleting attributes.
+*** also it can't cope with multiple property sets with same name attrs.
+* display expands horribly when window too small (try 800x600 with
+  cluster-recheck-interval help)
+* Add "advanced" checkbox or similar to hide advanced options by default.
+* move save logic from crm_config_controller to crm_config
+** See about consolidation with CibObject, resources etc.
+* note that we can't show unknown properties in crm_config editor (if they're
+  not in all_types we don't want to know, can't check for readonly, etc.)
+
+
+== GUI: Constraint Editor ==
+
+* https://node-1:7630/cib/live/colocations/fs-then-ctdb/edit picks up an
+  *order* constraint (even though it's actually a colocation)
+* Need confirmation on delete.
+* constraint icon would be better as a little chain, really
+* Should pre-fill ID field (you generally don't care what it is)
+** Probably leave it disabled and just fill based on rsc id
+* Offer +/-inf scores
+* Text to describe arrows (will be placed with, will start after)
+
+
+== GUI: Resource Editor ==
+
+* Intervals must have no freaky characters - add regex verify for attrlist?
+* op editor shows timeout=20 where there is no timeout specified (still true?)
+* need to cope with set_ops having duplicate monitor intervals (e.g.: pcmk
+  Stateful defaults)
+* op editor may fail badly if unknown instance attributes for ops are
+  specified when editing?
+* Need to be able to change class:provider:type (e.g.: switch from
+  ocf:heartbeat:drbd to ocf:linbit:drbd)
+* Can't edit clone/ms child, group members, order of group members
+* can't specify arbitrary meta attributes (want combo box)
+** e.g.: OCF_CHECK_LEVEL (important)
+* For ops, need to hit "+" before modifying timings - consider maybe having
+  the op auto-add itself when selected, rather than having to hit "+"?
+* can't specify arbitrary params
+* Can't specify resource utilization
+* Highlight when a setting is different than default
+* Highlight what's changed while editing (apply to all editors, crm_config,
+  constraints etc.)
+* Creating resource when cluster not quorate gives (ugly) "Unable to create
+  resource: crm_verify[16586]: 2011/04/14_22:48:47 WARN: cluster_status: We
+  do not have quorum - fencing and resource management disabled ..."
+* Want ability to go "wizard style" to create clone/group/ms (i.e. create
+  clone, then create primitive).
+* meta attributes (and maybe op list) don't disable while switching provider,
+  type
+* Observed previously but unable to reproduce:
+** type "delay" to get to delay resource, and it gives you db2 fields,
+   then doesn't change them when you get to delay finally
+** bash around on type (switch from one to another too quickly for the param
+   requests) and you get javascript errors
+** create a resource, then (before leaving that page), go edit some other
+   resource: "resource created successfully" flash appears on edit page (even
+   though obviously nothing new has been created).
+* Apply Changes button is disabled when showing error form after edit (but
+  we almost never care, unless it was a transient error that really will go
+  away just by hitting "Apply" without making any other changes)
+* for clone, if there's no suitable children available, the child list will
+  be (un-obviously) empty
+* defaults for op requires and on-fail need to change per op type, and per
+  stonith configuration
+* primitive with deleted instance attributes isn't folded back to empty
+  element </> (presumably likewise meta_attributes)
+** likewise operations
+* master is really a copy of clone.  dodgy.
+* colspan="4" is wrong for clone and master submit buttons 
+
+
+== Oddities ==
+
+* Cluster not running, on node-1, IE thinks some content is insecure - wtf?
+* Some display error oddity in IE on summary view when things
+  stop/start/disappear
+
+
+== May Not Be Broken Anymore (need to verify) ==
+
+* new ms-rule with role=master leaves s0:1 pending on node-0 - wtf?
+* delete resources in clones, stale instances hang around (dlm:0 etc.)
+* Try stop-all-resources, then start again, filesys:1 shows pending, WTF?
+  crm_resource -o includes pending monitor op for some reason
+* turn a primitive into a clone, it seems to keep the old state from the
+  primitive, e.g.: clone set: c-d3 (d3:0 d3:1 d3:)
+* verify what happens if hawk process on the server goes away (does 
+  browser refresh work when server comes back)?
+** similar question - try hawk on a floating IP, fail it over, what happens?
+* have 4 nodes, use `cibadmin --delete --xml-text '<node id="node-2"/>'`
+  to delete two of them, note that clusterfs:2 remains stopped (LRM state
+  still present for nonexistent node?)
+* Resource stop as "bob" (no access) reported as 500, not 403?
+* allow render of bare CIB if cluster is not running (works, but may still
+  show error)
+* FC14: ltdl.h /usr/include/pils/plugin.h:23:20: fatal error: ltdl.h: No
+  such file or directory
+** in libtool-ltdl-devel
+** really should be a require of cluster-glue-libs-devel
