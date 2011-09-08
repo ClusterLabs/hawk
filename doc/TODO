@@ -173,7 +173,9 @@ TODO
 * Ensure popup menus are hidden for test CIBs.
 * For fatal errors on pageload, do we really want to keep the spinner?
 ** Probably, if the problem might go away...
-  
+* Red warning if cluster not quorate and resource startup disabled (e.g.:
+  two-node cluster with no-quorum-policy not set to ignore)
+
 
 == GUI: crm_config Editor ==
 
