@@ -1,0 +1,338 @@
+* Thu Sep 09 2011 Tim Serong <tserong@suse.com>
+- Build: Require graphviz to ensure graphs can be drawn (bnc#712894)
+- Build: Split setup wizard templates out into hawk-templates subpackage
+- Misc: Add test CIB for internal rename of clone instances
+- Doc: Add general TODO and design notes for explorer & wizard
+- Upstream version cs:47cd5149ff27
+
+* Mon Sep 05 2011 Tim Serong <tserong@suse.com>
+- GUI: Add "ignored" to tooltips for failed ops if on-fail=ignore
+- Misc: Cib model: Reset rc_code to expected for ignored failed ops
+  (bnc#711002)
+- Misc: Invoker: Map permission denied error to localized messages
+  (bnc#713917)
+- Misc: Invoker: Consolidate crm functions, pick up errors even when
+  rc=0 (bnc#713922)
+- Misc: Cib model: Internally rename running clone instances if necessary
+- Build: Fix glib & libxml order for hawk_monitor build
+- Remove workaround for 'String#unpack("V") busted on s390x' (bnc#581578)
+- Upstream version cs:7dc9d94fee03
+
+* Fri Aug 12 2011 Tim Serong <tserong@novell.com>
+- GUI: explorer: Hide cache links when "Display" clicked
+- Upstream version cs:bf6b85f65472
+
+* Fri Aug 12 2011 Tim Serong <tserong@novell.com>
+- GUI: hb_report: Add datetimepicker to time fields (bnc#710950)
+- GUI: explorer: Add datetimepicker to date fields
+- Misc: Cib model: Ignore orphaned non-clone resource instance in
+  clones (bnc#711180)
+- Upstream version cs:f20dc1a4cf23
+
+* Thu Aug 11 2011 Tim Serong <tserong@novell.com>
+- GUI: explorer: Provide links to cached history hb_reports
+- GUI: explorer: Skip pe inputs that don't exist in tarball
+- GUI: explorer: Rely on shell for pe-input sort, add "no details" display
+- GUI: wizard: Improve apache step description in webserver template
+- Misc: Regenerate POT file
+- Upstream version cs:09d215385cb1
+
+* Wed Aug 10 2011 Tim Serong <tserong@novell.com>
+- GUI: explorer: Load log from detail link inline in page
+- GUI: explorer: Clean up error handlers
+- GUI: explorer: Update to handle "crm history" changes from bnc#711060
+- Misc: Cib model: Include empty failed_ops array in resources with no state
+- Upstream version cs:1bfb23da2928
+
+* Mon Aug 08 2011 Tim Serong <tserong@novell.com>
+- GUI: Add cluster history explorer (fate#303620)
+- Upstream version cs:cf4e5806a124
+
+* Tue Aug 02 2011 Tim Serong <tserong@novell.com>
+- GUI: simulator: Only disable Run button when removing last injected
+  state item
+- Upstream version cs:914761789f46
+
+* Tue Aug 02 2011 Tim Serong <tserong@novell.com>
+- GUI: wizard: Fix Next button click in IE (form wasn't submitting)
+- GUI: simulator: Fix ability to remove injected node state in IE
+- GUI: simulator: Expand injected state box when dialog expands
+- GUI: simulator: Indicate state in dialog title
+- GUI: simulator: Update op exit codes to match shell syntax
+- Misc: simulator: move translatable strings to _gettext.js.erb
+- Upstream version cs:a5edb2bf77e0
+
+* Mon Aug 01 2011 Tim Serong <tserong@novell.com>
+- GUI: Add ability to explore failure scenarios (fate#310186)
+- Misc: Fix localization of >2 plurals (cs, pl, ru) for node and resource
+  labels (bnc#708328)
+- Misc: Add Hawk favicon.ico
+- Upstream version cs:fc3a5275ba37
+
+* Thu Jul 28 2011 Tim Serong <tserong@novell.com>
+- GUI: Add ability to view recent node and resource events (fate#303620)
+- Misc: Show hawk URL when running /etc/init.d/hawk start|status (bnc#708318)
+- Misc: Cib model: Skip allegedly pending "last_failure" ops when determining
+  resource state (bnc#706755)
+- Doc: Add wizard workflow/template documentation
+- Upstream version cs:d8c9b10788a5
+
+* Mon Jul 18 2011 Tim Serong <tserong@novell.com>
+- GUI: Add ability to generate hb_report (fate#310187)
+- Upstream version cs:3ce14138f5d5
+
+* Thu Jul 14 2011 Tim Serong <tserong@novell.com>
+- GUI: wizard: Add newline after each pretty printed crm_script block
+- Upstream version cs:720d5e9b03fb
+
+* Wed Jul 13 2011 Tim Serong <tserong@novell.com>
+- GUI: Add setup wizard with web server & OCFS2 templates (fate#310190)
+- Build: Ensure hawk_chkpwd, hawk_invoke are built position independent
+- Fix an assortment of rpmlint warnings
+- Upstream version cs:676197bc9f2c
+
+* Fri Jul 01 2011 Tim Serong <tserong@novell.com>
+- GUI: Add summary view, table view (fate#309100)
+- Misc: Cib model: Skip delete and cancel ops when determining resource state
+- Upstream version cs:0d9916b36397
+
+* Tue Jun 28 2011 Tim Serong <tserong@novell.com>
+- GUI: Add ability to see node utilization/load (fate#310135)
+- GUI: Add alert icon to resources with failed ops (fate#310359)
+- GUI: Base total resource count on number of configured instances
+- GUI: Add overflow:auto to content DIV to prevent floats running over
+  footer
+- Misc: Cib model: Strip stopped clone instances outside 0..clone_max
+- Upstream version cs:16907febea9b
+
+* Mon Jun 20 2011 Tim Serong <tserong@novell.com>
+- GUI: ui.location, Location model: Don't fold back to simple constraint
+  when role specified
+- GUI: Handle unknown DC version during cluster bringup
+- Misc: Include CSRF token with AJAX requests (required for rails 2.3.11)
+- Upstream version cs:3641a9e29036
+
+* Wed May 18 2011 Tim Serong <tserong@novell.com>
+- Build: Update package version to 0.4.1
+- Upstream version cs:398ae27386e1
+
+* Fri May 13 2011 Tim Serong <tserong@novell.com>
+- GUI: Add ability to add and edit location, colocation and
+  order constraints (fate#310189)
+- GUI: ui.popupmenu: Ensure popup menus at extreme right/bottom
+  stay onscreen
+- GUI: Move dialog, JSON functions from status.js to application.js
+- Misc: CibObject refactor
+- Upstream version cs:2fffe6364b97
+
+* Mon Apr 18 2011 Tim Serong <tserong@novell.com>
+- Build: Update package version to 0.4.0
+- Upstream version cs:676ddcaa6d80
+
+* Thu Apr 14 2011 Tim Serong <tserong@novell.com>
+- GUI: Don't show orphaned default instances for clones created from
+  running primitives (bnc#679724)
+- Build: Use pkg-config libxml-2.0 when building hawk_monitor
+- Build: Force global scope for Locale when freezing locale_rails gem
+  (workaround for rhbz#623697)
+- Upstream version cs:5afd70c4277a
+
+* Tue Apr 05 2011 Tim Serong <tserong@novell.com>
+- GUI: Primitive editor: Add online help
+- GUI: Primitive editor: Support multiple monitor ops
+- GUI: Primitive editor: Set default interval for monitor op if not
+  specified in metadata
+- GUI: Primitive editor: Don't delete ops before changing Type
+- GUI: Default to target-role=Stopped when creating new resources
+- GUI: Don't show 'heartbeat' resource class if /etc/ha.d/resource.d
+  doesn't exist
+- GUI: Confirm before 'Back' or 'Revert' is clicked on resource and
+  crm_config editor screens if anything has changed
+- GUI: Remove unnecessary outer border from resource and crm_config
+  editor screens
+- GUI: ui.attrlist: Trim whitespace from text field values
+- GUI: ui.oplist: Ensure old set ops are deleted when reinitializing
+- GUI: ui.oplist: Remove spurious " character in hidden field ID
+- GUI: Don't cache RA class/provider/type in static variable (it never
+  gets reloaded)
+- GUI: Use panels instead of scrolling divs for resource params, ops,
+  meta attrs
+- GUI: Link Hawk logo back to main status page
+- GUI: Refactor: Turn popup menus and panels into jQuery UI widgets
+- Upstream version cs:4818d39a5435
+
+* Wed Mar 23 2011 Tim Serong <tserong@novell.com>
+- GUI: Add ability to create primitives, groups, clones, master
+  resources (fate#310188)
+- GUI: Refactor: make core of crm_config editor a jQuery UI widget
+  ("add new property" field at bottom of form for consistency with
+  resource editor).
+- Misc: hawk_invoke: Add /bin to path (required for some crm shell
+  invocations)
+- Misc: Unset ENV['TERM'] to avoid curses junk in crm shell output
+- Upstream version cs:494df5a76ab5
+
+* Wed Feb 09 2011 Tim Serong <tserong@novell.com>
+- Misc: Remove logging from signal handler in hawk_chkpwd
+- Upstream version cs:6d8f69f28ddc
+
+* Wed Feb 09 2011 Tim Serong <tserong@novell.com>
+- Misc: Sanitize environment in hawk_invoke
+- Upstream version cs:3d698d6d049d
+
+* Tue Feb 08 2011 Tim Serong <tserong@novell.com>
+- GUI: crm_config editor: Use checkboxes & dropdowns for boolean and
+  enum types
+- Upstream version cs:ff553132e67b
+
+* Fri Feb 04 2011 Tim Serong <tserong@novell.com>
+- GUI: Show all currently set properties in cluster configuration panel
+- GUI: crm_config editor: Sanitize property values
+- Upstream version cs:73ba1ad5a53d
+
+* Fri Jan 21 2011 Tim Serong <tserong@novell.com>
+- GUI: Make Cluster Config properties button *not* expand panel in IE
+- Misc: Add test CIBs for all resource types
+- Upstream version cs:812d86c6986a
+
+* Thu Jan 20 2011 Tim Serong <tserong@novell.com>
+- GUI: crm_config editor: Disallow adding duplicate properties
+- GUI: crm_config editor: Don't attempt to show unknown properties
+- GUI: crm_config editor: Hide "saved changes" message on subsequent edit
+- GUI: crm_config editor: ensure property deletion via crm_attribute
+- Upstream version cs:45c737d145bd
+
+* Wed Jan 19 2011 Tim Serong <tserong@novell.com>
+- GUI: Add crm_config property editor (accessible from summary panel)
+- GUI: Allow expand/contract of summary panel (consistency with other panels)
+- GUI: Fix auto-expand of panels with stopped resources
+- Misc: Update copyright dates
+- Upstream version cs:db4bee65b35c
+
+* Mon Jan 17 2011 Tim Serong <tserong@novell.com>
+- GUI: Move DC info from summary panel to footer
+- Misc: use crm_attribute instead of deprecated crm_standby
+- Misc: Add hawk_invoke binary to setuid for CIB ACL support
+- Upstream version cs:17110c9259a5
+
+* Fri Dec 24 2010 Tim Serong <tserong@novell.com>
+- GUI: Display code refactor: Use jQuery instead of Prototype
+- Upstream version cs:1388147d005b
+
+* Tue Nov 23 2010 Tim Serong <tserong@novell.com>
+- GUI: Handle permission denied errors when logged out user updates status
+  or performs op
+- GUI: Hide status on fatal error, don't show duplicate connection failures
+- GUI: Ignore lrm state for resources on down nodes
+- Misc: Ensure Util.popen3 doesn't block
+- Misc: Set $HOME to rails tmp dir, so crm shell can save help index
+- Upstream version cs:17646029a953
+
+* Thu Oct 28 2010 Tim Serong <tserong@novell.com>
+- Misc: Pass current user to cibadmin etc. for CIB ACL support (fate#310168)
+- GUI: Fix broken resource panel render when resource state is unknown
+- GUI: Add ability to load static CIB files for testing purposes
+- GUI: Show suitable error if the Ajax request in update_cib() fails
+- Misc: Use relative path for images, requests in JavaScript
+- Upstream version cs:c54fd2634c8e
+
+* Wed Sep 29 2010 Tim Serong <tserong@novell.com>
+- GUI: Show pending ops as "Pending" (bnc#593015, lf#2423)
+- GUI: Correctly display failed "stop" ops
+- GUI: Show clone instances when clone-max > node count
+- GUI: Handle gaps in clone ID sequences
+- GUI: Request status update periodically if server is down
+- GUI: Treat completed migrate_from as stop when determining resource state
+- GUI: Display code refactor (HTML for status display generated client-side)
+- Upstream version cs:71d1d6f0fc66
+
+* Tue Aug 10 2010 Tim Serong <tserong@novell.com>
+- GUI: Refresh status display automatically on cluster state change
+  (bnc#593013)
+- Upstream version cs:443ba6917308
+
+* Mon May 10 2010 Tim Serong <tserong@novell.com>
+- Misc: Update translations
+- Upstream version cs:2a79e0d9cb43
+
+* Fri Apr 23 2010 Tim Serong <tserong@novell.com>
+- GUI: Fixed inability to click menu button for M/S sets in Internet Explorer
+- Upstream version cs:067bef4c4f72
+
+* Fri Apr 23 2010 Tim Serong <tserong@novell.com>
+- GUI: Use absolute (instead of fixed) position in confirmation dialogs on
+  Android (bnc#596052)
+- GUI: Add ability to promote/demote master/slave resource sets (bnc#593019)
+- GUI: Show children of Master/Slave sets correctly as either Master or Slave
+  (not just "Started")
+- GUI: Use "Move" instead of "Migrate" in menus, dialogs
+- Upstream version cs:fd621b9c8595
+
+* Fri Apr 16 2010 Tim Serong <tserong@novell.com>
+- Misc: Use hawk_chkpwd helper binary for user authentication (instead of
+  unix2_chkpwd)
+- Upstream version cs:86861933b048
+
+* Mon Apr 12 2010 Tim Serong <tserong@novell.com>
+- Show Master/Slave sets (but just shows children as "started", not yet M/S)
+- Upstream version cs:033fd682b8f3
+
+* Fri Apr 09 2010 Tim Serong <tserong@novell.com>
+- Misc: Port number is now 7630 (registered with IANA)
+- Misc: Update zh_TW translation
+- GUI: Add confirmation prompt for node ops (bnc#593003)
+- GUI: Add confirmation prompt for resource ops
+- GUI: Allow resource mgmt ops on groups (in addition to resources *in*
+  groups)
+- GUI: Add ability to migrate resources (bnc#593005)
+- Upstream version cs:3675f11f3448
+
+* Mon Mar 29 2010 Tim Serong <tserong@novell.com>
+- Misc: Add translations for ar, cs, de, es, fr, hu, it, ja, ko, nl, pl,
+  pt_BR, ru, sv, zh_CN, zh_TW
+- GUI: Invoke "crm" for resource ops, report invocation errors in UI
+  (bnc#583605 again)
+- GUI: Add mgmt buttons for new resources that appear via JSON update
+  (bnc#590037)
+- GUI: Fix blank login page on first load in IE, and auto-focus input fields
+- Upstream version cs:f1369a200773
+
+* Wed Mar 03 2010 Tim Serong <tserong@novell.com>
+- GUI: Add login screen (user must be in 'haclient' group, same as python GUI)
+- GUI: Fix "start/stop clone-of-group has no effect" (bnc#583605)
+- Upstream version cs:13717d154bbc
+
+* Mon Feb 22 2010 Tim Serong <tserong@novell.com>
+- GUI: Basic mgmt ops for resource (start/stop/cleanup) and nodes
+  (online/standby/fence)
+- GUI: Borders around nodelist, reslist.  Clones & groups reflect status color
+  of children.
+- GUI: Various IE display fixes
+- GUI: Don't rely on existence of specific properties to render status display
+- Upstream version cs:d7041bcbfbc9
+
+* Mon Feb 08 2010 Tim Serong <tserong@novell.com>
+- GUI: Auto-refresh handles adding/removing nodes/resources
+- GUI: Auto-refresh error bar & summary info
+- Upstream version cs:cb1b9ee863f1
+
+* Wed Feb 03 2010 Tim Serong <tserong@novell.com>
+- Misc: Use HTTPS instead of HTTP by default
+- Upstream version cs:a033a52078bb
+
+* Thu Jan 28 2010 Tim Serong <tserong@novell.com>
+- GUI: sort node list in "natural" order
+- GUI: Get resource state from LRM ops, show "stopped" not "unknown"
+  (bnc#574060)
+- GUI: Clean up node state logic (derived from pengine/unpack.c) (bnc#574057)
+- GUI: Add summary of cluster stack, version, DC, options
+- Upstream version cs:9be77a99ca2f
+
+* Mon Jan 25 2010 Tim Serong <tserong@novell.com>
+- Remove dependency on lighttpd-mod_magnet (bnc#572173)
+- Pull in rails, gettext gems etc. at build time (bnc#570334)
+- Include copy of GPL (bnc#571573)
+- Upstream version cs:bfc8e9919f08
+
+* Sat Jan 16 2010 Tim Serong <tserong@novell.com>
+- Initial checkin
