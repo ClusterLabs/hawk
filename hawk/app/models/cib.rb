@@ -425,7 +425,7 @@ class Cib < CibObject
         if @resources_by_id[id]
           # m/s slave state hack (*sigh*)
           state = :slave if @resources_by_id[id][:is_ms] && state == :started
-          if instance
+          if instance && state != :stopped && state != :unknown
             # For clones, it's possible we need to rename an instance if
             # there's already a running instance with this ID.  An instance
             # is running iff:
