@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: hawk 0.4.1\n"
+"Project-Id-Version: hawk\n"
 "POT-Creation-Date: 2011-08-11 15:33+1000\n"
-"PO-Revision-Date: 2010-05-06 09:30\n"
+"PO-Revision-Date: 2011-09-08 09:50\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "Language: \n"
@@ -17,74 +17,72 @@ msgstr ""
 #: app/controllers/explorer_controller.rb:42
 #: app/views/main/_menus.html.erb:373
 msgid "History Explorer"
-msgstr ""
+msgstr "이력 탐색기"
 
 #: app/controllers/explorer_controller.rb:95
-#, fuzzy
 msgid "Required parameters \"basename\" and \"node\" not specified"
-msgstr "필수 파라미터 \"리소스\" 및 \"노드\"가 지정되지 않았습니다."
+msgstr "필수 파라미터 \"basename\" 및 \"node\"가 지정되지 않았습니다."
 
 #: app/controllers/explorer_controller.rb:117
 msgid "No details available"
-msgstr ""
+msgstr "사용할 수 있는 세부 사항 없음"
 
 #: app/controllers/explorer_controller.rb:119
 #: app/controllers/explorer_controller.rb:147
 msgid "Error:"
-msgstr ""
+msgstr "오류:"
 
 #: app/controllers/groups_controller.rb:47
 msgid "Edit Group"
-msgstr ""
+msgstr "그룹 편집"
 
 #: app/controllers/groups_controller.rb:51
 #: app/controllers/groups_controller.rb:57 app/views/groups/_form.html.erb:142
 msgid "Create Group"
-msgstr ""
+msgstr "그룹 생성"
 
 #: app/controllers/groups_controller.rb:64
 msgid "Group created successfully"
-msgstr ""
+msgstr "그룹이 성공적으로 생성되었습니다."
 
 #: app/controllers/groups_controller.rb:86
 msgid "Group updated successfully"
-msgstr ""
+msgstr "그룹이 성공적으로 업데이트되었습니다."
 
 #: app/controllers/masters_controller.rb:47
-#, fuzzy
 msgid "Edit Master/Slave"
-msgstr "마스터/슬레이브 세트: %{id}"
+msgstr "마스터/슬레이브 편집"
 
 #: app/controllers/masters_controller.rb:51
 #: app/controllers/masters_controller.rb:57
 #: app/views/masters/_form.html.erb:87
 msgid "Create Master/Slave"
-msgstr ""
+msgstr "마스터/슬레이브 생성"
 
 #: app/controllers/masters_controller.rb:64
 msgid "Master/Slave created successfully"
-msgstr ""
+msgstr "마스터/슬레이브가 성공적으로 생성되었습니다."
 
 #: app/controllers/masters_controller.rb:86
 msgid "Master/Slave updated successfully"
-msgstr ""
+msgstr "마스터/슬레이브가 성공적으로 업데이트되었습니다."
 
 #: app/controllers/clones_controller.rb:47
 msgid "Edit Clone"
-msgstr ""
+msgstr "복제 편집"
 
 #: app/controllers/clones_controller.rb:51
 #: app/controllers/clones_controller.rb:57 app/views/clones/_form.html.erb:87
 msgid "Create Clone"
-msgstr ""
+msgstr "복제 생성"
 
 #: app/controllers/clones_controller.rb:64
 msgid "Clone created successfully"
-msgstr ""
+msgstr "복제가 성공적으로 생성되었습니다."
 
 #: app/controllers/clones_controller.rb:86
 msgid "Clone updated successfully"
-msgstr ""
+msgstr "복제를 성공적으로 업데이트했습니다."
 
 #: app/controllers/cib_controller.rb:77
 msgid "1 node configured"
@@ -97,87 +95,85 @@ msgid_plural "%{num} resources configured"
 msgstr[0] "1개 리소스가 구성되었습니다."
 
 #: app/controllers/wizard_controller.rb:60
-#, fuzzy
 msgid "Cluster Setup Wizard"
-msgstr "클러스터 상태"
+msgstr "마스터 설치 마법사"
 
 #: app/controllers/wizard_controller.rb:99
 #: app/views/primitives/_form.html.erb:187
 msgid "Parameters"
-msgstr ""
+msgstr "파라미터"
 
 #: app/controllers/wizard_controller.rb:123
 msgid "Confirm"
-msgstr ""
+msgstr "확인"
 
 #: app/controllers/wizard_controller.rb:143 app/views/wizard/done.html.erb:10
 msgid "Done"
-msgstr ""
+msgstr "완료"
 
 #: app/controllers/wizard_controller.rb:243
-#, fuzzy
 msgid "Required parameter \"%{param}\" not specified"
-msgstr "필수 파라미터 \"노드\"가 지정되지 않았습니다."
+msgstr "필수 파라미터 \"%{param}\"이(가) 지정되지 않았습니다."
 
 #: app/controllers/wizard_controller.rb:253
 msgid "Wizard templates and/or workflows are missing"
-msgstr ""
+msgstr "마법사 템플릿 및/또는 워크플로가 누락되었습니다."
 
 #: app/controllers/wizard_controller.rb:261
 msgid "Workflow \"%s\" not found"
-msgstr ""
+msgstr "\"%s\" 워크플로를 찾을 수 없습니다."
 
 #: app/controllers/wizard_controller.rb:274
 msgid "Error parsing template \"%s\""
-msgstr ""
+msgstr "\"%s\" 템플릿을 구문 분석하는 중 오류가 발생했습니다."
 
 #: app/controllers/wizard_controller.rb:277
 msgid "Error parsing workflow \"%s\""
-msgstr ""
+msgstr "\"%s\" 워크플로를 구문 분석하는 중 오류가 발생했습니다."
 
 #: app/controllers/constraints_controller.rb:43
 msgid "Constraints"
-msgstr ""
+msgstr "제약 조건"
 
 #: app/controllers/colocations_controller.rb:43
 msgid "Edit Colocation Constraint"
-msgstr ""
+msgstr "코로케이션 제약 조건 편집"
 
 #: app/controllers/colocations_controller.rb:47
 #: app/controllers/colocations_controller.rb:52
 msgid "Create Colocation Constraint"
-msgstr ""
+msgstr "코로케이션 제약 조건 생성"
 
 #: app/controllers/colocations_controller.rb:60
 #: app/controllers/locations_controller.rb:59
 #: app/controllers/orders_controller.rb:61
 msgid "Constraint created successfully"
-msgstr ""
+msgstr "제약 조건이 성공적으로 생성되었습니다."
 
 #: app/controllers/colocations_controller.rb:83
 #: app/controllers/locations_controller.rb:81
 #: app/controllers/orders_controller.rb:85
 msgid "Constraint updated successfully"
-msgstr ""
+msgstr "제약 조건이 성공적으로 업데이트되었습니다."
 
 #: app/controllers/primitives_controller.rb:45
 #: app/views/main/_menus.html.erb:243
 msgid "Edit Resource"
-msgstr ""
+msgstr "리소스 편집"
 
 #: app/controllers/primitives_controller.rb:49
 #: app/controllers/primitives_controller.rb:55
 #: app/views/primitives/_form.html.erb:323
 msgid "Create Resource"
-msgstr ""
+msgstr "리소스 생성"
 
 #: app/controllers/primitives_controller.rb:62
 msgid "Resource created successfully"
-msgstr ""
+msgstr "리소스가 성공적으로 생성되었습니다."
 
 #: app/controllers/primitives_controller.rb:84
 msgid "Resource updated successfully"
-msgstr ""
+msgstr "리소스가 성공적으로 업데이트되었습니다."
 
 #: app/controllers/main_controller.rb:51
 msgid "%{cmd} failed (status: %{status})"
@@ -202,7 +198,7 @@ msgstr "필수 파라미터 \"리소스\" 및 \"노드\"가 지정되지 않았�
 
 #: app/controllers/main_controller.rb:135
 msgid "Error deleting resource"
-msgstr ""
+msgstr "리소스를 삭제하는 중 오류가 발생했습니다."
 
 #: app/controllers/sessions_controller.rb:36
 #: app/views/sessions/new.html.erb:16
@@ -232,157 +228,140 @@ msgstr "%s이(가) 설치되지 않았습니다."
 #: app/controllers/sessions_controller.rb:91 app/models/cib.rb:243
 #: lib/invoker.rb:116 lib/invoker.rb:138
 msgid "Permission denied for user %{user}"
-msgstr ""
+msgstr "%{user} 사용자에 대한 권한이 거부됨"
 
 #: app/controllers/sessions_controller.rb:94
 msgid "You have been logged out"
-msgstr ""
+msgstr "로그아웃되었습니다."
 
 #: app/controllers/locations_controller.rb:43
 msgid "Edit Location Constraint"
-msgstr ""
+msgstr "위치 제약 조건 편집"
 
 #: app/controllers/locations_controller.rb:47
 #: app/controllers/locations_controller.rb:52
 msgid "Create Location Constraint"
-msgstr ""
+msgstr "위치 제약 조건 생성"
 
 #: app/controllers/orders_controller.rb:43
 msgid "Edit Order Constraint"
-msgstr ""
+msgstr "순서 제약 조건 편집"
 
 #: app/controllers/orders_controller.rb:47
 #: app/controllers/orders_controller.rb:52
 msgid "Create Order Constraint"
-msgstr ""
+msgstr "순서 제약 조건 생성"
 
 #: app/controllers/crm_config_controller.rb:44
 #: app/views/main/_gettext.js.erb:84
 msgid "Cluster Configuration"
-msgstr ""
+msgstr "클러스터 구성"
 
 #: app/controllers/crm_config_controller.rb:85
 msgid "Invalid property set ID: %{id}"
-msgstr ""
+msgstr "잘못된 속성 세트 ID: %{id}"
 
 #: app/controllers/crm_config_controller.rb:133
-msgid ""
-"Can't set property %{p}, because the value contains both single and double "
-"quotes"
-msgstr ""
+msgid "Can't set property %{p}, because the value contains both single and double quotes"
+msgstr "값이 작은따옴표와 큰따옴표를 모두 포함하므로, %{p} 속성을 설정할 수 없습니다."
 
 #: app/controllers/crm_config_controller.rb:148
 msgid "Your changes have been saved"
-msgstr ""
+msgstr "변경 사항이 저장되었습니다."
 
 #: app/controllers/crm_config_controller.rb:150
-#, fuzzy
 msgid "Unable to apply changes: %{msg}"
-msgstr "%{cmd}을(를) 실행할 수 없습니다."
+msgstr "변경 사항을 적용할 수 없음: %{msg}"
 
 #: app/models/order.rb:78 app/models/colocation.rb:52
-#, fuzzy
 msgid "Invalid score"
-msgstr "사용자 이름이 잘못되었습니다."
+msgstr "잘못된 점수"
 
 #: app/models/order.rb:82 app/models/colocation.rb:56
 msgid "Constraint must consist of at least two separate resources"
-msgstr ""
+msgstr "제약 조건은 2개 이상의 개별 리소스로 구성되어야 합니다."
 
 #: app/models/order.rb:88 app/models/primitive.rb:79
 #: app/models/colocation.rb:62 app/models/master.rb:56 app/models/clone.rb:56
 #: app/models/group.rb:56 app/models/location.rb:76
 msgid "The ID \"%{id}\" is already in use"
-msgstr ""
+msgstr "ID \"%{id}\"이(가) 이미 사용 중입니다."
 
 #: app/models/order.rb:97 app/models/colocation.rb:71
 #: app/models/location.rb:85
-#, fuzzy
 msgid "Unable to create constraint: %{msg}"
-msgstr "%{cmd}을(를) 실행할 수 없습니다."
+msgstr "제약 조건을 생성할 수 없음: %{msg}"
 
 #: app/models/order.rb:106 app/models/colocation.rb:80
 #: app/models/location.rb:94
 msgid "Constraint ID \"%{id}\" does not exist"
-msgstr ""
+msgstr "제약 조건 ID \"%{id}\"이(가) 없습니다."
 
 #: app/models/order.rb:116 app/models/colocation.rb:90
 #: app/models/location.rb:106
-#, fuzzy
 msgid "Unable to update constraint: %{msg}"
-msgstr "%{cmd}을(를) 실행할 수 없습니다."
+msgstr "제약 조건을 업데이트할 수 없음: %{msg}"
 
 #: app/models/primitive.rb:56
-msgid ""
-"Can't set parameter %{p}, because the value contains both single and double "
-"quotes"
-msgstr ""
+msgid "Can't set parameter %{p}, because the value contains both single and double quotes"
+msgstr "값에 작은따옴표와 큰따옴표가 모두 포함되어 있으므로, 파라미터 %{p}을(를) 설정할 수 없습니다."
 
 #: app/models/primitive.rb:64
-msgid ""
-"Can't set op %{o} attribute {%a}, because the value contains both single and "
-"double quotes"
-msgstr ""
+msgid "Can't set op %{o} attribute {%a}, because the value contains both single and double quotes"
+msgstr "값에 작은따옴표와 큰따옴표가 모두 포함되어 있으므로, op %{o} 특성 {%a}을(를) 설정할 수 없습니다."
 
 #: app/models/primitive.rb:72 app/models/master.rb:50 app/models/clone.rb:50
 #: app/models/group.rb:50
-msgid ""
-"Can't set meta attribute %{p}, because the value contains both single and "
-"double quotes"
-msgstr ""
+msgid "Can't set meta attribute %{p}, because the value contains both single and double quotes"
+msgstr "값에 작은따옴표와 큰따옴표가 모두 포함되어 있으므로, 메타 특성 %{p}을(를) 설정할 수 없습니다."
 
 #: app/models/primitive.rb:124
-#, fuzzy
 msgid "Unable to create resource: %{msg}"
-msgstr "%{cmd}을(를) 실행할 수 없습니다."
+msgstr "리소스를 생성할 수 없음: %{msg}"
 
 #: app/models/primitive.rb:134
 msgid "Resource ID \"%{id}\" does not exist"
-msgstr ""
+msgstr "리소스 ID \"%{id}\"이(가) 없습니다."
 
 #: app/models/master.rb:44
-#, fuzzy
 msgid "No Master/Slave child specified"
-msgstr "사용자 이름이 지정되지 않았습니다."
+msgstr "지정된 마스터/슬레이브 하위가 없습니다."
 
 #: app/models/master.rb:76
-#, fuzzy
 msgid "Unable to create master/slave: %{msg}"
-msgstr "%{cmd}을(를) 실행할 수 없습니다."
+msgstr "마스터/슬레이브를 생성할 수 없음: %{msg}"
 
 #: app/models/master.rb:86
-#, fuzzy
 msgid "Master/Slave ID \"%{id}\" does not exist"
-msgstr "마스터/슬레이브 세트: %{id}"
+msgstr "마스터/슬레이브 ID \"%{id}\"이(가) 없습니다."
 
 #: app/models/clone.rb:44
 msgid "No clone child specified"
-msgstr ""
+msgstr "지정된 복제 하위가 없습니다."
 
 #: app/models/clone.rb:76
-#, fuzzy
 msgid "Unable to create clone: %{msg}"
-msgstr "%{cmd}을(를) 실행할 수 없습니다."
+msgstr "복제를 생성할 수 없음: %{msg}"
 
 #: app/models/clone.rb:86
 msgid "Clone ID \"%{id}\" does not exist"
-msgstr ""
+msgstr "복제 ID \"%{id}\"이(가) 없습니다."
 
 #: app/models/cib_object.rb:60
 msgid "Invalid Resource ID \"%{id}\""
-msgstr ""
+msgstr "리소스 ID \"%{id}\"이(가) 잘못되었습니다."
 
 #: app/models/cib_object.rb:88 app/models/cib_object.rb:108
 msgid "Unable to parse cibadmin output"
-msgstr ""
+msgstr "cibadmin 출력을 구문 분석할 수 없습니다."
 
 #: app/models/cib.rb:209 app/models/cib.rb:218
 msgid "CIB file \"%{path}\" not found"
-msgstr ""
+msgstr "CIB 파일 \"%{path}\"을(를) 찾을 수 없음"
 
 #: app/models/cib.rb:211 app/models/cib.rb:220
 msgid "Unable to parse CIB file \"%{path}\""
-msgstr ""
+msgstr "CIB 파일 \"%{path}\"을(를) 구문 분석할 수 없습니다."
 
 #: app/models/cib.rb:222
 msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
@@ -398,15 +377,15 @@ msgstr "%{cmd} 실패됨(상태: %{status}, 출력: %{output})"
 
 #: app/models/cib.rb:240
 msgid "Error invoking %{cmd}"
-msgstr ""
+msgstr "%{cmd} 호출 중 오류 발생"
 
 #: app/models/cib.rb:245
 msgid "Error invoking %{cmd}: %{msg}"
-msgstr ""
+msgstr "%{cmd} 호출 중 오류 발생: %{msg}"
 
 #: app/models/cib.rb:249
 msgid "Only the live CIB is supported"
-msgstr ""
+msgstr "라이브 CIB만 지원됩니다."
 
 #: app/models/cib.rb:256 app/models/cib.rb:257 app/models/cib.rb:442
 #: app/views/main/_gettext.js.erb:140
@@ -414,61 +393,52 @@ msgid "Unknown"
 msgstr "알 수 없음"
 
 #: app/models/cib.rb:397
-msgid ""
-"Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation="
-"%{op}, rc-code=%{rc_code}"
-msgstr ""
-"실패한 작업: 노드=%{node}, 리소스=%{resource}, 호출 ID=%{call_id}, 작업="
-"%{op}, RC 코드=%{rc_code}"
+msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
+msgstr "실패한 작업: 노드=%{node}, 리소스=%{resource}, 호출 ID=%{call_id}, 작업=%{op}, RC 코드=%{rc_code}"
 
 #: app/models/group.rb:44
 msgid "No group children specified"
-msgstr ""
+msgstr "지정된 그룹 하위가 없습니다."
 
 #: app/models/group.rb:79
-#, fuzzy
 msgid "Unable to create group: %{msg}"
-msgstr "%{cmd}을(를) 실행할 수 없습니다."
+msgstr "그룹을 생성할 수 없음: %{msg}"
 
 #: app/models/group.rb:89
 msgid "Group ID \"%{id}\" does not exist"
-msgstr ""
+msgstr "그룹 ID \"%{id}\"이(가) 존재하지 않습니다."
 
 #: app/models/location.rb:42
 msgid "Constraint is too complex - it contains nested rules"
-msgstr ""
+msgstr "제약 조건이 너무 복잡합니다. 중첩 규칙을 포함합니다."
 
 #: app/models/location.rb:44
-#, fuzzy
 msgid "No rules specified"
-msgstr "사용자 이름이 지정되지 않았습니다."
+msgstr "지정된 규칙이 없습니다."
 
 #: app/models/location.rb:47
-#, fuzzy
 msgid "No resource specified"
-msgstr "1개 리소스가 구성되었습니다."
+msgstr "지정된 리소스가 없습니다."
 
 #: app/models/location.rb:56
-#, fuzzy
 msgid "Invalid score \"%{score}\""
-msgstr "사용자 이름이 잘못되었습니다."
+msgstr "점수 \"%{score}\"이(가) 잘못되었습니다."
 
 #: app/models/location.rb:64
-#, fuzzy
 msgid "No expressions specified"
-msgstr "사용자 이름이 지정되지 않았습니다."
+msgstr "지정된 식이 없습니다."
 
 #: app/models/location.rb:68
 msgid "Attribute contains both single and double quotes"
-msgstr ""
+msgstr "특성에 작은따옴표와 큰따옴표가 모두 포함되어 있습니다."
 
 #: app/models/location.rb:69
 msgid "Value contains both single and double quotes"
-msgstr ""
+msgstr "값에 작은따옴표와 큰따옴표가 모두 포함되어 있습니다."
 
 #: app/helpers/explorer_helper.rb:3
 msgid "Data collection in progress (%{from_time} to %{to_time})..."
-msgstr ""
+msgstr "데이터 모음 진행 중(%{from_time} - %{to_time})..."
 
 #: app/views/sessions/new.html.erb:8
 msgid "Username:"
@@ -479,17 +449,16 @@ msgid "Password:"
 msgstr "비밀번호:"
 
 #: app/views/explorer/index.html.erb:55 app/views/hb_reports/new.html.erb:37
-#, fuzzy
 msgid "Start Time:"
-msgstr "시작"
+msgstr "시작 시간:"
 
 #: app/views/explorer/index.html.erb:57 app/views/hb_reports/new.html.erb:39
 msgid "End Time:"
-msgstr ""
+msgstr "종료 시간:"
 
 #: app/views/explorer/index.html.erb:59
 msgid "Display"
-msgstr ""
+msgstr "표시"
 
 #: app/views/explorer/index.html.erb:72 app/views/locations/_form.html.erb:95
 #: app/views/groups/_form.html.erb:144
@@ -500,77 +469,76 @@ msgstr ""
 #: app/views/crm_config/update.html.erb:4 app/views/orders/_form.html.erb:115
 #: app/views/wizard/start.html.erb:3 app/views/wizard/broken.html.erb:4
 msgid "Back"
-msgstr ""
+msgstr "뒤로"
 
 #: app/views/explorer/_pe_list.html.erb:6
 msgid "No transitions found for the specified time period."
-msgstr ""
+msgstr "지정된 기간 중에 전환을 찾을 수 없습니다."
 
 #: app/views/explorer/_pe_list.html.erb:11
 msgid "Time"
-msgstr ""
+msgstr "시간"
 
 #: app/views/explorer/_pe_list.html.erb:12
 msgid "PE Input"
-msgstr ""
+msgstr "PE 입력"
 
 #: app/views/explorer/_pe_list.html.erb:13
 #: app/views/locations/_form.html.erb:43
 msgid "Node"
-msgstr ""
+msgstr "노드"
 
 #: app/views/explorer/_pe_list.html.erb:23 app/views/main/_gettext.js.erb:93
 #: app/views/main/_gettext.js.erb:199
 msgid "Details"
-msgstr ""
+msgstr "자세히"
 
 #: app/views/explorer/_pe_list.html.erb:27 app/views/main/_gettext.js.erb:208
 msgid "Graph"
-msgstr ""
+msgstr "그래프"
 
 #: app/views/explorer/permission_denied.html.erb:2
 #: app/views/resources/permission_denied.html.erb:2
 #: app/views/hb_reports/permission_denied.html.erb:2
 #: app/views/nodes/permission_denied.html.erb:2
 msgid "Error: Permission denied for user '%s'."
-msgstr ""
+msgstr "오류: '%s' 사용자에 대해 권한이 거부됨"
 
 #: app/views/resources/events.html.erb:12 app/views/nodes/events.html.erb:12
 msgid "Getting recent events (last hour)..."
-msgstr ""
+msgstr "최근 이벤트(마지막 시간)를 가져오는 중..."
 
 #: app/views/resources/events.html.erb:13 app/views/nodes/events.html.erb:13
 msgid "Another \"crm history\" operation is in progress..."
-msgstr ""
+msgstr "다른 \"crm history\" 작업이 진행 중..."
 
 #: app/views/resources/events.html.erb:20 app/views/nodes/events.html.erb:20
 msgid "No events found in last hour."
-msgstr ""
+msgstr "마지막 시간에 검색된 이벤트가 없습니다."
 
 #: app/views/locations/edit.html.erb:4 app/views/groups/edit.html.erb:4
 #: app/views/colocations/edit.html.erb:4 app/views/clones/edit.html.erb:4
 #: app/views/masters/edit.html.erb:4 app/views/primitives/edit.html.erb:4
 #: app/views/crm_config/edit.html.erb:62 app/views/orders/edit.html.erb:4
 msgid "Apply Changes"
-msgstr ""
+msgstr "변경 사항 적용"
 
 #: app/views/locations/_form.html.erb:42
 #: app/views/colocations/_form.html.erb:88 app/views/orders/_form.html.erb:88
 msgid "Score"
-msgstr ""
+msgstr "점수"
 
 #: app/views/locations/_form.html.erb:44
 msgid "Role"
-msgstr ""
+msgstr "역할"
 
 #: app/views/locations/_form.html.erb:45
-#, fuzzy
 msgid "Boolean Op"
-msgstr "정리"
+msgstr "부울 연산자"
 
 #: app/views/locations/_form.html.erb:46
 msgid "Expression"
-msgstr ""
+msgstr "식"
 
 #: app/views/locations/_form.html.erb:47 app/views/groups/_form.html.erb:81
 #: app/views/colocations/_form.html.erb:58 app/views/clones/_form.html.erb:46
@@ -579,7 +547,7 @@ msgstr ""
 #: app/views/primitives/_form.html.erb:235
 #: app/views/crm_config/edit.html.erb:22 app/views/orders/_form.html.erb:58
 msgid "Add"
-msgstr ""
+msgstr "추가"
 
 #: app/views/locations/_form.html.erb:48 app/views/groups/_form.html.erb:82
 #: app/views/colocations/_form.html.erb:59 app/views/clones/_form.html.erb:47
@@ -588,46 +556,46 @@ msgstr ""
 #: app/views/primitives/_form.html.erb:236
 #: app/views/crm_config/edit.html.erb:23 app/views/orders/_form.html.erb:59
 msgid "Remove"
-msgstr ""
+msgstr "제거"
 
 #: app/views/locations/_form.html.erb:49
 msgid "Add Rule"
-msgstr ""
+msgstr "규칙 추가"
 
 #: app/views/locations/_form.html.erb:50
 msgid "Remove Rule"
-msgstr ""
+msgstr "규칙 제거"
 
 #: app/views/locations/_form.html.erb:51
 msgid "Show Rule Editor"
-msgstr ""
+msgstr "규칙 편집기 표시"
 
 #: app/views/locations/_form.html.erb:75
 #: app/views/colocations/_form.html.erb:87 app/views/orders/_form.html.erb:87
 msgid "Constraint ID"
-msgstr ""
+msgstr "제약 조건 ID"
 
 #: app/views/locations/_form.html.erb:76
 msgid "Resource"
-msgstr ""
+msgstr "리소스"
 
 #: app/views/locations/_form.html.erb:93
 #: app/views/colocations/_form.html.erb:107
 #: app/views/orders/_form.html.erb:113
 msgid "Create Constraint"
-msgstr ""
+msgstr "제약 조건 생성"
 
 #: app/views/locations/_form.html.erb:94 app/views/groups/_form.html.erb:143
 #: app/views/colocations/_form.html.erb:108 app/views/clones/_form.html.erb:88
 #: app/views/masters/_form.html.erb:88 app/views/primitives/_form.html.erb:324
 #: app/views/crm_config/edit.html.erb:63 app/views/orders/_form.html.erb:114
 msgid "Revert Changes"
-msgstr ""
+msgstr "변경 사항 되돌리기"
 
 #: app/views/groups/_form.html.erb:75 app/views/clones/_form.html.erb:40
 #: app/views/masters/_form.html.erb:40 app/views/primitives/_form.html.erb:229
 msgid "Meta Attributes"
-msgstr ""
+msgstr "메타 특성"
 
 #: app/views/groups/_form.html.erb:83 app/views/clones/_form.html.erb:48
 #: app/views/masters/_form.html.erb:48 app/views/primitives/_form.html.erb:195
@@ -635,21 +603,19 @@ msgstr ""
 #: app/views/primitives/_form.html.erb:237
 #: app/views/crm_config/edit.html.erb:24
 msgid "You must enter a value"
-msgstr ""
+msgstr "값을 입력해야 합니다."
 
 #: app/views/groups/_form.html.erb:105
-#, fuzzy
 msgid "Group ID"
-msgstr "그룹: %{id}"
+msgstr "그룹 ID"
 
 #: app/views/groups/_form.html.erb:115
-#, fuzzy
 msgid "Group Children"
-msgstr "그룹: %{id}"
+msgstr "그룹 하위"
 
 #: app/views/groups/_form.html.erb:117
 msgid "Available Primitives"
-msgstr ""
+msgstr "사용 가능한 원본"
 
 #: app/views/layouts/main.html.erb:24
 msgid "User: %{user}"
@@ -660,117 +626,111 @@ msgid "Log Out"
 msgstr "로그아웃"
 
 #: app/views/layouts/main.html.erb:39
-#, fuzzy
 msgid "UI Host: %s"
-msgstr "호스트: %s"
+msgstr "UI 호스트: %s"
 
 #: app/views/layouts/main.html.erb:40
-#, fuzzy
 msgid "Copyright &copy; 2009-2011 Novell, Inc."
-msgstr "Copyright &copy; 2009-2010 Novell, Inc."
+msgstr "Copyright &copy; 2009-2011 Novell, Inc."
 
 #: app/views/colocations/_form.html.erb:60 app/views/orders/_form.html.erb:60
 msgid "Link set"
-msgstr ""
+msgstr "링크 설정"
 
 #: app/views/colocations/_form.html.erb:61 app/views/orders/_form.html.erb:61
 msgid "Break set"
-msgstr ""
+msgstr "분할 설정"
 
 #: app/views/colocations/_form.html.erb:62 app/views/orders/_form.html.erb:62
-#, fuzzy
 msgid "Swap resources"
-msgstr "리소스 %s 이동"
+msgstr "스왑 리소스"
 
 #: app/views/colocations/_form.html.erb:63 app/views/orders/_form.html.erb:63
 msgid "Add resource to constraint"
-msgstr ""
+msgstr "리소스를 제약 조건에 추가"
 
 #: app/views/clones/_form.html.erb:70
 msgid "Clone ID"
-msgstr ""
+msgstr "복제 ID"
 
 #: app/views/clones/_form.html.erb:71 app/views/masters/_form.html.erb:71
 msgid "Child Resource"
-msgstr ""
+msgstr "하위 리소스"
 
 #: app/views/hb_reports/new.html.erb:43
 msgid "Generate"
-msgstr ""
+msgstr "생성"
 
 #: app/views/hb_reports/new.html.erb:53
 msgid "hb_report generation in progress..."
-msgstr ""
+msgstr "hb_report 생성이 진행 중..."
 
 #: app/views/hb_reports/new.html.erb:59
 msgid "Download hb_report"
-msgstr ""
+msgstr "hb_report 다운로드"
 
 #: app/views/hb_reports/create.js.erb:3
-#, fuzzy
 msgid "Start Time not specified"
-msgstr "사용자 이름이 지정되지 않았습니다."
+msgstr "시작 시간이 지정되지 않았습니다."
 
 #: app/views/constraints/index.html.erb:49
 msgid "Edit Constraint"
-msgstr ""
+msgstr "제약 조건 편집"
 
 #: app/views/constraints/index.html.erb:60
 msgid "Delete Constraint"
-msgstr ""
+msgstr "제약 조건 삭제"
 
 #: app/views/constraints/index.html.erb:102
 #: app/views/constraints/index.html.erb:108
 #: app/views/constraints/index.html.erb:114
 msgid "New Constraint"
-msgstr ""
+msgstr "새 제약 조건"
 
 #: app/views/constraints/index.html.erb:103
 msgid "Location"
-msgstr ""
+msgstr "위치"
 
 #: app/views/constraints/index.html.erb:109
-#, fuzzy
 msgid "Colocation"
-msgstr "재배치 규칙 삭제"
+msgstr "코로케이션"
 
 #: app/views/constraints/index.html.erb:115
 msgid "Order"
-msgstr ""
+msgstr "순서"
 
 #: app/views/constraints/index.html.erb:129
 msgid "(No location constraints defined)"
-msgstr ""
+msgstr "(정의된 위치 제약 조건이 없습니다.)"
 
 #: app/views/constraints/index.html.erb:141
 msgid "[Constraint is too complex to display]"
-msgstr ""
+msgstr "[제약 조건이 너무 복잡해서 표시할 수 없습니다.]"
 
 #: app/views/constraints/index.html.erb:159
 msgid "(No colocation constraints defined)"
-msgstr ""
+msgstr "(정의된 코로케이션 제약 조건이 없습니다.)"
 
 #: app/views/constraints/index.html.erb:173
 msgid "(No order constraints defined)"
-msgstr ""
+msgstr "(정의된 순서 제약 조건이 없습니다.)"
 
 #: app/views/masters/_form.html.erb:70
-#, fuzzy
 msgid "Master/Slave ID"
-msgstr "마스터/슬레이브 세트: %{id}"
+msgstr "마스터/슬레이브 ID"
 
 #: app/views/primitives/_form.html.erb:206
 msgid "Operations"
-msgstr ""
+msgstr "작업"
 
 #: app/views/primitives/_form.html.erb:213
 #: app/views/crm_config/show.html.erb:11
 msgid "Edit"
-msgstr ""
+msgstr "편집"
 
 #: app/views/primitives/_form.html.erb:216
 msgid "There is already a monitor op with this interval."
-msgstr ""
+msgstr "이 간격을 사용하는 모니터 작업이 이미 있습니다."
 
 #: app/views/primitives/_form.html.erb:217 app/views/main/_gettext.js.erb:4
 msgid "OK"
@@ -783,40 +743,39 @@ msgstr "취소"
 
 #: app/views/primitives/_form.html.erb:273
 msgid "Resource ID"
-msgstr ""
+msgstr "리소스 ID"
 
 #: app/views/primitives/_form.html.erb:274
 msgid "Class"
-msgstr ""
+msgstr "클래스"
 
 #: app/views/primitives/_form.html.erb:275
 msgid "Provider"
-msgstr ""
+msgstr "공급자"
 
 #: app/views/primitives/_form.html.erb:276
 msgid "Type"
-msgstr ""
+msgstr "유형"
 
 #: app/views/crm_config/show.html.erb:4
 msgid "No cluster properties set in %{group}"
-msgstr ""
+msgstr "%{group}에 클러스터 특성 집합이 없습니다."
 
 #: app/views/crm_config/edit.html.erb:25
 msgid "Add new property:"
-msgstr ""
+msgstr "새 속성 추가:"
 
 #: app/views/crm_config/edit.html.erb:26
 msgid "Edit current properties:"
-msgstr ""
+msgstr "현재 속성 편집:"
 
 #: app/views/orders/_form.html.erb:98
-#, fuzzy
 msgid "Symmetrical"
-msgstr "대칭 클러스터:"
+msgstr "대칭적"
 
 #: app/views/shared/_confirm_revert.html.erb:4
 msgid "Any changes will be lost - do you wish to proceed?"
-msgstr ""
+msgstr "변경 사항이 유실됩니다. 계속하시겠습니까?"
 
 #: app/views/shared/_confirm_revert.html.erb:8
 #: app/views/main/_gettext.js.erb:10
@@ -842,48 +801,47 @@ msgstr "펜스 노드"
 
 #: app/views/main/_menus.html.erb:33
 msgid "View Details..."
-msgstr ""
+msgstr "자세히 보기..."
 
 #: app/views/main/_menus.html.erb:51 app/views/main/_menus.html.erb:301
 msgid "View Recent Events..."
-msgstr ""
+msgstr "최근 이벤트 보기..."
 
 #: app/views/main/_menus.html.erb:87
 msgid "Setup Wizard"
-msgstr ""
+msgstr "설치 마법사"
 
 #: app/views/main/_menus.html.erb:97
 msgid "New Primitive"
-msgstr ""
+msgstr "새 원본"
 
 #: app/views/main/_menus.html.erb:104
 msgid "New Group"
-msgstr ""
+msgstr "새 그룹"
 
 #: app/views/main/_menus.html.erb:117
 msgid "Can't create group, there are no primitives available."
-msgstr ""
+msgstr "그룹을 생성할 수 없습니다. 사용 가능한 원본이 없습니다."
 
 #: app/views/main/_menus.html.erb:122
 msgid "New Clone"
-msgstr ""
+msgstr "새 복제"
 
 #: app/views/main/_menus.html.erb:135
 msgid "Can't create clone, there are no primitives or groups available."
-msgstr ""
+msgstr "복제를 생성할 수 없습니다. 사용 가능한 원본 또는 그룹이 없습니다."
 
 #: app/views/main/_menus.html.erb:140
-#, fuzzy
 msgid "New Master/Slave"
-msgstr "마스터/슬레이브 세트: %{id}"
+msgstr "새 마스터/슬레이브"
 
 #: app/views/main/_menus.html.erb:153
 msgid "Can't create master/slave, there are no primitives or groups available."
-msgstr ""
+msgstr "마스터/슬레이브를 생성할 수 없습니다. 사용 가능한 원본 또는 그룹이 없습니다."
 
 #: app/views/main/_menus.html.erb:161
 msgid "Edit Constraints"
-msgstr ""
+msgstr "제약 조건 편집"
 
 #: app/views/main/_menus.html.erb:170
 msgid "Start"
@@ -915,51 +873,42 @@ msgstr "정리"
 
 #: app/views/main/_menus.html.erb:255
 msgid "Delete Resource"
-msgstr ""
+msgstr "리소스 삭제"
 
 #: app/views/main/_menus.html.erb:337
-#, fuzzy
 msgid "Cluster Properties"
-msgstr "클러스터 상태"
+msgstr "클러스터 속성"
 
 #: app/views/main/_menus.html.erb:344
 msgid "Generate hb_report..."
-msgstr ""
+msgstr "hb_report 생성..."
 
 #: app/views/main/_menus.html.erb:357
 msgid "Generate hb_report"
-msgstr ""
+msgstr "hb_report 생성"
 
 #: app/views/main/_menus.html.erb:364
 msgid "Simulator"
-msgstr ""
+msgstr "시뮬레이터"
 
 #: app/views/main/_gettext.js.erb:16
 msgid "Close"
-msgstr ""
+msgstr "닫기"
 
 #: app/views/main/_gettext.js.erb:19
 msgid "Reset"
-msgstr ""
+msgstr "재설정"
 
 #: app/views/main/_gettext.js.erb:23
-msgid ""
-"This will bring node %s online if it is currently on standby.  Do you want "
-"to continue?"
-msgstr ""
-"현재 대기 모드일 경우 노드 %s을(를) 온라인으로 가져옵니다.  계속하시겠습니까?"
+msgid "This will bring node %s online if it is currently on standby.  Do you want to continue?"
+msgstr "현재 대기 모드일 경우 노드 %s을(를) 온라인으로 가져옵니다.  계속하시겠습니까?"
 
 #: app/views/main/_gettext.js.erb:26
-msgid ""
-"This will put node %s on standby.  All resources will be stopped and/or "
-"moved to another node.  Do you want to continue?"
-msgstr ""
-"노드 %s을(를) 대기 모드로 설정합니다.  모든 리소스가 중지되거나 다른 노드로 "
-"이동됩니다.  계속하시겠습니까?"
+msgid "This will put node %s on standby.  All resources will be stopped and/or moved to another node.  Do you want to continue?"
+msgstr "노드 %s을(를) 대기 모드로 설정합니다.  모든 리소스가 중지되거나 다른 노드로 이동됩니다.  계속하시겠습니까?"
 
 #: app/views/main/_gettext.js.erb:29
-msgid ""
-"This will attempt to immediately fence node %s.  Do you want to continue?"
+msgid "This will attempt to immediately fence node %s.  Do you want to continue?"
 msgstr "노드 %s을(를) 즉시 Fence하려고 합니다.  계속하시겠습니까?"
 
 #: app/views/main/_gettext.js.erb:33
@@ -983,9 +932,7 @@ msgid "Away from current node"
 msgstr "현재 노드에서 이탈"
 
 #: app/views/main/_gettext.js.erb:48
-msgid ""
-"This will clear any relocation constraints set on the resource %s.  Do you "
-"want to continue?"
+msgid "This will clear any relocation constraints set on the resource %s.  Do you want to continue?"
 msgstr "리소스 %s의 재배치 제약 조건 설정이 제거됩니다.  계속하시겠습니까?"
 
 #: app/views/main/_gettext.js.erb:51
@@ -1002,7 +949,7 @@ msgstr "리소스 %s이(가) 정리됩니다.  계속하시겠습니까?"
 
 #: app/views/main/_gettext.js.erb:61
 msgid "Error"
-msgstr ""
+msgstr "오류"
 
 #: app/views/main/_gettext.js.erb:64
 msgid "Unexpected server error: %s"
@@ -1010,74 +957,67 @@ msgstr "예기치 않은 서버 오류: %s"
 
 #: app/views/main/_gettext.js.erb:67
 msgid "Permission denied"
-msgstr ""
+msgstr "권한이 거부됨"
 
 #: app/views/main/_gettext.js.erb:70
 msgid "%{op} failed on %{node} (rc=%{rc})"
-msgstr ""
+msgstr "%{op}이(가) %{node}에서 실패했음(반환 코드=%{rc})"
 
 #: app/views/main/_gettext.js.erb:74
 msgid "DC: %s"
-msgstr ""
+msgstr "DC: %s"
 
 #: app/views/main/_gettext.js.erb:77
 msgid "Version: %s"
-msgstr ""
+msgstr "버전: %s"
 
 #: app/views/main/_gettext.js.erb:80
 msgid "Stack: %s"
-msgstr ""
+msgstr "스택: %s"
 
 #: app/views/main/_gettext.js.erb:87
-#, fuzzy
 msgid "Inactive Resources"
-msgstr "리소스 %s 이동"
+msgstr "비활성 리소스"
 
 #: app/views/main/_gettext.js.erb:90
 msgid "Summary"
-msgstr ""
+msgstr "요약"
 
 #: app/views/main/_gettext.js.erb:96
-#, fuzzy
 msgid "STONITH Enabled"
-msgstr "STONITH 활성화됨:"
+msgstr "STONITH 활성화됨"
 
 #: app/views/main/_gettext.js.erb:99
-#, fuzzy
 msgid "No Quorum Policy"
-msgstr "쿼럼 정책 없음:"
+msgstr "쿼럼 정책 없음"
 
 #: app/views/main/_gettext.js.erb:102
-#, fuzzy
 msgid "Symmetric Cluster"
-msgstr "대칭 클러스터:"
+msgstr "대칭 클러스터"
 
 #: app/views/main/_gettext.js.erb:105
-#, fuzzy
 msgid "Resource Stickiness"
-msgstr "리소스 고착성:"
+msgstr "리소스 고착성"
 
 #: app/views/main/_gettext.js.erb:108
-#, fuzzy
 msgid "Maintenance Mode"
-msgstr "펜스 노드"
+msgstr "유지보수 모드"
 
 #: app/views/main/_gettext.js.erb:112
 msgid "Summary View"
-msgstr ""
+msgstr "요약 보기"
 
 #: app/views/main/_gettext.js.erb:115
 msgid "Tree View"
-msgstr ""
+msgstr "트리 보기"
 
 #: app/views/main/_gettext.js.erb:118
 msgid "Table View"
-msgstr ""
+msgstr "테이블 보기"
 
 #: app/views/main/_gettext.js.erb:122
-#, fuzzy
 msgid "%{node}: %{state}"
-msgstr "%{node}: %{status}"
+msgstr "%{node}: %{state}"
 
 #: app/views/main/_gettext.js.erb:128
 msgid "Offline"
@@ -1093,58 +1033,51 @@ msgstr "불완전"
 
 #: app/views/main/_gettext.js.erb:144
 msgid "Master"
-msgstr ""
+msgstr "마스터"
 
 #: app/views/main/_gettext.js.erb:145
 msgid "%{id}: Master: %{nodelist}"
 msgstr "%{id}: 마스터: %{nodelist}"
 
 #: app/views/main/_gettext.js.erb:146
-#, fuzzy
 msgid "%{id}: Master"
-msgstr "%{id}: 마스터: %{nodelist}"
+msgstr "%{id}: 마스터"
 
 #: app/views/main/_gettext.js.erb:149
 msgid "Slave"
-msgstr ""
+msgstr "슬레이브"
 
 #: app/views/main/_gettext.js.erb:150
 msgid "%{id}: Slave: %{nodelist}"
 msgstr "%{id}: 슬레이브: %{nodelist}"
 
 #: app/views/main/_gettext.js.erb:151
-#, fuzzy
 msgid "%{id}: Slave"
-msgstr "%{id}: 중지됨"
+msgstr "%{id}: 슬레이브"
 
 #: app/views/main/_gettext.js.erb:154
-#, fuzzy
 msgid "Started"
-msgstr "시작"
+msgstr "시작됨"
 
 #: app/views/main/_gettext.js.erb:155
 msgid "%{id}: Started: %{nodelist}"
 msgstr "%{id}: 시작됨: %{nodelist}"
 
 #: app/views/main/_gettext.js.erb:156
-#, fuzzy
 msgid "%{id}: Started"
-msgstr "%{id}: 중지됨"
+msgstr "%{id}: 시작됨"
 
 #: app/views/main/_gettext.js.erb:160
-#, fuzzy
 msgid "%{id}: Pending: %{nodelist}"
-msgstr "%{id}: 시작됨: %{nodelist}"
+msgstr "%{id}: 보류 중: %{nodelist}"
 
 #: app/views/main/_gettext.js.erb:161
-#, fuzzy
 msgid "%{id}: Pending"
-msgstr "보류 중"
+msgstr "%{id}: 보류 중"
 
 #: app/views/main/_gettext.js.erb:164
-#, fuzzy
 msgid "Stopped"
-msgstr "중지"
+msgstr "중지됨"
 
 #: app/views/main/_gettext.js.erb:165
 msgid "%{id}: Stopped"
@@ -1164,191 +1097,177 @@ msgstr "복제 집합: %{id}"
 
 #: app/views/main/_gettext.js.erb:178
 msgid "Simulator (initial state)"
-msgstr ""
+msgstr "시뮬레이터(초기 상태)"
 
 #: app/views/main/_gettext.js.erb:181
 msgid "Simulator (busy...)"
-msgstr ""
+msgstr "시뮬레이터(사용 중...)"
 
 #: app/views/main/_gettext.js.erb:184
 msgid "Simulator (final state)"
-msgstr ""
+msgstr "시뮬레이터(최종 상태)"
 
 #: app/views/main/_gettext.js.erb:187
 msgid "Injected State:"
-msgstr ""
+msgstr "삽입된 상태:"
 
 #: app/views/main/_gettext.js.erb:190
-#, fuzzy
 msgid "+ Node"
-msgstr "펜스 노드"
+msgstr "+ 노드"
 
 #: app/views/main/_gettext.js.erb:193
 msgid "+ Op"
-msgstr ""
+msgstr "+ 작업"
 
 #: app/views/main/_gettext.js.erb:196
 msgid "Run >"
-msgstr ""
+msgstr "실행 >"
 
 #: app/views/main/_gettext.js.erb:202
 msgid "CIB (in)"
-msgstr ""
+msgstr "CIB (입력)"
 
 #: app/views/main/_gettext.js.erb:205
 msgid "CIB (out)"
-msgstr ""
+msgstr "CIB (출력)"
 
 #: app/views/main/_gettext.js.erb:211
 msgid "Inject Node State"
-msgstr ""
+msgstr "삽입 노드 상태"
 
 #: app/views/main/_gettext.js.erb:214
 msgid "Node:"
-msgstr ""
+msgstr "노드:"
 
 #: app/views/main/_gettext.js.erb:217
 msgid "State:"
-msgstr ""
+msgstr "상태:"
 
 #: app/views/main/_gettext.js.erb:220
 msgid "Inject Operation"
-msgstr ""
+msgstr "삽입 작업"
 
 #: app/views/main/_gettext.js.erb:223
 msgid "Operation:"
-msgstr ""
+msgstr "작업:"
 
 #: app/views/main/_gettext.js.erb:226
 msgid "Interval:"
-msgstr ""
+msgstr "간격:"
 
 #: app/views/main/_gettext.js.erb:229
-#, fuzzy
 msgid "Resource:"
-msgstr "리소스 고착성:"
+msgstr "리소스:"
 
 #: app/views/main/_gettext.js.erb:232
 msgid "Result:"
-msgstr ""
+msgstr "결과:"
 
 #: app/views/main/_gettext.js.erb:235
 msgid "Success"
-msgstr ""
+msgstr "성공"
 
 #: app/views/main/_gettext.js.erb:238
 msgid "Generic Error"
-msgstr ""
+msgstr "일반 오류"
 
 #: app/views/main/_gettext.js.erb:241
 msgid "Wrong Argument(s)"
-msgstr ""
+msgstr "잘못된 인수"
 
 #: app/views/main/_gettext.js.erb:244
 msgid "Not Implemented"
-msgstr ""
+msgstr "구현되지 않음"
 
 #: app/views/main/_gettext.js.erb:247
 msgid "Permission Denied"
-msgstr ""
+msgstr "권한이 거부됨"
 
 #: app/views/main/_gettext.js.erb:250
-#, fuzzy
 msgid "Not Installed"
-msgstr "%s이(가) 설치되지 않았습니다."
+msgstr "설치되지 않음"
 
 #: app/views/main/_gettext.js.erb:253
-#, fuzzy
 msgid "Not Configured"
-msgstr "1개 노드가 구성되었습니다."
+msgstr "구성되지 않음"
 
 #: app/views/main/_gettext.js.erb:256
 msgid "Not Running"
-msgstr ""
+msgstr "실행 중이 아님"
 
 #: app/views/main/_gettext.js.erb:259
 msgid "Running Master"
-msgstr ""
+msgstr "마스터 실행 중"
 
 #: app/views/main/_gettext.js.erb:262
 msgid "Failed Master"
-msgstr ""
+msgstr "실패한 마스터"
 
 #: app/views/nodes/show.html.erb:1
 msgid "Utilization"
-msgstr ""
+msgstr "사용량"
 
 #: app/views/nodes/show.html.erb:15
 msgid "No utilization defined"
-msgstr ""
+msgstr "정의된 사용률이 없습니다."
 
 #: app/views/nodes/show.html.erb:18
 msgid "Attributes"
-msgstr ""
+msgstr "특성"
 
 #: app/views/nodes/show.html.erb:29
 msgid "No attributes defined"
-msgstr ""
+msgstr "정의된 특성이 없습니다."
 
 #: app/views/wizard/start.html.erb:2
 msgid "No workflow descriptions found"
-msgstr ""
+msgstr "검색된 워크플로 설명이 없습니다."
 
 #: app/views/wizard/start.html.erb:24
 msgid "Choose Configuration"
-msgstr ""
+msgstr "구성 선택"
 
 #: app/views/wizard/start.html.erb:26
-msgid ""
-"This wizard will guide you through the steps necessary to add one of the "
-"following configurations to the cluster."
-msgstr ""
+msgid "This wizard will guide you through the steps necessary to add one of the following configurations to the cluster."
+msgstr "이 마법사는 클러스터에 다음 구성 중 하나를 추가하는 데 필요한 단계로 안내합니다."
 
 #: app/views/wizard/start.html.erb:45 app/views/wizard/run.html.erb:121
 msgid "Next >"
-msgstr ""
+msgstr "다음 >"
 
 #: app/views/wizard/done.html.erb:1 app/views/wizard/run.html.erb:71
 msgid "%{workflow}: %{step}"
-msgstr ""
+msgstr "%{workflow}: %{step}"
 
 #: app/views/wizard/done.html.erb:3
 msgid "The configuration has been applied."
-msgstr ""
+msgstr "구성이 적용되었습니다."
 
 #: app/views/wizard/run.html.erb:74
 msgid "The following configuration will be applied to the cluster:"
-msgstr ""
+msgstr "다음 구성이 클러스터에 적용됩니다."
 
 #: app/views/wizard/run.html.erb:102
 msgid "Error applying configuration:"
-msgstr ""
+msgstr "구성 적용 중 오류 발생:"
 
 #: app/views/wizard/run.html.erb:120
 msgid "< Back"
-msgstr ""
+msgstr "< 뒤로"
 
 #: lib/invoker.rb:114
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
-msgstr ""
+msgstr "객체/특성이 없습니다(cibadmin %{cmd})."
 
 #: lib/invoker.rb:118
 msgid "Error invoking cibadmin %{cmd}: %{msg}"
-msgstr ""
+msgstr "cibadmin %{cmd} 호출 중 오류 발생: %{msg}"
 
 #: lib/invoker.rb:136
 msgid "The object/attribute does not exist: %{msg}"
-msgstr ""
+msgstr "객체/특성이 없습니다: %{msg}"
 
 #: lib/invoker.rb:140
 msgid "Error invoking cibadmin --replace: %{msg}"
-msgstr ""
+msgstr "cibadmin --replace 호출 중 오류 발생: %{msg}"
 
-#~ msgid "Cluster Stack:"
-#~ msgstr "클러스터 스택:"
-
-#~ msgid "Pacemaker Version:"
-#~ msgstr "페이스메이커 버전:"
-
-#~ msgid "Current DC:"
-#~ msgstr "현재 DC:"

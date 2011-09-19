@@ -3,9 +3,9 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: hawk 0.4.1\n"
+"Project-Id-Version: hawk\n"
 "POT-Creation-Date: 2011-08-11 15:33+1000\n"
-"PO-Revision-Date: 2010-05-06 07:33\n"
+"PO-Revision-Date: 2011-09-08 08:21\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "Language: \n"
@@ -17,74 +17,72 @@ msgstr ""
 #: app/controllers/explorer_controller.rb:42
 #: app/views/main/_menus.html.erb:373
 msgid "History Explorer"
-msgstr ""
+msgstr "History Explorer"
 
 #: app/controllers/explorer_controller.rb:95
-#, fuzzy
 msgid "Required parameters \"basename\" and \"node\" not specified"
-msgstr "Požadované parametry resource a node nebyly zadány."
+msgstr "Nebyly zadány požadované parametry „basename“ a „node“ ."
 
 #: app/controllers/explorer_controller.rb:117
 msgid "No details available"
-msgstr ""
+msgstr "Podrobnosti nejsou k dispozici."
 
 #: app/controllers/explorer_controller.rb:119
 #: app/controllers/explorer_controller.rb:147
 msgid "Error:"
-msgstr ""
+msgstr "Chyba:"
 
 #: app/controllers/groups_controller.rb:47
 msgid "Edit Group"
-msgstr ""
+msgstr "Upravit skupinu"
 
 #: app/controllers/groups_controller.rb:51
 #: app/controllers/groups_controller.rb:57 app/views/groups/_form.html.erb:142
 msgid "Create Group"
-msgstr ""
+msgstr "Vytvořit skupinu"
 
 #: app/controllers/groups_controller.rb:64
 msgid "Group created successfully"
-msgstr ""
+msgstr "Skupina byla úspěšně vytvořena"
 
 #: app/controllers/groups_controller.rb:86
 msgid "Group updated successfully"
-msgstr ""
+msgstr "Skupina byla úspěšně aktualizována"
 
 #: app/controllers/masters_controller.rb:47
-#, fuzzy
 msgid "Edit Master/Slave"
-msgstr "Sada hlavní/podřízený uzel: %{id}"
+msgstr "Upravit hlavní/podřízený prvek"
 
 #: app/controllers/masters_controller.rb:51
 #: app/controllers/masters_controller.rb:57
 #: app/views/masters/_form.html.erb:87
 msgid "Create Master/Slave"
-msgstr ""
+msgstr "Vytvořit hlavní/podřízený prvek"
 
 #: app/controllers/masters_controller.rb:64
 msgid "Master/Slave created successfully"
-msgstr ""
+msgstr "Hlavní/podřízený prvek byl úspěšně vytvořen"
 
 #: app/controllers/masters_controller.rb:86
 msgid "Master/Slave updated successfully"
-msgstr ""
+msgstr "Hlavní/podřízený prvek byl úspěšně aktualizován"
 
 #: app/controllers/clones_controller.rb:47
 msgid "Edit Clone"
-msgstr ""
+msgstr "Upravit kopii"
 
 #: app/controllers/clones_controller.rb:51
 #: app/controllers/clones_controller.rb:57 app/views/clones/_form.html.erb:87
 msgid "Create Clone"
-msgstr ""
+msgstr "Vytvořit roli"
 
 #: app/controllers/clones_controller.rb:64
 msgid "Clone created successfully"
-msgstr ""
+msgstr "Kopie byla úspěšně vytvořena"
 
 #: app/controllers/clones_controller.rb:86
 msgid "Clone updated successfully"
-msgstr ""
+msgstr "Kopie byla úspěšně aktualizována"
 
 #: app/controllers/cib_controller.rb:77
 msgid "1 node configured"
@@ -101,87 +99,85 @@ msgstr[1] "Nakonfigurované zdroje: %{num}"
 msgstr[2] "Nakonfigurované zdroje: %{num}"
 
 #: app/controllers/wizard_controller.rb:60
-#, fuzzy
 msgid "Cluster Setup Wizard"
-msgstr "Stav clusteru"
+msgstr "Průvodce nastavením clusteru"
 
 #: app/controllers/wizard_controller.rb:99
 #: app/views/primitives/_form.html.erb:187
 msgid "Parameters"
-msgstr ""
+msgstr "Parametry"
 
 #: app/controllers/wizard_controller.rb:123
 msgid "Confirm"
-msgstr ""
+msgstr "Potvrdit"
 
 #: app/controllers/wizard_controller.rb:143 app/views/wizard/done.html.erb:10
 msgid "Done"
-msgstr ""
+msgstr "Hotovo"
 
 #: app/controllers/wizard_controller.rb:243
-#, fuzzy
 msgid "Required parameter \"%{param}\" not specified"
-msgstr "Požadovaný parametr node nebyl zadán."
+msgstr "Požadovaný parametr „%{param}“ nebyl zadán."
 
 #: app/controllers/wizard_controller.rb:253
 msgid "Wizard templates and/or workflows are missing"
-msgstr ""
+msgstr "Chybí šablony anebo pracovní postupy prohlížeče."
 
 #: app/controllers/wizard_controller.rb:261
 msgid "Workflow \"%s\" not found"
-msgstr ""
+msgstr "Pracovní postup „%s“ nebyl nalezen"
 
 #: app/controllers/wizard_controller.rb:274
 msgid "Error parsing template \"%s\""
-msgstr ""
+msgstr "Chyba analýzy šablony „%s“"
 
 #: app/controllers/wizard_controller.rb:277
 msgid "Error parsing workflow \"%s\""
-msgstr ""
+msgstr "Chyba analýzy pracovního postupu „%s“"
 
 #: app/controllers/constraints_controller.rb:43
 msgid "Constraints"
-msgstr ""
+msgstr "Omezení"
 
 #: app/controllers/colocations_controller.rb:43
 msgid "Edit Colocation Constraint"
-msgstr ""
+msgstr "Upravit omezení kolokace"
 
 #: app/controllers/colocations_controller.rb:47
 #: app/controllers/colocations_controller.rb:52
 msgid "Create Colocation Constraint"
-msgstr ""
+msgstr "Vytvořit omezení kolokace"
 
 #: app/controllers/colocations_controller.rb:60
 #: app/controllers/locations_controller.rb:59
 #: app/controllers/orders_controller.rb:61
 msgid "Constraint created successfully"
-msgstr ""
+msgstr "Omezení bylo úspěšně vytvořeno"
 
 #: app/controllers/colocations_controller.rb:83
 #: app/controllers/locations_controller.rb:81
 #: app/controllers/orders_controller.rb:85
 msgid "Constraint updated successfully"
-msgstr ""
+msgstr "Omezení bylo úspěšně aktualizováno"
 
 #: app/controllers/primitives_controller.rb:45
 #: app/views/main/_menus.html.erb:243
 msgid "Edit Resource"
-msgstr ""
+msgstr "Upravit prostředek"
 
 #: app/controllers/primitives_controller.rb:49
 #: app/controllers/primitives_controller.rb:55
 #: app/views/primitives/_form.html.erb:323
 msgid "Create Resource"
-msgstr ""
+msgstr "Vytvořit prostředek"
 
 #: app/controllers/primitives_controller.rb:62
 msgid "Resource created successfully"
-msgstr ""
+msgstr "Prostředek byl úspěšně vytvořen"
 
 #: app/controllers/primitives_controller.rb:84
 msgid "Resource updated successfully"
-msgstr ""
+msgstr "Prostředek byl úspěšně aktualizován"
 
 #: app/controllers/main_controller.rb:51
 msgid "%{cmd} failed (status: %{status})"
@@ -206,7 +202,7 @@ msgstr "Požadované parametry resource a node nebyly zadány."
 
 #: app/controllers/main_controller.rb:135
 msgid "Error deleting resource"
-msgstr ""
+msgstr "Při odstraňování prostředku došlo k chybě"
 
 #: app/controllers/sessions_controller.rb:36
 #: app/views/sessions/new.html.erb:16
@@ -236,163 +232,144 @@ msgstr "Položka %s není nainstalována"
 #: app/controllers/sessions_controller.rb:91 app/models/cib.rb:243
 #: lib/invoker.rb:116 lib/invoker.rb:138
 msgid "Permission denied for user %{user}"
-msgstr ""
+msgstr "Uživateli %{user} nebylo uděleno povolení"
 
 #: app/controllers/sessions_controller.rb:94
 msgid "You have been logged out"
-msgstr ""
+msgstr "Byli jste odhlášeni."
 
 #: app/controllers/locations_controller.rb:43
 msgid "Edit Location Constraint"
-msgstr ""
+msgstr "Upravit omezení umístění"
 
 #: app/controllers/locations_controller.rb:47
 #: app/controllers/locations_controller.rb:52
 msgid "Create Location Constraint"
-msgstr ""
+msgstr "Vytvořit omezení umístění"
 
 #: app/controllers/orders_controller.rb:43
 msgid "Edit Order Constraint"
-msgstr ""
+msgstr "Upravit omezení pořadí"
 
 #: app/controllers/orders_controller.rb:47
 #: app/controllers/orders_controller.rb:52
 msgid "Create Order Constraint"
-msgstr ""
+msgstr "Vytvořit omezení pořadí"
 
 #: app/controllers/crm_config_controller.rb:44
 #: app/views/main/_gettext.js.erb:84
 msgid "Cluster Configuration"
-msgstr ""
+msgstr "Konfigurace clusteru"
 
 #: app/controllers/crm_config_controller.rb:85
 msgid "Invalid property set ID: %{id}"
-msgstr ""
+msgstr "Neplatné ID sady vlastností: %{id}"
 
 #: app/controllers/crm_config_controller.rb:133
-msgid ""
-"Can't set property %{p}, because the value contains both single and double "
-"quotes"
-msgstr ""
+msgid "Can't set property %{p}, because the value contains both single and double quotes"
+msgstr "Nelze nastavit vlastnost %{p}, protože hodnota obsahuje jednoduché i dvojité uvozovky"
 
 #: app/controllers/crm_config_controller.rb:148
 msgid "Your changes have been saved"
-msgstr ""
+msgstr "Vaše změny byly uloženy"
 
 #: app/controllers/crm_config_controller.rb:150
-#, fuzzy
 msgid "Unable to apply changes: %{msg}"
-msgstr "Spuštění příkazu %{cmd} se nezdařilo"
+msgstr "Nepodařilo se použít změny: %{msg}"
 
 #: app/models/order.rb:78 app/models/colocation.rb:52
-#, fuzzy
 msgid "Invalid score"
-msgstr "Neplatné uživatelské jméno"
+msgstr "Neplatné skóre"
 
 #: app/models/order.rb:82 app/models/colocation.rb:56
 msgid "Constraint must consist of at least two separate resources"
-msgstr ""
+msgstr "Omezení musí obsahovat alespoň dva samostatné prostředky"
 
 #: app/models/order.rb:88 app/models/primitive.rb:79
 #: app/models/colocation.rb:62 app/models/master.rb:56 app/models/clone.rb:56
 #: app/models/group.rb:56 app/models/location.rb:76
 msgid "The ID \"%{id}\" is already in use"
-msgstr ""
+msgstr "ID „%{id}“ je již používáno."
 
 #: app/models/order.rb:97 app/models/colocation.rb:71
 #: app/models/location.rb:85
-#, fuzzy
 msgid "Unable to create constraint: %{msg}"
-msgstr "Spuštění příkazu %{cmd} se nezdařilo"
+msgstr "Nepodařilo se vytvořit omezení: %{msg}"
 
 #: app/models/order.rb:106 app/models/colocation.rb:80
 #: app/models/location.rb:94
 msgid "Constraint ID \"%{id}\" does not exist"
-msgstr ""
+msgstr "ID omezení „%{id}“ neexistuje"
 
 #: app/models/order.rb:116 app/models/colocation.rb:90
 #: app/models/location.rb:106
-#, fuzzy
 msgid "Unable to update constraint: %{msg}"
-msgstr "Spuštění příkazu %{cmd} se nezdařilo"
+msgstr "Nepodařilo se aktualizovat omezení: %{msg}"
 
 #: app/models/primitive.rb:56
-msgid ""
-"Can't set parameter %{p}, because the value contains both single and double "
-"quotes"
-msgstr ""
+msgid "Can't set parameter %{p}, because the value contains both single and double quotes"
+msgstr "Parametr %{p} nelze nastavit, protože hodnota obsahuje jednoduché i dvojité uvozovky"
 
 #: app/models/primitive.rb:64
-msgid ""
-"Can't set op %{o} attribute {%a}, because the value contains both single and "
-"double quotes"
-msgstr ""
+msgid "Can't set op %{o} attribute {%a}, because the value contains both single and double quotes"
+msgstr "Atribut {%a} operace %{o} nelze nastavit, protože hodnota obsahuje jednoduché i dvojité uvozovky"
 
 #: app/models/primitive.rb:72 app/models/master.rb:50 app/models/clone.rb:50
 #: app/models/group.rb:50
-msgid ""
-"Can't set meta attribute %{p}, because the value contains both single and "
-"double quotes"
-msgstr ""
+msgid "Can't set meta attribute %{p}, because the value contains both single and double quotes"
+msgstr "Metaatribut %{p} nelze nastavit, protože hodnota obsahuje jednoduché i dvojité uvozovky"
 
 #: app/models/primitive.rb:124
-#, fuzzy
 msgid "Unable to create resource: %{msg}"
-msgstr "Spuštění příkazu %{cmd} se nezdařilo"
+msgstr "Nelze vytvořit prostředek: %{msg}"
 
 #: app/models/primitive.rb:134
 msgid "Resource ID \"%{id}\" does not exist"
-msgstr ""
+msgstr "ID prostředku „%{id}“ neexistuje"
 
 #: app/models/master.rb:44
-#, fuzzy
 msgid "No Master/Slave child specified"
-msgstr "Nebylo zadáno uživatelské jméno."
+msgstr "Nebyl zadán žádný hlavní/podřízený prvek"
 
 #: app/models/master.rb:76
-#, fuzzy
 msgid "Unable to create master/slave: %{msg}"
-msgstr "Spuštění příkazu %{cmd} se nezdařilo"
+msgstr "Nepodařilo se vytvořit hlavní/podřízený prvek: %{msg}"
 
 #: app/models/master.rb:86
-#, fuzzy
 msgid "Master/Slave ID \"%{id}\" does not exist"
-msgstr "Sada hlavní/podřízený uzel: %{id}"
+msgstr "ID hlavního/podřízeného prvku „%{id}“ neexistuje"
 
 #: app/models/clone.rb:44
 msgid "No clone child specified"
-msgstr ""
+msgstr "Nebyl zadán žádný podřízený prvek kopie"
 
 #: app/models/clone.rb:76
-#, fuzzy
 msgid "Unable to create clone: %{msg}"
-msgstr "Spuštění příkazu %{cmd} se nezdařilo"
+msgstr "Kopii nelze vytvořit: %{msg}"
 
 #: app/models/clone.rb:86
 msgid "Clone ID \"%{id}\" does not exist"
-msgstr ""
+msgstr "ID kopie „%{id}“ neexistuje"
 
 #: app/models/cib_object.rb:60
 msgid "Invalid Resource ID \"%{id}\""
-msgstr ""
+msgstr "Neplatné ID prostředku „%{id}“"
 
 #: app/models/cib_object.rb:88 app/models/cib_object.rb:108
 msgid "Unable to parse cibadmin output"
-msgstr ""
+msgstr "Nepodařilo se analyzovat výstup cibadmin"
 
 #: app/models/cib.rb:209 app/models/cib.rb:218
 msgid "CIB file \"%{path}\" not found"
-msgstr ""
+msgstr "Soubor CIB „%{path}“ nebyl nalezen"
 
 #: app/models/cib.rb:211 app/models/cib.rb:220
 msgid "Unable to parse CIB file \"%{path}\""
-msgstr ""
+msgstr "Soubor CIB „%{path}“ se nepodařilo analyzovat"
 
 #: app/models/cib.rb:222
 msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
-msgstr ""
-"Aplikace Pacemaker pravděpodobně není nainstalována (příkaz %{cmd} nebyl "
-"nalezen)"
+msgstr "Aplikace Pacemaker pravděpodobně není nainstalována (příkaz %{cmd} nebyl nalezen)"
 
 #: app/models/cib.rb:224
 msgid "Unable to execute %{cmd}"
@@ -400,20 +377,19 @@ msgstr "Spuštění příkazu %{cmd} se nezdařilo"
 
 #: app/models/cib.rb:227
 msgid "%{cmd} failed (status: %{status}, output was: %{output})"
-msgstr ""
-"Provedení příkazu %{cmd} se nezdařilo (stav: %{status}, výstup: %{output})"
+msgstr "Provedení příkazu %{cmd} se nezdařilo (stav: %{status}, výstup: %{output})"
 
 #: app/models/cib.rb:240
 msgid "Error invoking %{cmd}"
-msgstr ""
+msgstr "Chyba vyvolávání %{cmd}"
 
 #: app/models/cib.rb:245
 msgid "Error invoking %{cmd}: %{msg}"
-msgstr ""
+msgstr "Chyba vyvolávání %{cmd}: %{msg}"
 
 #: app/models/cib.rb:249
 msgid "Only the live CIB is supported"
-msgstr ""
+msgstr "Podporován je pouze aktivní soubor CIB"
 
 #: app/models/cib.rb:256 app/models/cib.rb:257 app/models/cib.rb:442
 #: app/views/main/_gettext.js.erb:140
@@ -421,61 +397,52 @@ msgid "Unknown"
 msgstr "Neznámý"
 
 #: app/models/cib.rb:397
-msgid ""
-"Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation="
-"%{op}, rc-code=%{rc_code}"
-msgstr ""
-"Neúspěšná operace: node=%{node}, resource=%{resource}, call-id=%{call_id}, "
-"operation=%{op}, rc-code=%{rc_code}"
+msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
+msgstr "Neúspěšná operace: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
 
 #: app/models/group.rb:44
 msgid "No group children specified"
-msgstr ""
+msgstr "Nebyly zadány žádné podřízené prvky skupiny"
 
 #: app/models/group.rb:79
-#, fuzzy
 msgid "Unable to create group: %{msg}"
-msgstr "Spuštění příkazu %{cmd} se nezdařilo"
+msgstr "Nelze vytvořit skupinu: %{msg}"
 
 #: app/models/group.rb:89
 msgid "Group ID \"%{id}\" does not exist"
-msgstr ""
+msgstr "ID skupiny „%{id}“ neexistuje"
 
 #: app/models/location.rb:42
 msgid "Constraint is too complex - it contains nested rules"
-msgstr ""
+msgstr "Omezení je příliš složité – obsahuje vnořená pravidla"
 
 #: app/models/location.rb:44
-#, fuzzy
 msgid "No rules specified"
-msgstr "Nebylo zadáno uživatelské jméno."
+msgstr "Nebyla zadána žádná pravidla"
 
 #: app/models/location.rb:47
-#, fuzzy
 msgid "No resource specified"
-msgstr "Nakonfigurované zdroje: 1"
+msgstr "Nebyl zadán žádný prostředek"
 
 #: app/models/location.rb:56
-#, fuzzy
 msgid "Invalid score \"%{score}\""
-msgstr "Neplatné uživatelské jméno"
+msgstr "Neplatné skóre „%{score}“"
 
 #: app/models/location.rb:64
-#, fuzzy
 msgid "No expressions specified"
-msgstr "Nebylo zadáno uživatelské jméno."
+msgstr "Nebyly zadány žádné výrazy"
 
 #: app/models/location.rb:68
 msgid "Attribute contains both single and double quotes"
-msgstr ""
+msgstr "Atribut obsahuje jednoduché i dvojité uvozovky"
 
 #: app/models/location.rb:69
 msgid "Value contains both single and double quotes"
-msgstr ""
+msgstr "Hodnota obsahuje jednoduché i dvojité uvozovky"
 
 #: app/helpers/explorer_helper.rb:3
 msgid "Data collection in progress (%{from_time} to %{to_time})..."
-msgstr ""
+msgstr "Probíhá shromažďování dat (%{from_time} do %{to_time})..."
 
 #: app/views/sessions/new.html.erb:8
 msgid "Username:"
@@ -486,17 +453,16 @@ msgid "Password:"
 msgstr "Heslo:"
 
 #: app/views/explorer/index.html.erb:55 app/views/hb_reports/new.html.erb:37
-#, fuzzy
 msgid "Start Time:"
-msgstr "Spustit"
+msgstr "Čas zahájení:"
 
 #: app/views/explorer/index.html.erb:57 app/views/hb_reports/new.html.erb:39
 msgid "End Time:"
-msgstr ""
+msgstr "Čas ukončení:"
 
 #: app/views/explorer/index.html.erb:59
 msgid "Display"
-msgstr ""
+msgstr "Zobrazení"
 
 #: app/views/explorer/index.html.erb:72 app/views/locations/_form.html.erb:95
 #: app/views/groups/_form.html.erb:144
@@ -507,77 +473,76 @@ msgstr ""
 #: app/views/crm_config/update.html.erb:4 app/views/orders/_form.html.erb:115
 #: app/views/wizard/start.html.erb:3 app/views/wizard/broken.html.erb:4
 msgid "Back"
-msgstr ""
+msgstr "Zpět"
 
 #: app/views/explorer/_pe_list.html.erb:6
 msgid "No transitions found for the specified time period."
-msgstr ""
+msgstr "Pro zadané období nebyly nalezeny žádné transakce."
 
 #: app/views/explorer/_pe_list.html.erb:11
 msgid "Time"
-msgstr ""
+msgstr "Čas"
 
 #: app/views/explorer/_pe_list.html.erb:12
 msgid "PE Input"
-msgstr ""
+msgstr "Vstup PE"
 
 #: app/views/explorer/_pe_list.html.erb:13
 #: app/views/locations/_form.html.erb:43
 msgid "Node"
-msgstr ""
+msgstr "Uzel"
 
 #: app/views/explorer/_pe_list.html.erb:23 app/views/main/_gettext.js.erb:93
 #: app/views/main/_gettext.js.erb:199
 msgid "Details"
-msgstr ""
+msgstr "Podrobnosti"
 
 #: app/views/explorer/_pe_list.html.erb:27 app/views/main/_gettext.js.erb:208
 msgid "Graph"
-msgstr ""
+msgstr "Graf"
 
 #: app/views/explorer/permission_denied.html.erb:2
 #: app/views/resources/permission_denied.html.erb:2
 #: app/views/hb_reports/permission_denied.html.erb:2
 #: app/views/nodes/permission_denied.html.erb:2
 msgid "Error: Permission denied for user '%s'."
-msgstr ""
+msgstr "Chyba: Oprávnění pro uživatele „%s“ zamítnuto."
 
 #: app/views/resources/events.html.erb:12 app/views/nodes/events.html.erb:12
 msgid "Getting recent events (last hour)..."
-msgstr ""
+msgstr "Získávání nejnovějších událostí (za poslední hodinu)..."
 
 #: app/views/resources/events.html.erb:13 app/views/nodes/events.html.erb:13
 msgid "Another \"crm history\" operation is in progress..."
-msgstr ""
+msgstr "Probíhá jiná operace „historie crm“..."
 
 #: app/views/resources/events.html.erb:20 app/views/nodes/events.html.erb:20
 msgid "No events found in last hour."
-msgstr ""
+msgstr "Za poslední hodinu nebyly nalezeny žádné události."
 
 #: app/views/locations/edit.html.erb:4 app/views/groups/edit.html.erb:4
 #: app/views/colocations/edit.html.erb:4 app/views/clones/edit.html.erb:4
 #: app/views/masters/edit.html.erb:4 app/views/primitives/edit.html.erb:4
 #: app/views/crm_config/edit.html.erb:62 app/views/orders/edit.html.erb:4
 msgid "Apply Changes"
-msgstr ""
+msgstr "Použít změny"
 
 #: app/views/locations/_form.html.erb:42
 #: app/views/colocations/_form.html.erb:88 app/views/orders/_form.html.erb:88
 msgid "Score"
-msgstr ""
+msgstr "Skóre"
 
 #: app/views/locations/_form.html.erb:44
 msgid "Role"
-msgstr ""
+msgstr "Role"
 
 #: app/views/locations/_form.html.erb:45
-#, fuzzy
 msgid "Boolean Op"
-msgstr "Čištění"
+msgstr "Logická operace"
 
 #: app/views/locations/_form.html.erb:46
 msgid "Expression"
-msgstr ""
+msgstr "Výraz"
 
 #: app/views/locations/_form.html.erb:47 app/views/groups/_form.html.erb:81
 #: app/views/colocations/_form.html.erb:58 app/views/clones/_form.html.erb:46
@@ -586,7 +551,7 @@ msgstr ""
 #: app/views/primitives/_form.html.erb:235
 #: app/views/crm_config/edit.html.erb:22 app/views/orders/_form.html.erb:58
 msgid "Add"
-msgstr ""
+msgstr "Přidat"
 
 #: app/views/locations/_form.html.erb:48 app/views/groups/_form.html.erb:82
 #: app/views/colocations/_form.html.erb:59 app/views/clones/_form.html.erb:47
@@ -595,46 +560,46 @@ msgstr ""
 #: app/views/primitives/_form.html.erb:236
 #: app/views/crm_config/edit.html.erb:23 app/views/orders/_form.html.erb:59
 msgid "Remove"
-msgstr ""
+msgstr "Odebrat"
 
 #: app/views/locations/_form.html.erb:49
 msgid "Add Rule"
-msgstr ""
+msgstr "Přidat pravidlo"
 
 #: app/views/locations/_form.html.erb:50
 msgid "Remove Rule"
-msgstr ""
+msgstr "Odebrat pravidlo"
 
 #: app/views/locations/_form.html.erb:51
 msgid "Show Rule Editor"
-msgstr ""
+msgstr "Zobrazit editor pravidel"
 
 #: app/views/locations/_form.html.erb:75
 #: app/views/colocations/_form.html.erb:87 app/views/orders/_form.html.erb:87
 msgid "Constraint ID"
-msgstr ""
+msgstr "ID omezení"
 
 #: app/views/locations/_form.html.erb:76
 msgid "Resource"
-msgstr ""
+msgstr "Prostředek"
 
 #: app/views/locations/_form.html.erb:93
 #: app/views/colocations/_form.html.erb:107
 #: app/views/orders/_form.html.erb:113
 msgid "Create Constraint"
-msgstr ""
+msgstr "Vytvořit omezení"
 
 #: app/views/locations/_form.html.erb:94 app/views/groups/_form.html.erb:143
 #: app/views/colocations/_form.html.erb:108 app/views/clones/_form.html.erb:88
 #: app/views/masters/_form.html.erb:88 app/views/primitives/_form.html.erb:324
 #: app/views/crm_config/edit.html.erb:63 app/views/orders/_form.html.erb:114
 msgid "Revert Changes"
-msgstr ""
+msgstr "Vrátit změny"
 
 #: app/views/groups/_form.html.erb:75 app/views/clones/_form.html.erb:40
 #: app/views/masters/_form.html.erb:40 app/views/primitives/_form.html.erb:229
 msgid "Meta Attributes"
-msgstr ""
+msgstr "Metaatributy"
 
 #: app/views/groups/_form.html.erb:83 app/views/clones/_form.html.erb:48
 #: app/views/masters/_form.html.erb:48 app/views/primitives/_form.html.erb:195
@@ -642,21 +607,19 @@ msgstr ""
 #: app/views/primitives/_form.html.erb:237
 #: app/views/crm_config/edit.html.erb:24
 msgid "You must enter a value"
-msgstr ""
+msgstr "Je nutné zadat hodnotu"
 
 #: app/views/groups/_form.html.erb:105
-#, fuzzy
 msgid "Group ID"
-msgstr "Skupina: %{id}"
+msgstr "ID skupiny"
 
 #: app/views/groups/_form.html.erb:115
-#, fuzzy
 msgid "Group Children"
-msgstr "Skupina: %{id}"
+msgstr "Seskupit podřízené prvky"
 
 #: app/views/groups/_form.html.erb:117
 msgid "Available Primitives"
-msgstr ""
+msgstr "Dostupné základní prvky"
 
 #: app/views/layouts/main.html.erb:24
 msgid "User: %{user}"
@@ -667,117 +630,111 @@ msgid "Log Out"
 msgstr "Odhlásit"
 
 #: app/views/layouts/main.html.erb:39
-#, fuzzy
 msgid "UI Host: %s"
-msgstr "Hostitel: %s"
+msgstr "Hostitel UR: %s"
 
 #: app/views/layouts/main.html.erb:40
-#, fuzzy
 msgid "Copyright &copy; 2009-2011 Novell, Inc."
-msgstr "Copyright &copy; 2009–2010 Novell, Inc."
+msgstr "Copyright &copy; 2009–2011 Novell, Inc."
 
 #: app/views/colocations/_form.html.erb:60 app/views/orders/_form.html.erb:60
 msgid "Link set"
-msgstr ""
+msgstr "Propojit sadu"
 
 #: app/views/colocations/_form.html.erb:61 app/views/orders/_form.html.erb:61
 msgid "Break set"
-msgstr ""
+msgstr "Rozložit sadu"
 
 #: app/views/colocations/_form.html.erb:62 app/views/orders/_form.html.erb:62
-#, fuzzy
 msgid "Swap resources"
-msgstr "Přesunout prostředek %s"
+msgstr "Zaměnit prostředky"
 
 #: app/views/colocations/_form.html.erb:63 app/views/orders/_form.html.erb:63
 msgid "Add resource to constraint"
-msgstr ""
+msgstr "Přidat prostředek k omezení"
 
 #: app/views/clones/_form.html.erb:70
 msgid "Clone ID"
-msgstr ""
+msgstr "ID kopie"
 
 #: app/views/clones/_form.html.erb:71 app/views/masters/_form.html.erb:71
 msgid "Child Resource"
-msgstr ""
+msgstr "Podřízený prostředek"
 
 #: app/views/hb_reports/new.html.erb:43
 msgid "Generate"
-msgstr ""
+msgstr "Generovat"
 
 #: app/views/hb_reports/new.html.erb:53
 msgid "hb_report generation in progress..."
-msgstr ""
+msgstr "Vytváří se zpráva hb_report..."
 
 #: app/views/hb_reports/new.html.erb:59
 msgid "Download hb_report"
-msgstr ""
+msgstr "Stáhnout zprávu hb_report"
 
 #: app/views/hb_reports/create.js.erb:3
-#, fuzzy
 msgid "Start Time not specified"
-msgstr "Nebylo zadáno uživatelské jméno."
+msgstr "Nebyl zadán čas zahájení"
 
 #: app/views/constraints/index.html.erb:49
 msgid "Edit Constraint"
-msgstr ""
+msgstr "Upravit omezení"
 
 #: app/views/constraints/index.html.erb:60
 msgid "Delete Constraint"
-msgstr ""
+msgstr "Odstranit omezení"
 
 #: app/views/constraints/index.html.erb:102
 #: app/views/constraints/index.html.erb:108
 #: app/views/constraints/index.html.erb:114
 msgid "New Constraint"
-msgstr ""
+msgstr "Nové omezení"
 
 #: app/views/constraints/index.html.erb:103
 msgid "Location"
-msgstr ""
+msgstr "Umístění"
 
 #: app/views/constraints/index.html.erb:109
-#, fuzzy
 msgid "Colocation"
-msgstr "Zahodit pravidlo přemístění"
+msgstr "Kolokace"
 
 #: app/views/constraints/index.html.erb:115
 msgid "Order"
-msgstr ""
+msgstr "Pořadí"
 
 #: app/views/constraints/index.html.erb:129
 msgid "(No location constraints defined)"
-msgstr ""
+msgstr "(Nebyla definována žádná omezení umístění)"
 
 #: app/views/constraints/index.html.erb:141
 msgid "[Constraint is too complex to display]"
-msgstr ""
+msgstr "[Omezení je příliš složité pro zobrazení]"
 
 #: app/views/constraints/index.html.erb:159
 msgid "(No colocation constraints defined)"
-msgstr ""
+msgstr "(Nebyla definována žádná omezení kolokace)"
 
 #: app/views/constraints/index.html.erb:173
 msgid "(No order constraints defined)"
-msgstr ""
+msgstr "(Nebyla definována žádná omezení pořadí)"
 
 #: app/views/masters/_form.html.erb:70
-#, fuzzy
 msgid "Master/Slave ID"
-msgstr "Sada hlavní/podřízený uzel: %{id}"
+msgstr "ID hlavního/podřízeného prvku"
 
 #: app/views/primitives/_form.html.erb:206
 msgid "Operations"
-msgstr ""
+msgstr "Operace"
 
 #: app/views/primitives/_form.html.erb:213
 #: app/views/crm_config/show.html.erb:11
 msgid "Edit"
-msgstr ""
+msgstr "Upravit"
 
 #: app/views/primitives/_form.html.erb:216
 msgid "There is already a monitor op with this interval."
-msgstr ""
+msgstr "Na tomto intervalu již probíhá operace monitorování."
 
 #: app/views/primitives/_form.html.erb:217 app/views/main/_gettext.js.erb:4
 msgid "OK"
@@ -790,40 +747,39 @@ msgstr "Storno"
 
 #: app/views/primitives/_form.html.erb:273
 msgid "Resource ID"
-msgstr ""
+msgstr "ID prostředku"
 
 #: app/views/primitives/_form.html.erb:274
 msgid "Class"
-msgstr ""
+msgstr "Třída"
 
 #: app/views/primitives/_form.html.erb:275
 msgid "Provider"
-msgstr ""
+msgstr "Poskytovatel"
 
 #: app/views/primitives/_form.html.erb:276
 msgid "Type"
-msgstr ""
+msgstr "Typ"
 
 #: app/views/crm_config/show.html.erb:4
 msgid "No cluster properties set in %{group}"
-msgstr ""
+msgstr "Ve skupině %{group} nebyly definovány žádné vlastnosti clusteru"
 
 #: app/views/crm_config/edit.html.erb:25
 msgid "Add new property:"
-msgstr ""
+msgstr "Přidat novou vlastnost:"
 
 #: app/views/crm_config/edit.html.erb:26
 msgid "Edit current properties:"
-msgstr ""
+msgstr "Upravit aktuální vlastnosti:"
 
 #: app/views/orders/_form.html.erb:98
-#, fuzzy
 msgid "Symmetrical"
-msgstr "Symetrický cluster:"
+msgstr "Symetrické"
 
 #: app/views/shared/_confirm_revert.html.erb:4
 msgid "Any changes will be lost - do you wish to proceed?"
-msgstr ""
+msgstr "Všechny změny budou ztraceny – chcete pokračovat?"
 
 #: app/views/shared/_confirm_revert.html.erb:8
 #: app/views/main/_gettext.js.erb:10
@@ -849,48 +805,47 @@ msgstr "Vytlačit uzel"
 
 #: app/views/main/_menus.html.erb:33
 msgid "View Details..."
-msgstr ""
+msgstr "Zobrazit podrobnosti..."
 
 #: app/views/main/_menus.html.erb:51 app/views/main/_menus.html.erb:301
 msgid "View Recent Events..."
-msgstr ""
+msgstr "Zobrazit nedávné události..."
 
 #: app/views/main/_menus.html.erb:87
 msgid "Setup Wizard"
-msgstr ""
+msgstr "Průvodce nastavení"
 
 #: app/views/main/_menus.html.erb:97
 msgid "New Primitive"
-msgstr ""
+msgstr "Nový základní prvek"
 
 #: app/views/main/_menus.html.erb:104
 msgid "New Group"
-msgstr ""
+msgstr "Nová skupina"
 
 #: app/views/main/_menus.html.erb:117
 msgid "Can't create group, there are no primitives available."
-msgstr ""
+msgstr "Nelze vytvořit skupinu, nejsou k dispozici žádné základní prvky."
 
 #: app/views/main/_menus.html.erb:122
 msgid "New Clone"
-msgstr ""
+msgstr "Nová kopie"
 
 #: app/views/main/_menus.html.erb:135
 msgid "Can't create clone, there are no primitives or groups available."
-msgstr ""
+msgstr "Nelze vytvořit kopii, nejsou k dispozici žádné základní prvky ani skupiny."
 
 #: app/views/main/_menus.html.erb:140
-#, fuzzy
 msgid "New Master/Slave"
-msgstr "Sada hlavní/podřízený uzel: %{id}"
+msgstr "Nový hlavní/podřízený prvek"
 
 #: app/views/main/_menus.html.erb:153
 msgid "Can't create master/slave, there are no primitives or groups available."
-msgstr ""
+msgstr "Nelze vytvořit hlavní/podřízený prvek, nejsou k dispozici žádné základní prvky ani skupiny."
 
 #: app/views/main/_menus.html.erb:161
 msgid "Edit Constraints"
-msgstr ""
+msgstr "Upravit omezení"
 
 #: app/views/main/_menus.html.erb:170
 msgid "Start"
@@ -922,54 +877,43 @@ msgstr "Čištění"
 
 #: app/views/main/_menus.html.erb:255
 msgid "Delete Resource"
-msgstr ""
+msgstr "Odstranit prostředek"
 
 #: app/views/main/_menus.html.erb:337
-#, fuzzy
 msgid "Cluster Properties"
-msgstr "Stav clusteru"
+msgstr "Vlastnosti clusteru"
 
 #: app/views/main/_menus.html.erb:344
 msgid "Generate hb_report..."
-msgstr ""
+msgstr "Generovat zprávu hb_report..."
 
 #: app/views/main/_menus.html.erb:357
 msgid "Generate hb_report"
-msgstr ""
+msgstr "Generovat zprávu hb_report"
 
 #: app/views/main/_menus.html.erb:364
 msgid "Simulator"
-msgstr ""
+msgstr "Simulátory"
 
 #: app/views/main/_gettext.js.erb:16
 msgid "Close"
-msgstr ""
+msgstr "Zavřít"
 
 #: app/views/main/_gettext.js.erb:19
 msgid "Reset"
-msgstr ""
+msgstr "Obnovit výchozí"
 
 #: app/views/main/_gettext.js.erb:23
-msgid ""
-"This will bring node %s online if it is currently on standby.  Do you want "
-"to continue?"
-msgstr ""
-"Pokud je uzel %s v úsporném režimu, přepne jej tato akce do režimu online. "
-"Chcete pokračovat?"
+msgid "This will bring node %s online if it is currently on standby.  Do you want to continue?"
+msgstr "Pokud je uzel %s v úsporném režimu, přepne jej tato akce do režimu online. Chcete pokračovat?"
 
 #: app/views/main/_gettext.js.erb:26
-msgid ""
-"This will put node %s on standby.  All resources will be stopped and/or "
-"moved to another node.  Do you want to continue?"
-msgstr ""
-"Tato akce přepne uzel %s do úsporného režimu. Všechny prostředky budou "
-"zastaveny nebo přesunuty do jiného uzlu. Chcete pokračovat?"
+msgid "This will put node %s on standby.  All resources will be stopped and/or moved to another node.  Do you want to continue?"
+msgstr "Tato akce přepne uzel %s do úsporného režimu. Všechny prostředky budou zastaveny nebo přesunuty do jiného uzlu. Chcete pokračovat?"
 
 #: app/views/main/_gettext.js.erb:29
-msgid ""
-"This will attempt to immediately fence node %s.  Do you want to continue?"
-msgstr ""
-"Tato akce provede pokus o okamžité vytlačení uzlu %s. Chcete pokračovat?"
+msgid "This will attempt to immediately fence node %s.  Do you want to continue?"
+msgstr "Tato akce provede pokus o okamžité vytlačení uzlu %s. Chcete pokračovat?"
 
 #: app/views/main/_gettext.js.erb:33
 msgid "This will start the resource %s.  Do you want to continue?"
@@ -981,7 +925,7 @@ msgstr "Tato akce zastaví prostředek %s. Chcete pokračovat?"
 
 #: app/views/main/_gettext.js.erb:39
 msgid "Move resource %s"
-msgstr "Přesunout prostředek %s"
+msgstr "Přesunout prostředek %s:"
 
 #: app/views/main/_gettext.js.erb:42
 msgid "To node %s"
@@ -992,12 +936,8 @@ msgid "Away from current node"
 msgstr "Pryč z aktuálního uzlu"
 
 #: app/views/main/_gettext.js.erb:48
-msgid ""
-"This will clear any relocation constraints set on the resource %s.  Do you "
-"want to continue?"
-msgstr ""
-"Tato akce vymaže všechna omezení přemístění nastavená pro prostředek %s. "
-"Chcete pokračovat?"
+msgid "This will clear any relocation constraints set on the resource %s.  Do you want to continue?"
+msgstr "Tato akce vymaže všechna omezení přemístění nastavená pro prostředek %s. Chcete pokračovat?"
 
 #: app/views/main/_gettext.js.erb:51
 msgid "This will promote the resource %s.  Do you want to continue?"
@@ -1013,7 +953,7 @@ msgstr "Tato akce vyčistí prostředek %s. Chcete pokračovat?"
 
 #: app/views/main/_gettext.js.erb:61
 msgid "Error"
-msgstr ""
+msgstr "Chyba"
 
 #: app/views/main/_gettext.js.erb:64
 msgid "Unexpected server error: %s"
@@ -1021,74 +961,67 @@ msgstr "Neočekávaná chyba serveru: %s"
 
 #: app/views/main/_gettext.js.erb:67
 msgid "Permission denied"
-msgstr ""
+msgstr "Povolení odepřeno"
 
 #: app/views/main/_gettext.js.erb:70
 msgid "%{op} failed on %{node} (rc=%{rc})"
-msgstr ""
+msgstr "Operace %{op} s uzlem %{node} selhala. (rc=%{rc})"
 
 #: app/views/main/_gettext.js.erb:74
 msgid "DC: %s"
-msgstr ""
+msgstr "DC: %s"
 
 #: app/views/main/_gettext.js.erb:77
 msgid "Version: %s"
-msgstr ""
+msgstr "Verze: %s"
 
 #: app/views/main/_gettext.js.erb:80
 msgid "Stack: %s"
-msgstr ""
+msgstr "Zásobník: %s"
 
 #: app/views/main/_gettext.js.erb:87
-#, fuzzy
 msgid "Inactive Resources"
-msgstr "Přesunout prostředek %s"
+msgstr "Neaktivní prostředky"
 
 #: app/views/main/_gettext.js.erb:90
 msgid "Summary"
-msgstr ""
+msgstr "Shrnutí"
 
 #: app/views/main/_gettext.js.erb:96
-#, fuzzy
 msgid "STONITH Enabled"
-msgstr "Funkce STONITH aktivována:"
+msgstr "Funkce STONITH je aktivována"
 
 #: app/views/main/_gettext.js.erb:99
-#, fuzzy
 msgid "No Quorum Policy"
-msgstr "Zakázání kvóra:"
+msgstr "Žádné postupy kvóra:"
 
 #: app/views/main/_gettext.js.erb:102
-#, fuzzy
 msgid "Symmetric Cluster"
-msgstr "Symetrický cluster:"
+msgstr "Symetrický cluster"
 
 #: app/views/main/_gettext.js.erb:105
-#, fuzzy
 msgid "Resource Stickiness"
-msgstr "Dlouhodobost zdroje:"
+msgstr "Dlouhodobost prostředku"
 
 #: app/views/main/_gettext.js.erb:108
-#, fuzzy
 msgid "Maintenance Mode"
-msgstr "Vytlačit uzel"
+msgstr "Režim údržby"
 
 #: app/views/main/_gettext.js.erb:112
 msgid "Summary View"
-msgstr ""
+msgstr "Souhrnné zobrazení"
 
 #: app/views/main/_gettext.js.erb:115
 msgid "Tree View"
-msgstr ""
+msgstr "Stromové zobrazení"
 
 #: app/views/main/_gettext.js.erb:118
 msgid "Table View"
-msgstr ""
+msgstr "Zobrazení tabulky"
 
 #: app/views/main/_gettext.js.erb:122
-#, fuzzy
 msgid "%{node}: %{state}"
-msgstr "%{node}: %{status}"
+msgstr "%{node}: %{state}"
 
 #: app/views/main/_gettext.js.erb:128
 msgid "Offline"
@@ -1104,58 +1037,51 @@ msgstr "Nevyčištěno"
 
 #: app/views/main/_gettext.js.erb:144
 msgid "Master"
-msgstr ""
+msgstr "Hlavní prvek"
 
 #: app/views/main/_gettext.js.erb:145
 msgid "%{id}: Master: %{nodelist}"
 msgstr "%{id}: Hlavní uzel: %{nodelist}"
 
 #: app/views/main/_gettext.js.erb:146
-#, fuzzy
 msgid "%{id}: Master"
-msgstr "%{id}: Hlavní uzel: %{nodelist}"
+msgstr "%{id}: Hlavní prvek"
 
 #: app/views/main/_gettext.js.erb:149
 msgid "Slave"
-msgstr ""
+msgstr "Podřízený prvek"
 
 #: app/views/main/_gettext.js.erb:150
 msgid "%{id}: Slave: %{nodelist}"
 msgstr "%{id}: Podřízený uzel: %{nodelist}"
 
 #: app/views/main/_gettext.js.erb:151
-#, fuzzy
 msgid "%{id}: Slave"
-msgstr "%{id}: Zastaveno"
+msgstr "%{id}: Podřízený prvek"
 
 #: app/views/main/_gettext.js.erb:154
-#, fuzzy
 msgid "Started"
-msgstr "Spustit"
+msgstr "Spuštěno"
 
 #: app/views/main/_gettext.js.erb:155
 msgid "%{id}: Started: %{nodelist}"
 msgstr "%{id}: Spuštěno: %{nodelist}"
 
 #: app/views/main/_gettext.js.erb:156
-#, fuzzy
 msgid "%{id}: Started"
-msgstr "%{id}: Zastaveno"
+msgstr "%{id}: Spuštěno"
 
 #: app/views/main/_gettext.js.erb:160
-#, fuzzy
 msgid "%{id}: Pending: %{nodelist}"
-msgstr "%{id}: Spuštěno: %{nodelist}"
+msgstr "%{id}: Čeká: %{nodelist}"
 
 #: app/views/main/_gettext.js.erb:161
-#, fuzzy
 msgid "%{id}: Pending"
-msgstr "Čekání"
+msgstr "%{id}: Čeká"
 
 #: app/views/main/_gettext.js.erb:164
-#, fuzzy
 msgid "Stopped"
-msgstr "Zastavit"
+msgstr "Zastaveno"
 
 #: app/views/main/_gettext.js.erb:165
 msgid "%{id}: Stopped"
@@ -1175,191 +1101,177 @@ msgstr "Sada kopií: %{id}"
 
 #: app/views/main/_gettext.js.erb:178
 msgid "Simulator (initial state)"
-msgstr ""
+msgstr "Simulátor (počáteční stav)"
 
 #: app/views/main/_gettext.js.erb:181
 msgid "Simulator (busy...)"
-msgstr ""
+msgstr "Simulátor (zaneprázdněný...)"
 
 #: app/views/main/_gettext.js.erb:184
 msgid "Simulator (final state)"
-msgstr ""
+msgstr "Simulátor (finální stav)"
 
 #: app/views/main/_gettext.js.erb:187
 msgid "Injected State:"
-msgstr ""
+msgstr "Stav založení:"
 
 #: app/views/main/_gettext.js.erb:190
-#, fuzzy
 msgid "+ Node"
-msgstr "Vytlačit uzel"
+msgstr "+ Uzel"
 
 #: app/views/main/_gettext.js.erb:193
 msgid "+ Op"
-msgstr ""
+msgstr "+ Op"
 
 #: app/views/main/_gettext.js.erb:196
 msgid "Run >"
-msgstr ""
+msgstr "Spustit >"
 
 #: app/views/main/_gettext.js.erb:202
 msgid "CIB (in)"
-msgstr ""
+msgstr "Soubor CIB (příchozí)"
 
 #: app/views/main/_gettext.js.erb:205
 msgid "CIB (out)"
-msgstr ""
+msgstr "Soubor CIB (odchozí)"
 
 #: app/views/main/_gettext.js.erb:211
 msgid "Inject Node State"
-msgstr ""
+msgstr "Stav založeného uzlu"
 
 #: app/views/main/_gettext.js.erb:214
 msgid "Node:"
-msgstr ""
+msgstr "Uzel:"
 
 #: app/views/main/_gettext.js.erb:217
 msgid "State:"
-msgstr ""
+msgstr "Stav:"
 
 #: app/views/main/_gettext.js.erb:220
 msgid "Inject Operation"
-msgstr ""
+msgstr "Operace založení"
 
 #: app/views/main/_gettext.js.erb:223
 msgid "Operation:"
-msgstr ""
+msgstr "Operace:"
 
 #: app/views/main/_gettext.js.erb:226
 msgid "Interval:"
-msgstr ""
+msgstr "Interval:"
 
 #: app/views/main/_gettext.js.erb:229
-#, fuzzy
 msgid "Resource:"
-msgstr "Dlouhodobost zdroje:"
+msgstr "Prostředek:"
 
 #: app/views/main/_gettext.js.erb:232
 msgid "Result:"
-msgstr ""
+msgstr "Výsledek:"
 
 #: app/views/main/_gettext.js.erb:235
 msgid "Success"
-msgstr ""
+msgstr "Úspěšné"
 
 #: app/views/main/_gettext.js.erb:238
 msgid "Generic Error"
-msgstr ""
+msgstr "Obecná chyba"
 
 #: app/views/main/_gettext.js.erb:241
 msgid "Wrong Argument(s)"
-msgstr ""
+msgstr "Nesprávný argument/y"
 
 #: app/views/main/_gettext.js.erb:244
 msgid "Not Implemented"
-msgstr ""
+msgstr "Neimplementováno"
 
 #: app/views/main/_gettext.js.erb:247
 msgid "Permission Denied"
-msgstr ""
+msgstr "Povolení odepřeno"
 
 #: app/views/main/_gettext.js.erb:250
-#, fuzzy
 msgid "Not Installed"
-msgstr "Položka %s není nainstalována"
+msgstr "Nenainstalováno"
 
 #: app/views/main/_gettext.js.erb:253
-#, fuzzy
 msgid "Not Configured"
-msgstr "Nakonfigurované uzly: 1"
+msgstr "Nekonfigurováno"
 
 #: app/views/main/_gettext.js.erb:256
 msgid "Not Running"
-msgstr ""
+msgstr "Nespuštěno"
 
 #: app/views/main/_gettext.js.erb:259
 msgid "Running Master"
-msgstr ""
+msgstr "Běžící hlavní prvek"
 
 #: app/views/main/_gettext.js.erb:262
 msgid "Failed Master"
-msgstr ""
+msgstr "Hlavní prvek selhal"
 
 #: app/views/nodes/show.html.erb:1
 msgid "Utilization"
-msgstr ""
+msgstr "Využití"
 
 #: app/views/nodes/show.html.erb:15
 msgid "No utilization defined"
-msgstr ""
+msgstr "Nebylo definováno žádné využití"
 
 #: app/views/nodes/show.html.erb:18
 msgid "Attributes"
-msgstr ""
+msgstr "Atributy"
 
 #: app/views/nodes/show.html.erb:29
 msgid "No attributes defined"
-msgstr ""
+msgstr "Nebyly definovány žádné atributy"
 
 #: app/views/wizard/start.html.erb:2
 msgid "No workflow descriptions found"
-msgstr ""
+msgstr "Nebyl nalezen žádný popis pracovního postupu"
 
 #: app/views/wizard/start.html.erb:24
 msgid "Choose Configuration"
-msgstr ""
+msgstr "Vybrat konfiguraci"
 
 #: app/views/wizard/start.html.erb:26
-msgid ""
-"This wizard will guide you through the steps necessary to add one of the "
-"following configurations to the cluster."
-msgstr ""
+msgid "This wizard will guide you through the steps necessary to add one of the following configurations to the cluster."
+msgstr "Tento průvodce vás provede kroky, které jsou nezbytné k přidání jedné z následujících konfigurací do clusteru."
 
 #: app/views/wizard/start.html.erb:45 app/views/wizard/run.html.erb:121
 msgid "Next >"
-msgstr ""
+msgstr "Další >"
 
 #: app/views/wizard/done.html.erb:1 app/views/wizard/run.html.erb:71
 msgid "%{workflow}: %{step}"
-msgstr ""
+msgstr "%{workflow}: %{step}"
 
 #: app/views/wizard/done.html.erb:3
 msgid "The configuration has been applied."
-msgstr ""
+msgstr "Konfigurační soubor byl použit."
 
 #: app/views/wizard/run.html.erb:74
 msgid "The following configuration will be applied to the cluster:"
-msgstr ""
+msgstr "Na cluster se použije následující konfigurace:"
 
 #: app/views/wizard/run.html.erb:102
 msgid "Error applying configuration:"
-msgstr ""
+msgstr "Při používání konfigurace došlo k chybě:"
 
 #: app/views/wizard/run.html.erb:120
 msgid "< Back"
-msgstr ""
+msgstr "< Zpět"
 
 #: lib/invoker.rb:114
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
-msgstr ""
+msgstr "Objekt/atribut neexistuje (cibadmin %{cmd})"
 
 #: lib/invoker.rb:118
 msgid "Error invoking cibadmin %{cmd}: %{msg}"
-msgstr ""
+msgstr "Chyba při vyvolávání souboru cibadmin %{cmd}: %{msg}"
 
 #: lib/invoker.rb:136
 msgid "The object/attribute does not exist: %{msg}"
-msgstr ""
+msgstr "Objekt/atribut neexistuje: %{msg}"
 
 #: lib/invoker.rb:140
 msgid "Error invoking cibadmin --replace: %{msg}"
-msgstr ""
+msgstr "Chyba při volání příkazu cibadmin  --replace: %{msg}"
 
-#~ msgid "Cluster Stack:"
-#~ msgstr "Sada ovladačů clusteru:"
-
-#~ msgid "Pacemaker Version:"
-#~ msgstr "Verze aplikace Pacemaker:"
-
-#~ msgid "Current DC:"
-#~ msgstr "Aktuální DC:"
