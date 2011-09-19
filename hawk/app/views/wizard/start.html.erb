@@ -29,7 +29,7 @@ $(function() {
 <table>
   <tr style="vertical-align: top;">
     <td><%= select_tag "workflow",
-        options_for_select(@descs.map{|k,d| [d[:shortdesc], k]}, params[:workflow]),
+        options_for_select(@descs.map{|k,d| [d[:shortdesc], k]}.sort{|a,b| a[1] <=> b[1]}, params[:workflow]),
         { :size => 9, :style => "min-width: 10em" }
       %></td>
     <td style="padding-left: 1em; max-width: 30em;">
