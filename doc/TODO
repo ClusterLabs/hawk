@@ -11,11 +11,16 @@ TODO
 
 * rsc_ticket support
 * resource templates
+* cibsecret support
 * new style constraints (rsc_*)?
 
 
 == Core/General == 
 
+* Online help tied to SLE HA manual (on SLES, at least).
+* Failed stop with STONITH disabled, resulting in "Started $node (unmanaged)
+  FAILED" in crm_mon, is erroneously reported as stopped resource in Hawk
+  (although the failed stop error is shown).
 * Need to verify/match op interval when ignoring ops
 * Translate simple errors from crm (bnc#713917)
 ** Already did permission denied, but need to check what other simple failures
