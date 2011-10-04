@@ -17,6 +17,7 @@ TODO
 
 == Core/General == 
 
+* Syntax highlighting for ascii text (crm config, logs in explorer, etc.)
 * Online help tied to SLE HA manual (on SLES, at least).
 * Failed stop with STONITH disabled, resulting in "Started $node (unmanaged)
   FAILED" in crm_mon, is erroneously reported as stopped resource in Hawk
@@ -79,6 +80,7 @@ TODO
 
 == GUI: Explorer ==
 
+* Graph in popup window (also for simulator)
 * Cache list might still apepar if you come back to the history page during
   generation (*sigh*)
 * Ability to delete cached reports?
@@ -93,6 +95,7 @@ TODO
 
 == GUI: Simulator ==
 
+* Graph in popup window (also for explorer)
 * stdout duplicate lines somehow (wtf?)
 * don't use yellow background (baby's bedroom colour)
 * remove injected state button removes all duplicate entries, not just the one
@@ -131,6 +134,7 @@ TODO
 
 == GUI: status ==
 
+* Ability to cleanup deleted/orphaned resources.
 * Recent events, details.  dialog should say "$node recent events",
   "$node details" etc.
 * Can't delete/set target-role of child of clone of group
@@ -212,6 +216,12 @@ TODO
 
 == GUI: Resource Editor ==
 
+* Might be good to have "create another resource" after creation (actually
+  might be an argument for sidebar selector for status/resource editor/...)
+* Create resource, click "Back" - saw "any changes will be lost"?
+* Create SBD stonith resource - gets created but with alleged error
+  "Unable to create resource: WARNING: 1: ra class stonith does not
+  support providers"
 * Intervals must have no freaky characters - add regex verify for attrlist?
 * op editor shows timeout=20 where there is no timeout specified (still true?)
 * need to cope with set_ops having duplicate monitor intervals (e.g.: pcmk
