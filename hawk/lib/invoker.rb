@@ -154,6 +154,10 @@ class Invoker
   # Actually, the above should be fixed as of 2011-03-17 (bnc#680401)
   # ...but as of 2011-08-31, it's not fixed at least in the case of
   # "Call cib_replace failed (-54): Permission Denied"...
+  # TODO(must): Evaluate cases where we have WARNING but no ERROR.  These
+  # may be false positives (e.g. when creating STONITH resources: "Unable
+  # to create resource: 'WARNING: 1: ra class stonith does not support
+  # providers'"
   def fudge_error(exitstatus, stderr)
     if exitstatus == 0 && !(stderr.index("ERROR") || stderr.index("WARNING"))
       true

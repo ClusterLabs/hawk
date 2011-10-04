@@ -42,7 +42,10 @@ class Primitive < CibObject
 
   def initialize(attributes = nil)
     @r_class    = 'ocf'
-    @r_provider = 'heartbeat'
+    # @r_provider must always be empty by default, else it'll override
+    # empty providers for e.g.: STONITH resources, resulting in bogus
+    # resource creation errors.
+    @r_provider = ''
     @r_type     = ''
     @params     = {}
     @ops        = {}
