@@ -109,9 +109,7 @@ TODO
 * Add ability for templates to call non-crm commands, e.g.: mkdir on all
   nodes, and deploy custom configuration files, e.g. httpd.conf
   (see bnc#710959)
-* clean up templates, esp. add ops with timeouts
-** split OCFS2 base out from filesystem
-** see also bnc#710959
+* make apache template work out-of-the-box if possible (see bnc#710959)
 * ability to have optional steps
 * list of steps on LHS?
 

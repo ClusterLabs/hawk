@@ -1,3 +1,18 @@
+* Wed Oct 05 2011 Tim Serong <tserong@suse.com>
+- Misc: Primitive model: Default @r_provider to empty (avoid bogus
+  "ra class does not support provider" errors)
+- Upstream version cs:c7ce0649ccea
+
+* Mon Sep 19 2011 Tim Serong <tserong@suse.com>
+- GUI: wizard: Split clone in ocfs2 template, add ocfs2-single for
+  additional OCFS2 filesystems
+- GUI: wizard: Sort workflows based on filename
+- Misc: Cib model: Don't do internal rename if new instance is stopped
+  or unknown
+- Misc: Update translations
+- Build: Update package version to 0.5.0
+- Upstream version cs:d32e171be055
+
 * Thu Sep 09 2011 Tim Serong <tserong@suse.com>
 - Build: Require graphviz to ensure graphs can be drawn (bnc#712894)
 - Build: Split setup wizard templates out into hawk-templates subpackage
