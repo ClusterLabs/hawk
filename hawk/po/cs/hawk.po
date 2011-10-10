@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "POT-Creation-Date: 2011-08-11 15:33+1000\n"
-"PO-Revision-Date: 2011-09-08 08:21\n"
+"PO-Revision-Date: 2011-10-07 09:59\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "Language: \n"
@@ -17,7 +17,7 @@ msgstr ""
 #: app/controllers/explorer_controller.rb:42
 #: app/views/main/_menus.html.erb:373
 msgid "History Explorer"
-msgstr "History Explorer"
+msgstr "Prohlížeč historie"
 
 #: app/controllers/explorer_controller.rb:95
 msgid "Required parameters \"basename\" and \"node\" not specified"
@@ -69,20 +69,20 @@ msgstr "Hlavní/podřízený prvek byl úspěšně aktualizován"
 
 #: app/controllers/clones_controller.rb:47
 msgid "Edit Clone"
-msgstr "Upravit kopii"
+msgstr "Upravit klon"
 
 #: app/controllers/clones_controller.rb:51
 #: app/controllers/clones_controller.rb:57 app/views/clones/_form.html.erb:87
 msgid "Create Clone"
-msgstr "Vytvořit roli"
+msgstr "Vytvořit klon"
 
 #: app/controllers/clones_controller.rb:64
 msgid "Clone created successfully"
-msgstr "Kopie byla úspěšně vytvořena"
+msgstr "Klon byl úspěšně vytvořen"
 
 #: app/controllers/clones_controller.rb:86
 msgid "Clone updated successfully"
-msgstr "Kopie byla úspěšně aktualizována"
+msgstr "Klon byl úspěšně aktualizován"
 
 #: app/controllers/cib_controller.rb:77
 msgid "1 node configured"
@@ -341,15 +341,15 @@ msgstr "ID hlavního/podřízeného prvku „%{id}“ neexistuje"
 
 #: app/models/clone.rb:44
 msgid "No clone child specified"
-msgstr "Nebyl zadán žádný podřízený prvek kopie"
+msgstr "Nebyl zadán žádný podřízený prvek klonu"
 
 #: app/models/clone.rb:76
 msgid "Unable to create clone: %{msg}"
-msgstr "Kopii nelze vytvořit: %{msg}"
+msgstr "Klon nelze vytvořit: %{msg}"
 
 #: app/models/clone.rb:86
 msgid "Clone ID \"%{id}\" does not exist"
-msgstr "ID kopie „%{id}“ neexistuje"
+msgstr "ID klonu „%{id}“ neexistuje"
 
 #: app/models/cib_object.rb:60
 msgid "Invalid Resource ID \"%{id}\""
@@ -485,7 +485,7 @@ msgstr "Čas"
 
 #: app/views/explorer/_pe_list.html.erb:12
 msgid "PE Input"
-msgstr "Vstup PE"
+msgstr "PE Input"
 
 #: app/views/explorer/_pe_list.html.erb:13
 #: app/views/locations/_form.html.erb:43
@@ -655,7 +655,7 @@ msgstr "Přidat prostředek k omezení"
 
 #: app/views/clones/_form.html.erb:70
 msgid "Clone ID"
-msgstr "ID kopie"
+msgstr "ID klonu"
 
 #: app/views/clones/_form.html.erb:71 app/views/masters/_form.html.erb:71
 msgid "Child Resource"
@@ -667,11 +667,11 @@ msgstr "Generovat"
 
 #: app/views/hb_reports/new.html.erb:53
 msgid "hb_report generation in progress..."
-msgstr "Vytváří se zpráva hb_report..."
+msgstr "Vytváří se balíček hb_report..."
 
 #: app/views/hb_reports/new.html.erb:59
 msgid "Download hb_report"
-msgstr "Stáhnout zprávu hb_report"
+msgstr "Stáhnout balíček hb_report"
 
 #: app/views/hb_reports/create.js.erb:3
 msgid "Start Time not specified"
@@ -743,7 +743,7 @@ msgstr "OK"
 #: app/views/primitives/_form.html.erb:218 app/views/main/_gettext.js.erb:7
 #: app/views/wizard/start.html.erb:44 app/views/wizard/run.html.erb:119
 msgid "Cancel"
-msgstr "Storno"
+msgstr "Zrušit"
 
 #: app/views/primitives/_form.html.erb:273
 msgid "Resource ID"
@@ -829,11 +829,11 @@ msgstr "Nelze vytvořit skupinu, nejsou k dispozici žádné základní prvky."
 
 #: app/views/main/_menus.html.erb:122
 msgid "New Clone"
-msgstr "Nová kopie"
+msgstr "Nový klon"
 
 #: app/views/main/_menus.html.erb:135
 msgid "Can't create clone, there are no primitives or groups available."
-msgstr "Nelze vytvořit kopii, nejsou k dispozici žádné základní prvky ani skupiny."
+msgstr "Nelze vytvořit klon, nejsou k dispozici žádné základní prvky ani skupiny."
 
 #: app/views/main/_menus.html.erb:140
 msgid "New Master/Slave"
@@ -885,11 +885,11 @@ msgstr "Vlastnosti clusteru"
 
 #: app/views/main/_menus.html.erb:344
 msgid "Generate hb_report..."
-msgstr "Generovat zprávu hb_report..."
+msgstr "Generovat balíček hb_report..."
 
 #: app/views/main/_menus.html.erb:357
 msgid "Generate hb_report"
-msgstr "Generovat zprávu hb_report"
+msgstr "Generovat balíček hb_report"
 
 #: app/views/main/_menus.html.erb:364
 msgid "Simulator"
@@ -989,11 +989,11 @@ msgstr "Shrnutí"
 
 #: app/views/main/_gettext.js.erb:96
 msgid "STONITH Enabled"
-msgstr "Funkce STONITH je aktivována"
+msgstr "STONITH povolen"
 
 #: app/views/main/_gettext.js.erb:99
 msgid "No Quorum Policy"
-msgstr "Žádné postupy kvóra:"
+msgstr "Zásady pro případ neexistence kvóra"
 
 #: app/views/main/_gettext.js.erb:102
 msgid "Symmetric Cluster"
@@ -1097,7 +1097,7 @@ msgstr "Sada hlavní/podřízený uzel: %{id}"
 
 #: app/views/main/_gettext.js.erb:174
 msgid "Clone Set: %{id}"
-msgstr "Sada kopií: %{id}"
+msgstr "Sada klonů: %{id}"
 
 #: app/views/main/_gettext.js.erb:178
 msgid "Simulator (initial state)"
@@ -1137,7 +1137,7 @@ msgstr "Soubor CIB (odchozí)"
 
 #: app/views/main/_gettext.js.erb:211
 msgid "Inject Node State"
-msgstr "Stav založeného uzlu"
+msgstr "Stav založení uzlu"
 
 #: app/views/main/_gettext.js.erb:214
 msgid "Node:"
