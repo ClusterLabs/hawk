@@ -213,10 +213,7 @@ in_haclient_grp(const char *user)
 		return 0;
 
 	grp = getgrgid(pwd->pw_gid);
-	if (grp == NULL)
-		return 0;
-
-	if (strcmp(grp->gr_name, HACLIENT) == 0)
+	if (grp != NULL && strcmp(grp->gr_name, HACLIENT) == 0)
 		return 1;
 
 	grp = getgrnam(HACLIENT);

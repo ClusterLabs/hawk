@@ -155,10 +155,7 @@ int main(int argc, char **argv)
 
 		/* Make sure the new user is in the haclient group */
 		grp = getgrgid(pwd->pw_gid);
-		if (grp == NULL) {
-			die("ERROR: Can't determine group for user '%s'\n", pwd->pw_name);
-		}
-		if (strcmp(grp->gr_name, HACLIENT) != 0) {
+		if (grp == NULL || strcmp(grp->gr_name, HACLIENT) != 0) {
 			/* Not the primary group, let's check the others */
 			grp = getgrnam(HACLIENT);
 			if (grp == NULL) {
