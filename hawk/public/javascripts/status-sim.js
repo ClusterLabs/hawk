@@ -33,7 +33,7 @@ var simulator = {
   create: function() {
     $("#container").append($(
       '<div id="simulator" style="display: none; font-size: 80%;">' +
-        '<form><table style="width: 100%;">' +
+        '<form onsubmit="return false;"><table style="width: 100%;">' +
           "<tr>" +
             "<th>" + escape_html(GETTEXT.sim_injected()) + "</th>" +
           "</tr>" +
@@ -61,7 +61,7 @@ var simulator = {
       "</div>"));
 
     $("#sim-inject-node").click(function() {
-      var html = "<form><table><tr>" +
+      var html = '<form onsubmit="return false;"><table><tr>' +
         '<th>' + escape_html(GETTEXT.sim_node_node()) + '</th><td><select id="inject-node-uname">';
       $.each(cib.nodes, function() {
         html += '<option value="' + this.uname + '">' + this.uname + "</option>\n";
@@ -91,7 +91,7 @@ var simulator = {
     });
 
     $("#sim-inject-op").click(function() {
-      var html = "<form><table>";
+      var html = '<form onsubmit="return false;"><table>';
 
       html += '<tr><th>' + escape_html(GETTEXT.sim_op_operation()) + '</th><td><select id="inject-op-operation">' +
           '<option value="monitor">monitor</option>' +
