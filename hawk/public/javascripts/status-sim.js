@@ -210,6 +210,7 @@ var simulator = {
     b[GETTEXT.close()] = function() {
       $(document.body).removeClass("sim");
       $(this).dialog("close");
+      $("#errorbar").hide(); // forcibly hide error bar when deactivating simulator
       hide_status();
       $("#onload-spinner").show();
       cib_source = "live";
@@ -219,6 +220,7 @@ var simulator = {
       title:    escape_html(GETTEXT.sim_init()),
       buttons:  b
     });
+    $("#errorbar").hide(); // forcibly hide error bar when activating simulator
     hide_status();
     $("#onload-spinner").show();
     self._reset(function() {
