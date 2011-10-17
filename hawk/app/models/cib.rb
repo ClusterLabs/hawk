@@ -367,7 +367,8 @@ class Cib < CibObject
 
           # skip allegedly pending "last_failure" ops (hack to fix bnc#706755)
           # TODO(should): see if we can remove this in future
-          next if op.attributes['id'].end_with?("_last_failure_0") && op.attributes['call-id'].to_i == -1
+          next if op.attributes.has_key?('id') &&
+            op.attributes['id'].end_with?("_last_failure_0") && op.attributes['call-id'].to_i == -1
 
           if op.attributes['call-id'].to_i == -1
             state = :pending
