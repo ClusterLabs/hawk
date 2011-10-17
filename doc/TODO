@@ -17,6 +17,7 @@ TODO
 
 == Core/General == 
 
+* Modal dialogs should probably be made moveable (and *maybe* resizable)
 * Syntax highlighting for ascii text (crm config, logs in explorer, etc.)
 * Online help tied to SLE HA manual (on SLES, at least).
 * Failed stop with STONITH disabled, resulting in "Started $node (unmanaged)
@@ -96,6 +97,11 @@ TODO
 
 == GUI: Simulator ==
 
+* Inject a failed start (e.g.: start:0 c2:0 unknown node-0), gives tooltip
+  "null failed on node-0 (rc=1)", similar in error bar (operation=).  So the
+  name of the failed op isnt' being picked up somehow.  Actually, it's not
+  in the CIB (see http://bugs.clusterlabs.org/show_bug.cgi?id=5003).
+* Ability to edit injected ops and node state would be handy
 * Graph in popup window (also for explorer)
 * stdout duplicate lines somehow (wtf?)
 * don't use yellow background (baby's bedroom colour)
