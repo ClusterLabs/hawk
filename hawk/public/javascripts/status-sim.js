@@ -208,17 +208,19 @@ var simulator = {
       self._reset();
     },
     b[GETTEXT.close()] = function() {
-      $(document.body).removeClass("sim");
       $(this).dialog("close");
-      $("#errorbar").hide(); // forcibly hide error bar when deactivating simulator
-      hide_status();
-      $("#onload-spinner").show();
-      cib_source = "live";
-      update_cib();
     };
     $("#simulator").dialog("option", {
       title:    escape_html(GETTEXT.sim_init()),
-      buttons:  b
+      buttons:  b,
+      close:    function() {
+        $(document.body).removeClass("sim");
+        $("#errorbar").hide(); // forcibly hide error bar when deactivating simulator
+        hide_status();
+        $("#onload-spinner").show();
+        cib_source = "live";
+        update_cib();
+      }
     });
     $("#errorbar").hide(); // forcibly hide error bar when activating simulator
     hide_status();
