@@ -43,16 +43,17 @@ var simulator = {
             '<td style="padding-left: 1em;">' +
               '<button id="sim-run" type="button" style="min-width: 6em;" disabled="disabled">' + escape_html(GETTEXT.sim_run()) + '</button> ' +
             "</td>" +
-            '<td style="padding-left: 1em;">' +
+            '<td style="padding-left: 1em; white-space: nowrap;">' +
               '<a class="disabled" id="sim-get-info" target="hawk-sim-info">' + escape_html(GETTEXT.sim_details()) + '</a><br/>' +
               '<a class="disabled" id="sim-get-in" target="hawk-sim-info">' + escape_html(GETTEXT.sim_cib_in()) + '</a><br/>' +
               '<a class="disabled" id="sim-get-out" target="hawk-sim-info">' + escape_html(GETTEXT.sim_cib_out()) + '</a><br/>' +
-              '<a class="disabled" id="sim-get-graph" target="hawk-sim-info">' + escape_html(GETTEXT.sim_graph()) + '</a>' +
-              ' <a class="disabled" id="sim-get-graph-xml" target="hawk-sim-info">(xml)</a>' +
+              '<span id="graph-link"><a class="disabled" id="sim-get-graph" target="hawk-sim-info">' + escape_html(GETTEXT.sim_graph()) + '</a>' +
+              ' <a class="disabled" id="sim-get-graph-xml" target="hawk-sim-info">(xml)</a></span>' +
+              '<span id="graph-empty" style="display: none;">' + escape_html(GETTEXT.sim_graph_empty()) + '</span>' +
             "</td>" +
           "</tr>" +
           "<tr>" +
-            "<td>" +
+            '<td style="white-space: nowrap;">' +
               '<button id="sim-inject-node" type="button" style="min-width: 6em;">' + escape_html(GETTEXT.sim_inject_node()) + '</button> ' +
               '<button id="sim-inject-op" type="button" style="min-width: 6em;">' + escape_html(GETTEXT.sim_inject_op()) + '</button> ' +
               '<button id="sim-inject-del" type="button"> - </button> ' +
@@ -193,7 +194,16 @@ var simulator = {
       $("#sim-injections").children().each(function() {
         i.push($(this).val());
       });
-      $.post(url_root + "/main/sim_run", { "injections[]": i }, function() {
+      $.post(url_root + "/main/sim_run", { "injections[]": i }, function(data) {
+        if (data) {
+          if (data.is_empty) {
+            $("#graph-link").hide();
+            $("#graph-empty").show();
+          } else {
+            $("#graph-empty").hide();
+            $("#graph-link").show();
+          }
+        }
         cib_source = "sim:out";
         update_cib();
         $("#sim-get-info").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=info");
@@ -247,6 +257,8 @@ var simulator = {
   },
   _reset: function(callback) {
     $("#simulator").dialog("option", "title", escape_html(GETTEXT.sim_busy()));
+    $("#graph-empty").hide();
+    $("#graph-link").show();
     $("#sim-get-info").addClass("disabled").removeAttr("href");
     $("#sim-get-in").addClass("disabled").removeAttr("href");
     $("#sim-get-out").addClass("disabled").removeAttr("href");

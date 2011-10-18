@@ -193,7 +193,21 @@ class MainController < ApplicationController
       *injections)
     f.write(stdout)
     f.close
-    head :ok
+    is_empty = true
+    begin
+      f = File.open("#{RAILS_ROOT}/tmp/sim.graph")
+      if f.readline().match(/^<transition_graph.*[^\/]>$/)
+        # Cheap test - if the first line is a non-closed transition_graph element,
+        # we know it's not an empty graph.
+        is_empty = false
+      end
+      f.close
+    rescue Exception
+      # TODO(could): actually handle potential failure of crm_simulate run
+    end
+   render :json => {
+     :is_empty => is_empty
+   }
   end
 
   # TODO(must): make sure dot is installed
