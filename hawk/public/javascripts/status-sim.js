@@ -31,6 +31,7 @@
 
 var simulator = {
   create: function() {
+    var self = this;
     $("#container").append($(
       '<div id="simulator" style="display: none; font-size: 80%;">' +
         '<form onsubmit="return false;"><table style="width: 100%;">' +
@@ -139,6 +140,11 @@ var simulator = {
 
       html += "</table></form>";
       $("#dialog").html(html);
+
+      // Set sensible defaults for whatever resource we're fiddling with
+      self._inject_op_set_res_defaults();
+      $("#inject-op-resource").change(self._inject_op_set_res_defaults);
+
       var b = {}
       b[GETTEXT.ok()] = function() {
         var interval = parseInt($("#inject-op-interval").val());
@@ -247,5 +253,14 @@ var simulator = {
       }
       $("#simulator").dialog("option", "title", escape_html(GETTEXT.sim_init()));
     });
+  },
+  _inject_op_set_res_defaults: function() {
+    var id_parts = $("#inject-op-resource").val().split(":");
+    var instance = resources_by_id[id_parts[0]].instances[id_parts.length == 2 ? id_parts[1] : "default"];
+    // TODO(should): Can this be reused elsewhere? (cf: panel_view::_get_primitive)
+    var running_on = instance.master || instance.slave || instance.started || instance.pending;
+    if (running_on) {
+      $("#inject-op-node").val(running_on[0]);
+    }
   }
 };
