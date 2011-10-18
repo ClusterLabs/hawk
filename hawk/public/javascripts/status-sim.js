@@ -93,6 +93,17 @@ var simulator = {
     $("#sim-inject-op").click(function() {
       var html = '<form onsubmit="return false;"><table>';
 
+      html += '<tr><td>' + escape_html(GETTEXT.sim_op_resource()) + '</td><td><select id="inject-op-resource">';
+      $.each(resources_by_id, function() {
+        if (!this.instances) return;
+        var id = this.id;
+        $.each(this.instances, function(k) {
+          var iid = id + (k == "default" ? "" : ":" + k);
+          html += '<option value="' + iid + '">' + iid + "</option>\n";
+        });
+      });
+      html += "</select></td></tr>";
+
       html += '<tr><th>' + escape_html(GETTEXT.sim_op_operation()) + '</th><td><select id="inject-op-operation">' +
           '<option value="monitor">monitor</option>' +
           '<option value="start">start</option>' +
@@ -107,16 +118,11 @@ var simulator = {
       html += '<th>' + escape_html(GETTEXT.sim_op_interval()) + '</th>' +
           '<td><input type="text" size="10" id="inject-op-interval"/> (ms)</td></tr>';
 
-      html += '<tr><td>' + escape_html(GETTEXT.sim_op_resource()) + '</td><td><select id="inject-op-resource">';
-      $.each(resources_by_id, function() {
-        if (!this.instances) return;
-        var id = this.id;
-        $.each(this.instances, function(k) {
-          var iid = id + (k == "default" ? "" : ":" + k);
-          html += '<option value="' + iid + '">' + iid + "</option>\n";
-        });
+      html += '<tr><th>' + escape_html(GETTEXT.sim_node_node()) + '</th><td><select id="inject-op-node">';
+      $.each(cib.nodes, function() {
+        html += '<option value="' + this.uname + '">' + this.uname + "</option>\n";
       });
-      html += "</select></td></tr>";
+      html += "</tr>";
 
       html += '<tr><th>' + escape_html(GETTEXT.sim_op_result()) + '</th><td><select id="inject-op-result">' +
           '<option value="success">' + escape_html(GETTEXT.sim_result_success()) + '</option>' +
@@ -130,12 +136,6 @@ var simulator = {
           '<option value="master">' + escape_html(GETTEXT.sim_result_master()) + '</option>' +
           '<option value="failed_master">' + escape_html(GETTEXT.sim_result_failed_master()) + '</option>' +
           "</select></td></tr>";
-
-      html += '<tr><th>' + escape_html(GETTEXT.sim_node_node()) + '</th><td><select id="inject-op-node">';
-      $.each(cib.nodes, function() {
-        html += '<option value="' + this.uname + '">' + this.uname + "</option>\n";
-      });
-      html += "</tr>";
 
       html += "</table></form>";
       $("#dialog").html(html);
