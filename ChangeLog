@@ -1,3 +1,21 @@
+* Wed Oct 19 2011 Tim Serong <tserong@suse.com>
+- GUI: Simulator: Don't link to empty transition graphs (bnc#723401)
+- GUI: Simulator: Auto-fill monitor interval when injecting ops (bnc#723401)
+- GUI: Simulator: Default node to where resource running when injecting ops
+- GUI: Simulator: More natural control order when injecting ops (resource
+  first)
+- GUI: Simulator: Ensure ENTER doesn't close simulator when injecting ops
+- GUI: Simulator: Handle dialog close event (e.g.: when clicking 'x' in
+  title bar)
+- GUI: Simulator: explicitly hide error bar when (de)activating simulator
+  (bnc#723333)
+- Misc: Cib model: Handle case in simulator CIB where lrm_rsc_op has no
+  id attribute
+- Misc: hawk_{invoke,chkpwd}: Handle case where user's GID has no name
+  so login fails (bnc#723512)
+- Misc: Update Czech translations (bnc#720098)
+- Upstream version cs:0bffad7aba7e
+
 * Wed Oct 05 2011 Tim Serong <tserong@suse.com>
 - Misc: Primitive model: Default @r_provider to empty (avoid bogus
   "ra class does not support provider" errors)
