@@ -97,6 +97,11 @@ TODO
 
 == GUI: Simulator ==
 
+* Auto-fill of interval when injecting ops just grabs the first one (would
+  be nice to drop-down with interval and more info about which one it was,
+  e.g.: role or OCF_CHECK_LEVEL)
+* Purports to run even if server dead (i.e.: Run button results in alleged
+  final state being shown).
 * Inject a failed start (e.g.: start:0 c2:0 unknown node-0), gives tooltip
   "null failed on node-0 (rc=1)", similar in error bar (operation=).  So the
   name of the failed op isnt' being picked up somehow.  Actually, it's not
