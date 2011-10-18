@@ -117,7 +117,10 @@ var simulator = {
           "</select></td></tr><tr>";
 
       html += '<th>' + escape_html(GETTEXT.sim_op_interval()) + '</th>' +
-          '<td><input type="text" size="10" id="inject-op-interval"/> (ms)</td></tr>';
+          '<td><input type="text" size="10" id="inject-op-interval"/> (ms)</td>' +
+          '<td><span id="interval-spinner" style="display: none;">' +
+            '<img src="' + url_root + '/images/spinner-16x16-neutral.gif" alt="" />' +
+          '</span></td></tr>';
 
       html += '<tr><th>' + escape_html(GETTEXT.sim_node_node()) + '</th><td><select id="inject-op-node">';
       $.each(cib.nodes, function() {
@@ -142,8 +145,14 @@ var simulator = {
       $("#dialog").html(html);
 
       // Set sensible defaults for whatever resource we're fiddling with
+      // (needs indirection to preserve "this" in callbacks)
       self._inject_op_set_res_defaults();
-      $("#inject-op-resource").change(self._inject_op_set_res_defaults);
+      $("#inject-op-resource").change(function() {
+        self._inject_op_set_res_defaults();
+      });
+      $("#inject-op-operation").change(function() {
+        self._inject_op_set_op_defaults();
+      });
 
       var b = {}
       b[GETTEXT.ok()] = function() {
@@ -261,6 +270,21 @@ var simulator = {
     var running_on = instance.master || instance.slave || instance.started || instance.pending;
     if (running_on) {
       $("#inject-op-node").val(running_on[0]);
+    }
+    this._inject_op_set_op_defaults();
+  },
+  _inject_op_set_op_defaults: function() {
+    if ($("#inject-op-operation").val() == "monitor") {
+      $("#inject-op-interval").removeAttr("disabled");
+      var id = $("#inject-op-resource").val().split(":")[0];
+      if (this.req) this.req.abort();
+      $("#interval-spinner").show();
+      this.req = $.getJSON(url_root + "/cib/live/primitives/" + id + "/monitor_intervals", function(data) {
+        $("#inject-op-interval").val(data && data.length > 0 ? data[0] : "");
+        $("#interval-spinner").hide();
+      });
+    } else {
+      $("#inject-op-interval").val("").attr("disabled", "disabled");
     }
   }
 };

@@ -43,6 +43,7 @@ ActionController::Routing::Routes.draw do |map|
   map.crm_config_info '/cib/:cib_id/crm_config/:id/info', :controller => 'crm_config', :action => 'info'
 
   map.resources :cib, :has_many => :primitives
+  map.primitives_mi '/cib/:cib_id/primitives/:id/monitor_intervals', :controller => 'primitives', :action => 'monitor_intervals'
   # TODO(should): Don't need primitive ID for these...
   map.primitives_types '/cib/:cib_id/primitives/new/types', :controller => 'primitives', :action => 'types'
   map.primitives_metadata  '/cib/:cib_id/primitives/new/metadata', :controller => 'primitives', :action => 'metadata'

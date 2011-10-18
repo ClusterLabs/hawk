@@ -88,6 +88,20 @@ class PrimitivesController < ApplicationController
     end
   end
 
+  # Bit of a hack, used only by simulator to get valid intervals
+  # for the monitor op in milliseconds.  Returns an array of
+  # possible intervals (zero elements if no monitor op defined,
+  # one element in the general case, but should be two for m/s
+  # resources, or more if there's depths etc.).
+  def monitor_intervals
+    intervals = []
+    @res = Primitive.find params[:id]
+    @res.ops["monitor"].each do |op|
+      intervals << Util.crm_get_msec(op["interval"])
+    end if @res.ops.has_key?("monitor")
+    render :json => intervals
+  end
+
   def types
     render :json => Primitive.types(params[:r_class], params.has_key?(:r_provider) ? params[:r_provider] : '')
   end

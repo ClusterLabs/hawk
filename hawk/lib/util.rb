@@ -134,4 +134,26 @@ module Util
     ['true', 'false'].include?(v.class == String ? v.downcase : v) ? v.downcase == 'true' : v
   end
   module_function :unstring
+
+  # Does the same job bas crm_get_msec() from lib/common/utils.c
+  def crm_get_msec(str)
+    m = str.strip.match(/^([0-9]+)(.*)$/)
+    return -1 unless m
+    msec = m[1].to_i
+    case m[2]
+    when "ms", "msec"
+      msec
+    when "us", "usec"
+      msec / 1000
+    when "s", "sec", ""
+      msec * 1000
+    when "m", "min"
+      msec * 60 * 1000
+    when "h", "hr"
+      msec * 60 * 60 * 1000
+    else
+      -1
+    end
+  end
+  module_function :crm_get_msec
 end
