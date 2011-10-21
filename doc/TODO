@@ -129,13 +129,9 @@ TODO
 
 == GUI: hb_report ==
 
-* hb_report; fails if desination dir /tmp/hb_report-hawk already exists,
-  but you don't see the error if /tmp/hb_report-hawk.tar.bz2 exists
-  (existence check must be overriding failed run check when complete?!?)
 * hb_report: $("#hbreport-status").html doesn't use escape_html...?
 * Ability to generate, keep, download multiple hb_reports (not just last one)
 ** Ability to delete old reports.
-* Probably want to run with "hb_report -Z"
 * Ability to use crm_report instead?  (Or use one or the other, depending on
   what's installed)?
 * Consider renaming hb_report class to crm_report or similar?

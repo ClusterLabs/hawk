@@ -102,6 +102,7 @@ class HbReportsController < ApplicationController
 
       args = ["-f", from_time]
       args.push "-t", to_time if to_time
+      args.push "-Z"  # Remove destination directories if they exist
       args.push "-S" unless all_nodes
       args.push "/tmp/hb_report-hawk"
       stdin, stdout, stderr, thread = Util.run_as("root", "hb_report", *args)
