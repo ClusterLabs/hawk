@@ -12,15 +12,15 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk 0.3.1\n"
 "POT-Creation-Date: 2011-08-11 15:33+1000\n"
-"PO-Revision-Date: 2011-09-16 14:12+0200\n"
+"PO-Revision-Date: 2011-10-16 10:00+0200\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@opensuse.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: hu\n"
 "Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
 "X-Generator: Lokalize 1.2\n"
-"Language: hu\n"
 
 #: app/controllers/explorer_controller.rb:42
 #: app/views/main/_menus.html.erb:373
@@ -288,7 +288,6 @@ msgid "Unable to apply changes: %{msg}"
 msgstr "Nem alkalmazhatók a módosítások: %{msg}"
 
 #: app/models/order.rb:78 app/models/colocation.rb:52
-#| msgid "Invalid username"
 msgid "Invalid score"
 msgstr "Érvénytelen pontszám"
 
@@ -452,7 +451,6 @@ msgid "No resource specified"
 msgstr "Nincs megadva erőforrás"
 
 #: app/models/location.rb:56
-#| msgid "Invalid username"
 msgid "Invalid score \"%{score}\""
 msgstr "Érvénytelen pontszám \"%{score}\""
 
@@ -513,7 +511,7 @@ msgstr "Idő"
 
 #: app/views/explorer/_pe_list.html.erb:12
 msgid "PE Input"
-msgstr ""
+msgstr "PE Input"
 
 #: app/views/explorer/_pe_list.html.erb:13
 #: app/views/locations/_form.html.erb:43
@@ -565,9 +563,8 @@ msgid "Role"
 msgstr "Szerepkör"
 
 #: app/views/locations/_form.html.erb:45
-#| msgid "Clean Up"
 msgid "Boolean Op"
-msgstr ""
+msgstr "Boolean művelet"
 
 #: app/views/locations/_form.html.erb:46
 msgid "Expression"
@@ -725,7 +722,6 @@ msgid "Location"
 msgstr "Hely"
 
 #: app/views/constraints/index.html.erb:109
-#| msgid "Drop Relocation Rule"
 msgid "Colocation"
 msgstr "Elhelyezése szabály"
 
@@ -764,7 +760,7 @@ msgstr "Szerkesztés"
 
 #: app/views/primitives/_form.html.erb:216
 msgid "There is already a monitor op with this interval."
-msgstr ""
+msgstr "Már van egy monitor művelet ebben az intervallumban."
 
 #: app/views/primitives/_form.html.erb:217 app/views/main/_gettext.js.erb:4
 msgid "OK"
@@ -1023,7 +1019,7 @@ msgstr "Verzió: %s"
 
 #: app/views/main/_gettext.js.erb:80
 msgid "Stack: %s"
-msgstr ""
+msgstr "Stack: %s"
 
 #: app/views/main/_gettext.js.erb:87
 msgid "Inactive Resources"
@@ -1159,7 +1155,7 @@ msgstr "Szimulátor (végső állapot)"
 
 #: app/views/main/_gettext.js.erb:187
 msgid "Injected State:"
-msgstr ""
+msgstr "Szimulált állapot:"
 
 #: app/views/main/_gettext.js.erb:190
 msgid "+ Node"
@@ -1167,7 +1163,7 @@ msgstr "+ Csomópont"
 
 #: app/views/main/_gettext.js.erb:193
 msgid "+ Op"
-msgstr ""
+msgstr "+ Művelet"
 
 #: app/views/main/_gettext.js.erb:196
 msgid "Run >"
@@ -1183,7 +1179,7 @@ msgstr "CIB (ki)"
 
 #: app/views/main/_gettext.js.erb:211
 msgid "Inject Node State"
-msgstr ""
+msgstr "Szimulált csomópont állapota"
 
 #: app/views/main/_gettext.js.erb:214
 msgid "Node:"
@@ -1195,7 +1191,7 @@ msgstr "Állapot:"
 
 #: app/views/main/_gettext.js.erb:220
 msgid "Inject Operation"
-msgstr ""
+msgstr "Szimulált művelet"
 
 #: app/views/main/_gettext.js.erb:223
 msgid "Operation:"
@@ -1255,11 +1251,11 @@ msgstr "Hibás elsődleges"
 
 #: app/views/nodes/show.html.erb:1
 msgid "Utilization"
-msgstr ""
+msgstr "Kihasználtság"
 
 #: app/views/nodes/show.html.erb:15
 msgid "No utilization defined"
-msgstr ""
+msgstr "Nincs meghatározva kihasználtság"
 
 #: app/views/nodes/show.html.erb:18
 msgid "Attributes"
