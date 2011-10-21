@@ -29,14 +29,14 @@ $(function() {
     buttonImage: url_root + "/images/icons/calendar.png",
     buttonImageOnly: true
   });
-  <% if File.exists?(@pidfile) %>
+  <% if @hb_report.running? %>
   if ($("#dialog").dialog("isOpen")) {
     $("#dialog").data("req", $.get("<%= hb_reports_status_path %>", "", null, "script"));
   }
   <% else %>
   $("#hbreport-form").show();
   <% end %>
-  <% if @lastexit == 0 && File.exists?("/tmp/hb_report-hawk.tar.bz2") %>
+  <% if @hb_report.lastexit == 0 && File.exists?("/tmp/hb_report-hawk.tar.bz2") %>
   $("#hbreport-download").show();
   $("#hbreport-gentime").text("<%= escape_javascript(File.mtime("/tmp/hb_report-hawk.tar.bz2").strftime("%Y-%m-%d %H:%M:%S")) %>");
   <% end %>

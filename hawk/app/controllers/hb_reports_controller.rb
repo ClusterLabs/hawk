@@ -36,12 +36,7 @@ class HbReportsController < ApplicationController
   # layout 'main'
 
   def initialize
-    @pidfile = "#{RAILS_ROOT}/tmp/pids/hb_report.pid"
-    @outfile = "#{RAILS_ROOT}/tmp/pids/hb_report.stdout"
-    @errfile = "#{RAILS_ROOT}/tmp/pids/hb_report.stderr"
-    @exitfile = "#{RAILS_ROOT}/tmp/pids/hb_report.exit"
-
-    @lastexit = File.exists?(@exitfile) ? File.new(@exitfile).read.to_i : nil
+    @hb_report = HbReport.new("#{RAILS_ROOT}/tmp/pids/hb_report")
   end
 
   # List all extant hb_reports
@@ -55,7 +50,7 @@ class HbReportsController < ApplicationController
 
   # Kick off hb_report generation
   def create
-    if !File.exists?(@pidfile)
+    if !@hb_report.running?
       from_time = params[:from_time] || ""
       from_time.strip!
       to_time = params[:to_time] || ""
@@ -64,7 +59,7 @@ class HbReportsController < ApplicationController
         # TODO(should): Better error messages (just have an alert box ATM)
         @error = true
       else
-        generate(from_time, true, to_time.empty? ? nil : to_time)
+        @hb_report.generate("/tmp/hb_report-hawk", from_time, true, to_time.empty? ? nil : to_time)
       end
     end
   end
@@ -85,50 +80,6 @@ class HbReportsController < ApplicationController
   end
 
   private
-
-  # Note: This assumes pidfile doesn't exist (will always blow away what's there),
-  # so there's a possibility of a race (or lost hb_report status) if two users kick
-  # off generation at almost exactly the same time.
-  def generate(from_time, all_nodes=true, to_time=nil)
-    [@outfile, @errfile, @exitfile].each do |fn|
-      File.unlink(fn) if File.exists?(fn)
-    end
-    @lastexit = nil
-
-    pid = fork {
-      f = File.new(@pidfile, "w")
-      f.write(Process.pid)
-      f.close
-
-      args = ["-f", from_time]
-      args.push "-t", to_time if to_time
-      args.push "-Z"  # Remove destination directories if they exist
-      args.push "-S" unless all_nodes
-      args.push "/tmp/hb_report-hawk"
-      stdin, stdout, stderr, thread = Util.run_as("root", "hb_report", *args)
-      stdin.close
-      f = File.new(@outfile, "w")
-      f.write(stdout.read())
-      f.close
-      stdout.close
-      f = File.new(@errfile, "w")
-      f.write(stderr.read())
-      f.close
-      stderr.close
-
-      # Record exit status
-      f = File.new(@exitfile, "w")
-      f.write(thread.value.exitstatus)
-      f.close
-      # Delete pidfile
-      File.unlink(@pidfile)
-    }
-    Process.detach(pid)
-
-    # Note: this won't give any progressive status text, i.e. stdout
-    # and stderr aren't available until the run is complete.
-    true
-  end
 
   # TODO(should): Look at shifting this logic completely to ApplicationController (see login_required)
   def ensure_godlike

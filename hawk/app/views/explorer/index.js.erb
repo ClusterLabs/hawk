@@ -1,4 +1,4 @@
-<% if File.exists?(@pidfile) %>
+<% if @hb_report.running? %>
 $("#filter-form").hide();
 $("#filter-wait").show();
 $("#filter-progress").html(escape_html("<%= escape_javascript(in_progress_msg) %>"));

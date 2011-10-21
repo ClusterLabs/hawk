@@ -15,7 +15,7 @@
 <div>
 <script type="text/javascript">
 $(function() {
-<% if File.exists?(@pidfile) %>
+<% if @hb_report.running? %>
   setTimeout(function() {
     // Should this be a GET or POST?
     $.get("<%= explorer_path %>", {
@@ -75,7 +75,7 @@ function inline_detail_links() {
 <div style="float: left;">
 <% form_tag(explorer_path, :method => :get, :id => "filter") do %>
 <%= hidden_field_tag "display", "true" %>
-<table id="filter-form" style="<%= File.exists?(@pidfile) ? "display: none;" : "" %>">
+<table id="filter-form" style="<%= @hb_report.running? ? "display: none;" : "" %>">
 <% unless params[:display] %>
 <% @cache.each do |c| %>
   <tr class="cache">
@@ -97,7 +97,7 @@ function inline_detail_links() {
     <td><%= submit_tag(_('Display')) %></td>
   </tr>
 </table>
-<div id="filter-wait" style="<%= File.exists?(@pidfile) ? "" : "display: none;" %>">
+<div id="filter-wait" style="<%= @hb_report.running? ? "" : "display: none;" %>">
 <table>
   <tr style="vertical-align: middle;">
     <td id="filter-progress"><%=h in_progress_msg %></td>

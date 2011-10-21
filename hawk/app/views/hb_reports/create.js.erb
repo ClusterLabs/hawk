@@ -2,15 +2,15 @@
 $("#from_time").focus();
 alert("<%= escape_javascript(_("Start Time not specified")) %>");
 <% else %>
-<% if @lastexit %>
+<% if @hb_report.lastexit %>
 $("#hbreport-form").show();
 $("#hbreport-wait").hide();
-  <% if @lastexit == 0 %>
+  <% if @hb_report.lastexit == 0 %>
   $("#hbreport-status").hide();
   $("#hbreport-download").show();
   $("#hbreport-gentime").text("<%= escape_javascript(File.mtime("/tmp/hb_report-hawk.tar.bz2").strftime("%Y-%m-%d %H:%M:%S")) %>");
   <% else %>
-  $("#hbreport-status").html("<pre><%= escape_javascript File.new(@errfile).read %></pre>");
+  $("#hbreport-status").html("<pre><%= escape_javascript File.new(@hb_report.errfile).read %></pre>");
   $("#hbreport-status").show();
   $("#hbreport-download").hide();
   <% end %>
