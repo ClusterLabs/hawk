@@ -108,7 +108,7 @@ CONF
 }
 
 print_hawk_url() {
-	IFC=$(LC_ALL=C route | grep "^default" | tr -s " " | cut -d " " -f 8)
+	IFC=$(LC_ALL=C route -n | grep "^0\.0\.0\.0" | tr -s " " | cut -d " " -f 8)
 	IP=$(LC_ALL=C ifconfig $IFC | grep "inet addr" | cut -d ":" -f 2 | cut -d " " -f 1)
 	PORT=$(LC_ALL=C grep "^server.port" $LIGHTTPD_CONFIG | cut -d " " -f 3)
 	if [ -n "$IP" ]; then
