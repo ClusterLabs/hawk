@@ -1,3 +1,12 @@
+* Mon Oct 24 2011 Tim Serong <tserong@suse.com>
+- GUI: explorer, hb_report: Better error reporting for "successful" hb_report
+  runs (bnc#723336)
+- GUI: hb_report: Invoke with -Z (remove destination directories)
+- Misc: Refactor: Consolidate hb_report generation from explorer & hb_reports
+  controllers
+- Misc: Update translations
+- Upstream version cs:07dbb1b999f5
+
 * Wed Oct 19 2011 Tim Serong <tserong@suse.com>
 - GUI: Simulator: Don't link to empty transition graphs (bnc#723401)
 - GUI: Simulator: Auto-fill monitor interval when injecting ops (bnc#723401)
