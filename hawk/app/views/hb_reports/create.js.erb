@@ -6,12 +6,19 @@ alert("<%= escape_javascript(_("Start Time not specified")) %>");
 $("#hbreport-form").show();
 $("#hbreport-wait").hide();
   <% if @hb_report.lastexit == 0 %>
-  $("#hbreport-status").hide();
+    <%
+      # Grab warnings from successful run (e.g.: can't ssh to other node)
+      err = @hb_report.err_filtered
+      if err.any?
+    %>
+    $("#hbreport-status").html("<pre><%= escape_javascript err.join("\n") %></pre>").show();
+    <% else %>
+    $("#hbreport-status").hide();
+    <% end %>
   $("#hbreport-download").show();
   $("#hbreport-gentime").text("<%= escape_javascript(File.mtime("/tmp/hb_report-hawk.tar.bz2").strftime("%Y-%m-%d %H:%M:%S")) %>");
   <% else %>
-  $("#hbreport-status").html("<pre><%= escape_javascript File.new(@hb_report.errfile).read %></pre>");
-  $("#hbreport-status").show();
+  $("#hbreport-status").html("<pre><%= escape_javascript @hb_report.err_lines.join("\n") %></pre>").show();
   $("#hbreport-download").hide();
   <% end %>
 <% else %>

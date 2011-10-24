@@ -37,6 +37,15 @@ $(function() {
   $("#hbreport-form").show();
   <% end %>
   <% if @hb_report.lastexit == 0 && File.exists?("/tmp/hb_report-hawk.tar.bz2") %>
+    <%
+      # Grab warnings from successful run (e.g.: can't ssh to other node)
+      err = @hb_report.err_filtered
+      if err.any?
+    %>
+    $("#hbreport-status").html("<pre><%= escape_javascript err.join("\n") %></pre>").show();
+    <% else %>
+    $("#hbreport-status").hide();
+    <% end %>
   $("#hbreport-download").show();
   $("#hbreport-gentime").text("<%= escape_javascript(File.mtime("/tmp/hb_report-hawk.tar.bz2").strftime("%Y-%m-%d %H:%M:%S")) %>");
   <% end %>

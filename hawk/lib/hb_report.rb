@@ -29,17 +29,38 @@
 #======================================================================
 
 class HbReport
+  # Note: outfile, errfile are based off path passed to generate() -
+  # don't use them prior to a generate run, or you'll get the wrong path.
+  # Lastexit is global (this is freaky/dumb - everything should be based
+  # off path, and callers need to be updated to understand this - this
+  # will happen when we allow multiple hb_report runs, as
+  # hb_reports_controller is what cares about lastexit)
   attr_reader :outfile, :errfile, :lastexit
 
-  # Call with e.g.: "#{RAILS_ROOT}/tmp/pids/hb_report".  pidfile etc.
-  # will be set based on this path.
-  def initialize(tmpbase)
+  # Call with e.g.:
+  #  ("#{RAILS_ROOT}/tmp/pids/hb_report", "/tmp/hb_report-hawk").
+  # pidfile will be set based on 'tmpbase', hb_report will be generated
+  # at 'path'.  If path is nil, generate won't work -- make sure you set
+  # it ASAP, before calling generate or relying on outfile or errfile!
+  def initialize(tmpbase, path = nil)
     @pidfile  = "#{tmpbase}.pid"
-    @outfile  = "#{tmpbase}.stdout"
-    @errfile  = "#{tmpbase}.stderr"
     @exitfile = "#{tmpbase}.exit"
     @timefile = "#{tmpbase}.time"
+    @path     = path
+    if @path
+      @outfile = "#{@path}.stdout"
+      @errfile = "#{@path}.stderr"
+    else
+      @outfile = "#{tmpbase}.stdout"
+      @errfile = "#{tmpbase}.stderr"
+    end
     @lastexit = File.exists?(@exitfile) ? File.new(@exitfile).read.to_i : nil
+  end
+
+  def path=(path)
+    @path = path
+    @outfile = "#{@path}.stdout"
+    @errfile = "#{@path}.stderr"
   end
 
   def running?
@@ -52,12 +73,31 @@ class HbReport
     File.exists?(@timefile) ? File.new(@timefile).read.split(",", -1) : nil
   end
 
+  # contents of errfile as array
+  def err_lines
+    err = []
+    File.new(@errfile).read.split(/\n/).each do |e|
+      next if e.empty?
+      err << e
+    end if File.exists?(@errfile)
+    err
+  end
+
+  # contents of errfile as array, with "INFO" lines stripped (e.g. for
+  # displaying warnings after an otherwise successful run)
+  def err_filtered
+    err_lines.select {|e| !e.match(/ INFO: /) }
+  end
+
   # Note: This assumes pidfile doesn't exist (will always blow away what's
   # there), so there's a possibility of a race (or lost hb_report status)
   # if two clients kick off generation at almost exactly the same time.
   # from_time and to_time (if specified) are expected to be in a sensible
   # format (e.g.: "%Y-%m-%d %H:%M")
-  def generate(path, from_time, all_nodes=true, to_time=nil)
+  # TODO(should): base errfile, outfile etc. off path.  This makes it a bit
+  # easier to eventually support multiple simultaneous rungs.  Also means
+  # you can get the error output for a given run, not just the last run!
+  def generate(from_time, all_nodes=true, to_time=nil)
     [@outfile, @errfile, @exitfile, @timefile].each do |fn|
       File.unlink(fn) if File.exists?(fn)
     end
@@ -76,7 +116,7 @@ class HbReport
       args.push("-t", to_time) if to_time
       args.push("-Z")  # Remove destination directories if they exist
       args.push("-S") unless all_nodes
-      args.push(path)
+      args.push(@path)
 
       stdin, stdout, stderr, thread = Util.run_as("root", "hb_report", *args)
       stdin.close

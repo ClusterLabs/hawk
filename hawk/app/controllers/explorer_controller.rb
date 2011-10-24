@@ -40,7 +40,7 @@ class ExplorerController < ApplicationController
   def initialize
     super
     @title = _('History Explorer')
-
+    @errors = []
     @hb_report = HbReport.new("#{RAILS_ROOT}/tmp/pids/history_report")
   end
 
@@ -64,6 +64,8 @@ class ExplorerController < ApplicationController
 
     if params[:display] && !@hb_report.running?
       # Now we either generate if a report for that time doesn't exist, or display if one does.
+      # TODO(must): this doesn't handle the case where a generate run fails utterly; it'll
+      # probably just keep trying to generate the hb_report indefinitely.
       if File.exists?(@report_path)
         @peinputs = []
         stdin, stdout, stderr, thread = Util.run_as("root", "crm", "history")
@@ -84,13 +86,15 @@ class ExplorerController < ApplicationController
           end
           # sort is going to be off for identical mtimes (stripped back to the second),
           # so need secondary sort by filename
-        else
-          # exitstatus will be 1 if (somehow) there's no peinputs, but this shouldn't
-          # be reported as an error.
-          @error = err unless err.empty?
+        end
+        # exitstatus will be 1 if (somehow) there's no peinputs, but this shouldn't
+        # be reported as an error.
+        @errors += @hb_report.err_filtered
+        err.split(/\n/).each do |e|
+          @errors << e
         end
       else
-        @hb_report.generate("/tmp/#{@report_name}", @from_time, true, @to_time)
+        @hb_report.generate(@from_time, true, @to_time)
       end
     end
   end
@@ -193,6 +197,8 @@ class ExplorerController < ApplicationController
 
     @report_name = "hb_report-hawk-#{@from_time.sub(' ','_')}-#{@to_time.sub(' ','_')}"
     @report_path = "/tmp/#{@report_name}.tar.bz2"
+
+    @hb_report.path = "/tmp/#{@report_name}"
   end
 
 end

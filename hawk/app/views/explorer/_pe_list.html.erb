@@ -1,5 +1,5 @@
-<% if @error %>
-<div class="ui-state-error ui-corner-all" style="padding: 0.5em; margin-bottom: 0.5em;"><%=h @error %></div>
+<% if @errors.any? %>
+<div class="ui-state-error ui-corner-all" style="padding: 0.5em; margin-bottom: 0.5em;"><% @errors.each {|e| %><%=h e %><br /><% } %></div>
 <% end %>
 <% if @peinputs %>
   <% if @peinputs.empty? %>
