@@ -35,6 +35,8 @@ var cib_file = "";
 var cib_source = "live";
 var update_period = 0;
 
+var update_req = null;
+
 var current_view = null;
 
 function jq(id)
@@ -212,8 +214,9 @@ function do_update(cur_epoch)
   // No refresh if this is not the  live CIB
   if (cib_source != "live") return;
 
-  $.ajax({ url: url_root + "/monitor?" + cur_epoch,
+  update_req = $.ajax({ url: url_root + "/monitor?" + cur_epoch,
     type: "GET",
+    timeout: 70000,   // hawk_monitor timeout + 10s wiggle room
     success: function(data) {
       if (data) {
         if (data.epoch != cur_epoch) {
@@ -222,18 +225,30 @@ function do_update(cur_epoch)
           do_update(data.epoch);
         }
       } else {
-        // This can occur when onSuccess is called erroneously
-        // on network failure; re-request in 15 seconds
-        // TODO(should): this was originally observed when using Prototype,
-        // is it still a problem with jQuery?  If no, this can be deleted
-        // (but may need "new_epoch = data ? data.epoch : '';" above
-        // instead of direct use of data.epoch).
-        setTimeout("do_update('" + cur_epoch + "')", 15000);
+        // This can occur when onSuccess is called in FF on an
+        // aborted request; re-request cib in 15 seconds (see also
+        // beforeunload handler in hawk_init).
+        update_errors([GETTEXT.err_connection()]);
+        hide_status();
+        setTimeout(update_cib, 15000);
       }
     },
-    error: function() {
+    error: function(request) {
       // Busted, retry in 15 seconds.
-      setTimeout("do_update('" + cur_epoch + "')", 15000);
+      if (request.readyState > 1) {
+        // Can't rely on request.status if not ready enough
+        if (request.status >= 10000) {
+          // Crazy winsock(?) error on IE when request aborted
+          update_errors([GETTEXT.err_connection()]);
+        } else {
+          update_errors([GETTEXT.err_unexpected(request.status + " " + request.statusText)]);
+        }
+      } else {
+        // Request timed out
+        update_errors([GETTEXT.err_connection()]);
+      }
+      hide_status();
+      setTimeout(update_cib, 15000);
     }
   });
 }
@@ -260,19 +275,20 @@ function hide_status()
   $("#dc_current").hide();
   $("#dc_version").hide();
   $("#dc_stack").hide();
-
+  $("#view-switcher").hide();
   current_view.hide();
 }
 
 function update_cib()
 {
-  $.ajax({ url: url_root + "/cib/" + (cib_source == "file" ? cib_file : cib_source),
+  update_req = $.ajax({ url: url_root + "/cib/" + (cib_source == "file" ? cib_file : cib_source),
+    timeout: 70000, // (same as do_update, arbitrarily -- can't be too short, but must be > 0)
     data: "format=json" + (cib_source == "file" ? "&debug=file" : ""),
     type: "GET",
     success: function(data) {
       $("#onload-spinner").hide();
       $("#view-switcher").show();
-      if (data) {   // When is it possible for this to not be set?
+      if (data) {
         cib = data;
         update_resources_by_id();
         update_errors(cib.errors);
@@ -288,38 +304,55 @@ function update_cib()
           // TODO(must): is it possible to get here with empty cib.errors?
           hide_status();
         }
-      }
-      if (update_period) {
-        // Handy when debugging...
-        setTimeout(update_cib, update_period);
+        if (update_period) {
+          // Handy when debugging...
+          setTimeout(update_cib, update_period);
+        } else {
+          do_update(cib.meta ? cib.meta.epoch : "");
+        }
       } else {
-        do_update(cib.meta ? cib.meta.epoch : "");
+        // 'data' not set (this can occur when onSuccess is called
+        // erroneously on request abort; re-request in 15 seconds)
+        update_errors([GETTEXT.err_connection()]);
+        hide_status();
+        setTimeout(update_cib, 15000);
       }
     },
     error: function(request) {
-      if (request.status == 403) {
-        // 403 == permission denied, boot the user out
-        window.location.replace(url_root + "/logout?reason=forbidden");
+      if (request.readyState > 1) {
+        if (request.status == 403) {
+          // 403 == permission denied, boot the user out
+          window.location.replace(url_root + "/logout?reason=forbidden");
+          return;
+        } else {
+          var json = json_from_request(request);
+          if (json && json.errors) {
+            // Sane response (server not dead, but actual error, e.g.:
+            // access denied):
+            update_errors(json.errors);
+          } else {
+            // Unexpectedly busted (e.g.: server fried):
+            if (request.status >= 10000) {
+              // Crazy winsock(?) error on IE
+              update_errors([GETTEXT.err_connection()]);
+            } else {
+              update_errors([GETTEXT.err_unexpected(request.status + " " + request.statusText)]);
+            }
+          }
+        }
       } else {
-        var json = json_from_request(request);
-        if (json && json.errors) {
-          // Sane response (server not dead, but actual error, e.g.:
-          // access denied):
-          update_errors(json.errors);
-        } else {
-          // Unexpectedly busted (e.g.: server fried):
-          update_errors([GETTEXT.err_unexpected(request.status + " " + request.statusText)]);
-        }
-        hide_status();
-        if (cib_source != "live") {
-          $("#onload-spinner").hide();
-          $("#view-switcher").show();
-        } else {
-          // Try again in 15 seconds.  No need for roundtrip through
-          // the monitor function in this case (it'll just hammer the
-          // server unnecessarily)
-          setTimeout(update_cib, 15000);
-        }
+        // Request timed out
+        update_errors([GETTEXT.err_connection()]);
+      }
+      hide_status();
+      if (cib_source != "live") {
+        $("#onload-spinner").hide();
+        $("#view-switcher").show();
+      } else {
+        // Try again in 15 seconds.  No need for roundtrip through
+        // the monitor function in this case (it'll just hammer the
+        // server unnecessarily)
+        setTimeout(update_cib, 15000);
       }
     }
   });
@@ -382,6 +415,16 @@ function hawk_init()
     change_view(table_view);
   });
   $("#view-switcher").hide();
+
+  $(window).bind("beforeunload", function() {
+    if (update_req) {
+      // If our monitor/update request is around, wipe out its success function
+      // when leaving the page, otherwise in FF the success triggers with empty
+      // data, which is the same codepath we hit when the request aborts due to
+      // (say) the Hawk process on the server being terminated.
+      update_req.onreadystatechange = $.noop;
+    }
+  });
 
   update_cib();
 }

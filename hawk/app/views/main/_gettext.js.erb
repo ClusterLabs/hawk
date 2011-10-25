@@ -63,6 +63,9 @@ var GETTEXT = {
   err_unexpected: function(msg) {
     return "<%= escape_javascript _('Unexpected server error: %s') % '_MSG_' %>".replace('_MSG_', msg);
   },
+  err_connection: function() {
+    return "<%= escape_javascript _('Connection to server failed (server down or network error - will retry every 15 seconds).') %>";
+  },
   err_denied: function() {
     return "<%= escape_javascript _('Permission denied') %>";
   },

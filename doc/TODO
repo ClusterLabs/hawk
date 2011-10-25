@@ -142,6 +142,10 @@ TODO
 
 == GUI: status ==
 
+* Need update to jQuery 1.4.3+ to fix jquery bug #6498 when request timed out
+  on IE7.
+* Document update_period param for running in dev mode on port 3000 (else it's
+  just lots of 404's trying to run monitor)
 * Ability to cleanup deleted/orphaned resources.
 * Recent events, details.  dialog should say "$node recent events",
   "$node details" etc.
