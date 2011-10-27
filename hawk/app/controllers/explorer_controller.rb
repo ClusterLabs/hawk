@@ -146,7 +146,7 @@ class ExplorerController < ApplicationController
 
       if params[:format] == "xml"
         # Can't use send_file here, server whines about file not existing(?!?)
-        send_data File.new(tmpfile.path).read, :type => "text/xml", :disposition => "inline"
+        send_data File.new(tmpfile.path).read, :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
       else
         stdin, stdout, stderr, thread = Util.popen3("/usr/bin/dot", "-Tpng", tmpfile.path)
         stdin.close
