@@ -130,6 +130,8 @@ TODO
 == GUI: hb_report ==
 
 * hb_report: $("#hbreport-status").html doesn't use escape_html...?
+* Need to include node name in hb_report (likewise explorer), or
+  simultaneous runs from separate nodes will slaughter each other.
 * Ability to generate, keep, download multiple hb_reports (not just last one)
 ** Ability to delete old reports.
 * Ability to use crm_report instead?  (Or use one or the other, depending on
