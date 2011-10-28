@@ -46,7 +46,24 @@ $(function() {
     draggable:      false,
     modal:          true,
     autoOpen:       false,
-    closeOnEscape:  true
+    closeOnEscape:  true,
+    close:          function() {
+      if ($(this).dialog("option", "draggable")) {
+        // Reset dialog, but only if it's been changed by the history viewer
+        // (if we do this unconditionally, resetting draggable: false triggers
+        // "uncaught exception: cannot call methods on draggable prior to
+        // initialization; attempted to call method 'destroy'")
+        $(this).dialog("option", {
+          width: "30em",
+          height: "auto",
+          position: "center",
+          resizable: false,
+          draggable: false
+        });
+      }
+      var req = $(this).data("req");
+      if (req) req.abort();
+    }
   });
 });
 

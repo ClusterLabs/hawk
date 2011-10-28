@@ -56,21 +56,6 @@ $(function() {
         $("#dialog").load(url_root + "/cib/" + (cib_file ? cib_file : "live") + "/nodes/" + item_id(target.attr("id")) + "/events");
         var b = {};
         b[GETTEXT.close()]   = function() {
-          if ($(this).dialog("option", "draggable")) {
-            // Reset dialog, but only if it's been changed by the history viewer
-            // (if we do this unconditionally, resetting draggable: false triggers
-            // "uncaught exception: cannot call methods on draggable prior to
-            // initialization; attempted to call method 'destroy'")
-            $(this).dialog("option", {
-              width: "30em",
-              height: "auto",
-              position: "center",
-              resizable: false,
-              draggable: false
-            });
-          }
-          var req = $(this).data("req");
-          if (req) req.abort();
           $(this).dialog("close");
         }
         $("#dialog").dialog("option", {
@@ -309,18 +294,6 @@ $(function() {
         $("#dialog").load(url_root + "/cib/" + (cib_file ? cib_file : "live") + "/resources/" + item_id(target.attr("id")) + "/events");
         var b = {};
         b[GETTEXT.close()]   = function() {
-          if ($(this).dialog("option", "draggable")) {
-            // Reset dialog, but only if it's been changed by the history viewer
-            $(this).dialog("option", {
-              width: "30em",
-              height: "auto",
-              position: "center",
-              resizable: false,
-              draggable: false
-            });
-          }
-          var req = $(this).data("req");
-          if (req) req.abort();
           $(this).dialog("close");
         }
         $("#dialog").dialog("option", {
@@ -349,8 +322,6 @@ $(function() {
         $("#dialog").load(url_root + "/hb_reports/new");
         var b = {};
         b[GETTEXT.close()] = function() {
-          var req = $(this).data("req");
-          if (req) req.abort();
           $(this).dialog("close");
         };
         $("#dialog").dialog("option", {
