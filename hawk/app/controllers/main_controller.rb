@@ -233,12 +233,12 @@ class MainController < ApplicationController
       send_data [info[:mods], info[:summary], info[:exec]].select{|s| !s.empty?}.join("\n"),
         :type => "text/plain", :disposition => "inline"
     when "in"
-      send_data File.new("#{RAILS_ROOT}/tmp/sim.in").read, :type => "text/xml", :disposition => "inline"
+      send_data File.new("#{RAILS_ROOT}/tmp/sim.in").read, :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
     when "out"
-      send_data File.new("#{RAILS_ROOT}/tmp/sim.out").read, :type => "text/xml", :disposition => "inline"
+      send_data File.new("#{RAILS_ROOT}/tmp/sim.out").read, :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
     when "graph"
       if params[:format] == "xml"
-        send_data File.new("#{RAILS_ROOT}/tmp/sim.graph").read, :type => "text/xml", :disposition => "inline"
+        send_data File.new("#{RAILS_ROOT}/tmp/sim.graph").read, :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
       else
         stdin, stdout, stderr, thread = Util.popen3("/usr/bin/dot", "-Tpng", "#{RAILS_ROOT}/tmp/sim.dot")
         stdin.close

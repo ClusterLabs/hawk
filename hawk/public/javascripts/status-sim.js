@@ -216,6 +216,12 @@ var simulator = {
       return false;
     });
 
+    $("#sim-get-info").click(function(event) { self._popup_detail(event, GETTEXT.sim_details(), $(this).attr("href"), "txt") });
+    $("#sim-get-in").click(function(event) { self._popup_detail(event, GETTEXT.sim_cib_in(), $(this).attr("href"), "xml") });
+    $("#sim-get-out").click(function(event) { self._popup_detail(event, GETTEXT.sim_cib_out(), $(this).attr("href"), "xml") });
+    $("#sim-get-graph").click(function(event) { self._popup_detail(event, GETTEXT.sim_graph(), $(this).attr("href"), "img") });
+    $("#sim-get-graph-xml").click(function(event) { self._popup_detail(event, GETTEXT.sim_graph(), $(this).attr("href"), "xml") });
+
     $("#simulator").dialog({
       resizable:      true,
       position:       ["right", "bottom"],
@@ -298,5 +304,30 @@ var simulator = {
     } else {
       $("#inject-op-interval").val("").attr("disabled", "disabled");
     }
+  },
+  _popup_detail: function(event, title, href, type) {
+    // Note: pretty similar to code in app/views/explorer/index.html.erb
+    event.preventDefault();
+    event.stopPropagation();
+    $("#dialog").dialog("option", {
+      width: $(window).width() - 32,
+      height: $(window).height() - 32,
+      position: "center",
+      resizable: true,
+      draggable: true,
+      buttons: {},
+      title: title
+    });
+    if (type == "img") {
+      $("#dialog").html('<div style="text-align: center;">' +
+        '<img src="' + href + '" alt="" /></div>');
+    } else {
+      $("#dialog").html('<div style="text-align: center;" id="dialog-graph-xml">' +
+        '<img src="' + url_root + '/images/spinner-32x32.gif" alt="" /></div>');
+      $.get(href, type == "xml" ? "munge=txt" : "", function(data) {
+        $("#dialog-graph-xml").css({textAlign: "left"}).html("<pre>" + escape_html(data) + "</pre>");
+      });
+    }
+    $("#dialog").dialog("open");
   }
 };
