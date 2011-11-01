@@ -137,6 +137,10 @@ protected
     when :crm_history
       %x[echo quit | /usr/sbin/crm history 2>&1]
       $?.exitstatus == 0
+    when :rsc_ticket
+      %x[/usr/sbin/crm configure rsc_ticket 2>&1].starts_with?("usage")
+    when :rsc_template
+      %x[/usr/sbin/crm configure rsc_template 2>&1].starts_with?("usage")
     else
       false
     end
