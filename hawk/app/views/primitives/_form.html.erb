@@ -197,7 +197,8 @@ $(function() {
     dirty: function(event, info) {
       // This might be a bit event-heavy
       enable_apply();
-    }
+    },
+    all_optional: <%= is_template? ? "true" : "false" %>
   });
   if (!$("#parameters").panel("body_element").attrlist("empty")) {
     $("#parameters").panel("expand");
@@ -239,7 +240,8 @@ $(function() {
     dirty: function(event, info) {
       // This might be a bit event-heavy
       enable_apply();
-    }
+    },
+    all_optional: <%= is_template? ? "true" : "false" %>
   });
   if (!$("#meta").panel("body_element").attrlist("empty")) {
     $("#meta").panel("expand");
