@@ -83,8 +83,8 @@ class Cib < CibObject
         RAILS_DEFAULT_LOGGER.error "Got #{elem.name} without 'primitive' or 'group' child"
       end
     else
-      # This can't happen
-        RAILS_DEFAULT_LOGGER.error "Unknown resource type: #{elem.name}"
+      # This really can't happen
+      RAILS_DEFAULT_LOGGER.error "Unknown resource type: #{elem.name}"
     end
     res
   end
@@ -297,7 +297,8 @@ class Cib < CibObject
     @resources = []
     @resources_by_id = {}
     @resource_count = 0
-    @xml.elements.each('cib/configuration/resources/*') do |r|
+    # This gives only resources capable of being instantiated, and skips (e.g.) templates
+    @xml.elements.each('cib/configuration/resources/*[self::primitive or self::group or self::clone or self::master]') do |r|
       @resources << get_resource(r)
     end
 
