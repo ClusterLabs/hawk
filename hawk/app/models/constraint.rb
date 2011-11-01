@@ -101,7 +101,7 @@ Note: don't forget lifetime, node attributes, etc.
 class Constraint < CibObject
   class << self
     def all
-      super "constraints"
+      super("constraints", true)
     end
   end
 end
