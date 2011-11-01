@@ -32,58 +32,58 @@ var keypress_hack = {
 };
 
 function update_provider() {
-  keypress_hack.r_class = $("#primitive_r_class").val()
+  keypress_hack.r_class = $("#<%= id_prefix %>_r_class").val()
   keypress_hack.r_provider = "";
   keypress_hack.r_type = "";
   $("#help").hide();
   $("#info").hide();
   $("#parameters").panel("body_element").attrlist({ all_attrs: {}});
-  $("#primitive_r_provider option").remove();
-  if (r_info.r_providers[$("#primitive_r_class").val()]) {
-    $.each(r_info.r_providers[$("#primitive_r_class").val()], function() {
-      $("#primitive_r_provider").append('<option value="' + escape_field(this.toString()) + '">' + escape_html(this.toString()) + "</option>");
+  $("#<%= id_prefix %>_r_provider option").remove();
+  if (r_info.r_providers[$("#<%= id_prefix %>_r_class").val()]) {
+    $.each(r_info.r_providers[$("#<%= id_prefix %>_r_class").val()], function() {
+      $("#<%= id_prefix %>_r_provider").append('<option value="' + escape_field(this.toString()) + '">' + escape_html(this.toString()) + "</option>");
     });
-    $("#primitive_r_provider").removeAttr("disabled");
+    $("#<%= id_prefix %>_r_provider").removeAttr("disabled");
   } else {
-    $("#primitive_r_provider").attr("disabled", "disabled");
+    $("#<%= id_prefix %>_r_provider").attr("disabled", "disabled");
   }
   update_type();
 }
 
 function update_type() {
-  var c = $("#primitive_r_class").val();
-  var p = $("#primitive_r_provider").val() || "";
+  var c = $("#<%= id_prefix %>_r_class").val();
+  var p = $("#<%= id_prefix %>_r_provider").val() || "";
   keypress_hack.r_provider = p;
   keypress_hack.r_type = "";
   $("#help").hide();
   $("#info").hide();
   $("#parameters").panel("body_element").attrlist({ all_attrs: {}});
-  $("#primitive_r_type option").remove();
+  $("#<%= id_prefix %>_r_type option").remove();
   // Always have the first type blank (forces user to select something before populating parameters)
-  $("#primitive_r_type").append('<option value=""></option>');
+  $("#<%= id_prefix %>_r_type").append('<option value=""></option>');
   $("#type-spinner").show();
-  $("#primitive_r_type").attr("disabled", "disabled");
+  $("#<%= id_prefix %>_r_type").attr("disabled", "disabled");
   disable_apply();
   if (req) req.abort();
   req = $.getJSON('<%= primitives_types_path %>', "r_class=" + escape(c) + "&r_provider=" + escape(p), function(data) {
     $.each(data, function() {
-      $("#primitive_r_type").append('<option value="' + escape_field(this.toString()) + '">' + escape_html(this.toString()) + "</option>");
+      $("#<%= id_prefix %>_r_type").append('<option value="' + escape_field(this.toString()) + '">' + escape_html(this.toString()) + "</option>");
     });
-    $("#primitive_r_type").removeAttr("disabled");
+    $("#<%= id_prefix %>_r_type").removeAttr("disabled");
     $("#type-spinner").hide();
     enable_apply();
   });
 }
 
 function update_params() {
-  var t = $("#primitive_r_type").val();
+  var t = $("#<%= id_prefix %>_r_type").val();
   keypress_hack.r_type = t;
   $("#help").hide();
   $("#info").hide();
   $("#parameters").panel("body_element").attrlist({ all_attrs: {}});
   if (t) {
-    var c = $("#primitive_r_class").val();
-    var p = $("#primitive_r_provider").val() || "";
+    var c = $("#<%= id_prefix %>_r_class").val();
+    var p = $("#<%= id_prefix %>_r_provider").val() || "";
     $("#type-spinner").show();
     disable_apply();
     if (req) req.abort();
@@ -135,16 +135,16 @@ function show_info() {
 // conditionally enable form submit
 function enable_apply() {
   anything_changed = true;
-  var enable = $("#primitive_id").val() != "" && $("#primitive_r_type").val() != "";
+  var enable = $("#<%= id_prefix %>_id").val() != "" && $("#<%= id_prefix %>_r_type").val() != "";
   $.each(r_meta.parameters, function(n, v) {
-    if (v.required && $("#primitive_params_" + n).val() == "") {
+    if (v.required && $("#<%= id_prefix %>_params_" + n).val() == "") {
       enable = false;
       return false;
     }
   });
   if (enable) {
-    $("#primitive_submit").removeAttr("disabled");
-    $("#primitive_revert").removeAttr("disabled");
+    $("#<%= id_prefix %>_submit").removeAttr("disabled");
+    $("#<%= id_prefix %>_revert").removeAttr("disabled");
   } else {
     disable_apply();
   }
@@ -152,12 +152,12 @@ function enable_apply() {
 
 // unconditionally disable form submit
 function disable_apply() {
-  $("#primitive_submit").attr("disabled", "disabled");
-  $("#primitive_revert").attr("disabled", "disabled");
+  $("#<%= id_prefix %>_submit").attr("disabled", "disabled");
+  $("#<%= id_prefix %>_revert").attr("disabled", "disabled");
 }
 
 $(function() {
-  $("#primitive_r_class")
+  $("#<%= id_prefix %>_r_class")
     .bind("keyup change", function() {
       if ($(this).val() != keypress_hack.r_class) {
         update_provider();
@@ -166,7 +166,7 @@ $(function() {
       keypress_hack.r_class = $(this).val();
     });
 
-  $("#primitive_r_provider")
+  $("#<%= id_prefix %>_r_provider")
     .bind("keyup change", function() {
       if ($(this).val() != keypress_hack.r_provider) {
         update_type();
@@ -175,7 +175,7 @@ $(function() {
       keypress_hack.r_provider = $(this).val();
     });
 
-  $("#primitive_r_type")
+  $("#<%= id_prefix %>_r_type")
     .bind("keyup change", function() {
       if ($(this).val() != keypress_hack.r_type) {
         update_params();
@@ -188,7 +188,7 @@ $(function() {
   $("#parameters").panel("body_element").attrlist({
     all_attrs: r_meta.parameters,
     set_attrs: <%= @res.params.to_json %>,
-    prefix: "primitive[params]",
+    prefix: "<%= id_prefix %>[params]",
     labels: {
       add: "<%= escape_javascript _('Add') %>",
       remove: "<%= escape_javascript _('Remove') %>",
@@ -207,7 +207,7 @@ $(function() {
   $("#operations").panel("body_element").oplist({
     all_ops: r_meta.ops,
     set_ops: <%= @res.ops.to_json %>,
-    prefix: "primitive[ops]",
+    prefix: "<%= id_prefix %>[ops]",
     labels: {
       add: "<%= escape_javascript _('Add') %>",
       edit: "<%= escape_javascript _('Edit') %>",
@@ -230,7 +230,7 @@ $(function() {
   $("#meta").panel("body_element").attrlist({
     all_attrs: r_meta.meta,
     set_attrs: <%= @res.meta.to_json %>,
-    prefix: "primitive[meta]",
+    prefix: "<%= id_prefix %>[meta]",
     labels: {
       add: "<%= escape_javascript _('Add') %>",
       remove: "<%= escape_javascript _('Remove') %>",
@@ -245,20 +245,20 @@ $(function() {
     $("#meta").panel("expand");
   }
 
-  $("#primitive_id")
+  $("#<%= id_prefix %>_id")
     .bind("keyup change", function() {
       enable_apply();
     }).focus();
 
   // Prevent page reload from causing e.g.: provider to remain ocfs2,
   // but type list is back on heartbeat types.
-  $("#primitive_r_class").val(keypress_hack.r_class);
-  $("#primitive_r_provider").val(keypress_hack.r_provider);
-  $("#primitive_r_type").val(keypress_hack.r_type);
+  $("#<%= id_prefix %>_r_class").val(keypress_hack.r_class);
+  $("#<%= id_prefix %>_r_provider").val(keypress_hack.r_provider);
+  $("#<%= id_prefix %>_r_type").val(keypress_hack.r_type);
 
   show_info();
 
-<%= render :partial => 'shared/confirm_revert', :locals => { :button_ids => '#primitive_revert,#primitive_cancel' } %>
+<%= render :partial => 'shared/confirm_revert', :locals => { :button_ids => "##{id_prefix}_revert,##{id_prefix}_cancel" } %>
 });
 </script>
 <% form_for([ @cib, @res ]) do |f| %>
@@ -270,7 +270,7 @@ $(function() {
 <% end %>
 <table>
   <tr>
-    <th><%=h f.label :id, _('Resource ID') %></th>
+    <th><%=h f.label :id, is_template? ? _('Resource ID') : _('Template ID') %></th>
     <th><%=h f.label :r_class, _('Class') %></th>
     <th><%=h f.label :r_provider, _('Provider') %></th>
     <th><%=h f.label :r_type, _('Type') %></th>
@@ -321,8 +321,8 @@ $(function() {
   <tr>
     <td colspan="4" style="text-align: right;">
       <%= f.submit _('Create Resource'), { :disabled => true } %>
-      <%= f.submit _('Revert Changes'), { :id => 'primitive_revert', :name => 'revert', :disabled => true, :style => 'display: none;' } %>
-      <%= f.submit _('Back'), { :id => 'primitive_cancel', :name => 'cancel' } %>
+      <%= f.submit _('Revert Changes'), { :id => "#{id_prefix}_revert", :name => 'revert', :disabled => true, :style => 'display: none;' } %>
+      <%= f.submit _('Back'), { :id => "#{id_prefix}_cancel", :name => 'cancel' } %>
     </td>
   </tr>
 </table>

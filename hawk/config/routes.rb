@@ -48,6 +48,8 @@ ActionController::Routing::Routes.draw do |map|
   map.primitives_types '/cib/:cib_id/primitives/new/types', :controller => 'primitives', :action => 'types'
   map.primitives_metadata  '/cib/:cib_id/primitives/new/metadata', :controller => 'primitives', :action => 'metadata'
 
+  map.resources :cib, :has_many => :templates
+
   map.resources :cib, :has_many => :groups
   map.resources :cib, :has_many => :clones
   map.resources :cib, :has_many => :masters
