@@ -10,7 +10,6 @@ TODO
 == Missing Features ==
 
 * rsc_ticket support
-* resource templates
 * cibsecret support
 * new style constraints (rsc_*)?
 
@@ -279,6 +278,25 @@ TODO
 ** likewise operations
 * master is really a copy of clone.  dodgy.
 * colspan="4" is wrong for clone and master submit buttons 
+
+
+== GUI: Template Support ==
+
+(strictly these notes should be merged with resource & constraint editor notes)
+
+* Resources that use templates:
+** May not want default ops added
+** Don't force required attributes when using template if template specifies
+   them already.
+** Need to verify that all params are present (juxtapose template with primitive)
+** Display template params & ops, so you know what's there
+*** Possibly tooltip/help area showing crm shell syntax of template
+* Need ability to reference templates in order, colocation constraints (also
+  location?  rsc_ticket?)
+* Ultimately need to be able to change template type etc. on current primitives
+* Need to properly refactor template into/with primitive classes etc.
+* class:provider:type won't be passed through in cib hash to javascript properly
+  (may not matter - status page shouldn't do anything with it ATM).
 
 
 == Oddities ==

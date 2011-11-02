@@ -37,7 +37,7 @@ class Primitive < CibObject
 
   # Using r_class to avoid collision with class reserved word.
   # Using r_provider and r_type for consistency with r_class.
-  @attributes = :r_class, :r_provider, :r_type, :params, :ops, :meta
+  @attributes = :r_class, :r_provider, :r_type, :r_template, :params, :ops, :meta
   attr_accessor *@attributes
 
   def initialize(attributes = nil)
@@ -47,6 +47,7 @@ class Primitive < CibObject
     # resource creation errors.
     @r_provider = ''
     @r_type     = ''
+    @r_template = ''
     @params     = {}
     @ops        = {}
     @meta       = {}
@@ -85,7 +86,8 @@ class Primitive < CibObject
 
     # TODO(must): Ensure r_class, r_provider and r_type are sanitized
     provider = @r_provider.empty? ? '' : @r_provider + ':'
-    cmd = "primitive #{@id} #{@r_class}:#{provider}#{@r_type}"
+    type = @r_template.empty? ? '#{@r_class}:#{provider}#{@r_type}' : "@#{r_template}"
+    cmd = "primitive #{@id} #{type}"
     unless @params.empty?
       cmd += " params"
       @params.each do |n,v|
@@ -206,6 +208,7 @@ class Primitive < CibObject
       res.instance_variable_set(:@r_class,    xml.attributes['class'] || '')
       res.instance_variable_set(:@r_provider, xml.attributes['provider'] || '')
       res.instance_variable_set(:@r_type,     xml.attributes['type'] || '')
+      res.instance_variable_set(:@r_template, xml.attributes['template'] || '')
       res.instance_variable_set(:@params,     xml.elements['instance_attributes'] ?
         Hash[xml.elements['instance_attributes'].elements.collect {|e|
           [e.attributes['name'], e.attributes['value']] }] : {})

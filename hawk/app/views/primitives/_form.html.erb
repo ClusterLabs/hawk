@@ -25,10 +25,29 @@ var req = null;
 
 var r_meta = <%= Primitive.metadata(@res.r_class, @res.r_provider, @res.r_type).to_json %>;
 
+<%
+if has_feature?(:rsc_template) && !is_template?
+  template_info = Hash[::Template.all.map{|t| [t.id, {
+    :c => t.r_class, :p => t.r_provider, :t => t.r_type }] }]
+  # TODO(should): probably want natcmp
+  all_templates = template_info.keys.sort
+%>
+
+// We're going to need C:P:T indexed by template ID here in
+// order to fill everything else out on the fly.  We also need
+// to know C:P:T of current templates upfront for initial display.
+var r_templates = <%= template_info.to_json %>;
+<%
+end
+%>
+
 var keypress_hack = {
   r_class: "<%= escape_javascript(@res.r_class) %>",
   r_provider: "<%= escape_javascript(@res.r_provider) %>",
   r_type: "<%= escape_javascript(@res.r_type) %>"
+<% if has_feature?(:rsc_template) && !is_template? %>
+  , r_template: "<%= escape_javascript(@res.r_template) %>"
+<% end %>
 };
 
 function update_provider() {
@@ -75,15 +94,16 @@ function update_type() {
   });
 }
 
-function update_params() {
-  var t = $("#<%= id_prefix %>_r_type").val();
+// TODO(must): this override possibly mauls keypress hack -- verify
+function update_params(oc, op, ot) {
+  var t = ot || $("#<%= id_prefix %>_r_type").val();
   keypress_hack.r_type = t;
   $("#help").hide();
   $("#info").hide();
   $("#parameters").panel("body_element").attrlist({ all_attrs: {}});
   if (t) {
-    var c = $("#<%= id_prefix %>_r_class").val();
-    var p = $("#<%= id_prefix %>_r_provider").val() || "";
+    var c = oc || $("#<%= id_prefix %>_r_class").val();
+    var p = op || $("#<%= id_prefix %>_r_provider").val() || "";
     $("#type-spinner").show();
     disable_apply();
     if (req) req.abort();
@@ -136,6 +156,11 @@ function show_info() {
 function enable_apply() {
   anything_changed = true;
   var enable = $("#<%= id_prefix %>_id").val() != "" && $("#<%= id_prefix %>_r_type").val() != "";
+<% if has_feature?(:rsc_template) && !is_template? %>
+  if ($("#<%= id_prefix %>_use_template")[0].checked) {
+    enable = $("#<%= id_prefix %>_id").val() != "" && $("#<%= id_prefix %>_r_template").val() != "";
+  }
+<% end %>
   $.each(r_meta.parameters, function(n, v) {
     if (v.required && $("#<%= id_prefix %>_params_" + n).val() == "") {
       enable = false;
@@ -184,6 +209,35 @@ $(function() {
       keypress_hack.r_type = $(this).val();
     });
 
+<% if has_feature?(:rsc_template) && !is_template? %>
+  $("#<%= id_prefix %>_r_template")
+    .bind("keyup change", function() {
+      if ($(this).val() != keypress_hack.r_template) {
+        var t = $(this).val();
+        $("#label_r_class").text(r_templates[t].c);
+        $("#label_r_provider").text(r_templates[t].p);
+        $("#label_r_type").text(r_templates[t].t);
+        update_params(r_templates[t].c, r_templates[t].p, r_templates[t].t);
+      }
+    }).keydown(function() {
+      keypress_hack.r_template = $(this).val();
+    });
+
+  $("#<%= id_prefix %>_use_template").change(function() {
+    if (this.checked) {
+      $("#<%= id_prefix %>_r_class,#<%= id_prefix %>_r_provider,#<%= id_prefix %>_r_type").hide();
+      $("#label_r_class").show();
+      $("#label_r_provider").show();
+      $("#label_r_type").show();
+      $("#<%= id_prefix %>_r_template").removeAttr("disabled");
+    } else {
+      $("#label_r_class,#label_r_provider,#label_r_type").hide();
+      $("#<%= id_prefix %>_r_class,#<%= id_prefix %>_r_provider,#<%= id_prefix %>_r_type").show();
+      $("#<%= id_prefix %>_r_template").val("");
+      $("#<%= id_prefix %>_r_template").attr("disabled", "disabled");
+    }
+  });
+<% end %>
   $("#parameters").panel({ label: "<%=h escape_javascript _('Parameters') %>", menu_icon: url_root + "/images/transparent-16x16.gif" });
   $("#parameters").panel("body_element").attrlist({
     all_attrs: r_meta.parameters,
@@ -293,17 +347,31 @@ $(function() {
   </tr>
   <tr>
     <td><%= f.text_field :id %></td>
-    <td><%= f.select :r_class, options_for_select(Primitive.classes_and_providers[:r_classes], @res.r_class) %></td>
+    <td><%= f.select :r_class, options_for_select(Primitive.classes_and_providers[:r_classes], @res.r_class) %><span id="label_r_class" style="display: none;"></span></td>
     <td><%=
       if Primitive.classes_and_providers[:r_providers].has_key?(@res.r_class)
         f.select :r_provider, options_for_select(Primitive.classes_and_providers[:r_providers][@res.r_class], @res.r_provider)
       else
         f.select :r_provider, options_for_select([]), {}, { :disabled => true }
-      end %></td>
+      end %><span id="label_r_provider" style="display: none;"></span></td>
     <td><%= f.select :r_type, options_for_select([''] + Primitive.types(@res.r_class, @res.r_provider), @res.r_type),
-      {}, { :class => 'type' } %></td>
+      {}, { :class => 'type' } %><span id="label_r_type" style="display: none;"></span></td>
     <td><span id="type-spinner" style="display: none;"><%= image_tag 'spinner-16x16.gif', :alt => '' %></span></td>
   </tr>
+<% if has_feature?(:rsc_template) && !is_template? %>
+  <tr>
+    <td></td>
+    <td colspan="2" style="white-space: nowrap;">
+      <%= check_box_tag "#{id_prefix}_use_template", "true", !@res.r_template.empty?,
+        { :disabled => !@res.r_template.empty? } %>
+      <%=h label_tag "#{id_prefix}_use_template", _("Use Template") %>
+    </td>
+    <td>
+      <%= f.select :r_template, options_for_select([''] + all_templates, @res.r_template), {},
+        { :disabled => all_templates.empty? || !@res.r_template.empty?, :class => 'type' } %>
+    </td>
+  </tr>
+<% end %>
   <tr>
     <td colspan="4">
       <div id="parameters"></div>

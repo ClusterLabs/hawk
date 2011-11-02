@@ -228,5 +228,9 @@ class Template < CibObject
           [e.attributes['name'], e.attributes['value']] }] : {})
       res
     end
+
+    def all
+      super "template"
+    end
   end
 end
