@@ -229,6 +229,8 @@ TODO
 
 == GUI: Resource Editor ==
 
+* Primitive editor probably invokes Primitive.types etc. multiple times
+  which might be causing hideous slowness
 * Might be good to have "create another resource" after creation (actually
   might be an argument for sidebar selector for status/resource editor/...)
 * Create resource, click "Back" - saw "any changes will be lost"?
