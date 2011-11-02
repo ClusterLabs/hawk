@@ -44,11 +44,11 @@ class TemplatesController < ApplicationController
 
   def initialize
     super
-    @title = _('Edit Resource Template')
+    @title = _('Edit Template')
   end
 
   def new
-    @title = _('Create Resource Template')
+    @title = _('Create Template')
     @res = Template.new
     # Primitives default to target-role=Stopped; not so templates.
     # @res.meta['target-role'] = 'Stopped' if @cib.id == 'live'
@@ -56,7 +56,7 @@ class TemplatesController < ApplicationController
   end
 
   def create
-    @title = _('Create Resource Template')
+    @title = _('Create Template')
     unless params[:cancel].blank?
       redirect_to status_path
       return
