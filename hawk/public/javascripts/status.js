@@ -33,7 +33,8 @@ var resources_by_id = null;
 
 var cib_file = "";
 var cib_source = "live";
-var update_period = 0;
+// Force periodic refresh when running on test server
+var update_period = window.location.port == 3000 ? 15000 : 0;
 
 var update_req = null;
 
