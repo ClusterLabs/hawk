@@ -1,0 +1,202 @@
+<% content_for :head do %>
+<%= stylesheet_link_tag 'ui.panel.css' %>
+<%= stylesheet_link_tag 'ui.popupmenu.css' %>
+<%= javascript_include_tag 'jquery.ui.panel.js' %>
+<%= javascript_include_tag 'jquery.ui.popupmenu.js' %>
+<script src="<%= url_for(:controller => 'main', :action => 'gettext', :format => 'js') %>" type="text/javascript"></script>
+<style type="text/css">
+/* TODO(should): move to stylesheet */
+td {
+  vertical-align: top;
+  white-space: nowrap;
+}
+td span {
+  border: 1px solid #000;
+  padding: 0 0.5em;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  font-family: monospace;
+  white-space: nowrap;
+}
+th {
+  padding-top: 0.5em;
+  font-weight: bold;
+}
+img {
+  vertical-align: middle;
+}
+table {
+  width: 100%;
+}
+td.id {
+  width: 5em;
+}
+td.score {
+  width: 5em;
+}
+td.button {
+  text-align: right;
+}
+</style>
+<% end %>
+
+<script type="text/javascript">
+
+$(function() {
+  $("#resource").popupmenu({ iconroot: url_root + "/images/icons/", items: [
+    {
+      label: "<%=h escape_javascript _('Edit Resource') %>",
+      icon: "edit.png",
+      click: function(target) {
+        // Using name, not id, in case there's conflicts between constraint
+        // ID and other bits of HTML.
+        var id = target.attr("name");
+        var type = target.closest(".ui-panel").attr("id");
+        window.location.assign(url_root + "/cib/live/" + type + "/" + id + "/edit");
+      }
+    },
+    {
+      label: "<%=h escape_javascript _('Delete Resource') %>",
+      icon: "remove.png",
+      click: function(target) {
+        var id = target.attr("name");
+        target.children(":first").attr("src", url_root + "/images/spinner-16x16-neutral.gif");
+        // Abuse of /main/resource/delete, which is generic enough to delete anything
+        // TODO(should): Fix error message (refers to "error deleting resource")
+        // TODO(should): Consolidate this request stuff, esp. the error case.
+        $.ajax({ url: url_root + "/main/resource/delete",
+          data: "format=json&resource=" + id,
+          type: "POST",
+          success: function() {
+            // Remove spinner (a spinner that stops too early is marginally better than one that never stops)
+            target.children(":first").attr("src", url_root + "/images/icons/properties.png");
+            // Show "no constraints defined" if we're about to get rid of the last one
+            if (target.closest("table")[0].rows.length == 2) {
+              target.closest("table").find("tr").show();
+            }
+            target.closest("tr").remove();
+          },
+          error: function(request) {
+            // Remove spinner
+            target.children(":first").attr("src", url_root + "/images/icons/properties.png");
+            var json = json_from_request(request);
+            if (json) {
+              error_dialog(json.error, json.stderr ? json.stderr : null);
+            } else {
+              if (request.status == 403) {
+                // 403 == permission denied
+                error_dialog(GETTEXT.err_denied());
+              } else {
+                error_dialog(GETTEXT.err_unexpected(request.status));
+              }
+            }
+          }
+        });
+      }
+    }
+  ]});
+  $("#primitives").panel({
+    menu_href:  url_root + "/cib/live/primitives/new",
+    menu_icon:  url_root + "/images/icons/add.png",
+    menu_alt:   "<%= escape_javascript _('New Resource') %>",
+    label:      "<%=h escape_javascript _('Primitive') %>",
+    open:       <%= @primitives.any? ? 'true' : 'false' %> });
+<% if has_feature?(:rsc_template) %>
+  $("#templates").panel({
+    menu_href:  url_root + "/cib/live/templates/new",
+    menu_icon:  url_root + "/images/icons/add.png",
+    menu_alt:   "<%= escape_javascript _('New Template') %>",
+    label:      "<%=h escape_javascript _('Template') %>",
+    open:       <%= @templates.any? ? 'true' : 'false' %> });
+<% end %>
+  $("#groups").panel({
+    menu_href:  url_root + "/cib/live/groups/new",
+    menu_icon:  url_root + "/images/icons/add.png",
+    menu_alt:   "<%= escape_javascript _('New Group') %>",
+    label:      "<%=h escape_javascript _('Group') %>",
+    open:       <%= @groups.any? ? 'true' : 'false' %> });
+  $("#clones").panel({
+    menu_href:  url_root + "/cib/live/clones/new",
+    menu_icon:  url_root + "/images/icons/add.png",
+    menu_alt:   "<%= escape_javascript _('New Clone') %>",
+    label:      "<%=h escape_javascript _('Clone') %>",
+    open:       <%= @clones.any? ? 'true' : 'false' %> });
+  $("#masters").panel({
+    menu_href:  url_root + "/cib/live/master/new",
+    menu_icon:  url_root + "/images/icons/add.png",
+    menu_alt:   "<%= escape_javascript _('New Master/Slave') %>",
+    label:      "<%=h escape_javascript _('Master/Slave') %>",
+    open:       <%= @masters.any? ? 'true' : 'false' %> });
+
+  // Have to set these up after the panels (panel initializer fiddles with DOM
+  // in a way which breaks event handlers if added before panel init)
+  $("a.clickable").click(function() {
+    return $("#resource").popupmenu("popup", $(this));
+  });
+
+});
+</script>
+<div id="resource" style="display: none;"></div>
+
+<div id="primitives">
+<table>
+  <tr<%= ' style="display: none;"' if @primitives.any? %>><td><%=h _('(No primitive resources defined)') %></td></tr>
+<% @primitives.sort{|a,b| a.id.natcmp(b.id, true)}.each do |r| %>
+  <tr>
+    <td class="id"><%=h r.id %></td>
+    <td class="button"><a class="clickable" name="<%=h r.id %>"><%= image_tag 'icons/properties.png', :alt => '' %></a></td>
+  </tr>
+<% end %>
+</table>
+</div>
+
+<% if has_feature?(:rsc_template) %>
+<div id="templates">
+<table>
+  <tr<%= ' style="display: none;"' if @templates.any? %>><td><%=h _('(No templates defined)') %></td></tr>
+<% @templates.sort{|a,b| a.id.natcmp(b.id, true)}.each do |r| %>
+  <tr>
+    <td class="id"><%=h r.id %></td>
+    <td class="button"><a class="clickable" name="<%=h r.id %>"><%= image_tag 'icons/properties.png', :alt => '' %></a></td>
+  </tr>
+<% end %>
+</table>
+</div>
+<% end %>
+
+<div id="groups">
+<table>
+  <tr<%= ' style="display: none;"' if @groups.any? %>><td><%=h _('(No groups defined)') %></td></tr>
+<% @groups.sort{|a,b| a.id.natcmp(b.id, true)}.each do |r| %>
+  <tr>
+    <td class="id"><%=h r.id %></td>
+    <td class="button"><a class="clickable" name="<%=h r.id %>"><%= image_tag 'icons/properties.png', :alt => '' %></a></td>
+  </tr>
+<% end %>
+</table>
+</div>
+
+<div id="clones">
+<table>
+  <tr<%= ' style="display: none;"' if @clones.any? %>><td><%=h _('(No clones defined)') %></td></tr>
+<% @clones.sort{|a,b| a.id.natcmp(b.id, true)}.each do |r| %>
+  <tr>
+    <td class="id"><%=h r.id %></td>
+    <td class="button"><a class="clickable" name="<%=h r.id %>"><%= image_tag 'icons/properties.png', :alt => '' %></a></td>
+  </tr>
+<% end %>
+</table>
+</div>
+
+<div id="masters">
+<table>
+  <tr<%= ' style="display: none;"' if @masters.any? %>><td><%=h _('(No master/slave resources defined)') %></td></tr>
+<% @masters.sort{|a,b| a.id.natcmp(b.id, true)}.each do |r| %>
+  <tr>
+    <td class="id"><%=h r.id %></td>
+    <td class="button"><a class="clickable" name="<%=h r.id %>"><%= image_tag 'icons/properties.png', :alt => '' %></a></td>
+  </tr>
+<% end %>
+</table>
+</div>

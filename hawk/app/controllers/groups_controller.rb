@@ -56,7 +56,7 @@ class GroupsController < ApplicationController
   def create
     @title = _('Create Group')
     unless params[:cancel].blank?
-      redirect_to status_path
+      redirect_to cib_resources_path
       return
     end
     @res = Group.new params[:group]
@@ -78,7 +78,7 @@ class GroupsController < ApplicationController
       return
     end
     unless params[:cancel].blank?
-      redirect_to status_path
+      redirect_to cib_resources_path
       return
     end
     @res = Group.find params[:id]

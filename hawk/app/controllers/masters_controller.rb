@@ -56,7 +56,7 @@ class MastersController < ApplicationController
   def create
     @title = _('Create Master/Slave')
     unless params[:cancel].blank?
-      redirect_to status_path
+      redirect_to cib_resources_path
       return
     end
     @res = Master.new params[:master]
@@ -78,7 +78,7 @@ class MastersController < ApplicationController
       return
     end
     unless params[:cancel].blank?
-      redirect_to status_path
+      redirect_to cib_resources_path
       return
     end
     @res = Master.find params[:id]

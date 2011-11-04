@@ -58,7 +58,7 @@ class TemplatesController < ApplicationController
   def create
     @title = _('Create Template')
     unless params[:cancel].blank?
-      redirect_to status_path
+      redirect_to cib_resources_path
       return
     end
     @res = Template.new params[:template]
@@ -81,7 +81,7 @@ class TemplatesController < ApplicationController
       return
     end
     unless params[:cancel].blank?
-      redirect_to status_path
+      redirect_to cib_resources_path
       return
     end
     @res = Template.find params[:id]

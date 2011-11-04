@@ -56,7 +56,7 @@ class ClonesController < ApplicationController
   def create
     @title = _('Create Clone')
     unless params[:cancel].blank?
-      redirect_to status_path
+      redirect_to cib_resources_path
       return
     end
     @res = Clone.new params[:clone]
@@ -78,7 +78,7 @@ class ClonesController < ApplicationController
       return
     end
     unless params[:cancel].blank?
-      redirect_to status_path
+      redirect_to cib_resources_path
       return
     end
     @res = Clone.find params[:id]
