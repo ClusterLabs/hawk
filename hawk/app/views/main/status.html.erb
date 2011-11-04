@@ -12,7 +12,7 @@
 <%= javascript_include_tag 'status-sim.js' %>
 <script type="text/javascript" src="<%= url_for(:action => 'gettext', :format => 'js') %>"></script>
 <% end %>
-
+<div id="errorbar" class="ui-state-error ui-corner-all" style="display: none;"></div>
 <div id="onload-spinner"><%= image_tag 'spinner-32x32.gif', :alt => '' %></div>
 
 <%= render :partial => 'menus' %>

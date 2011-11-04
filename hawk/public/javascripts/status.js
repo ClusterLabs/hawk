@@ -51,7 +51,7 @@ function update_errors(errors)
   if (errors.length) {
     $("#errorbar").show();
     $.each(errors, function() {
-      $("#errorbar").append($('<div class="error">' + escape_html(this.toString()) + '</div>'));
+      $("#errorbar").append($('<div>' + escape_html(this.toString()) + '</div>'));
     });
   } else {
     $("#errorbar").hide();
@@ -399,7 +399,8 @@ function hawk_init()
     default:        current_view = summary_view; sc = ' checked="checked"'; break;
   }
 
-  $("#content").prepend($(
+  // view switcher must be first thing in content after errorbar
+  $("#errorbar").after($(
     '<div id="view-switcher" style="float: right;"><form>' +
       '<input id="view-summary" name="view-radio" type="radio"' + sc + ' /><label for="view-summary">' + GETTEXT.summary_view() + "</label>" +
       '<input id="view-panel" name="view-radio" type="radio"' + pc + ' /><label for="view-panel">' + GETTEXT.tree_view() + "</label>" +

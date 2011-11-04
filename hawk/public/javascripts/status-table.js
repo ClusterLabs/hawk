@@ -53,7 +53,7 @@ all regular resources fall into.
 var table_view = {
   create: function() {
     var self = this;
-    $("#content").prepend($('<div id="table" style="display: none;"><table cellpadding="0" cellspacing="0"><tbody></tbody></div>'));
+    $("#content").append($('<div id="table" style="display: none;"><table cellpadding="0" cellspacing="0"><tbody></tbody></div>'));
     self.tbody = $("#table").find("tbody");
     $(window).resize(self._fix_max_height);
   },

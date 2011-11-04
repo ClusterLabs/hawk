@@ -38,7 +38,7 @@ var summary_view = {
     // symmetric
     // stickiness(?)
     // maintenance mode
-    $("#content").prepend($(
+    $("#content").append($(
       '<div id="summary" style="display: none;" class="ui-corner-all">' +
         "<h1>" + GETTEXT.summary() + "</h1>" +
         '<div id="confsum" class="summary">' +
