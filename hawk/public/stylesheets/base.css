@@ -422,7 +422,8 @@ img
 .wizard-param th.optional { font-weight: normal; }
 
 .sim {
-  background-color: #ff8;
+  background-color: #ff8 !important;
+  background-image: none !important;
 }
 
 a.disabled {
@@ -433,4 +434,25 @@ a.disabled {
 /* Calendar is too chunky without this */
 #ui-datepicker-div {
   font-size: 80%;
+}
+
+/* For nav tabs */
+#tabs .ui-tabs-nav {
+  left: 0.25em;
+  top: 0.25em;
+  bottom: 0.25em;
+  width: 3em;
+  padding: 0.5em 0 0.5em 0.5em;
+  background-image: none;
+}
+#tabs .ui-tabs-nav li {
+  right: 1px;
+  width: 100%;
+  border-right: none;
+  border-bottom-width: 1px !important;
+  overflow: hidden;
+  margin: 0;
+}
+#tabs .ui-tabs-nav li.ui-tabs-selected {
+  border-right: 1px solid transparent;
 }

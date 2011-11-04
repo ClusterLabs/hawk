@@ -233,6 +233,8 @@ var simulator = {
     });
   },
   activate: function() {
+    $($("#tabs li")[0]).removeClass("ui-tabs-selected ui-state-active");
+    $($("#tabs li")[1]).addClass("ui-tabs-selected ui-state-active");
     var self = this;
     var b = {};
     b[GETTEXT.reset()] = function() {
@@ -246,6 +248,8 @@ var simulator = {
       buttons:  b,
       close:    function() {
         $(document.body).removeClass("sim");
+        $($("#tabs li")[0]).addClass("ui-tabs-selected ui-state-active");
+        $($("#tabs li")[1]).removeClass("ui-tabs-selected ui-state-active sim");
         $("#errorbar").hide(); // forcibly hide error bar when deactivating simulator
         hide_status();
         $("#onload-spinner").show();
@@ -258,6 +262,7 @@ var simulator = {
     $("#onload-spinner").show();
     self._reset(function() {
       $(document.body).addClass("sim");
+      $($("#tabs li")[1]).addClass("sim");
       $("#simulator").dialog("open");
     });
   },
