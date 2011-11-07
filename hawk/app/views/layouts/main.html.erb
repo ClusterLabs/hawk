@@ -6,10 +6,12 @@
 <%= stylesheet_link_tag "base" %>
 <!--[if IE]><%= stylesheet_link_tag "ie" %><![endif]-->
 <%= stylesheet_link_tag 'smoothness/jquery-ui-1.8.5.custom.css' %>
+<%= stylesheet_link_tag 'jquery-ui-timepicker-addon.css' %>
 <%= javascript_include_tag 'jquery-1.4.2.min.js' %>
 <%= javascript_include_tag 'jquery-ui-1.8.5.custom.min.js' %>
 <%= javascript_include_tag 'jquery-parsequery.min.js' %>
 <%= javascript_include_tag 'jquery.cookie.js' %>
+<%= javascript_include_tag 'jquery-ui-timepicker-addon.js' %>
 <%= javascript_tag "var url_root='#{relative_url_root}';" %>
 <%= javascript_include_tag 'application.js' %>
 <%= csrf_meta_tag if defined? csrf_meta_tag %>
@@ -85,7 +87,7 @@ $(function() {
       '<img src="' + url_root + '/images/spinner-32x32.gif" alt="" /></div>');
     $("#dialog").load(url_root + "/hb_reports/new");
     var b = {};
-    b[GETTEXT.close()] = function() {
+    b["Close"] = function() {
       $(this).dialog("close");
     };
     $("#dialog").dialog("option", {
