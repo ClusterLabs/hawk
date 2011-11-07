@@ -16,6 +16,8 @@ TODO
 
 == Core/General == 
 
+* rescue_from with redirect in ApplicationController is probably a bit fragile
+  when (possibly) called from, say, NodesController inside dialog.
 * Ensure Hawk's gettext usage works with translation-update package
 * Modal dialogs should probably be made moveable (and *maybe* resizable)
 * Syntax highlighting for ascii text (crm config, logs in explorer, etc.)

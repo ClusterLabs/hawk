@@ -51,7 +51,7 @@ require "rexml/document" unless defined? REXML::Document
 #
 
 class WizardController < ApplicationController
-  before_filter :login_required, :load_wizard_config
+  before_filter :login_required, :cluster_online, :load_wizard_config
 
   layout "main"
 
