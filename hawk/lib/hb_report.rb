@@ -86,7 +86,7 @@ class HbReport
   # contents of errfile as array, with "INFO" lines stripped (e.g. for
   # displaying warnings after an otherwise successful run)
   def err_filtered
-    err_lines.select {|e| !e.match(/ INFO: /) }
+    err_lines.select {|e| !e.match(/( INFO: |(cat|tail): write error)/) }
   end
 
   # Note: This assumes pidfile doesn't exist (will always blow away what's
