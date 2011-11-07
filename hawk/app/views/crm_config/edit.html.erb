@@ -35,7 +35,7 @@ $(function() {
     $("#onload-spinner").hide();
     $("#editor").show();
   });
-<%= render :partial => 'shared/confirm_revert', :locals => { :button_ids => '#crm_config_revert,#crm_config_cancel' } %>
+<%= render :partial => 'shared/confirm_revert', :locals => { :button_ids => '#crm_config_revert' } %>
 });
 </script>
 <div id="onload-spinner"><%= image_tag 'spinner-32x32.gif', :alt => '' %></div>
@@ -61,7 +61,6 @@ $(function() {
       <td style="text-align: right">
         <%= f.submit _('Apply Changes'), { :disabled => true } %>
         <%= f.submit _('Revert Changes'), { :id => 'crm_config_revert', :name => 'revert', :disabled => true } %>
-        <%= f.submit _('Back'), { :id => 'crm_config_cancel', :name => 'cancel' } %>
       </td>
     </tr>
   </table>

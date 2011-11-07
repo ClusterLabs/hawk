@@ -75,10 +75,6 @@ class CrmConfigController < ApplicationController
       redirect_to :action => 'edit'
       return
     end
-    unless params[:cancel].blank?
-      redirect_to status_path
-      return
-    end
 
     # Don't let weird IDs through.
     if params[:id].match(/[^a-zA-Z0-9_-]/)
