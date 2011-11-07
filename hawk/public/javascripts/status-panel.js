@@ -41,10 +41,7 @@ var panel_view = {
         '<div id="reslist"></div>' +
       "</div>"));
     $("#config").panel({
-      menu_icon: url_root + "/images/icons/properties.png",
-      menu_click: function(event) {
-        return $(jq("menu::cluster")).popupmenu("popup", $(this));
-      },
+      menu_icon: url_root + "/images/transparent-16x16.gif",
       label:     GETTEXT.cluster_config(),
       body:      $('<table id="config::props" style="padding: 0.25em 0.5em;"></table>')
     });
@@ -52,10 +49,7 @@ var panel_view = {
       menu_icon: url_root + "/images/transparent-16x16.gif"
     });
     $("#reslist").panel({
-      menu_icon: url_root + "/images/icons/properties.png",
-      menu_click: function(event) {
-        return $(jq("menu::reslist")).popupmenu("popup", $(this));
-      }
+      menu_icon: url_root + "/images/transparent-16x16.gif"
     });
 /*    
     // Filter problems:

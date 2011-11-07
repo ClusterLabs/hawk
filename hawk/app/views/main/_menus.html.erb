@@ -1,7 +1,5 @@
 <div id="menu::node" style="display: none;"></div>
-<div id="menu::reslist" style="display: none;"></div>
 <div id="menu::resource" style="display: none;"></div>
-<div id="menu::cluster" style="display: none;"></div>
 <script type="text/javascript">
 $(function() {
   $(jq("menu::node")).popupmenu({ iconroot: url_root + "/images/icons/", items: [
@@ -66,89 +64,6 @@ $(function() {
       }
     }
     <% end %>
-  ]});
-  $(jq("menu::reslist")).popupmenu({ iconroot: url_root + "/images/icons/", items: [
-    {
-      label: "<%=h escape_javascript _('Setup Wizard') %>",
-      icon: "wizard.png",
-      click: function(target) {
-        window.location.assign(url_root + "/wizard");
-      }
-    },
-    {
-      separator: true
-    },
-    {
-      label: "<%=h escape_javascript _('New Primitive') %>",
-      icon: "add.png",
-      click: function(target) {
-        window.location.assign(url_root + "/cib/live/primitives/new");
-      }
-    },
-    {
-      label: "<%=h escape_javascript _('New Group') %>",
-      icon: "add.png",
-      click: function(target) {
-        var has_primitives = false;
-        $.each(cib.resources, function() {
-          if (!this.children) {
-            has_primitives = true;
-            return false;
-          }
-        });
-        if (has_primitives) {
-          window.location.assign(url_root + "/cib/live/groups/new");
-        } else {
-          error_dialog("<%= escape_javascript _("Can't create group, there are no primitives available.") %>");
-        }
-      }
-    },
-    {
-      label: "<%=h escape_javascript _('New Clone') %>",
-      icon: "add.png",
-      click: function(target) {
-        var has_primitives = false;
-        $.each(cib.resources, function() {
-          if (!this.children || (this.children && this.type == "group")) {
-            has_primitives = true;
-            return false;
-          }
-        });
-        if (has_primitives) {
-          window.location.assign(url_root + "/cib/live/clones/new");
-        } else {
-          error_dialog("<%= escape_javascript _("Can't create clone, there are no primitives or groups available.") %>");
-        }
-      }
-    },
-    {
-      label: "<%=h escape_javascript _('New Master/Slave') %>",
-      icon: "add.png",
-      click: function(target) {
-        var has_primitives = false;
-        $.each(cib.resources, function() {
-          if (!this.children || (this.children && this.type == "group")) {
-            has_primitives = true;
-            return false;
-          }
-        });
-        if (has_primitives) {
-          window.location.assign(url_root + "/cib/live/masters/new");
-        } else {
-          error_dialog("<%= escape_javascript _("Can't create master/slave, there are no primitives or groups available.") %>");
-        }
-      }
-    },
-    {
-      separator: true
-    },
-    {
-      label: "<%=h escape_javascript _('Edit Constraints') %>",
-      icon: "constraints.png",
-      click: function(target) {
-        window.location.assign(url_root + "/cib/live/constraints");
-      }
-    }
   ]});
   $(jq("menu::resource")).popupmenu({ iconroot: url_root + "/images/icons/", items: [
     {
@@ -220,62 +135,6 @@ $(function() {
       click: function(target) {
         confirm_op(this.label, item_id(target.attr("id")), "resource", "cleanup");
       }
-    },
-    {
-      separator: true
-    },
-    {
-      label: "<%=h escape_javascript _('Edit Resource') %>",
-      icon: "edit.png",
-      click: function(target) {
-        var id = item_id(target.attr("id"));
-        var type="primitives";
-        if (resources_by_id[id].children) {
-          type = resources_by_id[id].type + "s"
-        }
-        window.location.assign(url_root + "/cib/live/" + type + "/" + id + "/edit");
-      }
-    },
-    {
-      label: "<%=h escape_javascript _('Delete Resource') %>",
-      icon: "remove.png",
-      click: function(target) {
-        // TODO(must): A lot of this is very similar to perform_op() - consolidate!
-        var id = item_id(target.attr("id"));
-        var state = "neutral";
-        var c = $(jq("resource::" + id));
-        if (c.hasClass("ns-active"))        state = "active";
-        else if(c.hasClass("ns-inactive"))  state = "inactive";
-        else if(c.hasClass("ns-error"))     state = "error";
-        else if(c.hasClass("ns-transient")) state = "transient";
-        else if(c.hasClass("rs-active"))    state = "active";
-        else if(c.hasClass("rs-inactive"))  state = "inactive";
-        else if(c.hasClass("rs-error"))     state = "error";
-        $(jq("resource::" + id + "::menu")).children(":first").attr("src", url_root + "/images/spinner-16x16-" + state + ".gif");
-        $.ajax({ url: url_root + "/main/resource/delete",
-          data: "format=json&resource=" + id,
-          type: "POST",
-          success: function() {
-            // Remove spinner (a spinner that stops too early is marginally better than one that never stops)
-            $(jq("resource::" + id + "::menu")).children(":first").attr("src", url_root + "/images/icons/properties.png");
-          },
-          error: function(request) {
-            // Remove spinner
-            $(jq("resource::" + id + "::menu")).children(":first").attr("src", url_root + "/images/icons/properties.png");
-            var json = json_from_request(request);
-            if (json) {
-              error_dialog(json.error, json.stderr ? json.stderr : null);
-            } else {
-              if (request.status == 403) {
-                // 403 == permission denied
-                error_dialog(GETTEXT.err_denied());
-              } else {
-                error_dialog(GETTEXT.err_unexpected(request.status));
-              }
-            }
-          }
-        });
-      }
     }
     <% if has_feature?(:crm_history) && is_god? %>
     ,
@@ -301,50 +160,6 @@ $(function() {
           buttons:  b
         });
         $("#dialog").dialog("open");
-      }
-    }
-    <% end %>
-  ]});
-  $(jq("menu::cluster")).popupmenu({ iconroot: url_root + "/images/icons/", items: [
-    {
-      label: "<%=h escape_javascript _('Cluster Properties') %>",
-      icon: "edit.png",
-      click: function(target) {
-        window.location.assign(url_root + "/cib/live/crm_config/cib-bootstrap-options/edit");
-      }
-    },
-    {
-      label: "<%=h escape_javascript _('Generate hb_report...') %>",
-      icon: "properties.png",
-      click: function(target) {
-        $("#dialog").html('<div style="text-align: center;">' +
-          '<img src="' + url_root + '/images/spinner-32x32.gif" alt="" /></div>');
-        $("#dialog").load(url_root + "/hb_reports/new");
-        var b = {};
-        b[GETTEXT.close()] = function() {
-          $(this).dialog("close");
-        };
-        $("#dialog").dialog("option", {
-          title:    "<%=h escape_javascript _('Generate hb_report') %>",
-          buttons:  b
-        });
-        $("#dialog").dialog("open");
-      }
-    },
-    {
-      label: "<%=h escape_javascript _('Simulator') %>",
-      icon: "properties.png",   // TODO(must): Need simulator icon!
-      click: function() {
-        simulator.activate();
-      }
-    }
-    <% if has_feature?(:crm_history) && is_god? %>
-    ,
-    {
-      label: "<%=h escape_javascript _('History Explorer') %>",
-      icon: "properties.png",
-      click: function(target) {
-        window.location.assign(url_root + "/explorer");
       }
     }
     <% end %>

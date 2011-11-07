@@ -98,19 +98,6 @@ var summary_view = {
         $("#details").hide();
         self.active_detail = null;
     });
-    // Menu setup cribbed from jquery.ui.panel
-    var ma = $("#summary").find("a");
-    var mi = ma.children(":first");
-    mi.attr("src", url_root + "/images/icons/properties.png");
-    ma.click(function(event) {
-      return $(jq("menu::cluster")).popupmenu("popup", $(this));
-    });
-    ma = $("#ressum").find("a");
-    mi = ma.children(":first");
-    mi.attr("src", url_root + "/images/icons/properties.png");
-    ma.click(function(event) {
-      return $(jq("menu::reslist")).popupmenu("popup", $(this));
-    });
   },
   destroy: function() {
     // NYI
