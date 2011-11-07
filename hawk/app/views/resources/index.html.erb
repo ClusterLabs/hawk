@@ -123,7 +123,7 @@ $(function() {
     label:      "<%=h escape_javascript _('Clone') %>",
     open:       <%= @clones.any? ? 'true' : 'false' %> });
   $("#masters").panel({
-    menu_href:  url_root + "/cib/live/master/new",
+    menu_href:  url_root + "/cib/live/masters/new",
     menu_icon:  url_root + "/images/icons/add.png",
     menu_alt:   "<%= escape_javascript _('New Master/Slave') %>",
     label:      "<%=h escape_javascript _('Master/Slave') %>",
