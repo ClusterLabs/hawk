@@ -87,6 +87,10 @@
       var pos = target.children(":first").offset();
       $(this.list.children().show());
       if (hide_items) {
+        if (hide_items.length >= this.list.children().length) {
+          // Little bit rough, but necessary for edge case
+          return false;
+        }
         for (var i = 0; i < hide_items.length; i++) {
           $(this.list.children()[hide_items[i]]).hide();
         }
