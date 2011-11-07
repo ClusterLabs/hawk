@@ -217,7 +217,7 @@ function do_update(cur_epoch)
 
   update_req = $.ajax({ url: url_root + "/monitor?" + cur_epoch,
     type: "GET",
-    timeout: 70000,   // hawk_monitor timeout + 10s wiggle room
+    timeout: 90000,   // hawk_monitor timeout + 50% wiggle room
     success: function(data) {
       if (data) {
         if (data.epoch != cur_epoch) {
@@ -283,7 +283,7 @@ function hide_status()
 function update_cib()
 {
   update_req = $.ajax({ url: url_root + "/cib/" + (cib_source == "file" ? cib_file : cib_source),
-    timeout: 70000, // (same as do_update, arbitrarily -- can't be too short, but must be > 0)
+    timeout: 90000, // (same as do_update, arbitrarily -- can't be too short, but must be > 0)
     data: "format=json" + (cib_source == "file" ? "&debug=file" : ""),
     type: "GET",
     success: function(data) {
