@@ -1,3 +1,17 @@
+* Mon Nov 07 2011 Tim Serong <tserong@suse.com>
+
+- GUI: Add top-level tab bar for navigation (bnc#723679)
+- GUI: Add top-level resource list/editor
+- GUI: status: Move errorbar to content div, theme to match jquery ui errors
+- GUI: Add support for resource templates
+- GUI: simulator, explorer: show graphs, details etc. in dialog (bnc#726612)
+- GUI: status: Display error if server down or network fault during
+  refresh (bnc#723125)
+- Misc: Fix delay running "/etc/init.d/hawk start" when DNS unavailable
+- Misc: hb_report: strip broken pipe from stderr (bnc#726611)
+- Build: Bump spec file version to 0.5.1
+- Upstream version cs:db84a1a32027
+
 * Mon Oct 24 2011 Tim Serong <tserong@suse.com>
 - GUI: explorer, hb_report: Better error reporting for "successful" hb_report
   runs (bnc#723336)
