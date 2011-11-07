@@ -58,11 +58,14 @@ tabs += [
     :path => cib_resources_path(:cib_id => 'live') },
   { :controllers => [ "constraints", "locations", "colocations", "orders" ],
     :icon => "icons/constraints.png", :label => _("Constraints"),
-    :path => cib_constraints_path(:cib_id => 'live') },
+    :path => cib_constraints_path(:cib_id => 'live') }
+]
+
+tabs += [
   { :controllers => [],
     :icon => "icons/report.png", :label => _("Generate hb_report..."),
     :path => status_path }
-]
+] if is_god?
 
 %>
   <div id="tabs" style="float: left; margin-left: 0.5em; margin-top: 0.5em;" class="ui-tabs ui-widget ui-corner-all">
