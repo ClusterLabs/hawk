@@ -428,5 +428,9 @@ function hawk_init()
     }
   });
 
-  update_cib();
+  if (q.sim && q.sim == "on") {
+    simulator.activate();
+  } else {
+    update_cib();
+  }
 }

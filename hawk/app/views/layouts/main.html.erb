@@ -37,7 +37,7 @@ tabs = [
     :path => status_path },
   { :controllers => [],
     :icon => "icons/simulator.png", :label => _("Simulator"),
-    :path => status_path }
+    :path => "#{status_path}?sim=on" }
 ];
 
 tabs += [
@@ -75,13 +75,12 @@ tabs += [
 <script type="text/javascript">
 $(function() {
   // These binds are rather nasty...
+<% if params[:controller] == "main" %>
   $($("#tabs li a")[1]).click(function() {
-    if (simulator) {
-      // TODO(must): won't work unless on status page.
-      simulator.activate();
-      return false;
-    }
+    simulator.activate();
+    return false;
   });
+<% end %>
   $("#tabs li a").last().click(function() {
     $("#dialog").html('<div style="text-align: center;">' +
       '<img src="' + url_root + '/images/spinner-32x32.gif" alt="" /></div>');
