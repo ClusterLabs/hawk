@@ -30,7 +30,7 @@
 
 var panel_view = {
   create: function() {
-    $("#content").prepend($(
+    $("#content").append($(
 //      '<div id="filter" style="display: none; width: 100%;">' +
 //        '<input type="checkbox" id="show-active" checked="checked"/> Show Active&nbsp;&nbsp;' +
 //        '<input type="checkbox" id="show-inactive" checked="checked"/> Show Inactive' +

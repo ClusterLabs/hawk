@@ -1,10 +1,8 @@
 <% content_for :head do %>
 <%= stylesheet_link_tag 'ui.popupmenu.css' %>
 <%= stylesheet_link_tag 'ui.panel.css' %>
-<%= stylesheet_link_tag 'jquery-ui-timepicker-addon.css' %>
 <%= javascript_include_tag 'jquery.ui.popupmenu.js' %>
 <%= javascript_include_tag 'jquery.ui.panel.js' %>
-<%= javascript_include_tag 'jquery-ui-timepicker-addon.js' %>
 <%= javascript_include_tag 'status.js' %>
 <%= javascript_include_tag 'status-panel.js' %>
 <%= javascript_include_tag 'status-table.js' %>
@@ -12,7 +10,7 @@
 <%= javascript_include_tag 'status-sim.js' %>
 <script type="text/javascript" src="<%= url_for(:action => 'gettext', :format => 'js') %>"></script>
 <% end %>
-
+<div id="errorbar" class="ui-state-error ui-corner-all" style="display: none;"></div>
 <div id="onload-spinner"><%= image_tag 'spinner-32x32.gif', :alt => '' %></div>
 
 <%= render :partial => 'menus' %>

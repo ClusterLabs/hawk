@@ -90,7 +90,10 @@
         heading_edit: null
       },
       prefix: "",
-      dirty: null
+      dirty: null,
+      // set all_optional to true to make all attributes optional,
+      // regardless of the required flag in all_attrs.
+      all_optional: false
     },
     required_attrs: [],
     optional_attrs: [],
@@ -186,7 +189,7 @@
       this.required_attrs = [];
       this.optional_attrs = [];
       for (var n in this.options.all_attrs) {
-        if (this.options.all_attrs[n].required) {
+        if (!this.options.all_optional && this.options.all_attrs[n].required) {
           this.required_attrs.push(n);
         } else {
           this.optional_attrs.push(n);

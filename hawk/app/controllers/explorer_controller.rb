@@ -45,11 +45,6 @@ class ExplorerController < ApplicationController
   end
 
   def index
-    if !params[:back].blank?
-      redirect_to status_path
-      return
-    end
-
     @cache = []
 
     ts_re = "[0-9]{4}-[0-9]{2}-[0-9]{2}_[0-9]{2}:[0-9]{2}"

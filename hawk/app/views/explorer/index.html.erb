@@ -1,6 +1,4 @@
 <% content_for :head do %>
-<%= stylesheet_link_tag 'jquery-ui-timepicker-addon.css' %>
-<%= javascript_include_tag 'jquery-ui-timepicker-addon.js' %>
 <style type="text/css">
 /* TODO(should): move to stylesheet */
 #peinputs th {
@@ -136,7 +134,6 @@ function inline_detail_links() {
 </div>
 <% end %>
 </div>
-<div style="float: right;"><% form_tag(explorer_path, :method => :get) do %><%= submit_tag(_('Back'), { :id => 'back', :name => 'back' }) %><% end %></div>
 </div>
 <div id="pe-list" style="clear: both;">
 <%= render :partial => "pe_list" %>

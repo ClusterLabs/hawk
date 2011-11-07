@@ -54,7 +54,7 @@ class PrimitivesController < ApplicationController
   def create
     @title = _('Create Resource')
     unless params[:cancel].blank?
-      redirect_to status_path
+      redirect_to cib_resources_path 
       return
     end
     @res = Primitive.new params[:primitive]
@@ -76,7 +76,7 @@ class PrimitivesController < ApplicationController
       return
     end
     unless params[:cancel].blank?
-      redirect_to status_path
+      redirect_to cib_resources_path
       return
     end
     @res = Primitive.find params[:id]

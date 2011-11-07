@@ -115,6 +115,10 @@ class Clone < CibObject
       res
     end
 
+    def all
+      super "clone"
+    end
+
     def metadata
       # TODO(must): are other meta attributes for clone valid?
       {

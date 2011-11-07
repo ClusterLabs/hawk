@@ -4,8 +4,9 @@
 #            A web-based GUI for managing and monitoring the
 #          Pacemaker High-Availability cluster resource manager
 #
-# Copyright (c) 2011 Novell Inc., Tim Serong <tserong@novell.com>
-#                        All Rights Reserved.
+# Copyright (c) 2011 Novell Inc., All Rights Reserved.
+#
+# Author: Tim Serong <tserong@suse.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of version 2 of the GNU General Public License as
@@ -23,53 +24,55 @@
 # other software, or any other product whatsoever.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program; if not, write the Free Software Foundation,
-# Inc., 59 Temple Place - Suite 330, Boston MA 02111-1307, USA.
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 #
 #======================================================================
 
-class ClonesController < ApplicationController
+# TODO(must): refactor/consolidate primitive & template.
+
+class TemplatesController < ApplicationController
   before_filter :login_required
 
   layout 'main'
-
+  # Need cib for both edit and update (but ultimately want to minimize the amount of processing...)
+  # TODO(should): consolidate/refactor with scaffolding in crm_config_controller
   before_filter :get_cib
 
   def get_cib
-    # This is overkill - we actually only need the cib for its id,
-    # and for getting a list of primitives and groups that can be
-    # clone children when creating a new clone.
     @cib = Cib.new params[:cib_id], current_user
   end
 
   def initialize
     super
-    @title = _('Edit Clone')
+    @title = _('Edit Template')
   end
 
   def new
-    @title = _('Create Clone')
-    @res = Clone.new
-    @res.meta['target-role'] = 'Stopped' if @cib.id == 'live'
+    @title = _('Create Template')
+    @res = Template.new
+    # Primitives default to target-role=Stopped; not so templates.
+    # @res.meta['target-role'] = 'Stopped' if @cib.id == 'live'
+    render 'primitives/new'
   end
 
   def create
-    @title = _('Create Clone')
+    @title = _('Create Template')
     unless params[:cancel].blank?
       redirect_to cib_resources_path
       return
     end
-    @res = Clone.new params[:clone]
+    @res = Template.new params[:template]
     if @res.save
-      flash[:highlight] = _('Clone created successfully')
+      flash[:highlight] = _('Template created successfully')
       redirect_to :action => 'edit', :id => @res.id
     else
-      render :action => 'new'
+      render 'primitives/new'
     end
   end
 
   def edit
-    @res = Clone.find params[:id]
+    @res = Template.find params[:id]
+    render 'primitives/edit'
   end
 
   def update
@@ -81,14 +84,12 @@ class ClonesController < ApplicationController
       redirect_to cib_resources_path
       return
     end
-    @res = Clone.find params[:id]
-    if @res.update_attributes(params[:clone])
-      flash[:highlight] = _('Clone updated successfully')
+    @res = Template.find params[:id]
+    if @res.update_attributes(params[:template])
+      flash[:highlight] = _('Template updated successfully')
       redirect_to :action => 'edit', :id => @res.id
     else
-      render :action => 'edit'
+      render 'primitives/edit'
     end
   end
-
 end
-

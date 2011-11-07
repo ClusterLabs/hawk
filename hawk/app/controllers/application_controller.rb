@@ -40,6 +40,16 @@ class ApplicationController < ActionController::Base
   # Scrub sensitive parameters from your log
   filter_parameter_logging :password
 
+  # Force back to status page if e.g.: cluster offline when trying to access
+  # resources, etc.
+  rescue_from CibObject::CibObjectError, RuntimeError do |e|
+    if params[:controller] == "main" || params[:controller] == "cib"
+      rescue_action_without_handler(e)
+    else
+      redirect_to status_path
+    end
+  end
+
   def initialize
     # Handle CibObject exceptions
     rescue_responses.update({
@@ -114,6 +124,16 @@ protected
     end
   end
 
+  # Cribbed from cib.rb -- only use this if you need the cluster to be online,
+  # and *don't* have a Cib (or other thing handy) that'll throw an appropriate
+  # exception.
+  def cluster_online
+    crm_status = %x[/usr/sbin/crm_mon -s 2>&1].chomp
+    if $?.exitstatus == 10 || $?.exitstatus == 11
+      redirect_to status_path
+    end
+  end
+
   def store_location
     session[:return_to] = request.request_uri
   end
@@ -137,6 +157,10 @@ protected
     when :crm_history
       %x[echo quit | /usr/sbin/crm history 2>&1]
       $?.exitstatus == 0
+    when :rsc_ticket
+      %x[/usr/sbin/crm configure rsc_ticket 2>&1].starts_with?("usage")
+    when :rsc_template
+      %x[/usr/sbin/crm configure rsc_template 2>&1].starts_with?("usage")
     else
       false
     end

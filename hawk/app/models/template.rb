@@ -4,8 +4,9 @@
 #            A web-based GUI for managing and monitoring the
 #          Pacemaker High-Availability cluster resource manager
 #
-# Copyright (c) 2011 Novell Inc., Tim Serong <tserong@novell.com>
-#                        All Rights Reserved.
+# Copyright (c) 2011 Novell Inc., All Rights Reserved.
+#
+# Author: Tim Serong <tserong@suse.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of version 2 of the GNU General Public License as
@@ -23,8 +24,7 @@
 # other software, or any other product whatsoever.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program; if not, write the Free Software Foundation,
-# Inc., 59 Temple Place - Suite 330, Boston MA 02111-1307, USA.
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 #
 #======================================================================
 
@@ -32,12 +32,15 @@ require 'natcmp'
 
 require 'rexml/document' unless defined? REXML::Document
 
-class Primitive < CibObject
+# TODO(must): asside from meta & classes/providers, essentially a dupe
+# of Primitive.  Must consolidate.
+
+class Template < CibObject
   include GetText
 
   # Using r_class to avoid collision with class reserved word.
   # Using r_provider and r_type for consistency with r_class.
-  @attributes = :r_class, :r_provider, :r_type, :r_template, :params, :ops, :meta
+  @attributes = :r_class, :r_provider, :r_type, :params, :ops, :meta
   attr_accessor *@attributes
 
   def initialize(attributes = nil)
@@ -47,7 +50,6 @@ class Primitive < CibObject
     # resource creation errors.
     @r_provider = ''
     @r_type     = ''
-    @r_template = ''
     @params     = {}
     @ops        = {}
     @meta       = {}
@@ -86,8 +88,7 @@ class Primitive < CibObject
 
     # TODO(must): Ensure r_class, r_provider and r_type are sanitized
     provider = @r_provider.empty? ? '' : @r_provider + ':'
-    type = @r_template.empty? ? '#{@r_class}:#{provider}#{@r_type}' : "@#{r_template}"
-    cmd = "primitive #{@id} #{type}"
+    cmd = "rsc_template #{@id} #{@r_class}:#{provider}#{@r_type}"
     unless @params.empty?
       cmd += " params"
       @params.each do |n,v|
@@ -134,8 +135,8 @@ class Primitive < CibObject
   end
 
   def update
-    # Saving an existing primitive
-    unless CibObject.exists?(id, 'primitive')
+    # Saving an existing template
+    unless CibObject.exists?(id, 'template')
       error _('Resource ID "%{id}" does not exist') % { :id => @id }
       return false
     end
@@ -208,7 +209,6 @@ class Primitive < CibObject
       res.instance_variable_set(:@r_class,    xml.attributes['class'] || '')
       res.instance_variable_set(:@r_provider, xml.attributes['provider'] || '')
       res.instance_variable_set(:@r_type,     xml.attributes['type'] || '')
-      res.instance_variable_set(:@r_template, xml.attributes['template'] || '')
       res.instance_variable_set(:@params,     xml.elements['instance_attributes'] ?
         Hash[xml.elements['instance_attributes'].elements.collect {|e|
           [e.attributes['name'], e.attributes['value']] }] : {})
@@ -230,134 +230,7 @@ class Primitive < CibObject
     end
 
     def all
-      super "primitive"
-    end
-
-    def classes_and_providers
-      # TODO(should): Save to static variable, but see comment in types()
-      # below for issues (test with "mkdir /usr/lib/ocf/resource.d/foo",
-      # then reload the new primitive page).
-      cp = {
-        :r_classes   => [],
-        :r_providers => {}
-      }
-      all_classes = %x[/usr/sbin/crm ra classes].split(/\n/).sort {|a,b| a.natcmp(b, true)}
-      # Cheap hack to get rid of heartbeat class if there's no RAs of that type present
-      all_classes.delete('heartbeat') unless File.exists?('/etc/ha.d/resource.d')
-      all_classes.each do |c|
-        if m = c.match('(.*)/(.*)')
-          c = m[1].strip
-          cp[:r_providers][c] = m[2].strip.split(' ').sort {|a,b| a.natcmp(b, true)}
-        end
-        cp[:r_classes].push c
-      end
-      cp
-    end
-
-    def types(c, p='')
-      # TODO(should): Optimally this would be saved to a static variable,
-      # e.g.: "@@r_types ||= Util.safe_x(...)", except that this lives for
-      # the entire life of Hawk when run under lighttpd, which has two
-      # problems:
-      # 1) Unless we save it per-class-provider (@@r_types[c][p] ||= ...)
-      #    it's impossible to get the RA list for any combination of c/p
-      #    except for the first time we call the function.
-      # 2) Even if we fixed that, if a new RA is installed, Hawk still
-      #    shows the old list.
-      # This suggests the need for some sort of expiring cache of RAs,
-      # which is a performance optimization we can worry about later...
-      Util.safe_x('/usr/sbin/crm', 'ra', 'list', c, p).split(/\s+/).sort {|a,b| a.natcmp(b, true)}
-    end
-
-    def metadata(c, p, t)
-      m = {
-        :shortdesc => '',
-        :longdesc => '',
-        :parameters => {},
-        :ops => {},
-        :meta => {
-          "allow-migrate" => {
-            :type     => "boolean",
-            :default  => "false"
-          },
-          "is-managed" => {
-            :type     => "boolean",
-            :default  => "true"
-          },
-          "interval-origin" => {
-            :type     => "integer",
-            :default  => "0"
-          },
-          "migration-threshold" => {
-            :type     => "integer",
-            :default  => "0"
-          },
-          "priority" => {
-            :type     => "integer",
-            :default  => "0"
-          },
-          "multiple-active" => {
-            :type     => "enum",
-            :default  => "stop_start",
-            :values   => [ "block", "stop_only", "stop_start" ]
-          },
-          "failure-timeout" => {
-            :type     => "integer",
-            :default  => "0"
-          },
-          "resource-stickiness" => {
-            :type     => "integer",
-            :default  => "0"
-          },
-          "target-role" => {
-            :type     => "enum",
-            :default  => "Started",
-            :values   => [ "Started", "Stopped", "Master" ]
-          },
-          "restart-type" => {
-            :type     => "enum",
-            :default  => "ignore",
-            :values   => [ "ignore", "restart" ]
-          },
-          "description" => {
-            :type     => "string",
-            :default  => ""
-          }
-        }
-      }
-      return m if c.empty? or t.empty?
-      p = 'NULL' if p.empty?
-      xml = REXML::Document.new(Util.safe_x('/usr/sbin/lrmadmin', '-M', c, t, p, 'meta'))
-      return m unless xml.root
-      # TODO(should): select by language (en), likewise below
-      m[:shortdesc] = xml.root.elements['shortdesc'].text.strip || ''
-      m[:longdesc] = xml.root.elements['longdesc'].text.strip || ''
-      xml.elements.each('//parameter') do |e|
-        m[:parameters][e.attributes['name']] = {
-          :shortdesc => e.elements['shortdesc'].text.strip || '',
-          :longdesc  => e.elements['longdesc'].text.strip || '',
-          :type     => e.elements['content'].attributes['type'],
-          :default  => e.elements['content'].attributes['default'],
-          :required => e.attributes['required'].to_i == 1 ? true : false
-        }
-      end
-      xml.elements.each('//action') do |e|
-        name = e.attributes['name']
-        m[:ops][name] = [] unless m[:ops][name]
-        op = Hash[e.attributes.collect]
-        op.delete 'name'
-        op.delete 'depth'
-        # There's at least one case (ocf:ocfs2:o2cb) where the
-        # monitor op doesn't specify an interval, so we set a
-        # "reasonable" default
-        if name == 'monitor' && !op.has_key?('interval')
-          op['interval'] = '20'
-        end
-        m[:ops][name].push op
-      end
-      m
+      super "template"
     end
   end
-
 end
-

@@ -6,14 +6,16 @@
 <%= stylesheet_link_tag "base" %>
 <!--[if IE]><%= stylesheet_link_tag "ie" %><![endif]-->
 <%= stylesheet_link_tag 'smoothness/jquery-ui-1.8.5.custom.css' %>
+<%= stylesheet_link_tag 'jquery-ui-timepicker-addon.css' %>
 <%= javascript_include_tag 'jquery-1.4.2.min.js' %>
 <%= javascript_include_tag 'jquery-ui-1.8.5.custom.min.js' %>
 <%= javascript_include_tag 'jquery-parsequery.min.js' %>
 <%= javascript_include_tag 'jquery.cookie.js' %>
+<%= javascript_include_tag 'jquery-ui-timepicker-addon.js' %>
 <%= javascript_tag "var url_root='#{relative_url_root}';" %>
 <%= javascript_include_tag 'application.js' %>
 <%= csrf_meta_tag if defined? csrf_meta_tag %>
-<%= yield :head %> 
+<%= yield :head %>
 </head>
 <body>
 <div id="container">
@@ -27,7 +29,76 @@
     </span>
     <h1 id="header-title"><%=h @title %></h1>
   </div>
-  <div id="errorbar" style="display: none;"></div>
+<% if logged_in?
+
+tabs = [
+  { :controllers => [ "main" ],
+    :icon => "icons/status.png", :label => _("Cluster Status"),
+    :path => status_path },
+  { :controllers => [],
+    :icon => "icons/simulator.png", :label => _("Simulator"),
+    :path => "#{status_path}?sim=on" }
+];
+
+tabs += [
+  { :controllers => [ "explorer" ],
+    :icon => "icons/history.png", :label => _("History Explorer"),
+    :path => explorer_path }
+] if has_feature?(:crm_history) && is_god?
+
+tabs += [
+  { :controllers => [ "wizard" ],
+    :icon => "icons/wizard.png", :label => _("Setup Wizard"),
+    :path => wizard_path },
+  { :controllers => [ "crm_config" ],
+    :icon => "icons/config.png", :label => _("Cluster Properties"),
+    :path => cib_crm_config_path(:cib_id => 'live', :id => 'cib-bootstrap-options') },
+  { :controllers => [ "resources", "primitives", "groups", "clones", "masters" ],
+    :icon => "icons/resources.png", :label => _("Resources"),
+    :path => cib_resources_path(:cib_id => 'live') },
+  { :controllers => [ "constraints", "locations", "colocations", "orders" ],
+    :icon => "icons/constraints.png", :label => _("Constraints"),
+    :path => cib_constraints_path(:cib_id => 'live') },
+  { :controllers => [],
+    :icon => "icons/report.png", :label => _("Generate hb_report..."),
+    :path => status_path }
+]
+
+%>
+  <div id="tabs" style="float: left; margin-left: 0.5em; margin-top: 0.5em;" class="ui-tabs ui-widget ui-corner-all">
+    <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
+  <% tabs.each do |t| %>
+      <li class="ui-state-default ui-corner-left<%= t[:controllers].include?(params[:controller]) ? " ui-tabs-selected ui-state-active" : ""%>"><%= link_to image_tag(t[:icon], :alt => t[:label], :title => t[:label]), t[:path] %></li>
+  <% end %>
+    </ul>
+  </div>
+<script type="text/javascript">
+$(function() {
+  // These binds are rather nasty...
+<% if params[:controller] == "main" %>
+  $($("#tabs li a")[1]).click(function() {
+    simulator.activate();
+    return false;
+  });
+<% end %>
+  $("#tabs li a").last().click(function() {
+    $("#dialog").html('<div style="text-align: center;">' +
+      '<img src="' + url_root + '/images/spinner-32x32.gif" alt="" /></div>');
+    $("#dialog").load(url_root + "/hb_reports/new");
+    var b = {};
+    b["Close"] = function() {
+      $(this).dialog("close");
+    };
+    $("#dialog").dialog("option", {
+      title:    "<%=h escape_javascript _('Generate hb_report') %>",
+      buttons:  b
+    });
+    $("#dialog").dialog("open");
+    return false;               // may need cancel too
+  });
+});
+</script>
+<% end %>
   <div id="content">
     <%= yield %>
   </div>

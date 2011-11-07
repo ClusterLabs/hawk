@@ -118,6 +118,10 @@ class Group < CibObject
       res
     end
 
+    def all
+      super "group"
+    end
+
     def metadata
       # TODO(must): are other meta attributes for group valid?
       {

@@ -84,7 +84,7 @@ class CibObject
     def find(id)
       begin
         xml = REXML::Document.new(Invoker.instance.cibadmin('-Ql', '--xpath',
-          "//configuration//*[self::node or self::primitive or self::clone or self::group or self::master or self::rsc_order or self::rsc_colocation or self::rsc_location][@id='#{id}']"))
+          "//configuration//*[self::node or self::primitive or self::template or self::clone or self::group or self::master or self::rsc_order or self::rsc_colocation or self::rsc_location][@id='#{id}']"))
         raise CibObject::CibObjectError, _('Unable to parse cibadmin output') unless xml.root
         elem = xml.elements[1]
         obj = class_from_element_name(elem.name).instantiate(elem)
@@ -100,13 +100,26 @@ class CibObject
       end
     end
 
-    # Return all objects of a given type
-    def all(type)
+    # Return all objects of a given type.  Pass get_children=true when
+    # type is a parent element (see comment in function below for details).
+    def all(type, get_children=false)
       begin
-        a = []
         xml = REXML::Document.new(Invoker.instance.cibadmin('-Ql', '--xpath', "//#{type}"))
         raise CibObject::CibObjectError, _('Unable to parse cibadmin output') unless xml.root
-        xml.elements[1].elements.each do |e|
+        # Now we may have children we want (which may be an empty set), e.g.:
+        # when requesting "constraints", this works because there's always one
+        # constraints element in the CIB.  It'd work the same if requesting 
+        # resources or whatnot too.  Where it gets weird is if we want to
+        # request all elements of, say, type "template" or "primitive".
+        # In this case we either get back:
+        #  - "<null>" (no matches, but also invalid XML, so throws NotFoundError,
+        #    which is handled below).
+        #  - a single element of the reqeusted type, in which case that needs
+        #    to be returned as the only element in the array
+        #  - multiple elements inside an <xpath-query> parent
+        a = []
+        parent = get_children || xml.root.name == "xpath-query" ? xml.elements[1] : xml
+        parent.elements.each do |e|
           obj = class_from_element_name(e.name).instantiate(e)
           obj.instance_variable_set(:@id, e.attributes['id'])
           obj.instance_variable_set(:@xml, e)
@@ -116,7 +129,8 @@ class CibObject
       rescue SecurityError => e
         raise CibObject::PermissionDenied, e.message
       rescue NotFoundError => e
-        raise CibObject::RecordNotFound, e.message
+        # No objects of this type, this is fine - return empty array
+        []
       rescue RuntimeError => e
         raise CibObject::CibObjectError, e.message
       end
@@ -128,6 +142,7 @@ class CibObject
       @@map = {
         'node'            => Node,
         'primitive'       => Primitive,
+        'template'        => Template,
         'clone'           => Clone,
         'group'           => Group,
         'master'          => Master,

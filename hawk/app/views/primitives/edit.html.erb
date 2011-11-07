@@ -1,12 +1,12 @@
-<%= render 'form' %>
+<%= render 'primitives/form' %>
 <script type="text/javascript">
 $(function() {
-  $("#primitive_submit").val("<%= escape_javascript(_('Apply Changes')) %>")
-  $("#primitive_revert").show();
-  $("#primitive_id").attr("disabled", "disabled");
-  $("#primitive_r_class").attr("disabled", "disabled");
-  $("#primitive_r_provider").attr("disabled", "disabled");
-  $("#primitive_r_type").attr("disabled", "disabled");
+  $("#<%= id_prefix %>_submit").val("<%= escape_javascript(_('Apply Changes')) %>")
+  $("#<%= id_prefix %>_revert").show();
+  $("#<%= id_prefix %>_id").attr("disabled", "disabled");
+  $("#<%= id_prefix %>_r_class").attr("disabled", "disabled");
+  $("#<%= id_prefix %>_r_provider").attr("disabled", "disabled");
+  $("#<%= id_prefix %>_r_type").attr("disabled", "disabled");
 });
 </script>
 
