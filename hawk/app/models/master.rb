@@ -115,6 +115,10 @@ class Master < CibObject
       res
     end
 
+    def all
+      super "master"
+    end
+
     def metadata
       # TODO(must): are other meta attributes for master valid?
       {

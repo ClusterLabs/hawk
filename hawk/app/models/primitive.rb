@@ -229,6 +229,10 @@ class Primitive < CibObject
       res
     end
 
+    def all
+      super "primitive"
+    end
+
     def classes_and_providers
       # TODO(should): Save to static variable, but see comment in types()
       # below for issues (test with "mkdir /usr/lib/ocf/resource.d/foo",

@@ -69,12 +69,11 @@ class ResourcesController < ApplicationController
   end
 
   def index
-    resources = Resource.all
-    @primitives = resources.select {|r| r.class == Primitive }
-    @templates  = resources.select {|r| r.class == Template }
-    @groups     = resources.select {|r| r.class == Group }
-    @clones     = resources.select {|r| r.class == Clone }
-    @masters    = resources.select {|r| r.class == Master }
+    @primitives = Primitive.all
+    @templates  = Template.all
+    @groups     = Group.all
+    @clones     = Clone.all
+    @masters    = Master.all
     render :layout => "main"
   end
 
