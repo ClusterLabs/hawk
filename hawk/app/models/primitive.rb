@@ -86,7 +86,7 @@ class Primitive < CibObject
 
     # TODO(must): Ensure r_class, r_provider and r_type are sanitized
     provider = @r_provider.empty? ? '' : @r_provider + ':'
-    type = @r_template.empty? ? '#{@r_class}:#{provider}#{@r_type}' : "@#{r_template}"
+    type = @r_template.empty? ? "#{@r_class}:#{provider}#{@r_type}" : "@#{@r_template}"
     cmd = "primitive #{@id} #{type}"
     unless @params.empty?
       cmd += " params"
