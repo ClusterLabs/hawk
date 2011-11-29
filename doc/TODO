@@ -25,6 +25,8 @@ TODO
 * Failed stop with STONITH disabled, resulting in "Started $node (unmanaged)
   FAILED" in crm_mon, is erroneously reported as stopped resource in Hawk
   (although the failed stop error is shown).
+* "crm node fence ..." -- hawk shows node being fenced as online, whereas
+  crm_mon shows it as unclean.
 * Need to verify/match op interval when ignoring ops
 * Translate simple errors from crm (bnc#713917)
 ** Already did permission denied, but need to check what other simple failures
@@ -84,6 +86,7 @@ TODO
 
 == GUI: Explorer ==
 
+* Button to refresh current view up to "now"
 * Cache list might still apepar if you come back to the history page during
   generation (*sigh*)
 * Ability to delete cached reports?
@@ -94,6 +97,9 @@ TODO
 * May want verbosity increase on detail link
 * Really want details to show with selected line highligted, and "fixed"
   position so it floats down the page (positioning is horribly annoying :-/)
+* If doing a time period the ends *after* now, need to regenerate each time
+  in case something has changed since (could be tricky to detect -- alleviate
+  by allowing delete of cached reports)
 
 
 == GUI: Simulator ==
@@ -139,10 +145,13 @@ TODO
 * Consider renaming hb_report class to crm_report or similar?
 * "Generate hb_report" menu item etc. -- different nomenclature?  Cluster
   Report?  Debug Report?
+* Look at exposing -u and -S options
 
 
 == GUI: status ==
 
+* ESC key kills update request, leading to wiping out status!
+* unclear how update request interacts with simulator!
 * Need update to jQuery 1.4.3+ to fix jquery bug #6498 when request timed out
   on IE7.
 * Document update_period param for running in dev mode on port 3000 (else it's
