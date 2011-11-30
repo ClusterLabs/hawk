@@ -2,7 +2,7 @@
 $("#from_time").focus();
 alert("<%= escape_javascript(_("Start Time not specified")) %>");
 <% else %>
-<% if @hb_report.lastexit %>
+<% if !@hb_report.running? %>
 $("#hbreport-form").show();
 $("#hbreport-wait").hide();
   <% if @hb_report.lastexit == 0 %>

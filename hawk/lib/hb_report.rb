@@ -64,7 +64,7 @@ class HbReport
   end
 
   def running?
-    File.exists?(@pidfile)
+    Util.child_active(@pidfile)
   end
 
   # Returns [from_time, to_time], as strings.  Note that to_time might be
@@ -94,24 +94,16 @@ class HbReport
   # if two clients kick off generation at almost exactly the same time.
   # from_time and to_time (if specified) are expected to be in a sensible
   # format (e.g.: "%Y-%m-%d %H:%M")
-  # TODO(should): base errfile, outfile etc. off path.  This makes it a bit
-  # easier to eventually support multiple simultaneous rungs.  Also means
-  # you can get the error output for a given run, not just the last run!
   def generate(from_time, all_nodes=true, to_time=nil)
     [@outfile, @errfile, @exitfile, @timefile].each do |fn|
       File.unlink(fn) if File.exists?(fn)
     end
     @lastexit = nil
 
+    f = File.new(@timefile, "w")
+    f.write("#{from_time},#{to_time}")
+    f.close
     pid = fork {
-      f = File.new(@pidfile, "w")
-      f.write(Process.pid)
-      f.close
-
-      f = File.new(@timefile, "w")
-      f.write("#{from_time},#{to_time}")
-      f.close
-
       args = ["-f", from_time]
       args.push("-t", to_time) if to_time
       args.push("-Z")  # Remove destination directories if they exist
@@ -137,6 +129,9 @@ class HbReport
       # Delete pidfile
       File.unlink(@pidfile)
     }
+    f = File.new(@pidfile, "w")
+    f.write(pid)
+    f.close
     Process.detach(pid)
   end
 end

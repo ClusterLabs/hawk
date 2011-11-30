@@ -126,6 +126,25 @@ module Util
   end
   module_function :safe_x
 
+  # Check if a child process is active by pidfile, but also cleanup stale
+  # pidfile if child has gone away unexpectedly.
+  def child_active(pidfile)
+    active = false
+    if File.exists?(pidfile)
+      pid = File.new(pidfile).read.to_i
+      if pid > 0
+        begin
+          active = Process.getpgid(pid) == Process.getpgid(0)
+        rescue Errno::ESRCH
+          # no such process (but nothing to do; active is already false)
+        end
+      end
+      File.unlink(pidfile) unless active
+    end
+    active
+  end
+  module_function :child_active
+
   # Gives back a string, boolean if value is "true" or "false", or nil
   # if initial value was nil (or boolean false) and there's no default
   # TODO(should): be nice to get integers auto-converted too
