@@ -19,7 +19,7 @@ $(function() {
     $.get("<%= explorer_path %>", {
       "from_time": "<%= escape_javascript(@from_time) %>",
       "to_time": "<%= escape_javascript(@to_time) %>",
-      "display": true }, null, "script");
+      "display": true, "refresh": true }, null, "script");
   }, 10000);  // Somewhat arbitrary, but this is generally long-running
 <% end %>
   $("#filter").submit(function() {

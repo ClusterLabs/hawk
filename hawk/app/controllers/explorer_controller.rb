@@ -88,6 +88,13 @@ class ExplorerController < ApplicationController
         err.split(/\n/).each do |e|
           @errors << e
         end
+      elsif params[:refresh]
+        # This is a "refresh" request, thus we're trying to get updated status
+        # from an existing run, except hb_report is not running and there's no
+        # report file, thus something died horribly.
+        # TODO(should): This whole sequence might still be a little fragile: re-evaluate.
+        @peinputs = []   # neccessary for correct display to trigger
+        @errors += @hb_report.err_filtered
       else
         @hb_report.generate(@from_time, true, @to_time)
       end

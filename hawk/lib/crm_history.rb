@@ -43,7 +43,7 @@ module CrmHistory
   @exitfile = "#{RAILS_ROOT}/tmp/pids/crm_history.exit"
 
   def active?
-    File.exists?(@pidfile)
+    Util.child_active(@pidfile)
   end
   module_function :active?
 
@@ -79,15 +79,10 @@ module CrmHistory
       File.unlink(fn) if File.exists?(fn)
     end
 
+    f = File.new(@cmdfile, "w")
+    f.write(cmd.join(" "))
+    f.close
     pid = fork {
-      f = File.new(@pidfile, "w")
-      f.write(Process.pid)
-      f.close
-
-      f = File.new(@cmdfile, "w")
-      f.write(cmd.join(" "))
-      f.close
-
       stdin, stdout, stderr, thread = Util.run_as("root", "crm", "history", *cmd)
       stdin.close
       f = File.new(@outfile, "w")
@@ -104,6 +99,9 @@ module CrmHistory
       f.close
       File.unlink(@pidfile)
     }
+    f = File.new(@pidfile, "w")
+    f.write(pid)
+    f.close
     Process.detach(pid)
 
     # Note: don't rely on there being any progressive status text
