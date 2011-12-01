@@ -16,6 +16,8 @@ TODO
 
 == Core/General == 
 
+* All instances of jQuery.get() need to be replaced with .ajax() so we can
+  handle errors properly (e.g.: 500 when disk is full running hb_report etc.)
 * rescue_from with redirect in ApplicationController is probably a bit fragile
   when (possibly) called from, say, NodesController inside dialog.
 * Ensure Hawk's gettext usage works with translation-update package
@@ -86,6 +88,8 @@ TODO
 
 == GUI: Explorer ==
 
+* Enter start time" 2011-11-00" (i.e. bogus); get 500 internal server error
+  (range exception), but no feedback in UI
 * Button to refresh current view up to "now"
 * Cache list might still apepar if you come back to the history page during
   generation (*sigh*)
@@ -134,6 +138,8 @@ TODO
 
 == GUI: hb_report ==
 
+* HbReport's forked ruby child stalls/never exits if you kill its hb_report
+  children.  WTF?
 * hb_report: $("#hbreport-status").html doesn't use escape_html...?
 * Need to include node name in hb_report (likewise explorer), or
   simultaneous runs from separate nodes will slaughter each other.
