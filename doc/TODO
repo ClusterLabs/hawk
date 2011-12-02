@@ -16,6 +16,7 @@ TODO
 
 == Core/General == 
 
+* Use PerRequestCache in more places if/when possible.
 * All instances of jQuery.get() need to be replaced with .ajax() so we can
   handle errors properly (e.g.: 500 when disk is full running hb_report etc.)
 * rescue_from with redirect in ApplicationController is probably a bit fragile
