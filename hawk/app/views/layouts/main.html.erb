@@ -44,7 +44,7 @@ tabs += [
   { :controllers => [ "explorer" ],
     :icon => "icons/history.png", :label => _("History Explorer"),
     :path => explorer_path }
-] if has_feature?(:crm_history) && is_god?
+] if Util.has_feature?(:crm_history) && is_god?
 
 tabs += [
   { :controllers => [ "wizard" ],

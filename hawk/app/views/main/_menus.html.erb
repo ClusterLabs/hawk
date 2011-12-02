@@ -43,7 +43,7 @@ $(function() {
         $("#dialog").dialog("open");
       }
     }
-    <% if has_feature?(:crm_history) && is_god? %>
+    <% if Util.has_feature?(:crm_history) && is_god? %>
     ,
     {
       label: "<%=h escape_javascript _('View Recent Events...') %>",
@@ -136,7 +136,7 @@ $(function() {
         confirm_op(this.label, item_id(target.attr("id")), "resource", "cleanup");
       }
     }
-    <% if has_feature?(:crm_history) && is_god? %>
+    <% if Util.has_feature?(:crm_history) && is_god? %>
     ,
     {
       separator: true

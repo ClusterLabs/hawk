@@ -26,7 +26,7 @@ var req = null;
 var r_meta = <%= Primitive.metadata(@res.r_class, @res.r_provider, @res.r_type).to_json %>;
 
 <%
-if has_feature?(:rsc_template) && !is_template?
+if Util.has_feature?(:rsc_template) && !is_template?
   template_info = Hash[::Template.all.map{|t| [t.id, {
     :c => t.r_class, :p => t.r_provider, :t => t.r_type }] }]
   # TODO(should): probably want natcmp
@@ -45,7 +45,7 @@ var keypress_hack = {
   r_class: "<%= escape_javascript(@res.r_class) %>",
   r_provider: "<%= escape_javascript(@res.r_provider) %>",
   r_type: "<%= escape_javascript(@res.r_type) %>"
-<% if has_feature?(:rsc_template) && !is_template? %>
+<% if Util.has_feature?(:rsc_template) && !is_template? %>
   , r_template: "<%= escape_javascript(@res.r_template) %>"
 <% end %>
 };
@@ -156,7 +156,7 @@ function show_info() {
 function enable_apply() {
   anything_changed = true;
   var enable = $("#<%= id_prefix %>_id").val() != "" && $("#<%= id_prefix %>_r_type").val() != "";
-<% if has_feature?(:rsc_template) && !is_template? %>
+<% if Util.has_feature?(:rsc_template) && !is_template? %>
   if ($("#<%= id_prefix %>_use_template")[0].checked) {
     enable = $("#<%= id_prefix %>_id").val() != "" && $("#<%= id_prefix %>_r_template").val() != "";
   }
@@ -209,7 +209,7 @@ $(function() {
       keypress_hack.r_type = $(this).val();
     });
 
-<% if has_feature?(:rsc_template) && !is_template? %>
+<% if Util.has_feature?(:rsc_template) && !is_template? %>
   $("#<%= id_prefix %>_r_template")
     .bind("keyup change", function() {
       if ($(this).val() != keypress_hack.r_template) {
@@ -358,7 +358,7 @@ $(function() {
       {}, { :class => 'type' } %><span id="label_r_type" style="display: none;"></span></td>
     <td><span id="type-spinner" style="display: none;"><%= image_tag 'spinner-16x16.gif', :alt => '' %></span></td>
   </tr>
-<% if has_feature?(:rsc_template) && !is_template? %>
+<% if Util.has_feature?(:rsc_template) && !is_template? %>
   <tr>
     <td></td>
     <td colspan="2" style="white-space: nowrap;">

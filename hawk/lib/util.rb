@@ -175,4 +175,21 @@ module Util
     end
   end
   module_function :crm_get_msec
+
+  # Check if some feature is supported by the installed version of pacemaker.
+  # TODO(should): expand to include other checks (e.g. pcmk installed).
+  def has_feature?(feature)
+    case feature
+    when :crm_history
+      %x[echo quit | /usr/sbin/crm history 2>&1]
+      $?.exitstatus == 0
+    when :rsc_ticket
+      %x[/usr/sbin/crm configure rsc_ticket 2>&1].starts_with?("usage")
+    when :rsc_template
+      %x[/usr/sbin/crm configure rsc_template 2>&1].starts_with?("usage")
+    else
+      false
+    end
+  end
+  module_function :has_feature?
 end

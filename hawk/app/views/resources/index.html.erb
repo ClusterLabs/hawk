@@ -102,7 +102,7 @@ $(function() {
     menu_alt:   "<%= escape_javascript _('New Resource') %>",
     label:      "<%=h escape_javascript _('Primitive') %>",
     open:       <%= @primitives.any? ? 'true' : 'false' %> });
-<% if has_feature?(:rsc_template) %>
+<% if Util.has_feature?(:rsc_template) %>
   $("#templates").panel({
     menu_href:  url_root + "/cib/live/templates/new",
     menu_icon:  url_root + "/images/icons/add.png",
@@ -151,7 +151,7 @@ $(function() {
 </table>
 </div>
 
-<% if has_feature?(:rsc_template) %>
+<% if Util.has_feature?(:rsc_template) %>
 <div id="templates">
 <table>
   <tr<%= ' style="display: none;"' if @templates.any? %>><td><%=h _('(No templates defined)') %></td></tr>
