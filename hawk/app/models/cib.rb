@@ -361,8 +361,6 @@ class Cib < CibObject
           # key to not be there?
           expected = op.attributes.has_key?('transition-key') ? op.attributes['transition-key'].split(':')[2].to_i : rc_code
 
-          is_probe = operation == 'monitor' && op.attributes['interval'].to_i == 0
-
           # skip notifies, deletes, cancels
           next if operation == 'notify' || operation == 'delete' || operation == 'cancel'
 
@@ -376,8 +374,12 @@ class Cib < CibObject
             next
           end
 
-          if !is_probe && rc_code != expected
-            # busted somehow
+          is_probe = operation == 'monitor' && op.attributes['interval'].to_i == 0
+          # Report failure if rc_code != expected, unless it's a probe,
+          # in which case we only report failure when rc_code is not
+          # 0 (running), 7 (not running) or 8 (running master), i.e. is
+          # some error value.
+          if rc_code != expected && (!is_probe || (rc_code != 0 && rc_code != 7 && rc_code != 8))
 
             # if on-fail == ignore for this op, pretend it succeeded for the purposes of state calculation
             ignore_failure = false
