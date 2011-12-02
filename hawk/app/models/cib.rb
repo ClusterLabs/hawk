@@ -200,7 +200,7 @@ class Cib < CibObject
   # Notes that errors here overloads what ActiveRecord would
   # use for reporting errors when editing resources.  This
   # should almost certainly be changed.
-  attr_reader :dc, :epoch, :nodes, :resources, :crm_config, :errors, :resource_count
+  attr_reader :dc, :epoch, :nodes, :resources, :templates, :crm_config, :errors, :resource_count
 
   def initialize(id, user, use_file = false)
     @errors = []
@@ -301,6 +301,18 @@ class Cib < CibObject
     @xml.elements.each('cib/configuration/resources/*[self::primitive or self::group or self::clone or self::master]') do |r|
       @resources << get_resource(r)
     end
+    # Templates deliberately kept separate from resources, because
+    # we need an easy way of listing them separately, and they don't
+    # have state we care about.
+    @templates = []
+    @xml.elements.each('cib/configuration/resources/template') do |t|
+      @templates << {
+        :id => t.attributes['id'],
+        :class => t.attributes['class'],
+        :provider => t.attributes['provider'],
+        :type => t.attributes['type']
+      }
+    end if Util.has_feature?(:rsc_template)
 
     for node in @nodes
       next unless node[:state] == :online
