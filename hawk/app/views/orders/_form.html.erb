@@ -35,8 +35,10 @@ $(function() {
       resources: <%=
         # only allows top level resources (not children of clones/groups)
         # TODO(should): look at allowing group children?
-        @cib.resources.select.map{|r|
-          r[:id] }.sort{|a,b| a.natcmp(b, true)}.to_json
+        (@cib.resources.map{|r|
+          r[:id] } +
+        @cib.templates.map{|t|
+          t[:id] }).sort{|a,b| a.natcmp(b, true)}.to_json
       %>,
       chain: <%= @ord.resources.map {|set|
         if (set[:sequential])
