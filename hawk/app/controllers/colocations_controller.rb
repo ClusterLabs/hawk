@@ -116,6 +116,8 @@ class ColocationsController < ApplicationController
         m << set
         set = {}
       else
+        # r[:action] here is deliberate - ui.constraint always
+        # uses the term action, even when referring to roles.
         set[:role] = r[:action] != "" ? r[:action] : nil
         set[:resources] ||= []
         set[:resources] << { :id => r[:id] }

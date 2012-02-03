@@ -176,13 +176,16 @@ class Colocation < Constraint
     # then iterate through them (unlike the Order model, where
     # this is unnecessary)
 
-    collapsed = [ @resources.first ]
+    # Have to clone out of @resources, else we've just got references
+    # to elements of @resources inside collapsed, which causes @resources
+    # to be modified, which we *really* don't want.
+    collapsed = [ @resources.first.clone ]
     @resources.last(@resources.length - 1).each do |set|
       if collapsed.last[:sequential] == set[:sequential] &&
          collapsed.last[:role] == set[:role]
         collapsed.last[:resources] += set[:resources]
       else
-        collapsed << set
+        collapsed << set.clone
       end
     end
 
