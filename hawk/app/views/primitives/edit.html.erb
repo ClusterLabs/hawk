@@ -7,6 +7,10 @@ $(function() {
   $("#<%= id_prefix %>_r_class").attr("disabled", "disabled");
   $("#<%= id_prefix %>_r_provider").attr("disabled", "disabled");
   $("#<%= id_prefix %>_r_type").attr("disabled", "disabled");
+<% if Util.has_feature?(:rsc_template) && !is_template? %>
+  $("#<%= id_prefix %>_r_template").attr("disabled", "disabled");
+  $("#<%= id_prefix %>_use_template").attr("disabled", "disabled");
+<% end %>
 });
 </script>
 
