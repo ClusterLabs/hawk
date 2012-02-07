@@ -589,6 +589,7 @@ class FCGI
   def self::each_cgi(*args)
     require 'cgi'
 
+    # RORSCAN_INL
     eval(<<-EOS,TOPLEVEL_BINDING)
     class CGI
       public :env_table
