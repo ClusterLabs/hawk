@@ -38,6 +38,7 @@ module Util
   # else the process won't be complete when you try to get the
   # exit status.
   def popen3(*cmd)
+    raise SecurityError, "Util::popen3 called with < 2 args" if cmd.length < 2
     pw = IO::pipe   # pipe[0] for read, pipe[1] for write
     pr = IO::pipe
     pe = IO::pipe
@@ -56,6 +57,7 @@ module Util
       STDERR.reopen(pe[1])
       pe[1].close
 
+      # RORSCAN_INL: cmd always has > 1 elem, so safe from shell injection
       exec(*cmd)
     }
     wait_thr = Process.detach(pid)
@@ -83,6 +85,7 @@ module Util
     # let it use a group-writable subdirectory of our tmp directory
     # so unprivileged users can actually invoke crm without warnings
     ENV['HOME'] = File.join(RAILS_ROOT, 'tmp', 'home')
+    # RORSCAN_INL: mutli-arg invocation safe from shell injection.
     pi = popen3('/usr/sbin/hawk_invoke', user, *cmd)
     if defined? yield
       begin
@@ -100,6 +103,7 @@ module Util
   # May block indefinitely if the command executed is expecting something
   # on STDIN (untested)
   def safe_x(*cmd)
+    raise SecurityError, "Util::safe_x called with < 2 args" if cmd.length < 2
     pr = IO::pipe   # pipe[0] for read, pipe[1] for write
     pe = IO::pipe
     pid = fork{
@@ -112,6 +116,7 @@ module Util
         pe[0].close
         STDERR.reopen(pe[1])
         pe[1].close
+        # RORSCAN_INL: cmd always has > 1 elem, so safe from shell injection
         exec(*cmd)
       }
       Process.wait
