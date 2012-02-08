@@ -69,7 +69,7 @@ class ClonesController < ApplicationController
   end
 
   def edit
-    @res = Clone.find params[:id]
+    @res = Clone.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
   end
 
   def update
@@ -81,7 +81,7 @@ class ClonesController < ApplicationController
       redirect_to cib_resources_path
       return
     end
-    @res = Clone.find params[:id]
+    @res = Clone.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
     if @res.update_attributes(params[:clone])  # RORSCAN_ITL (mass ass. OK)
       flash[:highlight] = _('Clone updated successfully')
       redirect_to :action => 'edit', :id => @res.id

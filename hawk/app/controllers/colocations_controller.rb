@@ -65,7 +65,7 @@ class ColocationsController < ApplicationController
   end
 
   def edit
-    @col = Colocation.find params[:id]
+    @col = Colocation.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
   end
 
   def update
@@ -77,7 +77,7 @@ class ColocationsController < ApplicationController
       redirect_to cib_constraints_path
       return
     end
-    @col = Colocation.find params[:id]
+    @col = Colocation.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
     normalize_resources!(params[:colocation])
     if @col.update_attributes(params[:colocation])  # RORSCAN_ITL (mass ass. OK)
       flash[:highlight] = _('Constraint updated successfully')

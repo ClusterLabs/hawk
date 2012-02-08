@@ -67,7 +67,7 @@ class PrimitivesController < ApplicationController
   end
 
   def edit
-    @res = Primitive.find params[:id]
+    @res = Primitive.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
   end
 
   def update
@@ -79,7 +79,7 @@ class PrimitivesController < ApplicationController
       redirect_to cib_resources_path
       return
     end
-    @res = Primitive.find params[:id]
+    @res = Primitive.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
     if @res.update_attributes(params[:primitive])  # RORSCAN_ITL (mass ass. OK)
       flash[:highlight] = _('Resource updated successfully')
       redirect_to :action => 'edit', :id => @res.id
@@ -95,7 +95,7 @@ class PrimitivesController < ApplicationController
   # resources, or more if there's depths etc.).
   def monitor_intervals
     intervals = []
-    @res = Primitive.find params[:id]
+    @res = Primitive.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
     @res.ops["monitor"].each do |op|
       intervals << Util.crm_get_msec(op["interval"])
     end if @res.ops.has_key?("monitor")

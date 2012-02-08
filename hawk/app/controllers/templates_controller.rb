@@ -71,7 +71,7 @@ class TemplatesController < ApplicationController
   end
 
   def edit
-    @res = Template.find params[:id]
+    @res = Template.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
     render 'primitives/edit'
   end
 
@@ -84,7 +84,7 @@ class TemplatesController < ApplicationController
       redirect_to cib_resources_path
       return
     end
-    @res = Template.find params[:id]
+    @res = Template.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
     if @res.update_attributes(params[:template])  # RORSCAN_ITL (mass ass. OK)
       flash[:highlight] = _('Template updated successfully')
       redirect_to :action => 'edit', :id => @res.id

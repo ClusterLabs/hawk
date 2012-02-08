@@ -69,7 +69,7 @@ class GroupsController < ApplicationController
   end
 
   def edit
-    @res = Group.find params[:id]
+    @res = Group.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
   end
 
   def update
@@ -81,7 +81,7 @@ class GroupsController < ApplicationController
       redirect_to cib_resources_path
       return
     end
-    @res = Group.find params[:id]
+    @res = Group.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
     if @res.update_attributes(params[:group])  # RORSCAN_ITL (mass ass. OK)
       flash[:highlight] = _('Group updated successfully')
       redirect_to :action => 'edit', :id => @res.id

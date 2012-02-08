@@ -63,7 +63,7 @@ class CrmConfigController < ApplicationController
     # Strictly, this should give you "not found" if the
     # property set doesn't exist (right now it shows an
     # empty set)
-    @crm_config = @cib.find_crm_config(params[:id])
+    @crm_config = @cib.find_crm_config(params[:id])  # RORSCAN_ITL (authz via cibadmin)
   end
 
   def show
@@ -104,7 +104,7 @@ class CrmConfigController < ApplicationController
     #               might be a bit unsafe.
     #
 
-    current_config = @cib.find_crm_config(params[:id])
+    current_config = @cib.find_crm_config(params[:id])  # RORSCAN_ITL (authz via cibadmin)
 
     # Want to delete properties that currently exist, aren't readonly
     # or advanced (invisible in editor), and aren't in the list of
@@ -159,6 +159,7 @@ class CrmConfigController < ApplicationController
   # When this is fixed, config/routes.rb needs to be changed to match, as
   # does crm_config/edit.html.erb.
   def info
+    # RORSCAN_INL (authz via cibadmin)
     render :json => @cib.find_crm_config(params[:id]).all_types
   end
 

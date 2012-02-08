@@ -45,7 +45,7 @@ class NodesController < ApplicationController
   end
 
   def show
-    @node = Node.find params[:id]
+    @node = Node.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
   end
 
   # Don't strictly need CIB for this...

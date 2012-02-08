@@ -66,7 +66,7 @@ class OrdersController < ApplicationController
   end
 
   def edit
-    @ord = Order.find params[:id]
+    @ord = Order.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
   end
 
   def update
@@ -78,7 +78,7 @@ class OrdersController < ApplicationController
       redirect_to cib_constraints_path
       return
     end
-    @ord = Order.find params[:id]
+    @ord = Order.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
     params[:order][:symmetrical] = params[:order][:symmetrical] == "true" ? true : false
     normalize_resources!(params[:order])
     if @ord.update_attributes(params[:order])  # RORSCAN_ITL (mass ass. OK)

@@ -69,7 +69,7 @@ class MastersController < ApplicationController
   end
 
   def edit
-    @res = Master.find params[:id]
+    @res = Master.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
   end
 
   def update
@@ -81,7 +81,7 @@ class MastersController < ApplicationController
       redirect_to cib_resources_path
       return
     end
-    @res = Master.find params[:id]
+    @res = Master.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
     if @res.update_attributes(params[:master])  # RORSCAN_ITL (mass ass. OK)
       flash[:highlight] = _('Master/Slave updated successfully')
       redirect_to :action => 'edit', :id => @res.id

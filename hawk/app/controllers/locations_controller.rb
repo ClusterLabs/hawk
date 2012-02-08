@@ -64,7 +64,7 @@ class LocationsController < ApplicationController
   end
 
   def edit
-    @loc = Location.find params[:id]
+    @loc = Location.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
   end
 
   def update
@@ -76,7 +76,7 @@ class LocationsController < ApplicationController
       redirect_to cib_constraints_path
       return
     end
-    @loc = Location.find params[:id]
+    @loc = Location.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
     if @loc.update_attributes(params[:location])  # RORSCAN_ITL (mass ass. OK)
       flash[:highlight] = _('Constraint updated successfully')
       redirect_to :action => 'edit', :id => @loc.id
