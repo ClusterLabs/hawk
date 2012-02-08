@@ -59,7 +59,7 @@ class ClonesController < ApplicationController
       redirect_to cib_resources_path
       return
     end
-    @res = Clone.new params[:clone]
+    @res = Clone.new params[:clone]  # RORSCAN_ITL (mass ass. OK)
     if @res.save
       flash[:highlight] = _('Clone created successfully')
       redirect_to :action => 'edit', :id => @res.id
@@ -82,7 +82,7 @@ class ClonesController < ApplicationController
       return
     end
     @res = Clone.find params[:id]
-    if @res.update_attributes(params[:clone])
+    if @res.update_attributes(params[:clone])  # RORSCAN_ITL (mass ass. OK)
       flash[:highlight] = _('Clone updated successfully')
       redirect_to :action => 'edit', :id => @res.id
     else

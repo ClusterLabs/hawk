@@ -61,7 +61,7 @@ class TemplatesController < ApplicationController
       redirect_to cib_resources_path
       return
     end
-    @res = Template.new params[:template]
+    @res = Template.new params[:template]  # RORSCAN_ITL (mass ass. OK)
     if @res.save
       flash[:highlight] = _('Template created successfully')
       redirect_to :action => 'edit', :id => @res.id
@@ -85,7 +85,7 @@ class TemplatesController < ApplicationController
       return
     end
     @res = Template.find params[:id]
-    if @res.update_attributes(params[:template])
+    if @res.update_attributes(params[:template])  # RORSCAN_ITL (mass ass. OK)
       flash[:highlight] = _('Template updated successfully')
       redirect_to :action => 'edit', :id => @res.id
     else

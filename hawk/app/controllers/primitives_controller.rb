@@ -57,7 +57,7 @@ class PrimitivesController < ApplicationController
       redirect_to cib_resources_path 
       return
     end
-    @res = Primitive.new params[:primitive]
+    @res = Primitive.new params[:primitive]  # RORSCAN_ITL (mass ass. OK)
     if @res.save
       flash[:highlight] = _('Resource created successfully')
       redirect_to :action => 'edit', :id => @res.id
@@ -80,7 +80,7 @@ class PrimitivesController < ApplicationController
       return
     end
     @res = Primitive.find params[:id]
-    if @res.update_attributes(params[:primitive])
+    if @res.update_attributes(params[:primitive])  # RORSCAN_ITL (mass ass. OK)
       flash[:highlight] = _('Resource updated successfully')
       redirect_to :action => 'edit', :id => @res.id
     else

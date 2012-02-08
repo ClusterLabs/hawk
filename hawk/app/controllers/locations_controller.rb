@@ -54,7 +54,7 @@ class LocationsController < ApplicationController
       redirect_to cib_constraints_path
       return
     end
-    @loc = Location.new params[:location]
+    @loc = Location.new params[:location]  # RORSCAN_ITL (mass ass. OK)
     if @loc.save
       flash[:highlight] = _('Constraint created successfully')
       redirect_to :action => 'edit', :id => @loc.id
@@ -77,7 +77,7 @@ class LocationsController < ApplicationController
       return
     end
     @loc = Location.find params[:id]
-    if @loc.update_attributes(params[:location])
+    if @loc.update_attributes(params[:location])  # RORSCAN_ITL (mass ass. OK)
       flash[:highlight] = _('Constraint updated successfully')
       redirect_to :action => 'edit', :id => @loc.id
     else

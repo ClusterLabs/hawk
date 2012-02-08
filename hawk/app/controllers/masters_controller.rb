@@ -59,7 +59,7 @@ class MastersController < ApplicationController
       redirect_to cib_resources_path
       return
     end
-    @res = Master.new params[:master]
+    @res = Master.new params[:master]  # RORSCAN_ITL (mass ass. OK)
     if @res.save
       flash[:highlight] = _('Master/Slave created successfully')
       redirect_to :action => 'edit', :id => @res.id
@@ -82,7 +82,7 @@ class MastersController < ApplicationController
       return
     end
     @res = Master.find params[:id]
-    if @res.update_attributes(params[:master])
+    if @res.update_attributes(params[:master])  # RORSCAN_ITL (mass ass. OK)
       flash[:highlight] = _('Master/Slave updated successfully')
       redirect_to :action => 'edit', :id => @res.id
     else

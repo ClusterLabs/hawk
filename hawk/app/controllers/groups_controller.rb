@@ -59,7 +59,7 @@ class GroupsController < ApplicationController
       redirect_to cib_resources_path
       return
     end
-    @res = Group.new params[:group]
+    @res = Group.new params[:group]  # RORSCAN_ITL (mass ass. OK)
     if @res.save
       flash[:highlight] = _('Group created successfully')
       redirect_to :action => 'edit', :id => @res.id
@@ -82,7 +82,7 @@ class GroupsController < ApplicationController
       return
     end
     @res = Group.find params[:id]
-    if @res.update_attributes(params[:group])
+    if @res.update_attributes(params[:group])  # RORSCAN_ITL (mass ass. OK)
       flash[:highlight] = _('Group updated successfully')
       redirect_to :action => 'edit', :id => @res.id
     else

@@ -27,6 +27,13 @@ smaller changes.
 
 == Hacking ==
 
+=== @attributes in CibObject subclasses ===
+
+See e.g.: clone.rb.  Set @attributes in your subclass to the list
+of attributes you want users to be able to edit.  Anything in that
+list is subject to mass assignment via CibObject::set_attributes.
+Nothing outside that list will be set by mass assignment.
+
 === New MVC (e.g.: for Constraints) ===
 
 ----------------------------------------

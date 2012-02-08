@@ -56,7 +56,7 @@ class OrdersController < ApplicationController
     end
     params[:order][:symmetrical] = params[:order][:symmetrical] == "true" ? true : false
     normalize_resources!(params[:order])
-    @ord = Order.new params[:order]
+    @ord = Order.new params[:order]  # RORSCAN_ITL (mass ass. OK)
     if @ord.save
       flash[:highlight] = _('Constraint created successfully')
       redirect_to :action => 'edit', :id => @ord.id
@@ -81,7 +81,7 @@ class OrdersController < ApplicationController
     @ord = Order.find params[:id]
     params[:order][:symmetrical] = params[:order][:symmetrical] == "true" ? true : false
     normalize_resources!(params[:order])
-    if @ord.update_attributes(params[:order])
+    if @ord.update_attributes(params[:order])  # RORSCAN_ITL (mass ass. OK)
       flash[:highlight] = _('Constraint updated successfully')
       redirect_to :action => 'edit', :id => @ord.id
     else

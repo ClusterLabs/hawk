@@ -55,7 +55,7 @@ class ColocationsController < ApplicationController
       return
     end
     normalize_resources!(params[:colocation])
-    @col = Colocation.new params[:colocation]
+    @col = Colocation.new params[:colocation]  # RORSCAN_ITL (mass ass. OK)
     if @col.save
       flash[:highlight] = _('Constraint created successfully')
       redirect_to :action => 'edit', :id => @col.id
@@ -79,7 +79,7 @@ class ColocationsController < ApplicationController
     end
     @col = Colocation.find params[:id]
     normalize_resources!(params[:colocation])
-    if @col.update_attributes(params[:colocation])
+    if @col.update_attributes(params[:colocation])  # RORSCAN_ITL (mass ass. OK)
       flash[:highlight] = _('Constraint updated successfully')
       redirect_to :action => 'edit', :id => @col.id
     else
