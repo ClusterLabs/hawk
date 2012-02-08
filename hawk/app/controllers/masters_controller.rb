@@ -39,7 +39,7 @@ class MastersController < ApplicationController
     # This is overkill - we actually only need the cib for its id,
     # and for getting a list of primitives and groups that can be
     # master children when creating a new master.
-    @cib = Cib.new params[:cib_id], current_user
+    @cib = Cib.new params[:cib_id], current_user # RORSCAN_ITL (not mass assignment)
   end
 
   def initialize

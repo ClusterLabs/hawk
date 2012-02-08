@@ -49,6 +49,8 @@ class CibController < ApplicationController
 
   def show
     begin
+      # Not mass assignment (CWE-642) or improper access control (CWE-285)
+      # because Cib::initialize sanitizes params[:id], so RORSCAN_INL
       cib = Cib.new(params[:id], current_user, params[:debug] == 'file')
     rescue ArgumentError => e
       render :status => :not_found, :json => { :errors => [ e.message ] }

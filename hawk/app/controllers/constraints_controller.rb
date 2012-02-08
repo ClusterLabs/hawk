@@ -35,7 +35,7 @@ class ConstraintsController < ApplicationController
   before_filter :get_cib
 
   def get_cib
-    @cib = Cib.new params[:cib_id], current_user
+    @cib = Cib.new params[:cib_id], current_user # RORSCAN_ITL (not mass assignment)
   end
 
   def initialize
