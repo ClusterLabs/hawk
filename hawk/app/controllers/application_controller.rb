@@ -38,7 +38,7 @@ class ApplicationController < ActionController::Base
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   # Scrub sensitive parameters from your log
-  filter_parameter_logging :password
+  filter_parameter_logging :password    # RORSCAN_ITL
 
   # Force back to status page if e.g.: cluster offline when trying to access
   # resources, etc.
