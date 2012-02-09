@@ -5,9 +5,11 @@ SESSION_SECRET_FILE = File.join(RAILS_ROOT, 'tmp', 'session_secret')
 # Your secret key for verifying cookie session data integrity.
 # Uses contents of $RAILS_ROOT/tmp/session_secret.  Creates this
 # file with suitable random contents if it doesn't already exist.
+# Note that ror-sec-scanner picks up secret assignment, but this
+# is OK to ignore.
 ActionController::Base.session = {
   :key         => '_hawk_session',
-  :secret      => if File.exist?(SESSION_SECRET_FILE)
+  :secret      => if File.exist?(SESSION_SECRET_FILE)  # RORSCAN_ITL
                     File.read(SESSION_SECRET_FILE)
                   else
                     # mkdir tmp here if it doesn't already exist (necessary when
