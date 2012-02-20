@@ -1,0 +1,90 @@
+changeset:   612:a233e73886e7
+tag:         tip
+user:        Tim Serong <tserong@suse.com>
+date:        Mon Feb 20 15:34:21 2012 +1100
+summary:     Misc: Clean up SessionsController::create
+
+This makes control flow in SessionsController::create cleaner, and
+allows single quotes and other oddball characters in the username
+(the single quoted string is replaced by Shellwords::escape), but
+there's a rumour Shellwords::escape misses some meta characters
+(see bnc#745611), so we have to verify that before applying this
+patch.
+
+diff -r ffab406528ed -r a233e73886e7 hawk/app/controllers/sessions_controller.rb
+--- a/hawk/app/controllers/sessions_controller.rb	Mon Feb 13 22:13:33 2012 +1100
++++ b/hawk/app/controllers/sessions_controller.rb	Mon Feb 20 15:34:21 2012 +1100
+@@ -28,6 +28,8 @@
+ #
+ #======================================================================
+ 
++require 'shellwords'
++
+ class SessionsController < ApplicationController
+   layout 'main'
+ 
+@@ -48,36 +50,36 @@ class SessionsController < ApplicationCo
+   # called from login screen
+   HAWK_CHKPWD = '/usr/sbin/hawk_chkpwd'
+   def create
+-    if params[:username].blank?
++    # Probably overly paranoid ensurance that we've got actual strings,
++    # and not some weird hash or something.
++    username = params[:username].to_s
++    password = params[:password].to_s
++    if username.blank?
+       flash[:warning] = _('Username not specified')
+-      redirect_to :action => 'new'
+-    elsif params[:username].include?("'") || params[:username].include?("$")
+-      # No ' or $ characters, because this is going to the shell
+-      flash[:warning] = _('Invalid username')
+-      redirect_to :action => 'new'
+-    elsif params[:password].blank?
++      redirect_to :action => 'new' and return
++    end
++    if password.blank?
+       flash[:warning] = _('Password not specified')
+-      redirect_to :action => 'new', :username => params[:username]
++      redirect_to :action => 'new', :username => username and return
++    end
++    unless File.exists?(HAWK_CHKPWD) && File.executable?(HAWK_CHKPWD)
++      flash[:warning] = _('%s is not installed') % HAWK_CHKPWD
++      redirect_to :action => 'new', :username => username and return
++    end
++    # RORSCAN_INL: popen call is safe, Shellwords.escape() is safe.
++    IO.popen("#{HAWK_CHKPWD} passwd #{Shellwords.escape(username)}", 'w+') do |pipe|
++      pipe.write password
++      pipe.close_write
++    end
++    if $?.exitstatus == 0
++      # The user can log in, and they're in our required group
++      reset_session
++      session[:username] = username
++      redirect_back_or_default root_url
+     else
+-      if File.exists?(HAWK_CHKPWD) && File.executable?(HAWK_CHKPWD)
+-        IO.popen("#{HAWK_CHKPWD} passwd '#{params[:username]}'", 'w+') do |pipe|
+-          pipe.write params[:password]
+-          pipe.close_write
+-        end
+-        if $?.exitstatus == 0
+-          # The user can log in, and they're in our required group
+-          reset_session
+-          session[:username] = params[:username]
+-          redirect_back_or_default root_url
+-        else
+-          # No dice...
+-          flash[:warning] = _('Invalid username or password')
+-          redirect_to :action => 'new', :username => params[:username]
+-        end
+-      else
+-        flash[:warning] = _('%s is not installed') % HAWK_CHKPWD
+-        redirect_to :action => 'new', :username => params[:username]
+-      end
++      # No dice...
++      flash[:warning] = _('Invalid username or password')
++      redirect_to :action => 'new', :username => username
+     end
+   end
+ 
+

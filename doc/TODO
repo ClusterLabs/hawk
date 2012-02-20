@@ -85,6 +85,8 @@ TODO
   duplicate requests (should never happen, but might if you run e.g.:
   update_cib() from firebug).
 * look at memory usage; hawk running under mongrel eventually goes OOM
+* Integrate doc/sessions_controller-cleanup.patch, once we verify that
+  Shellwords::escape is kosher.
 
 
 == UI Controls ==
