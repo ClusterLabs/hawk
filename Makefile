@@ -62,7 +62,7 @@ BINDIR = /usr/bin
 SBINDIR = /usr/sbin
 
 all: scripts/hawk.$(INIT_STYLE) hawk/config/lighttpd.conf tools/hawk_chkpwd tools/hawk_monitor tools/hawk_invoke
-	(cd hawk; rake makemo; rake freeze:rails; rake freeze:gems)
+	(cd hawk; rake makemo && rake freeze:rails && rake freeze:gems)
 
 %:: %.in
 	sed \
