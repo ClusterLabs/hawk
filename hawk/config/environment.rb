@@ -7,6 +7,18 @@
 # Bootstrap the Rails environment, frameworks, and default configuration
 require File.join(File.dirname(__FILE__), 'boot')
 
+# Evil hack to workaround https://github.com/rubygems/rubygems/issues/171
+# (see also hawk/lib/tasks/lang.rake)
+begin
+  Gem.all_load_paths
+rescue NoMethodError
+  module Gem
+    def self.all_load_paths
+      []
+    end
+  end
+end
+
 Rails::Initializer.run do |config|
   # Settings in config/environments/* take precedence over those specified here.
   # Application configuration should go into files in config/initializers

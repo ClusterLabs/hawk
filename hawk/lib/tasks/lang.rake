@@ -37,6 +37,17 @@ end
 
 desc "Create mo-files"
 task :makemo do
+  # Evil hack to workaround https://github.com/rubygems/rubygems/issues/171
+  # (see also hawk/config/environment.rb)
+  begin
+    Gem.all_load_paths
+  rescue NoMethodError
+    module Gem
+      def self.all_load_paths
+        []
+      end
+    end
+  end
   require 'gettext_rails/tools'
   GetText.create_mofiles
 end
