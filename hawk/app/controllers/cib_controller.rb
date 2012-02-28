@@ -72,6 +72,7 @@ class CibController < ApplicationController
       },
       :errors     => cib.errors,
       :crm_config => cib.crm_config,
+      :tickets    => cib.tickets,
       :nodes      => cib.nodes,
       :resources  => cib.resources,
       # eventaully want constraints, op_defaults, rsc_defaults, ...

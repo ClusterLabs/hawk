@@ -201,6 +201,7 @@ class Cib < CibObject
   # use for reporting errors when editing resources.  This
   # should almost certainly be changed.
   attr_reader :dc, :epoch, :nodes, :resources, :templates, :crm_config, :errors, :resource_count
+  attr_reader :tickets
 
   def initialize(id, user, use_file = false)
     @errors = []
@@ -495,7 +496,22 @@ class Cib < CibObject
     @dc = _('Unknown') if @dc.empty?
     
     @epoch = "#{get_xml_attr(@xml.root, 'admin_epoch')}:#{get_xml_attr(@xml.root, 'epoch')}:#{get_xml_attr(@xml.root, 'num_updates')}";
-    
+
+    # Tickets will always have a granted property (boolean).  They should
+    # always have a last-granted timestamp too, but this code doesn't bother
+    # to guarantee that (if it's somehow not set in the CIB, what point keeping
+    # an empty property around?)
+    @tickets = {}
+    @xml.elements.each("cib/status/tickets/instance_attributes/nvpair") do |nv|
+      case nv.attributes["name"]
+      when /^granted-ticket-(.*)$/
+        tickets[$~[1]] = { :granted => false } unless tickets[$~[1]];
+        tickets[$~[1]][:granted] = Util.unstring(nv.attributes["value"])
+      when /^last-granted-(.*)$/
+        tickets[$~[1]] = { :granted => false } unless tickets[$~[1]];
+        tickets[$~[1]][:"last-granted"] = nv.attributes["value"].to_i
+      end
+    end
   end
 
   # If we were using ActiveRecord, we'd be able to use has_many etc. and
