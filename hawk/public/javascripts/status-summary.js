@@ -43,7 +43,7 @@ var summary_view = {
         "<h1>" + GETTEXT.summary() + "</h1>" +
         '<div id="confsum" class="summary">' +
           '<h2><a class="clickable"><img class="action-icon" alt="" /></a><span id="confsum-label">' + GETTEXT.cluster_config() + "</span></h2>" +
-          '<table cellpadding="0" cellspacing="0">' +
+          '<table cellpadding="0" cellspacing="0" style="white-space: nowrap;">' +
             '<tr id="confsum-stonith-enabled"><td>' + GETTEXT.stonith_enabled() + ":</td><td></td></tr>" +
             '<tr id="confsum-no-quorum-policy"><td>' + GETTEXT.no_quorum_policy() + ":</td><td></td></tr>" +
             '<tr id="confsum-symmetric-cluster"><td>' + GETTEXT.symmetric_cluster() + ":</td><td></td></tr>" +
