@@ -383,7 +383,12 @@ class Cib < CibObject
             op.attributes['id'].end_with?("_last_failure_0") && op.attributes['call-id'].to_i == -1
 
           if op.attributes['call-id'].to_i == -1
-            state = :pending
+            # Don't do any further processing for pending ops, but only set
+            # resource state to "pending" if it's not a pending monitor
+            # TODO(should): Look at doing this by "whitelist"? i.e. explicitly
+            # notice pending start, stop, promote, demote, migrate_*..?
+            # This would allow us to say "Staring", "Stopping", etc. in the UI.
+            state = :pending if operation != "monitor"
             next
           end
 
