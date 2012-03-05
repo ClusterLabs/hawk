@@ -51,6 +51,13 @@ var summary_view = {
             '<tr id="confsum-maintenance-mode"><td>' + GETTEXT.maintenance_mode() + ":</td><td></td></tr>" +
           "</table>" +
         "</div>" +
+        '<div id="ticketsum" class="summary" style="display: none;">' +
+          '<h2>' + GETTEXT.tickets() + '</h2>' +
+          '<table cellpadding="0" cellspacing="0" style="white-space: nowrap;">' +
+            '<tr id="ticketsum-granted" class="rs-active clickable"><td>' + GETTEXT.ticket_granted() + ":</td><td></td></tr>" +
+            '<tr id="ticketsum-revoked" class="rs-inactive clickable"><td>' + GETTEXT.ticket_revoked() + ":</td><td></td></tr>" +
+          '</table>' +
+        '</div>' +
         '<div id="nodesum" class="summary">' +
           '<h2 id="nodesum-label"></h2>' +
           '<table cellpadding="0" cellspacing="0">' +
@@ -129,6 +136,37 @@ var summary_view = {
 
     // Rebuild item list each time
     $("#itemlist").children().remove();
+
+    if ($.isEmptyObject(cib.tickets)) {
+      $("#ticketsum").hide();
+    } else {
+      $("#ticketsum").show();
+      self._zero_counters("#ticketsum");
+      $.each(cib.tickets, function(id) {
+        // Mild "abuse" of res-* style classes and GETTEXT.node_state
+        var status_class = "res-primitive";
+        var label;
+        if (this.granted) {
+          self._increment_counter("#ticketsum-granted");
+          status_class += " rs-active ticketsum-granted";
+          label = GETTEXT.node_state(id, GETTEXT.ticket_granted());
+        } else {
+          self._increment_counter("#ticketsum-revoked");
+          status_class += " rs-inactive ticketsum-revoked";
+          label = GETTEXT.node_state(id, GETTEXT.ticket_revoked());
+        }
+        var display = "none";
+        if (self.active_detail && status_class.indexOf(self.active_detail) >= 0) {
+          display = "auto";
+        }
+        var d = new_item_div("ticket::" + id);
+        d.attr("class", "ui-corner-all " + status_class).css("display", display);
+        d.find("span").html(label);
+        $("#itemlist").append(d);
+      });
+      self._show_counters("#ticketsum");
+    }
+
 
     $("#nodesum-label").html(escape_html(cib.nodes_label));
     self._zero_counters("#nodesum");
