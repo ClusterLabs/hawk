@@ -1,0 +1,9 @@
+<%= render 'form' %>
+<script type="text/javascript">
+$(function() {
+  $("#ticket_submit").val("<%= escape_javascript(_('Apply Changes')) %>")
+  $("#ticket_revert").show();
+  $("#ticket_id").attr("disabled", "disabled");
+});
+</script>
+

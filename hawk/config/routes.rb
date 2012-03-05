@@ -58,6 +58,7 @@ ActionController::Routing::Routes.draw do |map|
   map.resources :cib, :has_many => :locations
   map.resources :cib, :has_many => :colocations
   map.resources :cib, :has_many => :orders
+  map.resources :cib, :has_many => :tickets
 
   map.resources :cib, :has_many => :nodes
   map.node_events '/cib/:cib_id/nodes/:id/events', :controller => 'nodes', :action => 'events'

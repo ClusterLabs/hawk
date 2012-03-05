@@ -114,6 +114,14 @@ $(function() {
     menu_alt:   "<%= escape_javascript _('New Constraint') %>",
     label: "<%=h escape_javascript _('Order') %>",
     open: <%= @orders.any? ? 'true' : 'false' %> });
+<% if Util.has_feature?(:rsc_ticket) %>
+  $("#tickets").panel({
+    menu_href:  url_root + "/cib/live/tickets/new",
+    menu_icon:  url_root + "/images/icons/add.png",
+    menu_alt:   "<%= escape_javascript _('New Constraint') %>",
+    label: "<%=h escape_javascript _('Ticket') %>",
+    open: <%= @tickets.any? ? 'true' : 'false' %> });
+<% end %>
 
   // Have to set these up after the panels (panel initializer fiddles with DOM
   // in a way which breaks event handlers if added before panel init)
@@ -181,3 +189,21 @@ $(function() {
 <% end %>
 </table>
 </div>
+
+<% if Util.has_feature?(:rsc_ticket) %>
+<div id="tickets">
+<table>
+  <tr<%= ' style="display: none;"' if @tickets.any? %>><td><%=h _('(No ticket constraints defined)') %></td></tr>
+<% @tickets.sort{|a,b| a.id.natcmp(b.id, true)}.each do |t| %>
+  <tr>
+    <td class="id"><%=h t.id %></td>
+    <td class="id"><%=h t.ticket %></td>
+    <td><span><%= t.resources.map{|r|
+      " #{r[:id]}" + (r[:role] ? ":#{r[:role]}" : "")}.join(" ")
+    %></span></td>
+    <td class="button"><a class="clickable" name="<%=h t.id %>"><%= image_tag 'icons/properties.png', :alt => '' %></a></td>
+  </tr>
+<% end %>
+</table>
+</div>
+<% end %>

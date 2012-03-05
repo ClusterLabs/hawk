@@ -84,7 +84,7 @@ class CibObject
     def find(id)
       begin
         xml = REXML::Document.new(Invoker.instance.cibadmin('-Ql', '--xpath',
-          "//configuration//*[self::node or self::primitive or self::template or self::clone or self::group or self::master or self::rsc_order or self::rsc_colocation or self::rsc_location][@id='#{id}']"))
+          "//configuration//*[self::node or self::primitive or self::template or self::clone or self::group or self::master or self::rsc_order or self::rsc_colocation or self::rsc_location or self::rsc_ticket][@id='#{id}']"))
         raise CibObject::CibObjectError, _('Unable to parse cibadmin output') unless xml.root
         elem = xml.elements[1]
         obj = class_from_element_name(elem.name).instantiate(elem)
@@ -148,7 +148,8 @@ class CibObject
         'master'          => Master,
         'rsc_order'       => Order,
         'rsc_colocation'  => Colocation,
-        'rsc_location'    => Location
+        'rsc_location'    => Location,
+        'rsc_ticket'      => Ticket
       }
       @@map[name]
     end
@@ -220,4 +221,3 @@ class CibObject
   end
 
 end
-

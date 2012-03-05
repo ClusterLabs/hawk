@@ -4,8 +4,9 @@
 #            A web-based GUI for managing and monitoring the
 #          Pacemaker High-Availability cluster resource manager
 #
-# Copyright (c) 2011 Novell Inc., Tim Serong <tserong@novell.com>
-#                        All Rights Reserved.
+# Copyright (c) 2012 Novell Inc., All Rights Reserved.
+#
+# Author: Tim Serong <tserong@suse.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of version 2 of the GNU General Public License as
@@ -23,12 +24,11 @@
 # other software, or any other product whatsoever.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program; if not, write the Free Software Foundation,
-# Inc., 59 Temple Place - Suite 330, Boston MA 02111-1307, USA.
+# along with this program; if not, see <http://www.gnu.org/licenses/>.
 #
 #======================================================================
 
-class ConstraintsController < ApplicationController
+class TicketsController < ApplicationController
   before_filter :login_required
 
   layout 'main'
@@ -40,15 +40,48 @@ class ConstraintsController < ApplicationController
 
   def initialize
     super
-    @title = _('Constraints')
+    @title = _('Edit Ticket Constraint')
   end
 
-  def index
-    constraints = Constraint.all
-    @locations    = constraints.select {|c| c.class == Location}
-    @colocations  = constraints.select {|c| c.class == Colocation}
-    @orders       = constraints.select {|c| c.class == Order}
-    @tickets      = constraints.select {|c| c.class == Ticket}
+  def new
+    @title = _('Create Ticket Constraint')
+    @t = Ticket.new
   end
 
+  def create
+    @title = _('Create Ticket Constraint')
+    unless params[:cancel].blank?
+      redirect_to cib_constraints_path
+      return
+    end
+    @t = Ticket.new params[:ticket]  # RORSCAN_ITL (mass ass. OK)
+    if @t.save
+      flash[:highlight] = _('Constraint created successfully')
+      redirect_to :action => 'edit', :id => @t.id
+    else
+      render :action => 'new'
+    end
+  end
+
+  def edit
+    @t = Ticket.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
+  end
+
+  def update
+    unless params[:revert].blank?
+      redirect_to :action => 'edit'
+      return
+    end
+    unless params[:cancel].blank?
+      redirect_to cib_constraints_path
+      return
+    end
+    @t = Ticket.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
+    if @t.update_attributes(params[:ticket])  # RORSCAN_ITL (mass ass. OK)
+      flash[:highlight] = _('Constraint updated successfully')
+      redirect_to :action => 'edit', :id => @t.id
+    else
+      render :action => 'edit'
+    end
+  end
 end
