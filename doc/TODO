@@ -9,7 +9,6 @@ TODO
 
 == Missing Features ==
 
-* rsc_ticket support
 * cibsecret support
 * new style constraints (rsc_*)?
 * Support all operations on shadow CIBs.
@@ -322,8 +321,6 @@ TODO
 ** Need to verify that all params are present (juxtapose template with primitive)
 ** Display template params & ops, so you know what's there
 *** Possibly tooltip/help area showing crm shell syntax of template
-* Need ability to reference templates in order, colocation constraints (also
-  location?  rsc_ticket?)
 * Ultimately need to be able to change template type etc. on current primitives
 * Need to properly refactor template into/with primitive classes etc.
 * class:provider:type won't be passed through in cib hash to javascript properly
