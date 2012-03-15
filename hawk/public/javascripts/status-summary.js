@@ -42,7 +42,7 @@ var summary_view = {
       '<div id="summary" style="display: none;" class="ui-corner-all">' +
         "<h1>" + GETTEXT.summary() + "</h1>" +
         '<div id="confsum" class="summary">' +
-          '<h2><a class="clickable"><img class="action-icon" alt="" /></a><span id="confsum-label">' + GETTEXT.cluster_config() + "</span></h2>" +
+          '<h2><span id="confsum-label">' + GETTEXT.cluster_config() + "</span></h2>" +
           '<table cellpadding="0" cellspacing="0" style="white-space: nowrap;">' +
             '<tr id="confsum-stonith-enabled"><td>' + GETTEXT.stonith_enabled() + ":</td><td></td></tr>" +
             '<tr id="confsum-no-quorum-policy"><td>' + GETTEXT.no_quorum_policy() + ":</td><td></td></tr>" +
@@ -52,14 +52,14 @@ var summary_view = {
           "</table>" +
         "</div>" +
         '<div id="ticketsum" class="summary" style="display: none;">' +
-          '<h2>' + GETTEXT.tickets() + '</h2>' +
+          '<h2 class="clickable">' + GETTEXT.tickets() + '</h2>' +
           '<table cellpadding="0" cellspacing="0" style="white-space: nowrap;">' +
             '<tr id="ticketsum-granted" class="rs-active clickable"><td>' + GETTEXT.ticket_granted() + ':</td><td class="ar"></td></tr>' +
             '<tr id="ticketsum-revoked" class="rs-inactive clickable"><td>' + GETTEXT.ticket_revoked() + ':</td><td class="ar"></td></tr>' +
           '</table>' +
         '</div>' +
         '<div id="nodesum" class="summary">' +
-          '<h2 id="nodesum-label"></h2>' +
+          '<h2 class="clickable" id="nodesum-label"></h2>' +
           '<table cellpadding="0" cellspacing="0">' +
             '<tr id="nodesum-pending" class="ns-transient clickable"><td>' + GETTEXT.node_state_pending() + ':</td><td class="ar"></td></tr>' +
             '<tr id="nodesum-online" class="ns-active clickable"><td>' + GETTEXT.node_state_online() + ':</td><td class="ar"></td></tr>' +
@@ -69,7 +69,7 @@ var summary_view = {
           "</table>" +
         "</div>" +
         '<div id="ressum" class="summary">' +
-          '<h2><a class="clickable"><img class="action-icon" alt="" /></a><span id="ressum-label"></span></h2>' +
+          '<h2 class="clickable" id="ressum-label"></span></h2>' +
           '<table cellpadding="0" cellspacing="0">' +
             '<tr id="ressum-pending" class="rs-transient clickable"><td>' + GETTEXT.resource_state_pending() + ':</td><td class="ar"></td></tr>' +
             '<tr id="ressum-started" class="rs-active clickable"><td>' + GETTEXT.resource_state_started() + ':</td><td class="ar"></td></tr>' +
@@ -90,6 +90,17 @@ var summary_view = {
         $(this).css("textDecoration", "underline");
         $(this).click(function() {
           self.active_detail = $(this).attr("id");
+          $("#itemlist").children().hide();
+          $("#itemlist").children("." + self.active_detail).show();
+          $("#details").show();
+        });
+      }
+    });
+    $("#summary").find("h2").each(function() {
+      if ($(this).hasClass("clickable")) {
+        $(this).css("textDecoration", "underline");
+        $(this).click(function() {
+          self.active_detail = $(this).parent().attr("id");
           $("#itemlist").children().hide();
           $("#itemlist").children("." + self.active_detail).show();
           $("#details").show();
@@ -148,11 +159,11 @@ var summary_view = {
         var label;
         if (this.granted) {
           self._increment_counter("#ticketsum-granted");
-          status_class += " rs-active ticketsum-granted";
+          status_class += " rs-active ticketsum ticketsum-granted";
           label = GETTEXT.node_state(id, GETTEXT.ticket_granted());
         } else {
           self._increment_counter("#ticketsum-revoked");
-          status_class += " rs-inactive ticketsum-revoked";
+          status_class += " rs-inactive ticketsum ticketsum-revoked";
           label = GETTEXT.node_state(id, GETTEXT.ticket_revoked());
         }
         var display = "none";
@@ -177,23 +188,23 @@ var summary_view = {
       var label = GETTEXT.node_state_unknown();
       switch (this.state) {
         case "online":
-          className = "active nodesum-online";
+          className = "active nodesum nodesum-online";
           label = GETTEXT.node_state_online();
           break;
         case "offline":
-          className = "inactive nodesum-offline";
+          className = "inactive nodesum nodesum-offline";
           label = GETTEXT.node_state_offline();
           break;
         case "pending":
-          className = "transient nodesum-pending";
+          className = "transient nodesum nodesum-pending";
           label = GETTEXT.node_state_pending();
           break;
         case "standby":
-          className = "inactive nodesum-standby";
+          className = "inactive nodesum nodesum-standby";
           label = GETTEXT.node_state_standby();
           break;
         case "unclean":
-          className = "error nodesum-unclean";
+          className = "error nodesum nodesum-unclean";
           label = GETTEXT.node_state_unclean();
           break;
       }
@@ -227,23 +238,23 @@ var summary_view = {
         if (this.master) {
           self._increment_counter("#ressum-master");
           label = GETTEXT.resource_state_master(id, this.master);
-          status_class += " rs-active rs-master ressum-master";
+          status_class += " rs-active rs-master ressum ressum-master";
         } else if (this.slave) {
           self._increment_counter("#ressum-slave");
           label = GETTEXT.resource_state_slave(id, this.slave);
-          status_class += " rs-active rs-slave ressum-slave";
+          status_class += " rs-active rs-slave ressum ressum-slave";
         } else if (this.started) {
           self._increment_counter("#ressum-started");
           label = GETTEXT.resource_state_started(id, this.started);
-          status_class += " rs-active ressum-started";
+          status_class += " rs-active ressum ressum-started";
         } else if (this.pending) {
           self._increment_counter("#ressum-pending");
           label = GETTEXT.resource_state_pending(id, this.pending);
-          status_class += " rs-transient ressum-pending";
+          status_class += " rs-transient ressum ressum-pending";
         } else {
           self._increment_counter("#ressum-stopped");
           label = GETTEXT.resource_state_stopped(id);
-          status_class += " rs-inactive ressum-stopped";
+          status_class += " rs-inactive ressum ressum-stopped";
         }
         var display = 'none';
         if (self.active_detail && status_class.indexOf(self.active_detail) >= 0) {
