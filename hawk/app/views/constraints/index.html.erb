@@ -197,9 +197,10 @@ $(function() {
 <% @tickets.sort{|a,b| a.id.natcmp(b.id, true)}.each do |t| %>
   <tr>
     <td class="id"><%=h t.id %></td>
-    <td class="id"><%=h t.ticket %></td>
-    <td><span><%= t.resources.map{|r|
-      " #{r[:id]}" + (r[:role] ? ":#{r[:role]}" : "")}.join(" ")
+    <td class="score"><%=h t.loss_policy %></td>
+    <td><span><%=h t.ticket %></span><%=
+      image_tag('arrow-right.png', :alt => '&rarr;') %><span><%= t.resources.map{|r|
+      "#{r[:id]}" + (r[:role] ? ":#{r[:role]}" : "")}.join(" ")
     %></span></td>
     <td class="button"><a class="clickable" name="<%=h t.id %>"><%= image_tag 'icons/properties.png', :alt => '' %></a></td>
   </tr>

@@ -47,15 +47,18 @@ $(function() {
       labels: {
         add: "<%= escape_javascript _('Add') %>",
         remove: "<%= escape_javascript _('Remove') %>",
-        heading_add: "<%= escape_javascript _('Add resource to constraint') %>"
+        heading_add: "<%= escape_javascript _('Add resource to constraint') %>",
+        ticket_id: "Ticket ID"
       },
       prefix: "ticket[resources]",
+      ticket_fn: "ticket[ticket]",
       dirty: function(event, info) {
         enable_apply();
       },
       single_set: true
     });
-  $("ticket_id,#ticket_ticket,#ticket_loss_policy")
+  $("#ticket_ticket").val("<%= escape_javascript @t.ticket %>");
+  $("#ticket_id,#ticket_ticket,#ticket_loss_policy")
     .bind("keyup change", function() {
       enable_apply();
     }).focus();
@@ -72,19 +75,10 @@ $(function() {
 <table>
   <tr>
     <th><%=h f.label :id, _('Constraint ID') %></th>
+    <th><%=h f.label :id, _('Loss Policy') %></th>
   </tr>
   <tr>
     <td><%= f.text_field :id %></td>
-  </tr>
-  <tr>
-    <td>&nbsp;</td>
-  </tr>
-  <tr>
-    <th><%=h f.label :ticket, _('Ticket ID') %></th>
-    <th><%=h f.label :loss_policy, _('Loss Policy') %></th>
-  </tr>
-  <tr>
-    <td><%= f.text_field :ticket %></td>
     <td><%= f.select :loss_policy, options_for_select(["", "stop", "demote", "fence", "freeze"], @t.loss_policy) %></td>
   </tr>
   <tr>

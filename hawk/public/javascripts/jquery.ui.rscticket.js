@@ -50,9 +50,11 @@
       labels: {
         add: "Add",
         remove: "Remove",
-        heading_add: "Add resource to constraint"
+        heading_add: "Add resource to constraint",
+        ticket_id: "Ticket ID"
       },
       prefix: "",
+      ticket_fn: "", // ticket id field name
       dirty: null
     },
     in_chain: {}, // temp, only valid during init
@@ -68,6 +70,15 @@
       var e = self.element;
       e.addClass("ui-rscticket");
       e.append($('<table cellpadding="0" cellspacing="0">' +
+          '<tr>' +
+            '<td colspan="2" class="ui-corner-all res">' + escape_html(self.options.labels.ticket_id) + ": " +
+              '<input type="text" id="' +
+              self.options.ticket_fn.replace(/]/g, "").replace(/\[/g, "_") + '" name="' +
+              self.options.ticket_fn + '"/></td>' +
+          '</tr>' +
+          '<tr><td class="rel" colspan="2">' +
+            '<img src="' + self.options.imgroot + 'arrow-down.png" alt="&darr;" /></td>' +
+          '</td></tr>' +
           '<tr><th class="label" colspan="2">' + escape_html(self.options.labels.heading_add) + ":</td></tr>" +
           "<tr>" +
             '<th colspan="2"><select><option></option></select></th>' +
@@ -75,7 +86,7 @@
           "</tr>" +
         "</table>"));
       self.new_item_select = e.find("select");
-      self.new_item_row = $(e.find("tr")[0]);
+      self.new_item_row = $(e.find("tr")[2]);
       self.new_item_add = e.find("button");
       self.new_item_add.button({
         icons: {
@@ -245,7 +256,7 @@
       var l = null;
       var r = null;
       var p = self.new_item_row.prev();
-      if (p.length) {
+      if (p.hasClass("chain-res")) {
         if (p.children(":first").hasClass("set-b")) {
           self._to_set_m(p);
         } else {
