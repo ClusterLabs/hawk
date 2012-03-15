@@ -4,7 +4,7 @@
 //            A web-based GUI for managing and monitoring the
 //          Pacemaker High-Availability cluster resource manager
 //
-// Copyright (c) 2011 Novell Inc., All Rights Reserved.
+// Copyright (c) 2011-2012 Novell Inc., All Rights Reserved.
 //
 // Author: Tim Serong <tserong@suse.com>
 //
@@ -56,6 +56,7 @@ var simulator = {
             '<td style="white-space: nowrap;">' +
               '<button id="sim-inject-node" type="button" style="min-width: 6em;">' + escape_html(GETTEXT.sim_inject_node()) + '</button> ' +
               '<button id="sim-inject-op" type="button" style="min-width: 6em;">' + escape_html(GETTEXT.sim_inject_op()) + '</button> ' +
+              '<button id="sim-inject-ticket" type="button" style="min-width: 6em;">' + escape_html(GETTEXT.sim_inject_ticket()) + '</button> ' +
               '<button id="sim-inject-del" type="button"> - </button> ' +
             "</td>" +
           "</tr>" +
@@ -178,6 +179,35 @@ var simulator = {
       $("#dialog").dialog("open");
     });
 
+    $("#sim-inject-ticket").click(function() {
+      var html = '<form onsubmit="return false;"><table><tr>' +
+        '<th>' + escape_html(GETTEXT.sim_ticket_ticket) + '</th><td><select id="inject-ticket-ticket">';
+      $.each(cib.tickets, function(id) {
+        html += '<option value="' + id + '">' + id + "</option>\n";
+      });
+      html += '</select></td><td>&nbsp;</td><th>' + escape_html(GETTEXT.sim_ticket_action()) + '</th><td><select id="inject-ticket-action">' +
+          '<option value="grant">' + escape_html(GETTEXT.sim_ticket_grant()) + '</option>' +
+          '<option value="revoke">' + escape_html(GETTEXT.sim_ticket_revoke()) + '</option>' +
+          "</select></td>" +
+        "</tr></table></form>";
+      $("#dialog").html(html);
+      var b= {}
+      b[GETTEXT.ok()] = function() {
+        var s = "ticket " + $("#inject-ticket-ticket").val() + " " + $("#inject-ticket-action").val();
+        $("#sim-injections").append($('<option title="' + s + '" value="' + s+ '">' + s + "</option>"));
+        $("#sim-run").removeAttr("disabled");
+        $(this).dialog("close");
+      };
+      b[GETTEXT.cancel()] = function() {
+        $(this).dialog("close");
+      };
+      $("#dialog").dialog("option", {
+        title:    escape_html(GETTEXT.sim_ticket_inject()),
+        buttons:  b
+      });
+      $("#dialog").dialog("open");
+    });
+
     // TODO(should): disable if nothing selected
     $("#sim-inject-del").click(function() {
       $.each($("#sim-injections").val() || [], function() {
@@ -277,6 +307,11 @@ var simulator = {
     $("#sim-get-graph-xml").addClass("disabled").removeAttr("href");
     $("#sim-run").attr("disabled", "disabled");
     $("#sim-injections").children().remove();
+    if (cib && cib.tickets && !$.isEmptyObject(cib.tickets)) {
+      $("#sim-inject-ticket").show();
+    } else {
+      $("#sim-inject-ticket").hide();
+    }
     $.get(url_root + "/main/sim_reset", function() {
       cib_source = "sim:in";
       update_cib();

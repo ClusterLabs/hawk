@@ -4,8 +4,9 @@
 #            A web-based GUI for managing and monitoring the
 #          Pacemaker High-Availability cluster resource manager
 #
-# Copyright (c) 2009-2011 Novell Inc., Tim Serong <tserong@novell.com>
-#                        All Rights Reserved.
+# Copyright (c) 2009-2012 Novell Inc., All Rights Reserved.
+#
+# Author: Tim Serong <tserong@suse.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of version 2 of the GNU General Public License as
@@ -180,6 +181,16 @@ class MainController < ApplicationController
         #  "op monitor:0 stonith-sbd success node-0"
         parts[1].sub!(":", "_")
         injections << "-i" << "#{parts[2]}_#{parts[1]}@#{parts[4]}=#{rc_map[parts[3]]}"
+      when "ticket":
+        # TODO(could): Warn if feature doesn't exist (or don't show ticket button in UI at all)
+        if Util.has_feature?(:sim_ticket)
+          case parts[2]
+          when "grant"
+            injections << "-g" << parts[1]
+          when "revoke"
+            injections << "-r" << parts[1]
+          end
+        end
       end
     end
     f = File.new("#{RAILS_ROOT}/tmp/sim.info", "w")

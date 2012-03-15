@@ -121,6 +121,9 @@ TODO
 * Why is the simulator requesting a refresh of "sim:in" or "sim:out" every 15
   seconds?  (Well, it's so that the status accurately reflects underlyling
   cluster state, but can't we hook this through the long poll somehow?)
+* Could hide ticket button if funtionality doesn't exist in underlying
+  crm_simulate (not just if there's no tickets).
+* cib/display updates might be a bit racy - need to reinvestigate that
 * Auto-fill of interval when injecting ops just grabs the first one (would
   be nice to drop-down with interval and more info about which one it was,
   e.g.: role or OCF_CHECK_LEVEL)

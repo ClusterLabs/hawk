@@ -4,8 +4,9 @@
 #            A web-based GUI for managing and monitoring the
 #          Pacemaker High-Availability cluster resource manager
 #
-# Copyright (c) 2009-2011 Novell Inc., Tim Serong <tserong@novell.com>
-#                        All Rights Reserved.
+# Copyright (c) 2009-2012 Novell Inc., All Rights Reserved.
+#
+# Author: Tim Serong <tserong@suse.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of version 2 of the GNU General Public License as
@@ -197,6 +198,10 @@ module Util
     when :rsc_template
       PerRequestCache.fetch(:has_rsc_template) {
         %x[/usr/sbin/crm configure rsc_template 2>&1].starts_with?("usage")
+      }
+    when :sim_ticket
+      PerRequestCache.fetch(:has_sim_ticket) {
+        %x[/usr/sbin/crm_simulate -h 2>&1].include?("--ticket-grant")
       }
     else
       false

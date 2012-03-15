@@ -204,6 +204,9 @@ var GETTEXT = {
   sim_inject_op: function() {
     return "<%= escape_javascript _('+ Op') %>";
   },
+  sim_inject_ticket: function() {
+    return "<%= escape_javascript _('+ Ticket') %>";
+  },
   sim_run: function() {
     return "<%= escape_javascript _('Run >') %>";
   },
@@ -245,6 +248,21 @@ var GETTEXT = {
   },
   sim_op_result: function() {
     return "<%= escape_javascript _('Result:') %>";
+  },
+  sim_ticket_inject: function() {
+    return "<%= escape_javascript _('Inject Ticket') %>";
+  },
+  sim_ticket_ticket: function() {
+    return "<%= escape_javascript _('Ticket:') %>";
+  },
+  sim_ticket_action: function() {
+    return "<%= escape_javascript _('Action:') %>";
+  },
+  sim_ticket_grant: function() {
+    return "<%= escape_javascript _('Grant') %>";
+  },
+  sim_ticket_revoke: function() {
+    return "<%= escape_javascript _('Revoke') %>";
   },
   sim_result_success: function() {
     return "<%= escape_javascript _('Success') %>";
