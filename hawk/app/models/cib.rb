@@ -503,20 +503,24 @@ class Cib < CibObject
     
     @epoch = "#{get_xml_attr(@xml.root, 'admin_epoch')}:#{get_xml_attr(@xml.root, 'epoch')}:#{get_xml_attr(@xml.root, 'num_updates')}";
 
-    # Tickets will always have a granted property (boolean).  They should
-    # always have a last-granted timestamp too, but this code doesn't bother
-    # to guarantee that (if it's somehow not set in the CIB, what point keeping
-    # an empty property around?)
+    # Tickets will always have a granted property (boolean).  They may also
+    # have a last-granted timestamp too, but this will only be present if a
+    # ticket has ever been granted - it won't be there for tickets we only
+    # pick up from rsc_ticket constraints.
     @tickets = {}
     @xml.elements.each("cib/status/tickets/instance_attributes/nvpair") do |nv|
       case nv.attributes["name"]
       when /^granted-ticket-(.*)$/
-        tickets[$~[1]] = { :granted => false } unless tickets[$~[1]];
-        tickets[$~[1]][:granted] = Util.unstring(nv.attributes["value"])
+        @tickets[$~[1]] = { :granted => false } unless @tickets[$~[1]];
+        @tickets[$~[1]][:granted] = Util.unstring(nv.attributes["value"])
       when /^last-granted-(.*)$/
-        tickets[$~[1]] = { :granted => false } unless tickets[$~[1]];
-        tickets[$~[1]][:"last-granted"] = nv.attributes["value"].to_i
+        @tickets[$~[1]] = { :granted => false } unless @tickets[$~[1]];
+        @tickets[$~[1]][:"last-granted"] = nv.attributes["value"].to_i
       end
+    end
+    @xml.elements.each("cib/configuration/constraints/rsc_ticket") do |rt|
+      t = rt.attributes["ticket"]
+      @tickets[t] = { :granted => false } unless @tickets[rt.attributes["ticket"]]
     end
   end
 
