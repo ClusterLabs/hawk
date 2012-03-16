@@ -111,6 +111,19 @@ function flag_error(id, failed_ops) {
   }
 }
 
+// Mark items with some info rollover (single string, dumb as a sack of rocks;
+// use either flag_error or flag_info, *not* both at the same time)
+// TODO(should): add a separate info icon so we can have both error and info
+function flag_info(id, info) {
+  if (info) {
+    $(jq(id+"::error")).addClass("ui-icon ui-icon-info");
+    $(jq(id+"::error")).attr("title", info);
+  } else {
+    $(jq(id+"::error")).removeClass("ui-icon ui-icon-info");
+    $(jq(id+"::error")).removeAttr("title");
+  }
+}
+
 // title: dialog title
 // id:    node or resource id
 // type:  either "node" or "resource"

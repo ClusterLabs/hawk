@@ -174,6 +174,9 @@ var summary_view = {
         d.attr("class", "ui-corner-all " + status_class).css("display", display);
         d.find("span").html(label);
         $("#itemlist").append(d);
+        if (this["last-granted"]) {
+          flag_info("ticket::" + id, GETTEXT.ticket_last_granted(new Date(this["last-granted"] * 1000)));
+        }
       });
       self._show_counters("#ticketsum");
     }

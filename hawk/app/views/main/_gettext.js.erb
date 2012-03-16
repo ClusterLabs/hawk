@@ -119,6 +119,9 @@ var GETTEXT = {
   ticket_revoked: function() {
     return "<%= escape_javascript _('Revoked') %>";
   },
+  ticket_last_granted: function(d) {
+    return "<%= escape_javascript _('Last granted: %s') % '_DATETIME_' %>".replace('_DATETIME_', d);
+  },
   // View switcher
   summary_view: function() {
     return "<%= escape_javascript _('Summary View') %>";
