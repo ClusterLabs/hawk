@@ -508,15 +508,12 @@ class Cib < CibObject
     # ticket has ever been granted - it won't be there for tickets we only
     # pick up from rsc_ticket constraints.
     @tickets = {}
-    @xml.elements.each("cib/status/tickets/instance_attributes/nvpair") do |nv|
-      case nv.attributes["name"]
-      when /^granted-ticket-(.*)$/
-        @tickets[$~[1]] = { :granted => false } unless @tickets[$~[1]];
-        @tickets[$~[1]][:granted] = Util.unstring(nv.attributes["value"])
-      when /^last-granted-(.*)$/
-        @tickets[$~[1]] = { :granted => false } unless @tickets[$~[1]];
-        @tickets[$~[1]][:"last-granted"] = nv.attributes["value"].to_i
-      end
+    @xml.elements.each("cib/status/tickets/ticket_state") do |ts|
+      t = ts.attributes["id"]
+      @tickets[t] = {
+        :granted => Util.unstring(ts.attributes["granted"], false)
+      }
+      @tickets[t][:"last-granted"] = ts.attributes["last-granted"] if ts.attributes["last-granted"]
     end
     @xml.elements.each("cib/configuration/constraints/rsc_ticket") do |rt|
       t = rt.attributes["ticket"]
