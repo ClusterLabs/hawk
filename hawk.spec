@@ -1,7 +1,7 @@
 #
-# spec file for package hawk (Version 0.5.1)
+# spec file for package hawk (Version 0.5.2)
 #
-# Copyright (c) 2010-2011 SUSE LINUX Products GmbH, Nuernberg, Germany.
+# Copyright (c) 2010-2012 SUSE LINUX Products GmbH, Nuernberg, Germany.
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -33,7 +33,7 @@
 
 Name:		hawk
 Summary:	HA Web Konsole
-Version:	0.5.1
+Version:	0.5.2
 Release:	0
 License:	GPL v2 only
 Url:		http://www.clusterlabs.org/wiki/Hawk
