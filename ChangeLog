@@ -1,5 +1,54 @@
-* Mon Nov 07 2011 Tim Serong <tserong@suse.com>
+* Tue Mar 27 2012 Tim Serong <tserong@suse.com>
+- GUI: summary_view, simulator: Support standby/activate tickets (bnc#752242)
+- GUI: simulator: Sort ticket names in inject dialog
+- Misc: Cib model: Look for ticket state in "/cib/status/tickets/ticket_state"
+- Build: Bump spec file version to 0.5.2
+- Upstream version cs:302315d2e162
 
+* Fri Mar 16 2012 Tim Serong <tserong@suse.com>
+- GUI: summary_view: show last granted time for tickets
+- GUI: summary_view: Allow viewing details of all tickets, nodes,
+  resources simultaneously
+- GUI: summary_view: Right align item counts
+- GUI: simulator: Support granting/revoking tickets
+- GUI: Constraints: Add arrows to ticket constraint display, show
+  loss policy in constraint list
+- Misc: Cib model: Pick up tickets from rsc_ticket constraints in
+  addition to status section
+- Upstream version cs:d1abac6f90da
+
+* Mon Mar 05 2012 Tim Serong <tserong@suse.com>
+- GUI: summary_view: Show ticket status
+- GUI: Add ability to configure ticket constraints
+- Misc: Cib model: Skip pending monitor ops
+- Misc: Update copyright date in footer
+- Build: Actually die if "rake makemo" fails
+- Misc: Remove obsolete .hu msgids
+- Misc: Workaround deprecated Gem.all_load_paths error
+- Misc: Suppress ror-sec-scanner false positives
+- Upstream version cs:3eff1782dc83
+
+* Fri Feb 03 2012 Tim Serong <tserong@suse.com>
+- Misc: hb_report: strip tar timestamp warnings from stderr (bnc#735672)
+- Misc: Colocation model: Don't modify resource list when generating
+  shell command
+- GUI: Primitive editor: Disable "use template" checkbox when editing
+  existing resources
+- Upstream version cs:a5fdb745d8e9
+
+* Mon Dec 12 2011 Tim Serong <tserong@suse.com>
+- GUI: Fix constraint tab when logged in as regular user (was bound to
+  hb_report, bnc#734447)
+- GUI: Constraints: Allow templates in order/colocation (bnc#732277)
+- Misc: Cib model: Add failed probes (OCF_ERR_INSTALLED etc.) to failed_ops
+- Misc: explorer, hb_report: Handle stale pidfiles (bnc#731282)
+- Upstream version cs:ca6df475621b
+
+* Tue Nov 15 2011 Tim Serong <tserong@suse.com>
+- Misc: Primitive model: Fix string interpolation when creating
+  resources (bnc#730136)
+
+* Mon Nov 07 2011 Tim Serong <tserong@suse.com>
 - GUI: Add top-level tab bar for navigation (bnc#723679)
 - GUI: Add top-level resource list/editor
 - GUI: status: Move errorbar to content div, theme to match jquery ui errors
