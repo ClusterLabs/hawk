@@ -188,6 +188,8 @@ var simulator = {
       html += '</select></td><td>&nbsp;</td><th>' + escape_html(GETTEXT.sim_ticket_action()) + '</th><td><select id="inject-ticket-action">' +
           '<option value="grant">' + escape_html(GETTEXT.sim_ticket_grant()) + '</option>' +
           '<option value="revoke">' + escape_html(GETTEXT.sim_ticket_revoke()) + '</option>' +
+          '<option value="standby">' + escape_html(GETTEXT.sim_ticket_standby()) + '</option>' +
+          '<option value="activate">' + escape_html(GETTEXT.sim_ticket_activate()) + '</option>' +
           "</select></td>" +
         "</tr></table></form>";
       $("#dialog").html(html);

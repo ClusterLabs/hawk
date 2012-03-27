@@ -160,11 +160,11 @@ var summary_view = {
         if (this.granted) {
           self._increment_counter("#ticketsum-granted");
           status_class += " rs-active ticketsum ticketsum-granted";
-          label = GETTEXT.node_state(id, GETTEXT.ticket_granted());
+          label = GETTEXT.node_state(id, GETTEXT.ticket_granted(this.standby));
         } else {
           self._increment_counter("#ticketsum-revoked");
           status_class += " rs-inactive ticketsum ticketsum-revoked";
-          label = GETTEXT.node_state(id, GETTEXT.ticket_revoked());
+          label = GETTEXT.node_state(id, GETTEXT.ticket_revoked(this.standby));
         }
         var display = "none";
         if (self.active_detail && status_class.indexOf(self.active_detail) >= 0) {

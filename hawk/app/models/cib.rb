@@ -511,7 +511,8 @@ class Cib < CibObject
     @xml.elements.each("cib/status/tickets/ticket_state") do |ts|
       t = ts.attributes["id"]
       @tickets[t] = {
-        :granted => Util.unstring(ts.attributes["granted"], false)
+        :granted => Util.unstring(ts.attributes["granted"], false),
+        :standby => Util.unstring(ts.attributes["standby"], false)
       }
       @tickets[t][:"last-granted"] = ts.attributes["last-granted"] if ts.attributes["last-granted"]
     end

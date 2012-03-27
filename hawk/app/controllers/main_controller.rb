@@ -189,6 +189,10 @@ class MainController < ApplicationController
             injections << "-g" << parts[1]
           when "revoke"
             injections << "-r" << parts[1]
+          when "standby"
+            injections << "-b" << parts[1]
+          when "activate"
+            injections << "-e" << parts[1]
           end
         end
       end

@@ -113,11 +113,15 @@ var GETTEXT = {
   tickets: function() {
     return "<%= escape_javascript _('Tickets') %>";
   },
-  ticket_granted: function() {
-    return "<%= escape_javascript _('Granted') %>";
+  ticket_granted: function(standby) {
+    return standby ?
+      "<%= escape_javascript _('Granted [standby]') %>" :
+      "<%= escape_javascript _('Granted') %>";
   },
-  ticket_revoked: function() {
-    return "<%= escape_javascript _('Revoked') %>";
+  ticket_revoked: function(standby) {
+    return standby ?
+      "<%= escape_javascript _('Revoked [standby]') %>" :
+      "<%= escape_javascript _('Revoked') %>";
   },
   ticket_last_granted: function(d) {
     return "<%= escape_javascript _('Last granted: %s') % '_DATETIME_' %>".replace('_DATETIME_', d);
@@ -266,6 +270,12 @@ var GETTEXT = {
   },
   sim_ticket_revoke: function() {
     return "<%= escape_javascript _('Revoke') %>";
+  },
+  sim_ticket_standby: function() {
+    return "<%= escape_javascript _('Standby') %>";
+  },
+  sim_ticket_activate: function() {
+    return "<%= escape_javascript _('Activate') %>";
   },
   sim_result_success: function() {
     return "<%= escape_javascript _('Success') %>";
