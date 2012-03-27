@@ -182,8 +182,13 @@ var simulator = {
     $("#sim-inject-ticket").click(function() {
       var html = '<form onsubmit="return false;"><table><tr>' +
         '<th>' + escape_html(GETTEXT.sim_ticket_ticket) + '</th><td><select id="inject-ticket-ticket">';
-      $.each(cib.tickets, function(id) {
-        html += '<option value="' + id + '">' + id + "</option>\n";
+      var tickets = [];
+      for (var t in cib.tickets) {
+        if (cib.tickets.hasOwnProperty(t)) tickets.push(t);
+      }
+      tickets.sort();
+      $.each(tickets, function() {
+        html += '<option value="' + this + '">' + this + "</option>\n";
       });
       html += '</select></td><td>&nbsp;</td><th>' + escape_html(GETTEXT.sim_ticket_action()) + '</th><td><select id="inject-ticket-action">' +
           '<option value="grant">' + escape_html(GETTEXT.sim_ticket_grant()) + '</option>' +
