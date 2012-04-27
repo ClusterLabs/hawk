@@ -28,16 +28,14 @@
 #
 #======================================================================
 
-HG = $(shell which hg 2>/dev/null)
-# This gives current hg changeset hash (12 digits).  This is the reliable
+GIT = $(shell which git 2>/dev/null)
+# This gives current changeset hash (7 digits).  This is the reliable
 # indicator of which version you've got.
-BUILD_VERSION = $(shell \
-	[ -f .hg_archival.txt ] && awk '/node:/ { print $$2 }' .hg_archival.txt | cut -c -12 || \
-	([ -x "$(HG)" -a -d .hg ] && $(HG) id -i | cut -c -12 || echo 'unknown') )
+BUILD_VERSION = $(shell git log --pretty="format:%h" -n 1)
 # This gets the version from the most recent tag in the form "hawk-x.y.z"
 # as a best-effort human-readable version number (e.g. 0.1.1 or 0.1.2-rc1).
 # But to really know what you're running, you need the changeset hash above.
-BUILD_TAG = $(shell awk --posix -Fhawk- '/[a-f0-9]{40} hawk-[0-9.]+/ { print $$2 }' .hgtags | tail -n 1)
+BUILD_TAG = $(shell git tag -l 'hawk-*' | sort -Vr | head -n 1 | sed -e 's/^hawk-//')
 ifeq "$(BUILD_TAG)" ""
 BUILD_TAG = 0.0.0
 endif
@@ -133,7 +131,7 @@ install:
 # Make a tar.bz2 named for the most recent human-readable tag
 archive:
 	rm -f hawk-$(BUILD_TAG).tar.bz2
-	$(HG) archive -t tbz2 hawk-$(BUILD_TAG).tar.bz2
+	$(GIT) archive --prefix=hawk-$(BUILD_TAG)/ HEAD | bzip2 > hawk-$(BUILD_TAG).tar.bz2
 pot:
 	(cd hawk; rake BUILD_TAG=$(BUILD_TAG) updatepo)
 
