@@ -100,6 +100,8 @@ SUSE releases. Just install the RPM, then run:
 
 --------------------------------------
 # chkconfig hawk on
+--------------------------------------
+--------------------------------------
 # rchawk start
 --------------------------------------
 
@@ -115,6 +117,8 @@ Once built, install the RPM on your cluster nodes and:
 
 --------------------------------------
 # chkconfig hawk on
+--------------------------------------
+--------------------------------------
 # /etc/init.d/hawk start
 --------------------------------------
 
@@ -127,6 +131,8 @@ you'll be happy with the outcome!
 
 --------------------------------------
 # make
+--------------------------------------
+--------------------------------------
 # sudo make install
 --------------------------------------
 
@@ -136,6 +142,8 @@ use a Red Hat-style init script, try:
 
 --------------------------------------
 # make WWW_BASE=/var/www INIT_STYLE=redhat
+--------------------------------------
+--------------------------------------
 # sudo make WWW_BASE=/var/www INIT_STYLE=redhat install
 --------------------------------------
 
@@ -159,12 +167,10 @@ the +hawk_chkpwd+ and +hawk_invoke+ helper binaries, then install them
 setuid-root, group=haclient in /usr/sbin.  You should end up with
 something like:
 
---------------------------------------
-# ls /usr/sbin/hawk_* -l
--rwsr-x--- 1 root haclient 9884 2011-04-14 22:56 /usr/sbin/hawk_chkpwd
--rwsr-x--- 1 root haclient 9928 2011-04-14 22:56 /usr/sbin/hawk_invoke
--rwxr-xr-x 1 root root     9992 2011-04-14 22:56 /usr/sbin/hawk_monitor
---------------------------------------
++# ls /usr/sbin/hawk_* -l+ + 
++-rwsr-x--- 1 root haclient 9884 2011-04-14 22:56 /usr/sbin/hawk_chkpwd+ + 
++-rwsr-x--- 1 root haclient 9928 2011-04-14 22:56 /usr/sbin/hawk_invoke+ + 
++-rwxr-xr-x 1 root root     9992 2011-04-14 22:56 /usr/sbin/hawk_monitor+ + 
 
 +hawk_chkpwd+ is almost identical to +unix2_chkpwd+, except it restricts
 acccess to users in the +haclient+ group, and doesn't inject any delay
