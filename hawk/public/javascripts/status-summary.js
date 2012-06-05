@@ -171,7 +171,7 @@ var summary_view = {
           display = "auto";
         }
         var d = new_item_div("ticket::" + id);
-        d.attr("class", "ui-corner-all " + status_class).css("display", display);
+        d.attr("class", "ui-corner-all " + status_class).attr("style", "display: " + display);
         d.find("span").html(label);
         $("#itemlist").append(d);
         if (this["last-granted"]) {
@@ -216,7 +216,7 @@ var summary_view = {
         display = "auto";
       }
       var d = new_item_div("node::" + this.uname);
-      d.attr("class", "ui-corner-all node ns-" + className).css("display", display);
+      d.attr("class", "ui-corner-all node ns-" + className).attr("style", "display: " + display);
       d.find("span").html(escape_html(GETTEXT.node_state(this.uname, label)));
       $("#itemlist").append(d);
       if (cib_source == "live") {
@@ -264,7 +264,7 @@ var summary_view = {
           display = "auto";
         }
         var d = new_item_div("resource::" + id);
-        d.attr("class", "ui-corner-all " + status_class).css("display", display);
+        d.attr("class", "ui-corner-all " + status_class).attr("style", "display: " + display);
         d.find("span").html(escape_html(label));
         $("#itemlist").append(d);
         flag_error("resource::" + id, this.failed_ops);
