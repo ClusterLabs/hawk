@@ -42,4 +42,20 @@ Nothing outside that list will be set by mass assignment.
 # vim test/unit/constraint_test.rb
 ----------------------------------------
 
+== Known Issues ==
+
+If a host is accessible via both shortname and FQDN (e.g.: as on a local
+network) and you're using Internet Explorer, and connect via
+https://shortname:7630/, you may see a Security Warning something like:
+
+____
+This webpage contains content that will not be delivered using a 
+secure HTTPS connection, which could compromise the security of the
+entire webpage.
+____
+
+This seems to be beacuse IE thinks Hawk's AJAX requests are some sort
+of XSS exploit (see answer to http://stackoverflow.com/questions/6290149/how-to-overcome-this-security-issue).
+
+Workaround: always access Hawk via https://FQDN:7630/
 
