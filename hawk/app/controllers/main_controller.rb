@@ -154,7 +154,7 @@ class MainController < ApplicationController
     params[:injections].each do |i|
       parts = i.split(/\s+/)
       case parts[0]
-      when "node":
+      when "node"
         case parts[2]
         when "online"
           injections << "-u" << parts[1]
@@ -163,7 +163,7 @@ class MainController < ApplicationController
         when "unclean"
           injections << "-f" << parts[1]
         end
-      when "op":
+      when "op"
         # TODO(should): map to be static somewhere (must match map in status.js)
         rc_map = {
           "success" => 0,
@@ -181,7 +181,7 @@ class MainController < ApplicationController
         #  "op monitor:0 stonith-sbd success node-0"
         parts[1].sub!(":", "_")
         injections << "-i" << "#{parts[2]}_#{parts[1]}@#{parts[4]}=#{rc_map[parts[3]]}"
-      when "ticket":
+      when "ticket"
         # TODO(could): Warn if feature doesn't exist (or don't show ticket button in UI at all)
         if Util.has_feature?(:sim_ticket)
           case parts[2]
