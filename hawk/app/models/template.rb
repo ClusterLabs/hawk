@@ -217,7 +217,7 @@ class Template < CibObject
       xml.elements['operations'].elements.each do |e|
         name = e.attributes['name']
         ops[name] = [] unless ops[name]
-        op = Hash[e.attributes.collect]
+        op = Hash[e.attributes.collect{|a| a.to_a}]
         op.delete 'name'
         op.delete 'id'
         ops[name].push op

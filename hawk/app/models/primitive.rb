@@ -217,7 +217,7 @@ class Primitive < CibObject
       xml.elements['operations'].elements.each do |e|
         name = e.attributes['name']
         ops[name] = [] unless ops[name]
-        op = Hash[e.attributes.collect]
+        op = Hash[e.attributes.collect{|a| a.to_a}]
         op.delete 'name'
         op.delete 'id'
         ops[name].push op
@@ -344,7 +344,7 @@ class Primitive < CibObject
       xml.elements.each('//action') do |e|
         name = e.attributes['name']
         m[:ops][name] = [] unless m[:ops][name]
-        op = Hash[e.attributes.collect]
+        op = Hash[e.attributes.collect{|a| a.to_a}]
         op.delete 'name'
         op.delete 'depth'
         # There's at least one case (ocf:ocfs2:o2cb) where the
