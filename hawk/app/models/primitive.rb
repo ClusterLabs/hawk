@@ -330,12 +330,12 @@ class Primitive < CibObject
       xml = REXML::Document.new(Util.safe_x('/usr/sbin/lrmadmin', '-M', c, t, p, 'meta'))
       return m unless xml.root
       # TODO(should): select by language (en), likewise below
-      m[:shortdesc] = xml.root.elements['shortdesc'].text.strip || ''
-      m[:longdesc] = xml.root.elements['longdesc'].text.strip || ''
+      m[:shortdesc] = Util.get_xml_text(xml.root.elements['shortdesc'])
+      m[:longdesc]  = Util.get_xml_text(xml.root.elements['longdesc'])
       xml.elements.each('//parameter') do |e|
         m[:parameters][e.attributes['name']] = {
-          :shortdesc => e.elements['shortdesc'].text.strip || '',
-          :longdesc  => e.elements['longdesc'].text.strip || '',
+          :shortdesc => Util.get_xml_text(e.elements['shortdesc']),
+          :longdesc  => Util.get_xml_text(e.elements['longdesc']),
           :type     => e.elements['content'].attributes['type'],
           :default  => e.elements['content'].attributes['default'],
           :required => e.attributes['required'].to_i == 1 ? true : false

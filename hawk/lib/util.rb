@@ -208,4 +208,11 @@ module Util
     end
   end
   module_function :has_feature?
+
+  # get text child of xml element - returns empty string if elem is nil or
+  # text child is empty.  trims leading and trailing whitespace
+  def get_xml_text(elem)
+    elem ? (elem.text.strip || '') : ''
+  end
+  module_function :get_xml_text
 end
