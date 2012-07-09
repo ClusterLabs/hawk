@@ -342,7 +342,7 @@ var simulator = {
     if ($("#inject-op-operation").val() == "monitor") {
       $("#inject-op-interval").removeAttr("disabled");
       var id = $("#inject-op-resource").val().split(":")[0];
-      if (this.req) this.req.abort();
+      if (this.req && this.req.abort) this.req.abort();
       $("#interval-spinner").show();
       this.req = $.getJSON(url_root + "/cib/live/primitives/" + id + "/monitor_intervals", function(data) {
         $("#inject-op-interval").val(data && data.length > 0 ? data[0] : "");

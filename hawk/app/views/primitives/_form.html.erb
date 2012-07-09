@@ -83,7 +83,7 @@ function update_type() {
   $("#type-spinner").show();
   $("#<%= id_prefix %>_r_type").attr("disabled", "disabled");
   disable_apply();
-  if (req) req.abort();
+  if (req && req.abort) req.abort();
   req = $.getJSON('<%= primitives_types_path %>', "r_class=" + escape(c) + "&r_provider=" + escape(p), function(data) {
     $.each(data, function() {
       $("#<%= id_prefix %>_r_type").append('<option value="' + escape_field(this.toString()) + '">' + escape_html(this.toString()) + "</option>");
@@ -106,7 +106,7 @@ function update_params(oc, op, ot) {
     var p = op || $("#<%= id_prefix %>_r_provider").val() || "";
     $("#type-spinner").show();
     disable_apply();
-    if (req) req.abort();
+    if (req && req.abort) req.abort();
     req = $.getJSON('<%= primitives_metadata_path %>', "r_class=" + escape(c) + "&r_provider=" + escape(p) + "&r_type=" + escape(t), function(data) {
       // First two probably not necessary
       r_meta = data;

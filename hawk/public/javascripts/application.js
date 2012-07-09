@@ -62,7 +62,7 @@ $(function() {
         });
       }
       var req = $(this).data("req");
-      if (req) req.abort();
+      if (req && req.abort) req.abort();
     }
   });
 });
