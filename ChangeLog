@@ -1,3 +1,16 @@
+* Mon Jul 09 2012 Tim Serong <tserong@suse.com>
+- GUI: jQuery: Fix AJAX memory leak in IE8 (bnc#764273)
+- GUI: summary_view: Fix IE JS error on detail pane update (bnc#765625)
+- GUI: Primitive editor: Handle RA metadata with missing longdesc
+- Misc: main_controller: Drop ':' from 'when' (ruby 1.9 support)
+- Misc: Primitve, Template models: Fix op hash construction (ruby 1.9 support)
+- Upstream version cs:4e0cd80
+
+* Fri Apr 27 2012 Tim Serong <tserong@suse.com>
+- Hawk source tree now lives at https://github.com/ClusterLabs/hawk so all
+  commit hashes from this point onwards refer to git commits, not hg commits
+  from the old repo, which was http://hg.clusterlabs.org/pacemaker/hawk/
+
 * Tue Mar 27 2012 Tim Serong <tserong@suse.com>
 - GUI: summary_view, simulator: Support standby/activate tickets (bnc#752242)
 - GUI: simulator: Sort ticket names in inject dialog
