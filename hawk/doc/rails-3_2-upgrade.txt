@@ -1,0 +1,69 @@
+Old router API
+The router API has totally changed.
+More information: http://yehudakatz.com/2009/12/26/the-rails-3-router-rack-it-up/
+
+The culprits: 
+	- config/routes.rb
+
+Deprecated test_help path
+You now must require 'rails/test_help' not just 'test_help'.
+More information: http://weblog.rubyonrails.org/2009/9/1/gem-packaging-best-practices
+
+The culprits: 
+	- test/test_helper.rb
+
+New file needed: config/application.rb
+You need to add a config/application.rb.
+More information: http://omgbloglol.com/post/353978923/the-path-to-rails-3-approaching-the-upgrade
+
+The culprits: 
+	- config/application.rb
+
+Deprecated constant(s)
+Constants like RAILS_ENV, RAILS_ROOT, and RAILS_DEFAULT_LOGGER are now deprecated.
+More information: http://litanyagainstfear.com/blog/2010/02/03/the-rails-module/
+
+The culprits: 
+	- app/models/cib.rb
+	- app/controllers/wizard_controller.rb
+	- app/controllers/main_controller.rb
+	- app/controllers/explorer_controller.rb
+	- app/controllers/hb_reports_controller.rb
+	- lib/fcgi.rb
+	- lib/crm_history.rb
+
+Deprecated ERb helper calls
+Block helpers that use concat (e.g., form_for) should use <%= instead of <%.  The current form will continue to work for now, but you will get deprecation warnings since this form will go away in the future.
+More information: http://weblog.rubyonrails.org/
+
+The culprits: 
+	- app/views/clones/_form.html.erb
+	- app/views/colocations/_form.html.erb
+	- app/views/crm_config/edit.html.erb
+	- app/views/groups/_form.html.erb
+	- app/views/locations/_form.html.erb
+	- app/views/masters/_form.html.erb
+	- app/views/orders/_form.html.erb
+	- app/views/primitives/_form.html.erb
+	- app/views/tickets/_form.html.erb
+	- app/views/explorer/index.html.erb
+	- app/views/hb_reports/new.html.erb
+	- app/views/sessions/new.html.erb
+	- app/views/wizard/done.html.erb
+	- app/views/wizard/run.html.erb
+	- app/views/wizard/start.html.erb
+
+Deprecated session secret setting
+Previously, session secret was set directly on ActionController::Base; it's now config.secret_token.
+More information: http://lindsaar.net/2010/4/7/rails_3_session_secret_and_session_store
+
+The culprits: 
+	- config/initializers/session_store.rb
+
+Deprecated filter_parameter_logging calls
+The list of filtered parameters are now stored in /config/application.rb. For example: config.filter_parameters += [:password]
+More information: http://asciicasts.com/episodes/224-controllers-in-rails-3
+
+The culprits: 
+	- app/controllers/application_controller.rb
+
