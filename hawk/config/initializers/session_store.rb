@@ -2,7 +2,7 @@
 
 Hawk::Application.config.session_store :cookie_store, key: '_hawk_session'
 
-# TODO(must): change all this
+# TODO(rails3): change all this
 SESSION_SECRET_FILE = File.join(RAILS_ROOT, 'tmp', 'session_secret')
 
 # Your secret key for verifying cookie session data integrity.
