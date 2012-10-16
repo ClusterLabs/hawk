@@ -1,110 +1,43 @@
-ActionController::Routing::Routes.draw do |map|
-  # The priority is based upon order of creation: first created -> highest priority.
-
-  # Sample of regular route:
-  #   map.connect 'products/:id', :controller => 'catalog', :action => 'view'
-  # Keep in mind you can assign values other than :controller and :action
-
-  # Sample of named route:
-  #   map.purchase 'products/:id/purchase', :controller => 'catalog', :action => 'purchase'
-  # This route can be invoked with purchase_url(:id => product.id)
-
-  # Sample resource route (maps HTTP verbs to controller actions automatically):
-  #   map.resources :products
-
-  # Sample resource route with options:
-  #   map.resources :products, :member => { :short => :get, :toggle => :post }, :collection => { :sold => :get }
-
-  # Sample resource route with sub-resources:
-  #   map.resources :products, :has_many => [ :comments, :sales ], :has_one => :seller
-  
-  # Sample resource route with more complex sub-resources
-  #   map.resources :products do |products|
-  #     products.resources :comments
-  #     products.resources :sales, :collection => { :recent => :get }
-  #   end
-
-  # Sample resource route within a namespace:
-  #   map.namespace :admin do |admin|
-  #     # Directs /admin/products/* to Admin::ProductsController (app/controllers/admin/products_controller.rb)
-  #     admin.resources :products
-  #   end
-
-  # You can have the root of your site routed with map.root -- just remember to delete public/index.html.
-  # map.root :controller => "welcome"
-
-  # See how all your routes lay out with "rake routes"
-
-  map.resource :session
-
-  map.resources :cib
-
-  map.resources :cib, :has_many => :crm_config
-  map.crm_config_info '/cib/:cib_id/crm_config/:id/info', :controller => 'crm_config', :action => 'info'
-
-  map.resources :cib, :has_many => :primitives
-  map.primitives_mi '/cib/:cib_id/primitives/:id/monitor_intervals', :controller => 'primitives', :action => 'monitor_intervals'
-  # TODO(should): Don't need primitive ID for these...
-  map.primitives_types '/cib/:cib_id/primitives/new/types', :controller => 'primitives', :action => 'types'
-  map.primitives_metadata  '/cib/:cib_id/primitives/new/metadata', :controller => 'primitives', :action => 'metadata'
-
-  map.resources :cib, :has_many => :templates
-
-  map.resources :cib, :has_many => :groups
-  map.resources :cib, :has_many => :clones
-  map.resources :cib, :has_many => :masters
-
-  map.resources :cib, :has_many => :constraints
-  map.resources :cib, :has_many => :locations
-  map.resources :cib, :has_many => :colocations
-  map.resources :cib, :has_many => :orders
-  map.resources :cib, :has_many => :tickets
-
-  map.resources :cib, :has_many => :nodes
-  map.node_events '/cib/:cib_id/nodes/:id/events', :controller => 'nodes', :action => 'events'
-
-  map.resources :cib, :has_many => :resources
-  map.resource_events '/cib/:cib_id/resources/:id/events', :controller => 'resources', :action => 'events'
-
-  map.resources :hb_reports
-  map.hb_reports_status '/hb_reports/new/status', :controller => 'hb_reports', :action => 'status'
-
-  map.wizard '/wizard', :controller => 'wizard', :action => 'run'
-
-  map.with_options :controller => 'explorer' do |explorer|
-    explorer.explorer 'explorer',          :action => 'index'
-    explorer.pe_get   'explorer/get',      :action => 'get'
-  end
-
-  # TODO(should): resources & nodes become Rails resources, look at RESTful routing
-  # As of 2011-02-21 we now have a split here, resource editor uses the above
-  map.with_options :controller => 'main' do |main|
-    # status, etc.
-    main.default      'main',              :action => 'index'
-    main.index        'main/index',        :action => 'index'
-    main.status       'main/status',       :action => 'status'
-    main.gettext      'main/gettext',      :action => 'gettext'
-
-    # resource ops
-    main.resource_op  'main/resource/:op', :action => 'resource_op', :conditions => { :method => :post },
-                      :op => /(start|stop|unmigrate|promote|demote|cleanup)/
-    main.resource_migrate 'main/resource/migrate', :action => 'resource_migrate', :conditions => { :method => :post }
-    main.resource_delete  'main/resource/delete',  :action => 'resource_delete',  :conditions => { :method => :post }
-
-    # node ops
-    main.node_standby 'main/node/:op',     :action => 'node_standby', :conditions => { :method => :post },
-                      :op => /(standby|online)/
-    main.node_fence   'main/node/fence',   :action => 'node_fence',  :conditions => { :method => :post }
-
-    # simulation mode
-    main.sim_reset    'main/sim_reset',    :action => 'sim_reset'
-    main.sim_run      'main/sim_run',      :action => 'sim_run'
-    main.sim_get      'main/sim_get',      :action => 'sim_get'
-  end
-
-  map.root :controller => "main"
-
-  map.login '/login', :controller => 'sessions', :action => 'new'
-  map.logout '/logout', :controller => 'sessions', :action => 'destroy'
-
+Hawk::Application.routes.draw do
+  resource :session
+  resources :cib
+  resources :cib
+  match '/cib/:cib_id/crm_config/:id/info' => 'crm_config#info', :as => :crm_config_info
+  resources :cib
+  match '/cib/:cib_id/primitives/:id/monitor_intervals' => 'primitives#monitor_intervals', :as => :primitives_mi
+  match '/cib/:cib_id/primitives/new/types' => 'primitives#types', :as => :primitives_types
+  match '/cib/:cib_id/primitives/new/metadata' => 'primitives#metadata', :as => :primitives_metadata
+  resources :cib
+  resources :cib
+  resources :cib
+  resources :cib
+  resources :cib
+  resources :cib
+  resources :cib
+  resources :cib
+  resources :cib
+  resources :cib
+  match '/cib/:cib_id/nodes/:id/events' => 'nodes#events', :as => :node_events
+  resources :cib
+  match '/cib/:cib_id/resources/:id/events' => 'resources#events', :as => :resource_events
+  resources :hb_reports
+  match '/hb_reports/new/status' => 'hb_reports#status', :as => :hb_reports_status
+  match '/wizard' => 'wizard#run', :as => :wizard
+  match 'explorer' => 'explorer#index', :as => :explorer
+  match 'explorer/get' => 'explorer#get', :as => :pe_get
+  match 'main' => 'main#index', :as => :default
+  match 'main/index' => 'main#index', :as => :index
+  match 'main/status' => 'main#status', :as => :status
+  match 'main/gettext' => 'main#gettext', :as => :gettext
+  match 'main/resource/:op' => 'main#resource_op', :as => :resource_op, :op => /(start|stop|unmigrate|promote|demote|cleanup)/, :via => :post
+  match 'main/resource/migrate' => 'main#resource_migrate', :as => :resource_migrate, :via => :post
+  match 'main/resource/delete' => 'main#resource_delete', :as => :resource_delete, :via => :post
+  match 'main/node/:op' => 'main#node_standby', :as => :node_standby, :op => /(standby|online)/, :via => :post
+  match 'main/node/fence' => 'main#node_fence', :as => :node_fence, :via => :post
+  match 'main/sim_reset' => 'main#sim_reset', :as => :sim_reset
+  match 'main/sim_run' => 'main#sim_run', :as => :sim_run
+  match 'main/sim_get' => 'main#sim_get', :as => :sim_get
+  match '/' => 'main#index'
+  match '/login' => 'sessions#new', :as => :login
+  match '/logout' => 'sessions#destroy', :as => :logout
 end
