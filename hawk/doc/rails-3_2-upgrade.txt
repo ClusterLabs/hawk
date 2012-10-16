@@ -40,21 +40,6 @@ The culprits:
 	- app/views/wizard/run.html.erb
 	- app/views/wizard/start.html.erb
 
-Deprecated session secret setting
-Previously, session secret was set directly on ActionController::Base; it's now config.secret_token.
-More information: http://lindsaar.net/2010/4/7/rails_3_session_secret_and_session_store
-
-The culprits: 
-	- config/initializers/session_store.rb
-
-Deprecated filter_parameter_logging calls
-The list of filtered parameters are now stored in /config/application.rb. For example: config.filter_parameters += [:password]
-More information: http://asciicasts.com/episodes/224-controllers-in-rails-3
-
-The culprits: 
-	- app/controllers/application_controller.rb
-	- app/controllers/application_controller.rb.rails2
-
 ===
 
 probably also need to get rid of everything in script/ except rails
