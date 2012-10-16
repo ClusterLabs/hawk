@@ -37,7 +37,7 @@ end
 # a "current_user" method into this class.
 #
 class Invoker
-  include GetText
+  include FastGettext::Translation
 
   @@instance = Invoker.new
   def self.instance

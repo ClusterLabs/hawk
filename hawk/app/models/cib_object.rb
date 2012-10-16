@@ -31,7 +31,7 @@
 # Shim to get similar behaviour as ActiveRecord
 
 class CibObject
-  include GetText
+  include FastGettext::Translation
 
   class CibObjectError < StandardError
   end

@@ -29,7 +29,7 @@
 #======================================================================
 
 class Group < CibObject
-  include GetText
+  include FastGettext::Translation
 
   @attributes = :children, :meta 
   attr_accessor *@attributes

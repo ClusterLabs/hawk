@@ -29,7 +29,7 @@
 #======================================================================
 
 class Master < CibObject
-  include GetText
+  include FastGettext::Translation
 
   @attributes = :child, :meta
   attr_accessor *@attributes

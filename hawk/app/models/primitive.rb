@@ -33,7 +33,7 @@ require 'natcmp'
 require 'rexml/document' unless defined? REXML::Document
 
 class Primitive < CibObject
-  include GetText
+  include FastGettext::Translation
 
   # Using r_class to avoid collision with class reserved word.
   # Using r_provider and r_type for consistency with r_class.

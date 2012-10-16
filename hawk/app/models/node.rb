@@ -32,7 +32,7 @@
 require 'rexml/document' unless defined? REXML::Document
 
 class Node < CibObject
-  include GetText
+  include FastGettext::Translation
 
   @attributes = :uname, :attrs, :utilization
   attr_accessor *@attributes

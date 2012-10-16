@@ -34,7 +34,7 @@ require 'natcmp'
 require 'rexml/document' unless defined? REXML::Document
 
 class Cib < CibObject
-  include GetText
+  include FastGettext::Translation
 
   protected
 
