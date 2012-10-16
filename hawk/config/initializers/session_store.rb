@@ -1,5 +1,8 @@
 # Be sure to restart your server when you modify this file.
 
+Hawk::Application.config.session_store :cookie_store, key: '_hawk_session'
+
+# TODO(must): change all this
 SESSION_SECRET_FILE = File.join(RAILS_ROOT, 'tmp', 'session_secret')
 
 # Your secret key for verifying cookie session data integrity.
@@ -25,5 +28,5 @@ ActionController::Base.session = {
 
 # Use the database for sessions instead of the cookie-based default,
 # which shouldn't be used to store highly confidential information
-# (create the session table with "rake db:sessions:create")
-# ActionController::Base.session_store = :active_record_store
+# (create the session table with "rails generate session_migration")
+# Hawk::Application.config.session_store :active_record_store
