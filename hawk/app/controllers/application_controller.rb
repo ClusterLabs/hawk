@@ -33,7 +33,15 @@
 # Likewise, all the methods added will be available for all controllers.
 
 class ApplicationController < ActionController::Base
-  init_gettext "hawk"
+  include FastGettext::Translation
+
+  before_filter :set_users_locale
+
+  def set_users_locale
+    I18n.locale = FastGettext.set_locale(params[:locale] || cookies[:locale] ||
+      request.env['HTTP_ACCEPT_LANGUAGE'] || 'en_US')
+    cookies[:locale] = I18n.locale if cookies[:locale] != I18n.locale.to_s
+  end
 
   helper :all # include all helpers, all the time
   protect_from_forgery # See ActionController::RequestForgeryProtection for details
