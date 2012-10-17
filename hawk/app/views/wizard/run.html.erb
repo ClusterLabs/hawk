@@ -78,7 +78,7 @@ $(function() {
 <% @errors.each do |message| %>
   <div class="ui-state-error ui-corner-all" style="padding: 0.5em; margin-bottom: 0.5em;"><%=h message %></div>
 <% end %>
-<% form_tag(:action => 'run') do %>
+<%= form_tag(:action => 'run') do %>
 <%= hidden_field_tag "workflow", params[:workflow] %>
 <%= hidden_field_tag "step", @step %><%= hash_as_hidden_fields(:all_params => @all_params) %>
 <table>

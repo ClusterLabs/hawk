@@ -100,7 +100,7 @@ function inline_detail_links() {
 }
 </script>
 <div style="float: left;">
-<% form_tag(explorer_path, :method => :get, :id => "filter") do %>
+<%= form_tag(explorer_path, :method => :get, :id => "filter") do %>
 <%= hidden_field_tag "display", "true" %>
 <table id="filter-form" style="<%= @hb_report.running? ? "display: none;" : "" %>">
 <% unless params[:display] %>

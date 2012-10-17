@@ -2,7 +2,7 @@
   <div class="flash-<%= flash_type %>"><%=h message %></div>
 <% end %>
 <div id="login-form">
-  <% form_tag(:action => 'create') do %>
+  <%= form_tag(:action => 'create') do %>
     <table>
       <tr>
         <td><label for="username"><%= _('Username:') %></label></td>

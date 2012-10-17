@@ -19,27 +19,6 @@ The culprits:
 	- lib/fcgi.rb
 	- lib/crm_history.rb
 
-Deprecated ERb helper calls
-Block helpers that use concat (e.g., form_for) should use <%= instead of <%.  The current form will continue to work for now, but you will get deprecation warnings since this form will go away in the future.
-More information: http://weblog.rubyonrails.org/
-
-The culprits: 
-	- app/views/clones/_form.html.erb
-	- app/views/colocations/_form.html.erb
-	- app/views/crm_config/edit.html.erb
-	- app/views/groups/_form.html.erb
-	- app/views/locations/_form.html.erb
-	- app/views/masters/_form.html.erb
-	- app/views/orders/_form.html.erb
-	- app/views/primitives/_form.html.erb
-	- app/views/tickets/_form.html.erb
-	- app/views/explorer/index.html.erb
-	- app/views/hb_reports/new.html.erb
-	- app/views/sessions/new.html.erb
-	- app/views/wizard/done.html.erb
-	- app/views/wizard/run.html.erb
-	- app/views/wizard/start.html.erb
-
 ===
 
 * probably also need to get rid of everything in script/ except rails

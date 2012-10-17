@@ -317,7 +317,7 @@ $(function() {
 <%= render :partial => 'shared/confirm_revert', :locals => { :button_ids => "##{id_prefix}_revert,##{id_prefix}_cancel" } %>
 });
 </script>
-<% form_for([ @cib, @res ]) do |f| %>
+<%= form_for([ @cib, @res ]) do |f| %>
 <% flash.each do |flash_type, message| %>
   <div id="flash-<%= flash_type %>" class="ui-state-<%= flash_type %> ui-corner-all" style="padding: 0.5em; margin-bottom: 0.5em;"><%=h message %></div>
 <% end %>
