@@ -57,6 +57,7 @@ class ApplicationController < ActionController::Base
   end
 
   def initialize
+    super
     responses = {
       'CibObject::RecordNotFound'   => :not_found,
       'CibObject::PermissionDenied' => :forbidden
