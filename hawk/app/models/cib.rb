@@ -81,11 +81,11 @@ class Cib < CibObject
         res[:children] << get_resource(elem.elements['group'], clone_max, is_ms || elem.name == 'master')
       else
         # This can't happen
-        RAILS_DEFAULT_LOGGER.error "Got #{elem.name} without 'primitive' or 'group' child"
+        Rails.logger.error "Got #{elem.name} without 'primitive' or 'group' child"
       end
     else
       # This really can't happen
-      RAILS_DEFAULT_LOGGER.error "Unknown resource type: #{elem.name}"
+      Rails.logger.error "Unknown resource type: #{elem.name}"
     end
     res
   end
@@ -211,7 +211,7 @@ class Cib < CibObject
       cib_path = id
       # TODO(must): This is a bit rough
       cib_path.gsub! /[^\w-]/, ''
-      cib_path = "#{RAILS_ROOT}/test/cib/#{cib_path}.xml"
+      cib_path = "#{Rails.root}/test/cib/#{cib_path}.xml"
       raise ArgumentError, _('CIB file "%{path}" not found') % {:path => cib_path } unless File.exist?(cib_path)
       @xml = REXML::Document.new(File.new(cib_path))
       raise RuntimeError, _('Unable to parse CIB file "%{path}"') % {:path => cib_path } unless @xml.root
@@ -220,7 +220,7 @@ class Cib < CibObject
       cib_path = id
       cib_path.gsub!(":", ".")
       # Note: must match path in MainController (needs to change once we handle multiple simultaneous runs)
-      cib_path = "#{RAILS_ROOT}/tmp/#{cib_path}"
+      cib_path = "#{Rails.root}/tmp/#{cib_path}"
       raise ArgumentError, _('CIB file "%{path}" not found') % {:path => cib_path } unless File.exist?(cib_path)
       @xml = REXML::Document.new(File.new(cib_path))
       raise RuntimeError, _('Unable to parse CIB file "%{path}"') % {:path => cib_path } unless @xml.root
@@ -364,7 +364,7 @@ class Cib < CibObject
           elsif b.attributes['call-id'].to_i == -1
             -1                                        # likewise
           else
-            RAILS_DEFAULT_LOGGER.error "Inexplicable op sort error (this can't happen)"
+            Rails.logger.error "Inexplicable op sort error (this can't happen)"
             a.attributes['call-id'].to_i <=> b.attributes['call-id'].to_i
           end
         }.each do |op|
@@ -460,7 +460,7 @@ class Cib < CibObject
               alt_i = (alt_i.to_i + 1).to_s
             end
             if alt_i != instance
-              RAILS_DEFAULT_LOGGER.debug "Internally renamed #{id}:#{instance} to #{id}:#{alt_i} on #{node[:uname]}"
+              Rails.logger.debug "Internally renamed #{id}:#{instance} to #{id}:#{alt_i} on #{node[:uname]}"
               instance = alt_i
             end
           else

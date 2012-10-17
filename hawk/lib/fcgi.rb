@@ -15,8 +15,8 @@ Modified by Tim Serong <tserong@novell.com> 2010-03-19:
 # Allow rails vendor fcgi.rb to override this one if present
 # (used if fcgi.so etc. packaged up into vendor directory, e.g.
 # on SLES/openSUSE)
-if File.exist?("#{RAILS_ROOT}/vendor/fcgi.rb")
-  require "#{RAILS_ROOT}/vendor/fcgi.rb"
+if File.exist?("#{Rails.root}/vendor/fcgi.rb")
+  require "#{Rails.root}/vendor/fcgi.rb"
 else
 
 trap('SIGTERM') { exit }

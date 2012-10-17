@@ -36,7 +36,7 @@ class HbReportsController < ApplicationController
   # layout 'main'
 
   def initialize
-    @hb_report = HbReport.new("#{RAILS_ROOT}/tmp/pids/hb_report", "/tmp/hb_report-hawk")
+    @hb_report = HbReport.new("#{Rails.root}/tmp/pids/hb_report", "/tmp/hb_report-hawk")
   end
 
   # List all extant hb_reports

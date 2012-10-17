@@ -38,7 +38,7 @@ class HbReport
   attr_reader :outfile, :errfile, :lastexit
 
   # Call with e.g.:
-  #  ("#{RAILS_ROOT}/tmp/pids/hb_report", "/tmp/hb_report-hawk").
+  #  ("#{Rails.root}/tmp/pids/hb_report", "/tmp/hb_report-hawk").
   # pidfile will be set based on 'tmpbase', hb_report will be generated
   # at 'path'.  If path is nil, generate won't work -- make sure you set
   # it ASAP, before calling generate or relying on outfile or errfile!

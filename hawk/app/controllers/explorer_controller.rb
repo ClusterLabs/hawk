@@ -41,7 +41,7 @@ class ExplorerController < ApplicationController
     super
     @title = _('History Explorer')
     @errors = []
-    @hb_report = HbReport.new("#{RAILS_ROOT}/tmp/pids/history_report")
+    @hb_report = HbReport.new("#{Rails.root}/tmp/pids/history_report")
   end
 
   def index

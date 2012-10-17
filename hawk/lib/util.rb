@@ -85,7 +85,7 @@ module Util
     # crm shell always wants to open/generate help index, so we
     # let it use a group-writable subdirectory of our tmp directory
     # so unprivileged users can actually invoke crm without warnings
-    ENV['HOME'] = File.join(RAILS_ROOT, 'tmp', 'home')
+    ENV['HOME'] = File.join(Rails.root, 'tmp', 'home')
     # RORSCAN_INL: mutli-arg invocation safe from shell injection.
     pi = popen3('/usr/sbin/hawk_invoke', user, *cmd)
     if defined? yield

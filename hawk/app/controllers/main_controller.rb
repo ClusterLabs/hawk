@@ -142,7 +142,7 @@ class MainController < ApplicationController
   # TODO(must): these both need exception handler for invoker runs
   # TODO(must): only one user at a time can run sims (they stomp on each other)
   def sim_reset
-    f = File.new("#{RAILS_ROOT}/tmp/sim.in", "w")
+    f = File.new("#{Rails.root}/tmp/sim.in", "w")
     f.write(Invoker.instance.cibadmin('-Ql'))
     f.close
     head :ok
@@ -197,20 +197,20 @@ class MainController < ApplicationController
         end
       end
     end
-    f = File.new("#{RAILS_ROOT}/tmp/sim.info", "w")
+    f = File.new("#{Rails.root}/tmp/sim.info", "w")
     # TODO(must): Bloody loses transition summary (it's on STDOUT)
     stdout = Util.safe_x("/usr/sbin/crm_simulate",
       "-R",
-      "-x", "#{RAILS_ROOT}/tmp/sim.in",
-      "-O", "#{RAILS_ROOT}/tmp/sim.out",
-      "-G", "#{RAILS_ROOT}/tmp/sim.graph",
-      "-D", "#{RAILS_ROOT}/tmp/sim.dot",
+      "-x", "#{Rails.root}/tmp/sim.in",
+      "-O", "#{Rails.root}/tmp/sim.out",
+      "-G", "#{Rails.root}/tmp/sim.graph",
+      "-D", "#{Rails.root}/tmp/sim.dot",
       *injections)
     f.write(stdout)
     f.close
     is_empty = true
     begin
-      f = File.open("#{RAILS_ROOT}/tmp/sim.graph")
+      f = File.open("#{Rails.root}/tmp/sim.graph")
       if f.readline().match(/^<transition_graph.*[^\/]>$/)
         # Cheap test - if the first line is a non-closed transition_graph element,
         # we know it's not an empty graph.
@@ -231,7 +231,7 @@ class MainController < ApplicationController
     when "info"
       info = { :mods => "", :summary => "", :exec => "" }
       section = nil
-      File.new("#{RAILS_ROOT}/tmp/sim.info").read.split(/\n/).each do |line|
+      File.new("#{Rails.root}/tmp/sim.info").read.split(/\n/).each do |line|
         case line
           when /^Performing requested modifications/i
             section = :mods
@@ -248,14 +248,14 @@ class MainController < ApplicationController
       send_data [info[:mods], info[:summary], info[:exec]].select{|s| !s.empty?}.join("\n"),
         :type => "text/plain", :disposition => "inline"
     when "in"
-      send_data File.new("#{RAILS_ROOT}/tmp/sim.in").read, :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
+      send_data File.new("#{Rails.root}/tmp/sim.in").read, :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
     when "out"
-      send_data File.new("#{RAILS_ROOT}/tmp/sim.out").read, :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
+      send_data File.new("#{Rails.root}/tmp/sim.out").read, :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
     when "graph"
       if params[:format] == "xml"
-        send_data File.new("#{RAILS_ROOT}/tmp/sim.graph").read, :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
+        send_data File.new("#{Rails.root}/tmp/sim.graph").read, :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
       else
-        stdin, stdout, stderr, thread = Util.popen3("/usr/bin/dot", "-Tpng", "#{RAILS_ROOT}/tmp/sim.dot")
+        stdin, stdout, stderr, thread = Util.popen3("/usr/bin/dot", "-Tpng", "#{Rails.root}/tmp/sim.dot")
         stdin.close
         png = stdout.read
         stdout.close

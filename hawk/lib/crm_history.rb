@@ -36,11 +36,11 @@
 # - Run new command
 
 module CrmHistory
-  @pidfile = "#{RAILS_ROOT}/tmp/pids/crm_history.pid"
-  @cmdfile = "#{RAILS_ROOT}/tmp/pids/crm_history.cmd"
-  @outfile = "#{RAILS_ROOT}/tmp/pids/crm_history.stdout"
-  @errfile = "#{RAILS_ROOT}/tmp/pids/crm_history.stderr"
-  @exitfile = "#{RAILS_ROOT}/tmp/pids/crm_history.exit"
+  @pidfile = "#{Rails.root}/tmp/pids/crm_history.pid"
+  @cmdfile = "#{Rails.root}/tmp/pids/crm_history.cmd"
+  @outfile = "#{Rails.root}/tmp/pids/crm_history.stdout"
+  @errfile = "#{Rails.root}/tmp/pids/crm_history.stderr"
+  @exitfile = "#{Rails.root}/tmp/pids/crm_history.exit"
 
   def active?
     Util.child_active(@pidfile)

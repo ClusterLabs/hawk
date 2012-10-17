@@ -58,7 +58,7 @@ class WizardController < ApplicationController
   def initialize
     super
     @title = _("Cluster Setup Wizard")
-    @confdir = File.join(RAILS_ROOT, "config", "wizard")
+    @confdir = File.join(Rails.root, "config", "wizard")
     @steps = ["workflow", "confirm", "commit"]
     @step = "workflow"
     @errors = []
