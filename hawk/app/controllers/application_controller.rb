@@ -57,11 +57,16 @@ class ApplicationController < ActionController::Base
   end
 
   def initialize
-    # Handle CibObject exceptions
-    rescue_responses.update({
+    responses = {
       'CibObject::RecordNotFound'   => :not_found,
       'CibObject::PermissionDenied' => :forbidden
-    })
+    }
+    # Handle CibObject exceptions
+    if defined?(ActionDispatch::ShowExceptions) # Rails 3
+      ActionDispatch::ShowExceptions.rescue_responses.update(responses)
+    else
+      rescue_responses.update(responses)
+    end
 
     require 'socket'
     @host = Socket.gethostname  # should be short hostname
