@@ -48,33 +48,35 @@ Hawk::Application.routes.draw do
 
   # You can have the root of your site routed with "root"
   # just remember to delete public/index.html.
-  # root :to => 'welcome#index'
+  root :to => 'main#index'
 
   # See how all your routes lay out with "rake routes"
 
   # This is a legacy wild controller route that's not recommended for RESTful applications.
   # Note: This route will make all actions in every controller accessible via GET requests.
   # match ':controller(/:action(/:id))(.:format)'
+
   resource :session
-  resources :cib
-  resources :cib
+  resources :cib do
+    resources :crm_config
+    resources :resources
+    resources :primitives
+    resources :templates
+    resources :groups
+    resources :clones
+    resources :masters
+    resources :constraints
+    resources :locations
+    resources :colocations
+    resources :orders
+    resources :tickets
+    resources :nodes
+  end
   match '/cib/:cib_id/crm_config/:id/info' => 'crm_config#info', :as => :crm_config_info
-  resources :cib
   match '/cib/:cib_id/primitives/:id/monitor_intervals' => 'primitives#monitor_intervals', :as => :primitives_mi
   match '/cib/:cib_id/primitives/new/types' => 'primitives#types', :as => :primitives_types
   match '/cib/:cib_id/primitives/new/metadata' => 'primitives#metadata', :as => :primitives_metadata
-  resources :cib
-  resources :cib
-  resources :cib
-  resources :cib
-  resources :cib
-  resources :cib
-  resources :cib
-  resources :cib
-  resources :cib
-  resources :cib
   match '/cib/:cib_id/nodes/:id/events' => 'nodes#events', :as => :node_events
-  resources :cib
   match '/cib/:cib_id/resources/:id/events' => 'resources#events', :as => :resource_events
   resources :hb_reports
   match '/hb_reports/new/status' => 'hb_reports#status', :as => :hb_reports_status
