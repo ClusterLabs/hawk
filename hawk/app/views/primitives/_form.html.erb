@@ -238,7 +238,7 @@ $(function() {
     }
   });
 <% end %>
-  $("#parameters").panel({ label: "<%=h escape_javascript _('Parameters') %>", menu_icon: url_root + "/images/transparent-16x16.gif" });
+  $("#parameters").panel({ label: "<%=h escape_javascript _('Parameters') %>", menu_icon: url_root + "/assets/transparent-16x16.gif" });
   $("#parameters").panel("body_element").attrlist({
     all_attrs: r_meta.parameters,
     set_attrs: <%= @res.params.to_json %>,
@@ -258,7 +258,7 @@ $(function() {
     $("#parameters").panel("expand");
   }
 
-  $("#operations").panel({ label: "<%=h escape_javascript _('Operations') %>", menu_icon: url_root + "/images/transparent-16x16.gif" });
+  $("#operations").panel({ label: "<%=h escape_javascript _('Operations') %>", menu_icon: url_root + "/assets/transparent-16x16.gif" });
   $("#operations").panel("body_element").oplist({
     all_ops: r_meta.ops,
     set_ops: <%= @res.ops.to_json %>,
@@ -281,7 +281,7 @@ $(function() {
     $("#operations").panel("expand");
   }
 
-  $("#meta").panel({ label: "<%=h escape_javascript _('Meta Attributes') %>", menu_icon: url_root + "/images/transparent-16x16.gif" });
+  $("#meta").panel({ label: "<%=h escape_javascript _('Meta Attributes') %>", menu_icon: url_root + "/assets/transparent-16x16.gif" });
   $("#meta").panel("body_element").attrlist({
     all_attrs: r_meta.meta,
     set_attrs: <%= @res.meta.to_json %>,

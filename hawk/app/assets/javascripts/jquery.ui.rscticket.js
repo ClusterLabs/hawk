@@ -46,7 +46,7 @@
       resources: [],
       set: [],   // [ {id: "foo", role: "Started" }, { ... } ]
       roles: ["Started", "Master", "Slave", "Stopped"],
-      imgroot: "/images/",
+      imgroot: "/assets/",
       labels: {
         add: "Add",
         remove: "Remove",

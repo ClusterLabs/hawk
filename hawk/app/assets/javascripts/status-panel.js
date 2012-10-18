@@ -41,15 +41,15 @@ var panel_view = {
         '<div id="reslist"></div>' +
       "</div>"));
     $("#config").panel({
-      menu_icon: url_root + "/images/transparent-16x16.gif",
+      menu_icon: url_root + "/assets/transparent-16x16.gif",
       label:     GETTEXT.cluster_config(),
       body:      $('<table id="config::props" style="padding: 0.25em 0.5em;"></table>')
     });
     $("#nodelist").panel({
-      menu_icon: url_root + "/images/transparent-16x16.gif"
+      menu_icon: url_root + "/assets/transparent-16x16.gif"
     });
     $("#reslist").panel({
-      menu_icon: url_root + "/images/transparent-16x16.gif"
+      menu_icon: url_root + "/assets/transparent-16x16.gif"
     });
 /*    
     // Filter problems:
@@ -157,7 +157,7 @@ var panel_view = {
           if (this.children) {
             d = $('<div id="' + this.id + '"/>');
             d.panel({
-              menu_icon: url_root + "/images/transparent-16x16.gif",
+              menu_icon: url_root + "/assets/transparent-16x16.gif",
               menu_id:   this.id + "::menu",
               open:      this.open
             });

@@ -44,7 +44,7 @@ td.button {
 <script type="text/javascript">
 
 $(function() {
-  $("#resource").popupmenu({ iconroot: url_root + "/images/icons/", items: [
+  $("#resource").popupmenu({ iconroot: url_root + "/assets/icons/", items: [
     {
       label: "<%=h escape_javascript _('Edit Resource') %>",
       icon: "edit.png",
@@ -61,7 +61,7 @@ $(function() {
       icon: "remove.png",
       click: function(target) {
         var id = target.attr("name");
-        target.children(":first").attr("src", url_root + "/images/spinner-16x16-neutral.gif");
+        target.children(":first").attr("src", url_root + "/assets/spinner-16x16-neutral.gif");
         // Abuse of /main/resource/delete, which is generic enough to delete anything
         // TODO(should): Fix error message (refers to "error deleting resource")
         // TODO(should): Consolidate this request stuff, esp. the error case.
@@ -70,7 +70,7 @@ $(function() {
           type: "POST",
           success: function() {
             // Remove spinner (a spinner that stops too early is marginally better than one that never stops)
-            target.children(":first").attr("src", url_root + "/images/icons/properties.png");
+            target.children(":first").attr("src", url_root + "/assets/icons/properties.png");
             // Show "no constraints defined" if we're about to get rid of the last one
             if (target.closest("table")[0].rows.length == 2) {
               target.closest("table").find("tr").show();
@@ -79,7 +79,7 @@ $(function() {
           },
           error: function(request) {
             // Remove spinner
-            target.children(":first").attr("src", url_root + "/images/icons/properties.png");
+            target.children(":first").attr("src", url_root + "/assets/icons/properties.png");
             var json = json_from_request(request);
             if (json) {
               error_dialog(json.error, json.stderr ? json.stderr : null);
@@ -98,33 +98,33 @@ $(function() {
   ]});
   $("#primitives").panel({
     menu_href:  url_root + "/cib/live/primitives/new",
-    menu_icon:  url_root + "/images/icons/add.png",
+    menu_icon:  url_root + "/assets/icons/add.png",
     menu_alt:   "<%= escape_javascript _('New Resource') %>",
     label:      "<%=h escape_javascript _('Primitive') %>",
     open:       <%= @primitives.any? ? 'true' : 'false' %> });
 <% if Util.has_feature?(:rsc_template) %>
   $("#templates").panel({
     menu_href:  url_root + "/cib/live/templates/new",
-    menu_icon:  url_root + "/images/icons/add.png",
+    menu_icon:  url_root + "/assets/icons/add.png",
     menu_alt:   "<%= escape_javascript _('New Template') %>",
     label:      "<%=h escape_javascript _('Template') %>",
     open:       <%= @templates.any? ? 'true' : 'false' %> });
 <% end %>
   $("#groups").panel({
     menu_href:  url_root + "/cib/live/groups/new",
-    menu_icon:  url_root + "/images/icons/add.png",
+    menu_icon:  url_root + "/assets/icons/add.png",
     menu_alt:   "<%= escape_javascript _('New Group') %>",
     label:      "<%=h escape_javascript _('Group') %>",
     open:       <%= @groups.any? ? 'true' : 'false' %> });
   $("#clones").panel({
     menu_href:  url_root + "/cib/live/clones/new",
-    menu_icon:  url_root + "/images/icons/add.png",
+    menu_icon:  url_root + "/assets/icons/add.png",
     menu_alt:   "<%= escape_javascript _('New Clone') %>",
     label:      "<%=h escape_javascript _('Clone') %>",
     open:       <%= @clones.any? ? 'true' : 'false' %> });
   $("#masters").panel({
     menu_href:  url_root + "/cib/live/masters/new",
-    menu_icon:  url_root + "/images/icons/add.png",
+    menu_icon:  url_root + "/assets/icons/add.png",
     menu_alt:   "<%= escape_javascript _('New Master/Slave') %>",
     label:      "<%=h escape_javascript _('Master/Slave') %>",
     open:       <%= @masters.any? ? 'true' : 'false' %> });

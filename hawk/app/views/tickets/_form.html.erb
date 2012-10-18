@@ -43,7 +43,7 @@ $(function() {
       set: <%= @t.resources.map {|r| { :id => r[:id], :role => r[:role] } }.to_json
       %>,
       roles: ["Started", "Master", "Slave", "Stopped"],
-      imgroot: url_root + "/images/",
+      imgroot: url_root + "/assets/",
       labels: {
         add: "<%= escape_javascript _('Add') %>",
         remove: "<%= escape_javascript _('Remove') %>",

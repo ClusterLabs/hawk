@@ -67,7 +67,7 @@
       resources: [],
       chain: [],
       actions: ["start", "promote", "demote", "stop"],
-      imgroot: "/images/",
+      imgroot: "/assets/",
       labels: {
         add: "Add",
         remove: "Remove",

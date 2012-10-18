@@ -121,7 +121,7 @@ var simulator = {
       html += '<th>' + escape_html(GETTEXT.sim_op_interval()) + '</th>' +
           '<td><input type="text" size="10" id="inject-op-interval"/> (ms)</td>' +
           '<td><span id="interval-spinner" style="display: none;">' +
-            '<img src="' + url_root + '/images/spinner-16x16-neutral.gif" alt="" />' +
+            '<img src="' + url_root + '/assets/spinner-16x16-neutral.gif" alt="" />' +
           '</span></td></tr>';
 
       html += '<tr><th>' + escape_html(GETTEXT.sim_node_node()) + '</th><td><select id="inject-op-node">';
@@ -370,7 +370,7 @@ var simulator = {
         '<img src="' + href + '" alt="" /></div>');
     } else {
       $("#dialog").html('<div style="text-align: center;" id="dialog-graph-xml">' +
-        '<img src="' + url_root + '/images/spinner-32x32.gif" alt="" /></div>');
+        '<img src="' + url_root + '/assets/spinner-32x32.gif" alt="" /></div>');
       $.get(href, type == "xml" ? "munge=txt" : "", function(data) {
         $("#dialog-graph-xml").css({textAlign: "left"}).html("<pre>" + escape_html(data) + "</pre>");
       });

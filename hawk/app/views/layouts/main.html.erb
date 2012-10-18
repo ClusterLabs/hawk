@@ -87,7 +87,7 @@ $(function() {
 <% if is_god? %>
   $("#tabs li a").last().click(function() {
     $("#dialog").html('<div style="text-align: center;">' +
-      '<img src="' + url_root + '/images/spinner-32x32.gif" alt="" /></div>');
+      '<img src="' + url_root + '/assets/spinner-32x32.gif" alt="" /></div>');
     $("#dialog").load(url_root + "/hb_reports/new");
     var b = {};
     b["Close"] = function() {

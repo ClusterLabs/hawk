@@ -88,7 +88,7 @@ function item_id(str)
 function new_item_div(id) {
   return $(
     '<div id="' + id + '">' +
-      '<a id="' + id + '::menu"><img src="' + url_root + '/images/transparent-16x16.gif" class="action-icon" alt="" /></a>' +
+      '<a id="' + id + '::menu"><img src="' + url_root + '/assets/transparent-16x16.gif" class="action-icon" alt="" /></a>' +
       '<div id="' + id + '::error" style="float: right; width: 16px; height: 16px;"></div>' +
       '<span id="' + id + '::label"></span>' +
     "</div>");
@@ -153,18 +153,18 @@ function perform_op(type, id, op, extra)
   else if(c.hasClass("rs-active"))    state = "active";
   else if(c.hasClass("rs-inactive"))  state = "inactive";
   else if(c.hasClass("rs-error"))     state = "error";
-  $(jq(type + "::" + id + "::menu")).children(":first").attr("src", url_root + "/images/spinner-16x16-" + state + ".gif");
+  $(jq(type + "::" + id + "::menu")).children(":first").attr("src", url_root + "/assets/spinner-16x16-" + state + ".gif");
 
   $.ajax({ url: url_root + "/main/" + type + "/" + op,
     data: "format=json&" + type + "=" + id + (extra ? "&" + extra : ""),
     type: "POST",
     success: function() {
       // Remove spinner (a spinner that stops too early is marginally better than one that never stops)
-      $(jq(type + "::" + id + "::menu")).children(":first").attr("src", url_root + "/images/icons/properties.png");
+      $(jq(type + "::" + id + "::menu")).children(":first").attr("src", url_root + "/assets/icons/properties.png");
     },
     error: function(request) {
       // Remove spinner
-      $(jq(type + "::" + id + "::menu")).children(":first").attr("src", url_root + "/images/icons/properties.png");
+      $(jq(type + "::" + id + "::menu")).children(":first").attr("src", url_root + "/assets/icons/properties.png");
       var json = json_from_request(request);
       if (json) {
         error_dialog(json.error, json.stderr ? json.stderr : null);
@@ -183,7 +183,7 @@ function perform_op(type, id, op, extra)
 function add_mgmt_menu(e)
 {
   e.addClass("clickable");
-  e.children(":first").attr("src", url_root + "/images/icons/properties.png");
+  e.children(":first").attr("src", url_root + "/assets/icons/properties.png");
   // parts[0] is "node" or "resource", parts[1] is node or resource ID
   var parts = dc_split(e.attr("id"));
   if (parts[0] == "node") {
