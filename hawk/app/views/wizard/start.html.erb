@@ -3,7 +3,7 @@
 <div><%= link_to _('Back'), status_path %></div>
 <% else %>
 <script type="text/javascript">
-var descs = <%= @descs.to_json %>;
+var descs = <%= @descs.to_json.html_safe %>;
 function enable_next() {
   var w = $("#workflow").val();
   if (w) {

@@ -38,7 +38,7 @@ $(function() {
         (@cib.resources.map{|r|
           r[:id] } +
         @cib.templates.map{|t|
-          t[:id] }).sort{|a,b| a.natcmp(b, true)}.to_json
+          t[:id] }).sort{|a,b| a.natcmp(b, true)}.to_json.html_safe
       %>,
       chain: <%= @ord.resources.map {|set|
         if (set[:sequential])
@@ -52,7 +52,7 @@ $(function() {
             }
           }
         end
-      }.flatten(1).to_json
+      }.flatten(1).to_json.html_safe
       %>,
       actions: ["start", "promote", "demote", "stop"],
       imgroot: url_root + "/assets/",

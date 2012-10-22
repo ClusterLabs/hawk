@@ -36,8 +36,8 @@ function disable_apply() {
 
 $(function() {
   $("#constraint").location({
-    rules: <%= @loc.rules.to_json %>,
-    nodes: <%= @cib.nodes.map{|n| n[:uname] }.to_json %>,
+    rules: <%= @loc.rules.to_json.html_safe %>,
+    nodes: <%= @cib.nodes.map{|n| n[:uname] }.to_json.html_safe %>,
     labels: {
       score: "<%= escape_javascript _('Score') %>",
       node: "<%= escape_javascript _('Node') %>",

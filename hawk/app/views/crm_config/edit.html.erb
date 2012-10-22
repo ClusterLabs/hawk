@@ -16,7 +16,7 @@ $(function() {
       set_attrs: <%= Hash[@crm_config.props.select{|n,v|
           # Don't include unknown, readonly or advanced properties
           @crm_config.all_types[n] && !@crm_config.all_types[n][:readonly] && !@crm_config.all_types[n][:advanced]
-        }].to_json %>,
+        }].to_json.html_safe %>,
       prefix: "props",
       labels: {
         add: "<%= escape_javascript _('Add') %>",

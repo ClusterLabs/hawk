@@ -38,9 +38,9 @@ $(function() {
         (@cib.resources.map{|r|
           r[:id] } +
         @cib.templates.map{|t|
-          t[:id] }).sort{|a,b| a.natcmp(b, true)}.to_json
+          t[:id] }).sort{|a,b| a.natcmp(b, true)}.to_json.html_safe
       %>,
-      set: <%= @t.resources.map {|r| { :id => r[:id], :role => r[:role] } }.to_json
+      set: <%= @t.resources.map {|r| { :id => r[:id], :role => r[:role] } }.to_json.html_safe
       %>,
       roles: ["Started", "Master", "Slave", "Stopped"],
       imgroot: url_root + "/assets/",

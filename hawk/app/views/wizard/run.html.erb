@@ -13,7 +13,7 @@ select.type { width: 13em; }
 <% end %>
 <script type="text/javascript">
 
-var step_params = <%= @step_params.to_json %>;
+var step_params = <%= @step_params.to_json.html_safe %>;
 
 function enable_apply() {
   enable = true;
