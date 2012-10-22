@@ -72,6 +72,8 @@ Hawk::Application.routes.draw do
     resources :tickets
     resources :nodes
   end
+  # TODO(must): next line is nasty hack for non-plural crm_config resource name
+  match '/cib/:cib_id/crm_config/:id/' => 'crm_config#index', :as => :cib_crm_configs
   match '/cib/:cib_id/crm_config/:id/info' => 'crm_config#info', :as => :crm_config_info
   match '/cib/:cib_id/primitives/:id/monitor_intervals' => 'primitives#monitor_intervals', :as => :primitives_mi
   match '/cib/:cib_id/primitives/new/types' => 'primitives#types', :as => :primitives_types
