@@ -31,6 +31,13 @@
 # Shim to get similar behaviour as ActiveRecord
 
 class CibObject
+  # Thank you http://stackoverflow.com/questions/9138706/undefined-method-model-name-in-rails-3
+  extend ActiveModel::Naming
+  include ActiveModel::Conversion
+  def persisted?
+    false
+  end
+
   include FastGettext::Translation
 
   class CibObjectError < StandardError
