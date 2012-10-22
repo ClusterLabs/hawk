@@ -84,7 +84,7 @@ $(function() {
   <tr><td>&nbsp;</td></tr>
   <tr>
     <td colspan="4" style="text-align: right;">
-      <%= f.submit _('Create Clone'), { :disabled => true } %>
+      <%= f.submit _('Create Clone'), { :id => 'clone_submit', :disabled => true } %>
       <%= f.submit _('Revert Changes'), { :id => 'clone_revert', :name => 'revert', :disabled => true, :style => 'display: none;' } %>
       <%= f.submit _('Back'), { :id => 'clone_cancel', :name => 'cancel' } %>
     </td>

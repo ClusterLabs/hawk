@@ -112,7 +112,7 @@ $(function() {
   </tr>
   <tr>
     <td colspan="2" style="text-align: right;">
-      <%= f.submit _('Create Constraint'), { :disabled => true } %>
+      <%= f.submit _('Create Constraint'), { :id => 'order_submit', :disabled => true } %>
       <%= f.submit _('Revert Changes'), { :id => 'order_revert', :name => 'revert', :disabled => true, :style => 'display: none;' } %>
       <%= f.submit _('Back'), { :id => 'order_cancel', :name => 'cancel' } %>
     </td>

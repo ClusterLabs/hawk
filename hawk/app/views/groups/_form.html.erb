@@ -139,7 +139,7 @@ $(function() {
   <tr><td>&nbsp;</td></tr>
   <tr>
     <td colspan="4" style="text-align: right;">
-      <%= f.submit _('Create Group'), { :disabled => true } %>
+      <%= f.submit _('Create Group'), { :id => 'group_submit', :disabled => true } %>
       <%= f.submit _('Revert Changes'), { :id => 'group_revert', :name => 'revert', :disabled => true, :style => 'display: none;' } %>
       <%= f.submit _('Back'), { :id => 'group_cancel', :name => 'cancel' } %>
     </td>

@@ -390,7 +390,7 @@ $(function() {
   <tr><td>&nbsp;</td></tr>
   <tr>
     <td colspan="4" style="text-align: right;">
-      <%= f.submit _('Create Resource'), { :disabled => true } %>
+      <%= f.submit _('Create Resource'), { :id => "#{id_prefix}_submit", :disabled => true } %>
       <%= f.submit _('Revert Changes'), { :id => "#{id_prefix}_revert", :name => 'revert', :disabled => true, :style => 'display: none;' } %>
       <%= f.submit _('Back'), { :id => "#{id_prefix}_cancel", :name => 'cancel' } %>
     </td>
