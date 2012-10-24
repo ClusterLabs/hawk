@@ -34,8 +34,9 @@ class CibObject
   # Thank you http://stackoverflow.com/questions/9138706/undefined-method-model-name-in-rails-3
   extend ActiveModel::Naming
   include ActiveModel::Conversion
+  # Declare as persisted, to get to_param etc. magic from ActiveModel
   def persisted?
-    false
+    true
   end
 
   include FastGettext::Translation
@@ -51,9 +52,6 @@ class CibObject
 
   # Need this to behave like an instance of ActiveRecord
   attr_reader :id
-  def to_param
-    (id = self.id) ? id.to_s : nil
-  end
 
   def new_record?
     @new_record || false
