@@ -82,12 +82,37 @@ module Util
 
   # Like popen3, but via /usr/sbin/hawk_invoke
   def run_as(user, *cmd)
-    # crm shell always wants to open/generate help index, so we
-    # let it use a group-writable subdirectory of our tmp directory
-    # so unprivileged users can actually invoke crm without warnings
-    ENV['HOME'] = File.join(RAILS_ROOT, 'tmp', 'home')
+    old_home = ENV['HOME']
+    ENV['HOME'] = begin
+      require 'etc'
+      Etc.getpwnam(user)['dir']
+    rescue ArgumentError
+      # user doesn't exist - this can't happen[tm], but just in case
+      # return an empty string so the existence test below fails
+      ''
+    end
+    unless File.exists?(ENV['HOME'])
+      # crm shell always wants to open/generate help index, so if the
+      # user has no actual home directory, set it to a subdirectory
+      # inside tmp/home, but make sure it's 0770, because it'll be
+      # created with uid hacluster, but the user we become (in the
+      # haclient group) also needs to be able to write as *that* user.
+      ENV['HOME'] = File.join(RAILS_ROOT, 'tmp', 'home', user)
+      unless File.exists?(ENV['HOME'])
+        umask = File.umask(0002)
+        Dir.mkdir(ENV['HOME'], 0770)
+        File.umask(umask)
+      end
+    end
     # RORSCAN_INL: mutli-arg invocation safe from shell injection.
     pi = popen3('/usr/sbin/hawk_invoke', user, *cmd)
+    # Having invoked a command, reset $HOME to what it was before,
+    # else it sticks, and other (non-invoker) crm invoctiaons, e.g.
+    # has_feature() run the shell as hacluster, which in turn causes
+    # $HOME/.cache and $HOME/.config to revert to 600 with uid hacluster,
+    # which means the *next* call after that will die with permission
+    # problems, and you will spend an entire day debugging it.
+    ENV['HOME'] = old_home
     if defined? yield
       begin
         return yield(*pi)
