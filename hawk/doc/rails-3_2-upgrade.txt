@@ -1,16 +1,4 @@
-DEPRECATION WARNING: You have Rails 2.3-style plugins in vendor/plugins! Support for these plugins will be removed in Rails 4.0. Move them out and bundle them in your Gemfile, or fold them in to your app as lib/myplugin/* and config/initializers/myplugin.rb. See the release notes for more on this: http://weblog.rubyonrails.org/2012/1/4/rails-3-2-0-rc2-has-been-released. (called from <top (required)> at /home/tserong/src/github/ClusterLabs/hawk/hawk/Rakefile:41)
-Deprecated test_help path
-You now must require 'rails/test_help' not just 'test_help'.
-More information: http://weblog.rubyonrails.org/2009/9/1/gem-packaging-best-practices
-
-The culprits: 
-	- test/test_helper.rb.rails2
-
-
-===
-
 * probably also need to get rid of everything in script/ except rails
 * need to test CibObject exceptions (see ApplicationController::initialize)
 * need to rework main layout based on new application layout (e.g.: csrf headers, includes etc.)
-* get rid of rails2 backup files
 
