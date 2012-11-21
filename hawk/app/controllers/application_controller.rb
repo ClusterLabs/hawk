@@ -64,6 +64,8 @@ class ApplicationController < ActionController::Base
     }
     # Handle CibObject exceptions
     if defined?(ActionDispatch::ShowExceptions) # Rails 3
+      # TODO(should): This gives a deprecation warning in the log and says
+      # it should be in app config or railties.
       ActionDispatch::ShowExceptions.rescue_responses.update(responses)
     else
       rescue_responses.update(responses)
