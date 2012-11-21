@@ -41,7 +41,13 @@ class MainController < ApplicationController
   def invoke(*cmd)
     result = Invoker.instance.run(*cmd)
     if result == true
-      head :ok
+      # Return actual JSON here instead of 'head :ok', because the
+      # latter results in content-type: application/json under rails 3,
+      # which causes jquery to try to parse the response body as JSON.
+      # This fails, and the ajax error handler triggers.  Yuck.
+      # Note that in this content, the code in status.js doesn't actually
+      # check what's in the returned JSON, so 'nil' is fine...
+      render :json => nil
     else
       render :status => 500, :json => {
         :error  => _('%{cmd} failed (status: %{status})') % { :cmd => cmd.join(' '), :status => result[0] },
