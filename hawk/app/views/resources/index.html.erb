@@ -141,7 +141,7 @@ $(function() {
 
 <div id="primitives">
 <table>
-  <tr<%= ' style="display: none;"' if @primitives.any? %>><td><%=h _('(No primitive resources defined)') %></td></tr>
+  <tr<%=raw ' style="display: none;"' if @primitives.any? %>><td><%=h _('(No primitive resources defined)') %></td></tr>
 <% @primitives.sort{|a,b| a.id.natcmp(b.id, true)}.each do |r| %>
   <tr>
     <td class="id"><%=h r.id %></td>
@@ -154,7 +154,7 @@ $(function() {
 <% if Util.has_feature?(:rsc_template) %>
 <div id="templates">
 <table>
-  <tr<%= ' style="display: none;"' if @templates.any? %>><td><%=h _('(No templates defined)') %></td></tr>
+  <tr<%=raw ' style="display: none;"' if @templates.any? %>><td><%=h _('(No templates defined)') %></td></tr>
 <% @templates.sort{|a,b| a.id.natcmp(b.id, true)}.each do |r| %>
   <tr>
     <td class="id"><%=h r.id %></td>
@@ -167,7 +167,7 @@ $(function() {
 
 <div id="groups">
 <table>
-  <tr<%= ' style="display: none;"' if @groups.any? %>><td><%=h _('(No groups defined)') %></td></tr>
+  <tr<%=raw ' style="display: none;"' if @groups.any? %>><td><%=h _('(No groups defined)') %></td></tr>
 <% @groups.sort{|a,b| a.id.natcmp(b.id, true)}.each do |r| %>
   <tr>
     <td class="id"><%=h r.id %></td>
@@ -179,7 +179,7 @@ $(function() {
 
 <div id="clones">
 <table>
-  <tr<%= ' style="display: none;"' if @clones.any? %>><td><%=h _('(No clones defined)') %></td></tr>
+  <tr<%=raw ' style="display: none;"' if @clones.any? %>><td><%=h _('(No clones defined)') %></td></tr>
 <% @clones.sort{|a,b| a.id.natcmp(b.id, true)}.each do |r| %>
   <tr>
     <td class="id"><%=h r.id %></td>
@@ -191,7 +191,7 @@ $(function() {
 
 <div id="masters">
 <table>
-  <tr<%= ' style="display: none;"' if @masters.any? %>><td><%=h _('(No master/slave resources defined)') %></td></tr>
+  <tr<%=raw ' style="display: none;"' if @masters.any? %>><td><%=h _('(No master/slave resources defined)') %></td></tr>
 <% @masters.sort{|a,b| a.id.natcmp(b.id, true)}.each do |r| %>
   <tr>
     <td class="id"><%=h r.id %></td>

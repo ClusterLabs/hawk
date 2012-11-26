@@ -134,7 +134,7 @@ $(function() {
 <div id="constraint" style="display: none;"></div>
 <div id="locations">
 <table>
-  <tr<%= ' style="display: none;"' if @locations.any? %>><td><%=h _('(No location constraints defined)') %></td></tr>
+  <tr<%=raw ' style="display: none;"' if @locations.any? %>><td><%=h _('(No location constraints defined)') %></td></tr>
 <% @locations.sort{|a,b| a.id.natcmp(b.id, true)}.each do |loc| %>
   <tr>
     <td class="id" rowspan="<%= loc.rules.length %>"><%=h loc.id %></td>
@@ -164,12 +164,12 @@ $(function() {
 
 <div id="colocations">
 <table>
-  <tr<%= ' style="display: none;"' if @colocations.any? %>><td><%=h _('(No colocation constraints defined)') %></td></tr>
+  <tr<%=raw ' style="display: none;"' if @colocations.any? %>><td><%=h _('(No colocation constraints defined)') %></td></tr>
 <% @colocations.sort{|a,b| a.id.natcmp(b.id, true)}.each do |col| %>
   <tr>
     <td class="id"><%=h col.id %></td>
     <td class="score"><%=h col.score %></td>
-    <td><%= rsc_set(col) %></td>
+    <td><%=raw rsc_set(col) %></td>
     <td class="button"><a class="clickable" name="<%=h col.id %>"><%= image_tag 'icons/properties.png', :alt => '' %></a></td>
   </tr>
 <% end %>
@@ -178,12 +178,12 @@ $(function() {
 
 <div id="orders">
 <table>
-  <tr<%= ' style="display: none;"' if @orders.any? %>><td><%=h _('(No order constraints defined)') %></td></tr>
+  <tr<%=raw ' style="display: none;"' if @orders.any? %>><td><%=h _('(No order constraints defined)') %></td></tr>
 <% @orders.sort{|a,b| a.id.natcmp(b.id, true)}.each do |ord| %>
   <tr>
     <td class="id"><%=h ord.id %></td>
     <td class="score"><%=h ord.score %></td>
-    <td><%= rsc_set(ord) %></td>
+    <td><%=raw rsc_set(ord) %></td>
     <td class="button"><a class="clickable" name="<%=h ord.id %>"><%= image_tag 'icons/properties.png', :alt => '' %></a></td>
   </tr>
 <% end %>
@@ -193,7 +193,7 @@ $(function() {
 <% if Util.has_feature?(:rsc_ticket) %>
 <div id="tickets">
 <table>
-  <tr<%= ' style="display: none;"' if @tickets.any? %>><td><%=h _('(No ticket constraints defined)') %></td></tr>
+  <tr<%=raw ' style="display: none;"' if @tickets.any? %>><td><%=h _('(No ticket constraints defined)') %></td></tr>
 <% @tickets.sort{|a,b| a.id.natcmp(b.id, true)}.each do |t| %>
   <tr>
     <td class="id"><%=h t.id %></td>
