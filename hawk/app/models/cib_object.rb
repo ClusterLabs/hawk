@@ -36,7 +36,7 @@ class CibObject
   include ActiveModel::Conversion
   # Declare as persisted, to get to_param etc. magic from ActiveModel
   def persisted?
-    true
+    !new_record?
   end
 
   include FastGettext::Translation
