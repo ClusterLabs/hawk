@@ -56,12 +56,8 @@ class NodesController < ApplicationController
       return
     end
     respond_to do |format|
-      format.json do
-        render "events.js"
-      end
-      format.any do
-        render "events.html"
-      end
+      format.json { render :template => "nodes/events", :formats => [:js] }
+      format.html { render :template => "nodes/events" }
     end
   end
 
