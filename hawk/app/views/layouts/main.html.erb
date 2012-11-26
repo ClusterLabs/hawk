@@ -2,19 +2,19 @@
   "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-<title><%=h @title %></title>
-<%= stylesheet_link_tag "base" %>
-<!--[if IE]><%= stylesheet_link_tag "ie" %><![endif]-->
-<%= stylesheet_link_tag 'smoothness/jquery-ui-1.8.5.custom.css' %>
-<%= stylesheet_link_tag 'jquery-ui-timepicker-addon.css' %>
-<%= javascript_include_tag 'jquery-1.4.2.min.js' %>
-<%= javascript_include_tag 'jquery-ui-1.8.5.custom.min.js' %>
-<%= javascript_include_tag 'jquery-parsequery.min.js' %>
-<%= javascript_include_tag 'jquery.cookie.js' %>
-<%= javascript_include_tag 'jquery-ui-timepicker-addon.js' %>
-<%= javascript_tag "var url_root='#{relative_url_root}';" %>
-<%= javascript_include_tag 'application.js' %>
-<%= csrf_meta_tag if defined? csrf_meta_tag %>
+  <title><%=h @title %></title>
+  <%= stylesheet_link_tag "base", :media => "all" %>
+  <!--[if IE]><%= stylesheet_link_tag "ie" %><![endif]-->
+  <%= stylesheet_link_tag 'smoothness/jquery-ui-1.8.5.custom.css' %>
+  <%= stylesheet_link_tag 'jquery-ui-timepicker-addon.css' %>
+  <%= javascript_include_tag 'jquery-1.4.2.min.js' %>
+  <%= javascript_include_tag 'jquery-ui-1.8.5.custom.min.js' %>
+  <%= javascript_include_tag 'jquery-parsequery.min.js' %>
+  <%= javascript_include_tag 'jquery.cookie.js' %>
+  <%= javascript_include_tag 'jquery-ui-timepicker-addon.js' %>
+  <%= javascript_tag "var url_root='#{relative_url_root}';" %>
+  <%= javascript_include_tag "application" %>
+  <%= csrf_meta_tags %>
 <%= yield :head %>
 </head>
 <body>
@@ -113,7 +113,7 @@ $(function() {
       <span id="dc_version" style="display: none; padding-right: 1em;"></span>
       <span id="dc_stack" style="display: none; padding-right: 1em;"></span>
       <%= (_('UI Host: %s') % @host) if @host %></span>
-    <span id="copyright"><%= _('Copyright &copy; 2009-2012 Novell, Inc.') %></span>
+    <span id="copyright"><%=raw _('Copyright &copy; 2009-2012 Novell, Inc.') %></span>
   </div>
   <div id="dialog" style="display: none;"></div>
 </div>
