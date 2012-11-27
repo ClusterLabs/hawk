@@ -27,6 +27,7 @@ TODO
 
 === Should & Could (in no particular order) ===
   
+* Verify <%=raw vs. <%=h etc. for Rails3
 * Replace popen3, safe_x, invoker etc. as much as possible with
   David Majda's command.rb
 * Use PerRequestCache in more places if/when possible (e.g.: CrmConfig::load_meta,

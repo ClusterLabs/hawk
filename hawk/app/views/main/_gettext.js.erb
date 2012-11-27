@@ -1,311 +1,311 @@
 var GETTEXT = {
   // Dialog buttons, status indicators
   ok: function() {
-    return "<%= escape_javascript _('OK') %>";
+    return "<%=raw escape_javascript _('OK') %>";
   },
   cancel: function() {
-    return "<%= escape_javascript _('Cancel') %>";
+    return "<%=raw escape_javascript _('Cancel') %>";
   },
   yes: function() {
-    return "<%= escape_javascript _('Yes') %>";
+    return "<%=raw escape_javascript _('Yes') %>";
   },
   no: function() {
-    return "<%= escape_javascript _('No') %>";
+    return "<%=raw escape_javascript _('No') %>";
   },
   close: function() {
-    return "<%= escape_javascript _('Close') %>";
+    return "<%=raw escape_javascript _('Close') %>";
   },
   reset: function() {
-    return "<%= escape_javascript _('Reset') %>";
+    return "<%=raw escape_javascript _('Reset') %>";
   },
   // Node ops
   node_online: function(node) {
-    return "<%= escape_javascript _('This will bring node %s online if it is currently on standby.  Do you want to continue?') % '_NODE_' %>".replace('_NODE_', node);
+    return "<%=raw escape_javascript _('This will bring node %s online if it is currently on standby.  Do you want to continue?') % '_NODE_' %>".replace('_NODE_', node);
   },
   node_standby: function(node) {
-    return "<%= escape_javascript _('This will put node %s on standby.  All resources will be stopped and/or moved to another node.  Do you want to continue?') % '_NODE_' %>".replace('_NODE_', node);
+    return "<%=raw escape_javascript _('This will put node %s on standby.  All resources will be stopped and/or moved to another node.  Do you want to continue?') % '_NODE_' %>".replace('_NODE_', node);
   },
   node_fence: function(node) {
-    return "<%= escape_javascript _('This will attempt to immediately fence node %s.  Do you want to continue?') % '_NODE_' %>".replace('_NODE_', node);
+    return "<%=raw escape_javascript _('This will attempt to immediately fence node %s.  Do you want to continue?') % '_NODE_' %>".replace('_NODE_', node);
   },
   // Resource ops
   resource_start: function(res) {
-    return "<%= escape_javascript _('This will start the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
+    return "<%=raw escape_javascript _('This will start the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
   },
   resource_stop: function(res) {
-    return "<%= escape_javascript _('This will stop the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
+    return "<%=raw escape_javascript _('This will stop the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
   },
   resource_migrate: function(res) {
-    return "<%= escape_javascript _('Move resource %s') % '_RES_' %>".replace('_RES_', res);
+    return "<%=raw escape_javascript _('Move resource %s') % '_RES_' %>".replace('_RES_', res);
   },
   resource_migrate_to: function(node) {
-    return "<%= escape_javascript _('To node %s') % '_NODE_' %>".replace('_NODE_', node);
+    return "<%=raw escape_javascript _('To node %s') % '_NODE_' %>".replace('_NODE_', node);
   },
   resource_migrate_away: function() {
-    return "<%= escape_javascript _('Away from current node') %>";
+    return "<%=raw escape_javascript _('Away from current node') %>";
   },
   resource_unmigrate: function(res) {
-    return "<%= escape_javascript _('This will clear any relocation constraints set on the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
+    return "<%=raw escape_javascript _('This will clear any relocation constraints set on the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
   },
   resource_promote: function(res) {
-    return "<%= escape_javascript _('This will promote the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
+    return "<%=raw escape_javascript _('This will promote the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
   },
   resource_demote: function(res) {
-    return "<%= escape_javascript _('This will demote the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
+    return "<%=raw escape_javascript _('This will demote the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
   },
   resource_cleanup: function(res) {
-    return "<%= escape_javascript _('This will clean up the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
+    return "<%=raw escape_javascript _('This will clean up the resource %s.  Do you want to continue?') % '_RES_' %>".replace('_RES_', res);
   },
   // Errors
   error: function() {
-    return "<%= escape_javascript _('Error') %>";
+    return "<%=raw escape_javascript _('Error') %>";
   },
   err_unexpected: function(msg) {
-    return "<%= escape_javascript _('Unexpected server error: %s') % '_MSG_' %>".replace('_MSG_', msg);
+    return "<%=raw escape_javascript _('Unexpected server error: %s') % '_MSG_' %>".replace('_MSG_', msg);
   },
   err_connection: function() {
-    return "<%= escape_javascript _('Connection to server failed (server down or network error - will retry every 15 seconds).') %>";
+    return "<%=raw escape_javascript _('Connection to server failed (server down or network error - will retry every 15 seconds).') %>";
   },
   err_denied: function() {
-    return "<%= escape_javascript _('Permission denied') %>";
+    return "<%=raw escape_javascript _('Permission denied') %>";
   },
   err_failed_op: function(op, node, rc) {
-    return "<%= escape_javascript _('%{op} failed on %{node} (rc=%{rc})') % { :op => '_OP_', :node => '_NODE_', :rc => '_RC_' } %>".replace('_OP_', op).replace('_NODE_', node).replace('_RC_', rc);
+    return "<%=raw escape_javascript _('%{op} failed on %{node} (rc=%{rc})') % { :op => '_OP_', :node => '_NODE_', :rc => '_RC_' } %>".replace('_OP_', op).replace('_NODE_', node).replace('_RC_', rc);
   },
   // DC Info
   dc_current: function(dc) {
-    return "<%= escape_javascript _('DC: %s') % '_DC_' %>".replace('_DC_', dc);
+    return "<%=raw escape_javascript _('DC: %s') % '_DC_' %>".replace('_DC_', dc);
   },
   dc_version: function(version) {
-    return "<%= escape_javascript _('Version: %s') % '_VERSION_' %>".replace('_VERSION_', version);
+    return "<%=raw escape_javascript _('Version: %s') % '_VERSION_' %>".replace('_VERSION_', version);
   },
   dc_stack: function(stack) {
-    return "<%= escape_javascript _('Stack: %s') % '_STACK_' %>".replace('_STACK_', stack);
+    return "<%=raw escape_javascript _('Stack: %s') % '_STACK_' %>".replace('_STACK_', stack);
   },
   // Cluster summary labels
   cluster_config: function() {
-    return "<%= escape_javascript _('Cluster Configuration') %>";
+    return "<%=raw escape_javascript _('Cluster Configuration') %>";
   },
   inactive_heading: function() {
-    return "<%= escape_javascript _('Inactive Resources') %>";
+    return "<%=raw escape_javascript _('Inactive Resources') %>";
   },
   summary: function() {
-    return "<%= escape_javascript _('Summary') %>";
+    return "<%=raw escape_javascript _('Summary') %>";
   },
   details: function() {
-    return "<%= escape_javascript _('Details') %>";
+    return "<%=raw escape_javascript _('Details') %>";
   },
   stonith_enabled: function() {
-    return "<%= escape_javascript _('STONITH Enabled') %>";
+    return "<%=raw escape_javascript _('STONITH Enabled') %>";
   },
   no_quorum_policy:function() {
-    return "<%= escape_javascript _('No Quorum Policy') %>";
+    return "<%=raw escape_javascript _('No Quorum Policy') %>";
   },
   symmetric_cluster: function() {
-    return "<%= escape_javascript _('Symmetric Cluster') %>";
+    return "<%=raw escape_javascript _('Symmetric Cluster') %>";
   },
   resource_stickiness: function() {
-    return "<%= escape_javascript _('Resource Stickiness') %>";
+    return "<%=raw escape_javascript _('Resource Stickiness') %>";
   },
   maintenance_mode: function() {
-    return "<%= escape_javascript _('Maintenance Mode') %>";
+    return "<%=raw escape_javascript _('Maintenance Mode') %>";
   },
   tickets: function() {
-    return "<%= escape_javascript _('Tickets') %>";
+    return "<%=raw escape_javascript _('Tickets') %>";
   },
   ticket_granted: function(standby) {
     return standby ?
-      "<%= escape_javascript _('Granted [standby]') %>" :
-      "<%= escape_javascript _('Granted') %>";
+      "<%=raw escape_javascript _('Granted [standby]') %>" :
+      "<%=raw escape_javascript _('Granted') %>";
   },
   ticket_revoked: function(standby) {
     return standby ?
-      "<%= escape_javascript _('Revoked [standby]') %>" :
-      "<%= escape_javascript _('Revoked') %>";
+      "<%=raw escape_javascript _('Revoked [standby]') %>" :
+      "<%=raw escape_javascript _('Revoked') %>";
   },
   ticket_last_granted: function(d) {
-    return "<%= escape_javascript _('Last granted: %s') % '_DATETIME_' %>".replace('_DATETIME_', d);
+    return "<%=raw escape_javascript _('Last granted: %s') % '_DATETIME_' %>".replace('_DATETIME_', d);
   },
   // View switcher
   summary_view: function() {
-    return "<%= escape_javascript _('Summary View') %>";
+    return "<%=raw escape_javascript _('Summary View') %>";
   },
   tree_view: function() {
-    return "<%= escape_javascript _('Tree View') %>";
+    return "<%=raw escape_javascript _('Tree View') %>";
   },
   table_view: function() {
-    return "<%= escape_javascript _('Table View') %>";
+    return "<%=raw escape_javascript _('Table View') %>";
   },
   // Node & resource labels
   node_state: function(node, state) {
-    return "<%= escape_javascript _('%{node}: %{state}') % { :node => '_NODE_', :state => '_STATE_' } %>".replace('_NODE_', node).replace('_STATE_', state);
+    return "<%=raw escape_javascript _('%{node}: %{state}') % { :node => '_NODE_', :state => '_STATE_' } %>".replace('_NODE_', node).replace('_STATE_', state);
   },
   node_state_online: function() {
-    return "<%= escape_javascript _('Online') %>";
+    return "<%=raw escape_javascript _('Online') %>";
   },
   node_state_offline: function() {
-    return "<%= escape_javascript _('Offline') %>";
+    return "<%=raw escape_javascript _('Offline') %>";
   },
   node_state_pending: function() {
-    return "<%= escape_javascript _('Pending') %>";
+    return "<%=raw escape_javascript _('Pending') %>";
   },
   node_state_standby: function() {
-    return "<%= escape_javascript _('Standby') %>";
+    return "<%=raw escape_javascript _('Standby') %>";
   },
   node_state_unclean: function() {
-    return "<%= escape_javascript _('Unclean') %>";
+    return "<%=raw escape_javascript _('Unclean') %>";
   },
   node_state_unknown: function() {
-    return "<%= escape_javascript _('Unknown') %>";
+    return "<%=raw escape_javascript _('Unknown') %>";
   },
   // TODO(should): fold these back similar to node_state() & node_state_*() above
   resource_state_master: function(res, nodes) {
-    if (!res) return "<%= escape_javascript _('Master') %>";
-    if (nodes) return "<%= escape_javascript _('%{id}: Master: %{nodelist}') % { :id => '_RES_', :nodelist => '_NODELIST_' } %>".replace('_RES_', res).replace('_NODELIST_', nodes.join(", "));
-    else return "<%= escape_javascript _('%{id}: Master') % { :id => '_RES_' } %>".replace('_RES_', res);
+    if (!res) return "<%=raw escape_javascript _('Master') %>";
+    if (nodes) return "<%=raw escape_javascript _('%{id}: Master: %{nodelist}') % { :id => '_RES_', :nodelist => '_NODELIST_' } %>".replace('_RES_', res).replace('_NODELIST_', nodes.join(", "));
+    else return "<%=raw escape_javascript _('%{id}: Master') % { :id => '_RES_' } %>".replace('_RES_', res);
   },
   resource_state_slave: function(res, nodes) {
-    if (!res) return "<%= escape_javascript _('Slave') %>";
-    if (nodes) return "<%= escape_javascript _('%{id}: Slave: %{nodelist}') % { :id => '_RES_', :nodelist => '_NODELIST_' } %>".replace('_RES_', res).replace('_NODELIST_', nodes.join(", "));
-    else return "<%= escape_javascript _('%{id}: Slave') % { :id => '_RES_' } %>".replace('_RES_', res);
+    if (!res) return "<%=raw escape_javascript _('Slave') %>";
+    if (nodes) return "<%=raw escape_javascript _('%{id}: Slave: %{nodelist}') % { :id => '_RES_', :nodelist => '_NODELIST_' } %>".replace('_RES_', res).replace('_NODELIST_', nodes.join(", "));
+    else return "<%=raw escape_javascript _('%{id}: Slave') % { :id => '_RES_' } %>".replace('_RES_', res);
   },
   resource_state_started: function(res, nodes) {
-    if (!res) return "<%= escape_javascript _('Started') %>";
-    if (nodes) return "<%= escape_javascript _('%{id}: Started: %{nodelist}') % { :id => '_RES_', :nodelist => '_NODELIST_' } %>".replace('_RES_', res).replace('_NODELIST_', nodes.join(", "));
-    else return "<%= escape_javascript _('%{id}: Started') % { :id => '_RES_' } %>".replace('_RES_', res);
+    if (!res) return "<%=raw escape_javascript _('Started') %>";
+    if (nodes) return "<%=raw escape_javascript _('%{id}: Started: %{nodelist}') % { :id => '_RES_', :nodelist => '_NODELIST_' } %>".replace('_RES_', res).replace('_NODELIST_', nodes.join(", "));
+    else return "<%=raw escape_javascript _('%{id}: Started') % { :id => '_RES_' } %>".replace('_RES_', res);
   },
   resource_state_pending: function(res, nodes) {
-    if (!res) return "<%= escape_javascript _('Pending') %>";
-    if (nodes) return "<%= escape_javascript _('%{id}: Pending: %{nodelist}') % { :id => '_RES_', :nodelist => '_NODELIST_' } %>".replace('_RES_', res).replace('_NODELIST_', nodes.join(", "));
-    else return "<%= escape_javascript _('%{id}: Pending') % { :id => '_RES_' } %>".replace('_RES_', res);
+    if (!res) return "<%=raw escape_javascript _('Pending') %>";
+    if (nodes) return "<%=raw escape_javascript _('%{id}: Pending: %{nodelist}') % { :id => '_RES_', :nodelist => '_NODELIST_' } %>".replace('_RES_', res).replace('_NODELIST_', nodes.join(", "));
+    else return "<%=raw escape_javascript _('%{id}: Pending') % { :id => '_RES_' } %>".replace('_RES_', res);
   },
   resource_state_stopped: function(res) {
-    if (!res) return "<%= escape_javascript _('Stopped') %>";
-    return "<%= escape_javascript _('%{id}: Stopped') % { :id => '_RES_' } %>".replace('_RES_', res);
+    if (!res) return "<%=raw escape_javascript _('Stopped') %>";
+    return "<%=raw escape_javascript _('%{id}: Stopped') % { :id => '_RES_' } %>".replace('_RES_', res);
   },
   resource_group: function(res) {
-    return "<%= escape_javascript _('Group: %{id}') % { :id => '_RES_' } %>".replace('_RES_', res);
+    return "<%=raw escape_javascript _('Group: %{id}') % { :id => '_RES_' } %>".replace('_RES_', res);
   },
   resource_master: function(res) {
-    return "<%= escape_javascript _('Master/Slave Set: %{id}') % { :id => '_RES_' } %>".replace('_RES_', res);
+    return "<%=raw escape_javascript _('Master/Slave Set: %{id}') % { :id => '_RES_' } %>".replace('_RES_', res);
   },
   resource_clone: function(res) {
-    return "<%= escape_javascript _('Clone Set: %{id}') % { :id => '_RES_' } %>".replace('_RES_', res);
+    return "<%=raw escape_javascript _('Clone Set: %{id}') % { :id => '_RES_' } %>".replace('_RES_', res);
   },
   // Simulator dialog
   sim_init: function() {
-    return "<%= escape_javascript _('Simulator (initial state)') %>";
+    return "<%=raw escape_javascript _('Simulator (initial state)') %>";
   },
   sim_busy: function() {
-    return "<%= escape_javascript _('Simulator (busy...)') %>";
+    return "<%=raw escape_javascript _('Simulator (busy...)') %>";
   },
   sim_final: function() {
-    return "<%= escape_javascript _('Simulator (final state)') %>";
+    return "<%=raw escape_javascript _('Simulator (final state)') %>";
   },
   sim_injected: function() {
-    return "<%= escape_javascript _('Injected State:') %>";
+    return "<%=raw escape_javascript _('Injected State:') %>";
   },
   sim_inject_node: function() {
-    return "<%= escape_javascript _('+ Node') %>";
+    return "<%=raw escape_javascript _('+ Node') %>";
   },
   sim_inject_op: function() {
-    return "<%= escape_javascript _('+ Op') %>";
+    return "<%=raw escape_javascript _('+ Op') %>";
   },
   sim_inject_ticket: function() {
-    return "<%= escape_javascript _('+ Ticket') %>";
+    return "<%=raw escape_javascript _('+ Ticket') %>";
   },
   sim_run: function() {
-    return "<%= escape_javascript _('Run >') %>";
+    return "<%=raw escape_javascript _('Run >') %>";
   },
   sim_details: function() {
-    return "<%= escape_javascript _('Details') %>";
+    return "<%=raw escape_javascript _('Details') %>";
   },
   sim_cib_in: function() {
-    return "<%= escape_javascript _('CIB (in)') %>";
+    return "<%=raw escape_javascript _('CIB (in)') %>";
   },
   sim_cib_out: function() {
-    return "<%= escape_javascript _('CIB (out)') %>";
+    return "<%=raw escape_javascript _('CIB (out)') %>";
   },
   sim_graph: function() {
-    return "<%= escape_javascript _('Graph') %>";
+    return "<%=raw escape_javascript _('Graph') %>";
   },
   sim_graph_empty: function() {
-    return "<%= escape_javascript _('Empty Graph') %>";
+    return "<%=raw escape_javascript _('Empty Graph') %>";
   },
   sim_node_inject: function() {
-    return "<%= escape_javascript _('Inject Node State') %>";
+    return "<%=raw escape_javascript _('Inject Node State') %>";
   },
   sim_node_node: function() {
-    return "<%= escape_javascript _('Node:') %>";
+    return "<%=raw escape_javascript _('Node:') %>";
   },
   sim_node_state: function() {
-    return "<%= escape_javascript _('State:') %>";
+    return "<%=raw escape_javascript _('State:') %>";
   },
   sim_op_inject: function() {
-    return "<%= escape_javascript _('Inject Operation') %>";
+    return "<%=raw escape_javascript _('Inject Operation') %>";
   },
   sim_op_operation: function() {
-    return "<%= escape_javascript _('Operation:') %>";
+    return "<%=raw escape_javascript _('Operation:') %>";
   },
   sim_op_interval: function() {
-    return "<%= escape_javascript _('Interval:') %>";
+    return "<%=raw escape_javascript _('Interval:') %>";
   },
   sim_op_resource: function() {
-    return "<%= escape_javascript _('Resource:') %>";
+    return "<%=raw escape_javascript _('Resource:') %>";
   },
   sim_op_result: function() {
-    return "<%= escape_javascript _('Result:') %>";
+    return "<%=raw escape_javascript _('Result:') %>";
   },
   sim_ticket_inject: function() {
-    return "<%= escape_javascript _('Inject Ticket') %>";
+    return "<%=raw escape_javascript _('Inject Ticket') %>";
   },
   sim_ticket_ticket: function() {
-    return "<%= escape_javascript _('Ticket:') %>";
+    return "<%=raw escape_javascript _('Ticket:') %>";
   },
   sim_ticket_action: function() {
-    return "<%= escape_javascript _('Action:') %>";
+    return "<%=raw escape_javascript _('Action:') %>";
   },
   sim_ticket_grant: function() {
-    return "<%= escape_javascript _('Grant') %>";
+    return "<%=raw escape_javascript _('Grant') %>";
   },
   sim_ticket_revoke: function() {
-    return "<%= escape_javascript _('Revoke') %>";
+    return "<%=raw escape_javascript _('Revoke') %>";
   },
   sim_ticket_standby: function() {
-    return "<%= escape_javascript _('Standby') %>";
+    return "<%=raw escape_javascript _('Standby') %>";
   },
   sim_ticket_activate: function() {
-    return "<%= escape_javascript _('Activate') %>";
+    return "<%=raw escape_javascript _('Activate') %>";
   },
   sim_result_success: function() {
-    return "<%= escape_javascript _('Success') %>";
+    return "<%=raw escape_javascript _('Success') %>";
   },
   sim_result_unknown: function() {
-    return "<%= escape_javascript _('Generic Error') %>";
+    return "<%=raw escape_javascript _('Generic Error') %>";
   },
   sim_result_args: function() {
-    return "<%= escape_javascript _('Wrong Argument(s)') %>";
+    return "<%=raw escape_javascript _('Wrong Argument(s)') %>";
   },
   sim_result_unimplemented: function() {
-    return "<%= escape_javascript _('Not Implemented') %>";
+    return "<%=raw escape_javascript _('Not Implemented') %>";
   },
   sim_result_perm: function() {
-    return "<%= escape_javascript _('Permission Denied') %>";
+    return "<%=raw escape_javascript _('Permission Denied') %>";
   },
   sim_result_installed: function() {
-    return "<%= escape_javascript _('Not Installed') %>";
+    return "<%=raw escape_javascript _('Not Installed') %>";
   },
   sim_result_configured: function() {
-    return "<%= escape_javascript _('Not Configured') %>";
+    return "<%=raw escape_javascript _('Not Configured') %>";
   },
   sim_result_not_running: function() {
-    return "<%= escape_javascript _('Not Running') %>";
+    return "<%=raw escape_javascript _('Not Running') %>";
   },
   sim_result_master: function() {
-    return "<%= escape_javascript _('Running Master') %>";
+    return "<%=raw escape_javascript _('Running Master') %>";
   },
   sim_result_failed_master: function() {
-    return "<%= escape_javascript _('Failed Master') %>";
+    return "<%=raw escape_javascript _('Failed Master') %>";
   }
 };
 
