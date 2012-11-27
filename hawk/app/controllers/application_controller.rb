@@ -123,17 +123,27 @@ protected
     authorized? || access_denied
   end
 
+  # Tests:
+  # 1) JSON
+  #    - load status page
+  #    - hit logout link, but open in new tab
+  #    - try some mgmt op in status page (start/stop resource)
+  #    - this should give "permission denied" dialog
+  # 2) HTML
+  #    - as above, but after logout, reload the status page
+  #    - you should be redirected back to the login page 
   def access_denied
     respond_to do |format|
+      format.any do
+        # Have to use format.any not format.html due to stupid IE accept
+        # header brokenness.  Further, format.any must preceed format.json,
+        # or no dice...
+        store_location
+        redirect_to new_session_path
+      end
       format.json do
         # This will kill e.g. JSON requests when not logged in.
         head :forbidden
-      end
-      format.any do
-        # Have to use format.any not format.html due to stupid IE accept
-        # header brokenness.
-        store_location
-        redirect_to new_session_path
       end
     end
   end
