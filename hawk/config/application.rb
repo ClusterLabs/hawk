@@ -17,7 +17,9 @@ end
 
 module Hawk
   class Application < Rails::Application
-    config.autoload_paths += [config.root.join('lib')]
+    # Need to_s here, else it goes in as a Pathname object, not a String, which
+    # breaks gettext
+    config.autoload_paths += [config.root.join('lib').to_s]
     config.encoding = 'utf-8'
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

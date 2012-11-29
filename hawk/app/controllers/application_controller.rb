@@ -38,6 +38,8 @@ class ApplicationController < ActionController::Base
   before_filter :set_users_locale
 
   def set_users_locale
+    # To test different locales, delete the locale session cookie before
+    # changing browser language pref.  Or just add ?locale=XX to the URL :-)
     I18n.locale = FastGettext.set_locale(params[:locale] || cookies[:locale] ||
       request.env['HTTP_ACCEPT_LANGUAGE'] || 'en_US')
     cookies[:locale] = I18n.locale if cookies[:locale] != I18n.locale.to_s
