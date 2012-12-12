@@ -59,6 +59,10 @@ class ApplicationController < ActionController::Base
 
     require 'socket'
     @host = Socket.gethostname  # should be short hostname
+
+    # Need a default homedir for bare crm invocations that's
+    # writeable by hacluster
+    ENV['HOME'] = File.join(RAILS_ROOT, 'tmp', 'home')
   end
 
   # Meant to be protected, but must be public to be called by Invoker
