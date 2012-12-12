@@ -131,7 +131,6 @@ class Cib < CibObject
   # transliteration of pacemaker/lib/pengine/unpack.c:determine_online_status_fencing()
   # ns is node_state element from CIB
   def determine_online_status_fencing(ns)
-    ha_state    = get_xml_attr(ns, 'ha', 'dead')
     in_ccm      = get_xml_attr(ns, 'in_ccm')
     crm_state   = get_xml_attr(ns, 'crmd')
     join_state  = get_xml_attr(ns, 'join')
@@ -141,7 +140,7 @@ class Cib < CibObject
     expected_up = get_xml_attr(ns, 'shutdown', '0') == 0
 
     state = :unclean
-    if in_ccm && ha_state == 'active' && crm_state == 'online'
+    if in_ccm && crm_state == 'online'
       case join_state
       when 'member'         # rock 'n' roll (online)
         state = :online
@@ -154,7 +153,7 @@ class Cib < CibObject
       else                  # unexpectedly down (unclean)
         state = :unclean
       end
-    elsif !in_ccm && ha_state =='dead' && crm_state == 'offline' && !expected_up
+    elsif !in_ccm && crm_state == 'offline' && !expected_up
       state = :offline      # not online, but cleanly
     elsif expected_up
       state = :unclean      # expected to be up, mark it unclean
@@ -168,7 +167,6 @@ class Cib < CibObject
   # ns is node_state element from CIB
   # TODO(could): can we consolidate this with determine_online_status_fencing?
   def determine_online_status_no_fencing(ns)
-    ha_state    = get_xml_attr(ns, 'ha', 'dead')
     in_ccm      = get_xml_attr(ns, 'in_ccm')
     crm_state   = get_xml_attr(ns, 'crmd')
     join_state  = get_xml_attr(ns, 'join')
@@ -178,7 +176,7 @@ class Cib < CibObject
     expected_up = get_xml_attr(ns, 'shutdown', '0') == 0
 
     state = :unclean
-    if !in_ccm || ha_state == 'dead'
+    if !in_ccm 
       state = :offline
     elsif crm_state == 'online'
       if join_state == 'member'
