@@ -101,7 +101,7 @@ class Invoker
     case thread.value.exitstatus
     when 0
       return out
-    when 22 # cib_NOTEXISTS
+    when 6, 22 # cib_NOTEXISTS (used to be 22, now it's 6...)
       raise NotFoundError, _('The object/attribute does not exist (cibadmin %{cmd})') % {:cmd => cmd.inspect}
     when 54 # cib_permission_denied
       raise SecurityError, _('Permission denied for user %{user}') % {:user => current_user}
@@ -123,7 +123,7 @@ class Invoker
     case thread.value.exitstatus
     when 0
       return true
-    when 22 # cib_NOTEXISTS
+    when 6, 22 # cib_NOTEXISTS (used to be 22, now it's 6...)
       raise NotFoundError, _('The object/attribute does not exist: %{msg}') % {:msg => err}
     when 54 # cib_permission_denied
       raise SecurityError, _('Permission denied for user %{user}') % {:user => current_user}
