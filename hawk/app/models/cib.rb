@@ -222,7 +222,7 @@ class Cib < CibObject
       raise ArgumentError, _('CIB file "%{path}" not found') % {:path => cib_path } unless File.exist?(cib_path)
       @xml = REXML::Document.new(File.new(cib_path))
       raise RuntimeError, _('Unable to parse CIB file "%{path}"') % {:path => cib_path } unless @xml.root
-    elsif id == 'live'
+    else
       raise RuntimeError, _('Pacemaker does not appear to be installed (%{cmd} not found)') %
                              {:cmd => '/usr/sbin/crm_mon' } unless File.exists?('/usr/sbin/crm_mon')
       raise RuntimeError, _('Unable to execute %{cmd}') % {:cmd => '/usr/sbin/crm_mon' } unless File.executable?('/usr/sbin/crm_mon')
@@ -248,9 +248,6 @@ class Cib < CibObject
       else
         raise RuntimeError, _('Error invoking %{cmd}: %{msg}') % {:cmd => '/usr/sbin/cibadmin -Ql', :msg => err }
       end
-    else
-      # Only provide the live CIB and static test files (no shadow functionality yet)
-      raise ArgumentError, _('Only the live CIB is supported')
     end
 
     @id = id
