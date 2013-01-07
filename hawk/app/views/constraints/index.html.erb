@@ -53,7 +53,7 @@ $(function() {
         // ID and other bits of HTML.
         var id = target.attr("name");
         var type = target.closest(".ui-panel").attr("id");
-        window.location.assign(url_root + "/cib/live/" + type + "/" + id + "/edit");
+        window.location.assign(url_root + "/cib/<%= params[:cib_id] %>/" + type + "/" + id + "/edit");
       }
     },
     {
@@ -97,26 +97,26 @@ $(function() {
     }
   ]});
   $("#locations").panel({
-    menu_href:  url_root + "/cib/live/locations/new",
+    menu_href:  url_root + "/cib/<%= params[:cib_id] %>/locations/new",
     menu_icon:  url_root + "/images/icons/add.png",
     menu_alt:   "<%= escape_javascript _('New Constraint') %>",
     label:      "<%=h escape_javascript _('Location') %>",
     open:       <%= @locations.any? ? 'true' : 'false' %> });
   $("#colocations").panel({
-    menu_href:  url_root + "/cib/live/colocations/new",
+    menu_href:  url_root + "/cib/<%= params[:cib_id] %>/colocations/new",
     menu_icon:  url_root + "/images/icons/add.png",
     menu_alt:   "<%= escape_javascript _('New Constraint') %>",
     label: "<%=h escape_javascript _('Colocation') %>",
     open: <%= @colocations.any? ? 'true' : 'false' %> });
   $("#orders").panel({
-    menu_href:  url_root + "/cib/live/orders/new",
+    menu_href:  url_root + "/cib/<%= params[:cib_id] %>/orders/new",
     menu_icon:  url_root + "/images/icons/add.png",
     menu_alt:   "<%= escape_javascript _('New Constraint') %>",
     label: "<%=h escape_javascript _('Order') %>",
     open: <%= @orders.any? ? 'true' : 'false' %> });
 <% if Util.has_feature?(:rsc_ticket) %>
   $("#tickets").panel({
-    menu_href:  url_root + "/cib/live/tickets/new",
+    menu_href:  url_root + "/cib/<%= params[:cib_id] %>/tickets/new",
     menu_icon:  url_root + "/images/icons/add.png",
     menu_alt:   "<%= escape_javascript _('New Constraint') %>",
     label: "<%=h escape_javascript _('Ticket') %>",

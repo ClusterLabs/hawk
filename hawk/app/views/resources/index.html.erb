@@ -53,7 +53,7 @@ $(function() {
         // ID and other bits of HTML.
         var id = target.attr("name");
         var type = target.closest(".ui-panel").attr("id");
-        window.location.assign(url_root + "/cib/live/" + type + "/" + id + "/edit");
+        window.location.assign(url_root + "/cib/<%= params[:cib_id] %>/" + type + "/" + id + "/edit");
       }
     },
     {
@@ -97,33 +97,33 @@ $(function() {
     }
   ]});
   $("#primitives").panel({
-    menu_href:  url_root + "/cib/live/primitives/new",
+    menu_href:  url_root + "/cib/<%= params[:cib_id] %>/primitives/new",
     menu_icon:  url_root + "/images/icons/add.png",
     menu_alt:   "<%= escape_javascript _('New Resource') %>",
     label:      "<%=h escape_javascript _('Primitive') %>",
     open:       <%= @primitives.any? ? 'true' : 'false' %> });
 <% if Util.has_feature?(:rsc_template) %>
   $("#templates").panel({
-    menu_href:  url_root + "/cib/live/templates/new",
+    menu_href:  url_root + "/cib/<%= params[:cib_id] %>/templates/new",
     menu_icon:  url_root + "/images/icons/add.png",
     menu_alt:   "<%= escape_javascript _('New Template') %>",
     label:      "<%=h escape_javascript _('Template') %>",
     open:       <%= @templates.any? ? 'true' : 'false' %> });
 <% end %>
   $("#groups").panel({
-    menu_href:  url_root + "/cib/live/groups/new",
+    menu_href:  url_root + "/cib/<%= params[:cib_id] %>/groups/new",
     menu_icon:  url_root + "/images/icons/add.png",
     menu_alt:   "<%= escape_javascript _('New Group') %>",
     label:      "<%=h escape_javascript _('Group') %>",
     open:       <%= @groups.any? ? 'true' : 'false' %> });
   $("#clones").panel({
-    menu_href:  url_root + "/cib/live/clones/new",
+    menu_href:  url_root + "/cib/<%= params[:cib_id] %>/clones/new",
     menu_icon:  url_root + "/images/icons/add.png",
     menu_alt:   "<%= escape_javascript _('New Clone') %>",
     label:      "<%=h escape_javascript _('Clone') %>",
     open:       <%= @clones.any? ? 'true' : 'false' %> });
   $("#masters").panel({
-    menu_href:  url_root + "/cib/live/masters/new",
+    menu_href:  url_root + "/cib/<%= params[:cib_id] %>/masters/new",
     menu_icon:  url_root + "/images/icons/add.png",
     menu_alt:   "<%= escape_javascript _('New Master/Slave') %>",
     label:      "<%=h escape_javascript _('Master/Slave') %>",
