@@ -103,6 +103,8 @@ protected
     if params[:cib_id] && params[:cib_id] != "live"
       # TODO(must): figure out if this is safe
       ENV['CIB_shadow'] = params[:cib_id]
+    elsif params[:controller] == "cib" && params[:id] && params[:id] != "live"
+      ENV['CIB_shadow'] = params[:id]
     end
   end
 
