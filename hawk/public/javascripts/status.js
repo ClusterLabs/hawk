@@ -156,7 +156,7 @@ function perform_op(type, id, op, extra)
   $(jq(type + "::" + id + "::menu")).children(":first").attr("src", url_root + "/images/spinner-16x16-" + state + ".gif");
 
   $.ajax({ url: url_root + "/main/" + type + "/" + op,
-    data: "format=json&" + type + "=" + id + (extra ? "&" + extra : ""),
+    data: "format=json&" + type + "=" + id + (extra ? "&" + extra : "") + (cib_source != "file" ? "&cib_id=" + cib_source : ""),
     type: "POST",
     success: function() {
       // Remove spinner (a spinner that stops too early is marginally better than one that never stops)
