@@ -170,8 +170,8 @@ var panel_view = {
         } else {
           c.before(d);
         }
-        if (cib_source == "live") {
-          // Only add menus when running on live CIB
+        if (cib_source != "file") {
+          // Only add menus when running on mutable CIB
           add_mgmt_menu($(jq(this.id + "::menu")));
         }
       } else {

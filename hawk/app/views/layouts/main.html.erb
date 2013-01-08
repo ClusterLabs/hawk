@@ -52,13 +52,13 @@ tabs += [
     :path => wizard_path },
   { :controllers => [ "crm_config" ],
     :icon => "icons/config.png", :label => _("Cluster Properties"),
-    :path => cib_crm_config_path(:cib_id => 'live', :id => 'cib-bootstrap-options') },
+    :path => cib_crm_config_path(:cib_id => (params[:cib_id] || "live"), :id => 'cib-bootstrap-options') },
   { :controllers => [ "resources", "primitives", "groups", "clones", "masters" ],
     :icon => "icons/resources.png", :label => _("Resources"),
-    :path => cib_resources_path(:cib_id => 'live') },
+    :path => cib_resources_path(:cib_id => (params[:cib_id] || "live")) },
   { :controllers => [ "constraints", "locations", "colocations", "orders", "tickets" ],
     :icon => "icons/constraints.png", :label => _("Constraints"),
-    :path => cib_constraints_path(:cib_id => 'live') }
+    :path => cib_constraints_path(:cib_id => (params[:cib_id] || "live")) }
 ]
 
 tabs += [

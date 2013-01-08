@@ -391,6 +391,9 @@ function hawk_init()
     cib_source = "file";
     cib_file = q.cib_file;
   }
+  if (q.cib_id) {
+    cib_source = q.cib_id;
+  }
   if (q.update_period) {
     update_period = isNaN(q.update_period) ? 0 : parseInt(q.update_period) * 1000;
   }
