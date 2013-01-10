@@ -121,7 +121,12 @@ class Cib < CibObject
         end
         res.delete :clone_max
       else
-        res[:instances].delete_if {|k, v| k != :default} if res.has_key?(:instances)
+        if res.has_key?(:instances)
+          res[:instances].delete_if {|k, v| k != :default}
+          # Inject a default instance if there's not one, as can be the case when
+          # working with shadow CIBs.
+          res[:instances][:default] = { :failed_ops => [] } unless res[:instances].has_key?(:default)
+        end
       end
       @resource_count += res[:instances].count if res[:instances]
       fix_clone_instances(res[:children]) if res[:children]
