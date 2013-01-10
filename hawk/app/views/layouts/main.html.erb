@@ -34,10 +34,10 @@
 tabs = [
   { :controllers => [ "main" ],
     :icon => "icons/status.png", :label => _("Cluster Status"),
-    :path => status_path },
+    :path => status_path(:cib_id => (params[:cib_id] || "live")) },
   { :controllers => [],
     :icon => "icons/simulator.png", :label => _("Simulator"),
-    :path => "#{status_path}?sim=on" }
+    :path => status_path(:cib_id => (params[:cib_id] || "live"), :sim => "on") }
 ];
 
 tabs += [
@@ -49,7 +49,7 @@ tabs += [
 tabs += [
   { :controllers => [ "wizard" ],
     :icon => "icons/wizard.png", :label => _("Setup Wizard"),
-    :path => wizard_path },
+    :path => wizard_path(:cib_id => (params[:cib_id] || "live")) },
   { :controllers => [ "crm_config" ],
     :icon => "icons/config.png", :label => _("Cluster Properties"),
     :path => cib_crm_config_path(:cib_id => (params[:cib_id] || "live"), :id => 'cib-bootstrap-options') },
