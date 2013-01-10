@@ -232,7 +232,7 @@ var simulator = {
       $("#sim-injections").children().each(function() {
         i.push($(this).val());
       });
-      $.post(url_root + "/main/sim_run", { "injections[]": i }, function(data) {
+      $.post(url_root + "/main/sim_run?cib_id=" + self.cib_id, { "injections[]": i }, function(data) {
         if (data) {
           if (data.is_empty) {
             $("#graph-link").hide();
@@ -244,11 +244,11 @@ var simulator = {
         }
         cib_source = "sim:out";
         update_cib();
-        $("#sim-get-info").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=info");
-        $("#sim-get-in").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=in");
-        $("#sim-get-out").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=out");
-        $("#sim-get-graph").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=graph");
-        $("#sim-get-graph-xml").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=graph&format=xml");
+        $("#sim-get-info").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=info&cib_id=" + self.cib_id);
+        $("#sim-get-in").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=in&cib_id=" + self.cib_id);
+        $("#sim-get-out").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=out&cib_id=" + self.cib_id);
+        $("#sim-get-graph").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=graph&cib_id=" + self.cib_id);
+        $("#sim-get-graph-xml").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=graph&format=xml&cib_id=" + self.cib_id);
         $("#simulator").dialog("option", "title", escape_html(GETTEXT.sim_final()));
       });
       return false;
@@ -324,7 +324,7 @@ var simulator = {
     } else {
       $("#sim-inject-ticket").hide();
     }
-    $.get(url_root + "/main/sim_reset", function() {
+    $.get(url_root + "/main/sim_reset?cib_id=" + this.cib_id, function() {
       cib_source = "sim:in";
       update_cib();
       if (callback) {
@@ -349,7 +349,7 @@ var simulator = {
       var id = $("#inject-op-resource").val().split(":")[0];
       if (this.req && this.req.abort) this.req.abort();
       $("#interval-spinner").show();
-      this.req = $.getJSON(url_root + "/cib/live/primitives/" + id + "/monitor_intervals", function(data) {
+      this.req = $.getJSON(url_root + "/cib/" + this.cib_id + "/primitives/" + id + "/monitor_intervals", function(data) {
         $("#inject-op-interval").val(data && data.length > 0 ? data[0] : "");
         $("#interval-spinner").hide();
       });
