@@ -17,7 +17,7 @@
 <%= csrf_meta_tag if defined? csrf_meta_tag %>
 <%= yield :head %>
 </head>
-<body>
+<body class="<%= params[:cib_id] && params[:cib_id] != "live" ? "sim" : "" %>">
 <div id="container">
   <div id="header" class="ui-widget-header">
     <%= link_to image_tag('logo.png', :alt => '', :id => 'logo'), status_path %>
@@ -71,7 +71,7 @@ tabs += [
   <div id="tabs" style="float: left; margin-left: 0.5em; margin-top: 0.5em;" class="ui-tabs ui-widget ui-corner-all">
     <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
   <% tabs.each do |t| %>
-      <li class="ui-state-default ui-corner-left<%= t[:controllers].include?(params[:controller]) ? " ui-tabs-selected ui-state-active" : ""%>"><%= link_to image_tag(t[:icon], :alt => t[:label], :title => t[:label]), t[:path] %></li>
+      <li class="ui-state-default ui-corner-left<%= t[:controllers].include?(params[:controller]) ? " ui-tabs-selected ui-state-active" + (params[:cib_id] && params[:cib_id] != "live" ? " sim" : "") : ""%>"><%= link_to image_tag(t[:icon], :alt => t[:label], :title => t[:label]), t[:path] %></li>
   <% end %>
     </ul>
   </div>

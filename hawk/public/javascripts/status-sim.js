@@ -284,6 +284,7 @@ var simulator = {
       title:    escape_html(GETTEXT.sim_init()),
       buttons:  b,
       close:    function() {
+        // TODO(must): Don't remove "sim" class if operating on shadow CIB
         $(document.body).removeClass("sim");
         $($("#tabs li")[0]).addClass("ui-tabs-selected ui-state-active");
         $($("#tabs li")[1]).removeClass("ui-tabs-selected ui-state-active sim");
@@ -298,7 +299,8 @@ var simulator = {
     hide_status();
     $("#onload-spinner").show();
     self._reset(function() {
-      $(document.body).addClass("sim");
+      $(document.body).addClass("sim");     // Arguably redundant if operating on shadow CIB
+      // TODO(must): Remove sim class from 0th tab
       $($("#tabs li")[1]).addClass("sim");
       $("#simulator").dialog("open");
     });
