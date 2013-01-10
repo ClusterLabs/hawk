@@ -73,7 +73,7 @@ class WizardController < ApplicationController
 
   def run
     if params[:cancel] || params[:done]
-      redirect_to status_path
+      redirect_to status_path(:cib_id => (params[:cib_id] || "live"))
       return
     end
 
