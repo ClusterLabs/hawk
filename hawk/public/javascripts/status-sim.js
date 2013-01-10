@@ -32,6 +32,7 @@
 var simulator = {
   create: function() {
     var self = this;
+    var cib_id = "live";
     $("#container").append($(
       '<div id="simulator" style="display: none; font-size: 80%;">' +
         '<form onsubmit="return false;"><table style="width: 100%;">' +
@@ -270,9 +271,11 @@ var simulator = {
     });
   },
   activate: function() {
-    $($("#tabs li")[0]).removeClass("ui-tabs-selected ui-state-active");
-    $($("#tabs li")[1]).addClass("ui-tabs-selected ui-state-active");
+    $(document.body).addClass("sim");     // Arguably redundant if operating on shadow CIB
+    $($("#tabs li")[0]).removeClass("ui-tabs-selected ui-state-active sim");
+    $($("#tabs li")[1]).addClass("ui-tabs-selected ui-state-active sim");
     var self = this;
+    self.cib_id = cib_source;
     var b = {};
     b[GETTEXT.reset()] = function() {
       self._reset();
@@ -284,14 +287,17 @@ var simulator = {
       title:    escape_html(GETTEXT.sim_init()),
       buttons:  b,
       close:    function() {
-        // TODO(must): Don't remove "sim" class if operating on shadow CIB
-        $(document.body).removeClass("sim");
+        if (self.cib_source == "live") {
+          $(document.body).removeClass("sim");
+        } else {
+          $($("#tabs li")[0]).addClass("sim");
+        }
         $($("#tabs li")[0]).addClass("ui-tabs-selected ui-state-active");
         $($("#tabs li")[1]).removeClass("ui-tabs-selected ui-state-active sim");
         $("#errorbar").hide(); // forcibly hide error bar when deactivating simulator
         hide_status();
         $("#onload-spinner").show();
-        cib_source = "live";
+        cib_source = self.cib_id;
         update_cib();
       }
     });
@@ -299,9 +305,6 @@ var simulator = {
     hide_status();
     $("#onload-spinner").show();
     self._reset(function() {
-      $(document.body).addClass("sim");     // Arguably redundant if operating on shadow CIB
-      // TODO(must): Remove sim class from 0th tab
-      $($("#tabs li")[1]).addClass("sim");
       $("#simulator").dialog("open");
     });
   },
