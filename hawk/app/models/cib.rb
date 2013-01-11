@@ -218,15 +218,6 @@ class Cib < CibObject
       raise ArgumentError, _('CIB file "%{path}" not found') % {:path => cib_path } unless File.exist?(cib_path)
       @xml = REXML::Document.new(File.new(cib_path))
       raise RuntimeError, _('Unable to parse CIB file "%{path}"') % {:path => cib_path } unless @xml.root
-    elsif id == "sim:in" or id == "sim:out"
-      # TODO(must): This is almost the same as above.  Yuck.  Also, decide if this ":" business is a good idea...
-      cib_path = id
-      cib_path.gsub!(":", ".")
-      # Note: must match path in MainController (needs to change once we handle multiple simultaneous runs)
-      cib_path = "#{RAILS_ROOT}/tmp/#{cib_path}"
-      raise ArgumentError, _('CIB file "%{path}" not found') % {:path => cib_path } unless File.exist?(cib_path)
-      @xml = REXML::Document.new(File.new(cib_path))
-      raise RuntimeError, _('Unable to parse CIB file "%{path}"') % {:path => cib_path } unless @xml.root
     else
       raise RuntimeError, _('Pacemaker does not appear to be installed (%{cmd} not found)') %
                              {:cmd => '/usr/sbin/crm_mon' } unless File.exists?('/usr/sbin/crm_mon')

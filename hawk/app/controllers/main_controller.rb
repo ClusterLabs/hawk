@@ -197,13 +197,12 @@ class MainController < ApplicationController
           end
         end
       end
-    end
+    end if params[:injections]
     f = File.new("#{RAILS_ROOT}/tmp/sim.info", "w")
     # TODO(must): Bloody loses transition summary (it's on STDOUT)
     stdout = Util.safe_x("/usr/sbin/crm_simulate",
       "-S",
-      "-x", "#{RAILS_ROOT}/tmp/sim.in",
-      "-O", "#{RAILS_ROOT}/tmp/sim.out",
+      "-L", # "live", but will be against shadow CIB
       "-G", "#{RAILS_ROOT}/tmp/sim.graph",
       "-D", "#{RAILS_ROOT}/tmp/sim.dot",
       *injections)
@@ -249,9 +248,12 @@ class MainController < ApplicationController
       send_data [info[:mods], info[:summary], info[:exec]].select{|s| !s.empty?}.join("\n"),
         :type => "text/plain", :disposition => "inline"
     when "in"
-      send_data File.new("#{RAILS_ROOT}/tmp/sim.in").read, :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
+      shadow_id = ENV["CIB_shadow"]
+      ENV.delete("CIB_shadow")
+      send_data Invoker.instance.cibadmin('-Ql'), :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
+      ENV["CIB_shadow"] = shadow_id
     when "out"
-      send_data File.new("#{RAILS_ROOT}/tmp/sim.out").read, :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
+      send_data Invoker.instance.cibadmin('-Ql'), :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
     when "graph"
       if params[:format] == "xml"
         send_data File.new("#{RAILS_ROOT}/tmp/sim.graph").read, :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
