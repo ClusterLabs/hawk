@@ -40,11 +40,6 @@ var update_req = null;
 
 var current_view = null;
 
-function jq(id)
-{
-  return "#" + id.replace(/(:|\.)/g,'\\$1');
-}
-
 function update_errors(errors)
 {
   $("#errorbar").html("");
