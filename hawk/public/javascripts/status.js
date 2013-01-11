@@ -313,7 +313,7 @@ function update_cib()
           // TODO(must): is it possible to get here with empty cib.errors?
           hide_status();
         }
-        if (update_period) {
+        if (update_period && cib_source == "live") {
           // Handy when debugging...
           setTimeout(update_cib, update_period);
         } else {
