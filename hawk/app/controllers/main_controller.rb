@@ -142,9 +142,10 @@ class MainController < ApplicationController
   # TODO(must): these both need exception handler for invoker runs
   # TODO(must): only one user at a time can run sims (they stomp on each other)
   def sim_reset
-    f = File.new("#{RAILS_ROOT}/tmp/sim.in", "w")
-    f.write(Invoker.instance.cibadmin('-Ql'))
-    f.close
+    # TODO(must): can this ever fail?!?
+    #Invoker.instance.run("crm_shadow", "-b", "-r", "hawk-#{current_user}")
+    # TODO(must): above doesn't clear lrm state - is that a bug? so recreating:
+    Invoker.instance.run("crm_shadow", "-b", "-f", "-c", "hawk-#{current_user}")
     head :ok
   end
 

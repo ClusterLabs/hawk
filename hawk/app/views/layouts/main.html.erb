@@ -34,6 +34,25 @@ $(function() {
       click: function(target) {
         // needs to trigger shadow cib switch and if on status screen, invoke
         // simulator.activate();
+
+        // TODO(should): grey out screen or put up spinner or something while this is running...
+        $.ajax({ url: '<%= url_for(:sim => 'init') %>',
+          success: function(data) {
+            if (data && data.uri) {
+              window.location.assign(data.uri);
+            } else {
+              error_dialog(GETTEXT.err_unexpected(data));
+            }
+          },
+          error: function(request) {
+            var json = json_from_request(request);
+            if (json) {
+              error_dialog(json.error, json.stderr ? json.stderr : null);
+            } else {
+              error_dialog(GETTEXT.err_unexpected(request.status));
+            }
+          }
+        });
         return false;
       }
     }
