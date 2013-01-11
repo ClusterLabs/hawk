@@ -54,6 +54,11 @@ class Invoker
   def run(*cmd)
     stdin, stdout, stderr, thread = Util.run_as(current_user, *cmd)
     stdin.close
+    # apparently if there's anything in stdout we didn't read before
+    # closing, thread.value.exited? is false, thread.value.exitstatus
+    # is nil, and because fudge_error wants that to be zero, this
+    # counts as a failed run.
+    stdout.read
     stdout.close
     result = stderr.read()
     stderr.close
