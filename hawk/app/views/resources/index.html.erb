@@ -129,7 +129,7 @@ $(function() {
 
   // Have to set these up after the panels (panel initializer fiddles with DOM
   // in a way which breaks event handlers if added before panel init)
-  $("a.clickable").click(function() {
+  $("#content a.clickable").click(function() {
     return $("#resource").popupmenu("popup", $(this));
   });
 
