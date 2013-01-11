@@ -291,6 +291,7 @@ var simulator = {
     $("#onload-spinner").show();
     self._reset_dialog();
     update_cib();
+    $("#simulator").dialog("option", "title", escape_html(GETTEXT.sim_init()));
     $("#simulator").dialog("open");
   },
   _reset_dialog: function() {
