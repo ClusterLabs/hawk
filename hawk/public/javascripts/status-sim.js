@@ -271,9 +271,7 @@ var simulator = {
     });
   },
   activate: function() {
-    $(document.body).addClass("sim");     // Arguably redundant if operating on shadow CIB
-    $($("#tabs li")[0]).removeClass("ui-tabs-selected ui-state-active sim");
-    $($("#tabs li")[1]).addClass("ui-tabs-selected ui-state-active sim");
+    $(document.body).addClass("sim");     // Probably redundant now
     var self = this;
     self.cib_id = cib_source;
     var b = {};
@@ -287,18 +285,7 @@ var simulator = {
       title:    escape_html(GETTEXT.sim_init()),
       buttons:  b,
       close:    function() {
-        if (self.cib_source == "live") {
-          $(document.body).removeClass("sim");
-        } else {
-          $($("#tabs li")[0]).addClass("sim");
-        }
-        $($("#tabs li")[0]).addClass("ui-tabs-selected ui-state-active");
-        $($("#tabs li")[1]).removeClass("ui-tabs-selected ui-state-active sim");
-        $("#errorbar").hide(); // forcibly hide error bar when deactivating simulator
-        hide_status();
-        $("#onload-spinner").show();
-        cib_source = self.cib_id;
-        update_cib();
+        window.location.assign(url_root + "/main/status");
       }
     });
     $("#errorbar").hide(); // forcibly hide error bar when activating simulator

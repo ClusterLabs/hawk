@@ -439,7 +439,7 @@ function hawk_init()
     }
   });
 
-  if (q.sim && q.sim == "on") {
+  if (cib_source != "file" && cib_source != "live") {
     simulator.activate();
   } else {
     update_cib();
