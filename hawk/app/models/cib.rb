@@ -460,7 +460,7 @@ class Cib < CibObject
           end
           @resources_by_id[id][:instances][instance] = {} unless @resources_by_id[id][:instances][instance]
           @resources_by_id[id][:instances][instance][state] = [] unless @resources_by_id[id][:instances][instance][state]
-          @resources_by_id[id][:instances][instance][state] << node[:uname]
+          @resources_by_id[id][:instances][instance][state] << { :node => node[:uname] }
           @resources_by_id[id][:instances][instance][:failed_ops] = [] unless @resources_by_id[id][:instances][instance][:failed_ops]
           @resources_by_id[id][:instances][instance][:failed_ops].concat failed_ops
           # NOTE: Do *not* add any more keys here without adjusting the renamer above

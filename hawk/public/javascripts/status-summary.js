@@ -240,19 +240,19 @@ var summary_view = {
         var label = "";
         if (this.master) {
           self._increment_counter("#ressum-master");
-          label = GETTEXT.resource_state_master(id, this.master);
+          label = GETTEXT.resource_state_master(id, h2n(this.master));
           status_class += " rs-active rs-master ressum ressum-master";
         } else if (this.slave) {
           self._increment_counter("#ressum-slave");
-          label = GETTEXT.resource_state_slave(id, this.slave);
+          label = GETTEXT.resource_state_slave(id, h2n(this.slave));
           status_class += " rs-active rs-slave ressum ressum-slave";
         } else if (this.started) {
           self._increment_counter("#ressum-started");
-          label = GETTEXT.resource_state_started(id, this.started);
+          label = GETTEXT.resource_state_started(id, h2n(this.started));
           status_class += " rs-active ressum ressum-started";
         } else if (this.pending) {
           self._increment_counter("#ressum-pending");
-          label = GETTEXT.resource_state_pending(id, this.pending);
+          label = GETTEXT.resource_state_pending(id, h2n(this.pending));
           status_class += " rs-transient ressum ressum-pending";
         } else {
           self._increment_counter("#ressum-stopped");
