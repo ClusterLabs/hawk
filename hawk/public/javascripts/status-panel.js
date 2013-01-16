@@ -262,7 +262,13 @@ var panel_view = {
         status_class += " rs-active";
         active = true;
       } else if (res.instances[i].pending) {
-        label = GETTEXT.resource_state_pending(id, h2n(res.instances[i].pending));
+        if (res.instances[i].pending.length == 1 && res.instances[i].pending[0].substate) {
+          // Seriously, this'll always have a length of 1, but it never hurts to
+          // be paranoid about these things.
+          eval("label = GETTEXT.resource_state_" + res.instances[i].pending[0].substate + "(id, res.instances[i].pending[0].node);");
+        } else {
+          label = GETTEXT.resource_state_pending(id, h2n(res.instances[i].pending));
+        }
         status_class += " rs-transient";
       } else {
         label = GETTEXT.resource_state_stopped(id);

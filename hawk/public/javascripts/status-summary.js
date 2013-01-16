@@ -251,8 +251,14 @@ var summary_view = {
           label = GETTEXT.resource_state_started(id, h2n(this.started));
           status_class += " rs-active ressum ressum-started";
         } else if (this.pending) {
+          if (this.pending.length == 1 && this.pending[0].substate) {
+            // Seriously, this'll always have a length of 1, but it never hurts to
+            // be paranoid about these things.
+            eval("label = GETTEXT.resource_state_" + this.pending[0].substate + "(id, this.pending[0].node);");
+          } else {
+            label = GETTEXT.resource_state_pending(id, h2n(this.pending));
+          }
           self._increment_counter("#ressum-pending");
-          label = GETTEXT.resource_state_pending(id, h2n(this.pending));
           status_class += " rs-transient ressum ressum-pending";
         } else {
           self._increment_counter("#ressum-stopped");

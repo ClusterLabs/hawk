@@ -179,6 +179,27 @@ var GETTEXT = {
     if (nodes) return "<%= escape_javascript _('%{id}: Pending: %{nodelist}') % { :id => '_RES_', :nodelist => '_NODELIST_' } %>".replace('_RES_', res).replace('_NODELIST_', nodes.join(", "));
     else return "<%= escape_javascript _('%{id}: Pending') % { :id => '_RES_' } %>".replace('_RES_', res);
   },
+  // Pending "substates" akes a single node, not a list
+  resource_state_starting: function(res, node) {
+    if (node) return "<%= escape_javascript _('%{id}: Starting: %{node}') % { :id => '_RES_', :node => '_NODE_' } %>".replace('_RES_', res).replace('_NODE_', node);
+    else return "<%= escape_javascript _('%{id}: Starting') % { :id => '_RES_' } %>".replace('_RES_', res);
+  },
+  resource_state_stopping: function(res, node) {
+    if (node) return "<%= escape_javascript _('%{id}: Stopping: %{node}') % { :id => '_RES_', :node => '_NODE_' } %>".replace('_RES_', res).replace('_NODE_', node);
+    else return "<%= escape_javascript _('%{id}: Stopping') % { :id => '_RES_' } %>".replace('_RES_', res);
+  },
+  resource_state_promoting: function(res, node) {
+    if (node) return "<%= escape_javascript _('%{id}: Promoting: %{node}') % { :id => '_RES_', :node => '_NODE_' } %>".replace('_RES_', res).replace('_NODE_', node);
+    else return "<%= escape_javascript _('%{id}: Promoting') % { :id => '_RES_' } %>".replace('_RES_', res);
+  },
+  resource_state_demoting: function(res, node) {
+    if (node) return "<%= escape_javascript _('%{id}: Demoting: %{node}') % { :id => '_RES_', :node => '_NODE_' } %>".replace('_RES_', res).replace('_NODE_', node);
+    else return "<%= escape_javascript _('%{id}: Demoting') % { :id => '_RES_' } %>".replace('_RES_', res);
+  },
+  resource_state_migrating: function(res, node) {
+    if (node) return "<%= escape_javascript _('%{id}: Moving: %{node}') % { :id => '_RES_', :node => '_NODE_' } %>".replace('_RES_', res).replace('_NODE_', node);
+    else return "<%= escape_javascript _('%{id}: Moving') % { :id => '_RES_' } %>".replace('_RES_', res);
+  },
   resource_state_stopped: function(res) {
     if (!res) return "<%= escape_javascript _('Stopped') %>";
     return "<%= escape_javascript _('%{id}: Stopped') % { :id => '_RES_' } %>".replace('_RES_', res);

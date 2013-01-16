@@ -313,6 +313,7 @@ class Cib < CibObject
         id = lrm_resource.attributes['id']
         # logic derived somewhat from pacemaker/lib/pengine/unpack.c:unpack_rsc_op()
         state = :unknown
+        substate = nil
         failed_ops = []
         ops = []
         lrm_resource.elements.each('lrm_rsc_op') do |op|
@@ -381,6 +382,18 @@ class Cib < CibObject
             # notice pending start, stop, promote, demote, migrate_*..?
             # This would allow us to say "Staring", "Stopping", etc. in the UI.
             state = :pending if operation != "monitor"
+            case operation
+            when "start":
+              substate = :starting
+            when "stop":
+              substate = :stopping
+            when "promote":
+              substate = :promoting
+            when "demote":
+              substate = :demoting
+            when /^migrate/:
+              substate = :migrating
+            end
             next
           end
 
@@ -460,7 +473,9 @@ class Cib < CibObject
           end
           @resources_by_id[id][:instances][instance] = {} unless @resources_by_id[id][:instances][instance]
           @resources_by_id[id][:instances][instance][state] = [] unless @resources_by_id[id][:instances][instance][state]
-          @resources_by_id[id][:instances][instance][state] << { :node => node[:uname] }
+          n = { :node => node[:uname] }
+          n[:substate] = substate if substate
+          @resources_by_id[id][:instances][instance][state] << n
           @resources_by_id[id][:instances][instance][:failed_ops] = [] unless @resources_by_id[id][:instances][instance][:failed_ops]
           @resources_by_id[id][:instances][instance][:failed_ops].concat failed_ops
           # NOTE: Do *not* add any more keys here without adjusting the renamer above
