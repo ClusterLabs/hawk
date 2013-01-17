@@ -32,6 +32,12 @@
 # Random utilities
 module Util
 
+  # From http://mentalized.net/journal/2011/04/14/ruby_how_to_check_if_a_string_is_numeric/
+  def numeric?(n)
+    Float(n) != nil rescue false
+  end
+  module_function :numeric?
+
   # Derived from Ruby 1.8's and 1.9's lib/open3.rb.  Returns
   # [stdin, stdout, stderr, thread].  thread.value.exitstatus
   # has the exit value of the child, but if you're calling it
@@ -178,7 +184,8 @@ module Util
 
   # Gives back a string, boolean if value is "true" or "false", or nil
   # if initial value was nil (or boolean false) and there's no default
-  # TODO(should): be nice to get integers auto-converted too
+  # TODO(should): be nice to get integers auto-converted too (could use
+  # numeric? for this)
   def unstring(v, default = nil)
     v ||= default
     ['true', 'false'].include?(v.class == String ? v.downcase : v) ? v.downcase == 'true' : v
@@ -206,6 +213,36 @@ module Util
     end
   end
   module_function :crm_get_msec
+
+  # Derived from char2score() from lib/common/utils.c, minus node-score-{red,yellow,green}
+  # which (unless I'm missing something) Hawk isn't paying any attention to yet.
+  # TODO(should): do something sensible with node-score-{red,yellow,green} if we need it
+  def char2score(score)
+    case score
+    when "-INFINITY"
+      -1000000
+    when "INFINITY"
+      1000000
+    when "+INFINITY"
+      1000000
+    when "red"
+      0
+    when "yellow"
+      0
+    when "green"
+      0
+    else
+      s = numeric?(score) ? score.to_i : -1
+      if s > 0 && s > 1000000
+        1000000
+      elsif s < 0 && s < -1000000
+        -1000000
+      else
+        s
+      end
+    end
+  end
+  module_function :char2score
 
   # Check if some feature is supported by the installed version of pacemaker.
   # TODO(should): expand to include other checks (e.g. pcmk installed).
