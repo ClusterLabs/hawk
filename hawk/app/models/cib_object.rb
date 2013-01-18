@@ -75,7 +75,8 @@ class CibObject
     # hacluster, because we need to verify existence regardless of whether
     # the current user can actually see the object in quesion.
     def exists?(id, type='*')
-      Util.safe_x('/usr/sbin/cibadmin', '-Ql', '--xpath', "//configuration//#{type}[@id='#{id}']").chomp != '<null>'
+      out = Util.safe_x('/usr/sbin/cibadmin', '-Ql', '--xpath', "//configuration//#{type}[@id='#{id}']").chomp
+      !out.empty? && out != '<null>'
     end
 
     # Find a CIB object by ID and return an instance of the appropriate

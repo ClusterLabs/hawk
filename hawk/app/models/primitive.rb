@@ -327,7 +327,19 @@ class Primitive < CibObject
       }
       return m if c.empty? or t.empty?
       p = 'NULL' if p.empty?
-      xml = REXML::Document.new(Util.safe_x('/usr/sbin/lrmadmin', '-M', c, t, p, 'meta'))
+
+      xml = nil
+
+      # try pacemaker's new lrmd_test for metadata.
+      [ "/usr/lib64/pacemaker/lrmd_test", "/usr/lib/pacemaker/lrmd_test" ].each do |path|
+        next unless File.executable?(path)
+        xml = REXML::Document.new(Util.safe_x(path, '-c', 'metadata', '-C', c, '-P', p, '-T', t))
+        break
+      end
+
+      # old lrmadmin fallback
+      xml = REXML::Document.new(Util.safe_x('/usr/sbin/lrmadmin', '-M', c, t, p, 'meta')) unless xml
+
       return m unless xml.root
       # TODO(should): select by language (en), likewise below
       m[:shortdesc] = Util.get_xml_text(xml.root.elements['shortdesc'])

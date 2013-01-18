@@ -206,7 +206,7 @@ class MainController < ApplicationController
     f = File.new("#{Rails.root}/tmp/sim.info", "w")
     # TODO(must): Bloody loses transition summary (it's on STDOUT)
     stdout = Util.safe_x("/usr/sbin/crm_simulate",
-      "-R",
+      "-S",
       "-x", "#{Rails.root}/tmp/sim.in",
       "-O", "#{Rails.root}/tmp/sim.out",
       "-G", "#{Rails.root}/tmp/sim.graph",

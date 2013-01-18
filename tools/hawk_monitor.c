@@ -87,6 +87,19 @@
 
 #include <crm/cib.h>
 #include <crm/common/util.h>
+#include <crm/common/mainloop.h>
+/*
+#include <crm/compatibility.h>
+
+Don't have the above in SLES Pacemaker yet for some reason, so copy
+a few choice bits...
+*/
+
+enum cib_errors {
+	cib_ok		= pcmk_ok,
+	cib_missing	= -EINVAL,
+	cib_connection	= -ENOTCONN,
+};
 
 #define CONNECT_TIMEOUT		60
 #define MAX_EPOCH_LENGTH	128	/* way longer than necessary */
@@ -185,7 +198,8 @@ int main(int argc, char **argv)
 	if (client_epoch && client_epoch[0] == '\0')
 		client_epoch = NULL;
 
-	crm_log_init(NULL, LOG_CRIT, FALSE, FALSE, argc, argv);
+	/* Final arg appeared circa pcmk 1.1.8 */
+	crm_log_init(NULL, LOG_CRIT, FALSE, FALSE, argc, argv, TRUE);
 
 	cib = cib_new();
 
