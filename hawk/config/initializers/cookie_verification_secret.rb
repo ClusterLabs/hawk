@@ -1,6 +1,6 @@
 # Be sure to restart your server when you modify this file.
 
-Hawk::Application.config.session_store :cookie_store, key: '_hawk_session'
+Hawk::Application.config.session_store :cookie_store, :key => '_hawk_session'
 
 SESSION_SECRET_FILE = File.join(Rails.root, 'tmp', 'session_secret')
 
