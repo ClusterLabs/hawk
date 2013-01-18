@@ -1,29 +1,26 @@
 #!/usr/bin/ruby
-#
-# You may specify the path to the FastCGI crash log (a log of unhandled
-# exceptions which forced the FastCGI instance to exit, great for debugging)
-# and the number of requests to process before running garbage collection.
-#
-# By default, the FastCGI crash log is Rails.root/log/fastcgi.crash.log
-# and the GC period is nil (turned off).  A reasonable number of requests
-# could range from 10-100 depending on the memory footprint of your app.
-#
-# Example:
-#   # Default log path, normal GC behavior.
-#   RailsFCGIHandler.process!
-#
-#   # Default log path, 50 requests between GC.
-#   RailsFCGIHandler.process! nil, 50
-#
-#   # Custom log path, normal GC behavior.
-#   RailsFCGIHandler.process! '/var/log/myapp_fcgi_crash.log'
-#
 
-# get the vendor directory into the load path well in advance, so
-# we can pull rubygems from there
 $LOAD_PATH.unshift(File.dirname(__FILE__) + "/../vendor")
 
-require File.dirname(__FILE__) + "/../config/environment"
-require 'fcgi_handler'
+require 'rubygems'
+require 'fcgi'
 
-RailsFCGIHandler.process!
+#require_relative '../config/environment'
+require File.dirname(__FILE__) + "/../config/environment"
+
+class Rack::PathInfoRewriter
+  def initialize(app)
+    @app = app
+  end
+
+  def call(env)
+    env.delete('SCRIPT_NAME')
+    parts = env['REQUEST_URI'].split('?')
+    env['PATH_INFO'] = parts[0]
+    env['QUERY_STRING'] = parts[1].to_s
+    @app.call(env)
+  end
+end
+
+Rack::Handler::FastCGI.run  Rack::PathInfoRewriter.new(Hawk::Application)
+
