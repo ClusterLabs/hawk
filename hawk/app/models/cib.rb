@@ -51,7 +51,8 @@ class Cib < CibObject
 
   def get_resource(elem, clone_max = nil, is_ms = false)
     res = {
-      :id => elem.attributes['id']
+      :id => elem.attributes['id'],
+      :attributes => {}
     }
     @resources_by_id[elem.attributes['id']] = res
     case elem.name
@@ -86,6 +87,9 @@ class Cib < CibObject
     else
       # This really can't happen
       RAILS_DEFAULT_LOGGER.error "Unknown resource type: #{elem.name}"
+    end
+    elem.elements.each("meta_attributes/nvpair/") do |nv|
+      res[:attributes][nv.attributes["name"]] = nv.attributes["value"]
     end
     res
   end
