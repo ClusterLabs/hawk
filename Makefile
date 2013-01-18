@@ -60,7 +60,7 @@ BINDIR = /usr/bin
 SBINDIR = /usr/sbin
 
 all: scripts/hawk.$(INIT_STYLE) hawk/config/lighttpd.conf tools/hawk_chkpwd tools/hawk_monitor tools/hawk_invoke
-	(cd hawk; rake gettext:pack && bundle install --local --deployment)
+	(cd hawk; rake gettext:pack && bundle package && bundle install --deployment)
 
 %:: %.in
 	sed \
@@ -114,6 +114,7 @@ install:
 	# Get rid of cruft from packed gems
 	-find hawk/vendor -name '*bak' -o -name '*~' -o -name '#*#' | xargs rm
 	cp -a hawk/* $(DESTDIR)$(WWW_BASE)/hawk
+	cp -a hawk/.bundle $(DESTDIR)$(WWW_BASE)/hawk
 	rm $(DESTDIR)$(WWW_BASE)/hawk/config/lighttpd.conf.in
 	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/log
 	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/tmp
