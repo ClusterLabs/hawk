@@ -32,6 +32,8 @@ class CibController < ApplicationController
   before_filter :login_required
 
   def index
+    # Strictly, this is meant to be a list of CIBs, which would thus
+    # logically include any accessible shadow CIBs...
     render :json => [ 'live' ]
   end
 

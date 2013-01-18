@@ -30,6 +30,10 @@
 
 // Globally useful utility functions only in here
 
+function jq(id) {
+  return "#" + id.replace(/(:|\.)/g,'\\$1');
+}
+
 function escape_html(str) {
   return $("<div/>").text(str).html();
 }

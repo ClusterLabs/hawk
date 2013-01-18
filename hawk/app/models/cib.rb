@@ -121,7 +121,12 @@ class Cib < CibObject
         end
         res.delete :clone_max
       else
-        res[:instances].delete_if {|k, v| k != :default} if res.has_key?(:instances)
+        if res.has_key?(:instances)
+          res[:instances].delete_if {|k, v| k != :default}
+          # Inject a default instance if there's not one, as can be the case when
+          # working with shadow CIBs.
+          res[:instances][:default] = { :failed_ops => [] } unless res[:instances].has_key?(:default)
+        end
       end
       @resource_count += res[:instances].count if res[:instances]
       fix_clone_instances(res[:children]) if res[:children]
@@ -213,16 +218,7 @@ class Cib < CibObject
       raise ArgumentError, _('CIB file "%{path}" not found') % {:path => cib_path } unless File.exist?(cib_path)
       @xml = REXML::Document.new(File.new(cib_path))
       raise RuntimeError, _('Unable to parse CIB file "%{path}"') % {:path => cib_path } unless @xml.root
-    elsif id == "sim:in" or id == "sim:out"
-      # TODO(must): This is almost the same as above.  Yuck.  Also, decide if this ":" business is a good idea...
-      cib_path = id
-      cib_path.gsub!(":", ".")
-      # Note: must match path in MainController (needs to change once we handle multiple simultaneous runs)
-      cib_path = "#{Rails.root}/tmp/#{cib_path}"
-      raise ArgumentError, _('CIB file "%{path}" not found') % {:path => cib_path } unless File.exist?(cib_path)
-      @xml = REXML::Document.new(File.new(cib_path))
-      raise RuntimeError, _('Unable to parse CIB file "%{path}"') % {:path => cib_path } unless @xml.root
-    elsif id == 'live'
+    else
       raise RuntimeError, _('Pacemaker does not appear to be installed (%{cmd} not found)') %
                              {:cmd => '/usr/sbin/crm_mon' } unless File.exists?('/usr/sbin/crm_mon')
       raise RuntimeError, _('Unable to execute %{cmd}') % {:cmd => '/usr/sbin/crm_mon' } unless File.executable?('/usr/sbin/crm_mon')
@@ -248,9 +244,6 @@ class Cib < CibObject
       else
         raise RuntimeError, _('Error invoking %{cmd}: %{msg}') % {:cmd => '/usr/sbin/cibadmin -Ql', :msg => err }
       end
-    else
-      # Only provide the live CIB and static test files (no shadow functionality yet)
-      raise ArgumentError, _('Only the live CIB is supported')
     end
 
     @id = id

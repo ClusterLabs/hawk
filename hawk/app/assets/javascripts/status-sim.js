@@ -41,7 +41,7 @@ var simulator = {
           "<tr>" +
             '<td><select id="sim-injections" multiple="multiple" size="4" style="width: 100%;"><option></option></select></td>' +
             '<td style="padding-left: 1em;">' +
-              '<button id="sim-run" type="button" style="min-width: 6em;" disabled="disabled">' + escape_html(GETTEXT.sim_run()) + '</button> ' +
+              '<button id="sim-run" type="button" style="min-width: 6em;">' + escape_html(GETTEXT.sim_run()) + '</button> ' +
             "</td>" +
             '<td style="padding-left: 1em; white-space: nowrap;">' +
               '<a class="disabled" id="sim-get-info" target="hawk-sim-info">' + escape_html(GETTEXT.sim_details()) + '</a><br/>' +
@@ -221,7 +221,8 @@ var simulator = {
         $("#sim-injections").children("option[value='" + this.toString() + "']").remove();
       });
       if (!$("#sim-injections").children().length) {
-        $("#sim-run").attr("disabled", "disabled");
+        // TODO(must): disabled temporarily so you can use sim run after editing config
+        //$("#sim-run").attr("disabled", "disabled");
       }
     });
 
@@ -231,7 +232,7 @@ var simulator = {
       $("#sim-injections").children().each(function() {
         i.push($(this).val());
       });
-      $.post(url_root + "/main/sim_run", { "injections[]": i }, function(data) {
+      $.post(url_root + "/main/sim_run?cib_id=" + cib_source, { "injections[]": i }, function(data) {
         if (data) {
           if (data.is_empty) {
             $("#graph-link").hide();
@@ -241,13 +242,12 @@ var simulator = {
             $("#graph-link").show();
           }
         }
-        cib_source = "sim:out";
         update_cib();
-        $("#sim-get-info").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=info");
-        $("#sim-get-in").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=in");
-        $("#sim-get-out").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=out");
-        $("#sim-get-graph").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=graph");
-        $("#sim-get-graph-xml").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=graph&format=xml");
+        $("#sim-get-info").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=info&cib_id=" + cib_source);
+        $("#sim-get-in").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=in&cib_id=" + cib_source);
+        $("#sim-get-out").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=out&cib_id=" + cib_source);
+        $("#sim-get-graph").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=graph&cib_id=" + cib_source);
+        $("#sim-get-graph-xml").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=graph&format=xml&cib_id=" + cib_source);
         $("#simulator").dialog("option", "title", escape_html(GETTEXT.sim_final()));
       });
       return false;
@@ -270,8 +270,7 @@ var simulator = {
     });
   },
   activate: function() {
-    $($("#tabs li")[0]).removeClass("ui-tabs-selected ui-state-active");
-    $($("#tabs li")[1]).addClass("ui-tabs-selected ui-state-active");
+    $(document.body).addClass("sim");     // Probably redundant now
     var self = this;
     var b = {};
     b[GETTEXT.reset()] = function() {
@@ -284,26 +283,18 @@ var simulator = {
       title:    escape_html(GETTEXT.sim_init()),
       buttons:  b,
       close:    function() {
-        $(document.body).removeClass("sim");
-        $($("#tabs li")[0]).addClass("ui-tabs-selected ui-state-active");
-        $($("#tabs li")[1]).removeClass("ui-tabs-selected ui-state-active sim");
-        $("#errorbar").hide(); // forcibly hide error bar when deactivating simulator
-        hide_status();
-        $("#onload-spinner").show();
-        cib_source = "live";
-        update_cib();
+        window.location.assign(url_root + "/main/status");
       }
     });
     $("#errorbar").hide(); // forcibly hide error bar when activating simulator
     hide_status();
     $("#onload-spinner").show();
-    self._reset(function() {
-      $(document.body).addClass("sim");
-      $($("#tabs li")[1]).addClass("sim");
-      $("#simulator").dialog("open");
-    });
+    self._reset_dialog();
+    update_cib();
+    $("#simulator").dialog("option", "title", escape_html(GETTEXT.sim_init()));
+    $("#simulator").dialog("open");
   },
-  _reset: function(callback) {
+  _reset_dialog: function() {
     $("#simulator").dialog("option", "title", escape_html(GETTEXT.sim_busy()));
     $("#graph-empty").hide();
     $("#graph-link").show();
@@ -312,19 +303,20 @@ var simulator = {
     $("#sim-get-out").addClass("disabled").removeAttr("href");
     $("#sim-get-graph").addClass("disabled").removeAttr("href");
     $("#sim-get-graph-xml").addClass("disabled").removeAttr("href");
-    $("#sim-run").attr("disabled", "disabled");
+    // TODO(must): disabled temporarily so you can use sim run after editing config
+    //$("#sim-run").attr("disabled", "disabled");
     $("#sim-injections").children().remove();
     if (cib && cib.tickets && !$.isEmptyObject(cib.tickets)) {
       $("#sim-inject-ticket").show();
     } else {
       $("#sim-inject-ticket").hide();
     }
-    $.get(url_root + "/main/sim_reset", function() {
-      cib_source = "sim:in";
+  },
+  _reset: function() {
+    var self = this;
+    self._reset_dialog();
+    $.get(url_root + "/main/sim_reset?cib_id=" + cib_source, function() {
       update_cib();
-      if (callback) {
-        callback();
-      }
       $("#simulator").dialog("option", "title", escape_html(GETTEXT.sim_init()));
     });
   },
@@ -344,7 +336,7 @@ var simulator = {
       var id = $("#inject-op-resource").val().split(":")[0];
       if (this.req && this.req.abort) this.req.abort();
       $("#interval-spinner").show();
-      this.req = $.getJSON(url_root + "/cib/live/primitives/" + id + "/monitor_intervals", function(data) {
+      this.req = $.getJSON(url_root + "/cib/" + cib_source + "/primitives/" + id + "/monitor_intervals", function(data) {
         $("#inject-op-interval").val(data && data.length > 0 ? data[0] : "");
         $("#interval-spinner").hide();
       });

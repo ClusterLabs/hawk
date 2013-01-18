@@ -12,21 +12,87 @@
   <%= javascript_include_tag 'jquery-parsequery.min.js' %>
   <%= javascript_include_tag 'jquery.cookie.js' %>
   <%= javascript_include_tag 'jquery-ui-timepicker-addon.js' %>
+  <%= stylesheet_link_tag 'ui.popupmenu.css' %>
+  <%= javascript_include_tag 'jquery.ui.popupmenu.js' %>
   <%= javascript_tag "var url_root='#{relative_url_root}';" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 <%= yield :head %>
 </head>
-<body>
+<body class="<%= params[:cib_id] && params[:cib_id] != "live" ? "sim" : "" %>">
 <div id="container">
   <div id="header" class="ui-widget-header">
     <%= link_to image_tag('logo.png', :alt => '', :id => 'logo'), status_path %>
-    <span id="header-links">
     <% if logged_in? %>
+<div id="menu::tools" style="display:none; font-weight: normal;"></div>
+<script type="text/javascript">
+$(function() {
+  $(jq("menu::tools")).popupmenu({ iconroot: url_root + "/assets/icons/", items: [
+    {
+      label: "<%=h escape_javascript _('Simulator') %>",
+      icon: "simulator.png",
+      click: function(target) {
+        // needs to trigger shadow cib switch and if on status screen, invoke
+        // simulator.activate();
+
+        // TODO(should): grey out screen or put up spinner or something while this is running...
+        $.ajax({ url: '<%= url_for(:sim => 'init') %>',
+          success: function(data) {
+            if (data && data.uri) {
+              window.location.assign(data.uri);
+            } else {
+              error_dialog(GETTEXT.err_unexpected(data));
+            }
+          },
+          error: function(request) {
+            var json = json_from_request(request);
+            if (json) {
+              error_dialog(json.error, json.stderr ? json.stderr : null);
+            } else {
+              error_dialog(GETTEXT.err_unexpected(request.status));
+            }
+          }
+        });
+        return false;
+      }
+    }
+    <% if is_god? %>
+    ,
+    {
+      label: "<%=h escape_javascript _('Generate hb_report...') %>",
+      icon: "report.png",
+      click: function(target) {
+        $("#dialog").html('<div style="text-align: center;">' +
+          '<img src="' + url_root + '/assets/spinner-32x32.gif" alt="" /></div>');
+        $("#dialog").load(url_root + "/hb_reports/new");
+        var b = {};
+        b["Close"] = function() {
+          $(this).dialog("close");
+        };
+        $("#dialog").dialog("option", {
+          title:    "<%=h escape_javascript _('Generate hb_report') %>",
+          buttons:  b
+        });
+        $("#dialog").dialog("open");
+        return false;               // may need cancel too
+      }
+    }
+    <% end %>
+  ]});
+  $(jq("menu::tools::popup")).click(function() {
+    return $(jq("menu::tools")).popupmenu("popup", $(this));
+  });
+});
+</script>
+    <span id="header-links">
+      <a class="clickable" id="menu::tools::popup"><%= image_tag 'icons/properties.png',
+        :alt => '',
+        :title => _('Tools'),
+        :style => 'vertical-align: middle;' %></a>
       <%=h _('User: %{user}') % { :user => current_user } %>
       <%= link_to _('Log Out'), logout_path %>
-    <% end %>
     </span>
+    <% end %>
     <h1 id="header-title"><%=h @title %></h1>
   </div>
 <% if logged_in?
@@ -34,10 +100,7 @@
 tabs = [
   { :controllers => [ "main" ],
     :icon => "icons/status.png", :label => _("Cluster Status"),
-    :path => status_path },
-  { :controllers => [],
-    :icon => "icons/simulator.png", :label => _("Simulator"),
-    :path => "#{status_path}?sim=on" }
+    :path => status_path(:cib_id => (params[:cib_id] || "live")) }
 ];
 
 tabs += [
@@ -49,60 +112,26 @@ tabs += [
 tabs += [
   { :controllers => [ "wizard" ],
     :icon => "icons/wizard.png", :label => _("Setup Wizard"),
-    :path => wizard_path },
+    :path => wizard_path(:cib_id => (params[:cib_id] || "live")) },
   { :controllers => [ "crm_config" ],
     :icon => "icons/config.png", :label => _("Cluster Properties"),
-    :path => cib_crm_config_path(:cib_id => 'live', :id => 'cib-bootstrap-options') },
+    :path => cib_crm_config_path(:cib_id => (params[:cib_id] || "live"), :id => 'cib-bootstrap-options') },
   { :controllers => [ "resources", "primitives", "groups", "clones", "masters" ],
     :icon => "icons/resources.png", :label => _("Resources"),
-    :path => cib_resources_path(:cib_id => 'live') },
+    :path => cib_resources_path(:cib_id => (params[:cib_id] || "live")) },
   { :controllers => [ "constraints", "locations", "colocations", "orders", "tickets" ],
     :icon => "icons/constraints.png", :label => _("Constraints"),
-    :path => cib_constraints_path(:cib_id => 'live') }
+    :path => cib_constraints_path(:cib_id => (params[:cib_id] || "live")) }
 ]
-
-tabs += [
-  { :controllers => [],
-    :icon => "icons/report.png", :label => _("Generate hb_report..."),
-    :path => status_path }
-] if is_god?
 
 %>
   <div id="tabs" style="float: left; margin-left: 0.5em; margin-top: 0.5em;" class="ui-tabs ui-widget ui-corner-all">
     <ul class="ui-tabs-nav ui-helper-reset ui-helper-clearfix ui-widget-header ui-corner-all">
   <% tabs.each do |t| %>
-      <li class="ui-state-default ui-corner-left<%= t[:controllers].include?(params[:controller]) ? " ui-tabs-selected ui-state-active" : ""%>"><%= link_to image_tag(t[:icon], :alt => t[:label], :title => t[:label]), t[:path] %></li>
+      <li class="ui-state-default ui-corner-left<%= t[:controllers].include?(params[:controller]) ? " ui-tabs-selected ui-state-active" + (params[:cib_id] && params[:cib_id] != "live" ? " sim" : "") : ""%>"><%= link_to image_tag(t[:icon], :alt => t[:label], :title => t[:label]), t[:path] %></li>
   <% end %>
     </ul>
   </div>
-<script type="text/javascript">
-$(function() {
-  // These binds are rather nasty...
-<% if params[:controller] == "main" %>
-  $($("#tabs li a")[1]).click(function() {
-    simulator.activate();
-    return false;
-  });
-<% end %>
-<% if is_god? %>
-  $("#tabs li a").last().click(function() {
-    $("#dialog").html('<div style="text-align: center;">' +
-      '<img src="' + url_root + '/assets/spinner-32x32.gif" alt="" /></div>');
-    $("#dialog").load(url_root + "/hb_reports/new");
-    var b = {};
-    b["Close"] = function() {
-      $(this).dialog("close");
-    };
-    $("#dialog").dialog("option", {
-      title:    "<%=h escape_javascript _('Generate hb_report') %>",
-      buttons:  b
-    });
-    $("#dialog").dialog("open");
-    return false;               // may need cancel too
-  });
-<% end %>
-});
-</script>
 <% end %>
   <div id="content">
     <%= yield %>

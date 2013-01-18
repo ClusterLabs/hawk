@@ -81,6 +81,7 @@ static struct cmd_map commands[] = {
 	{"crmd",		LIBDIR"/heartbeat/crmd"},
 	{"crm_attribute",	SBINDIR"/crm_attribute"},
 	{"crm_mon",		SBINDIR"/crm_mon"},
+	{"crm_shadow",		SBINDIR"/crm_shadow"},
 	{"pengine",		LIBDIR"/heartbeat/pengine"},
 	{"hb_report",		SBINDIR"/hb_report"},
 	{NULL, NULL}
@@ -105,6 +106,7 @@ int main(int argc, char **argv)
 	int found = 0;
 	struct cmd_map *cmd;
 	char *home = NULL;
+	char *cib_shadow = NULL;
 
 	if (argc < 3) {
 		die("Usage: %s <username> <command> [args ...]\n", argv[0]);
@@ -216,12 +218,19 @@ int main(int argc, char **argv)
 	if (home != NULL) {
 		home = strdup(home);
 	}
+	cib_shadow = getenv("CIB_shadow");
+	if (cib_shadow != NULL) {
+		cib_shadow = strdup(cib_shadow);
+	}
 	if (clearenv() != 0) {
 		die("ERROR: Can't clear environment");
 	}
 	setenv("PATH", SBINDIR":"BINDIR":/bin", 1);
 	if (home != NULL) {
 		setenv("HOME", home, 1);
+	}
+	if (cib_shadow != NULL) {
+		setenv("CIB_shadow", cib_shadow, 1);
 	}
 
 	/* And away we go... */

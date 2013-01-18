@@ -40,11 +40,6 @@ var update_req = null;
 
 var current_view = null;
 
-function jq(id)
-{
-  return "#" + id.replace(/(:|\.)/g,'\\$1');
-}
-
 function update_errors(errors)
 {
   $("#errorbar").html("");
@@ -156,7 +151,7 @@ function perform_op(type, id, op, extra)
   $(jq(type + "::" + id + "::menu")).children(":first").attr("src", url_root + "/assets/spinner-16x16-" + state + ".gif");
 
   $.ajax({ url: url_root + "/main/" + type + "/" + op,
-    data: "format=json&" + type + "=" + id + (extra ? "&" + extra : ""),
+    data: "format=json&" + type + "=" + id + (extra ? "&" + extra : "") + (cib_source != "file" ? "&cib_id=" + cib_source : ""),
     type: "POST",
     success: function() {
       // Remove spinner (a spinner that stops too early is marginally better than one that never stops)
@@ -318,7 +313,7 @@ function update_cib()
           // TODO(must): is it possible to get here with empty cib.errors?
           hide_status();
         }
-        if (update_period) {
+        if (update_period && cib_source == "live") {
           // Handy when debugging...
           setTimeout(update_cib, update_period);
         } else {
@@ -391,6 +386,9 @@ function hawk_init()
     cib_source = "file";
     cib_file = q.cib_file;
   }
+  if (q.cib_id) {
+    cib_source = q.cib_id;
+  }
   if (q.update_period) {
     update_period = isNaN(q.update_period) ? 0 : parseInt(q.update_period) * 1000;
   }
@@ -441,7 +439,7 @@ function hawk_init()
     }
   });
 
-  if (q.sim && q.sim == "on") {
+  if (cib_source != "file" && cib_source != "live") {
     simulator.activate();
   } else {
     update_cib();

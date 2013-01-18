@@ -24,7 +24,7 @@ $(function() {
 <h2><%=h _("Choose Configuration") %></h2>
 <div id="wizard-body">
 <p><%=h _("This wizard will guide you through the steps necessary to add one of the following configurations to the cluster.") %></p>
-<%= form_tag(:action => 'run') do %>
+<%= form_tag(wizard_path(:cib_id => (params[:cib_id] || "live"))) do %>
 <%= hidden_field_tag "step", @step %>
 <table>
   <tr style="vertical-align: top;">

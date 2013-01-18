@@ -148,9 +148,10 @@ class MainController < ApplicationController
   # TODO(must): these both need exception handler for invoker runs
   # TODO(must): only one user at a time can run sims (they stomp on each other)
   def sim_reset
-    f = File.new("#{Rails.root}/tmp/sim.in", "w")
-    f.write(Invoker.instance.cibadmin('-Ql'))
-    f.close
+    # TODO(must): can this ever fail?!?
+    #Invoker.instance.run("crm_shadow", "-b", "-r", "hawk-#{current_user}")
+    # TODO(must): above doesn't clear lrm state - is that a bug? so recreating:
+    Invoker.instance.run("crm_shadow", "-b", "-f", "-c", "hawk-#{current_user}")
     head :ok
   end
 
@@ -202,13 +203,12 @@ class MainController < ApplicationController
           end
         end
       end
-    end
+    end if params[:injections]
     f = File.new("#{Rails.root}/tmp/sim.info", "w")
     # TODO(must): Bloody loses transition summary (it's on STDOUT)
     stdout = Util.safe_x("/usr/sbin/crm_simulate",
       "-S",
-      "-x", "#{Rails.root}/tmp/sim.in",
-      "-O", "#{Rails.root}/tmp/sim.out",
+      "-L", # "live", but will be against shadow CIB
       "-G", "#{Rails.root}/tmp/sim.graph",
       "-D", "#{Rails.root}/tmp/sim.dot",
       *injections)
@@ -254,9 +254,12 @@ class MainController < ApplicationController
       send_data [info[:mods], info[:summary], info[:exec]].select{|s| !s.empty?}.join("\n"),
         :type => "text/plain", :disposition => "inline"
     when "in"
-      send_data File.new("#{Rails.root}/tmp/sim.in").read, :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
+      shadow_id = ENV["CIB_shadow"]
+      ENV.delete("CIB_shadow")
+      send_data Invoker.instance.cibadmin('-Ql'), :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
+      ENV["CIB_shadow"] = shadow_id
     when "out"
-      send_data File.new("#{Rails.root}/tmp/sim.out").read, :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
+      send_data Invoker.instance.cibadmin('-Ql'), :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
     when "graph"
       if params[:format] == "xml"
         send_data File.new("#{Rails.root}/tmp/sim.graph").read, :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"

@@ -1,8 +1,6 @@
 <% content_for :head do %>
 <%= stylesheet_link_tag 'ui.panel.css' %>
-<%= stylesheet_link_tag 'ui.popupmenu.css' %>
 <%= javascript_include_tag 'jquery.ui.panel.js' %>
-<%= javascript_include_tag 'jquery.ui.popupmenu.js' %>
 <script src="<%= url_for(:controller => 'main', :action => 'gettext', :format => 'js') %>" type="text/javascript"></script>
 <style type="text/css">
 /* TODO(should): move to stylesheet */
@@ -53,7 +51,7 @@ $(function() {
         // ID and other bits of HTML.
         var id = target.attr("name");
         var type = target.closest(".ui-panel").attr("id");
-        window.location.assign(url_root + "/cib/live/" + type + "/" + id + "/edit");
+        window.location.assign(url_root + "/cib/<%= params[:cib_id] %>/" + type + "/" + id + "/edit");
       }
     },
     {
@@ -66,7 +64,7 @@ $(function() {
         // TODO(should): Fix error message (refers to "error deleting resource")
         // TODO(should): Consolidate this request stuff, esp. the error case.
         $.ajax({ url: url_root + "/main/resource/delete",
-          data: "format=json&resource=" + id,
+          data: "format=json&resource=" + id + "&cib_id=<%= params[:cib_id] %>",
           type: "POST",
           success: function() {
             // Remove spinner (a spinner that stops too early is marginally better than one that never stops)
@@ -97,26 +95,26 @@ $(function() {
     }
   ]});
   $("#locations").panel({
-    menu_href:  url_root + "/cib/live/locations/new",
+    menu_href:  url_root + "/cib/<%= params[:cib_id] %>/locations/new",
     menu_icon:  url_root + "/assets/icons/add.png",
     menu_alt:   "<%= escape_javascript _('New Constraint') %>",
     label:      "<%=h escape_javascript _('Location') %>",
     open:       <%= @locations.any? ? 'true' : 'false' %> });
   $("#colocations").panel({
-    menu_href:  url_root + "/cib/live/colocations/new",
+    menu_href:  url_root + "/cib/<%= params[:cib_id] %>/colocations/new",
     menu_icon:  url_root + "/assets/icons/add.png",
     menu_alt:   "<%= escape_javascript _('New Constraint') %>",
     label: "<%=h escape_javascript _('Colocation') %>",
     open: <%= @colocations.any? ? 'true' : 'false' %> });
   $("#orders").panel({
-    menu_href:  url_root + "/cib/live/orders/new",
+    menu_href:  url_root + "/cib/<%= params[:cib_id] %>/orders/new",
     menu_icon:  url_root + "/assets/icons/add.png",
     menu_alt:   "<%= escape_javascript _('New Constraint') %>",
     label: "<%=h escape_javascript _('Order') %>",
     open: <%= @orders.any? ? 'true' : 'false' %> });
 <% if Util.has_feature?(:rsc_ticket) %>
   $("#tickets").panel({
-    menu_href:  url_root + "/cib/live/tickets/new",
+    menu_href:  url_root + "/cib/<%= params[:cib_id] %>/tickets/new",
     menu_icon:  url_root + "/assets/icons/add.png",
     menu_alt:   "<%= escape_javascript _('New Constraint') %>",
     label: "<%=h escape_javascript _('Ticket') %>",
@@ -125,7 +123,7 @@ $(function() {
 
   // Have to set these up after the panels (panel initializer fiddles with DOM
   // in a way which breaks event handlers if added before panel init)
-  $("a.clickable").click(function() {
+  $("#content a.clickable").click(function() {
     return $("#constraint").popupmenu("popup", $(this));
   });
 
