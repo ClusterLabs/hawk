@@ -250,19 +250,25 @@ var panel_view = {
       var label;
       var active = false;
       if (res.instances[i].master) {
-        label = GETTEXT.resource_state_master(id, res.instances[i].master);
+        label = GETTEXT.resource_state_master(id, h2n(res.instances[i].master));
         status_class += " rs-active rs-master";
         active = true;
       } else if (res.instances[i].slave) {
-        label = GETTEXT.resource_state_slave(id, res.instances[i].slave);
+        label = GETTEXT.resource_state_slave(id, h2n(res.instances[i].slave));
         status_class += " rs-active rs-slave";
         active = true;
       } else if (res.instances[i].started) {
-        label = GETTEXT.resource_state_started(id, res.instances[i].started);
+        label = GETTEXT.resource_state_started(id, h2n(res.instances[i].started));
         status_class += " rs-active";
         active = true;
       } else if (res.instances[i].pending) {
-        label = GETTEXT.resource_state_pending(id, res.instances[i].pending);
+        if (res.instances[i].pending.length == 1 && res.instances[i].pending[0].substate) {
+          // Seriously, this'll always have a length of 1, but it never hurts to
+          // be paranoid about these things.
+          eval("label = GETTEXT.resource_state_" + res.instances[i].pending[0].substate + "(id, res.instances[i].pending[0].node);");
+        } else {
+          label = GETTEXT.resource_state_pending(id, h2n(res.instances[i].pending));
+        }
         status_class += " rs-transient";
       } else {
         label = GETTEXT.resource_state_stopped(id);

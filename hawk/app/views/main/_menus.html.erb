@@ -135,12 +135,75 @@ $(function() {
       click: function(target) {
         confirm_op(this.label, item_id(target.attr("id")), "resource", "cleanup");
       }
-    }
-    <% if Util.has_feature?(:crm_history) && is_god? %>
-    ,
+    },
     {
       separator: true
     },
+    {
+      label: "<%=h escape_javascript _('View Details...') %>",
+      icon: "details.png",
+      click: function(target) {
+        var id = item_id(target.attr("id"));
+        var id_parts = id.split(":");
+        var html =
+          '<h2><%=h escape_javascript _('Attributes') %></h2>';
+        var attrs = [];
+        $.each(resources_by_id[id_parts[0]].attributes, function(k) {
+          attrs.push(k);
+        });
+        attrs.sort();
+        if (attrs.length) {
+          html += '<table cellpadding="0">';
+          $.each(attrs, function(i, a) {
+            html +=
+              '<tr>' +
+                '<th style="padding-right: 1em;">' + a + ':</th>' +
+                '<td>' + resources_by_id[id_parts[0]].attributes[a] + '</td>' +
+              '</tr>';
+          });
+          html += '</table>';
+        } else {
+          html += '<%=h escape_javascript _('No attributes defined') %>';
+        }
+        if (resources_by_id[id_parts[0]].instances) {
+          var instance = resources_by_id[id_parts[0]].instances[id_parts.length == 2 ? id_parts[1] : "default"];
+          if (instance) { // TODO(must): remove this check when fixing bnc#799000)
+            $.each(cib.nodes, function() {
+              var fc = instance.fail_count && instance.fail_count[this.uname] ? instance.fail_count[this.uname] : 0;
+              var lf = instance.last_failure && instance.last_failure[this.uname] ? new Date(instance.last_failure[this.uname] * 1000) : false;
+              html +=
+                '<h2>' + this.uname + '</h2>' +
+                '<table cellpadding="0">' +
+                  '<tr>' +
+                    '<th style="padding-right: 1em;"><%=h escape_javascript _("Fail Count:") %></th>' +
+                    '<td>' + fc + '</td>' +
+                  '</tr>';
+              if (lf) {
+                html +=
+                  '<tr>' +
+                    '<th style="padding-right: 1em;"><%=h escape_javascript _("Last Failure:") %></th>' +
+                    '<td>' + lf + '</td>' +
+                  '</tr>'
+              }
+              html +=
+                '</table>';
+            });
+          }
+        }
+        $("#dialog").html(html);
+        var b = {};
+        b[GETTEXT.close()]   = function() {
+          $(this).dialog("close");
+        }
+        $("#dialog").dialog("option", {
+          title:    id,
+          buttons:  b
+        });
+        $("#dialog").dialog("open");
+      }
+    }
+    <% if Util.has_feature?(:crm_history) && is_god? %>
+    ,
     {
       label: "<%=h escape_javascript _('View Recent Events...') %>",
       icon: "details.png",

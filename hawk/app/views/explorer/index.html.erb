@@ -26,12 +26,19 @@ $(function() {
     $(".cache").hide();
     $("#pe-list").children().remove();
   });
-  $(".cache a").click(function(event) {
+  $(".cache a.display").click(function(event) {
     // Clicking any cache link puts chosen times into form, hides all
     // cached lines and updates the display.  Not quite optimal, but workable.
     $(".cache").hide();
     $("#from_time").val($(this).parent().prev().prev().prev().text());
     $("#to_time").val($(this).parent().prev().text());
+  });
+  $(".cache a.delete").click(function(event) {
+    if (!confirm("<%= escape_javascript(_('Delete this history archive?')) %>")) {
+      event.preventDefault();
+      event.stopPropagation();
+      return false;
+    };
   });
   $("#filter").submitWithAjax();
   inline_detail_links();  // just in case
@@ -112,7 +119,10 @@ function inline_detail_links() {
     <td><%=h c[:to_time] %></td>
     <td><%= link_to ("Display"), explorer_path(
       :from_time => c[:from_time], :to_time => c[:to_time],
-      :display => true) %></td>
+      :display => true), :class => "display" %></td>
+    <td><%= link_to ("Delete"), explorer_path(
+      :from_time => c[:from_time], :to_time => c[:to_time],
+      :delete => true), :class => "delete" %></td>
   </tr>
 <% end %>
 <% end %>

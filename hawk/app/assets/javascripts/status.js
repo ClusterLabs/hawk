@@ -40,6 +40,14 @@ var update_req = null;
 
 var current_view = null;
 
+function h2n(a) {
+  var n = [];
+  $.each(a, function(i, h) {
+    n.push(h.node);
+  });
+  return n;
+}
+
 function update_errors(errors)
 {
   $("#errorbar").html("");

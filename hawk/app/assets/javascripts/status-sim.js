@@ -326,7 +326,9 @@ var simulator = {
     // TODO(should): Can this be reused elsewhere? (cf: panel_view::_get_primitive)
     var running_on = instance.master || instance.slave || instance.started || instance.pending;
     if (running_on) {
-      $("#inject-op-node").val(running_on[0]);
+      // This is to select the node the resource is currently running on, in
+      // order that the user inject an op into the "right" place by default.
+      $("#inject-op-node").val(h2n(running_on)[0]);
     }
     this._inject_op_set_op_defaults();
   },

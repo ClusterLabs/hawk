@@ -51,7 +51,8 @@ class Cib < CibObject
 
   def get_resource(elem, clone_max = nil, is_ms = false)
     res = {
-      :id => elem.attributes['id']
+      :id => elem.attributes['id'],
+      :attributes => {}
     }
     @resources_by_id[elem.attributes['id']] = res
     case elem.name
@@ -86,6 +87,9 @@ class Cib < CibObject
     else
       # This really can't happen
       Rails.logger.error "Unknown resource type: #{elem.name}"
+    end
+    elem.elements.each("meta_attributes/nvpair/") do |nv|
+      res[:attributes][nv.attributes["name"]] = nv.attributes["value"]
     end
     res
   end
@@ -313,6 +317,7 @@ class Cib < CibObject
         id = lrm_resource.attributes['id']
         # logic derived somewhat from pacemaker/lib/pengine/unpack.c:unpack_rsc_op()
         state = :unknown
+        substate = nil
         failed_ops = []
         ops = []
         lrm_resource.elements.each('lrm_rsc_op') do |op|
@@ -381,6 +386,18 @@ class Cib < CibObject
             # notice pending start, stop, promote, demote, migrate_*..?
             # This would allow us to say "Staring", "Stopping", etc. in the UI.
             state = :pending if operation != "monitor"
+            case operation
+            when "start":
+              substate = :starting
+            when "stop":
+              substate = :stopping
+            when "promote":
+              substate = :promoting
+            when "demote":
+              substate = :demoting
+            when /^migrate/:
+              substate = :migrating
+            end
             next
           end
 
@@ -460,7 +477,9 @@ class Cib < CibObject
           end
           @resources_by_id[id][:instances][instance] = {} unless @resources_by_id[id][:instances][instance]
           @resources_by_id[id][:instances][instance][state] = [] unless @resources_by_id[id][:instances][instance][state]
-          @resources_by_id[id][:instances][instance][state] << node[:uname]
+          n = { :node => node[:uname] }
+          n[:substate] = substate if substate
+          @resources_by_id[id][:instances][instance][state] << n
           @resources_by_id[id][:instances][instance][:failed_ops] = [] unless @resources_by_id[id][:instances][instance][:failed_ops]
           @resources_by_id[id][:instances][instance][:failed_ops].concat failed_ops
           # NOTE: Do *not* add any more keys here without adjusting the renamer above
@@ -510,6 +529,28 @@ class Cib < CibObject
     @xml.elements.each("cib/configuration/constraints/rsc_ticket") do |rt|
       t = rt.attributes["ticket"]
       @tickets[t] = { :granted => false } unless @tickets[rt.attributes["ticket"]]
+    end
+
+    # Get fail counts
+    @xml.elements.each("cib/status/node_state/transient_attributes") do |ta|
+      n = ta.attributes["id"]
+      ta.elements.each("instance_attributes/nvpair") do |nv|
+        if nv.attributes["name"].starts_with?("fail-count-")
+          id = nv.attributes["name"][11..-1]
+          (id, instance) = id.split(':')
+          instance = :default unless instance
+          if @resources_by_id[id] && @resources_by_id[id][:instances][instance]
+            @resources_by_id[id][:instances][instance][:fail_count] = { n => Util.char2score(nv.attributes["value"]) };
+          end
+        elsif nv.attributes["name"].starts_with?("last-failure-")
+          id = nv.attributes["name"][13..-1]
+          (id, instance) = id.split(':')
+          instance = :default unless instance
+          if @resources_by_id[id] && @resources_by_id[id][:instances][instance]
+            @resources_by_id[id][:instances][instance][:last_failure] = { n => nv.attributes["value"].to_i };
+          end
+        end
+      end
     end
   end
 

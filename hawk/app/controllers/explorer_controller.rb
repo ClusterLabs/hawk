@@ -57,6 +57,16 @@ class ExplorerController < ApplicationController
       }
     end
 
+    if params[:delete]
+      require "fileutils"
+      FileUtils.remove_entry_secure(@report_path) if File.exists?(@report_path)
+      FileUtils.remove_entry_secure(@hb_report.path) if File.exists?(@hb_report.path)
+      FileUtils.remove_entry_secure(@hb_report.outfile) if File.exists?(@hb_report.outfile)
+      FileUtils.remove_entry_secure(@hb_report.errfile) if File.exists?(@hb_report.errfile)
+      redirect_to :action => "index"
+      return
+    end
+
     if params[:display] && !@hb_report.running?
       # Now we either generate if a report for that time doesn't exist, or display if one does.
       # TODO(must): this doesn't handle the case where a generate run fails utterly; it'll

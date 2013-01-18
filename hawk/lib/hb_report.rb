@@ -35,7 +35,7 @@ class HbReport
   # off path, and callers need to be updated to understand this - this
   # will happen when we allow multiple hb_report runs, as
   # hb_reports_controller is what cares about lastexit)
-  attr_reader :outfile, :errfile, :lastexit
+  attr_reader :path, :outfile, :errfile, :lastexit
 
   # Call with e.g.:
   #  ("#{Rails.root}/tmp/pids/hb_report", "/tmp/hb_report-hawk").
