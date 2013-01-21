@@ -37,6 +37,8 @@ class ExplorerController < ApplicationController
 
   layout 'main'
 
+  @@x_path = "#{Rails.root}/tmp/explorer"
+
   def initialize
     super
     @title = _('History Explorer')
@@ -48,7 +50,7 @@ class ExplorerController < ApplicationController
     @cache = []
 
     ts_re = "[0-9]{4}-[0-9]{2}-[0-9]{2}_[0-9]{2}:[0-9]{2}"
-    Dir.entries("/tmp").sort.reverse.each do |f|
+    Dir.entries(@@x_path).sort.reverse.each do |f|
       m = f.match(/^hb_report-hawk-(#{ts_re})-(#{ts_re}).tar.bz2$/)
       next unless m
       @cache << {
@@ -124,7 +126,7 @@ class ExplorerController < ApplicationController
     params[:basename].gsub!(/[^\w-]/, "")
     params[:node].gsub!(/[^\w_-]/, "")
     tname = "#{params[:node]}/pengine/#{params[:basename]}.bz2"
-    tpath = "/tmp/#{@report_name}/#{tname}"
+    tpath = "#{@@x_path}/#{@report_name}/#{tname}"
     case params[:file]
     when "pe-input"
       send_file tpath, :type => "application/x-bzip"
@@ -208,9 +210,9 @@ class ExplorerController < ApplicationController
     end
 
     @report_name = "hb_report-hawk-#{@from_time.sub(' ','_')}-#{@to_time.sub(' ','_')}"
-    @report_path = "/tmp/#{@report_name}.tar.bz2"
+    @report_path = "#{@@x_path}/#{@report_name}.tar.bz2"
 
-    @hb_report.path = "/tmp/#{@report_name}"
+    @hb_report.path = "#{@@x_path}/#{@report_name}"
   end
 
 end

@@ -204,6 +204,7 @@ rm -rf %{buildroot}
 %attr(0750, %{uname},%{gname})%{www_base}/hawk/log
 %dir %attr(0750, %{uname},%{gname})%{www_base}/hawk/tmp
 %attr(0750, %{uname},%{gname})%{www_base}/hawk/tmp/cache
+%attr(0750, %{uname},%{gname})%{www_base}/hawk/tmp/explorer
 %attr(0770, %{uname},%{gname})%{www_base}/hawk/tmp/home
 %attr(0750, %{uname},%{gname})%{www_base}/hawk/tmp/pids
 %attr(0750, %{uname},%{gname})%{www_base}/hawk/tmp/sessions
