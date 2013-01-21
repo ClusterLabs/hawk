@@ -75,7 +75,7 @@ class ExplorerController < ApplicationController
       # probably just keep trying to generate the hb_report indefinitely.
       if File.exists?(@report_path)
         @peinputs = []
-        stdin, stdout, stderr, thread = Util.run_as("root", "crm", "history")
+        stdin, stdout, stderr, thread = Util.popen3("crm", "history")
         stdin.write("source #{@report_path}\npeinputs\n")
         stdin.close
         peinputs_raw = stdout.read()

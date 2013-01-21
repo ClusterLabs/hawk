@@ -120,6 +120,7 @@ install:
 	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/log
 	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/tmp
 	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/home
+	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/explorer
 	install -D -m 0755 scripts/hawk.$(INIT_STYLE) $(DESTDIR)/etc/init.d/hawk
 	install -D -m 4750 tools/hawk_chkpwd $(DESTDIR)/usr/sbin/hawk_chkpwd
 	-chown root.haclient $(DESTDIR)/usr/sbin/hawk_chkpwd
