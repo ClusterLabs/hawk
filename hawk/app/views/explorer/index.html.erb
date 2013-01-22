@@ -54,6 +54,13 @@ $(function() {
     buttonImage: url_root + "/assets/icons/calendar.png",
     buttonImageOnly: true
   });
+  $("#uploaded_report").change(function(event) {
+    if ($(this).val()) {
+      $("#upload").removeAttr("disabled");
+    } else {
+      $("#upload").attr("disabled", "disabled");
+    }
+  });
 });
 function dialogify_detail_links() {
   $(".pe-detail").live("click", function(event) {
@@ -151,6 +158,7 @@ function dialogify_detail_links() {
   </tr>
 <% end %>
 <% end %>
+<% unless params[:upload_name] %>
   <tr>
     <th><label for="from_time"><%=h _("Start Time:") %></label></th>
     <td><%= text_field_tag "from_time", @cache.any? && !params[:display] ? "" : @from_time, :size => 14 %></td>
@@ -158,7 +166,22 @@ function dialogify_detail_links() {
     <td><%= text_field_tag "to_time", @cache.any? && !params[:display] ? "" : @to_time, :size => 14 %></td>
     <td><%= submit_tag(_('Display')) %></td>
   </tr>
+<% end %>
 </table>
+<% end %>
+<% unless params[:display] %>
+<%= form_tag(explorer_path, :multipart => true) do %>
+<%= hidden_field_tag "display", "true" %>
+<hr>
+<table style="width: 100%">
+<tr>
+<td><%=h _("Upload hb_report tarball") %></td>
+<td><%= file_field_tag :uploaded_report %></td>
+<td><%= submit_tag _('Explore'), { :id => "upload", :name => "upload", :disabled => true } %></td>
+</tr>
+</table>
+<% end %>
+<% end %>
 <div id="filter-wait" style="<%= @hb_report.running? ? "" : "display: none;" %>">
 <table>
   <tr style="vertical-align: middle;">
@@ -167,7 +190,6 @@ function dialogify_detail_links() {
   </tr>
 </table>
 </div>
-<% end %>
 </div>
 </div>
 <div id="pe-list" style="clear: both;">

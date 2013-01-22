@@ -61,6 +61,7 @@ class ExplorerController < ApplicationController
 
     if params[:delete]
       require "fileutils"
+      # TODO(must): won't work with uploads
       FileUtils.remove_entry_secure(@report_path) if File.exists?(@report_path)
       FileUtils.remove_entry_secure(@hb_report.path) if File.exists?(@hb_report.path)
       FileUtils.remove_entry_secure(@hb_report.outfile) if File.exists?(@hb_report.outfile)
@@ -281,8 +282,29 @@ class ExplorerController < ApplicationController
       @to_time = @to_time.strftime("%Y-%m-%d %H:%M")
     end
 
-    @report_name = "hb_report-hawk-#{@from_time.sub(' ','_')}-#{@to_time.sub(' ','_')}"
-    @report_path = "#{@@x_path}/#{@report_name}.tar.bz2"
+    if params[:uploaded_report]
+      # TODO(must): handle overwriting existing files
+      #             (note that hb_reports from hawk seem to all extract to hb_report-hawk, not their filename?)
+      #             e.g.:bug-781207_hb_report-hawk.tar.bz2)
+      # TODO(must): needs uploads directory present
+      # TODO(must): verify original_filename doesn't contain evil
+      uploaded_io = params[:uploaded_report]
+      @upload_name = uploaded_io.original_filename
+      @report_path = Rails.root.join('tmp', 'explorer', 'uploads', @upload_name)
+      File.open(@report_path, 'wb') do |file|
+        file.write(uploaded_io.read)
+      end
+      # TODO(must): ugly, used in get(), hence injection of "uploads", also assumes .tar.bz2...
+      @report_name = "uploads/#{File.basename(@report_path, '.tar.bz2')}"
+    elsif params[:upload_name]
+      # TODO(must): dupe of above, kinda, fix.  Also unsafe.
+      @upload_name = params[:upload_name]
+      @report_path = Rails.root.join('tmp', 'explorer', 'uploads', @upload_name)
+      @report_name = "uploads/#{File.basename(@report_path, '.tar.bz2')}"
+    else
+      @report_name = "hb_report-hawk-#{@from_time.sub(' ','_')}-#{@to_time.sub(' ','_')}"
+      @report_path = "#{@@x_path}/#{@report_name}.tar.bz2"
+    end
 
     @hb_report.path = "#{@@x_path}/#{@report_name}"
   end
