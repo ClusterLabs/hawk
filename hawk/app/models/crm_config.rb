@@ -44,12 +44,11 @@ class CrmConfig < CibObject
       return unless xml.root
       xml.elements.each('//parameter') do |param|
         name = param.attributes['name'].to_sym
-        @all_props << name
         content   = param.elements['content']
         # TODO(should): select by language (en)
         shortdesc = param.elements['shortdesc'].text || ''
         longdesc  = param.elements['longdesc'].text || ''
-        @all_types[name] = {
+        @all_props[name] = {
           :type       => content.attributes['type'],  # boolean, enum, integer, time
           :readonly   => false,
           :shortdesc  => shortdesc,
@@ -58,11 +57,11 @@ class CrmConfig < CibObject
                          (longdesc.match(/advanced use only/i)) ? true : false,
           :default    => content.attributes['default']
         }
-        if @all_types[name][:type] == 'enum'
+        if @all_props[name][:type] == 'enum'
           m = longdesc.match(/Allowed values:(.*)/i)
           values = m[1].split(',').map {|v| v.strip}.select {|v| !v.empty?} if m
           # Yes, this next is paranoid.  But hey, we're parsing arbitrary text here...
-          @all_types[name][:values] = values unless values.empty?
+          @all_props[name][:values] = values unless values.empty?
         end
       end
       break
@@ -72,23 +71,124 @@ class CrmConfig < CibObject
 
   public
 
-  attr_accessor :props, :all_props, :all_types
+  attr_accessor :props, :all_props
+  attr_accessor :rsc_defaults, :all_rsc_defaults
+  attr_accessor :op_defaults, :all_op_defaults
 
   def initialize(parent_elem, id)
     @id = id
 
     @props     = {}
-    @all_props = []
-    @all_types = {}
+    @all_props = {}
+
+    @rsc_defaults = {}
+    # TODO(should): This is copied from app/models/primitive.rb, should consolidate
+    @all_rsc_defaults = {
+      "allow-migrate" => {
+        :type     => "boolean",
+        :default  => "false"
+      },
+      "is-managed" => {
+        :type     => "boolean",
+        :default  => "true"
+      },
+      "interval-origin" => {
+        :type     => "integer",
+        :default  => "0"
+      },
+      "migration-threshold" => {
+        :type     => "integer",
+        :default  => "0"
+      },
+      "priority" => {
+        :type     => "integer",
+        :default  => "0"
+      },
+      "multiple-active" => {
+        :type     => "enum",
+        :default  => "stop_start",
+        :values   => [ "block", "stop_only", "stop_start" ]
+      },
+      "failure-timeout" => {
+        :type     => "integer",
+        :default  => "0"
+      },
+      "resource-stickiness" => {
+        :type     => "integer",
+        :default  => "0"
+      },
+      "target-role" => {
+        :type     => "enum",
+        :default  => "Started",
+        :values   => [ "Started", "Stopped", "Master" ]
+      },
+      "restart-type" => {
+        :type     => "enum",
+        :default  => "ignore",
+        :values   => [ "ignore", "restart" ]
+      },
+      "description" => {
+        :type     => "string",
+        :default  => ""
+      }
+    }
+
+    @op_defaults = {}
+    # TODO(should): This is copied from jquery.ui.oplist.js (modulo defaults), should consolidate
+    # (note comments in jquery.ui.oplist.js about defaults etc.)
+    @all_op_defaults = {
+      "interval" => {
+        :type     => "string",
+        :default  => 0
+      },
+      "timeout" => {
+        :type     => "string",
+        :default  => "20"
+      },
+      "requires" => {
+        :type     => "enum",
+        :default  => "fencing",
+        :values   => ["nothing", "quorum", "fencing"]
+      },
+      "enabled" => {
+        :type     => "boolean",
+        :default  => "true"
+      },
+      "role" => {
+        :type     => "enum",
+        :default  => "",
+        :values   => ["Stopped", "Started", "Slave", "Master"]
+      },
+      "on-fail" => {
+        :type     => "enum",
+        :default  => "stop",
+        :values   => ["ignore", "block", "stop", "restart", "standby", "fence"]
+      },
+      "start-delay" => {
+        :type     => "string",
+        :default  =>"0"
+      },
+      "interval-origin" => {
+        :type     => "string",
+        :default  => "0"
+      },
+      "record-pending" => {
+        :type     => "boolean",
+        :default  => "false"
+      },
+      "description" => {
+        :type     => "string",
+        :default  => ""
+      }
+    }
 
     load_meta 'pengine'
     load_meta 'crmd'
     load_meta 'cib'
-    @all_props.sort! {|a,b| a.to_s <=> b.to_s }
     # These are meant to be read-only; should we hide them
     # in the editor?  grey them out? ...?
     [:"cluster-infrastructure", :"dc-version", :"expected-quorum-votes"].each do |n|
-      @all_types[n][:readonly] = true
+      @all_props[n][:readonly] = true
     end
 
     @elem = parent_elem.elements["cluster_property_set[@id='#{id}']"]
@@ -98,6 +198,23 @@ class CrmConfig < CibObject
       # special with rules, scores etc.
       @props[nv.attributes['name'].to_sym] = nv.attributes['value']
     end if @elem
+
+    # The next two are wrong in so many ways... (we shouldn't even bother
+    # convoluting through cib for this class at all, to say nothing of what
+    # I'm doing with "parent" - *gah*)
+
+    # Note: not to_sym'ing names.  Should we be?
+
+    @elem = parent_elem.parent.elements["rsc_defaults/meta_attributes[@id='rsc-options']"]
+    @elem.elements.each('nvpair') do |nv|
+      @rsc_defaults[nv.attributes['name']] = nv.attributes['value']
+    end if @elem
+
+    @elem = parent_elem.parent.elements["op_defaults/meta_attributes[@id='op-options']"]
+    @elem.elements.each('nvpair') do |nv|
+      @op_defaults[nv.attributes['name']] = nv.attributes['value']
+    end if @elem
+
   end
 
 end

@@ -111,10 +111,20 @@ class CrmConfigController < ApplicationController
     # properties the user has just set in the edit form.  Note: this
     # (obviously) must complement the constraints in the edit form!
     props_to_delete = current_config.props.keys.select {|p|
-      current_config.all_types[p] && !current_config.all_types[p][:readonly] &&
+      current_config.all_props[p] && !current_config.all_props[p][:readonly] &&
         (!params[:props] || !params[:props].has_key?(p))
         # (the above line means: no properties passed in, *or* the
         # properties passed in don't include this property)
+    }
+
+    rd_to_delete = current_config.rsc_defaults.keys.select {|p|
+      current_config.all_rsc_defaults[p] && !current_config.all_rsc_defaults[p][:readonly] &&
+        (!params[:rsc_defaults] || !params[:rsc_defaults].has_key?(p))
+    }
+
+    od_to_delete = current_config.op_defaults.keys.select {|p|
+      current_config.all_op_defaults[p] && !current_config.all_op_defaults[p][:readonly] &&
+        (!params[:op_defaults] || !params[:op_defaults].has_key?(p))
     }
 
     # TODO(must): the above two blocks use a mix of string and symbol
@@ -134,12 +144,46 @@ class CrmConfigController < ApplicationController
       end
     end if params[:props]
     
+    cmd += "\nrsc_defaults $id='rsc-options'"
+    params[:rsc_defaults].each do |n, v|
+      next if v.empty?
+      sq = v.index("'")
+      dq = v.index('"')
+      if sq && dq
+        flash[:error] = _("Can't set property %{p}, because the value contains both single and double quotes") % { :p => n }
+      elsif sq
+        cmd += " #{n}=\"#{v}\""
+      else
+        cmd += " #{n}='#{v}'"
+      end
+    end if params[:rsc_defaults]
+
+    cmd += "\nop_defaults $id='op-options'"
+    params[:op_defaults].each do |n, v|
+      next if v.empty?
+      sq = v.index("'")
+      dq = v.index('"')
+      if sq && dq
+        flash[:error] = _("Can't set property %{p}, because the value contains both single and double quotes") % { :p => n }
+      elsif sq
+        cmd += " #{n}=\"#{v}\""
+      else
+        cmd += " #{n}='#{v}'"
+      end
+    end if params[:op_defaults]
+
     result = Invoker.instance.crm_configure_load_update cmd
 
     if result == true
       props_to_delete.each do |p|
         # TODO(must): does not report errors!
         Util.run_as(current_user, 'crm_attribute', '--attr-name', p.to_s, '--delete-attr')
+      end
+      rd_to_delete.each do |p|
+        Util.run_as(current_user, 'crm_attribute', '--type', 'rsc_defaults', '--attr-name', p, '--delete-attr')
+      end
+      od_to_delete.each do |p|
+        Util.run_as(current_user, 'crm_attribute', '--type', 'op_defaults', '--attr-name', p, '--delete-attr')
       end
       flash[:highlight] = _('Your changes have been saved')
     else
@@ -160,7 +204,12 @@ class CrmConfigController < ApplicationController
   # does crm_config/edit.html.erb.
   def info
     # RORSCAN_INL (authz via cibadmin)
-    render :json => @cib.find_crm_config(params[:id]).all_types
+    c = @cib.find_crm_config(params[:id])
+    render :json => {
+      :props => c.all_props,
+      :rsc_defaults => c.all_rsc_defaults,
+      :op_defaults => c.all_op_defaults
+    }
   end
 
 end

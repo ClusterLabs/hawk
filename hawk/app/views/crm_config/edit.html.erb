@@ -1,6 +1,8 @@
 <% content_for :head do %>
 <%= stylesheet_link_tag 'ui.attrlist.css' %>
+<%= stylesheet_link_tag 'ui.panel.css' %>
 <%= javascript_include_tag 'jquery.ui.attrlist.js' %>
+<%= javascript_include_tag 'jquery.ui.panel.js' %>
 <style type="text/css">
 /* TODO(should): this does not belong here (also need to remove
    inline style from various elements) */
@@ -11,19 +13,18 @@ th { font-weight: bold; }
 var anything_changed = false;
 $(function() {
   $.getJSON('<%= crm_config_info_path %>', function(data) {
-    $("#crm_config").attrlist({
-      all_attrs: data,
+    $("#crm_config").panel({ label: "<%=h escape_javascript _('CRM Configuration') %>", menu_icon: url_root + "/assets/transparent-16x16.gif" });
+    $("#crm_config").panel("body_element").attrlist({
+      all_attrs: data.props,
       set_attrs: <%= Hash[@crm_config.props.select{|n,v|
           # Don't include unknown, readonly or advanced properties
-          @crm_config.all_types[n] && !@crm_config.all_types[n][:readonly] && !@crm_config.all_types[n][:advanced]
+          @crm_config.all_props[n] && !@crm_config.all_props[n][:readonly] && !@crm_config.all_props[n][:advanced]
         }].to_json.html_safe %>,
       prefix: "props",
       labels: {
         add: "<%= escape_javascript _('Add') %>",
         remove: "<%= escape_javascript _('Remove') %>",
-        no_value: "<%= escape_javascript _('You must enter a value') %>",
-        heading_add: "<%= escape_javascript _('Add new property:') %>",
-        heading_edit: "<%= escape_javascript _('Edit current properties:') %>"
+        no_value: "<%= escape_javascript _('You must enter a value') %>"
       },
       dirty: function() {
         $("#flash-highlight").fadeOut('fast');    // Hide "saved changes" message
@@ -32,6 +33,52 @@ $(function() {
         anything_changed = true;
       }
     });
+    $("#crm_config").panel("expand");
+
+    $("#rsc_defaults").panel({ label: "<%=h escape_javascript _('Resource Defaults') %>", menu_icon: url_root + "/assets/transparent-16x16.gif" });
+    $("#rsc_defaults").panel("body_element").attrlist({
+      all_attrs: data.rsc_defaults,
+      set_attrs: <%= Hash[@crm_config.rsc_defaults.select{|n,v|
+          # Don't include unknown, readonly or advanced properties
+          @crm_config.all_rsc_defaults[n] && !@crm_config.all_rsc_defaults[n][:readonly] && !@crm_config.all_rsc_defaults[n][:advanced]
+        }].to_json.html_safe %>,
+      prefix: "rsc_defaults",
+      labels: {
+        add: "<%= escape_javascript _('Add') %>",
+        remove: "<%= escape_javascript _('Remove') %>",
+        no_value: "<%= escape_javascript _('You must enter a value') %>"
+      },
+      dirty: function() {
+        $("#flash-highlight").fadeOut('fast');    // Hide "saved changes" message
+        $("#crm_config_submit").removeAttr("disabled");
+        $("#crm_config_revert").removeAttr("disabled");
+        anything_changed = true;
+      }
+    });
+    $("#rsc_defaults").panel("expand");
+
+    $("#op_defaults").panel({ label: "<%=h escape_javascript _('Operation Defaults') %>", menu_icon: url_root + "/assets/transparent-16x16.gif" });
+    $("#op_defaults").panel("body_element").attrlist({
+      all_attrs: data.op_defaults,
+      set_attrs: <%= Hash[@crm_config.op_defaults.select{|n,v|
+          # Don't include unknown, readonly or advanced properties
+          @crm_config.all_op_defaults[n] && !@crm_config.all_op_defaults[n][:readonly] && !@crm_config.all_op_defaults[n][:advanced]
+        }].to_json.html_safe %>,
+      prefix: "op_defaults",
+      labels: {
+        add: "<%= escape_javascript _('Add') %>",
+        remove: "<%= escape_javascript _('Remove') %>",
+        no_value: "<%= escape_javascript _('You must enter a value') %>"
+      },
+      dirty: function() {
+        $("#flash-highlight").fadeOut('fast');    // Hide "saved changes" message
+        $("#crm_config_submit").removeAttr("disabled");
+        $("#crm_config_revert").removeAttr("disabled");
+        anything_changed = true;
+      }
+    });
+    $("#op_defaults").panel("expand");
+
     $("#onload-spinner").hide();
     $("#editor").show();
   });
@@ -55,6 +102,16 @@ $(function() {
           <div id="help-shortdesc" style="padding-bottom: 0.5em;"></div>
           <div id="help-longdesc"></div>
         </div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div id="rsc_defaults"></div>
+      </td>
+    </tr>
+    <tr>
+      <td>
+        <div id="op_defaults"></div>
       </td>
     </tr>
     <tr>
