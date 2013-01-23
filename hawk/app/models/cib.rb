@@ -554,13 +554,4 @@ class Cib < CibObject
     end
   end
 
-  # If we were using ActiveRecord, we'd be able to use has_many etc. and
-  # magically have cib.crm_configs.find.  But we're not, so we have this
-  # thing instead.  Note that there is no particular error checking here;
-  # if you ask for a crm_config that doesn't exist, you'll get back an
-  # empty CrmConfig model.
-  def find_crm_config(id)
-    CrmConfig.new(@xml.elements['cib/configuration/crm_config'], id)
-  end
-
 end

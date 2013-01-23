@@ -12,81 +12,75 @@ th { font-weight: bold; }
 <script type="text/javascript">
 var anything_changed = false;
 $(function() {
-  $.getJSON('<%= crm_config_info_path %>', function(data) {
-    $("#crm_config").panel({ label: "<%=h escape_javascript _('CRM Configuration') %>", menu_icon: url_root + "/assets/transparent-16x16.gif" });
-    $("#crm_config").panel("body_element").attrlist({
-      all_attrs: data.props,
-      set_attrs: <%= Hash[@crm_config.props.select{|n,v|
-          # Don't include unknown, readonly or advanced properties
-          @crm_config.all_props[n] && !@crm_config.all_props[n][:readonly] && !@crm_config.all_props[n][:advanced]
-        }].to_json.html_safe %>,
-      prefix: "props",
-      labels: {
-        add: "<%= escape_javascript _('Add') %>",
-        remove: "<%= escape_javascript _('Remove') %>",
-        no_value: "<%= escape_javascript _('You must enter a value') %>"
-      },
-      dirty: function() {
-        $("#flash-highlight").fadeOut('fast');    // Hide "saved changes" message
-        $("#crm_config_submit").removeAttr("disabled");
-        $("#crm_config_revert").removeAttr("disabled");
-        anything_changed = true;
-      }
-    });
-    $("#crm_config").panel("expand");
-
-    $("#rsc_defaults").panel({ label: "<%=h escape_javascript _('Resource Defaults') %>", menu_icon: url_root + "/assets/transparent-16x16.gif" });
-    $("#rsc_defaults").panel("body_element").attrlist({
-      all_attrs: data.rsc_defaults,
-      set_attrs: <%= Hash[@crm_config.rsc_defaults.select{|n,v|
-          # Don't include unknown, readonly or advanced properties
-          @crm_config.all_rsc_defaults[n] && !@crm_config.all_rsc_defaults[n][:readonly] && !@crm_config.all_rsc_defaults[n][:advanced]
-        }].to_json.html_safe %>,
-      prefix: "rsc_defaults",
-      labels: {
-        add: "<%= escape_javascript _('Add') %>",
-        remove: "<%= escape_javascript _('Remove') %>",
-        no_value: "<%= escape_javascript _('You must enter a value') %>"
-      },
-      dirty: function() {
-        $("#flash-highlight").fadeOut('fast');    // Hide "saved changes" message
-        $("#crm_config_submit").removeAttr("disabled");
-        $("#crm_config_revert").removeAttr("disabled");
-        anything_changed = true;
-      }
-    });
-    $("#rsc_defaults").panel("expand");
-
-    $("#op_defaults").panel({ label: "<%=h escape_javascript _('Operation Defaults') %>", menu_icon: url_root + "/assets/transparent-16x16.gif" });
-    $("#op_defaults").panel("body_element").attrlist({
-      all_attrs: data.op_defaults,
-      set_attrs: <%= Hash[@crm_config.op_defaults.select{|n,v|
-          # Don't include unknown, readonly or advanced properties
-          @crm_config.all_op_defaults[n] && !@crm_config.all_op_defaults[n][:readonly] && !@crm_config.all_op_defaults[n][:advanced]
-        }].to_json.html_safe %>,
-      prefix: "op_defaults",
-      labels: {
-        add: "<%= escape_javascript _('Add') %>",
-        remove: "<%= escape_javascript _('Remove') %>",
-        no_value: "<%= escape_javascript _('You must enter a value') %>"
-      },
-      dirty: function() {
-        $("#flash-highlight").fadeOut('fast');    // Hide "saved changes" message
-        $("#crm_config_submit").removeAttr("disabled");
-        $("#crm_config_revert").removeAttr("disabled");
-        anything_changed = true;
-      }
-    });
-    $("#op_defaults").panel("expand");
-
-    $("#onload-spinner").hide();
-    $("#editor").show();
+  $("#crm_config").panel({ label: "<%=h escape_javascript _('CRM Configuration') %>", menu_icon: url_root + "/assets/transparent-16x16.gif" });
+  $("#crm_config").panel("body_element").attrlist({
+    all_attrs: <%= @crm_config.all_props["crm_config"].to_json.html_safe %>,
+    set_attrs: <%= Hash[@crm_config.props["crm_config"].select{|n,v|
+        # Don't include unknown, readonly or advanced properties
+        @crm_config.all_props["crm_config"][n] && !@crm_config.all_props["crm_config"][n][:readonly] && !@crm_config.all_props["crm_config"][n][:advanced]
+      }].to_json.html_safe %>,
+    prefix: "crm_config",
+    labels: {
+      add: "<%= escape_javascript _('Add') %>",
+      remove: "<%= escape_javascript _('Remove') %>",
+      no_value: "<%= escape_javascript _('You must enter a value') %>"
+    },
+    dirty: function() {
+      $("#flash-highlight").fadeOut('fast');    // Hide "saved changes" message
+      $("#crm_config_submit").removeAttr("disabled");
+      $("#crm_config_revert").removeAttr("disabled");
+      anything_changed = true;
+    }
   });
+  $("#crm_config").panel("expand");
+
+  $("#rsc_defaults").panel({ label: "<%=h escape_javascript _('Resource Defaults') %>", menu_icon: url_root + "/assets/transparent-16x16.gif" });
+  $("#rsc_defaults").panel("body_element").attrlist({
+    all_attrs: <%= @crm_config.all_props["rsc_defaults"].to_json.html_safe %>,
+    set_attrs: <%= Hash[@crm_config.props["rsc_defaults"].select{|n,v|
+        # Don't include unknown, readonly or advanced properties
+        @crm_config.all_props["rsc_defaults"][n] && !@crm_config.all_props["rsc_defaults"][n][:readonly] && !@crm_config.all_props["rsc_defaults"][n][:advanced]
+      }].to_json.html_safe %>,
+    prefix: "rsc_defaults",
+    labels: {
+      add: "<%= escape_javascript _('Add') %>",
+      remove: "<%= escape_javascript _('Remove') %>",
+      no_value: "<%= escape_javascript _('You must enter a value') %>"
+    },
+    dirty: function() {
+      $("#flash-highlight").fadeOut('fast');    // Hide "saved changes" message
+      $("#crm_config_submit").removeAttr("disabled");
+      $("#crm_config_revert").removeAttr("disabled");
+      anything_changed = true;
+    }
+  });
+  $("#rsc_defaults").panel("expand");
+
+  $("#op_defaults").panel({ label: "<%=h escape_javascript _('Operation Defaults') %>", menu_icon: url_root + "/assets/transparent-16x16.gif" });
+  $("#op_defaults").panel("body_element").attrlist({
+    all_attrs: <%= @crm_config.all_props["op_defaults"].to_json.html_safe %>,
+    set_attrs: <%= Hash[@crm_config.props["op_defaults"].select{|n,v|
+        # Don't include unknown, readonly or advanced properties
+        @crm_config.all_props["op_defaults"][n] && !@crm_config.all_props["op_defaults"][n][:readonly] && !@crm_config.all_props["op_defaults"][n][:advanced]
+      }].to_json.html_safe %>,
+    prefix: "op_defaults",
+    labels: {
+      add: "<%= escape_javascript _('Add') %>",
+      remove: "<%= escape_javascript _('Remove') %>",
+      no_value: "<%= escape_javascript _('You must enter a value') %>"
+    },
+    dirty: function() {
+      $("#flash-highlight").fadeOut('fast');    // Hide "saved changes" message
+      $("#crm_config_submit").removeAttr("disabled");
+      $("#crm_config_revert").removeAttr("disabled");
+      anything_changed = true;
+    }
+  });
+  $("#op_defaults").panel("expand");
+
 <%= render :partial => 'shared/confirm_revert', :locals => { :button_ids => '#crm_config_revert' } %>
 });
 </script>
-<div id="onload-spinner"><%= image_tag 'spinner-32x32.gif', :alt => '' %></div>
-<div id="editor" style="display: none;">
 <%= form_for([ @cib, @crm_config ]) do |f| %>
 <% flash.each do |flash_type, message| %>
   <div id="flash-<%= flash_type %>" class="ui-state-<%= flash_type %> ui-corner-all" style="padding: 0.5em; margin-bottom: 0.5em;"><%=h message %></div>
@@ -122,4 +116,3 @@ $(function() {
     </tr>
   </table>
 <% end %>
-</div>

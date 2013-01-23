@@ -4,8 +4,9 @@
 #            A web-based GUI for managing and monitoring the
 #          Pacemaker High-Availability cluster resource manager
 #
-# Copyright (c) 2010 Novell Inc., Tim Serong <tserong@novell.com>
-#                        All Rights Reserved.
+# Copyright (c) 2010-1013 Novell Inc., All Rights Reserved.
+#
+# Author: Tim Serong <tserong@suse.com>
 #
 # This program is free software; you can redistribute it and/or modify
 # it under the terms of version 2 of the GNU General Public License as
@@ -48,7 +49,7 @@ class CrmConfigController < ApplicationController
     # This is not strictly correct (index is meant to be a list
     # of all resources), but it's acceptable for now, as we only
     # support manipulating the default crm_config.
-    redirect_to :action => 'edit', :id => 'cib-bootstrap-options'
+    redirect_to :action => 'edit'
   end
 
   def create
@@ -60,10 +61,7 @@ class CrmConfigController < ApplicationController
   end
 
   def edit
-    # Strictly, this should give you "not found" if the
-    # property set doesn't exist (right now it shows an
-    # empty set)
-    @crm_config = @cib.find_crm_config(params[:id])  # RORSCAN_ITL (authz via cibadmin)
+    @crm_config = CrmConfig.new
   end
 
   def show
@@ -76,12 +74,9 @@ class CrmConfigController < ApplicationController
       return
     end
 
-    # Don't let weird IDs through.
-    if params[:id].match(/[^a-zA-Z0-9_-]/)
-      flash[:error] = _('Invalid property set ID: %{id}') % { :id => params[:id] }
-      redirect_to :action => 'edit'
-      return
-    end
+    @crm_config = CrmConfig.new
+
+    # Note: all this really belongs in the model...
 
     #
     # This is (logically) a replace of the entire contents
@@ -96,93 +91,37 @@ class CrmConfigController < ApplicationController
     # a null value to "crm configure property ...", or by
     # replacing sections.
     #
-    # TODO(must): die if not operating on local CIB
-    # TODO(must): die if operating on non-existent property set
     # TODO(should): if the user deletes all the properties, this
     #               may leave an empty property set lying around.
     #               should "crm configure delete" it, but it
     #               might be a bit unsafe.
     #
 
-    current_config = @cib.find_crm_config(params[:id])  # RORSCAN_ITL (authz via cibadmin)
-
     # Want to delete properties that currently exist, aren't readonly
     # or advanced (invisible in editor), and aren't in the list of
     # properties the user has just set in the edit form.  Note: this
     # (obviously) must complement the constraints in the edit form!
-    props_to_delete = current_config.props.keys.select {|p|
-      current_config.all_props[p] && !current_config.all_props[p][:readonly] &&
-        (!params[:props] || !params[:props].has_key?(p))
-        # (the above line means: no properties passed in, *or* the
-        # properties passed in don't include this property)
-    }
+    crm_config_to_delete = to_delete("crm_config")
+    rsc_defaults_to_delete = to_delete("rsc_defaults")
+    op_defaults_to_delete = to_delete("op_defaults")
 
-    rd_to_delete = current_config.rsc_defaults.keys.select {|p|
-      current_config.all_rsc_defaults[p] && !current_config.all_rsc_defaults[p][:readonly] &&
-        (!params[:rsc_defaults] || !params[:rsc_defaults].has_key?(p))
-    }
-
-    od_to_delete = current_config.op_defaults.keys.select {|p|
-      current_config.all_op_defaults[p] && !current_config.all_op_defaults[p][:readonly] &&
-        (!params[:op_defaults] || !params[:op_defaults].has_key?(p))
-    }
-
-    # TODO(must): the above two blocks use a mix of string and symbol
-    # hash keys.  This is wildly confusing.  Must deconfustificate this.
-
-    cmd = "property $id='#{params[:id]}'"
-    params[:props].each do |n, v|
-      next if v.empty?
-      sq = v.index("'")
-      dq = v.index('"')
-      if sq && dq
-        flash[:error] = _("Can't set property %{p}, because the value contains both single and double quotes") % { :p => n }
-      elsif sq
-        cmd += " #{n}=\"#{v}\""
-      else
-        cmd += " #{n}='#{v}'"
-      end
-    end if params[:props]
-    
-    cmd += "\nrsc_defaults $id='rsc-options'"
-    params[:rsc_defaults].each do |n, v|
-      next if v.empty?
-      sq = v.index("'")
-      dq = v.index('"')
-      if sq && dq
-        flash[:error] = _("Can't set property %{p}, because the value contains both single and double quotes") % { :p => n }
-      elsif sq
-        cmd += " #{n}=\"#{v}\""
-      else
-        cmd += " #{n}='#{v}'"
-      end
-    end if params[:rsc_defaults]
-
-    cmd += "\nop_defaults $id='op-options'"
-    params[:op_defaults].each do |n, v|
-      next if v.empty?
-      sq = v.index("'")
-      dq = v.index('"')
-      if sq && dq
-        flash[:error] = _("Can't set property %{p}, because the value contains both single and double quotes") % { :p => n }
-      elsif sq
-        cmd += " #{n}=\"#{v}\""
-      else
-        cmd += " #{n}='#{v}'"
-      end
-    end if params[:op_defaults]
+    cmd =
+      "property $id='cib-bootstrap-options'" + crm_script("crm_config") + "\n" +
+      "rsc_defaults $id='rsc-options'"      + crm_script("rsc_defaults") + "\n" +
+      "op_defaults $id='op-options'"        + crm_script("op_defaults")
 
     result = Invoker.instance.crm_configure_load_update cmd
 
     if result == true
-      props_to_delete.each do |p|
-        # TODO(must): does not report errors!
+      # TODO(must): does not report errors!
+      # TODO(should): consolidate once bnc#800071 is fixed
+      crm_config_to_delete.each do |p|
         Util.run_as(current_user, 'crm_attribute', '--attr-name', p.to_s, '--delete-attr')
       end
-      rd_to_delete.each do |p|
+      rsc_defaults_to_delete.each do |p|
         Util.run_as(current_user, 'crm_attribute', '--type', 'rsc_defaults', '--attr-name', p, '--delete-attr')
       end
-      od_to_delete.each do |p|
+      op_defaults_to_delete.each do |p|
         Util.run_as(current_user, 'crm_attribute', '--type', 'op_defaults', '--attr-name', p, '--delete-attr')
       end
       flash[:highlight] = _('Your changes have been saved')
@@ -197,19 +136,36 @@ class CrmConfigController < ApplicationController
     head :forbidden
   end
 
-  # TODO(must): this really does not belong here.  All the static crm_config
-  # info belongs well outside this class, and should be generically accessible,
-  # once, without loading the cib or finding a given crm_config instance.
-  # When this is fixed, config/routes.rb needs to be changed to match, as
-  # does crm_config/edit.html.erb.
-  def info
-    # RORSCAN_INL (authz via cibadmin)
-    c = @cib.find_crm_config(params[:id])
-    render :json => {
-      :props => c.all_props,
-      :rsc_defaults => c.all_rsc_defaults,
-      :op_defaults => c.all_op_defaults
+  private
+
+  def to_delete(set)
+    # Want to delete properties that currently exist, aren't readonly
+    # or advanced (invisible in editor), and aren't in the list of
+    # properties the user has just set in the edit form.  Note: this
+    # (obviously) must complement the constraints in the edit form!
+    @crm_config.props[set].keys.select {|p|
+      @crm_config.all_props[set][p] && !@crm_config.all_props[set][p][:readonly] &&
+        (!params[set.to_sym] || !params[set.to_sym].has_key?(p))
+        # (the above line means: no properties passed in, *or* the
+        # properties passed in don't include this property)
     }
+  end
+
+  def crm_script(set)
+    cmd = ""
+    params[set.to_sym].each do |n, v|
+      next if v.empty?
+      sq = v.index("'")
+      dq = v.index('"')
+      if sq && dq
+        flash[:error] = _("Can't set property %{p}, because the value contains both single and double quotes") % { :p => n }
+      elsif sq
+        cmd += " #{n}=\"#{v}\""
+      else
+        cmd += " #{n}='#{v}'"
+      end
+    end if params[set.to_sym]
+    cmd
   end
 
 end
