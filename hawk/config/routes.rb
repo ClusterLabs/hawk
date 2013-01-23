@@ -97,6 +97,8 @@ Hawk::Application.routes.draw do
   match 'main/sim_reset' => 'main#sim_reset', :as => :sim_reset
   match 'main/sim_run' => 'main#sim_run', :as => :sim_run
   match 'main/sim_get' => 'main#sim_get', :as => :sim_get
+  match 'main/graph_gen' => 'main#graph_gen', :as => :graph_gen
+  match 'main/graph_get' => 'main#graph_get', :as => :graph_get
   match '/' => 'main#index'
   match '/login' => 'sessions#new', :as => :login
   match '/logout' => 'sessions#destroy', :as => :logout

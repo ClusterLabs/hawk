@@ -277,4 +277,28 @@ class MainController < ApplicationController
     end
   end
 
+  @@graph_name = "cluster.png"
+  @@graph_path = "#{Rails.root}/tmp/#{@@graph_name}"
+  def graph_gen
+    File.unlink(@@graph_path) if File.exists?(@@graph_path)
+    # "crm configure graph" doesn't handle absolute paths...
+    pwd = Dir.pwd
+    Dir.chdir("#{Rails.root}/tmp")
+    err = Invoker.instance.crm("configure", "graph", "dot", @@graph_name, "png")
+    if err == true
+      render :inline => "<div style=\"text-align: center;\"><img src=\"<%= graph_get_path %>\" alt=\"\" /></div>"
+    else
+      # TODO(should): clean up error message
+      render :inline => _('Error invoking %{cmd}: %{msg}') % {:cmd => "crm configure graph dot #{@@graph_name} png", :msg => err }
+    end
+    Dir.chdir(pwd)
+  end
+
+  def graph_get
+    if File.exists?(@@graph_path)
+      send_data File.new(@@graph_path).read, :type => "image/png", :disposition => "inline"
+    else
+      head :not_found
+    end
+  end
 end

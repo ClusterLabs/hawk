@@ -55,6 +55,25 @@ $(function() {
         });
         return false;
       }
+    },
+    {
+      label: "<%=h escape_javascript _('Cluster Diagram') %>",
+      icon: "report.png",   // TODO(must): change this
+      click: function(target) {
+        $("#dialog").html('<div style="text-align: center;">' +
+          '<img src="' + url_root + '/assets/spinner-32x32.gif" alt="" /></div>');
+        $("#dialog").load(url_root + "/main/graph_gen");
+        $("#dialog").dialog("option", {
+          width: $(window).width() - 32,
+          height: $(window).height() - 32,
+          position: "center",
+          resizable: true,
+          draggable: true,
+          buttons: {},
+          title: "<%=h escape_javascript _('Cluster Diagram') %>"
+        });
+        $("#dialog").dialog("open");
+      }
     }
     <% if is_god? %>
     ,
