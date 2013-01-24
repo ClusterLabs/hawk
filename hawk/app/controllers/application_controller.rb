@@ -164,6 +164,15 @@ protected
   #    - as above, but after logout, reload the status page
   #    - you should be redirected back to the login page 
   def access_denied
+
+    # As in the Cib controller, we need to allow cross-domain requests
+    # here in order for the client to actually see the permission denied
+    # error
+    if request.headers["Origin"]
+      response.headers["Access-Control-Allow-Origin"] = request.headers["Origin"]
+      response.headers["Access-Control-Allow-Credentials"] = "true"
+    end
+
     respond_to do |format|
       format.any do
         # Have to use format.any not format.html due to stupid IE accept
