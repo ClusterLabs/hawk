@@ -50,6 +50,17 @@ class CibController < ApplicationController
   end
 
   def show
+
+    # We explicitly allow cross-site read-only access to the CIB via AJAX
+    # requests so the Dashboard will work.  Still needs a login cookie of
+    # course, so this is OK, but we have to set a couple of response headers
+    # else Firefox will refuse to give the data from the request to the
+    # client.
+    if request.headers["Origin"]
+      response.headers["Access-Control-Allow-Origin"] = request.headers["Origin"]
+      response.headers["Access-Control-Allow-Credentials"] = "true"
+    end
+
     begin
       # Not mass assignment (CWE-642) or improper access control (CWE-285)
       # because Cib::initialize sanitizes params[:id], so RORSCAN_INL
