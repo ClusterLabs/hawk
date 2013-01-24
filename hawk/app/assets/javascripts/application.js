@@ -103,14 +103,21 @@ function json_from_request(request)
 // Rails 2.3.11 fixes a CSRF vulnerability, which requires us to
 // include a CSRF token with every AJAX request.  For details see:
 // http://jasoncodes.com/posts/rails-csrf-vulnerability
-function CSRFProtection(xhr) {
-  var token = $('meta[name="csrf-token"]').attr("content");
-  if (token) xhr.setRequestHeader("X-CSRF-Token", token);
+function CSRFProtection(xhr, options) {
+  if (options.cross_domain_hack) {
+    // Cross-domain requests for the cluster dashboard must have *no*
+    // extra headers, or they trigger CORS preflight on Firefox.  Also
+    // we need to ensure session cookies are passed.
+    xhr.withCredentials = true;
+  } else {
+    var token = $('meta[name="csrf-token"]').attr("content");
+    if (token) xhr.setRequestHeader("X-CSRF-Token", token);
+  }
 }
 if ("ajaxPrefilter" in $) {
-  $.ajaxPrefilter(function(options, originalOptions, xhr) { CSRFProtection(xhr); });
+  $.ajaxPrefilter(function(options, originalOptions, xhr) { CSRFProtection(xhr, options); });
 } else {
-  $(document).ajaxSend(function(e, xhr) { CSRFProtection(xhr); });
+  $(document).ajaxSend(function(e, xhr, options) { CSRFProtection(xhr, options); });
 }
 
 jQuery.fn.submitWithAjax = function() {
