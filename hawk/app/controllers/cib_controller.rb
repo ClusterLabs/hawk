@@ -97,7 +97,6 @@ class CibController < ApplicationController
         },
         :errors     => cib.errors,
 
-#        :tickets    => cib.tickets,
         :node_list  => [],
         :node_states => {
           :pending  => 0,
@@ -112,6 +111,10 @@ class CibController < ApplicationController
           :master   => 0,
           :slave    => 0,
           :stopped  => 0
+        },
+        :ticket_states => {
+          :granted  => 0,
+          :revoked  => 0
         },
 
         :nodes_label => n_('1 node configured', '%{num} nodes configured', cib.nodes.length) % { :num => cib.nodes.length },
@@ -137,6 +140,14 @@ class CibController < ApplicationController
           else
             mini[:resource_states][:stopped] += 1
           end
+        end
+      end
+
+      cib.tickets.each do |ti,t|
+        if t[:granted]
+          mini[:ticket_states][:granted] +=1
+        else
+          mini[:ticket_states][:revoked] +=1
         end
       end
 
