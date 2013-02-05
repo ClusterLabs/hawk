@@ -210,6 +210,7 @@ class Cib < CibObject
   # should almost certainly be changed.
   attr_reader :dc, :epoch, :nodes, :resources, :templates, :crm_config, :errors, :resource_count
   attr_reader :tickets
+  attr_reader :resources_by_id
 
   def initialize(id, user, use_file = false)
     @errors = []
