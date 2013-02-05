@@ -2,5 +2,256 @@
 <%= stylesheet_link_tag "dashboard" %>
 <%= javascript_include_tag "dashboard" %>
 <%= javascript_include_tag "json2.min" %>
+<script src="<%= url_for(:controller => 'main', :action => 'gettext', :format => 'js') %>" type="text/javascript"></script>
 <% end %>
+<script type="text/javascript">
+
+/*
+
+cluster data structure is:
+
+  name: string    // really?
+  nodes: hash
+  mon_node: string
+  nodes_label: string
+  resources_label: string
+  node_states: hash (by state)
+  resource_states: hash (by state)
+
+  // TODO(must): tickets, too
+
+- adding a cluster, we've already contacted it
+
+- bootstrapping the page from known named clusters we only have the name and
+  node list.
+
+- in either case each cluster object needs refresh logic
+  - but it has a head-start from an added cluster
+
+- cluster hash can be names and references to divs
+
+*/
+
+(function($) {
+  $.widget("ui.cluster", {
+    options: {
+      name: "",
+      cluster: {}
+    },
+    _create: function() {
+      var e = this.element;
+      e.addClass("cluster ui-corner-all");
+      e.append($(
+        "<h1></h1>" +
+/*
+        '<div id="ticketsum" class="summary" style="display: none;">' +
+          '<h2 class="clickable">' + GETTEXT.tickets() + '</h2>' +
+          '<table cellpadding="0" cellspacing="0" style="white-space: nowrap;">' +
+            '<tr id="ticketsum-granted" class="rs-active clickable"><td>' + GETTEXT.ticket_granted() + ':</td><td class="ar"></td></tr>' +
+            '<tr id="ticketsum-revoked" class="rs-inactive clickable"><td>' + GETTEXT.ticket_revoked() + ':</td><td class="ar"></td></tr>' +
+          '</table>' +
+        '</div>' +
+*/
+        '<div class="summary">' +
+          '<h2 class="clickable nodesum-label"></h2>' +
+          '<table cellpadding="0" cellspacing="0">' +
+            '<tr class="nodesum-pending ns-transient clickable" style="display: none;"><td>' + GETTEXT.node_state_pending() + ':</td><td class="ar"></td></tr>' +
+            '<tr class="nodesum-online ns-active clickable" style="display: none;"><td>' + GETTEXT.node_state_online() + ':</td><td class="ar"></td></tr>' +
+            '<tr class="nodesum-standby ns-inactive clickable" style="display: none;"><td>' + GETTEXT.node_state_standby() + ':</td><td class="ar"></td></tr>' +
+            '<tr class="nodesum-offline ns-inactive clickable" style="display: none;"><td>' + GETTEXT.node_state_offline() + ':</td><td class="ar"></td></tr>' +
+            '<tr class="nodesum-unclean ns-error clickable" style="display: none;"><td>' + GETTEXT.node_state_unclean() + ':</td><td class="ar"></td></tr>' +
+          "</table>" +
+        "</div>" +
+        '<div class="summary">' +
+          '<h2 class="clickable ressum-label"></span></h2>' +
+          '<table cellpadding="0" cellspacing="0">' +
+            '<tr class="ressum-pending rs-transient clickable" style="display: none;"><td>' + GETTEXT.resource_state_pending() + ':</td><td class="ar"></td></tr>' +
+            '<tr class="ressum-started rs-active clickable" style="display: none;"><td>' + GETTEXT.resource_state_started() + ':</td><td class="ar"></td></tr>' +
+            '<tr class="ressum-master rs-master clickable" style="display: none;"><td>' + GETTEXT.resource_state_master() + ':</td><td class="ar"></td></tr>' +
+            '<tr class="ressum-slave rs-slave clickable" style="display: none;"><td>' + GETTEXT.resource_state_slave() + ':</td><td class="ar"></td></tr>' +
+            '<tr class="ressum-stopped rs-inactive clickable" style="display: none;"><td>' + GETTEXT.resource_state_stopped() + ':</td><td class="ar"></td></tr>' +
+          "</table>" +
+        "</div>"));
+    },
+    _init: function() {
+      var e = this.element;
+      this.req = null;
+      this.cur_epoch = "";
+      e.find("h1").html(escape_html(this.options.name));
+      // should fill everything in here if possible
+      this._redraw();
+      this.do_update();
+    },
+    abort_req: function() {
+      if (this.req && this.req.abort) { this.req.abort(); }
+    },
+    do_update: function() {
+      var self = this;
+      self.abort_req();
+      self.req = $.ajax({ url: "https://" + self.options.cluster.mon_node + ":7630/monitor?" + self.cur_epoch,
+        timeout: 90000,
+        dataType: "json",   // necessary?
+        type: "GET",
+        cross_domain_hack: true,    // needed to get proper headers
+        success: function(data) {
+          // Note: success fires even on request failure
+          if (data) {
+            if (data.cur_epoch != self.cur_epoch) {
+              self.update_cib();
+            } else {
+              self.do_update(data.cur_epoch);
+            }
+          } else {
+            // need to settimeout then run this again, and/or switch mon_node
+          }
+        }
+      });
+    },
+    update_cib: function() {
+      var self = this;
+      self.abort_req();
+      self.req = $.ajax({ url: "https://" + self.options.cluster.mon_node + ":7630/cib/live",
+        timeout: 90000,
+        data: "format=json&mini=true",
+        dataType: "json",   // necessary?
+        type: "GET",
+        cross_domain_hack: true,    // needed to get proper headers
+        success: function(data) {
+          // Note: success fires even on request failure
+          self.cur_epoch = "";
+          if (data) {
+            var mn = self.options.cluster.mon_node; // this is silly
+            // !! might not have cib.meta
+            self.options.cluster = data;
+            self.options.cluster.mon_node = mn;
+            self._redraw();
+            self.cur_epoch = data.meta.epoch;
+            self.do_update();
+            // go to do_update now
+          } else {
+            // need to settimeout then run this again, and/or switch mon_node
+          }
+        }
+      });
+    },
+    _redraw: function() {
+      var e = this.element;
+      e.find(".nodesum-label").html(escape_html(this.options.cluster.nodes_label));
+      this._redraw_counters(this.options.cluster.node_states, ".nodesum-");
+      e.find(".ressum-label").html(escape_html(this.options.cluster.resources_label));
+      this._redraw_counters(this.options.cluster.resource_states, ".ressum-");
+    },
+    _redraw_counters: function(hash, prefix) {
+      var e = this.element;
+      $.each(hash, function(k, v) {
+        var r = e.find(prefix + k);
+        r.children(":last").text(v);
+        if (parseInt(v)) {
+          r.show();
+        } else {
+          r.hide();
+        }
+      });
+    },
+    destroy: function() {
+      this.abort_req();
+      $.Widget.prototype.destroy.apply(this, arguments);
+    }
+  });
+})(jQuery);
+
+var clusters = {};
+
+function insert_cluster(n) {
+  if (!clusters[n]) return;
+  $("#clusters").append($("<div/>").cluster({name: n, cluster: clusters[n]}));
+}
+
+function add_cluster() {
+  var html = '<form onsubmit="return false;"><table>' +
+    '<tr><th><%=h escape_javascript _('Cluster Name:') %></th><td><input type="text" id="new-cluster-name" /></td></tr>' +
+    '<tr><th><%=h escape_javascript _('Host Name:') %></th><td><input type="text" id="new-cluster-host" /></td></tr>' +
+    '<tr><td colspan="2" style="font-size: 80%"><%=h escape_javascript("(Specify any host name in the cluster.  Other nodes will be found automatically)") %></td></tr>' +
+    '</table><form>';
+
+  $("#dialog").html(html);
+  $("#dialog").dialog("option", {
+    title:    "<%=h escape_javascript _('Add Cluster') %>",
+    buttons:  {
+      "<%=h escape_javascript _('OK') %>": function() {
+        // TODO(must): disable button / show spinner (else it can be hit twice...)
+
+        var cn = $.trim($("#new-cluster-name").val());
+        var hn = $.trim($("#new-cluster-host").val());
+        // TODO(must): hostname must be valid (no weird/specical characters)
+        if (!cn || !hn) {
+          // TODO(should): Error message
+          return;
+        }
+        // make sure cluster name isn't already used
+        // now ajax to the host specified and:
+        // - no connection - host not found error / can't connect
+        // - if permission denied, request login
+        // - if ok, add cluster
+        // what about https cert verification?
+
+        // internet explorer is an evil pain
+
+        var self = this;
+
+        var req = $.ajax({ url: "https://" + hn + ":7630/cib/live",
+          timeout:  20000,
+          data: "format=json&mini=true",
+          dataType: "json",   // necessary?
+          type: "GET",
+          cross_domain_hack: true,    // needed to get proper headers
+          success: function(data, status, xhr) {
+            if (!data) {
+              alert("Host not found or some other problem");
+              // apparently I can't differentiate a broken/illegal CORS
+              // request from other types of failure.  FFS.
+            } else {
+              clusters[cn] = data;
+              clusters[cn].mon_node = hn;
+              insert_cluster(cn);
+              $(self).dialog("close");
+            }
+          },
+          error: function(request) {
+            if (request.readyState > 1) {
+              if (request.status == 403) {
+                alert("Permission denied");
+              } else {
+                var json = json_from_request(request);
+                if (json && json.errors) {
+                  alert(json);
+                } else {
+                  if (request.status >= 10000) {
+                    alert("FIXME: some sort of IE connection error");
+                  } else {
+                    alert(request.status + " " + request.statusText);
+                  }
+                }
+              }
+            } else {
+              // timeout
+              alert("timeout");
+            }
+          }
+        });
+      },
+      "<%=h escape_javascript _('Cancel') %>": function() {
+        $(this).dialog("close");
+      }
+    }
+  });
+  $("#dialog").dialog("open");
+}
+
+$(function() {
+  add_cluster();
+});
+</script>
+<div id="clusters"></div>
+<form onsubmit="return false;"><button onclick="add_cluster();">+</button></form>
 
