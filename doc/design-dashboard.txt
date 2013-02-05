@@ -1,0 +1,72 @@
+* to be accessed from tools menu, switch to dashboard mode
+  * strictly dashboard shouldn't require login, but each cluster within it does
+  * should be done all client-side, so in principle could offer the dashboard
+    for download and be run as files off local workstation.  Login credentials
+    saved in local store?  (security issue?)
+    
+== Workflow ==
+
+* Add cluster to dashboard
+  * Name it
+  * Enter hostname of at least one node
+  * UI connects (requires login!) gets status and list of other nodes
+  * Cluster appears in dashboard
+* On first run, can add current cluster automatically (still needs name)
+* Each cluster must be monitored (does long poll work?  one outstanding req
+  per cluster?)
+  * Should be fine - there can at least be many inflight calls to monitor
+    (actual cib reading is going to suck a bit on the slower pcmk 1.1.8 if
+    people are viewing the clusters too :-/)  
+  * Need to retain list of all nodes so if polled node fails can try another
+* Cluster set saved in long-lived cookie.  Too big?  Local storage?
+  * Note: tied to whichever node you're accessing the cluster from; suggests
+    running hawk on some other non-cluser node just to access the dashboard...
+
+* Basically want a cut-back of the summary view, i.e.:
+
+  +------------------------+
+  | CLUSTER NAME           |
+  |                        |
+  | n Nodes Configured     |
+  |                        |
+  |   Online:  n           |
+  |                        |
+  | n Resources Configured |
+  |                        |
+  |   Started: n           |
+  +------------------------+
+  
+Given we have to change the server side anyway in order to get cross-site AJAX
+to work, we have the option of adding a cib "mini" view which only returns those
+counters (plus the epoch etc. necessary for the long poll).
+
+* Someting like
+
+== On Security ==
+
+* Having to be logged in to each cluster is a complete and total nightmare.
+  You'd need a current login on _every_node_ in _every_cluster_ in order for
+  it to work reliably (say the node being polled dies, and we have to
+  automatically poll another node...)
+
+* If we allow cib access without login we need to at least get:
+  - count of nodes by state
+  - total node count (can be inferred from above)
+  - count of resources by state
+  - total resource count (can be inferred from above)
+  - as above for tickets
+  - list of nodes in cluster (so we can find other nodes to poll)
+
+* What does this mean for security?
+  - if you know one hostname, you know all the hostnames
+  - you can get some idea of cluster state
+  - is this a problem?
+
+* Mitigation:
+  - hosts.allow?
+  - store username and password for a cluster, then use it automatically
+    when accessing any node with permission denied to trigger setup of the
+    session cookie
+    - that would (should) actually work, except that it means storing the
+      users credentials potentially insecurely in browser local store
+
