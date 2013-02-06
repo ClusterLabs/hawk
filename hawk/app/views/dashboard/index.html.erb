@@ -40,6 +40,7 @@ cluster data structure is mini cib + mon_node:
         '<div style="float: right;"><button type="button" style="border: none; background: none; font-size: 0.7em; margin-right: -0.5em;"><%=h escape_javascript _('Remove') %></button></div>' +
         '<h1 class="clickable"></h1>' +
         '<h2 class="mon-warning" style="display: none;"></h2>' +
+        '<h2 class="cluster-error clickable" style="display: none;"><%=h escape_javascript _("Cluster has errors - click for details") %></h2>' +
         '<div class="summary ticketsum">' +
           '<h2 class="clickable">' + GETTEXT.tickets() + '</h2>' +
           '<table cellpadding="0" cellspacing="0" style="white-space: nowrap;">' +
@@ -149,6 +150,11 @@ cluster data structure is mini cib + mon_node:
     },
     _redraw: function() {
       var e = this.element;
+      if (this.options.cluster.errors && this.options.cluster.errors.length > 0) {
+        e.find(".cluster-error").show();
+      } else {
+        e.find(".cluster-error").hide();
+      }
       if (!this.options.cluster.nodes_label || !this.options.cluster.node_states ||
           !this.options.cluster.resources_label || !this.options.cluster.resource_states ||
           !this.options.cluster.ticket_states) {
