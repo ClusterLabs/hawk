@@ -39,6 +39,7 @@ cluster data structure is mini cib + mon_node:
       e.append($(
         '<div style="float: right;"><button type="button" style="border: none; background: none; font-size: 0.7em; margin-right: -0.5em;"><%=h escape_javascript _('Remove') %></button></div>' +
         '<h1 class="clickable"></h1>' +
+        '<h2 class="mon-warning" style="display: none;"></h2>' +
         '<div class="summary ticketsum">' +
           '<h2 class="clickable">' + GETTEXT.tickets() + '</h2>' +
           '<table cellpadding="0" cellspacing="0" style="white-space: nowrap;">' +
@@ -46,7 +47,7 @@ cluster data structure is mini cib + mon_node:
             '<tr class="ticketsum-revoked rs-inactive clickable"><td>' + GETTEXT.ticket_revoked() + ':</td><td class="ar"></td></tr>' +
           '</table>' +
         '</div>' +
-        '<div class="summary">' +
+        '<div class="summary nodesum">' +
           '<h2 class="clickable nodesum-label"></h2>' +
           '<table cellpadding="0" cellspacing="0">' +
             '<tr class="nodesum-pending ns-transient clickable" style="display: none;"><td>' + GETTEXT.node_state_pending() + ':</td><td class="ar"></td></tr>' +
@@ -56,7 +57,7 @@ cluster data structure is mini cib + mon_node:
             '<tr class="nodesum-unclean ns-error clickable" style="display: none;"><td>' + GETTEXT.node_state_unclean() + ':</td><td class="ar"></td></tr>' +
           "</table>" +
         "</div>" +
-        '<div class="summary">' +
+        '<div class="summary ressum">' +
           '<h2 class="clickable ressum-label"></span></h2>' +
           '<table cellpadding="0" cellspacing="0">' +
             '<tr class="ressum-pending rs-transient clickable" style="display: none;"><td>' + GETTEXT.resource_state_pending() + ':</td><td class="ar"></td></tr>' +
@@ -105,13 +106,14 @@ cluster data structure is mini cib + mon_node:
         success: function(data) {
           // Note: success fires even on request failure
           if (data) {
+            self.element.find(".mon-warning").hide();
             if (data.cur_epoch != self.cur_epoch) {
               self.update_cib();
             } else {
               self.do_update(data.cur_epoch);
             }
           } else {
-            // need to settimeout then run this again, and/or switch mon_node
+            self._cycle_mon_node();
           }
         }
       });
@@ -129,16 +131,18 @@ cluster data structure is mini cib + mon_node:
           // Note: success fires even on request failure
           self.cur_epoch = "";
           if (data) {
+            self.element.find(".mon-warning").hide();
             var mn = self.options.cluster.mon_node; // this is silly
             // !! might not have cib.meta
             self.options.cluster = data;
             self.options.cluster.mon_node = mn;
+            clusters[self.options.name] = self.options.cluster;   // TODO(should): Again with the baroque (*sheesh*)
+            save_clusters();                                      // TODO(should): only if node_list changed
             self._redraw();
             self.cur_epoch = data.meta.epoch;
             self.do_update();
-            // go to do_update now
           } else {
-            // need to settimeout then run this again, and/or switch mon_node
+            self._cycle_mon_node();
           }
         }
       });
@@ -148,21 +152,25 @@ cluster data structure is mini cib + mon_node:
       if (!this.options.cluster.nodes_label || !this.options.cluster.node_states ||
           !this.options.cluster.resources_label || !this.options.cluster.resource_states ||
           !this.options.cluster.ticket_states) {
-        // TODO(should): blank out / put spinner?
-        e.hide();
+        // If we have no CIB yet, we'll still show the cluster name
+        // TODO(should): Put a spinner or similar
+        e.find(".ticketsum").hide();
+        e.find(".nodesum").hide();
+        e.find(".ressum").hide();
         return;
       }
       e.find(".nodesum-label").html(escape_html(this.options.cluster.nodes_label));
       this._redraw_counters(this.options.cluster.node_states, ".nodesum-");
+      e.find(".nodesum").show();
       e.find(".ressum-label").html(escape_html(this.options.cluster.resources_label));
       this._redraw_counters(this.options.cluster.resource_states, ".ressum-");
+      e.find(".ressum").show();
       this._redraw_counters(this.options.cluster.ticket_states, ".ticketsum-");
       if (this.options.cluster.ticket_states.granted > 0 || this.options.cluster.ticket_states.revoked > 0) {
         e.find(".ticketsum").show();
       } else {
         e.find(".ticketsum").hide();
       }
-      e.show();
     },
     _redraw_counters: function(hash, prefix) {
       var e = this.element;
@@ -175,6 +183,25 @@ cluster data structure is mini cib + mon_node:
           r.hide();
         }
       });
+    },
+    _cycle_mon_node: function(monitor) {
+      var self = this;
+      var w = self.element.find(".mon-warning");
+      w.html("<%=h escape_javascript _("Can't contact Hawk on %{node}. Retrying every 5 seconds.") % { :node => '_NODE_' } %>".replace('_NODE_', this.options.cluster.mon_node));
+      w.show();
+      var nl = self.options.cluster.node_list;
+      if (nl && nl.length) {
+        var nn = self.options.cluster.node_list[0];
+        for (var i = nl.length - 1; i >= 0; i--) {
+          if (nl[i] == self.options.cluster.mon_node) {
+            self.options.cluster.mon_node = nn;
+            break;
+          } else {
+            nn = nl[i];
+          }
+        }
+      }
+      setTimeout(function() { self.update_cib(); }, 5000);
     },
     destroy: function() {
       this.abort_req();
