@@ -159,7 +159,9 @@ cluster data structure is mini cib + mon_node:
         e.find(".ressum").hide();
         return;
       }
-      e.find(".nodesum-label").html(escape_html(this.options.cluster.nodes_label));
+      var nsl = e.find(".nodesum-label");
+      nsl.html(escape_html(this.options.cluster.nodes_label));
+      nsl.attr("title", this.options.cluster.node_list.join(", "));
       this._redraw_counters(this.options.cluster.node_states, ".nodesum-");
       e.find(".nodesum").show();
       e.find(".ressum-label").html(escape_html(this.options.cluster.resources_label));
