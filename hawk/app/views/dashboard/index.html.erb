@@ -8,27 +8,22 @@
 
 /*
 
-cluster data structure is:
+cluster data structure is mini cib + mon_node:
 
-  name: string    // really?
-  nodes: hash
   mon_node: string
+  errors: array
+  meta: hash
+  node_list: array
   nodes_label: string
-  resources_label: string
   node_states: hash (by state)
+  resources_label: string
   resource_states: hash (by state)
-
-  // TODO(must): tickets, too
+  ticket_states: hash (by state)
 
 - adding a cluster, we've already contacted it
 
-- bootstrapping the page from known named clusters we only have the name and
-  node list.
-
 - in either case each cluster object needs refresh logic
   - but it has a head-start from an added cluster
-
-- cluster hash can be names and references to divs
 
 */
 
@@ -42,6 +37,7 @@ cluster data structure is:
       var e = this.element;
       e.addClass("cluster ui-corner-all");
       e.append($(
+        '<div style="float: right;"><button type="button" style="border: none; background: none; font-size: 0.7em; margin-right: -0.5em;"><%=h escape_javascript _('Remove') %></button></div>' +
         '<h1 class="clickable"></h1>' +
         '<div class="summary ticketsum">' +
           '<h2 class="clickable">' + GETTEXT.tickets() + '</h2>' +
@@ -82,7 +78,16 @@ cluster data structure is:
           "_hawk_" +self.options.name.replace(/[^A-Za-z0-9_]/g, ""));
         return false;
       });
-      // should fill everything in here if possible
+      e.find("button").button({
+        text: false,
+        icons: {
+          primary: "ui-icon-close"
+        }
+      }).click(function() {
+        // TODO(must): prompt for cluster removal
+        remove_cluster(self.options.name);
+        self.element.remove();
+      });
       self._redraw();
       self.do_update();
     },
@@ -140,6 +145,13 @@ cluster data structure is:
     },
     _redraw: function() {
       var e = this.element;
+      if (!this.options.cluster.nodes_label || !this.options.cluster.node_states ||
+          !this.options.cluster.resources_label || !this.options.cluster.resource_states ||
+          !this.options.cluster.ticket_states) {
+        // TODO(should): blank out / put spinner?
+        e.hide();
+        return;
+      }
       e.find(".nodesum-label").html(escape_html(this.options.cluster.nodes_label));
       this._redraw_counters(this.options.cluster.node_states, ".nodesum-");
       e.find(".ressum-label").html(escape_html(this.options.cluster.resources_label));
@@ -150,6 +162,7 @@ cluster data structure is:
       } else {
         e.find(".ticketsum").hide();
       }
+      e.show();
     },
     _redraw_counters: function(hash, prefix) {
       var e = this.element;
@@ -172,9 +185,27 @@ cluster data structure is:
 
 var clusters = {};
 
+function save_clusters() {
+  // Only want to save minimal info; name, node_list and mon_node
+  var s = {};
+  $.each(clusters, function(n, c) {
+    s[n] = { node_list: c.node_list, mon_node: c.mon_node };
+  });
+  $.cookie("hawk-dashboard", JSON.stringify(s), { expires: 3650 });
+}
+
 function insert_cluster(n) {
+  // The way this insert_cluster thing works is a bit overly baroque
   if (!clusters[n]) return;
   $("#clusters").append($("<div/>").cluster({name: n, cluster: clusters[n]}));
+  // because this is called on page load it ought to reset the cookie expiry,
+  // but yeah, too baroque...
+  save_clusters();
+}
+
+function remove_cluster(n) {
+  delete clusters[n];
+  save_clusters();
 }
 
 function add_cluster() {
@@ -259,7 +290,15 @@ function add_cluster() {
 }
 
 $(function() {
-  add_cluster();
+  if ($.cookie("hawk-dashboard")) {
+    clusters = JSON.parse($.cookie("hawk-dashboard"));
+    $.each(clusters, function(n) {
+      insert_cluster(n);
+    });
+  }
+  if ($.isEmptyObject(clusters)) {
+    add_cluster();
+  }
 });
 </script>
 <div id="clusters"></div>
