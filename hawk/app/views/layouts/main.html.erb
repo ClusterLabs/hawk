@@ -24,6 +24,7 @@
   <div id="header" class="ui-widget-header">
     <%= link_to image_tag('logo.png', :alt => '', :id => 'logo'), status_path %>
     <% if logged_in? %>
+<% if !@hide_tools %>
 <div id="menu::tools" style="display:none; font-weight: normal;"></div>
 <script type="text/javascript">
 $(function() {
@@ -103,18 +104,29 @@ $(function() {
   });
 });
 </script>
+<% end # !@hide_tools %>
     <span id="header-links">
+<% if !@hide_tools %>
       <a class="clickable" id="menu::tools::popup"><%= image_tag 'icons/properties.png',
         :alt => '',
         :title => _('Tools'),
         :style => 'vertical-align: middle;' %></a>
-      <%=h _('User: %{user}') % { :user => current_user } %>
-      <%= link_to _('Log Out'), logout_path %>
+<% end # !@hide_tools %>
+      <% if params[:controller] == "dashboard" %>
+        <%= link_to(_('Status'), status_path) %>
+      <% else %>
+        <%=h _('User: %{user}') % { :user => current_user } %>
+        <%= link_to _('Log Out'), logout_path %>
+      <% end %>
+    </span>
+    <% else %>
+    <span id="header-links">
+      <%= params[:controller] == "dashboard" ? link_to(_('Status'), status_path) : link_to(_('Dashboard'), dashboard_path) %>
     </span>
     <% end %>
     <h1 id="header-title"><%=h @title %></h1>
   </div>
-<% if logged_in?
+<% if logged_in? && !@hide_tabs
 
 tabs = [
   { :controllers => [ "main" ],

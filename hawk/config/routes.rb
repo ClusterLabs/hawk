@@ -101,4 +101,5 @@ Hawk::Application.routes.draw do
   match '/' => 'main#index'
   match '/login' => 'sessions#new', :as => :login
   match '/logout' => 'sessions#destroy', :as => :logout
+  match 'dashboard' => 'dashboard#index', :as => :dashboard
 end

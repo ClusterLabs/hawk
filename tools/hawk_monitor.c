@@ -112,6 +112,8 @@ void mon_shutdown(int nsig);
 void finish(void);
 void get_new_epoch(void);
 
+char *origin = NULL;
+
 char new_epoch[MAX_EPOCH_LENGTH] = "";
 cib_t *cib = NULL;
 GMainLoop *mainloop = NULL;
@@ -173,7 +175,12 @@ void finish(void)
 		cib_delete(cib);
 		cib = NULL;
 	}
-	printf("Content-type: application/json\n\n{\"epoch\":\"%s\"}", new_epoch);
+	printf("Content-type: application/json\n");
+	if (origin) {
+		printf("Access-Control-Allow-Origin: %s\n", origin);
+		printf("Access-Control-Allow-Credentials: true\n");	/* may not be necessary */
+	}
+	printf("\n{\"epoch\":\"%s\"}", new_epoch);
 	exit(0);
 }
 
@@ -197,6 +204,8 @@ int main(int argc, char **argv)
 	char *client_epoch = getenv("QUERY_STRING");
 	if (client_epoch && client_epoch[0] == '\0')
 		client_epoch = NULL;
+
+	origin = getenv("HTTP_ORIGIN");
 
 	/* Final arg appeared circa pcmk 1.1.8 */
 	crm_log_init(NULL, LOG_CRIT, FALSE, FALSE, argc, argv, TRUE);
