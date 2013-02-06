@@ -35,6 +35,11 @@ require 'rexml/document' unless defined? REXML::Document
 class MainController < ApplicationController
   before_filter :login_required
 
+  # allow unauthenticated access to translations
+  def login_required
+    params[:action] == "gettext" ? false : super
+  end
+
   private
 
   # Invoke some command, returning OK or JSON error as appropriate
