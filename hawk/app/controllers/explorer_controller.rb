@@ -131,8 +131,10 @@ class ExplorerController < ApplicationController
     when "pe-input"
       send_file tpath, :type => "application/x-bzip"
     when "info"
+      cmd = "transition #{tname} nograph"
+      cmd = "transition log #{tname}" if params[:log]
       stdin, stdout, stderr, thread = Util.run_as("root", "crm", "history")
-      stdin.write("source #{@report_path}\ntransition #{tname} nograph\n")
+      stdin.write("source #{@report_path}\n#{cmd}\n")
       stdin.close
       info = stdout.read()
       stdout.close
