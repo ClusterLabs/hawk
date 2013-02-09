@@ -41,7 +41,7 @@ $(function() {
     };
   });
   $("#filter").submitWithAjax();
-  inline_detail_links();  // just in case
+  dialogify_detail_links();  // just in case
   $("#from_time").datetimepicker({
     dateFormat: "yy-mm-dd",
     showOn: "button",
@@ -55,25 +55,27 @@ $(function() {
     buttonImageOnly: true
   });
 });
-// Slight misnomer -- also dialogifies graphs
-function inline_detail_links() {
+function dialogify_detail_links() {
   $(".pe-detail").live("click", function(event) {
     event.preventDefault(); // may not be necessary
     event.stopPropagation();
     var peinput = $(this).parent().prev().prev().text();
     var node = $(this).parent().prev().text();
-    $("#pe-detail-name").text(peinput + " (" + node + ")");
-    $("#pe-detail-spinner").show();
-    $("#pe-detail-log").hide();
-    // Fixed position breaks overflow scrollbar (*sigh*)
-    $("#pe-detail")./*css({
-      left: $("#peinputs").parent().position().left + $("#peinputs").parent().outerWidth(),
-      position: "fixed"
-    }).*/show();
-    $.get($(this).attr("href"), "", function(data) {
-      $("#pe-detail-spinner").hide();
-      $("#pe-detail-log").html("<pre>" + escape_html(data) + "</pre>").show();
+    $("#dialog").dialog("option", {
+      width: $(window).width() - 32,
+      height: $(window).height() - 32,
+      position: "center",
+      resizable: true,
+      draggable: true,
+      // TODO(must): localize properly (likewise below)
+      title: peinput + " (" + node + ")"
     });
+    $("#dialog").html('<div style="text-align: center;" id="dialog-pe-detail">' +
+      '<img src="' + url_root + '/assets/spinner-32x32.gif" alt="" /></div>');
+    $.get($(this).attr("href"), "", function(data) {
+      $("#dialog-pe-detail").css({textAlign: "left"}).html("<pre>" + escape_html(data) + "</pre>");
+    });
+    $("#dialog").dialog("open");
     return false;
   });
   $(".pe-graph").live("click", function(event) {

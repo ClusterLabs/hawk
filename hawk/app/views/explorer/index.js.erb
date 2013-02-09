@@ -16,6 +16,6 @@ $("#filter-form").show();
 $("#from_time").val("<%= escape_javascript(@from_time) %>");
 $("#to_time").val("<%= escape_javascript(@to_time) %>");
 $("#pe-list").html("<%= escape_javascript(render(:partial => "pe_list")) %>");
-inline_detail_links();
+dialogify_detail_links();
 <% end %>
 <% end %>
