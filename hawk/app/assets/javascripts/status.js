@@ -54,7 +54,21 @@ function update_errors(errors)
   if (errors.length) {
     $("#errorbar").show();
     $.each(errors, function() {
-      $("#errorbar").append($('<div>' + escape_html(this.toString()) + '</div>'));
+      var html;
+      if (typeof this == "object") {
+        html = '<div>';
+        if (this.link) {
+          html += '<a href="' + this.link + '">';
+        }
+        html += this.msg;
+        if (this.link) {
+          html += '</a>';
+        }
+        html += '</div>';
+      } else {
+        html = '<div>' + escape_html(this.toString()) + '</div>';
+      }
+      $("#errorbar").append($(html));
     });
   } else {
     $("#errorbar").hide();

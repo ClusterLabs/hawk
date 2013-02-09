@@ -35,7 +35,7 @@ require 'rexml/document' unless defined? REXML::Document
 
 class Cib < CibObject
   include FastGettext::Translation
-
+  include Rails.application.routes.url_helpers    # needed for explorer_path
   protected
 
   # Roughly equivalent to crm_element_value() in Pacemaker
@@ -370,7 +370,13 @@ class Cib < CibObject
           # Cope with missing transition key (e.g.: in multi1.xml CIB from pengine/test10)
           # TODO(should): Can we handle this better?  When is it valid for the transition
           # key to not be there?
-          expected = op.attributes.has_key?('transition-key') ? op.attributes['transition-key'].split(':')[2].to_i : rc_code
+          expected = rc_code
+          graph_number = nil
+          if op.attributes.has_key?('transition-key')
+            k = op.attributes['transition-key'].split(':')
+            graph_number = k[1].to_i
+            expected = k[2].to_i
+          end
 
           # skip notifies, deletes, cancels
           next if operation == 'notify' || operation == 'delete' || operation == 'cancel'
@@ -417,9 +423,35 @@ class Cib < CibObject
               ignore_failure = true
             end
 
+            # Want time span of failed op to link to history explorer.
+            # Failed ops seem to only have last-rc-change, but in case this is
+            # an incorrect assumption we'll take the earlier of last-run and
+            # last-rc-change if both exist, then subtract exec-time and queue-time
+
+            times = []
+            times << op.attributes['last-rc-change'].to_i if op.attributes['last-rc-change']
+            times << op.attributes['last-run'].to_i if op.attributes['last-run']
+            fail_start = fail_end = times.min
+            if (fail_start)
+              fail_start -= (op.attributes['exec-time'].to_i / 1000) if op.attributes['exec-time']
+              fail_start -= (op.attributes['queue-time'].to_i / 1000) if op.attributes['queue-time']
+
+              # Now extend by (a somewhat arbitrary) ten minutes on either side
+              fail_start -= 600
+              fail_end += 600
+
+              fail_start = Time.at(fail_start).strftime("%Y-%m-%d %H:%M")
+              fail_end = Time.at(fail_end).strftime("%Y-%m-%d %H:%M")
+            end
+
             failed_ops << { :node => node[:uname], :call_id => op.attributes['call-id'], :op => operation, :rc_code => rc_code }
-            @errors << _('Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}') %
-              { :node => node[:uname], :resource => id, :call_id => op.attributes['call-id'], :op => operation, :rc_code => rc_code }
+            @errors << {
+              :msg => _('Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}') % {
+                :node => node[:uname], :resource => id, :call_id => op.attributes['call-id'],
+                :op => operation, :rc_code => rc_code },
+              # Note: graph_number here might be the one *after* the one that's really interesting :-/
+              :link => fail_start ? explorer_path(:from_time => fail_start, :to_time => fail_end, :display => true, :graph_number => graph_number) : ""
+            }
 
             if ignore_failure
               failed_ops[-1][:ignored] = true
