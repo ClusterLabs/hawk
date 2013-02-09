@@ -78,6 +78,29 @@ function dialogify_detail_links() {
     $("#dialog").dialog("open");
     return false;
   });
+  $(".pe-diff").live("click", function(event) {
+    event.preventDefault(); // may not be necessary
+    event.stopPropagation();
+    var peinput = $(this).parent().prev().prev().text();
+    var href = $(this).attr("href");
+    var args = $.parseQuery(href.substr(href.indexOf("?")));
+    $("#dialog").dialog("option", {
+      width: $(window).width() - 32,
+      height: $(window).height() - 32,
+      position: "center",
+      resizable: true,
+      draggable: true,
+      // TODO(should): localize properly?
+      title: args.left + " : " + args.right
+    });
+    $("#dialog").html('<div style="text-align: center;" id="dialog-pe-diff">' +
+      '<img src="' + url_root + '/assets/spinner-32x32.gif" alt="" /></div>');
+    $.get(href, "", function(data) {
+      $("#dialog-pe-diff").css({textAlign: "left"}).html(data);
+    });
+    $("#dialog").dialog("open");
+    return false;
+  });
   $(".pe-graph").live("click", function(event) {
     event.preventDefault();
     event.stopPropagation();

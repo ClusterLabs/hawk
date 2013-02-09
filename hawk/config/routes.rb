@@ -84,6 +84,7 @@ Hawk::Application.routes.draw do
   match '/wizard' => 'wizard#run', :as => :wizard
   match 'explorer' => 'explorer#index', :as => :explorer
   match 'explorer/get' => 'explorer#get', :as => :pe_get
+  match 'explorer/diff' => 'explorer#diff', :as => :pe_diff
   match 'main' => 'main#index', :as => :default
   match 'main/index' => 'main#index', :as => :index
   match 'main/status' => 'main#status', :as => :status

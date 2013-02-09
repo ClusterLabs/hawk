@@ -181,6 +181,46 @@ class ExplorerController < ApplicationController
     end
   end
 
+  def diff
+    unless params[:left] && params[:right]
+      render :status => 400, :content_type => "text/plain",
+        :inline => _('Required parameters "left" and "right" not specified')
+      return
+    end
+    # next two are a bit rough
+    params[:left].gsub!(/[^\w-]/, "")
+    params[:right].gsub!(/[^\w-]/, "")
+
+    l = r = nil
+    # These next two should work in block form, but don't, and I have NFI why,
+    # so we're using the uglier "if" form.  *sigh*
+    if m = params[:left].to_s.match(/.*-([0-9]+)$/) ; l = m[1] ; end
+    if m = params[:right].match(/.*-([0-9]+)$/) ; r = m[1] ; end
+
+    if (l && r)
+      stdin, stdout, stderr, thread = Util.run_as("root", "crm", "history")
+      # TODO(must): This is a bit rough - we get two sets of legends out of the crm
+      # shell...  But, the display is really rather good, even if the fonts are a bit
+      # rough.
+      stdin.write("source #{@report_path}\ndiff #{l} #{r} status html\ndiff #{l} #{r} html\n")
+      stdin.close
+      info = stdout.read()
+      stdout.close
+      info += stderr.read()
+      stderr.close
+
+      info.strip!
+      # TODO(should): option to increase verbosity level
+      info = _("No details available") if info.empty?
+
+      info.insert(0, _("Error:") + "\n") unless thread.value.exitstatus == 0
+
+      send_data info, :type => "text/html", :disposition => "inline"
+    else
+      head :not_found
+    end
+  end
+
   private
 
   # TODO(should): Dupe from HbReportsController - consolidate
