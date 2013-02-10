@@ -138,6 +138,10 @@ var panel_view = {
       // Individual (non-ui.panel) resources/nodes
       $(jq(panel.id)).attr("class", "ui-corner-all " + panel.className);
       $(jq(panel.id+"::label")).html(panel.label);
+      $(jq(panel.id+"::state")).removeClass();
+      if (panel.state_icon) {
+        $(jq(panel.id+"::state")).addClass("ui-icon " + panel.state_icon);
+      }
       flag_error(panel.id, panel.error ? panel.error : []);
     }
 
@@ -201,27 +205,33 @@ var panel_view = {
     };
     $.each(nodes, function() {
       var className;
+      var state_icon;
       var label = GETTEXT.node_state_unknown();
       switch (this.state) {
         case "online":
           className = "active";
           label = GETTEXT.node_state_online();
+          state_icon = "ui-icon-play";
           break;
         case "offline":
           className = "inactive";
           label = GETTEXT.node_state_offline();
+          state_icon = "ui-icon-stop";
           break;
         case "pending":
           className = "transient";
           label = GETTEXT.node_state_pending();
+          state_icon = "ui-icon-refresh";
           break;
         case "standby":
           className = "inactive";
           label = GETTEXT.node_state_standby();
+          state_icon = "ui-icon-pause";
           break;
         case "unclean":
           className = "error";
           label = GETTEXT.node_state_unclean();
+          state_icon = "ui-icon-notice";
           break;
         default:
           // This can't happen
@@ -235,6 +245,7 @@ var panel_view = {
         id:         "node::" + this.uname,
         className:  "node ns-" + className,
         label:      GETTEXT.node_state(this.uname, label),
+        state_icon: state_icon,
         menu:       true
       });
     });
@@ -249,17 +260,21 @@ var panel_view = {
       var status_class = "res-primitive";
       var label;
       var active = false;
+      var state_icon;
       if (res.instances[i].master) {
         label = GETTEXT.resource_state_master(id, h2n(res.instances[i].master));
         status_class += " rs-active rs-master";
+        state_icon = "ui-icon-play";
         active = true;
       } else if (res.instances[i].slave) {
         label = GETTEXT.resource_state_slave(id, h2n(res.instances[i].slave));
         status_class += " rs-active rs-slave";
+        state_icon = "ui-icon-play";
         active = true;
       } else if (res.instances[i].started) {
         label = GETTEXT.resource_state_started(id, h2n(res.instances[i].started));
         status_class += " rs-active";
+        state_icon = "ui-icon-play";
         active = true;
       } else if (res.instances[i].pending) {
         if (res.instances[i].pending.length == 1 && res.instances[i].pending[0].substate) {
@@ -270,15 +285,18 @@ var panel_view = {
           label = GETTEXT.resource_state_pending(id, h2n(res.instances[i].pending));
         }
         status_class += " rs-transient";
+        state_icon = "ui-icon-refresh";
       } else {
         label = GETTEXT.resource_state_stopped(id);
         status_class += " rs-inactive";
+        state_icon = "ui-icon-stop";
       }
       set.push({
         id:         "resource::" + id,
         instance:   i,
         className:  status_class,
         label:      label,
+        state_icon: state_icon,
         active:     active,
         error:      res.instances[i].failed_ops
       });

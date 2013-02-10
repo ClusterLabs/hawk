@@ -106,6 +106,7 @@ function new_item_div(id) {
   return $(
     '<div id="' + id + '">' +
       '<a id="' + id + '::menu"><img src="' + url_root + '/assets/transparent-16x16.gif" class="action-icon" alt="" /></a>' +
+      '<div id="' + id + '::state" style="float: left; width: 16px; height: 16px;"></div>' +
       '<div id="' + id + '::error" style="float: right; width: 16px; height: 16px;"></div>' +
       '<span id="' + id + '::label"></span>' +
     "</div>");

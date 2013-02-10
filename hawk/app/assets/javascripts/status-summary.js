@@ -189,26 +189,32 @@ var summary_view = {
       // Switch cribbed from _cib_to_nodelist_panel()
       var className;
       var label = GETTEXT.node_state_unknown();
+      var state_icon;
       switch (this.state) {
         case "online":
           className = "active nodesum nodesum-online";
           label = GETTEXT.node_state_online();
+          state_icon = "ui-icon-play";
           break;
         case "offline":
           className = "inactive nodesum nodesum-offline";
           label = GETTEXT.node_state_offline();
+          state_icon = "ui-icon-stop";
           break;
         case "pending":
           className = "transient nodesum nodesum-pending";
           label = GETTEXT.node_state_pending();
+          state_icon = "ui-icon-refresh";
           break;
         case "standby":
           className = "inactive nodesum nodesum-standby";
           label = GETTEXT.node_state_standby();
+          state_icon = "ui-icon-pause";
           break;
         case "unclean":
           className = "error nodesum nodesum-unclean";
           label = GETTEXT.node_state_unclean();
+          state_icon = "ui-icon-notice";
           break;
       }
       var display = 'none';
@@ -221,6 +227,10 @@ var summary_view = {
       $("#itemlist").append(d);
       if (cib_source != "file") {
         add_mgmt_menu($(jq("node::" + this.uname + "::menu")));
+      }
+      $(jq("node::" + this.uname + "::state")).removeClass();
+      if (state_icon) {
+        $(jq("node::" + this.uname + "::state")).addClass("ui-icon " + state_icon);
       }
     });
     self._show_counters("#nodesum");
@@ -242,14 +252,17 @@ var summary_view = {
           self._increment_counter("#ressum-master");
           label = GETTEXT.resource_state_master(id, h2n(this.master));
           status_class += " rs-active rs-master ressum ressum-master";
+          state_icon = "ui-icon-play";
         } else if (this.slave) {
           self._increment_counter("#ressum-slave");
           label = GETTEXT.resource_state_slave(id, h2n(this.slave));
           status_class += " rs-active rs-slave ressum ressum-slave";
+          state_icon = "ui-icon-play";
         } else if (this.started) {
           self._increment_counter("#ressum-started");
           label = GETTEXT.resource_state_started(id, h2n(this.started));
           status_class += " rs-active ressum ressum-started";
+          state_icon = "ui-icon-play";
         } else if (this.pending) {
           if (this.pending.length == 1 && this.pending[0].substate) {
             // Seriously, this'll always have a length of 1, but it never hurts to
@@ -260,10 +273,12 @@ var summary_view = {
           }
           self._increment_counter("#ressum-pending");
           status_class += " rs-transient ressum ressum-pending";
+          state_icon = "ui-icon-refresh";
         } else {
           self._increment_counter("#ressum-stopped");
           label = GETTEXT.resource_state_stopped(id);
           status_class += " rs-inactive ressum ressum-stopped";
+          state_icon = "ui-icon-stop";
         }
         var display = 'none';
         if (self.active_detail && status_class.indexOf(self.active_detail) >= 0) {
@@ -276,6 +291,10 @@ var summary_view = {
         flag_error("resource::" + id, this.failed_ops);
         if (cib_source != "file") {
           add_mgmt_menu($(jq("resource::" + id + "::menu")));
+        }
+        $(jq("resource::" + id + "::state")).removeClass();
+        if (state_icon) {
+          $(jq("resource::" + id + "::state")).addClass("ui-icon " + state_icon);
         }
       });
     });
