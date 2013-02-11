@@ -53,23 +53,25 @@ function update_errors(errors)
   $("#errorbar").html("");
   if (errors.length) {
     $("#errorbar").show();
-    $.each(errors, function() {
+    for (var i = 0; i < errors.length; i++) {
+      // have to use for loop instead of $.each, as the latter turns "this"
+      // into an object even if it's a string :-/
       var html;
-      if (typeof this == "object") {
+      if (typeof errors[i] == "object") {
         html = '<div><span style="float: left;" class="ui-icon ui-icon-alert"></span>';
-        if (this.link) {
-          html += '<a href="' + this.link + '">';
+        if (errors[i].link) {
+          html += '<a href="' + errors[i].link + '">';
         }
-        html += this.msg;
-        if (this.link) {
+        html += errors[i].msg;
+        if (errors[i].link) {
           html += '</a>';
         }
         html += '</div>';
       } else {
-        html = '<div>' + escape_html(this.toString()) + '</div>';
+        html = '<div>' + escape_html(errors[i]) + '</div>';
       }
       $("#errorbar").append($(html));
-    });
+    }
   } else {
     $("#errorbar").hide();
   }
