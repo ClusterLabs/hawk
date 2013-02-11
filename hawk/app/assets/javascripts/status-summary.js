@@ -54,28 +54,28 @@ var summary_view = {
         '<div id="ticketsum" class="summary" style="display: none;">' +
           '<h2 class="clickable">' + GETTEXT.tickets() + '</h2>' +
           '<table cellpadding="0" cellspacing="0" style="white-space: nowrap;">' +
-            '<tr id="ticketsum-granted" class="rs-active clickable"><td>' + GETTEXT.ticket_granted() + ':</td><td class="ar"></td></tr>' +
-            '<tr id="ticketsum-revoked" class="rs-inactive clickable"><td>' + GETTEXT.ticket_revoked() + ':</td><td class="ar"></td></tr>' +
+            '<tr id="ticketsum-granted" class="rs-active clickable"><td><span style="float: left;" class="ui-icon ui-icon-check"></span>' + GETTEXT.ticket_granted() + ':</td><td class="ar"></td></tr>' +
+            '<tr id="ticketsum-revoked" class="rs-inactive clickable"><td><span style="float: left;" class="ui-icon ui-icon-cancel"></span>' + GETTEXT.ticket_revoked() + ':</td><td class="ar"></td></tr>' +
           '</table>' +
         '</div>' +
         '<div id="nodesum" class="summary">' +
           '<h2 class="clickable" id="nodesum-label"></h2>' +
           '<table cellpadding="0" cellspacing="0">' +
-            '<tr id="nodesum-pending" class="ns-transient clickable"><td>' + GETTEXT.node_state_pending() + ':</td><td class="ar"></td></tr>' +
-            '<tr id="nodesum-online" class="ns-active clickable"><td>' + GETTEXT.node_state_online() + ':</td><td class="ar"></td></tr>' +
-            '<tr id="nodesum-standby" class="ns-inactive clickable"><td>' + GETTEXT.node_state_standby() + ':</td><td class="ar"></td></tr>' +
-            '<tr id="nodesum-offline" class="ns-inactive clickable"><td>' + GETTEXT.node_state_offline() + ':</td><td class="ar"></td></tr>' +
-            '<tr id="nodesum-unclean" class="ns-error clickable"><td>' + GETTEXT.node_state_unclean() + ':</td><td class="ar"></td></tr>' +
+            '<tr id="nodesum-pending" class="ns-transient clickable"><td><span style="float: left;" class="ui-icon ui-icon-refresh"></span>' + GETTEXT.node_state_pending() + ':</td><td class="ar"></td></tr>' +
+            '<tr id="nodesum-online" class="ns-active clickable"><td><span style="float: left;" class="ui-icon ui-icon-play"></span>' + GETTEXT.node_state_online() + ':</td><td class="ar"></td></tr>' +
+            '<tr id="nodesum-standby" class="ns-inactive clickable"><td><span style="float: left;" class="ui-icon ui-icon-pause"></span>' + GETTEXT.node_state_standby() + ':</td><td class="ar"></td></tr>' +
+            '<tr id="nodesum-offline" class="ns-inactive clickable"><td><span style="float: left;" class="ui-icon ui-icon-stop"></span>' + GETTEXT.node_state_offline() + ':</td><td class="ar"></td></tr>' +
+            '<tr id="nodesum-unclean" class="ns-error clickable"><td><span style="float: left;" class="ui-icon ui-icon-notice"></span>' + GETTEXT.node_state_unclean() + ':</td><td class="ar"></td></tr>' +
           "</table>" +
         "</div>" +
         '<div id="ressum" class="summary">' +
           '<h2 class="clickable" id="ressum-label"></span></h2>' +
           '<table cellpadding="0" cellspacing="0">' +
-            '<tr id="ressum-pending" class="rs-transient clickable"><td>' + GETTEXT.resource_state_pending() + ':</td><td class="ar"></td></tr>' +
-            '<tr id="ressum-started" class="rs-active clickable"><td>' + GETTEXT.resource_state_started() + ':</td><td class="ar"></td></tr>' +
-            '<tr id="ressum-master" class="rs-master clickable"><td>' + GETTEXT.resource_state_master() + ':</td><td class="ar"></td></tr>' +
-            '<tr id="ressum-slave" class="rs-slave clickable"><td>' + GETTEXT.resource_state_slave() + ':</td><td class="ar"></td></tr>' +
-            '<tr id="ressum-stopped" class="rs-inactive clickable"><td>' + GETTEXT.resource_state_stopped() + ':</td><td class="ar"></td></tr>' +
+            '<tr id="ressum-pending" class="rs-transient clickable"><td><span style="float: left;" class="ui-icon ui-icon-refresh"></span>' + GETTEXT.resource_state_pending() + ':</td><td class="ar"></td></tr>' +
+            '<tr id="ressum-started" class="rs-active clickable"><td><span style="float: left;" class="ui-icon ui-icon-play"></span>' + GETTEXT.resource_state_started() + ':</td><td class="ar"></td></tr>' +
+            '<tr id="ressum-master" class="rs-master clickable"><td><span style="float: left;" class="ui-icon ui-icon-play"></span>' + GETTEXT.resource_state_master() + ':</td><td class="ar"></td></tr>' +
+            '<tr id="ressum-slave" class="rs-slave clickable"><td><span style="float: left;" class="ui-icon ui-icon-play"></span>' + GETTEXT.resource_state_slave() + ':</td><td class="ar"></td></tr>' +
+            '<tr id="ressum-stopped" class="rs-inactive clickable"><td><span style="float: left;" class="ui-icon ui-icon-stop"></span>' + GETTEXT.resource_state_stopped() + ':</td><td class="ar"></td></tr>' +
           "</table>" +
         "</div>" +
       "</div>" +
