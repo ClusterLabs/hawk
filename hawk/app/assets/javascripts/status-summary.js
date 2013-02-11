@@ -157,14 +157,17 @@ var summary_view = {
         // Mild "abuse" of res-* style classes and GETTEXT.node_state
         var status_class = "res-primitive";
         var label;
+        var state_icon;
         if (this.granted) {
           self._increment_counter("#ticketsum-granted");
           status_class += " rs-active ticketsum ticketsum-granted";
           label = GETTEXT.node_state(id, GETTEXT.ticket_granted(this.standby));
+          state_icon = "ui-icon-check";
         } else {
           self._increment_counter("#ticketsum-revoked");
           status_class += " rs-inactive ticketsum ticketsum-revoked";
           label = GETTEXT.node_state(id, GETTEXT.ticket_revoked(this.standby));
+          state_icon = "ui-icon-cancel";
         }
         var display = "none";
         if (self.active_detail && status_class.indexOf(self.active_detail) >= 0) {
@@ -176,6 +179,10 @@ var summary_view = {
         $("#itemlist").append(d);
         if (this["last-granted"]) {
           flag_info("ticket::" + id, GETTEXT.ticket_last_granted(new Date(this["last-granted"] * 1000)));
+        }
+        $(jq("ticket::" + id + "::state")).removeClass();
+        if (state_icon) {
+          $(jq("ticket::" + id + "::state")).addClass("ui-icon " + state_icon);
         }
       });
       self._show_counters("#ticketsum");
