@@ -56,7 +56,7 @@ function update_errors(errors)
     $.each(errors, function() {
       var html;
       if (typeof this == "object") {
-        html = '<div>';
+        html = '<div><span style="float: left;" class="ui-icon ui-icon-alert"></span>';
         if (this.link) {
           html += '<a href="' + this.link + '">';
         }
@@ -106,6 +106,7 @@ function new_item_div(id) {
   return $(
     '<div id="' + id + '">' +
       '<a id="' + id + '::menu"><img src="' + url_root + '/assets/transparent-16x16.gif" class="action-icon" alt="" /></a>' +
+      '<div id="' + id + '::state" style="float: left; width: 16px; height: 16px;"></div>' +
       '<div id="' + id + '::error" style="float: right; width: 16px; height: 16px;"></div>' +
       '<span id="' + id + '::label"></span>' +
     "</div>");

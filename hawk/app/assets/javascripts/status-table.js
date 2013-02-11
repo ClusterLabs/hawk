@@ -74,26 +74,32 @@ var table_view = {
       // Switch cribbed from _cib_to_nodelist_panel()
       var className;
       var label = GETTEXT.node_state_unknown();
+      var state_icon;
       switch (this.state) {
         case "online":
           className = "active";
           label = GETTEXT.node_state_online();
+          state_icon = "ui-icon-play";
           break;
         case "offline":
           className = "inactive";
           label = GETTEXT.node_state_offline();
+          state_icon = "ui-icon-stop";
           break;
         case "pending":
           className = "transient";
           label = GETTEXT.node_state_pending();
+          state_icon = "ui-icon-refresh";
           break;
         case "standby":
           className = "inactive";
           label = GETTEXT.node_state_standby();
+          state_icon = "ui-icon-pause";
           break;
         case "unclean":
           className = "error";
           label = GETTEXT.node_state_unclean();
+          state_icon = "ui-icon-notice";
           break;
       }
       var d = $('<td class="ncol" id="ncol::' + this.uname + '"></td>');
@@ -104,6 +110,10 @@ var table_view = {
       res_row.append($('<td class="ncol">&nbsp;</td>'));
       if (cib_source != "file") {
         add_mgmt_menu($(jq("node::" + this.uname + "::menu")));
+      }
+      $(jq("node::" + this.uname + "::state")).removeClass();
+      if (state_icon) {
+        $(jq("node::" + this.uname + "::state")).addClass("ui-icon " + state_icon);
       }
     });
     
@@ -175,19 +185,23 @@ var table_view = {
       // Display logic same as _get_primitive()
       var node = [];
       var status_class = "res-primitive";
+      var state_icon;
       var label = "";
       if (this.master) {
         label = GETTEXT.resource_state_master(id);
         node = h2n(this.master);
         status_class += " rs-active rs-master";
+        state_icon = "ui-icon-play";
       } else if (this.slave) {
         label = GETTEXT.resource_state_slave(id);
         node = h2n(this.slave);
         status_class += " rs-active rs-slave";
+        state_icon = "ui-icon-play";
       } else if (this.started) {
         label = GETTEXT.resource_state_started(id);
         node = h2n(this.started);
         status_class += " rs-active";
+        state_icon = "ui-icon-play";
       } else if (this.pending) {
         if (this.pending.length == 1 && this.pending[0].substate) {
           // Seriously, this'll always have a length of 1, but it never hurts to
@@ -198,9 +212,11 @@ var table_view = {
         }
         node = h2n(this.pending);
         status_class += " rs-transient";
+        state_icon = "ui-icon-refresh";
       } else {
         label = GETTEXT.resource_state_stopped(id);
         status_class += " rs-inactive";
+        state_icon = "ui-icon-stop";
       }
       var d = new_item_div("resource::" + id);
       d.attr("class", "ui-corner-all " + status_class);
@@ -223,6 +239,10 @@ var table_view = {
       flag_error("resource::" + id, this.failed_ops);
       if (cib_source != "file") {
         add_mgmt_menu($(jq("resource::" + id + "::menu")));
+      }
+      $(jq("resource::" + id + "::state")).removeClass();
+      if (state_icon) {
+        $(jq("resource::" + id + "::state")).addClass("ui-icon " + state_icon);
       }
     });
   }
