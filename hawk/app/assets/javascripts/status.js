@@ -56,7 +56,7 @@ function update_errors(errors)
     $.each(errors, function() {
       var html;
       if (typeof this == "object") {
-        html = '<div>';
+        html = '<div><span style="float: left;" class="ui-icon ui-icon-alert"></span>';
         if (this.link) {
           html += '<a href="' + this.link + '">';
         }
