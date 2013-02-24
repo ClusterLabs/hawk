@@ -290,7 +290,6 @@ class Cib < CibObject
         :state => state
       }
     end
-    @nodes.sort!{|a,b| a[:uname].natcmp(b[:uname], true)}
 
     @resources = []
     @resources_by_id = {}
@@ -312,6 +311,8 @@ class Cib < CibObject
       }
     end if Util.has_feature?(:rsc_template)
 
+    # Iterate nodes in cib order here which makes the faked up clone & ms instance
+    # IDs be in the same order as pacemaker
     for node in @nodes
       next unless node[:state] == :online
       @xml.elements.each("cib/status/node_state[@uname='#{node[:uname]}']/lrm/lrm_resources/lrm_resource") do |lrm_resource|
@@ -489,6 +490,23 @@ class Cib < CibObject
         if @resources_by_id[id]
           # m/s slave state hack (*sigh*)
           state = :slave if @resources_by_id[id][:is_ms] && state == :started
+
+          if !instance && @resources_by_id[id].has_key?(:clone_max)
+            # Pacemaker commit 427c7fe6ea94a566aaa714daf8d214290632f837 removed
+            # instance numbers from anonymous clones.  Too much of hawk wants
+            # these, so we fake them back in if they're not present, by getting
+            # the current maximum instance number (if present) and incrementing
+            # it.
+            instance = @resources_by_id[id][:instances].select {|k,v| k.to_i rescue false}.map {|k,v| k.to_i}.max
+            if instance == nil
+              instance = "0"
+            else
+              instance = (instance + 1).to_s
+            end
+            # Note: instance at this point is a string because that's what
+            # everythign else expects
+          end
+
           if instance && state != :stopped && state != :unknown
             # For clones, it's possible we need to rename an instance if
             # there's already a running instance with this ID.  An instance
@@ -535,6 +553,9 @@ class Cib < CibObject
         @resources_by_id[k][:instances][:default] = { :failed_ops => [] }
       end
     end
+
+    # Now we can sort the node array
+    @nodes.sort!{|a,b| a[:uname].natcmp(b[:uname], true)}
 
     # TODO(should): Can we just use cib attribute dc-uuid?  Or is that not viable
     # during cluster bringup, given we're using cibadmin -l?
