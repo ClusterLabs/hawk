@@ -58,6 +58,8 @@
     _init: function() {
       var self = this;
       self.list.children().remove();
+      self.list.append($('<li class="menu-item"><a class="enabled"></a></li>'));
+      self.list.append($('<li class="menu-separator"></li>'));
       $.each(self.options.items, function() {
         var item = this;
         if (item.separator) {
@@ -83,16 +85,32 @@
     // first child of the A element (i.e. works with <a><img/></a>).
     // 'target' must be the jQuery object for the A element.
     // 'hide_items' is an array of indices of menu items to hide.
-    popup: function(target, hide_items) {
+    // Submenu, if present, allows the injection of a menu item at the top
+    // with an arbitrary label and function to trigger when clicked
+    popup: function(target, hide_items, submenu) {
       var pos = target.children(":first").offset();
       $(this.list.children().show());
+      if (submenu) {
+        var pm = $(this.list.children()[0]);
+        pm.show();
+        var self = this;
+        pm.children(":first").text(escape_html(submenu.label)).click(function() {
+          self._hide();
+          submenu.fn();
+          return false;
+        });
+        $(this.list.children()[1]).show();
+      } else {
+        $(this.list.children()[0]).hide();
+        $(this.list.children()[1]).hide();
+      }
       if (hide_items) {
         if (hide_items.length >= this.list.children().length) {
           // Little bit rough, but necessary for edge case
           return false;
         }
         for (var i = 0; i < hide_items.length; i++) {
-          $(this.list.children()[hide_items[i]]).hide();
+          $(this.list.children()[hide_items[i]+2]).hide();
         }
       }
       this.target = target;

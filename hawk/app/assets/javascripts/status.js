@@ -200,6 +200,25 @@ function perform_op(type, id, op, extra)
   });
 }
 
+function get_top_parent_id(id) {
+  var parent = null;
+  $.each(resources_by_id, function() {
+    if (!this.children) return;
+    var cp = this.id;
+    $.each(this.children, function() {
+      if (this.id == id) {
+        if (resources_by_id[cp].toplevel) {
+          parent = cp;
+        } else {
+          parent = get_top_parent_id(cp);
+        }
+        return false;
+      };
+    });
+  });
+  return parent;
+}
+
 function add_mgmt_menu(e)
 {
   e.addClass("clickable");
@@ -213,10 +232,29 @@ function add_mgmt_menu(e)
   } else {
     var id_parts = parts[1].split(":");
     var is_clone_instance = id_parts.length == 2
+    var tp = get_top_parent_id(id_parts[0]);
     if (id_parts.length == 2) {
       // It's a clone instance, hide everything except Edit, Delete, View Details/Events
       e.click(function() {
-        return $(jq("menu::resource")).popupmenu("popup", $(this), [0, 1, 2, 3, 4, 5, 6, 7]);
+        return $(jq("menu::resource")).popupmenu("popup", $(this), [0, 1, 2, 3, 4, 5, 6, 7], {
+          label: GETTEXT.resource_parent(tp),
+          id: tp,
+          fn: function() {
+            // Toplevel submenu (same as below for other children)
+            // This frightful injected span allows us to shove the correct parent ID
+            // through to perform_op etc.
+            var t = $('<span style="float:right;" id="submenu::' + tp + '"><span/></span>');
+            $(e).append(t);
+            var rv;
+            if (resources_by_id[id_parts[0]].children && resources_by_id[id_parts[0]].type == "master") {
+              rv = $(jq("menu::resource")).popupmenu("popup", t);
+            } else {
+              rv = $(jq("menu::resource")).popupmenu("popup", t, [4, 5]);
+            }
+            t.remove();
+            return rv;
+          }
+        });
       });
     } else {
       if (resources_by_id[id_parts[0]].toplevel) {
@@ -236,7 +274,25 @@ function add_mgmt_menu(e)
       } else {
         // It's a child and not migratable
         e.click(function() {
-          return $(jq("menu::resource")).popupmenu("popup", $(this), [2, 3, 4, 5]);
+          return $(jq("menu::resource")).popupmenu("popup", $(this), [2, 3, 4, 5], {
+            label: GETTEXT.resource_parent(tp),
+            id: tp,
+            fn: function() {
+              // Toplevel submenu (same as above for clone instances)
+              // This frightful injected span allows us to shove the correct parent ID
+              // through to perform_op etc.
+              var t = $('<span style="float:right;" id="submenu::' + tp + '"><span/></span>');
+              $(e).append(t);
+              var rv;
+              if (resources_by_id[id_parts[0]].children && resources_by_id[id_parts[0]].type == "master") {
+                rv = $(jq("menu::resource")).popupmenu("popup", t);
+              } else {
+                rv = $(jq("menu::resource")).popupmenu("popup", t, [4, 5]);
+              }
+              t.remove();
+              return rv;
+            }
+          });
         });
       }
     }

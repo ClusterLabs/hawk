@@ -213,6 +213,9 @@ var GETTEXT = {
   resource_clone: function(res) {
     return "<%=raw escape_javascript _('Clone Set: %{id}') % { :id => '_RES_' } %>".replace('_RES_', res);
   },
+  resource_parent: function(res) {
+    return "<%=raw escape_javascript _('Parent: %{id}...') % { :id => '_RES_' } %>".replace('_RES_', res);
+  },
   // Simulator dialog
   sim_init: function() {
     return "<%=raw escape_javascript _('Simulator (initial state)') %>";
