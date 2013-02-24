@@ -101,13 +101,25 @@
       e.append($("<table><tr>" +
         "<th><select><option></option></select></th>" +
         '<td class="value"></td>' +
-        '<td class="button"></td>' +
+        '<td class="button"><button type="button">' + escape_html(self.options.labels.edit) + "</button></td>" +
         '<td class="button"><button type="button">' + escape_html(self.options.labels.add) + "</button></td>" +
         '</tr></table><div><div style="height: 12em; overflow: auto; position: relative;"></div></div>'));
       self.new_op_row = $(e.find("tr")[0]);
       self.new_op_select = e.find("select");
       self.new_op_td = $(e.find("td")[0]);
-      self.new_op_add = e.find("button");
+      self.new_op_edit = $(e.find("button")[0]);
+      self.new_op_edit.button({
+        icons: {
+          primary: "ui-icon-pencil"
+        },
+        text: false,
+        disabled: true
+      }).click(function() {
+        var n = self.new_op_select.val();
+        if (!n) return;
+        self._edit_op(n);
+      });
+      self.new_op_add = $(e.find("button")[1]);
       self.new_op_add.button({
         icons: {
           primary: "ui-icon-plus"
@@ -172,6 +184,7 @@
     _init_new_op: function() {
       var n = this.new_op_select.val();
       this.new_op_add.button("option", "disabled", n ? false : true);
+      this.new_op_edit.button("option", "disabled", n ? false : true);
       if (n) {
         this.new_op_td.text(this._op_value_string(n, this._filter_monitor_interval(n, this.options.all_ops[n][0])));
       } else {
@@ -210,6 +223,7 @@
       return this.element.find("input#" + id).parent().parent();
     },
 
+    // TODO(must): _edit_op was largely duplicated from this - consolidate!
     _insert_row: function(n, v) {
       var self = this;
       var new_row = $('<tr class="oplist-del">' +
@@ -395,6 +409,18 @@
       return new_row;
     },
 
+    _next_monitor_interval: function(interval) {
+      while (this._monitor_rows_with_interval(interval).length != 0) {
+        // Conversion to/from String here is probably over-paranoid
+        var m = new String(interval).match(/([0-9]+)(.*)/);
+        interval = new String(parseInt(m[1]) + 1);
+        if (m.length == 3) {
+          interval += m[2];
+        }
+      }
+      return interval;
+    },
+
     // Returns a new monitor op, with a unique interval (or just a copy
     // of the op passed in if this is not a monitor op).
     // TODO(should): it's a bit freakish having this called from both
@@ -402,14 +428,7 @@
     _filter_monitor_interval: function(n, op) {
       if (n != "monitor") return op;
       var mop = $.extend(true, {}, op);
-      while (this._monitor_rows_with_interval(mop.interval).length != 0) {
-        // Conversion to/from String here is probably over-paranoid
-        var m = new String(mop.interval).match(/([0-9]+)(.*)/);
-        mop.interval = new String(parseInt(m[1]) + 1);
-        if (m.length == 3) {
-          mop.interval += m[2];
-        }
-      }
+      mop.interval = this._next_monitor_interval(mop.interval);
       return mop;
     },
 
@@ -428,6 +447,142 @@
       self._init_new_op();
 
       self._trigger("dirty", event, { field: null, name: n });
+    },
+
+    // TODO(must): this is largely duplicated from _insert_row, but with some
+    // subtle differences - consolidate!
+    _edit_op: function(op_name) {
+      var self = this;
+      var set_attrs = {};
+      var interval = self.options.all_ops[op_name][0]["interval"];
+      if (op_name == "monitor") {
+        interval = self._next_monitor_interval(interval);
+      }
+      self.dialog.children(":first").attrlist({
+        labels: {
+          add: self.options.labels.add,
+          remove: self.options.labels.remove,
+          no_value: self.options.labels.no_value
+        },
+        all_attrs: {
+          "interval": {
+            "type":     "string",
+            "default":  interval || 0,
+            "required": op_name == "monitor"
+          },
+          "timeout": {
+            "type":     "string",
+            "default":  self.options.all_ops[op_name][0]["timeout"],
+            "required": true
+          },
+          // Default for "requires" is actually "nothing" for STONITH
+          // resources, and for everything else "fencing" if STONITH
+          // is enabled, otherwise "quorum".
+          "requires": {
+            "type":     "enum",
+            "default":  "fencing",
+            "values":   ["nothing", "quorum", "fencing"]
+          },
+          "enabled": {
+            "type":     "boolean",
+            "default":  "true"
+          },
+          // TODO(should): remove "role"?  Somewhat advanced, methinks...
+          "role": {
+            "type":     "enum",
+            "default":  "",
+            "values":   ["Stopped", "Started", "Slave", "Master"]
+          },
+          // Default for "on-fail" for "stop" ops is "fence" when
+          // STONITH is enabled and "block" otherwise.  All other ops
+          // default to "stop".
+          "on-fail": {
+            "type":     "enum",
+            "default":  "stop",
+            "values":   ["ignore", "block", "stop", "restart", "standby", "fence"]
+          },
+          "start-delay": {
+            "type":     "string",
+            "default":  "0"
+          },
+          "interval-origin": {
+            "type":     "string",
+            "default":  "0"
+          },
+          "record-pending": {
+            "type":     "boolean",
+            "default":  "false"
+          },
+          "description": {
+            "type":     "string",
+            "default":  ""
+          }
+        },
+        set_attrs: set_attrs,
+        prefix: "op_attrs",
+        dirty: function() {
+          // Make sure everything has values
+          var enabled = true;
+          $.each(self.dialog.children(":first").attrlist("val"), function(n,v) {
+            if (v === "") {
+              enabled = false;
+              return false;
+            }
+          });
+          if (enabled) {
+            self.dialog.parent().find(".ui-dialog-buttonpane button:first").removeAttr("disabled");
+          } else {
+            self.dialog.parent().find(".ui-dialog-buttonpane button:first").attr("disabled", "disabled");
+          }
+        }
+      });
+      var b = {};
+      // TODO(must): trim interval!
+      b[self.options.labels.ok] = function(event) {
+        var v = self.dialog.children(":first").attrlist("val");
+        if (op_name == "monitor") {
+          // ensure there's no duplicate intervals for monitor ops
+          var duplicate = false;
+          self._monitor_rows_with_interval(v.interval).each(function() {
+            duplicate = true;
+            return false;
+          });
+          if (duplicate) {
+            // TODO(should): Integrate this error display into the dialog
+            // rather than having an (ugly) alert box.
+            alert(self.options.labels.duplicate_interval);
+            return;
+          }
+        }
+
+        // begin ~dupe of _add_op
+        self._insert_row(op_name, v).effect("highlight", {}, 1000);
+        if (op_name != "monitor") {
+          self.new_op_select.children("option[value='" + n + "']").remove();
+        }
+        self.keypress_hack = "";
+        self.new_op_select.val("");
+        self._init_new_op();
+        self._trigger("dirty", event, { field: null, name: op_name });
+        // end ~dupe of _add op
+
+        $(this).dialog("close");
+      };
+      b[self.options.labels.cancel] = function() {
+        $(this).dialog("close");
+      };
+      self.dialog.dialog("option", {
+        title:    op_name,
+        buttons:  b,
+        open:     function() {
+          $(this).parent().find(".ui-dialog-buttonpane button:first").removeAttr("disabled");
+        },
+        close:    function() {
+          // Get rid of attrlist when dialog closes, else it pollutes
+          // the parent form with hidden fields).
+          self.dialog.children(":first").attrlist({ all_attrs: {}});
+        }
+      }).dialog("open");
     },
 
     _scroll_into_view: function() {
