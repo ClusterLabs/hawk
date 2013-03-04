@@ -219,6 +219,7 @@ cluster data structure is mini cib + mon_node:
 })(jQuery);
 
 var clusters = {};
+var adding_cluster = false;
 
 function save_clusters() {
   // Only want to save minimal info; name, node_list and mon_node
@@ -255,7 +256,10 @@ function add_cluster() {
     title:    "<%=h escape_javascript _('Add Cluster') %>",
     buttons:  {
       "<%=h escape_javascript _('OK') %>": function() {
-        // TODO(must): disable button / show spinner (else it can be hit twice...)
+        var self = this;
+
+        // Flag prevents double-hit ENTER key from triggering duplicate add
+        if (adding_cluster) return;
 
         var cn = $.trim($("#new-cluster-name").val());
         var hn = $.trim($("#new-cluster-host").val());
@@ -264,7 +268,24 @@ function add_cluster() {
           // TODO(should): Error message
           return;
         }
-        // make sure cluster name isn't already used
+
+        if (clusters[cn]) {
+          alert("<%=h escape_javascript _('A cluster with that name already exists') %>");
+          return;
+        }
+
+        var existing = null;
+        $.each(clusters, function(n) {
+          if ($.inArray(hn, this.node_list) >= 0) {
+            existing = n;
+            return false;
+          }
+        });
+        if (existing) {
+          alert("<%=h escape_javascript _('The host %{h} is already present in cluster %{c}') % { :h => '_HOST_', :c => '_CLUSTER_' } %>".replace('_HOST_', hn).replace('_CLUSTER_', existing));
+          return;
+        }
+
         // now ajax to the host specified and:
         // - no connection - host not found error / can't connect
         // - if permission denied, request login
@@ -273,7 +294,10 @@ function add_cluster() {
 
         // internet explorer is an evil pain
 
-        var self = this;
+        // Disable buttons for request duration
+        $(self).dialog().parent().find(".ui-dialog-buttonpane button").attr("disabled", "disabled");
+        // TODO(should): show spinner?
+        adding_cluster = true;
 
         var req = $.ajax({ url: "https://" + hn + ":7630/cib/live",
           timeout:  20000,
@@ -283,15 +307,17 @@ function add_cluster() {
           cross_domain_hack: true,    // needed to get proper headers
           success: function(data, status, xhr) {
             if (!data) {
-              alert("Host not found or some other problem");
               // apparently I can't differentiate a broken/illegal CORS
               // request from other types of failure.  FFS.
+              alert("Host not found or some other problem");
             } else {
               clusters[cn] = data;
               clusters[cn].mon_node = hn;
               insert_cluster(cn);
               $(self).dialog("close");
             }
+            adding_cluster = false;
+            $(self).dialog().parent().find(".ui-dialog-buttonpane button").removeAttr("disabled");
           },
           error: function(request) {
             if (request.readyState > 1) {
@@ -313,6 +339,8 @@ function add_cluster() {
               // timeout
               alert("timeout");
             }
+            adding_cluster = false;
+            $(self).dialog().parent().find(".ui-dialog-buttonpane button").removeAttr("disabled");
           }
         });
       },
