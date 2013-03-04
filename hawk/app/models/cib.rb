@@ -243,8 +243,8 @@ class Cib < CibObject
       when 0
         @xml = REXML::Document.new(out)
         raise RuntimeError, _('Error invoking %{cmd}') % {:cmd => '/usr/sbin/cibadmin -Ql' } unless @xml.root
-      when 54
-        # 54 is cib_permission_denied
+      when 54, 13
+        # 13 is cib_permission_denied (used to be 54, before pacemaker 1.1.8)
         raise SecurityError, _('Permission denied for user %{user}') % {:user => user}
       else
         raise RuntimeError, _('Error invoking %{cmd}: %{msg}') % {:cmd => '/usr/sbin/cibadmin -Ql', :msg => err }

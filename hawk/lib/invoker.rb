@@ -109,7 +109,7 @@ class Invoker
       return out
     when 6, 22 # cib_NOTEXISTS (used to be 22, now it's 6...)
       raise NotFoundError, _('The object/attribute does not exist (cibadmin %{cmd})') % {:cmd => cmd.inspect}
-    when 54 # cib_permission_denied
+    when 13, 54 # cib_permission_denied (used to be 54, now it's 13...)
       raise SecurityError, _('Permission denied for user %{user}') % {:user => current_user}
     else
       raise RuntimeError, _('Error invoking cibadmin %{cmd}: %{msg}') % {:cmd => cmd.inspect, :msg => err}
@@ -131,7 +131,7 @@ class Invoker
       return true
     when 6, 22 # cib_NOTEXISTS (used to be 22, now it's 6...)
       raise NotFoundError, _('The object/attribute does not exist: %{msg}') % {:msg => err}
-    when 54 # cib_permission_denied
+    when 13, 54 # cib_permission_denied (used to be 54, now it's 13...)
       raise SecurityError, _('Permission denied for user %{user}') % {:user => current_user}
     else
       raise RuntimeError, _('Error invoking cibadmin --replace: %{msg}') % {:msg => err}
@@ -168,7 +168,7 @@ class Invoker
     if exitstatus == 0 && !(stderr.index("ERROR") || stderr.index("WARNING"))
       true
     else
-      if stderr.match(/-54.*permission denied/i)
+      if stderr.match(/-54.*permission denied/i) || stderr.match(/-13.*permission denied/i)
         stderr = _('Permission denied for user %{user}') % {:user => current_user}
       end
       [exitstatus, stderr]
