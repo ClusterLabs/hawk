@@ -319,6 +319,16 @@ function add_cluster() {
       "<%=h escape_javascript _('Cancel') %>": function() {
         $(this).dialog("close");
       }
+    },
+    open: function() {
+      var self = this;
+      $(self).find("form").keypress(function(e) {
+        if (e.keyCode == 13) {
+          // Allow enter to submit dialog
+          $(self).parent().find('.ui-dialog-buttonpane button:first').click();
+          return false;
+        }
+      });
     }
   });
   $("#dialog").dialog("open");

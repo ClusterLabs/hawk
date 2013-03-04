@@ -90,6 +90,9 @@ TODO
 * Dashboard doesn't take url_root into account (either fix this, in which
   case all Hawks need the same url_root [yuck], or just ignore the problem,
   as no default deployment uses url_root anyway)
+* Various dialogs (e.g.: editing op attributes) should allow ENTER to trigger
+  OK (see keypress handler in hawk/app/views/dashboard/index.html.erb for
+  example)
 
 == UI Controls ==
 
