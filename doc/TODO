@@ -87,7 +87,9 @@ TODO
 * look at memory usage; hawk running under mongrel eventually goes OOM
 * Integrate doc/sessions_controller-cleanup.patch, once we verify that
   Shellwords::escape is kosher.
-
+* Dashboard doesn't take url_root into account (either fix this, in which
+  case all Hawks need the same url_root [yuck], or just ignore the problem,
+  as no default deployment uses url_root anyway)
 
 == UI Controls ==
 
