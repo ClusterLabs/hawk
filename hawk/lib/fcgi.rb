@@ -6,7 +6,7 @@ fastcgi.rb Copyright (C) 2001 Eli Green
 fcgi.rb    Copyright (C) 2002-2003 MoonWolf <moonwolf@moonwolf.com>
 fcgi.rb    Copyright (C) 2004 Minero Aoki
 
-Modified by Tim Serong <tserong@novell.com> 2010-03-19:
+Modified by Tim Serong <tserong@suse.com> 2010-03-19:
 - Use fcgi.rb from rails' vendor directory by default if present
 - Nasty hack to workaround rack 1.0.x trying to override FCGI::Stream#read
 

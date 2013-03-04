@@ -8,7 +8,7 @@
  *    invoked by the "hacluster" user.
  *
  * Blame for the above variation rests squarely with
- * Tim Serong <tserong@novell.com>.  Original header follows.
+ * Tim Serong <tserong@suse.com>.  Original header follows.
  *
  * Set*id helper program for PAM authentication.
  *
