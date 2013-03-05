@@ -348,6 +348,7 @@
 
       self._insert_row(n, f[0].type == "checkbox" ? f[0].checked : v).effect("highlight", {}, 1000);
 
+      self.keypress_hack = "";
       // remove from new dropdown, select first, blank out
       self.new_attr_select.children("option[value='" + n + "']").remove();
       self.new_attr_select.val("");
