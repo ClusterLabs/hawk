@@ -455,9 +455,9 @@ function change_view(new_view) {
   current_view = new_view;
   current_view.update();
   switch(current_view) {
-    case panel_view:   $.cookie("hawk-status-view", "panel");   break;
-    case table_view:   $.cookie("hawk-status-view", "table");   break;
-    case summary_view: $.cookie("hawk-status-view", "summary"); break;
+    case panel_view:   $.cookie("hawk-status-view", "panel", { expires: 3650 });   break;
+    case table_view:   $.cookie("hawk-status-view", "table", { expires: 3650 });   break;
+    case summary_view: $.cookie("hawk-status-view", "summary", { expires: 3650 }); break;
   }
 }
 
