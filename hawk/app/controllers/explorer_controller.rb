@@ -239,9 +239,9 @@ class ExplorerController < ApplicationController
       @from_time, @to_time = lasttime
     else
       # Start 24 hours ago by default
-      @from_time = params[:from_time] ? Time.parse(params[:from_time]) : Time.now - 86400
-      @to_time = params[:to_time] ? Time.parse(params[:to_time]) : Time.now
-      
+      @from_time = params[:from_time] && !params[:from_time].empty? ? Time.parse(params[:from_time]) : Time.now - 86400
+      @to_time = params[:to_time] && !params[:to_time].empty? ? Time.parse(params[:to_time]) : Time.now
+
       # Ensure from_time is earlier than to_time.  Should probably make sure they're
       # not idendical (kind of pointless doing a zero minute hb_report...)
       @from_time, @to_time = @to_time, @from_time if @from_time > @to_time
