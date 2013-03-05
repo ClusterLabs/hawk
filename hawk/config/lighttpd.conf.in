@@ -148,7 +148,7 @@ expire.url               = ( "/favicon.ico"  => "access 3 days",
 # *need* to execute a second request while the first is still pending.
 fastcgi.server      = ( ".fcgi" => ( "localhost" => (
   "min-procs"       => 1,
-  "max-procs"       => 1,
+  "max-procs"       => 2,
   "socket"          => "@WWW_BASE@/hawk/tmp/sockets/fcgi.socket",
   "bin-path"        => "@WWW_BASE@/hawk/public/dispatch.fcgi",
   "bin-environment" => ( "RAILS_ENV" => "production" )
