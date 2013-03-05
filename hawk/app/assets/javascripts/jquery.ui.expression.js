@@ -132,7 +132,7 @@
               {k:"gt", v:"&gt;"} ], op, "req") +
           "</td>" +
           '<td><input class="req" ' + self._field_name("value") + ' type="text" value="' + escape_field(value) + '"></td>' +
-          '<td>(' + self._select(self._field_name("type"), [
+          '<td style="white-space: nowrap;">(' + self._select(self._field_name("type"), [
               {k:""},
               {k:"string"},
               {k:"integer"},
