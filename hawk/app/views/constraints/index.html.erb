@@ -127,11 +127,17 @@ $(function() {
     return $("#constraint").popupmenu("popup", $(this));
   });
 
+  // Highlight rows on hover
+  $("#content tr").hover(
+    function() { $(this).addClass("row-highlight"); },
+    function() { $(this).removeClass("row-highlight"); }
+  );
+
 });
 </script>
 <div id="constraint" style="display: none;"></div>
 <div id="locations">
-<table>
+<table cellspacing="0" cellpadding="2">
   <tr<%=raw ' style="display: none;"' if @locations.any? %>><td><%=h _('(No location constraints defined)') %></td></tr>
 <% @locations.sort{|a,b| a.id.natcmp(b.id, true)}.each do |loc| %>
   <tr>
@@ -161,7 +167,7 @@ $(function() {
 </div>
 
 <div id="colocations">
-<table>
+<table cellspacing="0" cellpadding="2">
   <tr<%=raw ' style="display: none;"' if @colocations.any? %>><td><%=h _('(No colocation constraints defined)') %></td></tr>
 <% @colocations.sort{|a,b| a.id.natcmp(b.id, true)}.each do |col| %>
   <tr>
@@ -175,7 +181,7 @@ $(function() {
 </div>
 
 <div id="orders">
-<table>
+<table cellspacing="0" cellpadding="2">
   <tr<%=raw ' style="display: none;"' if @orders.any? %>><td><%=h _('(No order constraints defined)') %></td></tr>
 <% @orders.sort{|a,b| a.id.natcmp(b.id, true)}.each do |ord| %>
   <tr>
@@ -190,7 +196,7 @@ $(function() {
 
 <% if Util.has_feature?(:rsc_ticket) %>
 <div id="tickets">
-<table>
+<table cellspacing="0" cellpadding="2">
   <tr<%=raw ' style="display: none;"' if @tickets.any? %>><td><%=h _('(No ticket constraints defined)') %></td></tr>
 <% @tickets.sort{|a,b| a.id.natcmp(b.id, true)}.each do |t| %>
   <tr>

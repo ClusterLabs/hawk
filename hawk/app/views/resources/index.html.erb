@@ -133,12 +133,18 @@ $(function() {
     return $("#resource").popupmenu("popup", $(this));
   });
 
+  // Highlight rows on hover
+  $("#content tr").hover(
+    function() { $(this).addClass("row-highlight"); },
+    function() { $(this).removeClass("row-highlight"); }
+  );
+
 });
 </script>
 <div id="resource" style="display: none;"></div>
 
 <div id="primitives">
-<table>
+<table cellspacing="0" cellpadding="2">
   <tr<%=raw ' style="display: none;"' if @primitives.any? %>><td><%=h _('(No primitive resources defined)') %></td></tr>
 <% @primitives.sort{|a,b| a.id.natcmp(b.id, true)}.each do |r| %>
   <tr>
@@ -151,7 +157,7 @@ $(function() {
 
 <% if Util.has_feature?(:rsc_template) %>
 <div id="templates">
-<table>
+<table cellspacing="0" cellpadding="2">
   <tr<%=raw ' style="display: none;"' if @templates.any? %>><td><%=h _('(No templates defined)') %></td></tr>
 <% @templates.sort{|a,b| a.id.natcmp(b.id, true)}.each do |r| %>
   <tr>
@@ -164,7 +170,7 @@ $(function() {
 <% end %>
 
 <div id="groups">
-<table>
+<table cellspacing="0" cellpadding="2">
   <tr<%=raw ' style="display: none;"' if @groups.any? %>><td><%=h _('(No groups defined)') %></td></tr>
 <% @groups.sort{|a,b| a.id.natcmp(b.id, true)}.each do |r| %>
   <tr>
@@ -176,7 +182,7 @@ $(function() {
 </div>
 
 <div id="clones">
-<table>
+<table cellspacing="0" cellpadding="2">
   <tr<%=raw ' style="display: none;"' if @clones.any? %>><td><%=h _('(No clones defined)') %></td></tr>
 <% @clones.sort{|a,b| a.id.natcmp(b.id, true)}.each do |r| %>
   <tr>
@@ -188,7 +194,7 @@ $(function() {
 </div>
 
 <div id="masters">
-<table>
+<table cellspacing="0" cellpadding="2">
   <tr<%=raw ' style="display: none;"' if @masters.any? %>><td><%=h _('(No master/slave resources defined)') %></td></tr>
 <% @masters.sort{|a,b| a.id.natcmp(b.id, true)}.each do |r| %>
   <tr>
