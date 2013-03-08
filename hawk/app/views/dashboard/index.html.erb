@@ -39,6 +39,7 @@ cluster data structure is mini cib + mon_node:
       e.append($(
         '<div style="float: right;"><button type="button" style="border: none; background: none; font-size: 0.7em; margin-right: -0.5em;"><%=h escape_javascript _('Remove') %></button></div>' +
         '<h1 class="clickable"></h1>' +
+        '<div class="spinner" style="text-align: center;"><img src="/assets/spinner-32x32.gif" alt="" /></div>' +
         '<div class="cluster-login" style="display: none;">' +
           '<form onsubmit="return false;">' +
             '<table>' +
@@ -59,7 +60,7 @@ cluster data structure is mini cib + mon_node:
             '</table>' +
           '</form>' +
         '</div>' +
-        '<div class="cluster-status">' +
+        '<div class="cluster-status" style="display: none;">' +
           '<h2 class="mon-warning" style="display: none;"></h2>' +
           '<h2 class="cluster-error clickable" style="display: none;"><span style="float: left;" class="ui-icon ui-icon-alert"></span><%=h escape_javascript _("Cluster has errors - click for details") %></h2>' +
           '<div class="summary ticketsum">' +
@@ -124,7 +125,7 @@ cluster data structure is mini cib + mon_node:
           cross_domain_hack: true,
           success: function(data) {
             self.element.find(".cluster-login").hide();
-            // TODO(should): spinner
+            self.element.find(".spinner").show();
             self.update_cib();
           },
           error: function(request) {
@@ -191,6 +192,7 @@ cluster data structure is mini cib + mon_node:
           self.cur_epoch = "";
           if (data) {
             self.element.find(".mon-warning").hide();
+            self.element.find(".spinner").hide();
             self.element.find(".cluster-status").show();
             var mn = self.options.cluster.mon_node; // this is silly
             // !! might not have cib.meta
@@ -209,8 +211,8 @@ cluster data structure is mini cib + mon_node:
           var err;
           if (request.readyState > 1) {
             if (request.status == 403) {
-              // HANDLE THIS
               self.element.find(".cluster-status").hide();
+              self.element.find(".spinner").hide();
               self.element.find(".cluster-login").show();
               self.element.find(".login-warning").html("<%=h escape_javascript _('Permission denied. Please log in to %{node}') % { :node => '_NODE_' } %>".replace('_NODE_', self.options.cluster.mon_node));
               return;
@@ -251,7 +253,6 @@ cluster data structure is mini cib + mon_node:
           !this.options.cluster.resources_label || !this.options.cluster.resource_states ||
           !this.options.cluster.ticket_states) {
         // If we have no CIB yet, we'll still show the cluster name
-        // TODO(should): Put a spinner or similar
         e.find(".ticketsum").hide();
         e.find(".nodesum").hide();
         e.find(".ressum").hide();
@@ -388,7 +389,6 @@ function add_cluster() {
 
         // Disable buttons for request duration
         $(self).dialog().parent().find(".ui-dialog-buttonpane button").attr("disabled", "disabled");
-        // TODO(should): show spinner?
         adding_cluster = true;
 
         var req = $.ajax({ url: "https://" + hn + ":7630/session/new",
