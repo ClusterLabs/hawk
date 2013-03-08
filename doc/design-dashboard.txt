@@ -70,3 +70,9 @@ counters (plus the epoch etc. necessary for the long poll).
     - that would (should) actually work, except that it means storing the
       users credentials potentially insecurely in browser local store
 
+=== Actual Solution ===
+
+* On permission denied, display login form for current mon_node; this sets
+  login cookie which will persist for long enough (10 days ATM).  If mon node
+  cycles you just get the login prompt again.  Reasonably painless, and doesn't
+  require storing authentication details anywhere.
