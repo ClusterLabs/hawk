@@ -340,7 +340,7 @@ function add_cluster() {
   var html = '<form onsubmit="return false;"><table>' +
     '<tr><th><%=h escape_javascript _('Cluster Name:') %></th><td><input type="text" id="new-cluster-name" /></td></tr>' +
     '<tr><th><%=h escape_javascript _('Host Name:') %></th><td><input type="text" id="new-cluster-host" /></td></tr>' +
-    '<tr><td colspan="2" style="font-size: 80%"><%=h escape_javascript("(Specify any host name in the cluster.  Other nodes will be found automatically)") %></td></tr>' +
+    '<tr><td colspan="2" style="font-size: 80%"><%=h escape_javascript _("(Specify any host name in the cluster.  Other nodes will be found automatically)") %></td></tr>' +
     '</table><form>';
 
   $("#dialog").html(html);
@@ -392,7 +392,7 @@ function add_cluster() {
         adding_cluster = true;
 
         var req = $.ajax({ url: "https://" + hn + ":7630/session/new",
-          timeout:  20000,
+          timeout: 20000,
           data: "format=json",
           dataType: "json",   // necessary?
           type: "GET",
@@ -408,30 +408,25 @@ function add_cluster() {
             } else {
               // apparently I can't differentiate a broken/illegal CORS
               // request from other types of failure.  FFS.
-              alert("Host not found or some other problem");
+              alert("<%=h escape_javascript _('Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible.') % { :host => '_HOST_', :url => '_URL_' } %>".replace('_HOST_', hn).replace('_URL_', "https://" + hn + ":7630/"));
             }
             adding_cluster = false;
             $(self).dialog().parent().find(".ui-dialog-buttonpane button").removeAttr("disabled");
           },
           error: function(request) {
             if (request.readyState > 1) {
-              if (request.status == 403) {
-                alert("Permission denied");
+              var json = json_from_request(request);
+              if (json && json.errors) {
+                alert(json.errors.join(", "));
               } else {
-                var json = json_from_request(request);
-                if (json && json.errors) {
-                  alert(json);
+                if (request.status >= 10000) {
+                  alert(GETTEXT.err_connection());
                 } else {
-                  if (request.status >= 10000) {
-                    alert("FIXME: some sort of IE connection error");
-                  } else {
-                    alert(request.status + " " + request.statusText);
-                  }
+                  alert(GETTEXT.err_unexpected(request.status + " " + request.statusText));
                 }
               }
             } else {
-              // timeout
-              alert("timeout");
+              alert("<%=h escape_javascript _("Timeout: Please try again") %>");
             }
             adding_cluster = false;
             $(self).dialog().parent().find(".ui-dialog-buttonpane button").removeAttr("disabled");
