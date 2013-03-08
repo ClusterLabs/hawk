@@ -39,34 +39,56 @@ cluster data structure is mini cib + mon_node:
       e.append($(
         '<div style="float: right;"><button type="button" style="border: none; background: none; font-size: 0.7em; margin-right: -0.5em;"><%=h escape_javascript _('Remove') %></button></div>' +
         '<h1 class="clickable"></h1>' +
-        '<h2 class="mon-warning" style="display: none;"></h2>' +
-        '<h2 class="cluster-error clickable" style="display: none;"><span style="float: left;" class="ui-icon ui-icon-alert"></span><%=h escape_javascript _("Cluster has errors - click for details") %></h2>' +
-        '<div class="summary ticketsum">' +
-          '<h2 class="clickable">' + GETTEXT.tickets() + '</h2>' +
-          '<table cellpadding="0" cellspacing="0" style="white-space: nowrap;">' +
-            '<tr class="ticketsum-granted rs-active clickable"><td><span style="float: left;" class="ui-icon ui-icon-check"></span>' + GETTEXT.ticket_granted() + ':</td><td class="ar"></td></tr>' +
-            '<tr class="ticketsum-revoked rs-inactive clickable"><td><span style="float: left;" class="ui-icon ui-icon-cancel"></span>' + GETTEXT.ticket_revoked() + ':</td><td class="ar"></td></tr>' +
-          '</table>' +
+        '<div class="cluster-login" style="display: none;">' +
+          '<form onsubmit="return false;">' +
+            '<table>' +
+              '<tr>' +
+                '<td colspan="2"><div class="flash-warning login-warning" style="width: auto;"></div></td>' +
+              '</tr>' +
+              '<tr>' +
+                '<td><%=h escape_javascript _('Username:') %></td>' +
+                '<td><%=raw escape_javascript text_field_tag 'username', params[:username], :class => 'loginfield', :id => nil %></td>' +
+              '</tr>' +
+              '<tr>' +
+                '<td><%=h escape_javascript _('Password:') %></td>' +
+                '<td><%=raw escape_javascript password_field_tag 'password', nil, :class => 'loginfield', :id => nil %></td>' +
+              '</tr>' +
+              '<tr>' +
+                '<td colspan="2" style="text-align: right;"><%=raw escape_javascript submit_tag(_('Log In')) %></td>' +
+              '</tr>' +
+            '</table>' +
+          '</form>' +
         '</div>' +
-        '<div class="summary nodesum">' +
-          '<h2 class="clickable nodesum-label"></h2>' +
-          '<table cellpadding="0" cellspacing="0">' +
-            '<tr class="nodesum-pending ns-transient clickable" style="display: none;"><td><span style="float: left;" class="ui-icon ui-icon-refresh"></span>' + GETTEXT.node_state_pending() + ':</td><td class="ar"></td></tr>' +
-            '<tr class="nodesum-online ns-active clickable" style="display: none;"><td><span style="float: left;" class="ui-icon ui-icon-play"></span>' + GETTEXT.node_state_online() + ':</td><td class="ar"></td></tr>' +
-            '<tr class="nodesum-standby ns-inactive clickable" style="display: none;"><td><span style="float: left;" class="ui-icon ui-icon-pause"></span>' + GETTEXT.node_state_standby() + ':</td><td class="ar"></td></tr>' +
-            '<tr class="nodesum-offline ns-inactive clickable" style="display: none;"><td><span style="float: left;" class="ui-icon ui-icon-stop"></span>' + GETTEXT.node_state_offline() + ':</td><td class="ar"></td></tr>' +
-            '<tr class="nodesum-unclean ns-error clickable" style="display: none;"><td><span style="float: left;" class="ui-icon ui-icon-notice"></span>' + GETTEXT.node_state_unclean() + ':</td><td class="ar"></td></tr>' +
-          "</table>" +
-        "</div>" +
-        '<div class="summary ressum">' +
-          '<h2 class="clickable ressum-label"></span></h2>' +
-          '<table cellpadding="0" cellspacing="0">' +
-            '<tr class="ressum-pending rs-transient clickable" style="display: none;"><td><span style="float: left;" class="ui-icon ui-icon-refresh"></span>' + GETTEXT.resource_state_pending() + ':</td><td class="ar"></td></tr>' +
-            '<tr class="ressum-started rs-active clickable" style="display: none;"><td><span style="float: left;" class="ui-icon ui-icon-play"></span>' + GETTEXT.resource_state_started() + ':</td><td class="ar"></td></tr>' +
-            '<tr class="ressum-master rs-master clickable" style="display: none;"><td><span style="float: left;" class="ui-icon ui-icon-play"></span>' + GETTEXT.resource_state_master() + ':</td><td class="ar"></td></tr>' +
-            '<tr class="ressum-slave rs-slave clickable" style="display: none;"><td><span style="float: left;" class="ui-icon ui-icon-play"></span>' + GETTEXT.resource_state_slave() + ':</td><td class="ar"></td></tr>' +
-            '<tr class="ressum-stopped rs-inactive clickable" style="display: none;"><td><span style="float: left;" class="ui-icon ui-icon-stop"></span>' + GETTEXT.resource_state_stopped() + ':</td><td class="ar"></td></tr>' +
-          "</table>" +
+        '<div class="cluster-status">' +
+          '<h2 class="mon-warning" style="display: none;"></h2>' +
+          '<h2 class="cluster-error clickable" style="display: none;"><span style="float: left;" class="ui-icon ui-icon-alert"></span><%=h escape_javascript _("Cluster has errors - click for details") %></h2>' +
+          '<div class="summary ticketsum">' +
+            '<h2 class="clickable">' + GETTEXT.tickets() + '</h2>' +
+            '<table cellpadding="0" cellspacing="0" style="white-space: nowrap;">' +
+              '<tr class="ticketsum-granted rs-active clickable"><td><span style="float: left;" class="ui-icon ui-icon-check"></span>' + GETTEXT.ticket_granted() + ':</td><td class="ar"></td></tr>' +
+              '<tr class="ticketsum-revoked rs-inactive clickable"><td><span style="float: left;" class="ui-icon ui-icon-cancel"></span>' + GETTEXT.ticket_revoked() + ':</td><td class="ar"></td></tr>' +
+            '</table>' +
+          '</div>' +
+          '<div class="summary nodesum">' +
+            '<h2 class="clickable nodesum-label"></h2>' +
+            '<table cellpadding="0" cellspacing="0">' +
+              '<tr class="nodesum-pending ns-transient clickable" style="display: none;"><td><span style="float: left;" class="ui-icon ui-icon-refresh"></span>' + GETTEXT.node_state_pending() + ':</td><td class="ar"></td></tr>' +
+              '<tr class="nodesum-online ns-active clickable" style="display: none;"><td><span style="float: left;" class="ui-icon ui-icon-play"></span>' + GETTEXT.node_state_online() + ':</td><td class="ar"></td></tr>' +
+              '<tr class="nodesum-standby ns-inactive clickable" style="display: none;"><td><span style="float: left;" class="ui-icon ui-icon-pause"></span>' + GETTEXT.node_state_standby() + ':</td><td class="ar"></td></tr>' +
+              '<tr class="nodesum-offline ns-inactive clickable" style="display: none;"><td><span style="float: left;" class="ui-icon ui-icon-stop"></span>' + GETTEXT.node_state_offline() + ':</td><td class="ar"></td></tr>' +
+              '<tr class="nodesum-unclean ns-error clickable" style="display: none;"><td><span style="float: left;" class="ui-icon ui-icon-notice"></span>' + GETTEXT.node_state_unclean() + ':</td><td class="ar"></td></tr>' +
+            "</table>" +
+          "</div>" +
+          '<div class="summary ressum">' +
+            '<h2 class="clickable ressum-label"></span></h2>' +
+            '<table cellpadding="0" cellspacing="0">' +
+              '<tr class="ressum-pending rs-transient clickable" style="display: none;"><td><span style="float: left;" class="ui-icon ui-icon-refresh"></span>' + GETTEXT.resource_state_pending() + ':</td><td class="ar"></td></tr>' +
+              '<tr class="ressum-started rs-active clickable" style="display: none;"><td><span style="float: left;" class="ui-icon ui-icon-play"></span>' + GETTEXT.resource_state_started() + ':</td><td class="ar"></td></tr>' +
+              '<tr class="ressum-master rs-master clickable" style="display: none;"><td><span style="float: left;" class="ui-icon ui-icon-play"></span>' + GETTEXT.resource_state_master() + ':</td><td class="ar"></td></tr>' +
+              '<tr class="ressum-slave rs-slave clickable" style="display: none;"><td><span style="float: left;" class="ui-icon ui-icon-play"></span>' + GETTEXT.resource_state_slave() + ':</td><td class="ar"></td></tr>' +
+              '<tr class="ressum-stopped rs-inactive clickable" style="display: none;"><td><span style="float: left;" class="ui-icon ui-icon-stop"></span>' + GETTEXT.resource_state_stopped() + ':</td><td class="ar"></td></tr>' +
+            "</table>" +
+          "</div>" +
         "</div>"));
     },
     _init: function() {
@@ -90,8 +112,43 @@ cluster data structure is mini cib + mon_node:
         remove_cluster(self.options.name);
         self.element.remove();
       });
+      e.find("input[type=submit]").click(function() {
+        self.abort_req();
+        self.req = $.ajax({ url: "https://" + self.options.cluster.mon_node + ":7630/session",
+          timeout: 30000,
+          data: "format=json" +
+            "&username=" + escape(e.find("input[name=username]").val()) +
+            "&password=" + escape(e.find("input[name=password]").val()),
+          dataType: "json", // necessary?
+          type: "POST",
+          cross_domain_hack: true,
+          success: function(data) {
+            self.element.find(".cluster-login").hide();
+            // TODO(should): spinner
+            self.update_cib();
+          },
+          error: function(request) {
+            var err;
+            if (request.readyState > 1) {
+              var json = json_from_request(request);
+              if (json && json.errors) {
+                err = json.errors.join(", ");
+              } else {
+                if (request.status >= 10000) {
+                  err = GETTEXT.err_connection();
+                } else {
+                  err = GETTEXT.err_unexpected(request.status + " " + request.statusText);
+                }
+              }
+            } else {
+              err = "<%=h escape_javascript _("Timeout: Please try again") %>";
+            }
+            self.element.find(".login-warning").html(err);
+          }
+        });
+      });
       self._redraw();
-      self.do_update();
+      self.update_cib();
     },
     abort_req: function() {
       if (this.req && this.req.abort) { this.req.abort(); }
@@ -105,7 +162,7 @@ cluster data structure is mini cib + mon_node:
         type: "GET",
         cross_domain_hack: true,    // needed to get proper headers
         success: function(data) {
-          // Note: success fires even on request failure
+          // Note: success fires on broken request (e.g.: SSL cert or CORS problem)
           if (data) {
             self.element.find(".mon-warning").hide();
             if (data.cur_epoch != self.cur_epoch) {
@@ -117,6 +174,7 @@ cluster data structure is mini cib + mon_node:
             self._cycle_mon_node();
           }
         }
+        // TODO(must): error handler (e.g. timeouts)
       });
     },
     update_cib: function() {
@@ -129,10 +187,11 @@ cluster data structure is mini cib + mon_node:
         type: "GET",
         cross_domain_hack: true,    // needed to get proper headers
         success: function(data) {
-          // Note: success fires even on request failure
+          // Note: success fires on broken request (e.g.: SSL cert or CORS problem)
           self.cur_epoch = "";
           if (data) {
             self.element.find(".mon-warning").hide();
+            self.element.find(".cluster-status").show();
             var mn = self.options.cluster.mon_node; // this is silly
             // !! might not have cib.meta
             self.options.cluster = data;
@@ -144,6 +203,39 @@ cluster data structure is mini cib + mon_node:
             self.do_update();
           } else {
             self._cycle_mon_node();
+          }
+        },
+        error: function(request) {
+          var err;
+          if (request.readyState > 1) {
+            if (request.status == 403) {
+              // HANDLE THIS
+              self.element.find(".cluster-status").hide();
+              self.element.find(".cluster-login").show();
+              self.element.find(".login-warning").html("<%=h escape_javascript _('Permission denied. Please log in to %{node}') % { :node => '_NODE_' } %>".replace('_NODE_', self.options.cluster.mon_node));
+              return;
+            } else {
+              var json = json_from_request(request);
+              if (json && json.errors) {
+                err = json.errors.join(", ");
+              } else {
+                if (request.status >= 10000) {
+                  err = GETTEXT.err_connection();
+                } else {
+                  err = GETTEXT.err_unexpected(request.status + " " + request.statusText);
+                }
+              }
+            }
+          }
+          if (!err) {
+            // timeout
+            err = "<%=h escape_javascript _("Can't contact Hawk on %{node}. Retrying every 5 seconds.") % { :node => '_NODE_' } %>".replace('_NODE_', self.options.cluster.mon_node);
+          }
+          if (err) {
+            var w = self.element.find(".mon-warning");
+            w.html(err);
+            w.show();
+            setTimeout(function() { self.update_cib(); }, 5000);
           }
         }
       });
@@ -195,7 +287,7 @@ cluster data structure is mini cib + mon_node:
     _cycle_mon_node: function(monitor) {
       var self = this;
       var w = self.element.find(".mon-warning");
-      w.html("<%=h escape_javascript _("Can't contact Hawk on %{node}. Retrying every 5 seconds.") % { :node => '_NODE_' } %>".replace('_NODE_', this.options.cluster.mon_node));
+      w.html("<%=h escape_javascript _("Can't contact Hawk on %{node}. Retrying every 5 seconds.") % { :node => '_NODE_' } %>".replace('_NODE_', self.options.cluster.mon_node));
       w.show();
       var nl = self.options.cluster.node_list;
       if (nl && nl.length) {
@@ -299,22 +391,24 @@ function add_cluster() {
         // TODO(should): show spinner?
         adding_cluster = true;
 
-        var req = $.ajax({ url: "https://" + hn + ":7630/cib/live",
+        var req = $.ajax({ url: "https://" + hn + ":7630/session/new",
           timeout:  20000,
-          data: "format=json&mini=true",
+          data: "format=json",
           dataType: "json",   // necessary?
           type: "GET",
           cross_domain_hack: true,    // needed to get proper headers
           success: function(data, status, xhr) {
-            if (!data) {
+            if (xhr && xhr.status == 200) {
+              clusters[cn] = {
+                node_list: [ hn ],
+                mon_node: hn
+              };
+              insert_cluster(cn);
+              $(self).dialog("close");
+            } else {
               // apparently I can't differentiate a broken/illegal CORS
               // request from other types of failure.  FFS.
               alert("Host not found or some other problem");
-            } else {
-              clusters[cn] = data;
-              clusters[cn].mon_node = hn;
-              insert_cluster(cn);
-              $(self).dialog("close");
             }
             adding_cluster = false;
             $(self).dialog().parent().find(".ui-dialog-buttonpane button").removeAttr("disabled");
