@@ -32,17 +32,6 @@
 class CibController < ApplicationController
   before_filter :login_required
 
-  # TODO(must): These hacks allow unauthenticated R/O access to mini cib
-  # for cluster dashboard.  Need to remove these once we have proper login
-  # sorted.
-  def login_required
-    params[:mini] ? false : super
-  end
-
-  def current_user
-    super || (params[:mini] ? "hacluster" : nil)
-  end
-
   def index
     # Strictly, this is meant to be a list of CIBs, which would thus
     # logically include any accessible shadow CIBs...
