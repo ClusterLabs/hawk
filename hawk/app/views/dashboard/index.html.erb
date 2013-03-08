@@ -174,8 +174,13 @@ cluster data structure is mini cib + mon_node:
           } else {
             self._cycle_mon_node();
           }
+        },
+        error: function(request) {
+          var w = self.element.find(".mon-warning");
+          w.html("<%=h escape_javascript _("Can't contact Hawk on %{node}. Retrying every 5 seconds.") % { :node => '_NODE_' } %>".replace('_NODE_', self.options.cluster.mon_node));
+          w.show();
+          setTimeout(function() { self.update_cib(); }, 5000);
         }
-        // TODO(must): error handler (e.g. timeouts)
       });
     },
     update_cib: function() {
