@@ -42,23 +42,37 @@ class SessionsController < ApplicationController
   end
 
   def new
-    # render login screen if not already logged in
-    redirect_back_or_default root_url if authorized?
+    respond_to do |format|
+      format.any do
+        # render login screen if not already logged in
+        redirect_back_or_default root_url if authorized?
+      end
+      format.json do
+        # Explicity allow CORS
+        # TODO(should): Consolidate with CibController and ApplicationController
+        if request.headers["Origin"]
+          response.headers["Access-Control-Allow-Origin"] = request.headers["Origin"]
+          response.headers["Access-Control-Allow-Credentials"] = "true"
+        end
+        # This is fake, to allow the dashboard to figure out whether it
+        # can talk to this node at all (very quick response)
+        render :status => 200, :json => nil
+      end
+    end
   end
 
   # called from login screen
   HAWK_CHKPWD = '/usr/sbin/hawk_chkpwd'
   def create
+    ok = false
+    msg = ""
     if params[:username].blank?
-      flash[:warning] = _('Username not specified')
-      redirect_to :action => 'new'
+      msg = _('Username not specified')
     elsif params[:username].include?("'") || params[:username].include?("$")
       # No ' or $ characters, because this is going to the shell
-      flash[:warning] = _('Invalid username')
-      redirect_to :action => 'new'
+      msg = _('Invalid username')
     elsif params[:password].blank?
-      flash[:warning] = _('Password not specified')
-      redirect_to :action => 'new', :username => params[:username]
+      msg = _('Password not specified')
     else
       if File.exists?(HAWK_CHKPWD) && File.executable?(HAWK_CHKPWD)
         IO.popen("#{HAWK_CHKPWD} passwd '#{params[:username]}'", 'w+') do |pipe|
@@ -69,15 +83,37 @@ class SessionsController < ApplicationController
           # The user can log in, and they're in our required group
           reset_session
           session[:username] = params[:username]
-          redirect_back_or_default root_url
+          ok = true
         else
           # No dice...
-          flash[:warning] = _('Invalid username or password')
-          redirect_to :action => 'new', :username => params[:username]
+          msg = _('Invalid username or password')
         end
       else
-        flash[:warning] = _('%s is not installed') % HAWK_CHKPWD
-        redirect_to :action => 'new', :username => params[:username]
+        msg = _('%s is not installed') % HAWK_CHKPWD
+      end
+    end
+
+    respond_to do |format|
+      format.any do
+        if ok
+          redirect_back_or_default root_url
+        else
+          flash[:warning] = msg
+          redirect_to :action => 'new', :username => params[:username]
+        end
+      end
+      format.json do
+        # Explicity allow CORS
+        # TODO(should): Consolidate with CibController and ApplicationController
+        if request.headers["Origin"]
+          response.headers["Access-Control-Allow-Origin"] = request.headers["Origin"]
+          response.headers["Access-Control-Allow-Credentials"] = "true"
+        end
+        if ok
+          render :status => 200, :json => nil
+        else
+          render :status => 403, :json => { :errors => [ msg ] }
+        end
       end
     end
   end
