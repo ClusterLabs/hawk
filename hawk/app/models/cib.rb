@@ -497,7 +497,7 @@ class Cib < CibObject
             # these, so we fake them back in if they're not present, by getting
             # the current maximum instance number (if present) and incrementing
             # it.
-            instance = @resources_by_id[id][:instances].select {|k,v| k.to_i rescue false}.map {|k,v| k.to_i}.max
+            instance = @resources_by_id[id][:instances].select {|k,v| Util.numeric?(k)}.map {|k,v| k.to_i}.max
             if instance == nil
               instance = "0"
             else
