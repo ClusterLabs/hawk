@@ -31,6 +31,16 @@
 # For generic resource functionality only (details, events).
 # Specifics (create, delete etc.) belong in Primitive etc.
 
+# TODO(should): move this to Util?
+def sane_time(t)
+  t = t.to_i
+  if (t > 0)
+    Time.at(t).strftime("%Y-%m-%d %H:%M:%S")
+  else
+    ""
+  end
+end
+
 class ResourcesController < ApplicationController
   before_filter :login_required
 
@@ -55,12 +65,12 @@ class ResourcesController < ApplicationController
     # Primitives are the only things that can actually have op history and fail counts
     return unless @res.class == Primitive
 
-    # Get fail counts
+    # Get fail counts and op history
     xml = REXML::Document.new(Invoker.instance.cibadmin('-Ql', '--xpath', '//status'))
-    xml.elements.each("status/node_state/transient_attributes") do |ta|
-      n = ta.attributes["id"]
-      @op_history[n] = { :fail_count => 0 }
-      ta.elements.each("instance_attributes/nvpair") do |nv|
+    xml.elements.each("status/node_state") do |ns|
+      n = ns.attributes["uname"]
+      @op_history[n] = { :fail_count => 0, :ops => [] }
+      ns.elements.each("transient_attributes/instance_attributes/nvpair") do |nv|
         if nv.attributes["name"].starts_with?("fail-count-")
           id = nv.attributes["name"][11..-1]
           (id, instance) = id.split(':')
@@ -77,6 +87,38 @@ class ResourcesController < ApplicationController
           if id == params[:id]
             @op_history[n][:last_failure] = Time.at(nv.attributes["value"].to_i).strftime("%Y-%m-%d %H:%M:%S")
           end
+        end
+      end
+      # Note: this can only work for clone instances with pacemaker 1.1.8+ (as it's
+      # dropped the instance number, which this selector relies upon)
+      ns.elements.each("lrm/lrm_resources/lrm_resource[@id='#{params[:id]}']") do |lrm_resource|
+        ops = []
+        lrm_resource.elements.each("lrm_rsc_op") do |op|
+          ops << op
+        end
+        # Same sort logic as in Cib model, minus special case for pending migrate ops
+        ops.sort {|a,b|
+          if a.attributes['call-id'].to_i != -1 && b.attributes['call-id'].to_i != -1
+            a.attributes['call-id'].to_i <=> b.attributes['call-id'].to_i
+          elsif a.attributes['call-id'].to_i == -1
+            1
+          elsif b.attributes['call-id'].to_i == -1
+            -1
+          else
+            Rails.logger.error "Inexplicable op sort error (this can't happen)"
+            a.attributes['call-id'].to_i <=> b.attributes['call-id'].to_i
+          end
+        }.each do |op|
+          @op_history[n][:ops] << {
+            :op => op.attributes['operation'],
+            :call_id => op.attributes['call-id'].to_i,
+            :rc_code => op.attributes['rc-code'].to_i,
+            :interval => op.attributes['interval'].to_i,
+            :exec_time => op.attributes['exec-time'].to_i,
+            :queue_time => op.attributes['queue-time'].to_i,
+            :last_rc_change => sane_time(op.attributes['last-rc-change']),
+            :last_run => sane_time(op.attributes['last-run'])
+          }
         end
       end
     end if xml.root
