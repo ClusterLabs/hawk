@@ -33,7 +33,9 @@ $(function() {
       click: function(target) {
         $("#dialog").html('<div style="text-align: center;">' +
           '<img src="' + url_root + '/assets/spinner-32x32.gif" alt="" /></div>');
-        $("#dialog").load(url_root + "/cib/" + (cib_source == "file" ? cib_file : cib_source) + "/nodes/" + item_id(target.attr("id")));
+        $("#dialog").load(url_root + "/cib/" + (cib_source == "file" ? cib_file : cib_source) + "/nodes/" + item_id(target.attr("id")), function() {
+          $("#dialog").dialog("option", "position", "center");
+        });
         var b = {};
         b[GETTEXT.close()]   = function() { $(this).dialog("close"); }
         $("#dialog").dialog("option", {
@@ -146,7 +148,9 @@ $(function() {
         var id = item_id(target.attr("id"));
         $("#dialog").html('<div style="text-align: center;">' +
           '<img src="' + url_root + '/assets/spinner-32x32.gif" alt="" /></div>');
-        $("#dialog").load(url_root + "/cib/" + (cib_source == "file" ? cib_file : cib_source) + "/resources/" + id);
+        $("#dialog").load(url_root + "/cib/" + (cib_source == "file" ? cib_file : cib_source) + "/resources/" + id, function() {
+          $("#dialog").dialog("option", "position", "center");
+        });
         var b = {};
         b[GETTEXT.close()]   = function() { $(this).dialog("close"); }
         $("#dialog").dialog("option", {
