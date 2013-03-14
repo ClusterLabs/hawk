@@ -1,0 +1,31 @@
+<h2><%=h _('Attributes') %></h2>
+<% if @res.meta.any? %>
+<table>
+<% @res.meta.keys.sort{|a,b| a.natcmp(b, true) }.each do |k| %>
+  <tr>
+    <th style="padding-right: 1em;"><%=h k %></th>
+    <td><%=h @res.meta[k] %></td>
+  </tr>
+<% end %>
+</table>
+<% else %>
+<%=h _('No attributes defined') %>
+<% end %>
+
+<% if @op_history.any? %>
+<% @op_history.keys.sort{|a,b| a.natcmp(b, true) }.each do |k| %>
+<h2><%=h k %></h2>
+<table>
+  <tr>
+    <th style="padding-right: 1em;"><%=h _('Fail Count') %></th>
+    <td><%=h @op_history[k][:fail_count] %></td>
+  </tr>
+  <% if @op_history[k][:last_failure] %>
+  <tr>
+    <th style="padding-right: 1em;"><%=h _('Last Failure') %></th>
+    <td><%=h @op_history[k][:last_failure] %></td>
+  </tr>
+  <% end %>
+</table>
+<% end %>
+<% end %>

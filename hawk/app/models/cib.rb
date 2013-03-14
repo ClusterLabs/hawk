@@ -585,27 +585,6 @@ class Cib < CibObject
       @tickets[t] = { :granted => false } unless @tickets[rt.attributes["ticket"]]
     end
 
-    # Get fail counts
-    @xml.elements.each("cib/status/node_state/transient_attributes") do |ta|
-      n = ta.attributes["id"]
-      ta.elements.each("instance_attributes/nvpair") do |nv|
-        if nv.attributes["name"].starts_with?("fail-count-")
-          id = nv.attributes["name"][11..-1]
-          (id, instance) = id.split(':')
-          # We throw away instance here (it won't exist anyway on pacemaker >= 1.1.8)
-          if @resources_by_id[id]
-            @resources_by_id[id][:fail_count] = { n => Util.char2score(nv.attributes["value"]) };
-          end
-        elsif nv.attributes["name"].starts_with?("last-failure-")
-          id = nv.attributes["name"][13..-1]
-          (id, instance) = id.split(':')
-          # We throw away instance here (it won't exist anyway on pacemaker >= 1.1.8)
-          if @resources_by_id[id]
-            @resources_by_id[id][:last_failure] = { n => nv.attributes["value"].to_i };
-          end
-        end
-      end
-    end
   end
 
 end

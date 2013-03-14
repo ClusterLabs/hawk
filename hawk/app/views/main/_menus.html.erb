@@ -37,7 +37,7 @@ $(function() {
         var b = {};
         b[GETTEXT.close()]   = function() { $(this).dialog("close"); }
         $("#dialog").dialog("option", {
-          title:    parts[1],
+          title:    parts[1],   // TODO(should): can't this just be item_id(target.attr("id")) ?
           buttons:  b
         });
         $("#dialog").dialog("open");
@@ -144,55 +144,11 @@ $(function() {
       icon: "details.png",
       click: function(target) {
         var id = item_id(target.attr("id"));
-        var html =
-          '<h2><%=h escape_javascript _('Attributes') %></h2>';
-        var attrs = [];
-        $.each(resources_by_id[id].attributes, function(k) {
-          attrs.push(k);
-        });
-        attrs.sort();
-        if (attrs.length) {
-          html += '<table cellpadding="0">';
-          $.each(attrs, function(i, a) {
-            html +=
-              '<tr>' +
-                '<th style="padding-right: 1em;">' + a + ':</th>' +
-                '<td>' + resources_by_id[id].attributes[a] + '</td>' +
-              '</tr>';
-          });
-          html += '</table>';
-        } else {
-          html += '<%=h escape_javascript _('No attributes defined') %>';
-        }
-        if (!resources_by_id[id].children) {
-          // Fail counts only exist on primitives, so only do this for resources
-          // with no children
-          $.each(cib.nodes, function() {
-            var fc = resources_by_id[id].fail_count && resources_by_id[id].fail_count[this.uname] ? resources_by_id[id].fail_count[this.uname] : 0;
-            var lf = resources_by_id[id].last_failure && resources_by_id[id].last_failure[this.uname] ? new Date(resources_by_id[id].last_failure[this.uname] * 1000) : false;
-            html +=
-              '<h2>' + this.uname + '</h2>' +
-              '<table cellpadding="0">' +
-                '<tr>' +
-                  '<th style="padding-right: 1em;"><%=h escape_javascript _("Fail Count:") %></th>' +
-                  '<td>' + fc + '</td>' +
-                '</tr>';
-            if (lf) {
-              html +=
-                '<tr>' +
-                  '<th style="padding-right: 1em;"><%=h escape_javascript _("Last Failure:") %></th>' +
-                  '<td>' + lf + '</td>' +
-                '</tr>'
-            }
-            html +=
-              '</table>';
-          });
-        }
-        $("#dialog").html(html);
+        $("#dialog").html('<div style="text-align: center;">' +
+          '<img src="' + url_root + '/assets/spinner-32x32.gif" alt="" /></div>');
+        $("#dialog").load(url_root + "/cib/" + (cib_source == "file" ? cib_file : cib_source) + "/resources/" + id);
         var b = {};
-        b[GETTEXT.close()]   = function() {
-          $(this).dialog("close");
-        }
+        b[GETTEXT.close()]   = function() { $(this).dialog("close"); }
         $("#dialog").dialog("option", {
           title:    id,
           buttons:  b

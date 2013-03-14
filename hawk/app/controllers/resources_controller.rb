@@ -47,9 +47,40 @@ class ResourcesController < ApplicationController
     @title = _('Resources')
   end
 
-#  def show
-#    @node = Resource.find params[:id]
-#  end
+  def show
+    @res = Resource.find params[:id]
+
+    @op_history = {}
+
+    # Primitives are the only things that can actually have op history and fail counts
+    return unless @res.class == Primitive
+
+    # Get fail counts
+    xml = REXML::Document.new(Invoker.instance.cibadmin('-Ql', '--xpath', '//status'))
+    xml.elements.each("status/node_state/transient_attributes") do |ta|
+      n = ta.attributes["id"]
+      @op_history[n] = { :fail_count => 0 }
+      ta.elements.each("instance_attributes/nvpair") do |nv|
+        if nv.attributes["name"].starts_with?("fail-count-")
+          id = nv.attributes["name"][11..-1]
+          (id, instance) = id.split(':')
+          # We throw away instance here (it won't exist anyway on pacemaker >= 1.1.8)
+          # (would be more efficient to just assume no instance and ask directly
+          # for attribute by name)
+          if id == params[:id]
+            @op_history[n][:fail_count] = Util.char2score(nv.attributes["value"])
+          end
+        elsif nv.attributes["name"].starts_with?("last-failure-")
+          id = nv.attributes["name"][13..-1]
+          (id, instance) = id.split(':')
+          # We throw away instance here (it won't exist anyway on pacemaker >= 1.1.8)
+          if id == params[:id]
+            @op_history[n][:last_failure] = Time.at(nv.attributes["value"].to_i).strftime("%Y-%m-%d %H:%M:%S")
+          end
+        end
+      end
+    end if xml.root
+  end
 
   # Don't strictly need CIB for this...
   def events
