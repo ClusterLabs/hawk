@@ -49,12 +49,19 @@ class Cib < CibObject
     e ? get_xml_attr(e, 'value', default) : default
   end
 
-  def get_resource(elem, clone_max = nil, is_ms = false)
+  def get_resource(elem, is_managed = true, clone_max = nil, is_ms = false)
     res = {
       :id => elem.attributes['id'],
-      :attributes => {}
+      :attributes => {},
+      :is_managed => is_managed
     }
     @resources_by_id[elem.attributes['id']] = res
+    elem.elements.each("meta_attributes/nvpair/") do |nv|
+      res[:attributes][nv.attributes["name"]] = nv.attributes["value"]
+    end
+    if res[:attributes].has_key?("is-managed")
+      res[:is_managed] = Util.unstring(res[:attributes]["is-managed"], true)
+    end
     case elem.name
     when 'primitive'
       res[:class]     = elem.attributes['class']
@@ -76,10 +83,10 @@ class Cib < CibObject
       end
       if elem.elements['primitive']
         elem.elements.each('primitive') do |p|
-          res[:children] << get_resource(p, clone_max, is_ms || elem.name == 'master')
+          res[:children] << get_resource(p, res[:is_managed], clone_max, is_ms || elem.name == 'master')
         end
       elsif elem.elements['group']
-        res[:children] << get_resource(elem.elements['group'], clone_max, is_ms || elem.name == 'master')
+        res[:children] << get_resource(elem.elements['group'], res[:is_managed], clone_max, is_ms || elem.name == 'master')
       else
         # This can't happen
         Rails.logger.error "Got #{elem.name} without 'primitive' or 'group' child"
@@ -87,9 +94,6 @@ class Cib < CibObject
     else
       # This really can't happen
       Rails.logger.error "Unknown resource type: #{elem.name}"
-    end
-    elem.elements.each("meta_attributes/nvpair/") do |nv|
-      res[:attributes][nv.attributes["name"]] = nv.attributes["value"]
     end
     res
   end
@@ -270,6 +274,11 @@ class Cib < CibObject
       @crm_config[p.attributes['name'].to_sym] = get_xml_attr(p, 'value')
     end
 
+    is_managed_default = true
+    if @crm_config.has_key?(:"is-managed-default") && !@crm_config[:"is-managed-default"]
+      is_managed_default = false
+    end
+
     @nodes = []
     @xml.elements.each('cib/configuration/nodes/node') do |n|
       uname = n.attributes['uname']
@@ -302,7 +311,7 @@ class Cib < CibObject
     @resource_count = 0
     # This gives only resources capable of being instantiated, and skips (e.g.) templates
     @xml.elements.each('cib/configuration/resources/*[self::primitive or self::group or self::clone or self::master]') do |r|
-      @resources << get_resource(r)
+      @resources << get_resource(r, is_managed_default && !@crm_config[:"maintenance-mode"])
     end
     # Templates deliberately kept separate from resources, because
     # we need an easy way of listing them separately, and they don't
@@ -518,10 +527,10 @@ class Cib < CibObject
             # there's already a running instance with this ID.  An instance
             # is running iff:
             # - @resources_by_id[id][:instances][instance] exists, and,
-            # - there are state keys other than :stopped, :unknown or :failed_ops present
+            # - there are state keys other than :stopped, :unknown, :is_managed or :failed_ops present
             alt_i = instance
             while @resources_by_id[id][:instances][alt_i] &&
-                  @resources_by_id[id][:instances][alt_i].count{|k,v| (k != :stopped && k != :unknown && k != :failed_ops)} > 0
+                  @resources_by_id[id][:instances][alt_i].count{|k,v| (k != :stopped && k != :unknown && k != :is_managed && k != :failed_ops)} > 0
               alt_i = (alt_i.to_i + 1).to_s
             end
             if alt_i != instance
@@ -539,6 +548,10 @@ class Cib < CibObject
           @resources_by_id[id][:instances][instance][state] << n
           @resources_by_id[id][:instances][instance][:failed_ops] = [] unless @resources_by_id[id][:instances][instance][:failed_ops]
           @resources_by_id[id][:instances][instance][:failed_ops].concat failed_ops
+          # Carry is_managed into the instance itself (needed so we can correctly
+          # display unmanaged clone instances if a single node is on maintenance)
+          @resources_by_id[id][:instances][instance][:is_managed] = @resources_by_id[id][:instances][:is_managed]
+          @resources_by_id[id][:instances][instance][:is_managed] = false if node[:maintenance]
           # NOTE: Do *not* add any more keys here without adjusting the renamer above
         else
           # It's an orphan
