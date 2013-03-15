@@ -109,6 +109,7 @@ var table_view = {
       d.find("span").html(escape_html(GETTEXT.node_state(this.uname, label)));
       node_row.append(d);
       res_row.append($('<td class="ncol">&nbsp;</td>'));
+      flag_maintenance("node::" + this.uname, this.maintenance);
       if (cib_source != "file") {
         add_mgmt_menu($(jq("node::" + this.uname + "::menu")));
       }

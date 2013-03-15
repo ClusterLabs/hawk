@@ -274,6 +274,7 @@ class Cib < CibObject
     @xml.elements.each('cib/configuration/nodes/node') do |n|
       uname = n.attributes['uname']
       state = :unclean
+      maintenance = @crm_config[:"maintenance-mode"] ? true : false
       ns = @xml.elements["cib/status/node_state[@uname='#{uname}']"]
       if ns
         state = crm_config[:stonith_enabled] ? determine_online_status_fencing(ns) : determine_online_status_no_fencing(ns)
@@ -283,11 +284,16 @@ class Cib < CibObject
           if standby && ['true', 'yes', '1', 'on'].include?(standby.attributes['value'])
             state = :standby
           end
+          m = n.elements["instance_attributes/nvpair[@name='maintenance']"]
+          if m && ['true', 'yes', '1', 'on'].include?(m.attributes['value'])
+            maintenance = true
+          end
         end
       end
       @nodes << {
         :uname => uname,
-        :state => state
+        :state => state,
+        :maintenance => maintenance
       }
     end
 

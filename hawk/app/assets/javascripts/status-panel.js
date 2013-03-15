@@ -144,6 +144,7 @@ var panel_view = {
         $(jq(panel.id+"::state")).addClass("ui-icon " + panel.state_icon);
       }
       flag_error(panel.id, panel.error ? panel.error : []);
+      flag_maintenance(panel.id, panel.maintenance ? true : false);
     }
 
     if (!panel.children) return false;
@@ -247,7 +248,8 @@ var panel_view = {
         className:  "node ns-" + className,
         label:      GETTEXT.node_state(this.uname, label),
         state_icon: state_icon,
-        menu:       true
+        menu:       true,
+        maintenance: this.maintenance
       });
     });
     return panel;
