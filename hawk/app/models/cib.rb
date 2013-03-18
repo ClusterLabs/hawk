@@ -541,16 +541,19 @@ class Cib < CibObject
             # instance will be nil here for regular primitives
             instance = :default
           end
-          @resources_by_id[id][:instances][instance] = {} unless @resources_by_id[id][:instances][instance]
+          @resources_by_id[id][:instances][instance] = {
+            # Carry is_managed into the instance itself (needed so we can correctly
+            # display unmanaged clone instances if a single node is on maintenance,
+            # but only do this on first initialization else state may get screwed
+            # up later
+            :is_managed => @resources_by_id[id][:is_managed] && !@crm_config[:"maintenance-mode"]
+          } unless @resources_by_id[id][:instances][instance]
           @resources_by_id[id][:instances][instance][state] = [] unless @resources_by_id[id][:instances][instance][state]
           n = { :node => node[:uname] }
           n[:substate] = substate if substate
           @resources_by_id[id][:instances][instance][state] << n
           @resources_by_id[id][:instances][instance][:failed_ops] = [] unless @resources_by_id[id][:instances][instance][:failed_ops]
           @resources_by_id[id][:instances][instance][:failed_ops].concat failed_ops
-          # Carry is_managed into the instance itself (needed so we can correctly
-          # display unmanaged clone instances if a single node is on maintenance)
-          @resources_by_id[id][:instances][instance][:is_managed] = @resources_by_id[id][:is_managed]
           if state != :unknown && state != :stopped && node[:maintenance]
             # mark it unmanaged if the node is on maintenance and it's actually
             # running here (don't mark it unmanaged if it's stopped on this
