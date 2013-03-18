@@ -135,6 +135,9 @@ var panel_view = {
       // "Real" ui.panel expandable panel
       $(jq(panel.id)).panel("set_class", panel.className);
       $(jq(panel.id)).panel("set_label", panel.label);
+      if (panel.id.indexOf("resource") == 0) {
+        flag_maintenance(panel.id, panel.is_managed ? false : GETTEXT.unmanaged());
+      }
     } else {
       // Individual (non-ui.panel) resources/nodes
       $(jq(panel.id)).attr("class", "ui-corner-all " + panel.className);
@@ -144,7 +147,11 @@ var panel_view = {
         $(jq(panel.id+"::state")).addClass("ui-icon " + panel.state_icon);
       }
       flag_error(panel.id, panel.error ? panel.error : []);
-      flag_maintenance(panel.id, panel.maintenance ? true : false);
+      if (panel.id.indexOf("resource") == 0) {
+        flag_maintenance(panel.id, panel.is_managed ? false : GETTEXT.unmanaged());
+      } else {
+        flag_maintenance(panel.id, panel.maintenance ? GETTEXT.maintenance_mode() : false);
+      }
     }
 
     if (!panel.children) return false;
@@ -165,6 +172,7 @@ var panel_view = {
             d.panel({
               menu_icon: url_root + "/assets/transparent-16x16.gif",
               menu_id:   this.id + "::menu",
+              error_id:  this.id + "::error",
               open:      this.open
             });
           } else {
@@ -301,7 +309,8 @@ var panel_view = {
         label:      label,
         state_icon: state_icon,
         active:     active,
-        error:      res.instances[i].failed_ops
+        error:      res.instances[i].failed_ops,
+        is_managed: res.instances[i].is_managed
       });
     }
     return set;
@@ -319,7 +328,8 @@ var panel_view = {
             className: "res-group rs-active",
             label:     GETTEXT.resource_group(res.id),
             open:      false,
-            children:  []
+            children:  [],
+            is_managed: res.is_managed
           };
           if (this.instance != "default") {
             groups[this.instance].id += ":" + this.instance;
@@ -369,7 +379,8 @@ var panel_view = {
       className:  "res-clone " + status_class,
       label:      (res.type == "master" ? GETTEXT.resource_master(res.id) : GETTEXT.resource_clone(res.id)),
       open:       open,
-      children:   children
+      children:   children,
+      is_managed: res.is_managed
     };
   },
   _cib_to_reslist_panel: function(resources, label) {

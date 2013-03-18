@@ -110,58 +110,53 @@ function new_item_div(id) {
     '<div id="' + id + '">' +
       '<a id="' + id + '::menu"><img src="' + url_root + '/assets/transparent-16x16.gif" class="action-icon" alt="" /></a>' +
       '<div id="' + id + '::state" style="float: left; width: 16px; height: 16px;"></div>' +
-      '<div id="' + id + '::error" style="float: right; width: 16px; height: 16px;"></div>' +
+      '<div id="' + id + '::error" class="status-icons">' +
+        '<span class="ui-icon ui-icon-alert" style="float: right; display: none;" />' +
+        '<span class="ui-icon ui-icon-info" style="float: right; display: none;" />' +
+        '<span class="ui-icon ui-icon-wrench" style="float: right; display: none;" />' +
+      '</div>' +
       '<span id="' + id + '::label"></span>' +
     "</div>");
 }
 
 // Mark items with errors (just an icon at this stage, "error" is boolean)
 function flag_error(id, failed_ops) {
+  var e = $(jq(id+"::error")).find(".ui-icon-alert");
   if (failed_ops.length > 0) {
-    $(jq(id+"::error")).addClass("ui-icon ui-icon-alert");
     var errs = [];
     $.each(failed_ops, function() {
       // TODO(should): Localize "ignored"
       var err = GETTEXT.err_failed_op(this.op, this.node, this.rc_code) + (this.ignored ? " (ignored)" : "");
       errs.push(escape_html(err));
     });
-    $(jq(id+"::error")).attr("title", errs.join(", "));
+    e.attr("title", errs.join(", "));
+    e.show();
   } else {
-    $(jq(id+"::error")).removeClass("ui-icon ui-icon-alert");
-    $(jq(id+"::error")).removeAttr("title");
+    e.removeAttr("title");
+    e.hide();
   }
 }
 
-// Mark items with some info rollover (single string, dumb as a sack of rocks;
-// use either flag_error or flag_info, *not* both at the same time, as
-// flag_error will override flag_info)
-// TODO(should): add a separate info icon so we can have both error and info
+// Mark items with some info rollover
 function flag_info(id, info) {
-  if ($(jq(id+"::error")).hasClass("ui-icon")) {
-    // Do nothing if there's already an error set
-    return;
-  }
+  var e = $(jq(id+"::error")).find(".ui-icon-info");
   if (info) {
-    $(jq(id+"::error")).addClass("ui-icon ui-icon-info");
-    $(jq(id+"::error")).attr("title", info);
+    e.attr("title", info);
+    e.show();
   } else {
-    $(jq(id+"::error")).removeClass("ui-icon ui-icon-info");
-    $(jq(id+"::error")).removeAttr("title");
+    e.removeAttr("title");
+    e.hide();
   }
 }
 
-// NOTE: this is just as dumb as the above
-function flag_maintenance(id, maint) {
-  if ($(jq(id+"::error")).hasClass("ui-icon")) {
-    // Do nothing if there's already an error set
-    return;
-  }
-  if (maint) {
-    $(jq(id+"::error")).addClass("ui-icon ui-icon-wrench");
-    $(jq(id+"::error")).attr("title", GETTEXT.maintenance_mode());
+function flag_maintenance(id, info) {
+  var e = $(jq(id+"::error")).find(".ui-icon-wrench");
+  if (info) {
+    e.attr("title", info);
+    e.show();
   } else {
-    $(jq(id+"::error")).removeClass("ui-icon ui-icon-wrench");
-    $(jq(id+"::error")).removeAttr("title");
+    e.removeAttr("title");
+    e.hide();
   }
 }
 

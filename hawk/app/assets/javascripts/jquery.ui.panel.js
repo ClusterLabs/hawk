@@ -37,6 +37,7 @@
       menu_icon:  "",
       menu_alt:   "",
       menu_id:    null,
+      error_id:   null,
       label:      "",
       body:       null,
       open:       false
@@ -48,7 +49,13 @@
       e.append($(
         '<div class="clickable">' +
           '<div class="tri-closed"></div>' +
-          '<a><img class="action-icon" alt="" /></a><span></span>' +
+          '<a><img class="action-icon" alt="" /></a>' +
+            '<div class="status-icons">' +
+              '<span class="ui-icon ui-icon-alert" style="float: right; display: none;" />' +
+              '<span class="ui-icon ui-icon-info" style="float: right; display: none;" />' +
+              '<span class="ui-icon ui-icon-wrench" style="float: right; display: none;" />' +
+            '</div>' +
+          '<span></span>' +
         "</div>" +
         '<div style="display: none;" class="closed"></div>'));
       this.header     = e.children(":first");
@@ -81,6 +88,9 @@
       }
       if (this.options.menu_id) {
         this.menu_link.attr("id", this.options.menu_id);
+      }
+      if (this.options.error_id) {
+        e.find(".status-icons").attr("id", this.options.error_id);
       }
       this.set_label(this.options.label);
       if (this.options.body) {

@@ -233,7 +233,7 @@ var summary_view = {
       d.attr("class", "ui-corner-all node ns-" + className).attr("style", "display: " + display);
       d.find("span").html(escape_html(GETTEXT.node_state(this.uname, label)));
       $("#itemlist").append(d);
-      flag_maintenance("node::" + this.uname, this.maintenance);
+      flag_maintenance("node::" + this.uname, this.maintenance ? GETTEXT.maintenance_mode() : false);
       if (cib_source != "file") {
         add_mgmt_menu($(jq("node::" + this.uname + "::menu")));
       }
@@ -298,6 +298,7 @@ var summary_view = {
         d.find("span").html(escape_html(label));
         $("#itemlist").append(d);
         flag_error("resource::" + id, this.failed_ops);
+        flag_maintenance("resource::" + id, this.is_managed ? false : GETTEXT.unmanaged());
         if (cib_source != "file") {
           add_mgmt_menu($(jq("resource::" + id + "::menu")));
         }
