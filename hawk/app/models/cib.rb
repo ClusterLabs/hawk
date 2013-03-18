@@ -117,7 +117,10 @@ class Cib < CibObject
           while res[:instances].has_key?(instance.to_s)
             instance += 1
           end
-          res[:instances][instance.to_s] = { :failed_ops => [] }
+          res[:instances][instance.to_s] = {
+            :failed_ops => [],
+            :is_managed => res[:is_managed] && !@crm_config[:"maintenance-mode"]
+          }
         end
         res[:instances].delete(:default) if res[:instances].has_key?(:default)
         # strip any instances outside 0..clone_max if they're not running (these
@@ -133,7 +136,10 @@ class Cib < CibObject
           res[:instances].delete_if {|k, v| k != :default}
           # Inject a default instance if there's not one, as can be the case when
           # working with shadow CIBs.
-          res[:instances][:default] = { :failed_ops => [] } unless res[:instances].has_key?(:default)
+          res[:instances][:default] = {
+            :failed_ops => [],
+            :is_managed => res[:is_managed] && !@crm_config[:"maintenance-mode"]
+          } unless res[:instances].has_key?(:default)
         end
       end
       @resource_count += res[:instances].count if res[:instances]
@@ -577,7 +583,10 @@ class Cib < CibObject
       # (e.g. during cluster bringup) else the panel renderer chokes.
       if @resources_by_id[k][:instances] && @resources_by_id[k][:instances].empty?
         # Always include empty failed_ops array (JS status updater relies on it)
-        @resources_by_id[k][:instances][:default] = { :failed_ops => [] }
+        @resources_by_id[k][:instances][:default] = {
+          :failed_ops => [],
+          :is_managed => @resources_by_id[k][:is_managed] && !@crm_config[:"maintenance-mode"]
+        }
       end
     end
 
