@@ -550,8 +550,13 @@ class Cib < CibObject
           @resources_by_id[id][:instances][instance][:failed_ops].concat failed_ops
           # Carry is_managed into the instance itself (needed so we can correctly
           # display unmanaged clone instances if a single node is on maintenance)
-          @resources_by_id[id][:instances][instance][:is_managed] = @resources_by_id[id][:instances][:is_managed]
-          @resources_by_id[id][:instances][instance][:is_managed] = false if node[:maintenance]
+          @resources_by_id[id][:instances][instance][:is_managed] = @resources_by_id[id][:is_managed]
+          if state != :unknown && state != :stopped && node[:maintenance]
+            # mark it unmanaged if the node is on maintenance and it's actually
+            # running here (don't mark it unmanaged if it's stopped on this
+            # node - it might be running on another node)
+            @resources_by_id[id][:instances][instance][:is_managed] = false
+          end
           # NOTE: Do *not* add any more keys here without adjusting the renamer above
         else
           # It's an orphan
