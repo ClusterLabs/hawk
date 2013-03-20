@@ -133,7 +133,11 @@ protected
       shadow_id = "hawk-#{current_user}"
       result = Invoker.instance.run("crm_shadow", "-b", "-f", "-c", shadow_id)
       if result == true
-        render :json => { :uri => url_for(:cib_id => shadow_id, :sim => nil) }
+        if params[:controller] == "explorer"
+          render :json => { :uri => url_for(:controller => 'main', :action => 'status', :cib_id => shadow_id, :sim => nil) }
+        else
+          render :json => { :uri => url_for(:cib_id => shadow_id, :sim => nil) }
+        end
       else
         render :status => 500, :json => {
           :error  => _('Unable to create shadow CIB'),
