@@ -64,6 +64,7 @@ var simulator = {
       "</div>"));
 
     $("#sim-inject-node").click(function() {
+      if (!cib) return; // can be null if not loaded yet at all
       var html = '<form onsubmit="return false;"><table><tr>' +
         '<th>' + escape_html(GETTEXT.sim_node_node()) + '</th><td><select id="inject-node-uname">';
       $.each(cib.nodes, function() {
@@ -94,6 +95,7 @@ var simulator = {
     });
 
     $("#sim-inject-op").click(function() {
+      if (!cib) return; // can be null if not loaded yet at all
       var html = '<form onsubmit="return false;"><table>';
 
       html += '<tr><td>' + escape_html(GETTEXT.sim_op_resource()) + '</td><td><select id="inject-op-resource">';
@@ -180,6 +182,7 @@ var simulator = {
     });
 
     $("#sim-inject-ticket").click(function() {
+      if (!cib) return; // can be null if not loaded yet at all
       var html = '<form onsubmit="return false;"><table><tr>' +
         '<th>' + escape_html(GETTEXT.sim_ticket_ticket) + '</th><td><select id="inject-ticket-ticket">';
       var tickets = [];
