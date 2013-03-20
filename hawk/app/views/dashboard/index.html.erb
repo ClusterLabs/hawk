@@ -136,7 +136,7 @@ cluster data structure is mini cib + mon_node:
                 err = json.errors.join(", ");
               } else {
                 if (request.status >= 10000) {
-                  err = GETTEXT.err_connection();
+                  err = GETTEXT.err_conn_failed();
                 } else {
                   err = GETTEXT.err_unexpected(request.status + " " + request.statusText);
                 }
@@ -227,7 +227,7 @@ cluster data structure is mini cib + mon_node:
                 err = json.errors.join(", ");
               } else {
                 if (request.status >= 10000) {
-                  err = GETTEXT.err_connection();
+                  err = GETTEXT.err_conn_failed();
                 } else {
                   err = GETTEXT.err_unexpected(request.status + " " + request.statusText);
                 }
@@ -425,7 +425,7 @@ function add_cluster() {
                 alert(json.errors.join(", "));
               } else {
                 if (request.status >= 10000) {
-                  alert(GETTEXT.err_connection());
+                  alert(GETTEXT.err_conn_failed());
                 } else {
                   alert(GETTEXT.err_unexpected(request.status + " " + request.statusText));
                 }

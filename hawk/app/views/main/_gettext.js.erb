@@ -63,8 +63,14 @@ var GETTEXT = {
   err_unexpected: function(msg) {
     return "<%=raw escape_javascript _('Unexpected server error: %s') % '_MSG_' %>".replace('_MSG_', msg);
   },
-  err_connection: function() {
+  err_conn_failed: function() {
     return "<%=raw escape_javascript _('Connection to server failed (server down or network error - will retry every 15 seconds).') %>";
+  },
+  err_conn_timeout: function() {
+    return "<%=raw escape_javascript _('Connection to server timed out - will retry every 15 seconds.') %>";
+  },
+  err_conn_aborted: function() {
+    return "<%=raw escape_javascript _('Connection to server aborted - will retry every 15 seconds.') %>";
   },
   err_denied: function() {
     return "<%=raw escape_javascript _('Permission denied') %>";

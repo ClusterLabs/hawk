@@ -334,7 +334,7 @@ function do_update(cur_epoch)
         // This can occur when onSuccess is called in FF on an
         // aborted request; re-request cib in 15 seconds (see also
         // beforeunload handler in hawk_init).
-        update_errors([GETTEXT.err_connection()]);
+        update_errors([GETTEXT.err_conn_aborted()]);
         hide_status();
         setTimeout(update_cib, 15000);
       }
@@ -345,13 +345,13 @@ function do_update(cur_epoch)
         // Can't rely on request.status if not ready enough
         if (request.status >= 10000) {
           // Crazy winsock(?) error on IE when request aborted
-          update_errors([GETTEXT.err_connection()]);
+          update_errors([GETTEXT.err_conn_failed()]);
         } else {
           update_errors([GETTEXT.err_unexpected(request.status + " " + request.statusText)]);
         }
       } else {
         // Request timed out
-        update_errors([GETTEXT.err_connection()]);
+        update_errors([GETTEXT.err_conn_timeout()]);
       }
       hide_status();
       setTimeout(update_cib, 15000);
@@ -419,7 +419,7 @@ function update_cib()
       } else {
         // 'data' not set (this can occur when onSuccess is called
         // erroneously on request abort; re-request in 15 seconds)
-        update_errors([GETTEXT.err_connection()]);
+        update_errors([GETTEXT.err_conn_aborted()]);
         hide_status();
         setTimeout(update_cib, 15000);
       }
@@ -440,7 +440,7 @@ function update_cib()
             // Unexpectedly busted (e.g.: server fried):
             if (request.status >= 10000) {
               // Crazy winsock(?) error on IE
-              update_errors([GETTEXT.err_connection()]);
+              update_errors([GETTEXT.err_conn_failed()]);
             } else {
               update_errors([GETTEXT.err_unexpected(request.status + " " + request.statusText)]);
             }
@@ -448,7 +448,7 @@ function update_cib()
         }
       } else {
         // Request timed out
-        update_errors([GETTEXT.err_connection()]);
+        update_errors([GETTEXT.err_conn_timeout()]);
       }
       hide_status();
       if (cib_source != "live") {
