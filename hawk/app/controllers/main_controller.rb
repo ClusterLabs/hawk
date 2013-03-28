@@ -95,6 +95,16 @@ class MainController < ApplicationController
     end
   end
 
+  def node_maintenance
+    if params[:node]
+      invoke 'crm_attribute', '-N', params[:node], '-n', 'maintenance', '-v', params[:op] == 'maintenance' ? 'on' : 'off', '-l', 'forever'
+    else
+      render :status => 400, :json => {
+        :error => _('Required parameter "node" not specified')
+      }
+    end
+  end
+
   def node_fence
     if params[:node]
       invoke 'crm_attribute', '-t', 'status', '-U', params[:node], '-n', 'terminate', '-v', 'true'

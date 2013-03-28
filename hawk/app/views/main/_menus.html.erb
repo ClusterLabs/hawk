@@ -18,6 +18,20 @@ $(function() {
       }
     },
     {
+      label: "<%=h escape_javascript _('Maintenance') %>",
+      icon: "maintenance.png",
+      click: function(target) {
+        confirm_op(this.label, item_id(target.attr("id")), "node", "maintenance");
+      }
+    },
+    {
+      label: "<%=h escape_javascript _('Ready') %>",
+      icon: "ready.png",
+      click: function(target) {
+        confirm_op(this.label, item_id(target.attr("id")), "node", "ready");
+      }
+    },
+    {
       label: "<%=h escape_javascript _('Fence Node') %>",
       icon: "kill.png",
       click: function(target) {

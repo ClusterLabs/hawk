@@ -25,6 +25,12 @@ var GETTEXT = {
   node_standby: function(node) {
     return "<%=raw escape_javascript _('This will put node %s on standby.  All resources will be stopped and/or moved to another node.  Do you want to continue?') % '_NODE_' %>".replace('_NODE_', node);
   },
+  node_maintenance: function(node) {
+    return "<%=raw escape_javascript _('This will put node %s in maintenance mode.  All resources on this node will become unmanaged.  Do you want to continue?') % '_NODE_' %>".replace('_NODE_', node);
+  },
+  node_ready: function(node) {
+    return "<%=raw escape_javascript _('This will bring node %s out of maintenance mode.  Do you want to continue?') % '_NODE_' %>".replace('_NODE_', node);
+  },
   node_fence: function(node) {
     return "<%=raw escape_javascript _('This will attempt to immediately fence node %s.  Do you want to continue?') % '_NODE_' %>".replace('_NODE_', node);
   },

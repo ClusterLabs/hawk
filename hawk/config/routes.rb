@@ -93,6 +93,7 @@ Hawk::Application.routes.draw do
   match 'main/resource/migrate' => 'main#resource_migrate', :as => :resource_migrate, :via => :post
   match 'main/resource/delete' => 'main#resource_delete', :as => :resource_delete, :via => :post
   match 'main/node/:op' => 'main#node_standby', :as => :node_standby, :op => /(standby|online)/, :via => :post
+  match 'main/node/:op' => 'main#node_maintenance', :as => :node_maintenance, :op => /(maintenance|ready)/, :via => :post
   match 'main/node/fence' => 'main#node_fence', :as => :node_fence, :via => :post
   match 'main/sim_reset' => 'main#sim_reset', :as => :sim_reset
   match 'main/sim_run' => 'main#sim_run', :as => :sim_run
