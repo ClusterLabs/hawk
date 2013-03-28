@@ -160,7 +160,23 @@ class MainController < ApplicationController
     head :ok
   end
 
+  def sim_reload_state
+    require "tempfile"
+    tmpfile = Tempfile.new("cib_state")
+    shadow_id = ENV["CIB_shadow"]
+    ENV.delete("CIB_shadow")
+    tmpfile.write(Invoker.instance.cibadmin('-Ql', '--xpath', '//status'))
+    tmpfile.close
+    ENV["CIB_shadow"] = shadow_id
+    Invoker.instance.cibadmin('--replace', '--xml-file', tmpfile.path)
+    tmpfile.unlink
+  end
+
   def sim_run
+    # always reset status before run (so we effectively run from current
+    # state of cluster, not state as saved back to shadow cib)
+    sim_reload_state
+
     # TODO(must): sanitize input a bit
     injections = []
     params[:injections].each do |i|
