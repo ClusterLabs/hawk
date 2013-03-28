@@ -82,7 +82,7 @@ function dialogify_detail_links() {
     event.preventDefault(); // may not be necessary
     event.stopPropagation();
     var peinput = $(this).parent().prev().prev().text();
-    var href = $(this).attr("href");
+    var href = $(this).attr("href") + "&format=html";
     var args = $.parseQuery(href.substr(href.indexOf("?")));
     $("#dialog").dialog("option", {
       width: $(window).width() - 32,

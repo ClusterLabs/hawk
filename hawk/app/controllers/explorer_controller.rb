@@ -199,12 +199,12 @@ class ExplorerController < ApplicationController
     if m = params[:left].to_s.match(/.*-([0-9]+)$/) ; l = m[1] ; end
     if m = params[:right].match(/.*-([0-9]+)$/) ; r = m[1] ; end
 
+    # Allows html inline into dialog or plain text if link opened in new window
+    format = params[:format] == "html" ? "html" : ""
+
     if (l && r)
       stdin, stdout, stderr, thread = Util.run_as("root", "crm", "history")
-      # TODO(must): This is a bit rough - we get two sets of legends out of the crm
-      # shell...  But, the display is really rather good, even if the fonts are a bit
-      # rough.
-      stdin.write("source #{@report_path}\ndiff #{l} #{r} status html\ndiff #{l} #{r} html\n")
+      stdin.write("source #{@report_path}\ndiff #{l} #{r} status #{format}\ndiff #{l} #{r} #{format}\n")
       stdin.close
       info = stdout.read()
       stdout.close
@@ -215,9 +215,29 @@ class ExplorerController < ApplicationController
       # TODO(should): option to increase verbosity level
       info = _("No details available") if info.empty?
 
-      info.insert(0, _("Error:") + "\n") unless thread.value.exitstatus == 0
+      if thread.value.exitstatus == 0
+        if format == "html"
+          info += <<-eos
+            <table>
+              <tr>
+                <th>#{_('Legend')}:</th>
+                <td class="diff_add">#{_('Added')}</th>
+                <td class="diff_chg">#{_('Changed')}</th>
+                <td class="diff_sub">#{_('Deleted')}</th>
+              </tr>
+            </table>
+            <script type="text/javascript">
+              /* Get rid of line numbers (bnc#807503) */
+              $("th.diff_header").each(function() { this.colSpan = 1; });
+              $("td.diff_header").hide();
+            </script>
+          eos
+        end
+      else
+        info.insert(0, _("Error:") + "\n")
+      end
 
-      send_data info, :type => "text/html", :disposition => "inline"
+      send_data info, :type => (format == "html" ? "text/html" : "text/plain"), :disposition => "inline"
     else
       head :not_found
     end

@@ -487,3 +487,44 @@ table.op-history {
 .op-history th {
   font-weight: bold;
 }
+
+/* Diffs in explorer */
+
+table.diff {
+  font-family: courier, monospace;
+  border: medium;
+  margin-bottom: 1em;
+}
+
+.diff_header {
+  background-color: #e0e0e0;
+}
+
+/* This is for line numbers */
+td.diff_header {
+  text-align: right;
+}
+
+th.diff_header {
+  text-align: center;
+  font-weight: bold;
+}
+
+/* These are the leftmost columns, with links to first/next/last change,
+   which don't work very well in dialog, so hide by default */
+.diff_next {
+  background-color: #c0c0c0;
+  display: none;
+}
+
+.diff_add {
+  background-color: #aaffaa;
+}
+
+.diff_chg {
+  background-color: #ffff77;
+}
+
+.diff_sub {
+  background-color: #ffaaaa;
+}
