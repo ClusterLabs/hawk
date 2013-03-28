@@ -33,9 +33,10 @@ $(function() {
       label: "<%=h escape_javascript _('Simulator') %>",
       icon: "simulator.png",
       click: function(target) {
-        // needs to trigger shadow cib switch and if on status screen, invoke
-        // simulator.activate();
-
+        <% if params[:cib_id] && params[:cib_id] != "live" %>
+        // Return to status screen if simulator clicked again while sim active
+        window.location.assign("<%=raw url_for(:controller => 'main', :action => 'status', :cib_id => params[:cib_id]) %>");
+        <% else %>
         // TODO(should): grey out screen or put up spinner or something while this is running...
         $.ajax({ url: '<%= url_for(:sim => 'init') %>',
           success: function(data) {
@@ -54,6 +55,7 @@ $(function() {
             }
           }
         });
+        <% end %>
         return false;
       }
     },
