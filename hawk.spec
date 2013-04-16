@@ -1,7 +1,7 @@
 #
 # spec file for package hawk (Version 0.5.2)
 #
-# Copyright (c) 2010-2012 SUSE LINUX Products GmbH, Nuernberg, Germany.
+# Copyright (c) 2010-2013 SUSE LINUX Products GmbH, Nuernberg, Germany.
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -131,15 +131,13 @@ for f in $(rpm -ql rubygems|grep %{vendor_ruby}); do
 	cp $f %{buildroot}%{www_base}/hawk/vendor/$r
 done
 # get rid of gem sample and test cruft
-rm -rf %{buildroot}%{www_base}/hawk/vendor/gems/*/sample
-rm -rf %{buildroot}%{www_base}/hawk/vendor/gems/*/samples
-rm -rf %{buildroot}%{www_base}/hawk/vendor/gems/*/test
-%if 0%{?suse_version}
+rm -rf %{buildroot}%{www_base}/hawk/vendor/bundle/ruby/*/gems/*/doc
+rm -rf %{buildroot}%{www_base}/hawk/vendor/bundle/ruby/*/gems/*/examples
+rm -rf %{buildroot}%{www_base}/hawk/vendor/bundle/ruby/*/gems/*/samples
+rm -rf %{buildroot}%{www_base}/hawk/vendor/bundle/ruby/*/gems/*/test
 # mark .mo files as such (works on SUSE but not FC12, as the latter wants directory to
 # be "share/locale", not just "locale", and it also doesn't support appending to %%{name}.lang)
 %find_lang %{name} %{name}.lang
-%find_lang rgettext %{name}.lang
-%find_lang gettext_rails %{name}.lang
 # hard link duplicate files
 %fdupes %{buildroot}
 %else
@@ -148,11 +146,9 @@ touch %{name}.lang
 %endif
 # more cruft to clean up (WTF?)
 rm -f %{buildroot}%{www_base}/hawk/log/*
-find %{buildroot}%{www_base}/hawk/vendor/rails -type f -name '*.css' -o -name '*.js' -o -name '*LICENSE' | xargs chmod a-x
-# get rid of packed gem specification files
-rm -f %{buildroot}%{www_base}/hawk/vendor/gems/*/.specification
-# likewise emtpy files (again, I say, WTF?)
-find %{buildroot}%{www_base}/hawk/vendor -type f -empty | xargs rm
+#;find %{buildroot}%{www_base}/hawk/vendor/rails -type f -name '*.css' -o -name '*.js' -o -name '*LICENSE' | xargs chmod a-x
+# likewise .git special files
+find %{buildroot}%{www_base}/hawk -type f -name '.git*' -print0 | xargs -0 rm
 # init script
 %{__install} -d -m 0755 \
 	%{buildroot}%{_sbindir}
@@ -210,38 +206,30 @@ rm -rf %{buildroot}
 %attr(0750, %{uname},%{gname})%{www_base}/hawk/tmp/pids
 %attr(0750, %{uname},%{gname})%{www_base}/hawk/tmp/sessions
 %attr(0750, %{uname},%{gname})%{www_base}/hawk/tmp/sockets
-%{www_base}/hawk/po
+%exclude %{www_base}/hawk/tmp/session_secret
+%{www_base}/hawk/locale/hawk.pot
+%{www_base}/hawk/.bundle
 %{www_base}/hawk/public
 %{www_base}/hawk/Rakefile
+%{www_base}/hawk/Gemfile
+%{www_base}/hawk/Gemfile.lock
 %{www_base}/hawk/COPYING
+%{www_base}/hawk/README.rdoc
+%{www_base}/hawk/config.ru
 %{www_base}/hawk/script
 %{www_base}/hawk/test
 %if 0%{?suse_version}
 # itemizing content in %%{www_base}/hawk/vendor and locale to avoid
 # duplicate files that would otherwise be the result of including hawk.lang
 %dir %{www_base}/hawk/locale
-%dir %{www_base}/hawk/locale/*
-%dir %{www_base}/hawk/locale/*/*
-%dir %{www_base}/hawk/vendor
-%{www_base}/hawk/vendor/*rb
-# architecture-specific .so files
-%{www_base}/hawk/vendor/*-linux
-# this is moderatly disgusting - the intent is to get everything except
-# the content of "data/locale" which is covered by files in hawk.lang
-%dir %{www_base}/hawk/vendor/gems
-%dir %{www_base}/hawk/vendor/gems/*
-%dir %{www_base}/hawk/vendor/gems/*/data
-%dir %{www_base}/hawk/vendor/gems/*/data/locale
-%dir %{www_base}/hawk/vendor/gems/*/data/locale/*
-%dir %{www_base}/hawk/vendor/gems/*/data/locale/*/*
-%{www_base}/hawk/vendor/gems/*/[!d]*
-%{www_base}/hawk/vendor/rails
-%{www_base}/hawk/vendor/rbconfig
-%{www_base}/hawk/vendor/rubygems
 %else
 %{www_base}/hawk/locale
-%{www_base}/hawk/vendor
 %endif
+# Not doing this itemization for %lang files in vendor, it's frightfully
+# hideous, so we're going to live with a handful of file-not-in-%lang rpmlint
+# warnings for bundled gems.
+%{www_base}/hawk/vendor
+
 %attr(-,root,root) %{_sysconfdir}/init.d/hawk
 %if 0%{?suse_version}
 %attr(-,root,root) %{_sbindir}/rchawk
