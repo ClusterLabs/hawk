@@ -93,13 +93,16 @@ CONF
 }
 
 print_hawk_url() {
-	IFC=$(LC_ALL=C route -n | grep "^0\.0\.0\.0" | tr -s " " | cut -d " " -f 8)
-	IP=$(LC_ALL=C ifconfig $IFC | grep "inet addr" | cut -d ":" -f 2 | cut -d " " -f 1)
+	IP=$(LC_ALL=C grep "^server.bind" $LIGHTTPD_CONFIG | cut -d ' ' -f 3|tr -d '"')
+	if [ -z "$IP" ]; then
+		IFC=$(LC_ALL=C ip route show default|awk '/^default / { print $NF; exit }')
+		[ -n "$IFC" ] && IP=$(LC_ALL=C ifconfig $IFC | grep "inet addr" | cut -d ":" -f 2 | cut -d " " -f 1)
+	fi
 	PORT=$(LC_ALL=C grep "^server.port" $LIGHTTPD_CONFIG | cut -d " " -f 3)
 	if [ -n "$IP" ]; then
 		echo -e "\thawk is running at https://$IP:$PORT/"
 	else
-		echo -e "\thawk could not determine the IP address for $IFC"
+		echo -e "\tcould not determine the IP/hostname hawk is running on"
 	fi
 }
 

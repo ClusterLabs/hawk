@@ -52,6 +52,7 @@ Requires:	ruby
 Requires:	lighttpd >= 1.4.20
 Requires:	graphviz
 Requires:	graphviz-gd
+Requires:	iproute2
 %if 0%{?suse_version}
 Recommends:	graphviz-gnome
 %endif
@@ -241,7 +242,7 @@ rm -rf %{buildroot}
 %{www_base}/hawk/locale
 %{www_base}/hawk/vendor
 %endif
-%config(noreplace) %attr(-,root,root) %{_sysconfdir}/init.d/hawk
+%attr(-,root,root) %{_sysconfdir}/init.d/hawk
 %if 0%{?suse_version}
 %attr(-,root,root) %{_sbindir}/rchawk
 %endif
