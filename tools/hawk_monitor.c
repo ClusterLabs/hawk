@@ -110,6 +110,7 @@ void mon_cib_connection_destroy(gpointer user_data);
 void crm_diff_update(const char *event, xmlNode *msg);
 gboolean mon_timer_popped(gpointer data);
 void mon_shutdown(int nsig);
+void cleanup(void);
 void finish(void);
 void get_new_epoch(void);
 
@@ -146,29 +147,33 @@ int cib_connect(void)
 
 void mon_cib_connection_destroy(gpointer user_data)
 {
-	if (cib) {
-		cib->cmds->signoff(cib);
+	if (mainloop != NULL && g_main_loop_is_running(mainloop)) {
 		g_main_loop_quit(mainloop);
 	}
 }
 
 void crm_diff_update(const char *event, xmlNode *msg)
 {
-	g_main_loop_quit(mainloop);
+	if (mainloop != NULL && g_main_loop_is_running(mainloop)) {
+		g_main_loop_quit(mainloop);
+	}
 }
 
 gboolean mon_timer_popped(gpointer data)
 {
-	g_main_loop_quit(mainloop);
+	if (mainloop != NULL && g_main_loop_is_running(mainloop)) {
+		g_main_loop_quit(mainloop);
+	}
 	return FALSE;
 }
 
 void mon_shutdown(int nsig)
 {
+	cleanup();
 	finish();
 }
 
-void finish(void)
+void cleanup(void)
 {
 	if (cib != NULL) {
 		get_new_epoch();	/* Last chance... */
@@ -176,6 +181,10 @@ void finish(void)
 		cib_delete(cib);
 		cib = NULL;
 	}
+}
+
+void finish(void)
+{
 	printf("Content-type: application/json\n");
 	if (origin) {
 		printf("Access-Control-Allow-Origin: %s\n", origin);
@@ -231,10 +240,13 @@ int main(int argc, char **argv)
 			mainloop_add_signal(SIGINT, mon_shutdown);
 			g_timeout_add(CONNECT_TIMEOUT * 1000, mon_timer_popped, NULL);
 			g_main_loop_run(mainloop);
+			cleanup();
 			g_main_loop_unref(mainloop);
+			mainloop = NULL;
 		}
 	}
 
+	cleanup();
 	finish();
 	return 0; /* never reached */
 }
