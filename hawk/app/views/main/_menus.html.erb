@@ -163,6 +163,7 @@ $(function() {
         $("#dialog").html('<div style="text-align: center;">' +
           '<img src="' + url_root + '/assets/spinner-32x32.gif" alt="" /></div>');
         $("#dialog").load(url_root + "/cib/" + (cib_source == "file" ? cib_file : cib_source) + "/resources/" + id, function() {
+          $("#dialog").dialog("option", "width", "auto");
           $("#dialog").dialog("option", "position", "center");
         });
         var b = {};

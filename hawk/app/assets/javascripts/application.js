@@ -65,6 +65,9 @@ $(function() {
           resizable: false,
           draggable: false
         });
+      } else {
+        // Always reset width (view details on resources sets width auto)
+        $(this).dialog("option", "width", "30em");
       }
       var req = $(this).data("req");
       if (req && req.abort) req.abort();
