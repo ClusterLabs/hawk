@@ -317,7 +317,9 @@ class MainController < ApplicationController
     Dir.chdir("#{Rails.root}/tmp")
     err = Invoker.instance.crm("configure", "graph", "dot", @@graph_name, "png")
     if err == true
-      render :inline => "<div style=\"text-align: center;\"><img src=\"<%= graph_get_path %>\" alt=\"\" /></div>"
+      # append time to image URL, this forces the browser to ignore the cached HTML
+      # and actually re-request the image (otherwise you get a stale cached image)
+      render :inline => "<div style=\"text-align: center;\"><img src=\"<%= graph_get_path :t => Time.now.to_i %>\" alt=\"\" /></div>"
     else
       # TODO(should): clean up error message
       render :inline => _('Error invoking %{cmd}: %{msg}') % {:cmd => "crm configure graph dot #{@@graph_name} png", :msg => err }
