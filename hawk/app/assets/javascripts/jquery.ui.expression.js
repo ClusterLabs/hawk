@@ -70,7 +70,7 @@
         self._add_expr(event);
         self._trigger("dirty", event, {} );
       });
-      self.new_expr_select.change(function() {
+      self.new_expr_select.bind("keyup change", function() {
         self.new_expr_add.button("option", "disabled", $(this).val() ? false : true);
       });
     },
@@ -178,7 +178,7 @@
           self._trigger("dirty", event, {});
         }
       });
-      new_row.find("select").change(function(event) {
+      new_row.find("select").bind("keyup change", function(event) {
         self._trigger("dirty", event, {});
       });
       self.new_expr_row.before(new_row);

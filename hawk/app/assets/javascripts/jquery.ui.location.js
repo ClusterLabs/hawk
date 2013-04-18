@@ -181,7 +181,7 @@
           self._trigger("dirty", event, {});
         }
       });
-      e.find("select").change(function(event) {
+      e.find("select").bind("keyup change", function(event) {
         self._trigger("dirty", event, {});
       });
       e.find("input[type=checkbox]").change(function() {
@@ -295,7 +295,7 @@
       new_rule.find("input[type=text]").bind("keyup change", function(event) {
         self._trigger("dirty", event, {});
       });
-      new_rule.find("select").change(function(event) {
+      new_rule.find("select").bind("keyup change", function(event) {
         self._enable_simplify();
         self._trigger("dirty", event, {});
       });
