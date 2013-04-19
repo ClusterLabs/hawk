@@ -68,10 +68,15 @@ http://www.suse.com/documentation/sle_ha/book_sleha/?page=/documentation/sle_ha/
 
 == Installation ==
 
+IMPORTANT NOTE: As of 2013-04-20, the master branch in this repo
+builds against rails 3.2.  This works fine on SUSE Linux, but the below
+instructions have not yet been tested/verified on other distros.  If
+you run into trouble, you might try the rails-2_3 branch in the meantime.
+
 === Dependencies ===
 
 Hawk is a Ruby on Rails app which runs from a standalone instance
-of lighttpd.  All required Ruby gems are frozen into the Hawk package
+of lighttpd.  All required Ruby gems are bundled into the Hawk package
 at build time.  Its runtime dependencies are thus:
 
 * pacemaker
@@ -82,8 +87,10 @@ When building Hawk from source, you will also need:
 
 * rubygems
 * rubygem-rake
-* rubygem-rails >= 2.3
-* rubygem-gettext_rails
+* rubygem-rails >= 3.2
+* rubygem-gettext
+* rubygem-gettext_i18n_rails
+* rubygem-fast_gettext
 * ruby-fcgi (openSUSE/SLES only)
 * fdupes (openSUSE/SLES only)
 * pam-devel
@@ -189,7 +196,7 @@ status display.  It is not used when running Hawk via WEBrick.
 Once you've got the above built and installed, run:
 
 --------------------------------------
-# sudo -u hacluster hawk/script/server
+# sudo -u hacluster script/rails s
 --------------------------------------
 
 This will give you Hawk running via HTTP (_not_ HTTPS), on port 3000,
