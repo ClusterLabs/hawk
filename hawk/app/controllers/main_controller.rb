@@ -236,7 +236,6 @@ class MainController < ApplicationController
       end
     end if params[:injections]
     f = File.new("#{Rails.root}/tmp/sim.info", "w")
-    # TODO(must): Bloody loses transition summary (it's on STDOUT)
     stdout = Util.safe_x("/usr/sbin/crm_simulate",
       "-S",
       "-L", # "live", but will be against shadow CIB
@@ -266,23 +265,7 @@ class MainController < ApplicationController
   def sim_get
     case params[:file]
     when "info"
-      info = { :mods => "", :summary => "", :exec => "" }
-      section = nil
-      File.new("#{Rails.root}/tmp/sim.info").read.split(/\n/).each do |line|
-        case line
-          when /^Performing requested modifications/i
-            section = :mods
-#          when /^Transition Summary/i
-#            section = :summary
-          when /^Executing cluster transition/i
-            section = :exec
-          when /^\s*$/
-            section = nil
-        end
-        next unless section
-        info[section] += line + "\n"
-      end
-      send_data [info[:mods], info[:summary], info[:exec]].select{|s| !s.empty?}.join("\n"),
+      send_data File.new("#{Rails.root}/tmp/sim.info").read,
         :type => "text/plain", :disposition => "inline"
     when "in"
       shadow_id = ENV["CIB_shadow"]
