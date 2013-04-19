@@ -137,7 +137,9 @@ archive:
 	rm -f hawk-$(BUILD_TAG).tar.bz2
 	$(GIT) archive --prefix=hawk-$(BUILD_TAG)/ HEAD | bzip2 > hawk-$(BUILD_TAG).tar.bz2
 pot:
-	(cd hawk; rake BUILD_TAG=$(BUILD_TAG) updatepo)
+	@echo "** WARNING: THIS SCREWS UP Project-Id-Version IN THE .POT FILE"
+	@echo "**          DO NOT COMMIT WITHOUT FIXING THIS!"
+	(cd hawk; rake gettext:find)
 
 srpm: archive hawk.spec
 	rm -f *.src.rpm
