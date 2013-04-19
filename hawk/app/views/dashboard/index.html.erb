@@ -96,6 +96,7 @@ cluster data structure is mini cib + mon_node:
       var self = this;
       var e = self.element;
       self.req = null;
+      self.deleted = false;
       self.cur_epoch = "";
       e.find("h1").html(escape_html(self.options.name));
       e.find(".clickable").click(function() {
@@ -163,6 +164,7 @@ cluster data structure is mini cib + mon_node:
         type: "GET",
         cross_domain_hack: true,    // needed to get proper headers
         success: function(data) {
+          if (self.deleted) return;
           // Note: success fires on broken request (e.g.: SSL cert or CORS problem)
           if (data) {
             self.element.find(".mon-warning").hide();
@@ -176,6 +178,7 @@ cluster data structure is mini cib + mon_node:
           }
         },
         error: function(request) {
+          if (self.deleted) return;
           var w = self.element.find(".mon-warning");
           w.html("<%=h escape_javascript _("Can't contact Hawk on %{node}. Retrying every 5 seconds.") % { :node => '_NODE_' } %>".replace('_NODE_', self.options.cluster.mon_node));
           w.show();
@@ -193,6 +196,7 @@ cluster data structure is mini cib + mon_node:
         type: "GET",
         cross_domain_hack: true,    // needed to get proper headers
         success: function(data) {
+          if (self.deleted) return;
           // Note: success fires on broken request (e.g.: SSL cert or CORS problem)
           self.cur_epoch = "";
           if (data) {
@@ -213,6 +217,7 @@ cluster data structure is mini cib + mon_node:
           }
         },
         error: function(request) {
+          if (self.deleted) return;
           var err;
           if (request.readyState > 1) {
             if (request.status == 403) {
@@ -318,6 +323,7 @@ cluster data structure is mini cib + mon_node:
       setTimeout(function() { self._update_cib(); }, 5000);
     },
     destroy: function() {
+      this.deleted = true;
       this._abort_req();
       $.Widget.prototype.destroy.apply(this, arguments);
     }
