@@ -297,13 +297,21 @@ cluster data structure is mini cib + mon_node:
       w.show();
       var nl = self.options.cluster.node_list;
       if (nl && nl.length) {
+        var dot = self.options.cluster.mon_node.indexOf(".");
         var nn = self.options.cluster.node_list[0];
+        if (dot >=0 && nn.indexOf(".") == -1) {
+          nn += self.options.cluster.mon_node.substr(dot);    // FQDN, if present
+        }
         for (var i = nl.length - 1; i >= 0; i--) {
-          if (nl[i] == self.options.cluster.mon_node) {
+          var nf = nl[i];
+          if (dot >=0 && nf.indexOf(".") == -1) {
+            nf += self.options.cluster.mon_node.substr(dot);  // FQDN, if present
+          }
+          if (nf == self.options.cluster.mon_node) {
             self.options.cluster.mon_node = nn;
             break;
           } else {
-            nn = nl[i];
+            nn = nf;
           }
         }
       }
