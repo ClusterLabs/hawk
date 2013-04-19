@@ -114,7 +114,7 @@ cluster data structure is mini cib + mon_node:
         self.element.remove();
       });
       e.find("input[type=submit]").click(function() {
-        self.abort_req();
+        self._abort_req();
         self.req = $.ajax({ url: "https://" + self.options.cluster.mon_node + ":7630/session",
           timeout: 30000,
           data: "format=json" +
@@ -126,7 +126,7 @@ cluster data structure is mini cib + mon_node:
           success: function(data) {
             self.element.find(".cluster-login").hide();
             self.element.find(".spinner").show();
-            self.update_cib();
+            self._update_cib();
           },
           error: function(request) {
             var err;
@@ -149,14 +149,14 @@ cluster data structure is mini cib + mon_node:
         });
       });
       self._redraw();
-      self.update_cib();
+      self._update_cib();
     },
-    abort_req: function() {
+    _abort_req: function() {
       if (this.req && this.req.abort) { this.req.abort(); }
     },
-    do_update: function() {
+    _do_update: function() {
       var self = this;
-      self.abort_req();
+      self._abort_req();
       self.req = $.ajax({ url: "https://" + self.options.cluster.mon_node + ":7630/monitor?" + self.cur_epoch,
         timeout: 90000,
         dataType: "json",   // necessary?
@@ -167,9 +167,9 @@ cluster data structure is mini cib + mon_node:
           if (data) {
             self.element.find(".mon-warning").hide();
             if (data.cur_epoch != self.cur_epoch) {
-              self.update_cib();
+              self._update_cib();
             } else {
-              self.do_update(data.cur_epoch);
+              self._do_update(data.cur_epoch);
             }
           } else {
             self._cycle_mon_node();
@@ -179,13 +179,13 @@ cluster data structure is mini cib + mon_node:
           var w = self.element.find(".mon-warning");
           w.html("<%=h escape_javascript _("Can't contact Hawk on %{node}. Retrying every 5 seconds.") % { :node => '_NODE_' } %>".replace('_NODE_', self.options.cluster.mon_node));
           w.show();
-          setTimeout(function() { self.update_cib(); }, 5000);
+          setTimeout(function() { self._update_cib(); }, 5000);
         }
       });
     },
-    update_cib: function() {
+    _update_cib: function() {
       var self = this;
-      self.abort_req();
+      self._abort_req();
       self.req = $.ajax({ url: "https://" + self.options.cluster.mon_node + ":7630/cib/live",
         timeout: 90000,
         data: "format=json&mini=true",
@@ -207,7 +207,7 @@ cluster data structure is mini cib + mon_node:
             save_clusters();                                      // TODO(should): only if node_list changed
             self._redraw();
             self.cur_epoch = data.meta.epoch;
-            self.do_update();
+            self._do_update();
           } else {
             self._cycle_mon_node();
           }
@@ -242,7 +242,7 @@ cluster data structure is mini cib + mon_node:
             var w = self.element.find(".mon-warning");
             w.html(err);
             w.show();
-            setTimeout(function() { self.update_cib(); }, 5000);
+            setTimeout(function() { self._update_cib(); }, 5000);
           }
         }
       });
@@ -307,10 +307,10 @@ cluster data structure is mini cib + mon_node:
           }
         }
       }
-      setTimeout(function() { self.update_cib(); }, 5000);
+      setTimeout(function() { self._update_cib(); }, 5000);
     },
     destroy: function() {
-      this.abort_req();
+      this._abort_req();
       $.Widget.prototype.destroy.apply(this, arguments);
     }
   });
