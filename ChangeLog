@@ -1,3 +1,155 @@
+* Fri Apr 19 2013 Tim Serong <tserong@suse.com>
+- GUI: Status: Auto expand resource details dialog to fit contents
+  (bnc#813458)
+- GUI: simulator: Cancel monitor interval request on inject op dialog close
+- GUI: simulator: Include complete transition summary in details window
+- GUI: dashboard: Support FQDNs
+- GUI: dashboard: Ensure stale requests don't survive after removing a
+  cluster
+- GUI: Ensure cluster diagram isn't stale/cached
+- GUI: ui.location, ui.expression: Trigger dirty event on keyup in
+  select fields
+- Misc: Cib model: Call determine_online_status_fencing if
+  stonith-enabled true
+- Build: Bump spec file version to 0.6.0
+- Build: Regenerate POT file
+- Upstream version cs:c15298e
+
+* Tue Apr 16 2013 Tim Serong <tserong@suse.com>
+- Misc: hawk_monitor: Fix segfault on exit (bnc#812972)
+- Misc: Fix Hawk URL display with >1 defualt route in init script (bnc#811102)
+- Rails3: Clean up rpmlint warnings
+- Upstream version cs:5610216
+
+* Thu Mar 28 2013 Tim Serong <tserong@suse.com>
+- GUI: status: Allow summary panel to stretch to handle long strings
+  (bnc#809991)
+- GUI: status: Add ability to take nodes on and off maintenance mode
+- GUI: simulator: Make "Run" button restart from current cluster state,
+  not from post-simulate state (bnc#799523)
+- GUI: simulator: Make simulator item in tools menu return to status
+  screen if sim already active
+- GUI: simulator: Divert to status page if simulator activated on explorer
+  page
+- GUI: simulator: Don't allow adding state before cib loaded
+- GUI: Resources, Constraints: Use white for row highligh when simulator
+  active
+- GUI: explorer: remove line numbers & link columns from PE diff
+  display (bnc#807503)
+- Upstream version cs:8406e5b
+
+* Wed Mar 20 2013 Tim Serong <tserong@suse.com>
+- GUI: status: Clarify connection failed error messages (bnc#763385)
+- Upstream version cs:d3d683b
+
+* Mon Mar 18 2013 Tim Serong <tserong@suse.com>
+- GUI: status: Show maintenance mode icon for nodes and unmanaged icon
+  for resources (bnc#804898)
+- Upstream version cs:204eaea
+
+* Thu Mar 14 2013 Tim Serong <tserong@suse.com>
+- GUI: Status: Add op timings and history to resource details (bnc#799526)
+- GUI: Status: Center node and resource details dialogs after load
+- Upstream version cs:fd5ff39
+
+* Wed Mar 13 2013 Tim Serong <tserong@suse.com>
+- GUI: Status: Show fail counts for clone instances (bnc#808047)
+- Misc: Fix Czech translation of "simulator" (bnc#807737)
+- Misc: Cib model: Use Util.numeric? for selecting instances
+- Upstream version cs:96dddec
+
+* Fri Mar 08 2013 Tim Serong <tserong@suse.com>
+- GUI: dashboard: Require authentication for monitored clusters (bnc#804345)
+- GUI: dashboard: Clean up error messages and style (bnc#804338)
+- GUI: dashboard: Show spinner when initially loading cluster status
+- GUI: dashboard: Handle monitor timeouts
+- Misc: Persist login cookie for 10 days, rather than just browser session
+- Misc: Cib controller: Prevent unauthenticated R/O access to mini cib
+- Upstream version cs:b21ebfd
+
+* Tue Mar 05 2013 Tim Serong <tserong@suse.com>
+- GUI: dashboard: Don't allow adding the same cluster twice (bnc#806076)
+- GUI: dashboard: Allow ENTER to trigger OK button when adding cluster
+- GUI: status: Record current status page in long-lived cookie (bnc#710931)
+- GUI: explorer: Default to last 24 hours if no times specified (bnc#795796)
+- GUI: Resources, Constraints: Highlight row under mouse cursor (bnc#763801)
+- GUI: ui.expression: Ensure no linebreaks between parens in expression type
+- GUI: ui.attrlist: Clear "keypress_hack" attr_name when adding attribute
+  (bnc#806986)
+- GUI: Add warning to login screen if JavaScript disabled
+- Misc: Update copyright dates (bnc#804726)
+- Misc: Cib model, invoker: Handle EACCES (-13) for permission denied
+  (bnc#797149)
+- Misc: ApplicationController: Default to browser locale (don't use
+  cookie, bnc#806371)
+- Misc: Set lighttpd max-procs=2 (handle simultaneous requests better,
+  bnc#804924)
+- Upstream version cs:2e8607b
+
+* Sun Feb 24 2013 Tim Serong <tserong@suse.com>
+- GUI: status: Add "parent" context menu item for resources (fate#314388)
+- GUI: ui.oplist: Add "Edit" button to new op row (fate#314390)
+- Misc: Cib model: Synthesize clone & ms instance IDs (bnc#799000)
+- Upstream version cs:00d7fbf
+
+* Mon Feb 11 2013 Tim Serong <tserong@suse.com>
+- GUI: status, dashboard: Add state icons for resources, nodes, tickets,
+  error messages (fate#312928)
+- GUI: status: Fix display of error messages without explorer links
+- Upstream version cs:6932c65
+
+* Sat Feb 09 2013 Tim Serong <tserong@suse.com>
+- GUI: explorer: Add "full log" link for more details (fate#314395)
+- GUI: explorer: Add ability to diff between the PE inputs (fate#314389)
+- GUI: explorer: Open detail links in dialog instead of inline
+- GUI: Status: Link status messages to history explorer (fate#312929)
+- Upstream version cs:6283a62
+
+* Wed Feb 06 2013 Tim Serong <tserong@suse.com>
+- GUI: Add dashboard to view status of multiple clusters (fate#310306)
+- Upstream version cs:fc7f5a6
+
+* Thu Jan 24 2013 Tim Serong <tserong@suse.com>
+- GUI: crm_config editor: Expose op_defaults and rsc_defaults (fate#314386)
+
+* Wed Jan 23 2013 Tim Serong <tserong@suse.com>
+- GUI: Add ability to view cluster diagram (fate#313718)
+
+* Mon Jan 21 2013 Tim Serong <tserong@suse.com>
+- Misc: explorer: Fix report deletion, don't run "crm history" as root
+  (bnc#799525)
+- Misc: explorer: Save reports in #{Rails.root}/tmp/explorer
+
+* Fri Jan 18 2013 Tim Serong <tserong@suse.com>
+- Port to rails 3.2 (fate#314604)
+- Monkey patch for https://github.com/rubygems/rubygems/issues/171
+  (Gem::all_load_paths method is broken in rubygems 1.8.15)
+- GUI: Status: Add "View Details" to resource menu, show fail counts
+  (fate#314391)
+- GUI: Status: Add resource attributes to View Details popup (fate#314387)
+- Upstream version cs:541ac9f
+
+* Wed Jan 16 2013 Tim Serong <tserong@suse.com>
+- GUI: Status: Differentiate pending states (fate#314385)
+
+* Mon Jan 14 2013 Tim Serong <tserong@suse.com>
+- GUI: explorer: Add ability to remove old reports (fate#314394)
+
+* Fri Jan 11 2013 Tim Serong <tserong@suse.com>
+- GUI: Simulator: allow regular configuration changes (fate#314393)
+- GUI: Simulator: invoke crm_simulate with -S, not -R (fixes odd final
+  state, bnc#781207)
+- Misc: Workaround deprecated Gem::SourceIndex#add_spec (required to
+  work with rubygems 1.8)
+
+* Mon Dec 10 2012 Tim Serong <tserong@suse.com>
+- Build: Fix build against Pacemaker 1.1.8 (some headers were changed/moved)
+- Misc: Cib model: Ignore 'ha' field from node state (dropped in pacemaker)
+- Misc: Invoker: Handle new value of cib_NOTEXISTS (was -22, now -6)
+- Misc: CibObject: Handle emtpy cibadmin output when object doesn't exist
+- Misc: Primitive model: Use new lrmd_test for RA metadata if present
+- Misc: Set sensible default $HOME in ApplicationController
+
 * Mon Jul 09 2012 Tim Serong <tserong@suse.com>
 - GUI: jQuery: Fix AJAX memory leak in IE8 (bnc#764273)
 - GUI: summary_view: Fix IE JS error on detail pane update (bnc#765625)
