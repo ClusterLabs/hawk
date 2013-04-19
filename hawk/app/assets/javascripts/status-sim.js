@@ -339,12 +339,11 @@ var simulator = {
     if ($("#inject-op-operation").val() == "monitor") {
       $("#inject-op-interval").removeAttr("disabled");
       var id = $("#inject-op-resource").val().split(":")[0];
-      if (this.req && this.req.abort) this.req.abort();
       $("#interval-spinner").show();
-      this.req = $.getJSON(url_root + "/cib/" + cib_source + "/primitives/" + id + "/monitor_intervals", function(data) {
+      $("#dialog").data("req", $.getJSON(url_root + "/cib/" + cib_source + "/primitives/" + id + "/monitor_intervals", function(data) {
         $("#inject-op-interval").val(data && data.length > 0 ? data[0] : "");
         $("#interval-spinner").hide();
-      });
+      }));
     } else {
       $("#inject-op-interval").val("").attr("disabled", "disabled");
     }
