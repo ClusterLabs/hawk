@@ -49,6 +49,7 @@ AutoReqProv:	on
 Requires:       hawk-templates >= %{version}-%{release}
 Requires:	pacemaker
 Requires:	ruby
+Requires:   rubygem-bundler
 Requires:	lighttpd >= 1.4.20
 Requires:	graphviz
 Requires:	graphviz-gd
@@ -58,15 +59,19 @@ Recommends:	graphviz-gnome
 %endif
 BuildRequires:	rubygems
 BuildRequires:	rubygem-rake
-BuildRequires:	rubygem-gettext_rails
+BuildRequires:  rubygem-gettext
+BuildRequires:  rubygem-gettext_i18n_rails
+BuildRequires:  rubygem-fast_gettext
 BuildRequires:	pam-devel
 BuildRequires:	glib2-devel libxml2-devel
 %if 0%{?suse_version}
 PreReq:			permissions
 BuildRequires:	ruby-fcgi
 BuildRequires:	fdupes
-BuildRequires:	rubygem-rails-2_3
+BuildRequires:	rubygem-rails-3_2
+BuildRequires:  rubygem-rails-i18n
 BuildRequires:	libpacemaker-devel
+BuildRequires:  rubygem-rack
 # Require startproc respecting -p, bnc#559534#c44
 %if 0%{?suse_version} > 1110
 # 11.2 or newer; 
@@ -76,7 +81,7 @@ Requires:	sysvinit > 2.86-215.2
 Requires:	sysvinit > 2.86-195.3.1
 %endif
 %else
-BuildRequires:  rubygem-rails >= 2.3
+BuildRequires:  rubygem-rails >= 3.2
 BuildRequires:	pacemaker-libs-devel
 %endif
 
@@ -120,16 +125,6 @@ for f in $(rpm -ql ruby-fcgi|grep %{vendor_ruby}); do
 	cp $f %{buildroot}%{www_base}/hawk/vendor/$r
 done
 %endif
-# even more evil magic to get rubygems into the vendor directory
-for f in $(rpm -ql rubygems|grep %{vendor_ruby}); do
-	# gives something simliar to:
-	#  /usr/lib64/ruby/vendor_ruby/1.8/rubygems.rb
-	#  /usr/lib64/ruby/vendor_ruby/1.8/rubygems/...
-	[ -f $f ] || continue
-	r=$(echo $f | sed 's/.*%{vendor_ruby}\/[^\/]*\///')
-	mkdir -p %{buildroot}%{www_base}/hawk/vendor/$(dirname $r)
-	cp $f %{buildroot}%{www_base}/hawk/vendor/$r
-done
 # get rid of gem sample and test cruft
 rm -rf %{buildroot}%{www_base}/hawk/vendor/bundle/ruby/*/gems/*/doc
 rm -rf %{buildroot}%{www_base}/hawk/vendor/bundle/ruby/*/gems/*/examples
