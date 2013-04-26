@@ -43,8 +43,12 @@ var panel_view = {
       "</div>"));
     $("#config").panel({
       menu_icon: url_root + "/assets/transparent-16x16.gif",
-      label:     GETTEXT.cluster_config(),
-      body:      $('<table id="config::props" style="padding: 0.25em 0.5em;"></table>')
+      label:     escape_html(GETTEXT.cluster_config()),
+      body:      $('<table id="config::props" style="padding: 0.25em 0.5em;">' +
+                     '<tr id="config::crm_config"><th colspan="2">' + escape_html(GETTEXT.crm_config()) + '</th></tr>' +
+                     '<tr id="config::rsc_defaults"><th colspan="2">' + escape_html(GETTEXT.rsc_defaults()) + '</th></tr>'  +
+                     '<tr id="config::op_defaults"><th colspan="2">' + escape_html(GETTEXT.op_defaults()) + '</th></tr>' +
+                   '</table>')
     });
     $("#nodelist").panel({
       menu_icon: url_root + "/assets/transparent-16x16.gif"
@@ -85,27 +89,36 @@ var panel_view = {
   destroy: function() {
     // NYI
   },
-  update: function() {
-    var self = this;
-    $("#config").show();
-//    $("#filter").show();
+  _update_props: function(set, id) {
     var props = [];
-    for (var e in cib.crm_config) {
+    for (var e in set) {
       if (e == "cluster-infrastructure" ||
           e == "dc-version" ||
           e == "last-lrm-refresh") {
         // TODO(should): This is a bit rough - consolidate with crm_config editor props
+        // (also note this function is used for iterating over rsc_defaults and op_defaults too...
         continue;
       }
       props.push(e);
     }
-    props.sort();
-    var rows = $("<tbody/>");
-    for (var i = 0; i < props.length; i++) {
-      rows.append("<tr><th>" + props[i] + "</td><td>" + escape_html(cib.crm_config[props[i]].toString()) + "</td></tr>");
+    props.reverse();
+    if (props.length) {
+      $.each(props, function() {
+        $(jq(id)).after('<tr class="prop-row"><th>' + this + "</td><td>" + escape_html(set[this].toString()) + "</td></tr>");
+      });
+    } else {
+      $(jq(id)).hide();
     }
-    $(jq("config::props")).children().remove();
-    $(jq("config::props")).append(rows);
+  },
+  update: function() {
+    var self = this;
+    $("#config").show();
+//    $("#filter").show();
+
+    $(".prop-row").remove();
+    self._update_props(cib.crm_config, "config::crm_config");
+    self._update_props(cib.rsc_defaults, "config::rsc_defaults");
+    self._update_props(cib.op_defaults, "config::op_defaults");
 
     $("#nodereslist").show();
 
