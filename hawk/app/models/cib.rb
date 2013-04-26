@@ -267,7 +267,6 @@ class Cib < CibObject
     @crm_config = {
       :"cluster-infrastructure"       => _('Unknown'),
       :"dc-version"                   => _('Unknown'),
-      :"default-resource-stickiness"  => 0, # TODO(could): is this documented?
       :"stonith-enabled"              => true,
       :"symmetric-cluster"            => true,
       :"no-quorum-policy"             => 'stop'
