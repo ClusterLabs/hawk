@@ -152,6 +152,8 @@ class CibController < ApplicationController
         },
         :errors     => cib.errors,
         :crm_config => cib.crm_config,
+        :rsc_defaults => cib.rsc_defaults,
+        :op_defaults => cib.op_defaults,
         :tickets    => cib.tickets,
         :nodes      => cib.nodes,
         :resources  => cib.resources,

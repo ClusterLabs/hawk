@@ -218,7 +218,7 @@ class Cib < CibObject
   # Notes that errors here overloads what ActiveRecord would
   # use for reporting errors when editing resources.  This
   # should almost certainly be changed.
-  attr_reader :dc, :epoch, :nodes, :resources, :templates, :crm_config, :errors, :resource_count
+  attr_reader :dc, :epoch, :nodes, :resources, :templates, :crm_config, :rsc_defaults, :op_defaults, :errors, :resource_count
   attr_reader :tickets
   attr_reader :resources_by_id
 
@@ -278,6 +278,16 @@ class Cib < CibObject
     # probably only want cib-bootstrap-options?
     @xml.elements.each('cib/configuration/crm_config//nvpair') do |p|
       @crm_config[p.attributes['name'].to_sym] = get_xml_attr(p, 'value')
+    end
+
+    @rsc_defaults = {}
+    @xml.elements.each('cib/configuration/rsc_defaults//nvpair') do |p|
+      @rsc_defaults[p.attributes['name'].to_sym] = get_xml_attr(p, 'value')
+    end
+
+    @op_defaults = {}
+    @xml.elements.each('cib/configuration/op_defaults//nvpair') do |p|
+      @op_defaults[p.attributes['name'].to_sym] = get_xml_attr(p, 'value')
     end
 
     is_managed_default = true
