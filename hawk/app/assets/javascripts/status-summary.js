@@ -134,6 +134,10 @@ var summary_view = {
         $("#confsum-" + p).hide();
       }
     });
+    // Special case so rsc_defaults stickiness overrides display of crm_config default-resource-stickiness
+    if (cib.rsc_defaults["resource-stickiness"] != null && cib.rsc_defaults["resource-stickiness"] != "default") {
+      $("#confsum-default-resource-stickiness").show().children(":last").html(escape_html(cib.rsc_defaults["resource-stickiness"].toString()));
+    }
     // Special case for important highlights
     if (cib.crm_config["stonith-enabled"]) {
       $("#confsum-stonith-enabled").removeClass("rs-error");
