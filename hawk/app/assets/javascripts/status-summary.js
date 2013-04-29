@@ -158,6 +158,7 @@ var summary_view = {
     } else {
       $("#ticketsum").show();
       self._zero_counters("#ticketsum");
+      // this loop is (mostly) duplicated in status-panel.js
       $.each(cib.tickets, function(id) {
         // Mild "abuse" of res-* style classes and GETTEXT.node_state
         var status_class = "res-primitive";

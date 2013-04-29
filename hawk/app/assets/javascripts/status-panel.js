@@ -36,7 +36,10 @@ var panel_view = {
 //        '<input type="checkbox" id="show-active" checked="checked"/> Show Active&nbsp;&nbsp;' +
 //        '<input type="checkbox" id="show-inactive" checked="checked"/> Show Inactive' +
 //      "</div>" +
-      '<div id="config" style="display: none;"></div>' +
+      '<div id="conftick" style="display: none;">' +
+        '<div id="config"></div>' +
+        '<div id="tickets"></div>' +
+      '</div>' +
       '<div id="nodereslist" style="display: none;">' +
         '<div id="nodelist"></div>' +
         '<div id="reslist"></div>' +
@@ -44,11 +47,15 @@ var panel_view = {
     $("#config").panel({
       menu_icon: url_root + "/assets/transparent-16x16.gif",
       label:     escape_html(GETTEXT.cluster_config()),
-      body:      $('<table id="config::props" style="padding: 0.25em 0.5em;">' +
+      body:      $('<table style="padding: 0.25em 0.5em;">' +
                      '<tr id="config::crm_config"><th colspan="2">' + escape_html(GETTEXT.crm_config()) + '</th></tr>' +
                      '<tr id="config::rsc_defaults"><th colspan="2">' + escape_html(GETTEXT.rsc_defaults()) + '</th></tr>'  +
                      '<tr id="config::op_defaults"><th colspan="2">' + escape_html(GETTEXT.op_defaults()) + '</th></tr>' +
                    '</table>')
+    });
+    $("#tickets").panel({
+      menu_icon: url_root + "/assets/transparent-16x16.gif",
+      label:     escape_html(GETTEXT.tickets())
     });
     $("#nodelist").panel({
       menu_icon: url_root + "/assets/transparent-16x16.gif"
@@ -112,7 +119,7 @@ var panel_view = {
   },
   update: function() {
     var self = this;
-    $("#config").show();
+    $("#conftick").show();
 //    $("#filter").show();
 
     $(".prop-row").remove();
@@ -129,9 +136,48 @@ var panel_view = {
     if (self._update_panel(self._cib_to_reslist_panel(cib.resources, cib.resources_label))) {
       $("#reslist").panel("expand");
     }
+
+    // (mostly) copied from status-summary.js
+    $("#tickets").panel("body_element").children().remove();
+    if ($.isEmptyObject(cib.tickets)) {
+      $("#tickets").hide();
+    } else {
+      $("#tickets").show();
+      var revoked = false;
+      $.each(cib.tickets, function(id) {
+        // Mild "abuse" of res-* style classes and GETTEXT.node_state
+        var status_class = "res-primitive";
+        var label;
+        var state_icon;
+        if (this.granted) {
+          status_class += " rs-active ticketsum ticketsum-granted";
+          label = GETTEXT.node_state(id, GETTEXT.ticket_granted(this.standby));
+          state_icon = "ui-icon-check";
+        } else {
+          status_class += " rs-inactive ticketsum ticketsum-revoked";
+          label = GETTEXT.node_state(id, GETTEXT.ticket_revoked(this.standby));
+          state_icon = "ui-icon-cancel";
+          revoked = true;
+        }
+        var d = new_item_div("ticket::" + id);
+        d.attr("class", "ui-corner-all " + status_class);
+        d.find("span").html(label);
+        $("#tickets").panel("body_element").append(d);
+        if (this["last-granted"]) {
+          flag_info("ticket::" + id, GETTEXT.ticket_last_granted(new Date(this["last-granted"] * 1000)));
+        }
+        $(jq("ticket::" + id + "::state")).removeClass();
+        if (state_icon) {
+          $(jq("ticket::" + id + "::state")).addClass("ui-icon " + state_icon);
+        }
+      });
+      if (revoked) {
+        $("#tickets").panel("expand");
+      }
+    }
   },
   hide: function() {
-    $("#config").hide();
+    $("#conftick").hide();
     $("#nodereslist").hide();
     // Need to remove nodes and resources, because we're reusing the IDs in
     // summary_view.  Unfortunate side-effect is that the panel view reverts
@@ -139,6 +185,7 @@ var panel_view = {
     // rather than remaining how the user had expanded things.
     $("#nodelist").panel("body_element").children().remove();
     $("#reslist").panel("body_element").children().remove();
+    $("#tickets").panel("body_element").children().remove();
 //    $("#filter").hide();
   },
   // need to pass parent in with open flag (e.g.: nodelist, reslist)

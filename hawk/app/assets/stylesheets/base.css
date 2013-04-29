@@ -130,11 +130,6 @@ body
   padding-left: 1em;
 }
 
-#config
-{
-  float: right;
-}
-
 th /* used in summary, crm_property editor */
 {
   font-weight: normal;
@@ -206,10 +201,20 @@ td.ar
   background-color: #fff;
 }
 
+#conftick
+{
+  float: right;
+  width: 25em;
+}
+
 #config
 {
   background-color: #fff;
-  width: 25em;
+}
+
+#tickets
+{
+  background-color: #fff;
 }
 
 .node
