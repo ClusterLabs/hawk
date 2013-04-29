@@ -425,15 +425,15 @@ class Cib < CibObject
             # This would allow us to say "Staring", "Stopping", etc. in the UI.
             state = :pending if operation != "monitor"
             case operation
-            when "start":
+            when "start"
               substate = :starting
-            when "stop":
+            when "stop"
               substate = :stopping
-            when "promote":
+            when "promote"
               substate = :promoting
-            when "demote":
+            when "demote"
               substate = :demoting
-            when /^migrate/:
+            when /^migrate/
               substate = :migrating
             end
             next
