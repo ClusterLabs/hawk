@@ -66,6 +66,8 @@ end
 #gem 'rack'
 
 group :test do
+  # Need gem source for travis-ci
+  source 'https://rubygems.org'
   gem 'rake'
 end
 
