@@ -69,5 +69,8 @@ group :test do
   # Need gem source for travis-ci
   source 'https://rubygems.org'
   gem 'rake'
+  # This test is duplicated in lib/tasks/scanny.rake, and needs to match
+  # the conditions in lib/scanny/ruby_version_check.rb in the scanny gem
+  gem 'scanny' if defined?(RUBY_ENGINE) && RUBY_ENGINE == "rbx" && RUBY_VERSION >= '1.9'
 end
 
