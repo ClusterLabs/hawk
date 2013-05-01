@@ -179,10 +179,7 @@ cluster data structure is mini cib + mon_node:
         },
         error: function(request) {
           if (self.deleted) return;
-          var w = self.element.find(".mon-warning");
-          w.html("<%=h escape_javascript _("Can't contact Hawk on %{node}. Retrying every 5 seconds.") % { :node => '_NODE_' } %>".replace('_NODE_', self.options.cluster.mon_node));
-          w.show();
-          setTimeout(function() { self._update_cib(); }, 5000);
+          self._cycle_mon_node();
         }
       });
     },
@@ -239,16 +236,7 @@ cluster data structure is mini cib + mon_node:
               }
             }
           }
-          if (!err) {
-            // timeout
-            err = "<%=h escape_javascript _("Can't contact Hawk on %{node}. Retrying every 5 seconds.") % { :node => '_NODE_' } %>".replace('_NODE_', self.options.cluster.mon_node);
-          }
-          if (err) {
-            var w = self.element.find(".mon-warning");
-            w.html(err);
-            w.show();
-            setTimeout(function() { self._update_cib(); }, 5000);
-          }
+          self._cycle_mon_node(err);
         }
       });
     },
@@ -295,10 +283,10 @@ cluster data structure is mini cib + mon_node:
         }
       });
     },
-    _cycle_mon_node: function(monitor) {
+    _cycle_mon_node: function(err) {
       var self = this;
       var w = self.element.find(".mon-warning");
-      w.html("<%=h escape_javascript _("Can't contact Hawk on %{node}. Retrying every 5 seconds.") % { :node => '_NODE_' } %>".replace('_NODE_', self.options.cluster.mon_node));
+      w.html(err ? err : "<%=h escape_javascript _("Can't contact Hawk on %{node}. Retrying every 5 seconds.") % { :node => '_NODE_' } %>".replace('_NODE_', self.options.cluster.mon_node));
       w.show();
       var nl = self.options.cluster.node_list;
       if (nl && nl.length) {
