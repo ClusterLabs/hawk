@@ -427,7 +427,7 @@ function add_cluster() {
                 alert(json.errors.join(", "));
               } else {
                 if (request.status >= 10000) {
-                  alert(GETTEXT.err_conn_failed());
+                  alert("<%=h escape_javascript _('Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible.') % { :host => '_HOST_', :url => '_URL_' } %>".replace('_HOST_', hn).replace('_URL_', "https://" + hn + ":7630/"));
                 } else {
                   alert(GETTEXT.err_unexpected(request.status + " " + request.statusText));
                 }
