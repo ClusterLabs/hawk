@@ -1,7 +1,6 @@
 <% content_for :head do %>
 <%= stylesheet_link_tag "dashboard" %>
 <%= javascript_include_tag "dashboard" %>
-<%= javascript_include_tag "json2.min" %>
 <script src="<%= url_for(:controller => 'main', :action => 'gettext', :format => 'js') %>" type="text/javascript"></script>
 <% end %>
 <script type="text/javascript">
