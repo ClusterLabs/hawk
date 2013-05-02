@@ -81,6 +81,7 @@ var simulator = {
       b[GETTEXT.ok()] = function() {
         var s = "node " + $("#inject-node-uname").val() + " " + $("#inject-node-state").val();
         $("#sim-injections").append($('<option title="' + s + '" value="' + s + '">' + s + "</option>"));
+        self._save_injections();
         $("#sim-run").removeAttr("disabled");
         $(this).dialog("close");
       };
@@ -168,6 +169,7 @@ var simulator = {
           $("#inject-op-result").val() + " " +
           $("#inject-op-node").val();
         $("#sim-injections").append($('<option title="' + s + '" value="' + s + '">' + s + "</option>"));
+        self._save_injections();
         $("#sim-run").removeAttr("disabled");
         $(this).dialog("close");
       };
@@ -205,6 +207,7 @@ var simulator = {
       b[GETTEXT.ok()] = function() {
         var s = "ticket " + $("#inject-ticket-ticket").val() + " " + $("#inject-ticket-action").val();
         $("#sim-injections").append($('<option title="' + s + '" value="' + s+ '">' + s + "</option>"));
+        self._save_injections();
         $("#sim-run").removeAttr("disabled");
         $(this).dialog("close");
       };
@@ -227,6 +230,7 @@ var simulator = {
         // TODO(must): disabled temporarily so you can use sim run after editing config
         //$("#sim-run").attr("disabled", "disabled");
       }
+      self._save_injections();
     });
 
     $("#sim-run").click(function() {
@@ -236,22 +240,9 @@ var simulator = {
         i.push($(this).val());
       });
       $.post(url_root + "/main/sim_run?cib_id=" + cib_source, { "injections[]": i }, function(data) {
-        if (data) {
-          if (data.is_empty) {
-            $("#graph-link").hide();
-            $("#graph-empty").show();
-          } else {
-            $("#graph-empty").hide();
-            $("#graph-link").show();
-          }
-        }
         update_cib();
-        $("#sim-get-info").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=info&cib_id=" + cib_source);
-        $("#sim-get-in").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=in&cib_id=" + cib_source);
-        $("#sim-get-out").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=out&cib_id=" + cib_source);
-        $("#sim-get-graph").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=graph&cib_id=" + cib_source);
-        $("#sim-get-graph-xml").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=graph&format=xml&cib_id=" + cib_source);
-        $("#simulator").dialog("option", "title", escape_html(GETTEXT.sim_final()));
+        self._show_final_state(data);
+        self._save_final_state(data);
       });
       return false;
     });
@@ -295,7 +286,52 @@ var simulator = {
     self._reset_dialog();
     update_cib();
     $("#simulator").dialog("option", "title", escape_html(GETTEXT.sim_init()));
+    // Note: this state cookie is cleared in main.html when sim is activated first from the tools menu.
+    if ($.cookie("hawk-sim")) {
+      var s = JSON.parse($.cookie("hawk-sim"));
+      if (s.injections) {
+        $.each(s.injections, function() {
+          $("#sim-injections").append($('<option title="' + this + '" value="' + this + '">' + this + "</option>"));
+        });
+      }
+      if (s.is_final) {
+        self._show_final_state(s.run_info);
+      }
+    }
     $("#simulator").dialog("open");
+  },
+  _save_injections: function() {
+    var s = {};
+    if ($.cookie("hawk-sim")) { s = JSON.parse($.cookie("hawk-sim")); }
+    s.injections = [];
+    $("#sim-injections").children().each(function() {
+      s.injections.push($(this).val());
+    });
+    $.cookie("hawk-sim", JSON.stringify(s));
+  },
+  _save_final_state: function(run_info) {
+    var s = {};
+    if ($.cookie("hawk-sim")) { s = JSON.parse($.cookie("hawk-sim")); }
+    s.is_final = true;
+    s.run_info = run_info;
+    $.cookie("hawk-sim", JSON.stringify(s));
+  },
+  _show_final_state: function(run_info) {
+    if (run_info) {
+      if (run_info.is_empty) {
+        $("#graph-link").hide();
+        $("#graph-empty").show();
+      } else {
+        $("#graph-empty").hide();
+        $("#graph-link").show();
+      }
+    }
+    $("#sim-get-info").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=info&cib_id=" + cib_source);
+    $("#sim-get-in").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=in&cib_id=" + cib_source);
+    $("#sim-get-out").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=out&cib_id=" + cib_source);
+    $("#sim-get-graph").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=graph&cib_id=" + cib_source);
+    $("#sim-get-graph-xml").removeClass("disabled").attr("href", url_root + "/main/sim_get?file=graph&format=xml&cib_id=" + cib_source);
+    $("#simulator").dialog("option", "title", escape_html(GETTEXT.sim_final()));
   },
   _reset_dialog: function() {
     $("#simulator").dialog("option", "title", escape_html(GETTEXT.sim_busy()));
@@ -317,6 +353,7 @@ var simulator = {
   },
   _reset: function() {
     var self = this;
+    $.cookie("hawk-sim", null);
     self._reset_dialog();
     $.get(url_root + "/main/sim_reset?cib_id=" + cib_source, function() {
       update_cib();

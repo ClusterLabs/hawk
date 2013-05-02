@@ -42,6 +42,7 @@ $(function() {
         $.ajax({ url: '<%= url_for(:sim => 'init') %>',
           success: function(data) {
             if (data && data.uri) {
+              $.cookie("hawk-sim", null);
               window.location.assign(data.uri);
             } else {
               error_dialog(GETTEXT.err_unexpected(data));
