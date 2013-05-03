@@ -1,8 +1,8 @@
 <h2><%=h _("%{workflow}: %{step}") % { :workflow => @workflow_shortdesc, :step => @step_shortdesc } %></h2>
-<div id="wizard-body">
-<p><%=h _("The configuration has been applied.") %></p>
 <%= form_tag(wizard_path(:cib_id => (params[:cib_id] || "live"))) do %>
 <%= hidden_field_tag "step", @step %>
+<div id="wizard-body">
+<p><%=h _("The configuration has been applied.") %></p>
 </div>
 <table>
   <tr>

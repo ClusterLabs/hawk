@@ -69,6 +69,9 @@ $(function() {
 });
 </script>
 <h2><%=h _("%{workflow}: %{step}") % { :workflow => @workflow_shortdesc, :step => @step_shortdesc } %></h2>
+<%= form_tag(wizard_path(:cib_id => (params[:cib_id] || "live"))) do %>
+<%= hidden_field_tag "workflow", params[:workflow] %>
+<%= hidden_field_tag "step", @step %><%=raw hash_as_hidden_fields(:all_params => @all_params) %>
 <div id="wizard-body">
 <% if @step == "confirm" %>
 <p><%=h _("The following configuration will be applied to the cluster:") %></p>
@@ -78,9 +81,6 @@ $(function() {
 <% @errors.each do |message| %>
   <div class="ui-state-error ui-corner-all" style="padding: 0.5em; margin-bottom: 0.5em;"><%=h message %></div>
 <% end %>
-<%= form_tag(wizard_path(:cib_id => (params[:cib_id] || "live"))) do %>
-<%= hidden_field_tag "workflow", params[:workflow] %>
-<%= hidden_field_tag "step", @step %><%=raw hash_as_hidden_fields(:all_params => @all_params) %>
 <table>
   <tr style="vertical-align: top;">
     <td>
