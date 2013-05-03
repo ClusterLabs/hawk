@@ -89,8 +89,9 @@ var simulator = {
         $(this).dialog("close");
       };
       $("#dialog").dialog("option", {
-        title:    escape_html(GETTEXT.sim_node_inject()),
-        buttons:  b
+        draggable: true,
+        title:     escape_html(GETTEXT.sim_node_inject()),
+        buttons:   b
       });
       $("#dialog").dialog("open");
     });
@@ -177,8 +178,9 @@ var simulator = {
         $(this).dialog("close");
       };
       $("#dialog").dialog("option", {
-        title:    escape_html(GETTEXT.sim_op_inject()),
-        buttons:  b
+        draggable: true,
+        title:     escape_html(GETTEXT.sim_op_inject()),
+        buttons:   b
       });
       $("#dialog").dialog("open");
     });
@@ -215,8 +217,9 @@ var simulator = {
         $(this).dialog("close");
       };
       $("#dialog").dialog("option", {
-        title:    escape_html(GETTEXT.sim_ticket_inject()),
-        buttons:  b
+        draggable: true,
+        title:     escape_html(GETTEXT.sim_ticket_inject()),
+        buttons:   b
       });
       $("#dialog").dialog("open");
     });
