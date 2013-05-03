@@ -303,6 +303,16 @@ var simulator = {
     }
     $("#simulator").dialog("open");
   },
+  // Update is triggered by update_cib()
+  update: function() {
+    if ($(document.body).hasClass("sim")) {
+      if (cib && cib.tickets && !$.isEmptyObject(cib.tickets)) {
+        $("#sim-inject-ticket").show();
+      } else {
+        $("#sim-inject-ticket").hide();
+      }
+    }
+  },
   _save_injections: function() {
     var s = {};
     if ($.cookie("hawk-sim")) { s = JSON.parse($.cookie("hawk-sim")); }
@@ -348,6 +358,8 @@ var simulator = {
     // TODO(must): disabled temporarily so you can use sim run after editing config
     //$("#sim-run").attr("disabled", "disabled");
     $("#sim-injections").children().remove();
+    // Next test might fail initially (when page first loaded and cib is still null),
+    // but it'll get picked up by the update() function...
     if (cib && cib.tickets && !$.isEmptyObject(cib.tickets)) {
       $("#sim-inject-ticket").show();
     } else {

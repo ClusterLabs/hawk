@@ -406,6 +406,7 @@ function update_cib()
           $("#dc_stack").html(GETTEXT.dc_stack(cib.crm_config["cluster-infrastructure"])).show();
 
           current_view.update();
+          simulator.update();
         } else {
           // TODO(must): is it possible to get here with empty cib.errors?
           hide_status();
