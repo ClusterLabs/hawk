@@ -4,8 +4,9 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
-"POT-Creation-Date: 2011-08-11 15:33+1000\n"
-"PO-Revision-Date: 2011-10-20 10:29\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-04-19 21:25+1000\n"
+"PO-Revision-Date: 2013-05-03 18:09\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "Language: \n"
@@ -14,118 +15,637 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: app/controllers/explorer_controller.rb:42
-#: app/views/main/_menus.html.erb:373
-msgid "History Explorer"
-msgstr "Проводник журнала"
+#: app/controllers/sessions_controller.rb:92
+msgid "%s is not installed"
+msgstr "%s не установлен"
 
-#: app/controllers/explorer_controller.rb:95
-msgid "Required parameters \"basename\" and \"node\" not specified"
-msgstr "Не указаны обязательные параметры \"basename\" и \"node\""
+#: app/controllers/main_controller.rb:58
+msgid "%{cmd} failed (status: %{status})"
+msgstr "Сбой %{cmd} (состояние: %{status})"
 
-#: app/controllers/explorer_controller.rb:117
-msgid "No details available"
-msgstr "Описание отсутствует"
+#: app/models/cib.rb:242
+msgid "%{cmd} failed (status: %{status}, output was: %{output})"
+msgstr "%{cmd} не удалось (состояние: %{status}, выход: %{output})"
 
-#: app/controllers/explorer_controller.rb:119
-#: app/controllers/explorer_controller.rb:147
-msgid "Error:"
-msgstr "Ошибка:"
+#: app/views/main/_gettext.js.erb:212
+msgid "%{id}: Demoting"
+msgstr "%{id}: понижение"
 
-#: app/controllers/groups_controller.rb:47
-msgid "Edit Group"
-msgstr "Редактировать группу"
+#: app/views/main/_gettext.js.erb:211
+msgid "%{id}: Demoting: %{node}"
+msgstr "%{id}: понижение: %{node}"
 
-#: app/controllers/groups_controller.rb:51
-#: app/controllers/groups_controller.rb:57 app/views/groups/_form.html.erb:142
-msgid "Create Group"
-msgstr "Создать группу"
+#: app/views/main/_gettext.js.erb:180
+msgid "%{id}: Master"
+msgstr "%{id}: главный"
 
-#: app/controllers/groups_controller.rb:64
-msgid "Group created successfully"
-msgstr "Группа успешно создана"
+#: app/views/main/_gettext.js.erb:179
+msgid "%{id}: Master: %{nodelist}"
+msgstr "%{id}: главный: %{nodelist}"
 
-#: app/controllers/groups_controller.rb:86
-msgid "Group updated successfully"
-msgstr "Группа успешно обновлена"
+#: app/views/main/_gettext.js.erb:216
+msgid "%{id}: Moving"
+msgstr "%{id}: перемещение"
 
-#: app/controllers/masters_controller.rb:47
-msgid "Edit Master/Slave"
-msgstr "Редактировать подчинение"
+#: app/views/main/_gettext.js.erb:215
+msgid "%{id}: Moving: %{node}"
+msgstr "%{id}: перемещение: %{node}"
 
-#: app/controllers/masters_controller.rb:51
-#: app/controllers/masters_controller.rb:57
-#: app/views/masters/_form.html.erb:87
-msgid "Create Master/Slave"
-msgstr "Создать подчинение"
+#: app/views/main/_gettext.js.erb:195
+msgid "%{id}: Pending"
+msgstr "%{id}: ожидание"
 
-#: app/controllers/masters_controller.rb:64
-msgid "Master/Slave created successfully"
-msgstr "Подчинение успешно создано"
+#: app/views/main/_gettext.js.erb:194
+msgid "%{id}: Pending: %{nodelist}"
+msgstr "%{id}: ожидание: %{nodelist}"
 
-#: app/controllers/masters_controller.rb:86
-msgid "Master/Slave updated successfully"
-msgstr "Подчинение успешно обновлено"
+#: app/views/main/_gettext.js.erb:208
+msgid "%{id}: Promoting"
+msgstr "%{id}: продвижение"
 
-#: app/controllers/clones_controller.rb:47
-msgid "Edit Clone"
-msgstr "Редактировать клон"
+#: app/views/main/_gettext.js.erb:207
+msgid "%{id}: Promoting: %{node}"
+msgstr "%{id}: продвижение: %{node}"
 
-#: app/controllers/clones_controller.rb:51
-#: app/controllers/clones_controller.rb:57 app/views/clones/_form.html.erb:87
-msgid "Create Clone"
-msgstr "Создать клон"
+#: app/views/main/_gettext.js.erb:185
+msgid "%{id}: Slave"
+msgstr "%{id}: подчиненный"
 
-#: app/controllers/clones_controller.rb:64
-msgid "Clone created successfully"
-msgstr "Клон успешно создан"
+#: app/views/main/_gettext.js.erb:184
+msgid "%{id}: Slave: %{nodelist}"
+msgstr "%{id}: подчиненный: %{nodelist}"
 
-#: app/controllers/clones_controller.rb:86
-msgid "Clone updated successfully"
-msgstr "Клон успешно изменен"
+#: app/views/main/_gettext.js.erb:190
+msgid "%{id}: Started"
+msgstr "%{id}: запущено"
 
-#: app/controllers/cib_controller.rb:77
+#: app/views/main/_gettext.js.erb:189
+msgid "%{id}: Started: %{nodelist}"
+msgstr "%{id}: Запущено: %{nodelist}"
+
+#: app/views/main/_gettext.js.erb:200
+msgid "%{id}: Starting"
+msgstr "%{id}: запуск"
+
+#: app/views/main/_gettext.js.erb:199
+msgid "%{id}: Starting: %{node}"
+msgstr "%{id}: запуск: %{node}"
+
+#: app/views/main/_gettext.js.erb:220
+msgid "%{id}: Stopped"
+msgstr "%{id}: Остановлено"
+
+#: app/views/main/_gettext.js.erb:204
+msgid "%{id}: Stopping"
+msgstr "%{id}: остановка"
+
+#: app/views/main/_gettext.js.erb:203
+msgid "%{id}: Stopping: %{node}"
+msgstr "%{id}: остановка: %{node}"
+
+#: app/views/main/_gettext.js.erb:156
+msgid "%{node}: %{state}"
+msgstr "%{node}: %{state}"
+
+#: app/views/main/_gettext.js.erb:85
+msgid "%{op} failed on %{node} (rc=%{rc})"
+msgstr "Сбой операции %{op} в узле %{node} (rc=%{rc})"
+
+#: app/views/wizard/run.html.erb:71 app/views/wizard/done.html.erb:1
+msgid "%{workflow}: %{step}"
+msgstr "%{workflow}: %{step}"
+
+#: app/views/resources/index.html.erb:186
+msgid "(No clones defined)"
+msgstr "(Клоны не определены)"
+
+#: app/views/constraints/index.html.erb:171
+msgid "(No colocation constraints defined)"
+msgstr "(Не определены ограничения на совместное расположение)"
+
+#: app/views/resources/index.html.erb:174
+msgid "(No groups defined)"
+msgstr "(Группы не определены)"
+
+#: app/views/constraints/index.html.erb:141
+msgid "(No location constraints defined)"
+msgstr "(Не определены ограничения на расположение)"
+
+#: app/views/resources/index.html.erb:198
+msgid "(No master/slave resources defined)"
+msgstr "(Главные/подчиненные ресурсы не определены)"
+
+#: app/views/constraints/index.html.erb:185
+msgid "(No order constraints defined)"
+msgstr "(Не определены ограничения на порядок)"
+
+#: app/views/resources/index.html.erb:148
+msgid "(No primitive resources defined)"
+msgstr "(Ресурсы-примитивы не определены)"
+
+#: app/views/resources/index.html.erb:161
+msgid "(No templates defined)"
+msgstr "(Шаблоны не определены)"
+
+#: app/views/constraints/index.html.erb:200
+msgid "(No ticket constraints defined)"
+msgstr "(Ограничения билетов не определены)"
+
+#: app/views/dashboard/index.html.erb:363
+msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
+msgstr "(Укажите любое имя хоста в кластере. Остальные узлы будут найдены автоматически)"
+
+#: app/views/explorer/_pe_list.html.erb:31
+msgid "(full log)"
+msgstr "(полный журнал)"
+
+#: app/views/main/_gettext.js.erb:248
+msgid "+ Node"
+msgstr "+ узел"
+
+#: app/views/main/_gettext.js.erb:251
+msgid "+ Op"
+msgstr "+ операция"
+
+#: app/views/main/_gettext.js.erb:254
+msgid "+ Ticket"
+msgstr "+ билет"
+
+#: app/controllers/cib_controller.rb:110 app/controllers/cib_controller.rb:160
 msgid "1 node configured"
 msgid_plural "%{num} nodes configured"
 msgstr[0] "1 узел сконфигурирован"
 msgstr[1] "Сконфигурировано узлов: %{num}"
 msgstr[2] "Сконфигурировано узлов: %{num}"
 
-#: app/controllers/cib_controller.rb:78
+#: app/controllers/cib_controller.rb:111 app/controllers/cib_controller.rb:161
 msgid "1 resource configured"
 msgid_plural "%{num} resources configured"
 msgstr[0] "1 ресурс сконфигурирован"
 msgstr[1] "Сконфигурировано ресурсов: %{num}"
 msgstr[2] "Сконфигурировано ресурсов: %{num}"
 
+#: app/views/wizard/run.html.erb:120
+msgid "< Back"
+msgstr "< Назад"
+
+#: app/views/dashboard/index.html.erb:385
+msgid "A cluster with that name already exists"
+msgstr "Кластер с таким именем уже существует"
+
+#: app/views/main/_gettext.js.erb:305
+msgid "Action:"
+msgstr "Действие:"
+
+#: app/views/main/_gettext.js.erb:317
+msgid "Activate"
+msgstr "Активировать"
+
+#: app/views/masters/_form.html.erb:46 app/views/crm_config/edit.html.erb:24
+#: app/views/crm_config/edit.html.erb:46 app/views/crm_config/edit.html.erb:68
+#: app/views/clones/_form.html.erb:46 app/views/locations/_form.html.erb:47
+#: app/views/groups/_form.html.erb:81 app/views/colocations/_form.html.erb:60
+#: app/views/tickets/_form.html.erb:48 app/views/primitives/_form.html.erb:247
+#: app/views/primitives/_form.html.erb:267
+#: app/views/primitives/_form.html.erb:290 app/views/orders/_form.html.erb:60
+msgid "Add"
+msgstr "Добавить"
+
+#: app/views/dashboard/index.html.erb:368
+msgid "Add Cluster"
+msgstr "Добавить кластер"
+
+#: app/views/locations/_form.html.erb:49
+msgid "Add Rule"
+msgstr "Добавить правило"
+
+#: app/views/colocations/_form.html.erb:65 app/views/tickets/_form.html.erb:50
+#: app/views/orders/_form.html.erb:65
+msgid "Add resource to constraint"
+msgstr "Добавить ресурс в ограничение"
+
+#: app/views/nodes/events.html.erb:13 app/views/resources/events.html.erb:13
+msgid "Another \"crm history\" operation is in progress..."
+msgstr "Выполняется другая операция \"crm history\"..."
+
+#: app/views/shared/_confirm_revert.html.erb:4
+msgid "Any changes will be lost - do you wish to proceed?"
+msgstr "Все изменения будут утеряны. Продолжить?"
+
+#: app/views/masters/edit.html.erb:4 app/views/crm_config/edit.html.erb:113
+#: app/views/clones/edit.html.erb:4 app/views/locations/edit.html.erb:4
+#: app/views/groups/edit.html.erb:4 app/views/colocations/edit.html.erb:4
+#: app/views/tickets/edit.html.erb:4 app/views/primitives/edit.html.erb:4
+#: app/views/orders/edit.html.erb:4
+msgid "Apply Changes"
+msgstr "Применить изменения"
+
+#: app/models/location.rb:69
+msgid "Attribute contains both single and double quotes"
+msgstr "Атрибут содержит и одиночные, и двойные кавычки"
+
+#: app/views/nodes/show.html.erb:18 app/views/resources/show.html.erb:1
+msgid "Attributes"
+msgstr "Атрибуты"
+
+#: app/views/groups/_form.html.erb:117
+msgid "Available Primitives"
+msgstr "Доступные примитивы"
+
+#: app/views/main/_gettext.js.erb:51
+msgid "Away from current node"
+msgstr "Из текущего узла"
+
+#: app/views/masters/_form.html.erb:89 app/views/crm_config/update.html.erb:4
+#: app/views/crm_config/show.html.erb:11 app/views/clones/_form.html.erb:89
+#: app/views/locations/_form.html.erb:95 app/views/wizard/start.html.erb:3
+#: app/views/wizard/broken.html.erb:4 app/views/groups/_form.html.erb:144
+#: app/views/colocations/_form.html.erb:111
+#: app/views/tickets/_form.html.erb:99 app/views/primitives/_form.html.erb:395
+#: app/views/orders/_form.html.erb:117
+msgid "Back"
+msgstr "Назад"
+
+#: app/views/locations/_form.html.erb:45
+msgid "Boolean Op"
+msgstr "Логическая операция"
+
+#: app/views/colocations/_form.html.erb:63 app/views/orders/_form.html.erb:63
+msgid "Break set"
+msgstr "Связь разорвана"
+
+#: app/views/main/_gettext.js.erb:263
+msgid "CIB (in)"
+msgstr "CIB (ввод)"
+
+#: app/views/main/_gettext.js.erb:266
+msgid "CIB (out)"
+msgstr "CIB (вывод)"
+
+#: app/models/cib.rb:233
+msgid "CIB file \"%{path}\" not found"
+msgstr "CIB-файл \"%{path}\" не найден"
+
+#: app/views/crm_config/edit.html.erb:15
+msgid "CRM Configuration"
+msgstr "Конфигурация CRM"
+
+#: app/views/dashboard/index.html.erb:183
+#: app/views/dashboard/index.html.erb:244
+#: app/views/dashboard/index.html.erb:301
+msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
+msgstr "Не удается связаться с Hawk в узле %{node}. Попытки будут повторяться каждые 5 секунд."
+
+#: app/models/group.rb:51 app/models/master.rb:51 app/models/template.rb:78
+#: app/models/clone.rb:51 app/models/primitive.rb:77
+msgid "Can't set meta attribute %{p}, because the value contains both single and double quotes"
+msgstr "Невозможно задать метаатрибут %{p}, поскольку значение содержит и одиночные, и двойные кавычки"
+
+#: app/models/template.rb:70 app/models/primitive.rb:69
+msgid "Can't set op %{o} attribute {%a}, because the value contains both single and double quotes"
+msgstr "Невозможно задать атрибут {%a} операции %{o}, поскольку значение содержит и одиночные, и двойные кавычки"
+
+#: app/models/template.rb:62 app/models/primitive.rb:61
+msgid "Can't set parameter %{p}, because the value contains both single and double quotes"
+msgstr "Невозможно задать параметр %{p}, поскольку значение содержит и одиночные, и двойные кавычки"
+
+#: app/controllers/crm_config_controller.rb:161
+msgid "Can't set property %{p}, because the value contains both single and double quotes"
+msgstr "Невозможно задать свойство %{p}, поскольку значение содержит и одиночные, и двойные кавычки"
+
+#: app/views/main/_gettext.js.erb:7 app/views/wizard/start.html.erb:44
+#: app/views/wizard/run.html.erb:119 app/views/primitives/_form.html.erb:273
+#: app/views/dashboard/index.html.erb:455
+msgid "Cancel"
+msgstr "Отмена"
+
+#: app/views/masters/_form.html.erb:71 app/views/clones/_form.html.erb:71
+msgid "Child Resource"
+msgstr "Дочерний ресурс"
+
+#: app/views/wizard/start.html.erb:24
+msgid "Choose Configuration"
+msgstr "Выбор конфигурации"
+
+#: app/views/primitives/_form.html.erb:330
+msgid "Class"
+msgstr "Класс"
+
+#: app/views/main/_menus.html.erb:149
+msgid "Clean Up"
+msgstr "Очистка"
+
+#: app/views/resources/index.html.erb:121
+msgid "Clone"
+msgstr "Клонировать"
+
+#: app/views/clones/_form.html.erb:70
+msgid "Clone ID"
+msgstr "ИД клона"
+
+#: app/models/clone.rb:87
+msgid "Clone ID \"%{id}\" does not exist"
+msgstr "Клон с ИД \"%{id}\" не существует"
+
+#: app/views/main/_gettext.js.erb:229
+msgid "Clone Set: %{id}"
+msgstr "Набор клонов: %{id}"
+
+#: app/controllers/clones_controller.rb:65
+msgid "Clone created successfully"
+msgstr "Клон успешно создан"
+
+#: app/controllers/clones_controller.rb:87
+msgid "Clone updated successfully"
+msgstr "Клон успешно изменен"
+
+#: app/views/main/_gettext.js.erb:16
+msgid "Close"
+msgstr "Закрыть"
+
+#: app/controllers/crm_config_controller.rb:45
+#: app/views/main/_gettext.js.erb:99
+msgid "Cluster Configuration"
+msgstr "Конфигурация кластера"
+
+#: app/controllers/dashboard_controller.rb:37
+msgid "Cluster Dashboard"
+msgstr "Панель управления кластером"
+
+#: app/views/layouts/main.html.erb:63 app/views/layouts/main.html.erb:76
+msgid "Cluster Diagram"
+msgstr "Схема кластера"
+
+#: app/views/dashboard/index.html.erb:361
+msgid "Cluster Name:"
+msgstr "Имя кластера:"
+
+#: app/views/layouts/main.html.erb:150
+msgid "Cluster Properties"
+msgstr "Свойства кластера"
+
 #: app/controllers/wizard_controller.rb:60
 msgid "Cluster Setup Wizard"
 msgstr "Мастер установки кластера"
 
-#: app/controllers/wizard_controller.rb:99
-#: app/views/primitives/_form.html.erb:187
-msgid "Parameters"
-msgstr "Параметры"
+#: app/controllers/main_controller.rb:78 app/views/layouts/main.html.erb:135
+msgid "Cluster Status"
+msgstr "Состояние кластера"
+
+#: app/views/dashboard/index.html.erb:65
+msgid "Cluster has errors - click for details"
+msgstr "В кластере есть ошибки - щелкните для получения подробной информации"
+
+#: app/views/constraints/index.html.erb:107
+msgid "Colocation"
+msgstr "Совместное расположение"
 
 #: app/controllers/wizard_controller.rb:123
 msgid "Confirm"
 msgstr "Подтвердить"
 
+#: app/views/main/_gettext.js.erb:79
+msgid "Connection to server aborted - will retry every 15 seconds."
+msgstr "Прерывание соединения с сервером - попытки будут повторяться каждые 15 секунд."
+
+#: app/views/main/_gettext.js.erb:73
+msgid "Connection to server failed (server down or network error - will retry every 15 seconds)."
+msgstr "Сбой соединения с сервером (сервер остановлен или сеть работает с ошибками - попытки будут повторяться каждые 15 секунд)."
+
+#: app/views/main/_gettext.js.erb:76
+msgid "Connection to server timed out - will retry every 15 seconds."
+msgstr "Тайм-аут соединения с сервером - попытки будут повторяться каждые 15 секунд."
+
+#: app/views/locations/_form.html.erb:75
+#: app/views/colocations/_form.html.erb:89 app/views/tickets/_form.html.erb:77
+#: app/views/orders/_form.html.erb:89
+msgid "Constraint ID"
+msgstr "ИД ограничения"
+
+#: app/models/ticket.rb:91 app/models/location.rb:95
+#: app/models/colocation.rb:81 app/models/order.rb:107
+msgid "Constraint ID \"%{id}\" does not exist"
+msgstr "Ограничение с ИД \"%{id}\" не существует"
+
+#: app/controllers/colocations_controller.rb:61
+#: app/controllers/tickets_controller.rb:59
+#: app/controllers/locations_controller.rb:60
+#: app/controllers/orders_controller.rb:62
+msgid "Constraint created successfully"
+msgstr "Ограничение успешно создано"
+
+#: app/models/location.rb:43
+msgid "Constraint is too complex - it contains nested rules"
+msgstr "Слишком сложное ограничение - содержит вложенные правила"
+
+#: app/models/colocation.rb:57 app/models/order.rb:83
+msgid "Constraint must consist of at least two separate resources"
+msgstr "Ограничение должно состоять как минимум из двух отдельных ресурсов"
+
+#: app/controllers/colocations_controller.rb:84
+#: app/controllers/tickets_controller.rb:81
+#: app/controllers/locations_controller.rb:82
+#: app/controllers/orders_controller.rb:86
+msgid "Constraint updated successfully"
+msgstr "Ограничение успешно обновлено"
+
+#: app/controllers/constraints_controller.rb:44
+#: app/views/layouts/main.html.erb:156
+msgid "Constraints"
+msgstr "Ограничения"
+
+#: app/views/layouts/main.html.erb:178
+msgid "Copyright &copy; 2009-2013 SUSE, LLC"
+msgstr "&copy; SUSE, LLC, 2009-2013"
+
+#: app/controllers/clones_controller.rb:52
+#: app/controllers/clones_controller.rb:58 app/views/clones/_form.html.erb:87
+msgid "Create Clone"
+msgstr "Создать клон"
+
+#: app/controllers/colocations_controller.rb:48
+#: app/controllers/colocations_controller.rb:53
+msgid "Create Colocation Constraint"
+msgstr "Создать ограничение совместного расположения"
+
+#: app/views/locations/_form.html.erb:93
+#: app/views/colocations/_form.html.erb:109
+#: app/views/tickets/_form.html.erb:97 app/views/orders/_form.html.erb:115
+msgid "Create Constraint"
+msgstr "Создать ограничение"
+
+#: app/controllers/groups_controller.rb:52
+#: app/controllers/groups_controller.rb:58 app/views/groups/_form.html.erb:142
+msgid "Create Group"
+msgstr "Создать группу"
+
+#: app/controllers/locations_controller.rb:48
+#: app/controllers/locations_controller.rb:53
+msgid "Create Location Constraint"
+msgstr "Создать ограничение на расположение"
+
+#: app/controllers/masters_controller.rb:52
+#: app/controllers/masters_controller.rb:58
+#: app/views/masters/_form.html.erb:87
+msgid "Create Master/Slave"
+msgstr "Создать подчинение"
+
+#: app/controllers/orders_controller.rb:48
+#: app/controllers/orders_controller.rb:53
+msgid "Create Order Constraint"
+msgstr "Создать ограничение на порядок"
+
+#: app/controllers/primitives_controller.rb:50
+#: app/controllers/primitives_controller.rb:56
+#: app/views/primitives/_form.html.erb:393
+msgid "Create Resource"
+msgstr "Создать ресурс"
+
+#: app/controllers/templates_controller.rb:51
+#: app/controllers/templates_controller.rb:59
+msgid "Create Template"
+msgstr "Создать шаблон"
+
+#: app/controllers/tickets_controller.rb:47
+#: app/controllers/tickets_controller.rb:52
+msgid "Create Ticket Constraint"
+msgstr "Создать ограничение билета"
+
+#: app/views/main/_gettext.js.erb:89
+msgid "DC: %s"
+msgstr "DC: %s"
+
+#: app/views/layouts/main.html.erb:126
+msgid "Dashboard"
+msgstr "Панель управления"
+
+#: app/helpers/explorer_helper.rb:3
+msgid "Data collection in progress (%{from_time} to %{to_time})..."
+msgstr "Выполняется сбор данных (с %{from_time} по %{to_time})..."
+
+#: app/views/constraints/index.html.erb:58
+msgid "Delete Constraint"
+msgstr "Удалить ограничение"
+
+#: app/views/resources/index.html.erb:58
+msgid "Delete Resource"
+msgstr "Удалить ресурс"
+
+#: app/views/explorer/index.html.erb:37
+msgid "Delete this history archive?"
+msgstr "Удалить этот архив протокола?"
+
+#: app/views/main/_menus.html.erb:142
+msgid "Demote"
+msgstr "Понизить"
+
+#: app/views/main/_gettext.js.erb:108 app/views/main/_gettext.js.erb:260
+#: app/views/explorer/_pe_list.html.erb:27
+msgid "Details"
+msgstr "Подробности"
+
+#: app/views/explorer/_pe_list.html.erb:44
+msgid "Diff"
+msgstr "Различие"
+
+#: app/views/explorer/index.html.erb:159
+msgid "Display"
+msgstr "Дисплей"
+
 #: app/controllers/wizard_controller.rb:143 app/views/wizard/done.html.erb:10
 msgid "Done"
 msgstr "Готово"
 
-#: app/controllers/wizard_controller.rb:243
-msgid "Required parameter \"%{param}\" not specified"
-msgstr "Не указан обязательный параметр \"%{param}\""
+#: app/views/hb_reports/new.html.erb:80
+msgid "Download hb_report"
+msgstr "Загрузить отчет hb_report"
 
-#: app/controllers/wizard_controller.rb:253
-msgid "Wizard templates and/or workflows are missing"
-msgstr "Отсутствуют шаблоны и(или) рабочие процессы мастера"
+#: app/views/main/_menus.html.erb:128
+msgid "Drop Relocation Rule"
+msgstr "Отменить правило перемещения"
 
-#: app/controllers/wizard_controller.rb:261
-msgid "Workflow \"%s\" not found"
-msgstr "Рабочий процесс \"%s\" не найден"
+#: app/views/crm_config/show.html.erb:11
+#: app/views/primitives/_form.html.erb:268
+msgid "Edit"
+msgstr "Правка"
+
+#: app/controllers/clones_controller.rb:48
+msgid "Edit Clone"
+msgstr "Редактировать клон"
+
+#: app/controllers/colocations_controller.rb:44
+msgid "Edit Colocation Constraint"
+msgstr "Изменить ограничение совместного расположения"
+
+#: app/views/constraints/index.html.erb:47
+msgid "Edit Constraint"
+msgstr "Изменить ограничение"
+
+#: app/controllers/groups_controller.rb:48
+msgid "Edit Group"
+msgstr "Редактировать группу"
+
+#: app/controllers/locations_controller.rb:44
+msgid "Edit Location Constraint"
+msgstr "Изменить ограничение на расположение"
+
+#: app/controllers/masters_controller.rb:48
+msgid "Edit Master/Slave"
+msgstr "Редактировать подчинение"
+
+#: app/controllers/orders_controller.rb:44
+msgid "Edit Order Constraint"
+msgstr "Изменить ограничение на порядок"
+
+#: app/controllers/primitives_controller.rb:46
+#: app/views/resources/index.html.erb:47
+msgid "Edit Resource"
+msgstr "Изменить ресурс"
+
+#: app/controllers/templates_controller.rb:47
+msgid "Edit Template"
+msgstr "Редактировать шаблон"
+
+#: app/controllers/tickets_controller.rb:43
+msgid "Edit Ticket Constraint"
+msgstr "Изменить ограничение билета"
+
+#: app/views/main/_gettext.js.erb:272
+msgid "Empty Graph"
+msgstr "Пустой граф"
+
+#: app/views/explorer/index.html.erb:143 app/views/explorer/index.html.erb:157
+#: app/views/hb_reports/new.html.erb:63
+msgid "End Time:"
+msgstr "Время окончания:"
+
+#: app/views/main/_gettext.js.erb:67
+msgid "Error"
+msgstr "Ошибка"
+
+#: app/views/wizard/run.html.erb:102
+msgid "Error applying configuration:"
+msgstr "Ошибка применения конфигурации:"
+
+#: app/controllers/main_controller.rb:152
+msgid "Error deleting resource"
+msgstr "Ошибка при удалении ресурса"
+
+#: app/models/cib.rb:255
+msgid "Error invoking %{cmd}"
+msgstr "Ошибка вызова команды %{cmd}"
+
+#: app/models/cib.rb:260 app/controllers/main_controller.rb:308
+msgid "Error invoking %{cmd}: %{msg}"
+msgstr "Ошибка вызова команды %{cmd}: %{msg}"
+
+#: lib/invoker.rb:115
+msgid "Error invoking cibadmin %{cmd}: %{msg}"
+msgstr "Ошибка при вызове команды cibadmin %{cmd}: %{msg}"
+
+#: lib/invoker.rb:137
+msgid "Error invoking cibadmin --replace: %{msg}"
+msgstr "Ошибка при вызове команды cibadmin --replace: %{msg}"
 
 #: app/controllers/wizard_controller.rb:274
 msgid "Error parsing template \"%s\""
@@ -135,1113 +655,704 @@ msgstr "Ошибка при анализе шаблона \"%s\""
 msgid "Error parsing workflow \"%s\""
 msgstr "Ошибка при анализе рабочего процесса \"%s\""
 
-#: app/controllers/constraints_controller.rb:43
-msgid "Constraints"
-msgstr "Ограничения"
-
-#: app/controllers/colocations_controller.rb:43
-msgid "Edit Colocation Constraint"
-msgstr "Изменить ограничение совместного расположения"
-
-#: app/controllers/colocations_controller.rb:47
-#: app/controllers/colocations_controller.rb:52
-msgid "Create Colocation Constraint"
-msgstr "Создать ограничение совместного расположения"
-
-#: app/controllers/colocations_controller.rb:60
-#: app/controllers/locations_controller.rb:59
-#: app/controllers/orders_controller.rb:61
-msgid "Constraint created successfully"
-msgstr "Ограничение успешно создано"
-
-#: app/controllers/colocations_controller.rb:83
-#: app/controllers/locations_controller.rb:81
-#: app/controllers/orders_controller.rb:85
-msgid "Constraint updated successfully"
-msgstr "Ограничение успешно обновлено"
-
-#: app/controllers/primitives_controller.rb:45
-#: app/views/main/_menus.html.erb:243
-msgid "Edit Resource"
-msgstr "Изменить ресурс"
-
-#: app/controllers/primitives_controller.rb:49
-#: app/controllers/primitives_controller.rb:55
-#: app/views/primitives/_form.html.erb:323
-msgid "Create Resource"
-msgstr "Создать ресурс"
-
-#: app/controllers/primitives_controller.rb:62
-msgid "Resource created successfully"
-msgstr "Ресурс успешно создан"
-
-#: app/controllers/primitives_controller.rb:84
-msgid "Resource updated successfully"
-msgstr "Ресурс успешно обновлен"
-
-#: app/controllers/main_controller.rb:51
-msgid "%{cmd} failed (status: %{status})"
-msgstr "Сбой %{cmd} (состояние: %{status})"
-
-#: app/controllers/main_controller.rb:71
-msgid "Cluster Status"
-msgstr "Состояние кластера"
-
-#: app/controllers/main_controller.rb:86 app/controllers/main_controller.rb:96
-msgid "Required parameter \"node\" not specified"
-msgstr "Обязательный параметр \"node\" не задан"
-
-#: app/controllers/main_controller.rb:112
-#: app/controllers/main_controller.rb:141
-msgid "Required parameter \"resource\" not specified"
-msgstr "Обязательный параметр \"resource\" не задан"
-
-#: app/controllers/main_controller.rb:122
-msgid "Required parameters \"resource\" and \"node\" not specified"
-msgstr "Обязательные параметры \"resource\" и \"node\" не заданы"
-
-#: app/controllers/main_controller.rb:135
-msgid "Error deleting resource"
-msgstr "Ошибка при удалении ресурса"
-
-#: app/controllers/sessions_controller.rb:36
-#: app/views/sessions/new.html.erb:16
-msgid "Log In"
-msgstr "Войти"
-
-#: app/controllers/sessions_controller.rb:52
-msgid "Username not specified"
-msgstr "Не указано имя пользователя."
-
-#: app/controllers/sessions_controller.rb:56
-msgid "Invalid username"
-msgstr "Недопустимое имя пользователя"
-
-#: app/controllers/sessions_controller.rb:59
-msgid "Password not specified"
-msgstr "Не введен пароль"
-
-#: app/controllers/sessions_controller.rb:74
-msgid "Invalid username or password"
-msgstr "Недопустимое имя пользователя или пароль"
-
-#: app/controllers/sessions_controller.rb:78
-msgid "%s is not installed"
-msgstr "%s не установлен"
-
-#: app/controllers/sessions_controller.rb:91 app/models/cib.rb:243
-#: lib/invoker.rb:116 lib/invoker.rb:138
-msgid "Permission denied for user %{user}"
-msgstr "Доступ пользователя %{user} запрещен"
-
-#: app/controllers/sessions_controller.rb:94
-msgid "You have been logged out"
-msgstr "Вы вышли из системы"
-
-#: app/controllers/locations_controller.rb:43
-msgid "Edit Location Constraint"
-msgstr "Изменить ограничение на расположение"
-
-#: app/controllers/locations_controller.rb:47
-#: app/controllers/locations_controller.rb:52
-msgid "Create Location Constraint"
-msgstr "Создать ограничение на расположение"
-
-#: app/controllers/orders_controller.rb:43
-msgid "Edit Order Constraint"
-msgstr "Изменить ограничение на порядок"
-
-#: app/controllers/orders_controller.rb:47
-#: app/controllers/orders_controller.rb:52
-msgid "Create Order Constraint"
-msgstr "Создать ограничение на порядок"
-
-#: app/controllers/crm_config_controller.rb:44
-#: app/views/main/_gettext.js.erb:84
-msgid "Cluster Configuration"
-msgstr "Конфигурация кластера"
-
-#: app/controllers/crm_config_controller.rb:85
-msgid "Invalid property set ID: %{id}"
-msgstr "Недопустимый ИД набора свойств: %{id}"
-
-#: app/controllers/crm_config_controller.rb:133
-msgid "Can't set property %{p}, because the value contains both single and double quotes"
-msgstr "Невозможно задать свойство %{p}, поскольку значение содержит и одиночные, и двойные кавычки"
-
-#: app/controllers/crm_config_controller.rb:148
-msgid "Your changes have been saved"
-msgstr "Изменения сохранены"
-
-#: app/controllers/crm_config_controller.rb:150
-msgid "Unable to apply changes: %{msg}"
-msgstr "Не удалось применить изменения: %{msg}"
-
-#: app/models/order.rb:78 app/models/colocation.rb:52
-msgid "Invalid score"
-msgstr "Недопустимая оценка"
-
-#: app/models/order.rb:82 app/models/colocation.rb:56
-msgid "Constraint must consist of at least two separate resources"
-msgstr "Ограничение должно состоять как минимум из двух отдельных ресурсов"
-
-#: app/models/order.rb:88 app/models/primitive.rb:79
-#: app/models/colocation.rb:62 app/models/master.rb:56 app/models/clone.rb:56
-#: app/models/group.rb:56 app/models/location.rb:76
-msgid "The ID \"%{id}\" is already in use"
-msgstr "ИД \"%{id}\" уже используется"
-
-#: app/models/order.rb:97 app/models/colocation.rb:71
-#: app/models/location.rb:85
-msgid "Unable to create constraint: %{msg}"
-msgstr "Не удалось создать ограничение: %{msg}"
-
-#: app/models/order.rb:106 app/models/colocation.rb:80
-#: app/models/location.rb:94
-msgid "Constraint ID \"%{id}\" does not exist"
-msgstr "Ограничение с ИД \"%{id}\" не существует"
-
-#: app/models/order.rb:116 app/models/colocation.rb:90
-#: app/models/location.rb:106
-msgid "Unable to update constraint: %{msg}"
-msgstr "Не удалось обновить ограничение: %{msg}"
-
-#: app/models/primitive.rb:56
-msgid "Can't set parameter %{p}, because the value contains both single and double quotes"
-msgstr "Невозможно задать параметр %{p}, поскольку значение содержит и одиночные, и двойные кавычки"
-
-#: app/models/primitive.rb:64
-msgid "Can't set op %{o} attribute {%a}, because the value contains both single and double quotes"
-msgstr "Невозможно задать атрибут {%a} операции %{o}, поскольку значение содержит и одиночные, и двойные кавычки"
-
-#: app/models/primitive.rb:72 app/models/master.rb:50 app/models/clone.rb:50
-#: app/models/group.rb:50
-msgid "Can't set meta attribute %{p}, because the value contains both single and double quotes"
-msgstr "Невозможно задать метаатрибут %{p}, поскольку значение содержит и одиночные, и двойные кавычки"
-
-#: app/models/primitive.rb:124
-msgid "Unable to create resource: %{msg}"
-msgstr "Не удалось создать ресурс: %{msg}"
-
-#: app/models/primitive.rb:134
-msgid "Resource ID \"%{id}\" does not exist"
-msgstr "Ресурс с ИД \"%{id}\" не существует"
-
-#: app/models/master.rb:44
-msgid "No Master/Slave child specified"
-msgstr "Не указан потомок подчинения"
-
-#: app/models/master.rb:76
-msgid "Unable to create master/slave: %{msg}"
-msgstr "Не удалось создать подчинение: %{msg}"
-
-#: app/models/master.rb:86
-msgid "Master/Slave ID \"%{id}\" does not exist"
-msgstr "Подчинение с ИД \"%{id}\" не существует"
-
-#: app/models/clone.rb:44
-msgid "No clone child specified"
-msgstr "Не указан клон потомка"
-
-#: app/models/clone.rb:76
-msgid "Unable to create clone: %{msg}"
-msgstr "Не удалось создать клон: %{msg}"
-
-#: app/models/clone.rb:86
-msgid "Clone ID \"%{id}\" does not exist"
-msgstr "Клон с ИД \"%{id}\" не существует"
-
-#: app/models/cib_object.rb:60
-msgid "Invalid Resource ID \"%{id}\""
-msgstr "Недопустимый ИД ресурса \"%{id}\""
-
-#: app/models/cib_object.rb:88 app/models/cib_object.rb:108
-msgid "Unable to parse cibadmin output"
-msgstr "Не удалось проанализировать вывод cibadmin"
-
-#: app/models/cib.rb:209 app/models/cib.rb:218
-msgid "CIB file \"%{path}\" not found"
-msgstr "CIB-файл \"%{path}\" не найден"
-
-#: app/models/cib.rb:211 app/models/cib.rb:220
-msgid "Unable to parse CIB file \"%{path}\""
-msgstr "Не удалось проанализировать CIB-файл \"%{path}\""
-
-#: app/models/cib.rb:222
-msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
-msgstr "Пейсмейкер не установлен (не найдена команда %{cmd})"
-
-#: app/models/cib.rb:224
-msgid "Unable to execute %{cmd}"
-msgstr "Не удается выполнить %{cmd}"
-
-#: app/models/cib.rb:227
-msgid "%{cmd} failed (status: %{status}, output was: %{output})"
-msgstr "%{cmd} не удалось (состояние: %{status}, выход: %{output})"
-
-#: app/models/cib.rb:240
-msgid "Error invoking %{cmd}"
-msgstr "Ошибка вызова команды %{cmd}"
-
-#: app/models/cib.rb:245
-msgid "Error invoking %{cmd}: %{msg}"
-msgstr "Ошибка вызова команды %{cmd}: %{msg}"
-
-#: app/models/cib.rb:249
-msgid "Only the live CIB is supported"
-msgstr "Поддерживается только интерактивный CIB-файл"
-
-#: app/models/cib.rb:256 app/models/cib.rb:257 app/models/cib.rb:442
-#: app/views/main/_gettext.js.erb:140
-msgid "Unknown"
-msgstr "Неизвестно"
-
-#: app/models/cib.rb:397
-msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
-msgstr "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
-
-#: app/models/group.rb:44
-msgid "No group children specified"
-msgstr "Не указаны потомки группы"
-
-#: app/models/group.rb:79
-msgid "Unable to create group: %{msg}"
-msgstr "Не удалось создать группу: %{msg}"
-
-#: app/models/group.rb:89
-msgid "Group ID \"%{id}\" does not exist"
-msgstr "Группа с ИД \"%{id}\" не существует"
-
-#: app/models/location.rb:42
-msgid "Constraint is too complex - it contains nested rules"
-msgstr "Слишком сложное ограничение - содержит вложенные правила"
-
-#: app/models/location.rb:44
-msgid "No rules specified"
-msgstr "Не указаны правила"
-
-#: app/models/location.rb:47
-msgid "No resource specified"
-msgstr "Не указаны ресурсы"
-
-#: app/models/location.rb:56
-msgid "Invalid score \"%{score}\""
-msgstr "Недопустимая оценка: \"%{score}\""
-
-#: app/models/location.rb:64
-msgid "No expressions specified"
-msgstr "Не указаны выражения"
-
-#: app/models/location.rb:68
-msgid "Attribute contains both single and double quotes"
-msgstr "Атрибут содержит и одиночные, и двойные кавычки"
-
-#: app/models/location.rb:69
-msgid "Value contains both single and double quotes"
-msgstr "Значение содержит и одиночные, и двойные кавычки"
-
-#: app/helpers/explorer_helper.rb:3
-msgid "Data collection in progress (%{from_time} to %{to_time})..."
-msgstr "Выполняется сбор данных (с %{from_time} по %{to_time})..."
-
-#: app/views/sessions/new.html.erb:8
-msgid "Username:"
-msgstr "Имя пользователя:"
-
-#: app/views/sessions/new.html.erb:12
-msgid "Password:"
-msgstr "Пароль:"
-
-#: app/views/explorer/index.html.erb:55 app/views/hb_reports/new.html.erb:37
-msgid "Start Time:"
-msgstr "Время начала:"
-
-#: app/views/explorer/index.html.erb:57 app/views/hb_reports/new.html.erb:39
-msgid "End Time:"
-msgstr "Время окончания:"
-
-#: app/views/explorer/index.html.erb:59
-msgid "Display"
-msgstr "Дисплей"
-
-#: app/views/explorer/index.html.erb:72 app/views/locations/_form.html.erb:95
-#: app/views/groups/_form.html.erb:144
-#: app/views/colocations/_form.html.erb:109 app/views/clones/_form.html.erb:89
-#: app/views/constraints/index.html.erb:189
-#: app/views/masters/_form.html.erb:89 app/views/primitives/_form.html.erb:325
-#: app/views/crm_config/show.html.erb:11 app/views/crm_config/edit.html.erb:64
-#: app/views/crm_config/update.html.erb:4 app/views/orders/_form.html.erb:115
-#: app/views/wizard/start.html.erb:3 app/views/wizard/broken.html.erb:4
-msgid "Back"
-msgstr "Назад"
-
-#: app/views/explorer/_pe_list.html.erb:6
-msgid "No transitions found for the specified time period."
-msgstr "Переходы для указанного периода времени не найдены."
-
-#: app/views/explorer/_pe_list.html.erb:11
-msgid "Time"
-msgstr "Время"
-
-#: app/views/explorer/_pe_list.html.erb:12
-msgid "PE Input"
-msgstr "Ввод ФУ"
-
-#: app/views/explorer/_pe_list.html.erb:13
-#: app/views/locations/_form.html.erb:43
-msgid "Node"
-msgstr "Узел"
-
-#: app/views/explorer/_pe_list.html.erb:23 app/views/main/_gettext.js.erb:93
-#: app/views/main/_gettext.js.erb:199
-msgid "Details"
-msgstr "Подробности"
-
-#: app/views/explorer/_pe_list.html.erb:27 app/views/main/_gettext.js.erb:208
-msgid "Graph"
-msgstr "Граф"
-
+#: app/controllers/explorer_controller.rb:148
+#: app/controllers/explorer_controller.rb:176
+#: app/controllers/explorer_controller.rb:237
+msgid "Error:"
+msgstr "Ошибка:"
+
+#: app/views/nodes/permission_denied.html.erb:2
 #: app/views/explorer/permission_denied.html.erb:2
 #: app/views/resources/permission_denied.html.erb:2
 #: app/views/hb_reports/permission_denied.html.erb:2
-#: app/views/nodes/permission_denied.html.erb:2
 msgid "Error: Permission denied for user '%s'."
 msgstr "Ошибка. Доступ пользователя \"%s\" запрещен."
-
-#: app/views/resources/events.html.erb:12 app/views/nodes/events.html.erb:12
-msgid "Getting recent events (last hour)..."
-msgstr "Получение недавних событий (последний час)..."
-
-#: app/views/resources/events.html.erb:13 app/views/nodes/events.html.erb:13
-msgid "Another \"crm history\" operation is in progress..."
-msgstr "Выполняется другая операция \"crm history\"..."
-
-#: app/views/resources/events.html.erb:20 app/views/nodes/events.html.erb:20
-msgid "No events found in last hour."
-msgstr "События за последний час не найдены."
-
-#: app/views/locations/edit.html.erb:4 app/views/groups/edit.html.erb:4
-#: app/views/colocations/edit.html.erb:4 app/views/clones/edit.html.erb:4
-#: app/views/masters/edit.html.erb:4 app/views/primitives/edit.html.erb:4
-#: app/views/crm_config/edit.html.erb:62 app/views/orders/edit.html.erb:4
-msgid "Apply Changes"
-msgstr "Применить изменения"
-
-#: app/views/locations/_form.html.erb:42
-#: app/views/colocations/_form.html.erb:88 app/views/orders/_form.html.erb:88
-msgid "Score"
-msgstr "Оценка"
-
-#: app/views/locations/_form.html.erb:44
-msgid "Role"
-msgstr "Роль"
-
-#: app/views/locations/_form.html.erb:45
-msgid "Boolean Op"
-msgstr "Логическая операция"
 
 #: app/views/locations/_form.html.erb:46
 msgid "Expression"
 msgstr "Выражение"
 
-#: app/views/locations/_form.html.erb:47 app/views/groups/_form.html.erb:81
-#: app/views/colocations/_form.html.erb:58 app/views/clones/_form.html.erb:46
-#: app/views/masters/_form.html.erb:46 app/views/primitives/_form.html.erb:193
-#: app/views/primitives/_form.html.erb:212
-#: app/views/primitives/_form.html.erb:235
-#: app/views/crm_config/edit.html.erb:22 app/views/orders/_form.html.erb:58
-msgid "Add"
-msgstr "Добавить"
+#: app/views/resources/show.html.erb:20
+msgid "Fail Count"
+msgstr "Счетчик сбоев"
 
-#: app/views/locations/_form.html.erb:48 app/views/groups/_form.html.erb:82
-#: app/views/colocations/_form.html.erb:59 app/views/clones/_form.html.erb:47
-#: app/views/masters/_form.html.erb:47 app/views/primitives/_form.html.erb:194
-#: app/views/primitives/_form.html.erb:214
-#: app/views/primitives/_form.html.erb:236
-#: app/views/crm_config/edit.html.erb:23 app/views/orders/_form.html.erb:59
-msgid "Remove"
-msgstr "Удалить"
+#: app/views/main/_gettext.js.erb:347
+msgid "Failed Master"
+msgstr "Сбой главного"
 
-#: app/views/locations/_form.html.erb:49
-msgid "Add Rule"
-msgstr "Добавить правило"
+#: app/models/cib.rb:471
+msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
+msgstr "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
 
-#: app/views/locations/_form.html.erb:50
-msgid "Remove Rule"
-msgstr "Удалить правило"
+#: app/views/main/_menus.html.erb:35
+msgid "Fence Node"
+msgstr "Исключить узел"
 
-#: app/views/locations/_form.html.erb:51
-msgid "Show Rule Editor"
-msgstr "Показывать редактор правил"
+#: app/views/hb_reports/new.html.erb:60
+msgid "Generate"
+msgstr "Создать"
 
-#: app/views/locations/_form.html.erb:75
-#: app/views/colocations/_form.html.erb:87 app/views/orders/_form.html.erb:87
-msgid "Constraint ID"
-msgstr "ИД ограничения"
+#: app/views/layouts/main.html.erb:95
+msgid "Generate hb_report"
+msgstr "Создать отчет hb_report"
 
-#: app/views/locations/_form.html.erb:76
-msgid "Resource"
-msgstr "Ресурс"
+#: app/views/layouts/main.html.erb:84
+msgid "Generate hb_report..."
+msgstr "Создать отчет hb_report..."
 
-#: app/views/locations/_form.html.erb:93
-#: app/views/colocations/_form.html.erb:107
-#: app/views/orders/_form.html.erb:113
-msgid "Create Constraint"
-msgstr "Создать ограничение"
+#: app/views/main/_gettext.js.erb:323
+msgid "Generic Error"
+msgstr "Общая ошибка"
 
-#: app/views/locations/_form.html.erb:94 app/views/groups/_form.html.erb:143
-#: app/views/colocations/_form.html.erb:108 app/views/clones/_form.html.erb:88
-#: app/views/masters/_form.html.erb:88 app/views/primitives/_form.html.erb:324
-#: app/views/crm_config/edit.html.erb:63 app/views/orders/_form.html.erb:114
-msgid "Revert Changes"
-msgstr "Отменить изменения"
+#: app/views/nodes/events.html.erb:12 app/views/resources/events.html.erb:12
+msgid "Getting recent events (last hour)..."
+msgstr "Получение недавних событий (последний час)..."
 
-#: app/views/groups/_form.html.erb:75 app/views/clones/_form.html.erb:40
-#: app/views/masters/_form.html.erb:40 app/views/primitives/_form.html.erb:229
-msgid "Meta Attributes"
-msgstr "Метаатрибуты"
+#: app/views/main/_gettext.js.erb:308
+msgid "Grant"
+msgstr "Предоставить"
 
-#: app/views/groups/_form.html.erb:83 app/views/clones/_form.html.erb:48
-#: app/views/masters/_form.html.erb:48 app/views/primitives/_form.html.erb:195
-#: app/views/primitives/_form.html.erb:215
-#: app/views/primitives/_form.html.erb:237
-#: app/views/crm_config/edit.html.erb:24
-msgid "You must enter a value"
-msgstr "Необходимо ввести значение"
+#: app/views/main/_gettext.js.erb:134
+msgid "Granted"
+msgstr "Предоставлено"
 
-#: app/views/groups/_form.html.erb:105
-msgid "Group ID"
-msgstr "ИД группы"
+#: app/views/main/_gettext.js.erb:133
+msgid "Granted [standby]"
+msgstr "Предоставлено [ожидание]"
+
+#: app/views/main/_gettext.js.erb:269 app/views/explorer/_pe_list.html.erb:35
+msgid "Graph"
+msgstr "Граф"
+
+#: app/views/resources/index.html.erb:115
+msgid "Group"
+msgstr "Группа"
 
 #: app/views/groups/_form.html.erb:115
 msgid "Group Children"
 msgstr "Потомки группы"
 
-#: app/views/groups/_form.html.erb:117
-msgid "Available Primitives"
-msgstr "Доступные примитивы"
+#: app/views/groups/_form.html.erb:105
+msgid "Group ID"
+msgstr "ИД группы"
 
-#: app/views/layouts/main.html.erb:24
-msgid "User: %{user}"
-msgstr "Пользователь: %{user}"
+#: app/models/group.rb:90
+msgid "Group ID \"%{id}\" does not exist"
+msgstr "Группа с ИД \"%{id}\" не существует"
 
-#: app/views/layouts/main.html.erb:25
-msgid "Log Out"
-msgstr "Выйти из системы"
+#: app/controllers/groups_controller.rb:65
+msgid "Group created successfully"
+msgstr "Группа успешно создана"
 
-#: app/views/layouts/main.html.erb:39
-msgid "UI Host: %s"
-msgstr "Хост UI: %s"
+#: app/controllers/groups_controller.rb:87
+msgid "Group updated successfully"
+msgstr "Группа успешно обновлена"
 
-#: app/views/layouts/main.html.erb:40
-msgid "Copyright &copy; 2009-2013 SUSE, LLC"
-msgstr "&copy; 2009-2013 SUSE, LLC"
+#: app/views/main/_gettext.js.erb:223
+msgid "Group: %{id}"
+msgstr "Группа: %{id}"
 
-#: app/views/colocations/_form.html.erb:60 app/views/orders/_form.html.erb:60
+#: app/controllers/explorer_controller.rb:44
+#: app/views/layouts/main.html.erb:141
+msgid "History Explorer"
+msgstr "Проводник журнала"
+
+#: app/views/dashboard/index.html.erb:362
+msgid "Host Name:"
+msgstr "Имя хоста"
+
+#: app/views/main/_gettext.js.erb:102
+msgid "Inactive Resources"
+msgstr "Неактивные ресурсы"
+
+#: app/views/main/_gettext.js.erb:275
+msgid "Inject Node State"
+msgstr "Вставить состояние узла"
+
+#: app/views/main/_gettext.js.erb:284
+msgid "Inject Operation"
+msgstr "Вставить операцию"
+
+#: app/views/main/_gettext.js.erb:299
+msgid "Inject Ticket"
+msgstr "Вставить билет"
+
+#: app/views/main/_gettext.js.erb:245
+msgid "Injected State:"
+msgstr "Вставленное состояние:"
+
+#: app/views/main/_gettext.js.erb:290
+msgid "Interval:"
+msgstr "Интервал:"
+
+#: app/models/cib_object.rb:66
+msgid "Invalid Resource ID \"%{id}\""
+msgstr "Недопустимый ИД ресурса \"%{id}\""
+
+#: app/models/ticket.rb:58
+msgid "Invalid Ticket ID"
+msgstr "Неверный ИД билета"
+
+#: app/models/colocation.rb:53 app/models/order.rb:79
+msgid "Invalid score"
+msgstr "Недопустимая оценка"
+
+#: app/models/location.rb:57
+msgid "Invalid score \"%{score}\""
+msgstr "Недопустимая оценка: \"%{score}\""
+
+#: app/controllers/sessions_controller.rb:73
+msgid "Invalid username"
+msgstr "Недопустимое имя пользователя"
+
+#: app/controllers/sessions_controller.rb:89
+msgid "Invalid username or password"
+msgstr "Недопустимое имя пользователя или пароль"
+
+#: app/views/resources/show.html.erb:25
+msgid "Last Failure"
+msgstr "Последний сбой"
+
+#: app/views/main/_gettext.js.erb:142
+msgid "Last granted: %s"
+msgstr "Последнее предоставление: %s"
+
+#: app/views/colocations/_form.html.erb:62 app/views/orders/_form.html.erb:62
 msgid "Link set"
 msgstr "Связь установлена"
 
-#: app/views/colocations/_form.html.erb:61 app/views/orders/_form.html.erb:61
-msgid "Break set"
-msgstr "Связь разорвана"
-
-#: app/views/colocations/_form.html.erb:62 app/views/orders/_form.html.erb:62
-msgid "Swap resources"
-msgstr "Обменять ресурсы"
-
-#: app/views/colocations/_form.html.erb:63 app/views/orders/_form.html.erb:63
-msgid "Add resource to constraint"
-msgstr "Добавить ресурс в ограничение"
-
-#: app/views/clones/_form.html.erb:70
-msgid "Clone ID"
-msgstr "ИД клона"
-
-#: app/views/clones/_form.html.erb:71 app/views/masters/_form.html.erb:71
-msgid "Child Resource"
-msgstr "Дочерний ресурс"
-
-#: app/views/hb_reports/new.html.erb:43
-msgid "Generate"
-msgstr "Создать"
-
-#: app/views/hb_reports/new.html.erb:53
-msgid "hb_report generation in progress..."
-msgstr "Формируется отчет hb_report..."
-
-#: app/views/hb_reports/new.html.erb:59
-msgid "Download hb_report"
-msgstr "Загрузить отчет hb_report"
-
-#: app/views/hb_reports/create.js.erb:3
-msgid "Start Time not specified"
-msgstr "Не указано время запуска"
-
-#: app/views/constraints/index.html.erb:49
-msgid "Edit Constraint"
-msgstr "Изменить ограничение"
-
-#: app/views/constraints/index.html.erb:60
-msgid "Delete Constraint"
-msgstr "Удалить ограничение"
-
-#: app/views/constraints/index.html.erb:102
-#: app/views/constraints/index.html.erb:108
-#: app/views/constraints/index.html.erb:114
-msgid "New Constraint"
-msgstr "Новое ограничение"
-
-#: app/views/constraints/index.html.erb:103
+#: app/views/constraints/index.html.erb:101
 msgid "Location"
 msgstr "Расположение"
 
-#: app/views/constraints/index.html.erb:109
-msgid "Colocation"
-msgstr "Совместное расположение"
+#: app/controllers/sessions_controller.rb:37
+#: app/views/sessions/new.html.erb:17 app/views/dashboard/index.html.erb:58
+msgid "Log In"
+msgstr "Войти"
 
-#: app/views/constraints/index.html.erb:115
-msgid "Order"
-msgstr "Порядок"
+#: app/views/layouts/main.html.erb:121
+msgid "Log Out"
+msgstr "Выйти из системы"
 
-#: app/views/constraints/index.html.erb:129
-msgid "(No location constraints defined)"
-msgstr "(Не определены ограничения на расположение)"
+#: app/views/tickets/_form.html.erb:78
+msgid "Loss Policy"
+msgstr "Потерянная политика"
 
-#: app/views/constraints/index.html.erb:141
-msgid "[Constraint is too complex to display]"
-msgstr "[Слишком сложное ограничение для отображения]"
+#: app/views/main/_menus.html.erb:21
+msgid "Maintenance"
+msgstr "Обслуживание"
 
-#: app/views/constraints/index.html.erb:159
-msgid "(No colocation constraints defined)"
-msgstr "(Не определены ограничения на совместное расположение)"
+#: app/views/main/_gettext.js.erb:123
+msgid "Maintenance Mode"
+msgstr "Режим обслуживания"
 
-#: app/views/constraints/index.html.erb:173
-msgid "(No order constraints defined)"
-msgstr "(Не определены ограничения на порядок)"
+#: app/views/main/_gettext.js.erb:178
+msgid "Master"
+msgstr "Главный"
+
+#: app/views/resources/index.html.erb:127
+msgid "Master/Slave"
+msgstr "Главный/подчиненный"
 
 #: app/views/masters/_form.html.erb:70
 msgid "Master/Slave ID"
 msgstr "ИД подчинения"
 
-#: app/views/primitives/_form.html.erb:206
-msgid "Operations"
-msgstr "Операции"
+#: app/models/master.rb:87
+msgid "Master/Slave ID \"%{id}\" does not exist"
+msgstr "Подчинение с ИД \"%{id}\" не существует"
 
-#: app/views/primitives/_form.html.erb:213
-#: app/views/crm_config/show.html.erb:11
-msgid "Edit"
-msgstr "Правка"
+#: app/views/main/_gettext.js.erb:226
+msgid "Master/Slave Set: %{id}"
+msgstr "Главный/подчиненный набор: %{id}"
 
-#: app/views/primitives/_form.html.erb:216
-msgid "There is already a monitor op with this interval."
-msgstr "Уже есть операция мониторинга с этим интервалом."
+#: app/controllers/masters_controller.rb:65
+msgid "Master/Slave created successfully"
+msgstr "Подчинение успешно создано"
 
-#: app/views/primitives/_form.html.erb:217 app/views/main/_gettext.js.erb:4
-msgid "OK"
-msgstr "ОК"
+#: app/controllers/masters_controller.rb:87
+msgid "Master/Slave updated successfully"
+msgstr "Подчинение успешно обновлено"
 
-#: app/views/primitives/_form.html.erb:218 app/views/main/_gettext.js.erb:7
-#: app/views/wizard/start.html.erb:44 app/views/wizard/run.html.erb:119
-msgid "Cancel"
-msgstr "Отмена"
+#: app/views/masters/_form.html.erb:40 app/views/clones/_form.html.erb:40
+#: app/views/groups/_form.html.erb:75 app/views/primitives/_form.html.erb:284
+msgid "Meta Attributes"
+msgstr "Метаатрибуты"
 
-#: app/views/primitives/_form.html.erb:273
-msgid "Resource ID"
-msgstr "ИД ресурса"
+#: app/views/main/_gettext.js.erb:45
+msgid "Move resource %s"
+msgstr "Переместить ресурс %s"
 
-#: app/views/primitives/_form.html.erb:274
-msgid "Class"
-msgstr "Класс"
+#: app/views/main/_menus.html.erb:100
+msgid "Move..."
+msgstr "Переместить..."
 
-#: app/views/primitives/_form.html.erb:275
-msgid "Provider"
-msgstr "Поставщик"
+#: app/views/resources/index.html.erb:120
+msgid "New Clone"
+msgstr "Новый клон"
 
-#: app/views/primitives/_form.html.erb:276
-msgid "Type"
-msgstr "Тип"
+#: app/views/constraints/index.html.erb:100
+#: app/views/constraints/index.html.erb:106
+#: app/views/constraints/index.html.erb:112
+#: app/views/constraints/index.html.erb:119
+msgid "New Constraint"
+msgstr "Новое ограничение"
 
-#: app/views/crm_config/show.html.erb:4
-msgid "No cluster properties set in %{group}"
-msgstr "Не заданы свойства кластера в группе %{group}"
+#: app/views/resources/index.html.erb:114
+msgid "New Group"
+msgstr "Новая группа"
 
-#: app/views/crm_config/edit.html.erb:25
-msgid "Add new property:"
-msgstr "Добавить новое свойство:"
+#: app/views/resources/index.html.erb:126
+msgid "New Master/Slave"
+msgstr "Новое подчинение"
 
-#: app/views/crm_config/edit.html.erb:26
-msgid "Edit current properties:"
-msgstr "Изменить текущие свойства:"
+#: app/views/resources/index.html.erb:100
+msgid "New Resource"
+msgstr "Новый ресурс"
 
-#: app/views/orders/_form.html.erb:98
-msgid "Symmetrical"
-msgstr "Симметричный"
+#: app/views/resources/index.html.erb:107
+msgid "New Template"
+msgstr "Новое примечание"
 
-#: app/views/shared/_confirm_revert.html.erb:4
-msgid "Any changes will be lost - do you wish to proceed?"
-msgstr "Все изменения будут утеряны. Продолжить?"
-
-#: app/views/shared/_confirm_revert.html.erb:8
-#: app/views/main/_gettext.js.erb:10
-msgid "Yes"
-msgstr "Да"
+#: app/views/wizard/start.html.erb:45 app/views/wizard/run.html.erb:121
+msgid "Next >"
+msgstr "Далее >"
 
 #: app/views/shared/_confirm_revert.html.erb:9
 #: app/views/main/_gettext.js.erb:13
 msgid "No"
 msgstr "Нет"
 
-#: app/views/main/_menus.html.erb:9 app/views/main/_gettext.js.erb:125
-msgid "Online"
-msgstr "В Интернете"
+#: app/models/master.rb:45
+msgid "No Master/Slave child specified"
+msgstr "Не указан потомок подчинения"
 
-#: app/views/main/_menus.html.erb:16 app/views/main/_gettext.js.erb:134
-msgid "Standby"
-msgstr "Режим ожидания"
-
-#: app/views/main/_menus.html.erb:23
-msgid "Fence Node"
-msgstr "Исключить узел"
-
-#: app/views/main/_menus.html.erb:33
-msgid "View Details..."
-msgstr "Просмотр подробностей..."
-
-#: app/views/main/_menus.html.erb:51 app/views/main/_menus.html.erb:301
-msgid "View Recent Events..."
-msgstr "Просмотр недавних событий..."
-
-#: app/views/main/_menus.html.erb:87
-msgid "Setup Wizard"
-msgstr "Мастер настройки"
-
-#: app/views/main/_menus.html.erb:97
-msgid "New Primitive"
-msgstr "Новый примитив"
-
-#: app/views/main/_menus.html.erb:104
-msgid "New Group"
-msgstr "Новая группа"
-
-#: app/views/main/_menus.html.erb:117
-msgid "Can't create group, there are no primitives available."
-msgstr "Не удалось создать группу, нет доступных примитивов."
-
-#: app/views/main/_menus.html.erb:122
-msgid "New Clone"
-msgstr "Новый клон"
-
-#: app/views/main/_menus.html.erb:135
-msgid "Can't create clone, there are no primitives or groups available."
-msgstr "Не удалось создать клон, нет доступных примитивов или групп."
-
-#: app/views/main/_menus.html.erb:140
-msgid "New Master/Slave"
-msgstr "Новое подчинение"
-
-#: app/views/main/_menus.html.erb:153
-msgid "Can't create master/slave, there are no primitives or groups available."
-msgstr "Не удалось создать подчинение, нет доступных примитивов или групп."
-
-#: app/views/main/_menus.html.erb:161
-msgid "Edit Constraints"
-msgstr "Изменить ограничения"
-
-#: app/views/main/_menus.html.erb:170
-msgid "Start"
-msgstr "Запуск"
-
-#: app/views/main/_menus.html.erb:177
-msgid "Stop"
-msgstr "Стоп"
-
-#: app/views/main/_menus.html.erb:184
-msgid "Move..."
-msgstr "Переместить..."
-
-#: app/views/main/_menus.html.erb:212
-msgid "Drop Relocation Rule"
-msgstr "Отменить правило перемещения"
-
-#: app/views/main/_menus.html.erb:219
-msgid "Promote"
-msgstr "Повысить"
-
-#: app/views/main/_menus.html.erb:226
-msgid "Demote"
-msgstr "Понизить"
-
-#: app/views/main/_menus.html.erb:233
-msgid "Clean Up"
-msgstr "Очистка"
-
-#: app/views/main/_menus.html.erb:255
-msgid "Delete Resource"
-msgstr "Удалить ресурс"
-
-#: app/views/main/_menus.html.erb:337
-msgid "Cluster Properties"
-msgstr "Свойства кластера"
-
-#: app/views/main/_menus.html.erb:344
-msgid "Generate hb_report..."
-msgstr "Создать отчет hb_report..."
-
-#: app/views/main/_menus.html.erb:357
-msgid "Generate hb_report"
-msgstr "Создать отчет hb_report"
-
-#: app/views/main/_menus.html.erb:364
-msgid "Simulator"
-msgstr "Симулятор"
-
-#: app/views/main/_gettext.js.erb:16
-msgid "Close"
-msgstr "Закрыть"
-
-#: app/views/main/_gettext.js.erb:19
-msgid "Reset"
-msgstr "Сбросить"
-
-#: app/views/main/_gettext.js.erb:23
-msgid "This will bring node %s online if it is currently on standby.  Do you want to continue?"
-msgstr "Узел %s будет переведен в активный режим, если он находится в режиме ожидания. Продолжить?"
-
-#: app/views/main/_gettext.js.erb:26
-msgid "This will put node %s on standby.  All resources will be stopped and/or moved to another node.  Do you want to continue?"
-msgstr "Узел %s будет переведен в режим ожидания. Все ресурсы будут остановлены и (или) перемещены на другой узел. Продолжить?"
-
-#: app/views/main/_gettext.js.erb:29
-msgid "This will attempt to immediately fence node %s.  Do you want to continue?"
-msgstr "Для узла %s будет предпринята попытка немедленного исключения. Продолжить?"
-
-#: app/views/main/_gettext.js.erb:33
-msgid "This will start the resource %s.  Do you want to continue?"
-msgstr "Ресурс %s будет запущен. Продолжить?"
-
-#: app/views/main/_gettext.js.erb:36
-msgid "This will stop the resource %s.  Do you want to continue?"
-msgstr "Ресурс %s будет остановлен. Продолжить?"
-
-#: app/views/main/_gettext.js.erb:39
-msgid "Move resource %s"
-msgstr "Переместить ресурс %s"
-
-#: app/views/main/_gettext.js.erb:42
-msgid "To node %s"
-msgstr "В узел %s"
-
-#: app/views/main/_gettext.js.erb:45
-msgid "Away from current node"
-msgstr "Из текущего узла"
-
-#: app/views/main/_gettext.js.erb:48
-msgid "This will clear any relocation constraints set on the resource %s.  Do you want to continue?"
-msgstr "Будут отменены все ограничения перемещения, заданные для ресурса %s. Продолжить?"
-
-#: app/views/main/_gettext.js.erb:51
-msgid "This will promote the resource %s.  Do you want to continue?"
-msgstr "Ресурс %s будет повышен. Продолжить?"
-
-#: app/views/main/_gettext.js.erb:54
-msgid "This will demote the resource %s.  Do you want to continue?"
-msgstr "Ресурс %s будет понижен. Продолжить?"
-
-#: app/views/main/_gettext.js.erb:57
-msgid "This will clean up the resource %s.  Do you want to continue?"
-msgstr "Ресурс %s будет очищен. Продолжить?"
-
-#: app/views/main/_gettext.js.erb:61
-msgid "Error"
-msgstr "Ошибка"
-
-#: app/views/main/_gettext.js.erb:64
-msgid "Unexpected server error: %s"
-msgstr "Непредвиденная ошибка сервера: %s"
-
-#: app/views/main/_gettext.js.erb:67
-msgid "Permission denied"
-msgstr "Доступ запрещен"
-
-#: app/views/main/_gettext.js.erb:70
-msgid "%{op} failed on %{node} (rc=%{rc})"
-msgstr "Сбой операции %{op} в узле %{node} (rc=%{rc})"
-
-#: app/views/main/_gettext.js.erb:74
-msgid "DC: %s"
-msgstr "DC: %s"
-
-#: app/views/main/_gettext.js.erb:77
-msgid "Version: %s"
-msgstr "Версия: %s"
-
-#: app/views/main/_gettext.js.erb:80
-msgid "Stack: %s"
-msgstr "Стек: %s"
-
-#: app/views/main/_gettext.js.erb:87
-msgid "Inactive Resources"
-msgstr "Неактивные ресурсы"
-
-#: app/views/main/_gettext.js.erb:90
-msgid "Summary"
-msgstr "Сводка"
-
-#: app/views/main/_gettext.js.erb:96
-msgid "STONITH Enabled"
-msgstr "Модуль STONITH включен"
-
-#: app/views/main/_gettext.js.erb:99
+#: app/views/main/_gettext.js.erb:114
 msgid "No Quorum Policy"
 msgstr "Нет политики кворума"
 
-#: app/views/main/_gettext.js.erb:102
-msgid "Symmetric Cluster"
-msgstr "Симметричный кластер"
+#: app/views/nodes/show.html.erb:29 app/views/resources/show.html.erb:12
+msgid "No attributes defined"
+msgstr "Атрибуты не определены"
 
-#: app/views/main/_gettext.js.erb:105
-msgid "Resource Stickiness"
-msgstr "Присоединенность ресурса"
+#: app/models/clone.rb:45
+msgid "No clone child specified"
+msgstr "Не указан клон потомка"
 
-#: app/views/main/_gettext.js.erb:108
-msgid "Maintenance Mode"
-msgstr "Режим обслуживания"
+#: app/views/crm_config/show.html.erb:4
+msgid "No cluster properties set in %{group}"
+msgstr "Не заданы свойства кластера в группе %{group}"
 
-#: app/views/main/_gettext.js.erb:112
-msgid "Summary View"
-msgstr "Сводный вид"
+#: app/controllers/explorer_controller.rb:146
+#: app/controllers/explorer_controller.rb:216
+msgid "No details available"
+msgstr "Описание отсутствует"
 
-#: app/views/main/_gettext.js.erb:115
-msgid "Tree View"
-msgstr "Древовидный вид"
+#: app/views/nodes/events.html.erb:20 app/views/resources/events.html.erb:20
+msgid "No events found in last hour."
+msgstr "События за последний час не найдены."
 
-#: app/views/main/_gettext.js.erb:118
-msgid "Table View"
-msgstr "Табличный вид"
+#: app/models/location.rb:65
+msgid "No expressions specified"
+msgstr "Не указаны выражения"
 
-#: app/views/main/_gettext.js.erb:122
-msgid "%{node}: %{state}"
-msgstr "%{node}: %{state}"
+#: app/models/group.rb:45
+msgid "No group children specified"
+msgstr "Не указаны потомки группы"
 
-#: app/views/main/_gettext.js.erb:128
-msgid "Offline"
-msgstr "Автономный"
+#: app/models/location.rb:48
+msgid "No resource specified"
+msgstr "Не указаны ресурсы"
 
-#: app/views/main/_gettext.js.erb:131 app/views/main/_gettext.js.erb:159
-msgid "Pending"
-msgstr "Отложенный"
+#: app/models/ticket.rb:61
+msgid "No resources specified"
+msgstr "Ресурсы не указаны"
 
-#: app/views/main/_gettext.js.erb:137
-msgid "Unclean"
-msgstr "Некорректно"
+#: app/models/location.rb:45
+msgid "No rules specified"
+msgstr "Не указаны правила"
 
-#: app/views/main/_gettext.js.erb:144
-msgid "Master"
-msgstr "Главный"
-
-#: app/views/main/_gettext.js.erb:145
-msgid "%{id}: Master: %{nodelist}"
-msgstr "%{id}: главный: %{nodelist}"
-
-#: app/views/main/_gettext.js.erb:146
-msgid "%{id}: Master"
-msgstr "%{id}: главный"
-
-#: app/views/main/_gettext.js.erb:149
-msgid "Slave"
-msgstr "Подчиненный"
-
-#: app/views/main/_gettext.js.erb:150
-msgid "%{id}: Slave: %{nodelist}"
-msgstr "%{id}: подчиненный: %{nodelist}"
-
-#: app/views/main/_gettext.js.erb:151
-msgid "%{id}: Slave"
-msgstr "%{id}: подчиненный"
-
-#: app/views/main/_gettext.js.erb:154
-msgid "Started"
-msgstr "Запущено"
-
-#: app/views/main/_gettext.js.erb:155
-msgid "%{id}: Started: %{nodelist}"
-msgstr "%{id}: Запущено: %{nodelist}"
-
-#: app/views/main/_gettext.js.erb:156
-msgid "%{id}: Started"
-msgstr "%{id}: запущено"
-
-#: app/views/main/_gettext.js.erb:160
-msgid "%{id}: Pending: %{nodelist}"
-msgstr "%{id}: ожидание: %{nodelist}"
-
-#: app/views/main/_gettext.js.erb:161
-msgid "%{id}: Pending"
-msgstr "%{id}: ожидание"
-
-#: app/views/main/_gettext.js.erb:164
-msgid "Stopped"
-msgstr "Остановлено"
-
-#: app/views/main/_gettext.js.erb:165
-msgid "%{id}: Stopped"
-msgstr "%{id}: Остановлено"
-
-#: app/views/main/_gettext.js.erb:168
-msgid "Group: %{id}"
-msgstr "Группа: %{id}"
-
-#: app/views/main/_gettext.js.erb:171
-msgid "Master/Slave Set: %{id}"
-msgstr "Главный/подчиненный набор: %{id}"
-
-#: app/views/main/_gettext.js.erb:174
-msgid "Clone Set: %{id}"
-msgstr "Набор клонов: %{id}"
-
-#: app/views/main/_gettext.js.erb:178
-msgid "Simulator (initial state)"
-msgstr "Симулятор (начальное состояние)"
-
-#: app/views/main/_gettext.js.erb:181
-msgid "Simulator (busy...)"
-msgstr "Симулятор (занято...)"
-
-#: app/views/main/_gettext.js.erb:184
-msgid "Simulator (final state)"
-msgstr "Симулятор (конечное состояние)"
-
-#: app/views/main/_gettext.js.erb:187
-msgid "Injected State:"
-msgstr "Вставленное состояние:"
-
-#: app/views/main/_gettext.js.erb:190
-msgid "+ Node"
-msgstr "+ узел"
-
-#: app/views/main/_gettext.js.erb:193
-msgid "+ Op"
-msgstr "+ операция"
-
-#: app/views/main/_gettext.js.erb:196
-msgid "Run >"
-msgstr "Выполнить >"
-
-#: app/views/main/_gettext.js.erb:202
-msgid "CIB (in)"
-msgstr "CIB (ввод)"
-
-#: app/views/main/_gettext.js.erb:205
-msgid "CIB (out)"
-msgstr "CIB (вывод)"
-
-#: app/views/main/_gettext.js.erb:211
-msgid "Inject Node State"
-msgstr "Вставить состояние узла"
-
-#: app/views/main/_gettext.js.erb:214
-msgid "Node:"
-msgstr "Узел:"
-
-#: app/views/main/_gettext.js.erb:217
-msgid "State:"
-msgstr "Состояние:"
-
-#: app/views/main/_gettext.js.erb:220
-msgid "Inject Operation"
-msgstr "Вставить операцию"
-
-#: app/views/main/_gettext.js.erb:223
-msgid "Operation:"
-msgstr "Операция:"
-
-#: app/views/main/_gettext.js.erb:226
-msgid "Interval:"
-msgstr "Интервал:"
-
-#: app/views/main/_gettext.js.erb:229
-msgid "Resource:"
-msgstr "Ресурс:"
-
-#: app/views/main/_gettext.js.erb:232
-msgid "Result:"
-msgstr "Результат:"
-
-#: app/views/main/_gettext.js.erb:235
-msgid "Success"
-msgstr "Успешно"
-
-#: app/views/main/_gettext.js.erb:238
-msgid "Generic Error"
-msgstr "Общая ошибка"
-
-#: app/views/main/_gettext.js.erb:241
-msgid "Wrong Argument(s)"
-msgstr "Неверные аргументы"
-
-#: app/views/main/_gettext.js.erb:244
-msgid "Not Implemented"
-msgstr "Не реализовано"
-
-#: app/views/main/_gettext.js.erb:247
-msgid "Permission Denied"
-msgstr "Доступ запрещен"
-
-#: app/views/main/_gettext.js.erb:250
-msgid "Not Installed"
-msgstr "Не установлено"
-
-#: app/views/main/_gettext.js.erb:253
-msgid "Not Configured"
-msgstr "Не настроено"
-
-#: app/views/main/_gettext.js.erb:256
-msgid "Not Running"
-msgstr "Не выполняется"
-
-#: app/views/main/_gettext.js.erb:259
-msgid "Running Master"
-msgstr "Выполняется главный"
-
-#: app/views/main/_gettext.js.erb:262
-msgid "Failed Master"
-msgstr "Сбой главного"
-
-#: app/views/nodes/show.html.erb:1
-msgid "Utilization"
-msgstr "Использование"
+#: app/views/explorer/_pe_list.html.erb:6
+msgid "No transitions found for the specified time period."
+msgstr "Переходы для указанного периода времени не найдены."
 
 #: app/views/nodes/show.html.erb:15
 msgid "No utilization defined"
 msgstr "Использование не определено"
 
-#: app/views/nodes/show.html.erb:18
-msgid "Attributes"
-msgstr "Атрибуты"
-
-#: app/views/nodes/show.html.erb:29
-msgid "No attributes defined"
-msgstr "Атрибуты не определены"
-
 #: app/views/wizard/start.html.erb:2
 msgid "No workflow descriptions found"
 msgstr "Описания рабочих процессов не найдены"
 
-#: app/views/wizard/start.html.erb:24
-msgid "Choose Configuration"
-msgstr "Выбор конфигурации"
+#: app/views/locations/_form.html.erb:43
+#: app/views/explorer/_pe_list.html.erb:13
+msgid "Node"
+msgstr "Узел"
 
-#: app/views/wizard/start.html.erb:26
-msgid "This wizard will guide you through the steps necessary to add one of the following configurations to the cluster."
-msgstr "Этот мастер обеспечит поддержку на всех этапах добавления в кластер одной из следующих конфигураций."
+#: app/views/main/_gettext.js.erb:278
+msgid "Node:"
+msgstr "Узел:"
 
-#: app/views/wizard/start.html.erb:45 app/views/wizard/run.html.erb:121
-msgid "Next >"
-msgstr "Далее >"
+#: app/views/main/_gettext.js.erb:338
+msgid "Not Configured"
+msgstr "Не настроено"
 
-#: app/views/wizard/done.html.erb:1 app/views/wizard/run.html.erb:71
-msgid "%{workflow}: %{step}"
-msgstr "%{workflow}: %{step}"
+#: app/views/main/_gettext.js.erb:329
+msgid "Not Implemented"
+msgstr "Не реализовано"
+
+#: app/views/main/_gettext.js.erb:335
+msgid "Not Installed"
+msgstr "Не установлено"
+
+#: app/views/main/_gettext.js.erb:341
+msgid "Not Running"
+msgstr "Не выполняется"
+
+#: app/views/main/_gettext.js.erb:4 app/views/primitives/_form.html.erb:272
+#: app/views/dashboard/index.html.erb:370
+msgid "OK"
+msgstr "ОК"
+
+#: app/views/main/_gettext.js.erb:162
+msgid "Offline"
+msgstr "Автономный"
+
+#: app/views/main/_menus.html.erb:7 app/views/main/_gettext.js.erb:159
+msgid "Online"
+msgstr "В Интернете"
+
+#: app/views/crm_config/edit.html.erb:59
+msgid "Operation Defaults"
+msgstr "Умолчания операции"
+
+#: app/views/main/_gettext.js.erb:287
+msgid "Operation:"
+msgstr "Операция:"
+
+#: app/views/primitives/_form.html.erb:261
+msgid "Operations"
+msgstr "Операции"
+
+#: app/views/constraints/index.html.erb:113
+msgid "Order"
+msgstr "Порядок"
+
+#: app/views/explorer/_pe_list.html.erb:12
+msgid "PE Input"
+msgstr "Ввод ФУ"
+
+#: app/models/cib.rb:237
+msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
+msgstr "Пейсмейкер не установлен (не найдена команда %{cmd})"
+
+#: app/controllers/wizard_controller.rb:99
+#: app/views/primitives/_form.html.erb:241
+msgid "Parameters"
+msgstr "Параметры"
+
+#: app/views/main/_gettext.js.erb:232
+msgid "Parent: %{id}..."
+msgstr "Родитель: %{id}..."
+
+#: app/controllers/sessions_controller.rb:75
+msgid "Password not specified"
+msgstr "Не введен пароль"
+
+#: app/views/sessions/new.html.erb:13 app/views/dashboard/index.html.erb:54
+msgid "Password:"
+msgstr "Пароль:"
+
+#: app/views/main/_gettext.js.erb:165 app/views/main/_gettext.js.erb:193
+msgid "Pending"
+msgstr "Отложенный"
+
+#: app/views/main/_gettext.js.erb:332
+msgid "Permission Denied"
+msgstr "Доступ запрещен"
+
+#: app/views/main/_gettext.js.erb:82
+msgid "Permission denied"
+msgstr "Доступ запрещен"
+
+#: app/models/cib.rb:258 app/controllers/sessions_controller.rb:128
+#: lib/invoker.rb:113 lib/invoker.rb:135 lib/invoker.rb:172
+msgid "Permission denied for user %{user}"
+msgstr "Доступ пользователя %{user} запрещен"
+
+#: app/views/dashboard/index.html.erb:227
+msgid "Permission denied. Please log in to %{node}"
+msgstr "В доступе отказано. Войдите в систему на узле %{node}"
+
+#: app/views/sessions/new.html.erb:1
+msgid "Please ensure JavaScript is enabled"
+msgstr "Убедитесь, что использование JavaScript разрешено"
+
+#: app/views/resources/index.html.erb:101
+msgid "Primitive"
+msgstr "Примитив"
+
+#: app/views/main/_menus.html.erb:135
+msgid "Promote"
+msgstr "Повысить"
+
+#: app/views/primitives/_form.html.erb:331
+msgid "Provider"
+msgstr "Поставщик"
+
+#: app/views/main/_menus.html.erb:28
+msgid "Ready"
+msgstr "Готово"
+
+#: app/views/masters/_form.html.erb:47 app/views/crm_config/edit.html.erb:25
+#: app/views/crm_config/edit.html.erb:47 app/views/crm_config/edit.html.erb:69
+#: app/views/clones/_form.html.erb:47 app/views/locations/_form.html.erb:48
+#: app/views/groups/_form.html.erb:82 app/views/colocations/_form.html.erb:61
+#: app/views/tickets/_form.html.erb:49 app/views/primitives/_form.html.erb:248
+#: app/views/primitives/_form.html.erb:269
+#: app/views/primitives/_form.html.erb:291
+#: app/views/dashboard/index.html.erb:40 app/views/orders/_form.html.erb:61
+msgid "Remove"
+msgstr "Удалить"
+
+#: app/views/locations/_form.html.erb:50
+msgid "Remove Rule"
+msgstr "Удалить правило"
+
+#: app/controllers/wizard_controller.rb:243
+msgid "Required parameter \"%{param}\" not specified"
+msgstr "Не указан обязательный параметр \"%{param}\""
+
+#: app/controllers/main_controller.rb:93
+#: app/controllers/main_controller.rb:103
+#: app/controllers/main_controller.rb:113
+msgid "Required parameter \"node\" not specified"
+msgstr "Обязательный параметр \"node\" не задан"
+
+#: app/controllers/main_controller.rb:129
+#: app/controllers/main_controller.rb:158
+msgid "Required parameter \"resource\" not specified"
+msgstr "Обязательный параметр \"resource\" не задан"
+
+#: app/controllers/explorer_controller.rb:122
+msgid "Required parameters \"basename\" and \"node\" not specified"
+msgstr "Не указаны обязательные параметры \"basename\" и \"node\""
+
+#: app/controllers/explorer_controller.rb:189
+msgid "Required parameters \"left\" and \"right\" not specified"
+msgstr "Не указаны обязательные параметры \"правый\" и \"левый\""
+
+#: app/controllers/main_controller.rb:139
+msgid "Required parameters \"resource\" and \"node\" not specified"
+msgstr "Обязательные параметры \"resource\" и \"node\" не заданы"
+
+#: app/views/main/_gettext.js.erb:19
+msgid "Reset"
+msgstr "Сбросить"
+
+#: app/views/locations/_form.html.erb:76
+msgid "Resource"
+msgstr "Ресурс"
+
+#: app/views/crm_config/edit.html.erb:37
+msgid "Resource Defaults"
+msgstr "Восстановить умолчания"
+
+#: app/views/primitives/_form.html.erb:329
+msgid "Resource ID"
+msgstr "ИД ресурса"
+
+#: app/models/template.rb:140 app/models/primitive.rb:140
+msgid "Resource ID \"%{id}\" does not exist"
+msgstr "Ресурс с ИД \"%{id}\" не существует"
+
+#: app/views/main/_gettext.js.erb:120
+msgid "Resource Stickiness"
+msgstr "Присоединенность ресурса"
+
+#: app/controllers/primitives_controller.rb:63
+msgid "Resource created successfully"
+msgstr "Ресурс успешно создан"
+
+#: app/controllers/primitives_controller.rb:85
+msgid "Resource updated successfully"
+msgstr "Ресурс успешно обновлен"
+
+#: app/views/main/_gettext.js.erb:293
+msgid "Resource:"
+msgstr "Ресурс:"
+
+#: app/controllers/resources_controller.rb:57
+#: app/views/layouts/main.html.erb:153
+msgid "Resources"
+msgstr "Ресурсы"
+
+#: app/views/main/_gettext.js.erb:296
+msgid "Result:"
+msgstr "Результат:"
+
+#: app/views/masters/_form.html.erb:88 app/views/crm_config/edit.html.erb:114
+#: app/views/clones/_form.html.erb:88 app/views/locations/_form.html.erb:94
+#: app/views/groups/_form.html.erb:143
+#: app/views/colocations/_form.html.erb:110
+#: app/views/tickets/_form.html.erb:98 app/views/primitives/_form.html.erb:394
+#: app/views/orders/_form.html.erb:116
+msgid "Revert Changes"
+msgstr "Отменить изменения"
+
+#: app/views/main/_gettext.js.erb:311
+msgid "Revoke"
+msgstr "Отозвать"
+
+#: app/views/main/_gettext.js.erb:139
+msgid "Revoked"
+msgstr "Отозван"
+
+#: app/views/main/_gettext.js.erb:138
+msgid "Revoked [standby]"
+msgstr "Отозван [ожидание]"
+
+#: app/views/locations/_form.html.erb:44
+msgid "Role"
+msgstr "Роль"
+
+#: app/views/main/_gettext.js.erb:257
+msgid "Run >"
+msgstr "Выполнить >"
+
+#: app/views/main/_gettext.js.erb:344
+msgid "Running Master"
+msgstr "Выполняется главный"
+
+#: app/views/main/_gettext.js.erb:111
+msgid "STONITH Enabled"
+msgstr "Модуль STONITH включен"
+
+#: app/views/locations/_form.html.erb:42
+#: app/views/colocations/_form.html.erb:90 app/views/orders/_form.html.erb:90
+msgid "Score"
+msgstr "Оценка"
+
+#: app/views/layouts/main.html.erb:147
+msgid "Setup Wizard"
+msgstr "Мастер настройки"
+
+#: app/views/locations/_form.html.erb:51
+msgid "Show Rule Editor"
+msgstr "Показывать редактор правил"
+
+#: app/views/layouts/main.html.erb:33
+msgid "Simulator"
+msgstr "Симулятор"
+
+#: app/views/main/_gettext.js.erb:239
+msgid "Simulator (busy...)"
+msgstr "Симулятор (занято...)"
+
+#: app/views/main/_gettext.js.erb:242
+msgid "Simulator (final state)"
+msgstr "Симулятор (конечное состояние)"
+
+#: app/views/main/_gettext.js.erb:236
+msgid "Simulator (initial state)"
+msgstr "Симулятор (начальное состояние)"
+
+#: app/views/main/_gettext.js.erb:183
+msgid "Slave"
+msgstr "Подчиненный"
+
+#: app/views/main/_gettext.js.erb:95
+msgid "Stack: %s"
+msgstr "Стек: %s"
+
+#: app/views/main/_menus.html.erb:14 app/views/main/_gettext.js.erb:168
+#: app/views/main/_gettext.js.erb:314
+msgid "Standby"
+msgstr "Режим ожидания"
+
+#: app/views/main/_menus.html.erb:86
+msgid "Start"
+msgstr "Запуск"
+
+#: app/views/hb_reports/create.js.erb:3
+msgid "Start Time not specified"
+msgstr "Не указано время запуска"
+
+#: app/views/explorer/index.html.erb:141 app/views/explorer/index.html.erb:155
+#: app/views/hb_reports/new.html.erb:58
+msgid "Start Time:"
+msgstr "Время начала:"
+
+#: app/views/main/_gettext.js.erb:188
+msgid "Started"
+msgstr "Запущено"
+
+#: app/views/main/_gettext.js.erb:281
+msgid "State:"
+msgstr "Состояние:"
+
+#: app/views/layouts/main.html.erb:118 app/views/layouts/main.html.erb:126
+msgid "Status"
+msgstr "Состояние"
+
+#: app/views/main/_menus.html.erb:93
+msgid "Stop"
+msgstr "Стоп"
+
+#: app/views/main/_gettext.js.erb:219
+msgid "Stopped"
+msgstr "Остановлено"
+
+#: app/views/main/_gettext.js.erb:320
+msgid "Success"
+msgstr "Успешно"
+
+#: app/views/main/_gettext.js.erb:105
+msgid "Summary"
+msgstr "Сводка"
+
+#: app/views/main/_gettext.js.erb:146
+msgid "Summary View"
+msgstr "Сводный вид"
+
+#: app/views/colocations/_form.html.erb:64 app/views/orders/_form.html.erb:64
+msgid "Swap resources"
+msgstr "Обменять ресурсы"
+
+#: app/views/main/_gettext.js.erb:117
+msgid "Symmetric Cluster"
+msgstr "Симметричный кластер"
+
+#: app/views/orders/_form.html.erb:100
+msgid "Symmetrical"
+msgstr "Симметричный"
+
+#: app/views/main/_gettext.js.erb:152
+msgid "Table View"
+msgstr "Табличный вид"
+
+#: app/views/resources/index.html.erb:108
+msgid "Template"
+msgstr "Шаблон"
+
+#: app/views/primitives/_form.html.erb:329
+msgid "Template ID"
+msgstr "ИД шаблона"
+
+#: app/controllers/templates_controller.rb:66
+msgid "Template created successfully"
+msgstr "Шаблон создан успешно"
+
+#: app/controllers/templates_controller.rb:89
+msgid "Template updated successfully"
+msgstr "Шаблон изменен успешно"
+
+#: app/models/ticket.rb:73 app/models/location.rb:77 app/models/group.rb:57
+#: app/models/master.rb:57 app/models/colocation.rb:63
+#: app/models/template.rb:85 app/models/clone.rb:57 app/models/primitive.rb:84
+#: app/models/order.rb:89
+msgid "The ID \"%{id}\" is already in use"
+msgstr "ИД \"%{id}\" уже используется"
 
 #: app/views/wizard/done.html.erb:3
 msgid "The configuration has been applied."
@@ -1251,27 +1362,253 @@ msgstr "Конфигурация применена."
 msgid "The following configuration will be applied to the cluster:"
 msgstr "К кластеру будет применена следующая конфигурация:"
 
-#: app/views/wizard/run.html.erb:102
-msgid "Error applying configuration:"
-msgstr "Ошибка применения конфигурации:"
+#: app/views/dashboard/index.html.erb:397
+msgid "The host %{h} is already present in cluster %{c}"
+msgstr "Хост %{h} уже присутствует в кластере %{c}"
 
-#: app/views/wizard/run.html.erb:120
-msgid "< Back"
-msgstr "< Назад"
-
-#: lib/invoker.rb:114
+#: lib/invoker.rb:111
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "Не существует объект или атрибут (cibadmin %{cmd})"
 
-#: lib/invoker.rb:118
-msgid "Error invoking cibadmin %{cmd}: %{msg}"
-msgstr "Ошибка при вызове команды cibadmin %{cmd}: %{msg}"
-
-#: lib/invoker.rb:136
+#: lib/invoker.rb:133
 msgid "The object/attribute does not exist: %{msg}"
 msgstr "Не существует объект или атрибут: %{msg}"
 
-#: lib/invoker.rb:140
-msgid "Error invoking cibadmin --replace: %{msg}"
-msgstr "Ошибка при вызове команды cibadmin --replace: %{msg}"
+#: app/views/primitives/_form.html.erb:271
+msgid "There is already a monitor op with this interval."
+msgstr "Уже есть операция мониторинга с этим интервалом."
 
+#: app/views/main/_gettext.js.erb:35
+msgid "This will attempt to immediately fence node %s.  Do you want to continue?"
+msgstr "Для узла %s будет предпринята попытка немедленного исключения. Продолжить?"
+
+#: app/views/main/_gettext.js.erb:23
+msgid "This will bring node %s online if it is currently on standby.  Do you want to continue?"
+msgstr "Узел %s будет переведен в активный режим, если он находится в режиме ожидания. Продолжить?"
+
+#: app/views/main/_gettext.js.erb:32
+msgid "This will bring node %s out of maintenance mode.  Do you want to continue?"
+msgstr "Узел %s будет переведен в режим обслуживания. Продолжить?"
+
+#: app/views/main/_gettext.js.erb:63
+msgid "This will clean up the resource %s.  Do you want to continue?"
+msgstr "Ресурс %s будет очищен. Продолжить?"
+
+#: app/views/main/_gettext.js.erb:54
+msgid "This will clear any relocation constraints set on the resource %s.  Do you want to continue?"
+msgstr "Будут отменены все ограничения перемещения, заданные для ресурса %s. Продолжить?"
+
+#: app/views/main/_gettext.js.erb:60
+msgid "This will demote the resource %s.  Do you want to continue?"
+msgstr "Ресурс %s будет понижен. Продолжить?"
+
+#: app/views/main/_gettext.js.erb:57
+msgid "This will promote the resource %s.  Do you want to continue?"
+msgstr "Ресурс %s будет повышен. Продолжить?"
+
+#: app/views/main/_gettext.js.erb:29
+msgid "This will put node %s in maintenance mode.  All resources on this node will become unmanaged.  Do you want to continue?"
+msgstr "Узел %s будет переведен в режим обслуживания. Все ресурсы в этом узле станут неуправляемыми. Продолжить?"
+
+#: app/views/main/_gettext.js.erb:26
+msgid "This will put node %s on standby.  All resources will be stopped and/or moved to another node.  Do you want to continue?"
+msgstr "Узел %s будет переведен в режим ожидания. Все ресурсы будут остановлены и (или) перемещены на другой узел. Продолжить?"
+
+#: app/views/main/_gettext.js.erb:39
+msgid "This will start the resource %s.  Do you want to continue?"
+msgstr "Ресурс %s будет запущен. Продолжить?"
+
+#: app/views/main/_gettext.js.erb:42
+msgid "This will stop the resource %s.  Do you want to continue?"
+msgstr "Ресурс %s будет остановлен. Продолжить?"
+
+#: app/views/wizard/start.html.erb:26
+msgid "This wizard will guide you through the steps necessary to add one of the following configurations to the cluster."
+msgstr "Этот мастер обеспечит поддержку на всех этапах добавления в кластер одной из следующих конфигураций."
+
+#: app/views/constraints/index.html.erb:120
+msgid "Ticket"
+msgstr "Билет"
+
+#: app/views/main/_gettext.js.erb:302
+msgid "Ticket:"
+msgstr "Билет:"
+
+#: app/views/main/_gettext.js.erb:129
+msgid "Tickets"
+msgstr "Билеты"
+
+#: app/views/explorer/_pe_list.html.erb:11
+msgid "Time"
+msgstr "Время"
+
+#: app/views/dashboard/index.html.erb:146
+#: app/views/dashboard/index.html.erb:448
+msgid "Timeout: Please try again"
+msgstr "Тайм-аут: повторите попытку"
+
+#: app/views/main/_gettext.js.erb:48
+msgid "To node %s"
+msgstr "В узел %s"
+
+#: app/views/layouts/main.html.erb:114
+msgid "Tools"
+msgstr "Инструменты"
+
+#: app/views/main/_gettext.js.erb:149
+msgid "Tree View"
+msgstr "Древовидный вид"
+
+#: app/views/primitives/_form.html.erb:332
+msgid "Type"
+msgstr "Тип"
+
+#: app/views/layouts/main.html.erb:177
+msgid "UI Host: %s"
+msgstr "Хост UI: %s"
+
+#: app/controllers/crm_config_controller.rb:129
+msgid "Unable to apply changes: %{msg}"
+msgstr "Не удалось применить изменения: %{msg}"
+
+#: app/views/dashboard/index.html.erb:430
+msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
+msgstr "Не удалось подключиться к хосту %{host}. Попробуйте открыть URL-адрес %{url} в веб-навигаторе, чтобы убедиться в доступности Hawk."
+
+#: app/models/clone.rb:77
+msgid "Unable to create clone: %{msg}"
+msgstr "Не удалось создать клон: %{msg}"
+
+#: app/models/ticket.rb:82 app/models/location.rb:86
+#: app/models/colocation.rb:72 app/models/order.rb:98
+msgid "Unable to create constraint: %{msg}"
+msgstr "Не удалось создать ограничение: %{msg}"
+
+#: app/models/group.rb:80
+msgid "Unable to create group: %{msg}"
+msgstr "Не удалось создать группу: %{msg}"
+
+#: app/models/master.rb:77
+msgid "Unable to create master/slave: %{msg}"
+msgstr "Не удалось создать подчинение: %{msg}"
+
+#: app/models/template.rb:130 app/models/primitive.rb:130
+msgid "Unable to create resource: %{msg}"
+msgstr "Не удалось создать ресурс: %{msg}"
+
+#: app/controllers/application_controller.rb:143
+msgid "Unable to create shadow CIB"
+msgstr "Не удалось создать теневую базу сведений о кластере (CIB)"
+
+#: app/models/cib.rb:239
+msgid "Unable to execute %{cmd}"
+msgstr "Не удается выполнить %{cmd}"
+
+#: app/models/cib.rb:235
+msgid "Unable to parse CIB file \"%{path}\""
+msgstr "Не удалось проанализировать CIB-файл \"%{path}\""
+
+#: app/models/cib_object.rb:95 app/models/cib_object.rb:115
+#: app/models/crm_config.rb:49
+msgid "Unable to parse cibadmin output"
+msgstr "Не удалось проанализировать вывод cibadmin"
+
+#: app/models/ticket.rb:101 app/models/location.rb:107
+#: app/models/colocation.rb:91 app/models/order.rb:117
+msgid "Unable to update constraint: %{msg}"
+msgstr "Не удалось обновить ограничение: %{msg}"
+
+#: app/views/main/_gettext.js.erb:171
+msgid "Unclean"
+msgstr "Некорректно"
+
+#: app/views/main/_gettext.js.erb:70
+msgid "Unexpected server error: %s"
+msgstr "Непредвиденная ошибка сервера: %s"
+
+#: app/models/cib.rb:268 app/models/cib.rb:269 app/models/cib.rb:602
+#: app/views/main/_gettext.js.erb:174
+msgid "Unknown"
+msgstr "Неизвестно"
+
+#: app/views/main/_gettext.js.erb:126
+msgid "Unmanaged"
+msgstr "Не управляется"
+
+#: app/views/primitives/_form.html.erb:367
+msgid "Use Template"
+msgstr "Использовать шаблон"
+
+#: app/views/layouts/main.html.erb:120
+msgid "User: %{user}"
+msgstr "Пользователь: %{user}"
+
+#: app/controllers/sessions_controller.rb:70
+msgid "Username not specified"
+msgstr "Не указано имя пользователя."
+
+#: app/views/sessions/new.html.erb:9 app/views/dashboard/index.html.erb:50
+msgid "Username:"
+msgstr "Имя пользователя:"
+
+#: app/views/nodes/show.html.erb:1
+msgid "Utilization"
+msgstr "Использование"
+
+#: app/models/location.rb:70
+msgid "Value contains both single and double quotes"
+msgstr "Значение содержит и одиночные, и двойные кавычки"
+
+#: app/views/main/_gettext.js.erb:92
+msgid "Version: %s"
+msgstr "Версия: %s"
+
+#: app/views/main/_menus.html.erb:45 app/views/main/_menus.html.erb:159
+msgid "View Details..."
+msgstr "Просмотр подробностей..."
+
+#: app/views/main/_menus.html.erb:65 app/views/main/_menus.html.erb:181
+msgid "View Recent Events..."
+msgstr "Просмотр недавних событий..."
+
+#: app/controllers/wizard_controller.rb:253
+msgid "Wizard templates and/or workflows are missing"
+msgstr "Отсутствуют шаблоны и(или) рабочие процессы мастера"
+
+#: app/controllers/wizard_controller.rb:261
+msgid "Workflow \"%s\" not found"
+msgstr "Рабочий процесс \"%s\" не найден"
+
+#: app/views/main/_gettext.js.erb:326
+msgid "Wrong Argument(s)"
+msgstr "Неверные аргументы"
+
+#: app/views/shared/_confirm_revert.html.erb:8
+#: app/views/main/_gettext.js.erb:10
+msgid "Yes"
+msgstr "Да"
+
+#: app/controllers/sessions_controller.rb:131
+msgid "You have been logged out"
+msgstr "Вы вышли из системы"
+
+#: app/views/masters/_form.html.erb:48 app/views/crm_config/edit.html.erb:26
+#: app/views/crm_config/edit.html.erb:48 app/views/crm_config/edit.html.erb:70
+#: app/views/clones/_form.html.erb:48 app/views/groups/_form.html.erb:83
+#: app/views/primitives/_form.html.erb:249
+#: app/views/primitives/_form.html.erb:270
+#: app/views/primitives/_form.html.erb:292
+msgid "You must enter a value"
+msgstr "Необходимо ввести значение"
+
+#: app/controllers/crm_config_controller.rb:127
+msgid "Your changes have been saved"
+msgstr "Изменения сохранены"
+
+#: app/views/constraints/index.html.erb:153
+msgid "[Constraint is too complex to display]"
+msgstr "[Слишком сложное ограничение для отображения]"
+
+#: app/views/hb_reports/new.html.erb:74
+msgid "hb_report generation in progress..."
+msgstr "Формируется отчет hb_report..."
