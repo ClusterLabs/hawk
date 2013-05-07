@@ -559,7 +559,7 @@
         // begin ~dupe of _add_op
         self._insert_row(op_name, v).effect("highlight", {}, 1000);
         if (op_name != "monitor") {
-          self.new_op_select.children("option[value='" + n + "']").remove();
+          self.new_op_select.children("option[value='" + op_name + "']").remove();
         }
         self.keypress_hack = "";
         self.new_op_select.val("");
