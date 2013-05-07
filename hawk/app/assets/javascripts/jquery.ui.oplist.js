@@ -132,10 +132,14 @@
       });;
       self.new_op_select.keydown(function() {
         self.keypress_hack = $(this).val();
-      }).bind("keyup change", function() {
+      }).bind("keyup change", function(event) {
         if ($(this).val() != self.keypress_hack) {
           self.keypress_hack = $(this).val();
           self._init_new_op();
+          // Consider form dirty if new op selector changes (allows new
+          // op to be added even without '+' click, but note the dirty
+          // data is semi-bogus).
+          self._trigger("dirty", event, { field: null, name: $(this).val() });
         }
       });
       self.dialog = $(e.find("div")[0]);

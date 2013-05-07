@@ -133,7 +133,7 @@
       });;
       self.new_attr_select.keydown(function() {
         self.keypress_hack = $(this).val();
-      }).bind("keyup change", function() {
+      }).bind("keyup change", function(event) {
         // Need both keyup and change.  Unfortunately we have
         // to track the value manually (keypress_hack), else
         // this would trigger when hitting ESC or TAB, which
@@ -147,6 +147,10 @@
           self.no_value.fadeOut("fast");
           self._init_new_value_field();
           self._show_help($(this).val());
+          // Consider form dirty if new attr selector changes (allows new
+          // attr to be added even without '+' click, but note the dirty
+          // data is semi-bogus).
+          self._trigger("dirty", event, { field: null, name: $(this).val() });
         }
       });
     },
@@ -384,6 +388,12 @@
         var n = f[0].name.match(/.*\[([^\]]+)\]$/)[1];
         v[n] = f[0].type == "checkbox" ? f[0].checked : f.val();
       });
+      // Also grab the new attribute in the current '+' row, if any
+      var f = this.new_attr_td.children(":last");
+      if (f[0].name) {
+        var n = f[0].name.match(/.*\[([^\]]+)\]$/)[1];
+        v[n] = f[0].type == "checkbox" ? f[0].checked : f.val();
+      }
       return v;
     },
 
