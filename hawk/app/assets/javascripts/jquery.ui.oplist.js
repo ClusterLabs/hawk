@@ -187,7 +187,8 @@
       this.new_op_add.button("option", "disabled", n ? false : true);
       this.new_op_edit.button("option", "disabled", n ? false : true);
       if (n) {
-        this.new_op_td.text(this._op_value_string(n, this._filter_monitor_interval(n, this.options.all_ops[n][0])));
+        var v = this._filter_monitor_interval(n, this.options.all_ops[n][0]);
+        this.new_op_td.html(this._op_value_string(n, v) + this._op_fields(n, v));
       } else {
         this.new_op_td.text("");
       }
@@ -226,7 +227,7 @@
     _monitor_rows_with_interval: function(i) {
       // This gives monitor interval field(s) matching exactly the interval
       // specified, including whatever unit suffix:
-      var rows = this.element.find("input#" + this._get_monitor_interval_field_id(i)).parent().parent();
+      var rows = this.element.find(".oplist-del input#" + this._get_monitor_interval_field_id(i)).parent().parent();
       // But, we're also going to special-case this to check for duplicate
       // intervals where the "s" suffix is/isn't specified (i.e.: interval
       // "20" is treated the same as "20s".)  Note we're not bothering with
@@ -235,9 +236,9 @@
       var m = new String(i).match(/([0-9]+)(.*)/);
       if (m) {
         if (m[2] == "s") {
-          rows.push.apply(rows, this.element.find("input#" + this._get_monitor_interval_field_id(m[1])).parent().parent());
+          rows.push.apply(rows, this.element.find(".oplist-del input#" + this._get_monitor_interval_field_id(m[1])).parent().parent());
         } else if (m[2] == "") {
-          rows.push.apply(rows, this.element.find("input#" + this._get_monitor_interval_field_id(m[1] + "s")).parent().parent());
+          rows.push.apply(rows, this.element.find(".oplist-del input#" + this._get_monitor_interval_field_id(m[1] + "s")).parent().parent());
         }
       }
       return rows;
