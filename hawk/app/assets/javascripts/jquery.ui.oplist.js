@@ -218,10 +218,29 @@
       return f;
     },
 
+    _get_monitor_interval_field_id: function(i) {
+      return this.options.prefix.replace(/]/g, "").replace(/\[/g, "_") + "_monitor_" + i + "_interval";
+    },
+
     // Returns an array of rows which contain monitor ops that already have the given interval.
     _monitor_rows_with_interval: function(i) {
-      var id = this.options.prefix.replace(/]/g, "").replace(/\[/g, "_") + "_monitor_" + i + "_interval";
-      return this.element.find("input#" + id).parent().parent();
+      // This gives monitor interval field(s) matching exactly the interval
+      // specified, including whatever unit suffix:
+      var rows = this.element.find("input#" + this._get_monitor_interval_field_id(i)).parent().parent();
+      // But, we're also going to special-case this to check for duplicate
+      // intervals where the "s" suffix is/isn't specified (i.e.: interval
+      // "20" is treated the same as "20s".)  Note we're not bothering with
+      // conversions to match e.g.: minutes with seconds - if people want to
+      // mix those, they'll just have to watch out for duplicates themselves.
+      var m = new String(i).match(/([0-9]+)(.*)/);
+      if (m) {
+        if (m[2] == "s") {
+          rows.push.apply(rows, this.element.find("input#" + this._get_monitor_interval_field_id(m[1])).parent().parent());
+        } else if (m[2] == "") {
+          rows.push.apply(rows, this.element.find("input#" + this._get_monitor_interval_field_id(m[1] + "s")).parent().parent());
+        }
+      }
+      return rows;
     },
 
     // TODO(must): _edit_op was largely duplicated from this - consolidate!
