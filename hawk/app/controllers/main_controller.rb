@@ -145,7 +145,9 @@ class MainController < ApplicationController
     if params[:resource]
       result = Invoker.instance.crm 'configure', 'delete', params[:resource]
       if result == true
-        head :ok
+        # As with invoke() above, have to return actual JSON here or we land
+        # in the AJAX error handler
+        render :json => nil
       else
         render :status => 500, :json => {
           # Strictly, this may not be an error (see Invoker::crm comments)
