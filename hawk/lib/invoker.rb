@@ -167,6 +167,11 @@ class Invoker
   def fudge_error(exitstatus, stderr)
     if exitstatus == 0 && !(stderr.index("ERROR") || stderr.index("WARNING"))
       true
+    elsif exitstatus == 0 && stderr.index("WARNING: Creating rsc_location constraint") && !stderr.index("ERROR")
+      # Special case for "crm resource migrate" with no node specified, to squash
+      # warning about persistent location constraint (remember my *sigh* in the
+      # comment above?)
+      true
     else
       if stderr.match(/-54.*permission denied/i) || stderr.match(/-13.*permission denied/i)
         stderr = _('Permission denied for user %{user}') % {:user => current_user}
