@@ -240,9 +240,13 @@
       var m = new String(i).match(/([0-9]+)(.*)/);
       if (m) {
         if (m[2] == "s") {
-          rows.push.apply(rows, this.element.find(".oplist-del input#" + this._get_monitor_interval_field_id(m[1])).parent().parent());
+          this.element.find(".oplist-del input#" + this._get_monitor_interval_field_id(m[1])).parent().parent().each(function() {
+            rows.push(this);
+          });
         } else if (m[2] == "") {
-          rows.push.apply(rows, this.element.find(".oplist-del input#" + this._get_monitor_interval_field_id(m[1] + "s")).parent().parent());
+          this.element.find(".oplist-del input#" + this._get_monitor_interval_field_id(m[1] + "s")).parent().parent().each(function() {
+            rows.push(this);
+          });
         }
       }
       return rows;
