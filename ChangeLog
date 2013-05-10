@@ -1,3 +1,59 @@
+* Fri May 10 2013 Tim Serong <tserong@suse.com>
+- Build: Bump spec file version to 0.6.1
+- Upstream version cs:b8780f1
+
+* Thu May 09 2013 Tim Serong <tserong@suse.com>
+- GUI: ui.oplist: Fix duplicate monitor op with 's' suffix in IE
+- Upstream version cs:b7aac5f
+
+* Wed May 08 2013 Tim Serong <tserong@suse.com>
+- Rails3: Fix "unexpected server error 200" deleting resources & constraints
+- Misc: invoker: Don't treat 'crm resource migrate' warning as error
+- Upstream version cs:68ef343
+
+* Tue May 07 2013 Tim Serong <tserong@suse.com>
+- GUI: ui.attrlist, ui.oplist: Allow new row to be added on apply,
+  without having to hit '+' first (bnc#806985)
+- GUI: ui.oplist: Detect duplicate monitor ops when 's' suffix missing
+  from interval
+- GUI: ui.oplist: Fix JS error when editing new non-monitor op
+- GUI: wizard: Remove unused attrlist.js & css from header
+- Upstream version cs:d81f780
+
+* Mon May 06 2013 Tim Serong <tserong@suse.com>
+- Misc: Update translations (bnc#807745)
+- Upstream version cs:358e9a9
+
+* Fri May 03 2013 Tim Serong <tserong@suse.com>
+- GUI: simulator: Ensure inject ticket button appears if tickets available
+- GUI: simulator: Make inject dialog draggable
+- GUI: simulator: Remember injected state when leaving/returning to status
+  screen
+- GUI: wizard: Fix mismatched </form> and </div> tags
+- Misc: Move json2.js include from dashboard to main layout
+- Upstream version cs:9b93b8f
+
+* Wed May 01 2013 Tim Serong <tserong@suse.com>
+- GUI: dashboard: Show correct error message if adding cluster fails in IE
+- GUI: dashboard: Cycle to next node on 500 server error (e.g.: hawk running
+  but cluster down)
+- Build: Add .travis.yml, tweak Gemfile etc. for travis-ci.org testing
+- Upstream version cs:09b798c
+
+* Mon Apr 29 2013 Tim Serong <tserong@suse.com>
+- GUI: panel_view: Show tickets in tree view (bnc#809988)
+- Upstream version cs:ae5c2af
+
+* Fri Apr 26 2013 Tim Serong <tserong@suse.com>
+- GUI: summary_view: Ensure rsc_defaults resource-stickiness is reflected
+  in summary
+- GUI: panel_view: Add rsc_defaults and op_defaults to crm config panel
+- Misc: Cib model: Expose rsc_defaults and op_defaults
+- Misc: Cib model: Don't include default-resource-stickiness if not set
+- Rails3: Move ActionDispatch rescue_responses handling to
+  config/application.rb
+- Upstream version cs:d4baa2f
+
 * Fri Apr 19 2013 Tim Serong <tserong@suse.com>
 - GUI: Status: Auto expand resource details dialog to fit contents
   (bnc#813458)
