@@ -331,7 +331,7 @@ class Primitive < CibObject
       xml = nil
 
       # try pacemaker's new lrmd_test for metadata.
-      [ "/usr/lib64/pacemaker/lrmd_test", "/usr/lib/pacemaker/lrmd_test" ].each do |path|
+      [ "/usr/lib64/pacemaker/lrmd_test", "/usr/lib/pacemaker/lrmd_test", "/usr/libexec/pacemaker/lrmd_test" ].each do |path|
         next unless File.executable?(path)
         xml = REXML::Document.new(Util.safe_x(path, '-c', 'metadata', '-C', c, '-P', p, '-T', t))
         break

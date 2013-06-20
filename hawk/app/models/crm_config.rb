@@ -160,7 +160,9 @@ class CrmConfig < CibObject
 
     if @all_props["crm_config"].empty?
       [ "pengine", "crmd", "cib"].each do |cmd|
-        [ "/usr/lib64/heartbeat/#{cmd}", "/usr/lib/heartbeat/#{cmd}" ].each do |path|
+	[ "/usr/libexec/pacemaker/#{cmd}",
+          "/usr/lib64/pacemaker/#{cmd}", "/usr/lib/pacemaker/#{cmd}",
+          "/usr/lib64/heartbeat/#{cmd}", "/usr/lib/heartbeat/#{cmd}" ].each do |path|
           next unless File.executable?(path)
           xml = REXML::Document.new(%x[#{path} metadata 2>/dev/null])
           return unless xml.root
