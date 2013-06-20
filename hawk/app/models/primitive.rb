@@ -235,24 +235,23 @@ class Primitive < CibObject
     end
 
     def classes_and_providers
-      # TODO(should): Save to static variable, but see comment in types()
-      # below for issues (test with "mkdir /usr/lib/ocf/resource.d/foo",
-      # then reload the new primitive page).
-      cp = {
-        :r_classes   => [],
-        :r_providers => {}
-      }
-      all_classes = %x[/usr/sbin/crm ra classes].split(/\n/).sort {|a,b| a.natcmp(b, true)}
-      # Cheap hack to get rid of heartbeat class if there's no RAs of that type present
-      all_classes.delete('heartbeat') unless File.exists?('/etc/ha.d/resource.d')
-      all_classes.each do |c|
-        if m = c.match('(.*)/(.*)')
-          c = m[1].strip
-          cp[:r_providers][c] = m[2].strip.split(' ').sort {|a,b| a.natcmp(b, true)}
+      PerRequestCache.fetch(:ra_classes_and_providers) {
+        cp = {
+          :r_classes   => [],
+          :r_providers => {}
+        }
+        all_classes = %x[/usr/sbin/crm ra classes].split(/\n/).sort {|a,b| a.natcmp(b, true)}
+        # Cheap hack to get rid of heartbeat class if there's no RAs of that type present
+        all_classes.delete('heartbeat') unless File.exists?('/etc/ha.d/resource.d')
+        all_classes.each do |c|
+          if m = c.match('(.*)/(.*)')
+            c = m[1].strip
+            cp[:r_providers][c] = m[2].strip.split(' ').sort {|a,b| a.natcmp(b, true)}
+          end
+          cp[:r_classes].push c
         end
-        cp[:r_classes].push c
-      end
-      cp
+        cp
+      }
     end
 
     def types(c, p='')
