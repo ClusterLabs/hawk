@@ -1,5 +1,5 @@
 #
-# spec file for package hawk (Version 0.6.1)
+# spec file for package hawk
 #
 # Copyright (c) 2010-2013 SUSE LINUX Products GmbH, Nuernberg, Germany.
 #
@@ -14,6 +14,7 @@
 
 # Please submit bugfixes or comments via http://bugs.opensuse.org/
 #
+
 
 %if 0%{?suse_version}
 %define	www_base	/srv/www
@@ -30,59 +31,68 @@
 %define	gname		haclient
 %define	uname		hacluster
 
-
-Name:		hawk
-Summary:	HA Web Konsole
-Version:	0.6.1
-Release:	0
-License:	GPL v2 only
-Url:		http://www.clusterlabs.org/wiki/Hawk
-Group:		%{pkg_group}
-Source:		%{name}-%{version}.tar.bz2
+Name:           hawk
+Summary:        HA Web Konsole
+License:        GPL-2.0
+Group:          %{pkg_group}
+Version:        0.6.1
+Release:        0
+Url:            http://www.clusterlabs.org/wiki/Hawk
+Source:         %{name}-%{version}.tar.bz2
 %if 0%{?suse_version}
-Source1:	filter-requires.sh
-%define		_use_internal_dependency_generator 0
-%define		__find_requires /bin/sh %{SOURCE1}
+Source1:        filter-requires.sh
+%define         _use_internal_dependency_generator 0
+%define         __find_requires /bin/sh %{SOURCE1}
 %endif
-BuildRoot:	%{_tmppath}/%{name}-%{version}-build
-AutoReqProv:	on
+BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 Requires:       hawk-templates >= %{version}-%{release}
-Requires:	pacemaker
-Requires:	ruby
-Requires:   rubygem-bundler
-Requires:	lighttpd >= 1.4.20
-Requires:	graphviz
-Requires:	graphviz-gd
-Requires:	iproute2
+Requires:       crmsh
+Requires:       graphviz
+Requires:       graphviz-gd
 %if 0%{?suse_version}
-Recommends:	graphviz-gnome
+Recommends:     graphviz-gnome
+Requires:       iproute2
+%else
+Requires:       iproute
+Requires:       lighttpd-fastcgi
 %endif
-BuildRequires:	rubygems
-BuildRequires:	rubygem-rake
+Requires:       lighttpd >= 1.4.20
+Requires:       pacemaker >= 1.1.8
+Requires:       ruby
+Requires:       rubygem-bundler
+BuildRequires:  ruby-devel
+BuildRequires:  rubygems
+BuildRequires:  rubygem-rake
 BuildRequires:  rubygem-gettext
-BuildRequires:  rubygem-gettext_i18n_rails
 BuildRequires:  rubygem-fast_gettext
-BuildRequires:	pam-devel
-BuildRequires:	glib2-devel libxml2-devel
+BuildRequires:  rubygem-gettext_i18n_rails
+BuildRequires:  pam-devel
+BuildRequires:  glib2-devel
+BuildRequires:  libxml2-devel
 %if 0%{?suse_version}
-PreReq:			permissions
-BuildRequires:	ruby-fcgi
-BuildRequires:	fdupes
-BuildRequires:	rubygem-rails-3_2
+PreReq:         permissions
+%if 0%{?suse_version} < 1220
+BuildRequires:  ruby-fcgi
+%else
+Requires:       rubygem-ruby-fcgi
+%endif
+BuildRequires:  fdupes
+BuildRequires:  libpacemaker-devel
+BuildRequires:  rubygem-rails-3_2
 BuildRequires:  rubygem-rails-i18n
-BuildRequires:	libpacemaker-devel
-BuildRequires:  rubygem-rack
+# rails seems to require rdoc 3...
+BuildRequires:  rubygem-rdoc-3
 # Require startproc respecting -p, bnc#559534#c44
 %if 0%{?suse_version} > 1110
 # 11.2 or newer; 
-Requires:	sysvinit > 2.86-215.2
+Requires:       sysvinit > 2.86-215.2
 %else
 # 11.1 or SLES11
-Requires:	sysvinit > 2.86-195.3.1
+Requires:       sysvinit > 2.86-195.3.1
 %endif
 %else
+BuildRequires:  pacemaker-libs-devel
 BuildRequires:  rubygem-rails >= 3.2
-BuildRequires:	pacemaker-libs-devel
 %endif
 
 %description
@@ -114,7 +124,7 @@ make WWW_BASE=%{www_base} INIT_STYLE=%{init_style} LIBDIR=%{_libdir} BINDIR=%{_b
 make WWW_BASE=%{www_base} INIT_STYLE=%{init_style} DESTDIR=%{buildroot} install
 # copy of GPL
 cp COPYING %{buildroot}%{www_base}/hawk/
-%if 0%{?suse_version}
+%if 0%{?suse_version} && 0%{?suse_version} < 1220
 # evil magic to get ruby-fcgi into the vendor directory
 for f in $(rpm -ql ruby-fcgi|grep %{vendor_ruby}); do
 	# gives something simliar to:
@@ -130,9 +140,12 @@ rm -rf %{buildroot}%{www_base}/hawk/vendor/bundle/ruby/*/gems/*/doc
 rm -rf %{buildroot}%{www_base}/hawk/vendor/bundle/ruby/*/gems/*/examples
 rm -rf %{buildroot}%{www_base}/hawk/vendor/bundle/ruby/*/gems/*/samples
 rm -rf %{buildroot}%{www_base}/hawk/vendor/bundle/ruby/*/gems/*/test
+%if 0%{?suse_version}
 # mark .mo files as such (works on SUSE but not FC12, as the latter wants directory to
 # be "share/locale", not just "locale", and it also doesn't support appending to %%{name}.lang)
 %find_lang %{name} %{name}.lang
+# don't ship .po files (find_lang only grabs the mos, and we don't need the pos anyway)
+rm %{buildroot}%{www_base}/hawk/locale/*/hawk.po
 # hard link duplicate files
 %fdupes %{buildroot}
 %else
@@ -214,14 +227,16 @@ rm -rf %{buildroot}
 %{www_base}/hawk/script
 %{www_base}/hawk/test
 %if 0%{?suse_version}
-# itemizing content in %%{www_base}/hawk/vendor and locale to avoid
+# itemizing content in %%{www_base}/hawk/locale to avoid
 # duplicate files that would otherwise be the result of including hawk.lang
 %dir %{www_base}/hawk/locale
+%dir %{www_base}/hawk/locale/*
+%dir %{www_base}/hawk/locale/*/*
 %else
 %{www_base}/hawk/locale
 %endif
-# Not doing this itemization for %lang files in vendor, it's frightfully
-# hideous, so we're going to live with a handful of file-not-in-%lang rpmlint
+# Not doing this itemization for %%lang files in vendor, it's frightfully
+# hideous, so we're going to live with a handful of file-not-in-%%lang rpmlint
 # warnings for bundled gems.
 %{www_base}/hawk/vendor
 
