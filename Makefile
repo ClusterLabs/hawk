@@ -80,7 +80,7 @@ tools/hawk_monitor: tools/hawk_monitor.c
 		$(shell pkg-config --cflags libxml-2.0) \
 		-I/usr/include/pacemaker -I/usr/include/heartbeat \
 		-o $@ $< \
-		-lcib -lcrmcommon -Wall \
+		-lcib -lcrmcommon -lqb -Wall \
 		$(shell pkg-config --libs glib-2.0) \
 		$(shell pkg-config --libs libxml-2.0)
 
