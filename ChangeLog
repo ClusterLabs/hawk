@@ -1,3 +1,17 @@
+* Thu Jun 20 2013 Tim Serong <tserong@suse.com>
+- GUI: Primitive editor: Fix default list of resource types
+- Misc: Primitive model: Use PerRequestCache for classes and providers
+- Misc: Use String#ord in fcgi.rb for ruby 1.9 compatibility
+- Misc: Ensure "fcgi" is required after paths are set up properly in
+  dispatch.fcgi
+- Misc: Add /usr/libexec/pacemaker to paths to check for pacemaker binaries
+- Misc: Fix IP address detection in init script (change awk to print fifth
+  field from `ip` instead of last field)
+- Build: Add explicit -lqb to hawk_monitor
+- Build: hawk_monitor: Define cib_diff_notify for build against pcmk 1.1.8
+- Build: Reformat spec file a bit
+- Upstream version cs:23b3170
+
 * Fri May 10 2013 Tim Serong <tserong@suse.com>
 - Build: Bump spec file version to 0.6.1
 - Upstream version cs:b8780f1
