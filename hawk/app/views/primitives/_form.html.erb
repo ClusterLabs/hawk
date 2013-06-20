@@ -354,7 +354,7 @@ $(function() {
       else
         f.select :r_provider, options_for_select([]), {}, { :disabled => true }
       end %><span id="label_r_provider" style="display: none;"></span></td>
-    <td><%= f.select :r_type, options_for_select([''] + Primitive.types(@res.r_class, @res.r_provider), @res.r_type),
+    <td><%= f.select :r_type, options_for_select([''] + Primitive.types(@res.r_class, default_provider), @res.r_type),
       {}, { :class => 'type' } %><span id="label_r_type" style="display: none;"></span></td>
     <td><span id="type-spinner" style="display: none;"><%= image_tag 'spinner-16x16.gif', :alt => '' %></span></td>
   </tr>
