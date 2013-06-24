@@ -47,8 +47,9 @@ gem 'fast_gettext'
 gem 'gettext_i18n_rails', '>= 0.4.3'
 
 # rails-i18n provides translations for ActiveRecord
-# validation error messages
-gem 'rails-i18n'
+# validation error messages (this actually shouldn't
+# be necessary)
+# gem 'rails-i18n'
 
 # needed to collect translatable strings
 # not needed at production
