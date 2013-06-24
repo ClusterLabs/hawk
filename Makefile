@@ -53,6 +53,9 @@ WWW_BASE = /srv/www
 # Override this to get a different init script (e.g. "redhat")
 INIT_STYLE = suse
 
+# Set this to true to bundle gems inside rpm
+BUNDLE_GEMS = false
+
 # Base paths for Pacemaker binaries (note: overriding these will change
 # paths used by hawk_invoke, but will have no effect on hard-coded paths
 # in the rails app)
@@ -61,7 +64,18 @@ BINDIR = /usr/bin
 SBINDIR = /usr/sbin
 
 all: scripts/hawk.$(INIT_STYLE) hawk/config/lighttpd.conf tools/hawk_chkpwd tools/hawk_monitor tools/hawk_invoke
-	(cd hawk; rake gettext:pack && bundle package && bundle install --deployment)
+	(cd hawk; \
+	 rake gettext:pack && \
+	 if $(BUNDLE_GEMS) ; then \
+		# Ignore gems from test \
+		export BUNDLE_WITHOUT=test && \
+		# Generate Gemfile.lock \
+		bundle list && \
+		# Strip unwanted gems from Gemfile.lock \
+		sed -i -e '/\brdoc\b/d' Gemfile.lock && \
+		# Finally package and install the gems \
+		bundle package && bundle install --deployment ; \
+	 fi)
 
 %:: %.in
 	sed \
@@ -116,7 +130,7 @@ install:
 	# Get rid of cruft from packed gems
 	-find hawk/vendor -name '*bak' -o -name '*~' -o -name '#*#' | xargs rm
 	cp -a hawk/* $(DESTDIR)$(WWW_BASE)/hawk
-	cp -a hawk/.bundle $(DESTDIR)$(WWW_BASE)/hawk
+	-cp -a hawk/.bundle $(DESTDIR)$(WWW_BASE)/hawk
 	rm $(DESTDIR)$(WWW_BASE)/hawk/config/lighttpd.conf.in
 	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/log
 	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/tmp
