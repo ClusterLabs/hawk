@@ -36,7 +36,7 @@ BUILD_VERSION = $(shell git log --pretty="format:%h" -n 1)
 # This gets the version from the most recent tag in the form "hawk-x.y.z"
 # as a best-effort human-readable version number (e.g. 0.1.1 or 0.1.2-rc1).
 # But to really know what you're running, you need the changeset hash above.
-BUILD_TAG = $(shell git tag -l 'hawk-*' | sort -Vr | head -n 1 | sed -e 's/^hawk-//')
+BUILD_TAG = $(shell git describe --tags --abbrev=0 | sed -e 's/^hawk-//')
 ifeq "$(BUILD_TAG)" ""
 BUILD_TAG = 0.0.0
 endif
