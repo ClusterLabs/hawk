@@ -1,3 +1,11 @@
+* Wed Jun 26 1013 Tim Serong <tserong@suse.com>
+- GUI: Fix broken French translation of node status (bnc#825949)
+- Build: Only Bundle Gems on SLES 11
+- Build: Don't ship Gemfile when not using Bundler
+- Build: Ensure BUILD_TAG is from current branch
+- Misc: Don't require rails-i18n
+- Upstream version cs:7619068
+
 * Thu Jun 20 2013 Tim Serong <tserong@suse.com>
 - GUI: Primitive editor: Fix default list of resource types
 - Misc: Primitive model: Use PerRequestCache for classes and providers
