@@ -158,7 +158,7 @@ rm %{buildroot}%{www_base}/hawk/locale/*/hawk.po
 # hard link duplicate files
 %fdupes %{buildroot}
 %else
-# Need file to exist else %files fails later
+# Need file to exist else %%files fails later
 touch %{name}.lang
 %endif
 # more cruft to clean up (WTF?)
@@ -229,10 +229,11 @@ rm -rf %{buildroot}
 %endif
 %{www_base}/hawk/public
 %{www_base}/hawk/Rakefile
-%{www_base}/hawk/Gemfile
 %if 0%{?suse_version} == 1110
+%{www_base}/hawk/Gemfile
 %{www_base}/hawk/Gemfile.lock
 %else
+%exclude %{www_base}/hawk/Gemfile
 %exclude %{www_base}/hawk/Gemfile.lock
 %endif
 %{www_base}/hawk/COPYING
