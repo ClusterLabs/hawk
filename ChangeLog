@@ -1,7 +1,8 @@
 * Wed Jul 03 2013 Tim Serong <tserong@suse.com>
 - Rails3: Set random secret_token instead of deprecated cookie_secret
   (bnc#827940)
-- Upstream version cs:eb3f04f
+- Build: Require rails 3.2+, but < 4.0
+- Upstream version cs:c7385d6
 
 * Wed Jun 26 1013 Tim Serong <tserong@suse.com>
 - GUI: Fix broken French translation of node status (bnc#825949)
