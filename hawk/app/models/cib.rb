@@ -517,7 +517,9 @@ class Cib < CibObject
 
         # Now we've got the status on this node, let's stash it away
         (id, instance) = id.split(':')
-        if @resources_by_id[id]
+        # Need check for :instances in case an orphaned resource has same id
+        # as a currently extant clone parent (bnc#834198)
+        if @resources_by_id[id] && @resources_by_id[id][:instances]
           # m/s slave state hack (*sigh*)
           state = :slave if @resources_by_id[id][:is_ms] && state == :started
 
@@ -578,7 +580,7 @@ class Cib < CibObject
           # NOTE: Do *not* add any more keys here without adjusting the renamer above
         else
           # It's an orphan
-          # TODO(should): display this somewhere? (at least log it during testing)
+          Rails.logger.debug "Ignoring orphaned resource #{id + (instance ? ':' + instance : '')}"
         end
       end
     end
