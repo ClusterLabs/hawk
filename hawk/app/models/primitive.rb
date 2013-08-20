@@ -326,19 +326,12 @@ class Primitive < CibObject
         }
       }
       return m if c.empty? or t.empty?
-      p = 'NULL' if p.empty?
 
-      xml = nil
-
-      # try pacemaker's new lrmd_test for metadata.
-      [ "/usr/lib64/pacemaker/lrmd_test", "/usr/lib/pacemaker/lrmd_test", "/usr/libexec/pacemaker/lrmd_test" ].each do |path|
-        next unless File.executable?(path)
-        xml = REXML::Document.new(Util.safe_x(path, '-c', 'metadata', '-C', c, '-P', p, '-T', t))
-        break
-      end
-
-      # old lrmadmin fallback
-      xml = REXML::Document.new(Util.safe_x('/usr/sbin/lrmadmin', '-M', c, t, p, 'meta')) unless xml
+      # crm_resource --show-metadata is good since at least pacemaker 1.1.8,
+      # which we require now anyway (previously we were using lrmd_test with
+      # a fallback to lrmadmin, but lrmd_test lives in cts and lrmadmin is gone)
+      xml = REXML::Document.new(Util.safe_x('/usr/sbin/crm_resource', '--show-metadata',
+                                            p.empty? ? "#{c}:#{t}" : "#{c}:#{p}:#{t}"))
 
       return m unless xml.root
       # TODO(should): select by language (en), likewise below
