@@ -267,8 +267,12 @@ class WizardController < ApplicationController
           @workflow_shortdesc = @workflow_xml.root.elements['shortdesc[@lang="en"]'].text.strip
           @steps.insert(@steps.rindex("confirm"), "params") if @workflow_xml.root.elements['parameters']
           @workflow_xml.root.elements.each('templates/template') do |e|
+            filename = "#{e.attributes['name']}.xml"
+            if e.attributes.has_key?("type")
+              filename = "#{e.attributes['type']}.xml"
+            end
             @steps.insert(@steps.rindex("confirm"), "template_#{e.attributes['name']}")
-            tf = File.join(@confdir, "templates", "#{e.attributes['name']}.xml")
+            tf = File.join(@confdir, "templates", filename)
             @templates_xml ||= {}
             @templates_xml[e.attributes['name']] = REXML::Document.new(File.new(tf))
             @errors << _('Error parsing template "%s"') % e.attributes['name'] unless @templates_xml[e.attributes['name']].root
