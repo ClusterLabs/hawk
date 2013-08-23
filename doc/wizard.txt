@@ -4,9 +4,9 @@ Tim Serong <tserong@suse.com>
 
 == Introduction
 
-Hawk provides a setup wizard to ease cluster configuation, by walking
+Hawk provides a setup wizard to ease cluster configuration, by walking
 the user through a series of steps to configure some set of resources,
-e.g.: a web server (consiting of apache instance + virtual IP address),
+e.g.: a web server (consisting of an apache instance + a virtual IP address),
 or an OCFS2 filesystem (consisting of o2cb, dlm, clvm, and a filesystem).
 
 This document provides an overview of wizard operation and the templates
@@ -54,19 +54,24 @@ Each workflow has:
   when the workflow is selected.
 * A set of parameters which the user must enter on the next page of
   the wizard after the workflow is selected (optional).
-* A list of templates which constitute the remaining wizard steps
-  (optional if parameters were specified, i.e. a workflow must have at
-  least one or both of parameters and templates).
+* A list of template instances which constitute the remaining wizard
+  steps (optional if parameters were specified, i.e. a workflow must
+  have at least one or both of parameters and templates).
 * A description of each step (be it parameters or a template step),
   to be displayed at the top of the screen (optional).
 * A crm shell script which contains the configuration to be applied.
   This will be applied in addition to the crm shell script from each
   referenced template.
 
-Each template has:
+Each template instance has:
 
-* A name/id ([A-Aa-z0-9-]+), which should be the same as the template
-  filename.
+* A name ([A-Za-z0-9-]+), which must be unique within that workflow,
+  and can be the same as the template filename excluding the .xml
+  extension, in which case a single instance of that template is
+  allowed.
+* An optional type ([A-Za-z0-9-]+), which, if provided, identifies the
+  template used for this step. If a type is not defined, the type is
+  assumed to be equal to the name.
 * A short and long text description.  The short description is used
   as a heading for the wizard step the template is used in.  The long
   description is not currently exposed.
@@ -144,8 +149,10 @@ The IP address configured here will start before the Apache instance.
        use <override name="param-id" value="new-default-value"/> -->
 
 </template>
-                             <!-- use apache template for final step -->
-<template name="apache" required="1">
+                             <!-- use apache template for final step
+                                  set the optional type in case more
+                                  web servers will be added later on -->
+<template name="www" type="apache" required="1">
 <stepdesc lang="en">         <!-- shown at top of wizard step -->
 The Apache configuration file specified here must be available via the
 same path on all cluster nodes.
@@ -158,9 +165,13 @@ same path on all cluster nodes.
                                   from the included templates -->
 group <insert param="id"/>
   <insert param="id" from_template="virtual-ip"/>
-  <insert param="id" from_template="apache"/>
+  <insert param="id" from_template="www"/>
                              <!-- note indent above, this is how we
-                                  do line continuation (no backslashes!) -->
+                                  do line continuation (no
+                                  backslashes!). Also note the use
+                                  of the template instance name 'www',
+                                  instead of the template name
+                                  'apache'. -->
 </crm_script>
 
 </workflow>
