@@ -58,6 +58,10 @@ Requires:       hawk-templates >= %{version}-%{release}
 Requires:       lighttpd >= 1.4.20
 Requires:       pacemaker >= 1.1.8
 Requires:       ruby
+%if 0%{?fedora_version} >= 19
+Requires:       rubypick
+BuildRequires:  rubypick
+%endif
 Requires:       rubygem-bundler
 %if 0%{?suse_version}
 Recommends:     graphviz-gnome
