@@ -1,3 +1,19 @@
+* Mon Sep 30 2013 Tim Serong <tserong@suse.com>
+- Build: Require rubypick for FC19+
+- Upstream version cs:e2f7668
+
+* Fri Aug 23 2013 Kristoffer Grönlund <krig@koru.se>
+- Misc: wizard: Allow multiple instances of the same template (fate#314396)
+- Doc: wizard: Add information about template name/type to wizard.txt
+- Upstream version cs:d5a20b9
+
+* Tue Aug 20 2013 Tim Serong <tserong@suse.com>
+- Misc: Primitive model: Use crm_resource --show-metadata rather than
+  lrmd_test for extrating RA metadata
+- Misc: Cib model: Ensure orphaned resources with same ID as clone parent
+  are ignored (bnc#834198)
+- Upstream version cs:ab692f7
+
 * Wed Jul 03 2013 Tim Serong <tserong@suse.com>
 - Rails3: Set random secret_token instead of deprecated cookie_secret
   (bnc#827940)
