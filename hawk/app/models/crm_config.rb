@@ -194,7 +194,7 @@ class CrmConfig < CibObject
       # These are meant to be read-only; should we hide them
       # in the editor?  grey them out? ...?
       ["cluster-infrastructure", "dc-version", "expected-quorum-votes"].each do |n|
-        @all_props["crm_config"][n][:readonly] = true
+        @all_props["crm_config"][n][:readonly] = true if @all_props["crm_config"][n]
       end
     end
 
