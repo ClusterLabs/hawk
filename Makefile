@@ -65,7 +65,7 @@ SBINDIR = /usr/sbin
 
 all: scripts/hawk.$(INIT_STYLE) hawk/config/lighttpd.conf tools/hawk_chkpwd tools/hawk_monitor tools/hawk_invoke
 	(cd hawk; \
-	 rake gettext:pack && \
+	 TEXTDOMAIN=hawk rake gettext:pack && \
 	 if $(BUNDLE_GEMS) ; then \
 		# Ignore gems from test \
 		export BUNDLE_WITHOUT=test && \
