@@ -156,7 +156,7 @@ class ExplorerController < ApplicationController
       require "tempfile"
       tmpfile = Tempfile.new("hawk_dot")
       tmpfile.close
-      Util.safe_x("/usr/sbin/ptest", "-x", tpath,
+      Util.safe_x("/usr/sbin/crm_simulate", "-x", tpath,
         params[:format] == "xml" ? "-G" : "-D", tmpfile.path)
       # TODO(must): handle failure of above
 

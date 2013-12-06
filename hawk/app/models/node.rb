@@ -70,7 +70,7 @@ class Node < CibObject
         Hash[xml.elements['utilization'].elements.collect {|e|
           [e.attributes['name'], { :total => e.attributes['value'].to_i } ] }] : {})
       if (node.utilization.any?)
-        Util.safe_x('/usr/sbin/ptest', '-LU').split("\n").each do |line|
+        Util.safe_x('/usr/sbin/crm_simulate', '-LU').split("\n").each do |line|
           m = line.match(/^Remaining:\s+([^\s]+)\s+capacity:\s+(.*)$/)
           next unless m
           next unless m[1] == node.uname
