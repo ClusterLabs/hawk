@@ -102,8 +102,9 @@ tools/hawk_monitor: tools/hawk_monitor.c
 tools/hawk_invoke: tools/hawk_invoke.c tools/common.h
 	gcc -fpie -pie $(CFLAGS) -o $@ $<
 
+# TODO(should): Verify this is really clean (it won't get rid of .mo files,
+# for example
 clean:
-	rm -rf hawk/locale
 	rm -rf hawk/vendor
 	rm -rf hawk/tmp
 	rm -rf hawk/log
