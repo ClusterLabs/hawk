@@ -1,3 +1,20 @@
+* Dec Nov 06 2013 Tim Serong <tserong@suse.com>
+- GUI: ui.popupmenu: Ensure menu appears over simulator dialog
+- Misc: hb_report: Catch ArgumentError when parsing hb_report output
+  (bnc#854060)
+- Misc: Use crm_simulate instead of ptest (bnc#854050)
+- Misc: Node model: Find nodes by uname (bnc#854039)
+- Build: Various minor cleanup for travis-ci integration
+- Build: Use brakeman instead of scanny for security testing
+- Build: Bump spec file version to 0.6.2
+- Upstream version cs:bd10c59
+
+* Fri Nov 15 2013 Tim Serong <tserong@suse.com>
+- Build: Set TEXTDOMAIN=hawk (needed by gettext 3.x)
+- Misc: crm_config: check properties exist before flagging readonly
+  (bnc#853345)
+- Upstream version cs:b11f8c7
+
 * Mon Sep 30 2013 Tim Serong <tserong@suse.com>
 - Build: Require rubypick for FC19+
 - Upstream version cs:e2f7668
