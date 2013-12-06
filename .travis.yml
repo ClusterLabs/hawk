@@ -8,7 +8,7 @@ rvm:
   - "1.9.3"
   - "2.0.0"
   - jruby-19mode
-  - rbx-19mode
+  - rbx
 gemfile: hawk/Gemfile
-script: sh -c 'cd hawk && if [ "$TRAVIS_RUBY_VERSION" = "rbx-19mode" ]; then bundle exec rake scanny ; fi && bundle exec rake'
+script: sh -c 'cd hawk && if [ "$TRAVIS_RUBY_VERSION" = "rbx" ]; then bundle exec rake scanny ; fi && bundle exec rake'
 
