@@ -38,6 +38,13 @@ gem 'gettext_i18n_rails', '>= 0.4.3'
 # (this actually shouldn't be necessary given we don't use ActiveRecord)
 # gem 'rails-i18n'
 
+# Need this for rbx travis-ci builds (see https://github.com/travis-ci/travis-ci/issues/1641)
+platforms :rbx do
+  gem 'racc'
+  gem 'rubinius-coverage', github: 'rubinius/rubinius-coverage'
+  gem 'rubysl'
+end
+
 # needed to collect translatable strings - not needed at production
 group :development do
   # no need to load the gem via require we only need the rake tasks
