@@ -45,9 +45,13 @@ group :development do
 end
 
 group :test do
-  # Need gem source for travis-ci
-  source 'https://rubygems.org'
-  gem 'rake'
-  gem 'brakeman'
+  # This check ensures Bundler doesn't look at these gems when it's invoked
+  # by magic during rake gettext:pack...
+  if ENV['RAILS_ENV'] == "test"
+    # Need gem source for travis-ci
+    source 'https://rubygems.org'
+    gem 'rake'
+    gem 'brakeman'
+  end
 end
 
