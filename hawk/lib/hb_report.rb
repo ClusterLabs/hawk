@@ -76,10 +76,15 @@ class HbReport
   # contents of errfile as array
   def err_lines
     err = []
-    File.new(@errfile).read.split(/\n/).each do |e|
-      next if e.empty?
-      err << e
-    end if File.exists?(@errfile)
+    begin
+      File.new(@errfile).read.split(/\n/).each do |e|
+        next if e.empty?
+        err << e
+      end if File.exists?(@errfile)
+    rescue ArgumentError => e
+      # This will catch 'invalid byte sequence in UTF-8' (bnc#854060)
+      err << "ArgumentError: #{e.message}"
+    end
     err
   end
 
