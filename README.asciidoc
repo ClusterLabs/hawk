@@ -69,57 +69,47 @@ http://www.suse.com/documentation/sle_ha/book_sleha/?page=/documentation/sle_ha/
 
 == Installation ==
 
-IMPORTANT NOTE: As of 2013-04-20, the master branch in this repo
-builds against rails 3.2.  This works fine on SUSE Linux, but the below
-instructions have not yet been tested/verified on other distros.  If
-you run into trouble, you might try the rails-2_3 branch in the meantime.
-
 === Dependencies ===
 
 Hawk is a Ruby on Rails app which runs from a standalone instance
-of lighttpd.  All required Ruby gems are bundled into the Hawk package
-at build time.  Its runtime dependencies are thus:
+of lighttpd.  It requires:
 
-* pacemaker
+* crmsh
+* graphviz
+* graphviz-gd
 * lighttpd
+* pacemaker
 * ruby
-
-When building Hawk from source, you will also need:
-
 * rubygems
+* rubygem-bundler
+* rubygem-fast_gettext
+* rubygem-gettext_i18n_rails
 * rubygem-rake
 * rubygem-rails >= 3.2
-* rubygem-gettext
-* rubygem-gettext_i18n_rails
-* rubygem-fast_gettext
-* ruby-fcgi (openSUSE/SLES only)
-* fdupes (openSUSE/SLES only)
-* pam-devel
-* glib2-devel
-* libxml2-devel
-* libpacemaker-devel (openSUSE/SLES)
-* pacemaker-libs-devel (Fedora)
+* rubygem-ruby-fcgi (openSUSE)
+* rubypick (Fedora)
 
+When building Hawk from source, you will also need rubygem-gettext and the pacemaker, glib2, libxml2 and pam devel libraries.
 
 === Installing The Easy Way ===
 
 Hawk is included with SLE HA 11 SP1, openSUSE 11.4, and later
-SUSE releases. Just install the RPM, then run:
+SUSE releases.  Recent versions are also available http://software.opensuse.org/download?project=network:ha-clustering:Stable&package=hawk[for download from OBS].
+
+Just install the RPM, then run:
 
 --------------------------------------
 # chkconfig hawk on
 --------------------------------------
 --------------------------------------
-# rchawk start
+# /etc/init.d/hawk start
 --------------------------------------
-
 
 === Installing The Other Easy Way ===
 
 If you have a SUSE- or Fedora-based system, you can build
 an RPM easily from the source tree.  Just clone this git repo,
-and run "make rpm".  Note that as of 2012-04-27, Hawk expects
-rails 2.3.x, not rails 3.
+and run "make rpm".
 
 Once built, install the RPM on your cluster nodes and:
 
@@ -130,8 +120,7 @@ Once built, install the RPM on your cluster nodes and:
 # /etc/init.d/hawk start
 --------------------------------------
 
-
-=== The Hard Way ===
+=== Installing The Hard Way ===
 
 If the above RPM build doesn't work for you, you can build and install
 straight from the source tree, but _read the Makefile first_ to ensure
@@ -154,6 +143,10 @@ use a Red Hat-style init script, try:
 --------------------------------------
 # sudo make WWW_BASE=/var/www INIT_STYLE=redhat install
 --------------------------------------
+
+=== Installing The Other Hard Way ===
+
+Grab the SRPM from OBS, for example try the one in http://download.opensuse.org/repositories/network:/ha-clustering:/Stable/Fedora_19/src/ if you're using Fedora 19, and build that.
 
 
 == A Note on SSL Certificates ==
