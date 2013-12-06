@@ -46,6 +46,18 @@ class Node < CibObject
 
   class << self
 
+    # Since pacemaker started using corosync node IDs as the node ID
+    # attribute, CibObject#find will fail when looking for nodes by
+    # their human-readable name, so have to override here
+    def find(id)
+      begin
+        super(id)
+      rescue CibObject::RecordNotFound
+        # Can't find by id attribute, try by uname attribute
+        super(id, "uname")
+      end
+    end
+
     def instantiate(xml)
       node = allocate
       # TODO(should): Apparently this instance_variable_set business isn't necessary,
