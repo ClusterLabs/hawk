@@ -108,7 +108,9 @@ class CibController < ApplicationController
         },
 
         :nodes_label => n_('1 node configured', '%{num} nodes configured', cib.nodes.length) % { :num => cib.nodes.length },
-        :resources_label => n_('1 resource configured', '%{num} resources configured', cib.resource_count) % { :num => cib.resource_count }
+        :resources_label => n_('1 resource configured', '%{num} resources configured', cib.resource_count) % { :num => cib.resource_count },
+
+        :booth => cib.booth
       }
 
       cib.nodes.each do |n|

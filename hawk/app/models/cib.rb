@@ -221,6 +221,7 @@ class Cib < CibObject
   attr_reader :dc, :epoch, :nodes, :resources, :templates, :crm_config, :rsc_defaults, :op_defaults, :errors, :resource_count
   attr_reader :tickets
   attr_reader :resources_by_id
+  attr_reader :booth
 
   def initialize(id, user, use_file = false)
     @errors = []
@@ -632,6 +633,32 @@ class Cib < CibObject
       @tickets[t] = { :granted => false } unless @tickets[rt.attributes["ticket"]]
     end
 
+    @booth = { :sites => [], :arbitrators => [], :tickets => [], :me => nil }
+    # Figure out if we're in a geo cluster
+    File.readlines("/etc/booth/booth.conf").each do |line|
+      m = line.match(/^[\s]*(site|arbitrator|ticket)="([^"]+)"/)
+      next unless m
+      # This split is to tear off ticket expiry times if present
+      # (although they should no longer be set like this since the
+      # config format changed, but still doesn't hurt)
+      @booth["#{m[1]}s".to_sym] << m[2].split(";")[0]
+    end if File.exists?("/etc/booth/booth.conf")
+
+    if !@booth[:sites].empty?
+      @booth[:sites].sort!
+      @xml.elements.each("cib/configuration//primitive[@type='IPaddr2']/instance_attributes/nvpair[@name='ip']") do |elem|
+        ip = get_xml_attr(elem, "value")
+        next unless @booth[:sites].include?(ip)
+        if !@booth[:me]
+          @booth[:me] = ip
+        else
+          Rails.logger.warn "Multiple booth sites in CIB (first match was #{@booth[:me]}, also found #{ip})"
+        end
+      end
+    end
+
+    # Now @booth has :sites, :arbitrators, :tickets.
+    # If :me is set, this cluster is actually part of a geo cluster.
   end
 
 end
