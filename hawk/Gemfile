@@ -5,6 +5,9 @@
 # sucks, but it's the least-worst solution I can find right now for
 # making Bundler go away when we neither need nor want it.
 #
+# TODO(must): On openSUSE Factory, running `script/rails s` without a Gemfile
+# doesn't work.  It just sits there, and never answers any requests.
+#
 # Have I mentioned lately that while Bundler may be "the best way to
 # manage a Ruby application's gems", it's an absolute menace if you're
 # trying to build packaged software?
