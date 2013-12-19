@@ -73,6 +73,9 @@ class ExplorerController < ApplicationController
       # Now we either generate if a report for that time doesn't exist, or display if one does.
       # TODO(must): this doesn't handle the case where a generate run fails utterly; it'll
       # probably just keep trying to generate the hb_report indefinitely.
+      pcmk_version = nil
+      m = %x[cibadmin -!].match(/^Pacemaker ([^ ]+) \(Build: ([^)]+)\)/)
+      pcmk_version = "#{m[1]}-#{m[2]}" if m
       if File.exists?(@report_path)
         @peinputs = []
         stdin, stdout, stderr, thread = Util.popen3("crm", "history")
@@ -85,10 +88,14 @@ class ExplorerController < ApplicationController
         if thread.value.exitstatus == 0
           peinputs_raw.split(/\n/).each do |path|
             next unless File.exists?(path)
+            v = peinput_version(path)
             @peinputs << {
               :timestamp => File.mtime(path).strftime("%Y-%m-%d %H:%M:%S"),
               :basename  => File.basename(path, ".bz2"),
-              :node      => path.split(File::SEPARATOR)[-3]
+              :node      => path.split(File::SEPARATOR)[-3],
+              :info      => v == pcmk_version ? nil : (v ?
+                            _("PE Input created by different Pacemaker version (%{version})" % { :version => v }) :
+                            _("Pacemaker version not present in PE Input"))
             }
           end
           # sort is going to be off for identical mtimes (stripped back to the second),
@@ -277,4 +284,10 @@ class ExplorerController < ApplicationController
     @hb_report.path = "#{@@x_path}/#{@report_name}"
   end
 
+  def peinput_version(path)
+    nvpair = %x[CIB_file=#{path} cibadmin -Q --xpath "/cib/configuration//crm_config//nvpair[@name='dc-version']" 2>/dev/null]
+    m = nvpair.match(/value="([^"]+)"/)
+    return nil unless m
+    m[1]
+  end
 end
