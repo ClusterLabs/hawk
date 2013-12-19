@@ -77,6 +77,9 @@ class ExplorerController < ApplicationController
       m = %x[cibadmin -!].match(/^Pacemaker ([^ ]+) \(Build: ([^)]+)\)/)
       pcmk_version = "#{m[1]}-#{m[2]}" if m
       if File.exists?(@report_path)
+        # Have to blow this away if it exists (i.e. is a cached report), else
+        # prior cibadmin calls on individual PE inputs will have wrecked their mtimes.
+        FileUtils.remove_entry_secure(@hb_report.path) if File.exists?(@hb_report.path)
         @peinputs = []
         stdin, stdout, stderr, thread = Util.popen3("crm", "history")
         stdin.write("source #{@report_path}\npeinputs\n")
@@ -88,15 +91,15 @@ class ExplorerController < ApplicationController
         if thread.value.exitstatus == 0
           peinputs_raw.split(/\n/).each do |path|
             next unless File.exists?(path)
-            v = peinput_version(path)
             @peinputs << {
               :timestamp => File.mtime(path).strftime("%Y-%m-%d %H:%M:%S"),
               :basename  => File.basename(path, ".bz2"),
-              :node      => path.split(File::SEPARATOR)[-3],
-              :info      => v == pcmk_version ? nil : (v ?
-                            _("PE Input created by different Pacemaker version (%{version})" % { :version => v }) :
-                            _("Pacemaker version not present in PE Input"))
+              :node      => path.split(File::SEPARATOR)[-3]
             }
+            v = peinput_version(path)
+            @peinputs[-1][:info] = v == pcmk_version ? nil : (v ?
+              _("PE Input created by different Pacemaker version (%{version})" % { :version => v }) :
+              _("Pacemaker version not present in PE Input"))
           end
           # sort is going to be off for identical mtimes (stripped back to the second),
           # so need secondary sort by filename
