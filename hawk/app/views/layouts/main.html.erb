@@ -150,7 +150,16 @@ tabs += [
     :path => wizard_path(:cib_id => (params[:cib_id] || "live")) },
   { :controllers => [ "crm_config" ],
     :icon => "icons/config.png", :label => _("Cluster Properties"),
-    :path => cib_crm_config_path(:cib_id => (params[:cib_id] || "live"), :id => 'cib-bootstrap-options') },
+    :path => cib_crm_config_path(:cib_id => (params[:cib_id] || "live"), :id => 'cib-bootstrap-options') }
+];
+
+tabs += [
+  { :controllers => [ "acls", "users", "roles" ],
+    :icon => "icons/acls.png", :label => _("Access Control Lists"),
+    :path => cib_acls_path(:cib_id => (params[:cib_id] || "live")) }
+] if Util.has_feature?(:acl_support)
+
+tabs += [
   { :controllers => [ "resources", "primitives", "groups", "clones", "masters" ],
     :icon => "icons/resources.png", :label => _("Resources"),
     :path => cib_resources_path(:cib_id => (params[:cib_id] || "live")) },

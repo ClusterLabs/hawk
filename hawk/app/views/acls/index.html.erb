@@ -1,0 +1,153 @@
+<% content_for :head do %>
+<%= stylesheet_link_tag 'ui.panel.css' %>
+<%= javascript_include_tag 'jquery.ui.panel.js' %>
+<script src="<%= url_for(:controller => 'main', :action => 'gettext', :format => 'js') %>" type="text/javascript"></script>
+<style type="text/css">
+/* TODO(should): move to stylesheet */
+td {
+  vertical-align: top;
+  white-space: nowrap;
+}
+td span {
+  border: 1px solid #000;
+  padding: 0 0.5em;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  font-family: monospace;
+  white-space: nowrap;
+}
+th {
+  padding-top: 0.5em;
+  font-weight: bold;
+}
+img {
+  vertical-align: middle;
+}
+table {
+  width: 100%;
+}
+td.id {
+  width: 5em;
+}
+td.score {
+  width: 5em;
+}
+td.button {
+  text-align: right;
+}
+</style>
+<% end %>
+<script type="text/javascript">
+
+$(function() {
+  $("#acl").popupmenu({ iconroot: url_root + "/assets/icons/", items: [
+    {
+      label: "<%=h escape_javascript _('Edit') %>",
+      icon: "edit.png",
+      click: function(target) {
+        // Using name, not id, in case there's conflicts between constraint
+        // ID and other bits of HTML.
+        var id = target.attr("name");
+        var type = target.closest(".ui-panel").attr("id");
+        window.location.assign(url_root + "/cib/<%= params[:cib_id] %>/" + type + "/" + id + "/edit");
+      }
+    },
+    {
+      label: "<%=h escape_javascript _('Delete') %>",
+      icon: "remove.png",
+      click: function(target) {
+        var id = target.attr("name");
+        target.children(":first").attr("src", url_root + "/assets/spinner-16x16-neutral.gif");
+        // Abuse of /main/resource/delete, which is generic enough to delete anything
+        // TODO(should): Fix error message (refers to "error deleting resource")
+        // TODO(should): Consolidate this request stuff, esp. the error case.
+        $.ajax({ url: url_root + "/main/resource/delete",
+          data: "format=json&resource=" + id + "&cib_id=<%= params[:cib_id] %>",
+          type: "POST",
+          success: function() {
+            // Remove spinner (a spinner that stops too early is marginally better than one that never stops)
+            target.children(":first").attr("src", url_root + "/assets/icons/properties.png");
+            // Show "no constraints defined" if we're about to get rid of the last one
+            if (target.closest("table")[0].rows.length == 2) {
+              target.closest("table").find("tr").show();
+            }
+            target.closest("tr").remove();
+          },
+          error: function(request) {
+            // Remove spinner
+            target.children(":first").attr("src", url_root + "/assets/icons/properties.png");
+            var json = json_from_request(request);
+            if (json) {
+              error_dialog(json.error, json.stderr ? json.stderr : null);
+            } else {
+              if (request.status == 403) {
+                // 403 == permission denied
+                error_dialog(GETTEXT.err_denied());
+              } else {
+                error_dialog(GETTEXT.err_unexpected(request.status));
+              }
+            }
+          }
+        });
+      }
+    }
+  ]});
+  $("#roles").panel({
+    menu_href:  url_root + "/cib/<%= params[:cib_id] %>/roles/new",
+    menu_icon:  url_root + "/assets/icons/add.png",
+    menu_alt:   "<%= escape_javascript _('New Role') %>",
+    label:      "<%=h escape_javascript _('Role') %>",
+    open:       <%= @roles.any? ? 'true' : 'false' %> });
+  $("#users").panel({
+    menu_href:  url_root + "/cib/<%= params[:cib_id] %>/users/new",
+    menu_icon:  url_root + "/assets/icons/add.png",
+    menu_alt:   "<%= escape_javascript _('New User') %>",
+    label:      "<%=h escape_javascript _('User') %>",
+    open:       <%= @users.any? ? 'true' : 'false' %> });
+
+  // Have to set these up after the panels (panel initializer fiddles with DOM
+  // in a way which breaks event handlers if added before panel init)
+  $("#content a.clickable").click(function() {
+    return $("#acl").popupmenu("popup", $(this));
+  });
+
+  // Highlight rows on hover
+  $("#content tr").hover(
+    function() { $(this).addClass("row-highlight"); },
+    function() { $(this).removeClass("row-highlight"); }
+  );
+
+});
+</script>
+<div id="acl" style="display: none;"></div>
+
+<% unless @enable_acl %>
+<div class="ui-state-highlight ui-corner-all" style="padding: 0.5em; margin-bottom: 0.5em;"><%= link_to(
+  _("To enable ACLs, set 'enable-acl' in the CRM Configuration"), cib_crm_config_path(:cib_id => (params[:cib_id] || "live"), :id => 'cib-bootstrap-options')) %></div>
+<% end %>
+
+<div id="roles">
+<table cellspacing="0" cellpadding="2">
+  <tr<%=raw ' style="display: none;"' if @roles.any? %>><td><%=h _('(No roles defined)') %></td></tr>
+<% @roles.sort{|a,b| a.id.natcmp(b.id, true)}.each do |r| %>
+  <tr>
+    <td class="id"><%=h r.id %></td>
+    <td class="button"><a class="clickable" name="<%=h r.id %>"><%= image_tag 'icons/properties.png', :alt => '' %></a></td>
+  </tr>
+<% end %>
+</table>
+</div>
+
+<div id="users">
+<table cellspacing="0" cellpadding="2">
+  <tr<%=raw ' style="display: none;"' if @users.any? %>><td><%=h _('(No users defined)') %></td></tr>
+<% @users.sort{|a,b| a.id.natcmp(b.id, true)}.each do |u| %>
+  <tr>
+    <td class="id"><%=h u.id %></td>
+    <td class="button"><a class="clickable" name="<%=h u.id %>"><%= image_tag 'icons/properties.png', :alt => '' %></a></td>
+  </tr>
+<% end %>
+</table>
+</div>
+

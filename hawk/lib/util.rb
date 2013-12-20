@@ -265,6 +265,10 @@ module Util
       PerRequestCache.fetch(:has_sim_ticket) {
         %x[/usr/sbin/crm_simulate -h 2>&1].include?("--ticket-grant")
       }
+    when :acl_support
+      PerRequestCache.fetch(:has_acl_support) {
+        %x[cibadmin -!].split(/\s+/).include?("acls")
+      }
     else
       false
     end

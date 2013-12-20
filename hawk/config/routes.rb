@@ -71,6 +71,9 @@ Hawk::Application.routes.draw do
     resources :orders
     resources :tickets
     resources :nodes
+    resources :acls
+    resources :users
+    resources :roles
   end
   # TODO(must): next line is nasty hack for non-plural crm_config resource name
   match '/cib/:cib_id/crm_config/:id/' => 'crm_config#index', :as => :cib_crm_configs
