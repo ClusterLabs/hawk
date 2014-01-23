@@ -1,0 +1,63 @@
+#!/usr/bin/env python
+import crm_script as crm
+import sys
+
+PACKAGES = ['nfs-client', 'nfs-kernel-server']
+# 'nfs-utils', 'nfs4-acl-tools'
+
+
+def run_collect():
+    data = {}
+    data['packages'] = crm.rpmcheck(PACKAGES)
+    crm.exit_ok({"status": True})
+
+
+def run_validate():
+    ret = {}
+    data = crm.output(1)
+    for host, info in data.iteritems():
+        ret[host]['to_install'] = []
+        ret[host]['installed'] = []
+        for pkgname, pkg in info['packages'].iteritems():
+            if 'error' in pkg:
+                ret[host]['to_install'].append(pkgname)
+            else:
+                ret[host]['installed'].append(pkgname)
+
+    # warn if exports already exists with conflicting entries?
+    # maybe that's something for hawk...
+
+    ret['status'] = True
+    crm.exit_ok(ret)
+
+
+def run_apply():
+    me = crm.host()
+    data = crm.output(2)
+    if me not in data:
+        crm.exit_fail("Hostname not in data set: '%s' not in '%s'" % (me, ', '.join(data.keys())))
+    data = data[me]
+
+    # prepare packages
+    for pkg in data.get('to_install', []):
+        crm.package(pkg, 'latest')
+    for pkg in data.get('installed', []):
+        crm.package(pkg, 'latest')
+
+    crm.exit_ok({"status": True})
+
+
+def run_verify():
+    rc, out, err = crm.call(['exportfs', '-v'])
+    if rc != 0:
+        crm.exit_fail("exportfs (rc=%d): %s%s" % (rc, out, err))
+
+    crm.exit_ok({"exportfs": out})
+
+
+if __name__ == "__main__":
+    try:
+        for step in sys.argv[1:]:
+            apply(locals()['run_%s' % (step)], tuple())
+    except Exception, e:
+        crm.exit_fail("Error: %s" % (e))

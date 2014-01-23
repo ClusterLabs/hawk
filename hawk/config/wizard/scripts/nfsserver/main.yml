@@ -1,0 +1,22 @@
+---
+- name: Configure NFS server
+  description: >
+    Used by Hawk when configuring an NFS server.
+
+    Each step should be run separately.
+    Apply new CIB before final verification step.
+
+    export NFS(v3/v4?) from an XFS backed file system, making use of
+    fencing, lock fail-over, portblock (including the "tickle"
+    functionality). Explain how to have more than one export (if that's
+    feasible?)
+  parameters: []
+  steps:
+    - name: Examine nodes
+      collect: setup collect
+    - name: Validate input
+      validate: setup validate
+    - name: Configure nodes
+      apply: setup apply
+    - name: Verify
+      apply: setup verify
