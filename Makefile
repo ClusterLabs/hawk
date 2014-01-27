@@ -151,9 +151,14 @@ install:
 archive:
 	rm -f hawk-$(BUILD_TAG).tar.bz2
 	$(GIT) archive --prefix=hawk-$(BUILD_TAG)/ HEAD | bzip2 > hawk-$(BUILD_TAG).tar.bz2
+
+# The touch here is necessary to ensure the POT file is always updated
+# completely, even if it somehow winds up with a newer mtime than other
+# source files
 pot:
 	@echo "** WARNING: THIS SCREWS UP Project-Id-Version IN THE .POT FILE"
 	@echo "**          DO NOT COMMIT WITHOUT FIXING THIS!"
+	touch -d '2010-01-16T22:20:54+1100' hawk/locale/hawk.pot
 	(cd hawk; rake gettext:find)
 
 srpm: archive hawk.spec
