@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-19 21:25+1000\n"
+"POT-Creation-Date: 2014-01-27 17:48+1100\n"
 "PO-Revision-Date: 2013-05-02 16:40\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -15,1598 +15,1667 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-#: app/controllers/sessions_controller.rb:92
-msgid "%s is not installed"
-msgstr "%s n'est pas installé"
+#: ../app/controllers/acls_controller.rb:72 ../app/views/layouts/main.html.erb:158
+msgid "Access Control Lists"
+msgstr ""
 
-#: app/controllers/main_controller.rb:58
-msgid "%{cmd} failed (status: %{status})"
-msgstr "Échec de %{cmd} (état : %{status})"
+#: ../app/controllers/application_controller.rb:131
+msgid "Unable to create shadow CIB"
+msgstr "Impossible de créer le CIB fantôme."
 
-#: app/models/cib.rb:242
-msgid "%{cmd} failed (status: %{status}, output was: %{output})"
-msgstr "Échec %{cmd} (état : %{status}, la sortie était : %{output})"
-
-#: app/views/main/_gettext.js.erb:212
-msgid "%{id}: Demoting"
-msgstr "%{id} : rétrogradation"
-
-#: app/views/main/_gettext.js.erb:211
-msgid "%{id}: Demoting: %{node}"
-msgstr "%{id} : rétrogradation : %{node}"
-
-#: app/views/main/_gettext.js.erb:180
-msgid "%{id}: Master"
-msgstr "%{id} : maître"
-
-#: app/views/main/_gettext.js.erb:179
-msgid "%{id}: Master: %{nodelist}"
-msgstr "%{id} : Maître : %{nodelist}"
-
-#: app/views/main/_gettext.js.erb:216
-msgid "%{id}: Moving"
-msgstr "%{id} : déplacement"
-
-#: app/views/main/_gettext.js.erb:215
-msgid "%{id}: Moving: %{node}"
-msgstr "%{id} : déplacement : %{node}"
-
-#: app/views/main/_gettext.js.erb:195
-msgid "%{id}: Pending"
-msgstr "%{id} : en attente"
-
-#: app/views/main/_gettext.js.erb:194
-msgid "%{id}: Pending: %{nodelist}"
-msgstr "%{id} : en attente : %{nodelist}"
-
-#: app/views/main/_gettext.js.erb:208
-msgid "%{id}: Promoting"
-msgstr "%{id} : promotion"
-
-#: app/views/main/_gettext.js.erb:207
-msgid "%{id}: Promoting: %{node}"
-msgstr "%{id} : promotion : %{node}"
-
-#: app/views/main/_gettext.js.erb:185
-msgid "%{id}: Slave"
-msgstr "%{id} : esclave"
-
-#: app/views/main/_gettext.js.erb:184
-msgid "%{id}: Slave: %{nodelist}"
-msgstr "%{id} : Esclave : %{nodelist}"
-
-#: app/views/main/_gettext.js.erb:190
-msgid "%{id}: Started"
-msgstr "%{id} : commencé"
-
-#: app/views/main/_gettext.js.erb:189
-msgid "%{id}: Started: %{nodelist}"
-msgstr "%{id} : démarré : %{nodelist}"
-
-#: app/views/main/_gettext.js.erb:200
-msgid "%{id}: Starting"
-msgstr "%{id} : démarrage"
-
-#: app/views/main/_gettext.js.erb:199
-msgid "%{id}: Starting: %{node}"
-msgstr "%{id} : démarrage : %{node}"
-
-#: app/views/main/_gettext.js.erb:220
-msgid "%{id}: Stopped"
-msgstr "%{id} : arrêté"
-
-#: app/views/main/_gettext.js.erb:204
-msgid "%{id}: Stopping"
-msgstr "%{id} : arrêt"
-
-#: app/views/main/_gettext.js.erb:203
-msgid "%{id}: Stopping: %{node}"
-msgstr "%{id} : arrêt : %{node}"
-
-#: app/views/main/_gettext.js.erb:156
-msgid "%{node}: %{state}"
-msgstr "%{node} : %{state}"
-
-#: app/views/main/_gettext.js.erb:85
-msgid "%{op} failed on %{node} (rc=%{rc})"
-msgstr "Échec de %{op} sur %{node} (rc=%{rc})"
-
-#: app/views/wizard/run.html.erb:71 app/views/wizard/done.html.erb:1
-msgid "%{workflow}: %{step}"
-msgstr "%{workflow} : %{step}"
-
-#: app/views/resources/index.html.erb:186
-msgid "(No clones defined)"
-msgstr "(Aucun clone n'est défini.)"
-
-#: app/views/constraints/index.html.erb:171
-msgid "(No colocation constraints defined)"
-msgstr "(Aucune contrainte de colocalisation n'est définie.)"
-
-#: app/views/resources/index.html.erb:174
-msgid "(No groups defined)"
-msgstr "(Aucun groupe n'est défini.)"
-
-#: app/views/constraints/index.html.erb:141
-msgid "(No location constraints defined)"
-msgstr "(Aucune contrainte de localisation n'est définie.)"
-
-#: app/views/resources/index.html.erb:198
-msgid "(No master/slave resources defined)"
-msgstr "(Aucune ressource maître/esclave n'est définie.)"
-
-#: app/views/constraints/index.html.erb:185
-msgid "(No order constraints defined)"
-msgstr "(Aucune contrainte d'ordre n'est définie.)"
-
-#: app/views/resources/index.html.erb:148
-msgid "(No primitive resources defined)"
-msgstr "(Aucune ressource primitive n'est définie.)"
-
-#: app/views/resources/index.html.erb:161
-msgid "(No templates defined)"
-msgstr "(Aucun modèle n'est défini.)"
-
-#: app/views/constraints/index.html.erb:200
-msgid "(No ticket constraints defined)"
-msgstr "(Aucune contrainte de ticket n'est définie.)"
-
-#: app/views/dashboard/index.html.erb:363
-msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
-msgstr "(Spécifiez un nom d'hôte dans la grappe. Les autres noeuds seront trouvés automatiquement.)"
-
-#: app/views/explorer/_pe_list.html.erb:31
-msgid "(full log)"
-msgstr "(journal complet)"
-
-#: app/views/main/_gettext.js.erb:248
-msgid "+ Node"
-msgstr "+ nœud"
-
-#: app/views/main/_gettext.js.erb:251
-msgid "+ Op"
-msgstr "+ opération"
-
-#: app/views/main/_gettext.js.erb:254
-msgid "+ Ticket"
-msgstr "+ Ticket"
-
-#: app/controllers/cib_controller.rb:110 app/controllers/cib_controller.rb:160
+#: ../app/controllers/cib_controller.rb:110 ../app/controllers/cib_controller.rb:162
 msgid "1 node configured"
 msgid_plural "%{num} nodes configured"
 msgstr[0] "1 noeud configuré"
 msgstr[1] "%{num} noeuds configurés"
 
-#: app/controllers/cib_controller.rb:111 app/controllers/cib_controller.rb:161
+#: ../app/controllers/cib_controller.rb:111 ../app/controllers/cib_controller.rb:163
 msgid "1 resource configured"
 msgid_plural "%{num} resources configured"
 msgstr[0] "1 ressource configurée"
 msgstr[1] "%{num} ressources configurées"
 
-#: app/views/wizard/run.html.erb:120
-msgid "< Back"
-msgstr "< Retour"
-
-#: app/views/dashboard/index.html.erb:385
-msgid "A cluster with that name already exists"
-msgstr "Une grappe portant ce nom existe déjà."
-
-#: app/views/main/_gettext.js.erb:305
-msgid "Action:"
-msgstr "Action :"
-
-#: app/views/main/_gettext.js.erb:317
-msgid "Activate"
-msgstr "Activer"
-
-#: app/views/masters/_form.html.erb:46 app/views/crm_config/edit.html.erb:24
-#: app/views/crm_config/edit.html.erb:46 app/views/crm_config/edit.html.erb:68
-#: app/views/clones/_form.html.erb:46 app/views/locations/_form.html.erb:47
-#: app/views/groups/_form.html.erb:81 app/views/colocations/_form.html.erb:60
-#: app/views/tickets/_form.html.erb:48 app/views/primitives/_form.html.erb:247
-#: app/views/primitives/_form.html.erb:267
-#: app/views/primitives/_form.html.erb:290 app/views/orders/_form.html.erb:60
-msgid "Add"
-msgstr "Ajouter"
-
-#: app/views/dashboard/index.html.erb:368
-msgid "Add Cluster"
-msgstr "Ajouter une grappe"
-
-#: app/views/locations/_form.html.erb:49
-msgid "Add Rule"
-msgstr "Ajouter une règle"
-
-#: app/views/colocations/_form.html.erb:65 app/views/tickets/_form.html.erb:50
-#: app/views/orders/_form.html.erb:65
-msgid "Add resource to constraint"
-msgstr "Ajouter une ressource à la contrainte"
-
-#: app/views/nodes/events.html.erb:13 app/views/resources/events.html.erb:13
-msgid "Another \"crm history\" operation is in progress..."
-msgstr "Une autre opération \"crm history\" est en cours..."
-
-#: app/views/shared/_confirm_revert.html.erb:4
-msgid "Any changes will be lost - do you wish to proceed?"
-msgstr "Toutes les modifications seront perdues. Voulez-vous continuer ?"
-
-#: app/views/masters/edit.html.erb:4 app/views/crm_config/edit.html.erb:113
-#: app/views/clones/edit.html.erb:4 app/views/locations/edit.html.erb:4
-#: app/views/groups/edit.html.erb:4 app/views/colocations/edit.html.erb:4
-#: app/views/tickets/edit.html.erb:4 app/views/primitives/edit.html.erb:4
-#: app/views/orders/edit.html.erb:4
-msgid "Apply Changes"
-msgstr "Appliquer les modifications"
-
-#: app/models/location.rb:69
-msgid "Attribute contains both single and double quotes"
-msgstr "L'attribut contient des guillemets simples et doubles."
-
-#: app/views/nodes/show.html.erb:18 app/views/resources/show.html.erb:1
-msgid "Attributes"
-msgstr "Attributs"
-
-#: app/views/groups/_form.html.erb:117
-msgid "Available Primitives"
-msgstr "Primitives disponibles"
-
-#: app/views/main/_gettext.js.erb:51
-msgid "Away from current node"
-msgstr "Loin du nœud actuel"
-
-#: app/views/masters/_form.html.erb:89 app/views/crm_config/update.html.erb:4
-#: app/views/crm_config/show.html.erb:11 app/views/clones/_form.html.erb:89
-#: app/views/locations/_form.html.erb:95 app/views/wizard/start.html.erb:3
-#: app/views/wizard/broken.html.erb:4 app/views/groups/_form.html.erb:144
-#: app/views/colocations/_form.html.erb:111
-#: app/views/tickets/_form.html.erb:99 app/views/primitives/_form.html.erb:395
-#: app/views/orders/_form.html.erb:117
-msgid "Back"
-msgstr "Retour"
-
-#: app/views/locations/_form.html.erb:45
-msgid "Boolean Op"
-msgstr "Opération booléenne"
-
-#: app/views/colocations/_form.html.erb:63 app/views/orders/_form.html.erb:63
-msgid "Break set"
-msgstr "Diviser l'ensemble"
-
-#: app/views/main/_gettext.js.erb:263
-msgid "CIB (in)"
-msgstr "CIB (entrée)"
-
-#: app/views/main/_gettext.js.erb:266
-msgid "CIB (out)"
-msgstr "CIB (sortie)"
-
-#: app/models/cib.rb:233
-msgid "CIB file \"%{path}\" not found"
-msgstr "Le fichier CIB \"%{path}\" est introuvable."
-
-#: app/views/crm_config/edit.html.erb:15
-msgid "CRM Configuration"
-msgstr "Configuration CRM"
-
-#: app/views/dashboard/index.html.erb:183
-#: app/views/dashboard/index.html.erb:244
-#: app/views/dashboard/index.html.erb:301
-msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
-msgstr "Impossible de contacter Hawk sur %{node}. Nouvelle tentative toutes les 5 secondes."
-
-#: app/models/group.rb:51 app/models/master.rb:51 app/models/template.rb:78
-#: app/models/clone.rb:51 app/models/primitive.rb:77
-msgid "Can't set meta attribute %{p}, because the value contains both single and double quotes"
-msgstr "Impossible de définir l'attribut méta %{p} car la valeur contient des guillemets simples et doubles."
-
-#: app/models/template.rb:70 app/models/primitive.rb:69
-msgid "Can't set op %{o} attribute {%a}, because the value contains both single and double quotes"
-msgstr "Impossible de définir l'attribut {%a} de l'opération %{o} car la valeur contient des guillemets simples et doubles."
-
-#: app/models/template.rb:62 app/models/primitive.rb:61
-msgid "Can't set parameter %{p}, because the value contains both single and double quotes"
-msgstr "Impossible de définir le paramètre %{p} car la valeur contient des guillemets simples et doubles."
-
-#: app/controllers/crm_config_controller.rb:161
-msgid "Can't set property %{p}, because the value contains both single and double quotes"
-msgstr "Impossible de définir la propriété %{p} car la valeur contient des guillemets simples et doubles."
-
-#: app/views/main/_gettext.js.erb:7 app/views/wizard/start.html.erb:44
-#: app/views/wizard/run.html.erb:119 app/views/primitives/_form.html.erb:273
-#: app/views/dashboard/index.html.erb:455
-msgid "Cancel"
-msgstr "Annuler"
-
-#: app/views/masters/_form.html.erb:71 app/views/clones/_form.html.erb:71
-msgid "Child Resource"
-msgstr "Ressources enfant"
-
-#: app/views/wizard/start.html.erb:24
-msgid "Choose Configuration"
-msgstr "Sélectionner la configuration"
-
-#: app/views/primitives/_form.html.erb:330
-msgid "Class"
-msgstr "Classe"
-
-#: app/views/main/_menus.html.erb:149
-msgid "Clean Up"
-msgstr "Nettoyer"
-
-#: app/views/resources/index.html.erb:121
-msgid "Clone"
-msgstr "Clone"
-
-#: app/views/clones/_form.html.erb:70
-msgid "Clone ID"
-msgstr "ID du clone"
-
-#: app/models/clone.rb:87
-msgid "Clone ID \"%{id}\" does not exist"
-msgstr "L'ID du clone \"%{id}\" n'existe pas."
-
-#: app/views/main/_gettext.js.erb:229
-msgid "Clone Set: %{id}"
-msgstr "Ensemble de clones : %{id}"
-
-#: app/controllers/clones_controller.rb:65
-msgid "Clone created successfully"
-msgstr "Le clone a été créé avec succès."
-
-#: app/controllers/clones_controller.rb:87
-msgid "Clone updated successfully"
-msgstr "Le clone a été mis à jour avec succès."
-
-#: app/views/main/_gettext.js.erb:16
-msgid "Close"
-msgstr "Fermer"
-
-#: app/controllers/crm_config_controller.rb:45
-#: app/views/main/_gettext.js.erb:99
-msgid "Cluster Configuration"
-msgstr "Configuration de la grappe"
-
-#: app/controllers/dashboard_controller.rb:37
-msgid "Cluster Dashboard"
-msgstr "Tableau de bord de la grappe"
-
-#: app/views/layouts/main.html.erb:63 app/views/layouts/main.html.erb:76
-msgid "Cluster Diagram"
-msgstr "Diagramme de la grappe"
-
-#: app/views/dashboard/index.html.erb:361
-msgid "Cluster Name:"
-msgstr "Nom de la grappe :"
-
-#: app/views/layouts/main.html.erb:150
-msgid "Cluster Properties"
-msgstr "Propriétés de la grappe"
-
-#: app/controllers/wizard_controller.rb:60
-msgid "Cluster Setup Wizard"
-msgstr "Assistant de configuration de la grappe"
-
-#: app/controllers/main_controller.rb:78 app/views/layouts/main.html.erb:135
-msgid "Cluster Status"
-msgstr "État de la grappe"
-
-#: app/views/dashboard/index.html.erb:65
-msgid "Cluster has errors - click for details"
-msgstr "La grappe contient des erreurs. Cliquez pour en savoir plus."
-
-#: app/views/constraints/index.html.erb:107
-msgid "Colocation"
-msgstr "Colocalisation"
-
-#: app/controllers/wizard_controller.rb:123
-msgid "Confirm"
-msgstr "Confirmer"
-
-#: app/views/main/_gettext.js.erb:79
-msgid "Connection to server aborted - will retry every 15 seconds."
-msgstr "Connexion au serveur abandonnée, nouvelle tentative toutes les 15 secondes."
-
-#: app/views/main/_gettext.js.erb:73
-msgid "Connection to server failed (server down or network error - will retry every 15 seconds)."
-msgstr "Échec de la connexion au serveur (serveur arrêté ou erreur réseau, nouvelle tentative toutes les 15 secondes)."
-
-#: app/views/main/_gettext.js.erb:76
-msgid "Connection to server timed out - will retry every 15 seconds."
-msgstr "Expiration du délai de connexion au serveur, nouvelle tentative toutes les 15 secondes."
-
-#: app/views/locations/_form.html.erb:75
-#: app/views/colocations/_form.html.erb:89 app/views/tickets/_form.html.erb:77
-#: app/views/orders/_form.html.erb:89
-msgid "Constraint ID"
-msgstr "ID de la contrainte"
-
-#: app/models/ticket.rb:91 app/models/location.rb:95
-#: app/models/colocation.rb:81 app/models/order.rb:107
-msgid "Constraint ID \"%{id}\" does not exist"
-msgstr "L'ID de contrainte \"%{id}\" n'existe pas."
-
-#: app/controllers/colocations_controller.rb:61
-#: app/controllers/tickets_controller.rb:59
-#: app/controllers/locations_controller.rb:60
-#: app/controllers/orders_controller.rb:62
-msgid "Constraint created successfully"
-msgstr "La contrainte a été créée avec succès."
-
-#: app/models/location.rb:43
-msgid "Constraint is too complex - it contains nested rules"
-msgstr "La contrainte est trop complexe car elle contient des règles imbriquées."
-
-#: app/models/colocation.rb:57 app/models/order.rb:83
-msgid "Constraint must consist of at least two separate resources"
-msgstr "La contrainte doit contenir au moins deux ressources distinctes."
-
-#: app/controllers/colocations_controller.rb:84
-#: app/controllers/tickets_controller.rb:81
-#: app/controllers/locations_controller.rb:82
-#: app/controllers/orders_controller.rb:86
-msgid "Constraint updated successfully"
-msgstr "La contrainte a été mise à jour avec succès."
-
-#: app/controllers/constraints_controller.rb:44
-#: app/views/layouts/main.html.erb:156
-msgid "Constraints"
-msgstr "Contraintes"
-
-#: app/views/layouts/main.html.erb:178
-msgid "Copyright &copy; 2009-2013 SUSE, LLC"
-msgstr "Copyright &copy ; 2009-2013 SUSE, LLC"
-
-#: app/controllers/clones_controller.rb:52
-#: app/controllers/clones_controller.rb:58 app/views/clones/_form.html.erb:87
-msgid "Create Clone"
-msgstr "Créer un clone"
-
-#: app/controllers/colocations_controller.rb:48
-#: app/controllers/colocations_controller.rb:53
-msgid "Create Colocation Constraint"
-msgstr "Créer une contrainte de colocalisation"
-
-#: app/views/locations/_form.html.erb:93
-#: app/views/colocations/_form.html.erb:109
-#: app/views/tickets/_form.html.erb:97 app/views/orders/_form.html.erb:115
-msgid "Create Constraint"
-msgstr "Créer une contrainte"
-
-#: app/controllers/groups_controller.rb:52
-#: app/controllers/groups_controller.rb:58 app/views/groups/_form.html.erb:142
-msgid "Create Group"
-msgstr "Créer un groupe"
-
-#: app/controllers/locations_controller.rb:48
-#: app/controllers/locations_controller.rb:53
-msgid "Create Location Constraint"
-msgstr "Créer une contrainte de localisation"
-
-#: app/controllers/masters_controller.rb:52
-#: app/controllers/masters_controller.rb:58
-#: app/views/masters/_form.html.erb:87
-msgid "Create Master/Slave"
-msgstr "Créer un maître/esclave"
-
-#: app/controllers/orders_controller.rb:48
-#: app/controllers/orders_controller.rb:53
-msgid "Create Order Constraint"
-msgstr "Créer une contrainte d'ordre"
-
-#: app/controllers/primitives_controller.rb:50
-#: app/controllers/primitives_controller.rb:56
-#: app/views/primitives/_form.html.erb:393
-msgid "Create Resource"
-msgstr "Créer une ressource"
-
-#: app/controllers/templates_controller.rb:51
-#: app/controllers/templates_controller.rb:59
-msgid "Create Template"
-msgstr "Créer un modèle"
-
-#: app/controllers/tickets_controller.rb:47
-#: app/controllers/tickets_controller.rb:52
-msgid "Create Ticket Constraint"
-msgstr "Créer une contrainte de ticket"
-
-#: app/views/main/_gettext.js.erb:89
-msgid "DC: %s"
-msgstr "DC : %s"
-
-#: app/views/layouts/main.html.erb:126
-msgid "Dashboard"
-msgstr "Tableau de bord"
-
-#: app/helpers/explorer_helper.rb:3
-msgid "Data collection in progress (%{from_time} to %{to_time})..."
-msgstr "Collecte de données en cours (%{from_time} à %{to_time})..."
-
-#: app/views/constraints/index.html.erb:58
-msgid "Delete Constraint"
-msgstr "Supprimer la contrainte"
-
-#: app/views/resources/index.html.erb:58
-msgid "Delete Resource"
-msgstr "Supprimer la ressource"
-
-#: app/views/explorer/index.html.erb:37
-msgid "Delete this history archive?"
-msgstr "Supprimer cette archive d'historique ?"
-
-#: app/views/main/_menus.html.erb:142
-msgid "Demote"
-msgstr "Rétrograder"
-
-#: app/views/main/_gettext.js.erb:108 app/views/main/_gettext.js.erb:260
-#: app/views/explorer/_pe_list.html.erb:27
-msgid "Details"
-msgstr "Détails"
-
-#: app/views/explorer/_pe_list.html.erb:44
-msgid "Diff"
-msgstr "Diff"
-
-#: app/views/explorer/index.html.erb:159
-msgid "Display"
-msgstr "Affichage"
-
-#: app/controllers/wizard_controller.rb:143 app/views/wizard/done.html.erb:10
-msgid "Done"
-msgstr "Terminé"
-
-#: app/views/hb_reports/new.html.erb:80
-msgid "Download hb_report"
-msgstr "Télécharger le rapport hb_report"
-
-#: app/views/main/_menus.html.erb:128
-msgid "Drop Relocation Rule"
-msgstr "Déplacer la règle de relocalisation"
-
-#: app/views/crm_config/show.html.erb:11
-#: app/views/primitives/_form.html.erb:268
-msgid "Edit"
-msgstr "Modifier"
-
-#: app/controllers/clones_controller.rb:48
+#: ../app/controllers/clones_controller.rb:48
 msgid "Edit Clone"
 msgstr "Modifier le clone"
 
-#: app/controllers/colocations_controller.rb:44
+#: ../app/controllers/clones_controller.rb:52 ../app/controllers/clones_controller.rb:58 ../app/views/clones/_form.html.erb:87
+msgid "Create Clone"
+msgstr "Créer un clone"
+
+#: ../app/controllers/clones_controller.rb:65
+msgid "Clone created successfully"
+msgstr "Le clone a été créé avec succès."
+
+#: ../app/controllers/clones_controller.rb:87
+msgid "Clone updated successfully"
+msgstr "Le clone a été mis à jour avec succès."
+
+#: ../app/controllers/colocations_controller.rb:44
 msgid "Edit Colocation Constraint"
 msgstr "Modifier la contrainte de colocalisation"
 
-#: app/views/constraints/index.html.erb:47
-msgid "Edit Constraint"
-msgstr "Modifier la contrainte"
-
-#: app/controllers/groups_controller.rb:48
-msgid "Edit Group"
-msgstr "Modifier le groupe"
-
-#: app/controllers/locations_controller.rb:44
-msgid "Edit Location Constraint"
-msgstr "Modifier la contrainte de localisation"
-
-#: app/controllers/masters_controller.rb:48
-msgid "Edit Master/Slave"
-msgstr "Modifier le maître/l'esclave"
-
-#: app/controllers/orders_controller.rb:44
-msgid "Edit Order Constraint"
-msgstr "Modifier la contrainte d'ordre"
-
-#: app/controllers/primitives_controller.rb:46
-#: app/views/resources/index.html.erb:47
-msgid "Edit Resource"
-msgstr "Modifier une ressource"
-
-#: app/controllers/templates_controller.rb:47
-msgid "Edit Template"
-msgstr "Éditer le modèle"
-
-#: app/controllers/tickets_controller.rb:43
-msgid "Edit Ticket Constraint"
-msgstr "Éditer la contrainte de ticket"
-
-#: app/views/main/_gettext.js.erb:272
-msgid "Empty Graph"
-msgstr "Vider le graphique"
-
-#: app/views/explorer/index.html.erb:143 app/views/explorer/index.html.erb:157
-#: app/views/hb_reports/new.html.erb:63
-msgid "End Time:"
-msgstr "Heure de fin :"
-
-#: app/views/main/_gettext.js.erb:67
-msgid "Error"
-msgstr "Erreur"
-
-#: app/views/wizard/run.html.erb:102
-msgid "Error applying configuration:"
-msgstr "Erreur lors de l'application de la configuration :"
-
-#: app/controllers/main_controller.rb:152
-msgid "Error deleting resource"
-msgstr "Erreur lors de la suppression de la ressource"
-
-#: app/models/cib.rb:255
-msgid "Error invoking %{cmd}"
-msgstr "Erreur lors de l'appel de %{cmd}"
-
-#: app/models/cib.rb:260 app/controllers/main_controller.rb:308
-msgid "Error invoking %{cmd}: %{msg}"
-msgstr "Erreur lors de l'appel de %{cmd} : %{msg}"
-
-#: lib/invoker.rb:115
-msgid "Error invoking cibadmin %{cmd}: %{msg}"
-msgstr "Erreur lors de l'appel de cibadmin %{cmd} : %{msg}"
-
-#: lib/invoker.rb:137
-msgid "Error invoking cibadmin --replace: %{msg}"
-msgstr "Erreur lors de l'appel de cibadmin --replace : %{msg}"
-
-#: app/controllers/wizard_controller.rb:274
-msgid "Error parsing template \"%s\""
-msgstr "Erreur lors de l'analyse du modèle \"%s\""
-
-#: app/controllers/wizard_controller.rb:277
-msgid "Error parsing workflow \"%s\""
-msgstr "Erreur lors de l'analyse du workflow \"%s\""
-
-#: app/controllers/explorer_controller.rb:148
-#: app/controllers/explorer_controller.rb:176
-#: app/controllers/explorer_controller.rb:237
-msgid "Error:"
-msgstr "Erreur :"
-
-#: app/views/nodes/permission_denied.html.erb:2
-#: app/views/explorer/permission_denied.html.erb:2
-#: app/views/resources/permission_denied.html.erb:2
-#: app/views/hb_reports/permission_denied.html.erb:2
-msgid "Error: Permission denied for user '%s'."
-msgstr "Erreur : autorisation refusée pour l'utilisateur %s."
-
-#: app/views/locations/_form.html.erb:46
-msgid "Expression"
-msgstr "Expression"
-
-#: app/views/resources/show.html.erb:20
-msgid "Fail Count"
-msgstr "Nombre d'échecs"
-
-#: app/views/main/_gettext.js.erb:347
-msgid "Failed Master"
-msgstr "Échec du maître"
-
-#: app/models/cib.rb:471
-msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
-msgstr "Échec : noeud=%{node}, ressource=%{resource}, ID appel=%{call_id}, opération=%{op}, code RC=%{rc_code}"
-
-#: app/views/main/_menus.html.erb:35
-msgid "Fence Node"
-msgstr "Noeud délimiteur"
-
-#: app/views/hb_reports/new.html.erb:60
-msgid "Generate"
-msgstr "Générer"
-
-#: app/views/layouts/main.html.erb:95
-msgid "Generate hb_report"
-msgstr "Générer le rapport hb_report"
-
-#: app/views/layouts/main.html.erb:84
-msgid "Generate hb_report..."
-msgstr "Générer le rapport hb_report..."
-
-#: app/views/main/_gettext.js.erb:323
-msgid "Generic Error"
-msgstr "Erreur générique"
-
-#: app/views/nodes/events.html.erb:12 app/views/resources/events.html.erb:12
-msgid "Getting recent events (last hour)..."
-msgstr "Récupération des événements récents (dernière heure)..."
-
-#: app/views/main/_gettext.js.erb:308
-msgid "Grant"
-msgstr "Accorder"
-
-#: app/views/main/_gettext.js.erb:134
-msgid "Granted"
-msgstr "Accordé"
-
-#: app/views/main/_gettext.js.erb:133
-msgid "Granted [standby]"
-msgstr "Accordé [veille]"
-
-#: app/views/main/_gettext.js.erb:269 app/views/explorer/_pe_list.html.erb:35
-msgid "Graph"
-msgstr "Graphique"
-
-#: app/views/resources/index.html.erb:115
-msgid "Group"
-msgstr "Groupe"
-
-#: app/views/groups/_form.html.erb:115
-msgid "Group Children"
-msgstr "Enfants du groupe"
-
-#: app/views/groups/_form.html.erb:105
-msgid "Group ID"
-msgstr "ID du groupe"
-
-#: app/models/group.rb:90
-msgid "Group ID \"%{id}\" does not exist"
-msgstr "L'ID du groupe \"%{id}\" n'existe pas."
-
-#: app/controllers/groups_controller.rb:65
-msgid "Group created successfully"
-msgstr "Le groupe a été créé avec succès."
-
-#: app/controllers/groups_controller.rb:87
-msgid "Group updated successfully"
-msgstr "Le groupe a été mis à jour avec succès."
-
-#: app/views/main/_gettext.js.erb:223
-msgid "Group: %{id}"
-msgstr "Groupe : %{id}"
-
-#: app/controllers/explorer_controller.rb:44
-#: app/views/layouts/main.html.erb:141
-msgid "History Explorer"
-msgstr "Explorateur d'historique"
-
-#: app/views/dashboard/index.html.erb:362
-msgid "Host Name:"
-msgstr "Nom d'hôte :"
-
-#: app/views/main/_gettext.js.erb:102
-msgid "Inactive Resources"
-msgstr "Ressources inactives"
-
-#: app/views/main/_gettext.js.erb:275
-msgid "Inject Node State"
-msgstr "Injecter l'état du nœud"
-
-#: app/views/main/_gettext.js.erb:284
-msgid "Inject Operation"
-msgstr "Injecter l'opération"
-
-#: app/views/main/_gettext.js.erb:299
-msgid "Inject Ticket"
-msgstr "Injecter le ticket"
-
-#: app/views/main/_gettext.js.erb:245
-msgid "Injected State:"
-msgstr "État injecté :"
-
-#: app/views/main/_gettext.js.erb:290
-msgid "Interval:"
-msgstr "Intervalle :"
-
-#: app/models/cib_object.rb:66
-msgid "Invalid Resource ID \"%{id}\""
-msgstr "ID de la ressource \"%{id}\" non valide"
-
-#: app/models/ticket.rb:58
-msgid "Invalid Ticket ID"
-msgstr "ID de ticket non valide"
-
-#: app/models/colocation.rb:53 app/models/order.rb:79
-msgid "Invalid score"
-msgstr "Score non valide"
-
-#: app/models/location.rb:57
-msgid "Invalid score \"%{score}\""
-msgstr "Score \"%{score}\" non valide"
-
-#: app/controllers/sessions_controller.rb:73
-msgid "Invalid username"
-msgstr "Nom d'utilisateur non valide"
-
-#: app/controllers/sessions_controller.rb:89
-msgid "Invalid username or password"
-msgstr "Nom d'utilisateur ou mot de passe non valide"
-
-#: app/views/resources/show.html.erb:25
-msgid "Last Failure"
-msgstr "Dernier échec"
-
-#: app/views/main/_gettext.js.erb:142
-msgid "Last granted: %s"
-msgstr "Accordé pour la dernière fois : %s"
-
-#: app/views/colocations/_form.html.erb:62 app/views/orders/_form.html.erb:62
-msgid "Link set"
-msgstr "Lier l'ensemble"
-
-#: app/views/constraints/index.html.erb:101
-msgid "Location"
-msgstr "Localisation"
-
-#: app/controllers/sessions_controller.rb:37
-#: app/views/sessions/new.html.erb:17 app/views/dashboard/index.html.erb:58
-msgid "Log In"
-msgstr "Se connecter"
-
-#: app/views/layouts/main.html.erb:121
-msgid "Log Out"
-msgstr "Se déconnecter"
-
-#: app/views/tickets/_form.html.erb:78
-msgid "Loss Policy"
-msgstr "Stratégie relative aux pertes"
-
-#: app/views/main/_menus.html.erb:21
-msgid "Maintenance"
-msgstr "Maintenance"
-
-#: app/views/main/_gettext.js.erb:123
-msgid "Maintenance Mode"
-msgstr "Mode de maintenance"
-
-#: app/views/main/_gettext.js.erb:178
-msgid "Master"
-msgstr "Maître"
-
-#: app/views/resources/index.html.erb:127
-msgid "Master/Slave"
-msgstr "Maître/esclave"
-
-#: app/views/masters/_form.html.erb:70
-msgid "Master/Slave ID"
-msgstr "ID du maître/de l'esclave"
-
-#: app/models/master.rb:87
-msgid "Master/Slave ID \"%{id}\" does not exist"
-msgstr "L'ID du maître/de l'esclave \"%{id}\" n'existe pas."
-
-#: app/views/main/_gettext.js.erb:226
-msgid "Master/Slave Set: %{id}"
-msgstr "Ensemble maître/esclave : %{id}"
-
-#: app/controllers/masters_controller.rb:65
-msgid "Master/Slave created successfully"
-msgstr "Le maître/L'esclave a été créé avec succès."
-
-#: app/controllers/masters_controller.rb:87
-msgid "Master/Slave updated successfully"
-msgstr "Le maître/L'esclave a été mis à jour avec succès."
-
-#: app/views/masters/_form.html.erb:40 app/views/clones/_form.html.erb:40
-#: app/views/groups/_form.html.erb:75 app/views/primitives/_form.html.erb:284
-msgid "Meta Attributes"
-msgstr "Attributs méta"
-
-#: app/views/main/_gettext.js.erb:45
-msgid "Move resource %s"
-msgstr "Déplacer la ressource %s"
-
-#: app/views/main/_menus.html.erb:100
-msgid "Move..."
-msgstr "Déplacer..."
-
-#: app/views/resources/index.html.erb:120
-msgid "New Clone"
-msgstr "Nouveau clone"
-
-#: app/views/constraints/index.html.erb:100
-#: app/views/constraints/index.html.erb:106
-#: app/views/constraints/index.html.erb:112
-#: app/views/constraints/index.html.erb:119
-msgid "New Constraint"
-msgstr "Nouvelle contrainte"
-
-#: app/views/resources/index.html.erb:114
-msgid "New Group"
-msgstr "Nouveau groupe"
-
-#: app/views/resources/index.html.erb:126
-msgid "New Master/Slave"
-msgstr "Nouveau maître/Nouvel esclave"
-
-#: app/views/resources/index.html.erb:100
-msgid "New Resource"
-msgstr "Nouvelle ressource"
-
-#: app/views/resources/index.html.erb:107
-msgid "New Template"
-msgstr "Nouveau modèle"
-
-#: app/views/wizard/start.html.erb:45 app/views/wizard/run.html.erb:121
-msgid "Next >"
-msgstr "Suivant >"
-
-#: app/views/shared/_confirm_revert.html.erb:9
-#: app/views/main/_gettext.js.erb:13
-msgid "No"
-msgstr "Non"
-
-#: app/models/master.rb:45
-msgid "No Master/Slave child specified"
-msgstr "Aucun enfant maître/esclave n'est spécifié."
-
-#: app/views/main/_gettext.js.erb:114
-msgid "No Quorum Policy"
-msgstr "Pas de stratégie de quorum"
-
-#: app/views/nodes/show.html.erb:29 app/views/resources/show.html.erb:12
-msgid "No attributes defined"
-msgstr "Aucun attribut n'est défini."
-
-#: app/models/clone.rb:45
-msgid "No clone child specified"
-msgstr "Aucun enfant clone n'est spécifié."
-
-#: app/views/crm_config/show.html.erb:4
-msgid "No cluster properties set in %{group}"
-msgstr "Aucune propriété de grappe n'est définie dans %{group}."
-
-#: app/controllers/explorer_controller.rb:146
-#: app/controllers/explorer_controller.rb:216
-msgid "No details available"
-msgstr "Aucun détail n'est disponible."
-
-#: app/views/nodes/events.html.erb:20 app/views/resources/events.html.erb:20
-msgid "No events found in last hour."
-msgstr "Aucun événement n'a été trouvé pendant la dernière heure."
-
-#: app/models/location.rb:65
-msgid "No expressions specified"
-msgstr "Aucune expression n'est spécifiée."
-
-#: app/models/group.rb:45
-msgid "No group children specified"
-msgstr "Aucun enfant du groupe n'est spécifié."
-
-#: app/models/location.rb:48
-msgid "No resource specified"
-msgstr "Aucune ressource n'est spécifiée."
-
-#: app/models/ticket.rb:61
-msgid "No resources specified"
-msgstr "Aucune ressource n'est spécifiée."
-
-#: app/models/location.rb:45
-msgid "No rules specified"
-msgstr "Aucune règle n'est spécifiée."
-
-#: app/views/explorer/_pe_list.html.erb:6
-msgid "No transitions found for the specified time period."
-msgstr "Aucune transition n'a été trouvée pour la période spécifiée."
-
-#: app/views/nodes/show.html.erb:15
-msgid "No utilization defined"
-msgstr "Aucune utilisation n'est définie."
-
-#: app/views/wizard/start.html.erb:2
-msgid "No workflow descriptions found"
-msgstr "Aucune description de workflow n'a été trouvée."
-
-#: app/views/locations/_form.html.erb:43
-#: app/views/explorer/_pe_list.html.erb:13
-msgid "Node"
-msgstr "Nœud"
-
-#: app/views/main/_gettext.js.erb:278
-msgid "Node:"
-msgstr "Nœud :"
-
-#: app/views/main/_gettext.js.erb:338
-msgid "Not Configured"
-msgstr "Non configuré"
-
-#: app/views/main/_gettext.js.erb:329
-msgid "Not Implemented"
-msgstr "Non implémenté"
-
-#: app/views/main/_gettext.js.erb:335
-msgid "Not Installed"
-msgstr "Non installé"
-
-#: app/views/main/_gettext.js.erb:341
-msgid "Not Running"
-msgstr "Non exécuté"
-
-#: app/views/main/_gettext.js.erb:4 app/views/primitives/_form.html.erb:272
-#: app/views/dashboard/index.html.erb:370
-msgid "OK"
-msgstr "OK"
-
-#: app/views/main/_gettext.js.erb:162
-msgid "Offline"
-msgstr "Hors ligne"
-
-#: app/views/main/_menus.html.erb:7 app/views/main/_gettext.js.erb:159
-msgid "Online"
-msgstr "En ligne"
-
-#: app/views/crm_config/edit.html.erb:59
-msgid "Operation Defaults"
-msgstr "Valeurs par défaut d'opération"
-
-#: app/views/main/_gettext.js.erb:287
-msgid "Operation:"
-msgstr "Opération :"
-
-#: app/views/primitives/_form.html.erb:261
-msgid "Operations"
-msgstr "Opérations"
-
-#: app/views/constraints/index.html.erb:113
-msgid "Order"
-msgstr "Ordre"
-
-#: app/views/explorer/_pe_list.html.erb:12
-msgid "PE Input"
-msgstr "Entrée PE"
-
-#: app/models/cib.rb:237
-msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
-msgstr "Il semble que Pacemaker ne soit pas installé (%{cmd} introuvable)"
-
-#: app/controllers/wizard_controller.rb:99
-#: app/views/primitives/_form.html.erb:241
-msgid "Parameters"
-msgstr "Paramètres"
-
-#: app/views/main/_gettext.js.erb:232
-msgid "Parent: %{id}..."
-msgstr "Parent : %{id}..."
-
-#: app/controllers/sessions_controller.rb:75
-msgid "Password not specified"
-msgstr "Mot de passe non spécifié"
-
-#: app/views/sessions/new.html.erb:13 app/views/dashboard/index.html.erb:54
-msgid "Password:"
-msgstr "Mot de passe :"
-
-#: app/views/main/_gettext.js.erb:165 app/views/main/_gettext.js.erb:193
-msgid "Pending"
-msgstr "En attente"
-
-#: app/views/main/_gettext.js.erb:332
-msgid "Permission Denied"
-msgstr "Autorisation refusée"
-
-#: app/views/main/_gettext.js.erb:82
-msgid "Permission denied"
-msgstr "Autorisation refusée"
-
-#: app/models/cib.rb:258 app/controllers/sessions_controller.rb:128
-#: lib/invoker.rb:113 lib/invoker.rb:135 lib/invoker.rb:172
-msgid "Permission denied for user %{user}"
-msgstr "Autorisation refusée pour l'utilisateur %{user}"
-
-#: app/views/dashboard/index.html.erb:227
-msgid "Permission denied. Please log in to %{node}"
-msgstr "Autorisation refusée. Loguez-vous à %{node}."
-
-#: app/views/sessions/new.html.erb:1
-msgid "Please ensure JavaScript is enabled"
-msgstr "Assurez-vous que Javascript est activé."
-
-#: app/views/resources/index.html.erb:101
-msgid "Primitive"
-msgstr "Primitive"
-
-#: app/views/main/_menus.html.erb:135
-msgid "Promote"
-msgstr "Promouvoir"
-
-#: app/views/primitives/_form.html.erb:331
-msgid "Provider"
-msgstr "Fournisseur"
-
-#: app/views/main/_menus.html.erb:28
-msgid "Ready"
-msgstr "Prêt"
-
-#: app/views/masters/_form.html.erb:47 app/views/crm_config/edit.html.erb:25
-#: app/views/crm_config/edit.html.erb:47 app/views/crm_config/edit.html.erb:69
-#: app/views/clones/_form.html.erb:47 app/views/locations/_form.html.erb:48
-#: app/views/groups/_form.html.erb:82 app/views/colocations/_form.html.erb:61
-#: app/views/tickets/_form.html.erb:49 app/views/primitives/_form.html.erb:248
-#: app/views/primitives/_form.html.erb:269
-#: app/views/primitives/_form.html.erb:291
-#: app/views/dashboard/index.html.erb:40 app/views/orders/_form.html.erb:61
-msgid "Remove"
-msgstr "Supprimer"
-
-#: app/views/locations/_form.html.erb:50
-msgid "Remove Rule"
-msgstr "Supprimer la règle"
-
-#: app/controllers/wizard_controller.rb:243
-msgid "Required parameter \"%{param}\" not specified"
-msgstr "Paramètre requis \"%{param}\" non spécifié"
-
-#: app/controllers/main_controller.rb:93
-#: app/controllers/main_controller.rb:103
-#: app/controllers/main_controller.rb:113
-msgid "Required parameter \"node\" not specified"
-msgstr "Paramètre requis \"nœud\" non spécifié"
-
-#: app/controllers/main_controller.rb:129
-#: app/controllers/main_controller.rb:158
-msgid "Required parameter \"resource\" not specified"
-msgstr "Paramètre requis \"ressource\" non spécifié"
-
-#: app/controllers/explorer_controller.rb:122
-msgid "Required parameters \"basename\" and \"node\" not specified"
-msgstr "Paramètres requis \"nom de base\" et \"nœud\" non spécifiés"
-
-#: app/controllers/explorer_controller.rb:189
-msgid "Required parameters \"left\" and \"right\" not specified"
-msgstr "Paramètres requis \"gauche\" et \"droite\" non spécifiés"
-
-#: app/controllers/main_controller.rb:139
-msgid "Required parameters \"resource\" and \"node\" not specified"
-msgstr "Paramètres requis \"ressource\" et \"nœud\" non spécifiés"
-
-#: app/views/main/_gettext.js.erb:19
-msgid "Reset"
-msgstr "Réinitialiser"
-
-#: app/views/locations/_form.html.erb:76
-msgid "Resource"
-msgstr "Ressource"
-
-#: app/views/crm_config/edit.html.erb:37
-msgid "Resource Defaults"
-msgstr "Valeurs par défaut de ressource"
-
-#: app/views/primitives/_form.html.erb:329
-msgid "Resource ID"
-msgstr "ID de la ressource"
-
-#: app/models/template.rb:140 app/models/primitive.rb:140
-msgid "Resource ID \"%{id}\" does not exist"
-msgstr "L'ID de la ressource \"%{id}\" n'existe pas."
-
-#: app/views/main/_gettext.js.erb:120
-msgid "Resource Stickiness"
-msgstr "Attractivité des ressources"
-
-#: app/controllers/primitives_controller.rb:63
-msgid "Resource created successfully"
-msgstr "La ressource a été créée avec succès."
-
-#: app/controllers/primitives_controller.rb:85
-msgid "Resource updated successfully"
-msgstr "La ressource a été mise à jour avec succès."
-
-#: app/views/main/_gettext.js.erb:293
-msgid "Resource:"
-msgstr "Ressource :"
-
-#: app/controllers/resources_controller.rb:57
-#: app/views/layouts/main.html.erb:153
-msgid "Resources"
-msgstr "Ressources"
-
-#: app/views/main/_gettext.js.erb:296
-msgid "Result:"
-msgstr "Résultat :"
-
-#: app/views/masters/_form.html.erb:88 app/views/crm_config/edit.html.erb:114
-#: app/views/clones/_form.html.erb:88 app/views/locations/_form.html.erb:94
-#: app/views/groups/_form.html.erb:143
-#: app/views/colocations/_form.html.erb:110
-#: app/views/tickets/_form.html.erb:98 app/views/primitives/_form.html.erb:394
-#: app/views/orders/_form.html.erb:116
-msgid "Revert Changes"
-msgstr "Annuler les modifications"
-
-#: app/views/main/_gettext.js.erb:311
-msgid "Revoke"
-msgstr "Révoquer"
-
-#: app/views/main/_gettext.js.erb:139
-msgid "Revoked"
-msgstr "Révoqué"
-
-#: app/views/main/_gettext.js.erb:138
-msgid "Revoked [standby]"
-msgstr "Révoqué [veille]"
-
-#: app/views/locations/_form.html.erb:44
-msgid "Role"
-msgstr "Rôle"
-
-#: app/views/main/_gettext.js.erb:257
-msgid "Run >"
-msgstr "Exécuter >"
-
-#: app/views/main/_gettext.js.erb:344
-msgid "Running Master"
-msgstr "Maître en cours d'exécution"
-
-#: app/views/main/_gettext.js.erb:111
-msgid "STONITH Enabled"
-msgstr "STONITH activé"
-
-#: app/views/locations/_form.html.erb:42
-#: app/views/colocations/_form.html.erb:90 app/views/orders/_form.html.erb:90
-msgid "Score"
-msgstr "Score"
-
-#: app/views/layouts/main.html.erb:147
-msgid "Setup Wizard"
-msgstr "Assistant de configuration"
-
-#: app/views/locations/_form.html.erb:51
-msgid "Show Rule Editor"
-msgstr "Afficher l'éditeur de règles"
-
-#: app/views/layouts/main.html.erb:33
-msgid "Simulator"
-msgstr "Simulateur"
-
-#: app/views/main/_gettext.js.erb:239
-msgid "Simulator (busy...)"
-msgstr "Simulateur (occupé...)"
-
-#: app/views/main/_gettext.js.erb:242
-msgid "Simulator (final state)"
-msgstr "Simulateur (état final)"
-
-#: app/views/main/_gettext.js.erb:236
-msgid "Simulator (initial state)"
-msgstr "Simulateur (état initial)"
-
-#: app/views/main/_gettext.js.erb:183
-msgid "Slave"
-msgstr "Esclave"
-
-#: app/views/main/_gettext.js.erb:95
-msgid "Stack: %s"
-msgstr "Pile : %s"
-
-#: app/views/main/_menus.html.erb:14 app/views/main/_gettext.js.erb:168
-#: app/views/main/_gettext.js.erb:314
-msgid "Standby"
-msgstr "Veille"
-
-#: app/views/main/_menus.html.erb:86
-msgid "Start"
-msgstr "Démarrer"
-
-#: app/views/hb_reports/create.js.erb:3
-msgid "Start Time not specified"
-msgstr "L'heure de début n'est pas spécifiée."
-
-#: app/views/explorer/index.html.erb:141 app/views/explorer/index.html.erb:155
-#: app/views/hb_reports/new.html.erb:58
-msgid "Start Time:"
-msgstr "Heure de début :"
-
-#: app/views/main/_gettext.js.erb:188
-msgid "Started"
-msgstr "Commencé"
-
-#: app/views/main/_gettext.js.erb:281
-msgid "State:"
-msgstr "État :"
-
-#: app/views/layouts/main.html.erb:118 app/views/layouts/main.html.erb:126
-msgid "Status"
-msgstr "État"
-
-#: app/views/main/_menus.html.erb:93
-msgid "Stop"
-msgstr "Arrêter"
-
-#: app/views/main/_gettext.js.erb:219
-msgid "Stopped"
-msgstr "Interrompu"
-
-#: app/views/main/_gettext.js.erb:320
-msgid "Success"
-msgstr "Succès"
-
-#: app/views/main/_gettext.js.erb:105
-msgid "Summary"
-msgstr "Résumé"
-
-#: app/views/main/_gettext.js.erb:146
-msgid "Summary View"
-msgstr "Vue Résumé"
-
-#: app/views/colocations/_form.html.erb:64 app/views/orders/_form.html.erb:64
-msgid "Swap resources"
-msgstr "Ressources d'échange"
-
-#: app/views/main/_gettext.js.erb:117
-msgid "Symmetric Cluster"
-msgstr "Grappe symétrique"
-
-#: app/views/orders/_form.html.erb:100
-msgid "Symmetrical"
-msgstr "Symétrique"
-
-#: app/views/main/_gettext.js.erb:152
-msgid "Table View"
-msgstr "Vue Tableau"
-
-#: app/views/resources/index.html.erb:108
-msgid "Template"
-msgstr "Modèle"
-
-#: app/views/primitives/_form.html.erb:329
-msgid "Template ID"
-msgstr "ID du modèle"
-
-#: app/controllers/templates_controller.rb:66
-msgid "Template created successfully"
-msgstr "Le modèle a été créé."
-
-#: app/controllers/templates_controller.rb:89
-msgid "Template updated successfully"
-msgstr "Le modèle a été mis à jour."
-
-#: app/models/ticket.rb:73 app/models/location.rb:77 app/models/group.rb:57
-#: app/models/master.rb:57 app/models/colocation.rb:63
-#: app/models/template.rb:85 app/models/clone.rb:57 app/models/primitive.rb:84
-#: app/models/order.rb:89
-msgid "The ID \"%{id}\" is already in use"
-msgstr "L'ID \"%{id}\" est déjà utilisé."
-
-#: app/views/wizard/done.html.erb:3
-msgid "The configuration has been applied."
-msgstr "La configuration a été appliquée."
-
-#: app/views/wizard/run.html.erb:74
-msgid "The following configuration will be applied to the cluster:"
-msgstr "La configuration suivante sera appliquée à la grappe :"
-
-#: app/views/dashboard/index.html.erb:397
-msgid "The host %{h} is already present in cluster %{c}"
-msgstr "L'hôte %{h} est déjà présent dans la grappe %{c}."
-
-#: lib/invoker.rb:111
-msgid "The object/attribute does not exist (cibadmin %{cmd})"
-msgstr "L'objet/attribut n'existe pas (cibadmin %{cmd})."
-
-#: lib/invoker.rb:133
-msgid "The object/attribute does not exist: %{msg}"
-msgstr "L'objet/attribut n'existe pas : %{msg}"
-
-#: app/views/primitives/_form.html.erb:271
-msgid "There is already a monitor op with this interval."
-msgstr "Il existe déjà une opération de surveillance avec cet intervalle."
-
-#: app/views/main/_gettext.js.erb:35
-msgid "This will attempt to immediately fence node %s.  Do you want to continue?"
-msgstr "Cette action tente de délimiter immédiatement le nœud %s. Voulez-vous continuer ?"
-
-#: app/views/main/_gettext.js.erb:23
-msgid "This will bring node %s online if it is currently on standby.  Do you want to continue?"
-msgstr "Cette action entraîne la mise en ligne du nœud %s s'il est actuellement en veille. Voulez-vous continuer ?"
-
-#: app/views/main/_gettext.js.erb:32
-msgid "This will bring node %s out of maintenance mode.  Do you want to continue?"
-msgstr "Cette action entraîne la sortie du noeud %s du mode de maintenance. Voulez-vous continuer ?"
-
-#: app/views/main/_gettext.js.erb:63
-msgid "This will clean up the resource %s.  Do you want to continue?"
-msgstr "Cette action entraîne le nettoyage de la ressource %s. Voulez-vous continuer ?"
-
-#: app/views/main/_gettext.js.erb:54
-msgid "This will clear any relocation constraints set on the resource %s.  Do you want to continue?"
-msgstr "Cette action entraîne la suppression des contraintes de relocalisation définies sur la ressource %s. Voulez-vous continuer ?"
-
-#: app/views/main/_gettext.js.erb:60
-msgid "This will demote the resource %s.  Do you want to continue?"
-msgstr "Cette action entraîne la rétrogradation de la ressource %s. Voulez-vous continuer ?"
-
-#: app/views/main/_gettext.js.erb:57
-msgid "This will promote the resource %s.  Do you want to continue?"
-msgstr "Cette action entraîne la promotion de la ressource %s. Voulez-vous continuer ?"
-
-#: app/views/main/_gettext.js.erb:29
-msgid "This will put node %s in maintenance mode.  All resources on this node will become unmanaged.  Do you want to continue?"
-msgstr "Cette action entraîne le passage en mode de maintenance du noeud %s. Toutes les ressources sur ce noeud deviendront non gérées. Voulez-vous continuer ?"
-
-#: app/views/main/_gettext.js.erb:26
-msgid "This will put node %s on standby.  All resources will be stopped and/or moved to another node.  Do you want to continue?"
-msgstr "Cette action entraîne la mise en veille du nœud %s. Toutes les ressources seront interrompues et/ou déplacées vers un autre nœud. Voulez-vous continuer ?"
-
-#: app/views/main/_gettext.js.erb:39
-msgid "This will start the resource %s.  Do you want to continue?"
-msgstr "Cette action entraîne le démarrage de la ressource %s. Voulez-vous continuer ?"
-
-#: app/views/main/_gettext.js.erb:42
-msgid "This will stop the resource %s.  Do you want to continue?"
-msgstr "Cette action entraîne l'arrêt de la ressource %s. Voulez-vous continuer ?"
-
-#: app/views/wizard/start.html.erb:26
-msgid "This wizard will guide you through the steps necessary to add one of the following configurations to the cluster."
-msgstr "Cet assistant vous guidera dans la procédure à appliquer pour ajouter l'une des configurations suivantes à la grappe."
-
-#: app/views/constraints/index.html.erb:120
-msgid "Ticket"
-msgstr "Ticket"
-
-#: app/views/main/_gettext.js.erb:302
-msgid "Ticket:"
-msgstr "Ticket :"
-
-#: app/views/main/_gettext.js.erb:129
-msgid "Tickets"
-msgstr "Tickets"
-
-#: app/views/explorer/_pe_list.html.erb:11
-msgid "Time"
-msgstr "Durée"
-
-#: app/views/dashboard/index.html.erb:146
-#: app/views/dashboard/index.html.erb:448
-msgid "Timeout: Please try again"
-msgstr "Timeout : veuillez réessayer."
-
-#: app/views/main/_gettext.js.erb:48
-msgid "To node %s"
-msgstr "Vers le nœud %s"
-
-#: app/views/layouts/main.html.erb:114
-msgid "Tools"
-msgstr "Outils"
-
-#: app/views/main/_gettext.js.erb:149
-msgid "Tree View"
-msgstr "Vue Arborescence"
-
-#: app/views/primitives/_form.html.erb:332
-msgid "Type"
-msgstr "Type"
-
-#: app/views/layouts/main.html.erb:177
-msgid "UI Host: %s"
-msgstr "Hôte UI : %s"
-
-#: app/controllers/crm_config_controller.rb:129
-msgid "Unable to apply changes: %{msg}"
-msgstr "Impossible d'appliquer les modifications : %{msg}"
-
-#: app/views/dashboard/index.html.erb:430
-msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
-msgstr "Impossible de se connecter à %{host}. Essayez d'ouvrir %{url} dans votre navigateur Web pour vous assurer que Hawk est accessible."
-
-#: app/models/clone.rb:77
-msgid "Unable to create clone: %{msg}"
-msgstr "Impossible de créer le clone : %{msg}"
-
-#: app/models/ticket.rb:82 app/models/location.rb:86
-#: app/models/colocation.rb:72 app/models/order.rb:98
-msgid "Unable to create constraint: %{msg}"
-msgstr "Impossible de créer la contrainte : %{msg}"
-
-#: app/models/group.rb:80
-msgid "Unable to create group: %{msg}"
-msgstr "Impossible de créer le groupe : %{msg}"
-
-#: app/models/master.rb:77
-msgid "Unable to create master/slave: %{msg}"
-msgstr "Impossible de créer un maître/esclave : %{msg}"
-
-#: app/models/template.rb:130 app/models/primitive.rb:130
-msgid "Unable to create resource: %{msg}"
-msgstr "Impossible de créer la ressource : %{msg}"
-
-#: app/controllers/application_controller.rb:143
-msgid "Unable to create shadow CIB"
-msgstr "Impossible de créer le CIB fantôme."
-
-#: app/models/cib.rb:239
-msgid "Unable to execute %{cmd}"
-msgstr "Impossible d'exécuter %{cmd}"
-
-#: app/models/cib.rb:235
-msgid "Unable to parse CIB file \"%{path}\""
-msgstr "Impossible d'analyser le fichier CIB \"%{path}\""
-
-#: app/models/cib_object.rb:95 app/models/cib_object.rb:115
-#: app/models/crm_config.rb:49
-msgid "Unable to parse cibadmin output"
-msgstr "Impossible d'analyser la sortie cibadmin"
-
-#: app/models/ticket.rb:101 app/models/location.rb:107
-#: app/models/colocation.rb:91 app/models/order.rb:117
-msgid "Unable to update constraint: %{msg}"
-msgstr "Impossible de mettre à jour la contrainte : %{msg}"
-
-#: app/views/main/_gettext.js.erb:171
-msgid "Unclean"
-msgstr "Non propre"
-
-#: app/views/main/_gettext.js.erb:70
-msgid "Unexpected server error: %s"
-msgstr "Erreur du serveur inattendue : %s"
-
-#: app/models/cib.rb:268 app/models/cib.rb:269 app/models/cib.rb:602
-#: app/views/main/_gettext.js.erb:174
-msgid "Unknown"
-msgstr "Inconnu"
-
-#: app/views/main/_gettext.js.erb:126
-msgid "Unmanaged"
-msgstr "Non géré"
-
-#: app/views/primitives/_form.html.erb:367
-msgid "Use Template"
-msgstr "Utiliser le modèle"
-
-#: app/views/layouts/main.html.erb:120
-msgid "User: %{user}"
-msgstr "Utilisateur : %{user}"
-
-#: app/controllers/sessions_controller.rb:70
-msgid "Username not specified"
-msgstr "Nom d'utilisateur non spécifié"
-
-#: app/views/sessions/new.html.erb:9 app/views/dashboard/index.html.erb:50
-msgid "Username:"
-msgstr "Nom d'utilisateur :"
-
-#: app/views/nodes/show.html.erb:1
-msgid "Utilization"
-msgstr "Utilisation"
-
-#: app/models/location.rb:70
-msgid "Value contains both single and double quotes"
-msgstr "La valeur contient des guillemets simples et doubles."
-
-#: app/views/main/_gettext.js.erb:92
-msgid "Version: %s"
-msgstr "Version : %s"
-
-#: app/views/main/_menus.html.erb:45 app/views/main/_menus.html.erb:159
-msgid "View Details..."
-msgstr "Afficher les détails..."
-
-#: app/views/main/_menus.html.erb:65 app/views/main/_menus.html.erb:181
-msgid "View Recent Events..."
-msgstr "Afficher les derniers événements..."
-
-#: app/controllers/wizard_controller.rb:253
-msgid "Wizard templates and/or workflows are missing"
-msgstr "Les modèles d'assistants et/ou les workflows sont manquants."
-
-#: app/controllers/wizard_controller.rb:261
-msgid "Workflow \"%s\" not found"
-msgstr "Le workflow \"%s\" est introuvable."
-
-#: app/views/main/_gettext.js.erb:326
-msgid "Wrong Argument(s)"
-msgstr "Argument(s) incorrect(s)"
-
-#: app/views/shared/_confirm_revert.html.erb:8
-#: app/views/main/_gettext.js.erb:10
-msgid "Yes"
-msgstr "Oui"
-
-#: app/controllers/sessions_controller.rb:131
-msgid "You have been logged out"
-msgstr "Vous avez été délogué."
-
-#: app/views/masters/_form.html.erb:48 app/views/crm_config/edit.html.erb:26
-#: app/views/crm_config/edit.html.erb:48 app/views/crm_config/edit.html.erb:70
-#: app/views/clones/_form.html.erb:48 app/views/groups/_form.html.erb:83
-#: app/views/primitives/_form.html.erb:249
-#: app/views/primitives/_form.html.erb:270
-#: app/views/primitives/_form.html.erb:292
-msgid "You must enter a value"
-msgstr "Vous devez entrer une valeur."
-
-#: app/controllers/crm_config_controller.rb:127
+#: ../app/controllers/colocations_controller.rb:48 ../app/controllers/colocations_controller.rb:53
+msgid "Create Colocation Constraint"
+msgstr "Créer une contrainte de colocalisation"
+
+#: ../app/controllers/colocations_controller.rb:61 ../app/controllers/locations_controller.rb:60 ../app/controllers/orders_controller.rb:62 ../app/controllers/tickets_controller.rb:59
+msgid "Constraint created successfully"
+msgstr "La contrainte a été créée avec succès."
+
+#: ../app/controllers/colocations_controller.rb:84 ../app/controllers/locations_controller.rb:82 ../app/controllers/orders_controller.rb:86 ../app/controllers/tickets_controller.rb:81
+msgid "Constraint updated successfully"
+msgstr "La contrainte a été mise à jour avec succès."
+
+#: ../app/controllers/constraints_controller.rb:44 ../app/views/layouts/main.html.erb:167
+msgid "Constraints"
+msgstr "Contraintes"
+
+#: ../app/controllers/crm_config_controller.rb:45 ../app/views/main/_gettext.js.erb:99
+msgid "Cluster Configuration"
+msgstr "Configuration de la grappe"
+
+#: ../app/controllers/crm_config_controller.rb:127
 msgid "Your changes have been saved"
 msgstr "Vos modifications ont été enregistrées."
 
-#: app/views/constraints/index.html.erb:153
+#: ../app/controllers/crm_config_controller.rb:129
+msgid "Unable to apply changes: %{msg}"
+msgstr "Impossible d'appliquer les modifications : %{msg}"
+
+#: ../app/controllers/crm_config_controller.rb:161
+msgid "Can't set property %{p}, because the value contains both single and double quotes"
+msgstr "Impossible de définir la propriété %{p} car la valeur contient des guillemets simples et doubles."
+
+#: ../app/controllers/dashboard_controller.rb:37
+msgid "Cluster Dashboard"
+msgstr "Tableau de bord de la grappe"
+
+#: ../app/controllers/explorer_controller.rb:44 ../app/views/layouts/main.html.erb:143
+msgid "History Explorer"
+msgstr "Explorateur d'historique"
+
+#: ../app/controllers/explorer_controller.rb:102
+msgid "PE Input created by different Pacemaker version (%{version})"
+msgstr ""
+
+#: ../app/controllers/explorer_controller.rb:103
+msgid "Pacemaker version not present in PE Input"
+msgstr ""
+
+#: ../app/controllers/explorer_controller.rb:133
+msgid "Required parameters \"basename\" and \"node\" not specified"
+msgstr "Paramètres requis \"nom de base\" et \"nœud\" non spécifiés"
+
+#: ../app/controllers/explorer_controller.rb:157 ../app/controllers/explorer_controller.rb:227
+msgid "No details available"
+msgstr "Aucun détail n'est disponible."
+
+#: ../app/controllers/explorer_controller.rb:159 ../app/controllers/explorer_controller.rb:187 ../app/controllers/explorer_controller.rb:248
+msgid "Error:"
+msgstr "Erreur :"
+
+#: ../app/controllers/explorer_controller.rb:200
+msgid "Required parameters \"left\" and \"right\" not specified"
+msgstr "Paramètres requis \"gauche\" et \"droite\" non spécifiés"
+
+#: ../app/controllers/groups_controller.rb:48
+msgid "Edit Group"
+msgstr "Modifier le groupe"
+
+#: ../app/controllers/groups_controller.rb:52 ../app/controllers/groups_controller.rb:58 ../app/views/groups/_form.html.erb:142
+msgid "Create Group"
+msgstr "Créer un groupe"
+
+#: ../app/controllers/groups_controller.rb:65
+msgid "Group created successfully"
+msgstr "Le groupe a été créé avec succès."
+
+#: ../app/controllers/groups_controller.rb:87
+msgid "Group updated successfully"
+msgstr "Le groupe a été mis à jour avec succès."
+
+#: ../app/controllers/locations_controller.rb:44
+msgid "Edit Location Constraint"
+msgstr "Modifier la contrainte de localisation"
+
+#: ../app/controllers/locations_controller.rb:48 ../app/controllers/locations_controller.rb:53
+msgid "Create Location Constraint"
+msgstr "Créer une contrainte de localisation"
+
+#: ../app/controllers/main_controller.rb:58
+msgid "%{cmd} failed (status: %{status})"
+msgstr "Échec de %{cmd} (état : %{status})"
+
+#: ../app/controllers/main_controller.rb:78 ../app/views/layouts/main.html.erb:137
+msgid "Cluster Status"
+msgstr "État de la grappe"
+
+#: ../app/controllers/main_controller.rb:93 ../app/controllers/main_controller.rb:103 ../app/controllers/main_controller.rb:113
+msgid "Required parameter \"node\" not specified"
+msgstr "Paramètre requis \"nœud\" non spécifié"
+
+#: ../app/controllers/main_controller.rb:129 ../app/controllers/main_controller.rb:160
+msgid "Required parameter \"resource\" not specified"
+msgstr "Paramètre requis \"ressource\" non spécifié"
+
+#: ../app/controllers/main_controller.rb:139
+msgid "Required parameters \"resource\" and \"node\" not specified"
+msgstr "Paramètres requis \"ressource\" et \"nœud\" non spécifiés"
+
+#: ../app/controllers/main_controller.rb:154
+msgid "Error deleting resource"
+msgstr "Erreur lors de la suppression de la ressource"
+
+#: ../app/controllers/main_controller.rb:310 ../app/models/cib.rb:260
+msgid "Error invoking %{cmd}: %{msg}"
+msgstr "Erreur lors de l'appel de %{cmd} : %{msg}"
+
+#: ../app/controllers/masters_controller.rb:48
+msgid "Edit Master/Slave"
+msgstr "Modifier le maître/l'esclave"
+
+#: ../app/controllers/masters_controller.rb:52 ../app/controllers/masters_controller.rb:58 ../app/views/masters/_form.html.erb:87
+msgid "Create Master/Slave"
+msgstr "Créer un maître/esclave"
+
+#: ../app/controllers/masters_controller.rb:65
+msgid "Master/Slave created successfully"
+msgstr "Le maître/L'esclave a été créé avec succès."
+
+#: ../app/controllers/masters_controller.rb:87
+msgid "Master/Slave updated successfully"
+msgstr "Le maître/L'esclave a été mis à jour avec succès."
+
+#: ../app/controllers/orders_controller.rb:44
+msgid "Edit Order Constraint"
+msgstr "Modifier la contrainte d'ordre"
+
+#: ../app/controllers/orders_controller.rb:48 ../app/controllers/orders_controller.rb:53
+msgid "Create Order Constraint"
+msgstr "Créer une contrainte d'ordre"
+
+#: ../app/controllers/primitives_controller.rb:46 ../app/views/resources/index.html.erb:47
+msgid "Edit Resource"
+msgstr "Modifier une ressource"
+
+#: ../app/controllers/primitives_controller.rb:50 ../app/controllers/primitives_controller.rb:56 ../app/views/primitives/_form.html.erb:393
+msgid "Create Resource"
+msgstr "Créer une ressource"
+
+#: ../app/controllers/primitives_controller.rb:63
+msgid "Resource created successfully"
+msgstr "La ressource a été créée avec succès."
+
+#: ../app/controllers/primitives_controller.rb:85
+msgid "Resource updated successfully"
+msgstr "La ressource a été mise à jour avec succès."
+
+#: ../app/controllers/resources_controller.rb:57 ../app/views/layouts/main.html.erb:164
+msgid "Resources"
+msgstr "Ressources"
+
+#: ../app/controllers/roles_controller.rb:44
+#, fuzzy
+msgid "Edit Role"
+msgstr "Modifier le clone"
+
+#: ../app/controllers/roles_controller.rb:48 ../app/controllers/roles_controller.rb:53 ../app/views/roles/_form.html.erb:82
+#, fuzzy
+msgid "Create Role"
+msgstr "Créer un clone"
+
+#: ../app/controllers/roles_controller.rb:60
+#, fuzzy
+msgid "Role created successfully"
+msgstr "Le clone a été créé avec succès."
+
+#: ../app/controllers/roles_controller.rb:82
+#, fuzzy
+msgid "Role updated successfully"
+msgstr "Le clone a été mis à jour avec succès."
+
+#: ../app/controllers/sessions_controller.rb:37 ../app/views/dashboard/index.html.erb:57 ../app/views/sessions/new.html.erb:17
+msgid "Log In"
+msgstr "Se connecter"
+
+#: ../app/controllers/sessions_controller.rb:70
+msgid "Username not specified"
+msgstr "Nom d'utilisateur non spécifié"
+
+#: ../app/controllers/sessions_controller.rb:73
+msgid "Invalid username"
+msgstr "Nom d'utilisateur non valide"
+
+#: ../app/controllers/sessions_controller.rb:75
+msgid "Password not specified"
+msgstr "Mot de passe non spécifié"
+
+#: ../app/controllers/sessions_controller.rb:89
+msgid "Invalid username or password"
+msgstr "Nom d'utilisateur ou mot de passe non valide"
+
+#: ../app/controllers/sessions_controller.rb:92
+msgid "%s is not installed"
+msgstr "%s n'est pas installé"
+
+#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:258 ../lib/invoker.rb:113 ../lib/invoker.rb:135 ../lib/invoker.rb:177
+msgid "Permission denied for user %{user}"
+msgstr "Autorisation refusée pour l'utilisateur %{user}"
+
+#: ../app/controllers/sessions_controller.rb:131
+msgid "You have been logged out"
+msgstr "Vous avez été délogué."
+
+#: ../app/controllers/templates_controller.rb:47
+msgid "Edit Template"
+msgstr "Éditer le modèle"
+
+#: ../app/controllers/templates_controller.rb:51 ../app/controllers/templates_controller.rb:59
+msgid "Create Template"
+msgstr "Créer un modèle"
+
+#: ../app/controllers/templates_controller.rb:66
+msgid "Template created successfully"
+msgstr "Le modèle a été créé."
+
+#: ../app/controllers/templates_controller.rb:89
+msgid "Template updated successfully"
+msgstr "Le modèle a été mis à jour."
+
+#: ../app/controllers/tickets_controller.rb:43
+msgid "Edit Ticket Constraint"
+msgstr "Éditer la contrainte de ticket"
+
+#: ../app/controllers/tickets_controller.rb:47 ../app/controllers/tickets_controller.rb:52
+msgid "Create Ticket Constraint"
+msgstr "Créer une contrainte de ticket"
+
+#: ../app/controllers/users_controller.rb:44
+#, fuzzy
+msgid "Edit User"
+msgstr "Modifier une ressource"
+
+#: ../app/controllers/users_controller.rb:48 ../app/controllers/users_controller.rb:53 ../app/views/users/_form.html.erb:111
+#, fuzzy
+msgid "Create User"
+msgstr "Créer une ressource"
+
+#: ../app/controllers/users_controller.rb:60
+#, fuzzy
+msgid "User created successfully"
+msgstr "Le clone a été créé avec succès."
+
+#: ../app/controllers/users_controller.rb:82
+#, fuzzy
+msgid "User updated successfully"
+msgstr "Le clone a été mis à jour avec succès."
+
+#: ../app/controllers/wizard_controller.rb:60
+msgid "Cluster Setup Wizard"
+msgstr "Assistant de configuration de la grappe"
+
+#: ../app/controllers/wizard_controller.rb:99 ../app/views/primitives/_form.html.erb:241
+msgid "Parameters"
+msgstr "Paramètres"
+
+#: ../app/controllers/wizard_controller.rb:123
+msgid "Confirm"
+msgstr "Confirmer"
+
+#: ../app/controllers/wizard_controller.rb:143 ../app/views/wizard/done.html.erb:10
+msgid "Done"
+msgstr "Terminé"
+
+#: ../app/controllers/wizard_controller.rb:243
+msgid "Required parameter \"%{param}\" not specified"
+msgstr "Paramètre requis \"%{param}\" non spécifié"
+
+#: ../app/controllers/wizard_controller.rb:253
+msgid "Wizard templates and/or workflows are missing"
+msgstr "Les modèles d'assistants et/ou les workflows sont manquants."
+
+#: ../app/controllers/wizard_controller.rb:261
+msgid "Workflow \"%s\" not found"
+msgstr "Le workflow \"%s\" est introuvable."
+
+#: ../app/controllers/wizard_controller.rb:278
+msgid "Error parsing template \"%s\""
+msgstr "Erreur lors de l'analyse du modèle \"%s\""
+
+#: ../app/controllers/wizard_controller.rb:281
+msgid "Error parsing workflow \"%s\""
+msgstr "Erreur lors de l'analyse du workflow \"%s\""
+
+#: ../app/helpers/explorer_helper.rb:3
+msgid "Data collection in progress (%{from_time} to %{to_time})..."
+msgstr "Collecte de données en cours (%{from_time} à %{to_time})..."
+
+#: ../app/models/cib.rb:233
+msgid "CIB file \"%{path}\" not found"
+msgstr "Le fichier CIB \"%{path}\" est introuvable."
+
+#: ../app/models/cib.rb:235
+msgid "Unable to parse CIB file \"%{path}\""
+msgstr "Impossible d'analyser le fichier CIB \"%{path}\""
+
+#: ../app/models/cib.rb:237
+msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
+msgstr "Il semble que Pacemaker ne soit pas installé (%{cmd} introuvable)"
+
+#: ../app/models/cib.rb:239
+msgid "Unable to execute %{cmd}"
+msgstr "Impossible d'exécuter %{cmd}"
+
+#: ../app/models/cib.rb:242
+msgid "%{cmd} failed (status: %{status}, output was: %{output})"
+msgstr "Échec %{cmd} (état : %{status}, la sortie était : %{output})"
+
+#: ../app/models/cib.rb:255
+msgid "Error invoking %{cmd}"
+msgstr "Erreur lors de l'appel de %{cmd}"
+
+#: ../app/models/cib.rb:268 ../app/models/cib.rb:269 ../app/models/cib.rb:613 ../app/views/main/_gettext.js.erb:183
+msgid "Unknown"
+msgstr "Inconnu"
+
+#: ../app/models/cib.rb:480
+msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
+msgstr "Échec : noeud=%{node}, ressource=%{resource}, ID appel=%{call_id}, opération=%{op}, code RC=%{rc_code}"
+
+#: ../app/models/cib_object.rb:66
+msgid "Invalid Resource ID \"%{id}\""
+msgstr "ID de la ressource \"%{id}\" non valide"
+
+#: ../app/models/cib_object.rb:95 ../app/models/cib_object.rb:115 ../app/models/crm_config.rb:49
+msgid "Unable to parse cibadmin output"
+msgstr "Impossible d'analyser la sortie cibadmin"
+
+#: ../app/models/clone.rb:45
+msgid "No clone child specified"
+msgstr "Aucun enfant clone n'est spécifié."
+
+#: ../app/models/clone.rb:51 ../app/models/group.rb:51 ../app/models/master.rb:51 ../app/models/primitive.rb:77 ../app/models/template.rb:78
+msgid "Can't set meta attribute %{p}, because the value contains both single and double quotes"
+msgstr "Impossible de définir l'attribut méta %{p} car la valeur contient des guillemets simples et doubles."
+
+#: ../app/models/clone.rb:57 ../app/models/colocation.rb:63 ../app/models/group.rb:57 ../app/models/location.rb:77 ../app/models/master.rb:57 ../app/models/order.rb:89 ../app/models/primitive.rb:84 ../app/models/role.rb:55 ../app/models/template.rb:85 ../app/models/ticket.rb:73 ../app/models/user.rb:59
+msgid "The ID \"%{id}\" is already in use"
+msgstr "L'ID \"%{id}\" est déjà utilisé."
+
+#: ../app/models/clone.rb:77
+msgid "Unable to create clone: %{msg}"
+msgstr "Impossible de créer le clone : %{msg}"
+
+#: ../app/models/clone.rb:87
+msgid "Clone ID \"%{id}\" does not exist"
+msgstr "L'ID du clone \"%{id}\" n'existe pas."
+
+#: ../app/models/colocation.rb:53 ../app/models/order.rb:79
+msgid "Invalid score"
+msgstr "Score non valide"
+
+#: ../app/models/colocation.rb:57 ../app/models/order.rb:83
+msgid "Constraint must consist of at least two separate resources"
+msgstr "La contrainte doit contenir au moins deux ressources distinctes."
+
+#: ../app/models/colocation.rb:72 ../app/models/location.rb:86 ../app/models/order.rb:98 ../app/models/ticket.rb:82
+msgid "Unable to create constraint: %{msg}"
+msgstr "Impossible de créer la contrainte : %{msg}"
+
+#: ../app/models/colocation.rb:81 ../app/models/location.rb:95 ../app/models/order.rb:107 ../app/models/ticket.rb:91
+msgid "Constraint ID \"%{id}\" does not exist"
+msgstr "L'ID de contrainte \"%{id}\" n'existe pas."
+
+#: ../app/models/colocation.rb:91 ../app/models/location.rb:107 ../app/models/order.rb:117 ../app/models/ticket.rb:101
+msgid "Unable to update constraint: %{msg}"
+msgstr "Impossible de mettre à jour la contrainte : %{msg}"
+
+#: ../app/models/group.rb:45
+msgid "No group children specified"
+msgstr "Aucun enfant du groupe n'est spécifié."
+
+#: ../app/models/group.rb:80
+msgid "Unable to create group: %{msg}"
+msgstr "Impossible de créer le groupe : %{msg}"
+
+#: ../app/models/group.rb:90
+msgid "Group ID \"%{id}\" does not exist"
+msgstr "L'ID du groupe \"%{id}\" n'existe pas."
+
+#: ../app/models/location.rb:43
+msgid "Constraint is too complex - it contains nested rules"
+msgstr "La contrainte est trop complexe car elle contient des règles imbriquées."
+
+#: ../app/models/location.rb:45
+msgid "No rules specified"
+msgstr "Aucune règle n'est spécifiée."
+
+#: ../app/models/location.rb:48
+msgid "No resource specified"
+msgstr "Aucune ressource n'est spécifiée."
+
+#: ../app/models/location.rb:57
+msgid "Invalid score \"%{score}\""
+msgstr "Score \"%{score}\" non valide"
+
+#: ../app/models/location.rb:65
+msgid "No expressions specified"
+msgstr "Aucune expression n'est spécifiée."
+
+#: ../app/models/location.rb:69
+msgid "Attribute contains both single and double quotes"
+msgstr "L'attribut contient des guillemets simples et doubles."
+
+#: ../app/models/location.rb:70
+msgid "Value contains both single and double quotes"
+msgstr "La valeur contient des guillemets simples et doubles."
+
+#: ../app/models/master.rb:45
+msgid "No Master/Slave child specified"
+msgstr "Aucun enfant maître/esclave n'est spécifié."
+
+#: ../app/models/master.rb:77
+msgid "Unable to create master/slave: %{msg}"
+msgstr "Impossible de créer un maître/esclave : %{msg}"
+
+#: ../app/models/master.rb:87
+msgid "Master/Slave ID \"%{id}\" does not exist"
+msgstr "L'ID du maître/de l'esclave \"%{id}\" n'existe pas."
+
+#: ../app/models/primitive.rb:61 ../app/models/template.rb:62
+msgid "Can't set parameter %{p}, because the value contains both single and double quotes"
+msgstr "Impossible de définir le paramètre %{p} car la valeur contient des guillemets simples et doubles."
+
+#: ../app/models/primitive.rb:69 ../app/models/template.rb:70
+msgid "Can't set op %{o} attribute {%a}, because the value contains both single and double quotes"
+msgstr "Impossible de définir l'attribut {%a} de l'opération %{o} car la valeur contient des guillemets simples et doubles."
+
+#: ../app/models/primitive.rb:130 ../app/models/template.rb:130
+msgid "Unable to create resource: %{msg}"
+msgstr "Impossible de créer la ressource : %{msg}"
+
+#: ../app/models/primitive.rb:140 ../app/models/template.rb:140
+msgid "Resource ID \"%{id}\" does not exist"
+msgstr "L'ID de la ressource \"%{id}\" n'existe pas."
+
+#: ../app/models/role.rb:42
+msgid "Role must have rules"
+msgstr ""
+
+#: ../app/models/role.rb:62
+#, fuzzy
+msgid "Unable to create role: %{msg}"
+msgstr "Impossible de créer le clone : %{msg}"
+
+#: ../app/models/role.rb:70
+#, fuzzy
+msgid "Role ID \"%{id}\" does not exist"
+msgstr "L'ID du clone \"%{id}\" n'existe pas."
+
+#: ../app/models/role.rb:75
+#, fuzzy
+msgid "Unable to update role: %{msg}"
+msgstr "Impossible de créer le clone : %{msg}"
+
+#: ../app/models/ticket.rb:58
+msgid "Invalid Ticket ID"
+msgstr "ID de ticket non valide"
+
+#: ../app/models/ticket.rb:61
+msgid "No resources specified"
+msgstr "Aucune ressource n'est spécifiée."
+
+#: ../app/models/user.rb:53
+msgid "User must have either rules or roles"
+msgstr ""
+
+#: ../app/models/user.rb:54
+msgid "User can't have both rules and roles"
+msgstr ""
+
+#: ../app/models/user.rb:66
+#, fuzzy
+msgid "Unable to create user: %{msg}"
+msgstr "Impossible de créer le clone : %{msg}"
+
+#: ../app/models/user.rb:74
+#, fuzzy
+msgid "User ID \"%{id}\" does not exist"
+msgstr "L'ID du clone \"%{id}\" n'existe pas."
+
+#: ../app/models/user.rb:79
+#, fuzzy
+msgid "Unable to update user: %{msg}"
+msgstr "Impossible de mettre à jour la contrainte : %{msg}"
+
+#: ../app/views/acls/index.html.erb:46 ../app/views/crm_config/show.html.erb:11 ../app/views/primitives/_form.html.erb:268
+msgid "Edit"
+msgstr "Modifier"
+
+#: ../app/views/acls/index.html.erb:57
+#, fuzzy
+msgid "Delete"
+msgstr "Rétrograder"
+
+#: ../app/views/acls/index.html.erb:99
+#, fuzzy
+msgid "New Role"
+msgstr "Nouveau clone"
+
+#: ../app/views/acls/index.html.erb:100 ../app/views/locations/_form.html.erb:44
+msgid "Role"
+msgstr "Rôle"
+
+#: ../app/views/acls/index.html.erb:105
+msgid "New User"
+msgstr ""
+
+#: ../app/views/acls/index.html.erb:106
+msgid "User"
+msgstr ""
+
+#: ../app/views/acls/index.html.erb:127
+msgid "To enable ACLs, set 'enable-acl' in the CRM Configuration"
+msgstr ""
+
+#: ../app/views/acls/index.html.erb:132
+#, fuzzy
+msgid "(No roles defined)"
+msgstr "(Aucun clone n'est défini.)"
+
+#: ../app/views/acls/index.html.erb:144
+#, fuzzy
+msgid "(No users defined)"
+msgstr "(Aucun clone n'est défini.)"
+
+#: ../app/views/clones/_form.html.erb:40 ../app/views/groups/_form.html.erb:75 ../app/views/masters/_form.html.erb:40 ../app/views/primitives/_form.html.erb:284
+msgid "Meta Attributes"
+msgstr "Attributs méta"
+
+#: ../app/views/clones/_form.html.erb:46 ../app/views/colocations/_form.html.erb:60 ../app/views/crm_config/edit.html.erb:24 ../app/views/crm_config/edit.html.erb:46 ../app/views/crm_config/edit.html.erb:68 ../app/views/groups/_form.html.erb:81 ../app/views/locations/_form.html.erb:47 ../app/views/masters/_form.html.erb:46 ../app/views/orders/_form.html.erb:60 ../app/views/primitives/_form.html.erb:247 ../app/views/primitives/_form.html.erb:267 ../app/views/primitives/_form.html.erb:290 ../app/views/roles/_form.html.erb:38 ../app/views/tickets/_form.html.erb:48 ../app/views/users/_form.html.erb:48
+msgid "Add"
+msgstr "Ajouter"
+
+#: ../app/views/clones/_form.html.erb:47 ../app/views/colocations/_form.html.erb:61 ../app/views/crm_config/edit.html.erb:25 ../app/views/crm_config/edit.html.erb:47 ../app/views/crm_config/edit.html.erb:69 ../app/views/dashboard/index.html.erb:39 ../app/views/groups/_form.html.erb:82 ../app/views/locations/_form.html.erb:48 ../app/views/masters/_form.html.erb:47 ../app/views/orders/_form.html.erb:61 ../app/views/primitives/_form.html.erb:248 ../app/views/primitives/_form.html.erb:269 ../app/views/primitives/_form.html.erb:291 ../app/views/roles/_form.html.erb:39 ../app/views/tickets/_form.html.erb:49 ../app/views/users/_form.html.erb:49
+msgid "Remove"
+msgstr "Supprimer"
+
+#: ../app/views/clones/_form.html.erb:48 ../app/views/crm_config/edit.html.erb:26 ../app/views/crm_config/edit.html.erb:48 ../app/views/crm_config/edit.html.erb:70 ../app/views/groups/_form.html.erb:83 ../app/views/masters/_form.html.erb:48 ../app/views/primitives/_form.html.erb:249 ../app/views/primitives/_form.html.erb:270 ../app/views/primitives/_form.html.erb:292
+msgid "You must enter a value"
+msgstr "Vous devez entrer une valeur."
+
+#: ../app/views/clones/_form.html.erb:70
+msgid "Clone ID"
+msgstr "ID du clone"
+
+#: ../app/views/clones/_form.html.erb:71 ../app/views/masters/_form.html.erb:71
+msgid "Child Resource"
+msgstr "Ressources enfant"
+
+#: ../app/views/clones/_form.html.erb:88 ../app/views/colocations/_form.html.erb:110 ../app/views/crm_config/edit.html.erb:114 ../app/views/groups/_form.html.erb:143 ../app/views/locations/_form.html.erb:94 ../app/views/masters/_form.html.erb:88 ../app/views/orders/_form.html.erb:116 ../app/views/primitives/_form.html.erb:394 ../app/views/roles/_form.html.erb:83 ../app/views/tickets/_form.html.erb:98 ../app/views/users/_form.html.erb:112
+msgid "Revert Changes"
+msgstr "Annuler les modifications"
+
+#: ../app/views/clones/_form.html.erb:89 ../app/views/colocations/_form.html.erb:111 ../app/views/crm_config/show.html.erb:11 ../app/views/crm_config/update.html.erb:4 ../app/views/groups/_form.html.erb:144 ../app/views/locations/_form.html.erb:95 ../app/views/masters/_form.html.erb:89 ../app/views/orders/_form.html.erb:117 ../app/views/primitives/_form.html.erb:395 ../app/views/roles/_form.html.erb:84 ../app/views/tickets/_form.html.erb:99 ../app/views/users/_form.html.erb:113 ../app/views/wizard/broken.html.erb:4 ../app/views/wizard/start.html.erb:3
+msgid "Back"
+msgstr "Retour"
+
+#: ../app/views/clones/edit.html.erb:4 ../app/views/colocations/edit.html.erb:4 ../app/views/crm_config/edit.html.erb:113 ../app/views/groups/edit.html.erb:4 ../app/views/locations/edit.html.erb:4 ../app/views/masters/edit.html.erb:4 ../app/views/orders/edit.html.erb:4 ../app/views/primitives/edit.html.erb:4 ../app/views/roles/edit.html.erb:4 ../app/views/tickets/edit.html.erb:4 ../app/views/users/edit.html.erb:4
+msgid "Apply Changes"
+msgstr "Appliquer les modifications"
+
+#: ../app/views/colocations/_form.html.erb:62 ../app/views/orders/_form.html.erb:62
+msgid "Link set"
+msgstr "Lier l'ensemble"
+
+#: ../app/views/colocations/_form.html.erb:63 ../app/views/orders/_form.html.erb:63
+msgid "Break set"
+msgstr "Diviser l'ensemble"
+
+#: ../app/views/colocations/_form.html.erb:64 ../app/views/orders/_form.html.erb:64
+msgid "Swap resources"
+msgstr "Ressources d'échange"
+
+#: ../app/views/colocations/_form.html.erb:65 ../app/views/orders/_form.html.erb:65 ../app/views/tickets/_form.html.erb:50
+msgid "Add resource to constraint"
+msgstr "Ajouter une ressource à la contrainte"
+
+#: ../app/views/colocations/_form.html.erb:89 ../app/views/locations/_form.html.erb:75 ../app/views/orders/_form.html.erb:89 ../app/views/tickets/_form.html.erb:77
+msgid "Constraint ID"
+msgstr "ID de la contrainte"
+
+#: ../app/views/colocations/_form.html.erb:90 ../app/views/locations/_form.html.erb:42 ../app/views/orders/_form.html.erb:90
+msgid "Score"
+msgstr "Score"
+
+#: ../app/views/colocations/_form.html.erb:109 ../app/views/locations/_form.html.erb:93 ../app/views/orders/_form.html.erb:115 ../app/views/tickets/_form.html.erb:97
+msgid "Create Constraint"
+msgstr "Créer une contrainte"
+
+#: ../app/views/constraints/index.html.erb:47
+msgid "Edit Constraint"
+msgstr "Modifier la contrainte"
+
+#: ../app/views/constraints/index.html.erb:58
+msgid "Delete Constraint"
+msgstr "Supprimer la contrainte"
+
+#: ../app/views/constraints/index.html.erb:100 ../app/views/constraints/index.html.erb:106 ../app/views/constraints/index.html.erb:112 ../app/views/constraints/index.html.erb:119
+msgid "New Constraint"
+msgstr "Nouvelle contrainte"
+
+#: ../app/views/constraints/index.html.erb:101
+msgid "Location"
+msgstr "Localisation"
+
+#: ../app/views/constraints/index.html.erb:107
+msgid "Colocation"
+msgstr "Colocalisation"
+
+#: ../app/views/constraints/index.html.erb:113
+msgid "Order"
+msgstr "Ordre"
+
+#: ../app/views/constraints/index.html.erb:120
+msgid "Ticket"
+msgstr "Ticket"
+
+#: ../app/views/constraints/index.html.erb:141
+msgid "(No location constraints defined)"
+msgstr "(Aucune contrainte de localisation n'est définie.)"
+
+#: ../app/views/constraints/index.html.erb:153
 msgid "[Constraint is too complex to display]"
 msgstr "[La contrainte est trop complexe pour pouvoir être affichée.]"
 
-#: app/views/hb_reports/new.html.erb:74
+#: ../app/views/constraints/index.html.erb:171
+msgid "(No colocation constraints defined)"
+msgstr "(Aucune contrainte de colocalisation n'est définie.)"
+
+#: ../app/views/constraints/index.html.erb:185
+msgid "(No order constraints defined)"
+msgstr "(Aucune contrainte d'ordre n'est définie.)"
+
+#: ../app/views/constraints/index.html.erb:200
+msgid "(No ticket constraints defined)"
+msgstr "(Aucune contrainte de ticket n'est définie.)"
+
+#: ../app/views/crm_config/edit.html.erb:15 ../app/views/main/_gettext.js.erb:102
+msgid "CRM Configuration"
+msgstr "Configuration CRM"
+
+#: ../app/views/crm_config/edit.html.erb:37 ../app/views/main/_gettext.js.erb:105
+msgid "Resource Defaults"
+msgstr "Valeurs par défaut de ressource"
+
+#: ../app/views/crm_config/edit.html.erb:59 ../app/views/main/_gettext.js.erb:108
+msgid "Operation Defaults"
+msgstr "Valeurs par défaut d'opération"
+
+#: ../app/views/crm_config/show.html.erb:4
+msgid "No cluster properties set in %{group}"
+msgstr "Aucune propriété de grappe n'est définie dans %{group}."
+
+#: ../app/views/dashboard/index.html.erb:49 ../app/views/sessions/new.html.erb:9
+msgid "Username:"
+msgstr "Nom d'utilisateur :"
+
+#: ../app/views/dashboard/index.html.erb:53 ../app/views/sessions/new.html.erb:13
+msgid "Password:"
+msgstr "Mot de passe :"
+
+#: ../app/views/dashboard/index.html.erb:64
+msgid "Cluster has errors - click for details"
+msgstr "La grappe contient des erreurs. Cliquez pour en savoir plus."
+
+#: ../app/views/dashboard/index.html.erb:145 ../app/views/dashboard/index.html.erb:435
+msgid "Timeout: Please try again"
+msgstr "Timeout : veuillez réessayer."
+
+#: ../app/views/dashboard/index.html.erb:223
+msgid "Permission denied. Please log in to %{node}"
+msgstr "Autorisation refusée. Loguez-vous à %{node}."
+
+#: ../app/views/dashboard/index.html.erb:288
+msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
+msgstr "Impossible de contacter Hawk sur %{node}. Nouvelle tentative toutes les 5 secondes."
+
+#: ../app/views/dashboard/index.html.erb:348
+msgid "Cluster Name:"
+msgstr "Nom de la grappe :"
+
+#: ../app/views/dashboard/index.html.erb:349
+msgid "Host Name:"
+msgstr "Nom d'hôte :"
+
+#: ../app/views/dashboard/index.html.erb:350
+msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
+msgstr "(Spécifiez un nom d'hôte dans la grappe. Les autres noeuds seront trouvés automatiquement.)"
+
+#: ../app/views/dashboard/index.html.erb:355
+msgid "Add Cluster"
+msgstr "Ajouter une grappe"
+
+#: ../app/views/dashboard/index.html.erb:357 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
+msgid "OK"
+msgstr "OK"
+
+#: ../app/views/dashboard/index.html.erb:372
+msgid "A cluster with that name already exists"
+msgstr "Une grappe portant ce nom existe déjà."
+
+#: ../app/views/dashboard/index.html.erb:384
+msgid "The host %{h} is already present in cluster %{c}"
+msgstr "L'hôte %{h} est déjà présent dans la grappe %{c}."
+
+#: ../app/views/dashboard/index.html.erb:417 ../app/views/dashboard/index.html.erb:429
+msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
+msgstr "Impossible de se connecter à %{host}. Essayez d'ouvrir %{url} dans votre navigateur Web pour vous assurer que Hawk est accessible."
+
+#: ../app/views/dashboard/index.html.erb:442 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
+msgid "Cancel"
+msgstr "Annuler"
+
+#: ../app/views/explorer/_pe_list.html.erb:6
+msgid "No transitions found for the specified time period."
+msgstr "Aucune transition n'a été trouvée pour la période spécifiée."
+
+#: ../app/views/explorer/_pe_list.html.erb:11
+msgid "Time"
+msgstr "Durée"
+
+#: ../app/views/explorer/_pe_list.html.erb:12
+msgid "PE Input"
+msgstr "Entrée PE"
+
+#: ../app/views/explorer/_pe_list.html.erb:13 ../app/views/locations/_form.html.erb:43
+msgid "Node"
+msgstr "Nœud"
+
+#: ../app/views/explorer/_pe_list.html.erb:30 ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:269
+msgid "Details"
+msgstr "Détails"
+
+#: ../app/views/explorer/_pe_list.html.erb:34
+msgid "(full log)"
+msgstr "(journal complet)"
+
+#: ../app/views/explorer/_pe_list.html.erb:38 ../app/views/main/_gettext.js.erb:278
+msgid "Graph"
+msgstr "Graphique"
+
+#: ../app/views/explorer/_pe_list.html.erb:47
+msgid "Diff"
+msgstr "Diff"
+
+#: ../app/views/explorer/index.html.erb:37
+msgid "Delete this history archive?"
+msgstr "Supprimer cette archive d'historique ?"
+
+#: ../app/views/explorer/index.html.erb:148 ../app/views/explorer/index.html.erb:163 ../app/views/hb_reports/new.html.erb:58
+msgid "Start Time:"
+msgstr "Heure de début :"
+
+#: ../app/views/explorer/index.html.erb:150 ../app/views/explorer/index.html.erb:165 ../app/views/hb_reports/new.html.erb:63
+msgid "End Time:"
+msgstr "Heure de fin :"
+
+#: ../app/views/explorer/index.html.erb:167
+msgid "Display"
+msgstr "Affichage"
+
+#: ../app/views/explorer/index.html.erb:178
+msgid "Upload hb_report tarball"
+msgstr ""
+
+#: ../app/views/explorer/index.html.erb:180
+msgid "Explore"
+msgstr ""
+
+#: ../app/views/explorer/permission_denied.html.erb:2 ../app/views/hb_reports/permission_denied.html.erb:2 ../app/views/nodes/permission_denied.html.erb:2 ../app/views/resources/permission_denied.html.erb:2
+msgid "Error: Permission denied for user '%s'."
+msgstr "Erreur : autorisation refusée pour l'utilisateur %s."
+
+#: ../app/views/groups/_form.html.erb:105
+msgid "Group ID"
+msgstr "ID du groupe"
+
+#: ../app/views/groups/_form.html.erb:115
+msgid "Group Children"
+msgstr "Enfants du groupe"
+
+#: ../app/views/groups/_form.html.erb:117
+msgid "Available Primitives"
+msgstr "Primitives disponibles"
+
+#: ../app/views/hb_reports/create.js.erb:3
+msgid "Start Time not specified"
+msgstr "L'heure de début n'est pas spécifiée."
+
+#: ../app/views/hb_reports/new.html.erb:60
+msgid "Generate"
+msgstr "Générer"
+
+#: ../app/views/hb_reports/new.html.erb:74
 msgid "hb_report generation in progress..."
 msgstr "Génération du rapport hb_report en cours..."
+
+#: ../app/views/hb_reports/new.html.erb:80
+msgid "Download hb_report"
+msgstr "Télécharger le rapport hb_report"
+
+#: ../app/views/layouts/main.html.erb:34
+msgid "Simulator"
+msgstr "Simulateur"
+
+#: ../app/views/layouts/main.html.erb:65 ../app/views/layouts/main.html.erb:78
+msgid "Cluster Diagram"
+msgstr "Diagramme de la grappe"
+
+#: ../app/views/layouts/main.html.erb:86
+msgid "Generate hb_report..."
+msgstr "Générer le rapport hb_report..."
+
+#: ../app/views/layouts/main.html.erb:97
+msgid "Generate hb_report"
+msgstr "Générer le rapport hb_report"
+
+#: ../app/views/layouts/main.html.erb:116
+msgid "Tools"
+msgstr "Outils"
+
+#: ../app/views/layouts/main.html.erb:120 ../app/views/layouts/main.html.erb:128
+msgid "Status"
+msgstr "État"
+
+#: ../app/views/layouts/main.html.erb:122
+msgid "User: %{user}"
+msgstr "Utilisateur : %{user}"
+
+#: ../app/views/layouts/main.html.erb:123
+msgid "Log Out"
+msgstr "Se déconnecter"
+
+#: ../app/views/layouts/main.html.erb:128
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#: ../app/views/layouts/main.html.erb:149
+msgid "Setup Wizard"
+msgstr "Assistant de configuration"
+
+#: ../app/views/layouts/main.html.erb:152
+msgid "Cluster Properties"
+msgstr "Propriétés de la grappe"
+
+#: ../app/views/layouts/main.html.erb:188
+msgid "UI Host: %s"
+msgstr "Hôte UI : %s"
+
+#: ../app/views/layouts/main.html.erb:189
+msgid "Copyright &copy; 2009-2013 SUSE, LLC"
+msgstr "Copyright &copy ; 2009-2013 SUSE, LLC"
+
+#: ../app/views/locations/_form.html.erb:45
+msgid "Boolean Op"
+msgstr "Opération booléenne"
+
+#: ../app/views/locations/_form.html.erb:46
+msgid "Expression"
+msgstr "Expression"
+
+#: ../app/views/locations/_form.html.erb:49
+msgid "Add Rule"
+msgstr "Ajouter une règle"
+
+#: ../app/views/locations/_form.html.erb:50
+msgid "Remove Rule"
+msgstr "Supprimer la règle"
+
+#: ../app/views/locations/_form.html.erb:51
+msgid "Show Rule Editor"
+msgstr "Afficher l'éditeur de règles"
+
+#: ../app/views/locations/_form.html.erb:76
+msgid "Resource"
+msgstr "Ressource"
+
+#: ../app/views/main/_gettext.js.erb:10 ../app/views/shared/_confirm_revert.html.erb:8
+msgid "Yes"
+msgstr "Oui"
+
+#: ../app/views/main/_gettext.js.erb:13 ../app/views/shared/_confirm_revert.html.erb:9
+msgid "No"
+msgstr "Non"
+
+#: ../app/views/main/_gettext.js.erb:16
+msgid "Close"
+msgstr "Fermer"
+
+#: ../app/views/main/_gettext.js.erb:19
+msgid "Reset"
+msgstr "Réinitialiser"
+
+#: ../app/views/main/_gettext.js.erb:23
+msgid "This will bring node %s online if it is currently on standby.  Do you want to continue?"
+msgstr "Cette action entraîne la mise en ligne du nœud %s s'il est actuellement en veille. Voulez-vous continuer ?"
+
+#: ../app/views/main/_gettext.js.erb:26
+msgid "This will put node %s on standby.  All resources will be stopped and/or moved to another node.  Do you want to continue?"
+msgstr "Cette action entraîne la mise en veille du nœud %s. Toutes les ressources seront interrompues et/ou déplacées vers un autre nœud. Voulez-vous continuer ?"
+
+#: ../app/views/main/_gettext.js.erb:29
+msgid "This will put node %s in maintenance mode.  All resources on this node will become unmanaged.  Do you want to continue?"
+msgstr "Cette action entraîne le passage en mode de maintenance du noeud %s. Toutes les ressources sur ce noeud deviendront non gérées. Voulez-vous continuer ?"
+
+#: ../app/views/main/_gettext.js.erb:32
+msgid "This will bring node %s out of maintenance mode.  Do you want to continue?"
+msgstr "Cette action entraîne la sortie du noeud %s du mode de maintenance. Voulez-vous continuer ?"
+
+#: ../app/views/main/_gettext.js.erb:35
+msgid "This will attempt to immediately fence node %s.  Do you want to continue?"
+msgstr "Cette action tente de délimiter immédiatement le nœud %s. Voulez-vous continuer ?"
+
+#: ../app/views/main/_gettext.js.erb:39
+msgid "This will start the resource %s.  Do you want to continue?"
+msgstr "Cette action entraîne le démarrage de la ressource %s. Voulez-vous continuer ?"
+
+#: ../app/views/main/_gettext.js.erb:42
+msgid "This will stop the resource %s.  Do you want to continue?"
+msgstr "Cette action entraîne l'arrêt de la ressource %s. Voulez-vous continuer ?"
+
+#: ../app/views/main/_gettext.js.erb:45
+msgid "Move resource %s"
+msgstr "Déplacer la ressource %s"
+
+#: ../app/views/main/_gettext.js.erb:48
+msgid "To node %s"
+msgstr "Vers le nœud %s"
+
+#: ../app/views/main/_gettext.js.erb:51
+msgid "Away from current node"
+msgstr "Loin du nœud actuel"
+
+#: ../app/views/main/_gettext.js.erb:54
+msgid "This will clear any relocation constraints set on the resource %s.  Do you want to continue?"
+msgstr "Cette action entraîne la suppression des contraintes de relocalisation définies sur la ressource %s. Voulez-vous continuer ?"
+
+#: ../app/views/main/_gettext.js.erb:57
+msgid "This will promote the resource %s.  Do you want to continue?"
+msgstr "Cette action entraîne la promotion de la ressource %s. Voulez-vous continuer ?"
+
+#: ../app/views/main/_gettext.js.erb:60
+msgid "This will demote the resource %s.  Do you want to continue?"
+msgstr "Cette action entraîne la rétrogradation de la ressource %s. Voulez-vous continuer ?"
+
+#: ../app/views/main/_gettext.js.erb:63
+msgid "This will clean up the resource %s.  Do you want to continue?"
+msgstr "Cette action entraîne le nettoyage de la ressource %s. Voulez-vous continuer ?"
+
+#: ../app/views/main/_gettext.js.erb:67
+msgid "Error"
+msgstr "Erreur"
+
+#: ../app/views/main/_gettext.js.erb:70
+msgid "Unexpected server error: %s"
+msgstr "Erreur du serveur inattendue : %s"
+
+#: ../app/views/main/_gettext.js.erb:73
+msgid "Connection to server failed (server down or network error - will retry every 15 seconds)."
+msgstr "Échec de la connexion au serveur (serveur arrêté ou erreur réseau, nouvelle tentative toutes les 15 secondes)."
+
+#: ../app/views/main/_gettext.js.erb:76
+msgid "Connection to server timed out - will retry every 15 seconds."
+msgstr "Expiration du délai de connexion au serveur, nouvelle tentative toutes les 15 secondes."
+
+#: ../app/views/main/_gettext.js.erb:79
+msgid "Connection to server aborted - will retry every 15 seconds."
+msgstr "Connexion au serveur abandonnée, nouvelle tentative toutes les 15 secondes."
+
+#: ../app/views/main/_gettext.js.erb:82
+msgid "Permission denied"
+msgstr "Autorisation refusée"
+
+#: ../app/views/main/_gettext.js.erb:85
+msgid "%{op} failed on %{node} (rc=%{rc})"
+msgstr "Échec de %{op} sur %{node} (rc=%{rc})"
+
+#: ../app/views/main/_gettext.js.erb:89
+msgid "DC: %s"
+msgstr "DC : %s"
+
+#: ../app/views/main/_gettext.js.erb:92
+msgid "Version: %s"
+msgstr "Version : %s"
+
+#: ../app/views/main/_gettext.js.erb:95
+msgid "Stack: %s"
+msgstr "Pile : %s"
+
+#: ../app/views/main/_gettext.js.erb:111
+msgid "Inactive Resources"
+msgstr "Ressources inactives"
+
+#: ../app/views/main/_gettext.js.erb:114
+msgid "Summary"
+msgstr "Résumé"
+
+#: ../app/views/main/_gettext.js.erb:120
+msgid "STONITH Enabled"
+msgstr "STONITH activé"
+
+#: ../app/views/main/_gettext.js.erb:123
+msgid "No Quorum Policy"
+msgstr "Pas de stratégie de quorum"
+
+#: ../app/views/main/_gettext.js.erb:126
+msgid "Symmetric Cluster"
+msgstr "Grappe symétrique"
+
+#: ../app/views/main/_gettext.js.erb:129
+msgid "Resource Stickiness"
+msgstr "Attractivité des ressources"
+
+#: ../app/views/main/_gettext.js.erb:132
+msgid "Maintenance Mode"
+msgstr "Mode de maintenance"
+
+#: ../app/views/main/_gettext.js.erb:135
+msgid "Unmanaged"
+msgstr "Non géré"
+
+#: ../app/views/main/_gettext.js.erb:138
+msgid "Tickets"
+msgstr "Tickets"
+
+#: ../app/views/main/_gettext.js.erb:142
+msgid "Granted [standby]"
+msgstr "Accordé [veille]"
+
+#: ../app/views/main/_gettext.js.erb:143
+msgid "Granted"
+msgstr "Accordé"
+
+#: ../app/views/main/_gettext.js.erb:147
+msgid "Revoked [standby]"
+msgstr "Révoqué [veille]"
+
+#: ../app/views/main/_gettext.js.erb:148
+msgid "Revoked"
+msgstr "Révoqué"
+
+#: ../app/views/main/_gettext.js.erb:151
+msgid "Last granted: %s"
+msgstr "Accordé pour la dernière fois : %s"
+
+#: ../app/views/main/_gettext.js.erb:155
+msgid "Summary View"
+msgstr "Vue Résumé"
+
+#: ../app/views/main/_gettext.js.erb:158
+msgid "Tree View"
+msgstr "Vue Arborescence"
+
+#: ../app/views/main/_gettext.js.erb:161
+msgid "Table View"
+msgstr "Vue Tableau"
+
+#: ../app/views/main/_gettext.js.erb:165
+msgid "%{node}: %{state}"
+msgstr "%{node} : %{state}"
+
+#: ../app/views/main/_gettext.js.erb:168 ../app/views/main/_menus.html.erb:7
+msgid "Online"
+msgstr "En ligne"
+
+#: ../app/views/main/_gettext.js.erb:171
+msgid "Offline"
+msgstr "Hors ligne"
+
+#: ../app/views/main/_gettext.js.erb:174 ../app/views/main/_gettext.js.erb:202
+msgid "Pending"
+msgstr "En attente"
+
+#: ../app/views/main/_gettext.js.erb:177 ../app/views/main/_gettext.js.erb:323 ../app/views/main/_menus.html.erb:14
+msgid "Standby"
+msgstr "Veille"
+
+#: ../app/views/main/_gettext.js.erb:180
+msgid "Unclean"
+msgstr "Non propre"
+
+#: ../app/views/main/_gettext.js.erb:187
+msgid "Master"
+msgstr "Maître"
+
+#: ../app/views/main/_gettext.js.erb:188
+msgid "%{id}: Master: %{nodelist}"
+msgstr "%{id} : Maître : %{nodelist}"
+
+#: ../app/views/main/_gettext.js.erb:189
+msgid "%{id}: Master"
+msgstr "%{id} : maître"
+
+#: ../app/views/main/_gettext.js.erb:192
+msgid "Slave"
+msgstr "Esclave"
+
+#: ../app/views/main/_gettext.js.erb:193
+msgid "%{id}: Slave: %{nodelist}"
+msgstr "%{id} : Esclave : %{nodelist}"
+
+#: ../app/views/main/_gettext.js.erb:194
+msgid "%{id}: Slave"
+msgstr "%{id} : esclave"
+
+#: ../app/views/main/_gettext.js.erb:197
+msgid "Started"
+msgstr "Commencé"
+
+#: ../app/views/main/_gettext.js.erb:198
+msgid "%{id}: Started: %{nodelist}"
+msgstr "%{id} : démarré : %{nodelist}"
+
+#: ../app/views/main/_gettext.js.erb:199
+msgid "%{id}: Started"
+msgstr "%{id} : commencé"
+
+#: ../app/views/main/_gettext.js.erb:203
+msgid "%{id}: Pending: %{nodelist}"
+msgstr "%{id} : en attente : %{nodelist}"
+
+#: ../app/views/main/_gettext.js.erb:204
+msgid "%{id}: Pending"
+msgstr "%{id} : en attente"
+
+#: ../app/views/main/_gettext.js.erb:208
+msgid "%{id}: Starting: %{node}"
+msgstr "%{id} : démarrage : %{node}"
+
+#: ../app/views/main/_gettext.js.erb:209
+msgid "%{id}: Starting"
+msgstr "%{id} : démarrage"
+
+#: ../app/views/main/_gettext.js.erb:212
+msgid "%{id}: Stopping: %{node}"
+msgstr "%{id} : arrêt : %{node}"
+
+#: ../app/views/main/_gettext.js.erb:213
+msgid "%{id}: Stopping"
+msgstr "%{id} : arrêt"
+
+#: ../app/views/main/_gettext.js.erb:216
+msgid "%{id}: Promoting: %{node}"
+msgstr "%{id} : promotion : %{node}"
+
+#: ../app/views/main/_gettext.js.erb:217
+msgid "%{id}: Promoting"
+msgstr "%{id} : promotion"
+
+#: ../app/views/main/_gettext.js.erb:220
+msgid "%{id}: Demoting: %{node}"
+msgstr "%{id} : rétrogradation : %{node}"
+
+#: ../app/views/main/_gettext.js.erb:221
+msgid "%{id}: Demoting"
+msgstr "%{id} : rétrogradation"
+
+#: ../app/views/main/_gettext.js.erb:224
+msgid "%{id}: Moving: %{node}"
+msgstr "%{id} : déplacement : %{node}"
+
+#: ../app/views/main/_gettext.js.erb:225
+msgid "%{id}: Moving"
+msgstr "%{id} : déplacement"
+
+#: ../app/views/main/_gettext.js.erb:228
+msgid "Stopped"
+msgstr "Interrompu"
+
+#: ../app/views/main/_gettext.js.erb:229
+msgid "%{id}: Stopped"
+msgstr "%{id} : arrêté"
+
+#: ../app/views/main/_gettext.js.erb:232
+msgid "Group: %{id}"
+msgstr "Groupe : %{id}"
+
+#: ../app/views/main/_gettext.js.erb:235
+msgid "Master/Slave Set: %{id}"
+msgstr "Ensemble maître/esclave : %{id}"
+
+#: ../app/views/main/_gettext.js.erb:238
+msgid "Clone Set: %{id}"
+msgstr "Ensemble de clones : %{id}"
+
+#: ../app/views/main/_gettext.js.erb:241
+msgid "Parent: %{id}..."
+msgstr "Parent : %{id}..."
+
+#: ../app/views/main/_gettext.js.erb:245
+msgid "Simulator (initial state)"
+msgstr "Simulateur (état initial)"
+
+#: ../app/views/main/_gettext.js.erb:248
+msgid "Simulator (busy...)"
+msgstr "Simulateur (occupé...)"
+
+#: ../app/views/main/_gettext.js.erb:251
+msgid "Simulator (final state)"
+msgstr "Simulateur (état final)"
+
+#: ../app/views/main/_gettext.js.erb:254
+msgid "Injected State:"
+msgstr "État injecté :"
+
+#: ../app/views/main/_gettext.js.erb:257
+msgid "+ Node"
+msgstr "+ nœud"
+
+#: ../app/views/main/_gettext.js.erb:260
+msgid "+ Op"
+msgstr "+ opération"
+
+#: ../app/views/main/_gettext.js.erb:263
+msgid "+ Ticket"
+msgstr "+ Ticket"
+
+#: ../app/views/main/_gettext.js.erb:266
+msgid "Run >"
+msgstr "Exécuter >"
+
+#: ../app/views/main/_gettext.js.erb:272
+msgid "CIB (in)"
+msgstr "CIB (entrée)"
+
+#: ../app/views/main/_gettext.js.erb:275
+msgid "CIB (out)"
+msgstr "CIB (sortie)"
+
+#: ../app/views/main/_gettext.js.erb:281
+msgid "Empty Graph"
+msgstr "Vider le graphique"
+
+#: ../app/views/main/_gettext.js.erb:284
+msgid "Inject Node State"
+msgstr "Injecter l'état du nœud"
+
+#: ../app/views/main/_gettext.js.erb:287
+msgid "Node:"
+msgstr "Nœud :"
+
+#: ../app/views/main/_gettext.js.erb:290
+msgid "State:"
+msgstr "État :"
+
+#: ../app/views/main/_gettext.js.erb:293
+msgid "Inject Operation"
+msgstr "Injecter l'opération"
+
+#: ../app/views/main/_gettext.js.erb:296
+msgid "Operation:"
+msgstr "Opération :"
+
+#: ../app/views/main/_gettext.js.erb:299
+msgid "Interval:"
+msgstr "Intervalle :"
+
+#: ../app/views/main/_gettext.js.erb:302
+msgid "Resource:"
+msgstr "Ressource :"
+
+#: ../app/views/main/_gettext.js.erb:305
+msgid "Result:"
+msgstr "Résultat :"
+
+#: ../app/views/main/_gettext.js.erb:308
+msgid "Inject Ticket"
+msgstr "Injecter le ticket"
+
+#: ../app/views/main/_gettext.js.erb:311
+msgid "Ticket:"
+msgstr "Ticket :"
+
+#: ../app/views/main/_gettext.js.erb:314
+msgid "Action:"
+msgstr "Action :"
+
+#: ../app/views/main/_gettext.js.erb:317
+msgid "Grant"
+msgstr "Accorder"
+
+#: ../app/views/main/_gettext.js.erb:320
+msgid "Revoke"
+msgstr "Révoquer"
+
+#: ../app/views/main/_gettext.js.erb:326
+msgid "Activate"
+msgstr "Activer"
+
+#: ../app/views/main/_gettext.js.erb:329
+msgid "Success"
+msgstr "Succès"
+
+#: ../app/views/main/_gettext.js.erb:332
+msgid "Generic Error"
+msgstr "Erreur générique"
+
+#: ../app/views/main/_gettext.js.erb:335
+msgid "Wrong Argument(s)"
+msgstr "Argument(s) incorrect(s)"
+
+#: ../app/views/main/_gettext.js.erb:338
+msgid "Not Implemented"
+msgstr "Non implémenté"
+
+#: ../app/views/main/_gettext.js.erb:341
+msgid "Permission Denied"
+msgstr "Autorisation refusée"
+
+#: ../app/views/main/_gettext.js.erb:344
+msgid "Not Installed"
+msgstr "Non installé"
+
+#: ../app/views/main/_gettext.js.erb:347
+msgid "Not Configured"
+msgstr "Non configuré"
+
+#: ../app/views/main/_gettext.js.erb:350
+msgid "Not Running"
+msgstr "Non exécuté"
+
+#: ../app/views/main/_gettext.js.erb:353
+msgid "Running Master"
+msgstr "Maître en cours d'exécution"
+
+#: ../app/views/main/_gettext.js.erb:356
+msgid "Failed Master"
+msgstr "Échec du maître"
+
+#: ../app/views/main/_menus.html.erb:21
+msgid "Maintenance"
+msgstr "Maintenance"
+
+#: ../app/views/main/_menus.html.erb:28
+msgid "Ready"
+msgstr "Prêt"
+
+#: ../app/views/main/_menus.html.erb:35
+msgid "Fence Node"
+msgstr "Noeud délimiteur"
+
+#: ../app/views/main/_menus.html.erb:45 ../app/views/main/_menus.html.erb:159
+msgid "View Details..."
+msgstr "Afficher les détails..."
+
+#: ../app/views/main/_menus.html.erb:65 ../app/views/main/_menus.html.erb:181
+msgid "View Recent Events..."
+msgstr "Afficher les derniers événements..."
+
+#: ../app/views/main/_menus.html.erb:86
+msgid "Start"
+msgstr "Démarrer"
+
+#: ../app/views/main/_menus.html.erb:93
+msgid "Stop"
+msgstr "Arrêter"
+
+#: ../app/views/main/_menus.html.erb:100
+msgid "Move..."
+msgstr "Déplacer..."
+
+#: ../app/views/main/_menus.html.erb:128
+msgid "Drop Relocation Rule"
+msgstr "Déplacer la règle de relocalisation"
+
+#: ../app/views/main/_menus.html.erb:135
+msgid "Promote"
+msgstr "Promouvoir"
+
+#: ../app/views/main/_menus.html.erb:142
+msgid "Demote"
+msgstr "Rétrograder"
+
+#: ../app/views/main/_menus.html.erb:149
+msgid "Clean Up"
+msgstr "Nettoyer"
+
+#: ../app/views/masters/_form.html.erb:70
+msgid "Master/Slave ID"
+msgstr "ID du maître/de l'esclave"
+
+#: ../app/views/nodes/events.html.erb:12 ../app/views/resources/events.html.erb:12
+msgid "Getting recent events (last hour)..."
+msgstr "Récupération des événements récents (dernière heure)..."
+
+#: ../app/views/nodes/events.html.erb:13 ../app/views/resources/events.html.erb:13
+msgid "Another \"crm history\" operation is in progress..."
+msgstr "Une autre opération \"crm history\" est en cours..."
+
+#: ../app/views/nodes/events.html.erb:20 ../app/views/resources/events.html.erb:20
+msgid "No events found in last hour."
+msgstr "Aucun événement n'a été trouvé pendant la dernière heure."
+
+#: ../app/views/nodes/show.html.erb:1
+msgid "Utilization"
+msgstr "Utilisation"
+
+#: ../app/views/nodes/show.html.erb:15
+msgid "No utilization defined"
+msgstr "Aucune utilisation n'est définie."
+
+#: ../app/views/nodes/show.html.erb:18 ../app/views/resources/show.html.erb:1
+msgid "Attributes"
+msgstr "Attributs"
+
+#: ../app/views/nodes/show.html.erb:29 ../app/views/resources/show.html.erb:12
+msgid "No attributes defined"
+msgstr "Aucun attribut n'est défini."
+
+#: ../app/views/orders/_form.html.erb:100
+msgid "Symmetrical"
+msgstr "Symétrique"
+
+#: ../app/views/primitives/_form.html.erb:261
+msgid "Operations"
+msgstr "Opérations"
+
+#: ../app/views/primitives/_form.html.erb:271
+msgid "There is already a monitor op with this interval."
+msgstr "Il existe déjà une opération de surveillance avec cet intervalle."
+
+#: ../app/views/primitives/_form.html.erb:329
+msgid "Resource ID"
+msgstr "ID de la ressource"
+
+#: ../app/views/primitives/_form.html.erb:329
+msgid "Template ID"
+msgstr "ID du modèle"
+
+#: ../app/views/primitives/_form.html.erb:330
+msgid "Class"
+msgstr "Classe"
+
+#: ../app/views/primitives/_form.html.erb:331
+msgid "Provider"
+msgstr "Fournisseur"
+
+#: ../app/views/primitives/_form.html.erb:332
+msgid "Type"
+msgstr "Type"
+
+#: ../app/views/primitives/_form.html.erb:367
+msgid "Use Template"
+msgstr "Utiliser le modèle"
+
+#: ../app/views/resources/index.html.erb:58
+msgid "Delete Resource"
+msgstr "Supprimer la ressource"
+
+#: ../app/views/resources/index.html.erb:100
+msgid "New Resource"
+msgstr "Nouvelle ressource"
+
+#: ../app/views/resources/index.html.erb:101
+msgid "Primitive"
+msgstr "Primitive"
+
+#: ../app/views/resources/index.html.erb:107
+msgid "New Template"
+msgstr "Nouveau modèle"
+
+#: ../app/views/resources/index.html.erb:108
+msgid "Template"
+msgstr "Modèle"
+
+#: ../app/views/resources/index.html.erb:114
+msgid "New Group"
+msgstr "Nouveau groupe"
+
+#: ../app/views/resources/index.html.erb:115
+msgid "Group"
+msgstr "Groupe"
+
+#: ../app/views/resources/index.html.erb:120
+msgid "New Clone"
+msgstr "Nouveau clone"
+
+#: ../app/views/resources/index.html.erb:121
+msgid "Clone"
+msgstr "Clone"
+
+#: ../app/views/resources/index.html.erb:126
+msgid "New Master/Slave"
+msgstr "Nouveau maître/Nouvel esclave"
+
+#: ../app/views/resources/index.html.erb:127
+msgid "Master/Slave"
+msgstr "Maître/esclave"
+
+#: ../app/views/resources/index.html.erb:148
+msgid "(No primitive resources defined)"
+msgstr "(Aucune ressource primitive n'est définie.)"
+
+#: ../app/views/resources/index.html.erb:161
+msgid "(No templates defined)"
+msgstr "(Aucun modèle n'est défini.)"
+
+#: ../app/views/resources/index.html.erb:174
+msgid "(No groups defined)"
+msgstr "(Aucun groupe n'est défini.)"
+
+#: ../app/views/resources/index.html.erb:186
+msgid "(No clones defined)"
+msgstr "(Aucun clone n'est défini.)"
+
+#: ../app/views/resources/index.html.erb:198
+msgid "(No master/slave resources defined)"
+msgstr "(Aucune ressource maître/esclave n'est définie.)"
+
+#: ../app/views/resources/show.html.erb:20
+msgid "Fail Count"
+msgstr "Nombre d'échecs"
+
+#: ../app/views/resources/show.html.erb:25
+msgid "Last Failure"
+msgstr "Dernier échec"
+
+#: ../app/views/roles/_form.html.erb:40 ../app/views/users/_form.html.erb:50
+msgid "Right"
+msgstr ""
+
+#: ../app/views/roles/_form.html.erb:41 ../app/views/users/_form.html.erb:51
+msgid "XPath"
+msgstr ""
+
+#: ../app/views/roles/_form.html.erb:42 ../app/views/users/_form.html.erb:52
+msgid "Tag"
+msgstr ""
+
+#: ../app/views/roles/_form.html.erb:43 ../app/views/users/_form.html.erb:53
+msgid "Ref"
+msgstr ""
+
+#: ../app/views/roles/_form.html.erb:44 ../app/views/users/_form.html.erb:54
+#, fuzzy
+msgid "Attribute"
+msgstr "Attributs"
+
+#: ../app/views/roles/_form.html.erb:67
+#, fuzzy
+msgid "Role ID"
+msgstr "ID du clone"
+
+#: ../app/views/sessions/new.html.erb:1
+msgid "Please ensure JavaScript is enabled"
+msgstr "Assurez-vous que Javascript est activé."
+
+#: ../app/views/shared/_confirm_revert.html.erb:4
+msgid "Any changes will be lost - do you wish to proceed?"
+msgstr "Toutes les modifications seront perdues. Voulez-vous continuer ?"
+
+#: ../app/views/tickets/_form.html.erb:78
+msgid "Loss Policy"
+msgstr "Stratégie relative aux pertes"
+
+#: ../app/views/users/_form.html.erb:81
+msgid "User ID"
+msgstr ""
+
+#: ../app/views/users/_form.html.erb:91
+#, fuzzy
+msgid "Roles"
+msgstr "Rôle"
+
+#: ../app/views/wizard/done.html.erb:1 ../app/views/wizard/run.html.erb:69
+msgid "%{workflow}: %{step}"
+msgstr "%{workflow} : %{step}"
+
+#: ../app/views/wizard/done.html.erb:5
+msgid "The configuration has been applied."
+msgstr "La configuration a été appliquée."
+
+#: ../app/views/wizard/run.html.erb:75
+msgid "The following configuration will be applied to the cluster:"
+msgstr "La configuration suivante sera appliquée à la grappe :"
+
+#: ../app/views/wizard/run.html.erb:100
+msgid "Error applying configuration:"
+msgstr "Erreur lors de l'application de la configuration :"
+
+#: ../app/views/wizard/run.html.erb:118
+msgid "< Back"
+msgstr "< Retour"
+
+#: ../app/views/wizard/run.html.erb:119 ../app/views/wizard/start.html.erb:45
+msgid "Next >"
+msgstr "Suivant >"
+
+#: ../app/views/wizard/start.html.erb:2
+msgid "No workflow descriptions found"
+msgstr "Aucune description de workflow n'a été trouvée."
+
+#: ../app/views/wizard/start.html.erb:24
+msgid "Choose Configuration"
+msgstr "Sélectionner la configuration"
+
+#: ../app/views/wizard/start.html.erb:28
+msgid "This wizard will guide you through the steps necessary to add one of the following configurations to the cluster."
+msgstr "Cet assistant vous guidera dans la procédure à appliquer pour ajouter l'une des configurations suivantes à la grappe."
+
+#: ../lib/invoker.rb:111
+msgid "The object/attribute does not exist (cibadmin %{cmd})"
+msgstr "L'objet/attribut n'existe pas (cibadmin %{cmd})."
+
+#: ../lib/invoker.rb:115
+msgid "Error invoking cibadmin %{cmd}: %{msg}"
+msgstr "Erreur lors de l'appel de cibadmin %{cmd} : %{msg}"
+
+#: ../lib/invoker.rb:133
+msgid "The object/attribute does not exist: %{msg}"
+msgstr "L'objet/attribut n'existe pas : %{msg}"
+
+#: ../lib/invoker.rb:137
+msgid "Error invoking cibadmin --replace: %{msg}"
+msgstr "Erreur lors de l'appel de cibadmin --replace : %{msg}"

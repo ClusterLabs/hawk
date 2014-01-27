@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk 0.3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-19 21:25+1000\n"
+"POT-Creation-Date: 2014-01-27 17:48+1100\n"
 "PO-Revision-Date: 2011-12-20 08:30+0100\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@opensuse.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -23,414 +23,1470 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n == 1 ? 0 : 1;\n"
 "X-Generator: Lokalize 1.2\n"
 
-#: app/controllers/sessions_controller.rb:92
-msgid "%s is not installed"
-msgstr "%s nincs telepítve"
-
-#: app/controllers/main_controller.rb:58
-msgid "%{cmd} failed (status: %{status})"
-msgstr "%{cmd} sikertelen (állapot: %{status})"
-
-#: app/models/cib.rb:242
-msgid "%{cmd} failed (status: %{status}, output was: %{output})"
-msgstr "%{cmd} sikertelen (status: %{status}, kimenet: %{output})"
-
-#: app/views/main/_gettext.js.erb:212
-#, fuzzy
-#| msgid "%{id}: Pending"
-msgid "%{id}: Demoting"
-msgstr "%{id}: Felfüggesztve"
-
-#: app/views/main/_gettext.js.erb:211
-#, fuzzy
-#| msgid "%{id}: Pending: %{nodelist}"
-msgid "%{id}: Demoting: %{node}"
-msgstr "%{id}: Felfüggesztve: %{nodelist}"
-
-#: app/views/main/_gettext.js.erb:180
-msgid "%{id}: Master"
-msgstr "%{id}: Elsődleges"
-
-#: app/views/main/_gettext.js.erb:179
-msgid "%{id}: Master: %{nodelist}"
-msgstr "%{id}: Elsődleges: %{csomópontlista}"
-
-#: app/views/main/_gettext.js.erb:216
-#, fuzzy
-#| msgid "%{id}: Pending"
-msgid "%{id}: Moving"
-msgstr "%{id}: Felfüggesztve"
-
-#: app/views/main/_gettext.js.erb:215
-#, fuzzy
-#| msgid "%{id}: Pending: %{nodelist}"
-msgid "%{id}: Moving: %{node}"
-msgstr "%{id}: Felfüggesztve: %{nodelist}"
-
-#: app/views/main/_gettext.js.erb:195
-msgid "%{id}: Pending"
-msgstr "%{id}: Felfüggesztve"
-
-#: app/views/main/_gettext.js.erb:194
-msgid "%{id}: Pending: %{nodelist}"
-msgstr "%{id}: Felfüggesztve: %{nodelist}"
-
-#: app/views/main/_gettext.js.erb:208
-#, fuzzy
-#| msgid "%{id}: Pending"
-msgid "%{id}: Promoting"
-msgstr "%{id}: Felfüggesztve"
-
-#: app/views/main/_gettext.js.erb:207
-#, fuzzy
-#| msgid "%{id}: Pending: %{nodelist}"
-msgid "%{id}: Promoting: %{node}"
-msgstr "%{id}: Felfüggesztve: %{nodelist}"
-
-#: app/views/main/_gettext.js.erb:185
-msgid "%{id}: Slave"
-msgstr "%{id}: Másodlagos"
-
-#: app/views/main/_gettext.js.erb:184
-msgid "%{id}: Slave: %{nodelist}"
-msgstr "%{id}: Másodlagos: %{csomópontlista}"
-
-#: app/views/main/_gettext.js.erb:190
-msgid "%{id}: Started"
-msgstr "%{id}: Elindítva"
-
-#: app/views/main/_gettext.js.erb:189
-msgid "%{id}: Started: %{nodelist}"
-msgstr "%{id}: Elindítva: %{nodelist}"
-
-#: app/views/main/_gettext.js.erb:200
-#, fuzzy
-#| msgid "%{id}: Started"
-msgid "%{id}: Starting"
-msgstr "%{id}: Elindítva"
-
-#: app/views/main/_gettext.js.erb:199
-#, fuzzy
-#| msgid "%{id}: Started: %{nodelist}"
-msgid "%{id}: Starting: %{node}"
-msgstr "%{id}: Elindítva: %{nodelist}"
-
-#: app/views/main/_gettext.js.erb:220
-msgid "%{id}: Stopped"
-msgstr "%{id}: Leállítva"
-
-#: app/views/main/_gettext.js.erb:204
-#, fuzzy
-#| msgid "%{id}: Stopped"
-msgid "%{id}: Stopping"
-msgstr "%{id}: Leállítva"
-
-#: app/views/main/_gettext.js.erb:203
-#, fuzzy
-#| msgid "%{id}: Pending: %{nodelist}"
-msgid "%{id}: Stopping: %{node}"
-msgstr "%{id}: Felfüggesztve: %{nodelist}"
-
-#: app/views/main/_gettext.js.erb:156
-msgid "%{node}: %{state}"
-msgstr "%{node}: %{state}"
-
-#: app/views/main/_gettext.js.erb:85
-msgid "%{op} failed on %{node} (rc=%{rc})"
-msgstr "%{op} sikertelen: %{node} (rc=%{rc})"
-
-#: app/views/wizard/run.html.erb:71 app/views/wizard/done.html.erb:1
-msgid "%{workflow}: %{step}"
-msgstr "%{workflow}: %{step}"
-
-#: app/views/resources/index.html.erb:186
-#, fuzzy
-#| msgid "No clone child specified"
-msgid "(No clones defined)"
-msgstr "Nincs megadva klóngyermek"
-
-#: app/views/constraints/index.html.erb:171
-msgid "(No colocation constraints defined)"
-msgstr "(Nincs megadva kapcsolódási szabály)"
-
-#: app/views/resources/index.html.erb:174
-#, fuzzy
-#| msgid "No attributes defined"
-msgid "(No groups defined)"
-msgstr "Nincsenek megadva attribútumok"
-
-#: app/views/constraints/index.html.erb:141
-msgid "(No location constraints defined)"
-msgstr "(Nincs megadva helyre vonatkozó szabály)"
-
-#: app/views/resources/index.html.erb:198
-#, fuzzy
-#| msgid "No Master/Slave child specified"
-msgid "(No master/slave resources defined)"
-msgstr "Nincs megadva elsődleges/másodlagos gyermek"
-
-#: app/views/constraints/index.html.erb:185
-msgid "(No order constraints defined)"
-msgstr "(Nincs szabálysorrend megadva)"
-
-#: app/views/resources/index.html.erb:148
-#, fuzzy
-#| msgid "No resource specified"
-msgid "(No primitive resources defined)"
-msgstr "Nincs megadva erőforrás"
-
-#: app/views/resources/index.html.erb:161
-#, fuzzy
-#| msgid "No attributes defined"
-msgid "(No templates defined)"
-msgstr "Nincsenek megadva attribútumok"
-
-#: app/views/constraints/index.html.erb:200
-#, fuzzy
-#| msgid "(No order constraints defined)"
-msgid "(No ticket constraints defined)"
-msgstr "(Nincs szabálysorrend megadva)"
-
-#: app/views/dashboard/index.html.erb:363
-msgid ""
-"(Specify any host name in the cluster.  Other nodes will be found "
-"automatically)"
+#: ../app/controllers/acls_controller.rb:72 ../app/views/layouts/main.html.erb:158
+msgid "Access Control Lists"
 msgstr ""
 
-#: app/views/explorer/_pe_list.html.erb:31
-msgid "(full log)"
-msgstr ""
-
-#: app/views/main/_gettext.js.erb:248
-msgid "+ Node"
-msgstr "+ Csomópont"
-
-#: app/views/main/_gettext.js.erb:251
-msgid "+ Op"
-msgstr "+ Művelet"
-
-#: app/views/main/_gettext.js.erb:254
-msgid "+ Ticket"
-msgstr ""
-
-#: app/controllers/cib_controller.rb:110 app/controllers/cib_controller.rb:160
+#: ../app/controllers/cib_controller.rb:110 ../app/controllers/cib_controller.rb:162
 msgid "1 node configured"
 msgid_plural "%{num} nodes configured"
 msgstr[0] "1 csomópont beállítva"
 msgstr[1] "%{num} csomópont beállítva"
 
-#: app/controllers/cib_controller.rb:111 app/controllers/cib_controller.rb:161
+#: ../app/controllers/cib_controller.rb:111 ../app/controllers/cib_controller.rb:163
 msgid "1 resource configured"
 msgid_plural "%{num} resources configured"
 msgstr[0] "1 erőforrás beállítva"
 msgstr[1] "%{num} erőforrás beállítva"
 
-#: app/views/wizard/run.html.erb:120
-msgid "< Back"
-msgstr "< Vissza"
+#: ../app/controllers/clones_controller.rb:48
+msgid "Edit Clone"
+msgstr "Klón szerkesztése"
 
-#: app/views/dashboard/index.html.erb:385
-msgid "A cluster with that name already exists"
-msgstr ""
+#: ../app/controllers/clones_controller.rb:52 ../app/controllers/clones_controller.rb:58 ../app/views/clones/_form.html.erb:87
+msgid "Create Clone"
+msgstr "Klón létrehozása"
 
-#: app/views/main/_gettext.js.erb:305
-#, fuzzy
-#| msgid "Location"
-msgid "Action:"
-msgstr "Hely"
-
-#: app/views/main/_gettext.js.erb:317
-msgid "Activate"
-msgstr ""
-
-#: app/views/masters/_form.html.erb:46 app/views/crm_config/edit.html.erb:24
-#: app/views/crm_config/edit.html.erb:46 app/views/crm_config/edit.html.erb:68
-#: app/views/clones/_form.html.erb:46 app/views/locations/_form.html.erb:47
-#: app/views/groups/_form.html.erb:81 app/views/colocations/_form.html.erb:60
-#: app/views/tickets/_form.html.erb:48 app/views/primitives/_form.html.erb:247
-#: app/views/primitives/_form.html.erb:267
-#: app/views/primitives/_form.html.erb:290 app/views/orders/_form.html.erb:60
-msgid "Add"
-msgstr "Hozzáadás"
-
-#: app/views/dashboard/index.html.erb:368
-#, fuzzy
-#| msgid "Add Rule"
-msgid "Add Cluster"
-msgstr "Szabály hozzáadása"
-
-#: app/views/locations/_form.html.erb:49
-msgid "Add Rule"
-msgstr "Szabály hozzáadása"
-
-#: app/views/colocations/_form.html.erb:65 app/views/tickets/_form.html.erb:50
-#: app/views/orders/_form.html.erb:65
-msgid "Add resource to constraint"
-msgstr "Erőforrás hozzáadása a szabályhoz"
-
-#: app/views/nodes/events.html.erb:13 app/views/resources/events.html.erb:13
-msgid "Another \"crm history\" operation is in progress..."
-msgstr "Egy másik \"crm előzmény\" művelet folyamatban van…"
-
-#: app/views/shared/_confirm_revert.html.erb:4
-msgid "Any changes will be lost - do you wish to proceed?"
-msgstr "Minden változás el fog veszni - szeretné folytatni?"
-
-#: app/views/masters/edit.html.erb:4 app/views/crm_config/edit.html.erb:113
-#: app/views/clones/edit.html.erb:4 app/views/locations/edit.html.erb:4
-#: app/views/groups/edit.html.erb:4 app/views/colocations/edit.html.erb:4
-#: app/views/tickets/edit.html.erb:4 app/views/primitives/edit.html.erb:4
-#: app/views/orders/edit.html.erb:4
-msgid "Apply Changes"
-msgstr "Változások alkalmazása"
-
-#: app/models/location.rb:69
-msgid "Attribute contains both single and double quotes"
-msgstr "Az attribútum szimpla és dupla idézőjelet és tartalmaz"
-
-#: app/views/nodes/show.html.erb:18 app/views/resources/show.html.erb:1
-msgid "Attributes"
-msgstr "Attribútumok"
-
-#: app/views/groups/_form.html.erb:117
-msgid "Available Primitives"
-msgstr "Elérhető primitívek"
-
-#: app/views/main/_gettext.js.erb:51
-msgid "Away from current node"
-msgstr "Eltávolítás a jelenlegi csomópontról"
-
-#: app/views/masters/_form.html.erb:89 app/views/crm_config/update.html.erb:4
-#: app/views/crm_config/show.html.erb:11 app/views/clones/_form.html.erb:89
-#: app/views/locations/_form.html.erb:95 app/views/wizard/start.html.erb:3
-#: app/views/wizard/broken.html.erb:4 app/views/groups/_form.html.erb:144
-#: app/views/colocations/_form.html.erb:111
-#: app/views/tickets/_form.html.erb:99 app/views/primitives/_form.html.erb:395
-#: app/views/orders/_form.html.erb:117
-msgid "Back"
-msgstr "Vissza"
-
-#: app/views/locations/_form.html.erb:45
-msgid "Boolean Op"
-msgstr "Boolean művelet"
-
-#: app/views/colocations/_form.html.erb:63 app/views/orders/_form.html.erb:63
-msgid "Break set"
-msgstr "Megszakítás beállítás"
-
-#: app/views/main/_gettext.js.erb:263
-msgid "CIB (in)"
-msgstr "CIB (be)"
-
-#: app/views/main/_gettext.js.erb:266
-msgid "CIB (out)"
-msgstr "CIB (ki)"
-
-#: app/models/cib.rb:233
-msgid "CIB file \"%{path}\" not found"
-msgstr "A(z) \"%{path}\" CIB fájl nem található"
-
-#: app/views/crm_config/edit.html.erb:15
-#, fuzzy
-#| msgid "Choose Configuration"
-msgid "CRM Configuration"
-msgstr "Válasszon beállítást"
-
-#: app/views/dashboard/index.html.erb:183
-#: app/views/dashboard/index.html.erb:244
-#: app/views/dashboard/index.html.erb:301
-msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
-msgstr ""
-
-#: app/models/group.rb:51 app/models/master.rb:51 app/models/template.rb:78
-#: app/models/clone.rb:51 app/models/primitive.rb:77
-msgid ""
-"Can't set meta attribute %{p}, because the value contains both single and "
-"double quotes"
-msgstr ""
-"Nem állítható be a(z) %{p} attribútum, mert az eszköz szimpla és dupla "
-"idézőjelet is tartalmaz"
-
-#: app/models/template.rb:70 app/models/primitive.rb:69
-msgid ""
-"Can't set op %{o} attribute {%a}, because the value contains both single and "
-"double quotes"
-msgstr ""
-"Nem állítható be a(z) op %{o} {%a} attribútum, mert az eszköz szimpla és "
-"dupla idézőjelet is tartalmaz"
-
-#: app/models/template.rb:62 app/models/primitive.rb:61
-msgid ""
-"Can't set parameter %{p}, because the value contains both single and double "
-"quotes"
-msgstr ""
-"Nem állítható be a(z) %{p} paraméter, mert az eszköz szimpla és dupla "
-"idézőjelet is tartalmaz"
-
-#: app/controllers/crm_config_controller.rb:161
-msgid ""
-"Can't set property %{p}, because the value contains both single and double "
-"quotes"
-msgstr ""
-"Nem állítható be a(z) %{p} tulajdonság, mert az eszköz szimpla és dupla "
-"idézőjelet is tartalmaz"
-
-#: app/views/main/_gettext.js.erb:7 app/views/wizard/start.html.erb:44
-#: app/views/wizard/run.html.erb:119 app/views/primitives/_form.html.erb:273
-#: app/views/dashboard/index.html.erb:455
-msgid "Cancel"
-msgstr "Mégsem"
-
-#: app/views/masters/_form.html.erb:71 app/views/clones/_form.html.erb:71
-msgid "Child Resource"
-msgstr "Gyermek erőforrás"
-
-#: app/views/wizard/start.html.erb:24
-msgid "Choose Configuration"
-msgstr "Válasszon beállítást"
-
-#: app/views/primitives/_form.html.erb:330
-msgid "Class"
-msgstr "Osztály"
-
-#: app/views/main/_menus.html.erb:149
-msgid "Clean Up"
-msgstr "Tisztítás"
-
-#: app/views/resources/index.html.erb:121
-#, fuzzy
-#| msgid "Clone ID"
-msgid "Clone"
-msgstr "Klón ID"
-
-#: app/views/clones/_form.html.erb:70
-msgid "Clone ID"
-msgstr "Klón ID"
-
-#: app/models/clone.rb:87
-msgid "Clone ID \"%{id}\" does not exist"
-msgstr "A(z) \"%{id}\" klónazonosító nem létezik"
-
-#: app/views/main/_gettext.js.erb:229
-msgid "Clone Set: %{id}"
-msgstr "Klóncsoport: %{id}"
-
-#: app/controllers/clones_controller.rb:65
+#: ../app/controllers/clones_controller.rb:65
 msgid "Clone created successfully"
 msgstr "Klón létrehozása sikeresen"
 
-#: app/controllers/clones_controller.rb:87
+#: ../app/controllers/clones_controller.rb:87
 msgid "Clone updated successfully"
 msgstr "Klón sikeresen frissítve"
 
-#: app/views/main/_gettext.js.erb:16
+#: ../app/controllers/colocations_controller.rb:44
+msgid "Edit Colocation Constraint"
+msgstr "Kapcsolódási szabály szerkesztése"
+
+#: ../app/controllers/colocations_controller.rb:48 ../app/controllers/colocations_controller.rb:53
+msgid "Create Colocation Constraint"
+msgstr "Kapcsolódási szabály létrehozása"
+
+#: ../app/controllers/colocations_controller.rb:61 ../app/controllers/locations_controller.rb:60 ../app/controllers/orders_controller.rb:62 ../app/controllers/tickets_controller.rb:59
+msgid "Constraint created successfully"
+msgstr "A szabály sikeresen létrejött"
+
+#: ../app/controllers/colocations_controller.rb:84 ../app/controllers/locations_controller.rb:82 ../app/controllers/orders_controller.rb:86 ../app/controllers/tickets_controller.rb:81
+msgid "Constraint updated successfully"
+msgstr "A szabály frissítése sikeres"
+
+#: ../app/controllers/constraints_controller.rb:44 ../app/views/layouts/main.html.erb:167
+msgid "Constraints"
+msgstr "Szabályok"
+
+#: ../app/controllers/crm_config_controller.rb:45 ../app/views/main/_gettext.js.erb:99
+msgid "Cluster Configuration"
+msgstr "Fürt beállítása"
+
+#: ../app/controllers/crm_config_controller.rb:127
+msgid "Your changes have been saved"
+msgstr "A változások mentése megtörtént"
+
+#: ../app/controllers/crm_config_controller.rb:129
+msgid "Unable to apply changes: %{msg}"
+msgstr "Nem alkalmazhatók a módosítások: %{msg}"
+
+#: ../app/controllers/crm_config_controller.rb:161
+msgid "Can't set property %{p}, because the value contains both single and double quotes"
+msgstr "Nem állítható be a(z) %{p} tulajdonság, mert az eszköz szimpla és dupla idézőjelet is tartalmaz"
+
+#: ../app/controllers/explorer_controller.rb:44 ../app/views/layouts/main.html.erb:143
+msgid "History Explorer"
+msgstr "Előzményböngésző"
+
+#: ../app/controllers/explorer_controller.rb:102
+msgid "PE Input created by different Pacemaker version (%{version})"
+msgstr ""
+
+#: ../app/controllers/explorer_controller.rb:103
+msgid "Pacemaker version not present in PE Input"
+msgstr ""
+
+#: ../app/controllers/explorer_controller.rb:133
+msgid "Required parameters \"basename\" and \"node\" not specified"
+msgstr "Nincs megadva a \"basename\" és a \"node\" paraméter"
+
+#: ../app/controllers/explorer_controller.rb:157 ../app/controllers/explorer_controller.rb:227
+msgid "No details available"
+msgstr "Nincsenek részletek"
+
+#: ../app/controllers/explorer_controller.rb:159 ../app/controllers/explorer_controller.rb:187 ../app/controllers/explorer_controller.rb:248
+msgid "Error:"
+msgstr "HIba:"
+
+#: ../app/controllers/groups_controller.rb:48
+msgid "Edit Group"
+msgstr "Csoport szerkesztése"
+
+#: ../app/controllers/groups_controller.rb:52 ../app/controllers/groups_controller.rb:58 ../app/views/groups/_form.html.erb:142
+msgid "Create Group"
+msgstr "Csoport létrehozása"
+
+#: ../app/controllers/groups_controller.rb:65
+msgid "Group created successfully"
+msgstr "Csoport sikeresen létrehozva"
+
+#: ../app/controllers/groups_controller.rb:87
+msgid "Group updated successfully"
+msgstr "Csoport sikeresen frissítve"
+
+#: ../app/controllers/locations_controller.rb:44
+msgid "Edit Location Constraint"
+msgstr "Elhelyezési szabály szerkesztése"
+
+#: ../app/controllers/locations_controller.rb:48 ../app/controllers/locations_controller.rb:53
+msgid "Create Location Constraint"
+msgstr "Elhelyezési szabály létrehozása"
+
+#: ../app/controllers/main_controller.rb:58
+msgid "%{cmd} failed (status: %{status})"
+msgstr "%{cmd} sikertelen (állapot: %{status})"
+
+#: ../app/controllers/main_controller.rb:78 ../app/views/layouts/main.html.erb:137
+msgid "Cluster Status"
+msgstr "Jelenlegi állapot"
+
+#: ../app/controllers/main_controller.rb:93 ../app/controllers/main_controller.rb:103 ../app/controllers/main_controller.rb:113
+msgid "Required parameter \"node\" not specified"
+msgstr "Nincs megadva a \"node\" paraméter"
+
+#: ../app/controllers/main_controller.rb:129 ../app/controllers/main_controller.rb:160
+msgid "Required parameter \"resource\" not specified"
+msgstr "Nincs megadva a \"resource\" paraméter"
+
+#: ../app/controllers/main_controller.rb:139
+msgid "Required parameters \"resource\" and \"node\" not specified"
+msgstr "Nincs megadva a \"resource\" és a \"node\" paraméter"
+
+#: ../app/controllers/main_controller.rb:154
+msgid "Error deleting resource"
+msgstr "Hiba az erőforrás törlésekor"
+
+#: ../app/controllers/main_controller.rb:310 ../app/models/cib.rb:260
+msgid "Error invoking %{cmd}: %{msg}"
+msgstr "Hiba a(z) %{cmd} parancs meghívásakor: %{msg}"
+
+#: ../app/controllers/masters_controller.rb:48
+msgid "Edit Master/Slave"
+msgstr "Elsődleges/Másodlagos szerkesztése"
+
+#: ../app/controllers/masters_controller.rb:52 ../app/controllers/masters_controller.rb:58 ../app/views/masters/_form.html.erb:87
+msgid "Create Master/Slave"
+msgstr "Elsődleges/Másodlagos létrehozása"
+
+#: ../app/controllers/masters_controller.rb:65
+msgid "Master/Slave created successfully"
+msgstr "Elsődleges/Másodlagos sikeresen létrehozva"
+
+#: ../app/controllers/masters_controller.rb:87
+msgid "Master/Slave updated successfully"
+msgstr "Elsődleges/Másodlagos sikeresen frissítve"
+
+#: ../app/controllers/orders_controller.rb:44
+msgid "Edit Order Constraint"
+msgstr "Szabály sorrendjének szerkesztése"
+
+#: ../app/controllers/orders_controller.rb:48 ../app/controllers/orders_controller.rb:53
+msgid "Create Order Constraint"
+msgstr "Szabály sorrendjének létrehozása"
+
+#: ../app/controllers/primitives_controller.rb:46 ../app/views/resources/index.html.erb:47
+msgid "Edit Resource"
+msgstr "Erőforrások szerkesztése"
+
+#: ../app/controllers/primitives_controller.rb:50 ../app/controllers/primitives_controller.rb:56 ../app/views/primitives/_form.html.erb:393
+msgid "Create Resource"
+msgstr "Erőforrások létrehozása"
+
+#: ../app/controllers/primitives_controller.rb:63
+msgid "Resource created successfully"
+msgstr "Erőforrás sikeresen létrehozva"
+
+#: ../app/controllers/primitives_controller.rb:85
+msgid "Resource updated successfully"
+msgstr "Erőforrás sikeresen frissítve"
+
+#: ../app/controllers/roles_controller.rb:44
+#, fuzzy
+msgid "Edit Role"
+msgstr "Klón szerkesztése"
+
+#: ../app/controllers/roles_controller.rb:48 ../app/controllers/roles_controller.rb:53 ../app/views/roles/_form.html.erb:82
+#, fuzzy
+msgid "Create Role"
+msgstr "Klón létrehozása"
+
+#: ../app/controllers/roles_controller.rb:60
+#, fuzzy
+msgid "Role created successfully"
+msgstr "Klón létrehozása sikeresen"
+
+#: ../app/controllers/roles_controller.rb:82
+#, fuzzy
+msgid "Role updated successfully"
+msgstr "Klón sikeresen frissítve"
+
+#: ../app/controllers/sessions_controller.rb:37 ../app/views/dashboard/index.html.erb:57 ../app/views/sessions/new.html.erb:17
+msgid "Log In"
+msgstr "Belépés"
+
+#: ../app/controllers/sessions_controller.rb:70
+msgid "Username not specified"
+msgstr "Nincs megadva felhasználónév"
+
+#: ../app/controllers/sessions_controller.rb:73
+msgid "Invalid username"
+msgstr "Érvénytelen felhasználónév"
+
+#: ../app/controllers/sessions_controller.rb:75
+msgid "Password not specified"
+msgstr "Nincs megadva jelszó"
+
+#: ../app/controllers/sessions_controller.rb:89
+msgid "Invalid username or password"
+msgstr "Érvénytelen felhasználónév vagy jelszó"
+
+#: ../app/controllers/sessions_controller.rb:92
+msgid "%s is not installed"
+msgstr "%s nincs telepítve"
+
+#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:258 ../lib/invoker.rb:113 ../lib/invoker.rb:135 ../lib/invoker.rb:177
+msgid "Permission denied for user %{user}"
+msgstr "%{user} felhasználónak nincs hozzáférése"
+
+#: ../app/controllers/sessions_controller.rb:131
+msgid "You have been logged out"
+msgstr "Kijelentkezett"
+
+#: ../app/controllers/users_controller.rb:44
+#, fuzzy
+msgid "Edit User"
+msgstr "Erőforrások szerkesztése"
+
+#: ../app/controllers/users_controller.rb:48 ../app/controllers/users_controller.rb:53 ../app/views/users/_form.html.erb:111
+#, fuzzy
+msgid "Create User"
+msgstr "Erőforrások létrehozása"
+
+#: ../app/controllers/users_controller.rb:60
+#, fuzzy
+msgid "User created successfully"
+msgstr "Klón létrehozása sikeresen"
+
+#: ../app/controllers/users_controller.rb:82
+#, fuzzy
+msgid "User updated successfully"
+msgstr "Klón sikeresen frissítve"
+
+#: ../app/controllers/wizard_controller.rb:60
+msgid "Cluster Setup Wizard"
+msgstr "Fürtbeállítás-varázsló"
+
+#: ../app/controllers/wizard_controller.rb:99 ../app/views/primitives/_form.html.erb:241
+msgid "Parameters"
+msgstr "Paraméterek"
+
+#: ../app/controllers/wizard_controller.rb:123
+msgid "Confirm"
+msgstr "Megerősítés"
+
+#: ../app/controllers/wizard_controller.rb:143 ../app/views/wizard/done.html.erb:10
+msgid "Done"
+msgstr "Kész"
+
+#: ../app/controllers/wizard_controller.rb:243
+msgid "Required parameter \"%{param}\" not specified"
+msgstr "Nincs megadva a(z) \"%{param}\" paraméter"
+
+#: ../app/controllers/wizard_controller.rb:253
+msgid "Wizard templates and/or workflows are missing"
+msgstr "A varázsló sablonjai és/vagy munkafolyamatai hiányoznak"
+
+#: ../app/controllers/wizard_controller.rb:261
+msgid "Workflow \"%s\" not found"
+msgstr "A(z) \"%s\" munkafolyamat nem található"
+
+#: ../app/controllers/wizard_controller.rb:278
+msgid "Error parsing template \"%s\""
+msgstr "Hiba történt a(z) \"%s\" sablon feldolgozása közben"
+
+#: ../app/controllers/wizard_controller.rb:281
+msgid "Error parsing workflow \"%s\""
+msgstr "Hiba történt a(z) \"%s\" munkafolyamat feldolgozása közben"
+
+#: ../app/helpers/explorer_helper.rb:3
+msgid "Data collection in progress (%{from_time} to %{to_time})..."
+msgstr "Az adatgyűjtés folyamatban (%{from_time} - %{to_time})..."
+
+#: ../app/models/cib.rb:233
+msgid "CIB file \"%{path}\" not found"
+msgstr "A(z) \"%{path}\" CIB fájl nem található"
+
+#: ../app/models/cib.rb:235
+msgid "Unable to parse CIB file \"%{path}\""
+msgstr "A(z) \"%{path}\" CIB fájl nem dolgozható fel"
+
+#: ../app/models/cib.rb:237
+msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
+msgstr "A Pacemaker nincs telepítve (%{cmd} parancs nem található)"
+
+#: ../app/models/cib.rb:239
+msgid "Unable to execute %{cmd}"
+msgstr "Nem futtatható parancs %{cmd}"
+
+#: ../app/models/cib.rb:242
+msgid "%{cmd} failed (status: %{status}, output was: %{output})"
+msgstr "%{cmd} sikertelen (status: %{status}, kimenet: %{output})"
+
+#: ../app/models/cib.rb:255
+msgid "Error invoking %{cmd}"
+msgstr "Hiba a(z) %{cmd} parancs meghívásakor"
+
+#: ../app/models/cib.rb:268 ../app/models/cib.rb:269 ../app/models/cib.rb:613 ../app/views/main/_gettext.js.erb:183
+msgid "Unknown"
+msgstr "Ismeretlen"
+
+#: ../app/models/cib.rb:480
+msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
+msgstr "Hibás művelet: csomópont=%{node}, erőforrás=%{resource}, azonosító=%{call_id}, művelet=%{op}, visszatérési érték=%{rc_code}"
+
+#: ../app/models/cib_object.rb:66
+msgid "Invalid Resource ID \"%{id}\""
+msgstr "Érvénytelen erőforrás-azonosító \"%{id}\""
+
+#: ../app/models/cib_object.rb:95 ../app/models/cib_object.rb:115 ../app/models/crm_config.rb:49
+msgid "Unable to parse cibadmin output"
+msgstr "Nem dolgozható fel a cibadmin kimenete"
+
+#: ../app/models/clone.rb:45
+msgid "No clone child specified"
+msgstr "Nincs megadva klóngyermek"
+
+#: ../app/models/clone.rb:51 ../app/models/group.rb:51 ../app/models/master.rb:51 ../app/models/primitive.rb:77 ../app/models/template.rb:78
+msgid "Can't set meta attribute %{p}, because the value contains both single and double quotes"
+msgstr "Nem állítható be a(z) %{p} attribútum, mert az eszköz szimpla és dupla idézőjelet is tartalmaz"
+
+#: ../app/models/clone.rb:57 ../app/models/colocation.rb:63 ../app/models/group.rb:57 ../app/models/location.rb:77 ../app/models/master.rb:57 ../app/models/order.rb:89 ../app/models/primitive.rb:84 ../app/models/role.rb:55 ../app/models/template.rb:85 ../app/models/ticket.rb:73 ../app/models/user.rb:59
+msgid "The ID \"%{id}\" is already in use"
+msgstr "A \"%{id}\" azonosító már használatban van"
+
+#: ../app/models/clone.rb:77
+msgid "Unable to create clone: %{msg}"
+msgstr "Nem hozható létre klón: %{msg}"
+
+#: ../app/models/clone.rb:87
+msgid "Clone ID \"%{id}\" does not exist"
+msgstr "A(z) \"%{id}\" klónazonosító nem létezik"
+
+#: ../app/models/colocation.rb:53 ../app/models/order.rb:79
+msgid "Invalid score"
+msgstr "Érvénytelen pontszám"
+
+#: ../app/models/colocation.rb:57 ../app/models/order.rb:83
+msgid "Constraint must consist of at least two separate resources"
+msgstr "A szabálynak legalább két különböző erőforrást kell tartalmaznia"
+
+#: ../app/models/colocation.rb:72 ../app/models/location.rb:86 ../app/models/order.rb:98 ../app/models/ticket.rb:82
+msgid "Unable to create constraint: %{msg}"
+msgstr "A szabály nem hozható létre: %{msg}"
+
+#: ../app/models/colocation.rb:81 ../app/models/location.rb:95 ../app/models/order.rb:107 ../app/models/ticket.rb:91
+msgid "Constraint ID \"%{id}\" does not exist"
+msgstr "A(z) \"%{id}\" szabályazonosító nem létezik"
+
+#: ../app/models/colocation.rb:91 ../app/models/location.rb:107 ../app/models/order.rb:117 ../app/models/ticket.rb:101
+msgid "Unable to update constraint: %{msg}"
+msgstr "A szabály nem frissíthető: %{msg}"
+
+#: ../app/models/group.rb:45
+msgid "No group children specified"
+msgstr "Nincs megadva csoporttag"
+
+#: ../app/models/group.rb:80
+msgid "Unable to create group: %{msg}"
+msgstr "Nem hozható létre csoport: %{msg}"
+
+#: ../app/models/group.rb:90
+msgid "Group ID \"%{id}\" does not exist"
+msgstr "A(z) \"%{id}\" csoportazonosító nem létezik"
+
+#: ../app/models/location.rb:43
+msgid "Constraint is too complex - it contains nested rules"
+msgstr "Túl komplex szabály - beágyazott szabályok vannak"
+
+#: ../app/models/location.rb:45
+msgid "No rules specified"
+msgstr "Nincsenek szabályok megadva"
+
+#: ../app/models/location.rb:48
+msgid "No resource specified"
+msgstr "Nincs megadva erőforrás"
+
+#: ../app/models/location.rb:57
+msgid "Invalid score \"%{score}\""
+msgstr "Érvénytelen pontszám \"%{score}\""
+
+#: ../app/models/location.rb:65
+msgid "No expressions specified"
+msgstr "Nincsenek megadva kifejezések"
+
+#: ../app/models/location.rb:69
+msgid "Attribute contains both single and double quotes"
+msgstr "Az attribútum szimpla és dupla idézőjelet és tartalmaz"
+
+#: ../app/models/location.rb:70
+msgid "Value contains both single and double quotes"
+msgstr "Az érték szimpla és dupla idézőjelet és tartalmaz"
+
+#: ../app/models/master.rb:45
+msgid "No Master/Slave child specified"
+msgstr "Nincs megadva elsődleges/másodlagos gyermek"
+
+#: ../app/models/master.rb:77
+msgid "Unable to create master/slave: %{msg}"
+msgstr "Nem hozható létre elsődleges/másodlagos: %{msg}"
+
+#: ../app/models/master.rb:87
+msgid "Master/Slave ID \"%{id}\" does not exist"
+msgstr "A(z) \"%{id}\" elsődleges/másodlagos azonosító nem létezik"
+
+#: ../app/models/primitive.rb:61 ../app/models/template.rb:62
+msgid "Can't set parameter %{p}, because the value contains both single and double quotes"
+msgstr "Nem állítható be a(z) %{p} paraméter, mert az eszköz szimpla és dupla idézőjelet is tartalmaz"
+
+#: ../app/models/primitive.rb:69 ../app/models/template.rb:70
+msgid "Can't set op %{o} attribute {%a}, because the value contains both single and double quotes"
+msgstr "Nem állítható be a(z) op %{o} {%a} attribútum, mert az eszköz szimpla és dupla idézőjelet is tartalmaz"
+
+#: ../app/models/primitive.rb:130 ../app/models/template.rb:130
+msgid "Unable to create resource: %{msg}"
+msgstr "Nem hozható létre erőforrás: %{msg}"
+
+#: ../app/models/primitive.rb:140 ../app/models/template.rb:140
+msgid "Resource ID \"%{id}\" does not exist"
+msgstr "A(z) \"%{id}\" erőforrás-azonosító nem létezik"
+
+#: ../app/models/role.rb:42
+msgid "Role must have rules"
+msgstr ""
+
+#: ../app/models/role.rb:62
+#, fuzzy
+msgid "Unable to create role: %{msg}"
+msgstr "Nem hozható létre klón: %{msg}"
+
+#: ../app/models/role.rb:70
+#, fuzzy
+msgid "Role ID \"%{id}\" does not exist"
+msgstr "A(z) \"%{id}\" klónazonosító nem létezik"
+
+#: ../app/models/role.rb:75
+#, fuzzy
+msgid "Unable to update role: %{msg}"
+msgstr "Nem hozható létre klón: %{msg}"
+
+#: ../app/models/user.rb:53
+msgid "User must have either rules or roles"
+msgstr ""
+
+#: ../app/models/user.rb:54
+msgid "User can't have both rules and roles"
+msgstr ""
+
+#: ../app/models/user.rb:66
+#, fuzzy
+msgid "Unable to create user: %{msg}"
+msgstr "Nem hozható létre klón: %{msg}"
+
+#: ../app/models/user.rb:74
+#, fuzzy
+msgid "User ID \"%{id}\" does not exist"
+msgstr "A(z) \"%{id}\" klónazonosító nem létezik"
+
+#: ../app/models/user.rb:79
+#, fuzzy
+msgid "Unable to update user: %{msg}"
+msgstr "A szabály nem frissíthető: %{msg}"
+
+#: ../app/views/acls/index.html.erb:46 ../app/views/crm_config/show.html.erb:11 ../app/views/primitives/_form.html.erb:268
+msgid "Edit"
+msgstr "Szerkesztés"
+
+#: ../app/views/acls/index.html.erb:57
+#, fuzzy
+msgid "Delete"
+msgstr "Lefokozás"
+
+#: ../app/views/acls/index.html.erb:99
+#, fuzzy
+msgid "New Role"
+msgstr "Új klón"
+
+#: ../app/views/acls/index.html.erb:100 ../app/views/locations/_form.html.erb:44
+msgid "Role"
+msgstr "Szerepkör"
+
+#: ../app/views/acls/index.html.erb:105
+msgid "New User"
+msgstr ""
+
+#: ../app/views/acls/index.html.erb:106
+msgid "User"
+msgstr ""
+
+#: ../app/views/acls/index.html.erb:127
+msgid "To enable ACLs, set 'enable-acl' in the CRM Configuration"
+msgstr ""
+
+#: ../app/views/clones/_form.html.erb:40 ../app/views/groups/_form.html.erb:75 ../app/views/masters/_form.html.erb:40 ../app/views/primitives/_form.html.erb:284
+msgid "Meta Attributes"
+msgstr "Metaattribútumok"
+
+#: ../app/views/clones/_form.html.erb:46 ../app/views/colocations/_form.html.erb:60 ../app/views/crm_config/edit.html.erb:24 ../app/views/crm_config/edit.html.erb:46 ../app/views/crm_config/edit.html.erb:68 ../app/views/groups/_form.html.erb:81 ../app/views/locations/_form.html.erb:47 ../app/views/masters/_form.html.erb:46 ../app/views/orders/_form.html.erb:60 ../app/views/primitives/_form.html.erb:247 ../app/views/primitives/_form.html.erb:267 ../app/views/primitives/_form.html.erb:290 ../app/views/roles/_form.html.erb:38 ../app/views/tickets/_form.html.erb:48 ../app/views/users/_form.html.erb:48
+msgid "Add"
+msgstr "Hozzáadás"
+
+#: ../app/views/clones/_form.html.erb:47 ../app/views/colocations/_form.html.erb:61 ../app/views/crm_config/edit.html.erb:25 ../app/views/crm_config/edit.html.erb:47 ../app/views/crm_config/edit.html.erb:69 ../app/views/dashboard/index.html.erb:39 ../app/views/groups/_form.html.erb:82 ../app/views/locations/_form.html.erb:48 ../app/views/masters/_form.html.erb:47 ../app/views/orders/_form.html.erb:61 ../app/views/primitives/_form.html.erb:248 ../app/views/primitives/_form.html.erb:269 ../app/views/primitives/_form.html.erb:291 ../app/views/roles/_form.html.erb:39 ../app/views/tickets/_form.html.erb:49 ../app/views/users/_form.html.erb:49
+msgid "Remove"
+msgstr "Eltávolítás"
+
+#: ../app/views/clones/_form.html.erb:48 ../app/views/crm_config/edit.html.erb:26 ../app/views/crm_config/edit.html.erb:48 ../app/views/crm_config/edit.html.erb:70 ../app/views/groups/_form.html.erb:83 ../app/views/masters/_form.html.erb:48 ../app/views/primitives/_form.html.erb:249 ../app/views/primitives/_form.html.erb:270 ../app/views/primitives/_form.html.erb:292
+msgid "You must enter a value"
+msgstr "Érték megadása kötelező"
+
+#: ../app/views/clones/_form.html.erb:70
+msgid "Clone ID"
+msgstr "Klón ID"
+
+#: ../app/views/clones/_form.html.erb:71 ../app/views/masters/_form.html.erb:71
+msgid "Child Resource"
+msgstr "Gyermek erőforrás"
+
+#: ../app/views/clones/_form.html.erb:88 ../app/views/colocations/_form.html.erb:110 ../app/views/crm_config/edit.html.erb:114 ../app/views/groups/_form.html.erb:143 ../app/views/locations/_form.html.erb:94 ../app/views/masters/_form.html.erb:88 ../app/views/orders/_form.html.erb:116 ../app/views/primitives/_form.html.erb:394 ../app/views/roles/_form.html.erb:83 ../app/views/tickets/_form.html.erb:98 ../app/views/users/_form.html.erb:112
+msgid "Revert Changes"
+msgstr "Változtatások visszavonása"
+
+#: ../app/views/clones/_form.html.erb:89 ../app/views/colocations/_form.html.erb:111 ../app/views/crm_config/show.html.erb:11 ../app/views/crm_config/update.html.erb:4 ../app/views/groups/_form.html.erb:144 ../app/views/locations/_form.html.erb:95 ../app/views/masters/_form.html.erb:89 ../app/views/orders/_form.html.erb:117 ../app/views/primitives/_form.html.erb:395 ../app/views/roles/_form.html.erb:84 ../app/views/tickets/_form.html.erb:99 ../app/views/users/_form.html.erb:113 ../app/views/wizard/broken.html.erb:4 ../app/views/wizard/start.html.erb:3
+msgid "Back"
+msgstr "Vissza"
+
+#: ../app/views/clones/edit.html.erb:4 ../app/views/colocations/edit.html.erb:4 ../app/views/crm_config/edit.html.erb:113 ../app/views/groups/edit.html.erb:4 ../app/views/locations/edit.html.erb:4 ../app/views/masters/edit.html.erb:4 ../app/views/orders/edit.html.erb:4 ../app/views/primitives/edit.html.erb:4 ../app/views/roles/edit.html.erb:4 ../app/views/tickets/edit.html.erb:4 ../app/views/users/edit.html.erb:4
+msgid "Apply Changes"
+msgstr "Változások alkalmazása"
+
+#: ../app/views/colocations/_form.html.erb:62 ../app/views/orders/_form.html.erb:62
+msgid "Link set"
+msgstr "Hivatkozás beállítás"
+
+#: ../app/views/colocations/_form.html.erb:63 ../app/views/orders/_form.html.erb:63
+msgid "Break set"
+msgstr "Megszakítás beállítás"
+
+#: ../app/views/colocations/_form.html.erb:64 ../app/views/orders/_form.html.erb:64
+msgid "Swap resources"
+msgstr "Erőforrások felcserélése"
+
+#: ../app/views/colocations/_form.html.erb:65 ../app/views/orders/_form.html.erb:65 ../app/views/tickets/_form.html.erb:50
+msgid "Add resource to constraint"
+msgstr "Erőforrás hozzáadása a szabályhoz"
+
+#: ../app/views/colocations/_form.html.erb:89 ../app/views/locations/_form.html.erb:75 ../app/views/orders/_form.html.erb:89 ../app/views/tickets/_form.html.erb:77
+msgid "Constraint ID"
+msgstr "Szabály ID"
+
+#: ../app/views/colocations/_form.html.erb:90 ../app/views/locations/_form.html.erb:42 ../app/views/orders/_form.html.erb:90
+msgid "Score"
+msgstr "Pontszám"
+
+#: ../app/views/colocations/_form.html.erb:109 ../app/views/locations/_form.html.erb:93 ../app/views/orders/_form.html.erb:115 ../app/views/tickets/_form.html.erb:97
+msgid "Create Constraint"
+msgstr "Szabály létrehozása"
+
+#: ../app/views/constraints/index.html.erb:47
+msgid "Edit Constraint"
+msgstr "Szabály szerkesztése"
+
+#: ../app/views/constraints/index.html.erb:58
+msgid "Delete Constraint"
+msgstr "Szabály törlése"
+
+#: ../app/views/constraints/index.html.erb:100 ../app/views/constraints/index.html.erb:106 ../app/views/constraints/index.html.erb:112 ../app/views/constraints/index.html.erb:119
+msgid "New Constraint"
+msgstr "Új szabály"
+
+#: ../app/views/constraints/index.html.erb:101
+msgid "Location"
+msgstr "Hely"
+
+#: ../app/views/constraints/index.html.erb:107
+msgid "Colocation"
+msgstr "Elhelyezése szabály"
+
+#: ../app/views/constraints/index.html.erb:113
+msgid "Order"
+msgstr "Sorrend"
+
+#: ../app/views/constraints/index.html.erb:120
+msgid "Ticket"
+msgstr ""
+
+#: ../app/views/constraints/index.html.erb:141
+msgid "(No location constraints defined)"
+msgstr "(Nincs megadva helyre vonatkozó szabály)"
+
+#: ../app/views/constraints/index.html.erb:153
+msgid "[Constraint is too complex to display]"
+msgstr "[A szabályok túl komplexek a megjelenítéshez]"
+
+#: ../app/views/constraints/index.html.erb:171
+msgid "(No colocation constraints defined)"
+msgstr "(Nincs megadva kapcsolódási szabály)"
+
+#: ../app/views/constraints/index.html.erb:185
+msgid "(No order constraints defined)"
+msgstr "(Nincs szabálysorrend megadva)"
+
+#: ../app/views/crm_config/show.html.erb:4
+msgid "No cluster properties set in %{group}"
+msgstr "Nincsenek beállítva fürttulajdonságok a(z) %{group} csoportban"
+
+#: ../app/views/dashboard/index.html.erb:49 ../app/views/sessions/new.html.erb:9
+msgid "Username:"
+msgstr "Felhasználónév: "
+
+#: ../app/views/dashboard/index.html.erb:53 ../app/views/sessions/new.html.erb:13
+msgid "Password:"
+msgstr "Jelszó:"
+
+#: ../app/views/dashboard/index.html.erb:64
+msgid "Cluster has errors - click for details"
+msgstr ""
+
+#: ../app/views/dashboard/index.html.erb:145 ../app/views/dashboard/index.html.erb:435
+msgid "Timeout: Please try again"
+msgstr ""
+
+#: ../app/views/dashboard/index.html.erb:288
+msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
+msgstr ""
+
+#: ../app/views/dashboard/index.html.erb:349
+msgid "Host Name:"
+msgstr ""
+
+#: ../app/views/dashboard/index.html.erb:350
+msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
+msgstr ""
+
+#: ../app/views/dashboard/index.html.erb:357 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
+msgid "OK"
+msgstr "OK"
+
+#: ../app/views/dashboard/index.html.erb:372
+msgid "A cluster with that name already exists"
+msgstr ""
+
+#: ../app/views/dashboard/index.html.erb:417 ../app/views/dashboard/index.html.erb:429
+msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
+msgstr ""
+
+#: ../app/views/dashboard/index.html.erb:442 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
+msgid "Cancel"
+msgstr "Mégsem"
+
+#: ../app/views/explorer/_pe_list.html.erb:6
+msgid "No transitions found for the specified time period."
+msgstr "A megadott időszakban nem található átmenet."
+
+#: ../app/views/explorer/_pe_list.html.erb:11
+msgid "Time"
+msgstr "Idő"
+
+#: ../app/views/explorer/_pe_list.html.erb:12
+msgid "PE Input"
+msgstr "PE Input"
+
+#: ../app/views/explorer/_pe_list.html.erb:13 ../app/views/locations/_form.html.erb:43
+msgid "Node"
+msgstr "Csomópont"
+
+#: ../app/views/explorer/_pe_list.html.erb:30 ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:269
+msgid "Details"
+msgstr "Részletek"
+
+#: ../app/views/explorer/_pe_list.html.erb:34
+msgid "(full log)"
+msgstr ""
+
+#: ../app/views/explorer/_pe_list.html.erb:38 ../app/views/main/_gettext.js.erb:278
+msgid "Graph"
+msgstr "Grafikon"
+
+#: ../app/views/explorer/_pe_list.html.erb:47
+msgid "Diff"
+msgstr ""
+
+#: ../app/views/explorer/index.html.erb:37
+msgid "Delete this history archive?"
+msgstr ""
+
+#: ../app/views/explorer/index.html.erb:148 ../app/views/explorer/index.html.erb:163 ../app/views/hb_reports/new.html.erb:58
+msgid "Start Time:"
+msgstr "Indítás ideje:"
+
+#: ../app/views/explorer/index.html.erb:150 ../app/views/explorer/index.html.erb:165 ../app/views/hb_reports/new.html.erb:63
+msgid "End Time:"
+msgstr "Megállítás ideje:"
+
+#: ../app/views/explorer/index.html.erb:167
+msgid "Display"
+msgstr "Megjelenítés"
+
+#: ../app/views/explorer/index.html.erb:178
+msgid "Upload hb_report tarball"
+msgstr ""
+
+#: ../app/views/explorer/index.html.erb:180
+msgid "Explore"
+msgstr ""
+
+#: ../app/views/explorer/permission_denied.html.erb:2 ../app/views/hb_reports/permission_denied.html.erb:2 ../app/views/nodes/permission_denied.html.erb:2 ../app/views/resources/permission_denied.html.erb:2
+msgid "Error: Permission denied for user '%s'."
+msgstr "Hiba: a(z) '%s' felhasználó engedélye megtagadva."
+
+#: ../app/views/groups/_form.html.erb:105
+msgid "Group ID"
+msgstr "Csoportazonosító (ID)"
+
+#: ../app/views/groups/_form.html.erb:115
+msgid "Group Children"
+msgstr "Csoporttag"
+
+#: ../app/views/groups/_form.html.erb:117
+msgid "Available Primitives"
+msgstr "Elérhető primitívek"
+
+#: ../app/views/hb_reports/create.js.erb:3
+msgid "Start Time not specified"
+msgstr "Indítási idő nincs beállítva"
+
+#: ../app/views/hb_reports/new.html.erb:60
+msgid "Generate"
+msgstr "Előállítás"
+
+#: ../app/views/hb_reports/new.html.erb:74
+msgid "hb_report generation in progress..."
+msgstr "A hb_report elkészítése folyamatban..."
+
+#: ../app/views/hb_reports/new.html.erb:80
+msgid "Download hb_report"
+msgstr "hb_report letöltése"
+
+#: ../app/views/layouts/main.html.erb:34
+msgid "Simulator"
+msgstr "Szimulátor"
+
+#: ../app/views/layouts/main.html.erb:86
+msgid "Generate hb_report..."
+msgstr "hb_report készítése…"
+
+#: ../app/views/layouts/main.html.erb:97
+msgid "Generate hb_report"
+msgstr "hb_report készítése"
+
+#: ../app/views/layouts/main.html.erb:116
+msgid "Tools"
+msgstr ""
+
+#: ../app/views/layouts/main.html.erb:122
+msgid "User: %{user}"
+msgstr "Felhasználó: %{user}"
+
+#: ../app/views/layouts/main.html.erb:123
+msgid "Log Out"
+msgstr "Kilépés"
+
+#: ../app/views/layouts/main.html.erb:128
+msgid "Dashboard"
+msgstr ""
+
+#: ../app/views/layouts/main.html.erb:149
+msgid "Setup Wizard"
+msgstr "Installációs varázsló"
+
+#: ../app/views/layouts/main.html.erb:152
+msgid "Cluster Properties"
+msgstr "Fürt tulajdonságai"
+
+#: ../app/views/layouts/main.html.erb:188
+msgid "UI Host: %s"
+msgstr "UI gép: %s"
+
+#: ../app/views/locations/_form.html.erb:45
+msgid "Boolean Op"
+msgstr "Boolean művelet"
+
+#: ../app/views/locations/_form.html.erb:46
+msgid "Expression"
+msgstr "Kifejezés"
+
+#: ../app/views/locations/_form.html.erb:49
+msgid "Add Rule"
+msgstr "Szabály hozzáadása"
+
+#: ../app/views/locations/_form.html.erb:50
+msgid "Remove Rule"
+msgstr "Szabály eltávolítása"
+
+#: ../app/views/locations/_form.html.erb:51
+msgid "Show Rule Editor"
+msgstr "Szabályszerkesztő megjelenítése"
+
+#: ../app/views/locations/_form.html.erb:76
+msgid "Resource"
+msgstr "Erőforrás"
+
+#: ../app/views/main/_gettext.js.erb:10 ../app/views/shared/_confirm_revert.html.erb:8
+msgid "Yes"
+msgstr "Igen"
+
+#: ../app/views/main/_gettext.js.erb:13 ../app/views/shared/_confirm_revert.html.erb:9
+msgid "No"
+msgstr "Nem"
+
+#: ../app/views/main/_gettext.js.erb:16
 msgid "Close"
 msgstr "Bezárás"
 
-#: app/controllers/crm_config_controller.rb:45
-#: app/views/main/_gettext.js.erb:99
-msgid "Cluster Configuration"
-msgstr "Fürt beállítása"
+#: ../app/views/main/_gettext.js.erb:19
+msgid "Reset"
+msgstr "Visszaállítás"
+
+#: ../app/views/main/_gettext.js.erb:23
+msgid "This will bring node %s online if it is currently on standby.  Do you want to continue?"
+msgstr "Ez a(z) %s csomópontot online állapotba hozza, amennyiben eddig készenléti (standby) állapotban volt. Kívánja folytatni?"
+
+#: ../app/views/main/_gettext.js.erb:26
+msgid "This will put node %s on standby.  All resources will be stopped and/or moved to another node.  Do you want to continue?"
+msgstr "Ez a(z) %s csomópontot készenléti (standby) állapotba hozza. Minden erőforrás leáll és/vagy űtmozgatásra kerül egy másik csomópontra. Kívánja folytatni?"
+
+#: ../app/views/main/_gettext.js.erb:35
+msgid "This will attempt to immediately fence node %s.  Do you want to continue?"
+msgstr "Ez azonnal leválasztja a(z) %s csomópontot. Kívánja folytatni?"
+
+#: ../app/views/main/_gettext.js.erb:39
+msgid "This will start the resource %s.  Do you want to continue?"
+msgstr "Ez elindítja a(z) %s erőforrást. Kívánja folytatni?"
+
+#: ../app/views/main/_gettext.js.erb:42
+msgid "This will stop the resource %s.  Do you want to continue?"
+msgstr "Ez leállítja a(z) %s erőforrást. Kívánja folytatni?"
+
+#: ../app/views/main/_gettext.js.erb:45
+msgid "Move resource %s"
+msgstr "%s erőforrás mozgatása"
+
+#: ../app/views/main/_gettext.js.erb:48
+msgid "To node %s"
+msgstr "A(z) %s csomópontra"
+
+#: ../app/views/main/_gettext.js.erb:51
+msgid "Away from current node"
+msgstr "Eltávolítás a jelenlegi csomópontról"
+
+#: ../app/views/main/_gettext.js.erb:54
+msgid "This will clear any relocation constraints set on the resource %s.  Do you want to continue?"
+msgstr "Ez törölni fogja az áthelyezési szabályokat a(z) %s erőforráson. Kívánja folytatni?"
+
+#: ../app/views/main/_gettext.js.erb:57
+msgid "This will promote the resource %s.  Do you want to continue?"
+msgstr "Ez előlépteti a(z) %s erőforrást. Kívánja folytatni?"
+
+#: ../app/views/main/_gettext.js.erb:60
+msgid "This will demote the resource %s.  Do you want to continue?"
+msgstr "Ez lefokozza a(z) %s erőforrást. Kívánja folytatni?"
+
+#: ../app/views/main/_gettext.js.erb:63
+msgid "This will clean up the resource %s.  Do you want to continue?"
+msgstr "Ez tisztítja a(z) %s erőforrást. Kívánja folytatni?"
+
+#: ../app/views/main/_gettext.js.erb:67
+msgid "Error"
+msgstr "Hiba"
+
+#: ../app/views/main/_gettext.js.erb:70
+msgid "Unexpected server error: %s"
+msgstr "Váratlan kiszolgálóhiba: %s"
+
+#: ../app/views/main/_gettext.js.erb:73
+msgid "Connection to server failed (server down or network error - will retry every 15 seconds)."
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:76
+msgid "Connection to server timed out - will retry every 15 seconds."
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:79
+msgid "Connection to server aborted - will retry every 15 seconds."
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:82
+msgid "Permission denied"
+msgstr "Engedély megtagadva"
+
+#: ../app/views/main/_gettext.js.erb:85
+msgid "%{op} failed on %{node} (rc=%{rc})"
+msgstr "%{op} sikertelen: %{node} (rc=%{rc})"
+
+#: ../app/views/main/_gettext.js.erb:89
+msgid "DC: %s"
+msgstr "DC: %s"
+
+#: ../app/views/main/_gettext.js.erb:92
+msgid "Version: %s"
+msgstr "Verzió: %s"
+
+#: ../app/views/main/_gettext.js.erb:95
+msgid "Stack: %s"
+msgstr "Stack: %s"
+
+#: ../app/views/main/_gettext.js.erb:111
+msgid "Inactive Resources"
+msgstr "Inaktív erőforrások"
+
+#: ../app/views/main/_gettext.js.erb:114
+msgid "Summary"
+msgstr "Összefoglalás"
+
+#: ../app/views/main/_gettext.js.erb:120
+msgid "STONITH Enabled"
+msgstr "STONITH engedélyezve"
+
+#: ../app/views/main/_gettext.js.erb:123
+msgid "No Quorum Policy"
+msgstr "Nincs Quorum irányelv"
+
+#: ../app/views/main/_gettext.js.erb:126
+msgid "Symmetric Cluster"
+msgstr "Szimetrikus fürt"
+
+#: ../app/views/main/_gettext.js.erb:129
+msgid "Resource Stickiness"
+msgstr "Erőforrás mozgathatósága"
+
+#: ../app/views/main/_gettext.js.erb:132
+msgid "Maintenance Mode"
+msgstr "Karbantartási mód"
+
+#: ../app/views/main/_gettext.js.erb:135
+msgid "Unmanaged"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:138
+msgid "Tickets"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:142
+msgid "Granted [standby]"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:143
+msgid "Granted"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:147
+msgid "Revoked [standby]"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:148
+msgid "Revoked"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:151
+msgid "Last granted: %s"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:155
+msgid "Summary View"
+msgstr "Összefoglaló nézet"
+
+#: ../app/views/main/_gettext.js.erb:158
+msgid "Tree View"
+msgstr "Fanézet"
+
+#: ../app/views/main/_gettext.js.erb:161
+msgid "Table View"
+msgstr "Táblázat nézet"
+
+#: ../app/views/main/_gettext.js.erb:165
+msgid "%{node}: %{state}"
+msgstr "%{node}: %{state}"
+
+#: ../app/views/main/_gettext.js.erb:168 ../app/views/main/_menus.html.erb:7
+msgid "Online"
+msgstr "Elérhető"
+
+#: ../app/views/main/_gettext.js.erb:171
+msgid "Offline"
+msgstr "Kilépett"
+
+#: ../app/views/main/_gettext.js.erb:174 ../app/views/main/_gettext.js.erb:202
+msgid "Pending"
+msgstr "Függő"
+
+#: ../app/views/main/_gettext.js.erb:177 ../app/views/main/_gettext.js.erb:323 ../app/views/main/_menus.html.erb:14
+msgid "Standby"
+msgstr "Készenlét"
+
+#: ../app/views/main/_gettext.js.erb:180
+msgid "Unclean"
+msgstr "Tisztázatlan"
+
+#: ../app/views/main/_gettext.js.erb:187
+msgid "Master"
+msgstr "Elsődleges"
+
+#: ../app/views/main/_gettext.js.erb:188
+msgid "%{id}: Master: %{nodelist}"
+msgstr "%{id}: Elsődleges: %{csomópontlista}"
+
+#: ../app/views/main/_gettext.js.erb:189
+msgid "%{id}: Master"
+msgstr "%{id}: Elsődleges"
+
+#: ../app/views/main/_gettext.js.erb:192
+msgid "Slave"
+msgstr "Másodlagos"
+
+#: ../app/views/main/_gettext.js.erb:193
+msgid "%{id}: Slave: %{nodelist}"
+msgstr "%{id}: Másodlagos: %{csomópontlista}"
+
+#: ../app/views/main/_gettext.js.erb:194
+msgid "%{id}: Slave"
+msgstr "%{id}: Másodlagos"
+
+#: ../app/views/main/_gettext.js.erb:197
+msgid "Started"
+msgstr "Elindítva"
+
+#: ../app/views/main/_gettext.js.erb:198
+msgid "%{id}: Started: %{nodelist}"
+msgstr "%{id}: Elindítva: %{nodelist}"
+
+#: ../app/views/main/_gettext.js.erb:199
+msgid "%{id}: Started"
+msgstr "%{id}: Elindítva"
+
+#: ../app/views/main/_gettext.js.erb:203
+msgid "%{id}: Pending: %{nodelist}"
+msgstr "%{id}: Felfüggesztve: %{nodelist}"
+
+#: ../app/views/main/_gettext.js.erb:204
+msgid "%{id}: Pending"
+msgstr "%{id}: Felfüggesztve"
+
+#: ../app/views/main/_gettext.js.erb:228
+msgid "Stopped"
+msgstr "Leállítva"
+
+#: ../app/views/main/_gettext.js.erb:229
+msgid "%{id}: Stopped"
+msgstr "%{id}: Leállítva"
+
+#: ../app/views/main/_gettext.js.erb:232
+msgid "Group: %{id}"
+msgstr "Csoport: %{id}"
+
+#: ../app/views/main/_gettext.js.erb:235
+msgid "Master/Slave Set: %{id}"
+msgstr "Elsődleges/Másodlagos csoport: %{id}"
+
+#: ../app/views/main/_gettext.js.erb:238
+msgid "Clone Set: %{id}"
+msgstr "Klóncsoport: %{id}"
+
+#: ../app/views/main/_gettext.js.erb:241
+msgid "Parent: %{id}..."
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:245
+msgid "Simulator (initial state)"
+msgstr "Szimulátor (kezdeti állapot)"
+
+#: ../app/views/main/_gettext.js.erb:248
+msgid "Simulator (busy...)"
+msgstr "Szimulátor (elfoglalt…)"
+
+#: ../app/views/main/_gettext.js.erb:251
+msgid "Simulator (final state)"
+msgstr "Szimulátor (végső állapot)"
+
+#: ../app/views/main/_gettext.js.erb:254
+msgid "Injected State:"
+msgstr "Szimulált állapot:"
+
+#: ../app/views/main/_gettext.js.erb:257
+msgid "+ Node"
+msgstr "+ Csomópont"
+
+#: ../app/views/main/_gettext.js.erb:260
+msgid "+ Op"
+msgstr "+ Művelet"
+
+#: ../app/views/main/_gettext.js.erb:263
+msgid "+ Ticket"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:266
+msgid "Run >"
+msgstr "Indítás >"
+
+#: ../app/views/main/_gettext.js.erb:272
+msgid "CIB (in)"
+msgstr "CIB (be)"
+
+#: ../app/views/main/_gettext.js.erb:275
+msgid "CIB (out)"
+msgstr "CIB (ki)"
+
+#: ../app/views/main/_gettext.js.erb:284
+msgid "Inject Node State"
+msgstr "Szimulált csomópont állapota"
+
+#: ../app/views/main/_gettext.js.erb:287
+msgid "Node:"
+msgstr "Csomópont:"
+
+#: ../app/views/main/_gettext.js.erb:290
+msgid "State:"
+msgstr "Állapot:"
+
+#: ../app/views/main/_gettext.js.erb:293
+msgid "Inject Operation"
+msgstr "Szimulált művelet"
+
+#: ../app/views/main/_gettext.js.erb:296
+msgid "Operation:"
+msgstr "Művelet:"
+
+#: ../app/views/main/_gettext.js.erb:299
+msgid "Interval:"
+msgstr "Időköz:"
+
+#: ../app/views/main/_gettext.js.erb:302
+msgid "Resource:"
+msgstr "Erőforrás:"
+
+#: ../app/views/main/_gettext.js.erb:305
+msgid "Result:"
+msgstr "Eredmény:"
+
+#: ../app/views/main/_gettext.js.erb:311
+msgid "Ticket:"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:317
+msgid "Grant"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:320
+msgid "Revoke"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:326
+msgid "Activate"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:329
+msgid "Success"
+msgstr "Sikeres"
+
+#: ../app/views/main/_gettext.js.erb:332
+msgid "Generic Error"
+msgstr "Általános hiba"
+
+#: ../app/views/main/_gettext.js.erb:335
+msgid "Wrong Argument(s)"
+msgstr "Hibás argomentumok(ok)"
+
+#: ../app/views/main/_gettext.js.erb:338
+msgid "Not Implemented"
+msgstr "Nincs megvalósítva"
+
+#: ../app/views/main/_gettext.js.erb:341
+msgid "Permission Denied"
+msgstr "Engedély megtagadva"
+
+#: ../app/views/main/_gettext.js.erb:344
+msgid "Not Installed"
+msgstr "Nincs telepítve"
+
+#: ../app/views/main/_gettext.js.erb:347
+msgid "Not Configured"
+msgstr "Nincs beállítva"
+
+#: ../app/views/main/_gettext.js.erb:350
+msgid "Not Running"
+msgstr "Nem fut"
+
+#: ../app/views/main/_gettext.js.erb:353
+msgid "Running Master"
+msgstr "Futó elsődleges"
+
+#: ../app/views/main/_gettext.js.erb:356
+msgid "Failed Master"
+msgstr "Hibás elsődleges"
+
+#: ../app/views/main/_menus.html.erb:28
+msgid "Ready"
+msgstr ""
+
+#: ../app/views/main/_menus.html.erb:35
+msgid "Fence Node"
+msgstr "Csomópont leválasztása"
+
+#: ../app/views/main/_menus.html.erb:45 ../app/views/main/_menus.html.erb:159
+msgid "View Details..."
+msgstr "Részletek megjelenítése…"
+
+#: ../app/views/main/_menus.html.erb:65 ../app/views/main/_menus.html.erb:181
+msgid "View Recent Events..."
+msgstr "Legutóbbi események megjelenítése…"
+
+#: ../app/views/main/_menus.html.erb:86
+msgid "Start"
+msgstr "Indítás"
+
+#: ../app/views/main/_menus.html.erb:93
+msgid "Stop"
+msgstr "Leállítás"
+
+#: ../app/views/main/_menus.html.erb:100
+msgid "Move..."
+msgstr "Áthelyezés..."
+
+#: ../app/views/main/_menus.html.erb:128
+msgid "Drop Relocation Rule"
+msgstr "Áthelyezési szabály eldobása"
+
+#: ../app/views/main/_menus.html.erb:135
+msgid "Promote"
+msgstr "Előléptetés"
+
+#: ../app/views/main/_menus.html.erb:142
+msgid "Demote"
+msgstr "Lefokozás"
+
+#: ../app/views/main/_menus.html.erb:149
+msgid "Clean Up"
+msgstr "Tisztítás"
+
+#: ../app/views/masters/_form.html.erb:70
+msgid "Master/Slave ID"
+msgstr "Elsődleges/Másodlagos azonosító"
+
+#: ../app/views/nodes/events.html.erb:12 ../app/views/resources/events.html.erb:12
+msgid "Getting recent events (last hour)..."
+msgstr "Az elmúlt óra eseményei…"
+
+#: ../app/views/nodes/events.html.erb:13 ../app/views/resources/events.html.erb:13
+msgid "Another \"crm history\" operation is in progress..."
+msgstr "Egy másik \"crm előzmény\" művelet folyamatban van…"
+
+#: ../app/views/nodes/events.html.erb:20 ../app/views/resources/events.html.erb:20
+msgid "No events found in last hour."
+msgstr "Nem volt esemény az elmúlt órában."
+
+#: ../app/views/nodes/show.html.erb:1
+msgid "Utilization"
+msgstr "Kihasználtság"
+
+#: ../app/views/nodes/show.html.erb:15
+msgid "No utilization defined"
+msgstr "Nincs meghatározva kihasználtság"
+
+#: ../app/views/nodes/show.html.erb:18 ../app/views/resources/show.html.erb:1
+msgid "Attributes"
+msgstr "Attribútumok"
+
+#: ../app/views/nodes/show.html.erb:29 ../app/views/resources/show.html.erb:12
+msgid "No attributes defined"
+msgstr "Nincsenek megadva attribútumok"
+
+#: ../app/views/orders/_form.html.erb:100
+msgid "Symmetrical"
+msgstr "Szimetrikus"
+
+#: ../app/views/primitives/_form.html.erb:261
+msgid "Operations"
+msgstr "Műveletek"
+
+#: ../app/views/primitives/_form.html.erb:271
+msgid "There is already a monitor op with this interval."
+msgstr "Már van egy monitor művelet ebben az intervallumban."
+
+#: ../app/views/primitives/_form.html.erb:329
+msgid "Template ID"
+msgstr ""
+
+#: ../app/views/primitives/_form.html.erb:329
+msgid "Resource ID"
+msgstr "Erőforrás ID"
+
+#: ../app/views/primitives/_form.html.erb:330
+msgid "Class"
+msgstr "Osztály"
+
+#: ../app/views/primitives/_form.html.erb:331
+msgid "Provider"
+msgstr "Szolgáltató"
+
+#: ../app/views/primitives/_form.html.erb:332
+msgid "Type"
+msgstr "Típus"
+
+#: ../app/views/primitives/_form.html.erb:367
+msgid "Use Template"
+msgstr ""
+
+#: ../app/views/resources/index.html.erb:58
+msgid "Delete Resource"
+msgstr "Erőforrás törlése"
+
+#: ../app/views/resources/index.html.erb:107
+msgid "New Template"
+msgstr ""
+
+#: ../app/views/resources/index.html.erb:108
+msgid "Template"
+msgstr ""
+
+#: ../app/views/resources/index.html.erb:114
+msgid "New Group"
+msgstr "Új csoport"
+
+#: ../app/views/resources/index.html.erb:120
+msgid "New Clone"
+msgstr "Új klón"
+
+#: ../app/views/resources/index.html.erb:126
+msgid "New Master/Slave"
+msgstr "Új Elsődleges/Másodlagos"
+
+#: ../app/views/resources/show.html.erb:20
+msgid "Fail Count"
+msgstr ""
+
+#: ../app/views/resources/show.html.erb:25
+msgid "Last Failure"
+msgstr ""
+
+#: ../app/views/roles/_form.html.erb:40 ../app/views/users/_form.html.erb:50
+msgid "Right"
+msgstr ""
+
+#: ../app/views/roles/_form.html.erb:41 ../app/views/users/_form.html.erb:51
+msgid "XPath"
+msgstr ""
+
+#: ../app/views/roles/_form.html.erb:42 ../app/views/users/_form.html.erb:52
+msgid "Tag"
+msgstr ""
+
+#: ../app/views/roles/_form.html.erb:43 ../app/views/users/_form.html.erb:53
+msgid "Ref"
+msgstr ""
+
+#: ../app/views/roles/_form.html.erb:44 ../app/views/users/_form.html.erb:54
+#, fuzzy
+msgid "Attribute"
+msgstr "Attribútumok"
+
+#: ../app/views/roles/_form.html.erb:67
+#, fuzzy
+msgid "Role ID"
+msgstr "Klón ID"
+
+#: ../app/views/sessions/new.html.erb:1
+msgid "Please ensure JavaScript is enabled"
+msgstr ""
+
+#: ../app/views/shared/_confirm_revert.html.erb:4
+msgid "Any changes will be lost - do you wish to proceed?"
+msgstr "Minden változás el fog veszni - szeretné folytatni?"
+
+#: ../app/views/tickets/_form.html.erb:78
+msgid "Loss Policy"
+msgstr ""
+
+#: ../app/views/users/_form.html.erb:81
+msgid "User ID"
+msgstr ""
+
+#: ../app/views/users/_form.html.erb:91
+#, fuzzy
+msgid "Roles"
+msgstr "Szerepkör"
+
+#: ../app/views/wizard/done.html.erb:1 ../app/views/wizard/run.html.erb:69
+msgid "%{workflow}: %{step}"
+msgstr "%{workflow}: %{step}"
+
+#: ../app/views/wizard/done.html.erb:5
+msgid "The configuration has been applied."
+msgstr "A beállítások alkalmazása megtörtént."
+
+#: ../app/views/wizard/run.html.erb:75
+msgid "The following configuration will be applied to the cluster:"
+msgstr "A következő beállítások jutnak érvényre a fürtön:"
+
+#: ../app/views/wizard/run.html.erb:100
+msgid "Error applying configuration:"
+msgstr "Hiba történt a beállítások alkalmazásakor:"
+
+#: ../app/views/wizard/run.html.erb:118
+msgid "< Back"
+msgstr "< Vissza"
+
+#: ../app/views/wizard/run.html.erb:119 ../app/views/wizard/start.html.erb:45
+msgid "Next >"
+msgstr "Következő >"
+
+#: ../app/views/wizard/start.html.erb:2
+msgid "No workflow descriptions found"
+msgstr "Nem található munkafolyamat-leírás"
+
+#: ../app/views/wizard/start.html.erb:24
+msgid "Choose Configuration"
+msgstr "Válasszon beállítást"
+
+#: ../app/views/wizard/start.html.erb:28
+msgid "This wizard will guide you through the steps necessary to add one of the following configurations to the cluster."
+msgstr "A varázsló végigvezeti a szükséges lépéseken, hogy hozzá tudja adni a fürthöz az egyik beállítást."
+
+#: ../lib/invoker.rb:111
+msgid "The object/attribute does not exist (cibadmin %{cmd})"
+msgstr "Az objektum/attribútum nem létezik: (cibadmin %{cmd})"
+
+#: ../lib/invoker.rb:115
+msgid "Error invoking cibadmin %{cmd}: %{msg}"
+msgstr "Hiba történt a cibadmin %{cmd} parancs meghívásakor: %{msg}"
+
+#: ../lib/invoker.rb:133
+msgid "The object/attribute does not exist: %{msg}"
+msgstr "Az objektum/attribútum nem létezik: %{msg}"
+
+#: ../lib/invoker.rb:137
+msgid "Error invoking cibadmin --replace: %{msg}"
+msgstr "Hiba történt a cibadmin --replace meghívásakor: %{msg}"
+
+#: app/controllers/application_controller.rb:143
+#, fuzzy
+#| msgid "Unable to create resource: %{msg}"
+msgid "Unable to create shadow CIB"
+msgstr "Nem hozható létre erőforrás: %{msg}"
 
 #: app/controllers/dashboard_controller.rb:37
 #, fuzzy
@@ -438,247 +1494,17 @@ msgstr "Fürt beállítása"
 msgid "Cluster Dashboard"
 msgstr "Jelenlegi állapot"
 
-#: app/views/layouts/main.html.erb:63 app/views/layouts/main.html.erb:76
+#: app/controllers/explorer_controller.rb:189
 #, fuzzy
-#| msgid "Cluster Configuration"
-msgid "Cluster Diagram"
-msgstr "Fürt beállítása"
+#| msgid "Required parameters \"basename\" and \"node\" not specified"
+msgid "Required parameters \"left\" and \"right\" not specified"
+msgstr "Nincs megadva a \"basename\" és a \"node\" paraméter"
 
-#: app/views/dashboard/index.html.erb:361
+#: app/controllers/resources_controller.rb:57 app/views/layouts/main.html.erb:153
 #, fuzzy
-#| msgid "Cluster Stack:"
-msgid "Cluster Name:"
-msgstr "Fürt:"
-
-#: app/views/layouts/main.html.erb:150
-msgid "Cluster Properties"
-msgstr "Fürt tulajdonságai"
-
-#: app/controllers/wizard_controller.rb:60
-msgid "Cluster Setup Wizard"
-msgstr "Fürtbeállítás-varázsló"
-
-#: app/controllers/main_controller.rb:78 app/views/layouts/main.html.erb:135
-msgid "Cluster Status"
-msgstr "Jelenlegi állapot"
-
-#: app/views/dashboard/index.html.erb:65
-msgid "Cluster has errors - click for details"
-msgstr ""
-
-#: app/views/constraints/index.html.erb:107
-msgid "Colocation"
-msgstr "Elhelyezése szabály"
-
-#: app/controllers/wizard_controller.rb:123
-msgid "Confirm"
-msgstr "Megerősítés"
-
-#: app/views/main/_gettext.js.erb:79
-msgid "Connection to server aborted - will retry every 15 seconds."
-msgstr ""
-
-#: app/views/main/_gettext.js.erb:73
-msgid ""
-"Connection to server failed (server down or network error - will retry every "
-"15 seconds)."
-msgstr ""
-
-#: app/views/main/_gettext.js.erb:76
-msgid "Connection to server timed out - will retry every 15 seconds."
-msgstr ""
-
-#: app/views/locations/_form.html.erb:75
-#: app/views/colocations/_form.html.erb:89 app/views/tickets/_form.html.erb:77
-#: app/views/orders/_form.html.erb:89
-msgid "Constraint ID"
-msgstr "Szabály ID"
-
-#: app/models/ticket.rb:91 app/models/location.rb:95
-#: app/models/colocation.rb:81 app/models/order.rb:107
-msgid "Constraint ID \"%{id}\" does not exist"
-msgstr "A(z) \"%{id}\" szabályazonosító nem létezik"
-
-#: app/controllers/colocations_controller.rb:61
-#: app/controllers/tickets_controller.rb:59
-#: app/controllers/locations_controller.rb:60
-#: app/controllers/orders_controller.rb:62
-msgid "Constraint created successfully"
-msgstr "A szabály sikeresen létrejött"
-
-#: app/models/location.rb:43
-msgid "Constraint is too complex - it contains nested rules"
-msgstr "Túl komplex szabály - beágyazott szabályok vannak"
-
-#: app/models/colocation.rb:57 app/models/order.rb:83
-msgid "Constraint must consist of at least two separate resources"
-msgstr "A szabálynak legalább két különböző erőforrást kell tartalmaznia"
-
-#: app/controllers/colocations_controller.rb:84
-#: app/controllers/tickets_controller.rb:81
-#: app/controllers/locations_controller.rb:82
-#: app/controllers/orders_controller.rb:86
-msgid "Constraint updated successfully"
-msgstr "A szabály frissítése sikeres"
-
-#: app/controllers/constraints_controller.rb:44
-#: app/views/layouts/main.html.erb:156
-msgid "Constraints"
-msgstr "Szabályok"
-
-#: app/views/layouts/main.html.erb:178
-#, fuzzy
-#| msgid "Copyright &copy; 2009-2011 Novell, Inc."
-msgid "Copyright &copy; 2009-2013 SUSE, LLC"
-msgstr "Copyright &copy; 2009-2011 Novell, Inc."
-
-#: app/controllers/clones_controller.rb:52
-#: app/controllers/clones_controller.rb:58 app/views/clones/_form.html.erb:87
-msgid "Create Clone"
-msgstr "Klón létrehozása"
-
-#: app/controllers/colocations_controller.rb:48
-#: app/controllers/colocations_controller.rb:53
-msgid "Create Colocation Constraint"
-msgstr "Kapcsolódási szabály létrehozása"
-
-#: app/views/locations/_form.html.erb:93
-#: app/views/colocations/_form.html.erb:109
-#: app/views/tickets/_form.html.erb:97 app/views/orders/_form.html.erb:115
-msgid "Create Constraint"
-msgstr "Szabály létrehozása"
-
-#: app/controllers/groups_controller.rb:52
-#: app/controllers/groups_controller.rb:58 app/views/groups/_form.html.erb:142
-msgid "Create Group"
-msgstr "Csoport létrehozása"
-
-#: app/controllers/locations_controller.rb:48
-#: app/controllers/locations_controller.rb:53
-msgid "Create Location Constraint"
-msgstr "Elhelyezési szabály létrehozása"
-
-#: app/controllers/masters_controller.rb:52
-#: app/controllers/masters_controller.rb:58
-#: app/views/masters/_form.html.erb:87
-msgid "Create Master/Slave"
-msgstr "Elsődleges/Másodlagos létrehozása"
-
-#: app/controllers/orders_controller.rb:48
-#: app/controllers/orders_controller.rb:53
-msgid "Create Order Constraint"
-msgstr "Szabály sorrendjének létrehozása"
-
-#: app/controllers/primitives_controller.rb:50
-#: app/controllers/primitives_controller.rb:56
-#: app/views/primitives/_form.html.erb:393
-msgid "Create Resource"
-msgstr "Erőforrások létrehozása"
-
-#: app/controllers/templates_controller.rb:51
-#: app/controllers/templates_controller.rb:59
-#, fuzzy
-#| msgid "Create Clone"
-msgid "Create Template"
-msgstr "Klón létrehozása"
-
-#: app/controllers/tickets_controller.rb:47
-#: app/controllers/tickets_controller.rb:52
-#, fuzzy
-#| msgid "Create Constraint"
-msgid "Create Ticket Constraint"
-msgstr "Szabály létrehozása"
-
-#: app/views/main/_gettext.js.erb:89
-msgid "DC: %s"
-msgstr "DC: %s"
-
-#: app/views/layouts/main.html.erb:126
-msgid "Dashboard"
-msgstr ""
-
-#: app/helpers/explorer_helper.rb:3
-msgid "Data collection in progress (%{from_time} to %{to_time})..."
-msgstr "Az adatgyűjtés folyamatban (%{from_time} - %{to_time})..."
-
-#: app/views/constraints/index.html.erb:58
-msgid "Delete Constraint"
-msgstr "Szabály törlése"
-
-#: app/views/resources/index.html.erb:58
-msgid "Delete Resource"
-msgstr "Erőforrás törlése"
-
-#: app/views/explorer/index.html.erb:37
-msgid "Delete this history archive?"
-msgstr ""
-
-#: app/views/main/_menus.html.erb:142
-msgid "Demote"
-msgstr "Lefokozás"
-
-#: app/views/main/_gettext.js.erb:108 app/views/main/_gettext.js.erb:260
-#: app/views/explorer/_pe_list.html.erb:27
-msgid "Details"
-msgstr "Részletek"
-
-#: app/views/explorer/_pe_list.html.erb:44
-msgid "Diff"
-msgstr ""
-
-#: app/views/explorer/index.html.erb:159
-msgid "Display"
-msgstr "Megjelenítés"
-
-#: app/controllers/wizard_controller.rb:143 app/views/wizard/done.html.erb:10
-msgid "Done"
-msgstr "Kész"
-
-#: app/views/hb_reports/new.html.erb:80
-msgid "Download hb_report"
-msgstr "hb_report letöltése"
-
-#: app/views/main/_menus.html.erb:128
-msgid "Drop Relocation Rule"
-msgstr "Áthelyezési szabály eldobása"
-
-#: app/views/crm_config/show.html.erb:11
-#: app/views/primitives/_form.html.erb:268
-msgid "Edit"
-msgstr "Szerkesztés"
-
-#: app/controllers/clones_controller.rb:48
-msgid "Edit Clone"
-msgstr "Klón szerkesztése"
-
-#: app/controllers/colocations_controller.rb:44
-msgid "Edit Colocation Constraint"
-msgstr "Kapcsolódási szabály szerkesztése"
-
-#: app/views/constraints/index.html.erb:47
-msgid "Edit Constraint"
-msgstr "Szabály szerkesztése"
-
-#: app/controllers/groups_controller.rb:48
-msgid "Edit Group"
-msgstr "Csoport szerkesztése"
-
-#: app/controllers/locations_controller.rb:44
-msgid "Edit Location Constraint"
-msgstr "Elhelyezési szabály szerkesztése"
-
-#: app/controllers/masters_controller.rb:48
-msgid "Edit Master/Slave"
-msgstr "Elsődleges/Másodlagos szerkesztése"
-
-#: app/controllers/orders_controller.rb:44
-msgid "Edit Order Constraint"
-msgstr "Szabály sorrendjének szerkesztése"
-
-#: app/controllers/primitives_controller.rb:46
-#: app/views/resources/index.html.erb:47
-msgid "Edit Resource"
-msgstr "Erőforrások szerkesztése"
+#| msgid "Resource"
+msgid "Resources"
+msgstr "Erőforrás"
 
 #: app/controllers/templates_controller.rb:47
 #, fuzzy
@@ -686,774 +1512,11 @@ msgstr "Erőforrások szerkesztése"
 msgid "Edit Template"
 msgstr "Klón szerkesztése"
 
-#: app/controllers/tickets_controller.rb:43
+#: app/controllers/templates_controller.rb:51 app/controllers/templates_controller.rb:59
 #, fuzzy
-#| msgid "Edit Constraint"
-msgid "Edit Ticket Constraint"
-msgstr "Szabály szerkesztése"
-
-#: app/views/main/_gettext.js.erb:272
-#, fuzzy
-#| msgid "Graph"
-msgid "Empty Graph"
-msgstr "Grafikon"
-
-#: app/views/explorer/index.html.erb:143 app/views/explorer/index.html.erb:157
-#: app/views/hb_reports/new.html.erb:63
-msgid "End Time:"
-msgstr "Megállítás ideje:"
-
-#: app/views/main/_gettext.js.erb:67
-msgid "Error"
-msgstr "Hiba"
-
-#: app/views/wizard/run.html.erb:102
-msgid "Error applying configuration:"
-msgstr "Hiba történt a beállítások alkalmazásakor:"
-
-#: app/controllers/main_controller.rb:152
-msgid "Error deleting resource"
-msgstr "Hiba az erőforrás törlésekor"
-
-#: app/models/cib.rb:255
-msgid "Error invoking %{cmd}"
-msgstr "Hiba a(z) %{cmd} parancs meghívásakor"
-
-#: app/models/cib.rb:260 app/controllers/main_controller.rb:308
-msgid "Error invoking %{cmd}: %{msg}"
-msgstr "Hiba a(z) %{cmd} parancs meghívásakor: %{msg}"
-
-#: lib/invoker.rb:115
-msgid "Error invoking cibadmin %{cmd}: %{msg}"
-msgstr "Hiba történt a cibadmin %{cmd} parancs meghívásakor: %{msg}"
-
-#: lib/invoker.rb:137
-msgid "Error invoking cibadmin --replace: %{msg}"
-msgstr "Hiba történt a cibadmin --replace meghívásakor: %{msg}"
-
-#: app/controllers/wizard_controller.rb:274
-msgid "Error parsing template \"%s\""
-msgstr "Hiba történt a(z) \"%s\" sablon feldolgozása közben"
-
-#: app/controllers/wizard_controller.rb:277
-msgid "Error parsing workflow \"%s\""
-msgstr "Hiba történt a(z) \"%s\" munkafolyamat feldolgozása közben"
-
-#: app/controllers/explorer_controller.rb:148
-#: app/controllers/explorer_controller.rb:176
-#: app/controllers/explorer_controller.rb:237
-msgid "Error:"
-msgstr "HIba:"
-
-#: app/views/nodes/permission_denied.html.erb:2
-#: app/views/explorer/permission_denied.html.erb:2
-#: app/views/resources/permission_denied.html.erb:2
-#: app/views/hb_reports/permission_denied.html.erb:2
-msgid "Error: Permission denied for user '%s'."
-msgstr "Hiba: a(z) '%s' felhasználó engedélye megtagadva."
-
-#: app/views/locations/_form.html.erb:46
-msgid "Expression"
-msgstr "Kifejezés"
-
-#: app/views/resources/show.html.erb:20
-msgid "Fail Count"
-msgstr ""
-
-#: app/views/main/_gettext.js.erb:347
-msgid "Failed Master"
-msgstr "Hibás elsődleges"
-
-#: app/models/cib.rb:471
-msgid ""
-"Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation="
-"%{op}, rc-code=%{rc_code}"
-msgstr ""
-"Hibás művelet: csomópont=%{node}, erőforrás=%{resource}, azonosító="
-"%{call_id}, művelet=%{op}, visszatérési érték=%{rc_code}"
-
-#: app/views/main/_menus.html.erb:35
-msgid "Fence Node"
-msgstr "Csomópont leválasztása"
-
-#: app/views/hb_reports/new.html.erb:60
-msgid "Generate"
-msgstr "Előállítás"
-
-#: app/views/layouts/main.html.erb:95
-msgid "Generate hb_report"
-msgstr "hb_report készítése"
-
-#: app/views/layouts/main.html.erb:84
-msgid "Generate hb_report..."
-msgstr "hb_report készítése…"
-
-#: app/views/main/_gettext.js.erb:323
-msgid "Generic Error"
-msgstr "Általános hiba"
-
-#: app/views/nodes/events.html.erb:12 app/views/resources/events.html.erb:12
-msgid "Getting recent events (last hour)..."
-msgstr "Az elmúlt óra eseményei…"
-
-#: app/views/main/_gettext.js.erb:308
-msgid "Grant"
-msgstr ""
-
-#: app/views/main/_gettext.js.erb:134
-msgid "Granted"
-msgstr ""
-
-#: app/views/main/_gettext.js.erb:133
-msgid "Granted [standby]"
-msgstr ""
-
-#: app/views/main/_gettext.js.erb:269 app/views/explorer/_pe_list.html.erb:35
-msgid "Graph"
-msgstr "Grafikon"
-
-#: app/views/resources/index.html.erb:115
-#, fuzzy
-#| msgid "Group ID"
-msgid "Group"
-msgstr "Csoportazonosító (ID)"
-
-#: app/views/groups/_form.html.erb:115
-msgid "Group Children"
-msgstr "Csoporttag"
-
-#: app/views/groups/_form.html.erb:105
-msgid "Group ID"
-msgstr "Csoportazonosító (ID)"
-
-#: app/models/group.rb:90
-msgid "Group ID \"%{id}\" does not exist"
-msgstr "A(z) \"%{id}\" csoportazonosító nem létezik"
-
-#: app/controllers/groups_controller.rb:65
-msgid "Group created successfully"
-msgstr "Csoport sikeresen létrehozva"
-
-#: app/controllers/groups_controller.rb:87
-msgid "Group updated successfully"
-msgstr "Csoport sikeresen frissítve"
-
-#: app/views/main/_gettext.js.erb:223
-msgid "Group: %{id}"
-msgstr "Csoport: %{id}"
-
-#: app/controllers/explorer_controller.rb:44
-#: app/views/layouts/main.html.erb:141
-msgid "History Explorer"
-msgstr "Előzményböngésző"
-
-#: app/views/dashboard/index.html.erb:362
-msgid "Host Name:"
-msgstr ""
-
-#: app/views/main/_gettext.js.erb:102
-msgid "Inactive Resources"
-msgstr "Inaktív erőforrások"
-
-#: app/views/main/_gettext.js.erb:275
-msgid "Inject Node State"
-msgstr "Szimulált csomópont állapota"
-
-#: app/views/main/_gettext.js.erb:284
-msgid "Inject Operation"
-msgstr "Szimulált művelet"
-
-#: app/views/main/_gettext.js.erb:299
-#, fuzzy
-#| msgid "Inject Operation"
-msgid "Inject Ticket"
-msgstr "Szimulált művelet"
-
-#: app/views/main/_gettext.js.erb:245
-msgid "Injected State:"
-msgstr "Szimulált állapot:"
-
-#: app/views/main/_gettext.js.erb:290
-msgid "Interval:"
-msgstr "Időköz:"
-
-#: app/models/cib_object.rb:66
-msgid "Invalid Resource ID \"%{id}\""
-msgstr "Érvénytelen erőforrás-azonosító \"%{id}\""
-
-#: app/models/ticket.rb:58
-#, fuzzy
-#| msgid "Invalid score"
-msgid "Invalid Ticket ID"
-msgstr "Érvénytelen pontszám"
-
-#: app/models/colocation.rb:53 app/models/order.rb:79
-msgid "Invalid score"
-msgstr "Érvénytelen pontszám"
-
-#: app/models/location.rb:57
-msgid "Invalid score \"%{score}\""
-msgstr "Érvénytelen pontszám \"%{score}\""
-
-#: app/controllers/sessions_controller.rb:73
-msgid "Invalid username"
-msgstr "Érvénytelen felhasználónév"
-
-#: app/controllers/sessions_controller.rb:89
-msgid "Invalid username or password"
-msgstr "Érvénytelen felhasználónév vagy jelszó"
-
-#: app/views/resources/show.html.erb:25
-msgid "Last Failure"
-msgstr ""
-
-#: app/views/main/_gettext.js.erb:142
-msgid "Last granted: %s"
-msgstr ""
-
-#: app/views/colocations/_form.html.erb:62 app/views/orders/_form.html.erb:62
-msgid "Link set"
-msgstr "Hivatkozás beállítás"
-
-#: app/views/constraints/index.html.erb:101
-msgid "Location"
-msgstr "Hely"
-
-#: app/controllers/sessions_controller.rb:37
-#: app/views/sessions/new.html.erb:17 app/views/dashboard/index.html.erb:58
-msgid "Log In"
-msgstr "Belépés"
-
-#: app/views/layouts/main.html.erb:121
-msgid "Log Out"
-msgstr "Kilépés"
-
-#: app/views/tickets/_form.html.erb:78
-msgid "Loss Policy"
-msgstr ""
-
-#: app/views/main/_menus.html.erb:21
-#, fuzzy
-#| msgid "Maintenance Mode"
-msgid "Maintenance"
-msgstr "Karbantartási mód"
-
-#: app/views/main/_gettext.js.erb:123
-msgid "Maintenance Mode"
-msgstr "Karbantartási mód"
-
-#: app/views/main/_gettext.js.erb:178
-msgid "Master"
-msgstr "Elsődleges"
-
-#: app/views/resources/index.html.erb:127
-#, fuzzy
-#| msgid "Master/Slave ID"
-msgid "Master/Slave"
-msgstr "Elsődleges/Másodlagos azonosító"
-
-#: app/views/masters/_form.html.erb:70
-msgid "Master/Slave ID"
-msgstr "Elsődleges/Másodlagos azonosító"
-
-#: app/models/master.rb:87
-msgid "Master/Slave ID \"%{id}\" does not exist"
-msgstr "A(z) \"%{id}\" elsődleges/másodlagos azonosító nem létezik"
-
-#: app/views/main/_gettext.js.erb:226
-msgid "Master/Slave Set: %{id}"
-msgstr "Elsődleges/Másodlagos csoport: %{id}"
-
-#: app/controllers/masters_controller.rb:65
-msgid "Master/Slave created successfully"
-msgstr "Elsődleges/Másodlagos sikeresen létrehozva"
-
-#: app/controllers/masters_controller.rb:87
-msgid "Master/Slave updated successfully"
-msgstr "Elsődleges/Másodlagos sikeresen frissítve"
-
-#: app/views/masters/_form.html.erb:40 app/views/clones/_form.html.erb:40
-#: app/views/groups/_form.html.erb:75 app/views/primitives/_form.html.erb:284
-msgid "Meta Attributes"
-msgstr "Metaattribútumok"
-
-#: app/views/main/_gettext.js.erb:45
-msgid "Move resource %s"
-msgstr "%s erőforrás mozgatása"
-
-#: app/views/main/_menus.html.erb:100
-msgid "Move..."
-msgstr "Áthelyezés..."
-
-#: app/views/resources/index.html.erb:120
-msgid "New Clone"
-msgstr "Új klón"
-
-#: app/views/constraints/index.html.erb:100
-#: app/views/constraints/index.html.erb:106
-#: app/views/constraints/index.html.erb:112
-#: app/views/constraints/index.html.erb:119
-msgid "New Constraint"
-msgstr "Új szabály"
-
-#: app/views/resources/index.html.erb:114
-msgid "New Group"
-msgstr "Új csoport"
-
-#: app/views/resources/index.html.erb:126
-msgid "New Master/Slave"
-msgstr "Új Elsődleges/Másodlagos"
-
-#: app/views/resources/index.html.erb:100
-#, fuzzy
-#| msgid "Resource"
-msgid "New Resource"
-msgstr "Erőforrás"
-
-#: app/views/resources/index.html.erb:107
-msgid "New Template"
-msgstr ""
-
-#: app/views/wizard/start.html.erb:45 app/views/wizard/run.html.erb:121
-msgid "Next >"
-msgstr "Következő >"
-
-#: app/views/shared/_confirm_revert.html.erb:9
-#: app/views/main/_gettext.js.erb:13
-msgid "No"
-msgstr "Nem"
-
-#: app/models/master.rb:45
-msgid "No Master/Slave child specified"
-msgstr "Nincs megadva elsődleges/másodlagos gyermek"
-
-#: app/views/main/_gettext.js.erb:114
-msgid "No Quorum Policy"
-msgstr "Nincs Quorum irányelv"
-
-#: app/views/nodes/show.html.erb:29 app/views/resources/show.html.erb:12
-msgid "No attributes defined"
-msgstr "Nincsenek megadva attribútumok"
-
-#: app/models/clone.rb:45
-msgid "No clone child specified"
-msgstr "Nincs megadva klóngyermek"
-
-#: app/views/crm_config/show.html.erb:4
-msgid "No cluster properties set in %{group}"
-msgstr "Nincsenek beállítva fürttulajdonságok a(z) %{group} csoportban"
-
-#: app/controllers/explorer_controller.rb:146
-#: app/controllers/explorer_controller.rb:216
-msgid "No details available"
-msgstr "Nincsenek részletek"
-
-#: app/views/nodes/events.html.erb:20 app/views/resources/events.html.erb:20
-msgid "No events found in last hour."
-msgstr "Nem volt esemény az elmúlt órában."
-
-#: app/models/location.rb:65
-msgid "No expressions specified"
-msgstr "Nincsenek megadva kifejezések"
-
-#: app/models/group.rb:45
-msgid "No group children specified"
-msgstr "Nincs megadva csoporttag"
-
-#: app/models/location.rb:48
-msgid "No resource specified"
-msgstr "Nincs megadva erőforrás"
-
-#: app/models/ticket.rb:61
-#, fuzzy
-#| msgid "No resource specified"
-msgid "No resources specified"
-msgstr "Nincs megadva erőforrás"
-
-#: app/models/location.rb:45
-msgid "No rules specified"
-msgstr "Nincsenek szabályok megadva"
-
-#: app/views/explorer/_pe_list.html.erb:6
-msgid "No transitions found for the specified time period."
-msgstr "A megadott időszakban nem található átmenet."
-
-#: app/views/nodes/show.html.erb:15
-msgid "No utilization defined"
-msgstr "Nincs meghatározva kihasználtság"
-
-#: app/views/wizard/start.html.erb:2
-msgid "No workflow descriptions found"
-msgstr "Nem található munkafolyamat-leírás"
-
-#: app/views/locations/_form.html.erb:43
-#: app/views/explorer/_pe_list.html.erb:13
-msgid "Node"
-msgstr "Csomópont"
-
-#: app/views/main/_gettext.js.erb:278
-msgid "Node:"
-msgstr "Csomópont:"
-
-#: app/views/main/_gettext.js.erb:338
-msgid "Not Configured"
-msgstr "Nincs beállítva"
-
-#: app/views/main/_gettext.js.erb:329
-msgid "Not Implemented"
-msgstr "Nincs megvalósítva"
-
-#: app/views/main/_gettext.js.erb:335
-msgid "Not Installed"
-msgstr "Nincs telepítve"
-
-#: app/views/main/_gettext.js.erb:341
-msgid "Not Running"
-msgstr "Nem fut"
-
-#: app/views/main/_gettext.js.erb:4 app/views/primitives/_form.html.erb:272
-#: app/views/dashboard/index.html.erb:370
-msgid "OK"
-msgstr "OK"
-
-#: app/views/main/_gettext.js.erb:162
-msgid "Offline"
-msgstr "Kilépett"
-
-#: app/views/main/_menus.html.erb:7 app/views/main/_gettext.js.erb:159
-msgid "Online"
-msgstr "Elérhető"
-
-#: app/views/crm_config/edit.html.erb:59
-#, fuzzy
-#| msgid "Operations"
-msgid "Operation Defaults"
-msgstr "Műveletek"
-
-#: app/views/main/_gettext.js.erb:287
-msgid "Operation:"
-msgstr "Művelet:"
-
-#: app/views/primitives/_form.html.erb:261
-msgid "Operations"
-msgstr "Műveletek"
-
-#: app/views/constraints/index.html.erb:113
-msgid "Order"
-msgstr "Sorrend"
-
-#: app/views/explorer/_pe_list.html.erb:12
-msgid "PE Input"
-msgstr "PE Input"
-
-#: app/models/cib.rb:237
-msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
-msgstr "A Pacemaker nincs telepítve (%{cmd} parancs nem található)"
-
-#: app/controllers/wizard_controller.rb:99
-#: app/views/primitives/_form.html.erb:241
-msgid "Parameters"
-msgstr "Paraméterek"
-
-#: app/views/main/_gettext.js.erb:232
-msgid "Parent: %{id}..."
-msgstr ""
-
-#: app/controllers/sessions_controller.rb:75
-msgid "Password not specified"
-msgstr "Nincs megadva jelszó"
-
-#: app/views/sessions/new.html.erb:13 app/views/dashboard/index.html.erb:54
-msgid "Password:"
-msgstr "Jelszó:"
-
-#: app/views/main/_gettext.js.erb:165 app/views/main/_gettext.js.erb:193
-msgid "Pending"
-msgstr "Függő"
-
-#: app/views/main/_gettext.js.erb:332
-msgid "Permission Denied"
-msgstr "Engedély megtagadva"
-
-#: app/views/main/_gettext.js.erb:82
-msgid "Permission denied"
-msgstr "Engedély megtagadva"
-
-#: app/models/cib.rb:258 app/controllers/sessions_controller.rb:128
-#: lib/invoker.rb:113 lib/invoker.rb:135 lib/invoker.rb:172
-msgid "Permission denied for user %{user}"
-msgstr "%{user} felhasználónak nincs hozzáférése"
-
-#: app/views/dashboard/index.html.erb:227
-#, fuzzy
-#| msgid "Permission denied for user %{user}"
-msgid "Permission denied. Please log in to %{node}"
-msgstr "%{user} felhasználónak nincs hozzáférése"
-
-#: app/views/sessions/new.html.erb:1
-msgid "Please ensure JavaScript is enabled"
-msgstr ""
-
-#: app/views/resources/index.html.erb:101
-#, fuzzy
-#| msgid "New Primitive"
-msgid "Primitive"
-msgstr "Új primitív"
-
-#: app/views/main/_menus.html.erb:135
-msgid "Promote"
-msgstr "Előléptetés"
-
-#: app/views/primitives/_form.html.erb:331
-msgid "Provider"
-msgstr "Szolgáltató"
-
-#: app/views/main/_menus.html.erb:28
-msgid "Ready"
-msgstr ""
-
-#: app/views/masters/_form.html.erb:47 app/views/crm_config/edit.html.erb:25
-#: app/views/crm_config/edit.html.erb:47 app/views/crm_config/edit.html.erb:69
-#: app/views/clones/_form.html.erb:47 app/views/locations/_form.html.erb:48
-#: app/views/groups/_form.html.erb:82 app/views/colocations/_form.html.erb:61
-#: app/views/tickets/_form.html.erb:49 app/views/primitives/_form.html.erb:248
-#: app/views/primitives/_form.html.erb:269
-#: app/views/primitives/_form.html.erb:291
-#: app/views/dashboard/index.html.erb:40 app/views/orders/_form.html.erb:61
-msgid "Remove"
-msgstr "Eltávolítás"
-
-#: app/views/locations/_form.html.erb:50
-msgid "Remove Rule"
-msgstr "Szabály eltávolítása"
-
-#: app/controllers/wizard_controller.rb:243
-msgid "Required parameter \"%{param}\" not specified"
-msgstr "Nincs megadva a(z) \"%{param}\" paraméter"
-
-#: app/controllers/main_controller.rb:93
-#: app/controllers/main_controller.rb:103
-#: app/controllers/main_controller.rb:113
-msgid "Required parameter \"node\" not specified"
-msgstr "Nincs megadva a \"node\" paraméter"
-
-#: app/controllers/main_controller.rb:129
-#: app/controllers/main_controller.rb:158
-msgid "Required parameter \"resource\" not specified"
-msgstr "Nincs megadva a \"resource\" paraméter"
-
-#: app/controllers/explorer_controller.rb:122
-msgid "Required parameters \"basename\" and \"node\" not specified"
-msgstr "Nincs megadva a \"basename\" és a \"node\" paraméter"
-
-#: app/controllers/explorer_controller.rb:189
-#, fuzzy
-#| msgid "Required parameters \"basename\" and \"node\" not specified"
-msgid "Required parameters \"left\" and \"right\" not specified"
-msgstr "Nincs megadva a \"basename\" és a \"node\" paraméter"
-
-#: app/controllers/main_controller.rb:139
-msgid "Required parameters \"resource\" and \"node\" not specified"
-msgstr "Nincs megadva a \"resource\" és a \"node\" paraméter"
-
-#: app/views/main/_gettext.js.erb:19
-msgid "Reset"
-msgstr "Visszaállítás"
-
-#: app/views/locations/_form.html.erb:76
-msgid "Resource"
-msgstr "Erőforrás"
-
-#: app/views/crm_config/edit.html.erb:37
-#, fuzzy
-#| msgid "Resource ID"
-msgid "Resource Defaults"
-msgstr "Erőforrás ID"
-
-#: app/views/primitives/_form.html.erb:329
-msgid "Resource ID"
-msgstr "Erőforrás ID"
-
-#: app/models/template.rb:140 app/models/primitive.rb:140
-msgid "Resource ID \"%{id}\" does not exist"
-msgstr "A(z) \"%{id}\" erőforrás-azonosító nem létezik"
-
-#: app/views/main/_gettext.js.erb:120
-msgid "Resource Stickiness"
-msgstr "Erőforrás mozgathatósága"
-
-#: app/controllers/primitives_controller.rb:63
-msgid "Resource created successfully"
-msgstr "Erőforrás sikeresen létrehozva"
-
-#: app/controllers/primitives_controller.rb:85
-msgid "Resource updated successfully"
-msgstr "Erőforrás sikeresen frissítve"
-
-#: app/views/main/_gettext.js.erb:293
-msgid "Resource:"
-msgstr "Erőforrás:"
-
-#: app/controllers/resources_controller.rb:57
-#: app/views/layouts/main.html.erb:153
-#, fuzzy
-#| msgid "Resource"
-msgid "Resources"
-msgstr "Erőforrás"
-
-#: app/views/main/_gettext.js.erb:296
-msgid "Result:"
-msgstr "Eredmény:"
-
-#: app/views/masters/_form.html.erb:88 app/views/crm_config/edit.html.erb:114
-#: app/views/clones/_form.html.erb:88 app/views/locations/_form.html.erb:94
-#: app/views/groups/_form.html.erb:143
-#: app/views/colocations/_form.html.erb:110
-#: app/views/tickets/_form.html.erb:98 app/views/primitives/_form.html.erb:394
-#: app/views/orders/_form.html.erb:116
-msgid "Revert Changes"
-msgstr "Változtatások visszavonása"
-
-#: app/views/main/_gettext.js.erb:311
-msgid "Revoke"
-msgstr ""
-
-#: app/views/main/_gettext.js.erb:139
-msgid "Revoked"
-msgstr ""
-
-#: app/views/main/_gettext.js.erb:138
-msgid "Revoked [standby]"
-msgstr ""
-
-#: app/views/locations/_form.html.erb:44
-msgid "Role"
-msgstr "Szerepkör"
-
-#: app/views/main/_gettext.js.erb:257
-msgid "Run >"
-msgstr "Indítás >"
-
-#: app/views/main/_gettext.js.erb:344
-msgid "Running Master"
-msgstr "Futó elsődleges"
-
-#: app/views/main/_gettext.js.erb:111
-msgid "STONITH Enabled"
-msgstr "STONITH engedélyezve"
-
-#: app/views/locations/_form.html.erb:42
-#: app/views/colocations/_form.html.erb:90 app/views/orders/_form.html.erb:90
-msgid "Score"
-msgstr "Pontszám"
-
-#: app/views/layouts/main.html.erb:147
-msgid "Setup Wizard"
-msgstr "Installációs varázsló"
-
-#: app/views/locations/_form.html.erb:51
-msgid "Show Rule Editor"
-msgstr "Szabályszerkesztő megjelenítése"
-
-#: app/views/layouts/main.html.erb:33
-msgid "Simulator"
-msgstr "Szimulátor"
-
-#: app/views/main/_gettext.js.erb:239
-msgid "Simulator (busy...)"
-msgstr "Szimulátor (elfoglalt…)"
-
-#: app/views/main/_gettext.js.erb:242
-msgid "Simulator (final state)"
-msgstr "Szimulátor (végső állapot)"
-
-#: app/views/main/_gettext.js.erb:236
-msgid "Simulator (initial state)"
-msgstr "Szimulátor (kezdeti állapot)"
-
-#: app/views/main/_gettext.js.erb:183
-msgid "Slave"
-msgstr "Másodlagos"
-
-#: app/views/main/_gettext.js.erb:95
-msgid "Stack: %s"
-msgstr "Stack: %s"
-
-#: app/views/main/_menus.html.erb:14 app/views/main/_gettext.js.erb:168
-#: app/views/main/_gettext.js.erb:314
-msgid "Standby"
-msgstr "Készenlét"
-
-#: app/views/main/_menus.html.erb:86
-msgid "Start"
-msgstr "Indítás"
-
-#: app/views/hb_reports/create.js.erb:3
-msgid "Start Time not specified"
-msgstr "Indítási idő nincs beállítva"
-
-#: app/views/explorer/index.html.erb:141 app/views/explorer/index.html.erb:155
-#: app/views/hb_reports/new.html.erb:58
-msgid "Start Time:"
-msgstr "Indítás ideje:"
-
-#: app/views/main/_gettext.js.erb:188
-msgid "Started"
-msgstr "Elindítva"
-
-#: app/views/main/_gettext.js.erb:281
-msgid "State:"
-msgstr "Állapot:"
-
-#: app/views/layouts/main.html.erb:118 app/views/layouts/main.html.erb:126
-#, fuzzy
-#| msgid "State:"
-msgid "Status"
-msgstr "Állapot:"
-
-#: app/views/main/_menus.html.erb:93
-msgid "Stop"
-msgstr "Leállítás"
-
-#: app/views/main/_gettext.js.erb:219
-msgid "Stopped"
-msgstr "Leállítva"
-
-#: app/views/main/_gettext.js.erb:320
-msgid "Success"
-msgstr "Sikeres"
-
-#: app/views/main/_gettext.js.erb:105
-msgid "Summary"
-msgstr "Összefoglalás"
-
-#: app/views/main/_gettext.js.erb:146
-msgid "Summary View"
-msgstr "Összefoglaló nézet"
-
-#: app/views/colocations/_form.html.erb:64 app/views/orders/_form.html.erb:64
-msgid "Swap resources"
-msgstr "Erőforrások felcserélése"
-
-#: app/views/main/_gettext.js.erb:117
-msgid "Symmetric Cluster"
-msgstr "Szimetrikus fürt"
-
-#: app/views/orders/_form.html.erb:100
-msgid "Symmetrical"
-msgstr "Szimetrikus"
-
-#: app/views/main/_gettext.js.erb:152
-msgid "Table View"
-msgstr "Táblázat nézet"
-
-#: app/views/resources/index.html.erb:108
-msgid "Template"
-msgstr ""
-
-#: app/views/primitives/_form.html.erb:329
-msgid "Template ID"
-msgstr ""
+#| msgid "Create Clone"
+msgid "Create Template"
+msgstr "Klón létrehozása"
 
 #: app/controllers/templates_controller.rb:66
 #, fuzzy
@@ -1467,20 +1530,71 @@ msgstr "Klón létrehozása sikeresen"
 msgid "Template updated successfully"
 msgstr "Klón sikeresen frissítve"
 
-#: app/models/ticket.rb:73 app/models/location.rb:77 app/models/group.rb:57
-#: app/models/master.rb:57 app/models/colocation.rb:63
-#: app/models/template.rb:85 app/models/clone.rb:57 app/models/primitive.rb:84
-#: app/models/order.rb:89
-msgid "The ID \"%{id}\" is already in use"
-msgstr "A \"%{id}\" azonosító már használatban van"
+#: app/controllers/tickets_controller.rb:43
+#, fuzzy
+#| msgid "Edit Constraint"
+msgid "Edit Ticket Constraint"
+msgstr "Szabály szerkesztése"
 
-#: app/views/wizard/done.html.erb:3
-msgid "The configuration has been applied."
-msgstr "A beállítások alkalmazása megtörtént."
+#: app/controllers/tickets_controller.rb:47 app/controllers/tickets_controller.rb:52
+#, fuzzy
+#| msgid "Create Constraint"
+msgid "Create Ticket Constraint"
+msgstr "Szabály létrehozása"
 
-#: app/views/wizard/run.html.erb:74
-msgid "The following configuration will be applied to the cluster:"
-msgstr "A következő beállítások jutnak érvényre a fürtön:"
+#: app/models/ticket.rb:58
+#, fuzzy
+#| msgid "Invalid score"
+msgid "Invalid Ticket ID"
+msgstr "Érvénytelen pontszám"
+
+#: app/models/ticket.rb:61
+#, fuzzy
+#| msgid "No resource specified"
+msgid "No resources specified"
+msgstr "Nincs megadva erőforrás"
+
+#: app/views/constraints/index.html.erb:200
+#, fuzzy
+#| msgid "(No order constraints defined)"
+msgid "(No ticket constraints defined)"
+msgstr "(Nincs szabálysorrend megadva)"
+
+#: app/views/crm_config/edit.html.erb:15
+#, fuzzy
+#| msgid "Choose Configuration"
+msgid "CRM Configuration"
+msgstr "Válasszon beállítást"
+
+#: app/views/crm_config/edit.html.erb:37
+#, fuzzy
+#| msgid "Resource ID"
+msgid "Resource Defaults"
+msgstr "Erőforrás ID"
+
+#: app/views/crm_config/edit.html.erb:59
+#, fuzzy
+#| msgid "Operations"
+msgid "Operation Defaults"
+msgstr "Műveletek"
+
+#: app/views/dashboard/index.html.erb:227
+#, fuzzy
+#| msgid "Permission denied for user %{user}"
+msgid "Permission denied. Please log in to %{node}"
+msgstr "%{user} felhasználónak nincs hozzáférése"
+
+#: app/views/dashboard/index.html.erb:361
+#, fuzzy
+#| msgid "Cluster Stack:"
+msgid "Cluster Name:"
+msgstr "Fürt:"
+
+#: app/views/dashboard/index.html.erb:368
+#, fuzzy
+#| msgid "Add Rule"
+msgid "Add Cluster"
+msgstr "Szabály hozzáadása"
 
 #: app/views/dashboard/index.html.erb:397
 #, fuzzy
@@ -1488,320 +1602,216 @@ msgstr "A következő beállítások jutnak érvényre a fürtön:"
 msgid "The host %{h} is already present in cluster %{c}"
 msgstr "A \"%{id}\" azonosító már használatban van"
 
-#: lib/invoker.rb:111
-msgid "The object/attribute does not exist (cibadmin %{cmd})"
-msgstr "Az objektum/attribútum nem létezik: (cibadmin %{cmd})"
-
-#: lib/invoker.rb:133
-msgid "The object/attribute does not exist: %{msg}"
-msgstr "Az objektum/attribútum nem létezik: %{msg}"
-
-#: app/views/primitives/_form.html.erb:271
-msgid "There is already a monitor op with this interval."
-msgstr "Már van egy monitor művelet ebben az intervallumban."
-
-#: app/views/main/_gettext.js.erb:35
-msgid ""
-"This will attempt to immediately fence node %s.  Do you want to continue?"
-msgstr "Ez azonnal leválasztja a(z) %s csomópontot. Kívánja folytatni?"
-
-#: app/views/main/_gettext.js.erb:23
-msgid ""
-"This will bring node %s online if it is currently on standby.  Do you want "
-"to continue?"
-msgstr ""
-"Ez a(z) %s csomópontot online állapotba hozza, amennyiben eddig készenléti "
-"(standby) állapotban volt. Kívánja folytatni?"
-
-#: app/views/main/_gettext.js.erb:32
+#: app/views/layouts/main.html.erb:63 app/views/layouts/main.html.erb:76
 #, fuzzy
-#| msgid ""
-#| "This will bring node %s online if it is currently on standby.  Do you "
-#| "want to continue?"
-msgid ""
-"This will bring node %s out of maintenance mode.  Do you want to continue?"
-msgstr ""
-"Ez a(z) %s csomópontot online állapotba hozza, amennyiben eddig készenléti "
-"(standby) állapotban volt. Kívánja folytatni?"
+#| msgid "Cluster Configuration"
+msgid "Cluster Diagram"
+msgstr "Fürt beállítása"
 
-#: app/views/main/_gettext.js.erb:63
-msgid "This will clean up the resource %s.  Do you want to continue?"
-msgstr "Ez tisztítja a(z) %s erőforrást. Kívánja folytatni?"
+#: app/views/layouts/main.html.erb:118 app/views/layouts/main.html.erb:126
+#, fuzzy
+#| msgid "State:"
+msgid "Status"
+msgstr "Állapot:"
 
-#: app/views/main/_gettext.js.erb:54
-msgid ""
-"This will clear any relocation constraints set on the resource %s.  Do you "
-"want to continue?"
-msgstr ""
-"Ez törölni fogja az áthelyezési szabályokat a(z) %s erőforráson. Kívánja "
-"folytatni?"
-
-#: app/views/main/_gettext.js.erb:60
-msgid "This will demote the resource %s.  Do you want to continue?"
-msgstr "Ez lefokozza a(z) %s erőforrást. Kívánja folytatni?"
-
-#: app/views/main/_gettext.js.erb:57
-msgid "This will promote the resource %s.  Do you want to continue?"
-msgstr "Ez előlépteti a(z) %s erőforrást. Kívánja folytatni?"
+#: app/views/layouts/main.html.erb:178
+#, fuzzy
+#| msgid "Copyright &copy; 2009-2011 Novell, Inc."
+msgid "Copyright &copy; 2009-2013 SUSE, LLC"
+msgstr "Copyright &copy; 2009-2011 Novell, Inc."
 
 #: app/views/main/_gettext.js.erb:29
 #, fuzzy
 #| msgid ""
 #| "This will put node %s on standby.  All resources will be stopped and/or "
 #| "moved to another node.  Do you want to continue?"
-msgid ""
-"This will put node %s in maintenance mode.  All resources on this node will "
-"become unmanaged.  Do you want to continue?"
-msgstr ""
-"Ez a(z) %s csomópontot készenléti (standby) állapotba hozza. Minden "
-"erőforrás leáll és/vagy űtmozgatásra kerül egy másik csomópontra. Kívánja "
-"folytatni?"
+msgid "This will put node %s in maintenance mode.  All resources on this node will become unmanaged.  Do you want to continue?"
+msgstr "Ez a(z) %s csomópontot készenléti (standby) állapotba hozza. Minden erőforrás leáll és/vagy űtmozgatásra kerül egy másik csomópontra. Kívánja folytatni?"
 
-#: app/views/main/_gettext.js.erb:26
-msgid ""
-"This will put node %s on standby.  All resources will be stopped and/or "
-"moved to another node.  Do you want to continue?"
-msgstr ""
-"Ez a(z) %s csomópontot készenléti (standby) állapotba hozza. Minden "
-"erőforrás leáll és/vagy űtmozgatásra kerül egy másik csomópontra. Kívánja "
-"folytatni?"
-
-#: app/views/main/_gettext.js.erb:39
-msgid "This will start the resource %s.  Do you want to continue?"
-msgstr "Ez elindítja a(z) %s erőforrást. Kívánja folytatni?"
-
-#: app/views/main/_gettext.js.erb:42
-msgid "This will stop the resource %s.  Do you want to continue?"
-msgstr "Ez leállítja a(z) %s erőforrást. Kívánja folytatni?"
-
-#: app/views/wizard/start.html.erb:26
-msgid ""
-"This wizard will guide you through the steps necessary to add one of the "
-"following configurations to the cluster."
-msgstr ""
-"A varázsló végigvezeti a szükséges lépéseken, hogy hozzá tudja adni a "
-"fürthöz az egyik beállítást."
-
-#: app/views/constraints/index.html.erb:120
-msgid "Ticket"
-msgstr ""
-
-#: app/views/main/_gettext.js.erb:302
-msgid "Ticket:"
-msgstr ""
-
-#: app/views/main/_gettext.js.erb:129
-msgid "Tickets"
-msgstr ""
-
-#: app/views/explorer/_pe_list.html.erb:11
-msgid "Time"
-msgstr "Idő"
-
-#: app/views/dashboard/index.html.erb:146
-#: app/views/dashboard/index.html.erb:448
-msgid "Timeout: Please try again"
-msgstr ""
-
-#: app/views/main/_gettext.js.erb:48
-msgid "To node %s"
-msgstr "A(z) %s csomópontra"
-
-#: app/views/layouts/main.html.erb:114
-msgid "Tools"
-msgstr ""
-
-#: app/views/main/_gettext.js.erb:149
-msgid "Tree View"
-msgstr "Fanézet"
-
-#: app/views/primitives/_form.html.erb:332
-msgid "Type"
-msgstr "Típus"
-
-#: app/views/layouts/main.html.erb:177
-msgid "UI Host: %s"
-msgstr "UI gép: %s"
-
-#: app/controllers/crm_config_controller.rb:129
-msgid "Unable to apply changes: %{msg}"
-msgstr "Nem alkalmazhatók a módosítások: %{msg}"
-
-#: app/views/dashboard/index.html.erb:430
-msgid ""
-"Unable to connect to %{host}. Try opening %{url} in your web browser to "
-"ensure Hawk is accessible."
-msgstr ""
-
-#: app/models/clone.rb:77
-msgid "Unable to create clone: %{msg}"
-msgstr "Nem hozható létre klón: %{msg}"
-
-#: app/models/ticket.rb:82 app/models/location.rb:86
-#: app/models/colocation.rb:72 app/models/order.rb:98
-msgid "Unable to create constraint: %{msg}"
-msgstr "A szabály nem hozható létre: %{msg}"
-
-#: app/models/group.rb:80
-msgid "Unable to create group: %{msg}"
-msgstr "Nem hozható létre csoport: %{msg}"
-
-#: app/models/master.rb:77
-msgid "Unable to create master/slave: %{msg}"
-msgstr "Nem hozható létre elsődleges/másodlagos: %{msg}"
-
-#: app/models/template.rb:130 app/models/primitive.rb:130
-msgid "Unable to create resource: %{msg}"
-msgstr "Nem hozható létre erőforrás: %{msg}"
-
-#: app/controllers/application_controller.rb:143
+#: app/views/main/_gettext.js.erb:32
 #, fuzzy
-#| msgid "Unable to create resource: %{msg}"
-msgid "Unable to create shadow CIB"
-msgstr "Nem hozható létre erőforrás: %{msg}"
+#| msgid ""
+#| "This will bring node %s online if it is currently on standby.  Do you "
+#| "want to continue?"
+msgid "This will bring node %s out of maintenance mode.  Do you want to continue?"
+msgstr "Ez a(z) %s csomópontot online állapotba hozza, amennyiben eddig készenléti (standby) állapotban volt. Kívánja folytatni?"
 
-#: app/models/cib.rb:239
-msgid "Unable to execute %{cmd}"
-msgstr "Nem futtatható parancs %{cmd}"
+#: app/views/main/_gettext.js.erb:199
+#, fuzzy
+#| msgid "%{id}: Started: %{nodelist}"
+msgid "%{id}: Starting: %{node}"
+msgstr "%{id}: Elindítva: %{nodelist}"
 
-#: app/models/cib.rb:235
-msgid "Unable to parse CIB file \"%{path}\""
-msgstr "A(z) \"%{path}\" CIB fájl nem dolgozható fel"
+#: app/views/main/_gettext.js.erb:200
+#, fuzzy
+#| msgid "%{id}: Started"
+msgid "%{id}: Starting"
+msgstr "%{id}: Elindítva"
 
-#: app/models/cib_object.rb:95 app/models/cib_object.rb:115
-#: app/models/crm_config.rb:49
-msgid "Unable to parse cibadmin output"
-msgstr "Nem dolgozható fel a cibadmin kimenete"
+#: app/views/main/_gettext.js.erb:203
+#, fuzzy
+#| msgid "%{id}: Pending: %{nodelist}"
+msgid "%{id}: Stopping: %{node}"
+msgstr "%{id}: Felfüggesztve: %{nodelist}"
 
-#: app/models/ticket.rb:101 app/models/location.rb:107
-#: app/models/colocation.rb:91 app/models/order.rb:117
-msgid "Unable to update constraint: %{msg}"
-msgstr "A szabály nem frissíthető: %{msg}"
+#: app/views/main/_gettext.js.erb:204
+#, fuzzy
+#| msgid "%{id}: Stopped"
+msgid "%{id}: Stopping"
+msgstr "%{id}: Leállítva"
 
-#: app/views/main/_gettext.js.erb:171
-msgid "Unclean"
-msgstr "Tisztázatlan"
+#: app/views/main/_gettext.js.erb:207
+#, fuzzy
+#| msgid "%{id}: Pending: %{nodelist}"
+msgid "%{id}: Promoting: %{node}"
+msgstr "%{id}: Felfüggesztve: %{nodelist}"
 
-#: app/views/main/_gettext.js.erb:70
-msgid "Unexpected server error: %s"
-msgstr "Váratlan kiszolgálóhiba: %s"
+#: app/views/main/_gettext.js.erb:208
+#, fuzzy
+#| msgid "%{id}: Pending"
+msgid "%{id}: Promoting"
+msgstr "%{id}: Felfüggesztve"
 
-#: app/models/cib.rb:268 app/models/cib.rb:269 app/models/cib.rb:602
-#: app/views/main/_gettext.js.erb:174
-msgid "Unknown"
-msgstr "Ismeretlen"
+#: app/views/main/_gettext.js.erb:211
+#, fuzzy
+#| msgid "%{id}: Pending: %{nodelist}"
+msgid "%{id}: Demoting: %{node}"
+msgstr "%{id}: Felfüggesztve: %{nodelist}"
 
-#: app/views/main/_gettext.js.erb:126
-msgid "Unmanaged"
-msgstr ""
+#: app/views/main/_gettext.js.erb:212
+#, fuzzy
+#| msgid "%{id}: Pending"
+msgid "%{id}: Demoting"
+msgstr "%{id}: Felfüggesztve"
 
-#: app/views/primitives/_form.html.erb:367
-msgid "Use Template"
-msgstr ""
+#: app/views/main/_gettext.js.erb:215
+#, fuzzy
+#| msgid "%{id}: Pending: %{nodelist}"
+msgid "%{id}: Moving: %{node}"
+msgstr "%{id}: Felfüggesztve: %{nodelist}"
 
-#: app/views/layouts/main.html.erb:120
-msgid "User: %{user}"
-msgstr "Felhasználó: %{user}"
+#: app/views/main/_gettext.js.erb:216
+#, fuzzy
+#| msgid "%{id}: Pending"
+msgid "%{id}: Moving"
+msgstr "%{id}: Felfüggesztve"
 
-#: app/controllers/sessions_controller.rb:70
-msgid "Username not specified"
-msgstr "Nincs megadva felhasználónév"
+#: app/views/main/_gettext.js.erb:272
+#, fuzzy
+#| msgid "Graph"
+msgid "Empty Graph"
+msgstr "Grafikon"
 
-#: app/views/sessions/new.html.erb:9 app/views/dashboard/index.html.erb:50
-msgid "Username:"
-msgstr "Felhasználónév: "
+#: app/views/main/_gettext.js.erb:299
+#, fuzzy
+#| msgid "Inject Operation"
+msgid "Inject Ticket"
+msgstr "Szimulált művelet"
 
-#: app/views/nodes/show.html.erb:1
-msgid "Utilization"
-msgstr "Kihasználtság"
+#: app/views/main/_gettext.js.erb:305
+#, fuzzy
+#| msgid "Location"
+msgid "Action:"
+msgstr "Hely"
 
-#: app/models/location.rb:70
-msgid "Value contains both single and double quotes"
-msgstr "Az érték szimpla és dupla idézőjelet és tartalmaz"
+#: app/views/main/_menus.html.erb:21
+#, fuzzy
+#| msgid "Maintenance Mode"
+msgid "Maintenance"
+msgstr "Karbantartási mód"
 
-#: app/views/main/_gettext.js.erb:92
-msgid "Version: %s"
-msgstr "Verzió: %s"
+#: app/views/resources/index.html.erb:100
+#, fuzzy
+#| msgid "Resource"
+msgid "New Resource"
+msgstr "Erőforrás"
 
-#: app/views/main/_menus.html.erb:45 app/views/main/_menus.html.erb:159
-msgid "View Details..."
-msgstr "Részletek megjelenítése…"
+#: app/views/resources/index.html.erb:101
+#, fuzzy
+#| msgid "New Primitive"
+msgid "Primitive"
+msgstr "Új primitív"
 
-#: app/views/main/_menus.html.erb:65 app/views/main/_menus.html.erb:181
-msgid "View Recent Events..."
-msgstr "Legutóbbi események megjelenítése…"
+#: app/views/resources/index.html.erb:115
+#, fuzzy
+#| msgid "Group ID"
+msgid "Group"
+msgstr "Csoportazonosító (ID)"
 
-#: app/controllers/wizard_controller.rb:253
-msgid "Wizard templates and/or workflows are missing"
-msgstr "A varázsló sablonjai és/vagy munkafolyamatai hiányoznak"
+#: app/views/resources/index.html.erb:121
+#, fuzzy
+#| msgid "Clone ID"
+msgid "Clone"
+msgstr "Klón ID"
 
-#: app/controllers/wizard_controller.rb:261
-msgid "Workflow \"%s\" not found"
-msgstr "A(z) \"%s\" munkafolyamat nem található"
+#: app/views/resources/index.html.erb:127
+#, fuzzy
+#| msgid "Master/Slave ID"
+msgid "Master/Slave"
+msgstr "Elsődleges/Másodlagos azonosító"
 
-#: app/views/main/_gettext.js.erb:326
-msgid "Wrong Argument(s)"
-msgstr "Hibás argomentumok(ok)"
+#: app/views/resources/index.html.erb:148
+#, fuzzy
+#| msgid "No resource specified"
+msgid "(No primitive resources defined)"
+msgstr "Nincs megadva erőforrás"
 
-#: app/views/shared/_confirm_revert.html.erb:8
-#: app/views/main/_gettext.js.erb:10
-msgid "Yes"
-msgstr "Igen"
+#: app/views/resources/index.html.erb:161
+#, fuzzy
+#| msgid "No attributes defined"
+msgid "(No templates defined)"
+msgstr "Nincsenek megadva attribútumok"
 
-#: app/controllers/sessions_controller.rb:131
-msgid "You have been logged out"
-msgstr "Kijelentkezett"
+#: app/views/resources/index.html.erb:174
+#, fuzzy
+#| msgid "No attributes defined"
+msgid "(No groups defined)"
+msgstr "Nincsenek megadva attribútumok"
 
-#: app/views/masters/_form.html.erb:48 app/views/crm_config/edit.html.erb:26
-#: app/views/crm_config/edit.html.erb:48 app/views/crm_config/edit.html.erb:70
-#: app/views/clones/_form.html.erb:48 app/views/groups/_form.html.erb:83
-#: app/views/primitives/_form.html.erb:249
-#: app/views/primitives/_form.html.erb:270
-#: app/views/primitives/_form.html.erb:292
-msgid "You must enter a value"
-msgstr "Érték megadása kötelező"
+#: app/views/resources/index.html.erb:186
+#, fuzzy
+#| msgid "No clone child specified"
+msgid "(No clones defined)"
+msgstr "Nincs megadva klóngyermek"
 
-#: app/controllers/crm_config_controller.rb:127
-msgid "Your changes have been saved"
-msgstr "A változások mentése megtörtént"
+#: app/views/resources/index.html.erb:186
+#, fuzzy
+#| msgid "No clone child specified"
+msgid "(No clones defined)"
+msgstr "Nincs megadva klóngyermek"
 
-#: app/views/constraints/index.html.erb:153
-msgid "[Constraint is too complex to display]"
-msgstr "[A szabályok túl komplexek a megjelenítéshez]"
+#: app/views/resources/index.html.erb:186
+#, fuzzy
+#| msgid "No clone child specified"
+msgid "(No clones defined)"
+msgstr "Nincs megadva klóngyermek"
 
-#: app/views/hb_reports/new.html.erb:74
-msgid "hb_report generation in progress..."
-msgstr "A hb_report elkészítése folyamatban..."
+#: app/views/resources/index.html.erb:198
+#, fuzzy
+#| msgid "No Master/Slave child specified"
+msgid "(No master/slave resources defined)"
+msgstr "Nincs megadva elsődleges/másodlagos gyermek"
 
 #~ msgid "Invalid property set ID: %{id}"
 #~ msgstr "Érvénytelen ID beállítás: %{id}"
-
 #~ msgid "Only the live CIB is supported"
 #~ msgstr "Csak az élő CIB-ek támogatottak"
-
 #~ msgid "Add new property:"
 #~ msgstr "Új tulajdonság hozzáadása:"
-
 #~ msgid "Edit current properties:"
 #~ msgstr "Jelenlegi tulajdonságok szerkesztése:"
-
 #~ msgid "Can't create group, there are no primitives available."
 #~ msgstr "Nem hozható létre csoport, mert nincs elérhető primitív."
-
 #~ msgid "Can't create clone, there are no primitives or groups available."
 #~ msgstr "Nem hozható létre klón, mert nincs elérhető primitív vagy csoport."
-
 #~ msgid ""
 #~ "Can't create master/slave, there are no primitives or groups available."
 #~ msgstr ""
 #~ "Nem hozható létre elsődleges/másodlagos, mert nincs elérhető primitív "
 #~ "vagy csoport."
-
 #~ msgid "Edit Constraints"
 #~ msgstr "Szabályok szerkesztése"
-
 #~ msgid "Pacemaker Version:"
 #~ msgstr "Pacemaker verzió:"
-
 #~ msgid "Current DC:"
 #~ msgstr "Aktuális DC:"
