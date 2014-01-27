@@ -31,4 +31,5 @@ I18n.fallbacks[:"zh_TW"] = [:"zh-TW"]
 # configure default msgmerge parameters (the default contains "--no-location" option
 # which removes code lines from the final POT file)
 Rails.application.config.gettext_i18n_rails.msgmerge = ["--sort-output", "--no-wrap"]
+Rails.application.config.gettext_i18n_rails.xgettext = ["--sort-output", "--no-wrap"]
 
