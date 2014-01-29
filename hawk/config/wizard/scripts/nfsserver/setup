@@ -24,6 +24,8 @@ def run_validate():
             else:
                 ret[host]['installed'].append(pkgname)
 
+    # check so nfs service is set to start at boot (?)
+
     # warn if exports already exists with conflicting entries?
     # maybe that's something for hawk...
 
@@ -43,6 +45,8 @@ def run_apply():
         crm.package(pkg, 'latest')
     for pkg in data.get('installed', []):
         crm.package(pkg, 'latest')
+
+    # make sure NFS server service is set to start at boot (and is started)
 
     crm.exit_ok({"status": True})
 
