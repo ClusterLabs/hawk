@@ -33,7 +33,7 @@ clients.
 <override name="clientspec" value="10.9.9.0/255.255.255.0"/>
 </template>
 
-<template name="exportfs" required="1" many="true">
+<template name="exportfs" required="1">
 <stepdesc lang="en">
 Exported NFS mount point
 </stepdesc>
@@ -56,12 +56,10 @@ Configure a Virtual IP address used to access the NFS mounts.
 <crm_script>
 group hawk_nfs_group \
 <insert param="lvmid" /> \
-<if template="rootfs">
+<if set="rootfs">
   <insert param="id" from_template="rootfs"/> \
 </if>
-<for template="exportfs" as="fs">
   <insert param="id" from_template="exportfs"/> \
-</for>
   <insert param="id" from_template="virtual-ip"/>
 </crm_script>
 
