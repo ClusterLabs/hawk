@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+<workflow name="20-ocfs2">
+
+<shortdesc lang="en">NFS Server</shortdesc>
+<longdesc lang="en">
+Configure an NFS file system server. Requires that at least one LVM
+volume group running on a clustered DRBD resource has been previously
+configured.
+</longdesc>
+
+<templates>
+<template name="rootfs" type="exportfs" required="0">
+<stepdesc lang="en">
+A virtual file system root export. Only needed for NFSv4
+clients. 
+</stepdesc>
+<override name="id" value="root"/>
+<override name="directory" value="/srv/nfs"/>
+<override name="options" value="rw,crossmnt"/>
+<override name="clientspec" value="10.9.9.0/255.255.255.0"/>
+</template>
+
+<template name="exportfs" required="1" many="true">
+<stepdesc lang="en">
+Exported NFS mount point
+</stepdesc>
+<override name="id" value="exportfs"/>
+<override name="fsid" value="1"/>
+<override name="directory" value="/srv/nfs/example"/>
+<override name="options" value="rw,mountpoint"/>
+<override name="clientspec" value="10.9.9.0/255.255.255.0"/>
+<override name="wait_for_leasetime_on_stop" value="true"/>
+</template>
+</templates>
+
+<crm_script>
+primitive hawk_nfs_dummy ocf:heartbeat:Dummy
+
+group hawk_nfs_group \
+hawk_nfs_lvm \
+<if template="rootfs">
+  <insert param="id" from_template="rootfs"/> \
+</if>
+<for template="exportfs" as="fs">
+  <insert param="id" from_template="exportfs"/> \
+</for>
+  hawk_nfs_dummy
+</crm_script>
+
+</workflow>

@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<template name="exportfs">
+
+<shortdesc lang="en">NFS export</shortdesc>
+<longdesc lang="en">
+Creates a NFS export
+</longdesc>
+
+<parameters>
+
+<parameter name="id" required="1">
+<shortdesc lang="en">Resource ID</shortdesc>
+<longdesc lang="en">
+Unique ID for this export in the cluster.
+</longdesc>
+<content type="string" default="exportfs"/>
+</parameter>
+
+<parameter name="fsid" required="1">
+<shortdesc lang="en">File system ID</shortdesc>
+<longdesc lang="en">
+Unique NFS file system identifier. The root file system
+ID must be 0.
+</longdesc>
+<content type="string" default="1"/>
+</parameter>
+
+<parameter name="directory" required="1">
+<shortdesc lang="en">Mount Point</shortdesc>
+<longdesc lang="en">
+The mount point for the filesystem, e.g.: /srv/nfs/home </longdesc>
+<content type="string" default=""/>
+</parameter>
+
+<parameter name="options">
+<shortdesc lang="en">Mount options</shortdesc>
+<longdesc lang="en">
+Any additional options to be given to the mount command.
+</longdesc>
+<content type="string" default="rw,mountpoint"/>
+</parameter>
+
+<parameter name="clientspec">
+<shortdesc lang="en">Client spec</shortdesc>
+<longdesc lang="en">
+Client access spec
+</longdesc>
+<content type="string" default="10.9.9.0/255.255.255.0"/>
+</parameter>
+
+<parameter name="wait_for_leasetime_on_stop">
+<shortdesc lang="en">Wait for lease time on stop</shortdesc>
+<longdesc lang="en">
+If set to true, wait for lease time on stop.
+</longdesc>
+<content type="boolean" default="true"/>
+</parameter>
+
+</parameters>
+
+<crm_script>
+primitive <insert param="id"/> ocf:heartbeat:exportfs
+  params
+    fsid="<insert param="fsid"/>"
+    directory="<insert param="directory"/>"
+<if set="options">
+    options="<insert param="options"/>"
+</if>
+<if set="clientspec">
+    clientspec="<insert param="clientspec"/>"
+</if>
+<if set="wait_for_leasetime_on_stop">
+    wait_for_leasetime_on_stop=<insert param="wait_for_leasetime_on_stop"/>
+</if>
+  op monitor interval="30s"
+</crm_script>
+
+</template>
