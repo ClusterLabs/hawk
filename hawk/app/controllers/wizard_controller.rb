@@ -102,7 +102,10 @@ class WizardController < ApplicationController
       #if @cluster_script
       # TODO: ask for root
       #end
-      run_cluster_script_step("Collect")
+      result = run_cluster_script_step("Collect")
+      unless result == true
+        @errors << _('Error: #{result}')
+      end
 
       @step_shortdesc = _("Parameters")
       if @workflow_xml.root.elements["parameters/stepdesc[@lang='en']"]
@@ -134,7 +137,10 @@ class WizardController < ApplicationController
       # or as crm config we're about to apply?  (less friendly)
 
       # TODO: Use information from Validate
-      run_cluster_script_step("Validate")
+      result = run_cluster_script_step("Validate")
+      unless result == true
+        @errors << _('Error: #{result}')
+      end
 
       @crm_script = ""
       # Here we need to know:
@@ -165,26 +171,34 @@ class WizardController < ApplicationController
 
       # TODO: provide crm_script to cluster script
       # for verification (by editing the statefile)
-      run_cluster_script_step("Precommit")
+      result = run_cluster_script_step("Precommit")
+      unless result == true
+        @commit_error = result
+        return
+      end
 
       result = Invoker.instance.crm_configure crm_script
+      unless result == true
+        @commit_error = result
+        return
+      end
 
       # TODO: examine result of script execution
       result = run_cluster_script_step("Postcommit")
-
-      if result == true
-        render "done"
-      else
-        # Errors come back like:
-        #   WARNING: asyncmon: operation not recognized
-        #   ERROR: 6: filesystem: id is already in use
-        #   ERROR: 11: virtual-ip: id is already in use
-        #   ERROR: 14: apache: id is already in use
-        #   ERROR: 18: web-server: id is already in use
-        #   INFO: 20: apparently there is nothing to commit
-        #   INFO: 20: try changing something first        
+      unless result == true
         @commit_error = result
+        return
       end
+
+      render "done"
+      # Errors come back like:
+      #   WARNING: asyncmon: operation not recognized
+      #   ERROR: 6: filesystem: id is already in use
+      #   ERROR: 11: virtual-ip: id is already in use
+      #   ERROR: 14: apache: id is already in use
+      #   ERROR: 18: web-server: id is already in use
+      #   INFO: 20: apparently there is nothing to commit
+      #   INFO: 20: try changing something first        
     else
       # This can't happen
     end
