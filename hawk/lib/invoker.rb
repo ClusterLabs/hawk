@@ -82,7 +82,8 @@ class Invoker
   # Returns 'true' on successful execution, or STDERR output on failure.
   def crm_script(scriptdir, *cmd)
     cmd2 = ["crm", "--scriptdir=#{scriptdir}", "script"] + cmd
-    stdin, stdout, stderr, thread = run_as('root', *cmd2)
+    Rails.logger.debug cmd2
+    stdin, stdout, stderr, thread = run_as(current_user, *cmd2)
     stdin.close
     stdout.close
     result = stderr.read()

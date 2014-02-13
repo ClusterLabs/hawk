@@ -63,7 +63,6 @@ class WizardController < ApplicationController
     @steps = ["workflow", "confirm", "commit"]
     @step = "workflow"
     @cluster_script = nil
-    @script_statefile = nil
     @errors = []
     @all_params = {}      # everything that's set, by step
     @step_params = {}     # possible params for current step
@@ -104,7 +103,7 @@ class WizardController < ApplicationController
       #end
       result = run_cluster_script_step("Collect")
       unless result == true
-        @errors << _('Error: #{result}')
+        @errors << _("Error: #{result}")
       end
 
       @step_shortdesc = _("Parameters")
@@ -139,7 +138,7 @@ class WizardController < ApplicationController
       # TODO: Use information from Validate
       result = run_cluster_script_step("Validate")
       unless result == true
-        @errors << _('Error: #{result}')
+        @errors << _("Error: #{result}")
       end
 
       @crm_script = ""
@@ -396,16 +395,16 @@ class WizardController < ApplicationController
     unless @cluster_script
       return true
     end
+    script_statefile = "#{Rails.root}/tmp/crm_script.state"
     if stepname == "Collect"
-      @script_statefile = '#{Ruby.root}/tmp/crm_script.state'
-      if File.exists?(@script_statefile)
-        f = File.new(@script_statefile, "w")
+      if File.exists?(script_statefile)
+        f = File.new(script_statefile, "w")
         f.close
       end
     end
     Invoker.instance.crm_script(@scriptdir, "run",
                                 @cluster_script,
-                                "statefile=#{@script_statefile}",
+                                "statefile=#{script_statefile}",
                                 "step=#{stepname}")
   end
 
