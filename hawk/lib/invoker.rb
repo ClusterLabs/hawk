@@ -78,6 +78,19 @@ class Invoker
     invoke_crm(input, "configure")
   end
 
+  # Run "crm script" as root to execute cluster scripts.
+  # Returns 'true' on successful execution, or STDERR output on failure.
+  def crm_script(scriptdir, *cmd)
+    cmd2 = ["crm", "--scriptdir=#{scriptdir}", "script"] + cmd
+    stdin, stdout, stderr, thread = run_as('root', *cmd2)
+    stdin.close
+    stdout.close
+    result = stderr.read()
+    stderr.close
+    result = fudge_error(thread.value.exitstatus, result)
+    result == true ? true : result[1]
+  end
+
   # Run "crm -F configure load update"
   # Returns 'true' on successful execution, or STDERR output on failure.
   def crm_configure_load_update(cmd)

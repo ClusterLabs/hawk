@@ -12,11 +12,11 @@
     feasible?)
   parameters: []
   steps:
-    - name: Examine nodes
+    - name: Collect
       collect: setup collect
-    - name: Validate input
+    - name: Validate
       validate: setup validate
-    - name: Configure nodes
-      apply: setup apply
-    - name: Verify
-      apply: setup verify
+    - name: Precommit
+      apply: setup pre
+    - name: Postcommit
+      apply: setup post

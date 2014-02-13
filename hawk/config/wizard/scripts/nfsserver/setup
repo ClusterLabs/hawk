@@ -39,7 +39,7 @@ def run_validate():
     crm.exit_ok(ret)
 
 
-def run_apply():
+def run_pre():
     me = crm.host()
     data = crm.output(2)
     if me not in data:
@@ -57,7 +57,7 @@ def run_apply():
     crm.exit_ok({"status": True})
 
 
-def run_verify():
+def run_post():
     rc, out, err = crm.call(['exportfs', '-v'])
     if rc != 0:
         crm.exit_fail("exportfs (rc=%d): %s%s" % (rc, out, err))

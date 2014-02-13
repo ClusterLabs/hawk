@@ -59,8 +59,11 @@ class WizardController < ApplicationController
     super
     @title = _("Cluster Setup Wizard")
     @confdir = File.join(Rails.root, "config", "wizard")
+    @scriptdir = File.join(@confdir, "scripts")
     @steps = ["workflow", "confirm", "commit"]
     @step = "workflow"
+    @cluster_script = nil
+    @script_statefile = nil
     @errors = []
     @all_params = {}      # everything that's set, by step
     @step_params = {}     # possible params for current step
@@ -96,6 +99,11 @@ class WizardController < ApplicationController
     when "workflow"
       start
     when "params"
+      #if @cluster_script
+      # TODO: ask for root
+      #end
+      run_cluster_script_step("Collect")
+
       @step_shortdesc = _("Parameters")
       if @workflow_xml.root.elements["parameters/stepdesc[@lang='en']"]
         @step_longdesc = @workflow_xml.root.elements["parameters/stepdesc[@lang='en']"].text.strip
@@ -124,7 +132,10 @@ class WizardController < ApplicationController
       # print out everything that's been set up
       # how?  what did we specify?  do we do it in chunks (what you just entered)
       # or as crm config we're about to apply?  (less friendly)
-      
+
+      # TODO: Use information from Validate
+      run_cluster_script_step("Validate")
+
       @crm_script = ""
       # Here we need to know:
       # - Which templates were actually used (if some are optional)
@@ -138,7 +149,7 @@ class WizardController < ApplicationController
 
       # - Generate crm script for workflow
       @crm_script += get_crm_script(@workflow_xml.root.elements["crm_script"], "params", false)
-      
+
     when "commit"
       @step_shortdesc = _("Done")
 
@@ -152,7 +163,15 @@ class WizardController < ApplicationController
       
       crm_script += "\ncommit\n"
 
+      # TODO: provide crm_script to cluster script
+      # for verification (by editing the statefile)
+      run_cluster_script_step("Precommit")
+
       result = Invoker.instance.crm_configure crm_script
+
+      # TODO: examine result of script execution
+      result = run_cluster_script_step("Postcommit")
+
       if result == true
         render "done"
       else
@@ -281,6 +300,9 @@ class WizardController < ApplicationController
         f = File.join(@confdir, "workflows", "#{params[:workflow]}.xml")
         @workflow_xml = REXML::Document.new(File.new(f))
         if @workflow_xml.root
+          if @workflow_xml.root.attributes.has_key?("cluster_script")
+            @cluster_script = @workflow_xml.root.attributes["cluster_script"]
+          end
           # TODO(should): select by language instead of forcing en
           @workflow_shortdesc = @workflow_xml.root.elements['shortdesc[@lang="en"]'].text.strip
           @steps.insert(@steps.rindex("confirm"), "params") if @workflow_xml.root.elements['parameters']
@@ -354,6 +376,23 @@ class WizardController < ApplicationController
       end
     end
     s
+  end
+
+  def run_cluster_script_step(stepname)
+    unless @cluster_script
+      return true
+    end
+    if stepname == "Collect"
+      @script_statefile = '#{Ruby.root}/tmp/crm_script.state'
+      if File.exists?(@script_statefile)
+        f = File.new(@script_statefile, "w")
+        f.close
+      end
+    end
+    Invoker.instance.crm_script(@scriptdir, "run",
+                                @cluster_script,
+                                "statefile=#{@script_statefile}",
+                                "step=#{stepname}")
   end
 
 end
