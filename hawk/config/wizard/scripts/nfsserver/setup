@@ -1,6 +1,7 @@
 #!/usr/bin/env python
 import crm_script as crm
 import sys
+import os
 
 PACKAGES = ['nfs-client', 'nfs-kernel-server']
 # 'nfs-utils', 'nfs4-acl-tools'
@@ -9,22 +10,27 @@ PACKAGES = ['nfs-client', 'nfs-kernel-server']
 def run_collect():
     data = {}
     data['packages'] = crm.rpmcheck(PACKAGES)
-    crm.exit_ok({"status": True})
+    if os.path.isfile('/var/lib/nfs/etab'):
+        data['etab'] = open('/var/lib/nfs/etab').read()
+    data['status'] = True
+    crm.exit_ok(data)
 
 
 def run_validate():
     ret = {}
     data = crm.output(1)
     for host, info in data.iteritems():
+        ret[host] = {}
         ret[host]['to_install'] = []
         ret[host]['installed'] = []
-        for pkgname, pkg in info['packages'].iteritems():
+        for pkg in info['packages']:
             if 'error' in pkg:
-                ret[host]['to_install'].append(pkgname)
+                ret[host]['to_install'].append(pkg['name'])
             else:
-                ret[host]['installed'].append(pkgname)
+                ret[host]['installed'].append(pkg['name'])
 
-    # check so nfs service is set to start at boot (?)
+        #if 'nfs-kernel-server' in ret[host]['installed']:
+            # check so nfs service is set to start at boot (?)
 
     # warn if exports already exists with conflicting entries?
     # maybe that's something for hawk...
