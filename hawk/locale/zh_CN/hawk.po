@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-14 13:10+1100\n"
+"POT-Creation-Date: 2014-02-14 22:55+1100\n"
 "PO-Revision-Date: 2013-05-02 16:47\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -339,19 +339,23 @@ msgstr "完成"
 msgid "Required parameter \"%{param}\" not specified"
 msgstr "未指定必需参数“%{param}”"
 
-#: ../app/controllers/wizard_controller.rb:253
+#: ../app/controllers/wizard_controller.rb:260
+msgid "Permission denied - you do not have write access to the CIB."
+msgstr ""
+
+#: ../app/controllers/wizard_controller.rb:271
 msgid "Wizard templates and/or workflows are missing"
 msgstr "缺少向导模板和/或工作流程"
 
-#: ../app/controllers/wizard_controller.rb:261
+#: ../app/controllers/wizard_controller.rb:279
 msgid "Workflow \"%s\" not found"
 msgstr "找不到工作流程“%s”"
 
-#: ../app/controllers/wizard_controller.rb:278
+#: ../app/controllers/wizard_controller.rb:296
 msgid "Error parsing template \"%s\""
 msgstr "分析模板“%s”时出错"
 
-#: ../app/controllers/wizard_controller.rb:281
+#: ../app/controllers/wizard_controller.rb:299
 msgid "Error parsing workflow \"%s\""
 msgstr "分析工作流程“%s”时出错"
 
@@ -1504,12 +1508,12 @@ msgid "There is already a monitor op with this interval."
 msgstr "已经存在使用该间隔的监视器 op。"
 
 #: ../app/views/primitives/_form.html.erb:329
-msgid "Resource ID"
-msgstr "资源 ID"
-
-#: ../app/views/primitives/_form.html.erb:329
 msgid "Template ID"
 msgstr "模板 ID"
+
+#: ../app/views/primitives/_form.html.erb:329
+msgid "Resource ID"
+msgstr "资源 ID"
 
 #: ../app/views/primitives/_form.html.erb:330
 msgid "Class"

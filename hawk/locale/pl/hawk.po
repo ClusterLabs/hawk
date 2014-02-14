@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-14 13:10+1100\n"
+"POT-Creation-Date: 2014-02-14 22:55+1100\n"
 "PO-Revision-Date: 2013-05-02 16:25\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -344,19 +344,23 @@ msgstr "Wykonano"
 msgid "Required parameter \"%{param}\" not specified"
 msgstr "Nie podano wymaganego parametru \"%{param}\""
 
-#: ../app/controllers/wizard_controller.rb:253
+#: ../app/controllers/wizard_controller.rb:260
+msgid "Permission denied - you do not have write access to the CIB."
+msgstr ""
+
+#: ../app/controllers/wizard_controller.rb:271
 msgid "Wizard templates and/or workflows are missing"
 msgstr "Brak szablonów i/lub przepływów pracy kreatora"
 
-#: ../app/controllers/wizard_controller.rb:261
+#: ../app/controllers/wizard_controller.rb:279
 msgid "Workflow \"%s\" not found"
 msgstr "Nie znaleziono przepływu \"%s\""
 
-#: ../app/controllers/wizard_controller.rb:278
+#: ../app/controllers/wizard_controller.rb:296
 msgid "Error parsing template \"%s\""
 msgstr "Błąd przetwarzania szablonu \"%s\""
 
-#: ../app/controllers/wizard_controller.rb:281
+#: ../app/controllers/wizard_controller.rb:299
 msgid "Error parsing workflow \"%s\""
 msgstr "Błąd przetwarzania przepływu \"%s\""
 
@@ -1509,12 +1513,12 @@ msgid "There is already a monitor op with this interval."
 msgstr "Istnieje już operacja monitorowania o tym interwale"
 
 #: ../app/views/primitives/_form.html.erb:329
-msgid "Resource ID"
-msgstr "Identyfikator zasobu"
-
-#: ../app/views/primitives/_form.html.erb:329
 msgid "Template ID"
 msgstr "Identyfikator szablonu"
+
+#: ../app/views/primitives/_form.html.erb:329
+msgid "Resource ID"
+msgstr "Identyfikator zasobu"
 
 #: ../app/views/primitives/_form.html.erb:330
 msgid "Class"
