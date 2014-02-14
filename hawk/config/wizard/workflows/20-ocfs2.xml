@@ -4,9 +4,9 @@
 <shortdesc lang="en">OCFS2 Filesystem</shortdesc>
 <longdesc lang="en">
 Configure an OCFS2 filesystem, along with required dependencies
-(O2CB and DLM).  Note that the OCFS2 filesystem will be stopped
-initially, in case you need to run mkfs to create the filesystem
-after O2CB and DLM are running.
+(DLM).  Note that the OCFS2 filesystem will be stopped initially,
+in case you need to run mkfs to create the filesystem after DLM
+is running.
 </longdesc>
 
 <templates>
@@ -27,11 +27,7 @@ to create the mountpoint directory on all cluster nodes.
 primitive dlm ocf:pacemaker:controld
   op start timeout="90" op stop timeout="100"
   op monitor interval="60" timeout="60"
-primitive o2cb ocf:ocfs2:o2cb
-  op start timeout="90" op stop timeout="100"
-  op monitor interval="60" timeout="60"
-group base-group dlm o2cb
-clone base-clone base-group meta interleave="true"
+clone base-clone dlm meta interleave="true"
 clone c-<insert param="id" from_template="filesystem"/> <insert param="id" from_template="filesystem"/>
   meta interleave="true" target-role="Stopped"
 order base-then-<insert param="id" from_template="filesystem"/>

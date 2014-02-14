@@ -5,21 +5,21 @@
 <longdesc lang="en">
 Configure an additional OCFS2 filesystem.  If you have already
 created one OCFS2 filesystem, this will add a second one, dependant
-on the base O2CB and DLM clone which already exists.  Note that the
-OCFS2 filesystem will be stopped initially, in case you need to run
+on the base DLM clone which already exists.  Note that the OCFS2
+filesystem will be stopped initially, in case you need to run
 mkfs to create the filesystem.
 </longdesc>
 
 <parameters>
 <stepdesc lang="en">
-Specify the ID of an exising clone resource which contains DLM and
-OC2B.  This is necessary to ensure that DLM and O2CB are running
-prior to starting the OCFS2 filesystem.
+Specify the ID of an exising clone resource which contains DLM.
+This is necessary to ensure that DLM is running prior to starting
+the OCFS2 filesystem.
 </stepdesc>
 <parameter name="base-clone" required="1">
 <shortdesc lang="en">Base Clone</shortdesc>
 <longdesc lang="en">
-ID of an existing clone DLM and O2CB resource.
+ID of an existing clone DLM resource.
 </longdesc>
 <content type="string" default="base-clone"/>
 </parameter>
