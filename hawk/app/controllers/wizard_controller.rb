@@ -51,7 +51,7 @@ require "rexml/document" unless defined? REXML::Document
 #
 
 class WizardController < ApplicationController
-  before_filter :login_required, :cluster_online, :load_wizard_config
+  before_filter :login_required, :cib_writable, :cluster_online, :load_wizard_config
 
   layout "main"
 
@@ -244,6 +244,24 @@ class WizardController < ApplicationController
         end
       end
     end
+  end
+
+  # Rough test for CIB writablity, obeying ACLs if set.  Not exactly lightweight
+  # as it will in fact change the CIB if successful.
+  def cib_writable
+    begin
+      Invoker.instance.cibadmin("--modify", "--allow-create", "--scope", "--crm_config", "--xml-text",
+        '<cluster_property_set id="hawk-rw-test"/>')
+      Invoker.instance.cibadmin("--delete", "--xml-text", '<cluster_property_set id="hawk-rw-test"/>')
+    rescue NotFoundError
+      # Don't care
+    rescue SecurityError
+      # Permission denied
+      @errors << _("Permission denied - you do not have write access to the CIB.")
+    rescue RuntimeError
+      # Not really permission denied, so leaving this alone for the moment
+    end
+    render "broken" if @errors.any?
   end
 
   def load_wizard_config
