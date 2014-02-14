@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-27 17:48+1100\n"
+"POT-Creation-Date: 2014-02-14 13:10+1100\n"
 "PO-Revision-Date: 2013-05-02 16:47\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -23,12 +23,12 @@ msgstr ""
 msgid "Unable to create shadow CIB"
 msgstr "无法创建阴影 CIB"
 
-#: ../app/controllers/cib_controller.rb:110 ../app/controllers/cib_controller.rb:162
+#: ../app/controllers/cib_controller.rb:110 ../app/controllers/cib_controller.rb:164
 msgid "1 node configured"
 msgid_plural "%{num} nodes configured"
 msgstr[0] "已配置 1 个节点"
 
-#: ../app/controllers/cib_controller.rb:111 ../app/controllers/cib_controller.rb:163
+#: ../app/controllers/cib_controller.rb:111 ../app/controllers/cib_controller.rb:165
 msgid "1 resource configured"
 msgid_plural "%{num} resources configured"
 msgstr[0] "已配置 1 项资源"
@@ -165,7 +165,17 @@ msgstr "未指定必需的参数“resource”和“node”"
 msgid "Error deleting resource"
 msgstr "删除资源时出错"
 
-#: ../app/controllers/main_controller.rb:310 ../app/models/cib.rb:260
+#: ../app/controllers/main_controller.rb:170
+#, fuzzy
+msgid "Required parameters \"ticket\" and \"site\" not specified"
+msgstr "未指定必需参数“left”和“right”"
+
+#: ../app/controllers/main_controller.rb:180
+#, fuzzy
+msgid "Required parameter \"ticket\" not specified"
+msgstr "未指定必需的参数“node”"
+
+#: ../app/controllers/main_controller.rb:330 ../app/models/cib.rb:261
 msgid "Error invoking %{cmd}: %{msg}"
 msgstr "调用 %{cmd} 时出错：%{msg}"
 
@@ -233,7 +243,7 @@ msgstr "已成功创建克隆"
 msgid "Role updated successfully"
 msgstr "已成功更新克隆"
 
-#: ../app/controllers/sessions_controller.rb:37 ../app/views/dashboard/index.html.erb:57 ../app/views/sessions/new.html.erb:17
+#: ../app/controllers/sessions_controller.rb:37 ../app/views/dashboard/index.html.erb:65 ../app/views/sessions/new.html.erb:17
 msgid "Log In"
 msgstr "登录"
 
@@ -257,7 +267,7 @@ msgstr "用户名或密码无效"
 msgid "%s is not installed"
 msgstr "%s 未安装"
 
-#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:258 ../lib/invoker.rb:113 ../lib/invoker.rb:135 ../lib/invoker.rb:177
+#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:259 ../lib/invoker.rb:113 ../lib/invoker.rb:135 ../lib/invoker.rb:177
 msgid "Permission denied for user %{user}"
 msgstr "用户 %{user} 的权限被拒"
 
@@ -349,35 +359,35 @@ msgstr "分析工作流程“%s”时出错"
 msgid "Data collection in progress (%{from_time} to %{to_time})..."
 msgstr "数据收集正在进行中（%{from_time} 至 %{to_time}）..."
 
-#: ../app/models/cib.rb:233
+#: ../app/models/cib.rb:234
 msgid "CIB file \"%{path}\" not found"
 msgstr "找不到 CIB 文件“%{path}”"
 
-#: ../app/models/cib.rb:235
+#: ../app/models/cib.rb:236
 msgid "Unable to parse CIB file \"%{path}\""
 msgstr "无法分析 CIB 文件“%{path}”"
 
-#: ../app/models/cib.rb:237
+#: ../app/models/cib.rb:238
 msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
 msgstr "似乎没有安装 Pacemaker（未找到 %{cmd}）"
 
-#: ../app/models/cib.rb:239
+#: ../app/models/cib.rb:240
 msgid "Unable to execute %{cmd}"
 msgstr "无法执行 %{cmd}"
 
-#: ../app/models/cib.rb:242
+#: ../app/models/cib.rb:243
 msgid "%{cmd} failed (status: %{status}, output was: %{output})"
 msgstr "%{cmd} 已失败（状态：%{status}，输出：%{output}）"
 
-#: ../app/models/cib.rb:255
+#: ../app/models/cib.rb:256
 msgid "Error invoking %{cmd}"
 msgstr "调用 %{cmd} 时出错"
 
-#: ../app/models/cib.rb:268 ../app/models/cib.rb:269 ../app/models/cib.rb:613 ../app/views/main/_gettext.js.erb:183
+#: ../app/models/cib.rb:269 ../app/models/cib.rb:270 ../app/models/cib.rb:614 ../app/views/main/_gettext.js.erb:189
 msgid "Unknown"
 msgstr "未知"
 
-#: ../app/models/cib.rb:480
+#: ../app/models/cib.rb:481
 msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
 msgstr "失败的操作：node=%{node}，resource=%{resource}，call-id=%{call_id}，operation=%{op}，rc-code=%{rc_code}"
 
@@ -595,7 +605,7 @@ msgstr "元属性"
 msgid "Add"
 msgstr "添加"
 
-#: ../app/views/clones/_form.html.erb:47 ../app/views/colocations/_form.html.erb:61 ../app/views/crm_config/edit.html.erb:25 ../app/views/crm_config/edit.html.erb:47 ../app/views/crm_config/edit.html.erb:69 ../app/views/dashboard/index.html.erb:39 ../app/views/groups/_form.html.erb:82 ../app/views/locations/_form.html.erb:48 ../app/views/masters/_form.html.erb:47 ../app/views/orders/_form.html.erb:61 ../app/views/primitives/_form.html.erb:248 ../app/views/primitives/_form.html.erb:269 ../app/views/primitives/_form.html.erb:291 ../app/views/roles/_form.html.erb:39 ../app/views/tickets/_form.html.erb:49 ../app/views/users/_form.html.erb:49
+#: ../app/views/clones/_form.html.erb:47 ../app/views/colocations/_form.html.erb:61 ../app/views/crm_config/edit.html.erb:25 ../app/views/crm_config/edit.html.erb:47 ../app/views/crm_config/edit.html.erb:69 ../app/views/dashboard/index.html.erb:46 ../app/views/groups/_form.html.erb:82 ../app/views/locations/_form.html.erb:48 ../app/views/masters/_form.html.erb:47 ../app/views/orders/_form.html.erb:61 ../app/views/primitives/_form.html.erb:248 ../app/views/primitives/_form.html.erb:269 ../app/views/primitives/_form.html.erb:291 ../app/views/roles/_form.html.erb:39 ../app/views/tickets/_form.html.erb:49 ../app/views/users/_form.html.erb:49
 msgid "Remove"
 msgstr "删除"
 
@@ -715,63 +725,63 @@ msgstr "默认操作"
 msgid "No cluster properties set in %{group}"
 msgstr "%{group} 中未设置任何群集属性 "
 
-#: ../app/views/dashboard/index.html.erb:49 ../app/views/sessions/new.html.erb:9
+#: ../app/views/dashboard/index.html.erb:57 ../app/views/sessions/new.html.erb:9
 msgid "Username:"
 msgstr "用户名："
 
-#: ../app/views/dashboard/index.html.erb:53 ../app/views/sessions/new.html.erb:13
+#: ../app/views/dashboard/index.html.erb:61 ../app/views/sessions/new.html.erb:13
 msgid "Password:"
 msgstr "密码："
 
-#: ../app/views/dashboard/index.html.erb:64
+#: ../app/views/dashboard/index.html.erb:72
 msgid "Cluster has errors - click for details"
 msgstr "群集存在错误 - 单击查看详情"
 
-#: ../app/views/dashboard/index.html.erb:145 ../app/views/dashboard/index.html.erb:435
+#: ../app/views/dashboard/index.html.erb:157 ../app/views/dashboard/index.html.erb:485
 msgid "Timeout: Please try again"
 msgstr "超时：请重试"
 
-#: ../app/views/dashboard/index.html.erb:223
+#: ../app/views/dashboard/index.html.erb:241
 msgid "Permission denied. Please log in to %{node}"
 msgstr "权限被拒绝。请登录 %{node}"
 
-#: ../app/views/dashboard/index.html.erb:288
+#: ../app/views/dashboard/index.html.erb:330
 msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
 msgstr "无法联系 %{node} 上的 Hawk。将每 5 秒重试一次。"
 
-#: ../app/views/dashboard/index.html.erb:348
+#: ../app/views/dashboard/index.html.erb:408
 msgid "Cluster Name:"
 msgstr "群集名称："
 
-#: ../app/views/dashboard/index.html.erb:349
+#: ../app/views/dashboard/index.html.erb:409
 msgid "Host Name:"
 msgstr "主机名："
 
-#: ../app/views/dashboard/index.html.erb:350
+#: ../app/views/dashboard/index.html.erb:410
 msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
 msgstr "（指定群集中的任意主机名称。系统会自动找到其他节点）"
 
-#: ../app/views/dashboard/index.html.erb:355
+#: ../app/views/dashboard/index.html.erb:415
 msgid "Add Cluster"
 msgstr "添加群集"
 
-#: ../app/views/dashboard/index.html.erb:357 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
+#: ../app/views/dashboard/index.html.erb:417 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
 msgid "OK"
 msgstr "确定"
 
-#: ../app/views/dashboard/index.html.erb:372
+#: ../app/views/dashboard/index.html.erb:432
 msgid "A cluster with that name already exists"
 msgstr "已存在同名群集"
 
-#: ../app/views/dashboard/index.html.erb:384
+#: ../app/views/dashboard/index.html.erb:438
 msgid "The host %{h} is already present in cluster %{c}"
 msgstr "群集 %{c} 中已存在主机 %{h}"
 
-#: ../app/views/dashboard/index.html.erb:417 ../app/views/dashboard/index.html.erb:429
+#: ../app/views/dashboard/index.html.erb:467 ../app/views/dashboard/index.html.erb:479
 msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
 msgstr "无法连接 %{host}。请尝试在 Web 浏览器中打开 %{url} 以确保可以访问 Hawk。"
 
-#: ../app/views/dashboard/index.html.erb:442 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
+#: ../app/views/dashboard/index.html.erb:492 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
 msgid "Cancel"
 msgstr "取消"
 
@@ -791,7 +801,7 @@ msgstr "PE 输入"
 msgid "Node"
 msgstr "节点"
 
-#: ../app/views/explorer/_pe_list.html.erb:30 ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:269
+#: ../app/views/explorer/_pe_list.html.erb:30 ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:275
 msgid "Details"
 msgstr "细节"
 
@@ -799,7 +809,7 @@ msgstr "细节"
 msgid "(full log)"
 msgstr "（完整日志）"
 
-#: ../app/views/explorer/_pe_list.html.erb:38 ../app/views/main/_gettext.js.erb:278
+#: ../app/views/explorer/_pe_list.html.erb:38 ../app/views/main/_gettext.js.erb:284
 msgid "Graph"
 msgstr "图形"
 
@@ -1087,355 +1097,365 @@ msgstr "不受管理"
 msgid "Tickets"
 msgstr "票据"
 
-#: ../app/views/main/_gettext.js.erb:142
+#: ../app/views/main/_gettext.js.erb:141
+#, fuzzy
+msgid "This will request the ticket %s be granted to the present site.  Do you want to continue?"
+msgstr "此操作将去除资源 %s 上的任何重定位限制。要继续吗？"
+
+#: ../app/views/main/_gettext.js.erb:144
+#, fuzzy
+msgid "This will request the ticket %s be revoked.  Do you want to continue?"
+msgstr "此操作将启动资源 %s。要继续吗？"
+
+#: ../app/views/main/_gettext.js.erb:148
 msgid "Granted [standby]"
 msgstr "已授予 [待机]"
 
-#: ../app/views/main/_gettext.js.erb:143
+#: ../app/views/main/_gettext.js.erb:149
 msgid "Granted"
 msgstr "已授予"
 
-#: ../app/views/main/_gettext.js.erb:147
+#: ../app/views/main/_gettext.js.erb:153
 msgid "Revoked [standby]"
 msgstr "已撤销 [待机]"
 
-#: ../app/views/main/_gettext.js.erb:148
+#: ../app/views/main/_gettext.js.erb:154
 msgid "Revoked"
 msgstr "已撤消"
 
-#: ../app/views/main/_gettext.js.erb:151
+#: ../app/views/main/_gettext.js.erb:157
 msgid "Last granted: %s"
 msgstr "上次授予：%s"
 
-#: ../app/views/main/_gettext.js.erb:155
+#: ../app/views/main/_gettext.js.erb:161
 msgid "Summary View"
 msgstr "摘要视图"
 
-#: ../app/views/main/_gettext.js.erb:158
+#: ../app/views/main/_gettext.js.erb:164
 msgid "Tree View"
 msgstr "树视图"
 
-#: ../app/views/main/_gettext.js.erb:161
+#: ../app/views/main/_gettext.js.erb:167
 msgid "Table View"
 msgstr "表视图"
 
-#: ../app/views/main/_gettext.js.erb:165
+#: ../app/views/main/_gettext.js.erb:171
 msgid "%{node}: %{state}"
 msgstr "%{node}：%{state}"
 
-#: ../app/views/main/_gettext.js.erb:168 ../app/views/main/_menus.html.erb:7
+#: ../app/views/main/_gettext.js.erb:174 ../app/views/main/_menus.html.erb:8
 msgid "Online"
 msgstr "联机"
 
-#: ../app/views/main/_gettext.js.erb:171
+#: ../app/views/main/_gettext.js.erb:177
 msgid "Offline"
 msgstr "脱机"
 
-#: ../app/views/main/_gettext.js.erb:174 ../app/views/main/_gettext.js.erb:202
+#: ../app/views/main/_gettext.js.erb:180 ../app/views/main/_gettext.js.erb:208
 msgid "Pending"
 msgstr "待发"
 
-#: ../app/views/main/_gettext.js.erb:177 ../app/views/main/_gettext.js.erb:323 ../app/views/main/_menus.html.erb:14
+#: ../app/views/main/_gettext.js.erb:183 ../app/views/main/_gettext.js.erb:329 ../app/views/main/_menus.html.erb:15
 msgid "Standby"
 msgstr "待机"
 
-#: ../app/views/main/_gettext.js.erb:180
+#: ../app/views/main/_gettext.js.erb:186
 msgid "Unclean"
 msgstr "未清理"
 
-#: ../app/views/main/_gettext.js.erb:187
+#: ../app/views/main/_gettext.js.erb:193
 msgid "Master"
 msgstr "主"
 
-#: ../app/views/main/_gettext.js.erb:188
+#: ../app/views/main/_gettext.js.erb:194
 msgid "%{id}: Master: %{nodelist}"
 msgstr "%{id}：主：%{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:189
+#: ../app/views/main/_gettext.js.erb:195
 msgid "%{id}: Master"
 msgstr "%{id}：主"
 
-#: ../app/views/main/_gettext.js.erb:192
+#: ../app/views/main/_gettext.js.erb:198
 msgid "Slave"
 msgstr "从"
 
-#: ../app/views/main/_gettext.js.erb:193
+#: ../app/views/main/_gettext.js.erb:199
 msgid "%{id}: Slave: %{nodelist}"
 msgstr "%{id}：从属：%{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:194
+#: ../app/views/main/_gettext.js.erb:200
 msgid "%{id}: Slave"
 msgstr "%{id}：从"
 
-#: ../app/views/main/_gettext.js.erb:197
+#: ../app/views/main/_gettext.js.erb:203
 msgid "Started"
 msgstr "已启动"
 
-#: ../app/views/main/_gettext.js.erb:198
+#: ../app/views/main/_gettext.js.erb:204
 msgid "%{id}: Started: %{nodelist}"
 msgstr "%{id}：已启动：%{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:199
+#: ../app/views/main/_gettext.js.erb:205
 msgid "%{id}: Started"
 msgstr "%{id}：已启动"
 
-#: ../app/views/main/_gettext.js.erb:203
+#: ../app/views/main/_gettext.js.erb:209
 msgid "%{id}: Pending: %{nodelist}"
 msgstr "%{id}：待发：%{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:204
+#: ../app/views/main/_gettext.js.erb:210
 msgid "%{id}: Pending"
 msgstr "%{id}：待发"
 
-#: ../app/views/main/_gettext.js.erb:208
+#: ../app/views/main/_gettext.js.erb:214
 msgid "%{id}: Starting: %{node}"
 msgstr "%{id}：正在启动 %{node}"
 
-#: ../app/views/main/_gettext.js.erb:209
+#: ../app/views/main/_gettext.js.erb:215
 msgid "%{id}: Starting"
 msgstr "%{id}：正在启动"
 
-#: ../app/views/main/_gettext.js.erb:212
+#: ../app/views/main/_gettext.js.erb:218
 msgid "%{id}: Stopping: %{node}"
 msgstr "%{id}：正在停止 %{node}"
 
-#: ../app/views/main/_gettext.js.erb:213
+#: ../app/views/main/_gettext.js.erb:219
 msgid "%{id}: Stopping"
 msgstr "%{id}：正在停止"
 
-#: ../app/views/main/_gettext.js.erb:216
+#: ../app/views/main/_gettext.js.erb:222
 msgid "%{id}: Promoting: %{node}"
 msgstr "%{id}：正在升级 %{node}"
 
-#: ../app/views/main/_gettext.js.erb:217
+#: ../app/views/main/_gettext.js.erb:223
 msgid "%{id}: Promoting"
 msgstr "%{id}：正在升级"
 
-#: ../app/views/main/_gettext.js.erb:220
+#: ../app/views/main/_gettext.js.erb:226
 msgid "%{id}: Demoting: %{node}"
 msgstr "%{id}：正在降级 %{node}"
 
-#: ../app/views/main/_gettext.js.erb:221
+#: ../app/views/main/_gettext.js.erb:227
 msgid "%{id}: Demoting"
 msgstr "%{id}：正在降级"
 
-#: ../app/views/main/_gettext.js.erb:224
+#: ../app/views/main/_gettext.js.erb:230
 msgid "%{id}: Moving: %{node}"
 msgstr "%{id}：正在移动 %{node}"
 
-#: ../app/views/main/_gettext.js.erb:225
+#: ../app/views/main/_gettext.js.erb:231
 msgid "%{id}: Moving"
 msgstr "%{id}：正在移动"
 
-#: ../app/views/main/_gettext.js.erb:228
+#: ../app/views/main/_gettext.js.erb:234
 msgid "Stopped"
 msgstr "已停止"
 
-#: ../app/views/main/_gettext.js.erb:229
+#: ../app/views/main/_gettext.js.erb:235
 msgid "%{id}: Stopped"
 msgstr "%{id}：已停止"
 
-#: ../app/views/main/_gettext.js.erb:232
+#: ../app/views/main/_gettext.js.erb:238
 msgid "Group: %{id}"
 msgstr "组：%{id}"
 
-#: ../app/views/main/_gettext.js.erb:235
+#: ../app/views/main/_gettext.js.erb:241
 msgid "Master/Slave Set: %{id}"
 msgstr "主/从集：%{id}"
 
-#: ../app/views/main/_gettext.js.erb:238
+#: ../app/views/main/_gettext.js.erb:244
 msgid "Clone Set: %{id}"
 msgstr "克隆集：%{id}"
 
-#: ../app/views/main/_gettext.js.erb:241
+#: ../app/views/main/_gettext.js.erb:247
 msgid "Parent: %{id}..."
 msgstr "父：%{id}..."
 
-#: ../app/views/main/_gettext.js.erb:245
+#: ../app/views/main/_gettext.js.erb:251
 msgid "Simulator (initial state)"
 msgstr "模拟器（初始状态）"
 
-#: ../app/views/main/_gettext.js.erb:248
+#: ../app/views/main/_gettext.js.erb:254
 msgid "Simulator (busy...)"
 msgstr "模拟器（正忙...）"
 
-#: ../app/views/main/_gettext.js.erb:251
+#: ../app/views/main/_gettext.js.erb:257
 msgid "Simulator (final state)"
 msgstr "模拟器（最终状态）"
 
-#: ../app/views/main/_gettext.js.erb:254
+#: ../app/views/main/_gettext.js.erb:260
 msgid "Injected State:"
 msgstr "注入的状态："
 
-#: ../app/views/main/_gettext.js.erb:257
+#: ../app/views/main/_gettext.js.erb:263
 msgid "+ Node"
 msgstr "+ 节点"
 
-#: ../app/views/main/_gettext.js.erb:260
+#: ../app/views/main/_gettext.js.erb:266
 msgid "+ Op"
 msgstr "+ Op"
 
-#: ../app/views/main/_gettext.js.erb:263
+#: ../app/views/main/_gettext.js.erb:269
 msgid "+ Ticket"
 msgstr "+ 票据"
 
-#: ../app/views/main/_gettext.js.erb:266
+#: ../app/views/main/_gettext.js.erb:272
 msgid "Run >"
 msgstr "运行 〉"
 
-#: ../app/views/main/_gettext.js.erb:272
+#: ../app/views/main/_gettext.js.erb:278
 msgid "CIB (in)"
 msgstr "CIB（输入）"
 
-#: ../app/views/main/_gettext.js.erb:275
+#: ../app/views/main/_gettext.js.erb:281
 msgid "CIB (out)"
 msgstr "CIB（输出）"
 
-#: ../app/views/main/_gettext.js.erb:281
+#: ../app/views/main/_gettext.js.erb:287
 msgid "Empty Graph"
 msgstr "空图形"
 
-#: ../app/views/main/_gettext.js.erb:284
+#: ../app/views/main/_gettext.js.erb:290
 msgid "Inject Node State"
 msgstr "注入节点状态"
 
-#: ../app/views/main/_gettext.js.erb:287
+#: ../app/views/main/_gettext.js.erb:293
 msgid "Node:"
 msgstr "节点："
 
-#: ../app/views/main/_gettext.js.erb:290
+#: ../app/views/main/_gettext.js.erb:296
 msgid "State:"
 msgstr "状态："
 
-#: ../app/views/main/_gettext.js.erb:293
+#: ../app/views/main/_gettext.js.erb:299
 msgid "Inject Operation"
 msgstr "注入操作"
 
-#: ../app/views/main/_gettext.js.erb:296
+#: ../app/views/main/_gettext.js.erb:302
 msgid "Operation:"
 msgstr "操作："
 
-#: ../app/views/main/_gettext.js.erb:299
+#: ../app/views/main/_gettext.js.erb:305
 msgid "Interval:"
 msgstr "间隔："
 
-#: ../app/views/main/_gettext.js.erb:302
+#: ../app/views/main/_gettext.js.erb:308
 msgid "Resource:"
 msgstr "资源："
 
-#: ../app/views/main/_gettext.js.erb:305
+#: ../app/views/main/_gettext.js.erb:311
 msgid "Result:"
 msgstr "结果："
 
-#: ../app/views/main/_gettext.js.erb:308
+#: ../app/views/main/_gettext.js.erb:314
 msgid "Inject Ticket"
 msgstr "注入票据"
 
-#: ../app/views/main/_gettext.js.erb:311
+#: ../app/views/main/_gettext.js.erb:317
 msgid "Ticket:"
 msgstr "票据："
 
-#: ../app/views/main/_gettext.js.erb:314
+#: ../app/views/main/_gettext.js.erb:320
 msgid "Action:"
 msgstr "操作："
 
-#: ../app/views/main/_gettext.js.erb:317
+#: ../app/views/main/_gettext.js.erb:323 ../app/views/main/_menus.html.erb:206
 msgid "Grant"
 msgstr "授予"
 
-#: ../app/views/main/_gettext.js.erb:320
+#: ../app/views/main/_gettext.js.erb:326 ../app/views/main/_menus.html.erb:213
 msgid "Revoke"
 msgstr "撤消"
 
-#: ../app/views/main/_gettext.js.erb:326
+#: ../app/views/main/_gettext.js.erb:332
 msgid "Activate"
 msgstr "激活"
 
-#: ../app/views/main/_gettext.js.erb:329
+#: ../app/views/main/_gettext.js.erb:335
 msgid "Success"
 msgstr "成功"
 
-#: ../app/views/main/_gettext.js.erb:332
+#: ../app/views/main/_gettext.js.erb:338
 msgid "Generic Error"
 msgstr "一般错误"
 
-#: ../app/views/main/_gettext.js.erb:335
+#: ../app/views/main/_gettext.js.erb:341
 msgid "Wrong Argument(s)"
 msgstr "参数错误"
 
-#: ../app/views/main/_gettext.js.erb:338
+#: ../app/views/main/_gettext.js.erb:344
 msgid "Not Implemented"
 msgstr "未实施"
 
-#: ../app/views/main/_gettext.js.erb:341
+#: ../app/views/main/_gettext.js.erb:347
 msgid "Permission Denied"
 msgstr "权限被拒"
 
-#: ../app/views/main/_gettext.js.erb:344
+#: ../app/views/main/_gettext.js.erb:350
 msgid "Not Installed"
 msgstr "未安装"
 
-#: ../app/views/main/_gettext.js.erb:347
+#: ../app/views/main/_gettext.js.erb:353
 msgid "Not Configured"
 msgstr "未配置"
 
-#: ../app/views/main/_gettext.js.erb:350
+#: ../app/views/main/_gettext.js.erb:356
 msgid "Not Running"
 msgstr "未在运行"
 
-#: ../app/views/main/_gettext.js.erb:353
+#: ../app/views/main/_gettext.js.erb:359
 msgid "Running Master"
 msgstr "正在运行主"
 
-#: ../app/views/main/_gettext.js.erb:356
+#: ../app/views/main/_gettext.js.erb:362
 msgid "Failed Master"
 msgstr "主失败"
 
-#: ../app/views/main/_menus.html.erb:21
+#: ../app/views/main/_menus.html.erb:22
 msgid "Maintenance"
 msgstr "维护"
 
-#: ../app/views/main/_menus.html.erb:28
+#: ../app/views/main/_menus.html.erb:29
 msgid "Ready"
 msgstr "就绪"
 
-#: ../app/views/main/_menus.html.erb:35
+#: ../app/views/main/_menus.html.erb:36
 msgid "Fence Node"
 msgstr "Fence 节点"
 
-#: ../app/views/main/_menus.html.erb:45 ../app/views/main/_menus.html.erb:159
+#: ../app/views/main/_menus.html.erb:46 ../app/views/main/_menus.html.erb:160
 msgid "View Details..."
 msgstr "查看细节..."
 
-#: ../app/views/main/_menus.html.erb:65 ../app/views/main/_menus.html.erb:181
+#: ../app/views/main/_menus.html.erb:66 ../app/views/main/_menus.html.erb:182
 msgid "View Recent Events..."
 msgstr "查看最近的事件..."
 
-#: ../app/views/main/_menus.html.erb:86
+#: ../app/views/main/_menus.html.erb:87
 msgid "Start"
 msgstr "启动"
 
-#: ../app/views/main/_menus.html.erb:93
+#: ../app/views/main/_menus.html.erb:94
 msgid "Stop"
 msgstr "停止"
 
-#: ../app/views/main/_menus.html.erb:100
+#: ../app/views/main/_menus.html.erb:101
 msgid "Move..."
 msgstr "移动..."
 
-#: ../app/views/main/_menus.html.erb:128
+#: ../app/views/main/_menus.html.erb:129
 msgid "Drop Relocation Rule"
 msgstr "丢弃重定位规则"
 
-#: ../app/views/main/_menus.html.erb:135
+#: ../app/views/main/_menus.html.erb:136
 msgid "Promote"
 msgstr "升级"
 
-#: ../app/views/main/_menus.html.erb:142
+#: ../app/views/main/_menus.html.erb:143
 msgid "Demote"
 msgstr "降级"
 
-#: ../app/views/main/_menus.html.erb:149
+#: ../app/views/main/_menus.html.erb:150
 msgid "Clean Up"
 msgstr "清理"
 

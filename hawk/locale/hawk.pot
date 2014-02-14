@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk 0.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2013-04-19 21:25+1000\n"
-"PO-Revision-Date: 2009-12-10 02:48+1100\n"
+"POT-Creation-Date: 2014-02-14 13:10+1100\n"
+"PO-Revision-Date: 2014-02-14 13:10+1100\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -29,13 +29,13 @@ msgstr ""
 msgid "Unable to create shadow CIB"
 msgstr ""
 
-#: ../app/controllers/cib_controller.rb:110 ../app/controllers/cib_controller.rb:162
+#: ../app/controllers/cib_controller.rb:110 ../app/controllers/cib_controller.rb:164
 msgid "1 node configured"
 msgid_plural "%{num} nodes configured"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../app/controllers/cib_controller.rb:111 ../app/controllers/cib_controller.rb:163
+#: ../app/controllers/cib_controller.rb:111 ../app/controllers/cib_controller.rb:165
 msgid "1 resource configured"
 msgid_plural "%{num} resources configured"
 msgstr[0] ""
@@ -173,7 +173,15 @@ msgstr ""
 msgid "Error deleting resource"
 msgstr ""
 
-#: ../app/controllers/main_controller.rb:310 ../app/models/cib.rb:260
+#: ../app/controllers/main_controller.rb:170
+msgid "Required parameters \"ticket\" and \"site\" not specified"
+msgstr ""
+
+#: ../app/controllers/main_controller.rb:180
+msgid "Required parameter \"ticket\" not specified"
+msgstr ""
+
+#: ../app/controllers/main_controller.rb:330 ../app/models/cib.rb:261
 msgid "Error invoking %{cmd}: %{msg}"
 msgstr ""
 
@@ -237,7 +245,7 @@ msgstr ""
 msgid "Role updated successfully"
 msgstr ""
 
-#: ../app/controllers/sessions_controller.rb:37 ../app/views/dashboard/index.html.erb:57 ../app/views/sessions/new.html.erb:17
+#: ../app/controllers/sessions_controller.rb:37 ../app/views/dashboard/index.html.erb:65 ../app/views/sessions/new.html.erb:17
 msgid "Log In"
 msgstr ""
 
@@ -261,7 +269,7 @@ msgstr ""
 msgid "%s is not installed"
 msgstr ""
 
-#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:258 ../lib/invoker.rb:113 ../lib/invoker.rb:135 ../lib/invoker.rb:177
+#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:259 ../lib/invoker.rb:113 ../lib/invoker.rb:135 ../lib/invoker.rb:177
 msgid "Permission denied for user %{user}"
 msgstr ""
 
@@ -349,35 +357,35 @@ msgstr ""
 msgid "Data collection in progress (%{from_time} to %{to_time})..."
 msgstr ""
 
-#: ../app/models/cib.rb:233
+#: ../app/models/cib.rb:234
 msgid "CIB file \"%{path}\" not found"
 msgstr ""
 
-#: ../app/models/cib.rb:235
+#: ../app/models/cib.rb:236
 msgid "Unable to parse CIB file \"%{path}\""
 msgstr ""
 
-#: ../app/models/cib.rb:237
+#: ../app/models/cib.rb:238
 msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
 msgstr ""
 
-#: ../app/models/cib.rb:239
+#: ../app/models/cib.rb:240
 msgid "Unable to execute %{cmd}"
 msgstr ""
 
-#: ../app/models/cib.rb:242
+#: ../app/models/cib.rb:243
 msgid "%{cmd} failed (status: %{status}, output was: %{output})"
 msgstr ""
 
-#: ../app/models/cib.rb:255
+#: ../app/models/cib.rb:256
 msgid "Error invoking %{cmd}"
 msgstr ""
 
-#: ../app/models/cib.rb:268 ../app/models/cib.rb:269 ../app/models/cib.rb:613 ../app/views/main/_gettext.js.erb:183
+#: ../app/models/cib.rb:269 ../app/models/cib.rb:270 ../app/models/cib.rb:614 ../app/views/main/_gettext.js.erb:189
 msgid "Unknown"
 msgstr ""
 
-#: ../app/models/cib.rb:480
+#: ../app/models/cib.rb:481
 msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
 msgstr ""
 
@@ -585,7 +593,7 @@ msgstr ""
 msgid "Add"
 msgstr ""
 
-#: ../app/views/clones/_form.html.erb:47 ../app/views/colocations/_form.html.erb:61 ../app/views/crm_config/edit.html.erb:25 ../app/views/crm_config/edit.html.erb:47 ../app/views/crm_config/edit.html.erb:69 ../app/views/dashboard/index.html.erb:39 ../app/views/groups/_form.html.erb:82 ../app/views/locations/_form.html.erb:48 ../app/views/masters/_form.html.erb:47 ../app/views/orders/_form.html.erb:61 ../app/views/primitives/_form.html.erb:248 ../app/views/primitives/_form.html.erb:269 ../app/views/primitives/_form.html.erb:291 ../app/views/roles/_form.html.erb:39 ../app/views/tickets/_form.html.erb:49 ../app/views/users/_form.html.erb:49
+#: ../app/views/clones/_form.html.erb:47 ../app/views/colocations/_form.html.erb:61 ../app/views/crm_config/edit.html.erb:25 ../app/views/crm_config/edit.html.erb:47 ../app/views/crm_config/edit.html.erb:69 ../app/views/dashboard/index.html.erb:46 ../app/views/groups/_form.html.erb:82 ../app/views/locations/_form.html.erb:48 ../app/views/masters/_form.html.erb:47 ../app/views/orders/_form.html.erb:61 ../app/views/primitives/_form.html.erb:248 ../app/views/primitives/_form.html.erb:269 ../app/views/primitives/_form.html.erb:291 ../app/views/roles/_form.html.erb:39 ../app/views/tickets/_form.html.erb:49 ../app/views/users/_form.html.erb:49
 msgid "Remove"
 msgstr ""
 
@@ -705,63 +713,63 @@ msgstr ""
 msgid "No cluster properties set in %{group}"
 msgstr ""
 
-#: ../app/views/dashboard/index.html.erb:49 ../app/views/sessions/new.html.erb:9
+#: ../app/views/dashboard/index.html.erb:57 ../app/views/sessions/new.html.erb:9
 msgid "Username:"
 msgstr ""
 
-#: ../app/views/dashboard/index.html.erb:53 ../app/views/sessions/new.html.erb:13
+#: ../app/views/dashboard/index.html.erb:61 ../app/views/sessions/new.html.erb:13
 msgid "Password:"
 msgstr ""
 
-#: ../app/views/dashboard/index.html.erb:64
+#: ../app/views/dashboard/index.html.erb:72
 msgid "Cluster has errors - click for details"
 msgstr ""
 
-#: ../app/views/dashboard/index.html.erb:145 ../app/views/dashboard/index.html.erb:435
+#: ../app/views/dashboard/index.html.erb:157 ../app/views/dashboard/index.html.erb:485
 msgid "Timeout: Please try again"
 msgstr ""
 
-#: ../app/views/dashboard/index.html.erb:223
+#: ../app/views/dashboard/index.html.erb:241
 msgid "Permission denied. Please log in to %{node}"
 msgstr ""
 
-#: ../app/views/dashboard/index.html.erb:288
+#: ../app/views/dashboard/index.html.erb:330
 msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
 msgstr ""
 
-#: ../app/views/dashboard/index.html.erb:348
+#: ../app/views/dashboard/index.html.erb:408
 msgid "Cluster Name:"
 msgstr ""
 
-#: ../app/views/dashboard/index.html.erb:349
+#: ../app/views/dashboard/index.html.erb:409
 msgid "Host Name:"
 msgstr ""
 
-#: ../app/views/dashboard/index.html.erb:350
+#: ../app/views/dashboard/index.html.erb:410
 msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
 msgstr ""
 
-#: ../app/views/dashboard/index.html.erb:355
+#: ../app/views/dashboard/index.html.erb:415
 msgid "Add Cluster"
 msgstr ""
 
-#: ../app/views/dashboard/index.html.erb:357 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
+#: ../app/views/dashboard/index.html.erb:417 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
 msgid "OK"
 msgstr ""
 
-#: ../app/views/dashboard/index.html.erb:372
+#: ../app/views/dashboard/index.html.erb:432
 msgid "A cluster with that name already exists"
 msgstr ""
 
-#: ../app/views/dashboard/index.html.erb:384
+#: ../app/views/dashboard/index.html.erb:438
 msgid "The host %{h} is already present in cluster %{c}"
 msgstr ""
 
-#: ../app/views/dashboard/index.html.erb:417 ../app/views/dashboard/index.html.erb:429
+#: ../app/views/dashboard/index.html.erb:467 ../app/views/dashboard/index.html.erb:479
 msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
 msgstr ""
 
-#: ../app/views/dashboard/index.html.erb:442 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
+#: ../app/views/dashboard/index.html.erb:492 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
 msgid "Cancel"
 msgstr ""
 
@@ -781,7 +789,7 @@ msgstr ""
 msgid "Node"
 msgstr ""
 
-#: ../app/views/explorer/_pe_list.html.erb:30 ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:269
+#: ../app/views/explorer/_pe_list.html.erb:30 ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:275
 msgid "Details"
 msgstr ""
 
@@ -789,7 +797,7 @@ msgstr ""
 msgid "(full log)"
 msgstr ""
 
-#: ../app/views/explorer/_pe_list.html.erb:38 ../app/views/main/_gettext.js.erb:278
+#: ../app/views/explorer/_pe_list.html.erb:38 ../app/views/main/_gettext.js.erb:284
 msgid "Graph"
 msgstr ""
 
@@ -1077,355 +1085,363 @@ msgstr ""
 msgid "Tickets"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:142
-msgid "Granted [standby]"
+#: ../app/views/main/_gettext.js.erb:141
+msgid "This will request the ticket %s be granted to the present site.  Do you want to continue?"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:143
-msgid "Granted"
-msgstr ""
-
-#: ../app/views/main/_gettext.js.erb:147
-msgid "Revoked [standby]"
+#: ../app/views/main/_gettext.js.erb:144
+msgid "This will request the ticket %s be revoked.  Do you want to continue?"
 msgstr ""
 
 #: ../app/views/main/_gettext.js.erb:148
+msgid "Granted [standby]"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:149
+msgid "Granted"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:153
+msgid "Revoked [standby]"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:154
 msgid "Revoked"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:151
+#: ../app/views/main/_gettext.js.erb:157
 msgid "Last granted: %s"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:155
+#: ../app/views/main/_gettext.js.erb:161
 msgid "Summary View"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:158
+#: ../app/views/main/_gettext.js.erb:164
 msgid "Tree View"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:161
+#: ../app/views/main/_gettext.js.erb:167
 msgid "Table View"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:165
+#: ../app/views/main/_gettext.js.erb:171
 msgid "%{node}: %{state}"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:168 ../app/views/main/_menus.html.erb:7
+#: ../app/views/main/_gettext.js.erb:174 ../app/views/main/_menus.html.erb:8
 msgid "Online"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:171
+#: ../app/views/main/_gettext.js.erb:177
 msgid "Offline"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:174 ../app/views/main/_gettext.js.erb:202
+#: ../app/views/main/_gettext.js.erb:180 ../app/views/main/_gettext.js.erb:208
 msgid "Pending"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:177 ../app/views/main/_gettext.js.erb:323 ../app/views/main/_menus.html.erb:14
+#: ../app/views/main/_gettext.js.erb:183 ../app/views/main/_gettext.js.erb:329 ../app/views/main/_menus.html.erb:15
 msgid "Standby"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:180
+#: ../app/views/main/_gettext.js.erb:186
 msgid "Unclean"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:187
+#: ../app/views/main/_gettext.js.erb:193
 msgid "Master"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:188
+#: ../app/views/main/_gettext.js.erb:194
 msgid "%{id}: Master: %{nodelist}"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:189
+#: ../app/views/main/_gettext.js.erb:195
 msgid "%{id}: Master"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:192
+#: ../app/views/main/_gettext.js.erb:198
 msgid "Slave"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:193
+#: ../app/views/main/_gettext.js.erb:199
 msgid "%{id}: Slave: %{nodelist}"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:194
+#: ../app/views/main/_gettext.js.erb:200
 msgid "%{id}: Slave"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:197
+#: ../app/views/main/_gettext.js.erb:203
 msgid "Started"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:198
+#: ../app/views/main/_gettext.js.erb:204
 msgid "%{id}: Started: %{nodelist}"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:199
+#: ../app/views/main/_gettext.js.erb:205
 msgid "%{id}: Started"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:203
+#: ../app/views/main/_gettext.js.erb:209
 msgid "%{id}: Pending: %{nodelist}"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:204
+#: ../app/views/main/_gettext.js.erb:210
 msgid "%{id}: Pending"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:208
+#: ../app/views/main/_gettext.js.erb:214
 msgid "%{id}: Starting: %{node}"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:209
+#: ../app/views/main/_gettext.js.erb:215
 msgid "%{id}: Starting"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:212
+#: ../app/views/main/_gettext.js.erb:218
 msgid "%{id}: Stopping: %{node}"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:213
+#: ../app/views/main/_gettext.js.erb:219
 msgid "%{id}: Stopping"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:216
+#: ../app/views/main/_gettext.js.erb:222
 msgid "%{id}: Promoting: %{node}"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:217
+#: ../app/views/main/_gettext.js.erb:223
 msgid "%{id}: Promoting"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:220
+#: ../app/views/main/_gettext.js.erb:226
 msgid "%{id}: Demoting: %{node}"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:221
+#: ../app/views/main/_gettext.js.erb:227
 msgid "%{id}: Demoting"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:224
+#: ../app/views/main/_gettext.js.erb:230
 msgid "%{id}: Moving: %{node}"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:225
+#: ../app/views/main/_gettext.js.erb:231
 msgid "%{id}: Moving"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:228
+#: ../app/views/main/_gettext.js.erb:234
 msgid "Stopped"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:229
+#: ../app/views/main/_gettext.js.erb:235
 msgid "%{id}: Stopped"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:232
+#: ../app/views/main/_gettext.js.erb:238
 msgid "Group: %{id}"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:235
+#: ../app/views/main/_gettext.js.erb:241
 msgid "Master/Slave Set: %{id}"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:238
+#: ../app/views/main/_gettext.js.erb:244
 msgid "Clone Set: %{id}"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:241
+#: ../app/views/main/_gettext.js.erb:247
 msgid "Parent: %{id}..."
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:245
+#: ../app/views/main/_gettext.js.erb:251
 msgid "Simulator (initial state)"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:248
+#: ../app/views/main/_gettext.js.erb:254
 msgid "Simulator (busy...)"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:251
+#: ../app/views/main/_gettext.js.erb:257
 msgid "Simulator (final state)"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:254
+#: ../app/views/main/_gettext.js.erb:260
 msgid "Injected State:"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:257
+#: ../app/views/main/_gettext.js.erb:263
 msgid "+ Node"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:260
+#: ../app/views/main/_gettext.js.erb:266
 msgid "+ Op"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:263
+#: ../app/views/main/_gettext.js.erb:269
 msgid "+ Ticket"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:266
+#: ../app/views/main/_gettext.js.erb:272
 msgid "Run >"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:272
+#: ../app/views/main/_gettext.js.erb:278
 msgid "CIB (in)"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:275
+#: ../app/views/main/_gettext.js.erb:281
 msgid "CIB (out)"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:281
+#: ../app/views/main/_gettext.js.erb:287
 msgid "Empty Graph"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:284
+#: ../app/views/main/_gettext.js.erb:290
 msgid "Inject Node State"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:287
+#: ../app/views/main/_gettext.js.erb:293
 msgid "Node:"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:290
+#: ../app/views/main/_gettext.js.erb:296
 msgid "State:"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:293
+#: ../app/views/main/_gettext.js.erb:299
 msgid "Inject Operation"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:296
+#: ../app/views/main/_gettext.js.erb:302
 msgid "Operation:"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:299
+#: ../app/views/main/_gettext.js.erb:305
 msgid "Interval:"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:302
+#: ../app/views/main/_gettext.js.erb:308
 msgid "Resource:"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:305
+#: ../app/views/main/_gettext.js.erb:311
 msgid "Result:"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:308
+#: ../app/views/main/_gettext.js.erb:314
 msgid "Inject Ticket"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:311
+#: ../app/views/main/_gettext.js.erb:317
 msgid "Ticket:"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:314
+#: ../app/views/main/_gettext.js.erb:320
 msgid "Action:"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:317
+#: ../app/views/main/_gettext.js.erb:323 ../app/views/main/_menus.html.erb:206
 msgid "Grant"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:320
+#: ../app/views/main/_gettext.js.erb:326 ../app/views/main/_menus.html.erb:213
 msgid "Revoke"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:326
+#: ../app/views/main/_gettext.js.erb:332
 msgid "Activate"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:329
+#: ../app/views/main/_gettext.js.erb:335
 msgid "Success"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:332
+#: ../app/views/main/_gettext.js.erb:338
 msgid "Generic Error"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:335
+#: ../app/views/main/_gettext.js.erb:341
 msgid "Wrong Argument(s)"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:338
+#: ../app/views/main/_gettext.js.erb:344
 msgid "Not Implemented"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:341
+#: ../app/views/main/_gettext.js.erb:347
 msgid "Permission Denied"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:344
+#: ../app/views/main/_gettext.js.erb:350
 msgid "Not Installed"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:347
+#: ../app/views/main/_gettext.js.erb:353
 msgid "Not Configured"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:350
+#: ../app/views/main/_gettext.js.erb:356
 msgid "Not Running"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:353
+#: ../app/views/main/_gettext.js.erb:359
 msgid "Running Master"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:356
+#: ../app/views/main/_gettext.js.erb:362
 msgid "Failed Master"
 msgstr ""
 
-#: ../app/views/main/_menus.html.erb:21
+#: ../app/views/main/_menus.html.erb:22
 msgid "Maintenance"
 msgstr ""
 
-#: ../app/views/main/_menus.html.erb:28
+#: ../app/views/main/_menus.html.erb:29
 msgid "Ready"
 msgstr ""
 
-#: ../app/views/main/_menus.html.erb:35
+#: ../app/views/main/_menus.html.erb:36
 msgid "Fence Node"
 msgstr ""
 
-#: ../app/views/main/_menus.html.erb:45 ../app/views/main/_menus.html.erb:159
+#: ../app/views/main/_menus.html.erb:46 ../app/views/main/_menus.html.erb:160
 msgid "View Details..."
 msgstr ""
 
-#: ../app/views/main/_menus.html.erb:65 ../app/views/main/_menus.html.erb:181
+#: ../app/views/main/_menus.html.erb:66 ../app/views/main/_menus.html.erb:182
 msgid "View Recent Events..."
 msgstr ""
 
-#: ../app/views/main/_menus.html.erb:86
+#: ../app/views/main/_menus.html.erb:87
 msgid "Start"
 msgstr ""
 
-#: ../app/views/main/_menus.html.erb:93
+#: ../app/views/main/_menus.html.erb:94
 msgid "Stop"
 msgstr ""
 
-#: ../app/views/main/_menus.html.erb:100
+#: ../app/views/main/_menus.html.erb:101
 msgid "Move..."
 msgstr ""
 
-#: ../app/views/main/_menus.html.erb:128
+#: ../app/views/main/_menus.html.erb:129
 msgid "Drop Relocation Rule"
 msgstr ""
 
-#: ../app/views/main/_menus.html.erb:135
+#: ../app/views/main/_menus.html.erb:136
 msgid "Promote"
 msgstr ""
 
-#: ../app/views/main/_menus.html.erb:142
+#: ../app/views/main/_menus.html.erb:143
 msgid "Demote"
 msgstr ""
 
-#: ../app/views/main/_menus.html.erb:149
+#: ../app/views/main/_menus.html.erb:150
 msgid "Clean Up"
 msgstr ""
 

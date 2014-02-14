@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-01-27 17:48+1100\n"
+"POT-Creation-Date: 2014-02-14 13:10+1100\n"
 "PO-Revision-Date: 2013-05-02 16:27\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -23,13 +23,13 @@ msgstr ""
 msgid "Unable to create shadow CIB"
 msgstr "Det går inte att skapa skugg-CIB"
 
-#: ../app/controllers/cib_controller.rb:110 ../app/controllers/cib_controller.rb:162
+#: ../app/controllers/cib_controller.rb:110 ../app/controllers/cib_controller.rb:164
 msgid "1 node configured"
 msgid_plural "%{num} nodes configured"
 msgstr[0] "1 nod har konfigurerats"
 msgstr[1] "%{num} noder har konfigurerats"
 
-#: ../app/controllers/cib_controller.rb:111 ../app/controllers/cib_controller.rb:163
+#: ../app/controllers/cib_controller.rb:111 ../app/controllers/cib_controller.rb:165
 msgid "1 resource configured"
 msgid_plural "%{num} resources configured"
 msgstr[0] "1 resurs har konfigurerats"
@@ -167,7 +167,17 @@ msgstr "De begärda parametrarna \"resource\" och \"node\" har inte angetts"
 msgid "Error deleting resource"
 msgstr "Fel vid borttagning av resurs"
 
-#: ../app/controllers/main_controller.rb:310 ../app/models/cib.rb:260
+#: ../app/controllers/main_controller.rb:170
+#, fuzzy
+msgid "Required parameters \"ticket\" and \"site\" not specified"
+msgstr "De begärda parametrarna \"left\" och \"right\" har inte angetts"
+
+#: ../app/controllers/main_controller.rb:180
+#, fuzzy
+msgid "Required parameter \"ticket\" not specified"
+msgstr "Den begärda parametern \"node\" har inte angetts"
+
+#: ../app/controllers/main_controller.rb:330 ../app/models/cib.rb:261
 msgid "Error invoking %{cmd}: %{msg}"
 msgstr "Fel vid anrop av %{cmd}: %{msg}"
 
@@ -235,7 +245,7 @@ msgstr "Klonen har skapats"
 msgid "Role updated successfully"
 msgstr "Klonen har uppdaterats"
 
-#: ../app/controllers/sessions_controller.rb:37 ../app/views/dashboard/index.html.erb:57 ../app/views/sessions/new.html.erb:17
+#: ../app/controllers/sessions_controller.rb:37 ../app/views/dashboard/index.html.erb:65 ../app/views/sessions/new.html.erb:17
 msgid "Log In"
 msgstr "Logga in"
 
@@ -259,7 +269,7 @@ msgstr "Fel användarnamn eller lösenord"
 msgid "%s is not installed"
 msgstr "%s har inte installerats"
 
-#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:258 ../lib/invoker.rb:113 ../lib/invoker.rb:135 ../lib/invoker.rb:177
+#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:259 ../lib/invoker.rb:113 ../lib/invoker.rb:135 ../lib/invoker.rb:177
 msgid "Permission denied for user %{user}"
 msgstr "Tillstånd nekades för användaren %{user}"
 
@@ -351,35 +361,35 @@ msgstr "Fel vid tolkning av arbetsflödet \"%s\""
 msgid "Data collection in progress (%{from_time} to %{to_time})..."
 msgstr "Datainsamling pågår (%{from_time} till %{to_time})..."
 
-#: ../app/models/cib.rb:233
+#: ../app/models/cib.rb:234
 msgid "CIB file \"%{path}\" not found"
 msgstr "CIB-filen \"%{path}\" hittades inte"
 
-#: ../app/models/cib.rb:235
+#: ../app/models/cib.rb:236
 msgid "Unable to parse CIB file \"%{path}\""
 msgstr "Det går inte att analysera CIB-filen \"%{path}\""
 
-#: ../app/models/cib.rb:237
+#: ../app/models/cib.rb:238
 msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
 msgstr "Pacemaker verkar inte vara installerat (%{cmd} hittades inte)"
 
-#: ../app/models/cib.rb:239
+#: ../app/models/cib.rb:240
 msgid "Unable to execute %{cmd}"
 msgstr "Det gick inte att köra %{cmd}"
 
-#: ../app/models/cib.rb:242
+#: ../app/models/cib.rb:243
 msgid "%{cmd} failed (status: %{status}, output was: %{output})"
 msgstr "%{cmd} misslyckades (status: %{status}, utdata: %{output})"
 
-#: ../app/models/cib.rb:255
+#: ../app/models/cib.rb:256
 msgid "Error invoking %{cmd}"
 msgstr "Fel vid anrop av %{cmd}"
 
-#: ../app/models/cib.rb:268 ../app/models/cib.rb:269 ../app/models/cib.rb:613 ../app/views/main/_gettext.js.erb:183
+#: ../app/models/cib.rb:269 ../app/models/cib.rb:270 ../app/models/cib.rb:614 ../app/views/main/_gettext.js.erb:189
 msgid "Unknown"
 msgstr "Okänd"
 
-#: ../app/models/cib.rb:480
+#: ../app/models/cib.rb:481
 msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
 msgstr "Misslyckad åtgärd: nod=%{node}, resurs=%{resource}, anrops-id=%{call_id}, åtgärd=%{op}, rc-kod=%{rc_code}"
 
@@ -597,7 +607,7 @@ msgstr "Metaattribut"
 msgid "Add"
 msgstr "Lägg till"
 
-#: ../app/views/clones/_form.html.erb:47 ../app/views/colocations/_form.html.erb:61 ../app/views/crm_config/edit.html.erb:25 ../app/views/crm_config/edit.html.erb:47 ../app/views/crm_config/edit.html.erb:69 ../app/views/dashboard/index.html.erb:39 ../app/views/groups/_form.html.erb:82 ../app/views/locations/_form.html.erb:48 ../app/views/masters/_form.html.erb:47 ../app/views/orders/_form.html.erb:61 ../app/views/primitives/_form.html.erb:248 ../app/views/primitives/_form.html.erb:269 ../app/views/primitives/_form.html.erb:291 ../app/views/roles/_form.html.erb:39 ../app/views/tickets/_form.html.erb:49 ../app/views/users/_form.html.erb:49
+#: ../app/views/clones/_form.html.erb:47 ../app/views/colocations/_form.html.erb:61 ../app/views/crm_config/edit.html.erb:25 ../app/views/crm_config/edit.html.erb:47 ../app/views/crm_config/edit.html.erb:69 ../app/views/dashboard/index.html.erb:46 ../app/views/groups/_form.html.erb:82 ../app/views/locations/_form.html.erb:48 ../app/views/masters/_form.html.erb:47 ../app/views/orders/_form.html.erb:61 ../app/views/primitives/_form.html.erb:248 ../app/views/primitives/_form.html.erb:269 ../app/views/primitives/_form.html.erb:291 ../app/views/roles/_form.html.erb:39 ../app/views/tickets/_form.html.erb:49 ../app/views/users/_form.html.erb:49
 msgid "Remove"
 msgstr "Ta bort"
 
@@ -717,63 +727,63 @@ msgstr "Åtgärdsstandard"
 msgid "No cluster properties set in %{group}"
 msgstr "Inga klusteregenskaper angivna i %{group}"
 
-#: ../app/views/dashboard/index.html.erb:49 ../app/views/sessions/new.html.erb:9
+#: ../app/views/dashboard/index.html.erb:57 ../app/views/sessions/new.html.erb:9
 msgid "Username:"
 msgstr "Användarnamn:"
 
-#: ../app/views/dashboard/index.html.erb:53 ../app/views/sessions/new.html.erb:13
+#: ../app/views/dashboard/index.html.erb:61 ../app/views/sessions/new.html.erb:13
 msgid "Password:"
 msgstr "Lösenord:"
 
-#: ../app/views/dashboard/index.html.erb:64
+#: ../app/views/dashboard/index.html.erb:72
 msgid "Cluster has errors - click for details"
 msgstr "Klustret har fel - klicka för information"
 
-#: ../app/views/dashboard/index.html.erb:145 ../app/views/dashboard/index.html.erb:435
+#: ../app/views/dashboard/index.html.erb:157 ../app/views/dashboard/index.html.erb:485
 msgid "Timeout: Please try again"
 msgstr "Tidsgränsen överskreds: försök igen"
 
-#: ../app/views/dashboard/index.html.erb:223
+#: ../app/views/dashboard/index.html.erb:241
 msgid "Permission denied. Please log in to %{node}"
 msgstr "Tillstånd nekades. Logga in på %{node}"
 
-#: ../app/views/dashboard/index.html.erb:288
+#: ../app/views/dashboard/index.html.erb:330
 msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
 msgstr "Det går inte att kontakta Hawk på %{node}. Försöker igen var 5 sekund."
 
-#: ../app/views/dashboard/index.html.erb:348
+#: ../app/views/dashboard/index.html.erb:408
 msgid "Cluster Name:"
 msgstr "Klusternamn:"
 
-#: ../app/views/dashboard/index.html.erb:349
+#: ../app/views/dashboard/index.html.erb:409
 msgid "Host Name:"
 msgstr "Värddatornamn:"
 
-#: ../app/views/dashboard/index.html.erb:350
+#: ../app/views/dashboard/index.html.erb:410
 msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
 msgstr "(Ange valfritt värdnamn i klustret. Andra noder hittas automatiskt.)"
 
-#: ../app/views/dashboard/index.html.erb:355
+#: ../app/views/dashboard/index.html.erb:415
 msgid "Add Cluster"
 msgstr "Lägg till kluster"
 
-#: ../app/views/dashboard/index.html.erb:357 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
+#: ../app/views/dashboard/index.html.erb:417 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
 msgid "OK"
 msgstr "OK"
 
-#: ../app/views/dashboard/index.html.erb:372
+#: ../app/views/dashboard/index.html.erb:432
 msgid "A cluster with that name already exists"
 msgstr "Det finns redan ett kluster med det här namnet"
 
-#: ../app/views/dashboard/index.html.erb:384
+#: ../app/views/dashboard/index.html.erb:438
 msgid "The host %{h} is already present in cluster %{c}"
 msgstr "Värden %{h} finns redan i klustret %{c}"
 
-#: ../app/views/dashboard/index.html.erb:417 ../app/views/dashboard/index.html.erb:429
+#: ../app/views/dashboard/index.html.erb:467 ../app/views/dashboard/index.html.erb:479
 msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
 msgstr "Det går inte att ansluta till %{host}. Försök öppna %{url} i webbläsaren för att kontrollera att det går att komma åt Hawk."
 
-#: ../app/views/dashboard/index.html.erb:442 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
+#: ../app/views/dashboard/index.html.erb:492 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
 msgid "Cancel"
 msgstr "Avbryt"
 
@@ -793,7 +803,7 @@ msgstr "PE-indata"
 msgid "Node"
 msgstr "Nod"
 
-#: ../app/views/explorer/_pe_list.html.erb:30 ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:269
+#: ../app/views/explorer/_pe_list.html.erb:30 ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:275
 msgid "Details"
 msgstr "Detaljer"
 
@@ -801,7 +811,7 @@ msgstr "Detaljer"
 msgid "(full log)"
 msgstr "(full logg)"
 
-#: ../app/views/explorer/_pe_list.html.erb:38 ../app/views/main/_gettext.js.erb:278
+#: ../app/views/explorer/_pe_list.html.erb:38 ../app/views/main/_gettext.js.erb:284
 msgid "Graph"
 msgstr "Graf"
 
@@ -1089,355 +1099,365 @@ msgstr "Ohanterad"
 msgid "Tickets"
 msgstr "Biljetter"
 
-#: ../app/views/main/_gettext.js.erb:142
+#: ../app/views/main/_gettext.js.erb:141
+#, fuzzy
+msgid "This will request the ticket %s be granted to the present site.  Do you want to continue?"
+msgstr "Detta gör att alla flyttbegränsningar på resursen %s tas bort. Vill du fortsätta?"
+
+#: ../app/views/main/_gettext.js.erb:144
+#, fuzzy
+msgid "This will request the ticket %s be revoked.  Do you want to continue?"
+msgstr "Detta startar resursen %s. Vill du fortsätta?"
+
+#: ../app/views/main/_gettext.js.erb:148
 msgid "Granted [standby]"
 msgstr "Beviljad [vänteläge]"
 
-#: ../app/views/main/_gettext.js.erb:143
+#: ../app/views/main/_gettext.js.erb:149
 msgid "Granted"
 msgstr "Beviljad"
 
-#: ../app/views/main/_gettext.js.erb:147
+#: ../app/views/main/_gettext.js.erb:153
 msgid "Revoked [standby]"
 msgstr "Återkallat [vänteläge]"
 
-#: ../app/views/main/_gettext.js.erb:148
+#: ../app/views/main/_gettext.js.erb:154
 msgid "Revoked"
 msgstr "Återkallat"
 
-#: ../app/views/main/_gettext.js.erb:151
+#: ../app/views/main/_gettext.js.erb:157
 msgid "Last granted: %s"
 msgstr "Senast beviljad: %s"
 
-#: ../app/views/main/_gettext.js.erb:155
+#: ../app/views/main/_gettext.js.erb:161
 msgid "Summary View"
 msgstr "Sammanfattningsvy"
 
-#: ../app/views/main/_gettext.js.erb:158
+#: ../app/views/main/_gettext.js.erb:164
 msgid "Tree View"
 msgstr "Trädvy"
 
-#: ../app/views/main/_gettext.js.erb:161
+#: ../app/views/main/_gettext.js.erb:167
 msgid "Table View"
 msgstr "Tabellvy"
 
-#: ../app/views/main/_gettext.js.erb:165
+#: ../app/views/main/_gettext.js.erb:171
 msgid "%{node}: %{state}"
 msgstr "%{node}: %{state}"
 
-#: ../app/views/main/_gettext.js.erb:168 ../app/views/main/_menus.html.erb:7
+#: ../app/views/main/_gettext.js.erb:174 ../app/views/main/_menus.html.erb:8
 msgid "Online"
 msgstr "Online"
 
-#: ../app/views/main/_gettext.js.erb:171
+#: ../app/views/main/_gettext.js.erb:177
 msgid "Offline"
 msgstr "Offline"
 
-#: ../app/views/main/_gettext.js.erb:174 ../app/views/main/_gettext.js.erb:202
+#: ../app/views/main/_gettext.js.erb:180 ../app/views/main/_gettext.js.erb:208
 msgid "Pending"
 msgstr "Väntar"
 
-#: ../app/views/main/_gettext.js.erb:177 ../app/views/main/_gettext.js.erb:323 ../app/views/main/_menus.html.erb:14
+#: ../app/views/main/_gettext.js.erb:183 ../app/views/main/_gettext.js.erb:329 ../app/views/main/_menus.html.erb:15
 msgid "Standby"
 msgstr "Vänteläge"
 
-#: ../app/views/main/_gettext.js.erb:180
+#: ../app/views/main/_gettext.js.erb:186
 msgid "Unclean"
 msgstr "Inkorrekt"
 
-#: ../app/views/main/_gettext.js.erb:187
+#: ../app/views/main/_gettext.js.erb:193
 msgid "Master"
 msgstr "Huvudserver"
 
-#: ../app/views/main/_gettext.js.erb:188
+#: ../app/views/main/_gettext.js.erb:194
 msgid "%{id}: Master: %{nodelist}"
 msgstr "%{id}: Master: %{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:189
+#: ../app/views/main/_gettext.js.erb:195
 msgid "%{id}: Master"
 msgstr "%{id}: Master"
 
-#: ../app/views/main/_gettext.js.erb:192
+#: ../app/views/main/_gettext.js.erb:198
 msgid "Slave"
 msgstr "Slavserver"
 
-#: ../app/views/main/_gettext.js.erb:193
+#: ../app/views/main/_gettext.js.erb:199
 msgid "%{id}: Slave: %{nodelist}"
 msgstr "%{id}: Slav: %{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:194
+#: ../app/views/main/_gettext.js.erb:200
 msgid "%{id}: Slave"
 msgstr "%{id}: Slav"
 
-#: ../app/views/main/_gettext.js.erb:197
+#: ../app/views/main/_gettext.js.erb:203
 msgid "Started"
 msgstr "Startad"
 
-#: ../app/views/main/_gettext.js.erb:198
+#: ../app/views/main/_gettext.js.erb:204
 msgid "%{id}: Started: %{nodelist}"
 msgstr "%{id}: Startad: %{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:199
+#: ../app/views/main/_gettext.js.erb:205
 msgid "%{id}: Started"
 msgstr "%{id}: Startad"
 
-#: ../app/views/main/_gettext.js.erb:203
+#: ../app/views/main/_gettext.js.erb:209
 msgid "%{id}: Pending: %{nodelist}"
 msgstr "%{id}: Väntar: %{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:204
+#: ../app/views/main/_gettext.js.erb:210
 msgid "%{id}: Pending"
 msgstr "%{id}: väntar"
 
-#: ../app/views/main/_gettext.js.erb:208
+#: ../app/views/main/_gettext.js.erb:214
 msgid "%{id}: Starting: %{node}"
 msgstr "%{id}: Startar: %{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:209
+#: ../app/views/main/_gettext.js.erb:215
 msgid "%{id}: Starting"
 msgstr "%{id}: Startar"
 
-#: ../app/views/main/_gettext.js.erb:212
+#: ../app/views/main/_gettext.js.erb:218
 msgid "%{id}: Stopping: %{node}"
 msgstr "%{id}: Stoppar: %{node}"
 
-#: ../app/views/main/_gettext.js.erb:213
+#: ../app/views/main/_gettext.js.erb:219
 msgid "%{id}: Stopping"
 msgstr "%{id}: Stoppar"
 
-#: ../app/views/main/_gettext.js.erb:216
+#: ../app/views/main/_gettext.js.erb:222
 msgid "%{id}: Promoting: %{node}"
 msgstr "%{id}: Höjer: %{node}"
 
-#: ../app/views/main/_gettext.js.erb:217
+#: ../app/views/main/_gettext.js.erb:223
 msgid "%{id}: Promoting"
 msgstr "%{id}: Höjer"
 
-#: ../app/views/main/_gettext.js.erb:220
+#: ../app/views/main/_gettext.js.erb:226
 msgid "%{id}: Demoting: %{node}"
 msgstr "%{id}: Sänker: %{node}"
 
-#: ../app/views/main/_gettext.js.erb:221
+#: ../app/views/main/_gettext.js.erb:227
 msgid "%{id}: Demoting"
 msgstr "%{id}: Sänker"
 
-#: ../app/views/main/_gettext.js.erb:224
+#: ../app/views/main/_gettext.js.erb:230
 msgid "%{id}: Moving: %{node}"
 msgstr "%{id}: Flyttar: %{node}"
 
-#: ../app/views/main/_gettext.js.erb:225
+#: ../app/views/main/_gettext.js.erb:231
 msgid "%{id}: Moving"
 msgstr "%{id}: Flyttar"
 
-#: ../app/views/main/_gettext.js.erb:228
+#: ../app/views/main/_gettext.js.erb:234
 msgid "Stopped"
 msgstr "Stoppad"
 
-#: ../app/views/main/_gettext.js.erb:229
+#: ../app/views/main/_gettext.js.erb:235
 msgid "%{id}: Stopped"
 msgstr "%{id}: Stoppad"
 
-#: ../app/views/main/_gettext.js.erb:232
+#: ../app/views/main/_gettext.js.erb:238
 msgid "Group: %{id}"
 msgstr "Grupp: %{id}"
 
-#: ../app/views/main/_gettext.js.erb:235
+#: ../app/views/main/_gettext.js.erb:241
 msgid "Master/Slave Set: %{id}"
 msgstr "Master/slave-uppsättning: %{id}"
 
-#: ../app/views/main/_gettext.js.erb:238
+#: ../app/views/main/_gettext.js.erb:244
 msgid "Clone Set: %{id}"
 msgstr "Klonuppsättning: %{id}"
 
-#: ../app/views/main/_gettext.js.erb:241
+#: ../app/views/main/_gettext.js.erb:247
 msgid "Parent: %{id}..."
 msgstr "Överordnad: %{id}..."
 
-#: ../app/views/main/_gettext.js.erb:245
+#: ../app/views/main/_gettext.js.erb:251
 msgid "Simulator (initial state)"
 msgstr "Simulator (inledande status)"
 
-#: ../app/views/main/_gettext.js.erb:248
+#: ../app/views/main/_gettext.js.erb:254
 msgid "Simulator (busy...)"
 msgstr "Simulator (upptagen...)"
 
-#: ../app/views/main/_gettext.js.erb:251
+#: ../app/views/main/_gettext.js.erb:257
 msgid "Simulator (final state)"
 msgstr "Simulator (slutlig status)"
 
-#: ../app/views/main/_gettext.js.erb:254
+#: ../app/views/main/_gettext.js.erb:260
 msgid "Injected State:"
 msgstr "Injected-status:"
 
-#: ../app/views/main/_gettext.js.erb:257
+#: ../app/views/main/_gettext.js.erb:263
 msgid "+ Node"
 msgstr "+ Nod"
 
-#: ../app/views/main/_gettext.js.erb:260
+#: ../app/views/main/_gettext.js.erb:266
 msgid "+ Op"
 msgstr "+ Op"
 
-#: ../app/views/main/_gettext.js.erb:263
+#: ../app/views/main/_gettext.js.erb:269
 msgid "+ Ticket"
 msgstr "+ Biljett"
 
-#: ../app/views/main/_gettext.js.erb:266
+#: ../app/views/main/_gettext.js.erb:272
 msgid "Run >"
 msgstr "Kör >"
 
-#: ../app/views/main/_gettext.js.erb:272
+#: ../app/views/main/_gettext.js.erb:278
 msgid "CIB (in)"
 msgstr "CIB (in)"
 
-#: ../app/views/main/_gettext.js.erb:275
+#: ../app/views/main/_gettext.js.erb:281
 msgid "CIB (out)"
 msgstr "CIB (ut)"
 
-#: ../app/views/main/_gettext.js.erb:281
+#: ../app/views/main/_gettext.js.erb:287
 msgid "Empty Graph"
 msgstr "Tomt diagram"
 
-#: ../app/views/main/_gettext.js.erb:284
+#: ../app/views/main/_gettext.js.erb:290
 msgid "Inject Node State"
 msgstr "Infoga nodstatus"
 
-#: ../app/views/main/_gettext.js.erb:287
+#: ../app/views/main/_gettext.js.erb:293
 msgid "Node:"
 msgstr "Nod:"
 
-#: ../app/views/main/_gettext.js.erb:290
+#: ../app/views/main/_gettext.js.erb:296
 msgid "State:"
 msgstr "Status:"
 
-#: ../app/views/main/_gettext.js.erb:293
+#: ../app/views/main/_gettext.js.erb:299
 msgid "Inject Operation"
 msgstr "Infoga åtgärd"
 
-#: ../app/views/main/_gettext.js.erb:296
+#: ../app/views/main/_gettext.js.erb:302
 msgid "Operation:"
 msgstr "Åtgärd:"
 
-#: ../app/views/main/_gettext.js.erb:299
+#: ../app/views/main/_gettext.js.erb:305
 msgid "Interval:"
 msgstr "Intervall:"
 
-#: ../app/views/main/_gettext.js.erb:302
+#: ../app/views/main/_gettext.js.erb:308
 msgid "Resource:"
 msgstr "Resurs:"
 
-#: ../app/views/main/_gettext.js.erb:305
+#: ../app/views/main/_gettext.js.erb:311
 msgid "Result:"
 msgstr "Resultat:"
 
-#: ../app/views/main/_gettext.js.erb:308
+#: ../app/views/main/_gettext.js.erb:314
 msgid "Inject Ticket"
 msgstr "Infoga biljett"
 
-#: ../app/views/main/_gettext.js.erb:311
+#: ../app/views/main/_gettext.js.erb:317
 msgid "Ticket:"
 msgstr "Biljett:"
 
-#: ../app/views/main/_gettext.js.erb:314
+#: ../app/views/main/_gettext.js.erb:320
 msgid "Action:"
 msgstr "Åtgärd:"
 
-#: ../app/views/main/_gettext.js.erb:317
+#: ../app/views/main/_gettext.js.erb:323 ../app/views/main/_menus.html.erb:206
 msgid "Grant"
 msgstr "Bevilja"
 
-#: ../app/views/main/_gettext.js.erb:320
+#: ../app/views/main/_gettext.js.erb:326 ../app/views/main/_menus.html.erb:213
 msgid "Revoke"
 msgstr "Återkalla"
 
-#: ../app/views/main/_gettext.js.erb:326
+#: ../app/views/main/_gettext.js.erb:332
 msgid "Activate"
 msgstr "Aktivera"
 
-#: ../app/views/main/_gettext.js.erb:329
+#: ../app/views/main/_gettext.js.erb:335
 msgid "Success"
 msgstr "Lyckades"
 
-#: ../app/views/main/_gettext.js.erb:332
+#: ../app/views/main/_gettext.js.erb:338
 msgid "Generic Error"
 msgstr "Generiskt fel"
 
-#: ../app/views/main/_gettext.js.erb:335
+#: ../app/views/main/_gettext.js.erb:341
 msgid "Wrong Argument(s)"
 msgstr "Fel argument"
 
-#: ../app/views/main/_gettext.js.erb:338
+#: ../app/views/main/_gettext.js.erb:344
 msgid "Not Implemented"
 msgstr "Har inte implementerats"
 
-#: ../app/views/main/_gettext.js.erb:341
+#: ../app/views/main/_gettext.js.erb:347
 msgid "Permission Denied"
 msgstr "Åtkomst nekades"
 
-#: ../app/views/main/_gettext.js.erb:344
+#: ../app/views/main/_gettext.js.erb:350
 msgid "Not Installed"
 msgstr "Inte installerat"
 
-#: ../app/views/main/_gettext.js.erb:347
+#: ../app/views/main/_gettext.js.erb:353
 msgid "Not Configured"
 msgstr "Inte inställd"
 
-#: ../app/views/main/_gettext.js.erb:350
+#: ../app/views/main/_gettext.js.erb:356
 msgid "Not Running"
 msgstr "Körs inte"
 
-#: ../app/views/main/_gettext.js.erb:353
+#: ../app/views/main/_gettext.js.erb:359
 msgid "Running Master"
 msgstr "Kör master"
 
-#: ../app/views/main/_gettext.js.erb:356
+#: ../app/views/main/_gettext.js.erb:362
 msgid "Failed Master"
 msgstr "Misslyckad master"
 
-#: ../app/views/main/_menus.html.erb:21
+#: ../app/views/main/_menus.html.erb:22
 msgid "Maintenance"
 msgstr "Underhåll"
 
-#: ../app/views/main/_menus.html.erb:28
+#: ../app/views/main/_menus.html.erb:29
 msgid "Ready"
 msgstr "Klar"
 
-#: ../app/views/main/_menus.html.erb:35
+#: ../app/views/main/_menus.html.erb:36
 msgid "Fence Node"
 msgstr "Staketnod"
 
-#: ../app/views/main/_menus.html.erb:45 ../app/views/main/_menus.html.erb:159
+#: ../app/views/main/_menus.html.erb:46 ../app/views/main/_menus.html.erb:160
 msgid "View Details..."
 msgstr "Visa detaljer..."
 
-#: ../app/views/main/_menus.html.erb:65 ../app/views/main/_menus.html.erb:181
+#: ../app/views/main/_menus.html.erb:66 ../app/views/main/_menus.html.erb:182
 msgid "View Recent Events..."
 msgstr "Visa senaste händelser..."
 
-#: ../app/views/main/_menus.html.erb:86
+#: ../app/views/main/_menus.html.erb:87
 msgid "Start"
 msgstr "Start"
 
-#: ../app/views/main/_menus.html.erb:93
+#: ../app/views/main/_menus.html.erb:94
 msgid "Stop"
 msgstr "Stopp"
 
-#: ../app/views/main/_menus.html.erb:100
+#: ../app/views/main/_menus.html.erb:101
 msgid "Move..."
 msgstr "Flytta..."
 
-#: ../app/views/main/_menus.html.erb:128
+#: ../app/views/main/_menus.html.erb:129
 msgid "Drop Relocation Rule"
 msgstr "Hoppa över flyttregel"
 
-#: ../app/views/main/_menus.html.erb:135
+#: ../app/views/main/_menus.html.erb:136
 msgid "Promote"
 msgstr "Höj"
 
-#: ../app/views/main/_menus.html.erb:142
+#: ../app/views/main/_menus.html.erb:143
 msgid "Demote"
 msgstr "Sänk"
 
-#: ../app/views/main/_menus.html.erb:149
+#: ../app/views/main/_menus.html.erb:150
 msgid "Clean Up"
 msgstr "Rensa"
 
