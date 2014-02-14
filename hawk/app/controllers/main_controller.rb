@@ -162,6 +162,26 @@ class MainController < ApplicationController
     end
   end
 
+  def ticket_grant
+    if params[:ticket] && params[:site]
+      invoke "booth", "client", "grant", "-t", params[:ticket], "-s", params[:site]
+    else
+      render :status => 400, :json => {
+        :error => _('Required parameters "ticket" and "site" not specified')
+      }
+    end
+  end
+
+  def ticket_revoke
+    if params[:ticket]
+      invoke "booth", "client", "revoke", "-t", params[:ticket]
+    else
+      render :status => 400, :json => {
+        :error => _('Required parameter "ticket" not specified')
+      }
+    end
+  end
+
   # TODO(must): these both need exception handler for invoker runs
   # TODO(must): only one user at a time can run sims (they stomp on each other)
   def sim_reset

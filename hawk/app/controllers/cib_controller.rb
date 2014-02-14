@@ -162,7 +162,8 @@ class CibController < ApplicationController
         # eventaully want constraints, op_defaults, rsc_defaults, ...
         # Note: passing localized labels here, because we can't wrap an arbitrary number of plurals in _gettext.js
         :nodes_label => n_('1 node configured', '%{num} nodes configured', cib.nodes.length) % { :num => cib.nodes.length },
-        :resources_label => n_('1 resource configured', '%{num} resources configured', cib.resource_count) % { :num => cib.resource_count }
+        :resources_label => n_('1 resource configured', '%{num} resources configured', cib.resource_count) % { :num => cib.resource_count },
+	:booth => cib.booth
       }
     end
   end

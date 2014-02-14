@@ -98,6 +98,8 @@ Hawk::Application.routes.draw do
   match 'main/node/:op' => 'main#node_standby', :as => :node_standby, :op => /(standby|online)/, :via => :post
   match 'main/node/:op' => 'main#node_maintenance', :as => :node_maintenance, :op => /(maintenance|ready)/, :via => :post
   match 'main/node/fence' => 'main#node_fence', :as => :node_fence, :via => :post
+  match 'main/ticket/grant' => 'main#ticket_grant', :as => :ticket_grant, :via => :post
+  match 'main/ticket/revoke' => 'main#ticket_revoke', :as => :ticket_revoke, :via => :post
   match 'main/sim_reset' => 'main#sim_reset', :as => :sim_reset
   match 'main/sim_run' => 'main#sim_run', :as => :sim_run
   match 'main/sim_get' => 'main#sim_get', :as => :sim_get

@@ -166,6 +166,9 @@ var panel_view = {
         if (this["last-granted"]) {
           flag_info("ticket::" + id, GETTEXT.ticket_last_granted(new Date(this["last-granted"] * 1000)));
         }
+        if (cib_source != "file" && cib.booth && cib.booth.me) {
+          add_mgmt_menu($(jq("ticket::" + id + "::menu")));
+        }
         $(jq("ticket::" + id + "::state")).removeClass();
         if (state_icon) {
           $(jq("ticket::" + id + "::state")).addClass("ui-icon " + state_icon);

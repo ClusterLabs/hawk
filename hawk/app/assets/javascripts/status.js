@@ -164,12 +164,12 @@ function flag_maintenance(id, info) {
 // id:    node or resource id
 // type:  either "node" or "resource"
 // op:    op to perform
-function confirm_op(title, id, type, op)
+function confirm_op(title, id, type, op, extra)
 {
   $("#dialog").html(GETTEXT[type + "_" + op](id));
   // TODO(could): Is there a neater construct for this localized button thing?
   var b = {};
-  b[GETTEXT.yes()]  = function() { perform_op(type, id, op); $(this).dialog("close"); };
+  b[GETTEXT.yes()]  = function() { perform_op(type, id, op, extra); $(this).dialog("close"); };
   b[GETTEXT.no()]   = function() { $(this).dialog("close"); }
   $("#dialog").dialog("option", {
     title:    title,
@@ -244,6 +244,10 @@ function add_mgmt_menu(e)
   if (parts[0] == "node") {
     e.click(function() {
       return $(jq("menu::node")).popupmenu("popup", $(this));
+    });
+  } else if (parts[0] == "ticket") {
+    e.click(function() {
+      return $(jq("menu::ticket")).popupmenu("popup", $(this));
     });
   } else {
     var id_parts = parts[1].split(":");

@@ -137,6 +137,12 @@ var GETTEXT = {
   tickets: function() {
     return "<%=raw escape_javascript _('Tickets') %>";
   },
+  ticket_grant: function(ticket) {
+    return "<%=raw escape_javascript _('This will request the ticket %s be granted to the present site.  Do you want to continue?') % '_TICKET_' %>".replace('_TICKET_', ticket);
+  },
+  ticket_revoke: function(ticket) {
+    return "<%=raw escape_javascript _('This will request the ticket %s be revoked.  Do you want to continue?') % '_TICKET_' %>".replace('_TICKET_', ticket);
+  },
   ticket_granted: function(standby) {
     return standby ?
       "<%=raw escape_javascript _('Granted [standby]') %>" :
