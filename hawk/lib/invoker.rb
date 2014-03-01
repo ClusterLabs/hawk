@@ -80,11 +80,14 @@ class Invoker
 
   # Run "crm script" as root to execute cluster scripts.
   # Returns 'true' on successful execution, or STDERR output on failure.
-  def crm_script(scriptdir, *cmd)
+  def crm_script(rootpw, scriptdir, *cmd)
     cmd2 = ["crm", "--scriptdir=#{scriptdir}", "script"] + cmd
     Rails.logger.debug cmd2
-    stdin, stdout, stderr, thread = run_as(current_user, *cmd2)
+    # TODO(must): figure out if this join thing is kosher (should be, all input looks like plain text... :-/)
+    stdin, stdout, stderr, thread = Util.popen3('/usr/bin/su', '--login', 'root', '-c', cmd2.join(' '))
+    stdin.write(rootpw)
     stdin.close
+    stdout.read
     stdout.close
     result = stderr.read()
     stderr.close

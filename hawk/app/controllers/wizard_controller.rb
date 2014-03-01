@@ -75,6 +75,7 @@ class WizardController < ApplicationController
 
   def run
     if params[:cancel] || params[:done]
+      forget_rootpw
       redirect_to status_path(:cib_id => (params[:cib_id] || "live"))
       return
     end
@@ -82,25 +83,46 @@ class WizardController < ApplicationController
     @step = params[:step] if params[:step]
 
     @all_params = params[:all_params] || {}
-    @all_params[@step] = params[:step_params] if params[:step_params]
+    # Only stash params away in all_params if it doesn't contain the root
+    # password (else it'd end up being passed back and forth in hidden
+    # fields on subsequent wizard pages, which seems undesirable).
+    @all_params[@step] = params[:step_params] if params[:step_params] && !params[:step_params]['rootpw']
 
     if params[:workflow]
       if params[:back]
         prev_step
       else
         # Next is implicit (it's disabled on click, so we don't see the field here)
-        next_step
+        if params[:step_params] && params[:step_params]['rootpw']
+          if verify_rootpw(params[:step_params]['rootpw'])
+            remember_rootpw(params[:step_params]['rootpw'])
+            next_step
+          else
+            @errors << _("Invalid password")
+          end
+        else
+          next_step
+        end
       end
     end
 
     sp = @step.split("_", 2)
     case sp[0]
     when "workflow"
+      forget_rootpw
       start
+    when "rootpw"
+      @step_shortdesc = _("Root Password")
+      @step_longdesc = _("The root password is required in order for this wizard template to make configuration changes.")
+      @step_params['rootpw'] = {
+        :shortdesc => _("Root Password"),
+        :longdesc  => _("The root password for this system"),
+        :type     => 'password',
+        :default  => '',
+        :required => true
+      }
+      @step_required << 'rootpw'
     when "params"
-      #if @cluster_script
-      # TODO: ask for root
-      #end
       result = run_cluster_script_step("Collect")
       unless result == true
         @errors << _("Error: #{result}")
@@ -189,6 +211,7 @@ class WizardController < ApplicationController
         return
       end
 
+      forget_rootpw
       render "done"
       # Errors come back like:
       #   WARNING: asyncmon: operation not recognized
@@ -254,7 +277,7 @@ class WizardController < ApplicationController
         :shortdesc => e.elements['shortdesc[@lang="en"]'].text.strip || '',
         :longdesc  => e.elements['longdesc[@lang="en"]'].text.strip || '',
         :type     => e.elements['content'].attributes['type'],
-        :default  => e.elements['content'].attributes['default'],
+        :default  => e.elements['content'].attributes['default'],   # TODO(should): Why is this line here?!?
         :default  => override ?
           override.attributes['value'] : e.elements['content'].attributes['default'],
         :required => required
@@ -314,7 +337,8 @@ class WizardController < ApplicationController
         @workflow_xml = REXML::Document.new(File.new(f))
         if @workflow_xml.root
           if @workflow_xml.root.attributes.has_key?("cluster_script")
-            @cluster_script = @workflow_xml.root.attributes["cluster_script"]
+            @cluster_script = @workflow_xml.root.attributes["cluster_script"] 
+            @steps.insert(@steps.rindex("confirm"), "rootpw")
           end
           # TODO(should): select by language instead of forcing en
           @workflow_shortdesc = @workflow_xml.root.elements['shortdesc[@lang="en"]'].text.strip
@@ -402,10 +426,36 @@ class WizardController < ApplicationController
         f.close
       end
     end
-    Invoker.instance.crm_script(@scriptdir, "run",
+    Invoker.instance.crm_script(recall_rootpw,
+                                @scriptdir, "run",
                                 @cluster_script,
                                 "statefile=#{script_statefile}",
                                 "step=#{stepname}")
   end
 
+  def verify_rootpw(password)
+    stdin, stdout, stderr, thread = Util.popen3('/usr/bin/su', '--login', 'root', '-c', '/usr/bin/true')
+    stdin.write(password)
+    stdin.close
+    stdout.read
+    stdout.close
+    stderr.read
+    stderr.close
+    thread.value.exitstatus == 0
+  end
+
+  def remember_rootpw(password)
+    # TODO(must): Verify this is really, truly secure
+    crypt = ActiveSupport::MessageEncryptor.new(Hawk::Application.config.secret_token)
+    session[:rootpw] = crypt.encrypt_and_sign(password)
+  end
+
+  def recall_rootpw
+    crypt = ActiveSupport::MessageEncryptor.new(Hawk::Application.config.secret_token)
+    crypt.decrypt_and_verify(session[:rootpw])
+  end
+
+  def forget_rootpw
+    session.delete(:rootpw)
+  end
 end
