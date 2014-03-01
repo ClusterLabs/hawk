@@ -54,12 +54,12 @@ Configure a Virtual IP address used to access the NFS mounts.
 </templates>
 
 <crm_script>
-group hawk_nfs_group \
-<insert param="lvmid" /> \
+group hawk_nfs_group
+  <insert param="lvmid" />
 <if set="rootfs">
-  <insert param="id" from_template="rootfs"/> \
+  <insert param="id" from_template="rootfs"/>
 </if>
-  <insert param="id" from_template="exportfs"/> \
+  <insert param="id" from_template="exportfs"/>
   <insert param="id" from_template="virtual-ip"/>
 </crm_script>
 
