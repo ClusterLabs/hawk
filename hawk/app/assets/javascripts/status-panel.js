@@ -239,7 +239,7 @@ var panel_view = {
               open:      this.open
             });
           } else {
-            d = new_item_div(this.id);
+            d = new_item_div(this.id, this.title ? this.title : null);
           }
         }
         if (!c.length) {
@@ -373,7 +373,8 @@ var panel_view = {
         state_icon: state_icon,
         active:     active,
         error:      res.instances[i].failed_ops,
-        is_managed: res.instances[i].is_managed
+        is_managed: res.instances[i].is_managed,
+        title:      cpt(res)
       });
     }
     return set;

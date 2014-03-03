@@ -104,12 +104,24 @@ function item_id(str)
   return dc_split(str)[1].split(":")[0];
 }
 
+// Return a class:provider:type string
+function cpt(res)
+{
+  var s = "";
+  if (res['class']) {
+    s += res['class'] + ':'
+    if (res['provider']) { s += res['provider'] + ':'; }
+    s += res['type'];
+  }
+  return s;
+}
+
 // Generic individual item (node or resource)
-function new_item_div(id) {
+function new_item_div(id, title) {
   return $(
-    '<div id="' + id + '">' +
-      '<a id="' + id + '::menu"><img src="' + url_root + '/assets/transparent-16x16.gif" class="action-icon" alt="" /></a>' +
-      '<div id="' + id + '::state" style="float: left; width: 16px; height: 16px;"></div>' +
+    '<div id="' + id + '"' + (title ? ' title="' + escape_html(title) + '"' : '') + '>' +
+      '<a id="' + id + '::menu" title=""><img src="' + url_root + '/assets/transparent-16x16.gif" class="action-icon" alt="" /></a>' +
+      '<div id="' + id + '::state" style="float: left; width: 16px; height: 16px;" title=""></div>' +
       '<div id="' + id + '::error" class="status-icons">' +
         '<span class="ui-icon ui-icon-alert" style="float: right; display: none;" />' +
         '<span class="ui-icon ui-icon-info" style="float: right; display: none;" />' +

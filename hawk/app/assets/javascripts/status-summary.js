@@ -256,6 +256,7 @@ var summary_view = {
     self._zero_counters("#ressum");
     $.each(resources_by_id, function() {
       if (!this.instances) return;
+      var res = this;
       var res_id = this.id;
       $.each(this.instances, function(k) {
         var id = res_id;
@@ -301,7 +302,7 @@ var summary_view = {
         if (self.active_detail && status_class.indexOf(self.active_detail) >= 0) {
           display = "auto";
         }
-        var d = new_item_div("resource::" + id);
+        var d = new_item_div("resource::" + id, cpt(res));
         d.attr("class", "ui-corner-all " + status_class).attr("style", "display: " + display);
         d.find("span").html(escape_html(label));
         $("#itemlist").append(d);

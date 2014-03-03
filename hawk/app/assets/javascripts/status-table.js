@@ -220,7 +220,7 @@ var table_view = {
         status_class += " rs-inactive";
         state_icon = "ui-icon-stop";
       }
-      var d = new_item_div("resource::" + id);
+      var d = new_item_div("resource::" + id, cpt(res));
       d.attr("class", "ui-corner-all " + status_class);
       d.find("span").html(escape_html(label));
       if (node.length == 0) {
