@@ -3,21 +3,21 @@
 
 <shortdesc lang="en">NFS Server</shortdesc>
 <longdesc lang="en">
-Configure an NFS file system server. Requires that at least one LVM
-volume group running on a clustered DRBD resource has been previously
-configured.
+Configure an NFS server. Requires an existing filesystem resource,
+for example a filesystem running on LVM on DRBD.
 </longdesc>
 
 <parameters>
 <stepdesc lang="en">
-Specify the ID of the LVM cluster resource.
+Specify the ID of the base filesystem resource which is to be
+exported via NFS.
 </stepdesc>
-<parameter name="lvmid" required="1">
-<shortdesc lang="en">LVM ID</shortdesc>
+<parameter name="base-id" required="1">
+<shortdesc lang="en">Base Filesystem</shortdesc>
 <longdesc lang="en">
-ID of the LVM cluster resource used by the NFS server.
+The ID of an exising filesystem resource.
 </longdesc>
-<content type="string" default="hawk_nfs_lvm"/>
+<content type="string" default="base-fs"/>
 </parameter>
 </parameters>
 
@@ -54,13 +54,14 @@ Configure a Virtual IP address used to access the NFS mounts.
 </templates>
 
 <crm_script>
-group hawk_nfs_group
-  <insert param="lvmid" />
+group g-nfs
 <if set="rootfs">
   <insert param="id" from_template="rootfs"/>
 </if>
   <insert param="id" from_template="exportfs"/>
   <insert param="id" from_template="virtual-ip"/>
+order base-then-nfs inf: <insert param="base-id"/> g-nfs
+colocation nfs-with-base inf: g-nfs <insert param="base-id"/>
 </crm_script>
 
 </workflow>
