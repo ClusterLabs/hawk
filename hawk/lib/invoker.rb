@@ -89,7 +89,10 @@ class Invoker
     stdin.close
     stdout.read
     stdout.close
-    result = stderr.read()
+    result = ""
+    stderr.readlines.each do |line|
+      result += line unless line.starts_with?('Password:')
+    end
     stderr.close
     result = fudge_error(thread.value.exitstatus, result)
     result == true ? true : result[1]
