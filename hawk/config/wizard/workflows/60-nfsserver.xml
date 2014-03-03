@@ -24,13 +24,12 @@ The ID of an exising filesystem resource.
 <templates>
 <template name="rootfs" type="exportfs" required="0">
 <stepdesc lang="en">
-A virtual file system root export. Only needed for NFSv4
-clients. 
+NFSv4 Virtual File System root.
 </stepdesc>
-<override name="id" value="root"/>
+<override name="id" value="exportfs-root"/>
+<override name="fsid" value="0"/>
 <override name="directory" value="/srv/nfs"/>
 <override name="options" value="rw,crossmnt"/>
-<override name="clientspec" value="10.9.9.0/255.255.255.0"/>
 </template>
 
 <template name="exportfs" required="1">
@@ -38,10 +37,8 @@ clients.
 Exported NFS mount point
 </stepdesc>
 <override name="id" value="exportfs"/>
-<override name="fsid" value="1"/>
 <override name="directory" value="/srv/nfs/example"/>
 <override name="options" value="rw,mountpoint"/>
-<override name="clientspec" value="10.9.9.0/255.255.255.0"/>
 <override name="wait_for_leasetime_on_stop" value="true"/>
 </template>
 
@@ -54,14 +51,14 @@ Configure a Virtual IP address used to access the NFS mounts.
 </templates>
 
 <crm_script>
+clone c-rootfs <insert param="id" from_template="rootfs"/>
 group g-nfs
-<if set="rootfs">
-  <insert param="id" from_template="rootfs"/>
-</if>
   <insert param="id" from_template="exportfs"/>
   <insert param="id" from_template="virtual-ip"/>
 order base-then-nfs inf: <insert param="base-id"/> g-nfs
 colocation nfs-with-base inf: g-nfs <insert param="base-id"/>
+order rootfs-before-nfs inf: c-rootfs g-nfs:start
+colocation nfs-with-rootfs inf: g-nfs c-rootfs
 </crm_script>
 
 </workflow>
