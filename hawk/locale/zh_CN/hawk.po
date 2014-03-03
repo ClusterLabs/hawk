@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-14 22:55+1100\n"
+"POT-Creation-Date: 2014-03-03 21:13+1100\n"
 "PO-Revision-Date: 2013-05-02 16:47\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -267,7 +267,7 @@ msgstr "用户名或密码无效"
 msgid "%s is not installed"
 msgstr "%s 未安装"
 
-#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:259 ../lib/invoker.rb:113 ../lib/invoker.rb:135 ../lib/invoker.rb:177
+#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:259 ../lib/invoker.rb:133 ../lib/invoker.rb:155 ../lib/invoker.rb:197
 msgid "Permission denied for user %{user}"
 msgstr "用户 %{user} 的权限被拒"
 
@@ -323,39 +323,61 @@ msgstr "已成功更新克隆"
 msgid "Cluster Setup Wizard"
 msgstr "群集设置向导"
 
-#: ../app/controllers/wizard_controller.rb:99 ../app/views/primitives/_form.html.erb:241
+#: ../app/controllers/wizard_controller.rb:101
+#, fuzzy
+msgid "Invalid password"
+msgstr "分数无效"
+
+#: ../app/controllers/wizard_controller.rb:115 ../app/controllers/wizard_controller.rb:118
+#, fuzzy
+msgid "Root Password"
+msgstr "密码："
+
+#: ../app/controllers/wizard_controller.rb:116
+msgid "The root password is required in order for this wizard template to make configuration changes."
+msgstr ""
+
+#: ../app/controllers/wizard_controller.rb:119
+msgid "The root password for this system"
+msgstr ""
+
+#: ../app/controllers/wizard_controller.rb:128 ../app/controllers/wizard_controller.rb:163
+msgid "\"Error: #{result}\""
+msgstr ""
+
+#: ../app/controllers/wizard_controller.rb:131 ../app/views/primitives/_form.html.erb:241
 msgid "Parameters"
 msgstr "参数"
 
-#: ../app/controllers/wizard_controller.rb:123
+#: ../app/controllers/wizard_controller.rb:155
 msgid "Confirm"
 msgstr "确认"
 
-#: ../app/controllers/wizard_controller.rb:143 ../app/views/wizard/done.html.erb:10
+#: ../app/controllers/wizard_controller.rb:181 ../app/views/wizard/done.html.erb:10
 msgid "Done"
 msgstr "完成"
 
-#: ../app/controllers/wizard_controller.rb:243
+#: ../app/controllers/wizard_controller.rb:298
 msgid "Required parameter \"%{param}\" not specified"
 msgstr "未指定必需参数“%{param}”"
 
-#: ../app/controllers/wizard_controller.rb:260
+#: ../app/controllers/wizard_controller.rb:315
 msgid "Permission denied - you do not have write access to the CIB."
 msgstr ""
 
-#: ../app/controllers/wizard_controller.rb:271
+#: ../app/controllers/wizard_controller.rb:326
 msgid "Wizard templates and/or workflows are missing"
 msgstr "缺少向导模板和/或工作流程"
 
-#: ../app/controllers/wizard_controller.rb:279
+#: ../app/controllers/wizard_controller.rb:334
 msgid "Workflow \"%s\" not found"
 msgstr "找不到工作流程“%s”"
 
-#: ../app/controllers/wizard_controller.rb:296
+#: ../app/controllers/wizard_controller.rb:355
 msgid "Error parsing template \"%s\""
 msgstr "分析模板“%s”时出错"
 
-#: ../app/controllers/wizard_controller.rb:299
+#: ../app/controllers/wizard_controller.rb:358
 msgid "Error parsing workflow \"%s\""
 msgstr "分析工作流程“%s”时出错"
 
@@ -805,7 +827,7 @@ msgstr "PE 输入"
 msgid "Node"
 msgstr "节点"
 
-#: ../app/views/explorer/_pe_list.html.erb:30 ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:275
+#: ../app/views/explorer/_pe_list.html.erb:30 ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:281
 msgid "Details"
 msgstr "细节"
 
@@ -813,7 +835,7 @@ msgstr "细节"
 msgid "(full log)"
 msgstr "（完整日志）"
 
-#: ../app/views/explorer/_pe_list.html.erb:38 ../app/views/main/_gettext.js.erb:284
+#: ../app/views/explorer/_pe_list.html.erb:38 ../app/views/main/_gettext.js.erb:290
 msgid "Graph"
 msgstr "图形"
 
@@ -1159,7 +1181,7 @@ msgstr "脱机"
 msgid "Pending"
 msgstr "待发"
 
-#: ../app/views/main/_gettext.js.erb:183 ../app/views/main/_gettext.js.erb:329 ../app/views/main/_menus.html.erb:15
+#: ../app/views/main/_gettext.js.erb:183 ../app/views/main/_gettext.js.erb:335 ../app/views/main/_menus.html.erb:15
 msgid "Standby"
 msgstr "待机"
 
@@ -1275,143 +1297,151 @@ msgstr "克隆集：%{id}"
 msgid "Parent: %{id}..."
 msgstr "父：%{id}..."
 
-#: ../app/views/main/_gettext.js.erb:251
+#: ../app/views/main/_gettext.js.erb:250
+msgid "%{active}/%{total} %{type} %{node}"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:253
+msgid "Toggle view by type"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:257
 msgid "Simulator (initial state)"
 msgstr "模拟器（初始状态）"
 
-#: ../app/views/main/_gettext.js.erb:254
+#: ../app/views/main/_gettext.js.erb:260
 msgid "Simulator (busy...)"
 msgstr "模拟器（正忙...）"
 
-#: ../app/views/main/_gettext.js.erb:257
+#: ../app/views/main/_gettext.js.erb:263
 msgid "Simulator (final state)"
 msgstr "模拟器（最终状态）"
 
-#: ../app/views/main/_gettext.js.erb:260
+#: ../app/views/main/_gettext.js.erb:266
 msgid "Injected State:"
 msgstr "注入的状态："
 
-#: ../app/views/main/_gettext.js.erb:263
+#: ../app/views/main/_gettext.js.erb:269
 msgid "+ Node"
 msgstr "+ 节点"
 
-#: ../app/views/main/_gettext.js.erb:266
+#: ../app/views/main/_gettext.js.erb:272
 msgid "+ Op"
 msgstr "+ Op"
 
-#: ../app/views/main/_gettext.js.erb:269
+#: ../app/views/main/_gettext.js.erb:275
 msgid "+ Ticket"
 msgstr "+ 票据"
 
-#: ../app/views/main/_gettext.js.erb:272
+#: ../app/views/main/_gettext.js.erb:278
 msgid "Run >"
 msgstr "运行 〉"
 
-#: ../app/views/main/_gettext.js.erb:278
+#: ../app/views/main/_gettext.js.erb:284
 msgid "CIB (in)"
 msgstr "CIB（输入）"
 
-#: ../app/views/main/_gettext.js.erb:281
+#: ../app/views/main/_gettext.js.erb:287
 msgid "CIB (out)"
 msgstr "CIB（输出）"
 
-#: ../app/views/main/_gettext.js.erb:287
+#: ../app/views/main/_gettext.js.erb:293
 msgid "Empty Graph"
 msgstr "空图形"
 
-#: ../app/views/main/_gettext.js.erb:290
+#: ../app/views/main/_gettext.js.erb:296
 msgid "Inject Node State"
 msgstr "注入节点状态"
 
-#: ../app/views/main/_gettext.js.erb:293
+#: ../app/views/main/_gettext.js.erb:299
 msgid "Node:"
 msgstr "节点："
 
-#: ../app/views/main/_gettext.js.erb:296
+#: ../app/views/main/_gettext.js.erb:302
 msgid "State:"
 msgstr "状态："
 
-#: ../app/views/main/_gettext.js.erb:299
+#: ../app/views/main/_gettext.js.erb:305
 msgid "Inject Operation"
 msgstr "注入操作"
 
-#: ../app/views/main/_gettext.js.erb:302
+#: ../app/views/main/_gettext.js.erb:308
 msgid "Operation:"
 msgstr "操作："
 
-#: ../app/views/main/_gettext.js.erb:305
+#: ../app/views/main/_gettext.js.erb:311
 msgid "Interval:"
 msgstr "间隔："
 
-#: ../app/views/main/_gettext.js.erb:308
+#: ../app/views/main/_gettext.js.erb:314
 msgid "Resource:"
 msgstr "资源："
 
-#: ../app/views/main/_gettext.js.erb:311
+#: ../app/views/main/_gettext.js.erb:317
 msgid "Result:"
 msgstr "结果："
 
-#: ../app/views/main/_gettext.js.erb:314
+#: ../app/views/main/_gettext.js.erb:320
 msgid "Inject Ticket"
 msgstr "注入票据"
 
-#: ../app/views/main/_gettext.js.erb:317
+#: ../app/views/main/_gettext.js.erb:323
 msgid "Ticket:"
 msgstr "票据："
 
-#: ../app/views/main/_gettext.js.erb:320
+#: ../app/views/main/_gettext.js.erb:326
 msgid "Action:"
 msgstr "操作："
 
-#: ../app/views/main/_gettext.js.erb:323 ../app/views/main/_menus.html.erb:206
+#: ../app/views/main/_gettext.js.erb:329 ../app/views/main/_menus.html.erb:206
 msgid "Grant"
 msgstr "授予"
 
-#: ../app/views/main/_gettext.js.erb:326 ../app/views/main/_menus.html.erb:213
+#: ../app/views/main/_gettext.js.erb:332 ../app/views/main/_menus.html.erb:213
 msgid "Revoke"
 msgstr "撤消"
 
-#: ../app/views/main/_gettext.js.erb:332
+#: ../app/views/main/_gettext.js.erb:338
 msgid "Activate"
 msgstr "激活"
 
-#: ../app/views/main/_gettext.js.erb:335
+#: ../app/views/main/_gettext.js.erb:341
 msgid "Success"
 msgstr "成功"
 
-#: ../app/views/main/_gettext.js.erb:338
+#: ../app/views/main/_gettext.js.erb:344
 msgid "Generic Error"
 msgstr "一般错误"
 
-#: ../app/views/main/_gettext.js.erb:341
+#: ../app/views/main/_gettext.js.erb:347
 msgid "Wrong Argument(s)"
 msgstr "参数错误"
 
-#: ../app/views/main/_gettext.js.erb:344
+#: ../app/views/main/_gettext.js.erb:350
 msgid "Not Implemented"
 msgstr "未实施"
 
-#: ../app/views/main/_gettext.js.erb:347
+#: ../app/views/main/_gettext.js.erb:353
 msgid "Permission Denied"
 msgstr "权限被拒"
 
-#: ../app/views/main/_gettext.js.erb:350
+#: ../app/views/main/_gettext.js.erb:356
 msgid "Not Installed"
 msgstr "未安装"
 
-#: ../app/views/main/_gettext.js.erb:353
+#: ../app/views/main/_gettext.js.erb:359
 msgid "Not Configured"
 msgstr "未配置"
 
-#: ../app/views/main/_gettext.js.erb:356
+#: ../app/views/main/_gettext.js.erb:362
 msgid "Not Running"
 msgstr "未在运行"
 
-#: ../app/views/main/_gettext.js.erb:359
+#: ../app/views/main/_gettext.js.erb:365
 msgid "Running Master"
 msgstr "正在运行主"
 
-#: ../app/views/main/_gettext.js.erb:362
+#: ../app/views/main/_gettext.js.erb:368
 msgid "Failed Master"
 msgstr "主失败"
 
@@ -1508,12 +1538,12 @@ msgid "There is already a monitor op with this interval."
 msgstr "已经存在使用该间隔的监视器 op。"
 
 #: ../app/views/primitives/_form.html.erb:329
-msgid "Template ID"
-msgstr "模板 ID"
-
-#: ../app/views/primitives/_form.html.erb:329
 msgid "Resource ID"
 msgstr "资源 ID"
+
+#: ../app/views/primitives/_form.html.erb:329
+msgid "Template ID"
+msgstr "模板 ID"
 
 #: ../app/views/primitives/_form.html.erb:330
 msgid "Class"
@@ -1686,18 +1716,18 @@ msgstr "选择配置"
 msgid "This wizard will guide you through the steps necessary to add one of the following configurations to the cluster."
 msgstr "此向导将引导您执行所需的步骤以向群集中添加下列某个配置。"
 
-#: ../lib/invoker.rb:111
+#: ../lib/invoker.rb:131
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "对象/属性不存在 (cibadmin %{cmd})"
 
-#: ../lib/invoker.rb:115
+#: ../lib/invoker.rb:135
 msgid "Error invoking cibadmin %{cmd}: %{msg}"
 msgstr "调用 cibadmin %{cmd} 时出错：%{msg}"
 
-#: ../lib/invoker.rb:133
+#: ../lib/invoker.rb:153
 msgid "The object/attribute does not exist: %{msg}"
 msgstr "对象/属性不存在：%{msg}"
 
-#: ../lib/invoker.rb:137
+#: ../lib/invoker.rb:157
 msgid "Error invoking cibadmin --replace: %{msg}"
 msgstr "调用 cibadmin --replace 时出错：%{msg}"

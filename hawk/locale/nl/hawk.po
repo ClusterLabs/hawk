@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-02-14 22:55+1100\n"
+"POT-Creation-Date: 2014-03-03 21:13+1100\n"
 "PO-Revision-Date: 2013-05-02 16:21\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -269,7 +269,7 @@ msgstr "Ongeldige gebruikersnaam of ongeldig wachtwoord"
 msgid "%s is not installed"
 msgstr "%s is niet geïnstalleerd."
 
-#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:259 ../lib/invoker.rb:113 ../lib/invoker.rb:135 ../lib/invoker.rb:177
+#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:259 ../lib/invoker.rb:133 ../lib/invoker.rb:155 ../lib/invoker.rb:197
 msgid "Permission denied for user %{user}"
 msgstr "Toestemming geweigerd voor gebruiker %{user}"
 
@@ -325,39 +325,61 @@ msgstr "De kloon is bijgewerkt"
 msgid "Cluster Setup Wizard"
 msgstr "Wizard Clusterinstallatie"
 
-#: ../app/controllers/wizard_controller.rb:99 ../app/views/primitives/_form.html.erb:241
+#: ../app/controllers/wizard_controller.rb:101
+#, fuzzy
+msgid "Invalid password"
+msgstr "Ongeldige score"
+
+#: ../app/controllers/wizard_controller.rb:115 ../app/controllers/wizard_controller.rb:118
+#, fuzzy
+msgid "Root Password"
+msgstr "Wachtwoord:"
+
+#: ../app/controllers/wizard_controller.rb:116
+msgid "The root password is required in order for this wizard template to make configuration changes."
+msgstr ""
+
+#: ../app/controllers/wizard_controller.rb:119
+msgid "The root password for this system"
+msgstr ""
+
+#: ../app/controllers/wizard_controller.rb:128 ../app/controllers/wizard_controller.rb:163
+msgid "\"Error: #{result}\""
+msgstr ""
+
+#: ../app/controllers/wizard_controller.rb:131 ../app/views/primitives/_form.html.erb:241
 msgid "Parameters"
 msgstr "Parameters"
 
-#: ../app/controllers/wizard_controller.rb:123
+#: ../app/controllers/wizard_controller.rb:155
 msgid "Confirm"
 msgstr "Bevestigen"
 
-#: ../app/controllers/wizard_controller.rb:143 ../app/views/wizard/done.html.erb:10
+#: ../app/controllers/wizard_controller.rb:181 ../app/views/wizard/done.html.erb:10
 msgid "Done"
 msgstr "Klaar"
 
-#: ../app/controllers/wizard_controller.rb:243
+#: ../app/controllers/wizard_controller.rb:298
 msgid "Required parameter \"%{param}\" not specified"
 msgstr "Vereiste parameter \"%{param}\" is niet opgegeven"
 
-#: ../app/controllers/wizard_controller.rb:260
+#: ../app/controllers/wizard_controller.rb:315
 msgid "Permission denied - you do not have write access to the CIB."
 msgstr ""
 
-#: ../app/controllers/wizard_controller.rb:271
+#: ../app/controllers/wizard_controller.rb:326
 msgid "Wizard templates and/or workflows are missing"
 msgstr "Wizardsjablonen en/of -werkstromen ontbreken"
 
-#: ../app/controllers/wizard_controller.rb:279
+#: ../app/controllers/wizard_controller.rb:334
 msgid "Workflow \"%s\" not found"
 msgstr "Werkstroom \"%s\" is niet gevonden"
 
-#: ../app/controllers/wizard_controller.rb:296
+#: ../app/controllers/wizard_controller.rb:355
 msgid "Error parsing template \"%s\""
 msgstr "Fout bij het parseren van sjabloon \"%s\""
 
-#: ../app/controllers/wizard_controller.rb:299
+#: ../app/controllers/wizard_controller.rb:358
 msgid "Error parsing workflow \"%s\""
 msgstr "Fout bij het parseren van werkstroom \"%s\""
 
@@ -807,7 +829,7 @@ msgstr "PE-invoer"
 msgid "Node"
 msgstr "Knooppunt"
 
-#: ../app/views/explorer/_pe_list.html.erb:30 ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:275
+#: ../app/views/explorer/_pe_list.html.erb:30 ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:281
 msgid "Details"
 msgstr "Details"
 
@@ -815,7 +837,7 @@ msgstr "Details"
 msgid "(full log)"
 msgstr "(volledig logboekbestand)"
 
-#: ../app/views/explorer/_pe_list.html.erb:38 ../app/views/main/_gettext.js.erb:284
+#: ../app/views/explorer/_pe_list.html.erb:38 ../app/views/main/_gettext.js.erb:290
 msgid "Graph"
 msgstr "Grafiek"
 
@@ -1161,7 +1183,7 @@ msgstr "Offline"
 msgid "Pending"
 msgstr "Onderweg"
 
-#: ../app/views/main/_gettext.js.erb:183 ../app/views/main/_gettext.js.erb:329 ../app/views/main/_menus.html.erb:15
+#: ../app/views/main/_gettext.js.erb:183 ../app/views/main/_gettext.js.erb:335 ../app/views/main/_menus.html.erb:15
 msgid "Standby"
 msgstr "Standby"
 
@@ -1277,143 +1299,151 @@ msgstr "Kloonset: %{id}"
 msgid "Parent: %{id}..."
 msgstr "Bovenliggend:%{id}..."
 
-#: ../app/views/main/_gettext.js.erb:251
+#: ../app/views/main/_gettext.js.erb:250
+msgid "%{active}/%{total} %{type} %{node}"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:253
+msgid "Toggle view by type"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:257
 msgid "Simulator (initial state)"
 msgstr "Simulator (eerste status)"
 
-#: ../app/views/main/_gettext.js.erb:254
+#: ../app/views/main/_gettext.js.erb:260
 msgid "Simulator (busy...)"
 msgstr "Simulator (bezet...)"
 
-#: ../app/views/main/_gettext.js.erb:257
+#: ../app/views/main/_gettext.js.erb:263
 msgid "Simulator (final state)"
 msgstr "Simulator (definitieve status)"
 
-#: ../app/views/main/_gettext.js.erb:260
+#: ../app/views/main/_gettext.js.erb:266
 msgid "Injected State:"
 msgstr "Ingevoerde status:"
 
-#: ../app/views/main/_gettext.js.erb:263
+#: ../app/views/main/_gettext.js.erb:269
 msgid "+ Node"
 msgstr "+ knooppunt"
 
-#: ../app/views/main/_gettext.js.erb:266
+#: ../app/views/main/_gettext.js.erb:272
 msgid "+ Op"
 msgstr "+ op"
 
-#: ../app/views/main/_gettext.js.erb:269
+#: ../app/views/main/_gettext.js.erb:275
 msgid "+ Ticket"
 msgstr "+Ticket"
 
-#: ../app/views/main/_gettext.js.erb:272
+#: ../app/views/main/_gettext.js.erb:278
 msgid "Run >"
 msgstr "Uitvoeren >"
 
-#: ../app/views/main/_gettext.js.erb:278
+#: ../app/views/main/_gettext.js.erb:284
 msgid "CIB (in)"
 msgstr "CIB (in)"
 
-#: ../app/views/main/_gettext.js.erb:281
+#: ../app/views/main/_gettext.js.erb:287
 msgid "CIB (out)"
 msgstr "CIB (uit)"
 
-#: ../app/views/main/_gettext.js.erb:287
+#: ../app/views/main/_gettext.js.erb:293
 msgid "Empty Graph"
 msgstr "Leeg diagram"
 
-#: ../app/views/main/_gettext.js.erb:290
+#: ../app/views/main/_gettext.js.erb:296
 msgid "Inject Node State"
 msgstr "Knooppuntstatus invoeren"
 
-#: ../app/views/main/_gettext.js.erb:293
+#: ../app/views/main/_gettext.js.erb:299
 msgid "Node:"
 msgstr "Knooppunt:"
 
-#: ../app/views/main/_gettext.js.erb:296
+#: ../app/views/main/_gettext.js.erb:302
 msgid "State:"
 msgstr "Staat:"
 
-#: ../app/views/main/_gettext.js.erb:299
+#: ../app/views/main/_gettext.js.erb:305
 msgid "Inject Operation"
 msgstr "Bewerking invoeren"
 
-#: ../app/views/main/_gettext.js.erb:302
+#: ../app/views/main/_gettext.js.erb:308
 msgid "Operation:"
 msgstr "Bewerking:"
 
-#: ../app/views/main/_gettext.js.erb:305
+#: ../app/views/main/_gettext.js.erb:311
 msgid "Interval:"
 msgstr "Interval:"
 
-#: ../app/views/main/_gettext.js.erb:308
+#: ../app/views/main/_gettext.js.erb:314
 msgid "Resource:"
 msgstr "Resource:"
 
-#: ../app/views/main/_gettext.js.erb:311
+#: ../app/views/main/_gettext.js.erb:317
 msgid "Result:"
 msgstr "Resultaat:"
 
-#: ../app/views/main/_gettext.js.erb:314
+#: ../app/views/main/_gettext.js.erb:320
 msgid "Inject Ticket"
 msgstr "Ticket invoegen"
 
-#: ../app/views/main/_gettext.js.erb:317
+#: ../app/views/main/_gettext.js.erb:323
 msgid "Ticket:"
 msgstr "Ticket:"
 
-#: ../app/views/main/_gettext.js.erb:320
+#: ../app/views/main/_gettext.js.erb:326
 msgid "Action:"
 msgstr "Actie:"
 
-#: ../app/views/main/_gettext.js.erb:323 ../app/views/main/_menus.html.erb:206
+#: ../app/views/main/_gettext.js.erb:329 ../app/views/main/_menus.html.erb:206
 msgid "Grant"
 msgstr "Toewijzen"
 
-#: ../app/views/main/_gettext.js.erb:326 ../app/views/main/_menus.html.erb:213
+#: ../app/views/main/_gettext.js.erb:332 ../app/views/main/_menus.html.erb:213
 msgid "Revoke"
 msgstr "Intrekken"
 
-#: ../app/views/main/_gettext.js.erb:332
+#: ../app/views/main/_gettext.js.erb:338
 msgid "Activate"
 msgstr "Activeren"
 
-#: ../app/views/main/_gettext.js.erb:335
+#: ../app/views/main/_gettext.js.erb:341
 msgid "Success"
 msgstr "Succes"
 
-#: ../app/views/main/_gettext.js.erb:338
+#: ../app/views/main/_gettext.js.erb:344
 msgid "Generic Error"
 msgstr "Algemene fout"
 
-#: ../app/views/main/_gettext.js.erb:341
+#: ../app/views/main/_gettext.js.erb:347
 msgid "Wrong Argument(s)"
 msgstr "Onjuiste argumenten"
 
-#: ../app/views/main/_gettext.js.erb:344
+#: ../app/views/main/_gettext.js.erb:350
 msgid "Not Implemented"
 msgstr "Niet geïmplementeerd"
 
-#: ../app/views/main/_gettext.js.erb:347
+#: ../app/views/main/_gettext.js.erb:353
 msgid "Permission Denied"
 msgstr "Toestemming geweigerd"
 
-#: ../app/views/main/_gettext.js.erb:350
+#: ../app/views/main/_gettext.js.erb:356
 msgid "Not Installed"
 msgstr "Niet geïnstalleerd"
 
-#: ../app/views/main/_gettext.js.erb:353
+#: ../app/views/main/_gettext.js.erb:359
 msgid "Not Configured"
 msgstr "Niet geconfigureerd"
 
-#: ../app/views/main/_gettext.js.erb:356
+#: ../app/views/main/_gettext.js.erb:362
 msgid "Not Running"
 msgstr "Niet actief"
 
-#: ../app/views/main/_gettext.js.erb:359
+#: ../app/views/main/_gettext.js.erb:365
 msgid "Running Master"
 msgstr "Actieve master"
 
-#: ../app/views/main/_gettext.js.erb:362
+#: ../app/views/main/_gettext.js.erb:368
 msgid "Failed Master"
 msgstr "Mislukte master"
 
@@ -1510,12 +1540,12 @@ msgid "There is already a monitor op with this interval."
 msgstr "Er is al een monitor op met dit interval."
 
 #: ../app/views/primitives/_form.html.erb:329
-msgid "Template ID"
-msgstr "Sjabloon-id"
-
-#: ../app/views/primitives/_form.html.erb:329
 msgid "Resource ID"
 msgstr "Resource-id"
+
+#: ../app/views/primitives/_form.html.erb:329
+msgid "Template ID"
+msgstr "Sjabloon-id"
 
 #: ../app/views/primitives/_form.html.erb:330
 msgid "Class"
@@ -1688,18 +1718,18 @@ msgstr "Configuratie kiezen"
 msgid "This wizard will guide you through the steps necessary to add one of the following configurations to the cluster."
 msgstr "Deze wizard begeleidt u door de stappen voor het toevoegen van een van de volgende configuraties aan de cluster."
 
-#: ../lib/invoker.rb:111
+#: ../lib/invoker.rb:131
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "Het object/attribuut bestaat niet (cibadmin %{cmd})"
 
-#: ../lib/invoker.rb:115
+#: ../lib/invoker.rb:135
 msgid "Error invoking cibadmin %{cmd}: %{msg}"
 msgstr "Fout bij het aanroepen van cibadmin %{cmd}: %{msg}"
 
-#: ../lib/invoker.rb:133
+#: ../lib/invoker.rb:153
 msgid "The object/attribute does not exist: %{msg}"
 msgstr "Het object/attribuut bestaat niet: %{msg}"
 
-#: ../lib/invoker.rb:137
+#: ../lib/invoker.rb:157
 msgid "Error invoking cibadmin --replace: %{msg}"
 msgstr "Fout bij het aanroepen van cibadmin --replace: %{msg}"
