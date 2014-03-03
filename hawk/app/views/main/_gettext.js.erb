@@ -246,6 +246,12 @@ var GETTEXT = {
   resource_parent: function(res) {
     return "<%=raw escape_javascript _('Parent: %{id}...') % { :id => '_RES_' } %>".replace('_RES_', res);
   },
+  resource_bytype_summary: function(active, total, type, node) {
+    return "<%=raw escape_javascript _('%{active}/%{total} %{type} %{node}') % { :active => '_A_', :total => '_T_', :type => '_Y_', :node => '_N_' } %>".replace('_A_', active).replace('_T_', total).replace('_Y_', type).replace('_N_', node);
+  },
+  toggle_view_by_type: function() {
+    return "<%=raw escape_javascript _('Toggle view by type') %>";
+  },
   // Simulator dialog
   sim_init: function() {
     return "<%=raw escape_javascript _('Simulator (initial state)') %>";
