@@ -35,17 +35,17 @@ The mount point for the filesystem, e.g.: /srv/nfs/home </longdesc>
 <parameter name="options">
 <shortdesc lang="en">Mount options</shortdesc>
 <longdesc lang="en">
-Any additional options to be given to the mount command.
+Any additional options to be given to the mount command, for example "rw,mountpoint"
 </longdesc>
-<content type="string" default="rw,mountpoint"/>
+<content type="string" default=""/>
 </parameter>
 
-<parameter name="clientspec">
+<parameter name="clientspec" required="1">
 <shortdesc lang="en">Client spec</shortdesc>
 <longdesc lang="en">
-Client access spec
+Client access spec, for example "10.9.9.0/255.255.255.0".
 </longdesc>
-<content type="string" default="10.9.9.0/255.255.255.0"/>
+<content type="string" default="*"/>
 </parameter>
 
 <parameter name="wait_for_leasetime_on_stop">
