@@ -430,6 +430,7 @@ var panel_view = {
             typestate[this.instance][t] = {
               started: 0,
               stopped: 0,
+              error: [],
               node: this.nodes && this.nodes[0] ? this.nodes[0] : ""  // in a group this should be the same for all members
             }
           }
@@ -438,6 +439,7 @@ var panel_view = {
           } else {
             typestate[this.instance][t].stopped++;
           }
+          typestate[this.instance][t].error = typestate[this.instance][t].error.concat(this.error);
         } else {
           groups[this.instance].children.push(this);
         }
@@ -458,7 +460,7 @@ var panel_view = {
             label:      GETTEXT.resource_bytype_summary(this.started, (this.started + this.stopped), t, this.node),
             state_icon: this.stopped > 0 ? "ui-icon-stop" : "ui-icon-play",
             active:     this.stopped == 0,
-            error:      [],     // should be res.instances[i].failed_ops,
+            error:      this.error,
             is_managed: true,   // should consolidate res.instances[i].is_managed,
             title:      null,
             no_menu:    true
