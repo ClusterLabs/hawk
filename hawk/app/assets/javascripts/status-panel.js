@@ -430,7 +430,7 @@ var panel_view = {
             typestate[this.instance][t] = {
               started: 0,
               stopped: 0,
-              node: this.nodes ? this.nodes[0] : ""  // in a group this should be the same for all members
+              node: this.nodes && this.nodes[0] ? this.nodes[0] : ""  // in a group this should be the same for all members
             }
           }
           if (this.active) {
