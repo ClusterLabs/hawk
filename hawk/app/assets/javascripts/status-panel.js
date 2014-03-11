@@ -431,6 +431,7 @@ var panel_view = {
               started: 0,
               stopped: 0,
               error: [],
+              is_managed: true,
               node: this.nodes && this.nodes[0] ? this.nodes[0] : ""  // in a group this should be the same for all members
             }
           }
@@ -440,6 +441,11 @@ var panel_view = {
             typestate[this.instance][t].stopped++;
           }
           typestate[this.instance][t].error = typestate[this.instance][t].error.concat(this.error);
+          if (!this.is_managed) {
+            // Aggregare will lie if some are managed and some aren't but better
+            // to err on the side of displaying unmanaged than not.
+            typestate[this.instance][t].is_managed = false;
+          }
         } else {
           groups[this.instance].children.push(this);
         }
@@ -461,7 +467,7 @@ var panel_view = {
             state_icon: this.stopped > 0 ? "ui-icon-stop" : "ui-icon-play",
             active:     this.stopped == 0,
             error:      this.error,
-            is_managed: true,   // should consolidate res.instances[i].is_managed,
+            is_managed: this.is_managed,
             title:      null,
             no_menu:    true
           });
