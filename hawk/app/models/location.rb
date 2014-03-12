@@ -35,7 +35,7 @@ class Location < Constraint
   
   def initialize(attributes = nil)
     @rules  = []
-    @rsc    = ''
+    @rsc    = ['']
     super
   end
 
@@ -44,7 +44,8 @@ class Location < Constraint
 
     error _('No rules specified') if @rules.empty?
 
-    @rsc.strip!
+    @rsc.map{|r| r.strip!}
+    @rsc.delete_if{|r| r.empty?}
     error _("No resource specified") if @rsc.empty?
 
     # TODO(should): break out early if there's errors - it can get quite noisy
@@ -113,7 +114,7 @@ class Location < Constraint
   
   def update_attributes(attributes = nil)
     @rules  = []
-    @rsc    = ''
+    @rsc    = ['']
     super
   end
 
@@ -147,7 +148,7 @@ class Location < Constraint
         }
       else
         # Rule notation
-        xml.elements.each do |rule_elem|
+        xml.elements.each('rule') do |rule_elem|
           rule = {
             :id               => rule_elem.attributes['id'],
             :role             => rule_elem.attributes['role'] || "",
@@ -172,7 +173,19 @@ class Location < Constraint
           rules << rule
         end
       end
-      con.instance_variable_set(:@rsc,   xml.attributes['rsc'])
+      rsc = []
+      if xml.attributes['rsc']
+        # Single resource
+        rsc << xml.attributes['rsc']
+      else
+        # Resource set
+        xml.elements.each('resource_set') do |rsc_set|
+          rsc_set.elements.each do |rsc_elem|
+            rsc << rsc_elem.attributes['id']
+          end
+        end
+      end
+      con.instance_variable_set(:@rsc,   rsc)
       con.instance_variable_set(:@rules, rules)
       con
     end
@@ -197,7 +210,12 @@ class Location < Constraint
 
   # Note: caller must ensure valid rule before calling this
   def shell_syntax
-    cmd = "location #{@id} #{@rsc}"
+    cmd = "location #{@id} "
+    if @rsc.length == 1
+      cmd += " #{@rsc[0]}"
+    else
+      cmd += " { #{@rsc.join(' ')} }"
+    end
 
     if simple?
       cmd += " #{@rules[0][:score]}: #{@rules[0][:expressions][0][:value]}"

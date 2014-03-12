@@ -35,12 +35,21 @@ We have three types of constraint: location, order and colocation
 Each has a simple and complex form:
 
   <rsc_location id="dont-run-apache-on-c001n03" rsc="myApacheRsc" score="-INFINITY" node="c001n03"/>
-  
+
   <rsc_location id="dont-run-apache-on-c001n03" rsc="myApacheRsc">
     <rule id="dont-run-apache-rule" score="-INFINITY">
        <expression id="dont-run-apache-expr" attribute="#uname" operation="eq" value="c00n03"/>
     </rule>
     <!-- more rules here -->
+  </rsc_location>
+
+  Or with resource sets:
+
+  <rsc_location id="on_node1" score="INFINITY" node="sles12-0">
+    <resource_set id="on_node1-0">
+      <resource_ref id="virtual-ip"/>
+      <resource_ref id="another-vip"/>
+    </resource_set>
   </rsc_location>
 
   <rsc_order id="order-2" first="IP" then="Webserver" score="0" symmetrical="true"/>

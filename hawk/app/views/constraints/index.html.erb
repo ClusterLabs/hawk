@@ -142,7 +142,7 @@ $(function() {
 <% @locations.sort{|a,b| a.id.natcmp(b.id, true)}.each do |loc| %>
   <tr>
     <td class="id" rowspan="<%= loc.rules.length %>"><%=h loc.id %></td>
-    <td class="id" rowspan="<%= loc.rules.length %>"><%=h loc.rsc %></td>
+    <td class="id" rowspan="<%= loc.rules.length %>"><%=h loc.rsc.join(' ') %></td>
   <%
     first = true
     loc.rules.each do |rule|
