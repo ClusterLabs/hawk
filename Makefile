@@ -63,7 +63,7 @@ LIBDIR = /usr/lib
 BINDIR = /usr/bin
 SBINDIR = /usr/sbin
 
-all: scripts/hawk.$(INIT_STYLE) hawk/config/lighttpd.conf tools/hawk_chkpwd tools/hawk_monitor tools/hawk_invoke
+all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service hawk/config/lighttpd.conf tools/hawk_chkpwd tools/hawk_monitor tools/hawk_invoke
 	(cd hawk; \
 	 TEXTDOMAIN=hawk rake gettext:pack && \
 	 if $(BUNDLE_GEMS) ; then \
@@ -109,7 +109,7 @@ clean:
 	rm -rf hawk/tmp
 	rm -rf hawk/log
 	rm -f hawk/config/lighttpd.conf
-	rm -f scripts/hawk.{suse,redhat}
+	rm -f scripts/hawk.{suse,redhat,service}
 	rm -f tools/hawk_chkpwd
 	rm -f tools/hawk_monitor
 	rm -f tools/hawk_invoke
@@ -117,6 +117,8 @@ clean:
 
 # Note: chown & chmod here are only necessary if *not* doing an RPM build
 # (the spec sets file ownership/perms for RPMs).
+# TODO(should): Make an option to install either the init script or the
+# systemd service file (presently this installs the systemd service file)
 install:
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/log
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp
@@ -137,7 +139,7 @@ install:
 	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/tmp
 	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/home
 	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/explorer
-	install -D -m 0755 scripts/hawk.$(INIT_STYLE) $(DESTDIR)/etc/init.d/hawk
+	install -D -m 0644 scripts/hawk.service $(DESTDIR)/usr/lib/systemd/system/hawk.service
 	install -D -m 4750 tools/hawk_chkpwd $(DESTDIR)/usr/sbin/hawk_chkpwd
 	-chown root.haclient $(DESTDIR)/usr/sbin/hawk_chkpwd
 	-chmod u+s $(DESTDIR)/usr/sbin/hawk_chkpwd

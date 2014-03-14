@@ -46,52 +46,6 @@ test -r $LIGHTTPD_CONFIG || { echo "$LIGHTTPD_CONFIG does not exist";
 
 PID_FILE=/var/run/hawk.pid
 
-# Generate a self-signed SSL certificate if necessary.  Will not
-# generate certificate if one already exists, so administrator can
-# install a "real" certificate by simply replacing the generated
-# (combined) one at /etc/lighttpd/certs/hawk-combined.pem
-# NOTE: This is essentially a heavily stripped-back shell version
-# of the more generic check-create-certificate.pl script from WebYaST.
-# If this latter script becomes generally available, we should prefer
-# using it over this little function here.
-generate_ssl_cert() {
-	openssl_bin=/usr/bin/openssl
-	c_rehash_bin=/usr/bin/c_rehash
-	cert_file=/etc/lighttpd/certs/hawk.pem
-	cert_key_file=/etc/lighttpd/certs/hawk.key
-	combined_cert_file=/etc/lighttpd/certs/hawk-combined.pem
-	log_file=@WWW_BASE@/hawk/log/certificate.log
-	[ -e "$combined_cert_file" ] && return 0
-
-	echo "No certificate found. Creating one now."
-	mkdir -p $(dirname $combined_cert_file)
-
-	old_mask=$(umask)
-	umask 177
-	CN=$(hostname -f)
-	[ -z "$CN" ] && CN=$(hostname)
-	[ -z "$CN" ] && CN=localhost
-	$openssl_bin req -newkey rsa:2048 -x509 -nodes -days 1095 -batch -config /dev/fd/0 -out $cert_file -keyout $cert_key_file >$log_file 2>&1 <<CONF
-[req]
-distinguished_name = user_dn
-prompt = no
-[user_dn]
-commonName=$CN
-emailAddress=root@$CN
-organizationName=HA Web Konsole
-organizationalUnitName=Automatically Generated Certificate
-CONF
-	rc=$?
-	if [ $rc -eq 0 ]; then
-		cat $cert_key_file $cert_file > $combined_cert_file
-		[ -x "$c_rehash_bin" ] && $c_rehash_bin $(dirname $combined_cert_file) >/dev/null 2>&1
-	else
-		echo "Could not generate certificate.  Please see $log_file for details"
-	fi
-	umask $old_mask
-	return $rc
-}
-
 print_hawk_url() {
 	IP=$(LC_ALL=C grep "^server.bind" $LIGHTTPD_CONFIG | cut -d ' ' -f 3|tr -d '"')
 	if [ -z "$IP" ]; then
@@ -111,7 +65,7 @@ print_hawk_url() {
 
 case "$1" in
     start)
-    	generate_ssl_cert || {
+	@WWW_BASE@/hawk/script/generate-ssl-cert || {
 		exit 1
     	}
 	echo -n "Starting hawk "
