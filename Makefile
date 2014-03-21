@@ -126,6 +126,7 @@ install:
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/cache
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/explorer
+	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/explorer/uploads
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/pids
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/sessions
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/sockets
