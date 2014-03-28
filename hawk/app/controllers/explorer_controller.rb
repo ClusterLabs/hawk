@@ -95,6 +95,7 @@ class ExplorerController < ApplicationController
             @peinputs << {
               :timestamp => File.mtime(path).strftime("%Y-%m-%d %H:%M:%S"),
               :basename  => File.basename(path, ".bz2"),
+              :path      => path.sub("#{@@x_path}/", ''),  # only use relative portion
               :node      => path.split(File::SEPARATOR)[-3]
             }
             v = peinput_version(path)
@@ -124,7 +125,7 @@ class ExplorerController < ApplicationController
     end
   end
 
-  # Remarkably similar to MainController::sim_get
+  # Remarkably similar to MainController::sim_get (kinda)
   # Note reliance on hb_report directory strucutre - if that ever changes, code
   # here will need to change too.
   def get
@@ -137,7 +138,8 @@ class ExplorerController < ApplicationController
     params[:basename].gsub!(/[^\w-]/, "")
     params[:node].gsub!(/[^\w_-]/, "")
     tname = "#{params[:node]}/pengine/#{params[:basename]}.bz2"
-    tpath = "#{@@x_path}/#{@report_name}/#{tname}"
+    params[:path].gsub!("..", "") # tear out possible relative junk
+    tpath = "#{@@x_path}/#{params[:path]}"
     case params[:file]
     when "pe-input"
       send_file tpath, :type => "application/x-bzip"
@@ -286,7 +288,6 @@ class ExplorerController < ApplicationController
       # TODO(must): handle overwriting existing files
       #             (note that hb_reports from hawk seem to all extract to hb_report-hawk, not their filename?)
       #             e.g.:bug-781207_hb_report-hawk.tar.bz2)
-      # TODO(must): needs uploads directory present
       # TODO(must): verify original_filename doesn't contain evil
       uploaded_io = params[:uploaded_report]
       @upload_name = uploaded_io.original_filename
@@ -294,7 +295,7 @@ class ExplorerController < ApplicationController
       File.open(@report_path, 'wb') do |file|
         file.write(uploaded_io.read)
       end
-      # TODO(must): ugly, used in get(), hence injection of "uploads", also assumes .tar.bz2...
+      # @report_name actually not really used when uploading (*ugh*)
       @report_name = "uploads/#{File.basename(@report_path, '.tar.bz2')}"
     elsif params[:upload_name]
       # TODO(must): dupe of above, kinda, fix.  Also unsafe.
