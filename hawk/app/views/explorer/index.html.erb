@@ -158,7 +158,11 @@ function dialogify_detail_links() {
   </tr>
 <% end %>
 <% end %>
-<% unless params[:upload_name] %>
+<% if @upload_name %>
+  <tr>
+    <td><%= _("Exploring %{path}") % { :path => @upload_name } %></td>
+  </tr>
+<% else %>
   <tr>
     <th><label for="from_time"><%=h _("Start Time:") %></label></th>
     <td><%= text_field_tag "from_time", @cache.any? && !params[:display] ? "" : @from_time, :size => 14 %></td>
