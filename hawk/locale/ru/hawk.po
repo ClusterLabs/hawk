@@ -5,8 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-14 18:22+1100\n"
-"PO-Revision-Date: 2013-05-03 18:09\n"
+"POT-Creation-Date: 2014-03-28 22:02+1100\n"
+"PO-Revision-Date: 2014-05-03 18:09\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
 "Language: \n"
@@ -450,8 +450,8 @@ msgid "Constraints"
 msgstr "Ограничения"
 
 #: ../app/views/layouts/main.html.erb:189
-msgid "Copyright &copy; 2009-2013 SUSE, LLC"
-msgstr "&copy; SUSE, LLC, 2009-2013"
+msgid "Copyright &copy; 2009-2014 SUSE, LLC"
+msgstr "&copy; SUSE, LLC, 2009-2014"
 
 #: ../app/controllers/clones_controller.rb:52 ../app/controllers/clones_controller.rb:58 ../app/views/clones/_form.html.erb:87
 msgid "Create Clone"
@@ -544,7 +544,7 @@ msgstr "Подробности"
 msgid "Diff"
 msgstr "Различие"
 
-#: ../app/views/explorer/index.html.erb:167
+#: ../app/views/explorer/index.html.erb:171
 msgid "Display"
 msgstr "Дисплей"
 
@@ -618,7 +618,7 @@ msgstr "Изменить ресурс"
 msgid "Empty Graph"
 msgstr "Пустой граф"
 
-#: ../app/views/explorer/index.html.erb:150 ../app/views/explorer/index.html.erb:165 ../app/views/hb_reports/new.html.erb:63
+#: ../app/views/explorer/index.html.erb:150 ../app/views/explorer/index.html.erb:169 ../app/views/hb_reports/new.html.erb:63
 msgid "End Time:"
 msgstr "Время окончания:"
 
@@ -658,7 +658,7 @@ msgstr "Ошибка при анализе шаблона \"%s\""
 msgid "Error parsing workflow \"%s\""
 msgstr "Ошибка при анализе рабочего процесса \"%s\""
 
-#: ../app/controllers/explorer_controller.rb:159 ../app/controllers/explorer_controller.rb:187 ../app/controllers/explorer_controller.rb:248
+#: ../app/controllers/explorer_controller.rb:161 ../app/controllers/explorer_controller.rb:189 ../app/controllers/explorer_controller.rb:250
 msgid "Error:"
 msgstr "Ошибка:"
 
@@ -666,8 +666,12 @@ msgstr "Ошибка:"
 msgid "Error: Permission denied for user '%s'."
 msgstr "Ошибка. Доступ пользователя \"%s\" запрещен."
 
-#: ../app/views/explorer/index.html.erb:180
+#: ../app/views/explorer/index.html.erb:184
 msgid "Explore"
+msgstr ""
+
+#: ../app/views/explorer/index.html.erb:163
+msgid "Exploring %{path}"
 msgstr ""
 
 #: ../app/views/locations/_form.html.erb:46
@@ -952,7 +956,7 @@ msgstr "Не указан клон потомка"
 msgid "No cluster properties set in %{group}"
 msgstr "Не заданы свойства кластера в группе %{group}"
 
-#: ../app/controllers/explorer_controller.rb:157 ../app/controllers/explorer_controller.rb:227
+#: ../app/controllers/explorer_controller.rb:159 ../app/controllers/explorer_controller.rb:229
 msgid "No details available"
 msgstr "Описание отсутствует"
 
@@ -1048,7 +1052,7 @@ msgstr "Порядок"
 msgid "PE Input"
 msgstr "Ввод ФУ"
 
-#: ../app/controllers/explorer_controller.rb:102
+#: ../app/controllers/explorer_controller.rb:103
 msgid "PE Input created by different Pacemaker version (%{version})"
 msgstr ""
 
@@ -1056,7 +1060,7 @@ msgstr ""
 msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
 msgstr "Пейсмейкер не установлен (не найдена команда %{cmd})"
 
-#: ../app/controllers/explorer_controller.rb:103
+#: ../app/controllers/explorer_controller.rb:104
 msgid "Pacemaker version not present in PE Input"
 msgstr ""
 
@@ -1149,11 +1153,11 @@ msgstr "Обязательный параметр \"resource\" не задан"
 msgid "Required parameter \"ticket\" not specified"
 msgstr "Обязательный параметр \"node\" не задан"
 
-#: ../app/controllers/explorer_controller.rb:133
+#: ../app/controllers/explorer_controller.rb:134
 msgid "Required parameters \"basename\" and \"node\" not specified"
 msgstr "Не указаны обязательные параметры \"basename\" и \"node\""
 
-#: ../app/controllers/explorer_controller.rb:200
+#: ../app/controllers/explorer_controller.rb:202
 msgid "Required parameters \"left\" and \"right\" not specified"
 msgstr "Не указаны обязательные параметры \"правый\" и \"левый\""
 
@@ -1328,7 +1332,7 @@ msgstr "Запуск"
 msgid "Start Time not specified"
 msgstr "Не указано время запуска"
 
-#: ../app/views/explorer/index.html.erb:148 ../app/views/explorer/index.html.erb:163 ../app/views/hb_reports/new.html.erb:58
+#: ../app/views/explorer/index.html.erb:148 ../app/views/explorer/index.html.erb:167 ../app/views/hb_reports/new.html.erb:58
 msgid "Start Time:"
 msgstr "Время начала:"
 
@@ -1626,7 +1630,7 @@ msgstr "Неизвестно"
 msgid "Unmanaged"
 msgstr "Не управляется"
 
-#: ../app/views/explorer/index.html.erb:178
+#: ../app/views/explorer/index.html.erb:182
 msgid "Upload hb_report tarball"
 msgstr ""
 
