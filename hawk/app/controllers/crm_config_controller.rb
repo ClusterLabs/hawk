@@ -106,11 +106,12 @@ class CrmConfigController < ApplicationController
     op_defaults_to_delete = to_delete("op_defaults")
 
     cmd =
-      "property $id='cib-bootstrap-options'" + crm_script("crm_config") + "\n" +
-      "rsc_defaults $id='rsc-options'"      + crm_script("rsc_defaults") + "\n" +
-      "op_defaults $id='op-options'"        + crm_script("op_defaults")
+      crm_script("crm_config",   "property $id='cib-bootstrap-options'") +
+      crm_script("rsc_defaults", "rsc_defaults $id='rsc-options'") +
+      crm_script("op_defaults",  "op_defaults $id='op-options'")
 
-    result = Invoker.instance.crm_configure_load_update cmd
+    result = true
+    result = Invoker.instance.crm_configure_load_update(cmd) unless cmd.empty?
 
     if result == true
       # TODO(must): does not report errors!
@@ -151,7 +152,7 @@ class CrmConfigController < ApplicationController
     }
   end
 
-  def crm_script(set)
+  def crm_script(set, prefix)
     cmd = ""
     params[set.to_sym].each do |n, v|
       next if v.empty?
@@ -165,6 +166,7 @@ class CrmConfigController < ApplicationController
         cmd += " #{n}='#{v}'"
       end
     end if params[set.to_sym]
+    cmd = "#{prefix}#{cmd}\n" if !cmd.empty?
     cmd
   end
 
