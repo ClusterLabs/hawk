@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk 0.3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-28 22:02+1100\n"
+"POT-Creation-Date: 2014-03-31 21:39+1100\n"
 "PO-Revision-Date: 2011-12-20 08:30+0100\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@opensuse.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -155,6 +155,8 @@ msgstr "%{workflow}: %{step}"
 #, fuzzy
 #, fuzzy
 #, fuzzy
+#, fuzzy
+#, fuzzy
 #| msgid "No clone child specified"
 msgid "(No clones defined)"
 msgstr "Nincs megadva klóngyermek"
@@ -195,6 +197,8 @@ msgstr "Nincs megadva erőforrás"
 #, fuzzy
 #, fuzzy
 #, fuzzy
+#, fuzzy
+#, fuzzy
 #| msgid "No clone child specified"
 msgid "(No clones defined)"
 msgstr "Nincs megadva klóngyermek"
@@ -212,6 +216,8 @@ msgid "(No ticket constraints defined)"
 msgstr "(Nincs szabálysorrend megadva)"
 
 #: app/views/resources/index.html.erb:186
+#, fuzzy
+#, fuzzy
 #, fuzzy
 #, fuzzy
 #, fuzzy
@@ -370,7 +376,7 @@ msgstr "Nem állítható be a(z) op %{o} {%a} attribútum, mert az eszköz szimp
 msgid "Can't set parameter %{p}, because the value contains both single and double quotes"
 msgstr "Nem állítható be a(z) %{p} paraméter, mert az eszköz szimpla és dupla idézőjelet is tartalmaz"
 
-#: ../app/controllers/crm_config_controller.rb:161
+#: ../app/controllers/crm_config_controller.rb:162
 msgid "Can't set property %{p}, because the value contains both single and double quotes"
 msgstr "Nem állítható be a(z) %{p} tulajdonság, mert az eszköz szimpla és dupla idézőjelet is tartalmaz"
 
@@ -1254,6 +1260,7 @@ msgstr "Nincs megadva a \"basename\" és a \"node\" paraméter"
 #, fuzzy
 #, fuzzy
 #, fuzzy
+#, fuzzy
 #| msgid "Required parameters \"basename\" and \"node\" not specified"
 msgid "Required parameters \"left\" and \"right\" not specified"
 msgstr "Nincs megadva a \"basename\" és a \"node\" paraméter"
@@ -1263,6 +1270,7 @@ msgid "Required parameters \"resource\" and \"node\" not specified"
 msgstr "Nincs megadva a \"resource\" és a \"node\" paraméter"
 
 #: app/controllers/explorer_controller.rb:189
+#, fuzzy
 #, fuzzy
 #, fuzzy
 #, fuzzy
@@ -1666,7 +1674,7 @@ msgstr "Típus"
 msgid "UI Host: %s"
 msgstr "UI gép: %s"
 
-#: ../app/controllers/crm_config_controller.rb:129
+#: ../app/controllers/crm_config_controller.rb:130
 msgid "Unable to apply changes: %{msg}"
 msgstr "Nem alkalmazhatók a módosítások: %{msg}"
 
@@ -1851,7 +1859,7 @@ msgstr "Kijelentkezett"
 msgid "You must enter a value"
 msgstr "Érték megadása kötelező"
 
-#: ../app/controllers/crm_config_controller.rb:127
+#: ../app/controllers/crm_config_controller.rb:128
 msgid "Your changes have been saved"
 msgstr "A változások mentése megtörtént"
 
