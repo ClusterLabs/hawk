@@ -60,7 +60,6 @@ class User < CibObject
       return false
     end
     cmd = shell_syntax
-    cmd += "\ncommit\n"
     result = Invoker.instance.crm_configure cmd
     unless result == true
       error _('Unable to create user: %{msg}') % { :msg => result }
