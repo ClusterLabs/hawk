@@ -421,10 +421,10 @@ class WizardController < ApplicationController
     end
     script_statefile = "#{Rails.root}/tmp/crm_script.state"
     if stepname == "Collect"
-      if File.exists?(script_statefile)
-        f = File.new(script_statefile, "w")
-        f.close
-      end
+      # Always recreate state file during collect (this ensures it's owned by
+      # hacluster, else it'd be owned by root if created by crmsh)
+      f = File.new(script_statefile, "w")
+      f.close
     end
     Invoker.instance.crm_script(recall_rootpw,
                                 @scriptdir, "run",
