@@ -150,8 +150,6 @@ class WizardController < ApplicationController
       # - Generate crm script for workflow
       crm_script += get_crm_script(@workflow_xml.root.elements["crm_script"], "params")
       
-      crm_script += "\ncommit\n"
-
       result = Invoker.instance.crm_configure crm_script
       if result == true
         render "done"

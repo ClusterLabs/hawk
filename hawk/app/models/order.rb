@@ -91,7 +91,6 @@ class Order < Constraint
     end
 
     cmd = shell_syntax
-    cmd += "\ncommit\n"
 
     result = Invoker.instance.crm_configure cmd
     unless result == true

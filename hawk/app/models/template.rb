@@ -123,7 +123,6 @@ class Template < CibObject
         end
       end
     end
-    cmd += "\ncommit\n"
 
     result = Invoker.instance.crm_configure cmd
     unless result == true
