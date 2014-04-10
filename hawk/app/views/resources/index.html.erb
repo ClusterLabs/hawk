@@ -59,6 +59,9 @@ $(function() {
       icon: "remove.png",
       click: function(target) {
         var id = target.attr("name");
+        if (!confirm("<%= escape_javascript(_('Are you sure you wish to delete %s?') % '_NAME_') %>".replace('_NAME_', id))) {
+          return false;
+        }
         target.children(":first").attr("src", url_root + "/assets/spinner-16x16-neutral.gif");
         // Abuse of /main/resource/delete, which is generic enough to delete anything
         // TODO(should): Fix error message (refers to "error deleting resource")
