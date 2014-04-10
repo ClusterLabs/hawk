@@ -143,7 +143,7 @@ class MainController < ApplicationController
 
   def resource_delete
     if params[:resource]
-      result = Invoker.instance.crm 'configure', 'delete', params[:resource]
+      result = Invoker.instance.crm '--force', 'configure', 'delete', params[:resource]
       if result == true
         # As with invoke() above, have to return actual JSON here or we land
         # in the AJAX error handler
