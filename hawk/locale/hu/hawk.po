@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk 0.3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-31 21:39+1100\n"
+"POT-Creation-Date: 2014-04-10 15:20+1000\n"
 "PO-Revision-Date: 2011-12-20 08:30+0100\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@opensuse.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -157,11 +157,13 @@ msgstr "%{workflow}: %{step}"
 #, fuzzy
 #, fuzzy
 #, fuzzy
+#, fuzzy
+#, fuzzy
 #| msgid "No clone child specified"
 msgid "(No clones defined)"
 msgstr "Nincs megadva klóngyermek"
 
-#: ../app/views/constraints/index.html.erb:171
+#: ../app/views/constraints/index.html.erb:174
 msgid "(No colocation constraints defined)"
 msgstr "(Nincs megadva kapcsolódási szabály)"
 
@@ -173,7 +175,7 @@ msgstr "(Nincs megadva kapcsolódási szabály)"
 msgid "(No groups defined)"
 msgstr "Nincsenek megadva attribútumok"
 
-#: ../app/views/constraints/index.html.erb:141
+#: ../app/views/constraints/index.html.erb:144
 msgid "(No location constraints defined)"
 msgstr "(Nincs megadva helyre vonatkozó szabály)"
 
@@ -183,7 +185,7 @@ msgstr "(Nincs megadva helyre vonatkozó szabály)"
 msgid "(No master/slave resources defined)"
 msgstr "Nincs megadva elsődleges/másodlagos gyermek"
 
-#: ../app/views/constraints/index.html.erb:185
+#: ../app/views/constraints/index.html.erb:188
 msgid "(No order constraints defined)"
 msgstr "(Nincs szabálysorrend megadva)"
 
@@ -194,6 +196,8 @@ msgid "(No primitive resources defined)"
 msgstr "Nincs megadva erőforrás"
 
 #: app/views/resources/index.html.erb:186
+#, fuzzy
+#, fuzzy
 #, fuzzy
 #, fuzzy
 #, fuzzy
@@ -216,6 +220,8 @@ msgid "(No ticket constraints defined)"
 msgstr "(Nincs szabálysorrend megadva)"
 
 #: app/views/resources/index.html.erb:186
+#, fuzzy
+#, fuzzy
 #, fuzzy
 #, fuzzy
 #, fuzzy
@@ -308,6 +314,10 @@ msgstr "Minden változás el fog veszni - szeretné folytatni?"
 #: ../app/views/clones/edit.html.erb:4 ../app/views/colocations/edit.html.erb:4 ../app/views/crm_config/edit.html.erb:113 ../app/views/groups/edit.html.erb:4 ../app/views/locations/edit.html.erb:4 ../app/views/masters/edit.html.erb:4 ../app/views/orders/edit.html.erb:4 ../app/views/primitives/edit.html.erb:4 ../app/views/roles/edit.html.erb:4 ../app/views/tickets/edit.html.erb:4 ../app/views/users/edit.html.erb:4
 msgid "Apply Changes"
 msgstr "Változások alkalmazása"
+
+#: ../app/views/acls/index.html.erb:61 ../app/views/constraints/index.html.erb:62 ../app/views/resources/index.html.erb:62
+msgid "Are you sure you wish to delete %s?"
+msgstr ""
 
 #: ../app/views/roles/_form.html.erb:44 ../app/views/users/_form.html.erb:54
 #, fuzzy
@@ -410,7 +420,7 @@ msgstr "Klón ID"
 msgid "Clone ID"
 msgstr "Klón ID"
 
-#: ../app/models/clone.rb:87
+#: ../app/models/clone.rb:86
 msgid "Clone ID \"%{id}\" does not exist"
 msgstr "A(z) \"%{id}\" klónazonosító nem létezik"
 
@@ -468,7 +478,7 @@ msgstr "Jelenlegi állapot"
 msgid "Cluster has errors - click for details"
 msgstr ""
 
-#: ../app/views/constraints/index.html.erb:107
+#: ../app/views/constraints/index.html.erb:110
 msgid "Colocation"
 msgstr "Elhelyezése szabály"
 
@@ -492,7 +502,7 @@ msgstr ""
 msgid "Constraint ID"
 msgstr "Szabály ID"
 
-#: ../app/models/colocation.rb:81 ../app/models/location.rb:96 ../app/models/order.rb:107 ../app/models/ticket.rb:91
+#: ../app/models/colocation.rb:80 ../app/models/location.rb:95 ../app/models/order.rb:106 ../app/models/ticket.rb:90
 msgid "Constraint ID \"%{id}\" does not exist"
 msgstr "A(z) \"%{id}\" szabályazonosító nem létezik"
 
@@ -729,11 +739,11 @@ msgstr "Hiba történt a cibadmin %{cmd} parancs meghívásakor: %{msg}"
 msgid "Error invoking cibadmin --replace: %{msg}"
 msgstr "Hiba történt a cibadmin --replace meghívásakor: %{msg}"
 
-#: ../app/controllers/wizard_controller.rb:355
+#: ../app/controllers/wizard_controller.rb:353
 msgid "Error parsing template \"%s\""
 msgstr "Hiba történt a(z) \"%s\" sablon feldolgozása közben"
 
-#: ../app/controllers/wizard_controller.rb:358
+#: ../app/controllers/wizard_controller.rb:356
 msgid "Error parsing workflow \"%s\""
 msgstr "Hiba történt a(z) \"%s\" munkafolyamat feldolgozása közben"
 
@@ -823,7 +833,7 @@ msgstr "Csoporttag"
 msgid "Group ID"
 msgstr "Csoportazonosító (ID)"
 
-#: ../app/models/group.rb:90
+#: ../app/models/group.rb:89
 msgid "Group ID \"%{id}\" does not exist"
 msgstr "A(z) \"%{id}\" csoportazonosító nem létezik"
 
@@ -916,7 +926,7 @@ msgstr ""
 msgid "Link set"
 msgstr "Hivatkozás beállítás"
 
-#: ../app/views/constraints/index.html.erb:101
+#: ../app/views/constraints/index.html.erb:104
 msgid "Location"
 msgstr "Hely"
 
@@ -956,7 +966,7 @@ msgstr "Elsődleges/Másodlagos azonosító"
 msgid "Master/Slave ID"
 msgstr "Elsődleges/Másodlagos azonosító"
 
-#: ../app/models/master.rb:87
+#: ../app/models/master.rb:86
 msgid "Master/Slave ID \"%{id}\" does not exist"
 msgstr "A(z) \"%{id}\" elsődleges/másodlagos azonosító nem létezik"
 
@@ -984,19 +994,19 @@ msgstr "%s erőforrás mozgatása"
 msgid "Move..."
 msgstr "Áthelyezés..."
 
-#: ../app/views/resources/index.html.erb:120
+#: ../app/views/resources/index.html.erb:123
 msgid "New Clone"
 msgstr "Új klón"
 
-#: ../app/views/constraints/index.html.erb:100 ../app/views/constraints/index.html.erb:106 ../app/views/constraints/index.html.erb:112 ../app/views/constraints/index.html.erb:119
+#: ../app/views/constraints/index.html.erb:103 ../app/views/constraints/index.html.erb:109 ../app/views/constraints/index.html.erb:115 ../app/views/constraints/index.html.erb:122
 msgid "New Constraint"
 msgstr "Új szabály"
 
-#: ../app/views/resources/index.html.erb:114
+#: ../app/views/resources/index.html.erb:117
 msgid "New Group"
 msgstr "Új csoport"
 
-#: ../app/views/resources/index.html.erb:126
+#: ../app/views/resources/index.html.erb:129
 msgid "New Master/Slave"
 msgstr "Új Elsődleges/Másodlagos"
 
@@ -1011,11 +1021,11 @@ msgstr "Erőforrás"
 msgid "New Role"
 msgstr "Új klón"
 
-#: ../app/views/resources/index.html.erb:107
+#: ../app/views/resources/index.html.erb:110
 msgid "New Template"
 msgstr ""
 
-#: ../app/views/acls/index.html.erb:105
+#: ../app/views/acls/index.html.erb:108
 msgid "New User"
 msgstr ""
 
@@ -1139,7 +1149,7 @@ msgstr "Művelet:"
 msgid "Operations"
 msgstr "Műveletek"
 
-#: ../app/views/constraints/index.html.erb:113
+#: ../app/views/constraints/index.html.erb:116
 msgid "Order"
 msgstr "Sorrend"
 
@@ -1187,7 +1197,7 @@ msgstr "Engedély megtagadva"
 msgid "Permission denied"
 msgstr "Engedély megtagadva"
 
-#: ../app/controllers/wizard_controller.rb:315
+#: ../app/controllers/wizard_controller.rb:313
 msgid "Permission denied - you do not have write access to the CIB."
 msgstr ""
 
@@ -1235,7 +1245,7 @@ msgstr "Eltávolítás"
 msgid "Remove Rule"
 msgstr "Szabály eltávolítása"
 
-#: ../app/controllers/wizard_controller.rb:298
+#: ../app/controllers/wizard_controller.rb:296
 msgid "Required parameter \"%{param}\" not specified"
 msgstr "Nincs megadva a(z) \"%{param}\" paraméter"
 
@@ -1261,6 +1271,7 @@ msgstr "Nincs megadva a \"basename\" és a \"node\" paraméter"
 #, fuzzy
 #, fuzzy
 #, fuzzy
+#, fuzzy
 #| msgid "Required parameters \"basename\" and \"node\" not specified"
 msgid "Required parameters \"left\" and \"right\" not specified"
 msgstr "Nincs megadva a \"basename\" és a \"node\" paraméter"
@@ -1270,6 +1281,7 @@ msgid "Required parameters \"resource\" and \"node\" not specified"
 msgstr "Nincs megadva a \"resource\" és a \"node\" paraméter"
 
 #: app/controllers/explorer_controller.rb:189
+#, fuzzy
 #, fuzzy
 #, fuzzy
 #, fuzzy
@@ -1296,7 +1308,7 @@ msgstr "Erőforrás ID"
 msgid "Resource ID"
 msgstr "Erőforrás ID"
 
-#: ../app/models/primitive.rb:140 ../app/models/template.rb:140
+#: ../app/models/primitive.rb:139 ../app/models/template.rb:139
 msgid "Resource ID \"%{id}\" does not exist"
 msgstr "A(z) \"%{id}\" erőforrás-azonosító nem létezik"
 
@@ -1346,7 +1358,7 @@ msgstr ""
 msgid "Right"
 msgstr ""
 
-#: ../app/views/acls/index.html.erb:100 ../app/views/locations/_form.html.erb:44
+#: ../app/views/acls/index.html.erb:103 ../app/views/locations/_form.html.erb:44
 msgid "Role"
 msgstr "Szerepkör"
 
@@ -1502,7 +1514,7 @@ msgstr "Táblázat nézet"
 msgid "Tag"
 msgstr ""
 
-#: ../app/views/resources/index.html.erb:108
+#: ../app/views/resources/index.html.erb:111
 msgid "Template"
 msgstr ""
 
@@ -1626,7 +1638,7 @@ msgstr "Ez leállítja a(z) %s erőforrást. Kívánja folytatni?"
 msgid "This wizard will guide you through the steps necessary to add one of the following configurations to the cluster."
 msgstr "A varázsló végigvezeti a szükséges lépéseken, hogy hozzá tudja adni a fürthöz az egyik beállítást."
 
-#: ../app/views/constraints/index.html.erb:120
+#: ../app/views/constraints/index.html.erb:123
 msgid "Ticket"
 msgstr ""
 
@@ -1646,7 +1658,7 @@ msgstr "Idő"
 msgid "Timeout: Please try again"
 msgstr ""
 
-#: ../app/views/acls/index.html.erb:127
+#: ../app/views/acls/index.html.erb:130
 msgid "To enable ACLs, set 'enable-acl' in the CRM Configuration"
 msgstr ""
 
@@ -1682,23 +1694,23 @@ msgstr "Nem alkalmazhatók a módosítások: %{msg}"
 msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
 msgstr ""
 
-#: ../app/models/clone.rb:77
+#: ../app/models/clone.rb:76
 msgid "Unable to create clone: %{msg}"
 msgstr "Nem hozható létre klón: %{msg}"
 
-#: ../app/models/colocation.rb:72 ../app/models/location.rb:87 ../app/models/order.rb:98 ../app/models/ticket.rb:82
+#: ../app/models/colocation.rb:71 ../app/models/location.rb:86 ../app/models/order.rb:97 ../app/models/ticket.rb:81
 msgid "Unable to create constraint: %{msg}"
 msgstr "A szabály nem hozható létre: %{msg}"
 
-#: ../app/models/group.rb:80
+#: ../app/models/group.rb:79
 msgid "Unable to create group: %{msg}"
 msgstr "Nem hozható létre csoport: %{msg}"
 
-#: ../app/models/master.rb:77
+#: ../app/models/master.rb:76
 msgid "Unable to create master/slave: %{msg}"
 msgstr "Nem hozható létre elsődleges/másodlagos: %{msg}"
 
-#: ../app/models/primitive.rb:130 ../app/models/template.rb:130
+#: ../app/models/primitive.rb:129 ../app/models/template.rb:129
 msgid "Unable to create resource: %{msg}"
 msgstr "Nem hozható létre erőforrás: %{msg}"
 
@@ -1730,7 +1742,7 @@ msgstr "A(z) \"%{path}\" CIB fájl nem dolgozható fel"
 msgid "Unable to parse cibadmin output"
 msgstr "Nem dolgozható fel a cibadmin kimenete"
 
-#: ../app/models/colocation.rb:91 ../app/models/location.rb:108 ../app/models/order.rb:117 ../app/models/ticket.rb:101
+#: ../app/models/colocation.rb:90 ../app/models/location.rb:107 ../app/models/order.rb:116 ../app/models/ticket.rb:100
 msgid "Unable to update constraint: %{msg}"
 msgstr "A szabály nem frissíthető: %{msg}"
 
@@ -1768,7 +1780,7 @@ msgstr ""
 msgid "Use Template"
 msgstr ""
 
-#: ../app/views/acls/index.html.erb:106
+#: ../app/views/acls/index.html.erb:109
 msgid "User"
 msgstr ""
 
@@ -1831,11 +1843,11 @@ msgstr "Részletek megjelenítése…"
 msgid "View Recent Events..."
 msgstr "Legutóbbi események megjelenítése…"
 
-#: ../app/controllers/wizard_controller.rb:326
+#: ../app/controllers/wizard_controller.rb:324
 msgid "Wizard templates and/or workflows are missing"
 msgstr "A varázsló sablonjai és/vagy munkafolyamatai hiányoznak"
 
-#: ../app/controllers/wizard_controller.rb:334
+#: ../app/controllers/wizard_controller.rb:332
 msgid "Workflow \"%s\" not found"
 msgstr "A(z) \"%s\" munkafolyamat nem található"
 
@@ -1863,7 +1875,7 @@ msgstr "Érték megadása kötelező"
 msgid "Your changes have been saved"
 msgstr "A változások mentése megtörtént"
 
-#: ../app/views/constraints/index.html.erb:153
+#: ../app/views/constraints/index.html.erb:156
 msgid "[Constraint is too complex to display]"
 msgstr "[A szabályok túl komplexek a megjelenítéshez]"
 

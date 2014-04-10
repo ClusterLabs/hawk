@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-31 21:39+1100\n"
+"POT-Creation-Date: 2014-04-10 15:20+1000\n"
 "PO-Revision-Date: 2014-05-02 16:27\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -123,31 +123,31 @@ msgstr "%{op} misslyckades på %{node} (rc=%{rc})"
 msgid "%{workflow}: %{step}"
 msgstr "%{workflow}: %{step}"
 
-#: ../app/views/resources/index.html.erb:186
+#: ../app/views/resources/index.html.erb:189
 msgid "(No clones defined)"
 msgstr "(Inga kloner har angetts)"
 
-#: ../app/views/constraints/index.html.erb:171
+#: ../app/views/constraints/index.html.erb:174
 msgid "(No colocation constraints defined)"
 msgstr "(Inga colocationbegränsningar definierade)"
 
-#: ../app/views/resources/index.html.erb:174
+#: ../app/views/resources/index.html.erb:177
 msgid "(No groups defined)"
 msgstr "(Inga grupper definierade)"
 
-#: ../app/views/constraints/index.html.erb:141
+#: ../app/views/constraints/index.html.erb:144
 msgid "(No location constraints defined)"
 msgstr "(Inga platsbegränsningar definierade)"
 
-#: ../app/views/resources/index.html.erb:198
+#: ../app/views/resources/index.html.erb:201
 msgid "(No master/slave resources defined)"
 msgstr "(Inga master-/slavresurser definierade)"
 
-#: ../app/views/constraints/index.html.erb:185
+#: ../app/views/constraints/index.html.erb:188
 msgid "(No order constraints defined)"
 msgstr "(Inga ordningsbegränsningar definierade)"
 
-#: ../app/views/resources/index.html.erb:148
+#: ../app/views/resources/index.html.erb:151
 msgid "(No primitive resources defined)"
 msgstr "(Inga primitivresurser definierade)"
 
@@ -156,11 +156,11 @@ msgstr "(Inga primitivresurser definierade)"
 msgid "(No roles defined)"
 msgstr "(Inga kloner har angetts)"
 
-#: ../app/views/resources/index.html.erb:161
+#: ../app/views/resources/index.html.erb:164
 msgid "(No templates defined)"
 msgstr "(Inga mallar definierade)"
 
-#: ../app/views/constraints/index.html.erb:200
+#: ../app/views/constraints/index.html.erb:203
 msgid "(No ticket constraints defined)"
 msgstr "(Inga biljettbegränsningar definierade)"
 
@@ -248,6 +248,10 @@ msgstr "Alla ändringar går förlorade. Vill du fortsätta?"
 #: ../app/views/clones/edit.html.erb:4 ../app/views/colocations/edit.html.erb:4 ../app/views/crm_config/edit.html.erb:113 ../app/views/groups/edit.html.erb:4 ../app/views/locations/edit.html.erb:4 ../app/views/masters/edit.html.erb:4 ../app/views/orders/edit.html.erb:4 ../app/views/primitives/edit.html.erb:4 ../app/views/roles/edit.html.erb:4 ../app/views/tickets/edit.html.erb:4 ../app/views/users/edit.html.erb:4
 msgid "Apply Changes"
 msgstr "Verkställ ändringar"
+
+#: ../app/views/acls/index.html.erb:61 ../app/views/constraints/index.html.erb:62 ../app/views/resources/index.html.erb:62
+msgid "Are you sure you wish to delete %s?"
+msgstr ""
 
 #: ../app/views/roles/_form.html.erb:44 ../app/views/users/_form.html.erb:54
 #, fuzzy
@@ -338,7 +342,7 @@ msgstr "Klass"
 msgid "Clean Up"
 msgstr "Rensa"
 
-#: ../app/views/resources/index.html.erb:121
+#: ../app/views/resources/index.html.erb:124
 msgid "Clone"
 msgstr "Klon"
 
@@ -346,7 +350,7 @@ msgstr "Klon"
 msgid "Clone ID"
 msgstr "Klon-ID"
 
-#: ../app/models/clone.rb:87
+#: ../app/models/clone.rb:86
 msgid "Clone ID \"%{id}\" does not exist"
 msgstr "Klon-ID \"%{id}\" finns inte"
 
@@ -398,7 +402,7 @@ msgstr "Klusterstatus"
 msgid "Cluster has errors - click for details"
 msgstr "Klustret har fel - klicka för information"
 
-#: ../app/views/constraints/index.html.erb:107
+#: ../app/views/constraints/index.html.erb:110
 msgid "Colocation"
 msgstr "Colocation"
 
@@ -422,7 +426,7 @@ msgstr "Tidsgränsen överskreds för anslutning till server - försöker igen v
 msgid "Constraint ID"
 msgstr "Begränsnings-ID"
 
-#: ../app/models/colocation.rb:81 ../app/models/location.rb:96 ../app/models/order.rb:107 ../app/models/ticket.rb:91
+#: ../app/models/colocation.rb:80 ../app/models/location.rb:95 ../app/models/order.rb:106 ../app/models/ticket.rb:90
 msgid "Constraint ID \"%{id}\" does not exist"
 msgstr "Begränsnings-ID \"%{id}\" finns inte"
 
@@ -647,11 +651,11 @@ msgstr "Fel vid anrop av cibadmin %{cmd}: %{msg}"
 msgid "Error invoking cibadmin --replace: %{msg}"
 msgstr "Fel vid anrop av cibadmin --replace: %{msg}"
 
-#: ../app/controllers/wizard_controller.rb:355
+#: ../app/controllers/wizard_controller.rb:353
 msgid "Error parsing template \"%s\""
 msgstr "Fel vid tolkning av mallen \"%s\""
 
-#: ../app/controllers/wizard_controller.rb:358
+#: ../app/controllers/wizard_controller.rb:356
 msgid "Error parsing workflow \"%s\""
 msgstr "Fel vid tolkning av arbetsflödet \"%s\""
 
@@ -727,7 +731,7 @@ msgstr "Beviljad [vänteläge]"
 msgid "Graph"
 msgstr "Graf"
 
-#: ../app/views/resources/index.html.erb:115
+#: ../app/views/resources/index.html.erb:118
 msgid "Group"
 msgstr "Grupp"
 
@@ -739,7 +743,7 @@ msgstr "Gruppera underordnade"
 msgid "Group ID"
 msgstr "Grupp-ID"
 
-#: ../app/models/group.rb:90
+#: ../app/models/group.rb:89
 msgid "Group ID \"%{id}\" does not exist"
 msgstr "Grupp-ID \"%{id}\" existerar inte"
 
@@ -828,7 +832,7 @@ msgstr "Senast beviljad: %s"
 msgid "Link set"
 msgstr "Länkuppsättning"
 
-#: ../app/views/constraints/index.html.erb:101
+#: ../app/views/constraints/index.html.erb:104
 msgid "Location"
 msgstr "Plats"
 
@@ -856,7 +860,7 @@ msgstr "Underhållsläge"
 msgid "Master"
 msgstr "Huvudserver"
 
-#: ../app/views/resources/index.html.erb:127
+#: ../app/views/resources/index.html.erb:130
 msgid "Master/Slave"
 msgstr "Master/slav"
 
@@ -864,7 +868,7 @@ msgstr "Master/slav"
 msgid "Master/Slave ID"
 msgstr "Master/slav-ID"
 
-#: ../app/models/master.rb:87
+#: ../app/models/master.rb:86
 msgid "Master/Slave ID \"%{id}\" does not exist"
 msgstr "Master/slav-ID \"%{id}\" finns inte"
 
@@ -892,23 +896,23 @@ msgstr "Flytta resursen %s"
 msgid "Move..."
 msgstr "Flytta..."
 
-#: ../app/views/resources/index.html.erb:120
+#: ../app/views/resources/index.html.erb:123
 msgid "New Clone"
 msgstr "Ny klon"
 
-#: ../app/views/constraints/index.html.erb:100 ../app/views/constraints/index.html.erb:106 ../app/views/constraints/index.html.erb:112 ../app/views/constraints/index.html.erb:119
+#: ../app/views/constraints/index.html.erb:103 ../app/views/constraints/index.html.erb:109 ../app/views/constraints/index.html.erb:115 ../app/views/constraints/index.html.erb:122
 msgid "New Constraint"
 msgstr "Ny begränsning"
 
-#: ../app/views/resources/index.html.erb:114
+#: ../app/views/resources/index.html.erb:117
 msgid "New Group"
 msgstr "Ny grupp"
 
-#: ../app/views/resources/index.html.erb:126
+#: ../app/views/resources/index.html.erb:129
 msgid "New Master/Slave"
 msgstr "Ny master/slav"
 
-#: ../app/views/resources/index.html.erb:100
+#: ../app/views/resources/index.html.erb:103
 msgid "New Resource"
 msgstr "Ny resurs"
 
@@ -917,11 +921,11 @@ msgstr "Ny resurs"
 msgid "New Role"
 msgstr "Ny klon"
 
-#: ../app/views/resources/index.html.erb:107
+#: ../app/views/resources/index.html.erb:110
 msgid "New Template"
 msgstr "Ny mall"
 
-#: ../app/views/acls/index.html.erb:105
+#: ../app/views/acls/index.html.erb:108
 msgid "New User"
 msgstr ""
 
@@ -1041,7 +1045,7 @@ msgstr "Åtgärd:"
 msgid "Operations"
 msgstr "Åtgärder"
 
-#: ../app/views/constraints/index.html.erb:113
+#: ../app/views/constraints/index.html.erb:116
 msgid "Order"
 msgstr "Ordning"
 
@@ -1089,7 +1093,7 @@ msgstr "Åtkomst nekades"
 msgid "Permission denied"
 msgstr "Åtkomst nekades"
 
-#: ../app/controllers/wizard_controller.rb:315
+#: ../app/controllers/wizard_controller.rb:313
 msgid "Permission denied - you do not have write access to the CIB."
 msgstr ""
 
@@ -1105,7 +1109,7 @@ msgstr "Tillstånd nekades. Logga in på %{node}"
 msgid "Please ensure JavaScript is enabled"
 msgstr "Se till att JavaScript är aktiverat"
 
-#: ../app/views/resources/index.html.erb:101
+#: ../app/views/resources/index.html.erb:104
 msgid "Primitive"
 msgstr "Primitiv"
 
@@ -1133,7 +1137,7 @@ msgstr "Ta bort"
 msgid "Remove Rule"
 msgstr "Ta bort regel"
 
-#: ../app/controllers/wizard_controller.rb:298
+#: ../app/controllers/wizard_controller.rb:296
 msgid "Required parameter \"%{param}\" not specified"
 msgstr "Den begärda parametern \"%{param}\" har inte angetts"
 
@@ -1183,7 +1187,7 @@ msgstr "Resursstandard"
 msgid "Resource ID"
 msgstr "Resurs-ID"
 
-#: ../app/models/primitive.rb:140 ../app/models/template.rb:140
+#: ../app/models/primitive.rb:139 ../app/models/template.rb:139
 msgid "Resource ID \"%{id}\" does not exist"
 msgstr "Resurs-ID:t \"%{id}\" finns inte"
 
@@ -1231,7 +1235,7 @@ msgstr "Återkallat [vänteläge]"
 msgid "Right"
 msgstr ""
 
-#: ../app/views/acls/index.html.erb:100 ../app/views/locations/_form.html.erb:44
+#: ../app/views/acls/index.html.erb:103 ../app/views/locations/_form.html.erb:44
 msgid "Role"
 msgstr "Roll"
 
@@ -1385,7 +1389,7 @@ msgstr "Tabellvy"
 msgid "Tag"
 msgstr ""
 
-#: ../app/views/resources/index.html.erb:108
+#: ../app/views/resources/index.html.erb:111
 msgid "Template"
 msgstr "Mall"
 
@@ -1495,7 +1499,7 @@ msgstr "Detta stoppar resursen%s. Vill du fortsätta?"
 msgid "This wizard will guide you through the steps necessary to add one of the following configurations to the cluster."
 msgstr "Den här guiden vägleder dig genom de steg som krävs för att lägga till någon av följande konfigurationer i klustret."
 
-#: ../app/views/constraints/index.html.erb:120
+#: ../app/views/constraints/index.html.erb:123
 msgid "Ticket"
 msgstr "Biljett"
 
@@ -1515,7 +1519,7 @@ msgstr "Tid"
 msgid "Timeout: Please try again"
 msgstr "Tidsgränsen överskreds: försök igen"
 
-#: ../app/views/acls/index.html.erb:127
+#: ../app/views/acls/index.html.erb:130
 msgid "To enable ACLs, set 'enable-acl' in the CRM Configuration"
 msgstr ""
 
@@ -1551,23 +1555,23 @@ msgstr "Det går inte att verkställa ändringarna: %{msg}"
 msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
 msgstr "Det går inte att ansluta till %{host}. Försök öppna %{url} i webbläsaren för att kontrollera att det går att komma åt Hawk."
 
-#: ../app/models/clone.rb:77
+#: ../app/models/clone.rb:76
 msgid "Unable to create clone: %{msg}"
 msgstr "Det går inte att skapa klon: %{msg}"
 
-#: ../app/models/colocation.rb:72 ../app/models/location.rb:87 ../app/models/order.rb:98 ../app/models/ticket.rb:82
+#: ../app/models/colocation.rb:71 ../app/models/location.rb:86 ../app/models/order.rb:97 ../app/models/ticket.rb:81
 msgid "Unable to create constraint: %{msg}"
 msgstr "Det går inte att skapa begränsning: %{msg}"
 
-#: ../app/models/group.rb:80
+#: ../app/models/group.rb:79
 msgid "Unable to create group: %{msg}"
 msgstr "Det går inte att skapa grupp: %{msg}"
 
-#: ../app/models/master.rb:77
+#: ../app/models/master.rb:76
 msgid "Unable to create master/slave: %{msg}"
 msgstr "Det går inte att skapa master/slav: %{msg}"
 
-#: ../app/models/primitive.rb:130 ../app/models/template.rb:130
+#: ../app/models/primitive.rb:129 ../app/models/template.rb:129
 msgid "Unable to create resource: %{msg}"
 msgstr "Det går inte att skapa resurs: %{msg}"
 
@@ -1597,7 +1601,7 @@ msgstr "Det går inte att analysera CIB-filen \"%{path}\""
 msgid "Unable to parse cibadmin output"
 msgstr "Det går inte att analysera cibadmin-utdata"
 
-#: ../app/models/colocation.rb:91 ../app/models/location.rb:108 ../app/models/order.rb:117 ../app/models/ticket.rb:101
+#: ../app/models/colocation.rb:90 ../app/models/location.rb:107 ../app/models/order.rb:116 ../app/models/ticket.rb:100
 msgid "Unable to update constraint: %{msg}"
 msgstr "Det går inte att uppdatera begränsningen: %{msg}"
 
@@ -1635,7 +1639,7 @@ msgstr ""
 msgid "Use Template"
 msgstr "Använd mall"
 
-#: ../app/views/acls/index.html.erb:106
+#: ../app/views/acls/index.html.erb:109
 msgid "User"
 msgstr ""
 
@@ -1698,11 +1702,11 @@ msgstr "Visa detaljer..."
 msgid "View Recent Events..."
 msgstr "Visa senaste händelser..."
 
-#: ../app/controllers/wizard_controller.rb:326
+#: ../app/controllers/wizard_controller.rb:324
 msgid "Wizard templates and/or workflows are missing"
 msgstr "Mallar och/eller arbetsflöden för guiden saknas"
 
-#: ../app/controllers/wizard_controller.rb:334
+#: ../app/controllers/wizard_controller.rb:332
 msgid "Workflow \"%s\" not found"
 msgstr "Arbetsflödet \"%s\" hittades inte"
 
@@ -1730,7 +1734,7 @@ msgstr "Du måste ange ett värde"
 msgid "Your changes have been saved"
 msgstr "Ändringarna har sparats"
 
-#: ../app/views/constraints/index.html.erb:153
+#: ../app/views/constraints/index.html.erb:156
 msgid "[Constraint is too complex to display]"
 msgstr "[Begränsningen är för komplex att visa]"
 

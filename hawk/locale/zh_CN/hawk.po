@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-31 21:39+1100\n"
+"POT-Creation-Date: 2014-04-10 15:20+1000\n"
 "PO-Revision-Date: 2014-05-02 16:47\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -123,31 +123,31 @@ msgstr "%{node} 上的 %{op} 失败 (rc=%{rc})"
 msgid "%{workflow}: %{step}"
 msgstr "%{workflow}：%{step}"
 
-#: ../app/views/resources/index.html.erb:186
+#: ../app/views/resources/index.html.erb:189
 msgid "(No clones defined)"
 msgstr "（未定义克隆）"
 
-#: ../app/views/constraints/index.html.erb:171
+#: ../app/views/constraints/index.html.erb:174
 msgid "(No colocation constraints defined)"
 msgstr "（未定义任何共置约束）"
 
-#: ../app/views/resources/index.html.erb:174
+#: ../app/views/resources/index.html.erb:177
 msgid "(No groups defined)"
 msgstr "（未定义组）"
 
-#: ../app/views/constraints/index.html.erb:141
+#: ../app/views/constraints/index.html.erb:144
 msgid "(No location constraints defined)"
 msgstr "（未定义任何位置约束）"
 
-#: ../app/views/resources/index.html.erb:198
+#: ../app/views/resources/index.html.erb:201
 msgid "(No master/slave resources defined)"
 msgstr "（未定义主/从资源）"
 
-#: ../app/views/constraints/index.html.erb:185
+#: ../app/views/constraints/index.html.erb:188
 msgid "(No order constraints defined)"
 msgstr "（未定义任何顺序约束）"
 
-#: ../app/views/resources/index.html.erb:148
+#: ../app/views/resources/index.html.erb:151
 msgid "(No primitive resources defined)"
 msgstr "（未定义基元资源）"
 
@@ -156,11 +156,11 @@ msgstr "（未定义基元资源）"
 msgid "(No roles defined)"
 msgstr "（未定义克隆）"
 
-#: ../app/views/resources/index.html.erb:161
+#: ../app/views/resources/index.html.erb:164
 msgid "(No templates defined)"
 msgstr "（未定义模板）"
 
-#: ../app/views/constraints/index.html.erb:200
+#: ../app/views/constraints/index.html.erb:203
 msgid "(No ticket constraints defined)"
 msgstr "（未定义票据约束）"
 
@@ -246,6 +246,10 @@ msgstr "所有更改都会丢失 - 是否继续？"
 #: ../app/views/clones/edit.html.erb:4 ../app/views/colocations/edit.html.erb:4 ../app/views/crm_config/edit.html.erb:113 ../app/views/groups/edit.html.erb:4 ../app/views/locations/edit.html.erb:4 ../app/views/masters/edit.html.erb:4 ../app/views/orders/edit.html.erb:4 ../app/views/primitives/edit.html.erb:4 ../app/views/roles/edit.html.erb:4 ../app/views/tickets/edit.html.erb:4 ../app/views/users/edit.html.erb:4
 msgid "Apply Changes"
 msgstr "应用更改"
+
+#: ../app/views/acls/index.html.erb:61 ../app/views/constraints/index.html.erb:62 ../app/views/resources/index.html.erb:62
+msgid "Are you sure you wish to delete %s?"
+msgstr ""
 
 #: ../app/views/roles/_form.html.erb:44 ../app/views/users/_form.html.erb:54
 #, fuzzy
@@ -336,7 +340,7 @@ msgstr "类"
 msgid "Clean Up"
 msgstr "清理"
 
-#: ../app/views/resources/index.html.erb:121
+#: ../app/views/resources/index.html.erb:124
 msgid "Clone"
 msgstr "复制"
 
@@ -344,7 +348,7 @@ msgstr "复制"
 msgid "Clone ID"
 msgstr "克隆 ID"
 
-#: ../app/models/clone.rb:87
+#: ../app/models/clone.rb:86
 msgid "Clone ID \"%{id}\" does not exist"
 msgstr "克隆 ID“%{id}”不存在"
 
@@ -396,7 +400,7 @@ msgstr "群集状态"
 msgid "Cluster has errors - click for details"
 msgstr "群集存在错误 - 单击查看详情"
 
-#: ../app/views/constraints/index.html.erb:107
+#: ../app/views/constraints/index.html.erb:110
 msgid "Colocation"
 msgstr "共置"
 
@@ -420,7 +424,7 @@ msgstr "与服务器的连接已超时 - 将每 15 秒重试一次。"
 msgid "Constraint ID"
 msgstr "约束 ID"
 
-#: ../app/models/colocation.rb:81 ../app/models/location.rb:96 ../app/models/order.rb:107 ../app/models/ticket.rb:91
+#: ../app/models/colocation.rb:80 ../app/models/location.rb:95 ../app/models/order.rb:106 ../app/models/ticket.rb:90
 msgid "Constraint ID \"%{id}\" does not exist"
 msgstr "约束 ID“%{id}”不存在"
 
@@ -645,11 +649,11 @@ msgstr "调用 cibadmin %{cmd} 时出错：%{msg}"
 msgid "Error invoking cibadmin --replace: %{msg}"
 msgstr "调用 cibadmin --replace 时出错：%{msg}"
 
-#: ../app/controllers/wizard_controller.rb:355
+#: ../app/controllers/wizard_controller.rb:353
 msgid "Error parsing template \"%s\""
 msgstr "分析模板“%s”时出错"
 
-#: ../app/controllers/wizard_controller.rb:358
+#: ../app/controllers/wizard_controller.rb:356
 msgid "Error parsing workflow \"%s\""
 msgstr "分析工作流程“%s”时出错"
 
@@ -725,7 +729,7 @@ msgstr "已授予 [待机]"
 msgid "Graph"
 msgstr "图形"
 
-#: ../app/views/resources/index.html.erb:115
+#: ../app/views/resources/index.html.erb:118
 msgid "Group"
 msgstr "组"
 
@@ -737,7 +741,7 @@ msgstr "组子项"
 msgid "Group ID"
 msgstr "组 ID"
 
-#: ../app/models/group.rb:90
+#: ../app/models/group.rb:89
 msgid "Group ID \"%{id}\" does not exist"
 msgstr "组 ID“%{id}”不存在"
 
@@ -826,7 +830,7 @@ msgstr "上次授予：%s"
 msgid "Link set"
 msgstr "链路集"
 
-#: ../app/views/constraints/index.html.erb:101
+#: ../app/views/constraints/index.html.erb:104
 msgid "Location"
 msgstr "位置"
 
@@ -854,7 +858,7 @@ msgstr "维护模式"
 msgid "Master"
 msgstr "主"
 
-#: ../app/views/resources/index.html.erb:127
+#: ../app/views/resources/index.html.erb:130
 msgid "Master/Slave"
 msgstr "主/从"
 
@@ -862,7 +866,7 @@ msgstr "主/从"
 msgid "Master/Slave ID"
 msgstr "主/从 ID"
 
-#: ../app/models/master.rb:87
+#: ../app/models/master.rb:86
 msgid "Master/Slave ID \"%{id}\" does not exist"
 msgstr "主/从 ID“%{id}”不存在"
 
@@ -890,23 +894,23 @@ msgstr "移动资源 %s"
 msgid "Move..."
 msgstr "移动..."
 
-#: ../app/views/resources/index.html.erb:120
+#: ../app/views/resources/index.html.erb:123
 msgid "New Clone"
 msgstr "新建克隆"
 
-#: ../app/views/constraints/index.html.erb:100 ../app/views/constraints/index.html.erb:106 ../app/views/constraints/index.html.erb:112 ../app/views/constraints/index.html.erb:119
+#: ../app/views/constraints/index.html.erb:103 ../app/views/constraints/index.html.erb:109 ../app/views/constraints/index.html.erb:115 ../app/views/constraints/index.html.erb:122
 msgid "New Constraint"
 msgstr "新建约束"
 
-#: ../app/views/resources/index.html.erb:114
+#: ../app/views/resources/index.html.erb:117
 msgid "New Group"
 msgstr "新建组"
 
-#: ../app/views/resources/index.html.erb:126
+#: ../app/views/resources/index.html.erb:129
 msgid "New Master/Slave"
 msgstr "新建主/从"
 
-#: ../app/views/resources/index.html.erb:100
+#: ../app/views/resources/index.html.erb:103
 msgid "New Resource"
 msgstr "新资源"
 
@@ -915,11 +919,11 @@ msgstr "新资源"
 msgid "New Role"
 msgstr "新建克隆"
 
-#: ../app/views/resources/index.html.erb:107
+#: ../app/views/resources/index.html.erb:110
 msgid "New Template"
 msgstr "新模板"
 
-#: ../app/views/acls/index.html.erb:105
+#: ../app/views/acls/index.html.erb:108
 msgid "New User"
 msgstr ""
 
@@ -1039,7 +1043,7 @@ msgstr "操作："
 msgid "Operations"
 msgstr "操作"
 
-#: ../app/views/constraints/index.html.erb:113
+#: ../app/views/constraints/index.html.erb:116
 msgid "Order"
 msgstr "顺序"
 
@@ -1087,7 +1091,7 @@ msgstr "权限被拒"
 msgid "Permission denied"
 msgstr "权限被拒"
 
-#: ../app/controllers/wizard_controller.rb:315
+#: ../app/controllers/wizard_controller.rb:313
 msgid "Permission denied - you do not have write access to the CIB."
 msgstr ""
 
@@ -1103,7 +1107,7 @@ msgstr "权限被拒绝。请登录 %{node}"
 msgid "Please ensure JavaScript is enabled"
 msgstr "请确保已启用 JavaScript"
 
-#: ../app/views/resources/index.html.erb:101
+#: ../app/views/resources/index.html.erb:104
 msgid "Primitive"
 msgstr "基元"
 
@@ -1131,7 +1135,7 @@ msgstr "删除"
 msgid "Remove Rule"
 msgstr "删除规则"
 
-#: ../app/controllers/wizard_controller.rb:298
+#: ../app/controllers/wizard_controller.rb:296
 msgid "Required parameter \"%{param}\" not specified"
 msgstr "未指定必需参数“%{param}”"
 
@@ -1181,7 +1185,7 @@ msgstr "默认资源"
 msgid "Resource ID"
 msgstr "资源 ID"
 
-#: ../app/models/primitive.rb:140 ../app/models/template.rb:140
+#: ../app/models/primitive.rb:139 ../app/models/template.rb:139
 msgid "Resource ID \"%{id}\" does not exist"
 msgstr "资源 ID“%{id}”不存在"
 
@@ -1229,7 +1233,7 @@ msgstr "已撤销 [待机]"
 msgid "Right"
 msgstr ""
 
-#: ../app/views/acls/index.html.erb:100 ../app/views/locations/_form.html.erb:44
+#: ../app/views/acls/index.html.erb:103 ../app/views/locations/_form.html.erb:44
 msgid "Role"
 msgstr "角色"
 
@@ -1383,7 +1387,7 @@ msgstr "表视图"
 msgid "Tag"
 msgstr ""
 
-#: ../app/views/resources/index.html.erb:108
+#: ../app/views/resources/index.html.erb:111
 msgid "Template"
 msgstr "模板"
 
@@ -1493,7 +1497,7 @@ msgstr "此操作将停止资源 %s。要继续吗？"
 msgid "This wizard will guide you through the steps necessary to add one of the following configurations to the cluster."
 msgstr "此向导将引导您执行所需的步骤以向群集中添加下列某个配置。"
 
-#: ../app/views/constraints/index.html.erb:120
+#: ../app/views/constraints/index.html.erb:123
 msgid "Ticket"
 msgstr "票据"
 
@@ -1513,7 +1517,7 @@ msgstr "时间"
 msgid "Timeout: Please try again"
 msgstr "超时：请重试"
 
-#: ../app/views/acls/index.html.erb:127
+#: ../app/views/acls/index.html.erb:130
 msgid "To enable ACLs, set 'enable-acl' in the CRM Configuration"
 msgstr ""
 
@@ -1549,23 +1553,23 @@ msgstr "无法应用更改：%{msg}"
 msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
 msgstr "无法连接 %{host}。请尝试在 Web 浏览器中打开 %{url} 以确保可以访问 Hawk。"
 
-#: ../app/models/clone.rb:77
+#: ../app/models/clone.rb:76
 msgid "Unable to create clone: %{msg}"
 msgstr "无法创建克隆：%{msg}"
 
-#: ../app/models/colocation.rb:72 ../app/models/location.rb:87 ../app/models/order.rb:98 ../app/models/ticket.rb:82
+#: ../app/models/colocation.rb:71 ../app/models/location.rb:86 ../app/models/order.rb:97 ../app/models/ticket.rb:81
 msgid "Unable to create constraint: %{msg}"
 msgstr "无法创建约束：%{msg}"
 
-#: ../app/models/group.rb:80
+#: ../app/models/group.rb:79
 msgid "Unable to create group: %{msg}"
 msgstr "无法创建组：%{msg}"
 
-#: ../app/models/master.rb:77
+#: ../app/models/master.rb:76
 msgid "Unable to create master/slave: %{msg}"
 msgstr "无法创建主/从：%{msg}"
 
-#: ../app/models/primitive.rb:130 ../app/models/template.rb:130
+#: ../app/models/primitive.rb:129 ../app/models/template.rb:129
 msgid "Unable to create resource: %{msg}"
 msgstr "无法创建资源：%{msg}"
 
@@ -1595,7 +1599,7 @@ msgstr "无法分析 CIB 文件“%{path}”"
 msgid "Unable to parse cibadmin output"
 msgstr "无法分析 cibadmin 输出"
 
-#: ../app/models/colocation.rb:91 ../app/models/location.rb:108 ../app/models/order.rb:117 ../app/models/ticket.rb:101
+#: ../app/models/colocation.rb:90 ../app/models/location.rb:107 ../app/models/order.rb:116 ../app/models/ticket.rb:100
 msgid "Unable to update constraint: %{msg}"
 msgstr "无法更新约束：%{msg}"
 
@@ -1633,7 +1637,7 @@ msgstr ""
 msgid "Use Template"
 msgstr "使用模板"
 
-#: ../app/views/acls/index.html.erb:106
+#: ../app/views/acls/index.html.erb:109
 msgid "User"
 msgstr ""
 
@@ -1696,11 +1700,11 @@ msgstr "查看细节..."
 msgid "View Recent Events..."
 msgstr "查看最近的事件..."
 
-#: ../app/controllers/wizard_controller.rb:326
+#: ../app/controllers/wizard_controller.rb:324
 msgid "Wizard templates and/or workflows are missing"
 msgstr "缺少向导模板和/或工作流程"
 
-#: ../app/controllers/wizard_controller.rb:334
+#: ../app/controllers/wizard_controller.rb:332
 msgid "Workflow \"%s\" not found"
 msgstr "找不到工作流程“%s”"
 
@@ -1728,7 +1732,7 @@ msgstr "必须输入一个值"
 msgid "Your changes have been saved"
 msgstr "您的更改已保存"
 
-#: ../app/views/constraints/index.html.erb:153
+#: ../app/views/constraints/index.html.erb:156
 msgid "[Constraint is too complex to display]"
 msgstr "[约束过于复杂，无法显示]"
 

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-03-31 21:39+1100\n"
+"POT-Creation-Date: 2014-04-10 15:20+1000\n"
 "PO-Revision-Date: 2014-05-02 16:46\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -123,31 +123,31 @@ msgstr "Falha de %{op} em %{node} (rc=%{rc})"
 msgid "%{workflow}: %{step}"
 msgstr "%{workflow}: %{step}"
 
-#: ../app/views/resources/index.html.erb:186
+#: ../app/views/resources/index.html.erb:189
 msgid "(No clones defined)"
 msgstr "(Nenhum clone definido)"
 
-#: ../app/views/constraints/index.html.erb:171
+#: ../app/views/constraints/index.html.erb:174
 msgid "(No colocation constraints defined)"
 msgstr "(Nenhuma restrição de colocation definida)"
 
-#: ../app/views/resources/index.html.erb:174
+#: ../app/views/resources/index.html.erb:177
 msgid "(No groups defined)"
 msgstr "(Nenhum grupo definido)"
 
-#: ../app/views/constraints/index.html.erb:141
+#: ../app/views/constraints/index.html.erb:144
 msgid "(No location constraints defined)"
 msgstr "(Nenhuma restrição de localização definida)"
 
-#: ../app/views/resources/index.html.erb:198
+#: ../app/views/resources/index.html.erb:201
 msgid "(No master/slave resources defined)"
 msgstr "(Nenhum recurso master/escravo definido)"
 
-#: ../app/views/constraints/index.html.erb:185
+#: ../app/views/constraints/index.html.erb:188
 msgid "(No order constraints defined)"
 msgstr "(Nenhuma restrição de ordem definida)"
 
-#: ../app/views/resources/index.html.erb:148
+#: ../app/views/resources/index.html.erb:151
 msgid "(No primitive resources defined)"
 msgstr "(Nenhum recurso primitivo definido)"
 
@@ -156,11 +156,11 @@ msgstr "(Nenhum recurso primitivo definido)"
 msgid "(No roles defined)"
 msgstr "(Nenhum clone definido)"
 
-#: ../app/views/resources/index.html.erb:161
+#: ../app/views/resources/index.html.erb:164
 msgid "(No templates defined)"
 msgstr "(Nenhum gabarito definido)"
 
-#: ../app/views/constraints/index.html.erb:200
+#: ../app/views/constraints/index.html.erb:203
 msgid "(No ticket constraints defined)"
 msgstr "(Nenhuma restrição de ticket definida)"
 
@@ -248,6 +248,10 @@ msgstr "Qualquer mudança será perdida. Deseja continuar?"
 #: ../app/views/clones/edit.html.erb:4 ../app/views/colocations/edit.html.erb:4 ../app/views/crm_config/edit.html.erb:113 ../app/views/groups/edit.html.erb:4 ../app/views/locations/edit.html.erb:4 ../app/views/masters/edit.html.erb:4 ../app/views/orders/edit.html.erb:4 ../app/views/primitives/edit.html.erb:4 ../app/views/roles/edit.html.erb:4 ../app/views/tickets/edit.html.erb:4 ../app/views/users/edit.html.erb:4
 msgid "Apply Changes"
 msgstr "Aplicar Mudanças"
+
+#: ../app/views/acls/index.html.erb:61 ../app/views/constraints/index.html.erb:62 ../app/views/resources/index.html.erb:62
+msgid "Are you sure you wish to delete %s?"
+msgstr ""
 
 #: ../app/views/roles/_form.html.erb:44 ../app/views/users/_form.html.erb:54
 #, fuzzy
@@ -338,7 +342,7 @@ msgstr "Classe"
 msgid "Clean Up"
 msgstr "Limpar"
 
-#: ../app/views/resources/index.html.erb:121
+#: ../app/views/resources/index.html.erb:124
 msgid "Clone"
 msgstr "Clonar"
 
@@ -346,7 +350,7 @@ msgstr "Clonar"
 msgid "Clone ID"
 msgstr "ID do Clone"
 
-#: ../app/models/clone.rb:87
+#: ../app/models/clone.rb:86
 msgid "Clone ID \"%{id}\" does not exist"
 msgstr "O ID de clone \"%{id}\" não existe"
 
@@ -398,7 +402,7 @@ msgstr "Status do Cluster"
 msgid "Cluster has errors - click for details"
 msgstr "Cluster com erros - clique para ver os detalhes"
 
-#: ../app/views/constraints/index.html.erb:107
+#: ../app/views/constraints/index.html.erb:110
 msgid "Colocation"
 msgstr "Colocation"
 
@@ -422,7 +426,7 @@ msgstr "Tempo de espera de conexão com o servidor esgotado - será repetida a c
 msgid "Constraint ID"
 msgstr "ID da Restrição"
 
-#: ../app/models/colocation.rb:81 ../app/models/location.rb:96 ../app/models/order.rb:107 ../app/models/ticket.rb:91
+#: ../app/models/colocation.rb:80 ../app/models/location.rb:95 ../app/models/order.rb:106 ../app/models/ticket.rb:90
 msgid "Constraint ID \"%{id}\" does not exist"
 msgstr "O ID de restrição \"%{id}\" não existe"
 
@@ -647,11 +651,11 @@ msgstr "Erro ao chamar cibadmin %{cmd}: %{msg}"
 msgid "Error invoking cibadmin --replace: %{msg}"
 msgstr "Erro ao chamar cibadmin --replace: %{msg}"
 
-#: ../app/controllers/wizard_controller.rb:355
+#: ../app/controllers/wizard_controller.rb:353
 msgid "Error parsing template \"%s\""
 msgstr "Erro ao analisar o gabarito \"%s\""
 
-#: ../app/controllers/wizard_controller.rb:358
+#: ../app/controllers/wizard_controller.rb:356
 msgid "Error parsing workflow \"%s\""
 msgstr "Erro ao analisar o workflow \"%s\""
 
@@ -727,7 +731,7 @@ msgstr "Concedido [standby]"
 msgid "Graph"
 msgstr "Gráfico"
 
-#: ../app/views/resources/index.html.erb:115
+#: ../app/views/resources/index.html.erb:118
 msgid "Group"
 msgstr "Grupo"
 
@@ -739,7 +743,7 @@ msgstr "Agrupar Filhos"
 msgid "Group ID"
 msgstr "ID do Grupo"
 
-#: ../app/models/group.rb:90
+#: ../app/models/group.rb:89
 msgid "Group ID \"%{id}\" does not exist"
 msgstr "ID de grupo \"%{id}\" inexistente"
 
@@ -828,7 +832,7 @@ msgstr "Última concessão: %s"
 msgid "Link set"
 msgstr "Vínculo definido"
 
-#: ../app/views/constraints/index.html.erb:101
+#: ../app/views/constraints/index.html.erb:104
 msgid "Location"
 msgstr "Localização"
 
@@ -856,7 +860,7 @@ msgstr "Modo Manutenção"
 msgid "Master"
 msgstr "Master"
 
-#: ../app/views/resources/index.html.erb:127
+#: ../app/views/resources/index.html.erb:130
 msgid "Master/Slave"
 msgstr "Master/Escravo"
 
@@ -864,7 +868,7 @@ msgstr "Master/Escravo"
 msgid "Master/Slave ID"
 msgstr "ID de Master/Escravo"
 
-#: ../app/models/master.rb:87
+#: ../app/models/master.rb:86
 msgid "Master/Slave ID \"%{id}\" does not exist"
 msgstr "O ID de Master/Escravo \"%{id}\" não existe"
 
@@ -892,23 +896,23 @@ msgstr "Mover recurso %s"
 msgid "Move..."
 msgstr "Mover..."
 
-#: ../app/views/resources/index.html.erb:120
+#: ../app/views/resources/index.html.erb:123
 msgid "New Clone"
 msgstr "Novo Clone"
 
-#: ../app/views/constraints/index.html.erb:100 ../app/views/constraints/index.html.erb:106 ../app/views/constraints/index.html.erb:112 ../app/views/constraints/index.html.erb:119
+#: ../app/views/constraints/index.html.erb:103 ../app/views/constraints/index.html.erb:109 ../app/views/constraints/index.html.erb:115 ../app/views/constraints/index.html.erb:122
 msgid "New Constraint"
 msgstr "Nova Restrição"
 
-#: ../app/views/resources/index.html.erb:114
+#: ../app/views/resources/index.html.erb:117
 msgid "New Group"
 msgstr "Novo Grupo"
 
-#: ../app/views/resources/index.html.erb:126
+#: ../app/views/resources/index.html.erb:129
 msgid "New Master/Slave"
 msgstr "Novo Master/Escravo"
 
-#: ../app/views/resources/index.html.erb:100
+#: ../app/views/resources/index.html.erb:103
 msgid "New Resource"
 msgstr "Novo Recurso"
 
@@ -917,11 +921,11 @@ msgstr "Novo Recurso"
 msgid "New Role"
 msgstr "Novo Clone"
 
-#: ../app/views/resources/index.html.erb:107
+#: ../app/views/resources/index.html.erb:110
 msgid "New Template"
 msgstr "Novo Gabarito"
 
-#: ../app/views/acls/index.html.erb:105
+#: ../app/views/acls/index.html.erb:108
 msgid "New User"
 msgstr ""
 
@@ -1041,7 +1045,7 @@ msgstr "Operação:"
 msgid "Operations"
 msgstr "Operações"
 
-#: ../app/views/constraints/index.html.erb:113
+#: ../app/views/constraints/index.html.erb:116
 msgid "Order"
 msgstr "Ordem"
 
@@ -1089,7 +1093,7 @@ msgstr "Permissão Negada"
 msgid "Permission denied"
 msgstr "Permissão negada"
 
-#: ../app/controllers/wizard_controller.rb:315
+#: ../app/controllers/wizard_controller.rb:313
 msgid "Permission denied - you do not have write access to the CIB."
 msgstr ""
 
@@ -1105,7 +1109,7 @@ msgstr "Permissão negada. Efetue login no %{node}"
 msgid "Please ensure JavaScript is enabled"
 msgstr "Verifique se o JavaScript está habilitado"
 
-#: ../app/views/resources/index.html.erb:101
+#: ../app/views/resources/index.html.erb:104
 msgid "Primitive"
 msgstr "Primitivo"
 
@@ -1133,7 +1137,7 @@ msgstr "Remover"
 msgid "Remove Rule"
 msgstr "Remover Regra"
 
-#: ../app/controllers/wizard_controller.rb:298
+#: ../app/controllers/wizard_controller.rb:296
 msgid "Required parameter \"%{param}\" not specified"
 msgstr "Parâmetro \"%{param}\" obrigatório não especificado"
 
@@ -1183,7 +1187,7 @@ msgstr "Padrões de Recursos"
 msgid "Resource ID"
 msgstr "ID do Recurso"
 
-#: ../app/models/primitive.rb:140 ../app/models/template.rb:140
+#: ../app/models/primitive.rb:139 ../app/models/template.rb:139
 msgid "Resource ID \"%{id}\" does not exist"
 msgstr "O ID de recurso \"%{id}\" não existe"
 
@@ -1231,7 +1235,7 @@ msgstr "Revogado [standby]"
 msgid "Right"
 msgstr ""
 
-#: ../app/views/acls/index.html.erb:100 ../app/views/locations/_form.html.erb:44
+#: ../app/views/acls/index.html.erb:103 ../app/views/locations/_form.html.erb:44
 msgid "Role"
 msgstr "Função"
 
@@ -1385,7 +1389,7 @@ msgstr "Tela de Tabela"
 msgid "Tag"
 msgstr ""
 
-#: ../app/views/resources/index.html.erb:108
+#: ../app/views/resources/index.html.erb:111
 msgid "Template"
 msgstr "Gabarito"
 
@@ -1495,7 +1499,7 @@ msgstr "O recurso %s será interrompido. Deseja continuar?"
 msgid "This wizard will guide you through the steps necessary to add one of the following configurations to the cluster."
 msgstr "Este assistente o guiará pelas etapas necessárias para adicionar uma das seguintes configurações ao cluster."
 
-#: ../app/views/constraints/index.html.erb:120
+#: ../app/views/constraints/index.html.erb:123
 msgid "Ticket"
 msgstr "Ticket"
 
@@ -1515,7 +1519,7 @@ msgstr "Tempo"
 msgid "Timeout: Please try again"
 msgstr "Tempo de espera: Tente novamente"
 
-#: ../app/views/acls/index.html.erb:127
+#: ../app/views/acls/index.html.erb:130
 msgid "To enable ACLs, set 'enable-acl' in the CRM Configuration"
 msgstr ""
 
@@ -1551,23 +1555,23 @@ msgstr "Impossível aplicar as mudanças: %{msg}"
 msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
 msgstr "Impossível se conectar ao %{host}. Tente abrir o %{url} no browser da Web para verificar se o Hawk está acessível."
 
-#: ../app/models/clone.rb:77
+#: ../app/models/clone.rb:76
 msgid "Unable to create clone: %{msg}"
 msgstr "Impossível criar o clone: %{msg}"
 
-#: ../app/models/colocation.rb:72 ../app/models/location.rb:87 ../app/models/order.rb:98 ../app/models/ticket.rb:82
+#: ../app/models/colocation.rb:71 ../app/models/location.rb:86 ../app/models/order.rb:97 ../app/models/ticket.rb:81
 msgid "Unable to create constraint: %{msg}"
 msgstr "Impossível criar a restrição: %{msg}"
 
-#: ../app/models/group.rb:80
+#: ../app/models/group.rb:79
 msgid "Unable to create group: %{msg}"
 msgstr "Impossível criar o grupo: %{msg}"
 
-#: ../app/models/master.rb:77
+#: ../app/models/master.rb:76
 msgid "Unable to create master/slave: %{msg}"
 msgstr "Impossível criar master/escravo: %{msg}"
 
-#: ../app/models/primitive.rb:130 ../app/models/template.rb:130
+#: ../app/models/primitive.rb:129 ../app/models/template.rb:129
 msgid "Unable to create resource: %{msg}"
 msgstr "Impossível criar o recurso: %{msg}"
 
@@ -1597,7 +1601,7 @@ msgstr "Impossível analisar arquivo CIB \"%{path}\""
 msgid "Unable to parse cibadmin output"
 msgstr "Impossível analisar saída de cibadmin"
 
-#: ../app/models/colocation.rb:91 ../app/models/location.rb:108 ../app/models/order.rb:117 ../app/models/ticket.rb:101
+#: ../app/models/colocation.rb:90 ../app/models/location.rb:107 ../app/models/order.rb:116 ../app/models/ticket.rb:100
 msgid "Unable to update constraint: %{msg}"
 msgstr "Impossível atualizar a restrição: %{msg}"
 
@@ -1635,7 +1639,7 @@ msgstr ""
 msgid "Use Template"
 msgstr "Usar Gabarito"
 
-#: ../app/views/acls/index.html.erb:106
+#: ../app/views/acls/index.html.erb:109
 msgid "User"
 msgstr ""
 
@@ -1698,11 +1702,11 @@ msgstr "Ver Detalhes..."
 msgid "View Recent Events..."
 msgstr "Ver Eventos Recentes..."
 
-#: ../app/controllers/wizard_controller.rb:326
+#: ../app/controllers/wizard_controller.rb:324
 msgid "Wizard templates and/or workflows are missing"
 msgstr "Faltam workflows e/ou gabaritos de assistente"
 
-#: ../app/controllers/wizard_controller.rb:334
+#: ../app/controllers/wizard_controller.rb:332
 msgid "Workflow \"%s\" not found"
 msgstr "Workflow \"%s\" não encontrado"
 
@@ -1730,7 +1734,7 @@ msgstr "É preciso digitar um valor"
 msgid "Your changes have been saved"
 msgstr "Suas mudanças foram gravadas"
 
-#: ../app/views/constraints/index.html.erb:153
+#: ../app/views/constraints/index.html.erb:156
 msgid "[Constraint is too complex to display]"
 msgstr "[Restrição complexa demais para exibir]"
 
