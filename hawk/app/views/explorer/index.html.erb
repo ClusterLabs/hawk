@@ -24,12 +24,14 @@ $(function() {
 <% end %>
   $("#filter").submit(function() {
     $(".cache").hide();
+    $("#upload-form").hide();
     $("#pe-list").children().remove();
   });
   $(".cache a.display").click(function(event) {
     // Clicking any cache link puts chosen times into form, hides all
     // cached lines and updates the display.  Not quite optimal, but workable.
     $(".cache").hide();
+    $("#upload-form").hide();
     $("#from_time").val($(this).parent().prev().prev().prev().text());
     $("#to_time").val($(this).parent().prev().text());
   });
@@ -176,8 +178,10 @@ function dialogify_detail_links() {
 <% unless params[:display] %>
 <%= form_tag(explorer_path, :multipart => true) do %>
 <%= hidden_field_tag "display", "true" %>
-<hr>
-<table style="width: 100%">
+<table id="upload-form" style="width: 100%; <%= @hb_report.running? ? "display: none;" : "" %>">
+<tr>
+<td colspan="3"><hr/></td>
+</tr>
 <tr>
 <td><%=h _("Upload hb_report tarball") %></td>
 <td><%= file_field_tag :uploaded_report %></td>
