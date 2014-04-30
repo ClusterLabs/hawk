@@ -38,16 +38,9 @@ class ApplicationController < ActionController::Base
   before_filter :set_users_locale
 
   def set_users_locale
-    I18n.locale = FastGettext.set_locale(params[:locale] || request.env['HTTP_ACCEPT_LANGUAGE'] || 'en_US')
-    # TODO(should): In future we may want an option to explicitly set locale,
-    # in which case it sould go in the locale cookie, as below:
-=begin
+    # the locale cookie is set via JS in the preferences dialog
     I18n.locale = FastGettext.set_locale(params[:locale] || cookies[:locale] ||
       request.env['HTTP_ACCEPT_LANGUAGE'] || 'en_US')
-    cookies[:locale] = I18n.locale if cookies[:locale] != I18n.locale.to_s
-=end
-    # Note if we do do an options screen, the locale cookie should be made
-    # persistent
   end
 
   helper :all # include all helpers, all the time

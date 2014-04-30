@@ -103,6 +103,67 @@ $(function() {
       }
     }
     <% end %>
+    ,
+    {
+      separator: true
+    },
+    {
+      label: "<%=h escape_javascript _('Preferences...') %>",
+      icon: "config.png",
+      click: function(target) {
+        // TODO(should): Autogenerate this from locales directory
+        var locales = {
+          "Arabic":             "ar",
+          "Chinese/China":      "zh_CN",
+          "Chinese/Taiwan":     "zh_TW",
+          "Czech":              "cs",
+          "Dutch":              "nl",
+          "English":            "en",
+          "French":             "fr",
+          "German":             "de",
+          "Hungarian":          "hu",
+          "Italian":            "it",
+          "Japanese":           "ja",
+          "Korean":             "ko",
+          "Polish":             "pl",
+          "Portuguese/Brazil":  "pt_BR",
+          "Russian":            "ru",
+          "Spanish":            "es",
+          "Swedish":            "sv"
+        }
+        var html = '<table><tr><th><%=h escape_javascript _('Language') %></th><td>' +
+          '<select id="locale"><option value="">Default</option>';
+        $.each(locales, function(k, v) {
+          html += '<option value="' + v + '"';
+          if ($.cookie("locale") == v) {
+            html += ' selected="selected"';
+          }
+          html += '>' + k + ' [' + v.toLowerCase().replace('_', '-') + ']</option>';
+        });
+        html += '</select></td></tr><table>';
+        $("#dialog").html(html);
+        var b = {};
+        b[GETTEXT.ok()] = function() {
+          var locale = $("#locale").val();
+          if (locale) {
+            $.cookie("locale", locale, { expires: 3650, path: '/' });
+          } else {
+            $.cookie("locale", null, { path: '/' });
+          }
+          $(this).dialog("close");
+          window.location.reload();
+        };
+        b[GETTEXT.cancel()] = function() {
+          $(this).dialog("close");
+        };
+        $("#dialog").dialog("option", {
+          title:    "<%=h escape_javascript _('Preferences') %>",
+          buttons:  b
+        });
+        $("#dialog").dialog("open");
+        return false;
+      }
+    }
   ]});
   $(jq("menu::tools::popup")).click(function() {
     return $(jq("menu::tools")).popupmenu("popup", $(this));
