@@ -90,7 +90,7 @@ $(function() {
           '<img src="' + url_root + '/assets/spinner-32x32.gif" alt="" /></div>');
         $("#dialog").load(url_root + "/hb_reports/new");
         var b = {};
-        b["Close"] = function() {
+        b[GETTEXT.close()] = function() {
           $(this).dialog("close");
         };
         $("#dialog").dialog("option", {
