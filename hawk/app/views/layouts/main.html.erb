@@ -131,7 +131,7 @@ $(function() {
           "Spanish":            "es",
           "Swedish":            "sv"
         }
-        var html = '<table><tr><th><%=h escape_javascript _('Language') %></th><td>' +
+        var html = '<table><tr><td><%=h escape_javascript _('Language') %></td><td>' +
           '<select id="locale"><option value="">Default</option>';
         $.each(locales, function(k, v) {
           html += '<option value="' + v + '"';
