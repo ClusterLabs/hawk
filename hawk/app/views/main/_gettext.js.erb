@@ -153,8 +153,14 @@ var GETTEXT = {
       "<%=raw escape_javascript _('Revoked [standby]') %>" :
       "<%=raw escape_javascript _('Revoked') %>";
   },
+  ticket_leader: function(s) {
+    return "<%=raw escape_javascript _('Leader: %s') % '_LEADER_' %>".replace('_LEADER_', s);
+  },
   ticket_last_granted: function(d) {
     return "<%=raw escape_javascript _('Last granted: %s') % '_DATETIME_' %>".replace('_DATETIME_', d);
+  },
+  ticket_expires: function(d) {
+    return "<%=raw escape_javascript _('Expires: %s') % '_DATETIME_' %>".replace('_DATETIME_', d);
   },
   // View switcher
   summary_view: function() {

@@ -655,9 +655,24 @@ class Cib < CibObject
           Rails.logger.warn "Multiple booth sites in CIB (first match was #{@booth[:me]}, also found #{ip})"
         end
       end
+      # try to get a bit more ticket info
+      %x[/usr/sbin/booth client list 2>/dev/null].split("\n").each do |line|
+        t = nil
+        line.split(",").each do |pair|
+          m = pair.match(/(ticket|leader|expires|commit):\s*(.*)/)
+          case m[1]
+          when 'ticket'
+            t = m[2]
+          else
+            @tickets[t][m[1].to_sym] = m[2] if @tickets[t]
+          end
+        end
+      end
     end
 
     # Now @booth has :sites, :arbitrators, :tickets.
+    # Note: @booth[:tickets] can probably be dropped in favour of
+    # existing @tickets (cib-based, so needs to be presented)
     # If :me is set, this cluster is actually part of a geo cluster.
   end
 

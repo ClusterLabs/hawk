@@ -183,8 +183,18 @@ var summary_view = {
         d.attr("class", "ui-corner-all " + status_class).attr("style", "display: " + display);
         d.find("span").html(label);
         $("#itemlist").append(d);
+        var ti = [];
         if (this["last-granted"]) {
-          flag_info("ticket::" + id, GETTEXT.ticket_last_granted(new Date(this["last-granted"] * 1000)));
+          ti.push(GETTEXT.ticket_last_granted(new Date(this["last-granted"] * 1000)));
+        }
+        if (this["leader"]) {
+          ti.push(GETTEXT.ticket_leader(this["leader"]));
+        }
+        if (this["expires"]) {
+          ti.push(GETTEXT.ticket_expires(this["expires"]));
+        }
+        if (ti.length) {
+          flag_info("ticket::" + id, ti.join("\n"));
         }
         if (cib_source != "file" && cib.booth && cib.booth.me) {
           add_mgmt_menu($(jq("ticket::" + id + "::menu")));
