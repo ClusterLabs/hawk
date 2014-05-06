@@ -255,11 +255,13 @@ module Util
       }
     when :rsc_ticket
       PerRequestCache.fetch(:has_rsc_ticket) {
-        %x[/usr/sbin/crm configure rsc_ticket 2>&1].starts_with?("usage")
+        %x[/usr/sbin/crm configure help rsc_ticket >/dev/null 2>&1]
+        $?.exitstatus == 0
       }
     when :rsc_template
       PerRequestCache.fetch(:has_rsc_template) {
-        %x[/usr/sbin/crm configure rsc_template 2>&1].starts_with?("usage")
+        %x[/usr/sbin/crm configure help rsc_template >/dev/null 2>&1]
+        $?.exitstatus == 0
       }
     when :sim_ticket
       PerRequestCache.fetch(:has_sim_ticket) {
