@@ -200,6 +200,32 @@ class CibObject
     save  # must be defined in subclass
   end
 
+  # Kinda ugly special case for OCF_CHECK_LEVEL where we can't use merge_nvpairs,
+  # against the very faint chance there's some other instance attributes set which
+  # we wouldn't want to clobber.
+  def merge_ocf_check_level(op, v)
+    unless v
+      # No OCF_CHECK_LEVEL set, remove it from the XML if present
+      cl = op.elements['instance_attributes/nvpair[@name="OCF_CHECK_LEVEL"]']
+      cl.remove if cl
+      return
+    end
+
+    op.add_element 'instance_attributes',
+      { 'id' => "#{op.attributes['id']}-instace_attributes" } unless op.elements['instance_attributes']
+
+    nvp = op.elements['instance_attributes/nvpair[@name="OCF_CHECK_LEVEL"]']
+    if nvp
+      nvp.attributes['value'] = v
+    else
+      op.elements['instance_attributes'].add_element 'nvpair', {
+        'id' => "#{op.attributes['id']}-instace_attributes-OCF_CHECK_LEVEL",
+        'name' => 'OCF_CHECK_LEVEL',
+        'value' => v
+      }
+    end
+  end
+
   def merge_nvpairs(parent, list, attrs)
     if attrs.empty?
       # No attributes to set, get rid of the list (if it exists)
