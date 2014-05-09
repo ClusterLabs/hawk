@@ -252,6 +252,17 @@ class ExplorerController < ApplicationController
     end
   end
 
+  # This handles the case where some crazy thing has been entered by the user
+  # (e.g.: 2014-00-00) which would ordinarily throw an exception resulting in
+  # a 500 error
+  def time_param(val, default)
+    begin
+      Time.parse(val)
+    rescue
+      default
+    end
+  end
+
   def init_params
     lasttime = @hb_report.lasttime
     if @hb_report.running? && lasttime 
@@ -259,8 +270,8 @@ class ExplorerController < ApplicationController
       @from_time, @to_time = lasttime
     else
       # Start 24 hours ago by default
-      @from_time = params[:from_time] && !params[:from_time].empty? ? Time.parse(params[:from_time]) : Time.now - 86400
-      @to_time = params[:to_time] && !params[:to_time].empty? ? Time.parse(params[:to_time]) : Time.now
+      @from_time = time_param(params[:from_time], Time.now - 86400)
+      @to_time = time_param(params[:to_time], Time.now)
 
       # Ensure from_time is earlier than to_time.  Should probably make sure they're
       # not idendical (kind of pointless doing a zero minute hb_report...)
