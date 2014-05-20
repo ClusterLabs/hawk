@@ -172,6 +172,7 @@ cluster data structure is mini cib + mon_node:
         timeout: 90000,
         dataType: "json",   // necessary?
         type: "GET",
+        cache: false,
         cross_domain_hack: true,    // needed to get proper headers
         success: function(data) {
           if (self.deleted) return;

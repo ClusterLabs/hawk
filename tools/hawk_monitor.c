@@ -36,6 +36,7 @@
  * 1) Client invokes with QUERY_STRING == epoch (e.g.: /monitor?0:36:2),
  *    where epoch is either "admin_epoch:epoch:num_updates" from the CIB,
  *    or is an empty string (for unknown, or previously disconnected).
+ *    Other parameters ("&..." after the epoch) are ignored.
  *
  * 2) Server connects to CIB, and:
  *    - If client epoch is empty string:
@@ -83,6 +84,7 @@
  *   system unusable for multiple users, or multiple tabbed browsing sessions.
  */
 
+#define _GNU_SOURCE
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -219,6 +221,19 @@ int main(int argc, char **argv)
 	char *client_epoch = getenv("QUERY_STRING");
 	if (client_epoch && client_epoch[0] == '\0')
 		client_epoch = NULL;
+	if (client_epoch) {
+		char *amp = strchrnul(client_epoch, '&');
+		if (amp - client_epoch < MAX_EPOCH_LENGTH) {
+			/*
+			 * Make a copy of the query string, but without any
+			 * possible ampersand and subsequent parameters.  This
+			 * can be strcmp'd easily later, but allows adding
+			 * params to the query string to force the browser not
+			 * to cache these requests.
+			 */
+			client_epoch = strndupa(client_epoch, amp - client_epoch);
+		}
+	}
 
 	origin = getenv("HTTP_ORIGIN");
 
