@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-19 22:04+1000\n"
+"POT-Creation-Date: 2014-05-20 21:15+1000\n"
 "PO-Revision-Date: 2014-05-02 16:36\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -169,7 +169,7 @@ msgstr "(No hay ninguna restricción de ticket definida)"
 msgid "(No users defined)"
 msgstr "(No hay clones definidos)"
 
-#: ../app/views/dashboard/index.html.erb:409
+#: ../app/views/dashboard/index.html.erb:410
 msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
 msgstr "(Especifique cualquier nombre de host del clúster. Los demás nodos se encontrarán automáticamente)"
 
@@ -205,7 +205,7 @@ msgstr[1] "%{num} recursos configurados"
 msgid "< Back"
 msgstr "< Atrás"
 
-#: ../app/views/dashboard/index.html.erb:431
+#: ../app/views/dashboard/index.html.erb:432
 msgid "A cluster with that name already exists"
 msgstr "Ya existe un clúster con ese nombre"
 
@@ -225,7 +225,7 @@ msgstr "Activar"
 msgid "Add"
 msgstr "Añadir"
 
-#: ../app/views/dashboard/index.html.erb:414
+#: ../app/views/dashboard/index.html.erb:415
 msgid "Add Cluster"
 msgstr "Añadir clúster"
 
@@ -302,7 +302,7 @@ msgstr "Archivo CIB %{path} no encontrado"
 msgid "CRM Configuration"
 msgstr "Configuración de CRM"
 
-#: ../app/views/dashboard/index.html.erb:329
+#: ../app/views/dashboard/index.html.erb:330
 msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
 msgstr "No es posible establecer contacto con Hawk en %{node}. Se intentará de nuevo cada 5 segundos."
 
@@ -322,7 +322,7 @@ msgstr "No es posible establecer el parámetro %{p}, ya que el valor contiene co
 msgid "Can't set property %{p}, because the value contains both single and double quotes"
 msgstr "No es posible establecer la propiedad %{p}, ya que el valor contiene comillas sencillas y dobles"
 
-#: ../app/views/dashboard/index.html.erb:491 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
+#: ../app/views/dashboard/index.html.erb:492 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
 msgid "Cancel"
 msgstr "Cancelar"
 
@@ -382,7 +382,7 @@ msgstr "Consola del clúster"
 msgid "Cluster Diagram"
 msgstr "Diagrama del clúster"
 
-#: ../app/views/dashboard/index.html.erb:407
+#: ../app/views/dashboard/index.html.erb:408
 msgid "Cluster Name:"
 msgstr "Nombre del clúster:"
 
@@ -768,7 +768,7 @@ msgstr "Grupo: %{id}"
 msgid "History Explorer"
 msgstr "Explorador del historial"
 
-#: ../app/views/dashboard/index.html.erb:408
+#: ../app/views/dashboard/index.html.erb:409
 msgid "Host Name:"
 msgstr "Nombre del host:"
 
@@ -1034,7 +1034,7 @@ msgstr "No instalado"
 msgid "Not Running"
 msgstr "No está en ejecución"
 
-#: ../app/views/dashboard/index.html.erb:416 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
+#: ../app/views/dashboard/index.html.erb:417 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
 msgid "OK"
 msgstr "Aceptar"
 
@@ -1114,7 +1114,7 @@ msgstr ""
 msgid "Permission denied for user %{user}"
 msgstr "Permiso denegado para el usuario %{user}"
 
-#: ../app/views/dashboard/index.html.erb:240
+#: ../app/views/dashboard/index.html.erb:241
 msgid "Permission denied. Please log in to %{node}"
 msgstr "Permiso denegado. Entre para %{node}"
 
@@ -1438,7 +1438,7 @@ msgstr "Se ha aplicado la configuración."
 msgid "The following configuration will be applied to the cluster:"
 msgstr "Se aplicará la siguiente configuración al clúster:"
 
-#: ../app/views/dashboard/index.html.erb:437
+#: ../app/views/dashboard/index.html.erb:438
 msgid "The host %{h} is already present in cluster %{c}"
 msgstr "El host %{h} ya está presente en el clúster %{c}"
 
@@ -1536,7 +1536,7 @@ msgstr "Tickets"
 msgid "Time"
 msgstr "Hora"
 
-#: ../app/views/dashboard/index.html.erb:156 ../app/views/dashboard/index.html.erb:484
+#: ../app/views/dashboard/index.html.erb:156 ../app/views/dashboard/index.html.erb:485
 msgid "Timeout: Please try again"
 msgstr "Tiempo límite superado: vuelva a intentarlo"
 
@@ -1572,7 +1572,7 @@ msgstr "Host de interfaz de usuario: %s"
 msgid "Unable to apply changes: %{msg}"
 msgstr "No es posible aplicar los cambios: %{msg}"
 
-#: ../app/views/dashboard/index.html.erb:466 ../app/views/dashboard/index.html.erb:478
+#: ../app/views/dashboard/index.html.erb:467 ../app/views/dashboard/index.html.erb:479
 msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
 msgstr "No es posible conectar con %{host}. Pruebe a abrir %{url} en el navegador para garantizar que se puede acceder a Hawk."
 

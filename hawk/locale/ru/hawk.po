@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-19 22:04+1000\n"
+"POT-Creation-Date: 2014-05-20 21:15+1000\n"
 "PO-Revision-Date: 2014-05-03 18:09\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -170,7 +170,7 @@ msgstr "(Ограничения билетов не определены)"
 msgid "(No users defined)"
 msgstr "(Клоны не определены)"
 
-#: ../app/views/dashboard/index.html.erb:409
+#: ../app/views/dashboard/index.html.erb:410
 msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
 msgstr "(Укажите любое имя хоста в кластере. Остальные узлы будут найдены автоматически)"
 
@@ -208,7 +208,7 @@ msgstr[2] "Сконфигурировано ресурсов: %{num}"
 msgid "< Back"
 msgstr "< Назад"
 
-#: ../app/views/dashboard/index.html.erb:431
+#: ../app/views/dashboard/index.html.erb:432
 msgid "A cluster with that name already exists"
 msgstr "Кластер с таким именем уже существует"
 
@@ -228,7 +228,7 @@ msgstr "Активировать"
 msgid "Add"
 msgstr "Добавить"
 
-#: ../app/views/dashboard/index.html.erb:414
+#: ../app/views/dashboard/index.html.erb:415
 msgid "Add Cluster"
 msgstr "Добавить кластер"
 
@@ -305,7 +305,7 @@ msgstr "CIB-файл \"%{path}\" не найден"
 msgid "CRM Configuration"
 msgstr "Конфигурация CRM"
 
-#: ../app/views/dashboard/index.html.erb:329
+#: ../app/views/dashboard/index.html.erb:330
 msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
 msgstr "Не удается связаться с Hawk в узле %{node}. Попытки будут повторяться каждые 5 секунд."
 
@@ -325,7 +325,7 @@ msgstr "Невозможно задать параметр %{p}, посколь�
 msgid "Can't set property %{p}, because the value contains both single and double quotes"
 msgstr "Невозможно задать свойство %{p}, поскольку значение содержит и одиночные, и двойные кавычки"
 
-#: ../app/views/dashboard/index.html.erb:491 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
+#: ../app/views/dashboard/index.html.erb:492 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
 msgid "Cancel"
 msgstr "Отмена"
 
@@ -385,7 +385,7 @@ msgstr "Панель управления кластером"
 msgid "Cluster Diagram"
 msgstr "Схема кластера"
 
-#: ../app/views/dashboard/index.html.erb:407
+#: ../app/views/dashboard/index.html.erb:408
 msgid "Cluster Name:"
 msgstr "Имя кластера:"
 
@@ -771,7 +771,7 @@ msgstr "Группа: %{id}"
 msgid "History Explorer"
 msgstr "Проводник журнала"
 
-#: ../app/views/dashboard/index.html.erb:408
+#: ../app/views/dashboard/index.html.erb:409
 msgid "Host Name:"
 msgstr "Имя хоста"
 
@@ -1037,7 +1037,7 @@ msgstr "Не установлено"
 msgid "Not Running"
 msgstr "Не выполняется"
 
-#: ../app/views/dashboard/index.html.erb:416 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
+#: ../app/views/dashboard/index.html.erb:417 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
 msgid "OK"
 msgstr "ОК"
 
@@ -1117,7 +1117,7 @@ msgstr ""
 msgid "Permission denied for user %{user}"
 msgstr "Доступ пользователя %{user} запрещен"
 
-#: ../app/views/dashboard/index.html.erb:240
+#: ../app/views/dashboard/index.html.erb:241
 msgid "Permission denied. Please log in to %{node}"
 msgstr "В доступе отказано. Войдите в систему на узле %{node}"
 
@@ -1441,7 +1441,7 @@ msgstr "Конфигурация применена."
 msgid "The following configuration will be applied to the cluster:"
 msgstr "К кластеру будет применена следующая конфигурация:"
 
-#: ../app/views/dashboard/index.html.erb:437
+#: ../app/views/dashboard/index.html.erb:438
 msgid "The host %{h} is already present in cluster %{c}"
 msgstr "Хост %{h} уже присутствует в кластере %{c}"
 
@@ -1539,7 +1539,7 @@ msgstr "Билеты"
 msgid "Time"
 msgstr "Время"
 
-#: ../app/views/dashboard/index.html.erb:156 ../app/views/dashboard/index.html.erb:484
+#: ../app/views/dashboard/index.html.erb:156 ../app/views/dashboard/index.html.erb:485
 msgid "Timeout: Please try again"
 msgstr "Тайм-аут: повторите попытку"
 
@@ -1575,7 +1575,7 @@ msgstr "Хост UI: %s"
 msgid "Unable to apply changes: %{msg}"
 msgstr "Не удалось применить изменения: %{msg}"
 
-#: ../app/views/dashboard/index.html.erb:466 ../app/views/dashboard/index.html.erb:478
+#: ../app/views/dashboard/index.html.erb:467 ../app/views/dashboard/index.html.erb:479
 msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
 msgstr "Не удалось подключиться к хосту %{host}. Попробуйте открыть URL-адрес %{url} в веб-навигаторе, чтобы убедиться в доступности Hawk."
 

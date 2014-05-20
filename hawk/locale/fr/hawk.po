@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-19 22:04+1000\n"
+"POT-Creation-Date: 2014-05-20 21:15+1000\n"
 "PO-Revision-Date: 2014-05-02 16:40\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -169,7 +169,7 @@ msgstr "(Aucune contrainte de ticket n'est définie.)"
 msgid "(No users defined)"
 msgstr "(Aucun clone n'est défini.)"
 
-#: ../app/views/dashboard/index.html.erb:409
+#: ../app/views/dashboard/index.html.erb:410
 msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
 msgstr "(Spécifiez un nom d'hôte dans la grappe. Les autres noeuds seront trouvés automatiquement.)"
 
@@ -205,7 +205,7 @@ msgstr[1] "%{num} ressources configurées"
 msgid "< Back"
 msgstr "< Retour"
 
-#: ../app/views/dashboard/index.html.erb:431
+#: ../app/views/dashboard/index.html.erb:432
 msgid "A cluster with that name already exists"
 msgstr "Une grappe portant ce nom existe déjà."
 
@@ -225,7 +225,7 @@ msgstr "Activer"
 msgid "Add"
 msgstr "Ajouter"
 
-#: ../app/views/dashboard/index.html.erb:414
+#: ../app/views/dashboard/index.html.erb:415
 msgid "Add Cluster"
 msgstr "Ajouter une grappe"
 
@@ -302,7 +302,7 @@ msgstr "Le fichier CIB \"%{path}\" est introuvable."
 msgid "CRM Configuration"
 msgstr "Configuration CRM"
 
-#: ../app/views/dashboard/index.html.erb:329
+#: ../app/views/dashboard/index.html.erb:330
 msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
 msgstr "Impossible de contacter Hawk sur %{node}. Nouvelle tentative toutes les 5 secondes."
 
@@ -322,7 +322,7 @@ msgstr "Impossible de définir le paramètre %{p} car la valeur contient des gui
 msgid "Can't set property %{p}, because the value contains both single and double quotes"
 msgstr "Impossible de définir la propriété %{p} car la valeur contient des guillemets simples et doubles."
 
-#: ../app/views/dashboard/index.html.erb:491 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
+#: ../app/views/dashboard/index.html.erb:492 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
 msgid "Cancel"
 msgstr "Annuler"
 
@@ -382,7 +382,7 @@ msgstr "Tableau de bord de la grappe"
 msgid "Cluster Diagram"
 msgstr "Diagramme de la grappe"
 
-#: ../app/views/dashboard/index.html.erb:407
+#: ../app/views/dashboard/index.html.erb:408
 msgid "Cluster Name:"
 msgstr "Nom de la grappe :"
 
@@ -768,7 +768,7 @@ msgstr "Groupe : %{id}"
 msgid "History Explorer"
 msgstr "Explorateur d'historique"
 
-#: ../app/views/dashboard/index.html.erb:408
+#: ../app/views/dashboard/index.html.erb:409
 msgid "Host Name:"
 msgstr "Nom d'hôte :"
 
@@ -1034,7 +1034,7 @@ msgstr "Non installé"
 msgid "Not Running"
 msgstr "Non exécuté"
 
-#: ../app/views/dashboard/index.html.erb:416 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
+#: ../app/views/dashboard/index.html.erb:417 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
 msgid "OK"
 msgstr "OK"
 
@@ -1114,7 +1114,7 @@ msgstr ""
 msgid "Permission denied for user %{user}"
 msgstr "Autorisation refusée pour l'utilisateur %{user}"
 
-#: ../app/views/dashboard/index.html.erb:240
+#: ../app/views/dashboard/index.html.erb:241
 msgid "Permission denied. Please log in to %{node}"
 msgstr "Autorisation refusée. Loguez-vous à %{node}."
 
@@ -1438,7 +1438,7 @@ msgstr "La configuration a été appliquée."
 msgid "The following configuration will be applied to the cluster:"
 msgstr "La configuration suivante sera appliquée à la grappe :"
 
-#: ../app/views/dashboard/index.html.erb:437
+#: ../app/views/dashboard/index.html.erb:438
 msgid "The host %{h} is already present in cluster %{c}"
 msgstr "L'hôte %{h} est déjà présent dans la grappe %{c}."
 
@@ -1536,7 +1536,7 @@ msgstr "Tickets"
 msgid "Time"
 msgstr "Durée"
 
-#: ../app/views/dashboard/index.html.erb:156 ../app/views/dashboard/index.html.erb:484
+#: ../app/views/dashboard/index.html.erb:156 ../app/views/dashboard/index.html.erb:485
 msgid "Timeout: Please try again"
 msgstr "Timeout : veuillez réessayer."
 
@@ -1572,7 +1572,7 @@ msgstr "Hôte UI : %s"
 msgid "Unable to apply changes: %{msg}"
 msgstr "Impossible d'appliquer les modifications : %{msg}"
 
-#: ../app/views/dashboard/index.html.erb:466 ../app/views/dashboard/index.html.erb:478
+#: ../app/views/dashboard/index.html.erb:467 ../app/views/dashboard/index.html.erb:479
 msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
 msgstr "Impossible de se connecter à %{host}. Essayez d'ouvrir %{url} dans votre navigateur Web pour vous assurer que Hawk est accessible."
 

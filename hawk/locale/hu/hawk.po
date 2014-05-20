@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk 0.3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-19 22:04+1000\n"
+"POT-Creation-Date: 2014-05-20 21:15+1000\n"
 "PO-Revision-Date: 2011-12-20 08:30+0100\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@opensuse.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -165,6 +165,8 @@ msgstr "%{workflow}: %{step}"
 #, fuzzy
 #, fuzzy
 #, fuzzy
+#, fuzzy
+#, fuzzy
 #| msgid "No clone child specified"
 msgid "(No clones defined)"
 msgstr "Nincs megadva klóngyermek"
@@ -215,6 +217,8 @@ msgstr "Nincs megadva erőforrás"
 #, fuzzy
 #, fuzzy
 #, fuzzy
+#, fuzzy
+#, fuzzy
 #| msgid "No clone child specified"
 msgid "(No clones defined)"
 msgstr "Nincs megadva klóngyermek"
@@ -245,11 +249,13 @@ msgstr "(Nincs szabálysorrend megadva)"
 #, fuzzy
 #, fuzzy
 #, fuzzy
+#, fuzzy
+#, fuzzy
 #| msgid "No clone child specified"
 msgid "(No clones defined)"
 msgstr "Nincs megadva klóngyermek"
 
-#: ../app/views/dashboard/index.html.erb:409
+#: ../app/views/dashboard/index.html.erb:410
 msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
 msgstr ""
 
@@ -285,7 +291,7 @@ msgstr[1] "%{num} erőforrás beállítva"
 msgid "< Back"
 msgstr "< Vissza"
 
-#: ../app/views/dashboard/index.html.erb:431
+#: ../app/views/dashboard/index.html.erb:432
 msgid "A cluster with that name already exists"
 msgstr ""
 
@@ -388,7 +394,7 @@ msgstr "A(z) \"%{path}\" CIB fájl nem található"
 msgid "CRM Configuration"
 msgstr "Válasszon beállítást"
 
-#: ../app/views/dashboard/index.html.erb:329
+#: ../app/views/dashboard/index.html.erb:330
 msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
 msgstr ""
 
@@ -408,7 +414,7 @@ msgstr "Nem állítható be a(z) %{p} paraméter, mert az eszköz szimpla és du
 msgid "Can't set property %{p}, because the value contains both single and double quotes"
 msgstr "Nem állítható be a(z) %{p} tulajdonság, mert az eszköz szimpla és dupla idézőjelet is tartalmaz"
 
-#: ../app/views/dashboard/index.html.erb:491 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
+#: ../app/views/dashboard/index.html.erb:492 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
 msgid "Cancel"
 msgstr "Mégsem"
 
@@ -876,7 +882,7 @@ msgstr "Csoport: %{id}"
 msgid "History Explorer"
 msgstr "Előzményböngésző"
 
-#: ../app/views/dashboard/index.html.erb:408
+#: ../app/views/dashboard/index.html.erb:409
 msgid "Host Name:"
 msgstr ""
 
@@ -1154,7 +1160,7 @@ msgstr "Nincs telepítve"
 msgid "Not Running"
 msgstr "Nem fut"
 
-#: ../app/views/dashboard/index.html.erb:416 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
+#: ../app/views/dashboard/index.html.erb:417 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
 msgid "OK"
 msgstr "OK"
 
@@ -1314,6 +1320,7 @@ msgstr "Nincs megadva a \"basename\" és a \"node\" paraméter"
 #, fuzzy
 #, fuzzy
 #, fuzzy
+#, fuzzy
 #| msgid "Required parameters \"basename\" and \"node\" not specified"
 msgid "Required parameters \"left\" and \"right\" not specified"
 msgstr "Nincs megadva a \"basename\" és a \"node\" paraméter"
@@ -1323,6 +1330,7 @@ msgid "Required parameters \"resource\" and \"node\" not specified"
 msgstr "Nincs megadva a \"resource\" és a \"node\" paraméter"
 
 #: app/controllers/explorer_controller.rb:189
+#, fuzzy
 #, fuzzy
 #, fuzzy
 #, fuzzy
@@ -1699,7 +1707,7 @@ msgstr ""
 msgid "Time"
 msgstr "Idő"
 
-#: ../app/views/dashboard/index.html.erb:156 ../app/views/dashboard/index.html.erb:484
+#: ../app/views/dashboard/index.html.erb:156 ../app/views/dashboard/index.html.erb:485
 msgid "Timeout: Please try again"
 msgstr ""
 
@@ -1735,7 +1743,7 @@ msgstr "UI gép: %s"
 msgid "Unable to apply changes: %{msg}"
 msgstr "Nem alkalmazhatók a módosítások: %{msg}"
 
-#: ../app/views/dashboard/index.html.erb:466 ../app/views/dashboard/index.html.erb:478
+#: ../app/views/dashboard/index.html.erb:467 ../app/views/dashboard/index.html.erb:479
 msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
 msgstr ""
 

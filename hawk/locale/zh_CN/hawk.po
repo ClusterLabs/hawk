@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-19 22:04+1000\n"
+"POT-Creation-Date: 2014-05-20 21:15+1000\n"
 "PO-Revision-Date: 2014-05-02 16:47\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -169,7 +169,7 @@ msgstr "（未定义票据约束）"
 msgid "(No users defined)"
 msgstr "（未定义克隆）"
 
-#: ../app/views/dashboard/index.html.erb:409
+#: ../app/views/dashboard/index.html.erb:410
 msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
 msgstr "（指定群集中的任意主机名称。系统会自动找到其他节点）"
 
@@ -203,7 +203,7 @@ msgstr[0] "已配置 1 项资源"
 msgid "< Back"
 msgstr "< 上一步"
 
-#: ../app/views/dashboard/index.html.erb:431
+#: ../app/views/dashboard/index.html.erb:432
 msgid "A cluster with that name already exists"
 msgstr "已存在同名群集"
 
@@ -223,7 +223,7 @@ msgstr "激活"
 msgid "Add"
 msgstr "添加"
 
-#: ../app/views/dashboard/index.html.erb:414
+#: ../app/views/dashboard/index.html.erb:415
 msgid "Add Cluster"
 msgstr "添加群集"
 
@@ -300,7 +300,7 @@ msgstr "找不到 CIB 文件“%{path}”"
 msgid "CRM Configuration"
 msgstr "CRM 配置"
 
-#: ../app/views/dashboard/index.html.erb:329
+#: ../app/views/dashboard/index.html.erb:330
 msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
 msgstr "无法联系 %{node} 上的 Hawk。将每 5 秒重试一次。"
 
@@ -320,7 +320,7 @@ msgstr "无法设置参数 %{p}，因为该值同时包含单引号和双引号"
 msgid "Can't set property %{p}, because the value contains both single and double quotes"
 msgstr "无法设置属性 %{p}，因为该值同时包含单引号和双引号"
 
-#: ../app/views/dashboard/index.html.erb:491 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
+#: ../app/views/dashboard/index.html.erb:492 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
 msgid "Cancel"
 msgstr "取消"
 
@@ -380,7 +380,7 @@ msgstr "群集仪表板"
 msgid "Cluster Diagram"
 msgstr "群集图表"
 
-#: ../app/views/dashboard/index.html.erb:407
+#: ../app/views/dashboard/index.html.erb:408
 msgid "Cluster Name:"
 msgstr "群集名称："
 
@@ -766,7 +766,7 @@ msgstr "组：%{id}"
 msgid "History Explorer"
 msgstr "历史记录浏览器"
 
-#: ../app/views/dashboard/index.html.erb:408
+#: ../app/views/dashboard/index.html.erb:409
 msgid "Host Name:"
 msgstr "主机名："
 
@@ -1032,7 +1032,7 @@ msgstr "未安装"
 msgid "Not Running"
 msgstr "未在运行"
 
-#: ../app/views/dashboard/index.html.erb:416 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
+#: ../app/views/dashboard/index.html.erb:417 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
 msgid "OK"
 msgstr "确定"
 
@@ -1112,7 +1112,7 @@ msgstr ""
 msgid "Permission denied for user %{user}"
 msgstr "用户 %{user} 的权限被拒"
 
-#: ../app/views/dashboard/index.html.erb:240
+#: ../app/views/dashboard/index.html.erb:241
 msgid "Permission denied. Please log in to %{node}"
 msgstr "权限被拒绝。请登录 %{node}"
 
@@ -1436,7 +1436,7 @@ msgstr "已应用配置。"
 msgid "The following configuration will be applied to the cluster:"
 msgstr "下列配置将应用于群集："
 
-#: ../app/views/dashboard/index.html.erb:437
+#: ../app/views/dashboard/index.html.erb:438
 msgid "The host %{h} is already present in cluster %{c}"
 msgstr "群集 %{c} 中已存在主机 %{h}"
 
@@ -1534,7 +1534,7 @@ msgstr "票据"
 msgid "Time"
 msgstr "时间"
 
-#: ../app/views/dashboard/index.html.erb:156 ../app/views/dashboard/index.html.erb:484
+#: ../app/views/dashboard/index.html.erb:156 ../app/views/dashboard/index.html.erb:485
 msgid "Timeout: Please try again"
 msgstr "超时：请重试"
 
@@ -1570,7 +1570,7 @@ msgstr "UI 主机：%s"
 msgid "Unable to apply changes: %{msg}"
 msgstr "无法应用更改：%{msg}"
 
-#: ../app/views/dashboard/index.html.erb:466 ../app/views/dashboard/index.html.erb:478
+#: ../app/views/dashboard/index.html.erb:467 ../app/views/dashboard/index.html.erb:479
 msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
 msgstr "无法连接 %{host}。请尝试在 Web 浏览器中打开 %{url} 以确保可以访问 Hawk。"
 

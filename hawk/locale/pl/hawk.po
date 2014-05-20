@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-19 22:04+1000\n"
+"POT-Creation-Date: 2014-05-20 21:15+1000\n"
 "PO-Revision-Date: 2014-05-02 16:25\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -170,7 +170,7 @@ msgstr "(Nie zdefiniowano ograniczeń żetonu)"
 msgid "(No users defined)"
 msgstr "(Nie zdefiniowano klonów)"
 
-#: ../app/views/dashboard/index.html.erb:409
+#: ../app/views/dashboard/index.html.erb:410
 msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
 msgstr "(Podaj nazwę dowolnego hosta w klastrze. Pozostałe węzły zostaną znalezione automatycznie)"
 
@@ -208,7 +208,7 @@ msgstr[2] "%{num} zasobów skonfigurowanych"
 msgid "< Back"
 msgstr "< Wstecz"
 
-#: ../app/views/dashboard/index.html.erb:431
+#: ../app/views/dashboard/index.html.erb:432
 msgid "A cluster with that name already exists"
 msgstr "Klaster o takiej nazwie już istnieje"
 
@@ -228,7 +228,7 @@ msgstr "Uaktywnienie"
 msgid "Add"
 msgstr "Dodaj"
 
-#: ../app/views/dashboard/index.html.erb:414
+#: ../app/views/dashboard/index.html.erb:415
 msgid "Add Cluster"
 msgstr "Dodaj klaster"
 
@@ -305,7 +305,7 @@ msgstr "Nie znaleziono pliku CIB \"%{path}\""
 msgid "CRM Configuration"
 msgstr "Konfiguracja CRM"
 
-#: ../app/views/dashboard/index.html.erb:329
+#: ../app/views/dashboard/index.html.erb:330
 msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
 msgstr "Nie można nawiązać połączenia z interfejsem Hawk na węźle %{node}. Ponawianie próby co 5 sekund."
 
@@ -325,7 +325,7 @@ msgstr "Nie można ustawić parametru %{p}, ponieważ wartość zawiera cudzysł
 msgid "Can't set property %{p}, because the value contains both single and double quotes"
 msgstr "Nie można ustawić właściwości %{p}, ponieważ wartość zawiera cudzysłowy zarówno pojedyncze, jak i podwójne"
 
-#: ../app/views/dashboard/index.html.erb:491 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
+#: ../app/views/dashboard/index.html.erb:492 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
 msgid "Cancel"
 msgstr "Anuluj"
 
@@ -385,7 +385,7 @@ msgstr "Pulpit nawigacyjny klastra"
 msgid "Cluster Diagram"
 msgstr "Schemat klastra"
 
-#: ../app/views/dashboard/index.html.erb:407
+#: ../app/views/dashboard/index.html.erb:408
 msgid "Cluster Name:"
 msgstr "Nazwa klastra:"
 
@@ -771,7 +771,7 @@ msgstr "Grupa: %{id}"
 msgid "History Explorer"
 msgstr "Przeglądarka historii"
 
-#: ../app/views/dashboard/index.html.erb:408
+#: ../app/views/dashboard/index.html.erb:409
 msgid "Host Name:"
 msgstr "Nazwa hosta:"
 
@@ -1037,7 +1037,7 @@ msgstr "Niezainstalowany"
 msgid "Not Running"
 msgstr "Niedziałający"
 
-#: ../app/views/dashboard/index.html.erb:416 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
+#: ../app/views/dashboard/index.html.erb:417 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
 msgid "OK"
 msgstr "OK"
 
@@ -1117,7 +1117,7 @@ msgstr ""
 msgid "Permission denied for user %{user}"
 msgstr "Dostęp zabroniony dla użytkownika %{user}"
 
-#: ../app/views/dashboard/index.html.erb:240
+#: ../app/views/dashboard/index.html.erb:241
 msgid "Permission denied. Please log in to %{node}"
 msgstr "Brak autoryzacji. Zaloguj się do węzła %{node}"
 
@@ -1441,7 +1441,7 @@ msgstr "Konfiguracja została zastosowana."
 msgid "The following configuration will be applied to the cluster:"
 msgstr "Następująca konfiguracja zostanie zastosowana dla tego klastra:"
 
-#: ../app/views/dashboard/index.html.erb:437
+#: ../app/views/dashboard/index.html.erb:438
 msgid "The host %{h} is already present in cluster %{c}"
 msgstr "Host %{h} już znajduje się w klastrze %{c}"
 
@@ -1539,7 +1539,7 @@ msgstr "Żetony"
 msgid "Time"
 msgstr "Czas"
 
-#: ../app/views/dashboard/index.html.erb:156 ../app/views/dashboard/index.html.erb:484
+#: ../app/views/dashboard/index.html.erb:156 ../app/views/dashboard/index.html.erb:485
 msgid "Timeout: Please try again"
 msgstr "Upłynął limit czasu: Spróbuj ponownie"
 
@@ -1575,7 +1575,7 @@ msgstr "Host UI: %s"
 msgid "Unable to apply changes: %{msg}"
 msgstr "Nie można zastosować zmian: %{msg}"
 
-#: ../app/views/dashboard/index.html.erb:466 ../app/views/dashboard/index.html.erb:478
+#: ../app/views/dashboard/index.html.erb:467 ../app/views/dashboard/index.html.erb:479
 msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
 msgstr "Nie można połączyć się z %{host}. Aby sprawdzić, czy Hawk jest dostępny, spróbuj otworzyć łącze %{url} w przeglądarce internetowej."
 

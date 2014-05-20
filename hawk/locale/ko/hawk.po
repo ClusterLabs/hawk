@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-19 22:04+1000\n"
+"POT-Creation-Date: 2014-05-20 21:15+1000\n"
 "PO-Revision-Date: 2014-05-02 16:18\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -169,7 +169,7 @@ msgstr "(티켓 제약 조건이 정의되지 않음)"
 msgid "(No users defined)"
 msgstr "(복제가 정의되지 않음)"
 
-#: ../app/views/dashboard/index.html.erb:409
+#: ../app/views/dashboard/index.html.erb:410
 msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
 msgstr "(클러스터에서 호스트 이름을 지정하십시오. 다른 노드가 자동으로 검색됩니다.)"
 
@@ -203,7 +203,7 @@ msgstr[0] "1개 리소스가 구성되었습니다."
 msgid "< Back"
 msgstr "< 뒤로"
 
-#: ../app/views/dashboard/index.html.erb:431
+#: ../app/views/dashboard/index.html.erb:432
 msgid "A cluster with that name already exists"
 msgstr "해당 이름의 클러스터가 이미 있습니다."
 
@@ -223,7 +223,7 @@ msgstr "활성화"
 msgid "Add"
 msgstr "추가"
 
-#: ../app/views/dashboard/index.html.erb:414
+#: ../app/views/dashboard/index.html.erb:415
 msgid "Add Cluster"
 msgstr "클러스터 추가"
 
@@ -300,7 +300,7 @@ msgstr "CIB 파일 \"%{path}\"을(를) 찾을 수 없음"
 msgid "CRM Configuration"
 msgstr "CRM 구성"
 
-#: ../app/views/dashboard/index.html.erb:329
+#: ../app/views/dashboard/index.html.erb:330
 msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
 msgstr "%{node}의 Hawk에 연결할 수 없습니다. 5초마다 다시 시도합니다."
 
@@ -320,7 +320,7 @@ msgstr "값에 작은따옴표와 큰따옴표가 모두 포함되어 있으므�
 msgid "Can't set property %{p}, because the value contains both single and double quotes"
 msgstr "값이 작은따옴표와 큰따옴표를 모두 포함하므로, %{p} 속성을 설정할 수 없습니다."
 
-#: ../app/views/dashboard/index.html.erb:491 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
+#: ../app/views/dashboard/index.html.erb:492 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
 msgid "Cancel"
 msgstr "취소"
 
@@ -380,7 +380,7 @@ msgstr "클러스터 대시보드"
 msgid "Cluster Diagram"
 msgstr "클러스터 다이어그램"
 
-#: ../app/views/dashboard/index.html.erb:407
+#: ../app/views/dashboard/index.html.erb:408
 msgid "Cluster Name:"
 msgstr "클러스터 이름:"
 
@@ -766,7 +766,7 @@ msgstr "그룹: %{id}"
 msgid "History Explorer"
 msgstr "이력 탐색기"
 
-#: ../app/views/dashboard/index.html.erb:408
+#: ../app/views/dashboard/index.html.erb:409
 msgid "Host Name:"
 msgstr "호스트 이름:"
 
@@ -1032,7 +1032,7 @@ msgstr "설치되지 않음"
 msgid "Not Running"
 msgstr "실행 중이 아님"
 
-#: ../app/views/dashboard/index.html.erb:416 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
+#: ../app/views/dashboard/index.html.erb:417 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
 msgid "OK"
 msgstr "확인"
 
@@ -1112,7 +1112,7 @@ msgstr ""
 msgid "Permission denied for user %{user}"
 msgstr "%{user} 사용자에 대한 권한이 거부됨"
 
-#: ../app/views/dashboard/index.html.erb:240
+#: ../app/views/dashboard/index.html.erb:241
 msgid "Permission denied. Please log in to %{node}"
 msgstr "권한이 거부됨. %{node}에 로그인하십시오."
 
@@ -1436,7 +1436,7 @@ msgstr "구성이 적용되었습니다."
 msgid "The following configuration will be applied to the cluster:"
 msgstr "다음 구성이 클러스터에 적용됩니다."
 
-#: ../app/views/dashboard/index.html.erb:437
+#: ../app/views/dashboard/index.html.erb:438
 msgid "The host %{h} is already present in cluster %{c}"
 msgstr "%{h} 호스트가 이미 %{c} 클러스터에 있습니다."
 
@@ -1534,7 +1534,7 @@ msgstr "티켓"
 msgid "Time"
 msgstr "시간"
 
-#: ../app/views/dashboard/index.html.erb:156 ../app/views/dashboard/index.html.erb:484
+#: ../app/views/dashboard/index.html.erb:156 ../app/views/dashboard/index.html.erb:485
 msgid "Timeout: Please try again"
 msgstr "시간 초과: 다시 시도하십시오."
 
@@ -1570,7 +1570,7 @@ msgstr "UI 호스트: %s"
 msgid "Unable to apply changes: %{msg}"
 msgstr "변경 사항을 적용할 수 없음: %{msg}"
 
-#: ../app/views/dashboard/index.html.erb:466 ../app/views/dashboard/index.html.erb:478
+#: ../app/views/dashboard/index.html.erb:467 ../app/views/dashboard/index.html.erb:479
 msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
 msgstr "%{host}에 연결할 수 없습니다. Hawk에 액세스하려면 웹 브라우저에서 %{url}을 여십시오."
 

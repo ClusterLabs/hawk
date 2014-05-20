@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-19 22:04+1000\n"
+"POT-Creation-Date: 2014-05-20 21:15+1000\n"
 "PO-Revision-Date: 2014-05-02 16:45\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -169,7 +169,7 @@ msgstr "(チケット制約が未定義です)"
 msgid "(No users defined)"
 msgstr "(クローンが未定義です)"
 
-#: ../app/views/dashboard/index.html.erb:409
+#: ../app/views/dashboard/index.html.erb:410
 msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
 msgstr "(クラスタ内のホスト名を指定します。その他のノードは自動的に検出されます)"
 
@@ -203,7 +203,7 @@ msgstr[0] "1 リソースが設定されました"
 msgid "< Back"
 msgstr "< 戻る"
 
-#: ../app/views/dashboard/index.html.erb:431
+#: ../app/views/dashboard/index.html.erb:432
 msgid "A cluster with that name already exists"
 msgstr "その名前のクラスタは既に存在します"
 
@@ -223,7 +223,7 @@ msgstr "有効化"
 msgid "Add"
 msgstr "追加"
 
-#: ../app/views/dashboard/index.html.erb:414
+#: ../app/views/dashboard/index.html.erb:415
 msgid "Add Cluster"
 msgstr "クラスタの追加"
 
@@ -300,7 +300,7 @@ msgstr "CIBファイル「%{path}」が見つかりません"
 msgid "CRM Configuration"
 msgstr "CRMの環境設定"
 
-#: ../app/views/dashboard/index.html.erb:329
+#: ../app/views/dashboard/index.html.erb:330
 msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
 msgstr "%{node} 上のHawkに接続できません。5秒ごとに再試行します。"
 
@@ -320,7 +320,7 @@ msgstr "パラメータ %{p} を設定できません。値に一重引用符と
 msgid "Can't set property %{p}, because the value contains both single and double quotes"
 msgstr "プロパティ%{p}を設定できません。値に一重引用符と二重引用符の両方が含まれているためです"
 
-#: ../app/views/dashboard/index.html.erb:491 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
+#: ../app/views/dashboard/index.html.erb:492 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -380,7 +380,7 @@ msgstr "クラスタダッシュボード"
 msgid "Cluster Diagram"
 msgstr "クラスタダイアグラム"
 
-#: ../app/views/dashboard/index.html.erb:407
+#: ../app/views/dashboard/index.html.erb:408
 msgid "Cluster Name:"
 msgstr "クラスタ名:"
 
@@ -766,7 +766,7 @@ msgstr "グループ: %{id}"
 msgid "History Explorer"
 msgstr "履歴エクスプローラ"
 
-#: ../app/views/dashboard/index.html.erb:408
+#: ../app/views/dashboard/index.html.erb:409
 msgid "Host Name:"
 msgstr "ホスト名:"
 
@@ -1032,7 +1032,7 @@ msgstr "インストールされていません"
 msgid "Not Running"
 msgstr "実行していません"
 
-#: ../app/views/dashboard/index.html.erb:416 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
+#: ../app/views/dashboard/index.html.erb:417 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
 msgid "OK"
 msgstr "OK"
 
@@ -1112,7 +1112,7 @@ msgstr ""
 msgid "Permission denied for user %{user}"
 msgstr "ユーザ %{user} のアクセス承認拒否"
 
-#: ../app/views/dashboard/index.html.erb:240
+#: ../app/views/dashboard/index.html.erb:241
 msgid "Permission denied. Please log in to %{node}"
 msgstr "パーミッションが拒否されました。%{node} にログインしてください"
 
@@ -1436,7 +1436,7 @@ msgstr "環境設定が適用されました。"
 msgid "The following configuration will be applied to the cluster:"
 msgstr "以下の環境設定がクラスタに適用されます:"
 
-#: ../app/views/dashboard/index.html.erb:437
+#: ../app/views/dashboard/index.html.erb:438
 msgid "The host %{h} is already present in cluster %{c}"
 msgstr "ホスト %{h} は既にクラスタ %{c} に存在します"
 
@@ -1534,7 +1534,7 @@ msgstr "チケット"
 msgid "Time"
 msgstr "時間"
 
-#: ../app/views/dashboard/index.html.erb:156 ../app/views/dashboard/index.html.erb:484
+#: ../app/views/dashboard/index.html.erb:156 ../app/views/dashboard/index.html.erb:485
 msgid "Timeout: Please try again"
 msgstr "タイムアウト: もう一度実行してください"
 
@@ -1570,7 +1570,7 @@ msgstr "UIホスト: %s"
 msgid "Unable to apply changes: %{msg}"
 msgstr "変更を適用できません: %{msg}"
 
-#: ../app/views/dashboard/index.html.erb:466 ../app/views/dashboard/index.html.erb:478
+#: ../app/views/dashboard/index.html.erb:467 ../app/views/dashboard/index.html.erb:479
 msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
 msgstr "%{host} に接続できません。Webブラウザで %{url} を開き、Hawkにアクセス可能なことを確認してみてください。"
 

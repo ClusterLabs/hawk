@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-19 22:04+1000\n"
+"POT-Creation-Date: 2014-05-20 21:15+1000\n"
 "PO-Revision-Date: 2014-05-02 16:10\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -169,7 +169,7 @@ msgstr "(Nejsou definovány žádná omezení lístku.)"
 msgid "(No users defined)"
 msgstr "(Nejsou definovány žádné klony.)"
 
-#: ../app/views/dashboard/index.html.erb:409
+#: ../app/views/dashboard/index.html.erb:410
 msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
 msgstr "(Zadejte libovolný název hostitele v clusteru. Ostatní uzly budou nalezeny automaticky.)"
 
@@ -207,7 +207,7 @@ msgstr[2] "Nakonfigurované zdroje: %{num}"
 msgid "< Back"
 msgstr "< Zpět"
 
-#: ../app/views/dashboard/index.html.erb:431
+#: ../app/views/dashboard/index.html.erb:432
 msgid "A cluster with that name already exists"
 msgstr "Cluster s tímto názvem již existuje"
 
@@ -227,7 +227,7 @@ msgstr "Aktivovat"
 msgid "Add"
 msgstr "Přidat"
 
-#: ../app/views/dashboard/index.html.erb:414
+#: ../app/views/dashboard/index.html.erb:415
 msgid "Add Cluster"
 msgstr "Přidat cluster"
 
@@ -304,7 +304,7 @@ msgstr "Soubor CIB „%{path}“ nebyl nalezen"
 msgid "CRM Configuration"
 msgstr "Konfigurace CRM"
 
-#: ../app/views/dashboard/index.html.erb:329
+#: ../app/views/dashboard/index.html.erb:330
 msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
 msgstr "Konzolu Hawk na uzlu %{node} nelze kontaktovat. Pokus bude každých 5 sekund opakován."
 
@@ -324,7 +324,7 @@ msgstr "Parametr %{p} nelze nastavit, protože hodnota obsahuje jednoduché i dv
 msgid "Can't set property %{p}, because the value contains both single and double quotes"
 msgstr "Nelze nastavit vlastnost %{p}, protože hodnota obsahuje jednoduché i dvojité uvozovky"
 
-#: ../app/views/dashboard/index.html.erb:491 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
+#: ../app/views/dashboard/index.html.erb:492 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
 msgid "Cancel"
 msgstr "Zrušit"
 
@@ -384,7 +384,7 @@ msgstr "Řídicí panel clusteru"
 msgid "Cluster Diagram"
 msgstr "Diagram clusteru"
 
-#: ../app/views/dashboard/index.html.erb:407
+#: ../app/views/dashboard/index.html.erb:408
 msgid "Cluster Name:"
 msgstr "Název clusteru:"
 
@@ -770,7 +770,7 @@ msgstr "Skupina: %{id}"
 msgid "History Explorer"
 msgstr "Prohlížeč historie"
 
-#: ../app/views/dashboard/index.html.erb:408
+#: ../app/views/dashboard/index.html.erb:409
 msgid "Host Name:"
 msgstr "Název hostitele:"
 
@@ -1036,7 +1036,7 @@ msgstr "Nenainstalováno"
 msgid "Not Running"
 msgstr "Nespuštěno"
 
-#: ../app/views/dashboard/index.html.erb:416 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
+#: ../app/views/dashboard/index.html.erb:417 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
 msgid "OK"
 msgstr "OK"
 
@@ -1116,7 +1116,7 @@ msgstr ""
 msgid "Permission denied for user %{user}"
 msgstr "Uživateli %{user} nebylo uděleno povolení"
 
-#: ../app/views/dashboard/index.html.erb:240
+#: ../app/views/dashboard/index.html.erb:241
 msgid "Permission denied. Please log in to %{node}"
 msgstr "Oprávnění nebylo uděleno. Přihlaste se k uzlu %{node}."
 
@@ -1440,7 +1440,7 @@ msgstr "Konfigurační soubor byl použit."
 msgid "The following configuration will be applied to the cluster:"
 msgstr "Na cluster se použije následující konfigurace:"
 
-#: ../app/views/dashboard/index.html.erb:437
+#: ../app/views/dashboard/index.html.erb:438
 msgid "The host %{h} is already present in cluster %{c}"
 msgstr "Hostitel %{h} již v clusteru %{c} existuje."
 
@@ -1538,7 +1538,7 @@ msgstr "Lístky"
 msgid "Time"
 msgstr "Čas"
 
-#: ../app/views/dashboard/index.html.erb:156 ../app/views/dashboard/index.html.erb:484
+#: ../app/views/dashboard/index.html.erb:156 ../app/views/dashboard/index.html.erb:485
 msgid "Timeout: Please try again"
 msgstr "Čas vypršel: Zkuste to znovu"
 
@@ -1574,7 +1574,7 @@ msgstr "Hostitel UR: %s"
 msgid "Unable to apply changes: %{msg}"
 msgstr "Nepodařilo se použít změny: %{msg}"
 
-#: ../app/views/dashboard/index.html.erb:466 ../app/views/dashboard/index.html.erb:478
+#: ../app/views/dashboard/index.html.erb:467 ../app/views/dashboard/index.html.erb:479
 msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
 msgstr "Nelze se připojit k hostiteli %{host}. Zkuste v prohlížeči přejít na adresu %{url}. Tím se přesvědčíte, zda je konzola Hawk přístupná."
 
