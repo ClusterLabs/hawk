@@ -322,6 +322,7 @@ function do_update(cur_epoch)
 
   update_req = $.ajax({ url: url_root + "/monitor?" + cur_epoch,
     type: "GET",
+    cache: false,
     timeout: 90000,   // hawk_monitor timeout + 50% wiggle room
     success: function(data) {
       if (data) {
