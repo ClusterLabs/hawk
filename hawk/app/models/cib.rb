@@ -387,6 +387,12 @@ class Cib < CibObject
               # *now*
               b.attributes['call-id'].to_i <=> a.attributes['call-id'].to_i
             end
+          elsif a.attributes['operation'] == b.attributes['operation'] &&
+                a.attributes['transition-key'] == b.attributes['transition-key']
+            # Same operation, same transition key, and one op is allegedly pending.
+            # This is a lie (see bnc#879034), so make newer call-id win hand have
+            # bogus pending op lose (similar to above special case for migrate ops)
+            a.attributes['call-id'].to_i <=> b.attributes['call-id'].to_i
           elsif a.attributes['call-id'].to_i == -1
             1                                         # make pending start/stop op most recent
           elsif b.attributes['call-id'].to_i == -1
@@ -488,10 +494,13 @@ class Cib < CibObject
               failed_ops[-1][:ignored] = true
               rc_code = expected
             else
-              if operation == "stop" && @crm_config[:"stonith-enabled"]
-                # We have a failed stop.
-                # The node is thus unclean if STONITH is enabled.
-                node[:state] = :unclean
+              if operation == "stop"
+                # We have a failed stop, the resource is failed.  Using
+                # state unknown is a bit of a lie, but it's better than
+                # having a stale pending op seep through (bnc#879034)
+                state = :unknown
+                # Also, the node is thus unclean if STONITH is enabled.
+                node[:state] = :unclean if @crm_config[:"stonith-enabled"]
               end
             end
           end
