@@ -487,6 +487,12 @@ class Cib < CibObject
             if ignore_failure
               failed_ops[-1][:ignored] = true
               rc_code = expected
+            else
+              if operation == "stop" && @crm_config[:"stonith-enabled"]
+                # We have a failed stop.
+                # The node is thus unclean if STONITH is enabled.
+                node[:state] = :unclean
+              end
             end
           end
 
