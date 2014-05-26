@@ -240,6 +240,10 @@ var GETTEXT = {
     if (!res) return "<%=raw escape_javascript _('Stopped') %>";
     return "<%=raw escape_javascript _('%{id}: Stopped') % { :id => '_RES_' } %>".replace('_RES_', res);
   },
+  resource_state_failed: function(res) {
+    if (!res) return "<%=raw escape_javascript _('Failed') %>";
+    return "<%=raw escape_javascript _('%{id}: Failed') % { :id => '_RES_' } %>".replace('_RES_', res);
+  },
   resource_group: function(res) {
     return "<%=raw escape_javascript _('Group: %{id}') % { :id => '_RES_' } %>".replace('_RES_', res);
   },

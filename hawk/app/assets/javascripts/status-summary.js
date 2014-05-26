@@ -74,6 +74,7 @@ var summary_view = {
           '<table cellpadding="0" cellspacing="0">' +
             '<tr id="ressum-pending" class="rs-transient clickable"><td><span style="float: left;" class="ui-icon ui-icon-refresh"></span>' + GETTEXT.resource_state_pending() + ':</td><td class="ar"></td></tr>' +
             '<tr id="ressum-started" class="rs-active clickable"><td><span style="float: left;" class="ui-icon ui-icon-play"></span>' + GETTEXT.resource_state_started() + ':</td><td class="ar"></td></tr>' +
+            '<tr id="ressum-failed" class="rs-error clickable"><td><span style="float: left;" class="ui-icon ui-icon-notice"></span>' + GETTEXT.resource_state_failed() + ':</td><td class="ar"></td></tr>' +
             '<tr id="ressum-master" class="rs-master clickable"><td><span style="float: left;" class="ui-icon ui-icon-play"></span>' + GETTEXT.resource_state_master() + ':</td><td class="ar"></td></tr>' +
             '<tr id="ressum-slave" class="rs-slave clickable"><td><span style="float: left;" class="ui-icon ui-icon-play"></span>' + GETTEXT.resource_state_slave() + ':</td><td class="ar"></td></tr>' +
             '<tr id="ressum-stopped" class="rs-inactive clickable"><td><span style="float: left;" class="ui-icon ui-icon-stop"></span>' + GETTEXT.resource_state_stopped() + ':</td><td class="ar"></td></tr>' +
@@ -291,6 +292,11 @@ var summary_view = {
           label = GETTEXT.resource_state_started(id, h2n(this.started));
           status_class += " rs-active ressum ressum-started";
           state_icon = "ui-icon-play";
+        } else if (this.failed) {
+          self._increment_counter("#ressum-failed");
+          label = GETTEXT.resource_state_failed(id, h2n(this.failed));
+          status_class += " rs-error ressum ressum-failed";
+          state_icon = "ui-icon-notice";
         } else if (this.pending) {
           if (this.pending.length == 1 && this.pending[0].substate) {
             // Seriously, this'll always have a length of 1, but it never hurts to

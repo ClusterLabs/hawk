@@ -496,10 +496,8 @@ class Cib < CibObject
               rc_code = expected
             else
               if operation == "stop"
-                # We have a failed stop, the resource is failed.  Using
-                # state unknown is a bit of a lie, but it's better than
-                # having a stale pending op seep through (bnc#879034)
-                state = :unknown
+                # We have a failed stop, the resource is failed (bnc#879034)
+                state = :failed
                 # Also, the node is thus unclean if STONITH is enabled.
                 node[:state] = :unclean if @crm_config[:"stonith-enabled"]
               end
@@ -558,7 +556,7 @@ class Cib < CibObject
           if instance && state != :stopped && state != :unknown
             # For clones, it's possible we need to rename an instance if
             # there's already a running instance with this ID.  An instance
-            # is running iff:
+            # is running (or possibly failed, as after a failed stop) iff:
             # - @resources_by_id[id][:instances][instance] exists, and,
             # - there are state keys other than :stopped, :unknown, :is_managed or :failed_ops present
             alt_i = instance

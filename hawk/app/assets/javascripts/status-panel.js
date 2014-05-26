@@ -374,6 +374,11 @@ var panel_view = {
         status_class += " rs-active";
         state_icon = "ui-icon-play";
         active = true;
+      } else if (res.instances[i].failed) {
+        nodes = res.instances[i].failed;
+        label = GETTEXT.resource_state_failed(label, h2n(nodes));
+        status_class += " rs-error";
+        state_icon = "ui-icon-notice";
       } else if (res.instances[i].pending) {
         nodes = res.instances[i].pending;
         if (nodes.length == 1 && nodes[0].substate) {
