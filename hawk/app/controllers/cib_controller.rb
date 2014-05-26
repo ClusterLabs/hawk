@@ -98,6 +98,7 @@ class CibController < ApplicationController
         :resource_states => {
           :pending  => 0,
           :started  => 0,
+          :failed   => 0,
           :master   => 0,
           :slave    => 0,
           :stopped  => 0
@@ -125,6 +126,8 @@ class CibController < ApplicationController
             mini[:resource_states][:slave] += 1
           elsif i[:started]
             mini[:resource_states][:started] += 1
+          elsif i[:failed]
+            mini[:resource_states][:failed] += 1
           elsif i[:pending]
             mini[:resource_states][:pending] += 1
           else

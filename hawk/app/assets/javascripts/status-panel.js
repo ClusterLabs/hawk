@@ -347,6 +347,11 @@ var panel_view = {
         status_class += " rs-active";
         state_icon = "ui-icon-play";
         active = true;
+      } else if (res.instances[i].failed) {
+        nodes = res.instances[i].failed;
+        label = GETTEXT.resource_state_failed(label, h2n(nodes));
+        status_class += " rs-error";
+        state_icon = "ui-icon-notice";
       } else if (res.instances[i].pending) {
         if (res.instances[i].pending.length == 1 && res.instances[i].pending[0].substate) {
           // Seriously, this'll always have a length of 1, but it never hurts to
