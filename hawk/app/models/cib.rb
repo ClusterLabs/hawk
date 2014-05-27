@@ -641,6 +641,8 @@ class Cib < CibObject
       }
       @tickets[t][:"last-granted"] = ts.attributes["last-granted"] if ts.attributes["last-granted"]
     end
+
+    # Pick up tickets defined in rsc_ticket constraints
     @xml.elements.each("cib/configuration/constraints/rsc_ticket") do |rt|
       t = rt.attributes["ticket"]
       @tickets[t] = { :granted => false } unless @tickets[rt.attributes["ticket"]]
@@ -657,6 +659,13 @@ class Cib < CibObject
       @booth["#{m[1]}s".to_sym] << m[2].split(";")[0]
     end if File.exists?("/etc/booth/booth.conf")
 
+    # Pick up tickets defined in booth config
+    @booth[:tickets].each do |t|
+      @tickets[t] = { :granted => false } unless @tickets[t]
+    end
+
+    # Get more Geo info from booth (notably, if :me is set, this cluster is
+    # part of a geo cluster).
     if !@booth[:sites].empty?
       @booth[:sites].sort!
       @xml.elements.each("cib/configuration//primitive[@type='IPaddr2']/instance_attributes/nvpair[@name='ip']") do |elem|
@@ -682,11 +691,6 @@ class Cib < CibObject
         end
       end
     end
-
-    # Now @booth has :sites, :arbitrators, :tickets.
-    # Note: @booth[:tickets] can probably be dropped in favour of
-    # existing @tickets (cib-based, so needs to be presented)
-    # If :me is set, this cluster is actually part of a geo cluster.
   end
 
 end
