@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-20 21:15+1000\n"
+"POT-Creation-Date: 2014-05-27 21:57+1000\n"
 "PO-Revision-Date: 2014-05-02 16:21\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "%s is not installed"
 msgstr "%s is niet geïnstalleerd."
 
-#: ../app/views/main/_gettext.js.erb:256
+#: ../app/views/main/_gettext.js.erb:271
 msgid "%{active}/%{total} %{type} %{node}"
 msgstr ""
 
@@ -35,83 +35,88 @@ msgstr "%{cmd} mislukt (status: %{status})"
 msgid "%{cmd} failed (status: %{status}, output was: %{output})"
 msgstr "%{cmd} mislukt (status: %{status}, uitvoer was: %{output})"
 
-#: ../app/views/main/_gettext.js.erb:233
+#: ../app/views/main/_gettext.js.erb:244
 msgid "%{id}: Demoting"
 msgstr "%{id}: niveau omlaag"
 
-#: ../app/views/main/_gettext.js.erb:232
+#: ../app/views/main/_gettext.js.erb:243
 msgid "%{id}: Demoting: %{node}"
 msgstr "%{id}: niveau omlaag: %{node}"
 
-#: ../app/views/main/_gettext.js.erb:201
+#: ../app/views/main/_gettext.js.erb:256
+#, fuzzy
+msgid "%{id}: Failed"
+msgstr "%{id}: Gestart"
+
+#: ../app/views/main/_gettext.js.erb:212
 msgid "%{id}: Master"
 msgstr "%{id}: master"
 
-#: ../app/views/main/_gettext.js.erb:200
+#: ../app/views/main/_gettext.js.erb:211
 msgid "%{id}: Master: %{nodelist}"
 msgstr "%{id}: Master: %{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:237
+#: ../app/views/main/_gettext.js.erb:248
 msgid "%{id}: Moving"
 msgstr "%{id}: verplaatsen"
 
-#: ../app/views/main/_gettext.js.erb:236
+#: ../app/views/main/_gettext.js.erb:247
 msgid "%{id}: Moving: %{node}"
 msgstr "%{id}: verplaatsen: %{node}"
 
-#: ../app/views/main/_gettext.js.erb:216
+#: ../app/views/main/_gettext.js.erb:227
 msgid "%{id}: Pending"
 msgstr "%{id}: onderweg"
 
-#: ../app/views/main/_gettext.js.erb:215
+#: ../app/views/main/_gettext.js.erb:226
 msgid "%{id}: Pending: %{nodelist}"
 msgstr "%{id}: Onderweg: %{knooppuntlijst}"
 
-#: ../app/views/main/_gettext.js.erb:229
+#: ../app/views/main/_gettext.js.erb:240
 msgid "%{id}: Promoting"
 msgstr "%{id}: niveau omhoog"
 
-#: ../app/views/main/_gettext.js.erb:228
+#: ../app/views/main/_gettext.js.erb:239
 msgid "%{id}: Promoting: %{node}"
 msgstr "%{id}: niveau omhoog: %{node}"
 
-#: ../app/views/main/_gettext.js.erb:206
+#: ../app/views/main/_gettext.js.erb:217
 msgid "%{id}: Slave"
 msgstr "%{id}: slave"
 
-#: ../app/views/main/_gettext.js.erb:205
+#: ../app/views/main/_gettext.js.erb:216
 msgid "%{id}: Slave: %{nodelist}"
 msgstr "%{id}: Slave: %{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:211
+#: ../app/views/main/_gettext.js.erb:222
 msgid "%{id}: Started"
 msgstr "%{id}: Gestart"
 
-#: ../app/views/main/_gettext.js.erb:210
+#: ../app/views/main/_gettext.js.erb:221
 msgid "%{id}: Started: %{nodelist}"
 msgstr "%{id}: Gestart: %{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:221
+#: ../app/views/main/_gettext.js.erb:232
 msgid "%{id}: Starting"
 msgstr "%{id}: starten"
 
-#: ../app/views/main/_gettext.js.erb:220
+#: ../app/views/main/_gettext.js.erb:231
 msgid "%{id}: Starting: %{node}"
 msgstr "%{id}: starten: %{node}"
 
-#: ../app/views/main/_gettext.js.erb:241
+#: ../app/views/main/_gettext.js.erb:252
 msgid "%{id}: Stopped"
 msgstr "%{id}: Gestopt"
 
-#: ../app/views/main/_gettext.js.erb:225
+#: ../app/views/main/_gettext.js.erb:236
 msgid "%{id}: Stopping"
 msgstr "%{id}: stoppen"
 
-#: ../app/views/main/_gettext.js.erb:224
+#: ../app/views/main/_gettext.js.erb:235
 msgid "%{id}: Stopping: %{node}"
 msgstr "%{id}: stoppen: %{node}"
 
-#: ../app/views/main/_gettext.js.erb:177
+#: ../app/views/main/_gettext.js.erb:188
 msgid "%{node}: %{state}"
 msgstr "%{knooppunt}: %{status}"
 
@@ -169,7 +174,7 @@ msgstr "(Geen ticketbeperkingen gedefinieerd)"
 msgid "(No users defined)"
 msgstr "(Geen klonen opgegeven)"
 
-#: ../app/views/dashboard/index.html.erb:410
+#: ../app/views/dashboard/index.html.erb:411
 msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
 msgstr "(Geef een hostnaam in de cluster op. Andere knoppunten worden automatisch gevonden)"
 
@@ -177,25 +182,25 @@ msgstr "(Geef een hostnaam in de cluster op. Andere knoppunten worden automatisc
 msgid "(full log)"
 msgstr "(volledig logboekbestand)"
 
-#: ../app/views/main/_gettext.js.erb:275
+#: ../app/views/main/_gettext.js.erb:290
 msgid "+ Node"
 msgstr "+ knooppunt"
 
-#: ../app/views/main/_gettext.js.erb:278
+#: ../app/views/main/_gettext.js.erb:293
 msgid "+ Op"
 msgstr "+ op"
 
-#: ../app/views/main/_gettext.js.erb:281
+#: ../app/views/main/_gettext.js.erb:296
 msgid "+ Ticket"
 msgstr "+Ticket"
 
-#: ../app/controllers/cib_controller.rb:110 ../app/controllers/cib_controller.rb:164
+#: ../app/controllers/cib_controller.rb:111 ../app/controllers/cib_controller.rb:167
 msgid "1 node configured"
 msgid_plural "%{num} nodes configured"
 msgstr[0] "1 knooppunt geconfigureerd"
 msgstr[1] "%{num} knooppunten geconfigureerd"
 
-#: ../app/controllers/cib_controller.rb:111 ../app/controllers/cib_controller.rb:165
+#: ../app/controllers/cib_controller.rb:112 ../app/controllers/cib_controller.rb:168
 msgid "1 resource configured"
 msgid_plural "%{num} resources configured"
 msgstr[0] "1 resource geconfigureerd"
@@ -205,7 +210,7 @@ msgstr[1] "%{num} resources geconfigureerd"
 msgid "< Back"
 msgstr "< Vorige"
 
-#: ../app/views/dashboard/index.html.erb:432
+#: ../app/views/dashboard/index.html.erb:433
 msgid "A cluster with that name already exists"
 msgstr "Er bestaat al een cluster met deze naam"
 
@@ -213,11 +218,11 @@ msgstr "Er bestaat al een cluster met deze naam"
 msgid "Access Control Lists"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:332
+#: ../app/views/main/_gettext.js.erb:347
 msgid "Action:"
 msgstr "Actie:"
 
-#: ../app/views/main/_gettext.js.erb:344
+#: ../app/views/main/_gettext.js.erb:359
 msgid "Activate"
 msgstr "Activeren"
 
@@ -225,7 +230,7 @@ msgstr "Activeren"
 msgid "Add"
 msgstr "Toevoegen"
 
-#: ../app/views/dashboard/index.html.erb:415
+#: ../app/views/dashboard/index.html.erb:416
 msgid "Add Cluster"
 msgstr "Cluster toevoegen"
 
@@ -286,11 +291,11 @@ msgstr "Boolean op"
 msgid "Break set"
 msgstr "Set onderbreken"
 
-#: ../app/views/main/_gettext.js.erb:290
+#: ../app/views/main/_gettext.js.erb:305
 msgid "CIB (in)"
 msgstr "CIB (in)"
 
-#: ../app/views/main/_gettext.js.erb:293
+#: ../app/views/main/_gettext.js.erb:308
 msgid "CIB (out)"
 msgstr "CIB (uit)"
 
@@ -302,7 +307,7 @@ msgstr "CIB-bestand \"%{path}\" niet gevonden"
 msgid "CRM Configuration"
 msgstr "CRM-configuratie"
 
-#: ../app/views/dashboard/index.html.erb:330
+#: ../app/views/dashboard/index.html.erb:331
 msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
 msgstr "Kan geen contact opnemen met Hawk op %{node}. Er wordt elke 5 seconden een nieuwe poging gedaan."
 
@@ -322,7 +327,7 @@ msgstr "Kan parameter %{p} niet instellen, omdat de waarde enkele en dubbele aan
 msgid "Can't set property %{p}, because the value contains both single and double quotes"
 msgstr "Kan eigenschap %{p} niet instellen, omdat de waarde enkele en dubbele aanhalingstekens bevat"
 
-#: ../app/views/dashboard/index.html.erb:492 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
+#: ../app/views/dashboard/index.html.erb:493 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
 msgid "Cancel"
 msgstr "Annuleren"
 
@@ -354,7 +359,7 @@ msgstr "Kloon-id"
 msgid "Clone ID \"%{id}\" does not exist"
 msgstr "Kloon-id \"%{id}\" bestaat niet"
 
-#: ../app/views/main/_gettext.js.erb:250
+#: ../app/views/main/_gettext.js.erb:265
 msgid "Clone Set: %{id}"
 msgstr "Kloonset: %{id}"
 
@@ -382,7 +387,7 @@ msgstr "Clusterdashboard"
 msgid "Cluster Diagram"
 msgstr "Clusterdiagram"
 
-#: ../app/views/dashboard/index.html.erb:408
+#: ../app/views/dashboard/index.html.erb:409
 msgid "Cluster Name:"
 msgstr "Clusternaam:"
 
@@ -537,7 +542,7 @@ msgstr "Dit historiearchief verwijderen?"
 msgid "Demote"
 msgstr "Degraderen"
 
-#: ../app/views/explorer/_pe_list.html.erb:30 ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:287
+#: ../app/views/explorer/_pe_list.html.erb:30 ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:302
 msgid "Details"
 msgstr "Details"
 
@@ -615,7 +620,16 @@ msgstr "Ticketbeperking bewerken"
 msgid "Edit User"
 msgstr "Resource bewerken"
 
-#: ../app/views/main/_gettext.js.erb:299
+#: ../app/views/main/_gettext.js.erb:154
+msgid "Elsewhere"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:153
+#, fuzzy
+msgid "Elsewhere [standby]"
+msgstr "Toewijzen [stand-by]"
+
+#: ../app/views/main/_gettext.js.erb:314
 msgid "Empty Graph"
 msgstr "Leeg diagram"
 
@@ -688,11 +702,15 @@ msgstr "Expressie"
 msgid "Fail Count"
 msgstr "Aantal mislukte pogingen"
 
-#: ../app/views/main/_gettext.js.erb:374
+#: ../app/views/main/_gettext.js.erb:255
+msgid "Failed"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:389
 msgid "Failed Master"
 msgstr "Mislukte master"
 
-#: ../app/models/cib.rb:481
+#: ../app/models/cib.rb:487
 msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
 msgstr "Mislukte bewerking: knooppunt=%{node}, resource=%{resource}, gespreks-id=%{call_id}, bewerking=%{op}, rc-code=%{rc_code}"
 
@@ -712,7 +730,7 @@ msgstr "hb_report genereren"
 msgid "Generate hb_report..."
 msgstr "hb_report genereren..."
 
-#: ../app/views/main/_gettext.js.erb:350
+#: ../app/views/main/_gettext.js.erb:365
 msgid "Generic Error"
 msgstr "Algemene fout"
 
@@ -720,7 +738,7 @@ msgstr "Algemene fout"
 msgid "Getting recent events (last hour)..."
 msgstr "Bezig met ophalen van recente gebeurtenissen (afgelopen uur)..."
 
-#: ../app/views/main/_gettext.js.erb:335 ../app/views/main/_menus.html.erb:206
+#: ../app/views/main/_gettext.js.erb:350 ../app/views/main/_menus.html.erb:206
 msgid "Grant"
 msgstr "Toewijzen"
 
@@ -732,7 +750,7 @@ msgstr "Toegewezen"
 msgid "Granted [standby]"
 msgstr "Toewijzen [stand-by]"
 
-#: ../app/views/explorer/_pe_list.html.erb:38 ../app/views/main/_gettext.js.erb:296
+#: ../app/views/explorer/_pe_list.html.erb:38 ../app/views/main/_gettext.js.erb:311
 msgid "Graph"
 msgstr "Grafiek"
 
@@ -760,7 +778,7 @@ msgstr "De groep is gemaakt"
 msgid "Group updated successfully"
 msgstr "Groep is bijgewerkt"
 
-#: ../app/views/main/_gettext.js.erb:244
+#: ../app/views/main/_gettext.js.erb:259
 msgid "Group: %{id}"
 msgstr "Groep: %{id}"
 
@@ -768,7 +786,7 @@ msgstr "Groep: %{id}"
 msgid "History Explorer"
 msgstr "Historieverkenner"
 
-#: ../app/views/dashboard/index.html.erb:409
+#: ../app/views/dashboard/index.html.erb:410
 msgid "Host Name:"
 msgstr "Hostnaam:"
 
@@ -776,23 +794,23 @@ msgstr "Hostnaam:"
 msgid "Inactive Resources"
 msgstr "Inactieve bronnen"
 
-#: ../app/views/main/_gettext.js.erb:302
+#: ../app/views/main/_gettext.js.erb:317
 msgid "Inject Node State"
 msgstr "Knooppuntstatus invoeren"
 
-#: ../app/views/main/_gettext.js.erb:311
+#: ../app/views/main/_gettext.js.erb:326
 msgid "Inject Operation"
 msgstr "Bewerking invoeren"
 
-#: ../app/views/main/_gettext.js.erb:326
+#: ../app/views/main/_gettext.js.erb:341
 msgid "Inject Ticket"
 msgstr "Ticket invoegen"
 
-#: ../app/views/main/_gettext.js.erb:272
+#: ../app/views/main/_gettext.js.erb:287
 msgid "Injected State:"
 msgstr "Ingevoerde status:"
 
-#: ../app/views/main/_gettext.js.erb:317
+#: ../app/views/main/_gettext.js.erb:332
 msgid "Interval:"
 msgstr "Interval:"
 
@@ -833,11 +851,11 @@ msgstr ""
 msgid "Last Failure"
 msgstr "Laatste mislukte poging"
 
-#: ../app/views/main/_gettext.js.erb:160
+#: ../app/views/main/_gettext.js.erb:165
 msgid "Last granted: %s"
 msgstr "Laatst toegewezen: %s"
 
-#: ../app/views/main/_gettext.js.erb:157
+#: ../app/views/main/_gettext.js.erb:162
 msgid "Leader: %s"
 msgstr ""
 
@@ -869,7 +887,7 @@ msgstr "Onderhoud"
 msgid "Maintenance Mode"
 msgstr "Onderhoudsmodus"
 
-#: ../app/views/main/_gettext.js.erb:199
+#: ../app/views/main/_gettext.js.erb:210
 msgid "Master"
 msgstr "Master"
 
@@ -885,7 +903,7 @@ msgstr "Master/slave-id"
 msgid "Master/Slave ID \"%{id}\" does not exist"
 msgstr "Master/slave-id \"%{id}\" bestaat niet"
 
-#: ../app/views/main/_gettext.js.erb:247
+#: ../app/views/main/_gettext.js.erb:262
 msgid "Master/Slave Set: %{id}"
 msgstr "Master-/slaveset: %{id}"
 
@@ -1014,35 +1032,35 @@ msgstr "Geen werkstroombeschrijvingen gevonden"
 msgid "Node"
 msgstr "Knooppunt"
 
-#: ../app/views/main/_gettext.js.erb:305
+#: ../app/views/main/_gettext.js.erb:320
 msgid "Node:"
 msgstr "Knooppunt:"
 
-#: ../app/views/main/_gettext.js.erb:365
+#: ../app/views/main/_gettext.js.erb:380
 msgid "Not Configured"
 msgstr "Niet geconfigureerd"
 
-#: ../app/views/main/_gettext.js.erb:356
+#: ../app/views/main/_gettext.js.erb:371
 msgid "Not Implemented"
 msgstr "Niet geïmplementeerd"
 
-#: ../app/views/main/_gettext.js.erb:362
+#: ../app/views/main/_gettext.js.erb:377
 msgid "Not Installed"
 msgstr "Niet geïnstalleerd"
 
-#: ../app/views/main/_gettext.js.erb:368
+#: ../app/views/main/_gettext.js.erb:383
 msgid "Not Running"
 msgstr "Niet actief"
 
-#: ../app/views/dashboard/index.html.erb:417 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
+#: ../app/views/dashboard/index.html.erb:418 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
 msgid "OK"
 msgstr "Ok"
 
-#: ../app/views/main/_gettext.js.erb:183
+#: ../app/views/main/_gettext.js.erb:194
 msgid "Offline"
 msgstr "Offline"
 
-#: ../app/views/main/_gettext.js.erb:180 ../app/views/main/_menus.html.erb:8
+#: ../app/views/main/_gettext.js.erb:191 ../app/views/main/_menus.html.erb:8
 msgid "Online"
 msgstr "Online"
 
@@ -1050,7 +1068,7 @@ msgstr "Online"
 msgid "Operation Defaults"
 msgstr "Standaardwaarden voor bewerking"
 
-#: ../app/views/main/_gettext.js.erb:314
+#: ../app/views/main/_gettext.js.erb:329
 msgid "Operation:"
 msgstr "Bewerking:"
 
@@ -1082,7 +1100,7 @@ msgstr ""
 msgid "Parameters"
 msgstr "Parameters"
 
-#: ../app/views/main/_gettext.js.erb:253
+#: ../app/views/main/_gettext.js.erb:268
 msgid "Parent: %{id}..."
 msgstr "Bovenliggend:%{id}..."
 
@@ -1094,11 +1112,11 @@ msgstr "Geen wachtwoord opgegeven"
 msgid "Password:"
 msgstr "Wachtwoord:"
 
-#: ../app/views/main/_gettext.js.erb:186 ../app/views/main/_gettext.js.erb:214
+#: ../app/views/main/_gettext.js.erb:197 ../app/views/main/_gettext.js.erb:225
 msgid "Pending"
 msgstr "Onderweg"
 
-#: ../app/views/main/_gettext.js.erb:359
+#: ../app/views/main/_gettext.js.erb:374
 msgid "Permission Denied"
 msgstr "Toestemming geweigerd"
 
@@ -1114,7 +1132,7 @@ msgstr ""
 msgid "Permission denied for user %{user}"
 msgstr "Toestemming geweigerd voor gebruiker %{user}"
 
-#: ../app/views/dashboard/index.html.erb:241
+#: ../app/views/dashboard/index.html.erb:242
 msgid "Permission denied. Please log in to %{node}"
 msgstr "Toegang geweigerd. Meld u aan bij %{node}"
 
@@ -1224,7 +1242,7 @@ msgstr "De resource is gemaakt"
 msgid "Resource updated successfully"
 msgstr "Bron is bijgewerkt"
 
-#: ../app/views/main/_gettext.js.erb:320
+#: ../app/views/main/_gettext.js.erb:335
 msgid "Resource:"
 msgstr "Resource:"
 
@@ -1232,7 +1250,7 @@ msgstr "Resource:"
 msgid "Resources"
 msgstr "Resources"
 
-#: ../app/views/main/_gettext.js.erb:323
+#: ../app/views/main/_gettext.js.erb:338
 msgid "Result:"
 msgstr "Resultaat:"
 
@@ -1240,15 +1258,15 @@ msgstr "Resultaat:"
 msgid "Revert Changes"
 msgstr "Wijzigingen ongedaan maken"
 
-#: ../app/views/main/_gettext.js.erb:338 ../app/views/main/_menus.html.erb:213
+#: ../app/views/main/_gettext.js.erb:353 ../app/views/main/_menus.html.erb:213
 msgid "Revoke"
 msgstr "Intrekken"
 
-#: ../app/views/main/_gettext.js.erb:154
+#: ../app/views/main/_gettext.js.erb:159
 msgid "Revoked"
 msgstr "Ingetrokken"
 
-#: ../app/views/main/_gettext.js.erb:153
+#: ../app/views/main/_gettext.js.erb:158
 msgid "Revoked [standby]"
 msgstr "Ingetrokken [stand-by]"
 
@@ -1294,11 +1312,11 @@ msgstr "Rol"
 msgid "Root Password"
 msgstr "Wachtwoord:"
 
-#: ../app/views/main/_gettext.js.erb:284
+#: ../app/views/main/_gettext.js.erb:299
 msgid "Run >"
 msgstr "Uitvoeren >"
 
-#: ../app/views/main/_gettext.js.erb:371
+#: ../app/views/main/_gettext.js.erb:386
 msgid "Running Master"
 msgstr "Actieve master"
 
@@ -1322,19 +1340,19 @@ msgstr "Regeleditor weergeven"
 msgid "Simulator"
 msgstr "Simulatie"
 
-#: ../app/views/main/_gettext.js.erb:266
+#: ../app/views/main/_gettext.js.erb:281
 msgid "Simulator (busy...)"
 msgstr "Simulator (bezet...)"
 
-#: ../app/views/main/_gettext.js.erb:269
+#: ../app/views/main/_gettext.js.erb:284
 msgid "Simulator (final state)"
 msgstr "Simulator (definitieve status)"
 
-#: ../app/views/main/_gettext.js.erb:263
+#: ../app/views/main/_gettext.js.erb:278
 msgid "Simulator (initial state)"
 msgstr "Simulator (eerste status)"
 
-#: ../app/views/main/_gettext.js.erb:204
+#: ../app/views/main/_gettext.js.erb:215
 msgid "Slave"
 msgstr "Slave"
 
@@ -1342,7 +1360,7 @@ msgstr "Slave"
 msgid "Stack: %s"
 msgstr "Stapel: %s"
 
-#: ../app/views/main/_gettext.js.erb:189 ../app/views/main/_gettext.js.erb:341 ../app/views/main/_menus.html.erb:15
+#: ../app/views/main/_gettext.js.erb:200 ../app/views/main/_gettext.js.erb:356 ../app/views/main/_menus.html.erb:15
 msgid "Standby"
 msgstr "Standby"
 
@@ -1358,11 +1376,11 @@ msgstr "De begintijd is niet opgegeven"
 msgid "Start Time:"
 msgstr "Begintijd:"
 
-#: ../app/views/main/_gettext.js.erb:209
+#: ../app/views/main/_gettext.js.erb:220
 msgid "Started"
 msgstr "Gestart"
 
-#: ../app/views/main/_gettext.js.erb:308
+#: ../app/views/main/_gettext.js.erb:323
 msgid "State:"
 msgstr "Staat:"
 
@@ -1374,11 +1392,11 @@ msgstr "Status"
 msgid "Stop"
 msgstr "Stoppen"
 
-#: ../app/views/main/_gettext.js.erb:240
+#: ../app/views/main/_gettext.js.erb:251
 msgid "Stopped"
 msgstr "Gestopt"
 
-#: ../app/views/main/_gettext.js.erb:347
+#: ../app/views/main/_gettext.js.erb:362
 msgid "Success"
 msgstr "Succes"
 
@@ -1386,7 +1404,7 @@ msgstr "Succes"
 msgid "Summary"
 msgstr "Samenvatting"
 
-#: ../app/views/main/_gettext.js.erb:167
+#: ../app/views/main/_gettext.js.erb:178
 msgid "Summary View"
 msgstr "Overzichtsweergave"
 
@@ -1402,7 +1420,7 @@ msgstr "Symmetrische cluster"
 msgid "Symmetrical"
 msgstr "Symmetrisch"
 
-#: ../app/views/main/_gettext.js.erb:173
+#: ../app/views/main/_gettext.js.erb:184
 msgid "Table View"
 msgstr "Tabelweergave"
 
@@ -1438,7 +1456,7 @@ msgstr "De configuratie is toegepast."
 msgid "The following configuration will be applied to the cluster:"
 msgstr "De volgende configuratie wordt toegepast op de cluster:"
 
-#: ../app/views/dashboard/index.html.erb:438
+#: ../app/views/dashboard/index.html.erb:439
 msgid "The host %{h} is already present in cluster %{c}"
 msgstr "De host %{h} is al aanwezig in cluster %{c}"
 
@@ -1524,7 +1542,11 @@ msgstr "Deze wizard begeleidt u door de stappen voor het toevoegen van een van d
 msgid "Ticket"
 msgstr "Ticket"
 
-#: ../app/views/main/_gettext.js.erb:329
+#: ../app/views/main/_gettext.js.erb:174
+msgid "Ticket granted, but Booth thinks leader is '%s'!"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:344
 msgid "Ticket:"
 msgstr "Ticket:"
 
@@ -1536,7 +1558,7 @@ msgstr "Tickets"
 msgid "Time"
 msgstr "Tijd"
 
-#: ../app/views/dashboard/index.html.erb:156 ../app/views/dashboard/index.html.erb:485
+#: ../app/views/dashboard/index.html.erb:157 ../app/views/dashboard/index.html.erb:486
 msgid "Timeout: Please try again"
 msgstr "Time-out: Probeer het opnieuw"
 
@@ -1548,7 +1570,7 @@ msgstr ""
 msgid "To node %s"
 msgstr "Naar knooppunt %s"
 
-#: ../app/views/main/_gettext.js.erb:259
+#: ../app/views/main/_gettext.js.erb:274
 msgid "Toggle view by type"
 msgstr ""
 
@@ -1556,7 +1578,7 @@ msgstr ""
 msgid "Tools"
 msgstr "Hulpprogramma's"
 
-#: ../app/views/main/_gettext.js.erb:170
+#: ../app/views/main/_gettext.js.erb:181
 msgid "Tree View"
 msgstr "Boomstructuurweergave"
 
@@ -1572,7 +1594,7 @@ msgstr "Host gebruikersinterface: %s"
 msgid "Unable to apply changes: %{msg}"
 msgstr "Kan wijzigingen niet toepassen: %{msg}"
 
-#: ../app/views/dashboard/index.html.erb:467 ../app/views/dashboard/index.html.erb:479
+#: ../app/views/dashboard/index.html.erb:468 ../app/views/dashboard/index.html.erb:480
 msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
 msgstr "Kan geen verbinding maken met %{host}. Probeer %{url} in een webbrowser te openen om te controleren of Hawk toegankelijk is."
 
@@ -1614,6 +1636,10 @@ msgstr "Kan kloon niet maken: %{msg}"
 msgid "Unable to execute %{cmd}"
 msgstr "Kan %{cmd} niet uitvoeren"
 
+#: ../app/views/main/_gettext.js.erb:171
+msgid "Unable to obtain ticket information from Booth!"
+msgstr ""
+
 #: ../app/models/cib.rb:236
 msgid "Unable to parse CIB file \"%{path}\""
 msgstr "Kan CIB-bestand \"%{path}\" niet parseren"
@@ -1636,7 +1662,7 @@ msgstr "Kan kloon niet maken: %{msg}"
 msgid "Unable to update user: %{msg}"
 msgstr "Kan beperking niet bijwerken: %{msg}"
 
-#: ../app/views/main/_gettext.js.erb:192
+#: ../app/views/main/_gettext.js.erb:203
 msgid "Unclean"
 msgstr "Niet opgeschoond"
 
@@ -1644,7 +1670,7 @@ msgstr "Niet opgeschoond"
 msgid "Unexpected server error: %s"
 msgstr "Onverwachte serverfout: %s"
 
-#: ../app/models/cib.rb:269 ../app/models/cib.rb:270 ../app/models/cib.rb:614 ../app/views/main/_gettext.js.erb:195
+#: ../app/models/cib.rb:269 ../app/models/cib.rb:270 ../app/models/cib.rb:627 ../app/views/main/_gettext.js.erb:206
 msgid "Unknown"
 msgstr "Onbekend"
 
@@ -1731,7 +1757,7 @@ msgstr "Wizardsjablonen en/of -werkstromen ontbreken"
 msgid "Workflow \"%s\" not found"
 msgstr "Werkstroom \"%s\" is niet gevonden"
 
-#: ../app/views/main/_gettext.js.erb:353
+#: ../app/views/main/_gettext.js.erb:368
 msgid "Wrong Argument(s)"
 msgstr "Onjuiste argumenten"
 

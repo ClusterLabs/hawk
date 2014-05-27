@@ -11,8 +11,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk 0.7.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-20 21:15+1000\n"
-"PO-Revision-Date: 2014-05-20 21:15+1000\n"
+"POT-Creation-Date: 2014-05-27 21:57+1000\n"
+"PO-Revision-Date: 2014-05-27 21:57+1000\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -29,13 +29,13 @@ msgstr ""
 msgid "Unable to create shadow CIB"
 msgstr ""
 
-#: ../app/controllers/cib_controller.rb:110 ../app/controllers/cib_controller.rb:164
+#: ../app/controllers/cib_controller.rb:111 ../app/controllers/cib_controller.rb:167
 msgid "1 node configured"
 msgid_plural "%{num} nodes configured"
 msgstr[0] ""
 msgstr[1] ""
 
-#: ../app/controllers/cib_controller.rb:111 ../app/controllers/cib_controller.rb:165
+#: ../app/controllers/cib_controller.rb:112 ../app/controllers/cib_controller.rb:168
 msgid "1 resource configured"
 msgid_plural "%{num} resources configured"
 msgstr[0] ""
@@ -405,11 +405,11 @@ msgstr ""
 msgid "Error invoking %{cmd}"
 msgstr ""
 
-#: ../app/models/cib.rb:269 ../app/models/cib.rb:270 ../app/models/cib.rb:614 ../app/views/main/_gettext.js.erb:195
+#: ../app/models/cib.rb:269 ../app/models/cib.rb:270 ../app/models/cib.rb:627 ../app/views/main/_gettext.js.erb:206
 msgid "Unknown"
 msgstr ""
 
-#: ../app/models/cib.rb:481
+#: ../app/models/cib.rb:487
 msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
 msgstr ""
 
@@ -753,51 +753,51 @@ msgstr ""
 msgid "Cluster has errors - click for details"
 msgstr ""
 
-#: ../app/views/dashboard/index.html.erb:156 ../app/views/dashboard/index.html.erb:485
+#: ../app/views/dashboard/index.html.erb:157 ../app/views/dashboard/index.html.erb:486
 msgid "Timeout: Please try again"
 msgstr ""
 
-#: ../app/views/dashboard/index.html.erb:241
+#: ../app/views/dashboard/index.html.erb:242
 msgid "Permission denied. Please log in to %{node}"
 msgstr ""
 
-#: ../app/views/dashboard/index.html.erb:330
+#: ../app/views/dashboard/index.html.erb:331
 msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
 msgstr ""
 
-#: ../app/views/dashboard/index.html.erb:408
+#: ../app/views/dashboard/index.html.erb:409
 msgid "Cluster Name:"
 msgstr ""
 
-#: ../app/views/dashboard/index.html.erb:409
+#: ../app/views/dashboard/index.html.erb:410
 msgid "Host Name:"
 msgstr ""
 
-#: ../app/views/dashboard/index.html.erb:410
+#: ../app/views/dashboard/index.html.erb:411
 msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
 msgstr ""
 
-#: ../app/views/dashboard/index.html.erb:415
+#: ../app/views/dashboard/index.html.erb:416
 msgid "Add Cluster"
 msgstr ""
 
-#: ../app/views/dashboard/index.html.erb:417 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
+#: ../app/views/dashboard/index.html.erb:418 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
 msgid "OK"
 msgstr ""
 
-#: ../app/views/dashboard/index.html.erb:432
+#: ../app/views/dashboard/index.html.erb:433
 msgid "A cluster with that name already exists"
 msgstr ""
 
-#: ../app/views/dashboard/index.html.erb:438
+#: ../app/views/dashboard/index.html.erb:439
 msgid "The host %{h} is already present in cluster %{c}"
 msgstr ""
 
-#: ../app/views/dashboard/index.html.erb:467 ../app/views/dashboard/index.html.erb:479
+#: ../app/views/dashboard/index.html.erb:468 ../app/views/dashboard/index.html.erb:480
 msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
 msgstr ""
 
-#: ../app/views/dashboard/index.html.erb:492 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
+#: ../app/views/dashboard/index.html.erb:493 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
 msgid "Cancel"
 msgstr ""
 
@@ -817,7 +817,7 @@ msgstr ""
 msgid "Node"
 msgstr ""
 
-#: ../app/views/explorer/_pe_list.html.erb:30 ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:287
+#: ../app/views/explorer/_pe_list.html.erb:30 ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:302
 msgid "Details"
 msgstr ""
 
@@ -825,7 +825,7 @@ msgstr ""
 msgid "(full log)"
 msgstr ""
 
-#: ../app/views/explorer/_pe_list.html.erb:38 ../app/views/main/_gettext.js.erb:296
+#: ../app/views/explorer/_pe_list.html.erb:38 ../app/views/main/_gettext.js.erb:311
 msgid "Graph"
 msgstr ""
 
@@ -1146,314 +1146,338 @@ msgid "Granted"
 msgstr ""
 
 #: ../app/views/main/_gettext.js.erb:153
-msgid "Revoked [standby]"
+msgid "Elsewhere [standby]"
 msgstr ""
 
 #: ../app/views/main/_gettext.js.erb:154
+msgid "Elsewhere"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:158
+msgid "Revoked [standby]"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:159
 msgid "Revoked"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:157
+#: ../app/views/main/_gettext.js.erb:162
 msgid "Leader: %s"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:160
+#: ../app/views/main/_gettext.js.erb:165
 msgid "Last granted: %s"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:163
+#: ../app/views/main/_gettext.js.erb:168
 msgid "Expires: %s"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:167
+#: ../app/views/main/_gettext.js.erb:171
+msgid "Unable to obtain ticket information from Booth!"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:174
+msgid "Ticket granted, but Booth thinks leader is '%s'!"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:178
 msgid "Summary View"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:170
+#: ../app/views/main/_gettext.js.erb:181
 msgid "Tree View"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:173
+#: ../app/views/main/_gettext.js.erb:184
 msgid "Table View"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:177
+#: ../app/views/main/_gettext.js.erb:188
 msgid "%{node}: %{state}"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:180 ../app/views/main/_menus.html.erb:8
+#: ../app/views/main/_gettext.js.erb:191 ../app/views/main/_menus.html.erb:8
 msgid "Online"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:183
+#: ../app/views/main/_gettext.js.erb:194
 msgid "Offline"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:186 ../app/views/main/_gettext.js.erb:214
+#: ../app/views/main/_gettext.js.erb:197 ../app/views/main/_gettext.js.erb:225
 msgid "Pending"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:189 ../app/views/main/_gettext.js.erb:341 ../app/views/main/_menus.html.erb:15
+#: ../app/views/main/_gettext.js.erb:200 ../app/views/main/_gettext.js.erb:356 ../app/views/main/_menus.html.erb:15
 msgid "Standby"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:192
+#: ../app/views/main/_gettext.js.erb:203
 msgid "Unclean"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:199
+#: ../app/views/main/_gettext.js.erb:210
 msgid "Master"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:200
+#: ../app/views/main/_gettext.js.erb:211
 msgid "%{id}: Master: %{nodelist}"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:201
+#: ../app/views/main/_gettext.js.erb:212
 msgid "%{id}: Master"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:204
+#: ../app/views/main/_gettext.js.erb:215
 msgid "Slave"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:205
+#: ../app/views/main/_gettext.js.erb:216
 msgid "%{id}: Slave: %{nodelist}"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:206
+#: ../app/views/main/_gettext.js.erb:217
 msgid "%{id}: Slave"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:209
+#: ../app/views/main/_gettext.js.erb:220
 msgid "Started"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:210
+#: ../app/views/main/_gettext.js.erb:221
 msgid "%{id}: Started: %{nodelist}"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:211
+#: ../app/views/main/_gettext.js.erb:222
 msgid "%{id}: Started"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:215
+#: ../app/views/main/_gettext.js.erb:226
 msgid "%{id}: Pending: %{nodelist}"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:216
+#: ../app/views/main/_gettext.js.erb:227
 msgid "%{id}: Pending"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:220
+#: ../app/views/main/_gettext.js.erb:231
 msgid "%{id}: Starting: %{node}"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:221
+#: ../app/views/main/_gettext.js.erb:232
 msgid "%{id}: Starting"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:224
+#: ../app/views/main/_gettext.js.erb:235
 msgid "%{id}: Stopping: %{node}"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:225
+#: ../app/views/main/_gettext.js.erb:236
 msgid "%{id}: Stopping"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:228
+#: ../app/views/main/_gettext.js.erb:239
 msgid "%{id}: Promoting: %{node}"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:229
+#: ../app/views/main/_gettext.js.erb:240
 msgid "%{id}: Promoting"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:232
+#: ../app/views/main/_gettext.js.erb:243
 msgid "%{id}: Demoting: %{node}"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:233
+#: ../app/views/main/_gettext.js.erb:244
 msgid "%{id}: Demoting"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:236
+#: ../app/views/main/_gettext.js.erb:247
 msgid "%{id}: Moving: %{node}"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:237
+#: ../app/views/main/_gettext.js.erb:248
 msgid "%{id}: Moving"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:240
+#: ../app/views/main/_gettext.js.erb:251
 msgid "Stopped"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:241
+#: ../app/views/main/_gettext.js.erb:252
 msgid "%{id}: Stopped"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:244
-msgid "Group: %{id}"
-msgstr ""
-
-#: ../app/views/main/_gettext.js.erb:247
-msgid "Master/Slave Set: %{id}"
-msgstr ""
-
-#: ../app/views/main/_gettext.js.erb:250
-msgid "Clone Set: %{id}"
-msgstr ""
-
-#: ../app/views/main/_gettext.js.erb:253
-msgid "Parent: %{id}..."
+#: ../app/views/main/_gettext.js.erb:255
+msgid "Failed"
 msgstr ""
 
 #: ../app/views/main/_gettext.js.erb:256
-msgid "%{active}/%{total} %{type} %{node}"
+msgid "%{id}: Failed"
 msgstr ""
 
 #: ../app/views/main/_gettext.js.erb:259
+msgid "Group: %{id}"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:262
+msgid "Master/Slave Set: %{id}"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:265
+msgid "Clone Set: %{id}"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:268
+msgid "Parent: %{id}..."
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:271
+msgid "%{active}/%{total} %{type} %{node}"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:274
 msgid "Toggle view by type"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:263
+#: ../app/views/main/_gettext.js.erb:278
 msgid "Simulator (initial state)"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:266
+#: ../app/views/main/_gettext.js.erb:281
 msgid "Simulator (busy...)"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:269
+#: ../app/views/main/_gettext.js.erb:284
 msgid "Simulator (final state)"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:272
+#: ../app/views/main/_gettext.js.erb:287
 msgid "Injected State:"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:275
+#: ../app/views/main/_gettext.js.erb:290
 msgid "+ Node"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:278
+#: ../app/views/main/_gettext.js.erb:293
 msgid "+ Op"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:281
+#: ../app/views/main/_gettext.js.erb:296
 msgid "+ Ticket"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:284
+#: ../app/views/main/_gettext.js.erb:299
 msgid "Run >"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:290
+#: ../app/views/main/_gettext.js.erb:305
 msgid "CIB (in)"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:293
+#: ../app/views/main/_gettext.js.erb:308
 msgid "CIB (out)"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:299
+#: ../app/views/main/_gettext.js.erb:314
 msgid "Empty Graph"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:302
+#: ../app/views/main/_gettext.js.erb:317
 msgid "Inject Node State"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:305
+#: ../app/views/main/_gettext.js.erb:320
 msgid "Node:"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:308
+#: ../app/views/main/_gettext.js.erb:323
 msgid "State:"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:311
+#: ../app/views/main/_gettext.js.erb:326
 msgid "Inject Operation"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:314
+#: ../app/views/main/_gettext.js.erb:329
 msgid "Operation:"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:317
+#: ../app/views/main/_gettext.js.erb:332
 msgid "Interval:"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:320
+#: ../app/views/main/_gettext.js.erb:335
 msgid "Resource:"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:323
+#: ../app/views/main/_gettext.js.erb:338
 msgid "Result:"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:326
+#: ../app/views/main/_gettext.js.erb:341
 msgid "Inject Ticket"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:329
+#: ../app/views/main/_gettext.js.erb:344
 msgid "Ticket:"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:332
+#: ../app/views/main/_gettext.js.erb:347
 msgid "Action:"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:335 ../app/views/main/_menus.html.erb:206
+#: ../app/views/main/_gettext.js.erb:350 ../app/views/main/_menus.html.erb:206
 msgid "Grant"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:338 ../app/views/main/_menus.html.erb:213
+#: ../app/views/main/_gettext.js.erb:353 ../app/views/main/_menus.html.erb:213
 msgid "Revoke"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:344
+#: ../app/views/main/_gettext.js.erb:359
 msgid "Activate"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:347
+#: ../app/views/main/_gettext.js.erb:362
 msgid "Success"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:350
+#: ../app/views/main/_gettext.js.erb:365
 msgid "Generic Error"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:353
+#: ../app/views/main/_gettext.js.erb:368
 msgid "Wrong Argument(s)"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:356
+#: ../app/views/main/_gettext.js.erb:371
 msgid "Not Implemented"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:359
+#: ../app/views/main/_gettext.js.erb:374
 msgid "Permission Denied"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:362
+#: ../app/views/main/_gettext.js.erb:377
 msgid "Not Installed"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:365
+#: ../app/views/main/_gettext.js.erb:380
 msgid "Not Configured"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:368
+#: ../app/views/main/_gettext.js.erb:383
 msgid "Not Running"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:371
+#: ../app/views/main/_gettext.js.erb:386
 msgid "Running Master"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:374
+#: ../app/views/main/_gettext.js.erb:389
 msgid "Failed Master"
 msgstr ""
 
@@ -1550,11 +1574,11 @@ msgid "There is already a monitor op with this interval."
 msgstr ""
 
 #: ../app/views/primitives/_form.html.erb:329
-msgid "Template ID"
+msgid "Resource ID"
 msgstr ""
 
 #: ../app/views/primitives/_form.html.erb:329
-msgid "Resource ID"
+msgid "Template ID"
 msgstr ""
 
 #: ../app/views/primitives/_form.html.erb:330

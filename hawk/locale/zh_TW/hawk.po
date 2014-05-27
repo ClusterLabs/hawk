@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-20 21:15+1000\n"
+"POT-Creation-Date: 2014-05-27 21:57+1000\n"
 "PO-Revision-Date: 2014-05-02 16:48\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "%s is not installed"
 msgstr "%s 未安裝"
 
-#: ../app/views/main/_gettext.js.erb:256
+#: ../app/views/main/_gettext.js.erb:271
 msgid "%{active}/%{total} %{type} %{node}"
 msgstr ""
 
@@ -35,83 +35,88 @@ msgstr "%{cmd} 失敗 (狀態︰%{status})"
 msgid "%{cmd} failed (status: %{status}, output was: %{output})"
 msgstr "%{cmd} 失敗 (狀態︰%{status}，輸出為︰%{output})"
 
-#: ../app/views/main/_gettext.js.erb:233
+#: ../app/views/main/_gettext.js.erb:244
 msgid "%{id}: Demoting"
 msgstr "%{id}︰正在降級"
 
-#: ../app/views/main/_gettext.js.erb:232
+#: ../app/views/main/_gettext.js.erb:243
 msgid "%{id}: Demoting: %{node}"
 msgstr "%{id}︰正在降級 %{node}"
 
-#: ../app/views/main/_gettext.js.erb:201
+#: ../app/views/main/_gettext.js.erb:256
+#, fuzzy
+msgid "%{id}: Failed"
+msgstr "%{id}：已啟動"
+
+#: ../app/views/main/_gettext.js.erb:212
 msgid "%{id}: Master"
 msgstr "%{id}︰主要"
 
-#: ../app/views/main/_gettext.js.erb:200
+#: ../app/views/main/_gettext.js.erb:211
 msgid "%{id}: Master: %{nodelist}"
 msgstr "%{id}︰主要資源︰%{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:237
+#: ../app/views/main/_gettext.js.erb:248
 msgid "%{id}: Moving"
 msgstr "%{id}︰正在移動"
 
-#: ../app/views/main/_gettext.js.erb:236
+#: ../app/views/main/_gettext.js.erb:247
 msgid "%{id}: Moving: %{node}"
 msgstr "%{id}︰正在移動 %{node}"
 
-#: ../app/views/main/_gettext.js.erb:216
+#: ../app/views/main/_gettext.js.erb:227
 msgid "%{id}: Pending"
 msgstr "%{id}︰等待中"
 
-#: ../app/views/main/_gettext.js.erb:215
+#: ../app/views/main/_gettext.js.erb:226
 msgid "%{id}: Pending: %{nodelist}"
 msgstr "%{id}︰等待中︰%{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:229
+#: ../app/views/main/_gettext.js.erb:240
 msgid "%{id}: Promoting"
 msgstr "%{id}︰正在升級"
 
-#: ../app/views/main/_gettext.js.erb:228
+#: ../app/views/main/_gettext.js.erb:239
 msgid "%{id}: Promoting: %{node}"
 msgstr "%{id}︰正在升級 %{node}"
 
-#: ../app/views/main/_gettext.js.erb:206
+#: ../app/views/main/_gettext.js.erb:217
 msgid "%{id}: Slave"
 msgstr "%{id}︰從屬"
 
-#: ../app/views/main/_gettext.js.erb:205
+#: ../app/views/main/_gettext.js.erb:216
 msgid "%{id}: Slave: %{nodelist}"
 msgstr "%{id}︰從屬資源︰%{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:211
+#: ../app/views/main/_gettext.js.erb:222
 msgid "%{id}: Started"
 msgstr "%{id}：已啟動"
 
-#: ../app/views/main/_gettext.js.erb:210
+#: ../app/views/main/_gettext.js.erb:221
 msgid "%{id}: Started: %{nodelist}"
 msgstr "%{id}︰已啟動︰%{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:221
+#: ../app/views/main/_gettext.js.erb:232
 msgid "%{id}: Starting"
 msgstr "%{id}：正在啟動"
 
-#: ../app/views/main/_gettext.js.erb:220
+#: ../app/views/main/_gettext.js.erb:231
 msgid "%{id}: Starting: %{node}"
 msgstr "%{id}︰正在啟動 %{node}"
 
-#: ../app/views/main/_gettext.js.erb:241
+#: ../app/views/main/_gettext.js.erb:252
 msgid "%{id}: Stopped"
 msgstr "%{id}：已停止"
 
-#: ../app/views/main/_gettext.js.erb:225
+#: ../app/views/main/_gettext.js.erb:236
 msgid "%{id}: Stopping"
 msgstr "%{id}：正在停止"
 
-#: ../app/views/main/_gettext.js.erb:224
+#: ../app/views/main/_gettext.js.erb:235
 msgid "%{id}: Stopping: %{node}"
 msgstr "%{id}︰正在停止 %{node}"
 
-#: ../app/views/main/_gettext.js.erb:177
+#: ../app/views/main/_gettext.js.erb:188
 msgid "%{node}: %{state}"
 msgstr "%{node}︰%{state}"
 
@@ -169,7 +174,7 @@ msgstr "(未定義票證條件約束)"
 msgid "(No users defined)"
 msgstr "(未定義複製品)"
 
-#: ../app/views/dashboard/index.html.erb:410
+#: ../app/views/dashboard/index.html.erb:411
 msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
 msgstr "(指定叢集中的任何主機名稱。系統會自動尋找其他節點)"
 
@@ -177,24 +182,24 @@ msgstr "(指定叢集中的任何主機名稱。系統會自動尋找其他節�
 msgid "(full log)"
 msgstr "(完整記錄)"
 
-#: ../app/views/main/_gettext.js.erb:275
+#: ../app/views/main/_gettext.js.erb:290
 msgid "+ Node"
 msgstr "+ 節點"
 
-#: ../app/views/main/_gettext.js.erb:278
+#: ../app/views/main/_gettext.js.erb:293
 msgid "+ Op"
 msgstr "+ Op"
 
-#: ../app/views/main/_gettext.js.erb:281
+#: ../app/views/main/_gettext.js.erb:296
 msgid "+ Ticket"
 msgstr "+ 票證"
 
-#: ../app/controllers/cib_controller.rb:110 ../app/controllers/cib_controller.rb:164
+#: ../app/controllers/cib_controller.rb:111 ../app/controllers/cib_controller.rb:167
 msgid "1 node configured"
 msgid_plural "%{num} nodes configured"
 msgstr[0] "已設定 1 個節點"
 
-#: ../app/controllers/cib_controller.rb:111 ../app/controllers/cib_controller.rb:165
+#: ../app/controllers/cib_controller.rb:112 ../app/controllers/cib_controller.rb:168
 msgid "1 resource configured"
 msgid_plural "%{num} resources configured"
 msgstr[0] "已設定 1 個資源"
@@ -203,7 +208,7 @@ msgstr[0] "已設定 1 個資源"
 msgid "< Back"
 msgstr "< 上一步"
 
-#: ../app/views/dashboard/index.html.erb:432
+#: ../app/views/dashboard/index.html.erb:433
 msgid "A cluster with that name already exists"
 msgstr "已存在具有該名稱的叢集"
 
@@ -211,11 +216,11 @@ msgstr "已存在具有該名稱的叢集"
 msgid "Access Control Lists"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:332
+#: ../app/views/main/_gettext.js.erb:347
 msgid "Action:"
 msgstr "動作︰"
 
-#: ../app/views/main/_gettext.js.erb:344
+#: ../app/views/main/_gettext.js.erb:359
 msgid "Activate"
 msgstr "啟動"
 
@@ -223,7 +228,7 @@ msgstr "啟動"
 msgid "Add"
 msgstr "新增"
 
-#: ../app/views/dashboard/index.html.erb:415
+#: ../app/views/dashboard/index.html.erb:416
 msgid "Add Cluster"
 msgstr "新增叢集"
 
@@ -284,11 +289,11 @@ msgstr "布林 Op"
 msgid "Break set"
 msgstr "斷開資源集"
 
-#: ../app/views/main/_gettext.js.erb:290
+#: ../app/views/main/_gettext.js.erb:305
 msgid "CIB (in)"
 msgstr "CIB (內)"
 
-#: ../app/views/main/_gettext.js.erb:293
+#: ../app/views/main/_gettext.js.erb:308
 msgid "CIB (out)"
 msgstr "CIB (外)"
 
@@ -300,7 +305,7 @@ msgstr "找不到 CIB 檔案「%{path}」"
 msgid "CRM Configuration"
 msgstr "CRM 組態"
 
-#: ../app/views/dashboard/index.html.erb:330
+#: ../app/views/dashboard/index.html.erb:331
 msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
 msgstr "無法聯絡 %{node} 上的 Hawk。將每間隔 5 秒重試一次。"
 
@@ -320,7 +325,7 @@ msgstr "無法設定參數 %{p}，因為該值同時包含單引號和雙引號"
 msgid "Can't set property %{p}, because the value contains both single and double quotes"
 msgstr "無法設定內容 %{p}，因為該值同時包含單引號和雙引號"
 
-#: ../app/views/dashboard/index.html.erb:492 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
+#: ../app/views/dashboard/index.html.erb:493 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
 msgid "Cancel"
 msgstr "取消"
 
@@ -352,7 +357,7 @@ msgstr "複製品 ID"
 msgid "Clone ID \"%{id}\" does not exist"
 msgstr "複製品 ID「%{id}」不存在"
 
-#: ../app/views/main/_gettext.js.erb:250
+#: ../app/views/main/_gettext.js.erb:265
 msgid "Clone Set: %{id}"
 msgstr "複製品集︰%{id}"
 
@@ -380,7 +385,7 @@ msgstr "叢集儀表板"
 msgid "Cluster Diagram"
 msgstr "叢集圖表"
 
-#: ../app/views/dashboard/index.html.erb:408
+#: ../app/views/dashboard/index.html.erb:409
 msgid "Cluster Name:"
 msgstr "叢集名稱："
 
@@ -535,7 +540,7 @@ msgstr "要刪除此歷程歸檔嗎？"
 msgid "Demote"
 msgstr "降級"
 
-#: ../app/views/explorer/_pe_list.html.erb:30 ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:287
+#: ../app/views/explorer/_pe_list.html.erb:30 ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:302
 msgid "Details"
 msgstr "詳細資料"
 
@@ -613,7 +618,16 @@ msgstr "編輯票證條件約束"
 msgid "Edit User"
 msgstr "編輯資源"
 
-#: ../app/views/main/_gettext.js.erb:299
+#: ../app/views/main/_gettext.js.erb:154
+msgid "Elsewhere"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:153
+#, fuzzy
+msgid "Elsewhere [standby]"
+msgstr "已授權 [待命]"
+
+#: ../app/views/main/_gettext.js.erb:314
 msgid "Empty Graph"
 msgstr "空圖形"
 
@@ -686,11 +700,15 @@ msgstr "運算式"
 msgid "Fail Count"
 msgstr "失敗計數"
 
-#: ../app/views/main/_gettext.js.erb:374
+#: ../app/views/main/_gettext.js.erb:255
+msgid "Failed"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:389
 msgid "Failed Master"
 msgstr "失敗的主要資源"
 
-#: ../app/models/cib.rb:481
+#: ../app/models/cib.rb:487
 msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
 msgstr "作業失敗：節點=%{node}，資源=%{resource}，呼叫 ID=%{call_id}，作業=%{op}，資源代碼=%{rc_code}"
 
@@ -710,7 +728,7 @@ msgstr "產生 hb_report"
 msgid "Generate hb_report..."
 msgstr "產生 hb_report..."
 
-#: ../app/views/main/_gettext.js.erb:350
+#: ../app/views/main/_gettext.js.erb:365
 msgid "Generic Error"
 msgstr "一般錯誤"
 
@@ -718,7 +736,7 @@ msgstr "一般錯誤"
 msgid "Getting recent events (last hour)..."
 msgstr "正在取得最近的事件 (最後一小時)..."
 
-#: ../app/views/main/_gettext.js.erb:335 ../app/views/main/_menus.html.erb:206
+#: ../app/views/main/_gettext.js.erb:350 ../app/views/main/_menus.html.erb:206
 msgid "Grant"
 msgstr "授權"
 
@@ -730,7 +748,7 @@ msgstr "已授權"
 msgid "Granted [standby]"
 msgstr "已授權 [待命]"
 
-#: ../app/views/explorer/_pe_list.html.erb:38 ../app/views/main/_gettext.js.erb:296
+#: ../app/views/explorer/_pe_list.html.erb:38 ../app/views/main/_gettext.js.erb:311
 msgid "Graph"
 msgstr "圖形"
 
@@ -758,7 +776,7 @@ msgstr "成功建立群組"
 msgid "Group updated successfully"
 msgstr "成功更新群組"
 
-#: ../app/views/main/_gettext.js.erb:244
+#: ../app/views/main/_gettext.js.erb:259
 msgid "Group: %{id}"
 msgstr "群組︰%{id}"
 
@@ -766,7 +784,7 @@ msgstr "群組︰%{id}"
 msgid "History Explorer"
 msgstr "歷程總管"
 
-#: ../app/views/dashboard/index.html.erb:409
+#: ../app/views/dashboard/index.html.erb:410
 msgid "Host Name:"
 msgstr "主機名稱："
 
@@ -774,23 +792,23 @@ msgstr "主機名稱："
 msgid "Inactive Resources"
 msgstr "非使用中資源"
 
-#: ../app/views/main/_gettext.js.erb:302
+#: ../app/views/main/_gettext.js.erb:317
 msgid "Inject Node State"
 msgstr "插入節點狀態"
 
-#: ../app/views/main/_gettext.js.erb:311
+#: ../app/views/main/_gettext.js.erb:326
 msgid "Inject Operation"
 msgstr "插入作業"
 
-#: ../app/views/main/_gettext.js.erb:326
+#: ../app/views/main/_gettext.js.erb:341
 msgid "Inject Ticket"
 msgstr "插入票證"
 
-#: ../app/views/main/_gettext.js.erb:272
+#: ../app/views/main/_gettext.js.erb:287
 msgid "Injected State:"
 msgstr "已插入狀態︰"
 
-#: ../app/views/main/_gettext.js.erb:317
+#: ../app/views/main/_gettext.js.erb:332
 msgid "Interval:"
 msgstr "間隔︰"
 
@@ -831,11 +849,11 @@ msgstr ""
 msgid "Last Failure"
 msgstr "上次失敗"
 
-#: ../app/views/main/_gettext.js.erb:160
+#: ../app/views/main/_gettext.js.erb:165
 msgid "Last granted: %s"
 msgstr "上次授權︰%s"
 
-#: ../app/views/main/_gettext.js.erb:157
+#: ../app/views/main/_gettext.js.erb:162
 msgid "Leader: %s"
 msgstr ""
 
@@ -867,7 +885,7 @@ msgstr "維護"
 msgid "Maintenance Mode"
 msgstr "維護模式"
 
-#: ../app/views/main/_gettext.js.erb:199
+#: ../app/views/main/_gettext.js.erb:210
 msgid "Master"
 msgstr "主要"
 
@@ -883,7 +901,7 @@ msgstr "主要/從屬 ID"
 msgid "Master/Slave ID \"%{id}\" does not exist"
 msgstr "主要/從屬 ID「%{id}」不存在"
 
-#: ../app/views/main/_gettext.js.erb:247
+#: ../app/views/main/_gettext.js.erb:262
 msgid "Master/Slave Set: %{id}"
 msgstr "主要/從屬資源集︰%{id}"
 
@@ -1012,35 +1030,35 @@ msgstr "找不到工作流程描述"
 msgid "Node"
 msgstr "節點"
 
-#: ../app/views/main/_gettext.js.erb:305
+#: ../app/views/main/_gettext.js.erb:320
 msgid "Node:"
 msgstr "節點︰"
 
-#: ../app/views/main/_gettext.js.erb:365
+#: ../app/views/main/_gettext.js.erb:380
 msgid "Not Configured"
 msgstr "未設定"
 
-#: ../app/views/main/_gettext.js.erb:356
+#: ../app/views/main/_gettext.js.erb:371
 msgid "Not Implemented"
 msgstr "未執行"
 
-#: ../app/views/main/_gettext.js.erb:362
+#: ../app/views/main/_gettext.js.erb:377
 msgid "Not Installed"
 msgstr "未安裝"
 
-#: ../app/views/main/_gettext.js.erb:368
+#: ../app/views/main/_gettext.js.erb:383
 msgid "Not Running"
 msgstr "未執行"
 
-#: ../app/views/dashboard/index.html.erb:417 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
+#: ../app/views/dashboard/index.html.erb:418 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
 msgid "OK"
 msgstr "確定"
 
-#: ../app/views/main/_gettext.js.erb:183
+#: ../app/views/main/_gettext.js.erb:194
 msgid "Offline"
 msgstr "離線"
 
-#: ../app/views/main/_gettext.js.erb:180 ../app/views/main/_menus.html.erb:8
+#: ../app/views/main/_gettext.js.erb:191 ../app/views/main/_menus.html.erb:8
 msgid "Online"
 msgstr "上線"
 
@@ -1048,7 +1066,7 @@ msgstr "上線"
 msgid "Operation Defaults"
 msgstr "預設作業"
 
-#: ../app/views/main/_gettext.js.erb:314
+#: ../app/views/main/_gettext.js.erb:329
 msgid "Operation:"
 msgstr "作業︰"
 
@@ -1080,7 +1098,7 @@ msgstr ""
 msgid "Parameters"
 msgstr "參數"
 
-#: ../app/views/main/_gettext.js.erb:253
+#: ../app/views/main/_gettext.js.erb:268
 msgid "Parent: %{id}..."
 msgstr "父代︰%{id}..."
 
@@ -1092,11 +1110,11 @@ msgstr "未指定密碼"
 msgid "Password:"
 msgstr "密碼："
 
-#: ../app/views/main/_gettext.js.erb:186 ../app/views/main/_gettext.js.erb:214
+#: ../app/views/main/_gettext.js.erb:197 ../app/views/main/_gettext.js.erb:225
 msgid "Pending"
 msgstr "等待中"
 
-#: ../app/views/main/_gettext.js.erb:359
+#: ../app/views/main/_gettext.js.erb:374
 msgid "Permission Denied"
 msgstr "許可權遭拒"
 
@@ -1112,7 +1130,7 @@ msgstr ""
 msgid "Permission denied for user %{user}"
 msgstr "使用者 %{user} 的許可權遭拒"
 
-#: ../app/views/dashboard/index.html.erb:241
+#: ../app/views/dashboard/index.html.erb:242
 msgid "Permission denied. Please log in to %{node}"
 msgstr "權限被拒絕。請登入 %{node}"
 
@@ -1222,7 +1240,7 @@ msgstr "成功建立資源"
 msgid "Resource updated successfully"
 msgstr "成功更新資源"
 
-#: ../app/views/main/_gettext.js.erb:320
+#: ../app/views/main/_gettext.js.erb:335
 msgid "Resource:"
 msgstr "資源︰"
 
@@ -1230,7 +1248,7 @@ msgstr "資源︰"
 msgid "Resources"
 msgstr "資源"
 
-#: ../app/views/main/_gettext.js.erb:323
+#: ../app/views/main/_gettext.js.erb:338
 msgid "Result:"
 msgstr "結果︰"
 
@@ -1238,15 +1256,15 @@ msgstr "結果︰"
 msgid "Revert Changes"
 msgstr "回復變更"
 
-#: ../app/views/main/_gettext.js.erb:338 ../app/views/main/_menus.html.erb:213
+#: ../app/views/main/_gettext.js.erb:353 ../app/views/main/_menus.html.erb:213
 msgid "Revoke"
 msgstr "撤銷"
 
-#: ../app/views/main/_gettext.js.erb:154
+#: ../app/views/main/_gettext.js.erb:159
 msgid "Revoked"
 msgstr "已撤銷"
 
-#: ../app/views/main/_gettext.js.erb:153
+#: ../app/views/main/_gettext.js.erb:158
 msgid "Revoked [standby]"
 msgstr "已撤銷 [待命]"
 
@@ -1292,11 +1310,11 @@ msgstr "角色"
 msgid "Root Password"
 msgstr "密碼："
 
-#: ../app/views/main/_gettext.js.erb:284
+#: ../app/views/main/_gettext.js.erb:299
 msgid "Run >"
 msgstr "執行 >"
 
-#: ../app/views/main/_gettext.js.erb:371
+#: ../app/views/main/_gettext.js.erb:386
 msgid "Running Master"
 msgstr "執行中的主要資源"
 
@@ -1320,19 +1338,19 @@ msgstr "顯示規則編輯器"
 msgid "Simulator"
 msgstr "模擬器"
 
-#: ../app/views/main/_gettext.js.erb:266
+#: ../app/views/main/_gettext.js.erb:281
 msgid "Simulator (busy...)"
 msgstr "模擬器 (忙碌...)"
 
-#: ../app/views/main/_gettext.js.erb:269
+#: ../app/views/main/_gettext.js.erb:284
 msgid "Simulator (final state)"
 msgstr "模擬器 (最終狀態)"
 
-#: ../app/views/main/_gettext.js.erb:263
+#: ../app/views/main/_gettext.js.erb:278
 msgid "Simulator (initial state)"
 msgstr "模擬器 (初始狀態)"
 
-#: ../app/views/main/_gettext.js.erb:204
+#: ../app/views/main/_gettext.js.erb:215
 msgid "Slave"
 msgstr "從屬"
 
@@ -1340,7 +1358,7 @@ msgstr "從屬"
 msgid "Stack: %s"
 msgstr "堆疊︰%s"
 
-#: ../app/views/main/_gettext.js.erb:189 ../app/views/main/_gettext.js.erb:341 ../app/views/main/_menus.html.erb:15
+#: ../app/views/main/_gettext.js.erb:200 ../app/views/main/_gettext.js.erb:356 ../app/views/main/_menus.html.erb:15
 msgid "Standby"
 msgstr "待機"
 
@@ -1356,11 +1374,11 @@ msgstr "未指定開始時間"
 msgid "Start Time:"
 msgstr "開始時間︰"
 
-#: ../app/views/main/_gettext.js.erb:209
+#: ../app/views/main/_gettext.js.erb:220
 msgid "Started"
 msgstr "已啟動"
 
-#: ../app/views/main/_gettext.js.erb:308
+#: ../app/views/main/_gettext.js.erb:323
 msgid "State:"
 msgstr "狀態："
 
@@ -1372,11 +1390,11 @@ msgstr "狀態"
 msgid "Stop"
 msgstr "停止"
 
-#: ../app/views/main/_gettext.js.erb:240
+#: ../app/views/main/_gettext.js.erb:251
 msgid "Stopped"
 msgstr "已停止"
 
-#: ../app/views/main/_gettext.js.erb:347
+#: ../app/views/main/_gettext.js.erb:362
 msgid "Success"
 msgstr "成功"
 
@@ -1384,7 +1402,7 @@ msgstr "成功"
 msgid "Summary"
 msgstr "摘要"
 
-#: ../app/views/main/_gettext.js.erb:167
+#: ../app/views/main/_gettext.js.erb:178
 msgid "Summary View"
 msgstr "摘要檢視"
 
@@ -1400,7 +1418,7 @@ msgstr "對稱式叢集"
 msgid "Symmetrical"
 msgstr "對稱"
 
-#: ../app/views/main/_gettext.js.erb:173
+#: ../app/views/main/_gettext.js.erb:184
 msgid "Table View"
 msgstr "表格檢視"
 
@@ -1436,7 +1454,7 @@ msgstr "已套用組態。"
 msgid "The following configuration will be applied to the cluster:"
 msgstr "以下組態會套用至叢集︰"
 
-#: ../app/views/dashboard/index.html.erb:438
+#: ../app/views/dashboard/index.html.erb:439
 msgid "The host %{h} is already present in cluster %{c}"
 msgstr "叢集 %{c} 中已存在主機 %{h}"
 
@@ -1522,7 +1540,11 @@ msgstr "此精靈會引導您完成向叢集新增下列其中一個組態所需
 msgid "Ticket"
 msgstr "票證"
 
-#: ../app/views/main/_gettext.js.erb:329
+#: ../app/views/main/_gettext.js.erb:174
+msgid "Ticket granted, but Booth thinks leader is '%s'!"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:344
 msgid "Ticket:"
 msgstr "票證︰"
 
@@ -1534,7 +1556,7 @@ msgstr "票證"
 msgid "Time"
 msgstr "時間"
 
-#: ../app/views/dashboard/index.html.erb:156 ../app/views/dashboard/index.html.erb:485
+#: ../app/views/dashboard/index.html.erb:157 ../app/views/dashboard/index.html.erb:486
 msgid "Timeout: Please try again"
 msgstr "逾時︰請再試一次"
 
@@ -1546,7 +1568,7 @@ msgstr ""
 msgid "To node %s"
 msgstr "移至節點 %s"
 
-#: ../app/views/main/_gettext.js.erb:259
+#: ../app/views/main/_gettext.js.erb:274
 msgid "Toggle view by type"
 msgstr ""
 
@@ -1554,7 +1576,7 @@ msgstr ""
 msgid "Tools"
 msgstr "工具"
 
-#: ../app/views/main/_gettext.js.erb:170
+#: ../app/views/main/_gettext.js.erb:181
 msgid "Tree View"
 msgstr "樹狀檢視"
 
@@ -1570,7 +1592,7 @@ msgstr "UI 主機：%s"
 msgid "Unable to apply changes: %{msg}"
 msgstr "無法套用變更︰%{msg}"
 
-#: ../app/views/dashboard/index.html.erb:467 ../app/views/dashboard/index.html.erb:479
+#: ../app/views/dashboard/index.html.erb:468 ../app/views/dashboard/index.html.erb:480
 msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
 msgstr "無法連線至 %{host}。請嘗試在網頁瀏覽器中開啟 %{url} 以確定可以存取 Hawk。"
 
@@ -1612,6 +1634,10 @@ msgstr "無法建立複製品：%{msg}"
 msgid "Unable to execute %{cmd}"
 msgstr "無法執行 %{cmd}"
 
+#: ../app/views/main/_gettext.js.erb:171
+msgid "Unable to obtain ticket information from Booth!"
+msgstr ""
+
 #: ../app/models/cib.rb:236
 msgid "Unable to parse CIB file \"%{path}\""
 msgstr "無法剖析 CIB 檔案「%{path}」"
@@ -1634,7 +1660,7 @@ msgstr "無法建立複製品：%{msg}"
 msgid "Unable to update user: %{msg}"
 msgstr "無法更新條件約束︰%{msg}"
 
-#: ../app/views/main/_gettext.js.erb:192
+#: ../app/views/main/_gettext.js.erb:203
 msgid "Unclean"
 msgstr "未清理"
 
@@ -1642,7 +1668,7 @@ msgstr "未清理"
 msgid "Unexpected server error: %s"
 msgstr "未預期的伺服器錯誤︰%s"
 
-#: ../app/models/cib.rb:269 ../app/models/cib.rb:270 ../app/models/cib.rb:614 ../app/views/main/_gettext.js.erb:195
+#: ../app/models/cib.rb:269 ../app/models/cib.rb:270 ../app/models/cib.rb:627 ../app/views/main/_gettext.js.erb:206
 msgid "Unknown"
 msgstr "未知"
 
@@ -1729,7 +1755,7 @@ msgstr "缺少精靈範本和/或工作流程"
 msgid "Workflow \"%s\" not found"
 msgstr "找不到工作流程「%s」"
 
-#: ../app/views/main/_gettext.js.erb:353
+#: ../app/views/main/_gettext.js.erb:368
 msgid "Wrong Argument(s)"
 msgstr "引數錯誤"
 

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-20 21:15+1000\n"
+"POT-Creation-Date: 2014-05-27 21:57+1000\n"
 "PO-Revision-Date: 2014-05-02 16:18\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "%s is not installed"
 msgstr "%s이(가) 설치되지 않았습니다."
 
-#: ../app/views/main/_gettext.js.erb:256
+#: ../app/views/main/_gettext.js.erb:271
 msgid "%{active}/%{total} %{type} %{node}"
 msgstr ""
 
@@ -35,83 +35,88 @@ msgstr "%{cmd} 실패됨(상태: %{status})"
 msgid "%{cmd} failed (status: %{status}, output was: %{output})"
 msgstr "%{cmd} 실패됨(상태: %{status}, 출력: %{output})"
 
-#: ../app/views/main/_gettext.js.erb:233
+#: ../app/views/main/_gettext.js.erb:244
 msgid "%{id}: Demoting"
 msgstr "%{id}: 수준을 내리는 중"
 
-#: ../app/views/main/_gettext.js.erb:232
+#: ../app/views/main/_gettext.js.erb:243
 msgid "%{id}: Demoting: %{node}"
 msgstr "%{id}: 수준을 내리는 중: %{node}"
 
-#: ../app/views/main/_gettext.js.erb:201
+#: ../app/views/main/_gettext.js.erb:256
+#, fuzzy
+msgid "%{id}: Failed"
+msgstr "%{id}: 시작됨"
+
+#: ../app/views/main/_gettext.js.erb:212
 msgid "%{id}: Master"
 msgstr "%{id}: 마스터"
 
-#: ../app/views/main/_gettext.js.erb:200
+#: ../app/views/main/_gettext.js.erb:211
 msgid "%{id}: Master: %{nodelist}"
 msgstr "%{id}: 마스터: %{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:237
+#: ../app/views/main/_gettext.js.erb:248
 msgid "%{id}: Moving"
 msgstr "%{id}: 이동하는 중"
 
-#: ../app/views/main/_gettext.js.erb:236
+#: ../app/views/main/_gettext.js.erb:247
 msgid "%{id}: Moving: %{node}"
 msgstr "%{id}: 이동하는 중: %{node}"
 
-#: ../app/views/main/_gettext.js.erb:216
+#: ../app/views/main/_gettext.js.erb:227
 msgid "%{id}: Pending"
 msgstr "%{id}: 보류 중"
 
-#: ../app/views/main/_gettext.js.erb:215
+#: ../app/views/main/_gettext.js.erb:226
 msgid "%{id}: Pending: %{nodelist}"
 msgstr "%{id}: 보류 중: %{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:229
+#: ../app/views/main/_gettext.js.erb:240
 msgid "%{id}: Promoting"
 msgstr "%{id}: 수준을 올리는 중"
 
-#: ../app/views/main/_gettext.js.erb:228
+#: ../app/views/main/_gettext.js.erb:239
 msgid "%{id}: Promoting: %{node}"
 msgstr "%{id}: 수준을 올리는 중: %{node}"
 
-#: ../app/views/main/_gettext.js.erb:206
+#: ../app/views/main/_gettext.js.erb:217
 msgid "%{id}: Slave"
 msgstr "%{id}: 슬레이브"
 
-#: ../app/views/main/_gettext.js.erb:205
+#: ../app/views/main/_gettext.js.erb:216
 msgid "%{id}: Slave: %{nodelist}"
 msgstr "%{id}: 슬레이브: %{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:211
+#: ../app/views/main/_gettext.js.erb:222
 msgid "%{id}: Started"
 msgstr "%{id}: 시작됨"
 
-#: ../app/views/main/_gettext.js.erb:210
+#: ../app/views/main/_gettext.js.erb:221
 msgid "%{id}: Started: %{nodelist}"
 msgstr "%{id}: 시작됨: %{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:221
+#: ../app/views/main/_gettext.js.erb:232
 msgid "%{id}: Starting"
 msgstr "%{id}: 시작하는 중"
 
-#: ../app/views/main/_gettext.js.erb:220
+#: ../app/views/main/_gettext.js.erb:231
 msgid "%{id}: Starting: %{node}"
 msgstr "%{id}: 시작하는 중: %{node}"
 
-#: ../app/views/main/_gettext.js.erb:241
+#: ../app/views/main/_gettext.js.erb:252
 msgid "%{id}: Stopped"
 msgstr "%{id}: 중지됨"
 
-#: ../app/views/main/_gettext.js.erb:225
+#: ../app/views/main/_gettext.js.erb:236
 msgid "%{id}: Stopping"
 msgstr "%{id}: 중지하는 중"
 
-#: ../app/views/main/_gettext.js.erb:224
+#: ../app/views/main/_gettext.js.erb:235
 msgid "%{id}: Stopping: %{node}"
 msgstr "%{id}: 중지하는 중: %{node}"
 
-#: ../app/views/main/_gettext.js.erb:177
+#: ../app/views/main/_gettext.js.erb:188
 msgid "%{node}: %{state}"
 msgstr "%{node}: %{state}"
 
@@ -169,7 +174,7 @@ msgstr "(티켓 제약 조건이 정의되지 않음)"
 msgid "(No users defined)"
 msgstr "(복제가 정의되지 않음)"
 
-#: ../app/views/dashboard/index.html.erb:410
+#: ../app/views/dashboard/index.html.erb:411
 msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
 msgstr "(클러스터에서 호스트 이름을 지정하십시오. 다른 노드가 자동으로 검색됩니다.)"
 
@@ -177,24 +182,24 @@ msgstr "(클러스터에서 호스트 이름을 지정하십시오. 다른 노�
 msgid "(full log)"
 msgstr "(전체 로그)"
 
-#: ../app/views/main/_gettext.js.erb:275
+#: ../app/views/main/_gettext.js.erb:290
 msgid "+ Node"
 msgstr "+ 노드"
 
-#: ../app/views/main/_gettext.js.erb:278
+#: ../app/views/main/_gettext.js.erb:293
 msgid "+ Op"
 msgstr "+ 작업"
 
-#: ../app/views/main/_gettext.js.erb:281
+#: ../app/views/main/_gettext.js.erb:296
 msgid "+ Ticket"
 msgstr "+ 티켓"
 
-#: ../app/controllers/cib_controller.rb:110 ../app/controllers/cib_controller.rb:164
+#: ../app/controllers/cib_controller.rb:111 ../app/controllers/cib_controller.rb:167
 msgid "1 node configured"
 msgid_plural "%{num} nodes configured"
 msgstr[0] "1개 노드가 구성되었습니다."
 
-#: ../app/controllers/cib_controller.rb:111 ../app/controllers/cib_controller.rb:165
+#: ../app/controllers/cib_controller.rb:112 ../app/controllers/cib_controller.rb:168
 msgid "1 resource configured"
 msgid_plural "%{num} resources configured"
 msgstr[0] "1개 리소스가 구성되었습니다."
@@ -203,7 +208,7 @@ msgstr[0] "1개 리소스가 구성되었습니다."
 msgid "< Back"
 msgstr "< 뒤로"
 
-#: ../app/views/dashboard/index.html.erb:432
+#: ../app/views/dashboard/index.html.erb:433
 msgid "A cluster with that name already exists"
 msgstr "해당 이름의 클러스터가 이미 있습니다."
 
@@ -211,11 +216,11 @@ msgstr "해당 이름의 클러스터가 이미 있습니다."
 msgid "Access Control Lists"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:332
+#: ../app/views/main/_gettext.js.erb:347
 msgid "Action:"
 msgstr "동작:"
 
-#: ../app/views/main/_gettext.js.erb:344
+#: ../app/views/main/_gettext.js.erb:359
 msgid "Activate"
 msgstr "활성화"
 
@@ -223,7 +228,7 @@ msgstr "활성화"
 msgid "Add"
 msgstr "추가"
 
-#: ../app/views/dashboard/index.html.erb:415
+#: ../app/views/dashboard/index.html.erb:416
 msgid "Add Cluster"
 msgstr "클러스터 추가"
 
@@ -284,11 +289,11 @@ msgstr "부울 연산자"
 msgid "Break set"
 msgstr "분할 설정"
 
-#: ../app/views/main/_gettext.js.erb:290
+#: ../app/views/main/_gettext.js.erb:305
 msgid "CIB (in)"
 msgstr "CIB (입력)"
 
-#: ../app/views/main/_gettext.js.erb:293
+#: ../app/views/main/_gettext.js.erb:308
 msgid "CIB (out)"
 msgstr "CIB (출력)"
 
@@ -300,7 +305,7 @@ msgstr "CIB 파일 \"%{path}\"을(를) 찾을 수 없음"
 msgid "CRM Configuration"
 msgstr "CRM 구성"
 
-#: ../app/views/dashboard/index.html.erb:330
+#: ../app/views/dashboard/index.html.erb:331
 msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
 msgstr "%{node}의 Hawk에 연결할 수 없습니다. 5초마다 다시 시도합니다."
 
@@ -320,7 +325,7 @@ msgstr "값에 작은따옴표와 큰따옴표가 모두 포함되어 있으므�
 msgid "Can't set property %{p}, because the value contains both single and double quotes"
 msgstr "값이 작은따옴표와 큰따옴표를 모두 포함하므로, %{p} 속성을 설정할 수 없습니다."
 
-#: ../app/views/dashboard/index.html.erb:492 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
+#: ../app/views/dashboard/index.html.erb:493 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
 msgid "Cancel"
 msgstr "취소"
 
@@ -352,7 +357,7 @@ msgstr "복제 ID"
 msgid "Clone ID \"%{id}\" does not exist"
 msgstr "복제 ID \"%{id}\"이(가) 없습니다."
 
-#: ../app/views/main/_gettext.js.erb:250
+#: ../app/views/main/_gettext.js.erb:265
 msgid "Clone Set: %{id}"
 msgstr "복제 집합: %{id}"
 
@@ -380,7 +385,7 @@ msgstr "클러스터 대시보드"
 msgid "Cluster Diagram"
 msgstr "클러스터 다이어그램"
 
-#: ../app/views/dashboard/index.html.erb:408
+#: ../app/views/dashboard/index.html.erb:409
 msgid "Cluster Name:"
 msgstr "클러스터 이름:"
 
@@ -535,7 +540,7 @@ msgstr "이 이력 아카이브를 삭제하시겠습니까?"
 msgid "Demote"
 msgstr "강등"
 
-#: ../app/views/explorer/_pe_list.html.erb:30 ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:287
+#: ../app/views/explorer/_pe_list.html.erb:30 ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:302
 msgid "Details"
 msgstr "자세히"
 
@@ -613,7 +618,16 @@ msgstr "티켓 제약 조건 편집"
 msgid "Edit User"
 msgstr "리소스 편집"
 
-#: ../app/views/main/_gettext.js.erb:299
+#: ../app/views/main/_gettext.js.erb:154
+msgid "Elsewhere"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:153
+#, fuzzy
+msgid "Elsewhere [standby]"
+msgstr "부여된 [standby]"
+
+#: ../app/views/main/_gettext.js.erb:314
 msgid "Empty Graph"
 msgstr "빈 그래프"
 
@@ -686,11 +700,15 @@ msgstr "식"
 msgid "Fail Count"
 msgstr "실패 횟수"
 
-#: ../app/views/main/_gettext.js.erb:374
+#: ../app/views/main/_gettext.js.erb:255
+msgid "Failed"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:389
 msgid "Failed Master"
 msgstr "실패한 마스터"
 
-#: ../app/models/cib.rb:481
+#: ../app/models/cib.rb:487
 msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
 msgstr "실패한 작업: 노드=%{node}, 리소스=%{resource}, 호출 ID=%{call_id}, 작업=%{op}, RC 코드=%{rc_code}"
 
@@ -710,7 +728,7 @@ msgstr "hb_report 생성"
 msgid "Generate hb_report..."
 msgstr "hb_report 생성..."
 
-#: ../app/views/main/_gettext.js.erb:350
+#: ../app/views/main/_gettext.js.erb:365
 msgid "Generic Error"
 msgstr "일반 오류"
 
@@ -718,7 +736,7 @@ msgstr "일반 오류"
 msgid "Getting recent events (last hour)..."
 msgstr "최근 이벤트(마지막 시간)를 가져오는 중..."
 
-#: ../app/views/main/_gettext.js.erb:335 ../app/views/main/_menus.html.erb:206
+#: ../app/views/main/_gettext.js.erb:350 ../app/views/main/_menus.html.erb:206
 msgid "Grant"
 msgstr "부여"
 
@@ -730,7 +748,7 @@ msgstr "부여됨"
 msgid "Granted [standby]"
 msgstr "부여된 [standby]"
 
-#: ../app/views/explorer/_pe_list.html.erb:38 ../app/views/main/_gettext.js.erb:296
+#: ../app/views/explorer/_pe_list.html.erb:38 ../app/views/main/_gettext.js.erb:311
 msgid "Graph"
 msgstr "그래프"
 
@@ -758,7 +776,7 @@ msgstr "그룹이 성공적으로 생성되었습니다."
 msgid "Group updated successfully"
 msgstr "그룹이 성공적으로 업데이트되었습니다."
 
-#: ../app/views/main/_gettext.js.erb:244
+#: ../app/views/main/_gettext.js.erb:259
 msgid "Group: %{id}"
 msgstr "그룹: %{id}"
 
@@ -766,7 +784,7 @@ msgstr "그룹: %{id}"
 msgid "History Explorer"
 msgstr "이력 탐색기"
 
-#: ../app/views/dashboard/index.html.erb:409
+#: ../app/views/dashboard/index.html.erb:410
 msgid "Host Name:"
 msgstr "호스트 이름:"
 
@@ -774,23 +792,23 @@ msgstr "호스트 이름:"
 msgid "Inactive Resources"
 msgstr "비활성 리소스"
 
-#: ../app/views/main/_gettext.js.erb:302
+#: ../app/views/main/_gettext.js.erb:317
 msgid "Inject Node State"
 msgstr "삽입 노드 상태"
 
-#: ../app/views/main/_gettext.js.erb:311
+#: ../app/views/main/_gettext.js.erb:326
 msgid "Inject Operation"
 msgstr "삽입 작업"
 
-#: ../app/views/main/_gettext.js.erb:326
+#: ../app/views/main/_gettext.js.erb:341
 msgid "Inject Ticket"
 msgstr "삽입 티켓"
 
-#: ../app/views/main/_gettext.js.erb:272
+#: ../app/views/main/_gettext.js.erb:287
 msgid "Injected State:"
 msgstr "삽입된 상태:"
 
-#: ../app/views/main/_gettext.js.erb:317
+#: ../app/views/main/_gettext.js.erb:332
 msgid "Interval:"
 msgstr "간격:"
 
@@ -831,11 +849,11 @@ msgstr ""
 msgid "Last Failure"
 msgstr "마지막 실패"
 
-#: ../app/views/main/_gettext.js.erb:160
+#: ../app/views/main/_gettext.js.erb:165
 msgid "Last granted: %s"
 msgstr "마지막으로 부여됨: %s"
 
-#: ../app/views/main/_gettext.js.erb:157
+#: ../app/views/main/_gettext.js.erb:162
 msgid "Leader: %s"
 msgstr ""
 
@@ -867,7 +885,7 @@ msgstr "유지보수"
 msgid "Maintenance Mode"
 msgstr "유지보수 모드"
 
-#: ../app/views/main/_gettext.js.erb:199
+#: ../app/views/main/_gettext.js.erb:210
 msgid "Master"
 msgstr "마스터"
 
@@ -883,7 +901,7 @@ msgstr "마스터/슬레이브 ID"
 msgid "Master/Slave ID \"%{id}\" does not exist"
 msgstr "마스터/슬레이브 ID \"%{id}\"이(가) 없습니다."
 
-#: ../app/views/main/_gettext.js.erb:247
+#: ../app/views/main/_gettext.js.erb:262
 msgid "Master/Slave Set: %{id}"
 msgstr "마스터/슬레이브 세트: %{id}"
 
@@ -1012,35 +1030,35 @@ msgstr "검색된 워크플로 설명이 없습니다."
 msgid "Node"
 msgstr "노드"
 
-#: ../app/views/main/_gettext.js.erb:305
+#: ../app/views/main/_gettext.js.erb:320
 msgid "Node:"
 msgstr "노드:"
 
-#: ../app/views/main/_gettext.js.erb:365
+#: ../app/views/main/_gettext.js.erb:380
 msgid "Not Configured"
 msgstr "구성되지 않음"
 
-#: ../app/views/main/_gettext.js.erb:356
+#: ../app/views/main/_gettext.js.erb:371
 msgid "Not Implemented"
 msgstr "구현되지 않음"
 
-#: ../app/views/main/_gettext.js.erb:362
+#: ../app/views/main/_gettext.js.erb:377
 msgid "Not Installed"
 msgstr "설치되지 않음"
 
-#: ../app/views/main/_gettext.js.erb:368
+#: ../app/views/main/_gettext.js.erb:383
 msgid "Not Running"
 msgstr "실행 중이 아님"
 
-#: ../app/views/dashboard/index.html.erb:417 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
+#: ../app/views/dashboard/index.html.erb:418 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
 msgid "OK"
 msgstr "확인"
 
-#: ../app/views/main/_gettext.js.erb:183
+#: ../app/views/main/_gettext.js.erb:194
 msgid "Offline"
 msgstr "오프라인"
 
-#: ../app/views/main/_gettext.js.erb:180 ../app/views/main/_menus.html.erb:8
+#: ../app/views/main/_gettext.js.erb:191 ../app/views/main/_menus.html.erb:8
 msgid "Online"
 msgstr "온라인"
 
@@ -1048,7 +1066,7 @@ msgstr "온라인"
 msgid "Operation Defaults"
 msgstr "작업 기본값"
 
-#: ../app/views/main/_gettext.js.erb:314
+#: ../app/views/main/_gettext.js.erb:329
 msgid "Operation:"
 msgstr "작업:"
 
@@ -1080,7 +1098,7 @@ msgstr ""
 msgid "Parameters"
 msgstr "파라미터"
 
-#: ../app/views/main/_gettext.js.erb:253
+#: ../app/views/main/_gettext.js.erb:268
 msgid "Parent: %{id}..."
 msgstr "상위: %{id}..."
 
@@ -1092,11 +1110,11 @@ msgstr "비밀번호가 지정되지 않았습니다."
 msgid "Password:"
 msgstr "비밀번호:"
 
-#: ../app/views/main/_gettext.js.erb:186 ../app/views/main/_gettext.js.erb:214
+#: ../app/views/main/_gettext.js.erb:197 ../app/views/main/_gettext.js.erb:225
 msgid "Pending"
 msgstr "보류 중"
 
-#: ../app/views/main/_gettext.js.erb:359
+#: ../app/views/main/_gettext.js.erb:374
 msgid "Permission Denied"
 msgstr "권한이 거부됨"
 
@@ -1112,7 +1130,7 @@ msgstr ""
 msgid "Permission denied for user %{user}"
 msgstr "%{user} 사용자에 대한 권한이 거부됨"
 
-#: ../app/views/dashboard/index.html.erb:241
+#: ../app/views/dashboard/index.html.erb:242
 msgid "Permission denied. Please log in to %{node}"
 msgstr "권한이 거부됨. %{node}에 로그인하십시오."
 
@@ -1222,7 +1240,7 @@ msgstr "리소스가 성공적으로 생성되었습니다."
 msgid "Resource updated successfully"
 msgstr "리소스가 성공적으로 업데이트되었습니다."
 
-#: ../app/views/main/_gettext.js.erb:320
+#: ../app/views/main/_gettext.js.erb:335
 msgid "Resource:"
 msgstr "리소스:"
 
@@ -1230,7 +1248,7 @@ msgstr "리소스:"
 msgid "Resources"
 msgstr "리소스"
 
-#: ../app/views/main/_gettext.js.erb:323
+#: ../app/views/main/_gettext.js.erb:338
 msgid "Result:"
 msgstr "결과:"
 
@@ -1238,15 +1256,15 @@ msgstr "결과:"
 msgid "Revert Changes"
 msgstr "변경 사항 되돌리기"
 
-#: ../app/views/main/_gettext.js.erb:338 ../app/views/main/_menus.html.erb:213
+#: ../app/views/main/_gettext.js.erb:353 ../app/views/main/_menus.html.erb:213
 msgid "Revoke"
 msgstr "해지"
 
-#: ../app/views/main/_gettext.js.erb:154
+#: ../app/views/main/_gettext.js.erb:159
 msgid "Revoked"
 msgstr "해지됨"
 
-#: ../app/views/main/_gettext.js.erb:153
+#: ../app/views/main/_gettext.js.erb:158
 msgid "Revoked [standby]"
 msgstr "해지된 [standby]"
 
@@ -1292,11 +1310,11 @@ msgstr "역할"
 msgid "Root Password"
 msgstr "비밀번호:"
 
-#: ../app/views/main/_gettext.js.erb:284
+#: ../app/views/main/_gettext.js.erb:299
 msgid "Run >"
 msgstr "실행 >"
 
-#: ../app/views/main/_gettext.js.erb:371
+#: ../app/views/main/_gettext.js.erb:386
 msgid "Running Master"
 msgstr "마스터 실행 중"
 
@@ -1320,19 +1338,19 @@ msgstr "규칙 편집기 표시"
 msgid "Simulator"
 msgstr "시뮬레이터"
 
-#: ../app/views/main/_gettext.js.erb:266
+#: ../app/views/main/_gettext.js.erb:281
 msgid "Simulator (busy...)"
 msgstr "시뮬레이터(사용 중...)"
 
-#: ../app/views/main/_gettext.js.erb:269
+#: ../app/views/main/_gettext.js.erb:284
 msgid "Simulator (final state)"
 msgstr "시뮬레이터(최종 상태)"
 
-#: ../app/views/main/_gettext.js.erb:263
+#: ../app/views/main/_gettext.js.erb:278
 msgid "Simulator (initial state)"
 msgstr "시뮬레이터(초기 상태)"
 
-#: ../app/views/main/_gettext.js.erb:204
+#: ../app/views/main/_gettext.js.erb:215
 msgid "Slave"
 msgstr "슬레이브"
 
@@ -1340,7 +1358,7 @@ msgstr "슬레이브"
 msgid "Stack: %s"
 msgstr "스택: %s"
 
-#: ../app/views/main/_gettext.js.erb:189 ../app/views/main/_gettext.js.erb:341 ../app/views/main/_menus.html.erb:15
+#: ../app/views/main/_gettext.js.erb:200 ../app/views/main/_gettext.js.erb:356 ../app/views/main/_menus.html.erb:15
 msgid "Standby"
 msgstr "대기"
 
@@ -1356,11 +1374,11 @@ msgstr "시작 시간이 지정되지 않았습니다."
 msgid "Start Time:"
 msgstr "시작 시간:"
 
-#: ../app/views/main/_gettext.js.erb:209
+#: ../app/views/main/_gettext.js.erb:220
 msgid "Started"
 msgstr "시작됨"
 
-#: ../app/views/main/_gettext.js.erb:308
+#: ../app/views/main/_gettext.js.erb:323
 msgid "State:"
 msgstr "상태:"
 
@@ -1372,11 +1390,11 @@ msgstr "상태"
 msgid "Stop"
 msgstr "중지"
 
-#: ../app/views/main/_gettext.js.erb:240
+#: ../app/views/main/_gettext.js.erb:251
 msgid "Stopped"
 msgstr "중지됨"
 
-#: ../app/views/main/_gettext.js.erb:347
+#: ../app/views/main/_gettext.js.erb:362
 msgid "Success"
 msgstr "성공"
 
@@ -1384,7 +1402,7 @@ msgstr "성공"
 msgid "Summary"
 msgstr "요약"
 
-#: ../app/views/main/_gettext.js.erb:167
+#: ../app/views/main/_gettext.js.erb:178
 msgid "Summary View"
 msgstr "요약 보기"
 
@@ -1400,7 +1418,7 @@ msgstr "대칭 클러스터"
 msgid "Symmetrical"
 msgstr "대칭적"
 
-#: ../app/views/main/_gettext.js.erb:173
+#: ../app/views/main/_gettext.js.erb:184
 msgid "Table View"
 msgstr "테이블 보기"
 
@@ -1436,7 +1454,7 @@ msgstr "구성이 적용되었습니다."
 msgid "The following configuration will be applied to the cluster:"
 msgstr "다음 구성이 클러스터에 적용됩니다."
 
-#: ../app/views/dashboard/index.html.erb:438
+#: ../app/views/dashboard/index.html.erb:439
 msgid "The host %{h} is already present in cluster %{c}"
 msgstr "%{h} 호스트가 이미 %{c} 클러스터에 있습니다."
 
@@ -1522,7 +1540,11 @@ msgstr "이 마법사는 클러스터에 다음 구성 중 하나를 추가하�
 msgid "Ticket"
 msgstr "티켓"
 
-#: ../app/views/main/_gettext.js.erb:329
+#: ../app/views/main/_gettext.js.erb:174
+msgid "Ticket granted, but Booth thinks leader is '%s'!"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:344
 msgid "Ticket:"
 msgstr "티켓:"
 
@@ -1534,7 +1556,7 @@ msgstr "티켓"
 msgid "Time"
 msgstr "시간"
 
-#: ../app/views/dashboard/index.html.erb:156 ../app/views/dashboard/index.html.erb:485
+#: ../app/views/dashboard/index.html.erb:157 ../app/views/dashboard/index.html.erb:486
 msgid "Timeout: Please try again"
 msgstr "시간 초과: 다시 시도하십시오."
 
@@ -1546,7 +1568,7 @@ msgstr ""
 msgid "To node %s"
 msgstr "노드 %s"
 
-#: ../app/views/main/_gettext.js.erb:259
+#: ../app/views/main/_gettext.js.erb:274
 msgid "Toggle view by type"
 msgstr ""
 
@@ -1554,7 +1576,7 @@ msgstr ""
 msgid "Tools"
 msgstr "도구"
 
-#: ../app/views/main/_gettext.js.erb:170
+#: ../app/views/main/_gettext.js.erb:181
 msgid "Tree View"
 msgstr "트리 보기"
 
@@ -1570,7 +1592,7 @@ msgstr "UI 호스트: %s"
 msgid "Unable to apply changes: %{msg}"
 msgstr "변경 사항을 적용할 수 없음: %{msg}"
 
-#: ../app/views/dashboard/index.html.erb:467 ../app/views/dashboard/index.html.erb:479
+#: ../app/views/dashboard/index.html.erb:468 ../app/views/dashboard/index.html.erb:480
 msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
 msgstr "%{host}에 연결할 수 없습니다. Hawk에 액세스하려면 웹 브라우저에서 %{url}을 여십시오."
 
@@ -1612,6 +1634,10 @@ msgstr "복제를 생성할 수 없음: %{msg}"
 msgid "Unable to execute %{cmd}"
 msgstr "%{cmd}을(를) 실행할 수 없습니다."
 
+#: ../app/views/main/_gettext.js.erb:171
+msgid "Unable to obtain ticket information from Booth!"
+msgstr ""
+
 #: ../app/models/cib.rb:236
 msgid "Unable to parse CIB file \"%{path}\""
 msgstr "CIB 파일 \"%{path}\"을(를) 구문 분석할 수 없습니다."
@@ -1634,7 +1660,7 @@ msgstr "복제를 생성할 수 없음: %{msg}"
 msgid "Unable to update user: %{msg}"
 msgstr "제약 조건을 업데이트할 수 없음: %{msg}"
 
-#: ../app/views/main/_gettext.js.erb:192
+#: ../app/views/main/_gettext.js.erb:203
 msgid "Unclean"
 msgstr "불완전"
 
@@ -1642,7 +1668,7 @@ msgstr "불완전"
 msgid "Unexpected server error: %s"
 msgstr "예기치 않은 서버 오류: %s"
 
-#: ../app/models/cib.rb:269 ../app/models/cib.rb:270 ../app/models/cib.rb:614 ../app/views/main/_gettext.js.erb:195
+#: ../app/models/cib.rb:269 ../app/models/cib.rb:270 ../app/models/cib.rb:627 ../app/views/main/_gettext.js.erb:206
 msgid "Unknown"
 msgstr "알 수 없음"
 
@@ -1729,7 +1755,7 @@ msgstr "마법사 템플릿 및/또는 워크플로가 누락되었습니다."
 msgid "Workflow \"%s\" not found"
 msgstr "\"%s\" 워크플로를 찾을 수 없습니다."
 
-#: ../app/views/main/_gettext.js.erb:353
+#: ../app/views/main/_gettext.js.erb:368
 msgid "Wrong Argument(s)"
 msgstr "잘못된 인수"
 

@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-20 21:15+1000\n"
+"POT-Creation-Date: 2014-05-27 21:57+1000\n"
 "PO-Revision-Date: 2014-05-02 16:45\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "%s is not installed"
 msgstr "%s はインストールされていません。"
 
-#: ../app/views/main/_gettext.js.erb:256
+#: ../app/views/main/_gettext.js.erb:271
 msgid "%{active}/%{total} %{type} %{node}"
 msgstr ""
 
@@ -35,83 +35,88 @@ msgstr "%{cmd} 失敗(ステータス: %{status})"
 msgid "%{cmd} failed (status: %{status}, output was: %{output})"
 msgstr "%{cmd} が失敗しました(状態: %{status}、出力は %{output} でした)"
 
-#: ../app/views/main/_gettext.js.erb:233
+#: ../app/views/main/_gettext.js.erb:244
 msgid "%{id}: Demoting"
 msgstr "%{id}: 降格中"
 
-#: ../app/views/main/_gettext.js.erb:232
+#: ../app/views/main/_gettext.js.erb:243
 msgid "%{id}: Demoting: %{node}"
 msgstr "%{id}: 降格中: %{node}"
 
-#: ../app/views/main/_gettext.js.erb:201
+#: ../app/views/main/_gettext.js.erb:256
+#, fuzzy
+msgid "%{id}: Failed"
+msgstr "%{id}:開始しました"
+
+#: ../app/views/main/_gettext.js.erb:212
 msgid "%{id}: Master"
 msgstr "%{id}:マスタ"
 
-#: ../app/views/main/_gettext.js.erb:200
+#: ../app/views/main/_gettext.js.erb:211
 msgid "%{id}: Master: %{nodelist}"
 msgstr "%{id}: マスタ: %{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:237
+#: ../app/views/main/_gettext.js.erb:248
 msgid "%{id}: Moving"
 msgstr "%{id}: 移動中"
 
-#: ../app/views/main/_gettext.js.erb:236
+#: ../app/views/main/_gettext.js.erb:247
 msgid "%{id}: Moving: %{node}"
 msgstr "%{id}: 移動中: %{node}"
 
-#: ../app/views/main/_gettext.js.erb:216
+#: ../app/views/main/_gettext.js.erb:227
 msgid "%{id}: Pending"
 msgstr "%{id}:保留中"
 
-#: ../app/views/main/_gettext.js.erb:215
+#: ../app/views/main/_gettext.js.erb:226
 msgid "%{id}: Pending: %{nodelist}"
 msgstr "%{id}:保留中: %{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:229
+#: ../app/views/main/_gettext.js.erb:240
 msgid "%{id}: Promoting"
 msgstr "%{id}: 昇格中"
 
-#: ../app/views/main/_gettext.js.erb:228
+#: ../app/views/main/_gettext.js.erb:239
 msgid "%{id}: Promoting: %{node}"
 msgstr "%{id}: 昇格中: %{node}"
 
-#: ../app/views/main/_gettext.js.erb:206
+#: ../app/views/main/_gettext.js.erb:217
 msgid "%{id}: Slave"
 msgstr "%{id}:スレーブ"
 
-#: ../app/views/main/_gettext.js.erb:205
+#: ../app/views/main/_gettext.js.erb:216
 msgid "%{id}: Slave: %{nodelist}"
 msgstr "%{id}: スレーブ: %{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:211
+#: ../app/views/main/_gettext.js.erb:222
 msgid "%{id}: Started"
 msgstr "%{id}:開始しました"
 
-#: ../app/views/main/_gettext.js.erb:210
+#: ../app/views/main/_gettext.js.erb:221
 msgid "%{id}: Started: %{nodelist}"
 msgstr "%{id}: 開始しました: %{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:221
+#: ../app/views/main/_gettext.js.erb:232
 msgid "%{id}: Starting"
 msgstr "%{id}: 開始中"
 
-#: ../app/views/main/_gettext.js.erb:220
+#: ../app/views/main/_gettext.js.erb:231
 msgid "%{id}: Starting: %{node}"
 msgstr "%{id}: 開始中: %{node}"
 
-#: ../app/views/main/_gettext.js.erb:241
+#: ../app/views/main/_gettext.js.erb:252
 msgid "%{id}: Stopped"
 msgstr "%{id}: 停止しました"
 
-#: ../app/views/main/_gettext.js.erb:225
+#: ../app/views/main/_gettext.js.erb:236
 msgid "%{id}: Stopping"
 msgstr "%{id}: 停止中"
 
-#: ../app/views/main/_gettext.js.erb:224
+#: ../app/views/main/_gettext.js.erb:235
 msgid "%{id}: Stopping: %{node}"
 msgstr "%{id}: 停止中: %{node}"
 
-#: ../app/views/main/_gettext.js.erb:177
+#: ../app/views/main/_gettext.js.erb:188
 msgid "%{node}: %{state}"
 msgstr "%{node}: %{state}"
 
@@ -169,7 +174,7 @@ msgstr "(チケット制約が未定義です)"
 msgid "(No users defined)"
 msgstr "(クローンが未定義です)"
 
-#: ../app/views/dashboard/index.html.erb:410
+#: ../app/views/dashboard/index.html.erb:411
 msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
 msgstr "(クラスタ内のホスト名を指定します。その他のノードは自動的に検出されます)"
 
@@ -177,24 +182,24 @@ msgstr "(クラスタ内のホスト名を指定します。その他のノー�
 msgid "(full log)"
 msgstr "(ログ全体)"
 
-#: ../app/views/main/_gettext.js.erb:275
+#: ../app/views/main/_gettext.js.erb:290
 msgid "+ Node"
 msgstr "+ ノード"
 
-#: ../app/views/main/_gettext.js.erb:278
+#: ../app/views/main/_gettext.js.erb:293
 msgid "+ Op"
 msgstr "+ 処理"
 
-#: ../app/views/main/_gettext.js.erb:281
+#: ../app/views/main/_gettext.js.erb:296
 msgid "+ Ticket"
 msgstr "+ チケット"
 
-#: ../app/controllers/cib_controller.rb:110 ../app/controllers/cib_controller.rb:164
+#: ../app/controllers/cib_controller.rb:111 ../app/controllers/cib_controller.rb:167
 msgid "1 node configured"
 msgid_plural "%{num} nodes configured"
 msgstr[0] "1 ノードが設定されました"
 
-#: ../app/controllers/cib_controller.rb:111 ../app/controllers/cib_controller.rb:165
+#: ../app/controllers/cib_controller.rb:112 ../app/controllers/cib_controller.rb:168
 msgid "1 resource configured"
 msgid_plural "%{num} resources configured"
 msgstr[0] "1 リソースが設定されました"
@@ -203,7 +208,7 @@ msgstr[0] "1 リソースが設定されました"
 msgid "< Back"
 msgstr "< 戻る"
 
-#: ../app/views/dashboard/index.html.erb:432
+#: ../app/views/dashboard/index.html.erb:433
 msgid "A cluster with that name already exists"
 msgstr "その名前のクラスタは既に存在します"
 
@@ -211,11 +216,11 @@ msgstr "その名前のクラスタは既に存在します"
 msgid "Access Control Lists"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:332
+#: ../app/views/main/_gettext.js.erb:347
 msgid "Action:"
 msgstr "アクション:"
 
-#: ../app/views/main/_gettext.js.erb:344
+#: ../app/views/main/_gettext.js.erb:359
 msgid "Activate"
 msgstr "有効化"
 
@@ -223,7 +228,7 @@ msgstr "有効化"
 msgid "Add"
 msgstr "追加"
 
-#: ../app/views/dashboard/index.html.erb:415
+#: ../app/views/dashboard/index.html.erb:416
 msgid "Add Cluster"
 msgstr "クラスタの追加"
 
@@ -284,11 +289,11 @@ msgstr "ブール値処理"
 msgid "Break set"
 msgstr "ブレークの設定"
 
-#: ../app/views/main/_gettext.js.erb:290
+#: ../app/views/main/_gettext.js.erb:305
 msgid "CIB (in)"
 msgstr "CIB(入力)"
 
-#: ../app/views/main/_gettext.js.erb:293
+#: ../app/views/main/_gettext.js.erb:308
 msgid "CIB (out)"
 msgstr "CIB(出力)"
 
@@ -300,7 +305,7 @@ msgstr "CIBファイル「%{path}」が見つかりません"
 msgid "CRM Configuration"
 msgstr "CRMの環境設定"
 
-#: ../app/views/dashboard/index.html.erb:330
+#: ../app/views/dashboard/index.html.erb:331
 msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
 msgstr "%{node} 上のHawkに接続できません。5秒ごとに再試行します。"
 
@@ -320,7 +325,7 @@ msgstr "パラメータ %{p} を設定できません。値に一重引用符と
 msgid "Can't set property %{p}, because the value contains both single and double quotes"
 msgstr "プロパティ%{p}を設定できません。値に一重引用符と二重引用符の両方が含まれているためです"
 
-#: ../app/views/dashboard/index.html.erb:492 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
+#: ../app/views/dashboard/index.html.erb:493 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -352,7 +357,7 @@ msgstr "クローンID"
 msgid "Clone ID \"%{id}\" does not exist"
 msgstr "クローンID「%{id}」が存在しません"
 
-#: ../app/views/main/_gettext.js.erb:250
+#: ../app/views/main/_gettext.js.erb:265
 msgid "Clone Set: %{id}"
 msgstr "クローン設定: %{id}"
 
@@ -380,7 +385,7 @@ msgstr "クラスタダッシュボード"
 msgid "Cluster Diagram"
 msgstr "クラスタダイアグラム"
 
-#: ../app/views/dashboard/index.html.erb:408
+#: ../app/views/dashboard/index.html.erb:409
 msgid "Cluster Name:"
 msgstr "クラスタ名:"
 
@@ -535,7 +540,7 @@ msgstr "この履歴アーカイブを削除しますか?"
 msgid "Demote"
 msgstr "降格"
 
-#: ../app/views/explorer/_pe_list.html.erb:30 ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:287
+#: ../app/views/explorer/_pe_list.html.erb:30 ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:302
 msgid "Details"
 msgstr "詳細"
 
@@ -613,7 +618,16 @@ msgstr "チケット制約の編集"
 msgid "Edit User"
 msgstr "リソースの編集"
 
-#: ../app/views/main/_gettext.js.erb:299
+#: ../app/views/main/_gettext.js.erb:154
+msgid "Elsewhere"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:153
+#, fuzzy
+msgid "Elsewhere [standby]"
+msgstr "許可済み [スタンバイ]"
+
+#: ../app/views/main/_gettext.js.erb:314
 msgid "Empty Graph"
 msgstr "空のグラフ"
 
@@ -686,11 +700,15 @@ msgstr "表現"
 msgid "Fail Count"
 msgstr "失敗数"
 
-#: ../app/views/main/_gettext.js.erb:374
+#: ../app/views/main/_gettext.js.erb:255
+msgid "Failed"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:389
 msgid "Failed Master"
 msgstr "失敗したマスタ"
 
-#: ../app/models/cib.rb:481
+#: ../app/models/cib.rb:487
 msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
 msgstr "失敗した操作: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
 
@@ -710,7 +728,7 @@ msgstr "hb_reportの生成"
 msgid "Generate hb_report..."
 msgstr "hb_reportの生成..."
 
-#: ../app/views/main/_gettext.js.erb:350
+#: ../app/views/main/_gettext.js.erb:365
 msgid "Generic Error"
 msgstr "一般的なエラー"
 
@@ -718,7 +736,7 @@ msgstr "一般的なエラー"
 msgid "Getting recent events (last hour)..."
 msgstr "最近のイベントを取得しています(最終時間)..."
 
-#: ../app/views/main/_gettext.js.erb:335 ../app/views/main/_menus.html.erb:206
+#: ../app/views/main/_gettext.js.erb:350 ../app/views/main/_menus.html.erb:206
 msgid "Grant"
 msgstr "許可"
 
@@ -730,7 +748,7 @@ msgstr "許可済み"
 msgid "Granted [standby]"
 msgstr "許可済み [スタンバイ]"
 
-#: ../app/views/explorer/_pe_list.html.erb:38 ../app/views/main/_gettext.js.erb:296
+#: ../app/views/explorer/_pe_list.html.erb:38 ../app/views/main/_gettext.js.erb:311
 msgid "Graph"
 msgstr "グラフ"
 
@@ -758,7 +776,7 @@ msgstr "グループが正常に作成されました"
 msgid "Group updated successfully"
 msgstr "グループが正常に更新されました"
 
-#: ../app/views/main/_gettext.js.erb:244
+#: ../app/views/main/_gettext.js.erb:259
 msgid "Group: %{id}"
 msgstr "グループ: %{id}"
 
@@ -766,7 +784,7 @@ msgstr "グループ: %{id}"
 msgid "History Explorer"
 msgstr "履歴エクスプローラ"
 
-#: ../app/views/dashboard/index.html.erb:409
+#: ../app/views/dashboard/index.html.erb:410
 msgid "Host Name:"
 msgstr "ホスト名:"
 
@@ -774,23 +792,23 @@ msgstr "ホスト名:"
 msgid "Inactive Resources"
 msgstr "非アクティブなリソース"
 
-#: ../app/views/main/_gettext.js.erb:302
+#: ../app/views/main/_gettext.js.erb:317
 msgid "Inject Node State"
 msgstr "ノード状態を挿入"
 
-#: ../app/views/main/_gettext.js.erb:311
+#: ../app/views/main/_gettext.js.erb:326
 msgid "Inject Operation"
 msgstr "挿入処理"
 
-#: ../app/views/main/_gettext.js.erb:326
+#: ../app/views/main/_gettext.js.erb:341
 msgid "Inject Ticket"
 msgstr "チケットの挿入"
 
-#: ../app/views/main/_gettext.js.erb:272
+#: ../app/views/main/_gettext.js.erb:287
 msgid "Injected State:"
 msgstr "挿入された状態:"
 
-#: ../app/views/main/_gettext.js.erb:317
+#: ../app/views/main/_gettext.js.erb:332
 msgid "Interval:"
 msgstr "間隔:"
 
@@ -831,11 +849,11 @@ msgstr ""
 msgid "Last Failure"
 msgstr "最後のエラー"
 
-#: ../app/views/main/_gettext.js.erb:160
+#: ../app/views/main/_gettext.js.erb:165
 msgid "Last granted: %s"
 msgstr "前回の許可: %s"
 
-#: ../app/views/main/_gettext.js.erb:157
+#: ../app/views/main/_gettext.js.erb:162
 msgid "Leader: %s"
 msgstr ""
 
@@ -867,7 +885,7 @@ msgstr "メンテナンス"
 msgid "Maintenance Mode"
 msgstr "メンテナンスモード"
 
-#: ../app/views/main/_gettext.js.erb:199
+#: ../app/views/main/_gettext.js.erb:210
 msgid "Master"
 msgstr "マスタ"
 
@@ -883,7 +901,7 @@ msgstr "マスタ/スレーブID"
 msgid "Master/Slave ID \"%{id}\" does not exist"
 msgstr "マスタ/スレーブID「%{id}」が存在しません"
 
-#: ../app/views/main/_gettext.js.erb:247
+#: ../app/views/main/_gettext.js.erb:262
 msgid "Master/Slave Set: %{id}"
 msgstr "マスタ/スレーブセット: %{id}"
 
@@ -1012,35 +1030,35 @@ msgstr "ワークフローの説明が見つかりません"
 msgid "Node"
 msgstr "ノード"
 
-#: ../app/views/main/_gettext.js.erb:305
+#: ../app/views/main/_gettext.js.erb:320
 msgid "Node:"
 msgstr "ノード:"
 
-#: ../app/views/main/_gettext.js.erb:365
+#: ../app/views/main/_gettext.js.erb:380
 msgid "Not Configured"
 msgstr "まだ設定されていません"
 
-#: ../app/views/main/_gettext.js.erb:356
+#: ../app/views/main/_gettext.js.erb:371
 msgid "Not Implemented"
 msgstr "実装されていません"
 
-#: ../app/views/main/_gettext.js.erb:362
+#: ../app/views/main/_gettext.js.erb:377
 msgid "Not Installed"
 msgstr "インストールされていません"
 
-#: ../app/views/main/_gettext.js.erb:368
+#: ../app/views/main/_gettext.js.erb:383
 msgid "Not Running"
 msgstr "実行していません"
 
-#: ../app/views/dashboard/index.html.erb:417 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
+#: ../app/views/dashboard/index.html.erb:418 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
 msgid "OK"
 msgstr "OK"
 
-#: ../app/views/main/_gettext.js.erb:183
+#: ../app/views/main/_gettext.js.erb:194
 msgid "Offline"
 msgstr "オフライン"
 
-#: ../app/views/main/_gettext.js.erb:180 ../app/views/main/_menus.html.erb:8
+#: ../app/views/main/_gettext.js.erb:191 ../app/views/main/_menus.html.erb:8
 msgid "Online"
 msgstr "オンライン"
 
@@ -1048,7 +1066,7 @@ msgstr "オンライン"
 msgid "Operation Defaults"
 msgstr "操作のデフォルト"
 
-#: ../app/views/main/_gettext.js.erb:314
+#: ../app/views/main/_gettext.js.erb:329
 msgid "Operation:"
 msgstr "操作:"
 
@@ -1080,7 +1098,7 @@ msgstr ""
 msgid "Parameters"
 msgstr "パラメータ"
 
-#: ../app/views/main/_gettext.js.erb:253
+#: ../app/views/main/_gettext.js.erb:268
 msgid "Parent: %{id}..."
 msgstr "親: %{id}..."
 
@@ -1092,11 +1110,11 @@ msgstr "パスワードが指定されていません"
 msgid "Password:"
 msgstr "パスワード:"
 
-#: ../app/views/main/_gettext.js.erb:186 ../app/views/main/_gettext.js.erb:214
+#: ../app/views/main/_gettext.js.erb:197 ../app/views/main/_gettext.js.erb:225
 msgid "Pending"
 msgstr "保留中"
 
-#: ../app/views/main/_gettext.js.erb:359
+#: ../app/views/main/_gettext.js.erb:374
 msgid "Permission Denied"
 msgstr "アクセス承認拒否"
 
@@ -1112,7 +1130,7 @@ msgstr ""
 msgid "Permission denied for user %{user}"
 msgstr "ユーザ %{user} のアクセス承認拒否"
 
-#: ../app/views/dashboard/index.html.erb:241
+#: ../app/views/dashboard/index.html.erb:242
 msgid "Permission denied. Please log in to %{node}"
 msgstr "パーミッションが拒否されました。%{node} にログインしてください"
 
@@ -1222,7 +1240,7 @@ msgstr "リソースが正常に作成されました"
 msgid "Resource updated successfully"
 msgstr "リソースが正常に更新されました"
 
-#: ../app/views/main/_gettext.js.erb:320
+#: ../app/views/main/_gettext.js.erb:335
 msgid "Resource:"
 msgstr "リソース:"
 
@@ -1230,7 +1248,7 @@ msgstr "リソース:"
 msgid "Resources"
 msgstr "リソース"
 
-#: ../app/views/main/_gettext.js.erb:323
+#: ../app/views/main/_gettext.js.erb:338
 msgid "Result:"
 msgstr "結果:"
 
@@ -1238,15 +1256,15 @@ msgstr "結果:"
 msgid "Revert Changes"
 msgstr "変更を元に戻す"
 
-#: ../app/views/main/_gettext.js.erb:338 ../app/views/main/_menus.html.erb:213
+#: ../app/views/main/_gettext.js.erb:353 ../app/views/main/_menus.html.erb:213
 msgid "Revoke"
 msgstr "取り消し"
 
-#: ../app/views/main/_gettext.js.erb:154
+#: ../app/views/main/_gettext.js.erb:159
 msgid "Revoked"
 msgstr "取り消し済み"
 
-#: ../app/views/main/_gettext.js.erb:153
+#: ../app/views/main/_gettext.js.erb:158
 msgid "Revoked [standby]"
 msgstr "取り消し済み [スタンバイ]"
 
@@ -1292,11 +1310,11 @@ msgstr "役割"
 msgid "Root Password"
 msgstr "パスワード:"
 
-#: ../app/views/main/_gettext.js.erb:284
+#: ../app/views/main/_gettext.js.erb:299
 msgid "Run >"
 msgstr "実行 >"
 
-#: ../app/views/main/_gettext.js.erb:371
+#: ../app/views/main/_gettext.js.erb:386
 msgid "Running Master"
 msgstr "マスタを実行しています"
 
@@ -1320,19 +1338,19 @@ msgstr "ルールエディタの表示"
 msgid "Simulator"
 msgstr "シミュレータ"
 
-#: ../app/views/main/_gettext.js.erb:266
+#: ../app/views/main/_gettext.js.erb:281
 msgid "Simulator (busy...)"
 msgstr "シミュレータ(ビジー...)"
 
-#: ../app/views/main/_gettext.js.erb:269
+#: ../app/views/main/_gettext.js.erb:284
 msgid "Simulator (final state)"
 msgstr "シミュレータ(最終状態)"
 
-#: ../app/views/main/_gettext.js.erb:263
+#: ../app/views/main/_gettext.js.erb:278
 msgid "Simulator (initial state)"
 msgstr "シミュレータ(初期状態)"
 
-#: ../app/views/main/_gettext.js.erb:204
+#: ../app/views/main/_gettext.js.erb:215
 msgid "Slave"
 msgstr "スレーブ"
 
@@ -1340,7 +1358,7 @@ msgstr "スレーブ"
 msgid "Stack: %s"
 msgstr "スタック: %s"
 
-#: ../app/views/main/_gettext.js.erb:189 ../app/views/main/_gettext.js.erb:341 ../app/views/main/_menus.html.erb:15
+#: ../app/views/main/_gettext.js.erb:200 ../app/views/main/_gettext.js.erb:356 ../app/views/main/_menus.html.erb:15
 msgid "Standby"
 msgstr "スタンバイ"
 
@@ -1356,11 +1374,11 @@ msgstr "開始時刻が指定されていません"
 msgid "Start Time:"
 msgstr "開始時刻:"
 
-#: ../app/views/main/_gettext.js.erb:209
+#: ../app/views/main/_gettext.js.erb:220
 msgid "Started"
 msgstr "開始しました"
 
-#: ../app/views/main/_gettext.js.erb:308
+#: ../app/views/main/_gettext.js.erb:323
 msgid "State:"
 msgstr "県または州:"
 
@@ -1372,11 +1390,11 @@ msgstr "状況"
 msgid "Stop"
 msgstr "停止"
 
-#: ../app/views/main/_gettext.js.erb:240
+#: ../app/views/main/_gettext.js.erb:251
 msgid "Stopped"
 msgstr "停止"
 
-#: ../app/views/main/_gettext.js.erb:347
+#: ../app/views/main/_gettext.js.erb:362
 msgid "Success"
 msgstr "成功"
 
@@ -1384,7 +1402,7 @@ msgstr "成功"
 msgid "Summary"
 msgstr "概要"
 
-#: ../app/views/main/_gettext.js.erb:167
+#: ../app/views/main/_gettext.js.erb:178
 msgid "Summary View"
 msgstr "概要ビュー"
 
@@ -1400,7 +1418,7 @@ msgstr "対称クラスタ"
 msgid "Symmetrical"
 msgstr "対称的"
 
-#: ../app/views/main/_gettext.js.erb:173
+#: ../app/views/main/_gettext.js.erb:184
 msgid "Table View"
 msgstr "テーブルビュー"
 
@@ -1436,7 +1454,7 @@ msgstr "環境設定が適用されました。"
 msgid "The following configuration will be applied to the cluster:"
 msgstr "以下の環境設定がクラスタに適用されます:"
 
-#: ../app/views/dashboard/index.html.erb:438
+#: ../app/views/dashboard/index.html.erb:439
 msgid "The host %{h} is already present in cluster %{c}"
 msgstr "ホスト %{h} は既にクラスタ %{c} に存在します"
 
@@ -1522,7 +1540,11 @@ msgstr "このウィザードでは、クラスタへの次の環境設定の1�
 msgid "Ticket"
 msgstr "チケット"
 
-#: ../app/views/main/_gettext.js.erb:329
+#: ../app/views/main/_gettext.js.erb:174
+msgid "Ticket granted, but Booth thinks leader is '%s'!"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:344
 msgid "Ticket:"
 msgstr "チケット:"
 
@@ -1534,7 +1556,7 @@ msgstr "チケット"
 msgid "Time"
 msgstr "時間"
 
-#: ../app/views/dashboard/index.html.erb:156 ../app/views/dashboard/index.html.erb:485
+#: ../app/views/dashboard/index.html.erb:157 ../app/views/dashboard/index.html.erb:486
 msgid "Timeout: Please try again"
 msgstr "タイムアウト: もう一度実行してください"
 
@@ -1546,7 +1568,7 @@ msgstr ""
 msgid "To node %s"
 msgstr "ノード %s へ"
 
-#: ../app/views/main/_gettext.js.erb:259
+#: ../app/views/main/_gettext.js.erb:274
 msgid "Toggle view by type"
 msgstr ""
 
@@ -1554,7 +1576,7 @@ msgstr ""
 msgid "Tools"
 msgstr "ツール"
 
-#: ../app/views/main/_gettext.js.erb:170
+#: ../app/views/main/_gettext.js.erb:181
 msgid "Tree View"
 msgstr "ツリービュー"
 
@@ -1570,7 +1592,7 @@ msgstr "UIホスト: %s"
 msgid "Unable to apply changes: %{msg}"
 msgstr "変更を適用できません: %{msg}"
 
-#: ../app/views/dashboard/index.html.erb:467 ../app/views/dashboard/index.html.erb:479
+#: ../app/views/dashboard/index.html.erb:468 ../app/views/dashboard/index.html.erb:480
 msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
 msgstr "%{host} に接続できません。Webブラウザで %{url} を開き、Hawkにアクセス可能なことを確認してみてください。"
 
@@ -1612,6 +1634,10 @@ msgstr "クローンを生成できません: %{msg}"
 msgid "Unable to execute %{cmd}"
 msgstr "%{cmd} を実行できません"
 
+#: ../app/views/main/_gettext.js.erb:171
+msgid "Unable to obtain ticket information from Booth!"
+msgstr ""
+
 #: ../app/models/cib.rb:236
 msgid "Unable to parse CIB file \"%{path}\""
 msgstr "CIBファイル「%{path}」を解析できません"
@@ -1634,7 +1660,7 @@ msgstr "クローンを生成できません: %{msg}"
 msgid "Unable to update user: %{msg}"
 msgstr "制約を更新できません: %{msg}"
 
-#: ../app/views/main/_gettext.js.erb:192
+#: ../app/views/main/_gettext.js.erb:203
 msgid "Unclean"
 msgstr "非クリーン"
 
@@ -1642,7 +1668,7 @@ msgstr "非クリーン"
 msgid "Unexpected server error: %s"
 msgstr "予期しないサーバエラー: %s"
 
-#: ../app/models/cib.rb:269 ../app/models/cib.rb:270 ../app/models/cib.rb:614 ../app/views/main/_gettext.js.erb:195
+#: ../app/models/cib.rb:269 ../app/models/cib.rb:270 ../app/models/cib.rb:627 ../app/views/main/_gettext.js.erb:206
 msgid "Unknown"
 msgstr "不明"
 
@@ -1729,7 +1755,7 @@ msgstr "ウィザードのテンプレートおよびワークフローがあり
 msgid "Workflow \"%s\" not found"
 msgstr "ワークフロー「%s」が見つかりませんでした"
 
-#: ../app/views/main/_gettext.js.erb:353
+#: ../app/views/main/_gettext.js.erb:368
 msgid "Wrong Argument(s)"
 msgstr "誤った引数"
 

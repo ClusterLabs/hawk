@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-20 21:15+1000\n"
+"POT-Creation-Date: 2014-05-27 21:57+1000\n"
 "PO-Revision-Date: 2014-05-02 10:40\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -23,7 +23,7 @@ msgstr ""
 msgid "%s is not installed"
 msgstr "لم يتم تثبيت %s"
 
-#: ../app/views/main/_gettext.js.erb:256
+#: ../app/views/main/_gettext.js.erb:271
 msgid "%{active}/%{total} %{type} %{node}"
 msgstr ""
 
@@ -35,83 +35,88 @@ msgstr "فشل %{cmd} (الحالة:%{status})"
 msgid "%{cmd} failed (status: %{status}, output was: %{output})"
 msgstr "فشل %{cmd} (الحالة: %{status}، كانت المخرجات %{output})"
 
-#: ../app/views/main/_gettext.js.erb:233
+#: ../app/views/main/_gettext.js.erb:244
 msgid "%{id}: Demoting"
 msgstr "%{id}: تخفيض"
 
-#: ../app/views/main/_gettext.js.erb:232
+#: ../app/views/main/_gettext.js.erb:243
 msgid "%{id}: Demoting: %{node}"
 msgstr "%{id}: تخفيض: %{node}"
 
-#: ../app/views/main/_gettext.js.erb:201
+#: ../app/views/main/_gettext.js.erb:256
+#, fuzzy
+msgid "%{id}: Failed"
+msgstr "%{id}: تم البدء"
+
+#: ../app/views/main/_gettext.js.erb:212
 msgid "%{id}: Master"
 msgstr "%{id}: رئيس"
 
-#: ../app/views/main/_gettext.js.erb:200
+#: ../app/views/main/_gettext.js.erb:211
 msgid "%{id}: Master: %{nodelist}"
 msgstr "%{id}: الرئيسي: %{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:237
+#: ../app/views/main/_gettext.js.erb:248
 msgid "%{id}: Moving"
 msgstr "%{id}: نقل"
 
-#: ../app/views/main/_gettext.js.erb:236
+#: ../app/views/main/_gettext.js.erb:247
 msgid "%{id}: Moving: %{node}"
 msgstr "%{id}: نقل: %{node}"
 
-#: ../app/views/main/_gettext.js.erb:216
+#: ../app/views/main/_gettext.js.erb:227
 msgid "%{id}: Pending"
 msgstr "%{id}: معلق"
 
-#: ../app/views/main/_gettext.js.erb:215
+#: ../app/views/main/_gettext.js.erb:226
 msgid "%{id}: Pending: %{nodelist}"
 msgstr "%{id}: معلق: %{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:229
+#: ../app/views/main/_gettext.js.erb:240
 msgid "%{id}: Promoting"
 msgstr "%{id}: ترقية"
 
-#: ../app/views/main/_gettext.js.erb:228
+#: ../app/views/main/_gettext.js.erb:239
 msgid "%{id}: Promoting: %{node}"
 msgstr "%{id}: ترقية: %{node}"
 
-#: ../app/views/main/_gettext.js.erb:206
+#: ../app/views/main/_gettext.js.erb:217
 msgid "%{id}: Slave"
 msgstr "%{id}: تابع"
 
-#: ../app/views/main/_gettext.js.erb:205
+#: ../app/views/main/_gettext.js.erb:216
 msgid "%{id}: Slave: %{nodelist}"
 msgstr "%{id}: التابع: %{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:211
+#: ../app/views/main/_gettext.js.erb:222
 msgid "%{id}: Started"
 msgstr "%{id}: تم البدء"
 
-#: ../app/views/main/_gettext.js.erb:210
+#: ../app/views/main/_gettext.js.erb:221
 msgid "%{id}: Started: %{nodelist}"
 msgstr "%{id}: بدأ: %{nodelist}"
 
-#: ../app/views/main/_gettext.js.erb:221
+#: ../app/views/main/_gettext.js.erb:232
 msgid "%{id}: Starting"
 msgstr "%{id}: بدء التشغيل"
 
-#: ../app/views/main/_gettext.js.erb:220
+#: ../app/views/main/_gettext.js.erb:231
 msgid "%{id}: Starting: %{node}"
 msgstr "%{id}: بدء التشغيل: %{node}"
 
-#: ../app/views/main/_gettext.js.erb:241
+#: ../app/views/main/_gettext.js.erb:252
 msgid "%{id}: Stopped"
 msgstr "%{id}: توقف"
 
-#: ../app/views/main/_gettext.js.erb:225
+#: ../app/views/main/_gettext.js.erb:236
 msgid "%{id}: Stopping"
 msgstr "%{id}: توقف"
 
-#: ../app/views/main/_gettext.js.erb:224
+#: ../app/views/main/_gettext.js.erb:235
 msgid "%{id}: Stopping: %{node}"
 msgstr "%{id}: توقف: %{node}"
 
-#: ../app/views/main/_gettext.js.erb:177
+#: ../app/views/main/_gettext.js.erb:188
 msgid "%{node}: %{state}"
 msgstr "%{node}: %{state}"
 
@@ -169,7 +174,7 @@ msgstr "(لم يتم تحديد أي قيود للبطاقة)"
 msgid "(No users defined)"
 msgstr "(لم يتم تحديد أي استنساخ)"
 
-#: ../app/views/dashboard/index.html.erb:410
+#: ../app/views/dashboard/index.html.erb:411
 msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
 msgstr "(قم بتحديد أي اسم مضيف في المجموعة المتماثلة. سيتم العثور على نقاط التوصيل الأخرى تلقائيًا)"
 
@@ -177,25 +182,25 @@ msgstr "(قم بتحديد أي اسم مضيف في المجموعة المتم
 msgid "(full log)"
 msgstr "(سجل كامل)"
 
-#: ../app/views/main/_gettext.js.erb:275
+#: ../app/views/main/_gettext.js.erb:290
 msgid "+ Node"
 msgstr "عقدة +"
 
-#: ../app/views/main/_gettext.js.erb:278
+#: ../app/views/main/_gettext.js.erb:293
 msgid "+ Op"
 msgstr "+ Op"
 
-#: ../app/views/main/_gettext.js.erb:281
+#: ../app/views/main/_gettext.js.erb:296
 msgid "+ Ticket"
 msgstr "+ البطاقة"
 
-#: ../app/controllers/cib_controller.rb:110 ../app/controllers/cib_controller.rb:164
+#: ../app/controllers/cib_controller.rb:111 ../app/controllers/cib_controller.rb:167
 msgid "1 node configured"
 msgid_plural "%{num} nodes configured"
 msgstr[0] "تم تكوين عقدة واحدة"
 msgstr[1] "تم تكوين %{num} عقدة (عقد)"
 
-#: ../app/controllers/cib_controller.rb:111 ../app/controllers/cib_controller.rb:165
+#: ../app/controllers/cib_controller.rb:112 ../app/controllers/cib_controller.rb:168
 msgid "1 resource configured"
 msgid_plural "%{num} resources configured"
 msgstr[0] "تم تكوين مورد واحد"
@@ -205,7 +210,7 @@ msgstr[1] "تم تكوين %{num} مورد (موارد)"
 msgid "< Back"
 msgstr "< الخلف"
 
-#: ../app/views/dashboard/index.html.erb:432
+#: ../app/views/dashboard/index.html.erb:433
 msgid "A cluster with that name already exists"
 msgstr "المجموعة المتماثلة التي تحمل هذا الاسم موجودة بالفعل"
 
@@ -213,11 +218,11 @@ msgstr "المجموعة المتماثلة التي تحمل هذا الاسم 
 msgid "Access Control Lists"
 msgstr ""
 
-#: ../app/views/main/_gettext.js.erb:332
+#: ../app/views/main/_gettext.js.erb:347
 msgid "Action:"
 msgstr "الإجراء:"
 
-#: ../app/views/main/_gettext.js.erb:344
+#: ../app/views/main/_gettext.js.erb:359
 msgid "Activate"
 msgstr "تنشيط"
 
@@ -225,7 +230,7 @@ msgstr "تنشيط"
 msgid "Add"
 msgstr "إضافة"
 
-#: ../app/views/dashboard/index.html.erb:415
+#: ../app/views/dashboard/index.html.erb:416
 msgid "Add Cluster"
 msgstr "إضافة مجموعة متماثلة"
 
@@ -286,11 +291,11 @@ msgstr "Op منطقي"
 msgid "Break set"
 msgstr "مجموعة الفواصل"
 
-#: ../app/views/main/_gettext.js.erb:290
+#: ../app/views/main/_gettext.js.erb:305
 msgid "CIB (in)"
 msgstr "CIB (داخل)"
 
-#: ../app/views/main/_gettext.js.erb:293
+#: ../app/views/main/_gettext.js.erb:308
 msgid "CIB (out)"
 msgstr "CIB (خارج)"
 
@@ -302,7 +307,7 @@ msgstr "ملف CIB \"%{path}\" غير موجود"
 msgid "CRM Configuration"
 msgstr "تكوين CRM"
 
-#: ../app/views/dashboard/index.html.erb:330
+#: ../app/views/dashboard/index.html.erb:331
 msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
 msgstr "لا يمكن الاتصال بـ Hawk في %{node}. تجري إعادة المحاولة كل 5 ثوانٍ."
 
@@ -322,7 +327,7 @@ msgstr "يتعذر تعيين المعلمة %{p}، نظرًا لاحتواء ا
 msgid "Can't set property %{p}, because the value contains both single and double quotes"
 msgstr "يتعذر تعيين الخاصية %{p}، نظرًا لاحتواء القيمة على علامات اقتباس مفردة ومزدوجة"
 
-#: ../app/views/dashboard/index.html.erb:492 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
+#: ../app/views/dashboard/index.html.erb:493 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
 msgid "Cancel"
 msgstr "إلغاء"
 
@@ -354,7 +359,7 @@ msgstr "معرف الاستنساخ"
 msgid "Clone ID \"%{id}\" does not exist"
 msgstr "معرف الاستنساخ \"%{id}\" غير موجود"
 
-#: ../app/views/main/_gettext.js.erb:250
+#: ../app/views/main/_gettext.js.erb:265
 msgid "Clone Set: %{id}"
 msgstr "مجموعة الاستنساخ: %{id}"
 
@@ -382,7 +387,7 @@ msgstr "لوحة معلومات المجموعة المتماثلة"
 msgid "Cluster Diagram"
 msgstr "مخطط المجموعة المتماثلة"
 
-#: ../app/views/dashboard/index.html.erb:408
+#: ../app/views/dashboard/index.html.erb:409
 msgid "Cluster Name:"
 msgstr "اسم المجموعة المتماثلة:"
 
@@ -537,7 +542,7 @@ msgstr "هل تريد حذف أرشيف المحفوظات هذا؟"
 msgid "Demote"
 msgstr "تخفيض"
 
-#: ../app/views/explorer/_pe_list.html.erb:30 ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:287
+#: ../app/views/explorer/_pe_list.html.erb:30 ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:302
 msgid "Details"
 msgstr "التفاصيل"
 
@@ -615,7 +620,16 @@ msgstr "تحرير قيد البطاقة"
 msgid "Edit User"
 msgstr "تحرير مورد"
 
-#: ../app/views/main/_gettext.js.erb:299
+#: ../app/views/main/_gettext.js.erb:154
+msgid "Elsewhere"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:153
+#, fuzzy
+msgid "Elsewhere [standby]"
+msgstr "تم المنح [وضع الاستعداد]"
+
+#: ../app/views/main/_gettext.js.erb:314
 msgid "Empty Graph"
 msgstr "رسم بياني فارغ"
 
@@ -688,11 +702,15 @@ msgstr "التعبير"
 msgid "Fail Count"
 msgstr "عدد مرات الفشل"
 
-#: ../app/views/main/_gettext.js.erb:374
+#: ../app/views/main/_gettext.js.erb:255
+msgid "Failed"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:389
 msgid "Failed Master"
 msgstr "رئيس فاشل"
 
-#: ../app/models/cib.rb:481
+#: ../app/models/cib.rb:487
 msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
 msgstr "عملية فاشلة: العقدة=%{node}، المورد =%{resource}، معرف الاستدعاء=%{call_id}، العملية=%{op}، رمز rc={rc_code}"
 
@@ -712,7 +730,7 @@ msgstr "إنشاء hb_report"
 msgid "Generate hb_report..."
 msgstr "إنشاء hb_report..."
 
-#: ../app/views/main/_gettext.js.erb:350
+#: ../app/views/main/_gettext.js.erb:365
 msgid "Generic Error"
 msgstr "خطأ عام"
 
@@ -720,7 +738,7 @@ msgstr "خطأ عام"
 msgid "Getting recent events (last hour)..."
 msgstr "جارٍ الحصول على الأحداث الحديثة (آخر ساعة)..."
 
-#: ../app/views/main/_gettext.js.erb:335 ../app/views/main/_menus.html.erb:206
+#: ../app/views/main/_gettext.js.erb:350 ../app/views/main/_menus.html.erb:206
 msgid "Grant"
 msgstr "منح"
 
@@ -732,7 +750,7 @@ msgstr "تم المنح"
 msgid "Granted [standby]"
 msgstr "تم المنح [وضع الاستعداد]"
 
-#: ../app/views/explorer/_pe_list.html.erb:38 ../app/views/main/_gettext.js.erb:296
+#: ../app/views/explorer/_pe_list.html.erb:38 ../app/views/main/_gettext.js.erb:311
 msgid "Graph"
 msgstr "رسم بياني"
 
@@ -760,7 +778,7 @@ msgstr "تم إنشاء المجموعة بنجاح"
 msgid "Group updated successfully"
 msgstr "تم تحديث المجموعة بنجاح"
 
-#: ../app/views/main/_gettext.js.erb:244
+#: ../app/views/main/_gettext.js.erb:259
 msgid "Group: %{id}"
 msgstr "المجموعة: %{id}"
 
@@ -768,7 +786,7 @@ msgstr "المجموعة: %{id}"
 msgid "History Explorer"
 msgstr "History Explorer"
 
-#: ../app/views/dashboard/index.html.erb:409
+#: ../app/views/dashboard/index.html.erb:410
 msgid "Host Name:"
 msgstr "اسم المضيف:"
 
@@ -776,23 +794,23 @@ msgstr "اسم المضيف:"
 msgid "Inactive Resources"
 msgstr "موارد غير نشطة"
 
-#: ../app/views/main/_gettext.js.erb:302
+#: ../app/views/main/_gettext.js.erb:317
 msgid "Inject Node State"
 msgstr "حالة عقدة مدخلة"
 
-#: ../app/views/main/_gettext.js.erb:311
+#: ../app/views/main/_gettext.js.erb:326
 msgid "Inject Operation"
 msgstr "عملية الإدخال"
 
-#: ../app/views/main/_gettext.js.erb:326
+#: ../app/views/main/_gettext.js.erb:341
 msgid "Inject Ticket"
 msgstr "إدخال البطاقة"
 
-#: ../app/views/main/_gettext.js.erb:272
+#: ../app/views/main/_gettext.js.erb:287
 msgid "Injected State:"
 msgstr "حالة مدخلة:"
 
-#: ../app/views/main/_gettext.js.erb:317
+#: ../app/views/main/_gettext.js.erb:332
 msgid "Interval:"
 msgstr "الفاصل الزمني:"
 
@@ -833,11 +851,11 @@ msgstr ""
 msgid "Last Failure"
 msgstr "آخر محاولة فاشلة"
 
-#: ../app/views/main/_gettext.js.erb:160
+#: ../app/views/main/_gettext.js.erb:165
 msgid "Last granted: %s"
 msgstr "آخر عملية منح: %s"
 
-#: ../app/views/main/_gettext.js.erb:157
+#: ../app/views/main/_gettext.js.erb:162
 msgid "Leader: %s"
 msgstr ""
 
@@ -869,7 +887,7 @@ msgstr "الصيانة"
 msgid "Maintenance Mode"
 msgstr "وضع الصيانة"
 
-#: ../app/views/main/_gettext.js.erb:199
+#: ../app/views/main/_gettext.js.erb:210
 msgid "Master"
 msgstr "الرئيس"
 
@@ -885,7 +903,7 @@ msgstr "معرف الرئيس/التابع"
 msgid "Master/Slave ID \"%{id}\" does not exist"
 msgstr "معرف الرئيس/التابع \"%{id}\" غير موجود"
 
-#: ../app/views/main/_gettext.js.erb:247
+#: ../app/views/main/_gettext.js.erb:262
 msgid "Master/Slave Set: %{id}"
 msgstr "المجموعة الأساسية/التابعة: %{id}"
 
@@ -1014,35 +1032,35 @@ msgstr "لم يتم العثور على أوصاف التدفق"
 msgid "Node"
 msgstr "عقدة"
 
-#: ../app/views/main/_gettext.js.erb:305
+#: ../app/views/main/_gettext.js.erb:320
 msgid "Node:"
 msgstr "العقدة:"
 
-#: ../app/views/main/_gettext.js.erb:365
+#: ../app/views/main/_gettext.js.erb:380
 msgid "Not Configured"
 msgstr "لم يتم التكوين"
 
-#: ../app/views/main/_gettext.js.erb:356
+#: ../app/views/main/_gettext.js.erb:371
 msgid "Not Implemented"
 msgstr "لم يتم التنفيذ"
 
-#: ../app/views/main/_gettext.js.erb:362
+#: ../app/views/main/_gettext.js.erb:377
 msgid "Not Installed"
 msgstr "لم يتم التثبيت"
 
-#: ../app/views/main/_gettext.js.erb:368
+#: ../app/views/main/_gettext.js.erb:383
 msgid "Not Running"
 msgstr "ليس قيد التشغيل"
 
-#: ../app/views/dashboard/index.html.erb:417 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
+#: ../app/views/dashboard/index.html.erb:418 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
 msgid "OK"
 msgstr "موافق"
 
-#: ../app/views/main/_gettext.js.erb:183
+#: ../app/views/main/_gettext.js.erb:194
 msgid "Offline"
 msgstr "غير متصل"
 
-#: ../app/views/main/_gettext.js.erb:180 ../app/views/main/_menus.html.erb:8
+#: ../app/views/main/_gettext.js.erb:191 ../app/views/main/_menus.html.erb:8
 msgid "Online"
 msgstr "متصل"
 
@@ -1050,7 +1068,7 @@ msgstr "متصل"
 msgid "Operation Defaults"
 msgstr "الإعدادات الافتراضية للعملية"
 
-#: ../app/views/main/_gettext.js.erb:314
+#: ../app/views/main/_gettext.js.erb:329
 msgid "Operation:"
 msgstr "العملية"
 
@@ -1082,7 +1100,7 @@ msgstr ""
 msgid "Parameters"
 msgstr "المعلمات"
 
-#: ../app/views/main/_gettext.js.erb:253
+#: ../app/views/main/_gettext.js.erb:268
 msgid "Parent: %{id}..."
 msgstr "العنصر الرئيسي: %{id}..."
 
@@ -1094,11 +1112,11 @@ msgstr "لم يتم تحديد كلمة السر"
 msgid "Password:"
 msgstr "كلمة السر:"
 
-#: ../app/views/main/_gettext.js.erb:186 ../app/views/main/_gettext.js.erb:214
+#: ../app/views/main/_gettext.js.erb:197 ../app/views/main/_gettext.js.erb:225
 msgid "Pending"
 msgstr "معلق"
 
-#: ../app/views/main/_gettext.js.erb:359
+#: ../app/views/main/_gettext.js.erb:374
 msgid "Permission Denied"
 msgstr "الإذن مرفوض"
 
@@ -1114,7 +1132,7 @@ msgstr ""
 msgid "Permission denied for user %{user}"
 msgstr "تم رفض الإذن للمستخدم %{user}"
 
-#: ../app/views/dashboard/index.html.erb:241
+#: ../app/views/dashboard/index.html.erb:242
 msgid "Permission denied. Please log in to %{node}"
 msgstr "الإذن مرفوض. الرجاء تسجيل الدخول إلى %{node}"
 
@@ -1224,7 +1242,7 @@ msgstr "تم إنشاء المورد بنجاح"
 msgid "Resource updated successfully"
 msgstr "تم تحديث المورد بنجاح"
 
-#: ../app/views/main/_gettext.js.erb:320
+#: ../app/views/main/_gettext.js.erb:335
 msgid "Resource:"
 msgstr "المورد:"
 
@@ -1232,7 +1250,7 @@ msgstr "المورد:"
 msgid "Resources"
 msgstr "الموارد"
 
-#: ../app/views/main/_gettext.js.erb:323
+#: ../app/views/main/_gettext.js.erb:338
 msgid "Result:"
 msgstr "النتيجة:"
 
@@ -1240,15 +1258,15 @@ msgstr "النتيجة:"
 msgid "Revert Changes"
 msgstr "إرجاع التغييرات"
 
-#: ../app/views/main/_gettext.js.erb:338 ../app/views/main/_menus.html.erb:213
+#: ../app/views/main/_gettext.js.erb:353 ../app/views/main/_menus.html.erb:213
 msgid "Revoke"
 msgstr "إبطال"
 
-#: ../app/views/main/_gettext.js.erb:154
+#: ../app/views/main/_gettext.js.erb:159
 msgid "Revoked"
 msgstr "مبطلة"
 
-#: ../app/views/main/_gettext.js.erb:153
+#: ../app/views/main/_gettext.js.erb:158
 msgid "Revoked [standby]"
 msgstr "تم الإبطال [وضع الاستعداد]"
 
@@ -1294,11 +1312,11 @@ msgstr "الدور"
 msgid "Root Password"
 msgstr "كلمة السر:"
 
-#: ../app/views/main/_gettext.js.erb:284
+#: ../app/views/main/_gettext.js.erb:299
 msgid "Run >"
 msgstr "تشغيل >"
 
-#: ../app/views/main/_gettext.js.erb:371
+#: ../app/views/main/_gettext.js.erb:386
 msgid "Running Master"
 msgstr "تشغيل الرئيس"
 
@@ -1322,19 +1340,19 @@ msgstr "إظهار محرر القواعد"
 msgid "Simulator"
 msgstr "محاكي"
 
-#: ../app/views/main/_gettext.js.erb:266
+#: ../app/views/main/_gettext.js.erb:281
 msgid "Simulator (busy...)"
 msgstr "محاكي (مشغول...)"
 
-#: ../app/views/main/_gettext.js.erb:269
+#: ../app/views/main/_gettext.js.erb:284
 msgid "Simulator (final state)"
 msgstr "محاكي (حالة نهائية)"
 
-#: ../app/views/main/_gettext.js.erb:263
+#: ../app/views/main/_gettext.js.erb:278
 msgid "Simulator (initial state)"
 msgstr "محاكي (حالة أولية)"
 
-#: ../app/views/main/_gettext.js.erb:204
+#: ../app/views/main/_gettext.js.erb:215
 msgid "Slave"
 msgstr "التابع"
 
@@ -1342,7 +1360,7 @@ msgstr "التابع"
 msgid "Stack: %s"
 msgstr "المكدس: %s"
 
-#: ../app/views/main/_gettext.js.erb:189 ../app/views/main/_gettext.js.erb:341 ../app/views/main/_menus.html.erb:15
+#: ../app/views/main/_gettext.js.erb:200 ../app/views/main/_gettext.js.erb:356 ../app/views/main/_menus.html.erb:15
 msgid "Standby"
 msgstr "استعداد"
 
@@ -1358,11 +1376,11 @@ msgstr "وقت البدء غير محدد"
 msgid "Start Time:"
 msgstr "وقت البدء:"
 
-#: ../app/views/main/_gettext.js.erb:209
+#: ../app/views/main/_gettext.js.erb:220
 msgid "Started"
 msgstr "تم البدء"
 
-#: ../app/views/main/_gettext.js.erb:308
+#: ../app/views/main/_gettext.js.erb:323
 msgid "State:"
 msgstr "الولاية:"
 
@@ -1374,11 +1392,11 @@ msgstr "الحالة"
 msgid "Stop"
 msgstr "إيقاف"
 
-#: ../app/views/main/_gettext.js.erb:240
+#: ../app/views/main/_gettext.js.erb:251
 msgid "Stopped"
 msgstr "تم الإيقاف"
 
-#: ../app/views/main/_gettext.js.erb:347
+#: ../app/views/main/_gettext.js.erb:362
 msgid "Success"
 msgstr "نجاح"
 
@@ -1386,7 +1404,7 @@ msgstr "نجاح"
 msgid "Summary"
 msgstr "الملخص"
 
-#: ../app/views/main/_gettext.js.erb:167
+#: ../app/views/main/_gettext.js.erb:178
 msgid "Summary View"
 msgstr "طريقة عرض الملخص"
 
@@ -1402,7 +1420,7 @@ msgstr "مجموعة متماثلة"
 msgid "Symmetrical"
 msgstr "متماثل"
 
-#: ../app/views/main/_gettext.js.erb:173
+#: ../app/views/main/_gettext.js.erb:184
 msgid "Table View"
 msgstr "طريقة عرض الجدول"
 
@@ -1438,7 +1456,7 @@ msgstr "تم تطبيق التكوين."
 msgid "The following configuration will be applied to the cluster:"
 msgstr "سيتم تطبيق التكوين التالي على المجموعة:"
 
-#: ../app/views/dashboard/index.html.erb:438
+#: ../app/views/dashboard/index.html.erb:439
 msgid "The host %{h} is already present in cluster %{c}"
 msgstr "المضيف %{h} موجود بالفعل في المجموعة المتماثلة %{c}"
 
@@ -1524,7 +1542,11 @@ msgstr "سيرشدك هذا المعالج عبر الخطوات اللازمة 
 msgid "Ticket"
 msgstr "البطاقة"
 
-#: ../app/views/main/_gettext.js.erb:329
+#: ../app/views/main/_gettext.js.erb:174
+msgid "Ticket granted, but Booth thinks leader is '%s'!"
+msgstr ""
+
+#: ../app/views/main/_gettext.js.erb:344
 msgid "Ticket:"
 msgstr "البطاقة:"
 
@@ -1536,7 +1558,7 @@ msgstr "البطاقات"
 msgid "Time"
 msgstr "الوقت"
 
-#: ../app/views/dashboard/index.html.erb:156 ../app/views/dashboard/index.html.erb:485
+#: ../app/views/dashboard/index.html.erb:157 ../app/views/dashboard/index.html.erb:486
 msgid "Timeout: Please try again"
 msgstr "انتهت المهلة: الرجاء المحاولة مرة أخرى"
 
@@ -1548,7 +1570,7 @@ msgstr ""
 msgid "To node %s"
 msgstr "إلى نقطة التوصيل %s"
 
-#: ../app/views/main/_gettext.js.erb:259
+#: ../app/views/main/_gettext.js.erb:274
 msgid "Toggle view by type"
 msgstr ""
 
@@ -1556,7 +1578,7 @@ msgstr ""
 msgid "Tools"
 msgstr "الأدوات"
 
-#: ../app/views/main/_gettext.js.erb:170
+#: ../app/views/main/_gettext.js.erb:181
 msgid "Tree View"
 msgstr "طريقة عرض الشجرة"
 
@@ -1572,7 +1594,7 @@ msgstr "مضيف واجهة الاستخدام: %s"
 msgid "Unable to apply changes: %{msg}"
 msgstr "تعذر تطبيق التغييرات: %{msg}"
 
-#: ../app/views/dashboard/index.html.erb:467 ../app/views/dashboard/index.html.erb:479
+#: ../app/views/dashboard/index.html.erb:468 ../app/views/dashboard/index.html.erb:480
 msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
 msgstr "تعذر الاتصال بـ %{host}. حاول فتح %{url} في مستعرض الويب للتأكد من إمكانية الوصول إلى Hawk."
 
@@ -1614,6 +1636,10 @@ msgstr "تعذر إنشاء الاستنساخ: %{msg}"
 msgid "Unable to execute %{cmd}"
 msgstr "تعذر تنفيذ %{cmd}"
 
+#: ../app/views/main/_gettext.js.erb:171
+msgid "Unable to obtain ticket information from Booth!"
+msgstr ""
+
 #: ../app/models/cib.rb:236
 msgid "Unable to parse CIB file \"%{path}\""
 msgstr "تعذر تحليل ملف CIB \"%{path}\""
@@ -1636,7 +1662,7 @@ msgstr "تعذر إنشاء الاستنساخ: %{msg}"
 msgid "Unable to update user: %{msg}"
 msgstr "تعذر تحديث القيد: %{msg}"
 
-#: ../app/views/main/_gettext.js.erb:192
+#: ../app/views/main/_gettext.js.erb:203
 msgid "Unclean"
 msgstr "غير صحيح"
 
@@ -1644,7 +1670,7 @@ msgstr "غير صحيح"
 msgid "Unexpected server error: %s"
 msgstr "خطأ غير متوقع بالخادم: %s"
 
-#: ../app/models/cib.rb:269 ../app/models/cib.rb:270 ../app/models/cib.rb:614 ../app/views/main/_gettext.js.erb:195
+#: ../app/models/cib.rb:269 ../app/models/cib.rb:270 ../app/models/cib.rb:627 ../app/views/main/_gettext.js.erb:206
 msgid "Unknown"
 msgstr "غير معروف"
 
@@ -1731,7 +1757,7 @@ msgstr "قوالب المعالج و/أو التدفقات مفقودة"
 msgid "Workflow \"%s\" not found"
 msgstr "لم يتم العثور على التدفق \"%s\""
 
-#: ../app/views/main/_gettext.js.erb:353
+#: ../app/views/main/_gettext.js.erb:368
 msgid "Wrong Argument(s)"
 msgstr "وسيطة (وسيطات) خاطئة"
 
