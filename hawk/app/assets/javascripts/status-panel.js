@@ -191,6 +191,13 @@ var panel_view = {
         }
         if (cib_source != "file" && cib.booth && cib.booth.me) {
           add_mgmt_menu($(jq("ticket::" + id + "::menu")));
+          if (this.leader) {
+            if (this.granted && this.leader != cib.booth.me) {
+              flag_warning("ticket::" + id, GETTEXT.ticket_booth_drift(this.leader));
+            }
+          } else {
+            flag_warning("ticket::" + id, GETTEXT.ticket_booth_dead());
+          }
         }
         $(jq("ticket::" + id + "::state")).removeClass();
         if (state_icon) {

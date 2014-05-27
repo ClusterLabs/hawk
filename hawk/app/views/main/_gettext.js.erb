@@ -167,6 +167,12 @@ var GETTEXT = {
   ticket_expires: function(d) {
     return "<%=raw escape_javascript _('Expires: %s') % '_DATETIME_' %>".replace('_DATETIME_', d);
   },
+  ticket_booth_dead: function() {
+    return "<%=raw escape_javascript _('Unable to obtain ticket information from Booth!') %>";
+  },
+  ticket_booth_drift: function(s) {
+    return "<%=raw escape_javascript _('Ticket granted, but Booth thinks leader is \'%s\'!') % '_LEADER_' %>".replace('_LEADER_', s);
+  },
   // View switcher
   summary_view: function() {
     return "<%=raw escape_javascript _('Summary View') %>";

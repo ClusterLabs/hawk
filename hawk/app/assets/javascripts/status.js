@@ -149,6 +149,20 @@ function flag_error(id, failed_ops) {
   }
 }
 
+// This is slightly misnamed -- it does the same thing as flag_error, but for arbitrary
+// text, as opposed to a list of failed ops.  Only one of flag_error() or flag_warning()
+// can apply at a time (same icon).
+function flag_warning(id, info) {
+  var e = $(jq(id+"::error")).find(".ui-icon-alert");
+  if (info) {
+    e.attr("title", info);
+    e.show();
+  } else {
+    e.removeAttr("title");
+    e.hide();
+  }
+}
+
 // Mark items with some info rollover
 function flag_info(id, info) {
   var e = $(jq(id+"::error")).find(".ui-icon-info");
@@ -342,7 +356,11 @@ function do_update(cur_epoch)
     timeout: 90000,   // hawk_monitor timeout + 50% wiggle room
     success: function(data) {
       if (data) {
-        if (data.epoch != cur_epoch) {
+        if (data.epoch != cur_epoch || (cib && cib.booth && cib.booth.me)) {
+          // Trigger full update if the epoch has changed, or if it's a geo-cluster;
+          // this means geo clusters will get an update every minute or so, which
+          // means if it's at all possible for booth status to drift without updating
+          // the CIB, at least it will be apparent within a minute or so.
           update_cib();
         } else {
           do_update(data.epoch);
