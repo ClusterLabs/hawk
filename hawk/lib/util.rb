@@ -182,6 +182,22 @@ module Util
   end
   module_function :child_active
 
+  # This is intentionally pretty dumb, it's just meant to remove double
+  # or single quotes around a string, for exmaple, when parsed out of the
+  # booth config file.  Missing terminating quotes are ignored (i.e. the
+  # whole string minus the initial quote will be returned).  Surplus data
+  # (text after a closing quote) will not be returned.
+  def strip_quotes(s)
+    if s[0] == '"'
+      s.split('"')[1]
+    elsif s[0] == "'"
+      s.split("'")[1]
+    else
+      s
+    end
+  end
+  module_function :strip_quotes
+
   # Gives back a string, boolean if value is "true" or "false", or nil
   # if initial value was nil (or boolean false) and there's no default
   # TODO(should): be nice to get integers auto-converted too (could use

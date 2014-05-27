@@ -651,12 +651,14 @@ class Cib < CibObject
     @booth = { :sites => [], :arbitrators => [], :tickets => [], :me => nil }
     # Figure out if we're in a geo cluster
     File.readlines("/etc/booth/booth.conf").each do |line|
-      m = line.match(/^[\s]*(site|arbitrator|ticket)="([^"]+)"/)
+      m = line.match(/^\s*(site|arbitrator|ticket)\s*=(.+)/)
       next unless m
+      v = Util.strip_quotes(m[2].strip)
+      next unless v
       # This split is to tear off ticket expiry times if present
       # (although they should no longer be set like this since the
       # config format changed, but still doesn't hurt)
-      @booth["#{m[1]}s".to_sym] << m[2].split(";")[0]
+      @booth["#{m[1]}s".to_sym] << v.split(";")[0]
     end if File.exists?("/etc/booth/booth.conf")
 
     # Pick up tickets defined in booth config
