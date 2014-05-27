@@ -661,13 +661,8 @@ class Cib < CibObject
       @booth["#{m[1]}s".to_sym] << v.split(";")[0]
     end if File.exists?("/etc/booth/booth.conf")
 
-    # Pick up tickets defined in booth config
-    @booth[:tickets].each do |t|
-      @tickets[t] = { :granted => false } unless @tickets[t]
-    end
-
-    # Get more Geo info from booth (notably, if :me is set, this cluster is
-    # part of a geo cluster).
+    # Figure out if we're a site in a geo cluster (based on existence of
+    # IPaddr2 resource with same IP as a site in booth.conf)
     if !@booth[:sites].empty?
       @booth[:sites].sort!
       @xml.elements.each("cib/configuration//primitive[@type='IPaddr2']/instance_attributes/nvpair[@name='ip']") do |elem|
@@ -679,6 +674,14 @@ class Cib < CibObject
           Rails.logger.warn "Multiple booth sites in CIB (first match was #{@booth[:me]}, also found #{ip})"
         end
       end
+    end
+
+    if @booth[:me]
+      # Pick up tickets defined in booth config
+      @booth[:tickets].each do |t|
+        @tickets[t] = { :granted => false } unless @tickets[t]
+      end
+
       # try to get a bit more ticket info
       %x[/usr/sbin/booth client list 2>/dev/null].split("\n").each do |line|
         t = nil
@@ -693,6 +696,7 @@ class Cib < CibObject
         end
       end
     end
+
   end
 
 end
