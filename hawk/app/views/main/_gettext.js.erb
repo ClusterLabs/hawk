@@ -148,6 +148,11 @@ var GETTEXT = {
       "<%=raw escape_javascript _('Granted [standby]') %>" :
       "<%=raw escape_javascript _('Granted') %>";
   },
+  ticket_elsewhere: function(standby) {
+    return standby ?
+      "<%=raw escape_javascript _('Elsewhere [standby]') %>" :
+      "<%=raw escape_javascript _('Elsewhere') %>";
+  },
   ticket_revoked: function(standby) {
     return standby ?
       "<%=raw escape_javascript _('Revoked [standby]') %>" :

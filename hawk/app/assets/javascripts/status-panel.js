@@ -162,6 +162,10 @@ var panel_view = {
           status_class += " rs-active ticketsum ticketsum-granted";
           label = GETTEXT.node_state(id, GETTEXT.ticket_granted(this.standby));
           state_icon = "ui-icon-check";
+        } else if (this.leader && this.leader.toLowerCase() != "none") {
+          status_class += " rs-transient ticketsum ticketsum-elsewhere";
+          label = GETTEXT.node_state(id, GETTEXT.ticket_elsewhere(this.standby));
+          state_icon = "ui-icon-cancel";
         } else {
           status_class += " rs-inactive ticketsum ticketsum-revoked";
           label = GETTEXT.node_state(id, GETTEXT.ticket_revoked(this.standby));

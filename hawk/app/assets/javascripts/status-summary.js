@@ -56,6 +56,7 @@ var summary_view = {
           '<h2 class="clickable">' + GETTEXT.tickets() + '</h2>' +
           '<table cellpadding="0" cellspacing="0" style="white-space: nowrap;">' +
             '<tr id="ticketsum-granted" class="rs-active clickable"><td><span style="float: left;" class="ui-icon ui-icon-check"></span>' + GETTEXT.ticket_granted() + ':</td><td class="ar"></td></tr>' +
+            '<tr id="ticketsum-elsewhere" class="rs-transient clickable"><td><span style="float: left;" class="ui-icon ui-icon-cancel"></span>' + GETTEXT.ticket_elsewhere() + ':</td><td class="ar"></td></tr>' +
             '<tr id="ticketsum-revoked" class="rs-inactive clickable"><td><span style="float: left;" class="ui-icon ui-icon-cancel"></span>' + GETTEXT.ticket_revoked() + ':</td><td class="ar"></td></tr>' +
           '</table>' +
         '</div>' +
@@ -170,6 +171,11 @@ var summary_view = {
           status_class += " rs-active ticketsum ticketsum-granted";
           label = GETTEXT.node_state(id, GETTEXT.ticket_granted(this.standby));
           state_icon = "ui-icon-check";
+        } else if (this.leader && this.leader.toLowerCase() != "none") {
+          self._increment_counter("#ticketsum-elsewhere");
+          status_class += " rs-transient ticketsum ticketsum-elsewhere";
+          label = GETTEXT.node_state(id, GETTEXT.ticket_elsewhere(this.standby));
+          state_icon = "ui-icon-cancel";
         } else {
           self._increment_counter("#ticketsum-revoked");
           status_class += " rs-inactive ticketsum ticketsum-revoked";
