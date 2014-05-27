@@ -186,7 +186,7 @@ var summary_view = {
         $("#itemlist").append(d);
         var ti = [];
         if (this["last-granted"]) {
-          ti.push(GETTEXT.ticket_last_granted(new Date(this["last-granted"] * 1000)));
+          ti.push(GETTEXT.ticket_last_granted(date_string(new Date(this["last-granted"] * 1000))));
         }
         if (this["leader"]) {
           ti.push(GETTEXT.ticket_leader(this["leader"]));
