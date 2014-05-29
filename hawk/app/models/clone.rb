@@ -127,6 +127,10 @@ class Clone < CibObject
             :type     => "boolean",
             :default  => "true"
           },
+          "maintenance" => {
+            :type     => "boolean",
+            :default  => "false"
+          },
           "priority" => {
             :type     => "integer",
             :default  => "0"

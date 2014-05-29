@@ -62,6 +62,10 @@ class Cib < CibObject
     if res[:attributes].has_key?("is-managed")
       res[:is_managed] = Util.unstring(res[:attributes]["is-managed"], true)
     end
+    if res[:attributes].has_key?("maintenance")
+      # A resource on maintenance is also flagged as unmanaged
+      res[:is_managed] = false if Util.unstring(res[:attributes]["maintenance"], false)
+    end
     case elem.name
     when 'primitive'
       res[:class]     = elem.attributes['class']
