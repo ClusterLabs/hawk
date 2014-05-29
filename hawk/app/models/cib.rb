@@ -242,12 +242,6 @@ class Cib < CibObject
       raise RuntimeError, _('Pacemaker does not appear to be installed (%{cmd} not found)') %
                              {:cmd => '/usr/sbin/crm_mon' } unless File.exists?('/usr/sbin/crm_mon')
       raise RuntimeError, _('Unable to execute %{cmd}') % {:cmd => '/usr/sbin/crm_mon' } unless File.executable?('/usr/sbin/crm_mon')
-      crm_status = %x[/usr/sbin/crm_mon -s 2>&1].chomp
-      # TODO(should): this is dubious (WAR: crm_mon -s giving "status: 1, output was: Warning:offline node: hex-14")
-      raise RuntimeError, _('%{cmd} failed (status: %{status}, output was: %{output})') %
-                        {:cmd    => '/usr/sbin/crm_mon',
-                         :status => $?.exitstatus,
-                         :output => crm_status } if $?.exitstatus == 10 || $?.exitstatus == 11
       stdin, stdout, stderr, thread = Util.run_as(user, 'cibadmin', '-Ql')
       stdin.close
       out = stdout.read()
