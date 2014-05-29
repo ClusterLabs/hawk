@@ -92,7 +92,7 @@ Hawk::Application.routes.draw do
   match 'main/index' => 'main#index', :as => :index
   match 'main/status' => 'main#status', :as => :status
   match 'main/gettext' => 'main#gettext', :as => :gettext
-  match 'main/resource/:op' => 'main#resource_op', :as => :resource_op, :op => /(start|stop|unmigrate|promote|demote|cleanup)/, :via => :post
+  match 'main/resource/:op' => 'main#resource_op', :as => :resource_op, :op => /(start|stop|unmigrate|promote|demote|cleanup|manage|unmanage)/, :via => :post
   match 'main/resource/migrate' => 'main#resource_migrate', :as => :resource_migrate, :via => :post
   match 'main/resource/delete' => 'main#resource_delete', :as => :resource_delete, :via => :post
   match 'main/node/:op' => 'main#node_standby', :as => :node_standby, :op => /(standby|online)/, :via => :post
