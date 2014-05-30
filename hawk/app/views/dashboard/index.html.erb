@@ -278,7 +278,7 @@ cluster data structure is mini cib + mon_node:
       }
       if (self.options.cluster.booth) {
         if (self.options.cluster.booth.me) {
-          e.find(".geo-label").html(escape_html("Geo Site " + self.options.cluster.booth.me)).show();
+          e.find(".geo-label").html("<%=h escape_javascript _("Geo Site %{ip}") % { :ip => '_IP_' } %>".replace('_IP_', self.options.cluster.booth.me)).show();
         }
         if (self.options.cluster.booth.sites && !e.parent().hasClass("geoset")) {
           var p = null;
