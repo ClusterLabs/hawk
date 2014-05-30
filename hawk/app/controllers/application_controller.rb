@@ -185,14 +185,14 @@ protected
     end
   end
 
-  # Cribbed from cib.rb -- only use this if you need the cluster to be online,
-  # and *don't* have a Cib (or other thing handy) that'll throw an appropriate
-  # exception.
+  # Only use this if you need the cluster to be online, and *don't* have a Cib
+  # (or other thing handy) that'll throw an appropriate exception.  Note that
+  # this check is conservative, i.e. it'll redirect if and only if it's
+  # impossible to connect to the CIB, but not in case of any other possible
+  # error that crm_mon might return.
   def cluster_online
-    crm_status = %x[/usr/sbin/crm_mon -s 2>&1].chomp
-    if $?.exitstatus == 10 || $?.exitstatus == 11
-      redirect_to status_path
-    end
+    %x[/usr/sbin/crm_mon -s >/dev/null 2>&1]
+    redirect_to status_path if $?.exitstatus == Errno::ENOTCONN::Errno
   end
 
   def store_location
