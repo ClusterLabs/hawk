@@ -211,7 +211,7 @@ tabs += [
     :icon => "icons/wizard.png", :label => _("Setup Wizard"),
     :path => wizard_path(:cib_id => (params[:cib_id] || "live")) },
   { :controllers => [ "crm_config" ],
-    :icon => "icons/config.png", :label => _("Cluster Properties"),
+    :icon => "icons/config.png", :label => _("Cluster Configuration"),
     :path => cib_crm_config_path(:cib_id => (params[:cib_id] || "live"), :id => 'cib-bootstrap-options') }
 ];
 
