@@ -3,8 +3,9 @@
 <%= javascript_include_tag "dashboard" %>
 <% end %>
 <script type="text/javascript">
+<%
 
-/*
+=begin
 
 cluster data structure is mini cib + mon_node:
 
@@ -24,14 +25,30 @@ cluster data structure is mini cib + mon_node:
 - in either case each cluster object needs refresh logic
   - but it has a head-start from an added cluster
 
-- for geo clusters, adding one site gives option to add others
-- need to be able to keep sites together in the view
-  - suggests necessity of higher level container, visually
-  - ability to figure out if another cluster is suddenly
-    part of a site, and join it to an existing one?
+For geo clusters, it would be ideal if adding one cluster automatically added
+the others, or at least prompted the user to do so.  This isn't really viable
+given the present ephemeral nature of the dashboard.  The only thing we save
+in the dashboard cookie is each cluster name, node list, and mon_node.  The
+dashboard thus doesn't know whether a given cluster is a geo site until after
+its CIB is loaded, which actually requires the user be logged in to that
+cluster.  So we can't immediately prompt to add other geo sites when a cluster
+is first added, we have to wait for the first update.  And even then, there
+might already be another cluster in the dashboard which the user isn't logged
+in to, which is actually part of a geo cluster, but the dashboard doesn't know
+this yet.  About the only things we could reliably do are:
 
-*/
+1) Have an info rollover on the Geo Site label which shows a list of sites
+   and arbitrators, so you can figure out whether you've added everything.
 
+2) Have an alert thingy on the Geo Site label which appears if all dashboard
+   clusters have mini cibs, but some site isn't added yet.
+
+I think option 2 will be noisy for no great win, so we're going with only
+option 1 for the moment.
+
+=end
+
+%>
 (function($) {
   $.widget("ui.cluster", {
     options: {
@@ -44,7 +61,7 @@ cluster data structure is mini cib + mon_node:
       e.append($(
         '<div style="float: right;"><button type="button" style="border: none; background: none; font-size: 0.7em; margin-right: -0.5em;"><%=h escape_javascript _('Remove') %></button></div>' +
         '<h1 class="clickable"></h1>' +
-        '<h2 class="clickable geo-label" style="display: none;"></h2>' +
+        '<h2 class="geo-label" style="display: none;"><span class="clickable geo-ip"></span><span class="ui-icon ui-icon-info geo-info" style="float: right;"></span></h2>' +
         '<div class="spinner" style="text-align: center;"><img src="/assets/spinner-32x32.gif" alt="" /></div>' +
         '<div class="cluster-login" style="display: none;">' +
           '<form onsubmit="return false;">' +
@@ -278,7 +295,20 @@ cluster data structure is mini cib + mon_node:
       }
       if (self.options.cluster.booth) {
         if (self.options.cluster.booth.me) {
-          e.find(".geo-label").html("<%=h escape_javascript _("Geo Site %{ip}") % { :ip => '_IP_' } %>".replace('_IP_', self.options.cluster.booth.me)).show();
+          e.find(".geo-ip").html("<%=h escape_javascript _("Geo Site %{ip}") % { :ip => '_IP_' } %>".replace('_IP_', self.options.cluster.booth.me));
+          var info = [];
+          $.each(self.options.cluster.booth.sites, function() {
+            info.push("<%=h escape_javascript _("Site: %{ip}") % { :ip => '_IP_' } %>".replace('_IP_', this.toString()));
+          });
+          $.each(self.options.cluster.booth.arbitrators, function() {
+            info.push("<%=h escape_javascript _("Arbitrator: %{ip}") % { :ip => '_IP_' } %>".replace('_IP_', this.toString()));
+          });
+          if (info.length) {
+            e.find(".geo-info").attr("title", info.join("\n")).show();
+          } else {
+            e.find(".geo-info").hide();
+          }
+          e.find(".geo-label").show();
         }
         if (self.options.cluster.booth.sites && self.options.cluster.booth.me && !e.parent().hasClass("geoset")) {
           var p = null;
