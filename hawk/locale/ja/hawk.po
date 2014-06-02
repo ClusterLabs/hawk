@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-27 21:57+1000\n"
+"POT-Creation-Date: 2014-06-02 20:20+1000\n"
 "PO-Revision-Date: 2014-05-02 16:45\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -30,10 +30,6 @@ msgstr ""
 #: ../app/controllers/main_controller.rb:58
 msgid "%{cmd} failed (status: %{status})"
 msgstr "%{cmd} 失敗(ステータス: %{status})"
-
-#: ../app/models/cib.rb:243
-msgid "%{cmd} failed (status: %{status}, output was: %{output})"
-msgstr "%{cmd} が失敗しました(状態: %{status}、出力は %{output} でした)"
 
 #: ../app/views/main/_gettext.js.erb:244
 msgid "%{id}: Demoting"
@@ -174,7 +170,7 @@ msgstr "(チケット制約が未定義です)"
 msgid "(No users defined)"
 msgstr "(クローンが未定義です)"
 
-#: ../app/views/dashboard/index.html.erb:411
+#: ../app/views/dashboard/index.html.erb:441
 msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
 msgstr "(クラスタ内のホスト名を指定します。その他のノードは自動的に検出されます)"
 
@@ -208,7 +204,7 @@ msgstr[0] "1 リソースが設定されました"
 msgid "< Back"
 msgstr "< 戻る"
 
-#: ../app/views/dashboard/index.html.erb:433
+#: ../app/views/dashboard/index.html.erb:463
 msgid "A cluster with that name already exists"
 msgstr "その名前のクラスタは既に存在します"
 
@@ -228,7 +224,7 @@ msgstr "有効化"
 msgid "Add"
 msgstr "追加"
 
-#: ../app/views/dashboard/index.html.erb:416
+#: ../app/views/dashboard/index.html.erb:446
 msgid "Add Cluster"
 msgstr "クラスタの追加"
 
@@ -251,6 +247,10 @@ msgstr "変更内容は失われます。続行しますか?"
 #: ../app/views/clones/edit.html.erb:4 ../app/views/colocations/edit.html.erb:4 ../app/views/crm_config/edit.html.erb:113 ../app/views/groups/edit.html.erb:4 ../app/views/locations/edit.html.erb:4 ../app/views/masters/edit.html.erb:4 ../app/views/orders/edit.html.erb:4 ../app/views/primitives/edit.html.erb:4 ../app/views/roles/edit.html.erb:4 ../app/views/tickets/edit.html.erb:4 ../app/views/users/edit.html.erb:4
 msgid "Apply Changes"
 msgstr "変更の適用"
+
+#: ../app/views/dashboard/index.html.erb:304
+msgid "Arbitrator: %{ip}"
+msgstr ""
 
 #: ../app/views/acls/index.html.erb:60 ../app/views/constraints/index.html.erb:61 ../app/views/resources/index.html.erb:61
 msgid "Are you sure you wish to delete %s?"
@@ -297,7 +297,7 @@ msgstr "CIB(入力)"
 msgid "CIB (out)"
 msgstr "CIB(出力)"
 
-#: ../app/models/cib.rb:234
+#: ../app/models/cib.rb:238
 msgid "CIB file \"%{path}\" not found"
 msgstr "CIBファイル「%{path}」が見つかりません"
 
@@ -305,7 +305,7 @@ msgstr "CIBファイル「%{path}」が見つかりません"
 msgid "CRM Configuration"
 msgstr "CRMの環境設定"
 
-#: ../app/views/dashboard/index.html.erb:331
+#: ../app/views/dashboard/index.html.erb:361
 msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
 msgstr "%{node} 上のHawkに接続できません。5秒ごとに再試行します。"
 
@@ -325,7 +325,7 @@ msgstr "パラメータ %{p} を設定できません。値に一重引用符と
 msgid "Can't set property %{p}, because the value contains both single and double quotes"
 msgstr "プロパティ%{p}を設定できません。値に一重引用符と二重引用符の両方が含まれているためです"
 
-#: ../app/views/dashboard/index.html.erb:493 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
+#: ../app/views/dashboard/index.html.erb:523 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
 msgid "Cancel"
 msgstr "キャンセル"
 
@@ -373,7 +373,7 @@ msgstr "クローンが正常に更新されました"
 msgid "Close"
 msgstr "閉じる"
 
-#: ../app/controllers/crm_config_controller.rb:45 ../app/views/main/_gettext.js.erb:99
+#: ../app/controllers/crm_config_controller.rb:45 ../app/views/layouts/main.html.erb:214 ../app/views/main/_gettext.js.erb:99
 msgid "Cluster Configuration"
 msgstr "クラスタ環境設定"
 
@@ -385,13 +385,9 @@ msgstr "クラスタダッシュボード"
 msgid "Cluster Diagram"
 msgstr "クラスタダイアグラム"
 
-#: ../app/views/dashboard/index.html.erb:409
+#: ../app/views/dashboard/index.html.erb:439
 msgid "Cluster Name:"
 msgstr "クラスタ名:"
-
-#: ../app/views/layouts/main.html.erb:214
-msgid "Cluster Properties"
-msgstr "クラスタのプロパティ"
 
 #: ../app/controllers/wizard_controller.rb:60
 msgid "Cluster Setup Wizard"
@@ -401,7 +397,7 @@ msgstr "クラスタセットアップウィザード"
 msgid "Cluster Status"
 msgstr "クラスタの状態"
 
-#: ../app/views/dashboard/index.html.erb:71
+#: ../app/views/dashboard/index.html.erb:88
 msgid "Cluster has errors - click for details"
 msgstr "クラスタにエラーがあります - 詳細はクリックしてください"
 
@@ -647,11 +643,11 @@ msgstr "環境設定を適用する際にエラーが発生しました:"
 msgid "Error deleting resource"
 msgstr "リソースの削除中にエラーが発生しました"
 
-#: ../app/models/cib.rb:256
+#: ../app/models/cib.rb:254
 msgid "Error invoking %{cmd}"
 msgstr "%{cmd} の呼び出し中にエラーが発生しました"
 
-#: ../app/controllers/main_controller.rb:330 ../app/models/cib.rb:261
+#: ../app/controllers/main_controller.rb:330 ../app/models/cib.rb:259
 msgid "Error invoking %{cmd}: %{msg}"
 msgstr "%{cmd} の呼び出し中にエラーが発生しました: %{msg}"
 
@@ -708,7 +704,7 @@ msgstr ""
 msgid "Failed Master"
 msgstr "失敗したマスタ"
 
-#: ../app/models/cib.rb:487
+#: ../app/models/cib.rb:485
 msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
 msgstr "失敗した操作: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
 
@@ -731,6 +727,11 @@ msgstr "hb_reportの生成..."
 #: ../app/views/main/_gettext.js.erb:365
 msgid "Generic Error"
 msgstr "一般的なエラー"
+
+#: ../app/views/dashboard/index.html.erb:298
+#, fuzzy
+msgid "Geo Site %{ip}"
+msgstr "クローン設定: %{id}"
 
 #: ../app/views/nodes/events.html.erb:12 ../app/views/resources/events.html.erb:12
 msgid "Getting recent events (last hour)..."
@@ -784,7 +785,7 @@ msgstr "グループ: %{id}"
 msgid "History Explorer"
 msgstr "履歴エクスプローラ"
 
-#: ../app/views/dashboard/index.html.erb:410
+#: ../app/views/dashboard/index.html.erb:440
 msgid "Host Name:"
 msgstr "ホスト名:"
 
@@ -865,7 +866,7 @@ msgstr "リンクセット"
 msgid "Location"
 msgstr "場所"
 
-#: ../app/controllers/sessions_controller.rb:37 ../app/views/dashboard/index.html.erb:64 ../app/views/sessions/new.html.erb:17
+#: ../app/controllers/sessions_controller.rb:37 ../app/views/dashboard/index.html.erb:81 ../app/views/sessions/new.html.erb:17
 msgid "Log In"
 msgstr "ログイン"
 
@@ -1050,7 +1051,7 @@ msgstr "インストールされていません"
 msgid "Not Running"
 msgstr "実行していません"
 
-#: ../app/views/dashboard/index.html.erb:418 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
+#: ../app/views/dashboard/index.html.erb:448 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
 msgid "OK"
 msgstr "OK"
 
@@ -1086,7 +1087,7 @@ msgstr "PE入力"
 msgid "PE Input created by different Pacemaker version (%{version})"
 msgstr ""
 
-#: ../app/models/cib.rb:238
+#: ../app/models/cib.rb:242
 msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
 msgstr "Pacemakerがインストールされていないと思われます(%{cmd} が見つかりません)"
 
@@ -1106,7 +1107,7 @@ msgstr "親: %{id}..."
 msgid "Password not specified"
 msgstr "パスワードが指定されていません"
 
-#: ../app/views/dashboard/index.html.erb:60 ../app/views/sessions/new.html.erb:13
+#: ../app/views/dashboard/index.html.erb:77 ../app/views/sessions/new.html.erb:13
 msgid "Password:"
 msgstr "パスワード:"
 
@@ -1126,11 +1127,11 @@ msgstr "アクセス承認拒否"
 msgid "Permission denied - you do not have write access to the CIB."
 msgstr ""
 
-#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:259 ../lib/invoker.rb:133 ../lib/invoker.rb:155 ../lib/invoker.rb:197
+#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:257 ../lib/invoker.rb:133 ../lib/invoker.rb:155 ../lib/invoker.rb:197
 msgid "Permission denied for user %{user}"
 msgstr "ユーザ %{user} のアクセス承認拒否"
 
-#: ../app/views/dashboard/index.html.erb:242
+#: ../app/views/dashboard/index.html.erb:259
 msgid "Permission denied. Please log in to %{node}"
 msgstr "パーミッションが拒否されました。%{node} にログインしてください"
 
@@ -1166,7 +1167,7 @@ msgstr "準備完了"
 msgid "Ref"
 msgstr ""
 
-#: ../app/views/clones/_form.html.erb:47 ../app/views/colocations/_form.html.erb:61 ../app/views/crm_config/edit.html.erb:25 ../app/views/crm_config/edit.html.erb:47 ../app/views/crm_config/edit.html.erb:69 ../app/views/dashboard/index.html.erb:45 ../app/views/groups/_form.html.erb:82 ../app/views/locations/_form.html.erb:48 ../app/views/masters/_form.html.erb:47 ../app/views/orders/_form.html.erb:61 ../app/views/primitives/_form.html.erb:248 ../app/views/primitives/_form.html.erb:269 ../app/views/primitives/_form.html.erb:291 ../app/views/roles/_form.html.erb:39 ../app/views/tickets/_form.html.erb:49 ../app/views/users/_form.html.erb:49
+#: ../app/views/clones/_form.html.erb:47 ../app/views/colocations/_form.html.erb:61 ../app/views/crm_config/edit.html.erb:25 ../app/views/crm_config/edit.html.erb:47 ../app/views/crm_config/edit.html.erb:69 ../app/views/dashboard/index.html.erb:62 ../app/views/groups/_form.html.erb:82 ../app/views/locations/_form.html.erb:48 ../app/views/masters/_form.html.erb:47 ../app/views/orders/_form.html.erb:61 ../app/views/primitives/_form.html.erb:248 ../app/views/primitives/_form.html.erb:269 ../app/views/primitives/_form.html.erb:291 ../app/views/roles/_form.html.erb:39 ../app/views/tickets/_form.html.erb:49 ../app/views/users/_form.html.erb:49
 msgid "Remove"
 msgstr "削除"
 
@@ -1350,6 +1351,10 @@ msgstr "シミュレータ(最終状態)"
 msgid "Simulator (initial state)"
 msgstr "シミュレータ(初期状態)"
 
+#: ../app/views/dashboard/index.html.erb:301
+msgid "Site: %{ip}"
+msgstr ""
+
 #: ../app/views/main/_gettext.js.erb:215
 msgid "Slave"
 msgstr "スレーブ"
@@ -1454,7 +1459,7 @@ msgstr "環境設定が適用されました。"
 msgid "The following configuration will be applied to the cluster:"
 msgstr "以下の環境設定がクラスタに適用されます:"
 
-#: ../app/views/dashboard/index.html.erb:439
+#: ../app/views/dashboard/index.html.erb:469
 msgid "The host %{h} is already present in cluster %{c}"
 msgstr "ホスト %{h} は既にクラスタ %{c} に存在します"
 
@@ -1556,7 +1561,7 @@ msgstr "チケット"
 msgid "Time"
 msgstr "時間"
 
-#: ../app/views/dashboard/index.html.erb:157 ../app/views/dashboard/index.html.erb:486
+#: ../app/views/dashboard/index.html.erb:174 ../app/views/dashboard/index.html.erb:516
 msgid "Timeout: Please try again"
 msgstr "タイムアウト: もう一度実行してください"
 
@@ -1592,7 +1597,7 @@ msgstr "UIホスト: %s"
 msgid "Unable to apply changes: %{msg}"
 msgstr "変更を適用できません: %{msg}"
 
-#: ../app/views/dashboard/index.html.erb:468 ../app/views/dashboard/index.html.erb:480
+#: ../app/views/dashboard/index.html.erb:498 ../app/views/dashboard/index.html.erb:510
 msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
 msgstr "%{host} に接続できません。Webブラウザで %{url} を開き、Hawkにアクセス可能なことを確認してみてください。"
 
@@ -1630,7 +1635,7 @@ msgstr "シャドウCIBを生成できません"
 msgid "Unable to create user: %{msg}"
 msgstr "クローンを生成できません: %{msg}"
 
-#: ../app/models/cib.rb:240
+#: ../app/models/cib.rb:244
 msgid "Unable to execute %{cmd}"
 msgstr "%{cmd} を実行できません"
 
@@ -1638,7 +1643,7 @@ msgstr "%{cmd} を実行できません"
 msgid "Unable to obtain ticket information from Booth!"
 msgstr ""
 
-#: ../app/models/cib.rb:236
+#: ../app/models/cib.rb:240
 msgid "Unable to parse CIB file \"%{path}\""
 msgstr "CIBファイル「%{path}」を解析できません"
 
@@ -1668,7 +1673,7 @@ msgstr "非クリーン"
 msgid "Unexpected server error: %s"
 msgstr "予期しないサーバエラー: %s"
 
-#: ../app/models/cib.rb:269 ../app/models/cib.rb:270 ../app/models/cib.rb:627 ../app/views/main/_gettext.js.erb:206
+#: ../app/models/cib.rb:267 ../app/models/cib.rb:268 ../app/models/cib.rb:625 ../app/views/main/_gettext.js.erb:206
 msgid "Unknown"
 msgstr "不明"
 
@@ -1723,7 +1728,7 @@ msgstr "ユーザ: %{user}"
 msgid "Username not specified"
 msgstr "ユーザ名が指定されていません。"
 
-#: ../app/views/dashboard/index.html.erb:56 ../app/views/sessions/new.html.erb:9
+#: ../app/views/dashboard/index.html.erb:73 ../app/views/sessions/new.html.erb:9
 msgid "Username:"
 msgstr "ユーザ名:"
 
@@ -1786,3 +1791,11 @@ msgstr "[制約が複雑すぎて表示できません]"
 #: ../app/views/hb_reports/new.html.erb:74
 msgid "hb_report generation in progress..."
 msgstr "hb_reportを生成しています..."
+
+#: ../app/models/cib.rb:243
+#~ msgid "%{cmd} failed (status: %{status}, output was: %{output})"
+#~ msgstr "%{cmd} が失敗しました(状態: %{status}、出力は %{output} でした)"
+
+#: ../app/views/layouts/main.html.erb:214
+#~ msgid "Cluster Properties"
+#~ msgstr "クラスタのプロパティ"

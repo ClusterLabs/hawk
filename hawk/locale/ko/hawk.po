@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-27 21:57+1000\n"
+"POT-Creation-Date: 2014-06-02 20:20+1000\n"
 "PO-Revision-Date: 2014-05-02 16:18\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -30,10 +30,6 @@ msgstr ""
 #: ../app/controllers/main_controller.rb:58
 msgid "%{cmd} failed (status: %{status})"
 msgstr "%{cmd} 실패됨(상태: %{status})"
-
-#: ../app/models/cib.rb:243
-msgid "%{cmd} failed (status: %{status}, output was: %{output})"
-msgstr "%{cmd} 실패됨(상태: %{status}, 출력: %{output})"
 
 #: ../app/views/main/_gettext.js.erb:244
 msgid "%{id}: Demoting"
@@ -174,7 +170,7 @@ msgstr "(티켓 제약 조건이 정의되지 않음)"
 msgid "(No users defined)"
 msgstr "(복제가 정의되지 않음)"
 
-#: ../app/views/dashboard/index.html.erb:411
+#: ../app/views/dashboard/index.html.erb:441
 msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
 msgstr "(클러스터에서 호스트 이름을 지정하십시오. 다른 노드가 자동으로 검색됩니다.)"
 
@@ -208,7 +204,7 @@ msgstr[0] "1개 리소스가 구성되었습니다."
 msgid "< Back"
 msgstr "< 뒤로"
 
-#: ../app/views/dashboard/index.html.erb:433
+#: ../app/views/dashboard/index.html.erb:463
 msgid "A cluster with that name already exists"
 msgstr "해당 이름의 클러스터가 이미 있습니다."
 
@@ -228,7 +224,7 @@ msgstr "활성화"
 msgid "Add"
 msgstr "추가"
 
-#: ../app/views/dashboard/index.html.erb:416
+#: ../app/views/dashboard/index.html.erb:446
 msgid "Add Cluster"
 msgstr "클러스터 추가"
 
@@ -251,6 +247,10 @@ msgstr "변경 사항이 유실됩니다. 계속하시겠습니까?"
 #: ../app/views/clones/edit.html.erb:4 ../app/views/colocations/edit.html.erb:4 ../app/views/crm_config/edit.html.erb:113 ../app/views/groups/edit.html.erb:4 ../app/views/locations/edit.html.erb:4 ../app/views/masters/edit.html.erb:4 ../app/views/orders/edit.html.erb:4 ../app/views/primitives/edit.html.erb:4 ../app/views/roles/edit.html.erb:4 ../app/views/tickets/edit.html.erb:4 ../app/views/users/edit.html.erb:4
 msgid "Apply Changes"
 msgstr "변경 사항 적용"
+
+#: ../app/views/dashboard/index.html.erb:304
+msgid "Arbitrator: %{ip}"
+msgstr ""
 
 #: ../app/views/acls/index.html.erb:60 ../app/views/constraints/index.html.erb:61 ../app/views/resources/index.html.erb:61
 msgid "Are you sure you wish to delete %s?"
@@ -297,7 +297,7 @@ msgstr "CIB (입력)"
 msgid "CIB (out)"
 msgstr "CIB (출력)"
 
-#: ../app/models/cib.rb:234
+#: ../app/models/cib.rb:238
 msgid "CIB file \"%{path}\" not found"
 msgstr "CIB 파일 \"%{path}\"을(를) 찾을 수 없음"
 
@@ -305,7 +305,7 @@ msgstr "CIB 파일 \"%{path}\"을(를) 찾을 수 없음"
 msgid "CRM Configuration"
 msgstr "CRM 구성"
 
-#: ../app/views/dashboard/index.html.erb:331
+#: ../app/views/dashboard/index.html.erb:361
 msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
 msgstr "%{node}의 Hawk에 연결할 수 없습니다. 5초마다 다시 시도합니다."
 
@@ -325,7 +325,7 @@ msgstr "값에 작은따옴표와 큰따옴표가 모두 포함되어 있으므�
 msgid "Can't set property %{p}, because the value contains both single and double quotes"
 msgstr "값이 작은따옴표와 큰따옴표를 모두 포함하므로, %{p} 속성을 설정할 수 없습니다."
 
-#: ../app/views/dashboard/index.html.erb:493 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
+#: ../app/views/dashboard/index.html.erb:523 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
 msgid "Cancel"
 msgstr "취소"
 
@@ -373,7 +373,7 @@ msgstr "복제를 성공적으로 업데이트했습니다."
 msgid "Close"
 msgstr "닫기"
 
-#: ../app/controllers/crm_config_controller.rb:45 ../app/views/main/_gettext.js.erb:99
+#: ../app/controllers/crm_config_controller.rb:45 ../app/views/layouts/main.html.erb:214 ../app/views/main/_gettext.js.erb:99
 msgid "Cluster Configuration"
 msgstr "클러스터 구성"
 
@@ -385,13 +385,9 @@ msgstr "클러스터 대시보드"
 msgid "Cluster Diagram"
 msgstr "클러스터 다이어그램"
 
-#: ../app/views/dashboard/index.html.erb:409
+#: ../app/views/dashboard/index.html.erb:439
 msgid "Cluster Name:"
 msgstr "클러스터 이름:"
-
-#: ../app/views/layouts/main.html.erb:214
-msgid "Cluster Properties"
-msgstr "클러스터 속성"
 
 #: ../app/controllers/wizard_controller.rb:60
 msgid "Cluster Setup Wizard"
@@ -401,7 +397,7 @@ msgstr "마스터 설치 마법사"
 msgid "Cluster Status"
 msgstr "클러스터 상태"
 
-#: ../app/views/dashboard/index.html.erb:71
+#: ../app/views/dashboard/index.html.erb:88
 msgid "Cluster has errors - click for details"
 msgstr "클러스터 오류 발생 - 자세한 내용을 보려면 클릭하십시오."
 
@@ -647,11 +643,11 @@ msgstr "구성 적용 중 오류 발생:"
 msgid "Error deleting resource"
 msgstr "리소스를 삭제하는 중 오류가 발생했습니다."
 
-#: ../app/models/cib.rb:256
+#: ../app/models/cib.rb:254
 msgid "Error invoking %{cmd}"
 msgstr "%{cmd} 호출 중 오류 발생"
 
-#: ../app/controllers/main_controller.rb:330 ../app/models/cib.rb:261
+#: ../app/controllers/main_controller.rb:330 ../app/models/cib.rb:259
 msgid "Error invoking %{cmd}: %{msg}"
 msgstr "%{cmd} 호출 중 오류 발생: %{msg}"
 
@@ -708,7 +704,7 @@ msgstr ""
 msgid "Failed Master"
 msgstr "실패한 마스터"
 
-#: ../app/models/cib.rb:487
+#: ../app/models/cib.rb:485
 msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
 msgstr "실패한 작업: 노드=%{node}, 리소스=%{resource}, 호출 ID=%{call_id}, 작업=%{op}, RC 코드=%{rc_code}"
 
@@ -731,6 +727,11 @@ msgstr "hb_report 생성..."
 #: ../app/views/main/_gettext.js.erb:365
 msgid "Generic Error"
 msgstr "일반 오류"
+
+#: ../app/views/dashboard/index.html.erb:298
+#, fuzzy
+msgid "Geo Site %{ip}"
+msgstr "복제 집합: %{id}"
 
 #: ../app/views/nodes/events.html.erb:12 ../app/views/resources/events.html.erb:12
 msgid "Getting recent events (last hour)..."
@@ -784,7 +785,7 @@ msgstr "그룹: %{id}"
 msgid "History Explorer"
 msgstr "이력 탐색기"
 
-#: ../app/views/dashboard/index.html.erb:410
+#: ../app/views/dashboard/index.html.erb:440
 msgid "Host Name:"
 msgstr "호스트 이름:"
 
@@ -865,7 +866,7 @@ msgstr "링크 설정"
 msgid "Location"
 msgstr "위치"
 
-#: ../app/controllers/sessions_controller.rb:37 ../app/views/dashboard/index.html.erb:64 ../app/views/sessions/new.html.erb:17
+#: ../app/controllers/sessions_controller.rb:37 ../app/views/dashboard/index.html.erb:81 ../app/views/sessions/new.html.erb:17
 msgid "Log In"
 msgstr "로그인"
 
@@ -1050,7 +1051,7 @@ msgstr "설치되지 않음"
 msgid "Not Running"
 msgstr "실행 중이 아님"
 
-#: ../app/views/dashboard/index.html.erb:418 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
+#: ../app/views/dashboard/index.html.erb:448 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
 msgid "OK"
 msgstr "확인"
 
@@ -1086,7 +1087,7 @@ msgstr "PE 입력"
 msgid "PE Input created by different Pacemaker version (%{version})"
 msgstr ""
 
-#: ../app/models/cib.rb:238
+#: ../app/models/cib.rb:242
 msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
 msgstr "페이스메이커가 설치된 것 같지 않습니다(%{cmd} 없음)."
 
@@ -1106,7 +1107,7 @@ msgstr "상위: %{id}..."
 msgid "Password not specified"
 msgstr "비밀번호가 지정되지 않았습니다."
 
-#: ../app/views/dashboard/index.html.erb:60 ../app/views/sessions/new.html.erb:13
+#: ../app/views/dashboard/index.html.erb:77 ../app/views/sessions/new.html.erb:13
 msgid "Password:"
 msgstr "비밀번호:"
 
@@ -1126,11 +1127,11 @@ msgstr "권한이 거부됨"
 msgid "Permission denied - you do not have write access to the CIB."
 msgstr ""
 
-#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:259 ../lib/invoker.rb:133 ../lib/invoker.rb:155 ../lib/invoker.rb:197
+#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:257 ../lib/invoker.rb:133 ../lib/invoker.rb:155 ../lib/invoker.rb:197
 msgid "Permission denied for user %{user}"
 msgstr "%{user} 사용자에 대한 권한이 거부됨"
 
-#: ../app/views/dashboard/index.html.erb:242
+#: ../app/views/dashboard/index.html.erb:259
 msgid "Permission denied. Please log in to %{node}"
 msgstr "권한이 거부됨. %{node}에 로그인하십시오."
 
@@ -1166,7 +1167,7 @@ msgstr "준비"
 msgid "Ref"
 msgstr ""
 
-#: ../app/views/clones/_form.html.erb:47 ../app/views/colocations/_form.html.erb:61 ../app/views/crm_config/edit.html.erb:25 ../app/views/crm_config/edit.html.erb:47 ../app/views/crm_config/edit.html.erb:69 ../app/views/dashboard/index.html.erb:45 ../app/views/groups/_form.html.erb:82 ../app/views/locations/_form.html.erb:48 ../app/views/masters/_form.html.erb:47 ../app/views/orders/_form.html.erb:61 ../app/views/primitives/_form.html.erb:248 ../app/views/primitives/_form.html.erb:269 ../app/views/primitives/_form.html.erb:291 ../app/views/roles/_form.html.erb:39 ../app/views/tickets/_form.html.erb:49 ../app/views/users/_form.html.erb:49
+#: ../app/views/clones/_form.html.erb:47 ../app/views/colocations/_form.html.erb:61 ../app/views/crm_config/edit.html.erb:25 ../app/views/crm_config/edit.html.erb:47 ../app/views/crm_config/edit.html.erb:69 ../app/views/dashboard/index.html.erb:62 ../app/views/groups/_form.html.erb:82 ../app/views/locations/_form.html.erb:48 ../app/views/masters/_form.html.erb:47 ../app/views/orders/_form.html.erb:61 ../app/views/primitives/_form.html.erb:248 ../app/views/primitives/_form.html.erb:269 ../app/views/primitives/_form.html.erb:291 ../app/views/roles/_form.html.erb:39 ../app/views/tickets/_form.html.erb:49 ../app/views/users/_form.html.erb:49
 msgid "Remove"
 msgstr "제거"
 
@@ -1350,6 +1351,10 @@ msgstr "시뮬레이터(최종 상태)"
 msgid "Simulator (initial state)"
 msgstr "시뮬레이터(초기 상태)"
 
+#: ../app/views/dashboard/index.html.erb:301
+msgid "Site: %{ip}"
+msgstr ""
+
 #: ../app/views/main/_gettext.js.erb:215
 msgid "Slave"
 msgstr "슬레이브"
@@ -1454,7 +1459,7 @@ msgstr "구성이 적용되었습니다."
 msgid "The following configuration will be applied to the cluster:"
 msgstr "다음 구성이 클러스터에 적용됩니다."
 
-#: ../app/views/dashboard/index.html.erb:439
+#: ../app/views/dashboard/index.html.erb:469
 msgid "The host %{h} is already present in cluster %{c}"
 msgstr "%{h} 호스트가 이미 %{c} 클러스터에 있습니다."
 
@@ -1556,7 +1561,7 @@ msgstr "티켓"
 msgid "Time"
 msgstr "시간"
 
-#: ../app/views/dashboard/index.html.erb:157 ../app/views/dashboard/index.html.erb:486
+#: ../app/views/dashboard/index.html.erb:174 ../app/views/dashboard/index.html.erb:516
 msgid "Timeout: Please try again"
 msgstr "시간 초과: 다시 시도하십시오."
 
@@ -1592,7 +1597,7 @@ msgstr "UI 호스트: %s"
 msgid "Unable to apply changes: %{msg}"
 msgstr "변경 사항을 적용할 수 없음: %{msg}"
 
-#: ../app/views/dashboard/index.html.erb:468 ../app/views/dashboard/index.html.erb:480
+#: ../app/views/dashboard/index.html.erb:498 ../app/views/dashboard/index.html.erb:510
 msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
 msgstr "%{host}에 연결할 수 없습니다. Hawk에 액세스하려면 웹 브라우저에서 %{url}을 여십시오."
 
@@ -1630,7 +1635,7 @@ msgstr "섀도 CIB를 생성할 수 없습니다."
 msgid "Unable to create user: %{msg}"
 msgstr "복제를 생성할 수 없음: %{msg}"
 
-#: ../app/models/cib.rb:240
+#: ../app/models/cib.rb:244
 msgid "Unable to execute %{cmd}"
 msgstr "%{cmd}을(를) 실행할 수 없습니다."
 
@@ -1638,7 +1643,7 @@ msgstr "%{cmd}을(를) 실행할 수 없습니다."
 msgid "Unable to obtain ticket information from Booth!"
 msgstr ""
 
-#: ../app/models/cib.rb:236
+#: ../app/models/cib.rb:240
 msgid "Unable to parse CIB file \"%{path}\""
 msgstr "CIB 파일 \"%{path}\"을(를) 구문 분석할 수 없습니다."
 
@@ -1668,7 +1673,7 @@ msgstr "불완전"
 msgid "Unexpected server error: %s"
 msgstr "예기치 않은 서버 오류: %s"
 
-#: ../app/models/cib.rb:269 ../app/models/cib.rb:270 ../app/models/cib.rb:627 ../app/views/main/_gettext.js.erb:206
+#: ../app/models/cib.rb:267 ../app/models/cib.rb:268 ../app/models/cib.rb:625 ../app/views/main/_gettext.js.erb:206
 msgid "Unknown"
 msgstr "알 수 없음"
 
@@ -1723,7 +1728,7 @@ msgstr "사용자: %{user}"
 msgid "Username not specified"
 msgstr "사용자 이름이 지정되지 않았습니다."
 
-#: ../app/views/dashboard/index.html.erb:56 ../app/views/sessions/new.html.erb:9
+#: ../app/views/dashboard/index.html.erb:73 ../app/views/sessions/new.html.erb:9
 msgid "Username:"
 msgstr "사용자 이름:"
 
@@ -1786,3 +1791,11 @@ msgstr "[제약 조건이 너무 복잡해서 표시할 수 없습니다.]"
 #: ../app/views/hb_reports/new.html.erb:74
 msgid "hb_report generation in progress..."
 msgstr "hb_report 생성이 진행 중..."
+
+#: ../app/models/cib.rb:243
+#~ msgid "%{cmd} failed (status: %{status}, output was: %{output})"
+#~ msgstr "%{cmd} 실패됨(상태: %{status}, 출력: %{output})"
+
+#: ../app/views/layouts/main.html.erb:214
+#~ msgid "Cluster Properties"
+#~ msgstr "클러스터 속성"

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk 0.3.1\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-27 21:57+1000\n"
+"POT-Creation-Date: 2014-06-02 20:20+1000\n"
 "PO-Revision-Date: 2011-12-20 08:30+0100\n"
 "Last-Translator: Kalman Kemenczy <kkemenczy@opensuse.org>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -38,10 +38,6 @@ msgstr ""
 #: ../app/controllers/main_controller.rb:58
 msgid "%{cmd} failed (status: %{status})"
 msgstr "%{cmd} sikertelen (állapot: %{status})"
-
-#: ../app/models/cib.rb:243
-msgid "%{cmd} failed (status: %{status}, output was: %{output})"
-msgstr "%{cmd} sikertelen (status: %{status}, kimenet: %{output})"
 
 #: app/views/main/_gettext.js.erb:212
 #, fuzzy
@@ -174,6 +170,8 @@ msgstr "%{workflow}: %{step}"
 #, fuzzy
 #, fuzzy
 #, fuzzy
+#, fuzzy
+#, fuzzy
 #| msgid "No clone child specified"
 msgid "(No clones defined)"
 msgstr "Nincs megadva klóngyermek"
@@ -228,6 +226,8 @@ msgstr "Nincs megadva erőforrás"
 #, fuzzy
 #, fuzzy
 #, fuzzy
+#, fuzzy
+#, fuzzy
 #| msgid "No clone child specified"
 msgid "(No clones defined)"
 msgstr "Nincs megadva klóngyermek"
@@ -262,11 +262,13 @@ msgstr "(Nincs szabálysorrend megadva)"
 #, fuzzy
 #, fuzzy
 #, fuzzy
+#, fuzzy
+#, fuzzy
 #| msgid "No clone child specified"
 msgid "(No clones defined)"
 msgstr "Nincs megadva klóngyermek"
 
-#: ../app/views/dashboard/index.html.erb:411
+#: ../app/views/dashboard/index.html.erb:441
 msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
 msgstr ""
 
@@ -302,7 +304,7 @@ msgstr[1] "%{num} erőforrás beállítva"
 msgid "< Back"
 msgstr "< Vissza"
 
-#: ../app/views/dashboard/index.html.erb:433
+#: ../app/views/dashboard/index.html.erb:463
 msgid "A cluster with that name already exists"
 msgstr ""
 
@@ -350,6 +352,10 @@ msgstr "Minden változás el fog veszni - szeretné folytatni?"
 msgid "Apply Changes"
 msgstr "Változások alkalmazása"
 
+#: ../app/views/dashboard/index.html.erb:304
+msgid "Arbitrator: %{ip}"
+msgstr ""
+
 #: ../app/views/acls/index.html.erb:60 ../app/views/constraints/index.html.erb:61 ../app/views/resources/index.html.erb:61
 msgid "Are you sure you wish to delete %s?"
 msgstr ""
@@ -395,7 +401,7 @@ msgstr "CIB (be)"
 msgid "CIB (out)"
 msgstr "CIB (ki)"
 
-#: ../app/models/cib.rb:234
+#: ../app/models/cib.rb:238
 msgid "CIB file \"%{path}\" not found"
 msgstr "A(z) \"%{path}\" CIB fájl nem található"
 
@@ -405,7 +411,7 @@ msgstr "A(z) \"%{path}\" CIB fájl nem található"
 msgid "CRM Configuration"
 msgstr "Válasszon beállítást"
 
-#: ../app/views/dashboard/index.html.erb:331
+#: ../app/views/dashboard/index.html.erb:361
 msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
 msgstr ""
 
@@ -425,7 +431,7 @@ msgstr "Nem állítható be a(z) %{p} paraméter, mert az eszköz szimpla és du
 msgid "Can't set property %{p}, because the value contains both single and double quotes"
 msgstr "Nem állítható be a(z) %{p} tulajdonság, mert az eszköz szimpla és dupla idézőjelet is tartalmaz"
 
-#: ../app/views/dashboard/index.html.erb:493 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
+#: ../app/views/dashboard/index.html.erb:523 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
 msgid "Cancel"
 msgstr "Mégsem"
 
@@ -475,7 +481,7 @@ msgstr "Klón sikeresen frissítve"
 msgid "Close"
 msgstr "Bezárás"
 
-#: ../app/controllers/crm_config_controller.rb:45 ../app/views/main/_gettext.js.erb:99
+#: ../app/controllers/crm_config_controller.rb:45 ../app/views/layouts/main.html.erb:214 ../app/views/main/_gettext.js.erb:99
 msgid "Cluster Configuration"
 msgstr "Fürt beállítása"
 
@@ -497,10 +503,6 @@ msgstr "Fürt beállítása"
 msgid "Cluster Name:"
 msgstr "Fürt:"
 
-#: ../app/views/layouts/main.html.erb:214
-msgid "Cluster Properties"
-msgstr "Fürt tulajdonságai"
-
 #: ../app/controllers/wizard_controller.rb:60
 msgid "Cluster Setup Wizard"
 msgstr "Fürtbeállítás-varázsló"
@@ -509,7 +511,7 @@ msgstr "Fürtbeállítás-varázsló"
 msgid "Cluster Status"
 msgstr "Jelenlegi állapot"
 
-#: ../app/views/dashboard/index.html.erb:71
+#: ../app/views/dashboard/index.html.erb:88
 msgid "Cluster has errors - click for details"
 msgstr ""
 
@@ -766,11 +768,11 @@ msgstr "Hiba történt a beállítások alkalmazásakor:"
 msgid "Error deleting resource"
 msgstr "Hiba az erőforrás törlésekor"
 
-#: ../app/models/cib.rb:256
+#: ../app/models/cib.rb:254
 msgid "Error invoking %{cmd}"
 msgstr "Hiba a(z) %{cmd} parancs meghívásakor"
 
-#: ../app/controllers/main_controller.rb:330 ../app/models/cib.rb:261
+#: ../app/controllers/main_controller.rb:330 ../app/models/cib.rb:259
 msgid "Error invoking %{cmd}: %{msg}"
 msgstr "Hiba a(z) %{cmd} parancs meghívásakor: %{msg}"
 
@@ -827,7 +829,7 @@ msgstr ""
 msgid "Failed Master"
 msgstr "Hibás elsődleges"
 
-#: ../app/models/cib.rb:487
+#: ../app/models/cib.rb:485
 msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
 msgstr "Hibás művelet: csomópont=%{node}, erőforrás=%{resource}, azonosító=%{call_id}, művelet=%{op}, visszatérési érték=%{rc_code}"
 
@@ -850,6 +852,11 @@ msgstr "hb_report készítése…"
 #: ../app/views/main/_gettext.js.erb:365
 msgid "Generic Error"
 msgstr "Általános hiba"
+
+#: ../app/views/dashboard/index.html.erb:298
+#, fuzzy
+msgid "Geo Site %{ip}"
+msgstr "Klóncsoport: %{id}"
 
 #: ../app/views/nodes/events.html.erb:12 ../app/views/resources/events.html.erb:12
 msgid "Getting recent events (last hour)..."
@@ -905,7 +912,7 @@ msgstr "Csoport: %{id}"
 msgid "History Explorer"
 msgstr "Előzményböngésző"
 
-#: ../app/views/dashboard/index.html.erb:410
+#: ../app/views/dashboard/index.html.erb:440
 msgid "Host Name:"
 msgstr ""
 
@@ -990,7 +997,7 @@ msgstr "Hivatkozás beállítás"
 msgid "Location"
 msgstr "Hely"
 
-#: ../app/controllers/sessions_controller.rb:37 ../app/views/dashboard/index.html.erb:64 ../app/views/sessions/new.html.erb:17
+#: ../app/controllers/sessions_controller.rb:37 ../app/views/dashboard/index.html.erb:81 ../app/views/sessions/new.html.erb:17
 msgid "Log In"
 msgstr "Belépés"
 
@@ -1183,7 +1190,7 @@ msgstr "Nincs telepítve"
 msgid "Not Running"
 msgstr "Nem fut"
 
-#: ../app/views/dashboard/index.html.erb:418 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
+#: ../app/views/dashboard/index.html.erb:448 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
 msgid "OK"
 msgstr "OK"
 
@@ -1221,7 +1228,7 @@ msgstr "PE Input"
 msgid "PE Input created by different Pacemaker version (%{version})"
 msgstr ""
 
-#: ../app/models/cib.rb:238
+#: ../app/models/cib.rb:242
 msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
 msgstr "A Pacemaker nincs telepítve (%{cmd} parancs nem található)"
 
@@ -1241,7 +1248,7 @@ msgstr ""
 msgid "Password not specified"
 msgstr "Nincs megadva jelszó"
 
-#: ../app/views/dashboard/index.html.erb:60 ../app/views/sessions/new.html.erb:13
+#: ../app/views/dashboard/index.html.erb:77 ../app/views/sessions/new.html.erb:13
 msgid "Password:"
 msgstr "Jelszó:"
 
@@ -1261,7 +1268,7 @@ msgstr "Engedély megtagadva"
 msgid "Permission denied - you do not have write access to the CIB."
 msgstr ""
 
-#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:259 ../lib/invoker.rb:133 ../lib/invoker.rb:155 ../lib/invoker.rb:197
+#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:257 ../lib/invoker.rb:133 ../lib/invoker.rb:155 ../lib/invoker.rb:197
 msgid "Permission denied for user %{user}"
 msgstr "%{user} felhasználónak nincs hozzáférése"
 
@@ -1305,7 +1312,7 @@ msgstr ""
 msgid "Ref"
 msgstr ""
 
-#: ../app/views/clones/_form.html.erb:47 ../app/views/colocations/_form.html.erb:61 ../app/views/crm_config/edit.html.erb:25 ../app/views/crm_config/edit.html.erb:47 ../app/views/crm_config/edit.html.erb:69 ../app/views/dashboard/index.html.erb:45 ../app/views/groups/_form.html.erb:82 ../app/views/locations/_form.html.erb:48 ../app/views/masters/_form.html.erb:47 ../app/views/orders/_form.html.erb:61 ../app/views/primitives/_form.html.erb:248 ../app/views/primitives/_form.html.erb:269 ../app/views/primitives/_form.html.erb:291 ../app/views/roles/_form.html.erb:39 ../app/views/tickets/_form.html.erb:49 ../app/views/users/_form.html.erb:49
+#: ../app/views/clones/_form.html.erb:47 ../app/views/colocations/_form.html.erb:61 ../app/views/crm_config/edit.html.erb:25 ../app/views/crm_config/edit.html.erb:47 ../app/views/crm_config/edit.html.erb:69 ../app/views/dashboard/index.html.erb:62 ../app/views/groups/_form.html.erb:82 ../app/views/locations/_form.html.erb:48 ../app/views/masters/_form.html.erb:47 ../app/views/orders/_form.html.erb:61 ../app/views/primitives/_form.html.erb:248 ../app/views/primitives/_form.html.erb:269 ../app/views/primitives/_form.html.erb:291 ../app/views/roles/_form.html.erb:39 ../app/views/tickets/_form.html.erb:49 ../app/views/users/_form.html.erb:49
 msgid "Remove"
 msgstr "Eltávolítás"
 
@@ -1345,6 +1352,7 @@ msgstr "Nincs megadva a \"basename\" és a \"node\" paraméter"
 #, fuzzy
 #, fuzzy
 #, fuzzy
+#, fuzzy
 #| msgid "Required parameters \"basename\" and \"node\" not specified"
 msgid "Required parameters \"left\" and \"right\" not specified"
 msgstr "Nincs megadva a \"basename\" és a \"node\" paraméter"
@@ -1354,6 +1362,7 @@ msgid "Required parameters \"resource\" and \"node\" not specified"
 msgstr "Nincs megadva a \"resource\" és a \"node\" paraméter"
 
 #: app/controllers/explorer_controller.rb:189
+#, fuzzy
 #, fuzzy
 #, fuzzy
 #, fuzzy
@@ -1513,6 +1522,10 @@ msgstr "Szimulátor (végső állapot)"
 #: ../app/views/main/_gettext.js.erb:278
 msgid "Simulator (initial state)"
 msgstr "Szimulátor (kezdeti állapot)"
+
+#: ../app/views/dashboard/index.html.erb:301
+msgid "Site: %{ip}"
+msgstr ""
 
 #: ../app/views/main/_gettext.js.erb:215
 msgid "Slave"
@@ -1736,7 +1749,7 @@ msgstr ""
 msgid "Time"
 msgstr "Idő"
 
-#: ../app/views/dashboard/index.html.erb:157 ../app/views/dashboard/index.html.erb:486
+#: ../app/views/dashboard/index.html.erb:174 ../app/views/dashboard/index.html.erb:516
 msgid "Timeout: Please try again"
 msgstr ""
 
@@ -1772,7 +1785,7 @@ msgstr "UI gép: %s"
 msgid "Unable to apply changes: %{msg}"
 msgstr "Nem alkalmazhatók a módosítások: %{msg}"
 
-#: ../app/views/dashboard/index.html.erb:468 ../app/views/dashboard/index.html.erb:480
+#: ../app/views/dashboard/index.html.erb:498 ../app/views/dashboard/index.html.erb:510
 msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
 msgstr ""
 
@@ -1812,7 +1825,7 @@ msgstr "Nem hozható létre erőforrás: %{msg}"
 msgid "Unable to create user: %{msg}"
 msgstr "Nem hozható létre klón: %{msg}"
 
-#: ../app/models/cib.rb:240
+#: ../app/models/cib.rb:244
 msgid "Unable to execute %{cmd}"
 msgstr "Nem futtatható parancs %{cmd}"
 
@@ -1820,7 +1833,7 @@ msgstr "Nem futtatható parancs %{cmd}"
 msgid "Unable to obtain ticket information from Booth!"
 msgstr ""
 
-#: ../app/models/cib.rb:236
+#: ../app/models/cib.rb:240
 msgid "Unable to parse CIB file \"%{path}\""
 msgstr "A(z) \"%{path}\" CIB fájl nem dolgozható fel"
 
@@ -1850,7 +1863,7 @@ msgstr "Tisztázatlan"
 msgid "Unexpected server error: %s"
 msgstr "Váratlan kiszolgálóhiba: %s"
 
-#: ../app/models/cib.rb:269 ../app/models/cib.rb:270 ../app/models/cib.rb:627 ../app/views/main/_gettext.js.erb:206
+#: ../app/models/cib.rb:267 ../app/models/cib.rb:268 ../app/models/cib.rb:625 ../app/views/main/_gettext.js.erb:206
 msgid "Unknown"
 msgstr "Ismeretlen"
 
@@ -1905,7 +1918,7 @@ msgstr "Felhasználó: %{user}"
 msgid "Username not specified"
 msgstr "Nincs megadva felhasználónév"
 
-#: ../app/views/dashboard/index.html.erb:56 ../app/views/sessions/new.html.erb:9
+#: ../app/views/dashboard/index.html.erb:73 ../app/views/sessions/new.html.erb:9
 msgid "Username:"
 msgstr "Felhasználónév: "
 
@@ -1968,6 +1981,14 @@ msgstr "[A szabályok túl komplexek a megjelenítéshez]"
 #: ../app/views/hb_reports/new.html.erb:74
 msgid "hb_report generation in progress..."
 msgstr "A hb_report elkészítése folyamatban..."
+
+#: ../app/models/cib.rb:243
+#~ msgid "%{cmd} failed (status: %{status}, output was: %{output})"
+#~ msgstr "%{cmd} sikertelen (status: %{status}, kimenet: %{output})"
+
+#: ../app/views/layouts/main.html.erb:214
+#~ msgid "Cluster Properties"
+#~ msgstr "Fürt tulajdonságai"
 
 #~ msgid "Invalid property set ID: %{id}"
 #~ msgstr "Érvénytelen ID beállítás: %{id}"

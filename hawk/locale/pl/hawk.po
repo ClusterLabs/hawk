@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-05-27 21:57+1000\n"
+"POT-Creation-Date: 2014-06-02 20:20+1000\n"
 "PO-Revision-Date: 2014-05-02 16:25\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -31,10 +31,6 @@ msgstr ""
 #: ../app/controllers/main_controller.rb:58
 msgid "%{cmd} failed (status: %{status})"
 msgstr "Polecenie %{cmd} się nie powiodło (stan: %{status})"
-
-#: ../app/models/cib.rb:243
-msgid "%{cmd} failed (status: %{status}, output was: %{output})"
-msgstr "Wykonanie polecenia %{cmd} nie powiodło się (stan: %{status}, komunikaty wyjścia: %{output})"
 
 #: ../app/views/main/_gettext.js.erb:244
 msgid "%{id}: Demoting"
@@ -175,7 +171,7 @@ msgstr "(Nie zdefiniowano ograniczeń żetonu)"
 msgid "(No users defined)"
 msgstr "(Nie zdefiniowano klonów)"
 
-#: ../app/views/dashboard/index.html.erb:411
+#: ../app/views/dashboard/index.html.erb:441
 msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
 msgstr "(Podaj nazwę dowolnego hosta w klastrze. Pozostałe węzły zostaną znalezione automatycznie)"
 
@@ -213,7 +209,7 @@ msgstr[2] "%{num} zasobów skonfigurowanych"
 msgid "< Back"
 msgstr "< Wstecz"
 
-#: ../app/views/dashboard/index.html.erb:433
+#: ../app/views/dashboard/index.html.erb:463
 msgid "A cluster with that name already exists"
 msgstr "Klaster o takiej nazwie już istnieje"
 
@@ -233,7 +229,7 @@ msgstr "Uaktywnienie"
 msgid "Add"
 msgstr "Dodaj"
 
-#: ../app/views/dashboard/index.html.erb:416
+#: ../app/views/dashboard/index.html.erb:446
 msgid "Add Cluster"
 msgstr "Dodaj klaster"
 
@@ -256,6 +252,10 @@ msgstr "Wszystkie zmiany zostaną utracone - czy kontynuować?"
 #: ../app/views/clones/edit.html.erb:4 ../app/views/colocations/edit.html.erb:4 ../app/views/crm_config/edit.html.erb:113 ../app/views/groups/edit.html.erb:4 ../app/views/locations/edit.html.erb:4 ../app/views/masters/edit.html.erb:4 ../app/views/orders/edit.html.erb:4 ../app/views/primitives/edit.html.erb:4 ../app/views/roles/edit.html.erb:4 ../app/views/tickets/edit.html.erb:4 ../app/views/users/edit.html.erb:4
 msgid "Apply Changes"
 msgstr "Zastosuj zmiany"
+
+#: ../app/views/dashboard/index.html.erb:304
+msgid "Arbitrator: %{ip}"
+msgstr ""
 
 #: ../app/views/acls/index.html.erb:60 ../app/views/constraints/index.html.erb:61 ../app/views/resources/index.html.erb:61
 msgid "Are you sure you wish to delete %s?"
@@ -302,7 +302,7 @@ msgstr "CIB (we)"
 msgid "CIB (out)"
 msgstr "CIB (wy)"
 
-#: ../app/models/cib.rb:234
+#: ../app/models/cib.rb:238
 msgid "CIB file \"%{path}\" not found"
 msgstr "Nie znaleziono pliku CIB \"%{path}\""
 
@@ -310,7 +310,7 @@ msgstr "Nie znaleziono pliku CIB \"%{path}\""
 msgid "CRM Configuration"
 msgstr "Konfiguracja CRM"
 
-#: ../app/views/dashboard/index.html.erb:331
+#: ../app/views/dashboard/index.html.erb:361
 msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
 msgstr "Nie można nawiązać połączenia z interfejsem Hawk na węźle %{node}. Ponawianie próby co 5 sekund."
 
@@ -330,7 +330,7 @@ msgstr "Nie można ustawić parametru %{p}, ponieważ wartość zawiera cudzysł
 msgid "Can't set property %{p}, because the value contains both single and double quotes"
 msgstr "Nie można ustawić właściwości %{p}, ponieważ wartość zawiera cudzysłowy zarówno pojedyncze, jak i podwójne"
 
-#: ../app/views/dashboard/index.html.erb:493 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
+#: ../app/views/dashboard/index.html.erb:523 ../app/views/main/_gettext.js.erb:7 ../app/views/primitives/_form.html.erb:273 ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
 msgid "Cancel"
 msgstr "Anuluj"
 
@@ -378,7 +378,7 @@ msgstr "Klon został zaktualizowany"
 msgid "Close"
 msgstr "Zamknij"
 
-#: ../app/controllers/crm_config_controller.rb:45 ../app/views/main/_gettext.js.erb:99
+#: ../app/controllers/crm_config_controller.rb:45 ../app/views/layouts/main.html.erb:214 ../app/views/main/_gettext.js.erb:99
 msgid "Cluster Configuration"
 msgstr "Konfiguracja klastra"
 
@@ -390,13 +390,9 @@ msgstr "Pulpit nawigacyjny klastra"
 msgid "Cluster Diagram"
 msgstr "Schemat klastra"
 
-#: ../app/views/dashboard/index.html.erb:409
+#: ../app/views/dashboard/index.html.erb:439
 msgid "Cluster Name:"
 msgstr "Nazwa klastra:"
-
-#: ../app/views/layouts/main.html.erb:214
-msgid "Cluster Properties"
-msgstr "Właściwości klastra"
 
 #: ../app/controllers/wizard_controller.rb:60
 msgid "Cluster Setup Wizard"
@@ -406,7 +402,7 @@ msgstr "Kreator konfiguracji klastra"
 msgid "Cluster Status"
 msgstr "Stan klastrów"
 
-#: ../app/views/dashboard/index.html.erb:71
+#: ../app/views/dashboard/index.html.erb:88
 msgid "Cluster has errors - click for details"
 msgstr "Klaster zawiera błędy — kliknij, aby uzyskać więcej szczegółów"
 
@@ -652,11 +648,11 @@ msgstr "Błąd przy zastosowaniu konfiguracji:"
 msgid "Error deleting resource"
 msgstr "Błąd podczas usuwania zasobu"
 
-#: ../app/models/cib.rb:256
+#: ../app/models/cib.rb:254
 msgid "Error invoking %{cmd}"
 msgstr "Błąd wywołania %{cmd}"
 
-#: ../app/controllers/main_controller.rb:330 ../app/models/cib.rb:261
+#: ../app/controllers/main_controller.rb:330 ../app/models/cib.rb:259
 msgid "Error invoking %{cmd}: %{msg}"
 msgstr "Błąd wywołania %{cmd}: %{msg}"
 
@@ -713,7 +709,7 @@ msgstr ""
 msgid "Failed Master"
 msgstr "Błąd elementu nadrzędnego"
 
-#: ../app/models/cib.rb:487
+#: ../app/models/cib.rb:485
 msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
 msgstr "Niepowodzenie: węzeł = %{node}, zasób = %{resource}, ID wywołania = %{call_id}, operacja = %{op}, kod rc = %{rc_code}"
 
@@ -736,6 +732,11 @@ msgstr "Generuj hb_report..."
 #: ../app/views/main/_gettext.js.erb:365
 msgid "Generic Error"
 msgstr "Błąd ogólny"
+
+#: ../app/views/dashboard/index.html.erb:298
+#, fuzzy
+msgid "Geo Site %{ip}"
+msgstr "Zestaw kopii: %{id}"
 
 #: ../app/views/nodes/events.html.erb:12 ../app/views/resources/events.html.erb:12
 msgid "Getting recent events (last hour)..."
@@ -789,7 +790,7 @@ msgstr "Grupa: %{id}"
 msgid "History Explorer"
 msgstr "Przeglądarka historii"
 
-#: ../app/views/dashboard/index.html.erb:410
+#: ../app/views/dashboard/index.html.erb:440
 msgid "Host Name:"
 msgstr "Nazwa hosta:"
 
@@ -870,7 +871,7 @@ msgstr "Ustawione połączenie"
 msgid "Location"
 msgstr "Położenie"
 
-#: ../app/controllers/sessions_controller.rb:37 ../app/views/dashboard/index.html.erb:64 ../app/views/sessions/new.html.erb:17
+#: ../app/controllers/sessions_controller.rb:37 ../app/views/dashboard/index.html.erb:81 ../app/views/sessions/new.html.erb:17
 msgid "Log In"
 msgstr "Zaloguj"
 
@@ -1055,7 +1056,7 @@ msgstr "Niezainstalowany"
 msgid "Not Running"
 msgstr "Niedziałający"
 
-#: ../app/views/dashboard/index.html.erb:418 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
+#: ../app/views/dashboard/index.html.erb:448 ../app/views/main/_gettext.js.erb:4 ../app/views/primitives/_form.html.erb:272
 msgid "OK"
 msgstr "OK"
 
@@ -1091,7 +1092,7 @@ msgstr "Wejście PE"
 msgid "PE Input created by different Pacemaker version (%{version})"
 msgstr ""
 
-#: ../app/models/cib.rb:238
+#: ../app/models/cib.rb:242
 msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
 msgstr "Wygląda na to, że program Pacemaker nie jest zainstalowany (nie znaleziono polecenia %{cmd})"
 
@@ -1111,7 +1112,7 @@ msgstr "Nadrzędny: %{id}..."
 msgid "Password not specified"
 msgstr "Nie określono hasła"
 
-#: ../app/views/dashboard/index.html.erb:60 ../app/views/sessions/new.html.erb:13
+#: ../app/views/dashboard/index.html.erb:77 ../app/views/sessions/new.html.erb:13
 msgid "Password:"
 msgstr "Hasło:"
 
@@ -1131,11 +1132,11 @@ msgstr "Brak dostępu"
 msgid "Permission denied - you do not have write access to the CIB."
 msgstr ""
 
-#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:259 ../lib/invoker.rb:133 ../lib/invoker.rb:155 ../lib/invoker.rb:197
+#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:257 ../lib/invoker.rb:133 ../lib/invoker.rb:155 ../lib/invoker.rb:197
 msgid "Permission denied for user %{user}"
 msgstr "Dostęp zabroniony dla użytkownika %{user}"
 
-#: ../app/views/dashboard/index.html.erb:242
+#: ../app/views/dashboard/index.html.erb:259
 msgid "Permission denied. Please log in to %{node}"
 msgstr "Brak autoryzacji. Zaloguj się do węzła %{node}"
 
@@ -1171,7 +1172,7 @@ msgstr "Gotowe"
 msgid "Ref"
 msgstr ""
 
-#: ../app/views/clones/_form.html.erb:47 ../app/views/colocations/_form.html.erb:61 ../app/views/crm_config/edit.html.erb:25 ../app/views/crm_config/edit.html.erb:47 ../app/views/crm_config/edit.html.erb:69 ../app/views/dashboard/index.html.erb:45 ../app/views/groups/_form.html.erb:82 ../app/views/locations/_form.html.erb:48 ../app/views/masters/_form.html.erb:47 ../app/views/orders/_form.html.erb:61 ../app/views/primitives/_form.html.erb:248 ../app/views/primitives/_form.html.erb:269 ../app/views/primitives/_form.html.erb:291 ../app/views/roles/_form.html.erb:39 ../app/views/tickets/_form.html.erb:49 ../app/views/users/_form.html.erb:49
+#: ../app/views/clones/_form.html.erb:47 ../app/views/colocations/_form.html.erb:61 ../app/views/crm_config/edit.html.erb:25 ../app/views/crm_config/edit.html.erb:47 ../app/views/crm_config/edit.html.erb:69 ../app/views/dashboard/index.html.erb:62 ../app/views/groups/_form.html.erb:82 ../app/views/locations/_form.html.erb:48 ../app/views/masters/_form.html.erb:47 ../app/views/orders/_form.html.erb:61 ../app/views/primitives/_form.html.erb:248 ../app/views/primitives/_form.html.erb:269 ../app/views/primitives/_form.html.erb:291 ../app/views/roles/_form.html.erb:39 ../app/views/tickets/_form.html.erb:49 ../app/views/users/_form.html.erb:49
 msgid "Remove"
 msgstr "Usuń"
 
@@ -1355,6 +1356,10 @@ msgstr "Symulator (stan końcowy)"
 msgid "Simulator (initial state)"
 msgstr "Symulator (stan początkowy)"
 
+#: ../app/views/dashboard/index.html.erb:301
+msgid "Site: %{ip}"
+msgstr ""
+
 #: ../app/views/main/_gettext.js.erb:215
 msgid "Slave"
 msgstr "Podrzędny"
@@ -1459,7 +1464,7 @@ msgstr "Konfiguracja została zastosowana."
 msgid "The following configuration will be applied to the cluster:"
 msgstr "Następująca konfiguracja zostanie zastosowana dla tego klastra:"
 
-#: ../app/views/dashboard/index.html.erb:439
+#: ../app/views/dashboard/index.html.erb:469
 msgid "The host %{h} is already present in cluster %{c}"
 msgstr "Host %{h} już znajduje się w klastrze %{c}"
 
@@ -1561,7 +1566,7 @@ msgstr "Żetony"
 msgid "Time"
 msgstr "Czas"
 
-#: ../app/views/dashboard/index.html.erb:157 ../app/views/dashboard/index.html.erb:486
+#: ../app/views/dashboard/index.html.erb:174 ../app/views/dashboard/index.html.erb:516
 msgid "Timeout: Please try again"
 msgstr "Upłynął limit czasu: Spróbuj ponownie"
 
@@ -1597,7 +1602,7 @@ msgstr "Host UI: %s"
 msgid "Unable to apply changes: %{msg}"
 msgstr "Nie można zastosować zmian: %{msg}"
 
-#: ../app/views/dashboard/index.html.erb:468 ../app/views/dashboard/index.html.erb:480
+#: ../app/views/dashboard/index.html.erb:498 ../app/views/dashboard/index.html.erb:510
 msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
 msgstr "Nie można połączyć się z %{host}. Aby sprawdzić, czy Hawk jest dostępny, spróbuj otworzyć łącze %{url} w przeglądarce internetowej."
 
@@ -1635,7 +1640,7 @@ msgstr "Nie można utworzyć lustrzanego CIB"
 msgid "Unable to create user: %{msg}"
 msgstr "Nie można utworzyć klona: %{msg}"
 
-#: ../app/models/cib.rb:240
+#: ../app/models/cib.rb:244
 msgid "Unable to execute %{cmd}"
 msgstr "Nie można wykonać polecenia %{cmd}"
 
@@ -1643,7 +1648,7 @@ msgstr "Nie można wykonać polecenia %{cmd}"
 msgid "Unable to obtain ticket information from Booth!"
 msgstr ""
 
-#: ../app/models/cib.rb:236
+#: ../app/models/cib.rb:240
 msgid "Unable to parse CIB file \"%{path}\""
 msgstr "Nie można przetworzyć pliku CIB \"%{path}\""
 
@@ -1673,7 +1678,7 @@ msgstr "Nieczysty"
 msgid "Unexpected server error: %s"
 msgstr "Nieoczekiwany błąd serwera: %s"
 
-#: ../app/models/cib.rb:269 ../app/models/cib.rb:270 ../app/models/cib.rb:627 ../app/views/main/_gettext.js.erb:206
+#: ../app/models/cib.rb:267 ../app/models/cib.rb:268 ../app/models/cib.rb:625 ../app/views/main/_gettext.js.erb:206
 msgid "Unknown"
 msgstr "Nieznany"
 
@@ -1728,7 +1733,7 @@ msgstr "Użytkownik: %{user}"
 msgid "Username not specified"
 msgstr "Nie określono nazwy użytkownika"
 
-#: ../app/views/dashboard/index.html.erb:56 ../app/views/sessions/new.html.erb:9
+#: ../app/views/dashboard/index.html.erb:73 ../app/views/sessions/new.html.erb:9
 msgid "Username:"
 msgstr "Nazwa użytkownika:"
 
@@ -1791,3 +1796,13 @@ msgstr "[Ograniczenie jest zbyt złożone, aby je wyświetlić]"
 #: ../app/views/hb_reports/new.html.erb:74
 msgid "hb_report generation in progress..."
 msgstr "Trwa generowanie hb_report..."
+
+#: ../app/models/cib.rb:243
+#~ msgid "%{cmd} failed (status: %{status}, output was: %{output})"
+#~ msgstr ""
+#~ "Wykonanie polecenia %{cmd} nie powiodło się (stan: %{status}, komunikaty wyjśc"
+#~ "ia: %{output})"
+
+#: ../app/views/layouts/main.html.erb:214
+#~ msgid "Cluster Properties"
+#~ msgstr "Właściwości klastra"
