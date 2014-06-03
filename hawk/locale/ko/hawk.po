@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-02 20:20+1000\n"
+"POT-Creation-Date: 2014-06-04 00:16+1000\n"
 "PO-Revision-Date: 2014-05-02 16:18\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -208,7 +208,7 @@ msgstr "< 뒤로"
 msgid "A cluster with that name already exists"
 msgstr "해당 이름의 클러스터가 이미 있습니다."
 
-#: ../app/controllers/acls_controller.rb:72 ../app/views/layouts/main.html.erb:220
+#: ../app/controllers/acls_controller.rb:72 ../app/views/layouts/main.html.erb:260
 msgid "Access Control Lists"
 msgstr ""
 
@@ -373,7 +373,7 @@ msgstr "복제를 성공적으로 업데이트했습니다."
 msgid "Close"
 msgstr "닫기"
 
-#: ../app/controllers/crm_config_controller.rb:45 ../app/views/layouts/main.html.erb:214 ../app/views/main/_gettext.js.erb:99
+#: ../app/controllers/crm_config_controller.rb:45 ../app/views/layouts/main.html.erb:254 ../app/views/main/_gettext.js.erb:99
 msgid "Cluster Configuration"
 msgstr "클러스터 구성"
 
@@ -393,7 +393,7 @@ msgstr "클러스터 이름:"
 msgid "Cluster Setup Wizard"
 msgstr "마스터 설치 마법사"
 
-#: ../app/controllers/main_controller.rb:78 ../app/views/layouts/main.html.erb:199
+#: ../app/controllers/main_controller.rb:78 ../app/views/layouts/main.html.erb:239
 msgid "Cluster Status"
 msgstr "클러스터 상태"
 
@@ -445,11 +445,11 @@ msgstr "제약 조건은 2개 이상의 개별 리소스로 구성되어야 합�
 msgid "Constraint updated successfully"
 msgstr "제약 조건이 성공적으로 업데이트되었습니다."
 
-#: ../app/controllers/constraints_controller.rb:44 ../app/views/layouts/main.html.erb:229
+#: ../app/controllers/constraints_controller.rb:44 ../app/views/layouts/main.html.erb:269
 msgid "Constraints"
 msgstr "제약 조건"
 
-#: ../app/views/layouts/main.html.erb:251
+#: ../app/views/layouts/main.html.erb:291
 msgid "Copyright &copy; 2009-2014 SUSE, LLC"
 msgstr "Copyright &copy; 2009-2014 SUSE, LLC"
 
@@ -507,7 +507,7 @@ msgstr "리소스 생성"
 msgid "DC: %s"
 msgstr "DC: %s"
 
-#: ../app/views/layouts/main.html.erb:190
+#: ../app/views/layouts/main.html.erb:230
 msgid "Dashboard"
 msgstr "대시보드"
 
@@ -547,6 +547,11 @@ msgstr "차이"
 #: ../app/views/explorer/index.html.erb:173
 msgid "Display"
 msgstr "표시"
+
+#: ../app/views/layouts/main.html.erb:197
+#, fuzzy
+msgid "Documentation"
+msgstr "위치"
 
 #: ../app/controllers/wizard_controller.rb:181 ../app/views/wizard/done.html.erb:10
 msgid "Done"
@@ -643,19 +648,19 @@ msgstr "구성 적용 중 오류 발생:"
 msgid "Error deleting resource"
 msgstr "리소스를 삭제하는 중 오류가 발생했습니다."
 
-#: ../app/models/cib.rb:254
+#: ../app/models/cib.rb:249
 msgid "Error invoking %{cmd}"
 msgstr "%{cmd} 호출 중 오류 발생"
 
-#: ../app/controllers/main_controller.rb:330 ../app/models/cib.rb:259
+#: ../app/controllers/main_controller.rb:326 ../app/models/cib.rb:254
 msgid "Error invoking %{cmd}: %{msg}"
 msgstr "%{cmd} 호출 중 오류 발생: %{msg}"
 
-#: ../lib/invoker.rb:135
+#: ../lib/invoker.rb:116
 msgid "Error invoking cibadmin %{cmd}: %{msg}"
 msgstr "cibadmin %{cmd} 호출 중 오류 발생: %{msg}"
 
-#: ../lib/invoker.rb:157
+#: ../lib/invoker.rb:133
 msgid "Error invoking cibadmin --replace: %{msg}"
 msgstr "cibadmin --replace 호출 중 오류 발생: %{msg}"
 
@@ -667,7 +672,7 @@ msgstr "\"%s\" 템플릿을 구문 분석하는 중 오류가 발생했습니다
 msgid "Error parsing workflow \"%s\""
 msgstr "\"%s\" 워크플로를 구문 분석하는 중 오류가 발생했습니다."
 
-#: ../app/controllers/explorer_controller.rb:161 ../app/controllers/explorer_controller.rb:189 ../app/controllers/explorer_controller.rb:250
+#: ../app/controllers/explorer_controller.rb:150 ../app/controllers/explorer_controller.rb:173 ../app/controllers/explorer_controller.rb:229
 msgid "Error:"
 msgstr "오류:"
 
@@ -704,7 +709,7 @@ msgstr ""
 msgid "Failed Master"
 msgstr "실패한 마스터"
 
-#: ../app/models/cib.rb:485
+#: ../app/models/cib.rb:484
 msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
 msgstr "실패한 작업: 노드=%{node}, 리소스=%{resource}, 호출 ID=%{call_id}, 작업=%{op}, RC 코드=%{rc_code}"
 
@@ -781,7 +786,11 @@ msgstr "그룹이 성공적으로 업데이트되었습니다."
 msgid "Group: %{id}"
 msgstr "그룹: %{id}"
 
-#: ../app/controllers/explorer_controller.rb:44 ../app/views/layouts/main.html.erb:205
+#: ../app/views/layouts/main.html.erb:176
+msgid "Help..."
+msgstr ""
+
+#: ../app/controllers/explorer_controller.rb:44 ../app/views/layouts/main.html.erb:245
 msgid "History Explorer"
 msgstr "이력 탐색기"
 
@@ -870,7 +879,7 @@ msgstr "위치"
 msgid "Log In"
 msgstr "로그인"
 
-#: ../app/views/layouts/main.html.erb:185
+#: ../app/views/layouts/main.html.erb:225
 msgid "Log Out"
 msgstr "로그아웃"
 
@@ -987,7 +996,7 @@ msgstr "지정된 복제 하위가 없습니다."
 msgid "No cluster properties set in %{group}"
 msgstr "%{group}에 클러스터 특성 집합이 없습니다."
 
-#: ../app/controllers/explorer_controller.rb:159 ../app/controllers/explorer_controller.rb:229
+#: ../app/controllers/explorer_controller.rb:148 ../app/controllers/explorer_controller.rb:208
 msgid "No details available"
 msgstr "사용할 수 있는 세부 사항 없음"
 
@@ -1083,7 +1092,7 @@ msgstr "순서"
 msgid "PE Input"
 msgstr "PE 입력"
 
-#: ../app/controllers/explorer_controller.rb:103
+#: ../app/controllers/explorer_controller.rb:97
 msgid "PE Input created by different Pacemaker version (%{version})"
 msgstr ""
 
@@ -1091,7 +1100,7 @@ msgstr ""
 msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
 msgstr "페이스메이커가 설치된 것 같지 않습니다(%{cmd} 없음)."
 
-#: ../app/controllers/explorer_controller.rb:104
+#: ../app/controllers/explorer_controller.rb:98
 msgid "Pacemaker version not present in PE Input"
 msgstr ""
 
@@ -1127,7 +1136,7 @@ msgstr "권한이 거부됨"
 msgid "Permission denied - you do not have write access to the CIB."
 msgstr ""
 
-#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:257 ../lib/invoker.rb:133 ../lib/invoker.rb:155 ../lib/invoker.rb:197
+#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:252 ../lib/invoker.rb:114 ../lib/invoker.rb:131 ../lib/invoker.rb:168
 msgid "Permission denied for user %{user}"
 msgstr "%{user} 사용자에 대한 권한이 거부됨"
 
@@ -1192,11 +1201,11 @@ msgstr "필수 파라미터 \"리소스\"가 지정되지 않았습니다."
 msgid "Required parameter \"ticket\" not specified"
 msgstr "필수 파라미터 \"노드\"가 지정되지 않았습니다."
 
-#: ../app/controllers/explorer_controller.rb:134
+#: ../app/controllers/explorer_controller.rb:128
 msgid "Required parameters \"basename\" and \"node\" not specified"
 msgstr "필수 파라미터 \"basename\" 및 \"node\"가 지정되지 않았습니다."
 
-#: ../app/controllers/explorer_controller.rb:202
+#: ../app/controllers/explorer_controller.rb:186
 msgid "Required parameters \"left\" and \"right\" not specified"
 msgstr "필요한 파라미터 \"left\" 및 \"right\"가 지정되지 않았습니다."
 
@@ -1245,7 +1254,7 @@ msgstr "리소스가 성공적으로 업데이트되었습니다."
 msgid "Resource:"
 msgstr "리소스:"
 
-#: ../app/controllers/resources_controller.rb:57 ../app/views/layouts/main.html.erb:226
+#: ../app/controllers/resources_controller.rb:57 ../app/views/layouts/main.html.erb:266
 msgid "Resources"
 msgstr "리소스"
 
@@ -1327,7 +1336,7 @@ msgstr "STONITH 활성화됨"
 msgid "Score"
 msgstr "점수"
 
-#: ../app/views/layouts/main.html.erb:211
+#: ../app/views/layouts/main.html.erb:251
 msgid "Setup Wizard"
 msgstr "설치 마법사"
 
@@ -1387,7 +1396,7 @@ msgstr "시작됨"
 msgid "State:"
 msgstr "상태:"
 
-#: ../app/views/layouts/main.html.erb:182 ../app/views/layouts/main.html.erb:190
+#: ../app/views/layouts/main.html.erb:222 ../app/views/layouts/main.html.erb:230
 msgid "Status"
 msgstr "상태"
 
@@ -1463,11 +1472,11 @@ msgstr "다음 구성이 클러스터에 적용됩니다."
 msgid "The host %{h} is already present in cluster %{c}"
 msgstr "%{h} 호스트가 이미 %{c} 클러스터에 있습니다."
 
-#: ../lib/invoker.rb:131
+#: ../lib/invoker.rb:112
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "객체/특성이 없습니다(cibadmin %{cmd})."
 
-#: ../lib/invoker.rb:153
+#: ../lib/invoker.rb:129
 msgid "The object/attribute does not exist: %{msg}"
 msgstr "객체/특성이 없습니다: %{msg}"
 
@@ -1577,7 +1586,7 @@ msgstr "노드 %s"
 msgid "Toggle view by type"
 msgstr ""
 
-#: ../app/views/layouts/main.html.erb:178
+#: ../app/views/layouts/main.html.erb:218
 msgid "Tools"
 msgstr "도구"
 
@@ -1589,7 +1598,7 @@ msgstr "트리 보기"
 msgid "Type"
 msgstr "유형"
 
-#: ../app/views/layouts/main.html.erb:250
+#: ../app/views/layouts/main.html.erb:290
 msgid "UI Host: %s"
 msgstr "UI 호스트: %s"
 
@@ -1673,7 +1682,7 @@ msgstr "불완전"
 msgid "Unexpected server error: %s"
 msgstr "예기치 않은 서버 오류: %s"
 
-#: ../app/models/cib.rb:267 ../app/models/cib.rb:268 ../app/models/cib.rb:625 ../app/views/main/_gettext.js.erb:206
+#: ../app/models/cib.rb:262 ../app/models/cib.rb:263 ../app/models/cib.rb:624 ../app/views/main/_gettext.js.erb:206
 msgid "Unknown"
 msgstr "알 수 없음"
 
@@ -1720,7 +1729,7 @@ msgstr ""
 msgid "User updated successfully"
 msgstr "복제를 성공적으로 업데이트했습니다."
 
-#: ../app/views/layouts/main.html.erb:184
+#: ../app/views/layouts/main.html.erb:224
 msgid "User: %{user}"
 msgstr "사용자: %{user}"
 
@@ -1792,10 +1801,7 @@ msgstr "[제약 조건이 너무 복잡해서 표시할 수 없습니다.]"
 msgid "hb_report generation in progress..."
 msgstr "hb_report 생성이 진행 중..."
 
-#: ../app/models/cib.rb:243
 #~ msgid "%{cmd} failed (status: %{status}, output was: %{output})"
 #~ msgstr "%{cmd} 실패됨(상태: %{status}, 출력: %{output})"
-
-#: ../app/views/layouts/main.html.erb:214
 #~ msgid "Cluster Properties"
 #~ msgstr "클러스터 속성"

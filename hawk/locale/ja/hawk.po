@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-02 20:20+1000\n"
+"POT-Creation-Date: 2014-06-04 00:16+1000\n"
 "PO-Revision-Date: 2014-05-02 16:45\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -208,7 +208,7 @@ msgstr "< 戻る"
 msgid "A cluster with that name already exists"
 msgstr "その名前のクラスタは既に存在します"
 
-#: ../app/controllers/acls_controller.rb:72 ../app/views/layouts/main.html.erb:220
+#: ../app/controllers/acls_controller.rb:72 ../app/views/layouts/main.html.erb:260
 msgid "Access Control Lists"
 msgstr ""
 
@@ -373,7 +373,7 @@ msgstr "クローンが正常に更新されました"
 msgid "Close"
 msgstr "閉じる"
 
-#: ../app/controllers/crm_config_controller.rb:45 ../app/views/layouts/main.html.erb:214 ../app/views/main/_gettext.js.erb:99
+#: ../app/controllers/crm_config_controller.rb:45 ../app/views/layouts/main.html.erb:254 ../app/views/main/_gettext.js.erb:99
 msgid "Cluster Configuration"
 msgstr "クラスタ環境設定"
 
@@ -393,7 +393,7 @@ msgstr "クラスタ名:"
 msgid "Cluster Setup Wizard"
 msgstr "クラスタセットアップウィザード"
 
-#: ../app/controllers/main_controller.rb:78 ../app/views/layouts/main.html.erb:199
+#: ../app/controllers/main_controller.rb:78 ../app/views/layouts/main.html.erb:239
 msgid "Cluster Status"
 msgstr "クラスタの状態"
 
@@ -445,11 +445,11 @@ msgstr "制約は2つ以上の別のリソースから構成される必要が�
 msgid "Constraint updated successfully"
 msgstr "制約が正常に更新されました"
 
-#: ../app/controllers/constraints_controller.rb:44 ../app/views/layouts/main.html.erb:229
+#: ../app/controllers/constraints_controller.rb:44 ../app/views/layouts/main.html.erb:269
 msgid "Constraints"
 msgstr "制約"
 
-#: ../app/views/layouts/main.html.erb:251
+#: ../app/views/layouts/main.html.erb:291
 msgid "Copyright &copy; 2009-2014 SUSE, LLC"
 msgstr "Copyright &copy; 2009-2014 SUSE, LLC"
 
@@ -507,7 +507,7 @@ msgstr "リソースの作成"
 msgid "DC: %s"
 msgstr "DC: %s"
 
-#: ../app/views/layouts/main.html.erb:190
+#: ../app/views/layouts/main.html.erb:230
 msgid "Dashboard"
 msgstr "ダッシュボード"
 
@@ -547,6 +547,11 @@ msgstr "Diff"
 #: ../app/views/explorer/index.html.erb:173
 msgid "Display"
 msgstr "ディスプレイ"
+
+#: ../app/views/layouts/main.html.erb:197
+#, fuzzy
+msgid "Documentation"
+msgstr "場所"
 
 #: ../app/controllers/wizard_controller.rb:181 ../app/views/wizard/done.html.erb:10
 msgid "Done"
@@ -643,19 +648,19 @@ msgstr "環境設定を適用する際にエラーが発生しました:"
 msgid "Error deleting resource"
 msgstr "リソースの削除中にエラーが発生しました"
 
-#: ../app/models/cib.rb:254
+#: ../app/models/cib.rb:249
 msgid "Error invoking %{cmd}"
 msgstr "%{cmd} の呼び出し中にエラーが発生しました"
 
-#: ../app/controllers/main_controller.rb:330 ../app/models/cib.rb:259
+#: ../app/controllers/main_controller.rb:326 ../app/models/cib.rb:254
 msgid "Error invoking %{cmd}: %{msg}"
 msgstr "%{cmd} の呼び出し中にエラーが発生しました: %{msg}"
 
-#: ../lib/invoker.rb:135
+#: ../lib/invoker.rb:116
 msgid "Error invoking cibadmin %{cmd}: %{msg}"
 msgstr "cibadmin %{cmd} の呼び出しエラー: %{msg}"
 
-#: ../lib/invoker.rb:157
+#: ../lib/invoker.rb:133
 msgid "Error invoking cibadmin --replace: %{msg}"
 msgstr "cibadmin --replaceの呼び出しエラー: %{msg}"
 
@@ -667,7 +672,7 @@ msgstr "テンプレート「%s」の解析中にエラーが発生しました"
 msgid "Error parsing workflow \"%s\""
 msgstr "ワークフロー「%s」の解析中にエラーが発生しました"
 
-#: ../app/controllers/explorer_controller.rb:161 ../app/controllers/explorer_controller.rb:189 ../app/controllers/explorer_controller.rb:250
+#: ../app/controllers/explorer_controller.rb:150 ../app/controllers/explorer_controller.rb:173 ../app/controllers/explorer_controller.rb:229
 msgid "Error:"
 msgstr "エラー:"
 
@@ -704,7 +709,7 @@ msgstr ""
 msgid "Failed Master"
 msgstr "失敗したマスタ"
 
-#: ../app/models/cib.rb:485
+#: ../app/models/cib.rb:484
 msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
 msgstr "失敗した操作: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
 
@@ -781,7 +786,11 @@ msgstr "グループが正常に更新されました"
 msgid "Group: %{id}"
 msgstr "グループ: %{id}"
 
-#: ../app/controllers/explorer_controller.rb:44 ../app/views/layouts/main.html.erb:205
+#: ../app/views/layouts/main.html.erb:176
+msgid "Help..."
+msgstr ""
+
+#: ../app/controllers/explorer_controller.rb:44 ../app/views/layouts/main.html.erb:245
 msgid "History Explorer"
 msgstr "履歴エクスプローラ"
 
@@ -870,7 +879,7 @@ msgstr "場所"
 msgid "Log In"
 msgstr "ログイン"
 
-#: ../app/views/layouts/main.html.erb:185
+#: ../app/views/layouts/main.html.erb:225
 msgid "Log Out"
 msgstr "ログアウト"
 
@@ -987,7 +996,7 @@ msgstr "クローンの子が指定されていません"
 msgid "No cluster properties set in %{group}"
 msgstr "クラスタプロパティが %{group} で設定されていません"
 
-#: ../app/controllers/explorer_controller.rb:159 ../app/controllers/explorer_controller.rb:229
+#: ../app/controllers/explorer_controller.rb:148 ../app/controllers/explorer_controller.rb:208
 msgid "No details available"
 msgstr "詳細情報がありません"
 
@@ -1083,7 +1092,7 @@ msgstr "順序"
 msgid "PE Input"
 msgstr "PE入力"
 
-#: ../app/controllers/explorer_controller.rb:103
+#: ../app/controllers/explorer_controller.rb:97
 msgid "PE Input created by different Pacemaker version (%{version})"
 msgstr ""
 
@@ -1091,7 +1100,7 @@ msgstr ""
 msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
 msgstr "Pacemakerがインストールされていないと思われます(%{cmd} が見つかりません)"
 
-#: ../app/controllers/explorer_controller.rb:104
+#: ../app/controllers/explorer_controller.rb:98
 msgid "Pacemaker version not present in PE Input"
 msgstr ""
 
@@ -1127,7 +1136,7 @@ msgstr "アクセス承認拒否"
 msgid "Permission denied - you do not have write access to the CIB."
 msgstr ""
 
-#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:257 ../lib/invoker.rb:133 ../lib/invoker.rb:155 ../lib/invoker.rb:197
+#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:252 ../lib/invoker.rb:114 ../lib/invoker.rb:131 ../lib/invoker.rb:168
 msgid "Permission denied for user %{user}"
 msgstr "ユーザ %{user} のアクセス承認拒否"
 
@@ -1192,11 +1201,11 @@ msgstr "必要なパラメータ「resource」が指定されていません"
 msgid "Required parameter \"ticket\" not specified"
 msgstr "必要なパラメータ「node」が指定されていません"
 
-#: ../app/controllers/explorer_controller.rb:134
+#: ../app/controllers/explorer_controller.rb:128
 msgid "Required parameters \"basename\" and \"node\" not specified"
 msgstr "必要なパラメータ「basename」と「node」が指定されていません"
 
-#: ../app/controllers/explorer_controller.rb:202
+#: ../app/controllers/explorer_controller.rb:186
 msgid "Required parameters \"left\" and \"right\" not specified"
 msgstr "必要なパラメータ「left」と「right」が指定されていません"
 
@@ -1245,7 +1254,7 @@ msgstr "リソースが正常に更新されました"
 msgid "Resource:"
 msgstr "リソース:"
 
-#: ../app/controllers/resources_controller.rb:57 ../app/views/layouts/main.html.erb:226
+#: ../app/controllers/resources_controller.rb:57 ../app/views/layouts/main.html.erb:266
 msgid "Resources"
 msgstr "リソース"
 
@@ -1327,7 +1336,7 @@ msgstr "STONITHが有効です"
 msgid "Score"
 msgstr "スコア"
 
-#: ../app/views/layouts/main.html.erb:211
+#: ../app/views/layouts/main.html.erb:251
 msgid "Setup Wizard"
 msgstr "セットアップウィザード"
 
@@ -1387,7 +1396,7 @@ msgstr "開始しました"
 msgid "State:"
 msgstr "県または州:"
 
-#: ../app/views/layouts/main.html.erb:182 ../app/views/layouts/main.html.erb:190
+#: ../app/views/layouts/main.html.erb:222 ../app/views/layouts/main.html.erb:230
 msgid "Status"
 msgstr "状況"
 
@@ -1463,11 +1472,11 @@ msgstr "以下の環境設定がクラスタに適用されます:"
 msgid "The host %{h} is already present in cluster %{c}"
 msgstr "ホスト %{h} は既にクラスタ %{c} に存在します"
 
-#: ../lib/invoker.rb:131
+#: ../lib/invoker.rb:112
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "オブジェクト/属性が存在しません(cibadmin %{cmd})"
 
-#: ../lib/invoker.rb:153
+#: ../lib/invoker.rb:129
 msgid "The object/attribute does not exist: %{msg}"
 msgstr "オブジェクト/属性が存在しません: %{msg}"
 
@@ -1577,7 +1586,7 @@ msgstr "ノード %s へ"
 msgid "Toggle view by type"
 msgstr ""
 
-#: ../app/views/layouts/main.html.erb:178
+#: ../app/views/layouts/main.html.erb:218
 msgid "Tools"
 msgstr "ツール"
 
@@ -1589,7 +1598,7 @@ msgstr "ツリービュー"
 msgid "Type"
 msgstr "種類"
 
-#: ../app/views/layouts/main.html.erb:250
+#: ../app/views/layouts/main.html.erb:290
 msgid "UI Host: %s"
 msgstr "UIホスト: %s"
 
@@ -1673,7 +1682,7 @@ msgstr "非クリーン"
 msgid "Unexpected server error: %s"
 msgstr "予期しないサーバエラー: %s"
 
-#: ../app/models/cib.rb:267 ../app/models/cib.rb:268 ../app/models/cib.rb:625 ../app/views/main/_gettext.js.erb:206
+#: ../app/models/cib.rb:262 ../app/models/cib.rb:263 ../app/models/cib.rb:624 ../app/views/main/_gettext.js.erb:206
 msgid "Unknown"
 msgstr "不明"
 
@@ -1720,7 +1729,7 @@ msgstr ""
 msgid "User updated successfully"
 msgstr "クローンが正常に更新されました"
 
-#: ../app/views/layouts/main.html.erb:184
+#: ../app/views/layouts/main.html.erb:224
 msgid "User: %{user}"
 msgstr "ユーザ: %{user}"
 
@@ -1792,10 +1801,7 @@ msgstr "[制約が複雑すぎて表示できません]"
 msgid "hb_report generation in progress..."
 msgstr "hb_reportを生成しています..."
 
-#: ../app/models/cib.rb:243
 #~ msgid "%{cmd} failed (status: %{status}, output was: %{output})"
 #~ msgstr "%{cmd} が失敗しました(状態: %{status}、出力は %{output} でした)"
-
-#: ../app/views/layouts/main.html.erb:214
 #~ msgid "Cluster Properties"
 #~ msgstr "クラスタのプロパティ"

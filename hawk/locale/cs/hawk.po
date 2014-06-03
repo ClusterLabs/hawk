@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-02 20:20+1000\n"
+"POT-Creation-Date: 2014-06-04 00:16+1000\n"
 "PO-Revision-Date: 2014-05-02 16:10\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -212,7 +212,7 @@ msgstr "< Zpět"
 msgid "A cluster with that name already exists"
 msgstr "Cluster s tímto názvem již existuje"
 
-#: ../app/controllers/acls_controller.rb:72 ../app/views/layouts/main.html.erb:220
+#: ../app/controllers/acls_controller.rb:72 ../app/views/layouts/main.html.erb:260
 msgid "Access Control Lists"
 msgstr ""
 
@@ -377,7 +377,7 @@ msgstr "Klon byl úspěšně aktualizován"
 msgid "Close"
 msgstr "Zavřít"
 
-#: ../app/controllers/crm_config_controller.rb:45 ../app/views/layouts/main.html.erb:214 ../app/views/main/_gettext.js.erb:99
+#: ../app/controllers/crm_config_controller.rb:45 ../app/views/layouts/main.html.erb:254 ../app/views/main/_gettext.js.erb:99
 msgid "Cluster Configuration"
 msgstr "Konfigurace clusteru"
 
@@ -397,7 +397,7 @@ msgstr "Název clusteru:"
 msgid "Cluster Setup Wizard"
 msgstr "Průvodce nastavením clusteru"
 
-#: ../app/controllers/main_controller.rb:78 ../app/views/layouts/main.html.erb:199
+#: ../app/controllers/main_controller.rb:78 ../app/views/layouts/main.html.erb:239
 msgid "Cluster Status"
 msgstr "Stav clusteru"
 
@@ -449,11 +449,11 @@ msgstr "Omezení musí obsahovat alespoň dva samostatné prostředky"
 msgid "Constraint updated successfully"
 msgstr "Omezení bylo úspěšně aktualizováno"
 
-#: ../app/controllers/constraints_controller.rb:44 ../app/views/layouts/main.html.erb:229
+#: ../app/controllers/constraints_controller.rb:44 ../app/views/layouts/main.html.erb:269
 msgid "Constraints"
 msgstr "Omezení"
 
-#: ../app/views/layouts/main.html.erb:251
+#: ../app/views/layouts/main.html.erb:291
 msgid "Copyright &copy; 2009-2014 SUSE, LLC"
 msgstr "Copyright &copy; 2009-2014 SUSE, LLC"
 
@@ -511,7 +511,7 @@ msgstr "Vytvořit prostředek"
 msgid "DC: %s"
 msgstr "DC: %s"
 
-#: ../app/views/layouts/main.html.erb:190
+#: ../app/views/layouts/main.html.erb:230
 msgid "Dashboard"
 msgstr "Řídicí panel"
 
@@ -551,6 +551,11 @@ msgstr "Rozdíl"
 #: ../app/views/explorer/index.html.erb:173
 msgid "Display"
 msgstr "Zobrazení"
+
+#: ../app/views/layouts/main.html.erb:197
+#, fuzzy
+msgid "Documentation"
+msgstr "Umístění"
 
 #: ../app/controllers/wizard_controller.rb:181 ../app/views/wizard/done.html.erb:10
 msgid "Done"
@@ -647,19 +652,19 @@ msgstr "Při používání konfigurace došlo k chybě:"
 msgid "Error deleting resource"
 msgstr "Při odstraňování prostředku došlo k chybě"
 
-#: ../app/models/cib.rb:254
+#: ../app/models/cib.rb:249
 msgid "Error invoking %{cmd}"
 msgstr "Chyba vyvolávání %{cmd}"
 
-#: ../app/controllers/main_controller.rb:330 ../app/models/cib.rb:259
+#: ../app/controllers/main_controller.rb:326 ../app/models/cib.rb:254
 msgid "Error invoking %{cmd}: %{msg}"
 msgstr "Chyba vyvolávání %{cmd}: %{msg}"
 
-#: ../lib/invoker.rb:135
+#: ../lib/invoker.rb:116
 msgid "Error invoking cibadmin %{cmd}: %{msg}"
 msgstr "Chyba při vyvolávání souboru cibadmin %{cmd}: %{msg}"
 
-#: ../lib/invoker.rb:157
+#: ../lib/invoker.rb:133
 msgid "Error invoking cibadmin --replace: %{msg}"
 msgstr "Chyba při volání příkazu cibadmin  --replace: %{msg}"
 
@@ -671,7 +676,7 @@ msgstr "Chyba analýzy šablony „%s“"
 msgid "Error parsing workflow \"%s\""
 msgstr "Chyba analýzy pracovního postupu „%s“"
 
-#: ../app/controllers/explorer_controller.rb:161 ../app/controllers/explorer_controller.rb:189 ../app/controllers/explorer_controller.rb:250
+#: ../app/controllers/explorer_controller.rb:150 ../app/controllers/explorer_controller.rb:173 ../app/controllers/explorer_controller.rb:229
 msgid "Error:"
 msgstr "Chyba:"
 
@@ -708,7 +713,7 @@ msgstr ""
 msgid "Failed Master"
 msgstr "Hlavní prvek selhal"
 
-#: ../app/models/cib.rb:485
+#: ../app/models/cib.rb:484
 msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
 msgstr "Neúspěšná operace: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
 
@@ -785,7 +790,11 @@ msgstr "Skupina byla úspěšně aktualizována"
 msgid "Group: %{id}"
 msgstr "Skupina: %{id}"
 
-#: ../app/controllers/explorer_controller.rb:44 ../app/views/layouts/main.html.erb:205
+#: ../app/views/layouts/main.html.erb:176
+msgid "Help..."
+msgstr ""
+
+#: ../app/controllers/explorer_controller.rb:44 ../app/views/layouts/main.html.erb:245
 msgid "History Explorer"
 msgstr "Prohlížeč historie"
 
@@ -874,7 +883,7 @@ msgstr "Umístění"
 msgid "Log In"
 msgstr "Přihlásit"
 
-#: ../app/views/layouts/main.html.erb:185
+#: ../app/views/layouts/main.html.erb:225
 msgid "Log Out"
 msgstr "Odhlásit"
 
@@ -991,7 +1000,7 @@ msgstr "Nebyl zadán žádný podřízený prvek klonu"
 msgid "No cluster properties set in %{group}"
 msgstr "Ve skupině %{group} nebyly definovány žádné vlastnosti clusteru"
 
-#: ../app/controllers/explorer_controller.rb:159 ../app/controllers/explorer_controller.rb:229
+#: ../app/controllers/explorer_controller.rb:148 ../app/controllers/explorer_controller.rb:208
 msgid "No details available"
 msgstr "Podrobnosti nejsou k dispozici."
 
@@ -1087,7 +1096,7 @@ msgstr "Pořadí"
 msgid "PE Input"
 msgstr "PE Input"
 
-#: ../app/controllers/explorer_controller.rb:103
+#: ../app/controllers/explorer_controller.rb:97
 msgid "PE Input created by different Pacemaker version (%{version})"
 msgstr ""
 
@@ -1095,7 +1104,7 @@ msgstr ""
 msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
 msgstr "Aplikace Pacemaker pravděpodobně není nainstalována (příkaz %{cmd} nebyl nalezen)"
 
-#: ../app/controllers/explorer_controller.rb:104
+#: ../app/controllers/explorer_controller.rb:98
 msgid "Pacemaker version not present in PE Input"
 msgstr ""
 
@@ -1131,7 +1140,7 @@ msgstr "Povolení odepřeno"
 msgid "Permission denied - you do not have write access to the CIB."
 msgstr ""
 
-#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:257 ../lib/invoker.rb:133 ../lib/invoker.rb:155 ../lib/invoker.rb:197
+#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:252 ../lib/invoker.rb:114 ../lib/invoker.rb:131 ../lib/invoker.rb:168
 msgid "Permission denied for user %{user}"
 msgstr "Uživateli %{user} nebylo uděleno povolení"
 
@@ -1196,11 +1205,11 @@ msgstr "Požadovaný parametr resource nebyl zadán."
 msgid "Required parameter \"ticket\" not specified"
 msgstr "Požadovaný parametr node nebyl zadán."
 
-#: ../app/controllers/explorer_controller.rb:134
+#: ../app/controllers/explorer_controller.rb:128
 msgid "Required parameters \"basename\" and \"node\" not specified"
 msgstr "Nebyly zadány požadované parametry „basename“ a „node“ ."
 
-#: ../app/controllers/explorer_controller.rb:202
+#: ../app/controllers/explorer_controller.rb:186
 msgid "Required parameters \"left\" and \"right\" not specified"
 msgstr "Nebyly zadány požadované parametry „left“ a „right“"
 
@@ -1249,7 +1258,7 @@ msgstr "Prostředek byl úspěšně aktualizován"
 msgid "Resource:"
 msgstr "Prostředek:"
 
-#: ../app/controllers/resources_controller.rb:57 ../app/views/layouts/main.html.erb:226
+#: ../app/controllers/resources_controller.rb:57 ../app/views/layouts/main.html.erb:266
 msgid "Resources"
 msgstr "Prostředky"
 
@@ -1331,7 +1340,7 @@ msgstr "STONITH povolen"
 msgid "Score"
 msgstr "Skóre"
 
-#: ../app/views/layouts/main.html.erb:211
+#: ../app/views/layouts/main.html.erb:251
 msgid "Setup Wizard"
 msgstr "Průvodce nastavení"
 
@@ -1391,7 +1400,7 @@ msgstr "Spuštěno"
 msgid "State:"
 msgstr "Stav:"
 
-#: ../app/views/layouts/main.html.erb:182 ../app/views/layouts/main.html.erb:190
+#: ../app/views/layouts/main.html.erb:222 ../app/views/layouts/main.html.erb:230
 msgid "Status"
 msgstr "Stav"
 
@@ -1467,11 +1476,11 @@ msgstr "Na cluster se použije následující konfigurace:"
 msgid "The host %{h} is already present in cluster %{c}"
 msgstr "Hostitel %{h} již v clusteru %{c} existuje."
 
-#: ../lib/invoker.rb:131
+#: ../lib/invoker.rb:112
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "Objekt/atribut neexistuje (cibadmin %{cmd})"
 
-#: ../lib/invoker.rb:153
+#: ../lib/invoker.rb:129
 msgid "The object/attribute does not exist: %{msg}"
 msgstr "Objekt/atribut neexistuje: %{msg}"
 
@@ -1581,7 +1590,7 @@ msgstr "Do uzlu %s"
 msgid "Toggle view by type"
 msgstr ""
 
-#: ../app/views/layouts/main.html.erb:178
+#: ../app/views/layouts/main.html.erb:218
 msgid "Tools"
 msgstr "Nástroje"
 
@@ -1593,7 +1602,7 @@ msgstr "Stromové zobrazení"
 msgid "Type"
 msgstr "Typ"
 
-#: ../app/views/layouts/main.html.erb:250
+#: ../app/views/layouts/main.html.erb:290
 msgid "UI Host: %s"
 msgstr "Hostitel UR: %s"
 
@@ -1677,7 +1686,7 @@ msgstr "Nevyčištěno"
 msgid "Unexpected server error: %s"
 msgstr "Neočekávaná chyba serveru: %s"
 
-#: ../app/models/cib.rb:267 ../app/models/cib.rb:268 ../app/models/cib.rb:625 ../app/views/main/_gettext.js.erb:206
+#: ../app/models/cib.rb:262 ../app/models/cib.rb:263 ../app/models/cib.rb:624 ../app/views/main/_gettext.js.erb:206
 msgid "Unknown"
 msgstr "Neznámý"
 
@@ -1724,7 +1733,7 @@ msgstr ""
 msgid "User updated successfully"
 msgstr "Klon byl úspěšně aktualizován"
 
-#: ../app/views/layouts/main.html.erb:184
+#: ../app/views/layouts/main.html.erb:224
 msgid "User: %{user}"
 msgstr "Uživatel: %{user}"
 
@@ -1796,10 +1805,7 @@ msgstr "[Omezení je příliš složité pro zobrazení]"
 msgid "hb_report generation in progress..."
 msgstr "Vytváří se balíček hb_report..."
 
-#: ../app/models/cib.rb:243
 #~ msgid "%{cmd} failed (status: %{status}, output was: %{output})"
 #~ msgstr "Provedení příkazu %{cmd} se nezdařilo (stav: %{status}, výstup: %{output})"
-
-#: ../app/views/layouts/main.html.erb:214
 #~ msgid "Cluster Properties"
 #~ msgstr "Vlastnosti clusteru"

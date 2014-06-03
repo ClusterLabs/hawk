@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-02 20:20+1000\n"
+"POT-Creation-Date: 2014-06-04 00:16+1000\n"
 "PO-Revision-Date: 2014-05-02 16:48\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -208,7 +208,7 @@ msgstr "< 上一步"
 msgid "A cluster with that name already exists"
 msgstr "已存在具有該名稱的叢集"
 
-#: ../app/controllers/acls_controller.rb:72 ../app/views/layouts/main.html.erb:220
+#: ../app/controllers/acls_controller.rb:72 ../app/views/layouts/main.html.erb:260
 msgid "Access Control Lists"
 msgstr ""
 
@@ -373,7 +373,7 @@ msgstr "成功更新複製品"
 msgid "Close"
 msgstr "關閉"
 
-#: ../app/controllers/crm_config_controller.rb:45 ../app/views/layouts/main.html.erb:214 ../app/views/main/_gettext.js.erb:99
+#: ../app/controllers/crm_config_controller.rb:45 ../app/views/layouts/main.html.erb:254 ../app/views/main/_gettext.js.erb:99
 msgid "Cluster Configuration"
 msgstr "叢集組態"
 
@@ -393,7 +393,7 @@ msgstr "叢集名稱："
 msgid "Cluster Setup Wizard"
 msgstr "叢集設定精靈"
 
-#: ../app/controllers/main_controller.rb:78 ../app/views/layouts/main.html.erb:199
+#: ../app/controllers/main_controller.rb:78 ../app/views/layouts/main.html.erb:239
 msgid "Cluster Status"
 msgstr "叢集狀態"
 
@@ -445,11 +445,11 @@ msgstr "條件約束必須至少包含兩個獨立的資源"
 msgid "Constraint updated successfully"
 msgstr "成功更新條件約束"
 
-#: ../app/controllers/constraints_controller.rb:44 ../app/views/layouts/main.html.erb:229
+#: ../app/controllers/constraints_controller.rb:44 ../app/views/layouts/main.html.erb:269
 msgid "Constraints"
 msgstr "條件約束"
 
-#: ../app/views/layouts/main.html.erb:251
+#: ../app/views/layouts/main.html.erb:291
 msgid "Copyright &copy; 2009-2014 SUSE, LLC"
 msgstr "版權所有 &copy; 2009-2014 SUSE, LLC"
 
@@ -507,7 +507,7 @@ msgstr "建立資源"
 msgid "DC: %s"
 msgstr "DC︰%s"
 
-#: ../app/views/layouts/main.html.erb:190
+#: ../app/views/layouts/main.html.erb:230
 msgid "Dashboard"
 msgstr "儀表板"
 
@@ -547,6 +547,11 @@ msgstr "Diff"
 #: ../app/views/explorer/index.html.erb:173
 msgid "Display"
 msgstr "顯示"
+
+#: ../app/views/layouts/main.html.erb:197
+#, fuzzy
+msgid "Documentation"
+msgstr "位置"
 
 #: ../app/controllers/wizard_controller.rb:181 ../app/views/wizard/done.html.erb:10
 msgid "Done"
@@ -643,19 +648,19 @@ msgstr "套用組態時發生錯誤︰"
 msgid "Error deleting resource"
 msgstr "刪除資源時發生錯誤"
 
-#: ../app/models/cib.rb:254
+#: ../app/models/cib.rb:249
 msgid "Error invoking %{cmd}"
 msgstr "執行 %{cmd} 時發生錯誤"
 
-#: ../app/controllers/main_controller.rb:330 ../app/models/cib.rb:259
+#: ../app/controllers/main_controller.rb:326 ../app/models/cib.rb:254
 msgid "Error invoking %{cmd}: %{msg}"
 msgstr "執行 %{cmd} 時發生錯誤︰%{msg}"
 
-#: ../lib/invoker.rb:135
+#: ../lib/invoker.rb:116
 msgid "Error invoking cibadmin %{cmd}: %{msg}"
 msgstr "執行 cibadmin %{cmd} 時發生錯誤︰%{msg}"
 
-#: ../lib/invoker.rb:157
+#: ../lib/invoker.rb:133
 msgid "Error invoking cibadmin --replace: %{msg}"
 msgstr "執行 cibadmin --replace 時發生錯誤︰%{msg}"
 
@@ -667,7 +672,7 @@ msgstr "剖析範本「%s」時發生錯誤"
 msgid "Error parsing workflow \"%s\""
 msgstr "剖析工作流程「%s」時發生錯誤"
 
-#: ../app/controllers/explorer_controller.rb:161 ../app/controllers/explorer_controller.rb:189 ../app/controllers/explorer_controller.rb:250
+#: ../app/controllers/explorer_controller.rb:150 ../app/controllers/explorer_controller.rb:173 ../app/controllers/explorer_controller.rb:229
 msgid "Error:"
 msgstr "錯誤："
 
@@ -704,7 +709,7 @@ msgstr ""
 msgid "Failed Master"
 msgstr "失敗的主要資源"
 
-#: ../app/models/cib.rb:485
+#: ../app/models/cib.rb:484
 msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
 msgstr "作業失敗：節點=%{node}，資源=%{resource}，呼叫 ID=%{call_id}，作業=%{op}，資源代碼=%{rc_code}"
 
@@ -781,7 +786,11 @@ msgstr "成功更新群組"
 msgid "Group: %{id}"
 msgstr "群組︰%{id}"
 
-#: ../app/controllers/explorer_controller.rb:44 ../app/views/layouts/main.html.erb:205
+#: ../app/views/layouts/main.html.erb:176
+msgid "Help..."
+msgstr ""
+
+#: ../app/controllers/explorer_controller.rb:44 ../app/views/layouts/main.html.erb:245
 msgid "History Explorer"
 msgstr "歷程總管"
 
@@ -870,7 +879,7 @@ msgstr "位置"
 msgid "Log In"
 msgstr "登入"
 
-#: ../app/views/layouts/main.html.erb:185
+#: ../app/views/layouts/main.html.erb:225
 msgid "Log Out"
 msgstr "登出"
 
@@ -987,7 +996,7 @@ msgstr "未指定複製品子項"
 msgid "No cluster properties set in %{group}"
 msgstr "%{group} 中未設定叢集內容"
 
-#: ../app/controllers/explorer_controller.rb:159 ../app/controllers/explorer_controller.rb:229
+#: ../app/controllers/explorer_controller.rb:148 ../app/controllers/explorer_controller.rb:208
 msgid "No details available"
 msgstr "沒有可用的詳細資訊"
 
@@ -1083,7 +1092,7 @@ msgstr "順序"
 msgid "PE Input"
 msgstr "PE 輸入"
 
-#: ../app/controllers/explorer_controller.rb:103
+#: ../app/controllers/explorer_controller.rb:97
 msgid "PE Input created by different Pacemaker version (%{version})"
 msgstr ""
 
@@ -1091,7 +1100,7 @@ msgstr ""
 msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
 msgstr "似乎未安裝 Pacemaker (找不到 %{cmd})"
 
-#: ../app/controllers/explorer_controller.rb:104
+#: ../app/controllers/explorer_controller.rb:98
 msgid "Pacemaker version not present in PE Input"
 msgstr ""
 
@@ -1127,7 +1136,7 @@ msgstr "許可權遭拒"
 msgid "Permission denied - you do not have write access to the CIB."
 msgstr ""
 
-#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:257 ../lib/invoker.rb:133 ../lib/invoker.rb:155 ../lib/invoker.rb:197
+#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:252 ../lib/invoker.rb:114 ../lib/invoker.rb:131 ../lib/invoker.rb:168
 msgid "Permission denied for user %{user}"
 msgstr "使用者 %{user} 的許可權遭拒"
 
@@ -1192,11 +1201,11 @@ msgstr "未指定所需的參數「resource」"
 msgid "Required parameter \"ticket\" not specified"
 msgstr "未指定所需的參數「node」"
 
-#: ../app/controllers/explorer_controller.rb:134
+#: ../app/controllers/explorer_controller.rb:128
 msgid "Required parameters \"basename\" and \"node\" not specified"
 msgstr "未指定所需的參數「basename」與「node」"
 
-#: ../app/controllers/explorer_controller.rb:202
+#: ../app/controllers/explorer_controller.rb:186
 msgid "Required parameters \"left\" and \"right\" not specified"
 msgstr "未指定所需的參數「left」與「right」"
 
@@ -1245,7 +1254,7 @@ msgstr "成功更新資源"
 msgid "Resource:"
 msgstr "資源︰"
 
-#: ../app/controllers/resources_controller.rb:57 ../app/views/layouts/main.html.erb:226
+#: ../app/controllers/resources_controller.rb:57 ../app/views/layouts/main.html.erb:266
 msgid "Resources"
 msgstr "資源"
 
@@ -1327,7 +1336,7 @@ msgstr "已啟用 STONITH"
 msgid "Score"
 msgstr "分數"
 
-#: ../app/views/layouts/main.html.erb:211
+#: ../app/views/layouts/main.html.erb:251
 msgid "Setup Wizard"
 msgstr "設定精靈"
 
@@ -1387,7 +1396,7 @@ msgstr "已啟動"
 msgid "State:"
 msgstr "狀態："
 
-#: ../app/views/layouts/main.html.erb:182 ../app/views/layouts/main.html.erb:190
+#: ../app/views/layouts/main.html.erb:222 ../app/views/layouts/main.html.erb:230
 msgid "Status"
 msgstr "狀態"
 
@@ -1463,11 +1472,11 @@ msgstr "以下組態會套用至叢集︰"
 msgid "The host %{h} is already present in cluster %{c}"
 msgstr "叢集 %{c} 中已存在主機 %{h}"
 
-#: ../lib/invoker.rb:131
+#: ../lib/invoker.rb:112
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "物件/屬性不存在 (cibadmin %{cmd})"
 
-#: ../lib/invoker.rb:153
+#: ../lib/invoker.rb:129
 msgid "The object/attribute does not exist: %{msg}"
 msgstr "物件/屬性不存在︰%{msg}"
 
@@ -1577,7 +1586,7 @@ msgstr "移至節點 %s"
 msgid "Toggle view by type"
 msgstr ""
 
-#: ../app/views/layouts/main.html.erb:178
+#: ../app/views/layouts/main.html.erb:218
 msgid "Tools"
 msgstr "工具"
 
@@ -1589,7 +1598,7 @@ msgstr "樹狀檢視"
 msgid "Type"
 msgstr "類型"
 
-#: ../app/views/layouts/main.html.erb:250
+#: ../app/views/layouts/main.html.erb:290
 msgid "UI Host: %s"
 msgstr "UI 主機：%s"
 
@@ -1673,7 +1682,7 @@ msgstr "未清理"
 msgid "Unexpected server error: %s"
 msgstr "未預期的伺服器錯誤︰%s"
 
-#: ../app/models/cib.rb:267 ../app/models/cib.rb:268 ../app/models/cib.rb:625 ../app/views/main/_gettext.js.erb:206
+#: ../app/models/cib.rb:262 ../app/models/cib.rb:263 ../app/models/cib.rb:624 ../app/views/main/_gettext.js.erb:206
 msgid "Unknown"
 msgstr "未知"
 
@@ -1720,7 +1729,7 @@ msgstr ""
 msgid "User updated successfully"
 msgstr "成功更新複製品"
 
-#: ../app/views/layouts/main.html.erb:184
+#: ../app/views/layouts/main.html.erb:224
 msgid "User: %{user}"
 msgstr "使用者︰%{user}"
 
@@ -1792,10 +1801,7 @@ msgstr "[條件約束過於複雜，無法顯示]"
 msgid "hb_report generation in progress..."
 msgstr "正在產生 hb_report..."
 
-#: ../app/models/cib.rb:243
 #~ msgid "%{cmd} failed (status: %{status}, output was: %{output})"
 #~ msgstr "%{cmd} 失敗 (狀態︰%{status}，輸出為︰%{output})"
-
-#: ../app/views/layouts/main.html.erb:214
 #~ msgid "Cluster Properties"
 #~ msgstr "叢集內容"

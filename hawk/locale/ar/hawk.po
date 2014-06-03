@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-02 20:20+1000\n"
+"POT-Creation-Date: 2014-06-04 00:16+1000\n"
 "PO-Revision-Date: 2014-05-02 10:40\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -210,7 +210,7 @@ msgstr "< الخلف"
 msgid "A cluster with that name already exists"
 msgstr "المجموعة المتماثلة التي تحمل هذا الاسم موجودة بالفعل"
 
-#: ../app/controllers/acls_controller.rb:72 ../app/views/layouts/main.html.erb:220
+#: ../app/controllers/acls_controller.rb:72 ../app/views/layouts/main.html.erb:260
 msgid "Access Control Lists"
 msgstr ""
 
@@ -375,7 +375,7 @@ msgstr "تم تحديث الاستنساخ بنجاح"
 msgid "Close"
 msgstr "إغلاق"
 
-#: ../app/controllers/crm_config_controller.rb:45 ../app/views/layouts/main.html.erb:214 ../app/views/main/_gettext.js.erb:99
+#: ../app/controllers/crm_config_controller.rb:45 ../app/views/layouts/main.html.erb:254 ../app/views/main/_gettext.js.erb:99
 msgid "Cluster Configuration"
 msgstr "تكوين المجموعة"
 
@@ -395,7 +395,7 @@ msgstr "اسم المجموعة المتماثلة:"
 msgid "Cluster Setup Wizard"
 msgstr "معالج إعداد المجموعة"
 
-#: ../app/controllers/main_controller.rb:78 ../app/views/layouts/main.html.erb:199
+#: ../app/controllers/main_controller.rb:78 ../app/views/layouts/main.html.erb:239
 msgid "Cluster Status"
 msgstr "حالة المجموعة"
 
@@ -447,11 +447,11 @@ msgstr "يجب أن يتكون القيد من موردين منفصلين عل�
 msgid "Constraint updated successfully"
 msgstr "تم تحديث القيد بنجاح"
 
-#: ../app/controllers/constraints_controller.rb:44 ../app/views/layouts/main.html.erb:229
+#: ../app/controllers/constraints_controller.rb:44 ../app/views/layouts/main.html.erb:269
 msgid "Constraints"
 msgstr "القيود"
 
-#: ../app/views/layouts/main.html.erb:251
+#: ../app/views/layouts/main.html.erb:291
 msgid "Copyright &copy; 2009-2014 SUSE, LLC"
 msgstr "حقوق النسخ &copy; 2009-2014 لشركة SUSE, LLC"
 
@@ -509,7 +509,7 @@ msgstr "إنشاء مورد"
 msgid "DC: %s"
 msgstr "DC: %s"
 
-#: ../app/views/layouts/main.html.erb:190
+#: ../app/views/layouts/main.html.erb:230
 msgid "Dashboard"
 msgstr "لوحة المعلومات"
 
@@ -549,6 +549,11 @@ msgstr "الفرق"
 #: ../app/views/explorer/index.html.erb:173
 msgid "Display"
 msgstr "عرض"
+
+#: ../app/views/layouts/main.html.erb:197
+#, fuzzy
+msgid "Documentation"
+msgstr "الموقع"
 
 #: ../app/controllers/wizard_controller.rb:181 ../app/views/wizard/done.html.erb:10
 msgid "Done"
@@ -645,19 +650,19 @@ msgstr "حدث خطأ أثناء تطبيق التكوين:"
 msgid "Error deleting resource"
 msgstr "حدث خطأ أثناء حذف المورد"
 
-#: ../app/models/cib.rb:254
+#: ../app/models/cib.rb:249
 msgid "Error invoking %{cmd}"
 msgstr "حدث خطأ أثناء استدعاء %{cmd}"
 
-#: ../app/controllers/main_controller.rb:330 ../app/models/cib.rb:259
+#: ../app/controllers/main_controller.rb:326 ../app/models/cib.rb:254
 msgid "Error invoking %{cmd}: %{msg}"
 msgstr "حدث خطأ أثناء استدعاء %{cmd}: %{msg}"
 
-#: ../lib/invoker.rb:135
+#: ../lib/invoker.rb:116
 msgid "Error invoking cibadmin %{cmd}: %{msg}"
 msgstr "حدث خطأ أثناء استدعاء cibadmin %{cmd}: %{msg}"
 
-#: ../lib/invoker.rb:157
+#: ../lib/invoker.rb:133
 msgid "Error invoking cibadmin --replace: %{msg}"
 msgstr "حدث خطأ أثناء استدعاء cibadmin --replace: %{msg}"
 
@@ -669,7 +674,7 @@ msgstr "حدث خطأ أثناء تحليل القالب \"%s\""
 msgid "Error parsing workflow \"%s\""
 msgstr "حدث خطأ أثناء تحليل التدفق \"%s\""
 
-#: ../app/controllers/explorer_controller.rb:161 ../app/controllers/explorer_controller.rb:189 ../app/controllers/explorer_controller.rb:250
+#: ../app/controllers/explorer_controller.rb:150 ../app/controllers/explorer_controller.rb:173 ../app/controllers/explorer_controller.rb:229
 msgid "Error:"
 msgstr "الخطأ:"
 
@@ -706,7 +711,7 @@ msgstr ""
 msgid "Failed Master"
 msgstr "رئيس فاشل"
 
-#: ../app/models/cib.rb:485
+#: ../app/models/cib.rb:484
 msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
 msgstr "عملية فاشلة: العقدة=%{node}، المورد =%{resource}، معرف الاستدعاء=%{call_id}، العملية=%{op}، رمز rc={rc_code}"
 
@@ -783,7 +788,11 @@ msgstr "تم تحديث المجموعة بنجاح"
 msgid "Group: %{id}"
 msgstr "المجموعة: %{id}"
 
-#: ../app/controllers/explorer_controller.rb:44 ../app/views/layouts/main.html.erb:205
+#: ../app/views/layouts/main.html.erb:176
+msgid "Help..."
+msgstr ""
+
+#: ../app/controllers/explorer_controller.rb:44 ../app/views/layouts/main.html.erb:245
 msgid "History Explorer"
 msgstr "History Explorer"
 
@@ -872,7 +881,7 @@ msgstr "الموقع"
 msgid "Log In"
 msgstr "دخول"
 
-#: ../app/views/layouts/main.html.erb:185
+#: ../app/views/layouts/main.html.erb:225
 msgid "Log Out"
 msgstr "خروج"
 
@@ -989,7 +998,7 @@ msgstr "لا يوجد فرع استنساخ محدد"
 msgid "No cluster properties set in %{group}"
 msgstr "لم يتم تعيين أية خصائص للمجموعة في %{group}"
 
-#: ../app/controllers/explorer_controller.rb:159 ../app/controllers/explorer_controller.rb:229
+#: ../app/controllers/explorer_controller.rb:148 ../app/controllers/explorer_controller.rb:208
 msgid "No details available"
 msgstr "لا تتوفر أية تفاصيل"
 
@@ -1085,7 +1094,7 @@ msgstr "ترتيب"
 msgid "PE Input"
 msgstr "إدخال PE"
 
-#: ../app/controllers/explorer_controller.rb:103
+#: ../app/controllers/explorer_controller.rb:97
 msgid "PE Input created by different Pacemaker version (%{version})"
 msgstr ""
 
@@ -1093,7 +1102,7 @@ msgstr ""
 msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
 msgstr "يبدو أنه لم يتم تثبيت Pacemaker، (لم يتم العثور على %{cmd})"
 
-#: ../app/controllers/explorer_controller.rb:104
+#: ../app/controllers/explorer_controller.rb:98
 msgid "Pacemaker version not present in PE Input"
 msgstr ""
 
@@ -1129,7 +1138,7 @@ msgstr "الإذن مرفوض"
 msgid "Permission denied - you do not have write access to the CIB."
 msgstr ""
 
-#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:257 ../lib/invoker.rb:133 ../lib/invoker.rb:155 ../lib/invoker.rb:197
+#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:252 ../lib/invoker.rb:114 ../lib/invoker.rb:131 ../lib/invoker.rb:168
 msgid "Permission denied for user %{user}"
 msgstr "تم رفض الإذن للمستخدم %{user}"
 
@@ -1194,11 +1203,11 @@ msgstr "المعلمة المطلوبة \"resource\" غير محددة"
 msgid "Required parameter \"ticket\" not specified"
 msgstr "المعلمة المطلوبة \"node\" غير محددة"
 
-#: ../app/controllers/explorer_controller.rb:134
+#: ../app/controllers/explorer_controller.rb:128
 msgid "Required parameters \"basename\" and \"node\" not specified"
 msgstr "المعلمتان المطلوبتان \"basename\" و\"node\" غير محددتين"
 
-#: ../app/controllers/explorer_controller.rb:202
+#: ../app/controllers/explorer_controller.rb:186
 msgid "Required parameters \"left\" and \"right\" not specified"
 msgstr "المعلمتان المطلوبتان \"left\" و\"right\" غير محددتين"
 
@@ -1247,7 +1256,7 @@ msgstr "تم تحديث المورد بنجاح"
 msgid "Resource:"
 msgstr "المورد:"
 
-#: ../app/controllers/resources_controller.rb:57 ../app/views/layouts/main.html.erb:226
+#: ../app/controllers/resources_controller.rb:57 ../app/views/layouts/main.html.erb:266
 msgid "Resources"
 msgstr "الموارد"
 
@@ -1329,7 +1338,7 @@ msgstr "تم تمكين STONITH"
 msgid "Score"
 msgstr "النتيجة"
 
-#: ../app/views/layouts/main.html.erb:211
+#: ../app/views/layouts/main.html.erb:251
 msgid "Setup Wizard"
 msgstr "معالج الإعداد"
 
@@ -1389,7 +1398,7 @@ msgstr "تم البدء"
 msgid "State:"
 msgstr "الولاية:"
 
-#: ../app/views/layouts/main.html.erb:182 ../app/views/layouts/main.html.erb:190
+#: ../app/views/layouts/main.html.erb:222 ../app/views/layouts/main.html.erb:230
 msgid "Status"
 msgstr "الحالة"
 
@@ -1465,11 +1474,11 @@ msgstr "سيتم تطبيق التكوين التالي على المجموعة:
 msgid "The host %{h} is already present in cluster %{c}"
 msgstr "المضيف %{h} موجود بالفعل في المجموعة المتماثلة %{c}"
 
-#: ../lib/invoker.rb:131
+#: ../lib/invoker.rb:112
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "الكائن/السمة غير موجودة (cibadmin %{cmd})"
 
-#: ../lib/invoker.rb:153
+#: ../lib/invoker.rb:129
 msgid "The object/attribute does not exist: %{msg}"
 msgstr "الكائن/السمة غير موجودة: %{msg}"
 
@@ -1579,7 +1588,7 @@ msgstr "إلى نقطة التوصيل %s"
 msgid "Toggle view by type"
 msgstr ""
 
-#: ../app/views/layouts/main.html.erb:178
+#: ../app/views/layouts/main.html.erb:218
 msgid "Tools"
 msgstr "الأدوات"
 
@@ -1591,7 +1600,7 @@ msgstr "طريقة عرض الشجرة"
 msgid "Type"
 msgstr "النوع"
 
-#: ../app/views/layouts/main.html.erb:250
+#: ../app/views/layouts/main.html.erb:290
 msgid "UI Host: %s"
 msgstr "مضيف واجهة الاستخدام: %s"
 
@@ -1675,7 +1684,7 @@ msgstr "غير صحيح"
 msgid "Unexpected server error: %s"
 msgstr "خطأ غير متوقع بالخادم: %s"
 
-#: ../app/models/cib.rb:267 ../app/models/cib.rb:268 ../app/models/cib.rb:625 ../app/views/main/_gettext.js.erb:206
+#: ../app/models/cib.rb:262 ../app/models/cib.rb:263 ../app/models/cib.rb:624 ../app/views/main/_gettext.js.erb:206
 msgid "Unknown"
 msgstr "غير معروف"
 
@@ -1722,7 +1731,7 @@ msgstr ""
 msgid "User updated successfully"
 msgstr "تم تحديث الاستنساخ بنجاح"
 
-#: ../app/views/layouts/main.html.erb:184
+#: ../app/views/layouts/main.html.erb:224
 msgid "User: %{user}"
 msgstr "المستخدم: %{user}"
 
@@ -1794,10 +1803,7 @@ msgstr "[القيد معقد للغاية لدرجة تصعب عرضه]"
 msgid "hb_report generation in progress..."
 msgstr "جارٍ إنشاء hb_report..."
 
-#: ../app/models/cib.rb:243
 #~ msgid "%{cmd} failed (status: %{status}, output was: %{output})"
 #~ msgstr "فشل %{cmd} (الحالة: %{status}، كانت المخرجات %{output})"
-
-#: ../app/views/layouts/main.html.erb:214
 #~ msgid "Cluster Properties"
 #~ msgstr "خصائص المجموعة"

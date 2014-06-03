@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-06-02 20:20+1000\n"
+"POT-Creation-Date: 2014-06-04 00:16+1000\n"
 "PO-Revision-Date: 2014-05-02 16:25\n"
 "Last-Translator: Novell Language <language@novell.com>\n"
 "Language-Team: Novell Language <language@novell.com>\n"
@@ -213,7 +213,7 @@ msgstr "< Wstecz"
 msgid "A cluster with that name already exists"
 msgstr "Klaster o takiej nazwie już istnieje"
 
-#: ../app/controllers/acls_controller.rb:72 ../app/views/layouts/main.html.erb:220
+#: ../app/controllers/acls_controller.rb:72 ../app/views/layouts/main.html.erb:260
 msgid "Access Control Lists"
 msgstr ""
 
@@ -378,7 +378,7 @@ msgstr "Klon został zaktualizowany"
 msgid "Close"
 msgstr "Zamknij"
 
-#: ../app/controllers/crm_config_controller.rb:45 ../app/views/layouts/main.html.erb:214 ../app/views/main/_gettext.js.erb:99
+#: ../app/controllers/crm_config_controller.rb:45 ../app/views/layouts/main.html.erb:254 ../app/views/main/_gettext.js.erb:99
 msgid "Cluster Configuration"
 msgstr "Konfiguracja klastra"
 
@@ -398,7 +398,7 @@ msgstr "Nazwa klastra:"
 msgid "Cluster Setup Wizard"
 msgstr "Kreator konfiguracji klastra"
 
-#: ../app/controllers/main_controller.rb:78 ../app/views/layouts/main.html.erb:199
+#: ../app/controllers/main_controller.rb:78 ../app/views/layouts/main.html.erb:239
 msgid "Cluster Status"
 msgstr "Stan klastrów"
 
@@ -450,11 +450,11 @@ msgstr "Ograniczenie musi zawierać co najmniej dwa oddzielne zasoby"
 msgid "Constraint updated successfully"
 msgstr "Ograniczenie zostało zaktualizowane"
 
-#: ../app/controllers/constraints_controller.rb:44 ../app/views/layouts/main.html.erb:229
+#: ../app/controllers/constraints_controller.rb:44 ../app/views/layouts/main.html.erb:269
 msgid "Constraints"
 msgstr "Ograniczenia"
 
-#: ../app/views/layouts/main.html.erb:251
+#: ../app/views/layouts/main.html.erb:291
 msgid "Copyright &copy; 2009-2014 SUSE, LLC"
 msgstr "Copyright &copy; 2009-2014 SUSE, LLC"
 
@@ -512,7 +512,7 @@ msgstr "Utwórz zasób"
 msgid "DC: %s"
 msgstr "DC: %s"
 
-#: ../app/views/layouts/main.html.erb:190
+#: ../app/views/layouts/main.html.erb:230
 msgid "Dashboard"
 msgstr "Pulpit nawigacyjny"
 
@@ -552,6 +552,11 @@ msgstr "Różnica"
 #: ../app/views/explorer/index.html.erb:173
 msgid "Display"
 msgstr "Ekran"
+
+#: ../app/views/layouts/main.html.erb:197
+#, fuzzy
+msgid "Documentation"
+msgstr "Położenie"
 
 #: ../app/controllers/wizard_controller.rb:181 ../app/views/wizard/done.html.erb:10
 msgid "Done"
@@ -648,19 +653,19 @@ msgstr "Błąd przy zastosowaniu konfiguracji:"
 msgid "Error deleting resource"
 msgstr "Błąd podczas usuwania zasobu"
 
-#: ../app/models/cib.rb:254
+#: ../app/models/cib.rb:249
 msgid "Error invoking %{cmd}"
 msgstr "Błąd wywołania %{cmd}"
 
-#: ../app/controllers/main_controller.rb:330 ../app/models/cib.rb:259
+#: ../app/controllers/main_controller.rb:326 ../app/models/cib.rb:254
 msgid "Error invoking %{cmd}: %{msg}"
 msgstr "Błąd wywołania %{cmd}: %{msg}"
 
-#: ../lib/invoker.rb:135
+#: ../lib/invoker.rb:116
 msgid "Error invoking cibadmin %{cmd}: %{msg}"
 msgstr "Błąd wywołania cibadmin %{cmd}: %{msg}"
 
-#: ../lib/invoker.rb:157
+#: ../lib/invoker.rb:133
 msgid "Error invoking cibadmin --replace: %{msg}"
 msgstr "Błąd wywołania cibadmin --replace: %{msg}"
 
@@ -672,7 +677,7 @@ msgstr "Błąd przetwarzania szablonu \"%s\""
 msgid "Error parsing workflow \"%s\""
 msgstr "Błąd przetwarzania przepływu \"%s\""
 
-#: ../app/controllers/explorer_controller.rb:161 ../app/controllers/explorer_controller.rb:189 ../app/controllers/explorer_controller.rb:250
+#: ../app/controllers/explorer_controller.rb:150 ../app/controllers/explorer_controller.rb:173 ../app/controllers/explorer_controller.rb:229
 msgid "Error:"
 msgstr "Błąd:"
 
@@ -709,7 +714,7 @@ msgstr ""
 msgid "Failed Master"
 msgstr "Błąd elementu nadrzędnego"
 
-#: ../app/models/cib.rb:485
+#: ../app/models/cib.rb:484
 msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
 msgstr "Niepowodzenie: węzeł = %{node}, zasób = %{resource}, ID wywołania = %{call_id}, operacja = %{op}, kod rc = %{rc_code}"
 
@@ -786,7 +791,11 @@ msgstr "Grupa została zaktualizowana"
 msgid "Group: %{id}"
 msgstr "Grupa: %{id}"
 
-#: ../app/controllers/explorer_controller.rb:44 ../app/views/layouts/main.html.erb:205
+#: ../app/views/layouts/main.html.erb:176
+msgid "Help..."
+msgstr ""
+
+#: ../app/controllers/explorer_controller.rb:44 ../app/views/layouts/main.html.erb:245
 msgid "History Explorer"
 msgstr "Przeglądarka historii"
 
@@ -875,7 +884,7 @@ msgstr "Położenie"
 msgid "Log In"
 msgstr "Zaloguj"
 
-#: ../app/views/layouts/main.html.erb:185
+#: ../app/views/layouts/main.html.erb:225
 msgid "Log Out"
 msgstr "Wyloguj"
 
@@ -992,7 +1001,7 @@ msgstr "Nie określono elementu potomnego klony"
 msgid "No cluster properties set in %{group}"
 msgstr "Nie ustawiono właściwości klastra w %{group}"
 
-#: ../app/controllers/explorer_controller.rb:159 ../app/controllers/explorer_controller.rb:229
+#: ../app/controllers/explorer_controller.rb:148 ../app/controllers/explorer_controller.rb:208
 msgid "No details available"
 msgstr "Szczegóły nie są dostępne"
 
@@ -1088,7 +1097,7 @@ msgstr "Kolejność"
 msgid "PE Input"
 msgstr "Wejście PE"
 
-#: ../app/controllers/explorer_controller.rb:103
+#: ../app/controllers/explorer_controller.rb:97
 msgid "PE Input created by different Pacemaker version (%{version})"
 msgstr ""
 
@@ -1096,7 +1105,7 @@ msgstr ""
 msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
 msgstr "Wygląda na to, że program Pacemaker nie jest zainstalowany (nie znaleziono polecenia %{cmd})"
 
-#: ../app/controllers/explorer_controller.rb:104
+#: ../app/controllers/explorer_controller.rb:98
 msgid "Pacemaker version not present in PE Input"
 msgstr ""
 
@@ -1132,7 +1141,7 @@ msgstr "Brak dostępu"
 msgid "Permission denied - you do not have write access to the CIB."
 msgstr ""
 
-#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:257 ../lib/invoker.rb:133 ../lib/invoker.rb:155 ../lib/invoker.rb:197
+#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:252 ../lib/invoker.rb:114 ../lib/invoker.rb:131 ../lib/invoker.rb:168
 msgid "Permission denied for user %{user}"
 msgstr "Dostęp zabroniony dla użytkownika %{user}"
 
@@ -1197,11 +1206,11 @@ msgstr "Nie podano wymaganego parametru \"resource\" (zasób)"
 msgid "Required parameter \"ticket\" not specified"
 msgstr "Nie podano wymaganego parametru \"node\" (węzeł)"
 
-#: ../app/controllers/explorer_controller.rb:134
+#: ../app/controllers/explorer_controller.rb:128
 msgid "Required parameters \"basename\" and \"node\" not specified"
 msgstr "Nie podano wymaganych parametrów \"basename\" i \"node\""
 
-#: ../app/controllers/explorer_controller.rb:202
+#: ../app/controllers/explorer_controller.rb:186
 msgid "Required parameters \"left\" and \"right\" not specified"
 msgstr "Nie podano wymaganych parametrów \"left\" i \"right\""
 
@@ -1250,7 +1259,7 @@ msgstr "Zasób został uaktualniony"
 msgid "Resource:"
 msgstr "Zasób:"
 
-#: ../app/controllers/resources_controller.rb:57 ../app/views/layouts/main.html.erb:226
+#: ../app/controllers/resources_controller.rb:57 ../app/views/layouts/main.html.erb:266
 msgid "Resources"
 msgstr "Zasoby"
 
@@ -1332,7 +1341,7 @@ msgstr "Włączone STONITH"
 msgid "Score"
 msgstr "Punkty"
 
-#: ../app/views/layouts/main.html.erb:211
+#: ../app/views/layouts/main.html.erb:251
 msgid "Setup Wizard"
 msgstr "Kreator ustawień"
 
@@ -1392,7 +1401,7 @@ msgstr "Uruchomiony"
 msgid "State:"
 msgstr "Stan:"
 
-#: ../app/views/layouts/main.html.erb:182 ../app/views/layouts/main.html.erb:190
+#: ../app/views/layouts/main.html.erb:222 ../app/views/layouts/main.html.erb:230
 msgid "Status"
 msgstr "Stan"
 
@@ -1468,11 +1477,11 @@ msgstr "Następująca konfiguracja zostanie zastosowana dla tego klastra:"
 msgid "The host %{h} is already present in cluster %{c}"
 msgstr "Host %{h} już znajduje się w klastrze %{c}"
 
-#: ../lib/invoker.rb:131
+#: ../lib/invoker.rb:112
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "Obiekt/atrybut nie istnieje (cibadmin %{cmd})"
 
-#: ../lib/invoker.rb:153
+#: ../lib/invoker.rb:129
 msgid "The object/attribute does not exist: %{msg}"
 msgstr "Obiekt/atrybut nie istnieje: %{msg}"
 
@@ -1582,7 +1591,7 @@ msgstr "Do węzła %s"
 msgid "Toggle view by type"
 msgstr ""
 
-#: ../app/views/layouts/main.html.erb:178
+#: ../app/views/layouts/main.html.erb:218
 msgid "Tools"
 msgstr "Narzędzia"
 
@@ -1594,7 +1603,7 @@ msgstr "Widok drzewa"
 msgid "Type"
 msgstr "Typ"
 
-#: ../app/views/layouts/main.html.erb:250
+#: ../app/views/layouts/main.html.erb:290
 msgid "UI Host: %s"
 msgstr "Host UI: %s"
 
@@ -1678,7 +1687,7 @@ msgstr "Nieczysty"
 msgid "Unexpected server error: %s"
 msgstr "Nieoczekiwany błąd serwera: %s"
 
-#: ../app/models/cib.rb:267 ../app/models/cib.rb:268 ../app/models/cib.rb:625 ../app/views/main/_gettext.js.erb:206
+#: ../app/models/cib.rb:262 ../app/models/cib.rb:263 ../app/models/cib.rb:624 ../app/views/main/_gettext.js.erb:206
 msgid "Unknown"
 msgstr "Nieznany"
 
@@ -1725,7 +1734,7 @@ msgstr ""
 msgid "User updated successfully"
 msgstr "Klon został zaktualizowany"
 
-#: ../app/views/layouts/main.html.erb:184
+#: ../app/views/layouts/main.html.erb:224
 msgid "User: %{user}"
 msgstr "Użytkownik: %{user}"
 
@@ -1797,12 +1806,9 @@ msgstr "[Ograniczenie jest zbyt złożone, aby je wyświetlić]"
 msgid "hb_report generation in progress..."
 msgstr "Trwa generowanie hb_report..."
 
-#: ../app/models/cib.rb:243
 #~ msgid "%{cmd} failed (status: %{status}, output was: %{output})"
 #~ msgstr ""
 #~ "Wykonanie polecenia %{cmd} nie powiodło się (stan: %{status}, komunikaty wyjśc"
 #~ "ia: %{output})"
-
-#: ../app/views/layouts/main.html.erb:214
 #~ msgid "Cluster Properties"
 #~ msgstr "Właściwości klastra"
