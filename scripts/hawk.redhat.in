@@ -30,6 +30,8 @@
 #	High-Availability cluster resource manager.
 ### END INIT INFO
 
+prog="hawk"
+lockfile=/var/lock/subsys/$prog
 
 # Check for missing binaries (stale symlinks should not happen)
 # Note: Special treatment of stop for LSB conformance
@@ -121,6 +123,7 @@ case "$1" in
 
 	if test "$RETVAL" -eq 0; then
 		print_hawk_url
+		touch $lockfile
 	fi
 	;;
     stop)
@@ -128,6 +131,10 @@ case "$1" in
 	killproc -p $PID_FILE $LIGHTTPD_BIN
 	RETVAL=$?
 	echo
+
+	if test "$RETVAL" -eq 0; then
+		rm -f $lockfile
+	fi
 	;;
     try-restart|condrestart)
 	$0 status || exit 0
