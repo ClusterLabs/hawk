@@ -432,14 +432,8 @@ class WizardController < ApplicationController
   end
 
   def verify_rootpw(password)
-    stdin, stdout, stderr, thread = Util.popen3('/usr/bin/su', '--login', 'root', '-c', '/usr/bin/true')
-    stdin.write(password)
-    stdin.close
-    stdout.read
-    stdout.close
-    stderr.read
-    stderr.close
-    thread.value.exitstatus == 0
+    out, err, status = Util.capture3('/usr/bin/su', '--login', 'root', '-c', '/usr/bin/true', :stdin_data => password)
+    status.exitstatus == 0
   end
 
   def remember_rootpw(password)

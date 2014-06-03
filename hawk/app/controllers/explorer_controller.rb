@@ -82,14 +82,8 @@ class ExplorerController < ApplicationController
         # prior cibadmin calls on individual PE inputs will have wrecked their mtimes.
         FileUtils.remove_entry_secure(@hb_report.path) if File.exists?(@hb_report.path)
         @peinputs = []
-        stdin, stdout, stderr, thread = Util.popen3("crm", "history")
-        stdin.write("source #{@report_path}\npeinputs\n")
-        stdin.close
-        peinputs_raw = stdout.read()
-        stdout.close
-        err = stderr.read()
-        stderr.close
-        if thread.value.exitstatus == 0
+        peinputs_raw, err, status = Util.capture3("crm", "history", :stdin_data => "source #{@report_path}\npeinputs\n")
+        if status.exitstatus == 0
           peinputs_raw.split(/\n/).each do |path|
             next unless File.exists?(path)
             @peinputs << {
@@ -172,13 +166,8 @@ class ExplorerController < ApplicationController
         # Can't use send_file here, server whines about file not existing(?!?)
         send_data File.new(tmpfile.path).read, :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
       else
-        stdin, stdout, stderr, thread = Util.popen3("/usr/bin/dot", "-Tpng", tmpfile.path)
-        stdin.close
-        png = stdout.read
-        stdout.close
-        err = stderr.read
-        stderr.close
-        if thread.value.exitstatus == 0
+        png, err, status = Util.capture3("/usr/bin/dot", "-Tpng", tmpfile.path)
+        if status.exitstatus == 0
           send_data png, :type => "image/png", :disposition => "inline"
         else
           render :status => 500, :content_type => "text/plain", :inline => _("Error:") + "\n#{err}"

@@ -75,17 +75,12 @@ class Invoker
     cmd2 = ["crm", "--scriptdir=#{scriptdir}", "script"] + cmd
     Rails.logger.debug cmd2
     # TODO(must): figure out if this join thing is kosher (should be, all input looks like plain text... :-/)
-    stdin, stdout, stderr, thread = Util.popen3('/usr/bin/su', '--login', 'root', '-c', cmd2.join(' '))
-    stdin.write(rootpw)
-    stdin.close
-    stdout.read
-    stdout.close
+    out, err, status = Util.capture3('/usr/bin/su', '--login', 'root', '-c', cmd2.join(' '), :stdin_data => rootpw)
     result = ""
-    stderr.readlines.each do |line|
+    err.split("\n").each do |line|
       result += line unless line.starts_with?('Password:')
     end
-    stderr.close
-    result = fudge_error(thread.value.exitstatus, result)
+    result = fudge_error(status.exitstatus, result)
     result == true ? true : result[1]
   end
 
