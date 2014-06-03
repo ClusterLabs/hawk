@@ -164,6 +164,46 @@ $(function() {
         return false;
       }
     }
+    <%
+    help_files = installed_documentation
+    if !help_files.empty?
+    %>
+    ,
+    {
+      separator: true
+    },
+    {
+      label: "<%=h escape_javascript _('Help...') %>",
+      icon: "help.png",
+      click: function(target) {
+        var html = "";
+        <% help_files.each do |help| %>
+        html += "<h2><%=h escape_javascript help[:title] %> (";
+        <% if help[:html] %>
+        html += '<a href="<%= help[:html] %>" target="_blank">HTML</a><%= help[:pdf] ? '|' : '' %>';
+        <% end %>
+        <% if help[:pdf] %>
+        html += '<a href="<%= help[:pdf] %>" target="_blank">PDF</a>';
+        <% end %>
+        html += ")</h2>";
+        html += "<p><%=h escape_javascript help[:desc] %></p>";
+        <% end %>
+        $("#dialog").html(html);
+        var b = {};
+        b[GETTEXT.close()] = function() {
+          $(this).dialog("close");
+        };
+        $("#dialog").dialog("option", {
+          title:    "<%=h escape_javascript _('Documentation') %>",
+          buttons:  b,
+          resizable: true,
+          draggable: true,
+          width:    "75%"
+        });
+        $("#dialog").dialog("open");
+      }
+    }
+    <% end %>
   ]});
   $(jq("menu::tools::popup")).click(function() {
     return $(jq("menu::tools")).popupmenu("popup", $(this));
