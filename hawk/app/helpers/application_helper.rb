@@ -27,7 +27,7 @@ module ApplicationHelper
         :pdf  => file_or_nil("/doc/sle-ha-nfs-quick_en-pdf/art_ha_quick_nfs_en.pdf"),
         :desc  => <<-eos
           Describes how to set up a highly available NFS storage in a 2-node cluster with
-          SLE HA, including the setup for DRBD® and LVM2.
+          SLE HA, including the setup for DRBD and LVM2\u00AE.
         eos
       },
       {
@@ -36,7 +36,7 @@ module ApplicationHelper
         :pdf  => file_or_nil("/doc/sle-ha-geo-quick_en-pdf/art.ha.geo.quick_en.pdf"),
         :desc => <<-eos
           Introduces the main components and displays a basic setup for geographically
-          dispersed clusters (Geo clusters), including storage replication via DRBD®.
+          dispersed clusters (Geo clusters), including storage replication via DRBD\u00AE.
         eos
       }
     ].select {|h| h[:html] || h[:pdf] }
