@@ -118,20 +118,17 @@ class HbReport
       args.push("-S") unless all_nodes
       args.push(@path)
 
-      stdin, stdout, stderr, thread = Util.run_as("root", "hb_report", *args)
-      stdin.close
+      out, err, status = Util.run_as("root", "hb_report", *args)
       f = File.new(@outfile, "w")
-      f.write(stdout.read())
+      f.write(out)
       f.close
-      stdout.close
       f = File.new(@errfile, "w")
-      f.write(stderr.read())
+      f.write(err)
       f.close
-      stderr.close
 
       # Record exit status
       f = File.new(@exitfile, "w")
-      f.write(thread.value.exitstatus)
+      f.write(status.exitstatus)
       f.close
 
       # Delete pidfile

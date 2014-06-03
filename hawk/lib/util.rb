@@ -110,7 +110,7 @@ module Util
   end
   module_function :capture3
 
-  # Like popen3, but via /usr/sbin/hawk_invoke
+  # Like capture3, but via /usr/sbin/hawk_invoke
   def run_as(user, *cmd)
     old_home = ENV['HOME']
     ENV['HOME'] = begin
@@ -135,7 +135,7 @@ module Util
       end
     end
     # RORSCAN_INL: mutli-arg invocation safe from shell injection.
-    pi = popen3('/usr/sbin/hawk_invoke', user, *cmd)
+    ret = capture3('/usr/sbin/hawk_invoke', user, *cmd)
     # Having invoked a command, reset $HOME to what it was before,
     # else it sticks, and other (non-invoker) crm invoctiaons, e.g.
     # has_feature() run the shell as hacluster, which in turn causes
@@ -143,14 +143,7 @@ module Util
     # which means the *next* call after that will die with permission
     # problems, and you will spend an entire day debugging it.
     ENV['HOME'] = old_home
-    if defined? yield
-      begin
-        return yield(*pi)
-      ensure
-        pi.each{|p| p.close if p.respond_to?(:closed) && !p.closed?}
-      end
-    end
-    pi
+    ret
   end
   module_function :run_as
 

@@ -146,19 +146,14 @@ class ExplorerController < ApplicationController
     when "info"
       cmd = "transition #{tname} nograph"
       cmd = "transition log #{tname}" if params[:log]
-      stdin, stdout, stderr, thread = Util.run_as("root", "crm", "history")
-      stdin.write("source #{@report_path}\n#{cmd}\n")
-      stdin.close
-      info = stdout.read()
-      stdout.close
-      info += stderr.read()
-      stderr.close
+      out, err, status = Util.run_as("root", "crm", "history", :stdin_data => "source #{@report_path}\n#{cmd}\n")
+      info = out + err
 
       info.strip!
       # TODO(should): option to increase verbosity level
       info = _("No details available") if info.empty?
 
-      info.insert(0, _("Error:") + "\n") unless thread.value.exitstatus == 0
+      info.insert(0, _("Error:") + "\n") unless status.exitstatus == 0
 
       send_data info, :type => "text/plain", :disposition => "inline"
     when "graph"
@@ -216,19 +211,14 @@ class ExplorerController < ApplicationController
     format = params[:format] == "html" ? "html" : ""
 
     if (l && r)
-      stdin, stdout, stderr, thread = Util.run_as("root", "crm", "history")
-      stdin.write("source #{@report_path}\ndiff #{l} #{r} status #{format}\ndiff #{l} #{r} #{format}\n")
-      stdin.close
-      info = stdout.read()
-      stdout.close
-      info += stderr.read()
-      stderr.close
+      out, err, status = Util.run_as("root", "crm", "history", :stdin_data => "source #{@report_path}\ndiff #{l} #{r} status #{format}\ndiff #{l} #{r} #{format}\n")
+      info = out + err
 
       info.strip!
       # TODO(should): option to increase verbosity level
       info = _("No details available") if info.empty?
 
-      if thread.value.exitstatus == 0
+      if status.exitstatus == 0
         if format == "html"
           info += <<-eos
             <table>

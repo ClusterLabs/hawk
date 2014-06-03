@@ -83,19 +83,16 @@ module CrmHistory
     f.write(cmd.join(" "))
     f.close
     pid = fork {
-      stdin, stdout, stderr, thread = Util.run_as("root", "crm", "history", *cmd)
-      stdin.close
+      out, err, status = Util.run_as("root", "crm", "history", *cmd)
       f = File.new(@outfile, "w")
-      f.write(stdout.read())
+      f.write(out)
       f.close
-      stdout.close
       f = File.new(@errfile, "w")
-      f.write(stderr.read())
+      f.write(err)
       f.close
-      stderr.close
 
       f = File.new(@exitfile, "w")
-      f.write(thread.value.exitstatus)
+      f.write(status.exitstatus)
       f.close
       File.unlink(@pidfile)
     }
