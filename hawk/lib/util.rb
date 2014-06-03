@@ -44,6 +44,9 @@ module Util
   # in non-block form, you need to close stdin, out and err
   # else the process won't be complete when you try to get the
   # exit status.
+  # DON'T USE THIS FUNCTION DIRECTLY - it's subject to deadlocks e.g.:
+  # http://coldattic.info/shvedsky/pro/blogs/a-foo-walks-into-a-bar/posts/63
+  # Rather you should prefer capture3.
   def popen3(*cmd)
     raise SecurityError, "Util::popen3 called with < 2 args" if cmd.length < 2
     pw = IO::pipe   # pipe[0] for read, pipe[1] for write
@@ -85,6 +88,27 @@ module Util
     pi
   end
   module_function :popen3
+
+  # Derived from ruby 1.9 Open.capture3 (not just using that, as Hawk on
+  # SLE 11 SP3 still has ruby 1.8).
+  # Returns [stdout_str, stderr_str, status].  Pass :stdin_data => '...' if
+  # you need to send something to the command on stdin.
+  def capture3(*cmd)
+    if Hash === cmd.last
+      opts = cmd.pop.dup
+    else
+      opts = {}
+    end
+    stdin_data = opts.delete(:stdin_data) || ''
+    Util.popen3(*cmd) {|i, o, e, t|
+      out_reader = Thread.new { o.read }
+      err_reader = Thread.new { e.read }
+      i.write stdin_data
+      i.close
+      [out_reader.value, err_reader.value, t.value]
+    }
+  end
+  module_function :capture3
 
   # Like popen3, but via /usr/sbin/hawk_invoke
   def run_as(user, *cmd)
