@@ -242,13 +242,8 @@ class Cib < CibObject
       raise RuntimeError, _('Pacemaker does not appear to be installed (%{cmd} not found)') %
                              {:cmd => '/usr/sbin/crm_mon' } unless File.exists?('/usr/sbin/crm_mon')
       raise RuntimeError, _('Unable to execute %{cmd}') % {:cmd => '/usr/sbin/crm_mon' } unless File.executable?('/usr/sbin/crm_mon')
-      stdin, stdout, stderr, thread = Util.run_as(user, 'cibadmin', '-Ql')
-      stdin.close
-      out = stdout.read()
-      stdout.close
-      err = stderr.read()
-      stderr.close
-      case thread.value.exitstatus
+      out, err, status = Util.run_as(user, 'cibadmin', '-Ql')
+      case status.exitstatus
       when 0
         @xml = REXML::Document.new(out)
         raise RuntimeError, _('Error invoking %{cmd}') % {:cmd => '/usr/sbin/cibadmin -Ql' } unless @xml.root

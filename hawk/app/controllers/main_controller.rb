@@ -300,12 +300,8 @@ class MainController < ApplicationController
       if params[:format] == "xml"
         send_data File.new("#{Rails.root}/tmp/sim.graph").read, :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
       else
-        stdin, stdout, stderr, thread = Util.popen3("/usr/bin/dot", "-Tpng", "#{Rails.root}/tmp/sim.dot")
-        stdin.close
-        png = stdout.read
-        stdout.close
-        stderr.close
-        # TODO(must): check thread.value.exitstatus
+        png, err, status = Util.capture3("/usr/bin/dot", "-Tpng", "#{Rails.root}/tmp/sim.dot")
+        # TODO(must): check status.exitstatus
         send_data png, :type => "image/png", :disposition => "inline"
       end
     else
