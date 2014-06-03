@@ -53,17 +53,8 @@ class Invoker
   # and suspiciously similar to invoke_crm - obviously this can be
   # cleaned up further)
   def run(*cmd)
-    stdin, stdout, stderr, thread = Util.run_as(current_user, *cmd)
-    stdin.close
-    # apparently if there's anything in stdout we didn't read before
-    # closing, thread.value.exited? is false, thread.value.exitstatus
-    # is nil, and because fudge_error wants that to be zero, this
-    # counts as a failed run.
-    stdout.read
-    stdout.close
-    result = stderr.read()
-    stderr.close
-    fudge_error(thread.value.exitstatus, result)
+    out, err, status = Util.run_as(current_user, *cmd)
+    fudge_error(status.exitstatus, err)
   end
 
   # Run "crm [...]"
@@ -98,13 +89,8 @@ class Invoker
   # Invoke cibadmin with command line arguments.  Returns stdout as string,
   # Raises NotFoundError, SecurityError or RuntimeError on failure.
   def cibadmin(*cmd)
-    stdin, stdout, stderr, thread = run_as(current_user, 'cibadmin', *cmd)
-    stdin.close
-    out = stdout.read()
-    stdout.close
-    err = stderr.read()
-    stderr.close
-    case thread.value.exitstatus
+    out, err, status = run_as(current_user, 'cibadmin', *cmd)
+    case status.exitstatus
     when 0
       return out
     when 6, 22 # cib_NOTEXISTS (used to be 22, now it's 6...)
@@ -120,13 +106,8 @@ class Invoker
   # Invoke "cibadmin -p --replace"
   # TODO(should): Can this be conveniently consolidated with the above?
   def cibadmin_replace(xml)
-    stdin, stdout, stderr, thread = run_as(current_user, 'cibadmin', '-p', '--replace')
-    stdin.write(xml)
-    stdin.close
-    stdout.close
-    err = stderr.read()
-    stderr.close
-    case thread.value.exitstatus
+    out, err, status = run_as(current_user, 'cibadmin', '-p', '--replace', :stdin_data => xml)
+    case status.exitstatus
     when 0
       return true
     when 6, 22 # cib_NOTEXISTS (used to be 22, now it's 6...)
@@ -143,13 +124,8 @@ class Invoker
 
   # Returns 'true' on successful execution, or STDERR output on failure.
   def invoke_crm(input, *cmd)
-    stdin, stdout, stderr, thread = run_as(current_user, 'crm', *cmd)
-    stdin.write(input) if input
-    stdin.close
-    stdout.close
-    result = stderr.read()
-    stderr.close
-    result = fudge_error(thread.value.exitstatus, result)
+    out, err, status = run_as(current_user, 'crm', *cmd, :stdin_data => input)
+    result = fudge_error(status.exitstatus, err)
     result == true ? true : result[1]
   end
 
