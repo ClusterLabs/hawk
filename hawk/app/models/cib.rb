@@ -307,6 +307,10 @@ class Cib < CibObject
             maintenance = true
           end
         end
+      else
+        # If there's no node state at all, the node is unclean if fencing is enabled,
+        # and offline if fencing is disabled.
+        state = crm_config[:"stonith-enabled"] ? :unclean : :offline
       end
       @nodes << {
         :uname => uname,
