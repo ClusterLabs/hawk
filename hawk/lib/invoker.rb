@@ -124,7 +124,8 @@ class Invoker
 
   # Returns 'true' on successful execution, or STDERR output on failure.
   def invoke_crm(input, *cmd)
-    out, err, status = run_as(current_user, 'crm', *cmd, :stdin_data => input)
+    cmd << { :stdin_data => input }
+    out, err, status = run_as(current_user, 'crm', *cmd)
     result = fudge_error(status.exitstatus, err)
     result == true ? true : result[1]
   end
