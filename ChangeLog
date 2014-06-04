@@ -1,4 +1,43 @@
-* Dec Nov 06 2013 Tim Serong <tserong@suse.com>
+* Wed Jun 04 2014 Tim Serong <tserong@suse.com>
+- GUI: status: Ensure monitor requests aren't cached (bnc#854423)
+- GUI: status: Show resources with failed stop as 'failed', in red
+  (bnc#879034)
+- GUI: status: Display resources as unmanaged if per-resource maintenance
+  mode set (bnc#863071)
+- GUI: explorer: Show diff link on every line
+- GUI: hb_report: Fix localization of close button
+- GUI: ui.oplist: Consolidate op attributes
+- GUI: Linebreak crmsh error output when manipulating resources (bnc#872287)
+- GUI: Use --force when deleting resources, constraints, etc. (bnc#872290)
+- GUI: Prompt before deleting resources, constraints, etc.
+- Misc: ApplicationController: Fix exit code check in cluster_online()
+- Misc: Cib model: Flag node as unclean on failed stop
+- Misc: Cib model: Handle stale pending stop ops (bnc#879034)
+- Misc: Cib model: Remove spurious `crm_mon -s` invocation
+- Misc: Cib model: Correctly show node as unclean/offline if no node state in CIB
+- Misc: crm_config editor: Don't create empty property sets (bnc#871098)
+- Misc: explorer: Redirect to display page once hb_report run complete
+  (fixes obscure edge case of bnc#854060)
+- Misc: explorer: Handle exceptions when user supplies invalid date string
+- Misc: invoker: Add case insensitive error check in fudge_error
+- Misc: Util: Fix has_feature? test for rsc_ticket and rsc_template
+- Misc: Util: Add capture3 function
+- Misc: Util: Reimplement run_as in terms of capture3
+- Misc: Replace popen3 invocations with capture3 to avoid deadlocks when
+  dealing with excessively large STDERR output (bnc#878597)
+- Misc: Drop explicit "commit" from crmsh invocations (removes duplicate
+  warnings, bnc#872287)
+- Misc: Move gettext script include to main layout
+- Misc: Lock session_secret during initial creation to prevent obscure race
+- Misc: Use "Cluster Configuration" intead of "Properties" for configuration
+  tab toolip
+- Misc: Theme 404, 422 and 500 error pages (bnc#872655)
+- Build: Set xgettext options (ensures POT file keeps comments)
+- Build: Touch POT file back to ancient date (ensures correct generation)
+- Build: Bump spec file version to 0.6.3
+- Upstream version cs:93d5b54
+
+* Fri Dec 06 2013 Tim Serong <tserong@suse.com>
 - GUI: ui.popupmenu: Ensure menu appears over simulator dialog
 - Misc: hb_report: Catch ArgumentError when parsing hb_report output
   (bnc#854060)
