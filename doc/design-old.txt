@@ -1,0 +1,169 @@
+
+
+== NOTE: THIS FILE EXISTS FOR POSTERITY.  IT IS NOW (2013-08-15) RATHER OUTDATED ==
+
+* The content is lifted from http://clusterlabs.org/wiki/Hawk/Design, which was last modified on 2011-05-18.
+* Various things it says aren't implemented yet actually are (e.g.: explore failure scenarios)
+* Anything to do with rails 2 may be less interesting and/or less true, since migration to rails 3
+
+
+== Introduction ==
+
+[[Hawk]] (HA Web Konsole) is a web-based GUI for managing and monitoring Pacemaker-based HA clusters.  It is:
+
+* A [http://rubyonrails.org/ Ruby on Rails] application (ruby 1.8 / rails 2.3), conveniently packaged as an RPM.
+* Run from a standalone instance of [http://lighttpd.net/ lighttpd] on each node of an HA cluster, accessible via an HTTPS connection to port 7630.  This means it's available independently of any regular web services the cluster may or may not be providing.
+* Intended to operate independently of the cluster stack (started via <tt>/etc/init.d/hawk</tt>), so that the GUI is available even if the cluster hasn't come online yet.
+* Usable in any modern graphical web browser with JavaScript and cookies enabled.
+* Intended to make common management and monitoring tasks easy.
+* Not intended to expose all possible cluster configuration options.
+
+Please note that this document is current as at the time it was last modified.  Do not imagine that everything listed here is implemented yet or will be available within a particular timeframe!  If in doubt (or in a hurry), check the [[Hawk#Project_Status|current project status]].
+
+== Feature/Functionality Overview ==
+
+There are five conceptual areas of functionality:
+
+# "Scaffolding" (init script, user authentication, build infrastructure, internationalization, etc.)
+# Cluster Status Display (what resources/nodes are online, current status thereof, history, etc.)
+# Basic Operator Tasks (start/stop resources, online/offline nodes, etc.)
+# Configure Cluster (add/remove node/resource, set cluster options, configure STONITH, etc.)
+# Explore Failure Scenarios (see what ''would'' happen if a resource/node failed)
+
+In terms of implementation, these all overlap (management tasks build on the status display, everything builds on scaffolding), but it's useful to break them up like this because:
+
+* It begins to give us a roadmap, facilitating implementation in a staged fashion.
+* These areas (ignoring scaffolding) are reasonable boundaries around which to think about user roles (everyone can view the cluster status, but perhaps not everyone should be allowed to reconfigure the cluster).
+
+
+== Scaffolding ==
+
+=== Build System / Packaging ===
+
+The idea here is to provide an RPM (or other package) with absolutely minimal dependencies (pacemaker, lighttpd, ruby).  Gems (rails, gettext etc.) are only necessary on the build system, not on any of the cluster nodes.
+
+* The "hawk" rails app lives in the "hawk" directory of the source tree.
+* The toplevel Makefile (outside this directory) is used to:
+** Run rake to build .mo files, and freeze rails and all other dependent gems (gettext, etc.) into the rails app.
+** Install the rails app to <tt>/srv/www/hawk</tt>, install the init script in <tt>/etc/init.d/hawk</tt>, and install a couple of helper binaries in <tt>/usr/sbin</tt>.
+** This is all really only done in order to make a sane RPM.
+
+Areas for further work:
+
+* There's a fair amount of cruft included in the embedded ruby gems.
+** Some of this is stripped out by the Makefile (which removes *bak and other temporary junk which is inexplicably present in these gems).
+** More is stripped out by the spec file if you're building RPMs (samples, tests, files with incorrect permissions etc.)
+** This cleansing needs to be consolidated.
+* There's one spec file for both SUSE and Red Hat style distros.  It's becoming complex.  Need to split/simplify.
+* The build needs to invoke unit tests (once useful ones exist).
+* Need to pare back some of the files included in the RPM (.po files for example are included but are unnecessary.  Likewise Rakefiles, etc.)
+* Option to build against apache instead of lighttpd.  This suggests three packages; hawk-core, hawk-lighttpd and hawk-apache.  By default the apache version would be expected to run the same as the lighttpd version (separate instance from init script).
+
+=== Internationalization ===
+
+* Using [http://rubyforge.org/projects/gettext/ rubygem-gettext_rails] and friends.
+* This is all reasonably straightforward, except where it comes to having internationalized strings in JavaScript.
+** Extra level of indirection necessary via <tt>hawk/app/views/main/_gettext.js.erb</tt>.
+** If there's a better way to do this, I'd love to hear it.
+
+=== User Authentication ===
+
+* All access to Hawk requires login
+** Via username & password entered in web form (not using HTTP auth)
+* User authenticated via PAM, same rules as the python GUI, i.e.:
+** Using PAM "passwd" service (actually probably should be changed to 'login')
+** Must be in "haclient" group.
+* Facilitated by <tt>/usr/sbin/hawk_chkpwd</tt> binary (setuid-root), which essentially does the same job as <tt>unix2_chkpwd</tt>.
+* Once logged in, username is stored in session cookie.
+* Session cookie integrity is ensured by key in <tt>hawk/tmp/session_secret</tt>, which is randomly generated at runtime if it doesn't exist (not included in RPM for obvious reasons).
+** This means that sessions don't automatically survive across nodes; sysadmin would have to manually sync session_secret.
+
+=== Unit Tests ===
+
+''(not yet implemented)''
+
+=== Other ===
+
+* We've explicitly turned off ActiveRecord (no database necessary or used).
+* This means some of the semantics of ActiveRecord had to be re-implemented (see <tt>hawk/lib/cib_object.rb</tt> and <tt>hawk/app/models/*</tt>).
+* On some systems it's necessary to explicitly specify a rack version (e.g.: <tt>config.gem "rack", :version => '~> 1.1.0'</tt> in <tt>hawk/config/environment.rb</tt>), depending on what rack/ActionPack versions are installed when you build.
+* Using the [http://jquery.com/ jQuery JavaScript framework] (previously [http://prototypejs.org/ Prototype]; the switch was mostly so we could use [http://jqueryui.com/ jQuery UI] with bonus points for themability).
+
+
+== Cluster Status Display ==
+
+* Cluster status is obtained via a single invocation of <tt>cibadmin</tt>.  The resultant XML is parsed to extract configuration and status information.
+* This results in arrays containing each of the nodes and resources (primitives, clones & groups) which are delivered via JSON to the client.
+* JavaScript turns the JSON into a useful display
+
+=== Refresh Mechanism ===
+
+* The client polls <tt>/monitor</tt> on the server, which routes back to <tt>/usr/sbin/hawk_monitor</tt>.
+* <tt>hawk_monitor</tt> talks to the CIB (much the same as crm_mon), and waits for the epoch to change, or the connection to fall over.
+* Once something has changed (or a 60 second timeout has expires), the request completes.
+* If something has actually changed, the client requests a full CIB JSON and redraws the display.
+* If nothing has changed, the client polls <tt>/monitor</tt> again.
+* This gives near-realtime display updates.
+
+
+=== Views/Layouts ===
+
+* Default view is based on existing output of <tt>crm_mon</tt>, with groups/clones/resources represented hierarchically in a vertical list/tree-like structure.
+* This leaves a blank area in the middle of the screen on wide displays.
+
+Areas for further work:
+
+* Tabular view, with nodes in columns, resources in rows.  This would also facilitate showing failed operation history by node.
+* Other alternate views exposing more or less of the state of the cluster (e.g. some resources are hidden based on user role).
+* The above two almost certainly require more separation between display and resource hierarchy than we have now.
+* Icons indicating target role, is-managed.
+* Tooltips/popups for detailed node & resource statistics, failcounts, timing.
+* Make it obvious when a resource/node is transitioning from one state to another (somewhat visible if op_defaults record-pending is true).
+* Theming, including things like high contrast display for vision impaired.
+
+
+== Basic Operator Tasks ==
+
+* Accessible from menus for each node and resource.
+* All implemented in terms of existing CLI tools (e.g. crm shell).
+* Confirmation is requested of the user for each operation.
+* Operation performed via AJAX request.
+
+Areas for further work:
+
+* Hide/disable operations that don't make sense (stop a stopped resource, etc.)
+* More tangible indication that resource/node is changing state after op performed.
+
+=== Node Operations ===
+
+* Node standby/online
+* Fence node
+* Mark node fenced ''(not yet implemented)''
+
+=== Resource Operations ===
+
+* Start/stop/cleanup resource
+* Migrate to, Migrate away, clear migration constraints
+* Promote/demote
+
+=== Cluster Operations ===
+
+* Generate hb_report ''(not yet implemented)''
+* To/from maintenance mode (actually, that's just a crm_config option)
+
+== Configure Cluster ==
+
+* Create/Delete Resource
+* Configure STONITH (just create a STONITH resource, right?)
+* Create/Delete Groups, Clones, M/S resources
+* Configure cluster properties
+* Configure op & resource defaults ''(not yet implemented)''
+* Configure Colocation and Ordering Constratins (in as of 0.4.1, but can't do date expressions)
+* Add/Remove Node(?) ''(not yet implemented)''
+
+== Explore Failure Scenarios ==
+
+* Change node state ''(not yet implemented)''
+* Edit outcome of resource op ''(not yet implemented)''
+* View transition graphs ''(not yet implemented)''
+

@@ -3,10 +3,12 @@
 $LOAD_PATH.unshift(File.dirname(__FILE__) + "/../vendor")
 
 require 'rubygems'
-require 'fcgi'
 
 #require_relative '../config/environment'
 require File.dirname(__FILE__) + "/../config/environment"
+
+# Needs to be after environment include to pick up lib dir
+require 'fcgi'
 
 class Rack::PathInfoRewriter
   def initialize(app)

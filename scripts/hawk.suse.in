@@ -110,8 +110,8 @@ CONF
 print_hawk_url() {
 	IP=$(LC_ALL=C grep "^server.bind" $LIGHTTPD_CONFIG | cut -d ' ' -f 3|tr -d '"')
 	if [ -z "$IP" ]; then
-		IFC=$(LC_ALL=C ip route show default|awk '/^default / { print $NF; exit }')
-		[ -n "$IFC" ] && IP=$(LC_ALL=C ifconfig $IFC | grep "inet addr" | cut -d ":" -f 2 | cut -d " " -f 1)
+		IFC=$(LC_ALL=C ip route show default|awk '/^default / { print $5; exit }')
+		[ -n "$IFC" ] && IP=$(LC_ALL=C ifconfig $IFC | awk '/inet / { print $2 }' | sed -s 's/[^0-9.]//g')
 	fi
 	PORT=$(LC_ALL=C grep "^server.port" $LIGHTTPD_CONFIG | cut -d " " -f 3)
 	if [ -n "$IP" ]; then

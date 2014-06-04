@@ -25,6 +25,14 @@ This categorization is somewhat arbitrary, but tends to be either
 functional area for larger changes or component/file name for
 smaller changes.
 
+== Tagging Releases ==
+
+Use annotated tags, e.g.:
+
+---------------------------------------------------
+# git tag -a hawk-X.Y.Z -m 'Tag Hawk version X.Y.Z'
+---------------------------------------------------
+
 == Hacking ==
 
 === @attributes in CibObject subclasses ===

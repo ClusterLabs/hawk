@@ -46,6 +46,18 @@ class Node < CibObject
 
   class << self
 
+    # Since pacemaker started using corosync node IDs as the node ID
+    # attribute, CibObject#find will fail when looking for nodes by
+    # their human-readable name, so have to override here
+    def find(id)
+      begin
+        super(id)
+      rescue CibObject::RecordNotFound
+        # Can't find by id attribute, try by uname attribute
+        super(id, "uname")
+      end
+    end
+
     def instantiate(xml)
       node = allocate
       # TODO(should): Apparently this instance_variable_set business isn't necessary,
@@ -58,7 +70,7 @@ class Node < CibObject
         Hash[xml.elements['utilization'].elements.collect {|e|
           [e.attributes['name'], { :total => e.attributes['value'].to_i } ] }] : {})
       if (node.utilization.any?)
-        Util.safe_x('/usr/sbin/ptest', '-LU').split("\n").each do |line|
+        Util.safe_x('/usr/sbin/crm_simulate', '-LU').split("\n").each do |line|
           m = line.match(/^Remaining:\s+([^\s]+)\s+capacity:\s+(.*)$/)
           next unless m
           next unless m[1] == node.uname

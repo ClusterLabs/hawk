@@ -15,6 +15,21 @@ if defined?(Bundler)
   # Bundler.require(:default, :assets, Rails.env)
 end
 
+# Hack to workaround Gem::all_load_paths method is broken (undefined method
+# String#add)
+module Gem
+  def self.all_load_paths
+    result = []
+
+    Gem.path.each do |gemdir|
+      each_load_path all_partials(gemdir) do |load_path|
+        result << load_path
+      end
+    end
+    result
+  end
+end
+
 module Hawk
   class Application < Rails::Application
     # Need to_s here, else it goes in as a Pathname object, not a String, which

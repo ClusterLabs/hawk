@@ -11,19 +11,19 @@ TODO
 
 * cibsecret support
 * new style constraints (rsc_*)?
-* Support all operations on shadow CIBs.
 
 
 == Core/General == 
 
 === Must ===
 
-* Failed stop with STONITH disabled, resulting in "Started $node (unmanaged)
-  FAILED" in crm_mon, is erroneously reported as stopped resource in Hawk
-  (although the failed stop error is shown).
-* "crm node fence ..." -- hawk shows node being fenced as online, whereas
-  crm_mon shows it as unclean.
-* Add ability to edit rsc_defaults, op_defaults.
+* Native libpengine/libcib bindings should fix odd edge cases in status
+  reporting:
+** Failed stop with STONITH disabled, resulting in "Started $node (unmanaged)
+   FAILED" in crm_mon, is erroneously reported as stopped resource in Hawk
+   (although the failed stop error is shown).
+** "crm node fence ..." -- hawk shows node being fenced as online, whereas
+   crm_mon shows it as unclean.
 
 === Should & Could (in no particular order) ===
   
@@ -38,7 +38,8 @@ TODO
 * rescue_from with redirect in ApplicationController is probably a bit fragile
   when (possibly) called from, say, NodesController inside dialog.
 * Ensure Hawk's gettext usage works with translation-update package
-* Modal dialogs should probably be made moveable (and *maybe* resizable)
+* Modal dialogs should probably be made moveable (and *maybe* resizable), some
+  of these are already done.
 * Syntax highlighting for ascii text (crm config, logs in explorer, etc.)
 * Online help tied to SLE HA manual (on SLES, at least).
 * Need to verify/match op interval when ignoring ops
@@ -64,8 +65,6 @@ TODO
   configured it to run as an LSB resource inside the cluster - not intended
   to run that way, but...)
 * Doesn't work with SELinux enforcing (does work with permissive)
-* Verify do_or_die in lib/tasks really does do or die (I don't think they die).
-* RAILS_DEFAULT_LOGGER deprecated
 * Move logfiles to /var/log/hawk
 ** See also http://www.slideshare.net/lennartkoopmann/managing-the-logs-of-your-rails-applications-arrrrcamp-2011
 * Nasty permission denied error if bob enables ACLs
@@ -78,9 +77,11 @@ TODO
 * need to cancel running refresh for node details dialog
 ** actually, need to be able to cancel initial load for any dialog.  crap.
    this is getting kind of messy.
+** actually this might be done (*sigh*)
 * Clean up error display from all crm* invocations (can be smooshed onto
   one long error line, which is a bit ugly to read).
-* remove current_user from cib.rb
+* remove current_user from cib.rb (it's passed into initialize, is that
+  enough removal?)
 * use clearTimeout(?) to hose anything set with setTimeout to avoid
   duplicate requests (should never happen, but might if you run e.g.:
   update_cib() from firebug).
@@ -113,14 +114,11 @@ TODO
 * Button to refresh current view up to "now"
 * Cache list might still apepar if you come back to the history page during
   generation (*sigh*)
-* Ability to delete cached reports (bnc#723338)
 * Move to tmp directory in hawk, not /tmp?  (May not work if not all nodes
-  have Hawk).
+  have Hawk).  Actually this is probably done for everything except hb_report
+  generation.
 * "Another 'crm history' is running" thing works (node recent events?), but
   there's a flash of both "us" and "them" during update.
-* May want verbosity increase on detail link (bnc#723418)
-* Really want details to show with selected line highligted, and "fixed"
-  position so it floats down the page (positioning is horribly annoying :-/)
 * If doing a time period the ends *after* now, need to regenerate each time
   in case something has changed since (could be tricky to detect -- alleviate
   by allowing delete of cached reports)
@@ -128,12 +126,8 @@ TODO
 
 == GUI: Simulator ==
 
-* Why is the simulator requesting a refresh of "sim:in" or "sim:out" every 15
-  seconds?  (Well, it's so that the status accurately reflects underlyling
-  cluster state, but can't we hook this through the long poll somehow?)
 * Could hide ticket button if funtionality doesn't exist in underlying
   crm_simulate (not just if there's no tickets).
-* cib/display updates might be a bit racy - need to reinvestigate that
 * Auto-fill of interval when injecting ops just grabs the first one (would
   be nice to drop-down with interval and more info about which one it was,
   e.g.: role or OCF_CHECK_LEVEL)
@@ -142,9 +136,9 @@ TODO
 * Inject a failed start (e.g.: start:0 c2:0 unknown node-0), gives tooltip
   "null failed on node-0 (rc=1)", similar in error bar (operation=).  So the
   name of the failed op isnt' being picked up somehow.  Actually, it's not
-  in the CIB (see http://bugs.clusterlabs.org/show_bug.cgi?id=5003).
+  in the CIB (see http://bugs.clusterlabs.org/show_bug.cgi?id=5003).  Is this
+  still a problem?
 * Ability to edit injected ops and node state would be handy
-* stdout duplicate lines somehow (wtf?)
 * don't use yellow background (baby's bedroom colour)
 * remove injected state button removes all duplicate entries, not just the one
   you selected
@@ -163,6 +157,12 @@ TODO
 
 == GUI: hb_report ==
 
+* Ability to use crm_report instead (or use one or the other, depending on
+  what's installed?)
+** At least, ensure hb_report is installed before invoking.
+* Consider renaming hb_report class to crm_report or similar?
+* "Generate hb_report" menu item etc. -- different nomenclature?  Cluster
+  Report?  Debug Report?
 * HbReport's forked ruby child stalls/never exits if you kill its hb_report
   children.  WTF?
 * hb_report: $("#hbreport-status").html doesn't use escape_html...?
@@ -170,23 +170,13 @@ TODO
   simultaneous runs from separate nodes will slaughter each other.
 * Ability to generate, keep, download multiple hb_reports (not just last one)
 ** Ability to delete old reports.
-* Ability to use crm_report instead?  (Or use one or the other, depending on
-  what's installed)?
-** At least, ensure hb_report is installed before invoking.
-* Consider renaming hb_report class to crm_report or similar?
-* "Generate hb_report" menu item etc. -- different nomenclature?  Cluster
-  Report?  Debug Report?
 * Look at exposing -u and -S options
 
 
 == GUI: status ==
 
-* ESC key kills update request, leading to wiping out status (on firefox)
-* unclear how update request interacts with simulator!
 * Need update to jQuery 1.4.3+ to fix jquery bug #6498 when request timed out
   on IE7.
-* Document update_period param for running in dev mode on port 3000 (else it's
-  just lots of 404's trying to run monitor)
 * Ability to cleanup deleted/orphaned resources.
 * Recent events, details.  dialog should say "$node recent events",
   "$node details" etc.
@@ -198,14 +188,9 @@ TODO
 ** Sort by expected time when coming online
 ** Timeout-based progress bar on resources for pending ops
 ** Filter textbox to show only resources/nodes of given name/type/etc.
-* bnc#703380
-** Need "parent" ops for clone instances, m/s instances, group children in
-   popup menu on summary & table.
-** no groups visible in table, clone/group not visibile in summary detail view
 * can use pin icon to indicate migrated
 * need some other icon to indicate target role set (tooltip to show target
   role)
-* need unmanaged indicator.
 * footer breaks over lines if screen too narrow (can live with it for now...)
 * likewise error bar
 * table view dodgy in IE with big resource names
@@ -215,8 +200,7 @@ TODO
     screws up the offsets for popup menus
 *** (a bit better with IE specific stylesheet, but still some jagging on
     699806.xml)
-* confirm_op params don't match perform_op params
-* Add ability to view resource details (like node details).
+* confirm_op params don't match perform_op params (what?)
 * Panel view, lots of space in the middle.  Could flow better (resources
   in column next to nodes if space allows).
 * Summary view, probably want red/broken things expanded by default.
@@ -224,8 +208,6 @@ TODO
 ** ...but this would tie-in nicely with a filter textbox
 * Vertically align various fields in each resource (name, instance, state,
   node it's on).  It's most obvious this is a problem in the table view.
-* Icons for cluster config menu items are wrong (generic spanner for three
-  of them).
 * #content's overflow: auto seems to be preventing horizontal scrollbar from
   appearing on table view (try 699806.xml)
 ** actually, the scrollbar appears behind the footer(!)
@@ -233,7 +215,6 @@ TODO
 *** try "padding-bottom: 2em" on container (done, but it's still fragged in IE)
 *** also this pushes the footer always off the bottom of the screen.  bloody hell
 *** fixed-ish with overflow: auto on #table (but probably still not perfect)
-* Ensure popup menus are hidden for test CIBs.
 * For fatal errors on pageload, do we really want to keep the spinner?
 ** Probably, if the problem might go away...
 * Red warning if cluster not quorate and resource startup disabled (e.g.:
@@ -287,8 +268,6 @@ TODO
 * Can't edit clone/ms child, group members, order of group members
 * can't specify arbitrary meta attributes (want combo box)
 ** e.g.: OCF_CHECK_LEVEL (important)
-* For ops, need to hit "+" before modifying timings - consider having the op
-  auto-add itself when selected, rather than having to hit "+"? (bnc#740539)
 * can't specify arbitrary params
 * Can't specify resource utilization
 * Highlight when a setting is different than default
@@ -343,6 +322,7 @@ TODO
 == Oddities ==
 
 * Cluster not running, on node-1, IE thinks some content is insecure - wtf?
+  (might have been short name vs. FQDN?)
 * Some display error oddity in IE on summary view when things
   stop/start/disappear
 

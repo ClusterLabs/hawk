@@ -1,14 +1,64 @@
+* Dec Nov 06 2013 Tim Serong <tserong@suse.com>
+- GUI: ui.popupmenu: Ensure menu appears over simulator dialog
+- Misc: hb_report: Catch ArgumentError when parsing hb_report output
+  (bnc#854060)
+- Misc: Use crm_simulate instead of ptest (bnc#854050)
+- Misc: Node model: Find nodes by uname (bnc#854039)
+- Build: Various minor cleanup for travis-ci integration
+- Build: Use brakeman instead of scanny for security testing
+- Build: Bump spec file version to 0.6.2
+- Upstream version cs:bd10c59
+
+* Fri Nov 15 2013 Tim Serong <tserong@suse.com>
+- Build: Set TEXTDOMAIN=hawk (needed by gettext 3.x)
+- Misc: crm_config: check properties exist before flagging readonly
+  (bnc#853345)
+- Upstream version cs:b11f8c7
+
+* Mon Sep 30 2013 Tim Serong <tserong@suse.com>
+- Build: Require rubypick for FC19+
+- Upstream version cs:e2f7668
+
+* Fri Aug 23 2013 Kristoffer Grönlund <krig@koru.se>
+- Misc: wizard: Allow multiple instances of the same template (fate#314396)
+- Doc: wizard: Add information about template name/type to wizard.txt
+- Upstream version cs:d5a20b9
+
+* Tue Aug 20 2013 Tim Serong <tserong@suse.com>
+- Misc: Primitive model: Use crm_resource --show-metadata rather than
+  lrmd_test for extrating RA metadata
+- Misc: Cib model: Ensure orphaned resources with same ID as clone parent
+  are ignored (bnc#834198)
+- Upstream version cs:ab692f7
+
 * Wed Jul 03 2013 Tim Serong <tserong@suse.com>
 - Rails3: Set random secret_token instead of deprecated cookie_secret
   (bnc#827940)
-- Upstream version cs:eb3f04f
+- Build: Require rails 3.2+, but < 4.0
+- Upstream version cs:c7385d6
 
-* Tue Jun 25 2013 Tim Serong <tserong@suse.com>
-- GUI: Primitive editor: Fix default list of resource types (bnc#826530)
+* Wed Jun 26 1013 Tim Serong <tserong@suse.com>
 - GUI: Fix broken French translation of node status (bnc#825949)
-- Misc: Primitive model: Use PerRequestCache for classes and providers
+- Build: Only Bundle Gems on SLES 11
+- Build: Don't ship Gemfile when not using Bundler
 - Build: Ensure BUILD_TAG is from current branch
-- Upstream version cs:0f6562a
+- Misc: Don't require rails-i18n
+- Upstream version cs:7619068
+
+* Thu Jun 20 2013 Tim Serong <tserong@suse.com>
+- GUI: Primitive editor: Fix default list of resource types
+- Misc: Primitive model: Use PerRequestCache for classes and providers
+- Misc: Use String#ord in fcgi.rb for ruby 1.9 compatibility
+- Misc: Ensure "fcgi" is required after paths are set up properly in
+  dispatch.fcgi
+- Misc: Add /usr/libexec/pacemaker to paths to check for pacemaker binaries
+- Misc: Fix IP address detection in init script (change awk to print fifth
+  field from `ip` instead of last field)
+- Misc: Fix Gem::all_load_paths method broken in rubygems 1.8.15
+- Build: Add explicit -lqb to hawk_monitor
+- Build: hawk_monitor: Define cib_diff_notify for build against pcmk 1.1.8
+- Build: Reformat spec file a bit
+- Upstream version cs:d35c928
 
 * Fri May 10 2013 Tim Serong <tserong@suse.com>
 - Build: Bump spec file version to 0.6.1

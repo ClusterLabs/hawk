@@ -105,6 +105,11 @@ enum cib_errors {
 #define CONNECT_TIMEOUT		60
 #define MAX_EPOCH_LENGTH	128	/* way longer than necessary */
 
+#ifndef T_CIB_DIFF_NOTIFY
+/* This was (erroneously) buried in crm/cib/internal.h in pacemaker 1.1.8 */
+#define T_CIB_DIFF_NOTIFY       "cib_diff_notify"
+#endif
+
 int cib_connect(void);
 void mon_cib_connection_destroy(gpointer user_data);
 void crm_diff_update(const char *event, xmlNode *msg);

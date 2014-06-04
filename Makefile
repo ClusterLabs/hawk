@@ -53,6 +53,9 @@ WWW_BASE = /srv/www
 # Override this to get a different init script (e.g. "redhat")
 INIT_STYLE = suse
 
+# Set this to true to bundle gems inside rpm
+BUNDLE_GEMS = false
+
 # Base paths for Pacemaker binaries (note: overriding these will change
 # paths used by hawk_invoke, but will have no effect on hard-coded paths
 # in the rails app)
@@ -61,7 +64,18 @@ BINDIR = /usr/bin
 SBINDIR = /usr/sbin
 
 all: scripts/hawk.$(INIT_STYLE) hawk/config/lighttpd.conf tools/hawk_chkpwd tools/hawk_monitor tools/hawk_invoke
-	(cd hawk; rake gettext:pack && bundle package && bundle install --deployment)
+	(cd hawk; \
+	 TEXTDOMAIN=hawk rake gettext:pack && \
+	 if $(BUNDLE_GEMS) ; then \
+		# Ignore gems from test \
+		export BUNDLE_WITHOUT=test && \
+		# Generate Gemfile.lock \
+		bundle list && \
+		# Strip unwanted gems from Gemfile.lock \
+		sed -i -e '/\brdoc\b/d' Gemfile.lock && \
+		# Finally package and install the gems \
+		bundle package && bundle install --deployment ; \
+	 fi)
 
 %:: %.in
 	sed \
@@ -80,7 +94,7 @@ tools/hawk_monitor: tools/hawk_monitor.c
 		$(shell pkg-config --cflags libxml-2.0) \
 		-I/usr/include/pacemaker -I/usr/include/heartbeat \
 		-o $@ $< \
-		-lcib -lcrmcommon -Wall \
+		-lcib -lcrmcommon -lqb -Wall \
 		$(shell pkg-config --libs glib-2.0) \
 		$(shell pkg-config --libs libxml-2.0)
 
@@ -88,8 +102,9 @@ tools/hawk_monitor: tools/hawk_monitor.c
 tools/hawk_invoke: tools/hawk_invoke.c tools/common.h
 	gcc -fpie -pie $(CFLAGS) -o $@ $<
 
+# TODO(should): Verify this is really clean (it won't get rid of .mo files,
+# for example
 clean:
-	rm -rf hawk/locale
 	rm -rf hawk/vendor
 	rm -rf hawk/tmp
 	rm -rf hawk/log
@@ -116,7 +131,7 @@ install:
 	# Get rid of cruft from packed gems
 	-find hawk/vendor -name '*bak' -o -name '*~' -o -name '#*#' | xargs rm
 	cp -a hawk/* $(DESTDIR)$(WWW_BASE)/hawk
-	cp -a hawk/.bundle $(DESTDIR)$(WWW_BASE)/hawk
+	-cp -a hawk/.bundle $(DESTDIR)$(WWW_BASE)/hawk
 	rm $(DESTDIR)$(WWW_BASE)/hawk/config/lighttpd.conf.in
 	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/log
 	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/tmp
