@@ -98,6 +98,7 @@ class CibController < ApplicationController
         :resource_states => {
           :pending  => 0,
           :started  => 0,
+          :failed   => 0,
           :master   => 0,
           :slave    => 0,
           :stopped  => 0
@@ -108,7 +109,9 @@ class CibController < ApplicationController
         },
 
         :nodes_label => n_('1 node configured', '%{num} nodes configured', cib.nodes.length) % { :num => cib.nodes.length },
-        :resources_label => n_('1 resource configured', '%{num} resources configured', cib.resource_count) % { :num => cib.resource_count }
+        :resources_label => n_('1 resource configured', '%{num} resources configured', cib.resource_count) % { :num => cib.resource_count },
+
+        :booth => cib.booth
       }
 
       cib.nodes.each do |n|
@@ -125,6 +128,8 @@ class CibController < ApplicationController
             mini[:resource_states][:slave] += 1
           elsif i[:started]
             mini[:resource_states][:started] += 1
+          elsif i[:failed]
+            mini[:resource_states][:failed] += 1
           elsif i[:pending]
             mini[:resource_states][:pending] += 1
           else
@@ -160,7 +165,8 @@ class CibController < ApplicationController
         # eventaully want constraints, op_defaults, rsc_defaults, ...
         # Note: passing localized labels here, because we can't wrap an arbitrary number of plurals in _gettext.js
         :nodes_label => n_('1 node configured', '%{num} nodes configured', cib.nodes.length) % { :num => cib.nodes.length },
-        :resources_label => n_('1 resource configured', '%{num} resources configured', cib.resource_count) % { :num => cib.resource_count }
+        :resources_label => n_('1 resource configured', '%{num} resources configured', cib.resource_count) % { :num => cib.resource_count },
+	:booth => cib.booth
       }
     end
   end

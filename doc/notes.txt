@@ -25,6 +25,26 @@ This categorization is somewhat arbitrary, but tends to be either
 functional area for larger changes or component/file name for
 smaller changes.
 
+== Crazed Ruby i18n Problems ==
+
+gettext:mo:update totally wigs out, notably on the French translation,
+if the pot file isn't up to date, like, if any line numbers drift, or
+something.  This breaks the build with:
+
+---------------------------------------------------------------------
+[   68s] rake aborted!
+[   68s] undefined method `match' for nil:NilClass
+[   68s] 
+[   68s] Tasks: TOP => gettext:mo:update => gettext:mo:fr:update
+[   68s] (See full trace by running task with --trace)
+[   69s] Makefile:67: recipe for target 'all' failed
+[   69s] make: *** [all] Error 1
+[   69s] error: Bad exit status from /var/tmp/rpm-tmp.zrbECK (%build)
+---------------------------------------------------------------------
+
+If you hit this, run `make pot`.  Or, better yet, figure out how to
+fix it properly :-/
+
 == Tagging Releases ==
 
 Use annotated tags, e.g.:

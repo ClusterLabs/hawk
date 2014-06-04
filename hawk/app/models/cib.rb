@@ -62,6 +62,10 @@ class Cib < CibObject
     if res[:attributes].has_key?("is-managed")
       res[:is_managed] = Util.unstring(res[:attributes]["is-managed"], true)
     end
+    if res[:attributes].has_key?("maintenance")
+      # A resource on maintenance is also flagged as unmanaged
+      res[:is_managed] = false if Util.unstring(res[:attributes]["maintenance"], false)
+    end
     case elem.name
     when 'primitive'
       res[:class]     = elem.attributes['class']
@@ -221,6 +225,7 @@ class Cib < CibObject
   attr_reader :dc, :epoch, :nodes, :resources, :templates, :crm_config, :rsc_defaults, :op_defaults, :errors, :resource_count
   attr_reader :tickets
   attr_reader :resources_by_id
+  attr_reader :booth
 
   def initialize(id, user, use_file = false)
     @errors = []
@@ -237,19 +242,8 @@ class Cib < CibObject
       raise RuntimeError, _('Pacemaker does not appear to be installed (%{cmd} not found)') %
                              {:cmd => '/usr/sbin/crm_mon' } unless File.exists?('/usr/sbin/crm_mon')
       raise RuntimeError, _('Unable to execute %{cmd}') % {:cmd => '/usr/sbin/crm_mon' } unless File.executable?('/usr/sbin/crm_mon')
-      crm_status = %x[/usr/sbin/crm_mon -s 2>&1].chomp
-      # TODO(should): this is dubious (WAR: crm_mon -s giving "status: 1, output was: Warning:offline node: hex-14")
-      raise RuntimeError, _('%{cmd} failed (status: %{status}, output was: %{output})') %
-                        {:cmd    => '/usr/sbin/crm_mon',
-                         :status => $?.exitstatus,
-                         :output => crm_status } if $?.exitstatus == 10 || $?.exitstatus == 11
-      stdin, stdout, stderr, thread = Util.run_as(user, 'cibadmin', '-Ql')
-      stdin.close
-      out = stdout.read()
-      stdout.close
-      err = stderr.read()
-      stderr.close
-      case thread.value.exitstatus
+      out, err, status = Util.run_as(user, 'cibadmin', '-Ql')
+      case status.exitstatus
       when 0
         @xml = REXML::Document.new(out)
         raise RuntimeError, _('Error invoking %{cmd}') % {:cmd => '/usr/sbin/cibadmin -Ql' } unless @xml.root
@@ -313,6 +307,10 @@ class Cib < CibObject
             maintenance = true
           end
         end
+      else
+        # If there's no node state at all, the node is unclean if fencing is enabled,
+        # and offline if fencing is disabled.
+        state = crm_config[:"stonith-enabled"] ? :unclean : :offline
       end
       @nodes << {
         :uname => uname,
@@ -387,6 +385,12 @@ class Cib < CibObject
               # *now*
               b.attributes['call-id'].to_i <=> a.attributes['call-id'].to_i
             end
+          elsif a.attributes['operation'] == b.attributes['operation'] &&
+                a.attributes['transition-key'] == b.attributes['transition-key']
+            # Same operation, same transition key, and one op is allegedly pending.
+            # This is a lie (see bnc#879034), so make newer call-id win hand have
+            # bogus pending op lose (similar to above special case for migrate ops)
+            a.attributes['call-id'].to_i <=> b.attributes['call-id'].to_i
           elsif a.attributes['call-id'].to_i == -1
             1                                         # make pending start/stop op most recent
           elsif b.attributes['call-id'].to_i == -1
@@ -487,6 +491,13 @@ class Cib < CibObject
             if ignore_failure
               failed_ops[-1][:ignored] = true
               rc_code = expected
+            else
+              if operation == "stop"
+                # We have a failed stop, the resource is failed (bnc#879034)
+                state = :failed
+                # Also, the node is thus unclean if STONITH is enabled.
+                node[:state] = :unclean if @crm_config[:"stonith-enabled"]
+              end
             end
           end
 
@@ -542,7 +553,7 @@ class Cib < CibObject
           if instance && state != :stopped && state != :unknown
             # For clones, it's possible we need to rename an instance if
             # there's already a running instance with this ID.  An instance
-            # is running iff:
+            # is running (or possibly failed, as after a failed stop) iff:
             # - @resources_by_id[id][:instances][instance] exists, and,
             # - there are state keys other than :stopped, :unknown, :is_managed or :failed_ops present
             alt_i = instance
@@ -627,9 +638,60 @@ class Cib < CibObject
       }
       @tickets[t][:"last-granted"] = ts.attributes["last-granted"] if ts.attributes["last-granted"]
     end
+
+    # Pick up tickets defined in rsc_ticket constraints
     @xml.elements.each("cib/configuration/constraints/rsc_ticket") do |rt|
       t = rt.attributes["ticket"]
       @tickets[t] = { :granted => false } unless @tickets[rt.attributes["ticket"]]
+    end
+
+    @booth = { :sites => [], :arbitrators => [], :tickets => [], :me => nil }
+    # Figure out if we're in a geo cluster
+    File.readlines("/etc/booth/booth.conf").each do |line|
+      m = line.match(/^\s*(site|arbitrator|ticket)\s*=(.+)/)
+      next unless m
+      v = Util.strip_quotes(m[2].strip)
+      next unless v
+      # This split is to tear off ticket expiry times if present
+      # (although they should no longer be set like this since the
+      # config format changed, but still doesn't hurt)
+      @booth["#{m[1]}s".to_sym] << v.split(";")[0]
+    end if File.exists?("/etc/booth/booth.conf")
+
+    # Figure out if we're a site in a geo cluster (based on existence of
+    # IPaddr2 resource with same IP as a site in booth.conf)
+    if !@booth[:sites].empty?
+      @booth[:sites].sort!
+      @xml.elements.each("cib/configuration//primitive[@type='IPaddr2']/instance_attributes/nvpair[@name='ip']") do |elem|
+        ip = get_xml_attr(elem, "value")
+        next unless @booth[:sites].include?(ip)
+        if !@booth[:me]
+          @booth[:me] = ip
+        else
+          Rails.logger.warn "Multiple booth sites in CIB (first match was #{@booth[:me]}, also found #{ip})"
+        end
+      end
+    end
+
+    if @booth[:me]
+      # Pick up tickets defined in booth config
+      @booth[:tickets].each do |t|
+        @tickets[t] = { :granted => false } unless @tickets[t]
+      end
+
+      # try to get a bit more ticket info
+      %x[/usr/sbin/booth client list 2>/dev/null].split("\n").each do |line|
+        t = nil
+        line.split(",").each do |pair|
+          m = pair.match(/(ticket|leader|expires|commit):\s*(.*)/)
+          case m[1]
+          when 'ticket'
+            t = m[2]
+          else
+            @tickets[t][m[1].to_sym] = m[2] if @tickets[t]
+          end
+        end
+      end
     end
 
   end

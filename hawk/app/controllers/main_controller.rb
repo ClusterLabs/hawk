@@ -143,7 +143,7 @@ class MainController < ApplicationController
 
   def resource_delete
     if params[:resource]
-      result = Invoker.instance.crm 'configure', 'delete', params[:resource]
+      result = Invoker.instance.crm '--force', 'configure', 'delete', params[:resource]
       if result == true
         # As with invoke() above, have to return actual JSON here or we land
         # in the AJAX error handler
@@ -158,6 +158,26 @@ class MainController < ApplicationController
     else
       render :status => 400, :json => {
         :error => _('Required parameter "resource" not specified')
+      }
+    end
+  end
+
+  def ticket_grant
+    if params[:ticket] && params[:site]
+      invoke "booth", "client", "grant", "-t", params[:ticket], "-s", params[:site]
+    else
+      render :status => 400, :json => {
+        :error => _('Required parameters "ticket" and "site" not specified')
+      }
+    end
+  end
+
+  def ticket_revoke
+    if params[:ticket]
+      invoke "booth", "client", "revoke", "-t", params[:ticket]
+    else
+      render :status => 400, :json => {
+        :error => _('Required parameter "ticket" not specified')
       }
     end
   end
@@ -280,12 +300,8 @@ class MainController < ApplicationController
       if params[:format] == "xml"
         send_data File.new("#{Rails.root}/tmp/sim.graph").read, :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
       else
-        stdin, stdout, stderr, thread = Util.popen3("/usr/bin/dot", "-Tpng", "#{Rails.root}/tmp/sim.dot")
-        stdin.close
-        png = stdout.read
-        stdout.close
-        stderr.close
-        # TODO(must): check thread.value.exitstatus
+        png, err, status = Util.capture3("/usr/bin/dot", "-Tpng", "#{Rails.root}/tmp/sim.dot")
+        # TODO(must): check status.exitstatus
         send_data png, :type => "image/png", :disposition => "inline"
       end
     else

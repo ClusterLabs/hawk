@@ -73,7 +73,6 @@ class Group < CibObject
         end
       end
     end
-    cmd += "\ncommit\n"
 
     result = Invoker.instance.crm_configure cmd
     unless result == true
@@ -130,6 +129,10 @@ class Group < CibObject
           "is-managed" => {
             :type     => "boolean",
             :default  => "true"
+          },
+          "maintenance" => {
+            :type     => "boolean",
+            :default  => "false"
           },
           "priority" => {
             :type     => "integer",

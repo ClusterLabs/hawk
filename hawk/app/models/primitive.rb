@@ -123,7 +123,6 @@ class Primitive < CibObject
         end
       end
     end
-    cmd += "\ncommit\n"
 
     result = Invoker.instance.crm_configure cmd
     unless result == true
@@ -188,6 +187,7 @@ class Primitive < CibObject
               'name' => op_name
             }
           end
+          merge_ocf_check_level(op, attrlist.delete("OCF_CHECK_LEVEL"))
           op.attributes.each do |n,v|
             op.attributes.delete(n) unless n == 'id' || n == 'name' || attrlist.keys.include?(n)
           end
@@ -221,6 +221,11 @@ class Primitive < CibObject
         op = Hash[e.attributes.collect{|a| a.to_a}]
         op.delete 'name'
         op.delete 'id'
+        if name == "monitor"
+          # special case for OCF_CHECK_LEVEL
+          cl = e.elements['instance_attributes/nvpair[@name="OCF_CHECK_LEVEL"]']
+          op["OCF_CHECK_LEVEL"] = cl.attributes['value'] if cl
+        end
         ops[name].push op
       end if xml.elements['operations']
       res.instance_variable_set(:@ops,        ops)
@@ -283,6 +288,10 @@ class Primitive < CibObject
           "is-managed" => {
             :type     => "boolean",
             :default  => "true"
+          },
+          "maintenance" => {
+            :type     => "boolean",
+            :default  => "false"
           },
           "interval-origin" => {
             :type     => "integer",

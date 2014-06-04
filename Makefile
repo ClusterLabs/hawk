@@ -63,7 +63,7 @@ LIBDIR = /usr/lib
 BINDIR = /usr/bin
 SBINDIR = /usr/sbin
 
-all: scripts/hawk.$(INIT_STYLE) hawk/config/lighttpd.conf tools/hawk_chkpwd tools/hawk_monitor tools/hawk_invoke
+all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service hawk/config/lighttpd.conf tools/hawk_chkpwd tools/hawk_monitor tools/hawk_invoke
 	(cd hawk; \
 	 TEXTDOMAIN=hawk rake gettext:pack && \
 	 if $(BUNDLE_GEMS) ; then \
@@ -109,7 +109,7 @@ clean:
 	rm -rf hawk/tmp
 	rm -rf hawk/log
 	rm -f hawk/config/lighttpd.conf
-	rm -f scripts/hawk.{suse,redhat}
+	rm -f scripts/hawk.{suse,redhat,service}
 	rm -f tools/hawk_chkpwd
 	rm -f tools/hawk_monitor
 	rm -f tools/hawk_invoke
@@ -117,6 +117,8 @@ clean:
 
 # Note: chown & chmod here are only necessary if *not* doing an RPM build
 # (the spec sets file ownership/perms for RPMs).
+# TODO(should): Make an option to install either the init script or the
+# systemd service file (presently this installs the systemd service file)
 install:
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/log
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp
@@ -124,6 +126,7 @@ install:
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/cache
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/explorer
+	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/explorer/uploads
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/pids
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/sessions
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/sockets
@@ -137,7 +140,7 @@ install:
 	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/tmp
 	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/home
 	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/explorer
-	install -D -m 0755 scripts/hawk.$(INIT_STYLE) $(DESTDIR)/etc/init.d/hawk
+	install -D -m 0644 scripts/hawk.service $(DESTDIR)/usr/lib/systemd/system/hawk.service
 	install -D -m 4750 tools/hawk_chkpwd $(DESTDIR)/usr/sbin/hawk_chkpwd
 	-chown root.haclient $(DESTDIR)/usr/sbin/hawk_chkpwd
 	-chmod u+s $(DESTDIR)/usr/sbin/hawk_chkpwd
@@ -151,9 +154,14 @@ install:
 archive:
 	rm -f hawk-$(BUILD_TAG).tar.bz2
 	$(GIT) archive --prefix=hawk-$(BUILD_TAG)/ HEAD | bzip2 > hawk-$(BUILD_TAG).tar.bz2
+
+# The touch here is necessary to ensure the POT file is always updated
+# completely, even if it somehow winds up with a newer mtime than other
+# source files
 pot:
 	@echo "** WARNING: THIS SCREWS UP Project-Id-Version IN THE .POT FILE"
 	@echo "**          DO NOT COMMIT WITHOUT FIXING THIS!"
+	touch -d '2010-01-16T22:20:54+1100' hawk/locale/hawk.pot
 	(cd hawk; rake gettext:find)
 
 srpm: archive hawk.spec

@@ -85,6 +85,7 @@ static struct cmd_map commands[] = {
 	{"crm_shadow",		SBINDIR"/crm_shadow"},
 	{"pengine",		LIBDIR"/heartbeat/pengine"},
 	{"hb_report",		SBINDIR"/hb_report"},
+	{"booth",		SBINDIR"/booth"},
 	{NULL, NULL}
 };
 

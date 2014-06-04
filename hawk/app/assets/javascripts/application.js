@@ -43,6 +43,15 @@ function escape_field(s) {
   return escape_html(s).replace(/"/g, "&quot;").replace(/'/g, "&#39;");
 }
 
+function pad2(n) {
+  return n < 10 ? '0' + n : n;
+}
+
+function date_string(d) {
+  return d.getFullYear() + '-' + pad2(d.getMonth()+1) + '-' + pad2(d.getDate()) + ' ' +
+    pad2(d.getHours()) + ':' + pad2(d.getMinutes()) + ':' + pad2(d.getSeconds());
+}
+
 $(function() {
   // Always initialize dialog (it's in the main layout after all...)
   $("#dialog").dialog({

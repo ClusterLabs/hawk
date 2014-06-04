@@ -12,6 +12,8 @@ end
      when "boolean" %>
     <%= hidden_field_tag "step_params[#{id}]", "false", { :id => nil } %>
     <%= check_box_tag "step_params[#{id}]", "true", (val == "true" || val == true) %>
+  <% when "password" %>
+    <%= password_field_tag "step_params[#{id}]", val %>
   <% else %>
     <%= text_field_tag "step_params[#{id}]", val %>
   <% end %>

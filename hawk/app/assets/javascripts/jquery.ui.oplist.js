@@ -252,6 +252,94 @@
       return rows;
     },
 
+    _init_attrlist: function(op_name, set_attrs, default_interval)
+    {
+      var self = this;
+      var all_attrs = {
+        "interval": {
+          "type":     "string",
+          "default":  default_interval || 0,
+          "required": op_name == "monitor"
+        },
+        "timeout": {
+          "type":     "string",
+          "default":  self.options.all_ops[op_name][0]["timeout"],
+          "required": true
+        },
+        // Default for "requires" is actually "nothing" for STONITH
+        // resources, and for everything else "fencing" if STONITH
+        // is enabled, otherwise "quorum".
+        "requires": {
+          "type":     "enum",
+          "default":  "fencing",
+          "values":   ["nothing", "quorum", "fencing"]
+        },
+        "enabled": {
+          "type":     "boolean",
+          "default":  "true"
+        },
+        // TODO(should): remove "role"?  Somewhat advanced, methinks...
+        "role": {
+          "type":     "enum",
+          "default":  "",
+          "values":   ["Stopped", "Started", "Slave", "Master"]
+        },
+        // Default for "on-fail" for "stop" ops is "fence" when
+        // STONITH is enabled and "block" otherwise.  All other ops
+        // default to "stop".
+        "on-fail": {
+          "type":     "enum",
+          "default":  "stop",
+          "values":   ["ignore", "block", "stop", "restart", "standby", "fence"]
+        },
+        "start-delay": {
+          "type":     "string",
+          "default":  "0"
+        },
+        "interval-origin": {
+          "type":     "string",
+          "default":  "0"
+        },
+        "record-pending": {
+          "type":     "boolean",
+          "default":  "false"
+        },
+        "description": {
+          "type":     "string",
+          "default":  ""
+        }
+      };
+      if (op_name == "monitor") {
+        // special case for OCF_CHECK_LEVEL
+        all_attrs["OCF_CHECK_LEVEL"] = { "type": "string", "default": "0" }
+      }
+      self.dialog.children(":first").attrlist({
+        labels: {
+          add: self.options.labels.add,
+          remove: self.options.labels.remove,
+          no_value: self.options.labels.no_value
+        },
+        all_attrs: all_attrs,
+        set_attrs: set_attrs,
+        prefix: "op_attrs",
+        dirty: function() {
+          // Make sure everything has values
+          var enabled = true;
+          $.each(self.dialog.children(":first").attrlist("val"), function(n,v) {
+            if (v === "") {
+              enabled = false;
+              return false;
+            }
+          });
+          if (enabled) {
+            self.dialog.parent().find(".ui-dialog-buttonpane button:first").removeAttr("disabled");
+          } else {
+            self.dialog.parent().find(".ui-dialog-buttonpane button:first").attr("disabled", "disabled");
+          }
+        }
+      });
+    },
+
     // TODO(must): _edit_op was largely duplicated from this - consolidate!
     _insert_row: function(n, v) {
       var self = this;
@@ -281,84 +369,7 @@
             set_attrs[n] = this.value;
           }
         });
-        self.dialog.children(":first").attrlist({
-          labels: {
-            add: self.options.labels.add,
-            remove: self.options.labels.remove,
-            no_value: self.options.labels.no_value
-          },
-          all_attrs: {
-            "interval": {
-              "type":     "string",
-              "default":  self.options.all_ops[op_name][0]["interval"] || 0,
-              "required": op_name == "monitor"
-            },
-            "timeout": {
-              "type":     "string",
-              "default":  self.options.all_ops[op_name][0]["timeout"],
-              "required": true
-            },
-            // Default for "requires" is actually "nothing" for STONITH
-            // resources, and for everything else "fencing" if STONITH
-            // is enabled, otherwise "quorum".
-            "requires": {
-              "type":     "enum",
-              "default":  "fencing",
-              "values":   ["nothing", "quorum", "fencing"]
-            },
-            "enabled": {
-              "type":     "boolean",
-              "default":  "true"
-            },
-            // TODO(should): remove "role"?  Somewhat advanced, methinks...
-            "role": {
-              "type":     "enum",
-              "default":  "",
-              "values":   ["Stopped", "Started", "Slave", "Master"]
-            },
-            // Default for "on-fail" for "stop" ops is "fence" when
-            // STONITH is enabled and "block" otherwise.  All other ops
-            // default to "stop".
-            "on-fail": {
-              "type":     "enum",
-              "default":  "stop",
-              "values":   ["ignore", "block", "stop", "restart", "standby", "fence"]
-            },
-            "start-delay": {
-              "type":     "string",
-              "default":  "0"
-            },
-            "interval-origin": {
-              "type":     "string",
-              "default":  "0"
-            },
-            "record-pending": {
-              "type":     "boolean",
-              "default":  "false"
-            },
-            "description": {
-              "type":     "string",
-              "default":  ""
-            }
-          },
-          set_attrs: set_attrs,
-          prefix: "op_attrs",
-          dirty: function() {
-            // Make sure everything has values
-            var enabled = true;
-            $.each(self.dialog.children(":first").attrlist("val"), function(n,v) {
-              if (v === "") {
-                enabled = false;
-                return false;
-              }
-            });
-            if (enabled) {
-              self.dialog.parent().find(".ui-dialog-buttonpane button:first").removeAttr("disabled");
-            } else {
-              self.dialog.parent().find(".ui-dialog-buttonpane button:first").attr("disabled", "disabled");
-            }
-          }
-        });
+        self._init_attrlist(op_name, set_attrs, self.options.all_ops[op_name][0]["interval"]);
         var b = {};
         // TODO(must): trim interval!
         b[self.options.labels.ok] = function(event) {
@@ -482,89 +493,11 @@
     // subtle differences - consolidate!
     _edit_op: function(op_name) {
       var self = this;
-      var set_attrs = {};
       var interval = self.options.all_ops[op_name][0]["interval"];
       if (op_name == "monitor") {
         interval = self._next_monitor_interval(interval);
       }
-      self.dialog.children(":first").attrlist({
-        labels: {
-          add: self.options.labels.add,
-          remove: self.options.labels.remove,
-          no_value: self.options.labels.no_value
-        },
-        all_attrs: {
-          "interval": {
-            "type":     "string",
-            "default":  interval || 0,
-            "required": op_name == "monitor"
-          },
-          "timeout": {
-            "type":     "string",
-            "default":  self.options.all_ops[op_name][0]["timeout"],
-            "required": true
-          },
-          // Default for "requires" is actually "nothing" for STONITH
-          // resources, and for everything else "fencing" if STONITH
-          // is enabled, otherwise "quorum".
-          "requires": {
-            "type":     "enum",
-            "default":  "fencing",
-            "values":   ["nothing", "quorum", "fencing"]
-          },
-          "enabled": {
-            "type":     "boolean",
-            "default":  "true"
-          },
-          // TODO(should): remove "role"?  Somewhat advanced, methinks...
-          "role": {
-            "type":     "enum",
-            "default":  "",
-            "values":   ["Stopped", "Started", "Slave", "Master"]
-          },
-          // Default for "on-fail" for "stop" ops is "fence" when
-          // STONITH is enabled and "block" otherwise.  All other ops
-          // default to "stop".
-          "on-fail": {
-            "type":     "enum",
-            "default":  "stop",
-            "values":   ["ignore", "block", "stop", "restart", "standby", "fence"]
-          },
-          "start-delay": {
-            "type":     "string",
-            "default":  "0"
-          },
-          "interval-origin": {
-            "type":     "string",
-            "default":  "0"
-          },
-          "record-pending": {
-            "type":     "boolean",
-            "default":  "false"
-          },
-          "description": {
-            "type":     "string",
-            "default":  ""
-          }
-        },
-        set_attrs: set_attrs,
-        prefix: "op_attrs",
-        dirty: function() {
-          // Make sure everything has values
-          var enabled = true;
-          $.each(self.dialog.children(":first").attrlist("val"), function(n,v) {
-            if (v === "") {
-              enabled = false;
-              return false;
-            }
-          });
-          if (enabled) {
-            self.dialog.parent().find(".ui-dialog-buttonpane button:first").removeAttr("disabled");
-          } else {
-            self.dialog.parent().find(".ui-dialog-buttonpane button:first").attr("disabled", "disabled");
-          }
-        }
-      });
+      self._init_attrlist(op_name, {}, interval);
       var b = {};
       // TODO(must): trim interval!
       b[self.options.labels.ok] = function(event) {

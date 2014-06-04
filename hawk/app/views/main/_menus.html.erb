@@ -1,5 +1,6 @@
 <div id="menu::node" style="display: none;"></div>
 <div id="menu::resource" style="display: none;"></div>
+<div id="menu::ticket" style="display: none;"></div>
 <script type="text/javascript">
 $(function() {
   $(jq("menu::node")).popupmenu({ iconroot: url_root + "/assets/icons/", items: [
@@ -199,6 +200,22 @@ $(function() {
       }
     }
     <% end %>
+  ]});
+  $(jq("menu::ticket")).popupmenu({ iconroot: url_root + "/assets/icons/", items: [
+    {
+      label: "<%=h escape_javascript _('Grant') %>",
+      icon: "ready.png",
+      click: function(target) {
+        confirm_op(this.label, item_id(target.attr("id")), "ticket", "grant", "site=" + cib.booth.me);
+      }
+    },
+    {
+      label: "<%=h escape_javascript _('Revoke') %>",
+      icon: "kill.png",
+      click: function(target) {
+        confirm_op(this.label, item_id(target.attr("id")), "ticket", "revoke");
+      }
+    }
   ]});
 });
 </script>

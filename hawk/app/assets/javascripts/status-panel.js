@@ -30,7 +30,9 @@
 //======================================================================
 
 var panel_view = {
+  by_type: $.cookie("hawk-status-view-by-type") == "true" ? true : false,
   create: function() {
+    var self = this;
     $("#content").append($(
 //      '<div id="filter" style="display: none; width: 100%;">' +
 //        '<input type="checkbox" id="show-active" checked="checked"/> Show Active&nbsp;&nbsp;' +
@@ -61,7 +63,14 @@ var panel_view = {
       menu_icon: url_root + "/assets/transparent-16x16.gif"
     });
     $("#reslist").panel({
-      menu_icon: url_root + "/assets/transparent-16x16.gif"
+      menu_icon:  url_root + "/assets/icons/bytype-toggle.png",
+      menu_alt:   GETTEXT.toggle_view_by_type(),
+      menu_click: function() {
+        self.by_type = !self.by_type;
+        self.update();
+        $.cookie("hawk-status-view-by-type", self.by_type, { expires: 3650 });
+        return false;
+      }
     });
 /*    
     // Filter problems:
@@ -153,6 +162,10 @@ var panel_view = {
           status_class += " rs-active ticketsum ticketsum-granted";
           label = GETTEXT.node_state(id, GETTEXT.ticket_granted(this.standby));
           state_icon = "ui-icon-check";
+        } else if (this.leader && this.leader.toLowerCase() != "none") {
+          status_class += " rs-transient ticketsum ticketsum-elsewhere";
+          label = GETTEXT.node_state(id, GETTEXT.ticket_elsewhere(this.standby));
+          state_icon = "ui-icon-cancel";
         } else {
           status_class += " rs-inactive ticketsum ticketsum-revoked";
           label = GETTEXT.node_state(id, GETTEXT.ticket_revoked(this.standby));
@@ -163,8 +176,28 @@ var panel_view = {
         d.attr("class", "ui-corner-all " + status_class);
         d.find("span").html(label);
         $("#tickets").panel("body_element").append(d);
+        var ti = [];
         if (this["last-granted"]) {
-          flag_info("ticket::" + id, GETTEXT.ticket_last_granted(new Date(this["last-granted"] * 1000)));
+          ti.push(GETTEXT.ticket_last_granted(date_string(new Date(this["last-granted"] * 1000))));
+        }
+        if (this["leader"]) {
+          ti.push(GETTEXT.ticket_leader(this["leader"]));
+        }
+        if (this["expires"]) {
+          ti.push(GETTEXT.ticket_expires(this["expires"]));
+        }
+        if (ti.length) {
+          flag_info("ticket::" + id, ti.join("\n"));
+        }
+        if (cib_source != "file" && cib.booth && cib.booth.me) {
+          add_mgmt_menu($(jq("ticket::" + id + "::menu")));
+          if (this.leader) {
+            if (this.granted && this.leader != cib.booth.me) {
+              flag_warning("ticket::" + id, GETTEXT.ticket_booth_drift(this.leader));
+            }
+          } else {
+            flag_warning("ticket::" + id, GETTEXT.ticket_booth_dead());
+          }
         }
         $(jq("ticket::" + id + "::state")).removeClass();
         if (state_icon) {
@@ -236,7 +269,7 @@ var panel_view = {
               open:      this.open
             });
           } else {
-            d = new_item_div(this.id);
+            d = new_item_div(this.id, this.title ? this.title : null);
           }
         }
         if (!c.length) {
@@ -244,8 +277,8 @@ var panel_view = {
         } else {
           c.before(d);
         }
-        if (cib_source != "file") {
-          // Only add menus when running on mutable CIB
+        if (cib_source != "file" && !this.no_menu) {
+          // Only add menus when running on mutable CIB and not on by-type items
           add_mgmt_menu($(jq(this.id + "::menu")));
         }
       } else {
@@ -324,41 +357,52 @@ var panel_view = {
   },
   // TODO(must): sort order for injected instances might be wrong
   _get_primitive: function(res) {
+    var self = this;
     var set = [];
     for (var i in res.instances) {
       var id = res.id;
       if (i != "default") id += ":" + i;
       var status_class = "res-primitive";
-      var label;
+      var label = self.by_type ? cpt(res) : id;
       var active = false;
       var state_icon;
+      var nodes = [];
       if (res.instances[i].master) {
-        label = GETTEXT.resource_state_master(id, h2n(res.instances[i].master));
+        nodes = res.instances[i].master;
+        label = GETTEXT.resource_state_master(label, h2n(nodes));
         status_class += " rs-active rs-master";
         state_icon = "ui-icon-play";
         active = true;
       } else if (res.instances[i].slave) {
-        label = GETTEXT.resource_state_slave(id, h2n(res.instances[i].slave));
+        nodes = res.instances[i].slave;
+        label = GETTEXT.resource_state_slave(label, h2n(nodes));
         status_class += " rs-active rs-slave";
         state_icon = "ui-icon-play";
         active = true;
       } else if (res.instances[i].started) {
-        label = GETTEXT.resource_state_started(id, h2n(res.instances[i].started));
+        nodes = res.instances[i].started;
+        label = GETTEXT.resource_state_started(label, h2n(nodes));
         status_class += " rs-active";
         state_icon = "ui-icon-play";
         active = true;
+      } else if (res.instances[i].failed) {
+        nodes = res.instances[i].failed;
+        label = GETTEXT.resource_state_failed(label, h2n(nodes));
+        status_class += " rs-error";
+        state_icon = "ui-icon-notice";
       } else if (res.instances[i].pending) {
-        if (res.instances[i].pending.length == 1 && res.instances[i].pending[0].substate) {
+        nodes = res.instances[i].pending;
+        if (nodes.length == 1 && nodes[0].substate) {
           // Seriously, this'll always have a length of 1, but it never hurts to
           // be paranoid about these things.
-          eval("label = GETTEXT.resource_state_" + res.instances[i].pending[0].substate + "(id, res.instances[i].pending[0].node);");
+          eval("label = GETTEXT.resource_state_" + nodes[0].substate + "(id, nodes[0].node);");
         } else {
-          label = GETTEXT.resource_state_pending(id, h2n(res.instances[i].pending));
+          label = GETTEXT.resource_state_pending(label, h2n(nodes));
         }
         status_class += " rs-transient";
         state_icon = "ui-icon-refresh";
       } else {
-        label = GETTEXT.resource_state_stopped(id);
+        label = GETTEXT.resource_state_stopped(label);
         status_class += " rs-inactive";
         state_icon = "ui-icon-stop";
       }
@@ -370,7 +414,9 @@ var panel_view = {
         state_icon: state_icon,
         active:     active,
         error:      res.instances[i].failed_ops,
-        is_managed: res.instances[i].is_managed
+        is_managed: res.instances[i].is_managed,
+        title:      self.by_type ? id : cpt(res),
+        nodes:      h2n(nodes)   // only used when viewing by type in groups (bit of a hack)
       });
     }
     return set;
@@ -379,7 +425,9 @@ var panel_view = {
     var self = this;
     var instances = [];
     var groups = {};
+    var typestate = {};
     $.each(res.children, function() {
+      var t = cpt(this);
       $.each(self._get_primitive(this), function() {
         if (!groups[this.instance]) {
           instances.push(this.instance);
@@ -400,12 +448,58 @@ var panel_view = {
           groups[this.instance].open = true;
           groups[this.instance].className = "res-group rs-inactive";
         }
-        groups[this.instance].children.push(this);
+        if (self.by_type) {
+          if (!typestate[this.instance]) {
+            typestate[this.instance] = {};
+          }
+          if (!typestate[this.instance][t]) {
+            typestate[this.instance][t] = {
+              started: 0,
+              stopped: 0,
+              error: [],
+              is_managed: true,
+              node: this.nodes && this.nodes[0] ? this.nodes[0] : ""  // in a group this should be the same for all members
+            }
+          }
+          if (this.active) {
+            typestate[this.instance][t].started++;
+          } else {
+            typestate[this.instance][t].stopped++;
+          }
+          typestate[this.instance][t].error = typestate[this.instance][t].error.concat(this.error);
+          if (!this.is_managed) {
+            // Aggregare will lie if some are managed and some aren't but better
+            // to err on the side of displaying unmanaged than not.
+            typestate[this.instance][t].is_managed = false;
+          }
+        } else {
+          groups[this.instance].children.push(this);
+        }
       });
     });
-    set = []
+    var set = [];
     $.each(instances.sort(), function() {
-      set.push(groups[this]);
+      var i = this;
+      if (self.by_type) {
+        $.each(typestate[i], function(t) {
+          var fake_id = res.id;
+          if (i != "default") { fake_id += ":" + i; }
+          fake_id += "::" + t.replace(/[^A-Za-z0-9-_]/g,'_');
+          groups[i].children.push({
+            id:         "resource::" + fake_id,
+            instance:   i,
+            className:  this.stopped > 0 ? "res-primitive rs-inactive" : "res-primitive rs-active",
+            label:      GETTEXT.resource_bytype_summary(this.started, (this.started + this.stopped), t, this.node),
+            state_icon: this.stopped > 0 ? "ui-icon-stop" : "ui-icon-play",
+            active:     this.stopped == 0,
+            error:      this.error,
+            is_managed: this.is_managed,
+            title:      null,
+            no_menu:    true
+          });
+        });
+      }
+      set.push(groups[i]);
     });
     return set;
   },

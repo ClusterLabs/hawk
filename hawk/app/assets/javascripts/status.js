@@ -104,12 +104,24 @@ function item_id(str)
   return dc_split(str)[1].split(":")[0];
 }
 
+// Return a class:provider:type string
+function cpt(res)
+{
+  var s = "";
+  if (res['class']) {
+    s += res['class'] + ':'
+    if (res['provider']) { s += res['provider'] + ':'; }
+    s += res['type'];
+  }
+  return s;
+}
+
 // Generic individual item (node or resource)
-function new_item_div(id) {
+function new_item_div(id, title) {
   return $(
-    '<div id="' + id + '">' +
-      '<a id="' + id + '::menu"><img src="' + url_root + '/assets/transparent-16x16.gif" class="action-icon" alt="" /></a>' +
-      '<div id="' + id + '::state" style="float: left; width: 16px; height: 16px;"></div>' +
+    '<div id="' + id + '"' + (title ? ' title="' + escape_html(title) + '"' : '') + '>' +
+      '<a id="' + id + '::menu" title=""><img src="' + url_root + '/assets/transparent-16x16.gif" class="action-icon" alt="" /></a>' +
+      '<div id="' + id + '::state" style="float: left; width: 16px; height: 16px;" title=""></div>' +
       '<div id="' + id + '::error" class="status-icons">' +
         '<span class="ui-icon ui-icon-alert" style="float: right; display: none;" />' +
         '<span class="ui-icon ui-icon-info" style="float: right; display: none;" />' +
@@ -130,6 +142,20 @@ function flag_error(id, failed_ops) {
       errs.push(escape_html(err));
     });
     e.attr("title", errs.join(", "));
+    e.show();
+  } else {
+    e.removeAttr("title");
+    e.hide();
+  }
+}
+
+// This is slightly misnamed -- it does the same thing as flag_error, but for arbitrary
+// text, as opposed to a list of failed ops.  Only one of flag_error() or flag_warning()
+// can apply at a time (same icon).
+function flag_warning(id, info) {
+  var e = $(jq(id+"::error")).find(".ui-icon-alert");
+  if (info) {
+    e.attr("title", info);
     e.show();
   } else {
     e.removeAttr("title");
@@ -164,12 +190,12 @@ function flag_maintenance(id, info) {
 // id:    node or resource id
 // type:  either "node" or "resource"
 // op:    op to perform
-function confirm_op(title, id, type, op)
+function confirm_op(title, id, type, op, extra)
 {
   $("#dialog").html(GETTEXT[type + "_" + op](id));
   // TODO(could): Is there a neater construct for this localized button thing?
   var b = {};
-  b[GETTEXT.yes()]  = function() { perform_op(type, id, op); $(this).dialog("close"); };
+  b[GETTEXT.yes()]  = function() { perform_op(type, id, op, extra); $(this).dialog("close"); };
   b[GETTEXT.no()]   = function() { $(this).dialog("close"); }
   $("#dialog").dialog("option", {
     title:    title,
@@ -244,6 +270,10 @@ function add_mgmt_menu(e)
   if (parts[0] == "node") {
     e.click(function() {
       return $(jq("menu::node")).popupmenu("popup", $(this));
+    });
+  } else if (parts[0] == "ticket") {
+    e.click(function() {
+      return $(jq("menu::ticket")).popupmenu("popup", $(this));
     });
   } else {
     var id_parts = parts[1].split(":");
@@ -322,10 +352,15 @@ function do_update(cur_epoch)
 
   update_req = $.ajax({ url: url_root + "/monitor?" + cur_epoch,
     type: "GET",
+    cache: false,
     timeout: 90000,   // hawk_monitor timeout + 50% wiggle room
     success: function(data) {
       if (data) {
-        if (data.epoch != cur_epoch) {
+        if (data.epoch != cur_epoch || (cib && cib.booth && cib.booth.me)) {
+          // Trigger full update if the epoch has changed, or if it's a geo-cluster;
+          // this means geo clusters will get an update every minute or so, which
+          // means if it's at all possible for booth status to drift without updating
+          // the CIB, at least it will be apparent within a minute or so.
           update_cib();
         } else {
           do_update(data.epoch);

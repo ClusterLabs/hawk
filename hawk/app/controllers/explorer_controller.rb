@@ -61,6 +61,7 @@ class ExplorerController < ApplicationController
 
     if params[:delete]
       require "fileutils"
+      # TODO(must): won't work with uploads
       FileUtils.remove_entry_secure(@report_path) if File.exists?(@report_path)
       FileUtils.remove_entry_secure(@hb_report.path) if File.exists?(@hb_report.path)
       FileUtils.remove_entry_secure(@hb_report.outfile) if File.exists?(@hb_report.outfile)
@@ -81,19 +82,14 @@ class ExplorerController < ApplicationController
         # prior cibadmin calls on individual PE inputs will have wrecked their mtimes.
         FileUtils.remove_entry_secure(@hb_report.path) if File.exists?(@hb_report.path)
         @peinputs = []
-        stdin, stdout, stderr, thread = Util.popen3("crm", "history")
-        stdin.write("source #{@report_path}\npeinputs\n")
-        stdin.close
-        peinputs_raw = stdout.read()
-        stdout.close
-        err = stderr.read()
-        stderr.close
-        if thread.value.exitstatus == 0
+        peinputs_raw, err, status = Util.capture3("crm", "history", :stdin_data => "source #{@report_path}\npeinputs\n")
+        if status.exitstatus == 0
           peinputs_raw.split(/\n/).each do |path|
             next unless File.exists?(path)
             @peinputs << {
               :timestamp => File.mtime(path).strftime("%Y-%m-%d %H:%M:%S"),
               :basename  => File.basename(path, ".bz2"),
+              :path      => path.sub("#{@@x_path}/", ''),  # only use relative portion
               :node      => path.split(File::SEPARATOR)[-3]
             }
             v = peinput_version(path)
@@ -123,7 +119,7 @@ class ExplorerController < ApplicationController
     end
   end
 
-  # Remarkably similar to MainController::sim_get
+  # Remarkably similar to MainController::sim_get (kinda)
   # Note reliance on hb_report directory strucutre - if that ever changes, code
   # here will need to change too.
   def get
@@ -136,26 +132,22 @@ class ExplorerController < ApplicationController
     params[:basename].gsub!(/[^\w-]/, "")
     params[:node].gsub!(/[^\w_-]/, "")
     tname = "#{params[:node]}/pengine/#{params[:basename]}.bz2"
-    tpath = "#{@@x_path}/#{@report_name}/#{tname}"
+    params[:path].gsub!("..", "") # tear out possible relative junk
+    tpath = "#{@@x_path}/#{params[:path]}"
     case params[:file]
     when "pe-input"
       send_file tpath, :type => "application/x-bzip"
     when "info"
       cmd = "transition #{tname} nograph"
       cmd = "transition log #{tname}" if params[:log]
-      stdin, stdout, stderr, thread = Util.run_as("root", "crm", "history")
-      stdin.write("source #{@report_path}\n#{cmd}\n")
-      stdin.close
-      info = stdout.read()
-      stdout.close
-      info += stderr.read()
-      stderr.close
+      out, err, status = Util.run_as("root", "crm", "history", :stdin_data => "source #{@report_path}\n#{cmd}\n")
+      info = out + err
 
       info.strip!
       # TODO(should): option to increase verbosity level
       info = _("No details available") if info.empty?
 
-      info.insert(0, _("Error:") + "\n") unless thread.value.exitstatus == 0
+      info.insert(0, _("Error:") + "\n") unless status.exitstatus == 0
 
       send_data info, :type => "text/plain", :disposition => "inline"
     when "graph"
@@ -174,13 +166,8 @@ class ExplorerController < ApplicationController
         # Can't use send_file here, server whines about file not existing(?!?)
         send_data File.new(tmpfile.path).read, :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
       else
-        stdin, stdout, stderr, thread = Util.popen3("/usr/bin/dot", "-Tpng", tmpfile.path)
-        stdin.close
-        png = stdout.read
-        stdout.close
-        err = stderr.read
-        stderr.close
-        if thread.value.exitstatus == 0
+        png, err, status = Util.capture3("/usr/bin/dot", "-Tpng", tmpfile.path)
+        if status.exitstatus == 0
           send_data png, :type => "image/png", :disposition => "inline"
         else
           render :status => 500, :content_type => "text/plain", :inline => _("Error:") + "\n#{err}"
@@ -213,19 +200,14 @@ class ExplorerController < ApplicationController
     format = params[:format] == "html" ? "html" : ""
 
     if (l && r)
-      stdin, stdout, stderr, thread = Util.run_as("root", "crm", "history")
-      stdin.write("source #{@report_path}\ndiff #{l} #{r} status #{format}\ndiff #{l} #{r} #{format}\n")
-      stdin.close
-      info = stdout.read()
-      stdout.close
-      info += stderr.read()
-      stderr.close
+      out, err, status = Util.run_as("root", "crm", "history", :stdin_data => "source #{@report_path}\ndiff #{l} #{r} status #{format}\ndiff #{l} #{r} #{format}\n")
+      info = out + err
 
       info.strip!
       # TODO(should): option to increase verbosity level
       info = _("No details available") if info.empty?
 
-      if thread.value.exitstatus == 0
+      if status.exitstatus == 0
         if format == "html"
           info += <<-eos
             <table>
@@ -262,6 +244,17 @@ class ExplorerController < ApplicationController
     end
   end
 
+  # This handles the case where some crazy thing has been entered by the user
+  # (e.g.: 2014-00-00) which would ordinarily throw an exception resulting in
+  # a 500 error
+  def time_param(val, default)
+    begin
+      Time.parse(val)
+    rescue
+      default
+    end
+  end
+
   def init_params
     lasttime = @hb_report.lasttime
     if @hb_report.running? && lasttime 
@@ -269,8 +262,8 @@ class ExplorerController < ApplicationController
       @from_time, @to_time = lasttime
     else
       # Start 24 hours ago by default
-      @from_time = params[:from_time] && !params[:from_time].empty? ? Time.parse(params[:from_time]) : Time.now - 86400
-      @to_time = params[:to_time] && !params[:to_time].empty? ? Time.parse(params[:to_time]) : Time.now
+      @from_time = time_param(params[:from_time], Time.now - 86400)
+      @to_time = time_param(params[:to_time], Time.now)
 
       # Ensure from_time is earlier than to_time.  Should probably make sure they're
       # not idendical (kind of pointless doing a zero minute hb_report...)
@@ -281,8 +274,28 @@ class ExplorerController < ApplicationController
       @to_time = @to_time.strftime("%Y-%m-%d %H:%M")
     end
 
-    @report_name = "hb_report-hawk-#{@from_time.sub(' ','_')}-#{@to_time.sub(' ','_')}"
-    @report_path = "#{@@x_path}/#{@report_name}.tar.bz2"
+    if params[:uploaded_report]
+      # TODO(must): handle overwriting existing files
+      #             (note that hb_reports from hawk seem to all extract to hb_report-hawk, not their filename?)
+      #             e.g.:bug-781207_hb_report-hawk.tar.bz2)
+      # TODO(must): verify original_filename doesn't contain evil
+      uploaded_io = params[:uploaded_report]
+      @upload_name = uploaded_io.original_filename
+      @report_path = Rails.root.join('tmp', 'explorer', 'uploads', @upload_name)
+      File.open(@report_path, 'wb') do |file|
+        file.write(uploaded_io.read)
+      end
+      # @report_name actually not really used when uploading (*ugh*)
+      @report_name = "uploads/#{File.basename(@report_path, '.tar.bz2')}"
+    elsif params[:upload_name]
+      # TODO(must): dupe of above, kinda, fix.  Also unsafe.
+      @upload_name = params[:upload_name]
+      @report_path = Rails.root.join('tmp', 'explorer', 'uploads', @upload_name)
+      @report_name = "uploads/#{File.basename(@report_path, '.tar.bz2')}"
+    else
+      @report_name = "hb_report-hawk-#{@from_time.sub(' ','_')}-#{@to_time.sub(' ','_')}"
+      @report_path = "#{@@x_path}/#{@report_name}.tar.bz2"
+    end
 
     @hb_report.path = "#{@@x_path}/#{@report_name}"
   end

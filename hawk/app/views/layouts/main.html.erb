@@ -17,6 +17,7 @@
   <%= javascript_tag "var url_root='#{relative_url_root}';" %>
   <%= javascript_include_tag "application" %>
   <%= javascript_include_tag "json2.min" %>
+  <script src="<%= url_for(:controller => 'main', :action => 'gettext', :format => 'js') %>" type="text/javascript"></script>
   <%= csrf_meta_tags %>
 <%= yield :head %>
 </head>
@@ -90,7 +91,7 @@ $(function() {
           '<img src="' + url_root + '/assets/spinner-32x32.gif" alt="" /></div>');
         $("#dialog").load(url_root + "/hb_reports/new");
         var b = {};
-        b["Close"] = function() {
+        b[GETTEXT.close()] = function() {
           $(this).dialog("close");
         };
         $("#dialog").dialog("option", {
@@ -99,6 +100,107 @@ $(function() {
         });
         $("#dialog").dialog("open");
         return false;               // may need cancel too
+      }
+    }
+    <% end %>
+    ,
+    {
+      separator: true
+    },
+    {
+      label: "<%=h escape_javascript _('Preferences...') %>",
+      icon: "config.png",
+      click: function(target) {
+        // TODO(should): Autogenerate this from locales directory
+        var locales = {
+          "Arabic":             "ar",
+          "Chinese/China":      "zh_CN",
+          "Chinese/Taiwan":     "zh_TW",
+          "Czech":              "cs",
+          "Dutch":              "nl",
+          "English":            "en",
+          "French":             "fr",
+          "German":             "de",
+          "Hungarian":          "hu",
+          "Italian":            "it",
+          "Japanese":           "ja",
+          "Korean":             "ko",
+          "Polish":             "pl",
+          "Portuguese/Brazil":  "pt_BR",
+          "Russian":            "ru",
+          "Spanish":            "es",
+          "Swedish":            "sv"
+        }
+        var html = '<table><tr><td><%=h escape_javascript _('Language') %></td><td>' +
+          '<select id="locale"><option value="">Default</option>';
+        $.each(locales, function(k, v) {
+          html += '<option value="' + v + '"';
+          if ($.cookie("locale") == v) {
+            html += ' selected="selected"';
+          }
+          html += '>' + k + ' [' + v.toLowerCase().replace('_', '-') + ']</option>';
+        });
+        html += '</select></td></tr><table>';
+        $("#dialog").html(html);
+        var b = {};
+        b[GETTEXT.ok()] = function() {
+          var locale = $("#locale").val();
+          if (locale) {
+            $.cookie("locale", locale, { expires: 3650, path: '/' });
+          } else {
+            $.cookie("locale", null, { path: '/' });
+          }
+          $(this).dialog("close");
+          window.location.reload();
+        };
+        b[GETTEXT.cancel()] = function() {
+          $(this).dialog("close");
+        };
+        $("#dialog").dialog("option", {
+          title:    "<%=h escape_javascript _('Preferences') %>",
+          buttons:  b
+        });
+        $("#dialog").dialog("open");
+        return false;
+      }
+    }
+    <%
+    help_files = installed_documentation
+    if !help_files.empty?
+    %>
+    ,
+    {
+      separator: true
+    },
+    {
+      label: "<%=h escape_javascript _('Help...') %>",
+      icon: "help.png",
+      click: function(target) {
+        var html = "";
+        <% help_files.each do |help| %>
+        html += "<h2><%=h escape_javascript help[:title] %> (";
+        <% if help[:html] %>
+        html += '<a href="<%= help[:html] %>" target="_blank">HTML</a><%= help[:pdf] ? '|' : '' %>';
+        <% end %>
+        <% if help[:pdf] %>
+        html += '<a href="<%= help[:pdf] %>" target="_blank">PDF</a>';
+        <% end %>
+        html += ")</h2>";
+        html += "<p><%=h escape_javascript help[:desc] %></p>";
+        <% end %>
+        $("#dialog").html(html);
+        var b = {};
+        b[GETTEXT.close()] = function() {
+          $(this).dialog("close");
+        };
+        $("#dialog").dialog("option", {
+          title:    "<%=h escape_javascript _('Documentation') %>",
+          buttons:  b,
+          resizable: true,
+          draggable: true,
+          width:    "75%"
+        });
+        $("#dialog").dialog("open");
       }
     }
     <% end %>
@@ -149,8 +251,17 @@ tabs += [
     :icon => "icons/wizard.png", :label => _("Setup Wizard"),
     :path => wizard_path(:cib_id => (params[:cib_id] || "live")) },
   { :controllers => [ "crm_config" ],
-    :icon => "icons/config.png", :label => _("Cluster Properties"),
-    :path => cib_crm_config_path(:cib_id => (params[:cib_id] || "live"), :id => 'cib-bootstrap-options') },
+    :icon => "icons/config.png", :label => _("Cluster Configuration"),
+    :path => cib_crm_config_path(:cib_id => (params[:cib_id] || "live"), :id => 'cib-bootstrap-options') }
+];
+
+tabs += [
+  { :controllers => [ "acls", "users", "roles" ],
+    :icon => "icons/acls.png", :label => _("Access Control Lists"),
+    :path => cib_acls_path(:cib_id => (params[:cib_id] || "live")) }
+] if Util.has_feature?(:acl_support)
+
+tabs += [
   { :controllers => [ "resources", "primitives", "groups", "clones", "masters" ],
     :icon => "icons/resources.png", :label => _("Resources"),
     :path => cib_resources_path(:cib_id => (params[:cib_id] || "live")) },
@@ -177,7 +288,7 @@ tabs += [
       <span id="dc_version" style="display: none; padding-right: 1em;"></span>
       <span id="dc_stack" style="display: none; padding-right: 1em;"></span>
       <%= (_('UI Host: %s') % @host) if @host %></span>
-    <span id="copyright"><%=raw _('Copyright &copy; 2009-2013 SUSE, LLC') %></span>
+    <span id="copyright"><%=raw _('Copyright &copy; 2009-2014 SUSE, LLC') %></span>
   </div>
   <div id="dialog" style="display: none;"></div>
 </div>

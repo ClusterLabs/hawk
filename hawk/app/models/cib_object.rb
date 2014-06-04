@@ -91,7 +91,7 @@ class CibObject
     def find(id, attr='id')
       begin
         xml = REXML::Document.new(Invoker.instance.cibadmin('-Ql', '--xpath',
-          "//configuration//*[self::node or self::primitive or self::template or self::clone or self::group or self::master or self::rsc_order or self::rsc_colocation or self::rsc_location or self::rsc_ticket][@#{attr}='#{id}']"))
+          "//configuration//*[self::node or self::primitive or self::template or self::clone or self::group or self::master or self::rsc_order or self::rsc_colocation or self::rsc_location or self::rsc_ticket or self::acl_role or self::acl_user][@#{attr}='#{id}']"))
         raise CibObject::CibObjectError, _('Unable to parse cibadmin output') unless xml.root
         elem = xml.elements[1]
         obj = class_from_element_name(elem.name).instantiate(elem)
@@ -156,7 +156,9 @@ class CibObject
         'rsc_order'       => Order,
         'rsc_colocation'  => Colocation,
         'rsc_location'    => Location,
-        'rsc_ticket'      => Ticket
+        'rsc_ticket'      => Ticket,
+        'acl_role'        => Role,
+        'acl_user'        => User
       }
       @@map[name]
     end
@@ -196,6 +198,32 @@ class CibObject
   def update_attributes(attributes = nil)
     set_attributes(attributes)
     save  # must be defined in subclass
+  end
+
+  # Kinda ugly special case for OCF_CHECK_LEVEL where we can't use merge_nvpairs,
+  # against the very faint chance there's some other instance attributes set which
+  # we wouldn't want to clobber.
+  def merge_ocf_check_level(op, v)
+    unless v
+      # No OCF_CHECK_LEVEL set, remove it from the XML if present
+      cl = op.elements['instance_attributes/nvpair[@name="OCF_CHECK_LEVEL"]']
+      cl.remove if cl
+      return
+    end
+
+    op.add_element 'instance_attributes',
+      { 'id' => "#{op.attributes['id']}-instace_attributes" } unless op.elements['instance_attributes']
+
+    nvp = op.elements['instance_attributes/nvpair[@name="OCF_CHECK_LEVEL"]']
+    if nvp
+      nvp.attributes['value'] = v
+    else
+      op.elements['instance_attributes'].add_element 'nvpair', {
+        'id' => "#{op.attributes['id']}-instace_attributes-OCF_CHECK_LEVEL",
+        'name' => 'OCF_CHECK_LEVEL',
+        'value' => v
+      }
+    end
   end
 
   def merge_nvpairs(parent, list, attrs)

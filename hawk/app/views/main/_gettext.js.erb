@@ -137,18 +137,41 @@ var GETTEXT = {
   tickets: function() {
     return "<%=raw escape_javascript _('Tickets') %>";
   },
+  ticket_grant: function(ticket) {
+    return "<%=raw escape_javascript _('This will request the ticket %s be granted to the present site.  Do you want to continue?') % '_TICKET_' %>".replace('_TICKET_', ticket);
+  },
+  ticket_revoke: function(ticket) {
+    return "<%=raw escape_javascript _('This will request the ticket %s be revoked.  Do you want to continue?') % '_TICKET_' %>".replace('_TICKET_', ticket);
+  },
   ticket_granted: function(standby) {
     return standby ?
       "<%=raw escape_javascript _('Granted [standby]') %>" :
       "<%=raw escape_javascript _('Granted') %>";
+  },
+  ticket_elsewhere: function(standby) {
+    return standby ?
+      "<%=raw escape_javascript _('Elsewhere [standby]') %>" :
+      "<%=raw escape_javascript _('Elsewhere') %>";
   },
   ticket_revoked: function(standby) {
     return standby ?
       "<%=raw escape_javascript _('Revoked [standby]') %>" :
       "<%=raw escape_javascript _('Revoked') %>";
   },
+  ticket_leader: function(s) {
+    return "<%=raw escape_javascript _('Leader: %s') % '_LEADER_' %>".replace('_LEADER_', s);
+  },
   ticket_last_granted: function(d) {
     return "<%=raw escape_javascript _('Last granted: %s') % '_DATETIME_' %>".replace('_DATETIME_', d);
+  },
+  ticket_expires: function(d) {
+    return "<%=raw escape_javascript _('Expires: %s') % '_DATETIME_' %>".replace('_DATETIME_', d);
+  },
+  ticket_booth_dead: function() {
+    return "<%=raw escape_javascript _('Unable to obtain ticket information from Booth!') %>";
+  },
+  ticket_booth_drift: function(s) {
+    return "<%=raw escape_javascript _('Ticket granted, but Booth thinks leader is \'%s\'!') % '_LEADER_' %>".replace('_LEADER_', s);
   },
   // View switcher
   summary_view: function() {
@@ -228,6 +251,10 @@ var GETTEXT = {
     if (!res) return "<%=raw escape_javascript _('Stopped') %>";
     return "<%=raw escape_javascript _('%{id}: Stopped') % { :id => '_RES_' } %>".replace('_RES_', res);
   },
+  resource_state_failed: function(res) {
+    if (!res) return "<%=raw escape_javascript _('Failed') %>";
+    return "<%=raw escape_javascript _('%{id}: Failed') % { :id => '_RES_' } %>".replace('_RES_', res);
+  },
   resource_group: function(res) {
     return "<%=raw escape_javascript _('Group: %{id}') % { :id => '_RES_' } %>".replace('_RES_', res);
   },
@@ -239,6 +266,12 @@ var GETTEXT = {
   },
   resource_parent: function(res) {
     return "<%=raw escape_javascript _('Parent: %{id}...') % { :id => '_RES_' } %>".replace('_RES_', res);
+  },
+  resource_bytype_summary: function(active, total, type, node) {
+    return "<%=raw escape_javascript _('%{active}/%{total} %{type} %{node}') % { :active => '_A_', :total => '_T_', :type => '_Y_', :node => '_N_' } %>".replace('_A_', active).replace('_T_', total).replace('_Y_', type).replace('_N_', node);
+  },
+  toggle_view_by_type: function() {
+    return "<%=raw escape_javascript _('Toggle view by type') %>";
   },
   // Simulator dialog
   sim_init: function() {

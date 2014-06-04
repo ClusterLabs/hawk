@@ -68,17 +68,17 @@ $(function() {
   <div id="flash-<%= flash_type %>" class="ui-state-<%= flash_type %> ui-corner-all" style="padding: 0.5em; margin-bottom: 0.5em;"><%=h message %></div>
 <% end %>
 <% @loc.errors.each do |message| %>
-  <div class="ui-state-error ui-corner-all" style="padding: 0.5em; margin-bottom: 0.5em;"><%=h message %></div>
+  <div class="ui-state-error ui-corner-all" style="padding: 0.5em; margin-bottom: 0.5em;"><%=raw inject_linebreaks(message) %></div>
 <% end %>
 <table>
   <tr>
     <th><%=h f.label :id, _('Constraint ID') %></th>
     <th><%=h f.label :rsc, _('Resource') %></th>
   </tr>
-  <tr>
+  <tr style="vertical-align: top;">
     <td><%= f.text_field :id %></td>
-    <td><%= f.select :rsc, options_for_select(([@loc.rsc] + @cib.resources.map{|r|
-          r[:id] }).uniq.sort{|a,b| a.natcmp(b, true)}, @loc.rsc) %></td>
+    <td><%= f.select :rsc, options_for_select((@loc.rsc + @cib.resources.map{|r|
+          r[:id] }).uniq.sort{|a,b| a.natcmp(b, true)}, @loc.rsc), { }, { :multiple => true, :size => 3 } %></td>
   </tr>
   <tr>
     <td colspan="2">

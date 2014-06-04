@@ -1,26 +1,27 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
   <title>The page you were looking for doesn't exist (404)</title>
-  <style type="text/css">
-    body { background-color: #fff; color: #666; text-align: center; font-family: arial, sans-serif; }
-    div.dialog {
-      width: 25em;
-      padding: 0 4em;
-      margin: 4em auto 0 auto;
-      border: 1px solid #ccc;
-      border-right-color: #999;
-      border-bottom-color: #999;
-    }
-    h1 { font-size: 100%; color: #f00; line-height: 1.5em; }
-  </style>
+  <link href="/assets/base.css" media="all" rel="stylesheet" type="text/css" />
+  <!--[if IE]><link href="/assets/ie.css" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
+  <link href="/assets/smoothness/jquery-ui-1.8.5.custom.css" media="screen" rel="stylesheet" type="text/css" />
+</script>
 </head>
 
 <body>
-  <!-- This file lives in public/404.html -->
-  <div class="dialog">
-    <h1>The page you were looking for doesn't exist.</h1>
-    <p>You may have mistyped the address or the page may have moved.</p>
+<div id="container">
+  <div id="header" class="ui-widget-header">
+    <a href="/main/status"><img alt="" id="logo" src="/assets/logo.png" /></a>
+    <h1 id="header-title">The page you were looking for doesn't exist</h1>
   </div>
+  <div id="content">
+    <p>The address you went to may be incorrect, or the page may have moved.</p>
+    <p>You might like to return to the <a href="/main/status">main status page</a>.</p>
+  </div>
+  <div id="footer" class="ui-widget-header">
+    <span id="copyright">Copyright &copy; 2009-2014 SUSE, LLC</span>
+  </div>
+</div>
 </body>
 </html>

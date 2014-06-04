@@ -69,6 +69,10 @@ class CrmConfig < CibObject
           :type     => "boolean",
           :default  => "true"
         },
+        "maintenance" => {
+          :type     => "boolean",
+          :default  => "false"
+        },
         "interval-origin" => {
           :type     => "integer",
           :default  => "0"

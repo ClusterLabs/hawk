@@ -10,12 +10,5 @@ setTimeout(function() {
     "display": true, "refresh": true }, null, "script");
 }, 10000);  // Somewhat arbitrary, but this is generally long-running
 <% else %>
-$("#filter-wait").hide();
-$("#filter-form").show();
-<% if @peinputs %>
-$("#from_time").val("<%= escape_javascript(@from_time) %>");
-$("#to_time").val("<%= escape_javascript(@to_time) %>");
-$("#pe-list").html("<%= escape_javascript(render(:partial => "pe_list")) %>");
-dialogify_detail_links();
-<% end %>
+window.location.assign("<%=raw explorer_path(:from_time => @from_time, :to_time => @to_time, :display => true) %>");
 <% end %>

@@ -56,6 +56,7 @@ var summary_view = {
           '<h2 class="clickable">' + GETTEXT.tickets() + '</h2>' +
           '<table cellpadding="0" cellspacing="0" style="white-space: nowrap;">' +
             '<tr id="ticketsum-granted" class="rs-active clickable"><td><span style="float: left;" class="ui-icon ui-icon-check"></span>' + GETTEXT.ticket_granted() + ':</td><td class="ar"></td></tr>' +
+            '<tr id="ticketsum-elsewhere" class="rs-transient clickable"><td><span style="float: left;" class="ui-icon ui-icon-cancel"></span>' + GETTEXT.ticket_elsewhere() + ':</td><td class="ar"></td></tr>' +
             '<tr id="ticketsum-revoked" class="rs-inactive clickable"><td><span style="float: left;" class="ui-icon ui-icon-cancel"></span>' + GETTEXT.ticket_revoked() + ':</td><td class="ar"></td></tr>' +
           '</table>' +
         '</div>' +
@@ -74,6 +75,7 @@ var summary_view = {
           '<table cellpadding="0" cellspacing="0">' +
             '<tr id="ressum-pending" class="rs-transient clickable"><td><span style="float: left;" class="ui-icon ui-icon-refresh"></span>' + GETTEXT.resource_state_pending() + ':</td><td class="ar"></td></tr>' +
             '<tr id="ressum-started" class="rs-active clickable"><td><span style="float: left;" class="ui-icon ui-icon-play"></span>' + GETTEXT.resource_state_started() + ':</td><td class="ar"></td></tr>' +
+            '<tr id="ressum-failed" class="rs-error clickable"><td><span style="float: left;" class="ui-icon ui-icon-notice"></span>' + GETTEXT.resource_state_failed() + ':</td><td class="ar"></td></tr>' +
             '<tr id="ressum-master" class="rs-master clickable"><td><span style="float: left;" class="ui-icon ui-icon-play"></span>' + GETTEXT.resource_state_master() + ':</td><td class="ar"></td></tr>' +
             '<tr id="ressum-slave" class="rs-slave clickable"><td><span style="float: left;" class="ui-icon ui-icon-play"></span>' + GETTEXT.resource_state_slave() + ':</td><td class="ar"></td></tr>' +
             '<tr id="ressum-stopped" class="rs-inactive clickable"><td><span style="float: left;" class="ui-icon ui-icon-stop"></span>' + GETTEXT.resource_state_stopped() + ':</td><td class="ar"></td></tr>' +
@@ -169,6 +171,11 @@ var summary_view = {
           status_class += " rs-active ticketsum ticketsum-granted";
           label = GETTEXT.node_state(id, GETTEXT.ticket_granted(this.standby));
           state_icon = "ui-icon-check";
+        } else if (this.leader && this.leader.toLowerCase() != "none") {
+          self._increment_counter("#ticketsum-elsewhere");
+          status_class += " rs-transient ticketsum ticketsum-elsewhere";
+          label = GETTEXT.node_state(id, GETTEXT.ticket_elsewhere(this.standby));
+          state_icon = "ui-icon-cancel";
         } else {
           self._increment_counter("#ticketsum-revoked");
           status_class += " rs-inactive ticketsum ticketsum-revoked";
@@ -183,8 +190,28 @@ var summary_view = {
         d.attr("class", "ui-corner-all " + status_class).attr("style", "display: " + display);
         d.find("span").html(label);
         $("#itemlist").append(d);
+        var ti = [];
         if (this["last-granted"]) {
-          flag_info("ticket::" + id, GETTEXT.ticket_last_granted(new Date(this["last-granted"] * 1000)));
+          ti.push(GETTEXT.ticket_last_granted(date_string(new Date(this["last-granted"] * 1000))));
+        }
+        if (this["leader"]) {
+          ti.push(GETTEXT.ticket_leader(this["leader"]));
+        }
+        if (this["expires"]) {
+          ti.push(GETTEXT.ticket_expires(this["expires"]));
+        }
+        if (ti.length) {
+          flag_info("ticket::" + id, ti.join("\n"));
+        }
+        if (cib_source != "file" && cib.booth && cib.booth.me) {
+          add_mgmt_menu($(jq("ticket::" + id + "::menu")));
+          if (this.leader) {
+            if (this.granted && this.leader != cib.booth.me) {
+              flag_warning("ticket::" + id, GETTEXT.ticket_booth_drift(this.leader));
+            }
+          } else {
+            flag_warning("ticket::" + id, GETTEXT.ticket_booth_dead());
+          }
         }
         $(jq("ticket::" + id + "::state")).removeClass();
         if (state_icon) {
@@ -253,6 +280,7 @@ var summary_view = {
     self._zero_counters("#ressum");
     $.each(resources_by_id, function() {
       if (!this.instances) return;
+      var res = this;
       var res_id = this.id;
       $.each(this.instances, function(k) {
         var id = res_id;
@@ -277,6 +305,11 @@ var summary_view = {
           label = GETTEXT.resource_state_started(id, h2n(this.started));
           status_class += " rs-active ressum ressum-started";
           state_icon = "ui-icon-play";
+        } else if (this.failed) {
+          self._increment_counter("#ressum-failed");
+          label = GETTEXT.resource_state_failed(id, h2n(this.failed));
+          status_class += " rs-error ressum ressum-failed";
+          state_icon = "ui-icon-notice";
         } else if (this.pending) {
           if (this.pending.length == 1 && this.pending[0].substate) {
             // Seriously, this'll always have a length of 1, but it never hurts to
@@ -298,7 +331,7 @@ var summary_view = {
         if (self.active_detail && status_class.indexOf(self.active_detail) >= 0) {
           display = "auto";
         }
-        var d = new_item_div("resource::" + id);
+        var d = new_item_div("resource::" + id, cpt(res));
         d.attr("class", "ui-corner-all " + status_class).attr("style", "display: " + display);
         d.find("span").html(escape_html(label));
         $("#itemlist").append(d);

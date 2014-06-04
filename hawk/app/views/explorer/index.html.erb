@@ -24,12 +24,14 @@ $(function() {
 <% end %>
   $("#filter").submit(function() {
     $(".cache").hide();
+    $("#upload-form").hide();
     $("#pe-list").children().remove();
   });
   $(".cache a.display").click(function(event) {
     // Clicking any cache link puts chosen times into form, hides all
     // cached lines and updates the display.  Not quite optimal, but workable.
     $(".cache").hide();
+    $("#upload-form").hide();
     $("#from_time").val($(this).parent().prev().prev().prev().text());
     $("#to_time").val($(this).parent().prev().text());
   });
@@ -53,6 +55,13 @@ $(function() {
     showOn: "button",
     buttonImage: url_root + "/assets/icons/calendar.png",
     buttonImageOnly: true
+  });
+  $("#uploaded_report").change(function(event) {
+    if ($(this).val()) {
+      $("#upload").removeAttr("disabled");
+    } else {
+      $("#upload").attr("disabled", "disabled");
+    }
   });
 });
 function dialogify_detail_links() {
@@ -151,6 +160,11 @@ function dialogify_detail_links() {
   </tr>
 <% end %>
 <% end %>
+<% if @upload_name %>
+  <tr>
+    <td><%= _("Exploring %{path}") % { :path => @upload_name } %></td>
+  </tr>
+<% else %>
   <tr>
     <th><label for="from_time"><%=h _("Start Time:") %></label></th>
     <td><%= text_field_tag "from_time", @cache.any? && !params[:display] ? "" : @from_time, :size => 14 %></td>
@@ -158,7 +172,24 @@ function dialogify_detail_links() {
     <td><%= text_field_tag "to_time", @cache.any? && !params[:display] ? "" : @to_time, :size => 14 %></td>
     <td><%= submit_tag(_('Display')) %></td>
   </tr>
+<% end %>
 </table>
+<% end %>
+<% unless params[:display] %>
+<%= form_tag(explorer_path, :multipart => true) do %>
+<%= hidden_field_tag "display", "true" %>
+<table id="upload-form" style="width: 100%; <%= @hb_report.running? ? "display: none;" : "" %>">
+<tr>
+<td colspan="3"><hr/></td>
+</tr>
+<tr>
+<td><%=h _("Upload hb_report tarball") %></td>
+<td><%= file_field_tag :uploaded_report %></td>
+<td><%= submit_tag _('Explore'), { :id => "upload", :name => "upload", :disabled => true } %></td>
+</tr>
+</table>
+<% end %>
+<% end %>
 <div id="filter-wait" style="<%= @hb_report.running? ? "" : "display: none;" %>">
 <table>
   <tr style="vertical-align: middle;">
@@ -167,7 +198,6 @@ function dialogify_detail_links() {
   </tr>
 </table>
 </div>
-<% end %>
 </div>
 </div>
 <div id="pe-list" style="clear: both;">

@@ -204,6 +204,11 @@ var table_view = {
         node = h2n(this.started);
         status_class += " rs-active";
         state_icon = "ui-icon-play";
+      } else if (this.failed) {
+        label = GETTEXT.resource_state_failed(id);
+        node = h2n(this.failed);
+        status_class += " rs-error";
+        state_icon = "ui-icon-notice";
       } else if (this.pending) {
         if (this.pending.length == 1 && this.pending[0].substate) {
           // Seriously, this'll always have a length of 1, but it never hurts to
@@ -220,7 +225,7 @@ var table_view = {
         status_class += " rs-inactive";
         state_icon = "ui-icon-stop";
       }
-      var d = new_item_div("resource::" + id);
+      var d = new_item_div("resource::" + id, cpt(res));
       d.attr("class", "ui-corner-all " + status_class);
       d.find("span").html(escape_html(label));
       if (node.length == 0) {

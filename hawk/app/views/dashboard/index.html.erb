@@ -1,11 +1,11 @@
 <% content_for :head do %>
 <%= stylesheet_link_tag "dashboard" %>
 <%= javascript_include_tag "dashboard" %>
-<script src="<%= url_for(:controller => 'main', :action => 'gettext', :format => 'js') %>" type="text/javascript"></script>
 <% end %>
 <script type="text/javascript">
+<%
 
-/*
+=begin
 
 cluster data structure is mini cib + mon_node:
 
@@ -18,14 +18,37 @@ cluster data structure is mini cib + mon_node:
   resources_label: string
   resource_states: hash (by state)
   ticket_states: hash (by state)
+  booth: hash
 
 - adding a cluster, we've already contacted it
 
 - in either case each cluster object needs refresh logic
   - but it has a head-start from an added cluster
 
-*/
+For geo clusters, it would be ideal if adding one cluster automatically added
+the others, or at least prompted the user to do so.  This isn't really viable
+given the present ephemeral nature of the dashboard.  The only thing we save
+in the dashboard cookie is each cluster name, node list, and mon_node.  The
+dashboard thus doesn't know whether a given cluster is a geo site until after
+its CIB is loaded, which actually requires the user be logged in to that
+cluster.  So we can't immediately prompt to add other geo sites when a cluster
+is first added, we have to wait for the first update.  And even then, there
+might already be another cluster in the dashboard which the user isn't logged
+in to, which is actually part of a geo cluster, but the dashboard doesn't know
+this yet.  About the only things we could reliably do are:
 
+1) Have an info rollover on the Geo Site label which shows a list of sites
+   and arbitrators, so you can figure out whether you've added everything.
+
+2) Have an alert thingy on the Geo Site label which appears if all dashboard
+   clusters have mini cibs, but some site isn't added yet.
+
+I think option 2 will be noisy for no great win, so we're going with only
+option 1 for the moment.
+
+=end
+
+%>
 (function($) {
   $.widget("ui.cluster", {
     options: {
@@ -38,6 +61,7 @@ cluster data structure is mini cib + mon_node:
       e.append($(
         '<div style="float: right;"><button type="button" style="border: none; background: none; font-size: 0.7em; margin-right: -0.5em;"><%=h escape_javascript _('Remove') %></button></div>' +
         '<h1 class="clickable"></h1>' +
+        '<h2 class="geo-label" style="display: none;"><span class="clickable geo-ip"></span><span class="ui-icon ui-icon-info geo-info" style="float: right;"></span></h2>' +
         '<div class="spinner" style="text-align: center;"><img src="/assets/spinner-32x32.gif" alt="" /></div>' +
         '<div class="cluster-login" style="display: none;">' +
           '<form onsubmit="return false;">' +
@@ -84,6 +108,7 @@ cluster data structure is mini cib + mon_node:
             '<table cellpadding="0" cellspacing="0">' +
               '<tr class="ressum-pending rs-transient" style="display: none;"><td><span style="float: left;" class="ui-icon ui-icon-refresh"></span>' + GETTEXT.resource_state_pending() + ':</td><td class="ar"></td></tr>' +
               '<tr class="ressum-started rs-active" style="display: none;"><td><span style="float: left;" class="ui-icon ui-icon-play"></span>' + GETTEXT.resource_state_started() + ':</td><td class="ar"></td></tr>' +
+              '<tr class="ressum-failed rs-error" style="display: none;"><td><span style="float: left;" class="ui-icon ui-icon-notice"></span>' + GETTEXT.resource_state_failed() + ':</td><td class="ar"></td></tr>' +
               '<tr class="ressum-master rs-master" style="display: none;"><td><span style="float: left;" class="ui-icon ui-icon-play"></span>' + GETTEXT.resource_state_master() + ':</td><td class="ar"></td></tr>' +
               '<tr class="ressum-slave rs-slave" style="display: none;"><td><span style="float: left;" class="ui-icon ui-icon-play"></span>' + GETTEXT.resource_state_slave() + ':</td><td class="ar"></td></tr>' +
               '<tr class="ressum-stopped rs-inactive" style="display: none;"><td><span style="float: left;" class="ui-icon ui-icon-stop"></span>' + GETTEXT.resource_state_stopped() + ':</td><td class="ar"></td></tr>' +
@@ -110,8 +135,12 @@ cluster data structure is mini cib + mon_node:
         }
       }).click(function() {
         // TODO(must): prompt for cluster removal
-        remove_cluster(self.options.name);
+        var p = self.element.parent();
         self.element.remove();
+        if (p.hasClass("geoset") && p.children().length == 0) {
+          p.remove();
+        }
+        save_clusters();
       });
       e.find("input[type=submit]").click(function() {
         self._abort_req();
@@ -161,6 +190,7 @@ cluster data structure is mini cib + mon_node:
         timeout: 90000,
         dataType: "json",   // necessary?
         type: "GET",
+        cache: false,
         cross_domain_hack: true,    // needed to get proper headers
         success: function(data) {
           if (self.deleted) return;
@@ -199,12 +229,18 @@ cluster data structure is mini cib + mon_node:
             self.element.find(".mon-warning").hide();
             self.element.find(".spinner").hide();
             self.element.find(".cluster-status").show();
-            var mn = self.options.cluster.mon_node; // this is silly
+            var mn = self.options.cluster.mon_node;               // Keep this or it'll be clobbered later
             // !! might not have cib.meta
             self.options.cluster = data;
-            self.options.cluster.mon_node = mn;
-            clusters[self.options.name] = self.options.cluster;   // TODO(should): Again with the baroque (*sheesh*)
-            save_clusters();                                      // TODO(should): only if node_list changed
+            if ($.inArray(mn, self.options.cluster.node_list) >= 0) {
+              self.options.cluster.mon_node = mn;
+            } else {
+              // If mon_node isn't actually a cluster node (e.g.: we originally
+              // connected via floating IP), use a real node as mon_node.
+              self.options.cluster.mon_node = self.options.cluster.node_list[0];
+            }
+            // Arguably should only bother saving if node list has changed
+            save_clusters();
             self._redraw();
             self.cur_epoch = data.meta.epoch;
             self._do_update();
@@ -240,31 +276,68 @@ cluster data structure is mini cib + mon_node:
       });
     },
     _redraw: function() {
-      var e = this.element;
-      if (this.options.cluster.errors && this.options.cluster.errors.length > 0) {
+      var self = this;
+      var e = self.element;
+      if (self.options.cluster.errors && self.options.cluster.errors.length > 0) {
         e.find(".cluster-error").show();
       } else {
         e.find(".cluster-error").hide();
       }
-      if (!this.options.cluster.nodes_label || !this.options.cluster.node_states ||
-          !this.options.cluster.resources_label || !this.options.cluster.resource_states ||
-          !this.options.cluster.ticket_states) {
+      if (!self.options.cluster.nodes_label || !self.options.cluster.node_states ||
+          !self.options.cluster.resources_label || !self.options.cluster.resource_states ||
+          !self.options.cluster.ticket_states) {
         // If we have no CIB yet, we'll still show the cluster name
+        e.find(".geo-label").hide();
         e.find(".ticketsum").hide();
         e.find(".nodesum").hide();
         e.find(".ressum").hide();
         return;
       }
+      if (self.options.cluster.booth) {
+        if (self.options.cluster.booth.me) {
+          e.find(".geo-ip").html("<%=h escape_javascript _("Geo Site %{ip}") % { :ip => '_IP_' } %>".replace('_IP_', self.options.cluster.booth.me));
+          var info = [];
+          $.each(self.options.cluster.booth.sites, function() {
+            info.push("<%=h escape_javascript _("Site: %{ip}") % { :ip => '_IP_' } %>".replace('_IP_', this.toString()));
+          });
+          $.each(self.options.cluster.booth.arbitrators, function() {
+            info.push("<%=h escape_javascript _("Arbitrator: %{ip}") % { :ip => '_IP_' } %>".replace('_IP_', this.toString()));
+          });
+          if (info.length) {
+            e.find(".geo-info").attr("title", info.join("\n")).show();
+          } else {
+            e.find(".geo-info").hide();
+          }
+          e.find(".geo-label").show();
+        }
+        if (self.options.cluster.booth.sites && self.options.cluster.booth.me && !e.parent().hasClass("geoset")) {
+          var p = null;
+          $(".geoset").each(function() {
+            if (array_match($(this).data("sites"), self.options.cluster.booth.sites)) {
+              p = $(this);
+              return false;
+            }
+          });
+          if (!p) {
+            p = $('<div class="geoset ui-corner-all"/>');
+            p.data("sites", self.options.cluster.booth.sites);
+            $("#clusters").append(p);
+          }
+          e.appendTo(p);
+        };
+      } else {
+        e.find(".geo-label").hide();
+      }
       var nsl = e.find(".nodesum-label");
-      nsl.html(escape_html(this.options.cluster.nodes_label));
-      nsl.attr("title", this.options.cluster.node_list.join(", "));
-      this._redraw_counters(this.options.cluster.node_states, ".nodesum-");
+      nsl.html(escape_html(self.options.cluster.nodes_label));
+      nsl.attr("title", self.options.cluster.node_list.join(", "));
+      self._redraw_counters(self.options.cluster.node_states, ".nodesum-");
       e.find(".nodesum").show();
-      e.find(".ressum-label").html(escape_html(this.options.cluster.resources_label));
-      this._redraw_counters(this.options.cluster.resource_states, ".ressum-");
+      e.find(".ressum-label").html(escape_html(self.options.cluster.resources_label));
+      self._redraw_counters(self.options.cluster.resource_states, ".ressum-");
       e.find(".ressum").show();
-      this._redraw_counters(this.options.cluster.ticket_states, ".ticketsum-");
-      if (this.options.cluster.ticket_states.granted > 0 || this.options.cluster.ticket_states.revoked > 0) {
+      self._redraw_counters(self.options.cluster.ticket_states, ".ticketsum-");
+      if (self.options.cluster.ticket_states.granted > 0 || self.options.cluster.ticket_states.revoked > 0) {
         e.find(".ticketsum").show();
       } else {
         e.find(".ticketsum").hide();
@@ -317,29 +390,47 @@ cluster data structure is mini cib + mon_node:
   });
 })(jQuery);
 
-var clusters = {};
 var adding_cluster = false;
+
+// TODO(should): Stick this somewhere generic
+function array_match(a, b) {
+  return ($(a).not(b).length == 0 && $(b).not(a).length == 0);
+}
+
+function cluster_exists(n) {
+  var exists = false;
+  $(".cluster").each(function() {
+    if ($(this).data("cluster").options.name == n) {
+      exists = true;
+      return false;
+    }
+  });
+  return exists;
+}
+
+function host_present(h) {
+  var present = false;
+  $(".cluster").each(function() {
+    if ($.inArray(h, $(this).data("cluster").options.cluster.node_list) >= 0) {
+      present = $(this).data("cluster").options.name;
+      return false;
+    }
+  });
+  return present;
+}
 
 function save_clusters() {
   // Only want to save minimal info; name, node_list and mon_node
   var s = {};
-  $.each(clusters, function(n, c) {
-    s[n] = { node_list: c.node_list, mon_node: c.mon_node };
+  $(".cluster").each(function() {
+    var o = $(this).data("cluster").options;
+    s[o.name] = { node_list: o.cluster.node_list, mon_node: o.cluster.mon_node };
   });
   $.cookie("hawk-dashboard", JSON.stringify(s), { expires: 3650 });
 }
 
-function insert_cluster(n) {
-  // The way this insert_cluster thing works is a bit overly baroque
-  if (!clusters[n]) return;
-  $("#clusters").append($("<div/>").cluster({name: n, cluster: clusters[n]}));
-  // because this is called on page load it ought to reset the cookie expiry,
-  // but yeah, too baroque...
-  save_clusters();
-}
-
-function remove_cluster(n) {
-  delete clusters[n];
+function new_cluster(n, c) {
+  $("#clusters").append($("<div/>").cluster({name: n, cluster: c}));
   save_clusters();
 }
 
@@ -368,18 +459,12 @@ function add_cluster() {
           return;
         }
 
-        if (clusters[cn]) {
+        if (cluster_exists(cn)) {
           alert("<%=h escape_javascript _('A cluster with that name already exists') %>");
           return;
         }
 
-        var existing = null;
-        $.each(clusters, function(n) {
-          if ($.inArray(hn, this.node_list) >= 0) {
-            existing = n;
-            return false;
-          }
-        });
+        var existing = host_present(hn);
         if (existing) {
           alert("<%=h escape_javascript _('The host %{h} is already present in cluster %{c}') % { :h => '_HOST_', :c => '_CLUSTER_' } %>".replace('_HOST_', hn).replace('_CLUSTER_', existing));
           return;
@@ -405,11 +490,7 @@ function add_cluster() {
           cross_domain_hack: true,    // needed to get proper headers
           success: function(data, status, xhr) {
             if (xhr && xhr.status == 200) {
-              clusters[cn] = {
-                node_list: [ hn ],
-                mon_node: hn
-              };
-              insert_cluster(cn);
+              new_cluster(cn, { node_list: [ hn ], mon_node: hn });
               $(self).dialog("close");
             } else {
               // apparently I can't differentiate a broken/illegal CORS
@@ -459,12 +540,11 @@ function add_cluster() {
 
 $(function() {
   if ($.cookie("hawk-dashboard")) {
-    clusters = JSON.parse($.cookie("hawk-dashboard"));
-    $.each(clusters, function(n) {
-      insert_cluster(n);
+    $.each(JSON.parse($.cookie("hawk-dashboard")), function(n) {
+      new_cluster(n, this);
     });
   }
-  if ($.isEmptyObject(clusters)) {
+  if ($(".cluster").length == 0) {
     add_cluster();
   }
 });
