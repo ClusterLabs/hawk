@@ -157,7 +157,7 @@ class Invoker
   # to create resource: 'WARNING: 1: ra class stonith does not support
   # providers'"
   def fudge_error(exitstatus, stderr)
-    if exitstatus == 0 && !(stderr.index("ERROR") || stderr.index("WARNING"))
+    if exitstatus == 0 && !(stderr.upcase.index("ERROR") || stderr.upcase.index("WARNING"))
       true
     elsif exitstatus == 0 && stderr.index("WARNING: Creating rsc_location constraint") && !stderr.index("ERROR")
       # Special case for "crm resource migrate" with no node specified, to squash
