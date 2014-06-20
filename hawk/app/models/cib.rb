@@ -342,7 +342,6 @@ class Cib < CibObject
     # Iterate nodes in cib order here which makes the faked up clone & ms instance
     # IDs be in the same order as pacemaker
     for node in @nodes
-      next unless node[:state] == :online
       @xml.elements.each("cib/status/node_state[@uname='#{node[:uname]}']/lrm/lrm_resources/lrm_resource") do |lrm_resource|
         id = lrm_resource.attributes['id']
         # logic derived somewhat from pacemaker/lib/pengine/unpack.c:unpack_rsc_op()
