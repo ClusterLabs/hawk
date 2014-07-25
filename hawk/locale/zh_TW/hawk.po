@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-04-10 15:20+1000\n"
-"PO-Revision-Date: 2014-06-12 13:58\n"
+"PO-Revision-Date: 2014-07-23 15:36\n"
 "Last-Translator: Novell language <language@novell.com>\n"
 "Language-Team: Novell language <language@novell.com>\n"
 "Language: \n"
@@ -449,7 +449,7 @@ msgstr "未知"
 
 #: ../app/models/cib.rb:481
 msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
-msgstr "作業失敗：節點=%{node}，資源=%{resource}，呼叫 ID=%{call_id}，作業=%{op}，資源代碼=%{rc_code}"
+msgstr "操作失敗：節點=%{node}，資源=%{resource}，呼叫 ID=%{call_id}，操作=%{op}，資源代碼=%{rc_code}"
 
 #: ../app/models/cib_object.rb:66
 msgid "Invalid Resource ID \"%{id}\""
@@ -872,7 +872,7 @@ msgstr "預設資源"
 #: ../app/views/crm_config/edit.html.erb:59
 #: ../app/views/main/_gettext.js.erb:108
 msgid "Operation Defaults"
-msgstr "預設作業"
+msgstr "預設操作"
 
 #: ../app/views/crm_config/show.html.erb:4
 msgid "No cluster properties set in %{group}"
@@ -980,7 +980,7 @@ msgstr "圖形"
 
 #: ../app/views/explorer/_pe_list.html.erb:47
 msgid "Diff"
-msgstr "Diff"
+msgstr "差異"
 
 #: ../app/views/explorer/index.html.erb:39
 msgid "Delete this history archive?"
@@ -1511,11 +1511,11 @@ msgstr "執行 >"
 
 #: ../app/views/main/_gettext.js.erb:290
 msgid "CIB (in)"
-msgstr "CIB (內)"
+msgstr "CIB (入)"
 
 #: ../app/views/main/_gettext.js.erb:293
 msgid "CIB (out)"
-msgstr "CIB (外)"
+msgstr "CIB (出)"
 
 #: ../app/views/main/_gettext.js.erb:299
 msgid "Empty Graph"
@@ -1535,11 +1535,11 @@ msgstr "州：                   "
 
 #: ../app/views/main/_gettext.js.erb:311
 msgid "Inject Operation"
-msgstr "插入作業"
+msgstr "插入操作"
 
 #: ../app/views/main/_gettext.js.erb:314
 msgid "Operation:"
-msgstr "作業︰"
+msgstr "操作︰"
 
 #: ../app/views/main/_gettext.js.erb:317
 msgid "Interval:"
@@ -1677,7 +1677,7 @@ msgstr "正在取得最近的事件 (最後一小時)..."
 #: ../app/views/nodes/events.html.erb:13
 #: ../app/views/resources/events.html.erb:13
 msgid "Another \"crm history\" operation is in progress..."
-msgstr "另一個「crm 歷程」作業正在執行..."
+msgstr "另一個「crm 歷程」操作正在執行..."
 
 #: ../app/views/nodes/events.html.erb:20
 #: ../app/views/resources/events.html.erb:20
