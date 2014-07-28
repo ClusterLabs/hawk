@@ -53,6 +53,8 @@ def run_pre():
         crm.package(pkg, 'latest')
 
     # make sure NFS server service is set to start at boot (and is started)
+    crm.service('nfsserver', 'enable')
+    crm.service('nfsserver', 'start')
 
     crm.exit_ok({"status": True})
 
