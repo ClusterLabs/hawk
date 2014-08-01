@@ -116,6 +116,7 @@ class ResourcesController < ApplicationController
             :interval => op.attributes['interval'].to_i,
             :exec_time => op.attributes['exec-time'].to_i,
             :queue_time => op.attributes['queue-time'].to_i,
+            :exit_reason => op.attributes.has_key?('exit-reason') ? op.attributes['exit-reason'] : '',
             :last_rc_change => sane_time(op.attributes['last-rc-change']),
             :last_run => sane_time(op.attributes['last-run'])
           }

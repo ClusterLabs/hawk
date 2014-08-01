@@ -138,7 +138,7 @@ function flag_error(id, failed_ops) {
     var errs = [];
     $.each(failed_ops, function() {
       // TODO(should): Localize "ignored"
-      var err = GETTEXT.err_failed_op(this.op, this.node, this.rc_code) + (this.ignored ? " (ignored)" : "");
+      var err = GETTEXT.err_failed_op(this.op, this.node, this.rc_code, this.exit_reason) + (this.ignored ? " (ignored)" : "");
       errs.push(escape_html(err));
     });
     e.attr("title", errs.join(", "));
