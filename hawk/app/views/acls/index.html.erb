@@ -147,6 +147,7 @@ $(function() {
 <% @users.sort{|a,b| a.id.natcmp(b.id, true)}.each do |u| %>
   <tr>
     <td class="id"><%=h u.id %></td>
+    <td class="roles">(<%=h u.roles.join(", ") %>)</td>
     <td class="button"><a class="clickable" name="<%=h u.id %>"><%= image_tag 'icons/properties.png', :alt => '' %></a></td>
   </tr>
 <% end %>
