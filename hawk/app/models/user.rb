@@ -34,24 +34,13 @@ class User < CibObject
   attr_accessor *@attributes
 
   def initialize(attributes = nil)
-    @rules = []
     @roles = []
     super
   end
 
   def validate
     @roles = @roles.delete_if{|r| r.empty?}
-    @rules = @rules.delete_if{|r| r[:right].empty? && r[:xpath].empty? && r[:tag].empty? && r[:ref].empty? && r[:attribute].empty?}
     # TODO(must): get rid of embedded space, non valid chars etc.
-    @rules.each do |r|
-      r[:tag].strip!
-      r[:ref].strip!
-      r[:xpath].strip!
-      r[:attribute].strip!
-    end
-    # TODO(must): get rid of completely empty rules!
-    error _('User must have either rules or roles') if @rules.empty? && @roles.empty?
-    error _("User can't have both rules and roles") if !@rules.empty? && !@roles.empty?
   end
 
   def create
@@ -69,7 +58,7 @@ class User < CibObject
   end
 
   def update
-    unless CibObject.exists?(id, 'acl_user')
+    unless CibObject.exists?(id, 'acl_target')
       error _('User ID "%{id}" does not exist') % { :id => @id }
       return false
     end
@@ -91,44 +80,27 @@ class User < CibObject
     def instantiate(xml)
       acl = allocate
       # Just to be confusing... ;)
-      rules = []
       roles = []
       xml.elements.each do |elem|
-        if elem.name == 'role_ref'
+        if elem.name == 'role'
           roles << elem.attributes['id']
-        else
-          rules << {
-            :right      => elem.name,
-            :tag        => elem.attributes['tag'] || nil,
-            :ref        => elem.attributes['ref'] || nil,
-            :xpath      => elem.attributes['xpath'] || nil,
-            :attribute  => elem.attributes['attribute'] || nil
-          }
         end
       end
-      acl.instance_variable_set(:@rules, rules);
       acl.instance_variable_set(:@roles, roles);
       acl
     end
 
     def all
-      super "acl_user"
+      super "acl_target"
     end
   end
 
   private
 
   def shell_syntax
-    cmd = "user #{@id}"
+    cmd = "acl_target #{@id}"
     @roles.each do |role|
-      cmd += " role:#{role}"
-    end
-    @rules.each do |rule|
-      cmd += " #{rule[:right]} "
-      cmd += " tag:#{rule[:tag]}" if rule[:tag] && !rule[:tag].empty?
-      cmd += " ref:#{rule[:ref]}" if rule[:ref] && !rule[:ref].empty?
-      cmd += " xpath:#{rule[:xpath]}" if rule[:xpath] && !rule[:xpath].empty?
-      cmd += " attribute:#{rule[:tag]}" if rule[:attribute] && !rule[:attribute].empty?
+      cmd += " #{role}"
     end
     cmd
   end

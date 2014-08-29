@@ -39,7 +39,6 @@ class Role < CibObject
   end
 
   def validate
-    error _('Role must have rules') if @rules.empty?
     # TODO(must): get rid of embedded space, non valid chars etc.
     @rules.each do |r|
       r[:tag].strip!
@@ -88,9 +87,9 @@ class Role < CibObject
       rules = []
       xml.elements.each do |elem|
         rules << {
-          :right      => elem.name,
-          :tag        => elem.attributes['tag'] || nil,
-          :ref        => elem.attributes['ref'] || nil,
+          :right      => elem.attributes['kind'],
+          :tag        => elem.attributes['object-type'] || nil,
+          :ref        => elem.attributes['reference'] || nil,
           :xpath      => elem.attributes['xpath'] || nil,
           :attribute  => elem.attributes['attribute'] || nil
         }
@@ -113,7 +112,7 @@ class Role < CibObject
       cmd += " tag:#{rule[:tag]}" if rule[:tag] && !rule[:tag].empty?
       cmd += " ref:#{rule[:ref]}" if rule[:ref] && !rule[:ref].empty?
       cmd += " xpath:#{rule[:xpath]}" if rule[:xpath] && !rule[:xpath].empty?
-      cmd += " attribute:#{rule[:tag]}" if rule[:attribute] && !rule[:attribute].empty?
+      cmd += " attribute:#{rule[:attribute]}" if rule[:attribute] && !rule[:attribute].empty?
     end
     Rails.logger.debug(cmd)
     cmd

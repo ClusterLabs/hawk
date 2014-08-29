@@ -15,17 +15,9 @@ var anything_changed = false;
 function enable_apply() {
   anything_changed = true;
   var enable = $("#user_id").val() != "";
-   if ($("#rules").aclrules("valid") || $("#rules").aclrules("has_rules")) {
-    $("#roles").hide();
-  } else {
-    $("#roles").show();
-  }
-  if ($("#user_roles").val()) {
-    $("#rules").hide();
-  } else {
-    $("#rules").show();
-  }
-  if (!$("#rules").aclrules("valid") && !$("#user_roles").val()) {
+  $("#rules").hide();
+  $("#roles").show();
+  if (!$("#user_roles").val()) {
     enable = false;
   }
   if (enable) {
@@ -42,30 +34,12 @@ function disable_apply() {
 }
 
 $(function() {
-  $("#rules").aclrules({
-    rules: <%= @user.rules.to_json.html_safe %>,
-    labels: {
-      add: "<%= escape_javascript _('Add') %>",
-      remove: "<%= escape_javascript _('Remove') %>",
-      heading_right: "<%= escape_javascript _('Right') %>",
-      heading_xpath: "<%= escape_javascript _('XPath') %>",
-      heading_tag: "<%= escape_javascript _('Tag') %>",
-      heading_ref: "<%= escape_javascript _('Ref') %>",
-      heading_attr: "<%= escape_javascript _('Attribute') %>"
-    },
-    prefix: "user[rules]",
-    dirty: function(event, info) {
-      enable_apply();
-    }
-  });
   $("#user_id").bind("keyup change", function() {
       enable_apply();
     }).focus();
   $("#roles").bind("keyup change", function() {
     enable_apply();
   });
-  <% if !@user.roles.empty? %>$("#rules").hide();<% end %>
-  <% if !@user.rules.empty? %>$("#roles").hide();<% end %>
 <%= render :partial => 'shared/confirm_revert', :locals => { :button_ids => '#user_revert,#user_cancel' } %>
 });
 </script>
@@ -96,11 +70,6 @@ $(function() {
           </tr>
         </table>
       </div>
-    </td>
-  </tr>
-  <tr>
-    <td colspan="2">
-      <div id="rules"></div>
     </td>
   </tr>
   <tr>
