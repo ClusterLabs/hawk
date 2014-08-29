@@ -129,6 +129,8 @@ $(function() {
   _("To enable ACLs, set 'enable-acl' in the CRM Configuration"), cib_crm_config_path(:cib_id => (params[:cib_id] || "live"), :id => 'cib-bootstrap-options')) %></div>
 <% end %>
 
+<% if @supported_schema %>
+
 <div id="roles">
 <table cellspacing="0" cellpadding="2">
   <tr<%=raw ' style="display: none;"' if @roles.any? %>><td><%=h _('(No roles defined)') %></td></tr>
@@ -154,3 +156,8 @@ $(function() {
 </table>
 </div>
 
+<% else %>
+
+<div class="ui-state-error ui-corner-all" style="padding: 0.5em; margin-bottom: 0.5em;"><%= _("ACL support requires CIB schema version 2.0, available in Pacemaker 1.1.12 and up. For older versions of Pacemaker, use Hawk version 0.6.") %></div>
+
+<% end %>

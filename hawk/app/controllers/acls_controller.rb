@@ -79,5 +79,11 @@ class AclsController < ApplicationController
     # So that's at least three cibadmin calls for each pageload here...
     @enable_acl = !Util.safe_x('/usr/sbin/cibadmin', '-Ql', '--xpath',
       "//configuration//crm_config//nvpair[@name='enable-acl' and @value='true']").chomp.empty?
+    cib = Util.safe_x('/usr/sbin/cibadmin', '-Ql', '--xpath', "/cib[@validate-with]").lines.first
+    if m = cib.match(/validate-with=\"pacemaker-([0-9.]+)\"/)
+      @supported_schema = m.captures[0].to_f >= 2.0
+    else
+      @supported_schema = false
+    end
   end
 end
