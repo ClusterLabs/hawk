@@ -62,6 +62,8 @@ class WizardController < ApplicationController
     @scriptdir = File.join(@confdir, "scripts")
     @steps = ["workflow", "confirm", "commit"]
     @step = "workflow"
+    @index = 1
+    @total = 1
     @cluster_script = nil
     @errors = []
     @all_params = {}      # everything that's set, by step
@@ -153,6 +155,7 @@ class WizardController < ApplicationController
 
     when "confirm"
       @step_shortdesc = _("Confirm")
+
       # print out everything that's been set up
       # how?  what did we specify?  do we do it in chunks (what you just entered)
       # or as crm config we're about to apply?  (less friendly)
@@ -258,11 +261,15 @@ class WizardController < ApplicationController
 
     i = @steps.index(@step)
     @step = @steps[i + 1] if i < @steps.length - 1
+    @index = i + 1
+    @total = @steps.length - 2
   end
 
   def prev_step
     i = @steps.index(@step)
     @step = @steps[i - 1] if i > 0
+    @index = i + 1
+    @total = @steps.length - 2
   end
 
   def set_step_params(root, override_with = nil)

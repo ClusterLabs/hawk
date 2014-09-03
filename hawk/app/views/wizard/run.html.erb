@@ -66,7 +66,8 @@ $(function() {
   });
 });
 </script>
-<h2><%=h _("%{workflow}: %{step}") % { :workflow => @workflow_shortdesc, :step => @step_shortdesc } %></h2>
+<h2><%=h (_("%{workflow}: %{step}") + " (%{index} / %{total})") % { :workflow =>
+  @workflow_shortdesc, :step => @step_shortdesc, :index => @index, :total => @total } %></h2>
 <%= form_tag(wizard_path(:cib_id => (params[:cib_id] || "live"))) do %>
 <%= hidden_field_tag "workflow", params[:workflow] %>
 <%= hidden_field_tag "step", @step %><%=raw hash_as_hidden_fields(:all_params => @all_params) %>
