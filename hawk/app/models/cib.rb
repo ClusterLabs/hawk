@@ -412,6 +412,8 @@ class Cib < CibObject
             expected = k[2].to_i
           end
 
+          exit_reason = op.attributes.has_key?('exit-reason') ? op.attributes['exit-reason'] : ''
+
           # skip notifies, deletes, cancels
           next if operation == 'notify' || operation == 'delete' || operation == 'cancel'
 
@@ -478,11 +480,11 @@ class Cib < CibObject
               fail_end = Time.at(fail_end).strftime("%Y-%m-%d %H:%M")
             end
 
-            failed_ops << { :node => node[:uname], :call_id => op.attributes['call-id'], :op => operation, :rc_code => rc_code }
+            failed_ops << { :node => node[:uname], :call_id => op.attributes['call-id'], :op => operation, :rc_code => rc_code, :exit_reason => exit_reason }
             @errors << {
-              :msg => _('Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}') % {
+              :msg => _('Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}, exit-reason=%{exit_reason}') % {
                 :node => node[:uname], :resource => id, :call_id => op.attributes['call-id'],
-                :op => operation, :rc_code => rc_code },
+                :op => operation, :rc_code => rc_code, :exit_reason => exit_reason },
               # Note: graph_number here might be the one *after* the one that's really interesting :-/
               :link => fail_start ? explorer_path(:from_time => fail_start, :to_time => fail_end, :display => true, :graph_number => graph_number) : ""
             }

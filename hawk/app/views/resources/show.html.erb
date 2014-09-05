@@ -30,7 +30,7 @@
 <%if @op_history[k][:ops].any? %>
 <table class="op-history">
   <tr>
-    <th>Call ID</th><th>Operation</th><th>Last Run</th><th>Exec</th><th>Queue</th><th>RC</th><th>Last Change</th>
+    <th>Call ID</th><th>Operation</th><th>Last Run</th><th>Exec</th><th>Queue</th><th>RC</th><th>Last Change</th><th>Exit Reason</th>
   </tr>
 <% @op_history[k][:ops].each do |op| %>
   <tr>
@@ -41,6 +41,7 @@
     <td><%= op[:queue_time] %>ms</td>
     <td><%= op[:rc_code] %></td>
     <td><%= op[:last_rc_change] %></td>
+    <td><%= op[:exit_reason] %></td>
   </tr>
 <% end %>
 </table>
