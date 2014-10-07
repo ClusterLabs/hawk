@@ -1,0 +1,37 @@
+site "https://supermarket.getchef.com/api/v1"
+
+cookbook "zypper",
+  github: "tboerger/chef-zypper"
+
+cookbook "build",
+  github: "tboerger/chef-build"
+
+cookbook "git",
+  github: "tboerger/chef-git"
+
+cookbook "locales",
+  github: "tboerger/chef-locales"
+
+cookbook "hosts",
+  github: "tboerger/chef-hosts"
+
+cookbook "ntp",
+  github: "tboerger/chef-ntp"
+
+cookbook "openssh",
+  github: "tboerger/chef-openssh"
+
+cookbook "sudo",
+  github: "tboerger/chef-sudo"
+
+cookbook "timezone",
+  github: "tboerger/chef-timezone"
+
+cookbook "ruby",
+  github: "tboerger/chef-ruby"
+
+cookbook "sshkey",
+  github: "tboerger/chef-sshkey"
+
+cookbook "foreman",
+  github: "tboerger/chef-foreman"
