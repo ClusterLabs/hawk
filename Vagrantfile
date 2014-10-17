@@ -1,29 +1,10 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-$PATCH_CHEF = <<SCRIPT
-cd /opt/chef/embedded/lib/ruby/gems/1.9.1/gems/chef-11.16.2/
-
-if [[ ! -f /root/.chef_patch_2052 ]]; then
-  wget -q -O - https://github.com/opscode/chef/pull/2052.patch | patch -p1 -f
-  touch /root/.chef_patch_2052
-fi
-
-if [[ ! -f /root/.chef_patch_2187 ]]; then
-  wget -q -O - https://github.com/opscode/chef/pull/2187.patch | patch -p1 -f
-  touch /root/.chef_patch_2187
-fi
-SCRIPT
-
 Vagrant.configure("2") do |config|
-  config.vm.box = "hawk"
-  config.vm.box_url = "http://w3.suse.de/~tboerger/vagrant/sles12-sp0-minimal-virtualbox-0.0.1.box"
+  config.vm.box = "webhippie/opensuse-13.1"
 
   config.librarian_chef.cheffile_dir = "chef"
-  config.omnibus.chef_version = "11.16.2"
-
-  # A temporary fix until chef gets prepared for SLES 12
-  config.vm.provision "shell", inline: $PATCH_CHEF
 
   config.vm.define "webui", default: true do |machine|
     machine.vm.hostname = "webui.hawk.suse.com"

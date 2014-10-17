@@ -51,8 +51,6 @@ bash "hawk_init" do
 end
 
 group "haclient" do
-  provider Chef::Provider::Group::Gpasswd
-
   members %w(vagrant)
   append true
 

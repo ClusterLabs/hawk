@@ -17,21 +17,21 @@
 # limitations under the License.
 #
 
-default["hawk"]["webui"]["packages"] = %w(
-  ruby2.1-rubygem-rails-3_2
-  ruby2.1-rubygem-fast_gettext
-  ruby2.1-rubygem-gettext_i18n_rails
-  ruby2.1-rubygem-gettext
+default["hawk"]["webui"]["packages"] = [
+  "rubygem-rails-3_2",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-fast_gettext",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-gettext_i18n_rails",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-gettext",
 
-  hawk
-  hawk-templates
-  ha-cluster-bootstrap
+  "hawk",
+  "hawk-templates",
+  "ha-cluster-bootstrap",
 
-  glib2-devel
-  libxml2-devel
-  pam-devel
-  libpacemaker-devel
-)
+  "glib2-devel",
+  "libxml2-devel",
+  "pam-devel",
+  "libpacemaker-devel"
+]
 
 default["hawk"]["webui"]["targets"] = %w(
   clean

@@ -17,17 +17,12 @@ default_attributes({
   "zypper" => {
     "repos" => [
       {
-        "title" => "SLE 12 GA",
-        "alias" => "dist-sle-12.0-ga",
-        "uri" => "http://download.suse.de/ibs/SUSE:/SLE-12:/GA/standard/",
-        "key" => "http://download.suse.de/ibs/SUSE:/SLE-12:/GA/standard/repodata/repomd.xml.key"
+        "title" => "Network HA Clustering",
+        "alias" => "network-ha-clustering",
+        "uri" => "http://download.opensuse.org/repositories/network:/ha-clustering:/Factory/openSUSE_13.1/",
+        "key" => "http://download.opensuse.org/repositories/network:/ha-clustering:/Factory/openSUSE_13.1/repodata/repomd.xml.key"
       }
     ]
-  },
-  "ruby" => {
-    "zypper" => {
-      "enabled" => false
-    }
   },
   "sudo" => {
     "users" => [
