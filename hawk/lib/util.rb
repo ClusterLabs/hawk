@@ -302,7 +302,7 @@ module Util
       }
     when :acl_support
       PerRequestCache.fetch(:has_acl_support) {
-        %x[cibadmin -!].split(/\s+/).include?("acls")
+        %x[/usr/sbin/cibadmin -!].split(/\s+/).include?("acls")
       }
     else
       false

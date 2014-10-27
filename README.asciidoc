@@ -1,35 +1,3 @@
-/////////////////////////////////////////////////////////////////////
-
-                        HA Web Konsole (Hawk)
-
-            A web-based GUI for managing and monitoring the
-          Pacemaker High-Availability cluster resource manager
-
- Copyright (c) 2009-2013 SUSE LLC, All Rights Reserved.
-
- Author: Tim Serong <tserong@suse.com>
-
- This program is free software; you can redistribute it and/or modify
- it under the terms of version 2 of the GNU General Public License as
- published by the Free Software Foundation.
-
- This program is distributed in the hope that it would be useful, but
- WITHOUT ANY WARRANTY; without even the implied warranty of
- MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-
- Further, this software is distributed without any warranty that it is
- free of the rightful claim of any third person regarding infringement
- or the like.  Any license provided herein, whether implied or
- otherwise, applies only to this software file.  Patent licenses, if
- any, provided herein do not apply to combinations of this program with
- other software, or any other product whatsoever.
-
- You should have received a copy of the GNU General Public License
- along with this program; if not, see <http://www.gnu.org/licenses/>.
-
-/////////////////////////////////////////////////////////////////////
-
-
 HA Web Konsole (Hawk)
 =====================
 Tim Serong <tserong@suse.com>
@@ -89,12 +57,14 @@ of lighttpd.  It requires:
 * rubygem-ruby-fcgi (openSUSE)
 * rubypick (Fedora)
 
-When building Hawk from source, you will also need rubygem-gettext and the pacemaker, glib2, libxml2 and pam devel libraries.
+When building Hawk from source, you will also need rubygem-gettext
+and the pacemaker, glib2, libxml2 and pam devel libraries.
 
 === Installing The Easy Way ===
 
 Hawk is included with SLE HA 11 SP1, openSUSE 11.4, and later
-SUSE releases.  Recent versions are also available http://software.opensuse.org/download?project=network:ha-clustering:Stable&package=hawk[for download from OBS].
+SUSE releases. Recent versions are also available
+http://software.opensuse.org/download?project=network:ha-clustering:Stable&package=hawk[for download from OBS].
 
 Just install the RPM, then run:
 
@@ -134,7 +104,7 @@ you'll be happy with the outcome!
 --------------------------------------
 
 The above will install in +/srv/www/hawk+ and run from a SUSE-style init
-script.  To install somewhere else (e.g.: +/var/www/hawk+) and/or to
+script. To install somewhere else (e.g.: +/var/www/hawk+) and/or to
 use a Red Hat-style init script, try:
 
 --------------------------------------
@@ -146,7 +116,9 @@ use a Red Hat-style init script, try:
 
 === Installing The Other Hard Way ===
 
-Grab the SRPM from OBS, for example try the one in http://download.opensuse.org/repositories/network:/ha-clustering:/Stable/Fedora_19/src/ if you're using Fedora 19, and build that.
+Grab the SRPM from OBS, for example try the one in
+http://download.opensuse.org/repositories/network:/ha-clustering:/Stable/Fedora_19/src/
+if you're using Fedora 19, and build that.
 
 
 == A Note on SSL Certificates ==
@@ -160,18 +132,46 @@ Note that this is a combined key and certificate, i.e.  you'll need to
 
 == Hacking Hawk ==
 
-Hacking an instance of Hawk that was installed from an RPM is annoying,
-not least because you have to keep restarting it to have any changed
-files reloaded.  Instead, it's easiest to just run it under WEBrick
-from within the source tree, but first you need to run +make+ to build
-the +hawk_chkpwd+ and +hawk_invoke+ helper binaries, then install them
-setuid-root, group=haclient in /usr/sbin.  You should end up with
-something like:
+To hack on Hawk we recommend to use the vagrant setup. There is a
+Vagrantfile attached, maybe you need to change some values to get access
+to the correct files as the current locations are restricted to SUSE
+emplyees.
 
-+# ls /usr/sbin/hawk_* -l+ + 
-+-rwsr-x--- 1 root haclient 9884 2011-04-14 22:56 /usr/sbin/hawk_chkpwd+ + 
-+-rwsr-x--- 1 root haclient 9928 2011-04-14 22:56 /usr/sbin/hawk_invoke+ + 
-+-rwxr-xr-x 1 root root     9992 2011-04-14 22:56 /usr/sbin/hawk_monitor+ + 
+To be prepared for getting our vagrant setup running you need to follow
+some steps.
+
+* Install the vagrant package from http://www.vagrantup.com/downloads.html
+
+* Install +virtualbox+, we assume you know how to do that on your OS.
+
+* If you are working on openSUSE/SLED you need to apply an open pull request:
+
+  # cd /opt/vagrant/embedded/gems/gems/vagrant-1.6.5/
+  # wget -O - https://github.com/mitchellh/vagrant/pull/4492.patch | patch -p1 -f
+
+* Install the +librarian+ plugin for vagrant with the following command:
+
+  # vagrant plugin install vagrant-librarian-chef
+
+This is all you need to prepare initally to set up the vagrant environment,
+now you can simply start the virtual machin with +vagrant up+ and start
+an ssh session with +vagrant ssh webui+. If you want to access the source
+within the virtual machine you have to switch to the +/vagrant+ directory.
+
+You can access the Hawk web interface based on the git source through
++http://localhost:3000+ now. If you want to access the version installed
+through packages you can reach it through +https://localhost:7630+.
+
+If you need to change something on +hawk_chkpwd+, +hawk_invoke+ or
++hawk_monitor+ you need to provision the machine again with the command
++vagrant provision+ to get this scripts compiled and copied to the correct
+places, setuid-root and group to haclient in /usr/bin again. You should
+end up with something like:
+
++# ls /usr/sbin/hawk_* -l+ +
++-rwsr-x--- 1 root haclient 9884 2011-04-14 22:56 /usr/sbin/hawk_chkpwd+ +
++-rwsr-x--- 1 root haclient 9928 2011-04-14 22:56 /usr/sbin/hawk_invoke+ +
++-rwxr-xr-x 1 root root     9992 2011-04-14 22:56 /usr/sbin/hawk_monitor+ +
 
 +hawk_chkpwd+ is almost identical to +unix2_chkpwd+, except it restricts
 acccess to users in the +haclient+ group, and doesn't inject any delay
@@ -187,32 +187,8 @@ tasks.
 by the web browser, to facilitate near-realtime updates of the cluster
 status display.  It is not used when running Hawk via WEBrick.
 
-Once you've got the above built and installed, run:
-
---------------------------------------
-# sudo -u hacluster script/rails s
---------------------------------------
-
-This will give you Hawk running via HTTP (_not_ HTTPS), on port 3000,
-e.g.:
-
-http://your-dev-system:3000/
-
-Note that automatic status updates won't work in this mode, because
-requests for +/monitor+ aren't routed to +/usr/sbin/hawk_monitor+.
-To force a status update every few seconds, try:
-
-http://your-dev-system:3000/main/status?update_period=5
-
-Finally, an alternative to running WEBrick as hacluster (which may
-require fiddling with file permissions in your source directory,
-depending on how restrictive your defaults are), you can just rsync
-the source tree to a development cluster node, then and run it as
-root there.
-
 
 == Questions, Feedback, etc. ==
 
 Please direct comments, feedback, questions etc. to tserong@suse.com
 and/or the Pacemaker mailing list.
-

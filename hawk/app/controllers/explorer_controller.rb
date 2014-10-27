@@ -37,8 +37,6 @@ class ExplorerController < ApplicationController
 
   layout 'main'
 
-  @@x_path = "#{Rails.root}/tmp/explorer"
-
   def initialize
     super
     @title = _('History Explorer')
@@ -50,8 +48,8 @@ class ExplorerController < ApplicationController
     @cache = []
 
     ts_re = "[0-9]{4}-[0-9]{2}-[0-9]{2}_[0-9]{2}:[0-9]{2}"
-    Dir.entries(@@x_path).sort.reverse.each do |f|
-      m = f.match(/^hb_report-hawk-(#{ts_re})-(#{ts_re}).tar.bz2$/)
+    explorer_path.entries.sort.reverse.each do |f|
+      m = f.basename.to_s.match(/^hb_report-hawk-(#{ts_re})-(#{ts_re}).tar.bz2$/)
       next unless m
       @cache << {
         :from_time => m[1].sub("_", " "),
@@ -89,7 +87,7 @@ class ExplorerController < ApplicationController
             @peinputs << {
               :timestamp => File.mtime(path).strftime("%Y-%m-%d %H:%M:%S"),
               :basename  => File.basename(path, ".bz2"),
-              :path      => path.sub("#{@@x_path}/", ''),  # only use relative portion
+              :path      => path.sub("#{explorer_path.to_s}/", ''),  # only use relative portion
               :node      => path.split(File::SEPARATOR)[-3]
             }
             v = peinput_version(path)
@@ -133,7 +131,7 @@ class ExplorerController < ApplicationController
     params[:node].gsub!(/[^\w_-]/, "")
     tname = "#{params[:node]}/pengine/#{params[:basename]}.bz2"
     params[:path].gsub!("..", "") # tear out possible relative junk
-    tpath = "#{@@x_path}/#{params[:path]}"
+    tpath = explorer_path.join(params[:path]).to_s
     case params[:file]
     when "pe-input"
       send_file tpath, :type => "application/x-bzip"
@@ -294,10 +292,10 @@ class ExplorerController < ApplicationController
       @report_name = "uploads/#{File.basename(@report_path, '.tar.bz2')}"
     else
       @report_name = "hb_report-hawk-#{@from_time.sub(' ','_')}-#{@to_time.sub(' ','_')}"
-      @report_path = "#{@@x_path}/#{@report_name}.tar.bz2"
+      @report_path = explorer_path.join("#{@report_name}.tar.bz2").to_s
     end
 
-    @hb_report.path = "#{@@x_path}/#{@report_name}"
+    @hb_report.path = explorer_path.join(@report_name).to_s
   end
 
   def peinput_version(path)
@@ -305,5 +303,15 @@ class ExplorerController < ApplicationController
     m = nvpair.match(/value="([^"]+)"/)
     return nil unless m
     m[1]
+  end
+
+  def explorer_path
+    @explorer_path ||= Rails.root.join("tmp", "explorer")
+
+    unless @explorer_path.directory?
+      @explorer_path.mkpath
+    end
+
+    @explorer_path
   end
 end

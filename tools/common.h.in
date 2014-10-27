@@ -26,11 +26,14 @@
 #ifndef _HAWK_DEFS_H
 #define _HAWK_DEFS_H
 
-const char * const HACLUSTER	= "hacluster";
-const char * const HACLIENT	= "haclient";
+const char * const VAGRANT = "vagrant";
+const char * const HACLUSTER = "hacluster";
+const char * const HACLIENT = "haclient";
 
 #define LIBDIR "@LIBDIR@"
 #define BINDIR "@BINDIR@"
 #define SBINDIR "@SBINDIR@"
+
+#define WITHIN_VAGRANT @WITHIN_VAGRANT@
 
 #endif /* HAWK_DEFS_H */

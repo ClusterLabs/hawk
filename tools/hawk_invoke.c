@@ -119,7 +119,12 @@ int main(int argc, char **argv)
 	if (uid != 0) {
 		/* Not root, let's see if we're running as hacluster */
 		pwd = getpwuid(uid);
+
+		#if WITHIN_VAGRANT == 1
+		if (pwd == NULL || (strcmp(pwd->pw_name, HACLUSTER) != 0 && strcmp(pwd->pw_name, VAGRANT) != 0)) {
+		#else
 		if (pwd == NULL || strcmp(pwd->pw_name, HACLUSTER) != 0) {
+		#endif
 			/*
 			 * Not hacluster either.
 			 * TODO: log this to syslog, to alert sysadmin

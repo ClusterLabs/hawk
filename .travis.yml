@@ -1,12 +1,14 @@
 language: ruby
+
 branches:
   except:
     - rails-2_3
     - sle-11-sp2
+
 rvm:
   - "1.9.2"
   - "1.9.3"
   - "2.0.0"
+
 gemfile: hawk/Gemfile
 script: sh -c 'cd hawk && bundle exec rake brakeman:run && bundle exec rake'
-
