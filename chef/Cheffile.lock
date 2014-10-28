@@ -1,0 +1,101 @@
+GIT
+  remote: https://github.com/tboerger/chef-build
+  ref: master
+  sha: bb3f91d78915002778bd8ca812b7f560891c4ae5
+  specs:
+    build (0.0.1)
+
+GIT
+  remote: https://github.com/tboerger/chef-foreman
+  ref: master
+  sha: ca63dad2ce0d54243de18b4bf8c10630966f9597
+  specs:
+    foreman (0.0.1)
+      ruby (>= 0.0.0)
+
+GIT
+  remote: https://github.com/tboerger/chef-git
+  ref: master
+  sha: 46ab14f5902b2ba2b215247b13c596a006d2ed11
+  specs:
+    git (0.0.1)
+      zypper (>= 0.0.0)
+
+GIT
+  remote: https://github.com/tboerger/chef-hosts
+  ref: master
+  sha: 759fa4f8fab53ab17fb8546a52d919d1b59b1f9e
+  specs:
+    hosts (0.0.1)
+
+GIT
+  remote: https://github.com/tboerger/chef-locales
+  ref: master
+  sha: 156782ab79ac7dfeba203ca42c5878c70903c7dd
+  specs:
+    locales (0.0.1)
+
+GIT
+  remote: https://github.com/tboerger/chef-ntp
+  ref: master
+  sha: e4a69e6409e368918fd0a8369556ce6d7e134f75
+  specs:
+    ntp (0.0.1)
+
+GIT
+  remote: https://github.com/tboerger/chef-openssh
+  ref: master
+  sha: ad8f55526044d6a762b43d263b2940b1590c1038
+  specs:
+    openssh (0.0.1)
+
+GIT
+  remote: https://github.com/tboerger/chef-ruby
+  ref: master
+  sha: e0453915a9263686bcc97b7ef5705e5cc6c4635e
+  specs:
+    ruby (0.0.1)
+      zypper (>= 0.0.0)
+
+GIT
+  remote: https://github.com/tboerger/chef-sshkey
+  ref: master
+  sha: d8af8c0c517cf7c1dd7b3a4d8fa99a5002ce965a
+  specs:
+    sshkey (0.0.1)
+
+GIT
+  remote: https://github.com/tboerger/chef-sudo
+  ref: master
+  sha: 4879184c49670fdd980584ba50137e09f0900644
+  specs:
+    sudo (0.0.1)
+
+GIT
+  remote: https://github.com/tboerger/chef-timezone
+  ref: master
+  sha: 07dba21297b67bd36723a7282ef4dbb0c1ae71d6
+  specs:
+    timezone (0.0.1)
+
+GIT
+  remote: https://github.com/tboerger/chef-zypper
+  ref: master
+  sha: cec864544b1b9814e9bb90cb9453e4f46293a64d
+  specs:
+    zypper (0.0.1)
+
+DEPENDENCIES
+  build (>= 0)
+  foreman (>= 0)
+  git (>= 0)
+  hosts (>= 0)
+  locales (>= 0)
+  ntp (>= 0)
+  openssh (>= 0)
+  ruby (>= 0)
+  sshkey (>= 0)
+  sudo (>= 0)
+  timezone (>= 0)
+  zypper (>= 0)
+
