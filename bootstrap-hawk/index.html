@@ -10,7 +10,6 @@
     <link href="css/bootstrap.min.css" rel="stylesheet"/>
     <link href="css/font-awesome.min.css" rel="stylesheet"/>
     <link href="css/custom.css" rel="stylesheet" />
-    <link href="css/fixed-positioning.css" rel="stylesheet" type="text/css" />
     <link href="favicon.png" rel="shortcut icon" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -19,7 +18,7 @@
     <![endif]-->
   </head>
   <body>
-<div class="containr-fluid">
+<div class="container-fluid">
 <header>
 	<div class="row header">
 		<div class="col-md-4">
@@ -85,60 +84,44 @@
 
 	<div class="col-md-10">
 		<section class="content">
-		 <div class="dashboard"> <i class="fa fa-dashboard fa-lg dash"></i>Dashboard</div>
+		 <div class="dashboard"> <i class="fa fa-dashboard fa-sm dash"></i>Dashboard</div>
 			<div class="row">
-				<div class="col-md-4">
-									<span class="top-title">Cluster</span>
-					<dl class="dl-horizontal status data">
-					  <dt>Stonit enable</dt>
-					  <dd>Yes</dd>
-					  <dt>No quorum Policy</dt>
-					  <dd>Ignore</dd>
-					  <dt>Simmetric Cluster</dt>
-					  <dd>True</dd>
-					  <dt>Resources stickness</dt>
-					  <dd>1</dd>
-					</dl>
+				<div class="col-md-3">
+									<div class="top-title">Cluster</div>
+				<table class="table-striped status data">
+					<tbody>
+						<tr>
+							<td>Stonit enable</td>
+							<td>yes</td>
+						</tr>
+						<tr>
+							<td>No quorum Policy</td>
+							<td>Ignore</td>
+						</tr>
+						<tr>
+							<td>Simmetric Cluster</td>
+							<td>True</td>
+						</tr>
+						<tr>
+							<td>Resources stickness</td>
+							<td>1</td>
+						</tr>
 
-					<!-- old elements
-					<div class="row">
-						<div class="col-md-12 data">
-					      <div class="col-sm-9">
-					        Stonit enable
-					      </div>
-					      <div class="col-sm-3">
-					        Yes
-					      </div>
-					      <div class="col-sm-9">
-					        No quorum Policy
-					      </div>
-					      <div class="col-sm-3">
-					        Ignore
-					      </div>
-					      <div class="col-sm-9">
-					        Simmetric Cluster
-					      </div>
-					      <div class="col-sm-3">
-					        True
-					      </div>
-					      <div class="col-sm-9">
-					        Resources stickness
-					      </div>
-					      <div class="col-sm-3">
-					        1
-					      </div>
-					    </div>
-					</div>
+					</tbody>
 
-					-->
+				</table>
 
+					<div class="card-bottom"></div>
 				</div>
-				<div class="col-md-4">
-					<span class="top-title">Status</span>
-					 <div class="circle">OK</div>
+				<div class="col-md-2">
+					<div class="top-title">Status</div>
+					 <div class="status-center">
+					 	<div class="circle">OK</div>
+					 </div>
+					 <div class="card-bottom"></div>
 				</div>
-				<div class="col-md-4">
-					<span class="top-title">Errors</span>
+				<div class="col-md-7">
+					<div class="top-title">Errors</div>
 						<div class="messages">
 					      <div class="alert alert-danger alert-dismissible fade in">Error message <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">x</span> <span class="sr-only">Close</span></button> </div>
 
@@ -148,6 +131,7 @@
 
 					      <div class="alert alert-info alert-dismissible fade in">info message <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">x</span> <span class="sr-only">Close</span></button> </div>
 					  </div>
+					  <div class="card-bottom"></div>
 				</div>
 			</div> <!-- finish row -->
 
@@ -179,113 +163,232 @@
 	<div class="panel-body">
 	 <table class="table table-condensed table-striped" style="border-collapse:collapse;">
 	    <thead>
-	        <tr><th>Status</th>
-	            <th>Name</th>
-	            <th>Type</th>
-	            <th>Nodes</th>
-	            <th>Operation</th>
-	        </tr>
+	      <tr>
+	    	  <th>Status</th>
+	        <th>Name</th>
+	        <th>Type</th>
+	        <th>Nodes</th>
+	        <th>Operation</th>
+	      </tr>
 	    </thead>
 
-	    <tbody>
-		                  <tr data-toggle="collapse" data-target="#panel1" class="accordion-toggle">
-		                      <td><div class="red-circle"></div></td>
-		                      <td>WEB_SUSE.com</td>
-		                      <td>Group</td>
-		                      <td>A</td>
-		                      <td><icon class="fa fa-arrows-v fa-2x"><icon class="fa fa-play"> <icon class="fa fa-pencil"> <icon class="fa fa-cogs"></td>
-		                  </tr>
-		                  <tr>
-		                  	<td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="panel1"> 
-		                  		<div class="row">
-		                  		  <div class="col-md-4">
-							            <dl class="dl-horizontal inside-table">
-							            <div class="table-name">Parameter <icon class="fa fa-pencil icon-r"></div>
-										  <dt>Autoset_utilization_hv_memory</dt>
-										  <dd>False</dd>
-										  <dt>force_stop</dt>
-										  <dd>true</dd>
-										  <dt>hypervisor</dt>
-										  <dd>qemu:///system</dd>
-										  <dt>mistration_transort</dt>
-										  <dd>ssh</dd>
-										  <dt>autoset_utilization_cpu</dt>
-										  <dd>false</dd>
-										</dl>
-								 </div>
+	<tbody>
+        <tr data-toggle="collapse" data-target="#panel1" class="accordion-toggle">
+            <td><div class="red-circle"></div></td>
+            <td>WEB_SUSE.com</td>
+            <td>Group</td>
+            <td>A</td>
+            <td><icon class="fa fa-arrows-v fa-1x"><icon class="fa fa-play"> <icon class="fa fa-pencil"> <icon class="fa fa-cogs"></td>
+        </tr>
+<tr>
+ <td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="panel1"> 
+<div class="row">
 
-								<div class="col-md-4">
-										<dl class="dl-horizontal inside-table">
-										  <div class="table-name">Operation  <icon class="fa fa-pencil icon-r"></div>
-										  <dt>monitor interval</dt>
-										  <dd>60</dd>
-										  <dt>timeout</dt>
-										  <dd>30</dd>
-										  <dt>Start timeout</dt>
-										  <dd>20</dd>
-										  <dt>stop timeout</dt>
-										  <dd>30</dd>
-										</dl>
-								</div>
 
-								<div class="col-md-4">
-										<dl class="dl-horizontal inside-table">
-										  <div class="table-name">Contraint <icon class="fa fa-pencil icon-r"></div>
-										  <dt>COLLOCATION</dt>
-										  <dt>clusterfs-manu-with-base</dt>
-										  <dt>INFINITY</dt>
-										  <dt>ORDER</dt>
-										  <dd>clusterfs-manu-with-base</dd>
-										  <dt>INFINITY</dt>
-									    </dl>
-								</div>
+		  <div class="col-md-4">
+		   <div class="top-title">Paramenter  <icon class="fa fa-pencil icon-r"></div>
+				<table class="table-striped status data">
+					<tbody>
+						<tr>
+							<td>Autoset_utilization_hv_memory</td>
+							<td>False</td>
+						</tr>
+						<tr>
+							<td>force_stop</td>
+							<td>Ignore</td>
+						</tr>
+						<tr>
+							<td>hypervisor</td>
+							<td>emu:///system</td>
+						</tr>
+						<tr>
+							<td>mistration_transort</td>
+							<td>ssh</td>
+						</tr>
+						<tr>
+							<td>autoset_utilization_cpu</td>
+							<td>false</td>
+						</tr>
+					</tbody>
+				</table>
+					<div class="card-bottom"></div>
+			</div><!-- close col 4 -->
 
-		                  	   </div><!-- close row -->
-                 		    </td>
-                 		  </tr>
-		</tbody>
+			<div class="col-md-4">
+			 <div class="top-title">Operation<icon class="fa fa-pencil icon-r"></div>
+				<table class="table-striped status data">
+					<tbody>
+						<tr>
+							<td>monitor interval</td>
+							<td>60</td>
+						</tr>
+						<tr>
+							<td>timeout</td>
+							<td>20</td>
+						</tr>
+						<tr>
+							<td>Start timeout</td>
+							<td>30</td>
+						</tr>
+						<tr>
+							<td>stop timeout</td>
+							<td>20</td>
+						</tr>
+					</tbody>
+				</table>
+					<div class="card-bottom"></div>
+			</div><!-- close col 4 -->
 
-		 <tbody>
+			<div class="col-md-4">
+			 <div class="top-title">Contraint<icon class="fa fa-pencil icon-r"></div>
+				<table class="table-striped status data">
+					<tbody>
+						<tr>
+							<td>COLLOCATION</td>
+							<td>clusterfs-manu-with-base</td>
+						</tr>
+						<tr>
+							<td>INFINITY</td>
+							<td>clusterfs-manu-with-base</td>
+						</tr>
+						<tr>
+							<td>ORDER</td>
+							<td>30</td>
+						</tr>
+						<tr>
+							<td>INFINITY</td>
+							<td>20</td>
+						</tr>
+					</tbody>
+				</table>
+					<div class="card-bottom"></div>
+			</div><!-- close col 4 -->
+
+
+</div><!-- close row -->
+ </td>
+</tr>
+	</tbody>
+
+		 								<tbody>
 		                  <tr data-toggle="collapse" data-target="#panel2" class="accordion-toggle">
 		                      <td><div class="orange-circle"></div></td>
 		                      <td>WEB_SUSE.com</td>
 		                      <td>Group</td>
 		                      <td>A</td>
-		                      <td><icon class="fa fa-arrows-v fa-2x"><icon class="fa fa-stop"> <icon class="fa fa-pencil"> <icon class="fa fa-cogs"></td>
+		                      <td><icon class="fa fa-arrows-v fa-1x"><icon class="fa fa-stop"> <icon class="fa fa-pencil"> <icon class="fa fa-cogs"></td>
 		                  </tr>
 		                  <tr>
-		                  	<td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="panel2"> content
+		                  	<td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="panel2"> content</div>
                  		    </td>
                  		  </tr>
-		</tbody>
+										</tbody>
 
-		 <tbody>
+									  <tbody>
 		                  <tr data-toggle="collapse" data-target="#panel3" class="accordion-toggle">
 		                      <td><div class="green-circle"></div></td>
 		                      <td>WEB_SUSE.com</td>
 		                      <td>Group</td>
 		                      <td>A</td>
-		                      <td><icon class="fa fa-arrows-v fa-2x"><icon class="fa fa-stop"> <icon class="fa fa-pencil"> <icon class="fa fa-cogs"></td>
+		                      <td><icon class="fa fa-arrows-v fa-1x"><icon class="fa fa-stop"> <icon class="fa fa-pencil"> <icon class="fa fa-cogs"></td>
 		                  </tr>
 		                  <tr>
-		                  	<td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="panel3"> content
-                 		    </td>
+		                  	<td colspan="12" class="hiddenRow"><div class="accordian-body collapse" id="panel3"> content</div>
+                 		  </td>
                  		  </tr>
-		</tbody>
-	</table>
+										</tbody>
+	 </table>
 	</div>
 	 </div>
 	  </div>
-		</div>
+		 </div>
 
-        <div role="tabpanel" class="tab-pane" id="node">..ree.</div>
+        <div role="tabpanel" class="tab-pane" id="node">
+        	<table class="table table-condensed">
+			  <thead>
+			    <tr>
+			      <th>NODE</th>
+			      <th>Name</th>
+			      <th>Operation</th>
+			      <th>Maintenance</th>
+			      <th>Ready</th>
+			      <th>Fence</th>
+			      <th>Detail</th>
+			      <th>Recent events</th>
+			    </tr>
+			  </thead>
+			  <tbody>
+			    <tr>
+			      <td>1</td>
+			      <th>OnLine</th>
+			      <th><icon class="fa fa-play fa-1x"></th>
+			      <th><icon class="fa fa-wrench"></th>
+			      <th><icon class="fa fa-minus-circles"></th>
+			      <th><i class="fa fa-arrow-circle-right"></i></th>
+			      <th><icon class="fa fa-circle-o-notch"></th>
+			      <th><icon class="fa fa-search"></th>
+			      <th><icon class="fa fa-search"></th>
+			    </tr>
+			    <tr>
+			      <td>2</td>
+			      <th>Node 2</th>
+			      <th><icon class="fa fa-play fa-1x"></th>
+			      <th><icon class="fa fa-wrench"></th>
+			      <th><icon class="fa fa-minus-circles"></th>
+			      <th><i class="fa fa-arrow-circle-right"></i></th>
+			      <th><icon class="fa fa-circle-o-notch"></th>
+			      <th><icon class="fa fa-search"></th>
+			      <th><icon class="fa fa-search"></th>
+			    </tr>
+			    <tr>
+			      <td>3</td>
+			      <th>Third node</th>
+			      <th><icon class="fa fa-play fa-1x"></th>
+			      <th><icon class="fa fa-wrench"></th>
+			      <th><icon class="fa fa-minus-circles"></th>
+			      <th><i class="fa fa-arrow-circle-right"></i></th>
+			      <th><icon class="fa fa-circle-o-notch"></th>
+			      <th><icon class="fa fa-search"></th>
+			      <th><icon class="fa fa-search"></th>
+			    </tr>
+			  </tbody>
+			</table>
+
+
+
+        </div>
         <div role="tabpanel" class="tab-pane" id="dependency">..rerq.</div>
 
-
-
-
-
+</div>
 		</section>
+
+  <!-- Footer -->
+  <footer class=" navbar-fixed-bottom footer">
+  <div class="row">
+    <div class="col-md-11">
+      <ul class="list-inline footer-links">
+        <li>
+            © 2014 SUSE 
+        </li>
+        <li>
+            <a href="#">Legal </a>
+        </li>
+        <li>
+            <a href="#">About </a>
+        </li>
+        <li>
+            <a href="#">Contact </a>
+        </li> 
+      </ul>  
+  </div>
+
+    <div class="col-md-1">
+      <div class="logo-br"></div>
+    </div>
+  </div>
+  <div class="bottom-line navbar-fixed-bottom"></div>
+  </footer>
+      
 	</div>
 
 

@@ -59,7 +59,7 @@ html, body, .container-fluid, .row {
 
 
 .footer {
-	position: inherit;
+	/* position: inherit; */
 	margin-left: -15px;
 	margin-right: -15px;
 }
@@ -122,6 +122,19 @@ html, body, .container-fluid, .row {
 	margin: 0 auto 0 auto;
 }
 
+
+.circle-error {
+	border-radius: 100%;
+	border: solid 4px #fff;
+	background: #e65236;
+	color: #fff;
+	font-size: 2.3em;
+	padding-top: 0.8em;
+	width: 3em;
+	height: 3em;
+	text-align: center;
+	margin: 0 auto 0 auto;
+}
 
 
 /* top section */
