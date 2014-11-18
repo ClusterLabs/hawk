@@ -3,15 +3,15 @@
 body {
 	font-family: 'Raleway', sans-serif;
 	 /*font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif; */
-	background-color: #f7f7f7;
 	color: #3a3e40;
 	height: 100%;
-
+	background-color: #f7f7f7;
 }
 
 html, body, .container-fluid, .row {
 	height: 100%;
 }
+
 /* HEADER */
 .header {
 	background-color: #2b2b2b;
@@ -42,6 +42,7 @@ html, body, .container-fluid, .row {
 	border-bottom: 1px solid #333;
 	padding-bottom: 20px;
 	margin-left: 10px;
+	margin-top: 1em;
 }
 
 .menu-title {
@@ -312,54 +313,3 @@ td {
 
 
 
-/* login */
-
-.login {
-	min-height: 300px;
-}
-
-.login-description {
-	margin-top: 3em;
-	font-size: 3em;
-	color: #2b2b2b;
-	line-height: 1.3em;
-	display: block;
-	position: relative;
-}
-
-.login-elements {
-	margin-top: 5em;
-	color: #2b2b2b;
-	line-height: 2em;
-	padding: 30px;
-	border: 1px #ccc solid;
-	background-color: #DDDDDD;
-	border-radius: 10px;
-
-}
-
-.Raleway-font {
-	font-family: 'Raleway',sans-serif;
-	font-weight: 300;
-}
-
-.login-text {
-	margin-bottom: 1em;
-	margin-top: 1em;
-	font-size: 1.2em;
-	text-align: center;
-}
-
-.username {
-	padding: 6px;
-	margin-top: 1em
-}
-
-.password {
-	padding: 6px;
-	margin-top: 0.7em
-}
-
-.logo-login {
-	margin: 0 auto 2em auto;
-}
