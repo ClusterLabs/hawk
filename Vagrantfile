@@ -2,7 +2,7 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "webhippie/opensuse-13.1"
+  config.vm.box = "krig/opensuse-13.2"
 
   config.librarian_chef.cheffile_dir = "chef"
 
@@ -27,8 +27,8 @@ Vagrant.configure("2") do |config|
     end
 
     machine.vm.provider :virtualbox do |provider, override|
-      provider.memory = 2048
-      provider.cpus = 4
+      provider.memory = 512
+      provider.cpus = 1
 
       provider.name = "hawk-webui"
     end

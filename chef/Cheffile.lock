@@ -8,7 +8,7 @@ GIT
 GIT
   remote: https://github.com/chefhippie/foreman
   ref: master
-  sha: ca63dad2ce0d54243de18b4bf8c10630966f9597
+  sha: a26bff3fd4762f5661e2cf2ee4bea66842d9bb16
   specs:
     foreman (0.0.1)
       ruby (>= 0.0.0)
@@ -36,16 +36,9 @@ GIT
     locales (0.0.1)
 
 GIT
-  remote: https://github.com/chefhippie/ntp
-  ref: master
-  sha: e4a69e6409e368918fd0a8369556ce6d7e134f75
-  specs:
-    ntp (0.0.1)
-
-GIT
   remote: https://github.com/chefhippie/openssh
   ref: master
-  sha: 023c4d8b07e33aad635c2a0267fdf48bb8e78e44
+  sha: 2f2384cf0b8898af68df566e6fa28a94b9585d76
   specs:
     openssh (0.0.1)
 
@@ -60,7 +53,7 @@ GIT
 GIT
   remote: https://github.com/chefhippie/sshkey
   ref: master
-  sha: fa602e6ad21a0fe77b8d42fd6c783c7f389bd875
+  sha: 23570fb68ce0ac64b7ffed0d81379289a3069e0f
   specs:
     sshkey (0.0.1)
 
@@ -84,6 +77,13 @@ GIT
   sha: cec864544b1b9814e9bb90cb9453e4f46293a64d
   specs:
     zypper (0.0.1)
+
+GIT
+  remote: https://github.com/krig/ntp
+  ref: master
+  sha: 40fe32c2a61b277e864c88d296f6cded996839c0
+  specs:
+    ntp (0.0.1)
 
 DEPENDENCIES
   build (>= 0)
