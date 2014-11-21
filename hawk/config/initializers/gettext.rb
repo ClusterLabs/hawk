@@ -41,11 +41,10 @@ FastGettext.tap do |config|
   config.default_available_locales = ['en_US']
 
   Dir[Rails.root.join('locale', '*', 'LC_MESSAGES', '*.mo').to_s].each do |l|
-    match = l.match(/\/([^\/]+)\/LC_MESSAGES\/.*\.mo$/)
+    next unless l.match(/\/([^\/]+)\/LC_MESSAGES\/.*\.mo$/)
+    next if config.default_available_locales.include? $1
 
-    if match and not config.default_available_locales.include? match[1]
-      config.default_available_locales.push match[1]
-    end
+    config.default_available_locales.push $1
   end
 end
 

@@ -52,19 +52,22 @@ Rails.application.routes.draw do
     resources :roles
   end
 
-  # TODO(must): next line is nasty hack for non-plural crm_config resource name
-  match '/cib/:cib_id/crm_config/:id/' => 'crm_config#index', as: :cib_crm_configs, via: [:get, :post]
-  match '/cib/:cib_id/primitives/:id/monitor_intervals' => 'primitives#monitor_intervals', as: :primitives_mi, via: [:get, :post]
-  match '/cib/:cib_id/primitives/new/types' => 'primitives#types', as: :primitives_types, via: [:get, :post]
-  match '/cib/:cib_id/primitives/new/metadata' => 'primitives#metadata', as: :primitives_metadata, via: [:get, :post]
-  match '/cib/:cib_id/nodes/:id/events' => 'nodes#events', as: :node_events, via: [:get, :post]
-  match '/cib/:cib_id/resources/:id/events' => 'resources#events', as: :resource_events, via: [:get, :post]
+  match 'cib/:cib_id/crm_config/:id/' => 'crm_config#index', as: :cib_crm_configs, via: [:get, :post]
+  match 'cib/:cib_id/primitives/:id/monitor_intervals' => 'primitives#monitor_intervals', as: :primitives_mi, via: [:get, :post]
+  match 'cib/:cib_id/primitives/new/types' => 'primitives#types', as: :primitives_types, via: [:get, :post]
+  match 'cib/:cib_id/primitives/new/metadata' => 'primitives#metadata', as: :primitives_metadata, via: [:get, :post]
+  match 'cib/:cib_id/nodes/:id/events' => 'nodes#events', as: :node_events, via: [:get, :post]
+  match 'cib/:cib_id/resources/:id/events' => 'resources#events', as: :resource_events, via: [:get, :post]
+
   resources :hb_reports
-  match '/hb_reports/new/status' => 'hb_reports#status', as: :hb_reports_status, via: [:get, :post]
-  match '/wizard' => 'wizard#run', as: :wizard, via: [:get, :post]
+  match 'hb_reports/new/status' => 'hb_reports#status', as: :hb_reports_status, via: [:get, :post]
+
+  match 'wizard' => 'wizard#run', as: :wizard, via: [:get, :post]
+
   match 'explorer' => 'explorer#index', as: :explorer, via: [:get, :post]
   match 'explorer/get' => 'explorer#get', as: :pe_get, via: [:get, :post]
   match 'explorer/diff' => 'explorer#diff', as: :pe_diff, via: [:get, :post]
+
   match 'main' => 'main#index', as: :default, via: [:get, :post]
   match 'main/index' => 'main#index', as: :index, via: [:get, :post]
   match 'main/status' => 'main#status', as: :status, via: [:get, :post]
@@ -82,9 +85,11 @@ Rails.application.routes.draw do
   match 'main/sim_get' => 'main#sim_get', as: :sim_get, via: [:get, :post]
   match 'main/graph_gen' => 'main#graph_gen', as: :graph_gen, via: [:get, :post]
   match 'main/graph_get' => 'main#graph_get', as: :graph_get, via: [:get, :post]
-  match '/' => 'main#index', via: [:get, :post]
-  match '/login' => 'sessions#new', as: :login, via: [:get, :post]
-  match '/logout' => 'sessions#destroy', as: :logout, via: [:get, :post]
+
   match 'dashboard' => 'dashboard#index', as: :dashboard, via: [:get, :post]
+
   get 'monitor' => 'main#monitor', :as => :monitor
+
+  match 'login' => 'sessions#new', as: :login, via: [:get, :post]
+  match 'logout' => 'sessions#destroy', as: :logout, via: [:get, :post]
 end
