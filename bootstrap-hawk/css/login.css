@@ -62,14 +62,14 @@ html, body, .container-fluid, .row {
 	line-height: 2em;
 	padding: 30px;
 	border-radius: 10px;
-
 }
 
 .dark-bar {
 	background-color: #2b2b2b;
 	border-radius: 0px 0px 8px 8px;
 	border: solid 1px #333;
-
+	width: 300px;
+	margin: 0 auto;
 }
 
 .Raleway-font {
@@ -88,13 +88,11 @@ html, body, .container-fluid, .row {
 .username {
 	padding: 6px;
 	margin-top: 1em;
-	max-width: 15em;
 }
 
 .password {
 	padding: 6px;
 	margin-top: 0.7em;
-	max-width: 15em;
 }
 
 .logo-login {
@@ -118,8 +116,8 @@ footer {
 	background-color: #00b268;
 	color: #fff;
 	padding: 6px;
-	min-width: 15em;
 	margin-top: 1em;
+	width: 100%;
 }
 
 .access {
