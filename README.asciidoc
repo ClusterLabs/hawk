@@ -146,12 +146,16 @@ some steps.
 
 * If you are working on openSUSE/SLED you need to apply an open pull request:
 
+--------------------------------------
   # cd /opt/vagrant/embedded/gems/gems/vagrant-1.6.5/
   # wget -O - https://github.com/mitchellh/vagrant/pull/4492.patch | patch -p1 -f
+--------------------------------------
 
 * Install the +librarian+ plugin for vagrant with the following command:
 
+--------------------------------------
   # vagrant plugin install vagrant-librarian-chef
+--------------------------------------
 
 This is all you need to prepare initally to set up the vagrant environment,
 now you can simply start the virtual machin with +vagrant up+ and start
@@ -168,10 +172,12 @@ If you need to change something on +hawk_chkpwd+, +hawk_invoke+ or
 places, setuid-root and group to haclient in /usr/bin again. You should
 end up with something like:
 
-+# ls /usr/sbin/hawk_* -l+ +
-+-rwsr-x--- 1 root haclient 9884 2011-04-14 22:56 /usr/sbin/hawk_chkpwd+ +
-+-rwsr-x--- 1 root haclient 9928 2011-04-14 22:56 /usr/sbin/hawk_invoke+ +
-+-rwxr-xr-x 1 root root     9992 2011-04-14 22:56 /usr/sbin/hawk_monitor+ +
+--------------------------------------
+# ls /usr/sbin/hawk_* -l+ +
+-rwsr-x--- 1 root haclient 9884 2011-04-14 22:56 /usr/sbin/hawk_chkpwd+ 
+-rwsr-x--- 1 root haclient 9928 2011-04-14 22:56 /usr/sbin/hawk_invoke+ 
+-rwxr-xr-x 1 root root     9992 2011-04-14 22:56 /usr/sbin/hawk_monitor+ 
+--------------------------------------
 
 +hawk_chkpwd+ is almost identical to +unix2_chkpwd+, except it restricts
 acccess to users in the +haclient+ group, and doesn't inject any delay
@@ -186,6 +192,13 @@ tasks.
 +hawk_monitor+ is not installed setuid-root.  It exists to be polled
 by the web browser, to facilitate near-realtime updates of the cluster
 status display.  It is not used when running Hawk via WEBrick.
+
+
+If the development hawk instance isn't running, it can be started using this command:
+
+--------------------------------------
+webui:/vagrant/hawk # sudo -u vagrant script/rails s
+--------------------------------------
 
 
 == Questions, Feedback, etc. ==
