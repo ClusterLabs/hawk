@@ -50,7 +50,9 @@ class ApplicationController < ActionController::Base
   # resources, etc.
   rescue_from CibObject::CibObjectError, RuntimeError do |e|
     if params[:controller] == "main" || params[:controller] == "cib"
-      rescue_action_without_handler(e)
+      render :status => 400, :json => {
+        :error => e
+      }
     else
       redirect_to status_path
     end
