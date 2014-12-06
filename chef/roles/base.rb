@@ -62,22 +62,22 @@ default_attributes({
     "entries" => [
       {
         "ipaddress" => "10.13.37.10",
-        "fqdn" => "webui",
+        "fqdn" => "webui.hawk.suse.com",
         "aliases" => %w(webui)
       },
       {
         "ipaddress" => "10.13.37.11",
-        "fqdn" => "node1",
+        "fqdn" => "node1.hawk.suse.com",
         "aliases" => %w(node1)
       },
       {
         "ipaddress" => "10.13.37.12",
-        "fqdn" => "node2",
+        "fqdn" => "node2.hawk.suse.com",
         "aliases" => %w(node2)
       },
       {
         "ipaddress" => "10.13.37.13",
-        "fqdn" => "node3",
+        "fqdn" => "node3.hawk.suse.com",
         "aliases" => %w(node3)
       }
     ]
