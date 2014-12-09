@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<workflow name="drbd">
+
+<shortdesc lang="en">DRBD</shortdesc>
+<longdesc lang="en">
+Configure a DRBD cluster resource. Also creates a multistate resource
+wrapping the DRBD resource.
+</longdesc>
+
+<parameters>
+<stepdesc lang="en">
+The ID specified here is for the DRBD cluster resource.
+</stepdesc>
+
+<parameter name="id" required="1">
+<shortdesc lang="en">Resource ID</shortdesc>
+<longdesc lang="en">
+Unique ID for the DRBD cluster resource.
+</longdesc>
+<content type="string" default="drbd-data"/>
+</parameter>
+
+</parameters>
+
+<templates>
+
+</templates>
+
+<crm_script>
+primitive <insert param="id"/> ocf:linbit:drbd
+  params drbd_resource=wwwdata
+  op monitor interval=60s
+
+ms c-<insert param="id"/> <insert param="id"/>
+  params master-max=1 master-node-max=1 clone-max=2 clone-node-max=1
+  meta notify=true
+</crm_script>
+
+</workflow>
