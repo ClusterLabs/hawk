@@ -1,3 +1,112 @@
+* Tue Dec 09 2014 Kristoffer Gronlund <kgronlund@suse.com>
+- Wizard: Initial workflow for Oracle DB (fate#318152)
+- Wizard: Create workflow for creating a Virtual IP resource.
+- Wizard: Create workflow for creating a filesystem resource.
+- Wizard: Add initial DRBD workflow
+- Wizard: Translate crmsh clvm template to hawk wizard
+- Wizard: Add initial GFS2 wizard
+- Wizard: Initial workflow for SBD
+- Wizard: Add initial DB2 HADR wizard (fate#318155)
+- Wizard: Initial workflow for DB2 (fate#318154)
+- Wizard: More modern example filesystems
+- Vagrant: Revert to FQDN in /etc/hosts
+- Misc: application_controller: rescue_action_without_handler is deprecated
+- Vagrant: Update instructions in README.asciidoc
+- Vagrant: Use openSUSE 13.2 as base for vagrant setup
+- Vagrant: Use plain hostnames to match VM names
+- Updated cheffile with new cookbook references
+- Vagrant: Add Cheffile.lock to repository
+- Fixed path for cibadmin
+- Switched vagrant config to openSUSE
+- Integrated vagrant dev environment
+- Simplified and seperated gitignores
+- Removed useless files as they are simply empty
+- Misc: Update translations
+- GUI: status: Add support for exit-reason (bnc#889914)
+- Wizard: Indicate progress through wizard (bnc#889907)
+- GUI: Detect and disable ACLs if CIB schema version is < 2.0
+- ACLs: Implement support for Pacemaker ACL schema 2.0 (bnc#894012)
+- Wizard: nfsserver: Enable and start service (bnc#888581)
+- Misc: Update translation
+- Misc: Update translations
+- Misc: Cib model: Unpack resource state even for offline nodes (bnc#883517)
+- Misc: invoker: Add case insensitive error check in fudge_error
+- Misc: invoker: ruby 1.8.7 compatiblity for splat in invoke_crm
+- Misc: Cib model: Correctly show node as unclean/offline if no node state in CIB
+- Misc: Replace popen3 invocations with capture3
+- Misc: Util: Reimplement run_as in terms of capture3
+- Misc: Util: Add capture3 function
+- Misc: Replace bogus (R) symbol with unicode \u00AE
+- GUI: Add Help to Tools menu (links to SLE HA docs, bnc#877337)
+- Misc: Theme 404, 422 and 500 error pages (bnc#872655)
+- GUI: dashboard: Add info tooltip listing geo sites and arbitrators
+- Misc: Use "Cluster Configuration" intead of "Properties" for configuration tab toolip
+- Misc: ApplicationController: Fix exit code check in cluster_online()
+- GUI: dashboard: Don't put cluster in geoset if booth.me not set
+- GUI: dashboard: Use gettext for "Geo Site" string
+- Misc: Lock session_secret during initial creation to prevent obscure race
+- Misc: routes: Add manage/unmanage to resource API
+- Misc: Cib model: Remove spurious `crm_mon -s` invocation
+- GUI: status: Display resources as unmanaged if per-resource maintenance mode set (bnc#863071)
+- GUI: status: Flag when booth inaccessible or out of sync (bnc#874168)
+- Misc: Cib model: Only try `booth client list` if @booth[:me] set
+- GUI: status: Add 'elsewhere' state for tickets not granted to current site (bnc#877482)
+- Misc: Cib model: Handle unquoted strings in booth.conf (bnc#879604)
+- GUI: status: Always show tickets defined in booth config
+- GUI: status: Use yyyy-mm-dd hh:mm:ss format for ticket last granted
+- Add subsys lock file for systemd compatibility
+- GUI: status: Show resources with failed stop as 'failed', in red (bnc#879034)
+- Misc: Cib model: Handle stale pending stop ops (bnc#879034)
+- Misc: Cib model: Flag node as unclean on failed stop
+- GUI: status: Ensure monitor requests aren't cached (bnc#854423)
+- Misc: explorer: Handle exceptions when user supplies invalid date string
+- Misc: explorer: Redirect to display page once hb_report run complete
+- GUI: Resource editor: Expose OCF_CHECK_LEVEL (bnc#866460)
+- Misc: Util: Fix has_feature? test for rsc_ticket and rsc_template
+- GUI: ui.oplist: Consolidate op attributes
+- GUI: status: Show booth leader, expiry on tickets if available (bnc#874168)
+- GUI: preferences: s/th/td/
+- GUI: Add Preferences dialog to allow choosing UI language
+- Misc: Move gettext script include to main layout
+- GUI: hb_report: Fix localization of close button
+- GUI: explorer: Hide upload field when displaying cached report
+- GUI: Prompt before deleting resources, constraints, etc.
+- GUI: Use --force when deleting resources, constraints, etc. (bnc#872290)
+- Misc: Drop explicit "commit" from crmsh invocations (removes duplicate warnings, bnc#872287)
+- GUI: Linebreak crmsh error output when manipulating resources (bnc#872287)
+- Misc: wizard: Ensure hawk creates the crm state file (bnc#871636)
+- Misc: crm_config editor: Don't create empty property sets (bnc#871098)
+- GUI: explorer: Show filename instead of time range when viewing uploaded report
+- GUI: explorer: Fix links to peinput for uploaded reports
+- Misc: Add systemd service file (bnc#863249)
+- GUI: Location constraint editor: Support resource sets (bnc#867881)
+- GUI: panel_view: Show managed indicator when viewing by type
+- GUI: panel_view: Show error indicator for failed resources when viewing by type
+- GUI: panel_view: Don't show "undefined" for stopped resources when viewing by type
+- GUI: wizard: Add NFS Server workflow (fate#315163)
+- GUI: panel_view: Add "view by type" toggle (fate#316303)
+- GUI: status: Show resource class:provider:type in mouseover
+- Misc: invoker: Strip password prompt from stderr when running crm script
+- GUI: wizard: Clone NFSv4 root in NFS server workflow
+- GUI: wizard: Require clientspec in exportfs template
+- GUI: wizard: Use constraints to bind to base FS in NFS template
+- Misc: Add rootpw to log filter
+- GUI: wizard: Ask for root password when tempalte uses crm scripts
+- GUI: wizard: Fix escaping in NFS server template
+- Medium: wizard: Check output of cluster script
+- Medium: wizard: A mostly broken sketch for how cluster scripts might be used from the wizard controller
+- Low: wizard: Updated nfsserver crm script
+- High: wizard: crmsh script for NFS server
+- GUI: wizard: Remove O2CB from OCFS2 templates (bnc#862757)
+- GUI: wizard: Prevent access if CIB not writable by user (fate#316465)
+- GUI: Add ability to grant/revoke tickets via booth (fate#316119)
+- GUI: dashboard: Add display of Geo cluster sites (fate#316119)
+- GUI: explorer: Add ability to upload hb_reports (fate#313354)
+- GUI: Add ACL editor (fate#310170)
+- GUI: explorer: Show diff link on every line
+- GUI: explorer: Ensure cibadmin calls don't trash pe input mtimes
+- GUI: explorer: Warn if transition from different Pacemaker version (fate#314392)
+
 * Thu Oct 07 2014 Thomas Boerger <tboerger@suse.de>
 - Started to integrate vagrant and updated README for development
 
