@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<template name="sbd">
+
+<shortdesc lang="en">SBD</shortdesc>
+<longdesc lang="en">
+Create a SBD STONITH resource. SBD must be configured
+to use a particular shared storage device using
+/etc/sysconfig/sbd.
+
+For more information on configuring SBD, see the sbd(8) manual page.
+</longdesc>
+
+<parameters>
+
+<parameter name="id" required="1">
+<shortdesc lang="en">Resource ID</shortdesc>
+<longdesc lang="en">
+Unique ID for the SBD resource.
+</longdesc>
+<content type="string" default="sbd-stonith"/>
+</parameter>
+
+</parameters>
+
+<crm_script>
+primitive <insert param="id"/> stonith:external/sbd
+      op start timeout="60"
+      op monitor interval="15" timeout="15"
+</crm_script>
+
+</template>

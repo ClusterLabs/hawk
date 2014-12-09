@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<workflow name="db2">
+<shortdesc lang="en">DB2 Database</shortdesc>
+<longdesc lang="en">
+Configure an IBM DB2 database resource, along with a Virtual IP and a Filesystem.
+Note that the filesystem will be stopped initially, in case you need to run mkfs.
+</longdesc>
+<parameters>
+<stepdesc lang="en">
+The ID specified here is for the DB2 cluster resource.
+A resource group will be created with the same ID prefixed by g-.
+The instance is the name of the DB2 instance user.
+</stepdesc>
+<parameter name="id" required="1">
+<shortdesc lang="en">DB2 ID</shortdesc>
+<longdesc lang="en">
+Unique ID for the database resource in the cluster.
+</longdesc>
+<content type="string" default="db2-database"/>
+</parameter>
+<parameter name="instance" required="1">
+<shortdesc lang="en">DB2 Instance</shortdesc>
+<longdesc lang="en">
+Instance user name. This must be created as specified
+in the DB2 documentation.
+</longdesc>
+<content type="string" default="db2inst1"/>
+</parameter>
+</parameters>
+<templates>
+<template name="virtual-ip" required="1">
+<stepdesc lang="en">
+The IP address configured here will start before the DB2 instance.
+</stepdesc>
+<override name="id" value="db2-virtual-ip"/>
+</template>
+<template name="filesystem" required="1">
+<stepdesc lang="en">
+The filesystem configured here will be mounted before the DB2 instance.
+</stepdesc>
+<override name="id" value="db2-fs"/>
+<override name="fstype" value="xfs"/>
+<override name="directory" value="/db2/db2inst1"/>
+</template>
+</templates>
+<crm_script>
+primitive <insert param="id"/> ocf:heartbeat:db2 \
+  op monitor interval="30" timeout="60" start-delay="10" \
+  op start interval="0" timeout="120" \
+  op stop interval="0" timeout="120" \
+  params instance="<insert param="instance"/>"
+group g-<insert param="id"/>
+  <insert param="id" from_template="virtual-ip"/>
+  <insert param="id" from_template="filesystem"/>
+  <insert param="id"/>
+  meta target-role="stopped"
+</crm_script>
+</workflow>

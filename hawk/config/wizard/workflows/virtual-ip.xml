@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<workflow name="virtual-ip">
+<shortdesc lang="en">Virtual IP</shortdesc>
+<longdesc lang="en">
+Create a virtual IP resource.
+</longdesc>
+<parameters>
+</parameters>
+<templates>
+<template name="virtual-ip" required="1">
+<stepdesc lang="en">
+Configure the virtual IP.
+</stepdesc>
+</template>
+</templates>
+<crm_script>
+</crm_script>
+</workflow>

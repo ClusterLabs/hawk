@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<workflow name="sbd">
+<shortdesc lang="en">SBD</shortdesc>
+<longdesc lang="en">
+Create a SBD STONITH resource. SBD must be configured
+to use a particular shared storage device using
+/etc/sysconfig/sbd.
+
+For more information on configuring SBD, see the sbd(8) manual page.
+</longdesc>
+<parameters>
+</parameters>
+<templates>
+<template name="sbd" required="1">
+<stepdesc lang="en">
+Configure the SBD resource.
+</stepdesc>
+</template>
+</templates>
+<crm_script>
+</crm_script>
+</workflow>
