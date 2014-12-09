@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<workflow name="filesystem">
+<shortdesc lang="en">Filesystem</shortdesc>
+<longdesc lang="en">
+Create a cluster filesystem resource. Note that this wizard does not configure the
+actual underlying filesystem, only the cluster resource.
+</longdesc>
+<parameters>
+</parameters>
+<templates>
+<template name="filesystem" required="1">
+<stepdesc lang="en">
+Configure the filesystem resource.
+</stepdesc>
+</template>
+</templates>
+<crm_script>
+</crm_script>
+</workflow>
