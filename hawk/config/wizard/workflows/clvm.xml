@@ -1,0 +1,69 @@
+<?xml version="1.0"?>
+<workflow name="clvm">
+
+<shortdesc lang="en">Cluster-aware LVM</shortdesc>
+<longdesc lang="en">
+Configure a cloned instance of cLVM and one volume group.
+
+NB: You need just one clvm, regardless of how many volume
+groups. In other words, you can use this wizard only for one
+volume group and to make another one, you'll have to edit the
+resulting configuration yourself.
+</longdesc>
+
+<parameters>
+<stepdesc lang="en">
+The ID specified here is for the volume group cluster resource.
+</stepdesc>
+
+<parameter name="id" required="1">
+<shortdesc lang="en">Cluster group ID</shortdesc>
+<longdesc lang="en">
+Unique ID for the volume group in the cluster.
+</longdesc>
+<content type="string" default="vg-clvm"/>
+</parameter>
+
+<parameter name="volgrpname" required="1">
+<shortdesc lang="en">Volume Group Name</shortdesc>
+<longdesc lang="en">
+LVM volume group name.
+</longdesc>
+<content type="string" default="vg1"/>
+</parameter>
+
+</parameters>
+
+<templates>
+</templates>
+
+<crm_script>
+
+primitive <insert param="id"/> ocf:heartbeat:LVM
+	params volgrpname="<insert param="volgrpname"/>"
+	op start timeout=60s
+	op stop timeout=60s
+	op monitor interval=30s timeout=60s
+
+primitive dlm ocf:pacemaker:controld
+	op start timeout=90s
+	op stop timeout=100s
+
+primitive clvm ocf:lvm2:clvmd
+	params daemon_timeout="30"
+	op start timeout=90s
+	op stop timeout=100s
+
+primitive cmirror ocf:lvm2:cmirrord
+	params daemon_timeout="30"
+	op start timeout=90s
+	op stop timeout=100s
+
+group g-<insert param="id"/> dlm clvm cmirror <insert param="id"/>
+
+clone c-<insert param="id"/> g-<insert param="id"/>
+	meta interleave="true" ordered="true"
+
+</crm_script>
+
+</workflow>
