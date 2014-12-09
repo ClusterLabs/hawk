@@ -33,7 +33,7 @@ The mount point for the filesystem, e.g.: /clusterfs </longdesc>
 <parameter name="fstype" required="1">
 <shortdesc lang="en">File system type</shortdesc>
 <longdesc lang="en">
-The type of filesystem, e.g.: ext3, xfs, ocfs2.</longdesc>
+The type of filesystem, e.g.: btrfs, xfs, ocfs2, ...</longdesc>
 <content type="string" default=""/>
 </parameter>
 
