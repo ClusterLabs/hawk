@@ -200,7 +200,8 @@ class MainController < ApplicationController
     tmpfile.write(Invoker.instance.cibadmin('-Ql', '--xpath', '//status'))
     tmpfile.close
     ENV["CIB_shadow"] = shadow_id
-    Invoker.instance.cibadmin('--replace', '--xml-file', tmpfile.path)
+    # TODO(must): Handle error here
+    result = Invoker.instance.cibadmin('--replace', '--xml-file', tmpfile.path)
     tmpfile.unlink
   end
 

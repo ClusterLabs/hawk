@@ -19,8 +19,8 @@ default_attributes({
       {
         "title" => "Network HA Clustering",
         "alias" => "network-ha-clustering",
-        "uri" => "http://download.opensuse.org/repositories/network:/ha-clustering:/Factory/openSUSE_13.1/",
-        "key" => "http://download.opensuse.org/repositories/network:/ha-clustering:/Factory/openSUSE_13.1/repodata/repomd.xml.key"
+        "uri" => "http://download.opensuse.org/repositories/network:/ha-clustering:/Factory/openSUSE_13.2/",
+        "key" => "http://download.opensuse.org/repositories/network:/ha-clustering:/Factory/openSUSE_13.2/repodata/repomd.xml.key"
       }
     ]
   },

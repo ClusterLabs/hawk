@@ -2,12 +2,12 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "webhippie/opensuse-13.1"
+  config.vm.box = "krig/opensuse-13.2"
 
   config.librarian_chef.cheffile_dir = "chef"
 
   config.vm.define "webui", default: true do |machine|
-    machine.vm.hostname = "webui.hawk.suse.com"
+    machine.vm.hostname = "webui"
 
     machine.vm.network "forwarded_port", guest: 22, host: 3022
     machine.vm.network "forwarded_port", guest: 3000, host: 3000
@@ -27,8 +27,8 @@ Vagrant.configure("2") do |config|
     end
 
     machine.vm.provider :virtualbox do |provider, override|
-      provider.memory = 2048
-      provider.cpus = 4
+      provider.memory = 512
+      provider.cpus = 1
 
       provider.name = "hawk-webui"
     end
@@ -36,7 +36,7 @@ Vagrant.configure("2") do |config|
 
   1.upto(3).each do |i|
     config.vm.define "node#{i}" do |machine|
-      machine.vm.hostname = "node#{i}.hawk.suse.com"
+      machine.vm.hostname = "node#{i}"
 
       machine.vm.network "forwarded_port", guest: 22, host: 3022 + (i * 100)
       machine.vm.network "private_network", ip: "10.13.37.#{10 + i}"
