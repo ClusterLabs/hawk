@@ -106,7 +106,30 @@ tools/hawk_monitor: tools/hawk_monitor.c
 tools/hawk_invoke: tools/hawk_invoke.c tools/common.h
 	gcc -fpie -pie $(CFLAGS) -o $@ $<
 
-tools/install:
+base/install:
+	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/log
+	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp
+	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/locale
+	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp
+	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/cache
+	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/explorer
+	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/explorer/uploads
+	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/pids
+	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/sessions
+	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/sockets
+	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/home
+	# Get rid of cruft from packed gems
+	-find hawk/vendor -name '*bak' -o -name '*~' -o -name '#*#' | xargs rm
+	cp -a hawk/* $(DESTDIR)$(WWW_BASE)/hawk
+	-cp -a hawk/.bundle $(DESTDIR)$(WWW_BASE)/hawk
+	rm $(DESTDIR)$(WWW_BASE)/hawk/config/lighttpd.conf.in
+	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/log
+	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/tmp
+	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/home
+	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/explorer
+	install -D -m 0644 scripts/hawk.service $(DESTDIR)/usr/lib/systemd/system/hawk.service
+
+tools/install: base/install
 	install -D -m 4750 tools/hawk_chkpwd $(DESTDIR)/usr/sbin/hawk_chkpwd
 	-chown root.haclient $(DESTDIR)/usr/sbin/hawk_chkpwd
 	-chmod u+s $(DESTDIR)/usr/sbin/hawk_chkpwd
@@ -136,27 +159,6 @@ clean:
 # TODO(should): Make an option to install either the init script or the
 # systemd service file (presently this installs the systemd service file)
 install: tools/install
-	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/log
-	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp
-	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/locale
-	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp
-	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/cache
-	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/explorer
-	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/explorer/uploads
-	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/pids
-	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/sessions
-	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/sockets
-	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/home
-	# Get rid of cruft from packed gems
-	-find hawk/vendor -name '*bak' -o -name '*~' -o -name '#*#' | xargs rm
-	cp -a hawk/* $(DESTDIR)$(WWW_BASE)/hawk
-	-cp -a hawk/.bundle $(DESTDIR)$(WWW_BASE)/hawk
-	rm $(DESTDIR)$(WWW_BASE)/hawk/config/lighttpd.conf.in
-	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/log
-	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/tmp
-	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/home
-	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/explorer
-	install -D -m 0644 scripts/hawk.service $(DESTDIR)/usr/lib/systemd/system/hawk.service
 
 # Make a tar.bz2 named for the most recent human-readable tag
 archive:
