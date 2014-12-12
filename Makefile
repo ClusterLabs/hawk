@@ -129,7 +129,7 @@ base/install:
 	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/explorer
 	install -D -m 0644 scripts/hawk.service $(DESTDIR)/usr/lib/systemd/system/hawk.service
 
-tools/install: base/install
+tools/install:
 	install -D -m 4750 tools/hawk_chkpwd $(DESTDIR)/usr/sbin/hawk_chkpwd
 	-chown root.haclient $(DESTDIR)/usr/sbin/hawk_chkpwd
 	-chmod u+s $(DESTDIR)/usr/sbin/hawk_chkpwd
@@ -158,7 +158,7 @@ clean:
 # (the spec sets file ownership/perms for RPMs).
 # TODO(should): Make an option to install either the init script or the
 # systemd service file (presently this installs the systemd service file)
-install: tools/install
+install: base/install tools/install
 
 # Make a tar.bz2 named for the most recent human-readable tag
 archive:
