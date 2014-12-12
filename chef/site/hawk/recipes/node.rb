@@ -23,6 +23,28 @@ node["hawk"]["node"]["packages"].each do |name|
   end
 end
 
+template node["hawk"]["node"]["haproxy_cfg"] do
+  source "haproxy.cfg.erb"
+  owner "root"
+  group "root"
+  mode 0644
+
+  variables(
+    node["hawk"]["node"]
+  )
+
+  not_if do
+    node["hawk"]["node"]["haproxy_cfg"].empty?
+  end
+end
+
+bash "apache_port" do
+  user "root"
+  cwd "/etc/apache2"
+
+  code node["hawk"]["node"]["apache_port"]
+end
+
 bash "hawk_join" do
   user "root"
   cwd "/vagrant"

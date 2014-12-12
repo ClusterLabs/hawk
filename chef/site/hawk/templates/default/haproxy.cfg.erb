@@ -1,0 +1,15 @@
+global
+  maxconn 256
+  daemon
+
+defaults
+  mode http
+  timeout connect 5000ms
+  timeout client 50000ms
+  timeout server 50000ms
+
+listen http-in
+  bind 10.13.37.20:80
+  server server1 10.13.37.21:8000
+  server server2 10.13.37.22:8000
+  stats enable

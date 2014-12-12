@@ -75,3 +75,16 @@ service "hawk-development" do
   service_name "hawk-development.target"
   action [:enable, :start]
 end
+
+crm_conf = node["hawk"]["webui"]["initial_cib"]
+template crm_conf do
+  source "crm-initial.conf.erb"
+  owner "root"
+  group "root"
+  mode 0600
+end
+
+execute "crm initial configuration" do
+  user "root"
+  command "crm configure load update #{crm_conf}"
+end

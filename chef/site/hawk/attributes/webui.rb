@@ -43,3 +43,4 @@ default["hawk"]["webui"]["targets"] = %w(
 
 default["hawk"]["webui"]["init_command"] = "ha-cluster-init -i eth1 -y"
 default["hawk"]["webui"]["init_check"] = "systemctl -q is-active corosync.service"
+default["hawk"]["webui"]["initial_cib"] = "/root/crm-initial.conf"
