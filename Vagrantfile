@@ -39,6 +39,7 @@ Vagrant.configure("2") do |config|
       machine.vm.hostname = "node#{i}"
 
       machine.vm.network "forwarded_port", guest: 22, host: 3022 + (i * 100)
+      machine.vm.network "forwarded_port", guest: 7630, host: 7630 + i
       machine.vm.network "private_network", ip: "10.13.37.#{10 + i}"
 
       machine.vm.synced_folder ".", "/vagrant", type: "virtualbox"
