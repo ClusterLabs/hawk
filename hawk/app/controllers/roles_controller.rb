@@ -31,58 +31,138 @@
 
 class RolesController < ApplicationController
   before_filter :login_required
+  before_filter :check_support
+  before_filter :set_title
+  before_filter :set_cib
+  before_filter :set_record, only: [:edit, :update, :destroy]
 
-  layout 'main'
-  before_filter :get_cib
+  def index
+    @roles = Role.ordered
 
-  def get_cib
-    @cib = Cib.new params[:cib_id], current_user
-  end
-
-  def initialize
-    super
-    @title = _('Edit Role')
+    respond_to do |format|
+      format.html
+    end
   end
 
   def new
     @title = _('Create Role')
     @role = Role.new
+
+    respond_to do |format|
+      format.html
+    end
   end
 
   def create
     @title = _('Create Role')
-    unless params[:cancel].blank?
-      redirect_to cib_acls_path
-      return
-    end
     @role = Role.new params[:role]
-    if @role.save
-      flash[:highlight] = _('Role created successfully')
-      redirect_to :action => 'edit', :id => @role.id
-    else
-      render :action => 'new'
+
+    respond_to do |format|
+      if @role.save
+        format.html do
+          flash[:success] = _('Role created successfully')
+          redirect_to edit_cib_role_url(cib_id: @cib.id, id: @role.id)
+        end
+      else
+        format.html do
+          render action: 'new'
+        end
+      end
     end
   end
 
   def edit
-    @role = Role.find params[:id]
+    respond_to do |format|
+      format.html
+    end
   end
 
   def update
-    unless params[:revert].blank?
-      redirect_to :action => 'edit'
-      return
+    @title = _('Edit Role')
+
+    if params[:revert]
+      return redirect_to edit_cib_role_url(cib_id: @cib.id, id: @role.id)
     end
-    unless params[:cancel].blank?
-      redirect_to cib_acls_path
-      return
+
+    respond_to do |format|
+      if @role.update_attributes(params[:role])
+        format.html do
+          flash[:success] = _('Role updated successfully')
+          redirect_to edit_cib_role_url(cib_id: @cib.id, id: @role.id)
+        end
+      else
+        format.html do
+          render action: 'edit'
+        end
+      end
     end
+  end
+
+  def destroy
+    respond_to do |format|
+      if Invoker.instance.crm('--force', 'configure', 'delete', @role.id)
+        format.html do
+          flash[:success] = _('Role deleted successfully')
+          redirect_to cib_roles_url(cib_id: @cib.id)
+        end
+      else
+        format.html do
+          flash[:alert] = _('Error deleting %s') % @role.id
+          redirect_to cib_roles_url(cib_id: @cib.id)
+        end
+      end
+    end
+  end
+
+  protected
+
+  def set_title
+    @title = _('Roles')
+  end
+
+  def set_cib
+    @cib = Cib.new params[:cib_id], current_user
+  end
+
+  def set_record
     @role = Role.find params[:id]
-    if @role.update_attributes(params[:role])
-      flash[:highlight] = _('Role updated successfully')
-      redirect_to :action => 'edit', :id => @role.id
+
+    unless @role
+      respond_to do |format|
+        format.html do
+          flash[:alert] = _('The role does not exist')
+          redirect_to cib_roles_url(cib_id: @cib.id)
+        end
+      end
+    end
+  end
+
+  def check_support
+    check = Util.safe_x(
+      '/usr/sbin/cibadmin',
+      '-Ql',
+      '--xpath',
+      '//configuration//crm_config//nvpair[@name=\'enable-acl\' and @value=\'true\']'
+    ).chomp.empty?
+
+    unless check
+      flash.now[:warning] = link_to(
+        _('To enable ACLs, set \'enable-acl\' in the CRM Configuration'),
+        cib_crm_config_path(cib_id: @cib.id)
+      )
+    end
+
+    cibadmin = Util.safe_x(
+      '/usr/sbin/cibadmin',
+      '-Ql',
+      '--xpath',
+      '/cib[@validate-with]'
+    ).lines.first
+
+    if m = cibadmin.match(/validate-with=\"pacemaker-([0-9.]+)\"/)
+      @supported_schema = m.captures[0].to_f >= 2.0
     else
-      render :action => 'edit'
+      @supported_schema = false
     end
   end
 end

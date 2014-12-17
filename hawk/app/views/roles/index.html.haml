@@ -1,0 +1,31 @@
+%h1
+  = icon_text 'group', _('Roles'), class: 'page'
+  .pull-right
+    .btn-group{ role: 'group' }
+      = link_to icon_text('plus', _('Add role')), new_cib_role_path, class: 'btn btn-default'
+
+- if @supported_schema
+  - if @roles.empty?
+    .alert.alert-info{ role: 'alert' }
+      = _('No roles defined')
+  - else
+    .panel.panel-default
+      %table.table.table-striped
+        %thead
+          %tr
+            %th
+              = _('Role ID')
+            %th.col-sm-1
+              = _('Operations')
+        %tbody
+          - @roles.each do |role|
+            %tr
+              %td
+                = h role.id
+              %td
+                = link_to icon_tag('pencil'), edit_cib_role_path(cib_id: @cib.id, id: role.id)
+                = link_to icon_tag('trash'), cib_role_path(cib_id: @cib.id, id: role.id), method: 'delete', confirm: _('Are you sure you wish to delete %s?') % role.id
+
+- else
+  .alert.alert-warning{ role: 'alert' }
+    = _('ACL support requires CIB schema version 2.0, available in Pacemaker 1.1.12 and up. For older versions of Pacemaker, use Hawk version 0.6.')
