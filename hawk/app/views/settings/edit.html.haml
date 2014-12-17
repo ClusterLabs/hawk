@@ -1,0 +1,15 @@
+%h1
+  = icon_text 'cogs', _('Preferences'), class: 'page'
+
+.panel.panel-default
+  .panel-body
+    = form_tag cib_settings_path(cib_id: @cib.id), method: 'put', role: 'form', class: 'form-horizontal' do
+      .form-group
+        = label_tag :language, _('Language'), class: 'col-sm-3 control-label'
+        .col-sm-9
+          = select_tag :language, language_options(I18n.locale), prompt: _('Default [%{locale}]') % { locale: I18n.default_locale }, class: 'form-control'
+
+      .form-group
+        .col-sm-offset-3.col-sm-9
+          .btn-group{ role: 'group' }
+            = submit_tag _('Apply'), class: 'btn btn-primary submit', name: 'submit'
