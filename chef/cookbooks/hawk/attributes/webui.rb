@@ -26,6 +26,16 @@ default["hawk"]["webui"]["packages"] = [
   #"ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-sprockets",
   #"ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-tilt-1_4",
 
+  # Current fixes for development
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-haml-rails",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-sass-rails",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-gettext_i18n_rails_js",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-ruby_parser",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-better_errors",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-binding_of_caller",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-byebug",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-quiet_assets",
+
   "hawk",
   "hawk-templates",
   "ha-cluster-bootstrap",
