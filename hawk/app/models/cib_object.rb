@@ -30,6 +30,7 @@
 #======================================================================
 
 # Shim to get similar behaviour as ActiveRecord
+require 'rexml/document'
 
 class CibObject
   # Thank you http://stackoverflow.com/questions/9138706/undefined-method-model-name-in-rails-3
@@ -135,7 +136,7 @@ class CibObject
         a
       rescue SecurityError => e
         raise CibObject::PermissionDenied, e.message
-      rescue NotFoundError => e
+      rescue RecordNotFound => e
         # No objects of this type, this is fine - return empty array
         []
       rescue RuntimeError => e
