@@ -1,0 +1,31 @@
+%h1
+  = icon_text 'user', _('Users'), class: 'page'
+  .pull-right
+    .btn-group{ role: 'group' }
+      = link_to icon_text('plus', _('Add user')), new_cib_user_path(cib_id: @cib.id), class: 'btn btn-default'
+
+- if @supported_schema
+  - if @users.empty?
+    .alert.alert-info{ role: 'alert' }
+      = _('No users defined')
+  - else
+    .panel.panel-default
+      %table.table.table-striped
+        %thead
+          %tr
+            %th
+              = _('User ID')
+            %th.col-sm-1
+              = _('Operations')
+        %tbody
+          - @users.each do |user|
+            %tr
+              %td
+                = h user.id
+              %td
+                = link_to icon_tag('pencil'), edit_cib_user_path(cib_id: @cib.id, id: user.id)
+                = link_to icon_tag('trash'), cib_user_path(cib_id: @cib.id, id: user.id), method: 'delete', confirm: _('Are you sure you wish to delete %s?') % user.id
+
+- else
+  .alert.alert-warning{ role: 'alert' }
+    = _('ACL support requires CIB schema version 2.0, available in Pacemaker 1.1.12 and up. For older versions of Pacemaker, use Hawk version 0.6.')
