@@ -1,4 +1,52 @@
 module ApplicationHelper
+  def flash_class_for(type)
+    case type
+    when :alert
+      "alert-danger"
+    else
+      "alert-#{type}"
+    end
+  end
+
+  def current_metatags
+    [].tap do |output|
+      if protect_against_forgery?
+        output.push csrf_meta_tags
+      end
+
+      output.push tag(
+        :meta,
+        "name" => "keywords",
+        "content" => ""
+      )
+
+      output.push tag(
+        :meta,
+        "name" => "description",
+        "content" => ""
+      )
+
+      output.push tag(
+        :meta,
+        "content" => "IE=edge",
+        "http-equiv" => "X-UA-Compatible"
+      )
+
+      output.push tag(
+        :meta,
+        "name" => "viewport",
+        "content" => "width=device-width, initial-scale=1.0"
+      )
+
+      output.push tag(
+        :meta,
+        "charset" => "utf-8"
+      )
+    end.join("\n").html_safe
+  end
+
+
+
   def inject_linebreaks(e)
     lines = e.split("\n").each{|line| h(line)}.join('<br/>')
   end
