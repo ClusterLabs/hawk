@@ -33,7 +33,16 @@ Rails.application.config.tap do |config|
   config.assets.version = '1.0'
 
   config.assets.precompile = [
-    /\.(css|js)$/,
+    /application\.(css|js)$/,
+    /ie\.(css|js)$/,
+    /login\.(css|js)$/,
+    /vendor\.(css|js)$/
     /\.(jpg|png|gif|svg|ico|eot|woff|ttf)$/
   ]
+
+  config.assets.paths << config.root.join(
+    'vendor',
+    'assets',
+    'fonts'
+  ).to_s
 end

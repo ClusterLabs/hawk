@@ -34,7 +34,8 @@ require File.expand_path('../boot', __FILE__)
 module Hawk
   class Application < Rails::Application
     config.autoload_paths += [
-      config.root.join('lib')
+      config.root.join('lib'),
+      config.root.join('app', 'forms')
     ]
 
     config.encoding = 'utf-8'
@@ -52,8 +53,9 @@ module Hawk
       g.helper false
       g.orm :active_record
       g.template_engine :haml
-      g.test_framework :rspec, fixture: true
-      g.fallbacks[:rspec] = :test_unit
+
+      # g.test_framework :rspec, fixture: true
+      # g.fallbacks[:rspec] = :test_unit
     end
 
     # TODO(should): confirm under exactly what circumstances these two are hit

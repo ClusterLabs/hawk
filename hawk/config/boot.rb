@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 #======================================================================
 #                        HA Web Konsole (Hawk)
 # --------------------------------------------------------------------
@@ -63,12 +62,18 @@ else
   gem 'gettext_i18n_rails', version: '~> 1.2.0'
   require 'gettext_i18n_rails'
 
+  gem 'gettext_i18n_rails_js', version: '~> 0.0'
+  require 'gettext_i18n_rails_js'
+
   gem 'sprockets', version: '~> 2.12.3'
   require 'sprockets'
 
   gem 'tilt', version: '~> 1.4.1'
   require 'tilt'
 
-  gem 'sass-rails', version: '~>3.2'
+  gem 'sass-rails', version: '~> 3.2'
   require 'sass-rails'
+
+  gem 'haml-rails', version: '~> 0.4'
+  require 'haml-rails'
 end

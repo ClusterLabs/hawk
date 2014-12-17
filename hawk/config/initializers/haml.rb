@@ -35,7 +35,7 @@ module Haml
       def build_attributes_with_dasherize(is_html, attr_wrapper, escape_attrs, hyphenate_data_attrs, attributes = {})
         new_attributes = {}.tap do |dasherized|
           attributes.keys.each do |key|
-            dasherized[key.to_s.gsub("_", "-").to_sym] = attributes[key]
+            dasherized[key.to_s.gsub('_', '-').to_sym] = attributes[key]
           end
         end
 
