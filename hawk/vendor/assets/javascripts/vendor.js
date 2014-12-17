@@ -30,6 +30,8 @@
 //======================================================================
 
 //= require jquery/jquery
-//= require font-awesome/font-awesome
+//= require jquery/rails
 //= require bootstrap-sprockets
 //= require bootstrap
+//= require font-awesome/font-awesome
+//= require rivets/rivets
