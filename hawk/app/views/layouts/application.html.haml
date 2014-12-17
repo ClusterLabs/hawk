@@ -1,0 +1,88 @@
+!!!
+
+%html{ lang: I18n.locale }
+  %head
+    %title
+      != @title
+
+    = current_metatags
+
+    %link{ href: image_path('favicon.png'), rel: 'shortcut icon' }
+
+    = stylesheet_link_tag 'vendor'
+    = stylesheet_link_tag 'application'
+
+    = yield :stylesheets
+
+    = javascript_include_tag 'vendor'
+    = javascript_include_tag 'application'
+
+    = yield :javascripts
+
+    /[if lt IE 9]
+      = stylesheet_link_tag 'ie'
+      = javascript_include_tag 'ie'
+
+  %body{ id: controller_name }
+    %nav.navbar.navbar-inverse.navbar-fixed-top{ role: 'navigation' }
+      .container-fluid{ stye: 'white-space: nobreak;' }
+        .navbar-header
+          = link_to image_tag('head/logo.png'), root_path, class: 'navbar-brand'
+
+        #navbar.navbar-right
+          %ul.nav.navbar-nav
+            %li
+              = link_to text_icon(content_tag(:span, 'Logout', class: 'hidden-xs'), 'sign-out'), logout_path, class: 'logout'
+            %li
+              = link_to text_icon(content_tag(:span, 'Menu', class: 'hidden-xs'), 'bars'), '#', class: 'toggle'
+
+    #wrapper
+      #sidebar
+        %ul.nav.sidebar-nav
+          %li
+            %ul
+              %li.active
+                = link_to _('Dashboard'), root_path
+
+          %li
+            = _('Report')
+
+            %ul
+              %li
+                = link_to _('Hearthbeat'), root_path
+              %li
+                = link_to _('Graph'), root_path
+              %li
+                = link_to _('History'), root_path
+
+          %li
+            = _('Resources')
+
+            %ul
+              %li
+                = link_to _('Add resource'), root_path
+              %li
+                = link_to _('Add template'), root_path
+              %li
+                = link_to _('Add constraint'), root_path
+
+          %li
+            = _('Manage')
+
+            %ul
+              %li
+                = link_to _('Preferences'), edit_cib_settings_path(cib_id: current_cib.id)
+
+              - if Util.has_feature? :acl_support
+                %li
+                  = link_to _('Roles'), cib_roles_path(cib_id: current_cib.id)
+              - if Util.has_feature? :acl_support
+                %li
+                  = link_to _('Users'), cib_users_path(cib_id: current_cib.id)
+
+      #content
+        .container-fluid
+          = yield
+
+    %footer
+      &nbsp;
