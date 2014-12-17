@@ -136,6 +136,9 @@ class CibObject
         a
       rescue SecurityError => e
         raise CibObject::PermissionDenied, e.message
+      rescue NotFoundError => e
+        # No objects of this type, this is fine - return empty array
+        []
       rescue RecordNotFound => e
         # No objects of this type, this is fine - return empty array
         []
