@@ -101,6 +101,12 @@ class Role < CibObject
     def all
       super "acl_role"
     end
+
+    def ordered
+      all.sort do |a, b|
+        a.id.natcmp(b.id, true)
+      end
+    end
   end
 
   private

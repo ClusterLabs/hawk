@@ -93,6 +93,12 @@ class User < CibObject
     def all
       super "acl_target"
     end
+
+    def ordered
+      all.sort do |a, b|
+        a.id.natcmp(b.id, true)
+      end
+    end
   end
 
   private
