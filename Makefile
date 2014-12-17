@@ -153,7 +153,6 @@ tools/install:
 # TODO(should): Verify this is really clean (it won't get rid of .mo files,
 # for example
 clean:
-	rm -rf hawk/vendor
 	rm -rf hawk/tmp/*
 	rm -rf hawk/log/*
 	rm -f scripts/hawk.{suse,redhat,service}
