@@ -32,8 +32,6 @@
 class GroupsController < ApplicationController
   before_filter :login_required
 
-  layout 'main'
-
   before_filter :get_cib
 
   def get_cib

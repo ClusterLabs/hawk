@@ -32,9 +32,6 @@
 class HbReportsController < ApplicationController
   before_filter :login_required, :ensure_godlike
 
-  # Not specifying layout because all we do ATM is show individual node details
-  # layout 'main'
-
   def initialize
     @hb_report = HbReport.new("#{Rails.root}/tmp/pids/hb_report", "/tmp/hb_report-hawk")
   end

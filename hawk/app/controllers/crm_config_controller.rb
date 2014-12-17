@@ -32,7 +32,6 @@
 class CrmConfigController < ApplicationController
   before_filter :login_required
 
-  layout 'main'
   # Need cib for both edit and update (but ultimateyl want to minimize the amount of processing...)
   before_filter :get_cib
 

@@ -32,8 +32,6 @@
 class NodesController < ApplicationController
   before_filter :login_required
 
-  # Not specifying layout because all we do ATM is show individual node details
-  # layout 'main'
   before_filter :get_cib
 
   def get_cib

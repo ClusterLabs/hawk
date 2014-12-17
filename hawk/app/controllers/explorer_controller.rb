@@ -35,8 +35,6 @@ require "natcmp"
 class ExplorerController < ApplicationController
   before_filter :login_required, :ensure_godlike, :init_params
 
-  layout 'main'
-
   def initialize
     super
     @title = _('History Explorer')

@@ -53,8 +53,6 @@ require "rexml/document" unless defined? REXML::Document
 class WizardController < ApplicationController
   before_filter :login_required, :cib_writable, :cluster_online, :load_wizard_config
 
-  layout "main"
-
   def initialize
     super
     @title = _("Cluster Setup Wizard")

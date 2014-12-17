@@ -29,65 +29,12 @@
 #
 #======================================================================
 
-class ClonesController < ApplicationController
+class PagesController < ApplicationController
   before_filter :login_required
 
-  before_filter :get_cib
-
-  def get_cib
-    # This is overkill - we actually only need the cib for its id,
-    # and for getting a list of primitives and groups that can be
-    # clone children when creating a new clone.
-    @cib = Cib.new params[:cib_id], current_user # RORSCAN_ITL (not mass assignment)
-  end
-
-  def initialize
-    super
-    @title = _('Edit Clone')
-  end
-
-  def new
-    @title = _('Create Clone')
-    @res = Clone.new
-    @res.meta['target-role'] = 'Stopped' if @cib.id == 'live'
-  end
-
-  def create
-    @title = _('Create Clone')
-    unless params[:cancel].blank?
-      redirect_to cib_resources_path
-      return
-    end
-    @res = Clone.new params[:clone]  # RORSCAN_ITL (mass ass. OK)
-    if @res.save
-      flash[:highlight] = _('Clone created successfully')
-      redirect_to :action => 'edit', :id => @res.id
-    else
-      render :action => 'new'
+  def index
+    respond_to do |format|
+      format.html
     end
   end
-
-  def edit
-    @res = Clone.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
-  end
-
-  def update
-    unless params[:revert].blank?
-      redirect_to :action => 'edit'
-      return
-    end
-    unless params[:cancel].blank?
-      redirect_to cib_resources_path
-      return
-    end
-    @res = Clone.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
-    if @res.update_attributes(params[:clone])  # RORSCAN_ITL (mass ass. OK)
-      flash[:highlight] = _('Clone updated successfully')
-      redirect_to :action => 'edit', :id => @res.id
-    else
-      render :action => 'edit'
-    end
-  end
-
 end
-

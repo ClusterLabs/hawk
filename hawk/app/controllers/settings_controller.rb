@@ -4,7 +4,7 @@
 #            A web-based GUI for managing and monitoring the
 #          Pacemaker High-Availability cluster resource manager
 #
-# Copyright (c) 2011-2013 SUSE LLC, All Rights Reserved.
+# Copyright (c) 2014 SUSE LLC, All Rights Reserved.
 #
 # Author: Tim Serong <tserong@suse.com>
 #
@@ -29,60 +29,39 @@
 #
 #======================================================================
 
-class LocationsController < ApplicationController
+class SettingsController < ApplicationController
   before_filter :login_required
-
-  before_filter :get_cib
-
-  def get_cib
-    @cib = Cib.new params[:cib_id], current_user # RORSCAN_ITL (not mass assignment)
-  end
-
-  def initialize
-    super
-    @title = _('Edit Location Constraint')
-  end
-
-  def new
-    @title = _('Create Location Constraint')
-    @loc = Location.new
-  end
-
-  def create
-    @title = _('Create Location Constraint')
-    unless params[:cancel].blank?
-      redirect_to cib_constraints_path
-      return
-    end
-    @loc = Location.new params[:location]  # RORSCAN_ITL (mass ass. OK)
-    if @loc.save
-      flash[:highlight] = _('Constraint created successfully')
-      redirect_to :action => 'edit', :id => @loc.id
-    else
-      render :action => 'new'
-    end
-  end
+  before_filter :set_title
+  before_filter :set_cib
 
   def edit
-    @loc = Location.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
+    respond_to do |format|
+      format.html
+    end
   end
 
   def update
-    unless params[:revert].blank?
-      redirect_to :action => 'edit'
-      return
-    end
-    unless params[:cancel].blank?
-      redirect_to cib_constraints_path
-      return
-    end
-    @loc = Location.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
-    if @loc.update_attributes(params[:location])  # RORSCAN_ITL (mass ass. OK)
-      flash[:highlight] = _('Constraint updated successfully')
-      redirect_to :action => 'edit', :id => @loc.id
+    if params[:language].to_s.empty?
+      cookies.delete :locale
     else
-      render :action => 'edit'
+      cookies[:locale] = params[:language]
+    end
+
+    respond_to do |format|
+      format.html do
+        flash[:success] = _('Preferences updated successfully')
+        redirect_to edit_cib_settings_url(cib_id: @cib.id)
+      end
     end
   end
 
+  protected
+
+  def set_title
+    @title = _('Preferences')
+  end
+
+  def set_cib
+    @cib = Cib.new params[:cib_id], current_user
+  end
 end

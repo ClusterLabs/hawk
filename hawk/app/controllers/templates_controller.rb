@@ -33,7 +33,6 @@
 class TemplatesController < ApplicationController
   before_filter :login_required
 
-  layout 'main'
   # Need cib for both edit and update (but ultimately want to minimize the amount of processing...)
   # TODO(should): consolidate/refactor with scaffolding in crm_config_controller
   before_filter :get_cib

@@ -30,8 +30,6 @@
 #======================================================================
 
 class DashboardController < ApplicationController
-  layout 'main'
-
   def initialize
     super
     @title = _('Cluster Dashboard')

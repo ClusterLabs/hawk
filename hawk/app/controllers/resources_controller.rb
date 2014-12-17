@@ -44,8 +44,6 @@ end
 class ResourcesController < ApplicationController
   before_filter :login_required
 
-  # Not specifying layout because all we do ATM is show individual resource details
-  # layout 'main'
 #  before_filter :get_cib
 #
 #  def get_cib
@@ -144,7 +142,7 @@ class ResourcesController < ApplicationController
     @groups     = Group.all
     @clones     = Clone.all
     @masters    = Master.all
-    render :layout => "main"
+    render
   end
 
 end
