@@ -34,7 +34,6 @@ Rails.application.routes.draw do
 
   resource :session
   resources :cib, only: [:show] do
-    resources :crm_config
     resources :resources
     resources :primitives
     resources :templates
@@ -54,14 +53,14 @@ Rails.application.routes.draw do
     resources :users, except: [:show]
 
     resource :settings, only: [:edit, :update]
+    resource :crm_config, only: [:edit, :update]
   end
 
-  match 'cib/:cib_id/crm_config/:id/' => 'crm_config#index', as: :cib_crm_configs, via: [:get, :post]
-  match 'cib/:cib_id/primitives/:id/monitor_intervals' => 'primitives#monitor_intervals', as: :primitives_mi, via: [:get, :post]
-  match 'cib/:cib_id/primitives/new/types' => 'primitives#types', as: :primitives_types, via: [:get, :post]
-  match 'cib/:cib_id/primitives/new/metadata' => 'primitives#metadata', as: :primitives_metadata, via: [:get, :post]
-  match 'cib/:cib_id/nodes/:id/events' => 'nodes#events', as: :node_events, via: [:get, :post]
-  match 'cib/:cib_id/resources/:id/events' => 'resources#events', as: :resource_events, via: [:get, :post]
+  match 'cib/:cib_id/primitives/:id/monitor_intervals' => 'primitives#monitor_intervals', :as => :primitives_mi, via: [:get, :post]
+  match 'cib/:cib_id/primitives/new/types' => 'primitives#types', :as => :primitives_types, via: [:get, :post]
+  match 'cib/:cib_id/primitives/new/metadata' => 'primitives#metadata', :as => :primitives_metadata, via: [:get, :post]
+  match 'cib/:cib_id/nodes/:id/events' => 'nodes#events', :as => :node_events, via: [:get, :post]
+  match 'cib/:cib_id/resources/:id/events' => 'resources#events', :as => :resource_events, via: [:get, :post]
 
   resources :hb_reports
   match 'hb_reports/new/status' => 'hb_reports#status', :as => :hb_reports_status, via: [:get, :post]
