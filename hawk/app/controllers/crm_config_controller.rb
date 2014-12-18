@@ -44,27 +44,8 @@ class CrmConfigController < ApplicationController
     @title = _('Cluster Configuration')
   end
 
-  def index
-    # This is not strictly correct (index is meant to be a list
-    # of all resources), but it's acceptable for now, as we only
-    # support manipulating the default crm_config.
-    redirect_to :action => 'edit'
-  end
-
-  def create
-    head :forbidden
-  end
-
-  def new
-    head :forbidden
-  end
-
   def edit
     @crm_config = CrmConfig.new
-  end
-
-  def show
-    redirect_to :action => 'edit'
   end
 
   def update
@@ -130,10 +111,6 @@ class CrmConfigController < ApplicationController
     end
 
     redirect_to :action => 'edit'
-  end
-
-  def destroy
-    head :forbidden
   end
 
   private
