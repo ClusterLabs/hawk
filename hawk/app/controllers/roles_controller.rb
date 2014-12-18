@@ -31,10 +31,10 @@
 
 class RolesController < ApplicationController
   before_filter :login_required
-  before_filter :check_support
   before_filter :set_title
   before_filter :set_cib
   before_filter :set_record, only: [:edit, :update, :destroy]
+  before_filter :check_support
 
   def index
     @roles = Role.ordered
@@ -142,13 +142,13 @@ class RolesController < ApplicationController
       '/usr/sbin/cibadmin',
       '-Ql',
       '--xpath',
-      '//configuration//crm_config//nvpair[@name=\'enable-acl\' and @value=\'true\']'
+      '//configuration//crm_config//nvpair[@name=\'enable-acl\' and @value=\'true\']'.shellescape
     ).chomp.empty?
 
-    unless check
-      flash.now[:warning] = link_to(
+    if check
+      flash.now[:warning] = view_context.link_to(
         _('To enable ACLs, set \'enable-acl\' in the CRM Configuration'),
-        cib_crm_config_path(cib_id: @cib.id)
+        edit_cib_crm_config_path(cib_id: @cib.id)
       )
     end
 
