@@ -35,6 +35,7 @@ default["hawk"]["webui"]["packages"] = [
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-binding_of_caller",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-byebug",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-quiet_assets",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-cocoon",
 
   "hawk",
   "hawk-templates",
