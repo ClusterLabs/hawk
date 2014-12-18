@@ -153,6 +153,8 @@ module Util
   # on STDIN (untested)
   def safe_x(*cmd)
     raise SecurityError, "Util::safe_x called with < 2 args" if cmd.length < 2
+    Rails.logger.debug "Executing `#{cmd.join(' ')}` through `safe_x`"
+
     pr = IO::pipe   # pipe[0] for read, pipe[1] for write
     pe = IO::pipe
     pid = fork{
