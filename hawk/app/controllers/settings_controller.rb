@@ -33,6 +33,7 @@ class SettingsController < ApplicationController
   before_filter :login_required
   before_filter :set_title
   before_filter :set_cib
+  before_filter :set_record, only: [:edit, :update]
 
   def edit
     respond_to do |format|
@@ -41,16 +42,22 @@ class SettingsController < ApplicationController
   end
 
   def update
-    if params[:language].to_s.empty?
-      cookies.delete :locale
-    else
-      cookies[:locale] = params[:language]
+    if params[:revert]
+      return redirect_to edit_cib_settings_url(cib_id: @cib.id)
     end
 
     respond_to do |format|
-      format.html do
-        flash[:success] = _('Preferences updated successfully')
-        redirect_to edit_cib_settings_url(cib_id: @cib.id)
+      if @setting.update_attributes(params[:setting])
+        post_process_for! @setting
+
+        format.html do
+          flash[:success] = _('Preferences updated successfully')
+          redirect_to edit_cib_settings_url(cib_id: @cib.id)
+        end
+      else
+        format.html do
+          render action: 'edit'
+        end
       end
     end
   end
@@ -63,5 +70,17 @@ class SettingsController < ApplicationController
 
   def set_cib
     @cib = Cib.new params[:cib_id], current_user
+  end
+
+  def set_record
+    @setting = Setting.new
+  end
+
+  def post_process_for!(record)
+    if record.language.to_s.empty?
+      cookies.delete :locale
+    else
+      cookies[:locale] = record.language
+    end
   end
 end

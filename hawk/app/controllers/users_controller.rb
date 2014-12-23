@@ -59,6 +59,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.save
+        post_process_for! @user
+
         format.html do
           flash[:success] = _('User created successfully')
           redirect_to edit_cib_user_url(cib_id: @cib.id, id: @user.id)
@@ -88,6 +90,8 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       if @user.update_attributes(params[:user])
+        post_process_for! @user
+
         format.html do
           flash[:success] = _('User updated successfully')
           redirect_to edit_cib_user_url(cib_id: @cib.id, id: @user.id)
@@ -166,5 +170,8 @@ class UsersController < ApplicationController
     else
       @supported_schema = false
     end
+  end
+
+  def post_process_for!(record)
   end
 end

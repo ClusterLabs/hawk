@@ -35,6 +35,7 @@ module Hawk
   class Application < Rails::Application
     config.autoload_paths += [
       config.root.join('lib'),
+      config.root.join('app', 'collections'),
       config.root.join('app', 'forms')
     ]
 
@@ -57,9 +58,5 @@ module Hawk
       # g.test_framework :rspec, fixture: true
       # g.fallbacks[:rspec] = :test_unit
     end
-
-    # TODO(should): confirm under exactly what circumstances these two are hit
-    config.action_dispatch.rescue_responses.merge!('CibObject::RecordNotFound' => :not_found)
-    config.action_dispatch.rescue_responses.merge!('CibObject::PermissionDenied' => :forbidden)
   end
 end

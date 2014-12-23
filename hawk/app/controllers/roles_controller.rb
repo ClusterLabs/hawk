@@ -59,6 +59,8 @@ class RolesController < ApplicationController
 
     respond_to do |format|
       if @role.save
+        post_process_for! @role
+
         format.html do
           flash[:success] = _('Role created successfully')
           redirect_to edit_cib_role_url(cib_id: @cib.id, id: @role.id)
@@ -86,6 +88,8 @@ class RolesController < ApplicationController
 
     respond_to do |format|
       if @role.update_attributes(params[:role])
+        post_process_for! @role
+
         format.html do
           flash[:success] = _('Role updated successfully')
           redirect_to edit_cib_role_url(cib_id: @cib.id, id: @role.id)
@@ -164,5 +168,8 @@ class RolesController < ApplicationController
     else
       @supported_schema = false
     end
+  end
+
+  def post_process_for!(record)
   end
 end

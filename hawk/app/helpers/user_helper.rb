@@ -9,7 +9,7 @@ module UserHelper
   def user_revert_button(form, user)
     form.submit(
       _('Revert'),
-      class: 'btn btn-default revert',
+      class: 'btn btn-default cancel revert simple-hidden',
       name: 'revert',
       confirm: _('Any changes will be lost - do you wish to proceed?')
     )

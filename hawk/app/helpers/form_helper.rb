@@ -1,0 +1,33 @@
+module FormHelper
+  def form_for(record, options, &proc)
+    unless options.fetch(:bootstrap, true)
+      return super(record, options, &proc)
+    end
+
+    options[:validate] = true
+
+    options[:builder] ||= Hawk::FormBuilder
+
+    options[:html] ||= {}
+    options[:html][:role] ||= 'form'
+    options[:html][:class] ||= ''
+
+    if options.fetch(:inline, false)
+      options[:html][:class] = [
+        'form-inline',
+        options[:html][:class]
+      ].join(' ')
+    end
+
+    if options.fetch(:horizontal, false)
+      options[:html][:class] = [
+        'form-horizontal',
+        options[:html][:class]
+      ].join(' ')
+    end
+
+    options[:html][:class].strip!
+
+    super(record, options, &proc)
+  end
+end

@@ -29,10 +29,32 @@
 //
 //======================================================================
 
-@import "jquery/jquery";
-@import "jquery/rails";
-@import "jquery/validate";
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import "font-awesome/font-awesome";
-@import "rivets/rivets";
+$(function() {
+  $('#users #content form')
+    .find('.select')
+      .multiselect({
+        disableIfEmpty: true,
+        enableFiltering: true,
+        buttonWidth: '100%',
+        onChange: function(element, checked) {
+          $(element.context.form)
+            .find('[name="revert"]')
+              .show()
+              .end()
+            .find('a.back')
+              .attr('data-confirm', __('Any changes will be lost - do you wish to proceed?'))
+              .end();
+        }
+      }).end()
+    .validate({
+      rules: {
+        'user[id]': {
+          minlength: 1,
+          required: true
+        },
+        'user[roles][]': {
+          required: true
+        }
+      }
+    });
+});

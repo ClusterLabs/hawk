@@ -34,68 +34,91 @@
 
 //= require_self
 
+//= require module/roles
+//= require module/users
+//= require module/settings
+
 $(function() {
-  $('#users #content form')
-    .find('[name="user[roles][]"]')
-      .multiselect({
-        disableIfEmpty: true,
-        enableFiltering: true,
-        buttonWidth: '100%',
-        onChange: function(element, checked) {
-          $(element.context.form).bootstrapValidator(
-            'revalidateField',
-            'user[roles][]'
-          );
-        }
-      })
-      .end()
-    .on('init.form.bv', function(e, data) {
-      $(e.currentTarget).find('[name="revert"]').hide();
+  $('[data-toggle="tooltip"]').tooltip();
+
+  $('#content form')
+    .on('keyup', 'input, select', function(e) {
+      $(e.delegateTarget)
+        .find('[name="revert"]')
+          .show()
+          .end()
+        .find('a.back')
+          .attr('data-confirm', __('Any changes will be lost - do you wish to proceed?'))
+          .end();
     })
-    .bootstrapValidator({
-      container: 'tooltip',
-      live: 'enabled',
+    .on('focus', '.form-group.has-error .form-control', function(e) {
+      var error = $(this)
+        .siblings('span.error-block')
+        .html();
 
-      excluded: ':disabled',
-      submitButtons: 'input[name="submit"]',
-
-      feedbackIcons: {
-        valid: 'fa fa-check',
-        invalid: 'fa fa-times',
-        validating: 'fa fa-refresh'
-      },
-
-      fields: {
-        'user[id]': {
-          message: 'The ID is not valid',
-          validators: {
-            notEmpty: {
-              message: 'The ID is required'
-            }
-          }
-        },
-        'user[roles][]': {
-          message: 'The roles are not valid',
-          validators: {
-            notEmpty: {
-              message: 'The roles are required'
-            }
-          }
-        }
-      }
+      $(this)
+        .siblings('i.fa')
+        .tooltip({ title: error })
+        .tooltip('show');
     })
-    .on('success.field.bv', function(e, data) {
-      $(e.currentTarget)
-        .find('[name="revert"]').end()
-        .find('a.back').attr('data-confirm', __('Any changes will be lost - do you wish to proceed?'));
-
-      return true;
+    .on('blur', '.form-group.has-error .form-control', function(e) {
+      $(this)
+        .siblings('i.fa')
+        .tooltip('hide');
     })
-    .on('error.field.bv', function(e, data) {
-      $(e.currentTarget)
-        .find('[name="revert"]').end()
-        .find('a.back').attr('data-confirm', __('Any changes will be lost - do you wish to proceed?'));
-
-      return true;
+    .on('keyup', '.form-group.has-error .form-control', function(e) {
+      $(this)
+        .siblings('i.fa')
+        .tooltip('hide');
     });
+
+  $.validator.setDefaults({
+    errorElement: 'span',
+    errorClass: 'help-block error-block',
+
+    ignore: ':hidden:not(.select)',
+
+    highlight: function(element, errorClass, validClass) {
+      if (element.type === "radio") {
+        this.findByName(element.name).addClass(errorClass).removeClass(validClass);
+      } else {
+        $(element)
+          .closest('.form-group')
+            .removeClass('has-success has-feedback')
+            .addClass('has-error has-feedback')
+            .find('i.fa')
+            .remove()
+            .end();
+
+        $(element)
+          .after('<i class="fa fa-exclamation fa-lg form-control-feedback"></i>');
+      }
+    },
+    unhighlight: function(element, errorClass, validClass) {
+      if (element.type === "radio") {
+        this.findByName(element.name).removeClass(errorClass).addClass(validClass);
+      } else {
+        $(element)
+          .closest('.form-group')
+            .removeClass('has-error has-feedback')
+            .addClass('has-success has-feedback')
+            .find('i.fa')
+            .remove()
+            .end();
+
+        $(element)
+          .after('<i class="fa fa-check fa-lg form-control-feedback"></i>');
+      }
+    },
+    errorPlacement: function(error, element) {
+      if (element.parent('.input-group').length || element.prop('type') === 'checkbox' || element.prop('type') === 'radio') {
+        error
+          .insertAfter(element.parent());
+      } else {
+        error
+          .addClass('sr-only')
+          .insertAfter(element);
+      }
+    }
+  });
 });

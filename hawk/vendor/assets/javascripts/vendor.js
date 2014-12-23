@@ -31,6 +31,7 @@
 
 //= require jquery/jquery
 //= require jquery/rails
+//= require jquery/validate
 //= require bootstrap-sprockets
 //= require bootstrap
 //= require font-awesome/font-awesome

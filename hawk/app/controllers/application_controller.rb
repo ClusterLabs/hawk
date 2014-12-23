@@ -41,6 +41,7 @@ class ApplicationController < ActionController::Base
   layout :detect_current_layout
 
   around_filter :inject_current_user
+
   before_filter :set_users_locale
   before_filter :set_current_title
   before_filter :set_cors_headers
@@ -49,7 +50,6 @@ class ApplicationController < ActionController::Base
   helper_method :is_god?
   helper_method :logged_in?
   helper_method :current_user
-  helper_method :relative_url_root
 
   # Force back to status page if e.g.: cluster offline when trying to access
   # resources, etc.
@@ -62,6 +62,39 @@ class ApplicationController < ActionController::Base
   #     redirect_to status_path
   #   end
   # end
+
+  rescue_from CibObject::RecordNotFound do |e|
+    respond_to do |format|
+      format.json do
+        render json: { error: e }, status: 404
+      end
+      format.html do
+        redirect_to root_url, alert: e.message
+      end
+    end
+  end
+
+  rescue_from CibObject::PermissionDenied do |e|
+    respond_to do |format|
+      format.json do
+        render json: { error: e }, status: 403
+      end
+      format.html do
+        redirect_to root_url, alert: e.message
+      end
+    end
+  end
+
+  rescue_from CibObject::CibObjectError do |e|
+    respond_to do |format|
+      format.json do
+        render json: { error: e }, status: 400
+      end
+      format.html do
+        redirect_to root_url, alert: e.message
+      end
+    end
+  end
 
   def initialize
     super

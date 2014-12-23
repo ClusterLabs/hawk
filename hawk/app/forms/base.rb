@@ -41,10 +41,6 @@ class Base
     end
   end
 
-  def model_name
-    raise super
-  end
-
   def persisted?
     false
   end

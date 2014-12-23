@@ -3,13 +3,9 @@
 
 .panel.panel-default
   .panel-body
-    = form_tag cib_settings_path(cib_id: @cib.id), method: 'put', role: 'form', class: 'form-horizontal' do
-      .form-group
-        = label_tag :language, _('Language'), class: 'col-sm-3 control-label'
-        .col-sm-9
-          = select_tag :language, language_options(I18n.locale), prompt: _('Default [%{locale}]') % { locale: I18n.default_locale }, class: 'form-control'
+    = form_for [@cib, @setting], horizontal: true, method: :put do |main_form|
+      = main_form.select :language, :language_options, { include_hidden: false }, {  }
 
-      .form-group
-        .col-sm-offset-3.col-sm-9
-          .btn-group{ role: 'group' }
-            = submit_tag _('Apply'), class: 'btn btn-primary submit', name: 'submit'
+      = main_form.button_group do
+        = setting_apply_button(main_form, @setting)
+        = setting_revert_button(main_form, @setting)

@@ -154,6 +154,12 @@ body {
 }
 
 #content {
+  & > .container-fluid {
+    & > .alert:first-child {
+      margin-top: 15px;
+    }
+  }
+
   h1 {
     margin: 20px 0px 20px 0px;
     font-size: 2em;
@@ -228,12 +234,17 @@ footer {
   padding: 8px 15px 7px 15px;
 }
 
-.space-bottom {
-  margin-bottom: 20px;
+.form-horizontal {
+  .has-feedback {
+    .form-control-feedback {
+      line-height: 34px;
+      z-index: 500;
+    }
+  }
 }
 
-.no-space-bottom {
-
+.simple-hidden {
+  display: none;
 }
 
 @media(min-width: 768px) {

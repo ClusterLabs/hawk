@@ -1,227 +1,34 @@
-
-
-
-
-
-
-/ <% content_for :head do %>
-/ <%= stylesheet_link_tag 'ui.aclrules.css' %>
-/ <%= javascript_include_tag 'jquery.ui.aclrules.js' %>
-/ <% end %>
-
-/ <script type='text/javascript'>
-/ var anything_changed = false;
-
-/ function enable_apply() {
-/   anything_changed = true;
-/   var enable = $('#role_id').val() != '';
-/   if (!$('#rules').aclrules('valid')) {
-/     enable = false;
-/   }
-/   if (enable) {
-/     $('#role_submit').removeAttr('disabled');
-/     $('#role_revert').removeAttr('disabled');
-/   } else {
-/     disable_apply();
-/   }
-/ }
-
-/ function disable_apply() {
-/   $('#role_submit').attr('disabled', 'disabled');
-/   $('#role_revert').attr('disabled', 'disabled');
-/ }
-
-/ $(function() {
-/   $('#rules').aclrules({
-/     rules: <%= @role.rules.to_json.html_safe %>,
-/     labels: {
-/       add: '<%= escape_javascript _('Add') %>',
-/       remove: '<%= escape_javascript _('Remove') %>',
-/       heading_right: '<%= escape_javascript _('Right') %>',
-/       heading_xpath: '<%= escape_javascript _('XPath') %>',
-/       heading_tag: '<%= escape_javascript _('Tag') %>',
-/       heading_ref: '<%= escape_javascript _('Ref') %>',
-/       heading_attr: '<%= escape_javascript _('Attribute') %>'
-/     },
-/     prefix: 'role[rules]',
-/     dirty: function(event, info) {
-/       enable_apply();
-/     }
-/   });
-/   $('#role_id').bind('keyup change', function() {
-/       enable_apply();
-/     }).focus();
-
-/ <%= render :partial => 'shared/confirm_revert', :locals => { :button_ids => '#role_revert,#role_cancel' } %>
-/ });
-/ </script>
-
-
-
-
-
-- content_for :javascripts do
-  :javascript
-    $(function() {
-      var user = new UserModel();
-      var view = new UserFormView(model: user).render();
-
-
-
-      rivets.bind($('#roles #content form'), {
-        changed: function(ev, ctx) {
-          var enable = false;
-
-          ctx.confirm_cancel = __(
-            'Any changes will be lost - do you wish to proceed?'
-          );
-
-          if (ctx.record.name.length >= 1) {
-            enable = true;
-          }
-
-          ctx.allow_submit = enable;
-          ctx.allow_revert = true;
-        },
-
-        record: {
-          name: ''
-        },
-
-        allow_submit: false,
-        allow_revert: false,
-        confirm_cancel: null
-      });
-
-
-
-    });
-
 .panel.panel-default
   .panel-body
-    = form_for [cib, role], html: { role: 'form', class: 'form-horizontal', id: 'role-form' } do |f|
-      - role.errors.each do |message|
-        .alert.alert-danger
-          = inject_linebreaks(message).html_safe
+    = form_for [cib, role], horizontal: true do |main_form|
+      - if role.new_record?
+        = main_form.text_field :id, label: _('Role ID')
+      - else
+        = main_form.text_field :id, label: _('Role ID'), readonly: true
 
-      .form-group
-        = f.label :id, _('Role ID'), class: 'co-sm-3 control-label'
-        .co-sm-9
-          - if role.new_record?
-            = f.text_field :id, class: 'form-control', 'rv-value' => 'record.name', 'rv-on-change' => 'changed', 'rv-on-keyup' => 'changed'
-          - else
-            %p.form-control-static
-              = role.id
+      #rules
+        = main_form.fields_for :rules do |rule_form|
+          %fieldset
+            %legend
+              = _('Rule')
 
-      %fieldset
-        %legend
-          Rule #1
+              .pull-right
+                = link_to icon_tag('plus'), '#', class: 'rule add', title: _('Add a rule below')
+                = link_to icon_tag('minus'), '#', class: 'rule remove', title: _('Remove this rule')
+                = link_to icon_tag('arrow-up'), '#', class: 'rule up', title: _('Move rule up')
+                = link_to icon_tag('arrow-down'), '#', class: 'rule down', title: _('Move rule down')
 
-          .pull-right
-            = link_to icon_tag('plus'), '#', class: '', title: _('Add a rule below')
-            = link_to icon_tag('minus'), '#', class: '', title: _('Remove this rule')
-            = link_to icon_tag('arrows-v'), '#', class: '', title: _('Reorder this rule')
+            = rule_form.select :right, :rule_options, {}, id: nil, label: _('Right'), required: true
+            = rule_form.text_field :xpath, id: nil, label: _('XPath'), required: true
+            = rule_form.text_field :tag, id: nil, label: _('Tag')
+            = rule_form.text_field :ref, id: nil, label: _('Ref')
+            = rule_form.text_field :attribute, id: nil, label: _('Attribute')
 
-        .form-group
-          = f.label :id, _('Right'), class: 'co-sm-3 control-label'
-          .co-sm-9
-            = f.text_field :id, class: 'form-control'
+      = main_form.button_group do
+        - if role.new_record?
+          = role_create_button(main_form, role)
+        - else
+          = role_apply_button(main_form, role)
+          = role_revert_button(main_form, role)
 
-        .form-group
-          = f.label :id, _('XPath'), class: 'co-sm-3 control-label'
-          .co-sm-9
-            = f.text_field :id, class: 'form-control'
-
-        .form-group
-          = f.label :id, _('Tag'), class: 'co-sm-3 control-label'
-          .co-sm-9
-            = f.text_field :id, class: 'form-control'
-
-        .form-group
-          = f.label :id, _('Ref'), class: 'co-sm-3 control-label'
-          .co-sm-9
-            = f.text_field :id, class: 'form-control'
-
-        .form-group
-          = f.label :id, _('Attribute'), class: 'co-sm-3 control-label'
-          .co-sm-9
-            = f.text_field :id, class: 'form-control'
-
-      %fieldset
-        %legend
-          Rule #2
-
-          .pull-right
-            = link_to icon_tag('plus'), '#', class: '', title: _('Add a rule below')
-            = link_to icon_tag('minus'), '#', class: '', title: _('Remove this rule')
-            = link_to icon_tag('arrows-v'), '#', class: '', title: _('Reorder this rule')
-
-        .form-group
-          = f.label :id, _('Right'), class: 'co-sm-3 control-label'
-          .co-sm-9
-            = f.text_field :id, class: 'form-control'
-
-        .form-group
-          = f.label :id, _('XPath'), class: 'co-sm-3 control-label'
-          .co-sm-9
-            = f.text_field :id, class: 'form-control'
-
-        .form-group
-          = f.label :id, _('Tag'), class: 'co-sm-3 control-label'
-          .co-sm-9
-            = f.text_field :id, class: 'form-control'
-
-        .form-group
-          = f.label :id, _('Ref'), class: 'co-sm-3 control-label'
-          .co-sm-9
-            = f.text_field :id, class: 'form-control'
-
-        .form-group
-          = f.label :id, _('Attribute'), class: 'co-sm-3 control-label'
-          .co-sm-9
-            = f.text_field :id, class: 'form-control'
-
-      %fieldset
-        %legend
-          Rule #3
-
-          .pull-right
-            = link_to icon_tag('plus'), '#', class: '', title: _('Add a rule below')
-            = link_to icon_tag('minus'), '#', class: '', title: _('Remove this rule')
-            = link_to icon_tag('arrows-v'), '#', class: '', title: _('Reorder this rule')
-
-        .form-group
-          = f.label :id, _('Right'), class: 'co-sm-3 control-label'
-          .co-sm-9
-            = f.text_field :id, class: 'form-control'
-
-        .form-group
-          = f.label :id, _('XPath'), class: 'co-sm-3 control-label'
-          .co-sm-9
-            = f.text_field :id, class: 'form-control'
-
-        .form-group
-          = f.label :id, _('Tag'), class: 'co-sm-3 control-label'
-          .co-sm-9
-            = f.text_field :id, class: 'form-control'
-
-        .form-group
-          = f.label :id, _('Ref'), class: 'co-sm-3 control-label'
-          .co-sm-9
-            = f.text_field :id, class: 'form-control'
-
-        .form-group
-          = f.label :id, _('Attribute'), class: 'co-sm-3 control-label'
-          .co-sm-9
-            = f.text_field :id, class: 'form-control'
-
-      .form-group
-        .col-sm-offset-2.co-sm-9
-          .btn-group{ role: 'group' }
-            - if role.new_record?
-              = role_create_button(f, role)
-            - else
-              = role_apply_button(f, role)
-              = role_revert_button(f, role)
-
-            = link_to _('Back'), cib_roles_path(cib_id: cib.id), class: 'btn btn-default back', 'rv-data-confirm' => 'confirm_cancel'
+        = link_to _('Back'), cib_roles_path(cib_id: cib.id), class: 'btn btn-default back'

@@ -1,30 +1,18 @@
 .panel.panel-default
   .panel-body
-    = form_for [cib, user], html: { role: 'form', class: 'form-horizontal' } do |f|
-      - user.errors.each do |message|
-        .alert.alert-danger
-          = inject_linebreaks(message).html_safe
+    = form_for [cib, user], horizontal: true do |main_form|
+      - if user.new_record?
+        = main_form.text_field :id, label: _('User ID')
+      - else
+        = main_form.text_field :id, label: _('User ID'), readonly: true
 
-      .form-group
-        = f.label :id, _('User ID'), class: 'col-sm-3 control-label'
-        .col-sm-9
-          - if user.new_record?
-            = f.text_field :id, class: 'form-control'
-          - else
-            = f.text_field :id, class: 'form-control', disabled: true
+      = main_form.select :roles, :role_options, { include_hidden: false }, { multiple: true, size: 5 }
 
-      .form-group
-        = f.label :roles, _('Roles'), class: 'col-sm-3 control-label'
-        .col-sm-9
-          = f.select :roles, role_options(user.roles), { include_hidden: false }, { multiple: true, size: 5, class: 'form-control' }
+      = main_form.button_group do
+        - if user.new_record?
+          = user_create_button(main_form, user)
+        - else
+          = user_apply_button(main_form, user)
+          = user_revert_button(main_form, user)
 
-      .form-group
-        .col-sm-offset-3.col-sm-9
-          .btn-group{ role: 'group' }
-            - if user.new_record?
-              = user_create_button(f, user)
-            - else
-              = user_apply_button(f, user)
-              = user_revert_button(f, user)
-
-            = link_to _('Back'), cib_users_path(cib_id: cib.id), class: 'btn btn-default back'
+        = link_to _('Back'), cib_users_path(cib_id: cib.id), class: 'btn btn-default back'

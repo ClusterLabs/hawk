@@ -9,10 +9,9 @@ module RoleHelper
   def role_revert_button(form, role)
     form.submit(
       _('Revert'),
-      class: 'btn btn-default revert',
+      class: 'btn btn-default cancel revert simple-hidden',
       name: 'revert',
-      confirm: _('Any changes will be lost - do you wish to proceed?'),
-      'rv-show' => 'allow_revert'
+      confirm: _('Any changes will be lost - do you wish to proceed?')
     )
   end
 
@@ -20,8 +19,7 @@ module RoleHelper
     form.submit(
       _('Apply'),
       class: 'btn btn-primary submit',
-      name: 'submit',
-      'rv-enabled' => 'allow_submit'
+      name: 'submit'
     )
   end
 
@@ -29,8 +27,7 @@ module RoleHelper
     form.submit(
       _('Create'),
       class: 'btn btn-primary submit',
-      name: 'submit',
-      'rv-enabled' => 'allow_submit'
+      name: 'submit'
     )
   end
 end

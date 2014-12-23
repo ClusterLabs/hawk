@@ -29,87 +29,45 @@
 #
 #======================================================================
 
-class User < CibObject
-  @attributes = :rules, :roles
-  attr_accessor *@attributes
+class User < Record
+  attribute :id, String
+  attribute :roles, Array[String]
 
-  def initialize(attributes = nil)
-    @roles = []
-    super
+  validates :id,
+    presence: { message: _('User ID is required') },
+    format: { with: /^[a-zA-Z0-9_-]+$/, message: _('Invalid User ID') }
+
+  def roles
+    @roles ||= Array.new
   end
 
-  def validate
-    @roles = @roles.delete_if{|r| r.empty?}
-    # TODO(must): get rid of embedded space, non valid chars etc.
-  end
+  protected
 
-  def create
-    if CibObject.exists?(id)
-      error _('The ID "%{id}" is already in use') % { :id => @id }
-      return false
-    end
-    cmd = shell_syntax
-    result = Invoker.instance.crm_configure cmd
-    unless result == true
-      error _('Unable to create user: %{msg}') % { :msg => result }
-      return false
-    end
-    true
-  end
+  def shell_syntax
+    [].tap do |cmd|
+      cmd.push "acl_target #{id}"
 
-  def update
-    unless CibObject.exists?(id, 'acl_target')
-      error _('User ID "%{id}" does not exist') % { :id => @id }
-      return false
-    end
-    result = Invoker.instance.crm_configure_load_update shell_syntax
-    unless result == true
-      error _('Unable to update user: %{msg}') % { :msg => result }
-      return false
-    end
-    true
-  end
-
-  def update_attributes(attributes = nil)
-    @rules = []
-    @roles = []
-    super
+      roles.each do |role|
+        cmd.push role
+      end
+    end.join(' ')
   end
 
   class << self
     def instantiate(xml)
-      acl = allocate
-      # Just to be confusing... ;)
-      roles = []
+      record = allocate
+
       xml.elements.each do |elem|
         if elem.name == 'role'
-          roles << elem.attributes['id']
+          record.roles.push elem.attributes['id']
         end
       end
-      acl.instance_variable_set(:@roles, roles);
-      acl
+
+      record
     end
 
-    def all
-      super "acl_target"
-    end
-
-    def ordered
-      all.sort do |a, b|
-        a.id.natcmp(b.id, true)
-      end
+    def cib_type
+      :acl_target
     end
   end
-
-  private
-
-  def shell_syntax
-    cmd = "acl_target #{@id}"
-    @roles.each do |role|
-      cmd += " #{role}"
-    end
-    cmd
-  end
-
 end
-

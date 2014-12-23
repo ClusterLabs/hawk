@@ -71,6 +71,9 @@ else
   gem 'tilt', version: '~> 1.4.1'
   require 'tilt'
 
+  gem 'virtus', version: '~> 1.0'
+  require 'virtus'
+
   gem 'sass-rails', version: '~> 3.2'
   require 'sass-rails'
 

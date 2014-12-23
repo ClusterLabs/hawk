@@ -1,7 +1,6 @@
 module SettingHelper
   def language_options(selected)
-    options = translated_languages.to_a.map do |v|
-      v[1] = "#{v[1]} [#{v[0].downcase}]"
+    options = Setting.available_languages.to_a.map do |v|
       v.reverse
     end
 
@@ -11,20 +10,20 @@ module SettingHelper
     )
   end
 
-  def translated_languages
-    @translated_languages ||= begin
-      languages = YAML.load_file(
-        Rails.root.join(
-          'config',
-          'languages.yml'
-        ).to_s
-      )
+  def setting_revert_button(form, role)
+    form.submit(
+      _('Revert'),
+      class: 'btn btn-default cancel revert',
+      name: 'revert',
+      confirm: _('Any changes will be lost - do you wish to proceed?')
+    )
+  end
 
-      result = I18n.available_locales.map do |locale|
-        [locale.to_s.gsub('_', '-'), languages[locale]]
-      end.sort_by { |v| v.first.to_s }
-
-      ActiveSupport::OrderedHash[result].symbolize_keys
-    end
+  def setting_apply_button(form, role)
+    form.submit(
+      _('Apply'),
+      class: 'btn btn-primary submit',
+      name: 'submit'
+    )
   end
 end
