@@ -1,4 +1,15 @@
 module FormHelper
+  def errors_for(record)
+    unless record.errors[:base].empty?
+      content_tag(
+        :div,
+        record.errors[:base].first.html_safe,
+        class: 'alert alert-danger',
+        role: 'alert'
+      )
+    end
+  end
+
   def form_for(record, options, &proc)
     unless options.fetch(:bootstrap, true)
       return super(record, options, &proc)

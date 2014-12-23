@@ -1,6 +1,8 @@
 .panel.panel-default
   .panel-body
     = form_for [cib, role], horizontal: true do |main_form|
+      = errors_for role
+
       - if role.new_record?
         = main_form.text_field :id, label: _('Role ID')
       - else

@@ -242,14 +242,14 @@ class Record < Tableless
 
   def create
     if self.class.exists? self.id
-      errors.add :base, _('The ID "%{id}" is already in use') % { :id => self.id }
+      errors.add :base, _('The ID "%{id}" is already in use') % { id: self.id }
       return false
     end
 
     result = Invoker.instance.crm_configure shell_syntax
 
     unless result == true
-      errors.add :base, _('Unable to create: %{msg}') % { :msg => result }
+      errors.add :base, _('Unable to create: %{msg}') % { msg: result }
       return false
     end
 
@@ -258,14 +258,14 @@ class Record < Tableless
 
   def update
     unless self.class.exists?(self.id, self.class.cib_type)
-      errors.add :base, _('The ID "%{id}" does not exist') % { :id => self.id }
+      errors.add :base, _('The ID "%{id}" does not exist') % { id: self.id }
       return false
     end
 
     result = Invoker.instance.crm_configure_load_update shell_syntax
 
     unless result == true
-      errors.add :base, _('Unable to update: %{msg}') % { :msg => result }
+      errors.add :base, _('Unable to update: %{msg}') % { msg: result }
       return false
     end
 

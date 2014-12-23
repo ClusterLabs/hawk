@@ -16,9 +16,7 @@ class Tableless
   end
 
   def save
-    if valid?
-      persist!
-
+    if valid? and persist!
       true
     else
       false

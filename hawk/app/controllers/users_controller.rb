@@ -33,7 +33,7 @@ class UsersController < ApplicationController
   before_filter :login_required
   before_filter :set_title
   before_filter :set_cib
-  before_filter :set_record, only: [:edit, :update, :destroy]
+  before_filter :set_record, only: [:edit, :update, :destroy, :show]
   before_filter :check_support
 
   def index
@@ -138,6 +138,15 @@ class UsersController < ApplicationController
           render json: { error: _('Error deleting %s') % @user.id }, status: :unprocessable_entity
         end
       end
+    end
+  end
+
+  def show
+    respond_to do |format|
+      format.json do
+        render json: @user.to_json
+      end
+      format.any { not_found  }
     end
   end
 

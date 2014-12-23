@@ -268,4 +268,10 @@ class ApplicationController < ActionController::Base
   def is_god?
     return current_user == "hacluster" || current_user == "root"
   end
+
+  def not_found
+    raise ActionController::RoutingError.new(
+      _('Not found')
+    )
+  end
 end

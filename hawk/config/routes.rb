@@ -49,8 +49,8 @@ Rails.application.routes.draw do
 
 
 
-    resources :roles, except: [:show]
-    resources :users, except: [:show]
+    resources :roles
+    resources :users
 
     resource :settings, only: [:edit, :update]
     resource :crm_config, only: [:edit, :update]
