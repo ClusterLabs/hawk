@@ -41,7 +41,7 @@
         %ul.nav.sidebar-nav
           %li
             %ul
-              %li.active
+              %li{ class: active_menu_with(:pages) }
                 = link_to _('Dashboard'), root_path
 
           %li
@@ -70,14 +70,14 @@
             = _('Manage')
 
             %ul
-              %li
+              %li{ class: active_menu_with(:settings) }
                 = link_to _('Preferences'), edit_cib_settings_path(cib_id: current_cib.id)
 
               - if Util.has_feature? :acl_support
-                %li
+                %li{ class: active_menu_with(:roles) }
                   = link_to _('Roles'), cib_roles_path(cib_id: current_cib.id)
               - if Util.has_feature? :acl_support
-                %li
+                %li{ class: active_menu_with(:users) }
                   = link_to _('Users'), cib_users_path(cib_id: current_cib.id)
 
       #content

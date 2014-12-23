@@ -1,4 +1,18 @@
 module ApplicationHelper
+  def active_menu_with(list)
+    valid = if list.is_a? Array
+      list
+    else
+      [list]
+    end
+
+    if valid.include? params[:controller].to_sym
+      "active"
+    else
+      nil
+    end
+  end
+
   def flash_class_for(type)
     case type
     when :alert
