@@ -41,6 +41,11 @@
 $(function() {
   $('[data-toggle="tooltip"]').tooltip();
 
+  $('.navbar a.toggle').on('click', function(e) {
+    e.preventDefault();
+    $('#wrapper').toggleClass('toggled');
+  });
+
   $('#content form')
     .on('keyup', 'input, select', function(e) {
       $(e.delegateTarget)
