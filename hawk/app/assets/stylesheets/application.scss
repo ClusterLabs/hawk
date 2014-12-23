@@ -75,7 +75,7 @@ body {
 
 #wrapper {
   margin-top: 60px;
-  margin-bottom: 30px;
+  margin-bottom: 60px;
 
   padding-left: 0;
   -webkit-transition: all 0.5s ease;
@@ -190,17 +190,15 @@ body {
 }
 
 footer {
-  position: fixed;
+  position: absolute;
   bottom: 0;
   width: 100%;
+  background-color: #fff;
+  padding: 20px 10px;
+  border-top: 1px solid #999;
   z-index: 950;
 
-  background: -webkit-gradient(linear,left top,right top,color-stop(0,#1fad7a),color-stop(100%,#80c235));
-
   .container-fluid {
-    padding-top: 5px;
-    padding-bottom: 5px;
-
     p {
       margin: 0;
       display: inline-block;

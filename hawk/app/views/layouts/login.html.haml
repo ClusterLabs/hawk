@@ -1,0 +1,44 @@
+!!!
+
+%html{ lang: 'en' }
+  %head
+    %title
+      = h @title
+
+    = current_metatags
+
+    %link{ href: image_path('favicon.png'), rel: 'shortcut icon' }
+
+    = stylesheet_link_tag 'vendor'
+    = stylesheet_link_tag 'login'
+
+    = yield :stylesheets
+
+    = javascript_include_tag 'vendor'
+    = javascript_include_tag 'login'
+
+    = yield :javascripts
+
+    /[if lt IE 9]
+      = stylesheet_link_tag 'ie'
+      = javascript_include_tag 'ie'
+
+  %body{ id: controller_name }
+    #content.container.darkbar
+      %noscript
+        .alert.alert-warning{ role: 'alert' }
+          = _('Please ensure Javascript is enabled')
+
+      %p.logo
+        = image_tag 'logo/white.png', alt: 'SUSE, LLC'
+
+      %h2
+        = link_to _('High Availability Web Konsole'), login_path
+
+      = render partial: 'shared/flash', locals: { flash: flash }
+      = yield
+
+    %footer
+      .container
+        %p
+          = _('Copyright &copy; 2009-2015 SUSE, LLC').html_safe

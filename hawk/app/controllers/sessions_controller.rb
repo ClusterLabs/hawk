@@ -94,7 +94,11 @@ class SessionsController < ApplicationController
   protected
 
   def detect_current_layout
-    false
+    if request.xhr?
+      false
+    else
+      "login"
+    end
   end
 
   def set_current_title

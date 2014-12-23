@@ -16,6 +16,7 @@ module Hawk
 
     %w(
       text_field
+      password_field
     ).each do |method_name|
       define_method method_name.to_sym do |field, *args|
         unless options.fetch(:bootstrap, true)
