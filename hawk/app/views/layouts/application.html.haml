@@ -23,7 +23,7 @@
       = stylesheet_link_tag 'ie'
       = javascript_include_tag 'ie'
 
-  %body{ id: controller_name }
+  %body{ id: controller_name, data: { status: status_cib_checks_path(cib_id: current_cib.id, format: 'json') } }
     %nav.navbar.navbar-inverse.navbar-fixed-top{ role: 'navigation' }
       .container-fluid{ stye: 'white-space: nobreak;' }
         .navbar-header
@@ -95,4 +95,22 @@
           = yield
 
     %footer
-      &nbsp;
+      .container-fluid
+        .col-xs-12.text-center
+          %dl.dl-inline
+            %dt
+              = _('Version:')
+            %dd.status.version
+              = current_cib.meta.version
+            %dt
+              = _('Stack:')
+            %dd.status.stack
+              = current_cib.meta.stack
+            %dt
+              = _('DC:')
+            %dd.status.dc
+              = current_cib.meta.dc
+            %dt
+              = _('UI:')
+            %dd
+              = current_cib.meta.host

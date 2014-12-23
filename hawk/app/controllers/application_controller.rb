@@ -99,12 +99,10 @@ class ApplicationController < ActionController::Base
   def initialize
     super
 
-    require 'socket'
-    @host = Socket.gethostname  # should be short hostname
-
-    # Need a default homedir for bare crm invocations that's
-    # writeable by hacluster
-    ENV['HOME'] = File.join(Rails.root, 'tmp', 'home')
+    ENV['HOME'] = Rails.root.join(
+      'tmp',
+      'home'
+    ).to_s
   end
 
 

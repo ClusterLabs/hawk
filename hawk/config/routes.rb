@@ -54,6 +54,12 @@ Rails.application.routes.draw do
 
     resource :settings, only: [:edit, :update]
     resource :crm_config, only: [:edit, :update]
+
+    resource :checks, only: [] do
+      collection do
+        get :status
+      end
+    end
   end
 
   match 'cib/:cib_id/primitives/:id/monitor_intervals' => 'primitives#monitor_intervals', :as => :primitives_mi, via: [:get, :post]

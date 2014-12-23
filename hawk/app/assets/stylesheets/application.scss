@@ -75,7 +75,7 @@ body {
 
 #wrapper {
   margin-top: 60px;
-  margin-bottom: 16px;
+  margin-bottom: 30px;
 
   padding-left: 0;
   -webkit-transition: all 0.5s ease;
@@ -193,10 +193,19 @@ footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  height: 16px;
   z-index: 950;
 
   background: -webkit-gradient(linear,left top,right top,color-stop(0,#1fad7a),color-stop(100%,#80c235));
+
+  .container-fluid {
+    padding-top: 5px;
+    padding-bottom: 5px;
+
+    p {
+      margin: 0;
+      display: inline-block;
+    }
+  }
 }
 
 .circle {
@@ -245,6 +254,19 @@ footer {
 
 .simple-hidden {
   display: none;
+}
+
+.dl-inline {
+  margin: 0;
+
+  dt, dd {
+    display: inline-block;
+    margin: 0;
+  }
+
+  dt {
+    margin: 0 5px;
+  }
 }
 
 @media(min-width: 768px) {

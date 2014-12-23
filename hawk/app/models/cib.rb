@@ -36,6 +36,23 @@ require 'rexml/document' unless defined? REXML::Document
 class Cib < CibObject
   include FastGettext::Translation
   include Rails.application.routes.url_helpers    # needed for explorer_path
+
+  def meta
+    @meta ||= begin
+      struct = OpenStruct.new
+
+      struct.epoch = epoch
+      struct.dc = dc
+
+      struct.host = Socket.gethostname
+
+      struct.version = crm_config['dc-version'.to_sym]
+      struct.stack = crm_config['cluster-infrastructure'.to_sym]
+
+      struct
+    end
+  end
+
   protected
 
   # Roughly equivalent to crm_element_value() in Pacemaker

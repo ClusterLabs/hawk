@@ -36,6 +36,9 @@ end
 
 ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
 
+require 'socket'
+require 'rexml/document'
+
 if File.exists? ENV['BUNDLE_GEMFILE']
   require 'bundler/setup'
   require 'active_model/railtie'
