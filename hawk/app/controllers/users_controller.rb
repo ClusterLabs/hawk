@@ -41,6 +41,9 @@ class UsersController < ApplicationController
 
     respond_to do |format|
       format.html
+      format.json do
+        render json: @users.to_json
+      end
     end
   end
 
@@ -65,9 +68,15 @@ class UsersController < ApplicationController
           flash[:success] = _('User created successfully')
           redirect_to edit_cib_user_url(cib_id: @cib.id, id: @user.id)
         end
+        format.json do
+          render json: @user, status: :created
+        end
       else
         format.html do
           render action: 'new'
+        end
+        format.json do
+          render json: @user.errors, status: :unprocessable_entity
         end
       end
     end
@@ -96,9 +105,15 @@ class UsersController < ApplicationController
           flash[:success] = _('User updated successfully')
           redirect_to edit_cib_user_url(cib_id: @cib.id, id: @user.id)
         end
+        format.json do
+          render json: @user, status: :updated
+        end
       else
         format.html do
           render action: 'edit'
+        end
+        format.json do
+          render json: @user.errors, status: :unprocessable_entity
         end
       end
     end
@@ -111,10 +126,16 @@ class UsersController < ApplicationController
           flash[:success] = _('User deleted successfully')
           redirect_to cib_users_url(cib_id: @cib.id)
         end
+        format.json do
+          head :no_content
+        end
       else
         format.html do
           flash[:alert] = _('Error deleting %s') % @user.id
           redirect_to cib_users_url(cib_id: @cib.id)
+        end
+        format.json do
+          render json: { error: _('Error deleting %s') % @user.id }, status: :unprocessable_entity
         end
       end
     end

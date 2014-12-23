@@ -41,6 +41,9 @@ class RolesController < ApplicationController
 
     respond_to do |format|
       format.html
+      format.json do
+        render json: @roles.to_json
+      end
     end
   end
 
@@ -65,9 +68,15 @@ class RolesController < ApplicationController
           flash[:success] = _('Role created successfully')
           redirect_to edit_cib_role_url(cib_id: @cib.id, id: @role.id)
         end
+        format.json do
+          render json: @role, status: :created
+        end
       else
         format.html do
           render action: 'new'
+        end
+        format.json do
+          render json: @role.errors, status: :unprocessable_entity
         end
       end
     end
@@ -94,9 +103,15 @@ class RolesController < ApplicationController
           flash[:success] = _('Role updated successfully')
           redirect_to edit_cib_role_url(cib_id: @cib.id, id: @role.id)
         end
+        format.json do
+          render json: @role, status: :updated
+        end
       else
         format.html do
           render action: 'edit'
+        end
+        format.json do
+          render json: @role.errors, status: :unprocessable_entity
         end
       end
     end
@@ -109,10 +124,16 @@ class RolesController < ApplicationController
           flash[:success] = _('Role deleted successfully')
           redirect_to cib_roles_url(cib_id: @cib.id)
         end
+        format.json do
+          head :no_content
+        end
       else
         format.html do
           flash[:alert] = _('Error deleting %s') % @role.id
           redirect_to cib_roles_url(cib_id: @cib.id)
+        end
+        format.json do
+          render json: { error: _('Error deleting %s') % @role.id }, status: :unprocessable_entity
         end
       end
     end
