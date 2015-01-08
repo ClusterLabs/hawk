@@ -1,0 +1,66 @@
+<?xml version="1.0"?>
+<workflow name="53-sap-as">
+
+<shortdesc lang="en">SAP ASCS Instance</shortdesc>
+<longdesc lang="en">
+  Configure a SAP ASCS instance including: 1) virtual IP addresses for the SAP ASCS instance 2) a fileystems on shared storage /usr/sap/SID/ASCS##, 3) SAPinstance for ASCS.
+</longdesc>
+
+<parameters>
+  <stepdesc lang="en">
+    The ID specified here is for the SAP ASCS resource group.
+  </stepdesc>
+  <parameter name="id" required="1">
+    <shortdesc lang="en">Group ID</shortdesc>
+    <longdesc lang="en">
+      Unique ID for the SAP ASCS instance resource group in the cluster.
+    </longdesc>
+    <content type="string" default="grp_sap_NA0_sapna0as"/>
+  </parameter>
+</parameters>
+
+<templates>
+  <template name="sap-sapinst-as" type="sapinstance" required="1">
+    <stepdesc lang="en">
+      This is the SAP ASCS instance.
+    </stepdesc>
+    <override name="id" value="rsc_sapinst_NA0_ASCS00_sapna0as"/>
+    <override name="InstanceName" value="NA0_ASCS00_sapna0as"/>
+    <override name="START_PROFILE" value="/usr/sap/NA0/SYS/profile/START_ASCS00_sapna0as"/>
+  </template>
+
+  <template name="sap-virtual-ip-as" type="virtual-ip" required="1">
+    <stepdesc lang="en">
+      The IP address configured here will be for the SAP ASCS instance.
+    </stepdesc>
+    <override name="id" value="rsc_ip_NA0_sapna0as"/>
+    <override name="ip" value="172.17.2.53"/>
+    <override name="netmask" value="24"/>
+    <override name="nic" value="eth0"/>
+  </template>
+
+  <template name="sap-filesystem-sapas" type="filesystem" required="1">
+    <stepdesc lang="en">
+      This filesystem is for the /usr/sap/SID/ASCS## directory.  
+      
+      If a filesystem does not already exist on the block device 
+      specified here, you will need to run mkfs to create it, prior 
+      to starting the filesystem resource.  You will also need
+      to create the mountpoint directory on all cluster nodes.
+    </stepdesc>
+    <override name="id" value="rsc_fs_NA0_sapna0as"/>
+    <override name="directory" value="/usr/sap/NA0/ASCS00"/>
+    <override name="options" value="noatime,barrier=0,data=writeback"/>
+    <override name="operations" value="op stop timeout=300 op monitor interval=30 timeout=130"/>
+  </template>
+</templates>
+
+<crm_script>
+group <insert param="id" /> 
+  <insert param="id" from_template="sap-virtual-ip-as"/> 
+  <insert param="id" from_template="sap-filesystem-sapas"/> 
+  <insert param="id" from_template="sap-sapinst-as"/> 
+  meta target-role=stopped
+</crm_script>
+
+</workflow>

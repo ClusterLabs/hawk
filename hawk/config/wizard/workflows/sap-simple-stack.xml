@@ -40,8 +40,8 @@
     <stepdesc lang="en">
       Filesystem resource for the sapmnt directory.  
       
-      If an EXT3 filesystem does not already exist on the
-      block device specified here, you will need to run mkfs.ext3 to create
+      If a filesystem does not already exist on the
+      block device specified here, you will need to run mkfs to create
       it, prior to starting the filesystem resource.  You will also need
       to create the mountpoint directory on all cluster nodes.
     </stepdesc>
@@ -71,8 +71,8 @@
   <stepdesc lang="en">
       Filesystem for the SAP database (typically mounted on /sapdb).  
       
-      If an EXT3 filesystem does not already exist on the
-      block device specified here, you will need to run mkfs.ext3 to create
+      If a filesystem does not already exist on the
+      block device specified here, you will need to run mkfs to create
       it, prior to starting the filesystem resource.  You will also need
       to create the mountpoint directory on all cluster nodes.
     </stepdesc>
@@ -95,7 +95,7 @@
     <stepdesc lang="en">
       The IP address configured here will be for the SAP ASCS instance.
     </stepdesc>
-    <override name="id" value="rsc_ip_NA0_sapna0ci"/>
+    <override name="id" value="rsc_ip_NA0_sapna0as"/>
     <override name="ip" value="172.17.2.53"/>
     <override name="netmask" value="24"/>
     <override name="nic" value="eth0"/>
@@ -103,7 +103,7 @@
   
   <template name="sap-sapinst-ci" type="sapinstance" required="1">
     <stepdesc lang="en">
-      This is the SAP Centeral instance.
+      This is the SAP Central instance.
     </stepdesc>
     <override name="id" value="rsc_sapinst_NA0_DVEBMGS01_sapna0ci"/>
     <override name="InstanceName" value="NA0_DVEBMGS01_sapna0ci"/>
@@ -124,8 +124,8 @@
     <stepdesc lang="en">
       This filesystem is for the /usr/sap directory.  
       
-      If an EXT3 filesystem does not already exist on the
-      block device specified here, you will need to run mkfs.ext3 to create
+      If a filesystem does not already exist on the
+      block device specified here, you will need to run mkfs to create
       it, prior to starting the filesystem resource.  You will also need
       to create the mountpoint directory on all cluster nodes.
     </stepdesc>
