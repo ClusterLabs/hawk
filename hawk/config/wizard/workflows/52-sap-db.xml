@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<workflow name="52-sap-db">
+
+<shortdesc lang="en">SAP Database Instance</shortdesc>
+<longdesc lang="en">
+  Configure a SAP database instance including: 1) virtual IP addresses for the SAP database instance 2) a fileystems on shared storage /sapdb, 3) SAPinstance for the database.
+</longdesc>
+
+<parameters>
+  <stepdesc lang="en">
+    The ID specified here is for the SAP Database instance resource group.
+  </stepdesc>
+  <parameter name="id" required="1">
+    <shortdesc lang="en">Group ID</shortdesc>
+    <longdesc lang="en">
+      Unique ID for the SAP Database instance resource group in the cluster.
+    </longdesc>
+    <content type="string" default="grp_sapdb_NA0"/>
+  </parameter>
+</parameters>
+
+<templates>
+  <template name="sap-sapdb" required="1">
+    <stepdesc lang="en">
+      This is the SAP Database instance.
+    </stepdesc>
+  </template>
+  
+  <template name="sap-virtual-ip-db" type="virtual-ip" required="1">
+    <stepdesc lang="en">
+      The IP address configured here will be for the SAP Database instance.
+    </stepdesc>
+    <override name="id" value="rsc_ip_NA0_sapna0db"/>
+    <override name="ip" value="172.17.2.54"/>
+    <override name="netmask" value="24"/>
+    <override name="nic" value="eth0"/>
+  </template>
+
+  <template name="sap-filesystem-sapdb" type="filesystem" required="1">
+    <stepdesc lang="en">
+      This filesystem is for the SAP database 
+      (typically mounted on /sapdb).  
+      
+      If a filesystem does not already exist on the block device 
+      specified here, you will need to run mkfs to create it, prior 
+      to starting the filesystem resource.  You will also need
+      to create the mountpoint directory on all cluster nodes.
+    </stepdesc>
+    <override name="id" value="rsc_fs_NA0_sapdb"/>
+    <override name="directory" value="/sapdb"/>
+    <override name="options" value="noatime,barrier=0,data=writeback"/>
+    <override name="operations" value="op stop timeout=300 op monitor interval=30 timeout=130"/>
+  </template>
+</templates>
+
+<crm_script>
+group <insert param="id" />  
+  <insert param="id" from_template="sap-virtual-ip-db"/> 
+  <insert param="id" from_template="sap-filesystem-sapdb"/> 
+  <insert param="id" from_template="sap-sapdb"/> 
+  meta target-role=stopped
+</crm_script>
+
+</workflow>

@@ -1,0 +1,171 @@
+<?xml version="1.0"?>
+<workflow name="51-sap-simplestack-plus">
+
+<shortdesc lang="en">SAP SimpleStack+ Instance</shortdesc>
+<longdesc lang="en">
+  Configure a SAP instance including: 1) virtual IP addresses for each of the SAP instance services - ASCS, DB and CI, 2) a RAID 1 host based mirror, 3) a cluster manager LVM volume group and LVM volumes on the RAID 1 host based mirror, 4) fileystems on shared storage for sapmnt, /sapbd, /usr/sap/SID/ASCS## and /usr/sap/SID/DVEBMGS## 5) SAPinstance for - ASCS, a Database ,a Central Instance. (The difference between this and the SimpleStack is that the ASCS and CI have their own volumes/filesystems/mountpoints rather than just one volume/filesystem/mountpoint on /usr/sap.)
+</longdesc>
+
+<parameters>
+  <stepdesc lang="en">
+    ID for the SAP SimpleStack+ resource group.
+  </stepdesc>
+  <parameter name="id" required="1">
+    <shortdesc lang="en">Group ID</shortdesc>
+    <longdesc lang="en">
+      Unique ID for the SAP SimpleStack+ instance resource group in the cluster.
+    </longdesc>
+    <content type="string" default="grp_sap_NA0"/>
+  </parameter>
+</parameters>
+
+<templates>
+  <template name="raid1" required="1">
+    <stepdesc lang="en">
+      RAID1 volume which starts before the LVM volume group
+      and holds a LVM volume group and LVM volumes.
+    </stepdesc>
+    <override name="raidconf" value="/etc/mdadm.conf"/>
+    <override name="raiddev" value="/dev/md0"/>
+  </template>
+  
+  <template name="lvm" required="1">
+    <stepdesc lang="en">
+      LVM logical volumes for the SAP filesystems.
+    </stepdesc>
+    <override name="volgrpname" value="sapvg"/>
+  </template>
+
+  <template name="sap-filesystem-sapmnt" type="filesystem" required="1">
+    <stepdesc lang="en">
+      Filesystem resource for the sapmnt directory.  
+      
+      If a filesystem does not already exist on the
+      block device specified here, you will need to run mkfs to create
+      it, prior to starting the filesystem resource.  You will also need
+      to create the mountpoint directory on all cluster nodes.
+    </stepdesc>
+    <override name="id" value="rsc_fs_NA0_sapmnt"/>
+    <override name="directory" value="/sapmnt"/>
+    <override name="options" value="noatime,barrier=0,data=writeback"/>
+    <override name="operations" value="op stop timeout=300 op monitor interval=30 timeout=130"/>
+  </template>
+
+  <template name="sap-sapdb" required="1">
+    <stepdesc lang="en">
+      SAP Database instance.
+    </stepdesc>
+  </template>
+
+  <template name="sap-virtual-ip-db" type="virtual-ip" required="1">
+    <stepdesc lang="en">
+      The IP address configured here will be for the SAP Database instance.
+    </stepdesc>
+    <override name="id" value="rsc_ip_NA0_sapna0db"/>
+    <override name="ip" value="172.17.2.54"/>
+    <override name="netmask" value="24"/>
+    <override name="nic" value="eth0"/>
+  </template>
+  
+  <template name="sap-filesystem-sapdb" required="1">
+  <stepdesc lang="en">
+      Filesystem for the SAP database (typically mounted on /sapdb).  
+      
+      If a filesystem does not already exist on the
+      block device specified here, you will need to run mkfs to create
+      it, prior to starting the filesystem resource.  You will also need
+      to create the mountpoint directory on all cluster nodes.
+    </stepdesc>
+    <override name="id" value="rsc_fs_NA0_sapdb"/>
+    <override name="directory" value="/sapdb"/>
+    <override name="options" value="noatime,barrier=0,data=writeback"/>
+    <override name="operations" value="op stop timeout=300 op monitor interval=30 timeout=130"/>
+  </template>
+  
+  <template name="sap-sapinst-as" type="sapinstance" required="1">
+    <stepdesc lang="en">
+      This is the SAP ASCS instance.
+    </stepdesc>
+    <override name="id" value="rsc_sapinst_NA0_ASCS00_sapna0as"/>
+    <override name="InstanceName" value="NA0_ASCS00_sapna0as"/>
+    <override name="START_PROFILE" value="/usr/sap/NA0/SYS/profile/START_ASCS00_sapna0as"/>
+  </template>
+ 
+  <template name="sap-virtual-ip-as" type="virtual-ip" required="1">
+    <stepdesc lang="en">
+      The IP address configured here will be for the SAP ASCS instance.
+    </stepdesc>
+    <override name="id" value="rsc_ip_NA0_sapna0as"/>
+    <override name="ip" value="172.17.2.53"/>
+    <override name="netmask" value="24"/>
+    <override name="nic" value="eth0"/>
+  </template>
+
+  <template name="sap-filesystem-sapas" type="filesystem" required="1">
+    <stepdesc lang="en">
+      This filesystem is for the /usr/sap/SID/ASCS## directory.  
+      
+      If a filesystem does not already exist on the block device 
+      specified here, you will need to run mkfs to create it, prior 
+      to starting the filesystem resource.  You will also need
+      to create the mountpoint directory on all cluster nodes.
+    </stepdesc>
+    <override name="id" value="rsc_fs_NA0_sapna0as"/>
+    <override name="directory" value="/usr/sap/NA0/ASCS00"/>
+    <override name="options" value="noatime,barrier=0,data=writeback"/>
+    <override name="operations" value="op stop timeout=300 op monitor interval=30 timeout=130"/>
+  </template>
+
+  <template name="sap-sapinst-ci" type="sapinstance" required="1">
+    <stepdesc lang="en">
+      This is the SAP Central instance.
+    </stepdesc>
+    <override name="id" value="rsc_sapinst_NA0_DVEBMGS01_sapna0ci"/>
+    <override name="InstanceName" value="NA0_DVEBMGS01_sapna0ci"/>
+    <override name="START_PROFILE" value="/usr/sap/NA0/SYS/profile/START_DVEBMGS01_sapna0ci"/>
+  </template>
+  
+  <template name="sap-virtual-ip-ci" type="virtual-ip" required="1">
+    <stepdesc lang="en">
+      The IP address configured here will be for the SAP Central Instance.
+    </stepdesc>
+    <override name="id" value="rsc_ip_NA0_sapna0ci"/>
+    <override name="ip" value="172.17.2.55"/>
+    <override name="netmask" value="24"/>
+    <override name="nic" value="eth0"/>
+  </template>
+   
+  <template name="sap-filesystem-sapci" type="filesystem" required="1">
+    <stepdesc lang="en">
+      This filesystem is for the /usr/sap/SID/DVEBMGS## directory.  
+      
+      If a filesystem does not already exist on the block device 
+      specified here, you will need to run mkfs to create it, prior 
+      to starting the filesystem resource.  You will also need
+      to create the mountpoint directory on all cluster nodes.
+    </stepdesc>
+    <override name="id" value="rsc_fs_NA0_sapna0ci"/>
+    <override name="directory" value="/usr/sap/NA0/DVEBMGS01"/>
+    <override name="options" value="noatime,barrier=0,data=writeback"/>
+    <override name="operations" value="op stop timeout=300 op monitor interval=30 timeout=130"/>
+  </template>
+</templates>
+
+<crm_script>
+group <insert param="id" /> 
+  <insert param="id" from_template="raid1"/> 
+  <insert param="id" from_template="lvm"/> 
+  <insert param="id" from_template="sap-filesystem-sapmnt"/> 
+  <insert param="id" from_template="sap-filesystem-sapdb"/> 
+  <insert param="id" from_template="sap-virtual-ip-db"/> 
+  <insert param="id" from_template="sap-sapdb"/> 
+  <insert param="id" from_template="sap-filesystem-sapas"/> 
+  <insert param="id" from_template="sap-virtual-ip-as"/> 
+  <insert param="id" from_template="sap-sapinst-as"/> 
+  <insert param="id" from_template="sap-filesystem-sapci"/> 
+  <insert param="id" from_template="sap-virtual-ip-ci"/> 
+  <insert param="id" from_template="sap-sapinst-ci"/> 
+  meta target-role=stopped
+</crm_script>
+
+</workflow>
