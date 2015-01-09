@@ -67,6 +67,7 @@
 #include <string.h>
 #include <pwd.h>
 #include <grp.h>
+#include <errno.h>
 #include "common.h"
 
 struct cmd_map
@@ -198,6 +199,20 @@ int main(int argc, char **argv)
 	}
 	/* (bit rough to drop const...) */
 	argv[2] = (char *)cmd->path;
+
+	/*
+	 * Drop extraneous groups. Not doing this is a security issue.
+	 * See POS36-C.
+	 *
+	 * This will fail if we aren't root, so don't bother checking
+	 * the return value, this is just done as an optimistic privilege
+	 * dropping function.
+	 */
+	{
+		int save_errno = errno;
+		setgroups(0, NULL);
+		errno = save_errno;
+	}
 
 	/*
 	 * Become the new user.  Note that at this point, grp still refers
