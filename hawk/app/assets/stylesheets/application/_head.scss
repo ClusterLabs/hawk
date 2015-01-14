@@ -29,19 +29,31 @@
 //
 //======================================================================
 
-@import url("http://fonts.googleapis.com/css?family=Roboto");
-@import url("http://fonts.googleapis.com/css?family=Raleway");
+.navbar-fixed-top {
+  &.navbar-inverse {
+    border: 0;
+  }
 
-@import "bootstrap/variables";
-@import "bootstrap/mixins";
+  .navbar-header {
+    float: left;
+  }
 
-@import "shared/form";
-@import "shared/circle";
-@import "shared/list";
-@import "shared/misc";
-@import "shared/foot";
+  .navbar-nav {
+    float: left;
+    margin: 0;
 
-@import "application/basics";
-@import "application/head";
-@import "application/content";
-@import "application/media";
+    li {
+      float: left;
+
+      a {
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
+    }
+  }
+
+  .navbar-right {
+    float: right !important;
+    margin-right: -15px;
+  }
+}

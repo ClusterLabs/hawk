@@ -29,19 +29,33 @@
 //
 //======================================================================
 
-@import url("http://fonts.googleapis.com/css?family=Roboto");
-@import url("http://fonts.googleapis.com/css?family=Raleway");
+.circle {
+  @include border-top-radius(50%);
+  @include border-right-radius(50%);
+  @include border-bottom-radius(50%);
+  @include border-left-radius(50%);
+  display: inline-block;
+  margin: auto;
 
-@import "bootstrap/variables";
-@import "bootstrap/mixins";
+  &.circle-success {
+    background-color: darken($alert-success-bg, 30%);
+    border-color: $alert-success-border;
+    color: $alert-success-text;
+  }
 
-@import "shared/form";
-@import "shared/circle";
-@import "shared/list";
-@import "shared/misc";
-@import "shared/foot";
+  &.circle-danger {
+    background-color: darken($alert-danger-bg, 30%);
+    border-color: $alert-danger-border;
+    color: $alert-danger-text;
+  }
 
-@import "application/basics";
-@import "application/head";
-@import "application/content";
-@import "application/media";
+  &.circle-large {
+    font-size: 30px;
+    padding: 25px;
+  }
+
+  &.circle-small {
+    font-size: 14px;
+    padding: 2px;
+  }
+}

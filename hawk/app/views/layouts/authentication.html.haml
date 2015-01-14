@@ -1,6 +1,6 @@
 !!!
 
-%html{ lang: 'en' }
+%html{ lang: I18n.locale }
   %head
     %title
       = h @title
@@ -10,12 +10,12 @@
     %link{ href: image_path('favicon.png'), rel: 'shortcut icon' }
 
     = stylesheet_link_tag 'vendor'
-    = stylesheet_link_tag 'login'
+    = stylesheet_link_tag 'authentication'
 
     = yield :stylesheets
 
     = javascript_include_tag 'vendor'
-    = javascript_include_tag 'login'
+    = javascript_include_tag 'authentication'
 
     = yield :javascripts
 
@@ -30,7 +30,7 @@
           = _('Please ensure Javascript is enabled')
 
       %p.logo
-        = image_tag 'logo/white.png', alt: 'SUSE, LLC'
+        = image_tag 'logo/white.png', alt: _('SUSE, LLC')
 
       %h2
         = link_to _('High Availability Web Konsole'), login_path
@@ -39,6 +39,6 @@
       = yield
 
     %footer
-      .container
+      .container-fluid
         %p
           = _('Copyright &copy; 2009-2015 SUSE, LLC').html_safe

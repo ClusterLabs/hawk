@@ -29,16 +29,18 @@
 #
 #======================================================================
 
-class Session < Base
+class Session < Tableless
   HAWK_CHKPWD = "/usr/sbin/hawk_chkpwd"
 
-  attr_accessor :username
-  attr_accessor :password
+  attribute :username, String
+  attribute :password, String
 
-  validates :username, presence: { message: _("Username not specified") }
-  validates :username, format: { with: /[^'$]+/, message: _("Invalid username") }
+  validates :username,
+    presence: { message: _("Username not specified") },
+    format: { with: /[^'$]+/, message: _("Invalid username") }
 
-  validates :password, presence: { message: _("Password not specified") }
+  validates :password,
+    presence: { message: _("Password not specified") }
 
   validate do |record|
     unless File.exists? HAWK_CHKPWD
@@ -47,7 +49,7 @@ class Session < Base
     end
 
     unless File.executable? HAWK_CHKPWD
-      record.errors[:base] << _("%s is not installed") % HAWK_CHKPWD
+      record.errors[:base] << _("%s is not executable") % HAWK_CHKPWD
       return false
     end
 

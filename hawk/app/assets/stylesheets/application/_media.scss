@@ -29,19 +29,35 @@
 //
 //======================================================================
 
-@import url("http://fonts.googleapis.com/css?family=Roboto");
-@import url("http://fonts.googleapis.com/css?family=Raleway");
+@media(min-width: 768px) {
+  #wrapper {
+    padding-left: 300px;
 
-@import "bootstrap/variables";
-@import "bootstrap/mixins";
+    #sidebar {
+      position: fixed;
+      left: 300px;
+      width: 300px;
+      height: 100%;
+      margin-left: -300px;
+      display: block;
+    }
 
-@import "shared/form";
-@import "shared/circle";
-@import "shared/list";
-@import "shared/misc";
-@import "shared/foot";
+    #content {
+      padding: 10px 30px;
+    }
 
-@import "application/basics";
-@import "application/head";
-@import "application/content";
-@import "application/media";
+    &.toggled {
+      padding-left: 0;
+
+      #sidebar {
+        display: none;
+        height: 100%;
+      }
+
+      #content {
+        position: relative;
+        margin-right: 0;
+      }
+    }
+  }
+}

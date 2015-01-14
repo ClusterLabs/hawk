@@ -5,8 +5,16 @@ module Hawk
         return super
       end
 
+      if options[:inline]
+        args[:inline] = true
+      end
+
       if options[:horizontal]
         args[:horizontal] = true
+      end
+
+      if options[:simple]
+        args[:simple] = true
       end
 
       args[:builder] ||= Hawk::FormBuilder
@@ -30,6 +38,7 @@ module Hawk
         group_options[:class] = "#{group_options[:class]} #{form_group_class_for(field, method_name)}".strip
 
         label_options = field_options.fetch(:label, {})
+        field_options.delete(:label)
 
         if label_options.is_a? String
           label_options = {
@@ -40,6 +49,7 @@ module Hawk
         label_options[:class] = "#{label_options[:class]} #{label_tag_class_for(field, method_name)}".strip
 
         help_options = field_options.fetch(:help, {})
+        field_options.delete(:help)
 
         if help_options.is_a? String
           help_options = {
@@ -285,7 +295,7 @@ module Hawk
         @template.icon_tag(
           'exclamation',
           class: 'fa-lg form-control-feedback',
-          title: @object.errors.messages[field].to_sentence,
+          title: @object.errors.messages[field].first,
           data: {
             toggle: 'tooltip'
           }

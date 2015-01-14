@@ -29,19 +29,14 @@
 //
 //======================================================================
 
-@import url("http://fonts.googleapis.com/css?family=Roboto");
-@import url("http://fonts.googleapis.com/css?family=Raleway");
+@media (max-width: 300px) {
+  #content {
+    &.darkbar {
+      border-radius: 0 !important;
+    }
+  }
 
-@import "bootstrap/variables";
-@import "bootstrap/mixins";
-
-@import "shared/form";
-@import "shared/circle";
-@import "shared/list";
-@import "shared/misc";
-@import "shared/foot";
-
-@import "application/basics";
-@import "application/head";
-@import "application/content";
-@import "application/media";
+  footer {
+    position: relative;
+  }
+}

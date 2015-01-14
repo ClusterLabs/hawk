@@ -35,8 +35,7 @@ module Hawk
   class Application < Rails::Application
     config.autoload_paths += [
       config.root.join('lib'),
-      config.root.join('app', 'collections'),
-      config.root.join('app', 'forms')
+      config.root.join('app', 'collections')
     ]
 
     config.encoding = 'utf-8'

@@ -37,6 +37,13 @@ module FormHelper
       ].join(' ')
     end
 
+    if options.fetch(:simple, false)
+      options[:html][:class] = [
+        'form-simple',
+        options[:html][:class]
+      ].join(' ')
+    end
+
     options[:html][:class].strip!
 
     super(record, options, &proc)

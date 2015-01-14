@@ -29,19 +29,19 @@
 //
 //======================================================================
 
-@import url("http://fonts.googleapis.com/css?family=Roboto");
-@import url("http://fonts.googleapis.com/css?family=Raleway");
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #fff;
+  padding: 20px 10px;
+  border-top: 1px solid #999;
+  z-index: 950;
 
-@import "bootstrap/variables";
-@import "bootstrap/mixins";
-
-@import "shared/form";
-@import "shared/circle";
-@import "shared/list";
-@import "shared/misc";
-@import "shared/foot";
-
-@import "application/basics";
-@import "application/head";
-@import "application/content";
-@import "application/media";
+  .container-fluid {
+    p {
+      margin: 0;
+      display: inline-block;
+    }
+  }
+}

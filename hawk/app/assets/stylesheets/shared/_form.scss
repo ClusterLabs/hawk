@@ -29,19 +29,12 @@
 //
 //======================================================================
 
-@import url("http://fonts.googleapis.com/css?family=Roboto");
-@import url("http://fonts.googleapis.com/css?family=Raleway");
-
-@import "bootstrap/variables";
-@import "bootstrap/mixins";
-
-@import "shared/form";
-@import "shared/circle";
-@import "shared/list";
-@import "shared/misc";
-@import "shared/foot";
-
-@import "application/basics";
-@import "application/head";
-@import "application/content";
-@import "application/media";
+.form-horizontal,
+.form-simple {
+  .has-feedback {
+    .form-control-feedback {
+      line-height: 37px;
+      z-index: 500;
+    }
+  }
+}

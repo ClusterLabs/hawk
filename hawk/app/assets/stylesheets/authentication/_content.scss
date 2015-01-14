@@ -29,25 +29,6 @@
 //
 //======================================================================
 
-@import "bootstrap/variables";
-@import "bootstrap/mixins";
-
-@import url("http://fonts.googleapis.com/css?family=Roboto");
-@import url("http://fonts.googleapis.com/css?family=Raleway");
-
-body {
-  font-family: "Raleway", sans-serif;
-  color: #3a3e40;
-  height: 100%;
-  cursor: default;
-
-  background: linear-gradient(to right, #1fad7a 0, #80c235 100%);
-  background: -moz-linear-gradient(left, #1fad7a 0, #80c235 100%);
-  background: -webkit-gradient(linear, left top, right top, color-stop(0,#1fad7a), color-stop(100%,#80c235));
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
 #content {
   width: 300px;
 
@@ -66,7 +47,7 @@ body {
     margin: 0;
 
     img {
-      margin: 30px 20px 0 20px;
+      margin: 50px 20px 0 20px;
       max-width: 150px;
     }
   }
@@ -76,7 +57,7 @@ body {
     display: block;
     position: relative;
     text-align: center;
-    margin: 30px 20px 35px 20px;
+    margin: 50px 20px 55px 20px;
 
     a {
       color: #00b268;
@@ -90,35 +71,6 @@ body {
   }
 
   form {
-    margin: 15px 10px 35px 10px;
-  }
-}
-
-footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  background-color: #fff;
-  padding: 20px 10px;
-  border-top: 1px solid #999;
-
-  .container {
-    width: 100%;
-
-    p:last-child {
-      margin-bottom: 0;
-    }
-  }
-}
-
-@media (max-width: 300px) {
-  #content {
-    &.darkbar {
-      border-radius: 0 !important;
-    }
-  }
-
-  footer {
-    position: relative;
+    margin: 15px 10px 30px 10px;
   }
 }

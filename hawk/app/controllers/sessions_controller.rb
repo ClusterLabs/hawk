@@ -60,7 +60,7 @@ class SessionsController < ApplicationController
       else
         format.html do
           flash.now[:alert] = @session.errors.first.last
-          render action: "new"
+          render action: 'new'
         end
         format.json do
           render json: { errors: @session.errors.values }, status: 403
@@ -70,11 +70,11 @@ class SessionsController < ApplicationController
   end
 
   def destroy
-    if params[:reason] == "forbidden"
+    if params[:reason] == 'forbidden'
       message = if session[:username]
-        _("Permission denied for user %{user}") % { user: session[:username] }
+        _('Permission denied for user %{user}') % { user: session[:username] }
       else
-        _("You have been logged out")
+        _('You have been logged out')
       end
     end
 
@@ -97,11 +97,11 @@ class SessionsController < ApplicationController
     if request.xhr?
       false
     else
-      "login"
+      'authentication'
     end
   end
 
   def set_current_title
-    @title = _("Log In")
+    @title = _('Log In')
   end
 end

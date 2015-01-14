@@ -29,19 +29,11 @@
 //
 //======================================================================
 
-@import url("http://fonts.googleapis.com/css?family=Roboto");
-@import url("http://fonts.googleapis.com/css?family=Raleway");
-
-@import "bootstrap/variables";
-@import "bootstrap/mixins";
-
-@import "shared/form";
-@import "shared/circle";
-@import "shared/list";
-@import "shared/misc";
-@import "shared/foot";
-
-@import "application/basics";
-@import "application/head";
-@import "application/content";
-@import "application/media";
+body {
+  font-family: "Raleway", sans-serif;
+  color: #3a3e40;
+  background-color: #f7f7f7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: default;
+}
