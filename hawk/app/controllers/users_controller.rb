@@ -37,12 +37,10 @@ class UsersController < ApplicationController
   before_filter :check_support
 
   def index
-    @users = User.ordered
-
     respond_to do |format|
       format.html
       format.json do
-        render json: @users.to_json
+        render json: User.ordered.to_json
       end
     end
   end

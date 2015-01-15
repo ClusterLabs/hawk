@@ -5,26 +5,8 @@
       = link_to icon_text('plus', _('Add user')), new_cib_user_path(cib_id: @cib.id), class: 'btn btn-default'
 
 - if @supported_schema
-  - if @users.empty?
-    .alert.alert-info{ role: 'alert' }
-      = _('No users defined')
-  - else
-    .panel.panel-default
-      %table.table.table-striped
-        %thead
-          %tr
-            %th
-              = _('User ID')
-            %th.col-sm-1
-              = _('Operations')
-        %tbody
-          - @users.each do |user|
-            %tr
-              %td
-                = h user.id
-              %td
-                = link_to icon_tag('pencil'), edit_cib_user_path(cib_id: @cib.id, id: user.id)
-                = link_to icon_tag('trash'), cib_user_path(cib_id: @cib.id, id: user.id), method: 'delete', confirm: _('Are you sure you wish to delete %s?') % user.id
+  .panel.panel-default
+    %table.table.table-striped.users
 
 - else
   .alert.alert-warning{ role: 'alert' }

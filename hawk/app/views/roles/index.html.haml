@@ -5,26 +5,8 @@
       = link_to icon_text('plus', _('Add role')), new_cib_role_path, class: 'btn btn-default'
 
 - if @supported_schema
-  - if @roles.empty?
-    .alert.alert-info{ role: 'alert' }
-      = _('No roles defined')
-  - else
-    .panel.panel-default
-      %table.table.table-striped
-        %thead
-          %tr
-            %th
-              = _('Role ID')
-            %th.col-sm-1
-              = _('Operations')
-        %tbody
-          - @roles.each do |role|
-            %tr
-              %td
-                = h role.id
-              %td
-                = link_to icon_tag('pencil'), edit_cib_role_path(cib_id: @cib.id, id: role.id)
-                = link_to icon_tag('trash'), cib_role_path(cib_id: @cib.id, id: role.id), method: 'delete', confirm: _('Are you sure you wish to delete %s?') % role.id
+  .panel.panel-default
+    %table.table.table-striped.roles
 
 - else
   .alert.alert-warning{ role: 'alert' }

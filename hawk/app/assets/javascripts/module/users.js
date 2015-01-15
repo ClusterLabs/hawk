@@ -30,6 +30,60 @@
 //======================================================================
 
 $(function() {
+  $('#users #content table.users')
+    .bootstrapTable({
+      method: 'get',
+      url: Routes.cib_users_path(
+        $('body').data('cib'),
+        { format: 'json' }
+      ),
+      striped: true,
+      pagination: true,
+      pageSize: 50,
+      pageList: [10, 25, 50, 100, 200],
+      sidePagination: 'client',
+      smartDisplay: false,
+      search: true,
+      searchAlign: 'left',
+      showColumns: true,
+      showRefresh: true,
+      minimumCountColumns: 1,
+      columns: [{
+        field: 'id',
+        title: __('User ID'),
+        sortable: true,
+        clickToSelect: true
+      }, {
+        field: 'operate',
+        title: __('Operations'),
+        sortable: false,
+        clickToSelect: false,
+        class: 'col-sm-1',
+        formatter: function(value, row, index) {
+          return [
+            '<a class="edit" href="',
+              Routes.edit_cib_user_path(
+                $('body').data('cib'),
+                row.id
+              ),
+            '">',
+              '<i class="fa fa-pencil"></i>',
+            '</a> ',
+            '<a class="delete" href="',
+              Routes.cib_user_path(
+                $('body').data('cib'),
+                row.id
+              ),
+            '" data-confirm="',
+              i18n.translate('Are you sure you wish to delete %s?').fetch(row.id),
+            '" data-method="delete">',
+              '<i class="fa fa-trash"></i>',
+            '</a>'
+          ].join('');
+        }
+      }]
+    });
+
   $('#users #content form')
     .find('.select')
       .multiselect({

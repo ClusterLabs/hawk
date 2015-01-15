@@ -1,6 +1,6 @@
 !!!
 
-%html{ lang: I18n.locale }
+%html{ lang: I18n.locale.to_s.gsub('-', '_') }
   %head
     %title
       = h @title
@@ -16,6 +16,7 @@
 
     = javascript_include_tag 'vendor'
     = javascript_include_tag 'application'
+    = javascript_include_tag localized_js
 
     = yield :javascripts
 
@@ -23,7 +24,7 @@
       = stylesheet_link_tag 'ie'
       = javascript_include_tag 'ie'
 
-  %body{ id: controller_name, data: { status: status_cib_checks_path(cib_id: current_cib.id, format: 'json') } }
+  %body{ id: controller_name, data: { cib: current_cib.id } }
     %nav.navbar.navbar-inverse.navbar-fixed-top{ role: 'navigation' }
       .container-fluid{ stye: 'white-space: nobreak;' }
         .navbar-header

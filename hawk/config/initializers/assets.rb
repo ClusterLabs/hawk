@@ -33,10 +33,11 @@ Rails.application.config.tap do |config|
   config.assets.version = '1.0'
 
   config.assets.precompile = [
+    /locale\/*.(css|js)$/,
     /application\.(css|js)$/,
     /ie\.(css|js)$/,
     /login\.(css|js)$/,
-    /vendor\.(css|js)$/
+    /vendor\.(css|js)$/,
     /\.(jpg|png|gif|svg|ico|eot|woff|ttf)$/
   ]
 

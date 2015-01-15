@@ -59,6 +59,13 @@ module ApplicationHelper
     end.join("\n").html_safe
   end
 
+  def localized_js
+    [
+      'locale',
+      I18n.locale.to_s.gsub('-', '_')
+    ].join('/')
+  end
+
 
 
   def inject_linebreaks(e)

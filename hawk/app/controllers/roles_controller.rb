@@ -37,12 +37,10 @@ class RolesController < ApplicationController
   before_filter :check_support
 
   def index
-    @roles = Role.ordered
-
     respond_to do |format|
       format.html
       format.json do
-        render json: @roles.to_json
+        render json: Role.ordered.to_json
       end
     end
   end

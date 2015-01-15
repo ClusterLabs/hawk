@@ -29,7 +29,7 @@
 //
 //======================================================================
 
-//= require_tree ./locale
+//= require_tree ./gettext/locale
 //= require gettext/all
 
 //= require_self

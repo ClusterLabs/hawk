@@ -37,6 +37,7 @@ default["hawk"]["webui"]["packages"] = [
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-sass-rails",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-virtus",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-gettext_i18n_rails_js",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-js-routes",
 
   "hawk",
   "hawk-templates",
