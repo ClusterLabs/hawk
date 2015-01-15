@@ -1,4 +1,29 @@
 module ApplicationHelper
+  def branding_config
+    @branding_config ||= begin
+      config = YAML.load_file(
+        Rails.root.join(
+          'config',
+          'branding.yml'
+        )
+      )
+
+      config.with_indifferent_access
+    end
+  end
+
+  def meta_title
+    @meta_title ||= begin
+      [].tap do |output|
+        output.push branding_config[:title]
+
+        unless @title.empty?
+          output.push @title
+        end
+      end.compact.join(": ")
+    end
+  end
+
   def active_menu_with(list)
     valid = if list.is_a? Array
       list

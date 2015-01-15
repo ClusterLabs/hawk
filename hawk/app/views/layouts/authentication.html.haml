@@ -3,7 +3,7 @@
 %html{ lang: I18n.locale }
   %head
     %title
-      = h @title
+      = meta_title
 
     = current_metatags
 
@@ -42,4 +42,4 @@
     %footer
       .container-fluid
         %p
-          = _('Copyright &copy; 2009-2015 SUSE, LLC').html_safe
+          = branding_config[:provider].html_safe

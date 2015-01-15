@@ -3,7 +3,7 @@
 %html{ lang: I18n.locale.to_s.gsub('-', '_') }
   %head
     %title
-      = h @title
+      = meta_title
 
     = current_metatags
 
@@ -42,7 +42,7 @@
             %li
               = link_to text_icon(content_tag(:span, _('Logout'), class: 'hidden-xs'), 'sign-out'), logout_path, class: 'logout'
             %li
-              = link_to text_icon(content_tag(:span, _('Menu'), class: 'hidden-xs'), 'bars'), '#', class: 'toggle'
+              = link_to text_icon(content_tag(:span, _('Menu'), class: 'hidden-xs'), 'bars'), 'javascript: void(0);', class: 'toggle'
 
     #wrapper
       #sidebar
@@ -57,7 +57,7 @@
 
             %ul
               %li
-                = link_to _('Hearthbeat'), root_path
+                = link_to _('Heartbeat'), root_path
               %li
                 = link_to _('Graph'), root_path
               %li
@@ -95,7 +95,11 @@
 
     %footer
       .container-fluid
-        .col-xs-12.text-center
+        .col-md-6.text-left
+          %p
+            = branding_config[:provider].html_safe
+
+        .col-md-6.text-right
           %dl.dl-inline
             %dt
               = _('Version:')
