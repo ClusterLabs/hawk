@@ -28,8 +28,10 @@ for example "192.168.1.1".
 <parameter name="netmask">
 <shortdesc lang="en">Netmask</shortdesc>
 <longdesc lang="en">
-The netmask to be used (if unspecified it will be determined
-automatically).
+The netmask for the interface in CIDR format
+(e.g., 24 and not 255.255.255.0).
+
+If unspecified, it will be determined automatically.
 </longdesc>
 <content type="string"/>
 </parameter>
