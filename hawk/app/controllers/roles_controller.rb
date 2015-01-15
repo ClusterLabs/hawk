@@ -64,7 +64,7 @@ class RolesController < ApplicationController
 
         format.html do
           flash[:success] = _('Role created successfully')
-          redirect_to edit_cib_role_url(cib_id: @cib.id, id: @role.id)
+          redirect_to cib_roles_url(cib_id: @cib.id)
         end
         format.json do
           render json: @role, status: :created

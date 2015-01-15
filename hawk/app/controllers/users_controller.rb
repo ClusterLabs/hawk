@@ -64,7 +64,7 @@ class UsersController < ApplicationController
 
         format.html do
           flash[:success] = _('User created successfully')
-          redirect_to edit_cib_user_url(cib_id: @cib.id, id: @user.id)
+          redirect_to cib_users_url(cib_id: @cib.id)
         end
         format.json do
           render json: @user, status: :created
