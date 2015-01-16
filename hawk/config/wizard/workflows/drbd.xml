@@ -13,11 +13,27 @@ The ID specified here is for the DRBD cluster resource.
 </stepdesc>
 
 <parameter name="id" required="1">
-<shortdesc lang="en">Resource ID</shortdesc>
+<shortdesc lang="en">Cluster Resource ID</shortdesc>
 <longdesc lang="en">
-Unique ID for the DRBD cluster resource.
+  Unique ID for the DRBD cluster resource. Also used as
+  the base for the created multistate cluster resource.
 </longdesc>
 <content type="string" default="drbd-data"/>
+</parameter>
+
+<parameter name="drbd_resource" required="1">
+<shortdesc lang="en">DRBD Resource</shortdesc>
+<longdesc lang="en">
+The name of the DRBD resource from the DRBD configuration file.
+</longdesc>
+<content type="string" default="drbd0"/>
+</parameter>
+
+<parameter name="drbdconf">
+<shortdesc lang="en">DRBD config file</shortdesc>
+<longdesc lang="en">
+Full pathname of the DRBD configuration file</longdesc>
+<content type="string" default="/etc/drbd.conf"/>
 </parameter>
 
 </parameters>
@@ -28,10 +44,15 @@ Unique ID for the DRBD cluster resource.
 
 <crm_script>
 primitive <insert param="id"/> ocf:linbit:drbd
-  params drbd_resource=wwwdata
-  op monitor interval=60s
+  params
+    drbd_resource="<insert param="drbd_resource"/>"
+<if set="drbdconf">
+    drbdconf="<insert param="drbdconf"/>"
+</if>
+  op monitor depth="0" timeout="20" interval="20" role="Slave" 
+  op monitor depth="0" timeout="20" interval="10" role="Master"
 
-ms c-<insert param="id"/> <insert param="id"/>
+ms ms-<insert param="id"/> <insert param="id"/>
   params master-max=1 master-node-max=1 clone-max=2 clone-node-max=1
   meta notify=true
 </crm_script>
