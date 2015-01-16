@@ -51,7 +51,7 @@
     <override name="operations" value="op stop timeout=300 op monitor interval=30 timeout=130"/>
   </template>
 
-  <template name="sap-sapdb" required="1">
+  <template name="sap-sapdb" type="sapdb" required="1">
     <stepdesc lang="en">
       SAP Database instance.
     </stepdesc>
@@ -67,7 +67,7 @@
     <override name="nic" value="eth0"/>
   </template>
   
-  <template name="sap-filesystem-sapdb" required="1">
+  <template name="sap-filesystem-sapdb" type="filesystem" required="1">
   <stepdesc lang="en">
       Filesystem for the SAP database (typically mounted on /sapdb).  
       

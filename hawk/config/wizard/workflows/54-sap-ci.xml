@@ -39,7 +39,7 @@
     <override name="nic" value="eth0"/>
   </template>
 
-  <template name="sap-filesystem-sapci" required="1">
+  <template name="sap-filesystem-sapci" type="filesystem" required="1">
     <stepdesc lang="en">
       This filesystem is for the /usr/sap/SID/DVEBMGS## directory.  
       
@@ -48,7 +48,7 @@
       to starting the filesystem resource.  You will also need
       to create the mountpoint directory on all cluster nodes.
     </stepdesc>
-    <override name="id" value="rsc_fs_NA0_sapna0as"/>
+    <override name="id" value="rsc_fs_NA0_sapna0ci"/>
     <override name="directory" value="/usr/sap/NA0/DVEBMGS01"/>
     <override name="options" value="noatime,barrier=0,data=writeback"/>
     <override name="operations" value="op stop timeout=300 op monitor interval=30 timeout=130"/>

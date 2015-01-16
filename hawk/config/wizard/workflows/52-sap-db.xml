@@ -20,7 +20,7 @@
 </parameters>
 
 <templates>
-  <template name="sap-sapdb" required="1">
+  <template name="sapdb" required="1">
     <stepdesc lang="en">
       This is the SAP Database instance.
     </stepdesc>
@@ -57,7 +57,7 @@
 group <insert param="id" />  
   <insert param="id" from_template="sap-virtual-ip-db"/> 
   <insert param="id" from_template="sap-filesystem-sapdb"/> 
-  <insert param="id" from_template="sap-sapdb"/> 
+  <insert param="id" from_template="sapdb"/> 
   meta target-role=stopped
 </crm_script>
 
