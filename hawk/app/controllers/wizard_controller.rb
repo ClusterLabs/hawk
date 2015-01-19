@@ -137,7 +137,7 @@ class WizardController < ApplicationController
       # get params & help from workflow
       set_step_params(@workflow_xml.root)
     when "template"
-      # TODO(should): select by language instead of forcing en  
+      # TODO(should): select by language instead of forcing en
       @step_shortdesc = @templates_xml[sp[1]].root.elements['shortdesc[@lang="en"]'].text.strip
       if @workflow_xml.root.elements["templates/template[@name='#{sp[1]}']/stepdesc[@lang='en']"]
         @step_longdesc = @workflow_xml.root.elements["templates/template[@name='#{sp[1]}']/stepdesc[@lang='en']"].text.strip
@@ -190,7 +190,7 @@ class WizardController < ApplicationController
 
       # - Generate crm script for workflow
       crm_script += get_crm_script(@workflow_xml.root.elements["crm_script"], "params")
-      
+
       # TODO: provide crm_script to cluster script
       # for verification (by editing the statefile)
       result = run_cluster_script_step("Precommit")
@@ -221,7 +221,7 @@ class WizardController < ApplicationController
       #   ERROR: 14: apache: id is already in use
       #   ERROR: 18: web-server: id is already in use
       #   INFO: 20: apparently there is nothing to commit
-      #   INFO: 20: try changing something first        
+      #   INFO: 20: try changing something first
     else
       # This can't happen
     end
@@ -239,7 +239,7 @@ class WizardController < ApplicationController
       next unless sd
       d = { :shortdesc => sd.text.strip }
       if xml.root.elements['longdesc[@lang="en"]']
-        d[:longdesc] = xml.root.elements['longdesc[@lang="en"]'].text.strip 
+        d[:longdesc] = xml.root.elements['longdesc[@lang="en"]'].text.strip
       end
       @descs[w] = d
     end
@@ -342,7 +342,7 @@ class WizardController < ApplicationController
         @workflow_xml = REXML::Document.new(File.new(f))
         if @workflow_xml.root
           if @workflow_xml.root.attributes.has_key?("cluster_script")
-            @cluster_script = @workflow_xml.root.attributes["cluster_script"] 
+            @cluster_script = @workflow_xml.root.attributes["cluster_script"]
             @steps.insert(@steps.rindex("confirm"), "rootpw")
           end
           # TODO(should): select by language instead of forcing en
