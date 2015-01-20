@@ -4,7 +4,7 @@
 #            A web-based GUI for managing and monitoring the
 #          Pacemaker High-Availability cluster resource manager
 #
-# Copyright (c) 2011-2013 SUSE LLC, All Rights Reserved.
+# Copyright (c) 2014 SUSE LLC, All Rights Reserved.
 #
 # Author: Tim Serong <tserong@suse.com>
 #
@@ -29,14 +29,18 @@
 #
 #======================================================================
 
-class PagesController < ApplicationController
+class DashboardsController < ApplicationController
   before_filter :login_required
+  before_filter :set_title
+  before_filter :set_cib
 
-  def index
-    respond_to do |format|
-      format.html do
-        redirect_to cib_dashboard_path(cib_id: view_context.current_cib.id), status: 301
-      end
-    end
+  protected
+
+  def set_title
+    @title = _('Dashboard')
+  end
+
+  def set_cib
+    @cib = Cib.new params[:cib_id], current_user
   end
 end

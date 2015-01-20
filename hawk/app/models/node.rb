@@ -29,62 +29,112 @@
 #
 #======================================================================
 
-require 'rexml/document' unless defined? REXML::Document
+class Node < Record
+  attribute :id, String
+  attribute :uname, String
+  attribute :attrs, Hash
+  attribute :utilization, Hash
 
-class Node < CibObject
-  include FastGettext::Translation
+  attribute :state, String
+  attribute :maintenance, Boolean
+  attribute :standby, Boolean
 
-  @attributes = :uname, :attrs, :utilization
-  attr_accessor *@attributes
-
-  def initialize(attributes = nil)
-    @uname = @id
-    @attrs = {}
-    @utilization = {}
-    super
+  def state
+    # TODO(must): Fetch the current state?
+    :online
   end
 
-  class << self
+  def maintenance
+    # TODO(must): Need more attribute checks?
+    if attrs['maintenance'] and attrs['maintenance'] == 'on'
+      true
+    else
+      false
+    end
+  end
 
-    # Since pacemaker started using corosync node IDs as the node ID
-    # attribute, CibObject#find will fail when looking for nodes by
-    # their human-readable name, so have to override here
+  def standby
+    # TODO(must): Need more attribute checks?
+    if attrs['standby'] and attrs['standby'] == 'on'
+      true
+    else
+      false
+    end
+  end
+
+  protected
+
+  class << self
+    def instantiate(xml)
+      record = allocate
+      record.uname = xml.attributes['uname'] || ''
+
+      record.attrs = if xml.elements['instance_attributes']
+        vals = xml.elements['instance_attributes'].elements.collect do |e|
+          [
+            e.attributes['name'],
+            e.attributes['value']
+          ]
+        end
+
+        Hash[vals]
+      else
+        {}
+      end
+
+      record.utilization = if xml.elements['utilization']
+        vals = xml.elements['utilization'].elements.collect do |e|
+          [
+            e.attributes['name'],
+            e.attributes['value']
+          ]
+        end
+
+        Hash[vals]
+      else
+        {}
+      end
+
+      if record.utilization.any?
+        Util.safe_x('/usr/sbin/crm_simulate', '-LU').split('\n').each do |line|
+          m = line.match(/^Remaining:\s+([^\s]+)\s+capacity:\s+(.*)$/)
+
+          next unless m
+          next unless m[1] == node.uname
+
+          m[2].split(' ').each do |u|
+            name, value = u.split('=', 2)
+
+            if node.utilization.has_key? name
+              node.utilization[name][:remaining] = value.to_i
+            end
+          end
+        end
+      end
+
+      record
+    end
+
+    def cib_type
+      :node
+    end
+
+    def ordered
+      all.sort do |a, b|
+        a.uname.natcmp(b.uname, true)
+      end
+    end
+
+    # Since pacemaker started using corosync node IDs as the node ID attribute,
+    # Record#find will fail when looking for nodes by their human-readable
+    # name, so have to override here
     def find(id)
       begin
         super(id)
       rescue CibObject::RecordNotFound
         # Can't find by id attribute, try by uname attribute
-        super(id, "uname")
+        super(id, 'uname')
       end
     end
-
-    def instantiate(xml)
-      node = allocate
-      # TODO(should): Apparently this instance_variable_set business isn't necessary,
-      # can just use node.uname, node.attrs etc...  Should change across all models.
-      node.instance_variable_set(:@uname, xml.attributes['uname'] || '')
-      node.instance_variable_set(:@attrs, xml.elements['instance_attributes'] ?
-        Hash[xml.elements['instance_attributes'].elements.collect {|e|
-          [e.attributes['name'], e.attributes['value']] }] : {})
-      node.instance_variable_set(:@utilization, xml.elements['utilization'] ?
-        Hash[xml.elements['utilization'].elements.collect {|e|
-          [e.attributes['name'], { :total => e.attributes['value'].to_i } ] }] : {})
-      if (node.utilization.any?)
-        Util.safe_x('/usr/sbin/crm_simulate', '-LU').split("\n").each do |line|
-          m = line.match(/^Remaining:\s+([^\s]+)\s+capacity:\s+(.*)$/)
-          next unless m
-          next unless m[1] == node.uname
-          m[2].split(' ').each do |u|
-            pair = u.split('=')
-            if node.utilization.has_key?(pair[0])
-              node.utilization[pair[0]][:remaining] = pair[1].to_i
-            end
-          end
-        end
-      end
-      node
-    end
-
   end
 end
-

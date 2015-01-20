@@ -4,7 +4,7 @@
 #            A web-based GUI for managing and monitoring the
 #          Pacemaker High-Availability cluster resource manager
 #
-# Copyright (c) 2011-2013 SUSE LLC, All Rights Reserved.
+# Copyright (c) 2014 SUSE LLC, All Rights Reserved.
 #
 # Author: Tim Serong <tserong@suse.com>
 #
@@ -31,19 +31,30 @@
 
 class PrimitivesController < ApplicationController
   before_filter :login_required
+  before_filter :set_title
+  before_filter :set_cib
 
-  # Need cib for both edit and update (but ultimately want to minimize the amount of processing...)
-  # TODO(should): consolidate/refactor with scaffolding in crm_config_controller
-  before_filter :get_cib
+  before_filter :god_required, only: [:events]
 
-  def get_cib
-    @cib = Cib.new params[:cib_id], current_user # RORSCAN_ITL (not mass assignment)
+  def index
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: Primitive.ordered.to_json
+      end
+    end
   end
 
-  def initialize
-    super
-    @title = _('Edit Resource')
-  end
+
+
+
+
+
+
+
+
+
+
 
   def new
     @title = _('Create Resource')
@@ -111,5 +122,39 @@ class PrimitivesController < ApplicationController
 
   def metadata
     render :json => Primitive.metadata(params[:r_class], params.has_key?(:r_provider) ? params[:r_provider] : '', params[:r_type])
+  end
+
+
+
+
+
+
+  def events
+    respond_to do |format|
+      format.json { render :template => "resources/events", :formats => [:js] }
+      format.html { render :template => "resources/events" }
+    end
+  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+  protected
+
+  def set_title
+    @title = _('Primitives')
+  end
+
+  def set_cib
+    @cib = Cib.new params[:cib_id], current_user
   end
 end

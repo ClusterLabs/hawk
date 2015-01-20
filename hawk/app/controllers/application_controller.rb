@@ -217,6 +217,10 @@ class ApplicationController < ActionController::Base
     authorized? || access_denied
   end
 
+  def god_required
+    raise CibObject::PermissionDenied unless is_god?
+  end
+
   # Tests:
   # 1) JSON
   #    - load status page

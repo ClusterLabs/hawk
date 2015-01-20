@@ -1,4 +1,15 @@
 module TagHelper
+  def navbar_item(text, icon)
+    text_icon(
+      content_tag(
+        :span,
+        text,
+        class: 'hidden-xs'
+      ),
+      icon
+    )
+  end
+
   def text_icon(text, icon, options = {})
     [
       text,

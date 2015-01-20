@@ -34,12 +34,14 @@
 
 //= require_self
 
+//= require module/nodes
 //= require module/roles
 //= require module/users
 //= require module/settings
 
 $(function() {
   $('[data-toggle="tooltip"]').tooltip();
+  $('.nav-tabs').stickyTabs();
 
   $('.navbar a.toggle').on('click', function(e) {
     e.preventDefault();

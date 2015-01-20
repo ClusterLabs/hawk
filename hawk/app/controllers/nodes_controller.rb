@@ -4,7 +4,7 @@
 #            A web-based GUI for managing and monitoring the
 #          Pacemaker High-Availability cluster resource manager
 #
-# Copyright (c) 2011-2013 SUSE LLC, All Rights Reserved.
+# Copyright (c) 2014 SUSE LLC, All Rights Reserved.
 #
 # Author: Tim Serong <tserong@suse.com>
 #
@@ -31,32 +31,66 @@
 
 class NodesController < ApplicationController
   before_filter :login_required
+  before_filter :set_title
+  before_filter :set_cib
 
-  before_filter :get_cib
+  before_filter :god_required, only: [:events]
 
-  def get_cib
-    @cib = Cib.new params[:cib_id], current_user # RORSCAN_ITL (not mass assignment)
+  def index
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: Node.ordered.to_json
+      end
+    end
   end
 
-  def initialize
-    super
-  end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
   def show
     @node = Node.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
   end
 
-  # Don't strictly need CIB for this...
   def events
-    unless is_god?
-      # TODO(should): duplicates hb_report, resources_controller: consolidate
-      render :permission_denied
-      return
-    end
     respond_to do |format|
       format.json { render :template => "nodes/events", :formats => [:js] }
       format.html { render :template => "nodes/events" }
     end
   end
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+  protected
+
+  def set_title
+    @title = _('Nodes')
+  end
+
+  def set_cib
+    @cib = Cib.new params[:cib_id], current_user
+  end
 end

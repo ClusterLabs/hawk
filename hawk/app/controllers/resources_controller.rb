@@ -4,7 +4,7 @@
 #            A web-based GUI for managing and monitoring the
 #          Pacemaker High-Availability cluster resource manager
 #
-# Copyright (c) 2011-2013 SUSE LLC, All Rights Reserved.
+# Copyright (c) 2014 SUSE LLC, All Rights Reserved.
 #
 # Author: Tim Serong <tserong@suse.com>
 #
@@ -24,36 +24,35 @@
 # other software, or any other product whatsoever.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program; if not, see <http://www.gnu.org/licenses/>.
+# along with this program; if not, write the Free Software Foundation,
+# Inc., 59 Temple Place - Suite 330, Boston MA 02111-1307, USA.
 #
 #======================================================================
 
-# For generic resource functionality only (details, events).
-# Specifics (create, delete etc.) belong in Primitive etc.
-
-# TODO(should): move this to Util?
-def sane_time(t)
-  t = t.to_i
-  if (t > 0)
-    Time.at(t).strftime("%Y-%m-%d %H:%M:%S")
-  else
-    ""
-  end
-end
-
 class ResourcesController < ApplicationController
   before_filter :login_required
+  before_filter :set_title
+  before_filter :set_cib
 
-#  before_filter :get_cib
-#
-#  def get_cib
-#    @cib = Cib.new params[:cib_id], current_user
-#  end
-#
-  def initialize
-    super
-    @title = _('Resources')
+  before_filter :god_required, only: [:events]
+
+  def index
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: Resource.ordered.to_json
+      end
+    end
   end
+
+
+
+
+
+
+
+
+
 
   def show
     @res = Resource.find params[:id]
@@ -125,11 +124,6 @@ class ResourcesController < ApplicationController
 
   # Don't strictly need CIB for this...
   def events
-    unless is_god?
-      # TODO(should): duplicates hb_report, nodes_controller: consolidate
-      render :permission_denied
-      return
-    end
     respond_to do |format|
       format.json { render :template => "resources/events", :formats => [:js] }
       format.html { render :template => "resources/events" }
@@ -145,4 +139,29 @@ class ResourcesController < ApplicationController
     render
   end
 
+  def sane_time(t)
+    t = t.to_i
+    if (t > 0)
+      Time.at(t).strftime("%Y-%m-%d %H:%M:%S")
+    else
+      ""
+    end
+  end
+
+
+
+
+
+
+
+
+  protected
+
+  def set_title
+    @title = _('Resources')
+  end
+
+  def set_cib
+    @cib = Cib.new params[:cib_id], current_user
+  end
 end

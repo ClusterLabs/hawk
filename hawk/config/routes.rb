@@ -34,8 +34,6 @@ Rails.application.routes.draw do
 
   resource :session
   resources :cib, only: [:show] do
-    resources :resources
-    resources :primitives
     resources :templates
     resources :groups
     resources :clones
@@ -45,21 +43,40 @@ Rails.application.routes.draw do
     resources :colocations
     resources :orders
     resources :tickets
-    resources :nodes
 
 
+
+    resources :resources do
+      member do
+        get :events
+      end
+    end
+
+    resources :primitives do
+      member do
+        get :events
+      end
+    end
+
+    resources :nodes do
+      member do
+        get :events
+      end
+    end
 
     resources :roles
     resources :users
-
-    resource :settings, only: [:edit, :update]
-    resource :crm_config, only: [:edit, :update]
 
     resource :checks, only: [] do
       collection do
         get :status
       end
     end
+
+    resource :settings, only: [:edit, :update]
+    resource :crm_config, only: [:edit, :update]
+
+    resource :dashboard, only: [:show]
   end
 
   match 'cib/:cib_id/primitives/:id/monitor_intervals' => 'primitives#monitor_intervals', :as => :primitives_mi, via: [:get, :post]

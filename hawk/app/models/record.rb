@@ -32,7 +32,7 @@ class Record < Tableless
     # TODO(must): really, in the context this is used, we already have a parsed
     # CIB in the Cib object. We should either *use* this, or ensure CIB in
     # Cib isn't parsed unless actually needed for the status page.
-    def find(id, attr='id')
+    def find(id, attr = 'id')
       begin
         xml = REXML::Document.new(
           Invoker.instance.cibadmin(
