@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
       guest: 7630,
       host: 7630
 
-    machine.vm.network "private_network",
+    machine.vm.network :private_network,
       ip: "10.13.37.10"
 
     machine.vm.provision :chef_solo do |chef|
@@ -68,7 +68,7 @@ Vagrant.configure("2") do |config|
         guest: 7630,
         host: 7630 + i
 
-      machine.vm.network "private_network",
+      machine.vm.network :private_network,
         ip: "10.13.37.#{10 + i}"
 
       machine.vm.provision :chef_solo do |chef|

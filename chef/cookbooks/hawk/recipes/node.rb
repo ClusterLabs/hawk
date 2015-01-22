@@ -17,6 +17,52 @@
 # limitations under the License.
 #
 
+ruby_block "webui_check" do
+  block do
+    require "net/ssh"
+    require "timeout"
+
+    begin
+      Timeout.timeout(600) do
+        while true
+          exit_code = nil
+
+          begin
+            Net::SSH.start node["hawk"]["node"]["ssh_host"], "vagrant", password: "vagrant", paranoid: false do |ssh|
+              ssh.open_channel do |channel|
+                channel.exec(node["hawk"]["node"]["ssh_check"]) do |ch, success|
+                  unless success
+                    Chef::Log.info "Failed to execute cluster check!"
+                  end
+
+                  channel.on_request("exit-status") do |ch, data|
+                    exit_code = data.read_long
+                  end
+                end
+              end
+            end
+          rescue Errno::EHOSTUNREACH => e
+            Chef::Log.info "Waiting to become available webui..."
+          end
+
+          case
+          when exit_code == 0
+            break
+          when exit_code >= 1
+            Chef::Log.info "Waiting for webui cluster setup..."
+          end
+
+          sleep 10
+        end
+      end
+    rescue Timeout::Error
+      raise "Cluster setup on webui timed out!"
+    end
+  end
+
+  action :run
+end
+
 node["hawk"]["node"]["packages"].each do |name|
   package name do
     action :install
