@@ -5,11 +5,6 @@ Vagrant.configure("2") do |config|
   config.vm.box = "webhippie/opensuse-13.2"
   config.vm.box_check_update = true
 
-  if Vagrant.has_plugin? "vagrant-librarian-chef"
-    config.librarian_chef.enabled = true
-    config.librarian_chef.cheffile_dir = "chef"
-  end
-
   config.vm.define "webui", default: true do |machine|
     machine.vm.hostname = "webui"
 
@@ -31,12 +26,12 @@ Vagrant.configure("2") do |config|
       guest: 7630,
       host: 7630
 
-    machine.vm.network "private_network",
+    machine.vm.network :private_network,
       ip: "10.13.37.10"
 
     machine.vm.provision :chef_solo do |chef|
-      chef.cookbooks_path = ["chef/cookbooks", "chef/site"]
-      chef.roles_path = "chef/roles"
+      chef.cookbooks_path = ["chef/cookbooks"]
+      chef.roles_path = ["chef/roles"]
       chef.custom_config_path = "chef/solo.rb"
       chef.synced_folder_type = "rsync"
 
@@ -53,6 +48,7 @@ Vagrant.configure("2") do |config|
     machine.vm.provider :libvirt do |provider, override|
       provider.memory = 1024
       provider.cpus = 1
+      provider.graphics_port = 9200
     end
   end
 
@@ -72,12 +68,12 @@ Vagrant.configure("2") do |config|
         guest: 7630,
         host: 7630 + i
 
-      machine.vm.network "private_network",
+      machine.vm.network :private_network,
         ip: "10.13.37.#{10 + i}"
 
       machine.vm.provision :chef_solo do |chef|
-        chef.cookbooks_path = ["chef/cookbooks", "chef/site"]
-        chef.roles_path = "chef/roles"
+        chef.cookbooks_path = ["chef/cookbooks"]
+        chef.roles_path = ["chef/roles"]
         chef.custom_config_path = "chef/solo.rb"
         chef.synced_folder_type = "rsync"
 
@@ -94,6 +90,7 @@ Vagrant.configure("2") do |config|
       machine.vm.provider :libvirt do |provider, override|
         provider.memory = 512
         provider.cpus = 1
+        provider.graphics_port = 9200 + i
       end
     end
   end
