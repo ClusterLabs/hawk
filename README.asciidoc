@@ -140,27 +140,27 @@ emplyees.
 To be prepared for getting our vagrant setup running you need to follow
 some steps.
 
-* Install the vagrant package from http://www.vagrantup.com/downloads.html
+* Install the vagrant package from http://www.vagrantup.com/downloads.html,
+  the minimal version requirement is +>= 1.7.0+ in order to work properly
+  with openSUSE/SLED workstation setups.
 
-* Install +virtualbox+, we assume you know how to do that on your OS.
-
-* If you are working on openSUSE/SLED you need to apply an open pull request:
-
---------------------------------------
-  # cd /opt/vagrant/embedded/gems/gems/vagrant-1.6.5/
-  # wget -O - https://github.com/mitchellh/vagrant/pull/4492.patch | patch -p1 -f
---------------------------------------
-
-* Install the +librarian+ plugin for vagrant with the following command:
+* Install +virtualbox+, we assume you know how to do that on your OS. If
+  you prefer +libvirt+ you can use that as well. In that case you have to
+  install the bindfs plugin for vagrant with the following command if you
+  want to have write access to the shared source folder within the virtual
+  machine:
 
 --------------------------------------
-  # vagrant plugin install vagrant-librarian-chef
+  # vagrant plugin install vagrant-bindfs
 --------------------------------------
 
 This is all you need to prepare initally to set up the vagrant environment,
-now you can simply start the virtual machin with +vagrant up+ and start
-an ssh session with +vagrant ssh webui+. If you want to access the source
-within the virtual machine you have to switch to the +/vagrant+ directory.
+now you can simply start the virtual machine with +vagrant up+ and start
+an ssh session with +vagrant ssh webui+ based on +virtualbox+. To start the
+virtual machines on +libvirt+ you have to append +--provider=libvirt+ to the
+above commands, e.g. +vagrant up --provider=libvirt+. If you want to access
+the source within the virtual machine you have to switch to the +/vagrant+
+directory.
 
 You can access the Hawk web interface based on the git source through
 +http://localhost:3000+ now. If you want to access the version installed
@@ -174,9 +174,9 @@ end up with something like:
 
 --------------------------------------
 # ls /usr/sbin/hawk_* -l+ +
--rwsr-x--- 1 root haclient 9884 2011-04-14 22:56 /usr/sbin/hawk_chkpwd+ 
--rwsr-x--- 1 root haclient 9928 2011-04-14 22:56 /usr/sbin/hawk_invoke+ 
--rwxr-xr-x 1 root root     9992 2011-04-14 22:56 /usr/sbin/hawk_monitor+ 
+-rwsr-x--- 1 root haclient 9884 2011-04-14 22:56 /usr/sbin/hawk_chkpwd+
+-rwsr-x--- 1 root haclient 9928 2011-04-14 22:56 /usr/sbin/hawk_invoke+
+-rwxr-xr-x 1 root root     9992 2011-04-14 22:56 /usr/sbin/hawk_monitor+
 --------------------------------------
 
 +hawk_chkpwd+ is almost identical to +unix2_chkpwd+, except it restricts
