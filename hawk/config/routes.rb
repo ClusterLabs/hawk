@@ -116,6 +116,7 @@ Rails.application.routes.draw do
 
   get 'monitor' => 'main#monitor', :as => :monitor
 
+  get 'help' => 'pages#help', :as => :help
   get 'logout' => 'sessions#destroy', :as => :logout
   get 'login' => 'sessions#new', :as => :login
 

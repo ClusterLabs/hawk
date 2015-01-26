@@ -20,7 +20,13 @@ module ApplicationHelper
         unless @title.empty?
           output.push @title
         end
-      end.compact.join(": ")
+      end.compact.join(': ')
+    end
+  end
+
+  def page_title
+    @page_title ||= begin
+      @title
     end
   end
 
@@ -32,7 +38,7 @@ module ApplicationHelper
     end
 
     if valid.include? params[:controller].to_sym
-      "active"
+      'active'
     else
       nil
     end
@@ -41,9 +47,9 @@ module ApplicationHelper
   def flash_class_for(type)
     case type
     when :alert
-      "alert-danger"
+      'alert-danger'
     else
-      "alert-#{type}"
+      ['alert', type].join('-')
     end
   end
 
@@ -55,33 +61,33 @@ module ApplicationHelper
 
       output.push tag(
         :meta,
-        "name" => "keywords",
-        "content" => ""
+        'name' => 'keywords',
+        'content' => ''
       )
 
       output.push tag(
         :meta,
-        "name" => "description",
-        "content" => ""
+        'name' => 'description',
+        'content' => ''
       )
 
       output.push tag(
         :meta,
-        "content" => "IE=edge",
-        "http-equiv" => "X-UA-Compatible"
+        'content' => 'IE=edge',
+        'http-equiv' => 'X-UA-Compatible'
       )
 
       output.push tag(
         :meta,
-        "name" => "viewport",
-        "content" => "width=device-width, initial-scale=1.0"
+        'name' => 'viewport',
+        'content' => 'width=device-width, initial-scale=1.0'
       )
 
       output.push tag(
         :meta,
-        "charset" => "utf-8"
+        'charset' => 'utf-8'
       )
-    end.join("\n").html_safe
+    end.join('').html_safe
   end
 
   def localized_js
@@ -91,48 +97,70 @@ module ApplicationHelper
     ].join('/')
   end
 
-
-
-  def inject_linebreaks(e)
-    lines = e.split("\n").each{|line| h(line)}.join('<br/>')
-  end
-
-  def installed_documentation
-    def file_or_nil(f)
-      File.exists?("#{Rails.root}/public#{f}") ? f : nil
-    end
-
+  def installed_docs
     [
       {
-        :title => "SLE HA Administration Guide",
-        :html => file_or_nil("/doc/sle-ha-manuals_en/index.html"),
-        :pdf  => file_or_nil("/doc/sle-ha-guide_en-pdf/book.sleha_en.pdf"),
-        :desc  => <<-eos
+        title: 'SLE HA Administration Guide',
+        html: docs_path.join(
+          'sle-ha-manuals_en',
+          'index.html'
+        ),
+        pdf: docs_path.join(
+          'sle-ha-guide_en-pdf',
+          'book.sleha_en.pdf'
+        ),
+        desc: <<-EOS
           Introduces the product architecture and guides you through the setup,
-          configuration, and administration of an HA cluster with SUSE Linux Enterprise
-          High Availability Extension. Provides step-by-step instructions for key tasks,
-          covering both graphical tools (like YaST or Hawk) and the command line
-          interface (crmsh) in detail.
-        eos
+          configuration, and administration of an HA cluster with SUSE Linux
+          Enterprise High Availability Extension. Provides step-by-step
+          instructions for key tasks, covering both graphical tools (like YaST
+          or Hawk) and the command line interface (crmsh) in detail.
+        EOS
       },
       {
-        :title => "Highly Available NFS Storage with DRBD and Pacemaker",
-        :html => file_or_nil("/doc/sle-ha-manuals_en/art_ha_quick_nfs.html"),
-        :pdf  => file_or_nil("/doc/sle-ha-nfs-quick_en-pdf/art_ha_quick_nfs_en.pdf"),
-        :desc  => <<-eos
-          Describes how to set up a highly available NFS storage in a 2-node cluster with
-          SLE HA, including the setup for DRBD and LVM2\u00AE.
-        eos
+        title: 'HA NFS Storage with DRBD and Pacemaker',
+        html: docs_path.join(
+          'sle-ha-manuals_en',
+          'art_ha_quick_nfs.html'
+        ),
+        pdf: docs_path.join(
+          'sle-ha-nfs-quick_en-pdf',
+          'art_ha_quick_nfs_en.pdf'
+        ),
+        desc: <<-EOS
+          Describes how to set up a highly available NFS storage in a 2-node
+          cluster with SLE HA, including the setup for DRBD and LVM2\u00AE.
+        EOS
       },
       {
-        :title => "SLE HA GEO Clustering Quick Start",
-        :html => file_or_nil("/doc/sle-ha-geo-manuals_en/index.html"),
-        :pdf  => file_or_nil("/doc/sle-ha-geo-quick_en-pdf/art.ha.geo.quick_en.pdf"),
-        :desc => <<-eos
-          Introduces the main components and displays a basic setup for geographically
-          dispersed clusters (Geo clusters), including storage replication via DRBD\u00AE.
-        eos
+        title: 'SLE HA GEO Clustering Quick Start',
+        html: docs_path.join(
+          'sle-ha-geo-manuals_en',
+          'index.html'
+        ),
+        pdf: docs_path.join(
+          'sle-ha-geo-quick_en-pdf',
+          'art.ha.geo.quick_en.pdf'
+        ),
+        desc: <<-EOS
+          Introduces the main components and displays a basic setup for
+          geographically dispersed clusters (Geo clusters), including storage
+          replication via DRBD\u00AE.
+        EOS
       }
-    ].select {|h| h[:html] || h[:pdf] }
+    ].select do |h|
+      h[:html].exist? || h[:pdf].exist?
+    end
+  end
+
+  def docs_path
+    Rails.root.join('public', 'doc')
+  end
+
+  def docs_link(doc, format)
+    doc[format].to_s.gsub(
+      Rails.root.join('public').to_s,
+      ''
+    )
   end
 end

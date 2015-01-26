@@ -32,6 +32,10 @@
 
         #navbar.navbar-right
           %ul.nav.navbar-nav
+            - unless installed_docs.empty?
+              %li
+                = link_to navbar_item(_('Help'), 'question'), help_path, class: 'help', data: { toggle: 'modal', target: '#modal' }
+
             - if current_cib.live?
               %li
                 = link_to navbar_item(_('Simulator'), 'toggle-off'), cib_dashboard_path(cib_id: simulator_cib), class: 'simulator', title: _('Enable the simulation mode')
@@ -117,3 +121,5 @@
               = _('UI:')
             %dd
               = current_cib.meta.host
+
+    = render partial: 'shared/modal'
