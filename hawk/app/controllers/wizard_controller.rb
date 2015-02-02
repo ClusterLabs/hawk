@@ -261,14 +261,14 @@ class WizardController < ApplicationController
 
     i = @steps.index(@step)
     @step = @steps[i + 1] if i < @steps.length - 1
-    @index = i + 1
+    @index = @steps.index(@step)
     @total = @steps.length - 2
   end
 
   def prev_step
     i = @steps.index(@step)
     @step = @steps[i - 1] if i > 0
-    @index = i + 1
+    @index = @steps.index(@step)
     @total = @steps.length - 2
   end
 
