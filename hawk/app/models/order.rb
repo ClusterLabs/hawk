@@ -64,7 +64,7 @@ resources =
 class Order < Constraint
   @attributes = :score, :resources, :symmetrical
   attr_accessor *@attributes
-  
+
   def initialize(attributes = nil)
     @score        = nil
     @resources    = []
@@ -100,7 +100,7 @@ class Order < Constraint
 
     true
   end
-  
+
   def update
     unless CibObject.exists?(id, 'rsc_order')
       error _('Constraint ID "%{id}" does not exist') % { :id => @id }
@@ -119,7 +119,7 @@ class Order < Constraint
 
     true
   end
-  
+
   def update_attributes(attributes = nil)
     @score        = nil
     @resources    = []

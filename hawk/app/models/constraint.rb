@@ -53,7 +53,7 @@ Each has a simple and complex form:
   </rsc_location>
 
   <rsc_order id="order-2" first="IP" then="Webserver" score="0" symmetrical="true"/>
-  
+
   <rsc_order id="order-1">
     <resource_set id="ordered-set-1" sequential="false">
       <resource_ref id="A"/>
@@ -66,7 +66,7 @@ Each has a simple and complex form:
   </rsc_order>
 
   Or, in future:
-  
+
   <rsc_order id="order-set" kind="Mandatory">
     <ordering_set id="order-set-0" internal-ordering="Mandatory">
       <resource_ref id="dummy0" role="Master"/>
@@ -79,7 +79,7 @@ Each has a simple and complex form:
   </rsc_order>
 
   <rsc_colocation id="coloc-1" rsc="B" with-rsc="A" score="INFINITY"/>
-  
+
   <rsc_colocation id="coloc-1" score="INFINITY" >
     <resource_set id="collocated-set-1" sequential="false">
       <resource_ref id="A"/>
@@ -92,7 +92,7 @@ Each has a simple and complex form:
   </rsc_colocation>
 
   Or, in future:
-  
+
    <rsc_colocation id="coloc-set" score="INFINITY">
      <colocation_set id="coloc-set-1" internal-colocation="0">
        <resource_ref id="dummy0" role="Master"/>

@@ -13,28 +13,28 @@ module WizardHelper
         flat_hash[key] = v
       end
     end
-    
+
     flat_hash
   end
-  
+
   def flat_hash_key(names)
     names = Array.new(names)
-    name = names.shift.to_s.dup 
+    name = names.shift.to_s.dup
     names.each do |n|
       name << "[#{n}]"
     end
     name
   end
-  
+
   def hash_as_hidden_fields(hash = params)
     hidden_fields = []
     flatten_hash(hash).each do |name, value|
       value = [value] if !value.is_a?(Array)
       value.each do |v|
-        hidden_fields << hidden_field_tag(name, v.to_s, :id => nil)          
+        hidden_fields << hidden_field_tag(name, v.to_s, :id => nil)
       end
     end
-    
+
     hidden_fields.join("\n")
   end
 end

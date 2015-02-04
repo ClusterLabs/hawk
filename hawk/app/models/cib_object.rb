@@ -47,7 +47,7 @@ class CibObject
 
   class RecordNotFound < CibObjectError
   end
-  
+
   class PermissionDenied < CibObjectError
   end
 
@@ -115,7 +115,7 @@ class CibObject
         raise CibObject::CibObjectError, _('Unable to parse cibadmin output') unless xml.root
         # Now we may have children we want (which may be an empty set), e.g.:
         # when requesting "constraints", this works because there's always one
-        # constraints element in the CIB.  It'd work the same if requesting 
+        # constraints element in the CIB.  It'd work the same if requesting
         # resources or whatnot too.  Where it gets weird is if we want to
         # request all elements of, say, type "template" or "primitive".
         # In this case we either get back:
@@ -144,7 +144,7 @@ class CibObject
     end
 
     private
-    
+
     def class_from_element_name(name)
       @@map = {
         'node'            => Node,
@@ -162,7 +162,7 @@ class CibObject
       }
       @@map[name]
     end
-    
+
   end
 
   protected

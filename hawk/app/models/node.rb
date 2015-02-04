@@ -61,7 +61,7 @@ class Node < CibObject
     def instantiate(xml)
       node = allocate
       # TODO(should): Apparently this instance_variable_set business isn't necessary,
-      # can just use node.uname, node.attrs etc...  Should change across all models. 
+      # can just use node.uname, node.attrs etc...  Should change across all models.
       node.instance_variable_set(:@uname, xml.attributes['uname'] || '')
       node.instance_variable_set(:@attrs, xml.elements['instance_attributes'] ?
         Hash[xml.elements['instance_attributes'].elements.collect {|e|
@@ -84,7 +84,7 @@ class Node < CibObject
       end
       node
     end
-    
+
   end
 end
 

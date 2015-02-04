@@ -76,7 +76,7 @@ class CibController < ApplicationController
       render :status => 500, :json => { :errors => [ e.message ] }
       return
     end
-    
+
     if params[:mini]
       # This blob is remarkably like the CIB, but staus is consolidated into the
       # main sections (nodes, resources) rather than being kept separate.

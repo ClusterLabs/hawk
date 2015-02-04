@@ -55,7 +55,7 @@ class PrimitivesController < ApplicationController
   def create
     @title = _('Create Resource')
     unless params[:cancel].blank?
-      redirect_to cib_resources_path 
+      redirect_to cib_resources_path
       return
     end
     @res = Primitive.new params[:primitive]  # RORSCAN_ITL (mass ass. OK)

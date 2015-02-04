@@ -255,7 +255,7 @@ class ExplorerController < ApplicationController
 
   def init_params
     lasttime = @hb_report.lasttime
-    if @hb_report.running? && lasttime 
+    if @hb_report.running? && lasttime
       # If we're already running, use the last run time & date
       @from_time, @to_time = lasttime
     else
@@ -266,7 +266,7 @@ class ExplorerController < ApplicationController
       # Ensure from_time is earlier than to_time.  Should probably make sure they're
       # not idendical (kind of pointless doing a zero minute hb_report...)
       @from_time, @to_time = @to_time, @from_time if @from_time > @to_time
-      
+
       # ...and now back to a string
       @from_time = @from_time.strftime("%Y-%m-%d %H:%M")
       @to_time = @to_time.strftime("%Y-%m-%d %H:%M")

@@ -36,10 +36,10 @@
 #   colocation.resources = [ 'C', 'B', 'A' ];
 
 class Colocation < Constraint
-  
+
   @attributes = :score, :resources
   attr_accessor *@attributes
-  
+
   def initialize(attributes = nil)
     @score      = nil
     @resources  = []
@@ -74,7 +74,7 @@ class Colocation < Constraint
 
     true
   end
-  
+
   def update
     unless CibObject.exists?(id, 'rsc_colocation')
       error _('Constraint ID "%{id}" does not exist') % { :id => @id }
@@ -93,7 +93,7 @@ class Colocation < Constraint
 
     true
   end
-  
+
   def update_attributes(attributes = nil)
     @score      = nil
     @resources  = []

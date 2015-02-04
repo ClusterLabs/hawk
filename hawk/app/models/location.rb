@@ -32,7 +32,7 @@
 class Location < Constraint
   @attributes = :rules, :rsc
   attr_accessor *@attributes
-  
+
   def initialize(attributes = nil)
     @rules  = []
     @rsc    = ['']
@@ -89,7 +89,7 @@ class Location < Constraint
 
     true
   end
-  
+
   def update
     unless CibObject.exists?(id, 'rsc_location')
       error _('Constraint ID "%{id}" does not exist') % { :id => @id }
@@ -110,7 +110,7 @@ class Location < Constraint
 
     true
   end
-  
+
   def update_attributes(attributes = nil)
     @rules  = []
     @rsc    = ['']

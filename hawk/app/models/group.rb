@@ -32,7 +32,7 @@
 class Group < CibObject
   include FastGettext::Translation
 
-  @attributes = :children, :meta 
+  @attributes = :children, :meta
   attr_accessor *@attributes
 
   def initialize(attributes = nil)
@@ -82,7 +82,7 @@ class Group < CibObject
 
     true
   end
-  
+
   def update
     # Saving an existing group
     unless CibObject.exists?(id, 'group')

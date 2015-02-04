@@ -199,7 +199,7 @@ class Cib < CibObject
     expected_up = get_xml_attr(ns, 'shutdown', '0') == 0
 
     state = :unclean
-    if !in_ccm 
+    if !in_ccm
       state = :offline
     elsif crm_state == 'online'
       if join_state == 'member'
@@ -623,7 +623,7 @@ class Cib < CibObject
     s = @dc.rindex(' ')
     @dc.slice!(0, s + 1) if s
     @dc = _('Unknown') if @dc.empty?
-    
+
     @epoch = "#{get_xml_attr(@xml.root, 'admin_epoch')}:#{get_xml_attr(@xml.root, 'epoch')}:#{get_xml_attr(@xml.root, 'num_updates')}";
 
     # Tickets will always have a granted property (boolean).  They may also
