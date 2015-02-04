@@ -30,31 +30,55 @@
 //======================================================================
 
 .circle {
-  @include border-top-radius(50%);
-  @include border-right-radius(50%);
-  @include border-bottom-radius(50%);
-  @include border-left-radius(50%);
-  display: inline-block;
-  margin: auto;
+  border-radius: 50%;
+  text-align: center;
+  vertical-align: middle;
+  position: relative;
+  display: table;
+  margin: 5px auto;
+
+  //box-shadow: inset -10px -10px 100px #000, 10px 10px 20px black, inset 0px 0px 10px black;
+
+  /*&::after {
+    background-color: rgba(255, 255, 255, 0.3);
+    content: '';
+    height: 45%;
+    width: 12%;
+    position: absolute;
+    top: 4%;
+    left: 15%;
+    border-radius: 50%;
+    transform: rotate(40deg);
+  }*/
+
+  .text {
+    display: table-cell;
+    vertical-align: middle;
+  }
 
   &.circle-success {
     background-color: darken($alert-success-bg, 30%);
     border-color: $alert-success-border;
-    color: $alert-success-text;
+    color: darken($alert-success-text, 30%);
   }
 
   &.circle-danger {
     background-color: darken($alert-danger-bg, 30%);
     border-color: $alert-danger-border;
-    color: $alert-danger-text;
+    color: darken($alert-danger-text, 30%);
   }
 
   &.circle-large {
-    font-size: 30px;
-    padding: 25px;
+    height: 100px;
+    width: 100px;
+
+    font-size: 25px;
   }
 
   &.circle-small {
+    height: 15px;
+    width: 15px;
+
     font-size: 14px;
     padding: 2px;
   }
