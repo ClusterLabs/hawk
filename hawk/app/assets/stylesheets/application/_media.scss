@@ -61,3 +61,21 @@
     }
   }
 }
+
+@media(max-width: 768px) {
+  #wrapper {
+    margin-bottom: 0;
+  }
+
+  footer {
+    position: relative;
+    border-bottom: 1px solid #999;
+
+    .container-fluid {
+      .copyright,
+      .metadata {
+        text-align: center;
+      }
+    }
+  }
+}

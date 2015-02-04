@@ -41,7 +41,8 @@
 
     %footer
       .container-fluid
-        %p
-          = branding_config[:provider].html_safe
+        .col-lg-12.copyright
+          %p
+            = branding_config[:provider].html_safe
 
     = render partial: 'shared/modal'

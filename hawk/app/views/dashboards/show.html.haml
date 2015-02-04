@@ -2,45 +2,61 @@
   = icon_text 'dashboard', _('Dashboard'), class: 'page'
 
 .row
-  .col-md-4
-    .panel.panel-default
+  .col-lg-8
+    .panel.panel-default{ data: { mh: 'status' } }
       .panel-heading
         %h2.panel-title
           = _('Cluster')
-      .panel-body
-        &nbsp;
 
-  .col-md-4
-    .panel.panel-default
+      %table.table.table-striped
+        %tbody
+          %tr
+            %th.col-xs-6
+              = _('STONITH Enabled')
+            %td.text-danger{ rv: { class_text_success: 'state.stonith_enabled', text: 'state.stonith_enabled' } }
+              No
+          %tr
+            %th
+              = _('No Quorum Policy')
+            %td{ rv: { text: 'state.quorum_policy' } }
+              Ignore
+          %tr
+            %th
+              = _('Symmetric Cluster')
+            %td{ rv: { text: 'state.symmetric_cluster' } }
+              Yes
+          %tr
+            %th
+              = _('Resource Stickiness')
+            %td{ rv: { text: 'state.resource_stickiness' } }
+              1
+
+  .col-lg-4
+    .panel.panel-default{ data: { mh: 'status' } }
       .panel-heading
         %h2.panel-title
           = _('Status')
-      .panel-body
-        &nbsp;
 
-  .col-md-4
-    .panel.panel-default
-      .panel-heading
-        %h2.panel-title
-          = _('Errors')
-      .panel-body
-        &nbsp;
+      .panel-body.text-center
+        .circle.circle-large.circle-success{ rv: { class_circle_danger: 'state.error_state' } }
+          %p.text{ rv: { text: 'state.error_text' } }
+            OK
 
 %ul.nav.nav-tabs.nav-justified.margin-bottom
   %li.active
-    = link_to _('Resources'), '#primitives', data: { toggle: 'tab' }
+    = link_to _('Primitives'), '#primitives', data: { toggle: 'tab' }
   %li
     = link_to _('Nodes'), '#nodes', data: { toggle: 'tab' }
-  %li
-    = link_to _('Dependencies'), '#dependencies', data: { toggle: 'tab' }
 
 .tab-content
   #primitives.tab-pane.active
     .panel.panel-default
+      .panel-body.text-center
+        TBD PRIMITIVES
       %table.table.primitives
 
   #nodes.tab-pane
     .panel.panel-default
+      .panel-body.text-center
+        TBD NODES
       %table.table.nodes
-
-  #dependencies.tab-pane

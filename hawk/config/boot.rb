@@ -37,6 +37,7 @@ end
 ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
 
 require 'socket'
+require 'open3'
 require 'rexml/document'
 
 if File.exists? ENV['BUNDLE_GEMFILE']
