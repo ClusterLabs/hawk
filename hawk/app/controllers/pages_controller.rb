@@ -36,7 +36,7 @@ class PagesController < ApplicationController
     only: [:help]
 
   def index
-    @title = _('Welcome')
+    @title = _("Welcome")
 
     respond_to do |format|
       format.html do
@@ -46,18 +46,33 @@ class PagesController < ApplicationController
   end
 
   def help
-    @title = _('Help')
+    @title = _("Help")
 
     respond_to do |format|
       format.html
     end
   end
 
+  def monitor
+    result = Open3.popen3("/usr/sbin/hawk_monitor") do |i, o|
+      o.read
+    end
+
+    headers, body = result.split("\n\n", 2)
+
+    headers.split("\n").each do |header|
+      name, value = header.split(":")
+      response.headers[name] = value.strip
+    end
+
+    render json: body
+  end
+
   protected
 
   def detect_modal_layout
     if request.xhr?
-      'modal'
+      "modal"
     else
       detect_current_layout
     end
