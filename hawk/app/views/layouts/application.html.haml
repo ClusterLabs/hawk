@@ -24,7 +24,7 @@
       = stylesheet_link_tag 'ie'
       = javascript_include_tag 'ie'
 
-  %body{ id: controller_name, class: current_cib.id, data: { cib: current_cib.id } }
+  %body{ **body_attrs }
     %nav.navbar.navbar-inverse.navbar-fixed-top{ role: 'navigation' }
       .container-fluid{ stye: 'white-space: nobreak;' }
         .navbar-header

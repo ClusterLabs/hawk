@@ -50,6 +50,7 @@
   }
 
   #content {
+    position: relative;
     width: 100%;
     padding: 10px 30px;
   }
@@ -142,6 +143,10 @@
     .panel-footer {
       @include gradient-vertical(#f4f4f4, #e7e7e7);
     }
+  }
+
+  [data-growl="container"] {
+    min-width: 250px;
   }
 }
 

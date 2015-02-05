@@ -30,6 +30,17 @@ module ApplicationHelper
     end
   end
 
+  def body_attrs
+    {
+      id: controller_name,
+      class: current_cib.id,
+      data: {
+        cib: current_cib.id,
+        monitor: current_cib.epoch
+      }
+    }
+  end
+
   def active_menu_with(list)
     valid = if list.is_a? Array
       list

@@ -29,33 +29,11 @@
 //
 //======================================================================
 
-//= require_tree ./gettext/locale
-//= require gettext/all
-
-//= require_self
-
-//= require module/forms
-//= require module/modals
-//= require module/roles
-//= require module/users
-//= require module/settings
-//= require module/monitor
-
 $(function() {
-  $('[data-toggle="tooltip"]').tooltip();
-  $('.nav-tabs').stickyTabs();
-
-  $('.navbar a.toggle').on('click', function(e) {
-    e.preventDefault();
-    $('#wrapper').toggleClass('toggled');
+  $('body').on('hidden.bs.modal', '.modal', function() {
+    $(this)
+      .removeData('bs.modal')
+      .find(".modal-content")
+      .empty();
   });
-
-  $.growl(
-    false,
-    {
-      element: '#content .container-fluid',
-      mouse_over: 'pause',
-      allow_dismiss: true
-    }
-  );
 });
