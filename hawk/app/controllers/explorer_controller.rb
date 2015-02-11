@@ -184,15 +184,11 @@ class ExplorerController < ApplicationController
         :inline => _('Required parameters "left" and "right" not specified')
       return
     end
-    # next two are a bit rough
-    params[:left].gsub!(/[^\w-]/, "")
-    params[:right].gsub!(/[^\w-]/, "")
 
-    l = r = nil
-    # These next two should work in block form, but don't, and I have NFI why,
-    # so we're using the uglier "if" form.  *sigh*
-    if m = params[:left].to_s.match(/.*-([0-9]+)$/) ; l = m[1] ; end
-    if m = params[:right].match(/.*-([0-9]+)$/) ; r = m[1] ; end
+    # TODO: crmsh should be fixed so that peinput names
+    # can be given without the .bz2 suffix
+    l = params[:left] + ".bz2"
+    r = params[:right] + ".bz2"
 
     # Allows html inline into dialog or plain text if link opened in new window
     format = params[:format] == "html" ? "html" : ""
