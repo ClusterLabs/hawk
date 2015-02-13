@@ -87,6 +87,7 @@ class ExplorerController < ApplicationController
             @peinputs << {
               :timestamp => File.mtime(path).strftime("%Y-%m-%d %H:%M:%S"),
               :basename  => File.basename(path, ".bz2"),
+              :filename  => File.basename(path),
               :path      => path.sub("#{explorer_path.to_s}/", ''),  # only use relative portion
               :node      => path.split(File::SEPARATOR)[-3]
             }
@@ -185,10 +186,9 @@ class ExplorerController < ApplicationController
       return
     end
 
-    # TODO: crmsh should be fixed so that peinput names
-    # can be given without the .bz2 suffix
-    l = params[:left] + ".bz2"
-    r = params[:right] + ".bz2"
+    # l and r are filenames
+    l = params[:left]
+    r = params[:right]
 
     # Allows html inline into dialog or plain text if link opened in new window
     format = params[:format] == "html" ? "html" : ""
