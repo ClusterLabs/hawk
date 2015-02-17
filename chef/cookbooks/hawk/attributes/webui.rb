@@ -31,6 +31,7 @@ default["hawk"]["webui"]["packages"] = [
   "hawk",
   "hawk-templates",
   "ha-cluster-bootstrap",
+  "w3m",
 
   "glib2-devel",
   "libxml2-devel",

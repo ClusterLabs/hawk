@@ -31,6 +31,7 @@ default["hawk"]["node"]["packages"] = [
   "hawk",
   "hawk-templates",
   "ha-cluster-bootstrap",
+  "w3m",
 
   "apache2",
   "haproxy"
