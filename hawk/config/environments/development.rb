@@ -1,37 +1,74 @@
-Hawk::Application.configure do
-  # Settings specified here will take precedence over those in config/application.rb
+#======================================================================
+#                        HA Web Konsole (Hawk)
+# --------------------------------------------------------------------
+#            A web-based GUI for managing and monitoring the
+#          Pacemaker High-Availability cluster resource manager
+#
+# Copyright (c) 2009-2013 SUSE LLC, All Rights Reserved.
+#
+# Author: Tim Serong <tserong@suse.com>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of version 2 of the GNU General Public License as
+# published by the Free Software Foundation.
+#
+# This program is distributed in the hope that it would be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# Further, this software is distributed without any warranty that it is
+# free of the rightful claim of any third person regarding infringement
+# or the like.  Any license provided herein, whether implied or
+# otherwise, applies only to this software file.  Patent licenses, if
+# any, provided herein do not apply to combinations of this program with
+# other software, or any other product whatsoever.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write the Free Software Foundation,
+# Inc., 59 Temple Place - Suite 330, Boston MA 02111-1307, USA.
+#
+#======================================================================
 
-  # In the development environment your application's code is reloaded on
-  # every request. This slows down response time but is perfect for development
-  # since you don't have to restart the web server when you make code changes.
+Rails.application.configure do
   config.cache_classes = false
+  config.eager_load = false
+  config.consider_all_requests_local = true
+  config.serve_static_files = true
+  config.force_ssl = false
+  config.autoflush_log = true
 
-  # Log error messages when you accidentally call methods on nil.
-  config.whiny_nils = true
+  config.action_dispatch.show_exceptions = true
+  config.action_dispatch.cookies_serializer = :json
 
-  # Show full error reports and disable caching
-  config.consider_all_requests_local       = true
   config.action_controller.perform_caching = false
+  config.action_controller.allow_forgery_protection = true
 
-  # Don't care if the mailer can't send
-  #config.action_mailer.raise_delivery_errors = false
+  # config.action_mailer.raise_delivery_errors = true
+  # config.action_mailer.delivery_method = :smtp
 
-  # Print deprecation notices to the Rails logger
+  config.action_view.raise_on_missing_translations = true
+
   config.active_support.deprecation = :log
 
-  # Only use best-standards-support built into browsers
-  config.action_dispatch.best_standards_support = :builtin
+  # config.active_record.migration_error = :page_load
+  # config.active_record.dump_schema_after_migration = true
 
-  # Raise exception on mass assignment protection for Active Record models
-  #config.active_record.mass_assignment_sanitizer = :strict
-
-  # Log the query plan for queries taking more than this (works
-  # with SQLite, MySQL, and PostgreSQL)
-  #config.active_record.auto_explain_threshold_in_seconds = 0.5
-
-  # Do not compress assets
-  config.assets.compress = false
-
-  # Expands the lines which load the assets
   config.assets.debug = true
+  config.assets.raise_runtime_errors = true
+  config.assets.js_compressor = nil
+  config.assets.css_compressor = nil
+  config.assets.compile = true
+  config.assets.digest = true
+  config.assets.manifest = Rails.root.join("public", "assets", "manifest.json")
+
+  config.i18n.fallbacks = false
+
+  config.log_level = :debug
+  config.log_tags = []
+
+  # config.logger = ActiveSupport::TaggedLogging.new(
+  #   Logger.new(Rails.root.join("log", "development.log"))
+  # )
+
+  # config.logger.formatter = ::Hawk::Logger::Formatter.new
 end

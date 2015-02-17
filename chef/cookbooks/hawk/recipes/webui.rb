@@ -67,7 +67,7 @@ foreman_app "/vagrant/hawk" do
   port 3000
 
   content(
-    web: "bundle exec script/rails server"
+    web: "bundle exec bin/rails server"
   )
 end
 

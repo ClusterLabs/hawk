@@ -29,46 +29,31 @@
 #
 #======================================================================
 
-Rails.application.configure do
-  config.cache_classes = true
-  config.eager_load = false
-  config.consider_all_requests_local = true
-  config.serve_static_files = true
-  config.force_ssl = false
-  config.autoflush_log = false
+Rails.root.join('tmp', 'session_secret').tap do |secret_file|
+  secret_file.dirname.mkpath unless secret_file.dirname.directory?
 
-  config.action_dispatch.show_exceptions = false
-  config.action_dispatch.cookies_serializer = :json
+  # Your secret key for verifying the integrity of signed cookies.
+  # If you change this key, all old signed cookies will become invalid!
+  # Make sure the secret is at least 30 characters and all random,
+  # no regular words or you'll be exposed to dictionary attacks.
+  secret_value = secret_file.open(File::RDWR|File::CREAT, 0600) do |f|
+    # Lock this so multiple instances starting simultaneously don't
+    # race and write different secrets, which would otherwise lead to
+    # unexpectedly being randomly logged out of hawk (at least until
+    # the next time hawk is restarted, after which the problem would
+    # magically evaporate).
+    f.flock(File::LOCK_EX)
+    secret = f.read
 
-  config.action_controller.perform_caching = false
-  config.action_controller.allow_forgery_protection = false
+    if secret.empty?
+      secret = SecureRandom.hex(64)
 
-  # config.action_mailer.raise_delivery_errors = false
-  # config.action_mailer.delivery_method = :test
+      f.rewind
+      f.write(secret)
+    end
 
-  config.action_view.raise_on_missing_translations = true
+    secret
+  end
 
-  config.active_support.deprecation = :stderr
-
-  # config.active_record.migration_error = :page_load
-  # config.active_record.dump_schema_after_migration = false
-
-  config.assets.debug = false
-  config.assets.raise_runtime_errors = true
-  config.assets.js_compressor = nil
-  config.assets.css_compressor = nil
-  config.assets.compile = true
-  config.assets.digest = false
-  config.assets.manifest = Rails.root.join("public", "assets", "manifest.json")
-
-  config.i18n.fallbacks = true
-
-  config.log_level = :debug
-  config.log_tags = []
-
-  # config.logger = ActiveSupport::TaggedLogging.new(
-  #   Logger.new(Rails.root.join("log", "test.log"))
-  # )
-
-  # config.logger.formatter = ::Hawk::Logger::Formatter.new
+  Rails.application.secrets.secret_key_base = secret_value
 end

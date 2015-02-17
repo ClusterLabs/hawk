@@ -29,46 +29,32 @@
 #
 #======================================================================
 
-Rails.application.configure do
-  config.cache_classes = true
-  config.eager_load = false
-  config.consider_all_requests_local = true
-  config.serve_static_files = true
-  config.force_ssl = false
-  config.autoflush_log = false
-
-  config.action_dispatch.show_exceptions = false
-  config.action_dispatch.cookies_serializer = :json
-
-  config.action_controller.perform_caching = false
-  config.action_controller.allow_forgery_protection = false
-
-  # config.action_mailer.raise_delivery_errors = false
-  # config.action_mailer.delivery_method = :test
-
-  config.action_view.raise_on_missing_translations = true
-
-  config.active_support.deprecation = :stderr
-
-  # config.active_record.migration_error = :page_load
-  # config.active_record.dump_schema_after_migration = false
-
-  config.assets.debug = false
-  config.assets.raise_runtime_errors = true
-  config.assets.js_compressor = nil
-  config.assets.css_compressor = nil
-  config.assets.compile = true
-  config.assets.digest = false
-  config.assets.manifest = Rails.root.join("public", "assets", "manifest.json")
-
-  config.i18n.fallbacks = true
-
-  config.log_level = :debug
-  config.log_tags = []
-
-  # config.logger = ActiveSupport::TaggedLogging.new(
-  #   Logger.new(Rails.root.join("log", "test.log"))
-  # )
-
-  # config.logger.formatter = ::Hawk::Logger::Formatter.new
+Rails.application.config.gettext_i18n_rails.tap do |config|
+  config.msgmerge = ['--sort-output', '--no-wrap']
+  config.xgettext = ['--sort-output', '--no-wrap']
 end
+
+FastGettext.tap do |config|
+  config.add_text_domain 'hawk', path: Rails.root.join('locale').to_s
+
+  config.default_text_domain = 'hawk'
+  config.default_available_locales = ['en_US']
+
+  Dir[Rails.root.join('locale', '*', 'LC_MESSAGES', '*.mo').to_s].each do |l|
+    match = l.match(/\/([^\/]+)\/LC_MESSAGES\/.*\.mo$/)
+
+    if match and not config.default_available_locales.include? match[1]
+      config.default_available_locales.push match[1]
+    end
+  end
+end
+
+I18n::Backend::Simple.include(
+  I18n::Backend::Fallbacks
+)
+
+I18n.fallbacks['en_US'.to_sym] = ['en-US'.to_sym, :en]
+I18n.fallbacks['en_GB'.to_sym] = ['en-GB'.to_sym, :en]
+I18n.fallbacks['pt_BR'.to_sym] = ['pt-BR'.to_sym, :pt]
+I18n.fallbacks['zh_CN'.to_sym] = ['zh-CN'.to_sym]
+I18n.fallbacks['zh_TW'.to_sym] = ['zh-TW'.to_sym]

@@ -18,10 +18,15 @@
 #
 
 default["hawk"]["node"]["packages"] = [
-  "rubygem-rails-3_2",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-rails-4_2",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-fast_gettext",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-gettext_i18n_rails",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-gettext",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-byebug",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-web-console",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-spring",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-sprockets",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-tilt-1_4",
 
   "hawk",
   "hawk-templates",
