@@ -18,12 +18,22 @@
 #
 
 include_recipe "ruby"
-include_recipe "foreman"
 
 node["hawk"]["webui"]["packages"].each do |name|
   package name do
     action :install
   end
+end
+
+template "/etc/systemd/system/hawk-development.service" do
+   source "systemd.service.erb"
+   owner "root"
+   group "root"
+   mode 0644
+end
+
+service "hawk-development" do
+  action [:enable, :start]
 end
 
 node["hawk"]["webui"]["targets"].each do |name|
@@ -57,27 +67,7 @@ group "haclient" do
   action :manage
 end
 
-foreman_app "/vagrant/hawk" do
-  app "hawk-development"
-  procfile "/home/vagrant/.hawkproc"
-
-  user "vagrant"
-  group "users"
-
-  port 3000
-
-  content(
-    web: "bundle exec bin/rails server"
-  )
-end
-
-service "hawk-development" do
-  service_name "hawk-development.target"
-  action [:enable, :start]
-end
-
-crm_conf = node["hawk"]["webui"]["initial_cib"]
-template crm_conf do
+template node["hawk"]["webui"]["initial_cib"] do
   source "crm-initial.conf.erb"
   owner "root"
   group "root"
@@ -86,5 +76,5 @@ end
 
 execute "crm initial configuration" do
   user "root"
-  command "crm configure load update #{crm_conf}"
+  command "crm configure load update #{node["hawk"]["webui"]["initial_cib"]}"
 end
