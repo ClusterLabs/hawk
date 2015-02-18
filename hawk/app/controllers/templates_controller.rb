@@ -29,8 +29,6 @@
 #
 #======================================================================
 
-# TODO(must): refactor/consolidate primitive & template.
-
 class TemplatesController < ApplicationController
   before_filter :login_required
 

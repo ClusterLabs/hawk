@@ -35,7 +35,7 @@
 class ApplicationController < ActionController::Base
   include FastGettext::Translation
 
-  #protect_from_forgery
+  protect_from_forgery with: :exception
   helper :all
 
   layout :detect_current_layout
@@ -43,25 +43,16 @@ class ApplicationController < ActionController::Base
   around_filter :inject_current_user
 
   before_filter :set_users_locale
+  before_filter :set_current_home
   before_filter :set_current_title
   before_filter :set_cors_headers
   before_filter :init_shadow_cib
 
   helper_method :is_god?
   helper_method :logged_in?
-  helper_method :current_user
+  helper_method :authorized?
 
-  # Force back to status page if e.g.: cluster offline when trying to access
-  # resources, etc.
-  # rescue_from CibObject::CibObjectError, RuntimeError do |e|
-  #   if params[:controller] == "main" || params[:controller] == "cib"
-  #     render :status => 400, :json => {
-  #       :error => e
-  #     }
-  #   else
-  #     redirect_to status_path
-  #   end
-  # end
+  helper_method :current_user
 
   rescue_from CibObject::RecordNotFound do |e|
     respond_to do |format|
@@ -96,35 +87,6 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def initialize
-    super
-
-    ENV['HOME'] = Rails.root.join(
-      'tmp',
-      'home'
-    ).to_s
-  end
-
-
-
-  def current_user
-    @_current_user ||= session[:username]
-  end
-
-  #
-  # Technique based on one presented by a very unhappy sounding person at:
-  #
-  #   http://m.onkey.org/how-to-access-session-cookies-params-request-in-model
-  #
-  # If you ever read this, o unhappy one, I'm not injecting controller data
-  # into my models, but I *do* need the current user when models invoke
-  # external commands to update the cluster configuration (this is required
-  # for ACLs to work properly in this application, which has nothing to do
-  # with Rails at all), and I'm damn well not passing the current user to
-  # every model, when the models themselves actually don't need to care who
-  # is using them.
-  #
-
   protected
 
   def detect_current_layout
@@ -136,6 +98,19 @@ class ApplicationController < ActionController::Base
   end
 
   def inject_current_user
+    #
+    # Technique based on one presented by a very unhappy sounding person at:
+    #
+    #   http://m.onkey.org/how-to-access-session-cookies-params-request-in-model
+    #
+    # If you ever read this, o unhappy one, I'm not injecting controller data
+    # into my models, but I *do* need the current user when models invoke
+    # external commands to update the cluster configuration (this is required
+    # for ACLs to work properly in this application, which has nothing to do
+    # with Rails at all), and I'm damn well not passing the current user to
+    # every model, when the models themselves actually don't need to care who
+    # is using them.
+    #
     current_controller = self
 
     Invoker.send(
@@ -156,6 +131,13 @@ class ApplicationController < ActionController::Base
     I18n.locale = FastGettext.set_locale(
       params[:locale] || cookies[:locale] || request.env["HTTP_ACCEPT_LANGUAGE"] || "en-US"
     )
+  end
+
+  def set_current_home
+    ENV['HOME'] = Rails.root.join(
+      'tmp',
+      'home'
+    ).to_s
   end
 
   def set_current_title
@@ -186,22 +168,30 @@ class ApplicationController < ActionController::Base
 
       if result == true
         if params[:controller] == "explorer"
-          render :json => {
-            :uri => url_for(:controller => 'main', :action => 'status', :cib_id => shadow_id, :sim => nil)
+          render json: {
+            uri: url_for(controller: 'main', action: 'status', cib_id: shadow_id, sim: nil)
           }
         else
-          render :json => {
-            :uri => url_for(:cib_id => shadow_id, :sim => nil)
+          render json: {
+            uri: url_for(cib_id: shadow_id, sim: nil)
           }
         end
       else
-        render :json => {
-          :error  => _('Unable to create shadow CIB'),
-          :stderr => result[1]
-        }, :status => 500
+        render json: {
+          error: _('Unable to create shadow CIB'),
+          stderr: result[1]
+        }, status: 500
       end
     end
   end
+
+  # Check if the user is sufficiently privileged to access sensitive
+  # information (syslog via hb_report/crm_report, "crm history")
+  def is_god?
+    current_user == "hacluster" || current_user == "root"
+  end
+
+
 
 
 
@@ -211,6 +201,10 @@ class ApplicationController < ActionController::Base
 
   def authorized?
     logged_in?
+  end
+
+  def current_user
+    @current_user ||= session[:username]
   end
 
   def login_required
@@ -263,12 +257,6 @@ class ApplicationController < ActionController::Base
   def redirect_back_or_default(default)
     redirect_to(session[:return_to] || default)
     session[:return_to] = nil
-  end
-
-  # Check if the user is sufficiently privileged to access sensitive
-  # information (syslog via hb_report/crm_report, "crm history")
-  def is_god?
-    return current_user == "hacluster" || current_user == "root"
   end
 
   def not_found

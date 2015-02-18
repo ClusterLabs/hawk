@@ -29,9 +29,6 @@
 #
 #======================================================================
 
-require 'util'
-require 'rexml/document' unless defined? REXML::Document
-
 class MainController < ApplicationController
   before_filter :login_required
 

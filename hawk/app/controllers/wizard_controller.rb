@@ -29,8 +29,6 @@
 #
 #======================================================================
 
-require "rexml/document" unless defined? REXML::Document
-
 # TODO(must): file paths are used semi-raw, verify this can't cause trouble
 
 #
