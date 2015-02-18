@@ -87,7 +87,7 @@ module ApplicationHelper
   end
 
   def flash_class_for(type)
-    case type
+    case type.to_sym
     when :alert
       'alert-danger'
     else
