@@ -31,8 +31,5 @@
 
 require 'test_helper'
 
-class CibTest < ActiveSupport::TestCase
-  test "the truth" do
-    assert true
-  end
+class TagHelperTest < ActionView::TestCase
 end

@@ -31,7 +31,7 @@
 
 require 'test_helper'
 
-class CibTest < ActiveSupport::TestCase
+class DashboardsControllerTest < ActionController::TestCase
   test "the truth" do
     assert true
   end

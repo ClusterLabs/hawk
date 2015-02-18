@@ -31,7 +31,7 @@
 
 require 'test_helper'
 
-class CibTest < ActiveSupport::TestCase
+class RuleTest < ActiveSupport::TestCase
   test "the truth" do
     assert true
   end
