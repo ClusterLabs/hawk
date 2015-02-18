@@ -43,27 +43,28 @@ class Session < Tableless
     presence: { message: _("Password not specified") }
 
   validate do |record|
+    first_checks_valid = true
+
     unless File.exists? HAWK_CHKPWD
       record.errors[:base] << _("%s is not installed") % HAWK_CHKPWD
-      return false
+      first_checks_valid = false
     end
 
     unless File.executable? HAWK_CHKPWD
       record.errors[:base] << _("%s is not executable") % HAWK_CHKPWD
-      return false
+      first_checks_valid = false
     end
 
-    IO.popen(auth_command_for(record.username), "w+") do |pipe|
-      pipe.write record.password
-      pipe.close_write
-    end
+    if first_checks_valid
+      IO.popen(auth_command_for(record.username), "w+") do |pipe|
+        pipe.write record.password
+        pipe.close_write
+      end
 
-    unless $?.exitstatus == 0
-      record.errors[:base] << _("Invalid username or password")
-      return false
+      unless $?.exitstatus == 0
+        record.errors[:base] << _("Invalid username or password")
+      end
     end
-
-    true
   end
 
   protected
