@@ -116,7 +116,7 @@ class ApplicationController < ActionController::Base
     Invoker.send(
       :define_method,
       "current_user",
-      proc { current_controller.current_user }
+      proc { current_controller.send(:current_user) }
     )
 
     yield

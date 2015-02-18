@@ -35,7 +35,7 @@ class User < Record
 
   validates :id,
     presence: { message: _('User ID is required') },
-    format: { with: /^[a-zA-Z0-9_-]+$/, message: _('Invalid User ID') }
+    format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _('Invalid User ID') }
 
   def roles
     @roles ||= Array.new

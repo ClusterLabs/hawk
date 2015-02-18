@@ -35,7 +35,7 @@ class Role < Record
 
   validates :id,
     presence: { message: _('Role ID is required') },
-    format: { with: /^[a-zA-Z0-9_-]+$/, message: _('Invalid Role ID') }
+    format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _('Invalid Role ID') }
 
   def initialize(*args)
     rules.build
