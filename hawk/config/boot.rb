@@ -4,7 +4,7 @@
 #            A web-based GUI for managing and monitoring the
 #          Pacemaker High-Availability cluster resource manager
 #
-# Copyright (c) 2009-2013 SUSE LLC, All Rights Reserved.
+# Copyright (c) 2009-2015 SUSE LLC, All Rights Reserved.
 #
 # Author: Tim Serong <tserong@suse.com>
 #
@@ -60,14 +60,17 @@ else
   gem 'puma', version: '~> 2.11.1'
   require 'puma'
 
-  gem 'fast_gettext', version: '~> 0.9.2'
-  require 'fast_gettext'
+  gem 'haml-rails', version: '~> 0.8.2'
+  require 'haml-rails'
 
-  gem 'gettext_i18n_rails', version: '~> 1.2.0'
-  require 'gettext_i18n_rails'
+  gem 'sass-rails', version: '~> 5.0.1'
+  require 'sass-rails'
 
-  gem 'gettext_i18n_rails_js', version: '~> 0.0'
-  require 'gettext_i18n_rails_js'
+  gem 'virtus', version: '~> 1.0.4'
+  require 'virtus'
+
+  gem 'js-routes', version: '~> 1.0.0'
+  require 'js-routes'
 
   gem 'sprockets', version: '~> 2.12.3'
   require 'sprockets'
@@ -75,12 +78,12 @@ else
   gem 'tilt', version: '~> 1.4.1'
   require 'tilt'
 
-  gem 'virtus', version: '~> 1.0'
-  require 'virtus'
+  gem 'fast_gettext', version: '~> 0.9.2'
+  require 'fast_gettext'
 
-  gem 'sass-rails', version: '~> 3.2'
-  require 'sass-rails'
+  gem 'gettext_i18n_rails_js', version: '~> 0.0.8'
+  require 'gettext_i18n_rails_js'
 
-  gem 'haml-rails', version: '~> 0.4'
-  require 'haml-rails'
+  gem 'gettext_i18n_rails', version: '~> 1.2.0'
+  require 'gettext_i18n_rails'
 end

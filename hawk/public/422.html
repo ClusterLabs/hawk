@@ -1,27 +1,65 @@
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
-<head>
-  <title>The change you wanted was rejected (422)</title>
-  <link href="/assets/base.css" media="all" rel="stylesheet" type="text/css" />
-  <!--[if IE]><link href="/assets/ie.css" media="screen" rel="stylesheet" type="text/css" /><![endif]-->
-  <link href="/assets/smoothness/jquery-ui-1.8.5.custom.css" media="screen" rel="stylesheet" type="text/css" />
-</script>
-</head>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>
+      SUSE Hawk: 422 Error
+    </title>
 
-<body>
-<div id="container">
-  <div id="header" class="ui-widget-header">
-    <a href="/main/status"><img alt="" id="logo" src="/assets/logo.png" /></a>
-    <h1 id="header-title">The change you wanted was rejected</h1>
-  </div>
-  <div id="content">
-    <p>Maybe you tried to change something you didn't have access to.</p>
-    <p>You might like to return to the <a href="/main/status">main status page</a>.</p>
-  </div>
-  <div id="footer" class="ui-widget-header">
-    <span id="copyright">Copyright &copy; 2009-2014 SUSE, LLC</span>
-  </div>
-</div>
-</body>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+
+    <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/assets/application.css" />
+    <script src="/assets/application.js"></script>
+
+    <!--[if lt IE 9]>
+    <link rel="stylesheet" href="/assets/ie.css" />
+    <script src="/assets/ie.js"></script>
+    <![endif]-->
+  </head>
+  <body class="nodes">
+    <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+      <div class="container-fluid">
+        <div class="navbar-header">
+          <a href="/" class="navbar-brand">
+            <img src="/assets/head/white.png" alt="SUSE Hawk" />
+          </a>
+        </div>
+        <div id="navbar" class="navbar-right">
+          <ul class="nav navbar-nav">
+            <li>
+              <a href="/">Go to dashboard</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" id="errorpage">
+      <div class="panel panel-default panel-warning">
+        <div class="panel-heading">
+          <h2>
+            The change you wanted was rejected
+          </h2>
+        </div>
+        <div class="panel-body">
+          <p>
+            Maybe you tried to change something you didn't have access to. You
+            might like to return to the <a href="/">main page</a>.
+          </p>
+        </div>
+      </div>
+
+      <footer>
+        <div class="container-fluid">
+          <div class="col-lg-12 copyright">
+            <p>
+              Copyright &copy; 2009-2015 SUSE, LLC
+            </p>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
 </html>

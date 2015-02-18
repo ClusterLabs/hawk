@@ -4,7 +4,7 @@
 #            A web-based GUI for managing and monitoring the
 #          Pacemaker High-Availability cluster resource manager
 #
-# Copyright (c) 2009-2013 SUSE LLC, All Rights Reserved.
+# Copyright (c) 2009-2015 SUSE LLC, All Rights Reserved.
 #
 # Author: Tim Serong <tserong@suse.com>
 #
@@ -35,8 +35,8 @@ Rails.application.config.tap do |config|
   config.assets.precompile = [
     /locale\/*.(css|js)$/,
     /application\.(css|js)$/,
+    /authentication\.(css|js)$/,
     /ie\.(css|js)$/,
-    /login\.(css|js)$/,
     /vendor\.(css|js)$/,
     /\.(jpg|png|gif|svg|ico|eot|woff|ttf)$/
   ]

@@ -74,4 +74,4 @@ group :test do
   end
 end
 
-instance_eval(File.read("Gemfile.local")) if File.exist? "Gemfile.local"
+instance_eval(File.read('Gemfile.local')) if File.exist? 'Gemfile.local'
