@@ -4,7 +4,7 @@
 //            A web-based GUI for managing and monitoring the
 //          Pacemaker High-Availability cluster resource manager
 //
-// Copyright (c) 2009-2015 SUSE LLC, All Rights Reserved.
+// Copyright (c) 2009-2013 SUSE LLC, All Rights Reserved.
 //
 // Author: Tim Serong <tserong@suse.com>
 //
@@ -29,13 +29,31 @@
 //
 //======================================================================
 
-@import "jquery/jquery";
-@import "jquery/rails";
-@import "jquery/validate";
-@import "jquery/matchheight";
-@import "jquery/stickytabs";
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import "font-awesome/font-awesome";
-@import "rivets/rivets";
-@import "misc/jed";
+//= require_tree ./gettext/locale
+//= require_self
+
+$(function() {
+  var locale = $('html').attr('lang');
+
+  var i18n = new Jed(
+    locales[locale] || {}
+  );
+
+  window.__ = function() {
+    return i18n.gettext.apply(i18n, arguments)
+  }
+
+  window.n__ = function() {
+    return i18n.ngettext.apply(i18n, arguments)
+  }
+
+  window.s__ = function(key) {
+    return __(key).split('|').pop();
+  }
+
+  window.gettext = window.__;
+  window.ngettext = window.n__;
+  window.sgettext = window.s__;
+
+  window.i18n = i18n;
+});

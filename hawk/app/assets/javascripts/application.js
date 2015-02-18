@@ -29,9 +29,6 @@
 //
 //======================================================================
 
-//= require_tree ./gettext/locale
-//= require gettext/all
-
 //= require_self
 
 //= require module/forms

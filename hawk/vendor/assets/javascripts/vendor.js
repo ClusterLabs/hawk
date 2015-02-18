@@ -38,5 +38,6 @@
 //= require bootstrap
 //= require font-awesome/font-awesome
 //= require rivets/rivets
+//= require misc/jed
 
 //= require js-routes

@@ -33,7 +33,8 @@ Rails.application.config.tap do |config|
   config.assets.version = '1.0'
 
   config.assets.precompile = [
-    /locale\/*.(css|js)$/,
+    /locale\/.+\.(css|js)$/,
+    /gettext\.(css|js)$/,
     /application\.(css|js)$/,
     /authentication\.(css|js)$/,
     /ie\.(css|js)$/,
