@@ -22,22 +22,20 @@ default["hawk"]["webui"]["packages"] = [
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-rails-4_2",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-puma",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-fast_gettext",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-gettext_i18n_rails_js",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-gettext_i18n_rails",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-haml-rails",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-sass-rails-3_2",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-virtus",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-js-routes",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-sprockets",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-tilt-1_4",
 
   # Development dependencies
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-gettext",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-web-console",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-spring",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-quiet_assets",
-
-  # Current development fix
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-haml-rails",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-sass-rails-3_2",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-virtus",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-gettext_i18n_rails_js",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-js-routes",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-gettext",
 
   "hawk",
   "hawk-templates",
