@@ -71,4 +71,6 @@ Rails.application.configure do
   # )
 
   # config.logger.formatter = ::Hawk::Logger::Formatter.new
+
+  config.active_support.test_order = :random
 end
