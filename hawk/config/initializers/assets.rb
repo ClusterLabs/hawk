@@ -46,5 +46,5 @@ Rails.application.config.tap do |config|
     'vendor',
     'assets',
     'fonts'
-  ).to_s
+  )
 end
