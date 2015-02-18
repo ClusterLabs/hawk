@@ -1,0 +1,12 @@
+addFilter("non-executable-script .*/srv/www/hawk/vendor/*")
+addFilter("script-without-shebang .*/srv/www/hawk/vendor/*")
+addFilter("wrong-script-end-of-line-encoding .*/srv/www/hawk/vendor/*")
+addFilter("file-not-in-%lang .*/srv/www/hawk/vendor/*")
+addFilter("hidden-file-or-dir .*/srv/www/hawk/vendor/*")
+addFilter("zero-length .*/srv/www/hawk/vendor/*")
+addFilter("unexpanded-macro .*/srv/www/hawk/vendor/bundle")
+
+addFilter("hidden-file-or-dir /srv/www/hawk/.bundle")
+
+addFilter("dangling-symlink /srv/www/hawk/public/doc/")
+
