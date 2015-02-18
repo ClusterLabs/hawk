@@ -81,8 +81,8 @@ else
   gem 'fast_gettext', version: '~> 0.9.2'
   require 'fast_gettext'
 
-  gem 'gettext_i18n_rails_js', version: '~> 0.0.8'
-  require 'gettext_i18n_rails_js'
+  gem 'po_to_json', version: '~> 0.0.7'
+  require 'po_to_json'
 
   gem 'gettext_i18n_rails', version: '~> 1.2.0'
   require 'gettext_i18n_rails'
