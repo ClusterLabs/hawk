@@ -25,17 +25,6 @@ node["hawk"]["webui"]["packages"].each do |name|
   end
 end
 
-template "/etc/systemd/system/hawk-development.service" do
-   source "systemd.service.erb"
-   owner "root"
-   group "root"
-   mode 0644
-end
-
-service "hawk-development" do
-  action [:enable, :start]
-end
-
 node["hawk"]["webui"]["targets"].each do |name|
   bash "hawk_make_#{name.gsub("/", "_")}" do
     user "root"
@@ -77,4 +66,15 @@ end
 execute "crm initial configuration" do
   user "root"
   command "crm configure load update #{node["hawk"]["webui"]["initial_cib"]}"
+end
+
+template "/etc/systemd/system/hawk-development.service" do
+   source "systemd.service.erb"
+   owner "root"
+   group "root"
+   mode 0644
+end
+
+service "hawk-development" do
+  action [:enable, :start]
 end
