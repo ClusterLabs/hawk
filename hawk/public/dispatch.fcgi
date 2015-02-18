@@ -1,13 +1,38 @@
-#!/usr/bin/ruby
+#!/usr/bin/env ruby
+#======================================================================
+#                        HA Web Konsole (Hawk)
+# --------------------------------------------------------------------
+#            A web-based GUI for managing and monitoring the
+#          Pacemaker High-Availability cluster resource manager
+#
+# Copyright (c) 2009-2013 SUSE LLC, All Rights Reserved.
+#
+# Author: Tim Serong <tserong@suse.com>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of version 2 of the GNU General Public License as
+# published by the Free Software Foundation.
+#
+# This program is distributed in the hope that it would be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# Further, this software is distributed without any warranty that it is
+# free of the rightful claim of any third person regarding infringement
+# or the like.  Any license provided herein, whether implied or
+# otherwise, applies only to this software file.  Patent licenses, if
+# any, provided herein do not apply to combinations of this program with
+# other software, or any other product whatsoever.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write the Free Software Foundation,
+# Inc., 59 Temple Place - Suite 330, Boston MA 02111-1307, USA.
+#
+#======================================================================
 
-$LOAD_PATH.unshift(File.dirname(__FILE__) + "/../vendor")
+$LOAD_PATH.unshift File.expand_path('../../vendor', __FILE__)
 
-require 'rubygems'
-
-#require_relative '../config/environment'
-require File.dirname(__FILE__) + "/../config/environment"
-
-# Needs to be after environment include to pick up lib dir
+require File.expand_path('../../config/environment', __FILE__)
 require 'fcgi'
 
 class Rack::PathInfoRewriter
@@ -17,12 +42,15 @@ class Rack::PathInfoRewriter
 
   def call(env)
     env.delete('SCRIPT_NAME')
-    parts = env['REQUEST_URI'].split('?')
-    env['PATH_INFO'] = parts[0]
-    env['QUERY_STRING'] = parts[1].to_s
+
+    path, query = env['REQUEST_URI'].split('?', 2)
+    env['PATH_INFO'] = path
+    env['QUERY_STRING'] = query.to_s
+
     @app.call(env)
   end
 end
 
-Rack::Handler::FastCGI.run  Rack::PathInfoRewriter.new(Hawk::Application)
-
+Rack::Handler::FastCGI.run Rack::PathInfoRewriter.new(
+  Rails.application
+)

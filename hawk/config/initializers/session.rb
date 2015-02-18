@@ -28,3 +28,14 @@
 # Inc., 59 Temple Place - Suite 330, Boston MA 02111-1307, USA.
 #
 #======================================================================
+
+Rails.application.config.tap do |config|
+  config.session_store :cookie_store, {
+    key: 'hawk',
+
+    # Allow session cookie to persist for a (somewhat arbitrary) ten days.
+    # This means when using the dashboard you won't be required to log in
+    # to all your clusters all the time.
+    expire_after: 60 * 60 * 24 * 10
+  }
+end

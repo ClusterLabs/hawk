@@ -28,3 +28,7 @@
 # Inc., 59 Temple Place - Suite 330, Boston MA 02111-1307, USA.
 #
 #======================================================================
+
+Rails.application.config.tap do |config|
+  config.action_dispatch.cookies_serializer = :json
+end

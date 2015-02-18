@@ -1,0 +1,23 @@
+[Unit]
+Description=Hawk Development
+
+[Service]
+Type=simple
+KillMode=none
+TimeoutSec=300
+
+User=vagrant
+Group=users
+
+PIDFile=/vagrant/hawk/tmp/pids/server.pid
+WorkingDirectory=/vagrant/hawk
+
+Environment=RAILS_ENV=development
+
+ExecStartPre=/vagrant/hawk/bin/bundle
+ExecStart=/vagrant/hawk/bin/rails s -b 0.0.0.0 -p 3000 -e development --debugger
+ExecStop=/usr/bin/kill -INT $MAINPID
+ExecReload=/usr/bin/kill -HUP $MAINPID
+
+[Install]
+WantedBy=multi-user.target

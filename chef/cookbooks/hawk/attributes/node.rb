@@ -18,14 +18,10 @@
 #
 
 default["hawk"]["node"]["packages"] = [
-  "rubygem-rails-3_2",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-fast_gettext",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-gettext_i18n_rails",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-gettext",
-
   "hawk",
   "hawk-templates",
   "ha-cluster-bootstrap",
+  "w3m",
 
   "apache2",
   "haproxy"

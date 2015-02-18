@@ -28,3 +28,12 @@
 # Inc., 59 Temple Place - Suite 330, Boston MA 02111-1307, USA.
 #
 #======================================================================
+
+Rails.application.config.tap do |config|
+  config.assets.version = '1.0'
+
+  config.assets.precompile = [
+    /\.(css|js)$/,
+    /\.(jpg|png|gif|svg|ico|eot|woff|ttf)$/
+  ]
+end

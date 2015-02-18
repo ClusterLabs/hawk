@@ -44,7 +44,7 @@ class ApplicationController < ActionController::Base
   end
 
   helper :all # include all helpers, all the time
-  protect_from_forgery # See ActionController::RequestForgeryProtection for details
+  #protect_from_forgery # See ActionController::RequestForgeryProtection for details
 
   # Force back to status page if e.g.: cluster offline when trying to access
   # resources, etc.

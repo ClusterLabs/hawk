@@ -41,7 +41,7 @@ ifeq "$(BUILD_TAG)" ""
 BUILD_TAG = 0.0.0
 endif
 
-RPM_ROOT = $(shell pwd)
+RPM_ROOT = $(shell pwd)/rpm
 RPM_OPTS = --define "_sourcedir $(RPM_ROOT)"	\
 	   --define "_specdir	$(RPM_ROOT)"	\
 	   --define "_srcrpmdir	$(RPM_ROOT)"
@@ -163,7 +163,7 @@ install: base/install tools/install
 # Make a tar.bz2 named for the most recent human-readable tag
 archive:
 	rm -f hawk-$(BUILD_TAG).tar.bz2
-	$(GIT) archive --prefix=hawk-$(BUILD_TAG)/ HEAD | bzip2 > hawk-$(BUILD_TAG).tar.bz2
+	$(GIT) archive --prefix=hawk-$(BUILD_TAG)/ HEAD | bzip2 > rpm/hawk-$(BUILD_TAG).tar.bz2
 
 # The touch here is necessary to ensure the POT file is always updated
 # completely, even if it somehow winds up with a newer mtime than other
@@ -174,9 +174,9 @@ pot:
 	touch -d '2010-01-16T22:20:54+1100' hawk/locale/hawk.pot
 	(cd hawk; rake gettext:find)
 
-srpm: archive hawk.spec
-	rm -f *.src.rpm
-	rpmbuild -bs $(RPM_OPTS) hawk.spec
+srpm: archive
+	rm -f $(RPM_ROOT)/*.src.rpm
+	cd rpm && rpmbuild -bs $(RPM_OPTS) hawk.spec
 
 rpm: srpm
 	rpmbuild --rebuild $(RPM_ROOT)/*.src.rpm

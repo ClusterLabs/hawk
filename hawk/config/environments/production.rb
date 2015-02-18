@@ -1,68 +1,74 @@
-Hawk::Application.configure do
-  # Settings specified here will take precedence over those in config/application.rb
+#======================================================================
+#                        HA Web Konsole (Hawk)
+# --------------------------------------------------------------------
+#            A web-based GUI for managing and monitoring the
+#          Pacemaker High-Availability cluster resource manager
+#
+# Copyright (c) 2009-2013 SUSE LLC, All Rights Reserved.
+#
+# Author: Tim Serong <tserong@suse.com>
+#
+# This program is free software; you can redistribute it and/or modify
+# it under the terms of version 2 of the GNU General Public License as
+# published by the Free Software Foundation.
+#
+# This program is distributed in the hope that it would be useful, but
+# WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+#
+# Further, this software is distributed without any warranty that it is
+# free of the rightful claim of any third person regarding infringement
+# or the like.  Any license provided herein, whether implied or
+# otherwise, applies only to this software file.  Patent licenses, if
+# any, provided herein do not apply to combinations of this program with
+# other software, or any other product whatsoever.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program; if not, write the Free Software Foundation,
+# Inc., 59 Temple Place - Suite 330, Boston MA 02111-1307, USA.
+#
+#======================================================================
 
-  # Code is not reloaded between requests
+Rails.application.configure do
   config.cache_classes = true
+  config.eager_load = true
+  config.consider_all_requests_local = false
+  config.serve_static_files = true
+  config.force_ssl = false
+  config.autoflush_log = false
 
-  # Full error reports are disabled and caching is turned on
-  config.consider_all_requests_local       = false
+  config.action_dispatch.show_exceptions = false
+  config.action_dispatch.cookies_serializer = :json
+
   config.action_controller.perform_caching = true
+  config.action_controller.allow_forgery_protection = true
 
-  # Disable Rails's static asset server (Apache or nginx will already do this)
-  config.serve_static_assets = false
-
-  # Compress JavaScripts and CSS (actually, don't, it requires extra gems)
-  config.assets.compress = false
-
-  # Don't fallback to assets pipeline if a precompiled asset is missed (actually,
-  # fallback, because precompiling also requires extra gems)
-  config.assets.compile = true
-
-  # Generate digests for assets URLs
-  config.assets.digest = true
-
-  # Defaults to nil and saved in location specified by config.assets.prefix
-  # config.assets.manifest = YOUR_PATH
-
-  # Specifies the header that your server uses for sending files
-  # config.action_dispatch.x_sendfile_header = "X-Sendfile" # for apache
-  # config.action_dispatch.x_sendfile_header = 'X-Accel-Redirect' # for nginx
-
-  # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
-
-  # See everything in the log (default is :info)
-  # config.log_level = :debug
-
-  # Prepend all log lines with the following tags
-  # config.log_tags = [ :subdomain, :uuid ]
-
-  # Use a different logger for distributed setups
-  # config.logger = ActiveSupport::TaggedLogging.new(SyslogLogger.new)
-
-  # Use a different cache store in production
-  # config.cache_store = :mem_cache_store
-
-  # Enable serving of images, stylesheets, and JavaScripts from an asset server
-  # config.action_controller.asset_host = "http://assets.example.com"
-
-  # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
-  # config.assets.precompile += %w( search.js )
-
-  # Disable delivery errors, bad email addresses will be ignored
   # config.action_mailer.raise_delivery_errors = false
+  # config.action_mailer.delivery_method = :smtp
 
-  # Enable threaded mode
-  # config.threadsafe!
+  config.action_view.raise_on_missing_translations = false
 
-  # Enable locale fallbacks for I18n (makes lookups for any locale fall back to
-  # the I18n.default_locale when a translation can not be found)
-  config.i18n.fallbacks = true
-
-  # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
 
-  # Log the query plan for queries taking more than this (works
-  # with SQLite, MySQL, and PostgreSQL)
-  # config.active_record.auto_explain_threshold_in_seconds = 0.5
+  # config.active_record.migration_error = :page_load
+  # config.active_record.dump_schema_after_migration = false
+
+  config.assets.debug = false
+  config.assets.raise_runtime_errors = false
+  config.assets.js_compressor = nil
+  config.assets.css_compressor = nil
+  config.assets.compile = true
+  config.assets.digest = true
+  config.assets.manifest = Rails.root.join("public", "assets", "manifest.json")
+
+  config.i18n.fallbacks = true
+
+  config.log_level = :warn
+  config.log_tags = []
+
+  # config.logger = ActiveSupport::TaggedLogging.new(
+  #   Logger.new(Rails.root.join("log", "production.log"))
+  # )
+
+  # config.logger.formatter = ::Hawk::Logger::Formatter.new
 end
