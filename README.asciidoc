@@ -40,7 +40,7 @@ http://www.suse.com/documentation/sle_ha/book_sleha/?page=/documentation/sle_ha/
 === Dependencies ===
 
 Hawk is a Ruby on Rails app which runs from a standalone instance
-of lighttpd.  It requires:
+of lighttpd. It requires:
 
 * crmsh
 * graphviz
@@ -48,12 +48,11 @@ of lighttpd.  It requires:
 * lighttpd
 * pacemaker
 * ruby
-* rubygems
-* rubygem-bundler
-* rubygem-fast_gettext
-* rubygem-gettext_i18n_rails
-* rubygem-rake
-* rubygem-rails >= 3.2
+
+For details on the rubygems used by hawk, see the gemfile in +hawk/Gemfile+.
+
+Some dependencies may differ depending on the distribution:
+
 * rubygem-ruby-fcgi (openSUSE)
 * rubypick (Fedora)
 
