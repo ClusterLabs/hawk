@@ -445,12 +445,22 @@ class WizardController < ApplicationController
 
   def remember_rootpw(password)
     # TODO(must): Verify this is really, truly secure
-    crypt = ActiveSupport::MessageEncryptor.new(Hawk::Application.config.secret_token)
+    secret = Hawk::Application.config.secret_key_base
+    unless secret
+      @errors << _('Cannot store root password securely!')
+      return
+    end
+    crypt = ActiveSupport::MessageEncryptor.new(secret)
     session[:rootpw] = crypt.encrypt_and_sign(password)
   end
 
   def recall_rootpw
-    crypt = ActiveSupport::MessageEncryptor.new(Hawk::Application.config.secret_token)
+    secret = Hawk::Application.config.secret_key_base
+    unless secret
+      @errors << _('Cannot store root password securely!')
+      return
+    end
+    crypt = ActiveSupport::MessageEncryptor.new(secret)
     crypt.decrypt_and_verify(session[:rootpw])
   end
 
