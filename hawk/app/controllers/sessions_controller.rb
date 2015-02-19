@@ -35,7 +35,7 @@ class SessionsController < ApplicationController
 
     respond_to do |format|
       format.html do
-        redirect_back_or_default root_url if authorized?
+        redirect_back root_url if logged_in?
       end
       format.json do
         render json: {}, status: 200
@@ -52,7 +52,7 @@ class SessionsController < ApplicationController
         session[:username] = @session.username
 
         format.html do
-          redirect_back_or_default root_url
+          redirect_back root_url
         end
         format.json do
           render json: {}, status: 200

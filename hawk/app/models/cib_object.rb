@@ -52,6 +52,9 @@ class CibObject
   class PermissionDenied < CibObjectError
   end
 
+  class NotAuthenticated < CibObjectError
+  end
+
   # Need this to behave like an instance of ActiveRecord
   attr_reader :id
 

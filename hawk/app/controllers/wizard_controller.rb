@@ -225,6 +225,16 @@ class WizardController < ApplicationController
 
   private
 
+  # Only use this if you need the cluster to be online, and *don't* have a Cib
+  # (or other thing handy) that'll throw an appropriate exception.  Note that
+  # this check is conservative, i.e. it'll redirect if and only if it's
+  # impossible to connect to the CIB, but not in case of any other possible
+  # error that crm_mon might return.
+  def cluster_online
+    %x[/usr/sbin/crm_mon -s >/dev/null 2>&1]
+    redirect_to status_path if $?.exitstatus == Errno::ENOTCONN::Errno
+  end
+
   def start
     @descs = {}
     @workflows.each do |w|

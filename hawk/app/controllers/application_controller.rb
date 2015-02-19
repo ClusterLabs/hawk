@@ -50,25 +50,13 @@ class ApplicationController < ActionController::Base
 
   helper_method :is_god?
   helper_method :logged_in?
-  helper_method :authorized?
 
   helper_method :current_user
 
   rescue_from CibObject::RecordNotFound do |e|
     respond_to do |format|
       format.json do
-        render json: { error: e }, status: 404
-      end
-      format.html do
-        redirect_to root_url, alert: e.message
-      end
-    end
-  end
-
-  rescue_from CibObject::PermissionDenied do |e|
-    respond_to do |format|
-      format.json do
-        render json: { error: e }, status: 403
+        head :not_found
       end
       format.html do
         redirect_to root_url, alert: e.message
@@ -79,7 +67,7 @@ class ApplicationController < ActionController::Base
   rescue_from CibObject::CibObjectError do |e|
     respond_to do |format|
       format.json do
-        render json: { error: e }, status: 400
+        head :bad_request
       end
       format.html do
         redirect_to root_url, alert: e.message
@@ -87,13 +75,44 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  rescue_from CibObject::PermissionDenied do |e|
+    respond_to do |format|
+      format.json do
+        head :forbidden
+      end
+      format.html do
+        redirect_to root_url, alert: e.message
+      end
+    end
+  end
+
+  rescue_from CibObject::NotAuthenticated do |e|
+    respond_to do |format|
+      format.json do
+        head :forbidden
+      end
+      format.html do
+        store_location
+        redirect_to login_url
+      end
+    end
+  end
+
   protected
+
+  def redirect_back(default)
+    redirect_to(session.delete(:return_to) || default)
+  end
+
+  def store_location
+    session[:return_to] = request.url
+  end
 
   def detect_current_layout
     if request.xhr?
       false
     else
-      "application"
+      'application'
     end
   end
 
@@ -115,7 +134,7 @@ class ApplicationController < ActionController::Base
 
     Invoker.send(
       :define_method,
-      "current_user",
+      'current_user',
       proc { current_controller.send(:current_user) }
     )
 
@@ -123,13 +142,13 @@ class ApplicationController < ActionController::Base
 
     Invoker.send(
       :remove_method,
-      "current_user"
+      'current_user'
     )
   end
 
   def set_users_locale
     I18n.locale = FastGettext.set_locale(
-      params[:locale] || cookies[:locale] || request.env["HTTP_ACCEPT_LANGUAGE"] || "en-US"
+      params[:locale] || cookies[:locale] || request.env['HTTP_ACCEPT_LANGUAGE'] || 'en-US'
     )
   end
 
@@ -141,33 +160,35 @@ class ApplicationController < ActionController::Base
   end
 
   def set_current_title
-    @title ||= ""
+    @title ||= ''
   end
 
   def set_cors_headers
-    if request.headers["Origin"]
-      response.headers["Access-Control-Allow-Origin"] = request.headers["Origin"]
-      response.headers["Access-Control-Allow-Credentials"] = "true"
+    if request.headers['Origin']
+      response.headers['Access-Control-Allow-Origin'] = request.headers['Origin']
+      response.headers['Access-Control-Allow-Credentials'] = 'true'
     end
   end
 
-  def init_shadow_cib
-    ENV.delete("CIB_shadow")
 
-    if params[:cib_id] && params[:cib_id] != "live"
+
+  def init_shadow_cib
+    ENV.delete('CIB_shadow')
+
+    if params[:cib_id] && params[:cib_id] != 'live'
       # TODO(must): figure out if this is safe
       ENV['CIB_shadow'] = params[:cib_id]
-    elsif params[:controller] == "cib" && params[:id] && params[:id] != "live"
+    elsif params[:controller] == 'cib' && params[:id] && params[:id] != 'live'
       ENV['CIB_shadow'] = params[:id]
     end
 
     # init a shadow cib and return the URL to redirect to with shadow CIB id embedded
-    if params[:sim] && params[:sim] == "init"
-      shadow_id = "hawk-#{current_user}"
-      result = Invoker.instance.run("crm_shadow", "-b", "-f", "-c", shadow_id)
+    if params[:sim] && params[:sim] == 'init'
+      shadow_id = 'hawk-#{current_user}'
+      result = Invoker.instance.run('crm_shadow', '-b', '-f', '-c', shadow_id)
 
       if result == true
-        if params[:controller] == "explorer"
+        if params[:controller] == 'explorer'
           render json: {
             uri: url_for(controller: 'main', action: 'status', cib_id: shadow_id, sim: nil)
           }
@@ -185,83 +206,37 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  # Check if the user is sufficiently privileged to access sensitive
-  # information (syslog via hb_report/crm_report, "crm history")
-  def is_god?
-    current_user == "hacluster" || current_user == "root"
-  end
 
-
-
-
-
-  def logged_in?
-    !!current_user
-  end
-
-  def authorized?
-    logged_in?
-  end
 
   def current_user
     @current_user ||= session[:username]
   end
 
+  def is_god?
+    current_user == 'hacluster' || current_user == 'root'
+  end
+
+  def logged_in?
+    current_user.present?
+  end
+
   def login_required
-    authorized? || access_denied
+    not_authenticated unless logged_in?
   end
 
   def god_required
-    raise CibObject::PermissionDenied unless is_god?
+    permission_denied unless is_god?
   end
 
-  # Tests:
-  # 1) JSON
-  #    - load status page
-  #    - hit logout link, but open in new tab
-  #    - try some mgmt op in status page (start/stop resource)
-  #    - this should give "permission denied" dialog
-  # 2) HTML
-  #    - as above, but after logout, reload the status page
-  #    - you should be redirected back to the login page
-  def access_denied
-    respond_to do |format|
-      format.any do
-        # Have to use format.any not format.html due to stupid IE accept
-        # header brokenness.  Further, format.any must preceed format.json,
-        # or no dice...
-        store_location
-        redirect_to login_url
-      end
-      format.json do
-        # This will kill e.g. JSON requests when not logged in.
-        head :forbidden
-      end
-    end
+  def permission_denied
+    raise CibObject::PermissionDenied.new
   end
 
-  # Only use this if you need the cluster to be online, and *don't* have a Cib
-  # (or other thing handy) that'll throw an appropriate exception.  Note that
-  # this check is conservative, i.e. it'll redirect if and only if it's
-  # impossible to connect to the CIB, but not in case of any other possible
-  # error that crm_mon might return.
-  def cluster_online
-    %x[/usr/sbin/crm_mon -s >/dev/null 2>&1]
-    redirect_to status_path if $?.exitstatus == Errno::ENOTCONN::Errno
-  end
-
-  def store_location
-    session[:return_to] = "#{request.protocol}#{request.host_with_port}#{request.fullpath}"
-  end
-
-  def redirect_back_or_default(default)
-    redirect_to(session[:return_to] || default)
-    session[:return_to] = nil
+  def not_authenticated
+    raise CibObject::NotAuthenticated.new
   end
 
   def not_found
-    raise ActionController::RoutingError.new(
-      _('Not found')
-    )
+    raise ActionController::RoutingError.new
   end
 end
