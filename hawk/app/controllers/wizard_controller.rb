@@ -445,7 +445,7 @@ class WizardController < ApplicationController
 
   def remember_rootpw(password)
     # TODO(must): Verify this is really, truly secure
-    secret = Hawk::Application.secrets.secret_key_base
+    secret = Rails.application.secrets.secret_key_base
     unless secret
       @errors << _('Cannot store root password securely!')
       return
@@ -455,7 +455,7 @@ class WizardController < ApplicationController
   end
 
   def recall_rootpw
-    secret = Hawk::Application.secrets.secret_key_base
+    secret = Rails.application.secrets.secret_key_base
     unless secret
       @errors << _('Cannot store root password securely!')
       return
