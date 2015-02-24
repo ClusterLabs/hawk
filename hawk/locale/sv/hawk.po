@@ -5,7 +5,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-10 15:20+1000\n"
 "PO-Revision-Date: 2014-07-15 11:31\n"
 "Last-Translator: Novell language <language@novell.com>\n"
 "Language-Team: Novell language <language@novell.com>\n"
@@ -15,1893 +14,1108 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../app/controllers/acls_controller.rb:72
-#: ../app/views/layouts/main.html.erb:220
-msgid "Access Control Lists"
-msgstr "Åtkomstkontrollistor"
+msgid "Any changes will be lost - do you wish to proceed?"
+msgstr "Alla ändringar går förlorade. Vill du fortsätta?"
 
-#: ../app/controllers/application_controller.rb:124
+msgid "Connection to server aborted - will retry every 15 seconds."
+msgstr "Anslutning till server avbruten - försöker igen var 15 sekund."
+
+#, fuzzy
+msgid "Connection to server failed - will retry every 15 seconds."
+msgstr "Anslutning till server avbruten - försöker igen var 15 sekund."
+
+msgid "Connection to server timed out - will retry every 15 seconds."
+msgstr ""
+"Tidsgränsen överskreds för anslutning till server - försöker igen var 15 sekun"
+"d."
+
+#, fuzzy
+msgid "State"
+msgstr "Delstat:"
+
+msgid "Name"
+msgstr ""
+
+msgid "Maintenance"
+msgstr "Underhåll"
+
+msgid "Yes"
+msgstr "Ja"
+
+msgid "No"
+msgstr "Nej"
+
+msgid "Standby"
+msgstr "Vänteläge"
+
+msgid "Operations"
+msgstr "Åtgärder"
+
+msgid "Online"
+msgstr "Online"
+
+msgid "Ready"
+msgstr "Klar"
+
+msgid "Fence"
+msgstr ""
+
+msgid "Details"
+msgstr "Detaljer"
+
+msgid "Events"
+msgstr ""
+
+msgid "Role ID"
+msgstr "Roll-ID"
+
+msgid "User ID"
+msgstr "Användar-ID"
+
 msgid "Unable to create shadow CIB"
 msgstr "Det går inte att skapa skugg-CIB"
 
-#: ../app/controllers/cib_controller.rb:110
-#: ../app/controllers/cib_controller.rb:164
 msgid "1 node configured"
 msgid_plural "%{num} nodes configured"
 msgstr[0] "1 nod har konfigurerats"
 msgstr[1] "%{num} noder har konfigurerats"
 
-#: ../app/controllers/cib_controller.rb:111
-#: ../app/controllers/cib_controller.rb:165
 msgid "1 resource configured"
 msgid_plural "%{num} resources configured"
 msgstr[0] "1 resurs har konfigurerats"
 msgstr[1] "%{num} resurser har konfigurerats"
 
-#: ../app/controllers/clones_controller.rb:48
 msgid "Edit Clone"
 msgstr "Redigera klon"
 
-#: ../app/controllers/clones_controller.rb:52
-#: ../app/controllers/clones_controller.rb:58
-#: ../app/views/clones/_form.html.erb:87
 msgid "Create Clone"
 msgstr "Skapa klon"
 
-#: ../app/controllers/clones_controller.rb:65
 msgid "Clone created successfully"
 msgstr "Klonen har skapats"
 
-#: ../app/controllers/clones_controller.rb:87
 msgid "Clone updated successfully"
 msgstr "Klonen har uppdaterats"
 
-#: ../app/controllers/colocations_controller.rb:44
 msgid "Edit Colocation Constraint"
 msgstr "Redigera colocationbegränsning"
 
-#: ../app/controllers/colocations_controller.rb:48
-#: ../app/controllers/colocations_controller.rb:53
 msgid "Create Colocation Constraint"
 msgstr "Skapa colocationbegränsning"
 
-#: ../app/controllers/colocations_controller.rb:61
-#: ../app/controllers/locations_controller.rb:60
-#: ../app/controllers/orders_controller.rb:62
-#: ../app/controllers/tickets_controller.rb:59
 msgid "Constraint created successfully"
 msgstr "Begränsningen har skapats"
 
-#: ../app/controllers/colocations_controller.rb:84
-#: ../app/controllers/locations_controller.rb:82
-#: ../app/controllers/orders_controller.rb:86
-#: ../app/controllers/tickets_controller.rb:81
 msgid "Constraint updated successfully"
 msgstr "Begränsningen uppdaterades"
 
-#: ../app/controllers/constraints_controller.rb:44
-#: ../app/views/layouts/main.html.erb:229
 msgid "Constraints"
 msgstr "Begränsningar"
 
-#: ../app/controllers/crm_config_controller.rb:45
-#: ../app/views/main/_gettext.js.erb:99
 msgid "Cluster Configuration"
 msgstr "Klusterinställningar"
 
-#: ../app/controllers/crm_config_controller.rb:128
 msgid "Your changes have been saved"
 msgstr "Ändringarna har sparats"
 
-#: ../app/controllers/crm_config_controller.rb:130
 msgid "Unable to apply changes: %{msg}"
 msgstr "Det går inte att verkställa ändringarna: %{msg}"
 
-#: ../app/controllers/crm_config_controller.rb:162
-msgid "Can't set property %{p}, because the value contains both single and double quotes"
-msgstr "Det går inte att ställa in egenskapen %{p} eftersom värdet innehåller både enkla och dubbla citattecken"
+msgid ""
+"Can't set property %{p}, because the value contains both single and double quo"
+"tes"
+msgstr ""
+"Det går inte att ställa in egenskapen %{p} eftersom värdet innehåller både enk"
+"la och dubbla citattecken"
 
-#: ../app/controllers/dashboard_controller.rb:37
 msgid "Cluster Dashboard"
 msgstr "Klusterinstrumentpanel"
 
-#: ../app/controllers/explorer_controller.rb:44
-#: ../app/views/layouts/main.html.erb:205
-msgid "History Explorer"
-msgstr "Historikutforskare"
-
-#: ../app/controllers/explorer_controller.rb:103
-msgid "PE Input created by different Pacemaker version (%{version})"
-msgstr "PE-indata skapade av en annan Pacemaker-version (%{version})"
-
-#: ../app/controllers/explorer_controller.rb:104
-msgid "Pacemaker version not present in PE Input"
-msgstr "Pacemaker-versionen finns inte i PE-indata"
-
-#: ../app/controllers/explorer_controller.rb:134
-msgid "Required parameters \"basename\" and \"node\" not specified"
-msgstr "De begärda parametrarna \"basename\" och \"node\" har inte angetts"
-
-#: ../app/controllers/explorer_controller.rb:159
-#: ../app/controllers/explorer_controller.rb:229
-msgid "No details available"
-msgstr "Inga detaljer tillgängliga"
-
-#: ../app/controllers/explorer_controller.rb:161
-#: ../app/controllers/explorer_controller.rb:189
-#: ../app/controllers/explorer_controller.rb:250
-msgid "Error:"
-msgstr "Fel:"
-
-#: ../app/controllers/explorer_controller.rb:202
-msgid "Required parameters \"left\" and \"right\" not specified"
-msgstr "De begärda parametrarna \"left\" och \"right\" har inte angetts"
-
-#: ../app/controllers/groups_controller.rb:48
-msgid "Edit Group"
-msgstr "Redigera grupp"
-
-#: ../app/controllers/groups_controller.rb:52
-#: ../app/controllers/groups_controller.rb:58
-#: ../app/views/groups/_form.html.erb:142
-msgid "Create Group"
-msgstr "Skapa grupp"
-
-#: ../app/controllers/groups_controller.rb:65
-msgid "Group created successfully"
-msgstr "Gruppen har skapats"
-
-#: ../app/controllers/groups_controller.rb:87
-msgid "Group updated successfully"
-msgstr "Gruppen har uppdaterats"
-
-#: ../app/controllers/locations_controller.rb:44
-msgid "Edit Location Constraint"
-msgstr "Redigera platsbegränsning"
-
-#: ../app/controllers/locations_controller.rb:48
-#: ../app/controllers/locations_controller.rb:53
-msgid "Create Location Constraint"
-msgstr "Skapa platsbegränsning"
-
-#: ../app/controllers/main_controller.rb:58
-msgid "%{cmd} failed (status: %{status})"
-msgstr "%{cmd} misslyckades (status: %{status})"
-
-#: ../app/controllers/main_controller.rb:78
-#: ../app/views/layouts/main.html.erb:199
-msgid "Cluster Status"
-msgstr "Klusterstatus"
-
-#: ../app/controllers/main_controller.rb:93
-#: ../app/controllers/main_controller.rb:103
-#: ../app/controllers/main_controller.rb:113
-msgid "Required parameter \"node\" not specified"
-msgstr "Den begärda parametern \"node\" har inte angetts"
-
-#: ../app/controllers/main_controller.rb:129
-#: ../app/controllers/main_controller.rb:160
-msgid "Required parameter \"resource\" not specified"
-msgstr "Den begärda parametern \"resource\" har inte angetts"
-
-#: ../app/controllers/main_controller.rb:139
-msgid "Required parameters \"resource\" and \"node\" not specified"
-msgstr "De begärda parametrarna \"resource\" och \"node\" har inte angetts"
-
-#: ../app/controllers/main_controller.rb:154
-msgid "Error deleting resource"
-msgstr "Fel vid borttagning av resurs"
-
-#: ../app/controllers/main_controller.rb:170
-msgid "Required parameters \"ticket\" and \"site\" not specified"
-msgstr "De begärda parametrarna \"ticket\" och \"site\" har inte angetts"
-
-#: ../app/controllers/main_controller.rb:180
-msgid "Required parameter \"ticket\" not specified"
-msgstr "Den begärda parametern \"ticket\" har inte angetts"
-
-#: ../app/controllers/main_controller.rb:330 ../app/models/cib.rb:261
-msgid "Error invoking %{cmd}: %{msg}"
-msgstr "Fel vid anrop av %{cmd}: %{msg}"
-
-#: ../app/controllers/masters_controller.rb:48
-msgid "Edit Master/Slave"
-msgstr "Redigera master/slav"
-
-#: ../app/controllers/masters_controller.rb:52
-#: ../app/controllers/masters_controller.rb:58
-#: ../app/views/masters/_form.html.erb:87
-msgid "Create Master/Slave"
-msgstr "Skapa master/slav"
-
-#: ../app/controllers/masters_controller.rb:65
-msgid "Master/Slave created successfully"
-msgstr "Master/slav skapades"
-
-#: ../app/controllers/masters_controller.rb:87
-msgid "Master/Slave updated successfully"
-msgstr "Master/slav uppdaterades"
-
-#: ../app/controllers/orders_controller.rb:44
-msgid "Edit Order Constraint"
-msgstr "Redigera ordningsbegränsning"
-
-#: ../app/controllers/orders_controller.rb:48
-#: ../app/controllers/orders_controller.rb:53
-msgid "Create Order Constraint"
-msgstr "Skapa ordningsbegränsning"
-
-#: ../app/controllers/primitives_controller.rb:46
-#: ../app/views/resources/index.html.erb:46
-msgid "Edit Resource"
-msgstr "Redigera resurs"
-
-#: ../app/controllers/primitives_controller.rb:50
-#: ../app/controllers/primitives_controller.rb:56
-#: ../app/views/primitives/_form.html.erb:393
-msgid "Create Resource"
-msgstr "Skapa resurs"
-
-#: ../app/controllers/primitives_controller.rb:63
-msgid "Resource created successfully"
-msgstr "Resursen har skapats"
-
-#: ../app/controllers/primitives_controller.rb:85
-msgid "Resource updated successfully"
-msgstr "Resursen uppdaterades"
-
-#: ../app/controllers/resources_controller.rb:57
-#: ../app/views/layouts/main.html.erb:226
-msgid "Resources"
-msgstr "Resurser"
-
-#: ../app/controllers/roles_controller.rb:44
-msgid "Edit Role"
-msgstr "Redigera roll"
-
-#: ../app/controllers/roles_controller.rb:48
-#: ../app/controllers/roles_controller.rb:53
-#: ../app/views/roles/_form.html.erb:82
-msgid "Create Role"
-msgstr "Skapa roll"
-
-#: ../app/controllers/roles_controller.rb:60
-msgid "Role created successfully"
-msgstr "Rollen har skapats"
-
-#: ../app/controllers/roles_controller.rb:82
-msgid "Role updated successfully"
-msgstr "Rollen har uppdaterats"
-
-#: ../app/controllers/sessions_controller.rb:37
-#: ../app/views/dashboard/index.html.erb:64
-#: ../app/views/sessions/new.html.erb:17
-msgid "Log In"
-msgstr "Logga in"
-
-#: ../app/controllers/sessions_controller.rb:70
-msgid "Username not specified"
-msgstr "Användarnamnet har inte angetts"
-
-#: ../app/controllers/sessions_controller.rb:73
-msgid "Invalid username"
-msgstr "Ogiltigt användarnamn"
-
-#: ../app/controllers/sessions_controller.rb:75
-msgid "Password not specified"
-msgstr "Inget lösenord har angetts"
-
-#: ../app/controllers/sessions_controller.rb:89
-msgid "Invalid username or password"
-msgstr "Fel användarnamn eller lösenord"
-
-#: ../app/controllers/sessions_controller.rb:92
-msgid "%s is not installed"
-msgstr "%s har inte installerats"
-
-#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:259
-#: ../lib/invoker.rb:133 ../lib/invoker.rb:155 ../lib/invoker.rb:197
-msgid "Permission denied for user %{user}"
-msgstr "Tillstånd nekades för användaren %{user}"
-
-#: ../app/controllers/sessions_controller.rb:131
-msgid "You have been logged out"
-msgstr "Du är utloggad"
-
-#: ../app/controllers/templates_controller.rb:47
-msgid "Edit Template"
-msgstr "Redigera mall"
-
-#: ../app/controllers/templates_controller.rb:51
-#: ../app/controllers/templates_controller.rb:59
-msgid "Create Template"
-msgstr "Skapa mall"
-
-#: ../app/controllers/templates_controller.rb:66
-msgid "Template created successfully"
-msgstr "Mallen har skapats"
-
-#: ../app/controllers/templates_controller.rb:89
-msgid "Template updated successfully"
-msgstr "Mallen har uppdaterats"
-
-#: ../app/controllers/tickets_controller.rb:43
-msgid "Edit Ticket Constraint"
-msgstr "Redigera biljettbegränsning"
-
-#: ../app/controllers/tickets_controller.rb:47
-#: ../app/controllers/tickets_controller.rb:52
-msgid "Create Ticket Constraint"
-msgstr "Skapa biljettbegränsning"
-
-#: ../app/controllers/users_controller.rb:44
-msgid "Edit User"
-msgstr "Redigera användare"
-
-#: ../app/controllers/users_controller.rb:48
-#: ../app/controllers/users_controller.rb:53
-#: ../app/views/users/_form.html.erb:111
-msgid "Create User"
-msgstr "Skapa användare"
-
-#: ../app/controllers/users_controller.rb:60
-msgid "User created successfully"
-msgstr "Användaren har skapats"
-
-#: ../app/controllers/users_controller.rb:82
-msgid "User updated successfully"
-msgstr "Användaren har uppdaterats"
-
-#: ../app/controllers/wizard_controller.rb:60
-msgid "Cluster Setup Wizard"
-msgstr "Klusterinställningsguide"
-
-#: ../app/controllers/wizard_controller.rb:101
-msgid "Invalid password"
-msgstr "Ogiltigt lösenord"
-
-#: ../app/controllers/wizard_controller.rb:115
-#: ../app/controllers/wizard_controller.rb:118
-msgid "Root Password"
-msgstr "Root-lösenord"
-
-#: ../app/controllers/wizard_controller.rb:116
-msgid "The root password is required in order for this wizard template to make configuration changes."
-msgstr "Rotlösenordet måste anges för att det ska gå att göra konfigurationsändringar med den här guidemallen."
-
-#: ../app/controllers/wizard_controller.rb:119
-msgid "The root password for this system"
-msgstr "Rotlösenordet för det här systemet."
-
-#: ../app/controllers/wizard_controller.rb:128
-#: ../app/controllers/wizard_controller.rb:163
-msgid "\"Error: #{result}\""
-msgstr "\"Fel: #{result}\""
-
-#: ../app/controllers/wizard_controller.rb:131
-#: ../app/views/primitives/_form.html.erb:241
-msgid "Parameters"
-msgstr "Parametrar"
-
-#: ../app/controllers/wizard_controller.rb:155
-msgid "Confirm"
-msgstr "Bekräfta"
-
-#: ../app/controllers/wizard_controller.rb:181
-#: ../app/views/wizard/done.html.erb:10
-msgid "Done"
-msgstr "Klar"
-
-#: ../app/controllers/wizard_controller.rb:296
-msgid "Required parameter \"%{param}\" not specified"
-msgstr "Den begärda parametern \"%{param}\" har inte angetts"
-
-#: ../app/controllers/wizard_controller.rb:313
-msgid "Permission denied - you do not have write access to the CIB."
-msgstr "Åtkomst nekad - du har inte skrivbehörighet för CIB:n."
-
-#: ../app/controllers/wizard_controller.rb:324
-msgid "Wizard templates and/or workflows are missing"
-msgstr "Mallar och/eller arbetsflöden för guiden saknas"
-
-#: ../app/controllers/wizard_controller.rb:332
-msgid "Workflow \"%s\" not found"
-msgstr "Arbetsflödet \"%s\" hittades inte"
-
-#: ../app/controllers/wizard_controller.rb:353
-msgid "Error parsing template \"%s\""
-msgstr "Fel vid tolkning av mallen \"%s\""
-
-#: ../app/controllers/wizard_controller.rb:356
-msgid "Error parsing workflow \"%s\""
-msgstr "Fel vid tolkning av arbetsflödet \"%s\""
-
-#: ../app/helpers/explorer_helper.rb:3
-msgid "Data collection in progress (%{from_time} to %{to_time})..."
-msgstr "Datainsamling pågår (%{from_time} till %{to_time})..."
-
-#: ../app/models/cib.rb:234
-msgid "CIB file \"%{path}\" not found"
-msgstr "CIB-filen \"%{path}\" hittades inte"
-
-#: ../app/models/cib.rb:236
-msgid "Unable to parse CIB file \"%{path}\""
-msgstr "Det går inte att analysera CIB-filen \"%{path}\""
-
-#: ../app/models/cib.rb:238
-msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
-msgstr "Pacemaker verkar inte vara installerat (%{cmd} hittades inte)"
-
-#: ../app/models/cib.rb:240
-msgid "Unable to execute %{cmd}"
-msgstr "Det gick inte att köra %{cmd}"
-
-#: ../app/models/cib.rb:243
-msgid "%{cmd} failed (status: %{status}, output was: %{output})"
-msgstr "%{cmd} misslyckades (status: %{status}, utdata: %{output})"
-
-#: ../app/models/cib.rb:256
-msgid "Error invoking %{cmd}"
-msgstr "Fel vid anrop av %{cmd}"
-
-#: ../app/models/cib.rb:269 ../app/models/cib.rb:270 ../app/models/cib.rb:614
-#: ../app/views/main/_gettext.js.erb:195
-msgid "Unknown"
-msgstr "Okänd"
-
-#: ../app/models/cib.rb:481
-msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
-msgstr "Misslyckad åtgärd: nod=%{node}, resurs=%{resource}, anrops-id=%{call_id}, åtgärd=%{op}, rc-kod=%{rc_code}"
-
-#: ../app/models/cib_object.rb:66
-msgid "Invalid Resource ID \"%{id}\""
-msgstr "Ogiltigt resurs-ID \"%{id}\""
-
-#: ../app/models/cib_object.rb:95 ../app/models/cib_object.rb:115
-#: ../app/models/crm_config.rb:49
-msgid "Unable to parse cibadmin output"
-msgstr "Det går inte att analysera cibadmin-utdata"
-
-#: ../app/models/clone.rb:45
-msgid "No clone child specified"
-msgstr "Ingen underordnad för klon har angetts"
-
-#: ../app/models/clone.rb:51 ../app/models/group.rb:51
-#: ../app/models/master.rb:51 ../app/models/primitive.rb:77
-#: ../app/models/template.rb:78
-msgid "Can't set meta attribute %{p}, because the value contains both single and double quotes"
-msgstr "Det går inte att ställa in metaattributet %{p} eftersom värdet innehåller både enkla och dubbla citattecken"
-
-#: ../app/models/clone.rb:57 ../app/models/colocation.rb:63
-#: ../app/models/group.rb:57 ../app/models/location.rb:78
-#: ../app/models/master.rb:57 ../app/models/order.rb:89
-#: ../app/models/primitive.rb:84 ../app/models/role.rb:55
-#: ../app/models/template.rb:85 ../app/models/ticket.rb:73
-#: ../app/models/user.rb:59
-msgid "The ID \"%{id}\" is already in use"
-msgstr "ID \"%{id}\" används redan"
-
-#: ../app/models/clone.rb:76
-msgid "Unable to create clone: %{msg}"
-msgstr "Det går inte att skapa klon: %{msg}"
-
-#: ../app/models/clone.rb:86
-msgid "Clone ID \"%{id}\" does not exist"
-msgstr "Klon-ID \"%{id}\" finns inte"
-
-#: ../app/models/colocation.rb:53 ../app/models/order.rb:79
-msgid "Invalid score"
-msgstr "Ogiltig poäng"
-
-#: ../app/models/colocation.rb:57 ../app/models/order.rb:83
-msgid "Constraint must consist of at least two separate resources"
-msgstr "Begränsningen måste bestå av minst två separata resurser"
-
-#: ../app/models/colocation.rb:71 ../app/models/location.rb:86
-#: ../app/models/order.rb:97 ../app/models/ticket.rb:81
-msgid "Unable to create constraint: %{msg}"
-msgstr "Det går inte att skapa begränsning: %{msg}"
-
-#: ../app/models/colocation.rb:80 ../app/models/location.rb:95
-#: ../app/models/order.rb:106 ../app/models/ticket.rb:90
-msgid "Constraint ID \"%{id}\" does not exist"
-msgstr "Begränsnings-ID \"%{id}\" finns inte"
-
-#: ../app/models/colocation.rb:90 ../app/models/location.rb:107
-#: ../app/models/order.rb:116 ../app/models/ticket.rb:100
-msgid "Unable to update constraint: %{msg}"
-msgstr "Det går inte att uppdatera begränsningen: %{msg}"
-
-#: ../app/models/group.rb:45
-msgid "No group children specified"
-msgstr "Inga underordnade till gruppen har specificerats"
-
-#: ../app/models/group.rb:79
-msgid "Unable to create group: %{msg}"
-msgstr "Det går inte att skapa grupp: %{msg}"
-
-#: ../app/models/group.rb:89
-msgid "Group ID \"%{id}\" does not exist"
-msgstr "Grupp-ID \"%{id}\" existerar inte"
-
-#: ../app/models/location.rb:43
-msgid "Constraint is too complex - it contains nested rules"
-msgstr "Begränsningen är för komplex - den innehåller kapslade regler"
-
-#: ../app/models/location.rb:45
-msgid "No rules specified"
-msgstr "Inga regler har angetts"
-
-#: ../app/models/location.rb:49
-msgid "No resource specified"
-msgstr "Ingen resurs angiven"
-
-#: ../app/models/location.rb:58
-msgid "Invalid score \"%{score}\""
-msgstr "Ogiltig poäng \"%{score}\""
-
-#: ../app/models/location.rb:66
-msgid "No expressions specified"
-msgstr "Inga uttryck har angetts"
-
-#: ../app/models/location.rb:70
-msgid "Attribute contains both single and double quotes"
-msgstr "Attributet innehåller både enkla och dubbla citattecken"
-
-#: ../app/models/location.rb:71
-msgid "Value contains both single and double quotes"
-msgstr "Värdet innehåller både enkla och dubbla citattecken"
-
-#: ../app/models/master.rb:45
-msgid "No Master/Slave child specified"
-msgstr "Ingen underordnad till master/slav angiven"
-
-#: ../app/models/master.rb:76
-msgid "Unable to create master/slave: %{msg}"
-msgstr "Det går inte att skapa master/slav: %{msg}"
-
-#: ../app/models/master.rb:86
-msgid "Master/Slave ID \"%{id}\" does not exist"
-msgstr "Master/slav-ID \"%{id}\" finns inte"
-
-#: ../app/models/primitive.rb:61 ../app/models/template.rb:62
-msgid "Can't set parameter %{p}, because the value contains both single and double quotes"
-msgstr "Det går inte att ställa in parametern %{p} eftersom värdet innehåller både enkla och dubbla citattecken"
-
-#: ../app/models/primitive.rb:69 ../app/models/template.rb:70
-msgid "Can't set op %{o} attribute {%a}, because the value contains both single and double quotes"
-msgstr "Det går inte att ställa in op %{o} attribut {%a} eftersom värdet innehåller både enkla och dubbla citattecken"
-
-#: ../app/models/primitive.rb:129 ../app/models/template.rb:129
-msgid "Unable to create resource: %{msg}"
-msgstr "Det går inte att skapa resurs: %{msg}"
-
-#: ../app/models/primitive.rb:139 ../app/models/template.rb:139
-msgid "Resource ID \"%{id}\" does not exist"
-msgstr "Resurs-ID:t \"%{id}\" finns inte"
-
-#: ../app/models/role.rb:42
-msgid "Role must have rules"
-msgstr "Rollen måste ha regler"
-
-#: ../app/models/role.rb:61
-msgid "Unable to create role: %{msg}"
-msgstr "Det går inte att skapa roll: %{msg}"
-
-#: ../app/models/role.rb:69
-msgid "Role ID \"%{id}\" does not exist"
-msgstr "Roll-ID \"%{id}\" finns inte"
-
-#: ../app/models/role.rb:74
-msgid "Unable to update role: %{msg}"
-msgstr "Det går inte att uppdatera rollen: %{msg}"
-
-#: ../app/models/ticket.rb:58
-msgid "Invalid Ticket ID"
-msgstr "Ogiltigt biljett-ID"
-
-#: ../app/models/ticket.rb:61
-msgid "No resources specified"
-msgstr "Inga resurser angivna"
-
-#: ../app/models/user.rb:53
-msgid "User must have either rules or roles"
-msgstr "Användaren måste ha antingen regler eller roller"
-
-#: ../app/models/user.rb:54
-msgid "User can't have both rules and roles"
-msgstr "Användaren kan inte ha både regler och roller"
-
-#: ../app/models/user.rb:65
-msgid "Unable to create user: %{msg}"
-msgstr "Det går inte att skapa användare: %{msg}"
-
-#: ../app/models/user.rb:73
-msgid "User ID \"%{id}\" does not exist"
-msgstr "Användar-ID \"%{id}\" finns inte"
-
-#: ../app/models/user.rb:78
-msgid "Unable to update user: %{msg}"
-msgstr "Det går inte att uppdatera användaren: %{msg}"
-
-#: ../app/views/acls/index.html.erb:45
-#: ../app/views/crm_config/show.html.erb:11
-#: ../app/views/primitives/_form.html.erb:268
-msgid "Edit"
-msgstr "Redigera"
-
-#: ../app/views/acls/index.html.erb:56
-msgid "Delete"
-msgstr "Ta bort"
-
-#: ../app/views/acls/index.html.erb:60
-#: ../app/views/constraints/index.html.erb:61
-#: ../app/views/resources/index.html.erb:61
-msgid "Are you sure you wish to delete %s?"
-msgstr "Är du säker på att du vill ta bort %s?"
-
-#: ../app/views/acls/index.html.erb:101
-msgid "New Role"
-msgstr "Ny roll"
-
-#: ../app/views/acls/index.html.erb:102
-#: ../app/views/locations/_form.html.erb:44
-msgid "Role"
-msgstr "Roll"
-
-#: ../app/views/acls/index.html.erb:107
-msgid "New User"
-msgstr "Ny användare"
-
-#: ../app/views/acls/index.html.erb:108
-msgid "User"
-msgstr "Användare"
-
-#: ../app/views/acls/index.html.erb:129
-msgid "To enable ACLs, set 'enable-acl' in the CRM Configuration"
-msgstr "Aktivera ACL-listor genom att ange enable-acl i CRM-konfigurationen"
-
-#: ../app/views/acls/index.html.erb:134
-msgid "(No roles defined)"
-msgstr "(Inga roller har definierats)"
-
-#: ../app/views/acls/index.html.erb:146
-msgid "(No users defined)"
-msgstr "(Inga användare definierade)"
-
-#: ../app/views/clones/_form.html.erb:40 ../app/views/groups/_form.html.erb:75
-#: ../app/views/masters/_form.html.erb:40
-#: ../app/views/primitives/_form.html.erb:284
-msgid "Meta Attributes"
-msgstr "Metaattribut"
-
-#: ../app/views/clones/_form.html.erb:46
-#: ../app/views/colocations/_form.html.erb:60
-#: ../app/views/crm_config/edit.html.erb:24
-#: ../app/views/crm_config/edit.html.erb:46
-#: ../app/views/crm_config/edit.html.erb:68
-#: ../app/views/groups/_form.html.erb:81
-#: ../app/views/locations/_form.html.erb:47
-#: ../app/views/masters/_form.html.erb:46
-#: ../app/views/orders/_form.html.erb:60
-#: ../app/views/primitives/_form.html.erb:247
-#: ../app/views/primitives/_form.html.erb:267
-#: ../app/views/primitives/_form.html.erb:290
-#: ../app/views/roles/_form.html.erb:38 ../app/views/tickets/_form.html.erb:48
-#: ../app/views/users/_form.html.erb:48
-msgid "Add"
-msgstr "Lägg till"
-
-#: ../app/views/clones/_form.html.erb:47
-#: ../app/views/colocations/_form.html.erb:61
-#: ../app/views/crm_config/edit.html.erb:25
-#: ../app/views/crm_config/edit.html.erb:47
-#: ../app/views/crm_config/edit.html.erb:69
-#: ../app/views/dashboard/index.html.erb:45
-#: ../app/views/groups/_form.html.erb:82
-#: ../app/views/locations/_form.html.erb:48
-#: ../app/views/masters/_form.html.erb:47
-#: ../app/views/orders/_form.html.erb:61
-#: ../app/views/primitives/_form.html.erb:248
-#: ../app/views/primitives/_form.html.erb:269
-#: ../app/views/primitives/_form.html.erb:291
-#: ../app/views/roles/_form.html.erb:39 ../app/views/tickets/_form.html.erb:49
-#: ../app/views/users/_form.html.erb:49
-msgid "Remove"
-msgstr "Ta bort"
-
-#: ../app/views/clones/_form.html.erb:48
-#: ../app/views/crm_config/edit.html.erb:26
-#: ../app/views/crm_config/edit.html.erb:48
-#: ../app/views/crm_config/edit.html.erb:70
-#: ../app/views/groups/_form.html.erb:83
-#: ../app/views/masters/_form.html.erb:48
-#: ../app/views/primitives/_form.html.erb:249
-#: ../app/views/primitives/_form.html.erb:270
-#: ../app/views/primitives/_form.html.erb:292
-msgid "You must enter a value"
-msgstr "Du måste ange ett värde"
-
-#: ../app/views/clones/_form.html.erb:70
-msgid "Clone ID"
-msgstr "Klon-ID"
-
-#: ../app/views/clones/_form.html.erb:71
-#: ../app/views/masters/_form.html.erb:71
-msgid "Child Resource"
-msgstr "Underordnad resurs"
-
-#: ../app/views/clones/_form.html.erb:88
-#: ../app/views/colocations/_form.html.erb:110
-#: ../app/views/crm_config/edit.html.erb:114
-#: ../app/views/groups/_form.html.erb:143
-#: ../app/views/locations/_form.html.erb:94
-#: ../app/views/masters/_form.html.erb:88
-#: ../app/views/orders/_form.html.erb:116
-#: ../app/views/primitives/_form.html.erb:394
-#: ../app/views/roles/_form.html.erb:83 ../app/views/tickets/_form.html.erb:98
-#: ../app/views/users/_form.html.erb:112
-msgid "Revert Changes"
-msgstr "Återställ ändringar"
-
-#: ../app/views/clones/_form.html.erb:89
-#: ../app/views/colocations/_form.html.erb:111
-#: ../app/views/crm_config/show.html.erb:11
-#: ../app/views/crm_config/update.html.erb:4
-#: ../app/views/groups/_form.html.erb:144
-#: ../app/views/locations/_form.html.erb:95
-#: ../app/views/masters/_form.html.erb:89
-#: ../app/views/orders/_form.html.erb:117
-#: ../app/views/primitives/_form.html.erb:395
-#: ../app/views/roles/_form.html.erb:84 ../app/views/tickets/_form.html.erb:99
-#: ../app/views/users/_form.html.erb:113 ../app/views/wizard/broken.html.erb:4
-#: ../app/views/wizard/start.html.erb:3
-msgid "Back"
-msgstr "Tillbaka"
-
-#: ../app/views/clones/edit.html.erb:4
-#: ../app/views/colocations/edit.html.erb:4
-#: ../app/views/crm_config/edit.html.erb:113
-#: ../app/views/groups/edit.html.erb:4 ../app/views/locations/edit.html.erb:4
-#: ../app/views/masters/edit.html.erb:4 ../app/views/orders/edit.html.erb:4
-#: ../app/views/primitives/edit.html.erb:4 ../app/views/roles/edit.html.erb:4
-#: ../app/views/tickets/edit.html.erb:4 ../app/views/users/edit.html.erb:4
-msgid "Apply Changes"
-msgstr "Verkställ ändringar"
-
-#: ../app/views/colocations/_form.html.erb:62
-#: ../app/views/orders/_form.html.erb:62
-msgid "Link set"
-msgstr "Länkuppsättning"
-
-#: ../app/views/colocations/_form.html.erb:63
-#: ../app/views/orders/_form.html.erb:63
-msgid "Break set"
-msgstr "Splittra uppsättning"
-
-#: ../app/views/colocations/_form.html.erb:64
-#: ../app/views/orders/_form.html.erb:64
-msgid "Swap resources"
-msgstr "Byt resurser"
-
-#: ../app/views/colocations/_form.html.erb:65
-#: ../app/views/orders/_form.html.erb:65
-#: ../app/views/tickets/_form.html.erb:50
-msgid "Add resource to constraint"
-msgstr "Lägg till resurs i begränsning"
-
-#: ../app/views/colocations/_form.html.erb:89
-#: ../app/views/locations/_form.html.erb:75
-#: ../app/views/orders/_form.html.erb:89
-#: ../app/views/tickets/_form.html.erb:77
-msgid "Constraint ID"
-msgstr "Begränsnings-ID"
-
-#: ../app/views/colocations/_form.html.erb:90
-#: ../app/views/locations/_form.html.erb:42
-#: ../app/views/orders/_form.html.erb:90
-msgid "Score"
-msgstr "Poäng"
-
-#: ../app/views/colocations/_form.html.erb:109
-#: ../app/views/locations/_form.html.erb:93
-#: ../app/views/orders/_form.html.erb:115
-#: ../app/views/tickets/_form.html.erb:97
-msgid "Create Constraint"
-msgstr "Skapa begränsning"
-
-#: ../app/views/constraints/index.html.erb:46
-msgid "Edit Constraint"
-msgstr "Redigera begränsning"
-
-#: ../app/views/constraints/index.html.erb:57
-msgid "Delete Constraint"
-msgstr "Ta bort begränsning"
-
-#: ../app/views/constraints/index.html.erb:102
-#: ../app/views/constraints/index.html.erb:108
-#: ../app/views/constraints/index.html.erb:114
-#: ../app/views/constraints/index.html.erb:121
-msgid "New Constraint"
-msgstr "Ny begränsning"
-
-#: ../app/views/constraints/index.html.erb:103
-msgid "Location"
-msgstr "Plats"
-
-#: ../app/views/constraints/index.html.erb:109
-msgid "Colocation"
-msgstr "Colocation"
-
-#: ../app/views/constraints/index.html.erb:115
-msgid "Order"
-msgstr "Ordning"
-
-#: ../app/views/constraints/index.html.erb:122
-msgid "Ticket"
-msgstr "Biljett"
-
-#: ../app/views/constraints/index.html.erb:143
-msgid "(No location constraints defined)"
-msgstr "(Inga platsbegränsningar definierade)"
-
-#: ../app/views/constraints/index.html.erb:155
-msgid "[Constraint is too complex to display]"
-msgstr "[Begränsningen är för komplex att visa]"
-
-#: ../app/views/constraints/index.html.erb:173
-msgid "(No colocation constraints defined)"
-msgstr "(Inga colocationbegränsningar definierade)"
-
-#: ../app/views/constraints/index.html.erb:187
-msgid "(No order constraints defined)"
-msgstr "(Inga ordningsbegränsningar definierade)"
-
-#: ../app/views/constraints/index.html.erb:202
-msgid "(No ticket constraints defined)"
-msgstr "(Inga biljettbegränsningar definierade)"
-
-#: ../app/views/crm_config/edit.html.erb:15
-#: ../app/views/main/_gettext.js.erb:102
-msgid "CRM Configuration"
-msgstr "CRM-konfigurering"
-
-#: ../app/views/crm_config/edit.html.erb:37
-#: ../app/views/main/_gettext.js.erb:105
-msgid "Resource Defaults"
-msgstr "Resursstandard"
-
-#: ../app/views/crm_config/edit.html.erb:59
-#: ../app/views/main/_gettext.js.erb:108
-msgid "Operation Defaults"
-msgstr "Åtgärdsstandard"
-
-#: ../app/views/crm_config/show.html.erb:4
-msgid "No cluster properties set in %{group}"
-msgstr "Inga klusteregenskaper angivna i %{group}"
-
-#: ../app/views/dashboard/index.html.erb:56
-#: ../app/views/sessions/new.html.erb:9
-msgid "Username:"
-msgstr "Användarnamn:"
-
-#: ../app/views/dashboard/index.html.erb:60
-#: ../app/views/sessions/new.html.erb:13
-msgid "Password:"
-msgstr "Lösenord:"
-
-#: ../app/views/dashboard/index.html.erb:71
-msgid "Cluster has errors - click for details"
-msgstr "Klustret har fel - klicka för information"
-
-#: ../app/views/dashboard/index.html.erb:156
-#: ../app/views/dashboard/index.html.erb:484
-msgid "Timeout: Please try again"
-msgstr "Tidsgränsen överskreds: försök igen"
-
-#: ../app/views/dashboard/index.html.erb:240
-msgid "Permission denied. Please log in to %{node}"
-msgstr "Tillstånd nekades. Logga in på %{node}"
-
-#: ../app/views/dashboard/index.html.erb:329
-msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
-msgstr "Det går inte att kontakta Hawk på %{node}. Försöker igen var 5 sekund."
-
-#: ../app/views/dashboard/index.html.erb:407
-msgid "Cluster Name:"
-msgstr "Klusternamn:"
-
-#: ../app/views/dashboard/index.html.erb:408
-msgid "Host Name:"
-msgstr "Värddatornamn:"
-
-#: ../app/views/dashboard/index.html.erb:409
-msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
-msgstr "(Ange valfritt värdnamn i klustret. Andra noder hittas automatiskt.)"
-
-#: ../app/views/dashboard/index.html.erb:414
-msgid "Add Cluster"
-msgstr "Lägg till kluster"
-
-#: ../app/views/dashboard/index.html.erb:416
-#: ../app/views/main/_gettext.js.erb:4
-#: ../app/views/primitives/_form.html.erb:272
-msgid "OK"
-msgstr "OK"
-
-#: ../app/views/dashboard/index.html.erb:431
-msgid "A cluster with that name already exists"
-msgstr "Det finns redan ett kluster med det här namnet"
-
-#: ../app/views/dashboard/index.html.erb:437
-msgid "The host %{h} is already present in cluster %{c}"
-msgstr "Värden %{h} finns redan i klustret %{c}"
-
-#: ../app/views/dashboard/index.html.erb:466
-#: ../app/views/dashboard/index.html.erb:478
-msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
-msgstr "Det går inte att ansluta till %{host}. Försök öppna %{url} i webbläsaren för att kontrollera att det går att komma åt Hawk."
-
-#: ../app/views/dashboard/index.html.erb:491
-#: ../app/views/main/_gettext.js.erb:7
-#: ../app/views/primitives/_form.html.erb:273
-#: ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
-msgid "Cancel"
-msgstr "Avbryt"
-
-#: ../app/views/explorer/_pe_list.html.erb:6
-msgid "No transitions found for the specified time period."
-msgstr "Inga överföringar hittades för den angivna tidsperioden."
-
-#: ../app/views/explorer/_pe_list.html.erb:11
-msgid "Time"
-msgstr "Tid"
-
-#: ../app/views/explorer/_pe_list.html.erb:12
-msgid "PE Input"
-msgstr "PE-indata"
-
-#: ../app/views/explorer/_pe_list.html.erb:13
-#: ../app/views/locations/_form.html.erb:43
-msgid "Node"
-msgstr "Nod"
-
-#: ../app/views/explorer/_pe_list.html.erb:30
-#: ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:287
-msgid "Details"
-msgstr "Detaljer"
-
-#: ../app/views/explorer/_pe_list.html.erb:34
-msgid "(full log)"
-msgstr "(full logg)"
-
-#: ../app/views/explorer/_pe_list.html.erb:38
-#: ../app/views/main/_gettext.js.erb:296
-msgid "Graph"
-msgstr "Graf"
-
-#: ../app/views/explorer/_pe_list.html.erb:47
-msgid "Diff"
-msgstr "Diff"
-
-#: ../app/views/explorer/index.html.erb:39
-msgid "Delete this history archive?"
-msgstr "Ta bort det här historikarkivet?"
-
-#: ../app/views/explorer/index.html.erb:150
-#: ../app/views/explorer/index.html.erb:169
-#: ../app/views/hb_reports/new.html.erb:58
-msgid "Start Time:"
-msgstr "Starttid:"
-
-#: ../app/views/explorer/index.html.erb:152
-#: ../app/views/explorer/index.html.erb:171
-#: ../app/views/hb_reports/new.html.erb:63
-msgid "End Time:"
-msgstr "Sluttid:"
-
-#: ../app/views/explorer/index.html.erb:165
-msgid "Exploring %{path}"
-msgstr "Utforska %{path}"
-
-#: ../app/views/explorer/index.html.erb:173
-msgid "Display"
-msgstr "Skärm"
-
-#: ../app/views/explorer/index.html.erb:186
-msgid "Upload hb_report tarball"
-msgstr "Överför hb_report-TAR-fil"
-
-#: ../app/views/explorer/index.html.erb:188
-msgid "Explore"
-msgstr "Utforska"
-
-#: ../app/views/explorer/permission_denied.html.erb:2
-#: ../app/views/hb_reports/permission_denied.html.erb:2
-#: ../app/views/nodes/permission_denied.html.erb:2
-#: ../app/views/resources/permission_denied.html.erb:2
-msgid "Error: Permission denied for user '%s'."
-msgstr "Fel: Nekad behörighet för användaren %s."
-
-#: ../app/views/groups/_form.html.erb:105
-msgid "Group ID"
-msgstr "Grupp-ID"
-
-#: ../app/views/groups/_form.html.erb:115
-msgid "Group Children"
-msgstr "Gruppera underordnade"
-
-#: ../app/views/groups/_form.html.erb:117
-msgid "Available Primitives"
-msgstr "Tillgängliga primitiver"
-
-#: ../app/views/hb_reports/create.js.erb:3
-msgid "Start Time not specified"
-msgstr "Starttid har inte angetts"
-
-#: ../app/views/hb_reports/new.html.erb:60
-msgid "Generate"
-msgstr "Generera"
-
-#: ../app/views/hb_reports/new.html.erb:74
-msgid "hb_report generation in progress..."
-msgstr "hb_report genereras..."
-
-#: ../app/views/hb_reports/new.html.erb:80
-msgid "Download hb_report"
-msgstr "Ladda ner hb_report"
-
-#: ../app/views/layouts/main.html.erb:35
-msgid "Simulator"
-msgstr "Simulator"
-
-#: ../app/views/layouts/main.html.erb:66 ../app/views/layouts/main.html.erb:79
-msgid "Cluster Diagram"
-msgstr "Klusterdiagram"
-
-#: ../app/views/layouts/main.html.erb:87
-msgid "Generate hb_report..."
-msgstr "Generera hb_report..."
-
-#: ../app/views/layouts/main.html.erb:98
-msgid "Generate hb_report"
-msgstr "Generera hb_report"
-
-#: ../app/views/layouts/main.html.erb:111
-msgid "Preferences..."
-msgstr "Inställningar..."
-
-#: ../app/views/layouts/main.html.erb:134
-msgid "Language"
-msgstr "Språk"
-
-#: ../app/views/layouts/main.html.erb:160
-msgid "Preferences"
-msgstr "Inställningar"
-
-#: ../app/views/layouts/main.html.erb:178
-msgid "Tools"
-msgstr "Verktyg"
-
-#: ../app/views/layouts/main.html.erb:182
-#: ../app/views/layouts/main.html.erb:190
-msgid "Status"
-msgstr "Status"
-
-#: ../app/views/layouts/main.html.erb:184
-msgid "User: %{user}"
-msgstr "Användare: %{user}"
-
-#: ../app/views/layouts/main.html.erb:185
-msgid "Log Out"
-msgstr "Logga ut"
-
-#: ../app/views/layouts/main.html.erb:190
 msgid "Dashboard"
 msgstr "Instrumentpanel"
 
-#: ../app/views/layouts/main.html.erb:211
-msgid "Setup Wizard"
-msgstr "Inställningsguide"
-
-#: ../app/views/layouts/main.html.erb:214
-msgid "Cluster Properties"
-msgstr "Klusteregenskaper"
-
-#: ../app/views/layouts/main.html.erb:250
-msgid "UI Host: %s"
-msgstr "UI-värd: %s"
-
-#: ../app/views/layouts/main.html.erb:251
-msgid "Copyright &copy; 2009-2014 SUSE, LLC"
-msgstr "Copyright &copy; 2009-2014 SUSE, LLC"
-
-#: ../app/views/locations/_form.html.erb:45
-msgid "Boolean Op"
-msgstr "Boolesk op"
-
-#: ../app/views/locations/_form.html.erb:46
-msgid "Expression"
-msgstr "Uttryck"
-
-#: ../app/views/locations/_form.html.erb:49
-msgid "Add Rule"
-msgstr "Lägg till regel"
-
-#: ../app/views/locations/_form.html.erb:50
-msgid "Remove Rule"
-msgstr "Ta bort regel"
-
-#: ../app/views/locations/_form.html.erb:51
-msgid "Show Rule Editor"
-msgstr "Visa regelredigerare"
-
-#: ../app/views/locations/_form.html.erb:76
-msgid "Resource"
-msgstr "Resurs"
-
-#: ../app/views/main/_gettext.js.erb:10
-#: ../app/views/shared/_confirm_revert.html.erb:8
-msgid "Yes"
-msgstr "Ja"
-
-#: ../app/views/main/_gettext.js.erb:13
-#: ../app/views/shared/_confirm_revert.html.erb:9
-msgid "No"
-msgstr "Nej"
-
-#: ../app/views/main/_gettext.js.erb:16
-msgid "Close"
-msgstr "Stäng"
-
-#: ../app/views/main/_gettext.js.erb:19
-msgid "Reset"
-msgstr "Återställ"
-
-#: ../app/views/main/_gettext.js.erb:23
-msgid "This will bring node %s online if it is currently on standby.  Do you want to continue?"
-msgstr "Detta gör att noden %s blir online om den för tillfället är i standbyläge. Vill du fortsätta?"
-
-#: ../app/views/main/_gettext.js.erb:26
-msgid "This will put node %s on standby.  All resources will be stopped and/or moved to another node.  Do you want to continue?"
-msgstr "Detta gör att noden %s sätts på standby. Alla resurser stoppas och/eller flyttas då till en annan nod. Vill du fortsätta?"
-
-#: ../app/views/main/_gettext.js.erb:29
-msgid "This will put node %s in maintenance mode.  All resources on this node will become unmanaged.  Do you want to continue?"
-msgstr "Detta gör att noden %s försätts i underhållsläge. Alla resurser på noden blir ohanterade. Vill du fortsätta?"
-
-#: ../app/views/main/_gettext.js.erb:32
-msgid "This will bring node %s out of maintenance mode.  Do you want to continue?"
-msgstr "Detta gör att noden %s tas ur underhållsläge. Vill du fortsätta?"
-
-#: ../app/views/main/_gettext.js.erb:35
-msgid "This will attempt to immediately fence node %s.  Do you want to continue?"
-msgstr "Detta innebär att det kommer att göras ett försök att isolera noden %s. Vill du fortsätta?"
-
-#: ../app/views/main/_gettext.js.erb:39
-msgid "This will start the resource %s.  Do you want to continue?"
-msgstr "Detta startar resursen %s. Vill du fortsätta?"
-
-#: ../app/views/main/_gettext.js.erb:42
-msgid "This will stop the resource %s.  Do you want to continue?"
-msgstr "Detta stoppar resursen%s. Vill du fortsätta?"
-
-#: ../app/views/main/_gettext.js.erb:45
-msgid "Move resource %s"
-msgstr "Flytta resursen %s"
-
-#: ../app/views/main/_gettext.js.erb:48
-msgid "To node %s"
-msgstr "Till noden %s"
-
-#: ../app/views/main/_gettext.js.erb:51
-msgid "Away from current node"
-msgstr "Bort från den aktuella noden"
-
-#: ../app/views/main/_gettext.js.erb:54
-msgid "This will clear any relocation constraints set on the resource %s.  Do you want to continue?"
-msgstr "Detta gör att alla flyttbegränsningar på resursen %s tas bort. Vill du fortsätta?"
-
-#: ../app/views/main/_gettext.js.erb:57
-msgid "This will promote the resource %s.  Do you want to continue?"
-msgstr "Detta höjer resursen %s. Vill du fortsätta?"
-
-#: ../app/views/main/_gettext.js.erb:60
-msgid "This will demote the resource %s.  Do you want to continue?"
-msgstr "Detta sänker resursen %s.  Do you want to continue?"
-
-#: ../app/views/main/_gettext.js.erb:63
-msgid "This will clean up the resource %s.  Do you want to continue?"
-msgstr "Detta städar upp i resursen %s. Vill du fortsätta?"
-
-#: ../app/views/main/_gettext.js.erb:67
-msgid "Error"
-msgstr "Fel"
-
-#: ../app/views/main/_gettext.js.erb:70
-msgid "Unexpected server error: %s"
-msgstr "Ett oväntat serverfel: %s"
-
-#: ../app/views/main/_gettext.js.erb:73
-msgid "Connection to server failed (server down or network error - will retry every 15 seconds)."
-msgstr "Anslutning till server misslyckades (server nere eller nätverksfil - försöker igen var 15 sekund)."
-
-#: ../app/views/main/_gettext.js.erb:76
-msgid "Connection to server timed out - will retry every 15 seconds."
-msgstr "Tidsgränsen överskreds för anslutning till server - försöker igen var 15 sekund."
-
-#: ../app/views/main/_gettext.js.erb:79
-msgid "Connection to server aborted - will retry every 15 seconds."
-msgstr "Anslutning till server avbruten - försöker igen var 15 sekund."
-
-#: ../app/views/main/_gettext.js.erb:82
-msgid "Permission denied"
-msgstr "Åtkomst nekades"
-
-#: ../app/views/main/_gettext.js.erb:85
-msgid "%{op} failed on %{node} (rc=%{rc})"
-msgstr "%{op} misslyckades på %{node} (rc=%{rc})"
-
-#: ../app/views/main/_gettext.js.erb:89
-msgid "DC: %s"
-msgstr "DC: %s"
-
-#: ../app/views/main/_gettext.js.erb:92
-msgid "Version: %s"
-msgstr "Version: %s"
-
-#: ../app/views/main/_gettext.js.erb:95
-msgid "Stack: %s"
-msgstr "Stack: %s"
-
-#: ../app/views/main/_gettext.js.erb:111
-msgid "Inactive Resources"
-msgstr "Inaktiva resurser"
-
-#: ../app/views/main/_gettext.js.erb:114
-msgid "Summary"
-msgstr "Sammanfattning"
-
-#: ../app/views/main/_gettext.js.erb:120
-msgid "STONITH Enabled"
-msgstr "STONITH aktiverat"
-
-#: ../app/views/main/_gettext.js.erb:123
-msgid "No Quorum Policy"
-msgstr "Inget kvorum-policy"
-
-#: ../app/views/main/_gettext.js.erb:126
-msgid "Symmetric Cluster"
-msgstr "Symmetriskt kluster"
-
-#: ../app/views/main/_gettext.js.erb:129
-msgid "Resource Stickiness"
-msgstr "Resursens varaktighet"
-
-#: ../app/views/main/_gettext.js.erb:132
-msgid "Maintenance Mode"
-msgstr "Underhållsläge"
-
-#: ../app/views/main/_gettext.js.erb:135
-msgid "Unmanaged"
-msgstr "Ohanterad"
-
-#: ../app/views/main/_gettext.js.erb:138
-msgid "Tickets"
-msgstr "Biljetter"
-
-#: ../app/views/main/_gettext.js.erb:141
-msgid "This will request the ticket %s be granted to the present site.  Do you want to continue?"
-msgstr "Genom detta kommer det att begäras att biljetten %s ges till den aktuella platsen. Vill du fortsätta?"
-
-#: ../app/views/main/_gettext.js.erb:144
-msgid "This will request the ticket %s be revoked.  Do you want to continue?"
-msgstr "Genom detta kommer det att begäras att biljetten %s återkallas. Vill du fortsätta?"
-
-#: ../app/views/main/_gettext.js.erb:148
-msgid "Granted [standby]"
-msgstr "Beviljad [vänteläge]"
-
-#: ../app/views/main/_gettext.js.erb:149
-msgid "Granted"
-msgstr "Beviljad"
-
-#: ../app/views/main/_gettext.js.erb:153
-msgid "Revoked [standby]"
-msgstr "Återkallat [vänteläge]"
-
-#: ../app/views/main/_gettext.js.erb:154
-msgid "Revoked"
-msgstr "Återkallat"
-
-#: ../app/views/main/_gettext.js.erb:157
-msgid "Leader: %s"
-msgstr "Ledare: %s"
-
-#: ../app/views/main/_gettext.js.erb:160
-msgid "Last granted: %s"
-msgstr "Senast beviljad: %s"
-
-#: ../app/views/main/_gettext.js.erb:163
-msgid "Expires: %s"
-msgstr "Upphör att gälla: %s"
-
-#: ../app/views/main/_gettext.js.erb:167
-msgid "Summary View"
-msgstr "Sammanfattningsvy"
-
-#: ../app/views/main/_gettext.js.erb:170
-msgid "Tree View"
-msgstr "Trädvy"
-
-#: ../app/views/main/_gettext.js.erb:173
-msgid "Table View"
-msgstr "Tabellvy"
-
-#: ../app/views/main/_gettext.js.erb:177
-msgid "%{node}: %{state}"
-msgstr "%{node}: %{state}"
-
-#: ../app/views/main/_gettext.js.erb:180 ../app/views/main/_menus.html.erb:8
-msgid "Online"
-msgstr "Online"
-
-#: ../app/views/main/_gettext.js.erb:183
-msgid "Offline"
-msgstr "Offline"
-
-#: ../app/views/main/_gettext.js.erb:186 ../app/views/main/_gettext.js.erb:214
-msgid "Pending"
-msgstr "Väntar"
-
-#: ../app/views/main/_gettext.js.erb:189 ../app/views/main/_gettext.js.erb:341
-#: ../app/views/main/_menus.html.erb:15
-msgid "Standby"
-msgstr "Vänteläge"
-
-#: ../app/views/main/_gettext.js.erb:192
-msgid "Unclean"
-msgstr "Inkorrekt"
-
-#: ../app/views/main/_gettext.js.erb:199
-msgid "Master"
-msgstr "Huvudserver"
-
-#: ../app/views/main/_gettext.js.erb:200
-msgid "%{id}: Master: %{nodelist}"
-msgstr "%{id}: Master: %{nodelist}"
-
-#: ../app/views/main/_gettext.js.erb:201
-msgid "%{id}: Master"
-msgstr "%{id}: Master"
-
-#: ../app/views/main/_gettext.js.erb:204
-msgid "Slave"
-msgstr "Slavserver"
-
-#: ../app/views/main/_gettext.js.erb:205
-msgid "%{id}: Slave: %{nodelist}"
-msgstr "%{id}: Slav: %{nodelist}"
-
-#: ../app/views/main/_gettext.js.erb:206
-msgid "%{id}: Slave"
-msgstr "%{id}: Slav"
-
-#: ../app/views/main/_gettext.js.erb:209
-msgid "Started"
-msgstr "Startad"
-
-#: ../app/views/main/_gettext.js.erb:210
-msgid "%{id}: Started: %{nodelist}"
-msgstr "%{id}: Startad: %{nodelist}"
-
-#: ../app/views/main/_gettext.js.erb:211
-msgid "%{id}: Started"
-msgstr "%{id}: Startad"
-
-#: ../app/views/main/_gettext.js.erb:215
-msgid "%{id}: Pending: %{nodelist}"
-msgstr "%{id}: Väntar: %{nodelist}"
-
-#: ../app/views/main/_gettext.js.erb:216
-msgid "%{id}: Pending"
-msgstr "%{id}: väntar"
-
-#: ../app/views/main/_gettext.js.erb:220
-msgid "%{id}: Starting: %{node}"
-msgstr "%{id}: Startar: %{nodelist}"
-
-#: ../app/views/main/_gettext.js.erb:221
-msgid "%{id}: Starting"
-msgstr "%{id}: Startar"
-
-#: ../app/views/main/_gettext.js.erb:224
-msgid "%{id}: Stopping: %{node}"
-msgstr "%{id}: Stoppar: %{node}"
-
-#: ../app/views/main/_gettext.js.erb:225
-msgid "%{id}: Stopping"
-msgstr "%{id}: Stoppar"
-
-#: ../app/views/main/_gettext.js.erb:228
-msgid "%{id}: Promoting: %{node}"
-msgstr "%{id}: Höjer: %{node}"
-
-#: ../app/views/main/_gettext.js.erb:229
-msgid "%{id}: Promoting"
-msgstr "%{id}: Höjer"
-
-#: ../app/views/main/_gettext.js.erb:232
-msgid "%{id}: Demoting: %{node}"
-msgstr "%{id}: Sänker: %{node}"
-
-#: ../app/views/main/_gettext.js.erb:233
-msgid "%{id}: Demoting"
-msgstr "%{id}: Sänker"
-
-#: ../app/views/main/_gettext.js.erb:236
-msgid "%{id}: Moving: %{node}"
-msgstr "%{id}: Flyttar: %{node}"
-
-#: ../app/views/main/_gettext.js.erb:237
-msgid "%{id}: Moving"
-msgstr "%{id}: Flyttar"
-
-#: ../app/views/main/_gettext.js.erb:240
-msgid "Stopped"
-msgstr "Stoppad"
-
-#: ../app/views/main/_gettext.js.erb:241
-msgid "%{id}: Stopped"
-msgstr "%{id}: Stoppad"
-
-#: ../app/views/main/_gettext.js.erb:244
-msgid "Group: %{id}"
-msgstr "Grupp: %{id}"
-
-#: ../app/views/main/_gettext.js.erb:247
-msgid "Master/Slave Set: %{id}"
-msgstr "Master/slave-uppsättning: %{id}"
-
-#: ../app/views/main/_gettext.js.erb:250
-msgid "Clone Set: %{id}"
-msgstr "Klonuppsättning: %{id}"
-
-#: ../app/views/main/_gettext.js.erb:253
-msgid "Parent: %{id}..."
-msgstr "Överordnad: %{id}..."
-
-#: ../app/views/main/_gettext.js.erb:256
-msgid "%{active}/%{total} %{type} %{node}"
-msgstr "%{active}/%{total} %{type} %{node}"
-
-#: ../app/views/main/_gettext.js.erb:259
-msgid "Toggle view by type"
-msgstr "Växla vy efter typ"
-
-#: ../app/views/main/_gettext.js.erb:263
-msgid "Simulator (initial state)"
-msgstr "Simulator (inledande status)"
-
-#: ../app/views/main/_gettext.js.erb:266
-msgid "Simulator (busy...)"
-msgstr "Simulator (upptagen...)"
-
-#: ../app/views/main/_gettext.js.erb:269
-msgid "Simulator (final state)"
-msgstr "Simulator (slutlig status)"
-
-#: ../app/views/main/_gettext.js.erb:272
-msgid "Injected State:"
-msgstr "Injected-status:"
-
-#: ../app/views/main/_gettext.js.erb:275
-msgid "+ Node"
-msgstr "+ Nod"
-
-#: ../app/views/main/_gettext.js.erb:278
-msgid "+ Op"
-msgstr "+ Op"
-
-#: ../app/views/main/_gettext.js.erb:281
-msgid "+ Ticket"
-msgstr "+ Biljett"
-
-#: ../app/views/main/_gettext.js.erb:284
-msgid "Run >"
-msgstr "Kör >"
-
-#: ../app/views/main/_gettext.js.erb:290
-msgid "CIB (in)"
-msgstr "CIB (in)"
-
-#: ../app/views/main/_gettext.js.erb:293
-msgid "CIB (out)"
-msgstr "CIB (ut)"
-
-#: ../app/views/main/_gettext.js.erb:299
-msgid "Empty Graph"
-msgstr "Tomt diagram"
-
-#: ../app/views/main/_gettext.js.erb:302
-msgid "Inject Node State"
-msgstr "Infoga nodstatus"
-
-#: ../app/views/main/_gettext.js.erb:305
-msgid "Node:"
-msgstr "Nod:"
-
-#: ../app/views/main/_gettext.js.erb:308
-msgid "State:"
-msgstr "Delstat:"
-
-#: ../app/views/main/_gettext.js.erb:311
-msgid "Inject Operation"
-msgstr "Infoga åtgärd"
-
-#: ../app/views/main/_gettext.js.erb:314
-msgid "Operation:"
-msgstr "Åtgärd:"
-
-#: ../app/views/main/_gettext.js.erb:317
-msgid "Interval:"
-msgstr "Intervall:"
-
-#: ../app/views/main/_gettext.js.erb:320
-msgid "Resource:"
-msgstr "Resurs:"
-
-#: ../app/views/main/_gettext.js.erb:323
-msgid "Result:"
-msgstr "Resultat:"
-
-#: ../app/views/main/_gettext.js.erb:326
-msgid "Inject Ticket"
-msgstr "Infoga biljett"
-
-#: ../app/views/main/_gettext.js.erb:329
-msgid "Ticket:"
-msgstr "Biljett:"
-
-#: ../app/views/main/_gettext.js.erb:332
-msgid "Action:"
-msgstr "Åtgärd:"
-
-#: ../app/views/main/_gettext.js.erb:335 ../app/views/main/_menus.html.erb:206
-msgid "Grant"
-msgstr "Bevilja"
-
-#: ../app/views/main/_gettext.js.erb:338 ../app/views/main/_menus.html.erb:213
-msgid "Revoke"
-msgstr "Återkalla"
-
-#: ../app/views/main/_gettext.js.erb:344
-msgid "Activate"
-msgstr "Aktivera"
-
-#: ../app/views/main/_gettext.js.erb:347
-msgid "Success"
-msgstr "Lyckades"
-
-#: ../app/views/main/_gettext.js.erb:350
-msgid "Generic Error"
-msgstr "Generiskt fel"
-
-#: ../app/views/main/_gettext.js.erb:353
-msgid "Wrong Argument(s)"
-msgstr "Fel argument"
-
-#: ../app/views/main/_gettext.js.erb:356
-msgid "Not Implemented"
-msgstr "Har inte implementerats"
-
-#: ../app/views/main/_gettext.js.erb:359
-msgid "Permission Denied"
-msgstr "Åtkomst nekades"
-
-#: ../app/views/main/_gettext.js.erb:362
-msgid "Not Installed"
-msgstr "Inte installerat"
-
-#: ../app/views/main/_gettext.js.erb:365
-msgid "Not Configured"
-msgstr "Inte inställd"
-
-#: ../app/views/main/_gettext.js.erb:368
-msgid "Not Running"
-msgstr "Körs inte"
-
-#: ../app/views/main/_gettext.js.erb:371
-msgid "Running Master"
-msgstr "Kör master"
-
-#: ../app/views/main/_gettext.js.erb:374
-msgid "Failed Master"
-msgstr "Misslyckad master"
-
-#: ../app/views/main/_menus.html.erb:22
-msgid "Maintenance"
-msgstr "Underhåll"
-
-#: ../app/views/main/_menus.html.erb:29
-msgid "Ready"
-msgstr "Klar"
-
-#: ../app/views/main/_menus.html.erb:36
-msgid "Fence Node"
-msgstr "Staketnod"
-
-#: ../app/views/main/_menus.html.erb:46 ../app/views/main/_menus.html.erb:160
-msgid "View Details..."
-msgstr "Visa detaljer..."
-
-#: ../app/views/main/_menus.html.erb:66 ../app/views/main/_menus.html.erb:182
-msgid "View Recent Events..."
-msgstr "Visa senaste händelser..."
-
-#: ../app/views/main/_menus.html.erb:87
-msgid "Start"
-msgstr "Början"
-
-#: ../app/views/main/_menus.html.erb:94
-msgid "Stop"
-msgstr "Stopp"
-
-#: ../app/views/main/_menus.html.erb:101
-msgid "Move..."
-msgstr "Flytta..."
-
-#: ../app/views/main/_menus.html.erb:129
-msgid "Drop Relocation Rule"
-msgstr "Hoppa över flyttregel"
-
-#: ../app/views/main/_menus.html.erb:136
-msgid "Promote"
-msgstr "Höj"
-
-#: ../app/views/main/_menus.html.erb:143
-msgid "Demote"
-msgstr "Sänk"
-
-#: ../app/views/main/_menus.html.erb:150
-msgid "Clean Up"
-msgstr "Städa upp"
-
-#: ../app/views/masters/_form.html.erb:70
-msgid "Master/Slave ID"
-msgstr "Master/slav-ID"
-
-#: ../app/views/nodes/events.html.erb:12
-#: ../app/views/resources/events.html.erb:12
-msgid "Getting recent events (last hour)..."
-msgstr "Hämtar senaste händelser (senaste timmen)..."
-
-#: ../app/views/nodes/events.html.erb:13
-#: ../app/views/resources/events.html.erb:13
-msgid "Another \"crm history\" operation is in progress..."
-msgstr "En annan \"crm history\"-åtgärd pågår..."
-
-#: ../app/views/nodes/events.html.erb:20
-#: ../app/views/resources/events.html.erb:20
-msgid "No events found in last hour."
-msgstr "Inga händelser hittades den senaste timmen."
-
-#: ../app/views/nodes/show.html.erb:1
-msgid "Utilization"
-msgstr "Användning"
-
-#: ../app/views/nodes/show.html.erb:15
-msgid "No utilization defined"
-msgstr "Ingen användning definierad"
-
-#: ../app/views/nodes/show.html.erb:18 ../app/views/resources/show.html.erb:1
-msgid "Attributes"
-msgstr "Attribut"
-
-#: ../app/views/nodes/show.html.erb:29 ../app/views/resources/show.html.erb:12
-msgid "No attributes defined"
-msgstr "Inga attribut definierade"
-
-#: ../app/views/orders/_form.html.erb:100
-msgid "Symmetrical"
-msgstr "Symmetrisk"
-
-#: ../app/views/primitives/_form.html.erb:261
-msgid "Operations"
-msgstr "Åtgärder"
-
-#: ../app/views/primitives/_form.html.erb:271
-msgid "There is already a monitor op with this interval."
-msgstr "Det finns redan en övervakningsop med det här intervallet."
-
-#: ../app/views/primitives/_form.html.erb:329
-msgid "Template ID"
-msgstr "Mall-ID"
-
-#: ../app/views/primitives/_form.html.erb:329
-msgid "Resource ID"
-msgstr "Resurs-ID"
-
-#: ../app/views/primitives/_form.html.erb:330
-msgid "Class"
-msgstr "Klass"
-
-#: ../app/views/primitives/_form.html.erb:331
-msgid "Provider"
-msgstr "Leverantör"
-
-#: ../app/views/primitives/_form.html.erb:332
-msgid "Type"
-msgstr "Typ"
-
-#: ../app/views/primitives/_form.html.erb:367
-msgid "Use Template"
-msgstr "Använd mall"
-
-#: ../app/views/resources/index.html.erb:57
-msgid "Delete Resource"
-msgstr "Ta bort resurs"
-
-#: ../app/views/resources/index.html.erb:102
-msgid "New Resource"
-msgstr "Ny resurs"
-
-#: ../app/views/resources/index.html.erb:103
-msgid "Primitive"
+msgid "History Explorer"
+msgstr "Historikutforskare"
+
+msgid "PE Input created by different Pacemaker version (%{version})"
+msgstr "PE-indata skapade av en annan Pacemaker-version (%{version})"
+
+msgid "Pacemaker version not present in PE Input"
+msgstr "Pacemaker-versionen finns inte i PE-indata"
+
+msgid "Required parameters \"basename\" and \"node\" not specified"
+msgstr "De begärda parametrarna \"basename\" och \"node\" har inte angetts"
+
+msgid "No details available"
+msgstr "Inga detaljer tillgängliga"
+
+msgid "Error:"
+msgstr "Fel:"
+
+msgid "Required parameters \"left\" and \"right\" not specified"
+msgstr "De begärda parametrarna \"left\" och \"right\" har inte angetts"
+
+msgid "Edit Group"
+msgstr "Redigera grupp"
+
+msgid "Create Group"
+msgstr "Skapa grupp"
+
+msgid "Group created successfully"
+msgstr "Gruppen har skapats"
+
+msgid "Group updated successfully"
+msgstr "Gruppen har uppdaterats"
+
+msgid "Edit Location Constraint"
+msgstr "Redigera platsbegränsning"
+
+msgid "Create Location Constraint"
+msgstr "Skapa platsbegränsning"
+
+msgid "%{cmd} failed (status: %{status})"
+msgstr "%{cmd} misslyckades (status: %{status})"
+
+msgid "Cluster Status"
+msgstr "Klusterstatus"
+
+msgid "Required parameter \"node\" not specified"
+msgstr "Den begärda parametern \"node\" har inte angetts"
+
+msgid "Required parameter \"resource\" not specified"
+msgstr "Den begärda parametern \"resource\" har inte angetts"
+
+msgid "Required parameters \"resource\" and \"node\" not specified"
+msgstr "De begärda parametrarna \"resource\" och \"node\" har inte angetts"
+
+msgid "Error deleting resource"
+msgstr "Fel vid borttagning av resurs"
+
+msgid "Required parameters \"ticket\" and \"site\" not specified"
+msgstr "De begärda parametrarna \"ticket\" och \"site\" har inte angetts"
+
+msgid "Required parameter \"ticket\" not specified"
+msgstr "Den begärda parametern \"ticket\" har inte angetts"
+
+msgid "Error invoking %{cmd}: %{msg}"
+msgstr "Fel vid anrop av %{cmd}: %{msg}"
+
+msgid "Edit Master/Slave"
+msgstr "Redigera master/slav"
+
+msgid "Create Master/Slave"
+msgstr "Skapa master/slav"
+
+msgid "Master/Slave created successfully"
+msgstr "Master/slav skapades"
+
+msgid "Master/Slave updated successfully"
+msgstr "Master/slav uppdaterades"
+
+#, fuzzy
+msgid "Nodes"
+msgstr "Nod"
+
+msgid "Edit Order Constraint"
+msgstr "Redigera ordningsbegränsning"
+
+msgid "Create Order Constraint"
+msgstr "Skapa ordningsbegränsning"
+
+msgid "Welcome"
+msgstr ""
+
+msgid "Help"
+msgstr ""
+
+msgid "Create Resource"
+msgstr "Skapa resurs"
+
+msgid "Resource created successfully"
+msgstr "Resursen har skapats"
+
+msgid "Resource updated successfully"
+msgstr "Resursen uppdaterades"
+
+#, fuzzy
+msgid "Primitives"
 msgstr "Primitiv"
 
-#: ../app/views/resources/index.html.erb:109
-msgid "New Template"
-msgstr "Ny mall"
+msgid "Resources"
+msgstr "Resurser"
 
-#: ../app/views/resources/index.html.erb:110
-msgid "Template"
-msgstr "Mall"
+msgid "Create Role"
+msgstr "Skapa roll"
 
-#: ../app/views/resources/index.html.erb:116
-msgid "New Group"
-msgstr "Ny grupp"
+msgid "Role created successfully"
+msgstr "Rollen har skapats"
 
-#: ../app/views/resources/index.html.erb:117
-msgid "Group"
-msgstr "Grupp"
+msgid "Edit Role"
+msgstr "Redigera roll"
 
-#: ../app/views/resources/index.html.erb:122
-msgid "New Clone"
-msgstr "Ny klon"
+msgid "Role updated successfully"
+msgstr "Rollen har uppdaterats"
 
-#: ../app/views/resources/index.html.erb:123
-msgid "Clone"
-msgstr "Klon"
+#, fuzzy
+msgid "Role deleted successfully"
+msgstr "Rollen har skapats"
 
-#: ../app/views/resources/index.html.erb:128
-msgid "New Master/Slave"
-msgstr "Ny master/slav"
+#, fuzzy
+msgid "Error deleting %s"
+msgstr "Fel vid borttagning av resurs"
 
-#: ../app/views/resources/index.html.erb:129
-msgid "Master/Slave"
-msgstr "Master/slav"
-
-#: ../app/views/resources/index.html.erb:150
-msgid "(No primitive resources defined)"
-msgstr "(Inga primitivresurser definierade)"
-
-#: ../app/views/resources/index.html.erb:163
-msgid "(No templates defined)"
-msgstr "(Inga mallar definierade)"
-
-#: ../app/views/resources/index.html.erb:176
-msgid "(No groups defined)"
-msgstr "(Inga grupper definierade)"
-
-#: ../app/views/resources/index.html.erb:188
-msgid "(No clones defined)"
-msgstr "(Inga kloner har angetts)"
-
-#: ../app/views/resources/index.html.erb:200
-msgid "(No master/slave resources defined)"
-msgstr "(Inga master-/slavresurser definierade)"
-
-#: ../app/views/resources/show.html.erb:20
-msgid "Fail Count"
-msgstr "Felräkning"
-
-#: ../app/views/resources/show.html.erb:25
-msgid "Last Failure"
-msgstr "Senaste fel"
-
-#: ../app/views/roles/_form.html.erb:40 ../app/views/users/_form.html.erb:50
-msgid "Right"
-msgstr "Höger"
-
-#: ../app/views/roles/_form.html.erb:41 ../app/views/users/_form.html.erb:51
-msgid "XPath"
-msgstr "XPath"
-
-#: ../app/views/roles/_form.html.erb:42 ../app/views/users/_form.html.erb:52
-msgid "Tag"
-msgstr "Tagg"
-
-#: ../app/views/roles/_form.html.erb:43 ../app/views/users/_form.html.erb:53
-msgid "Ref"
-msgstr "Ref"
-
-#: ../app/views/roles/_form.html.erb:44 ../app/views/users/_form.html.erb:54
-msgid "Attribute"
-msgstr "Attribut"
-
-#: ../app/views/roles/_form.html.erb:67
-msgid "Role ID"
-msgstr "Roll-ID"
-
-#: ../app/views/sessions/new.html.erb:1
-msgid "Please ensure JavaScript is enabled"
-msgstr "Se till att JavaScript är aktiverat"
-
-#: ../app/views/shared/_confirm_revert.html.erb:4
-msgid "Any changes will be lost - do you wish to proceed?"
-msgstr "Alla ändringar går förlorade. Vill du fortsätta?"
-
-#: ../app/views/tickets/_form.html.erb:78
-msgid "Loss Policy"
-msgstr "Förlustprincip"
-
-#: ../app/views/users/_form.html.erb:81
-msgid "User ID"
-msgstr "Användar-ID"
-
-#: ../app/views/users/_form.html.erb:91
 msgid "Roles"
 msgstr "Roller"
 
-#: ../app/views/wizard/done.html.erb:1 ../app/views/wizard/run.html.erb:69
+msgid "The role does not exist"
+msgstr ""
+
+msgid "To enable ACLs, set 'enable-acl' in the CRM Configuration"
+msgstr "Aktivera ACL-listor genom att ange enable-acl i CRM-konfigurationen"
+
+msgid "Permission denied for user %{user}"
+msgstr "Tillstånd nekades för användaren %{user}"
+
+msgid "You have been logged out"
+msgstr "Du är utloggad"
+
+msgid "Log In"
+msgstr "Logga in"
+
+#, fuzzy
+msgid "Preferences updated successfully"
+msgstr "Resursen uppdaterades"
+
+msgid "Preferences"
+msgstr "Inställningar"
+
+msgid "Edit Template"
+msgstr "Redigera mall"
+
+msgid "Create Template"
+msgstr "Skapa mall"
+
+msgid "Template created successfully"
+msgstr "Mallen har skapats"
+
+msgid "Template updated successfully"
+msgstr "Mallen har uppdaterats"
+
+msgid "Edit Ticket Constraint"
+msgstr "Redigera biljettbegränsning"
+
+msgid "Create Ticket Constraint"
+msgstr "Skapa biljettbegränsning"
+
+msgid "Create User"
+msgstr "Skapa användare"
+
+msgid "User created successfully"
+msgstr "Användaren har skapats"
+
+msgid "Edit User"
+msgstr "Redigera användare"
+
+msgid "User updated successfully"
+msgstr "Användaren har uppdaterats"
+
+#, fuzzy
+msgid "User deleted successfully"
+msgstr "Användaren har skapats"
+
+#, fuzzy
+msgid "Users"
+msgstr "Användare"
+
+msgid "The user does not exist"
+msgstr ""
+
+msgid "Cluster Setup Wizard"
+msgstr "Klusterinställningsguide"
+
+msgid "Invalid password"
+msgstr "Ogiltigt lösenord"
+
+msgid "Root Password"
+msgstr "Root-lösenord"
+
+msgid ""
+"The root password is required in order for this wizard template to make config"
+"uration changes."
+msgstr ""
+"Rotlösenordet måste anges för att det ska gå att göra konfigurationsändringar "
+"med den här guidemallen."
+
+msgid "The root password for this system"
+msgstr "Rotlösenordet för det här systemet."
+
+msgid "\"Error: #{result}\""
+msgstr "\"Fel: #{result}\""
+
+msgid "Parameters"
+msgstr "Parametrar"
+
+msgid "Confirm"
+msgstr "Bekräfta"
+
+msgid "Done"
+msgstr "Klar"
+
+msgid "Required parameter \"%{param}\" not specified"
+msgstr "Den begärda parametern \"%{param}\" har inte angetts"
+
+msgid "Permission denied - you do not have write access to the CIB."
+msgstr "Åtkomst nekad - du har inte skrivbehörighet för CIB:n."
+
+msgid "Wizard templates and/or workflows are missing"
+msgstr "Mallar och/eller arbetsflöden för guiden saknas"
+
+msgid "Workflow \"%s\" not found"
+msgstr "Arbetsflödet \"%s\" hittades inte"
+
+msgid "Error parsing template \"%s\""
+msgstr "Fel vid tolkning av mallen \"%s\""
+
+msgid "Error parsing workflow \"%s\""
+msgstr "Fel vid tolkning av arbetsflödet \"%s\""
+
+msgid "Data collection in progress (%{from_time} to %{to_time})..."
+msgstr "Datainsamling pågår (%{from_time} till %{to_time})..."
+
+#, fuzzy
+msgid "Revert"
+msgstr "Återställ"
+
+msgid "Apply"
+msgstr ""
+
+#, fuzzy
+msgid "Create"
+msgstr "Skapa roll"
+
+#, fuzzy
+msgid "Read"
+msgstr "Klar"
+
+msgid "Write"
+msgstr ""
+
+msgid "Deny"
+msgstr ""
+
+msgid "CIB file \"%{path}\" not found"
+msgstr "CIB-filen \"%{path}\" hittades inte"
+
+msgid "Unable to parse CIB file \"%{path}\""
+msgstr "Det går inte att analysera CIB-filen \"%{path}\""
+
+msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
+msgstr "Pacemaker verkar inte vara installerat (%{cmd} hittades inte)"
+
+msgid "Unable to execute %{cmd}"
+msgstr "Det gick inte att köra %{cmd}"
+
+msgid "Error invoking %{cmd}"
+msgstr "Fel vid anrop av %{cmd}"
+
+msgid "Unknown"
+msgstr "Okänd"
+
+msgid ""
+"Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%"
+"{op}, rc-code=%{rc_code}, exit-reason=%{exit_reason}"
+msgstr ""
+
+msgid "Invalid Resource ID \"%{id}\""
+msgstr "Ogiltigt resurs-ID \"%{id}\""
+
+msgid "Unable to parse cibadmin output"
+msgstr "Det går inte att analysera cibadmin-utdata"
+
+msgid "No clone child specified"
+msgstr "Ingen underordnad för klon har angetts"
+
+msgid ""
+"Can't set meta attribute %{p}, because the value contains both single and doub"
+"le quotes"
+msgstr ""
+"Det går inte att ställa in metaattributet %{p} eftersom värdet innehåller både"
+" enkla och dubbla citattecken"
+
+msgid "The ID \"%{id}\" is already in use"
+msgstr "ID \"%{id}\" används redan"
+
+msgid "Unable to create clone: %{msg}"
+msgstr "Det går inte att skapa klon: %{msg}"
+
+msgid "Clone ID \"%{id}\" does not exist"
+msgstr "Klon-ID \"%{id}\" finns inte"
+
+msgid "Invalid score"
+msgstr "Ogiltig poäng"
+
+msgid "Constraint must consist of at least two separate resources"
+msgstr "Begränsningen måste bestå av minst två separata resurser"
+
+msgid "Unable to create constraint: %{msg}"
+msgstr "Det går inte att skapa begränsning: %{msg}"
+
+msgid "Constraint ID \"%{id}\" does not exist"
+msgstr "Begränsnings-ID \"%{id}\" finns inte"
+
+msgid "Unable to update constraint: %{msg}"
+msgstr "Det går inte att uppdatera begränsningen: %{msg}"
+
+msgid "No group children specified"
+msgstr "Inga underordnade till gruppen har specificerats"
+
+msgid "Unable to create group: %{msg}"
+msgstr "Det går inte att skapa grupp: %{msg}"
+
+msgid "Group ID \"%{id}\" does not exist"
+msgstr "Grupp-ID \"%{id}\" existerar inte"
+
+msgid "Constraint is too complex - it contains nested rules"
+msgstr "Begränsningen är för komplex - den innehåller kapslade regler"
+
+msgid "No rules specified"
+msgstr "Inga regler har angetts"
+
+msgid "No resource specified"
+msgstr "Ingen resurs angiven"
+
+msgid "Invalid score \"%{score}\""
+msgstr "Ogiltig poäng \"%{score}\""
+
+msgid "No expressions specified"
+msgstr "Inga uttryck har angetts"
+
+msgid "Attribute contains both single and double quotes"
+msgstr "Attributet innehåller både enkla och dubbla citattecken"
+
+msgid "Value contains both single and double quotes"
+msgstr "Värdet innehåller både enkla och dubbla citattecken"
+
+msgid "No Master/Slave child specified"
+msgstr "Ingen underordnad till master/slav angiven"
+
+msgid "Unable to create master/slave: %{msg}"
+msgstr "Det går inte att skapa master/slav: %{msg}"
+
+msgid "Master/Slave ID \"%{id}\" does not exist"
+msgstr "Master/slav-ID \"%{id}\" finns inte"
+
+msgid ""
+"Can't set parameter %{p}, because the value contains both single and double qu"
+"otes"
+msgstr ""
+"Det går inte att ställa in parametern %{p} eftersom värdet innehåller både enk"
+"la och dubbla citattecken"
+
+msgid ""
+"Can't set op %{o} attribute {%a}, because the value contains both single and d"
+"ouble quotes"
+msgstr ""
+"Det går inte att ställa in op %{o} attribut {%a} eftersom värdet innehåller bå"
+"de enkla och dubbla citattecken"
+
+msgid "Unable to create resource: %{msg}"
+msgstr "Det går inte att skapa resurs: %{msg}"
+
+msgid "Resource ID \"%{id}\" does not exist"
+msgstr "Resurs-ID:t \"%{id}\" finns inte"
+
+#, fuzzy
+msgid "Unable to create: %{msg}"
+msgstr "Det går inte att skapa roll: %{msg}"
+
+#, fuzzy
+msgid "The ID \"%{id}\" does not exist"
+msgstr "Roll-ID \"%{id}\" finns inte"
+
+#, fuzzy
+msgid "Unable to update: %{msg}"
+msgstr "Det går inte att uppdatera rollen: %{msg}"
+
+msgid "Role ID is required"
+msgstr ""
+
+#, fuzzy
+msgid "Invalid Role ID"
+msgstr "Ogiltigt biljett-ID"
+
+msgid "Username not specified"
+msgstr "Användarnamnet har inte angetts"
+
+msgid "Invalid username"
+msgstr "Ogiltigt användarnamn"
+
+msgid "Password not specified"
+msgstr "Inget lösenord har angetts"
+
+msgid "%s is not installed"
+msgstr "%s har inte installerats"
+
+#, fuzzy
+msgid "%s is not executable"
+msgstr "%s har inte installerats"
+
+msgid "Invalid username or password"
+msgstr "Fel användarnamn eller lösenord"
+
+msgid "Language is required"
+msgstr ""
+
+msgid "Invalid Ticket ID"
+msgstr "Ogiltigt biljett-ID"
+
+msgid "No resources specified"
+msgstr "Inga resurser angivna"
+
+msgid "User ID is required"
+msgstr ""
+
+#, fuzzy
+msgid "Invalid User ID"
+msgstr "Ogiltigt biljett-ID"
+
+msgid "Meta Attributes"
+msgstr "Metaattribut"
+
+msgid "Add"
+msgstr "Lägg till"
+
+msgid "Remove"
+msgstr "Ta bort"
+
+msgid "You must enter a value"
+msgstr "Du måste ange ett värde"
+
+msgid "Clone ID"
+msgstr "Klon-ID"
+
+msgid "Child Resource"
+msgstr "Underordnad resurs"
+
+msgid "Revert Changes"
+msgstr "Återställ ändringar"
+
+msgid "Back"
+msgstr "Tillbaka"
+
+msgid "Apply Changes"
+msgstr "Verkställ ändringar"
+
+msgid "Link set"
+msgstr "Länkuppsättning"
+
+msgid "Break set"
+msgstr "Splittra uppsättning"
+
+msgid "Swap resources"
+msgstr "Byt resurser"
+
+msgid "Add resource to constraint"
+msgstr "Lägg till resurs i begränsning"
+
+msgid "Constraint ID"
+msgstr "Begränsnings-ID"
+
+msgid "Score"
+msgstr "Poäng"
+
+msgid "Create Constraint"
+msgstr "Skapa begränsning"
+
+msgid "Edit Constraint"
+msgstr "Redigera begränsning"
+
+msgid "Delete Constraint"
+msgstr "Ta bort begränsning"
+
+msgid "Are you sure you wish to delete %s?"
+msgstr "Är du säker på att du vill ta bort %s?"
+
+msgid "New Constraint"
+msgstr "Ny begränsning"
+
+msgid "Location"
+msgstr "Plats"
+
+msgid "Colocation"
+msgstr "Colocation"
+
+msgid "Order"
+msgstr "Ordning"
+
+msgid "Ticket"
+msgstr "Biljett"
+
+msgid "(No location constraints defined)"
+msgstr "(Inga platsbegränsningar definierade)"
+
+msgid "[Constraint is too complex to display]"
+msgstr "[Begränsningen är för komplex att visa]"
+
+msgid "(No colocation constraints defined)"
+msgstr "(Inga colocationbegränsningar definierade)"
+
+msgid "(No order constraints defined)"
+msgstr "(Inga ordningsbegränsningar definierade)"
+
+msgid "(No ticket constraints defined)"
+msgstr "(Inga biljettbegränsningar definierade)"
+
+msgid "CRM Configuration"
+msgstr "CRM-konfigurering"
+
+msgid "Resource Defaults"
+msgstr "Resursstandard"
+
+msgid "Operation Defaults"
+msgstr "Åtgärdsstandard"
+
+msgid "No cluster properties set in %{group}"
+msgstr "Inga klusteregenskaper angivna i %{group}"
+
+msgid "Edit"
+msgstr "Redigera"
+
+msgid "Username:"
+msgstr "Användarnamn:"
+
+msgid "Password:"
+msgstr "Lösenord:"
+
+msgid "Cluster has errors - click for details"
+msgstr "Klustret har fel - klicka för information"
+
+msgid "Timeout: Please try again"
+msgstr "Tidsgränsen överskreds: försök igen"
+
+msgid "Permission denied. Please log in to %{node}"
+msgstr "Tillstånd nekades. Logga in på %{node}"
+
+#, fuzzy
+msgid "Geo Site %{ip}"
+msgstr "Klonuppsättning: %{id}"
+
+msgid "Site: %{ip}"
+msgstr ""
+
+msgid "Arbitrator: %{ip}"
+msgstr ""
+
+msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
+msgstr "Det går inte att kontakta Hawk på %{node}. Försöker igen var 5 sekund."
+
+msgid "Cluster Name:"
+msgstr "Klusternamn:"
+
+msgid "Host Name:"
+msgstr "Värddatornamn:"
+
+msgid ""
+"(Specify any host name in the cluster.  Other nodes will be found automaticall"
+"y)"
+msgstr "(Ange valfritt värdnamn i klustret. Andra noder hittas automatiskt.)"
+
+msgid "Add Cluster"
+msgstr "Lägg till kluster"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "A cluster with that name already exists"
+msgstr "Det finns redan ett kluster med det här namnet"
+
+msgid "The host %{h} is already present in cluster %{c}"
+msgstr "Värden %{h} finns redan i klustret %{c}"
+
+msgid ""
+"Unable to connect to %{host}. Try opening %{url} in your web browser to ensure"
+" Hawk is accessible."
+msgstr ""
+"Det går inte att ansluta till %{host}. Försök öppna %{url} i webbläsaren för a"
+"tt kontrollera att det går att komma åt Hawk."
+
+msgid "Cancel"
+msgstr "Avbryt"
+
+#, fuzzy
+msgid "Cluster"
+msgstr "Lägg till kluster"
+
+msgid "STONITH Enabled"
+msgstr "STONITH aktiverat"
+
+msgid "No Quorum Policy"
+msgstr "Inget kvorum-policy"
+
+msgid "Symmetric Cluster"
+msgstr "Symmetriskt kluster"
+
+msgid "Resource Stickiness"
+msgstr "Resursens varaktighet"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "No transitions found for the specified time period."
+msgstr "Inga överföringar hittades för den angivna tidsperioden."
+
+msgid "Time"
+msgstr "Tid"
+
+msgid "PE Input"
+msgstr "PE-indata"
+
+msgid "Node"
+msgstr "Nod"
+
+msgid "(full log)"
+msgstr "(full logg)"
+
+msgid "Graph"
+msgstr "Graf"
+
+msgid "Diff"
+msgstr "Diff"
+
+msgid "Delete this history archive?"
+msgstr "Ta bort det här historikarkivet?"
+
+msgid "Start Time:"
+msgstr "Starttid:"
+
+msgid "End Time:"
+msgstr "Sluttid:"
+
+msgid "Exploring %{path}"
+msgstr "Utforska %{path}"
+
+msgid "Display"
+msgstr "Skärm"
+
+msgid "Upload hb_report tarball"
+msgstr "Överför hb_report-TAR-fil"
+
+msgid "Explore"
+msgstr "Utforska"
+
+msgid "Error: Permission denied for user '%s'."
+msgstr "Fel: Nekad behörighet för användaren %s."
+
+msgid "Group ID"
+msgstr "Grupp-ID"
+
+msgid "Group Children"
+msgstr "Gruppera underordnade"
+
+msgid "Available Primitives"
+msgstr "Tillgängliga primitiver"
+
+msgid "Start Time not specified"
+msgstr "Starttid har inte angetts"
+
+msgid "Generate"
+msgstr "Generera"
+
+msgid "hb_report generation in progress..."
+msgstr "hb_report genereras..."
+
+msgid "Download hb_report"
+msgstr "Ladda ner hb_report"
+
+#, fuzzy
+msgid "Please ensure Javascript is enabled"
+msgstr "Se till att JavaScript är aktiverat"
+
+msgid "SUSE, LLC"
+msgstr ""
+
+msgid "High Availability Web Konsole"
+msgstr ""
+
+msgid "Role"
+msgstr "Roll"
+
+msgid "Boolean Op"
+msgstr "Boolesk op"
+
+msgid "Expression"
+msgstr "Uttryck"
+
+msgid "Add Rule"
+msgstr "Lägg till regel"
+
+msgid "Remove Rule"
+msgstr "Ta bort regel"
+
+msgid "Show Rule Editor"
+msgstr "Visa regelredigerare"
+
+msgid "Resource"
+msgstr "Resurs"
+
+msgid "Fence Node"
+msgstr "Staketnod"
+
+msgid "View Details..."
+msgstr "Visa detaljer..."
+
+msgid "View Recent Events..."
+msgstr "Visa senaste händelser..."
+
+msgid "Start"
+msgstr "Början"
+
+msgid "Stop"
+msgstr "Stopp"
+
+msgid "Move..."
+msgstr "Flytta..."
+
+msgid "Drop Relocation Rule"
+msgstr "Hoppa över flyttregel"
+
+msgid "Promote"
+msgstr "Höj"
+
+msgid "Demote"
+msgstr "Sänk"
+
+msgid "Clean Up"
+msgstr "Städa upp"
+
+msgid "Grant"
+msgstr "Bevilja"
+
+msgid "Revoke"
+msgstr "Återkalla"
+
+msgid "Master/Slave ID"
+msgstr "Master/slav-ID"
+
+msgid "Getting recent events (last hour)..."
+msgstr "Hämtar senaste händelser (senaste timmen)..."
+
+msgid "Another \"crm history\" operation is in progress..."
+msgstr "En annan \"crm history\"-åtgärd pågår..."
+
+msgid "No events found in last hour."
+msgstr "Inga händelser hittades den senaste timmen."
+
+msgid "Utilization"
+msgstr "Användning"
+
+msgid "No utilization defined"
+msgstr "Ingen användning definierad"
+
+msgid "Attributes"
+msgstr "Attribut"
+
+msgid "No attributes defined"
+msgstr "Inga attribut definierade"
+
+msgid "Symmetrical"
+msgstr "Symmetrisk"
+
+msgid "Close"
+msgstr "Stäng"
+
+msgid "HTML"
+msgstr ""
+
+msgid "PDF"
+msgstr ""
+
+msgid "There is already a monitor op with this interval."
+msgstr "Det finns redan en övervakningsop med det här intervallet."
+
+msgid "Resource ID"
+msgstr "Resurs-ID"
+
+msgid "Template ID"
+msgstr "Mall-ID"
+
+msgid "Class"
+msgstr "Klass"
+
+msgid "Provider"
+msgstr "Leverantör"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Use Template"
+msgstr "Använd mall"
+
+msgid "Edit Resource"
+msgstr "Redigera resurs"
+
+msgid "Delete Resource"
+msgstr "Ta bort resurs"
+
+msgid "New Resource"
+msgstr "Ny resurs"
+
+msgid "Primitive"
+msgstr "Primitiv"
+
+msgid "New Template"
+msgstr "Ny mall"
+
+msgid "Template"
+msgstr "Mall"
+
+msgid "New Group"
+msgstr "Ny grupp"
+
+msgid "Group"
+msgstr "Grupp"
+
+msgid "New Clone"
+msgstr "Ny klon"
+
+msgid "Clone"
+msgstr "Klon"
+
+msgid "New Master/Slave"
+msgstr "Ny master/slav"
+
+msgid "Master/Slave"
+msgstr "Master/slav"
+
+msgid "(No primitive resources defined)"
+msgstr "(Inga primitivresurser definierade)"
+
+msgid "(No templates defined)"
+msgstr "(Inga mallar definierade)"
+
+msgid "(No groups defined)"
+msgstr "(Inga grupper definierade)"
+
+msgid "(No clones defined)"
+msgstr "(Inga kloner har angetts)"
+
+msgid "(No master/slave resources defined)"
+msgstr "(Inga master-/slavresurser definierade)"
+
+msgid "Fail Count"
+msgstr "Felräkning"
+
+msgid "Last Failure"
+msgstr "Senaste fel"
+
+#, fuzzy
+msgid "Rule"
+msgstr "Roll"
+
+msgid "Add a rule below"
+msgstr ""
+
+#, fuzzy
+msgid "Remove this rule"
+msgstr "Ta bort regel"
+
+#, fuzzy
+msgid "Move rule up"
+msgstr "Flytta resursen %s"
+
+msgid "Move rule down"
+msgstr ""
+
+msgid "Right"
+msgstr "Höger"
+
+msgid "XPath"
+msgstr "XPath"
+
+msgid "Tag"
+msgstr "Tagg"
+
+msgid "Ref"
+msgstr "Ref"
+
+msgid "Attribute"
+msgstr "Attribut"
+
+#, fuzzy
+msgid "Delete role"
+msgstr "Ta bort resurs"
+
+#, fuzzy
+msgid "Add role"
+msgstr "Lägg till regel"
+
+msgid ""
+"ACL support requires CIB schema version 2.0, available in Pacemaker 1.1.12 and"
+" up. For older versions of Pacemaker, use Hawk version 0.6."
+msgstr ""
+
+#, fuzzy
+msgid "Username"
+msgstr "Användarnamn:"
+
+#, fuzzy
+msgid "Password"
+msgstr "Lösenord:"
+
+#, fuzzy
+msgid "Login"
+msgstr "Logga in"
+
+msgid "Loss Policy"
+msgstr "Förlustprincip"
+
+#, fuzzy
+msgid "Delete user"
+msgstr "Ta bort resurs"
+
+#, fuzzy
+msgid "Add user"
+msgstr "Lägg till kluster"
+
 msgid "%{workflow}: %{step}"
 msgstr "%{workflow}: %{step}"
 
-#: ../app/views/wizard/done.html.erb:5
 msgid "The configuration has been applied."
 msgstr "Konfigurationen har verkställts."
 
-#: ../app/views/wizard/run.html.erb:75
 msgid "The following configuration will be applied to the cluster:"
 msgstr "Följande konfiguration används för klustret:"
 
-#: ../app/views/wizard/run.html.erb:100
 msgid "Error applying configuration:"
 msgstr "Det inträffade ett fel när konfigurationen verkställdes:"
 
-#: ../app/views/wizard/run.html.erb:118
 msgid "< Back"
 msgstr "< Tillbaka"
 
-#: ../app/views/wizard/run.html.erb:119 ../app/views/wizard/start.html.erb:45
 msgid "Next >"
 msgstr "Nästa >"
 
-#: ../app/views/wizard/start.html.erb:2
 msgid "No workflow descriptions found"
 msgstr "Inga arbetsflödesbeskrivningar hittades"
 
-#: ../app/views/wizard/start.html.erb:24
 msgid "Choose Configuration"
 msgstr "Välj konfiguration"
 
-#: ../app/views/wizard/start.html.erb:28
-msgid "This wizard will guide you through the steps necessary to add one of the following configurations to the cluster."
-msgstr "Den här guiden vägleder dig genom de steg som krävs för att lägga till någon av följande konfigurationer i klustret."
+msgid ""
+"This wizard will guide you through the steps necessary to add one of the follo"
+"wing configurations to the cluster."
+msgstr ""
+"Den här guiden vägleder dig genom de steg som krävs för att lägga till någon a"
+"v följande konfigurationer i klustret."
 
-#: ../lib/invoker.rb:131
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "Objektet/attributet finns inte (cibadmin %{cmd})"
 
-#: ../lib/invoker.rb:135
 msgid "Error invoking cibadmin %{cmd}: %{msg}"
 msgstr "Fel vid anrop av cibadmin %{cmd}: %{msg}"
 
-#: ../lib/invoker.rb:153
 msgid "The object/attribute does not exist: %{msg}"
 msgstr "Objektet/attributet finns inte: %{msg}"
 
-#: ../lib/invoker.rb:157
 msgid "Error invoking cibadmin --replace: %{msg}"
 msgstr "Fel vid anrop av cibadmin --replace: %{msg}"
