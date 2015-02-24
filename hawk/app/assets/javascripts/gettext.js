@@ -30,30 +30,5 @@
 //======================================================================
 
 //= require_tree ./gettext/locale
+//= require gettext/all
 //= require_self
-
-$(function() {
-  var locale = $('html').attr('lang');
-
-  var i18n = new Jed(
-    locales[locale] || {}
-  );
-
-  window.__ = function() {
-    return i18n.gettext.apply(i18n, arguments)
-  }
-
-  window.n__ = function() {
-    return i18n.ngettext.apply(i18n, arguments)
-  }
-
-  window.s__ = function(key) {
-    return __(key).split('|').pop();
-  }
-
-  window.gettext = window.__;
-  window.ngettext = window.n__;
-  window.sgettext = window.s__;
-
-  window.i18n = i18n;
-});

@@ -1,1 +1,1957 @@
-var locales = locales || {}; locales['pt-BR'] = {"domain":"app","locale_data":{"app":{"":{"Project-Id-Version":" hawk","Report-Msgid-Bugs-To":" ","POT-Creation-Date":" 2014-04-10 15:20+1000","PO-Revision-Date":" 2014-07-15 11:28","Last-Translator":" Novell language <language@novell.com>","Language-Team":" Novell language <language@novell.com>","Language":" ","MIME-Version":" 1.0","Content-Type":" text/plain; charset=UTF-8","Content-Transfer-Encoding":" 8bit","Plural-Forms":" nplurals=2; plural=n>1;","lang":"pt-BR","domain":"app","plural_forms":" nplurals=2; plural=n>1;"},"Access Control Lists":[null,"Listas de Controles de Acesso"],"Unable to create shadow CIB":[null,"Impossível criar CIB de sombra"],"1 node configured":["%{num} nodes configured","1 nó configurado","%{num} nós configurados"],"1 resource configured":["%{num} resources configured","1 recurso configurado","%{num} recursos configurados"],"Edit Clone":[null,"Editar Clone"],"Create Clone":[null,"Criar Clone"],"Clone created successfully":[null,"Clone criado com êxito"],"Clone updated successfully":[null,"Clone atualizado com êxito"],"Edit Colocation Constraint":[null,"Editar Restrição de Colocation"],"Create Colocation Constraint":[null,"Criar Restrição de Colocation"],"Constraint created successfully":[null,"Restrição criada com êxito"],"Constraint updated successfully":[null,"Restrição atualizada com êxito"],"Constraints":[null,"Restrições"],"Cluster Configuration":[null,"Configuração do Cluster"],"Your changes have been saved":[null,"Suas mudanças foram gravadas"],"Unable to apply changes: %{msg}":[null,"Impossível aplicar as mudanças: %{msg}"],"Can't set property %{p}, because the value contains both single and double quotes":[null,"Impossível definir a propriedade %{p}, pois o valor contém aspas simples e duplas"],"Cluster Dashboard":[null,"Painel do Cluster"],"History Explorer":[null,"Explorador do Histórico"],"PE Input created by different Pacemaker version (%{version})":[null,"Entrada PE criada por versão diferente do Pacemaker (%{version})"],"Pacemaker version not present in PE Input":[null,"Versão do Pacemaker ausente da Entrada PE"],"Required parameters \\\"basename\\\" and \\\"node\\\" not specified":[null,"Parâmetros \\\"basename\\\" e \\\"node\\\" obrigatórios não especificados"],"No details available":[null,"Nenhum detalhe disponível"],"Error:":[null,"Erro:"],"Required parameters \\\"left\\\" and \\\"right\\\" not specified":[null,"Parâmetros \\\"left\\\" e \\\"right\\\" obrigatórios não especificados"],"Edit Group":[null,"Editar Grupo"],"Create Group":[null,"Criar Grupo"],"Group created successfully":[null,"Grupo criado com êxito"],"Group updated successfully":[null,"Grupo atualizado com êxito"],"Edit Location Constraint":[null,"Editar Restrição de Localização"],"Create Location Constraint":[null,"Criar Restrição de Localização"],"%{cmd} failed (status: %{status})":[null,"%{cmd} falhou (status: %{status})"],"Cluster Status":[null,"Status do Cluster"],"Required parameter \\\"node\\\" not specified":[null,"Parâmetro \\\"node\\\" obrigatório não especificado"],"Required parameter \\\"resource\\\" not specified":[null,"Parâmetro \\\"resource\\\" obrigatório não especificado"],"Required parameters \\\"resource\\\" and \\\"node\\\" not specified":[null,"Parâmetros \\\"resource\\\" e \\\"node\\\" obrigatórios não especificados"],"Error deleting resource":[null,"Erro ao apagar recurso"],"Required parameters \\\"ticket\\\" and \\\"site\\\" not specified":[null,"Parâmetros \\\"ticket\\\" e \\\"site\\\" obrigatórios não especificados"],"Required parameter \\\"ticket\\\" not specified":[null,"Parâmetro \\\"ticket\\\" obrigatório não especificado"],"Error invoking %{cmd}: %{msg}":[null,"Erro ao chamar %{cmd}: %{msg}"],"Edit Master/Slave":[null,"Editar Master/Escravo"],"Create Master/Slave":[null,"Criar Master/Escravo"],"Master/Slave created successfully":[null,"Master/Escravo criado com êxito"],"Master/Slave updated successfully":[null,"Master/Escravo atualizado com êxito"],"Edit Order Constraint":[null,"Editar Restrição de Ordem"],"Create Order Constraint":[null,"Criar Restrição de Ordem"],"Edit Resource":[null,"Editar Recurso"],"Create Resource":[null,"Criar Recurso"],"Resource created successfully":[null,"Recurso criado com êxito"],"Resource updated successfully":[null,"Recurso atualizado com êxito"],"Resources":[null,"Recursos"],"Edit Role":[null,"Editar Função"],"Create Role":[null,"Criar Função"],"Role created successfully":[null,"Função criada com êxito"],"Role updated successfully":[null,"Função atualizada com êxito"],"Log In":[null,"Efetuar Login"],"Username not specified":[null,"Nome de usuário não especificado"],"Invalid username":[null,"Nome de usuário inválido"],"Password not specified":[null,"Nenhuma senha especificada"],"Invalid username or password":[null,"Nome de usuário ou senha inválida"],"%s is not installed":[null,"%s não está instalado"],"Permission denied for user %{user}":[null,"Permissão negada para o usuário %{user}"],"You have been logged out":[null,"Você foi desconectado"],"Edit Template":[null,"Editar Gabarito"],"Create Template":[null,"Criar Gabarito"],"Template created successfully":[null,"Gabarito criado com êxito"],"Template updated successfully":[null,"Gabarito atualizado com êxito"],"Edit Ticket Constraint":[null,"Editar Restrição de Ticket"],"Create Ticket Constraint":[null,"Criar Restrição de Ticket"],"Edit User":[null,"Editar Usuário"],"Create User":[null,"Criar Usuário"],"User created successfully":[null,"Usuário criado com êxito"],"User updated successfully":[null,"Usuário atualizado com êxito"],"Cluster Setup Wizard":[null,"Assistente de Configuração de Cluster"],"Invalid password":[null,"Senha inválida"],"Root Password":[null,"Senha Root"],"The root password is required in order for this wizard template to make configuration changes.":[null,"A senha root é obrigatória para que o gabarito do assistente faça as mudanças de configuração."],"The root password for this system":[null,"A senha root deste sistema"],"\\\"Error: #{result}\\\"":[null,"\\\"Erro: #{result}\\\""],"Parameters":[null,"Parâmetros"],"Confirm":[null,"Confirmar"],"Done":[null,"Concluído"],"Required parameter \\\"%{param}\\\" not specified":[null,"Parâmetro \\\"%{param}\\\" obrigatório não especificado"],"Permission denied - you do not have write access to the CIB.":[null,"Permissão negada: você não tem acesso de gravação ao CIB."],"Wizard templates and/or workflows are missing":[null,"Faltam workflows e/ou gabaritos de assistente"],"Workflow \\\"%s\\\" not found":[null,"Workflow \\\"%s\\\" não encontrado"],"Error parsing template \\\"%s\\\"":[null,"Erro ao analisar o gabarito \\\"%s\\\""],"Error parsing workflow \\\"%s\\\"":[null,"Erro ao analisar o workflow \\\"%s\\\""],"Data collection in progress (%{from_time} to %{to_time})...":[null,"Coleta de dados em andamento (%{from_time} a %{to_time})..."],"CIB file \\\"%{path}\\\" not found":[null,"Arquivo CIB \\\"%{path}\\\" não encontrado"],"Unable to parse CIB file \\\"%{path}\\\"":[null,"Impossível analisar arquivo CIB \\\"%{path}\\\""],"Pacemaker does not appear to be installed (%{cmd} not found)":[null,"O Pacemaker parece não estar instalado (%{cmd} não encontrado)"],"Unable to execute %{cmd}":[null,"Impossível executar %{cmd}"],"%{cmd} failed (status: %{status}, output was: %{output})":[null,"%{cmd} falhou (status: %{status}, resultado: %{output})"],"Error invoking %{cmd}":[null,"Erro ao chamar %{cmd}"],"Unknown":[null,"Desconhecido"],"Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}":[null,"Operação com falha: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"],"Invalid Resource ID \\\"%{id}\\\"":[null,"ID de Recurso \\\"%{id}\\\" Inválido"],"Unable to parse cibadmin output":[null,"Impossível analisar saída de cibadmin"],"No clone child specified":[null,"Nenhuma clone filho especificado"],"Can't set meta attribute %{p}, because the value contains both single and double quotes":[null,"Impossível definir o atributo %{p}, pois o valor contém aspas simples e duplas"],"The ID \\\"%{id}\\\" is already in use":[null,"O ID \\\"%{id}\\\" já está em uso"],"Unable to create clone: %{msg}":[null,"Impossível criar o clone: %{msg}"],"Clone ID \\\"%{id}\\\" does not exist":[null,"O ID de clone \\\"%{id}\\\" não existe"],"Invalid score":[null,"Pontuação inválida"],"Constraint must consist of at least two separate resources":[null,"A restrição deve consistir em pelo menos dois recursos separados"],"Unable to create constraint: %{msg}":[null,"Impossível criar a restrição: %{msg}"],"Constraint ID \\\"%{id}\\\" does not exist":[null,"O ID de restrição \\\"%{id}\\\" não existe"],"Unable to update constraint: %{msg}":[null,"Impossível atualizar a restrição: %{msg}"],"No group children specified":[null,"Nenhum filho de grupo especificado"],"Unable to create group: %{msg}":[null,"Impossível criar o grupo: %{msg}"],"Group ID \\\"%{id}\\\" does not exist":[null,"ID de grupo \\\"%{id}\\\" inexistente"],"Constraint is too complex - it contains nested rules":[null,"Restrição complexa demais; contém regras aninhadas"],"No rules specified":[null,"Nenhuma regra especificada"],"No resource specified":[null,"Nenhum recurso especificado"],"Invalid score \\\"%{score}\\\"":[null,"Pontuação \\\"%{score}\\\" inválida"],"No expressions specified":[null,"Nenhuma expressão especificada"],"Attribute contains both single and double quotes":[null,"O atributo contém aspas simples e duplas"],"Value contains both single and double quotes":[null,"O valor contém aspas simples e duplas"],"No Master/Slave child specified":[null,"Nenhum filho Master/Escravo especificado"],"Unable to create master/slave: %{msg}":[null,"Impossível criar master/escravo: %{msg}"],"Master/Slave ID \\\"%{id}\\\" does not exist":[null,"O ID de Master/Escravo \\\"%{id}\\\" não existe"],"Can't set parameter %{p}, because the value contains both single and double quotes":[null,"Impossível definir o parâmetro %{p}, pois o valor contém aspas simples e duplas"],"Can't set op %{o} attribute {%a}, because the value contains both single and double quotes":[null,"Impossível definir o atributo {%a} da operação %{o}, pois o valor contém aspas simples e duplas"],"Unable to create resource: %{msg}":[null,"Impossível criar o recurso: %{msg}"],"Resource ID \\\"%{id}\\\" does not exist":[null,"O ID de recurso \\\"%{id}\\\" não existe"],"Role must have rules":[null,"A função deve ter regras"],"Unable to create role: %{msg}":[null,"Impossível criar a função: %{msg}"],"Role ID \\\"%{id}\\\" does not exist":[null,"O ID da função \\\"%{id}\\\" não existe"],"Unable to update role: %{msg}":[null,"Impossível atualizar a função: %{msg}"],"Invalid Ticket ID":[null,"ID do Ticket Inválido"],"No resources specified":[null,"Nenhum recurso especificado"],"User must have either rules or roles":[null,"O usuário deve ter regras ou funções"],"User can't have both rules and roles":[null,"O usuário não pode ter ambas regras e funções"],"Unable to create user: %{msg}":[null,"Impossível criar o usuário: %{msg}"],"User ID \\\"%{id}\\\" does not exist":[null,"O ID do usuário \\\"%{id}\\\" não existe"],"Unable to update user: %{msg}":[null,"Impossível atualizar o usuário: %{msg}"],"Edit":[null,"Editar"],"Delete":[null,"Apagar"],"Are you sure you wish to delete %s?":[null,"Tem certeza de que deseja apagar %s?"],"New Role":[null,"Nova Função"],"Role":[null,"Função"],"New User":[null,"Novo Usuário"],"User":[null,"Usuário"],"To enable ACLs, set 'enable-acl' in the CRM Configuration":[null,"Para habilitar ACLs, defina ''enable-acl'' na Configuração de CRM"],"(No roles defined)":[null,"(Nenhuma função definida)"],"(No users defined)":[null,"(Nenhum usuário definido)"],"Meta Attributes":[null,"Atributos Meta"],"Add":[null,"Adicionar"],"Remove":[null,"Remover"],"You must enter a value":[null,"É preciso digitar um valor"],"Clone ID":[null,"ID do Clone"],"Child Resource":[null,"Recurso Filho"],"Revert Changes":[null,"Reverter Mudanças"],"Back":[null,"Voltar"],"Apply Changes":[null,"Aplicar Mudanças"],"Link set":[null,"Vínculo definido"],"Break set":[null,"Interrupção definida"],"Swap resources":[null,"Recursos de troca"],"Add resource to constraint":[null,"Adicionar recurso à restrição"],"Constraint ID":[null,"ID da Restrição"],"Score":[null,"Pontuação"],"Create Constraint":[null,"Criar Restrição"],"Edit Constraint":[null,"Editar Restrição"],"Delete Constraint":[null,"Apagar Restrição"],"New Constraint":[null,"Nova Restrição"],"Location":[null,"Localização"],"Colocation":[null,"Colocation"],"Order":[null,"Ordem"],"Ticket":[null,"Ticket"],"(No location constraints defined)":[null,"(Nenhuma restrição de localização definida)"],"[Constraint is too complex to display]":[null,"[Restrição complexa demais para exibir]"],"(No colocation constraints defined)":[null,"(Nenhuma restrição de colocation definida)"],"(No order constraints defined)":[null,"(Nenhuma restrição de ordem definida)"],"(No ticket constraints defined)":[null,"(Nenhuma restrição de ticket definida)"],"CRM Configuration":[null,"Configuração de CRM"],"Resource Defaults":[null,"Padrões de Recursos"],"Operation Defaults":[null,"Padrões de Operação"],"No cluster properties set in %{group}":[null,"Nenhuma propriedade de cluster definida em %{group}"],"Username:":[null,"Nome de Usuário:"],"Password:":[null,"Senha:"],"Cluster has errors - click for details":[null,"Cluster com erros - clique para ver os detalhes"],"Timeout: Please try again":[null,"Tempo de espera: Tente novamente"],"Permission denied. Please log in to %{node}":[null,"Permissão negada. Efetue login no %{node}"],"Can't contact Hawk on %{node}. Retrying every 5 seconds.":[null,"Impossível contatar o Hawk em %{node}. Repetindo a cada 5 segundos."],"Cluster Name:":[null,"Nome do Cluster:"],"Host Name:":[null,"Nome de Host:"],"(Specify any host name in the cluster.  Other nodes will be found automatically)":[null,"(Especifique um nome de host no cluster. Outros nós serão encontrados automaticamente)"],"Add Cluster":[null,"Adicionar Cluster"],"OK":[null,"OK"],"A cluster with that name already exists":[null,"Um cluster com este nome já existe"],"The host %{h} is already present in cluster %{c}":[null,"O host %{h} já está presente no cluster %{c}"],"Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible.":[null,"Impossível se conectar ao %{host}. Tente abrir o %{url} no browser da Web para verificar se o Hawk está acessível."],"Cancel":[null,"Cancelar"],"No transitions found for the specified time period.":[null,"Nenhuma transição encontrada para o período de tempo especificado."],"Time":[null,"Horário"],"PE Input":[null,"Entrada PE"],"Node":[null,"Nó"],"Details":[null,"Detalhes"],"(full log)":[null,"(registro completo)"],"Graph":[null,"Gráficos"],"Diff":[null,"Dif."],"Delete this history archive?":[null,"Apagar o arquivo de histórico?"],"Start Time:":[null,"Horário de Início:"],"End Time:":[null,"Horário de Término:"],"Exploring %{path}":[null,"Explorando %{path}"],"Display":[null,"Exibir"],"Upload hb_report tarball":[null,"Fazer upload do tarball de hb_report"],"Explore":[null,"Explorar"],"Error: Permission denied for user '%s'.":[null,"Erro: Permissão negada para o usuário '%s'."],"Group ID":[null,"ID de grupo"],"Group Children":[null,"Agrupar Filhos"],"Available Primitives":[null,"Primitivos Disponíveis"],"Start Time not specified":[null,"Horário de Início não especificado"],"Generate":[null,"Gerar"],"hb_report generation in progress...":[null,"Geração de hb_report em andamento..."],"Download hb_report":[null,"Fazer Download de hb_report"],"Simulator":[null,"Simulador"],"Cluster Diagram":[null,"Diagrama do Cluster"],"Generate hb_report...":[null,"Gerar hb_report..."],"Generate hb_report":[null,"Gerar hb_report"],"Preferences...":[null,"Preferências..."],"Language":[null,"Idioma"],"Preferences":[null,"Preferências"],"Tools":[null,"Ferramentas"],"Status":[null,"Status"],"User: %{user}":[null,"Usuário: %{user}"],"Log Out":[null,"Efetuar Logout"],"Dashboard":[null,"Painel"],"Setup Wizard":[null,"Assistente de Configuração"],"Cluster Properties":[null,"Propriedades do Cluster"],"UI Host: %s":[null,"Host de UI: %s"],"Copyright &copy; 2009-2014 SUSE, LLC":[null,"Copyright &copy; 2009-2014 SUSE, LLC"],"Boolean Op":[null,"Operador Booleano"],"Expression":[null,"Expressão"],"Add Rule":[null,"Adicionar Regra"],"Remove Rule":[null,"Remover Regra"],"Show Rule Editor":[null,"Mostrar Editor de Regras"],"Resource":[null,"Recursos"],"Yes":[null,"Sim"],"No":[null,"Não"],"Close":[null,"Fechar"],"Reset":[null,"Redefinir"],"This will bring node %s online if it is currently on standby.  Do you want to continue?":[null,"O nó %s ficará online caso esteja em standby. Deseja continuar?"],"This will put node %s on standby.  All resources will be stopped and/or moved to another node.  Do you want to continue?":[null,"O nó %s será colocado em standby. Todos os recursos serão interrompidos e/ou movidos para outro nó. Deseja continuar?"],"This will put node %s in maintenance mode.  All resources on this node will become unmanaged.  Do you want to continue?":[null,"O nó %s vai entrar no modo manutenção. Todos os recursos nesse nó se tornarão não gerenciados. Deseja continuar?"],"This will bring node %s out of maintenance mode.  Do you want to continue?":[null,"O nó %s vai sair do modo manutenção. Deseja continuar?"],"This will attempt to immediately fence node %s.  Do you want to continue?":[null,"Haverá uma tentativa de desconectar imediatamente o nó %s. Deseja continuar?"],"This will start the resource %s.  Do you want to continue?":[null,"O recurso %s será iniciado. Deseja continuar?"],"This will stop the resource %s.  Do you want to continue?":[null,"O recurso %s será interrompido. Deseja continuar?"],"Move resource %s":[null,"Mover recurso %s"],"To node %s":[null,"Para o nó %s"],"Away from current node":[null,"Longe do nó atual"],"This will clear any relocation constraints set on the resource %s.  Do you want to continue?":[null,"Todas as restrições de relocação definidas no recurso %s serão apagadas. Deseja continuar?"],"This will promote the resource %s.  Do you want to continue?":[null,"O recurso %s será promovido. Deseja continuar?"],"This will demote the resource %s.  Do you want to continue?":[null,"O recurso %s será retrocedido. Deseja continuar?"],"This will clean up the resource %s.  Do you want to continue?":[null,"O recurso %s será apagado. Deseja continuar?"],"Error":[null,"Erro"],"Unexpected server error: %s":[null,"Erro inesperado do servidor: %s"],"Connection to server failed (server down or network error - will retry every 15 seconds).":[null,"Falha na conexão com o servidor (servidor inativo ou erro na rede - será repetida a cada 15 segundos)."],"Connection to server timed out - will retry every 15 seconds.":[null,"Tempo de espera de conexão com o servidor esgotado - será repetida a cada 15 segundos."],"Connection to server aborted - will retry every 15 seconds.":[null,"Conexão com o servidor interrompida - será repetida a cada 15 segundos."],"Permission denied":[null,"Permissão negada"],"%{op} failed on %{node} (rc=%{rc})":[null,"Falha de %{op} em %{node} (rc=%{rc})"],"DC: %s":[null,"DC: %s"],"Version: %s":[null,"Versão: %s"],"Stack: %s":[null,"Pilha: %s"],"Inactive Resources":[null,"Recursos Inativos"],"Summary":[null,"Sumário"],"STONITH Enabled":[null,"STONITH Habilitado"],"No Quorum Policy":[null,"Política de Falta de Quorum"],"Symmetric Cluster":[null,"Cluster Simétrico"],"Resource Stickiness":[null,"Permanência no Recurso"],"Maintenance Mode":[null,"Modo Manutenção"],"Unmanaged":[null,"Não Gerenciado"],"Tickets":[null,"Tickets"],"This will request the ticket %s be granted to the present site.  Do you want to continue?":[null,"Será solicitado para que o ticket %s seja concedido ao site atual. Deseja continuar?"],"This will request the ticket %s be revoked.  Do you want to continue?":[null,"Será solicitado para que o ticket %s seja revogado. Deseja continuar?"],"Granted [standby]":[null,"Concedido [standby]"],"Granted":[null,"Concedido"],"Revoked [standby]":[null,"Revogado [standby]"],"Revoked":[null,"Revogado"],"Leader: %s":[null,"Líder: %s"],"Last granted: %s":[null,"Última concessão: %s"],"Expires: %s":[null,"Expira em: %s"],"Summary View":[null,"Tela de Resumo"],"Tree View":[null,"Tela em Árvore"],"Table View":[null,"Tela de Tabela"],"%{node}: %{state}":[null,"%{node}: %{state}"],"Online":[null,"Online"],"Offline":[null,"Offline"],"Pending":[null,"Pendente"],"Standby":[null,"Standby"],"Unclean":[null,"Sem Limpeza"],"Master":[null,"Mestre"],"%{id}: Master: %{nodelist}":[null,"%{id}: Master: %{nodelist}"],"%{id}: Master":[null,"%{id}: Master"],"Slave":[null,"Escravo"],"%{id}: Slave: %{nodelist}":[null,"%{id}: Escravo: %{nodelist}"],"%{id}: Slave":[null,"%{id}: Escravo"],"Started":[null,"Iniciado"],"%{id}: Started: %{nodelist}":[null,"%{id}: iniciado: %{nodelist}"],"%{id}: Started":[null,"%{id}: Iniciado"],"%{id}: Pending: %{nodelist}":[null,"%{id}: Pendente: %{nodelist}"],"%{id}: Pending":[null,"%{id}: Pendente"],"%{id}: Starting: %{node}":[null,"%{id}: Iniciando: %{node}"],"%{id}: Starting":[null,"%{id}: Iniciando"],"%{id}: Stopping: %{node}":[null,"%{id}: Parando: %{node}"],"%{id}: Stopping":[null,"%{id}: Parando"],"%{id}: Promoting: %{node}":[null,"%{id}: Promovendo: %{node}"],"%{id}: Promoting":[null,"%{id}: Promovendo"],"%{id}: Demoting: %{node}":[null,"%{id}: Retrocedendo: %{node}"],"%{id}: Demoting":[null,"%{id}: Retrocedendo"],"%{id}: Moving: %{node}":[null,"%{id}: Movendo: %{node}"],"%{id}: Moving":[null,"%{id}: Movendo"],"Stopped":[null,"Parado"],"%{id}: Stopped":[null,"%{id}: parado"],"Group: %{id}":[null,"Grupo: %{id}"],"Master/Slave Set: %{id}":[null,"Conjunto Master/Escravo: %{id}"],"Clone Set: %{id}":[null,"Conjunto de Clones: %{id}"],"Parent: %{id}...":[null,"Pai: %{id}..."],"%{active}/%{total} %{type} %{node}":[null,"%{active}/%{total} %{type} %{node}"],"Toggle view by type":[null,"Alternar tela por tipo"],"Simulator (initial state)":[null,"Simulador (estado inicial)"],"Simulator (busy...)":[null,"Simulador (ocupado...)"],"Simulator (final state)":[null,"Simulador (estado final)"],"Injected State:":[null,"Estado Injetado:"],"+ Node":[null,"Nó +"],"+ Op":[null,"Operador +"],"+ Ticket":[null,"+ Ticket"],"Run >":[null,"Executar >"],"CIB (in)":[null,"CIB (entrada)"],"CIB (out)":[null,"CIB (saída)"],"Empty Graph":[null,"Gráfico Vazio"],"Inject Node State":[null,"Injetar Estado de Nó"],"Node:":[null,"Nó:"],"State:":[null,"Estado:                    "],"Inject Operation":[null,"Operação de Injeção"],"Operation:":[null,"Operação:"],"Interval:":[null,"Intervalo:"],"Resource:":[null,"Recurso:"],"Result:":[null,"Resultado:"],"Inject Ticket":[null,"Injetar Ticket"],"Ticket:":[null,"Ticket:"],"Action:":[null,"Ação:"],"Grant":[null,"Conceder"],"Revoke":[null,"Revogar"],"Activate":[null,"Ativar"],"Success":[null,"Sucesso"],"Generic Error":[null,"Erro Genérico"],"Wrong Argument(s)":[null,"Argumento(s) Incorreto(s)"],"Not Implemented":[null,"Não Implementado"],"Permission Denied":[null,"Permissão Negada"],"Not Installed":[null,"Não Instalado"],"Not Configured":[null,"Não Configurado"],"Not Running":[null,"Não Está em Execução"],"Running Master":[null,"Master em Execução"],"Failed Master":[null,"Falha do Master"],"Maintenance":[null,"Manutenção"],"Ready":[null,"Pronto"],"Fence Node":[null,"Nó da Cerca"],"View Details...":[null,"Ver Detalhes..."],"View Recent Events...":[null,"Ver Eventos Recentes..."],"Start":[null,"Início"],"Stop":[null,"Parar"],"Move...":[null,"Mover..."],"Drop Relocation Rule":[null,"Descartar Regra de Relocação"],"Promote":[null,"Promover"],"Demote":[null,"Retroceder"],"Clean Up":[null,"Limpeza"],"Master/Slave ID":[null,"ID de Master/Escravo"],"Getting recent events (last hour)...":[null,"Obtendo eventos recentes (da última hora)..."],"Another \\\"crm history\\\" operation is in progress...":[null,"Outra operação \\\"histórico crm\\\" está em andamento..."],"No events found in last hour.":[null,"Nenhum evento encontrado na última hora."],"Utilization":[null,"Utilização"],"No utilization defined":[null,"Nenhuma utilização definida"],"Attributes":[null,"Atributos"],"No attributes defined":[null,"Nenhum atributo definido"],"Symmetrical":[null,"Simétrico"],"Operations":[null,"Operações"],"There is already a monitor op with this interval.":[null,"Já existe uma operação de monitor com este intervalo."],"Template ID":[null,"ID do Gabarito"],"Resource ID":[null,"ID do Recurso"],"Class":[null,"Classe"],"Provider":[null,"Provedor"],"Type":[null,"Tipo"],"Use Template":[null,"Usar Gabarito"],"Delete Resource":[null,"Apagar Recurso"],"New Resource":[null,"Novo Recurso"],"Primitive":[null,"Primitivo"],"New Template":[null,"Novo Gabarito"],"Template":[null,"Gabarito"],"New Group":[null,"Novo Grupo"],"Group":[null,"Grupo"],"New Clone":[null,"Novo Clone"],"Clone":[null,"Clonar"],"New Master/Slave":[null,"Novo Master/Escravo"],"Master/Slave":[null,"Master/Escravo"],"(No primitive resources defined)":[null,"(Nenhum recurso primitivo definido)"],"(No templates defined)":[null,"(Nenhum gabarito definido)"],"(No groups defined)":[null,"(Nenhum grupo definido)"],"(No clones defined)":[null,"(Nenhum clone definido)"],"(No master/slave resources defined)":[null,"(Nenhum recurso master/escravo definido)"],"Fail Count":[null,"Total de Falhas"],"Last Failure":[null,"Última Falha"],"Right":[null,"Direita"],"XPath":[null,"XPath"],"Tag":[null,"Tag"],"Ref":[null,"Ref."],"Attribute":[null,"Atributo"],"Role ID":[null,"ID da Função"],"Please ensure JavaScript is enabled":[null,"Verifique se o JavaScript está habilitado"],"Any changes will be lost - do you wish to proceed?":[null,"Qualquer mudança será perdida. Deseja continuar?"],"Loss Policy":[null,"Política de Perdas"],"User ID":[null,"ID de Usuário"],"Roles":[null,"Funções"],"%{workflow}: %{step}":[null,"%{workflow}: %{step}"],"The configuration has been applied.":[null,"A configuração foi aplicada."],"The following configuration will be applied to the cluster:":[null,"A seguinte configuração será aplicada ao cluster:"],"Error applying configuration:":[null,"Erro ao aplicar configuração:"],"< Back":[null,"< Voltar"],"Next >":[null,"Avançar >"],"No workflow descriptions found":[null,"Nenhuma descrição de workflow encontrada"],"Choose Configuration":[null,"Escolher Configuração"],"This wizard will guide you through the steps necessary to add one of the following configurations to the cluster.":[null,"Este assistente o guiará pelas etapas necessárias para adicionar uma das seguintes configurações ao cluster."],"The object/attribute does not exist (cibadmin %{cmd})":[null,"O objeto/atributo não existe (cibadmin %{cmd})"],"Error invoking cibadmin %{cmd}: %{msg}":[null,"Erro ao chamar cibadmin %{cmd}: %{msg}"],"The object/attribute does not exist: %{msg}":[null,"O objeto/atributo não existe: %{msg}"],"Error invoking cibadmin --replace: %{msg}":[null,"Erro ao chamar cibadmin --replace: %{msg}"]}}};
+var locales = locales || {}; locales['pt-BR'] = {
+  "domain": "app",
+  "locale_data": {
+    "app": {
+      "": {
+        "Project-Id-Version": "hawk",
+        "Report-Msgid-Bugs-To": "",
+        "POT-Creation-Date": "2015-02-24 16:02+0100",
+        "PO-Revision-Date": "2014-07-15 11:28",
+        "Last-Translator": "Novell language <language@novell.com>",
+        "Language-Team": "Novell language <language@novell.com>",
+        "Language": "",
+        "MIME-Version": "1.0",
+        "Content-Type": "text/plain; charset=UTF-8",
+        "Content-Transfer-Encoding": "8bit",
+        "Plural-Forms": "nplurals=2; plural=n>1;",
+        "lang": "pt-BR",
+        "domain": "app",
+        "plural_forms": "nplurals=2; plural=n>1;"
+      },
+      "\\\"Error: #{result}\\\"": [
+        null,
+        "\\\"Erro: #{result}\\\""
+      ],
+      "%s is not executable": [
+        null,
+        "%s não está instalado"
+      ],
+      "%s is not installed": [
+        null,
+        "%s não está instalado"
+      ],
+      "%{cmd} failed (status: %{status})": [
+        null,
+        "%{cmd} falhou (status: %{status})"
+      ],
+      "%{workflow}: %{step}": [
+        null,
+        "%{workflow}: %{step}"
+      ],
+      "(No clones defined)": [
+        null,
+        "(Nenhum clone definido)"
+      ],
+      "(No colocation constraints defined)": [
+        null,
+        "(Nenhuma restrição de colocation definida)"
+      ],
+      "(No groups defined)": [
+        null,
+        "(Nenhum grupo definido)"
+      ],
+      "(No location constraints defined)": [
+        null,
+        "(Nenhuma restrição de localização definida)"
+      ],
+      "(No master/slave resources defined)": [
+        null,
+        "(Nenhum recurso master/escravo definido)"
+      ],
+      "(No order constraints defined)": [
+        null,
+        "(Nenhuma restrição de ordem definida)"
+      ],
+      "(No primitive resources defined)": [
+        null,
+        "(Nenhum recurso primitivo definido)"
+      ],
+      "(No templates defined)": [
+        null,
+        "(Nenhum gabarito definido)"
+      ],
+      "(No ticket constraints defined)": [
+        null,
+        "(Nenhuma restrição de ticket definida)"
+      ],
+      "(Specify any host name in the cluster.  Other nodes will be found automatically)": [
+        null,
+        "(Especifique um nome de host no cluster. Outros nós serão encontrados automaticamente)"
+      ],
+      "(full log)": [
+        null,
+        "(registro completo)"
+      ],
+      "1 node configured": [
+        "%{num} nodes configured",
+        "1 nó configurado",
+        "%{num} nós configurados"
+      ],
+      "1 resource configured": [
+        "%{num} resources configured",
+        "1 recurso configurado",
+        "%{num} recursos configurados"
+      ],
+      "< Back": [
+        null,
+        "< Voltar"
+      ],
+      "A cluster with that name already exists": [
+        null,
+        "Um cluster com este nome já existe"
+      ],
+      "ACL support requires CIB schema version 2.0, available in Pacemaker 1.1.12 and up. For older versions of Pacemaker, use Hawk version 0.6.": [
+        null,
+        ""
+      ],
+      "Add": [
+        null,
+        "Adicionar"
+      ],
+      "Add Cluster": [
+        null,
+        "Adicionar Cluster"
+      ],
+      "Add Rule": [
+        null,
+        "Adicionar Regra"
+      ],
+      "Add a rule below": [
+        null,
+        ""
+      ],
+      "Add resource to constraint": [
+        null,
+        "Adicionar recurso à restrição"
+      ],
+      "Add role": [
+        null,
+        "Adicionar Regra"
+      ],
+      "Add user": [
+        null,
+        "Adicionar Cluster"
+      ],
+      "Another \\\"crm history\\\" operation is in progress...": [
+        null,
+        "Outra operação \\\"histórico crm\\\" está em andamento..."
+      ],
+      "Any changes will be lost - do you wish to proceed?": [
+        null,
+        "Qualquer mudança será perdida. Deseja continuar?"
+      ],
+      "Apply": [
+        null,
+        ""
+      ],
+      "Apply Changes": [
+        null,
+        "Aplicar Mudanças"
+      ],
+      "Arbitrator: %{ip}": [
+        null,
+        ""
+      ],
+      "Are you sure you wish to delete %s?": [
+        null,
+        "Tem certeza de que deseja apagar %s?"
+      ],
+      "Attribute": [
+        null,
+        "Atributo"
+      ],
+      "Attribute contains both single and double quotes": [
+        null,
+        "O atributo contém aspas simples e duplas"
+      ],
+      "Attributes": [
+        null,
+        "Atributos"
+      ],
+      "Available Primitives": [
+        null,
+        "Primitivos Disponíveis"
+      ],
+      "Back": [
+        null,
+        "Voltar"
+      ],
+      "Boolean Op": [
+        null,
+        "Operador Booleano"
+      ],
+      "Break set": [
+        null,
+        "Interrupção definida"
+      ],
+      "CIB file \\\"%{path}\\\" not found": [
+        null,
+        "Arquivo CIB \\\"%{path}\\\" não encontrado"
+      ],
+      "CRM Configuration": [
+        null,
+        "Configuração de CRM"
+      ],
+      "Can't contact Hawk on %{node}. Retrying every 5 seconds.": [
+        null,
+        "Impossível contatar o Hawk em %{node}. Repetindo a cada 5 segundos."
+      ],
+      "Can't set meta attribute %{p}, because the value contains both single and double quotes": [
+        null,
+        "Impossível definir o atributo %{p}, pois o valor contém aspas simples e duplas"
+      ],
+      "Can't set op %{o} attribute {%a}, because the value contains both single and double quotes": [
+        null,
+        "Impossível definir o atributo {%a} da operação %{o}, pois o valor contém aspas simples e duplas"
+      ],
+      "Can't set parameter %{p}, because the value contains both single and double quotes": [
+        null,
+        "Impossível definir o parâmetro %{p}, pois o valor contém aspas simples e duplas"
+      ],
+      "Can't set property %{p}, because the value contains both single and double quotes": [
+        null,
+        "Impossível definir a propriedade %{p}, pois o valor contém aspas simples e duplas"
+      ],
+      "Cancel": [
+        null,
+        "Cancelar"
+      ],
+      "Child Resource": [
+        null,
+        "Recurso Filho"
+      ],
+      "Choose Configuration": [
+        null,
+        "Escolher Configuração"
+      ],
+      "Class": [
+        null,
+        "Classe"
+      ],
+      "Clean Up": [
+        null,
+        "Limpeza"
+      ],
+      "Clone": [
+        null,
+        "Clonar"
+      ],
+      "Clone ID": [
+        null,
+        "ID do Clone"
+      ],
+      "Clone ID \\\"%{id}\\\" does not exist": [
+        null,
+        "O ID de clone \\\"%{id}\\\" não existe"
+      ],
+      "Clone created successfully": [
+        null,
+        "Clone criado com êxito"
+      ],
+      "Clone updated successfully": [
+        null,
+        "Clone atualizado com êxito"
+      ],
+      "Close": [
+        null,
+        "Fechar"
+      ],
+      "Cluster": [
+        null,
+        "Adicionar Cluster"
+      ],
+      "Cluster Configuration": [
+        null,
+        "Configuração do Cluster"
+      ],
+      "Cluster Dashboard": [
+        null,
+        "Painel do Cluster"
+      ],
+      "Cluster Name:": [
+        null,
+        "Nome do Cluster:"
+      ],
+      "Cluster Setup Wizard": [
+        null,
+        "Assistente de Configuração de Cluster"
+      ],
+      "Cluster Status": [
+        null,
+        "Status do Cluster"
+      ],
+      "Cluster has errors - click for details": [
+        null,
+        "Cluster com erros - clique para ver os detalhes"
+      ],
+      "Colocation": [
+        null,
+        "Colocation"
+      ],
+      "Confirm": [
+        null,
+        "Confirmar"
+      ],
+      "Connection to server aborted - will retry every 15 seconds.": [
+        null,
+        "Conexão com o servidor interrompida - será repetida a cada 15 segundos."
+      ],
+      "Connection to server failed - will retry every 15 seconds.": [
+        null,
+        "Conexão com o servidor interrompida - será repetida a cada 15 segundos."
+      ],
+      "Connection to server timed out - will retry every 15 seconds.": [
+        null,
+        "Tempo de espera de conexão com o servidor esgotado - será repetida a cada 15 segundos."
+      ],
+      "Constraint ID": [
+        null,
+        "ID da Restrição"
+      ],
+      "Constraint ID \\\"%{id}\\\" does not exist": [
+        null,
+        "O ID de restrição \\\"%{id}\\\" não existe"
+      ],
+      "Constraint created successfully": [
+        null,
+        "Restrição criada com êxito"
+      ],
+      "Constraint is too complex - it contains nested rules": [
+        null,
+        "Restrição complexa demais; contém regras aninhadas"
+      ],
+      "Constraint must consist of at least two separate resources": [
+        null,
+        "A restrição deve consistir em pelo menos dois recursos separados"
+      ],
+      "Constraint updated successfully": [
+        null,
+        "Restrição atualizada com êxito"
+      ],
+      "Constraints": [
+        null,
+        "Restrições"
+      ],
+      "Create": [
+        null,
+        "Criar Função"
+      ],
+      "Create Clone": [
+        null,
+        "Criar Clone"
+      ],
+      "Create Colocation Constraint": [
+        null,
+        "Criar Restrição de Colocation"
+      ],
+      "Create Constraint": [
+        null,
+        "Criar Restrição"
+      ],
+      "Create Group": [
+        null,
+        "Criar Grupo"
+      ],
+      "Create Location Constraint": [
+        null,
+        "Criar Restrição de Localização"
+      ],
+      "Create Master/Slave": [
+        null,
+        "Criar Master/Escravo"
+      ],
+      "Create Order Constraint": [
+        null,
+        "Criar Restrição de Ordem"
+      ],
+      "Create Resource": [
+        null,
+        "Criar Recurso"
+      ],
+      "Create Role": [
+        null,
+        "Criar Função"
+      ],
+      "Create Template": [
+        null,
+        "Criar Gabarito"
+      ],
+      "Create Ticket Constraint": [
+        null,
+        "Criar Restrição de Ticket"
+      ],
+      "Create User": [
+        null,
+        "Criar Usuário"
+      ],
+      "Dashboard": [
+        null,
+        "Painel"
+      ],
+      "Data collection in progress (%{from_time} to %{to_time})...": [
+        null,
+        "Coleta de dados em andamento (%{from_time} a %{to_time})..."
+      ],
+      "Delete Constraint": [
+        null,
+        "Apagar Restrição"
+      ],
+      "Delete Resource": [
+        null,
+        "Apagar Recurso"
+      ],
+      "Delete role": [
+        null,
+        "Apagar Recurso"
+      ],
+      "Delete this history archive?": [
+        null,
+        "Apagar o arquivo de histórico?"
+      ],
+      "Delete user": [
+        null,
+        "Apagar Recurso"
+      ],
+      "Demote": [
+        null,
+        "Retroceder"
+      ],
+      "Deny": [
+        null,
+        ""
+      ],
+      "Details": [
+        null,
+        "Detalhes"
+      ],
+      "Diff": [
+        null,
+        "Dif."
+      ],
+      "Display": [
+        null,
+        "Exibir"
+      ],
+      "Done": [
+        null,
+        "Concluído"
+      ],
+      "Download hb_report": [
+        null,
+        "Fazer Download de hb_report"
+      ],
+      "Drop Relocation Rule": [
+        null,
+        "Descartar Regra de Relocação"
+      ],
+      "Edit": [
+        null,
+        "Editar"
+      ],
+      "Edit Clone": [
+        null,
+        "Editar Clone"
+      ],
+      "Edit Colocation Constraint": [
+        null,
+        "Editar Restrição de Colocation"
+      ],
+      "Edit Constraint": [
+        null,
+        "Editar Restrição"
+      ],
+      "Edit Group": [
+        null,
+        "Editar Grupo"
+      ],
+      "Edit Location Constraint": [
+        null,
+        "Editar Restrição de Localização"
+      ],
+      "Edit Master/Slave": [
+        null,
+        "Editar Master/Escravo"
+      ],
+      "Edit Order Constraint": [
+        null,
+        "Editar Restrição de Ordem"
+      ],
+      "Edit Resource": [
+        null,
+        "Editar Recurso"
+      ],
+      "Edit Role": [
+        null,
+        "Editar Função"
+      ],
+      "Edit Template": [
+        null,
+        "Editar Gabarito"
+      ],
+      "Edit Ticket Constraint": [
+        null,
+        "Editar Restrição de Ticket"
+      ],
+      "Edit User": [
+        null,
+        "Editar Usuário"
+      ],
+      "End Time:": [
+        null,
+        "Horário de Término:"
+      ],
+      "Error applying configuration:": [
+        null,
+        "Erro ao aplicar configuração:"
+      ],
+      "Error deleting %s": [
+        null,
+        "Erro ao apagar recurso"
+      ],
+      "Error deleting resource": [
+        null,
+        "Erro ao apagar recurso"
+      ],
+      "Error invoking %{cmd}": [
+        null,
+        "Erro ao chamar %{cmd}"
+      ],
+      "Error invoking %{cmd}: %{msg}": [
+        null,
+        "Erro ao chamar %{cmd}: %{msg}"
+      ],
+      "Error invoking cibadmin %{cmd}: %{msg}": [
+        null,
+        "Erro ao chamar cibadmin %{cmd}: %{msg}"
+      ],
+      "Error invoking cibadmin --replace: %{msg}": [
+        null,
+        "Erro ao chamar cibadmin --replace: %{msg}"
+      ],
+      "Error parsing template \\\"%s\\\"": [
+        null,
+        "Erro ao analisar o gabarito \\\"%s\\\""
+      ],
+      "Error parsing workflow \\\"%s\\\"": [
+        null,
+        "Erro ao analisar o workflow \\\"%s\\\""
+      ],
+      "Error:": [
+        null,
+        "Erro:"
+      ],
+      "Error: Permission denied for user '%s'.": [
+        null,
+        "Erro: Permissão negada para o usuário '%s'."
+      ],
+      "Events": [
+        null,
+        ""
+      ],
+      "Explore": [
+        null,
+        "Explorar"
+      ],
+      "Exploring %{path}": [
+        null,
+        "Explorando %{path}"
+      ],
+      "Expression": [
+        null,
+        "Expressão"
+      ],
+      "Fail Count": [
+        null,
+        "Total de Falhas"
+      ],
+      "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}, exit-reason=%{exit_reason}": [
+        null,
+        ""
+      ],
+      "Fence": [
+        null,
+        ""
+      ],
+      "Fence Node": [
+        null,
+        "Nó da Cerca"
+      ],
+      "Generate": [
+        null,
+        "Gerar"
+      ],
+      "Geo Site %{ip}": [
+        null,
+        "Conjunto de Clones: %{id}"
+      ],
+      "Getting recent events (last hour)...": [
+        null,
+        "Obtendo eventos recentes (da última hora)..."
+      ],
+      "Grant": [
+        null,
+        "Conceder"
+      ],
+      "Graph": [
+        null,
+        "Gráficos"
+      ],
+      "Group": [
+        null,
+        "Grupo"
+      ],
+      "Group Children": [
+        null,
+        "Agrupar Filhos"
+      ],
+      "Group ID": [
+        null,
+        "ID de grupo"
+      ],
+      "Group ID \\\"%{id}\\\" does not exist": [
+        null,
+        "ID de grupo \\\"%{id}\\\" inexistente"
+      ],
+      "Group created successfully": [
+        null,
+        "Grupo criado com êxito"
+      ],
+      "Group updated successfully": [
+        null,
+        "Grupo atualizado com êxito"
+      ],
+      "HTML": [
+        null,
+        ""
+      ],
+      "Help": [
+        null,
+        ""
+      ],
+      "High Availability Web Konsole": [
+        null,
+        ""
+      ],
+      "History Explorer": [
+        null,
+        "Explorador do Histórico"
+      ],
+      "Host Name:": [
+        null,
+        "Nome de Host:"
+      ],
+      "Invalid Resource ID \\\"%{id}\\\"": [
+        null,
+        "ID de Recurso \\\"%{id}\\\" Inválido"
+      ],
+      "Invalid Role ID": [
+        null,
+        "ID do Ticket Inválido"
+      ],
+      "Invalid Ticket ID": [
+        null,
+        "ID do Ticket Inválido"
+      ],
+      "Invalid User ID": [
+        null,
+        "ID do Ticket Inválido"
+      ],
+      "Invalid password": [
+        null,
+        "Senha inválida"
+      ],
+      "Invalid score": [
+        null,
+        "Pontuação inválida"
+      ],
+      "Invalid score \\\"%{score}\\\"": [
+        null,
+        "Pontuação \\\"%{score}\\\" inválida"
+      ],
+      "Invalid username": [
+        null,
+        "Nome de usuário inválido"
+      ],
+      "Invalid username or password": [
+        null,
+        "Nome de usuário ou senha inválida"
+      ],
+      "Language is required": [
+        null,
+        ""
+      ],
+      "Last Failure": [
+        null,
+        "Última Falha"
+      ],
+      "Link set": [
+        null,
+        "Vínculo definido"
+      ],
+      "Location": [
+        null,
+        "Localização"
+      ],
+      "Log In": [
+        null,
+        "Efetuar Login"
+      ],
+      "Login": [
+        null,
+        "Efetuar Login"
+      ],
+      "Loss Policy": [
+        null,
+        "Política de Perdas"
+      ],
+      "Maintenance": [
+        null,
+        "Manutenção"
+      ],
+      "Master/Slave": [
+        null,
+        "Master/Escravo"
+      ],
+      "Master/Slave ID": [
+        null,
+        "ID de Master/Escravo"
+      ],
+      "Master/Slave ID \\\"%{id}\\\" does not exist": [
+        null,
+        "O ID de Master/Escravo \\\"%{id}\\\" não existe"
+      ],
+      "Master/Slave created successfully": [
+        null,
+        "Master/Escravo criado com êxito"
+      ],
+      "Master/Slave updated successfully": [
+        null,
+        "Master/Escravo atualizado com êxito"
+      ],
+      "Meta Attributes": [
+        null,
+        "Atributos Meta"
+      ],
+      "Move rule down": [
+        null,
+        ""
+      ],
+      "Move rule up": [
+        null,
+        "Mover recurso %s"
+      ],
+      "Move...": [
+        null,
+        "Mover..."
+      ],
+      "Name": [
+        null,
+        ""
+      ],
+      "New Clone": [
+        null,
+        "Novo Clone"
+      ],
+      "New Constraint": [
+        null,
+        "Nova Restrição"
+      ],
+      "New Group": [
+        null,
+        "Novo Grupo"
+      ],
+      "New Master/Slave": [
+        null,
+        "Novo Master/Escravo"
+      ],
+      "New Resource": [
+        null,
+        "Novo Recurso"
+      ],
+      "New Template": [
+        null,
+        "Novo Gabarito"
+      ],
+      "Next >": [
+        null,
+        "Avançar >"
+      ],
+      "No": [
+        null,
+        "Não"
+      ],
+      "No Master/Slave child specified": [
+        null,
+        "Nenhum filho Master/Escravo especificado"
+      ],
+      "No Quorum Policy": [
+        null,
+        "Política de Falta de Quorum"
+      ],
+      "No attributes defined": [
+        null,
+        "Nenhum atributo definido"
+      ],
+      "No clone child specified": [
+        null,
+        "Nenhuma clone filho especificado"
+      ],
+      "No cluster properties set in %{group}": [
+        null,
+        "Nenhuma propriedade de cluster definida em %{group}"
+      ],
+      "No details available": [
+        null,
+        "Nenhum detalhe disponível"
+      ],
+      "No events found in last hour.": [
+        null,
+        "Nenhum evento encontrado na última hora."
+      ],
+      "No expressions specified": [
+        null,
+        "Nenhuma expressão especificada"
+      ],
+      "No group children specified": [
+        null,
+        "Nenhum filho de grupo especificado"
+      ],
+      "No resource specified": [
+        null,
+        "Nenhum recurso especificado"
+      ],
+      "No resources specified": [
+        null,
+        "Nenhum recurso especificado"
+      ],
+      "No rules specified": [
+        null,
+        "Nenhuma regra especificada"
+      ],
+      "No transitions found for the specified time period.": [
+        null,
+        "Nenhuma transição encontrada para o período de tempo especificado."
+      ],
+      "No utilization defined": [
+        null,
+        "Nenhuma utilização definida"
+      ],
+      "No workflow descriptions found": [
+        null,
+        "Nenhuma descrição de workflow encontrada"
+      ],
+      "Node": [
+        null,
+        "Nó"
+      ],
+      "Nodes": [
+        null,
+        "Nó"
+      ],
+      "OK": [
+        null,
+        "OK"
+      ],
+      "Online": [
+        null,
+        "Online"
+      ],
+      "Operation Defaults": [
+        null,
+        "Padrões de Operação"
+      ],
+      "Operations": [
+        null,
+        "Operações"
+      ],
+      "Order": [
+        null,
+        "Ordem"
+      ],
+      "PDF": [
+        null,
+        ""
+      ],
+      "PE Input": [
+        null,
+        "Entrada PE"
+      ],
+      "PE Input created by different Pacemaker version (%{version})": [
+        null,
+        "Entrada PE criada por versão diferente do Pacemaker (%{version})"
+      ],
+      "Pacemaker does not appear to be installed (%{cmd} not found)": [
+        null,
+        "O Pacemaker parece não estar instalado (%{cmd} não encontrado)"
+      ],
+      "Pacemaker version not present in PE Input": [
+        null,
+        "Versão do Pacemaker ausente da Entrada PE"
+      ],
+      "Parameters": [
+        null,
+        "Parâmetros"
+      ],
+      "Password": [
+        null,
+        "Senha:"
+      ],
+      "Password not specified": [
+        null,
+        "Nenhuma senha especificada"
+      ],
+      "Password:": [
+        null,
+        "Senha:"
+      ],
+      "Permission denied - you do not have write access to the CIB.": [
+        null,
+        "Permissão negada: você não tem acesso de gravação ao CIB."
+      ],
+      "Permission denied for user %{user}": [
+        null,
+        "Permissão negada para o usuário %{user}"
+      ],
+      "Permission denied. Please log in to %{node}": [
+        null,
+        "Permissão negada. Efetue login no %{node}"
+      ],
+      "Please ensure Javascript is enabled": [
+        null,
+        "Verifique se o JavaScript está habilitado"
+      ],
+      "Preferences": [
+        null,
+        "Preferências"
+      ],
+      "Preferences updated successfully": [
+        null,
+        "Recurso atualizado com êxito"
+      ],
+      "Primitive": [
+        null,
+        "Primitivo"
+      ],
+      "Primitives": [
+        null,
+        "Primitivo"
+      ],
+      "Promote": [
+        null,
+        "Promover"
+      ],
+      "Provider": [
+        null,
+        "Provedor"
+      ],
+      "Read": [
+        null,
+        "Pronto"
+      ],
+      "Ready": [
+        null,
+        "Pronto"
+      ],
+      "Ref": [
+        null,
+        "Ref."
+      ],
+      "Remove": [
+        null,
+        "Remover"
+      ],
+      "Remove Rule": [
+        null,
+        "Remover Regra"
+      ],
+      "Remove this rule": [
+        null,
+        "Remover Regra"
+      ],
+      "Required parameter \\\"%{param}\\\" not specified": [
+        null,
+        "Parâmetro \\\"%{param}\\\" obrigatório não especificado"
+      ],
+      "Required parameter \\\"node\\\" not specified": [
+        null,
+        "Parâmetro \\\"node\\\" obrigatório não especificado"
+      ],
+      "Required parameter \\\"resource\\\" not specified": [
+        null,
+        "Parâmetro \\\"resource\\\" obrigatório não especificado"
+      ],
+      "Required parameter \\\"ticket\\\" not specified": [
+        null,
+        "Parâmetro \\\"ticket\\\" obrigatório não especificado"
+      ],
+      "Required parameters \\\"basename\\\" and \\\"node\\\" not specified": [
+        null,
+        "Parâmetros \\\"basename\\\" e \\\"node\\\" obrigatórios não especificados"
+      ],
+      "Required parameters \\\"left\\\" and \\\"right\\\" not specified": [
+        null,
+        "Parâmetros \\\"left\\\" e \\\"right\\\" obrigatórios não especificados"
+      ],
+      "Required parameters \\\"resource\\\" and \\\"node\\\" not specified": [
+        null,
+        "Parâmetros \\\"resource\\\" e \\\"node\\\" obrigatórios não especificados"
+      ],
+      "Required parameters \\\"ticket\\\" and \\\"site\\\" not specified": [
+        null,
+        "Parâmetros \\\"ticket\\\" e \\\"site\\\" obrigatórios não especificados"
+      ],
+      "Resource": [
+        null,
+        "Recursos"
+      ],
+      "Resource Defaults": [
+        null,
+        "Padrões de Recursos"
+      ],
+      "Resource ID": [
+        null,
+        "ID do Recurso"
+      ],
+      "Resource ID \\\"%{id}\\\" does not exist": [
+        null,
+        "O ID de recurso \\\"%{id}\\\" não existe"
+      ],
+      "Resource Stickiness": [
+        null,
+        "Permanência no Recurso"
+      ],
+      "Resource created successfully": [
+        null,
+        "Recurso criado com êxito"
+      ],
+      "Resource updated successfully": [
+        null,
+        "Recurso atualizado com êxito"
+      ],
+      "Resources": [
+        null,
+        "Recursos"
+      ],
+      "Revert": [
+        null,
+        "Redefinir"
+      ],
+      "Revert Changes": [
+        null,
+        "Reverter Mudanças"
+      ],
+      "Revoke": [
+        null,
+        "Revogar"
+      ],
+      "Right": [
+        null,
+        "Direita"
+      ],
+      "Role": [
+        null,
+        "Função"
+      ],
+      "Role ID": [
+        null,
+        "ID da Função"
+      ],
+      "Role ID is required": [
+        null,
+        ""
+      ],
+      "Role created successfully": [
+        null,
+        "Função criada com êxito"
+      ],
+      "Role deleted successfully": [
+        null,
+        "Função criada com êxito"
+      ],
+      "Role updated successfully": [
+        null,
+        "Função atualizada com êxito"
+      ],
+      "Roles": [
+        null,
+        "Funções"
+      ],
+      "Root Password": [
+        null,
+        "Senha Root"
+      ],
+      "Rule": [
+        null,
+        "Função"
+      ],
+      "STONITH Enabled": [
+        null,
+        "STONITH Habilitado"
+      ],
+      "SUSE, LLC": [
+        null,
+        ""
+      ],
+      "Score": [
+        null,
+        "Pontuação"
+      ],
+      "Show Rule Editor": [
+        null,
+        "Mostrar Editor de Regras"
+      ],
+      "Site: %{ip}": [
+        null,
+        ""
+      ],
+      "Standby": [
+        null,
+        "Standby"
+      ],
+      "Start": [
+        null,
+        "Início"
+      ],
+      "Start Time not specified": [
+        null,
+        "Horário de Início não especificado"
+      ],
+      "Start Time:": [
+        null,
+        "Horário de Início:"
+      ],
+      "State": [
+        null,
+        "Estado:                    "
+      ],
+      "Status": [
+        null,
+        "Status"
+      ],
+      "Stop": [
+        null,
+        "Parar"
+      ],
+      "Swap resources": [
+        null,
+        "Recursos de troca"
+      ],
+      "Symmetric Cluster": [
+        null,
+        "Cluster Simétrico"
+      ],
+      "Symmetrical": [
+        null,
+        "Simétrico"
+      ],
+      "Tag": [
+        null,
+        "Tag"
+      ],
+      "Template": [
+        null,
+        "Gabarito"
+      ],
+      "Template ID": [
+        null,
+        "ID do Gabarito"
+      ],
+      "Template created successfully": [
+        null,
+        "Gabarito criado com êxito"
+      ],
+      "Template updated successfully": [
+        null,
+        "Gabarito atualizado com êxito"
+      ],
+      "The ID \\\"%{id}\\\" does not exist": [
+        null,
+        "O ID da função \\\"%{id}\\\" não existe"
+      ],
+      "The ID \\\"%{id}\\\" is already in use": [
+        null,
+        "O ID \\\"%{id}\\\" já está em uso"
+      ],
+      "The configuration has been applied.": [
+        null,
+        "A configuração foi aplicada."
+      ],
+      "The following configuration will be applied to the cluster:": [
+        null,
+        "A seguinte configuração será aplicada ao cluster:"
+      ],
+      "The host %{h} is already present in cluster %{c}": [
+        null,
+        "O host %{h} já está presente no cluster %{c}"
+      ],
+      "The object/attribute does not exist (cibadmin %{cmd})": [
+        null,
+        "O objeto/atributo não existe (cibadmin %{cmd})"
+      ],
+      "The object/attribute does not exist: %{msg}": [
+        null,
+        "O objeto/atributo não existe: %{msg}"
+      ],
+      "The role does not exist": [
+        null,
+        ""
+      ],
+      "The root password for this system": [
+        null,
+        "A senha root deste sistema"
+      ],
+      "The root password is required in order for this wizard template to make configuration changes.": [
+        null,
+        "A senha root é obrigatória para que o gabarito do assistente faça as mudanças de configuração."
+      ],
+      "The user does not exist": [
+        null,
+        ""
+      ],
+      "There is already a monitor op with this interval.": [
+        null,
+        "Já existe uma operação de monitor com este intervalo."
+      ],
+      "This wizard will guide you through the steps necessary to add one of the following configurations to the cluster.": [
+        null,
+        "Este assistente o guiará pelas etapas necessárias para adicionar uma das seguintes configurações ao cluster."
+      ],
+      "Ticket": [
+        null,
+        "Ticket"
+      ],
+      "Time": [
+        null,
+        "Horário"
+      ],
+      "Timeout: Please try again": [
+        null,
+        "Tempo de espera: Tente novamente"
+      ],
+      "To enable ACLs, set 'enable-acl' in the CRM Configuration": [
+        null,
+        "Para habilitar ACLs, defina ''enable-acl'' na Configuração de CRM"
+      ],
+      "Type": [
+        null,
+        "Tipo"
+      ],
+      "Unable to apply changes: %{msg}": [
+        null,
+        "Impossível aplicar as mudanças: %{msg}"
+      ],
+      "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible.": [
+        null,
+        "Impossível se conectar ao %{host}. Tente abrir o %{url} no browser da Web para verificar se o Hawk está acessível."
+      ],
+      "Unable to create clone: %{msg}": [
+        null,
+        "Impossível criar o clone: %{msg}"
+      ],
+      "Unable to create constraint: %{msg}": [
+        null,
+        "Impossível criar a restrição: %{msg}"
+      ],
+      "Unable to create group: %{msg}": [
+        null,
+        "Impossível criar o grupo: %{msg}"
+      ],
+      "Unable to create master/slave: %{msg}": [
+        null,
+        "Impossível criar master/escravo: %{msg}"
+      ],
+      "Unable to create resource: %{msg}": [
+        null,
+        "Impossível criar o recurso: %{msg}"
+      ],
+      "Unable to create shadow CIB": [
+        null,
+        "Impossível criar CIB de sombra"
+      ],
+      "Unable to create: %{msg}": [
+        null,
+        "Impossível criar a função: %{msg}"
+      ],
+      "Unable to execute %{cmd}": [
+        null,
+        "Impossível executar %{cmd}"
+      ],
+      "Unable to parse CIB file \\\"%{path}\\\"": [
+        null,
+        "Impossível analisar arquivo CIB \\\"%{path}\\\""
+      ],
+      "Unable to parse cibadmin output": [
+        null,
+        "Impossível analisar saída de cibadmin"
+      ],
+      "Unable to update constraint: %{msg}": [
+        null,
+        "Impossível atualizar a restrição: %{msg}"
+      ],
+      "Unable to update: %{msg}": [
+        null,
+        "Impossível atualizar a função: %{msg}"
+      ],
+      "Unknown": [
+        null,
+        "Desconhecido"
+      ],
+      "Upload hb_report tarball": [
+        null,
+        "Fazer upload do tarball de hb_report"
+      ],
+      "Use Template": [
+        null,
+        "Usar Gabarito"
+      ],
+      "User ID": [
+        null,
+        "ID de Usuário"
+      ],
+      "User ID is required": [
+        null,
+        ""
+      ],
+      "User created successfully": [
+        null,
+        "Usuário criado com êxito"
+      ],
+      "User deleted successfully": [
+        null,
+        "Usuário criado com êxito"
+      ],
+      "User updated successfully": [
+        null,
+        "Usuário atualizado com êxito"
+      ],
+      "Username": [
+        null,
+        "Nome de Usuário:"
+      ],
+      "Username not specified": [
+        null,
+        "Nome de usuário não especificado"
+      ],
+      "Username:": [
+        null,
+        "Nome de Usuário:"
+      ],
+      "Users": [
+        null,
+        "Usuário"
+      ],
+      "Utilization": [
+        null,
+        "Utilização"
+      ],
+      "Value contains both single and double quotes": [
+        null,
+        "O valor contém aspas simples e duplas"
+      ],
+      "View Details...": [
+        null,
+        "Ver Detalhes..."
+      ],
+      "View Recent Events...": [
+        null,
+        "Ver Eventos Recentes..."
+      ],
+      "Welcome": [
+        null,
+        ""
+      ],
+      "Wizard templates and/or workflows are missing": [
+        null,
+        "Faltam workflows e/ou gabaritos de assistente"
+      ],
+      "Workflow \\\"%s\\\" not found": [
+        null,
+        "Workflow \\\"%s\\\" não encontrado"
+      ],
+      "Write": [
+        null,
+        ""
+      ],
+      "XPath": [
+        null,
+        "XPath"
+      ],
+      "Yes": [
+        null,
+        "Sim"
+      ],
+      "You have been logged out": [
+        null,
+        "Você foi desconectado"
+      ],
+      "You must enter a value": [
+        null,
+        "É preciso digitar um valor"
+      ],
+      "Your changes have been saved": [
+        null,
+        "Suas mudanças foram gravadas"
+      ],
+      "[Constraint is too complex to display]": [
+        null,
+        "[Restrição complexa demais para exibir]"
+      ],
+      "hb_report generation in progress...": [
+        null,
+        "Geração de hb_report em andamento..."
+      ],
+      "Access Control Lists": [
+        null,
+        "Listas de Controles de Acesso"
+      ],
+      "%{cmd} failed (status: %{status}, output was: %{output})": [
+        null,
+        "%{cmd} falhou (status: %{status}, resultado: %{output})"
+      ],
+      "#~ \"Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%\"#~ \"{op}, rc-code=%{rc_code}\"": [
+        null,
+        "#~ \"Operação com falha: node=%{node}, resource=%{resource}, call-id=%{call_id}, op\"#~ \"eration=%{op}, rc-code=%{rc_code}\""
+      ],
+      "Role must have rules": [
+        null,
+        "A função deve ter regras"
+      ],
+      "Unable to create role: %{msg}": [
+        null,
+        "Impossível criar a função: %{msg}"
+      ],
+      "Role ID \\\"%{id}\\\" does not exist": [
+        null,
+        "O ID da função \\\"%{id}\\\" não existe"
+      ],
+      "Unable to update role: %{msg}": [
+        null,
+        "Impossível atualizar a função: %{msg}"
+      ],
+      "User must have either rules or roles": [
+        null,
+        "O usuário deve ter regras ou funções"
+      ],
+      "User can't have both rules and roles": [
+        null,
+        "O usuário não pode ter ambas regras e funções"
+      ],
+      "Unable to create user: %{msg}": [
+        null,
+        "Impossível criar o usuário: %{msg}"
+      ],
+      "User ID \\\"%{id}\\\" does not exist": [
+        null,
+        "O ID do usuário \\\"%{id}\\\" não existe"
+      ],
+      "Unable to update user: %{msg}": [
+        null,
+        "Impossível atualizar o usuário: %{msg}"
+      ],
+      "Delete": [
+        null,
+        "Apagar"
+      ],
+      "New Role": [
+        null,
+        "Nova Função"
+      ],
+      "New User": [
+        null,
+        "Novo Usuário"
+      ],
+      "User": [
+        null,
+        "Usuário"
+      ],
+      "(No roles defined)": [
+        null,
+        "(Nenhuma função definida)"
+      ],
+      "(No users defined)": [
+        null,
+        "(Nenhum usuário definido)"
+      ],
+      "Simulator": [
+        null,
+        "Simulador"
+      ],
+      "Cluster Diagram": [
+        null,
+        "Diagrama do Cluster"
+      ],
+      "Generate hb_report...": [
+        null,
+        "Gerar hb_report..."
+      ],
+      "Generate hb_report": [
+        null,
+        "Gerar hb_report"
+      ],
+      "Preferences...": [
+        null,
+        "Preferências..."
+      ],
+      "Language": [
+        null,
+        "Idioma"
+      ],
+      "Tools": [
+        null,
+        "Ferramentas"
+      ],
+      "User: %{user}": [
+        null,
+        "Usuário: %{user}"
+      ],
+      "Log Out": [
+        null,
+        "Efetuar Logout"
+      ],
+      "Setup Wizard": [
+        null,
+        "Assistente de Configuração"
+      ],
+      "Cluster Properties": [
+        null,
+        "Propriedades do Cluster"
+      ],
+      "UI Host: %s": [
+        null,
+        "Host de UI: %s"
+      ],
+      "Copyright &copy; 2009-2014 SUSE, LLC": [
+        null,
+        "Copyright &copy; 2009-2014 SUSE, LLC"
+      ],
+      "Reset": [
+        null,
+        "Redefinir"
+      ],
+      "#~ \"This will bring node %s online if it is currently on standby.  Do you want to \"#~ \"continue?\"": [
+        null,
+        "O nó %s ficará online caso esteja em standby. Deseja continuar?"
+      ],
+      "#~ \"This will put node %s on standby.  All resources will be stopped and/or moved \"#~ \"to another node.  Do you want to continue?\"": [
+        null,
+        "#~ \"O nó %s será colocado em standby. Todos os recursos serão interrompidos e/ou m\"#~ \"ovidos para outro nó. Deseja continuar?\""
+      ],
+      "#~ \"This will put node %s in maintenance mode.  All resources on this node will be\"#~ \"come unmanaged.  Do you want to continue?\"": [
+        null,
+        "#~ \"O nó %s vai entrar no modo manutenção. Todos os recursos nesse nó se tornarão \"#~ \"não gerenciados. Deseja continuar?\""
+      ],
+      "This will bring node %s out of maintenance mode.  Do you want to continue?": [
+        null,
+        "O nó %s vai sair do modo manutenção. Deseja continuar?"
+      ],
+      "This will attempt to immediately fence node %s.  Do you want to continue?": [
+        null,
+        "Haverá uma tentativa de desconectar imediatamente o nó %s. Deseja continuar?"
+      ],
+      "This will start the resource %s.  Do you want to continue?": [
+        null,
+        "O recurso %s será iniciado. Deseja continuar?"
+      ],
+      "This will stop the resource %s.  Do you want to continue?": [
+        null,
+        "O recurso %s será interrompido. Deseja continuar?"
+      ],
+      "Move resource %s": [
+        null,
+        "Mover recurso %s"
+      ],
+      "To node %s": [
+        null,
+        "Para o nó %s"
+      ],
+      "Away from current node": [
+        null,
+        "Longe do nó atual"
+      ],
+      "#~ \"This will clear any relocation constraints set on the resource %s.  Do you wan\"#~ \"t to continue?\"": [
+        null,
+        "#~ \"Todas as restrições de relocação definidas no recurso %s serão apagadas. Desej\"#~ \"a continuar?\""
+      ],
+      "This will promote the resource %s.  Do you want to continue?": [
+        null,
+        "O recurso %s será promovido. Deseja continuar?"
+      ],
+      "This will demote the resource %s.  Do you want to continue?": [
+        null,
+        "O recurso %s será retrocedido. Deseja continuar?"
+      ],
+      "This will clean up the resource %s.  Do you want to continue?": [
+        null,
+        "O recurso %s será apagado. Deseja continuar?"
+      ],
+      "Error": [
+        null,
+        "Erro"
+      ],
+      "Unexpected server error: %s": [
+        null,
+        "Erro inesperado do servidor: %s"
+      ],
+      "#~ \"Connection to server failed (server down or network error - will retry every 1\"#~ \"5 seconds).\"": [
+        null,
+        "#~ \"Falha na conexão com o servidor (servidor inativo ou erro na rede - será repet\"#~ \"ida a cada 15 segundos).\""
+      ],
+      "Permission denied": [
+        null,
+        "Permissão negada"
+      ],
+      "%{op} failed on %{node} (rc=%{rc})": [
+        null,
+        "Falha de %{op} em %{node} (rc=%{rc})"
+      ],
+      "DC: %s": [
+        null,
+        "DC: %s"
+      ],
+      "Version: %s": [
+        null,
+        "Versão: %s"
+      ],
+      "Stack: %s": [
+        null,
+        "Pilha: %s"
+      ],
+      "Inactive Resources": [
+        null,
+        "Recursos Inativos"
+      ],
+      "Summary": [
+        null,
+        "Sumário"
+      ],
+      "Maintenance Mode": [
+        null,
+        "Modo Manutenção"
+      ],
+      "Unmanaged": [
+        null,
+        "Não Gerenciado"
+      ],
+      "Tickets": [
+        null,
+        "Tickets"
+      ],
+      "#~ \"This will request the ticket %s be granted to the present site.  Do you want t\"#~ \"o continue?\"": [
+        null,
+        "#~ \"Será solicitado para que o ticket %s seja concedido ao site atual. Deseja cont\"#~ \"inuar?\""
+      ],
+      "This will request the ticket %s be revoked.  Do you want to continue?": [
+        null,
+        "Será solicitado para que o ticket %s seja revogado. Deseja continuar?"
+      ],
+      "Granted [standby]": [
+        null,
+        "Concedido [standby]"
+      ],
+      "Granted": [
+        null,
+        "Concedido"
+      ],
+      "Revoked [standby]": [
+        null,
+        "Revogado [standby]"
+      ],
+      "Revoked": [
+        null,
+        "Revogado"
+      ],
+      "Leader: %s": [
+        null,
+        "Líder: %s"
+      ],
+      "Last granted: %s": [
+        null,
+        "Última concessão: %s"
+      ],
+      "Expires: %s": [
+        null,
+        "Expira em: %s"
+      ],
+      "Summary View": [
+        null,
+        "Tela de Resumo"
+      ],
+      "Tree View": [
+        null,
+        "Tela em Árvore"
+      ],
+      "Table View": [
+        null,
+        "Tela de Tabela"
+      ],
+      "%{node}: %{state}": [
+        null,
+        "%{node}: %{state}"
+      ],
+      "Offline": [
+        null,
+        "Offline"
+      ],
+      "Pending": [
+        null,
+        "Pendente"
+      ],
+      "Unclean": [
+        null,
+        "Sem Limpeza"
+      ],
+      "Master": [
+        null,
+        "Mestre"
+      ],
+      "%{id}: Master: %{nodelist}": [
+        null,
+        "%{id}: Master: %{nodelist}"
+      ],
+      "%{id}: Master": [
+        null,
+        "%{id}: Master"
+      ],
+      "Slave": [
+        null,
+        "Escravo"
+      ],
+      "%{id}: Slave: %{nodelist}": [
+        null,
+        "%{id}: Escravo: %{nodelist}"
+      ],
+      "%{id}: Slave": [
+        null,
+        "%{id}: Escravo"
+      ],
+      "Started": [
+        null,
+        "Iniciado"
+      ],
+      "%{id}: Started: %{nodelist}": [
+        null,
+        "%{id}: iniciado: %{nodelist}"
+      ],
+      "%{id}: Started": [
+        null,
+        "%{id}: Iniciado"
+      ],
+      "%{id}: Pending: %{nodelist}": [
+        null,
+        "%{id}: Pendente: %{nodelist}"
+      ],
+      "%{id}: Pending": [
+        null,
+        "%{id}: Pendente"
+      ],
+      "%{id}: Starting: %{node}": [
+        null,
+        "%{id}: Iniciando: %{node}"
+      ],
+      "%{id}: Starting": [
+        null,
+        "%{id}: Iniciando"
+      ],
+      "%{id}: Stopping: %{node}": [
+        null,
+        "%{id}: Parando: %{node}"
+      ],
+      "%{id}: Stopping": [
+        null,
+        "%{id}: Parando"
+      ],
+      "%{id}: Promoting: %{node}": [
+        null,
+        "%{id}: Promovendo: %{node}"
+      ],
+      "%{id}: Promoting": [
+        null,
+        "%{id}: Promovendo"
+      ],
+      "%{id}: Demoting: %{node}": [
+        null,
+        "%{id}: Retrocedendo: %{node}"
+      ],
+      "%{id}: Demoting": [
+        null,
+        "%{id}: Retrocedendo"
+      ],
+      "%{id}: Moving: %{node}": [
+        null,
+        "%{id}: Movendo: %{node}"
+      ],
+      "%{id}: Moving": [
+        null,
+        "%{id}: Movendo"
+      ],
+      "Stopped": [
+        null,
+        "Parado"
+      ],
+      "%{id}: Stopped": [
+        null,
+        "%{id}: parado"
+      ],
+      "Group: %{id}": [
+        null,
+        "Grupo: %{id}"
+      ],
+      "Master/Slave Set: %{id}": [
+        null,
+        "Conjunto Master/Escravo: %{id}"
+      ],
+      "Clone Set: %{id}": [
+        null,
+        "Conjunto de Clones: %{id}"
+      ],
+      "Parent: %{id}...": [
+        null,
+        "Pai: %{id}..."
+      ],
+      "%{active}/%{total} %{type} %{node}": [
+        null,
+        "%{active}/%{total} %{type} %{node}"
+      ],
+      "Toggle view by type": [
+        null,
+        "Alternar tela por tipo"
+      ],
+      "Simulator (initial state)": [
+        null,
+        "Simulador (estado inicial)"
+      ],
+      "Simulator (busy...)": [
+        null,
+        "Simulador (ocupado...)"
+      ],
+      "Simulator (final state)": [
+        null,
+        "Simulador (estado final)"
+      ],
+      "Injected State:": [
+        null,
+        "Estado Injetado:"
+      ],
+      "+ Node": [
+        null,
+        "Nó +"
+      ],
+      "+ Op": [
+        null,
+        "Operador +"
+      ],
+      "+ Ticket": [
+        null,
+        "+ Ticket"
+      ],
+      "Run >": [
+        null,
+        "Executar >"
+      ],
+      "CIB (in)": [
+        null,
+        "CIB (entrada)"
+      ],
+      "CIB (out)": [
+        null,
+        "CIB (saída)"
+      ],
+      "Empty Graph": [
+        null,
+        "Gráfico Vazio"
+      ],
+      "Inject Node State": [
+        null,
+        "Injetar Estado de Nó"
+      ],
+      "Node:": [
+        null,
+        "Nó:"
+      ],
+      "State:": [
+        null,
+        "Estado:                    "
+      ],
+      "Inject Operation": [
+        null,
+        "Operação de Injeção"
+      ],
+      "Operation:": [
+        null,
+        "Operação:"
+      ],
+      "Interval:": [
+        null,
+        "Intervalo:"
+      ],
+      "Resource:": [
+        null,
+        "Recurso:"
+      ],
+      "Result:": [
+        null,
+        "Resultado:"
+      ],
+      "Inject Ticket": [
+        null,
+        "Injetar Ticket"
+      ],
+      "Ticket:": [
+        null,
+        "Ticket:"
+      ],
+      "Action:": [
+        null,
+        "Ação:"
+      ],
+      "Activate": [
+        null,
+        "Ativar"
+      ],
+      "Success": [
+        null,
+        "Sucesso"
+      ],
+      "Generic Error": [
+        null,
+        "Erro Genérico"
+      ],
+      "Wrong Argument(s)": [
+        null,
+        "Argumento(s) Incorreto(s)"
+      ],
+      "Not Implemented": [
+        null,
+        "Não Implementado"
+      ],
+      "Permission Denied": [
+        null,
+        "Permissão Negada"
+      ],
+      "Not Installed": [
+        null,
+        "Não Instalado"
+      ],
+      "Not Configured": [
+        null,
+        "Não Configurado"
+      ],
+      "Not Running": [
+        null,
+        "Não Está em Execução"
+      ],
+      "Running Master": [
+        null,
+        "Master em Execução"
+      ],
+      "Failed Master": [
+        null,
+        "Falha do Master"
+      ],
+      "Please ensure JavaScript is enabled": [
+        null,
+        "Verifique se o JavaScript está habilitado"
+      ]
+    }
+  }
+};

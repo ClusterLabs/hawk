@@ -1,1 +1,1957 @@
-var locales = locales || {}; locales['hu'] = {"domain":"app","locale_data":{"app":{"":{"Project-Id-Version":" hawk","Report-Msgid-Bugs-To":" ","POT-Creation-Date":" 2014-04-10 15:20+1000","PO-Revision-Date":" 2014-07-31 14:31","Last-Translator":" Novell language <language@novell.com>","Language-Team":" Novell language <language@novell.com>","Language":" ","MIME-Version":" 1.0","Content-Type":" text/plain; charset=UTF-8","Content-Transfer-Encoding":" 8bit","Plural-Forms":" nplurals=2; plural=(n != 1);","lang":"hu","domain":"app","plural_forms":" nplurals=2; plural=(n != 1);"},"Access Control Lists":[null,"Hozzáférés-felügyeleti listák"],"Unable to create shadow CIB":[null,"Nem hozható létre shadow CIB"],"1 node configured":["%{num} nodes configured","1 csomópont beállítva","%{num} csomópont beállítva"],"1 resource configured":["%{num} resources configured","1 erőforrás beállítva","%{num} erőforrás beállítva"],"Edit Clone":[null,"Klón szerkesztése"],"Create Clone":[null,"Klón létrehozása"],"Clone created successfully":[null,"Klón létrehozása sikeresen"],"Clone updated successfully":[null,"Klón sikeresen frissítve"],"Edit Colocation Constraint":[null,"Kapcsolódási szabály szerkesztése"],"Create Colocation Constraint":[null,"Kapcsolódási szabály létrehozása"],"Constraint created successfully":[null,"A szabály sikeresen létrejött"],"Constraint updated successfully":[null,"A szabály frissítése sikeres"],"Constraints":[null,"Megszorítások"],"Cluster Configuration":[null,"Fürt beállítása"],"Your changes have been saved":[null,"A változások mentése megtörtént"],"Unable to apply changes: %{msg}":[null,"Nem alkalmazhatók a módosítások: %{msg}"],"Can't set property %{p}, because the value contains both single and double quotes":[null,"Nem állítható be a(z) %{p} tulajdonság, mert az eszköz szimpla és dupla idézőjelet is tartalmaz"],"Cluster Dashboard":[null,"Fürt vezérlőpult"],"History Explorer":[null,"Előzményböngésző"],"PE Input created by different Pacemaker version (%{version})":[null,"A PE-bemenet másik pacemaker-verzióval készült (%{version})"],"Pacemaker version not present in PE Input":[null,"A PE-bemenetben nem szerepel a pacemaker-verzió"],"Required parameters \\\"basename\\\" and \\\"node\\\" not specified":[null,"Nincs megadva a \\\"basename\\\" és a \\\"node\\\" paraméter"],"No details available":[null,"Nincsenek részletek"],"Error:":[null,"HIba:"],"Required parameters \\\"left\\\" and \\\"right\\\" not specified":[null,"Nincs megadva a \\\"left\\\" és a \\\"right\\\" paraméter"],"Edit Group":[null,"Csoport szerkesztése"],"Create Group":[null,"Csoport létrehozása"],"Group created successfully":[null,"Csoport sikeresen létrehozva"],"Group updated successfully":[null,"Csoport sikeresen frissítve"],"Edit Location Constraint":[null,"Elhelyezési szabály szerkesztése"],"Create Location Constraint":[null,"Elhelyezési szabály létrehozása"],"%{cmd} failed (status: %{status})":[null,"%{cmd} sikertelen (állapot: %{status})"],"Cluster Status":[null,"Jelenlegi állapot"],"Required parameter \\\"node\\\" not specified":[null,"Nincs megadva a \\\"node\\\" paraméter"],"Required parameter \\\"resource\\\" not specified":[null,"Nincs megadva a \\\"resource\\\" paraméter"],"Required parameters \\\"resource\\\" and \\\"node\\\" not specified":[null,"Nincs megadva a \\\"resource\\\" és a \\\"node\\\" paraméter"],"Error deleting resource":[null,"Hiba az erőforrás törlésekor"],"Required parameters \\\"ticket\\\" and \\\"site\\\" not specified":[null,"Nincs megadva a kötelező \\\"ticket\\\" és a \\\"site\\\" paraméter"],"Required parameter \\\"ticket\\\" not specified":[null,"Nincs megadva a kötelező \\\"ticket\\\" paraméter"],"Error invoking %{cmd}: %{msg}":[null,"Hiba a(z) %{cmd} parancs meghívásakor: %{msg}"],"Edit Master/Slave":[null,"Elsődleges/Másodlagos szerkesztése"],"Create Master/Slave":[null,"Elsődleges/Másodlagos létrehozása"],"Master/Slave created successfully":[null,"Elsődleges/Másodlagos sikeresen létrehozva"],"Master/Slave updated successfully":[null,"Elsődleges/Másodlagos sikeresen frissítve"],"Edit Order Constraint":[null,"Szabály sorrendjének szerkesztése"],"Create Order Constraint":[null,"Szabály sorrendjének létrehozása"],"Edit Resource":[null,"Erőforrások szerkesztése"],"Create Resource":[null,"Erőforrások létrehozása"],"Resource created successfully":[null,"Erőforrás sikeresen létrehozva"],"Resource updated successfully":[null,"Erőforrás sikeresen frissítve"],"Resources":[null,"Erőforrások"],"Edit Role":[null,"Szerepkör szerkesztése"],"Create Role":[null,"Sze_repkör létrehozása"],"Role created successfully":[null,"Szerepkör sikeresen létrehozva"],"Role updated successfully":[null,"Szerepkör sikeresen frissítve"],"Log In":[null,"Belépés"],"Username not specified":[null,"Nincs megadva felhasználónév"],"Invalid username":[null,"Érvénytelen felhasználónév"],"Password not specified":[null,"Nincs megadva jelszó"],"Invalid username or password":[null,"Érvénytelen felhasználónév vagy jelszó"],"%s is not installed":[null,"%s nincs telepítve"],"Permission denied for user %{user}":[null,"%{user} felhasználónak nincs hozzáférése"],"You have been logged out":[null,"Kijelentkezett"],"Edit Template":[null,"Sablon szerkesztése"],"Create Template":[null,"Sablon létrehozása"],"Template created successfully":[null,"A sablon létrehozása sikeres"],"Template updated successfully":[null,"A sablon módosítása sikeres"],"Edit Ticket Constraint":[null,"Jegy megkötésének létrehozása"],"Create Ticket Constraint":[null,"Jegyek megkötéseinek létrehozása"],"Edit User":[null,"Felhasználó szerkesztése"],"Create User":[null,"Felhasználó létrehozása"],"User created successfully":[null,"Felhasználó sikeresen létrehozva"],"User updated successfully":[null,"Felhasználó sikeresen frissítve"],"Cluster Setup Wizard":[null,"Fürtbeállítás-varázsló"],"Invalid password":[null,"Érvénytelen jelszó"],"Root Password":[null,"Root-jelszó"],"The root password is required in order for this wizard template to make configuration changes.":[null,"A gyökér szintű jelszó megadása szükséges ahhoz, hogy a varázsló sablonja módosítani tudja a beállításokat."],"The root password for this system":[null,"A rendszer gyökér szintű jelszava"],"\\\"Error: #{result}\\\"":[null,"\\\"Hiba: #{result}\\\""],"Parameters":[null,"Paraméterek"],"Confirm":[null,"Megerősítés"],"Done":[null,"Kész"],"Required parameter \\\"%{param}\\\" not specified":[null,"Nincs megadva a(z) \\\"%{param}\\\" paraméter"],"Permission denied - you do not have write access to the CIB.":[null,"Engedély elutasítva - nincs írási hozzáférése a CIB fájlhoz."],"Wizard templates and/or workflows are missing":[null,"A varázsló sablonjai és/vagy munkafolyamatai hiányoznak"],"Workflow \\\"%s\\\" not found":[null,"A(z) \\\"%s\\\" munkafolyamat nem található"],"Error parsing template \\\"%s\\\"":[null,"Hiba történt a(z) \\\"%s\\\" sablon feldolgozása közben"],"Error parsing workflow \\\"%s\\\"":[null,"Hiba történt a(z) \\\"%s\\\" munkafolyamat feldolgozása közben"],"Data collection in progress (%{from_time} to %{to_time})...":[null,"Az adatgyűjtés folyamatban (%{from_time} - %{to_time})..."],"CIB file \\\"%{path}\\\" not found":[null,"A(z) \\\"%{path}\\\" CIB fájl nem található"],"Unable to parse CIB file \\\"%{path}\\\"":[null,"A(z) \\\"%{path}\\\" CIB fájl nem dolgozható fel"],"Pacemaker does not appear to be installed (%{cmd} not found)":[null,"A Pacemaker nincs telepítve (%{cmd} parancs nem található)"],"Unable to execute %{cmd}":[null,"Nem futtatható parancs %{cmd}"],"%{cmd} failed (status: %{status}, output was: %{output})":[null,"%{cmd} sikertelen (status: %{status}, kimenet: %{output})"],"Error invoking %{cmd}":[null,"Hiba a(z) %{cmd} parancs meghívásakor"],"Unknown":[null,"Ismeretlen"],"Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}":[null,"Hibás művelet: csomópont=%{node}, erőforrás=%{resource}, azonosító=%{call_id}, művelet=%{op}, visszatérési érték=%{rc_code}"],"Invalid Resource ID \\\"%{id}\\\"":[null,"Érvénytelen erőforrás-azonosító \\\"%{id}\\\""],"Unable to parse cibadmin output":[null,"Nem dolgozható fel a cibadmin kimenete"],"No clone child specified":[null,"Nincs megadva klóngyermek"],"Can't set meta attribute %{p}, because the value contains both single and double quotes":[null,"Nem állítható be a(z) %{p} attribútum, mert az eszköz szimpla és dupla idézőjelet is tartalmaz"],"The ID \\\"%{id}\\\" is already in use":[null,"A \\\"%{id}\\\" azonosító már használatban van"],"Unable to create clone: %{msg}":[null,"Nem hozható létre klón: %{msg}"],"Clone ID \\\"%{id}\\\" does not exist":[null,"A(z) \\\"%{id}\\\" klónazonosító nem létezik"],"Invalid score":[null,"Érvénytelen pontszám"],"Constraint must consist of at least two separate resources":[null,"A szabálynak legalább két különböző erőforrást kell tartalmaznia"],"Unable to create constraint: %{msg}":[null,"A szabály nem hozható létre: %{msg}"],"Constraint ID \\\"%{id}\\\" does not exist":[null,"A(z) \\\"%{id}\\\" szabályazonosító nem létezik"],"Unable to update constraint: %{msg}":[null,"A szabály nem frissíthető: %{msg}"],"No group children specified":[null,"Nincs megadva csoporttag"],"Unable to create group: %{msg}":[null,"Nem hozható létre csoport: %{msg}"],"Group ID \\\"%{id}\\\" does not exist":[null,"A(z) \\\"%{id}\\\" csoportazonosító nem létezik"],"Constraint is too complex - it contains nested rules":[null,"Túl komplex szabály - beágyazott szabályok vannak"],"No rules specified":[null,"Nincsenek szabályok megadva"],"No resource specified":[null,"Nincs megadva erőforrás"],"Invalid score \\\"%{score}\\\"":[null,"Érvénytelen pontszám \\\"%{score}\\\""],"No expressions specified":[null,"Nincsenek megadva kifejezések"],"Attribute contains both single and double quotes":[null,"Az attribútum szimpla és dupla idézőjelet és tartalmaz"],"Value contains both single and double quotes":[null,"Az érték szimpla és dupla idézőjelet és tartalmaz"],"No Master/Slave child specified":[null,"Nincs megadva elsődleges/másodlagos gyermek"],"Unable to create master/slave: %{msg}":[null,"Nem hozható létre elsődleges/másodlagos: %{msg}"],"Master/Slave ID \\\"%{id}\\\" does not exist":[null,"A(z) \\\"%{id}\\\" elsődleges/másodlagos azonosító nem létezik"],"Can't set parameter %{p}, because the value contains both single and double quotes":[null,"Nem állítható be a(z) %{p} paraméter, mert az eszköz szimpla és dupla idézőjelet is tartalmaz"],"Can't set op %{o} attribute {%a}, because the value contains both single and double quotes":[null,"Nem állítható be a(z) op %{o} {%a} attribútum, mert az eszköz szimpla és dupla idézőjelet is tartalmaz"],"Unable to create resource: %{msg}":[null,"Nem hozható létre erőforrás: %{msg}"],"Resource ID \\\"%{id}\\\" does not exist":[null,"A(z) \\\"%{id}\\\" erőforrás-azonosító nem létezik"],"Role must have rules":[null,"A szerepkörhöz szabályoknak kell tartozniuk"],"Unable to create role: %{msg}":[null,"Nem hozható létre a szerepkör: %{msg}"],"Role ID \\\"%{id}\\\" does not exist":[null,"A(z) \\\"%{id}\\\" szerepkör-azonosító nem létezik"],"Unable to update role: %{msg}":[null,"A szerepkört nem sikerült frissíteni: %{msg}"],"Invalid Ticket ID":[null,"Érvénytelen jegy ID"],"No resources specified":[null,"Nincs megadva erőforrás"],"User must have either rules or roles":[null,"A felhasználóhoz vagy szabályok, vagy szerepkörök tartozhatnak"],"User can't have both rules and roles":[null,"A felhasználóhoz nem tartozhatnak szabályok és szerepkörök is"],"Unable to create user: %{msg}":[null,"Nem hozható létre a felhasználó: %{msg}"],"User ID \\\"%{id}\\\" does not exist":[null,"A(z) \\\"%{id}\\\" felhasználói azonosító nem létezik"],"Unable to update user: %{msg}":[null,"A felhasználót nem sikerült frissíteni: %{msg}"],"Edit":[null,"Szerkesztés"],"Delete":[null,"Törlés"],"Are you sure you wish to delete %s?":[null,"Biztos, hogy törölni akarja: %s?"],"New Role":[null,"Új szerepkör"],"Role":[null,"Szerep"],"New User":[null,"Új felhasználó"],"User":[null,"Felhasználó"],"To enable ACLs, set 'enable-acl' in the CRM Configuration":[null,"Az ACL-ek engedélyezéséhez adja meg az 'enable-acl' beállítást a CRM konfigurációjában"],"(No roles defined)":[null,"(Nincsenek megadva szerepkörök)"],"(No users defined)":[null,"(nincs megadva felhasználó)"],"Meta Attributes":[null,"Metaattribútumok"],"Add":[null,"Hozzáadás"],"Remove":[null,"Eltávolítás"],"You must enter a value":[null,"Érték megadása kötelező"],"Clone ID":[null,"Klón ID"],"Child Resource":[null,"Gyermek erőforrás"],"Revert Changes":[null,"Változtatások visszavonása"],"Back":[null,"Vissza"],"Apply Changes":[null,"Változások alkalmazása"],"Link set":[null,"Hivatkozás beállítás"],"Break set":[null,"Megszakítás beállítás"],"Swap resources":[null,"Erőforrások felcserélése"],"Add resource to constraint":[null,"Erőforrás hozzáadása a szabályhoz"],"Constraint ID":[null,"Szabály ID"],"Score":[null,"Pontszám"],"Create Constraint":[null,"Szabály létrehozása"],"Edit Constraint":[null,"Szabály szerkesztése"],"Delete Constraint":[null,"Szabály törlése"],"New Constraint":[null,"Új szabály"],"Location":[null,"Hely"],"Colocation":[null,"Elhelyezése szabály"],"Order":[null,"Sorrend"],"Ticket":[null,"Jegy"],"(No location constraints defined)":[null,"(Nincsenek megadva helyre vonatkozó szabályok)"],"[Constraint is too complex to display]":[null,"[A szabályok túl komplexek a megjelenítéshez]"],"(No colocation constraints defined)":[null,"(Nincsenek megadva kapcsolódási szabályok)"],"(No order constraints defined)":[null,"(Nincsenek szabálysorrendek megadva)"],"(No ticket constraints defined)":[null,"(Nincsenek szabálysorrendek megadva)"],"CRM Configuration":[null,"CRM beállítás"],"Resource Defaults":[null,"Erőforrás alapértelmezései"],"Operation Defaults":[null,"Alapértelmezett műveletek"],"No cluster properties set in %{group}":[null,"Nincsenek beállítva fürttulajdonságok a(z) %{group} csoportban"],"Username:":[null,"Felhasználónév:"],"Password:":[null,"Jelszó:"],"Cluster has errors - click for details":[null,"Fürtprobléma - részletek"],"Timeout: Please try again":[null,"Időtúllépés: Próbálja meg újra"],"Permission denied. Please log in to %{node}":[null,"Hozzáférés megtagadva. Lépjen be a(z) %{node} csomópontra"],"Can't contact Hawk on %{node}. Retrying every 5 seconds.":[null,"A Hawk nem tud kapcsolódni a(z) %{node} csomóponthoz. Újrapróbálkozás 5 másodperc múlva."],"Cluster Name:":[null,"Fürtnév:"],"Host Name:":[null,"Gépnév:"],"(Specify any host name in the cluster.  Other nodes will be found automatically)":[null,"(Adja meg bármelyik gép nevét a fürtben, a többi csomópont automatikusan felismerésre kerül)"],"Add Cluster":[null,"Fürt hozzáadása"],"OK":[null,"OK"],"A cluster with that name already exists":[null,"Ilyen nevű fürt már létezik"],"The host %{h} is already present in cluster %{c}":[null,"A(z) %{h} gép már tagja a(z) %{c} fürtnek"],"Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible.":[null,"Nem lehet kapcsolódni a(z) %{host} géphez. Próbálja megnyitni a %{url} címet a böngészőben, hogy megbizonyosodjon arról, hogy a Hawk elérhető."],"Cancel":[null,"Mégse"],"No transitions found for the specified time period.":[null,"A megadott időszakban nem található átmenet."],"Time":[null,"Idő"],"PE Input":[null,"PE Input"],"Node":[null,"Csomópont"],"Details":[null,"Részletek"],"(full log)":[null,"(teljes napló)"],"Graph":[null,"Grafikon"],"Diff":[null,"Diff"],"Delete this history archive?":[null,"Törli ezt az előzményarchívumot?"],"Start Time:":[null,"Indítás ideje:"],"End Time:":[null,"Megállítás ideje:"],"Exploring %{path}":[null,"A(z) %{path} tallózása"],"Display":[null,"Megjelenítés"],"Upload hb_report tarball":[null,"hb_report TAR-fájl feltöltése"],"Explore":[null,"Tallózás"],"Error: Permission denied for user '%s'.":[null,"Hiba: a(z) '%s' felhasználó engedélye megtagadva."],"Group ID":[null,"Csoportazonosító (ID)"],"Group Children":[null,"Csoporttag"],"Available Primitives":[null,"Elérhető primitívek"],"Start Time not specified":[null,"Indítási idő nincs beállítva"],"Generate":[null,"Előállítás"],"hb_report generation in progress...":[null,"A hb_report elkészítése folyamatban..."],"Download hb_report":[null,"hb_report letöltése"],"Simulator":[null,"Szimulátor"],"Cluster Diagram":[null,"Fürt diagramja"],"Generate hb_report...":[null,"hb_report készítése…"],"Generate hb_report":[null,"hb_report készítése"],"Preferences...":[null,"Egyéni beállítások..."],"Language":[null,"Nyelv"],"Preferences":[null,"Tulajdonságok"],"Tools":[null,"Eszközök"],"Status":[null,"Állapot"],"User: %{user}":[null,"Felhasználó: %{user}"],"Log Out":[null,"Kilépés"],"Dashboard":[null,"Vezérlőpult"],"Setup Wizard":[null,"Installációs varázsló"],"Cluster Properties":[null,"Fürt tulajdonságai"],"UI Host: %s":[null,"UI gép: %s"],"Copyright &copy; 2009-2014 SUSE, LLC":[null,"Copyright &copy; 2009-2014 SUSE, LLC"],"Boolean Op":[null,"Boolean művelet"],"Expression":[null,"Kifejezés"],"Add Rule":[null,"Szabály hozzáadása"],"Remove Rule":[null,"Szabály eltávolítása"],"Show Rule Editor":[null,"Szabályszerkesztő megjelenítése"],"Resource":[null,"Erőforrás"],"Yes":[null,"Igen"],"No":[null,"Nem"],"Close":[null,"Bezárás"],"Reset":[null,"Visszaállítás"],"This will bring node %s online if it is currently on standby.  Do you want to continue?":[null,"Ez a(z) %s csomópontot online állapotba hozza, amennyiben eddig készenléti (standby) állapotban volt. Kívánja folytatni?"],"This will put node %s on standby.  All resources will be stopped and/or moved to another node.  Do you want to continue?":[null,"Ez a(z) %s csomópontot készenléti (standby) állapotba hozza. Minden erőforrás leáll és/vagy űtmozgatásra kerül egy másik csomópontra. Kívánja folytatni?"],"This will put node %s in maintenance mode.  All resources on this node will become unmanaged.  Do you want to continue?":[null,"Ez a(z) %s csomópontot karbantartási módba állítja. A csomópont minden erőforrása felügyelet nélkülivé válik. Kívánja folytatni?"],"This will bring node %s out of maintenance mode.  Do you want to continue?":[null,"Ez a(z) %s csomópontot kihozza a karbantartási módból. Kívánja folytatni?"],"This will attempt to immediately fence node %s.  Do you want to continue?":[null,"Ez azonnal leválasztja a(z) %s csomópontot. Kívánja folytatni?"],"This will start the resource %s.  Do you want to continue?":[null,"Ez elindítja a(z) %s erőforrást. Kívánja folytatni?"],"This will stop the resource %s.  Do you want to continue?":[null,"Ez leállítja a(z) %s erőforrást. Kívánja folytatni?"],"Move resource %s":[null,"%s erőforrás mozgatása"],"To node %s":[null,"A(z) %s csomópontra"],"Away from current node":[null,"Eltávolítás a jelenlegi csomópontról"],"This will clear any relocation constraints set on the resource %s.  Do you want to continue?":[null,"Ez törölni fogja az áthelyezési szabályokat a(z) %s erőforráson. Kívánja folytatni?"],"This will promote the resource %s.  Do you want to continue?":[null,"Ez előlépteti a(z) %s erőforrást. Kívánja folytatni?"],"This will demote the resource %s.  Do you want to continue?":[null,"Ez lefokozza a(z) %s erőforrást. Kívánja folytatni?"],"This will clean up the resource %s.  Do you want to continue?":[null,"Ez tisztítja a(z) %s erőforrást. Kívánja folytatni?"],"Error":[null,"Hiba"],"Unexpected server error: %s":[null,"Váratlan kiszolgálóhiba: %s"],"Connection to server failed (server down or network error - will retry every 15 seconds).":[null,"Sikertelen csatlakozás a kiszolgálóhoz (A kiszolgáló ki van kapcsolva vagy hálózati probléma van -újrapróbálkozás 15 másodpercenként)."],"Connection to server timed out - will retry every 15 seconds.":[null,"A kapcsolódás a kiszolgálóhoz időtúllépés miatt sikertelen - újrapróbálkozás 15 másodpercenként."],"Connection to server aborted - will retry every 15 seconds.":[null,"A kapcsolódás a kiszolgálóhoz megszakítva - újrapróbálkozás 15 másodpercenként"],"Permission denied":[null,"Hozzáférés megtagadva"],"%{op} failed on %{node} (rc=%{rc})":[null,"%{op} sikertelen: %{node} (rc=%{rc})"],"DC: %s":[null,"DC: %s"],"Version: %s":[null,"Verzió: %s"],"Stack: %s":[null,"Stack: %s"],"Inactive Resources":[null,"Inaktív erőforrások"],"Summary":[null,"Összefoglaló"],"STONITH Enabled":[null,"STONITH engedélyezve"],"No Quorum Policy":[null,"Nincs Quorum irányelv"],"Symmetric Cluster":[null,"Szimetrikus fürt"],"Resource Stickiness":[null,"Erőforrás mozgathatósága"],"Maintenance Mode":[null,"Karbantartási mód"],"Unmanaged":[null,"Felügyeletlen"],"Tickets":[null,"Jegyek"],"This will request the ticket %s be granted to the present site.  Do you want to continue?":[null,"Ez a művelet kéri a(z) %s jegy megadását a jelenlegi helynek. Folytatja?"],"This will request the ticket %s be revoked.  Do you want to continue?":[null,"Ez a művelet kéri a(z) %s jegy visszavonását. Folytatja?"],"Granted [standby]":[null,"Megadva [készenlét]"],"Granted":[null,"Megadva"],"Revoked [standby]":[null,"Visszavonva [készenlét]"],"Revoked":[null,"Visszavonva"],"Leader: %s":[null,"Vezető: %s"],"Last granted: %s":[null,"Legutóbb megadva: %s"],"Expires: %s":[null,"Lejárat: %s"],"Summary View":[null,"Összefoglaló nézet"],"Tree View":[null,"Fanézet"],"Table View":[null,"Táblázat nézet"],"%{node}: %{state}":[null,"%{node}: %{state}"],"Online":[null,"Online"],"Offline":[null,"Kilépett"],"Pending":[null,"Függő"],"Standby":[null,"Készenlét"],"Unclean":[null,"Tisztázatlan"],"Master":[null,"Elsődleges"],"%{id}: Master: %{nodelist}":[null,"%{id}: Elsődleges: %{csomópontlista}"],"%{id}: Master":[null,"%{id}: Elsődleges"],"Slave":[null,"Másodlagos"],"%{id}: Slave: %{nodelist}":[null,"%{id}: Másodlagos: %{csomópontlista}"],"%{id}: Slave":[null,"%{id}: Másodlagos"],"Started":[null,"Elindítva"],"%{id}: Started: %{nodelist}":[null,"%{id}: Elindítva: %{nodelist}"],"%{id}: Started":[null,"%{id}: Elindítva"],"%{id}: Pending: %{nodelist}":[null,"%{id}: Felfüggesztve: %{nodelist}"],"%{id}: Pending":[null,"%{id}: Felfüggesztve"],"%{id}: Starting: %{node}":[null,"%{id}: indítás: %{node}"],"%{id}: Starting":[null,"%{id}: indítás"],"%{id}: Stopping: %{node}":[null,"%{id}: leállás: %{node}"],"%{id}: Stopping":[null,"%{id}: leállás"],"%{id}: Promoting: %{node}":[null,"%{id}: előléptetés: %{node}"],"%{id}: Promoting":[null,"%{id}: előléptetés"],"%{id}: Demoting: %{node}":[null,"%{id}: lefokozás: %{node}"],"%{id}: Demoting":[null,"%{id}: lefokozás"],"%{id}: Moving: %{node}":[null,"%{id}: áthelyezés: %{node}"],"%{id}: Moving":[null,"%{id}: áthelyezés"],"Stopped":[null,"Leállítva"],"%{id}: Stopped":[null,"%{id}: Leállítva"],"Group: %{id}":[null,"Csoport: %{id}"],"Master/Slave Set: %{id}":[null,"Elsődleges/Másodlagos csoport: %{id}"],"Clone Set: %{id}":[null,"Klóncsoport: %{id}"],"Parent: %{id}...":[null,"Szülő: %{id}..."],"%{active}/%{total} %{type} %{node}":[null,"%{active}/%{total} %{type} %{node}"],"Toggle view by type":[null,"Nézetváltás típus szerintire"],"Simulator (initial state)":[null,"Szimulátor (kezdeti állapot)"],"Simulator (busy...)":[null,"Szimulátor (elfoglalt…)"],"Simulator (final state)":[null,"Szimulátor (végső állapot)"],"Injected State:":[null,"Szimulált állapot:"],"+ Node":[null,"+ Csomópont"],"+ Op":[null,"+ Művelet"],"+ Ticket":[null,"+ Jegy"],"Run >":[null,"Indítás >"],"CIB (in)":[null,"CIB (be)"],"CIB (out)":[null,"CIB (ki)"],"Empty Graph":[null,"Üres grafikon"],"Inject Node State":[null,"Szimulált csomópont állapota"],"Node:":[null,"Csomópont:"],"State:":[null,"Állapot:"],"Inject Operation":[null,"Szimulált művelet"],"Operation:":[null,"Művelet:"],"Interval:":[null,"Időköz:"],"Resource:":[null,"Erőforrás:"],"Result:":[null,"Eredmény:"],"Inject Ticket":[null,"Jegy behelyezése"],"Ticket:":[null,"Jegy:"],"Action:":[null,"Művelet:"],"Grant":[null,"Megadás"],"Revoke":[null,"Visszavonás"],"Activate":[null,"Aktiválás"],"Success":[null,"Sikerült"],"Generic Error":[null,"Általános hiba"],"Wrong Argument(s)":[null,"Hibás argomentumok(ok)"],"Not Implemented":[null,"Nincs megvalósítva"],"Permission Denied":[null,"Engedély megtagadva"],"Not Installed":[null,"Nincs telepítve"],"Not Configured":[null,"Nincs beállítva"],"Not Running":[null,"Nem fut"],"Running Master":[null,"Futó elsődleges"],"Failed Master":[null,"Hibás elsődleges"],"Maintenance":[null,"Karbantartás"],"Ready":[null,"Kész"],"Fence Node":[null,"Csomópont leválasztása"],"View Details...":[null,"Részletek megjelenítése…"],"View Recent Events...":[null,"Legutóbbi események megjelenítése…"],"Start":[null,"Kezdés"],"Stop":[null,"Leállítás"],"Move...":[null,"Áthelyezés..."],"Drop Relocation Rule":[null,"Áthelyezési szabály eldobása"],"Promote":[null,"Előléptetés"],"Demote":[null,"Lefokozás"],"Clean Up":[null,"Tisztítás"],"Master/Slave ID":[null,"Elsődleges/Másodlagos azonosító"],"Getting recent events (last hour)...":[null,"Az elmúlt óra eseményei…"],"Another \\\"crm history\\\" operation is in progress...":[null,"Egy másik \\\"crm előzmény\\\" művelet folyamatban van…"],"No events found in last hour.":[null,"Nem volt esemény az elmúlt órában."],"Utilization":[null,"Kihasználtság"],"No utilization defined":[null,"Nincs meghatározva kihasználtság"],"Attributes":[null,"Attribútumok"],"No attributes defined":[null,"Nincsenek megadva attribútumok"],"Symmetrical":[null,"Szimetrikus"],"Operations":[null,"Műveletek"],"There is already a monitor op with this interval.":[null,"Már van egy monitor művelet ebben az intervallumban."],"Template ID":[null,"Sablon ID"],"Resource ID":[null,"Erőforrás ID"],"Class":[null,"Osztály"],"Provider":[null,"Szolgáltató"],"Type":[null,"Típus"],"Use Template":[null,"Sablon használata"],"Delete Resource":[null,"Erőforrás törlése"],"New Resource":[null,"Új erőforrás"],"Primitive":[null,"Primitív"],"New Template":[null,"Új sablon"],"Template":[null,"Sablon"],"New Group":[null,"Új csoport"],"Group":[null,"Csoport"],"New Clone":[null,"Új klón"],"Clone":[null,"Klón"],"New Master/Slave":[null,"Új Elsődleges/Másodlagos"],"Master/Slave":[null,"Elsődleges/Másodlagos"],"(No primitive resources defined)":[null,"(Nincsenek megadva primitív erőforrások)"],"(No templates defined)":[null,"(Nincsenek megadva sablonok)"],"(No groups defined)":[null,"(Nincsenek megadva csoportok)"],"(No clones defined)":[null,"(Nincsenek megadva klónok)"],"(No master/slave resources defined)":[null,"(Nincsenek megadva elsődleges/másodlagos erőforrások)"],"Fail Count":[null,"Hibaszám"],"Last Failure":[null,"Legutóbbi hiba"],"Right":[null,"Jobbra"],"XPath":[null,"XPath"],"Tag":[null,"Címke"],"Ref":[null,"Hiv."],"Attribute":[null,"Attribútum"],"Role ID":[null,"Szerepkör-azonosító"],"Please ensure JavaScript is enabled":[null,"Ellenőrizze, hogy a JavaScript engedélyezve van-e"],"Any changes will be lost - do you wish to proceed?":[null,"Minden változás el fog veszni - szeretné folytatni?"],"Loss Policy":[null,"Adatvesztési házirend"],"User ID":[null,"Felhasználóazonosító"],"Roles":[null,"Szerepkörök"],"%{workflow}: %{step}":[null,"%{workflow}: %{step}"],"The configuration has been applied.":[null,"A beállítások alkalmazása megtörtént."],"The following configuration will be applied to the cluster:":[null,"A következő beállítások jutnak érvényre a fürtön:"],"Error applying configuration:":[null,"Hiba történt a beállítások alkalmazásakor:"],"< Back":[null,"< Vissza"],"Next >":[null,"Következő >"],"No workflow descriptions found":[null,"Nem található munkafolyamat-leírás"],"Choose Configuration":[null,"Válasszon beállítást"],"This wizard will guide you through the steps necessary to add one of the following configurations to the cluster.":[null,"A varázsló végigvezeti a szükséges lépéseken, hogy hozzá tudja adni a fürthöz az egyik beállítást."],"The object/attribute does not exist (cibadmin %{cmd})":[null,"Az objektum/attribútum nem létezik: (cibadmin %{cmd})"],"Error invoking cibadmin %{cmd}: %{msg}":[null,"Hiba történt a cibadmin %{cmd} parancs meghívásakor: %{msg}"],"The object/attribute does not exist: %{msg}":[null,"Az objektum/attribútum nem létezik: %{msg}"],"Error invoking cibadmin --replace: %{msg}":[null,"Hiba történt a cibadmin --replace meghívásakor: %{msg}"]}}};
+var locales = locales || {}; locales['hu'] = {
+  "domain": "app",
+  "locale_data": {
+    "app": {
+      "": {
+        "Project-Id-Version": "hawk",
+        "Report-Msgid-Bugs-To": "",
+        "POT-Creation-Date": "2015-02-24 16:02+0100",
+        "PO-Revision-Date": "2014-07-31 14:31",
+        "Last-Translator": "Novell language <language@novell.com>",
+        "Language-Team": "Novell language <language@novell.com>",
+        "Language": "",
+        "MIME-Version": "1.0",
+        "Content-Type": "text/plain; charset=UTF-8",
+        "Content-Transfer-Encoding": "8bit",
+        "Plural-Forms": "nplurals=2; plural=(n != 1);",
+        "lang": "hu",
+        "domain": "app",
+        "plural_forms": "nplurals=2; plural=(n != 1);"
+      },
+      "\\\"Error: #{result}\\\"": [
+        null,
+        "\\\"Hiba: #{result}\\\""
+      ],
+      "%s is not executable": [
+        null,
+        "%s nincs telepítve"
+      ],
+      "%s is not installed": [
+        null,
+        "%s nincs telepítve"
+      ],
+      "%{cmd} failed (status: %{status})": [
+        null,
+        "%{cmd} sikertelen (állapot: %{status})"
+      ],
+      "%{workflow}: %{step}": [
+        null,
+        "%{workflow}: %{step}"
+      ],
+      "(No clones defined)": [
+        null,
+        "(Nincsenek megadva klónok)"
+      ],
+      "(No colocation constraints defined)": [
+        null,
+        "(Nincsenek megadva kapcsolódási szabályok)"
+      ],
+      "(No groups defined)": [
+        null,
+        "(Nincsenek megadva csoportok)"
+      ],
+      "(No location constraints defined)": [
+        null,
+        "(Nincsenek megadva helyre vonatkozó szabályok)"
+      ],
+      "(No master/slave resources defined)": [
+        null,
+        "(Nincsenek megadva elsődleges/másodlagos erőforrások)"
+      ],
+      "(No order constraints defined)": [
+        null,
+        "(Nincsenek szabálysorrendek megadva)"
+      ],
+      "(No primitive resources defined)": [
+        null,
+        "(Nincsenek megadva primitív erőforrások)"
+      ],
+      "(No templates defined)": [
+        null,
+        "(Nincsenek megadva sablonok)"
+      ],
+      "(No ticket constraints defined)": [
+        null,
+        "(Nincsenek szabálysorrendek megadva)"
+      ],
+      "(Specify any host name in the cluster.  Other nodes will be found automatically)": [
+        null,
+        "(Adja meg bármelyik gép nevét a fürtben, a többi csomópont automatikusan felismerésre kerül)"
+      ],
+      "(full log)": [
+        null,
+        "(teljes napló)"
+      ],
+      "1 node configured": [
+        "%{num} nodes configured",
+        "1 csomópont beállítva",
+        "%{num} csomópont beállítva"
+      ],
+      "1 resource configured": [
+        "%{num} resources configured",
+        "1 erőforrás beállítva",
+        "%{num} erőforrás beállítva"
+      ],
+      "< Back": [
+        null,
+        "< Vissza"
+      ],
+      "A cluster with that name already exists": [
+        null,
+        "Ilyen nevű fürt már létezik"
+      ],
+      "ACL support requires CIB schema version 2.0, available in Pacemaker 1.1.12 and up. For older versions of Pacemaker, use Hawk version 0.6.": [
+        null,
+        ""
+      ],
+      "Add": [
+        null,
+        "Hozzáadás"
+      ],
+      "Add Cluster": [
+        null,
+        "Fürt hozzáadása"
+      ],
+      "Add Rule": [
+        null,
+        "Szabály hozzáadása"
+      ],
+      "Add a rule below": [
+        null,
+        ""
+      ],
+      "Add resource to constraint": [
+        null,
+        "Erőforrás hozzáadása a szabályhoz"
+      ],
+      "Add role": [
+        null,
+        "Szabály hozzáadása"
+      ],
+      "Add user": [
+        null,
+        "Fürt hozzáadása"
+      ],
+      "Another \\\"crm history\\\" operation is in progress...": [
+        null,
+        "Egy másik \\\"crm előzmény\\\" művelet folyamatban van…"
+      ],
+      "Any changes will be lost - do you wish to proceed?": [
+        null,
+        "Minden változás el fog veszni - szeretné folytatni?"
+      ],
+      "Apply": [
+        null,
+        ""
+      ],
+      "Apply Changes": [
+        null,
+        "Változások alkalmazása"
+      ],
+      "Arbitrator: %{ip}": [
+        null,
+        ""
+      ],
+      "Are you sure you wish to delete %s?": [
+        null,
+        "Biztos, hogy törölni akarja: %s?"
+      ],
+      "Attribute": [
+        null,
+        "Attribútum"
+      ],
+      "Attribute contains both single and double quotes": [
+        null,
+        "Az attribútum szimpla és dupla idézőjelet és tartalmaz"
+      ],
+      "Attributes": [
+        null,
+        "Attribútumok"
+      ],
+      "Available Primitives": [
+        null,
+        "Elérhető primitívek"
+      ],
+      "Back": [
+        null,
+        "Vissza"
+      ],
+      "Boolean Op": [
+        null,
+        "Boolean művelet"
+      ],
+      "Break set": [
+        null,
+        "Megszakítás beállítás"
+      ],
+      "CIB file \\\"%{path}\\\" not found": [
+        null,
+        "A(z) \\\"%{path}\\\" CIB fájl nem található"
+      ],
+      "CRM Configuration": [
+        null,
+        "CRM beállítás"
+      ],
+      "Can't contact Hawk on %{node}. Retrying every 5 seconds.": [
+        null,
+        "A Hawk nem tud kapcsolódni a(z) %{node} csomóponthoz. Újrapróbálkozás 5 másodperc múlva."
+      ],
+      "Can't set meta attribute %{p}, because the value contains both single and double quotes": [
+        null,
+        "Nem állítható be a(z) %{p} attribútum, mert az eszköz szimpla és dupla idézőjelet is tartalmaz"
+      ],
+      "Can't set op %{o} attribute {%a}, because the value contains both single and double quotes": [
+        null,
+        "Nem állítható be a(z) op %{o} {%a} attribútum, mert az eszköz szimpla és dupla idézőjelet is tartalmaz"
+      ],
+      "Can't set parameter %{p}, because the value contains both single and double quotes": [
+        null,
+        "Nem állítható be a(z) %{p} paraméter, mert az eszköz szimpla és dupla idézőjelet is tartalmaz"
+      ],
+      "Can't set property %{p}, because the value contains both single and double quotes": [
+        null,
+        "Nem állítható be a(z) %{p} tulajdonság, mert az eszköz szimpla és dupla idézőjelet is tartalmaz"
+      ],
+      "Cancel": [
+        null,
+        "Mégse"
+      ],
+      "Child Resource": [
+        null,
+        "Gyermek erőforrás"
+      ],
+      "Choose Configuration": [
+        null,
+        "Válasszon beállítást"
+      ],
+      "Class": [
+        null,
+        "Osztály"
+      ],
+      "Clean Up": [
+        null,
+        "Tisztítás"
+      ],
+      "Clone": [
+        null,
+        "Klón"
+      ],
+      "Clone ID": [
+        null,
+        "Klón ID"
+      ],
+      "Clone ID \\\"%{id}\\\" does not exist": [
+        null,
+        "A(z) \\\"%{id}\\\" klónazonosító nem létezik"
+      ],
+      "Clone created successfully": [
+        null,
+        "Klón létrehozása sikeresen"
+      ],
+      "Clone updated successfully": [
+        null,
+        "Klón sikeresen frissítve"
+      ],
+      "Close": [
+        null,
+        "Bezárás"
+      ],
+      "Cluster": [
+        null,
+        "Fürt hozzáadása"
+      ],
+      "Cluster Configuration": [
+        null,
+        "Fürt beállítása"
+      ],
+      "Cluster Dashboard": [
+        null,
+        "Fürt vezérlőpult"
+      ],
+      "Cluster Name:": [
+        null,
+        "Fürtnév:"
+      ],
+      "Cluster Setup Wizard": [
+        null,
+        "Fürtbeállítás-varázsló"
+      ],
+      "Cluster Status": [
+        null,
+        "Jelenlegi állapot"
+      ],
+      "Cluster has errors - click for details": [
+        null,
+        "Fürtprobléma - részletek"
+      ],
+      "Colocation": [
+        null,
+        "Elhelyezése szabály"
+      ],
+      "Confirm": [
+        null,
+        "Megerősítés"
+      ],
+      "Connection to server aborted - will retry every 15 seconds.": [
+        null,
+        "A kapcsolódás a kiszolgálóhoz megszakítva - újrapróbálkozás 15 másodpercenként"
+      ],
+      "Connection to server failed - will retry every 15 seconds.": [
+        null,
+        "A kapcsolódás a kiszolgálóhoz megszakítva - újrapróbálkozás 15 másodpercenként"
+      ],
+      "Connection to server timed out - will retry every 15 seconds.": [
+        null,
+        "A kapcsolódás a kiszolgálóhoz időtúllépés miatt sikertelen - újrapróbálkozás 15 másodpercenként."
+      ],
+      "Constraint ID": [
+        null,
+        "Szabály ID"
+      ],
+      "Constraint ID \\\"%{id}\\\" does not exist": [
+        null,
+        "A(z) \\\"%{id}\\\" szabályazonosító nem létezik"
+      ],
+      "Constraint created successfully": [
+        null,
+        "A szabály sikeresen létrejött"
+      ],
+      "Constraint is too complex - it contains nested rules": [
+        null,
+        "Túl komplex szabály - beágyazott szabályok vannak"
+      ],
+      "Constraint must consist of at least two separate resources": [
+        null,
+        "A szabálynak legalább két különböző erőforrást kell tartalmaznia"
+      ],
+      "Constraint updated successfully": [
+        null,
+        "A szabály frissítése sikeres"
+      ],
+      "Constraints": [
+        null,
+        "Megszorítások"
+      ],
+      "Create": [
+        null,
+        "Sze_repkör létrehozása"
+      ],
+      "Create Clone": [
+        null,
+        "Klón létrehozása"
+      ],
+      "Create Colocation Constraint": [
+        null,
+        "Kapcsolódási szabály létrehozása"
+      ],
+      "Create Constraint": [
+        null,
+        "Szabály létrehozása"
+      ],
+      "Create Group": [
+        null,
+        "Csoport létrehozása"
+      ],
+      "Create Location Constraint": [
+        null,
+        "Elhelyezési szabály létrehozása"
+      ],
+      "Create Master/Slave": [
+        null,
+        "Elsődleges/Másodlagos létrehozása"
+      ],
+      "Create Order Constraint": [
+        null,
+        "Szabály sorrendjének létrehozása"
+      ],
+      "Create Resource": [
+        null,
+        "Erőforrások létrehozása"
+      ],
+      "Create Role": [
+        null,
+        "Sze_repkör létrehozása"
+      ],
+      "Create Template": [
+        null,
+        "Sablon létrehozása"
+      ],
+      "Create Ticket Constraint": [
+        null,
+        "Jegyek megkötéseinek létrehozása"
+      ],
+      "Create User": [
+        null,
+        "Felhasználó létrehozása"
+      ],
+      "Dashboard": [
+        null,
+        "Vezérlőpult"
+      ],
+      "Data collection in progress (%{from_time} to %{to_time})...": [
+        null,
+        "Az adatgyűjtés folyamatban (%{from_time} - %{to_time})..."
+      ],
+      "Delete Constraint": [
+        null,
+        "Szabály törlése"
+      ],
+      "Delete Resource": [
+        null,
+        "Erőforrás törlése"
+      ],
+      "Delete role": [
+        null,
+        "Erőforrás törlése"
+      ],
+      "Delete this history archive?": [
+        null,
+        "Törli ezt az előzményarchívumot?"
+      ],
+      "Delete user": [
+        null,
+        "Erőforrás törlése"
+      ],
+      "Demote": [
+        null,
+        "Lefokozás"
+      ],
+      "Deny": [
+        null,
+        ""
+      ],
+      "Details": [
+        null,
+        "Részletek"
+      ],
+      "Diff": [
+        null,
+        "Diff"
+      ],
+      "Display": [
+        null,
+        "Megjelenítés"
+      ],
+      "Done": [
+        null,
+        "Kész"
+      ],
+      "Download hb_report": [
+        null,
+        "hb_report letöltése"
+      ],
+      "Drop Relocation Rule": [
+        null,
+        "Áthelyezési szabály eldobása"
+      ],
+      "Edit": [
+        null,
+        "Szerkesztés"
+      ],
+      "Edit Clone": [
+        null,
+        "Klón szerkesztése"
+      ],
+      "Edit Colocation Constraint": [
+        null,
+        "Kapcsolódási szabály szerkesztése"
+      ],
+      "Edit Constraint": [
+        null,
+        "Szabály szerkesztése"
+      ],
+      "Edit Group": [
+        null,
+        "Csoport szerkesztése"
+      ],
+      "Edit Location Constraint": [
+        null,
+        "Elhelyezési szabály szerkesztése"
+      ],
+      "Edit Master/Slave": [
+        null,
+        "Elsődleges/Másodlagos szerkesztése"
+      ],
+      "Edit Order Constraint": [
+        null,
+        "Szabály sorrendjének szerkesztése"
+      ],
+      "Edit Resource": [
+        null,
+        "Erőforrások szerkesztése"
+      ],
+      "Edit Role": [
+        null,
+        "Szerepkör szerkesztése"
+      ],
+      "Edit Template": [
+        null,
+        "Sablon szerkesztése"
+      ],
+      "Edit Ticket Constraint": [
+        null,
+        "Jegy megkötésének létrehozása"
+      ],
+      "Edit User": [
+        null,
+        "Felhasználó szerkesztése"
+      ],
+      "End Time:": [
+        null,
+        "Megállítás ideje:"
+      ],
+      "Error applying configuration:": [
+        null,
+        "Hiba történt a beállítások alkalmazásakor:"
+      ],
+      "Error deleting %s": [
+        null,
+        "Hiba az erőforrás törlésekor"
+      ],
+      "Error deleting resource": [
+        null,
+        "Hiba az erőforrás törlésekor"
+      ],
+      "Error invoking %{cmd}": [
+        null,
+        "Hiba a(z) %{cmd} parancs meghívásakor"
+      ],
+      "Error invoking %{cmd}: %{msg}": [
+        null,
+        "Hiba a(z) %{cmd} parancs meghívásakor: %{msg}"
+      ],
+      "Error invoking cibadmin %{cmd}: %{msg}": [
+        null,
+        "Hiba történt a cibadmin %{cmd} parancs meghívásakor: %{msg}"
+      ],
+      "Error invoking cibadmin --replace: %{msg}": [
+        null,
+        "Hiba történt a cibadmin --replace meghívásakor: %{msg}"
+      ],
+      "Error parsing template \\\"%s\\\"": [
+        null,
+        "Hiba történt a(z) \\\"%s\\\" sablon feldolgozása közben"
+      ],
+      "Error parsing workflow \\\"%s\\\"": [
+        null,
+        "Hiba történt a(z) \\\"%s\\\" munkafolyamat feldolgozása közben"
+      ],
+      "Error:": [
+        null,
+        "HIba:"
+      ],
+      "Error: Permission denied for user '%s'.": [
+        null,
+        "Hiba: a(z) '%s' felhasználó engedélye megtagadva."
+      ],
+      "Events": [
+        null,
+        ""
+      ],
+      "Explore": [
+        null,
+        "Tallózás"
+      ],
+      "Exploring %{path}": [
+        null,
+        "A(z) %{path} tallózása"
+      ],
+      "Expression": [
+        null,
+        "Kifejezés"
+      ],
+      "Fail Count": [
+        null,
+        "Hibaszám"
+      ],
+      "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}, exit-reason=%{exit_reason}": [
+        null,
+        ""
+      ],
+      "Fence": [
+        null,
+        ""
+      ],
+      "Fence Node": [
+        null,
+        "Csomópont leválasztása"
+      ],
+      "Generate": [
+        null,
+        "Előállítás"
+      ],
+      "Geo Site %{ip}": [
+        null,
+        "Klóncsoport: %{id}"
+      ],
+      "Getting recent events (last hour)...": [
+        null,
+        "Az elmúlt óra eseményei…"
+      ],
+      "Grant": [
+        null,
+        "Megadás"
+      ],
+      "Graph": [
+        null,
+        "Grafikon"
+      ],
+      "Group": [
+        null,
+        "Csoport"
+      ],
+      "Group Children": [
+        null,
+        "Csoporttag"
+      ],
+      "Group ID": [
+        null,
+        "Csoportazonosító (ID)"
+      ],
+      "Group ID \\\"%{id}\\\" does not exist": [
+        null,
+        "A(z) \\\"%{id}\\\" csoportazonosító nem létezik"
+      ],
+      "Group created successfully": [
+        null,
+        "Csoport sikeresen létrehozva"
+      ],
+      "Group updated successfully": [
+        null,
+        "Csoport sikeresen frissítve"
+      ],
+      "HTML": [
+        null,
+        ""
+      ],
+      "Help": [
+        null,
+        ""
+      ],
+      "High Availability Web Konsole": [
+        null,
+        ""
+      ],
+      "History Explorer": [
+        null,
+        "Előzményböngésző"
+      ],
+      "Host Name:": [
+        null,
+        "Gépnév:"
+      ],
+      "Invalid Resource ID \\\"%{id}\\\"": [
+        null,
+        "Érvénytelen erőforrás-azonosító \\\"%{id}\\\""
+      ],
+      "Invalid Role ID": [
+        null,
+        "Érvénytelen jegy ID"
+      ],
+      "Invalid Ticket ID": [
+        null,
+        "Érvénytelen jegy ID"
+      ],
+      "Invalid User ID": [
+        null,
+        "Érvénytelen jegy ID"
+      ],
+      "Invalid password": [
+        null,
+        "Érvénytelen jelszó"
+      ],
+      "Invalid score": [
+        null,
+        "Érvénytelen pontszám"
+      ],
+      "Invalid score \\\"%{score}\\\"": [
+        null,
+        "Érvénytelen pontszám \\\"%{score}\\\""
+      ],
+      "Invalid username": [
+        null,
+        "Érvénytelen felhasználónév"
+      ],
+      "Invalid username or password": [
+        null,
+        "Érvénytelen felhasználónév vagy jelszó"
+      ],
+      "Language is required": [
+        null,
+        ""
+      ],
+      "Last Failure": [
+        null,
+        "Legutóbbi hiba"
+      ],
+      "Link set": [
+        null,
+        "Hivatkozás beállítás"
+      ],
+      "Location": [
+        null,
+        "Hely"
+      ],
+      "Log In": [
+        null,
+        "Belépés"
+      ],
+      "Login": [
+        null,
+        "Belépés"
+      ],
+      "Loss Policy": [
+        null,
+        "Adatvesztési házirend"
+      ],
+      "Maintenance": [
+        null,
+        "Karbantartás"
+      ],
+      "Master/Slave": [
+        null,
+        "Elsődleges/Másodlagos"
+      ],
+      "Master/Slave ID": [
+        null,
+        "Elsődleges/Másodlagos azonosító"
+      ],
+      "Master/Slave ID \\\"%{id}\\\" does not exist": [
+        null,
+        "A(z) \\\"%{id}\\\" elsődleges/másodlagos azonosító nem létezik"
+      ],
+      "Master/Slave created successfully": [
+        null,
+        "Elsődleges/Másodlagos sikeresen létrehozva"
+      ],
+      "Master/Slave updated successfully": [
+        null,
+        "Elsődleges/Másodlagos sikeresen frissítve"
+      ],
+      "Meta Attributes": [
+        null,
+        "Metaattribútumok"
+      ],
+      "Move rule down": [
+        null,
+        ""
+      ],
+      "Move rule up": [
+        null,
+        "%s erőforrás mozgatása"
+      ],
+      "Move...": [
+        null,
+        "Áthelyezés..."
+      ],
+      "Name": [
+        null,
+        ""
+      ],
+      "New Clone": [
+        null,
+        "Új klón"
+      ],
+      "New Constraint": [
+        null,
+        "Új szabály"
+      ],
+      "New Group": [
+        null,
+        "Új csoport"
+      ],
+      "New Master/Slave": [
+        null,
+        "Új Elsődleges/Másodlagos"
+      ],
+      "New Resource": [
+        null,
+        "Új erőforrás"
+      ],
+      "New Template": [
+        null,
+        "Új sablon"
+      ],
+      "Next >": [
+        null,
+        "Következő >"
+      ],
+      "No": [
+        null,
+        "Nem"
+      ],
+      "No Master/Slave child specified": [
+        null,
+        "Nincs megadva elsődleges/másodlagos gyermek"
+      ],
+      "No Quorum Policy": [
+        null,
+        "Nincs Quorum irányelv"
+      ],
+      "No attributes defined": [
+        null,
+        "Nincsenek megadva attribútumok"
+      ],
+      "No clone child specified": [
+        null,
+        "Nincs megadva klóngyermek"
+      ],
+      "No cluster properties set in %{group}": [
+        null,
+        "Nincsenek beállítva fürttulajdonságok a(z) %{group} csoportban"
+      ],
+      "No details available": [
+        null,
+        "Nincsenek részletek"
+      ],
+      "No events found in last hour.": [
+        null,
+        "Nem volt esemény az elmúlt órában."
+      ],
+      "No expressions specified": [
+        null,
+        "Nincsenek megadva kifejezések"
+      ],
+      "No group children specified": [
+        null,
+        "Nincs megadva csoporttag"
+      ],
+      "No resource specified": [
+        null,
+        "Nincs megadva erőforrás"
+      ],
+      "No resources specified": [
+        null,
+        "Nincs megadva erőforrás"
+      ],
+      "No rules specified": [
+        null,
+        "Nincsenek szabályok megadva"
+      ],
+      "No transitions found for the specified time period.": [
+        null,
+        "A megadott időszakban nem található átmenet."
+      ],
+      "No utilization defined": [
+        null,
+        "Nincs meghatározva kihasználtság"
+      ],
+      "No workflow descriptions found": [
+        null,
+        "Nem található munkafolyamat-leírás"
+      ],
+      "Node": [
+        null,
+        "Csomópont"
+      ],
+      "Nodes": [
+        null,
+        "Csomópont"
+      ],
+      "OK": [
+        null,
+        "OK"
+      ],
+      "Online": [
+        null,
+        "Online"
+      ],
+      "Operation Defaults": [
+        null,
+        "Alapértelmezett műveletek"
+      ],
+      "Operations": [
+        null,
+        "Műveletek"
+      ],
+      "Order": [
+        null,
+        "Sorrend"
+      ],
+      "PDF": [
+        null,
+        ""
+      ],
+      "PE Input": [
+        null,
+        "PE Input"
+      ],
+      "PE Input created by different Pacemaker version (%{version})": [
+        null,
+        "A PE-bemenet másik pacemaker-verzióval készült (%{version})"
+      ],
+      "Pacemaker does not appear to be installed (%{cmd} not found)": [
+        null,
+        "A Pacemaker nincs telepítve (%{cmd} parancs nem található)"
+      ],
+      "Pacemaker version not present in PE Input": [
+        null,
+        "A PE-bemenetben nem szerepel a pacemaker-verzió"
+      ],
+      "Parameters": [
+        null,
+        "Paraméterek"
+      ],
+      "Password": [
+        null,
+        "Jelszó:"
+      ],
+      "Password not specified": [
+        null,
+        "Nincs megadva jelszó"
+      ],
+      "Password:": [
+        null,
+        "Jelszó:"
+      ],
+      "Permission denied - you do not have write access to the CIB.": [
+        null,
+        "Engedély elutasítva - nincs írási hozzáférése a CIB fájlhoz."
+      ],
+      "Permission denied for user %{user}": [
+        null,
+        "%{user} felhasználónak nincs hozzáférése"
+      ],
+      "Permission denied. Please log in to %{node}": [
+        null,
+        "Hozzáférés megtagadva. Lépjen be a(z) %{node} csomópontra"
+      ],
+      "Please ensure Javascript is enabled": [
+        null,
+        "Ellenőrizze, hogy a JavaScript engedélyezve van-e"
+      ],
+      "Preferences": [
+        null,
+        "Tulajdonságok"
+      ],
+      "Preferences updated successfully": [
+        null,
+        "Erőforrás sikeresen frissítve"
+      ],
+      "Primitive": [
+        null,
+        "Primitív"
+      ],
+      "Primitives": [
+        null,
+        "Primitív"
+      ],
+      "Promote": [
+        null,
+        "Előléptetés"
+      ],
+      "Provider": [
+        null,
+        "Szolgáltató"
+      ],
+      "Read": [
+        null,
+        "Kész"
+      ],
+      "Ready": [
+        null,
+        "Kész"
+      ],
+      "Ref": [
+        null,
+        "Hiv."
+      ],
+      "Remove": [
+        null,
+        "Eltávolítás"
+      ],
+      "Remove Rule": [
+        null,
+        "Szabály eltávolítása"
+      ],
+      "Remove this rule": [
+        null,
+        "Szabály eltávolítása"
+      ],
+      "Required parameter \\\"%{param}\\\" not specified": [
+        null,
+        "Nincs megadva a(z) \\\"%{param}\\\" paraméter"
+      ],
+      "Required parameter \\\"node\\\" not specified": [
+        null,
+        "Nincs megadva a \\\"node\\\" paraméter"
+      ],
+      "Required parameter \\\"resource\\\" not specified": [
+        null,
+        "Nincs megadva a \\\"resource\\\" paraméter"
+      ],
+      "Required parameter \\\"ticket\\\" not specified": [
+        null,
+        "Nincs megadva a kötelező \\\"ticket\\\" paraméter"
+      ],
+      "Required parameters \\\"basename\\\" and \\\"node\\\" not specified": [
+        null,
+        "Nincs megadva a \\\"basename\\\" és a \\\"node\\\" paraméter"
+      ],
+      "Required parameters \\\"left\\\" and \\\"right\\\" not specified": [
+        null,
+        "Nincs megadva a \\\"left\\\" és a \\\"right\\\" paraméter"
+      ],
+      "Required parameters \\\"resource\\\" and \\\"node\\\" not specified": [
+        null,
+        "Nincs megadva a \\\"resource\\\" és a \\\"node\\\" paraméter"
+      ],
+      "Required parameters \\\"ticket\\\" and \\\"site\\\" not specified": [
+        null,
+        "Nincs megadva a kötelező \\\"ticket\\\" és a \\\"site\\\" paraméter"
+      ],
+      "Resource": [
+        null,
+        "Erőforrás"
+      ],
+      "Resource Defaults": [
+        null,
+        "Erőforrás alapértelmezései"
+      ],
+      "Resource ID": [
+        null,
+        "Erőforrás ID"
+      ],
+      "Resource ID \\\"%{id}\\\" does not exist": [
+        null,
+        "A(z) \\\"%{id}\\\" erőforrás-azonosító nem létezik"
+      ],
+      "Resource Stickiness": [
+        null,
+        "Erőforrás mozgathatósága"
+      ],
+      "Resource created successfully": [
+        null,
+        "Erőforrás sikeresen létrehozva"
+      ],
+      "Resource updated successfully": [
+        null,
+        "Erőforrás sikeresen frissítve"
+      ],
+      "Resources": [
+        null,
+        "Erőforrások"
+      ],
+      "Revert": [
+        null,
+        "Visszaállítás"
+      ],
+      "Revert Changes": [
+        null,
+        "Változtatások visszavonása"
+      ],
+      "Revoke": [
+        null,
+        "Visszavonás"
+      ],
+      "Right": [
+        null,
+        "Jobbra"
+      ],
+      "Role": [
+        null,
+        "Szerep"
+      ],
+      "Role ID": [
+        null,
+        "Szerepkör-azonosító"
+      ],
+      "Role ID is required": [
+        null,
+        ""
+      ],
+      "Role created successfully": [
+        null,
+        "Szerepkör sikeresen létrehozva"
+      ],
+      "Role deleted successfully": [
+        null,
+        "Szerepkör sikeresen létrehozva"
+      ],
+      "Role updated successfully": [
+        null,
+        "Szerepkör sikeresen frissítve"
+      ],
+      "Roles": [
+        null,
+        "Szerepkörök"
+      ],
+      "Root Password": [
+        null,
+        "Root-jelszó"
+      ],
+      "Rule": [
+        null,
+        "Szerep"
+      ],
+      "STONITH Enabled": [
+        null,
+        "STONITH engedélyezve"
+      ],
+      "SUSE, LLC": [
+        null,
+        ""
+      ],
+      "Score": [
+        null,
+        "Pontszám"
+      ],
+      "Show Rule Editor": [
+        null,
+        "Szabályszerkesztő megjelenítése"
+      ],
+      "Site: %{ip}": [
+        null,
+        ""
+      ],
+      "Standby": [
+        null,
+        "Készenlét"
+      ],
+      "Start": [
+        null,
+        "Kezdés"
+      ],
+      "Start Time not specified": [
+        null,
+        "Indítási idő nincs beállítva"
+      ],
+      "Start Time:": [
+        null,
+        "Indítás ideje:"
+      ],
+      "State": [
+        null,
+        "Állapot:"
+      ],
+      "Status": [
+        null,
+        "Állapot"
+      ],
+      "Stop": [
+        null,
+        "Leállítás"
+      ],
+      "Swap resources": [
+        null,
+        "Erőforrások felcserélése"
+      ],
+      "Symmetric Cluster": [
+        null,
+        "Szimetrikus fürt"
+      ],
+      "Symmetrical": [
+        null,
+        "Szimetrikus"
+      ],
+      "Tag": [
+        null,
+        "Címke"
+      ],
+      "Template": [
+        null,
+        "Sablon"
+      ],
+      "Template ID": [
+        null,
+        "Sablon ID"
+      ],
+      "Template created successfully": [
+        null,
+        "A sablon létrehozása sikeres"
+      ],
+      "Template updated successfully": [
+        null,
+        "A sablon módosítása sikeres"
+      ],
+      "The ID \\\"%{id}\\\" does not exist": [
+        null,
+        "A(z) \\\"%{id}\\\" szerepkör-azonosító nem létezik"
+      ],
+      "The ID \\\"%{id}\\\" is already in use": [
+        null,
+        "A \\\"%{id}\\\" azonosító már használatban van"
+      ],
+      "The configuration has been applied.": [
+        null,
+        "A beállítások alkalmazása megtörtént."
+      ],
+      "The following configuration will be applied to the cluster:": [
+        null,
+        "A következő beállítások jutnak érvényre a fürtön:"
+      ],
+      "The host %{h} is already present in cluster %{c}": [
+        null,
+        "A(z) %{h} gép már tagja a(z) %{c} fürtnek"
+      ],
+      "The object/attribute does not exist (cibadmin %{cmd})": [
+        null,
+        "Az objektum/attribútum nem létezik: (cibadmin %{cmd})"
+      ],
+      "The object/attribute does not exist: %{msg}": [
+        null,
+        "Az objektum/attribútum nem létezik: %{msg}"
+      ],
+      "The role does not exist": [
+        null,
+        ""
+      ],
+      "The root password for this system": [
+        null,
+        "A rendszer gyökér szintű jelszava"
+      ],
+      "The root password is required in order for this wizard template to make configuration changes.": [
+        null,
+        "A gyökér szintű jelszó megadása szükséges ahhoz, hogy a varázsló sablonja módosítani tudja a beállításokat."
+      ],
+      "The user does not exist": [
+        null,
+        ""
+      ],
+      "There is already a monitor op with this interval.": [
+        null,
+        "Már van egy monitor művelet ebben az intervallumban."
+      ],
+      "This wizard will guide you through the steps necessary to add one of the following configurations to the cluster.": [
+        null,
+        "A varázsló végigvezeti a szükséges lépéseken, hogy hozzá tudja adni a fürthöz az egyik beállítást."
+      ],
+      "Ticket": [
+        null,
+        "Jegy"
+      ],
+      "Time": [
+        null,
+        "Idő"
+      ],
+      "Timeout: Please try again": [
+        null,
+        "Időtúllépés: Próbálja meg újra"
+      ],
+      "To enable ACLs, set 'enable-acl' in the CRM Configuration": [
+        null,
+        "Az ACL-ek engedélyezéséhez adja meg az 'enable-acl' beállítást a CRM konfigurációjában"
+      ],
+      "Type": [
+        null,
+        "Típus"
+      ],
+      "Unable to apply changes: %{msg}": [
+        null,
+        "Nem alkalmazhatók a módosítások: %{msg}"
+      ],
+      "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible.": [
+        null,
+        "Nem lehet kapcsolódni a(z) %{host} géphez. Próbálja megnyitni a %{url} címet a böngészőben, hogy megbizonyosodjon arról, hogy a Hawk elérhető."
+      ],
+      "Unable to create clone: %{msg}": [
+        null,
+        "Nem hozható létre klón: %{msg}"
+      ],
+      "Unable to create constraint: %{msg}": [
+        null,
+        "A szabály nem hozható létre: %{msg}"
+      ],
+      "Unable to create group: %{msg}": [
+        null,
+        "Nem hozható létre csoport: %{msg}"
+      ],
+      "Unable to create master/slave: %{msg}": [
+        null,
+        "Nem hozható létre elsődleges/másodlagos: %{msg}"
+      ],
+      "Unable to create resource: %{msg}": [
+        null,
+        "Nem hozható létre erőforrás: %{msg}"
+      ],
+      "Unable to create shadow CIB": [
+        null,
+        "Nem hozható létre shadow CIB"
+      ],
+      "Unable to create: %{msg}": [
+        null,
+        "Nem hozható létre a szerepkör: %{msg}"
+      ],
+      "Unable to execute %{cmd}": [
+        null,
+        "Nem futtatható parancs %{cmd}"
+      ],
+      "Unable to parse CIB file \\\"%{path}\\\"": [
+        null,
+        "A(z) \\\"%{path}\\\" CIB fájl nem dolgozható fel"
+      ],
+      "Unable to parse cibadmin output": [
+        null,
+        "Nem dolgozható fel a cibadmin kimenete"
+      ],
+      "Unable to update constraint: %{msg}": [
+        null,
+        "A szabály nem frissíthető: %{msg}"
+      ],
+      "Unable to update: %{msg}": [
+        null,
+        "A szerepkört nem sikerült frissíteni: %{msg}"
+      ],
+      "Unknown": [
+        null,
+        "Ismeretlen"
+      ],
+      "Upload hb_report tarball": [
+        null,
+        "hb_report TAR-fájl feltöltése"
+      ],
+      "Use Template": [
+        null,
+        "Sablon használata"
+      ],
+      "User ID": [
+        null,
+        "Felhasználóazonosító"
+      ],
+      "User ID is required": [
+        null,
+        ""
+      ],
+      "User created successfully": [
+        null,
+        "Felhasználó sikeresen létrehozva"
+      ],
+      "User deleted successfully": [
+        null,
+        "Felhasználó sikeresen létrehozva"
+      ],
+      "User updated successfully": [
+        null,
+        "Felhasználó sikeresen frissítve"
+      ],
+      "Username": [
+        null,
+        "Felhasználónév:"
+      ],
+      "Username not specified": [
+        null,
+        "Nincs megadva felhasználónév"
+      ],
+      "Username:": [
+        null,
+        "Felhasználónév:"
+      ],
+      "Users": [
+        null,
+        "Felhasználó"
+      ],
+      "Utilization": [
+        null,
+        "Kihasználtság"
+      ],
+      "Value contains both single and double quotes": [
+        null,
+        "Az érték szimpla és dupla idézőjelet és tartalmaz"
+      ],
+      "View Details...": [
+        null,
+        "Részletek megjelenítése…"
+      ],
+      "View Recent Events...": [
+        null,
+        "Legutóbbi események megjelenítése…"
+      ],
+      "Welcome": [
+        null,
+        ""
+      ],
+      "Wizard templates and/or workflows are missing": [
+        null,
+        "A varázsló sablonjai és/vagy munkafolyamatai hiányoznak"
+      ],
+      "Workflow \\\"%s\\\" not found": [
+        null,
+        "A(z) \\\"%s\\\" munkafolyamat nem található"
+      ],
+      "Write": [
+        null,
+        ""
+      ],
+      "XPath": [
+        null,
+        "XPath"
+      ],
+      "Yes": [
+        null,
+        "Igen"
+      ],
+      "You have been logged out": [
+        null,
+        "Kijelentkezett"
+      ],
+      "You must enter a value": [
+        null,
+        "Érték megadása kötelező"
+      ],
+      "Your changes have been saved": [
+        null,
+        "A változások mentése megtörtént"
+      ],
+      "[Constraint is too complex to display]": [
+        null,
+        "[A szabályok túl komplexek a megjelenítéshez]"
+      ],
+      "hb_report generation in progress...": [
+        null,
+        "A hb_report elkészítése folyamatban..."
+      ],
+      "Access Control Lists": [
+        null,
+        "Hozzáférés-felügyeleti listák"
+      ],
+      "%{cmd} failed (status: %{status}, output was: %{output})": [
+        null,
+        "%{cmd} sikertelen (status: %{status}, kimenet: %{output})"
+      ],
+      "#~ \"Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%\"#~ \"{op}, rc-code=%{rc_code}\"": [
+        null,
+        "#~ \"Hibás művelet: csomópont=%{node}, erőforrás=%{resource}, azonosító=%{call_id},\"#~ \" művelet=%{op}, visszatérési érték=%{rc_code}\""
+      ],
+      "Role must have rules": [
+        null,
+        "A szerepkörhöz szabályoknak kell tartozniuk"
+      ],
+      "Unable to create role: %{msg}": [
+        null,
+        "Nem hozható létre a szerepkör: %{msg}"
+      ],
+      "Role ID \\\"%{id}\\\" does not exist": [
+        null,
+        "A(z) \\\"%{id}\\\" szerepkör-azonosító nem létezik"
+      ],
+      "Unable to update role: %{msg}": [
+        null,
+        "A szerepkört nem sikerült frissíteni: %{msg}"
+      ],
+      "User must have either rules or roles": [
+        null,
+        "A felhasználóhoz vagy szabályok, vagy szerepkörök tartozhatnak"
+      ],
+      "User can't have both rules and roles": [
+        null,
+        "A felhasználóhoz nem tartozhatnak szabályok és szerepkörök is"
+      ],
+      "Unable to create user: %{msg}": [
+        null,
+        "Nem hozható létre a felhasználó: %{msg}"
+      ],
+      "User ID \\\"%{id}\\\" does not exist": [
+        null,
+        "A(z) \\\"%{id}\\\" felhasználói azonosító nem létezik"
+      ],
+      "Unable to update user: %{msg}": [
+        null,
+        "A felhasználót nem sikerült frissíteni: %{msg}"
+      ],
+      "Delete": [
+        null,
+        "Törlés"
+      ],
+      "New Role": [
+        null,
+        "Új szerepkör"
+      ],
+      "New User": [
+        null,
+        "Új felhasználó"
+      ],
+      "User": [
+        null,
+        "Felhasználó"
+      ],
+      "(No roles defined)": [
+        null,
+        "(Nincsenek megadva szerepkörök)"
+      ],
+      "(No users defined)": [
+        null,
+        "(nincs megadva felhasználó)"
+      ],
+      "Simulator": [
+        null,
+        "Szimulátor"
+      ],
+      "Cluster Diagram": [
+        null,
+        "Fürt diagramja"
+      ],
+      "Generate hb_report...": [
+        null,
+        "hb_report készítése…"
+      ],
+      "Generate hb_report": [
+        null,
+        "hb_report készítése"
+      ],
+      "Preferences...": [
+        null,
+        "Egyéni beállítások..."
+      ],
+      "Language": [
+        null,
+        "Nyelv"
+      ],
+      "Tools": [
+        null,
+        "Eszközök"
+      ],
+      "User: %{user}": [
+        null,
+        "Felhasználó: %{user}"
+      ],
+      "Log Out": [
+        null,
+        "Kilépés"
+      ],
+      "Setup Wizard": [
+        null,
+        "Installációs varázsló"
+      ],
+      "Cluster Properties": [
+        null,
+        "Fürt tulajdonságai"
+      ],
+      "UI Host: %s": [
+        null,
+        "UI gép: %s"
+      ],
+      "Copyright &copy; 2009-2014 SUSE, LLC": [
+        null,
+        "Copyright &copy; 2009-2014 SUSE, LLC"
+      ],
+      "Reset": [
+        null,
+        "Visszaállítás"
+      ],
+      "#~ \"This will bring node %s online if it is currently on standby.  Do you want to \"#~ \"continue?\"": [
+        null,
+        "#~ \"Ez a(z) %s csomópontot online állapotba hozza, amennyiben eddig készenléti (st\"#~ \"andby) állapotban volt. Kívánja folytatni?\""
+      ],
+      "#~ \"This will put node %s on standby.  All resources will be stopped and/or moved \"#~ \"to another node.  Do you want to continue?\"": [
+        null,
+        "#~ \"Ez a(z) %s csomópontot készenléti (standby) állapotba hozza. Minden erőforrás \"#~ \"leáll és/vagy űtmozgatásra kerül egy másik csomópontra. Kívánja folytatni?\""
+      ],
+      "#~ \"This will put node %s in maintenance mode.  All resources on this node will be\"#~ \"come unmanaged.  Do you want to continue?\"": [
+        null,
+        "#~ \"Ez a(z) %s csomópontot karbantartási módba állítja. A csomópont minden erőforr\"#~ \"ása felügyelet nélkülivé válik. Kívánja folytatni?\""
+      ],
+      "This will bring node %s out of maintenance mode.  Do you want to continue?": [
+        null,
+        "Ez a(z) %s csomópontot kihozza a karbantartási módból. Kívánja folytatni?"
+      ],
+      "This will attempt to immediately fence node %s.  Do you want to continue?": [
+        null,
+        "Ez azonnal leválasztja a(z) %s csomópontot. Kívánja folytatni?"
+      ],
+      "This will start the resource %s.  Do you want to continue?": [
+        null,
+        "Ez elindítja a(z) %s erőforrást. Kívánja folytatni?"
+      ],
+      "This will stop the resource %s.  Do you want to continue?": [
+        null,
+        "Ez leállítja a(z) %s erőforrást. Kívánja folytatni?"
+      ],
+      "Move resource %s": [
+        null,
+        "%s erőforrás mozgatása"
+      ],
+      "To node %s": [
+        null,
+        "A(z) %s csomópontra"
+      ],
+      "Away from current node": [
+        null,
+        "Eltávolítás a jelenlegi csomópontról"
+      ],
+      "#~ \"This will clear any relocation constraints set on the resource %s.  Do you wan\"#~ \"t to continue?\"": [
+        null,
+        "#~ \"Ez törölni fogja az áthelyezési szabályokat a(z) %s erőforráson. Kívánja folyt\"#~ \"atni?\""
+      ],
+      "This will promote the resource %s.  Do you want to continue?": [
+        null,
+        "Ez előlépteti a(z) %s erőforrást. Kívánja folytatni?"
+      ],
+      "This will demote the resource %s.  Do you want to continue?": [
+        null,
+        "Ez lefokozza a(z) %s erőforrást. Kívánja folytatni?"
+      ],
+      "This will clean up the resource %s.  Do you want to continue?": [
+        null,
+        "Ez tisztítja a(z) %s erőforrást. Kívánja folytatni?"
+      ],
+      "Error": [
+        null,
+        "Hiba"
+      ],
+      "Unexpected server error: %s": [
+        null,
+        "Váratlan kiszolgálóhiba: %s"
+      ],
+      "#~ \"Connection to server failed (server down or network error - will retry every 1\"#~ \"5 seconds).\"": [
+        null,
+        "#~ \"Sikertelen csatlakozás a kiszolgálóhoz (A kiszolgáló ki van kapcsolva vagy hál\"#~ \"ózati probléma van -újrapróbálkozás 15 másodpercenként).\""
+      ],
+      "Permission denied": [
+        null,
+        "Hozzáférés megtagadva"
+      ],
+      "%{op} failed on %{node} (rc=%{rc})": [
+        null,
+        "%{op} sikertelen: %{node} (rc=%{rc})"
+      ],
+      "DC: %s": [
+        null,
+        "DC: %s"
+      ],
+      "Version: %s": [
+        null,
+        "Verzió: %s"
+      ],
+      "Stack: %s": [
+        null,
+        "Stack: %s"
+      ],
+      "Inactive Resources": [
+        null,
+        "Inaktív erőforrások"
+      ],
+      "Summary": [
+        null,
+        "Összefoglaló"
+      ],
+      "Maintenance Mode": [
+        null,
+        "Karbantartási mód"
+      ],
+      "Unmanaged": [
+        null,
+        "Felügyeletlen"
+      ],
+      "Tickets": [
+        null,
+        "Jegyek"
+      ],
+      "#~ \"This will request the ticket %s be granted to the present site.  Do you want t\"#~ \"o continue?\"": [
+        null,
+        "Ez a művelet kéri a(z) %s jegy megadását a jelenlegi helynek. Folytatja?"
+      ],
+      "This will request the ticket %s be revoked.  Do you want to continue?": [
+        null,
+        "Ez a művelet kéri a(z) %s jegy visszavonását. Folytatja?"
+      ],
+      "Granted [standby]": [
+        null,
+        "Megadva [készenlét]"
+      ],
+      "Granted": [
+        null,
+        "Megadva"
+      ],
+      "Revoked [standby]": [
+        null,
+        "Visszavonva [készenlét]"
+      ],
+      "Revoked": [
+        null,
+        "Visszavonva"
+      ],
+      "Leader: %s": [
+        null,
+        "Vezető: %s"
+      ],
+      "Last granted: %s": [
+        null,
+        "Legutóbb megadva: %s"
+      ],
+      "Expires: %s": [
+        null,
+        "Lejárat: %s"
+      ],
+      "Summary View": [
+        null,
+        "Összefoglaló nézet"
+      ],
+      "Tree View": [
+        null,
+        "Fanézet"
+      ],
+      "Table View": [
+        null,
+        "Táblázat nézet"
+      ],
+      "%{node}: %{state}": [
+        null,
+        "%{node}: %{state}"
+      ],
+      "Offline": [
+        null,
+        "Kilépett"
+      ],
+      "Pending": [
+        null,
+        "Függő"
+      ],
+      "Unclean": [
+        null,
+        "Tisztázatlan"
+      ],
+      "Master": [
+        null,
+        "Elsődleges"
+      ],
+      "%{id}: Master: %{nodelist}": [
+        null,
+        "%{id}: Elsődleges: %{csomópontlista}"
+      ],
+      "%{id}: Master": [
+        null,
+        "%{id}: Elsődleges"
+      ],
+      "Slave": [
+        null,
+        "Másodlagos"
+      ],
+      "%{id}: Slave: %{nodelist}": [
+        null,
+        "%{id}: Másodlagos: %{csomópontlista}"
+      ],
+      "%{id}: Slave": [
+        null,
+        "%{id}: Másodlagos"
+      ],
+      "Started": [
+        null,
+        "Elindítva"
+      ],
+      "%{id}: Started: %{nodelist}": [
+        null,
+        "%{id}: Elindítva: %{nodelist}"
+      ],
+      "%{id}: Started": [
+        null,
+        "%{id}: Elindítva"
+      ],
+      "%{id}: Pending: %{nodelist}": [
+        null,
+        "%{id}: Felfüggesztve: %{nodelist}"
+      ],
+      "%{id}: Pending": [
+        null,
+        "%{id}: Felfüggesztve"
+      ],
+      "%{id}: Starting: %{node}": [
+        null,
+        "%{id}: indítás: %{node}"
+      ],
+      "%{id}: Starting": [
+        null,
+        "%{id}: indítás"
+      ],
+      "%{id}: Stopping: %{node}": [
+        null,
+        "%{id}: leállás: %{node}"
+      ],
+      "%{id}: Stopping": [
+        null,
+        "%{id}: leállás"
+      ],
+      "%{id}: Promoting: %{node}": [
+        null,
+        "%{id}: előléptetés: %{node}"
+      ],
+      "%{id}: Promoting": [
+        null,
+        "%{id}: előléptetés"
+      ],
+      "%{id}: Demoting: %{node}": [
+        null,
+        "%{id}: lefokozás: %{node}"
+      ],
+      "%{id}: Demoting": [
+        null,
+        "%{id}: lefokozás"
+      ],
+      "%{id}: Moving: %{node}": [
+        null,
+        "%{id}: áthelyezés: %{node}"
+      ],
+      "%{id}: Moving": [
+        null,
+        "%{id}: áthelyezés"
+      ],
+      "Stopped": [
+        null,
+        "Leállítva"
+      ],
+      "%{id}: Stopped": [
+        null,
+        "%{id}: Leállítva"
+      ],
+      "Group: %{id}": [
+        null,
+        "Csoport: %{id}"
+      ],
+      "Master/Slave Set: %{id}": [
+        null,
+        "Elsődleges/Másodlagos csoport: %{id}"
+      ],
+      "Clone Set: %{id}": [
+        null,
+        "Klóncsoport: %{id}"
+      ],
+      "Parent: %{id}...": [
+        null,
+        "Szülő: %{id}..."
+      ],
+      "%{active}/%{total} %{type} %{node}": [
+        null,
+        "%{active}/%{total} %{type} %{node}"
+      ],
+      "Toggle view by type": [
+        null,
+        "Nézetváltás típus szerintire"
+      ],
+      "Simulator (initial state)": [
+        null,
+        "Szimulátor (kezdeti állapot)"
+      ],
+      "Simulator (busy...)": [
+        null,
+        "Szimulátor (elfoglalt…)"
+      ],
+      "Simulator (final state)": [
+        null,
+        "Szimulátor (végső állapot)"
+      ],
+      "Injected State:": [
+        null,
+        "Szimulált állapot:"
+      ],
+      "+ Node": [
+        null,
+        "+ Csomópont"
+      ],
+      "+ Op": [
+        null,
+        "+ Művelet"
+      ],
+      "+ Ticket": [
+        null,
+        "+ Jegy"
+      ],
+      "Run >": [
+        null,
+        "Indítás >"
+      ],
+      "CIB (in)": [
+        null,
+        "CIB (be)"
+      ],
+      "CIB (out)": [
+        null,
+        "CIB (ki)"
+      ],
+      "Empty Graph": [
+        null,
+        "Üres grafikon"
+      ],
+      "Inject Node State": [
+        null,
+        "Szimulált csomópont állapota"
+      ],
+      "Node:": [
+        null,
+        "Csomópont:"
+      ],
+      "State:": [
+        null,
+        "Állapot:"
+      ],
+      "Inject Operation": [
+        null,
+        "Szimulált művelet"
+      ],
+      "Operation:": [
+        null,
+        "Művelet:"
+      ],
+      "Interval:": [
+        null,
+        "Időköz:"
+      ],
+      "Resource:": [
+        null,
+        "Erőforrás:"
+      ],
+      "Result:": [
+        null,
+        "Eredmény:"
+      ],
+      "Inject Ticket": [
+        null,
+        "Jegy behelyezése"
+      ],
+      "Ticket:": [
+        null,
+        "Jegy:"
+      ],
+      "Action:": [
+        null,
+        "Művelet:"
+      ],
+      "Activate": [
+        null,
+        "Aktiválás"
+      ],
+      "Success": [
+        null,
+        "Sikerült"
+      ],
+      "Generic Error": [
+        null,
+        "Általános hiba"
+      ],
+      "Wrong Argument(s)": [
+        null,
+        "Hibás argomentumok(ok)"
+      ],
+      "Not Implemented": [
+        null,
+        "Nincs megvalósítva"
+      ],
+      "Permission Denied": [
+        null,
+        "Engedély megtagadva"
+      ],
+      "Not Installed": [
+        null,
+        "Nincs telepítve"
+      ],
+      "Not Configured": [
+        null,
+        "Nincs beállítva"
+      ],
+      "Not Running": [
+        null,
+        "Nem fut"
+      ],
+      "Running Master": [
+        null,
+        "Futó elsődleges"
+      ],
+      "Failed Master": [
+        null,
+        "Hibás elsődleges"
+      ],
+      "Please ensure JavaScript is enabled": [
+        null,
+        "Ellenőrizze, hogy a JavaScript engedélyezve van-e"
+      ]
+    }
+  }
+};
