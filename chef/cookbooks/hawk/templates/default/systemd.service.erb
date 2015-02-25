@@ -1,5 +1,6 @@
 [Unit]
-Description=Hawk Development
+Description=HA Web Konsole Development
+After=network.target
 
 [Service]
 Type=simple
@@ -9,15 +10,21 @@ TimeoutSec=300
 User=vagrant
 Group=users
 
-PIDFile=/vagrant/hawk/tmp/pids/server.pid
 WorkingDirectory=/vagrant/hawk
 
-Environment=RAILS_ENV=development
+Environment="HAWK_ENV=development"
+Environment="HAWK_THREADS=16"
+Environment="HAWK_WORKERS=3"
+Environment="HAWK_LISTEN=0.0.0.0"
+Environment="HAWK_PORT=7630"
+Environment="HAWK_KEY=/vagrant/hawk/tmp/ssl/hawk.pem"
+Environment="HAWK_CERT=/vagrant/hawk/tmp/ssl/hawk.key"
 
+ExecStartPre=/vagrant/hawk/bin/generate-ssl-cert
 ExecStartPre=/vagrant/hawk/bin/bundle
-ExecStart=/vagrant/hawk/bin/rails s -b 0.0.0.0 -p 3000 -e development --debugger
-ExecStop=/usr/bin/kill -INT $MAINPID
-ExecReload=/usr/bin/kill -HUP $MAINPID
+ExecStart=/usr/bin/puma -C /vagrant/hawk/config/puma.rb
+ExecStop=/usr/bin/pumactl -S /vagrant/hawk/tmp/pids/puma.state stop
+ExecReload=/usr/bin/pumactl -S /vagrant/hawk/tmp/pids/puma.state restart
 
 [Install]
 WantedBy=multi-user.target

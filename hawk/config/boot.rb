@@ -50,6 +50,9 @@ else
   gem 'rails', version: '~> 4.2.0'
   require 'rails/all'
 
+  gem 'puma', version: '~> 2.11.1'
+  require 'puma'
+
   gem 'fast_gettext', version: '~> 0.9.2'
   require 'fast_gettext'
 
