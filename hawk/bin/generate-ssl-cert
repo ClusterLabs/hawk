@@ -30,32 +30,40 @@
 #
 #======================================================================
 
+#
 # Generate a self-signed SSL certificate if necessary. Will not
 # generate certificate if one already exists, so administrator can
 # install a "real" certificate by simply replacing the generated
-# (combined) one at /etc/lighttpd/certs/hawk-combined.pem
+# one at /etc/ssl/certs/hawk.pem
 #
 # NOTE: This is essentially a heavily stripped-back shell version
 # of the more generic check-create-certificate.pl script from WebYaST.
 # If this latter script becomes generally available, we should prefer
 # using it over this.
+#
 
 openssl_bin=/usr/bin/openssl
 c_rehash_bin=/usr/bin/c_rehash
-cert_file=/etc/lighttpd/certs/hawk.pem
-cert_key_file=/etc/lighttpd/certs/hawk.key
-combined_cert_file=/etc/lighttpd/certs/hawk-combined.pem
+
+cert_key_file=/etc/ssl/certs/hawk.key
+[ -n "$HAWK_KEY" ] && cert_key_file=$HAWK_KEY
+
+cert_file=/etc/ssl/certs/hawk.pem
+[ -n "$HAWK_CERT" ] && cert_file=$HAWK_CERT
+
 log_file=$(dirname $0)/../log/certificate.log
 
-[ -e "$combined_cert_file" ] && exit 0
+[ -e "$cert_key_file" ] && [ -e $cert_file ] && exit 0
 
 echo "No SSL certificate found. Creating one now."
-mkdir -p $(dirname $combined_cert_file)
+mkdir -p $(dirname $cert_key_file)
+mkdir -p $(dirname $cert_file)
 
 old_mask=$(umask)
 umask 177
 
 CN=$(hostname -f)
+
 [ -z "$CN" ] && CN=$(hostname)
 [ -z "$CN" ] && CN=localhost
 
@@ -63,6 +71,7 @@ $openssl_bin req -newkey rsa:2048 -x509 -nodes -days 1095 -batch -config /dev/fd
 [req]
 distinguished_name = user_dn
 prompt = no
+
 [user_dn]
 commonName=$CN
 emailAddress=root@$CN
@@ -73,10 +82,9 @@ CONF
 rc=$?
 
 if [ $rc -eq 0 ]; then
-	cat $cert_key_file $cert_file > $combined_cert_file
-	[ -x "$c_rehash_bin" ] && $c_rehash_bin $(dirname $combined_cert_file) >/dev/null 2>&1
+  [ -x "$c_rehash_bin" ] && $c_rehash_bin $(dirname $cert_file) >/dev/null 2>&1
 else
-	echo "Could not generate certificate.  Please see $log_file for details"
+  echo "Could not generate certificate. Please see $log_file for details"
 fi
 
 umask $old_mask

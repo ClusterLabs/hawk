@@ -30,13 +30,16 @@
 #======================================================================
 
 GIT = $(shell which git 2>/dev/null)
+
 # This gives current changeset hash (7 digits).  This is the reliable
 # indicator of which version you've got.
 BUILD_VERSION = $(shell git log --pretty="format:%h" -n 1)
+
 # This gets the version from the most recent tag in the form "hawk-x.y.z"
 # as a best-effort human-readable version number (e.g. 0.1.1 or 0.1.2-rc1).
 # But to really know what you're running, you need the changeset hash above.
 BUILD_TAG = $(shell git describe --tags --abbrev=0 | sed -e 's/^hawk-//')
+
 ifeq "$(BUILD_TAG)" ""
 BUILD_TAG = 0.0.0
 endif
@@ -66,7 +69,7 @@ LIBDIR = /usr/lib
 BINDIR = /usr/bin
 SBINDIR = /usr/sbin
 
-all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service hawk/config/lighttpd.conf tools/hawk_chkpwd tools/hawk_monitor tools/hawk_invoke
+all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service tools/hawk_chkpwd tools/hawk_monitor tools/hawk_invoke
 	(cd hawk; \
 	 TEXTDOMAIN=hawk rake gettext:pack && \
 	 if $(BUNDLE_GEMS) ; then \
@@ -122,7 +125,6 @@ base/install:
 	-find hawk/vendor -name '*bak' -o -name '*~' -o -name '#*#' | xargs rm
 	cp -a hawk/* $(DESTDIR)$(WWW_BASE)/hawk
 	-cp -a hawk/.bundle $(DESTDIR)$(WWW_BASE)/hawk
-	rm $(DESTDIR)$(WWW_BASE)/hawk/config/lighttpd.conf.in
 	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/log
 	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/tmp
 	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/home
@@ -139,15 +141,13 @@ tools/install:
 	-chmod u+s $(DESTDIR)/usr/sbin/hawk_invoke
 
 	install -D -m 0755 tools/hawk_monitor $(DESTDIR)/usr/sbin/hawk_monitor
-	ln -sf /usr/sbin/hawk_monitor $(DESTDIR)$(WWW_BASE)/hawk/public/monitor
 
 # TODO(should): Verify this is really clean (it won't get rid of .mo files,
 # for example
 clean:
 	rm -rf hawk/vendor
-	rm -rf hawk/tmp
-	rm -rf hawk/log
-	rm -f hawk/config/lighttpd.conf
+	rm -rf hawk/tmp/*
+	rm -rf hawk/log/*
 	rm -f scripts/hawk.{suse,redhat,service}
 	rm -f tools/hawk_chkpwd
 	rm -f tools/hawk_monitor

@@ -86,4 +86,5 @@ Rails.application.routes.draw do
   match '/login' => 'sessions#new', as: :login, via: [:get, :post]
   match '/logout' => 'sessions#destroy', as: :logout, via: [:get, :post]
   match 'dashboard' => 'dashboard#index', as: :dashboard, via: [:get, :post]
+  get 'monitor' => 'main#monitor', :as => :monitor
 end
