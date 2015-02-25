@@ -46,6 +46,8 @@ environment ENVIRONMENT
 
 tag "hawk"
 
+quiet
+
 daemonize false
 prune_bundler false
 
@@ -61,3 +63,12 @@ ssl_bind LISTEN, PORT, {
   cert: CERT,
   key: KEY
 }
+
+[
+  "tmp/pids",
+  "tmp/sessions",
+  "tmp/sockets",
+  "tmp/cache"
+].each do |name|
+  FileUtils.mkdir_p File.join(ROOT, name)
+end
