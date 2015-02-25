@@ -114,8 +114,6 @@ Rails.application.routes.draw do
 
   match 'dashboard' => 'dashboard#index', :as => :dashboard, via: [:get, :post]
 
-  get 'monitor' => 'main#monitor', :as => :monitor
-
   get 'monitor' => 'pages#monitor', :as => :monitor
   get 'help' => 'pages#help', :as => :help
   get 'logout' => 'sessions#destroy', :as => :logout

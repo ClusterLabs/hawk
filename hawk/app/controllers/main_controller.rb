@@ -75,23 +75,6 @@ class MainController < ApplicationController
     @title = _('Cluster Status')
   end
 
-  def monitor
-    require "open3"
-
-    result = Open3.popen3("/usr/sbin/hawk_monitor") do |i, o|
-      o.read
-    end
-
-    headers, body = result.split("\n\n", 2)
-
-    headers.split("\n").each do |header|
-      name, value = header.split(":")
-      response.headers[name] = value.strip
-    end
-
-    render json: body
-  end
-
   # TODO(should): Node ops, resource ops, arguably belong in separate
   # node and resource controllers/models.  Note this would change the
   # class hierarchy for primitve, group, etc., e.g.:
