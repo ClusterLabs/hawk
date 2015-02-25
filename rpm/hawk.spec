@@ -16,6 +16,14 @@
 #
 
 
+%if 0%{?suse_version} == 1110 || 0%{?suse_version} == 1310 || 0%{?suse_version} == 1315
+%define hawk_ruby_bin ruby.ruby2.1
+%define hawk_ruby_abi ruby:2.1.0
+%else
+%define hawk_ruby_bin ruby
+%define hawk_ruby_abi %{rb_default_ruby_abi}
+%endif
+
 %if 0%{?suse_version}
 %define	www_base	/srv/www
 %define	vendor_ruby	vendor_ruby
@@ -39,7 +47,7 @@ Name:           hawk
 Summary:        HA Web Konsole
 License:        GPL-2.0
 Group:          %{pkg_group}
-Version:        0.7.0+git.1424258458.f83efc0
+Version:        0.7.0+git.1424349779.eb17098
 Release:        0
 Url:            http://www.clusterlabs.org/wiki/Hawk
 Source:         %{name}-%{version}.tar.bz2
@@ -54,14 +62,12 @@ Requires:       crmsh
 Requires:       graphviz
 Requires:       graphviz-gd
 Requires:       hawk-templates >= %{version}-%{release}
-Requires:       lighttpd >= 1.4.20
 Requires:       pacemaker >= 1.1.8
-Requires:       ruby
 %if 0%{?fedora_version} >= 19
 Requires:       rubypick
 BuildRequires:  rubypick
 %endif
-Requires:       rubygem(bundler)
+Requires:       rubygem(%{hawk_ruby_abi}:bundler)
 %if 0%{?suse_version}
 Recommends:     graphviz-gnome
 Requires:       iproute2
@@ -74,40 +80,32 @@ BuildRequires:  systemd
 %endif
 %else
 Requires:       iproute
-Requires:       lighttpd-fastcgi
 BuildRequires:  pacemaker-libs-devel
 %endif
 
-BuildRequires:  rubygems
-BuildRequires:  rubygem(byebug)
-BuildRequires:  rubygem(fast_gettext)
-BuildRequires:  rubygem(gettext)
-BuildRequires:  rubygem(gettext_i18n_rails)
-BuildRequires:  rubygem(quiet_assets)
-BuildRequires:  rubygem(rails) >= 4
-BuildRequires:  rubygem(rake)
-BuildRequires:  rubygem(spring)
-BuildRequires:  rubygem(sprockets)
-BuildRequires:  rubygem(tilt)
-BuildRequires:  rubygem(web-console)
+BuildRequires:  rubygem(%{hawk_ruby_abi}:byebug) >= 3.5
+BuildRequires:  rubygem(%{hawk_ruby_abi}:fast_gettext) >= 0.9
+BuildRequires:  rubygem(%{hawk_ruby_abi}:gettext) >= 3.1
+BuildRequires:  rubygem(%{hawk_ruby_abi}:gettext_i18n_rails) >= 1.2
+BuildRequires:  rubygem(%{hawk_ruby_abi}:puma) >= 2.11
+BuildRequires:  rubygem(%{hawk_ruby_abi}:quiet_assets)
+BuildRequires:  rubygem(%{hawk_ruby_abi}:rails) >= 4.2
+BuildRequires:  rubygem(%{hawk_ruby_abi}:rake) >= 10.4
+BuildRequires:  rubygem(%{hawk_ruby_abi}:spring) >= 1.3
+BuildRequires:  rubygem(%{hawk_ruby_abi}:sprockets) >= 2.12
+BuildRequires:  rubygem(%{hawk_ruby_abi}:tilt) >= 1.4
+BuildRequires:  rubygem(%{hawk_ruby_abi}:web-console) >= 2.0
 %if 0%{?bundle_gems}
-%if 0%{?suse_version} == 1110
-BuildRequires:  ruby-fcgi
-%endif
 %else
 # SLES bundles all this stuff at build time, other distros just
 # use runtime dependencies.
-Requires:       rubygems
-Requires:       rubygem(fast_gettext)
-Requires:       rubygem(gettext_i18n_rails)
-Requires:       rubygem(rails) >= 4
-Requires:       rubygem(rake)
-Requires:       rubygem(sprockets)
-Requires:       rubygem(tilt)
-# Not using this right now (seems to be unavailable due to ruby 2.0 --> 2.1 migration on Factory)
-#%%if 0%{?suse_version}
-#Requires:       rubygem-ruby-fcgi
-#%%endif
+Requires:       rubygem(%{hawk_ruby_abi}:fast_gettext) >= 0.9
+Requires:       rubygem(%{hawk_ruby_abi}:gettext_i18n_rails) >= 1.2
+Requires:       rubygem(%{hawk_ruby_abi}:puma) >= 2.11
+Requires:       rubygem(%{hawk_ruby_abi}:rails) >= 4.2
+Requires:       rubygem(%{hawk_ruby_abi}:rake) >= 10.4
+Requires:       rubygem(%{hawk_ruby_abi}:sprockets) >= 2.12
+Requires:       rubygem(%{hawk_ruby_abi}:tilt) >= 1.4
 %endif
 
 BuildRequires:  glib2-devel
@@ -144,15 +142,6 @@ make WWW_BASE=%{www_base} INIT_STYLE=%{init_style} DESTDIR=%{buildroot} install
 # copy of GPL
 cp COPYING %{buildroot}%{www_base}/hawk/
 %if 0%{?bundle_gems}
-# evil magic to get ruby-fcgi into the vendor directory
-for f in $(rpm -ql ruby-fcgi|grep %{vendor_ruby}); do
-	# gives something simliar to:
-	#  /usr/lib64/ruby/vendor_ruby/1.8/fcgi.rb
-	#  /usr/lib64/ruby/vendor_ruby/1.8/x86_64-linux/fcgi.so
-	r=$(echo $f | sed 's/.*%{vendor_ruby}\/[^\/]*\///')
-	mkdir -p %{buildroot}%{www_base}/hawk/vendor/$(dirname $r)
-	cp $f %{buildroot}%{www_base}/hawk/vendor/$r
-done
 # get rid of gem sample and test cruft
 rm -rf %{buildroot}%{www_base}/hawk/vendor/bundle/ruby/*/gems/*/doc
 rm -rf %{buildroot}%{www_base}/hawk/vendor/bundle/ruby/*/gems/*/examples
@@ -214,8 +203,6 @@ rm -rf %{buildroot}
 %postun
 %service_del_postun hawk.service
 
-%triggerin -- lighttpd
-%restart_on_update hawk
 %endif
 
 %files -f %{name}.lang
