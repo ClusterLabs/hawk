@@ -3,7 +3,7 @@ Description=HA Web Konsole (hawk)
 After=network.target
 
 [Service]
-ExecStartPre=@WWW_BASE@/hawk/script/generate-ssl-cert
+ExecStartPre=@WWW_BASE@/hawk/bin/generate-ssl-cert
 ExecStartPre=/usr/sbin/lighttpd -t -f @WWW_BASE@/hawk/config/lighttpd.conf
 ExecStart=/usr/sbin/lighttpd -D -f @WWW_BASE@/hawk/config/lighttpd.conf
 ExecReload=/bin/kill -HUP $MAINPID

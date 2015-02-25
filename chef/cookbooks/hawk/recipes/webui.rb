@@ -19,6 +19,23 @@
 
 include_recipe "ruby"
 
+case node["platform_family"]
+when "suse"
+  include_recipe "zypper"
+
+  zypper_repository node["hawk"]["zypper"]["alias"] do
+    uri node["hawk"]["zypper"]["repo"]
+    key node["hawk"]["zypper"]["key"]
+    title node["hawk"]["zypper"]["title"]
+
+    action :add
+
+    only_if do
+      node["hawk"]["zypper"]["enabled"]
+    end
+  end
+end
+
 node["hawk"]["webui"]["packages"].each do |name|
   package name do
     action :install

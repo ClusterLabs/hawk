@@ -3,17 +3,17 @@
 #     RedHat system startup script for hawk
 #
 #     Copyright (C) 2010  SUSE LLC
-#          
+#
 #     This library is free software; you can redistribute it and/or modify it
 #     under the terms of the GNU Lesser General Public License as published by
 #     the Free Software Foundation; either version 2.1 of the License, or (at
 #     your option) any later version.
-#			      
+#
 #     This library is distributed in the hope that it will be useful, but
 #     WITHOUT ANY WARRANTY; without even the implied warranty of
 #     MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
 #     Lesser General Public License for more details.
-#      
+#
 #     You should have received a copy of the GNU Lesser General Public License
 #     along with this library; if not, see <http://www.gnu.org/licenses/>.
 #
@@ -36,7 +36,7 @@ lockfile=/var/lock/subsys/$prog
 # Check for missing binaries (stale symlinks should not happen)
 # Note: Special treatment of stop for LSB conformance
 LIGHTTPD_BIN=/usr/sbin/lighttpd
-test -x $LIGHTTPD_BIN || { echo "$LIGHTTPD_BIN not installed"; 
+test -x $LIGHTTPD_BIN || { echo "$LIGHTTPD_BIN not installed";
 	if [ "$1" = "stop" ]; then exit 0;
 	else exit 5; fi; }
 
@@ -67,7 +67,7 @@ print_hawk_url() {
 
 case "$1" in
     start)
-	@WWW_BASE@/hawk/script/generate-ssl-cert || {
+	@WWW_BASE@/hawk/bin/generate-ssl-cert || {
 		exit 1
     	}
 	echo -n "Starting hawk "
