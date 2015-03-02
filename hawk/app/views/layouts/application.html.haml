@@ -1,37 +1,37 @@
 !!!
 
-%html{ lang: I18n.locale.to_s.gsub('-', '_') }
+%html{ lang: I18n.locale.to_s.gsub("-", "_") }
   %head
     %title
       = meta_title
 
     = current_metatags
 
-    %link{ href: image_path('favicon.png'), rel: 'shortcut icon' }
+    %link{ href: image_path("favicon.png"), rel: "shortcut icon" }
 
-    = stylesheet_link_tag 'vendor'
-    = stylesheet_link_tag 'gettext'
-    = stylesheet_link_tag 'application'
+    = stylesheet_link_tag "vendor"
+    = stylesheet_link_tag "gettext"
+    = stylesheet_link_tag "application"
 
     = yield :stylesheets
 
-    = javascript_include_tag 'vendor'
-    = javascript_include_tag 'gettext'
-    = javascript_include_tag 'application'
+    = javascript_include_tag "vendor"
+    = javascript_include_tag "gettext"
+    = javascript_include_tag "application"
 
     = javascript_include_tag localized_js
 
     = yield :javascripts
 
     /[if lt IE 9]
-      = stylesheet_link_tag 'ie'
-      = javascript_include_tag 'ie'
+      = stylesheet_link_tag "ie"
+      = javascript_include_tag "ie"
 
   %body{ **body_attrs }
-    %nav.navbar.navbar-inverse.navbar-fixed-top{ role: 'navigation' }
-      .container-fluid{ stye: 'white-space: nobreak;' }
+    .navbar.navbar-fixed-top.navbar-inverse{ role: "navigation" }
+      .container-fluid{ stye: "white-space: nobreak;" }
         .navbar-header
-          = link_to image_tag('head/white.png'), root_path, class: 'navbar-brand'
+          = link_to image_tag("head/white.png"), root_path, class: "navbar-brand"
 
         #navbar.navbar-right
           %ul.nav.navbar-nav
@@ -48,81 +48,89 @@
 
             %li
               = link_to navbar_item(_('Logout'), 'sign-out'), logout_path, class: 'logout'
+
+            %li.visible-xs-inline-block
+              = link_to navbar_item(_("Menu"), "bars"), "#toggle-menu", class: "toggle"
+
+    .container-fluid
+      .row.row-offcanvas.row-offcanvas-left
+        #sidebar.col-xs-6.col-sm-4.col-md-4.col-lg-3.sidebar-offcanvas
+          %ul.nav.sidebar-nav
             %li
-              = link_to navbar_item(_('Menu'), 'bars'), '#toggle-menu', class: 'toggle'
+              %ul
+                %li{ class: active_menu_with(:dashboards) }
+                  = link_to _('Dashboard'), cib_dashboard_path(cib_id: current_cib.id)
 
-    #wrapper
-      #sidebar
-        %ul.nav.sidebar-nav
-          %li
-            %ul
-              %li{ class: active_menu_with(:dashboards) }
-                = link_to _('Dashboard'), cib_dashboard_path(cib_id: current_cib.id)
+            %li
+              = _('Report')
 
-          %li
-            = _('Report')
+              %ul
+                %li
+                  = link_to _('Heartbeat'), root_path
+                %li
+                  = link_to _('Graph'), root_path
+                %li
+                  = link_to _('History'), root_path
 
-            %ul
-              %li
-                = link_to _('Heartbeat'), root_path
-              %li
-                = link_to _('Graph'), root_path
-              %li
-                = link_to _('History'), root_path
+            %li
+              = _('Resources')
 
-          %li
-            = _('Resources')
+              %ul
+                %li{ class: active_menu_with(:resources, :primitives, :clones, :masters, :wizards) }
+                  = link_to _('Add resource'), types_cib_resources_path(cib_id: current_cib.id)
+                %li{ class: active_menu_with(:constraints, :locations, :colocations, :orders, :tickets) }
+                  = link_to _('Add constraint'), types_cib_constraints_path(cib_id: current_cib.id)
+                %li{ class: active_menu_with(:templates) }
+                  = link_to _('Add template'), new_cib_template_path(cib_id: current_cib.id)
 
-            %ul
-              %li
-                = link_to _('Add resource'), root_path
-              %li
-                = link_to _('Add template'), root_path
-              %li
-                = link_to _('Add constraint'), root_path
+            %li
+              = _('Manage')
 
-          %li
-            = _('Manage')
+              %ul
+                %li{ class: active_menu_with(:settings) }
+                  = link_to _('Preferences'), edit_cib_settings_path(cib_id: current_cib.id)
 
-            %ul
-              %li{ class: active_menu_with(:settings) }
-                = link_to _('Preferences'), edit_cib_settings_path(cib_id: current_cib.id)
+                - if Util.has_feature? :acl_support
+                  %li{ class: active_menu_with(:roles) }
+                    = link_to _('Roles'), cib_roles_path(cib_id: current_cib.id)
+                - if Util.has_feature? :acl_support
+                  %li{ class: active_menu_with(:users) }
+                    = link_to _('Users'), cib_users_path(cib_id: current_cib.id)
 
-              - if Util.has_feature? :acl_support
-                %li{ class: active_menu_with(:roles) }
-                  = link_to _('Roles'), cib_roles_path(cib_id: current_cib.id)
-              - if Util.has_feature? :acl_support
-                %li{ class: active_menu_with(:users) }
-                  = link_to _('Users'), cib_users_path(cib_id: current_cib.id)
-
-      #content
-        .container-fluid
+        - if content_for? :rightbar
           = render partial: 'shared/flash', locals: { flash: flash }
+
           = yield
+          = yield :rightbar
+        - else
+          #middle.col-xs-12.col-sm-8.col-md-8.col-lg-9
+            = render partial: 'shared/flash', locals: { flash: flash }
+            = yield
 
     %footer
       .container-fluid
-        .col-md-6.copyright
-          %p
-            = branding_config[:provider].html_safe
+        .row
+          .col-md-6.copyright
+            %p
+              = branding_config[:provider].html_safe
 
-        .col-md-6.metadata
-          %dl.dl-inline
-            %dt
-              = _('Version:')
-            %dd.status.version{ rv: { text: 'meta.version' } }
-              = current_cib.meta.version
-            %dt
-              = _('Stack:')
-            %dd.status.stack{ rv: { text: 'meta.stack' } }
-              = current_cib.meta.stack
-            %dt
-              = _('DC:')
-            %dd.status.dc{ rv: { text: 'meta.dc' } }
-              = current_cib.meta.dc
-            %dt
-              = _('UI:')
-            %dd.status.host{ rv: { text: 'meta.host' } }
-              = current_cib.meta.host
+          .col-md-6.hidden-xs.hidden-sm.metadata
+            %dl.dl-inline
+              %dt
+                = _("Version:")
+              %dd.status.version{ rv: { text: "meta.version" } }
+                = current_cib.meta.version
+              %dt
+                = _("Stack:")
+              %dd.status.stack{ rv: { text: "meta.stack" } }
+                = current_cib.meta.stack
+              %dt
+                = _("DC:")
+              %dd.status.dc{ rv: { text: "meta.dc" } }
+                = current_cib.meta.dc
+              %dt
+                = _("UI:")
+              %dd.status.host{ rv: { text: "meta.host" } }
+                = current_cib.meta.host
 
-    = render partial: 'shared/modal'
+    = render partial: "shared/modal"

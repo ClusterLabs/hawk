@@ -1,0 +1,10 @@
+.container-fluid
+  .row
+    %h1
+      = icon_text "tasks", _("Edit Colocation Constraint"), class: "page"
+      .pull-right
+        .btn-group{ role: "group" }
+          = link_to icon_text("trash", _("Delete colocation")), cib_colocation_path(cib_id: @cib.id, id: @colocation.id), method: "delete", confirm: _("Are you sure you wish to delete %s?") % @colocation.id, class: "btn btn-default"
+
+  .row
+    = render partial: "form", locals: { cib: @cib, colocation: @colocation }

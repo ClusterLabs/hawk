@@ -1,0 +1,7 @@
+.container-fluid
+  .row
+    %h1
+      = icon_text "sort-amount-desc", _("Create Order Constraint"), class: "page"
+
+  .row
+    = render partial: "form", locals: { cib: @cib, order: @order }

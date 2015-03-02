@@ -30,7 +30,7 @@
 //======================================================================
 
 $(function() {
-  $('#users #content table.users')
+  $('#users #middle table.users')
     .bootstrapTable({
       method: 'get',
       url: Routes.cib_users_path(

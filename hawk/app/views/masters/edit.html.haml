@@ -1,0 +1,10 @@
+.container-fluid
+  .row
+    %h1
+      = icon_text "superscript", _("Edit Master/Slave"), class: "page"
+      .pull-right
+        .btn-group{ role: "group" }
+          = link_to icon_text("trash", _("Delete master/slave")), cib_master_path(cib_id: @cib.id, id: @master.id), method: "delete", confirm: _("Are you sure you wish to delete %s?") % @master.id, class: "btn btn-default"
+
+  .row
+    = render partial: "form", locals: { cib: @cib, master: @master }

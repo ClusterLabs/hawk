@@ -1,0 +1,20 @@
+.panel.panel-default
+  .panel-body
+    = form_for [cib, ticket], horizontal: true do |main_form|
+      /= errors_for ticket
+
+      /- if ticket.new_record?
+      /  = main_form.text_field :id, label: _('Ticket ID')
+      /- else
+      /  = main_form.text_field :id, label: _('Ticket ID'), readonly: true
+
+      /= main_form.select :roles, :role_options, { include_hidden: false }, { multiple: true, size: 5 }
+
+      = main_form.button_group do
+        - if ticket.new_record?
+          = create_button(main_form, ticket)
+        - else
+          = apply_button(main_form, ticket)
+          = revert_button(main_form, ticket)
+
+        = link_to _('Back'), types_cib_constraints_path(cib_id: cib.id), class: 'btn btn-default back'

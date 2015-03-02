@@ -1,4 +1,7 @@
-%h1
-  = icon_text 'group', _('Create Role'), class: 'page'
+.container-fluid
+  .row
+    %h1
+      = icon_text 'group', _('Create Role'), class: 'page'
 
-= render partial: 'form', locals: { cib: @cib, role: @role }
+  .row
+    = render partial: 'form', locals: { cib: @cib, role: @role }

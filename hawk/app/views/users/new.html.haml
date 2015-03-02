@@ -1,4 +1,7 @@
-%h1
-  = icon_text 'user', _('Create User'), class: 'page'
+.container-fluid
+  .row
+    %h1
+      = icon_text 'user', _('Create User'), class: 'page'
 
-= render partial: 'form', locals: { cib: @cib, user: @user }
+  .row
+    = render partial: 'form', locals: { cib: @cib, user: @user }

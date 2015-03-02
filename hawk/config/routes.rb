@@ -32,90 +32,126 @@
 Rails.application.routes.draw do
   root :to => 'pages#index'
 
-  resource :session
   resources :cib, only: [:show] do
-    resources :templates
-    resources :groups
-    resources :clones
-    resources :masters
-    resources :constraints
-    resources :locations
-    resources :colocations
-    resources :orders
-    resources :tickets
+    resources :nodes do
+      member do
+        get :events
 
-
+        post :standby
+        post :online
+        post :maintenance
+        post :ready
+        post :fence
+      end
+    end
 
     resources :resources do
       member do
         get :events
+
+        post :start
+        post :stop
+        post :unmigrate
+        post :promote
+        post :demote
+        post :cleanup
+        post :manage
+        post :unmanage
+        post :migrate
+        post :delete
+      end
+
+      collection do
+        get :types
       end
     end
 
     resources :primitives do
       member do
-        get :events
+        get :intervals
+      end
+
+      collection do
+        get :types
+        get :metadata
       end
     end
 
-    resources :nodes do
+    resources :constraints do
       member do
         get :events
       end
+
+      collection do
+        get :types
+      end
     end
 
+    resources :tickets do
+      member do
+        post :grant
+        post :revoke
+      end
+    end
+
+    resources :clones
+    resources :masters
+    resources :wizards
+    resources :locations
+    resources :colocations
+    resources :orders
+    resources :groups
+    resources :templates
     resources :roles
     resources :users
+
+    resource :settings, only: [:edit, :update]
+    resource :config, only: [:edit, :update]
+    resource :dashboard, only: [:show]
 
     resource :checks, only: [] do
       collection do
         get :status
       end
     end
-
-    resource :settings, only: [:edit, :update]
-    resource :crm_config, only: [:edit, :update]
-
-    resource :dashboard, only: [:show]
   end
 
-  match 'cib/:cib_id/primitives/:id/monitor_intervals' => 'primitives#monitor_intervals', :as => :primitives_mi, via: [:get, :post]
-  match 'cib/:cib_id/primitives/new/types' => 'primitives#types', :as => :primitives_types, via: [:get, :post]
-  match 'cib/:cib_id/primitives/new/metadata' => 'primitives#metadata', :as => :primitives_metadata, via: [:get, :post]
-  match 'cib/:cib_id/nodes/:id/events' => 'nodes#events', :as => :node_events, via: [:get, :post]
-  match 'cib/:cib_id/resources/:id/events' => 'resources#events', :as => :resource_events, via: [:get, :post]
+  namespace :reports do
+    resources :heartbeats do
+      collection do
+        get :status
+      end
+    end
 
-  resources :hb_reports
-  match 'hb_reports/new/status' => 'hb_reports#status', :as => :hb_reports_status, via: [:get, :post]
+    resource :graph do
+      member do
+        get :gen
+      end
+    end
 
-  match 'wizard' => 'wizard#run', :as => :wizard, via: [:get, :post]
+    resource :explorer do
+      member do
+        get :diff
+      end
+    end
+  end
 
-  match 'explorer' => 'explorer#index', :as => :explorer, via: [:get, :post]
-  match 'explorer/get' => 'explorer#get', :as => :pe_get, via: [:get, :post]
-  match 'explorer/diff' => 'explorer#diff', :as => :pe_diff, via: [:get, :post]
 
-  match 'main' => 'main#index', :as => :default, via: [:get, :post]
-  match 'main/index' => 'main#index', :as => :index, via: [:get, :post]
+
+
+
   match 'main/status' => 'main#status', :as => :status, via: [:get, :post]
-  match 'main/gettext' => 'main#gettext', :as => :gettext, via: [:get, :post]
-  match 'main/resource/:op' => 'main#resource_op', :as => :resource_op, :op => /(start|stop|unmigrate|promote|demote|cleanup|manage|unmanage)/, via: [:post]
-  match 'main/resource/migrate' => 'main#resource_migrate', :as => :resource_migrate, via: [:post]
-  match 'main/resource/delete' => 'main#resource_delete', :as => :resource_delete, via: [:post]
-  match 'main/node/:op' => 'main#node_standby', :as => :node_standby, :op => /(standby|online)/, via: [:post]
-  match 'main/node/:op' => 'main#node_maintenance', :as => :node_maintenance, :op => /(maintenance|ready)/, via: [:post]
-  match 'main/node/fence' => 'main#node_fence', :as => :node_fence, via: [:post]
-  match 'main/ticket/grant' => 'main#ticket_grant', :as => :ticket_grant, via: [:post]
-  match 'main/ticket/revoke' => 'main#ticket_revoke', :as => :ticket_revoke, via: [:post]
   match 'main/sim_reset' => 'main#sim_reset', :as => :sim_reset, via: [:get, :post]
   match 'main/sim_run' => 'main#sim_run', :as => :sim_run, via: [:get, :post]
   match 'main/sim_get' => 'main#sim_get', :as => :sim_get, via: [:get, :post]
-  match 'main/graph_gen' => 'main#graph_gen', :as => :graph_gen, via: [:get, :post]
-  match 'main/graph_get' => 'main#graph_get', :as => :graph_get, via: [:get, :post]
 
-  match 'dashboard' => 'dashboard#index', :as => :dashboard, via: [:get, :post]
+
+
+
 
   get 'monitor' => 'pages#monitor', :as => :monitor
   get 'help' => 'pages#help', :as => :help
+
   get 'logout' => 'sessions#destroy', :as => :logout
   get 'login' => 'sessions#new', :as => :login
 

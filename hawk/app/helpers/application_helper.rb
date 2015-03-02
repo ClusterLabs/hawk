@@ -72,7 +72,7 @@ module ApplicationHelper
     }
   end
 
-  def active_menu_with(list)
+  def active_menu_with(*list)
     valid = if list.is_a? Array
       list
     else

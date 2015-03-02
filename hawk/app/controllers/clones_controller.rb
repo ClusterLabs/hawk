@@ -31,63 +31,143 @@
 
 class ClonesController < ApplicationController
   before_filter :login_required
-
-  before_filter :get_cib
-
-  def get_cib
-    # This is overkill - we actually only need the cib for its id,
-    # and for getting a list of primitives and groups that can be
-    # clone children when creating a new clone.
-    @cib = Cib.new params[:cib_id], current_user # RORSCAN_ITL (not mass assignment)
-  end
-
-  def initialize
-    super
-    @title = _('Edit Clone')
-  end
+  before_filter :set_title
+  before_filter :set_cib
+  before_filter :set_record, only: [:edit, :update, :destroy, :show]
 
   def new
     @title = _('Create Clone')
-    @res = Clone.new
-    @res.meta['target-role'] = 'Stopped' if @cib.id == 'live'
+    @clone = Clone.new
+    @clone.meta['target-role'] = 'Stopped' if @cib.id == 'live'
+
+    respond_to do |format|
+      format.html
+    end
   end
 
   def create
+    normalize_params! params[:clone]
     @title = _('Create Clone')
-    unless params[:cancel].blank?
-      redirect_to cib_resources_path
-      return
-    end
-    @res = Clone.new params[:clone]  # RORSCAN_ITL (mass ass. OK)
-    if @res.save
-      flash[:highlight] = _('Clone created successfully')
-      redirect_to :action => 'edit', :id => @res.id
-    else
-      render :action => 'new'
+
+    @clone = Clone.new params[:clone]
+
+    respond_to do |format|
+      if @clone.save
+        post_process_for! @clone
+
+        format.html do
+          flash[:success] = _('Clone created successfully')
+          redirect_to edit_cib_clone_url(cib_id: @cib.id, id: @clone.id)
+        end
+        format.json do
+          render json: @clone, status: :created
+        end
+      else
+        format.html do
+          render action: 'new'
+        end
+        format.json do
+          render json: @clone.errors, status: :unprocessable_entity
+        end
+      end
     end
   end
 
   def edit
-    @res = Clone.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
+    @title = _('Edit Clone')
+
+    respond_to do |format|
+      format.html
+    end
   end
 
   def update
-    unless params[:revert].blank?
-      redirect_to :action => 'edit'
-      return
+    normalize_params! params[:clone]
+    @title = _('Edit Clone')
+
+    if params[:revert]
+      return redirect_to edit_cib_clone_url(cib_id: @cib.id, id: @clone.id)
     end
-    unless params[:cancel].blank?
-      redirect_to cib_resources_path
-      return
-    end
-    @res = Clone.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
-    if @res.update_attributes(params[:clone])  # RORSCAN_ITL (mass ass. OK)
-      flash[:highlight] = _('Clone updated successfully')
-      redirect_to :action => 'edit', :id => @res.id
-    else
-      render :action => 'edit'
+
+    respond_to do |format|
+      if @clone.update_attributes(params[:clone])
+        post_process_for! @clone
+
+        format.html do
+          flash[:success] = _('Clone updated successfully')
+          redirect_to edit_cib_clone_url(cib_id: @cib.id, id: @clone.id)
+        end
+        format.json do
+          render json: @clone, status: :updated
+        end
+      else
+        format.html do
+          render action: 'edit'
+        end
+        format.json do
+          render json: @clone.errors, status: :unprocessable_entity
+        end
+      end
     end
   end
 
-end
+  def destroy
+    respond_to do |format|
+      if Invoker.instance.crm('--force', 'configure', 'delete', @clone.id)
+        format.html do
+          flash[:success] = _('Clone deleted successfully')
+          redirect_to types_cib_resources_path(cib_id: @cib.id)
+        end
+        format.json do
+          head :no_content
+        end
+      else
+        format.html do
+          flash[:alert] = _('Error deleting %s') % @clone.id
+          redirect_to edit_cib_clone_url(cib_id: @cib.id, id: @clone.id)
+        end
+        format.json do
+          render json: { error: _('Error deleting %s') % @clone.id }, status: :unprocessable_entity
+        end
+      end
+    end
+  end
 
+  def show
+    respond_to do |format|
+      format.json do
+        render json: @clone.to_json
+      end
+      format.any { not_found  }
+    end
+  end
+
+  protected
+
+  def set_title
+    @title = _('Clones')
+  end
+
+  def set_cib
+    @cib = Cib.new params[:cib_id], current_user
+  end
+
+  def set_record
+    @clone = Clone.find params[:id]
+
+    unless @clone
+      respond_to do |format|
+        format.html do
+          flash[:alert] = _('The clone does not exist')
+          redirect_to types_cib_resources_path(cib_id: @cib.id)
+        end
+      end
+    end
+  end
+
+  def post_process_for!(record)
+  end
+
+  def normalize_params!(current)
+  end
+end

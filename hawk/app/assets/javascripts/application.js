@@ -42,9 +42,8 @@ $(function() {
   $('[data-toggle="tooltip"]').tooltip();
   $('.nav-tabs').stickyTabs();
 
-  $('.navbar a.toggle').on('click', function(e) {
-    e.preventDefault();
-    $('#wrapper').toggleClass('toggled');
+  $('.navbar a.toggle').click(function () {
+    $('.row-offcanvas').toggleClass('active')
   });
 
   $.growl(
@@ -53,6 +52,49 @@ $(function() {
       element: '#content .container-fluid',
       mouse_over: 'pause',
       allow_dismiss: true
+    }
+  );
+
+  $('[data-help-target]').each(function() {
+    var $target = $(
+      $(this).data('help-target')
+    );
+
+    $target
+      .hide();
+
+    $(this).find('a').hover(
+      function() {
+        $target
+          .hide()
+          .filter($(this).data('help-filter'))
+          .show();
+      },
+      function() {
+        $target
+          .hide();
+      }
+    );
+  });
+
+  $(window).on(
+    'load resize',
+    function() {
+      var navHeight = $('.navbar-fixed-top').outerHeight();
+      var footHeight = $('footer').outerHeight();
+
+      var winHeight = $(window).outerHeight() - navHeight - footHeight;
+
+      var maxHeight = Math.max.apply(
+        null,
+        $('#sidebar, #middle, #rightbar').map(function() {
+          return $(this).height('auto').outerHeight();
+        }).get()
+      );
+
+      $('#sidebar, #middle, #rightbar').height(
+        winHeight > maxHeight ? winHeight : maxHeight
+      );
     }
   );
 });

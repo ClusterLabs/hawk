@@ -31,24 +31,24 @@
 
 class ConstraintsController < ApplicationController
   before_filter :login_required
+  before_filter :set_title
+  before_filter :set_cib
 
-  before_filter :get_cib
+  before_filter :god_required, only: [:events]
 
-  def get_cib
-    @cib = Cib.new params[:cib_id], current_user # RORSCAN_ITL (not mass assignment)
+  def types
+    respond_to do |format|
+      format.html
+    end
   end
 
-  def initialize
-    super
+  protected
+
+  def set_title
     @title = _('Constraints')
   end
 
-  def index
-    constraints = Constraint.all
-    @locations    = constraints.select {|c| c.class == Location}
-    @colocations  = constraints.select {|c| c.class == Colocation}
-    @orders       = constraints.select {|c| c.class == Order}
-    @tickets      = constraints.select {|c| c.class == Ticket}
+  def set_cib
+    @cib = Cib.new params[:cib_id], current_user
   end
-
 end

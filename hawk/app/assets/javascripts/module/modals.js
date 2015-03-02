@@ -33,7 +33,7 @@ $(function() {
   $('body').on('hidden.bs.modal', '.modal', function() {
     $(this)
       .removeData('bs.modal')
-      .find(".modal-content")
+      .find('.modal-content')
       .empty();
   });
 });

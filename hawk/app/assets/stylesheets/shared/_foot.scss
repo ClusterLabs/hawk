@@ -30,26 +30,24 @@
 //======================================================================
 
 footer {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
   background-color: #fff;
   padding: 20px 10px;
   border-top: 1px solid #999;
-  z-index: 950;
 
   .container-fluid {
-    p {
-      margin: 0;
-      display: inline-block;
-    }
+    .row {
+      p {
+        margin: 0;
+        display: inline-block;
+      }
 
-    .copyright {
-      text-align: left;
-    }
+      .copyright {
+        text-align: left;
+      }
 
-    .metadata {
-      text-align: right;
+      .metadata {
+        text-align: right;
+      }
     }
   }
 }

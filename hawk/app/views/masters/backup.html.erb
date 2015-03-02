@@ -1,0 +1,72 @@
+<% content_for :head do %>
+<%= stylesheet_link_tag 'ui.attrlist.css' %>
+<%= stylesheet_link_tag 'ui.panel.css' %>
+<%= javascript_include_tag 'jquery.ui.attrlist.js' %>
+<%= javascript_include_tag 'jquery.ui.panel.js' %>
+<% end %>
+<script type="text/javascript">
+
+var anything_changed = false;
+
+var r_meta = <%= Master.metadata.to_json.html_safe %>;
+
+function enable_apply() {
+  anything_changed = true;
+  if ($("#master_id").val() != "" && $("#master_child").val() != "") {
+    $("#master_submit").removeAttr("disabled");
+    $("#master_revert").removeAttr("disabled");
+  } else {
+    $("#master_submit").attr("disabled", "disabled");
+    $("#master_revert").attr("disabled", "disabled");
+  }
+}
+
+$(function() {
+  $("#master_id")
+    .bind("keyup change", function() {
+      enable_apply();
+    }).focus();
+  $("#master_child")
+    .bind("keyup change", function() {
+      enable_apply();
+    }).focus();
+  $("#meta").panel({ label: "<%=h escape_javascript _('Meta Attributes') %>", menu_icon: url_root + "/assets/transparent-16x16.gif" });
+  $("#meta").panel("body_element").attrlist({
+    all_attrs: r_meta.meta,
+    set_attrs: <%= @res.meta.to_json.html_safe %>,
+    prefix: "master[meta]",
+    labels: {
+      add: "<%= escape_javascript _('Add') %>",
+      remove: "<%= escape_javascript _('Remove') %>",
+      no_value: "<%= escape_javascript _('You must enter a value') %>"
+    },
+    dirty: function(event, info) {
+      // This might be a bit event-heavy
+      enable_apply();
+    }
+  });
+  if (!$("#meta").panel("body_element").attrlist("empty")) {
+    $("#meta").panel("expand");
+  }
+<%= render :partial => 'shared/confirm_revert', :locals => { :button_ids => '#master_revert,#master_cancel' } %>
+});
+</script>
+<%= form_for([ @cib, @res ]) do |f| %>
+<table>
+  <tr>
+    <th><%=h f.label :id, _('Master/Slave ID') %></th>
+    <th><%=h f.label :child, _('Child Resource') %></th>
+  </tr>
+  <tr>
+    <td><%= f.text_field :id %></td>
+    <td><%= f.select :child, options_for_select(([@res.child] + @cib.resources.select {|r|
+        !r.has_key?(:children) || (r.has_key?(:children) && r[:type] == 'group')
+      }.map{|r| r[:id] }).sort{|a,b| a.natcmp(b, true)}, @res.child) %></td>
+  </tr>
+  <tr>
+    <td colspan="4">
+      <div id="meta"></div>
+    </td>
+  </tr>
+</table>
+<% end %>

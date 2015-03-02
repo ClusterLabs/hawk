@@ -1,0 +1,20 @@
+.panel.panel-default
+  .panel-body
+    = form_for [cib, clone], horizontal: true do |main_form|
+      /= errors_for clone
+
+      /- if clone.new_record?
+      /  = main_form.text_field :id, label: _('Clone ID')
+      /- else
+      /  = main_form.text_field :id, label: _('Clone ID'), readonly: true
+
+      /= main_form.select :roles, :role_options, { include_hidden: false }, { multiple: true, size: 5 }
+
+      = main_form.button_group do
+        - if clone.new_record?
+          = create_button(main_form, clone)
+        - else
+          = apply_button(main_form, clone)
+          = revert_button(main_form, clone)
+
+        = link_to _('Back'), types_cib_resources_path(cib_id: cib.id), class: 'btn btn-default back'

@@ -30,7 +30,7 @@
 //======================================================================
 
 $(function() {
-  $('#settings #content form')
+  $('#settings #middle form')
     .find('.select')
       .multiselect({
         disableIfEmpty: true,

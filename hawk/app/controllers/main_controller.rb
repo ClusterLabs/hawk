@@ -60,17 +60,6 @@ class MainController < ApplicationController
 
   public
 
-  # Render cluster status by default
-  # (can't just render :action => 'status',
-  # or we don't get the instance variables)
-  def index
-    redirect_to :action => 'status'
-  end
-
-  def gettext
-    render :partial => 'gettext'
-  end
-
   def status
     @title = _('Cluster Status')
   end

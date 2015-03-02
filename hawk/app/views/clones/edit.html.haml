@@ -1,0 +1,10 @@
+.container-fluid
+  .row
+    %h1
+      = icon_text "copy", _("Edit Clone"), class: "page"
+      .pull-right
+        .btn-group{ role: "group" }
+          = link_to icon_text("trash", _("Delete clone")), cib_clone_path(cib_id: @cib.id, id: @clone.id), method: "delete", confirm: _("Are you sure you wish to delete %s?") % @clone.id, class: "btn btn-default"
+
+  .row
+    = render partial: "form", locals: { cib: @cib, clone: @clone }

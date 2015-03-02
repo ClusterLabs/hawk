@@ -1,0 +1,7 @@
+.container-fluid
+  .row
+    %h1
+      = icon_text "tasks", _("Create Colocation Constraint"), class: "page"
+
+  .row
+    = render partial: "form", locals: { cib: @cib, colocation: @colocation }

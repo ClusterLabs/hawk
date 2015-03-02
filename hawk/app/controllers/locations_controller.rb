@@ -31,58 +31,150 @@
 
 class LocationsController < ApplicationController
   before_filter :login_required
+  before_filter :set_title
+  before_filter :set_cib
+  before_filter :set_record, only: [:edit, :update, :destroy, :show]
 
-  before_filter :get_cib
-
-  def get_cib
-    @cib = Cib.new params[:cib_id], current_user # RORSCAN_ITL (not mass assignment)
-  end
-
-  def initialize
-    super
-    @title = _('Edit Location Constraint')
+  def index
+    respond_to do |format|
+      format.json do
+        render json: Location.ordered.to_json
+      end
+    end
   end
 
   def new
     @title = _('Create Location Constraint')
-    @loc = Location.new
+    @location = Location.new
+
+    respond_to do |format|
+      format.html
+    end
   end
 
   def create
+    normalize_params! params[:location]
     @title = _('Create Location Constraint')
-    unless params[:cancel].blank?
-      redirect_to cib_constraints_path
-      return
-    end
-    @loc = Location.new params[:location]  # RORSCAN_ITL (mass ass. OK)
-    if @loc.save
-      flash[:highlight] = _('Constraint created successfully')
-      redirect_to :action => 'edit', :id => @loc.id
-    else
-      render :action => 'new'
+
+    @location = Location.new params[:location]
+
+    respond_to do |format|
+      if @location.save
+        post_process_for! @location
+
+        format.html do
+          flash[:success] = _('Constraint created successfully')
+          redirect_to edit_cib_location_url(cib_id: @cib.id, id: @location.id)
+        end
+        format.json do
+          render json: @location, status: :created
+        end
+      else
+        format.html do
+          render action: 'new'
+        end
+        format.json do
+          render json: @location.errors, status: :unprocessable_entity
+        end
+      end
     end
   end
 
   def edit
-    @loc = Location.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
+    @title = _('Edit Location Constraint')
+
+    respond_to do |format|
+      format.html
+    end
   end
 
   def update
-    unless params[:revert].blank?
-      redirect_to :action => 'edit'
-      return
+    normalize_params! params[:location]
+    @title = _('Edit Location Constraint')
+
+    if params[:revert]
+      return redirect_to edit_cib_location_url(cib_id: @cib.id, id: @location.id)
     end
-    unless params[:cancel].blank?
-      redirect_to cib_constraints_path
-      return
-    end
-    @loc = Location.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
-    if @loc.update_attributes(params[:location])  # RORSCAN_ITL (mass ass. OK)
-      flash[:highlight] = _('Constraint updated successfully')
-      redirect_to :action => 'edit', :id => @loc.id
-    else
-      render :action => 'edit'
+
+    respond_to do |format|
+      if @location.update_attributes(params[:location])
+        post_process_for! @location
+
+        format.html do
+          flash[:success] = _('Constraint updated successfully')
+          redirect_to edit_cib_location_url(cib_id: @cib.id, id: @location.id)
+        end
+        format.json do
+          render json: @location, status: :updated
+        end
+      else
+        format.html do
+          render action: 'edit'
+        end
+        format.json do
+          render json: @location.errors, status: :unprocessable_entity
+        end
+      end
     end
   end
 
+  def destroy
+    respond_to do |format|
+      if Invoker.instance.crm('--force', 'configure', 'delete', @location.id)
+        format.html do
+          flash[:success] = _('Location deleted successfully')
+          redirect_to types_cib_constraints_url(cib_id: @cib.id)
+        end
+        format.json do
+          head :no_content
+        end
+      else
+        format.html do
+          flash[:alert] = _('Error deleting %s') % @location.id
+          redirect_to edit_cib_location_url(cib_id: @cib.id, id: @location.id)
+        end
+        format.json do
+          render json: { error: _('Error deleting %s') % @location.id }, status: :unprocessable_entity
+        end
+      end
+    end
+  end
+
+  def show
+    respond_to do |format|
+      format.json do
+        render json: @location.to_json
+      end
+      format.any { not_found  }
+    end
+  end
+
+  protected
+
+  def set_title
+    @title = _('Location Constraints')
+  end
+
+  def set_cib
+    @cib = Cib.new params[:cib_id], current_user
+  end
+
+  def set_record
+    @location = Location.find params[:id]
+
+    unless @location
+      respond_to do |format|
+        format.html do
+          flash[:alert] = _('The location constraint does not exist')
+          redirect_to types_cib_constraints_url(cib_id: @cib.id)
+        end
+      end
+    end
+  end
+
+  def post_process_for!(record)
+  end
+
+  def normalize_params!(current)
+  end
 end

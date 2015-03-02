@@ -30,7 +30,7 @@
 //======================================================================
 
 $(function() {
-  $('#roles #content table.roles')
+  $('#roles #middle table.roles')
     .bootstrapTable({
       method: 'get',
       url: Routes.cib_roles_path(

@@ -1,0 +1,20 @@
+.panel.panel-default
+  .panel-body
+    = form_for [cib, location], horizontal: true do |main_form|
+      /= errors_for location
+
+      /- if location.new_record?
+      /  = main_form.text_field :id, label: _('Location ID')
+      /- else
+      /  = main_form.text_field :id, label: _('Location ID'), readonly: true
+
+      /= main_form.select :roles, :role_options, { include_hidden: false }, { multiple: true, size: 5 }
+
+      = main_form.button_group do
+        - if location.new_record?
+          = create_button(main_form, location)
+        - else
+          = apply_button(main_form, location)
+          = revert_button(main_form, location)
+
+        = link_to _('Back'), types_cib_constraints_path(cib_id: cib.id), class: 'btn btn-default back'

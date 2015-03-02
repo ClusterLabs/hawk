@@ -1,42 +1,42 @@
 !!!
 
-%html{ lang: I18n.locale }
+%html{ lang: I18n.locale.to_s.gsub("-", "_") }
   %head
     %title
       = meta_title
 
     = current_metatags
 
-    %link{ href: image_path('favicon.png'), rel: 'shortcut icon' }
+    %link{ href: image_path("favicon.png"), rel: "shortcut icon" }
 
-    = stylesheet_link_tag 'vendor'
-    = stylesheet_link_tag 'authentication'
+    = stylesheet_link_tag "vendor"
+    = stylesheet_link_tag "authentication"
 
     = yield :stylesheets
 
-    = javascript_include_tag 'vendor'
-    = javascript_include_tag 'authentication'
+    = javascript_include_tag "vendor"
+    = javascript_include_tag "authentication"
     = javascript_include_tag localized_js
 
     = yield :javascripts
 
     /[if lt IE 9]
-      = stylesheet_link_tag 'ie'
-      = javascript_include_tag 'ie'
+      = stylesheet_link_tag "ie"
+      = javascript_include_tag "ie"
 
   %body{ id: controller_name }
     #content.container.darkbar
       %noscript
-        .alert.alert-warning{ role: 'alert' }
-          = _('Please ensure Javascript is enabled')
+        .alert.alert-warning{ role: "alert" }
+          = _("Please ensure Javascript is enabled")
 
       %p.logo
-        = image_tag 'logo/white.png', alt: _('SUSE, LLC')
+        = image_tag "logo/white.png", alt: _("SUSE, LLC")
 
       %h2
-        = link_to _('High Availability Web Konsole'), login_path
+        = link_to _("High Availability Web Konsole"), login_path
 
-      = render partial: 'shared/flash', locals: { flash: flash }
+      = render partial: "shared/flash", locals: { flash: flash }
       = yield
 
     %footer
@@ -45,4 +45,4 @@
           %p
             = branding_config[:provider].html_safe
 
-    = render partial: 'shared/modal'
+    = render partial: "shared/modal"

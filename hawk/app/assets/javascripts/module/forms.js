@@ -30,7 +30,7 @@
 //======================================================================
 
 $(function() {
-  $('#content form')
+  $('#middle form')
     .on('keyup', 'input, select', function(e) {
       $(e.delegateTarget)
         .find('[name="revert"]')

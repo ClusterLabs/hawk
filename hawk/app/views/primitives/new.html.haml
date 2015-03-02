@@ -1,0 +1,7 @@
+.container-fluid
+  .row
+    %h1
+      = icon_text "file-o", _("Create Primitive"), class: "page"
+
+  .row
+    = render partial: "form", locals: { cib: @cib, primitive: @primitive }

@@ -1,0 +1,7 @@
+.container-fluid
+  .row
+    %h1
+      = icon_text "ticket", _("Create Ticket Constraint"), class: "page"
+
+  .row
+    = render partial: "form", locals: { cib: @cib, ticket: @ticket }

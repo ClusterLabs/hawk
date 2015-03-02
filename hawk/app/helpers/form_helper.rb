@@ -30,6 +30,31 @@
 #======================================================================
 
 module FormHelper
+  def revert_button(form, record)
+    form.submit(
+      _('Revert'),
+      class: 'btn btn-default cancel revert simple-hidden',
+      name: 'revert',
+      confirm: _('Any changes will be lost - do you wish to proceed?')
+    )
+  end
+
+  def apply_button(form, record)
+    form.submit(
+      _('Apply'),
+      class: 'btn btn-primary submit',
+      name: 'submit'
+    )
+  end
+
+  def create_button(form, record)
+    form.submit(
+      _('Create'),
+      class: 'btn btn-primary submit',
+      name: 'submit'
+    )
+  end
+
   def errors_for(record)
     unless record.errors[:base].empty?
       content_tag(
