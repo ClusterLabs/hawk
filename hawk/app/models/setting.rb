@@ -41,8 +41,10 @@ class Setting < Tableless
         )
 
         result = I18n.available_locales.map do |locale|
-          locale.to_s.gsub! '-', '_'
-          [locale, languages[locale]]
+          [
+            locale.to_s.gsub('_', '-'),
+            languages[locale.to_s.gsub('-', '_')]
+          ]
         end.sort_by { |v| v.first.to_s }
 
         ActiveSupport::OrderedHash[result].symbolize_keys

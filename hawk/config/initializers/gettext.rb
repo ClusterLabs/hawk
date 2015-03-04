@@ -38,7 +38,7 @@ FastGettext.tap do |config|
   config.add_text_domain 'hawk', path: Rails.root.join('locale').to_s
 
   config.default_text_domain = 'hawk'
-  config.default_available_locales = ['en-US']
+  config.default_available_locales = ['en-US'.to_sym]
 
   Dir[Rails.root.join('locale', '*', 'LC_MESSAGES', '*.mo').to_s].each do |l|
     next unless l.match(/\/([^\/]+)\/LC_MESSAGES\/.*\.mo$/)

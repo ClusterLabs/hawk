@@ -180,7 +180,7 @@ class RolesController < ApplicationController
     if check
       flash.now[:warning] = view_context.link_to(
         _('To enable ACLs, set \'enable-acl\' in the CRM Configuration'),
-        edit_cib_crm_config_path(cib_id: @cib.id)
+        edit_cib_config_path(cib_id: @cib.id)
       )
     end
 
