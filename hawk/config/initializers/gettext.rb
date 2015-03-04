@@ -38,7 +38,8 @@ FastGettext.tap do |config|
   config.add_text_domain 'hawk', path: Rails.root.join('locale').to_s
 
   config.default_text_domain = 'hawk'
-  config.default_available_locales = ['en-US'.to_sym]
+  config.default_locale = 'en_US'
+  config.default_available_locales = ['en_US']
 
   Dir[Rails.root.join('locale', '*', 'LC_MESSAGES', '*.mo').to_s].each do |l|
     next unless l.match(/\/([^\/]+)\/LC_MESSAGES\/.*\.mo$/)
@@ -55,5 +56,5 @@ I18n::Backend::Simple.include(
 I18n.fallbacks['en_US'.to_sym] = ['en-US'.to_sym, :en]
 I18n.fallbacks['en_GB'.to_sym] = ['en-GB'.to_sym, :en]
 I18n.fallbacks['pt_BR'.to_sym] = ['pt-BR'.to_sym, :pt]
-I18n.fallbacks['zh_CN'.to_sym] = ['zh-CN'.to_sym]
-I18n.fallbacks['zh_TW'.to_sym] = ['zh-TW'.to_sym]
+I18n.fallbacks['zh_CN'.to_sym] = ['zh-CN'.to_sym, :cn]
+I18n.fallbacks['zh_TW'.to_sym] = ['zh-TW'.to_sym, :cn]

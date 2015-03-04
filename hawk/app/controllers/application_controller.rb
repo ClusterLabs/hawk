@@ -144,9 +144,20 @@ class ApplicationController < ActionController::Base
   end
 
   def set_users_locale
+    available = [
+      params[:locale],
+      cookies[:locale],
+      request.env['HTTP_ACCEPT_LANGUAGE'],
+      default_locale
+    ].compact.first
+
     I18n.locale = FastGettext.set_locale(
-      params[:locale] || cookies[:locale] || request.env['HTTP_ACCEPT_LANGUAGE'] || 'en-US'
+      available
     )
+
+    unless cookies[:locale] == FastGettext.locale
+      cookies[:locale] = FastGettext.locale
+    end
   end
 
   def set_current_home
@@ -235,5 +246,9 @@ class ApplicationController < ActionController::Base
 
   def not_found
     raise ActionController::RoutingError.new
+  end
+
+  def default_locale
+    'en-US'
   end
 end

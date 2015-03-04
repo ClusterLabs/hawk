@@ -77,10 +77,16 @@ class SettingsController < ApplicationController
   end
 
   def post_process_for!(record)
-    if record.language.to_s.empty?
-      cookies.delete :locale
+    locale = if record.language.to_s.empty?
+      default_locale
     else
-      cookies[:locale] = record.language
-    end
+      record.language
+    end.gsub("_", "-")
+
+    cookies[:locale] = locale
+
+    I18n.locale = FastGettext.set_locale(
+      locale
+    )
   end
 end

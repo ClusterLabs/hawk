@@ -40,26 +40,32 @@ class Setting < Tableless
           ).to_s
         )
 
-        result = I18n.available_locales.map do |locale|
+        result = FastGettext.available_locales.map do |locale|
           [
-            locale.to_s.gsub('_', '-'),
-            languages[locale.to_s.gsub('-', '_')]
+            locale.to_s,
+            languages[locale]
           ]
         end.sort_by { |v| v.first.to_s }
 
-        ActiveSupport::OrderedHash[result].symbolize_keys
+        ActiveSupport::OrderedHash[result]
       end
     end
   end
 
-  attribute :language, String, default: ::I18n.locale
+  attribute :language, String, default: FastGettext.locale
 
   validates :language,
     presence: {
-      message: _('Language is required')
+      message: _('is required')
     },
     inclusion: {
-      in: available_languages.keys.map(&:to_s),
-      message: "Is not a valid language"
+      in: available_languages.keys,
+      message: "not a valid language"
     }
+
+  protected
+
+  def persist!
+    true
+  end
 end
