@@ -17,8 +17,8 @@ Environment="HAWK_THREADS=16"
 Environment="HAWK_WORKERS=3"
 Environment="HAWK_LISTEN=0.0.0.0"
 Environment="HAWK_PORT=7630"
-Environment="HAWK_KEY=/etc/ssl/hawk.pem"
-Environment="HAWK_CERT=/etc/ssl/hawk.key"
+Environment="HAWK_KEY=/etc/ssl/certs/hawk.pem"
+Environment="HAWK_CERT=/etc/ssl/certs/hawk.key"
 EnvironmentFile=-/etc/sysconfig/hawk
 
 ExecStartPre=@WWW_BASE@/hawk/bin/generate-ssl-cert
