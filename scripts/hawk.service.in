@@ -21,6 +21,8 @@ Environment="HAWK_KEY=/etc/ssl/certs/hawk.pem"
 Environment="HAWK_CERT=/etc/ssl/certs/hawk.key"
 EnvironmentFile=-/etc/sysconfig/hawk
 
+# Run ExecStartPre with root-permissions
+PermissionsStartOnly=true
 ExecStartPre=@WWW_BASE@/hawk/bin/generate-ssl-cert
 ExecStart=/usr/bin/puma -C @WWW_BASE@/hawk/config/puma.rb
 ExecStop=/usr/bin/pumactl -S @WWW_BASE@/hawk/tmp/pids/puma.state stop
