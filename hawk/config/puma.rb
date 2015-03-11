@@ -59,10 +59,11 @@ worker_timeout 60
 pidfile File.join(ROOT, "tmp", "pids", "puma.pid")
 state_path File.join(ROOT, "tmp", "pids", "puma.state")
 
-ssl_bind LISTEN, PORT, {
-  cert: CERT,
-  key: KEY
-}
+if ENVIRONMENT == "development"
+  bind "tcp://#{LISTEN}:#{PORT}"
+else
+  ssl_bind LISTEN, PORT, { cert: CERT, key: KEY }
+end
 
 [
   "tmp/pids",
