@@ -39,7 +39,6 @@ ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
 if File.exists? ENV['BUNDLE_GEMFILE']
   require 'bundler/setup'
   require 'active_model/railtie'
-  require 'active_job/railtie'
   require 'action_controller/railtie'
   require 'action_view/railtie'
   require 'sprockets/railtie'
@@ -48,7 +47,11 @@ if File.exists? ENV['BUNDLE_GEMFILE']
   Bundler.require(*Rails.groups)
 else
   gem 'rails', version: '~> 4.2.0'
-  require 'rails/all'
+  require 'active_model/railtie'
+  require 'action_controller/railtie'
+  require 'action_view/railtie'
+  require 'sprockets/railtie'
+  require 'rails/test_unit/railtie'
 
   gem 'puma', version: '~> 2.11.1'
   require 'puma'
