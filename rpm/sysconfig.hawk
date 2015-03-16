@@ -44,15 +44,15 @@ HAWK_PORT="7630"
 ## Path:            Cluster/Hawk
 ## Description:     SSL key used by the web server
 ## Type:            string
-## Default:         /etc/ssl/certs/hawk.key
+## Default:         /etc/hawk/hawk.key
 ## ServiceRestart:  hawk
 # Configures an SSL key that the Hawk web server presents.
-HAWK_KEY="/etc/ssl/certs/hawk.key"
+HAWK_KEY="/etc/hawk/hawk.key"
 
 ## Path:            Cluster/Hawk
 ## Description:     SSL certificate used by the web server
-## Type:            integer
-## Default:         /etc/ssl/certs/hawk.pem
+## Type:            string
+## Default:         /etc/hawk/hawk.pem
 ## ServiceRestart:  hawk
 # Configures an SSL certificate that the Hawk web server presents.
-HAWK_CERT="/etc/ssl/certs/hawk.pem"
+HAWK_CERT="/etc/hawk/hawk.pem"
