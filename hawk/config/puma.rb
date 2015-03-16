@@ -38,8 +38,8 @@ WORKERS = ENV["HAWK_WORKERS"] || 3
 LISTEN = ENV["HAWK_LISTEN"] || "0.0.0.0"
 PORT = ENV["HAWK_PORT"] || "7630"
 
-KEY = ENV["HAWK_KEY"] || "/etc/ssl/certs/hawk.key"
-CERT = ENV["HAWK_CERT"] || "/etc/ssl/certs/hawk.pem"
+KEY = ENV["HAWK_KEY"] || "/etc/hawk/hawk.key"
+CERT = ENV["HAWK_CERT"] || "/etc/hawk/hawk.pem"
 
 directory ROOT
 environment ENVIRONMENT

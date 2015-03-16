@@ -60,7 +60,7 @@ mkdir -p $(dirname $cert_key_file)
 mkdir -p $(dirname $cert_file)
 
 old_mask=$(umask)
-umask 177
+umask 137
 
 CN=$(hostname -f)
 
@@ -86,6 +86,8 @@ if [ $rc -eq 0 ]; then
 else
   echo "Could not generate certificate. Please see $log_file for details"
 fi
+
+chown root:haclient $cert_key_file $cert_file
 
 umask $old_mask
 exit $rc
