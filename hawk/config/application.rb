@@ -42,6 +42,9 @@ module Hawk
 
     config.active_support.escape_html_entities_in_json = true
 
+    config.app_middleware.delete 'ActiveRecord::ConnectionAdapters::ConnectionManagement'
+    config.app_middleware.delete 'ActiveRecord::QueryCache'
+
     config.middleware.use 'PerRequestCache'
 
     config.generators do |g|
