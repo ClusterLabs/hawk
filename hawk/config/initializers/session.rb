@@ -31,7 +31,7 @@
 
 Rails.application.config.tap do |config|
   config.session_store :cookie_store, {
-    key: 'hawk',
+    key: Rails.env == "production" ? 'hawk' : 'hawk-development',
 
     # Allow session cookie to persist for a (somewhat arbitrary) ten days.
     # This means when using the dashboard you won't be required to log in
