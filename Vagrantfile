@@ -4,6 +4,7 @@
 Vagrant.configure("2") do |config|
   config.vm.box = "webhippie/opensuse-13.2"
   config.vm.box_check_update = true
+  config.ssh.insert_key = false
 
   config.vm.define "webui", default: true do |machine|
     machine.vm.hostname = "webui"
