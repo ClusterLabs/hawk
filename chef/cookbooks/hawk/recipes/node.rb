@@ -42,7 +42,7 @@ ruby_block "webui_check" do
               end
             end
           rescue Errno::EHOSTUNREACH => e
-            Chef::Log.info "Waiting to become available webui..."
+            Chef::Log.info "Waiting for webui to become available..."
           end
 
           case
