@@ -14,16 +14,6 @@ run_list(
 )
 
 default_attributes({
-  "zypper" => {
-    "repos" => [
-      {
-        "title" => "Network HA Clustering",
-        "alias" => "network-ha-clustering",
-        "uri" => "http://download.opensuse.org/repositories/network:/ha-clustering:/Factory/openSUSE_13.2/",
-        "key" => "http://download.opensuse.org/repositories/network:/ha-clustering:/Factory/openSUSE_13.2/repodata/repomd.xml.key"
-      }
-    ]
-  },
   "sudo" => {
     "users" => [
       {
