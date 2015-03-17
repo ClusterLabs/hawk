@@ -32,8 +32,8 @@
 ROOT = File.expand_path("../../", __FILE__)
 ENVIRONMENT = ENV["HAWK_ENV"] || "production"
 
-THREADS = ENV["HAWK_THREADS"] || 16
-WORKERS = ENV["HAWK_WORKERS"] || 3
+THREADS = ENV["HAWK_THREADS"] || 5
+WORKERS = ENV["HAWK_WORKERS"] || 2
 
 LISTEN = ENV["HAWK_LISTEN"] || "0.0.0.0"
 PORT = ENV["HAWK_PORT"] || "7630"
