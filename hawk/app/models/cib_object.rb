@@ -59,7 +59,7 @@ class CibObject
   end
 
   def errors
-    @errors ||= []
+    @errors ||= {}
   end
 
   def save
@@ -168,8 +168,8 @@ class CibObject
   protected
 
   def error(msg)
-    @errors ||= []
-    @errors << msg
+    @errors[:base] ||= []
+    @errors[:base] << msg
   end
 
   def initialize(attributes = nil)

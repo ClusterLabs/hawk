@@ -321,7 +321,7 @@ $(function() {
 <% flash.each do |flash_type, message| %>
   <div id="flash-<%= flash_type %>" class="ui-state-<%= flash_type %> ui-corner-all" style="padding: 0.5em; margin-bottom: 0.5em;"><%=h message %></div>
 <% end %>
-<% @res.errors.each do |message| %>
+<% @res.errors.values.flatten.each do |message| %>
   <div class="ui-state-error ui-corner-all" style="padding: 0.5em; margin-bottom: 0.5em;"><%=raw inject_linebreaks(message) %></div>
 <% end %>
 <table>
