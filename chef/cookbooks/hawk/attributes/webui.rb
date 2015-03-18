@@ -26,22 +26,24 @@ default["hawk"]["webui"]["packages"] = [
   #"ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-sprockets",
   #"ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-tilt-1_4",
 
+  "hawk",
+  "hawk-templates",
+  "ha-cluster-bootstrap",
+  "w3m",
+
   # Development dependencies
+
+  "glib2-devel",
+  "libxml2-devel",
+  "pam-devel",
+  "libpacemaker-devel",
+
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-gettext",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-byebug",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-web-console",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-spring",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-quiet_assets",
 
-  "hawk",
-  "hawk-templates",
-  "ha-cluster-bootstrap",
-  "w3m",
-
-  "glib2-devel",
-  "libxml2-devel",
-  "pam-devel",
-  "libpacemaker-devel"
 ]
 
 default["hawk"]["webui"]["targets"] = %w(
