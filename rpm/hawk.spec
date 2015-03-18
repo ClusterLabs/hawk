@@ -16,14 +16,6 @@
 #
 
 
-%if 0%{?suse_version} == 1110 || 0%{?suse_version} == 1310 || 0%{?suse_version} == 1315
-%define hawk_ruby_bin ruby.ruby2.1
-%define hawk_ruby_abi ruby:2.1.0
-%else
-%define hawk_ruby_bin ruby
-%define hawk_ruby_abi %{rb_default_ruby_abi}
-%endif
-
 %if 0%{?suse_version}
 %define	www_base	/srv/www
 %define	vendor_ruby	vendor_ruby
@@ -47,15 +39,10 @@ Name:           hawk
 Summary:        HA Web Konsole
 License:        GPL-2.0
 Group:          %{pkg_group}
-Version:        0.7.0+git.1424349779.eb17098
+Version:        0.7.0+git.1426603924.3cb835b
 Release:        0
 Url:            http://www.clusterlabs.org/wiki/Hawk
 Source:         %{name}-%{version}.tar.bz2
-%if 0%{?suse_version}
-Source1:        filter-requires.sh
-%define         _use_internal_dependency_generator 0
-%define         __find_requires /bin/sh %{SOURCE1}
-%endif
 Source100:      hawk-rpmlintrc
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
 Requires:       crmsh
@@ -67,7 +54,7 @@ Requires:       pacemaker >= 1.1.8
 Requires:       rubypick
 BuildRequires:  rubypick
 %endif
-Requires:       rubygem(%{hawk_ruby_abi}:bundler)
+Requires:       rubygem(%{rb_default_ruby_abi}:bundler)
 %if 0%{?suse_version}
 Recommends:     graphviz-gnome
 Requires:       iproute2
@@ -83,29 +70,31 @@ Requires:       iproute
 BuildRequires:  pacemaker-libs-devel
 %endif
 
-BuildRequires:  rubygem(%{hawk_ruby_abi}:byebug) >= 3.5
-BuildRequires:  rubygem(%{hawk_ruby_abi}:fast_gettext) >= 0.9
-BuildRequires:  rubygem(%{hawk_ruby_abi}:gettext) >= 3.1
-BuildRequires:  rubygem(%{hawk_ruby_abi}:gettext_i18n_rails) >= 1.2
-BuildRequires:  rubygem(%{hawk_ruby_abi}:puma) >= 2.11
-BuildRequires:  rubygem(%{hawk_ruby_abi}:quiet_assets)
-BuildRequires:  rubygem(%{hawk_ruby_abi}:rails) >= 4.2
-BuildRequires:  rubygem(%{hawk_ruby_abi}:rake) >= 10.4
-BuildRequires:  rubygem(%{hawk_ruby_abi}:spring) >= 1.3
-BuildRequires:  rubygem(%{hawk_ruby_abi}:sprockets) >= 2.12
-BuildRequires:  rubygem(%{hawk_ruby_abi}:tilt) >= 1.4
-BuildRequires:  rubygem(%{hawk_ruby_abi}:web-console) >= 2.0
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:byebug) >= 3.5
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:fast_gettext) >= 0.9
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:gettext) >= 3.1
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:gettext_i18n_rails) >= 1.2
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:puma) >= 2.11
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:quiet_assets)
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:rails) >= 4.2
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:rake) >= 10.4
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:spring) >= 1.3
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:sprockets) >= 2.12
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:tilt) < 2.0
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:tilt) >= 1.4
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:web-console) >= 2.0
 %if 0%{?bundle_gems}
 %else
 # SLES bundles all this stuff at build time, other distros just
 # use runtime dependencies.
-Requires:       rubygem(%{hawk_ruby_abi}:fast_gettext) >= 0.9
-Requires:       rubygem(%{hawk_ruby_abi}:gettext_i18n_rails) >= 1.2
-Requires:       rubygem(%{hawk_ruby_abi}:puma) >= 2.11
-Requires:       rubygem(%{hawk_ruby_abi}:rails) >= 4.2
-Requires:       rubygem(%{hawk_ruby_abi}:rake) >= 10.4
-Requires:       rubygem(%{hawk_ruby_abi}:sprockets) >= 2.12
-Requires:       rubygem(%{hawk_ruby_abi}:tilt) >= 1.4
+Requires:       rubygem(%{rb_default_ruby_abi}:fast_gettext) >= 0.9
+Requires:       rubygem(%{rb_default_ruby_abi}:gettext_i18n_rails) >= 1.2
+Requires:       rubygem(%{rb_default_ruby_abi}:puma) >= 2.11
+Requires:       rubygem(%{rb_default_ruby_abi}:rails) >= 4.2
+Requires:       rubygem(%{rb_default_ruby_abi}:rake) >= 10.4
+Requires:       rubygem(%{rb_default_ruby_abi}:sprockets) >= 2.12
+Requires:       rubygem(%{rb_default_ruby_abi}:tilt) < 2.0
+Requires:       rubygem(%{rb_default_ruby_abi}:tilt) >= 1.4
 %endif
 
 BuildRequires:  glib2-devel
@@ -178,6 +167,8 @@ find %{buildroot}%{www_base}/hawk -type f -name '.git*' -print0 | xargs --no-run
 %{__ln_s} -f %{_sbindir}/service %{buildroot}%{_sbindir}/rchawk
 %endif
 
+install -p -d -m 755 %{buildroot}%{_sysconfdir}/hawk
+
 %clean
 rm -rf %{buildroot}
 
@@ -215,8 +206,8 @@ rm -rf %{buildroot}
 %{www_base}/hawk/config
 # Packaged in hawk-templates
 %exclude %{www_base}/hawk/config/wizard
-%{www_base}/hawk/db
 %{www_base}/hawk/lib
+%attr(0750, %{uname},%{gname})%{_sysconfdir}/hawk
 %attr(0750, %{uname},%{gname})%{www_base}/hawk/log
 %dir %attr(0750, %{uname},%{gname})%{www_base}/hawk/tmp
 %attr(0750, %{uname},%{gname})%{www_base}/hawk/tmp/cache
