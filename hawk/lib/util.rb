@@ -304,6 +304,11 @@ module Util
       PerRequestCache.fetch(:has_acl_support) {
         %x[/usr/sbin/cibadmin -!].split(/\s+/).include?("acls")
       }
+    when :tags
+      PerRequestCache.fetch(:has_tags) {
+        %x[/usr/sbin/cibadmin -Ql -A /cib/configuration/tags >/dev/null 2>&1]
+        $?.exitstatus == 0
+      }
     else
       false
     end

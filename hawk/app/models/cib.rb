@@ -223,7 +223,7 @@ class Cib < CibObject
   # use for reporting errors when editing resources.  This
   # should almost certainly be changed.
   attr_reader :dc, :epoch, :nodes, :resources, :templates, :crm_config, :rsc_defaults, :op_defaults, :errors, :resource_count
-  attr_reader :tickets
+  attr_reader :tickets, :tags
   attr_reader :resources_by_id
   attr_reader :booth
 
@@ -338,6 +338,14 @@ class Cib < CibObject
         :type => t.attributes['type']
       }
     end if Util.has_feature?(:rsc_template)
+
+    @tags = []
+    @xml.elements.each('cib/configuration/tags/tag') do |t|
+      @tags << {
+        :id => t.attributes['id'],
+        :refs => t.elements.map { |ref| ref.attributes['id'] }
+      }
+    end if Util.has_feature?(:tags)
 
     # Iterate nodes in cib order here which makes the faked up clone & ms instance
     # IDs be in the same order as pacemaker
