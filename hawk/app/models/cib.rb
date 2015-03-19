@@ -228,7 +228,7 @@ class Cib < CibObject
   attr_reader :booth
 
   def initialize(id, user, use_file = false)
-    @errors = []
+    @errors = {}
 
     if use_file
       cib_path = id
@@ -481,7 +481,8 @@ class Cib < CibObject
             end
 
             failed_ops << { :node => node[:uname], :call_id => op.attributes['call-id'], :op => operation, :rc_code => rc_code, :exit_reason => exit_reason }
-            @errors << {
+            @errors[:base] ||= []
+            @errors[:base] << {
               :msg => _('Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}, exit-reason=%{exit_reason}') % {
                 :node => node[:uname], :resource => id, :call_id => op.attributes['call-id'],
                 :op => operation, :rc_code => rc_code, :exit_reason => exit_reason },
