@@ -71,6 +71,7 @@ class Cib < CibObject
       res[:class]     = elem.attributes['class']
       res[:provider]  = elem.attributes['provider'] # This will be nil for LSB resources
       res[:type]      = elem.attributes['type']
+      res[:template]  = elem.attributes['template']
       res[:instances] = {}
       # This is a bit of a hack to ensure we have a complete set of instances later
       res[:clone_max] = clone_max if clone_max
@@ -291,6 +292,7 @@ class Cib < CibObject
     @nodes = []
     @xml.elements.each('cib/configuration/nodes/node') do |n|
       uname = n.attributes['uname']
+      id = n.attributes['id']
       state = :unclean
       maintenance = @crm_config[:"maintenance-mode"] ? true : false
       ns = @xml.elements["cib/status/node_state[@uname='#{uname}']"]
@@ -315,6 +317,7 @@ class Cib < CibObject
       @nodes << {
         :uname => uname,
         :state => state,
+        :id => id,
         :maintenance => maintenance
       }
     end
