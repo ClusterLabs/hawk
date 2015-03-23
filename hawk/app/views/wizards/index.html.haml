@@ -3,4 +3,20 @@
     %h1
       = icon_text "magic", _("Choose a wizard"), class: "page"
 
-  .row
+  .row{ data: { help_target: "#rightbar > .container-fluid > *" } }
+    %ul.nav.nav-pills.nav-stacked.nav-bighelp.nav-topspace
+      - workflows.each do |workflow, attrs|
+        %li
+          = link_to cib_wizard_path(cib_id: current_cib.id, id: attrs[:id]), data: { help_filter: ".#{attrs[:id]}" }, class: "btn btn-default btn-lg" do
+            = icon_text "file-o", attrs[:name]
+            .pull-right
+              = icon_tag "plus-circle"
+
+- content_for :rightbar do
+  .container-fluid
+    - workflows.each do |workflow, attrs|
+      .row{ class: attrs[:id] }
+        %h2.margin-bottom
+          = attrs[:name]
+
+        = simple_format attrs[:description]
