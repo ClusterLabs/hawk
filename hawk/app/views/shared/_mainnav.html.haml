@@ -1,0 +1,41 @@
+%ul.nav.sidebar-nav
+  %li
+    %ul
+      %li{ class: active_menu_with(:dashboards) }
+        = link_to _("Dashboard"), cib_dashboard_path(cib_id: current_cib.id)
+
+  %li
+    = _("Report")
+
+    %ul
+      %li
+        = link_to _("Heartbeat"), "#"
+      %li
+        = link_to _("Graph"), "#"
+      %li
+        = link_to _("History"), "#"
+
+  %li
+    = _("Resources")
+
+    %ul
+      %li{ class: active_menu_with(:resources, :primitives, :clones, :masters, :wizards) }
+        = link_to _("Add resource"), types_cib_resources_path(cib_id: current_cib.id)
+      %li{ class: active_menu_with(:constraints, :locations, :colocations, :orders, :tickets) }
+        = link_to _("Add constraint"), types_cib_constraints_path(cib_id: current_cib.id)
+      %li{ class: active_menu_with(:templates) }
+        = link_to _("Add template"), new_cib_template_path(cib_id: current_cib.id)
+
+  %li
+    = _("Manage")
+
+    %ul
+      %li{ class: active_menu_with(:configs) }
+        = link_to _("Configuration"), edit_cib_crm_config_path(cib_id: current_cib.id)
+
+      - if Util.has_feature? :acl_support
+        %li{ class: active_menu_with(:roles) }
+          = link_to _("Roles"), cib_roles_path(cib_id: current_cib.id)
+      - if Util.has_feature? :acl_support
+        %li{ class: active_menu_with(:users) }
+          = link_to _("Users"), cib_users_path(cib_id: current_cib.id)

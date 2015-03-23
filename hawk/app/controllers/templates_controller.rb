@@ -177,4 +177,8 @@ class TemplatesController < ApplicationController
 
   def normalize_params!(current)
   end
+
+  def default_base_layout
+    "withrightbar"
+  end
 end

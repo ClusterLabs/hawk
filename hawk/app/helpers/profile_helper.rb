@@ -29,34 +29,32 @@
 #
 #======================================================================
 
-class ConstraintsController < ApplicationController
-  before_filter :login_required
-  before_filter :set_title
-  before_filter :set_cib
-
-  before_filter :god_required, only: [:events]
-
-  def types
-    respond_to do |format|
-      format.html
+module ProfileHelper
+  def language_options(selected)
+    options = Profile.available_languages.to_a.map do |v|
+      v.reverse
     end
+
+    options_for_select(
+      options,
+      selected
+    )
   end
 
-  protected
-
-  def set_title
-    @title = _('Constraints')
+  def profile_revert_button(form, role)
+    form.submit(
+      _('Revert'),
+      class: 'btn btn-default cancel revert',
+      name: 'revert',
+      confirm: _('Any changes will be lost - do you wish to proceed?')
+    )
   end
 
-  def set_cib
-    @cib = Cib.new params[:cib_id], current_user
-  end
-
-  def default_base_layout
-    if params[:action] == "types"
-      "withrightbar"
-    else
-      super
-    end
+  def profile_apply_button(form, role)
+    form.submit(
+      _('Apply'),
+      class: 'btn btn-primary submit',
+      name: 'submit'
+    )
   end
 end

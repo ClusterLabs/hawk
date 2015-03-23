@@ -1,9 +1,9 @@
 - flash.each do |key, message|
-  .alert.alert-dismissible{ class: flash_class_for(key), role: 'alert' }
-    %button.close{ type: 'button', data: { dismiss: 'alert' } }
+  .alert.alert-dismissible{ class: flash_class_for(key), role: "alert" }
+    %button.close{ type: "button", data: { dismiss: "alert" } }
       %span{ aria: { hidden: "true" } }
         &times;
       %span.sr-only
-        = _('Close')
+        = _("Close")
 
     = simple_format message

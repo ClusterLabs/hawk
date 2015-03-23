@@ -54,4 +54,12 @@ class ResourcesController < ApplicationController
   def set_cib
     @cib = Cib.new params[:cib_id], current_user
   end
+
+  def default_base_layout
+    if params[:action] == "types"
+      "withrightbar"
+    else
+      super
+    end
+  end
 end

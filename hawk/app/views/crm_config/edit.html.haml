@@ -1,0 +1,41 @@
+.container-fluid
+  %h1
+    = icon_text "cog", _("Cluster Configuration"), class: "page"
+
+  .panel.panel-default
+    .panel-body{ data: { help_target: "#rightbar > .container-fluid > *" } }
+      = form_for [@cib, @crm_config], horizontal: true, method: :put do |main_form|
+        %fieldset{ data: { attrlist: @crm_config[:crm_config].to_json, attrlist_mapping: @crm_config.maplist(:crm_config).to_json, attrlist_prefix: "crm_config[crm_config]", attrlist_target: ".content" } }
+          .content
+
+        %fieldset{ data: { attrlist: @crm_config[:rsc_defaults].to_json, attrlist_mapping: @crm_config.maplist(:rsc_defaults).to_json, attrlist_prefix: "crm_config[rsc_defaults]", attrlist_target: ".content" } }
+          %legend
+            = _("Resource Defaults")
+            %span.pull-right.toggleable
+              = icon_tag("chevron-up")
+
+          .content
+
+        %fieldset{ data: { attrlist: @crm_config[:op_defaults].to_json, attrlist_mapping: @crm_config.maplist(:op_defaults).to_json, attrlist_prefix: "crm_config[op_defaults]", attrlist_target: ".content" } }
+          %legend
+            = _("Operation Defaults")
+            %span.pull-right.toggleable
+              = icon_tag("chevron-up")
+
+          .content
+
+        = main_form.button_group do
+          = crm_config_apply_button(main_form, @crm_config)
+          = crm_config_revert_button(main_form, @crm_config)
+
+- content_for :rightbar do
+  .container-fluid
+    - @crm_config.mapping.each do |section, config|
+      - config.each do |key, values|
+        - next unless values[:longdesc]
+
+        .row{ class: key }
+          %h2.margin-bottom
+            = key
+
+          = simple_format values[:longdesc]

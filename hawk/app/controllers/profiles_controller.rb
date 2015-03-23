@@ -29,43 +29,64 @@
 #
 #======================================================================
 
-class Setting < Tableless
-  class << self
-    def available_languages
-      @available_languages ||= begin
-        languages = YAML.load_file(
-          Rails.root.join(
-            'config',
-            'languages.yml'
-          ).to_s
-        )
+class ProfilesController < ApplicationController
+  before_filter :login_required
+  before_filter :set_title
+  before_filter :set_cib
+  before_filter :set_record, only: [:edit, :update]
 
-        result = FastGettext.available_locales.map do |locale|
-          [
-            locale.to_s,
-            languages[locale]
-          ]
-        end.sort_by { |v| v.first.to_s }
+  def edit
+    respond_to do |format|
+      format.html
+    end
+  end
 
-        ActiveSupport::OrderedHash[result]
+  def update
+    if params[:revert]
+      return redirect_to edit_cib_profile_url(cib_id: @cib.id)
+    end
+
+    respond_to do |format|
+      if @profile.update_attributes(params[:profile])
+        post_process_for! @profile
+
+        format.html do
+          flash[:success] = _('Preferences updated successfully')
+          redirect_to edit_cib_profile_url(cib_id: @cib.id)
+        end
+      else
+        format.html do
+          render action: 'edit'
+        end
       end
     end
   end
 
-  attribute :language, String, default: FastGettext.locale
-
-  validates :language,
-    presence: {
-      message: _('is required')
-    },
-    inclusion: {
-      in: available_languages.keys,
-      message: "not a valid language"
-    }
-
   protected
 
-  def persist!
-    true
+  def set_title
+    @title = _('Preferences')
+  end
+
+  def set_cib
+    @cib = Cib.new params[:cib_id], current_user
+  end
+
+  def set_record
+    @profile = Profile.new
+  end
+
+  def post_process_for!(record)
+    locale = if record.language.to_s.empty?
+      default_locale
+    else
+      record.language
+    end.gsub("_", "-")
+
+    cookies[:locale] = locale
+
+    I18n.locale = FastGettext.set_locale(
+      locale
+    )
   end
 end

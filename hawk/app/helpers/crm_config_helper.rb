@@ -29,34 +29,21 @@
 #
 #======================================================================
 
-class ConstraintsController < ApplicationController
-  before_filter :login_required
-  before_filter :set_title
-  before_filter :set_cib
-
-  before_filter :god_required, only: [:events]
-
-  def types
-    respond_to do |format|
-      format.html
-    end
+module CrmConfigHelper
+  def crm_config_revert_button(form, role)
+    form.submit(
+      _('Revert'),
+      class: 'btn btn-default cancel revert',
+      name: 'revert',
+      confirm: _('Any changes will be lost - do you wish to proceed?')
+    )
   end
 
-  protected
-
-  def set_title
-    @title = _('Constraints')
-  end
-
-  def set_cib
-    @cib = Cib.new params[:cib_id], current_user
-  end
-
-  def default_base_layout
-    if params[:action] == "types"
-      "withrightbar"
-    else
-      super
-    end
+  def crm_config_apply_button(form, role)
+    form.submit(
+      _('Apply'),
+      class: 'btn btn-primary submit',
+      name: 'submit'
+    )
   end
 end

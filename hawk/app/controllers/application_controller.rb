@@ -109,8 +109,12 @@ class ApplicationController < ActionController::Base
     if request.xhr?
       false
     else
-      'application'
+      default_base_layout
     end
+  end
+
+  def default_base_layout
+    'application'
   end
 
   def inject_current_user

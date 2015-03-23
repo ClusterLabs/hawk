@@ -31,119 +31,61 @@
 
 class CrmConfigController < ApplicationController
   before_filter :login_required
-
-  # Need cib for both edit and update (but ultimateyl want to minimize the amount of processing...)
-  before_filter :get_cib
-
-  def get_cib
-    @cib = Cib.new params[:cib_id], current_user # RORSCAN_ITL (not mass assignment)
-  end
-
-  def initialize
-    super
-    @title = _('Cluster Configuration')
-  end
+  before_filter :set_title
+  before_filter :set_cib
+  before_filter :set_record, only: [:edit, :update]
 
   def edit
-    @crm_config = CrmConfig.new
+    respond_to do |format|
+      format.html
+    end
   end
 
   def update
-    unless params[:revert].blank?
-      redirect_to :action => 'edit'
-      return
+    if params[:revert]
+      return redirect_to edit_cib_crm_config_url(cib_id: @cib.id)
     end
 
-    @crm_config = CrmConfig.new
+    respond_to do |format|
+      if @crm_config.update_attributes(params[:crm_config])
+        post_process_for! @crm_config
 
-    # Note: all this really belongs in the model...
-
-    #
-    # This is (logically) a replace of the entire contents
-    # of the existing property set with whatever is submitted.
-    # There are a couple of gotchas:
-    #  - Need to not overwrite R/O properties (dc-version)
-    #  - Can't just replace the whole XML chunk, there might
-    #    be rules and scores and things we don't understand,
-    #    so really we need to do a merge of nvpairs.
-    # Really we want to mostly rely on the shell here.  Shame we
-    # can't use the shell to remove properties by specifying
-    # a null value to "crm configure property ...", or by
-    # replacing sections.
-    #
-    # TODO(should): if the user deletes all the properties, this
-    #               may leave an empty property set lying around.
-    #               should "crm configure delete" it, but it
-    #               might be a bit unsafe.
-    #
-
-    # Want to delete properties that currently exist, aren't readonly
-    # or advanced (invisible in editor), and aren't in the list of
-    # properties the user has just set in the edit form.  Note: this
-    # (obviously) must complement the constraints in the edit form!
-    crm_config_to_delete = to_delete("crm_config")
-    rsc_defaults_to_delete = to_delete("rsc_defaults")
-    op_defaults_to_delete = to_delete("op_defaults")
-
-    cmd =
-      crm_script("crm_config",   "property $id='cib-bootstrap-options'") +
-      crm_script("rsc_defaults", "rsc_defaults $id='rsc-options'") +
-      crm_script("op_defaults",  "op_defaults $id='op-options'")
-
-    result = true
-    result = Invoker.instance.crm_configure_load_update(cmd) unless cmd.empty?
-
-    if result == true
-      # TODO(must): does not report errors!
-      # TODO(should): consolidate once bnc#800071 is fixed
-      crm_config_to_delete.each do |p|
-        Util.run_as(current_user, 'crm_attribute', '--attr-name', p.to_s, '--delete-attr')
-      end
-      rsc_defaults_to_delete.each do |p|
-        Util.run_as(current_user, 'crm_attribute', '--type', 'rsc_defaults', '--attr-name', p, '--delete-attr')
-      end
-      op_defaults_to_delete.each do |p|
-        Util.run_as(current_user, 'crm_attribute', '--type', 'op_defaults', '--attr-name', p, '--delete-attr')
-      end
-      flash[:highlight] = _('Your changes have been saved')
-    else
-      flash[:error] = _('Unable to apply changes: %{msg}') % { :msg => result }
-    end
-
-    redirect_to :action => 'edit'
-  end
-
-  private
-
-  def to_delete(set)
-    # Want to delete properties that currently exist, aren't readonly
-    # or advanced (invisible in editor), and aren't in the list of
-    # properties the user has just set in the edit form.  Note: this
-    # (obviously) must complement the constraints in the edit form!
-    @crm_config.props[set].keys.select {|p|
-      @crm_config.all_props[set][p] && !@crm_config.all_props[set][p][:readonly] &&
-        (!params[set.to_sym] || !params[set.to_sym].has_key?(p))
-        # (the above line means: no properties passed in, *or* the
-        # properties passed in don't include this property)
-    }
-  end
-
-  def crm_script(set, prefix)
-    cmd = ""
-    params[set.to_sym].each do |n, v|
-      next if v.empty?
-      sq = v.index("'")
-      dq = v.index('"')
-      if sq && dq
-        flash[:error] = _("Can't set property %{p}, because the value contains both single and double quotes") % { :p => n }
-      elsif sq
-        cmd += " #{n}=\"#{v}\""
+        format.html do
+          flash[:success] = _('Configuration updated successfully')
+          redirect_to edit_cib_crm_config_url(cib_id: @cib.id)
+        end
+        format.json do
+          render json: @crm_config, status: :updated
+        end
       else
-        cmd += " #{n}='#{v}'"
+        format.html do
+          render action: 'edit'
+        end
+        format.json do
+          render json: @crm_config.errors, status: :unprocessable_entity
+        end
       end
-    end if params[set.to_sym]
-    cmd = "#{prefix}#{cmd}\n" if !cmd.empty?
-    cmd
+    end
   end
 
+  protected
+
+  def set_title
+    @title = _('Cluster Configuration')
+  end
+
+  def set_cib
+    @cib = Cib.new params[:cib_id], current_user
+  end
+
+  def set_record
+    @crm_config = CrmConfig.new
+  end
+
+  def post_process_for!(record)
+  end
+
+  def default_base_layout
+    "withrightbar"
+  end
 end

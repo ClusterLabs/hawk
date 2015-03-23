@@ -31,52 +31,16 @@
 
 //= require_self
 
+//= require module/basics
+//= require module/help
 //= require module/forms
 //= require module/modals
 //= require module/roles
 //= require module/users
-//= require module/settings
+//= require module/profiles
 //= require module/monitor
 
 $(function() {
-  $('[data-toggle="tooltip"]').tooltip();
-  $('.nav-tabs').stickyTabs();
-
-  $('.navbar a.toggle').click(function () {
-    $('.row-offcanvas').toggleClass('active')
-  });
-
-  $.growl(
-    false,
-    {
-      element: '#content .container-fluid',
-      mouse_over: 'pause',
-      allow_dismiss: true
-    }
-  );
-
-  $('[data-help-target]').each(function() {
-    var $target = $(
-      $(this).data('help-target')
-    );
-
-    $target
-      .hide();
-
-    $(this).find('a').hover(
-      function() {
-        $target
-          .hide()
-          .filter($(this).data('help-filter'))
-          .show();
-      },
-      function() {
-        $target
-          .hide();
-      }
-    );
-  });
-
   $(window).on(
     'load resize',
     function() {

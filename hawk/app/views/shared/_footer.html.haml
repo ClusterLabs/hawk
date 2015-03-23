@@ -1,0 +1,25 @@
+%footer
+  .container-fluid
+    .row
+      .col-md-6.copyright
+        %p
+          = branding_config[:provider].html_safe
+
+      .col-md-6.hidden-xs.hidden-sm.metadata
+        %dl.dl-inline
+          %dt
+            = _("Version:")
+          %dd.status.version{ rv: { text: "meta.version" } }
+            = current_cib.meta.version
+          %dt
+            = _("Stack:")
+          %dd.status.stack{ rv: { text: "meta.stack" } }
+            = current_cib.meta.stack
+          %dt
+            = _("DC:")
+          %dd.status.dc{ rv: { text: "meta.dc" } }
+            = current_cib.meta.dc
+          %dt
+            = _("UI:")
+          %dd.status.host{ rv: { text: "meta.host" } }
+            = current_cib.meta.host

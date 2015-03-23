@@ -4,7 +4,7 @@
 //            A web-based GUI for managing and monitoring the
 //          Pacemaker High-Availability cluster resource manager
 //
-// Copyright (c) 2009-2015 SUSE LLC, All Rights Reserved.
+// Copyright (c) 2009-2013 SUSE LLC, All Rights Reserved.
 //
 // Author: Tim Serong <tserong@suse.com>
 //
@@ -29,15 +29,34 @@
 //
 //======================================================================
 
-@import "jquery/jquery";
-@import "jquery/rails";
-@import "jquery/validate";
-@import "jquery/matchheight";
-@import "jquery/stickytabs";
-@import "jquery/jsrender";
-@import "jquery/attrlist";
-@import "bootstrap-sprockets";
-@import "bootstrap";
-@import "font-awesome/font-awesome";
-@import "rivets/rivets";
-@import "misc/jed";
+$(function() {
+  $('#profiles #middle form')
+    .find('.select')
+      .multiselect({
+        disableIfEmpty: true,
+        enableFiltering: true,
+        buttonWidth: '100%',
+        label: function(element) {
+          return $(element).html() + ' [' + $(element).val() + ']';
+        },
+        buttonText: function(element) {
+          return $(element).html() + ' [' + $(element).val() + ']';
+        },
+        onChange: function(element) {
+          $(element.context.form)
+            .find('[name="revert"]')
+              .show()
+              .end()
+            .find('a.back')
+              .attr('data-confirm', __('Any changes will be lost - do you wish to proceed?'))
+              .end();
+        }
+      }).end()
+    .validate({
+      rules: {
+        'profile[language]': {
+          required: true
+        }
+      }
+    });
+});

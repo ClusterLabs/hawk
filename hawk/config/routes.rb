@@ -33,6 +33,10 @@ Rails.application.routes.draw do
   root :to => 'pages#index'
 
   resources :cib, only: [:show] do
+    member do
+      get :mini, action: "show", mini: true
+    end
+
     resources :nodes do
       member do
         get :events
@@ -105,8 +109,8 @@ Rails.application.routes.draw do
     resources :roles
     resources :users
 
-    resource :settings, only: [:edit, :update]
-    resource :config, only: [:edit, :update]
+    resource :profile, only: [:edit, :update]
+    resource :crm_config, only: [:edit, :update]
     resource :dashboard, only: [:show]
 
     resource :checks, only: [] do

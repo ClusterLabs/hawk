@@ -30,33 +30,20 @@
 //======================================================================
 
 $(function() {
-  $('#settings #middle form')
-    .find('.select')
-      .multiselect({
-        disableIfEmpty: true,
-        enableFiltering: true,
-        buttonWidth: '100%',
-        label: function(element) {
-          return $(element).html() + ' [' + $(element).val() + ']';
-        },
-        buttonText: function(element) {
-          return $(element).html() + ' [' + $(element).val() + ']';
-        },
-        onChange: function(element) {
-          $(element.context.form)
-            .find('[name="revert"]')
-              .show()
-              .end()
-            .find('a.back')
-              .attr('data-confirm', __('Any changes will be lost - do you wish to proceed?'))
-              .end();
-        }
-      }).end()
-    .validate({
-      rules: {
-        'setting[language]': {
-          required: true
-        }
-      }
-    });
+  $('[data-toggle="tooltip"]').tooltip();
+  $('[data-attrlist]').attrList();
+  $('.nav-tabs').stickyTabs();
+
+  $('.navbar a.toggle').click(function () {
+    $('.row-offcanvas').toggleClass('active')
+  });
+
+  $.growl(
+    false,
+    {
+      element: '#content .container-fluid',
+      mouse_over: 'pause',
+      allow_dismiss: true
+    }
+  );
 });

@@ -3,9 +3,9 @@
 
 .panel.panel-default
   .panel-body
-    = form_for [@cib, @setting], horizontal: true, method: :put do |main_form|
+    = form_for [@cib, @profile], horizontal: true, method: :put do |main_form|
       = main_form.select :language, :language_options, { include_hidden: false }, {  }
 
       = main_form.button_group do
-        = setting_apply_button(main_form, @setting)
-        = setting_revert_button(main_form, @setting)
+        = profile_apply_button(main_form, @profile)
+        = profile_revert_button(main_form, @profile)

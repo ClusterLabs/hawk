@@ -84,13 +84,13 @@ $(function() {
       }]
     });
 
-  $('#roles #content form')
-    .find('.select')
-      .multiselect({
-        disableIfEmpty: true,
-        enableFiltering: true,
-        buttonWidth: '100%'
-      }).end()
+  $('#roles #middle form')
+    // .find('.select')
+    //   .multiselect({
+    //     disableIfEmpty: true,
+    //     enableFiltering: true,
+    //     buttonWidth: '100%'
+    //   }).end()
     .on('click', '.rule.add', function(e) {
       e.preventDefault();
 

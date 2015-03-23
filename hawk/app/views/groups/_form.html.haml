@@ -1,0 +1,20 @@
+.panel.panel-default
+  .panel-body
+    = form_for [cib, group], horizontal: true do |main_form|
+      /= errors_for group
+
+      /- if group.new_record?
+      /  = main_form.text_field :id, label: _('Group ID')
+      /- else
+      /  = main_form.text_field :id, label: _('Group ID'), readonly: true
+
+      /= main_form.select :roles, :role_options, { include_hidden: false }, { multiple: true, size: 5 }
+
+      = main_form.button_group do
+        - if group.new_record?
+          = create_button(main_form, group)
+        - else
+          = apply_button(main_form, group)
+          = revert_button(main_form, group)
+
+        = link_to _('Back'), types_cib_resources_path(cib_id: cib.id), class: 'btn btn-default back'

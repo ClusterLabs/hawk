@@ -15,12 +15,12 @@
               = _('Rule')
 
               .pull-right
-                = link_to icon_tag('plus'), '#', class: 'rule add', title: _('Add a rule below')
-                = link_to icon_tag('minus'), '#', class: 'rule remove', title: _('Remove this rule')
-                = link_to icon_tag('arrow-up'), '#', class: 'rule up', title: _('Move rule up')
-                = link_to icon_tag('arrow-down'), '#', class: 'rule down', title: _('Move rule down')
+                = icon_tag('plus', class: 'rule add', title: _('Add a rule below'))
+                = icon_tag('minus', class: 'rule remove', title: _('Remove this rule'))
+                = icon_tag('arrow-up', class: 'rule up', title: _('Move rule up'))
+                = icon_tag('arrow-down', class: 'rule down', title: _('Move rule down'))
 
-            = rule_form.select :right, :rule_options, {}, id: nil, label: _('Right'), required: true
+            = rule_form.select :right, :rule_options, { include_hidden: false, include_blank: _('Please select') }, id: nil, label: _('Right'), required: true
             = rule_form.text_field :xpath, id: nil, label: _('XPath'), required: true
             = rule_form.text_field :tag, id: nil, label: _('Tag')
             = rule_form.text_field :ref, id: nil, label: _('Ref')
