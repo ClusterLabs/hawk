@@ -120,22 +120,22 @@ Rails.application.routes.draw do
     end
   end
 
-  namespace :reports do
+  scope :reports do
     resources :heartbeats do
       collection do
         get :status
       end
     end
 
-    resource :graph do
+    resources :logs do
       member do
-        get :gen
+        get :diff
       end
     end
 
-    resource :explorer do
+    resources :graphs do
       member do
-        get :diff
+        get :gen
       end
     end
   end

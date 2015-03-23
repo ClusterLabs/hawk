@@ -8,12 +8,12 @@
     = _("Report")
 
     %ul
-      %li
-        = link_to _("Heartbeat"), "#"
-      %li
-        = link_to _("Graph"), "#"
-      %li
-        = link_to _("History"), "#"
+      %li{ class: active_menu_with(:heartbeats) }
+        = link_to _("Heartbeat"), heartbeats_path
+      %li{ class: active_menu_with(:graphs) }
+        = link_to _("Graph"), graphs_path
+      %li{ class: active_menu_with(:logs) }
+        = link_to _("History"), logs_path
 
   %li
     = _("Resources")
