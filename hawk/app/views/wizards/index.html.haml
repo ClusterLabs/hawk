@@ -13,7 +13,7 @@
               = icon_tag "plus-circle"
 
 - content_for :rightbar do
-  .container-fluid
+  .container-fluid{ data: { spy: "affix" } }
     - workflows.each do |workflow, attrs|
       .row{ class: attrs[:id] }
         %h2.margin-bottom

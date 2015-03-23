@@ -32,7 +32,7 @@
             = icon_tag "plus-circle"
 
 - content_for :rightbar do
-  .container-fluid
+  .container-fluid{ data: { spy: "affix" } }
     .row.primitive
       %h2.margin-bottom
         = _("Add a primitive")

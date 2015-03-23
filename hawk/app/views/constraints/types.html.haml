@@ -27,7 +27,7 @@
             = icon_tag "plus-circle"
 
 - content_for :rightbar do
-  .container-fluid
+  .container-fluid{ data: { spy: "affix" } }
     .row.location
       %h2.margin-bottom
         = _("Location")

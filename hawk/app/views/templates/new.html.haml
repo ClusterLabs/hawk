@@ -5,3 +5,6 @@
 
   .row
     = render partial: "primitives/form", locals: { cib: @cib, primitive: @primitive }
+
+- content_for :rightbar do
+  .container-fluid{ data: { spy: "affix" } }

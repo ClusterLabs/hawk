@@ -29,7 +29,7 @@
           = crm_config_revert_button(main_form, @crm_config)
 
 - content_for :rightbar do
-  .container-fluid
+  .container-fluid{ data: { spy: "affix" } }
     - @crm_config.mapping.each do |section, config|
       - config.each do |key, values|
         - next unless values[:longdesc]
