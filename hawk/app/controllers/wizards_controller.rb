@@ -62,8 +62,8 @@ class WizardsController < ApplicationController
           next unless file.extname == ".xml"
 
           REXML::Document.new(file.read).tap do |xml|
-            name = xml.root.elements["shortdesc[@lang=\"#{I18n.locale}\"]|shortdesc[@lang=\"en\"]"].text.strip
-            description = xml.root.elements["longdesc[@lang=\"#{I18n.locale}\"]|longdesc[@lang=\"en\"]"].text.strip
+            name = xml.root.elements["shortdesc[@lang=\"#{I18n.locale.to_s.gsub("-", "_")}\"]|shortdesc[@lang=\"en\"]"].text.strip
+            description = xml.root.elements["longdesc[@lang=\"#{I18n.locale.to_s.gsub("-", "_")}\"]|longdesc[@lang=\"en\"]"].text.strip
 
             workflows[name.parameterize] = {
               id: name.parameterize,

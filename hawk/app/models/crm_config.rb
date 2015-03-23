@@ -197,8 +197,8 @@ class CrmConfig < Tableless
                   xml.elements.each("//parameter") do |param|
                     name = param.attributes["name"]
                     content = param.elements["content"]
-                    shortdesc = param.elements["shortdesc"].text || ""
-                    longdesc  = param.elements["longdesc"].text || ""
+                    shortdesc = param.elements["shortdesc[@lang=\"#{I18n.locale.to_s.gsub("-", "_")}\"]|shortdesc[@lang=\"en\"]"].text || ""
+                    longdesc  = param.elements["longdesc[@lang=\"#{I18n.locale.to_s.gsub("-", "_")}\"]|longdesc[@lang=\"en\"]"].text || ""
 
                     type = content.attributes["type"]
                     default = content.attributes["default"]
