@@ -14,7 +14,7 @@ Vagrant.configure("2") do |config|
       force_group: "users"
   end
 
-  config.vm.define "webui", default: true do |machine|
+  config.vm.define "webui", primary: true do |machine|
     machine.vm.hostname = "webui"
 
     machine.vm.network :forwarded_port,
