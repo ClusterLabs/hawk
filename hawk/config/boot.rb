@@ -57,33 +57,33 @@ else
   require 'sprockets/railtie'
   require 'rails/test_unit/railtie'
 
-  gem 'puma', version: '~> 2.11.1'
+  gem 'puma', version: '~> 2.11'
   require 'puma'
 
-  gem 'haml-rails', version: '~> 0.8.2'
+  gem 'haml-rails', version: '~> 0.8'
   require 'haml-rails'
 
-  gem 'sass-rails', version: '~> 5.0.1'
+  gem 'sass-rails', version: '~> 5.0'
   require 'sass-rails'
 
-  gem 'virtus', version: '~> 1.0.4'
+  gem 'virtus', version: '~> 1.0'
   require 'virtus'
 
-  gem 'js-routes', version: '~> 1.0.0'
+  gem 'js-routes', version: '~> 1.0'
   require 'js-routes'
 
-  gem 'sprockets', version: '~> 2.12.3'
+  gem 'sprockets', version: '~> 2.12'
   require 'sprockets'
 
-  gem 'tilt', version: '~> 1.4.1'
+  gem 'tilt', version: '~> 1.4'
   require 'tilt'
 
-  gem 'fast_gettext', version: '~> 0.9.2'
+  gem 'fast_gettext', version: '~> 0.9'
   require 'fast_gettext'
 
-  gem 'po_to_json', version: '~> 0.0.7'
-  require 'po_to_json'
+  gem 'gettext_i18n_rails_js', version: '~> 1.0'
+  require 'gettext_i18n_rails_js'
 
-  gem 'gettext_i18n_rails', version: '~> 1.2.0'
+  gem 'gettext_i18n_rails', version: '~> 1.2'
   require 'gettext_i18n_rails'
 end
