@@ -33,26 +33,6 @@ require File.expand_path('../boot', __FILE__)
 
 module Hawk
   class Application < Rails::Application
-    config.autoload_paths += [
-      config.root.join('lib'),
-      config.root.join('app', 'collections')
-    ]
-
-    config.encoding = 'utf-8'
-    config.time_zone = 'UTC'
-
-    config.lograge.enabled = true
-    config.lograge.formatter = Lograge::Formatters::KeyValue.new
-
-    config.active_support.escape_html_entities_in_json = true
-
-    config.i18n.enforce_available_locales = false
-
-    config.app_middleware.delete 'ActiveRecord::ConnectionAdapters::ConnectionManagement'
-    config.app_middleware.delete 'ActiveRecord::QueryCache'
-
-    #config.middleware.use 'PerRequestCache'
-
     config.generators do |g|
       g.assets false
       g.helper false
@@ -61,6 +41,30 @@ module Hawk
 
       # g.test_framework :rspec, fixture: true
       # g.fallbacks[:rspec] = :test_unit
+    end
+
+    config.autoload_paths += [
+      config.root.join('lib'),
+      config.root.join('app', 'collections')
+    ]
+
+    config.encoding = 'utf-8'
+    config.time_zone = 'UTC'
+
+    config.app_middleware.delete 'ActiveRecord::ConnectionAdapters::ConnectionManagement'
+    config.app_middleware.delete 'ActiveRecord::QueryCache'
+
+    config.middleware.use 'PerRequestCache'
+
+    config.active_support.escape_html_entities_in_json = true
+
+    config.i18n.enforce_available_locales = false
+
+    config.lograge.enabled = true
+    config.lograge.formatter = Lograge::Formatters::KeyValue.new
+
+    if Rails.env.development?
+      config.web_console.whitelisted_ips = '192.168.0.0/16'
     end
   end
 end
