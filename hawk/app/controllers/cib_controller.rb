@@ -40,10 +40,7 @@ class CibController < ApplicationController
     )
 
     result = {
-      meta: {
-        epoch: @cib.epoch,
-        dc: @cib.dc
-      },
+      meta: @cib.meta.to_h,
       errors: @cib.errors,
       booth: @cib.booth
     }.tap do |result|

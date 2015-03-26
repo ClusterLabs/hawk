@@ -39,6 +39,8 @@
 //= require module/users
 //= require module/profiles
 //= require module/monitor
+//= require module/status
+//= require module/attrlist
 
 $(function() {
   $(window).on(

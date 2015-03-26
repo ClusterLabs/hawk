@@ -9,17 +9,17 @@
         %dl.dl-inline
           %dt
             = _("Version:")
-          %dd.status.version{ rv: { text: "meta.version" } }
+          %dd.status.version{ data: { link: "meta.version" } }
             = current_cib.meta.version
           %dt
             = _("Stack:")
-          %dd.status.stack{ rv: { text: "meta.stack" } }
+          %dd.status.stack{ data: { link: "meta.stack" } }
             = current_cib.meta.stack
           %dt
             = _("DC:")
-          %dd.status.dc{ rv: { text: "meta.dc" } }
+          %dd.status.dc{ data: { link: "meta.dc" } }
             = current_cib.meta.dc
           %dt
             = _("UI:")
-          %dd.status.host{ rv: { text: "meta.host" } }
+          %dd.status.host{ data: { link: "meta.host" } }
             = current_cib.meta.host

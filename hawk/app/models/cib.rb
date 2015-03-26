@@ -46,8 +46,25 @@ class Cib < CibObject
 
       struct.host = Socket.gethostname
 
-      struct.version = crm_config['dc-version'.to_sym]
-      struct.stack = crm_config['cluster-infrastructure'.to_sym]
+      struct.version = crm_config[:dc_version]
+      struct.stack = crm_config[:cluster_infrastructure]
+
+      struct.status = if errors.empty?
+        # TODO(must): Add stopped checks
+
+        maintain = nodes.map do |node|
+          node[:maintenance] || false
+        end
+
+        case
+        when maintain.include?(true)
+          :maintenance
+        else
+          :ok
+        end
+      else
+        :errors
+      end
 
       struct
     end
@@ -250,7 +267,7 @@ class Cib < CibObject
   attr_reader :booth
 
   def initialize(id, user, use_file = false)
-    @errors = {}
+    @errors = []
 
     if use_file
       cib_path = id
@@ -513,8 +530,7 @@ class Cib < CibObject
             end
 
             failed_ops << { :node => node[:uname], :call_id => op.attributes['call-id'], :op => operation, :rc_code => rc_code, :exit_reason => exit_reason }
-            @errors[:base] ||= []
-            @errors[:base] << {
+            @errors << {
               :msg => _('Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}, exit-reason=%{exit_reason}') % {
                 :node => node[:uname], :resource => id, :call_id => op.attributes['call-id'],
                 :op => operation, :rc_code => rc_code, :exit_reason => exit_reason },
@@ -728,6 +744,9 @@ class Cib < CibObject
       end
     end
 
+    @crm_config = Hash[@crm_config.map {|k,v| [k.to_s.underscore.to_sym, v]}]
+    @rsc_defaults = Hash[@rsc_defaults.map {|k,v| [k.to_s.underscore.to_sym, v]}]
+    @op_defaults = Hash[@op_defaults.map {|k,v| [k.to_s.underscore.to_sym, v]}]
   end
 
 end

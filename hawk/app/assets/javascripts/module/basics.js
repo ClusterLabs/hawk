@@ -31,7 +31,6 @@
 
 $(function() {
   $('[data-toggle="tooltip"]').tooltip();
-  $('[data-attrlist]').attrList();
   $('.nav-tabs').stickyTabs();
 
   $('.navbar a.toggle').click(function () {

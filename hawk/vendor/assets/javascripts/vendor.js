@@ -35,7 +35,8 @@
 //= require jquery/matchheight
 //= require jquery/stickytabs
 //= require jquery/jsrender
-//= require jquery/attrlist
+//= require jquery/observable
+//= require jquery/views
 //= require bootstrap-sprockets
 //= require bootstrap
 //= require font-awesome/font-awesome

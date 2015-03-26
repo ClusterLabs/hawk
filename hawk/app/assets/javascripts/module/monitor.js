@@ -43,7 +43,7 @@
       faster: 15,
       refresh: 90,
       timeout: 90,
-      cashe: false
+      cache: false
     };
 
     this.options = $.extend(
@@ -68,11 +68,11 @@
 
     $.ajax({
       url: Routes.monitor_path(),
-      type: 'GET',
 
+      type: 'GET',
       data: self.currentEpoch,
       cache: self.options.cache,
-      timeout: self.options.timeout,
+      timeout: self.options.timeout * 1000,
 
       success: function(data) {
         if (data) {
@@ -160,8 +160,8 @@
 $(function() {
   $('[data-monitor]').monitorCheck();
 
-  $('body').on('checked.hawk.monitor', function() { console.log('checked'); });
-  $('body').on('updated.hawk.monitor', function() { console.log('updated'); });
-  $('body').on('unavailable.hawk.monitor', function() { console.log('unavailable'); });
-  $('body').on('aborted.hawk.monitor', function() { console.log('aborted'); });
+  // $('body').on('checked.hawk.monitor', function() { console.log('checked'); });
+  // $('body').on('updated.hawk.monitor', function() { console.log('updated'); });
+  // $('body').on('unavailable.hawk.monitor', function() { console.log('unavailable'); });
+  // $('body').on('aborted.hawk.monitor', function() { console.log('aborted'); });
 });

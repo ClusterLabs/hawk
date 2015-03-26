@@ -34,6 +34,12 @@ class DashboardsController < ApplicationController
   before_filter :set_title
   before_filter :set_cib
 
+  def show
+    respond_to do |format|
+      format.html
+    end
+  end
+
   protected
 
   def set_title

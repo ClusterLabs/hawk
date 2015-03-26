@@ -59,13 +59,19 @@
   &.circle-success {
     background-color: darken($alert-success-bg, 30%);
     border-color: $alert-success-border;
-    color: darken($alert-success-text, 30%);
+    color: darken($alert-success-text, 10%);
   }
 
   &.circle-danger {
     background-color: darken($alert-danger-bg, 30%);
     border-color: $alert-danger-border;
-    color: darken($alert-danger-text, 30%);
+    color: darken($alert-danger-text, 10%);
+  }
+
+  &.circle-warning {
+    background-color: darken($alert-warning-bg, 30%);
+    border-color: $alert-warning-border;
+    color: darken($alert-warning-text, 10%);
   }
 
   &.circle-large {

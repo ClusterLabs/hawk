@@ -95,6 +95,30 @@ module ApplicationHelper
     end
   end
 
+  def status_class_for(type)
+    case type.to_sym
+    when :ok
+      'circle-success'
+    when :errors
+      'circle-danger'
+    else
+      'circle-warning'
+    end
+  end
+
+  def status_icon_for(type)
+    case type.to_sym
+    when :ok
+      icon_tag("smile-o", class: "fa-2x text")
+    when :errors
+      icon_tag("frown-o", class: "fa-2x text")
+    when :maintenance
+      icon_tag("wrench", class: "fa-2x text")
+    else
+      icon_tag("question", class: "fa-2x text")
+    end
+  end
+
   def current_metatags
     [].tap do |output|
       if protect_against_forgery?

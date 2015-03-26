@@ -62,4 +62,16 @@ module TagHelper
 
     content_tag(:i, "", defaults.merge(options))
   end
+
+  def jsviews_for(name, &block)
+    content = capture do
+      yield
+    end
+
+    [
+      "{^{for #{name}}}",
+      content,
+      "{{/for}}"
+    ].join("\n").html_safe
+  end
 end
