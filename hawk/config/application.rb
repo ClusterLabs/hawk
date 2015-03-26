@@ -41,6 +41,9 @@ module Hawk
     config.encoding = 'utf-8'
     config.time_zone = 'UTC'
 
+    config.lograge.enabled = true
+    config.lograge.formatter = Lograge::Formatters::KeyValue.new
+
     config.active_support.escape_html_entities_in_json = true
 
     config.i18n.enforce_available_locales = false

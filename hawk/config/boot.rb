@@ -34,6 +34,9 @@ begin
 rescue
 end
 
+STDOUT.sync = true
+STDERR.sync = true
+
 ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
 
 require 'socket'
@@ -65,6 +68,9 @@ else
 
   gem 'sass-rails', version: '~> 5.0'
   require 'sass-rails'
+
+  gem 'lograge', version: '~> 0.3'
+  require 'lograge'
 
   gem 'virtus', version: '~> 1.0'
   require 'virtus'
