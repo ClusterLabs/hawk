@@ -170,14 +170,7 @@ class RolesController < ApplicationController
   end
 
   def check_support
-    check = Util.safe_x(
-      '/usr/sbin/cibadmin',
-      '-Ql',
-      '--xpath',
-      '//configuration//crm_config//nvpair[@name=\'enable-acl\' and @value=\'true\']'.shellescape
-    ).chomp.empty?
-
-    if check
+    if Util.has_feature? :acl_enabled
       flash.now[:warning] = view_context.link_to(
         _('To enable ACLs, set \'enable-acl\' in the CRM Configuration'),
         edit_cib_crm_config_path(cib_id: @cib.id)

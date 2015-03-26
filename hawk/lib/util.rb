@@ -306,6 +306,15 @@ module Util
       PerRequestCache.fetch(:has_acl_support) {
         %x[/usr/sbin/cibadmin -!].split(/\s+/).include?("acls")
       }
+    when :acl_enabled
+      PerRequestCache.fetch(:has_acl_enabled) {
+        safe_x(
+          '/usr/sbin/cibadmin',
+          '-Ql',
+          '--xpath',
+          '//configuration//crm_config//nvpair[@name=\'enable-acl\' and @value=\'true\']'.shellescape
+        ).chomp.present?
+      }
     when :tags
       PerRequestCache.fetch(:has_tags) {
         # TODO: fix this
