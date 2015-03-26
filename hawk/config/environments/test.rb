@@ -39,6 +39,7 @@ Rails.application.configure do
 
   config.action_dispatch.show_exceptions = false
   config.action_dispatch.cookies_serializer = :json
+  config.action_dispatch.x_sendfile_header = nil
 
   config.action_controller.perform_caching = false
   config.action_controller.allow_forgery_protection = false
@@ -66,11 +67,9 @@ Rails.application.configure do
   config.log_level = :debug
   config.log_tags = []
 
-  # config.logger = ActiveSupport::TaggedLogging.new(
-  #   Logger.new(Rails.root.join("log", "test.log"))
-  # )
-
-  # config.logger.formatter = ::Hawk::Logger::Formatter.new
+  config.logger = ActiveSupport::TaggedLogging.new(
+    Logger.new(Rails.root.join("log", "test.log"))
+  )
 
   config.active_support.test_order = :random
 end

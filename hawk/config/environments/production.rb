@@ -39,6 +39,7 @@ Rails.application.configure do
 
   config.action_dispatch.show_exceptions = false
   config.action_dispatch.cookies_serializer = :json
+  config.action_dispatch.x_sendfile_header = nil
 
   config.action_controller.perform_caching = true
   config.action_controller.allow_forgery_protection = true
@@ -66,9 +67,7 @@ Rails.application.configure do
   config.log_level = :warn
   config.log_tags = []
 
-  # config.logger = ActiveSupport::TaggedLogging.new(
-  #   Logger.new(Rails.root.join("log", "production.log"))
-  # )
-
-  # config.logger.formatter = ::Hawk::Logger::Formatter.new
+  config.logger = ActiveSupport::TaggedLogging.new(
+    Logger.new(STDOUT)
+  )
 end
