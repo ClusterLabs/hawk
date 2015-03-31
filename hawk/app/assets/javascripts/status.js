@@ -51,29 +51,32 @@ function h2n(a) {
 
 function update_errors(errors)
 {
-  $("#errorbar").html("");
   if (errors.length) {
-    $("#errorbar").show();
+    var html;
+    html = '<ul>';
     for (var i = 0; i < errors.length; i++) {
       // have to use for loop instead of $.each, as the latter turns "this"
       // into an object even if it's a string :-/
-      var html;
       if (typeof errors[i] == "object") {
-        html = '<div><span style="float: left;" class="ui-icon ui-icon-alert"></span>';
+        html += '<li class="error-entry">';
         if (errors[i].link) {
           html += '<a href="' + errors[i].link + '">';
         }
+        html += '<span class="ui-icon ui-icon-alert"></span> ';
         html += errors[i].msg;
         if (errors[i].link) {
           html += '</a>';
         }
-        html += '</div>';
+        html += '</li>';
       } else {
-        html = '<div>' + escape_html(errors[i]) + '</div>';
+        html += '<li>' + escape_html(errors[i]) + '</li>';
       }
-      $("#errorbar").append($(html));
     }
+    html += '</ul>';
+    $("#errorbar").html(html);
+    $("#errorbar").show();
   } else {
+    $("#errorbar").html("");
     $("#errorbar").hide();
   }
 }
