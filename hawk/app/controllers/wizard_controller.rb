@@ -310,7 +310,7 @@ class WizardController < ApplicationController
   # as it will in fact change the CIB if successful.
   def cib_writable
     begin
-      Invoker.instance.cibadmin("--modify", "--allow-create", "--scope", "--crm_config", "--xml-text",
+      Invoker.instance.cibadmin("--modify", "--allow-create", "--scope", "crm_config", "--xml-text",
         '<cluster_property_set id="hawk-rw-test"/>')
       Invoker.instance.cibadmin("--delete", "--xml-text", '<cluster_property_set id="hawk-rw-test"/>')
     rescue NotFoundError
