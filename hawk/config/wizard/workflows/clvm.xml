@@ -54,12 +54,7 @@ primitive clvm ocf:lvm2:clvmd
 	op start timeout=90s
 	op stop timeout=100s
 
-primitive cmirror ocf:lvm2:cmirrord
-	params daemon_timeout="30"
-	op start timeout=90s
-	op stop timeout=100s
-
-group g-<insert param="id"/> dlm clvm cmirror <insert param="id"/>
+group g-<insert param="id"/> dlm clvm <insert param="id"/>
 
 clone c-<insert param="id"/> g-<insert param="id"/>
 	meta interleave="true" ordered="true"
