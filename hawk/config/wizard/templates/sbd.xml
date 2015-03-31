@@ -20,12 +20,25 @@ Unique ID for the SBD resource.
 <content type="string" default="sbd-stonith"/>
 </parameter>
 
+<parameter name="sbd_device">
+<shortdesc lang="en">SBD Device(s)</shortdesc>
+<longdesc lang="en">
+The block device used for the SBD partition. Up to three
+can be specified if separated by a semicolon. (Please check
+the documentation if specifying two.)
+
+If not specified, will default to the value from /etc/sysconfig/sbd.
+</longdesc>
+<content type="string" default=""/>
+</parameter>
+
 </parameters>
 
 <crm_script>
 primitive <insert param="id"/> stonith:external/sbd
-      op start timeout="60"
-      op monitor interval="15" timeout="15"
+  <if set="sbd_device">params sbd_device="<insert param="sbd_device"/>"</if>
+  op start timeout="60"
+  op monitor interval="15" timeout="15"
 </crm_script>
 
 </template>
