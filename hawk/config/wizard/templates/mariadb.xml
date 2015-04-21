@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<template name="mariadb">
+
+<shortdesc lang="en">MariaDB SQL Database</shortdesc>
+<longdesc lang="en">
+Create a resource for the MariaDB SQL Database.
+</longdesc>
+
+<parameters>
+
+<parameter name="id" required="1">
+<shortdesc lang="en">Resource ID</shortdesc>
+<longdesc lang="en">
+Unique ID for this Apache resource in the cluster.
+</longdesc>
+<content type="string" default="mariadb"/>
+</parameter>
+
+<parameter name="configfile">
+<shortdesc lang="en">MariaDB configuration file</shortdesc>
+<longdesc lang="en">
+Full pathname of the database configuration file</longdesc>
+<content type="string" default="/etc/my.cnf"/>
+</parameter>
+
+<parameter name="user">
+<shortdesc lang="en">Database user</shortdesc>
+<longdesc lang="en">
+Database user</longdesc>
+<content type="string" default="mysql"/>
+</parameter>
+
+<parameter name="group">
+<shortdesc lang="en">Database group</shortdesc>
+<longdesc lang="en">
+Database group</longdesc>
+<content type="string" default="mysql"/>
+</parameter>
+
+
+</parameters>
+
+<crm_script>
+primitive <insert param="id"/> ocf:heartbeat:mysql
+  params
+    test_table=""
+    <if set="configfile">configfile="<insert param="configfile"/>"</if>
+    <if set="user">user="<insert param="user"/>"</if>
+    <if set="group">group="<insert param="group"/>"</if>
+  op start timeout="120" op stop timeout="120"
+  op monitor interval="20" timeout="30"
+</crm_script>
+
+</template>

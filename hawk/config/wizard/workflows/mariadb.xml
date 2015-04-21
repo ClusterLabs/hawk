@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<workflow name="mariadb">
+
+<shortdesc lang="en">MariaDB SQL Database</shortdesc>
+<longdesc lang="en">
+Configure a MariaDB SQL Database.
+</longdesc>
+
+<templates>
+<template name="mariadb" required="1">
+<stepdesc lang="en">
+The MariaDB resource.
+</stepdesc>
+</template>
+</templates>
+
+<crm_script>
+</crm_script>
+
+</workflow>
