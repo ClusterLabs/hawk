@@ -348,7 +348,7 @@ class Cib < CibObject
         :id => t.attributes['id'],
         :refs => t.elements.map { |ref| ref.attributes['id'] }
       }
-    end if Util.has_feature?(:tags)
+    end
 
     # Iterate nodes in cib order here which makes the faked up clone & ms instance
     # IDs be in the same order as pacemaker

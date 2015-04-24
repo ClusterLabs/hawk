@@ -306,6 +306,7 @@ module Util
       }
     when :tags
       PerRequestCache.fetch(:has_tags) {
+        # TODO: fix this
         %x[/usr/sbin/cibadmin -Ql -A /cib/configuration/tags >/dev/null 2>&1]
         $?.exitstatus == 0
       }
