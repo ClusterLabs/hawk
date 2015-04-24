@@ -346,7 +346,7 @@ class Cib < CibObject
     @xml.elements.each('cib/configuration/tags/tag') do |t|
       @tags << {
         :id => t.attributes['id'],
-        :refs => t.elements.map { |ref| ref.attributes['id'] }
+        :refs => t.elements.collect('obj_ref') { |ref| ref.attributes['id'] }
       }
     end
 
