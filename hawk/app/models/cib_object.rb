@@ -169,6 +169,7 @@ class CibObject
   protected
 
   def error(msg)
+    @errors ||= {}
     @errors[:base] ||= []
     @errors[:base] << msg
   end
