@@ -101,6 +101,16 @@ template node["hawk"]["node"]["haproxy_cfg"] do
   end
 end
 
+template node["hawk"]["node"]["apache_index"] do
+  source "index.html.erb"
+  owner "root"
+  group "root"
+  mode 0644
+  variables(
+    :hostname => node[:hostname]
+  )
+end
+
 bash "apache_port" do
   user "root"
   cwd "/etc/apache2"

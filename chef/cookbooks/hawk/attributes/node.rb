@@ -35,3 +35,5 @@ default["hawk"]["node"]["join_check"] = "systemctl -q is-active corosync.service
 
 default["hawk"]["node"]["ssh_host"] = "10.13.37.10"
 default["hawk"]["node"]["ssh_check"] = "/usr/sbin/crm_mon -1"
+
+default["hawk"]["node"]["apache_index"] = "/srv/www/htdocs/index.html"
