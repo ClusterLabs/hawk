@@ -60,9 +60,10 @@ class PrimitivesController < ApplicationController
     end
     @res = Primitive.new params[:primitive]  # RORSCAN_ITL (mass ass. OK)
     if @res.save
-      edit_url = url_for(:action => 'edit', :id => @res.id)
-      edit_link = "<a href=\"#{edit_url}\">#{@res.id}</a>"
-      flash[:highlight] = (_('Resource created successfully') + ': ' + edit_link).html_safe
+      #TODO: broken in Rails 4
+      #edit_url = url_for(:action => 'edit', :id => @res.id)
+      #edit_link = "<a href=\"#{edit_url}\">#{@res.id}</a>".html_safe
+      flash[:highlight] = _('Resource created successfully') + ": #{@res.id}"
       redirect_to :action => 'new'
     else
       render :action => 'new'
