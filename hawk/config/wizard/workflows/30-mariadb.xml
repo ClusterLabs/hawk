@@ -2,8 +2,10 @@
 <workflow name="30-mariadb">
 
 <shortdesc lang="en">MariaDB SQL Database</shortdesc>
-<longdesc lang="en">
-Configure a MariaDB SQL Database.
+<longdesc lang="en">Configures a standalone MariaDB database instance.
+
+Note: This wizard does not configure the SQL database itself,
+only the cluster resource which manages it.
 </longdesc>
 
 <templates>
