@@ -80,7 +80,7 @@ all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service tools/hawk_chkpwd tools/haw
 		# Strip unwanted gems from Gemfile.lock \
 		sed -i -e '/\brdoc\b/d' Gemfile.lock && \
 		# Finally package and install the gems \
-		bundle package && bundle install --deployment ; \
+		bundle package && bundle install --local --deployment ; \
 	 fi)
 
 %:: %.in
