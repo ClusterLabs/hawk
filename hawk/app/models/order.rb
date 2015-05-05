@@ -29,155 +29,136 @@
 #
 #======================================================================
 
-=begin
-
-resources =
-[
-  { :id => 'd0', action => 'start' },
-  { :id => 'd1', action => 'promote' }
-]
-
-no, we always fold to set structure
-
-resources =
-[
-  {
-    :resources => [ { :id => 'd6' } ]
-  },
-  {
-    :sequential => false,
-    :resources = [ { :id => 'd1' }, { :id => 'd2' } ]
-  },
-  {
-    :resources => [ { :id => 'd3' } ]
-  }
-]
-
-=end
-
-# Note that Colocation and Order use of the resources array is the
-# inverse of each other, always, regardless of inconsistencies in
-# the underlying configuraton.  e.g. (simplified):
-#   order.resources = [ 'A', 'B', 'C' ];
-#   colocation.resources = [ 'C', 'B', 'A' ];
-
 class Order < Constraint
-  @attributes = :score, :resources, :symmetrical
-  attr_accessor *@attributes
+  attribute :id, String
+  attribute :score, String
+  attribute :symmetrical, Boolean
+  attribute :resources, Array[Hash]
 
-  def initialize(attributes = nil)
-    @score        = nil
-    @resources    = []
-    @symmetrical  = true
-    super
-  end
+  validates :id,
+    presence: { message: _("Constraint ID is required") },
+    format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _("Invalid Constraint ID") }
 
-  def validate
-    @score.strip!
-    unless ['mandatory', 'advisory', 'inf', '-inf', 'infinity', '-infinity'].include? @score.downcase
-      unless @score.match(/^-?[0-9]+$/)
-        error _('Invalid score')
+  validates :score,
+    presence: { message: _("Score is required") }
+
+  validate do |record|
+    record.score.strip!
+
+    unless [
+      "mandatory",
+      "advisory",
+      "inf",
+      "-inf",
+      "infinity",
+      "-infinity"
+    ].include? record.score.downcase
+      unless record.score.match(/^-?[0-9]+$/)
+        errors.add :score, _("Invalid score value")
       end
     end
-    if @resources.length < 2
-      error _('Constraint must consist of at least two separate resources')
+
+    if record.resources.length < 2
+      errors.add :base, _("Constraint must consist of at least two separate resources")
     end
   end
 
-  def create
-    if CibObject.exists?(id)
-      error _('The ID "%{id}" is already in use') % { :id => @id }
-      return false
-    end
-
-    cmd = shell_syntax
-
-    result = Invoker.instance.crm_configure cmd
-    unless result == true
-      error _('Unable to create constraint: %{msg}') % { :msg => result }
-      return false
-    end
-
-    true
+  def resources
+    @resources ||= []
   end
 
-  def update
-    unless CibObject.exists?(id, 'rsc_order')
-      error _('Constraint ID "%{id}" does not exist') % { :id => @id }
-      return false
-    end
-
-    # Can just use crm configure load update here, it's trivial enough (because
-    # we basically replace the object every time, rather than having to merge
-    # like primitive, ms, etc.)
-
-    result = Invoker.instance.crm_configure_load_update shell_syntax
-    unless result == true
-      error _('Unable to update constraint: %{msg}') % { :msg => result }
-      return false
-    end
-
-    true
+  def resources=(value)
+    @resources = value
   end
 
-  def update_attributes(attributes = nil)
-    @score        = nil
-    @resources    = []
-    @symmetrical  = true
-    super
+  class << self
+    def all
+      super.select do |record|
+        record.is_a? self
+      end
+    end
+  end
+
+  protected
+
+  def shell_syntax
+    [].tap do |cmd|
+      cmd.push "order #{id} #{score}:"
+
+      resources.each do |set|
+        cmd.push "(" unless set[:sequential] == "true" && set[:sequential]
+
+        set[:resources].each do |resource|
+          if set[:action].empty?
+            cmd.push resource
+          else
+            cmd.push [
+              resource,
+              set[:action]
+            ].join(":")
+          end
+        end
+
+        cmd.push ")" unless set[:sequential] == "true" && set[:sequential]
+      end
+
+      unless symmetrical
+        cmd.push "symmetrical=false"
+      end
+    end.join(" ")
   end
 
   class << self
     def instantiate(xml)
-      con = allocate
-      con.instance_variable_set(:@score,  xml.attributes['score'] || nil)
-      resources = []
-      if xml.attributes['first']
-        # Simple (two resource) constraint, fold to set notation
-        resources << {
-          :sequential => true,
-          :action => xml.attributes['first-action'] || nil,
-          :resources => [ { :id => xml.attributes['first'] } ]
-        }
-        resources << {
-          :sequential => true,
-          :action => xml.attributes['then-action'] || nil,
-          :resources => [ { :id => xml.attributes['then'] } ]
-        }
-      else
-        # Resource set
-        xml.elements.each do |resource_set|
-          set = {
-            :sequential => Util.unstring(resource_set.attributes['sequential'], true),
-            :action     => resource_set.attributes['action'] || nil,
-            :resources  => []
-          }
-          resource_set.elements.each do |e|
-            set[:resources] << { :id => e.attributes['id'] }
+      record = allocate
+      record.score = xml.attributes["score"] || nil
+
+      record.symmetrical = Util.unstring(
+        xml.attributes["symmetrical"],
+        true
+      )
+
+      record.resources = [].tap do |resources|
+        if xml.attributes["first"]
+          resources.push(
+            sequential: true,
+            action: xml.attributes["first-action"] || nil,
+            resources: [
+              xml.attributes["first"]
+            ]
+          )
+
+          resources.push(
+            sequential: true,
+            action: xml.attributes["then-action"] || nil,
+            resources: [
+              xml.attributes["then"]
+            ]
+          )
+        else
+          xml.elements.each do |resource|
+            set = {
+              sequential: Util.unstring(resource.attributes["sequential"], true),
+              action: resource.attributes["action"] || nil,
+              resources: []
+            }
+
+            resource.elements.each do |el|
+              set[:resources].push(
+                el.attributes["id"]
+              )
+            end
+
+            resources.push set
           end
-          resources << set
         end
       end
-      con.instance_variable_set(:@resources, resources)
-      con.instance_variable_set(:@symmetrical, Util.unstring(xml.attributes['symmetrical'], true))
-      con
-    end
-  end
 
-  private
-
-  def shell_syntax
-    cmd = "order #{@id} #{@score}:"
-    @resources.each do |set|
-      cmd += " ( " unless set[:sequential]
-      set[:resources].each do |r|
-        cmd += " #{r[:id]}"
-        cmd += ":#{set[:action]}" if set[:action]
-      end
-      cmd += " )" unless set[:sequential]
+      record
     end
-    cmd += " symmetrical=false" unless @symmetrical
-    cmd
+
+    def cib_type_write
+      :rsc_order
+    end
   end
 end
-

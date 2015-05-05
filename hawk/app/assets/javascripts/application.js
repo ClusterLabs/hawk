@@ -35,12 +35,18 @@
 //= require module/help
 //= require module/forms
 //= require module/modals
+//= require module/nodes
+//= require module/locations
+//= require module/colocations
+//= require module/orders
+//= require module/tickets
 //= require module/roles
 //= require module/users
 //= require module/profiles
 //= require module/monitor
 //= require module/status
 //= require module/attrlist
+//= require module/constraint
 
 $(function() {
   $(window).on(

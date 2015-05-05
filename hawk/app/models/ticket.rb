@@ -29,127 +29,137 @@
 #
 #======================================================================
 
-# This thing is what the crm shell refers to as rsc_ticket (and indeed,
-# that's what it is in the CIB too), but we're calling it Ticket for
-# consistency with Hawk's Location, Order and Colocation nomenclature.
-# I figured the least worst choice was to maintain consistent naming
-# within Hawk source, although...  For "perfection" (hah!) we'd be
-# better off more rigidly following the CIB and use RscTicket, RscOrder,
-# RscColocation, RscLocation.
-# TODO(could): Revisit naming of constraint classes
-
-# Note: Unlike Colocation and Order (which always fold to resource set
-# notation), @resources is just a flat array with each element specifying
-# resource ID and role.  Trust me, it's easier that way.
-
 class Ticket < Constraint
-  @attributes = :ticket, :resources, :loss_policy
-  attr_accessor *@attributes
+  attribute :id, String
+  attribute :ticket, String
+  attribute :loss_policy, String
+  attribute :resources, Array[Hash]
 
-  def initialize(attributes = nil)
-    @ticket       = nil
-    @resources    = []
-    @loss_policy  = nil
-    super
-  end
+  validates :id,
+    presence: { message: _("Constraint ID is required") },
+    format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _("Invalid Constraint ID") }
 
-  def validate
-    @ticket.strip!
-    if @ticket.empty? || !@ticket.match(/^[a-zA-Z0-9_-]+$/)
-      error _('Invalid Ticket ID')
-    end
-    if @resources.empty?
-      error _('No resources specified')
-    end
-    @loss_policy.strip!
-    @loss_policy = nil if @loss_policy.empty?
-    @resources.each do |r|
-      r[:role].strip!
-      r[:role] = nil if r[:role].empty?
+  validates :ticket,
+    presence: { message: _("Ticket ID is required") },
+    format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _("Invalid Ticket ID") }
+
+  validate do |record|
+    if record.resources.empty?
+      errors.add :base, _("Constraint must consist of at least one separate resources")
     end
   end
 
-  def create
-    if CibObject.exists?(id)
-      error _('The ID "%{id}" is already in use') % { :id => @id }
-      return false
-    end
-
-    cmd = shell_syntax
-
-    result = Invoker.instance.crm_configure cmd
-    unless result == true
-      error _('Unable to create constraint: %{msg}') % { :msg => result }
-      return false
-    end
-
-    true
+  def resources
+    @resources ||= []
   end
 
-  def update
-    unless CibObject.exists?(id, 'rsc_ticket')
-      error _('Constraint ID "%{id}" does not exist') % { :id => @id }
-      return false
-    end
-
-    # Can just use crm configure load update here, it's trivial enough (because
-    # we basically replace the object every time, rather than having to merge
-    # like primitive, ms, etc.)
-
-    result = Invoker.instance.crm_configure_load_update shell_syntax
-    unless result == true
-      error _('Unable to update constraint: %{msg}') % { :msg => result }
-      return false
-    end
-
-    true
+  def resources=(value)
+    @resources = value
   end
 
-  def update_attributes(attributes = nil)
-    @ticket       = nil
-    @resources    = []
-    @loss_policy  = nil
-    super
+  def grant!(site)
+    result = Invoker.instance.run(
+      "booth", "client", "grant", "-t", id, "-s", site.to_s
+    )
+
+    if result == true
+      true
+    else
+      raise Constraint::CommandError.new result.last
+    end
+  end
+
+  def revoke!(site)
+    result = Invoker.instance.run(
+      "booth", "client", "revoke", "-t", id
+    )
+
+    if result == true
+      true
+    else
+      raise Constraint::CommandError.new result.last
+    end
+  end
+
+  class << self
+    def all
+      super.select do |record|
+        record.is_a? self
+      end
+    end
+  end
+
+  protected
+
+  def shell_syntax
+    [].tap do |cmd|
+      cmd.push "rsc_ticket #{id} #{ticket}:"
+
+      resources.each do |set|
+        cmd.push "(" unless set[:sequential] == "true" && set[:sequential]
+
+        set[:resources].each do |resource|
+          if set[:action].empty?
+            cmd.push resource
+          else
+            cmd.push [
+              resource,
+              set[:action].downcase
+            ].join(":")
+          end
+        end
+
+        cmd.push ")" unless set[:sequential] == "true" && set[:sequential]
+      end
+
+      unless loss_policy.empty?
+        cmd.push "loss-policy=#{loss_policy}"
+      end
+    end.join(" ")
   end
 
   class << self
     def instantiate(xml)
-      con = allocate
-      con.instance_variable_set(:@ticket, xml.attributes['ticket'] || nil)
-      resources = []
-      if xml.attributes['rsc']
-        # Simple (one resource) constraint
-        resources << {
-          :id   => xml.attributes['rsc'],
-          :role => xml.attributes['rsc-role'] || nil
-        }
-      else
-        # Resource set
-        xml.elements.each do |resource_set|
-          role = resource_set.attributes['role'] || nil
-          resource_set.elements.each do |e|
-            resources << {
-              :id   => e.attributes['id'],
-              :role => role
+      record = allocate
+      record.ticket = xml.attributes["ticket"] || nil
+      record.loss_policy = xml.attributes["loss-policy"] || nil
+
+      record.resources = [].tap do |resources|
+
+       Rails.logger.debug xml.inspect
+
+        if xml.attributes["rsc"]
+          resources.push(
+            sequential: true,
+            action: xml.attributes["rsc-role"] || nil,
+            resources: [
+              xml.attributes["rsc"]
+            ]
+          )
+        else
+          xml.elements.each do |resource|
+            set = {
+              sequential: Util.unstring(resource.attributes["sequential"], true),
+              action: resource.attributes["role"] || nil,
+              resources: []
             }
+
+            resource.elements.each do |el|
+              set[:resources].unshift(
+                el.attributes["id"]
+              )
+            end
+
+            resources.push set
           end
         end
       end
-      con.instance_variable_set(:@resources, resources)
-      con.instance_variable_set(:@loss_policy, xml.attributes['loss-policy'] || nil)
-      con
-    end
-  end
 
-  private
-
-  def shell_syntax
-    cmd = "rsc_ticket #{@id} #{@ticket}:"
-    @resources.each do |r|
-      cmd += " #{r[:id]}"
-      cmd += ":#{r[:role]}" if r[:role]
+      record
     end
-    cmd += " loss-policy=#{@loss_policy}" if @loss_policy
-    cmd
+
+    def cib_type_write
+      :rsc_ticket
+    end
   end
 end

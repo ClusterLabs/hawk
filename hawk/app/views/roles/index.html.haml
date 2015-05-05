@@ -1,10 +1,10 @@
 .container-fluid
   .row
     %h1
-      = icon_text 'group', _('Roles'), class: 'page'
+      = icon_text "group", _("Roles"), class: "page"
       .pull-right
-        .btn-group{ role: 'group' }
-          = link_to icon_text('plus', _('Add role')), new_cib_role_path, class: 'btn btn-default'
+        .btn-group{ role: "group" }
+          = link_to icon_text("plus", _("Create")), new_cib_role_path, class: "btn btn-default"
 
   .row
     - if @supported_schema
@@ -12,5 +12,5 @@
         %table.table.table-striped.roles
 
     - else
-      .alert.alert-warning{ role: 'alert' }
-        = _('ACL support requires CIB schema version 2.0, available in Pacemaker 1.1.12 and up. For older versions of Pacemaker, use Hawk version 0.6.')
+      .alert.alert-warning{ role: "alert" }
+        = _("ACL support requires CIB schema version 2.0, available in Pacemaker 1.1.12 and up. For older versions of Pacemaker, use Hawk version 0.6.")

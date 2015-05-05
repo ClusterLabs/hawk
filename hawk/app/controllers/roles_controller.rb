@@ -46,7 +46,7 @@ class RolesController < ApplicationController
   end
 
   def new
-    @title = _('Create Role')
+    @title = _("Create Role")
     @role = Role.new
 
     respond_to do |format|
@@ -55,7 +55,7 @@ class RolesController < ApplicationController
   end
 
   def create
-    @title = _('Create Role')
+    @title = _("Create Role")
     @role = Role.new params[:role]
 
     respond_to do |format|
@@ -63,7 +63,7 @@ class RolesController < ApplicationController
         post_process_for! @role
 
         format.html do
-          flash[:success] = _('Role created successfully')
+          flash[:success] = _("Role created successfully")
           redirect_to cib_roles_url(cib_id: @cib.id)
         end
         format.json do
@@ -71,7 +71,7 @@ class RolesController < ApplicationController
         end
       else
         format.html do
-          render action: 'new'
+          render action: "new"
         end
         format.json do
           render json: @role.errors, status: :unprocessable_entity
@@ -87,7 +87,7 @@ class RolesController < ApplicationController
   end
 
   def update
-    @title = _('Edit Role')
+    @title = _("Edit Role")
 
     if params[:revert]
       return redirect_to edit_cib_role_url(cib_id: @cib.id, id: @role.id)
@@ -98,7 +98,7 @@ class RolesController < ApplicationController
         post_process_for! @role
 
         format.html do
-          flash[:success] = _('Role updated successfully')
+          flash[:success] = _("Role updated successfully")
           redirect_to edit_cib_role_url(cib_id: @cib.id, id: @role.id)
         end
         format.json do
@@ -106,7 +106,7 @@ class RolesController < ApplicationController
         end
       else
         format.html do
-          render action: 'edit'
+          render action: "edit"
         end
         format.json do
           render json: @role.errors, status: :unprocessable_entity
@@ -117,21 +117,24 @@ class RolesController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if Invoker.instance.crm('--force', 'configure', 'delete', @role.id)
+      if Invoker.instance.crm("--force", "configure", "delete", @role.id)
         format.html do
-          flash[:success] = _('Role deleted successfully')
+          flash[:success] = _("Role deleted successfully")
           redirect_to cib_roles_url(cib_id: @cib.id)
         end
         format.json do
-          head :no_content
+          render json: {
+            success: true,
+            message: _("Role deleted successfully")
+          }
         end
       else
         format.html do
-          flash[:alert] = _('Error deleting %s') % @role.id
+          flash[:alert] = _("Error deleting %s") % @role.id
           redirect_to cib_roles_url(cib_id: @cib.id)
         end
         format.json do
-          render json: { error: _('Error deleting %s') % @role.id }, status: :unprocessable_entity
+          render json: { error: _("Error deleting %s") % @role.id }, status: :unprocessable_entity
         end
       end
     end
@@ -149,7 +152,7 @@ class RolesController < ApplicationController
   protected
 
   def set_title
-    @title = _('Roles')
+    @title = _("Roles")
   end
 
   def set_cib
@@ -162,7 +165,7 @@ class RolesController < ApplicationController
     unless @role
       respond_to do |format|
         format.html do
-          flash[:alert] = _('The role does not exist')
+          flash[:alert] = _("The role does not exist")
           redirect_to cib_roles_url(cib_id: @cib.id)
         end
       end
@@ -170,18 +173,18 @@ class RolesController < ApplicationController
   end
 
   def check_support
-    if Util.has_feature? :acl_enabled
+    unless Util.has_feature? :acl_enabled
       flash.now[:warning] = view_context.link_to(
-        _('To enable ACLs, set \'enable-acl\' in the CRM Configuration'),
+        _("To enable ACLs, set \"enable-acl\" in the CRM Configuration"),
         edit_cib_crm_config_path(cib_id: @cib.id)
       )
     end
 
     cibadmin = Util.safe_x(
-      '/usr/sbin/cibadmin',
-      '-Ql',
-      '--xpath',
-      '/cib[@validate-with]'
+      "/usr/sbin/cibadmin",
+      "-Ql",
+      "--xpath",
+      "/cib[@validate-with]"
     ).lines.first.to_s
 
     if m = cibadmin.match(/validate-with=\"pacemaker-([0-9.]+)\"/)

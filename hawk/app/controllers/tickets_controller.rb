@@ -33,10 +33,24 @@ class TicketsController < ApplicationController
   before_filter :login_required
   before_filter :set_title
   before_filter :set_cib
-  before_filter :set_record, only: [:edit, :update, :destroy, :show]
+  before_filter :set_record, only: [:edit, :update, :destroy, :show, :grant, :revoke]
+
+  rescue_from Constraint::CommandError do |e|
+    Rails.logger.error e
+
+    respond_to do |format|
+      format.json do
+        render json: { error: e.message }
+      end
+      format.html do
+        redirect_to cib_tickets_url(cib_id: @cib.id), alert: e.message
+      end
+    end
+  end
 
   def index
     respond_to do |format|
+      format.html
       format.json do
         render json: Ticket.ordered.to_json
       end
@@ -44,7 +58,7 @@ class TicketsController < ApplicationController
   end
 
   def new
-    @title = _('Create Ticket Constraint')
+    @title = _("Create Ticket")
     @ticket = Ticket.new
 
     respond_to do |format|
@@ -54,7 +68,7 @@ class TicketsController < ApplicationController
 
   def create
     normalize_params! params[:ticket]
-    @title = _('Create Ticket Constraint')
+    @title = _("Create Ticket")
 
     @ticket = Ticket.new params[:ticket]
 
@@ -63,7 +77,7 @@ class TicketsController < ApplicationController
         post_process_for! @ticket
 
         format.html do
-          flash[:success] = _('Constraint created successfully')
+          flash[:success] = _("Constraint created successfully")
           redirect_to edit_cib_ticket_url(cib_id: @cib.id, id: @ticket.id)
         end
         format.json do
@@ -71,7 +85,7 @@ class TicketsController < ApplicationController
         end
       else
         format.html do
-          render action: 'new'
+          render action: "new"
         end
         format.json do
           render json: @ticket.errors, status: :unprocessable_entity
@@ -81,7 +95,7 @@ class TicketsController < ApplicationController
   end
 
   def edit
-    @title = _('Edit Ticket Constraint')
+    @title = _("Edit Ticket")
 
     respond_to do |format|
       format.html
@@ -90,7 +104,7 @@ class TicketsController < ApplicationController
 
   def update
     normalize_params! params[:ticket]
-    @title = _('Edit Ticket Constraint')
+    @title = _("Edit Ticket")
 
     if params[:revert]
       return redirect_to edit_cib_ticket_url(cib_id: @cib.id, id: @ticket.id)
@@ -101,7 +115,7 @@ class TicketsController < ApplicationController
         post_process_for! @ticket
 
         format.html do
-          flash[:success] = _('Constraint updated successfully')
+          flash[:success] = _("Constraint updated successfully")
           redirect_to edit_cib_ticket_url(cib_id: @cib.id, id: @ticket.id)
         end
         format.json do
@@ -109,7 +123,7 @@ class TicketsController < ApplicationController
         end
       else
         format.html do
-          render action: 'edit'
+          render action: "edit"
         end
         format.json do
           render json: @ticket.errors, status: :unprocessable_entity
@@ -120,21 +134,24 @@ class TicketsController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if Invoker.instance.crm('--force', 'configure', 'delete', @ticket.id)
+      if false #Invoker.instance.crm("--force", "configure", "delete", @ticket.id)
         format.html do
-          flash[:success] = _('Tciket deleted successfully')
-          redirect_to types_cib_constraints_url(cib_id: @cib.id)
+          flash[:success] = _("Ticket deleted successfully")
+          redirect_to cib_tickets_url(cib_id: @cib.id)
         end
         format.json do
-          head :no_content
+          render json: {
+            success: true,
+            message: _("Ticket deleted successfully")
+          }
         end
       else
         format.html do
-          flash[:alert] = _('Error deleting %s') % @ticket.id
+          flash[:alert] = _("Error deleting %s") % @ticket.id
           redirect_to edit_cib_ticket_url(cib_id: @cib.id, id: @ticket.id)
         end
         format.json do
-          render json: { error: _('Error deleting %s') % @ticket.id }, status: :unprocessable_entity
+          render json: { error: _("Error deleting %s") % @ticket.id }, status: :unprocessable_entity
         end
       end
     end
@@ -149,10 +166,44 @@ class TicketsController < ApplicationController
     end
   end
 
+  def grant
+    @ticket.grant! @cib.booth.me
+
+    respond_to do |format|
+      format.html do
+        flash[:success] = _("Successfully granted the ticket")
+        redirect_to cib_tickets_url(cib_id: @cib.id)
+      end
+      format.json do
+        render json: {
+          success: true,
+          message: _("Successfully granted the ticket")
+        }
+      end
+    end
+  end
+
+  def revoke
+    @ticket.revoke! @cib.booth.me
+
+    respond_to do |format|
+      format.html do
+        flash[:success] = _("Successfully revoked the ticket")
+        redirect_to cib_tickets_url(cib_id: @cib.id)
+      end
+      format.json do
+        render json: {
+          success: true,
+          message: _("Successfully revoked the ticket")
+        }
+      end
+    end
+  end
+
   protected
 
   def set_title
-    @title = _('Ticket Constraints')
+    @title = _("Tickets")
   end
 
   def set_cib
@@ -165,7 +216,7 @@ class TicketsController < ApplicationController
     unless @ticket
       respond_to do |format|
         format.html do
-          flash[:alert] = _('The ticket constraint does not exist')
+          flash[:alert] = _("The ticket constraint does not exist")
           redirect_to types_cib_constraints_url(cib_id: @cib.id)
         end
       end
@@ -176,5 +227,18 @@ class TicketsController < ApplicationController
   end
 
   def normalize_params!(current)
+    if params[:ticket][:resources].nil?
+      params[:ticket][:resources] = []
+    else
+      params[:ticket][:resources] = params[:ticket][:resources].values
+    end
+  end
+
+  def default_base_layout
+    if ["new", "create", "edit", "update"].include? params[:action]
+      "withrightbar"
+    else
+      super
+    end
   end
 end

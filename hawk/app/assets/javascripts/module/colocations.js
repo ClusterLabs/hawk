@@ -30,10 +30,10 @@
 //======================================================================
 
 $(function() {
-  $('#roles #middle table.roles')
+  $('#colocations #middle table.colocations')
     .bootstrapTable({
       method: 'get',
-      url: Routes.cib_roles_path(
+      url: Routes.cib_colocations_path(
         $('body').data('cib'),
         { format: 'json' }
       ),
@@ -52,7 +52,7 @@ $(function() {
       sortOrder: 'asc',
       columns: [{
         field: 'id',
-        title: __('Role ID'),
+        title: __('Constraint ID'),
         sortable: true,
         switchable: false,
         clickToSelect: true
@@ -61,7 +61,7 @@ $(function() {
         title: __('Operations'),
         sortable: false,
         clickToSelect: false,
-        class: 'col-sm-1',
+        class: 'col-sm-2',
         events: {
           'click .delete': function (e, value, row, index) {
             e.preventDefault();
@@ -73,7 +73,7 @@ $(function() {
               data: {
                 _method: 'delete'
               },
-              url: Routes.cib_role_path(
+              url: Routes.cib_colocation_path(
                 $('body').data('cib'),
                 row.id,
                 { format: 'json' }
@@ -113,7 +113,7 @@ $(function() {
 
           operations.push([
             '<a href="',
-                Routes.edit_cib_role_path(
+                Routes.edit_cib_colocation_path(
                   $('body').data('cib'),
                   row.id
                 ),
@@ -126,7 +126,7 @@ $(function() {
 
           operations.push([
             '<a href="',
-                Routes.cib_role_path(
+                Routes.cib_colocation_path(
                   $('body').data('cib'),
                   row.id
                 ),
@@ -146,87 +146,13 @@ $(function() {
       }]
     });
 
-  $('#roles #middle form')
-    // .find('.select')
-    //   .multiselect({
-    //     disableIfEmpty: true,
-    //     enableFiltering: true,
-    //     buttonWidth: '100%'
-    //   }).end()
-    .on('click', '.rule.add', function(e) {
-      e.preventDefault();
-
-      var current = $(e.currentTarget)
-        .closest('fieldset');
-
-      current
-        .clone()
-        .find('input, select')
-          .val('')
-          .end()
-        .find('.form-group')
-          .removeClass('has-feedback')
-          .removeClass('has-error')
-          .end()
-        .insertAfter(current);
-    })
-    .on('click', '.rule.remove', function(e) {
-      e.preventDefault();
-
-      $(e.currentTarget)
-        .closest('fieldset')
-        .fadeOut()
-        .remove();
-    })
-    .on('click', '.rule.up', function(e) {
-      e.preventDefault();
-
-      var current = $(e.currentTarget)
-        .closest('fieldset');
-
-      current.insertBefore(current.prev());
-    })
-    .on('click', '.rule.down', function(e) {
-      e.preventDefault();
-
-      var current = $(e.currentTarget)
-        .closest('fieldset');
-
-      current.insertAfter(current.next());
-    })
-    .on('click', '.rule.add, .rule.remove, .rule.up, .rule.down', function(e) {
-      e.preventDefault();
-
-      $(e.delegateTarget)
-        .find('[name="revert"]')
-          .show()
-          .end()
-        .find('a.back')
-          .attr('data-confirm', __('Any changes will be lost - do you wish to proceed?'))
-          .end();
-
-      $(e.currentTarget)
-        .closest('fieldset')
-        .siblings()
-        .andSelf()
-        .each(function(index, current) {
-          $(current)
-            .find('.form-control')
-            .each(function(i, input) {
-              var name = $(input).attr('name');
-              var splitted = name.split('][');
-
-              splitted[splitted.length - 2] = index.toString();
-              $(input).attr('name', splitted.join(']['));
-            });
-        });
-    })
-    .validate({
-      rules: {
-        'role[id]': {
-          minlength: 1,
-          required: true
-        }
-      }
-    });
+  // $('#colocations #middle form')
+  //   .validate({
+  //     rules: {
+  //       'ticket[id]': {
+  //         minlength: 1,
+  //         required: true
+  //       }
+  //     }
+  //   });
 });

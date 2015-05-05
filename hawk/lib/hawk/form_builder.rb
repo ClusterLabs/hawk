@@ -271,11 +271,11 @@ module Hawk
     end
 
     def horizontal_field_class
-      'col-sm-9'
+      'col-sm-7'
     end
 
     def horizontal_label_class
-      'col-sm-3 control-label'
+      'col-sm-5 control-label'
     end
 
     def button_group_tag
@@ -283,7 +283,7 @@ module Hawk
     end
 
     def button_group_class
-      'col-sm-offset-3 col-sm-9'
+      'col-sm-offset-5 col-sm-7'
     end
 
     def help_block_tag

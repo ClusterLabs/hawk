@@ -26,11 +26,11 @@ default["hawk"]["webui"]["packages"] = [
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-gettext_i18n_rails",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-haml-rails",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-sass-rails-3_2",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-lograge",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-virtus",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-js-routes",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-sprockets",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-sprockets-2_12",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-tilt-1_4",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-hashie",
 
   # Development dependencies
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-web-console",
@@ -43,19 +43,10 @@ default["hawk"]["webui"]["packages"] = [
   "ha-cluster-bootstrap",
   "w3m",
 
-  # Development dependencies
-
   "glib2-devel",
   "libxml2-devel",
   "pam-devel",
-  "libpacemaker-devel",
-
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-gettext",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-byebug",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-web-console",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-spring",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-quiet_assets",
-
+  "libpacemaker-devel"
 ]
 
 default["hawk"]["webui"]["targets"] = %w(

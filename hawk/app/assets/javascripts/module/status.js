@@ -45,9 +45,7 @@
       targets: {
         events: el,
         metadata: 'footer .metadata',
-        config: '#middle .cluster-config .panel-body',
-        status: '#middle .cluster-status .panel-body',
-        errors: '#middle .cluster-errors'
+        content: '#dashboards #middle'
       }
     };
 
@@ -89,7 +87,7 @@
             data
           );
 
-          $(self.options.targets.config).link(
+          $(self.options.targets.content).link(
             true,
             $.extend(
               {
@@ -97,25 +95,6 @@
               },
               data
             )
-          );
-
-          $(self.options.targets.status).link(
-            true,
-            $.extend(
-              {
-
-              },
-              data
-            )
-          );
-
-console.log($(self.options.targets.errors), {
-              errors: data.errors
-            });
-
-          $(self.options.targets.errors).link(
-            true,
-            data
           );
         }
       },

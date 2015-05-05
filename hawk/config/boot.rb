@@ -72,6 +72,9 @@ else
   gem 'lograge', version: '~> 0.3'
   require 'lograge'
 
+  gem 'hashie', version: '~> 3.4'
+  require 'hashie'
+
   gem 'virtus', version: '~> 1.0'
   require 'virtus'
 

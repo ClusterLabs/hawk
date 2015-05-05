@@ -29,72 +29,34 @@
 #
 #======================================================================
 
-class Tableless
-  class ValidationError < RuntimeError
+module TicketHelper
+  def ticket_losspolicy_options(selected)
+    options_for_select(
+      [
+        [_("Stop"), "stop"],
+        [_("Demote"), "demote"],
+        [_("Fence"), "fence"],
+        [_("Freeze"), "freeze"]
+      ],
+      selected
+    )
   end
 
-  extend ActiveModel::Naming
-
-  include Virtus.model
-
-  include ActiveModel::Conversion
-  include ActiveModel::Validations
-  include FastGettext::Translation
-
-  attr_accessor :new_record
-
-  def initialize(attrs = nil)
-    self.attributes = attrs unless attrs.nil?
-    self.new_record = true
-    super
+  def available_ticket_roles
+    {
+      "Started" => _("Started"),
+      "Master" => _("Master"),
+      "Slave" => _("Slave"),
+      "Stopped" => _("Stopped")
+    }
   end
 
-  def save
-    if valid? and persist!
-      true
-    else
-      false
-    end
-  end
-
-  def persisted?
-    if self.new_record
-      false
-    else
-      true
-    end
-  end
-
-  def new_record?
-    if self.new_record
-      true
-    else
-      false
-    end
-  end
-
-  def update_attributes(attrs = nil)
-    self.attributes = attrs unless attrs.nil?
-    self.save
-  end
-
-  def validate!
-    raise ValidationError, errors unless valid?
-  end
-
-  protected
-
-  def create
-  end
-
-  def update
-  end
-
-  def persist!
-    if new_record?
-      create
-    else
-      update
+  def available_ticket_resources
+    [
+      @cib.resources.map(&:id),
+      @cib.templates.map(&:id)
+    ].flatten.sort do |a, b|
+      a.natcmp(b, true)
     end
   end
 end

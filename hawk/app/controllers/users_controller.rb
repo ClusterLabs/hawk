@@ -46,7 +46,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    @title = _('Create User')
+    @title = _("Create User")
     @user = User.new
 
     respond_to do |format|
@@ -55,7 +55,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @title = _('Create User')
+    @title = _("Create User")
     @user = User.new params[:user]
 
     respond_to do |format|
@@ -63,7 +63,7 @@ class UsersController < ApplicationController
         post_process_for! @user
 
         format.html do
-          flash[:success] = _('User created successfully')
+          flash[:success] = _("User created successfully")
           redirect_to cib_users_url(cib_id: @cib.id)
         end
         format.json do
@@ -71,7 +71,7 @@ class UsersController < ApplicationController
         end
       else
         format.html do
-          render action: 'new'
+          render action: "new"
         end
         format.json do
           render json: @user.errors, status: :unprocessable_entity
@@ -81,7 +81,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @title = _('Edit User')
+    @title = _("Edit User")
 
     respond_to do |format|
       format.html
@@ -89,7 +89,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @title = _('Edit User')
+    @title = _("Edit User")
 
     if params[:revert]
       return redirect_to edit_cib_user_url(cib_id: @cib.id, id: @user.id)
@@ -100,7 +100,7 @@ class UsersController < ApplicationController
         post_process_for! @user
 
         format.html do
-          flash[:success] = _('User updated successfully')
+          flash[:success] = _("User updated successfully")
           redirect_to edit_cib_user_url(cib_id: @cib.id, id: @user.id)
         end
         format.json do
@@ -108,7 +108,7 @@ class UsersController < ApplicationController
         end
       else
         format.html do
-          render action: 'edit'
+          render action: "edit"
         end
         format.json do
           render json: @user.errors, status: :unprocessable_entity
@@ -119,21 +119,24 @@ class UsersController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if Invoker.instance.crm('--force', 'configure', 'delete', @user.id)
+      if Invoker.instance.crm("--force", "configure", "delete", @user.id)
         format.html do
-          flash[:success] = _('User deleted successfully')
+          flash[:success] = _("User deleted successfully")
           redirect_to cib_users_url(cib_id: @cib.id)
         end
         format.json do
-          head :no_content
+          render json: {
+            success: true,
+            message: _("User deleted successfully")
+          }
         end
       else
         format.html do
-          flash[:alert] = _('Error deleting %s') % @user.id
+          flash[:alert] = _("Error deleting %s") % @user.id
           redirect_to cib_users_url(cib_id: @cib.id)
         end
         format.json do
-          render json: { error: _('Error deleting %s') % @user.id }, status: :unprocessable_entity
+          render json: { error: _("Error deleting %s") % @user.id }, status: :unprocessable_entity
         end
       end
     end
@@ -151,7 +154,7 @@ class UsersController < ApplicationController
   protected
 
   def set_title
-    @title = _('Users')
+    @title = _("Users")
   end
 
   def set_cib
@@ -164,7 +167,7 @@ class UsersController < ApplicationController
     unless @user
       respond_to do |format|
         format.html do
-          flash[:alert] = _('The user does not exist')
+          flash[:alert] = _("The user does not exist")
           redirect_to cib_users_url(cib_id: @cib.id)
         end
       end
@@ -174,16 +177,16 @@ class UsersController < ApplicationController
   def check_support
     unless Util.has_feature? :acl_enabled
       flash.now[:warning] = view_context.link_to(
-        _('To enable ACLs, set \'enable-acl\' in the CRM Configuration'),
+        _("To enable ACLs, set \"enable-acl\" in the CRM Configuration"),
         edit_cib_crm_config_path(cib_id: @cib.id)
       )
     end
 
     cibadmin = Util.safe_x(
-      '/usr/sbin/cibadmin',
-      '-Ql',
-      '--xpath',
-      '/cib[@validate-with]'
+      "/usr/sbin/cibadmin",
+      "-Ql",
+      "--xpath",
+      "/cib[@validate-with]"
     ).lines.first.to_s
 
     if m = cibadmin.match(/validate-with=\"pacemaker-([0-9.]+)\"/)

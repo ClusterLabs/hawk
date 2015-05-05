@@ -9,9 +9,9 @@
 
     %ul
       %li{ class: active_menu_with(:heartbeats) }
-        = link_to _("Heartbeat"), heartbeats_path
+        = link_to _("Heartbeat"), heartbeat_path
       %li{ class: active_menu_with(:graphs) }
-        = link_to _("Graph"), graphs_path
+        = link_to _("Graph"), graph_path
       %li{ class: active_menu_with(:logs) }
         = link_to _("History"), logs_path
 
@@ -36,6 +36,27 @@
       - if Util.has_feature? :acl_support
         %li{ class: active_menu_with(:roles) }
           = link_to _("Roles"), cib_roles_path(cib_id: current_cib.id)
+
       - if Util.has_feature? :acl_support
         %li{ class: active_menu_with(:users) }
           = link_to _("Users"), cib_users_path(cib_id: current_cib.id)
+
+  - if Rails.env.development?
+    %li
+      = _("Development")
+
+      %ul
+        %li{ class: active_menu_with(:nodes) }
+          = link_to _("Nodes"), cib_nodes_path(cib_id: current_cib.id)
+
+        %li{ class: active_menu_with(:locations) }
+          = link_to _("Locations"), cib_locations_path(cib_id: current_cib.id)
+
+        %li{ class: active_menu_with(:colocations) }
+          = link_to _("Colocations"), cib_colocations_path(cib_id: current_cib.id)
+
+        %li{ class: active_menu_with(:orders) }
+          = link_to _("Orders"), cib_orders_path(cib_id: current_cib.id)
+
+        %li{ class: active_menu_with(:tickets) }
+          = link_to _("Tickets"), cib_tickets_path(cib_id: current_cib.id)

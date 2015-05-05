@@ -33,8 +33,22 @@ class NodesController < ApplicationController
   before_filter :login_required
   before_filter :set_title
   before_filter :set_cib
+  before_filter :set_record, only: [:online, :standby, :maintenance, :ready, :fence, :show, :events]
 
   before_filter :god_required, only: [:events]
+
+  rescue_from Node::CommandError do |e|
+    Rails.logger.error e
+
+    respond_to do |format|
+      format.json do
+        render json: { error: e.message }
+      end
+      format.html do
+        redirect_to cib_nodes_url(cib_id: @cib.id), alert: e.message
+      end
+    end
+  end
 
   def index
     respond_to do |format|
@@ -45,52 +59,138 @@ class NodesController < ApplicationController
     end
   end
 
+  def online
+    @node.online!
 
+    respond_to do |format|
+      format.html do
+        flash[:success] = _("Set the node state to online")
+        redirect_to cib_nodes_url(cib_id: @cib.id)
+      end
+      format.json do
+        render json: {
+          success: true,
+          message: _("Set the node state to online")
+        }
+      end
+    end
+  end
 
+  def standby
+    @node.standby!
 
+    respond_to do |format|
+      format.html do
+        flash[:success] = _("Set the node state to standby")
+        redirect_to cib_nodes_url(cib_id: @cib.id)
+      end
+      format.json do
+        render json: {
+          success: true,
+          message: _("Set the node state to standby")
+        }
+      end
+    end
+  end
 
+  def maintenance
+    @node.maintenance!
 
+    respond_to do |format|
+      format.html do
+        flash[:success] = _("Set the node state to maintenance")
+        redirect_to cib_nodes_url(cib_id: @cib.id)
+      end
+      format.json do
+        render json: {
+          success: true,
+          message: _("Set the node state to maintenance")
+        }
+      end
+    end
+  end
 
+  def ready
+    @node.ready!
 
+    respond_to do |format|
+      format.html do
+        flash[:success] = _("Set the node state to ready")
+        redirect_to cib_nodes_url(cib_id: @cib.id)
+      end
+      format.json do
+        render json: {
+          success: true,
+          message: _("Set the node state to ready")
+        }
+      end
+    end
+  end
 
+  def fence
+    @node.fence!
 
-
-
-
-
-
+    respond_to do |format|
+      format.html do
+        flash[:success] = _("Set the node state to fence")
+        redirect_to cib_nodes_url(cib_id: @cib.id)
+      end
+      format.json do
+        render json: {
+          success: true,
+          message: _("Set the node state to fence")
+        }
+      end
+    end
+  end
 
   def show
-    @node = Node.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
+    respond_to do |format|
+      format.json do
+        render json: @node.to_json
+      end
+      format.html
+    end
   end
 
   def events
     respond_to do |format|
-      format.json { render :template => "nodes/events", :formats => [:js] }
-      format.html { render :template => "nodes/events" }
+      format.js
+      format.html
     end
   end
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   protected
 
   def set_title
-    @title = _('Nodes')
+    @title = _("Nodes")
   end
 
   def set_cib
     @cib = Cib.new params[:cib_id], current_user
+  end
+
+  def set_record
+    @node = Node.find params[:id]
+
+    unless @node
+      respond_to do |format|
+        format.html do
+          flash[:alert] = _("The node does not exist")
+          redirect_to cib_nodes_url(cib_id: @cib.id)
+        end
+      end
+    end
+  end
+
+  def post_process_for!(record)
+  end
+
+  def detect_modal_layout
+    if request.xhr? && params[:action] == :show
+      "modal"
+    else
+      detect_current_layout
+    end
   end
 end

@@ -39,30 +39,28 @@ Rails.application.routes.draw do
 
     resources :nodes do
       member do
+        get :online
+        get :standby
+        get :maintenance
+        get :ready
+        get :fence
         get :events
-
-        post :standby
-        post :online
-        post :maintenance
-        post :ready
-        post :fence
       end
     end
 
     resources :resources do
       member do
+        get :start
+        get :stop
+        get :unmigrate
+        get :promote
+        get :demote
+        get :cleanup
+        get :manage
+        get :unmanage
+        get :migrate
+        get :delete
         get :events
-
-        post :start
-        post :stop
-        post :unmigrate
-        post :promote
-        post :demote
-        post :cleanup
-        post :manage
-        post :unmanage
-        post :migrate
-        post :delete
       end
 
       collection do
@@ -93,8 +91,8 @@ Rails.application.routes.draw do
 
     resources :tickets do
       member do
-        post :grant
-        post :revoke
+        get :grant
+        get :revoke
       end
     end
 
@@ -121,21 +119,12 @@ Rails.application.routes.draw do
   end
 
   scope :reports do
-    resources :heartbeats do
-      collection do
-        get :status
-      end
-    end
+    resource :graph
+    resource :heartbeat
 
     resources :logs do
       member do
         get :diff
-      end
-    end
-
-    resources :graphs do
-      member do
-        get :gen
       end
     end
   end

@@ -64,47 +64,6 @@ class MainController < ApplicationController
     @title = _('Cluster Status')
   end
 
-  # TODO(should): Node ops, resource ops, arguably belong in separate
-  # node and resource controllers/models.  Note this would change the
-  # class hierarchy for primitve, group, etc., e.g.:
-  #   Primitive < Resource < CibObject
-  # (see also related comment in config/routes.rb)
-
-  # standby/online (op validity guaranteed by routes)
-  def node_standby
-    if params[:node]
-      invoke 'crm_attribute', '-N', params[:node], '-n', 'standby', '-v', params[:op] == 'standby' ? 'on' : 'off', '-l', 'forever'
-    else
-      render :status => 400, :json => {
-        :error => _('Required parameter "node" not specified')
-      }
-    end
-  end
-
-  def node_maintenance
-    if params[:node]
-      invoke 'crm_attribute', '-N', params[:node], '-n', 'maintenance', '-v', params[:op] == 'maintenance' ? 'on' : 'off', '-l', 'forever'
-    else
-      render :status => 400, :json => {
-        :error => _('Required parameter "node" not specified')
-      }
-    end
-  end
-
-  def node_fence
-    if params[:node]
-      invoke 'crm_attribute', '-t', 'status', '-U', params[:node], '-n', 'terminate', '-v', 'true'
-    else
-      render :status => 400, :json => {
-        :error => _('Required parameter "node" not specified')
-      }
-    end
-  end
-
-#  def node_mark
-#    head :ok
-#  end
-
   # start, stop, etc. (op validity guaranteed by routes)
   # TODO(should): exceptions to handle missing params
   def resource_op
@@ -148,25 +107,6 @@ class MainController < ApplicationController
     end
   end
 
-  def ticket_grant
-    if params[:ticket] && params[:site]
-      invoke "booth", "client", "grant", "-t", params[:ticket], "-s", params[:site]
-    else
-      render :status => 400, :json => {
-        :error => _('Required parameters "ticket" and "site" not specified')
-      }
-    end
-  end
-
-  def ticket_revoke
-    if params[:ticket]
-      invoke "booth", "client", "revoke", "-t", params[:ticket]
-    else
-      render :status => 400, :json => {
-        :error => _('Required parameter "ticket" not specified')
-      }
-    end
-  end
 
   # TODO(must): these both need exception handler for invoker runs
   # TODO(must): only one user at a time can run sims (they stomp on each other)

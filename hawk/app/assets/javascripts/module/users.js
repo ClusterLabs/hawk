@@ -47,11 +47,14 @@ $(function() {
       searchAlign: 'left',
       showColumns: true,
       showRefresh: true,
-      minimumCountColumns: 1,
+      minimumCountColumns: 0,
+      sortName: 'id',
+      sortOrder: 'asc',
       columns: [{
         field: 'id',
         title: __('User ID'),
         sortable: true,
+        switchable: false,
         clickToSelect: true
       }, {
         field: 'operate',
@@ -59,26 +62,85 @@ $(function() {
         sortable: false,
         clickToSelect: false,
         class: 'col-sm-1',
-        formatter: function(value, row, index) {
-          return [
-            '<a class="edit" href="',
-              Routes.edit_cib_user_path(
+        events: {
+          'click .delete': function (e, value, row, index) {
+            e.preventDefault();
+            var $self = $(this);
+
+            $.ajax({
+              dataType: 'json',
+              method: 'POST',
+              data: {
+                _method: 'delete'
+              },
+              url: Routes.cib_user_path(
                 $('body').data('cib'),
-                row.id
+                row.id,
+                { format: 'json' }
               ),
+
+              success: function(data) {
+                if (data.success) {
+                  $.growl({
+                    message: data.message
+                  },{
+                    type: 'success'
+                  });
+
+                  $self.parents('table').bootstrapTable('refresh')
+                } else {
+                  if (data.error) {
+                    $.growl({
+                      message: data.error
+                    },{
+                      type: 'danger'
+                    });
+                  }
+                }
+              },
+              error: function(xhr, status, msg) {
+                $.growl({
+                  message: xhr.responseJSON.error || msg
+                },{
+                  type: 'danger'
+                });
+              }
+            });
+          }
+        },
+        formatter: function(value, row, index) {
+          var operations = []
+
+          operations.push([
+            '<a href="',
+                Routes.edit_cib_user_path(
+                  $('body').data('cib'),
+                  row.id
+                ),
+              '" class="edit btn btn-default btn-xs" title="',
+              __('Edit'),
             '">',
               '<i class="fa fa-pencil"></i>',
-            '</a> ',
-            '<a class="delete" href="',
-              Routes.cib_user_path(
-                $('body').data('cib'),
-                row.id
-              ),
-            '" data-confirm="',
-              i18n.translate('Are you sure you wish to delete %s?').fetch(row.id),
-            '" data-method="delete">',
+            '</a> '
+          ].join(''));
+
+          operations.push([
+            '<a href="',
+                Routes.cib_user_path(
+                  $('body').data('cib'),
+                  row.id
+                ),
+              '" class="delete btn btn-default btn-xs" title="',
+              __('Delete'),
+            '" data-confirm="' + i18n.translate('Are you sure you wish to delete %s?').fetch(row.id) + '">',
               '<i class="fa fa-trash"></i>',
-            '</a>'
+            '</a> '
+          ].join(''));
+
+          return [
+            '<div class="btn-group" role="group">',
+              operations.join(''),
+            '</div>',
           ].join('');
         }
       }]

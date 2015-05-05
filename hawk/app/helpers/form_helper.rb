@@ -30,6 +30,16 @@
 #======================================================================
 
 module FormHelper
+  def boolean_options(selected)
+    options_for_select(
+      [
+        [_("Yes"), "true"],
+        [_("No"), "false"]
+      ],
+      selected
+    )
+  end
+
   def revert_button(form, record)
     form.submit(
       _('Revert'),

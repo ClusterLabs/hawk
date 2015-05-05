@@ -1,14 +1,23 @@
 .panel.panel-default
   .panel-body
     = form_for [cib, order], horizontal: true do |main_form|
-      /= errors_for order
+      = errors_for order
 
-      /- if order.new_record?
-      /  = main_form.text_field :id, label: _('Order ID')
-      /- else
-      /  = main_form.text_field :id, label: _('Order ID'), readonly: true
+      - if order.new_record?
+        = main_form.text_field :id, label: _("Constraint ID")
+      - else
+        = main_form.text_field :id, label: _("Constraint ID"), readonly: true
 
-      /= main_form.select :roles, :role_options, { include_hidden: false }, { multiple: true, size: 5 }
+      = main_form.text_field :score, label: _("Score")
+      = main_form.select :symmetrical, :boolean_options, { include_hidden: false, include_blank: false }, id: nil, label: _("Symmetrical")
+
+      %fieldset{ data: { constraints: order.resources.to_json, constraints_available: available_order_resources.to_json, constraints_selects: available_order_actions.to_json, constraints_prefix: "order[resources]", constraints_target: ".content" } }
+        %legend
+          = _("Resources")
+          %span.pull-right.toggleable
+            = icon_tag("chevron-up")
+
+        .content.constraints
 
       = main_form.button_group do
         - if order.new_record?
@@ -17,4 +26,4 @@
           = apply_button(main_form, order)
           = revert_button(main_form, order)
 
-        = link_to _('Back'), types_cib_constraints_path(cib_id: cib.id), class: 'btn btn-default back'
+        = link_to _("Back"), types_cib_constraints_path(cib_id: cib.id), class: "btn btn-default back"

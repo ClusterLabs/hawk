@@ -37,6 +37,7 @@ class OrdersController < ApplicationController
 
   def index
     respond_to do |format|
+      format.html
       format.json do
         render json: Order.ordered.to_json
       end
@@ -44,7 +45,7 @@ class OrdersController < ApplicationController
   end
 
   def new
-    @title = _('Create Order Constraint')
+    @title = _("Create Order")
     @order = Order.new
 
     respond_to do |format|
@@ -54,7 +55,7 @@ class OrdersController < ApplicationController
 
   def create
     normalize_params! params[:order]
-    @title = _('Create Order Constraint')
+    @title = _("Create Order")
 
     @order = Order.new params[:order]
 
@@ -63,7 +64,7 @@ class OrdersController < ApplicationController
         post_process_for! @order
 
         format.html do
-          flash[:success] = _('Constraint created successfully')
+          flash[:success] = _("Constraint created successfully")
           redirect_to edit_cib_order_url(cib_id: @cib.id, id: @order.id)
         end
         format.json do
@@ -71,7 +72,7 @@ class OrdersController < ApplicationController
         end
       else
         format.html do
-          render action: 'new'
+          render action: "new"
         end
         format.json do
           render json: @order.errors, status: :unprocessable_entity
@@ -81,7 +82,7 @@ class OrdersController < ApplicationController
   end
 
   def edit
-    @title = _('Edit Order Constraint')
+    @title = _("Edit Order")
 
     respond_to do |format|
       format.html
@@ -90,7 +91,7 @@ class OrdersController < ApplicationController
 
   def update
     normalize_params! params[:order]
-    @title = _('Edit Order Constraint')
+    @title = _("Edit Order")
 
     if params[:revert]
       return redirect_to edit_cib_order_url(cib_id: @cib.id, id: @order.id)
@@ -101,7 +102,7 @@ class OrdersController < ApplicationController
         post_process_for! @order
 
         format.html do
-          flash[:success] = _('Constraint updated successfully')
+          flash[:success] = _("Constraint updated successfully")
           redirect_to edit_cib_order_url(cib_id: @cib.id, id: @order.id)
         end
         format.json do
@@ -109,7 +110,7 @@ class OrdersController < ApplicationController
         end
       else
         format.html do
-          render action: 'edit'
+          render action: "edit"
         end
         format.json do
           render json: @order.errors, status: :unprocessable_entity
@@ -120,21 +121,24 @@ class OrdersController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if Invoker.instance.crm('--force', 'configure', 'delete', @order.id)
+      if Invoker.instance.crm("--force", "configure", "delete", @order.id)
         format.html do
-          flash[:success] = _('Order deleted successfully')
+          flash[:success] = _("Order deleted successfully")
           redirect_to types_cib_constraints_url(cib_id: @cib.id)
         end
         format.json do
-          head :no_content
+          render json: {
+            success: true,
+            message: _("Order deleted successfully")
+          }
         end
       else
         format.html do
-          flash[:alert] = _('Error deleting %s') % @order.id
+          flash[:alert] = _("Error deleting %s") % @order.id
           redirect_to edit_cib_order_url(cib_id: @cib.id, id: @order.id)
         end
         format.json do
-          render json: { error: _('Error deleting %s') % @order.id }, status: :unprocessable_entity
+          render json: { error: _("Error deleting %s") % @order.id }, status: :unprocessable_entity
         end
       end
     end
@@ -152,7 +156,7 @@ class OrdersController < ApplicationController
   protected
 
   def set_title
-    @title = _('Order Constraints')
+    @title = _("Orders")
   end
 
   def set_cib
@@ -165,7 +169,7 @@ class OrdersController < ApplicationController
     unless @order
       respond_to do |format|
         format.html do
-          flash[:alert] = _('The order constraint does not exist')
+          flash[:alert] = _("The order constraint does not exist")
           redirect_to types_cib_constraints_url(cib_id: @cib.id)
         end
       end
@@ -175,45 +179,19 @@ class OrdersController < ApplicationController
   def post_process_for!(record)
   end
 
-  # Pass params[:order], to map from form-style:
-  #
-  #  [
-  #    {"action"=>"", "id"=>"foo"},
-  #    "rel",
-  #    {"action"=>"", "id"=>"bar"},
-  #    {"action"=>"", "id"=>"baz"}
-  #  ]
-  #
-  # to model-style:
-  #  [
-  #    {:resources => [ { :id => 'foo' } ]
-  #    {:sequential => false,
-  #     :resources => [ { :id => 'foo' }, { :id => 'bar' } ]
-  #  ]
-  #
-  # Note that nonsequential sets will never be collapsed (this is intentional,
-  # it's up to the model to collapse these if it wants to). Note also that
-  # incoming roles in sequential sets must already all be the same within a
-  # set.
   def normalize_params!(current)
-    m = []
-    set = {}
-
-    current[:resources].each do |r|
-      if r == 'rel'
-        set[:sequential] = set[:resources].length == 1
-        m << set
-        set = {}
-      else
-        set[:action] = r[:action] != "" ? r[:action] : nil
-        set[:resources] ||= []
-        set[:resources] << { :id => r[:id] }
-      end
+    if params[:order][:resources].nil?
+      params[:order][:resources] = []
+    else
+      params[:order][:resources] = params[:order][:resources].values
     end
+  end
 
-    set[:sequential] = set[:resources].length == 1
-    m << set
-
-    current[:resources] = m
+  def default_base_layout
+    if ["new", "create", "edit", "update"].include? params[:action]
+      "withrightbar"
+    else
+      super
+    end
   end
 end

@@ -102,7 +102,7 @@ class Record < Tableless
         require 'rexml/document'
 
         xml = REXML::Document.new(
-          Invoker.instance.cibadmin('-Ql', '--xpath', "//#{cib_type}".shellescape)
+          Invoker.instance.cibadmin('-Ql', '--xpath', "//#{cib_type_fetch}".shellescape)
         )
 
         unless xml.root
@@ -160,6 +160,14 @@ class Record < Tableless
 
     def cib_type
       nil
+    end
+
+    def cib_type_fetch
+      cib_type
+    end
+
+    def cib_type_write
+      cib_type
     end
 
     protected
@@ -288,7 +296,7 @@ class Record < Tableless
   end
 
   def update
-    unless self.class.exists?(self.id, self.class.cib_type)
+    unless self.class.exists?(self.id, self.class.cib_type_write)
       errors.add :base, _('The ID "%{id}" does not exist') % { id: self.id }
       return false
     end

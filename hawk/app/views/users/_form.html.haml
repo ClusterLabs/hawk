@@ -4,9 +4,9 @@
       = errors_for user
 
       - if user.new_record?
-        = main_form.text_field :id, label: _('User ID')
+        = main_form.text_field :id, label: _("User ID")
       - else
-        = main_form.text_field :id, label: _('User ID'), readonly: true
+        = main_form.text_field :id, label: _("User ID"), readonly: true
 
       = main_form.select :roles, :role_options, { include_hidden: false }, { multiple: true, size: 5 }
 
@@ -17,4 +17,4 @@
           = user_apply_button(main_form, user)
           = user_revert_button(main_form, user)
 
-        = link_to _('Back'), cib_users_path(cib_id: cib.id), class: 'btn btn-default back'
+        = link_to _("Back"), cib_users_path(cib_id: cib.id), class: "btn btn-default back"

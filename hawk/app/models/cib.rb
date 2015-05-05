@@ -39,7 +39,7 @@ class Cib < CibObject
 
   def meta
     @meta ||= begin
-      struct = OpenStruct.new
+      struct = Hashie::Mash.new
 
       struct.epoch = epoch
       struct.dc = dc
@@ -88,11 +88,11 @@ class Cib < CibObject
   end
 
   def get_resource(elem, is_managed = true, clone_max = nil, is_ms = false)
-    res = {
+    res = Hashie::Mash.new(
       :id => elem.attributes['id'],
       :attributes => {},
       :is_managed => is_managed
-    }
+    )
     @resources_by_id[elem.attributes['id']] = res
     elem.elements.each("meta_attributes/nvpair/") do |nv|
       res[:attributes][nv.attributes["name"]] = nv.attributes["value"]
@@ -297,13 +297,13 @@ class Cib < CibObject
     @id = id
 
     # Special-case defaults for properties we always want to see
-    @crm_config = {
+    @crm_config = Hashie::Mash.new(
       :"cluster-infrastructure"       => _('Unknown'),
       :"dc-version"                   => _('Unknown'),
       :"stonith-enabled"              => true,
       :"symmetric-cluster"            => true,
       :"no-quorum-policy"             => 'stop'
-    }
+    )
 
     # Pull in everything else
     # TODO(should): This gloms together all cluster property sets; really
@@ -312,12 +312,12 @@ class Cib < CibObject
       @crm_config[p.attributes['name'].to_sym] = get_xml_attr(p, 'value')
     end
 
-    @rsc_defaults = {}
+    @rsc_defaults = Hashie::Mash.new
     @xml.elements.each('cib/configuration/rsc_defaults//nvpair') do |p|
       @rsc_defaults[p.attributes['name'].to_sym] = get_xml_attr(p, 'value')
     end
 
-    @op_defaults = {}
+    @op_defaults = Hashie::Mash.new
     @xml.elements.each('cib/configuration/op_defaults//nvpair') do |p|
       @op_defaults[p.attributes['name'].to_sym] = get_xml_attr(p, 'value')
     end
@@ -352,12 +352,12 @@ class Cib < CibObject
         # and offline if fencing is disabled.
         state = crm_config[:"stonith-enabled"] ? :unclean : :offline
       end
-      @nodes << {
+      @nodes << Hashie::Mash.new(
         :uname => uname,
         :state => state,
         :id => id,
         :maintenance => maintenance
-      }
+      )
     end
 
     @resources = []
@@ -372,12 +372,12 @@ class Cib < CibObject
     # have state we care about.
     @templates = []
     @xml.elements.each('cib/configuration/resources/template') do |t|
-      @templates << {
+      @templates << Hashie::Mash.new(
         :id => t.attributes['id'],
         :class => t.attributes['class'],
         :provider => t.attributes['provider'],
         :type => t.attributes['type']
-      }
+      )
     end if Util.has_feature?(:rsc_template)
 
     @tags = []
@@ -679,7 +679,7 @@ class Cib < CibObject
     # have a last-granted timestamp too, but this will only be present if a
     # ticket has ever been granted - it won't be there for tickets we only
     # pick up from rsc_ticket constraints.
-    @tickets = {}
+    @tickets = Hashie::Mash.new
     @xml.elements.each("cib/status/tickets/ticket_state") do |ts|
       t = ts.attributes["id"]
       @tickets[t] = {
@@ -695,7 +695,7 @@ class Cib < CibObject
       @tickets[t] = { :granted => false } unless @tickets[rt.attributes["ticket"]]
     end
 
-    @booth = { :sites => [], :arbitrators => [], :tickets => [], :me => nil }
+    @booth = Hashie::Mash.new(:sites => [], :arbitrators => [], :tickets => [], :me => nil)
     # Figure out if we're in a geo cluster
     File.readlines("/etc/booth/booth.conf").each do |line|
       m = line.match(/^\s*(site|arbitrator|ticket)\s*=(.+)/)
@@ -744,9 +744,9 @@ class Cib < CibObject
       end
     end
 
-    @crm_config = Hash[@crm_config.map {|k,v| [k.to_s.underscore.to_sym, v]}]
-    @rsc_defaults = Hash[@rsc_defaults.map {|k,v| [k.to_s.underscore.to_sym, v]}]
-    @op_defaults = Hash[@op_defaults.map {|k,v| [k.to_s.underscore.to_sym, v]}]
+    @crm_config = Hashie::Mash.new Hash[@crm_config.map {|k,v| [k.to_s.underscore.to_sym, v]}]
+    @rsc_defaults = Hashie::Mash.new Hash[@rsc_defaults.map {|k,v| [k.to_s.underscore.to_sym, v]}]
+    @op_defaults = Hashie::Mash.new Hash[@op_defaults.map {|k,v| [k.to_s.underscore.to_sym, v]}]
   end
 
 end

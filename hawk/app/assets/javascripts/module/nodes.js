@@ -30,254 +30,450 @@
 //======================================================================
 
 $(function() {
-  // $('#dashboards #content table.nodes')
-  //   .bootstrapTable({
-  //     method: 'get',
-  //     url: Routes.cib_nodes_path(
-  //       $('body').data('cib'),
-  //       { format: 'json' }
-  //     ),
-  //     striped: true,
-  //     pagination: true,
-  //     pageSize: 50,
-  //     pageList: [10, 25, 50, 100, 200],
-  //     sidePagination: 'client',
-  //     smartDisplay: false,
-  //     search: true,
-  //     searchAlign: 'left',
-  //     showColumns: true,
-  //     showRefresh: true,
-  //     minimumCountColumns: 1,
-  //     columns: [{
-  //       field: 'state',
-  //       title: __('State'),
-  //       sortable: true,
-  //       clickToSelect: true,
-  //       class: 'col-sm-1',
-  //       formatter: function(value, row, index) {
-  //         switch(row.state) {
-  //           case 'online':
-  //             return [
-  //               '<i class="fa fa-play" title="',
-  //                 row.state,
-  //               '"></i>'
-  //             ].join('');
-  //             break;
+  $('#nodes #middle table.nodes, #dashboards #middle table.nodes')
+    .bootstrapTable({
+      method: 'get',
+      url: Routes.cib_nodes_path(
+        $('body').data('cib'),
+        { format: 'json' }
+      ),
+      striped: true,
+      pagination: true,
+      pageSize: 50,
+      pageList: [10, 25, 50, 100, 200],
+      sidePagination: 'client',
+      smartDisplay: false,
+      search: true,
+      searchAlign: 'left',
+      showColumns: true,
+      showRefresh: true,
+      minimumCountColumns: 0,
+      sortName: 'name',
+      sortOrder: 'asc',
+      columns: [{
+        field: 'state',
+        title: __('Status'),
+        sortable: true,
+        clickToSelect: true,
+        class: 'col-sm-1',
+        formatter: function(value, row, index) {
+          switch(row.state) {
+            case 'online':
+              return [
+                '<i class="fa fa-play" title="',
+                  row.state,
+                '"></i>'
+              ].join('');
+              break;
 
-  //           default:
-  //             return [
-  //               '<i class="fa fa-exclamation-triangle" title="',
-  //                 row.state,
-  //               '"></i>'
-  //             ].join('');
-  //             break;
-  //         }
-  //       }
-  //     }, {
-  //       field: 'uname',
-  //       title: __('Name'),
-  //       sortable: true,
-  //       clickToSelect: true
-  //     }, {
-  //       field: 'maintenance',
-  //       title: __('Maintenance'),
-  //       sortable: true,
-  //       clickToSelect: true,
-  //       class: 'col-sm-1',
-  //       formatter: function(value, row, index) {
-  //         if (row.maintenance) {
-  //           return [
-  //             '<i class="fa fa-toggle-on text-danger" title="',
-  //               __('Yes'),
-  //             '"></i>'
-  //           ].join('');
-  //         } else {
-  //           return [
-  //             '<i class="fa fa-toggle-off text-success" title="',
-  //               __('No'),
-  //             '"></i>'
-  //           ].join('');
-  //         }
-  //       }
-  //     }, {
-  //       field: 'standby',
-  //       title: __('Standby'),
-  //       sortable: true,
-  //       clickToSelect: true,
-  //       class: 'col-sm-1',
-  //       formatter: function(value, row, index) {
-  //         if (row.standby) {
-  //           return [
-  //             '<i class="fa fa-toggle-on text-danger" title="',
-  //               __('Yes'),
-  //             '"></i>'
-  //           ].join('');
-  //         } else {
-  //           return [
-  //             '<i class="fa fa-toggle-off text-success" title="',
-  //               __('No'),
-  //             '"></i>'
-  //           ].join('');
-  //         }
-  //       }
-  //     }, {
-  //       field: 'operate',
-  //       title: __('Operations'),
-  //       sortable: false,
-  //       clickToSelect: false,
-  //       class: 'col-sm-1',
-  //       formatter: function(value, row, index) {
-  //         var operations = []
+            case 'offline':
+              return [
+                '<i class="fa fa-stop" title="',
+                  row.state,
+                '"></i>'
+              ].join('');
+              break;
 
-  //         if (row.state != 'online') {
-  //           operations.push([
-  //             '<a href="javascript: void(0);" class="play" title="',
-  //               __('Online'),
-  //             '">',
-  //               '<i class="fa fa-play"></i>',
-  //             '</a> '
-  //           ].join(''));
-  //         }
+            case 'fence':
+              return [
+                '<i class="fa fa-exclamation-triangle" title="',
+                  row.state,
+                '"></i>'
+              ].join('');
+              break;
 
-  //         if (!row.standby) {
-  //           operations.push([
-  //             '<a href="javascript: void(0);" class="standby" title="',
-  //               __('Standby'),
-  //             '">',
-  //               '<i class="fa fa-pause"></i>',
-  //             '</a> '
-  //           ].join(''));
-  //         }
+            default:
+              return [
+                '<i class="fa fa-exclamation-triangle" title="',
+                  row.state,
+                '"></i>'
+              ].join('');
+              break;
+          }
+        }
+      }, {
+        field: 'name',
+        title: __('Node'),
+        sortable: true,
+        switchable: false,
+        clickToSelect: true
+      }, {
+        field: 'maintenance',
+        title: __('Maintenance'),
+        sortable: true,
+        clickToSelect: true,
+        class: 'col-sm-1',
+        formatter: function(value, row, index) {
+          if (row.maintenance) {
+            return [
+              '<i class="fa fa-toggle-on text-danger" title="',
+                __('Yes'),
+              '"></i>'
+            ].join('');
+          } else {
+            return [
+              '<i class="fa fa-toggle-off text-success" title="',
+                __('No'),
+              '"></i>'
+            ].join('');
+          }
+        }
+      }, {
+        field: 'standby',
+        title: __('Standby'),
+        sortable: true,
+        clickToSelect: true,
+        class: 'col-sm-1',
+        formatter: function(value, row, index) {
+          if (row.standby) {
+            return [
+              '<i class="fa fa-toggle-on text-danger" title="',
+                __('Yes'),
+              '"></i>'
+            ].join('');
+          } else {
+            return [
+              '<i class="fa fa-toggle-off text-success" title="',
+                __('No'),
+              '"></i>'
+            ].join('');
+          }
+        }
+      }, {
+        field: 'operate',
+        title: __('Operations'),
+        sortable: false,
+        clickToSelect: false,
+        class: 'col-sm-2',
+        events: {
+          'click .online': function (e, value, row, index) {
+            e.preventDefault();
+            var $self = $(this);
 
-  //         if (!row.maintenance) {
-  //           operations.push([
-  //             '<a href="javascript: void(0);" class="maintenance" title="',
-  //               __('Maintenance'),
-  //             '">',
-  //               '<i class="fa fa-wrench"></i>',
-  //             '</a> '
-  //           ].join(''));
-  //         }
+            $.ajax({
+              dataType: 'json',
+              method: 'GET',
+              url: Routes.online_cib_node_path(
+                $('body').data('cib'),
+                row.id,
+                { format: 'json' }
+              ),
 
-  //         operations.push([
-  //           '<a href="javascript: void(0);" class="ready" title="',
-  //             __('Ready'),
-  //           '">',
-  //             '<i class="fa fa-check"></i>',
-  //           '</a> '
-  //         ].join(''));
+              success: function(data) {
+                if (data.success) {
+                  $.growl({
+                    message: data.message
+                  }, {
+                    type: 'success'
+                  });
 
-  //         operations.push([
-  //           '<a href="javascript: void(0);" class="fence" title="',
-  //             __('Fence'),
-  //           '">',
-  //             '<i class="fa fa-close"></i>',
-  //           '</a> '
-  //         ].join(''));
+                  $self.parents('table').bootstrapTable('refresh')
+                } else {
+                  if (data.error) {
+                    $.growl({
+                      message: data.error
+                    }, {
+                      type: 'danger'
+                    });
+                  }
+                }
+              },
+              error: function(xhr, status, msg) {
+                $.growl({
+                  message: xhr.responseJSON.error || msg
+                },{
+                  type: 'danger'
+                });
+              }
+            });
+          },
+          'click .standby': function (e, value, row, index) {
+            e.preventDefault();
+            var $self = $(this);
 
-  //         operations.push([
-  //           '<a href="javascript: void(0);" class="details" title="',
-  //             __('Details'),
-  //           '">',
-  //             '<i class="fa fa-search"></i>',
-  //           '</a> '
-  //         ].join(''));
+            $.ajax({
+              dataType: 'json',
+              method: 'GET',
+              url: Routes.standby_cib_node_path(
+                $('body').data('cib'),
+                row.id,
+                { format: 'json' }
+              ),
 
-  //         operations.push([
-  //           '<a href="javascript: void(0);" class="events" title="',
-  //             __('Events'),
-  //           '">',
-  //             '<i class="fa fa-files-o"></i>',
-  //           '</a>'
-  //         ].join(''));
+              success: function(data) {
+                if (data.success) {
+                  $.growl({
+                    message: data.message
+                  }, {
+                    type: 'success'
+                  });
 
-  //         // if (row.state != 'online') {
-  //         //   operations.push([
-  //         //     '<li>',
-  //         //       '<a href="javascript: void(0);" class="play">',
-  //         //         '<i class="fa fa-play"></i> ',
-  //         //         __('Online'),
-  //         //       '</a>',
-  //         //     '</li>'
-  //         //   ].join(''));
-  //         // }
+                  $self.parents('table').bootstrapTable('refresh')
+                } else {
+                  if (data.error) {
+                    $.growl({
+                      message: data.error
+                    }, {
+                      type: 'danger'
+                    });
+                  }
+                }
+              },
+              error: function(xhr, status, msg) {
+                $.growl({
+                  message: xhr.responseJSON.error || msg
+                },{
+                  type: 'danger'
+                });
+              }
+            });
+          },
+          'click .ready': function (e, value, row, index) {
+            e.preventDefault();
+            var $self = $(this);
 
-  //         // if (!row.standby) {
-  //         //   operations.push([
-  //         //     '<li>',
-  //         //       '<a href="javascript: void(0);" class="standby">',
-  //         //         '<i class="fa fa-pause"></i> ',
-  //         //         __('Standby'),
-  //         //       '</a>',
-  //         //     '</li>'
-  //         //   ].join(''));
-  //         // }
+            $.ajax({
+              dataType: 'json',
+              method: 'GET',
+              url: Routes.ready_cib_node_path(
+                $('body').data('cib'),
+                row.id,
+                { format: 'json' }
+              ),
 
-  //         // if (!row.maintenance) {
-  //         //   operations.push([
-  //         //     '<li>',
-  //         //       '<a href="javascript: void(0);" class="maintenance">',
-  //         //         '<i class="fa fa-wrench"></i> ',
-  //         //         __('Maintenance'),
-  //         //       '</a>',
-  //         //     '</li>'
-  //         //   ].join(''));
-  //         // }
+              success: function(data) {
+                if (data.success) {
+                  $.growl({
+                    message: data.message
+                  }, {
+                    type: 'success'
+                  });
 
-  //         // operations.push([
-  //         //   '<li>',
-  //         //     '<a href="javascript: void(0);" class="ready">',
-  //         //       '<i class="fa fa-check"></i> ',
-  //         //       __('Ready'),
-  //         //     '</a>',
-  //         //   '</li>'
-  //         // ].join(''));
+                  $self.parents('table').bootstrapTable('refresh')
+                } else {
+                  if (data.error) {
+                    $.growl({
+                      message: data.error
+                    }, {
+                      type: 'danger'
+                    });
+                  }
+                }
+              },
+              error: function(xhr, status, msg) {
+                $.growl({
+                  message: xhr.responseJSON.error || msg
+                },{
+                  type: 'danger'
+                });
+              }
+            });
+          },
+          'click .maintenance': function (e, value, row, index) {
+            e.preventDefault();
+            var $self = $(this);
 
-  //         // operations.push([
-  //         //   '<li>',
-  //         //     '<a href="javascript: void(0);" class="fence">',
-  //         //       '<i class="fa fa-close"></i> ',
-  //         //       __('Fence'),
-  //         //     '</a>',
-  //         //   '</li>'
-  //         // ].join(''));
+            $.ajax({
+              dataType: 'json',
+              method: 'GET',
+              url: Routes.maintenance_cib_node_path(
+                $('body').data('cib'),
+                row.id,
+                { format: 'json' }
+              ),
 
-  //         // operations.push([
-  //         //   '<li class="divider"></li>'
-  //         // ].join(''));
+              success: function(data) {
+                if (data.success) {
+                  $.growl({
+                    message: data.message
+                  }, {
+                    type: 'success'
+                  });
 
-  //         // operations.push([
-  //         //   '<li>',
-  //         //     '<a href="javascript: void(0);" class="details">',
-  //         //       '<i class="fa fa-search"></i> ',
-  //         //       __('Details'),
-  //         //     '</a>',
-  //         //   '</li>'
-  //         // ].join(''));
+                  $self.parents('table').bootstrapTable('refresh')
+                } else {
+                  if (data.error) {
+                    $.growl({
+                      message: data.error
+                    }, {
+                      type: 'danger'
+                    });
+                  }
+                }
+              },
+              error: function(xhr, status, msg) {
+                $.growl({
+                  message: xhr.responseJSON.error || msg
+                },{
+                  type: 'danger'
+                });
+              }
+            });
+          },
+          'click .fence': function (e, value, row, index) {
+            e.preventDefault();
+            var $self = $(this);
 
-  //         // operations.push([
-  //         //   '<li>',
-  //         //     '<a href="javascript: void(0);" class="events">',
-  //         //       '<i class="fa fa-files-o"></i> ',
-  //         //       __('Events'),
-  //         //     '</a>',
-  //         //   '</li>'
-  //         // ].join(''));
+            $.ajax({
+              dataType: 'json',
+              method: 'GET',
+              url: Routes.fence_cib_node_path(
+                $('body').data('cib'),
+                row.id,
+                { format: 'json' }
+              ),
 
-  //         // return [
-  //         //   '<div class="btn-group">',
-  //         //     '<button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-expanded="false">',
-  //         //       __('Operations'),
-  //         //       ' <span class="caret"></span>',
-  //         //     '</button>',
-  //         //     '<ul class="dropdown-menu" role="menu">',
-  //         //       operations.join(''),
-  //         //     '</ul>',
-  //         //   '</div>',
-  //         // ].join('');
+              success: function(data) {
+                if (data.success) {
+                  $.growl({
+                    message: data.message
+                  }, {
+                    type: 'success'
+                  });
 
-  //         return operations.join('');
-  //       }
-  //     }]
-  //   });
+                  $self.parents('table').bootstrapTable('refresh')
+                } else {
+                  if (data.error) {
+                    $.growl({
+                      message: data.error
+                    }, {
+                      type: 'danger'
+                    });
+                  }
+                }
+              },
+              error: function(xhr, status, msg) {
+                $.growl({
+                  message: xhr.responseJSON.error || msg
+                },{
+                  type: 'danger'
+                });
+              }
+            });
+          }
+        },
+        formatter: function(value, row, index) {
+          var operations = []
+
+          if (!row.online) {
+            operations.push([
+              '<a href="',
+                Routes.online_cib_node_path(
+                  $('body').data('cib'),
+                  row.id
+                ),
+              '" class="online btn btn-default btn-xs" title="',
+                __('Online'),
+              '" data-confirm="' + i18n.translate('This will bring node %s online if it is currently on standby. Do you want to continue?').fetch(row.name) + '">',
+                '<i class="fa fa-play"></i>',
+              '</a> '
+            ].join(''));
+          }
+
+          if (!row.standby) {
+            operations.push([
+              '<a href="',
+                Routes.standby_cib_node_path(
+                  $('body').data('cib'),
+                  row.id
+                ),
+              '" class="standby btn btn-default btn-xs" title="',
+                __('Standby'),
+              '" data-confirm="' + i18n.translate('This will put node %s on standby. All resources will be stopped and/or moved to another node. Do you want to continue?').fetch(row.name) + '">',
+                '<i class="fa fa-pause"></i>',
+              '</a> '
+            ].join(''));
+          }
+
+          if (!row.ready) {
+            operations.push([
+              '<a href="',
+                  Routes.ready_cib_node_path(
+                    $('body').data('cib'),
+                    row.id
+                  ),
+                '" class="ready btn btn-default btn-xs" title="',
+                __('Ready'),
+              '" data-confirm="' + i18n.translate('This will bring node %s out of maintenance mode. Do you want to continue?').fetch(row.name) + '">',
+                '<i class="fa fa-check"></i>',
+              '</a> '
+            ].join(''));
+          }
+
+          if (!row.maintenance) {
+            operations.push([
+              '<a href="',
+                Routes.maintenance_cib_node_path(
+                  $('body').data('cib'),
+                  row.id
+                ),
+              '" class="maintenance btn btn-default btn-xs" title="',
+                __('Maintenance'),
+              '" data-confirm="' + i18n.translate('This will put node %s in maintenance mode. All resources on this node will become unmanaged. Do you want to continue?').fetch(row.name) + '">',
+                '<i class="fa fa-wrench"></i>',
+              '</a> '
+            ].join(''));
+          }
+
+          if (!row.fence) {
+            operations.push([
+              '<a href="',
+                  Routes.fence_cib_node_path(
+                    $('body').data('cib'),
+                    row.id
+                  ),
+                '" class="fence btn btn-default btn-xs" title="',
+                __('Fence'),
+              '" data-confirm="' + i18n.translate('This will attempt to immediately fence node %s. Do you want to continue?').fetch(row.name) + '">',
+                '<i class="fa fa-arrow-circle-right"></i>',
+              '</a> '
+            ].join(''));
+          }
+
+          if ($('body').data('god') === 'true') {
+            operations.push([
+              '<a href="',
+                  Routes.events_cib_node_path(
+                    $('body').data('cib'),
+                    row.id
+                  ),
+                '" class="events btn btn-default btn-xs" title="',
+                __('Events'),
+              '" data-toggle="modal" data-target="#modal">',
+                '<i class="fa fa-files-o"></i>',
+              '</a>'
+            ].join(''));
+          }
+
+          operations.push([
+            '<a href="',
+                Routes.cib_node_path(
+                  $('body').data('cib'),
+                  row.id
+                ),
+              '" class="details btn btn-default btn-xs" title="',
+              __('Details'),
+            '" data-toggle="modal" data-target="#modal">',
+              '<i class="fa fa-search"></i>',
+            '</a> '
+          ].join(''));
+
+          return [
+            '<div class="btn-group" role="group">',
+              operations.join(''),
+            '</div>',
+          ].join('');
+        }
+      }]
+    });
+
+  $('#nodes #middle form')
+    .validate({
+      rules: {
+        'node[id]': {
+          minlength: 1,
+          required: true
+        }
+      }
+    });
 });

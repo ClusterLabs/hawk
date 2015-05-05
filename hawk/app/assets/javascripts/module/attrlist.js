@@ -45,6 +45,7 @@
 
     this.defaults = {
       labels: {
+        create: __('Create'),
         remove: __('Remove')
       },
       templates: {
@@ -321,7 +322,7 @@
         })
       });
     } else {
-      return ''
+      return '';
     }
   };
 

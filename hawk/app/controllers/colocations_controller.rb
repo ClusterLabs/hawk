@@ -37,6 +37,7 @@ class ColocationsController < ApplicationController
 
   def index
     respond_to do |format|
+      format.html
       format.json do
         render json: Colocation.ordered.to_json
       end
@@ -44,7 +45,7 @@ class ColocationsController < ApplicationController
   end
 
   def new
-    @title = _('Create Colocation Constraint')
+    @title = _("Create Colocation")
     @colocation = Colocation.new
 
     respond_to do |format|
@@ -54,7 +55,7 @@ class ColocationsController < ApplicationController
 
   def create
     normalize_params! params[:colocation]
-    @title = _('Create Colocation Constraint')
+    @title = _("Create Colocation")
 
     @colocation = Colocation.new params[:colocation]
 
@@ -63,7 +64,7 @@ class ColocationsController < ApplicationController
         post_process_for! @colocation
 
         format.html do
-          flash[:success] = _('Constraint created successfully')
+          flash[:success] = _("Constraint created successfully")
           redirect_to edit_cib_colocation_url(cib_id: @cib.id, id: @colocation.id)
         end
         format.json do
@@ -71,7 +72,7 @@ class ColocationsController < ApplicationController
         end
       else
         format.html do
-          render action: 'new'
+          render action: "new"
         end
         format.json do
           render json: @colocation.errors, status: :unprocessable_entity
@@ -81,7 +82,7 @@ class ColocationsController < ApplicationController
   end
 
   def edit
-    @title = _('Edit Colocation Constraint')
+    @title = _("Edit Colocation")
 
     respond_to do |format|
       format.html
@@ -90,7 +91,7 @@ class ColocationsController < ApplicationController
 
   def update
     normalize_params! params[:colocation]
-    @title = _('Edit Colocation Constraint')
+    @title = _("Edit Colocation")
 
     if params[:revert]
       return redirect_to edit_cib_colocation_url(cib_id: @cib.id, id: @colocation.id)
@@ -101,7 +102,7 @@ class ColocationsController < ApplicationController
         post_process_for! @colocation
 
         format.html do
-          flash[:success] = _('Constraint updated successfully')
+          flash[:success] = _("Constraint updated successfully")
           redirect_to edit_cib_colocation_url(cib_id: @cib.id, id: @colocation.id)
         end
         format.json do
@@ -109,7 +110,7 @@ class ColocationsController < ApplicationController
         end
       else
         format.html do
-          render action: 'edit'
+          render action: "edit"
         end
         format.json do
           render json: @colocation.errors, status: :unprocessable_entity
@@ -120,21 +121,24 @@ class ColocationsController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if Invoker.instance.crm('--force', 'configure', 'delete', @colocation.id)
+      if Invoker.instance.crm("--force", "configure", "delete", @colocation.id)
         format.html do
-          flash[:success] = _('Colocation deleted successfully')
+          flash[:success] = _("Colocation deleted successfully")
           redirect_to types_cib_constraints_url(cib_id: @cib.id)
         end
         format.json do
-          head :no_content
+          render json: {
+            success: true,
+            message: _("Colocation deleted successfully")
+          }
         end
       else
         format.html do
-          flash[:alert] = _('Error deleting %s') % @colocation.id
+          flash[:alert] = _("Error deleting %s") % @colocation.id
           redirect_to edit_cib_colocation_url(cib_id: @cib.id, id: @colocation.id)
         end
         format.json do
-          render json: { error: _('Error deleting %s') % @colocation.id }, status: :unprocessable_entity
+          render json: { error: _("Error deleting %s") % @colocation.id }, status: :unprocessable_entity
         end
       end
     end
@@ -152,7 +156,7 @@ class ColocationsController < ApplicationController
   protected
 
   def set_title
-    @title = _('Colocation Constraints')
+    @title = _("Colocations")
   end
 
   def set_cib
@@ -165,7 +169,7 @@ class ColocationsController < ApplicationController
     unless @colocation
       respond_to do |format|
         format.html do
-          flash[:alert] = _('The colocation constraint does not exist')
+          flash[:alert] = _("The colocation constraint does not exist")
           redirect_to types_cib_constraints_url(cib_id: @cib.id)
         end
       end
@@ -175,47 +179,19 @@ class ColocationsController < ApplicationController
   def post_process_for!(record)
   end
 
-  # Pass params[:colocation], to map from form-style:
-  #
-  #  [
-  #    {"action"=>"", "id"=>"foo"},
-  #    "rel",
-  #    {"action"=>"", "id"=>"bar"},
-  #    {"action"=>"", "id"=>"baz"}
-  #  ]
-  #
-  # to model-style:
-  #  [
-  #    {:resources => [ { :id => 'foo' } ]
-  #    {:sequential => false,
-  #     :resources => [ { :id => 'foo' }, { :id => 'bar' } ]
-  #  ]
-  #
-  # Note that nonsequential sets will never be collapsed (this is intentional,
-  # it's up to the model to collapse these if it wants to). Note also that
-  # incoming roles in sequential sets must already all be the same within a
-  # set.
   def normalize_params!(current)
-    m = []
-    set = {}
-
-    current[:resources].each do |r|
-      if r == 'rel'
-        set[:sequential] = set[:resources].length == 1
-        m << set
-        set = {}
-      else
-        # r[:action] here is deliberate - ui.constraint always
-        # uses the term action, even when referring to roles.
-        set[:role] = r[:action] != "" ? r[:action] : nil
-        set[:resources] ||= []
-        set[:resources] << { :id => r[:id] }
-      end
+    if params[:colocation][:resources].nil?
+      params[:colocation][:resources] = []
+    else
+      params[:colocation][:resources] = params[:colocation][:resources].values
     end
+  end
 
-    set[:sequential] = set[:resources].length == 1
-    m << set
-
-    current[:resources] = m
+  def default_base_layout
+    if ["new", "create", "edit", "update"].include? params[:action]
+      "withrightbar"
+    else
+      super
+    end
   end
 end

@@ -37,6 +37,7 @@ class LocationsController < ApplicationController
 
   def index
     respond_to do |format|
+      format.html
       format.json do
         render json: Location.ordered.to_json
       end
@@ -176,5 +177,13 @@ class LocationsController < ApplicationController
   end
 
   def normalize_params!(current)
+  end
+
+  def default_base_layout
+    if ["new", "create", "edit", "update"].include? params[:action]
+      "withrightbar"
+    else
+      super
+    end
   end
 end

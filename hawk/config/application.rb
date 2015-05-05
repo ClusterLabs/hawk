@@ -60,10 +60,6 @@ module Hawk
 
     config.i18n.enforce_available_locales = false
 
-    config.lograge.enabled = true
-    config.lograge.ignore_actions = ['pages#monitor']
-    config.lograge.formatter = Lograge::Formatters::KeyValue.new
-
     if Rails.env.development?
       config.web_console.whitelisted_ips = '192.168.0.0/16'
     end

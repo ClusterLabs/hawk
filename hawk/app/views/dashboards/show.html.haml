@@ -1,74 +1,78 @@
-%h1
-  = icon_text "dashboard", _("Dashboard"), class: "page"
+.container-fluid
+  %h1
+    = icon_text "dashboard", _("Dashboard"), class: "page"
 
-.row
-  .col-lg-8
-    .panel.panel-default.cluster-config{ data: { mh: "status" } }
-      .panel-heading
-        %h2.panel-title
-          = _("Cluster")
+  .row
+    .col-lg-8
+      .panel.panel-default.cluster-config{ data: { mh: "status" } }
+        .panel-heading
+          %h2.panel-title
+            = _("Cluster")
 
-      %table.table.table-striped
-        %tbody
-          %tr
-            %th.col-xs-6
-              = _("STONITH Enabled")
-            %td{ class: @cib.crm_config[:stonith_enabled] ? "text-success" : "text-danger", data: { link: "{:crm_config.stonith_enabled} class{:crm_config.stonith_enabled?'text-success':'text-danger'}" } }
-              = @cib.crm_config[:stonith_enabled]
-          %tr
-            %th
-              = _("No Quorum Policy")
-            %td{ data: { link: "crm_config.no_quorum_policy" } }
-              = @cib.crm_config[:no_quorum_policy]
-          %tr
-            %th
-              = _("Symmetric Cluster")
-            %td{ data: { link: "crm_config.symmetric_cluster" } }
-              = @cib.crm_config[:symmetric_cluster]
-          %tr
-            %th
-              = _("Resource Stickiness")
-            %td{ data: { link: "rsc_defaults.resource_stickiness" } }
-              = @cib.rsc_defaults[:resource_stickiness]
+        %table.table.table-striped
+          %tbody
+            %tr
+              %th.col-xs-6
+                = _("STONITH Enabled")
+              %td{ class: @cib.crm_config[:stonith_enabled] ? "text-success" : "text-danger", data: { link: "{:crm_config.stonith_enabled} class{:crm_config.stonith_enabled?'text-success':'text-danger'}" } }
+                = @cib.crm_config[:stonith_enabled]
+            %tr
+              %th
+                = _("No Quorum Policy")
+              %td{ data: { link: "crm_config.no_quorum_policy" } }
+                = @cib.crm_config[:no_quorum_policy]
+            %tr
+              %th
+                = _("Symmetric Cluster")
+              %td{ data: { link: "crm_config.symmetric_cluster" } }
+                = @cib.crm_config[:symmetric_cluster]
+            %tr
+              %th
+                = _("Resource Stickiness")
+              %td{ data: { link: "rsc_defaults.resource_stickiness" } }
+                = @cib.rsc_defaults[:resource_stickiness]
 
-  .col-lg-4
-    .panel.panel-default.cluster-status{ data: { mh: "status" } }
-      .panel-heading
-        %h2.panel-title
-          = _("Status")
+    .col-lg-4
+      .panel.panel-default.cluster-status{ data: { mh: "status" } }
+        .panel-heading
+          %h2.panel-title
+            = _("Status")
 
-      .panel-body.text-center
-        .circle.circle-large{ class: status_class_for(@cib.meta.status) }
-          = status_icon_for(@cib.meta.status)
+        .panel-body.text-center
+          .circle.circle-large{ class: status_class_for(@cib.meta.status) }
+            = status_icon_for(@cib.meta.status)
 
-.row.cluster-errors.softhide{ data: { link: "visible{:errors.length > 0}" } }
-  .col-lg-12
-    .panel.panel-default
-      .panel-heading
-        %h2.panel-title
-          = _("Errors")
+  .row.cluster-errors.softhide{ data: { link: "visible{:errors.length > 0}" } }
+    .col-lg-12
+      .panel.panel-default
+        .panel-heading
+          %h2.panel-title
+            = _("Errors")
 
-      %ul.list-group
-        = jsviews_for "errors" do
-          %li.list-group-item
-            %a{ data: { link: "href{:link}" } }
-              {{:msg}}
+        %ul.list-group
+          = jsviews_for "errors" do
+            %li.list-group-item
+              %a{ data: { link: "href{:link}" } }
+                {{:msg}}
 
-%ul.nav.nav-tabs.nav-justified.margin-bottom
-  %li.active
-    = link_to _("Primitives"), "#primitives", data: { toggle: "tab" }
-  %li
-    = link_to _("Nodes"), "#nodes", data: { toggle: "tab" }
+  %ul.nav.nav-pills.nav-justified.margin-bottom
+    %li.active
+      = link_to "#nodes", data: { toggle: "tab" } do
+        = _("Nodes")
+        %span.badge{ data: { toggle: "tab", link: "nodes.length" } }
+          = @cib.nodes.count
 
-.tab-content
-  #primitives.tab-pane.active
-    .panel.panel-default
-      .panel-body.text-center
-        TBD PRIMITIVES
-      %table.table.primitives
+    %li
+      = link_to "#resources", data: { toggle: "tab" } do
+        = _("Resources")
+        %span.badge{ data: { toggle: "tab", link: "resources.length" } }
+          = @cib.resources.count
 
-  #nodes.tab-pane
-    .panel.panel-default
-      .panel-body.text-center
-        TBD NODES
-      %table.table.nodes
+  .tab-content
+    #nodes.tab-pane.active
+      .panel.panel-default
+        %table.table.table-striped.nodes
+
+    #resources.tab-pane
+      .panel.panel-default
+        %table.table.table-striped.resources

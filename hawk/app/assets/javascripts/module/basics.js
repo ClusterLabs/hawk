@@ -40,7 +40,7 @@ $(function() {
   $.growl(
     false,
     {
-      element: '#content .container-fluid',
+      element: '#middle .container-fluid',
       mouse_over: 'pause',
       allow_dismiss: true
     }

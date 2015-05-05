@@ -72,18 +72,18 @@ $(function() {
         .html();
 
       $(this)
-        .siblings('i.fa')
+        .siblings('i.fa.form-control-feedback')
         .tooltip({ title: error })
         .tooltip('show');
     })
     .on('blur', '.form-group.has-error .form-control', function(e) {
       $(this)
-        .siblings('i.fa')
+        .siblings('i.fa.form-control-feedback')
         .tooltip('hide');
     })
     .on('keyup', '.form-group.has-error .form-control', function(e) {
       $(this)
-        .siblings('i.fa')
+        .siblings('i.fa.form-control-feedback')
         .tooltip('hide');
     });
 
@@ -101,7 +101,7 @@ $(function() {
           .closest('.form-group')
             .removeClass('has-success has-feedback')
             .addClass('has-error has-feedback')
-            .find('i.fa')
+            .find('i.fa.form-control-feedback')
             .remove()
             .end();
 
@@ -117,7 +117,7 @@ $(function() {
           .closest('.form-group')
             .removeClass('has-error has-feedback')
             .addClass('has-success has-feedback')
-            .find('i.fa')
+            .find('i.fa.form-control-feedback')
             .remove()
             .end();
 
