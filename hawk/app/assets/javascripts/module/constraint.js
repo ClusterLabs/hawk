@@ -42,9 +42,6 @@
     this.available = this.$el.data('constraints-available');
     this.selects = this.$el.data('constraints-selects');
 
-    this.mapper = {};
-    this.result = [];
-
     this.defaults = {
       labels: {
         create: __('Create'),
@@ -307,9 +304,6 @@
 
       self.$el.find('.form-group:first .linker, .form-group:first .unlink, .form-group:first .swaper')
         .addClass('disabled');
-
-      // TODO(must): Recalculate remaining
-
   };
 
   $.fn.constraintList = function(options) {
