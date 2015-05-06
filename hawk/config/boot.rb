@@ -63,7 +63,7 @@ else
   gem "puma", version: "~> 2.11"
   require "puma"
 
-  gem "haml-rails", version: "~> 0.8"
+  gem "haml-rails", version: ">= 0.8"
   require "haml-rails"
 
   gem "sass-rails", version: "~> 5.0"
