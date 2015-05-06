@@ -1,6 +1,9 @@
 %ul.nav.sidebar-nav
   %li
     %ul
+      / %li{ class: active_menu_with(:dashboards) }
+      /   = link_to _("Dashboard"), cib_dashboard_path(cib_id: current_cib.id)
+      
       %li{ class: active_menu_with(:states) }
         = link_to _("Status"), cib_state_path(cib_id: current_cib.id)
 
