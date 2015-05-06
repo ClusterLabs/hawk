@@ -28,7 +28,7 @@ default["hawk"]["webui"]["packages"] = [
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-sass-rails-3_2",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-virtus",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-js-routes",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-sprockets-2_12",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-sprockets",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-tilt-1_4",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-hashie",
 

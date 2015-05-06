@@ -30,69 +30,69 @@
 #======================================================================
 
 begin
-  require 'rubygems'
+  require "rubygems"
 rescue
 end
 
 STDOUT.sync = true
 STDERR.sync = true
 
-ENV['BUNDLE_GEMFILE'] ||= File.expand_path('../../Gemfile', __FILE__)
+ENV["BUNDLE_GEMFILE"] ||= File.expand_path("../../Gemfile", __FILE__)
 
-require 'socket'
-require 'open3'
-require 'rexml/document'
+require "socket"
+require "open3"
+require "rexml/document"
 
-if File.exists? ENV['BUNDLE_GEMFILE']
-  require 'bundler/setup'
-  require 'active_model/railtie'
-  require 'action_controller/railtie'
-  require 'action_view/railtie'
-  require 'sprockets/railtie'
-  require 'rails/test_unit/railtie'
+if File.exists? ENV["BUNDLE_GEMFILE"]
+  require "bundler/setup"
+  require "active_model/railtie"
+  require "action_controller/railtie"
+  require "action_view/railtie"
+  require "sprockets/railtie"
+  require "rails/test_unit/railtie"
 
   Bundler.require(*Rails.groups)
 else
-  gem 'rails', version: '~> 4.2.0'
-  require 'active_model/railtie'
-  require 'action_controller/railtie'
-  require 'action_view/railtie'
-  require 'sprockets/railtie'
-  require 'rails/test_unit/railtie'
+  gem "rails", version: "~> 4.2.0"
+  require "active_model/railtie"
+  require "action_controller/railtie"
+  require "action_view/railtie"
+  require "sprockets/railtie"
+  require "rails/test_unit/railtie"
 
-  gem 'puma', version: '~> 2.11'
-  require 'puma'
+  gem "puma", version: "~> 2.11"
+  require "puma"
 
-  gem 'haml-rails', version: '~> 0.8'
-  require 'haml-rails'
+  gem "haml-rails", version: "~> 0.8"
+  require "haml-rails"
 
-  gem 'sass-rails', version: '~> 5.0'
-  require 'sass-rails'
+  gem "sass-rails", version: "~> 5.0"
+  require "sass-rails"
 
-  gem 'lograge', version: '~> 0.3'
-  require 'lograge'
+  gem "lograge", version: "~> 0.3"
+  require "lograge"
 
-  gem 'hashie', version: '~> 3.4'
-  require 'hashie'
+  gem "hashie", version: "~> 3.4"
+  require "hashie"
 
-  gem 'virtus', version: '~> 1.0'
-  require 'virtus'
+  gem "virtus", version: "~> 1.0"
+  require "virtus"
 
-  gem 'js-routes', version: '~> 1.0'
-  require 'js-routes'
+  gem "js-routes", version: "~> 1.0"
+  require "js-routes"
 
-  gem 'sprockets', version: '~> 2.12'
-  require 'sprockets'
+  gem "sprockets", version: "~> 2.12"
+  require "sprockets"
 
-  gem 'tilt', version: '~> 1.4'
-  require 'tilt'
+  gem "tilt", version: "~> 1.4"
+  require "tilt"
 
-  gem 'fast_gettext', version: '~> 0.9'
-  require 'fast_gettext'
+  gem "fast_gettext", version: "~> 0.9"
+  require "fast_gettext"
 
-  gem 'gettext_i18n_rails_js', version: '~> 1.0'
-  require 'gettext_i18n_rails_js'
+  gem "gettext_i18n_rails_js", version: "~> 1.0"
+  require "gettext_i18n_rails_js"
 
-  gem 'gettext_i18n_rails', version: '~> 1.2'
-  require 'gettext_i18n_rails'
+  gem "gettext_i18n_rails", version: "~> 1.2"
+  require "gettext_i18n_rails"
 end
