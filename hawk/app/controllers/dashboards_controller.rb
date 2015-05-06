@@ -43,7 +43,7 @@ class DashboardsController < ApplicationController
   protected
 
   def set_title
-    @title = _('Dashboard')
+    @title = _("Dashboard")
   end
 
   def set_cib

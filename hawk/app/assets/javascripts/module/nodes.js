@@ -30,7 +30,7 @@
 //======================================================================
 
 $(function() {
-  $('#nodes #middle table.nodes, #dashboards #middle table.nodes')
+  $('#nodes #middle table.nodes, #states #middle table.nodes')
     .bootstrapTable({
       method: 'get',
       url: Routes.cib_nodes_path(

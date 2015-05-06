@@ -29,52 +29,24 @@
 #
 #======================================================================
 
-class PagesController < ApplicationController
+class StatesController < ApplicationController
   before_filter :login_required
+  before_filter :set_title
+  before_filter :set_cib
 
-  layout :detect_modal_layout,
-    only: [:help]
-
-  def index
-    @title = _("Welcome")
-
-    respond_to do |format|
-      format.html do
-        redirect_to cib_state_path(cib_id: view_context.current_cib.id), status: 301
-      end
-    end
-  end
-
-  def help
-    @title = _("Help")
-
+  def show
     respond_to do |format|
       format.html
     end
   end
 
-  def monitor
-    result = Open3.popen3("/usr/sbin/hawk_monitor") do |i, o|
-      o.read
-    end
-
-    headers, body = result.split("\n\n", 2)
-
-    headers.split("\n").each do |header|
-      name, value = header.split(":")
-      response.headers[name] = value.strip
-    end
-
-    render json: body
-  end
-
   protected
 
-  def detect_modal_layout
-    if request.xhr?
-      "modal"
-    else
-      detect_current_layout
-    end
+  def set_title
+    @title = _("Status")
+  end
+
+  def set_cib
+    @cib = Cib.new params[:cib_id], current_user
   end
 end

@@ -1,6 +1,7 @@
-%h1
-  = icon_text "line-chart", _("Graph"), class: "page"
+.container-fluid
+  %h1
+    = icon_text "line-chart", _("Graph"), class: "page"
 
-.panel.panel-default
-  .panel-body
-    = image_tag graph_path(format: "png"), class: "img-responsive center-block", alt: _("Graph")
+  .panel.panel-default
+    .panel-body
+      = image_tag graph_path(format: "png"), class: "img-responsive center-block", alt: _("Graph")

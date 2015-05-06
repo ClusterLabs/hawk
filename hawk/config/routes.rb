@@ -30,7 +30,7 @@
 #======================================================================
 
 Rails.application.routes.draw do
-  root :to => 'pages#index'
+  root :to => "pages#index"
 
   resources :cib, only: [:show] do
     member do
@@ -109,7 +109,9 @@ Rails.application.routes.draw do
 
     resource :profile, only: [:edit, :update]
     resource :crm_config, only: [:edit, :update]
+
     resource :dashboard, only: [:show]
+    resource :state, only: [:show]
 
     resource :checks, only: [] do
       collection do
@@ -133,20 +135,20 @@ Rails.application.routes.draw do
 
 
 
-  match 'main/status' => 'main#status', :as => :status, via: [:get, :post]
-  match 'main/sim_reset' => 'main#sim_reset', :as => :sim_reset, via: [:get, :post]
-  match 'main/sim_run' => 'main#sim_run', :as => :sim_run, via: [:get, :post]
-  match 'main/sim_get' => 'main#sim_get', :as => :sim_get, via: [:get, :post]
+  match "main/status" => "main#status", :as => :status, via: [:get, :post]
+  match "main/sim_reset" => "main#sim_reset", :as => :sim_reset, via: [:get, :post]
+  match "main/sim_run" => "main#sim_run", :as => :sim_run, via: [:get, :post]
+  match "main/sim_get" => "main#sim_get", :as => :sim_get, via: [:get, :post]
 
 
 
 
 
-  get 'monitor' => 'pages#monitor', :as => :monitor
-  get 'help' => 'pages#help', :as => :help
+  get "monitor" => "pages#monitor", :as => :monitor
+  get "help" => "pages#help", :as => :help
 
-  get 'logout' => 'sessions#destroy', :as => :logout
-  get 'login' => 'sessions#new', :as => :login
+  get "logout" => "sessions#destroy", :as => :logout
+  get "login" => "sessions#new", :as => :login
 
-  post 'login' => 'sessions#create', :as => :signin
+  post "login" => "sessions#create", :as => :signin
 end
