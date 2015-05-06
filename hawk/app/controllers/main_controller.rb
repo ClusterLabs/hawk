@@ -235,32 +235,4 @@ class MainController < ApplicationController
       head :not_found
     end
   end
-
-  @@graph_name = "cluster.png"
-  @@graph_path = "#{Rails.root}/tmp/#{@@graph_name}"
-  def graph_gen
-    File.unlink(@@graph_path) if File.exists?(@@graph_path)
-    # "crm configure graph" doesn't handle absolute paths...
-    pwd = Dir.pwd
-    Dir.chdir("#{Rails.root}/tmp")
-    err = Invoker.instance.crm("configure", "graph", "dot", @@graph_name, "png")
-    # append time to image URL, this forces the browser to ignore the cached HTML
-    # and actually re-request the image (otherwise you get a stale cached image)
-    html = "<div style=\"text-align: center;\"><img src=\"<%= graph_get_path :t => Time.now.to_i %>\" alt=\"\" /></div>"
-    if err != true
-      html += "<div id=\"errorbar\"><ul><li><div class=\"ns-error\">"
-      html += _('Error invoking %{cmd}: %{msg}') % {:cmd => "crm configure graph dot #{@@graph_name} png", :msg => err }
-      html += "</div></li></ul></div>"
-    end
-    render :inline => html
-    Dir.chdir(pwd)
-  end
-
-  def graph_get
-    if File.exists?(@@graph_path)
-      send_data File.new(@@graph_path).read, :type => "image/png", :disposition => "inline"
-    else
-      head :not_found
-    end
-  end
 end
