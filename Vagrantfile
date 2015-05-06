@@ -11,7 +11,8 @@ Vagrant.configure("2") do |config|
   if Vagrant.has_plugin? "vagrant-bindfs"
     config.bindfs.bind_folder "/vagrant", "/vagrant",
       force_user: "vagrant",
-      force_group: "users"
+      force_group: "users",
+      perms: "u=rwX:g=rwXD:o=rwXD"
   end
 
   config.vm.define "webui", primary: true do |machine|
