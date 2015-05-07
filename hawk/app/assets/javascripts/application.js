@@ -36,6 +36,9 @@
 //= require module/forms
 //= require module/modals
 //= require module/nodes
+//= require module/masters
+//= require module/clones
+//= require module/groups
 //= require module/locations
 //= require module/colocations
 //= require module/orders

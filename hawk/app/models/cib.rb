@@ -535,7 +535,7 @@ class Cib < CibObject
                 :node => node[:uname], :resource => id, :call_id => op.attributes['call-id'],
                 :op => operation, :rc_code => rc_code, :exit_reason => exit_reason },
               # Note: graph_number here might be the one *after* the one that's really interesting :-/
-              :link => fail_start ? explorer_path(:from_time => fail_start, :to_time => fail_end, :display => true, :graph_number => graph_number) : ""
+              #:link => fail_start ? explorer_path(:from_time => fail_start, :to_time => fail_end, :display => true, :graph_number => graph_number) : ""
             }
 
             if ignore_failure

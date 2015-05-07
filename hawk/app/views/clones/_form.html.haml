@@ -1,14 +1,22 @@
 .panel.panel-default
   .panel-body
     = form_for [cib, clone], horizontal: true do |main_form|
-      /= errors_for clone
+      = errors_for clone
 
-      /- if clone.new_record?
-      /  = main_form.text_field :id, label: _('Clone ID')
-      /- else
-      /  = main_form.text_field :id, label: _('Clone ID'), readonly: true
+      - if clone.new_record?
+        = main_form.text_field :id, label: _("Clone ID")
+        = main_form.select :child, clone_child_for(clone), { include_hidden: false, include_blank: true }, id: nil, label: _("Child Resource")
+      - else
+        = main_form.text_field :id, label: _("Clone ID"), readonly: true
+        = main_form.text_field :child, label: _("Child Resource"), readonly: true
 
-      /= main_form.select :roles, :role_options, { include_hidden: false }, { multiple: true, size: 5 }
+      %fieldset{ data: { attrlist: clone[:meta].to_json, attrlist_mapping: clone.mapping.to_json, attrlist_prefix: "clone[meta]", attrlist_target: ".content" } }
+        %legend
+          = _("Meta Attributes")
+          %span.pull-right.toggleable
+            = icon_tag("chevron-up")
+
+        .content
 
       = main_form.button_group do
         - if clone.new_record?
@@ -17,4 +25,4 @@
           = apply_button(main_form, clone)
           = revert_button(main_form, clone)
 
-        = link_to _('Back'), types_cib_resources_path(cib_id: cib.id), class: 'btn btn-default back'
+        = link_to _("Back"), types_cib_resources_path(cib_id: cib.id), class: "btn btn-default back"

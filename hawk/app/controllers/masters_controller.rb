@@ -35,10 +35,19 @@ class MastersController < ApplicationController
   before_filter :set_cib
   before_filter :set_record, only: [:edit, :update, :destroy, :show]
 
+  def index
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: Master.ordered.to_json
+      end
+    end
+  end
+
   def new
-    @title = _('Create Master/Slave')
+    @title = _("Create Master/Slave")
     @master = Master.new
-    @master.meta['target-role'] = 'Stopped' if @cib.id == 'live'
+    @master.meta["target-role"] = "Stopped" if @cib.id == "live"
 
     respond_to do |format|
       format.html
@@ -47,7 +56,7 @@ class MastersController < ApplicationController
 
   def create
     normalize_params! params[:master]
-    @title = _('Create Master/Slave')
+    @title = _("Create Master/Slave")
 
     @master = Master.new params[:master]
 
@@ -56,7 +65,7 @@ class MastersController < ApplicationController
         post_process_for! @master
 
         format.html do
-          flash[:success] = _('Master/Slave created successfully')
+          flash[:success] = _("Master/Slave created successfully")
           redirect_to edit_cib_master_url(cib_id: @cib.id, id: @master.id)
         end
         format.json do
@@ -64,7 +73,7 @@ class MastersController < ApplicationController
         end
       else
         format.html do
-          render action: 'new'
+          render action: "new"
         end
         format.json do
           render json: @master.errors, status: :unprocessable_entity
@@ -74,7 +83,7 @@ class MastersController < ApplicationController
   end
 
   def edit
-    @title = _('Edit Master/Slave')
+    @title = _("Edit Master/Slave")
 
     respond_to do |format|
       format.html
@@ -83,7 +92,7 @@ class MastersController < ApplicationController
 
   def update
     normalize_params! params[:master]
-    @title = _('Edit Master/Slave')
+    @title = _("Edit Master/Slave")
 
     if params[:revert]
       return redirect_to edit_cib_master_url(cib_id: @cib.id, id: @master.id)
@@ -94,7 +103,7 @@ class MastersController < ApplicationController
         post_process_for! @master
 
         format.html do
-          flash[:success] = _('Master/Slave updated successfully')
+          flash[:success] = _("Master/Slave updated successfully")
           redirect_to edit_cib_master_url(cib_id: @cib.id, id: @master.id)
         end
         format.json do
@@ -102,7 +111,7 @@ class MastersController < ApplicationController
         end
       else
         format.html do
-          render action: 'edit'
+          render action: "edit"
         end
         format.json do
           render json: @master.errors, status: :unprocessable_entity
@@ -113,21 +122,24 @@ class MastersController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if Invoker.instance.crm('--force', 'configure', 'delete', @master.id)
+      if Invoker.instance.crm("--force", "configure", "delete", @master.id)
         format.html do
-          flash[:success] = _('Master/Slave deleted successfully')
+          flash[:success] = _("Master/Slave deleted successfully")
           redirect_to types_cib_resources_path(cib_id: @cib.id)
         end
         format.json do
-          head :no_content
+          render json: {
+            success: true,
+            message: _("Master/Slave deleted successfully")
+          }
         end
       else
         format.html do
-          flash[:alert] = _('Error deleting %s') % @master.id
+          flash[:alert] = _("Error deleting %s") % @master.id
           redirect_to edit_cib_master_url(cib_id: @cib.id, id: @master.id)
         end
         format.json do
-          render json: { error: _('Error deleting %s') % @master.id }, status: :unprocessable_entity
+          render json: { error: _("Error deleting %s") % @master.id }, status: :unprocessable_entity
         end
       end
     end
@@ -145,7 +157,7 @@ class MastersController < ApplicationController
   protected
 
   def set_title
-    @title = _('Master/Slave')
+    @title = _("Master/Slave")
   end
 
   def set_cib
@@ -158,7 +170,7 @@ class MastersController < ApplicationController
     unless @master
       respond_to do |format|
         format.html do
-          flash[:alert] = _('The master/slave does not exist')
+          flash[:alert] = _("The master/slave does not exist")
           redirect_to types_cib_resources_path(cib_id: @cib.id)
         end
       end
@@ -169,5 +181,13 @@ class MastersController < ApplicationController
   end
 
   def normalize_params!(current)
+  end
+
+  def default_base_layout
+    if ["new", "create", "edit", "update"].include? params[:action]
+      "withrightbar"
+    else
+      super
+    end
   end
 end

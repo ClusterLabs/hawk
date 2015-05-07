@@ -35,10 +35,19 @@ class GroupsController < ApplicationController
   before_filter :set_cib
   before_filter :set_record, only: [:edit, :update, :destroy, :show]
 
+  def index
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: Group.ordered.to_json
+      end
+    end
+  end
+
   def new
-    @title = _('Create Group')
+    @title = _("Create Group")
     @group = Group.new
-    @group.meta['target-role'] = 'Stopped' if @cib.id == 'live'
+    @group.meta["target-role"] = "Stopped" if @cib.id == "live"
 
     respond_to do |format|
       format.html
@@ -47,7 +56,7 @@ class GroupsController < ApplicationController
 
   def create
     normalize_params! params[:group]
-    @title = _('Create Group')
+    @title = _("Create Group")
 
     @group = Group.new params[:group]
 
@@ -56,7 +65,7 @@ class GroupsController < ApplicationController
         post_process_for! @group
 
         format.html do
-          flash[:success] = _('Group created successfully')
+          flash[:success] = _("Group created successfully")
           redirect_to edit_cib_group_url(cib_id: @cib.id, id: @group.id)
         end
         format.json do
@@ -64,7 +73,7 @@ class GroupsController < ApplicationController
         end
       else
         format.html do
-          render action: 'new'
+          render action: "new"
         end
         format.json do
           render json: @group.errors, status: :unprocessable_entity
@@ -74,7 +83,7 @@ class GroupsController < ApplicationController
   end
 
   def edit
-    @title = _('Edit Group')
+    @title = _("Edit Group")
 
     respond_to do |format|
       format.html
@@ -83,7 +92,7 @@ class GroupsController < ApplicationController
 
   def update
     normalize_params! params[:group]
-    @title = _('Edit Group')
+    @title = _("Edit Group")
 
     if params[:revert]
       return redirect_to edit_cib_group_url(cib_id: @cib.id, id: @group.id)
@@ -94,7 +103,7 @@ class GroupsController < ApplicationController
         post_process_for! @group
 
         format.html do
-          flash[:success] = _('Group updated successfully')
+          flash[:success] = _("Group updated successfully")
           redirect_to edit_cib_group_url(cib_id: @cib.id, id: @group.id)
         end
         format.json do
@@ -102,7 +111,7 @@ class GroupsController < ApplicationController
         end
       else
         format.html do
-          render action: 'edit'
+          render action: "edit"
         end
         format.json do
           render json: @group.errors, status: :unprocessable_entity
@@ -113,21 +122,24 @@ class GroupsController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if Invoker.instance.crm('--force', 'configure', 'delete', @group.id)
+      if Invoker.instance.crm("--force", "configure", "delete", @group.id)
         format.html do
-          flash[:success] = _('Group deleted successfully')
+          flash[:success] = _("Group deleted successfully")
           redirect_to types_cib_resources_path(cib_id: @cib.id)
         end
         format.json do
-          head :no_content
+          render json: {
+            success: true,
+            message: _("Group deleted successfully")
+          }
         end
       else
         format.html do
-          flash[:alert] = _('Error deleting %s') % @group.id
+          flash[:alert] = _("Error deleting %s") % @group.id
           redirect_to edit_cib_group_url(cib_id: @cib.id, id: @group.id)
         end
         format.json do
-          render json: { error: _('Error deleting %s') % @group.id }, status: :unprocessable_entity
+          render json: { error: _("Error deleting %s") % @group.id }, status: :unprocessable_entity
         end
       end
     end
@@ -145,7 +157,7 @@ class GroupsController < ApplicationController
   protected
 
   def set_title
-    @title = _('Groups')
+    @title = _("Groups")
   end
 
   def set_cib
@@ -158,7 +170,7 @@ class GroupsController < ApplicationController
     unless @group
       respond_to do |format|
         format.html do
-          flash[:alert] = _('The group does not exist')
+          flash[:alert] = _("The group does not exist")
           redirect_to types_cib_resources_path(cib_id: @cib.id)
         end
       end
@@ -169,5 +181,13 @@ class GroupsController < ApplicationController
   end
 
   def normalize_params!(current)
+  end
+
+  def default_base_layout
+    if ["new", "create", "edit", "update"].include? params[:action]
+      "withrightbar"
+    else
+      super
+    end
   end
 end

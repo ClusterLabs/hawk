@@ -199,6 +199,11 @@ class Record < Tableless
 
 
 
+
+
+
+
+
   def merge_ocf_check_level(op, v)
     unless v
       # No OCF_CHECK_LEVEL set, remove it from the XML if present
@@ -233,49 +238,47 @@ class Record < Tableless
     end
   end
 
-  def merge_nvpairs(parent, list, attrs)
+
+
+
+
+
+
+
+
+
+  def merge_nvpairs(list, attrs)
     if attrs.empty?
       # No attributes to set, get rid of the list (if it exists)
-      parent.elements[list].remove if parent.elements[list]
+      xml.elements[list].remove if xml.elements[list]
     else
       # Get rid of any attributes that are no longer set
-      if parent.elements[list]
-        parent.elements[list].elements.each do |e|
-          e.remove unless attrs.keys.include? e.attributes['name']
+      if xml.elements[list]
+        xml.elements[list].elements.each do |el|
+          el.remove unless attrs.keys.include? el.attributes['name']
         end
       else
-        # Add new instance attributes child
-        parent.add_element(
-          list,
-          {
-            'id' => "#{parent.attributes['id']}-#{list}"
-          }
-        )
+        xml.add_element(list, {
+          "id" => "#{xml.attributes["id"]}-#{list}"
+        })
       end
 
-      attrs.each do |n,v|
-        # update existing, or add new
-        nvp = parent.elements["#{list}/nvpair[@name=\"#{n}\"]"]
+      # Write new attributes or update existing ones
+      attrs.each do |n, v|
+        nvp = xml.elements["#{list}/nvpair[@name=\"#{n}\"]"]
 
         if nvp
-          nvp.attributes['value'] = v
+          nvp.attributes["value"] = v
         else
-          parent.elements[list].add_element(
-            'nvpair',
-            {
-              'id' => "#{parent.elements[list].attributes['id']}-#{n}",
-              'name' => n,
-              'value' => v
-            }
-          )
+          xml.elements[list].add_element("nvpair", {
+            "id" => "#{xml.elements[list].attributes['id']}-#{n}",
+            "name" => n,
+            "value" => v
+          })
         end
       end
     end
   end
-
-
-
-
 
   protected
 

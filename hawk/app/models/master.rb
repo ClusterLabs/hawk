@@ -29,155 +29,149 @@
 #
 #======================================================================
 
-class Master < CibObject
-  include FastGettext::Translation
+class Master < Record
+  attribute :id, String
+  attribute :child, String
+  attribute :meta, Hash, default: {}
 
-  @attributes = :child, :meta
-  attr_accessor *@attributes
+  validates :id,
+    presence: { message: _("Master/Slave ID is required") },
+    format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _("Invalid Master/Slave ID") }
 
-  def initialize(attributes = nil)
-    @child      = ''
-    @meta       = {}
-    super
+  validates :child,
+    presence: { message: _("No Master/Slave child specified") }
+
+  validate do |record|
+    # TODO(must): Ensure children are sanitized
   end
 
-  def validate
-    error _('No Master/Slave child specified') if @child.empty?
+  def mapping
+    self.class.mapping
   end
 
-  def create
-    @meta.each do |n,v|
-      if v.index("'") && v.index('"')
-        error _("Can't set meta attribute %{p}, because the value contains both single and double quotes") % { :p => n }
+  class << self
+    def instantiate(xml)
+      record = allocate
+
+      record.child = if xml.elements["primitive|group"]
+        xml.elements["primitive|group"].attributes["id"]
+      else
+        nil
       end
-    end
-    return false if errors.any?
 
-    if CibObject.exists?(id)
-      error _('The ID "%{id}" is already in use') % { :id => @id }
-      return false
-    end
-
-    # TODO(must): Ensure child is sanitized
-    cmd = "ms #{@id} #{@child}"
-    unless @meta.empty?
-      cmd += " meta"
-      @meta.each do |n,v|
-        if v.index("'")
-          cmd += " #{n}=\"#{v}\""
-        else
-          cmd += " #{n}='#{v}'"
+      record.meta = if xml.elements["meta_attributes"]
+        vals = xml.elements["meta_attributes"].elements.collect do |el|
+          [
+            el.attributes["name"],
+            el.attributes["value"]
+          ]
         end
+
+        Hash[vals]
+      else
+        {}
+      end
+
+      record
+    end
+
+    def cib_type
+      :master
+    end
+
+    def mapping
+      # TODO(must): Are other meta attributes for clone valid?
+      @mapping ||= begin
+        {
+          "is-managed" => {
+            type: "boolean",
+            default: "true"
+          },
+          "priority" => {
+            type: "integer",
+            default: "0"
+          },
+          "target-role" => {
+            type: "enum",
+            default: "Started",
+            values: [
+              "Started",
+              "Stopped",
+              "Master"
+            ]
+          },
+          "clone-max" => {
+            type: "integer",
+            default: %x[cibadmin -Ql --scope nodes 2>/dev/null].scan("<node ").length
+          },
+          "clone-node-max" => {
+            type: "integer",
+            default: "1"
+          },
+          "notify" => {
+            type: "boolean",
+            default: "false"
+          },
+          "globally-unique" => {
+            type: "boolean",
+            default: "true"
+          },
+          "ordered" => {
+            type: "boolean",
+            default: "false"
+          },
+          "interleave" => {
+            type: "boolean",
+            default: "false"
+          },
+          "master-max" => {
+            type: "integer",
+            default: "1"
+          },
+          "master-node-max" => {
+            type: "integer",
+            default: "1"
+          }
+        }
       end
     end
-
-    result = Invoker.instance.crm_configure cmd
-    unless result == true
-      error _('Unable to create master/slave: %{msg}') % { :msg => result }
-      return false
-    end
-
-    true
   end
+
+  protected
 
   def update
-    # Saving an existing master
-    unless CibObject.exists?(id, 'master')
-      error _('Master/Slave ID "%{id}" does not exist') % { :id => @id }
+    unless self.class.exists?(self.id, self.class.cib_type_write)
+      errors.add :base, _("The ID \"%{id}\" does not exist") % { id: self.id }
       return false
     end
 
     begin
-      merge_nvpairs(@xml, 'meta_attributes', @meta)
-
-      Invoker.instance.cibadmin_replace @xml.to_s
+      merge_nvpairs("meta_attributes", meta)
+      Invoker.instance.cibadmin_replace xml.to_s
     rescue NotFoundError, SecurityError, RuntimeError => e
-      error e.message
+      errors.add :base, e.message
       return false
     end
 
     true
   end
 
-  def update_attributes(attributes)
-    @meta = {}
-    super
+  def shell_syntax
+    [].tap do |cmd|
+      cmd.push "ms #{id} #{child}"
+
+      unless meta.empty?
+        cmd.push "meta"
+
+        meta.each do |key, value|
+          cmd.push [
+            key,
+            value.shellescape
+          ].join("=")
+        end
+      end
+
+      #raise cmd.join(" ").inspect
+    end.join(" ")
   end
-
-  class << self
-
-    def instantiate(xml)
-      res = allocate
-      res.instance_variable_set(:@child,  xml.elements['primitive|group'].attributes['id'])
-      res.instance_variable_set(:@meta,   xml.elements['meta_attributes'] ?
-        Hash[xml.elements['meta_attributes'].elements.collect {|e|
-          [e.attributes['name'], e.attributes['value']] }] : {})
-      res
-    end
-
-    def all
-      super "master"
-    end
-
-    def metadata
-      # TODO(must): are other meta attributes for master valid?
-      {
-        :meta => {
-          "is-managed" => {
-            :type     => "boolean",
-            :default  => "true"
-          },
-          "maintenance" => {
-            :type     => "boolean",
-            :default  => "false"
-          },
-          "priority" => {
-            :type     => "integer",
-            :default  => "0"
-          },
-          "target-role" => {
-            :type     => "enum",
-            :default  => "Started",
-            :values   => [ "Started", "Stopped", "Master" ]
-          },
-          # Default is number of nodes in cluster - this is a bit nasty...
-          "clone-max" => {
-            :type     => "integer",
-            :default  => %x[cibadmin -Ql --scope nodes 2>/dev/null].scan('<node ').length
-          },
-          "clone-node-max" => {
-            :type     => "integer",
-            :default  => "1"
-          },
-          "notify" => {
-            :type     => "boolean",
-            :default  => "false"
-          },
-          "globally-unique" => {
-            :type     => "boolean",
-            :default  => "true"
-          },
-          "ordered" => {
-            :type     => "boolean",
-            :default  => "false"
-          },
-          "interleave" => {
-            :type     => "boolean",
-            :default  => "false"
-          },
-          "master-max" => {
-            :type     => "integer",
-            :default  => "1"
-          },
-          "master-node-max" => {
-            :type     => "integer",
-            :default  => "1"
-          }
-        }
-      }
-    end
-
-  end
-
 end
-

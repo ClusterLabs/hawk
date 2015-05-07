@@ -3,7 +3,7 @@
     %ul
       / %li{ class: active_menu_with(:dashboards) }
       /   = link_to _("Dashboard"), cib_dashboard_path(cib_id: current_cib.id)
-      
+
       %li{ class: active_menu_with(:states) }
         = link_to _("Status"), cib_state_path(cib_id: current_cib.id)
 
@@ -53,6 +53,15 @@
       %ul
         %li{ class: active_menu_with(:nodes) }
           = link_to _("Nodes"), cib_nodes_path(cib_id: current_cib.id)
+
+        %li{ class: active_menu_with(:masters) }
+          = link_to _("Masters/Slaves"), cib_masters_path(cib_id: current_cib.id)
+
+        %li{ class: active_menu_with(:clones) }
+          = link_to _("Clones"), cib_clones_path(cib_id: current_cib.id)
+
+        %li{ class: active_menu_with(:groups) }
+          = link_to _("Groups"), cib_groups_path(cib_id: current_cib.id)
 
         %li{ class: active_menu_with(:locations) }
           = link_to _("Locations"), cib_locations_path(cib_id: current_cib.id)

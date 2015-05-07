@@ -33,6 +33,13 @@ $(function() {
   $('[data-toggle="tooltip"]').tooltip();
   $('.nav-tabs').stickyTabs();
 
+  $('ul.list-group.sortable').sortable({
+    forcePlaceholderSize: true,
+    handle: 'i.fa-bars',
+    items: ':not(.disabled)',
+    placeholderClass: 'sortable-placeholder list-group-item'
+  });
+
   $('.navbar a.toggle').click(function () {
     $('.row-offcanvas').toggleClass('active')
   });

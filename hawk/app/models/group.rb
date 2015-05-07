@@ -29,125 +29,117 @@
 #
 #======================================================================
 
-class Group < CibObject
-  include FastGettext::Translation
+class Group < Record
+  attribute :id, String
+  attribute :children, Array[String]
+  attribute :meta, Hash, default: {}
 
-  @attributes = :children, :meta
-  attr_accessor *@attributes
+  validates :id,
+    presence: { message: _("Group ID is required") },
+    format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _("Invalid Group ID") }
 
-  def initialize(attributes = nil)
-    @children   = []
-    @meta       = {}
-    super
-  end
-
-  def validate
-    error _('No group children specified') if @children.empty?
-  end
-
-  def create
-    @meta.each do |n,v|
-      if v.index("'") && v.index('"')
-        error _("Can't set meta attribute %{p}, because the value contains both single and double quotes") % { :p => n }
-      end
-    end
-    return false if errors.any?
-
-    if CibObject.exists?(id)
-      error _('The ID "%{id}" is already in use') % { :id => @id }
-      return false
-    end
-
+  validate do |record|
     # TODO(must): Ensure children are sanitized
-    cmd = "group #{@id}"
-    @children.each do |c|
-      cmd += " #{c}"
-    end
-    unless @meta.empty?
-      cmd += " meta"
-      @meta.each do |n,v|
-        if v.index("'")
-          cmd += " #{n}=\"#{v}\""
-        else
-          cmd += " #{n}='#{v}'"
+    errors.add :children, _("No Group children specified") if record.children.empty?
+  end
+
+  def mapping
+    self.class.mapping
+  end
+
+  class << self
+    def instantiate(xml)
+      record = allocate
+
+      record.children = xml.elements.collect("primitive") do |el|
+        el.attributes["id"]
+      end
+
+      record.meta = if xml.elements["meta_attributes"]
+        vals = xml.elements["meta_attributes"].elements.collect do |el|
+          [
+            el.attributes["name"],
+            el.attributes["value"]
+          ]
         end
+
+        Hash[vals]
+      else
+        {}
+      end
+
+      record
+    end
+
+    def cib_type
+      :group
+    end
+
+    def mapping
+      # TODO(must): Are other meta attributes for clone valid?
+      @mapping ||= begin
+        {
+          "is-managed" => {
+            type: "boolean",
+            default: "true"
+          },
+          "priority" => {
+            type: "integer",
+            default: "0"
+          },
+          "target-role" => {
+            type: "enum",
+            default: "Started",
+            values: [
+              "Started",
+              "Stopped",
+              "Master"
+            ]
+          }
+        }
       end
     end
-
-    result = Invoker.instance.crm_configure cmd
-    unless result == true
-      error _('Unable to create group: %{msg}') % { :msg => result }
-      return false
-    end
-
-    true
   end
+
+  protected
 
   def update
-    # Saving an existing group
-    unless CibObject.exists?(id, 'group')
-      error _('Group ID "%{id}" does not exist') % { :id => @id }
+    unless self.class.exists?(self.id, self.class.cib_type_write)
+      errors.add :base, _("The ID \"%{id}\" does not exist") % { id: self.id }
       return false
     end
 
     begin
-      merge_nvpairs(@xml, 'meta_attributes', @meta)
-
-      Invoker.instance.cibadmin_replace @xml.to_s
+      merge_nvpairs("meta_attributes", meta)
+      Invoker.instance.cibadmin_replace xml.to_s
     rescue NotFoundError, SecurityError, RuntimeError => e
-      error e.message
+      errors.add :base, e.message
       return false
     end
 
     true
   end
 
-  def update_attributes(attributes)
-    @meta = {}
-    super
+  def shell_syntax
+    [].tap do |cmd|
+      cmd.push "group #{id}"
+
+      children.each do |child|
+        cmd.push child
+      end
+
+      unless meta.empty?
+        cmd.push "meta"
+
+        meta.each do |key, value|
+          cmd.push [
+            key,
+            value.shellescape
+          ].join("=")
+        end
+      end
+
+      raise cmd.join(" ").inspect
+    end.join(" ")
   end
-
-  class << self
-
-    def instantiate(xml)
-      res = allocate
-      res.instance_variable_set(:@children, xml.elements.collect('primitive') {|e| e.attributes['id'] })
-      res.instance_variable_set(:@meta,     xml.elements['meta_attributes'] ?
-        Hash[xml.elements['meta_attributes'].elements.collect {|e|
-          [e.attributes['name'], e.attributes['value']] }] : {})
-      res
-    end
-
-    def all
-      super "group"
-    end
-
-    def metadata
-      # TODO(must): are other meta attributes for group valid?
-      {
-        :meta => {
-          "is-managed" => {
-            :type     => "boolean",
-            :default  => "true"
-          },
-          "maintenance" => {
-            :type     => "boolean",
-            :default  => "false"
-          },
-          "priority" => {
-            :type     => "integer",
-            :default  => "0"
-          },
-          "target-role" => {
-            :type     => "enum",
-            :default  => "Started",
-            :values   => [ "Started", "Stopped", "Master" ]
-          }
-        }
-      }
-    end
-
-  end
-
 end
-

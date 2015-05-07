@@ -37,10 +37,9 @@
 //= require jquery/jsrender
 //= require jquery/observable
 //= require jquery/views
+//= require jquery/sortable
 //= require bootstrap-sprockets
 //= require bootstrap
 //= require font-awesome/font-awesome
-//= require rivets/rivets
-//= require misc/jed
 
 //= require js-routes

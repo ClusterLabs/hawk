@@ -249,7 +249,7 @@ class ApplicationController < ActionController::Base
   end
 
   def not_found
-    raise ActionController::RoutingError.new
+    raise ActionController::RoutingError.new "Record not found"
   end
 
   def default_locale
