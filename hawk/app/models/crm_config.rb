@@ -292,6 +292,7 @@ class CrmConfig < Tableless
   def current_crm_config
     {}.tap do |current|
       crm_config_value.elements.each("nvpair") do |nv|
+        next if mapping[:crm_config][nv.attributes["name"]].nil?
         current[nv.attributes["name"]] = nv.attributes["value"]
       end if crm_config_value
     end
@@ -300,6 +301,7 @@ class CrmConfig < Tableless
   def current_rsc_defaults
     {}.tap do |current|
       rsc_defaults_value.elements.each("nvpair") do |nv|
+        next if mapping[:rsc_defaults][nv.attributes["name"]].nil?
         current[nv.attributes["name"]] = nv.attributes["value"]
       end if rsc_defaults_value
     end
@@ -308,6 +310,7 @@ class CrmConfig < Tableless
   def current_op_defaults
     {}.tap do |current|
       op_defaults_value.elements.each("nvpair") do |nv|
+        next if mapping[:op_defaults][nv.attributes["name"]].nil?
         current[nv.attributes["name"]] = nv.attributes["value"]
       end if op_defaults_value
     end
