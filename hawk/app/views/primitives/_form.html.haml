@@ -4,16 +4,20 @@
       = errors_for primitive
 
       - if primitive.new_record?
-        = main_form.text_field :id, label: _("Primitive ID")
+        = main_form.text_field :id, label: _("Resource ID")
 
-        = main_form.select :template, [], { include_hidden: false }, { label: _("Template") }
+        - if Util.has_feature?(:rsc_template) && primitive.resource?
+          = main_form.select :template, [], { include_hidden: false }, { label: _("Template") }
+
         = main_form.select :clazz, [], { include_hidden: false }, { label: _("Class") }
         = main_form.select :provider, [], { include_hidden: false }, { label: _("Provider") }
         = main_form.select :type, [], { include_hidden: false }, { label: _("Type") }
       - else
         = main_form.text_field :id, label: _("Primitive ID"), readonly: true
 
-        = main_form.text_field :template, label: _("Template"), readonly: true
+        - if Util.has_feature?(:rsc_template) && primitive.resource?
+          = main_form.text_field :template, label: _("Template"), readonly: true
+
         = main_form.text_field :clazz, label: _("Class"), readonly: true
         = main_form.text_field :provider, label: _("Provider"), readonly: true
         = main_form.text_field :type, label: _("Type"), readonly: true

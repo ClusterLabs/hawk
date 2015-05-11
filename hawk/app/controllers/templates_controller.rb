@@ -31,12 +31,14 @@
 
 class TemplatesController < ApplicationController
   before_filter :login_required
+  before_filter :feature_support
   before_filter :set_title
   before_filter :set_cib
   before_filter :set_record, only: [:edit, :update, :destroy, :show]
 
   def index
     respond_to do |format|
+      format.html
       format.json do
         render json: Template.ordered.to_json
       end
@@ -44,7 +46,7 @@ class TemplatesController < ApplicationController
   end
 
   def new
-    @title = _('Create Template')
+    @title = _("Create Template")
     @primitive = Template.new
 
     respond_to do |format|
@@ -54,7 +56,7 @@ class TemplatesController < ApplicationController
 
   def create
     normalize_params! params[:template]
-    @title = _('Create Template')
+    @title = _("Create Template")
 
     @primitive = Template.new params[:template]
 
@@ -63,7 +65,7 @@ class TemplatesController < ApplicationController
         post_process_for! @primitive
 
         format.html do
-          flash[:success] = _('Template created successfully')
+          flash[:success] = _("Template created successfully")
           redirect_to edit_cib_template_url(cib_id: @cib.id, id: @primitive.id)
         end
         format.json do
@@ -71,7 +73,7 @@ class TemplatesController < ApplicationController
         end
       else
         format.html do
-          render action: 'new'
+          render action: "new"
         end
         format.json do
           render json: @primitive.errors, status: :unprocessable_entity
@@ -81,7 +83,7 @@ class TemplatesController < ApplicationController
   end
 
   def edit
-    @title = _('Edit Template')
+    @title = _("Edit Template")
 
     respond_to do |format|
       format.html
@@ -90,7 +92,7 @@ class TemplatesController < ApplicationController
 
   def update
     normalize_params! params[:template]
-    @title = _('Edit Template')
+    @title = _("Edit Template")
 
     if params[:revert]
       return redirect_to edit_cib_template_url(cib_id: @cib.id, id: @primitive.id)
@@ -101,7 +103,7 @@ class TemplatesController < ApplicationController
         post_process_for! @primitive
 
         format.html do
-          flash[:success] = _('Template updated successfully')
+          flash[:success] = _("Template updated successfully")
           redirect_to edit_cib_template_url(cib_id: @cib.id, id: @primitive.id)
         end
         format.json do
@@ -109,7 +111,7 @@ class TemplatesController < ApplicationController
         end
       else
         format.html do
-          render action: 'edit'
+          render action: "edit"
         end
         format.json do
           render json: @primitive.errors, status: :unprocessable_entity
@@ -120,21 +122,24 @@ class TemplatesController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if Invoker.instance.crm('--force', 'configure', 'delete', @primitive.id)
+      if Invoker.instance.crm("--force", "configure", "delete", @primitive.id)
         format.html do
-          flash[:success] = _('Template deleted successfully')
+          flash[:success] = _("Template deleted successfully")
           redirect_to cib_dashboard_url(cib_id: @cib.id)
         end
         format.json do
-          head :no_content
+          render json: {
+            success: true,
+            message: _("Template deleted successfully")
+          }
         end
       else
         format.html do
-          flash[:alert] = _('Error deleting %s') % @primitive.id
+          flash[:alert] = _("Error deleting %s") % @primitive.id
           redirect_to edit_cib_template_url(cib_id: @cib.id, id: @primitive.id)
         end
         format.json do
-          render json: { error: _('Error deleting %s') % @primitive.id }, status: :unprocessable_entity
+          render json: { error: _("Error deleting %s") % @primitive.id }, status: :unprocessable_entity
         end
       end
     end
@@ -151,8 +156,14 @@ class TemplatesController < ApplicationController
 
   protected
 
+  def feature_support
+    unless Util.has_feature? :rsc_template
+      redirect_to root_url, alert: _("You have no template feature support")
+    end
+  end
+
   def set_title
-    @title = _('Templates')
+    @title = _("Templates")
   end
 
   def set_cib
@@ -165,7 +176,7 @@ class TemplatesController < ApplicationController
     unless @primitive
       respond_to do |format|
         format.html do
-          flash[:alert] = _('The template does not exist')
+          flash[:alert] = _("The template does not exist")
           redirect_to cib_dashboard_url(cib_id: @cib.id)
         end
       end

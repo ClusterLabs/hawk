@@ -31,6 +31,7 @@
 
 class RolesController < ApplicationController
   before_filter :login_required
+  before_filter :feature_support
   before_filter :set_title
   before_filter :set_cib
   before_filter :set_record, only: [:edit, :update, :destroy, :show]
@@ -150,6 +151,12 @@ class RolesController < ApplicationController
   end
 
   protected
+
+  def feature_support
+    unless Util.has_feature? :acl_support
+      redirect_to root_url, alert: _("You have no acl feature support")
+    end
+  end
 
   def set_title
     @title = _("Roles")

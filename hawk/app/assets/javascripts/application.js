@@ -37,6 +37,7 @@
 //= require module/modals
 //= require module/nodes
 //= require module/primitives
+//= require module/templates
 //= require module/masters
 //= require module/clones
 //= require module/groups
