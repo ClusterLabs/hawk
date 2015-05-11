@@ -170,8 +170,6 @@ class Master < Record
           ].join("=")
         end
       end
-
-      #raise cmd.join(" ").inspect
     end.join(" ")
   end
 end

@@ -35,10 +35,19 @@ class PrimitivesController < ApplicationController
   before_filter :set_cib
   before_filter :set_record, only: [:edit, :update, :destroy, :show]
 
+  def index
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: Primitive.ordered.to_json
+      end
+    end
+  end
+
   def new
-    @title = _('Create Primitive')
+    @title = _("Create Primitive")
     @primitive = Primitive.new
-    @primitive.meta['target-role'] = 'Stopped' if @cib.id == 'live'
+    @primitive.meta["target-role"] = "Stopped" if @cib.id == "live"
 
     respond_to do |format|
       format.html
@@ -47,7 +56,7 @@ class PrimitivesController < ApplicationController
 
   def create
     normalize_params! params[:primitive]
-    @title = _('Create Primitive')
+    @title = _("Create Primitive")
 
     @primitive = Primitive.new params[:primitive]
 
@@ -56,7 +65,7 @@ class PrimitivesController < ApplicationController
         post_process_for! @primitive
 
         format.html do
-          flash[:success] = _('Primitive created successfully')
+          flash[:success] = _("Primitive created successfully")
           redirect_to edit_cib_primitive_url(cib_id: @cib.id, id: @primitive.id)
         end
         format.json do
@@ -64,7 +73,7 @@ class PrimitivesController < ApplicationController
         end
       else
         format.html do
-          render action: 'new'
+          render action: "new"
         end
         format.json do
           render json: @primitive.errors, status: :unprocessable_entity
@@ -74,7 +83,7 @@ class PrimitivesController < ApplicationController
   end
 
   def edit
-    @title = _('Edit Primitive')
+    @title = _("Edit Primitive")
 
     respond_to do |format|
       format.html
@@ -83,7 +92,7 @@ class PrimitivesController < ApplicationController
 
   def update
     normalize_params! params[:primitive]
-    @title = _('Edit Primitive')
+    @title = _("Edit Primitive")
 
     if params[:revert]
       return redirect_to edit_cib_primitive_url(cib_id: @cib.id, id: @primitive.id)
@@ -94,7 +103,7 @@ class PrimitivesController < ApplicationController
         post_process_for! @primitive
 
         format.html do
-          flash[:success] = _('Primitive updated successfully')
+          flash[:success] = _("Primitive updated successfully")
           redirect_to edit_cib_primitive_url(cib_id: @cib.id, id: @primitive.id)
         end
         format.json do
@@ -102,7 +111,7 @@ class PrimitivesController < ApplicationController
         end
       else
         format.html do
-          render action: 'edit'
+          render action: "edit"
         end
         format.json do
           render json: @primitive.errors, status: :unprocessable_entity
@@ -113,21 +122,24 @@ class PrimitivesController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if Invoker.instance.crm('--force', 'configure', 'delete', @primitive.id)
+      if Invoker.instance.crm("--force", "configure", "delete", @primitive.id)
         format.html do
-          flash[:success] = _('Primitive deleted successfully')
+          flash[:success] = _("Primitive deleted successfully")
           redirect_to types_cib_resources_path(cib_id: @cib.id)
         end
         format.json do
-          head :no_content
+          render json: {
+            success: true,
+            message: _("Primitive deleted successfully")
+          }
         end
       else
         format.html do
-          flash[:alert] = _('Error deleting %s') % @primitive.id
+          flash[:alert] = _("Error deleting %s") % @primitive.id
           redirect_to edit_cib_primitive_url(cib_id: @cib.id, id: @primitive.id)
         end
         format.json do
-          render json: { error: _('Error deleting %s') % @primitive.id }, status: :unprocessable_entity
+          render json: { error: _("Error deleting %s") % @primitive.id }, status: :unprocessable_entity
         end
       end
     end
@@ -145,7 +157,7 @@ class PrimitivesController < ApplicationController
   protected
 
   def set_title
-    @title = _('Primitives')
+    @title = _("Primitives")
   end
 
   def set_cib
@@ -158,7 +170,7 @@ class PrimitivesController < ApplicationController
     unless @primitive
       respond_to do |format|
         format.html do
-          flash[:alert] = _('The primitive does not exist')
+          flash[:alert] = _("The primitive does not exist")
           redirect_to types_cib_resources_path(cib_id: @cib.id)
         end
       end
@@ -169,5 +181,13 @@ class PrimitivesController < ApplicationController
   end
 
   def normalize_params!(current)
+  end
+
+  def default_base_layout
+    if ["new", "create", "edit", "update"].include? params[:action]
+      "withrightbar"
+    else
+      super
+    end
   end
 end

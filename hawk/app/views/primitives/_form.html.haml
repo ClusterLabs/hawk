@@ -1,14 +1,46 @@
 .panel.panel-default
   .panel-body
     = form_for [cib, primitive], horizontal: true do |main_form|
-      /= errors_for primitive
+      = errors_for primitive
 
-      /- if primitive.new_record?
-      /  = main_form.text_field :id, label: _('Primitive ID')
-      /- else
-      /  = main_form.text_field :id, label: _('Primitive ID'), readonly: true
+      - if primitive.new_record?
+        = main_form.text_field :id, label: _("Primitive ID")
 
-      /= main_form.select :roles, :role_options, { include_hidden: false }, { multiple: true, size: 5 }
+        = main_form.select :template, [], { include_hidden: false }, { label: _("Template") }
+        = main_form.select :clazz, [], { include_hidden: false }, { label: _("Class") }
+        = main_form.select :provider, [], { include_hidden: false }, { label: _("Provider") }
+        = main_form.select :type, [], { include_hidden: false }, { label: _("Type") }
+      - else
+        = main_form.text_field :id, label: _("Primitive ID"), readonly: true
+
+        = main_form.text_field :template, label: _("Template"), readonly: true
+        = main_form.text_field :clazz, label: _("Class"), readonly: true
+        = main_form.text_field :provider, label: _("Provider"), readonly: true
+        = main_form.text_field :type, label: _("Type"), readonly: true
+
+      %fieldset{ data: { attrlist: primitive.params.to_json, attrlist_mapping: primitive.mapping.to_json, attrlist_prefix: "primitive[params]", attrlist_target: ".content" } }
+        %legend
+          = _("General Parameters")
+          %span.pull-right.toggleable
+            = icon_tag("chevron-up")
+
+        .content
+
+      %fieldset{ data: { attrlist: primitive.meta.to_json, attrlist_mapping: primitive.mapping.to_json, attrlist_prefix: "primitive[meta]", attrlist_target: ".content" } }
+        %legend
+          = _("Meta Attributes")
+          %span.pull-right.toggleable
+            = icon_tag("chevron-up")
+
+        .content
+
+      %fieldset
+        %legend
+          = _("Operations")
+          %span.pull-right.toggleable
+            = icon_tag("chevron-up")
+
+        .content
 
       = main_form.button_group do
         - if primitive.new_record?
@@ -17,4 +49,4 @@
           = apply_button(main_form, primitive)
           = revert_button(main_form, primitive)
 
-        = link_to _('Back'), types_cib_resources_path(cib_id: cib.id), class: 'btn btn-default back'
+        = link_to _("Back"), types_cib_resources_path(cib_id: cib.id), class: "btn btn-default back"
