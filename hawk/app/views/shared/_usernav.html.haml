@@ -1,17 +1,18 @@
 %ul.nav.navbar-nav
+  - if current_cib.live?
+    %li
+      = link_to navbar_item(_("Simulator"), "toggle-off"), cib_state_path(cib_id: current_user), class: "simulator", title: _("Enable the simulation mode")
+  - else
+    %li
+      = link_to navbar_item(_("Production"), "toggle-on"), cib_state_path(cib_id: "live"), class: "production", title: _("Disable the simulation mode")
+
+  %li
+    = link_to navbar_item(_("Profile"), "user"), edit_cib_profile_path(cib_id: current_cib.id), class: "profile"
+
   - unless installed_docs.empty?
     %li
       = link_to navbar_item(_("Help"), "question"), help_path, class: "help", data: { toggle: "modal", target: "#modal" }
 
-  - if current_cib.live?
-    %li
-      = link_to navbar_item(_("Simulator"), "toggle-off"), "#", class: "simulator", title: _("Enable the simulation mode")
-  - else
-    %li
-      = link_to navbar_item(_("Production"), "toggle-on"), "#", class: "production", title: _("Disable the simulation mode")
-
-  %li
-    = link_to navbar_item(_("Profile"), "user"), edit_cib_profile_path(cib_id: current_cib.id), class: "profile"
   %li
     = link_to navbar_item(_("Logout"), "sign-out"), logout_path, class: "logout"
 

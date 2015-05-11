@@ -63,6 +63,9 @@
         %li{ class: active_menu_with(:groups) }
           = link_to _("Groups"), cib_groups_path(cib_id: current_cib.id)
 
+        %li{ class: active_menu_with(:primitives) }
+          = link_to _("Primitives"), cib_primitives_path(cib_id: current_cib.id)
+
         %li{ class: active_menu_with(:locations) }
           = link_to _("Locations"), cib_locations_path(cib_id: current_cib.id)
 

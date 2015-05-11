@@ -131,18 +131,11 @@ Rails.application.routes.draw do
     end
   end
 
-
-
-
-
-  match "main/status" => "main#status", :as => :status, via: [:get, :post]
-  match "main/sim_reset" => "main#sim_reset", :as => :sim_reset, via: [:get, :post]
-  match "main/sim_run" => "main#sim_run", :as => :sim_run, via: [:get, :post]
-  match "main/sim_get" => "main#sim_get", :as => :sim_get, via: [:get, :post]
-
-
-
-
+  resource :simulator do
+    member do
+      get :reset
+    end
+  end
 
   get "monitor" => "pages#monitor", :as => :monitor
   get "help" => "pages#help", :as => :help

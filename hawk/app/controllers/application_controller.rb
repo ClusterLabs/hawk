@@ -43,11 +43,13 @@ class ApplicationController < ActionController::Base
   before_filter :set_current_home
   before_filter :set_current_title
   before_filter :set_cors_headers
-  before_filter :init_shadow_cib
+  before_filter :set_shadow_cib
 
   helper_method :is_god?
   helper_method :logged_in?
 
+  helper_method :production_cib
+  helper_method :current_cib
   helper_method :current_user
 
   rescue_from CibObject::RecordNotFound do |e|
@@ -96,6 +98,20 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
+  def production_cib
+    @production_cib ||= 'live'
+  end
+
+  def current_cib
+    @current_cib ||= begin
+      Cib.new(
+        params[:cib_id] || production_cib,
+        current_user,
+        params[:debug] == 'file'
+      )
+    end
+  end
 
   def redirect_back(default)
     redirect_to(session.delete(:return_to) || default)
@@ -182,43 +198,31 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  def set_shadow_cib
+    unless current_cib.live?
+      unless File.exist? "/var/lib/pacemaker/cib/shadow.#{current_cib.id}"
+        result = Invoker.instance.run('crm_shadow', '-b', '-f', '-c', current_cib.id)
 
-
-  def init_shadow_cib
-    ENV.delete('CIB_shadow')
-
-    if params[:cib_id] && params[:cib_id] != 'live'
-      # TODO(must): figure out if this is safe
-      ENV['CIB_shadow'] = params[:cib_id]
-    elsif params[:controller] == 'cib' && params[:id] && params[:id] != 'live'
-      ENV['CIB_shadow'] = params[:id]
-    end
-
-    # init a shadow cib and return the URL to redirect to with shadow CIB id embedded
-    if params[:sim] && params[:sim] == 'init'
-      shadow_id = 'hawk-#{current_user}'
-      result = Invoker.instance.run('crm_shadow', '-b', '-f', '-c', shadow_id)
-
-      if result == true
-        if params[:controller] == 'explorer'
-          render json: {
-            uri: url_for(controller: 'main', action: 'status', cib_id: shadow_id, sim: nil)
-          }
-        else
-          render json: {
-            uri: url_for(cib_id: shadow_id, sim: nil)
-          }
+        respond_to do |format|
+          if result == true
+            format.html do
+              flash.now[:success] = _("Created a new shadow CIB")
+            end
+          else
+            format.html do
+              redirect_to root_path, alert: _("Unable to create shadow CIB")
+            end
+            format.json do
+              render json: {
+                error: _('Unable to create shadow CIB'),
+                stderr: result[1]
+              }, status: 500
+            end
+          end
         end
-      else
-        render json: {
-          error: _('Unable to create shadow CIB'),
-          stderr: result[1]
-        }, status: 500
       end
     end
   end
-
-
 
   def current_user
     @current_user ||= session[:username]
