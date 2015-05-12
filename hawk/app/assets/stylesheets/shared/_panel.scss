@@ -29,22 +29,38 @@
 //
 //======================================================================
 
-@import url("https://fonts.googleapis.com/css?family=Roboto");
-@import url("https://fonts.googleapis.com/css?family=Raleway");
+.panel {
+  & > .panel-steps {
+    margin: 20px 0;
+    text-align: center;
+    position: relative;
 
-@import "bootstrap/variables";
-@import "bootstrap/mixins";
+    &:before {
+      top: 15px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      position: absolute;
+      content: " ";
+      width: 100%;
+      height: 2px;
+      background-color: #ccc;
+      z-order: 0;
+    }
 
-@import "shared/form";
-@import "shared/circle";
-@import "shared/list";
-@import "shared/nav";
-@import "shared/misc";
-@import "shared/table";
-@import "shared/panel";
-@import "shared/foot";
+    .nav {
+      margin: 0 auto;
 
-@import "application/basics";
-@import "application/head";
-@import "application/content";
-@import "application/media";
+      & > li {
+        display: inline-block;
+        float: none;
+        margin: 0 10px;
+
+        & > a {
+          display: inline-block;
+          cursor: default;
+        }
+      }
+    }
+  }
+}

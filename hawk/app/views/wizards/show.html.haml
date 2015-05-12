@@ -1,6 +1,99 @@
 .container-fluid
   .row
     %h1
-      = icon_text "magic", workflows[params[:id]][:name], class: "page"
+      = icon_text "magic", @wizard.name, class: "page"
 
   .row
+    = form_for [@cib, @wizard], horizontal: true do |main_form|
+      .panel.panel-default
+        .panel-steps
+          %ul.nav.nav-pills
+            %li
+              = link_to "1", "#step1", class: "btn btn-default btn-circle", data: { toggle: "tab" }
+            %li
+              = link_to "2", "#step2", class: "btn btn-default btn-circle", data: { toggle: "tab" }
+            %li
+              = link_to "3", "#step3", class: "btn btn-default btn-circle", data: { toggle: "tab" }
+            %li
+              = link_to "4", "#step4", class: "btn btn-default btn-circle", data: { toggle: "tab" }
+            %li
+              = link_to "5", "#step5", class: "btn btn-default btn-circle", data: { toggle: "tab" }
+
+        .panel-body
+          .tab-content
+            .tab-pane.active{ id: "step1" }
+              .form-group
+                %label.col-sm-5.control-label
+                  Testfield 1
+                .col-sm-7
+                  %input.form-control.text-field{ type: "text", name: "testfield1", required: true }
+              .form-group
+                %label.col-sm-5.control-label
+                  Testfield 2
+                .col-sm-7
+                  %input.form-control.text-field{ type: "text", name: "testfield2" }
+              .form-group
+                %label.col-sm-5.control-label
+                  Testfield 3
+                .col-sm-7
+                  %input.form-control.text-field{ type: "text", name: "testfield3" }
+
+            .tab-pane{ id: "step2" }
+              .form-group
+                %label.col-sm-5.control-label
+                  Testfield 4
+                .col-sm-7
+                  %input.form-control.text-field{ type: "text", name: "testfield4" }
+              .form-group
+                %label.col-sm-5.control-label
+                  Testfield 5
+                .col-sm-7
+                  %input.form-control.text-field{ type: "text", name: "testfield5" }
+              .form-group
+                %label.col-sm-5.control-label
+                  Testfield 6
+                .col-sm-7
+                  %input.form-control.text-field{ type: "text", name: "testfield6" }
+
+            .tab-pane{ id: "step3" }
+              .form-group
+                %label.col-sm-5.control-label
+                  Testfield 7
+                .col-sm-7
+                  %input.form-control.text-field{ type: "text", name: "testfield7" }
+              .form-group
+                %label.col-sm-5.control-label
+                  Testfield 8
+                .col-sm-7
+                  %input.form-control.text-field{ type: "text", name: "testfield8" }
+              .form-group
+                %label.col-sm-5.control-label
+                  Testfield 9
+                .col-sm-7
+                  %input.form-control.text-field{ type: "text", name: "testfield9" }
+
+            .tab-pane{ id: "step4" }
+              .form-group
+                %label.col-sm-5.control-label
+                  Testfield 10
+                .col-sm-7
+                  %input.form-control.text-field{ type: "text", name: "testfield10" }
+              .form-group
+                %label.col-sm-5.control-label
+                  Testfield 11
+                .col-sm-7
+                  %input.form-control.text-field{ type: "text", name: "testfield11" }
+              .form-group
+                %label.col-sm-5.control-label
+                  Testfield 12
+                .col-sm-7
+                  %input.form-control.text-field{ type: "text", name: "testfield12" }
+
+            .tab-pane{ id: "step5" }
+              CONFIRM
+
+            = main_form.button_group class: "wizard" do
+              = link_to _("Cancel"), cib_wizards_path(cib_id: current_cib.id), class: "btn btn-default", data: { confirm: _("Do you really want to cancel the wizard setup?") }
+              = link_to _("Back"), "#", class: "btn btn-default previous"
+              = link_to _("Next"), "#", class: "btn btn-default next"
+              = main_form.submit _("Submit"), class: "btn btn-primary finish hidden", name: "submit", data: { confirm: _("Do you really want to submit the current wizard?") }

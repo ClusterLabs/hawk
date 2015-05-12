@@ -45,3 +45,14 @@
 .softhide {
   display: none;
 }
+
+.btn {
+  &.btn-circle {
+    width: 35px;
+    height: 35px;
+    text-align: center;
+    padding: 6px 0;
+    line-height: 1.428571429;
+    border-radius: 20px;
+  }
+}

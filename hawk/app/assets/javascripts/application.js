@@ -35,6 +35,7 @@
 //= require module/help
 //= require module/forms
 //= require module/modals
+//= require module/wizards
 //= require module/nodes
 //= require module/primitives
 //= require module/templates

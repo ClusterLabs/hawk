@@ -29,22 +29,25 @@
 //
 //======================================================================
 
-@import url("https://fonts.googleapis.com/css?family=Roboto");
-@import url("https://fonts.googleapis.com/css?family=Raleway");
-
-@import "bootstrap/variables";
-@import "bootstrap/mixins";
-
-@import "shared/form";
-@import "shared/circle";
-@import "shared/list";
-@import "shared/nav";
-@import "shared/misc";
-@import "shared/table";
-@import "shared/panel";
-@import "shared/foot";
-
-@import "application/basics";
-@import "application/head";
-@import "application/content";
-@import "application/media";
+$(function() {
+  $('#wizards #middle form')
+    .bootstrapWizard({
+      tabClass: 'nav nav-pills',
+      nextSelector: '.wizard .next',
+      previousSelector: '.wizard .previous',
+      finishSelector: '.wizard .finish',
+      firstSelector: null,
+      lastSelector: null,
+      onNext: function(tab, nav, index) {
+        if ($(nav).parents('form').valid()) {
+          return true;
+        } else {
+          return false;
+        }
+      },
+      onTabClick: function(tab, nav, index) {
+        return false;
+      }
+    })
+    .validate();
+});

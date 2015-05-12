@@ -5,18 +5,18 @@
 
   .row{ data: { help_target: "#rightbar > .container-fluid > *" } }
     %ul.nav.nav-pills.nav-stacked.nav-bighelp.nav-topspace
-      - workflows.each do |workflow, attrs|
+      - @wizards.each do |wizard|
         %li
-          = link_to cib_wizard_path(cib_id: current_cib.id, id: attrs[:id]), data: { help_filter: ".#{attrs[:id]}" }, class: "btn btn-default btn-lg" do
-            = icon_text "file-o", attrs[:name]
+          = link_to cib_wizard_path(cib_id: current_cib.id, id: wizard.id), data: { help_filter: ".#{wizard.id}" }, class: "btn btn-default btn-lg" do
+            = icon_text "file-o", wizard.name
             .pull-right
               = icon_tag "plus-circle"
 
 - content_for :rightbar do
   .container-fluid{ data: { spy: "affix" } }
-    - workflows.each do |workflow, attrs|
-      .row{ class: attrs[:id] }
+    - @wizards.each do |wizard|
+      .row{ class: wizard.id }
         %h2.margin-bottom
-          = attrs[:name]
+          = wizard.name
 
-        = simple_format attrs[:description]
+        = simple_format wizard.description

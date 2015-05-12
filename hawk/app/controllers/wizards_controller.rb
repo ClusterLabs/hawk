@@ -38,43 +38,22 @@ class WizardsController < ApplicationController
   helper_method :workflows
 
   def index
+    @wizards = Wizard.all
+
     respond_to do |format|
       format.html
     end
   end
 
   def show
+    @wizard = Wizard.find params[:id]
+
     respond_to do |format|
       format.html
     end
   end
 
   protected
-
-  def workflow_path
-    @workflow_path ||= Rails.root.join("config", "wizard", "workflows")
-  end
-
-  def workflows
-    @workflows ||= begin
-      {}.tap do |workflows|
-        workflow_path.children.sort.each do |file|
-          next unless file.extname == ".xml"
-
-          REXML::Document.new(file.read).tap do |xml|
-            name = xml.root.elements["shortdesc[@lang=\"#{I18n.locale.to_s.gsub("-", "_")}\"]|shortdesc[@lang=\"en\"]"].text.strip
-            description = xml.root.elements["longdesc[@lang=\"#{I18n.locale.to_s.gsub("-", "_")}\"]|longdesc[@lang=\"en\"]"].text.strip
-
-            workflows[name.parameterize] = {
-              id: name.parameterize,
-              name: name,
-              description: description
-            }
-          end
-        end
-      end
-    end
-  end
 
   def default_base_layout
     "withrightbar"

@@ -227,8 +227,17 @@ module Hawk
       end
     end
 
-    def button_group(&block)
+    def button_group(args = {}, &block)
       if options.fetch(:horizontal, false)
+        clazz = button_group_class
+
+        if args[:class]
+          clazz = [
+            clazz,
+            args[:class]
+          ].join(" ")
+        end
+
         @template.content_tag(
           button_group_tag,
           @template.content_tag(
@@ -237,7 +246,7 @@ module Hawk
             class: 'btn-group',
             role: 'group'
           ),
-          class: button_group_class
+          class: clazz
         )
       else
         @template.capture(&block)
