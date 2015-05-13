@@ -1,64 +1,79 @@
 <?xml version="1.0"?>
 <template name="mariadb">
+  <shortdesc lang="en">
+    MariaDB SQL Database
+  </shortdesc>
 
-<shortdesc lang="en">MariaDB SQL Database</shortdesc>
-<longdesc lang="en">
-Create a resource for the MariaDB SQL Database.
-</longdesc>
+  <longdesc lang="en">
+    Create a resource for the MariaDB SQL Database.
+  </longdesc>
 
-<parameters>
+  <parameters>
+    <parameter name="id" required="1">
+      <shortdesc lang="en">
+        Resource ID
+      </shortdesc>
+      <longdesc lang="en">
+        Unique ID for this MariaDB resource in the cluster.
+      </longdesc>
 
-<parameter name="id" required="1">
-<shortdesc lang="en">Resource ID</shortdesc>
-<longdesc lang="en">
-Unique ID for this Apache resource in the cluster.
-</longdesc>
-<content type="string" default="sqldb"/>
-</parameter>
+      <content type="string" default="sqldb"/>
+    </parameter>
 
-<parameter name="datadir">
-<shortdesc lang="en">Data directory</shortdesc>
-<longdesc lang="en">
-Directory containing databases</longdesc>
-<content type="string"/>
-</parameter>
+    <parameter name="datadir">
+      <shortdesc lang="en">
+        Data directory
+      </shortdesc>
+      <longdesc lang="en">
+        Directory containing databases
+      </longdesc>
 
-<parameter name="config">
-<shortdesc lang="en">MariaDB configuration file</shortdesc>
-<longdesc lang="en">
-Full pathname of the database configuration file</longdesc>
-<content type="string"/>
-</parameter>
+      <content type="string"/>
+    </parameter>
 
-<parameter name="user">
-<shortdesc lang="en">Database user</shortdesc>
-<longdesc lang="en">
-Name of system user running the database instance.
-</longdesc>
-<content type="string"/>
-</parameter>
+    <parameter name="config">
+      <shortdesc lang="en">
+        MariaDB configuration file
+      </shortdesc>
+      <longdesc lang="en">
+        Full pathname of the database configuration file
+      </longdesc>
 
-<parameter name="group">
-<shortdesc lang="en">Database group</shortdesc>
-<longdesc lang="en">
-Group which the system user running the database instance belongs to.
-</longdesc>
-<content type="string"/>
-</parameter>
+      <content type="string"/>
+    </parameter>
 
+    <parameter name="user">
+      <shortdesc lang="en">
+        Database user
+      </shortdesc>
+      <longdesc lang="en">
+        Name of system user running the database instance.
+      </longdesc>
 
-</parameters>
+      <content type="string"/>
+    </parameter>
 
-<crm_script>
-primitive <insert param="id"/> ocf:heartbeat:mysql
-  params
-    test_table=""
-    <if set="datadir">datadir="<insert param="datadir"/>"</if>
-    <if set="config">config="<insert param="config"/>"</if>
-    <if set="user">user="<insert param="user"/>"</if>
-    <if set="group">group="<insert param="group"/>"</if>
-  op start timeout="120" op stop timeout="120"
-  op monitor interval="20" timeout="30"
-</crm_script>
+    <parameter name="group">
+      <shortdesc lang="en">
+        Database group
+      </shortdesc>
+      <longdesc lang="en">
+        Group which the system user running the database instance belongs to.
+      </longdesc>
 
+      <content type="string"/>
+    </parameter>
+  </parameters>
+
+  <crm_script>
+    primitive <insert param="id"/> ocf:heartbeat:mysql
+      params
+        test_table=""
+        <if set="datadir">datadir="<insert param="datadir"/>"</if>
+        <if set="config">config="<insert param="config"/>"</if>
+        <if set="user">user="<insert param="user"/>"</if>
+        <if set="group">group="<insert param="group"/>"</if>
+      op start timeout="120" op stop timeout="120"
+      op monitor interval="20" timeout="30"
+  </crm_script>
 </template>

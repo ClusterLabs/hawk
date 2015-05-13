@@ -1,39 +1,41 @@
 <?xml version="1.0"?>
 <workflow name="20-ocfs2">
+  <shortdesc lang="en">
+    OCFS2 Filesystem
+  </shortdesc>
 
-<shortdesc lang="en">OCFS2 Filesystem</shortdesc>
-<longdesc lang="en">
-Configure an OCFS2 filesystem, along with required dependencies
-(DLM).  Note that the OCFS2 filesystem will be stopped initially,
-in case you need to run mkfs to create the filesystem after DLM
-is running.
-</longdesc>
+  <longdesc lang="en">
+    Configure an OCFS2 filesystem, along with required dependencies
+    (DLM).  Note that the OCFS2 filesystem will be stopped initially,
+    in case you need to run mkfs to create the filesystem after DLM
+    is running.
+  </longdesc>
 
-<templates>
-<template name="filesystem" required="1">
-<stepdesc lang="en">
-If an OCFS2 filesystem does not already exist on the
-block device specified here, you will need to run mkfs to create
-it, prior to starting the filesystem resource.  You will also need
-to create the mountpoint directory on all cluster nodes.
-</stepdesc>
-<override name="id" value="clusterfs"/>
-<override name="fstype" value="ocfs2"/>
-<override name="directory" value="/srv/clusterfs"/>
-</template>
-</templates>
+  <templates>
+    <template name="filesystem" required="1">
+      <stepdesc lang="en">
+        If an OCFS2 filesystem does not already exist on the
+        block device specified here, you will need to run mkfs to create
+        it, prior to starting the filesystem resource.  You will also need
+        to create the mountpoint directory on all cluster nodes.
+      </stepdesc>
 
-<crm_script>
-primitive dlm ocf:pacemaker:controld
-  op start timeout="90" op stop timeout="100"
-  op monitor interval="60" timeout="60"
-clone base-clone dlm meta interleave="true"
-clone c-<insert param="id" from_template="filesystem"/> <insert param="id" from_template="filesystem"/>
-  meta interleave="true" target-role="Stopped"
-order base-then-<insert param="id" from_template="filesystem"/>
-  inf: base-clone c-<insert param="id" from_template="filesystem"/>
-colocation <insert param="id" from_template="filesystem"/>-with-base
-  inf: c-<insert param="id" from_template="filesystem"/> base-clone
-</crm_script>
+      <override name="id" value="clusterfs"/>
+      <override name="fstype" value="ocfs2"/>
+      <override name="directory" value="/srv/clusterfs"/>
+    </template>
+  </templates>
 
+  <crm_script>
+    primitive dlm ocf:pacemaker:controld
+      op start timeout="90" op stop timeout="100"
+      op monitor interval="60" timeout="60"
+    clone base-clone dlm meta interleave="true"
+    clone c-<insert param="id" from_template="filesystem"/> <insert param="id" from_template="filesystem"/>
+      meta interleave="true" target-role="Stopped"
+    order base-then-<insert param="id" from_template="filesystem"/>
+      inf: base-clone c-<insert param="id" from_template="filesystem"/>
+    colocation <insert param="id" from_template="filesystem"/>-with-base
+      inf: c-<insert param="id" from_template="filesystem"/> base-clone
+  </crm_script>
 </workflow>

@@ -1,47 +1,55 @@
 <?xml version="1.0"?>
 <template name="sapdb">
+  <shortdesc lang="en">
+    SAP Database Instance
+  </shortdesc>
 
-<shortdesc lang="en">SAP Database Instance</shortdesc>
-<longdesc lang="en">
-Create a single SAP Database instance.
-</longdesc>
+  <longdesc lang="en">
+    Create a single SAP Database instance.
+  </longdesc>
 
-<parameters>
+  <parameters>
+    <parameter name="id" required="1">
+      <shortdesc lang="en">
+        Resource ID
+      </shortdesc>
+      <longdesc lang="en">
+        Unique ID for this SAP Database instance resource in the cluster.
+      </longdesc>
 
-<parameter name="id" required="1">
-<shortdesc lang="en">Resource ID</shortdesc>
-<longdesc lang="en">
-Unique ID for this SAP Database instance resource in the cluster.
-</longdesc>
-<content type="string" default="rsc_sapdb_NA0"/>
-</parameter>
+      <content type="string" default="rsc_sapdb_NA0"/>
+    </parameter>
 
-<parameter name="SID" required="1">
-<shortdesc lang="en">SID</shortdesc>
-<longdesc lang="en">
-The SID.
-</longdesc>
-<content type="string" default="NA0"/>
-</parameter>
+    <parameter name="SID" required="1">
+      <shortdesc lang="en">
+        SID
+      </shortdesc>
+      <longdesc lang="en">
+        The SID.
+      </longdesc>
 
-<parameter name="DBTYPE" required="1">
-<shortdesc lang="en">DBTYPE</shortdesc>
-<longdesc lang="en">
-Database type
-</longdesc>
-<content type="string" default="ADA"/>
-</parameter>
+      <content type="string" default="NA0"/>
+    </parameter>
 
-</parameters>
+    <parameter name="DBTYPE" required="1">
+      <shortdesc lang="en">
+        DBTYPE
+      </shortdesc>
+      <longdesc lang="en">
+        Database type
+      </longdesc>
 
-<crm_script>
-primitive <insert param="id"/> ocf:heartbeat:SAPDatabase
-  params
-    SID="<insert param="SID"/>"
-    DBTYPE="<insert param="DBTYPE"/>"
-  op monitor interval="120" timeout="60" start_delay="180"
-  op start timeout="1800" 
-  op stop timeout="1800"
-</crm_script>
+      <content type="string" default="ADA"/>
+    </parameter>
+  </parameters>
 
+  <crm_script>
+    primitive <insert param="id"/> ocf:heartbeat:SAPDatabase
+      params
+        SID="<insert param="SID"/>"
+        DBTYPE="<insert param="DBTYPE"/>"
+      op monitor interval="120" timeout="60" start_delay="180"
+      op start timeout="1800"
+      op stop timeout="1800"
+  </crm_script>
 </template>

@@ -1,50 +1,56 @@
 <?xml version="1.0"?>
 <workflow name="10-webserver">
+  <shortdesc lang="en">
+    Web Server
+  </shortdesc>
 
-<shortdesc lang="en">Web Server</shortdesc>
-<longdesc lang="en">
-Configure a resource group containing a virtual IP address and
-an instance of the Apache web server.  You may wish to use this
-in conjunction with a filesystem resource; in this case you will
-need to separately configure the filesystem then add colocation
-and ordering constraints to have it start before the resource
-group you create here.
-</longdesc>
+  <longdesc lang="en">
+    Configure a resource group containing a virtual IP address and
+    an instance of the Apache web server.  You may wish to use this
+    in conjunction with a filesystem resource; in this case you will
+    need to separately configure the filesystem then add colocation
+    and ordering constraints to have it start before the resource
+    group you create here.
+  </longdesc>
 
-<parameters>
-<stepdesc lang="en">
-The ID specified here is for the web server resource group.
-</stepdesc>
-<parameter name="id" required="1">
-<shortdesc lang="en">Group ID</shortdesc>
-<longdesc lang="en">
-Unique ID for the web server resource group in the cluster.
-</longdesc>
-<content type="string" default="web-server"/>
-</parameter>
-</parameters>
+  <parameters>
+    <stepdesc lang="en">
+      The ID specified here is for the web server resource group.
+    </stepdesc>
 
-<templates>
-<template name="virtual-ip" required="1">
-<stepdesc lang="en">
-The IP address configured here will start before the Apache instance.
-</stepdesc>
-</template>
-<template name="apache" required="1">
-<stepdesc lang="en">
-The Apache configuration file specified here must be available via the
-same path on all cluster nodes, and Apache must be configured with
-mod_status enabled.  If in doubt, try running Apache manually via
-its init script first, and ensure http://localhost:80/server-status is
-accessible.
-</stepdesc>
-</template>
-</templates>
+    <parameter name="id" required="1">
+      <shortdesc lang="en">
+        Group ID
+      </shortdesc>
+      <longdesc lang="en">
+        Unique ID for the web server resource group in the cluster.
+      </longdesc>
 
-<crm_script>
-group <insert param="id"/>
-  <insert param="id" from_template="virtual-ip"/>
-  <insert param="id" from_template="apache"/>
-</crm_script>
+      <content type="string" default="web-server"/>
+    </parameter>
+  </parameters>
 
+  <templates>
+    <template name="virtual-ip" required="1">
+      <stepdesc lang="en">
+        The IP address configured here will start before the Apache instance.
+      </stepdesc>
+    </template>
+
+    <template name="apache" required="1">
+      <stepdesc lang="en">
+        The Apache configuration file specified here must be available via the
+        same path on all cluster nodes, and Apache must be configured with
+        mod_status enabled.  If in doubt, try running Apache manually via
+        its init script first, and ensure http://localhost:80/server-status is
+        accessible.
+      </stepdesc>
+    </template>
+  </templates>
+
+  <crm_script>
+    group <insert param="id"/>
+      <insert param="id" from_template="virtual-ip"/>
+      <insert param="id" from_template="apache"/>
+  </crm_script>
 </workflow>

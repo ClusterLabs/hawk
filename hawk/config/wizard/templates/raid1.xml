@@ -1,46 +1,53 @@
 <?xml version="1.0"?>
 <template name="raid1">
+  <shortdesc lang="en">
+    RAID 1
+  </shortdesc>
 
-<shortdesc lang="en">RAID 1</shortdesc>
-<longdesc lang="en">
-Create a cluster controlled RAID 1 device.
-</longdesc>
+  <longdesc lang="en">
+    Create a cluster controlled RAID 1 device.
+  </longdesc>
 
-<parameters>
+  <parameters>
+    <parameter name="id" required="1">
+      <shortdesc lang="en">
+        Resource ID
+      </shortdesc>
+      <longdesc lang="en">
+        Unique ID for this RAID 1 resource in the cluster.
+      </longdesc>
 
-<parameter name="id" required="1">
-<shortdesc lang="en">Resource ID</shortdesc>
-<longdesc lang="en">
-Unique ID for this RAID 1 resource in the cluster.
-</longdesc>
-<content type="string" default="raid1"/>
-</parameter>
+      <content type="string" default="raid1"/>
+    </parameter>
 
-<parameter name="raidconf" required="1">
-<shortdesc lang="en">mdadm.conf</shortdesc>
-<longdesc lang="en">
-The path to the mdadm.conf file containing the RAID device definition.
-</longdesc>
-<content type="string" default=""/>
-</parameter>
+    <parameter name="raidconf" required="1">
+      <shortdesc lang="en">
+        mdadm.conf
+      </shortdesc>
+      <longdesc lang="en">
+        The path to the mdadm.conf file containing the RAID device definition.
+      </longdesc>
 
-<parameter name="raiddev" required="1">
-<shortdesc lang="en">RAID Device</shortdesc>
-<longdesc lang="en">
-The RAID device file (typically /dev/md[0-9]).
-</longdesc>
-<content type="string"/>
-</parameter>
+      <content type="string" default=""/>
+    </parameter>
 
+    <parameter name="raiddev" required="1">
+      <shortdesc lang="en">
+        RAID Device
+      </shortdesc>
+      <longdesc lang="en">
+        The RAID device file (typically /dev/md[0-9]).
+      </longdesc>
 
-</parameters>
+      <content type="string"/>
+    </parameter>
+  </parameters>
 
-<crm_script>
-primitive <insert param="id"/> ocf:heartbeat:Raid1
-  params
-    raidconf="<insert param="raidconf"/>"
-    raiddev="<insert param="raiddev"/>"
-  op monitor interval="60" timeout="130" on_fail="fence"
-</crm_script>
-
+  <crm_script>
+    primitive <insert param="id"/> ocf:heartbeat:Raid1
+      params
+        raidconf="<insert param="raidconf"/>"
+        raiddev="<insert param="raiddev"/>"
+      op monitor interval="60" timeout="130" on_fail="fence"
+  </crm_script>
 </template>

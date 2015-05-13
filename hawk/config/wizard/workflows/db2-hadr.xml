@@ -1,71 +1,82 @@
 <?xml version="1.0"?>
 <workflow name="db2-hadr">
-<shortdesc lang="en">DB2 with HADR</shortdesc>
-<longdesc lang="en">
-Configures a HADR active/passive DB2 instance, along with a Virtual IP.
-</longdesc>
+  <shortdesc lang="en">
+    DB2 with HADR
+  </shortdesc>
 
-<parameters>
-<stepdesc lang="en">
-The ID specified here is for the DB2 cluster resource.
-A multistate resource will be created with prefix ms-.
-The instance is the name of the DB2 instance user.
-</stepdesc>
+  <longdesc lang="en">
+    Configures a HADR active/passive DB2 instance, along with a Virtual IP.
+  </longdesc>
 
-<parameter name="id" required="1">
-<shortdesc lang="en">DB2 ID</shortdesc>
-<longdesc lang="en">
-Unique ID for the database resource in the cluster.
-</longdesc>
-<content type="string" default="db2-database"/>
-</parameter>
+  <parameters>
+    <stepdesc lang="en">
+      The ID specified here is for the DB2 cluster resource.
+      A multistate resource will be created with prefix ms-.
+      The instance is the name of the DB2 instance user.
+    </stepdesc>
 
-<parameter name="instance" required="1">
-<shortdesc lang="en">DB2 Instance</shortdesc>
-<longdesc lang="en">
-Instance user name. This must be created as specified
-in the DB2 documentation.
-</longdesc>
-<content type="string" default="db2inst1"/>
-</parameter>
+    <parameter name="id" required="1">
+      <shortdesc lang="en">
+        DB2 ID
+      </shortdesc>
+      <longdesc lang="en">
+        Unique ID for the database resource in the cluster.
+      </longdesc>
 
-<parameter name="dblist" required="1">
-<shortdesc lang="en">DB List name</shortdesc>
-<longdesc lang="en">
-DB List name.
-</longdesc>
-<content type="string" default="db1"/>
-</parameter>
-</parameters>
+      <content type="string" default="db2-database"/>
+    </parameter>
 
-<templates>
+    <parameter name="instance" required="1">
+      <shortdesc lang="en">
+        DB2 Instance
+      </shortdesc>
+      <longdesc lang="en">
+        Instance user name. This must be created as specified
+        in the DB2 documentation.
+      </longdesc>
 
-<template name="virtual-ip" required="1">
-<stepdesc lang="en">
-The IP address configured here will start before the DB2 instance.
-</stepdesc>
-<override name="id" value="db2-virtual-ip"/>
-</template>
+      <content type="string" default="db2inst1"/>
+    </parameter>
 
-</templates>
-<crm_script>
+    <parameter name="dblist" required="1">
+      <shortdesc lang="en">
+        DB List name
+      </shortdesc>
+      <longdesc lang="en">
+        DB List name.
+      </longdesc>
 
-primitive <insert param="id"/> ocf:heartbeat:db2
-  params instance="<insert param="instance"/>" dblist="<insert param="dblist"/>"
-  op start interval="0" timeout="130"
-  op stop interval="0" timeout="120"
-  op promote interval="0" timeout="120"
-  op demote interval="0" timeout="120"
-  op monitor interval="30" timeout="60"
-  op monitor interval="45" role="Master" timeout="60"
+      <content type="string" default="db1"/>
+    </parameter>
+  </parameters>
 
-ms ms-<insert param="id"/> <insert param="id"/>
-  meta target-role="stopped" notify="true"
+  <templates>
+    <template name="virtual-ip" required="1">
+      <stepdesc lang="en">
+        The IP address configured here will start before the DB2 instance.
+      </stepdesc>
 
-colocation <insert param="id" from_template="virtual-ip"/>-with-master
-  inf: <insert param="id" from_template="virtual-ip"/>:Started ms-<insert param="id"/>:Master
+      <override name="id" value="db2-virtual-ip"/>
+    </template>
+  </templates>
 
-order <insert param="id" from_template="virtual-ip"/>-after-master
-  inf: <insert param="id"/>:promote <insert param="id" from_template="virtual-ip"/>:start
-</crm_script>
+  <crm_script>
+    primitive <insert param="id"/> ocf:heartbeat:db2
+      params instance="<insert param="instance"/>" dblist="<insert param="dblist"/>"
+      op start interval="0" timeout="130"
+      op stop interval="0" timeout="120"
+      op promote interval="0" timeout="120"
+      op demote interval="0" timeout="120"
+      op monitor interval="30" timeout="60"
+      op monitor interval="45" role="Master" timeout="60"
+
+    ms ms-<insert param="id"/> <insert param="id"/>
+      meta target-role="stopped" notify="true"
+
+    colocation <insert param="id" from_template="virtual-ip"/>-with-master
+      inf: <insert param="id" from_template="virtual-ip"/>:Started ms-<insert param="id"/>:Master
+
+    order <insert param="id" from_template="virtual-ip"/>-after-master
+      inf: <insert param="id"/>:promote <insert param="id" from_template="virtual-ip"/>:start
+  </crm_script>
 </workflow>
