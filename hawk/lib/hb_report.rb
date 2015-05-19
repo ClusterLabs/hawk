@@ -115,10 +115,11 @@ class HbReport
       args = ["-f", from_time]
       args.push("-t", to_time) if to_time
       args.push("-Z")  # Remove destination directories if they exist
+      args.push("-Q")  # Requires a version of crm report which supports this
       args.push("-S") unless all_nodes
       args.push(@path)
 
-      out, err, status = Util.run_as("root", "hb_report", *args)
+      out, err, status = Util.run_as("root", "crm", "report", *args)
       f = File.new(@outfile, "w")
       f.write(out)
       f.close
