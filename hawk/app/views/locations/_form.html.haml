@@ -10,6 +10,66 @@
 
       = main_form.select :resource, :location_resource_options, { include_hidden: false }, { multiple: true, size: 5 }
 
+      %fieldset
+        %legend
+          = _("Rule 1")
+
+        = main_form.text_field :id, label: _("Score")
+        = main_form.select :id, [["Started", "Started"], ["Master", "Master"], ["Slave", "Slave"]], { include_hidden: false }, { label: _("Role") }
+        = main_form.select :id, [["And", "and"], ["Or", "or"]], { include_hidden: false }, { label: _("Boolean") }
+
+        %hr
+
+        = main_form.text_field :id, label: _("Attribute")
+        = main_form.select :id, ["=", "&ne;", "&lt;", "&le;", "&ge;", "&gt;"].map(&:html_safe), { include_hidden: false }, { label: _("Operation") }
+        = main_form.text_field :id, label: _("Value")
+        = main_form.select :id, ["string", "integer", "version"], { include_hidden: false }, { label: _("Type") }
+
+        %hr
+
+        = main_form.text_field :id, label: _("Attribute")
+        = main_form.select :id, ["=", "&ne;", "&lt;", "&le;", "&ge;", "&gt;"].map(&:html_safe), { include_hidden: false }, { label: _("Operation") }
+        = main_form.text_field :id, label: _("Value")
+        = main_form.select :id, ["string", "integer", "version"], { include_hidden: false }, { label: _("Type") }
+
+        %hr
+
+        = main_form.text_field :id, label: _("Attribute")
+        = main_form.select :id, ["=", "&ne;", "&lt;", "&le;", "&ge;", "&gt;"].map(&:html_safe), { include_hidden: false }, { label: _("Operation") }
+        = main_form.text_field :id, label: _("Value")
+        = main_form.select :id, ["string", "integer", "version"], { include_hidden: false }, { label: _("Type") }
+
+        /.input-group-btn
+        /  %a.remove.btn.btn-default{ href: "#", title: "" }
+        /    = icon_tag("minus", class: "fa-lg fa-fw")
+
+      %fieldset
+        %legend
+          = _("Rule 2")
+
+        = main_form.text_field :id, label: _("Score")
+        = main_form.select :id, [["Started", "Started"], ["Master", "Master"], ["Slave", "Slave"]], { include_hidden: false }, { label: _("Role") }
+        = main_form.select :id, [["And", "and"], ["Or", "or"]], { include_hidden: false }, { label: _("Boolean") }
+
+        %hr
+
+        = main_form.text_field :id, label: _("Attribute")
+        = main_form.select :id, [["is defined", "defined"], ["is not defined", "not_defined"]], { include_hidden: false }, { label: _("Operation") }
+
+        %hr
+
+        = main_form.text_field :id, label: _("Attribute")
+        = main_form.select :id, [["is defined", "defined"], ["is not defined", "not_defined"]], { include_hidden: false }, { label: _("Operation") }
+
+        %hr
+
+        = main_form.text_field :id, label: _("Attribute")
+        = main_form.select :id, [["is defined", "defined"], ["is not defined", "not_defined"]], { include_hidden: false }, { label: _("Operation") }
+
+        /.input-group-btn
+        /  %a.remove.btn.btn-default{ href: "#", title: "" }
+        /    = icon_tag("minus", class: "fa-lg fa-fw")
+
       = main_form.button_group do
         - if location.new_record?
           = create_button(main_form, location)
