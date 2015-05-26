@@ -69,7 +69,9 @@ module Hawk
         group_options[:class] = "#{group_options[:class]} #{form_group_class_for(field, method_name)}".strip
 
         label_options = field_options.fetch(:label, {})
+
         field_options.delete(:label)
+        field_options.delete(:group)
 
         if label_options.is_a? String
           label_options = {
@@ -148,6 +150,9 @@ module Hawk
       group_options[:class] = "#{group_options[:class]} #{form_group_class_for(field, 'select')}".strip
 
       label_options = field_options.fetch(:label, {})
+
+      field_options.delete(:label)
+      field_options.delete(:group)
 
       if label_options.is_a? String
         label_options = {

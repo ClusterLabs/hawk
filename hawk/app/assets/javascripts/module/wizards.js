@@ -42,6 +42,7 @@ $(function() {
         if ($(nav).parents('form').valid()) {
           return true;
         } else {
+          $(nav).parents('form').validate().focusInvalid();
           return false;
         }
       },
@@ -49,5 +50,7 @@ $(function() {
         return false;
       }
     })
-    .validate();
+    .validate({
+      ignore: ":hidden"
+    });
 });

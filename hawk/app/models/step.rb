@@ -30,5 +30,103 @@
 #======================================================================
 
 class Step < Tableless
+  attribute :title, String
+  attribute :description, String
 
+  attribute :labels, Hash, default: {}
+  attribute :helps, Hash, default: {}
+  attribute :types, Hash, default: {}
+  attribute :requires, Hash, default: {}
+  attribute :formats, Hash, default: {}
+  attribute :order, Array[String], default: []
+
+  class << self
+    def from_parameters_xml(xml, wizard)
+      self.new.tap do |record|
+        record.title = xml.elements[shortdesc_path].text.strip
+
+        record.description = if xml.elements["parameters"].elements[stepdesc_path]
+          xml.elements["parameters"].elements[stepdesc_path].text.strip
+        else
+          ""
+        end
+
+        xml.elements.each("parameters/parameter") do |el|
+          record.labels[el.attributes["name"]] = el.elements[shortdesc_path].text.strip
+          record.helps[el.attributes["name"]] = el.elements[longdesc_path].text.strip
+          record.types[el.attributes["name"]] = el.elements["content"].attributes["type"]
+          record.order.push el.attributes["name"]
+
+          type = case el.elements["content"].attributes["type"]
+          when "boolean"
+            Virtus::Attribute::Boolean
+          when "enum"
+            Virtus::Attribute::String
+          when "string"
+            Virtus::Attribute::String
+          else
+            raise "Content type #{el.elements["content"].attributes["type"]} is not supported"
+          end
+
+          default = if el.elements["content"].attributes["default"]
+            el.elements["content"].attributes["default"].strip
+          else
+            nil
+          end
+
+          self.attribute el.attributes["name"].to_sym, type, default: default
+
+          if el.attributes["required"]
+            record.requires[el.attributes["name"]] = true
+
+            self.validates el.attributes["name"].to_sym,
+              presence: true
+          else
+            record.requires[el.attributes["name"]] = false
+          end
+
+          if el.attributes["format"]
+            record.formats[el.attributes["name"]] = el.attributes["format"]
+
+            self.validates el.attributes["name"].to_sym,
+              format: { with: /#{el.attributes["format"]}/ }
+          else
+            record.formats[el.attributes["name"]] = nil
+          end
+        end
+      end
+    end
+
+    def from_templates_xml(xml, wizard)
+      REXML::Document.new(
+        wizard.template_file(xml.attributes["name"]).read
+      ).tap do |template|
+
+
+#raise template.root.inspect
+
+#xml.elements["parameters"].elements[stepdesc_path]
+
+
+        record = from_parameters_xml(template.root, wizard)
+        record.description = xml.elements[stepdesc_path].text.strip
+
+        return record
+      end
+    end
+
+    protected
+
+    def stepdesc_path
+      "stepdesc[@lang=\"#{I18n.locale.to_s.gsub("-", "_")}\"]|stepdesc[@lang=\"en\"]"
+    end
+
+    def shortdesc_path
+      "shortdesc[@lang=\"#{I18n.locale.to_s.gsub("-", "_")}\"]|shortdesc[@lang=\"en\"]"
+    end
+
+    def longdesc_path
+      "longdesc[@lang=\"#{I18n.locale.to_s.gsub("-", "_")}\"]|longdesc[@lang=\"en\"]"
+    end
+  end
 end

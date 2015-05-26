@@ -104,12 +104,14 @@ class ApplicationController < ActionController::Base
   end
 
   def current_cib
-    @current_cib ||= begin
-      Cib.new(
-        params[:cib_id] || production_cib,
-        current_user,
-        params[:debug] == 'file'
-      )
+    if current_user
+      @current_cib ||= begin
+        Cib.new(
+          params[:cib_id] || production_cib,
+          current_user,
+          params[:debug] == 'file'
+        )
+      end
     end
   end
 
@@ -199,7 +201,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_shadow_cib
-    unless current_cib.live?
+    if current_cib && current_cib.sim?
       unless File.exist? "/var/lib/pacemaker/cib/shadow.#{current_cib.id}"
         result = Invoker.instance.run('crm_shadow', '-b', '-f', '-c', current_cib.id)
 

@@ -33,6 +33,8 @@ class WizardsController < ApplicationController
   before_filter :login_required
   before_filter :set_title
   before_filter :set_cib
+  before_filter :cib_writable
+  before_filter :cluster_online
 
   helper_method :workflow_path
   helper_method :workflows
@@ -88,7 +90,7 @@ class WizardsController < ApplicationController
   # # the user to enter).
   # #
 
-  # before_filter :cib_writable, :cluster_online, :load_wizard_config
+  # before_filter :load_wizard_config
 
   # def initialize
   #   super
@@ -351,26 +353,6 @@ class WizardsController < ApplicationController
   #   end
   # end
 
-  # # Rough test for CIB writablity, obeying ACLs if set.  Not exactly lightweight
-  # # as it will in fact change the CIB if successful.
-  # Rough test for CIB writablity, obeying ACLs if set.  Not exactly lightweight
-  # as it will in fact change the CIB if successful.
-  # def cib_writable
-  #   begin
-  #     Invoker.instance.cibadmin("--modify", "--allow-create", "--scope", "crm_config", "--xml-text",
-  #       '<cluster_property_set id="hawk-rw-test"/>')
-  #     Invoker.instance.cibadmin("--delete", "--xml-text", '<cluster_property_set id="hawk-rw-test"/>')
-  #   rescue NotFoundError
-  #     # Don't care
-  #   rescue SecurityError
-  #     # Permission denied
-  #     @errors << _("Permission denied - you do not have write access to the CIB.")
-  #   rescue RuntimeError
-  #     # Not really permission denied, so leaving this alone for the moment
-  #   end
-  #   render "broken" if @errors.any?
-  # end
-
   # def load_wizard_config
   #   ["templates", "workflows"].each do |d|
   #     files = Dir.glob(File.join(@confdir, d, "*.xml"))
@@ -551,5 +533,59 @@ class WizardsController < ApplicationController
 
   def set_cib
     @cib = Cib.new params[:cib_id], current_user
+  end
+
+  def cib_writable
+    begin
+      Invoker.instance.cibadmin(
+        "--modify",
+        "--allow-create",
+        "--scope",
+        "crm_config",
+        "--xml-text",
+        "<cluster_property_set id=\"hawk-rw-test\"/>"
+      )
+
+      Invoker.instance.cibadmin(
+        "--delete",
+        "--xml-text",
+        "<cluster_property_set id=\"hawk-rw-test\"/>")
+    rescue SecurityError
+      respond_to do |format|
+        format.html do
+          redirect_to(
+            cib_state_url(cib_id: @cib.id),
+            alert: _("Permission denied - you do not have write access to the CIB.")
+          )
+        end
+        format.json do
+          render json: {
+            error: _("Permission denied - you do not have write access to the CIB.")
+          }, status: :unprocessable_entity
+        end
+      end
+    rescue NotFoundError
+    rescue RuntimeError
+    end
+  end
+
+  def cluster_online
+    %x[/usr/sbin/crm_mon -s >/dev/null 2>&1]
+
+    if $?.exitstatus == Errno::ENOTCONN::Errno
+      respond_to do |format|
+        format.html do
+          redirect_to(
+            cib_state_url(cib_id: @cib.id),
+            alert: _("Cluster seems to be offline")
+          )
+        end
+        format.json do
+          render json: {
+            error: _("Cluster seems to be offline")
+          }, status: :unprocessable_entity
+        end
+      end
+    end
   end
 end

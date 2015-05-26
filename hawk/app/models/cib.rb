@@ -74,6 +74,10 @@ class Cib < CibObject
     id == 'live'
   end
 
+  def sim?
+    id != 'live'
+  end
+
   protected
 
   # Roughly equivalent to crm_element_value() in Pacemaker
