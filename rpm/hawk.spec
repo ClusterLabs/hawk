@@ -28,9 +28,9 @@
 %define	pkg_group	System Environment/Daemons
 %endif
 
-%if 0%{?suse_version} == 1110 || 0%{?suse_version} == 1315
-%define bundle_gems	1
-%endif
+#%%if 0%%{?suse_version} == 1110 || 0%%{?suse_version} == 1315
+#%%define bundle_gems	1
+#%%endif
 
 %define	gname		haclient
 %define	uname		hacluster
@@ -39,7 +39,7 @@ Name:           hawk
 Summary:        HA Web Konsole
 License:        GPL-2.0
 Group:          %{pkg_group}
-Version:        0.7.0+git.1426603924.3cb835b
+Version:        0.6.2
 Release:        0
 Url:            http://www.clusterlabs.org/wiki/Hawk
 Source:         %{name}-%{version}.tar.bz2
@@ -70,33 +70,46 @@ Requires:       iproute
 BuildRequires:  pacemaker-libs-devel
 %endif
 
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:builder) >= 3.2
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:byebug) >= 3.5
-BuildRequires:  rubygem(%{rb_default_ruby_abi}:fast_gettext) >= 0.9
-BuildRequires:  rubygem(%{rb_default_ruby_abi}:gettext) >= 3.1
-BuildRequires:  rubygem(%{rb_default_ruby_abi}:gettext_i18n_rails) >= 1.2
-BuildRequires:  rubygem(%{rb_default_ruby_abi}:puma) >= 2.11
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:fast_gettext:0.9)
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:gettext:3.1)
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:gettext_i18n_rails:1.2)
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:mail) >= 2.6
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:mime-types) >= 2.5
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:minitest) >= 5.6
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:puma:2.11)
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:quiet_assets)
-BuildRequires:  rubygem(%{rb_default_ruby_abi}:rails) >= 4.2
-BuildRequires:  rubygem(%{rb_default_ruby_abi}:rake) >= 10.4
-BuildRequires:  rubygem(%{rb_default_ruby_abi}:spring) >= 1.3
-BuildRequires:  rubygem(%{rb_default_ruby_abi}:sprockets) >= 2.12
-BuildRequires:  rubygem(%{rb_default_ruby_abi}:tilt) < 2.0
-BuildRequires:  rubygem(%{rb_default_ruby_abi}:tilt) >= 1.4
-BuildRequires:  rubygem(%{rb_default_ruby_abi}:web-console) >= 2.0
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:rails:4.2)
+
+%if 0%{?suse_version} <= 1310
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:rake:10.4)
+%endif
+
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:spring:1.3)
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:sprockets) >= 3.0
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:thor) >= 0.19
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:tilt:1.4)
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:web-console:2.1)
+
 %if 0%{?bundle_gems}
 %else
 # SLES bundles all this stuff at build time, other distros just
 # use runtime dependencies.
-Requires:       rubygem(%{rb_default_ruby_abi}:fast_gettext) >= 0.9
-Requires:       rubygem(%{rb_default_ruby_abi}:gettext_i18n_rails) >= 1.2
-Requires:       rubygem(%{rb_default_ruby_abi}:puma) >= 2.11
-Requires:       rubygem(%{rb_default_ruby_abi}:rails) >= 4.2
-Requires:       rubygem(%{rb_default_ruby_abi}:rake) >= 10.4
-Requires:       rubygem(%{rb_default_ruby_abi}:sprockets) >= 2.12
-Requires:       rubygem(%{rb_default_ruby_abi}:tilt) < 2.0
-Requires:       rubygem(%{rb_default_ruby_abi}:tilt) >= 1.4
+Requires:       rubygem(%{rb_default_ruby_abi}:fast_gettext:0.9)
+Requires:       rubygem(%{rb_default_ruby_abi}:gettext_i18n_rails:1.2)
+Requires:       rubygem(%{rb_default_ruby_abi}:puma:2.11)
+Requires:       rubygem(%{rb_default_ruby_abi}:rails:4.2)
+
+%if 0%{?suse_version} <= 1310
+Requires:       rubygem(%{rb_default_ruby_abi}:rake:10.4)
 %endif
 
+Requires:       rubygem(%{rb_default_ruby_abi}:sprockets) >= 3.0
+Requires:       rubygem(%{rb_default_ruby_abi}:tilt:1.4)
+%endif
+
+BuildRequires:  git
 BuildRequires:  glib2-devel
 BuildRequires:  libxml2-devel
 BuildRequires:  pam-devel
