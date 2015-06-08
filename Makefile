@@ -71,17 +71,17 @@ SBINDIR = /usr/sbin
 
 all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service tools/hawk_chkpwd tools/hawk_monitor tools/hawk_invoke
 	(cd hawk; \
-	 TEXTDOMAIN=hawk rake gettext:pack && \
 	 if $(BUNDLE_GEMS) ; then \
 		# Ignore gems from test \
 		export BUNDLE_WITHOUT=test && \
 		# Generate Gemfile.lock \
 		bundle list && \
 		# Strip unwanted gems from Gemfile.lock \
-		sed -i -e '/\brdoc\b/d' Gemfile.lock && \
+		sed -i -e '/\brdoc\b/d' -e '/\brake\b/d' -e '/\bjson\b/d' Gemfile.lock && \
 		# Finally package and install the gems \
 		bundle package && bundle install --local --deployment ; \
-	 fi)
+	 fi ; \
+	 TEXTDOMAIN=hawk rake gettext:pack)
 
 %:: %.in
 	sed \
