@@ -52,4 +52,6 @@ $(function() {
       allow_dismiss: true
     }
   );
+
+  $.blockUI.defaults.css.padding = '20px';
 });

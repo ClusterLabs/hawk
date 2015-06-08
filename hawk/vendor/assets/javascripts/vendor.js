@@ -38,6 +38,8 @@
 //= require jquery/observable
 //= require jquery/views
 //= require jquery/sortable
+//= require jquery/blockui
+//= require misc/moment
 //= require bootstrap-sprockets
 //= require bootstrap
 //= require font-awesome/font-awesome

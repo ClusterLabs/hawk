@@ -22,29 +22,30 @@
         = main_form.text_field :provider, label: _("Provider"), readonly: true
         = main_form.text_field :type, label: _("Type"), readonly: true
 
-      %fieldset{ data: { attrlist: primitive.params.to_json, attrlist_mapping: primitive.mapping.to_json, attrlist_prefix: "primitive[params]", attrlist_target: ".content" } }
-        %legend
-          = _("General Parameters")
-          %span.pull-right.toggleable
-            = icon_tag("chevron-up")
+      - unless primitive.new_record?
+        %fieldset{ data: { attrlist: primitive.params.to_json, attrlist_mapping: primitive.mapping.to_json, attrlist_prefix: "primitive[params]", attrlist_target: ".content" } }
+          %legend
+            = _("General Parameters")
+            %span.pull-right.toggleable
+              = icon_tag("chevron-up")
 
-        .content
+          .content
 
-      %fieldset{ data: { attrlist: primitive.meta.to_json, attrlist_mapping: primitive.mapping.to_json, attrlist_prefix: "primitive[meta]", attrlist_target: ".content" } }
-        %legend
-          = _("Meta Attributes")
-          %span.pull-right.toggleable
-            = icon_tag("chevron-up")
+        %fieldset{ data: { attrlist: primitive.meta.to_json, attrlist_mapping: primitive.mapping.to_json, attrlist_prefix: "primitive[meta]", attrlist_target: ".content" } }
+          %legend
+            = _("Meta Attributes")
+            %span.pull-right.toggleable
+              = icon_tag("chevron-up")
 
-        .content
+          .content
 
-      %fieldset
-        %legend
-          = _("Operations")
-          %span.pull-right.toggleable
-            = icon_tag("chevron-up")
+        %fieldset
+          %legend
+            = _("Operations")
+            %span.pull-right.toggleable
+              = icon_tag("chevron-up")
 
-        .content
+          .content
 
       = main_form.button_group do
         - if primitive.new_record?

@@ -113,10 +113,10 @@ class Wizard < Tableless
       file = workflow_file(id).dup
 
       if file
-        workflow = parse(file)
-        workflow.load!
+        record = parse(file)
+        record.load!
 
-        workflow
+        record
       else
         raise CibObject::RecordNotFound, _("Requested workflow does not exist")
       end

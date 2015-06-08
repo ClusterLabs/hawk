@@ -55,24 +55,24 @@
               %a{ data: { link: "href{:link}" } }
                 {{:msg}}
 
-  %ul.nav.nav-pills.nav-justified.margin-bottom
-    %li.active
-      = link_to "#nodes", data: { toggle: "tab" } do
-        = _("Nodes")
-        %span.badge{ data: { toggle: "tab", link: "nodes.length" } }
-          = @cib.nodes.count
+  .panel.panel-default.with-nav-tabs
+    .panel-heading
+      %ul.nav.nav-tabs
+        %li.active
+          = link_to "#nodes", data: { toggle: "tab" } do
+            = _("Nodes")
+            %span.badge{ data: { toggle: "tab", link: "nodes.length" } }
+              = @cib.nodes.count
+        %li
+          = link_to "#resources", data: { toggle: "tab" } do
+            = _("Resources")
+            %span.badge{ data: { toggle: "tab", link: "resources.length" } }
+              = @cib.resources.count
 
-    %li
-      = link_to "#resources", data: { toggle: "tab" } do
-        = _("Resources")
-        %span.badge{ data: { toggle: "tab", link: "resources.length" } }
-          = @cib.resources.count
+    .panel-body
+      .tab-content
+        #nodes.tab-pane.fade.in.active
+          %table.table.table-striped.nodes
 
-  .tab-content
-    #nodes.tab-pane.active
-      .panel.panel-default
-        %table.table.table-striped.nodes
-
-    #resources.tab-pane
-      .panel.panel-default
-        %table.table.table-striped.resources
+        #resources.tab-pane.fade
+          %table.table.table-striped.resources

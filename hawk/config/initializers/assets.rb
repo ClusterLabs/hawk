@@ -47,4 +47,10 @@ Rails.application.config.tap do |config|
     'assets',
     'fonts'
   )
+
+  config.assets.paths << config.root.join(
+    'vendor',
+    'assets',
+    'images'
+  )
 end

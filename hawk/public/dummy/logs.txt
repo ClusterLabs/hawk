@@ -1,0 +1,42 @@
+May 21 16:48:38 webui crmd[32344]: notice: run_graph: Transition 16 (Complete=10, Pending=0, Fired=0, Skipped=8, Incomplete=0, Source=/var/lib/pacemaker/pengine/pe-input-9.bz2): Stopped
+May 21 16:48:38 webui pengine[32343]: notice: LogActions: Move    vip2        (Started node1 -> node3)
+May 21 16:48:38 webui pengine[32343]: notice: LogActions: Start   srv2        (node3)
+May 21 16:48:38 webui pengine[32343]: notice: process_pe_message: Calculated Transition 17: /var/lib/pacemaker/pengine/pe-input-10.bz2
+May 21 16:48:38 webui crmd[32344]: notice: do_te_invoke: Processing graph 17 (ref=pe_calc-dc-1432219718-89) derived from /var/lib/pacemaker/pengine/pe-input-10.bz2
+May 21 16:48:38 webui crmd[32344]: notice: te_rsc_command: Initiating action 25: stop vip2_stop_0 on node1
+May 21 16:48:38 webui crmd[32344]: notice: te_rsc_command: Initiating action 26: start vip2_start_0 on node3
+May 21 16:48:38 webui crmd[32344]: notice: te_rsc_command: Initiating action 27: start srv2_start_0 on node3
+May 21 16:48:38 webui crmd[32344]: notice: te_rsc_command: Initiating action 28: monitor srv2_monitor_10000 on node3
+May 21 16:48:38 node3 systemd[1]: Configuration file /usr/lib/systemd/system/exim.service is marked executable. Please remove executable permission bits. Proceeding anyway.
+May 21 16:48:38 node3 start-ntpd[20096]: 21 May 16:48:38 sntp[20118]: Started sntp
+May 21 16:48:38 node3 start-ntpd[20096]: 2015-05-21 16:48:38.185096 (-0100) -0.000756 +/- 0.044647 secs
+May 21 16:48:38 node3 start-ntpd[20096]: 2015-05-21 16:48:38.194282 (-0100) +0.002681 +/- 0.081848 secs
+May 21 16:48:38 node3 start-ntpd[20096]: 2015-05-21 16:48:38.201209 (-0100) -0.003417 +/- 0.082718 secs
+May 21 16:48:38 node3 start-ntpd[20096]: 2015-05-21 16:48:38.215092 (-0100) -0.004848 +/- 0.088013 secs
+May 21 16:48:38 node3 start-ntpd[20096]: Time synchronized with -4 0.de.pool.ntp.org
+May 21 16:48:38 node3 IPaddr2(vip2)[20166]: INFO: Adding inet address 10.13.37.22/24 with broadcast address 10.13.37.255 to device eth1
+May 21 16:48:38 node3 IPaddr2(vip2)[20173]: INFO: Bringing device eth1 up
+May 21 16:48:38 node3 IPaddr2(vip2)[20180]: INFO: /usr/lib64/heartbeat/send_arp -i 200 -r 5 -p /run/resource-agents/send_arp-10.13.37.22 eth1 10.13.37.22 auto not_used not_used
+May 21 16:48:38 node3 crmd[19606]: notice: process_lrm_event: Operation vip2_start_0: ok (node=node3, call=26, rc=0, cib-update=14, confirmed=true)
+May 21 16:48:38 node3 kernel: send_arp uses obsolete (PF_INET,SOCK_PACKET)
+May 21 16:48:38 node3 apache(srv2)[20371]: INFO: AH00558: httpd2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
+May 21 16:48:38 node3 crmd[19606]: notice: process_lrm_event: Operation srv2_start_0: ok (node=node3, call=27, rc=0, cib-update=15, confirmed=true)
+May 21 16:48:38 node1 apache(srv2)[28637]: INFO: apache stopped.
+May 21 16:48:38 node1 crmd[19598]: notice: process_lrm_event: Operation srv2_stop_0: ok (node=node1, call=33, rc=0, cib-update=21, confirmed=true)
+May 21 16:48:38 node1 IPaddr2(vip2)[28685]: INFO: IP status = ok, IP_CIP=
+May 21 16:48:39 webui crmd[32344]: notice: run_graph: Transition 17 (Complete=9, Pending=0, Fired=0, Skipped=0, Incomplete=0, Source=/var/lib/pacemaker/pengine/pe-input-10.bz2): Complete
+May 21 16:48:39 webui crmd[32344]: notice: do_state_transition: State transition S_TRANSITION_ENGINE -> S_IDLE [ input=I_TE_SUCCESS cause=C_FSA_INTERNAL origin=notify_crmd ]
+May 21 16:48:39 node3 crmd[19606]: notice: process_lrm_event: Operation srv2_monitor_10000: ok (node=node3, call=28, rc=0, cib-update=16, confirmed=false)
+May 21 16:48:39 node3 ntpd[20525]: ntpd 4.2.6p5@1.2349-o Mon Apr 20 13:45:41 UTC 2015 (1)
+May 21 16:48:39 node3 start-ntpd[20096]: Starting network time protocol daemon (NTPD)
+May 21 16:48:39 node3 ntpd[20526]: proto: precision = 0.106 usec
+May 21 16:48:39 node3 ntpd[20526]: line 3 column 11 syntax error, unexpected '=', expecting T_EOC
+May 21 16:48:39 node3 ntpd[20526]: syntax error in /etc/ntp.conf line 3, column 11
+May 21 16:48:39 node3 ntpd[20526]: ntp_io: estimated max descriptors: 1024, initial socket boundary: 16
+May 21 16:48:39 node3 ntpd[20526]: Listen normally on 0 lo 127.0.0.1 UDP 123
+May 21 16:48:39 node3 ntpd[20526]: peers refreshed
+May 21 16:48:39 node3 ntpd[20526]: Listening on routing socket on fd #17 for interface updates
+May 21 16:48:39 node3 systemd[1]: Configuration file /usr/lib/systemd/system/exim.service is marked executable. Please remove executable permission bits. Proceeding anyway.
+May 21 16:48:39 node3 systemd[1]: Configuration file /usr/lib/systemd/system/exim.service is marked executable. Please remove executable permission bits. Proceeding anyway.
+May 21 16:48:39 node3 sshd[824]: Received signal 15; terminating.
+May 21 16:48:39 node3 sshd[20563]: Server listening on 0.0.0.0 port 22.

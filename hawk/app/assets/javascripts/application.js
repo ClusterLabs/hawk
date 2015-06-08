@@ -53,6 +53,7 @@
 //= require module/status
 //= require module/attrlist
 //= require module/constraint
+//= require module/explorer
 
 $(function() {
   $(window).on(
