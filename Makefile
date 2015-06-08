@@ -129,7 +129,19 @@ base/install:
 	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/tmp
 	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/home
 	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/explorer
+ifneq ($(BUNDLE_GEMS),false)
 	install -D -m 0644 scripts/hawk.service $(DESTDIR)/usr/lib/systemd/system/hawk.service
+else
+	sed \
+		-e 's|@WWW_BASE@|$(WWW_BASE)|' \
+		-e 's|@LIBDIR@|$(LIBDIR)|' \
+		-e 's|@BINDIR@|$(BINDIR)|' \
+		-e 's|@SBINDIR@|$(SBINDIR)|' \
+		-e 's|@WITHIN_VAGRANT@|$(WITHIN_VAGRANT)|' \
+		-e 's|@GEM_PATH@|$(shell find $(WWW_BASE) -path $(WWW_BASE)/vendor/bundle/ruby/* -print | head -n 1)|' \
+		scripts/hawk.service.bundle_gems.in > scripts/hawk.service.bundle_gems
+	install -D -m 0644 scripts/hawk.service.bundle_gems $(DESTDIR)/usr/lib/systemd/system/hawk.service
+endif
 
 tools/install:
 	install -D -m 4750 tools/hawk_chkpwd $(DESTDIR)/usr/sbin/hawk_chkpwd
