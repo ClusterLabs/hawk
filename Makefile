@@ -59,6 +59,9 @@ INIT_STYLE = suse
 # Set this to true to bundle gems inside rpm
 BUNDLE_GEMS = false
 
+# This should be discoverable in a better way
+RUBY_ABI = 2.1.0
+
 # Set this never to 1, it's used only within vagrant for development
 WITHIN_VAGRANT = 0
 
@@ -69,7 +72,7 @@ LIBDIR = /usr/lib
 BINDIR = /usr/bin
 SBINDIR = /usr/sbin
 
-all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service tools/hawk_chkpwd tools/hawk_monitor tools/hawk_invoke
+all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service scripts/hawk.service.bundle_gems tools/hawk_chkpwd tools/hawk_monitor tools/hawk_invoke
 	(cd hawk; \
 	 if $(BUNDLE_GEMS) ; then \
 		# Ignore gems from test \
@@ -90,6 +93,7 @@ all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service tools/hawk_chkpwd tools/haw
 		-e 's|@BINDIR@|$(BINDIR)|' \
 		-e 's|@SBINDIR@|$(SBINDIR)|' \
 		-e 's|@WITHIN_VAGRANT@|$(WITHIN_VAGRANT)|' \
+		-e 's|@GEM_PATH@|$(WWW_BASE)/vendor/bundle/ruby/$(RUBY_ABI)|' \
 		$< > $@
 
 tools/hawk_chkpwd: tools/hawk_chkpwd.c tools/common.h
@@ -129,18 +133,10 @@ base/install:
 	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/tmp
 	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/home
 	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/explorer
-ifeq ($(BUNDLE_GEMS),false)
-	install -D -m 0644 scripts/hawk.service $(DESTDIR)/usr/lib/systemd/system/hawk.service
+ifeq ($(BUNDLE_GEMS),true)
+		install -D -m 0644 scripts/hawk.service.bundle_gems $(DESTDIR)/usr/lib/systemd/system/hawk.service
 else
-	sed \
-		-e 's|@WWW_BASE@|$(WWW_BASE)|' \
-		-e 's|@LIBDIR@|$(LIBDIR)|' \
-		-e 's|@BINDIR@|$(BINDIR)|' \
-		-e 's|@SBINDIR@|$(SBINDIR)|' \
-		-e 's|@WITHIN_VAGRANT@|$(WITHIN_VAGRANT)|' \
-		-e 's|@GEM_PATH@|$(shell find $(WWW_BASE) -path $(WWW_BASE)/vendor/bundle/ruby/* -print | head -n 1)|' \
-		scripts/hawk.service.bundle_gems.in > scripts/hawk.service.bundle_gems
-	install -D -m 0644 scripts/hawk.service.bundle_gems $(DESTDIR)/usr/lib/systemd/system/hawk.service
+		install -D -m 0644 scripts/hawk.service $(DESTDIR)/usr/lib/systemd/system/hawk.service
 endif
 
 tools/install:
