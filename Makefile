@@ -129,7 +129,7 @@ base/install:
 	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/tmp
 	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/home
 	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/explorer
-ifneq ($(BUNDLE_GEMS),false)
+ifeq ($(BUNDLE_GEMS),false)
 	install -D -m 0644 scripts/hawk.service $(DESTDIR)/usr/lib/systemd/system/hawk.service
 else
 	sed \
