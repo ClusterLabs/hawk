@@ -13,7 +13,7 @@ Group=haclient
 WorkingDirectory=@WWW_BASE@/hawk
 
 Environment="HAWK_ENV=production"
-Environment="HAWK_THREADS=5"
+Environment="HAWK_THREADS=1"
 Environment="HAWK_WORKERS=2"
 Environment="HAWK_LISTEN=0.0.0.0"
 Environment="HAWK_PORT=7630"
