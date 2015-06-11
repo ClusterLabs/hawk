@@ -93,7 +93,7 @@ all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service scripts/hawk.service.bundle
 		-e 's|@BINDIR@|$(BINDIR)|' \
 		-e 's|@SBINDIR@|$(SBINDIR)|' \
 		-e 's|@WITHIN_VAGRANT@|$(WITHIN_VAGRANT)|' \
-		-e 's|@GEM_PATH@|$(WWW_BASE)/vendor/bundle/ruby/$(RUBY_ABI)|' \
+		-e 's|@GEM_PATH@|$(WWW_BASE)/hawk/vendor/bundle/ruby/$(RUBY_ABI)|' \
 		$< > $@
 
 tools/hawk_chkpwd: tools/hawk_chkpwd.c tools/common.h
