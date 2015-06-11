@@ -278,14 +278,6 @@
 /* Overlays */
 .ui-widget-overlay { background: #000000 url(images/ui-bg_flat_0_000000_40x100.png) 50% 50% repeat-x; opacity: .50;filter:Alpha(Opacity=50); }
 .ui-widget-shadow { margin: -4px 0 0 -4px; padding: 4px; background: #000000 url(images/ui-bg_flat_0_000000_40x100.png) 50% 50% repeat-x; opacity: .75;filter:Alpha(Opacity=75); -moz-border-radius: 8px; -webkit-border-radius: 8px; border-radius: 8px; }
- * jQuery UI Resizable @VERSION
- *
- * Copyright 2010, AUTHORS.txt (http://jqueryui.com/about)
- * Dual licensed under the MIT or GPL Version 2 licenses.
- * http://jquery.org/license
- *
- * http://docs.jquery.com/UI/Resizable#theming
- */
 .ui-resizable { position: relative;}
 .ui-resizable-handle { position: absolute;font-size: 0.1px;z-index: 99999; display: block;}
 .ui-resizable-disabled .ui-resizable-handle, .ui-resizable-autohide .ui-resizable-handle { display: none; }
