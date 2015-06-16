@@ -1,67 +1,66 @@
-class Tag < CibObject
-  include FastGettext::Translation
+class Tag < Record
+  attribute :id, String
+  attribute :refs, Array[String]
 
-  @attributes = :refs
-  attr_accessor *@attributes
+  validates :id,
+    presence: { message: _("Tag ID is required") },
+    format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _("Invalid Tag ID") }
 
-  def initialize(attributes = nil)
-    @refs = []
-    super
+  validate do |record|
+    # TODO(must): Ensure refs are sanitized
+    errors.add :refs, _("No Tag resources specified") if record.refs.empty?
   end
 
-  def validate
-    error _('Empty tag') if @refs.empty?
-  end
 
-  def create
-    if CibObject.exists?(id)
-      error _('The ID "%{id}" is already in use') % { :id => @id }
-      return false
-    end
-
-    cmd = "tag #{@id}:"
-    @refs.each do |r|
-      cmd += " #{r}"
-    end
-
-    result = Invoker.instance.crm_configure cmd
-    unless result == true
-      error _('Unable to create tag: %{msg}') ^ { :msg => result }
-      return false
-    end
-
-    true
-  end
-
-  def update
-    # Saving an existing tag
-    unless CibObject.exists?(id, 'tag')
-      error _('Tag ID "%{id}" does not exist') % { :id => @id }
-      return false
-    end
-
-    begin
-      # TODO
-      # FIXME
-      #merge_nvpairs(@xml, 'meta_attributes', @meta)
-
-      Invoker.instance.cibadmin_replace @xml.to_s
-    rescue NotFoundError, SecurityError, RuntimeError => e
-      error e.message
-      return false
-    end
-
-    true
+  def mapping
+    self.class.mapping
   end
 
   class << self
     def instantiate(xml)
-      res = allocate
-      res.instance_variable_set(:@refs, xml.elements.collect('obj_ref') {|e| e.attributes['id'] })
-      res
+      record = allocate
+
+      record.refs = xml.elements.collect("obj_ref") do |el|
+        el.attributes["id"]
+      end
+
+      record
     end
-    def all
-      super "tag"
+
+    def cib_type
+      :tag
     end
+
+    def mapping
+      @mapping ||= {}
+    end
+  end
+
+  protected
+
+  def update
+    unless self.class.exists?(self.id, self.class.cib_type_write)
+      errors.add :base, _("The ID \"%{id}\" does not exist") % { id: self.id }
+      return false
+    end
+
+    begin
+      Invoker.instance.cibadmin_replace xml.to_s
+    rescue NotFoundError, SecurityError, RuntimeError => e
+      errors.add :base, e.message
+      return false
+    end
+
+    true
+  end
+
+  def shell_syntax
+    [].tap do |cmd|
+      cmd.push "tag #{id}"
+
+      refs.each do |ref|
+        cmd.push ref
+      end
+    end.join(" ")
   end
 end

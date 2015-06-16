@@ -386,10 +386,10 @@ class Cib < CibObject
 
     @tags = []
     @xml.elements.each('cib/configuration/tags/tag') do |t|
-      @tags << {
+      @tags << Hashie::Mash.new(
         :id => t.attributes['id'],
         :refs => t.elements.collect('obj_ref') { |ref| ref.attributes['id'] }
-      }
+      )
     end
 
     # Iterate nodes in cib order here which makes the faked up clone & ms instance
