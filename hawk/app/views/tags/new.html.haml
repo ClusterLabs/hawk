@@ -1,0 +1,18 @@
+.container-fluid
+  .row
+    %h1
+      = icon_text "copy", _("Create Tag"), class: "page"
+
+  .row
+    = render partial: "form", locals: { cib: @cib, tag: @tag }
+
+- content_for :rightbar do
+  .container-fluid{ data: { spy: "affix" } }
+    - @tag.mapping.each do |key, values|
+      - next unless values[:longdesc]
+
+      .row{ class: key }
+        %h2.margin-bottom
+          = key
+
+        = simple_format values[:longdesc]

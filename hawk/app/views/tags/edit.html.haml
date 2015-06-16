@@ -1,0 +1,21 @@
+.container-fluid
+  .row
+    %h1
+      = icon_text "copy", _("Edit Tag"), class: "page"
+      .pull-right
+        .btn-group{ role: "group" }
+          = link_to icon_text("trash", _("Delete")), cib_tag_path(cib_id: @cib.id, id: @tag.id), method: "delete", confirm: _("Are you sure you wish to delete %s?") % @tag.id, class: "btn btn-default"
+
+  .row
+    = render partial: "form", locals: { cib: @cib, tag: @tag }
+
+- content_for :rightbar do
+  .container-fluid{ data: { spy: "affix" } }
+    - @tag.mapping.each do |key, values|
+      - next unless values[:longdesc]
+
+      .row{ class: key }
+        %h2.margin-bottom
+          = key
+
+        = simple_format values[:longdesc]

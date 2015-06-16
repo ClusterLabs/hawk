@@ -83,6 +83,9 @@
         %li{ class: active_menu_with(:tickets) }
           = link_to _("Tickets"), cib_tickets_path(cib_id: current_cib.id)
 
+        %li{ class: active_menu_with(:tags) }
+          = link_to _("Tags"), cib_tags_path(cib_id: current_cib.id)
+
         - if Util.has_feature? :acl_support
           %li{ class: active_menu_with(:templates) }
             = link_to _("Templates"), cib_templates_path(cib_id: current_cib.id)
