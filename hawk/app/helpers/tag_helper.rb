@@ -74,4 +74,12 @@ module TagHelper
       "{{/for}}"
     ].join("\n").html_safe
   end
+
+  def tag_refs_list
+    options = @cib.resources.map(&:id).sort do |a, b|
+      a.natcmp(b, true)
+    end
+  end
+
+  
 end
