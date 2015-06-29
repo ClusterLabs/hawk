@@ -4,7 +4,7 @@
 #            A web-based GUI for managing and monitoring the
 #          Pacemaker High-Availability cluster resource manager
 #
-# Copyright (c) 2009-2013 SUSE LLC, All Rights Reserved.
+# Copyright (c) 2009-2015 SUSE LLC, All Rights Reserved.
 #
 # Author: Tim Serong <tserong@suse.com>
 #
@@ -153,6 +153,8 @@ module Util
   # on STDIN (untested)
   def safe_x(*cmd)
     raise SecurityError, "Util::safe_x called with < 2 args" if cmd.length < 2
+    Rails.logger.debug "Executing `#{cmd.join(' ')}` through `safe_x`"
+
     pr = IO::pipe   # pipe[0] for read, pipe[1] for write
     pe = IO::pipe
     pid = fork{
@@ -303,6 +305,15 @@ module Util
     when :acl_support
       PerRequestCache.fetch(:has_acl_support) {
         %x[/usr/sbin/cibadmin -!].split(/\s+/).include?("acls")
+      }
+    when :acl_enabled
+      PerRequestCache.fetch(:has_acl_enabled) {
+        safe_x(
+          '/usr/sbin/cibadmin',
+          '-Ql',
+          '--xpath',
+          '//configuration//crm_config//nvpair[@name=\'enable-acl\' and @value=\'true\']'.shellescape
+        ).chomp.present?
       }
     when :tags
       PerRequestCache.fetch(:has_tags) {

@@ -1,64 +1,70 @@
 <?xml version="1.0"?>
 <workflow name="60-nfsserver" cluster_script="nfsserver">
+  <shortdesc lang="en">
+    NFS Server
+  </shortdesc>
 
-<shortdesc lang="en">NFS Server</shortdesc>
-<longdesc lang="en">
-Configure an NFS server. Requires an existing filesystem resource,
-for example a filesystem running on LVM on DRBD.
-</longdesc>
+  <longdesc lang="en">
+    Configure an NFS server. Requires an existing filesystem resource,
+    for example a filesystem running on LVM on DRBD.
+  </longdesc>
 
-<parameters>
-<stepdesc lang="en">
-Specify the ID of the base filesystem resource which is to be
-exported via NFS.
-</stepdesc>
-<parameter name="base-id" required="1">
-<shortdesc lang="en">Base Filesystem</shortdesc>
-<longdesc lang="en">
-The ID of an exising filesystem resource.
-</longdesc>
-<content type="string" default="base-fs"/>
-</parameter>
-</parameters>
+  <parameters>
+    <stepdesc lang="en">
+      Specify the ID of the base filesystem resource which is to be
+      exported via NFS.
+    </stepdesc>
 
-<templates>
-<template name="rootfs" type="exportfs" required="0">
-<stepdesc lang="en">
-NFSv4 Virtual File System root.
-</stepdesc>
-<override name="id" value="exportfs-root"/>
-<override name="fsid" value="0"/>
-<override name="directory" value="/srv/nfs"/>
-<override name="options" value="rw,crossmnt"/>
-</template>
+    <parameter name="base-id" required="1">
+      <shortdesc lang="en">
+        Base Filesystem
+      </shortdesc>
+      <longdesc lang="en">
+        The ID of an exising filesystem resource.
+      </longdesc>
 
-<template name="exportfs" required="1">
-<stepdesc lang="en">
-Exported NFS mount point
-</stepdesc>
-<override name="id" value="exportfs"/>
-<override name="directory" value="/srv/nfs/example"/>
-<override name="options" value="rw,mountpoint"/>
-<override name="wait_for_leasetime_on_stop" value="true"/>
-</template>
+      <content type="string" default="base-fs"/>
+    </parameter>
+  </parameters>
 
-<template name="virtual-ip" required="1">
-<stepdesc lang="en">
-Configure a Virtual IP address used to access the NFS mounts.
-</stepdesc>
-</template>
+  <templates>
+    <template name="rootfs" type="exportfs" required="0">
+      <stepdesc lang="en">
+        NFSv4 Virtual File System root.
+      </stepdesc>
 
-</templates>
+      <override name="id" value="exportfs-root"/>
+      <override name="fsid" value="0"/>
+      <override name="directory" value="/srv/nfs"/>
+      <override name="options" value="rw,crossmnt"/>
+    </template>
 
-<crm_script>
-clone c-rootfs <insert param="id" from_template="rootfs"/>
-group g-nfs
-  <insert param="id" from_template="exportfs"/>
-  <insert param="id" from_template="virtual-ip"/>
-order base-then-nfs inf: <insert param="base-id"/> g-nfs
-colocation nfs-with-base inf: g-nfs <insert param="base-id"/>
-order rootfs-before-nfs inf: c-rootfs g-nfs:start
-colocation nfs-with-rootfs inf: g-nfs c-rootfs
-</crm_script>
+    <template name="exportfs" required="1">
+      <stepdesc lang="en">
+        Exported NFS mount point
+      </stepdesc>
 
+      <override name="id" value="exportfs"/>
+      <override name="directory" value="/srv/nfs/example"/>
+      <override name="options" value="rw,mountpoint"/>
+      <override name="wait_for_leasetime_on_stop" value="true"/>
+    </template>
+
+    <template name="virtual-ip" required="1">
+      <stepdesc lang="en">
+        Configure a Virtual IP address used to access the NFS mounts.
+      </stepdesc>
+    </template>
+  </templates>
+
+  <crm_script>
+    clone c-rootfs <insert param="id" from_template="rootfs"/>
+    group g-nfs
+      <insert param="id" from_template="exportfs"/>
+      <insert param="id" from_template="virtual-ip"/>
+    order base-then-nfs inf: <insert param="base-id"/> g-nfs
+    colocation nfs-with-base inf: g-nfs <insert param="base-id"/>
+    order rootfs-before-nfs inf: c-rootfs g-nfs:start
+    colocation nfs-with-rootfs inf: g-nfs c-rootfs
+  </crm_script>
 </workflow>

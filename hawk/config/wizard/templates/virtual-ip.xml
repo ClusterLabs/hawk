@@ -1,62 +1,73 @@
 <?xml version="1.0"?>
 <template name="virtual-ip">
+  <shortdesc lang="en">
+    Virtual IP Address
+  </shortdesc>
 
-<shortdesc lang="en">Virtual IP Address</shortdesc>
-<longdesc lang="en">
-Create a single primitive resource of type IPaddr2.
-</longdesc>
+  <longdesc lang="en">
+    Create a single primitive resource of type IPaddr2.
+  </longdesc>
 
-<parameters>
+  <parameters>
+    <parameter name="id" required="1">
+      <shortdesc lang="en">
+        Resource ID
+      </shortdesc>
+      <longdesc lang="en">
+        Unique ID for this virtual IP address resource in the cluster.
+      </longdesc>
 
-<parameter name="id" required="1">
-<shortdesc lang="en">Resource ID</shortdesc>
-<longdesc lang="en">
-Unique ID for this virtual IP address resource in the cluster.
-</longdesc>
-<content type="string" default="virtual-ip"/>
-</parameter>
+      <content type="string" default="virtual-ip"/>
+    </parameter>
 
-<parameter name="ip" required="1">
-<shortdesc lang="en">IP address</shortdesc>
-<longdesc lang="en">
-The IPv4 address to be configured in dotted quad notation,
-for example "192.168.1.1".
-</longdesc>
-<content type="string" default=""/>
-</parameter>
+    <parameter name="ip" required="1">
+      <shortdesc lang="en">
+        IP address
+      </shortdesc>
+      <longdesc lang="en">
+        The IPv4 address to be configured in dotted quad notation,
+        for example "192.168.1.1".
+      </longdesc>
 
-<parameter name="netmask">
-<shortdesc lang="en">Netmask</shortdesc>
-<longdesc lang="en">
-The netmask for the interface in CIDR format
-(e.g., 24 and not 255.255.255.0).
+      <content type="string" default=""/>
+    </parameter>
 
-If unspecified, it will be determined automatically.
-</longdesc>
-<content type="string"/>
-</parameter>
+    <parameter name="netmask">
+      <shortdesc lang="en">
+        Netmask
+      </shortdesc>
+      <longdesc lang="en">
+        The netmask for the interface in CIDR format
+        (e.g., 24 and not 255.255.255.0).
 
-<parameter name="lvs_support">
-<shortdesc lang="en">LVS support</shortdesc>
-<longdesc lang="en">
-Enable support for LVS Direct Routing configurations. In case a IP
-address is stopped, only move it to the loopback device to allow the
-local node to continue to service requests, but no longer advertise it
-on the network.
-</longdesc>
-<content type="boolean"/>
-</parameter>
+        If unspecified, it will be determined automatically.
+      </longdesc>
 
-</parameters>
+      <content type="string"/>
+    </parameter>
 
-<crm_script>
-primitive <insert param="id"/> ocf:heartbeat:IPaddr2
-  params
-    ip="<insert param="ip"/>"
-    <if set="netmask">cidr_netmask="<insert param="netmask"/>"</if>
-    <if set="lvs_support">lvs_support="<insert param="lvs_support"/>"</if>
-  op start timeout="20" op stop timeout="20"
-  op monitor interval="10" timeout="20"
-</crm_script>
+    <parameter name="lvs_support">
+      <shortdesc lang="en">
+        LVS support
+      </shortdesc>
+      <longdesc lang="en">
+        Enable support for LVS Direct Routing configurations. In case a IP
+        address is stopped, only move it to the loopback device to allow the
+        local node to continue to service requests, but no longer advertise it
+        on the network.
+      </longdesc>
 
+      <content type="boolean"/>
+    </parameter>
+  </parameters>
+
+  <crm_script>
+    primitive <insert param="id"/> ocf:heartbeat:IPaddr2
+      params
+        ip="<insert param="ip"/>"
+        <if set="netmask">cidr_netmask="<insert param="netmask"/>"</if>
+        <if set="lvs_support">lvs_support="<insert param="lvs_support"/>"</if>
+      op start timeout="20" op stop timeout="20"
+      op monitor interval="10" timeout="20"
+  </crm_script>
 </template>

@@ -1,0 +1,20 @@
+.panel.panel-default
+  .panel-body
+    = form_for [cib, user], horizontal: true do |main_form|
+      = errors_for user
+
+      - if user.new_record?
+        = main_form.text_field :id, label: _("User ID")
+      - else
+        = main_form.text_field :id, label: _("User ID"), readonly: true
+
+      = main_form.select :roles, :role_options, { include_hidden: false }, { multiple: true, size: 5 }
+
+      = main_form.button_group do
+        - if user.new_record?
+          = user_create_button(main_form, user)
+        - else
+          = user_apply_button(main_form, user)
+          = user_revert_button(main_form, user)
+
+        = link_to _("Back"), cib_users_path(cib_id: cib.id), class: "btn btn-default back"

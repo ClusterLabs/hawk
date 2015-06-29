@@ -1,0 +1,123 @@
+//======================================================================
+//                        HA Web Konsole (Hawk)
+// --------------------------------------------------------------------
+//            A web-based GUI for managing and monitoring the
+//          Pacemaker High-Availability cluster resource manager
+//
+// Copyright (c) 2009-2013 SUSE LLC, All Rights Reserved.
+//
+// Author: Tim Serong <tserong@suse.com>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of version 2 of the GNU General Public License as
+// published by the Free Software Foundation.
+//
+// This program is distributed in the hope that it would be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+//
+// Further, this software is distributed without any warranty that it is
+// free of the rightful claim of any third person regarding infringement
+// or the like.  Any license provided herein, whether implied or
+// otherwise, applies only to this software file.  Patent licenses, if
+// any, provided herein do not apply to combinations of this program with
+// other software, or any other product whatsoever.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write the Free Software Foundation,
+// Inc., 59 Temple Place - Suite 330, Boston MA 02111-1307, USA.
+//
+//======================================================================
+
+.panel {
+  & > .panel-steps {
+    margin: 20px 0;
+    text-align: center;
+    position: relative;
+
+    &:before {
+      top: 15px;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      position: absolute;
+      content: " ";
+      width: 100%;
+      height: 2px;
+      background-color: #ccc;
+      z-order: 0;
+    }
+
+    .nav {
+      margin: 0 auto;
+
+      & > li {
+        display: inline-block;
+        float: none;
+        margin: 0 10px;
+
+        & > a {
+          display: inline-block;
+          cursor: default;
+        }
+      }
+    }
+  }
+
+  &.with-nav-tabs {
+    .panel-heading{
+      padding: 5px 5px 0 5px;
+    }
+
+    .nav-tabs {
+      border-bottom: none;
+    }
+
+    .nav-justified {
+      margin-bottom: -1px;
+    }
+
+    &.panel-default {
+      .nav-tabs > li > a,
+      .nav-tabs > li > a:hover,
+      .nav-tabs > li > a:focus {
+          color: #777;
+      }
+
+      .nav-tabs > .open > a,
+      .nav-tabs > .open > a:hover,
+      .nav-tabs > .open > a:focus,
+      .nav-tabs > li > a:hover,
+      .nav-tabs > li > a:focus {
+        color: #777;
+        background-color: #ddd;
+        border-color: transparent;
+      }
+      .nav-tabs > li.active > a,
+      .nav-tabs > li.active > a:hover,
+      .nav-tabs > li.active > a:focus {
+        color: #555;
+        background-color: #fff;
+        border-color: #ddd;
+        border-bottom-color: transparent;
+      }
+      .nav-tabs > li.dropdown .dropdown-menu {
+        background-color: #f5f5f5;
+        border-color: #ddd;
+      }
+      .nav-tabs > li.dropdown .dropdown-menu > li > a {
+        color: #777;
+      }
+      .nav-tabs > li.dropdown .dropdown-menu > li > a:hover,
+      .nav-tabs > li.dropdown .dropdown-menu > li > a:focus {
+        background-color: #ddd;
+      }
+      .nav-tabs > li.dropdown .dropdown-menu > .active > a,
+      .nav-tabs > li.dropdown .dropdown-menu > .active > a:hover,
+      .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
+        color: #fff;
+        background-color: #555;
+      }
+    }
+  }
+}

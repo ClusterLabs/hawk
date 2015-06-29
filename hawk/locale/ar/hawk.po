@@ -5,7 +5,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-10 15:20+1000\n"
 "PO-Revision-Date: 2014-09-03 10:42\n"
 "Last-Translator: Novell language <language@novell.com>\n"
 "Language-Team: Novell language <language@novell.com>\n"
@@ -15,1893 +14,1102 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../app/controllers/acls_controller.rb:72
-#: ../app/views/layouts/main.html.erb:220
-msgid "Access Control Lists"
-msgstr "قوائم التحكم في الوصول"
+msgid "Any changes will be lost - do you wish to proceed?"
+msgstr "سيتم فقد أية تغييرات - هل تريد المتابعة؟"
 
-#: ../app/controllers/application_controller.rb:124
+msgid "Connection to server aborted - will retry every 15 seconds."
+msgstr "تم إيقاف الاتصال بالخادم، ستُعاد المحاولة كل 15 ثانية."
+
+#, fuzzy
+msgid "Connection to server failed - will retry every 15 seconds."
+msgstr "تم إيقاف الاتصال بالخادم، ستُعاد المحاولة كل 15 ثانية."
+
+msgid "Connection to server timed out - will retry every 15 seconds."
+msgstr "انتهت مهلة الاتصال بالخادم - ستُعاد المحاولة كل 15 ثانية."
+
+#, fuzzy
+msgid "State"
+msgstr "الولاية:                    "
+
+msgid "Name"
+msgstr ""
+
+msgid "Maintenance"
+msgstr "الصيانة"
+
+msgid "Yes"
+msgstr "نعم"
+
+msgid "No"
+msgstr "لا"
+
+msgid "Standby"
+msgstr "استعداد"
+
+msgid "Operations"
+msgstr "العمليات"
+
+msgid "Online"
+msgstr "متصل"
+
+msgid "Ready"
+msgstr "جاهز"
+
+msgid "Fence"
+msgstr ""
+
+msgid "Details"
+msgstr "التفاصيل"
+
+msgid "Events"
+msgstr ""
+
+msgid "Role ID"
+msgstr "معرف الدور"
+
+msgid "User ID"
+msgstr "معرف المستخدم"
+
 msgid "Unable to create shadow CIB"
 msgstr "تعذر إنشاء ظل احتياطي لـ CIB"
 
-#: ../app/controllers/cib_controller.rb:110
-#: ../app/controllers/cib_controller.rb:164
 msgid "1 node configured"
 msgid_plural "%{num} nodes configured"
 msgstr[0] "تم تكوين عقدة واحدة"
 msgstr[1] "تم تكوين %{num} عقدة (عقد)"
 
-#: ../app/controllers/cib_controller.rb:111
-#: ../app/controllers/cib_controller.rb:165
 msgid "1 resource configured"
 msgid_plural "%{num} resources configured"
 msgstr[0] "تم تكوين مورد واحد"
 msgstr[1] "تم تكوين %{num} مورد (موارد)"
 
-#: ../app/controllers/clones_controller.rb:48
 msgid "Edit Clone"
 msgstr "تحرير الاستنساخ"
 
-#: ../app/controllers/clones_controller.rb:52
-#: ../app/controllers/clones_controller.rb:58
-#: ../app/views/clones/_form.html.erb:87
 msgid "Create Clone"
 msgstr "إنشاء استنساخ"
 
-#: ../app/controllers/clones_controller.rb:65
 msgid "Clone created successfully"
 msgstr "تم إنشاء الاستنساخ بنجاح"
 
-#: ../app/controllers/clones_controller.rb:87
 msgid "Clone updated successfully"
 msgstr "تم تحديث الاستنساخ بنجاح"
 
-#: ../app/controllers/colocations_controller.rb:44
 msgid "Edit Colocation Constraint"
 msgstr "تحرير قيد الموقع المشترك"
 
-#: ../app/controllers/colocations_controller.rb:48
-#: ../app/controllers/colocations_controller.rb:53
 msgid "Create Colocation Constraint"
 msgstr "إنشاء قيد الموقع المشترك"
 
-#: ../app/controllers/colocations_controller.rb:61
-#: ../app/controllers/locations_controller.rb:60
-#: ../app/controllers/orders_controller.rb:62
-#: ../app/controllers/tickets_controller.rb:59
 msgid "Constraint created successfully"
 msgstr "تم إنشاء القيد بنجاح"
 
-#: ../app/controllers/colocations_controller.rb:84
-#: ../app/controllers/locations_controller.rb:82
-#: ../app/controllers/orders_controller.rb:86
-#: ../app/controllers/tickets_controller.rb:81
 msgid "Constraint updated successfully"
 msgstr "تم تحديث القيد بنجاح"
 
-#: ../app/controllers/constraints_controller.rb:44
-#: ../app/views/layouts/main.html.erb:229
 msgid "Constraints"
 msgstr "القيود"
 
-#: ../app/controllers/crm_config_controller.rb:45
-#: ../app/views/main/_gettext.js.erb:99
 msgid "Cluster Configuration"
 msgstr "تكوين المجموعة المتماثلة"
 
-#: ../app/controllers/crm_config_controller.rb:128
 msgid "Your changes have been saved"
 msgstr "تم حفظ التغييرات التي قمت بإجرائها"
 
-#: ../app/controllers/crm_config_controller.rb:130
 msgid "Unable to apply changes: %{msg}"
 msgstr "تعذر تطبيق التغييرات: %{msg}"
 
-#: ../app/controllers/crm_config_controller.rb:162
-msgid "Can't set property %{p}, because the value contains both single and double quotes"
+msgid ""
+"Can't set property %{p}, because the value contains both single and double quo"
+"tes"
 msgstr "يتعذر تعيين الخاصية %{p}، نظرًا لاحتواء القيمة على علامات اقتباس مفردة ومزدوجة"
 
-#: ../app/controllers/dashboard_controller.rb:37
 msgid "Cluster Dashboard"
 msgstr "لوحة معلومات المجموعة المتماثلة"
 
-#: ../app/controllers/explorer_controller.rb:44
-#: ../app/views/layouts/main.html.erb:205
-msgid "History Explorer"
-msgstr "History Explorer"
-
-#: ../app/controllers/explorer_controller.rb:103
-msgid "PE Input created by different Pacemaker version (%{version})"
-msgstr "تم إنشاء إدخال PE بإصدار Pacemaker مختلف (%{version})"
-
-#: ../app/controllers/explorer_controller.rb:104
-msgid "Pacemaker version not present in PE Input"
-msgstr "إصدار Pacemaker غير موجود في إدخال PE"
-
-#: ../app/controllers/explorer_controller.rb:134
-msgid "Required parameters \"basename\" and \"node\" not specified"
-msgstr "المعلمتان المطلوبتان \"basename\" و\"node\" غير محددتين"
-
-#: ../app/controllers/explorer_controller.rb:159
-#: ../app/controllers/explorer_controller.rb:229
-msgid "No details available"
-msgstr "لا تتوفر أية تفاصيل"
-
-#: ../app/controllers/explorer_controller.rb:161
-#: ../app/controllers/explorer_controller.rb:189
-#: ../app/controllers/explorer_controller.rb:250
-msgid "Error:"
-msgstr "خطأ:"
-
-#: ../app/controllers/explorer_controller.rb:202
-msgid "Required parameters \"left\" and \"right\" not specified"
-msgstr "المعلمتان المطلوبتان \"left\" و\"right\" غير محددتين"
-
-#: ../app/controllers/groups_controller.rb:48
-msgid "Edit Group"
-msgstr "تحرير مجموعة"
-
-#: ../app/controllers/groups_controller.rb:52
-#: ../app/controllers/groups_controller.rb:58
-#: ../app/views/groups/_form.html.erb:142
-msgid "Create Group"
-msgstr "مجموعة الإنشاء"
-
-#: ../app/controllers/groups_controller.rb:65
-msgid "Group created successfully"
-msgstr "تم إنشاء المجموعة بنجاح"
-
-#: ../app/controllers/groups_controller.rb:87
-msgid "Group updated successfully"
-msgstr "تم تحديث المجموعة بنجاح"
-
-#: ../app/controllers/locations_controller.rb:44
-msgid "Edit Location Constraint"
-msgstr "تحرير قيد الموقع"
-
-#: ../app/controllers/locations_controller.rb:48
-#: ../app/controllers/locations_controller.rb:53
-msgid "Create Location Constraint"
-msgstr "إنشاء قيد الموقع"
-
-#: ../app/controllers/main_controller.rb:58
-msgid "%{cmd} failed (status: %{status})"
-msgstr "فشل %{cmd} (الحالة:%{status})"
-
-#: ../app/controllers/main_controller.rb:78
-#: ../app/views/layouts/main.html.erb:199
-msgid "Cluster Status"
-msgstr "حالة المجموعة"
-
-#: ../app/controllers/main_controller.rb:93
-#: ../app/controllers/main_controller.rb:103
-#: ../app/controllers/main_controller.rb:113
-msgid "Required parameter \"node\" not specified"
-msgstr "المعلمة المطلوبة \"node\" غير محددة"
-
-#: ../app/controllers/main_controller.rb:129
-#: ../app/controllers/main_controller.rb:160
-msgid "Required parameter \"resource\" not specified"
-msgstr "المعلمة المطلوبة \"resource\" غير محددة"
-
-#: ../app/controllers/main_controller.rb:139
-msgid "Required parameters \"resource\" and \"node\" not specified"
-msgstr "المعلمات المطلوبة \"resource\" و\"node\" غير محددة"
-
-#: ../app/controllers/main_controller.rb:154
-msgid "Error deleting resource"
-msgstr "حدث خطأ أثناء حذف المورد"
-
-#: ../app/controllers/main_controller.rb:170
-msgid "Required parameters \"ticket\" and \"site\" not specified"
-msgstr "المعلمتان المطلوبتان \"ticket\" و\"site\" غير محددتين"
-
-#: ../app/controllers/main_controller.rb:180
-msgid "Required parameter \"ticket\" not specified"
-msgstr "المعلمة المطلوبة \"ticket\" غير محددة"
-
-#: ../app/controllers/main_controller.rb:330 ../app/models/cib.rb:261
-msgid "Error invoking %{cmd}: %{msg}"
-msgstr "حدث خطأ أثناء استدعاء %{cmd}: %{msg}"
-
-#: ../app/controllers/masters_controller.rb:48
-msgid "Edit Master/Slave"
-msgstr "تحرير الرئيس/التابع"
-
-#: ../app/controllers/masters_controller.rb:52
-#: ../app/controllers/masters_controller.rb:58
-#: ../app/views/masters/_form.html.erb:87
-msgid "Create Master/Slave"
-msgstr "إنشاء الرئيس/التابع"
-
-#: ../app/controllers/masters_controller.rb:65
-msgid "Master/Slave created successfully"
-msgstr "تم إنشاء الرئيس/التابع بنجاح"
-
-#: ../app/controllers/masters_controller.rb:87
-msgid "Master/Slave updated successfully"
-msgstr "تم تحديث الرئيس/التابع بنجاح"
-
-#: ../app/controllers/orders_controller.rb:44
-msgid "Edit Order Constraint"
-msgstr "تحرير قيد الترتيب"
-
-#: ../app/controllers/orders_controller.rb:48
-#: ../app/controllers/orders_controller.rb:53
-msgid "Create Order Constraint"
-msgstr "إنشاء قيد الترتيب"
-
-#: ../app/controllers/primitives_controller.rb:46
-#: ../app/views/resources/index.html.erb:46
-msgid "Edit Resource"
-msgstr "تحرير مورد"
-
-#: ../app/controllers/primitives_controller.rb:50
-#: ../app/controllers/primitives_controller.rb:56
-#: ../app/views/primitives/_form.html.erb:393
-msgid "Create Resource"
-msgstr "إنشاء مورد"
-
-#: ../app/controllers/primitives_controller.rb:63
-msgid "Resource created successfully"
-msgstr "تم إنشاء المورد بنجاح"
-
-#: ../app/controllers/primitives_controller.rb:85
-msgid "Resource updated successfully"
-msgstr "تم تحديث المورد بنجاح"
-
-#: ../app/controllers/resources_controller.rb:57
-#: ../app/views/layouts/main.html.erb:226
-msgid "Resources"
-msgstr "الموارد"
-
-#: ../app/controllers/roles_controller.rb:44
-msgid "Edit Role"
-msgstr "تحرير قاعدة"
-
-#: ../app/controllers/roles_controller.rb:48
-#: ../app/controllers/roles_controller.rb:53
-#: ../app/views/roles/_form.html.erb:82
-msgid "Create Role"
-msgstr "إنشاء دور"
-
-#: ../app/controllers/roles_controller.rb:60
-msgid "Role created successfully"
-msgstr "تم إنشاء الدور بنجاح"
-
-#: ../app/controllers/roles_controller.rb:82
-msgid "Role updated successfully"
-msgstr "تم تحديث الدور بنجاح"
-
-#: ../app/controllers/sessions_controller.rb:37
-#: ../app/views/dashboard/index.html.erb:64
-#: ../app/views/sessions/new.html.erb:17
-msgid "Log In"
-msgstr "دخول"
-
-#: ../app/controllers/sessions_controller.rb:70
-msgid "Username not specified"
-msgstr "لم يتم تحديد اسم المستخدم"
-
-#: ../app/controllers/sessions_controller.rb:73
-msgid "Invalid username"
-msgstr "اسم المستخدم غير صالح"
-
-#: ../app/controllers/sessions_controller.rb:75
-msgid "Password not specified"
-msgstr "لم يتم تحديد كلمة السر"
-
-#: ../app/controllers/sessions_controller.rb:89
-msgid "Invalid username or password"
-msgstr "اسم المستخدم غير صالح أو كلمة السر غير صالحة"
-
-#: ../app/controllers/sessions_controller.rb:92
-msgid "%s is not installed"
-msgstr "لم يتم تثبيت %s"
-
-#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:259
-#: ../lib/invoker.rb:133 ../lib/invoker.rb:155 ../lib/invoker.rb:197
-msgid "Permission denied for user %{user}"
-msgstr "تم رفض الإذن للمستخدم %{user}"
-
-#: ../app/controllers/sessions_controller.rb:131
-msgid "You have been logged out"
-msgstr "تم تسجيل خروجك."
-
-#: ../app/controllers/templates_controller.rb:47
-msgid "Edit Template"
-msgstr "تحرير القالب"
-
-#: ../app/controllers/templates_controller.rb:51
-#: ../app/controllers/templates_controller.rb:59
-msgid "Create Template"
-msgstr "إنشاء قالب"
-
-#: ../app/controllers/templates_controller.rb:66
-msgid "Template created successfully"
-msgstr "تم إنشاء القالب بنجاح"
-
-#: ../app/controllers/templates_controller.rb:89
-msgid "Template updated successfully"
-msgstr "تم تحديث القالب بنجاح"
-
-#: ../app/controllers/tickets_controller.rb:43
-msgid "Edit Ticket Constraint"
-msgstr "تحرير قيد البطاقة"
-
-#: ../app/controllers/tickets_controller.rb:47
-#: ../app/controllers/tickets_controller.rb:52
-msgid "Create Ticket Constraint"
-msgstr "إنشاء قيد للبطاقة"
-
-#: ../app/controllers/users_controller.rb:44
-msgid "Edit User"
-msgstr "تحرير بيانات المستخدم"
-
-#: ../app/controllers/users_controller.rb:48
-#: ../app/controllers/users_controller.rb:53
-#: ../app/views/users/_form.html.erb:111
-msgid "Create User"
-msgstr "إنشاء مستخدم"
-
-#: ../app/controllers/users_controller.rb:60
-msgid "User created successfully"
-msgstr "تم إنشاء المستخدم بنجاح"
-
-#: ../app/controllers/users_controller.rb:82
-msgid "User updated successfully"
-msgstr "تم تحديث المستخدم بنجاح"
-
-#: ../app/controllers/wizard_controller.rb:60
-msgid "Cluster Setup Wizard"
-msgstr "معالج إعداد المجموعة"
-
-#: ../app/controllers/wizard_controller.rb:101
-msgid "Invalid password"
-msgstr "كلمة السر غير صالحة"
-
-#: ../app/controllers/wizard_controller.rb:115
-#: ../app/controllers/wizard_controller.rb:118
-msgid "Root Password"
-msgstr "كلمة السر الجذر"
-
-#: ../app/controllers/wizard_controller.rb:116
-msgid "The root password is required in order for this wizard template to make configuration changes."
-msgstr "يستلزم إدخال كلمة السر الجذر لقالب المعالج هذا كي يتم إجراء تغييرات التكوين."
-
-#: ../app/controllers/wizard_controller.rb:119
-msgid "The root password for this system"
-msgstr "كلمة السر الجذر لهذا النظام"
-
-#: ../app/controllers/wizard_controller.rb:128
-#: ../app/controllers/wizard_controller.rb:163
-msgid "\"Error: #{result}\""
-msgstr "\"الخطأ: #{result}\""
-
-#: ../app/controllers/wizard_controller.rb:131
-#: ../app/views/primitives/_form.html.erb:241
-msgid "Parameters"
-msgstr "المعلمات"
-
-#: ../app/controllers/wizard_controller.rb:155
-msgid "Confirm"
-msgstr "تأكيد"
-
-#: ../app/controllers/wizard_controller.rb:181
-#: ../app/views/wizard/done.html.erb:10
-msgid "Done"
-msgstr "تم"
-
-#: ../app/controllers/wizard_controller.rb:296
-msgid "Required parameter \"%{param}\" not specified"
-msgstr "المعلمة المطلوبة \"%{param}\" غير محددة"
-
-#: ../app/controllers/wizard_controller.rb:313
-msgid "Permission denied - you do not have write access to the CIB."
-msgstr "تم رفض الإذن - ليس لديك حق الوصول للكتابة إلى CIB."
-
-#: ../app/controllers/wizard_controller.rb:324
-msgid "Wizard templates and/or workflows are missing"
-msgstr "قوالب المعالج و/أو التدفقات مفقودة"
-
-#: ../app/controllers/wizard_controller.rb:332
-msgid "Workflow \"%s\" not found"
-msgstr "لم يتم العثور على التدفق \"%s\""
-
-#: ../app/controllers/wizard_controller.rb:353
-msgid "Error parsing template \"%s\""
-msgstr "حدث خطأ أثناء تحليل القالب \"%s\""
-
-#: ../app/controllers/wizard_controller.rb:356
-msgid "Error parsing workflow \"%s\""
-msgstr "حدث خطأ أثناء تحليل التدفق \"%s\""
-
-#: ../app/helpers/explorer_helper.rb:3
-msgid "Data collection in progress (%{from_time} to %{to_time})..."
-msgstr "جارٍ تجميع البيانات (%{from_time} to %{to_time})..."
-
-#: ../app/models/cib.rb:234
-msgid "CIB file \"%{path}\" not found"
-msgstr "ملف CIB \"%{path}\" غير موجود"
-
-#: ../app/models/cib.rb:236
-msgid "Unable to parse CIB file \"%{path}\""
-msgstr "تعذر تحليل ملف CIB \"%{path}\""
-
-#: ../app/models/cib.rb:238
-msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
-msgstr "يبدو أنه لم يتم تثبيت Pacemaker، (لم يتم العثور على %{cmd})"
-
-#: ../app/models/cib.rb:240
-msgid "Unable to execute %{cmd}"
-msgstr "تعذر تنفيذ %{cmd}"
-
-#: ../app/models/cib.rb:243
-msgid "%{cmd} failed (status: %{status}, output was: %{output})"
-msgstr "فشل %{cmd} (الحالة: %{status}، كانت المخرجات %{output})"
-
-#: ../app/models/cib.rb:256
-msgid "Error invoking %{cmd}"
-msgstr "حدث خطأ أثناء استدعاء %{cmd}"
-
-#: ../app/models/cib.rb:269 ../app/models/cib.rb:270 ../app/models/cib.rb:614
-#: ../app/views/main/_gettext.js.erb:195
-msgid "Unknown"
-msgstr "غير معروف"
-
-#: ../app/models/cib.rb:481
-msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
-msgstr "عملية فاشلة: العقدة=%{node}، المورد =%{resource}، معرف الاستدعاء=%{call_id}، العملية=%{op}، رمز rc={rc_code}"
-
-#: ../app/models/cib_object.rb:66
-msgid "Invalid Resource ID \"%{id}\""
-msgstr "معرف مورد غير صالح \"%{id}\""
-
-#: ../app/models/cib_object.rb:95 ../app/models/cib_object.rb:115
-#: ../app/models/crm_config.rb:49
-msgid "Unable to parse cibadmin output"
-msgstr "تعذر تحليل مخرجات cibadmin"
-
-#: ../app/models/clone.rb:45
-msgid "No clone child specified"
-msgstr "لا يوجد فرع استنساخ محدد"
-
-#: ../app/models/clone.rb:51 ../app/models/group.rb:51
-#: ../app/models/master.rb:51 ../app/models/primitive.rb:77
-#: ../app/models/template.rb:78
-msgid "Can't set meta attribute %{p}, because the value contains both single and double quotes"
-msgstr "يتعذر تعيين سمة تعريف %{p}، نظرًا لاحتواء القيمة على علامات اقتباس مفردة ومزدوجة"
-
-#: ../app/models/clone.rb:57 ../app/models/colocation.rb:63
-#: ../app/models/group.rb:57 ../app/models/location.rb:78
-#: ../app/models/master.rb:57 ../app/models/order.rb:89
-#: ../app/models/primitive.rb:84 ../app/models/role.rb:55
-#: ../app/models/template.rb:85 ../app/models/ticket.rb:73
-#: ../app/models/user.rb:59
-msgid "The ID \"%{id}\" is already in use"
-msgstr "المعرف \"%{id}\" قيد الاستخدام بالفعل"
-
-#: ../app/models/clone.rb:76
-msgid "Unable to create clone: %{msg}"
-msgstr "تعذر إنشاء الاستنساخ: %{msg}"
-
-#: ../app/models/clone.rb:86
-msgid "Clone ID \"%{id}\" does not exist"
-msgstr "معرف الاستنساخ \"%{id}\" غير موجود"
-
-#: ../app/models/colocation.rb:53 ../app/models/order.rb:79
-msgid "Invalid score"
-msgstr "نتيجة غير صحيحة"
-
-#: ../app/models/colocation.rb:57 ../app/models/order.rb:83
-msgid "Constraint must consist of at least two separate resources"
-msgstr "يجب أن يتكون القيد من موردين منفصلين على الأقل"
-
-#: ../app/models/colocation.rb:71 ../app/models/location.rb:86
-#: ../app/models/order.rb:97 ../app/models/ticket.rb:81
-msgid "Unable to create constraint: %{msg}"
-msgstr "تعذر إنشاء القيد : %{msg}"
-
-#: ../app/models/colocation.rb:80 ../app/models/location.rb:95
-#: ../app/models/order.rb:106 ../app/models/ticket.rb:90
-msgid "Constraint ID \"%{id}\" does not exist"
-msgstr "معرف القيد \"%{id}\" غير موجود"
-
-#: ../app/models/colocation.rb:90 ../app/models/location.rb:107
-#: ../app/models/order.rb:116 ../app/models/ticket.rb:100
-msgid "Unable to update constraint: %{msg}"
-msgstr "تعذر تحديث القيد: %{msg}"
-
-#: ../app/models/group.rb:45
-msgid "No group children specified"
-msgstr "لم يتم تحديد فروع مجموعة"
-
-#: ../app/models/group.rb:79
-msgid "Unable to create group: %{msg}"
-msgstr "تعذر إنشاء المجموعة: %{msg}"
-
-#: ../app/models/group.rb:89
-msgid "Group ID \"%{id}\" does not exist"
-msgstr "معرف المجموعة \"%{id}\" غير موجود"
-
-#: ../app/models/location.rb:43
-msgid "Constraint is too complex - it contains nested rules"
-msgstr "القيد معقد للغاية - يحتوي على قواعد مضمنة"
-
-#: ../app/models/location.rb:45
-msgid "No rules specified"
-msgstr "لا توجد قواعد محددة"
-
-#: ../app/models/location.rb:49
-msgid "No resource specified"
-msgstr "لم يتم تحديد مورد"
-
-#: ../app/models/location.rb:58
-msgid "Invalid score \"%{score}\""
-msgstr "نتيجة غير صحيحة \"%{score}\""
-
-#: ../app/models/location.rb:66
-msgid "No expressions specified"
-msgstr "لم يتم تحديد أي تعبير"
-
-#: ../app/models/location.rb:70
-msgid "Attribute contains both single and double quotes"
-msgstr "تحتوي السمة على علامات اقتباس مفردة ومزدوجة"
-
-#: ../app/models/location.rb:71
-msgid "Value contains both single and double quotes"
-msgstr "تحتوي القيمة على علامات اقتباس مفردة ومزدوجة"
-
-#: ../app/models/master.rb:45
-msgid "No Master/Slave child specified"
-msgstr "لم يتم تحديد فرع الرئيس/التابع"
-
-#: ../app/models/master.rb:76
-msgid "Unable to create master/slave: %{msg}"
-msgstr "تعذر إنشاء الرئيس/التابع: %{msg}"
-
-#: ../app/models/master.rb:86
-msgid "Master/Slave ID \"%{id}\" does not exist"
-msgstr "معرف الرئيس/التابع \"%{id}\" غير موجود"
-
-#: ../app/models/primitive.rb:61 ../app/models/template.rb:62
-msgid "Can't set parameter %{p}, because the value contains both single and double quotes"
-msgstr "يتعذر تعيين المعلمة %{p}، نظرًا لاحتواء القيمة على علامات اقتباس مفردة ومزدوجة"
-
-#: ../app/models/primitive.rb:69 ../app/models/template.rb:70
-msgid "Can't set op %{o} attribute {%a}, because the value contains both single and double quotes"
-msgstr "يتعذر تعيين op %{o} سمة {%a}، نظرًا لاحتواء القيمة على علامات اقتباس مفردة ومزدوجة"
-
-#: ../app/models/primitive.rb:129 ../app/models/template.rb:129
-msgid "Unable to create resource: %{msg}"
-msgstr "تعذر إنشاء المورد: %{msg}"
-
-#: ../app/models/primitive.rb:139 ../app/models/template.rb:139
-msgid "Resource ID \"%{id}\" does not exist"
-msgstr "معرف المورد \"%{id}\" غير موجود"
-
-#: ../app/models/role.rb:42
-msgid "Role must have rules"
-msgstr "يجب أن يحتوي الدور على قواعد"
-
-#: ../app/models/role.rb:61
-msgid "Unable to create role: %{msg}"
-msgstr "تعذر إنشاء الدور: %{msg}"
-
-#: ../app/models/role.rb:69
-msgid "Role ID \"%{id}\" does not exist"
-msgstr "معرف الدور \"%{id}\" غير موجود"
-
-#: ../app/models/role.rb:74
-msgid "Unable to update role: %{msg}"
-msgstr "تعذر تحديث الدور: %{msg}"
-
-#: ../app/models/ticket.rb:58
-msgid "Invalid Ticket ID"
-msgstr "معرِّف البطاقة غير صحيح"
-
-#: ../app/models/ticket.rb:61
-msgid "No resources specified"
-msgstr "لم يتم تحديد أي مورد"
-
-#: ../app/models/user.rb:53
-msgid "User must have either rules or roles"
-msgstr "يجب أن يكون لدى المستخدم إما قواعد أو أدوار"
-
-#: ../app/models/user.rb:54
-msgid "User can't have both rules and roles"
-msgstr "لا يمكن أن يكون لدى المستخدم كل من القواعد والأدوار"
-
-#: ../app/models/user.rb:65
-msgid "Unable to create user: %{msg}"
-msgstr "تعذر إنشاء المستخدم: %{msg}"
-
-#: ../app/models/user.rb:73
-msgid "User ID \"%{id}\" does not exist"
-msgstr "معرف المستخدم \"%{id}\" غير موجود"
-
-#: ../app/models/user.rb:78
-msgid "Unable to update user: %{msg}"
-msgstr "تعذر تحديث المستخدم: %{msg}"
-
-#: ../app/views/acls/index.html.erb:45
-#: ../app/views/crm_config/show.html.erb:11
-#: ../app/views/primitives/_form.html.erb:268
-msgid "Edit"
-msgstr "تحرير"
-
-#: ../app/views/acls/index.html.erb:56
-msgid "Delete"
-msgstr "حذف"
-
-#: ../app/views/acls/index.html.erb:60
-#: ../app/views/constraints/index.html.erb:61
-#: ../app/views/resources/index.html.erb:61
-msgid "Are you sure you wish to delete %s?"
-msgstr "هل تريد بالتأكيد حذف %s؟"
-
-#: ../app/views/acls/index.html.erb:101
-msgid "New Role"
-msgstr "دور جديد"
-
-#: ../app/views/acls/index.html.erb:102
-#: ../app/views/locations/_form.html.erb:44
-msgid "Role"
-msgstr "الدور"
-
-#: ../app/views/acls/index.html.erb:107
-msgid "New User"
-msgstr "مستخدم جديد"
-
-#: ../app/views/acls/index.html.erb:108
-msgid "User"
-msgstr "المستخدم"
-
-#: ../app/views/acls/index.html.erb:129
-msgid "To enable ACLs, set 'enable-acl' in the CRM Configuration"
-msgstr "لتمكين قوائم التحكم في الوصول (ACL)، عيّن 'enable-acl' في تكوين CRM"
-
-#: ../app/views/acls/index.html.erb:134
-msgid "(No roles defined)"
-msgstr "(لم يتم تحديد أي أدوار)"
-
-#: ../app/views/acls/index.html.erb:146
-msgid "(No users defined)"
-msgstr "(لم يتم تحديد أي مستخدمين)"
-
-#: ../app/views/clones/_form.html.erb:40 ../app/views/groups/_form.html.erb:75
-#: ../app/views/masters/_form.html.erb:40
-#: ../app/views/primitives/_form.html.erb:284
-msgid "Meta Attributes"
-msgstr "سمات تعريف"
-
-#: ../app/views/clones/_form.html.erb:46
-#: ../app/views/colocations/_form.html.erb:60
-#: ../app/views/crm_config/edit.html.erb:24
-#: ../app/views/crm_config/edit.html.erb:46
-#: ../app/views/crm_config/edit.html.erb:68
-#: ../app/views/groups/_form.html.erb:81
-#: ../app/views/locations/_form.html.erb:47
-#: ../app/views/masters/_form.html.erb:46
-#: ../app/views/orders/_form.html.erb:60
-#: ../app/views/primitives/_form.html.erb:247
-#: ../app/views/primitives/_form.html.erb:267
-#: ../app/views/primitives/_form.html.erb:290
-#: ../app/views/roles/_form.html.erb:38 ../app/views/tickets/_form.html.erb:48
-#: ../app/views/users/_form.html.erb:48
-msgid "Add"
-msgstr "إضافة"
-
-#: ../app/views/clones/_form.html.erb:47
-#: ../app/views/colocations/_form.html.erb:61
-#: ../app/views/crm_config/edit.html.erb:25
-#: ../app/views/crm_config/edit.html.erb:47
-#: ../app/views/crm_config/edit.html.erb:69
-#: ../app/views/dashboard/index.html.erb:45
-#: ../app/views/groups/_form.html.erb:82
-#: ../app/views/locations/_form.html.erb:48
-#: ../app/views/masters/_form.html.erb:47
-#: ../app/views/orders/_form.html.erb:61
-#: ../app/views/primitives/_form.html.erb:248
-#: ../app/views/primitives/_form.html.erb:269
-#: ../app/views/primitives/_form.html.erb:291
-#: ../app/views/roles/_form.html.erb:39 ../app/views/tickets/_form.html.erb:49
-#: ../app/views/users/_form.html.erb:49
-msgid "Remove"
-msgstr "إزالة"
-
-#: ../app/views/clones/_form.html.erb:48
-#: ../app/views/crm_config/edit.html.erb:26
-#: ../app/views/crm_config/edit.html.erb:48
-#: ../app/views/crm_config/edit.html.erb:70
-#: ../app/views/groups/_form.html.erb:83
-#: ../app/views/masters/_form.html.erb:48
-#: ../app/views/primitives/_form.html.erb:249
-#: ../app/views/primitives/_form.html.erb:270
-#: ../app/views/primitives/_form.html.erb:292
-msgid "You must enter a value"
-msgstr "يجب عليك إدخال قيمة"
-
-#: ../app/views/clones/_form.html.erb:70
-msgid "Clone ID"
-msgstr "معرف الاستنساخ"
-
-#: ../app/views/clones/_form.html.erb:71
-#: ../app/views/masters/_form.html.erb:71
-msgid "Child Resource"
-msgstr "مورد فرعي"
-
-#: ../app/views/clones/_form.html.erb:88
-#: ../app/views/colocations/_form.html.erb:110
-#: ../app/views/crm_config/edit.html.erb:114
-#: ../app/views/groups/_form.html.erb:143
-#: ../app/views/locations/_form.html.erb:94
-#: ../app/views/masters/_form.html.erb:88
-#: ../app/views/orders/_form.html.erb:116
-#: ../app/views/primitives/_form.html.erb:394
-#: ../app/views/roles/_form.html.erb:83 ../app/views/tickets/_form.html.erb:98
-#: ../app/views/users/_form.html.erb:112
-msgid "Revert Changes"
-msgstr "إرجاع التغييرات"
-
-#: ../app/views/clones/_form.html.erb:89
-#: ../app/views/colocations/_form.html.erb:111
-#: ../app/views/crm_config/show.html.erb:11
-#: ../app/views/crm_config/update.html.erb:4
-#: ../app/views/groups/_form.html.erb:144
-#: ../app/views/locations/_form.html.erb:95
-#: ../app/views/masters/_form.html.erb:89
-#: ../app/views/orders/_form.html.erb:117
-#: ../app/views/primitives/_form.html.erb:395
-#: ../app/views/roles/_form.html.erb:84 ../app/views/tickets/_form.html.erb:99
-#: ../app/views/users/_form.html.erb:113 ../app/views/wizard/broken.html.erb:4
-#: ../app/views/wizard/start.html.erb:3
-msgid "Back"
-msgstr "الخلف"
-
-#: ../app/views/clones/edit.html.erb:4
-#: ../app/views/colocations/edit.html.erb:4
-#: ../app/views/crm_config/edit.html.erb:113
-#: ../app/views/groups/edit.html.erb:4 ../app/views/locations/edit.html.erb:4
-#: ../app/views/masters/edit.html.erb:4 ../app/views/orders/edit.html.erb:4
-#: ../app/views/primitives/edit.html.erb:4 ../app/views/roles/edit.html.erb:4
-#: ../app/views/tickets/edit.html.erb:4 ../app/views/users/edit.html.erb:4
-msgid "Apply Changes"
-msgstr "تطبيق التغييرات"
-
-#: ../app/views/colocations/_form.html.erb:62
-#: ../app/views/orders/_form.html.erb:62
-msgid "Link set"
-msgstr "مجموعة الارتباطات"
-
-#: ../app/views/colocations/_form.html.erb:63
-#: ../app/views/orders/_form.html.erb:63
-msgid "Break set"
-msgstr "مجموعة الفواصل"
-
-#: ../app/views/colocations/_form.html.erb:64
-#: ../app/views/orders/_form.html.erb:64
-msgid "Swap resources"
-msgstr "تبديل الموارد"
-
-#: ../app/views/colocations/_form.html.erb:65
-#: ../app/views/orders/_form.html.erb:65
-#: ../app/views/tickets/_form.html.erb:50
-msgid "Add resource to constraint"
-msgstr "إضافة مورد إلى القيد"
-
-#: ../app/views/colocations/_form.html.erb:89
-#: ../app/views/locations/_form.html.erb:75
-#: ../app/views/orders/_form.html.erb:89
-#: ../app/views/tickets/_form.html.erb:77
-msgid "Constraint ID"
-msgstr "معرف القيد"
-
-#: ../app/views/colocations/_form.html.erb:90
-#: ../app/views/locations/_form.html.erb:42
-#: ../app/views/orders/_form.html.erb:90
-msgid "Score"
-msgstr "النتيجة"
-
-#: ../app/views/colocations/_form.html.erb:109
-#: ../app/views/locations/_form.html.erb:93
-#: ../app/views/orders/_form.html.erb:115
-#: ../app/views/tickets/_form.html.erb:97
-msgid "Create Constraint"
-msgstr "إنشاء قيد"
-
-#: ../app/views/constraints/index.html.erb:46
-msgid "Edit Constraint"
-msgstr "تحرير قيد"
-
-#: ../app/views/constraints/index.html.erb:57
-msgid "Delete Constraint"
-msgstr "حذف قيد"
-
-#: ../app/views/constraints/index.html.erb:102
-#: ../app/views/constraints/index.html.erb:108
-#: ../app/views/constraints/index.html.erb:114
-#: ../app/views/constraints/index.html.erb:121
-msgid "New Constraint"
-msgstr "قيد جديد"
-
-#: ../app/views/constraints/index.html.erb:103
-msgid "Location"
-msgstr "الموقع"
-
-#: ../app/views/constraints/index.html.erb:109
-msgid "Colocation"
-msgstr "الموقع المشترك"
-
-#: ../app/views/constraints/index.html.erb:115
-msgid "Order"
-msgstr "الترتيب"
-
-#: ../app/views/constraints/index.html.erb:122
-msgid "Ticket"
-msgstr "البطاقة"
-
-#: ../app/views/constraints/index.html.erb:143
-msgid "(No location constraints defined)"
-msgstr "(لم يتم تحديد أي قيود للمواقع)"
-
-#: ../app/views/constraints/index.html.erb:155
-msgid "[Constraint is too complex to display]"
-msgstr "[القيد معقد للغاية لدرجة تصعب عرضه]"
-
-#: ../app/views/constraints/index.html.erb:173
-msgid "(No colocation constraints defined)"
-msgstr "(لم يتم تحديد أية قيود للموقع المشترك)"
-
-#: ../app/views/constraints/index.html.erb:187
-msgid "(No order constraints defined)"
-msgstr "(لم يتم تحديد أي قيود للترتيب)"
-
-#: ../app/views/constraints/index.html.erb:202
-msgid "(No ticket constraints defined)"
-msgstr "(لم يتم تحديد أي قيود للبطاقة)"
-
-#: ../app/views/crm_config/edit.html.erb:15
-#: ../app/views/main/_gettext.js.erb:102
-msgid "CRM Configuration"
-msgstr "تكوين CRM"
-
-#: ../app/views/crm_config/edit.html.erb:37
-#: ../app/views/main/_gettext.js.erb:105
-msgid "Resource Defaults"
-msgstr "الإعدادات الافتراضية للمورد"
-
-#: ../app/views/crm_config/edit.html.erb:59
-#: ../app/views/main/_gettext.js.erb:108
-msgid "Operation Defaults"
-msgstr "الإعدادات الافتراضية للعملية"
-
-#: ../app/views/crm_config/show.html.erb:4
-msgid "No cluster properties set in %{group}"
-msgstr "لم يتم تعيين أية خصائص للمجموعة في %{group}"
-
-#: ../app/views/dashboard/index.html.erb:56
-#: ../app/views/sessions/new.html.erb:9
-msgid "Username:"
-msgstr "اسم المستخدم:"
-
-#: ../app/views/dashboard/index.html.erb:60
-#: ../app/views/sessions/new.html.erb:13
-msgid "Password:"
-msgstr "كلمة السر:"
-
-#: ../app/views/dashboard/index.html.erb:71
-msgid "Cluster has errors - click for details"
-msgstr "المجموعة المتماثلة بها أخطاء - انقر للحصول على مزيد من التفاصيل"
-
-#: ../app/views/dashboard/index.html.erb:156
-#: ../app/views/dashboard/index.html.erb:484
-msgid "Timeout: Please try again"
-msgstr "انتهت المهلة: الرجاء المحاولة مرة أخرى"
-
-#: ../app/views/dashboard/index.html.erb:240
-msgid "Permission denied. Please log in to %{node}"
-msgstr "الإذن مرفوض. الرجاء تسجيل الدخول إلى %{node}"
-
-#: ../app/views/dashboard/index.html.erb:329
-msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
-msgstr "لا يمكن الاتصال بـ Hawk في %{node}. تجري إعادة المحاولة كل 5 ثوانٍ."
-
-#: ../app/views/dashboard/index.html.erb:407
-msgid "Cluster Name:"
-msgstr "اسم المجموعة المتماثلة:"
-
-#: ../app/views/dashboard/index.html.erb:408
-msgid "Host Name:"
-msgstr ":اسم المضيف"
-
-#: ../app/views/dashboard/index.html.erb:409
-msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
-msgstr "(قم بتحديد أي اسم مضيف في المجموعة المتماثلة. سيتم العثور على نقاط التوصيل الأخرى تلقائيًا)"
-
-#: ../app/views/dashboard/index.html.erb:414
-msgid "Add Cluster"
-msgstr "إضافة مجموعة متماثلة"
-
-#: ../app/views/dashboard/index.html.erb:416
-#: ../app/views/main/_gettext.js.erb:4
-#: ../app/views/primitives/_form.html.erb:272
-msgid "OK"
-msgstr "موافق"
-
-#: ../app/views/dashboard/index.html.erb:431
-msgid "A cluster with that name already exists"
-msgstr "المجموعة المتماثلة التي تحمل هذا الاسم موجودة بالفعل"
-
-#: ../app/views/dashboard/index.html.erb:437
-msgid "The host %{h} is already present in cluster %{c}"
-msgstr "المضيف %{h} موجود بالفعل في المجموعة المتماثلة %{c}"
-
-#: ../app/views/dashboard/index.html.erb:466
-#: ../app/views/dashboard/index.html.erb:478
-msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
-msgstr "تعذر الاتصال بـ %{host}. حاول فتح %{url} في مستعرض الويب للتأكد من إمكانية الوصول إلى Hawk."
-
-#: ../app/views/dashboard/index.html.erb:491
-#: ../app/views/main/_gettext.js.erb:7
-#: ../app/views/primitives/_form.html.erb:273
-#: ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
-msgid "Cancel"
-msgstr "إلغاء"
-
-#: ../app/views/explorer/_pe_list.html.erb:6
-msgid "No transitions found for the specified time period."
-msgstr "لم يتم العثور على عمليات انتقال للفترة الزمنية المحددة."
-
-#: ../app/views/explorer/_pe_list.html.erb:11
-msgid "Time"
-msgstr "الوقت"
-
-#: ../app/views/explorer/_pe_list.html.erb:12
-msgid "PE Input"
-msgstr "إدخال PE"
-
-#: ../app/views/explorer/_pe_list.html.erb:13
-#: ../app/views/locations/_form.html.erb:43
-msgid "Node"
-msgstr "عقدة"
-
-#: ../app/views/explorer/_pe_list.html.erb:30
-#: ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:287
-msgid "Details"
-msgstr "التفاصيل"
-
-#: ../app/views/explorer/_pe_list.html.erb:34
-msgid "(full log)"
-msgstr "(سجل كامل)"
-
-#: ../app/views/explorer/_pe_list.html.erb:38
-#: ../app/views/main/_gettext.js.erb:296
-msgid "Graph"
-msgstr "رسم بياني"
-
-#: ../app/views/explorer/_pe_list.html.erb:47
-msgid "Diff"
-msgstr "الفرق"
-
-#: ../app/views/explorer/index.html.erb:39
-msgid "Delete this history archive?"
-msgstr "هل تريد حذف أرشيف المحفوظات هذا؟"
-
-#: ../app/views/explorer/index.html.erb:150
-#: ../app/views/explorer/index.html.erb:169
-#: ../app/views/hb_reports/new.html.erb:58
-msgid "Start Time:"
-msgstr "وقت البدء:"
-
-#: ../app/views/explorer/index.html.erb:152
-#: ../app/views/explorer/index.html.erb:171
-#: ../app/views/hb_reports/new.html.erb:63
-msgid "End Time:"
-msgstr "وقت الانتهاء:"
-
-#: ../app/views/explorer/index.html.erb:165
-msgid "Exploring %{path}"
-msgstr "استكشاف %{path}"
-
-#: ../app/views/explorer/index.html.erb:173
-msgid "Display"
-msgstr "عرض"
-
-#: ../app/views/explorer/index.html.erb:186
-msgid "Upload hb_report tarball"
-msgstr "تحميل أرشيف hb_report"
-
-#: ../app/views/explorer/index.html.erb:188
-msgid "Explore"
-msgstr "استكشاف"
-
-#: ../app/views/explorer/permission_denied.html.erb:2
-#: ../app/views/hb_reports/permission_denied.html.erb:2
-#: ../app/views/nodes/permission_denied.html.erb:2
-#: ../app/views/resources/permission_denied.html.erb:2
-msgid "Error: Permission denied for user '%s'."
-msgstr "خطأ: تم رفض الإذن للمستخدم '%s'."
-
-#: ../app/views/groups/_form.html.erb:105
-msgid "Group ID"
-msgstr "معرف المجموعة"
-
-#: ../app/views/groups/_form.html.erb:115
-msgid "Group Children"
-msgstr "فروع المجموعة"
-
-#: ../app/views/groups/_form.html.erb:117
-msgid "Available Primitives"
-msgstr "المجموعات الأساسية المتوفرة"
-
-#: ../app/views/hb_reports/create.js.erb:3
-msgid "Start Time not specified"
-msgstr "وقت البدء غير محدد"
-
-#: ../app/views/hb_reports/new.html.erb:60
-msgid "Generate"
-msgstr "إنشاء"
-
-#: ../app/views/hb_reports/new.html.erb:74
-msgid "hb_report generation in progress..."
-msgstr "جارٍ إنشاء hb_report..."
-
-#: ../app/views/hb_reports/new.html.erb:80
-msgid "Download hb_report"
-msgstr "تحميل hb_report"
-
-#: ../app/views/layouts/main.html.erb:35
-msgid "Simulator"
-msgstr "محاكي"
-
-#: ../app/views/layouts/main.html.erb:66 ../app/views/layouts/main.html.erb:79
-msgid "Cluster Diagram"
-msgstr "مخطط المجموعة المتماثلة"
-
-#: ../app/views/layouts/main.html.erb:87
-msgid "Generate hb_report..."
-msgstr "إنشاء hb_report..."
-
-#: ../app/views/layouts/main.html.erb:98
-msgid "Generate hb_report"
-msgstr "إنشاء hb_report"
-
-#: ../app/views/layouts/main.html.erb:111
-msgid "Preferences..."
-msgstr "التفضيلات..."
-
-#: ../app/views/layouts/main.html.erb:134
-msgid "Language"
-msgstr "اللغة"
-
-#: ../app/views/layouts/main.html.erb:160
-msgid "Preferences"
-msgstr "تفضيلات"
-
-#: ../app/views/layouts/main.html.erb:178
-msgid "Tools"
-msgstr "الأدوات"
-
-#: ../app/views/layouts/main.html.erb:182
-#: ../app/views/layouts/main.html.erb:190
-msgid "Status"
-msgstr "الحالة"
-
-#: ../app/views/layouts/main.html.erb:184
-msgid "User: %{user}"
-msgstr "المستخدم: %{user}"
-
-#: ../app/views/layouts/main.html.erb:185
-msgid "Log Out"
-msgstr "خروج"
-
-#: ../app/views/layouts/main.html.erb:190
 msgid "Dashboard"
 msgstr "لوحة المعلومات"
 
-#: ../app/views/layouts/main.html.erb:211
-msgid "Setup Wizard"
-msgstr "معالج الإعداد"
-
-#: ../app/views/layouts/main.html.erb:214
-msgid "Cluster Properties"
-msgstr "خصائص المجموعة"
-
-#: ../app/views/layouts/main.html.erb:250
-msgid "UI Host: %s"
-msgstr "مضيف واجهة الاستخدام: %s"
-
-#: ../app/views/layouts/main.html.erb:251
-msgid "Copyright &copy; 2009-2014 SUSE, LLC"
-msgstr "حقوق ال&نسخ لعام 2009-2014 محفوظة لشركة SUSE, LLC"
-
-#: ../app/views/locations/_form.html.erb:45
-msgid "Boolean Op"
-msgstr "Op منطقي"
-
-#: ../app/views/locations/_form.html.erb:46
-msgid "Expression"
-msgstr "التعبير"
-
-#: ../app/views/locations/_form.html.erb:49
-msgid "Add Rule"
-msgstr "إضافة قاعدة"
-
-#: ../app/views/locations/_form.html.erb:50
-msgid "Remove Rule"
-msgstr "إزالة قاعدة"
-
-#: ../app/views/locations/_form.html.erb:51
-msgid "Show Rule Editor"
-msgstr "إظهار محرر القواعد"
-
-#: ../app/views/locations/_form.html.erb:76
-msgid "Resource"
-msgstr "مورد"
-
-#: ../app/views/main/_gettext.js.erb:10
-#: ../app/views/shared/_confirm_revert.html.erb:8
-msgid "Yes"
-msgstr "نعم"
-
-#: ../app/views/main/_gettext.js.erb:13
-#: ../app/views/shared/_confirm_revert.html.erb:9
-msgid "No"
-msgstr "لا"
-
-#: ../app/views/main/_gettext.js.erb:16
-msgid "Close"
-msgstr "إغلاق"
-
-#: ../app/views/main/_gettext.js.erb:19
-msgid "Reset"
-msgstr "إعادة تعيين"
-
-#: ../app/views/main/_gettext.js.erb:23
-msgid "This will bring node %s online if it is currently on standby.  Do you want to continue?"
-msgstr "سيعمل هذا الإجراء على اتصال نقطة التوصيل %s إذا كانت حاليًا في وضع الاستعداد. هل تريد المتابعة؟"
-
-#: ../app/views/main/_gettext.js.erb:26
-msgid "This will put node %s on standby.  All resources will be stopped and/or moved to another node.  Do you want to continue?"
-msgstr "سيعمل هذا الإجراء في وضع  نقطة التوصيل %s في وضع الاستعداد.  سيتم إيقاف كافة الموارد و/أو نقلها إلى نقطة وصول أخرى.  هل ترغب في المتابعة؟"
-
-#: ../app/views/main/_gettext.js.erb:29
-msgid "This will put node %s in maintenance mode.  All resources on this node will become unmanaged.  Do you want to continue?"
-msgstr "سيعمل هذا الإجراء على جعل نقطة التوصيل %s في وضع الصيانة. وستصبح كل الموارد في نقطة التوصيل هذه غير مُدارة. هل تريد المتابعة؟"
-
-#: ../app/views/main/_gettext.js.erb:32
-msgid "This will bring node %s out of maintenance mode.  Do you want to continue?"
-msgstr "سيعمل هذا الإجراء على استبعاد نقطة التوصيل %s عن وضع  الصيانة. هل تريد المتابعة؟"
-
-#: ../app/views/main/_gettext.js.erb:35
-msgid "This will attempt to immediately fence node %s.  Do you want to continue?"
-msgstr "سيقوم بوضع حد زمني لنقطة التوصيل %s على الفور.  هل ترغب في المتابعة؟"
-
-#: ../app/views/main/_gettext.js.erb:39
-msgid "This will start the resource %s.  Do you want to continue?"
-msgstr "سيقوم ببدء المورد %s.  هل ترغب في المتابعة؟"
-
-#: ../app/views/main/_gettext.js.erb:42
-msgid "This will stop the resource %s.  Do you want to continue?"
-msgstr "سيقوم بإيقاف المورد %s.  هل ترغب في المتابعة؟"
-
-#: ../app/views/main/_gettext.js.erb:45
-msgid "Move resource %s"
-msgstr "نقل المورد %s"
-
-#: ../app/views/main/_gettext.js.erb:48
-msgid "To node %s"
-msgstr "إلى نقطة التوصيل %s"
-
-#: ../app/views/main/_gettext.js.erb:51
-msgid "Away from current node"
-msgstr "بعيدًا عن نقطة التوصيل الحالية"
-
-#: ../app/views/main/_gettext.js.erb:54
-msgid "This will clear any relocation constraints set on the resource %s.  Do you want to continue?"
-msgstr "سيقوم بمسح أية قيود على إعادة النقل تم تعيينها للمورد %s.  هل ترغب في المتابعة؟"
-
-#: ../app/views/main/_gettext.js.erb:57
-msgid "This will promote the resource %s.  Do you want to continue?"
-msgstr "سيقوم بترقية المورد %s.  هل ترغب في المتابعة؟"
-
-#: ../app/views/main/_gettext.js.erb:60
-msgid "This will demote the resource %s.  Do you want to continue?"
-msgstr "سيقوم بتخفيض رتبة المورد %s.  هل ترغب في المتابعة؟"
-
-#: ../app/views/main/_gettext.js.erb:63
-msgid "This will clean up the resource %s.  Do you want to continue?"
-msgstr "سيقوم بتنظيف المورد %s.  هل ترغب في المتابعة؟"
-
-#: ../app/views/main/_gettext.js.erb:67
-msgid "Error"
-msgstr "خطأ"
-
-#: ../app/views/main/_gettext.js.erb:70
-msgid "Unexpected server error: %s"
-msgstr "خطأ غير متوقع بالخادم: %s"
-
-#: ../app/views/main/_gettext.js.erb:73
-msgid "Connection to server failed (server down or network error - will retry every 15 seconds)."
-msgstr "فشل الاتصال بالخادم (إما أن ‏‏الخادم لا يستجيب وإما أن هناك خطأ في الشبكة - ستُعاد المحاولة كل 15 ثانية)."
-
-#: ../app/views/main/_gettext.js.erb:76
-msgid "Connection to server timed out - will retry every 15 seconds."
-msgstr "انتهت مهلة الاتصال بالخادم - ستُعاد المحاولة كل 15 ثانية."
-
-#: ../app/views/main/_gettext.js.erb:79
-msgid "Connection to server aborted - will retry every 15 seconds."
-msgstr "تم إيقاف الاتصال بالخادم، ستُعاد المحاولة كل 15 ثانية."
-
-#: ../app/views/main/_gettext.js.erb:82
-msgid "Permission denied"
-msgstr "الإذن مرفوض"
-
-#: ../app/views/main/_gettext.js.erb:85
-msgid "%{op} failed on %{node} (rc=%{rc})"
-msgstr "%{op} فشل على %{node} (rc=%{rc})"
-
-#: ../app/views/main/_gettext.js.erb:89
-msgid "DC: %s"
-msgstr "DC: %s"
-
-#: ../app/views/main/_gettext.js.erb:92
-msgid "Version: %s"
-msgstr "الإصدار: %s"
-
-#: ../app/views/main/_gettext.js.erb:95
-msgid "Stack: %s"
-msgstr "المكدس: %s"
-
-#: ../app/views/main/_gettext.js.erb:111
-msgid "Inactive Resources"
-msgstr "موارد غير نشطة"
-
-#: ../app/views/main/_gettext.js.erb:114
-msgid "Summary"
-msgstr "الملخص"
-
-#: ../app/views/main/_gettext.js.erb:120
-msgid "STONITH Enabled"
-msgstr "تم تمكين STONITH"
-
-#: ../app/views/main/_gettext.js.erb:123
-msgid "No Quorum Policy"
-msgstr "لا توجد سياسة حصص"
-
-#: ../app/views/main/_gettext.js.erb:126
-msgid "Symmetric Cluster"
-msgstr "مجموعة متماثلة"
-
-#: ../app/views/main/_gettext.js.erb:129
-msgid "Resource Stickiness"
-msgstr "ثبات المورد"
-
-#: ../app/views/main/_gettext.js.erb:132
-msgid "Maintenance Mode"
-msgstr "وضع الصيانة"
-
-#: ../app/views/main/_gettext.js.erb:135
-msgid "Unmanaged"
-msgstr "غير مُدار"
-
-#: ../app/views/main/_gettext.js.erb:138
-msgid "Tickets"
-msgstr "البطاقات"
-
-#: ../app/views/main/_gettext.js.erb:141
-msgid "This will request the ticket %s be granted to the present site.  Do you want to continue?"
-msgstr "سيتطلب ذلك منح التذكرة %s في الموقع الحالي. هل تريد المتابعة؟"
-
-#: ../app/views/main/_gettext.js.erb:144
-msgid "This will request the ticket %s be revoked.  Do you want to continue?"
-msgstr "سيتطلب ذلك إبطال التذكرة %s. هل تريد المتابعة؟"
-
-#: ../app/views/main/_gettext.js.erb:148
-msgid "Granted [standby]"
-msgstr "تم المنح [وضع الاستعداد]"
-
-#: ../app/views/main/_gettext.js.erb:149
-msgid "Granted"
-msgstr "تم المنح"
-
-#: ../app/views/main/_gettext.js.erb:153
-msgid "Revoked [standby]"
-msgstr "تم الإبطال [وضع الاستعداد]"
-
-#: ../app/views/main/_gettext.js.erb:154
-msgid "Revoked"
-msgstr "مبطلة"
-
-#: ../app/views/main/_gettext.js.erb:157
-msgid "Leader: %s"
-msgstr "القائد: %s"
-
-#: ../app/views/main/_gettext.js.erb:160
-msgid "Last granted: %s"
-msgstr "آخر عملية منح: %s"
-
-#: ../app/views/main/_gettext.js.erb:163
-msgid "Expires: %s"
-msgstr "انتهاء مدة الصلاحية: %s"
-
-#: ../app/views/main/_gettext.js.erb:167
-msgid "Summary View"
-msgstr "طريقة عرض الملخص"
-
-#: ../app/views/main/_gettext.js.erb:170
-msgid "Tree View"
-msgstr "طريقة عرض الشجرة"
-
-#: ../app/views/main/_gettext.js.erb:173
-msgid "Table View"
-msgstr "طريقة عرض الجدول"
-
-#: ../app/views/main/_gettext.js.erb:177
-msgid "%{node}: %{state}"
-msgstr "%{node}: %{state}"
-
-#: ../app/views/main/_gettext.js.erb:180 ../app/views/main/_menus.html.erb:8
-msgid "Online"
-msgstr "متصل"
-
-#: ../app/views/main/_gettext.js.erb:183
-msgid "Offline"
-msgstr "غير متصل"
-
-#: ../app/views/main/_gettext.js.erb:186 ../app/views/main/_gettext.js.erb:214
-msgid "Pending"
-msgstr "معلق"
-
-#: ../app/views/main/_gettext.js.erb:189 ../app/views/main/_gettext.js.erb:341
-#: ../app/views/main/_menus.html.erb:15
-msgid "Standby"
-msgstr "استعداد"
-
-#: ../app/views/main/_gettext.js.erb:192
-msgid "Unclean"
-msgstr "غير صحيح"
-
-#: ../app/views/main/_gettext.js.erb:199
-msgid "Master"
-msgstr "رئيسية"
-
-#: ../app/views/main/_gettext.js.erb:200
-msgid "%{id}: Master: %{nodelist}"
-msgstr "%{id}: الرئيسي: %{nodelist}"
-
-#: ../app/views/main/_gettext.js.erb:201
-msgid "%{id}: Master"
-msgstr "%{id}: رئيس"
-
-#: ../app/views/main/_gettext.js.erb:204
-msgid "Slave"
-msgstr "تابع"
-
-#: ../app/views/main/_gettext.js.erb:205
-msgid "%{id}: Slave: %{nodelist}"
-msgstr "%{id}: التابع: %{nodelist}"
-
-#: ../app/views/main/_gettext.js.erb:206
-msgid "%{id}: Slave"
-msgstr "%{id}: تابع"
-
-#: ../app/views/main/_gettext.js.erb:209
-msgid "Started"
-msgstr "تم البدء"
-
-#: ../app/views/main/_gettext.js.erb:210
-msgid "%{id}: Started: %{nodelist}"
-msgstr "%{id}: بدأ: %{nodelist}"
-
-#: ../app/views/main/_gettext.js.erb:211
-msgid "%{id}: Started"
-msgstr "%{id}: تم البدء"
-
-#: ../app/views/main/_gettext.js.erb:215
-msgid "%{id}: Pending: %{nodelist}"
-msgstr "%{id}: معلق: %{nodelist}"
-
-#: ../app/views/main/_gettext.js.erb:216
-msgid "%{id}: Pending"
-msgstr "%{id}: معلق"
-
-#: ../app/views/main/_gettext.js.erb:220
-msgid "%{id}: Starting: %{node}"
-msgstr "%{id}: بدء التشغيل: %{node}"
-
-#: ../app/views/main/_gettext.js.erb:221
-msgid "%{id}: Starting"
-msgstr "%{id}: بدء التشغيل"
-
-#: ../app/views/main/_gettext.js.erb:224
-msgid "%{id}: Stopping: %{node}"
-msgstr "%{id}: توقف: %{node}"
-
-#: ../app/views/main/_gettext.js.erb:225
-msgid "%{id}: Stopping"
-msgstr "%{id}: توقف"
-
-#: ../app/views/main/_gettext.js.erb:228
-msgid "%{id}: Promoting: %{node}"
-msgstr "%{id}: ترقية: %{node}"
-
-#: ../app/views/main/_gettext.js.erb:229
-msgid "%{id}: Promoting"
-msgstr "%{id}: ترقية"
-
-#: ../app/views/main/_gettext.js.erb:232
-msgid "%{id}: Demoting: %{node}"
-msgstr "%{id}: تخفيض: %{node}"
-
-#: ../app/views/main/_gettext.js.erb:233
-msgid "%{id}: Demoting"
-msgstr "%{id}: تخفيض"
-
-#: ../app/views/main/_gettext.js.erb:236
-msgid "%{id}: Moving: %{node}"
-msgstr "%{id}: نقل: %{node}"
-
-#: ../app/views/main/_gettext.js.erb:237
-msgid "%{id}: Moving"
-msgstr "%{id}: نقل"
-
-#: ../app/views/main/_gettext.js.erb:240
-msgid "Stopped"
-msgstr "تم الإيقاف"
-
-#: ../app/views/main/_gettext.js.erb:241
-msgid "%{id}: Stopped"
-msgstr "%{id}: توقف"
-
-#: ../app/views/main/_gettext.js.erb:244
-msgid "Group: %{id}"
-msgstr "المجموعة: %{id}"
-
-#: ../app/views/main/_gettext.js.erb:247
-msgid "Master/Slave Set: %{id}"
-msgstr "المجموعة الأساسية/التابعة: %{id}"
-
-#: ../app/views/main/_gettext.js.erb:250
-msgid "Clone Set: %{id}"
-msgstr "مجموعة الاستنساخ: %{id}"
-
-#: ../app/views/main/_gettext.js.erb:253
-msgid "Parent: %{id}..."
-msgstr "العنصر الرئيسي: %{id}..."
-
-#: ../app/views/main/_gettext.js.erb:256
-msgid "%{active}/%{total} %{type} %{node}"
-msgstr "%{active}/%{total} %{type} %{node}"
-
-#: ../app/views/main/_gettext.js.erb:259
-msgid "Toggle view by type"
-msgstr "تبديل العرض حسب النوع"
-
-#: ../app/views/main/_gettext.js.erb:263
-msgid "Simulator (initial state)"
-msgstr "محاكي (حالة أولية)"
-
-#: ../app/views/main/_gettext.js.erb:266
-msgid "Simulator (busy...)"
-msgstr "محاكي (مشغول...)"
-
-#: ../app/views/main/_gettext.js.erb:269
-msgid "Simulator (final state)"
-msgstr "محاكي (حالة نهائية)"
-
-#: ../app/views/main/_gettext.js.erb:272
-msgid "Injected State:"
-msgstr "حالة مدخلة:"
-
-#: ../app/views/main/_gettext.js.erb:275
-msgid "+ Node"
-msgstr "عقدة +"
-
-#: ../app/views/main/_gettext.js.erb:278
-msgid "+ Op"
-msgstr "+ Op"
-
-#: ../app/views/main/_gettext.js.erb:281
-msgid "+ Ticket"
-msgstr "+ البطاقة"
-
-#: ../app/views/main/_gettext.js.erb:284
-msgid "Run >"
-msgstr "تشغيل >"
-
-#: ../app/views/main/_gettext.js.erb:290
-msgid "CIB (in)"
-msgstr "CIB (داخل)"
-
-#: ../app/views/main/_gettext.js.erb:293
-msgid "CIB (out)"
-msgstr "CIB (خارج)"
-
-#: ../app/views/main/_gettext.js.erb:299
-msgid "Empty Graph"
-msgstr "رسم بياني فارغ"
-
-#: ../app/views/main/_gettext.js.erb:302
-msgid "Inject Node State"
-msgstr "حالة عقدة مدخلة"
-
-#: ../app/views/main/_gettext.js.erb:305
-msgid "Node:"
-msgstr "العقدة:"
-
-#: ../app/views/main/_gettext.js.erb:308
-msgid "State:"
-msgstr "الولاية:                    "
-
-#: ../app/views/main/_gettext.js.erb:311
-msgid "Inject Operation"
-msgstr "عملية الإدخال"
-
-#: ../app/views/main/_gettext.js.erb:314
-msgid "Operation:"
-msgstr "العملية"
-
-#: ../app/views/main/_gettext.js.erb:317
-msgid "Interval:"
-msgstr "الفاصل الزمني:"
-
-#: ../app/views/main/_gettext.js.erb:320
-msgid "Resource:"
-msgstr "المورد:"
-
-#: ../app/views/main/_gettext.js.erb:323
-msgid "Result:"
-msgstr "النتيجة:"
-
-#: ../app/views/main/_gettext.js.erb:326
-msgid "Inject Ticket"
-msgstr "إدخال البطاقة"
-
-#: ../app/views/main/_gettext.js.erb:329
-msgid "Ticket:"
-msgstr "البطاقة:"
-
-#: ../app/views/main/_gettext.js.erb:332
-msgid "Action:"
-msgstr "الإجراء:"
-
-#: ../app/views/main/_gettext.js.erb:335 ../app/views/main/_menus.html.erb:206
-msgid "Grant"
-msgstr "منح"
-
-#: ../app/views/main/_gettext.js.erb:338 ../app/views/main/_menus.html.erb:213
-msgid "Revoke"
-msgstr "إبطال"
-
-#: ../app/views/main/_gettext.js.erb:344
-msgid "Activate"
-msgstr "تنشيط"
-
-#: ../app/views/main/_gettext.js.erb:347
-msgid "Success"
-msgstr "نجاح"
-
-#: ../app/views/main/_gettext.js.erb:350
-msgid "Generic Error"
-msgstr "خطأ عام"
-
-#: ../app/views/main/_gettext.js.erb:353
-msgid "Wrong Argument(s)"
-msgstr "وسيطة (وسيطات) خاطئة"
-
-#: ../app/views/main/_gettext.js.erb:356
-msgid "Not Implemented"
-msgstr "لم يتم التنفيذ"
-
-#: ../app/views/main/_gettext.js.erb:359
-msgid "Permission Denied"
-msgstr "الإذن مرفوض"
-
-#: ../app/views/main/_gettext.js.erb:362
-msgid "Not Installed"
-msgstr "لم يتم التثبيت"
-
-#: ../app/views/main/_gettext.js.erb:365
-msgid "Not Configured"
-msgstr "لم يتم التكوين"
-
-#: ../app/views/main/_gettext.js.erb:368
-msgid "Not Running"
-msgstr "ليس قيد التشغيل"
-
-#: ../app/views/main/_gettext.js.erb:371
-msgid "Running Master"
-msgstr "تشغيل الرئيس"
-
-#: ../app/views/main/_gettext.js.erb:374
-msgid "Failed Master"
-msgstr "رئيس فاشل"
-
-#: ../app/views/main/_menus.html.erb:22
-msgid "Maintenance"
-msgstr "الصيانة"
-
-#: ../app/views/main/_menus.html.erb:29
-msgid "Ready"
-msgstr "جاهز"
-
-#: ../app/views/main/_menus.html.erb:36
-msgid "Fence Node"
-msgstr "عقدة السياج"
-
-#: ../app/views/main/_menus.html.erb:46 ../app/views/main/_menus.html.erb:160
-msgid "View Details..."
-msgstr "عرض التفاصيل..."
-
-#: ../app/views/main/_menus.html.erb:66 ../app/views/main/_menus.html.erb:182
-msgid "View Recent Events..."
-msgstr "عرض الأحداث الحديثة..."
-
-#: ../app/views/main/_menus.html.erb:87
-msgid "Start"
-msgstr "بداية"
-
-#: ../app/views/main/_menus.html.erb:94
-msgid "Stop"
-msgstr "إيقاف"
-
-#: ../app/views/main/_menus.html.erb:101
-msgid "Move..."
-msgstr "جارٍ النقل..."
-
-#: ../app/views/main/_menus.html.erb:129
-msgid "Drop Relocation Rule"
-msgstr "إسقاط قاعدة إعادة النقل"
-
-#: ../app/views/main/_menus.html.erb:136
-msgid "Promote"
-msgstr "الترقية"
-
-#: ../app/views/main/_menus.html.erb:143
-msgid "Demote"
-msgstr "تخفيض"
-
-#: ../app/views/main/_menus.html.erb:150
-msgid "Clean Up"
-msgstr "تنظيف"
-
-#: ../app/views/masters/_form.html.erb:70
-msgid "Master/Slave ID"
-msgstr "معرف الرئيس/التابع"
-
-#: ../app/views/nodes/events.html.erb:12
-#: ../app/views/resources/events.html.erb:12
-msgid "Getting recent events (last hour)..."
-msgstr "جارٍ الحصول على الأحداث الحديثة (آخر ساعة)..."
-
-#: ../app/views/nodes/events.html.erb:13
-#: ../app/views/resources/events.html.erb:13
-msgid "Another \"crm history\" operation is in progress..."
-msgstr "جارٍ تشغيل عملية \"crm history\" أخرى..."
-
-#: ../app/views/nodes/events.html.erb:20
-#: ../app/views/resources/events.html.erb:20
-msgid "No events found in last hour."
-msgstr "لم يتم العثور على أي أحداث في الساعة الأخيرة."
-
-#: ../app/views/nodes/show.html.erb:1
-msgid "Utilization"
-msgstr "الاستخدام"
-
-#: ../app/views/nodes/show.html.erb:15
-msgid "No utilization defined"
-msgstr "لم يتم تحديد أية عملية استخدام"
-
-#: ../app/views/nodes/show.html.erb:18 ../app/views/resources/show.html.erb:1
-msgid "Attributes"
-msgstr "السمات"
-
-#: ../app/views/nodes/show.html.erb:29 ../app/views/resources/show.html.erb:12
-msgid "No attributes defined"
-msgstr "لم يتم تحديد أية سمات"
-
-#: ../app/views/orders/_form.html.erb:100
-msgid "Symmetrical"
-msgstr "متماثل"
-
-#: ../app/views/primitives/_form.html.erb:261
-msgid "Operations"
-msgstr "العمليات"
-
-#: ../app/views/primitives/_form.html.erb:271
-msgid "There is already a monitor op with this interval."
-msgstr "يوجد بالفعل op لجهاز العرض بهذا الفاصل الزمني."
-
-#: ../app/views/primitives/_form.html.erb:329
-msgid "Template ID"
-msgstr "معرِّف القالب"
-
-#: ../app/views/primitives/_form.html.erb:329
-msgid "Resource ID"
-msgstr "معرف المورد"
-
-#: ../app/views/primitives/_form.html.erb:330
-msgid "Class"
-msgstr "طبقة"
-
-#: ../app/views/primitives/_form.html.erb:331
-msgid "Provider"
-msgstr "الموفر"
-
-#: ../app/views/primitives/_form.html.erb:332
-msgid "Type"
-msgstr "النوع"
-
-#: ../app/views/primitives/_form.html.erb:367
-msgid "Use Template"
-msgstr "استخدام القالب"
-
-#: ../app/views/resources/index.html.erb:57
-msgid "Delete Resource"
-msgstr "حذف مورد"
-
-#: ../app/views/resources/index.html.erb:102
-msgid "New Resource"
-msgstr "مورد جديد"
-
-#: ../app/views/resources/index.html.erb:103
-msgid "Primitive"
+msgid "History Explorer"
+msgstr "History Explorer"
+
+msgid "PE Input created by different Pacemaker version (%{version})"
+msgstr "تم إنشاء إدخال PE بإصدار Pacemaker مختلف (%{version})"
+
+msgid "Pacemaker version not present in PE Input"
+msgstr "إصدار Pacemaker غير موجود في إدخال PE"
+
+msgid "Required parameters \"basename\" and \"node\" not specified"
+msgstr "المعلمتان المطلوبتان \"basename\" و\"node\" غير محددتين"
+
+msgid "No details available"
+msgstr "لا تتوفر أية تفاصيل"
+
+msgid "Error:"
+msgstr "خطأ:"
+
+msgid "Required parameters \"left\" and \"right\" not specified"
+msgstr "المعلمتان المطلوبتان \"left\" و\"right\" غير محددتين"
+
+msgid "Edit Group"
+msgstr "تحرير مجموعة"
+
+msgid "Create Group"
+msgstr "مجموعة الإنشاء"
+
+msgid "Group created successfully"
+msgstr "تم إنشاء المجموعة بنجاح"
+
+msgid "Group updated successfully"
+msgstr "تم تحديث المجموعة بنجاح"
+
+msgid "Edit Location Constraint"
+msgstr "تحرير قيد الموقع"
+
+msgid "Create Location Constraint"
+msgstr "إنشاء قيد الموقع"
+
+msgid "%{cmd} failed (status: %{status})"
+msgstr "فشل %{cmd} (الحالة:%{status})"
+
+msgid "Cluster Status"
+msgstr "حالة المجموعة"
+
+msgid "Required parameter \"node\" not specified"
+msgstr "المعلمة المطلوبة \"node\" غير محددة"
+
+msgid "Required parameter \"resource\" not specified"
+msgstr "المعلمة المطلوبة \"resource\" غير محددة"
+
+msgid "Required parameters \"resource\" and \"node\" not specified"
+msgstr "المعلمات المطلوبة \"resource\" و\"node\" غير محددة"
+
+msgid "Error deleting resource"
+msgstr "حدث خطأ أثناء حذف المورد"
+
+msgid "Required parameters \"ticket\" and \"site\" not specified"
+msgstr "المعلمتان المطلوبتان \"ticket\" و\"site\" غير محددتين"
+
+msgid "Required parameter \"ticket\" not specified"
+msgstr "المعلمة المطلوبة \"ticket\" غير محددة"
+
+msgid "Error invoking %{cmd}: %{msg}"
+msgstr "حدث خطأ أثناء استدعاء %{cmd}: %{msg}"
+
+msgid "Edit Master/Slave"
+msgstr "تحرير الرئيس/التابع"
+
+msgid "Create Master/Slave"
+msgstr "إنشاء الرئيس/التابع"
+
+msgid "Master/Slave created successfully"
+msgstr "تم إنشاء الرئيس/التابع بنجاح"
+
+msgid "Master/Slave updated successfully"
+msgstr "تم تحديث الرئيس/التابع بنجاح"
+
+#, fuzzy
+msgid "Nodes"
+msgstr "عقدة"
+
+msgid "Edit Order Constraint"
+msgstr "تحرير قيد الترتيب"
+
+msgid "Create Order Constraint"
+msgstr "إنشاء قيد الترتيب"
+
+msgid "Welcome"
+msgstr ""
+
+msgid "Help"
+msgstr ""
+
+msgid "Create Resource"
+msgstr "إنشاء مورد"
+
+msgid "Resource created successfully"
+msgstr "تم إنشاء المورد بنجاح"
+
+msgid "Resource updated successfully"
+msgstr "تم تحديث المورد بنجاح"
+
+#, fuzzy
+msgid "Primitives"
 msgstr "مجموعة أساسية"
 
-#: ../app/views/resources/index.html.erb:109
-msgid "New Template"
-msgstr "قالب جديد"
+msgid "Resources"
+msgstr "الموارد"
 
-#: ../app/views/resources/index.html.erb:110
-msgid "Template"
-msgstr "القالب"
+msgid "Create Role"
+msgstr "إنشاء دور"
 
-#: ../app/views/resources/index.html.erb:116
-msgid "New Group"
-msgstr "مجموعة جديدة"
+msgid "Role created successfully"
+msgstr "تم إنشاء الدور بنجاح"
 
-#: ../app/views/resources/index.html.erb:117
-msgid "Group"
-msgstr "المجموعة"
+msgid "Edit Role"
+msgstr "تحرير قاعدة"
 
-#: ../app/views/resources/index.html.erb:122
-msgid "New Clone"
-msgstr "استنساخ جديد"
+msgid "Role updated successfully"
+msgstr "تم تحديث الدور بنجاح"
 
-#: ../app/views/resources/index.html.erb:123
-msgid "Clone"
-msgstr "استنساخ"
+#, fuzzy
+msgid "Role deleted successfully"
+msgstr "تم إنشاء الدور بنجاح"
 
-#: ../app/views/resources/index.html.erb:128
-msgid "New Master/Slave"
-msgstr "رئيس/تابع جديد"
+#, fuzzy
+msgid "Error deleting %s"
+msgstr "حدث خطأ أثناء حذف المورد"
 
-#: ../app/views/resources/index.html.erb:129
-msgid "Master/Slave"
-msgstr "الرئيسي/التابع"
-
-#: ../app/views/resources/index.html.erb:150
-msgid "(No primitive resources defined)"
-msgstr "(لم يتم تحديد أي موارد أساسية)"
-
-#: ../app/views/resources/index.html.erb:163
-msgid "(No templates defined)"
-msgstr "(لم يتم تحديد أي قوالب)"
-
-#: ../app/views/resources/index.html.erb:176
-msgid "(No groups defined)"
-msgstr "(لم يتم تحديد أي مجموعات)"
-
-#: ../app/views/resources/index.html.erb:188
-msgid "(No clones defined)"
-msgstr "(لم يتم تحديد أي استنساخ)"
-
-#: ../app/views/resources/index.html.erb:200
-msgid "(No master/slave resources defined)"
-msgstr "(لم يتم تحديد أي موارد رئيسية/تابعة)"
-
-#: ../app/views/resources/show.html.erb:20
-msgid "Fail Count"
-msgstr "عدد مرات الفشل"
-
-#: ../app/views/resources/show.html.erb:25
-msgid "Last Failure"
-msgstr "آخر محاولة فاشلة"
-
-#: ../app/views/roles/_form.html.erb:40 ../app/views/users/_form.html.erb:50
-msgid "Right"
-msgstr "يسار"
-
-#: ../app/views/roles/_form.html.erb:41 ../app/views/users/_form.html.erb:51
-msgid "XPath"
-msgstr "XPath"
-
-#: ../app/views/roles/_form.html.erb:42 ../app/views/users/_form.html.erb:52
-msgid "Tag"
-msgstr "علامة"
-
-#: ../app/views/roles/_form.html.erb:43 ../app/views/users/_form.html.erb:53
-msgid "Ref"
-msgstr "مرجع"
-
-#: ../app/views/roles/_form.html.erb:44 ../app/views/users/_form.html.erb:54
-msgid "Attribute"
-msgstr "سمة"
-
-#: ../app/views/roles/_form.html.erb:67
-msgid "Role ID"
-msgstr "معرف الدور"
-
-#: ../app/views/sessions/new.html.erb:1
-msgid "Please ensure JavaScript is enabled"
-msgstr "الرجاء التأكد من تمكين JavaScript"
-
-#: ../app/views/shared/_confirm_revert.html.erb:4
-msgid "Any changes will be lost - do you wish to proceed?"
-msgstr "سيتم فقد أية تغييرات - هل تريد المتابعة؟"
-
-#: ../app/views/tickets/_form.html.erb:78
-msgid "Loss Policy"
-msgstr "سياسة الفقد"
-
-#: ../app/views/users/_form.html.erb:81
-msgid "User ID"
-msgstr "معرف المستخدم"
-
-#: ../app/views/users/_form.html.erb:91
 msgid "Roles"
 msgstr "الدور"
 
-#: ../app/views/wizard/done.html.erb:1 ../app/views/wizard/run.html.erb:69
+msgid "The role does not exist"
+msgstr ""
+
+msgid "To enable ACLs, set 'enable-acl' in the CRM Configuration"
+msgstr "لتمكين قوائم التحكم في الوصول (ACL)، عيّن 'enable-acl' في تكوين CRM"
+
+msgid "Permission denied for user %{user}"
+msgstr "تم رفض الإذن للمستخدم %{user}"
+
+msgid "You have been logged out"
+msgstr "تم تسجيل خروجك."
+
+msgid "Log In"
+msgstr "دخول"
+
+#, fuzzy
+msgid "Preferences updated successfully"
+msgstr "تم تحديث المورد بنجاح"
+
+msgid "Preferences"
+msgstr "تفضيلات"
+
+msgid "Edit Template"
+msgstr "تحرير القالب"
+
+msgid "Create Template"
+msgstr "إنشاء قالب"
+
+msgid "Template created successfully"
+msgstr "تم إنشاء القالب بنجاح"
+
+msgid "Template updated successfully"
+msgstr "تم تحديث القالب بنجاح"
+
+msgid "Edit Ticket Constraint"
+msgstr "تحرير قيد البطاقة"
+
+msgid "Create Ticket Constraint"
+msgstr "إنشاء قيد للبطاقة"
+
+msgid "Create User"
+msgstr "إنشاء مستخدم"
+
+msgid "User created successfully"
+msgstr "تم إنشاء المستخدم بنجاح"
+
+msgid "Edit User"
+msgstr "تحرير بيانات المستخدم"
+
+msgid "User updated successfully"
+msgstr "تم تحديث المستخدم بنجاح"
+
+#, fuzzy
+msgid "User deleted successfully"
+msgstr "تم إنشاء المستخدم بنجاح"
+
+#, fuzzy
+msgid "Users"
+msgstr "المستخدم"
+
+msgid "The user does not exist"
+msgstr ""
+
+msgid "Cluster Setup Wizard"
+msgstr "معالج إعداد المجموعة"
+
+msgid "Invalid password"
+msgstr "كلمة السر غير صالحة"
+
+msgid "Root Password"
+msgstr "كلمة السر الجذر"
+
+msgid ""
+"The root password is required in order for this wizard template to make config"
+"uration changes."
+msgstr "يستلزم إدخال كلمة السر الجذر لقالب المعالج هذا كي يتم إجراء تغييرات التكوين."
+
+msgid "The root password for this system"
+msgstr "كلمة السر الجذر لهذا النظام"
+
+msgid "\"Error: #{result}\""
+msgstr "\"الخطأ: #{result}\""
+
+msgid "Parameters"
+msgstr "المعلمات"
+
+msgid "Confirm"
+msgstr "تأكيد"
+
+msgid "Done"
+msgstr "تم"
+
+msgid "Required parameter \"%{param}\" not specified"
+msgstr "المعلمة المطلوبة \"%{param}\" غير محددة"
+
+msgid "Permission denied - you do not have write access to the CIB."
+msgstr "تم رفض الإذن - ليس لديك حق الوصول للكتابة إلى CIB."
+
+msgid "Wizard templates and/or workflows are missing"
+msgstr "قوالب المعالج و/أو التدفقات مفقودة"
+
+msgid "Workflow \"%s\" not found"
+msgstr "لم يتم العثور على التدفق \"%s\""
+
+msgid "Error parsing template \"%s\""
+msgstr "حدث خطأ أثناء تحليل القالب \"%s\""
+
+msgid "Error parsing workflow \"%s\""
+msgstr "حدث خطأ أثناء تحليل التدفق \"%s\""
+
+msgid "Data collection in progress (%{from_time} to %{to_time})..."
+msgstr "جارٍ تجميع البيانات (%{from_time} to %{to_time})..."
+
+#, fuzzy
+msgid "Revert"
+msgstr "إعادة تعيين"
+
+msgid "Apply"
+msgstr ""
+
+#, fuzzy
+msgid "Create"
+msgstr "إنشاء دور"
+
+#, fuzzy
+msgid "Read"
+msgstr "جاهز"
+
+msgid "Write"
+msgstr ""
+
+msgid "Deny"
+msgstr ""
+
+msgid "CIB file \"%{path}\" not found"
+msgstr "ملف CIB \"%{path}\" غير موجود"
+
+msgid "Unable to parse CIB file \"%{path}\""
+msgstr "تعذر تحليل ملف CIB \"%{path}\""
+
+msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
+msgstr "يبدو أنه لم يتم تثبيت Pacemaker، (لم يتم العثور على %{cmd})"
+
+msgid "Unable to execute %{cmd}"
+msgstr "تعذر تنفيذ %{cmd}"
+
+msgid "Error invoking %{cmd}"
+msgstr "حدث خطأ أثناء استدعاء %{cmd}"
+
+msgid "Unknown"
+msgstr "غير معروف"
+
+msgid ""
+"Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%"
+"{op}, rc-code=%{rc_code}, exit-reason=%{exit_reason}"
+msgstr ""
+
+msgid "Invalid Resource ID \"%{id}\""
+msgstr "معرف مورد غير صالح \"%{id}\""
+
+msgid "Unable to parse cibadmin output"
+msgstr "تعذر تحليل مخرجات cibadmin"
+
+msgid "No clone child specified"
+msgstr "لا يوجد فرع استنساخ محدد"
+
+msgid ""
+"Can't set meta attribute %{p}, because the value contains both single and doub"
+"le quotes"
+msgstr ""
+"يتعذر تعيين سمة تعريف %{p}، نظرًا لاحتواء القيمة على علامات اقتباس مفردة ومزدو"
+"جة"
+
+msgid "The ID \"%{id}\" is already in use"
+msgstr "المعرف \"%{id}\" قيد الاستخدام بالفعل"
+
+msgid "Unable to create clone: %{msg}"
+msgstr "تعذر إنشاء الاستنساخ: %{msg}"
+
+msgid "Clone ID \"%{id}\" does not exist"
+msgstr "معرف الاستنساخ \"%{id}\" غير موجود"
+
+msgid "Invalid score"
+msgstr "نتيجة غير صحيحة"
+
+msgid "Constraint must consist of at least two separate resources"
+msgstr "يجب أن يتكون القيد من موردين منفصلين على الأقل"
+
+msgid "Unable to create constraint: %{msg}"
+msgstr "تعذر إنشاء القيد : %{msg}"
+
+msgid "Constraint ID \"%{id}\" does not exist"
+msgstr "معرف القيد \"%{id}\" غير موجود"
+
+msgid "Unable to update constraint: %{msg}"
+msgstr "تعذر تحديث القيد: %{msg}"
+
+msgid "No group children specified"
+msgstr "لم يتم تحديد فروع مجموعة"
+
+msgid "Unable to create group: %{msg}"
+msgstr "تعذر إنشاء المجموعة: %{msg}"
+
+msgid "Group ID \"%{id}\" does not exist"
+msgstr "معرف المجموعة \"%{id}\" غير موجود"
+
+msgid "Constraint is too complex - it contains nested rules"
+msgstr "القيد معقد للغاية - يحتوي على قواعد مضمنة"
+
+msgid "No rules specified"
+msgstr "لا توجد قواعد محددة"
+
+msgid "No resource specified"
+msgstr "لم يتم تحديد مورد"
+
+msgid "Invalid score \"%{score}\""
+msgstr "نتيجة غير صحيحة \"%{score}\""
+
+msgid "No expressions specified"
+msgstr "لم يتم تحديد أي تعبير"
+
+msgid "Attribute contains both single and double quotes"
+msgstr "تحتوي السمة على علامات اقتباس مفردة ومزدوجة"
+
+msgid "Value contains both single and double quotes"
+msgstr "تحتوي القيمة على علامات اقتباس مفردة ومزدوجة"
+
+msgid "No Master/Slave child specified"
+msgstr "لم يتم تحديد فرع الرئيس/التابع"
+
+msgid "Unable to create master/slave: %{msg}"
+msgstr "تعذر إنشاء الرئيس/التابع: %{msg}"
+
+msgid "Master/Slave ID \"%{id}\" does not exist"
+msgstr "معرف الرئيس/التابع \"%{id}\" غير موجود"
+
+msgid ""
+"Can't set parameter %{p}, because the value contains both single and double qu"
+"otes"
+msgstr "يتعذر تعيين المعلمة %{p}، نظرًا لاحتواء القيمة على علامات اقتباس مفردة ومزدوجة"
+
+msgid ""
+"Can't set op %{o} attribute {%a}, because the value contains both single and d"
+"ouble quotes"
+msgstr ""
+"يتعذر تعيين op %{o} سمة {%a}، نظرًا لاحتواء القيمة على علامات اقتباس مفردة ومز"
+"دوجة"
+
+msgid "Unable to create resource: %{msg}"
+msgstr "تعذر إنشاء المورد: %{msg}"
+
+msgid "Resource ID \"%{id}\" does not exist"
+msgstr "معرف المورد \"%{id}\" غير موجود"
+
+#, fuzzy
+msgid "Unable to create: %{msg}"
+msgstr "تعذر إنشاء الدور: %{msg}"
+
+#, fuzzy
+msgid "The ID \"%{id}\" does not exist"
+msgstr "معرف الدور \"%{id}\" غير موجود"
+
+#, fuzzy
+msgid "Unable to update: %{msg}"
+msgstr "تعذر تحديث الدور: %{msg}"
+
+msgid "Role ID is required"
+msgstr ""
+
+#, fuzzy
+msgid "Invalid Role ID"
+msgstr "معرِّف البطاقة غير صحيح"
+
+msgid "Username not specified"
+msgstr "لم يتم تحديد اسم المستخدم"
+
+msgid "Invalid username"
+msgstr "اسم المستخدم غير صالح"
+
+msgid "Password not specified"
+msgstr "لم يتم تحديد كلمة السر"
+
+msgid "%s is not installed"
+msgstr "لم يتم تثبيت %s"
+
+#, fuzzy
+msgid "%s is not executable"
+msgstr "لم يتم تثبيت %s"
+
+msgid "Invalid username or password"
+msgstr "اسم المستخدم غير صالح أو كلمة السر غير صالحة"
+
+msgid "Language is required"
+msgstr ""
+
+msgid "Invalid Ticket ID"
+msgstr "معرِّف البطاقة غير صحيح"
+
+msgid "No resources specified"
+msgstr "لم يتم تحديد أي مورد"
+
+msgid "User ID is required"
+msgstr ""
+
+#, fuzzy
+msgid "Invalid User ID"
+msgstr "معرِّف البطاقة غير صحيح"
+
+msgid "Meta Attributes"
+msgstr "سمات تعريف"
+
+msgid "Add"
+msgstr "إضافة"
+
+msgid "Remove"
+msgstr "إزالة"
+
+msgid "You must enter a value"
+msgstr "يجب عليك إدخال قيمة"
+
+msgid "Clone ID"
+msgstr "معرف الاستنساخ"
+
+msgid "Child Resource"
+msgstr "مورد فرعي"
+
+msgid "Revert Changes"
+msgstr "إرجاع التغييرات"
+
+msgid "Back"
+msgstr "الخلف"
+
+msgid "Apply Changes"
+msgstr "تطبيق التغييرات"
+
+msgid "Link set"
+msgstr "مجموعة الارتباطات"
+
+msgid "Break set"
+msgstr "مجموعة الفواصل"
+
+msgid "Swap resources"
+msgstr "تبديل الموارد"
+
+msgid "Add resource to constraint"
+msgstr "إضافة مورد إلى القيد"
+
+msgid "Constraint ID"
+msgstr "معرف القيد"
+
+msgid "Score"
+msgstr "النتيجة"
+
+msgid "Create Constraint"
+msgstr "إنشاء قيد"
+
+msgid "Edit Constraint"
+msgstr "تحرير قيد"
+
+msgid "Delete Constraint"
+msgstr "حذف قيد"
+
+msgid "Are you sure you wish to delete %s?"
+msgstr "هل تريد بالتأكيد حذف %s؟"
+
+msgid "New Constraint"
+msgstr "قيد جديد"
+
+msgid "Location"
+msgstr "الموقع"
+
+msgid "Colocation"
+msgstr "الموقع المشترك"
+
+msgid "Order"
+msgstr "الترتيب"
+
+msgid "Ticket"
+msgstr "البطاقة"
+
+msgid "(No location constraints defined)"
+msgstr "(لم يتم تحديد أي قيود للمواقع)"
+
+msgid "[Constraint is too complex to display]"
+msgstr "[القيد معقد للغاية لدرجة تصعب عرضه]"
+
+msgid "(No colocation constraints defined)"
+msgstr "(لم يتم تحديد أية قيود للموقع المشترك)"
+
+msgid "(No order constraints defined)"
+msgstr "(لم يتم تحديد أي قيود للترتيب)"
+
+msgid "(No ticket constraints defined)"
+msgstr "(لم يتم تحديد أي قيود للبطاقة)"
+
+msgid "CRM Configuration"
+msgstr "تكوين CRM"
+
+msgid "Resource Defaults"
+msgstr "الإعدادات الافتراضية للمورد"
+
+msgid "Operation Defaults"
+msgstr "الإعدادات الافتراضية للعملية"
+
+msgid "No cluster properties set in %{group}"
+msgstr "لم يتم تعيين أية خصائص للمجموعة في %{group}"
+
+msgid "Edit"
+msgstr "تحرير"
+
+msgid "Username:"
+msgstr "اسم المستخدم:"
+
+msgid "Password:"
+msgstr "كلمة السر:"
+
+msgid "Cluster has errors - click for details"
+msgstr "المجموعة المتماثلة بها أخطاء - انقر للحصول على مزيد من التفاصيل"
+
+msgid "Timeout: Please try again"
+msgstr "انتهت المهلة: الرجاء المحاولة مرة أخرى"
+
+msgid "Permission denied. Please log in to %{node}"
+msgstr "الإذن مرفوض. الرجاء تسجيل الدخول إلى %{node}"
+
+#, fuzzy
+msgid "Geo Site %{ip}"
+msgstr "مجموعة الاستنساخ: %{id}"
+
+msgid "Site: %{ip}"
+msgstr ""
+
+msgid "Arbitrator: %{ip}"
+msgstr ""
+
+msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
+msgstr "لا يمكن الاتصال بـ Hawk في %{node}. تجري إعادة المحاولة كل 5 ثوانٍ."
+
+msgid "Cluster Name:"
+msgstr "اسم المجموعة المتماثلة:"
+
+msgid "Host Name:"
+msgstr ":اسم المضيف"
+
+msgid ""
+"(Specify any host name in the cluster.  Other nodes will be found automaticall"
+"y)"
+msgstr ""
+"(قم بتحديد أي اسم مضيف في المجموعة المتماثلة. سيتم العثور على نقاط التوصيل الأ"
+"خرى تلقائيًا)"
+
+msgid "Add Cluster"
+msgstr "إضافة مجموعة متماثلة"
+
+msgid "OK"
+msgstr "موافق"
+
+msgid "A cluster with that name already exists"
+msgstr "المجموعة المتماثلة التي تحمل هذا الاسم موجودة بالفعل"
+
+msgid "The host %{h} is already present in cluster %{c}"
+msgstr "المضيف %{h} موجود بالفعل في المجموعة المتماثلة %{c}"
+
+msgid ""
+"Unable to connect to %{host}. Try opening %{url} in your web browser to ensure"
+" Hawk is accessible."
+msgstr ""
+"تعذر الاتصال بـ %{host}. حاول فتح %{url} في مستعرض الويب للتأكد من إمكانية الو"
+"صول إلى Hawk."
+
+msgid "Cancel"
+msgstr "إلغاء"
+
+#, fuzzy
+msgid "Cluster"
+msgstr "إضافة مجموعة متماثلة"
+
+msgid "STONITH Enabled"
+msgstr "تم تمكين STONITH"
+
+msgid "No Quorum Policy"
+msgstr "لا توجد سياسة حصص"
+
+msgid "Symmetric Cluster"
+msgstr "مجموعة متماثلة"
+
+msgid "Resource Stickiness"
+msgstr "ثبات المورد"
+
+msgid "Status"
+msgstr "الحالة"
+
+msgid "No transitions found for the specified time period."
+msgstr "لم يتم العثور على عمليات انتقال للفترة الزمنية المحددة."
+
+msgid "Time"
+msgstr "الوقت"
+
+msgid "PE Input"
+msgstr "إدخال PE"
+
+msgid "Node"
+msgstr "عقدة"
+
+msgid "(full log)"
+msgstr "(سجل كامل)"
+
+msgid "Graph"
+msgstr "رسم بياني"
+
+msgid "Diff"
+msgstr "الفرق"
+
+msgid "Delete this history archive?"
+msgstr "هل تريد حذف أرشيف المحفوظات هذا؟"
+
+msgid "Start Time:"
+msgstr "وقت البدء:"
+
+msgid "End Time:"
+msgstr "وقت الانتهاء:"
+
+msgid "Exploring %{path}"
+msgstr "استكشاف %{path}"
+
+msgid "Display"
+msgstr "عرض"
+
+msgid "Upload hb_report tarball"
+msgstr "تحميل أرشيف hb_report"
+
+msgid "Explore"
+msgstr "استكشاف"
+
+msgid "Error: Permission denied for user '%s'."
+msgstr "خطأ: تم رفض الإذن للمستخدم '%s'."
+
+msgid "Group ID"
+msgstr "معرف المجموعة"
+
+msgid "Group Children"
+msgstr "فروع المجموعة"
+
+msgid "Available Primitives"
+msgstr "المجموعات الأساسية المتوفرة"
+
+msgid "Start Time not specified"
+msgstr "وقت البدء غير محدد"
+
+msgid "Generate"
+msgstr "إنشاء"
+
+msgid "hb_report generation in progress..."
+msgstr "جارٍ إنشاء hb_report..."
+
+msgid "Download hb_report"
+msgstr "تحميل hb_report"
+
+#, fuzzy
+msgid "Please ensure Javascript is enabled"
+msgstr "الرجاء التأكد من تمكين JavaScript"
+
+msgid "SUSE, LLC"
+msgstr ""
+
+msgid "High Availability Web Konsole"
+msgstr ""
+
+msgid "Role"
+msgstr "الدور"
+
+msgid "Boolean Op"
+msgstr "Op منطقي"
+
+msgid "Expression"
+msgstr "التعبير"
+
+msgid "Add Rule"
+msgstr "إضافة قاعدة"
+
+msgid "Remove Rule"
+msgstr "إزالة قاعدة"
+
+msgid "Show Rule Editor"
+msgstr "إظهار محرر القواعد"
+
+msgid "Resource"
+msgstr "مورد"
+
+msgid "Fence Node"
+msgstr "عقدة السياج"
+
+msgid "View Details..."
+msgstr "عرض التفاصيل..."
+
+msgid "View Recent Events..."
+msgstr "عرض الأحداث الحديثة..."
+
+msgid "Start"
+msgstr "بداية"
+
+msgid "Stop"
+msgstr "إيقاف"
+
+msgid "Move..."
+msgstr "جارٍ النقل..."
+
+msgid "Drop Relocation Rule"
+msgstr "إسقاط قاعدة إعادة النقل"
+
+msgid "Promote"
+msgstr "الترقية"
+
+msgid "Demote"
+msgstr "تخفيض"
+
+msgid "Clean Up"
+msgstr "تنظيف"
+
+msgid "Grant"
+msgstr "منح"
+
+msgid "Revoke"
+msgstr "إبطال"
+
+msgid "Master/Slave ID"
+msgstr "معرف الرئيس/التابع"
+
+msgid "Getting recent events (last hour)..."
+msgstr "جارٍ الحصول على الأحداث الحديثة (آخر ساعة)..."
+
+msgid "Another \"crm history\" operation is in progress..."
+msgstr "جارٍ تشغيل عملية \"crm history\" أخرى..."
+
+msgid "No events found in last hour."
+msgstr "لم يتم العثور على أي أحداث في الساعة الأخيرة."
+
+msgid "Utilization"
+msgstr "الاستخدام"
+
+msgid "No utilization defined"
+msgstr "لم يتم تحديد أية عملية استخدام"
+
+msgid "Attributes"
+msgstr "السمات"
+
+msgid "No attributes defined"
+msgstr "لم يتم تحديد أية سمات"
+
+msgid "Symmetrical"
+msgstr "متماثل"
+
+msgid "Close"
+msgstr "إغلاق"
+
+msgid "HTML"
+msgstr ""
+
+msgid "PDF"
+msgstr ""
+
+msgid "There is already a monitor op with this interval."
+msgstr "يوجد بالفعل op لجهاز العرض بهذا الفاصل الزمني."
+
+msgid "Resource ID"
+msgstr "معرف المورد"
+
+msgid "Template ID"
+msgstr "معرِّف القالب"
+
+msgid "Class"
+msgstr "طبقة"
+
+msgid "Provider"
+msgstr "الموفر"
+
+msgid "Type"
+msgstr "النوع"
+
+msgid "Use Template"
+msgstr "استخدام القالب"
+
+msgid "Edit Resource"
+msgstr "تحرير مورد"
+
+msgid "Delete Resource"
+msgstr "حذف مورد"
+
+msgid "New Resource"
+msgstr "مورد جديد"
+
+msgid "Primitive"
+msgstr "مجموعة أساسية"
+
+msgid "New Template"
+msgstr "قالب جديد"
+
+msgid "Template"
+msgstr "القالب"
+
+msgid "New Group"
+msgstr "مجموعة جديدة"
+
+msgid "Group"
+msgstr "المجموعة"
+
+msgid "New Clone"
+msgstr "استنساخ جديد"
+
+msgid "Clone"
+msgstr "استنساخ"
+
+msgid "New Master/Slave"
+msgstr "رئيس/تابع جديد"
+
+msgid "Master/Slave"
+msgstr "الرئيسي/التابع"
+
+msgid "(No primitive resources defined)"
+msgstr "(لم يتم تحديد أي موارد أساسية)"
+
+msgid "(No templates defined)"
+msgstr "(لم يتم تحديد أي قوالب)"
+
+msgid "(No groups defined)"
+msgstr "(لم يتم تحديد أي مجموعات)"
+
+msgid "(No clones defined)"
+msgstr "(لم يتم تحديد أي استنساخ)"
+
+msgid "(No master/slave resources defined)"
+msgstr "(لم يتم تحديد أي موارد رئيسية/تابعة)"
+
+msgid "Fail Count"
+msgstr "عدد مرات الفشل"
+
+msgid "Last Failure"
+msgstr "آخر محاولة فاشلة"
+
+#, fuzzy
+msgid "Rule"
+msgstr "الدور"
+
+msgid "Add a rule below"
+msgstr ""
+
+#, fuzzy
+msgid "Remove this rule"
+msgstr "إزالة قاعدة"
+
+#, fuzzy
+msgid "Move rule up"
+msgstr "نقل المورد %s"
+
+msgid "Move rule down"
+msgstr ""
+
+msgid "Right"
+msgstr "يسار"
+
+msgid "XPath"
+msgstr "XPath"
+
+msgid "Tag"
+msgstr "علامة"
+
+msgid "Ref"
+msgstr "مرجع"
+
+msgid "Attribute"
+msgstr "سمة"
+
+#, fuzzy
+msgid "Delete role"
+msgstr "حذف مورد"
+
+#, fuzzy
+msgid "Add role"
+msgstr "إضافة قاعدة"
+
+msgid ""
+"ACL support requires CIB schema version 2.0, available in Pacemaker 1.1.12 and"
+" up. For older versions of Pacemaker, use Hawk version 0.6."
+msgstr ""
+
+#, fuzzy
+msgid "Username"
+msgstr "اسم المستخدم:"
+
+#, fuzzy
+msgid "Password"
+msgstr "كلمة السر:"
+
+#, fuzzy
+msgid "Login"
+msgstr "دخول"
+
+msgid "Loss Policy"
+msgstr "سياسة الفقد"
+
+#, fuzzy
+msgid "Delete user"
+msgstr "حذف مورد"
+
+#, fuzzy
+msgid "Add user"
+msgstr "إضافة مجموعة متماثلة"
+
 msgid "%{workflow}: %{step}"
 msgstr "%{workflow}: %{step}"
 
-#: ../app/views/wizard/done.html.erb:5
 msgid "The configuration has been applied."
 msgstr "تم تطبيق التكوين."
 
-#: ../app/views/wizard/run.html.erb:75
 msgid "The following configuration will be applied to the cluster:"
 msgstr "سيتم تطبيق التكوين التالي على المجموعة:"
 
-#: ../app/views/wizard/run.html.erb:100
 msgid "Error applying configuration:"
 msgstr "حدث خطأ أثناء تطبيق التكوين:"
 
-#: ../app/views/wizard/run.html.erb:118
 msgid "< Back"
 msgstr "< الخلف"
 
-#: ../app/views/wizard/run.html.erb:119 ../app/views/wizard/start.html.erb:45
 msgid "Next >"
 msgstr "التالي >"
 
-#: ../app/views/wizard/start.html.erb:2
 msgid "No workflow descriptions found"
 msgstr "لم يتم العثور على أوصاف التدفق"
 
-#: ../app/views/wizard/start.html.erb:24
 msgid "Choose Configuration"
 msgstr "اختيار التكوين"
 
-#: ../app/views/wizard/start.html.erb:28
-msgid "This wizard will guide you through the steps necessary to add one of the following configurations to the cluster."
-msgstr "سيرشدك هذا المعالج عبر الخطوات اللازمة لإضافة أحد التكوينات التالية إلى المجموعة."
+msgid ""
+"This wizard will guide you through the steps necessary to add one of the follo"
+"wing configurations to the cluster."
+msgstr ""
+"سيرشدك هذا المعالج عبر الخطوات اللازمة لإضافة أحد التكوينات التالية إلى المجمو"
+"عة."
 
-#: ../lib/invoker.rb:131
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "الكائن/السمة غير موجودة (cibadmin %{cmd})"
 
-#: ../lib/invoker.rb:135
 msgid "Error invoking cibadmin %{cmd}: %{msg}"
 msgstr "حدث خطأ أثناء استدعاء cibadmin %{cmd}: %{msg}"
 
-#: ../lib/invoker.rb:153
 msgid "The object/attribute does not exist: %{msg}"
 msgstr "الكائن/السمة غير موجودة: %{msg}"
 
-#: ../lib/invoker.rb:157
 msgid "Error invoking cibadmin --replace: %{msg}"
 msgstr "حدث خطأ أثناء استدعاء cibadmin --replace: %{msg}"

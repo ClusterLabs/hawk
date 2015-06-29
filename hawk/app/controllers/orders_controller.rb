@@ -4,7 +4,7 @@
 #            A web-based GUI for managing and monitoring the
 #          Pacemaker High-Availability cluster resource manager
 #
-# Copyright (c) 2011-2013 SUSE LLC, All Rights Reserved.
+# Copyright (c) 2009-2015 SUSE LLC, All Rights Reserved.
 #
 # Author: Tim Serong <tserong@suse.com>
 #
@@ -31,101 +31,167 @@
 
 class OrdersController < ApplicationController
   before_filter :login_required
+  before_filter :set_title
+  before_filter :set_cib
+  before_filter :set_record, only: [:edit, :update, :destroy, :show]
 
-  layout 'main'
-  before_filter :get_cib
-
-  def get_cib
-    @cib = Cib.new params[:cib_id], current_user # RORSCAN_ITL (not mass assignment)
-  end
-
-  def initialize
-    super
-    @title = _('Edit Order Constraint')
+  def index
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: Order.ordered.to_json
+      end
+    end
   end
 
   def new
-    @title = _('Create Order Constraint')
-    @ord = Order.new
+    @title = _("Create Order")
+    @order = Order.new
+
+    respond_to do |format|
+      format.html
+    end
   end
 
   def create
-    @title = _('Create Order Constraint')
-    unless params[:cancel].blank?
-      redirect_to cib_constraints_path
-      return
-    end
-    params[:order][:symmetrical] = params[:order][:symmetrical] == "true" ? true : false
-    normalize_resources!(params[:order])
-    @ord = Order.new params[:order]  # RORSCAN_ITL (mass ass. OK)
-    if @ord.save
-      flash[:highlight] = _('Constraint created successfully')
-      redirect_to :action => 'edit', :id => @ord.id
-    else
-      render :action => 'new'
+    normalize_params! params[:order]
+    @title = _("Create Order")
+
+    @order = Order.new params[:order]
+
+    respond_to do |format|
+      if @order.save
+        post_process_for! @order
+
+        format.html do
+          flash[:success] = _("Constraint created successfully")
+          redirect_to edit_cib_order_url(cib_id: @cib.id, id: @order.id)
+        end
+        format.json do
+          render json: @order, status: :created
+        end
+      else
+        format.html do
+          render action: "new"
+        end
+        format.json do
+          render json: @order.errors, status: :unprocessable_entity
+        end
+      end
     end
   end
 
   def edit
-    @ord = Order.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
+    @title = _("Edit Order")
+
+    respond_to do |format|
+      format.html
+    end
   end
 
   def update
-    unless params[:revert].blank?
-      redirect_to :action => 'edit'
-      return
+    normalize_params! params[:order]
+    @title = _("Edit Order")
+
+    if params[:revert]
+      return redirect_to edit_cib_order_url(cib_id: @cib.id, id: @order.id)
     end
-    unless params[:cancel].blank?
-      redirect_to cib_constraints_path
-      return
-    end
-    @ord = Order.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
-    params[:order][:symmetrical] = params[:order][:symmetrical] == "true" ? true : false
-    normalize_resources!(params[:order])
-    if @ord.update_attributes(params[:order])  # RORSCAN_ITL (mass ass. OK)
-      flash[:highlight] = _('Constraint updated successfully')
-      redirect_to :action => 'edit', :id => @ord.id
-    else
-      render :action => 'edit'
+
+    respond_to do |format|
+      if @order.update_attributes(params[:order])
+        post_process_for! @order
+
+        format.html do
+          flash[:success] = _("Constraint updated successfully")
+          redirect_to edit_cib_order_url(cib_id: @cib.id, id: @order.id)
+        end
+        format.json do
+          render json: @order, status: :updated
+        end
+      else
+        format.html do
+          render action: "edit"
+        end
+        format.json do
+          render json: @order.errors, status: :unprocessable_entity
+        end
+      end
     end
   end
 
-  private
-
-  # Pass params[:order], to map from form-style:
-  #  [
-  #    {"action"=>"", "id"=>"foo"},
-  #    "rel",
-  #    {"action"=>"", "id"=>"bar"},
-  #    {"action"=>"", "id"=>"baz"}
-  #  ]
-  # to model-style:
-  #  [
-  #    {:resources => [ { :id => 'foo' } ]
-  #    {:sequential => false,
-  #     :resources => [ { :id => 'foo' }, { :id => 'bar' } ]
-  #  ]
-  # Note that nonsequential sets will never be collapsed
-  # (this is intentional, it's up to the model to collapse
-  # these if it wants to).  Note also that incoming actions
-  # in sequential sets must already all be the same within
-  # a set.
-  def normalize_resources!(p)
-    m = []
-    set = {}
-    p[:resources].each do |r|
-      if r == 'rel'
-        set[:sequential] = set[:resources].length == 1
-        m << set
-        set = {}
+  def destroy
+    respond_to do |format|
+      if Invoker.instance.crm("--force", "configure", "delete", @order.id)
+        format.html do
+          flash[:success] = _("Order deleted successfully")
+          redirect_to types_cib_constraints_url(cib_id: @cib.id)
+        end
+        format.json do
+          render json: {
+            success: true,
+            message: _("Order deleted successfully")
+          }
+        end
       else
-        set[:action] = r[:action] != "" ? r[:action] : nil
-        set[:resources] ||= []
-        set[:resources] << { :id => r[:id] }
+        format.html do
+          flash[:alert] = _("Error deleting %s") % @order.id
+          redirect_to edit_cib_order_url(cib_id: @cib.id, id: @order.id)
+        end
+        format.json do
+          render json: { error: _("Error deleting %s") % @order.id }, status: :unprocessable_entity
+        end
       end
     end
-    set[:sequential] = set[:resources].length == 1
-    m << set
-    p[:resources] = m
+  end
+
+  def show
+    respond_to do |format|
+      format.json do
+        render json: @order.to_json
+      end
+      format.any { not_found  }
+    end
+  end
+
+  protected
+
+  def set_title
+    @title = _("Orders")
+  end
+
+  def set_cib
+    @cib = Cib.new params[:cib_id], current_user
+  end
+
+  def set_record
+    @order = Order.find params[:id]
+
+    unless @order
+      respond_to do |format|
+        format.html do
+          flash[:alert] = _("The order constraint does not exist")
+          redirect_to types_cib_constraints_url(cib_id: @cib.id)
+        end
+      end
+    end
+  end
+
+  def post_process_for!(record)
+  end
+
+  def normalize_params!(current)
+    if params[:order][:resources].nil?
+      params[:order][:resources] = []
+    else
+      params[:order][:resources] = params[:order][:resources].values
+    end
+  end
+
+  def default_base_layout
+    if ["new", "create", "edit", "update"].include? params[:action]
+      "withrightbar"
+    else
+      super
+    end
   end
 end

@@ -4,7 +4,7 @@
 #            A web-based GUI for managing and monitoring the
 #          Pacemaker High-Availability cluster resource manager
 #
-# Copyright (c) 2011-2013 SUSE LLC, All Rights Reserved.
+# Copyright (c) 2009-2015 SUSE LLC, All Rights Reserved.
 #
 # Author: Tim Serong <tserong@suse.com>
 #
@@ -31,86 +31,185 @@
 
 class PrimitivesController < ApplicationController
   before_filter :login_required
+  before_filter :set_title
+  before_filter :set_cib
+  before_filter :set_record, only: [:edit, :update, :destroy, :show]
 
-  layout 'main'
-  # Need cib for both edit and update (but ultimately want to minimize the amount of processing...)
-  # TODO(should): consolidate/refactor with scaffolding in crm_config_controller
-  before_filter :get_cib
-
-  def get_cib
-    @cib = Cib.new params[:cib_id], current_user # RORSCAN_ITL (not mass assignment)
-  end
-
-  def initialize
-    super
-    @title = _('Edit Resource')
+  def index
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: Primitive.ordered.to_json
+      end
+    end
   end
 
   def new
-    @title = _('Create Resource')
-    @res = Primitive.new
-    @res.meta['target-role'] = 'Stopped' if @cib.id == 'live'
+    @title = _("Create Primitive")
+    @primitive = Primitive.new
+    @primitive.meta["target-role"] = "Stopped" if @cib.id == "live"
+
+    respond_to do |format|
+      format.html
+    end
   end
 
   def create
-    @title = _('Create Resource')
-    unless params[:cancel].blank?
-      redirect_to cib_resources_path
-      return
-    end
-    @res = Primitive.new params[:primitive]  # RORSCAN_ITL (mass ass. OK)
-    if @res.save
-      #TODO: broken in Rails 4
-      edit_url = url_for(:action => 'edit', :id => @res.id)
-      edit_link = "<a href=\"#{edit_url}\">#{@res.id}</a>"
-      flash[:highlight] = _('Resource created successfully') + ": " + edit_link
-      redirect_to :action => 'new'
-    else
-      render :action => 'new'
+    normalize_params! params[:primitive]
+    @title = _("Create Primitive")
+
+    @primitive = Primitive.new params[:primitive]
+
+    respond_to do |format|
+      if @primitive.save
+        post_process_for! @primitive
+
+        format.html do
+          flash[:success] = _("Primitive created successfully")
+          redirect_to edit_cib_primitive_url(cib_id: @cib.id, id: @primitive.id)
+        end
+        format.json do
+          render json: @primitive, status: :created
+        end
+      else
+        format.html do
+          render action: "new"
+        end
+        format.json do
+          render json: @primitive.errors, status: :unprocessable_entity
+        end
+      end
     end
   end
 
   def edit
-    @res = Primitive.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
+    @title = _("Edit Primitive")
+
+    respond_to do |format|
+      format.html
+    end
   end
 
   def update
-    unless params[:revert].blank?
-      redirect_to :action => 'edit'
-      return
+    normalize_params! params[:primitive]
+    @title = _("Edit Primitive")
+
+    if params[:revert]
+      return redirect_to edit_cib_primitive_url(cib_id: @cib.id, id: @primitive.id)
     end
-    unless params[:cancel].blank?
-      redirect_to cib_resources_path
-      return
+
+    respond_to do |format|
+      if @primitive.update_attributes(params[:primitive])
+        post_process_for! @primitive
+
+        format.html do
+          flash[:success] = _("Primitive updated successfully")
+          redirect_to edit_cib_primitive_url(cib_id: @cib.id, id: @primitive.id)
+        end
+        format.json do
+          render json: @primitive, status: :updated
+        end
+      else
+        format.html do
+          render action: "edit"
+        end
+        format.json do
+          render json: @primitive.errors, status: :unprocessable_entity
+        end
+      end
     end
-    @res = Primitive.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
-    if @res.update_attributes(params[:primitive])  # RORSCAN_ITL (mass ass. OK)
-      flash[:highlight] = _('Resource updated successfully')
-      redirect_to :action => 'edit', :id => @res.id
+  end
+
+  def destroy
+    respond_to do |format|
+      if Invoker.instance.crm("--force", "configure", "delete", @primitive.id)
+        format.html do
+          flash[:success] = _("Primitive deleted successfully")
+          redirect_to types_cib_resources_path(cib_id: @cib.id)
+        end
+        format.json do
+          render json: {
+            success: true,
+            message: _("Primitive deleted successfully")
+          }
+        end
+      else
+        format.html do
+          flash[:alert] = _("Error deleting %s") % @primitive.id
+          redirect_to edit_cib_primitive_url(cib_id: @cib.id, id: @primitive.id)
+        end
+        format.json do
+          render json: { error: _("Error deleting %s") % @primitive.id }, status: :unprocessable_entity
+        end
+      end
+    end
+  end
+
+  def show
+    respond_to do |format|
+      format.json do
+        render json: @primitive.to_json
+      end
+      format.any { not_found  }
+    end
+  end
+
+  def options
+    respond_to do |format|
+      format.json do
+        render json: Primitive.options.to_json
+      end
+      format.any { not_found  }
+    end
+  end
+
+  protected
+
+  def set_title
+    @title = _("Primitives")
+  end
+
+  def set_cib
+    @cib = Cib.new params[:cib_id], current_user
+  end
+
+  def set_record
+    @primitive = Primitive.find params[:id]
+
+    unless @primitive
+      respond_to do |format|
+        format.html do
+          flash[:alert] = _("The primitive does not exist")
+          redirect_to types_cib_resources_path(cib_id: @cib.id)
+        end
+      end
+    end
+  end
+
+  def post_process_for!(record)
+  end
+
+  def normalize_params!(current)
+  end
+
+  def default_base_layout
+    if ["new", "create", "edit", "update"].include? params[:action]
+      "withrightbar"
     else
-      render :action => 'edit'
+      super
     end
   end
 
-  # Bit of a hack, used only by simulator to get valid intervals
-  # for the monitor op in milliseconds.  Returns an array of
-  # possible intervals (zero elements if no monitor op defined,
-  # one element in the general case, but should be two for m/s
-  # resources, or more if there's depths etc.).
-  def monitor_intervals
-    intervals = []
-    @res = Primitive.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
-    @res.ops["monitor"].each do |op|
-      intervals << Util.crm_get_msec(op["interval"])
-    end if @res.ops.has_key?("monitor")
-    render :json => intervals
+  def provider_params
+    params.permit(
+      :clazz
+    )
   end
 
-  def types
-    render :json => Primitive.types(params[:r_class], params.has_key?(:r_provider) ? params[:r_provider] : '')
-  end
-
-  def metadata
-    render :json => Primitive.metadata(params[:r_class], params.has_key?(:r_provider) ? params[:r_provider] : '', params[:r_type])
+  def type_params
+    params.permit(
+      :clazz,
+      :provider
+    )
   end
 end

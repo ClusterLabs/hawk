@@ -1,0 +1,52 @@
+Current cluster status:
+Online: [ node1 node2 node3 webui ]
+
+ Resource Group: g-proxy
+     proxy-vip  (ocf::heartbeat:IPaddr2): Started node1
+     proxy  (systemd:haproxy):  Started node1
+ Resource Group: g-serv1
+     vip1 (ocf::heartbeat:IPaddr2): Started node2
+     srv1 (ocf::heartbeat:apache):  Started node2
+ Resource Group: g-serv2
+     vip2 (ocf::heartbeat:IPaddr2): Started node1
+     srv2 (ocf::heartbeat:apache):  Stopped
+
+Transition Summary:
+ * Move    vip2 (Started node1 -> node3)
+ * Start   srv2 (node3)
+
+Executing cluster transition:
+ * Pseudo action:   g-serv2_stop_0
+ * Resource action: vip2            stop on node1
+ * Pseudo action:   all_stopped
+ * Pseudo action:   g-serv2_stopped_0
+ * Pseudo action:   g-serv2_start_0
+ * Resource action: vip2            start on node3
+ * Resource action: srv2            start on node3
+ * Pseudo action:   g-serv2_running_0
+ * Resource action: srv2            monitor=10000 on node3
+
+Revised cluster status:
+Online: [ node1 node2 node3 webui ]
+
+ Resource Group: g-proxy
+     proxy-vip  (ocf::heartbeat:IPaddr2): Started node1
+     proxy  (systemd:haproxy):  Started node1
+ Resource Group: g-serv1
+     vip1 (ocf::heartbeat:IPaddr2): Started node2
+     srv1 (ocf::heartbeat:apache):  Started node2
+ Resource Group: g-serv2
+     vip2 (ocf::heartbeat:IPaddr2): Started node3
+     srv2 (ocf::heartbeat:apache):  Started node3
+Transition webui:pe-input-10 (16:48:38 - 16:48:39):
+  total 9 actions: 9 Complete
+May 21 16:48:38 webui crmd[32344]: notice: te_rsc_command: Initiating action 25: stop vip2_stop_0 on node1
+May 21 16:48:38 webui crmd[32344]: notice: te_rsc_command: Initiating action 26: start vip2_start_0 on node3
+May 21 16:48:38 webui crmd[32344]: notice: te_rsc_command: Initiating action 27: start srv2_start_0 on node3
+May 21 16:48:38 node3 IPaddr2(vip2)[20166]: INFO: Adding inet address 10.13.37.22/24 with broadcast address 10.13.37.255 to device eth1
+May 21 16:48:38 node3 IPaddr2(vip2)[20173]: INFO: Bringing device eth1 up
+May 21 16:48:38 node3 IPaddr2(vip2)[20180]: INFO: /usr/lib64/heartbeat/send_arp -i 200 -r 5 -p /run/resource-agents/send_arp-10.13.37.22 eth1 10.13.37.22 auto not_used not_used
+May 21 16:48:38 node3 apache(srv2)[20371]: INFO: AH00558: httpd2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
+May 21 16:48:38 node1 apache(srv2)[28637]: INFO: apache stopped.
+May 21 16:48:38 node1 IPaddr2(vip2)[28685]: INFO: IP status = ok, IP_CIP=
+INFO: 2: running ptest with /srv/www/hawk/tmp/explorer/hb_report-hawk-2014-05-26_09:14-2015-05-27_09:14/webui/pengine/pe-input-10.bz2

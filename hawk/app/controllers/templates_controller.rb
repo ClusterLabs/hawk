@@ -4,7 +4,7 @@
 #            A web-based GUI for managing and monitoring the
 #          Pacemaker High-Availability cluster resource manager
 #
-# Copyright (c) 2011-2013 SUSE LLC, All Rights Reserved.
+# Copyright (c) 2009-2015 SUSE LLC, All Rights Reserved.
 #
 # Author: Tim Serong <tserong@suse.com>
 #
@@ -24,72 +24,172 @@
 # other software, or any other product whatsoever.
 #
 # You should have received a copy of the GNU General Public License
-# along with this program; if not, see <http://www.gnu.org/licenses/>.
+# along with this program; if not, write the Free Software Foundation,
+# Inc., 59 Temple Place - Suite 330, Boston MA 02111-1307, USA.
 #
 #======================================================================
 
-# TODO(must): refactor/consolidate primitive & template.
-
 class TemplatesController < ApplicationController
   before_filter :login_required
+  before_filter :feature_support
+  before_filter :set_title
+  before_filter :set_cib
+  before_filter :set_record, only: [:edit, :update, :destroy, :show]
 
-  layout 'main'
-  # Need cib for both edit and update (but ultimately want to minimize the amount of processing...)
-  # TODO(should): consolidate/refactor with scaffolding in crm_config_controller
-  before_filter :get_cib
-
-  def get_cib
-    @cib = Cib.new params[:cib_id], current_user # RORSCAN_ITL (not mass assignment)
-  end
-
-  def initialize
-    super
-    @title = _('Edit Template')
+  def index
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: Template.ordered.to_json
+      end
+    end
   end
 
   def new
-    @title = _('Create Template')
-    @res = Template.new
-    # Primitives default to target-role=Stopped; not so templates.
-    # @res.meta['target-role'] = 'Stopped' if @cib.id == 'live'
-    render 'primitives/new'
+    @title = _("Create Template")
+    @primitive = Template.new
+
+    respond_to do |format|
+      format.html
+    end
   end
 
   def create
-    @title = _('Create Template')
-    unless params[:cancel].blank?
-      redirect_to cib_resources_path
-      return
-    end
-    @res = Template.new params[:template]  # RORSCAN_ITL (mass ass. OK)
-    if @res.save
-      flash[:highlight] = _('Template created successfully')
-      redirect_to :action => 'edit', :id => @res.id
-    else
-      render 'primitives/new'
+    normalize_params! params[:template]
+    @title = _("Create Template")
+
+    @primitive = Template.new params[:template]
+
+    respond_to do |format|
+      if @primitive.save
+        post_process_for! @primitive
+
+        format.html do
+          flash[:success] = _("Template created successfully")
+          redirect_to edit_cib_template_url(cib_id: @cib.id, id: @primitive.id)
+        end
+        format.json do
+          render json: @primitive, status: :created
+        end
+      else
+        format.html do
+          render action: "new"
+        end
+        format.json do
+          render json: @primitive.errors, status: :unprocessable_entity
+        end
+      end
     end
   end
 
   def edit
-    @res = Template.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
-    render 'primitives/edit'
+    @title = _("Edit Template")
+
+    respond_to do |format|
+      format.html
+    end
   end
 
   def update
-    unless params[:revert].blank?
-      redirect_to :action => 'edit'
-      return
+    normalize_params! params[:template]
+    @title = _("Edit Template")
+
+    if params[:revert]
+      return redirect_to edit_cib_template_url(cib_id: @cib.id, id: @primitive.id)
     end
-    unless params[:cancel].blank?
-      redirect_to cib_resources_path
-      return
+
+    respond_to do |format|
+      if @primitive.update_attributes(params[:template])
+        post_process_for! @primitive
+
+        format.html do
+          flash[:success] = _("Template updated successfully")
+          redirect_to edit_cib_template_url(cib_id: @cib.id, id: @primitive.id)
+        end
+        format.json do
+          render json: @primitive, status: :updated
+        end
+      else
+        format.html do
+          render action: "edit"
+        end
+        format.json do
+          render json: @primitive.errors, status: :unprocessable_entity
+        end
+      end
     end
-    @res = Template.find params[:id]  # RORSCAN_ITL (authz via cibadmin)
-    if @res.update_attributes(params[:template])  # RORSCAN_ITL (mass ass. OK)
-      flash[:highlight] = _('Template updated successfully')
-      redirect_to :action => 'edit', :id => @res.id
-    else
-      render 'primitives/edit'
+  end
+
+  def destroy
+    respond_to do |format|
+      if Invoker.instance.crm("--force", "configure", "delete", @primitive.id)
+        format.html do
+          flash[:success] = _("Template deleted successfully")
+          redirect_to cib_dashboard_url(cib_id: @cib.id)
+        end
+        format.json do
+          render json: {
+            success: true,
+            message: _("Template deleted successfully")
+          }
+        end
+      else
+        format.html do
+          flash[:alert] = _("Error deleting %s") % @primitive.id
+          redirect_to edit_cib_template_url(cib_id: @cib.id, id: @primitive.id)
+        end
+        format.json do
+          render json: { error: _("Error deleting %s") % @primitive.id }, status: :unprocessable_entity
+        end
+      end
     end
+  end
+
+  def show
+    respond_to do |format|
+      format.json do
+        render json: @primitive.to_json
+      end
+      format.any { not_found  }
+    end
+  end
+
+  protected
+
+  def feature_support
+    unless Util.has_feature? :rsc_template
+      redirect_to root_url, alert: _("You have no template feature support")
+    end
+  end
+
+  def set_title
+    @title = _("Templates")
+  end
+
+  def set_cib
+    @cib = Cib.new params[:cib_id], current_user
+  end
+
+  def set_record
+    @primitive = Template.find params[:id]
+
+    unless @primitive
+      respond_to do |format|
+        format.html do
+          flash[:alert] = _("The template does not exist")
+          redirect_to cib_dashboard_url(cib_id: @cib.id)
+        end
+      end
+    end
+  end
+
+  def post_process_for!(record)
+  end
+
+  def normalize_params!(current)
+  end
+
+  def default_base_layout
+    "withrightbar"
   end
 end

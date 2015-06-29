@@ -1,0 +1,11 @@
+.container-fluid
+  .row
+    %h1
+      = icon_text "copy", _("Clones"), class: "page"
+      .pull-right
+        .btn-group{ role: "group" }
+          = link_to icon_text("plus", _("Create")), new_cib_clone_path, class: "btn btn-default"
+
+  .row
+    .panel.panel-default
+      %table.table.table-striped.clones

@@ -1,0 +1,22 @@
+.container-fluid
+  .row
+    %h1
+      = icon_text "magic", _("Choose a wizard"), class: "page"
+
+  .row{ data: { help_target: "#rightbar > .container-fluid > *" } }
+    %ul.nav.nav-pills.nav-stacked.nav-bighelp.nav-topspace
+      - @wizards.each do |wizard|
+        %li
+          = link_to cib_wizard_path(cib_id: current_cib.id, id: wizard.id), data: { help_filter: ".#{wizard.id}" }, class: "btn btn-default btn-lg" do
+            = icon_text "file-o", wizard.name
+            .pull-right
+              = icon_tag "plus-circle"
+
+- content_for :rightbar do
+  .container-fluid{ data: { spy: "affix" } }
+    - @wizards.each do |wizard|
+      .row{ class: wizard.id }
+        %h2.margin-bottom
+          = wizard.name
+
+        = simple_format wizard.description

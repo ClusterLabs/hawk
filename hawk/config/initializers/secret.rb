@@ -4,7 +4,7 @@
 #            A web-based GUI for managing and monitoring the
 #          Pacemaker High-Availability cluster resource manager
 #
-# Copyright (c) 2009-2013 SUSE LLC, All Rights Reserved.
+# Copyright (c) 2009-2015 SUSE LLC, All Rights Reserved.
 #
 # Author: Tim Serong <tserong@suse.com>
 #
@@ -36,15 +36,18 @@ Rails.root.join('tmp', 'session_secret').tap do |secret_file|
   # If you change this key, all old signed cookies will become invalid!
   # Make sure the secret is at least 30 characters and all random,
   # no regular words or you'll be exposed to dictionary attacks.
-  secret_value = secret_file.open(File::RDWR|File::CREAT, 0600) do |f|
+  Rails.application.secrets.secret_key_base = secret_file.open(
+    File::RDWR|File::CREAT,
+    0600
+  ) do |f|
     # Lock this so multiple instances starting simultaneously don't
     # race and write different secrets, which would otherwise lead to
     # unexpectedly being randomly logged out of hawk (at least until
     # the next time hawk is restarted, after which the problem would
     # magically evaporate).
     f.flock(File::LOCK_EX)
-    secret = f.read
 
+    secret = f.read
     if secret.empty?
       secret = SecureRandom.hex(64)
 
@@ -54,6 +57,4 @@ Rails.root.join('tmp', 'session_secret').tap do |secret_file|
 
     secret
   end
-
-  Rails.application.secrets.secret_key_base = secret_value
 end

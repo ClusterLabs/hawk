@@ -1,63 +1,80 @@
 <?xml version="1.0"?>
 <template name="filesystem">
+  <shortdesc lang="en">
+    Filesystem
+  </shortdesc>
 
-<shortdesc lang="en">Filesystem</shortdesc>
-<longdesc lang="en">
-Create a single primitive resource of type Filesystem.
-</longdesc>
+  <longdesc lang="en">
+    Create a single primitive resource of type Filesystem.
+  </longdesc>
 
-<parameters>
+  <parameters>
+    <parameter name="id" required="1">
+      <shortdesc lang="en">
+        Resource ID
+      </shortdesc>
+      <longdesc lang="en">
+        Unique ID for this filesystem resource in the cluster.
+      </longdesc>
 
-<parameter name="id" required="1">
-<shortdesc lang="en">Resource ID</shortdesc>
-<longdesc lang="en">
-Unique ID for this filesystem resource in the cluster.
-</longdesc>
-<content type="string" default="filesystem"/>
-</parameter>
+      <content type="string" default="filesystem"/>
+    </parameter>
 
-<parameter name="device" required="1">
-<shortdesc lang="en">Block Device</shortdesc>
-<longdesc lang="en">
-Block device path for the filesystem, e.g.: /dev/disk/by-id/scsi-foo-part1</longdesc>
-<content type="string" default=""/>
-</parameter>
+    <parameter name="device" required="1">
+      <shortdesc lang="en">
+        Block Device
+      </shortdesc>
+      <longdesc lang="en">
+        Block device path for the filesystem, e.g.: /dev/disk/by-id/scsi-foo-part1
+      </longdesc>
 
-<parameter name="directory" required="1">
-<shortdesc lang="en">Mount Point</shortdesc>
-<longdesc lang="en">
-The mount point for the filesystem, e.g.: /clusterfs </longdesc>
-<content type="string" default=""/>
-</parameter>
+      <content type="string" default=""/>
+    </parameter>
 
-<parameter name="fstype" required="1">
-<shortdesc lang="en">File system type</shortdesc>
-<longdesc lang="en">
-The type of filesystem, e.g.: btrfs, xfs, ocfs2, ...</longdesc>
-<content type="string" default=""/>
-</parameter>
+    <parameter name="directory" required="1">
+      <shortdesc lang="en">
+        Mount Point
+      </shortdesc>
+      <longdesc lang="en">
+        The mount point for the filesystem, e.g.: /clusterfs
+      </longdesc>
 
-<parameter name="options">
-<shortdesc lang="en">Mount options</shortdesc>
-<longdesc lang="en">
-Any additional options to be given as -o options to the mount command.
-</longdesc>
-<content type="string"/>
-</parameter>
+      <content type="string" default=""/>
+    </parameter>
 
-</parameters>
+    <parameter name="fstype" required="1">
+      <shortdesc lang="en">
+        File system type
+      </shortdesc>
+      <longdesc lang="en">
+        The type of filesystem, e.g.: btrfs, xfs, ocfs2, ...
+      </longdesc>
 
-<crm_script>
-primitive <insert param="id"/> ocf:heartbeat:Filesystem
-  params
-    device="<insert param="device"/>"
-    directory="<insert param="directory"/>"
-    fstype="<insert param="fstype"/>"
-<if set="options">
-    options="<insert param="options"/>"
-</if>
-  op start timeout="60" op stop timeout="60"
-  op monitor interval="20" timeout="40"
-</crm_script>
+      <content type="string" default=""/>
+    </parameter>
 
+    <parameter name="options">
+      <shortdesc lang="en">
+        Mount options
+      </shortdesc>
+      <longdesc lang="en">
+        Any additional options to be given as -o options to the mount command.
+      </longdesc>
+
+      <content type="string"/>
+    </parameter>
+  </parameters>
+
+  <crm_script>
+    primitive <insert param="id"/> ocf:heartbeat:Filesystem
+      params
+        device="<insert param="device"/>"
+        directory="<insert param="directory"/>"
+        fstype="<insert param="fstype"/>"
+    <if set="options">
+        options="<insert param="options"/>"
+    </if>
+      op start timeout="60" op stop timeout="60"
+      op monitor interval="20" timeout="40"
+  </crm_script>
 </template>

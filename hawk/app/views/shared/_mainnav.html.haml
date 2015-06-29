@@ -1,0 +1,88 @@
+%ul.nav.sidebar-nav
+  %li
+    %ul
+      / %li{ class: active_menu_with(:dashboards) }
+      /   = link_to _("Dashboard"), cib_dashboard_path(cib_id: current_cib.id)
+
+      %li{ class: active_menu_with(:states) }
+        = link_to _("Status"), cib_state_path(cib_id: current_cib.id)
+
+  %li
+    = _("Report")
+
+    %ul
+      / %li{ class: active_menu_with(:heartbeats) }
+      /   = link_to _("Heartbeat"), heartbeat_path
+
+      %li{ class: active_menu_with(:graphs) }
+        = link_to _("Graph"), graph_path
+
+      %li{ class: active_menu_with(:explorers) }
+        = link_to _("History"), explorers_path
+
+  %li
+    = _("Resources")
+
+    %ul
+      %li{ class: active_menu_with(:resources, :primitives, :clones, :masters) }
+        = link_to _("Add resource"), types_cib_resources_path(cib_id: current_cib.id)
+      %li{ class: active_menu_with(:constraints, :locations, :colocations, :orders, :tickets) }
+        = link_to _("Add constraint"), types_cib_constraints_path(cib_id: current_cib.id)
+
+      - if Util.has_feature? :rsc_template
+        %li{ class: active_menu_with(:templates) }
+          = link_to _("Add template"), new_cib_template_path(cib_id: current_cib.id)
+
+      %li{ class: active_menu_with(:wizards) }
+        = link_to _("Choose wizard"), cib_wizards_path(cib_id: current_cib.id)
+
+  %li
+    = _("Manage")
+
+    %ul
+      %li{ class: active_menu_with(:configs) }
+        = link_to _("Configuration"), edit_cib_crm_config_path(cib_id: current_cib.id)
+
+      - if Util.has_feature? :acl_support
+        %li{ class: active_menu_with(:roles) }
+          = link_to _("Roles"), cib_roles_path(cib_id: current_cib.id)
+
+      - if Util.has_feature? :acl_support
+        %li{ class: active_menu_with(:users) }
+          = link_to _("Users"), cib_users_path(cib_id: current_cib.id)
+
+  - if Rails.env.development?
+    %li
+      = _("Development")
+
+      %ul
+        %li{ class: active_menu_with(:nodes) }
+          = link_to _("Nodes"), cib_nodes_path(cib_id: current_cib.id)
+
+        %li{ class: active_menu_with(:masters) }
+          = link_to _("Masters/Slaves"), cib_masters_path(cib_id: current_cib.id)
+
+        %li{ class: active_menu_with(:clones) }
+          = link_to _("Clones"), cib_clones_path(cib_id: current_cib.id)
+
+        %li{ class: active_menu_with(:groups) }
+          = link_to _("Groups"), cib_groups_path(cib_id: current_cib.id)
+
+        %li{ class: active_menu_with(:primitives) }
+          = link_to _("Primitives"), cib_primitives_path(cib_id: current_cib.id)
+
+        %li{ class: active_menu_with(:locations) }
+          = link_to _("Locations"), cib_locations_path(cib_id: current_cib.id)
+
+        %li{ class: active_menu_with(:colocations) }
+          = link_to _("Colocations"), cib_colocations_path(cib_id: current_cib.id)
+
+        %li{ class: active_menu_with(:orders) }
+          = link_to _("Orders"), cib_orders_path(cib_id: current_cib.id)
+
+        %li{ class: active_menu_with(:tickets) }
+          = link_to _("Tickets"), cib_tickets_path(cib_id: current_cib.id)
+
+        - if Util.has_feature? :acl_support
+          %li{ class: active_menu_with(:templates) }
+            = link_to _("Templates"), cib_templates_path(cib_id: current_cib.id)

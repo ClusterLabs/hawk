@@ -25,7 +25,7 @@ ruby_block "webui_check" do
     begin
       Timeout.timeout(600) do
         while true
-          exit_code = nil
+          exit_code = 100
 
           begin
             Net::SSH.start node["hawk"]["node"]["ssh_host"], "vagrant", password: "vagrant", paranoid: false do |ssh|

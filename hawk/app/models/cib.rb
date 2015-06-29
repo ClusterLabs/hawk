@@ -4,7 +4,7 @@
 #            A web-based GUI for managing and monitoring the
 #          Pacemaker High-Availability cluster resource manager
 #
-# Copyright (c) 2009-2013 SUSE LLC, All Rights Reserved.
+# Copyright (c) 2009-2015 SUSE LLC, All Rights Reserved.
 #
 # Author: Tim Serong <tserong@suse.com>
 #
@@ -36,6 +36,48 @@ require 'rexml/document' unless defined? REXML::Document
 class Cib < CibObject
   include FastGettext::Translation
   include Rails.application.routes.url_helpers    # needed for explorer_path
+
+  def meta
+    @meta ||= begin
+      struct = Hashie::Mash.new
+
+      struct.epoch = epoch
+      struct.dc = dc
+
+      struct.host = Socket.gethostname
+
+      struct.version = crm_config[:dc_version]
+      struct.stack = crm_config[:cluster_infrastructure]
+
+      struct.status = if errors.empty?
+        # TODO(must): Add stopped checks
+
+        maintain = nodes.map do |node|
+          node[:maintenance] || false
+        end
+
+        case
+        when maintain.include?(true)
+          :maintenance
+        else
+          :ok
+        end
+      else
+        :errors
+      end
+
+      struct
+    end
+  end
+
+  def live?
+    id == 'live'
+  end
+
+  def sim?
+    id != 'live'
+  end
+
   protected
 
   # Roughly equivalent to crm_element_value() in Pacemaker
@@ -50,11 +92,11 @@ class Cib < CibObject
   end
 
   def get_resource(elem, is_managed = true, clone_max = nil, is_ms = false)
-    res = {
+    res = Hashie::Mash.new(
       :id => elem.attributes['id'],
       :attributes => {},
       :is_managed => is_managed
-    }
+    )
     @resources_by_id[elem.attributes['id']] = res
     elem.elements.each("meta_attributes/nvpair/") do |nv|
       res[:attributes][nv.attributes["name"]] = nv.attributes["value"]
@@ -229,7 +271,7 @@ class Cib < CibObject
   attr_reader :booth
 
   def initialize(id, user, use_file = false)
-    @errors = {}
+    @errors = []
 
     if use_file
       cib_path = id
@@ -259,13 +301,13 @@ class Cib < CibObject
     @id = id
 
     # Special-case defaults for properties we always want to see
-    @crm_config = {
+    @crm_config = Hashie::Mash.new(
       :"cluster-infrastructure"       => _('Unknown'),
       :"dc-version"                   => _('Unknown'),
       :"stonith-enabled"              => true,
       :"symmetric-cluster"            => true,
       :"no-quorum-policy"             => 'stop'
-    }
+    )
 
     # Pull in everything else
     # TODO(should): This gloms together all cluster property sets; really
@@ -274,12 +316,12 @@ class Cib < CibObject
       @crm_config[p.attributes['name'].to_sym] = get_xml_attr(p, 'value')
     end
 
-    @rsc_defaults = {}
+    @rsc_defaults = Hashie::Mash.new
     @xml.elements.each('cib/configuration/rsc_defaults//nvpair') do |p|
       @rsc_defaults[p.attributes['name'].to_sym] = get_xml_attr(p, 'value')
     end
 
-    @op_defaults = {}
+    @op_defaults = Hashie::Mash.new
     @xml.elements.each('cib/configuration/op_defaults//nvpair') do |p|
       @op_defaults[p.attributes['name'].to_sym] = get_xml_attr(p, 'value')
     end
@@ -314,12 +356,12 @@ class Cib < CibObject
         # and offline if fencing is disabled.
         state = crm_config[:"stonith-enabled"] ? :unclean : :offline
       end
-      @nodes << {
+      @nodes << Hashie::Mash.new(
         :uname => uname,
         :state => state,
         :id => id,
         :maintenance => maintenance
-      }
+      )
     end
 
     @resources = []
@@ -334,12 +376,12 @@ class Cib < CibObject
     # have state we care about.
     @templates = []
     @xml.elements.each('cib/configuration/resources/template') do |t|
-      @templates << {
+      @templates << Hashie::Mash.new(
         :id => t.attributes['id'],
         :class => t.attributes['class'],
         :provider => t.attributes['provider'],
         :type => t.attributes['type']
-      }
+      )
     end if Util.has_feature?(:rsc_template)
 
     @tags = []
@@ -492,13 +534,12 @@ class Cib < CibObject
             end
 
             failed_ops << { :node => node[:uname], :call_id => op.attributes['call-id'], :op => operation, :rc_code => rc_code, :exit_reason => exit_reason }
-            @errors[:base] ||= []
-            @errors[:base] << {
+            @errors << {
               :msg => _('Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}, exit-reason=%{exit_reason}') % {
                 :node => node[:uname], :resource => id, :call_id => op.attributes['call-id'],
                 :op => operation, :rc_code => rc_code, :exit_reason => exit_reason },
               # Note: graph_number here might be the one *after* the one that's really interesting :-/
-              :link => fail_start ? explorer_path(:from_time => fail_start, :to_time => fail_end, :display => true, :graph_number => graph_number) : ""
+              #:link => fail_start ? explorer_path(:from_time => fail_start, :to_time => fail_end, :display => true, :graph_number => graph_number) : ""
             }
 
             if ignore_failure
@@ -642,7 +683,7 @@ class Cib < CibObject
     # have a last-granted timestamp too, but this will only be present if a
     # ticket has ever been granted - it won't be there for tickets we only
     # pick up from rsc_ticket constraints.
-    @tickets = {}
+    @tickets = Hashie::Mash.new
     @xml.elements.each("cib/status/tickets/ticket_state") do |ts|
       t = ts.attributes["id"]
       @tickets[t] = {
@@ -658,7 +699,7 @@ class Cib < CibObject
       @tickets[t] = { :granted => false } unless @tickets[rt.attributes["ticket"]]
     end
 
-    @booth = { :sites => [], :arbitrators => [], :tickets => [], :me => nil }
+    @booth = Hashie::Mash.new(:sites => [], :arbitrators => [], :tickets => [], :me => nil)
     # Figure out if we're in a geo cluster
     File.readlines("/etc/booth/booth.conf").each do |line|
       m = line.match(/^\s*(site|arbitrator|ticket)\s*=(.+)/)
@@ -707,6 +748,9 @@ class Cib < CibObject
       end
     end
 
+    @crm_config = Hashie::Mash.new Hash[@crm_config.map {|k,v| [k.to_s.underscore.to_sym, v]}]
+    @rsc_defaults = Hashie::Mash.new Hash[@rsc_defaults.map {|k,v| [k.to_s.underscore.to_sym, v]}]
+    @op_defaults = Hashie::Mash.new Hash[@op_defaults.map {|k,v| [k.to_s.underscore.to_sym, v]}]
   end
 
 end

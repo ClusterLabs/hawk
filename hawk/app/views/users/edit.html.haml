@@ -1,0 +1,10 @@
+.container-fluid
+  .row
+    %h1
+      = icon_text "user", _("Edit User"), class: "page"
+      .pull-right
+        .btn-group{ role: "group" }
+          = link_to icon_text("trash", _("Delete")), cib_user_path(cib_id: @cib.id, id: @user.id), method: "delete", confirm: _("Are you sure you wish to delete %s?") % @user.id, class: "btn btn-default"
+
+  .row
+    = render partial: "form", locals: { cib: @cib, user: @user }

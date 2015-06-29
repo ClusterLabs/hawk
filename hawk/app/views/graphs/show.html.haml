@@ -1,0 +1,7 @@
+.container-fluid
+  %h1
+    = icon_text "line-chart", _("Graph"), class: "page"
+
+  .panel.panel-default
+    .panel-body
+      = image_tag graph_path(format: "png", t: Time.now.to_i), class: "img-responsive center-block", alt: _("Graph")

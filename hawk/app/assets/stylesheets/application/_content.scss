@@ -1,0 +1,160 @@
+//======================================================================
+//                        HA Web Konsole (Hawk)
+// --------------------------------------------------------------------
+//            A web-based GUI for managing and monitoring the
+//          Pacemaker High-Availability cluster resource manager
+//
+// Copyright (c) 2009-2013 SUSE LLC, All Rights Reserved.
+//
+// Author: Tim Serong <tserong@suse.com>
+//
+// This program is free software; you can redistribute it and/or modify
+// it under the terms of version 2 of the GNU General Public License as
+// published by the Free Software Foundation.
+//
+// This program is distributed in the hope that it would be useful, but
+// WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+//
+// Further, this software is distributed without any warranty that it is
+// free of the rightful claim of any third person regarding infringement
+// or the like.  Any license provided herein, whether implied or
+// otherwise, applies only to this software file.  Patent licenses, if
+// any, provided herein do not apply to combinations of this program with
+// other software, or any other product whatsoever.
+//
+// You should have received a copy of the GNU General Public License
+// along with this program; if not, write the Free Software Foundation,
+// Inc., 59 Temple Place - Suite 330, Boston MA 02111-1307, USA.
+//
+//======================================================================
+
+#sidebar {
+  background-color: #383c3e;
+  color: #fff;
+
+  padding-left: 0;
+  padding-right: 0;
+
+  ul {
+    & > li {
+      text-transform: uppercase;
+      padding: 0 0 0 20px;
+      color: #00b268;
+    }
+
+    ul {
+      list-style-type: none;
+      line-height: 2.8em;
+      font-weight: lighter;
+      border-bottom: 1px solid #333;
+      padding: 0 0 10px 0;
+      margin: 10px 0 10px 10px;
+
+      li {
+        text-transform: none;
+        padding: 0;
+        margin-left: 20px;
+
+        a {
+          color: #fff;
+          text-decoration: none;
+          display: inline-block;
+          width: 100%;
+        }
+
+        &.active a,
+        a:hover {
+          border-right: 5px solid #80c235;
+        }
+
+        a:hover {
+          color: darken(#fff, 20.0%);
+        }
+      }
+    }
+
+    li:last-of-type {
+      ul {
+        border-bottom: 0;
+        margin-bottom: 0;
+      }
+    }
+  }
+}
+
+#middle {
+  & > .container-fluid {
+    padding: 10px 30px;
+  }
+
+  & > .alert:first-child {
+    margin-top: 20px;
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  h1 {
+    margin: 20px 0px 20px 0px;
+    font-size: 2em;
+
+    .fa.page {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+  }
+
+  .panel-default {
+    .panel-heading {
+      @include gradient-vertical(#f4f4f4, #e7e7e7);
+
+      h2 {
+        font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+        color: rgb(58, 62, 64);
+        -webkit-font-smoothing: antialiased;
+        font-size: 14px;
+        font-weight: bold;
+      }
+    }
+
+    .panel-footer {
+      @include gradient-vertical(#f4f4f4, #e7e7e7);
+    }
+  }
+
+  [data-growl="container"] {
+    min-width: 250px;
+  }
+}
+
+#rightbar {
+  background-color: #EBEBEB;
+
+  padding-left: 0;
+  padding-right: 0;
+
+  & > .container-fluid {
+    padding: 50px;
+
+    &:first-child h2 {
+      margin-top: 0;
+    }
+  }
+}
+
+#modal {
+  h3 {
+    .fa.page {
+      margin-left: 20px;
+      margin-right: 20px;
+    }
+  }
+}
+
+form .content.constraints {
+  .well {
+    .form-group:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+}

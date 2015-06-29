@@ -4,7 +4,7 @@
 #            A web-based GUI for managing and monitoring the
 #          Pacemaker High-Availability cluster resource manager
 #
-# Copyright (c) 2011-2013 SUSE LLC, All Rights Reserved.
+# Copyright (c) 2009-2015 SUSE LLC, All Rights Reserved.
 #
 # Author: Tim Serong <tserong@suse.com>
 #
@@ -30,213 +30,215 @@
 #======================================================================
 
 class Location < Constraint
-  @attributes = :rules, :rsc
-  attr_accessor *@attributes
+  attribute :id, String
+  attribute :resource, Array[String]
+  attribute :rules, Array[Hash]
 
-  def initialize(attributes = nil)
-    @rules  = []
-    @rsc    = ['']
-    super
-  end
+  validates :id,
+    presence: { message: _("Constraint ID is required") },
+    format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _("Invalid Constraint ID") }
 
-  def validate
-    error _('Constraint is too complex - it contains nested rules') if too_complex?
+  validates :resource,
+    presence: { message: _("No resource specified") }
 
-    error _('No rules specified') if @rules.empty?
+  validates :rules,
+    presence: { message: _("No rules specified") }
 
-    @rsc.map{|r| r.strip!}
-    @rsc.delete_if{|r| r.empty?}
-    error _("No resource specified") if @rsc.empty?
-
-    # TODO(should): break out early if there's errors - it can get quite noisy
-    # otherwise if there's lots of invalid input
-    @rules.each do |rule|
-      rule[:score].strip!
-      unless ['mandatory', 'advisory', 'inf', '-inf', 'infinity', '-infinity'].include? rule[:score].downcase
-        if simple?
-          unless rule[:score].match(/^-?[0-9]+$/)
-            error _('Invalid score "%{score}"') % { :score => rule[:score] }
-          end
-        else
-          # We're allowing any old junk for scores for complex resources,
-          # because you're allowed to use score-attribute here.
-          # TODO(must): Tighten this up if possible
-        end
-      end
-      error _('No expressions specified') if rule[:expressions].empty?
-      rule[:expressions].each do |e|
-        e[:attribute].strip!
-        e[:value].strip!
-        error _("Attribute contains both single and double quotes") if unquotable? e[:attribute]
-        error _("Value contains both single and double quotes") if unquotable? e[:value]
-      end
-    end
-  end
-
-  def create
-    if CibObject.exists?(id)
-      error _('The ID "%{id}" is already in use') % { :id => @id }
+  validate do |record|
+    if record.complex?
+      errors.add :base, _("Constraint is too complex - it contains nested rules")
       return false
     end
 
-    cmd = shell_syntax
-
-    result = Invoker.instance.crm_configure cmd
-    unless result == true
-      error _('Unable to create constraint: %{msg}') % { :msg => result }
-      return false
-    end
-
-    true
+    # @rules.each do |rule|
+    #   rule[:score].strip!
+    #   unless ['mandatory', 'advisory', 'inf', '-inf', 'infinity', '-infinity'].include? rule[:score].downcase
+    #     if simple?
+    #       unless rule[:score].match(/^-?[0-9]+$/)
+    #         error _('Invalid score "%{score}"') % { :score => rule[:score] }
+    #       end
+    #     else
+    #       # We're allowing any old junk for scores for complex resources,
+    #       # because you're allowed to use score-attribute here.
+    #       # TODO(must): Tighten this up if possible
+    #     end
+    #   end
+    #   error _('No expressions specified') if rule[:expressions].empty?
+    #   rule[:expressions].each do |e|
+    #     e[:attribute].strip!
+    #     e[:value].strip!
+    #     error _("Attribute contains both single and double quotes") if e[:attribute].index("'") && e[:attribute].index('"')
+    #     error _("Value contains both single and double quotes") if e[:value].index("'") && e[:value].index('"')
+    #   end
+    # end
   end
 
-  def update
-    unless CibObject.exists?(id, 'rsc_location')
-      error _('Constraint ID "%{id}" does not exist') % { :id => @id }
-      return false
-    end
-
-    # Can just use crm configure load update here, it's trivial enough (because
-    # we basically replace the object every time, rather than having to merge
-    # like primitive, ms, etc.)
-
-    # TODO(should): double-check rule id preservation (seems the shell does
-    # this by magic, and we get it for free!)
-    result = Invoker.instance.crm_configure_load_update shell_syntax
-    unless result == true
-      error _('Unable to update constraint: %{msg}') % { :msg => result }
-      return false
-    end
-
-    true
+  def rules
+    @rules ||= []
   end
 
-  def update_attributes(attributes = nil)
-    @rules  = []
-    @rsc    = ['']
-    super
+  def rules=(value)
+    @rules = value
   end
 
-  # Can this rule be folded back to "location <id> <res> <score>: <node>
   def simple?
-    @rules.none? ||
-      @rules.length == 1 && rules[0][:expressions].length == 1 &&
-        (!rules[0].has_key?(:role) || rules[0][:role].empty?) &&
-        rules[0][:score] && rules[0][:expressions][0][:value] &&
-        rules[0][:expressions][0][:attribute] == '#uname' &&
-        rules[0][:expressions][0][:operation] == 'eq'
+    rules.none? ||
+      rules.length == 1 &&
+      rules[0][:expressions].length == 1 &&
+      (!rules[0].has_key?(:role) || rules[0][:role].empty?) &&
+      rules[0][:score] &&
+      rules[0][:expressions][0][:value] &&
+      rules[0][:expressions][0][:attribute] == '#uname' &&
+      rules[0][:expressions][0][:operation] == 'eq'
   end
 
-  def too_complex?
-    @too_complex ||= false
+  def complex?
+    @complex ||= false
+  end
+
+  def complex=(value)
+    @complex = value
+  end
+
+  class << self
+    def all
+      super.select do |record|
+        record.is_a? self
+      end
+    end
+  end
+
+  protected
+
+  def shell_syntax
+
+
+
+    raise "Seems to be valid!".inspect
+
+
+
+    [].tap do |cmd|
+      cmd.push "location #{id}"
+
+      if resource.length == 1
+        cmd.push resource.first
+      else
+        cmd.push [
+          "{",
+          resource.join(" "),
+          "}"
+        ].join(" ")
+      end
+
+      if simple?
+        cmd.push [
+          rules.first.score,
+          rules.first.expressions.first.value
+        ].join(": ")
+      else
+
+
+
+
+
+        # def crm_quote(str)
+        #   if str.index("'")
+        #     "\"#{str}\""
+        #   else
+        #     "'#{str}'"
+        #   end
+        # end
+
+        # @rules.each do |rule|
+        #   op = rule[:boolean_op]
+        #   op = "and" if op == ""
+        #   cmd += " rule"
+        #   cmd += " $role=\"#{rule[:role]}\"" unless rule[:role].empty?
+        #   cmd += " #{crm_quote(rule[:score])}:"
+        #   cmd += rule[:expressions].map {|e|
+        #     if ["defined", "not_defined"].include? e[:operation]
+        #       " #{e[:operation]} #{crm_quote(e[:attribute])} "
+        #     else
+        #       " #{crm_quote(e[:attribute])} " +
+        #         (e[:type] != "" ? "#{e[:type]}:" : "") +
+        #       "#{e[:operation]} #{crm_quote(e[:value])} "
+        #     end
+        #   }.join(op)
+        # end
+
+
+
+
+
+      end
+    end.join(" ")
   end
 
   class << self
     def instantiate(xml)
-      con = allocate
-      rules = []
-      if xml.attributes['score']
-        # Simple location constraint, fold to rule notation
-        rules << {
-          :score => xml.attributes['score'],
-          :expressions => [ {
-              :attribute => '#uname',
-              :operation => 'eq',
-              :value     => xml.attributes['node']
-          } ]
-        }
-      else
-        # Rule notation
-        xml.elements.each('rule') do |rule_elem|
-          rule = {
-            :id               => rule_elem.attributes['id'],
-            :role             => rule_elem.attributes['role'] || "",
-            :score            => rule_elem.attributes['score'] || rule_elem.attributes['score-attribute'] || "",
-            :boolean_op       => rule_elem.attributes['boolean-op'] || "",  # default behaviour is "and"
-            :expressions      => []
-          }
-          rule_elem.elements.each do |expr_elem|
-            if expr_elem.name != 'expression'
-              # Considers nested rules and date_expression to be too complex
-              # TODO(should): Handle date expressions
-              con.instance_variable_set(:@too_complex, true)
-              next
+      record = allocate
+
+      record.resource = [].tap do |resource|
+        if xml.attributes["rsc"]
+          resource.push xml.attributes["rsc"]
+        else
+          xml.elements.each("resource_set") do |set|
+            set.elements.each do |el|
+              resource.push el.attributes["id"]
             end
-            rule[:expressions] << {
-              :value      => expr_elem.attributes['value'] || "",
-              :attribute  => expr_elem.attributes['attribute'] || "",
-              :type       => expr_elem.attributes['type'] || "",  # default behaviour is "string"
-              :operation  => expr_elem.attributes['operation'] || ""
+          end
+        end
+      end
+
+      record.rules = [].tap do |rules|
+        if xml.attributes["score"]
+          rules.push(
+            score: xml.attributes["score"],
+            expressions: [
+              {
+                attribute: "#uname",
+                operation: "eq",
+                value: xml.attributes["node"]
+              }
+            ]
+          )
+        else
+          xml.elements.each("rule") do |rule|
+            set = {
+              id: rule_elem.attributes["id"],
+              role: rule_elem.attributes["role"] || nil,
+              score: rule_elem.attributes["score"] || rule_elem.attributes["score-attribute"] || nil,
+              boolean_op: rule_elem.attributes["boolean-op"] || "and",
+              expressions: []
             }
+
+            rule.elements.each do |el|
+              if el.name != "expression"
+                # TODO(should): Handle date expressions
+                record.complex = true
+
+                next
+              end
+
+              set[:expressions].push(
+                value: el.attributes["value"] || nil,
+                attribute: el.attributes["attribute"] || nil,
+                type: el.attributes["type"] || "string",
+                operation: el.attributes["operation"] || nil
+              )
+            end
+
+            rules.push set
           end
-          rules << rule
         end
       end
-      rsc = []
-      if xml.attributes['rsc']
-        # Single resource
-        rsc << xml.attributes['rsc']
-      else
-        # Resource set
-        xml.elements.each('resource_set') do |rsc_set|
-          rsc_set.elements.each do |rsc_elem|
-            rsc << rsc_elem.attributes['id']
-          end
-        end
-      end
-      con.instance_variable_set(:@rsc,   rsc)
-      con.instance_variable_set(:@rules, rules)
-      con
-    end
-  end
 
-  private
-
-  # TODO(must): Move this somewhere else and reuse in other models
-  # TODO(should): Don't add quotes if unnecessary (e.g. no whitespace in val)
-  def crm_quote(str)
-    if str.index("'")
-      "\"#{str}\""
-    else
-      "'#{str}'"
-    end
-  end
-
-  # TODO(must): As above, move this elsewhere for reuse
-  def unquotable?(str)
-    str.index("'") && str.index('"')
-  end
-
-  # Note: caller must ensure valid rule before calling this
-  def shell_syntax
-    cmd = "location #{@id} "
-    if @rsc.length == 1
-      cmd += " #{@rsc[0]}"
-    else
-      cmd += " { #{@rsc.join(' ')} }"
+      record
     end
 
-    if simple?
-      cmd += " #{@rules[0][:score]}: #{@rules[0][:expressions][0][:value]}"
-    else
-      @rules.each do |rule|
-        op = rule[:boolean_op]
-        op = "and" if op == ""
-        cmd += " rule"
-        cmd += " $role=\"#{rule[:role]}\"" unless rule[:role].empty?
-        cmd += " #{crm_quote(rule[:score])}:"
-        cmd += rule[:expressions].map {|e|
-          if ["defined", "not_defined"].include? e[:operation]
-            " #{e[:operation]} #{crm_quote(e[:attribute])} "
-          else
-            " #{crm_quote(e[:attribute])} " +
-              (e[:type] != "" ? "#{e[:type]}:" : "") +
-            "#{e[:operation]} #{crm_quote(e[:value])} "
-          end
-        }.join(op)
-      end
+    def cib_type_write
+      :rsc_location
     end
-    cmd
   end
 end
-

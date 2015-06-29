@@ -4,7 +4,7 @@
 #            A web-based GUI for managing and monitoring the
 #          Pacemaker High-Availability cluster resource manager
 #
-# Copyright (c) 2009-2013 SUSE LLC, All Rights Reserved.
+# Copyright (c) 2009-2015 SUSE LLC, All Rights Reserved.
 #
 # Author: Tim Serong <tserong@suse.com>
 #
@@ -33,31 +33,35 @@ require File.expand_path('../boot', __FILE__)
 
 module Hawk
   class Application < Rails::Application
+    config.generators do |g|
+      g.assets false
+      g.helper false
+      g.orm :active_record
+      g.template_engine :haml
+
+      # g.test_framework :rspec, fixture: true
+      # g.fallbacks[:rspec] = :test_unit
+    end
+
     config.autoload_paths += [
-      config.root.join('lib')
+      config.root.join('lib'),
+      config.root.join('app', 'collections')
     ]
 
     config.encoding = 'utf-8'
     config.time_zone = 'UTC'
-
-    config.active_support.escape_html_entities_in_json = true
 
     config.app_middleware.delete 'ActiveRecord::ConnectionAdapters::ConnectionManagement'
     config.app_middleware.delete 'ActiveRecord::QueryCache'
 
     config.middleware.use 'PerRequestCache'
 
-    config.generators do |g|
-      g.assets false
-      g.helper false
-      g.orm :active_record
-      g.template_engine :haml
-      g.test_framework :rspec, fixture: true
-      g.fallbacks[:rspec] = :test_unit
-    end
+    config.active_support.escape_html_entities_in_json = true
 
-    # TODO(should): confirm under exactly what circumstances these two are hit
-    config.action_dispatch.rescue_responses.merge!('CibObject::RecordNotFound' => :not_found)
-    config.action_dispatch.rescue_responses.merge!('CibObject::PermissionDenied' => :forbidden)
+    config.i18n.enforce_available_locales = false
+
+    if Rails.env.development?
+      config.web_console.whitelisted_ips = '192.168.0.0/16'
+    end
   end
 end

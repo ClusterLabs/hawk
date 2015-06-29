@@ -1,0 +1,44 @@
+.panel.panel-default
+  .panel-body
+    = form_for [cib, group], horizontal: true do |main_form|
+      = errors_for group
+
+      - if group.new_record?
+        = main_form.text_field :id, label: _("Group ID")
+        /= main_form.select :children, group_children_for(group), { include_hidden: false, include_blank: true }, id: nil, label: _("Children")
+      - else
+        = main_form.text_field :id, label: _("Group ID"), readonly: true
+        /= main_form.text_field :children, label: _("Children"), readonly: true
+
+      .form-group
+        %label.col-sm-5.control-label
+          = _("Children")
+        .col-sm-7
+          %ul.list-group.sortable
+            - if group_children_for(group).empty?
+              %li.list-group-item.text-warning
+                = _('No children available')
+            - else
+              - group_children_for(group).each do |child|
+                %li.list-group-item
+                  = check_box_tag "group[children][]", child, group.children.include?(child)
+                  = child
+                  .pull-right
+                    = icon_tag("bars")
+
+      %fieldset{ data: { attrlist: group[:meta].to_json, attrlist_mapping: group.mapping.to_json, attrlist_prefix: "group[meta]", attrlist_target: ".content" } }
+        %legend
+          = _("Meta Attributes")
+          %span.pull-right.toggleable
+            = icon_tag("chevron-up")
+
+        .content
+
+      = main_form.button_group do
+        - if group.new_record?
+          = create_button(main_form, group)
+        - else
+          = apply_button(main_form, group)
+          = revert_button(main_form, group)
+
+        = link_to _("Back"), types_cib_resources_path(cib_id: cib.id), class: "btn btn-default back"

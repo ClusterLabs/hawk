@@ -4,7 +4,7 @@
 #            A web-based GUI for managing and monitoring the
 #          Pacemaker High-Availability cluster resource manager
 #
-# Copyright (c) 2011-2013 SUSE LLC, All Rights Reserved.
+# Copyright (c) 2009-2015 SUSE LLC, All Rights Reserved.
 #
 # Author: Tim Serong <tserong@suse.com>
 #
@@ -29,184 +29,131 @@
 #
 #======================================================================
 
-# Note that Colocation and Order use of the resources array is the
-# inverse of each other, always, regardless of inconsistencies in
-# the underlying configuraton.  e.g. (simplified):
-#   order.resources = [ 'A', 'B', 'C' ];
-#   colocation.resources = [ 'C', 'B', 'A' ];
-
 class Colocation < Constraint
+  attribute :id, String
+  attribute :score, String
+  attribute :node_attr, String
+  attribute :resources, Array[Hash]
 
-  @attributes = :score, :resources
-  attr_accessor *@attributes
+  validates :id,
+    presence: { message: _("Constraint ID is required") },
+    format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _("Invalid Constraint ID") }
 
-  def initialize(attributes = nil)
-    @score      = nil
-    @resources  = []
-    super
-  end
+  validates :score,
+    presence: { message: _("Score is required") }
 
-  def validate
-    @score.strip!
-    unless ['mandatory', 'advisory', 'inf', '-inf', 'infinity', '-infinity'].include? @score.downcase
-      unless @score.match(/^-?[0-9]+$/)
-        error _('Invalid score')
+  validate do |record|
+    record.score.strip!
+
+    unless [
+      "mandatory",
+      "advisory",
+      "inf",
+      "-inf",
+      "infinity",
+      "-infinity"
+    ].include? record.score.downcase
+      unless record.score.match(/^-?[0-9]+$/)
+        errors.add :score, _("Invalid score value")
       end
     end
-    if @resources.length < 2
-      error _('Constraint must consist of at least two separate resources')
+
+    if record.resources.length < 2
+      errors.add :base, _("Constraint must consist of at least two separate resources")
     end
   end
 
-  def create
-    if CibObject.exists?(id)
-      error _('The ID "%{id}" is already in use') % { :id => @id }
-      return false
-    end
-
-    cmd = shell_syntax
-
-    result = Invoker.instance.crm_configure cmd
-    unless result == true
-      error _('Unable to create constraint: %{msg}') % { :msg => result }
-      return false
-    end
-
-    true
+  def resources
+    @resources ||= []
   end
 
-  def update
-    unless CibObject.exists?(id, 'rsc_colocation')
-      error _('Constraint ID "%{id}" does not exist') % { :id => @id }
-      return false
-    end
-
-    # Can just use crm configure load update here, it's trivial enough (because
-    # we basically replace the object every time, rather than having to merge
-    # like primitive, ms, etc.)
-
-    result = Invoker.instance.crm_configure_load_update shell_syntax
-    unless result == true
-      error _('Unable to update constraint: %{msg}') % { :msg => result }
-      return false
-    end
-
-    true
+  def resources=(value)
+    @resources = value
   end
 
-  def update_attributes(attributes = nil)
-    @score      = nil
-    @resources  = []
-    super
+  class << self
+    def all
+      super.select do |record|
+        record.is_a? self
+      end
+    end
+  end
+
+  protected
+
+  def shell_syntax
+    [].tap do |cmd|
+      cmd.push "colocation #{id} #{score}:"
+
+      resources.each do |set|
+        cmd.push "(" unless set[:sequential] == "true" && set[:sequential]
+
+        set[:resources].each do |resource|
+          if set[:action].empty?
+            cmd.push resource
+          else
+            cmd.push [
+              resource,
+              set[:action]
+            ].join(":")
+          end
+        end
+
+        cmd.push ")" unless set[:sequential] == "true" && set[:sequential]
+      end
+
+      unless node_attr.empty?
+        cmd.push "node-attribute=#{node_attr}"
+      end
+    end.join(" ")
   end
 
   class << self
     def instantiate(xml)
-      con = allocate
-      con.instance_variable_set(:@score,  xml.attributes['score'] || nil)
-      resources = []
-      if xml.attributes['rsc']
-        # Simple (two resource) constraint, fold to set notation
-        resources << {
-          :sequential => true,
-          :role => xml.attributes['rsc-role'] || nil,
-          :resources => [ { :id => xml.attributes['rsc'] } ]
-        }
-        resources << {
-          :sequential => true,
-          :role => xml.attributes['with-rsc-role'] || nil,
-          :resources => [ { :id => xml.attributes['with-rsc'] } ]
-        }
-      else
-        # Resource set
-        xml.elements.each do |resource_set|
-          set = {
-            :sequential => Util.unstring(resource_set.attributes['sequential'], true),
-            :role       => resource_set.attributes['role'] || nil,
-            :resources  => []
-          }
-          resource_set.elements.each do |e|
-            # For members within a set, the order is reversed (i.e. in
-            # "group" order, where each resources is colocated with its
-            # predecessor), so we insert it at the beginning of the set
-            set[:resources].unshift({ :id => e.attributes['id'] })
+      record = allocate
+      record.score = xml.attributes["score"] || nil
+
+      record.resources = [].tap do |resources|
+        if xml.attributes["rsc"]
+          resources.push(
+            sequential: true,
+            action: xml.attributes["rsc-role"] || nil,
+            resources: [
+              xml.attributes["rsc"]
+            ]
+          )
+
+          resources.push(
+            sequential: true,
+            action: xml.attributes["with-rsc-role"] || nil,
+            resources: [
+              xml.attributes["with-rsc"]
+            ]
+          )
+        else
+          xml.elements.each do |resource|
+            set = {
+              sequential: Util.unstring(resource.attributes["sequential"], true),
+              action: resource.attributes["role"] || nil,
+              resources: []
+            }
+
+            resource.elements.each do |el|
+              set[:resources].unshift(
+                el.attributes["id"]
+              )
+            end
+
+            resources.push set
           end
-          # Between sets, the order is as for pairs, i.e. first with
-          # second
-          resources << set
         end
       end
-      con.instance_variable_set(:@resources, resources)
-      con
-    end
-  end
 
-  private
-
-  def shell_syntax
-    cmd = "colocation #{@id} #{@score}:"
-
-    #
-    # crm syntax matches nasty inconsistency in CIB, i.e. to get:
-    #
-    #   d6 -> d5 -> ( d4 d3 ) -> d2 -> d1 -> d0
-    #
-    # you use:
-    #
-    #   colocation <id> <score>: d5 d6 ( d3 d4 ) d0 d1 d2
-    #
-    # except when using simple constrains, i.e. to get:
-    #
-    #   d1 -> d0
-    #
-    # you use:
-    #
-    #   colocation <id> <score>: d1 d0
-    #
-    # To further confuse matters, duplicate roles in complex chains
-    # are collapsed to sets, so for:
-    #
-    #   d2:Master -> d1:Started -> d0:Started
-    #
-    # you use:
-    #
-    #   colocation <id> <score>: d2:Master d0:Started d1:Started
-    #
-    # To deal with this, we need to collapse all the sets first
-    # then iterate through them (unlike the Order model, where
-    # this is unnecessary)
-
-    # Have to clone out of @resources, else we've just got references
-    # to elements of @resources inside collapsed, which causes @resources
-    # to be modified, which we *really* don't want.
-    collapsed = [ @resources.first.clone ]
-    @resources.last(@resources.length - 1).each do |set|
-      if collapsed.last[:sequential] == set[:sequential] &&
-         collapsed.last[:role] == set[:role]
-        collapsed.last[:resources] += set[:resources]
-      else
-        collapsed << set.clone
-      end
+      record
     end
 
-    if collapsed.length == 1 && collapsed[0][:resources].length == 2
-      # simple constraint (it's already in reverse order so
-      # don't flip around the other way like we do below)
-      collapsed[0][:resources].each do |r|
-        cmd += " #{r[:id]}"
-        cmd += ":#{set[:role]}" if collapsed[0][:role]
-      end
-    else
-      collapsed.each do |set|
-        cmd += " ( " unless set[:sequential]
-        set[:resources].reverse.each do |r|
-          cmd += " #{r[:id]}"
-          cmd += ":#{set[:role]}" if set[:role]
-        end
-        cmd += " )" unless set[:sequential]
-      end
+    def cib_type_write
+      :rsc_colocation
     end
-    cmd
   end
 end
-

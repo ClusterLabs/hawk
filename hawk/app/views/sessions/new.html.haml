@@ -1,0 +1,5 @@
+= form_for @session, url: signin_path, simple: true do |main_form|
+  = main_form.text_field :username, placeholder: _("Username"), label: { class: 'sr-only' }
+  = main_form.password_field :password, placeholder: _("Password"), label: { class: 'sr-only' }
+
+  = main_form.submit _("Login"), class: "btn btn-primary btn-block"

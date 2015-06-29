@@ -1,0 +1,49 @@
+.container-fluid
+  .row
+    %h1
+      = icon_text "magic", @wizard.name, class: "page"
+
+  .row
+    = form_for [@cib, @wizard], horizontal: true do |main_form|
+      .panel.panel-default
+        .panel-steps
+          %ul.nav.nav-pills
+            - @wizard.steps.each_with_index do |step, index|
+              %li
+                = link_to index + 1, "#step#{index}", class: "btn btn-default btn-circle", data: { toggle: "tab" }
+
+        .panel-body{ data: { help_target: "#rightbar > .container-fluid > *" } }
+          .tab-content
+            - @wizard.steps.each_with_index do |step, index|
+              = main_form.fields_for :steps, step do |step_form|
+                .tab-pane.active{ id: "step#{index}" }
+                  %fieldset
+                    %legend
+                      = step.title
+                  - step.order.each do |field|
+                    - if step.types[field] == "string"
+                      = step_form.text_field field, label: step.labels[field], group: { data: { help_filter: ".row.#{index}-#{field}" } }, required: step.requires[field] ? "true" : "false", format: step.formats[field] ? step.formats[field] : ""
+
+                    - if step.types[field] == "boolean"
+                      = step_form.select field, [[_("No"), "false"], [_("Yes"), "true"]], { include_hidden: false, include_blank: false }, label: step.labels[field], group: { data: { help_filter: ".row.#{index}-#{field}" } }, required: step.requires[field] ? "true" : "false", format: step.formats[field] ? step.formats[field] : ""
+
+                    - if step.types[field] == "enum"
+                      = step_form.select field, [], {}, label: step.labels[field], group: { data: { help_filter: ".row.#{index}-#{field}" } }, required: step.requires[field] ? "true" : "false", format: step.formats[field] ? step.formats[field] : ""
+
+            = main_form.button_group class: "wizard" do
+              = link_to _("Cancel"), cib_wizards_path(cib_id: current_cib.id), class: "btn btn-default", data: { confirm: _("Do you really want to cancel the wizard setup?") }
+              = link_to _("Back"), "#", class: "btn btn-default previous"
+              = link_to _("Next"), "#", class: "btn btn-default next"
+              = main_form.submit _("Submit"), class: "btn btn-primary finish hidden", name: "submit", data: { confirm: _("Do you really want to submit the current wizard?") }
+
+- content_for :rightbar do
+  .container-fluid{ data: { spy: "affix" } }
+    - @wizard.steps.each_with_index do |step, index|
+      - step.helps.each do |key, description|
+        - next unless description
+
+        .row{ class: "#{index}-#{key}" }
+          %h2.margin-bottom
+            = step.labels[key]
+
+          = simple_format description

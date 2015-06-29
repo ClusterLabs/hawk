@@ -6,7 +6,16 @@ Vagrant.configure("2") do |config|
   config.vm.box_check_update = true
   config.ssh.insert_key = false
 
-  config.vm.define "webui", default: true do |machine|
+  config.vm.synced_folder ".", "/vagrant", type: "nfs"
+
+  if Vagrant.has_plugin? "vagrant-bindfs"
+    config.bindfs.bind_folder "/vagrant", "/vagrant",
+      force_user: "vagrant",
+      force_group: "users",
+      perms: "u=rwX:g=rwXD:o=rwXD"
+  end
+
+  config.vm.define "webui", primary: true do |machine|
     machine.vm.hostname = "webui"
 
     machine.vm.network :forwarded_port,
@@ -54,7 +63,7 @@ Vagrant.configure("2") do |config|
   end
 
   1.upto(3).each do |i|
-    config.vm.define "node#{i}" do |machine|
+    config.vm.define "node#{i}", autostart: false do |machine|
       machine.vm.hostname = "node#{i}"
 
       machine.vm.network :forwarded_port,
@@ -99,17 +108,5 @@ Vagrant.configure("2") do |config|
   config.vm.provider :libvirt do |provider, override|
     provider.storage_pool_name = "default"
     provider.management_network_name = "vagrant"
-
-    override.vm.synced_folder ".", "/vagrant", type: "nfs"
-
-    if Vagrant.has_plugin? "vagrant-bindfs"
-      override.bindfs.bind_folder "/vagrant", "/vagrant",
-        force_user: "vagrant",
-        force_group: "users"
-    end
-  end
-
-  config.vm.provider :virtualbox do |provider, override|
-    override.vm.synced_folder ".", "/vagrant", type: "virtualbox"
   end
 end

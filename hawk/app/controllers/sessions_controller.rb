@@ -4,7 +4,7 @@
 #            A web-based GUI for managing and monitoring the
 #          Pacemaker High-Availability cluster resource manager
 #
-# Copyright (c) 2009-2013 SUSE LLC, All Rights Reserved.
+# Copyright (c) 2009-2015 SUSE LLC, All Rights Reserved.
 #
 # Author: Tim Serong <tserong@suse.com>
 #
@@ -30,108 +30,78 @@
 #======================================================================
 
 class SessionsController < ApplicationController
-  layout 'main'
-
-  def initialize
-    super
-    @title = _('Log In')
-  end
-
-  def show
-    redirect_to :action => 'new'
-  end
-
   def new
+    @session = Session.new
+
     respond_to do |format|
-      format.any do
-        # render login screen if not already logged in
-        redirect_back_or_default root_url if authorized?
+      format.html do
+        redirect_back root_url if logged_in?
       end
       format.json do
-        # Explicity allow CORS
-        # TODO(should): Consolidate with CibController and ApplicationController
-        if request.headers["Origin"]
-          response.headers["Access-Control-Allow-Origin"] = request.headers["Origin"]
-          response.headers["Access-Control-Allow-Credentials"] = "true"
-        end
-        # This is fake, to allow the dashboard to figure out whether it
-        # can talk to this node at all (very quick response)
-        render :status => 200, :json => nil
+        render json: {}, status: 200
       end
     end
   end
 
-  # called from login screen
-  HAWK_CHKPWD = '/usr/sbin/hawk_chkpwd'
   def create
-    ok = false
-    msg = ""
-    if params[:username].blank?
-      msg = _('Username not specified')
-    elsif params[:username].include?("'") || params[:username].include?("$")
-      # No ' or $ characters, because this is going to the shell
-      msg = _('Invalid username')
-    elsif params[:password].blank?
-      msg = _('Password not specified')
-    else
-      if File.exists?(HAWK_CHKPWD) && File.executable?(HAWK_CHKPWD)
-        IO.popen("#{HAWK_CHKPWD} passwd '#{params[:username]}'", 'w+') do |pipe|
-          pipe.write params[:password]
-          pipe.close_write
+    @session = Session.new params[:session]
+
+    respond_to do |format|
+      if @session.valid?
+        reset_session
+        session[:username] = @session.username
+
+        format.html do
+          redirect_back root_url
         end
-        if $?.exitstatus == 0
-          # The user can log in, and they're in our required group
-          reset_session
-          session[:username] = params[:username]
-          ok = true
-        else
-          # No dice...
-          msg = _('Invalid username or password')
+        format.json do
+          render json: {}, status: 200
         end
       else
-        msg = _('%s is not installed') % HAWK_CHKPWD
-      end
-    end
-
-    respond_to do |format|
-      format.any do
-        if ok
-          redirect_back_or_default root_url
-        else
-          flash[:warning] = msg
-          redirect_to :action => 'new', :username => params[:username]
+        format.html do
+          flash.now[:alert] = @session.errors.first.last
+          render action: 'new'
         end
-      end
-      format.json do
-        # Explicity allow CORS
-        # TODO(should): Consolidate with CibController and ApplicationController
-        if request.headers["Origin"]
-          response.headers["Access-Control-Allow-Origin"] = request.headers["Origin"]
-          response.headers["Access-Control-Allow-Credentials"] = "true"
-        end
-        if ok
-          render :status => 200, :json => nil
-        else
-          render :status => 403, :json => { :errors => [ msg ] }
+        format.json do
+          render json: { errors: @session.errors.values }, status: 403
         end
       end
     end
   end
 
   def destroy
-    previous_user = session[:username]
-    session[:username] = nil
-    reset_session
     if params[:reason] == 'forbidden'
-      if previous_user
-        flash[:warning] =
-          _('Permission denied for user %{user}') % {:user => previous_user}
+      message = if session[:username]
+        _('Permission denied for user %{user}') % { user: session[:username] }
       else
-        flash[:warning] =
-          _('You have been logged out')
+        _('You have been logged out')
       end
     end
-    redirect_to :action => 'new'
+
+    session[:username] = nil
+    reset_session
+
+    respond_to do |format|
+      format.html do
+        redirect_to login_url, alert: message
+      end
+      format.json do
+        render json: {}, status: 200
+      end
+    end
   end
 
+  protected
+
+  def detect_current_layout
+    if request.xhr?
+      false
+    else
+      'authentication'
+    end
+  end
+
+  def set_current_title
+    @title = _('Log In')
+  end
 end

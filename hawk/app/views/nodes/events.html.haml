@@ -1,0 +1,32 @@
+- if request.xhr?
+  .modal-header
+    %button.close{ type: "button", data: { dismiss: "modal" } }
+      %span{ aria: { hidden: "true" } }
+        &times;
+      %span.sr-only
+        = _("Close")
+
+    %h3.modal-title
+      = icon_text "server", _("Events: %{name}" % { name: @node.name }), class: "page"
+
+  .modal-body
+    .search.text-center{ style: "display: block;" }
+      = _("Getting recent events...")
+      %br
+      %br
+      = icon_tag("spinner", class: "fa-3x fa-spin")
+
+    .another.text-center{ style: "display: none;" }
+      = _("Another operation is in progress...")
+      %br
+      %br
+      = icon_tag("spinner", class: "fa-3x fa-spin")
+
+    .empty.text-center{ style: "display: none;" }
+      = _("No events found in last hour")
+
+    .show{ style: "display: none;" }
+
+  .modal-footer
+    %button.btn.btn-default{ type: "button", data: { dismiss: "modal" } }
+      = _("Close")

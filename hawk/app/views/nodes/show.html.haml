@@ -1,0 +1,54 @@
+- if request.xhr?
+  .modal-header
+    %button.close{ type: "button", data: { dismiss: "modal" } }
+      %span{ aria: { hidden: "true" } }
+        &times;
+      %span.sr-only
+        = _("Close")
+
+    %h3.modal-title
+      = icon_text "server", _("Node: %{name}" % { name: @node.name }), class: "page"
+
+  .modal-body
+    %h4
+      = _("Utilization")
+
+    - if @node.utilization.any?
+      %table.table.table-striped
+        %tbody
+          - @node.utilization.each do |name, value|
+            %tr
+              %th.col-xs-4
+                = name
+
+              %td.col-xs-8
+                .progress
+                  .progress-bar{ role: "progressbar", style: "width: #{value[:percentage]}%;" }
+                    = _("%{used} of %{total} (%{percentage}%)" % { percentage: value[:percentage], total: value[:total], used: value[:total] - value[:remaining] })
+
+    - else
+      .alert.alert-info
+        = _("No utilization defined")
+
+    %hr
+
+    %h4
+      = _("Attributes")
+
+    - if @node.attrs.any?
+      %table.table.table-striped
+        %tbody
+          - @node.attrs.each do |name, value|
+            %tr
+              %th.col-xs-4
+                = name
+
+              %td.col-xs-8
+                = value
+    - else
+      .alert.alert-info
+        = _("No attributes defined")
+
+  .modal-footer
+    %button.btn.btn-default{ type: "button", data: { dismiss: "modal" } }
+      = _("Close")

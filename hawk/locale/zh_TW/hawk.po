@@ -5,7 +5,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-10 15:20+1000\n"
 "PO-Revision-Date: 2014-07-23 15:36\n"
 "Last-Translator: Novell language <language@novell.com>\n"
 "Language-Team: Novell language <language@novell.com>\n"
@@ -15,1891 +14,1090 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../app/controllers/acls_controller.rb:72
-#: ../app/views/layouts/main.html.erb:220
-msgid "Access Control Lists"
-msgstr "存取控制清單"
+msgid "Any changes will be lost - do you wish to proceed?"
+msgstr "所有變更都將遺失，是否繼續？"
 
-#: ../app/controllers/application_controller.rb:124
+msgid "Connection to server aborted - will retry every 15 seconds."
+msgstr "與伺服器的連線已中止 - 將每隔 15 秒重試一次。"
+
+#, fuzzy
+msgid "Connection to server failed - will retry every 15 seconds."
+msgstr "與伺服器的連線已中止 - 將每隔 15 秒重試一次。"
+
+msgid "Connection to server timed out - will retry every 15 seconds."
+msgstr "與伺服器的連線已逾時 - 將每隔 15 秒重試一次。"
+
+#, fuzzy
+msgid "State"
+msgstr "州：                   "
+
+msgid "Name"
+msgstr ""
+
+msgid "Maintenance"
+msgstr "維護"
+
+msgid "Yes"
+msgstr "是"
+
+msgid "No"
+msgstr "否"
+
+msgid "Standby"
+msgstr "待機"
+
+msgid "Operations"
+msgstr "操作"
+
+msgid "Online"
+msgstr "上線"
+
+msgid "Ready"
+msgstr "就緒"
+
+msgid "Fence"
+msgstr ""
+
+msgid "Details"
+msgstr "詳細資料"
+
+msgid "Events"
+msgstr ""
+
+msgid "Role ID"
+msgstr "角色 ID"
+
+msgid "User ID"
+msgstr "使用者 ID"
+
 msgid "Unable to create shadow CIB"
 msgstr "無法建立陰影 CIB"
 
-#: ../app/controllers/cib_controller.rb:110
-#: ../app/controllers/cib_controller.rb:164
 msgid "1 node configured"
 msgid_plural "%{num} nodes configured"
 msgstr[0] "已設定 1 個節點"
 
-#: ../app/controllers/cib_controller.rb:111
-#: ../app/controllers/cib_controller.rb:165
 msgid "1 resource configured"
 msgid_plural "%{num} resources configured"
 msgstr[0] "已設定 1 個資源"
 
-#: ../app/controllers/clones_controller.rb:48
 msgid "Edit Clone"
 msgstr "編輯複製品"
 
-#: ../app/controllers/clones_controller.rb:52
-#: ../app/controllers/clones_controller.rb:58
-#: ../app/views/clones/_form.html.erb:87
 msgid "Create Clone"
 msgstr "建立複製品"
 
-#: ../app/controllers/clones_controller.rb:65
 msgid "Clone created successfully"
 msgstr "成功建立複製品"
 
-#: ../app/controllers/clones_controller.rb:87
 msgid "Clone updated successfully"
 msgstr "成功更新複製品"
 
-#: ../app/controllers/colocations_controller.rb:44
 msgid "Edit Colocation Constraint"
 msgstr "編輯並存條件約束"
 
-#: ../app/controllers/colocations_controller.rb:48
-#: ../app/controllers/colocations_controller.rb:53
 msgid "Create Colocation Constraint"
 msgstr "建立並存條件約束"
 
-#: ../app/controllers/colocations_controller.rb:61
-#: ../app/controllers/locations_controller.rb:60
-#: ../app/controllers/orders_controller.rb:62
-#: ../app/controllers/tickets_controller.rb:59
 msgid "Constraint created successfully"
 msgstr "成功建立條件約束"
 
-#: ../app/controllers/colocations_controller.rb:84
-#: ../app/controllers/locations_controller.rb:82
-#: ../app/controllers/orders_controller.rb:86
-#: ../app/controllers/tickets_controller.rb:81
 msgid "Constraint updated successfully"
 msgstr "成功更新條件約束"
 
-#: ../app/controllers/constraints_controller.rb:44
-#: ../app/views/layouts/main.html.erb:229
 msgid "Constraints"
 msgstr "條件約束"
 
-#: ../app/controllers/crm_config_controller.rb:45
-#: ../app/views/main/_gettext.js.erb:99
 msgid "Cluster Configuration"
 msgstr "叢集組態"
 
-#: ../app/controllers/crm_config_controller.rb:128
 msgid "Your changes have been saved"
 msgstr "變更已儲存"
 
-#: ../app/controllers/crm_config_controller.rb:130
 msgid "Unable to apply changes: %{msg}"
 msgstr "無法套用變更︰%{msg}"
 
-#: ../app/controllers/crm_config_controller.rb:162
-msgid "Can't set property %{p}, because the value contains both single and double quotes"
+msgid ""
+"Can't set property %{p}, because the value contains both single and double quo"
+"tes"
 msgstr "無法設定內容 %{p}，因為該值同時包含單引號和雙引號"
 
-#: ../app/controllers/dashboard_controller.rb:37
 msgid "Cluster Dashboard"
 msgstr "叢集儀表板"
 
-#: ../app/controllers/explorer_controller.rb:44
-#: ../app/views/layouts/main.html.erb:205
-msgid "History Explorer"
-msgstr "歷程總管"
-
-#: ../app/controllers/explorer_controller.rb:103
-msgid "PE Input created by different Pacemaker version (%{version})"
-msgstr "由不同 Pacemaker 版本  (%{version}) 建立的 PE 輸入"
-
-#: ../app/controllers/explorer_controller.rb:104
-msgid "Pacemaker version not present in PE Input"
-msgstr "PE 輸入中不存在 Pacemaker 版本"
-
-#: ../app/controllers/explorer_controller.rb:134
-msgid "Required parameters \"basename\" and \"node\" not specified"
-msgstr "未指定所需的參數「basename」與「node」"
-
-#: ../app/controllers/explorer_controller.rb:159
-#: ../app/controllers/explorer_controller.rb:229
-msgid "No details available"
-msgstr "沒有可用的詳細資訊"
-
-#: ../app/controllers/explorer_controller.rb:161
-#: ../app/controllers/explorer_controller.rb:189
-#: ../app/controllers/explorer_controller.rb:250
-msgid "Error:"
-msgstr "錯誤："
-
-#: ../app/controllers/explorer_controller.rb:202
-msgid "Required parameters \"left\" and \"right\" not specified"
-msgstr "未指定所需的參數「left」與「right」"
-
-#: ../app/controllers/groups_controller.rb:48
-msgid "Edit Group"
-msgstr "編輯群組"
-
-#: ../app/controllers/groups_controller.rb:52
-#: ../app/controllers/groups_controller.rb:58
-#: ../app/views/groups/_form.html.erb:142
-msgid "Create Group"
-msgstr "建立群組"
-
-#: ../app/controllers/groups_controller.rb:65
-msgid "Group created successfully"
-msgstr "成功建立群組"
-
-#: ../app/controllers/groups_controller.rb:87
-msgid "Group updated successfully"
-msgstr "成功更新群組"
-
-#: ../app/controllers/locations_controller.rb:44
-msgid "Edit Location Constraint"
-msgstr "編輯位置條件約束"
-
-#: ../app/controllers/locations_controller.rb:48
-#: ../app/controllers/locations_controller.rb:53
-msgid "Create Location Constraint"
-msgstr "建立位置條件約束"
-
-#: ../app/controllers/main_controller.rb:58
-msgid "%{cmd} failed (status: %{status})"
-msgstr "%{cmd} 失敗 (狀態︰%{status})"
-
-#: ../app/controllers/main_controller.rb:78
-#: ../app/views/layouts/main.html.erb:199
-msgid "Cluster Status"
-msgstr "叢集狀態"
-
-#: ../app/controllers/main_controller.rb:93
-#: ../app/controllers/main_controller.rb:103
-#: ../app/controllers/main_controller.rb:113
-msgid "Required parameter \"node\" not specified"
-msgstr "未指定所需的參數「node」"
-
-#: ../app/controllers/main_controller.rb:129
-#: ../app/controllers/main_controller.rb:160
-msgid "Required parameter \"resource\" not specified"
-msgstr "未指定所需的參數「resource」"
-
-#: ../app/controllers/main_controller.rb:139
-msgid "Required parameters \"resource\" and \"node\" not specified"
-msgstr "未指定所需的參數「resource」與「node」"
-
-#: ../app/controllers/main_controller.rb:154
-msgid "Error deleting resource"
-msgstr "刪除資源時發生錯誤"
-
-#: ../app/controllers/main_controller.rb:170
-msgid "Required parameters \"ticket\" and \"site\" not specified"
-msgstr "未指定所需的參數「ticket」與「site」"
-
-#: ../app/controllers/main_controller.rb:180
-msgid "Required parameter \"ticket\" not specified"
-msgstr "未指定所需的參數「ticket」"
-
-#: ../app/controllers/main_controller.rb:330 ../app/models/cib.rb:261
-msgid "Error invoking %{cmd}: %{msg}"
-msgstr "執行 %{cmd} 時發生錯誤︰%{msg}"
-
-#: ../app/controllers/masters_controller.rb:48
-msgid "Edit Master/Slave"
-msgstr "編輯主要/從屬關係"
-
-#: ../app/controllers/masters_controller.rb:52
-#: ../app/controllers/masters_controller.rb:58
-#: ../app/views/masters/_form.html.erb:87
-msgid "Create Master/Slave"
-msgstr "建立主要/從屬關係"
-
-#: ../app/controllers/masters_controller.rb:65
-msgid "Master/Slave created successfully"
-msgstr "成功建立主要/從屬關係"
-
-#: ../app/controllers/masters_controller.rb:87
-msgid "Master/Slave updated successfully"
-msgstr "成功更新主要/從屬關係"
-
-#: ../app/controllers/orders_controller.rb:44
-msgid "Edit Order Constraint"
-msgstr "編輯順序條件約束"
-
-#: ../app/controllers/orders_controller.rb:48
-#: ../app/controllers/orders_controller.rb:53
-msgid "Create Order Constraint"
-msgstr "建立順序條件約束"
-
-#: ../app/controllers/primitives_controller.rb:46
-#: ../app/views/resources/index.html.erb:46
-msgid "Edit Resource"
-msgstr "編輯資源"
-
-#: ../app/controllers/primitives_controller.rb:50
-#: ../app/controllers/primitives_controller.rb:56
-#: ../app/views/primitives/_form.html.erb:393
-msgid "Create Resource"
-msgstr "建立資源"
-
-#: ../app/controllers/primitives_controller.rb:63
-msgid "Resource created successfully"
-msgstr "成功建立資源"
-
-#: ../app/controllers/primitives_controller.rb:85
-msgid "Resource updated successfully"
-msgstr "成功更新資源"
-
-#: ../app/controllers/resources_controller.rb:57
-#: ../app/views/layouts/main.html.erb:226
-msgid "Resources"
-msgstr "資源"
-
-#: ../app/controllers/roles_controller.rb:44
-msgid "Edit Role"
-msgstr "編輯角色"
-
-#: ../app/controllers/roles_controller.rb:48
-#: ../app/controllers/roles_controller.rb:53
-#: ../app/views/roles/_form.html.erb:82
-msgid "Create Role"
-msgstr "建立角色"
-
-#: ../app/controllers/roles_controller.rb:60
-msgid "Role created successfully"
-msgstr "成功建立角色"
-
-#: ../app/controllers/roles_controller.rb:82
-msgid "Role updated successfully"
-msgstr "成功更新角色"
-
-#: ../app/controllers/sessions_controller.rb:37
-#: ../app/views/dashboard/index.html.erb:64
-#: ../app/views/sessions/new.html.erb:17
-msgid "Log In"
-msgstr "登入"
-
-#: ../app/controllers/sessions_controller.rb:70
-msgid "Username not specified"
-msgstr "未指定使用者名稱"
-
-#: ../app/controllers/sessions_controller.rb:73
-msgid "Invalid username"
-msgstr "無效的使用者名稱"
-
-#: ../app/controllers/sessions_controller.rb:75
-msgid "Password not specified"
-msgstr "未指定密碼"
-
-#: ../app/controllers/sessions_controller.rb:89
-msgid "Invalid username or password"
-msgstr "無效的使用者名稱或密碼"
-
-#: ../app/controllers/sessions_controller.rb:92
-msgid "%s is not installed"
-msgstr "%s 未安裝"
-
-#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:259
-#: ../lib/invoker.rb:133 ../lib/invoker.rb:155 ../lib/invoker.rb:197
-msgid "Permission denied for user %{user}"
-msgstr "使用者 %{user} 的許可權遭拒"
-
-#: ../app/controllers/sessions_controller.rb:131
-msgid "You have been logged out"
-msgstr "您已經登出"
-
-#: ../app/controllers/templates_controller.rb:47
-msgid "Edit Template"
-msgstr "編輯樣板"
-
-#: ../app/controllers/templates_controller.rb:51
-#: ../app/controllers/templates_controller.rb:59
-msgid "Create Template"
-msgstr "建立樣板"
-
-#: ../app/controllers/templates_controller.rb:66
-msgid "Template created successfully"
-msgstr "已成功建立樣板"
-
-#: ../app/controllers/templates_controller.rb:89
-msgid "Template updated successfully"
-msgstr "已成功更新樣板"
-
-#: ../app/controllers/tickets_controller.rb:43
-msgid "Edit Ticket Constraint"
-msgstr "編輯票證條件約束"
-
-#: ../app/controllers/tickets_controller.rb:47
-#: ../app/controllers/tickets_controller.rb:52
-msgid "Create Ticket Constraint"
-msgstr "建立票證條件約束"
-
-#: ../app/controllers/users_controller.rb:44
-msgid "Edit User"
-msgstr "編輯使用者"
-
-#: ../app/controllers/users_controller.rb:48
-#: ../app/controllers/users_controller.rb:53
-#: ../app/views/users/_form.html.erb:111
-msgid "Create User"
-msgstr "建立使用者"
-
-#: ../app/controllers/users_controller.rb:60
-msgid "User created successfully"
-msgstr "成功建立使用者"
-
-#: ../app/controllers/users_controller.rb:82
-msgid "User updated successfully"
-msgstr "成功更新使用者"
-
-#: ../app/controllers/wizard_controller.rb:60
-msgid "Cluster Setup Wizard"
-msgstr "叢集設定精靈"
-
-#: ../app/controllers/wizard_controller.rb:101
-msgid "Invalid password"
-msgstr "密碼無效"
-
-#: ../app/controllers/wizard_controller.rb:115
-#: ../app/controllers/wizard_controller.rb:118
-msgid "Root Password"
-msgstr "Root 密碼"
-
-#: ../app/controllers/wizard_controller.rb:116
-msgid "The root password is required in order for this wizard template to make configuration changes."
-msgstr "若要讓此精靈樣板進行組態變更，需要提供 root 密碼。"
-
-#: ../app/controllers/wizard_controller.rb:119
-msgid "The root password for this system"
-msgstr "此系統的 root 密碼"
-
-#: ../app/controllers/wizard_controller.rb:128
-#: ../app/controllers/wizard_controller.rb:163
-msgid "\"Error: #{result}\""
-msgstr "「錯誤︰#{result}」"
-
-#: ../app/controllers/wizard_controller.rb:131
-#: ../app/views/primitives/_form.html.erb:241
-msgid "Parameters"
-msgstr "參數"
-
-#: ../app/controllers/wizard_controller.rb:155
-msgid "Confirm"
-msgstr "確認"
-
-#: ../app/controllers/wizard_controller.rb:181
-#: ../app/views/wizard/done.html.erb:10
-msgid "Done"
-msgstr "完成"
-
-#: ../app/controllers/wizard_controller.rb:296
-msgid "Required parameter \"%{param}\" not specified"
-msgstr "未指定所需的參數「{param}」"
-
-#: ../app/controllers/wizard_controller.rb:313
-msgid "Permission denied - you do not have write access to the CIB."
-msgstr "許可權遭拒 - 您沒有寫入 CIB 的權限。"
-
-#: ../app/controllers/wizard_controller.rb:324
-msgid "Wizard templates and/or workflows are missing"
-msgstr "缺少精靈範本和/或工作流程"
-
-#: ../app/controllers/wizard_controller.rb:332
-msgid "Workflow \"%s\" not found"
-msgstr "找不到工作流程「%s」"
-
-#: ../app/controllers/wizard_controller.rb:353
-msgid "Error parsing template \"%s\""
-msgstr "剖析範本「%s」時發生錯誤"
-
-#: ../app/controllers/wizard_controller.rb:356
-msgid "Error parsing workflow \"%s\""
-msgstr "剖析工作流程「%s」時發生錯誤"
-
-#: ../app/helpers/explorer_helper.rb:3
-msgid "Data collection in progress (%{from_time} to %{to_time})..."
-msgstr "正在收集資料 (從 %{from_time} 至 %{to_time})..."
-
-#: ../app/models/cib.rb:234
-msgid "CIB file \"%{path}\" not found"
-msgstr "找不到 CIB 檔案「%{path}」"
-
-#: ../app/models/cib.rb:236
-msgid "Unable to parse CIB file \"%{path}\""
-msgstr "無法剖析 CIB 檔案「%{path}」"
-
-#: ../app/models/cib.rb:238
-msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
-msgstr "似乎未安裝 Pacemaker (找不到 %{cmd})"
-
-#: ../app/models/cib.rb:240
-msgid "Unable to execute %{cmd}"
-msgstr "無法執行 %{cmd}"
-
-#: ../app/models/cib.rb:243
-msgid "%{cmd} failed (status: %{status}, output was: %{output})"
-msgstr "%{cmd} 失敗 (狀態︰%{status}，輸出為︰%{output})"
-
-#: ../app/models/cib.rb:256
-msgid "Error invoking %{cmd}"
-msgstr "執行 %{cmd} 時發生錯誤"
-
-#: ../app/models/cib.rb:269 ../app/models/cib.rb:270 ../app/models/cib.rb:614
-#: ../app/views/main/_gettext.js.erb:195
-msgid "Unknown"
-msgstr "未知"
-
-#: ../app/models/cib.rb:481
-msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
-msgstr "操作失敗：節點=%{node}，資源=%{resource}，呼叫 ID=%{call_id}，操作=%{op}，資源代碼=%{rc_code}"
-
-#: ../app/models/cib_object.rb:66
-msgid "Invalid Resource ID \"%{id}\""
-msgstr "資源 ID「%{id}」無效"
-
-#: ../app/models/cib_object.rb:95 ../app/models/cib_object.rb:115
-#: ../app/models/crm_config.rb:49
-msgid "Unable to parse cibadmin output"
-msgstr "無法剖析 cibadmin 輸出"
-
-#: ../app/models/clone.rb:45
-msgid "No clone child specified"
-msgstr "未指定複製品子項"
-
-#: ../app/models/clone.rb:51 ../app/models/group.rb:51
-#: ../app/models/master.rb:51 ../app/models/primitive.rb:77
-#: ../app/models/template.rb:78
-msgid "Can't set meta attribute %{p}, because the value contains both single and double quotes"
-msgstr "無法設定中繼屬性 %{p}，因為該值同時包含單引號和雙引號"
-
-#: ../app/models/clone.rb:57 ../app/models/colocation.rb:63
-#: ../app/models/group.rb:57 ../app/models/location.rb:78
-#: ../app/models/master.rb:57 ../app/models/order.rb:89
-#: ../app/models/primitive.rb:84 ../app/models/role.rb:55
-#: ../app/models/template.rb:85 ../app/models/ticket.rb:73
-#: ../app/models/user.rb:59
-msgid "The ID \"%{id}\" is already in use"
-msgstr "ID「%{id}」已在使用中"
-
-#: ../app/models/clone.rb:76
-msgid "Unable to create clone: %{msg}"
-msgstr "無法建立複製品：%{msg}"
-
-#: ../app/models/clone.rb:86
-msgid "Clone ID \"%{id}\" does not exist"
-msgstr "複製品 ID「%{id}」不存在"
-
-#: ../app/models/colocation.rb:53 ../app/models/order.rb:79
-msgid "Invalid score"
-msgstr "無效的分數"
-
-#: ../app/models/colocation.rb:57 ../app/models/order.rb:83
-msgid "Constraint must consist of at least two separate resources"
-msgstr "條件約束必須至少包含兩個獨立的資源"
-
-#: ../app/models/colocation.rb:71 ../app/models/location.rb:86
-#: ../app/models/order.rb:97 ../app/models/ticket.rb:81
-msgid "Unable to create constraint: %{msg}"
-msgstr "無法建立條件約束︰%{msg}"
-
-#: ../app/models/colocation.rb:80 ../app/models/location.rb:95
-#: ../app/models/order.rb:106 ../app/models/ticket.rb:90
-msgid "Constraint ID \"%{id}\" does not exist"
-msgstr "條件約束 ID「%{id}」不存在"
-
-#: ../app/models/colocation.rb:90 ../app/models/location.rb:107
-#: ../app/models/order.rb:116 ../app/models/ticket.rb:100
-msgid "Unable to update constraint: %{msg}"
-msgstr "無法更新條件約束︰%{msg}"
-
-#: ../app/models/group.rb:45
-msgid "No group children specified"
-msgstr "未指定群組子項"
-
-#: ../app/models/group.rb:79
-msgid "Unable to create group: %{msg}"
-msgstr "無法建立群組：%{msg}"
-
-#: ../app/models/group.rb:89
-msgid "Group ID \"%{id}\" does not exist"
-msgstr "群組 ID「%{id}」不存在"
-
-#: ../app/models/location.rb:43
-msgid "Constraint is too complex - it contains nested rules"
-msgstr "條件約束過於複雜，它含有巢狀規則"
-
-#: ../app/models/location.rb:45
-msgid "No rules specified"
-msgstr "未指定規則"
-
-#: ../app/models/location.rb:49
-msgid "No resource specified"
-msgstr "未指定資源"
-
-#: ../app/models/location.rb:58
-msgid "Invalid score \"%{score}\""
-msgstr "分數「%{score}」無效"
-
-#: ../app/models/location.rb:66
-msgid "No expressions specified"
-msgstr "未指定運算式"
-
-#: ../app/models/location.rb:70
-msgid "Attribute contains both single and double quotes"
-msgstr "屬性同時包含單引號和雙引號"
-
-#: ../app/models/location.rb:71
-msgid "Value contains both single and double quotes"
-msgstr "值同時包含單引號和雙引號"
-
-#: ../app/models/master.rb:45
-msgid "No Master/Slave child specified"
-msgstr "未指定主要/從屬子關係"
-
-#: ../app/models/master.rb:76
-msgid "Unable to create master/slave: %{msg}"
-msgstr "無法建立主要/從屬關係︰%{msg}"
-
-#: ../app/models/master.rb:86
-msgid "Master/Slave ID \"%{id}\" does not exist"
-msgstr "主要/從屬 ID「%{id}」不存在"
-
-#: ../app/models/primitive.rb:61 ../app/models/template.rb:62
-msgid "Can't set parameter %{p}, because the value contains both single and double quotes"
-msgstr "無法設定參數 %{p}，因為該值同時包含單引號和雙引號"
-
-#: ../app/models/primitive.rb:69 ../app/models/template.rb:70
-msgid "Can't set op %{o} attribute {%a}, because the value contains both single and double quotes"
-msgstr "無法設定 OP %{o} 屬性 {%a}，因為該值同時包含單引號和雙引號"
-
-#: ../app/models/primitive.rb:129 ../app/models/template.rb:129
-msgid "Unable to create resource: %{msg}"
-msgstr "無法建立資源：%{msg}"
-
-#: ../app/models/primitive.rb:139 ../app/models/template.rb:139
-msgid "Resource ID \"%{id}\" does not exist"
-msgstr "資源 ID「%{id}」不存在"
-
-#: ../app/models/role.rb:42
-msgid "Role must have rules"
-msgstr "角色必須擁有規則"
-
-#: ../app/models/role.rb:61
-msgid "Unable to create role: %{msg}"
-msgstr "無法建立角色：%{msg}"
-
-#: ../app/models/role.rb:69
-msgid "Role ID \"%{id}\" does not exist"
-msgstr "角色 ID「%{id}」不存在"
-
-#: ../app/models/role.rb:74
-msgid "Unable to update role: %{msg}"
-msgstr "無法更新角色︰%{msg}"
-
-#: ../app/models/ticket.rb:58
-msgid "Invalid Ticket ID"
-msgstr "無效的票證 ID"
-
-#: ../app/models/ticket.rb:61
-msgid "No resources specified"
-msgstr "未指定資源"
-
-#: ../app/models/user.rb:53
-msgid "User must have either rules or roles"
-msgstr "使用者必須擁有規則或角色"
-
-#: ../app/models/user.rb:54
-msgid "User can't have both rules and roles"
-msgstr "使用者不能同時擁有規則和角色"
-
-#: ../app/models/user.rb:65
-msgid "Unable to create user: %{msg}"
-msgstr "無法建立使用者：%{msg}"
-
-#: ../app/models/user.rb:73
-msgid "User ID \"%{id}\" does not exist"
-msgstr "使用者 ID「%{id}」不存在"
-
-#: ../app/models/user.rb:78
-msgid "Unable to update user: %{msg}"
-msgstr "無法更新使用者︰%{msg}"
-
-#: ../app/views/acls/index.html.erb:45
-#: ../app/views/crm_config/show.html.erb:11
-#: ../app/views/primitives/_form.html.erb:268
-msgid "Edit"
-msgstr "編輯"
-
-#: ../app/views/acls/index.html.erb:56
-msgid "Delete"
-msgstr "刪除"
-
-#: ../app/views/acls/index.html.erb:60
-#: ../app/views/constraints/index.html.erb:61
-#: ../app/views/resources/index.html.erb:61
-msgid "Are you sure you wish to delete %s?"
-msgstr "確定要刪除 %s 嗎？"
-
-#: ../app/views/acls/index.html.erb:101
-msgid "New Role"
-msgstr "新角色"
-
-#: ../app/views/acls/index.html.erb:102
-#: ../app/views/locations/_form.html.erb:44
-msgid "Role"
-msgstr "角色"
-
-#: ../app/views/acls/index.html.erb:107
-msgid "New User"
-msgstr "新使用者"
-
-#: ../app/views/acls/index.html.erb:108
-msgid "User"
-msgstr "使用者"
-
-#: ../app/views/acls/index.html.erb:129
-msgid "To enable ACLs, set 'enable-acl' in the CRM Configuration"
-msgstr "若要啟用 ACL，請在 CRM 組態中設定「enable-acl」"
-
-#: ../app/views/acls/index.html.erb:134
-msgid "(No roles defined)"
-msgstr "(未定義角色)"
-
-#: ../app/views/acls/index.html.erb:146
-msgid "(No users defined)"
-msgstr "(未定義使用者)"
-
-#: ../app/views/clones/_form.html.erb:40 ../app/views/groups/_form.html.erb:75
-#: ../app/views/masters/_form.html.erb:40
-#: ../app/views/primitives/_form.html.erb:284
-msgid "Meta Attributes"
-msgstr "中繼屬性"
-
-#: ../app/views/clones/_form.html.erb:46
-#: ../app/views/colocations/_form.html.erb:60
-#: ../app/views/crm_config/edit.html.erb:24
-#: ../app/views/crm_config/edit.html.erb:46
-#: ../app/views/crm_config/edit.html.erb:68
-#: ../app/views/groups/_form.html.erb:81
-#: ../app/views/locations/_form.html.erb:47
-#: ../app/views/masters/_form.html.erb:46
-#: ../app/views/orders/_form.html.erb:60
-#: ../app/views/primitives/_form.html.erb:247
-#: ../app/views/primitives/_form.html.erb:267
-#: ../app/views/primitives/_form.html.erb:290
-#: ../app/views/roles/_form.html.erb:38 ../app/views/tickets/_form.html.erb:48
-#: ../app/views/users/_form.html.erb:48
-msgid "Add"
-msgstr "新增"
-
-#: ../app/views/clones/_form.html.erb:47
-#: ../app/views/colocations/_form.html.erb:61
-#: ../app/views/crm_config/edit.html.erb:25
-#: ../app/views/crm_config/edit.html.erb:47
-#: ../app/views/crm_config/edit.html.erb:69
-#: ../app/views/dashboard/index.html.erb:45
-#: ../app/views/groups/_form.html.erb:82
-#: ../app/views/locations/_form.html.erb:48
-#: ../app/views/masters/_form.html.erb:47
-#: ../app/views/orders/_form.html.erb:61
-#: ../app/views/primitives/_form.html.erb:248
-#: ../app/views/primitives/_form.html.erb:269
-#: ../app/views/primitives/_form.html.erb:291
-#: ../app/views/roles/_form.html.erb:39 ../app/views/tickets/_form.html.erb:49
-#: ../app/views/users/_form.html.erb:49
-msgid "Remove"
-msgstr "移除"
-
-#: ../app/views/clones/_form.html.erb:48
-#: ../app/views/crm_config/edit.html.erb:26
-#: ../app/views/crm_config/edit.html.erb:48
-#: ../app/views/crm_config/edit.html.erb:70
-#: ../app/views/groups/_form.html.erb:83
-#: ../app/views/masters/_form.html.erb:48
-#: ../app/views/primitives/_form.html.erb:249
-#: ../app/views/primitives/_form.html.erb:270
-#: ../app/views/primitives/_form.html.erb:292
-msgid "You must enter a value"
-msgstr "必須輸入一個值"
-
-#: ../app/views/clones/_form.html.erb:70
-msgid "Clone ID"
-msgstr "複製品 ID"
-
-#: ../app/views/clones/_form.html.erb:71
-#: ../app/views/masters/_form.html.erb:71
-msgid "Child Resource"
-msgstr "子資源"
-
-#: ../app/views/clones/_form.html.erb:88
-#: ../app/views/colocations/_form.html.erb:110
-#: ../app/views/crm_config/edit.html.erb:114
-#: ../app/views/groups/_form.html.erb:143
-#: ../app/views/locations/_form.html.erb:94
-#: ../app/views/masters/_form.html.erb:88
-#: ../app/views/orders/_form.html.erb:116
-#: ../app/views/primitives/_form.html.erb:394
-#: ../app/views/roles/_form.html.erb:83 ../app/views/tickets/_form.html.erb:98
-#: ../app/views/users/_form.html.erb:112
-msgid "Revert Changes"
-msgstr "回復變更"
-
-#: ../app/views/clones/_form.html.erb:89
-#: ../app/views/colocations/_form.html.erb:111
-#: ../app/views/crm_config/show.html.erb:11
-#: ../app/views/crm_config/update.html.erb:4
-#: ../app/views/groups/_form.html.erb:144
-#: ../app/views/locations/_form.html.erb:95
-#: ../app/views/masters/_form.html.erb:89
-#: ../app/views/orders/_form.html.erb:117
-#: ../app/views/primitives/_form.html.erb:395
-#: ../app/views/roles/_form.html.erb:84 ../app/views/tickets/_form.html.erb:99
-#: ../app/views/users/_form.html.erb:113 ../app/views/wizard/broken.html.erb:4
-#: ../app/views/wizard/start.html.erb:3
-msgid "Back"
-msgstr "上一步"
-
-#: ../app/views/clones/edit.html.erb:4
-#: ../app/views/colocations/edit.html.erb:4
-#: ../app/views/crm_config/edit.html.erb:113
-#: ../app/views/groups/edit.html.erb:4 ../app/views/locations/edit.html.erb:4
-#: ../app/views/masters/edit.html.erb:4 ../app/views/orders/edit.html.erb:4
-#: ../app/views/primitives/edit.html.erb:4 ../app/views/roles/edit.html.erb:4
-#: ../app/views/tickets/edit.html.erb:4 ../app/views/users/edit.html.erb:4
-msgid "Apply Changes"
-msgstr "套用變更"
-
-#: ../app/views/colocations/_form.html.erb:62
-#: ../app/views/orders/_form.html.erb:62
-msgid "Link set"
-msgstr "連結資源集"
-
-#: ../app/views/colocations/_form.html.erb:63
-#: ../app/views/orders/_form.html.erb:63
-msgid "Break set"
-msgstr "斷開資源集"
-
-#: ../app/views/colocations/_form.html.erb:64
-#: ../app/views/orders/_form.html.erb:64
-msgid "Swap resources"
-msgstr "交換資源"
-
-#: ../app/views/colocations/_form.html.erb:65
-#: ../app/views/orders/_form.html.erb:65
-#: ../app/views/tickets/_form.html.erb:50
-msgid "Add resource to constraint"
-msgstr "向條件約束新增資源"
-
-#: ../app/views/colocations/_form.html.erb:89
-#: ../app/views/locations/_form.html.erb:75
-#: ../app/views/orders/_form.html.erb:89
-#: ../app/views/tickets/_form.html.erb:77
-msgid "Constraint ID"
-msgstr "條件約束 ID"
-
-#: ../app/views/colocations/_form.html.erb:90
-#: ../app/views/locations/_form.html.erb:42
-#: ../app/views/orders/_form.html.erb:90
-msgid "Score"
-msgstr "分數"
-
-#: ../app/views/colocations/_form.html.erb:109
-#: ../app/views/locations/_form.html.erb:93
-#: ../app/views/orders/_form.html.erb:115
-#: ../app/views/tickets/_form.html.erb:97
-msgid "Create Constraint"
-msgstr "建立條件約束"
-
-#: ../app/views/constraints/index.html.erb:46
-msgid "Edit Constraint"
-msgstr "編輯條件約束"
-
-#: ../app/views/constraints/index.html.erb:57
-msgid "Delete Constraint"
-msgstr "刪除條件約束"
-
-#: ../app/views/constraints/index.html.erb:102
-#: ../app/views/constraints/index.html.erb:108
-#: ../app/views/constraints/index.html.erb:114
-#: ../app/views/constraints/index.html.erb:121
-msgid "New Constraint"
-msgstr "新條件約束"
-
-#: ../app/views/constraints/index.html.erb:103
-msgid "Location"
-msgstr "位置"
-
-#: ../app/views/constraints/index.html.erb:109
-msgid "Colocation"
-msgstr "並存"
-
-#: ../app/views/constraints/index.html.erb:115
-msgid "Order"
-msgstr "順序"
-
-#: ../app/views/constraints/index.html.erb:122
-msgid "Ticket"
-msgstr "票證"
-
-#: ../app/views/constraints/index.html.erb:143
-msgid "(No location constraints defined)"
-msgstr "(未定義位置條件約束)"
-
-#: ../app/views/constraints/index.html.erb:155
-msgid "[Constraint is too complex to display]"
-msgstr "[條件約束過於複雜，無法顯示]"
-
-#: ../app/views/constraints/index.html.erb:173
-msgid "(No colocation constraints defined)"
-msgstr "(未定義並存條件約束)"
-
-#: ../app/views/constraints/index.html.erb:187
-msgid "(No order constraints defined)"
-msgstr "(未定義順序條件約束)"
-
-#: ../app/views/constraints/index.html.erb:202
-msgid "(No ticket constraints defined)"
-msgstr "(未定義票證條件約束)"
-
-#: ../app/views/crm_config/edit.html.erb:15
-#: ../app/views/main/_gettext.js.erb:102
-msgid "CRM Configuration"
-msgstr "CRM 組態"
-
-#: ../app/views/crm_config/edit.html.erb:37
-#: ../app/views/main/_gettext.js.erb:105
-msgid "Resource Defaults"
-msgstr "預設資源"
-
-#: ../app/views/crm_config/edit.html.erb:59
-#: ../app/views/main/_gettext.js.erb:108
-msgid "Operation Defaults"
-msgstr "預設操作"
-
-#: ../app/views/crm_config/show.html.erb:4
-msgid "No cluster properties set in %{group}"
-msgstr "%{group} 中未設定叢集內容"
-
-#: ../app/views/dashboard/index.html.erb:56
-#: ../app/views/sessions/new.html.erb:9
-msgid "Username:"
-msgstr "使用者名稱："
-
-#: ../app/views/dashboard/index.html.erb:60
-#: ../app/views/sessions/new.html.erb:13
-msgid "Password:"
-msgstr "密碼："
-
-#: ../app/views/dashboard/index.html.erb:71
-msgid "Cluster has errors - click for details"
-msgstr "叢集發生錯誤 - 按一下可查看詳細資料"
-
-#: ../app/views/dashboard/index.html.erb:156
-#: ../app/views/dashboard/index.html.erb:484
-msgid "Timeout: Please try again"
-msgstr "逾時︰請再試一次"
-
-#: ../app/views/dashboard/index.html.erb:240
-msgid "Permission denied. Please log in to %{node}"
-msgstr "權限被拒絕。請登入 %{node}"
-
-#: ../app/views/dashboard/index.html.erb:329
-msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
-msgstr "無法聯絡 %{node} 上的 Hawk。將每間隔 5 秒重試一次。"
-
-#: ../app/views/dashboard/index.html.erb:407
-msgid "Cluster Name:"
-msgstr "叢集名稱："
-
-#: ../app/views/dashboard/index.html.erb:408
-msgid "Host Name:"
-msgstr "主機名稱："
-
-#: ../app/views/dashboard/index.html.erb:409
-msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
-msgstr "(指定叢集中的任何主機名稱。系統會自動尋找其他節點)"
-
-#: ../app/views/dashboard/index.html.erb:414
-msgid "Add Cluster"
-msgstr "新增叢集"
-
-#: ../app/views/dashboard/index.html.erb:416
-#: ../app/views/main/_gettext.js.erb:4
-#: ../app/views/primitives/_form.html.erb:272
-msgid "OK"
-msgstr "確定"
-
-#: ../app/views/dashboard/index.html.erb:431
-msgid "A cluster with that name already exists"
-msgstr "已存在具有該名稱的叢集"
-
-#: ../app/views/dashboard/index.html.erb:437
-msgid "The host %{h} is already present in cluster %{c}"
-msgstr "叢集 %{c} 中已存在主機 %{h}"
-
-#: ../app/views/dashboard/index.html.erb:466
-#: ../app/views/dashboard/index.html.erb:478
-msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
-msgstr "無法連線至 %{host}。請嘗試在網頁瀏覽器中開啟 %{url} 以確定可以存取 Hawk。"
-
-#: ../app/views/dashboard/index.html.erb:491
-#: ../app/views/main/_gettext.js.erb:7
-#: ../app/views/primitives/_form.html.erb:273
-#: ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
-msgid "Cancel"
-msgstr "取消"
-
-#: ../app/views/explorer/_pe_list.html.erb:6
-msgid "No transitions found for the specified time period."
-msgstr "未找到指定時間段內發生的轉換。"
-
-#: ../app/views/explorer/_pe_list.html.erb:11
-msgid "Time"
-msgstr "時間"
-
-#: ../app/views/explorer/_pe_list.html.erb:12
-msgid "PE Input"
-msgstr "PE 輸入"
-
-#: ../app/views/explorer/_pe_list.html.erb:13
-#: ../app/views/locations/_form.html.erb:43
-msgid "Node"
-msgstr "節點"
-
-#: ../app/views/explorer/_pe_list.html.erb:30
-#: ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:287
-msgid "Details"
-msgstr "詳細資料"
-
-#: ../app/views/explorer/_pe_list.html.erb:34
-msgid "(full log)"
-msgstr "(完整記錄)"
-
-#: ../app/views/explorer/_pe_list.html.erb:38
-#: ../app/views/main/_gettext.js.erb:296
-msgid "Graph"
-msgstr "圖形"
-
-#: ../app/views/explorer/_pe_list.html.erb:47
-msgid "Diff"
-msgstr "差異"
-
-#: ../app/views/explorer/index.html.erb:39
-msgid "Delete this history archive?"
-msgstr "要刪除此歷程歸檔嗎？"
-
-#: ../app/views/explorer/index.html.erb:150
-#: ../app/views/explorer/index.html.erb:169
-#: ../app/views/hb_reports/new.html.erb:58
-msgid "Start Time:"
-msgstr "開始時間︰"
-
-#: ../app/views/explorer/index.html.erb:152
-#: ../app/views/explorer/index.html.erb:171
-#: ../app/views/hb_reports/new.html.erb:63
-msgid "End Time:"
-msgstr "結束時間︰"
-
-#: ../app/views/explorer/index.html.erb:165
-msgid "Exploring %{path}"
-msgstr "正在探索 %{path}"
-
-#: ../app/views/explorer/index.html.erb:173
-msgid "Display"
-msgstr "顯示"
-
-#: ../app/views/explorer/index.html.erb:186
-msgid "Upload hb_report tarball"
-msgstr "上傳 hb_report Tar 聚合檔"
-
-#: ../app/views/explorer/index.html.erb:188
-msgid "Explore"
-msgstr "探索"
-
-#: ../app/views/explorer/permission_denied.html.erb:2
-#: ../app/views/hb_reports/permission_denied.html.erb:2
-#: ../app/views/nodes/permission_denied.html.erb:2
-#: ../app/views/resources/permission_denied.html.erb:2
-msgid "Error: Permission denied for user '%s'."
-msgstr "錯誤︰使用者「%s」的許可權遭拒。"
-
-#: ../app/views/groups/_form.html.erb:105
-msgid "Group ID"
-msgstr "群組 ID"
-
-#: ../app/views/groups/_form.html.erb:115
-msgid "Group Children"
-msgstr "群組子項"
-
-#: ../app/views/groups/_form.html.erb:117
-msgid "Available Primitives"
-msgstr "可用的基本資源"
-
-#: ../app/views/hb_reports/create.js.erb:3
-msgid "Start Time not specified"
-msgstr "未指定開始時間"
-
-#: ../app/views/hb_reports/new.html.erb:60
-msgid "Generate"
-msgstr "產生"
-
-#: ../app/views/hb_reports/new.html.erb:74
-msgid "hb_report generation in progress..."
-msgstr "正在產生 hb_report..."
-
-#: ../app/views/hb_reports/new.html.erb:80
-msgid "Download hb_report"
-msgstr "下載 hb_report"
-
-#: ../app/views/layouts/main.html.erb:35
-msgid "Simulator"
-msgstr "模擬器"
-
-#: ../app/views/layouts/main.html.erb:66 ../app/views/layouts/main.html.erb:79
-msgid "Cluster Diagram"
-msgstr "叢集圖表"
-
-#: ../app/views/layouts/main.html.erb:87
-msgid "Generate hb_report..."
-msgstr "產生 hb_report..."
-
-#: ../app/views/layouts/main.html.erb:98
-msgid "Generate hb_report"
-msgstr "產生 hb_report"
-
-#: ../app/views/layouts/main.html.erb:111
-msgid "Preferences..."
-msgstr "優先設定..."
-
-#: ../app/views/layouts/main.html.erb:134
-msgid "Language"
-msgstr "語言"
-
-#: ../app/views/layouts/main.html.erb:160
-msgid "Preferences"
-msgstr "優先設定"
-
-#: ../app/views/layouts/main.html.erb:178
-msgid "Tools"
-msgstr "工具"
-
-#: ../app/views/layouts/main.html.erb:182
-#: ../app/views/layouts/main.html.erb:190
-msgid "Status"
-msgstr "狀態"
-
-#: ../app/views/layouts/main.html.erb:184
-msgid "User: %{user}"
-msgstr "使用者︰%{user}"
-
-#: ../app/views/layouts/main.html.erb:185
-msgid "Log Out"
-msgstr "登出"
-
-#: ../app/views/layouts/main.html.erb:190
 msgid "Dashboard"
 msgstr "儀表板"
 
-#: ../app/views/layouts/main.html.erb:211
-msgid "Setup Wizard"
-msgstr "設定精靈"
-
-#: ../app/views/layouts/main.html.erb:214
-msgid "Cluster Properties"
-msgstr "叢集內容"
-
-#: ../app/views/layouts/main.html.erb:250
-msgid "UI Host: %s"
-msgstr "UI 主機：%s"
-
-#: ../app/views/layouts/main.html.erb:251
-msgid "Copyright &copy; 2009-2014 SUSE, LLC"
-msgstr "版權所有 &copy; 2009-2014 SUSE, LLC"
-
-#: ../app/views/locations/_form.html.erb:45
-msgid "Boolean Op"
-msgstr "布林 Op"
-
-#: ../app/views/locations/_form.html.erb:46
-msgid "Expression"
-msgstr "運算式"
-
-#: ../app/views/locations/_form.html.erb:49
-msgid "Add Rule"
-msgstr "新增規則"
-
-#: ../app/views/locations/_form.html.erb:50
-msgid "Remove Rule"
-msgstr "移除規則"
-
-#: ../app/views/locations/_form.html.erb:51
-msgid "Show Rule Editor"
-msgstr "顯示規則編輯器"
-
-#: ../app/views/locations/_form.html.erb:76
-msgid "Resource"
-msgstr "資源"
-
-#: ../app/views/main/_gettext.js.erb:10
-#: ../app/views/shared/_confirm_revert.html.erb:8
-msgid "Yes"
-msgstr "是"
-
-#: ../app/views/main/_gettext.js.erb:13
-#: ../app/views/shared/_confirm_revert.html.erb:9
-msgid "No"
-msgstr "否"
-
-#: ../app/views/main/_gettext.js.erb:16
-msgid "Close"
-msgstr "關閉"
-
-#: ../app/views/main/_gettext.js.erb:19
-msgid "Reset"
-msgstr "重設"
-
-#: ../app/views/main/_gettext.js.erb:23
-msgid "This will bring node %s online if it is currently on standby.  Do you want to continue?"
-msgstr "如果節點 %s 目前處於待機狀態，此操作會使該節點上線。您要繼續嗎？"
-
-#: ../app/views/main/_gettext.js.erb:26
-msgid "This will put node %s on standby.  All resources will be stopped and/or moved to another node.  Do you want to continue?"
-msgstr "此操作會使節點 %s 處於待機狀態。所有資源將會停止並/或移至其他節點。您要繼續嗎？"
-
-#: ../app/views/main/_gettext.js.erb:29
-msgid "This will put node %s in maintenance mode.  All resources on this node will become unmanaged.  Do you want to continue?"
-msgstr "此操作將使節點 %s 進入維護模式。此節點上的所有資源都將變為不受管理。要繼續嗎？"
-
-#: ../app/views/main/_gettext.js.erb:32
-msgid "This will bring node %s out of maintenance mode.  Do you want to continue?"
-msgstr "此操作將使節點 %s 結束維護模式。要繼續嗎？"
-
-#: ../app/views/main/_gettext.js.erb:35
-msgid "This will attempt to immediately fence node %s.  Do you want to continue?"
-msgstr "此操作會嘗試立即圍籬區隔節點 %s。您要繼續嗎？"
-
-#: ../app/views/main/_gettext.js.erb:39
-msgid "This will start the resource %s.  Do you want to continue?"
-msgstr "此操作會啟動資源 %s。您要繼續嗎？"
-
-#: ../app/views/main/_gettext.js.erb:42
-msgid "This will stop the resource %s.  Do you want to continue?"
-msgstr "此操作會停止資源 %s。您要繼續嗎？"
-
-#: ../app/views/main/_gettext.js.erb:45
-msgid "Move resource %s"
-msgstr "移動資源 %s"
-
-#: ../app/views/main/_gettext.js.erb:48
-msgid "To node %s"
-msgstr "移至節點 %s"
-
-#: ../app/views/main/_gettext.js.erb:51
-msgid "Away from current node"
-msgstr "從目前節點移開"
-
-#: ../app/views/main/_gettext.js.erb:54
-msgid "This will clear any relocation constraints set on the resource %s.  Do you want to continue?"
-msgstr "此操作會清除對資源 %s 的所有重新配置條件約束集。您要繼續嗎？"
-
-#: ../app/views/main/_gettext.js.erb:57
-msgid "This will promote the resource %s.  Do you want to continue?"
-msgstr "此操作會將資源 %s 升級。您要繼續嗎？"
-
-#: ../app/views/main/_gettext.js.erb:60
-msgid "This will demote the resource %s.  Do you want to continue?"
-msgstr "此操作會將資源 %s 降級。您要繼續嗎？"
-
-#: ../app/views/main/_gettext.js.erb:63
-msgid "This will clean up the resource %s.  Do you want to continue?"
-msgstr "此操作會清理資源 %s。您要繼續嗎？"
-
-#: ../app/views/main/_gettext.js.erb:67
-msgid "Error"
-msgstr "錯誤"
-
-#: ../app/views/main/_gettext.js.erb:70
-msgid "Unexpected server error: %s"
-msgstr "未預期的伺服器錯誤︰%s"
-
-#: ../app/views/main/_gettext.js.erb:73
-msgid "Connection to server failed (server down or network error - will retry every 15 seconds)."
-msgstr "連線至伺服器失敗 (伺服器已關機或網路發生錯誤 - 將每隔 15 秒重試一次)。"
-
-#: ../app/views/main/_gettext.js.erb:76
-msgid "Connection to server timed out - will retry every 15 seconds."
-msgstr "與伺服器的連線已逾時 - 將每隔 15 秒重試一次。"
-
-#: ../app/views/main/_gettext.js.erb:79
-msgid "Connection to server aborted - will retry every 15 seconds."
-msgstr "與伺服器的連線已中止 - 將每隔 15 秒重試一次。"
-
-#: ../app/views/main/_gettext.js.erb:82
-msgid "Permission denied"
-msgstr "許可權遭拒"
-
-#: ../app/views/main/_gettext.js.erb:85
-msgid "%{op} failed on %{node} (rc=%{rc})"
-msgstr "%{op} 於 %{node} 上失敗 (rc=%{rc})"
-
-#: ../app/views/main/_gettext.js.erb:89
-msgid "DC: %s"
-msgstr "DC︰%s"
-
-#: ../app/views/main/_gettext.js.erb:92
-msgid "Version: %s"
-msgstr "版本：%s"
-
-#: ../app/views/main/_gettext.js.erb:95
-msgid "Stack: %s"
-msgstr "堆疊︰%s"
-
-#: ../app/views/main/_gettext.js.erb:111
-msgid "Inactive Resources"
-msgstr "非使用中資源"
-
-#: ../app/views/main/_gettext.js.erb:114
-msgid "Summary"
-msgstr "摘要"
-
-#: ../app/views/main/_gettext.js.erb:120
-msgid "STONITH Enabled"
-msgstr "已啟用 STONITH"
-
-#: ../app/views/main/_gettext.js.erb:123
-msgid "No Quorum Policy"
-msgstr "無最低節點數規則"
-
-#: ../app/views/main/_gettext.js.erb:126
-msgid "Symmetric Cluster"
-msgstr "對稱式叢集"
-
-#: ../app/views/main/_gettext.js.erb:129
-msgid "Resource Stickiness"
-msgstr "資源粘性"
-
-#: ../app/views/main/_gettext.js.erb:132
-msgid "Maintenance Mode"
-msgstr "維護模式"
-
-#: ../app/views/main/_gettext.js.erb:135
-msgid "Unmanaged"
-msgstr "不受管理"
-
-#: ../app/views/main/_gettext.js.erb:138
-msgid "Tickets"
-msgstr "票證"
-
-#: ../app/views/main/_gettext.js.erb:141
-msgid "This will request the ticket %s be granted to the present site.  Do you want to continue?"
-msgstr "這將要求向目前站點授予票證 %s。要繼續嗎？"
-
-#: ../app/views/main/_gettext.js.erb:144
-msgid "This will request the ticket %s be revoked.  Do you want to continue?"
-msgstr "這將要求撤銷票證 %s。要繼續嗎？"
-
-#: ../app/views/main/_gettext.js.erb:148
-msgid "Granted [standby]"
-msgstr "已授權 [待命]"
-
-#: ../app/views/main/_gettext.js.erb:149
-msgid "Granted"
-msgstr "已授權"
-
-#: ../app/views/main/_gettext.js.erb:153
-msgid "Revoked [standby]"
-msgstr "已撤銷 [待命]"
-
-#: ../app/views/main/_gettext.js.erb:154
-msgid "Revoked"
-msgstr "撤銷"
-
-#: ../app/views/main/_gettext.js.erb:157
-msgid "Leader: %s"
-msgstr "主管︰%s"
-
-#: ../app/views/main/_gettext.js.erb:160
-msgid "Last granted: %s"
-msgstr "上次授權︰%s"
-
-#: ../app/views/main/_gettext.js.erb:163
-msgid "Expires: %s"
-msgstr "過期：%s"
-
-#: ../app/views/main/_gettext.js.erb:167
-msgid "Summary View"
-msgstr "摘要檢視"
-
-#: ../app/views/main/_gettext.js.erb:170
-msgid "Tree View"
-msgstr "樹狀檢視"
-
-#: ../app/views/main/_gettext.js.erb:173
-msgid "Table View"
-msgstr "表格檢視"
-
-#: ../app/views/main/_gettext.js.erb:177
-msgid "%{node}: %{state}"
-msgstr "%{node}︰%{state}"
-
-#: ../app/views/main/_gettext.js.erb:180 ../app/views/main/_menus.html.erb:8
-msgid "Online"
-msgstr "上線"
-
-#: ../app/views/main/_gettext.js.erb:183
-msgid "Offline"
-msgstr "離線"
-
-#: ../app/views/main/_gettext.js.erb:186 ../app/views/main/_gettext.js.erb:214
-msgid "Pending"
-msgstr "等待中"
-
-#: ../app/views/main/_gettext.js.erb:189 ../app/views/main/_gettext.js.erb:341
-#: ../app/views/main/_menus.html.erb:15
-msgid "Standby"
-msgstr "待機"
-
-#: ../app/views/main/_gettext.js.erb:192
-msgid "Unclean"
-msgstr "未清理"
-
-#: ../app/views/main/_gettext.js.erb:199
-msgid "Master"
-msgstr "主要"
-
-#: ../app/views/main/_gettext.js.erb:200
-msgid "%{id}: Master: %{nodelist}"
-msgstr "%{id}︰主要資源︰%{nodelist}"
-
-#: ../app/views/main/_gettext.js.erb:201
-msgid "%{id}: Master"
-msgstr "%{id}︰主要"
-
-#: ../app/views/main/_gettext.js.erb:204
-msgid "Slave"
-msgstr "從屬"
-
-#: ../app/views/main/_gettext.js.erb:205
-msgid "%{id}: Slave: %{nodelist}"
-msgstr "%{id}︰從屬資源︰%{nodelist}"
-
-#: ../app/views/main/_gettext.js.erb:206
-msgid "%{id}: Slave"
-msgstr "%{id}︰從屬"
-
-#: ../app/views/main/_gettext.js.erb:209
-msgid "Started"
-msgstr "已啟動"
-
-#: ../app/views/main/_gettext.js.erb:210
-msgid "%{id}: Started: %{nodelist}"
-msgstr "%{id}︰已啟動︰%{nodelist}"
-
-#: ../app/views/main/_gettext.js.erb:211
-msgid "%{id}: Started"
-msgstr "%{id}：已啟動"
-
-#: ../app/views/main/_gettext.js.erb:215
-msgid "%{id}: Pending: %{nodelist}"
-msgstr "%{id}︰等待中︰%{nodelist}"
-
-#: ../app/views/main/_gettext.js.erb:216
-msgid "%{id}: Pending"
-msgstr "%{id}︰等待中"
-
-#: ../app/views/main/_gettext.js.erb:220
-msgid "%{id}: Starting: %{node}"
-msgstr "%{id}︰正在啟動 %{node}"
-
-#: ../app/views/main/_gettext.js.erb:221
-msgid "%{id}: Starting"
-msgstr "%{id}：正在啟動"
-
-#: ../app/views/main/_gettext.js.erb:224
-msgid "%{id}: Stopping: %{node}"
-msgstr "%{id}︰正在停止 %{node}"
-
-#: ../app/views/main/_gettext.js.erb:225
-msgid "%{id}: Stopping"
-msgstr "%{id}：正在停止"
-
-#: ../app/views/main/_gettext.js.erb:228
-msgid "%{id}: Promoting: %{node}"
-msgstr "%{id}︰正在升級 %{node}"
-
-#: ../app/views/main/_gettext.js.erb:229
-msgid "%{id}: Promoting"
-msgstr "%{id}︰正在升級"
-
-#: ../app/views/main/_gettext.js.erb:232
-msgid "%{id}: Demoting: %{node}"
-msgstr "%{id}︰正在降級 %{node}"
-
-#: ../app/views/main/_gettext.js.erb:233
-msgid "%{id}: Demoting"
-msgstr "%{id}︰正在降級"
-
-#: ../app/views/main/_gettext.js.erb:236
-msgid "%{id}: Moving: %{node}"
-msgstr "%{id}︰正在移動 %{node}"
-
-#: ../app/views/main/_gettext.js.erb:237
-msgid "%{id}: Moving"
-msgstr "%{id}︰正在移動"
-
-#: ../app/views/main/_gettext.js.erb:240
-msgid "Stopped"
-msgstr "已停止"
-
-#: ../app/views/main/_gettext.js.erb:241
-msgid "%{id}: Stopped"
-msgstr "%{id}：已停止"
-
-#: ../app/views/main/_gettext.js.erb:244
-msgid "Group: %{id}"
-msgstr "群組︰%{id}"
-
-#: ../app/views/main/_gettext.js.erb:247
-msgid "Master/Slave Set: %{id}"
-msgstr "主要/從屬資源集︰%{id}"
-
-#: ../app/views/main/_gettext.js.erb:250
-msgid "Clone Set: %{id}"
-msgstr "複製品集︰%{id}"
-
-#: ../app/views/main/_gettext.js.erb:253
-msgid "Parent: %{id}..."
-msgstr "父代︰%{id}..."
-
-#: ../app/views/main/_gettext.js.erb:256
-msgid "%{active}/%{total} %{type} %{node}"
-msgstr "%{active}/%{total} %{type} %{node}"
-
-#: ../app/views/main/_gettext.js.erb:259
-msgid "Toggle view by type"
-msgstr "按類型切換檢視窗"
-
-#: ../app/views/main/_gettext.js.erb:263
-msgid "Simulator (initial state)"
-msgstr "模擬器 (初始狀態)"
-
-#: ../app/views/main/_gettext.js.erb:266
-msgid "Simulator (busy...)"
-msgstr "模擬器 (忙碌...)"
-
-#: ../app/views/main/_gettext.js.erb:269
-msgid "Simulator (final state)"
-msgstr "模擬器 (最終狀態)"
-
-#: ../app/views/main/_gettext.js.erb:272
-msgid "Injected State:"
-msgstr "已插入狀態︰"
-
-#: ../app/views/main/_gettext.js.erb:275
-msgid "+ Node"
-msgstr "+ 節點"
-
-#: ../app/views/main/_gettext.js.erb:278
-msgid "+ Op"
-msgstr "+ Op"
-
-#: ../app/views/main/_gettext.js.erb:281
-msgid "+ Ticket"
-msgstr "+ 票證"
-
-#: ../app/views/main/_gettext.js.erb:284
-msgid "Run >"
-msgstr "執行 >"
-
-#: ../app/views/main/_gettext.js.erb:290
-msgid "CIB (in)"
-msgstr "CIB (入)"
-
-#: ../app/views/main/_gettext.js.erb:293
-msgid "CIB (out)"
-msgstr "CIB (出)"
-
-#: ../app/views/main/_gettext.js.erb:299
-msgid "Empty Graph"
-msgstr "空圖形"
-
-#: ../app/views/main/_gettext.js.erb:302
-msgid "Inject Node State"
-msgstr "插入節點狀態"
-
-#: ../app/views/main/_gettext.js.erb:305
-msgid "Node:"
-msgstr "節點︰"
-
-#: ../app/views/main/_gettext.js.erb:308
-msgid "State:"
-msgstr "州：                   "
-
-#: ../app/views/main/_gettext.js.erb:311
-msgid "Inject Operation"
-msgstr "插入操作"
-
-#: ../app/views/main/_gettext.js.erb:314
-msgid "Operation:"
-msgstr "操作︰"
-
-#: ../app/views/main/_gettext.js.erb:317
-msgid "Interval:"
-msgstr "間隔︰"
-
-#: ../app/views/main/_gettext.js.erb:320
-msgid "Resource:"
-msgstr "資源︰"
-
-#: ../app/views/main/_gettext.js.erb:323
-msgid "Result:"
-msgstr "結果︰"
-
-#: ../app/views/main/_gettext.js.erb:326
-msgid "Inject Ticket"
-msgstr "插入票證"
-
-#: ../app/views/main/_gettext.js.erb:329
-msgid "Ticket:"
-msgstr "票證︰"
-
-#: ../app/views/main/_gettext.js.erb:332
-msgid "Action:"
-msgstr "動作︰"
-
-#: ../app/views/main/_gettext.js.erb:335 ../app/views/main/_menus.html.erb:206
-msgid "Grant"
-msgstr "授權"
-
-#: ../app/views/main/_gettext.js.erb:338 ../app/views/main/_menus.html.erb:213
-msgid "Revoke"
-msgstr "撤銷"
-
-#: ../app/views/main/_gettext.js.erb:344
-msgid "Activate"
-msgstr "啟動"
-
-#: ../app/views/main/_gettext.js.erb:347
-msgid "Success"
-msgstr "成功"
-
-#: ../app/views/main/_gettext.js.erb:350
-msgid "Generic Error"
-msgstr "一般錯誤"
-
-#: ../app/views/main/_gettext.js.erb:353
-msgid "Wrong Argument(s)"
-msgstr "引數錯誤"
-
-#: ../app/views/main/_gettext.js.erb:356
-msgid "Not Implemented"
-msgstr "未執行"
-
-#: ../app/views/main/_gettext.js.erb:359
-msgid "Permission Denied"
-msgstr "許可權遭拒"
-
-#: ../app/views/main/_gettext.js.erb:362
-msgid "Not Installed"
-msgstr "未安裝"
-
-#: ../app/views/main/_gettext.js.erb:365
-msgid "Not Configured"
-msgstr "未設定"
-
-#: ../app/views/main/_gettext.js.erb:368
-msgid "Not Running"
-msgstr "未執行"
-
-#: ../app/views/main/_gettext.js.erb:371
-msgid "Running Master"
-msgstr "執行中的主要資源"
-
-#: ../app/views/main/_gettext.js.erb:374
-msgid "Failed Master"
-msgstr "失敗的主要資源"
-
-#: ../app/views/main/_menus.html.erb:22
-msgid "Maintenance"
-msgstr "維護"
-
-#: ../app/views/main/_menus.html.erb:29
-msgid "Ready"
-msgstr "就緒"
-
-#: ../app/views/main/_menus.html.erb:36
-msgid "Fence Node"
-msgstr "圍籬區隔節點"
-
-#: ../app/views/main/_menus.html.erb:46 ../app/views/main/_menus.html.erb:160
-msgid "View Details..."
-msgstr "檢視詳細資料..."
-
-#: ../app/views/main/_menus.html.erb:66 ../app/views/main/_menus.html.erb:182
-msgid "View Recent Events..."
-msgstr "檢視最近的事件..."
-
-#: ../app/views/main/_menus.html.erb:87
-msgid "Start"
-msgstr "開始"
-
-#: ../app/views/main/_menus.html.erb:94
-msgid "Stop"
-msgstr "停止"
-
-#: ../app/views/main/_menus.html.erb:101
-msgid "Move..."
-msgstr "移動..."
-
-#: ../app/views/main/_menus.html.erb:129
-msgid "Drop Relocation Rule"
-msgstr "放棄重新配置規則"
-
-#: ../app/views/main/_menus.html.erb:136
-msgid "Promote"
-msgstr "升級"
-
-#: ../app/views/main/_menus.html.erb:143
-msgid "Demote"
-msgstr "降級"
-
-#: ../app/views/main/_menus.html.erb:150
-msgid "Clean Up"
-msgstr "清理"
-
-#: ../app/views/masters/_form.html.erb:70
-msgid "Master/Slave ID"
-msgstr "主要/從屬 ID"
-
-#: ../app/views/nodes/events.html.erb:12
-#: ../app/views/resources/events.html.erb:12
-msgid "Getting recent events (last hour)..."
-msgstr "正在取得最近的事件 (最後一小時)..."
-
-#: ../app/views/nodes/events.html.erb:13
-#: ../app/views/resources/events.html.erb:13
-msgid "Another \"crm history\" operation is in progress..."
-msgstr "另一個「crm 歷程」操作正在執行..."
-
-#: ../app/views/nodes/events.html.erb:20
-#: ../app/views/resources/events.html.erb:20
-msgid "No events found in last hour."
-msgstr "最後一小時內未找到事件。"
-
-#: ../app/views/nodes/show.html.erb:1
-msgid "Utilization"
-msgstr "使用率"
-
-#: ../app/views/nodes/show.html.erb:15
-msgid "No utilization defined"
-msgstr "未定義使用率"
-
-#: ../app/views/nodes/show.html.erb:18 ../app/views/resources/show.html.erb:1
-msgid "Attributes"
-msgstr "屬性"
-
-#: ../app/views/nodes/show.html.erb:29 ../app/views/resources/show.html.erb:12
-msgid "No attributes defined"
-msgstr "未定義屬性"
-
-#: ../app/views/orders/_form.html.erb:100
-msgid "Symmetrical"
-msgstr "對稱"
-
-#: ../app/views/primitives/_form.html.erb:261
-msgid "Operations"
-msgstr "操作"
-
-#: ../app/views/primitives/_form.html.erb:271
-msgid "There is already a monitor op with this interval."
-msgstr "已有顯示器 op 在此間隔執行。"
-
-#: ../app/views/primitives/_form.html.erb:329
-msgid "Template ID"
-msgstr "樣板 ID"
-
-#: ../app/views/primitives/_form.html.erb:329
-msgid "Resource ID"
-msgstr "資源 ID"
-
-#: ../app/views/primitives/_form.html.erb:330
-msgid "Class"
-msgstr "類別"
-
-#: ../app/views/primitives/_form.html.erb:331
-msgid "Provider"
-msgstr "提供者"
-
-#: ../app/views/primitives/_form.html.erb:332
-msgid "Type"
-msgstr "類型"
-
-#: ../app/views/primitives/_form.html.erb:367
-msgid "Use Template"
-msgstr "使用樣板"
-
-#: ../app/views/resources/index.html.erb:57
-msgid "Delete Resource"
-msgstr "刪除資源"
-
-#: ../app/views/resources/index.html.erb:102
-msgid "New Resource"
-msgstr "新資源"
-
-#: ../app/views/resources/index.html.erb:103
-msgid "Primitive"
+msgid "History Explorer"
+msgstr "歷程總管"
+
+msgid "PE Input created by different Pacemaker version (%{version})"
+msgstr "由不同 Pacemaker 版本  (%{version}) 建立的 PE 輸入"
+
+msgid "Pacemaker version not present in PE Input"
+msgstr "PE 輸入中不存在 Pacemaker 版本"
+
+msgid "Required parameters \"basename\" and \"node\" not specified"
+msgstr "未指定所需的參數「basename」與「node」"
+
+msgid "No details available"
+msgstr "沒有可用的詳細資訊"
+
+msgid "Error:"
+msgstr "錯誤："
+
+msgid "Required parameters \"left\" and \"right\" not specified"
+msgstr "未指定所需的參數「left」與「right」"
+
+msgid "Edit Group"
+msgstr "編輯群組"
+
+msgid "Create Group"
+msgstr "建立群組"
+
+msgid "Group created successfully"
+msgstr "成功建立群組"
+
+msgid "Group updated successfully"
+msgstr "成功更新群組"
+
+msgid "Edit Location Constraint"
+msgstr "編輯位置條件約束"
+
+msgid "Create Location Constraint"
+msgstr "建立位置條件約束"
+
+msgid "%{cmd} failed (status: %{status})"
+msgstr "%{cmd} 失敗 (狀態︰%{status})"
+
+msgid "Cluster Status"
+msgstr "叢集狀態"
+
+msgid "Required parameter \"node\" not specified"
+msgstr "未指定所需的參數「node」"
+
+msgid "Required parameter \"resource\" not specified"
+msgstr "未指定所需的參數「resource」"
+
+msgid "Required parameters \"resource\" and \"node\" not specified"
+msgstr "未指定所需的參數「resource」與「node」"
+
+msgid "Error deleting resource"
+msgstr "刪除資源時發生錯誤"
+
+msgid "Required parameters \"ticket\" and \"site\" not specified"
+msgstr "未指定所需的參數「ticket」與「site」"
+
+msgid "Required parameter \"ticket\" not specified"
+msgstr "未指定所需的參數「ticket」"
+
+msgid "Error invoking %{cmd}: %{msg}"
+msgstr "執行 %{cmd} 時發生錯誤︰%{msg}"
+
+msgid "Edit Master/Slave"
+msgstr "編輯主要/從屬關係"
+
+msgid "Create Master/Slave"
+msgstr "建立主要/從屬關係"
+
+msgid "Master/Slave created successfully"
+msgstr "成功建立主要/從屬關係"
+
+msgid "Master/Slave updated successfully"
+msgstr "成功更新主要/從屬關係"
+
+#, fuzzy
+msgid "Nodes"
+msgstr "節點"
+
+msgid "Edit Order Constraint"
+msgstr "編輯順序條件約束"
+
+msgid "Create Order Constraint"
+msgstr "建立順序條件約束"
+
+msgid "Welcome"
+msgstr ""
+
+msgid "Help"
+msgstr ""
+
+msgid "Create Resource"
+msgstr "建立資源"
+
+msgid "Resource created successfully"
+msgstr "成功建立資源"
+
+msgid "Resource updated successfully"
+msgstr "成功更新資源"
+
+#, fuzzy
+msgid "Primitives"
 msgstr "基本資源"
 
-#: ../app/views/resources/index.html.erb:109
-msgid "New Template"
-msgstr "新樣板"
+msgid "Resources"
+msgstr "資源"
 
-#: ../app/views/resources/index.html.erb:110
-msgid "Template"
-msgstr "樣板"
+msgid "Create Role"
+msgstr "建立角色"
 
-#: ../app/views/resources/index.html.erb:116
-msgid "New Group"
-msgstr "新增群組"
+msgid "Role created successfully"
+msgstr "成功建立角色"
 
-#: ../app/views/resources/index.html.erb:117
-msgid "Group"
-msgstr "群組"
+msgid "Edit Role"
+msgstr "編輯角色"
 
-#: ../app/views/resources/index.html.erb:122
-msgid "New Clone"
-msgstr "新增複製品"
+msgid "Role updated successfully"
+msgstr "成功更新角色"
 
-#: ../app/views/resources/index.html.erb:123
-msgid "Clone"
-msgstr "複製品"
+#, fuzzy
+msgid "Role deleted successfully"
+msgstr "成功建立角色"
 
-#: ../app/views/resources/index.html.erb:128
-msgid "New Master/Slave"
-msgstr "新增主要/從屬關係"
+#, fuzzy
+msgid "Error deleting %s"
+msgstr "刪除資源時發生錯誤"
 
-#: ../app/views/resources/index.html.erb:129
-msgid "Master/Slave"
-msgstr "主要/從屬"
-
-#: ../app/views/resources/index.html.erb:150
-msgid "(No primitive resources defined)"
-msgstr "(未定義基本資源)"
-
-#: ../app/views/resources/index.html.erb:163
-msgid "(No templates defined)"
-msgstr "(未定義樣板)"
-
-#: ../app/views/resources/index.html.erb:176
-msgid "(No groups defined)"
-msgstr "(未定義群組)"
-
-#: ../app/views/resources/index.html.erb:188
-msgid "(No clones defined)"
-msgstr "(未定義複製品)"
-
-#: ../app/views/resources/index.html.erb:200
-msgid "(No master/slave resources defined)"
-msgstr "(未定義主要/從屬資源)"
-
-#: ../app/views/resources/show.html.erb:20
-msgid "Fail Count"
-msgstr "失敗計數"
-
-#: ../app/views/resources/show.html.erb:25
-msgid "Last Failure"
-msgstr "上次失敗"
-
-#: ../app/views/roles/_form.html.erb:40 ../app/views/users/_form.html.erb:50
-msgid "Right"
-msgstr "右"
-
-#: ../app/views/roles/_form.html.erb:41 ../app/views/users/_form.html.erb:51
-msgid "XPath"
-msgstr "XPath"
-
-#: ../app/views/roles/_form.html.erb:42 ../app/views/users/_form.html.erb:52
-msgid "Tag"
-msgstr "標記"
-
-#: ../app/views/roles/_form.html.erb:43 ../app/views/users/_form.html.erb:53
-msgid "Ref"
-msgstr "參考"
-
-#: ../app/views/roles/_form.html.erb:44 ../app/views/users/_form.html.erb:54
-msgid "Attribute"
-msgstr "屬性"
-
-#: ../app/views/roles/_form.html.erb:67
-msgid "Role ID"
-msgstr "角色 ID"
-
-#: ../app/views/sessions/new.html.erb:1
-msgid "Please ensure JavaScript is enabled"
-msgstr "請確定已啟用 JavaScript"
-
-#: ../app/views/shared/_confirm_revert.html.erb:4
-msgid "Any changes will be lost - do you wish to proceed?"
-msgstr "所有變更都將遺失，是否繼續？"
-
-#: ../app/views/tickets/_form.html.erb:78
-msgid "Loss Policy"
-msgstr "遺失規則"
-
-#: ../app/views/users/_form.html.erb:81
-msgid "User ID"
-msgstr "使用者 ID"
-
-#: ../app/views/users/_form.html.erb:91
 msgid "Roles"
 msgstr "角色"
 
-#: ../app/views/wizard/done.html.erb:1 ../app/views/wizard/run.html.erb:69
+msgid "The role does not exist"
+msgstr ""
+
+msgid "To enable ACLs, set 'enable-acl' in the CRM Configuration"
+msgstr "若要啟用 ACL，請在 CRM 組態中設定「enable-acl」"
+
+msgid "Permission denied for user %{user}"
+msgstr "使用者 %{user} 的許可權遭拒"
+
+msgid "You have been logged out"
+msgstr "您已經登出"
+
+msgid "Log In"
+msgstr "登入"
+
+#, fuzzy
+msgid "Preferences updated successfully"
+msgstr "成功更新資源"
+
+msgid "Preferences"
+msgstr "優先設定"
+
+msgid "Edit Template"
+msgstr "編輯樣板"
+
+msgid "Create Template"
+msgstr "建立樣板"
+
+msgid "Template created successfully"
+msgstr "已成功建立樣板"
+
+msgid "Template updated successfully"
+msgstr "已成功更新樣板"
+
+msgid "Edit Ticket Constraint"
+msgstr "編輯票證條件約束"
+
+msgid "Create Ticket Constraint"
+msgstr "建立票證條件約束"
+
+msgid "Create User"
+msgstr "建立使用者"
+
+msgid "User created successfully"
+msgstr "成功建立使用者"
+
+msgid "Edit User"
+msgstr "編輯使用者"
+
+msgid "User updated successfully"
+msgstr "成功更新使用者"
+
+#, fuzzy
+msgid "User deleted successfully"
+msgstr "成功建立使用者"
+
+#, fuzzy
+msgid "Users"
+msgstr "使用者"
+
+msgid "The user does not exist"
+msgstr ""
+
+msgid "Cluster Setup Wizard"
+msgstr "叢集設定精靈"
+
+msgid "Invalid password"
+msgstr "密碼無效"
+
+msgid "Root Password"
+msgstr "Root 密碼"
+
+msgid ""
+"The root password is required in order for this wizard template to make config"
+"uration changes."
+msgstr "若要讓此精靈樣板進行組態變更，需要提供 root 密碼。"
+
+msgid "The root password for this system"
+msgstr "此系統的 root 密碼"
+
+msgid "\"Error: #{result}\""
+msgstr "「錯誤︰#{result}」"
+
+msgid "Parameters"
+msgstr "參數"
+
+msgid "Confirm"
+msgstr "確認"
+
+msgid "Done"
+msgstr "完成"
+
+msgid "Required parameter \"%{param}\" not specified"
+msgstr "未指定所需的參數「{param}」"
+
+msgid "Permission denied - you do not have write access to the CIB."
+msgstr "許可權遭拒 - 您沒有寫入 CIB 的權限。"
+
+msgid "Wizard templates and/or workflows are missing"
+msgstr "缺少精靈範本和/或工作流程"
+
+msgid "Workflow \"%s\" not found"
+msgstr "找不到工作流程「%s」"
+
+msgid "Error parsing template \"%s\""
+msgstr "剖析範本「%s」時發生錯誤"
+
+msgid "Error parsing workflow \"%s\""
+msgstr "剖析工作流程「%s」時發生錯誤"
+
+msgid "Data collection in progress (%{from_time} to %{to_time})..."
+msgstr "正在收集資料 (從 %{from_time} 至 %{to_time})..."
+
+#, fuzzy
+msgid "Revert"
+msgstr "重設"
+
+msgid "Apply"
+msgstr ""
+
+#, fuzzy
+msgid "Create"
+msgstr "建立角色"
+
+#, fuzzy
+msgid "Read"
+msgstr "就緒"
+
+msgid "Write"
+msgstr ""
+
+msgid "Deny"
+msgstr ""
+
+msgid "CIB file \"%{path}\" not found"
+msgstr "找不到 CIB 檔案「%{path}」"
+
+msgid "Unable to parse CIB file \"%{path}\""
+msgstr "無法剖析 CIB 檔案「%{path}」"
+
+msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
+msgstr "似乎未安裝 Pacemaker (找不到 %{cmd})"
+
+msgid "Unable to execute %{cmd}"
+msgstr "無法執行 %{cmd}"
+
+msgid "Error invoking %{cmd}"
+msgstr "執行 %{cmd} 時發生錯誤"
+
+msgid "Unknown"
+msgstr "未知"
+
+msgid ""
+"Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%"
+"{op}, rc-code=%{rc_code}, exit-reason=%{exit_reason}"
+msgstr ""
+
+msgid "Invalid Resource ID \"%{id}\""
+msgstr "資源 ID「%{id}」無效"
+
+msgid "Unable to parse cibadmin output"
+msgstr "無法剖析 cibadmin 輸出"
+
+msgid "No clone child specified"
+msgstr "未指定複製品子項"
+
+msgid ""
+"Can't set meta attribute %{p}, because the value contains both single and doub"
+"le quotes"
+msgstr "無法設定中繼屬性 %{p}，因為該值同時包含單引號和雙引號"
+
+msgid "The ID \"%{id}\" is already in use"
+msgstr "ID「%{id}」已在使用中"
+
+msgid "Unable to create clone: %{msg}"
+msgstr "無法建立複製品：%{msg}"
+
+msgid "Clone ID \"%{id}\" does not exist"
+msgstr "複製品 ID「%{id}」不存在"
+
+msgid "Invalid score"
+msgstr "無效的分數"
+
+msgid "Constraint must consist of at least two separate resources"
+msgstr "條件約束必須至少包含兩個獨立的資源"
+
+msgid "Unable to create constraint: %{msg}"
+msgstr "無法建立條件約束︰%{msg}"
+
+msgid "Constraint ID \"%{id}\" does not exist"
+msgstr "條件約束 ID「%{id}」不存在"
+
+msgid "Unable to update constraint: %{msg}"
+msgstr "無法更新條件約束︰%{msg}"
+
+msgid "No group children specified"
+msgstr "未指定群組子項"
+
+msgid "Unable to create group: %{msg}"
+msgstr "無法建立群組：%{msg}"
+
+msgid "Group ID \"%{id}\" does not exist"
+msgstr "群組 ID「%{id}」不存在"
+
+msgid "Constraint is too complex - it contains nested rules"
+msgstr "條件約束過於複雜，它含有巢狀規則"
+
+msgid "No rules specified"
+msgstr "未指定規則"
+
+msgid "No resource specified"
+msgstr "未指定資源"
+
+msgid "Invalid score \"%{score}\""
+msgstr "分數「%{score}」無效"
+
+msgid "No expressions specified"
+msgstr "未指定運算式"
+
+msgid "Attribute contains both single and double quotes"
+msgstr "屬性同時包含單引號和雙引號"
+
+msgid "Value contains both single and double quotes"
+msgstr "值同時包含單引號和雙引號"
+
+msgid "No Master/Slave child specified"
+msgstr "未指定主要/從屬子關係"
+
+msgid "Unable to create master/slave: %{msg}"
+msgstr "無法建立主要/從屬關係︰%{msg}"
+
+msgid "Master/Slave ID \"%{id}\" does not exist"
+msgstr "主要/從屬 ID「%{id}」不存在"
+
+msgid ""
+"Can't set parameter %{p}, because the value contains both single and double qu"
+"otes"
+msgstr "無法設定參數 %{p}，因為該值同時包含單引號和雙引號"
+
+msgid ""
+"Can't set op %{o} attribute {%a}, because the value contains both single and d"
+"ouble quotes"
+msgstr "無法設定 OP %{o} 屬性 {%a}，因為該值同時包含單引號和雙引號"
+
+msgid "Unable to create resource: %{msg}"
+msgstr "無法建立資源：%{msg}"
+
+msgid "Resource ID \"%{id}\" does not exist"
+msgstr "資源 ID「%{id}」不存在"
+
+#, fuzzy
+msgid "Unable to create: %{msg}"
+msgstr "無法建立角色：%{msg}"
+
+#, fuzzy
+msgid "The ID \"%{id}\" does not exist"
+msgstr "角色 ID「%{id}」不存在"
+
+#, fuzzy
+msgid "Unable to update: %{msg}"
+msgstr "無法更新角色︰%{msg}"
+
+msgid "Role ID is required"
+msgstr ""
+
+#, fuzzy
+msgid "Invalid Role ID"
+msgstr "無效的票證 ID"
+
+msgid "Username not specified"
+msgstr "未指定使用者名稱"
+
+msgid "Invalid username"
+msgstr "無效的使用者名稱"
+
+msgid "Password not specified"
+msgstr "未指定密碼"
+
+msgid "%s is not installed"
+msgstr "%s 未安裝"
+
+#, fuzzy
+msgid "%s is not executable"
+msgstr "%s 未安裝"
+
+msgid "Invalid username or password"
+msgstr "無效的使用者名稱或密碼"
+
+msgid "Language is required"
+msgstr ""
+
+msgid "Invalid Ticket ID"
+msgstr "無效的票證 ID"
+
+msgid "No resources specified"
+msgstr "未指定資源"
+
+msgid "User ID is required"
+msgstr ""
+
+#, fuzzy
+msgid "Invalid User ID"
+msgstr "無效的票證 ID"
+
+msgid "Meta Attributes"
+msgstr "中繼屬性"
+
+msgid "Add"
+msgstr "新增"
+
+msgid "Remove"
+msgstr "移除"
+
+msgid "You must enter a value"
+msgstr "必須輸入一個值"
+
+msgid "Clone ID"
+msgstr "複製品 ID"
+
+msgid "Child Resource"
+msgstr "子資源"
+
+msgid "Revert Changes"
+msgstr "回復變更"
+
+msgid "Back"
+msgstr "上一步"
+
+msgid "Apply Changes"
+msgstr "套用變更"
+
+msgid "Link set"
+msgstr "連結資源集"
+
+msgid "Break set"
+msgstr "斷開資源集"
+
+msgid "Swap resources"
+msgstr "交換資源"
+
+msgid "Add resource to constraint"
+msgstr "向條件約束新增資源"
+
+msgid "Constraint ID"
+msgstr "條件約束 ID"
+
+msgid "Score"
+msgstr "分數"
+
+msgid "Create Constraint"
+msgstr "建立條件約束"
+
+msgid "Edit Constraint"
+msgstr "編輯條件約束"
+
+msgid "Delete Constraint"
+msgstr "刪除條件約束"
+
+msgid "Are you sure you wish to delete %s?"
+msgstr "確定要刪除 %s 嗎？"
+
+msgid "New Constraint"
+msgstr "新條件約束"
+
+msgid "Location"
+msgstr "位置"
+
+msgid "Colocation"
+msgstr "並存"
+
+msgid "Order"
+msgstr "順序"
+
+msgid "Ticket"
+msgstr "票證"
+
+msgid "(No location constraints defined)"
+msgstr "(未定義位置條件約束)"
+
+msgid "[Constraint is too complex to display]"
+msgstr "[條件約束過於複雜，無法顯示]"
+
+msgid "(No colocation constraints defined)"
+msgstr "(未定義並存條件約束)"
+
+msgid "(No order constraints defined)"
+msgstr "(未定義順序條件約束)"
+
+msgid "(No ticket constraints defined)"
+msgstr "(未定義票證條件約束)"
+
+msgid "CRM Configuration"
+msgstr "CRM 組態"
+
+msgid "Resource Defaults"
+msgstr "預設資源"
+
+msgid "Operation Defaults"
+msgstr "預設操作"
+
+msgid "No cluster properties set in %{group}"
+msgstr "%{group} 中未設定叢集內容"
+
+msgid "Edit"
+msgstr "編輯"
+
+msgid "Username:"
+msgstr "使用者名稱："
+
+msgid "Password:"
+msgstr "密碼："
+
+msgid "Cluster has errors - click for details"
+msgstr "叢集發生錯誤 - 按一下可查看詳細資料"
+
+msgid "Timeout: Please try again"
+msgstr "逾時︰請再試一次"
+
+msgid "Permission denied. Please log in to %{node}"
+msgstr "權限被拒絕。請登入 %{node}"
+
+#, fuzzy
+msgid "Geo Site %{ip}"
+msgstr "複製品集︰%{id}"
+
+msgid "Site: %{ip}"
+msgstr ""
+
+msgid "Arbitrator: %{ip}"
+msgstr ""
+
+msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
+msgstr "無法聯絡 %{node} 上的 Hawk。將每間隔 5 秒重試一次。"
+
+msgid "Cluster Name:"
+msgstr "叢集名稱："
+
+msgid "Host Name:"
+msgstr "主機名稱："
+
+msgid ""
+"(Specify any host name in the cluster.  Other nodes will be found automaticall"
+"y)"
+msgstr "(指定叢集中的任何主機名稱。系統會自動尋找其他節點)"
+
+msgid "Add Cluster"
+msgstr "新增叢集"
+
+msgid "OK"
+msgstr "確定"
+
+msgid "A cluster with that name already exists"
+msgstr "已存在具有該名稱的叢集"
+
+msgid "The host %{h} is already present in cluster %{c}"
+msgstr "叢集 %{c} 中已存在主機 %{h}"
+
+msgid ""
+"Unable to connect to %{host}. Try opening %{url} in your web browser to ensure"
+" Hawk is accessible."
+msgstr "無法連線至 %{host}。請嘗試在網頁瀏覽器中開啟 %{url} 以確定可以存取 Hawk。"
+
+msgid "Cancel"
+msgstr "取消"
+
+#, fuzzy
+msgid "Cluster"
+msgstr "新增叢集"
+
+msgid "STONITH Enabled"
+msgstr "已啟用 STONITH"
+
+msgid "No Quorum Policy"
+msgstr "無最低節點數規則"
+
+msgid "Symmetric Cluster"
+msgstr "對稱式叢集"
+
+msgid "Resource Stickiness"
+msgstr "資源粘性"
+
+msgid "Status"
+msgstr "狀態"
+
+msgid "No transitions found for the specified time period."
+msgstr "未找到指定時間段內發生的轉換。"
+
+msgid "Time"
+msgstr "時間"
+
+msgid "PE Input"
+msgstr "PE 輸入"
+
+msgid "Node"
+msgstr "節點"
+
+msgid "(full log)"
+msgstr "(完整記錄)"
+
+msgid "Graph"
+msgstr "圖形"
+
+msgid "Diff"
+msgstr "差異"
+
+msgid "Delete this history archive?"
+msgstr "要刪除此歷程歸檔嗎？"
+
+msgid "Start Time:"
+msgstr "開始時間︰"
+
+msgid "End Time:"
+msgstr "結束時間︰"
+
+msgid "Exploring %{path}"
+msgstr "正在探索 %{path}"
+
+msgid "Display"
+msgstr "顯示"
+
+msgid "Upload hb_report tarball"
+msgstr "上傳 hb_report Tar 聚合檔"
+
+msgid "Explore"
+msgstr "探索"
+
+msgid "Error: Permission denied for user '%s'."
+msgstr "錯誤︰使用者「%s」的許可權遭拒。"
+
+msgid "Group ID"
+msgstr "群組 ID"
+
+msgid "Group Children"
+msgstr "群組子項"
+
+msgid "Available Primitives"
+msgstr "可用的基本資源"
+
+msgid "Start Time not specified"
+msgstr "未指定開始時間"
+
+msgid "Generate"
+msgstr "產生"
+
+msgid "hb_report generation in progress..."
+msgstr "正在產生 hb_report..."
+
+msgid "Download hb_report"
+msgstr "下載 hb_report"
+
+#, fuzzy
+msgid "Please ensure Javascript is enabled"
+msgstr "請確定已啟用 JavaScript"
+
+msgid "SUSE, LLC"
+msgstr ""
+
+msgid "High Availability Web Konsole"
+msgstr ""
+
+msgid "Role"
+msgstr "角色"
+
+msgid "Boolean Op"
+msgstr "布林 Op"
+
+msgid "Expression"
+msgstr "運算式"
+
+msgid "Add Rule"
+msgstr "新增規則"
+
+msgid "Remove Rule"
+msgstr "移除規則"
+
+msgid "Show Rule Editor"
+msgstr "顯示規則編輯器"
+
+msgid "Resource"
+msgstr "資源"
+
+msgid "Fence Node"
+msgstr "圍籬區隔節點"
+
+msgid "View Details..."
+msgstr "檢視詳細資料..."
+
+msgid "View Recent Events..."
+msgstr "檢視最近的事件..."
+
+msgid "Start"
+msgstr "開始"
+
+msgid "Stop"
+msgstr "停止"
+
+msgid "Move..."
+msgstr "移動..."
+
+msgid "Drop Relocation Rule"
+msgstr "放棄重新配置規則"
+
+msgid "Promote"
+msgstr "升級"
+
+msgid "Demote"
+msgstr "降級"
+
+msgid "Clean Up"
+msgstr "清理"
+
+msgid "Grant"
+msgstr "授權"
+
+msgid "Revoke"
+msgstr "撤銷"
+
+msgid "Master/Slave ID"
+msgstr "主要/從屬 ID"
+
+msgid "Getting recent events (last hour)..."
+msgstr "正在取得最近的事件 (最後一小時)..."
+
+msgid "Another \"crm history\" operation is in progress..."
+msgstr "另一個「crm 歷程」操作正在執行..."
+
+msgid "No events found in last hour."
+msgstr "最後一小時內未找到事件。"
+
+msgid "Utilization"
+msgstr "使用率"
+
+msgid "No utilization defined"
+msgstr "未定義使用率"
+
+msgid "Attributes"
+msgstr "屬性"
+
+msgid "No attributes defined"
+msgstr "未定義屬性"
+
+msgid "Symmetrical"
+msgstr "對稱"
+
+msgid "Close"
+msgstr "關閉"
+
+msgid "HTML"
+msgstr ""
+
+msgid "PDF"
+msgstr ""
+
+msgid "There is already a monitor op with this interval."
+msgstr "已有顯示器 op 在此間隔執行。"
+
+msgid "Resource ID"
+msgstr "資源 ID"
+
+msgid "Template ID"
+msgstr "樣板 ID"
+
+msgid "Class"
+msgstr "類別"
+
+msgid "Provider"
+msgstr "提供者"
+
+msgid "Type"
+msgstr "類型"
+
+msgid "Use Template"
+msgstr "使用樣板"
+
+msgid "Edit Resource"
+msgstr "編輯資源"
+
+msgid "Delete Resource"
+msgstr "刪除資源"
+
+msgid "New Resource"
+msgstr "新資源"
+
+msgid "Primitive"
+msgstr "基本資源"
+
+msgid "New Template"
+msgstr "新樣板"
+
+msgid "Template"
+msgstr "樣板"
+
+msgid "New Group"
+msgstr "新增群組"
+
+msgid "Group"
+msgstr "群組"
+
+msgid "New Clone"
+msgstr "新增複製品"
+
+msgid "Clone"
+msgstr "複製品"
+
+msgid "New Master/Slave"
+msgstr "新增主要/從屬關係"
+
+msgid "Master/Slave"
+msgstr "主要/從屬"
+
+msgid "(No primitive resources defined)"
+msgstr "(未定義基本資源)"
+
+msgid "(No templates defined)"
+msgstr "(未定義樣板)"
+
+msgid "(No groups defined)"
+msgstr "(未定義群組)"
+
+msgid "(No clones defined)"
+msgstr "(未定義複製品)"
+
+msgid "(No master/slave resources defined)"
+msgstr "(未定義主要/從屬資源)"
+
+msgid "Fail Count"
+msgstr "失敗計數"
+
+msgid "Last Failure"
+msgstr "上次失敗"
+
+#, fuzzy
+msgid "Rule"
+msgstr "角色"
+
+msgid "Add a rule below"
+msgstr ""
+
+#, fuzzy
+msgid "Remove this rule"
+msgstr "移除規則"
+
+#, fuzzy
+msgid "Move rule up"
+msgstr "移動資源 %s"
+
+msgid "Move rule down"
+msgstr ""
+
+msgid "Right"
+msgstr "右"
+
+msgid "XPath"
+msgstr "XPath"
+
+msgid "Tag"
+msgstr "標記"
+
+msgid "Ref"
+msgstr "參考"
+
+msgid "Attribute"
+msgstr "屬性"
+
+#, fuzzy
+msgid "Delete role"
+msgstr "刪除資源"
+
+#, fuzzy
+msgid "Add role"
+msgstr "新增規則"
+
+msgid ""
+"ACL support requires CIB schema version 2.0, available in Pacemaker 1.1.12 and"
+" up. For older versions of Pacemaker, use Hawk version 0.6."
+msgstr ""
+
+#, fuzzy
+msgid "Username"
+msgstr "使用者名稱："
+
+#, fuzzy
+msgid "Password"
+msgstr "密碼："
+
+#, fuzzy
+msgid "Login"
+msgstr "登入"
+
+msgid "Loss Policy"
+msgstr "遺失規則"
+
+#, fuzzy
+msgid "Delete user"
+msgstr "刪除資源"
+
+#, fuzzy
+msgid "Add user"
+msgstr "新增叢集"
+
 msgid "%{workflow}: %{step}"
 msgstr "%{workflow}︰%{step}"
 
-#: ../app/views/wizard/done.html.erb:5
 msgid "The configuration has been applied."
 msgstr "已套用組態。"
 
-#: ../app/views/wizard/run.html.erb:75
 msgid "The following configuration will be applied to the cluster:"
 msgstr "以下組態會套用至叢集︰"
 
-#: ../app/views/wizard/run.html.erb:100
 msgid "Error applying configuration:"
 msgstr "套用組態時發生錯誤︰"
 
-#: ../app/views/wizard/run.html.erb:118
 msgid "< Back"
 msgstr "< 上一步"
 
-#: ../app/views/wizard/run.html.erb:119 ../app/views/wizard/start.html.erb:45
 msgid "Next >"
 msgstr "下一步 >"
 
-#: ../app/views/wizard/start.html.erb:2
 msgid "No workflow descriptions found"
 msgstr "找不到工作流程描述"
 
-#: ../app/views/wizard/start.html.erb:24
 msgid "Choose Configuration"
 msgstr "選擇組態"
 
-#: ../app/views/wizard/start.html.erb:28
-msgid "This wizard will guide you through the steps necessary to add one of the following configurations to the cluster."
+msgid ""
+"This wizard will guide you through the steps necessary to add one of the follo"
+"wing configurations to the cluster."
 msgstr "此精靈會引導您完成向叢集新增下列其中一個組態所需執行的步驟。"
 
-#: ../lib/invoker.rb:131
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "物件/屬性不存在 (cibadmin %{cmd})"
 
-#: ../lib/invoker.rb:135
 msgid "Error invoking cibadmin %{cmd}: %{msg}"
 msgstr "執行 cibadmin %{cmd} 時發生錯誤︰%{msg}"
 
-#: ../lib/invoker.rb:153
 msgid "The object/attribute does not exist: %{msg}"
 msgstr "物件/屬性不存在︰%{msg}"
 
-#: ../lib/invoker.rb:157
 msgid "Error invoking cibadmin --replace: %{msg}"
 msgstr "執行 cibadmin --replace 時發生錯誤︰%{msg}"

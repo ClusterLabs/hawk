@@ -1,0 +1,13 @@
+!!!
+
+%html{ lang: I18n.locale.to_s.gsub("-", "_") }
+  %head
+    %title
+      = meta_title
+
+    = current_metatags
+
+    %link{ href: image_path("favicon.png"), rel: "shortcut icon" }
+
+  %body
+    = yield

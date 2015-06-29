@@ -4,7 +4,7 @@
 #            A web-based GUI for managing and monitoring the
 #          Pacemaker High-Availability cluster resource manager
 #
-# Copyright (c) 2011-2014 SUSE LLC, All Rights Reserved.
+# Copyright (c) 2009-2015 SUSE LLC, All Rights Reserved.
 #
 # Author: Tim Serong <tserong@suse.com>
 #
@@ -29,94 +29,71 @@
 #
 #======================================================================
 
-class Role < CibObject
-  @attributes = :rules
-  attr_accessor *@attributes
+class Role < Record
+  attribute :id, String
+  attribute :rules, RuleCollection[Rule]
 
-  def initialize(attributes = nil)
-    @rules = []
+  validates :id,
+    presence: { message: _('Role ID is required') },
+    format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _('Invalid Role ID') }
+
+  def initialize(*args)
+    rules.build
     super
   end
 
-  def validate
-    # TODO(must): get rid of embedded space, non valid chars etc.
-    @rules.each do |r|
-      r[:tag].strip!
-      r[:ref].strip!
-      r[:xpath].strip!
-      r[:attribute].strip!
+  def rules_attributes=(attrs)
+    @rules = RuleCollection.new
+
+    attrs.each do |key, values|
+      @rules.push Rule.new(values)
     end
-    # TODO(must): get rid of completely empty rules!
   end
 
-  def create
-    if CibObject.exists?(id)
-      error _('The ID "%{id}" is already in use') % { :id => @id }
-      return false
-    end
-    cmd = shell_syntax
-    result = Invoker.instance.crm_configure cmd
-    unless result == true
-      error _('Unable to create role: %{msg}') % { :msg => result }
-      return false
-    end
-    true
+  def rules
+    @rules ||= RuleCollection.new
   end
 
-  def update
-    unless CibObject.exists?(id, 'acl_role')
-      error _('Role ID "%{id}" does not exist') % { :id => @id }
-      return false
-    end
-    result = Invoker.instance.crm_configure_load_update shell_syntax
-    unless result == true
-      error _('Unable to update role: %{msg}') % { :msg => result }
-      return false
-    end
-    true
+  def valid?
+    super & rules.valid?
   end
 
-  def update_attributes(attributes = nil)
-    @rules = []
-    super
+  protected
+
+  def shell_syntax
+    [].tap do |cmd|
+      cmd.push "role #{id}"
+
+      rules.each do |rule|
+        cmd.push rule.right
+
+        cmd.push "tag:#{rule.tag}" unless rule.tag.to_s.empty?
+        cmd.push "ref:#{rule.ref}" unless rule.ref.to_s.empty?
+        cmd.push "xpath:#{rule.xpath}" unless rule.xpath.to_s.empty?
+        cmd.push "attribute:#{rule.attribute}" unless rule.attribute.to_s.empty?
+      end
+    end.join(' ')
   end
 
   class << self
     def instantiate(xml)
-      acl = allocate
-      rules = []
+      record = allocate
+
       xml.elements.each do |elem|
-        rules << {
-          :right      => elem.attributes['kind'],
-          :tag        => elem.attributes['object-type'] || nil,
-          :ref        => elem.attributes['reference'] || nil,
-          :xpath      => elem.attributes['xpath'] || nil,
-          :attribute  => elem.attributes['attribute'] || nil
-        }
+        record.rules.build(
+          right: elem.attributes['kind'],
+          tag: elem.attributes['object-type'] || nil,
+          ref: elem.attributes['reference'] || nil,
+          xpath: elem.attributes['xpath'] || nil,
+          attribute: elem.attributes['attribute'] || nil
+        )
       end
-      acl.instance_variable_set(:@rules, rules);
-      acl
+
+      record
     end
 
-    def all
-      super "acl_role"
+    def cib_type
+      :acl_role
     end
   end
-
-  private
-
-  def shell_syntax
-    cmd = "role #{@id}"
-    @rules.each do |rule|
-      cmd += " #{rule[:right]} "
-      cmd += " tag:#{rule[:tag]}" if rule[:tag] && !rule[:tag].empty?
-      cmd += " ref:#{rule[:ref]}" if rule[:ref] && !rule[:ref].empty?
-      cmd += " xpath:#{rule[:xpath]}" if rule[:xpath] && !rule[:xpath].empty?
-      cmd += " attribute:#{rule[:attribute]}" if rule[:attribute] && !rule[:attribute].empty?
-    end
-    Rails.logger.debug(cmd)
-    cmd
-  end
-
 end
-

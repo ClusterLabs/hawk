@@ -1,0 +1,136 @@
+@import url(http://fonts.googleapis.com/css?family=Raleway);
+body {
+	font-family: 'Raleway', sans-serif;
+	 /*font-family: "Roboto","Helvetica Neue",Helvetica,Arial,sans-serif; */
+	color: #3a3e40;
+	height: 100%;
+	background: linear-gradient(to right,#1fad7a 0,#80c235 100%);
+	background: -moz-linear-gradient(left,#1fad7a 0,#80c235 100%);
+	background: -webkit-gradient(linear,left top,right top,color-stop(0,#1fad7a),color-stop(100%,#80c235));
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+html, body, .container-fluid, .row {
+	height: 100%;
+	-webkit-font-smoothing: antialiased;
+}
+/* HEADER */
+.header {
+	background-color: #2b2b2b;
+	min-height: 50px;
+	padding: 16px;
+	color: #fff;
+}
+
+.rigth-top {
+	text-align: right;
+	color: #d7d7d7;
+	font-size: 12px;
+}
+
+/* login */
+
+.login {
+	min-height: 300px;
+}
+
+.login-description {
+	margin-top: 1em;
+	font-size: 2em;
+	color:#00b268;;
+	line-height: 1.3em;
+	display: block;
+	position: relative;
+	text-align: center;
+}
+
+.login-elements {
+	margin-top: 5em;
+	color: #2b2b2b;
+	line-height: 2em;
+	padding: 30px;
+	border: 1px #ccc solid;
+	background-color: #f7f7f7;
+	border-radius: 10px;
+
+}
+
+.login-elements2 {
+	margin-top: 2em;
+	color: #2b2b2b;
+	line-height: 2em;
+	padding: 30px;
+	border-radius: 10px;
+}
+
+.dark-bar {
+	background-color: #2b2b2b;
+	border-radius: 0px 0px 8px 8px;
+	border: solid 1px #333;
+	width: 300px;
+	margin: 0 auto;
+}
+
+.Raleway-font {
+	font-family: 'Raleway',sans-serif;
+	font-weight: 300;
+}
+
+.login-text {
+	margin-bottom: 1em;
+	margin-top: 1em;
+	font-size: 1em;
+	text-align: center;
+	color: #fff;
+}
+
+.username {
+	padding: 6px;
+	margin-top: 1em;
+}
+
+.password {
+	padding: 6px;
+	margin-top: 0.7em;
+}
+
+.logo-login {
+	margin: 3em 4em 0em 4em;
+	max-width: 10em;
+}
+
+.container-fluid-login {
+	background: linear-gradient(to right,#1fad7a 0,#80c235 100%);
+	background: -moz-linear-gradient(left,#1fad7a 0,#80c235 100%);
+	background: -webkit-gradient(linear,left top,right top,color-stop(0,#1fad7a),color-stop(100%,#80c235));
+}
+
+footer {
+	background-color: #fff;
+	padding:10px;
+	border-top: 1px solid #999;
+}
+
+.login-botton {
+	background-color: #00b268;
+	color: #fff;
+	padding: 6px;
+	margin-top: 1em;
+	width: 100%;
+}
+
+.access {
+		margin-top: 1em;
+}
+
+.access a{
+	color: #fff;
+	font-size: 0.9em;
+}
+
+.access a:hover{
+	color: #00b268;
+	margin-top: 2em;
+	font-size: 0.9em;
+}

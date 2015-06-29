@@ -4,7 +4,7 @@
 #            A web-based GUI for managing and monitoring the
 #          Pacemaker High-Availability cluster resource manager
 #
-# Copyright (c) 2009-2013 SUSE LLC, All Rights Reserved.
+# Copyright (c) 2009-2015 SUSE LLC, All Rights Reserved.
 #
 # Author: Tim Serong <tserong@suse.com>
 #
@@ -38,14 +38,14 @@ FastGettext.tap do |config|
   config.add_text_domain 'hawk', path: Rails.root.join('locale').to_s
 
   config.default_text_domain = 'hawk'
+  config.default_locale = 'en_US'
   config.default_available_locales = ['en_US']
 
   Dir[Rails.root.join('locale', '*', 'LC_MESSAGES', '*.mo').to_s].each do |l|
-    match = l.match(/\/([^\/]+)\/LC_MESSAGES\/.*\.mo$/)
+    next unless l.match(/\/([^\/]+)\/LC_MESSAGES\/.*\.mo$/)
+    next if config.default_available_locales.include? $1
 
-    if match and not config.default_available_locales.include? match[1]
-      config.default_available_locales.push match[1]
-    end
+    config.default_available_locales.push $1
   end
 end
 
@@ -56,5 +56,5 @@ I18n::Backend::Simple.include(
 I18n.fallbacks['en_US'.to_sym] = ['en-US'.to_sym, :en]
 I18n.fallbacks['en_GB'.to_sym] = ['en-GB'.to_sym, :en]
 I18n.fallbacks['pt_BR'.to_sym] = ['pt-BR'.to_sym, :pt]
-I18n.fallbacks['zh_CN'.to_sym] = ['zh-CN'.to_sym]
-I18n.fallbacks['zh_TW'.to_sym] = ['zh-TW'.to_sym]
+I18n.fallbacks['zh_CN'.to_sym] = ['zh-CN'.to_sym, :cn]
+I18n.fallbacks['zh_TW'.to_sym] = ['zh-TW'.to_sym, :cn]

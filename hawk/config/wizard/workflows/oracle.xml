@@ -1,83 +1,97 @@
 <?xml version="1.0"?>
 <workflow name="oracle">
+  <shortdesc lang="en">
+    Oracle Database
+  </shortdesc>
 
-<shortdesc lang="en">Oracle Database</shortdesc>
-<longdesc lang="en">
-Configure an Oracle Database cluster resource.
-</longdesc>
+  <longdesc lang="en">
+    Configure an Oracle Database cluster resource.
+  </longdesc>
 
-<parameters>
-<stepdesc lang="en">
-The ID specified here is for the database cluster resource.
-</stepdesc>
+  <parameters>
+    <stepdesc lang="en">
+      The ID specified here is for the database cluster resource.
+    </stepdesc>
 
-<parameter name="id" required="1">
-<shortdesc lang="en">Resource ID</shortdesc>
-<longdesc lang="en">
-Unique ID for the database cluster resource.
-</longdesc>
-<content type="string" default="oracle"/>
-</parameter>
+    <parameter name="id" required="1">
+      <shortdesc lang="en">
+        Resource ID
+      </shortdesc>
+      <longdesc lang="en">
+        Unique ID for the database cluster resource.
+      </longdesc>
 
-<parameter name="sid" required="1">
-<shortdesc lang="en">SID</shortdesc>
-<longdesc lang="en">
-Database SID.
-</longdesc>
-<content type="string" default="OracleDB"/>
-</parameter>
+      <content type="string" default="oracle"/>
+    </parameter>
 
-<parameter name="listener" required="1">
-<shortdesc lang="en">Listener</shortdesc>
-<longdesc lang="en">
-Listener.
-</longdesc>
-<content type="string" default="LISTENER"/>
-</parameter>
+    <parameter name="sid" required="1">
+      <shortdesc lang="en">
+        SID
+      </shortdesc>
+      <longdesc lang="en">
+        Database SID.
+      </longdesc>
 
-<parameter name="home" required="1">
-<shortdesc lang="en">Home</shortdesc>
-<longdesc lang="en">
-Database Home.
-</longdesc>
-<content type="string" default="/srv/oracledb"/>
-</parameter>
+      <content type="string" default="OracleDB"/>
+    </parameter>
 
-<parameter name="user" required="1">
-<shortdesc lang="en">User</shortdesc>
-<longdesc lang="en">
-Database User.
-</longdesc>
-<content type="string" default="oracle"/>
-</parameter>
+    <parameter name="listener" required="1">
+      <shortdesc lang="en">
+        Listener
+      </shortdesc>
+      <longdesc lang="en">
+        Listener.
+      </longdesc>
 
+      <content type="string" default="LISTENER"/>
+    </parameter>
 
-</parameters>
+    <parameter name="home" required="1">
+      <shortdesc lang="en">
+        Home
+      </shortdesc>
+      <longdesc lang="en">
+        Database Home.
+      </longdesc>
 
-<templates>
-</templates>
+      <content type="string" default="/srv/oracledb"/>
+    </parameter>
 
-<crm_script>
-primitive lsn-<insert param="id"/> ocf:heartbeat:oralsnr
-  params
-    sid="<insert param="sid"/>"
-    home="<insert param="home"/>"
-    user="<insert param="user"/>"
-    listener="<insert param="listener"/>"
-  op monitor interval="30" timeout="60" depth="0"
+    <parameter name="user" required="1">
+      <shortdesc lang="en">
+        User
+      </shortdesc>
+      <longdesc lang="en">
+        Database User.
+      </longdesc>
 
-primitive <insert param="id"/> ocf:heartbeat:oracle
-  params
-    sid="<insert param="sid"/>"
-    home="<insert param="home"/>"
-    user="<insert param="user"/>"
-  op monitor interval="120s"
+      <content type="string" default="oracle"/>
+    </parameter>
+  </parameters>
 
-colocation lsn-with-<insert param="id"/> inf:
-  lsn-<insert param="id"/> <insert param="id"/>
+  <templates>
+  </templates>
 
-order lsn-before-<insert param="id"/> inf:
-  lsn-<insert param="id"/> <insert param="id"/>
-</crm_script>
+  <crm_script>
+    primitive lsn-<insert param="id"/> ocf:heartbeat:oralsnr
+      params
+        sid="<insert param="sid"/>"
+        home="<insert param="home"/>"
+        user="<insert param="user"/>"
+        listener="<insert param="listener"/>"
+      op monitor interval="30" timeout="60" depth="0"
 
+    primitive <insert param="id"/> ocf:heartbeat:oracle
+      params
+        sid="<insert param="sid"/>"
+        home="<insert param="home"/>"
+        user="<insert param="user"/>"
+      op monitor interval="120s"
+
+    colocation lsn-with-<insert param="id"/> inf:
+      lsn-<insert param="id"/> <insert param="id"/>
+
+    order lsn-before-<insert param="id"/> inf:
+      lsn-<insert param="id"/> <insert param="id"/>
+  </crm_script>
 </workflow>

@@ -5,7 +5,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-04-10 15:20+1000\n"
 "PO-Revision-Date: 2014-07-15 11:27\n"
 "Last-Translator: Novell language <language@novell.com>\n"
 "Language-Team: Novell language <language@novell.com>\n"
@@ -15,1891 +14,1090 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../app/controllers/acls_controller.rb:72
-#: ../app/views/layouts/main.html.erb:220
-msgid "Access Control Lists"
-msgstr "アクセス制御リスト"
+msgid "Any changes will be lost - do you wish to proceed?"
+msgstr "変更内容は失われます。続行しますか?"
 
-#: ../app/controllers/application_controller.rb:124
+msgid "Connection to server aborted - will retry every 15 seconds."
+msgstr "サーバとの接続が中止されました - 15秒ごとに再試行します。"
+
+#, fuzzy
+msgid "Connection to server failed - will retry every 15 seconds."
+msgstr "サーバとの接続が中止されました - 15秒ごとに再試行します。"
+
+msgid "Connection to server timed out - will retry every 15 seconds."
+msgstr "サーバとの接続がタイムアウトになりました - 15秒ごとに再試行します。"
+
+#, fuzzy
+msgid "State"
+msgstr "県または州 :            "
+
+msgid "Name"
+msgstr ""
+
+msgid "Maintenance"
+msgstr "メンテナンス"
+
+msgid "Yes"
+msgstr "はい"
+
+msgid "No"
+msgstr "いいえ"
+
+msgid "Standby"
+msgstr "スタンバイ"
+
+msgid "Operations"
+msgstr "操作"
+
+msgid "Online"
+msgstr "オンライン"
+
+msgid "Ready"
+msgstr "準備完了"
+
+msgid "Fence"
+msgstr ""
+
+msgid "Details"
+msgstr "詳細情報"
+
+msgid "Events"
+msgstr ""
+
+msgid "Role ID"
+msgstr "役割ID"
+
+msgid "User ID"
+msgstr "ユーザID"
+
 msgid "Unable to create shadow CIB"
 msgstr "シャドウCIBを生成できません"
 
-#: ../app/controllers/cib_controller.rb:110
-#: ../app/controllers/cib_controller.rb:164
 msgid "1 node configured"
 msgid_plural "%{num} nodes configured"
 msgstr[0] "1 ノードが設定されました"
 
-#: ../app/controllers/cib_controller.rb:111
-#: ../app/controllers/cib_controller.rb:165
 msgid "1 resource configured"
 msgid_plural "%{num} resources configured"
 msgstr[0] "1 リソースが設定されました"
 
-#: ../app/controllers/clones_controller.rb:48
 msgid "Edit Clone"
 msgstr "クローンの編集"
 
-#: ../app/controllers/clones_controller.rb:52
-#: ../app/controllers/clones_controller.rb:58
-#: ../app/views/clones/_form.html.erb:87
 msgid "Create Clone"
 msgstr "クローンの作成"
 
-#: ../app/controllers/clones_controller.rb:65
 msgid "Clone created successfully"
 msgstr "クローンが正常に作成されました"
 
-#: ../app/controllers/clones_controller.rb:87
 msgid "Clone updated successfully"
 msgstr "クローンが正常に更新されました"
 
-#: ../app/controllers/colocations_controller.rb:44
 msgid "Edit Colocation Constraint"
 msgstr "コロケーション制約の編集"
 
-#: ../app/controllers/colocations_controller.rb:48
-#: ../app/controllers/colocations_controller.rb:53
 msgid "Create Colocation Constraint"
 msgstr "コロケーション制約の作成"
 
-#: ../app/controllers/colocations_controller.rb:61
-#: ../app/controllers/locations_controller.rb:60
-#: ../app/controllers/orders_controller.rb:62
-#: ../app/controllers/tickets_controller.rb:59
 msgid "Constraint created successfully"
 msgstr "制約が正常に作成されました"
 
-#: ../app/controllers/colocations_controller.rb:84
-#: ../app/controllers/locations_controller.rb:82
-#: ../app/controllers/orders_controller.rb:86
-#: ../app/controllers/tickets_controller.rb:81
 msgid "Constraint updated successfully"
 msgstr "制約が正常に更新されました"
 
-#: ../app/controllers/constraints_controller.rb:44
-#: ../app/views/layouts/main.html.erb:229
 msgid "Constraints"
 msgstr "制約"
 
-#: ../app/controllers/crm_config_controller.rb:45
-#: ../app/views/main/_gettext.js.erb:99
 msgid "Cluster Configuration"
 msgstr "クラスタ設定"
 
-#: ../app/controllers/crm_config_controller.rb:128
 msgid "Your changes have been saved"
 msgstr "変更が保存されました"
 
-#: ../app/controllers/crm_config_controller.rb:130
 msgid "Unable to apply changes: %{msg}"
 msgstr "変更を適用できません: %{msg}"
 
-#: ../app/controllers/crm_config_controller.rb:162
-msgid "Can't set property %{p}, because the value contains both single and double quotes"
+msgid ""
+"Can't set property %{p}, because the value contains both single and double quo"
+"tes"
 msgstr "プロパティ%{p}を設定できません。値に一重引用符と二重引用符の両方が含まれているためです"
 
-#: ../app/controllers/dashboard_controller.rb:37
 msgid "Cluster Dashboard"
 msgstr "クラスタダッシュボード"
 
-#: ../app/controllers/explorer_controller.rb:44
-#: ../app/views/layouts/main.html.erb:205
-msgid "History Explorer"
-msgstr "履歴エクスプローラ"
-
-#: ../app/controllers/explorer_controller.rb:103
-msgid "PE Input created by different Pacemaker version (%{version})"
-msgstr "PE入力は異なるバージョンのPacemaker (%{version})によって作成されています"
-
-#: ../app/controllers/explorer_controller.rb:104
-msgid "Pacemaker version not present in PE Input"
-msgstr "PE入力にPacemakerのバージョンが存在しません"
-
-#: ../app/controllers/explorer_controller.rb:134
-msgid "Required parameters \"basename\" and \"node\" not specified"
-msgstr "必要なパラメータ「basename」と「node」が指定されていません"
-
-#: ../app/controllers/explorer_controller.rb:159
-#: ../app/controllers/explorer_controller.rb:229
-msgid "No details available"
-msgstr "詳細情報がありません"
-
-#: ../app/controllers/explorer_controller.rb:161
-#: ../app/controllers/explorer_controller.rb:189
-#: ../app/controllers/explorer_controller.rb:250
-msgid "Error:"
-msgstr "エラー:"
-
-#: ../app/controllers/explorer_controller.rb:202
-msgid "Required parameters \"left\" and \"right\" not specified"
-msgstr "必要なパラメータ「left」と「right」が指定されていません"
-
-#: ../app/controllers/groups_controller.rb:48
-msgid "Edit Group"
-msgstr "グループの編集"
-
-#: ../app/controllers/groups_controller.rb:52
-#: ../app/controllers/groups_controller.rb:58
-#: ../app/views/groups/_form.html.erb:142
-msgid "Create Group"
-msgstr "グループの作成"
-
-#: ../app/controllers/groups_controller.rb:65
-msgid "Group created successfully"
-msgstr "グループが正常に作成されました"
-
-#: ../app/controllers/groups_controller.rb:87
-msgid "Group updated successfully"
-msgstr "グループが正常に更新されました"
-
-#: ../app/controllers/locations_controller.rb:44
-msgid "Edit Location Constraint"
-msgstr "場所制約の編集"
-
-#: ../app/controllers/locations_controller.rb:48
-#: ../app/controllers/locations_controller.rb:53
-msgid "Create Location Constraint"
-msgstr "場所制約の作成"
-
-#: ../app/controllers/main_controller.rb:58
-msgid "%{cmd} failed (status: %{status})"
-msgstr "%{cmd} 失敗(ステータス: %{status})"
-
-#: ../app/controllers/main_controller.rb:78
-#: ../app/views/layouts/main.html.erb:199
-msgid "Cluster Status"
-msgstr "クラスタの状態"
-
-#: ../app/controllers/main_controller.rb:93
-#: ../app/controllers/main_controller.rb:103
-#: ../app/controllers/main_controller.rb:113
-msgid "Required parameter \"node\" not specified"
-msgstr "必要なパラメータ「node」が指定されていません"
-
-#: ../app/controllers/main_controller.rb:129
-#: ../app/controllers/main_controller.rb:160
-msgid "Required parameter \"resource\" not specified"
-msgstr "必要なパラメータ「resource」が指定されていません"
-
-#: ../app/controllers/main_controller.rb:139
-msgid "Required parameters \"resource\" and \"node\" not specified"
-msgstr "必要なパラメータ「resource」と「node」が指定されていません"
-
-#: ../app/controllers/main_controller.rb:154
-msgid "Error deleting resource"
-msgstr "リソースの削除中にエラーが発生しました"
-
-#: ../app/controllers/main_controller.rb:170
-msgid "Required parameters \"ticket\" and \"site\" not specified"
-msgstr "必須パラメータ「ticket」と「site」が指定されていません"
-
-#: ../app/controllers/main_controller.rb:180
-msgid "Required parameter \"ticket\" not specified"
-msgstr "必須パラメータ「ticket」が指定されていません"
-
-#: ../app/controllers/main_controller.rb:330 ../app/models/cib.rb:261
-msgid "Error invoking %{cmd}: %{msg}"
-msgstr "%{cmd} の呼び出し中にエラーが発生しました: %{msg}"
-
-#: ../app/controllers/masters_controller.rb:48
-msgid "Edit Master/Slave"
-msgstr "マスタ/スレーブの編集"
-
-#: ../app/controllers/masters_controller.rb:52
-#: ../app/controllers/masters_controller.rb:58
-#: ../app/views/masters/_form.html.erb:87
-msgid "Create Master/Slave"
-msgstr "マスタ/スレーブの作成"
-
-#: ../app/controllers/masters_controller.rb:65
-msgid "Master/Slave created successfully"
-msgstr "マスタ/スレーブが正常に作成されました"
-
-#: ../app/controllers/masters_controller.rb:87
-msgid "Master/Slave updated successfully"
-msgstr "マスタ/スレーブが正常に更新されました"
-
-#: ../app/controllers/orders_controller.rb:44
-msgid "Edit Order Constraint"
-msgstr "順序制約の編集"
-
-#: ../app/controllers/orders_controller.rb:48
-#: ../app/controllers/orders_controller.rb:53
-msgid "Create Order Constraint"
-msgstr "順序制約の作成"
-
-#: ../app/controllers/primitives_controller.rb:46
-#: ../app/views/resources/index.html.erb:46
-msgid "Edit Resource"
-msgstr "リソースの編集"
-
-#: ../app/controllers/primitives_controller.rb:50
-#: ../app/controllers/primitives_controller.rb:56
-#: ../app/views/primitives/_form.html.erb:393
-msgid "Create Resource"
-msgstr "リソースの作成"
-
-#: ../app/controllers/primitives_controller.rb:63
-msgid "Resource created successfully"
-msgstr "リソースが正常に作成されました"
-
-#: ../app/controllers/primitives_controller.rb:85
-msgid "Resource updated successfully"
-msgstr "リソースが正常に更新されました"
-
-#: ../app/controllers/resources_controller.rb:57
-#: ../app/views/layouts/main.html.erb:226
-msgid "Resources"
-msgstr "リソース"
-
-#: ../app/controllers/roles_controller.rb:44
-msgid "Edit Role"
-msgstr "役割の編集"
-
-#: ../app/controllers/roles_controller.rb:48
-#: ../app/controllers/roles_controller.rb:53
-#: ../app/views/roles/_form.html.erb:82
-msgid "Create Role"
-msgstr "役割の作成"
-
-#: ../app/controllers/roles_controller.rb:60
-msgid "Role created successfully"
-msgstr "役割が正常に作成されました"
-
-#: ../app/controllers/roles_controller.rb:82
-msgid "Role updated successfully"
-msgstr "役割が正常に更新されました"
-
-#: ../app/controllers/sessions_controller.rb:37
-#: ../app/views/dashboard/index.html.erb:64
-#: ../app/views/sessions/new.html.erb:17
-msgid "Log In"
-msgstr "ログイン"
-
-#: ../app/controllers/sessions_controller.rb:70
-msgid "Username not specified"
-msgstr "ユーザ名が指定されていません。"
-
-#: ../app/controllers/sessions_controller.rb:73
-msgid "Invalid username"
-msgstr "無効なユーザ名"
-
-#: ../app/controllers/sessions_controller.rb:75
-msgid "Password not specified"
-msgstr "パスワードが指定されていません"
-
-#: ../app/controllers/sessions_controller.rb:89
-msgid "Invalid username or password"
-msgstr "ユーザ名またはパスワードが無効です"
-
-#: ../app/controllers/sessions_controller.rb:92
-msgid "%s is not installed"
-msgstr "%s はインストールされていません。"
-
-#: ../app/controllers/sessions_controller.rb:128 ../app/models/cib.rb:259
-#: ../lib/invoker.rb:133 ../lib/invoker.rb:155 ../lib/invoker.rb:197
-msgid "Permission denied for user %{user}"
-msgstr "ユーザ %{user} のアクセス承認拒否"
-
-#: ../app/controllers/sessions_controller.rb:131
-msgid "You have been logged out"
-msgstr "ログアウトしました"
-
-#: ../app/controllers/templates_controller.rb:47
-msgid "Edit Template"
-msgstr "テンプレートの編集"
-
-#: ../app/controllers/templates_controller.rb:51
-#: ../app/controllers/templates_controller.rb:59
-msgid "Create Template"
-msgstr "テンプレートの作成"
-
-#: ../app/controllers/templates_controller.rb:66
-msgid "Template created successfully"
-msgstr "テンプレートが正常に作成されました"
-
-#: ../app/controllers/templates_controller.rb:89
-msgid "Template updated successfully"
-msgstr "テンプレートが正常に更新されました"
-
-#: ../app/controllers/tickets_controller.rb:43
-msgid "Edit Ticket Constraint"
-msgstr "チケット制約の編集"
-
-#: ../app/controllers/tickets_controller.rb:47
-#: ../app/controllers/tickets_controller.rb:52
-msgid "Create Ticket Constraint"
-msgstr "チケット制約の作成"
-
-#: ../app/controllers/users_controller.rb:44
-msgid "Edit User"
-msgstr "ユーザの編集"
-
-#: ../app/controllers/users_controller.rb:48
-#: ../app/controllers/users_controller.rb:53
-#: ../app/views/users/_form.html.erb:111
-msgid "Create User"
-msgstr "ユーザの作成"
-
-#: ../app/controllers/users_controller.rb:60
-msgid "User created successfully"
-msgstr "ユーザが正常に作成されました"
-
-#: ../app/controllers/users_controller.rb:82
-msgid "User updated successfully"
-msgstr "ユーザが正常に更新されました"
-
-#: ../app/controllers/wizard_controller.rb:60
-msgid "Cluster Setup Wizard"
-msgstr "クラスタセットアップウィザード"
-
-#: ../app/controllers/wizard_controller.rb:101
-msgid "Invalid password"
-msgstr "無効なパスワード"
-
-#: ../app/controllers/wizard_controller.rb:115
-#: ../app/controllers/wizard_controller.rb:118
-msgid "Root Password"
-msgstr "ルートパスワード"
-
-#: ../app/controllers/wizard_controller.rb:116
-msgid "The root password is required in order for this wizard template to make configuration changes."
-msgstr "このウィザードテンプレートで設定を変更するには、ルートパスワードが必要です。"
-
-#: ../app/controllers/wizard_controller.rb:119
-msgid "The root password for this system"
-msgstr "このシステムのルートパスワード"
-
-#: ../app/controllers/wizard_controller.rb:128
-#: ../app/controllers/wizard_controller.rb:163
-msgid "\"Error: #{result}\""
-msgstr "「エラー: #{result}」"
-
-#: ../app/controllers/wizard_controller.rb:131
-#: ../app/views/primitives/_form.html.erb:241
-msgid "Parameters"
-msgstr "引数"
-
-#: ../app/controllers/wizard_controller.rb:155
-msgid "Confirm"
-msgstr "確認"
-
-#: ../app/controllers/wizard_controller.rb:181
-#: ../app/views/wizard/done.html.erb:10
-msgid "Done"
-msgstr "完了"
-
-#: ../app/controllers/wizard_controller.rb:296
-msgid "Required parameter \"%{param}\" not specified"
-msgstr "必要なパラメータ「%{param}」が指定されていません"
-
-#: ../app/controllers/wizard_controller.rb:313
-msgid "Permission denied - you do not have write access to the CIB."
-msgstr "許可が拒否されました - CIBに対する書き込みアクセスがありません。"
-
-#: ../app/controllers/wizard_controller.rb:324
-msgid "Wizard templates and/or workflows are missing"
-msgstr "ウィザードのテンプレートおよびワークフローがありません"
-
-#: ../app/controllers/wizard_controller.rb:332
-msgid "Workflow \"%s\" not found"
-msgstr "ワークフロー「%s」が見つかりませんでした"
-
-#: ../app/controllers/wizard_controller.rb:353
-msgid "Error parsing template \"%s\""
-msgstr "テンプレート「%s」の解析中にエラーが発生しました"
-
-#: ../app/controllers/wizard_controller.rb:356
-msgid "Error parsing workflow \"%s\""
-msgstr "ワークフロー「%s」の解析中にエラーが発生しました"
-
-#: ../app/helpers/explorer_helper.rb:3
-msgid "Data collection in progress (%{from_time} to %{to_time})..."
-msgstr "データを収集中です(%{from_time} ～ %{to_time})..."
-
-#: ../app/models/cib.rb:234
-msgid "CIB file \"%{path}\" not found"
-msgstr "CIBファイル「%{path}」が見つかりません"
-
-#: ../app/models/cib.rb:236
-msgid "Unable to parse CIB file \"%{path}\""
-msgstr "CIBファイル「%{path}」を解析できません"
-
-#: ../app/models/cib.rb:238
-msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
-msgstr "Pacemakerがインストールされていないと思われます(%{cmd} が見つかりません)"
-
-#: ../app/models/cib.rb:240
-msgid "Unable to execute %{cmd}"
-msgstr "%{cmd} を実行できません"
-
-#: ../app/models/cib.rb:243
-msgid "%{cmd} failed (status: %{status}, output was: %{output})"
-msgstr "%{cmd} が失敗しました(状態: %{status}、出力は %{output} でした)"
-
-#: ../app/models/cib.rb:256
-msgid "Error invoking %{cmd}"
-msgstr "%{cmd} の呼び出し中にエラーが発生しました"
-
-#: ../app/models/cib.rb:269 ../app/models/cib.rb:270 ../app/models/cib.rb:614
-#: ../app/views/main/_gettext.js.erb:195
-msgid "Unknown"
-msgstr "不明"
-
-#: ../app/models/cib.rb:481
-msgid "Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
-msgstr "失敗した操作: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}"
-
-#: ../app/models/cib_object.rb:66
-msgid "Invalid Resource ID \"%{id}\""
-msgstr "無効なリソースID「%{id}」"
-
-#: ../app/models/cib_object.rb:95 ../app/models/cib_object.rb:115
-#: ../app/models/crm_config.rb:49
-msgid "Unable to parse cibadmin output"
-msgstr "cibadminの出力を解析できません"
-
-#: ../app/models/clone.rb:45
-msgid "No clone child specified"
-msgstr "クローンの子が指定されていません"
-
-#: ../app/models/clone.rb:51 ../app/models/group.rb:51
-#: ../app/models/master.rb:51 ../app/models/primitive.rb:77
-#: ../app/models/template.rb:78
-msgid "Can't set meta attribute %{p}, because the value contains both single and double quotes"
-msgstr "メタ属性 %{p} を設定できません。値に一重引用符と二重引用符の両方が含まれているためです"
-
-#: ../app/models/clone.rb:57 ../app/models/colocation.rb:63
-#: ../app/models/group.rb:57 ../app/models/location.rb:78
-#: ../app/models/master.rb:57 ../app/models/order.rb:89
-#: ../app/models/primitive.rb:84 ../app/models/role.rb:55
-#: ../app/models/template.rb:85 ../app/models/ticket.rb:73
-#: ../app/models/user.rb:59
-msgid "The ID \"%{id}\" is already in use"
-msgstr "ID「%{id}」はすでに使用されています"
-
-#: ../app/models/clone.rb:76
-msgid "Unable to create clone: %{msg}"
-msgstr "クローンを生成できません: %{msg}"
-
-#: ../app/models/clone.rb:86
-msgid "Clone ID \"%{id}\" does not exist"
-msgstr "クローンID「%{id}」が存在しません"
-
-#: ../app/models/colocation.rb:53 ../app/models/order.rb:79
-msgid "Invalid score"
-msgstr "無効なスコア"
-
-#: ../app/models/colocation.rb:57 ../app/models/order.rb:83
-msgid "Constraint must consist of at least two separate resources"
-msgstr "制約は2つ以上の別のリソースから構成される必要があります"
-
-#: ../app/models/colocation.rb:71 ../app/models/location.rb:86
-#: ../app/models/order.rb:97 ../app/models/ticket.rb:81
-msgid "Unable to create constraint: %{msg}"
-msgstr "制約を作成できません: %{msg}"
-
-#: ../app/models/colocation.rb:80 ../app/models/location.rb:95
-#: ../app/models/order.rb:106 ../app/models/ticket.rb:90
-msgid "Constraint ID \"%{id}\" does not exist"
-msgstr "制約ID「%{id}」は存在しません"
-
-#: ../app/models/colocation.rb:90 ../app/models/location.rb:107
-#: ../app/models/order.rb:116 ../app/models/ticket.rb:100
-msgid "Unable to update constraint: %{msg}"
-msgstr "制約を更新できません: %{msg}"
-
-#: ../app/models/group.rb:45
-msgid "No group children specified"
-msgstr "グループの子が指定されていません"
-
-#: ../app/models/group.rb:79
-msgid "Unable to create group: %{msg}"
-msgstr "グループを作成できません: %{msg}"
-
-#: ../app/models/group.rb:89
-msgid "Group ID \"%{id}\" does not exist"
-msgstr "グループID「%{id}」は存在しません"
-
-#: ../app/models/location.rb:43
-msgid "Constraint is too complex - it contains nested rules"
-msgstr "制約が複雑すぎます。ネストしたルールが含まれています"
-
-#: ../app/models/location.rb:45
-msgid "No rules specified"
-msgstr "ルールが指定されていません"
-
-#: ../app/models/location.rb:49
-msgid "No resource specified"
-msgstr "リソースが指定されていません"
-
-#: ../app/models/location.rb:58
-msgid "Invalid score \"%{score}\""
-msgstr "無効なスコア「%{score}」"
-
-#: ../app/models/location.rb:66
-msgid "No expressions specified"
-msgstr "式が指定されていません"
-
-#: ../app/models/location.rb:70
-msgid "Attribute contains both single and double quotes"
-msgstr "属性に一重引用符と二重引用符の両方が含まれています"
-
-#: ../app/models/location.rb:71
-msgid "Value contains both single and double quotes"
-msgstr "値に一重引用符と二重引用符の両方が含まれています"
-
-#: ../app/models/master.rb:45
-msgid "No Master/Slave child specified"
-msgstr "マスタ/スレーブの子が指定されていません"
-
-#: ../app/models/master.rb:76
-msgid "Unable to create master/slave: %{msg}"
-msgstr "マスタ/スレーブを作成できません: %{msg}"
-
-#: ../app/models/master.rb:86
-msgid "Master/Slave ID \"%{id}\" does not exist"
-msgstr "マスタ/スレーブID「%{id}」が存在しません"
-
-#: ../app/models/primitive.rb:61 ../app/models/template.rb:62
-msgid "Can't set parameter %{p}, because the value contains both single and double quotes"
-msgstr "パラメータ %{p} を設定できません。値に一重引用符と二重引用符の両方が含まれているためです"
-
-#: ../app/models/primitive.rb:69 ../app/models/template.rb:70
-msgid "Can't set op %{o} attribute {%a}, because the value contains both single and double quotes"
-msgstr "操作 %{o} の属性 {%a} を設定できません。値に一重引用符と二重引用符の両方が含まれているためです"
-
-#: ../app/models/primitive.rb:129 ../app/models/template.rb:129
-msgid "Unable to create resource: %{msg}"
-msgstr "リソースを作成できません: %{msg}"
-
-#: ../app/models/primitive.rb:139 ../app/models/template.rb:139
-msgid "Resource ID \"%{id}\" does not exist"
-msgstr "リソースID「%{id}」が存在しません"
-
-#: ../app/models/role.rb:42
-msgid "Role must have rules"
-msgstr "役割にはルールが必要です"
-
-#: ../app/models/role.rb:61
-msgid "Unable to create role: %{msg}"
-msgstr "役割を作成できません: %{msg}"
-
-#: ../app/models/role.rb:69
-msgid "Role ID \"%{id}\" does not exist"
-msgstr "役割ID「%{id}」は存在しません"
-
-#: ../app/models/role.rb:74
-msgid "Unable to update role: %{msg}"
-msgstr "役割を更新できません: %{msg}"
-
-#: ../app/models/ticket.rb:58
-msgid "Invalid Ticket ID"
-msgstr "無効なチケットID"
-
-#: ../app/models/ticket.rb:61
-msgid "No resources specified"
-msgstr "リソースが指定されていません"
-
-#: ../app/models/user.rb:53
-msgid "User must have either rules or roles"
-msgstr "ユーザにはルールまたは役割が必要です"
-
-#: ../app/models/user.rb:54
-msgid "User can't have both rules and roles"
-msgstr "ユーザにルールと役割の両方を設定することはできません"
-
-#: ../app/models/user.rb:65
-msgid "Unable to create user: %{msg}"
-msgstr "ユーザを作成できません: %{msg}"
-
-#: ../app/models/user.rb:73
-msgid "User ID \"%{id}\" does not exist"
-msgstr "ユーザID「%{id}」は存在しません"
-
-#: ../app/models/user.rb:78
-msgid "Unable to update user: %{msg}"
-msgstr "ユーザを更新できません: %{msg}"
-
-#: ../app/views/acls/index.html.erb:45
-#: ../app/views/crm_config/show.html.erb:11
-#: ../app/views/primitives/_form.html.erb:268
-msgid "Edit"
-msgstr "編集"
-
-#: ../app/views/acls/index.html.erb:56
-msgid "Delete"
-msgstr "削除"
-
-#: ../app/views/acls/index.html.erb:60
-#: ../app/views/constraints/index.html.erb:61
-#: ../app/views/resources/index.html.erb:61
-msgid "Are you sure you wish to delete %s?"
-msgstr "%s を削除してもよろしいですか?"
-
-#: ../app/views/acls/index.html.erb:101
-msgid "New Role"
-msgstr "新規役割"
-
-#: ../app/views/acls/index.html.erb:102
-#: ../app/views/locations/_form.html.erb:44
-msgid "Role"
-msgstr "役割"
-
-#: ../app/views/acls/index.html.erb:107
-msgid "New User"
-msgstr "新規ユーザ"
-
-#: ../app/views/acls/index.html.erb:108
-msgid "User"
-msgstr "ユーザ"
-
-#: ../app/views/acls/index.html.erb:129
-msgid "To enable ACLs, set 'enable-acl' in the CRM Configuration"
-msgstr "ACLを有効にするには、［CRMの環境設定］で「enable-acl」を設定します"
-
-#: ../app/views/acls/index.html.erb:134
-msgid "(No roles defined)"
-msgstr "(役割が定義されていません)"
-
-#: ../app/views/acls/index.html.erb:146
-msgid "(No users defined)"
-msgstr "(ユーザが定義されていません)"
-
-#: ../app/views/clones/_form.html.erb:40 ../app/views/groups/_form.html.erb:75
-#: ../app/views/masters/_form.html.erb:40
-#: ../app/views/primitives/_form.html.erb:284
-msgid "Meta Attributes"
-msgstr "メタ属性"
-
-#: ../app/views/clones/_form.html.erb:46
-#: ../app/views/colocations/_form.html.erb:60
-#: ../app/views/crm_config/edit.html.erb:24
-#: ../app/views/crm_config/edit.html.erb:46
-#: ../app/views/crm_config/edit.html.erb:68
-#: ../app/views/groups/_form.html.erb:81
-#: ../app/views/locations/_form.html.erb:47
-#: ../app/views/masters/_form.html.erb:46
-#: ../app/views/orders/_form.html.erb:60
-#: ../app/views/primitives/_form.html.erb:247
-#: ../app/views/primitives/_form.html.erb:267
-#: ../app/views/primitives/_form.html.erb:290
-#: ../app/views/roles/_form.html.erb:38 ../app/views/tickets/_form.html.erb:48
-#: ../app/views/users/_form.html.erb:48
-msgid "Add"
-msgstr "追加"
-
-#: ../app/views/clones/_form.html.erb:47
-#: ../app/views/colocations/_form.html.erb:61
-#: ../app/views/crm_config/edit.html.erb:25
-#: ../app/views/crm_config/edit.html.erb:47
-#: ../app/views/crm_config/edit.html.erb:69
-#: ../app/views/dashboard/index.html.erb:45
-#: ../app/views/groups/_form.html.erb:82
-#: ../app/views/locations/_form.html.erb:48
-#: ../app/views/masters/_form.html.erb:47
-#: ../app/views/orders/_form.html.erb:61
-#: ../app/views/primitives/_form.html.erb:248
-#: ../app/views/primitives/_form.html.erb:269
-#: ../app/views/primitives/_form.html.erb:291
-#: ../app/views/roles/_form.html.erb:39 ../app/views/tickets/_form.html.erb:49
-#: ../app/views/users/_form.html.erb:49
-msgid "Remove"
-msgstr "削除"
-
-#: ../app/views/clones/_form.html.erb:48
-#: ../app/views/crm_config/edit.html.erb:26
-#: ../app/views/crm_config/edit.html.erb:48
-#: ../app/views/crm_config/edit.html.erb:70
-#: ../app/views/groups/_form.html.erb:83
-#: ../app/views/masters/_form.html.erb:48
-#: ../app/views/primitives/_form.html.erb:249
-#: ../app/views/primitives/_form.html.erb:270
-#: ../app/views/primitives/_form.html.erb:292
-msgid "You must enter a value"
-msgstr "値を入力してください"
-
-#: ../app/views/clones/_form.html.erb:70
-msgid "Clone ID"
-msgstr "クローンID"
-
-#: ../app/views/clones/_form.html.erb:71
-#: ../app/views/masters/_form.html.erb:71
-msgid "Child Resource"
-msgstr "子リソース"
-
-#: ../app/views/clones/_form.html.erb:88
-#: ../app/views/colocations/_form.html.erb:110
-#: ../app/views/crm_config/edit.html.erb:114
-#: ../app/views/groups/_form.html.erb:143
-#: ../app/views/locations/_form.html.erb:94
-#: ../app/views/masters/_form.html.erb:88
-#: ../app/views/orders/_form.html.erb:116
-#: ../app/views/primitives/_form.html.erb:394
-#: ../app/views/roles/_form.html.erb:83 ../app/views/tickets/_form.html.erb:98
-#: ../app/views/users/_form.html.erb:112
-msgid "Revert Changes"
-msgstr "変更を元に戻す"
-
-#: ../app/views/clones/_form.html.erb:89
-#: ../app/views/colocations/_form.html.erb:111
-#: ../app/views/crm_config/show.html.erb:11
-#: ../app/views/crm_config/update.html.erb:4
-#: ../app/views/groups/_form.html.erb:144
-#: ../app/views/locations/_form.html.erb:95
-#: ../app/views/masters/_form.html.erb:89
-#: ../app/views/orders/_form.html.erb:117
-#: ../app/views/primitives/_form.html.erb:395
-#: ../app/views/roles/_form.html.erb:84 ../app/views/tickets/_form.html.erb:99
-#: ../app/views/users/_form.html.erb:113 ../app/views/wizard/broken.html.erb:4
-#: ../app/views/wizard/start.html.erb:3
-msgid "Back"
-msgstr "戻る"
-
-#: ../app/views/clones/edit.html.erb:4
-#: ../app/views/colocations/edit.html.erb:4
-#: ../app/views/crm_config/edit.html.erb:113
-#: ../app/views/groups/edit.html.erb:4 ../app/views/locations/edit.html.erb:4
-#: ../app/views/masters/edit.html.erb:4 ../app/views/orders/edit.html.erb:4
-#: ../app/views/primitives/edit.html.erb:4 ../app/views/roles/edit.html.erb:4
-#: ../app/views/tickets/edit.html.erb:4 ../app/views/users/edit.html.erb:4
-msgid "Apply Changes"
-msgstr "変更の適用"
-
-#: ../app/views/colocations/_form.html.erb:62
-#: ../app/views/orders/_form.html.erb:62
-msgid "Link set"
-msgstr "リンクセット"
-
-#: ../app/views/colocations/_form.html.erb:63
-#: ../app/views/orders/_form.html.erb:63
-msgid "Break set"
-msgstr "ブレークの設定"
-
-#: ../app/views/colocations/_form.html.erb:64
-#: ../app/views/orders/_form.html.erb:64
-msgid "Swap resources"
-msgstr "リソースのスワップ"
-
-#: ../app/views/colocations/_form.html.erb:65
-#: ../app/views/orders/_form.html.erb:65
-#: ../app/views/tickets/_form.html.erb:50
-msgid "Add resource to constraint"
-msgstr "リソースを制約に追加"
-
-#: ../app/views/colocations/_form.html.erb:89
-#: ../app/views/locations/_form.html.erb:75
-#: ../app/views/orders/_form.html.erb:89
-#: ../app/views/tickets/_form.html.erb:77
-msgid "Constraint ID"
-msgstr "制約ID"
-
-#: ../app/views/colocations/_form.html.erb:90
-#: ../app/views/locations/_form.html.erb:42
-#: ../app/views/orders/_form.html.erb:90
-msgid "Score"
-msgstr "スコア"
-
-#: ../app/views/colocations/_form.html.erb:109
-#: ../app/views/locations/_form.html.erb:93
-#: ../app/views/orders/_form.html.erb:115
-#: ../app/views/tickets/_form.html.erb:97
-msgid "Create Constraint"
-msgstr "制約の作成"
-
-#: ../app/views/constraints/index.html.erb:46
-msgid "Edit Constraint"
-msgstr "制約の編集"
-
-#: ../app/views/constraints/index.html.erb:57
-msgid "Delete Constraint"
-msgstr "制約の削除"
-
-#: ../app/views/constraints/index.html.erb:102
-#: ../app/views/constraints/index.html.erb:108
-#: ../app/views/constraints/index.html.erb:114
-#: ../app/views/constraints/index.html.erb:121
-msgid "New Constraint"
-msgstr "新規制約"
-
-#: ../app/views/constraints/index.html.erb:103
-msgid "Location"
-msgstr "場所"
-
-#: ../app/views/constraints/index.html.erb:109
-msgid "Colocation"
-msgstr "コロケーション"
-
-#: ../app/views/constraints/index.html.erb:115
-msgid "Order"
-msgstr "順序"
-
-#: ../app/views/constraints/index.html.erb:122
-msgid "Ticket"
-msgstr "チケット"
-
-#: ../app/views/constraints/index.html.erb:143
-msgid "(No location constraints defined)"
-msgstr "(場所の制約が定義されていません)"
-
-#: ../app/views/constraints/index.html.erb:155
-msgid "[Constraint is too complex to display]"
-msgstr "[制約が複雑すぎて表示できません]"
-
-#: ../app/views/constraints/index.html.erb:173
-msgid "(No colocation constraints defined)"
-msgstr "(コロケーションの制約が定義されていません)"
-
-#: ../app/views/constraints/index.html.erb:187
-msgid "(No order constraints defined)"
-msgstr "(順序の制約が定義されていません)"
-
-#: ../app/views/constraints/index.html.erb:202
-msgid "(No ticket constraints defined)"
-msgstr "(チケット制約が未定義です)"
-
-#: ../app/views/crm_config/edit.html.erb:15
-#: ../app/views/main/_gettext.js.erb:102
-msgid "CRM Configuration"
-msgstr "CRMの環境設定"
-
-#: ../app/views/crm_config/edit.html.erb:37
-#: ../app/views/main/_gettext.js.erb:105
-msgid "Resource Defaults"
-msgstr "リソースのデフォルト"
-
-#: ../app/views/crm_config/edit.html.erb:59
-#: ../app/views/main/_gettext.js.erb:108
-msgid "Operation Defaults"
-msgstr "操作のデフォルト"
-
-#: ../app/views/crm_config/show.html.erb:4
-msgid "No cluster properties set in %{group}"
-msgstr "クラスタプロパティが %{group} で設定されていません"
-
-#: ../app/views/dashboard/index.html.erb:56
-#: ../app/views/sessions/new.html.erb:9
-msgid "Username:"
-msgstr "ユーザ名:"
-
-#: ../app/views/dashboard/index.html.erb:60
-#: ../app/views/sessions/new.html.erb:13
-msgid "Password:"
-msgstr "パスワード:"
-
-#: ../app/views/dashboard/index.html.erb:71
-msgid "Cluster has errors - click for details"
-msgstr "クラスタにエラーがあります - 詳細はクリックしてください"
-
-#: ../app/views/dashboard/index.html.erb:156
-#: ../app/views/dashboard/index.html.erb:484
-msgid "Timeout: Please try again"
-msgstr "タイムアウト: もう一度実行してください"
-
-#: ../app/views/dashboard/index.html.erb:240
-msgid "Permission denied. Please log in to %{node}"
-msgstr "パーミッションが拒否されました。%{node} にログインしてください"
-
-#: ../app/views/dashboard/index.html.erb:329
-msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
-msgstr "%{node} 上のHawkに接続できません。5秒ごとに再試行します。"
-
-#: ../app/views/dashboard/index.html.erb:407
-msgid "Cluster Name:"
-msgstr "クラスタ名:"
-
-#: ../app/views/dashboard/index.html.erb:408
-msgid "Host Name:"
-msgstr "ホスト名:"
-
-#: ../app/views/dashboard/index.html.erb:409
-msgid "(Specify any host name in the cluster.  Other nodes will be found automatically)"
-msgstr "(クラスタ内のホスト名を指定します。その他のノードは自動的に検出されます)"
-
-#: ../app/views/dashboard/index.html.erb:414
-msgid "Add Cluster"
-msgstr "クラスタの追加"
-
-#: ../app/views/dashboard/index.html.erb:416
-#: ../app/views/main/_gettext.js.erb:4
-#: ../app/views/primitives/_form.html.erb:272
-msgid "OK"
-msgstr "OK"
-
-#: ../app/views/dashboard/index.html.erb:431
-msgid "A cluster with that name already exists"
-msgstr "その名前のクラスタは既に存在します"
-
-#: ../app/views/dashboard/index.html.erb:437
-msgid "The host %{h} is already present in cluster %{c}"
-msgstr "ホスト %{h} は既にクラスタ %{c} に存在します"
-
-#: ../app/views/dashboard/index.html.erb:466
-#: ../app/views/dashboard/index.html.erb:478
-msgid "Unable to connect to %{host}. Try opening %{url} in your web browser to ensure Hawk is accessible."
-msgstr "%{host} に接続できません。Webブラウザで %{url} を開き、Hawkにアクセス可能なことを確認してみてください。"
-
-#: ../app/views/dashboard/index.html.erb:491
-#: ../app/views/main/_gettext.js.erb:7
-#: ../app/views/primitives/_form.html.erb:273
-#: ../app/views/wizard/run.html.erb:117 ../app/views/wizard/start.html.erb:44
-msgid "Cancel"
-msgstr "キャンセル"
-
-#: ../app/views/explorer/_pe_list.html.erb:6
-msgid "No transitions found for the specified time period."
-msgstr "指定された期間内で遷移がありません。"
-
-#: ../app/views/explorer/_pe_list.html.erb:11
-msgid "Time"
-msgstr "再生時間"
-
-#: ../app/views/explorer/_pe_list.html.erb:12
-msgid "PE Input"
-msgstr "PE入力"
-
-#: ../app/views/explorer/_pe_list.html.erb:13
-#: ../app/views/locations/_form.html.erb:43
-msgid "Node"
-msgstr "ノード"
-
-#: ../app/views/explorer/_pe_list.html.erb:30
-#: ../app/views/main/_gettext.js.erb:117 ../app/views/main/_gettext.js.erb:287
-msgid "Details"
-msgstr "詳細情報"
-
-#: ../app/views/explorer/_pe_list.html.erb:34
-msgid "(full log)"
-msgstr "(ログ全体)"
-
-#: ../app/views/explorer/_pe_list.html.erb:38
-#: ../app/views/main/_gettext.js.erb:296
-msgid "Graph"
-msgstr "図表"
-
-#: ../app/views/explorer/_pe_list.html.erb:47
-msgid "Diff"
-msgstr "Diff"
-
-#: ../app/views/explorer/index.html.erb:39
-msgid "Delete this history archive?"
-msgstr "この履歴アーカイブを削除しますか?"
-
-#: ../app/views/explorer/index.html.erb:150
-#: ../app/views/explorer/index.html.erb:169
-#: ../app/views/hb_reports/new.html.erb:58
-msgid "Start Time:"
-msgstr "開始時刻:"
-
-#: ../app/views/explorer/index.html.erb:152
-#: ../app/views/explorer/index.html.erb:171
-#: ../app/views/hb_reports/new.html.erb:63
-msgid "End Time:"
-msgstr "終了時刻:"
-
-#: ../app/views/explorer/index.html.erb:165
-msgid "Exploring %{path}"
-msgstr "%{path} を探索しています"
-
-#: ../app/views/explorer/index.html.erb:173
-msgid "Display"
-msgstr "ディスプレイ"
-
-#: ../app/views/explorer/index.html.erb:186
-msgid "Upload hb_report tarball"
-msgstr "hb_report tarballのアップロード"
-
-#: ../app/views/explorer/index.html.erb:188
-msgid "Explore"
-msgstr "探索"
-
-#: ../app/views/explorer/permission_denied.html.erb:2
-#: ../app/views/hb_reports/permission_denied.html.erb:2
-#: ../app/views/nodes/permission_denied.html.erb:2
-#: ../app/views/resources/permission_denied.html.erb:2
-msgid "Error: Permission denied for user '%s'."
-msgstr "エラー:ユーザ「%s」のアクセス承認拒否。"
-
-#: ../app/views/groups/_form.html.erb:105
-msgid "Group ID"
-msgstr "グループID"
-
-#: ../app/views/groups/_form.html.erb:115
-msgid "Group Children"
-msgstr "グループの子"
-
-#: ../app/views/groups/_form.html.erb:117
-msgid "Available Primitives"
-msgstr "使用可能なプリミティブ"
-
-#: ../app/views/hb_reports/create.js.erb:3
-msgid "Start Time not specified"
-msgstr "開始時刻が指定されていません"
-
-#: ../app/views/hb_reports/new.html.erb:60
-msgid "Generate"
-msgstr "生成"
-
-#: ../app/views/hb_reports/new.html.erb:74
-msgid "hb_report generation in progress..."
-msgstr "hb_reportを生成しています..."
-
-#: ../app/views/hb_reports/new.html.erb:80
-msgid "Download hb_report"
-msgstr "hb_reportのダウンロード"
-
-#: ../app/views/layouts/main.html.erb:35
-msgid "Simulator"
-msgstr "シミュレータ"
-
-#: ../app/views/layouts/main.html.erb:66 ../app/views/layouts/main.html.erb:79
-msgid "Cluster Diagram"
-msgstr "クラスタダイアグラム"
-
-#: ../app/views/layouts/main.html.erb:87
-msgid "Generate hb_report..."
-msgstr "hb_reportの生成..."
-
-#: ../app/views/layouts/main.html.erb:98
-msgid "Generate hb_report"
-msgstr "hb_reportの生成"
-
-#: ../app/views/layouts/main.html.erb:111
-msgid "Preferences..."
-msgstr "初期設定..."
-
-#: ../app/views/layouts/main.html.erb:134
-msgid "Language"
-msgstr "言語"
-
-#: ../app/views/layouts/main.html.erb:160
-msgid "Preferences"
-msgstr "設定"
-
-#: ../app/views/layouts/main.html.erb:178
-msgid "Tools"
-msgstr "ツール"
-
-#: ../app/views/layouts/main.html.erb:182
-#: ../app/views/layouts/main.html.erb:190
-msgid "Status"
-msgstr "状態"
-
-#: ../app/views/layouts/main.html.erb:184
-msgid "User: %{user}"
-msgstr "ユーザ: %{user}"
-
-#: ../app/views/layouts/main.html.erb:185
-msgid "Log Out"
-msgstr "ログアウト"
-
-#: ../app/views/layouts/main.html.erb:190
 msgid "Dashboard"
 msgstr "ダッシュボード"
 
-#: ../app/views/layouts/main.html.erb:211
-msgid "Setup Wizard"
-msgstr "セットアップウィザード"
-
-#: ../app/views/layouts/main.html.erb:214
-msgid "Cluster Properties"
-msgstr "クラスタのプロパティ"
-
-#: ../app/views/layouts/main.html.erb:250
-msgid "UI Host: %s"
-msgstr "UIホスト: %s"
-
-#: ../app/views/layouts/main.html.erb:251
-msgid "Copyright &copy; 2009-2014 SUSE, LLC"
-msgstr "Copyright &copy; 2009-2014 SUSE, LLC"
-
-#: ../app/views/locations/_form.html.erb:45
-msgid "Boolean Op"
-msgstr "ブール値処理"
-
-#: ../app/views/locations/_form.html.erb:46
-msgid "Expression"
-msgstr "表現"
-
-#: ../app/views/locations/_form.html.erb:49
-msgid "Add Rule"
-msgstr "ルールの追加"
-
-#: ../app/views/locations/_form.html.erb:50
-msgid "Remove Rule"
-msgstr "ルールを削除"
-
-#: ../app/views/locations/_form.html.erb:51
-msgid "Show Rule Editor"
-msgstr "ルールエディタの表示"
-
-#: ../app/views/locations/_form.html.erb:76
-msgid "Resource"
-msgstr "リソース"
-
-#: ../app/views/main/_gettext.js.erb:10
-#: ../app/views/shared/_confirm_revert.html.erb:8
-msgid "Yes"
-msgstr "はい"
-
-#: ../app/views/main/_gettext.js.erb:13
-#: ../app/views/shared/_confirm_revert.html.erb:9
-msgid "No"
-msgstr "いいえ"
-
-#: ../app/views/main/_gettext.js.erb:16
-msgid "Close"
-msgstr "閉じる"
-
-#: ../app/views/main/_gettext.js.erb:19
-msgid "Reset"
-msgstr "リセット"
-
-#: ../app/views/main/_gettext.js.erb:23
-msgid "This will bring node %s online if it is currently on standby.  Do you want to continue?"
-msgstr "これを行うと、ノード %s がオンラインになります(現在、スタンバイ状態の場合)。続行しますか?"
-
-#: ../app/views/main/_gettext.js.erb:26
-msgid "This will put node %s on standby.  All resources will be stopped and/or moved to another node.  Do you want to continue?"
-msgstr "これを行うと、ノード %s がスタンバイになります。すべてのリソースが停止および/または別のノードに移動します。続行しますか?"
-
-#: ../app/views/main/_gettext.js.erb:29
-msgid "This will put node %s in maintenance mode.  All resources on this node will become unmanaged.  Do you want to continue?"
-msgstr "これを行うと、ノード %s はメンテナンスモードになります。このノード上のすべてのリソースは非管理対象になります。続行しますか?"
-
-#: ../app/views/main/_gettext.js.erb:32
-msgid "This will bring node %s out of maintenance mode.  Do you want to continue?"
-msgstr "これを行うと、ノード %s のメンテナンスモードが終了します。続行しますか?"
-
-#: ../app/views/main/_gettext.js.erb:35
-msgid "This will attempt to immediately fence node %s.  Do you want to continue?"
-msgstr "これを行うと、ノード %s のフェンシングがただちに試行されます。続行しますか?"
-
-#: ../app/views/main/_gettext.js.erb:39
-msgid "This will start the resource %s.  Do you want to continue?"
-msgstr "これを行うと、リソース %s が開始します。続行しますか?"
-
-#: ../app/views/main/_gettext.js.erb:42
-msgid "This will stop the resource %s.  Do you want to continue?"
-msgstr "これを行うと、リソース %s が停止します。続行しますか?"
-
-#: ../app/views/main/_gettext.js.erb:45
-msgid "Move resource %s"
-msgstr "リソース %s の移動"
-
-#: ../app/views/main/_gettext.js.erb:48
-msgid "To node %s"
-msgstr "ノード %s へ"
-
-#: ../app/views/main/_gettext.js.erb:51
-msgid "Away from current node"
-msgstr "現在のノードから離れて"
-
-#: ../app/views/main/_gettext.js.erb:54
-msgid "This will clear any relocation constraints set on the resource %s.  Do you want to continue?"
-msgstr "これを行うと、リソース %s に設定された再配置条件がすべてクリアされます。続行しますか?"
-
-#: ../app/views/main/_gettext.js.erb:57
-msgid "This will promote the resource %s.  Do you want to continue?"
-msgstr "これを行うと、リソース %s が昇格します。続行しますか?"
-
-#: ../app/views/main/_gettext.js.erb:60
-msgid "This will demote the resource %s.  Do you want to continue?"
-msgstr "これを行うと、リソース %s が降格します。続行しますか?"
-
-#: ../app/views/main/_gettext.js.erb:63
-msgid "This will clean up the resource %s.  Do you want to continue?"
-msgstr "これを行うと、リソース %s がクリーンアップされます。続行しますか?"
-
-#: ../app/views/main/_gettext.js.erb:67
-msgid "Error"
-msgstr "エラー"
-
-#: ../app/views/main/_gettext.js.erb:70
-msgid "Unexpected server error: %s"
-msgstr "予期しないサーバエラー: %s"
-
-#: ../app/views/main/_gettext.js.erb:73
-msgid "Connection to server failed (server down or network error - will retry every 15 seconds)."
-msgstr "サーバとの接続に失敗しました(サーバがダウンしているか、ネットワークエラーです - 15秒ごとに再試行します)。"
-
-#: ../app/views/main/_gettext.js.erb:76
-msgid "Connection to server timed out - will retry every 15 seconds."
-msgstr "サーバとの接続がタイムアウトになりました - 15秒ごとに再試行します。"
-
-#: ../app/views/main/_gettext.js.erb:79
-msgid "Connection to server aborted - will retry every 15 seconds."
-msgstr "サーバとの接続が中止されました - 15秒ごとに再試行します。"
-
-#: ../app/views/main/_gettext.js.erb:82
-msgid "Permission denied"
-msgstr "アクセス承認拒否"
-
-#: ../app/views/main/_gettext.js.erb:85
-msgid "%{op} failed on %{node} (rc=%{rc})"
-msgstr "%{op} が %{node} で失敗しました(rc=%{rc})"
-
-#: ../app/views/main/_gettext.js.erb:89
-msgid "DC: %s"
-msgstr "DC: %s"
-
-#: ../app/views/main/_gettext.js.erb:92
-msgid "Version: %s"
-msgstr "バージョン: %s"
-
-#: ../app/views/main/_gettext.js.erb:95
-msgid "Stack: %s"
-msgstr "スタック: %s"
-
-#: ../app/views/main/_gettext.js.erb:111
-msgid "Inactive Resources"
-msgstr "非アクティブなリソース"
-
-#: ../app/views/main/_gettext.js.erb:114
-msgid "Summary"
-msgstr "概要"
-
-#: ../app/views/main/_gettext.js.erb:120
-msgid "STONITH Enabled"
-msgstr "STONITHが有効です"
-
-#: ../app/views/main/_gettext.js.erb:123
-msgid "No Quorum Policy"
-msgstr "クォーラムなしポリシー"
-
-#: ../app/views/main/_gettext.js.erb:126
-msgid "Symmetric Cluster"
-msgstr "対称クラスタ"
-
-#: ../app/views/main/_gettext.js.erb:129
-msgid "Resource Stickiness"
-msgstr "リソースの固着性"
-
-#: ../app/views/main/_gettext.js.erb:132
-msgid "Maintenance Mode"
-msgstr "メンテナンスモード"
-
-#: ../app/views/main/_gettext.js.erb:135
-msgid "Unmanaged"
-msgstr "非管理対象"
-
-#: ../app/views/main/_gettext.js.erb:138
-msgid "Tickets"
-msgstr "チケット"
-
-#: ../app/views/main/_gettext.js.erb:141
-msgid "This will request the ticket %s be granted to the present site.  Do you want to continue?"
-msgstr "これは現在のサイトにチケット %s を付与するよう要求します。続行しますか?"
-
-#: ../app/views/main/_gettext.js.erb:144
-msgid "This will request the ticket %s be revoked.  Do you want to continue?"
-msgstr "これはチケット %s を取り消すよう要求します。続行しますか?"
-
-#: ../app/views/main/_gettext.js.erb:148
-msgid "Granted [standby]"
-msgstr "許可済み [スタンバイ]"
-
-#: ../app/views/main/_gettext.js.erb:149
-msgid "Granted"
-msgstr "許可済み"
-
-#: ../app/views/main/_gettext.js.erb:153
-msgid "Revoked [standby]"
-msgstr "取り消し済み [スタンバイ]"
-
-#: ../app/views/main/_gettext.js.erb:154
-msgid "Revoked"
-msgstr "取り消し"
-
-#: ../app/views/main/_gettext.js.erb:157
-msgid "Leader: %s"
-msgstr "リーダ: %s"
-
-#: ../app/views/main/_gettext.js.erb:160
-msgid "Last granted: %s"
-msgstr "前回の許可: %s"
-
-#: ../app/views/main/_gettext.js.erb:163
-msgid "Expires: %s"
-msgstr "期限切れ日時: %s"
-
-#: ../app/views/main/_gettext.js.erb:167
-msgid "Summary View"
-msgstr "概要ビュー"
-
-#: ../app/views/main/_gettext.js.erb:170
-msgid "Tree View"
-msgstr "ツリービュー"
-
-#: ../app/views/main/_gettext.js.erb:173
-msgid "Table View"
-msgstr "テーブルビュー"
-
-#: ../app/views/main/_gettext.js.erb:177
-msgid "%{node}: %{state}"
-msgstr "%{node}: %{state}"
-
-#: ../app/views/main/_gettext.js.erb:180 ../app/views/main/_menus.html.erb:8
-msgid "Online"
-msgstr "オンライン"
-
-#: ../app/views/main/_gettext.js.erb:183
-msgid "Offline"
-msgstr "オフライン"
-
-#: ../app/views/main/_gettext.js.erb:186 ../app/views/main/_gettext.js.erb:214
-msgid "Pending"
-msgstr "保留中"
-
-#: ../app/views/main/_gettext.js.erb:189 ../app/views/main/_gettext.js.erb:341
-#: ../app/views/main/_menus.html.erb:15
-msgid "Standby"
-msgstr "スタンバイ"
-
-#: ../app/views/main/_gettext.js.erb:192
-msgid "Unclean"
-msgstr "非クリーン"
-
-#: ../app/views/main/_gettext.js.erb:199
-msgid "Master"
-msgstr "マスタ"
-
-#: ../app/views/main/_gettext.js.erb:200
-msgid "%{id}: Master: %{nodelist}"
-msgstr "%{id}: マスタ: %{nodelist}"
-
-#: ../app/views/main/_gettext.js.erb:201
-msgid "%{id}: Master"
-msgstr "%{id}:マスタ"
-
-#: ../app/views/main/_gettext.js.erb:204
-msgid "Slave"
-msgstr "スレーブ"
-
-#: ../app/views/main/_gettext.js.erb:205
-msgid "%{id}: Slave: %{nodelist}"
-msgstr "%{id}: スレーブ: %{nodelist}"
-
-#: ../app/views/main/_gettext.js.erb:206
-msgid "%{id}: Slave"
-msgstr "%{id}:スレーブ"
-
-#: ../app/views/main/_gettext.js.erb:209
-msgid "Started"
-msgstr "開始しました"
-
-#: ../app/views/main/_gettext.js.erb:210
-msgid "%{id}: Started: %{nodelist}"
-msgstr "%{id}: 開始しました: %{nodelist}"
-
-#: ../app/views/main/_gettext.js.erb:211
-msgid "%{id}: Started"
-msgstr "%{id}:開始しました"
-
-#: ../app/views/main/_gettext.js.erb:215
-msgid "%{id}: Pending: %{nodelist}"
-msgstr "%{id}:保留中: %{nodelist}"
-
-#: ../app/views/main/_gettext.js.erb:216
-msgid "%{id}: Pending"
-msgstr "%{id}:保留中"
-
-#: ../app/views/main/_gettext.js.erb:220
-msgid "%{id}: Starting: %{node}"
-msgstr "%{id}: 開始中: %{node}"
-
-#: ../app/views/main/_gettext.js.erb:221
-msgid "%{id}: Starting"
-msgstr "%{id}: 開始中"
-
-#: ../app/views/main/_gettext.js.erb:224
-msgid "%{id}: Stopping: %{node}"
-msgstr "%{id}: 停止中: %{node}"
-
-#: ../app/views/main/_gettext.js.erb:225
-msgid "%{id}: Stopping"
-msgstr "%{id}: 停止中"
-
-#: ../app/views/main/_gettext.js.erb:228
-msgid "%{id}: Promoting: %{node}"
-msgstr "%{id}: 昇格中: %{node}"
-
-#: ../app/views/main/_gettext.js.erb:229
-msgid "%{id}: Promoting"
-msgstr "%{id}: 昇格中"
-
-#: ../app/views/main/_gettext.js.erb:232
-msgid "%{id}: Demoting: %{node}"
-msgstr "%{id}: 降格中: %{node}"
-
-#: ../app/views/main/_gettext.js.erb:233
-msgid "%{id}: Demoting"
-msgstr "%{id}: 降格中"
-
-#: ../app/views/main/_gettext.js.erb:236
-msgid "%{id}: Moving: %{node}"
-msgstr "%{id}: 移動中: %{node}"
-
-#: ../app/views/main/_gettext.js.erb:237
-msgid "%{id}: Moving"
-msgstr "%{id}: 移動中"
-
-#: ../app/views/main/_gettext.js.erb:240
-msgid "Stopped"
-msgstr "停止"
-
-#: ../app/views/main/_gettext.js.erb:241
-msgid "%{id}: Stopped"
-msgstr "%{id}: 停止しました"
-
-#: ../app/views/main/_gettext.js.erb:244
-msgid "Group: %{id}"
-msgstr "グループ: %{id}"
-
-#: ../app/views/main/_gettext.js.erb:247
-msgid "Master/Slave Set: %{id}"
-msgstr "マスタ/スレーブセット: %{id}"
-
-#: ../app/views/main/_gettext.js.erb:250
-msgid "Clone Set: %{id}"
-msgstr "クローン設定: %{id}"
-
-#: ../app/views/main/_gettext.js.erb:253
-msgid "Parent: %{id}..."
-msgstr "親: %{id}..."
-
-#: ../app/views/main/_gettext.js.erb:256
-msgid "%{active}/%{total} %{type} %{node}"
-msgstr "%{active}/%{total} %{type} %{node}"
-
-#: ../app/views/main/_gettext.js.erb:259
-msgid "Toggle view by type"
-msgstr "タイプ別にビューを切り替えます"
-
-#: ../app/views/main/_gettext.js.erb:263
-msgid "Simulator (initial state)"
-msgstr "シミュレータ(初期状態)"
-
-#: ../app/views/main/_gettext.js.erb:266
-msgid "Simulator (busy...)"
-msgstr "シミュレータ(ビジー...)"
-
-#: ../app/views/main/_gettext.js.erb:269
-msgid "Simulator (final state)"
-msgstr "シミュレータ(最終状態)"
-
-#: ../app/views/main/_gettext.js.erb:272
-msgid "Injected State:"
-msgstr "挿入された状態:"
-
-#: ../app/views/main/_gettext.js.erb:275
-msgid "+ Node"
-msgstr "+ ノード"
-
-#: ../app/views/main/_gettext.js.erb:278
-msgid "+ Op"
-msgstr "+ 処理"
-
-#: ../app/views/main/_gettext.js.erb:281
-msgid "+ Ticket"
-msgstr "+ チケット"
-
-#: ../app/views/main/_gettext.js.erb:284
-msgid "Run >"
-msgstr "実行 >"
-
-#: ../app/views/main/_gettext.js.erb:290
-msgid "CIB (in)"
-msgstr "CIB(入力)"
-
-#: ../app/views/main/_gettext.js.erb:293
-msgid "CIB (out)"
-msgstr "CIB(出力)"
-
-#: ../app/views/main/_gettext.js.erb:299
-msgid "Empty Graph"
-msgstr "空のグラフ"
-
-#: ../app/views/main/_gettext.js.erb:302
-msgid "Inject Node State"
-msgstr "ノード状態を挿入"
-
-#: ../app/views/main/_gettext.js.erb:305
-msgid "Node:"
-msgstr "ノード:"
-
-#: ../app/views/main/_gettext.js.erb:308
-msgid "State:"
-msgstr "県または州 :            "
-
-#: ../app/views/main/_gettext.js.erb:311
-msgid "Inject Operation"
-msgstr "挿入処理"
-
-#: ../app/views/main/_gettext.js.erb:314
-msgid "Operation:"
-msgstr "操作:"
-
-#: ../app/views/main/_gettext.js.erb:317
-msgid "Interval:"
-msgstr "間隔:"
-
-#: ../app/views/main/_gettext.js.erb:320
-msgid "Resource:"
-msgstr "リソース:"
-
-#: ../app/views/main/_gettext.js.erb:323
-msgid "Result:"
-msgstr "結果:"
-
-#: ../app/views/main/_gettext.js.erb:326
-msgid "Inject Ticket"
-msgstr "チケットの挿入"
-
-#: ../app/views/main/_gettext.js.erb:329
-msgid "Ticket:"
-msgstr "チケット:"
-
-#: ../app/views/main/_gettext.js.erb:332
-msgid "Action:"
-msgstr "アクション:"
-
-#: ../app/views/main/_gettext.js.erb:335 ../app/views/main/_menus.html.erb:206
-msgid "Grant"
-msgstr "許可"
-
-#: ../app/views/main/_gettext.js.erb:338 ../app/views/main/_menus.html.erb:213
-msgid "Revoke"
-msgstr "取り消し"
-
-#: ../app/views/main/_gettext.js.erb:344
-msgid "Activate"
-msgstr "有効化"
-
-#: ../app/views/main/_gettext.js.erb:347
-msgid "Success"
-msgstr "成功しました"
-
-#: ../app/views/main/_gettext.js.erb:350
-msgid "Generic Error"
-msgstr "一般的なエラー"
-
-#: ../app/views/main/_gettext.js.erb:353
-msgid "Wrong Argument(s)"
-msgstr "誤った引数"
-
-#: ../app/views/main/_gettext.js.erb:356
-msgid "Not Implemented"
-msgstr "実装されていません"
-
-#: ../app/views/main/_gettext.js.erb:359
-msgid "Permission Denied"
-msgstr "アクセス承認拒否"
-
-#: ../app/views/main/_gettext.js.erb:362
-msgid "Not Installed"
-msgstr "インストールされていません"
-
-#: ../app/views/main/_gettext.js.erb:365
-msgid "Not Configured"
-msgstr "まだ設定されていません"
-
-#: ../app/views/main/_gettext.js.erb:368
-msgid "Not Running"
-msgstr "実行していません"
-
-#: ../app/views/main/_gettext.js.erb:371
-msgid "Running Master"
-msgstr "マスタを実行しています"
-
-#: ../app/views/main/_gettext.js.erb:374
-msgid "Failed Master"
-msgstr "失敗したマスタ"
-
-#: ../app/views/main/_menus.html.erb:22
-msgid "Maintenance"
-msgstr "メンテナンス"
-
-#: ../app/views/main/_menus.html.erb:29
-msgid "Ready"
-msgstr "準備完了"
-
-#: ../app/views/main/_menus.html.erb:36
-msgid "Fence Node"
-msgstr "フェンスノード"
-
-#: ../app/views/main/_menus.html.erb:46 ../app/views/main/_menus.html.erb:160
-msgid "View Details..."
-msgstr "詳細の表示..."
-
-#: ../app/views/main/_menus.html.erb:66 ../app/views/main/_menus.html.erb:182
-msgid "View Recent Events..."
-msgstr "最近のイベントを表示..."
-
-#: ../app/views/main/_menus.html.erb:87
-msgid "Start"
-msgstr "開始"
-
-#: ../app/views/main/_menus.html.erb:94
-msgid "Stop"
-msgstr "停止"
-
-#: ../app/views/main/_menus.html.erb:101
-msgid "Move..."
-msgstr "移動..."
-
-#: ../app/views/main/_menus.html.erb:129
-msgid "Drop Relocation Rule"
-msgstr "再配置ルールを無視"
-
-#: ../app/views/main/_menus.html.erb:136
-msgid "Promote"
-msgstr "昇格"
-
-#: ../app/views/main/_menus.html.erb:143
-msgid "Demote"
-msgstr "降格"
-
-#: ../app/views/main/_menus.html.erb:150
-msgid "Clean Up"
-msgstr "クリーンアップ"
-
-#: ../app/views/masters/_form.html.erb:70
-msgid "Master/Slave ID"
-msgstr "マスタ/スレーブID"
-
-#: ../app/views/nodes/events.html.erb:12
-#: ../app/views/resources/events.html.erb:12
-msgid "Getting recent events (last hour)..."
-msgstr "最近のイベントを取得しています(最終時間)..."
-
-#: ../app/views/nodes/events.html.erb:13
-#: ../app/views/resources/events.html.erb:13
-msgid "Another \"crm history\" operation is in progress..."
-msgstr "別の「crm history」処理が進行中です..."
-
-#: ../app/views/nodes/events.html.erb:20
-#: ../app/views/resources/events.html.erb:20
-msgid "No events found in last hour."
-msgstr "最後の時間にイベントが見つかりませんでした。"
-
-#: ../app/views/nodes/show.html.erb:1
-msgid "Utilization"
-msgstr "利用率"
-
-#: ../app/views/nodes/show.html.erb:15
-msgid "No utilization defined"
-msgstr "利用率が定義されていません"
-
-#: ../app/views/nodes/show.html.erb:18 ../app/views/resources/show.html.erb:1
-msgid "Attributes"
-msgstr "属性"
-
-#: ../app/views/nodes/show.html.erb:29 ../app/views/resources/show.html.erb:12
-msgid "No attributes defined"
-msgstr "属性が定義されていません"
-
-#: ../app/views/orders/_form.html.erb:100
-msgid "Symmetrical"
-msgstr "対称的"
-
-#: ../app/views/primitives/_form.html.erb:261
-msgid "Operations"
-msgstr "操作"
-
-#: ../app/views/primitives/_form.html.erb:271
-msgid "There is already a monitor op with this interval."
-msgstr "この間隔ですでにモニタ処理があります。"
-
-#: ../app/views/primitives/_form.html.erb:329
-msgid "Template ID"
-msgstr "テンプレートID"
-
-#: ../app/views/primitives/_form.html.erb:329
-msgid "Resource ID"
-msgstr "リソースID"
-
-#: ../app/views/primitives/_form.html.erb:330
-msgid "Class"
-msgstr "クラス"
-
-#: ../app/views/primitives/_form.html.erb:331
-msgid "Provider"
-msgstr "プロバイダ"
-
-#: ../app/views/primitives/_form.html.erb:332
-msgid "Type"
-msgstr "種類"
-
-#: ../app/views/primitives/_form.html.erb:367
-msgid "Use Template"
-msgstr "テンプレートの使用"
-
-#: ../app/views/resources/index.html.erb:57
-msgid "Delete Resource"
-msgstr "リソースの削除"
-
-#: ../app/views/resources/index.html.erb:102
-msgid "New Resource"
-msgstr "新規リソース"
-
-#: ../app/views/resources/index.html.erb:103
-msgid "Primitive"
+msgid "History Explorer"
+msgstr "履歴エクスプローラ"
+
+msgid "PE Input created by different Pacemaker version (%{version})"
+msgstr "PE入力は異なるバージョンのPacemaker (%{version})によって作成されています"
+
+msgid "Pacemaker version not present in PE Input"
+msgstr "PE入力にPacemakerのバージョンが存在しません"
+
+msgid "Required parameters \"basename\" and \"node\" not specified"
+msgstr "必要なパラメータ「basename」と「node」が指定されていません"
+
+msgid "No details available"
+msgstr "詳細情報がありません"
+
+msgid "Error:"
+msgstr "エラー:"
+
+msgid "Required parameters \"left\" and \"right\" not specified"
+msgstr "必要なパラメータ「left」と「right」が指定されていません"
+
+msgid "Edit Group"
+msgstr "グループの編集"
+
+msgid "Create Group"
+msgstr "グループの作成"
+
+msgid "Group created successfully"
+msgstr "グループが正常に作成されました"
+
+msgid "Group updated successfully"
+msgstr "グループが正常に更新されました"
+
+msgid "Edit Location Constraint"
+msgstr "場所制約の編集"
+
+msgid "Create Location Constraint"
+msgstr "場所制約の作成"
+
+msgid "%{cmd} failed (status: %{status})"
+msgstr "%{cmd} 失敗(ステータス: %{status})"
+
+msgid "Cluster Status"
+msgstr "クラスタの状態"
+
+msgid "Required parameter \"node\" not specified"
+msgstr "必要なパラメータ「node」が指定されていません"
+
+msgid "Required parameter \"resource\" not specified"
+msgstr "必要なパラメータ「resource」が指定されていません"
+
+msgid "Required parameters \"resource\" and \"node\" not specified"
+msgstr "必要なパラメータ「resource」と「node」が指定されていません"
+
+msgid "Error deleting resource"
+msgstr "リソースの削除中にエラーが発生しました"
+
+msgid "Required parameters \"ticket\" and \"site\" not specified"
+msgstr "必須パラメータ「ticket」と「site」が指定されていません"
+
+msgid "Required parameter \"ticket\" not specified"
+msgstr "必須パラメータ「ticket」が指定されていません"
+
+msgid "Error invoking %{cmd}: %{msg}"
+msgstr "%{cmd} の呼び出し中にエラーが発生しました: %{msg}"
+
+msgid "Edit Master/Slave"
+msgstr "マスタ/スレーブの編集"
+
+msgid "Create Master/Slave"
+msgstr "マスタ/スレーブの作成"
+
+msgid "Master/Slave created successfully"
+msgstr "マスタ/スレーブが正常に作成されました"
+
+msgid "Master/Slave updated successfully"
+msgstr "マスタ/スレーブが正常に更新されました"
+
+#, fuzzy
+msgid "Nodes"
+msgstr "ノード"
+
+msgid "Edit Order Constraint"
+msgstr "順序制約の編集"
+
+msgid "Create Order Constraint"
+msgstr "順序制約の作成"
+
+msgid "Welcome"
+msgstr ""
+
+msgid "Help"
+msgstr ""
+
+msgid "Create Resource"
+msgstr "リソースの作成"
+
+msgid "Resource created successfully"
+msgstr "リソースが正常に作成されました"
+
+msgid "Resource updated successfully"
+msgstr "リソースが正常に更新されました"
+
+#, fuzzy
+msgid "Primitives"
 msgstr "プリミティブ"
 
-#: ../app/views/resources/index.html.erb:109
-msgid "New Template"
-msgstr "新規テンプレート"
+msgid "Resources"
+msgstr "リソース"
 
-#: ../app/views/resources/index.html.erb:110
-msgid "Template"
-msgstr "テンプレート"
+msgid "Create Role"
+msgstr "役割の作成"
 
-#: ../app/views/resources/index.html.erb:116
-msgid "New Group"
-msgstr "新しいグループ"
+msgid "Role created successfully"
+msgstr "役割が正常に作成されました"
 
-#: ../app/views/resources/index.html.erb:117
-msgid "Group"
-msgstr "グループ"
+msgid "Edit Role"
+msgstr "役割の編集"
 
-#: ../app/views/resources/index.html.erb:122
-msgid "New Clone"
-msgstr "新規クローン"
+msgid "Role updated successfully"
+msgstr "役割が正常に更新されました"
 
-#: ../app/views/resources/index.html.erb:123
-msgid "Clone"
-msgstr "クローン"
+#, fuzzy
+msgid "Role deleted successfully"
+msgstr "役割が正常に作成されました"
 
-#: ../app/views/resources/index.html.erb:128
-msgid "New Master/Slave"
-msgstr "新規マスタ/スレーブ"
+#, fuzzy
+msgid "Error deleting %s"
+msgstr "リソースの削除中にエラーが発生しました"
 
-#: ../app/views/resources/index.html.erb:129
-msgid "Master/Slave"
-msgstr "マスタ/スレーブ"
-
-#: ../app/views/resources/index.html.erb:150
-msgid "(No primitive resources defined)"
-msgstr "(プリミティブリソースが未定義です)"
-
-#: ../app/views/resources/index.html.erb:163
-msgid "(No templates defined)"
-msgstr "(テンプレートが未定義です)"
-
-#: ../app/views/resources/index.html.erb:176
-msgid "(No groups defined)"
-msgstr "(グループが未定義です)"
-
-#: ../app/views/resources/index.html.erb:188
-msgid "(No clones defined)"
-msgstr "(クローンが未定義です)"
-
-#: ../app/views/resources/index.html.erb:200
-msgid "(No master/slave resources defined)"
-msgstr "(マスタ/スレーブリソースが未定義です)"
-
-#: ../app/views/resources/show.html.erb:20
-msgid "Fail Count"
-msgstr "失敗数"
-
-#: ../app/views/resources/show.html.erb:25
-msgid "Last Failure"
-msgstr "最後のエラー"
-
-#: ../app/views/roles/_form.html.erb:40 ../app/views/users/_form.html.erb:50
-msgid "Right"
-msgstr "右"
-
-#: ../app/views/roles/_form.html.erb:41 ../app/views/users/_form.html.erb:51
-msgid "XPath"
-msgstr "XPath"
-
-#: ../app/views/roles/_form.html.erb:42 ../app/views/users/_form.html.erb:52
-msgid "Tag"
-msgstr "タグ"
-
-#: ../app/views/roles/_form.html.erb:43 ../app/views/users/_form.html.erb:53
-msgid "Ref"
-msgstr "参照"
-
-#: ../app/views/roles/_form.html.erb:44 ../app/views/users/_form.html.erb:54
-msgid "Attribute"
-msgstr "属性"
-
-#: ../app/views/roles/_form.html.erb:67
-msgid "Role ID"
-msgstr "役割ID"
-
-#: ../app/views/sessions/new.html.erb:1
-msgid "Please ensure JavaScript is enabled"
-msgstr "JavaScriptが有効になっていることを確認してください"
-
-#: ../app/views/shared/_confirm_revert.html.erb:4
-msgid "Any changes will be lost - do you wish to proceed?"
-msgstr "変更内容は失われます。続行しますか?"
-
-#: ../app/views/tickets/_form.html.erb:78
-msgid "Loss Policy"
-msgstr "損失ポリシー"
-
-#: ../app/views/users/_form.html.erb:81
-msgid "User ID"
-msgstr "ユーザID"
-
-#: ../app/views/users/_form.html.erb:91
 msgid "Roles"
 msgstr "役割"
 
-#: ../app/views/wizard/done.html.erb:1 ../app/views/wizard/run.html.erb:69
+msgid "The role does not exist"
+msgstr ""
+
+msgid "To enable ACLs, set 'enable-acl' in the CRM Configuration"
+msgstr "ACLを有効にするには、［CRMの環境設定］で「enable-acl」を設定します"
+
+msgid "Permission denied for user %{user}"
+msgstr "ユーザ %{user} のアクセス承認拒否"
+
+msgid "You have been logged out"
+msgstr "ログアウトしました"
+
+msgid "Log In"
+msgstr "ログイン"
+
+#, fuzzy
+msgid "Preferences updated successfully"
+msgstr "リソースが正常に更新されました"
+
+msgid "Preferences"
+msgstr "設定"
+
+msgid "Edit Template"
+msgstr "テンプレートの編集"
+
+msgid "Create Template"
+msgstr "テンプレートの作成"
+
+msgid "Template created successfully"
+msgstr "テンプレートが正常に作成されました"
+
+msgid "Template updated successfully"
+msgstr "テンプレートが正常に更新されました"
+
+msgid "Edit Ticket Constraint"
+msgstr "チケット制約の編集"
+
+msgid "Create Ticket Constraint"
+msgstr "チケット制約の作成"
+
+msgid "Create User"
+msgstr "ユーザの作成"
+
+msgid "User created successfully"
+msgstr "ユーザが正常に作成されました"
+
+msgid "Edit User"
+msgstr "ユーザの編集"
+
+msgid "User updated successfully"
+msgstr "ユーザが正常に更新されました"
+
+#, fuzzy
+msgid "User deleted successfully"
+msgstr "ユーザが正常に作成されました"
+
+#, fuzzy
+msgid "Users"
+msgstr "ユーザ"
+
+msgid "The user does not exist"
+msgstr ""
+
+msgid "Cluster Setup Wizard"
+msgstr "クラスタセットアップウィザード"
+
+msgid "Invalid password"
+msgstr "無効なパスワード"
+
+msgid "Root Password"
+msgstr "ルートパスワード"
+
+msgid ""
+"The root password is required in order for this wizard template to make config"
+"uration changes."
+msgstr "このウィザードテンプレートで設定を変更するには、ルートパスワードが必要です。"
+
+msgid "The root password for this system"
+msgstr "このシステムのルートパスワード"
+
+msgid "\"Error: #{result}\""
+msgstr "「エラー: #{result}」"
+
+msgid "Parameters"
+msgstr "引数"
+
+msgid "Confirm"
+msgstr "確認"
+
+msgid "Done"
+msgstr "完了"
+
+msgid "Required parameter \"%{param}\" not specified"
+msgstr "必要なパラメータ「%{param}」が指定されていません"
+
+msgid "Permission denied - you do not have write access to the CIB."
+msgstr "許可が拒否されました - CIBに対する書き込みアクセスがありません。"
+
+msgid "Wizard templates and/or workflows are missing"
+msgstr "ウィザードのテンプレートおよびワークフローがありません"
+
+msgid "Workflow \"%s\" not found"
+msgstr "ワークフロー「%s」が見つかりませんでした"
+
+msgid "Error parsing template \"%s\""
+msgstr "テンプレート「%s」の解析中にエラーが発生しました"
+
+msgid "Error parsing workflow \"%s\""
+msgstr "ワークフロー「%s」の解析中にエラーが発生しました"
+
+msgid "Data collection in progress (%{from_time} to %{to_time})..."
+msgstr "データを収集中です(%{from_time} ～ %{to_time})..."
+
+#, fuzzy
+msgid "Revert"
+msgstr "リセット"
+
+msgid "Apply"
+msgstr ""
+
+#, fuzzy
+msgid "Create"
+msgstr "役割の作成"
+
+#, fuzzy
+msgid "Read"
+msgstr "準備完了"
+
+msgid "Write"
+msgstr ""
+
+msgid "Deny"
+msgstr ""
+
+msgid "CIB file \"%{path}\" not found"
+msgstr "CIBファイル「%{path}」が見つかりません"
+
+msgid "Unable to parse CIB file \"%{path}\""
+msgstr "CIBファイル「%{path}」を解析できません"
+
+msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
+msgstr "Pacemakerがインストールされていないと思われます(%{cmd} が見つかりません)"
+
+msgid "Unable to execute %{cmd}"
+msgstr "%{cmd} を実行できません"
+
+msgid "Error invoking %{cmd}"
+msgstr "%{cmd} の呼び出し中にエラーが発生しました"
+
+msgid "Unknown"
+msgstr "不明"
+
+msgid ""
+"Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%"
+"{op}, rc-code=%{rc_code}, exit-reason=%{exit_reason}"
+msgstr ""
+
+msgid "Invalid Resource ID \"%{id}\""
+msgstr "無効なリソースID「%{id}」"
+
+msgid "Unable to parse cibadmin output"
+msgstr "cibadminの出力を解析できません"
+
+msgid "No clone child specified"
+msgstr "クローンの子が指定されていません"
+
+msgid ""
+"Can't set meta attribute %{p}, because the value contains both single and doub"
+"le quotes"
+msgstr "メタ属性 %{p} を設定できません。値に一重引用符と二重引用符の両方が含まれているためです"
+
+msgid "The ID \"%{id}\" is already in use"
+msgstr "ID「%{id}」はすでに使用されています"
+
+msgid "Unable to create clone: %{msg}"
+msgstr "クローンを生成できません: %{msg}"
+
+msgid "Clone ID \"%{id}\" does not exist"
+msgstr "クローンID「%{id}」が存在しません"
+
+msgid "Invalid score"
+msgstr "無効なスコア"
+
+msgid "Constraint must consist of at least two separate resources"
+msgstr "制約は2つ以上の別のリソースから構成される必要があります"
+
+msgid "Unable to create constraint: %{msg}"
+msgstr "制約を作成できません: %{msg}"
+
+msgid "Constraint ID \"%{id}\" does not exist"
+msgstr "制約ID「%{id}」は存在しません"
+
+msgid "Unable to update constraint: %{msg}"
+msgstr "制約を更新できません: %{msg}"
+
+msgid "No group children specified"
+msgstr "グループの子が指定されていません"
+
+msgid "Unable to create group: %{msg}"
+msgstr "グループを作成できません: %{msg}"
+
+msgid "Group ID \"%{id}\" does not exist"
+msgstr "グループID「%{id}」は存在しません"
+
+msgid "Constraint is too complex - it contains nested rules"
+msgstr "制約が複雑すぎます。ネストしたルールが含まれています"
+
+msgid "No rules specified"
+msgstr "ルールが指定されていません"
+
+msgid "No resource specified"
+msgstr "リソースが指定されていません"
+
+msgid "Invalid score \"%{score}\""
+msgstr "無効なスコア「%{score}」"
+
+msgid "No expressions specified"
+msgstr "式が指定されていません"
+
+msgid "Attribute contains both single and double quotes"
+msgstr "属性に一重引用符と二重引用符の両方が含まれています"
+
+msgid "Value contains both single and double quotes"
+msgstr "値に一重引用符と二重引用符の両方が含まれています"
+
+msgid "No Master/Slave child specified"
+msgstr "マスタ/スレーブの子が指定されていません"
+
+msgid "Unable to create master/slave: %{msg}"
+msgstr "マスタ/スレーブを作成できません: %{msg}"
+
+msgid "Master/Slave ID \"%{id}\" does not exist"
+msgstr "マスタ/スレーブID「%{id}」が存在しません"
+
+msgid ""
+"Can't set parameter %{p}, because the value contains both single and double qu"
+"otes"
+msgstr "パラメータ %{p} を設定できません。値に一重引用符と二重引用符の両方が含まれているためです"
+
+msgid ""
+"Can't set op %{o} attribute {%a}, because the value contains both single and d"
+"ouble quotes"
+msgstr "操作 %{o} の属性 {%a} を設定できません。値に一重引用符と二重引用符の両方が含まれているためです"
+
+msgid "Unable to create resource: %{msg}"
+msgstr "リソースを作成できません: %{msg}"
+
+msgid "Resource ID \"%{id}\" does not exist"
+msgstr "リソースID「%{id}」が存在しません"
+
+#, fuzzy
+msgid "Unable to create: %{msg}"
+msgstr "役割を作成できません: %{msg}"
+
+#, fuzzy
+msgid "The ID \"%{id}\" does not exist"
+msgstr "役割ID「%{id}」は存在しません"
+
+#, fuzzy
+msgid "Unable to update: %{msg}"
+msgstr "役割を更新できません: %{msg}"
+
+msgid "Role ID is required"
+msgstr ""
+
+#, fuzzy
+msgid "Invalid Role ID"
+msgstr "無効なチケットID"
+
+msgid "Username not specified"
+msgstr "ユーザ名が指定されていません。"
+
+msgid "Invalid username"
+msgstr "無効なユーザ名"
+
+msgid "Password not specified"
+msgstr "パスワードが指定されていません"
+
+msgid "%s is not installed"
+msgstr "%s はインストールされていません。"
+
+#, fuzzy
+msgid "%s is not executable"
+msgstr "%s はインストールされていません。"
+
+msgid "Invalid username or password"
+msgstr "ユーザ名またはパスワードが無効です"
+
+msgid "Language is required"
+msgstr ""
+
+msgid "Invalid Ticket ID"
+msgstr "無効なチケットID"
+
+msgid "No resources specified"
+msgstr "リソースが指定されていません"
+
+msgid "User ID is required"
+msgstr ""
+
+#, fuzzy
+msgid "Invalid User ID"
+msgstr "無効なチケットID"
+
+msgid "Meta Attributes"
+msgstr "メタ属性"
+
+msgid "Add"
+msgstr "追加"
+
+msgid "Remove"
+msgstr "削除"
+
+msgid "You must enter a value"
+msgstr "値を入力してください"
+
+msgid "Clone ID"
+msgstr "クローンID"
+
+msgid "Child Resource"
+msgstr "子リソース"
+
+msgid "Revert Changes"
+msgstr "変更を元に戻す"
+
+msgid "Back"
+msgstr "戻る"
+
+msgid "Apply Changes"
+msgstr "変更の適用"
+
+msgid "Link set"
+msgstr "リンクセット"
+
+msgid "Break set"
+msgstr "ブレークの設定"
+
+msgid "Swap resources"
+msgstr "リソースのスワップ"
+
+msgid "Add resource to constraint"
+msgstr "リソースを制約に追加"
+
+msgid "Constraint ID"
+msgstr "制約ID"
+
+msgid "Score"
+msgstr "スコア"
+
+msgid "Create Constraint"
+msgstr "制約の作成"
+
+msgid "Edit Constraint"
+msgstr "制約の編集"
+
+msgid "Delete Constraint"
+msgstr "制約の削除"
+
+msgid "Are you sure you wish to delete %s?"
+msgstr "%s を削除してもよろしいですか?"
+
+msgid "New Constraint"
+msgstr "新規制約"
+
+msgid "Location"
+msgstr "場所"
+
+msgid "Colocation"
+msgstr "コロケーション"
+
+msgid "Order"
+msgstr "順序"
+
+msgid "Ticket"
+msgstr "チケット"
+
+msgid "(No location constraints defined)"
+msgstr "(場所の制約が定義されていません)"
+
+msgid "[Constraint is too complex to display]"
+msgstr "[制約が複雑すぎて表示できません]"
+
+msgid "(No colocation constraints defined)"
+msgstr "(コロケーションの制約が定義されていません)"
+
+msgid "(No order constraints defined)"
+msgstr "(順序の制約が定義されていません)"
+
+msgid "(No ticket constraints defined)"
+msgstr "(チケット制約が未定義です)"
+
+msgid "CRM Configuration"
+msgstr "CRMの環境設定"
+
+msgid "Resource Defaults"
+msgstr "リソースのデフォルト"
+
+msgid "Operation Defaults"
+msgstr "操作のデフォルト"
+
+msgid "No cluster properties set in %{group}"
+msgstr "クラスタプロパティが %{group} で設定されていません"
+
+msgid "Edit"
+msgstr "編集"
+
+msgid "Username:"
+msgstr "ユーザ名:"
+
+msgid "Password:"
+msgstr "パスワード:"
+
+msgid "Cluster has errors - click for details"
+msgstr "クラスタにエラーがあります - 詳細はクリックしてください"
+
+msgid "Timeout: Please try again"
+msgstr "タイムアウト: もう一度実行してください"
+
+msgid "Permission denied. Please log in to %{node}"
+msgstr "パーミッションが拒否されました。%{node} にログインしてください"
+
+#, fuzzy
+msgid "Geo Site %{ip}"
+msgstr "クローン設定: %{id}"
+
+msgid "Site: %{ip}"
+msgstr ""
+
+msgid "Arbitrator: %{ip}"
+msgstr ""
+
+msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
+msgstr "%{node} 上のHawkに接続できません。5秒ごとに再試行します。"
+
+msgid "Cluster Name:"
+msgstr "クラスタ名:"
+
+msgid "Host Name:"
+msgstr "ホスト名:"
+
+msgid ""
+"(Specify any host name in the cluster.  Other nodes will be found automaticall"
+"y)"
+msgstr "(クラスタ内のホスト名を指定します。その他のノードは自動的に検出されます)"
+
+msgid "Add Cluster"
+msgstr "クラスタの追加"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "A cluster with that name already exists"
+msgstr "その名前のクラスタは既に存在します"
+
+msgid "The host %{h} is already present in cluster %{c}"
+msgstr "ホスト %{h} は既にクラスタ %{c} に存在します"
+
+msgid ""
+"Unable to connect to %{host}. Try opening %{url} in your web browser to ensure"
+" Hawk is accessible."
+msgstr "%{host} に接続できません。Webブラウザで %{url} を開き、Hawkにアクセス可能なことを確認してみてください。"
+
+msgid "Cancel"
+msgstr "キャンセル"
+
+#, fuzzy
+msgid "Cluster"
+msgstr "クラスタの追加"
+
+msgid "STONITH Enabled"
+msgstr "STONITHが有効です"
+
+msgid "No Quorum Policy"
+msgstr "クォーラムなしポリシー"
+
+msgid "Symmetric Cluster"
+msgstr "対称クラスタ"
+
+msgid "Resource Stickiness"
+msgstr "リソースの固着性"
+
+msgid "Status"
+msgstr "状態"
+
+msgid "No transitions found for the specified time period."
+msgstr "指定された期間内で遷移がありません。"
+
+msgid "Time"
+msgstr "再生時間"
+
+msgid "PE Input"
+msgstr "PE入力"
+
+msgid "Node"
+msgstr "ノード"
+
+msgid "(full log)"
+msgstr "(ログ全体)"
+
+msgid "Graph"
+msgstr "図表"
+
+msgid "Diff"
+msgstr "Diff"
+
+msgid "Delete this history archive?"
+msgstr "この履歴アーカイブを削除しますか?"
+
+msgid "Start Time:"
+msgstr "開始時刻:"
+
+msgid "End Time:"
+msgstr "終了時刻:"
+
+msgid "Exploring %{path}"
+msgstr "%{path} を探索しています"
+
+msgid "Display"
+msgstr "ディスプレイ"
+
+msgid "Upload hb_report tarball"
+msgstr "hb_report tarballのアップロード"
+
+msgid "Explore"
+msgstr "探索"
+
+msgid "Error: Permission denied for user '%s'."
+msgstr "エラー:ユーザ「%s」のアクセス承認拒否。"
+
+msgid "Group ID"
+msgstr "グループID"
+
+msgid "Group Children"
+msgstr "グループの子"
+
+msgid "Available Primitives"
+msgstr "使用可能なプリミティブ"
+
+msgid "Start Time not specified"
+msgstr "開始時刻が指定されていません"
+
+msgid "Generate"
+msgstr "生成"
+
+msgid "hb_report generation in progress..."
+msgstr "hb_reportを生成しています..."
+
+msgid "Download hb_report"
+msgstr "hb_reportのダウンロード"
+
+#, fuzzy
+msgid "Please ensure Javascript is enabled"
+msgstr "JavaScriptが有効になっていることを確認してください"
+
+msgid "SUSE, LLC"
+msgstr ""
+
+msgid "High Availability Web Konsole"
+msgstr ""
+
+msgid "Role"
+msgstr "役割"
+
+msgid "Boolean Op"
+msgstr "ブール値処理"
+
+msgid "Expression"
+msgstr "表現"
+
+msgid "Add Rule"
+msgstr "ルールの追加"
+
+msgid "Remove Rule"
+msgstr "ルールを削除"
+
+msgid "Show Rule Editor"
+msgstr "ルールエディタの表示"
+
+msgid "Resource"
+msgstr "リソース"
+
+msgid "Fence Node"
+msgstr "フェンスノード"
+
+msgid "View Details..."
+msgstr "詳細の表示..."
+
+msgid "View Recent Events..."
+msgstr "最近のイベントを表示..."
+
+msgid "Start"
+msgstr "開始"
+
+msgid "Stop"
+msgstr "停止"
+
+msgid "Move..."
+msgstr "移動..."
+
+msgid "Drop Relocation Rule"
+msgstr "再配置ルールを無視"
+
+msgid "Promote"
+msgstr "昇格"
+
+msgid "Demote"
+msgstr "降格"
+
+msgid "Clean Up"
+msgstr "クリーンアップ"
+
+msgid "Grant"
+msgstr "許可"
+
+msgid "Revoke"
+msgstr "取り消し"
+
+msgid "Master/Slave ID"
+msgstr "マスタ/スレーブID"
+
+msgid "Getting recent events (last hour)..."
+msgstr "最近のイベントを取得しています(最終時間)..."
+
+msgid "Another \"crm history\" operation is in progress..."
+msgstr "別の「crm history」処理が進行中です..."
+
+msgid "No events found in last hour."
+msgstr "最後の時間にイベントが見つかりませんでした。"
+
+msgid "Utilization"
+msgstr "利用率"
+
+msgid "No utilization defined"
+msgstr "利用率が定義されていません"
+
+msgid "Attributes"
+msgstr "属性"
+
+msgid "No attributes defined"
+msgstr "属性が定義されていません"
+
+msgid "Symmetrical"
+msgstr "対称的"
+
+msgid "Close"
+msgstr "閉じる"
+
+msgid "HTML"
+msgstr ""
+
+msgid "PDF"
+msgstr ""
+
+msgid "There is already a monitor op with this interval."
+msgstr "この間隔ですでにモニタ処理があります。"
+
+msgid "Resource ID"
+msgstr "リソースID"
+
+msgid "Template ID"
+msgstr "テンプレートID"
+
+msgid "Class"
+msgstr "クラス"
+
+msgid "Provider"
+msgstr "プロバイダ"
+
+msgid "Type"
+msgstr "種類"
+
+msgid "Use Template"
+msgstr "テンプレートの使用"
+
+msgid "Edit Resource"
+msgstr "リソースの編集"
+
+msgid "Delete Resource"
+msgstr "リソースの削除"
+
+msgid "New Resource"
+msgstr "新規リソース"
+
+msgid "Primitive"
+msgstr "プリミティブ"
+
+msgid "New Template"
+msgstr "新規テンプレート"
+
+msgid "Template"
+msgstr "テンプレート"
+
+msgid "New Group"
+msgstr "新しいグループ"
+
+msgid "Group"
+msgstr "グループ"
+
+msgid "New Clone"
+msgstr "新規クローン"
+
+msgid "Clone"
+msgstr "クローン"
+
+msgid "New Master/Slave"
+msgstr "新規マスタ/スレーブ"
+
+msgid "Master/Slave"
+msgstr "マスタ/スレーブ"
+
+msgid "(No primitive resources defined)"
+msgstr "(プリミティブリソースが未定義です)"
+
+msgid "(No templates defined)"
+msgstr "(テンプレートが未定義です)"
+
+msgid "(No groups defined)"
+msgstr "(グループが未定義です)"
+
+msgid "(No clones defined)"
+msgstr "(クローンが未定義です)"
+
+msgid "(No master/slave resources defined)"
+msgstr "(マスタ/スレーブリソースが未定義です)"
+
+msgid "Fail Count"
+msgstr "失敗数"
+
+msgid "Last Failure"
+msgstr "最後のエラー"
+
+#, fuzzy
+msgid "Rule"
+msgstr "役割"
+
+msgid "Add a rule below"
+msgstr ""
+
+#, fuzzy
+msgid "Remove this rule"
+msgstr "ルールを削除"
+
+#, fuzzy
+msgid "Move rule up"
+msgstr "リソース %s の移動"
+
+msgid "Move rule down"
+msgstr ""
+
+msgid "Right"
+msgstr "右"
+
+msgid "XPath"
+msgstr "XPath"
+
+msgid "Tag"
+msgstr "タグ"
+
+msgid "Ref"
+msgstr "参照"
+
+msgid "Attribute"
+msgstr "属性"
+
+#, fuzzy
+msgid "Delete role"
+msgstr "リソースの削除"
+
+#, fuzzy
+msgid "Add role"
+msgstr "ルールの追加"
+
+msgid ""
+"ACL support requires CIB schema version 2.0, available in Pacemaker 1.1.12 and"
+" up. For older versions of Pacemaker, use Hawk version 0.6."
+msgstr ""
+
+#, fuzzy
+msgid "Username"
+msgstr "ユーザ名:"
+
+#, fuzzy
+msgid "Password"
+msgstr "パスワード:"
+
+#, fuzzy
+msgid "Login"
+msgstr "ログイン"
+
+msgid "Loss Policy"
+msgstr "損失ポリシー"
+
+#, fuzzy
+msgid "Delete user"
+msgstr "リソースの削除"
+
+#, fuzzy
+msgid "Add user"
+msgstr "クラスタの追加"
+
 msgid "%{workflow}: %{step}"
 msgstr "%{workflow}: %{step}"
 
-#: ../app/views/wizard/done.html.erb:5
 msgid "The configuration has been applied."
 msgstr "環境設定が適用されました。"
 
-#: ../app/views/wizard/run.html.erb:75
 msgid "The following configuration will be applied to the cluster:"
 msgstr "以下の環境設定がクラスタに適用されます:"
 
-#: ../app/views/wizard/run.html.erb:100
 msgid "Error applying configuration:"
 msgstr "環境設定を適用する際にエラーが発生しました:"
 
-#: ../app/views/wizard/run.html.erb:118
 msgid "< Back"
 msgstr "< 戻る"
 
-#: ../app/views/wizard/run.html.erb:119 ../app/views/wizard/start.html.erb:45
 msgid "Next >"
 msgstr "次へ >"
 
-#: ../app/views/wizard/start.html.erb:2
 msgid "No workflow descriptions found"
 msgstr "ワークフローの説明が見つかりません"
 
-#: ../app/views/wizard/start.html.erb:24
 msgid "Choose Configuration"
 msgstr "環境設定の選択"
 
-#: ../app/views/wizard/start.html.erb:28
-msgid "This wizard will guide you through the steps necessary to add one of the following configurations to the cluster."
+msgid ""
+"This wizard will guide you through the steps necessary to add one of the follo"
+"wing configurations to the cluster."
 msgstr "このウィザードでは、クラスタへの次の環境設定の1つを追加するために必要な手順を案内します。"
 
-#: ../lib/invoker.rb:131
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "オブジェクト/属性が存在しません(cibadmin %{cmd})"
 
-#: ../lib/invoker.rb:135
 msgid "Error invoking cibadmin %{cmd}: %{msg}"
 msgstr "cibadmin %{cmd} の呼び出しエラー: %{msg}"
 
-#: ../lib/invoker.rb:153
 msgid "The object/attribute does not exist: %{msg}"
 msgstr "オブジェクト/属性が存在しません: %{msg}"
 
-#: ../lib/invoker.rb:157
 msgid "Error invoking cibadmin --replace: %{msg}"
 msgstr "cibadmin --replaceの呼び出しエラー: %{msg}"

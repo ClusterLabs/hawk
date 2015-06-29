@@ -4,7 +4,7 @@
 #            A web-based GUI for managing and monitoring the
 #          Pacemaker High-Availability cluster resource manager
 #
-# Copyright (c) 2011-2013 SUSE LLC, All Rights Reserved.
+# Copyright (c) 2009-2015 SUSE LLC, All Rights Reserved.
 #
 # Author: Tim Serong <tserong@suse.com>
 #
@@ -30,6 +30,7 @@
 #======================================================================
 
 # Shim to get similar behaviour as ActiveRecord
+require 'rexml/document'
 
 class CibObject
   # Thank you http://stackoverflow.com/questions/9138706/undefined-method-model-name-in-rails-3
@@ -49,6 +50,9 @@ class CibObject
   end
 
   class PermissionDenied < CibObjectError
+  end
+
+  class NotAuthenticated < CibObjectError
   end
 
   # Need this to behave like an instance of ActiveRecord
@@ -136,6 +140,9 @@ class CibObject
       rescue SecurityError => e
         raise CibObject::PermissionDenied, e.message
       rescue NotFoundError => e
+        # No objects of this type, this is fine - return empty array
+        []
+      rescue RecordNotFound => e
         # No objects of this type, this is fine - return empty array
         []
       rescue RuntimeError => e

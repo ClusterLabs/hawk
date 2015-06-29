@@ -1,0 +1,25 @@
+!!!
+
+%html{ lang: I18n.locale.to_s.gsub("-", "_") }
+  = render partial: "shared/header"
+
+  %body{ **body_attrs }
+    .navbar.navbar-fixed-top.navbar-inverse{ role: "navigation" }
+      .container-fluid{ stye: "white-space: nobreak;" }
+        .navbar-header
+          = link_to image_tag("head/white.png"), root_path, class: "navbar-brand"
+
+        #navbar.navbar-right
+          = render partial: "shared/usernav"
+
+    .container-fluid
+      .row.row-offcanvas.row-offcanvas-left
+        #sidebar.col-xs-6.col-sm-4.col-md-4.col-lg-3.sidebar-offcanvas
+          = render partial: "shared/mainnav"
+
+        #middle.col-xs-12.col-sm-8.col-md-8.col-lg-9
+          = render partial: "shared/flash", locals: { flash: flash }
+          = yield
+
+    = render partial: "shared/footer"
+    = render partial: "shared/modal"
