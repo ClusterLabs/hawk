@@ -105,6 +105,7 @@ Rails.application.routes.draw do
     resources :templates
     resources :roles
     resources :users
+    resources :tags
 
     resource :profile, only: [:edit, :update]
     resource :crm_config, only: [:edit, :update]

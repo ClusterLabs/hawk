@@ -42,6 +42,7 @@
 //= require module/masters
 //= require module/clones
 //= require module/groups
+//= require module/tags
 //= require module/locations
 //= require module/colocations
 //= require module/orders

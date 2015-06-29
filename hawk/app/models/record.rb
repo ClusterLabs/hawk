@@ -69,7 +69,7 @@ class Record < Tableless
           Invoker.instance.cibadmin(
             '-Ql',
             '--xpath',
-            "//configuration//*[self::node or self::primitive or self::template or self::clone or self::group or self::master or self::rsc_order or self::rsc_colocation or self::rsc_location or self::rsc_ticket or self::acl_role or self::acl_target][@#{attr}='#{id}']"
+            "//configuration//*[self::node or self::primitive or self::template or self::clone or self::group or self::master or self::rsc_order or self::rsc_colocation or self::rsc_location or self::rsc_ticket or self::acl_role or self::acl_target or self::tag][@#{attr}='#{id}']"
           )
         )
 
@@ -185,7 +185,8 @@ class Record < Tableless
         rsc_location: Location,
         rsc_ticket: Ticket,
         acl_role: Role,
-        acl_target: User
+        acl_target: User,
+        tag: Tag
       }
 
       @map[name.to_sym]
