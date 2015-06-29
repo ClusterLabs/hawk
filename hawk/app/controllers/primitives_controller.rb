@@ -154,6 +154,15 @@ class PrimitivesController < ApplicationController
     end
   end
 
+  def options
+    respond_to do |format|
+      format.json do
+        render json: Primitive.options.to_json
+      end
+      format.any { not_found  }
+    end
+  end
+
   protected
 
   def set_title
@@ -189,5 +198,18 @@ class PrimitivesController < ApplicationController
     else
       super
     end
+  end
+
+  def provider_params
+    params.permit(
+      :clazz
+    )
+  end
+
+  def type_params
+    params.permit(
+      :clazz,
+      :provider
+    )
   end
 end

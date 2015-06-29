@@ -74,8 +74,7 @@ Rails.application.routes.draw do
       end
 
       collection do
-        get :types
-        get :metadata
+        get :options
       end
     end
 

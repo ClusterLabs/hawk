@@ -54,6 +54,10 @@ class Template < Record
     false
   end
 
+  def options
+    self.class.options
+  end
+
   class << self
     def instantiate(xml)
       record = allocate
@@ -116,50 +120,66 @@ class Template < Record
       :template
     end
 
+    def options
+      PerRequestCache.fetch(:template_options) do
+        {}.tap do |result|
+          clazzes = %x[/usr/sbin/crm ra classes].split(/\n/)
+          clazzes.delete("heartbeat") unless File.exists?("/etc/ha.d/resource.d")
 
+          clazzes.each do |clazz|
 
+            if match = clazz.match("(.*)/(.*)")
+              clazz = match[1].strip
 
+              result[clazz] ||= {}
+              result[clazz][""] = types(
+                clazz: clazz
+              )
 
+              providers = match[2].strip.split(" ").sort do |a, b|
+                a.natcmp(b, true)
+              end
 
-
-
-
-
-
-    def classes_and_providers
-      PerRequestCache.fetch(:ra_classes_and_providers) {
-        cp = {
-          :r_classes   => [],
-          :r_providers => {}
-        }
-        all_classes = %x[/usr/sbin/crm ra classes].split(/\n/).sort {|a,b| a.natcmp(b, true)}
-        # Cheap hack to get rid of heartbeat class if there"s no RAs of that type present
-        all_classes.delete("heartbeat") unless File.exists?("/etc/ha.d/resource.d")
-        all_classes.each do |c|
-          if m = c.match("(.*)/(.*)")
-            c = m[1].strip
-            cp[:r_providers][c] = m[2].strip.split(" ").sort {|a,b| a.natcmp(b, true)}
+              providers.each do |provider|
+                result[clazz][provider] = types(
+                  clazz: clazz,
+                  provider: provider
+                )
+              end
+            else
+              result[clazz] ||= {}
+              result[clazz][""] = types(
+                clazz: clazz
+              )
+            end
           end
-          cp[:r_classes].push c
         end
-        cp
-      }
+      end
     end
 
-    def types(c, p="")
-      # TODO(should): Optimally this would be saved to a static variable,
-      # e.g.: "@@r_types ||= Util.safe_x(...)", except that this lives for
-      # the entire life of Hawk when run under lighttpd, which has two
-      # problems:
-      # 1) Unless we save it per-class-provider (@@r_types[c][p] ||= ...)
-      #    it"s impossible to get the RA list for any combination of c/p
-      #    except for the first time we call the function.
-      # 2) Even if we fixed that, if a new RA is installed, Hawk still
-      #    shows the old list.
-      # This suggests the need for some sort of expiring cache of RAs,
-      # which is a performance optimization we can worry about later...
-      Util.safe_x("/usr/sbin/crm", "ra", "list", c, p).split(/\s+/).sort {|a,b| a.natcmp(b, true)}
+    def types(params = {})
+      cmd = [].tap do |cmd|
+        cmd.push "/usr/sbin/crm"
+        cmd.push "ra"
+        cmd.push "list"
+
+        if params[:clazz]
+          cmd.push params[:clazz]
+        end
+
+        if params[:provider]
+          cmd.push params[:provider]
+        end
+      end
+
+      Util.safe_x(*cmd).split(/\s+/).sort do |a, b|
+        a.natcmp(b, true)
+      end
     end
+
+
+
+
 
     def metadata(c, p, t)
       m = {

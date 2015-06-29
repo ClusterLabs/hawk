@@ -30,31 +30,89 @@
 #======================================================================
 
 module PrimitivesHelper
-  def is_template?
-    controller.controller_name == "templates"
-  end
-
-  def id_prefix
-    is_template? ? "template" : "primitive"
-  end
-
-  # The view calls Primitive.types to get a list of types for the current
-  # class and provider.  When creating a new primitive for the first time,
-  # the resource defaults to r_class=ocf, but r_provider='' (see comment in
-  # Primitive model for why).  If we call Primitive.types with an empty
-  # provider, it will return all available resource types of *all* classes.
-  # We don't want that - we only want the types for whatever the default
-  # provider is, as it appears in the provider drop-down list.  So here,
-  # if r_provider is empty, but there *are* available providers for r_class,
-  # we return the first provider (this is passed to Primitive.types in the
-  # view)
-  def default_provider
-    if !@res.r_provider.empty?
-      @res.r_provider
-    elsif Primitive.classes_and_providers[:r_providers].has_key?(@res.r_class)
-      Primitive.classes_and_providers[:r_providers][@res.r_class][0]
-    else
-      ''
+  def primitive_template_options(selected)
+    options = Template.ordered.map do |template|
+      [
+        template.id,
+        template.id,
+        data: {
+          clazz: template.clazz,
+          provider: template.provider,
+          type: template.type
+        }
+      ]
     end
+
+    options_for_select(
+      options,
+      selected
+    )
+  end
+
+  def primitive_clazz_options(selected)
+    options = [].tap do |result|
+      Template.options.each do |clazz, providers|
+        next if clazz.empty?
+
+        result.push [
+          clazz,
+          clazz
+        ]
+      end
+    end
+
+    options_for_select(
+      options,
+      selected
+    )
+  end
+
+  def primitive_provider_options(selected)
+    options = [].tap do |result|
+      Template.options.each do |clazz, providers|
+        providers.each do |provider, types|
+          next if provider.empty?
+
+          result.push [
+            provider,
+            provider,
+            data: {
+              clazz: clazz
+            }
+          ]
+        end
+      end
+    end
+
+    options_for_select(
+      options,
+      selected
+    )
+  end
+
+  def primitive_type_options(selected)
+    options = [].tap do |result|
+      Template.options.each do |clazz, providers|
+        providers.each do |provider, types|
+          types.each do |type|
+            next if type.empty?
+
+            result.push [
+              type,
+              type,
+              data: {
+                clazz: clazz,
+                provider: provider
+              }
+            ]
+          end
+        end
+      end
+    end
+
+    options_for_select(
+      options,
+      selected
+    )
   end
 end
