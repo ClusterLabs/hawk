@@ -5,6 +5,31 @@
 
 var dashboardAddCluster = (function() {
 
+    var GETTEXT = {
+        error: function() {
+            return __('Error');
+        },
+        err_unexpected: function(msg) {
+            return __('Unexpected server error: _MSG_').replace('_MSG_', msg);
+        },
+        err_conn_failed: function() {
+            return __('Connection to server failed (server down or network error - will retry every 15 seconds).');
+        },
+        err_conn_timeout: function() {
+            return __('Connection to server timed out - will retry every 15 seconds.');
+        },
+        err_conn_aborted: function() {
+            return __('Connection to server aborted - will retry every 15 seconds.');
+        },
+        err_denied: function() {
+            return __('Permission denied');
+        },
+        err_failed_op: function(op, node, rc, reason) {
+            return __('%{op} failed on _NODE_} (rc=_RC_, reason=_REASON_)').replace('_OP_', op).replace('_NODE_', node).replace('_RC_', rc).replace('_REASON_', reason);
+        }
+    };
+
+
     var newClusterId = (function() {
         var id=0;
         return function() {
@@ -53,13 +78,58 @@ var dashboardAddCluster = (function() {
         } else {
             indicator(clusterId, "error");
         }
-        
+
         var tag = $('#' + clusterId + ' div.panel-body');
         console.log(cib);
 
-        tag.html('<div class="text-center"><div class="circle circle-large ' +
+        cib.errors.forEach(function(err) {
+            $.growl({
+                message: err.msg
+            }, {
+                type: 'danger'
+            });
+        });
+
+        if (cib.meta.status == "maintenance") {
+            $('#' + clusterId).removeClass('panel-warning').addClass('panel-danger');
+        } else if (cib.meta.status == "errors") {
+            $('#' + clusterId).removeClass('panel-danger').addClass('panel-warning');
+        } else {
+            $('#' + clusterId).removeClass('panel-warning panel-danger');
+        }
+
+        var circle = '<div class="pull-right text-center"><div class="circle circle-large ' +
                  status_class_for(cib.meta.status) + '">' +
-                 status_icon_for(cib.meta.status) + '</div></div>');
+            status_icon_for(cib.meta.status) + '</div></div>';
+
+        var text = "";
+
+        text += circle;
+        text += '<ul>';
+        text += '<li>Host: ' + cib.meta.host + '</li>';
+        text += '<li>DC: ' + cib.meta.dc + '</li>';
+        text += '<li>Nodes: ' + cib.nodes.length + '</li>';
+        text += '<li>Resources: ' + cib.resources.length + '</li>';
+        text += '</ul>';
+
+        tag.html(text);
+    }
+
+    function clusterConnectionError(clusterId, msg) {
+        indicator(clusterId, "error");
+        $('#' + clusterId).removeClass('panel-warning').addClass('panel-danger');
+        var tag = $('#' + clusterId + ' div.panel-body');
+        console.log(msg);
+        tag.html(msg);
+    }
+
+    function json_from_request(request) {
+        try {
+            return $.parseJSON(request.responseText);
+        } catch (e) {
+            // This'll happen if the JSON is malformed somehow
+            return null;
+        }
     }
 
     function clusterRefresh(clusterId, clusterInfo) {
@@ -77,12 +147,37 @@ var dashboardAddCluster = (function() {
                          displayClusterStatus(clusterId, data);
                          setTimeout(function() { clusterRefresh(clusterId, clusterInfo); }, clusterInfo.interval*1000);
                      },
-                     error: function(request) {
-                         indicator(clusterId, "error");
-                         var tag = $('#' + clusterId + ' div.panel-body');
-                         console.log(request);
-                         tag.html(__('Error connecting to cluster'));
-                         setTimeout(function() { clusterRefresh(clusterId, clusterInfo); }, 5000);
+                     error: function(xhr, status, error) {
+                         var msg = "";
+                         if (xhr.readyState > 1) {
+                             if (xhr.status == 403) {
+                                 msg = __('Permission denied.');
+                             } else {
+                                 var json = json_from_request(xhr);
+                                 if (json && json.errors) {
+                                     msg = json.errors.join(", ");
+                                 } else if (xhr.status >= 10000) {
+                                     msg = GETTEXT.err_conn_failed();
+                                 } else {
+                                     msg = GETTEXT.err_unexpected(xhr.status + " " + xhr.statusText);
+                                 }
+                             }
+                         } else if (status == "error") {
+                             msg = __("Error connecting to server.");
+                         } else if (status == "timeout") {
+                             msg = __("Connection to server timed out.");
+                         } else if (status == "abort") {
+                             msg = __("Connection to server was aborted.");
+                         } else if (status == "parsererror") {
+                             msg = __("Server returned invalid data.");
+                         } else if (error) {
+                             msg = error;
+                         } else {
+                             msg = __("Unknown error connecting to server.");
+                         }
+
+                         clusterConnectionError(clusterId, msg);
+                         setTimeout(function() { clusterRefresh(clusterId, clusterInfo); }, 15000);
                      }
                    });
         } else {
@@ -92,7 +187,7 @@ var dashboardAddCluster = (function() {
 
     return function(data) {
         var clusterId = newClusterId();
-        var title = data.name || __("Local");
+        var title = data.name || __("Local Status");
         var s_hostname = __('Hostname');
         var s_username = __('Username');
         var s_password = __('Password');
