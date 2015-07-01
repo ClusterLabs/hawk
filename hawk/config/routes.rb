@@ -34,7 +34,7 @@ Rails.application.routes.draw do
 
   resources :cib, only: [:show] do
     member do
-      get :mini, action: "show", mini: true
+      get 'mini', action: "show"
     end
 
     resources :nodes do

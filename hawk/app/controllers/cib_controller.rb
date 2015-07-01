@@ -44,7 +44,7 @@ class CibController < ApplicationController
       errors: @cib.errors,
       booth: @cib.booth
     }.tap do |result|
-      if params[:mini]
+      if params[:id] == 'mini'
         result[:resources] = {}
 
         result[:resource_states] = {
