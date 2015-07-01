@@ -1,7 +1,18 @@
-.container-fluid
-  %h1
-    = icon_text "dashboard", _("Dashboard"), class: "page"
+= content_for :stylesheets do
+  = stylesheet_link_tag :"dashboard"
+= content_for :javascripts do
+  = javascript_include_tag "dashboard"
 
-  .panel.panel-default
-    .panel-body
-      TBD
+.container-fluid
+  .row
+    %h1
+      = icon_text "dashboard", _("Dashboard"), class: "page"
+      .pull-right
+        .btn-group{ role: "group" }
+          = link_to icon_text("plus", _("Add Cluster")), add_dashboard_path, class: "btn btn-default", data: {toggle: "modal", target: "#modal" }
+          
+  #clusters.row
+  -# passing null as name and host means to fetch local cluster information
+  :javascript
+    dashboardAddCluster({"name":null, "host":null, "interval":10});
+    #{javascript_for_clusters @clusters}

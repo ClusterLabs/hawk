@@ -1,0 +1,22 @@
+- if request.xhr?
+  = form_for @cluster, url: {action: "add"}, horizontal: true do |f|
+    = errors_for @cluster
+
+    .modal-header
+      %button.close{ type: "button", data: { dismiss: "modal" } }
+        %span{ aria: { hidden: "true" } }
+          &times;
+        %span.sr-only
+          = _("Close")
+
+      %h3.modal-title
+        = icon_text "server", _("Add Cluster"), class: "page"
+
+    .modal-body
+      = f.text_field :name, placeholder: _("West Coast (example)"), label: _("Cluster name")
+      = f.text_field :host, placeholder: _("node1.west.example.com"), label: _("Hostname of node in cluster")
+      = f.text_field :interval, placeholder: _("30"), label: _("Update interval (seconds)")
+
+    .modal-footer
+      = button_tag(:class => "btn btn-primary") do
+        = icon_text("plus", _("Add"))

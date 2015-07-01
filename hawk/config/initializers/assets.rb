@@ -37,6 +37,7 @@ Rails.application.config.tap do |config|
     /gettext\.(css|js)$/,
     /application\.(css|js)$/,
     /authentication\.(css|js)$/,
+    /dashboard.(css|js)$/,
     /ie\.(css|js)$/,
     /vendor\.(css|js)$/,
     /\.(jpg|png|gif|svg|ico|eot|woff|ttf)$/

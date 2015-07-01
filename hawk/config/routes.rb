@@ -110,7 +110,6 @@ Rails.application.routes.draw do
     resource :profile, only: [:edit, :update]
     resource :crm_config, only: [:edit, :update]
 
-    resource :dashboard, only: [:show]
     resource :state, only: [:show]
 
     resource :checks, only: [] do
@@ -143,6 +142,14 @@ Rails.application.routes.draw do
   resource :simulator do
     member do
       get :reset
+    end
+  end
+
+  resource :dashboard, only: [:show, :add, :remove] do
+    member do
+      get :add
+      post :add
+      post :remove
     end
   end
 

@@ -1,0 +1,21 @@
+!!!
+
+%html{ lang: I18n.locale.to_s.gsub("-", "_") }
+  = render partial: "shared/header"
+
+  %body{ **body_attrs }
+    .navbar.navbar-fixed-top.navbar-inverse{ role: "navigation" }
+      .container-fluid{ style: "white-space: nobreak;" }
+        .navbar-header
+          = link_to image_tag("head/white.png"), root_path, class: "navbar-brand"
+
+        #navbar.navbar-right
+          = render partial: "shared/usernav"
+
+    .container-fluid
+      #middle
+        = render partial: "shared/flash", locals: { flash: flash }
+        = yield
+
+    = render partial: "shared/footer"
+    = render partial: "shared/modal"
