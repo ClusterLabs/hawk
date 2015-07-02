@@ -44,8 +44,9 @@ class DashboardsController < ApplicationController
       Rails.logger.debug "Creating from #{params[:cluster]}"
       @cluster = Cluster.new params[:cluster]
       if @cluster.save
-        flash[:success] = _("Cluster added successfully")
-        redirect_to action: "show"
+      # flash[:success] = _("Cluster added successfully")
+      # redirect_to action: "show"
+        render json: @cluster.to_hash
       else
         render json: @cluster.errors, status: :unprocessable_entity
       end
@@ -59,8 +60,7 @@ class DashboardsController < ApplicationController
     if request.post?
       name = params[:name]
       if Cluster.remove(name)
-        flash[:success] = _("Cluster removed successfully")
-        redirect_to action: "show"
+        render json: {"name" => name }
       else
         render json: { error: _("Error removing %s") % name }, status: :unprocessable_entity
       end

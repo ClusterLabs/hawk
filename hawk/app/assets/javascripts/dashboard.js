@@ -80,7 +80,6 @@ var dashboardAddCluster = (function() {
         }
 
         var tag = $('#' + clusterId + ' div.panel-body');
-        console.log(cib);
 
         cib.errors.forEach(function(err) {
             $.growl({
@@ -126,7 +125,7 @@ var dashboardAddCluster = (function() {
         tag.html(text);
     }
 
-    function clusterConnectionError(clusterId, xhr, status, error) {
+    function clusterConnectionError(clusterId, clusterInfo, xhr, status, error, cb) {
         var msg = "";
         if (xhr.readyState > 1) {
             if (xhr.status == 403) {
@@ -158,8 +157,30 @@ var dashboardAddCluster = (function() {
         indicator(clusterId, "error");
         $('#' + clusterId).removeClass('panel-warning').addClass('panel-danger');
         var tag = $('#' + clusterId + ' div.panel-body');
-        console.log(msg);
-        tag.html(msg);
+
+        var text = '<div class="alert alert-danger">';
+        text += msg;
+        text += "</div>";
+
+        text += '<button type="button" class="btn btn-primary" aria-label="Cancel">' + __('Cancel') + '</button>';
+
+        tag.html(text);
+
+        var next = window.setTimeout(cb, 15000);
+
+        tag.find('.btn-primary').click(function() {
+            window.clearTimeout(next);
+            tag.html(basicCreateBody(clusterId, clusterInfo));
+
+            if (clusterInfo.host == null) {
+                clusterRefresh(clusterId, clusterInfo);
+            } else {
+                tag.find(".btn-success").click(function() {
+                    startRemoteConnect(clusterId, clusterInfo, tag);
+                });
+            }
+        });
+
     }
 
     function json_from_request(request) {
@@ -183,11 +204,12 @@ var dashboardAddCluster = (function() {
                      timeout: 30000,
                      success: function(data) {
                          displayClusterStatus(clusterId, data);
-                         setTimeout(function() { clusterRefresh(clusterId, clusterInfo); }, clusterInfo.interval*1000);
+                         window.setTimeout(function() { clusterRefresh(clusterId, clusterInfo); }, clusterInfo.interval*1000);
                      },
                      error: function(xhr, status, error) {
-                         clusterConnectionError(clusterId, xhr, status, error);
-                         setTimeout(function() { clusterRefresh(clusterId, clusterInfo); }, 15000);
+                         clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
+                             clusterRefresh(clusterId, clusterInfo);
+                         });
                      }
                    });
         } else {
@@ -201,11 +223,12 @@ var dashboardAddCluster = (function() {
                      cross_domain_hack: true,
                      success: function(data) {
                          displayClusterStatus(clusterId, data);
-                         setTimeout(function() { clusterRefresh(clusterId, clusterInfo); }, clusterInfo.interval*1000);
+                         window.setTimeout(function() { clusterRefresh(clusterId, clusterInfo); }, clusterInfo.interval*1000);
                      },
                      error: function(xhr, status, error) {
-                         clusterConnectionError(clusterId, xhr, status, error);
-                         setTimeout(function() { clusterRefresh(clusterId, clusterInfo); }, 15000);
+                         clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
+                             clusterRefresh(clusterId, clusterInfo);
+                         });
                      }
                    });
         }
@@ -216,27 +239,27 @@ var dashboardAddCluster = (function() {
 
         var username = escape(bodytag.find("input[name=username]").val());
         var password = escape(bodytag.find("input[name=password]").val());
-        
+
         var transport = clusterInfo.https ? "https" : "http";
         $.ajax({ url: transport + "://" + clusterInfo.host + ":" + clusterInfo.port + "/login.json",
                  timeout: 30000,
-                 data: "username=" + username + "&password=" + password,
                  dataType: "json",
+                 contentType: 'application/json',
+                 data: JSON.stringify({"session": {"username": username, "password": password } }),
                  type: "POST",
                  cross_domain_hack: true,
                  success: function(data) {
                      clusterRefresh(clusterId, clusterInfo);
                  },
                  error: function(xhr, status, error) {
-                     clusterConnectionError(clusterId, xhr, status, error);
-                     setTimeout(function() { startRemoteConnect(clusterId, clusterInfo, bodytag); }, 15000);
+                     clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
+                         startRemoteConnect(clusterId, clusterInfo, bodytag);
+                     });
                  }
                });
     }
-    
-    return function(data) {
-        var clusterId = newClusterId();
-        var title = data.name || __("Local Status");
+
+    function basicCreateBody(clusterId, data) {
         var s_hostname = __('Hostname');
         var s_username = __('Username');
         var s_password = __('Password');
@@ -266,6 +289,15 @@ var dashboardAddCluster = (function() {
                 '</div>' +
                 '</form>';
         }
+        return content;
+    }
+
+    return function(data) {
+        var clusterId = newClusterId();
+        var title = data.name || __("Local Status");
+
+        var content = basicCreateBody(clusterId, data);
+
         var text = '<div class="col-md-6">' +
             '<div id="' +
             clusterId +
@@ -275,12 +307,10 @@ var dashboardAddCluster = (function() {
             '<span id="refresh"></span> ' +
             title;
         if (data.host != null) {
-            var s_remove = __('Remove cluster from dashboard?');
-            var remove_path = Routes.remove_dashboard_path({name: data.name});
+            var s_remove = __('Remove cluster _NAME_ from dashboard?').replace('_NAME_', data.name);
             text = text +
-                '<form method="post" action="' + remove_path + '" class="button_to pull-right">' +
-                '<input type="hidden" name="_method" value="remove" />' +
-                '<input name="authenticity_token" type="hidden" value="token_value"/>' +
+                '<form action="/dashboard/remove" method="post" accept-charset="UTF-8" data-remote="true" class="pull-right">' +
+                '<input type="hidden" name="name" value="' + escape(data.name) + '">' +
                 '<button type="submit" class="close" onclick="' +
                 "return confirm('" + s_remove + "');" +
                 '" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
@@ -299,15 +329,80 @@ var dashboardAddCluster = (function() {
         if (data.host == null) {
             clusterRefresh(clusterId, data);
         } else {
+            var close = $("#" + clusterId).find(".panel-title form");
+            close.on("ajax:success", function(e, data) {
+                $("#" + clusterId).remove();
+                $.growl({ message: __('Cluster removed successfully.')}, {type: 'success'});
+            });
+            close.on("ajax:error", function(e, xhr, status, error) {
+                $.growl({ message: __('Failed to remove cluster.')}, {type: 'danger'});
+            });
             var body = $("#" + clusterId).find(".panel-body");
             body.find(".btn-success").click(function() {
-                console.log("submit clicked", clusterId, data, body);
                 startRemoteConnect(clusterId, data, body);
             });
-            console.log("trying to attach...", clusterId, data, body);
         }
     };
 })();
+
+var dashboardSetupAddClusterForm = function() {
+    $('form').find('span.toggleable').on('click', function (e) {
+        if ($(this).hasClass('collapsed')) {
+            $(this)
+                .removeClass('collapsed')
+                .parents('fieldset')
+                .find('.content')
+                .slideDown();
+
+            $(this)
+                .find('i')
+                .removeClass('fa-chevron-down')
+                .addClass('fa-chevron-up');
+        } else {
+            $(this)
+                .addClass('collapsed')
+                .parents('fieldset')
+                .find('.content')
+                .slideUp();
+
+            $(this)
+                .find('i')
+                .removeClass('fa-chevron-up')
+                .addClass('fa-chevron-down');
+        }
+    });
+    $('form').on("ajax:success", function(e, data, status, xhr) {
+        $('#modal').modal('hide');
+        $('.modal-content').html('');
+        dashboardAddCluster(data);
+        $.growl({ message: __('Cluster added successfully.')}, {type: 'success'});
+    }).on("ajax:error", function(e, xhr, status, error) {
+        $(e.data).render_form_errors( $.parseJSON(xhr.responseText) );
+    });
+
+    (function($) {
+
+        $.fn.render_form_errors = function(errors){
+
+            this.clear_previous_errors();
+
+            // show error messages in input form-group help-block
+            var text = "";
+            $.each(errors, function(field, messages) {
+                text += "<div class=\"alert alert-danger\">";
+                text += field + ': ' + messages.join(', ');
+                text += "</div>";
+            });
+
+            $('form').find('.form-errors').html(text);
+
+        };
+
+        $.fn.clear_previous_errors = function(){
+            $('form').find('.form-errors').html('');
+        }
+    }(jQuery));
+};
 
 /*
   (function($) {

@@ -1,5 +1,5 @@
 - if request.xhr?
-  = form_for @cluster, url: {action: "add"}, horizontal: true do |f|
+  = form_for(@cluster, url: {action: "add"}, horizontal: true, remote: true) do |f|
     .modal-header
       %button.close{ type: "button", data: { dismiss: "modal" } }
         %span{ aria: { hidden: "true" } }
@@ -12,6 +12,7 @@
 
     .modal-body
       = errors_for @cluster
+      .form-errors
       = f.text_field :name, placeholder: _("West Coast (example)"), label: _("Cluster name")
       = f.text_field :host, placeholder: _("node1.west.example.com"), label: _("Hostname of node in cluster")
       %fieldset
@@ -20,8 +21,8 @@
           %span.pull-right.toggleable.collapsed
             = icon_tag("chevron-down")
         .content{style: "display: none;"}
-          = f.text_field :interval, placeholder: _("30"), label: _("Update interval (seconds)"), class: "input-mini"
-          = f.text_field :port, placeholder: _("7630"), label: _("Server port to connect to"), class: "input-mini"
+          = f.text_field :interval, label: _("Update interval (seconds)"), class: "input-mini"
+          = f.text_field :port, label: _("Server port to connect to"), class: "input-mini"
           .form-group
             = f.label :https, _("HTTPS"), class: "col-sm-5 control-label"
             .col-sm-7
@@ -31,28 +32,4 @@
       = add_button(f, @cluster)
 
     :javascript
-      $('form').find('span.toggleable').on('click', function (e) {
-      if ($(this).hasClass('collapsed')) {
-      $(this)
-        .removeClass('collapsed')
-        .parents('fieldset')
-        .find('.content')
-        .slideDown();
-
-      $(this)
-        .find('i')
-        .removeClass('fa-chevron-down')
-        .addClass('fa-chevron-up');
-      } else {
-      $(this)
-        .addClass('collapsed')
-        .parents('fieldset')
-        .find('.content')
-        .slideUp();
-
-      $(this)
-        .find('i')
-        .removeClass('fa-chevron-up')
-        .addClass('fa-chevron-down');
-      }
-      });
+      dashboardSetupAddClusterForm();

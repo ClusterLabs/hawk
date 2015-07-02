@@ -70,20 +70,20 @@ class Cluster < Tableless
   def create
     fname = "#{Rails.root}/tmp/dashboard.js"
     if File.exists?(fname)
-      Rails.logger.info "Reading #{fname}"
+      Rails.logger.debug "Reading #{fname}"
       clusters = JSON.parse(File.read(fname))
     else
-      Rails.logger.info "Creating #{fname}"
+      Rails.logger.debug "Creating #{fname}"
       clusters = {}
     end
     clusters[@name] = self.to_hash
-    Rails.logger.info "Writing #{fname}..."
+    Rails.logger.debug "Writing #{fname}..."
     File.open(fname, "w") { |f| f.write(JSON.pretty_generate(clusters)) }
-    Rails.logger.info "chmod 0660 #{fname}..."
+    Rails.logger.debug "chmod 0660 #{fname}..."
     File.chmod(0660, fname)
-    Rails.logger.info "Copy #{fname}..."
+    Rails.logger.debug "Copy #{fname}..."
     ret = Invoker.instance.crm("cluster", "copy", fname)
-    Rails.logger.info "Copy returned #{ret}"
+    Rails.logger.debug "Copy returned #{ret}"
     ret
   end
 
@@ -113,13 +113,17 @@ class Cluster < Tableless
     end
 
     def remove(name)
+      Rails.logger.debug "remove: Removing #{name}..."
       fname = "#{Rails.root}/tmp/dashboard.js"
       return true unless File.exists?(fname)
       clusters = JSON.parse(File.read(fname))
       clusters = clusters.delete_if {|key, value| key == name }
+      Rails.logger.debug "remove: Writing #{fname}..."
       File.open(fname, "w") { |f| f.write(JSON.pretty_generate(clusters)) }
       File.chmod(0660, fname)
-      Invoker.instance.crm("cluster", "copy", fname)
+      ret = Invoker.instance.crm("cluster", "copy", fname)
+      Rails.logger.debug "remove: Copy returned #{ret}"
+      ret
     end
   end
 end
