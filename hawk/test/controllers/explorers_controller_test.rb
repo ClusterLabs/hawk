@@ -31,7 +31,7 @@
 
 require 'test_helper'
 
-class ExplorerControllerTest < ActionController::TestCase
+class ExplorersControllerTest < ActionController::TestCase
   test "the truth" do
     assert true
   end

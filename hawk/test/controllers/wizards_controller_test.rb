@@ -31,5 +31,8 @@
 
 require 'test_helper'
 
-class SettingHelperTest < ActionView::TestCase
+class WizardsControllerTest < ActionController::TestCase
+  test "the truth" do
+    assert true
+  end
 end

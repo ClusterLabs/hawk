@@ -31,5 +31,8 @@
 
 require 'test_helper'
 
-class WizardHelperTest < ActionView::TestCase
+class ClusterTest < ActiveSupport::TestCase
+  test "the truth" do
+    assert true
+  end
 end

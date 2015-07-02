@@ -31,5 +31,8 @@
 
 require 'test_helper'
 
-class RuleHelperTest < ActionView::TestCase
+class CrmConfigTest < ActiveSupport::TestCase
+  test "the truth" do
+    assert true
+  end
 end
