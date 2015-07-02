@@ -759,6 +759,9 @@ class Cib < CibObject
     @crm_config = Hashie::Mash.new Hash[@crm_config.map {|k,v| [k.to_s.underscore.to_sym, v]}]
     @rsc_defaults = Hashie::Mash.new Hash[@rsc_defaults.map {|k,v| [k.to_s.underscore.to_sym, v]}]
     @op_defaults = Hashie::Mash.new Hash[@op_defaults.map {|k,v| [k.to_s.underscore.to_sym, v]}]
-  end
 
+    if not @crm_config[:stonith_enabled]
+      error _("STONITH is disabled. For normal cluster operation, STONITH is required.")
+    end
+  end
 end

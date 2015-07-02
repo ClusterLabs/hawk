@@ -36,9 +36,6 @@ class StatesController < ApplicationController
 
   def show
     respond_to do |format|
-      if not @cib.crm_config[:stonith_enabled]
-        @cib.error _("STONITH is disabled. For normal cluster operation, STONITH is required.")
-      end
       format.html
     end
   end
