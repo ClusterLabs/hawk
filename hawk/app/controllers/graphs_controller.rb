@@ -5,7 +5,7 @@ class GraphsController < ApplicationController
     respond_to do |format|
       format.html
       format.png do
-        path = Pathname.new("/vagrant/hawk/tmp").join(
+        path = Pathname.new("#{Rails.root}/tmp").join(
           Dir::Tmpname.make_tmpname(
             ["graph", ".png"],
             nil
