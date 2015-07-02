@@ -1,5 +1,5 @@
 = content_for :stylesheets do
-  = stylesheet_link_tag :"dashboard"
+  = stylesheet_link_tag "dashboard"
 = content_for :javascripts do
   = javascript_include_tag "dashboard"
 
@@ -10,7 +10,7 @@
       .pull-right
         .btn-group{ role: "group" }
           = link_to icon_text("plus", _("Add Cluster")), add_dashboard_path, class: "btn btn-default", data: {toggle: "modal", target: "#modal" }
-          
+
   #clusters.row
   -# passing null as name and host means to fetch local cluster information
   :javascript

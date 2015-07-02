@@ -31,5 +31,8 @@
 
 require 'test_helper'
 
-class TagHelperTest < ActionView::TestCase
+class StepTest < ActiveSupport::TestCase
+  test "the truth" do
+    assert true
+  end
 end

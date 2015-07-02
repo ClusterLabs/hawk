@@ -31,7 +31,7 @@
 
 require 'test_helper'
 
-class WizardControllerTest < ActionController::TestCase
+class WizardTest < ActiveSupport::TestCase
   test "the truth" do
     assert true
   end

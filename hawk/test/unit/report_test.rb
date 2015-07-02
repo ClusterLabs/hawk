@@ -31,5 +31,8 @@
 
 require 'test_helper'
 
-class UserHelperTest < ActionView::TestCase
+class ReportTest < ActiveSupport::TestCase
+  test "the truth" do
+    assert true
+  end
 end

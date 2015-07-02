@@ -31,7 +31,7 @@
 
 require 'test_helper'
 
-class HeartbeatsControllerTest < ActionController::TestCase
+class TagTest < ActiveSupport::TestCase
   test "the truth" do
     assert true
   end

@@ -31,7 +31,7 @@
 
 require 'test_helper'
 
-class ConfigurationTest < ActiveSupport::TestCase
+class TablelessTest < ActiveSupport::TestCase
   test "the truth" do
     assert true
   end
