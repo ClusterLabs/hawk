@@ -1,0 +1,21 @@
+AllCops:
+  RunRailsCops: true
+  DisplayCopNames: true
+
+Style/StringLiterals:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Style/StringLiteralsInInterpolation:
+  Enabled: true
+  EnforcedStyle: double_quotes
+
+Style/AlignParameters:
+  Enabled: true
+  EnforcedStyle: with_fixed_indentation
+
+Style/MultilineOperationIndentation:
+  EnforcedStyle: indented
+
+Lint/EndAlignment:
+  AlignWith: variable

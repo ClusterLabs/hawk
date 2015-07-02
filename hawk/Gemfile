@@ -69,6 +69,7 @@ group :test do
   if ENV["RAILS_ENV"] == "test"
     source "https://rubygems.org"
 
+    gem "rubocop"
     gem "rake"
     gem "brakeman"
   end
