@@ -81,32 +81,36 @@ var dashboardAddCluster = (function() {
 
         var tag = $('#' + clusterId + ' div.panel-body');
 
-        cib.errors.forEach(function(err) {
-            $.growl({
-                message: err.msg
-            }, {
-                type: 'danger'
-            });
-        });
-
         if (cib.meta.status == "maintenance") {
-            $('#' + clusterId).removeClass('panel-warning').addClass('panel-danger');
-        } else if (cib.meta.status == "errors") {
             $('#' + clusterId).removeClass('panel-danger').addClass('panel-warning');
+        } else if (cib.meta.status == "errors") {
+            $('#' + clusterId).removeClass('panel-warning').addClass('panel-danger');
         } else {
             $('#' + clusterId).removeClass('panel-warning panel-danger');
         }
 
-        var circle = '<div class="pull-right text-center"><div class="circle circle-large ' +
+        var circle = '<div class="text-center"><div class="circle circle-large ' +
                  status_class_for(cib.meta.status) + '">' +
             status_icon_for(cib.meta.status) + '</div></div>';
 
         var text = "";
 
+        if (cib.errors.length > 0) {
+            text += '<div class="row">';
+            text += '<div class="col-md-12">';
+            cib.errors.forEach(function(err) {
+                text += "<div class=\"alert alert-danger\">" + err.msg + "</div>";
+            });
+            text += '</div>';
+            text += '</div>';
+        }
+        
+        text += '<div class="row">';
+        text += '<div class="col-md-2">';
         text += circle;
+        text += '</div>';
+        text += '<div class="col-md-10">';
         text += '<ul>';
-        text += '<li>Host: ' + cib.meta.host + '</li>';
-        text += '<li>DC: ' + cib.meta.dc + '</li>';
         text += '<li>Nodes: ' + cib.nodes.length + '</li>';
         if (cib.resource_states.master > 0) {
             text += '<li>' + cib.resource_states.master + ' master resources</li>';
@@ -121,6 +125,8 @@ var dashboardAddCluster = (function() {
             text += '<li>' + cib.resource_states.stopped + ' stopped resources</li>';
         }
         text += '</ul>';
+        text += '</div>';
+        text += '</div>';
 
         tag.html(text);
     }
@@ -192,46 +198,33 @@ var dashboardAddCluster = (function() {
         }
     }
 
+    function baseUrl(clusterInfo) {
+        if (clusterInfo.host == null) {
+            return "";
+        } else {
+            var transport = clusterInfo.https ? "https" : "http";
+            return transport + "://" + clusterInfo.host + ":" + clusterInfo.port;
+        }
+    }
+
     function clusterRefresh(clusterId, clusterInfo) {
         indicator(clusterId, "refresh");
 
-        if (clusterInfo.host == null) {
-            $.ajax({ url: '/cib/mini.json',
-                     dataType: 'json',
-                     data: {
-                         _method: 'show'
-                     },
-                     timeout: 30000,
-                     success: function(data) {
-                         displayClusterStatus(clusterId, data);
-                         window.setTimeout(function() { clusterRefresh(clusterId, clusterInfo); }, clusterInfo.interval*1000);
-                     },
-                     error: function(xhr, status, error) {
-                         clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
-                             clusterRefresh(clusterId, clusterInfo);
-                         });
-                     }
-                   });
-        } else {
-            var transport = clusterInfo.https ? "https" : "http";
-            $.ajax({ url: transport + "://" + clusterInfo.host + ":" + clusterInfo.port + "/cib/mini.json",
-                     dataType: 'json',
-                     data: {
-                         _method: 'show'
-                     },
-                     timeout: 90000,
-                     cross_domain_hack: true,
-                     success: function(data) {
-                         displayClusterStatus(clusterId, data);
-                         window.setTimeout(function() { clusterRefresh(clusterId, clusterInfo); }, clusterInfo.interval*1000);
-                     },
-                     error: function(xhr, status, error) {
-                         clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
-                             clusterRefresh(clusterId, clusterInfo);
-                         });
-                     }
-                   });
-        }
+        $.ajax({ url: baseUrl(clusterInfo) + "/cib/mini.json",
+                 dataType: 'json',
+                 data: { _method: 'show' },
+                 timeout: 90000,
+                 cross_domain_hack: clusterInfo.host != null,
+                 success: function(data) {
+                     displayClusterStatus(clusterId, data);
+                     window.setTimeout(function() { clusterRefresh(clusterId, clusterInfo); }, clusterInfo.interval*1000);
+                 },
+                 error: function(xhr, status, error) {
+                     clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
+                         clusterRefresh(clusterId, clusterInfo);
+                     });
+                 }
+               });
     }
 
     function startRemoteConnect(clusterId, clusterInfo, bodytag) {
@@ -240,8 +233,7 @@ var dashboardAddCluster = (function() {
         var username = escape(bodytag.find("input[name=username]").val());
         var password = escape(bodytag.find("input[name=password]").val());
 
-        var transport = clusterInfo.https ? "https" : "http";
-        $.ajax({ url: transport + "://" + clusterInfo.host + ":" + clusterInfo.port + "/login.json",
+        $.ajax({ url: baseUrl(clusterInfo) + "/login.json",
                  timeout: 30000,
                  dataType: "json",
                  contentType: 'application/json',
@@ -305,7 +297,7 @@ var dashboardAddCluster = (function() {
             '<div class="panel-heading">' +
             '<h3 class="panel-title">' +
             '<span id="refresh"></span> ' +
-            title;
+            '<a href="' + baseUrl(data) + '/">' + title + '</a>';
         if (data.host != null) {
             var s_remove = __('Remove cluster _NAME_ from dashboard?').replace('_NAME_', data.name);
             text = text +
