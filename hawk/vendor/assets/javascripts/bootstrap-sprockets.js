@@ -1,3 +1,6 @@
+// Copyright (c) 2009-2015 Tim Serong <tserong@suse.com>
+// See COPYING for license.
+
 //= require ./bootstrap/affix
 //= require ./bootstrap/alert
 //= require ./bootstrap/button

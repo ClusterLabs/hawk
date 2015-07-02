@@ -35,7 +35,7 @@ module TagHelper
       content_tag(
         :span,
         text,
-        class: 'hidden-xs'
+        class: "hidden-xs"
       ),
       icon
     )
@@ -80,6 +80,4 @@ module TagHelper
       a.natcmp(b, true)
     end
   end
-
-  
 end

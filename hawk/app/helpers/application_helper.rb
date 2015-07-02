@@ -34,8 +34,8 @@ module ApplicationHelper
     @branding_config ||= begin
       config = YAML.load_file(
         Rails.root.join(
-          'config',
-          'branding.yml'
+          "config",
+          "branding.yml"
         )
       )
 
@@ -51,7 +51,7 @@ module ApplicationHelper
         unless @title.empty?
           output.push @title
         end
-      end.compact.join(': ')
+      end.compact.join(": ")
     end
   end
 
@@ -81,29 +81,27 @@ module ApplicationHelper
     end
 
     if valid.include? params[:controller].to_sym
-      'active'
-    else
-      nil
+      "active"
     end
   end
 
   def flash_class_for(type)
     case type.to_sym
     when :alert
-      'alert-danger'
+      "alert-danger"
     else
-      ['alert', type].join('-')
+      ["alert", type].join("-")
     end
   end
 
   def status_class_for(type)
     case type.to_sym
     when :ok
-      'circle-success'
+      "circle-success"
     when :errors
-      'circle-danger'
+      "circle-danger"
     else
-      'circle-warning'
+      "circle-warning"
     end
   end
 
@@ -128,53 +126,53 @@ module ApplicationHelper
 
       output.push tag(
         :meta,
-        'name' => 'keywords',
-        'content' => ''
+        "name" => "keywords",
+        "content" => ""
       )
 
       output.push tag(
         :meta,
-        'name' => 'description',
-        'content' => ''
+        "name" => "description",
+        "content" => ""
       )
 
       output.push tag(
         :meta,
-        'content' => 'IE=edge',
-        'http-equiv' => 'X-UA-Compatible'
+        "content" => "IE=edge",
+        "http-equiv" => "X-UA-Compatible"
       )
 
       output.push tag(
         :meta,
-        'name' => 'viewport',
-        'content' => 'width=device-width, initial-scale=1.0'
+        "name" => "viewport",
+        "content" => "width=device-width, initial-scale=1.0"
       )
 
       output.push tag(
         :meta,
-        'charset' => 'utf-8'
+        "charset" => "utf-8"
       )
-    end.join('').html_safe
+    end.join("").html_safe
   end
 
   def localized_js
     [
-      'locale',
-      I18n.locale.to_s.gsub('-', '_')
-    ].join('/')
+      "locale",
+      I18n.locale.to_s.gsub("-", "_")
+    ].join("/")
   end
 
   def installed_docs
     [
       {
-        title: 'SLE HA Administration Guide',
+        title: "SLE HA Administration Guide",
         html: docs_path.join(
-          'sle-ha-manuals_en',
-          'index.html'
+          "sle-ha-manuals_en",
+          "index.html"
         ),
         pdf: docs_path.join(
-          'sle-ha-guide_en-pdf',
-          'book.sleha_en.pdf'
+          "sle-ha-guide_en-pdf",
+          "book.sleha_en.pdf"
         ),
         desc: <<-EOS
           Introduces the product architecture and guides you through the setup,
@@ -185,14 +183,14 @@ module ApplicationHelper
         EOS
       },
       {
-        title: 'HA NFS Storage with DRBD and Pacemaker',
+        title: "HA NFS Storage with DRBD and Pacemaker",
         html: docs_path.join(
-          'sle-ha-manuals_en',
-          'art_ha_quick_nfs.html'
+          "sle-ha-manuals_en",
+          "art_ha_quick_nfs.html"
         ),
         pdf: docs_path.join(
-          'sle-ha-nfs-quick_en-pdf',
-          'art_ha_quick_nfs_en.pdf'
+          "sle-ha-nfs-quick_en-pdf",
+          "art_ha_quick_nfs_en.pdf"
         ),
         desc: <<-EOS
           Describes how to set up a highly available NFS storage in a 2-node
@@ -200,14 +198,14 @@ module ApplicationHelper
         EOS
       },
       {
-        title: 'SLE HA GEO Clustering Quick Start',
+        title: "SLE HA GEO Clustering Quick Start",
         html: docs_path.join(
-          'sle-ha-geo-manuals_en',
-          'index.html'
+          "sle-ha-geo-manuals_en",
+          "index.html"
         ),
         pdf: docs_path.join(
-          'sle-ha-geo-quick_en-pdf',
-          'art.ha.geo.quick_en.pdf'
+          "sle-ha-geo-quick_en-pdf",
+          "art.ha.geo.quick_en.pdf"
         ),
         desc: <<-EOS
           Introduces the main components and displays a basic setup for
@@ -221,13 +219,13 @@ module ApplicationHelper
   end
 
   def docs_path
-    Rails.root.join('public', 'doc')
+    Rails.root.join("public", "doc")
   end
 
   def docs_link(doc, format)
     doc[format].to_s.gsub(
-      Rails.root.join('public').to_s,
-      ''
+      Rails.root.join("public").to_s,
+      ""
     )
   end
 end

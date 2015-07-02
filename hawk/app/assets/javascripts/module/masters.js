@@ -1,4 +1,4 @@
-// Copyright (c) 2009-2013 Tim Serong <tserong@suse.com>
+// Copyright (c) 2009-2015 Tim Serong <tserong@suse.com>
 // See COPYING for license.
 
 $(function() {

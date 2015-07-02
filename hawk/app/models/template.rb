@@ -189,55 +189,55 @@ class Template < Record
         :ops => {},
         :meta => {
           "allow-migrate" => {
-            :type     => "boolean",
-            :default  => "false"
+            type: "boolean",
+            default: "false"
           },
           "is-managed" => {
-            :type     => "boolean",
-            :default  => "true"
+            type: "boolean",
+            default: "true"
           },
           "maintenance" => {
-            :type     => "boolean",
-            :default  => "false"
+            type: "boolean",
+            default: "false"
           },
           "interval-origin" => {
-            :type     => "integer",
-            :default  => "0"
+            type: "integer",
+            default: "0"
           },
           "migration-threshold" => {
-            :type     => "integer",
-            :default  => "0"
+            type: "integer",
+            default: "0"
           },
           "priority" => {
-            :type     => "integer",
-            :default  => "0"
+            type: "integer",
+            default: "0"
           },
           "multiple-active" => {
-            :type     => "enum",
-            :default  => "stop_start",
-            :values   => [ "block", "stop_only", "stop_start" ]
+            type: "enum",
+            default: "stop_start",
+            values: ["block", "stop_only", "stop_start"]
           },
           "failure-timeout" => {
-            :type     => "integer",
-            :default  => "0"
+            type: "integer",
+            default: "0"
           },
           "resource-stickiness" => {
-            :type     => "integer",
-            :default  => "0"
+            type: "integer",
+            default: "0"
           },
           "target-role" => {
-            :type     => "enum",
-            :default  => "Started",
-            :values   => [ "Started", "Stopped", "Master" ]
+            type: "enum",
+            default: "Started",
+            values: ["Started", "Stopped", "Master"]
           },
           "restart-type" => {
-            :type     => "enum",
-            :default  => "ignore",
-            :values   => [ "ignore", "restart" ]
+            type: "enum",
+            default: "ignore",
+            values: ["ignore", "restart"]
           },
           "description" => {
-            :type     => "string",
-            :default  => ""
+            type: "string",
+            default: ""
           }
         }
       }
@@ -257,8 +257,8 @@ class Template < Record
         m[:parameters][e.attributes["name"]] = {
           :shortdesc => Util.get_xml_text(e.elements["shortdesc"]),
           :longdesc  => Util.get_xml_text(e.elements["longdesc"]),
-          :type     => e.elements["content"].attributes["type"],
-          :default  => e.elements["content"].attributes["default"],
+          type: e.elements["content"].attributes["type"],
+          default: e.elements["content"].attributes["default"],
           :required => e.attributes["required"].to_i == 1 ? true : false
         }
       end
