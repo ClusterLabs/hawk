@@ -15,7 +15,34 @@ Style/AlignParameters:
   EnforcedStyle: with_fixed_indentation
 
 Style/MultilineOperationIndentation:
+  Enabled: true
   EnforcedStyle: indented
 
 Lint/EndAlignment:
+  Enabled: true
   AlignWith: variable
+
+Style/Documentation:
+  Enabled: false
+
+Style/ModuleFunction:
+  Enabled: false
+
+Style/WordArray:
+  Enabled: false
+
+Style/PerlBackrefs:
+  Enabled: false
+
+Style/ElseAlignment:
+  Enabled: false
+
+Style/Next:
+  Enabled: false
+
+Metrics/MethodLength:
+  CountComments: false
+  Max: 30
+
+Metrics/ClassLength:
+  Max: 300

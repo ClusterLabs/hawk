@@ -29,11 +29,6 @@
 #
 #======================================================================
 
-begin
-  require "rubygems"
-rescue
-end
-
 STDOUT.sync = true
 STDERR.sync = true
 
@@ -43,7 +38,7 @@ require "socket"
 require "open3"
 require "rexml/document"
 
-if File.exists? ENV["BUNDLE_GEMFILE"]
+if File.exist? ENV["BUNDLE_GEMFILE"]
   require "bundler/setup"
   require "active_model/railtie"
   require "action_controller/railtie"

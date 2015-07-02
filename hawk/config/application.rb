@@ -29,7 +29,7 @@
 #
 #======================================================================
 
-require File.expand_path('../boot', __FILE__)
+require File.expand_path("../boot", __FILE__)
 
 module Hawk
   class Application < Rails::Application
@@ -44,24 +44,29 @@ module Hawk
     end
 
     config.autoload_paths += [
-      config.root.join('lib'),
-      config.root.join('app', 'collections')
+      config.root.join("lib"),
+      config.root.join("app", "collections")
     ]
 
-    config.encoding = 'utf-8'
-    config.time_zone = 'UTC'
+    config.encoding = "utf-8"
+    config.time_zone = "UTC"
 
-    config.app_middleware.delete 'ActiveRecord::ConnectionAdapters::ConnectionManagement'
-    config.app_middleware.delete 'ActiveRecord::QueryCache'
+    config.app_middleware.delete(
+      "ActiveRecord::ConnectionAdapters::ConnectionManagement"
+    )
 
-    config.middleware.use 'PerRequestCache'
+    config.app_middleware.delete(
+      "ActiveRecord::QueryCache"
+    )
+
+    config.middleware.use "PerRequestCache"
 
     config.active_support.escape_html_entities_in_json = true
 
     config.i18n.enforce_available_locales = false
 
     if Rails.env.development?
-      config.web_console.whitelisted_ips = '192.168.0.0/16'
+      config.web_console.whitelisted_ips = "192.168.0.0/16"
     end
   end
 end

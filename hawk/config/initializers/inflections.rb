@@ -30,5 +30,5 @@
 #======================================================================
 
 ActiveSupport::Inflector.inflections do |inflect|
-  inflect.uncountable 'crm_config'
+  inflect.uncountable "crm_config"
 end
