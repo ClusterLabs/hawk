@@ -180,7 +180,10 @@ class Cib < CibObject
         res.delete :clone_max
       else
         if res.has_key?(:instances)
-          res[:instances].delete_if {|k, v| k != :default}
+
+          res[:instances].delete_if do |k, v|
+            k.to_s != "default"
+          end
           # Inject a default instance if there's not one, as can be the case when
           # working with shadow CIBs.
           res[:instances][:default] = {
@@ -584,7 +587,6 @@ class Cib < CibObject
           end
         end
 
-        Rails.logger.debug "#{id} on #{node[:uname]} is #{state} #{substate}"
 
         # TODO(should): want some sort of assert "status != :unknown" here
 
@@ -602,14 +604,14 @@ class Cib < CibObject
             # these, so we fake them back in if they're not present, by getting
             # the current maximum instance number (if present) and incrementing
             # it.
+            # Note: instance at this point is a string because that's what
+            # everything else expects
             instance = @resources_by_id[id][:instances].select {|k,v| Util.numeric?(k)}.map {|k,v| k.to_i}.max
             if instance == nil
               instance = "0"
             else
               instance = (instance + 1).to_s
             end
-            # Note: instance at this point is a string because that's what
-            # everythign else expects
           end
 
           if instance && state != :stopped && state != :unknown
@@ -631,6 +633,7 @@ class Cib < CibObject
             # instance will be nil here for regular primitives
             instance = :default
           end
+
           @resources_by_id[id][:instances][instance] = {
             # Carry is_managed into the instance itself (needed so we can correctly
             # display unmanaged clone instances if a single node is on maintenance,
