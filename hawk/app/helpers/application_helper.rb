@@ -68,7 +68,8 @@ module ApplicationHelper
       data: {
         cib: current_cib.id,
         monitor: current_cib.epoch,
-        god: is_god?.to_s
+        god: is_god?.to_s,
+        user: current_user
       }
     }
   end

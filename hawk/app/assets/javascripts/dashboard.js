@@ -256,7 +256,7 @@ var dashboardAddCluster = (function() {
         var s_username = __('Username');
         var s_password = __('Password');
         var s_connect = __('Connect');
-        var v_username = "hacluster";
+        var v_username = $('body').data('user');
         var content = '';
         if (data.host != null) {
             content = '<form class="form-horizontal" role="form" onsubmit="return false;">' +
@@ -266,7 +266,7 @@ var dashboardAddCluster = (function() {
                 '</div>' +
                 '<div class="input-group dashboard-login">' +
                 '<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>' +
-                '<input type="text" class="form-control" name="username" id="username" value="' + v_username + '">' +
+                '<input type="text" class="form-control" name="username" id="username" placeholder="' + s_username + '" value="' + v_username + '">' +
                 '</div>' +
                 '<div class="input-group dashboard-login">' +
                 '<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>' +
