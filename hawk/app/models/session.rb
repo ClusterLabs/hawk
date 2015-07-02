@@ -35,12 +35,7 @@ class Session < Tableless
   attribute :username, String
   attribute :password, String
 
-  validates :username,
-    presence: { message: _("Username not specified") },
-    format: { with: /[^'$]+/, message: _("Invalid username") }
-
-  validates :password,
-    presence: { message: _("Password not specified") }
+  validates :username, format: { with: /[^'$]+/, message: _("Invalid username") }
 
   validate do |record|
     first_checks_valid = true
@@ -52,6 +47,16 @@ class Session < Tableless
 
     unless File.executable? HAWK_CHKPWD
       record.errors[:base] << _("%s is not executable") % HAWK_CHKPWD
+      first_checks_valid = false
+    end
+
+    if record.username.nil?
+      record.errors[:base] << _("Username not specified")
+      first_checks_valid = false
+    end
+
+    if record.password.nil?
+      record.errors[:base] << _("Password not specified")
       first_checks_valid = false
     end
 
