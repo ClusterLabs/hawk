@@ -29,7 +29,7 @@
 #
 #======================================================================
 
-require 'test_helper'
+require "test_helper"
 
 class LocationTest < ActiveSupport::TestCase
   test "the truth" do

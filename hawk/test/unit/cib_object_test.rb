@@ -29,7 +29,7 @@
 #
 #======================================================================
 
-require 'test_helper'
+require "test_helper"
 
 class CibObjectTest < ActiveSupport::TestCase
   test "the truth" do

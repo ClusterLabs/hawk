@@ -32,7 +32,7 @@
 module MasterHelper
   def master_child_list
     options = @cib.resources.select do |r|
-      !r.has_key?(:children) || (r.has_key?(:children) && r[:type] == "group")
+      !r.key?(:children) || (r.key?(:children) && r[:type] == "group")
     end.map(&:id).sort do |a, b|
       a.natcmp(b, true)
     end

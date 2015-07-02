@@ -29,7 +29,7 @@
 #
 #======================================================================
 
-require 'test_helper'
+require "test_helper"
 
 class OrderTest < ActiveSupport::TestCase
   test "the truth" do

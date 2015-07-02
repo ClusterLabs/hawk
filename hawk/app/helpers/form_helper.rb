@@ -42,34 +42,34 @@ module FormHelper
 
   def revert_button(form, record)
     form.submit(
-      _('Revert'),
-      class: 'btn btn-default cancel revert simple-hidden',
-      name: 'revert',
-      confirm: _('Any changes will be lost - do you wish to proceed?')
+      _("Revert"),
+      class: "btn btn-default cancel revert simple-hidden",
+      name: "revert",
+      confirm: _("Any changes will be lost - do you wish to proceed?")
     )
   end
 
   def apply_button(form, record)
     form.submit(
-      _('Apply'),
-      class: 'btn btn-primary submit',
-      name: 'submit'
+      _("Apply"),
+      class: "btn btn-primary submit",
+      name: "submit"
     )
   end
 
   def create_button(form, record)
     form.submit(
-      _('Create'),
-      class: 'btn btn-primary submit',
-      name: 'submit'
+      _("Create"),
+      class: "btn btn-primary submit",
+      name: "submit"
     )
   end
 
   def add_button(form, record)
     form.submit(
       _("Add"),
-      class: 'btn btn-primary submit',
-      name: 'submit'
+      class: "btn btn-primary submit",
+      name: "submit"
     )
   end
 
@@ -78,8 +78,8 @@ module FormHelper
       content_tag(
         :div,
         record.errors[:base].first.html_safe,
-        class: 'alert alert-danger',
-        role: 'alert'
+        class: "alert alert-danger",
+        role: "alert"
       )
     end
   end
@@ -94,28 +94,28 @@ module FormHelper
     options[:builder] ||= Hawk::FormBuilder
 
     options[:html] ||= {}
-    options[:html][:role] ||= 'form'
-    options[:html][:class] ||= ''
+    options[:html][:role] ||= "form"
+    options[:html][:class] ||= ""
 
     if options.fetch(:inline, false)
       options[:html][:class] = [
-        'form-inline',
+        "form-inline",
         options[:html][:class]
-      ].join(' ')
+      ].join(" ")
     end
 
     if options.fetch(:horizontal, false)
       options[:html][:class] = [
-        'form-horizontal',
+        "form-horizontal",
         options[:html][:class]
-      ].join(' ')
+      ].join(" ")
     end
 
     if options.fetch(:simple, false)
       options[:html][:class] = [
-        'form-simple',
+        "form-simple",
         options[:html][:class]
-      ].join(' ')
+      ].join(" ")
     end
 
     options[:html][:class].strip!

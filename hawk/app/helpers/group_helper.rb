@@ -32,7 +32,7 @@
 module GroupHelper
   def group_children_list
     options = @cib.resources.select do |r|
-      !r.has_key?(:children)
+      !r.key?(:children)
     end.map(&:id).sort do |a, b|
       a.natcmp(b, true)
     end
