@@ -34,15 +34,29 @@ require 'json'
 class Cluster < Tableless
   attribute :name, String
   attribute :host, String
+  attribute :https, Boolean
+  attribute :port, Integer
   attribute :interval, Integer
 
   validates :name, presence: true
   validates :host, presence: true
-  validates :interval, presence: true
+  validates :port, presence: true, numericality: { only_integer: true, greater_than: 0, less_than: 65536 }
+  validates :interval, presence: true, numericality: { only_integer: true, greater_than: 0 }
+
+  def initialize(attrs = nil)
+    super
+    if self.new_record?
+      self.https = (self.https.nil? ? true : self.https)
+      self.port = self.port || 7630
+      self.interval = self.interval || 30
+    end
+  end
 
   def to_hash
     {"name" => @name,
      "host" => @host,
+     "https" => @https,
+     "port" => @port,
      "interval" => @interval
     }
   end
@@ -54,16 +68,23 @@ class Cluster < Tableless
   protected
 
   def create
-    clustersfile = "#{Rails.root}/tmp/dashboard.js"
-    if File.exists?(clustersfile)
-      clusters = JSON.parse(File.read(clustersfile))
+    fname = "#{Rails.root}/tmp/dashboard.js"
+    if File.exists?(fname)
+      Rails.logger.info "Reading #{fname}"
+      clusters = JSON.parse(File.read(fname))
     else
+      Rails.logger.info "Creating #{fname}"
       clusters = {}
     end
     clusters[@name] = self.to_hash
-    File.open(clustersfile, "w") { |f| f.write(JSON.pretty_generate(clusters)) }
-    File.chmod(0660, clustersfile)
-    Invoker.instance.crm("cluster", "copy", clustersfile)
+    Rails.logger.info "Writing #{fname}..."
+    File.open(fname, "w") { |f| f.write(JSON.pretty_generate(clusters)) }
+    Rails.logger.info "chmod 0660 #{fname}..."
+    File.chmod(0660, fname)
+    Rails.logger.info "Copy #{fname}..."
+    ret = Invoker.instance.crm("cluster", "copy", fname)
+    Rails.logger.info "Copy returned #{ret}"
+    ret
   end
 
   def update
@@ -75,31 +96,30 @@ class Cluster < Tableless
       return Cluster.new(
                name: data['name'],
                host: data['host'],
+               https: data['https'],
+               port: data['port'],
                interval: data['interval']
              )
     end
 
     def all
-      clustersfile = "#{Rails.root}/tmp/dashboard.js"
-      return [Cluster.new(name: Socket.gethostname,
-                          host: "0.0.0.0",
-                          interval: 10
-                         )] unless File.exists?(clustersfile)
+      fname = "#{Rails.root}/tmp/dashboard.js"
+      return [] unless File.exists?(fname)
       clusters = []
-      JSON.parse(File.read(clustersfile)).each do |id, data|
+      JSON.parse(File.read(fname)).each do |id, data|
         clusters << parse(data)
       end
       clusters
     end
 
     def remove(name)
-      clustersfile = "#{Rails.root}/tmp/dashboard.js"
-      return true unless File.exists?(clustersfile)
-      clusters = JSON.parse(File.read(clustersfile))
+      fname = "#{Rails.root}/tmp/dashboard.js"
+      return true unless File.exists?(fname)
+      clusters = JSON.parse(File.read(fname))
       clusters = clusters.delete_if {|key, value| key == name }
-      File.open(clustersfile, "w") { |f| f.write(JSON.pretty_generate(clusters)) }
-      File.chmod(0660, clustersfile)
-      Invoker.instance.crm("cluster", "copy", clustersfile)
+      File.open(fname, "w") { |f| f.write(JSON.pretty_generate(clusters)) }
+      File.chmod(0660, fname)
+      Invoker.instance.crm("cluster", "copy", fname)
     end
   end
 end

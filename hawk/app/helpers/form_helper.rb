@@ -65,6 +65,14 @@ module FormHelper
     )
   end
 
+  def add_button(form, record)
+    form.submit(
+      _("Add"),
+      class: 'btn btn-primary submit',
+      name: 'submit'
+    )
+  end
+
   def errors_for(record)
     unless record.errors[:base].empty?
       content_tag(

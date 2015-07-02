@@ -14,15 +14,16 @@ class DashboardsController < ApplicationController
 
   def add
     if request.post?
+      Rails.logger.debug "Creating from #{params[:cluster]}"
       @cluster = Cluster.new params[:cluster]
       if @cluster.save
         flash[:success] = _("Cluster added successfully")
+        redirect_to action: "show"
       else
-        flash[:alert] = _("Failed to add cluster")
+        render json: @cluster.errors, status: :unprocessable_entity
       end
-      redirect_to action: "show"
     else
-      @cluster = Cluster.new interval: 30
+      @cluster = Cluster.new
       render layout: "modal"
     end
   end
@@ -32,10 +33,10 @@ class DashboardsController < ApplicationController
       name = params[:name]
       if Cluster.remove(name)
         flash[:success] = _("Cluster removed successfully")
+        redirect_to action: "show"
       else
-        flash[:alert] = _("Failed to remove cluster")
+        render json: { error: _("Error removing %s") % name }, status: :unprocessable_entity
       end
-      redirect_to action: "show"
     end
   end
 

@@ -1,7 +1,7 @@
 // Copyright (c) 2009-2015 Tim Serong <tserong@suse.com>
 // See COPYING for license.
 
-// https://<host>:7630/cib/live.json?mini=true
+// https://<host>:7630/cib/mini.json
 
 var dashboardAddCluster = (function() {
 
@@ -109,13 +109,52 @@ var dashboardAddCluster = (function() {
         text += '<li>Host: ' + cib.meta.host + '</li>';
         text += '<li>DC: ' + cib.meta.dc + '</li>';
         text += '<li>Nodes: ' + cib.nodes.length + '</li>';
-        text += '<li>Resources: ' + cib.resources.length + '</li>';
+        if (cib.resource_states.master > 0) {
+            text += '<li>' + cib.resource_states.master + ' master resources</li>';
+        }
+        if (cib.resource_states.started > 0) {
+            text += '<li>' + cib.resource_states.started + ' started resources</li>';
+        }
+        if (cib.resource_states.failed > 0) {
+            text += '<li>' + cib.resource_states.failed + ' failed resources</li>';
+        }
+        if (cib.resource_states.stopped > 0) {
+            text += '<li>' + cib.resource_states.stopped + ' stopped resources</li>';
+        }
         text += '</ul>';
 
         tag.html(text);
     }
 
-    function clusterConnectionError(clusterId, msg) {
+    function clusterConnectionError(clusterId, xhr, status, error) {
+        var msg = "";
+        if (xhr.readyState > 1) {
+            if (xhr.status == 403) {
+                msg = __('Permission denied.');
+            } else {
+                var json = json_from_request(xhr);
+                if (json && json.errors) {
+                    msg = json.errors.join(", ");
+                } else if (xhr.status >= 10000) {
+                    msg = GETTEXT.err_conn_failed();
+                } else {
+                    msg = GETTEXT.err_unexpected(xhr.status + " " + xhr.statusText);
+                }
+            }
+        } else if (status == "error") {
+            msg = __("Error connecting to server.");
+        } else if (status == "timeout") {
+            msg = __("Connection to server timed out.");
+        } else if (status == "abort") {
+            msg = __("Connection to server was aborted.");
+        } else if (status == "parsererror") {
+            msg = __("Server returned invalid data.");
+        } else if (error) {
+            msg = error;
+        } else {
+            msg = __("Unknown error connecting to server.");
+        }
+
         indicator(clusterId, "error");
         $('#' + clusterId).removeClass('panel-warning').addClass('panel-danger');
         var tag = $('#' + clusterId + ' div.panel-body');
@@ -135,56 +174,66 @@ var dashboardAddCluster = (function() {
     function clusterRefresh(clusterId, clusterInfo) {
         indicator(clusterId, "refresh");
 
-        var connectTo = '';
         if (clusterInfo.host == null) {
-            $.ajax({ dataType: 'json',
+            $.ajax({ url: '/cib/mini.json',
+                     dataType: 'json',
                      data: {
                          _method: 'show'
                      },
                      timeout: 30000,
-                     url: '/cib/mini.json',
                      success: function(data) {
                          displayClusterStatus(clusterId, data);
                          setTimeout(function() { clusterRefresh(clusterId, clusterInfo); }, clusterInfo.interval*1000);
                      },
                      error: function(xhr, status, error) {
-                         var msg = "";
-                         if (xhr.readyState > 1) {
-                             if (xhr.status == 403) {
-                                 msg = __('Permission denied.');
-                             } else {
-                                 var json = json_from_request(xhr);
-                                 if (json && json.errors) {
-                                     msg = json.errors.join(", ");
-                                 } else if (xhr.status >= 10000) {
-                                     msg = GETTEXT.err_conn_failed();
-                                 } else {
-                                     msg = GETTEXT.err_unexpected(xhr.status + " " + xhr.statusText);
-                                 }
-                             }
-                         } else if (status == "error") {
-                             msg = __("Error connecting to server.");
-                         } else if (status == "timeout") {
-                             msg = __("Connection to server timed out.");
-                         } else if (status == "abort") {
-                             msg = __("Connection to server was aborted.");
-                         } else if (status == "parsererror") {
-                             msg = __("Server returned invalid data.");
-                         } else if (error) {
-                             msg = error;
-                         } else {
-                             msg = __("Unknown error connecting to server.");
-                         }
-
-                         clusterConnectionError(clusterId, msg);
+                         clusterConnectionError(clusterId, xhr, status, error);
                          setTimeout(function() { clusterRefresh(clusterId, clusterInfo); }, 15000);
                      }
                    });
         } else {
-            //$.ajax({ url: "https://" + self.options.cluster.mon_node + ":7630/cib/live",
+            var transport = clusterInfo.https ? "https" : "http";
+            $.ajax({ url: transport + "://" + clusterInfo.host + ":" + clusterInfo.port + "/cib/mini.json",
+                     dataType: 'json',
+                     data: {
+                         _method: 'show'
+                     },
+                     timeout: 90000,
+                     cross_domain_hack: true,
+                     success: function(data) {
+                         displayClusterStatus(clusterId, data);
+                         setTimeout(function() { clusterRefresh(clusterId, clusterInfo); }, clusterInfo.interval*1000);
+                     },
+                     error: function(xhr, status, error) {
+                         clusterConnectionError(clusterId, xhr, status, error);
+                         setTimeout(function() { clusterRefresh(clusterId, clusterInfo); }, 15000);
+                     }
+                   });
         }
     }
 
+    function startRemoteConnect(clusterId, clusterInfo, bodytag) {
+        indicator(clusterId, "refresh");
+
+        var username = escape(bodytag.find("input[name=username]").val());
+        var password = escape(bodytag.find("input[name=password]").val());
+        
+        var transport = clusterInfo.https ? "https" : "http";
+        $.ajax({ url: transport + "://" + clusterInfo.host + ":" + clusterInfo.port + "/login.json",
+                 timeout: 30000,
+                 data: "username=" + username + "&password=" + password,
+                 dataType: "json",
+                 type: "POST",
+                 cross_domain_hack: true,
+                 success: function(data) {
+                     clusterRefresh(clusterId, clusterInfo);
+                 },
+                 error: function(xhr, status, error) {
+                     clusterConnectionError(clusterId, xhr, status, error);
+                     setTimeout(function() { startRemoteConnect(clusterId, clusterInfo, bodytag); }, 15000);
+                 }
+               });
+    }
+    
     return function(data) {
         var clusterId = newClusterId();
         var title = data.name || __("Local Status");
@@ -249,6 +298,13 @@ var dashboardAddCluster = (function() {
 
         if (data.host == null) {
             clusterRefresh(clusterId, data);
+        } else {
+            var body = $("#" + clusterId).find(".panel-body");
+            body.find(".btn-success").click(function() {
+                console.log("submit clicked", clusterId, data, body);
+                startRemoteConnect(clusterId, data, body);
+            });
+            console.log("trying to attach...", clusterId, data, body);
         }
     };
 })();
