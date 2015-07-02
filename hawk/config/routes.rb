@@ -30,11 +30,11 @@
 #======================================================================
 
 Rails.application.routes.draw do
-  root :to => "pages#index"
+  root to: "pages#index"
 
   resources :cib, only: [:show] do
     member do
-      get 'mini', action: "show"
+      get "mini", action: "show"
     end
 
     resources :nodes do

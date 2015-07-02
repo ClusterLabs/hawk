@@ -30,7 +30,7 @@
 #======================================================================
 
 Rails.application.config.tap do |config|
-  config.assets.version = '1.0'
+  config.assets.version = "1.0"
 
   config.assets.precompile = [
     /locale\/.+\.(css|js)$/,
@@ -44,14 +44,14 @@ Rails.application.config.tap do |config|
   ]
 
   config.assets.paths << config.root.join(
-    'vendor',
-    'assets',
-    'fonts'
+    "vendor",
+    "assets",
+    "fonts"
   )
 
   config.assets.paths << config.root.join(
-    'vendor',
-    'assets',
-    'images'
+    "vendor",
+    "assets",
+    "images"
   )
 end

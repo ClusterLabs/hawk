@@ -62,7 +62,7 @@ state_path File.join(ROOT, "tmp", "pids", "puma.state")
 if ENVIRONMENT == "development"
   bind "tcp://#{LISTEN}:#{PORT}"
 else
-  ssl_bind LISTEN, PORT, { cert: CERT, key: KEY }
+  ssl_bind LISTEN, PORT, cert: CERT, key: KEY
 end
 
 [
