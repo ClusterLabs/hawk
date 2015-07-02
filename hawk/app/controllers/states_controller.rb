@@ -37,9 +37,9 @@ class StatesController < ApplicationController
   def show
     respond_to do |format|
       if not @cib.crm_config[:stonith_enabled]
-        flash[:alert] = _("STONITH is disabled. For normal cluster operation, STONITH is required.")
+        @cib.error _("STONITH is disabled. For normal cluster operation, STONITH is required.")
       end
-     format.html
+      format.html
     end
   end
 
@@ -50,6 +50,6 @@ class StatesController < ApplicationController
   end
 
   def set_cib
-    @cib = Cib.new params[:cib_id], current_user
+    @cib = current_cib
   end
 end

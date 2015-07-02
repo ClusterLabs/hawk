@@ -69,7 +69,7 @@ class ProfilesController < ApplicationController
   end
 
   def set_cib
-    @cib = Cib.new params[:cib_id], current_user
+    @cib = current_cib
   end
 
   def set_record

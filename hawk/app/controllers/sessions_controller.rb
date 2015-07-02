@@ -30,6 +30,8 @@
 #======================================================================
 
 class SessionsController < ApplicationController
+  before_filter :set_cors_headers
+
   def new
     @session = Session.new
 

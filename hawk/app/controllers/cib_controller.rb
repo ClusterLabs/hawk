@@ -31,13 +31,10 @@
 
 class CibController < ApplicationController
   before_filter :login_required
+  before_filter :set_cors_headers
 
   def show
-    @cib = Cib.new(
-      params[:id],
-      current_user,
-      params[:debug] == 'file'
-    )
+    @cib = current_cib
 
     result = {
       meta: @cib.meta.to_h,
@@ -131,6 +128,7 @@ class CibController < ApplicationController
         result[:tickets] = @cib.tickets
         result[:nodes] = @cib.nodes
         result[:resources] = @cib.resources
+        result[:tags] = @cib.tags
       end
     end
 

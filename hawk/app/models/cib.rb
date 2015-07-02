@@ -262,6 +262,12 @@ class Cib < CibObject
 
   public
 
+  def error(msg)
+    @errors << {
+      msg: msg
+    }
+  end
+
   # Notes that errors here overloads what ActiveRecord would
   # use for reporting errors when editing resources.  This
   # should almost certainly be changed.
@@ -271,6 +277,8 @@ class Cib < CibObject
   attr_reader :booth
 
   def initialize(id, user, use_file = false)
+    Rails.logger.debug "Cib.initialize #{id}, #{user}, #{use_file}"
+
     @errors = []
 
     if use_file
@@ -534,13 +542,13 @@ class Cib < CibObject
             end
 
             failed_ops << { :node => node[:uname], :call_id => op.attributes['call-id'], :op => operation, :rc_code => rc_code, :exit_reason => exit_reason }
-            @errors << {
+            error({
               :msg => _('Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}, exit-reason=%{exit_reason}') % {
                 :node => node[:uname], :resource => id, :call_id => op.attributes['call-id'],
                 :op => operation, :rc_code => rc_code, :exit_reason => exit_reason },
               # Note: graph_number here might be the one *after* the one that's really interesting :-/
               #:link => fail_start ? explorer_path(:from_time => fail_start, :to_time => fail_end, :display => true, :graph_number => graph_number) : ""
-            }
+            })
 
             if ignore_failure
               failed_ops[-1][:ignored] = true
@@ -556,27 +564,27 @@ class Cib < CibObject
           end
 
           # TODO(should): evil magic numbers!
+          # The operation and RC code tells us the state of the resource on this node
+          # when rc=0, anything other than a stop means we're running
+          # (might be slave after a demote)
+          # TODO(must): verify this demote business
           case rc_code
           when 7
-            # not running on this node
             state = :stopped
           when 8
-            # master on this node
             state = :master
           when 0
-            # ok
             if operation == 'stop' || operation == 'migrate_to'
               state = :stopped
             elsif operation == 'promote'
               state = :master
             else
-              # anything other than a stop means we're running (although might be
-              # slave after a demote)
-              # TODO(must): verify this demote business
               state = :started
             end
           end
         end
+
+        Rails.logger.debug "#{id} on #{node[:uname]} is #{state} #{substate}"
 
         # TODO(should): want some sort of assert "status != :unknown" here
 
