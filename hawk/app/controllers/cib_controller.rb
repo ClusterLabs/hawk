@@ -53,7 +53,7 @@ class CibController < ApplicationController
           stopped: 0
         }
 
-        result[:nodes] = []
+        result[:nodes] = {}
 
         result[:node_states] = {
           pending: 0,
@@ -71,45 +71,26 @@ class CibController < ApplicationController
         }
 
         current_resources_for(@cib).each do |key, values|
-          result[:resources][key] ||= []
+          result[:resources][key] ||= {}
 
           values[:instances].each do |name, attrs|
-            result[:resources][key].push name
-
-            case
-            when attrs[:master]
-              result[:resource_states][:master] += 1
-            when attrs[:slave]
-              result[:resource_states][:slave] += 1
-            when attrs[:started]
-              result[:resource_states][:started] += 1
-            when attrs[:failed]
-              result[:resource_states][:failed] += 1
-            when attrs[:pending]
-              result[:resource_states][:pending] += 1
-            else
-              result[:resource_states][:stopped] += 1
+            found = false
+            [:master, :slave, :started, :failed, :pending].each do |rstate|
+              if attrs[rstate]
+                attrs[rstate].each { |n| result[:resources][key][n[:node]] = rstate }
+                result[:resource_states][rstate] += 1
+                found = true
+              end
             end
+            result[:resource_states][:stopped] += 1 unless found
           end
         end
 
         current_nodes_for(@cib).each do |node|
-          result[:nodes].push node[:uname]
+          result[:nodes][node[:uname]] = node[:state]
 
-          case
-          when node[:pending]
-            result[:node_states][:pending] += 1
-          when node[:online]
-            result[:node_states][:online] += 1
-          when node[:standby]
-            result[:node_states][:standby] += 1
-          when node[:offline]
-            result[:node_states][:offline] += 1
-          else
-            result[:node_states][:unclean] += 1
-          end
+          result[:node_states][node[:state]] += 1
         end
-
         current_tickets_for(@cib).each do |key, values|
           result[:tickets].push key
 
