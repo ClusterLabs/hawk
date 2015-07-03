@@ -8,6 +8,7 @@
     this.$el = $(el);
 
     this.defaults = {
+      content: this.$el.data('content'),
       timeout: 90,
       cache: false,
       events: [
@@ -17,7 +18,7 @@
       targets: {
         events: el,
         metadata: 'footer .metadata',
-        content: '#dashboards #middle'
+        content: '#states #middle'
       }
     };
 
@@ -31,12 +32,23 @@
 
   StatusCheck.prototype.init = function() {
     var self = this;
+    var data = self.options.content;
 
     $.each(self.options.events, function(i, e) {
       $(self.options.targets.events).on(e, function() {
         self.update();
       });
     });
+
+    $(self.options.targets.metadata).link(
+      true,
+      self.options.content
+    );
+
+    $(self.options.targets.content).link(
+      true,
+      self.options.content
+    );
   };
 
   StatusCheck.prototype.update = function() {
@@ -52,33 +64,22 @@
       cache: self.options.cache,
       timeout: self.options.timeout * 1000,
 
-      success: function(data) {
-        if (data) {
+      success: function(resp) {
+        if (resp) {
           $(self.options.targets.metadata).link(
             true,
-            data
+            resp
           );
 
           $(self.options.targets.content).link(
             true,
-            $.extend(
-              {
-
-              },
-              data
-            )
+            resp
           );
         }
       },
 
       error: function(request) {
-
-
-
         console.log('status update failed', arguments);
-
-
-
       }
     });
   };

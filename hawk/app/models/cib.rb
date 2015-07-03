@@ -80,6 +80,119 @@ class Cib < CibObject
     id != 'live'
   end
 
+  def status(minimal = false)
+    {
+      meta: meta.to_h,
+      errors: errors,
+      booth: booth
+    }.tap do |result|
+      if minimal
+        result[:resources] = {}
+
+        result[:resource_states] = {
+          pending: 0,
+          started: 0,
+          failed: 0,
+          master: 0,
+          slave: 0,
+          stopped: 0
+        }
+
+        result[:nodes] = {}
+
+        result[:node_states] = {
+          pending: 0,
+          online: 0,
+          standby: 0,
+          offline: 0,
+          unclean: 0
+        }
+
+        result[:tickets] = []
+
+        result[:ticket_states] = {
+          granted: 0,
+          revoked: 0
+        }
+
+        current_resources.each do |key, values|
+          result[:resources][key] ||= {}
+
+          values[:instances].each do |name, attrs|
+            found = false
+            [:master, :slave, :started, :failed, :pending].each do |rstate|
+              if attrs[rstate]
+                attrs[rstate].each { |n| result[:resources][key][n[:node]] = rstate }
+                result[:resource_states][rstate] += 1
+                found = true
+              end
+            end
+            result[:resource_states][:stopped] += 1 unless found
+          end
+        end
+
+        current_nodes.each do |node|
+          result[:nodes][node[:uname]] = node[:state]
+
+          result[:node_states][node[:state]] += 1
+        end
+
+        current_tickets.each do |key, values|
+          case
+          when values[:granted]
+            result[:tickets].push({ key => :granted })
+            result[:ticket_states][:granted] += 1
+          else
+            result[:tickets].push({ key => :revoked })
+            result[:ticket_states][:revoked] += 1
+          end
+        end
+
+        # TODO(must): Integrate tag listing
+        result[:tags] = []
+
+        # TODO(must): Integrate constraint listing
+        result[:constraints] = []
+      else
+        result[:crm_config] = crm_config
+        result[:rsc_defaults] = rsc_defaults
+        result[:op_defaults] = op_defaults
+
+        result[:resources] = resources
+        result[:nodes] = nodes
+        result[:tickets] = tickets
+        result[:tags] = tags
+        result[:constraints] = constraints
+      end
+    end
+  end
+
+  def current_resources
+    resources_by_id.select do |key, values|
+      values[:instances]
+    end
+  end
+
+  def current_nodes
+    nodes
+  end
+
+  def current_tickets
+    tickets
+  end
+
+  def current_tags
+    tags
+  end
+
+  def current_constraints
+    constraints
+  end
+
+  def constraints
+    @constraints ||= []
+  end
+
   protected
 
   # Roughly equivalent to crm_element_value() in Pacemaker
@@ -267,24 +380,27 @@ class Cib < CibObject
 
   public
 
-  def error(msg)
-    @errors << {
-      msg: msg
-    }
+  def errors
+    @errors ||= []
+  end
+
+  def error(msg, type = :danger)
+    errors.push(
+      msg: msg,
+      type: type
+    )
   end
 
   # Notes that errors here overloads what ActiveRecord would
   # use for reporting errors when editing resources.  This
   # should almost certainly be changed.
-  attr_reader :dc, :epoch, :nodes, :resources, :templates, :crm_config, :rsc_defaults, :op_defaults, :errors, :resource_count
+  attr_reader :dc, :epoch, :nodes, :resources, :templates, :crm_config, :rsc_defaults, :op_defaults, :resource_count
   attr_reader :tickets, :tags
   attr_reader :resources_by_id
   attr_reader :booth
 
   def initialize(id, user, use_file = false)
     Rails.logger.debug "Cib.initialize #{id}, #{user}, #{use_file}"
-
-    @errors = []
 
     if use_file
       cib_path = id
@@ -769,7 +885,7 @@ class Cib < CibObject
     @op_defaults = Hashie::Mash.new Hash[@op_defaults.map {|k,v| [k.to_s.underscore.to_sym, v]}]
 
     if not @crm_config[:stonith_enabled]
-      error _("STONITH is disabled. For normal cluster operation, STONITH is required.")
+      error _("STONITH is disabled. For normal cluster operation, STONITH is required."), :warning
     end
   end
 end

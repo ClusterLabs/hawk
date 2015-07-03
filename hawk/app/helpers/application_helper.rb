@@ -69,7 +69,8 @@ module ApplicationHelper
         cib: current_cib.id,
         monitor: current_cib.epoch,
         god: is_god?.to_s,
-        user: current_user
+        user: current_user,
+        content: current_cib.status.to_json
       }
     }
   end
@@ -92,34 +93,6 @@ module ApplicationHelper
       "alert-danger"
     else
       ["alert", type].join("-")
-    end
-  end
-
-  def status_class_for(type)
-    case type.to_sym
-    when :ok
-      "circle-success"
-    when :errors
-      "circle-danger"
-    when :maintenance
-      "circle-info"
-    else
-      "circle-warning"
-    end
-  end
-
-  def status_icon_for(type)
-    case type.to_sym
-    when :ok
-      icon_tag("check", class: "fa-2x text")
-    when :errors
-      icon_tag("exclamation-triangle", class: "fa-2x text")
-    when :maintenance
-      icon_tag("wrench", class: "fa-2x text")
-    when :nostonith
-      icon_tag("plug", class: "fa-2x text")
-    else
-      icon_tag("question", class: "fa-2x text")
     end
   end
 
