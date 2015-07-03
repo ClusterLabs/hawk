@@ -46,32 +46,17 @@
 ### END INIT INFO
 
 
-# Check for missing binaries (stale symlinks should not happen)
-# Note: Special treatment of stop for LSB conformance
-LIGHTTPD_BIN=/usr/sbin/lighttpd
-test -x $LIGHTTPD_BIN || { echo "$LIGHTTPD_BIN not installed";
-	if [ "$1" = "stop" ]; then exit 0;
-	else exit 5; fi; }
-
-# Check for existence of needed config file and read it
-LIGHTTPD_CONFIG=@WWW_BASE@/hawk/config/lighttpd.conf
-test -r $LIGHTTPD_CONFIG || { echo "$LIGHTTPD_CONFIG does not exist";
-	if [ "$1" = "stop" ]; then exit 0;
-	else exit 6; fi; }
-
-PID_FILE=/var/run/hawk.pid
+STATE_FILE=@WWW_BASE@/hawk/tmp/pids/puma.state
+PID_FILE=@WWW_BASE@/hawk/tmp/pids/puma.pid
+PUMA=$(which puma)
+PUMACTL=$(which pumactl)
 
 print_hawk_url() {
-	IP=$(LC_ALL=C grep "^server.bind" $LIGHTTPD_CONFIG | cut -d ' ' -f 3|tr -d '"')
-	if [ -z "$IP" ]; then
-		IFC=$(LC_ALL=C ip route show default|awk '/^default / { print $5; exit }')
-		[ -n "$IFC" ] && IP=$(LC_ALL=C ifconfig $IFC | awk '/inet / { print $2 }' | sed -s 's/[^0-9.]//g')
-	fi
-	PORT=$(LC_ALL=C grep "^server.port" $LIGHTTPD_CONFIG | cut -d " " -f 3)
-	if [ -n "$IP" ]; then
-		echo -e "\t${done}hawk is running at https://$IP:$PORT/${norm}"
+	if [ ! -e $STATE_FILE ]; then
+		echo -e "\t${warn}hawk is not running${norm}"
 	else
-		echo -e "\t${warn}could not determine the IP/hostname hawk is running on${norm}"
+		URL=$(cat $STATE_FILE | grep -E '(ssl|tcp):\/\/([^\/\?]+)' -o | head -n 1 | sed -e 's/ssl\:/https\:/' -e 's/tcp\:/http\:/')
+		echo -e "\t${done}hawk is running at $URL${norm}"
 	fi
 }
 
@@ -118,33 +103,22 @@ rc_reset
 
 case "$1" in
     start)
-	@WWW_BASE@/hawk/bin/generate-ssl-cert || {
+		@WWW_BASE@/hawk/bin/generate-ssl-cert || {
     		rc_failed
     		rc_status -v
     		rc_exit
     	}
-	echo -n "Starting hawk "
-	## Start daemon with startproc(8). If this fails
-	## the return value is set appropriately by startproc.
-	/sbin/startproc -p $PID_FILE $LIGHTTPD_BIN -f $LIGHTTPD_CONFIG
+		echo -n "Starting hawk "
+		$PUMACTL -S $STATE_FILE start
 
-	# Remember status and be verbose
-	rc_status -v
-
-	if test "$?" -eq 0; then
-		print_hawk_url
-	fi
-	;;
+		if test "$?" -eq 0; then
+			print_hawk_url
+		fi
+		;;
     stop)
-	echo -n "Shutting down hawk "
-	## Stop daemon with killproc(8) and if this fails
-	## killproc sets the return value according to LSB.
-
-	/sbin/killproc -TERM -p $PID_FILE $LIGHTTPD_BIN
-
-	# Remember status and be verbose
-	rc_status -v
-	;;
+		echo -n "Shutting down hawk "
+		$PUMACTL -S $STATE_FILE stop
+		;;
     try-restart|condrestart)
 	## Do a restart only if the service was active before.
 	## Note: try-restart is now part of LSB (as of 1.9).
@@ -162,30 +136,28 @@ case "$1" in
 	rc_status
 	;;
     restart)
-	## Stop the service and regardless of whether it was
-	## running or not, start it again.
-	$0 stop
-	$0 start
+		echo -n "Restarting hawk "
+		$PUMACTL -S $STATE_FILE restart
 
-	# Remember status and be quiet
-	rc_status
+		# Remember status and be quiet
+		rc_status
 	;;
     force-reload)
 	## Signal the daemon to reload its config. Most daemons
 	## do this on signal 1 (SIGHUP).
 	echo -n "Reload service hawk "
-	killproc -HUP -p $PID_FILE $LIGHTTPD_BIN
+	killproc -HUP -p $PID_FILE $PUMA
 	rc_status -v
 	;;
     reload)
 	## Like force-reload, but if daemon does not support
 	## signaling, do nothing (!)
 	echo -n "Reload service hawk "
-	killproc -HUP -p $PID_FILE $LIGHTTPD_BIN
+	killproc -HUP -p $PID_FILE $PUMA
 	rc_status -v
 	;;
     status)
-	echo -n "Checking for service hawk "
+		echo -n "Checking for service hawk "
 	## Check status with checkproc(8), if process is running
 	## checkproc will return with exit status 0.
 
@@ -198,7 +170,7 @@ case "$1" in
 	# 5--199 reserved (5--99 LSB, 100--149 distro, 150--199 appl.)
 
 	# NOTE: checkproc returns LSB compliant status values.
-	/sbin/checkproc -p $PID_FILE $LIGHTTPD_BIN
+	/sbin/checkproc -p $PID_FILE $PUMA
 	# NOTE: rc_status knows that we called this init script with
 	# "status" option and adapts its messages accordingly.
 	rc_status -v

@@ -30,35 +30,17 @@
 #	High-Availability cluster resource manager.
 ### END INIT INFO
 
-prog="hawk"
-lockfile=/var/lock/subsys/$prog
-
-# Check for missing binaries (stale symlinks should not happen)
-# Note: Special treatment of stop for LSB conformance
-LIGHTTPD_BIN=/usr/sbin/lighttpd
-test -x $LIGHTTPD_BIN || { echo "$LIGHTTPD_BIN not installed";
-	if [ "$1" = "stop" ]; then exit 0;
-	else exit 5; fi; }
-
-# Check for existence of needed config file and read it
-LIGHTTPD_CONFIG=@WWW_BASE@/hawk/config/lighttpd.conf
-test -r $LIGHTTPD_CONFIG || { echo "$LIGHTTPD_CONFIG does not exist";
-	if [ "$1" = "stop" ]; then exit 0;
-	else exit 6; fi; }
-
-PID_FILE=/var/run/hawk.pid
+STATE_FILE=@WWW_BASE@/hawk/tmp/pids/puma.state
+PID_FILE=@WWW_BASE@/hawk/tmp/pids/puma.pid
+PUMA=$(which puma)
+PUMACTL=$(which pumactl)
 
 print_hawk_url() {
-	IP=$(LC_ALL=C grep "^server.bind" $LIGHTTPD_CONFIG | cut -d ' ' -f 3|tr -d '"')
-	if [ -z "$IP" ]; then
-		IFC=$(LC_ALL=C ip route show default|awk '/^default / { print $5; exit }')
-		[ -n "$IFC" ] && IP=$(LC_ALL=C ifconfig $IFC | awk '/inet / { print $2 }' | sed -s 's/[^0-9.]//g')
-	fi
-	PORT=$(LC_ALL=C grep "^server.port" $LIGHTTPD_CONFIG | cut -d " " -f 3)
-	if [ -n "$IP" ]; then
-		echo -e "\thawk is running at https://$IP:$PORT/"
+	if [ ! -e $STATE_FILE ]; then
+		echo -e "\thawk is not running"
 	else
-		echo -e "\tcould not determine the IP/hostname hawk is running on"
+		URL=$(cat $STATE_FILE | grep -E '(ssl|tcp):\/\/([^\/\?]+)' -o | head -n 1 | sed -e 's/ssl\:/https\:/' -e 's/tcp\:/http\:/')
+		echo -e "\thawk is running at $URL"
 	fi
 }
 
@@ -71,24 +53,20 @@ case "$1" in
 		exit 1
     	}
 	echo -n "Starting hawk "
-	daemon --pidfile $PID_FILE $LIGHTTPD_BIN -f $LIGHTTPD_CONFIG
+	$PUMACTL -S $STATE_FILE start
 	RETVAL=$?
 	echo
 
 	if test "$RETVAL" -eq 0; then
 		print_hawk_url
-		touch $lockfile
 	fi
 	;;
     stop)
 	echo -n "Shutting down hawk "
-	killproc -p $PID_FILE $LIGHTTPD_BIN
+	$PUMACTL -S $STATE_FILE stop
 	RETVAL=$?
 	echo
 
-	if test "$RETVAL" -eq 0; then
-		rm -f $lockfile
-	fi
 	;;
     try-restart|condrestart)
 	$0 status || exit 0
@@ -96,24 +74,24 @@ case "$1" in
 	RETVAL=$?
 	;;
     restart)
-	$0 stop
-	$0 start
-	RETVAL=$?
+		echo -n "Restarting hawk "
+		$PUMACTL -S $STATE_FILE restart
+		RETVAL=$?
 	;;
     force-reload)
 	echo -n "Reload service hawk "
-	killproc -p $PID_FILE $LIGHTTPD_BIN -HUP
+	killproc -p $PID_FILE $PUMA -HUP
 	RETVAL=$?
 	echo
 	;;
     reload)
 	echo -n "Reload service hawk "
-	killproc -p $PID_FILE $LIGHTTPD_BIN -HUP
+	killproc -p $PID_FILE $PUMA -HUP
 	RETVAL=$?
 	;;
     status)
 	echo -n "Checking for service hawk "
-	status -p $PID_FILE $LIGHTTPD_BIN
+	status -p $PID_FILE $PUMA
 	RETVAL=$?
 	echo
 
