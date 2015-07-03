@@ -100,7 +100,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def production_cib
-    @production_cib ||= 'live'
+    @production_cib ||= "live"
   end
 
   def current_cib
@@ -109,7 +109,7 @@ class ApplicationController < ActionController::Base
         Cib.new(
           params[:cib_id] || production_cib,
           current_user,
-          params[:debug] == 'file'
+          params[:debug] == "file"
         )
       end
     end
@@ -132,7 +132,7 @@ class ApplicationController < ActionController::Base
   end
 
   def default_base_layout
-    'application'
+    "application"
   end
 
   def inject_current_user
@@ -153,7 +153,7 @@ class ApplicationController < ActionController::Base
 
     Invoker.send(
       :define_method,
-      'current_user',
+      "current_user",
       proc { current_controller.send(:current_user) }
     )
 
@@ -161,7 +161,7 @@ class ApplicationController < ActionController::Base
 
     Invoker.send(
       :remove_method,
-      'current_user'
+      "current_user"
     )
   end
 
@@ -169,7 +169,7 @@ class ApplicationController < ActionController::Base
     available = [
       params[:locale],
       cookies[:locale],
-      request.env['HTTP_ACCEPT_LANGUAGE'],
+      request.env["HTTP_ACCEPT_LANGUAGE"],
       default_locale
     ].compact.first
 
@@ -183,27 +183,27 @@ class ApplicationController < ActionController::Base
   end
 
   def set_current_home
-    ENV['HOME'] = Rails.root.join(
-      'tmp',
-      'home'
+    ENV["HOME"] = Rails.root.join(
+      "tmp",
+      "home"
     ).to_s
   end
 
   def set_current_title
-    @title ||= ''
+    @title ||= ""
   end
 
   def set_cors_headers
-    if request.headers['Origin']
-      response.headers['Access-Control-Allow-Origin'] = request.headers['Origin']
-      response.headers['Access-Control-Allow-Credentials'] = 'true'
+    if request.headers["Origin"]
+      response.headers["Access-Control-Allow-Origin"] = request.headers["Origin"]
+      response.headers["Access-Control-Allow-Credentials"] = "true"
     end
   end
 
   def set_shadow_cib
     if current_cib && current_cib.sim?
       unless File.exist? "/var/lib/pacemaker/cib/shadow.#{current_cib.id}"
-        result = Invoker.instance.run('crm_shadow', '-b', '-f', '-c', current_cib.id)
+        result = Invoker.instance.run("crm_shadow", "-b", "-f", "-c", current_cib.id)
 
         respond_to do |format|
           if result == true
@@ -216,7 +216,7 @@ class ApplicationController < ActionController::Base
             end
             format.json do
               render json: {
-                error: _('Unable to create shadow CIB'),
+                error: _("Unable to create shadow CIB"),
                 stderr: result[1]
               }, status: 500
             end
@@ -231,7 +231,7 @@ class ApplicationController < ActionController::Base
   end
 
   def is_god?
-    current_user == 'hacluster' || current_user == 'root'
+    current_user == "hacluster" || current_user == "root"
   end
 
   def logged_in?
@@ -259,6 +259,6 @@ class ApplicationController < ActionController::Base
   end
 
   def default_locale
-    'en-US'
+    "en-US"
   end
 end
