@@ -64,9 +64,6 @@ else
   gem "sass-rails", version: "~> 5.0"
   require "sass-rails"
 
-  gem "lograge", version: "~> 0.3"
-  require "lograge"
-
   gem "hashie", version: "~> 3.4"
   require "hashie"
 
@@ -76,7 +73,7 @@ else
   gem "js-routes", version: "~> 1.0"
   require "js-routes"
 
-  gem "sprockets", version: "~> 2.12"
+  gem "sprockets", version: "~> 3.0"
   require "sprockets"
 
   gem "tilt", version: "~> 1.4"
