@@ -72,6 +72,14 @@ var dashboardAddCluster = (function() {
         }
     }
 
+    function plural(word, count) {
+        if (count > 1) {
+            return word + "s";
+        } else {
+            return word;
+        }
+    }
+
     function displayClusterStatus(clusterId, cib) {
         if (cib.meta.status == "ok") {
             indicator(clusterId, "ok");
@@ -110,16 +118,7 @@ var dashboardAddCluster = (function() {
         text += circle;
         text += '</div>';
         text += '<div class="col-md-10">';
-        text += '<table class="table table-striped table-condensed">';
-        $.each(cib.nodes, function(uname, state) {
-            text += '<tr><td>Node ' + uname + " is <tt>" + state + '</tt></td></tr>';
-        });
-
-        $.each(cib.resources, function(rsc, instances) {
-            $.each(instances, function(uname, state) {
-                text += '<tr><td>Resource ' + rsc + ' is <tt>' + state + '</tt> on ' + uname + '</td></tr>';
-            });
-        });
+        text += '<table class="table table-condensed">';
 
         $.each(cib.tickets, function(idx, obj) {
             $.each(obj, function(ticket, state) {
@@ -127,12 +126,19 @@ var dashboardAddCluster = (function() {
             });
         });
 
+        $.each(cib.node_states, function(state, count) {
+            if (count > 0)
+                text += '<tr><td>' + count + ' ' + state + ' ' + plural('node', count) + '</td></tr>';
+        });
+
         $.each(cib.resource_states, function(state, count) {
-            if (count > 1) {
-                text += '<tr><td>' + count + ' ' + state + ' resources</td></tr>';
-            } else if (count > 0) {
-                text += '<tr><td>' + count + ' ' + state + ' resource</td></tr>';
-            }
+            if (count > 0)
+                text += '<tr><td>' + count + ' ' + state + ' ' + plural('resource', count) + '</td></tr>';
+        });
+
+        $.each(cib.ticket_states, function(state, count) {
+            if (count > 0)
+                text += '<tr><td>' + count + ' ' + state + ' ' + plural('ticket', count) + '</td></tr>';
         });
 
         text += '</table>';
