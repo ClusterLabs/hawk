@@ -169,7 +169,6 @@ class ApplicationController < ActionController::Base
     available = [
       params[:locale],
       cookies[:locale],
-      request.env["HTTP_ACCEPT_LANGUAGE"],
       default_locale
     ].compact.first
 
