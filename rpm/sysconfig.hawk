@@ -11,10 +11,10 @@ HAWK_ENV="production"
 ## Path:            Cluster/Hawk
 ## Description:     Maximum number of threads
 ## Type:            integer
-## Default:         5
+## Default:         1
 ## ServiceRestart:  hawk
 # Sets the maximum number of threads used by the web server.
-HAWK_THREADS="5"
+HAWK_THREADS="1"
 
 ## Path:            Cluster/Hawk
 ## Description:     Maximum number of worker processes

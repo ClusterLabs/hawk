@@ -32,7 +32,7 @@
 ROOT = File.expand_path("../../", __FILE__)
 ENVIRONMENT = ENV["HAWK_ENV"] || "production"
 
-THREADS = ENV["HAWK_THREADS"] || 5
+THREADS = ENV["HAWK_THREADS"] || 1
 WORKERS = ENV["HAWK_WORKERS"] || 2
 
 LISTEN = ENV["HAWK_LISTEN"] || "0.0.0.0"
