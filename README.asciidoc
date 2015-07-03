@@ -1,6 +1,8 @@
 HA Web Konsole (Hawk)
 =====================
 Tim Serong <tserong@suse.com>
+Kristoffer Gronlund <kgronlund@suse.com>
+Thomas Boerger <tboerger@suse.com>
 
 image:https://travis-ci.org/ClusterLabs/hawk.svg?branch=master["Build Status", link="https://travis-ci.org/ClusterLabs/hawk"]
 
@@ -14,7 +16,7 @@ to access it, e.g.:
 https://your-server:7630/
 
 Hawk requires users to log in prior to providing access to the
-cluster.  The same rules apply as for the python GUI; you need to
+cluster.  The same rules apply as for pacemaker itself; you need to
 log in as a user in the +haclient+ group.  The easiest thing to do
 is assign a password to the +hacluster+ user, then log in using
 that account.  Note that you will need to configure this user
@@ -38,27 +40,47 @@ http://www.suse.com/documentation/sle_ha/book_sleha/?page=/documentation/sle_ha/
 
 == Installation ==
 
+Hawk is a Ruby on Rails app which runs using the Puma web server
+(http://puma.io/).
+
+There is a special build mode which vendors all the rubygems used by
+Hawk, to create a package which bundles all of the gems. See the
+included RPM spec file in +rpm/hawk.spec+ for details.
+
+For details on the rubygems used by hawk, see the gemfile in
++hawk/Gemfile+.
+
+== Build Dependencies ==
+
+The exact versions specified here may not be accurate. Also, note that
+Hawk also requires the rubygems listed in +hawk/Gemfile+.
+
+* ruby version 1.9.3 or higher
+* libpacemaker-devel
+* pacemaker-libs-devel
+* glib2-devel
+* libxml2-devel >= 2.6.21
+* libxslt-devel
+* openssl-devel
+* pam-devel
+
+
 === Dependencies ===
 
-Hawk is a Ruby on Rails app which runs from a standalone instance
-of lighttpd. It requires:
+The exact versions specified here may not be accurate. Also, note that
+Hawk also requires the rubygems listed in +hawk/Gemfile+.
 
 * crmsh
 * graphviz
 * graphviz-gd
-* lighttpd
-* pacemaker
-* ruby
+* dejavu
+* pacemaker >= 1.1.8
+* iproute2
 
-For details on the rubygems used by hawk, see the gemfile in +hawk/Gemfile+.
 
 Some dependencies may differ depending on the distribution:
 
-* rubygem-ruby-fcgi (openSUSE)
 * rubypick (Fedora)
-
-When building Hawk from source, you will also need rubygem-gettext
-and the pacemaker, glib2, libxml2 and pam devel libraries.
 
 === Installing The Easy Way ===
 
@@ -72,7 +94,7 @@ Just install the RPM, then run:
 # chkconfig hawk on
 --------------------------------------
 --------------------------------------
-# /etc/init.d/hawk start
+# service hawk start
 --------------------------------------
 
 === Installing The Other Easy Way ===
@@ -87,7 +109,7 @@ Once built, install the RPM on your cluster nodes and:
 # chkconfig hawk on
 --------------------------------------
 --------------------------------------
-# /etc/init.d/hawk start
+# service hawk start
 --------------------------------------
 
 === Installing The Hard Way ===
@@ -103,9 +125,9 @@ you'll be happy with the outcome!
 # sudo make install
 --------------------------------------
 
-The above will install in +/srv/www/hawk+ and run from a SUSE-style init
-script. To install somewhere else (e.g.: +/var/www/hawk+) and/or to
-use a Red Hat-style init script, try:
+The above will install in +/srv/www/hawk+. To install somewhere else
+(e.g.: +/var/www/hawk+) and/or to use a Red Hat-style init script,
+try:
 
 --------------------------------------
 # make WWW_BASE=/var/www INIT_STYLE=redhat
@@ -124,10 +146,9 @@ if you're using Fedora 19, and build that.
 == A Note on SSL Certificates ==
 
 The Hawk init script will automatically generate a self-signed SSL
-certificate, in +/etc/lighttpd/certs/hawk-combined.pem+.  If you want
-to use your own certificate, replace this file with one of your creation.
-Note that this is a combined key and certificate, i.e.  you'll need to
-+cat key cert > hawk-combined.pem+.
+certificate, in +/etc/hawk/hawk.pem+.  If you want
+to use your own certificate, replace +hawk.key+ and +hawk.pem+ with
+your certificate.
 
 
 == Hacking Hawk ==
@@ -203,5 +224,8 @@ webui:/vagrant/hawk # sudo -u vagrant script/rails s
 
 == Questions, Feedback, etc. ==
 
-Please direct comments, feedback, questions etc. to tserong@suse.com
-and/or the Pacemaker mailing list.
+Hawk is developed at github, please file any issues or submit patches
+via the github interface at https://github.com/ClusterLabs/hawk/issues .
+
+Please direct comments, feedback, questions etc. to the Pacemaker
+mailing list at http://clusterlabs.org/mailman/listinfo/users .
