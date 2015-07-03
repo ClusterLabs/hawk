@@ -116,7 +116,7 @@ class ApplicationController < ActionController::Base
   end
 
   def redirect_back(default)
-    redirect_to(session.delete(:return_to) || default)
+    redirect_to(session[:return_to] || default)
   end
 
   def store_location
