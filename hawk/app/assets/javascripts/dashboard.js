@@ -110,21 +110,32 @@ var dashboardAddCluster = (function() {
         text += circle;
         text += '</div>';
         text += '<div class="col-md-10">';
-        text += '<ul>';
-        text += '<li>Nodes: ' + cib.nodes.length + '</li>';
-        if (cib.resource_states.master > 0) {
-            text += '<li>' + cib.resource_states.master + ' master resources</li>';
-        }
-        if (cib.resource_states.started > 0) {
-            text += '<li>' + cib.resource_states.started + ' started resources</li>';
-        }
-        if (cib.resource_states.failed > 0) {
-            text += '<li>' + cib.resource_states.failed + ' failed resources</li>';
-        }
-        if (cib.resource_states.stopped > 0) {
-            text += '<li>' + cib.resource_states.stopped + ' stopped resources</li>';
-        }
-        text += '</ul>';
+        text += '<table class="table table-striped table-condensed">';
+        $.each(cib.nodes, function(uname, state) {
+            text += '<tr><td>Node ' + uname + " is <tt>" + state + '</tt></td></tr>';
+        });
+
+        $.each(cib.resources, function(rsc, instances) {
+            $.each(instances, function(uname, state) {
+                text += '<tr><td>Resource ' + rsc + ' is <tt>' + state + '</tt> on ' + uname + '</td></tr>';
+            });
+        });
+
+        $.each(cib.tickets, function(idx, obj) {
+            $.each(obj, function(ticket, state) {
+                text += '<tr><td>Ticket ' + ticket + ' is <tt>' + state + '</tt></tr>';
+            });
+        });
+
+        $.each(cib.resource_states, function(state, count) {
+            if (count > 1) {
+                text += '<tr><td>' + count + ' ' + state + ' resources</td></tr>';
+            } else if (count > 0) {
+                text += '<tr><td>' + count + ' ' + state + ' resource</td></tr>';
+            }
+        });
+
+        text += '</table>';
         text += '</div>';
         text += '</div>';
 

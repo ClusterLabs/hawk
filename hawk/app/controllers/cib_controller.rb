@@ -92,12 +92,13 @@ class CibController < ApplicationController
           result[:node_states][node[:state]] += 1
         end
         current_tickets_for(@cib).each do |key, values|
-          result[:tickets].push key
 
           case
           when values[:granted]
+            result[:tickets].push { key => :granted }
             result[:ticket_states][:granted] += 1
           else
+            result[:tickets].push { key => :revoked }
             result[:ticket_states][:revoked] += 1
           end
         end
