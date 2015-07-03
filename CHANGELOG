@@ -1,3 +1,34 @@
+* Fri Jul 03 2015 Kristoffer Gronlund <kgronlund@suse.com>
+- Version 1.0.0~alpha1
+- New redesigned user interface (fate#318281)
+- Redesigned status page (fate#318296)
+- Search for resources (fate#318295)
+- Manage resources directly on status screen (fate#318288)
+- Improved error message handling (fate#318287)
+- Redesigned navigation structure (fate#318285)
+- Redesigned login page (fate#318282)
+- Model: Updated and integrated model for tags (fate#318319)
+- Model: Add Cluster model for dashboard (bsc#808703)
+- Initial version of revamped cluster dashboard using new UI (fate#318281)
+- Dashboard: Better status display (including tickets)
+- Locale: Just forget the browser locale settings
+- Config: Hawk is not thread-safe: Configure a single thread by default (bsc#934749)
+- Scripts: Send SIGINT to stop puma
+- Scripts: Update the sysvinit scripts for hawk to use puma
+- Wizard: Fix incorrect step index display (bnc#889907)
+- GUI: Refer to peinputs by the full name to avoid confusion with pe-warn files (bnc#917131)
+- GUI: Handle uncompressed peinput files correctly (bnc#917131)
+- Integrated puma as a lighttpd replacement
+- GUI: Redirect to new after creating, add link to edit created resource (bsc#921762)
+- Wizard: Add sbd_device as explicit parameter (bsc#924407)
+- Wizard: Remove cmirrord from cLVM wizard (bsc#924414)
+- Wizard: Fix check for CIB write access (bsc#924429)
+- Wizard: First version of MariaDB wizard (fate#318550)
+- Wizard: Remove GFS2 wizard (bsc#923964)
+- Wizard: Split cLVM wizard in two (bsc#924420)
+- Service: Reduce number of threads to 1 since the old app is not thread safe (bsc#934749)
+- Require dejavu so graphviz works correctly (bsc#931950)
+
 * Tue Dec 09 2014 Kristoffer Gronlund <kgronlund@suse.com>
 - Wizard: Initial workflow for Oracle DB (fate#318152)
 - Wizard: Create workflow for creating a Virtual IP resource.
