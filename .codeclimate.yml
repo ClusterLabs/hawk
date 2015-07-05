@@ -4,6 +4,6 @@ languages:
   PHP: false
   Python: false
 exclude_paths:
-- "hawk/vendor"
-- "bootstrap-hawk"
-- "hawk/app/assets/javascript/gettext"
+- "hawk/vendor/*"
+- "bootstrap-hawk/*"
+- "hawk/app/assets/javascript/gettext/*"
