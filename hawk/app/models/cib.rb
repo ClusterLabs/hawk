@@ -49,7 +49,8 @@ class Cib < CibObject
       struct.version = crm_config[:dc_version]
       struct.stack = crm_config[:cluster_infrastructure]
 
-      struct.status = if errors.empty?
+      struct.status = case
+      when errors.empty?
         # TODO(must): Add stopped checks
 
         maintain = nodes.map do |node|
@@ -62,7 +63,7 @@ class Cib < CibObject
         else
           :ok
         end
-      elsif errors.length == 1 and not @crm_config[:stonith_enabled]
+      when !@crm_config[:stonith_enabled]
         :nostonith
       else
         :errors
@@ -384,11 +385,11 @@ class Cib < CibObject
     @errors ||= []
   end
 
-  def error(msg, type = :danger)
-    errors.push(
-      msg: msg,
-      type: type
-    )
+  def error(msg, type = :danger, additions = {})
+    additions.merge! msg: msg, type: type
+    additions[type] = true
+
+    errors.push additions
   end
 
   # Notes that errors here overloads what ActiveRecord would

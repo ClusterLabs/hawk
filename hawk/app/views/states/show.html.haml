@@ -6,18 +6,14 @@
         .circle.circle-medium.page{ class: status_class_for(@cib.meta.status) }
           = status_icon_for(@cib.meta.status)
 
-  .row.softhide{ data: { link: "visible{>errors.length > 0}" } }
+  .row.errors.softhide{ data: { link: "visible{>errors.length > 0}" } }
     .col-lg-12
       .panel.panel-default
         .panel-heading
           %h2.panel-title
             = _("Errors")
 
-        %ul.list-group
-          = jsviews_for "errors" do
-            %li.list-group-item
-              %a{ data: { link: "href{:link}" } }
-                {{:msg}}
+        %ul.list-group{ data: { link: "{for errors tmpl='statusError'}" } }
 
   .row
     .col-lg-12
@@ -28,7 +24,7 @@
               = link_to "#resources", data: { toggle: "tab" } do
                 = _("Resources")
                 %span.badge{ data: { link: "resources.length" } }
-                  = 55 # @cib.resources.count
+                  = @cib.resources.count
             %li
               = link_to "#constraints", data: { toggle: "tab" } do
                 = _("Constraints")
@@ -50,3 +46,12 @@
 
             #nodes.tab-pane.fade
               %table.table.table-striped.nodes
+
+%script#statusError{ type: "text/x-jsrender" }
+  %li.list-group-item{ data: { link: "class{merge:success toggle='list-group-item-success'} class{merge:info toggle='list-group-item-info'} class{merge:warning toggle='list-group-item-warning'} class{merge:danger toggle='list-group-item-danger'}" } }
+    {^{if link}}
+    %a{ data: { link: "href{:link}" } }
+      {{:msg}}
+    {{else}}
+    {{:msg}}
+    {{/if}}

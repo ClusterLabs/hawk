@@ -19,6 +19,9 @@
         events: el,
         metadata: 'footer .metadata',
         content: '#states #middle'
+      },
+      templates: {
+        error: '#statusError'
       }
     };
 
@@ -26,6 +29,12 @@
       this.defaults,
       options
     );
+
+    $.templates({
+      statusError: {
+        markup: this.options.templates.error
+      }
+    });
 
     this.init();
   }

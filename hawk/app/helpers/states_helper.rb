@@ -36,6 +36,8 @@ module StatesHelper
       "circle-success"
     when :errors
       "circle-danger"
+    when :nostonith
+      "circle-info"
     else
       "circle-warning"
     end
@@ -49,6 +51,8 @@ module StatesHelper
       icon_tag("frown-o")
     when :maintenance
       icon_tag("wrench")
+    when :nostonith
+      icon_tag("plug")
     else
       icon_tag("question")
     end
