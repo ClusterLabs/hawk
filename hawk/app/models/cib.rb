@@ -119,11 +119,13 @@ class Cib < CibObject
         current_resources.each do |key, values|
           result[:resources][key] ||= {}
 
-          values[:instances].each do |name, attrs|
+          values[:instances].each do |_, attrs|
             found = false
             [:master, :slave, :started, :failed, :pending].each do |rstate|
               if attrs[rstate]
-                attrs[rstate].each { |n| result[:resources][key][n[:node]] = rstate }
+                attrs[rstate].each do |n|
+                  result[:resources][key][n[:node]] = rstate
+                end
                 result[:resource_states][rstate] += 1
                 found = true
               end
@@ -141,10 +143,10 @@ class Cib < CibObject
         current_tickets.each do |key, values|
           case
           when values[:granted]
-            result[:tickets].push({ key => :granted })
+            result[:tickets].push(key => :granted)
             result[:ticket_states][:granted] += 1
           else
-            result[:tickets].push({ key => :revoked })
+            result[:tickets].push(key => :revoked)
             result[:ticket_states][:revoked] += 1
           end
         end
@@ -169,7 +171,7 @@ class Cib < CibObject
   end
 
   def current_resources
-    resources_by_id.select do |key, values|
+    resources_by_id.select do |_, values|
       values[:instances]
     end
   end
@@ -395,8 +397,17 @@ class Cib < CibObject
   # Notes that errors here overloads what ActiveRecord would
   # use for reporting errors when editing resources.  This
   # should almost certainly be changed.
-  attr_reader :dc, :epoch, :nodes, :resources, :templates, :crm_config, :rsc_defaults, :op_defaults, :resource_count
-  attr_reader :tickets, :tags
+  attr_reader :dc
+  attr_reader :epoch
+  attr_reader :nodes
+  attr_reader :resources
+  attr_reader :templates
+  attr_reader :crm_config
+  attr_reader :rsc_defaults
+  attr_reader :op_defaults
+  attr_reader :resource_count
+  attr_reader :tickets
+  attr_reader :tags
   attr_reader :resources_by_id
   attr_reader :booth
 
@@ -886,7 +897,10 @@ class Cib < CibObject
     @op_defaults = Hashie::Mash.new Hash[@op_defaults.map {|k,v| [k.to_s.underscore.to_sym, v]}]
 
     if not @crm_config[:stonith_enabled]
-      error _("STONITH is disabled. For normal cluster operation, STONITH is required."), :warning
+      error(
+        _("STONITH is disabled. For normal cluster operation, STONITH is required."),
+        :warning
+      )
     end
   end
 end

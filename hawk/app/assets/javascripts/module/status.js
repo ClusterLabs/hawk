@@ -41,7 +41,6 @@
 
   StatusCheck.prototype.init = function() {
     var self = this;
-    var data = self.options.content;
 
     $.each(self.options.events, function(i, e) {
       $(self.options.targets.events).on(e, function() {
