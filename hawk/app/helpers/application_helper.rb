@@ -101,6 +101,8 @@ module ApplicationHelper
       "circle-success"
     when :errors
       "circle-danger"
+    when :maintenance
+      "circle-info"
     else
       "circle-warning"
     end
@@ -109,11 +111,13 @@ module ApplicationHelper
   def status_icon_for(type)
     case type.to_sym
     when :ok
-      icon_tag("smile-o", class: "fa-2x text")
+      icon_tag("check", class: "fa-2x text")
     when :errors
-      icon_tag("frown-o", class: "fa-2x text")
+      icon_tag("exclamation-triangle", class: "fa-2x text")
     when :maintenance
       icon_tag("wrench", class: "fa-2x text")
+    when :nostonith
+      icon_tag("plug", class: "fa-2x text")
     else
       icon_tag("question", class: "fa-2x text")
     end

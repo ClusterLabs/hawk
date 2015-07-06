@@ -34,6 +34,12 @@
     color: darken($alert-success-text, 10%);
   }
 
+  &.circle-info {
+    background-color: darken($alert-info-bg, 30%);
+    border-color: $alert-info-border;
+    color: darken($alert-info-text, 10%);
+  }
+
   &.circle-danger {
     background-color: darken($alert-danger-bg, 30%);
     border-color: $alert-danger-border;

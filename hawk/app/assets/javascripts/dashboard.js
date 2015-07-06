@@ -55,6 +55,8 @@ var dashboardAddCluster = (function() {
             return "circle-success";
         } else if (status == "errors") {
             return "circle-danger";
+        } else if (status == "maintenance") {
+            return "circle-info";
         } else {
             return "circle-warning";
         }
@@ -62,11 +64,13 @@ var dashboardAddCluster = (function() {
 
     function status_icon_for(status) {
         if (status == "ok") {
-            return '<i class="fa fa-smile-o fa-2x text"></i>';
+            return '<i class="fa fa-check fa-2x text"></i>';
         } else if (status == "errors") {
-            return '<i class="fa fa-frown-o fa-2x text"></i>';
+            return '<i class="fa fa-exclamation-triangle fa-2x text"></i>';
         } else if (status == "maintenance") {
             return '<i class="fa fa-wrench fa-2x text"></i>';
+        } else if (status == "nostonith") {
+            return '<i class="fa fa-plug fa-2x text"></i>';
         } else {
             return '<i class="fa fa-question fa-2x text"></i>';
         }

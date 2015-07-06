@@ -62,6 +62,8 @@ class Cib < CibObject
         else
           :ok
         end
+      elsif errors.length == 1 and not @crm_config[:stonith_enabled]
+        :nostonith
       else
         :errors
       end
