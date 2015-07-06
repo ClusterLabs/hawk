@@ -194,6 +194,7 @@ class ApplicationController < ActionController::Base
 
   def set_cors_headers
     if request.headers["Origin"]
+      Rails.logger.debug "Headers: " + request.headers.to_s
       response.headers["Access-Control-Allow-Origin"] = request.headers["Origin"]
       response.headers["Access-Control-Allow-Credentials"] = "true"
     end

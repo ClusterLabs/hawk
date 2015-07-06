@@ -142,6 +142,14 @@ class CibController < ApplicationController
     end
   end
 
+  def options
+    respond_to do |format|
+      format.json do
+        render json: {}, status: 200
+      end
+    end
+  end
+
   protected
 
   def current_resources_for(cib)

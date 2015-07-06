@@ -156,29 +156,35 @@ var dashboardAddCluster = (function() {
         var msg = "";
         if (xhr.readyState > 1) {
             if (xhr.status == 403) {
-                msg = __('Permission denied.');
+                msg += __('Permission denied.');
             } else {
                 var json = json_from_request(xhr);
                 if (json && json.errors) {
-                    msg = json.errors.join(", ");
+                    msg += json.errors.join(", ");
                 } else if (xhr.status >= 10000) {
-                    msg = GETTEXT.err_conn_failed();
+                    msg += GETTEXT.err_conn_failed();
                 } else {
-                    msg = GETTEXT.err_unexpected(xhr.status + " " + xhr.statusText);
+                    msg += GETTEXT.err_unexpected(xhr.status + " " + xhr.statusText);
                 }
             }
         } else if (status == "error") {
-            msg = __("Error connecting to server.");
+            msg += __("Error connecting to server.");
         } else if (status == "timeout") {
-            msg = __("Connection to server timed out.");
+            msg += __("Connection to server timed out.");
         } else if (status == "abort") {
-            msg = __("Connection to server was aborted.");
+            msg += __("Connection to server was aborted.");
         } else if (status == "parsererror") {
-            msg = __("Server returned invalid data.");
+            msg += __("Server returned invalid data.");
         } else if (error) {
-            msg = error;
+            msg += error;
         } else {
-            msg = __("Unknown error connecting to server.");
+            msg += __("Unknown error connecting to server.");
+        }
+
+        if (xhr.status != 0) {
+            msg += "<em>" + xhr.status + "</em>: ";
+        } else {
+            msg += "<pre>" + JSON.stringify(xhr) + "</pre> ";
         }
 
         indicator(clusterId, "error");
@@ -228,24 +234,43 @@ var dashboardAddCluster = (function() {
         }
     }
 
+    function ajaxQuery(spec) {
+        var xhrfields = {};
+        if (spec.crossDomain) {
+            xhrfields.withCredentials = true;
+        }
+
+        $.ajax({ url: spec.url,
+                 beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+                 contentType: 'application/x-www-form-urlencoded',
+                 dataType: 'json',
+                 data: spec.data || null,
+                 type: spec.type || "GET",
+                 timeout: 30000,
+                 crossDomain: spec.crossDomain || false,
+                 xhrFields: xhrfields,
+                 success: spec.success || null,
+                 error: spec.error || null
+               });
+    }
+
     function clusterRefresh(clusterId, clusterInfo) {
         indicator(clusterId, "refresh");
 
-        $.ajax({ url: baseUrl(clusterInfo) + "/cib/mini.json",
-                 dataType: 'json',
-                 data: { _method: 'show' },
-                 timeout: 90000,
-                 cross_domain_hack: clusterInfo.host != null,
-                 success: function(data) {
-                     displayClusterStatus(clusterId, data);
-                     window.setTimeout(function() { clusterRefresh(clusterId, clusterInfo); }, clusterInfo.interval*1000);
-                 },
-                 error: function(xhr, status, error) {
-                     clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
-                         clusterRefresh(clusterId, clusterInfo);
-                     });
-                 }
-               });
+        ajaxQuery({ url: baseUrl(clusterInfo) + "/cib/mini.json",
+                    type: "GET",
+                    data: { _method: 'show' },
+                    crossDomain: clusterInfo.host != null,
+                    success: function(data) {
+                        displayClusterStatus(clusterId, data);
+                        window.setTimeout(function() { clusterRefresh(clusterId, clusterInfo); }, clusterInfo.interval*1000);
+                    },
+                    error: function(xhr, status, error) {
+                        clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
+                            clusterRefresh(clusterId, clusterInfo);
+                        });
+                    }
+                  });
     }
 
     function startRemoteConnect(clusterId, clusterInfo, bodytag) {
@@ -254,22 +279,19 @@ var dashboardAddCluster = (function() {
         var username = escape(bodytag.find("input[name=username]").val());
         var password = escape(bodytag.find("input[name=password]").val());
 
-        $.ajax({ url: baseUrl(clusterInfo) + "/login.json",
-                 timeout: 30000,
-                 dataType: "json",
-                 contentType: 'application/json',
-                 data: JSON.stringify({"session": {"username": username, "password": password } }),
-                 type: "POST",
-                 cross_domain_hack: true,
-                 success: function(data) {
-                     clusterRefresh(clusterId, clusterInfo);
-                 },
-                 error: function(xhr, status, error) {
-                     clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
-                         startRemoteConnect(clusterId, clusterInfo, bodytag);
-                     });
-                 }
-               });
+        ajaxQuery({ url: baseUrl(clusterInfo) + "/login.json",
+                    crossDomain: true,
+                    type: "POST",
+                    data: JSON.stringify({"session": {"username": username, "password": password } }),
+                    success: function(data) {
+                        clusterRefresh(clusterId, clusterInfo);
+                    },
+                    error: function(xhr, status, error) {
+                        clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
+                            startRemoteConnect(clusterId, clusterInfo, bodytag);
+                        });
+                    }
+                  });
     }
 
     function basicCreateBody(clusterId, data) {
