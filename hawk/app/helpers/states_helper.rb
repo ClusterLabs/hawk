@@ -36,8 +36,10 @@ module StatesHelper
       "circle-success"
     when :errors
       "circle-danger"
-    when :nostonith
+    when :maintenance
       "circle-info"
+    when :nostonith
+      "circle-warning"
     else
       "circle-warning"
     end
@@ -46,9 +48,9 @@ module StatesHelper
   def status_icon_for(type)
     case type.to_sym
     when :ok
-      icon_tag("smile-o")
+      icon_tag("check")
     when :errors
-      icon_tag("frown-o")
+      icon_tag("exclamation-triangle")
     when :maintenance
       icon_tag("wrench")
     when :nostonith
