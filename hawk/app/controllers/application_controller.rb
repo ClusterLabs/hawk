@@ -42,8 +42,10 @@ class ApplicationController < ActionController::Base
   before_filter :set_users_locale
   before_filter :set_current_home
   before_filter :set_current_title
-  before_filter :set_cors_headers
   before_filter :set_shadow_cib
+
+  before_filter :cors_preflight_check
+  after_filter :cors_set_access_control_headers
 
   helper_method :is_god?
   helper_method :logged_in?
@@ -192,11 +194,21 @@ class ApplicationController < ActionController::Base
     @title ||= ""
   end
 
-  def set_cors_headers
-    if request.headers["Origin"]
-      Rails.logger.debug "Headers: " + request.headers.to_s
-      response.headers["Access-Control-Allow-Origin"] = request.headers["Origin"]
-      response.headers["Access-Control-Allow-Credentials"] = "true"
+  def cors_set_access_control_headers
+    headers['Access-Control-Allow-Origin'] = '*'
+    headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE, OPTIONS'
+    headers['Access-Control-Allow-Headers'] = 'Origin, Content-Type, Accept, Authorization, Token'
+    headers['Access-Control-Max-Age'] = "1728000"
+  end
+
+  def cors_preflight_check
+    if request.method == 'OPTIONS'
+      headers['Access-Control-Allow-Origin'] = '*'
+      headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE, OPTIONS'
+      headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version, Token'
+      headers['Access-Control-Max-Age'] = '1728000'
+
+      render :text => '', :content_type => 'text/plain'
     end
   end
 

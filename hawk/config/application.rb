@@ -68,7 +68,5 @@ module Hawk
     if Rails.env.development?
       config.web_console.whitelisted_ips = "192.168.0.0/16"
     end
-
-    config.action_dispatch.default_headers.merge!({'Access-Control-Allow-Origin' => '*', 'Access-Control-Allow-Credentials' => 'true'})
   end
 end

@@ -30,6 +30,9 @@
 #======================================================================
 
 class SessionsController < ApplicationController
+
+  skip_before_filter :verify_authenticity_token
+
   def new
     @session = Session.new
 
@@ -85,14 +88,6 @@ class SessionsController < ApplicationController
       format.html do
         redirect_to login_url, alert: message
       end
-      format.json do
-        render json: {}, status: 200
-      end
-    end
-  end
-
-  def options
-    respond_to do |format|
       format.json do
         render json: {}, status: 200
       end

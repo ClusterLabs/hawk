@@ -31,6 +31,7 @@
 
 class CibController < ApplicationController
   before_filter :login_required
+  skip_before_filter :verify_authenticity_token
 
   def show
     respond_to do |format|
