@@ -111,7 +111,8 @@ var dashboardAddCluster = (function() {
             text += '<div class="row">';
             text += '<div class="cluster-errors col-md-12">';
             cib.errors.forEach(function(err) {
-                text += "<div class=\"alert alert-danger\">" + err.msg + "</div>";
+                var type = err.type || "danger";
+                text += "<div class=\"alert alert-" + type + "\">" + err.msg + "</div>";
             });
             text += '</div>';
             text += '</div>';
@@ -260,7 +261,7 @@ var dashboardAddCluster = (function() {
     function clusterRefresh(clusterId, clusterInfo) {
         indicator(clusterId, "refresh");
 
-        ajaxQuery({ url: baseUrl(clusterInfo) + "/cib/mini.json",
+        ajaxQuery({ url: baseUrl(clusterInfo) + "/cib/live/mini.json",
                     type: "GET",
                     data: { _method: 'show' },
                     crossDomain: clusterInfo.host != null,

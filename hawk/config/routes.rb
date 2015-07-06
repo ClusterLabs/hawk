@@ -34,7 +34,8 @@ Rails.application.routes.draw do
 
   resources :cib, only: [:show] do
     member do
-      get "mini", action: "show"
+      get action: "show"
+      match action: "show", via: [:post, :options]
     end
 
     resources :nodes do
@@ -157,6 +158,7 @@ Rails.application.routes.draw do
   get "help" => "pages#help", :as => :help
 
   get "logout" => "sessions#destroy", :as => :logout
+
   get "login" => "sessions#new", :as => :login
-  post "login" => "sessions#create", :as => :signin
+  match 'login' => "sessions#create", via: [ :post, :options], :as => :signin
 end
