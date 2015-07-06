@@ -32,7 +32,7 @@ $(function() {
           switch(row.state) {
             case 'online':
               return [
-                '<i class="fa fa-play" title="',
+                '<i class="fa fa-play text-success" title="',
                   row.state,
                 '"></i>'
               ].join('');
@@ -40,7 +40,7 @@ $(function() {
 
             case 'offline':
               return [
-                '<i class="fa fa-stop" title="',
+                '<i class="fa fa-stop text-info" title="',
                   row.state,
                 '"></i>'
               ].join('');
@@ -48,7 +48,7 @@ $(function() {
 
             case 'fence':
               return [
-                '<i class="fa fa-exclamation-triangle" title="',
+                '<i class="fa fa-exclamation-triangle text-danger" title="',
                   row.state,
                 '"></i>'
               ].join('');
@@ -56,7 +56,7 @@ $(function() {
 
             default:
               return [
-                '<i class="fa fa-exclamation-triangle" title="',
+                '<i class="fa fa-exclamation-triangle text-warning" title="',
                   row.state,
                 '"></i>'
               ].join('');
@@ -75,18 +75,140 @@ $(function() {
         sortable: true,
         clickToSelect: true,
         class: 'col-sm-1',
+        events: {
+          'click .ready': function (e, value, row, index) {
+            e.preventDefault();
+            var $self = $(this);
+
+            try {
+              answer = confirm(
+                i18n.translate(
+                  'This will bring node %s out of maintenance mode. Do you want to continue?'
+                ).fetch(row.name)
+              );
+            } catch (e) {
+              (console.error || console.log).call(console, e.stack || e);
+            }
+
+            if (answer) {
+              $.ajax({
+                dataType: 'json',
+                method: 'GET',
+                url: Routes.ready_cib_node_path(
+                  $('body').data('cib'),
+                  row.id,
+                  { format: 'json' }
+                ),
+
+                success: function(data) {
+                  if (data.success) {
+                    $.growl({
+                      message: data.message
+                    }, {
+                      type: 'success'
+                    });
+
+                    $self.parents('table').bootstrapTable('refresh')
+                  } else {
+                    if (data.error) {
+                      $.growl({
+                        message: data.error
+                      }, {
+                        type: 'danger'
+                      });
+                    }
+                  }
+                },
+                error: function(xhr, status, msg) {
+                  $.growl({
+                    message: xhr.responseJSON.error || msg
+                  },{
+                    type: 'danger'
+                  });
+                }
+              });
+            }
+          },
+          'click .maintenance': function (e, value, row, index) {
+            e.preventDefault();
+            var $self = $(this);
+
+            try {
+              answer = confirm(
+                i18n.translate(
+                  'This will put node %s in maintenance mode. All resources on this node will become unmanaged. Do you want to continue?'
+                ).fetch(row.name)
+              );
+            } catch (e) {
+              (console.error || console.log).call(console, e.stack || e);
+            }
+
+            if (answer) {
+              $.ajax({
+                dataType: 'json',
+                method: 'GET',
+                url: Routes.maintenance_cib_node_path(
+                  $('body').data('cib'),
+                  row.id,
+                  { format: 'json' }
+                ),
+
+                success: function(data) {
+                  if (data.success) {
+                    $.growl({
+                      message: data.message
+                    }, {
+                      type: 'success'
+                    });
+
+                    $self.parents('table').bootstrapTable('refresh')
+                  } else {
+                    if (data.error) {
+                      $.growl({
+                        message: data.error
+                      }, {
+                        type: 'danger'
+                      });
+                    }
+                  }
+                },
+                error: function(xhr, status, msg) {
+                  $.growl({
+                    message: xhr.responseJSON.error || msg
+                  },{
+                    type: 'danger'
+                  });
+                }
+              });
+            }
+          }
+        },
         formatter: function(value, row, index) {
           if (row.maintenance) {
             return [
-              '<i class="fa fa-toggle-on text-danger" title="',
-                __('Yes'),
-              '"></i>'
+              '<a href="',
+                  Routes.ready_cib_node_path(
+                    $('body').data('cib'),
+                    row.id
+                  ),
+                '" class="ready btn btn-default btn-xs" title="',
+                __('Switch to ready'),
+              '">',
+                '<i class="fa fa-toggle-on text-danger"></i>',
+              '</a>'
             ].join('');
           } else {
             return [
-              '<i class="fa fa-toggle-off text-success" title="',
-                __('No'),
-              '"></i>'
+              '<a href="',
+                Routes.maintenance_cib_node_path(
+                  $('body').data('cib'),
+                  row.id
+                ),
+              '" class="maintenance btn btn-default btn-xs" title="',
+                __('Switch to maintenance'),
+              '">',
+                '<i class="fa fa-toggle-off text-success"></i>',
+              '</a>'
             ].join('');
           }
         }
@@ -96,18 +218,140 @@ $(function() {
         sortable: true,
         clickToSelect: true,
         class: 'col-sm-1',
+        events: {
+          'click .online': function (e, value, row, index) {
+            e.preventDefault();
+            var $self = $(this);
+
+            try {
+              answer = confirm(
+                i18n.translate(
+                  'This will bring node %s online if it is currently on standby. Do you want to continue?'
+                ).fetch(row.name)
+              );
+            } catch (e) {
+              (console.error || console.log).call(console, e.stack || e);
+            }
+
+            if (answer) {
+              $.ajax({
+                dataType: 'json',
+                method: 'GET',
+                url: Routes.online_cib_node_path(
+                  $('body').data('cib'),
+                  row.id,
+                  { format: 'json' }
+                ),
+
+                success: function(data) {
+                  if (data.success) {
+                    $.growl({
+                      message: data.message
+                    }, {
+                      type: 'success'
+                    });
+
+                    $self.parents('table').bootstrapTable('refresh')
+                  } else {
+                    if (data.error) {
+                      $.growl({
+                        message: data.error
+                      }, {
+                        type: 'danger'
+                      });
+                    }
+                  }
+                },
+                error: function(xhr, status, msg) {
+                  $.growl({
+                    message: xhr.responseJSON.error || msg
+                  },{
+                    type: 'danger'
+                  });
+                }
+              });
+            }
+          },
+          'click .standby': function (e, value, row, index) {
+            e.preventDefault();
+            var $self = $(this);
+
+            try {
+              answer = confirm(
+                i18n.translate(
+                  'This will put node %s on standby. All resources will be stopped and/or moved to another node. Do you want to continue?'
+                ).fetch(row.name)
+              );
+            } catch (e) {
+              (console.error || console.log).call(console, e.stack || e);
+            }
+
+            if (answer) {
+              $.ajax({
+                dataType: 'json',
+                method: 'GET',
+                url: Routes.standby_cib_node_path(
+                  $('body').data('cib'),
+                  row.id,
+                  { format: 'json' }
+                ),
+
+                success: function(data) {
+                  if (data.success) {
+                    $.growl({
+                      message: data.message
+                    }, {
+                      type: 'success'
+                    });
+
+                    $self.parents('table').bootstrapTable('refresh')
+                  } else {
+                    if (data.error) {
+                      $.growl({
+                        message: data.error
+                      }, {
+                        type: 'danger'
+                      });
+                    }
+                  }
+                },
+                error: function(xhr, status, msg) {
+                  $.growl({
+                    message: xhr.responseJSON.error || msg
+                  },{
+                    type: 'danger'
+                  });
+                }
+              });
+            }
+          }
+        },
         formatter: function(value, row, index) {
           if (row.standby) {
             return [
-              '<i class="fa fa-toggle-on text-danger" title="',
-                __('Yes'),
-              '"></i>'
+              '<a href="',
+                Routes.online_cib_node_path(
+                  $('body').data('cib'),
+                  row.id
+                ),
+              '" class="online btn btn-default btn-xs" title="',
+                __('Switch to online'),
+              '">',
+                '<i class="fa fa-toggle-on text-danger"></i>',
+              '</a>'
             ].join('');
           } else {
             return [
-              '<i class="fa fa-toggle-off text-success" title="',
-                __('No'),
-              '"></i>'
+              '<a href="',
+                Routes.standby_cib_node_path(
+                  $('body').data('cib'),
+                  row.id
+                ),
+              '" class="standby btn btn-default btn-xs" title="',
+                __('Switch to standby'),
+              '">',
+                '<i class="fa fa-toggle-off text-success"></i>',
+              '</a>'
             ].join('');
           }
         }
@@ -118,274 +362,62 @@ $(function() {
         clickToSelect: false,
         class: 'col-sm-2',
         events: {
-          'click .online': function (e, value, row, index) {
-            e.preventDefault();
-            var $self = $(this);
-
-            $.ajax({
-              dataType: 'json',
-              method: 'GET',
-              url: Routes.online_cib_node_path(
-                $('body').data('cib'),
-                row.id,
-                { format: 'json' }
-              ),
-
-              success: function(data) {
-                if (data.success) {
-                  $.growl({
-                    message: data.message
-                  }, {
-                    type: 'success'
-                  });
-
-                  $self.parents('table').bootstrapTable('refresh')
-                } else {
-                  if (data.error) {
-                    $.growl({
-                      message: data.error
-                    }, {
-                      type: 'danger'
-                    });
-                  }
-                }
-              },
-              error: function(xhr, status, msg) {
-                $.growl({
-                  message: xhr.responseJSON.error || msg
-                },{
-                  type: 'danger'
-                });
-              }
-            });
-          },
-          'click .standby': function (e, value, row, index) {
-            e.preventDefault();
-            var $self = $(this);
-
-            $.ajax({
-              dataType: 'json',
-              method: 'GET',
-              url: Routes.standby_cib_node_path(
-                $('body').data('cib'),
-                row.id,
-                { format: 'json' }
-              ),
-
-              success: function(data) {
-                if (data.success) {
-                  $.growl({
-                    message: data.message
-                  }, {
-                    type: 'success'
-                  });
-
-                  $self.parents('table').bootstrapTable('refresh')
-                } else {
-                  if (data.error) {
-                    $.growl({
-                      message: data.error
-                    }, {
-                      type: 'danger'
-                    });
-                  }
-                }
-              },
-              error: function(xhr, status, msg) {
-                $.growl({
-                  message: xhr.responseJSON.error || msg
-                },{
-                  type: 'danger'
-                });
-              }
-            });
-          },
-          'click .ready': function (e, value, row, index) {
-            e.preventDefault();
-            var $self = $(this);
-
-            $.ajax({
-              dataType: 'json',
-              method: 'GET',
-              url: Routes.ready_cib_node_path(
-                $('body').data('cib'),
-                row.id,
-                { format: 'json' }
-              ),
-
-              success: function(data) {
-                if (data.success) {
-                  $.growl({
-                    message: data.message
-                  }, {
-                    type: 'success'
-                  });
-
-                  $self.parents('table').bootstrapTable('refresh')
-                } else {
-                  if (data.error) {
-                    $.growl({
-                      message: data.error
-                    }, {
-                      type: 'danger'
-                    });
-                  }
-                }
-              },
-              error: function(xhr, status, msg) {
-                $.growl({
-                  message: xhr.responseJSON.error || msg
-                },{
-                  type: 'danger'
-                });
-              }
-            });
-          },
-          'click .maintenance': function (e, value, row, index) {
-            e.preventDefault();
-            var $self = $(this);
-
-            $.ajax({
-              dataType: 'json',
-              method: 'GET',
-              url: Routes.maintenance_cib_node_path(
-                $('body').data('cib'),
-                row.id,
-                { format: 'json' }
-              ),
-
-              success: function(data) {
-                if (data.success) {
-                  $.growl({
-                    message: data.message
-                  }, {
-                    type: 'success'
-                  });
-
-                  $self.parents('table').bootstrapTable('refresh')
-                } else {
-                  if (data.error) {
-                    $.growl({
-                      message: data.error
-                    }, {
-                      type: 'danger'
-                    });
-                  }
-                }
-              },
-              error: function(xhr, status, msg) {
-                $.growl({
-                  message: xhr.responseJSON.error || msg
-                },{
-                  type: 'danger'
-                });
-              }
-            });
-          },
           'click .fence': function (e, value, row, index) {
             e.preventDefault();
             var $self = $(this);
 
-            $.ajax({
-              dataType: 'json',
-              method: 'GET',
-              url: Routes.fence_cib_node_path(
-                $('body').data('cib'),
-                row.id,
-                { format: 'json' }
-              ),
+            try {
+              answer = confirm(
+                i18n.translate(
+                  'This will attempt to immediately fence node %s. Do you want to continue?'
+                ).fetch(row.name)
+              );
+            } catch (e) {
+              (console.error || console.log).call(console, e.stack || e);
+            }
 
-              success: function(data) {
-                if (data.success) {
-                  $.growl({
-                    message: data.message
-                  }, {
-                    type: 'success'
-                  });
+            if (answer) {
+              $.ajax({
+                dataType: 'json',
+                method: 'GET',
+                url: Routes.fence_cib_node_path(
+                  $('body').data('cib'),
+                  row.id,
+                  { format: 'json' }
+                ),
 
-                  $self.parents('table').bootstrapTable('refresh')
-                } else {
-                  if (data.error) {
+                success: function(data) {
+                  if (data.success) {
                     $.growl({
-                      message: data.error
+                      message: data.message
                     }, {
-                      type: 'danger'
+                      type: 'success'
                     });
+
+                    $self.parents('table').bootstrapTable('refresh')
+                  } else {
+                    if (data.error) {
+                      $.growl({
+                        message: data.error
+                      }, {
+                        type: 'danger'
+                      });
+                    }
                   }
+                },
+                error: function(xhr, status, msg) {
+                  $.growl({
+                    message: xhr.responseJSON.error || msg
+                  },{
+                    type: 'danger'
+                  });
                 }
-              },
-              error: function(xhr, status, msg) {
-                $.growl({
-                  message: xhr.responseJSON.error || msg
-                },{
-                  type: 'danger'
-                });
-              }
-            });
+              });
+            }
           }
         },
         formatter: function(value, row, index) {
           var operations = []
-
-          if (!row.online) {
-            operations.push([
-              '<a href="',
-                Routes.online_cib_node_path(
-                  $('body').data('cib'),
-                  row.id
-                ),
-              '" class="online btn btn-default btn-xs" title="',
-                __('Online'),
-              '" data-confirm="' + i18n.translate('This will bring node %s online if it is currently on standby. Do you want to continue?').fetch(row.name) + '">',
-                '<i class="fa fa-play"></i>',
-              '</a> '
-            ].join(''));
-          }
-
-          if (!row.standby) {
-            operations.push([
-              '<a href="',
-                Routes.standby_cib_node_path(
-                  $('body').data('cib'),
-                  row.id
-                ),
-              '" class="standby btn btn-default btn-xs" title="',
-                __('Standby'),
-              '" data-confirm="' + i18n.translate('This will put node %s on standby. All resources will be stopped and/or moved to another node. Do you want to continue?').fetch(row.name) + '">',
-                '<i class="fa fa-pause"></i>',
-              '</a> '
-            ].join(''));
-          }
-
-          if (!row.ready) {
-            operations.push([
-              '<a href="',
-                  Routes.ready_cib_node_path(
-                    $('body').data('cib'),
-                    row.id
-                  ),
-                '" class="ready btn btn-default btn-xs" title="',
-                __('Ready'),
-              '" data-confirm="' + i18n.translate('This will bring node %s out of maintenance mode. Do you want to continue?').fetch(row.name) + '">',
-                '<i class="fa fa-check"></i>',
-              '</a> '
-            ].join(''));
-          }
-
-          if (!row.maintenance) {
-            operations.push([
-              '<a href="',
-                Routes.maintenance_cib_node_path(
-                  $('body').data('cib'),
-                  row.id
-                ),
-              '" class="maintenance btn btn-default btn-xs" title="',
-                __('Maintenance'),
-              '" data-confirm="' + i18n.translate('This will put node %s in maintenance mode. All resources on this node will become unmanaged. Do you want to continue?').fetch(row.name) + '">',
-                '<i class="fa fa-wrench"></i>',
-              '</a> '
-            ].join(''));
-          }
 
           if (!row.fence) {
             operations.push([
@@ -396,26 +428,24 @@ $(function() {
                   ),
                 '" class="fence btn btn-default btn-xs" title="',
                 __('Fence'),
-              '" data-confirm="' + i18n.translate('This will attempt to immediately fence node %s. Do you want to continue?').fetch(row.name) + '">',
+              '">',
                 '<i class="fa fa-arrow-circle-right"></i>',
               '</a> '
             ].join(''));
           }
 
-          if ($('body').data('god') === 'true') {
-            operations.push([
-              '<a href="',
-                  Routes.events_cib_node_path(
-                    $('body').data('cib'),
-                    row.id
-                  ),
-                '" class="events btn btn-default btn-xs" title="',
-                __('Events'),
-              '" data-toggle="modal" data-target="#modal">',
-                '<i class="fa fa-files-o"></i>',
-              '</a>'
-            ].join(''));
-          }
+          operations.push([
+            '<a href="',
+                Routes.events_cib_node_path(
+                  $('body').data('cib'),
+                  row.id
+                ),
+              '" class="events btn btn-default btn-xs" title="',
+              __('Events'),
+            '" data-toggle="modal" data-target="#modal">',
+              '<i class="fa fa-files-o"></i>',
+            '</a>'
+          ].join(''));
 
           operations.push([
             '<a href="',
