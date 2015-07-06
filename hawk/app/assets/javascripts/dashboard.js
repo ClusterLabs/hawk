@@ -204,7 +204,7 @@ var dashboardAddCluster = (function() {
 
         errors.html('<div class="alert alert-danger">' +  msg +  "</div>");
 
-        var text = "";
+        tag.find('.circle').addClass('circle-danger').removeClass('circle-success circle-info circle-warning').html(status_icon_for('errors'));
 
         var next = window.setTimeout(cb, 15000);
 
