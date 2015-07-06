@@ -182,9 +182,9 @@ var dashboardAddCluster = (function() {
         }
 
         if (xhr.status != 0) {
-            msg += "<em>" + xhr.status + "</em>: ";
+            msg += "<pre> Response: " + xhr.status + "</pre>";
         } else {
-            msg += "<pre>" + JSON.stringify(xhr) + "</pre> ";
+            msg += "<pre>" + JSON.stringify(xhr) + "</pre>";
         }
 
         indicator(clusterId, "error");
