@@ -67,6 +67,8 @@ module Hawk
 
     if Rails.env.development?
       config.web_console.whitelisted_ips = "192.168.0.0/16"
+    else
+      config.middleware.use Rack::Deflater
     end
   end
 end
