@@ -157,11 +157,19 @@ var dashboardAddCluster = (function() {
         var msg = "";
         if (xhr.readyState > 1) {
             if (xhr.status == 403) {
-                msg += __('Permission denied.');
+                msg += __('Permission denied. ');
+                var json = json_from_request(xhr);
+                if (json && json.errors) {
+                    var merged = [];
+                    merged = merged.concat.apply(merged, json.errors);
+                    msg += merged.join(", ");
+                }
             } else {
                 var json = json_from_request(xhr);
                 if (json && json.errors) {
-                    msg += json.errors.join(", ");
+                    var merged = [];
+                    merged = merged.concat.apply(merged, json.errors);
+                    msg += merged.join(", ");
                 } else if (xhr.status >= 10000) {
                     msg += GETTEXT.err_conn_failed();
                 } else {
