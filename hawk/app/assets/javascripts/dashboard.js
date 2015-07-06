@@ -109,7 +109,7 @@ var dashboardAddCluster = (function() {
 
         if (cib.errors.length > 0) {
             text += '<div class="row">';
-            text += '<div class="col-md-12">';
+            text += '<div class="cluster-errors col-md-12">';
             cib.errors.forEach(function(err) {
                 text += "<div class=\"alert alert-danger\">" + err.msg + "</div>";
             });
@@ -118,10 +118,10 @@ var dashboardAddCluster = (function() {
         }
         
         text += '<div class="row">';
-        text += '<div class="col-md-2">';
+        text += '<div class="col-md-3">';
         text += circle;
         text += '</div>';
-        text += '<div class="col-md-10">';
+        text += '<div class="col-md-9">';
         text += '<table class="table table-condensed">';
 
         $.each(cib.tickets, function(idx, obj) {
@@ -181,34 +181,40 @@ var dashboardAddCluster = (function() {
             msg += __("Unknown error connecting to server.");
         }
 
+        msg += " " + __("Retrying every 15 seconds...");
+
         if (xhr.status != 0) {
-            msg += "<pre> Response: " + xhr.status + "</pre>";
-        } else {
-            msg += "<pre>" + JSON.stringify(xhr) + "</pre>";
+            msg += "<pre> Response: " + xhr.status + " " + xhr.statusText + "</pre>";
         }
 
         indicator(clusterId, "error");
         $('#' + clusterId).removeClass('panel-warning').addClass('panel-danger');
         var tag = $('#' + clusterId + ' div.panel-body');
 
-        var text = '<div class="alert alert-danger">';
-        text += msg;
-        text += "</div>";
+        var errors = tag.find('.cluster-errors');
 
-        text += '<button type="button" class="btn btn-primary" aria-label="Cancel">' + __('Cancel') + '</button>';
+        errors.html('<div class="alert alert-danger">' +  msg +  "</div>");
 
-        tag.html(text);
+        var text = "";
+        //text += '<button type="button" class="btn btn-primary" aria-label="Cancel">' + __('Cancel') + '</button>';
+        //tag.html(text);
 
         var next = window.setTimeout(cb, 15000);
 
-        tag.find('.btn-primary').click(function() {
+        var btn = tag.find('.btn-success');
+        btn.text(__('Cancel'));
+        btn.off('click');
+        btn.attr("disabled", false);
+        tag.find('input').attr("disabled", true);
+        btn.click(function() {
             window.clearTimeout(next);
             tag.html(basicCreateBody(clusterId, clusterInfo));
 
             if (clusterInfo.host == null) {
                 clusterRefresh(clusterId, clusterInfo);
             } else {
-                tag.find(".btn-success").click(function() {
+                var btn2 = tag.find(".btn-success");
+                btn2.click(function() {
                     startRemoteConnect(clusterId, clusterInfo, tag);
                 });
             }
@@ -276,6 +282,13 @@ var dashboardAddCluster = (function() {
     function startRemoteConnect(clusterId, clusterInfo, bodytag) {
         indicator(clusterId, "refresh");
 
+        var btn = bodytag.find('.btn-success');
+        btn.text(__('Connecting...'));
+        btn.off('click');
+        btn.attr("disabled", true);
+        bodytag.find('input').attr("disabled", true);
+
+        
         var username = escape(bodytag.find("input[name=username]").val());
         var password = escape(bodytag.find("input[name=password]").val());
 
@@ -302,7 +315,8 @@ var dashboardAddCluster = (function() {
         var v_username = $('body').data('user');
         var content = '';
         if (data.host != null) {
-            content = '<form class="form-horizontal" role="form" onsubmit="return false;">' +
+            content = '<div class="cluster-errors"></div>' +
+                '<form class="form-horizontal" role="form" onsubmit="return false;">' +
                 '<div class="input-group dashboard-login">' +
                 '<span class="input-group-addon"><i class="fa fa-server"></i></span>' +
                 '<input type="text" class="form-control" name="host" id="host" readonly="readonly" value="' + data.host + '">' +
