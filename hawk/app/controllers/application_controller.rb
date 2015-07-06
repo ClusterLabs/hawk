@@ -212,7 +212,7 @@ class ApplicationController < ActionController::Base
       response.headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version, X-CSRF-Token, Token'
       response.headers['Access-Control-Max-Age'] = '1728000'
 
-      render :text => '', :content_type => 'text/plain'
+      render json: {}, status: 200
     end
   end
 
