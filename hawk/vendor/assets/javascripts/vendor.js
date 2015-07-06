@@ -6,9 +6,7 @@
 //= require jquery/validate
 //= require jquery/matchheight
 //= require jquery/stickytabs
-//= require jquery/jsrender
-//= require jquery/observable
-//= require jquery/views
+//= require jquery/jsviews
 //= require jquery/sortable
 //= require jquery/blockui
 //= require misc/moment

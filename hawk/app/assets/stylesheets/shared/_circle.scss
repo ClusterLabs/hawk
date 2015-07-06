@@ -2,12 +2,13 @@
 // See COPYING for license.
 
 .circle {
-  border-radius: 50%;
+  border-radius: 100%;
   text-align: center;
   vertical-align: middle;
   position: relative;
   display: table;
-  margin: 5px auto;
+  margin: 0 auto;
+  margin-top: -5px;
 
   //box-shadow: inset -10px -10px 100px #000, 10px 10px 20px black, inset 0px 0px 10px black;
 
@@ -23,11 +24,6 @@
     transform: rotate(40deg);
   }*/
 
-  .text {
-    display: table-cell;
-    vertical-align: middle;
-  }
-
   &.circle-success {
     background-color: darken($alert-success-bg, 30%);
     border-color: $alert-success-border;
@@ -40,30 +36,37 @@
     color: darken($alert-info-text, 10%);
   }
 
-  &.circle-danger {
-    background-color: darken($alert-danger-bg, 30%);
-    border-color: $alert-danger-border;
-    color: darken($alert-danger-text, 10%);
-  }
-
   &.circle-warning {
     background-color: darken($alert-warning-bg, 30%);
     border-color: $alert-warning-border;
     color: darken($alert-warning-text, 10%);
   }
 
+  &.circle-danger {
+    background-color: darken($alert-danger-bg, 30%);
+    border-color: $alert-danger-border;
+    color: darken($alert-danger-text, 10%);
+  }
+
   &.circle-large {
+    font-size: 30px;
     height: 100px;
     width: 100px;
+  }
 
-    font-size: 25px;
+  &.circle-medium {
+    font-size: 28px;
+    height: 15px;
+    width: 15px;
   }
 
   &.circle-small {
+    font-size: 14px;
     height: 15px;
     width: 15px;
+  }
 
-    font-size: 14px;
-    padding: 2px;
+  > .fa {
+    padding: 5px 10px;
   }
 }

@@ -1,78 +1,57 @@
 .container-fluid
-  %h1
-    = icon_text "bullhorn", _("Status"), class: "page"
-
   .row
-    .col-lg-8
-      .panel.panel-default.cluster-config{ data: { mh: "status" } }
-        .panel-heading
-          %h2.panel-title
-            = _("Cluster")
+    %h1
+      = icon_text "bullhorn", _("Status"), class: "page"
+      .pull-right
+        .circle.circle-medium.page{ class: status_class_for(@cib.meta.status) }
+          = status_icon_for(@cib.meta.status)
 
-        %table.table.table-striped
-          %tbody
-            %tr
-              %th.col-xs-6
-                = _("STONITH Enabled")
-              %td{ class: @cib.crm_config[:stonith_enabled] ? "text-success" : "text-danger", data: { link: "{:crm_config.stonith_enabled} class{:crm_config.stonith_enabled?'text-success':'text-danger'}" } }
-                = @cib.crm_config[:stonith_enabled]
-            %tr
-              %th
-                = _("No Quorum Policy")
-              %td{ data: { link: "crm_config.no_quorum_policy" } }
-                = @cib.crm_config[:no_quorum_policy]
-            %tr
-              %th
-                = _("Symmetric Cluster")
-              %td{ data: { link: "crm_config.symmetric_cluster" } }
-                = @cib.crm_config[:symmetric_cluster]
-            %tr
-              %th
-                = _("Resource Stickiness")
-              %td{ data: { link: "rsc_defaults.resource_stickiness" } }
-                = @cib.rsc_defaults[:resource_stickiness]
-
-    .col-lg-4
-      .panel.panel-default.cluster-status{ data: { mh: "status" } }
-        .panel-heading
-          %h2.panel-title
-            = _("Status")
-
-        .panel-body.text-center
-          .circle.circle-large{ class: status_class_for(@cib.meta.status) }
-            = status_icon_for(@cib.meta.status)
-
-  .row.cluster-errors.softhide{ data: { link: "visible{:errors.length > 0}" } }
+  .row.errors.softhide{ data: { link: "visible{>errors.length > 0}" } }
     .col-lg-12
       .panel.panel-default
         .panel-heading
           %h2.panel-title
             = _("Errors")
 
-        %ul.list-group
-          = jsviews_for "errors" do
-            %li.list-group-item
-              %a{ data: { link: "href{:link}" } }
-                {{:msg}}
+        %ul.list-group{ data: { link: "{for errors tmpl='statusError'}" } }
 
-  .panel.panel-default.with-nav-tabs
-    .panel-heading
-      %ul.nav.nav-tabs
-        %li.active
-          = link_to "#nodes", data: { toggle: "tab" } do
-            = _("Nodes")
-            %span.badge{ data: { toggle: "tab", link: "nodes.length" } }
-              = @cib.nodes.count
-        %li
-          = link_to "#resources", data: { toggle: "tab" } do
-            = _("Resources")
-            %span.badge{ data: { toggle: "tab", link: "resources.length" } }
-              = @cib.resources.count
+  .row
+    .col-lg-12
+      .panel.panel-default.with-nav-tabs
+        .panel-heading
+          %ul.nav.nav-tabs
+            %li.active
+              = link_to "#resources", data: { toggle: "tab" } do
+                = _("Resources")
+                %span.badge{ data: { link: "resources.length" } }
+                  = @cib.resources.count
+            %li
+              = link_to "#constraints", data: { toggle: "tab" } do
+                = _("Constraints")
+                %span.badge{ data: { link: "constraints.length" } }
+                  = @cib.constraints.count
+            %li
+              = link_to "#nodes", data: { toggle: "tab" } do
+                = _("Nodes")
+                %span.badge{ data: { link: "nodes.length" } }
+                  = @cib.nodes.count
 
-    .panel-body
-      .tab-content
-        #nodes.tab-pane.fade.in.active
-          %table.table.table-striped.nodes
+        .panel-body
+          .tab-content
+            #resources.tab-pane.fade.in.active
+              %table.table.table-striped.resources
 
-        #resources.tab-pane.fade
-          %table.table.table-striped.resources
+            #constraints.tab-pane.fade
+              %table.table.table-striped.constraints
+
+            #nodes.tab-pane.fade
+              %table.table.table-striped.nodes
+
+%script#statusError{ type: "text/x-jsrender" }
+  %li.list-group-item{ data: { link: "class{merge:success toggle='list-group-item-success'} class{merge:info toggle='list-group-item-info'} class{merge:warning toggle='list-group-item-warning'} class{merge:danger toggle='list-group-item-danger'}" } }
+    {^{if link}}
+    %a{ data: { link: "href{:link}" } }
+      {{:msg}}
+    {{else}}
+    {{:msg}}
+    {{/if}}
