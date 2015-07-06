@@ -288,8 +288,8 @@ var dashboardAddCluster = (function() {
     function startRemoteConnect(clusterId, clusterInfo, bodytag) {
         indicator(clusterId, "refresh");
         
-        var username = escape(bodytag.find("input[name=username]").val());
-        var password = escape(bodytag.find("input[name=password]").val());
+        var username = bodytag.find("input[name=username]").val();
+        var password = bodytag.find("input[name=password]").val();
 
         bodytag.find('.btn-success').attr('disabled', true);
         bodytag.find('input').attr('disabled', true);
@@ -297,7 +297,7 @@ var dashboardAddCluster = (function() {
         ajaxQuery({ url: baseUrl(clusterInfo) + "/login.json",
                     crossDomain: true,
                     type: "POST",
-                    data: JSON.stringify({"session": {"username": username, "password": password } }),
+                    data: {"session": {"username": username, "password": password } },
                     success: function(data) {
                         clusterRefresh(clusterId, clusterInfo);
                     },
