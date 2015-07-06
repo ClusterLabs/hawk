@@ -36,7 +36,7 @@ class DashboardsController < ApplicationController
   def show
     @clusters = Cluster.all
 
-    render layout: "dashboard"
+    render
   end
 
   def add
