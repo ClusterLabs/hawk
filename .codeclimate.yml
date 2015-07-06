@@ -1,9 +1,16 @@
-languages:
-  Ruby: true
-  JavaScript: true
-  PHP: false
-  Python: false
+---
 exclude_paths:
-- "hawk/vendor/*"
-- "bootstrap-hawk/*"
-- "hawk/app/assets/javascripts/gettext/*"
+- hawk/vendor/*
+- bootstrap-hawk/*
+- hawk/app/assets/javascripts/gettext/*
+engines:
+  rubocop:
+    enabled: true
+  rubymotion:
+    enabled: true
+  bundler-audit:
+    enabled: true
+  eslint:
+    enabled: true
+  csslint:
+    enabled: true
