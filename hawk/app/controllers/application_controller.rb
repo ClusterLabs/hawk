@@ -195,17 +195,21 @@ class ApplicationController < ActionController::Base
   end
 
   def cors_set_access_control_headers
-    response.headers['Access-Control-Allow-Origin'] = '*'
-    response.headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE, OPTIONS'
-    response.headers['Access-Control-Allow-Headers'] = 'Origin, Content-Type, Accept, Authorization, Token'
-    response.headers['Access-Control-Max-Age'] = "1728000"
+    if request.headers['Origin']
+      response.headers['Access-Control-Allow-Origin'] = request.headers["Origin"]
+      response.headers['Access-Control-Allow-Credentials'] = 'true'
+      response.headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE, OPTIONS'
+      response.headers['Access-Control-Allow-Headers'] = 'Origin, Content-Type, Accept, Authorization, X-CSRF-Token, Token'
+      response.headers['Access-Control-Max-Age'] = "1728000"
+    end
   end
 
   def cors_preflight_check
-    if request.method == 'OPTIONS'
-      response.headers['Access-Control-Allow-Origin'] = '*'
+    if request.method == 'OPTIONS' && request.headers['Origin']
+      response.headers["Access-Control-Allow-Origin"] = request.headers["Origin"]
+      response.headers['Access-Control-Allow-Credentials'] = 'true'
       response.headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE, OPTIONS'
-      response.headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version, Token'
+      response.headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version, X-CSRF-Token, Token'
       response.headers['Access-Control-Max-Age'] = '1728000'
 
       render :text => '', :content_type => 'text/plain'
