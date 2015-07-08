@@ -35,4 +35,10 @@ ActiveSupport::Inflector.inflections do |inflect|
   inflect.acronym "SAP"
   inflect.acronym "NFS"
   inflect.acronym "STONITH"
+  inflect.acronym "IP"
+  inflect.acronym "ID"
+  inflect.acronym "LVS"
+  inflect.acronym "OCFS2"
+  inflect.acronym "cLVM"
+  inflect.acronym "CIDR"
 end
