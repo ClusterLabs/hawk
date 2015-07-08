@@ -68,4 +68,8 @@ module WizardHelper
 
     hidden_fields.join("\n")
   end
+
+  def categories(wizards)
+    wizards.map { |w| w.category }.uniq
+  end
 end
