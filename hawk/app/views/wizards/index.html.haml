@@ -4,19 +4,24 @@
       = icon_text "magic", _("Choose a wizard"), class: "page"
 
   .row{ data: { help_target: "#rightbar > .container-fluid > *" } }
-    %ul.nav.nav-pills.nav-stacked.nav-bighelp.nav-topspace
-      - @wizards.each do |wizard|
+    %ul.nav.nav-pills.nav-stacked.nav-topspace
+      - categories(@wizards).sort.each do |category|
         %li
-          = link_to cib_wizard_path(cib_id: current_cib.id, id: wizard.id), data: { help_filter: ".#{wizard.id}" }, class: "btn btn-default btn-lg" do
-            = icon_text "file-o", wizard.name
-            .pull-right
-              = icon_tag "plus-circle"
+          %h3
+            = category.titleize
+        - @wizards.sort_by(&:name).each do |wizard|
+          - next unless wizard.category.eql?(category)
+          %li
+            = link_to cib_wizard_path(cib_id: current_cib.id, id: wizard.name), data: { help_filter: ".#{wizard.name}" }, class: "btn btn-default btn-block" do
+              = wizard.shortdesc
+              .pull-right
+                = icon_tag "plus-circle"
 
 - content_for :rightbar do
   .container-fluid{ data: { spy: "affix" } }
     - @wizards.each do |wizard|
-      .row{ class: wizard.id }
+      .row{ class: wizard.name }
         %h2.margin-bottom
-          = wizard.name
+          = wizard.shortdesc
 
-        = simple_format wizard.description
+        = simple_format wizard.longdesc
