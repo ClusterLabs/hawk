@@ -31,4 +31,8 @@
 
 ActiveSupport::Inflector.inflections do |inflect|
   inflect.uncountable "crm_config"
+  inflect.acronym "DC"
+  inflect.acronym "SAP"
+  inflect.acronym "NFS"
+  inflect.acronym "STONITH"
 end
