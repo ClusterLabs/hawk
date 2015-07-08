@@ -1,203 +1,116 @@
-#======================================================================
-#                        HA Web Konsole (Hawk)
-# --------------------------------------------------------------------
-#            A web-based GUI for managing and monitoring the
-#          Pacemaker High-Availability cluster resource manager
-#
-# Copyright (c) 2009-2015 SUSE LLC, All Rights Reserved.
-#
-# Author: Tim Serong <tserong@suse.com>
-#
-# This program is free software; you can redistribute it and/or modify
-# it under the terms of version 2 of the GNU General Public License as
-# published by the Free Software Foundation.
-#
-# This program is distributed in the hope that it would be useful, but
-# WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-#
-# Further, this software is distributed without any warranty that it is
-# free of the rightful claim of any third person regarding infringement
-# or the like.  Any license provided herein, whether implied or
-# otherwise, applies only to this software file.  Patent licenses, if
-# any, provided herein do not apply to combinations of this program with
-# other software, or any other product whatsoever.
-#
-# You should have received a copy of the GNU General Public License
-# along with this program; if not, write the Free Software Foundation,
-# Inc., 59 Temple Place - Suite 330, Boston MA 02111-1307, USA.
-#
-#======================================================================
+# Copyright (c) 2009-2015 Tim Serong <tserong@suse.com>
+# Copyright (c) 2015 Kristoffer Gronlund <kgronlund@suse.com>
+# See COPYING for license information.
 
 class Wizard < Tableless
-  attribute :id, String
-  attribute :order, String
   attribute :name, String
-  attribute :description, String
-  attribute :definition, String
+  attribute :category, String
+  attribute :shortdesc, String
+  attribute :longdesc, String
+
+  attribute :loaded, Boolean
   attribute :steps, StepCollection[Step]
 
   def load!
-    REXML::Document.new(definition.read).tap do |xml|
-      if xml.root.elements["parameters"]
-        steps.push Step.from_parameters_xml(
-          xml.root,
-          self
-        )
-      end
-
-      if xml.root.elements["templates"]
-        xml.root.elements.each("templates/template") do |template|
-          steps.push Step.from_templates_xml(
-            template,
-            self
-          )
-        end
-      end
-
-
-
-
-#raise steps.inspect
-
-      #steps.push Step.new
-
-
-
-
-
-
+    return if @loaded
+    CrmScript.run ["show", @name] do |item, err|
+      Rails.logger.error "Wizard.load!: #{err}" unless err.nil?
+      self.load_from item unless item.nil?
     end
+  end
+
+  def load_from(data)
+    # TODO: load steps data
+    data['steps'].each do |step|
+      @steps.build step
+    end
+    @loaded = true
   end
 
   def steps
     @steps ||= StepCollection.new
   end
 
+  def flattened_steps
+    ret = []
+    @steps.each do |step|
+      ret << step unless step.parameters.empty?
+      ret.concat step.flattened_steps
+    end
+    ret
+  end
+
   def valid?
     super & steps.valid?
   end
 
-  def workflow_file(name)
-    self.class.workflow_file(name)
+  def verify(params)
+    # TODO: Check loaded
+    CrmScript.run ["verify", @name, params] do |item, err|
+      Rails.logger.debug "#{item}, #{err}"
+    end
   end
 
-  def template_file(name)
-    self.class.template_file(name)
-  end
-
-  def script_file(name)
-    self.class.script_file(name)
+  def run(params)
+    # TODO: Check loaded
+    # TODO: live-update frontend
+    CrmScript.run ["run", @name, params] do |item, err|
+      Rails.logger.debug "#{item}, #{err}"
+    end
   end
 
   class << self
-    def parse(file)
-      REXML::Document.new(
-        file.read
-      ).tap do |xml|
-        name = xml.root.elements["shortdesc[@lang=\"#{I18n.locale.to_s.gsub("-", "_")}\"]|shortdesc[@lang=\"en\"]"].text.strip
-        description = xml.root.elements["longdesc[@lang=\"#{I18n.locale.to_s.gsub("-", "_")}\"]|longdesc[@lang=\"en\"]"].text.strip
-        order = xml.root.attributes["name"]
-
-        return Wizard.new(
-          id: file.basename(".xml").to_s,
-          order: order,
-          name: name,
-          description: description,
-          definition: file
-        )
-      end
+    def parse_brief(data)
+      return Wizard.new(
+               name: data['name'],
+               category: data['category'].strip.downcase,
+               shortdesc: data['shortdesc'].strip,
+               longdesc: data['longdesc'].gsub(/\n/, '<br>'),
+               loaded: false
+             )
     end
 
-    def find(id)
-      file = workflow_file(id).dup
+    def parse_full(data)
+      wizard = Wizard.new(
+        name: data['name'],
+        category: data['category'].strip.downcase,
+        shortdesc: data['shortdesc'].strip,
+        longdesc: data['longdesc'].gsub(/\n/, '<br>'),
+        loaded: false
+      )
+      wizard.load_from data
+      wizard
+    end
 
-      if file
-        record = parse(file)
-        record.load!
+    def find(name)
+      wizard = Wizard.all.select{|w| w.name == name}.first
+      raise CibObject::RecordNotFound, _("Requested wizard does not exist") if wizard.nil?
+      wizard.load!
+      wizard
+    end
 
-        record
-      else
-        raise CibObject::RecordNotFound, _("Requested workflow does not exist")
-      end
+    def exclude_wizard(item)
+      workflows = {'60-nfsserver' => true,
+                   'mariadb' => true,
+                   'ocfs2-single' => true,
+                   'webserver' => true}
+      unsupported = {'gfs2' => true,
+                     'gfs2-base' => true}
+      return true if item['category'].strip.downcase.eql? "script"
+      return true if item['category'].strip.downcase.eql?("wizard") && workflows.has_key?(item['name'])
+      return unsupported.has_key?(item['name'])
     end
 
     def all
-      workflow_files.values.map do |file|
-        parse(file)
-      end.sort_by(&:order)
-    end
-
-    def workflow_path
-      @workflow_path ||= Rails.root.join("config", "wizard", "workflows")
-    end
-
-    def workflow_files
-      @workflow_files ||= begin
-        files = workflow_path.children.select do |file|
-          if file.extname == ".xml"
-            file
-          end
-        end
-
-        {}.tap do |result|
-          files.each do |file|
-            result[file.basename(".xml").to_s] = file
-          end
-        end
+      # TODO; Make the wizards cache expire after
+      # a certain time (5 minutes or so?)
+      @@wizards ||= []
+      return @@wizards unless @@wizards.empty?
+      CrmScript.run ["list"] do |item, err|
+        Rails.logger.debug "Wizard.all: #{err}" unless err.nil?
+        @@wizards << Wizard.parse_brief(item) unless item.nil? or self.exclude_wizard(item)
       end
-    end
-
-    def workflow_file(name)
-      workflow_files[name]
-    end
-
-    def template_path
-      @template_path ||= Rails.root.join("config", "wizard", "templates")
-    end
-
-    def template_files
-      @template_files ||= begin
-        files = template_path.children.select do |file|
-          if file.extname == ".xml"
-            file
-          end
-        end
-
-        {}.tap do |result|
-          files.each do |file|
-            result[file.basename(".xml").to_s] = file
-          end
-        end
-      end
-    end
-
-    def template_file(name)
-      template_files[name]
-    end
-
-    def script_path
-      @script_path ||= Rails.root.join("config", "wizard", "scripts")
-    end
-
-    def script_files
-      @script_files = begin
-        files = script_path.children.select do |file|
-          if file.directory?
-            file
-          end
-        end
-
-        {}.tap do |result|
-          files.each do |file|
-            result[file.basename.to_s] = file
-          end
-        end
-      end
-    end
-
-    def script_file(name)
-      script_files[name]
+      @@wizards
     end
   end
 end
