@@ -349,7 +349,7 @@ var dashboardAddCluster = (function() {
 
         var content = basicCreateBody(clusterId, data);
 
-        var text = '<div class="col-md-6">' +
+        var text = '<div class="col-lg-4 col-sm-6 col-xs-12">' +
             '<div id="' +
             clusterId +
             '" class="panel panel-default">' +
