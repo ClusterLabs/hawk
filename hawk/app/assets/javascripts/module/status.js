@@ -12,8 +12,7 @@
       timeout: 90,
       cache: false,
       events: [
-        'updated.hawk.monitor',
-        'checked.hawk.monitor'
+        'updated.hawk.monitor'
       ],
       targets: {
         events: el,
