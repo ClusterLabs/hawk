@@ -43,6 +43,7 @@
  *   user.
  * - The only exception here is for the execution of hb_report and
  *   "crm history", which must be run as "root", or they won't work.
+ *   also adds an exception for "crm cluster copy ???/tmp/dashboard.js"
  * - Will not allow arbitrary commands to be executed as any other
  *   user.
  *
@@ -99,6 +100,29 @@ static void die(const char *format, ...)
 	exit(1);
 }
 
+static int strendswith(char* str, char* tail)
+{
+	size_t l = strlen(str), t = strlen(tail);
+	return l >= t && strcmp(str + l - t, tail) == 0;
+}
+
+static int allow_root(int argc, char** argv)
+{
+	if (strcmp(argv[2], "hb_report") == 0)
+		return 1;
+	if (argc >= 4 &&
+	    strcmp(argv[2], "crm") == 0 &&
+	    strcmp(argv[3], "history") == 0)
+		return 1;
+	if (argc == 6 &&
+	    strcmp(argv[2], "crm") == 0 &&
+	    strcmp(argv[3], "cluster") == 0 &&
+	    strcmp(argv[4], "copy") == 0 &&
+	    strendswith(argv[5], "/tmp/dashboard.js"))
+		return 1;
+	return 0;
+}
+
 int main(int argc, char **argv)
 {
 	uid_t uid;
@@ -142,10 +166,7 @@ int main(int argc, char **argv)
 	}
 
 	if ((pwd->pw_uid == 0 || strcmp(pwd->pw_name, "root") == 0) &&
-	    (strcmp(argv[2], "hb_report") == 0 ||
-	     (argc >= 4 &&
-	      strcmp(argv[2], "crm") == 0 &&
-	      strcmp(argv[3], "history") == 0))) {
+	    allow_root(pwd, argc, argv)) {
 
 		/*
 		 * Special case to become root when running hb_report
