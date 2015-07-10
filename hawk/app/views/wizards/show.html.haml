@@ -21,6 +21,10 @@
             - @wizard.flattened_steps.each_with_index do |step, index|
               = main_form.fields_for :steps, step do |step_form|
                 .tab-pane.active{ id: "step#{index}" }
+                  .well
+                    %h4
+                      = step.shortdesc
+                    = step.longdesc
                   %fieldset
                     %legend
                       = step.title
