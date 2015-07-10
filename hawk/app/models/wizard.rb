@@ -32,13 +32,13 @@ class Wizard < Tableless
   end
 
   def flattened_steps
-    @@fsteps ||= []
-    return @@fsteps unless @@fsteps.empty?
+    @fsteps ||= []
+    return @fsteps unless @fsteps.empty?
     @steps.each do |step|
-      @@fsteps << step unless step.parameters.empty?
-      @@fsteps.concat step.flattened_steps
+      @fsteps << step unless step.parameters.empty?
+      @fsteps.concat step.flattened_steps
     end
-    @@fsteps
+    @fsteps
   end
 
   def valid?
