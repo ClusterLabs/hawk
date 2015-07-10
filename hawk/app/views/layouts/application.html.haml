@@ -14,10 +14,10 @@
 
     .container-fluid
       .row.row-offcanvas.row-offcanvas-left
-        #sidebar.col-xs-6.col-sm-4.col-md-4.col-lg-3.sidebar-offcanvas
+        #sidebar.col-xs-6.col-sm-4.col-md-4.col-lg-2.sidebar-offcanvas
           = render partial: "shared/mainnav"
 
-        #middle.col-xs-12.col-sm-8.col-md-8.col-lg-9
+        #middle.col-xs-12.col-sm-8.col-md-8.col-lg-10
           = render partial: "shared/flash", locals: { flash: flash }
           = yield
 
