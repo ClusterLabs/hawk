@@ -34,7 +34,9 @@ module CrmScript
     else
       cmdline = ['/usr/sbin/hawk_invoke', user, 'crm', 'script', 'json', cmd]
     end
+    old_home = Util.ensure_home_for(user)
     out, err, status = Util.capture3(*cmdline)
+    ENV['HOME'] = old_home
     out.split("\n").each do |line|
       a, b = CrmScript.splitline line
       yield a, b if a || b

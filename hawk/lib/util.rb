@@ -110,8 +110,7 @@ module Util
   end
   module_function :capture3
 
-  # Like capture3, but via /usr/sbin/hawk_invoke
-  def run_as(user, *cmd)
+  def ensure_home_for(user)
     old_home = ENV['HOME']
     ENV['HOME'] = begin
       require 'etc'
@@ -134,6 +133,14 @@ module Util
         File.umask(umask)
       end
     end
+    old_home
+  end
+  module_function :ensure_home_for
+
+
+  # Like capture3, but via /usr/sbin/hawk_invoke
+  def run_as(user, *cmd)
+    old_home = ensure_home_for(user)
     # RORSCAN_INL: mutli-arg invocation safe from shell injection.
     ret = capture3('/usr/sbin/hawk_invoke', user, *cmd)
     # Having invoked a command, reset $HOME to what it was before,
