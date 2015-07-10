@@ -13,7 +13,7 @@ class Wizard < Tableless
 
   def load!
     return if @loaded
-    CrmScript.run ["show", @name] do |item, err|
+    CrmScript.run ["show", @name], nil do |item, err|
       Rails.logger.error "Wizard.load!: #{err}" unless err.nil?
       self.load_from item unless item.nil?
     end
@@ -47,7 +47,7 @@ class Wizard < Tableless
 
   def verify(params)
     # TODO: Check loaded
-    CrmScript.run ["verify", @name, params] do |item, err|
+    CrmScript.run ["verify", @name, params], nil do |item, err|
       Rails.logger.debug "#{item}, #{err}"
     end
   end
@@ -55,7 +55,8 @@ class Wizard < Tableless
   def run(params)
     # TODO: Check loaded
     # TODO: live-update frontend
-    CrmScript.run ["run", @name, params] do |item, err|
+    # TODO: supply rootpw
+    CrmScript.run ["run", @name, params], nil do |item, err|
       Rails.logger.debug "#{item}, #{err}"
     end
   end
@@ -107,7 +108,7 @@ class Wizard < Tableless
       # a certain time (5 minutes or so?)
       @@wizards ||= []
       return @@wizards unless @@wizards.empty?
-      CrmScript.run ["list"] do |item, err|
+      CrmScript.run ["list"], nil do |item, err|
         Rails.logger.debug "Wizard.all: #{err}" unless err.nil?
         @@wizards << Wizard.parse_brief(item) unless item.nil? or self.exclude_wizard(item)
       end
