@@ -313,15 +313,6 @@ module Util
       Rails.cache.fetch(:has_acl_support) {
         %x[/usr/sbin/cibadmin -!].split(/\s+/).include?("acls")
       }
-    when :acl_enabled
-      Rails.cache.fetch(:has_acl_enabled, expires_in: 5.minutes) {
-        safe_x(
-          '/usr/sbin/cibadmin',
-          '-Ql',
-          '--xpath',
-          '//configuration//crm_config//nvpair[@name=\'enable-acl\' and @value=\'true\']'.shellescape
-        ).chomp.present?
-      }
     when :tags
       Rails.cache.fetch(:has_tags) {
         # TODO: fix this
@@ -333,6 +324,16 @@ module Util
     end
   end
   module_function :has_feature?
+
+  def acl_enabled?
+    safe_x(
+      '/usr/sbin/cibadmin',
+      '-Ql',
+      '--xpath',
+      '//configuration//crm_config//nvpair[@name=\'enable-acl\' and @value=\'true\']'.shellescape
+    ).chomp.present?
+  end
+  module_function :acl_enabled?
 
   # get text child of xml element - returns empty string if elem is nil or
   # text child is empty.  trims leading and trailing whitespace
