@@ -166,7 +166,7 @@ int main(int argc, char **argv)
 	}
 
 	if ((pwd->pw_uid == 0 || strcmp(pwd->pw_name, "root") == 0) &&
-	    allow_root(pwd, argc, argv)) {
+	    allow_root(argc, argv)) {
 
 		/*
 		 * Special case to become root when running hb_report
