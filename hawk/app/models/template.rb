@@ -121,7 +121,7 @@ class Template < Record
     end
 
     def options
-      PerRequestCache.fetch(:template_options) do
+      Rails.cache.fetch(:crm_ra_classes, expires_in: 2.hours) do
         {}.tap do |result|
           clazzes = %x[/usr/sbin/crm ra classes].split(/\n/)
           clazzes.delete("heartbeat") unless File.exists?("/etc/ha.d/resource.d")

@@ -291,30 +291,30 @@ module Util
   def has_feature?(feature)
     case feature
     when :crm_history
-      PerRequestCache.fetch(:has_crm_history) {
+      Rails.cache.fetch(:has_crm_history) {
         %x[echo quit | /usr/sbin/crm history 2>&1]
         $?.exitstatus == 0
       }
     when :rsc_ticket
-      PerRequestCache.fetch(:has_rsc_ticket) {
+      Rails.cache.fetch(:has_rsc_ticket) {
         %x[/usr/sbin/crm configure help rsc_ticket >/dev/null 2>&1]
         $?.exitstatus == 0
       }
     when :rsc_template
-      PerRequestCache.fetch(:has_rsc_template) {
+      Rails.cache.fetch(:has_rsc_template) {
         %x[/usr/sbin/crm configure help rsc_template >/dev/null 2>&1]
         $?.exitstatus == 0
       }
     when :sim_ticket
-      PerRequestCache.fetch(:has_sim_ticket) {
+      Rails.cache.fetch(:has_sim_ticket) {
         %x[/usr/sbin/crm_simulate -h 2>&1].include?("--ticket-grant")
       }
     when :acl_support
-      PerRequestCache.fetch(:has_acl_support) {
+      Rails.cache.fetch(:has_acl_support) {
         %x[/usr/sbin/cibadmin -!].split(/\s+/).include?("acls")
       }
     when :acl_enabled
-      PerRequestCache.fetch(:has_acl_enabled) {
+      Rails.cache.fetch(:has_acl_enabled, expires_in: 5.minutes) {
         safe_x(
           '/usr/sbin/cibadmin',
           '-Ql',
@@ -323,7 +323,7 @@ module Util
         ).chomp.present?
       }
     when :tags
-      PerRequestCache.fetch(:has_tags) {
+      Rails.cache.fetch(:has_tags) {
         # TODO: fix this
         %x[/usr/sbin/cibadmin -Ql -A /cib/configuration/tags >/dev/null 2>&1]
         $?.exitstatus == 0

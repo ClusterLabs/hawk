@@ -86,6 +86,7 @@ class Wizard < Tableless
 
     def find(name)
       wizard = Wizard.all.select{|w| w.name == name}.first
+      Rails.logger.debug "Wizard not found: #{name}"
       raise CibObject::RecordNotFound, _("Requested wizard does not exist") if wizard.nil?
       wizard.load!
       wizard

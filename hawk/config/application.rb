@@ -59,8 +59,6 @@ module Hawk
       "ActiveRecord::QueryCache"
     )
 
-    config.middleware.use "PerRequestCache"
-
     config.active_support.escape_html_entities_in_json = true
 
     config.i18n.enforce_available_locales = false
