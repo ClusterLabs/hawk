@@ -45,7 +45,7 @@ class MastersController < ApplicationController
   end
 
   def new
-    @title = _("Create Master/Slave")
+    @title = _("Create Multi-state resource")
     @master = Master.new
     @master.meta["target-role"] = "Stopped" if @cib.id == "live"
 
@@ -56,7 +56,7 @@ class MastersController < ApplicationController
 
   def create
     normalize_params! params[:master]
-    @title = _("Create Master/Slave")
+    @title = _("Create Multi-state resource")
 
     @master = Master.new params[:master]
 
@@ -65,7 +65,7 @@ class MastersController < ApplicationController
         post_process_for! @master
 
         format.html do
-          flash[:success] = _("Master/Slave created successfully")
+          flash[:success] = _("Multi-state resource created successfully")
           redirect_to edit_cib_master_url(cib_id: @cib.id, id: @master.id)
         end
         format.json do
@@ -83,7 +83,7 @@ class MastersController < ApplicationController
   end
 
   def edit
-    @title = _("Edit Master/Slave")
+    @title = _("Edit Multi-state resource")
 
     respond_to do |format|
       format.html
@@ -92,7 +92,7 @@ class MastersController < ApplicationController
 
   def update
     normalize_params! params[:master]
-    @title = _("Edit Master/Slave")
+    @title = _("Edit Multi-state resource")
 
     if params[:revert]
       return redirect_to edit_cib_master_url(cib_id: @cib.id, id: @master.id)
@@ -103,7 +103,7 @@ class MastersController < ApplicationController
         post_process_for! @master
 
         format.html do
-          flash[:success] = _("Master/Slave updated successfully")
+          flash[:success] = _("Multi-state resource updated successfully")
           redirect_to edit_cib_master_url(cib_id: @cib.id, id: @master.id)
         end
         format.json do
@@ -124,13 +124,13 @@ class MastersController < ApplicationController
     respond_to do |format|
       if Invoker.instance.crm("--force", "configure", "delete", @master.id)
         format.html do
-          flash[:success] = _("Master/Slave deleted successfully")
+          flash[:success] = _("Multi-state resource deleted successfully")
           redirect_to types_cib_resources_path(cib_id: @cib.id)
         end
         format.json do
           render json: {
             success: true,
-            message: _("Master/Slave deleted successfully")
+            message: _("Multi-state resource deleted successfully")
           }
         end
       else
@@ -157,7 +157,7 @@ class MastersController < ApplicationController
   protected
 
   def set_title
-    @title = _("Master/Slave")
+    @title = _("Multi-state resource")
   end
 
   def set_cib
@@ -170,7 +170,7 @@ class MastersController < ApplicationController
     unless @master
       respond_to do |format|
         format.html do
-          flash[:alert] = _("The master/slave does not exist")
+          flash[:alert] = _("The multi-state resource does not exist")
           redirect_to types_cib_resources_path(cib_id: @cib.id)
         end
       end
