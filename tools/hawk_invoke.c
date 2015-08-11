@@ -112,6 +112,10 @@ static int allow_root(int argc, char** argv)
 		return 1;
 	if (argc >= 4 &&
 	    strcmp(argv[2], "crm") == 0 &&
+	    strcmp(argv[3], "report") == 0)
+		return 1;
+	if (argc >= 4 &&
+	    strcmp(argv[2], "crm") == 0 &&
 	    strcmp(argv[3], "history") == 0)
 		return 1;
 	if (argc == 6 &&
