@@ -20,7 +20,7 @@
           .tab-content
             - @wizard.flattened_steps.each_with_index do |step, index|
               = main_form.fields_for :steps, step do |step_form|
-                .tab-pane.active{ id: "step#{index}" }
+                .tab-pane.active{ id: "step#{index}", data: { help_filter: ".#{index}-#{step.id}" } }
                   .well
                     %h4
                       = step.shortdesc
@@ -62,6 +62,11 @@
     - @wizard.flattened_steps.each_with_index do |step, index|
       .row{ class: "#{index}-#{step.id}" }
         %h2.margin-bottom
+          = @wizard.shortdesc
+
+        = longdesc_format @wizard.longdesc
+
+        %h3.margin-bottom
           = step.shortdesc
 
-        = simple_format step.longdesc
+        = longdesc_format step.longdesc
