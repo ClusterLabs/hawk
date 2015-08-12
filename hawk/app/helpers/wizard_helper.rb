@@ -72,4 +72,9 @@ module WizardHelper
   def categories(wizards)
     wizards.map { |w| w.category }.uniq
   end
+
+  def longdesc_format(text)
+    text.gsub!(/([^\n])\n([^\n])/, '\1 \2')
+    simple_format(text)
+  end
 end

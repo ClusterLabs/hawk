@@ -67,7 +67,7 @@ class Wizard < Tableless
                name: data['name'],
                category: data['category'].strip.downcase,
                shortdesc: data['shortdesc'].strip,
-               longdesc: data['longdesc'].gsub(/\n/, '<br>'),
+               longdesc: data['longdesc'],
                loaded: false
              )
     end
@@ -77,7 +77,7 @@ class Wizard < Tableless
         name: data['name'],
         category: data['category'].strip.downcase,
         shortdesc: data['shortdesc'].strip,
-        longdesc: data['longdesc'].gsub(/\n/, '<br>'),
+        longdesc: data['longdesc'],
         loaded: false
       )
       wizard.load_from data
