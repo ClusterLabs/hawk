@@ -375,6 +375,13 @@ class Cib < CibObject
     return state
   end
 
+  def get_constraint(elem)
+    {
+      :id => elem.attributes['id'],
+      :type => ""
+    }
+  end
+
   public
 
   def errors
@@ -526,9 +533,7 @@ class Cib < CibObject
     # TODO(must): fix me
     @constraints = []
     @xml.elements.each('cib/configuration/constraints/*') do |c|
-      @constraints << {
-        :id => c.attributes['id']
-      }
+      @constraints << get_constraint(c)
     end
 
     @tags = []
