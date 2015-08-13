@@ -677,12 +677,26 @@ class Cib < CibObject
               fail_end = Time.at(fail_end).strftime("%Y-%m-%d %H:%M")
             end
 
+            rc_mapping = {
+              0 => _('success'),
+              1 => _('generic error'),
+              2 => _('incorrect arguments'),
+              3 => _('unimplemented action'),
+              4 => _('insufficient permissions'),
+              5 => _('installation error'),
+              6 => _('configuration error'),
+              7 => _('not running'),
+              8 => _('running (master)'),
+              9 => _('failed (master)')
+            }
+
             failed_ops << { :node => node[:uname], :call_id => op.attributes['call-id'], :op => operation, :rc_code => rc_code, :exit_reason => exit_reason }
-            error(_('%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}: call-id=%{call_id}, rc-code=%{rc_code}, exit-reason=%{exit_reason}') % {
+            error(_('%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_reason}') % {
                     :node => node[:uname],
                     :resource => "<strong>#{id}</strong>".html_safe,
                     :call_id => op.attributes['call-id'],
                     :op => "<strong>#{operation}</strong>".html_safe,
+                    :rc_mapping => rc_mapping[rc_code] || _('other'),
                     :rc_code => rc_code,
                     :exit_reason => exit_reason,
                     :fail_start => fail_start || '0000-00-00 00:00'
