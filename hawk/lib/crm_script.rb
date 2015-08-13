@@ -42,7 +42,7 @@ module CrmScript
       yield a, b if a || b
     end
     err.split("\n").each do |line|
-      a, b = _splitline line
+      a, b = splitline line
       yield a, b if a || b
     end
   end
