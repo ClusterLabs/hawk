@@ -678,13 +678,15 @@ class Cib < CibObject
             end
 
             failed_ops << { :node => node[:uname], :call_id => op.attributes['call-id'], :op => operation, :rc_code => rc_code, :exit_reason => exit_reason }
-            error({
-              :msg => _('Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%{op}, rc-code=%{rc_code}, exit-reason=%{exit_reason}') % {
-                :node => node[:uname], :resource => id, :call_id => op.attributes['call-id'],
-                :op => operation, :rc_code => rc_code, :exit_reason => exit_reason },
-              # Note: graph_number here might be the one *after* the one that's really interesting :-/
-              #:link => fail_start ? explorer_path(:from_time => fail_start, :to_time => fail_end, :display => true, :graph_number => graph_number) : ""
-            })
+            error(_('%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}: call-id=%{call_id}, rc-code=%{rc_code}, exit-reason=%{exit_reason}') % {
+                    :node => node[:uname],
+                    :resource => "<strong>#{id}</strong>".html_safe,
+                    :call_id => op.attributes['call-id'],
+                    :op => "<strong>#{operation}</strong>".html_safe,
+                    :rc_code => rc_code,
+                    :exit_reason => exit_reason,
+                    :fail_start => fail_start || '0000-00-00 00:00'
+                  })
 
             if ignore_failure
               failed_ops[-1][:ignored] = true
