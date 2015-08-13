@@ -151,11 +151,9 @@ class Cib < CibObject
           end
         end
 
-        # TODO(must): Integrate tag listing
-        result[:tags] = []
+        result[:tags] = tags
+        result[:constraints] = constraints
 
-        # TODO(must): Integrate constraint listing
-        result[:constraints] = []
       else
         result[:crm_config] = crm_config
         result[:rsc_defaults] = rsc_defaults
@@ -190,10 +188,6 @@ class Cib < CibObject
 
   def current_constraints
     constraints
-  end
-
-  def constraints
-    @constraints ||= []
   end
 
   protected
@@ -410,6 +404,7 @@ class Cib < CibObject
   attr_reader :tags
   attr_reader :resources_by_id
   attr_reader :booth
+  attr_reader :constraints
 
   def initialize(id, user, use_file = false)
     Rails.logger.debug "Cib.initialize #{id}, #{user}, #{use_file}"
@@ -527,6 +522,14 @@ class Cib < CibObject
         :type => t.attributes['type']
       )
     end if Util.has_feature?(:rsc_template)
+
+    # TODO(must): fix me
+    @constraints = []
+    @xml.elements.each('cib/configuration/constraints/*') do |c|
+      @constraints << {
+        :id => c.attributes['id']
+      }
+    end
 
     @tags = []
     @xml.elements.each('cib/configuration/tags/tag') do |t|
