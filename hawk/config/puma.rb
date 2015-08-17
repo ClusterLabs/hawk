@@ -29,6 +29,8 @@
 #
 #======================================================================
 
+require 'fileutils'
+
 ROOT = File.expand_path("../../", __FILE__)
 ENVIRONMENT = ENV["HAWK_ENV"] || "production"
 
