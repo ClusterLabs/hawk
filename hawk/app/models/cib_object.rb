@@ -221,14 +221,14 @@ class CibObject
     end
 
     op.add_element 'instance_attributes',
-      { 'id' => "#{op.attributes['id']}-instace_attributes" } unless op.elements['instance_attributes']
+      { 'id' => "#{op.attributes['id']}-instance_attributes" } unless op.elements['instance_attributes']
 
     nvp = op.elements['instance_attributes/nvpair[@name="OCF_CHECK_LEVEL"]']
     if nvp
       nvp.attributes['value'] = v
     else
       op.elements['instance_attributes'].add_element 'nvpair', {
-        'id' => "#{op.attributes['id']}-instace_attributes-OCF_CHECK_LEVEL",
+        'id' => "#{op.attributes['id']}-instance_attributes-OCF_CHECK_LEVEL",
         'name' => 'OCF_CHECK_LEVEL',
         'value' => v
       }

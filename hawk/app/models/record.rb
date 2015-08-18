@@ -218,7 +218,7 @@ class Record < Tableless
       op.add_element(
         'instance_attributes',
         {
-          'id' => "#{op.attributes['id']}-instace_attributes"
+          'id' => "#{op.attributes['id']}-instance_attributes"
         }
       )
     end
@@ -231,7 +231,7 @@ class Record < Tableless
       op.elements['instance_attributes'].add_element(
         'nvpair',
         {
-          'id' => "#{op.attributes['id']}-instace_attributes-OCF_CHECK_LEVEL",
+          'id' => "#{op.attributes['id']}-instance_attributes-OCF_CHECK_LEVEL",
           'name' => 'OCF_CHECK_LEVEL',
           'value' => v
         }
