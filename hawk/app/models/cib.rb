@@ -2,6 +2,7 @@
 # See COPYING for license.
 
 require 'util'
+require 'cibtools'
 require 'natcmp'
 require 'rexml/document' unless defined? REXML::Document
 
@@ -164,17 +165,6 @@ class Cib < CibObject
 
   protected
 
-  # Roughly equivalent to crm_element_value() in Pacemaker
-  def get_xml_attr(elem, name, default = nil)
-    Util.unstring(elem.attributes[name], default)
-  end
-
-  def get_property(property, default = nil)
-    # TODO(could): theoretically this xpath is a bit loose.
-    e = @xml.elements["//nvpair[@name='#{property}']"]
-    e ? get_xml_attr(e, 'value', default) : default
-  end
-
   def get_resource(elem, is_managed = true, clone_max = nil, is_ms = false)
     res = Hashie::Mash.new(
       :id => elem.attributes['id'],
@@ -281,72 +271,6 @@ class Cib < CibObject
     end
   end
 
-  # transliteration of pacemaker/lib/pengine/unpack.c:determine_online_status_fencing()
-  # ns is node_state element from CIB
-  def determine_online_status_fencing(ns)
-    in_ccm      = get_xml_attr(ns, 'in_ccm')
-    crm_state   = get_xml_attr(ns, 'crmd')
-    join_state  = get_xml_attr(ns, 'join')
-    exp_state   = get_xml_attr(ns, 'expected')
-
-    # expect it to be up (more or less) if 'shutdown' is '0' or unspecified
-    expected_up = get_xml_attr(ns, 'shutdown', '0') == 0
-
-    state = :unclean
-    if in_ccm && crm_state == 'online'
-      case join_state
-      when 'member'         # rock 'n' roll (online)
-        state = :online
-      when exp_state        # coming up (!online)
-        state = :offline
-      when 'pending'        # technically online, but not ready to run resources
-        state = :pending    # (online + pending + standby)
-      when 'banned'         # not allowed to be part of the cluster
-        state = :standby    # (online + pending + standby)
-      else                  # unexpectedly down (unclean)
-        state = :unclean
-      end
-    elsif !in_ccm && crm_state == 'offline' && !expected_up
-      state = :offline      # not online, but cleanly
-    elsif expected_up
-      state = :unclean      # expected to be up, mark it unclean
-    else
-      state = :offline      # offline
-    end
-    return state
-  end
-
-  # transliteration of pacemaker/lib/pengine/unpack.c:determine_online_status_no_fencing()
-  # ns is node_state element from CIB
-  # TODO(could): can we consolidate this with determine_online_status_fencing?
-  def determine_online_status_no_fencing(ns)
-    in_ccm      = get_xml_attr(ns, 'in_ccm')
-    crm_state   = get_xml_attr(ns, 'crmd')
-    join_state  = get_xml_attr(ns, 'join')
-    exp_state   = get_xml_attr(ns, 'expected')
-
-    # expect it to be up (more or less) if 'shutdown' is '0' or unspecified
-    expected_up = get_xml_attr(ns, 'shutdown', '0') == 0
-
-    state = :unclean
-    if !in_ccm
-      state = :offline
-    elsif crm_state == 'online'
-      if join_state == 'member'
-        state = :online
-      else
-        # not ready yet (should this break down to pending/banned like
-        # determine_online_status_fencing?  It doesn't in unpack.c...)
-        state = :offline
-      end
-    elsif !expected_up
-      state = :offline
-    else
-      state = :unclean
-    end
-    return state
-  end
-
   def get_constraint(elem)
     {
       :id => elem.attributes['id'],
@@ -428,17 +352,17 @@ class Cib < CibObject
     # TODO(should): This gloms together all cluster property sets; really
     # probably only want cib-bootstrap-options?
     @xml.elements.each('cib/configuration/crm_config//nvpair') do |p|
-      @crm_config[p.attributes['name'].to_sym] = get_xml_attr(p, 'value')
+      @crm_config[p.attributes['name'].to_sym] = CibTools.get_xml_attr(p, 'value')
     end
 
     @rsc_defaults = Hashie::Mash.new
     @xml.elements.each('cib/configuration/rsc_defaults//nvpair') do |p|
-      @rsc_defaults[p.attributes['name'].to_sym] = get_xml_attr(p, 'value')
+      @rsc_defaults[p.attributes['name'].to_sym] = CibTools.get_xml_attr(p, 'value')
     end
 
     @op_defaults = Hashie::Mash.new
     @xml.elements.each('cib/configuration/op_defaults//nvpair') do |p|
-      @op_defaults[p.attributes['name'].to_sym] = get_xml_attr(p, 'value')
+      @op_defaults[p.attributes['name'].to_sym] = CibTools.get_xml_attr(p, 'value')
     end
 
     is_managed_default = true
@@ -454,7 +378,7 @@ class Cib < CibObject
       maintenance = @crm_config[:"maintenance-mode"] ? true : false
       ns = @xml.elements["cib/status/node_state[@uname='#{uname}']"]
       if ns
-        state = crm_config[:"stonith-enabled"] ? determine_online_status_fencing(ns) : determine_online_status_no_fencing(ns)
+        state = CibTools.determine_online_status(ns, crm_config[:"stonith-enabled"])
         if state == :online
           standby = n.elements["instance_attributes/nvpair[@name='standby']"]
           # TODO(could): is the below actually a sane test?
@@ -817,7 +741,7 @@ class Cib < CibObject
     @dc.slice!(0, s + 1) if s
     @dc = _('Unknown') if @dc.empty?
 
-    @epoch = "#{get_xml_attr(@xml.root, 'admin_epoch')}:#{get_xml_attr(@xml.root, 'epoch')}:#{get_xml_attr(@xml.root, 'num_updates')}";
+    @epoch = CibTools.epoch_string @xml.root
 
     # Tickets will always have a granted property (boolean).  They may also
     # have a last-granted timestamp too, but this will only be present if a
@@ -857,7 +781,7 @@ class Cib < CibObject
     if !@booth[:sites].empty?
       @booth[:sites].sort!
       @xml.elements.each("cib/configuration//primitive[@type='IPaddr2']/instance_attributes/nvpair[@name='ip']") do |elem|
-        ip = get_xml_attr(elem, "value")
+        ip = CibTools.get_xml_attr(elem, "value")
         next unless @booth[:sites].include?(ip)
         if !@booth[:me]
           @booth[:me] = ip
