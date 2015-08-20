@@ -167,8 +167,10 @@ class Cib < CibObject
     ret = []
     @resources.each do |r|
       ret << r
-      r['children'].each do |c|
-        ret << c
+      if r.has_key? 'children'
+        r['children'].each do |c|
+          ret << c
+        end
       end
     end
     ret
