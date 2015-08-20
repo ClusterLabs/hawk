@@ -41,24 +41,69 @@ $(function() {
             break;
 
         case 'rsc_colocation':
-            if (row.score == "INFINITY") {
-                return mapkeys(__("Locate %RSC% with %WITH%"), {rsc: strong(row.rsc), with: strong(row["with-rsc"])});
-            } else if (row.score == "-INFINITY") {
-                return mapkeys(__("Never locate %RSC% with %WITH%"), {rsc: strong(row.rsc), with: strong(row["with-rsc"])});
-            } else if (row.score[0].match(/^-/)) {
-                return mapkeys(__("Avoid locating %RSC% with %WITH% (score: %SCORE%)"), {rsc: strong(row.rsc), with: strong(row["with-rsc"]), score: row.score});
+            if ("children" in row) {
+                var sets = [];
+                $.each(row.children, function(i, e) {
+                    var to = [];
+                    if ("children" in e) {
+                        $.each(e.children, function(i, e) {
+                            to.push(e.id);
+                        });
+                    }
+                    sets.push(to.join(", "));
+                });
+                var rscs = sets.join(" with ");
+                var prefix = "";
+                var score = "";
+                if (row.score == "INFINITY") {
+                    prefix = "Locate ";
+                } else if (row.score == "-INFINITY") {
+                    prefix = "Never locate ";
+                } else if (row.score[0].match(/^-/)) {
+                    prefix = "Avoid locating ";
+                    score = " (score: " + row.score + ")";
+                } else {
+                    prefix = "Prefer locating ";
+                    score = " (score: " + row.score + ")";
+                }
+                return prefix + rscs + score;
             } else {
-                return mapkeys(__("Prefer locating %RSC% with %WITH% (score: %SCORE%)"), {rsc: strong(row.rsc), with: strong(row["with-rsc"]), score: row.score});
+                var rsc = row.rsc;
+                var withrsc = row["with-rsc"];
+                if (row.score == "INFINITY") {
+                    return mapkeys(__("Locate %RSC% with %WITH%"), {rsc: strong(rsc), with: strong(withrsc)});
+                } else if (row.score == "-INFINITY") {
+                    return mapkeys(__("Never locate %RSC% with %WITH%"), {rsc: strong(rsc), with: strong(withrsc)});
+                } else if (row.score[0].match(/^-/)) {
+                    return mapkeys(__("Avoid locating %RSC% with %WITH% (score: %SCORE%)"), {rsc: strong(rsc), with: strong(withrsc), score: row.score});
+                } else {
+                    return mapkeys(__("Prefer locating %RSC% with %WITH% (score: %SCORE%)"), {rsc: strong(rsc), with: strong(withrsc), score: row.score});
+                }
             }
             break;
 
         case 'rsc_order':
-            return mapkeys(__("First %FIRST%, then %THEN% (kind: %KIND%)"),
+            if ("children" in row) {
+                var sets = [];
+                $.each(row.children, function(i, e) {
+                    var to = [];
+                    if ("children" in e) {
+                        $.each(e.children, function(i, e) {
+                            to.push(e.id);
+                        });
+                    }
+                    sets.push(to.join(", "));
+                });
+                sets.join(", then ");
+                return "First " + sets + " (kind: " + row.kind + ")";
+            } else {
+                return mapkeys(__("First %FIRST%, then %THEN% (kind: %KIND%)"),
                            {
                                first: strong(row.first),
                                then: strong(row.then),
                                kind: row.kind
                            });
+            }
             break;
         default: return row.type; break;
         }
