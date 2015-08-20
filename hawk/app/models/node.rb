@@ -1,10 +1,11 @@
 # Copyright (c) 2009-2015 Tim Serong <tserong@suse.com>
 # See COPYING for license.
 
-class Node < Record
+class Node < Tableless
   class CommandError < StandardError
   end
 
+  attr_accessor :xml
   attribute :id, String
   attribute :name, String
   attribute :attrs, Hash
@@ -24,19 +25,6 @@ class Node < Record
     presence: { message: _('Name is required') },
     format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _('Invalid name') }
 
-  def state
-    case
-    when fence
-      :fence
-    when maintenance || standby
-      :offline
-    when online || ready
-      :online
-    else
-      :unknown
-    end
-  end
-
   def online!
     result = Invoker.instance.run(
       "crm_attribute", "-N", name, "-n", "standby", "-v", "off", "-l", "forever"
@@ -50,11 +38,7 @@ class Node < Record
   end
 
   def online
-    if attrs['standby'] and attrs['standby'] == 'off'
-      true
-    else
-      false
-    end
+    state == "online"
   end
 
   def standby!
@@ -70,11 +54,7 @@ class Node < Record
   end
 
   def standby
-    if attrs['standby'] and attrs['standby'] == 'on'
-      true
-    else
-      false
-    end
+    state == "standby"
   end
 
   def ready!
@@ -90,11 +70,7 @@ class Node < Record
   end
 
   def ready
-    if attrs['maintenance'] and attrs['maintenance'] == 'off'
-      true
-    else
-      false
-    end
+    !maintenance
   end
 
   def maintenance!
@@ -106,14 +82,6 @@ class Node < Record
       true
     else
       raise CommandError.new result.last
-    end
-  end
-
-  def maintenance
-    if attrs['maintenance'] and attrs['maintenance'] == 'on'
-      true
-    else
-      false
     end
   end
 
@@ -130,8 +98,7 @@ class Node < Record
   end
 
   def fence
-    # TODO(must): How to detect fence for nodes?
-    false
+    state == "unclean"
   end
 
   def to_param
@@ -141,9 +108,13 @@ class Node < Record
   protected
 
   class << self
-    def instantiate(xml)
+    def instantiate(xml, state)
       record = allocate
+      record.id = xml.attributes['id']
+      record.xml = xml
       record.name = xml.attributes['uname'] || ''
+      record.state = state[:state]
+      record.maintenance = state[:maintenance]
 
       record.attrs = if xml.elements['instance_attributes']
         vals = xml.elements['instance_attributes'].elements.collect do |e|

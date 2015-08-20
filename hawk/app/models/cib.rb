@@ -163,6 +163,32 @@ class Cib < CibObject
     constraints
   end
 
+  def find_node(id)
+    state = @nodes.select { |n| n[:id] == id }
+
+    node = @xml.elements["cib/configuration/nodes/node[@uname=\"#{id}\"]"]
+    if node
+      Node.instantiate(node, state[0])
+    else
+      node = @xml.elements["cib/configuration/nodes/node[@id=\"#{id}\"]"]
+      if node
+        Node.instantiate(node, state[0])
+      else
+        raise CibObject::RecordNotFound, id
+      end
+    end
+  end
+
+  def nodes_ordered
+    ret = []
+    @xml.elements.each('cib/configuration/nodes/node') do |xml|
+      id = xml.attributes['id']
+      state = @nodes.select { |n| n[:id] == id }
+      ret << Node.instantiate(xml, state[0])
+    end
+    ret
+  end
+
   protected
 
   def get_resource(elem, is_managed = true, clone_max = nil, is_ms = false)

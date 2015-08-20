@@ -54,7 +54,7 @@ class NodesController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render json: Node.ordered.to_json
+        render json: @cib.nodes_ordered.to_json
       end
     end
   end
@@ -171,7 +171,7 @@ class NodesController < ApplicationController
   end
 
   def set_record
-    @node = Node.find params[:id]
+    @node = @cib.find_node params[:id]
 
     unless @node
       respond_to do |format|
