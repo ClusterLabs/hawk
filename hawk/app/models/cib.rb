@@ -163,6 +163,17 @@ class Cib < CibObject
     constraints
   end
 
+  def flattened_resources
+    ret = []
+    @resources.each do |r|
+      ret << r
+      r['children'].each do |c|
+        ret << c
+      end
+    end
+    ret
+  end
+
   def find_node(id)
     state = @nodes.select { |n| n[:id] == id }
     can_fence = @crm_config[:stonith_enabled]
@@ -300,7 +311,17 @@ class Cib < CibObject
   end
 
   def get_constraint(elem)
-    elem.attributes
+    ret = {}
+    elem.attributes.each do |name, value|
+      ret[name] = value
+    end
+    ret['type'] = elem.name
+    children = []
+    elem.each_element do |e|
+      children << get_constraint(e)
+    end
+    ret['children'] = children if children.any?
+    ret
   end
 
   public

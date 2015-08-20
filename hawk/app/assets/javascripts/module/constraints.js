@@ -23,12 +23,48 @@ $(function() {
       sortName: 'id',
       sortOrder: 'asc',
       columns: [{
-        field: 'id',
+        field: 'type',
         title: __('Constraint'),
         sortable: true,
         switchable: false,
-        clickToSelect: true
-      }]
+          clickToSelect: true,
+          formatter: function(value, row, index) {
+              switch (row.type) {
+              case 'rsc_location': return __("Location"); break;
+              case 'rsc_colocation': return __("Co-location"); break;
+              case 'rsc_order': return __("Order"); break;
+              default: return row.type; break;
+              }
+          }
+      },
+                {
+                    field: 'score',
+                    title: __('Score'),
+                    sortable: true,
+                    switchable: false,
+                    clickToSelect: true,
+                },
+                {
+                    field: 'rsc',
+                    title: __('A'),
+                    sortable: true,
+                    switchable: false,
+                    clickToSelect: true,
+                },
+                {
+                    field: 'with-rsc',
+                    title: __('B'),
+                    sortable: true,
+                    switchable: false,
+                    clickToSelect: true,
+                },
+                {
+                    field: 'node',
+                    title: __('Node'),
+                    sortable: true,
+                    switchable: false,
+                    clickToSelect: true,
+                }],
     });
 
   $('#constraints #middle form')

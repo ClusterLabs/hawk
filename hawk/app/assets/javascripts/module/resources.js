@@ -28,6 +28,13 @@ $(function() {
         sortable: true,
         switchable: false,
         clickToSelect: true
+      },
+                {
+        field: 'type',
+        title: __('Type'),
+        sortable: true,
+        switchable: false,
+        clickToSelect: true
       }, {
         field: 'is_managed',
         title: __('Managed'),
