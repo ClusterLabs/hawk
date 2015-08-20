@@ -19,12 +19,5 @@ $(function() {
       .hide()
       .filter($(this).data('help-filter'))
       .show();
-  }).on('mouseleave', '[data-help-filter]', function() {
-    $target = $(
-      $(this).parents('[data-help-target]').data('help-target')
-    );
-
-    $target
-      .hide();
   });
 });
