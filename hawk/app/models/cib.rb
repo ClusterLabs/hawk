@@ -300,10 +300,7 @@ class Cib < CibObject
   end
 
   def get_constraint(elem)
-    {
-      :id => elem.attributes['id'],
-      :type => ""
-    }
+    elem.attributes
   end
 
   public

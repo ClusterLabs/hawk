@@ -9,6 +9,8 @@
 //= require module/modals
 //= require module/wizards
 //= require module/nodes
+//= require module/resources
+//= require module/constraints
 //= require module/primitives
 //= require module/templates
 //= require module/masters

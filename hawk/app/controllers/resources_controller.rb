@@ -12,7 +12,7 @@ class ResourcesController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render json: Resource.ordered.to_json
+        render json: @cib.resources.to_json
       end
     end
   end

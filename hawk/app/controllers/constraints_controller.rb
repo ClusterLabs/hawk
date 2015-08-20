@@ -8,6 +8,14 @@ class ConstraintsController < ApplicationController
 
   before_filter :god_required, only: [:events]
 
+  def index
+    respond_to do |format|
+      format.json do
+        render json: @cib.constraints.to_json
+      end
+    end
+  end
+
   def types
     respond_to do |format|
       format.html
