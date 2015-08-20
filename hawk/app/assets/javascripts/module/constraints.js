@@ -2,6 +2,15 @@
 // See COPYING for license.
 
 $(function() {
+    var mapkeys = function(str, args) {
+        $.each(args, function(key, val) {
+            str = str.replace("%" + key.toUpperCase() + "%", val);
+        });
+        return str;
+    };
+    var wraptag = function(tag, s) { return "<" + tag + ">" + s + "</" + tag + ">"; };
+    var em = function(s) { return wraptag("em", s); };
+    var strong = function (s) { return wraptag("strong", s); };
     var description = function(row) {
         switch (row.type) {
         case 'rsc_location':
@@ -21,34 +30,51 @@ $(function() {
             }
 
             if (row.score == "INFINITY") {
-                return rsc + " " + __("on") + " " + row.node;
+                return mapkeys(__("Locate %RSC% on %NODE%"), {rsc: strong(rsc), node: strong(row.node)});
             } else if (row.score == "-INFINITY") {
-                return rsc + " " + __("never on") + " " + row.node;
+                return mapkeys(__("Never locate %RSC% on %NODE%"), {rsc: strong(rsc), node: strong(row.node)});
             } else if (row.score[0].match(/^-/)) {
-                return rsc + " " + __("avoid") + " " + row.node + " (" + row.score + ")";
+                return mapkeys(__("Avoid locating %RSC% on %NODE% (score: %SCORE%)"), {rsc: strong(rsc), node: strong(row.node), score: row.score});
             } else {
-                return rsc + " " + __("prefer") + " " + row.node + " (" + row.score + ")";
+                return mapkeys(__("Prefer locating %RSC% on %NODE% (score: %SCORE%)"), {rsc: strong(rsc), node: strong(row.node), score: row.score});
             }
             break;
 
         case 'rsc_colocation':
             if (row.score == "INFINITY") {
-                return row.rsc + " " + __("with") + " " + row["with-rsc"];
+                return mapkeys(__("Locate %RSC% with %WITH%"), {rsc: strong(row.rsc), with: strong(row["with-rsc"])});
             } else if (row.score == "-INFINITY") {
-                return row.rsc + " " + __("never with") + " " + row["with-rsc"];
+                return mapkeys(__("Never locate %RSC% with %WITH%"), {rsc: strong(row.rsc), with: strong(row["with-rsc"])});
             } else if (row.score[0].match(/^-/)) {
-                return row.rsc + " " + __("avoid") + " " + row["with-rsc"] + " (" + row.score + ")";
+                return mapkeys(__("Avoid locating %RSC% with %WITH% (score: %SCORE%)"), {rsc: strong(row.rsc), with: strong(row["with-rsc"]), score: row.score});
             } else {
-                return row.rsc + " " + __("prefer with") + " " + row["with-rsc"] + " (" + row.score + ")";
+                return mapkeys(__("Prefer locating %RSC% with %WITH% (score: %SCORE%)"), {rsc: strong(row.rsc), with: strong(row["with-rsc"]), score: row.score});
             }
             break;
 
         case 'rsc_order':
-            return __("First") + " " + row.first + " " + __("then") + " " + row.then + " (" + row.kind + ")";
+            return mapkeys(__("First %FIRST%, then %THEN% (kind: %KIND%)"),
+                           {
+                               first: strong(row.first),
+                               then: strong(row.then),
+                               kind: row.kind
+                           });
             break;
         default: return row.type; break;
         }
     };
+    var editpath = function(row) {
+        switch (row.type) {
+        case 'rsc_location': return Routes.edit_cib_location_path($('body').data('cib'), row.id); break;
+        case 'rsc_colocation': return Routes.edit_cib_colocation_path($('body').data('cib'), row.id); break;
+        case 'rsc_order': return Routes.edit_cib_order_path($('body').data('cib'), row.id); break;
+        default: return Routes.edit_cib_location_path($('body').data('cib'), row.id); break;
+        };
+    };
+
+    console.log($.map(Routes, function(v, k) {
+        return k;
+    }).join(", "));
     
     $('#constraints #middle table.constraints, #states #middle table.constraints')
         .bootstrapTable({
@@ -99,19 +125,11 @@ $(function() {
                     }
                 },
                 {
-                    field: 'type',
+                    field: 'id',
                     title: __('Name'),
                     sortable: true,
                     switchable: false,
-                    clickToSelect: true,
-                    formatter: function(value, row, index) {
-                        switch (row.type) {
-                        case 'rsc_location': return __("Location"); break;
-                        case 'rsc_colocation': return __("Colocation"); break;
-                        case 'rsc_order': return __("Order"); break;
-                        default: return row.type; break;
-                        }
-                    }
+                    clickToSelect: true
                 },
                 {
                     field: 'rsc',
@@ -130,6 +148,16 @@ $(function() {
                     class: 'col-sm-2',
                     formatter: function(value, row, index) {
                         var operations = [];
+
+                        operations.push([
+                            '<a href="',
+                            editpath(row),
+                            '" class="details btn btn-default btn-xs" title="',
+                            __('Edit'),
+                            '">',
+                            '<i class="fa fa-pencil"></i>',
+                            '</a> '
+                        ].join(''));
 
                         operations.push([
                             '<a href="',
