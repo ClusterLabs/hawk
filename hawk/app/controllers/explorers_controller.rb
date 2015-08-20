@@ -272,26 +272,7 @@ class ExplorersController < ApplicationController
 
 
   def current_report
-    @current_report ||= Report.new(
-      Rails.root.join(
-        "tmp",
-        "pids",
-        "report"
-      )
-    )
-  end
-
-  def explorer_path
-    @explorer_path ||= Rails.root.join(
-      "tmp",
-      "explorer"
-    )
-
-    unless @explorer_path.directory?
-      @explorer_path.mkpath
-    end
-
-    @explorer_path
+    @current_report ||= Report.new report_path
   end
 
   # before_filter :init_params

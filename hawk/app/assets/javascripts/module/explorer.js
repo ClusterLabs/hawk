@@ -11,7 +11,7 @@ $(function() {
       uploadAsync: true,
       showPreview: false,
       dropZoneEnabled: false,
-      allowedFileExtensions: ['bz2'],
+      allowedFileExtensions: ['gz', 'bz2', 'xz'],
       minFileCount: 1,
 
       browseIcon: '<i class="fa fa-folder-open"></i> ',
