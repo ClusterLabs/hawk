@@ -97,10 +97,6 @@ class Node < Tableless
     end
   end
 
-  def fence
-    state == "unclean"
-  end
-
   def to_param
     name
   end
@@ -108,13 +104,14 @@ class Node < Tableless
   protected
 
   class << self
-    def instantiate(xml, state)
+    def instantiate(xml, state, can_fence)
       record = allocate
       record.id = xml.attributes['id']
       record.xml = xml
       record.name = xml.attributes['uname'] || ''
       record.state = state[:state]
       record.maintenance = state[:maintenance]
+      record.fence = can_fence
 
       record.attrs = if xml.elements['instance_attributes']
         vals = xml.elements['instance_attributes'].elements.collect do |e|

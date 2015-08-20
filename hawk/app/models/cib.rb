@@ -165,14 +165,15 @@ class Cib < CibObject
 
   def find_node(id)
     state = @nodes.select { |n| n[:id] == id }
+    can_fence = @crm_config[:stonith_enabled]
 
     node = @xml.elements["cib/configuration/nodes/node[@uname=\"#{id}\"]"]
     if node
-      Node.instantiate(node, state[0])
+      Node.instantiate(node, state[0], can_fence)
     else
       node = @xml.elements["cib/configuration/nodes/node[@id=\"#{id}\"]"]
       if node
-        Node.instantiate(node, state[0])
+        Node.instantiate(node, state[0], can_fence)
       else
         raise CibObject::RecordNotFound, id
       end
@@ -180,11 +181,12 @@ class Cib < CibObject
   end
 
   def nodes_ordered
+    can_fence = @crm_config[:stonith_enabled]
     ret = []
     @xml.elements.each('cib/configuration/nodes/node') do |xml|
       id = xml.attributes['id']
       state = @nodes.select { |n| n[:id] == id }
-      ret << Node.instantiate(xml, state[0])
+      ret << Node.instantiate(xml, state[0], can_fence)
     end
     ret
   end

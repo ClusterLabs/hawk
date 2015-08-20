@@ -419,7 +419,7 @@ $(function() {
         formatter: function(value, row, index) {
           var operations = []
 
-          if (!row.fence) {
+          if (row.fence) {
             operations.push([
               '<a href="',
                   Routes.fence_cib_node_path(
