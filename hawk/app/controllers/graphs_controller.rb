@@ -7,7 +7,7 @@ class GraphsController < ApplicationController
   def show
     respond_to do |format|
       format.html
-      format.png do
+      format.svg do
         path = Pathname.new("#{Rails.root}/tmp").join(
           Dir::Tmpname.make_tmpname(
             ["graph", ".svg"],
