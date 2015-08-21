@@ -10,7 +10,7 @@ class GraphsController < ApplicationController
       format.png do
         path = Pathname.new("#{Rails.root}/tmp").join(
           Dir::Tmpname.make_tmpname(
-            ["graph", ".png"],
+            ["graph", ".svg"],
             nil
           )
         )
@@ -21,13 +21,13 @@ class GraphsController < ApplicationController
             "graph",
             "dot",
             path.to_s,
-            "png"
+            "svg"
           )
 
           if res == true
             send_data(
               path.read,
-              type: "image/png",
+              type: "image/svg+xml",
               disposition: "inline"
             )
           else
