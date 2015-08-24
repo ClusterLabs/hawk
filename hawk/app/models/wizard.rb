@@ -8,8 +8,12 @@ class Wizard < Tableless
   attribute :shortdesc, String
   attribute :longdesc, String
 
-  attribute :loaded, Boolean
   attribute :steps, StepCollection[Step]
+
+  def initialize(attrs = nil)
+    super(attrs)
+    @loaded = false
+  end
 
   def load!
     return if @loaded
