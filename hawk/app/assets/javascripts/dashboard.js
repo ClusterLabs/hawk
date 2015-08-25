@@ -129,10 +129,7 @@ var dashboardAddCluster = (function() {
         }
         
         text += '<div class="row">';
-        text += '<div class="col-sm-4">';
-        text += circle;
-        text += '</div>';
-        text += '<div class="col-sm-8">';
+        text += '<div class="col-md-12">';
         text += '<ul class="list-group">';
 
         $.each(cib.tickets, function(idx, obj) {
