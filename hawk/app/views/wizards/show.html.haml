@@ -29,7 +29,7 @@
                       .col-sm-5
                         = label_tag("enable:#{step.id}", _("Enable this step"))
                       .col-sm-7
-                        = check_box_tag("enable:#{step.id}", :required)
+                        = check_box_tag("enable:#{step.id}", :required, false, data: { "wizard-enable" => :true })
                   - step.basic.each do |param|
                     = render :partial => "param", :locals => { :param => param, :step => step, :index => index }
 

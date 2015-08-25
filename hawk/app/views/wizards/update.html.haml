@@ -4,7 +4,7 @@
       = icon_text "magic", @wizard.shortdesc, class: "page"
 
   .row
-    = form_for [@cib, @wizard], horizontal: true do |main_form|
+    = form_for [@cib, @wizard], horizontal: true, remote: true do |main_form|
       .panel.panel-default
         .panel-steps
           %ul.nav.nav-pills
@@ -14,21 +14,25 @@
               = @wizard.steps.length + 2
 
         .panel-body
-          - @wizard.errors.each do |error|
-            .alert.alert-danger
-              = error.to_s
-          %ul.list-group
-            - @wizard.actions.each_with_index do |action, ai|
-              %li.list-group-item
-                %h4.list-group-item-heading
-                  = "#{ai+1}. " + action['shortdesc']
-                - unless action['text'].empty?
-                  %pre.bg-info= action['text']
+          %fieldset
+            %legend
+              = _("Verify configuration")
+            - @wizard.errors.each do |error|
+              .alert.alert-danger
+                = error.to_s
+            %ul.list-group
+              - @wizard.actions.each_with_index do |action, ai|
+                %li.list-group-item
+                  %h4.list-group-item-heading
+                    = "#{ai+1}. " + action['shortdesc']
+                  - unless action['longdesc'].strip.empty?
+                    %p.list-group-item-text= action['longdesc']
+                  - unless action['text'].empty?
+                    %pre.bg-info= action['text']
 
           = main_form.button_group class: "wizard" do
             = link_to _("Cancel"), cib_wizards_path(cib_id: current_cib.id), class: "btn btn-default", data: { confirm: _("Do you really want to cancel the wizard setup?") }
-            = link_to _("Back"), "#", class: "btn btn-default previous"
-            = link_to _("Next"), "#", class: "btn btn-default next"
+            = link_to _("Back"), cib_wizard_path(cib_id: current_cib.id, id: @wizard.name), class: "btn btn-default"
             = main_form.submit _("Apply"), class: "btn btn-primary finish hidden", disabled: true, name: "submit"
 
 - content_for :rightbar do

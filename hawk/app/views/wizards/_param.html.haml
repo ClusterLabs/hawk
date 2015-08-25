@@ -7,20 +7,17 @@
       - if param.value
         = hidden_field_tag(param_id, 'false')
       = check_box_tag(param_id, 'true', param.value)
-    - elsif param.type == "integer"
-      = text_field_tag(param_id, nil, placeholder: param.value || param.example || param.type)
-    - elsif param.type == "port"
-      = text_field_tag(param_id, nil, placeholder: param.value || param.example || param.type)
-    - elsif param.type == "resource"
-      = text_field_tag(param_id, nil, placeholder: param.value || param.example || param.type)
-    - elsif param.type == "ip_address"
-      = text_field_tag(param_id, nil, placeholder: param.value || param.example || param.type)
-    - elsif param.type == "ip_network"
-      = text_field_tag(param_id, nil, placeholder: param.value || param.example || param.type)
-    - elsif param.type == "email"
-      = text_field_tag(param_id, nil, placeholder: param.value || param.example || param.type)
     - else
-      = text_field_tag(param_id, nil, placeholder: param.value || param.example || param.type)
-    %p.help-block
-      = param.shortdesc
-      
+      - opts = { placeholder: param.value || param.example, required: param.required, data: { "param-type" => param.type, "param-required" => param.required } }
+      - if param.required && !step.required
+        - opts[:data][:depends] = "enable:#{step.id}"
+      - if param.type == "email"
+        - opts[:email] = true
+      - elsif param.type == "integer" || param.type == "port"
+        - opts[:number] = true
+      = text_field_tag(param_id, nil, opts)
+  .col-sm-12.help-block
+    = param.shortdesc
+    - unless param.longdesc.empty?
+      %p
+        %small= param.longdesc
