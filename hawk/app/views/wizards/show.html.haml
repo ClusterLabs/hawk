@@ -33,19 +33,31 @@
                   - step.basic.each do |param|
                     = render :partial => "param", :locals => { :param => param, :step => step, :index => index, :form => main_form }
 
-                  - step.steps.each do |substep|
-                    - substep.basic.each do |param|
-                      = render :partial => "param", :locals => { :param => param, :step => step, :index => index, :form => main_form }
-
                   - unless step.advanced.empty?
                     %fieldset{ data: { attrlist: step.params_attrlist.to_json, attrlist_mapping: step.params_mapping.to_json, attrlist_prefix: "step[parameters]", attrlist_target: ".content" } }
                       %legend
                         = _("Advanced")
                         %span.pull-right.toggleable
                           = icon_tag("chevron-up")
-                        
+
                       .content
-                    
+
+                  - step.steps.each do |substep|
+                    - if substep.title != step.title
+                      %fieldset
+                        %legend
+                          = substep.title
+                    - substep.basic.each do |param|
+                      = render :partial => "param", :locals => { :param => param, :step => step, :index => index, :form => main_form }
+                    - unless substep.advanced.empty?
+                      %fieldset{ data: { attrlist: substep.params_attrlist.to_json, attrlist_mapping: substep.params_mapping.to_json, attrlist_prefix: "step[parameters]", attrlist_target: ".content" } }
+                        %legend
+                          = _("Advanced")
+                          %span.pull-right.toggleable
+                            = icon_tag("chevron-up")
+
+                        .content
+
             - if @wizard.steps.empty?
               .well.text-info
                 .text-center
