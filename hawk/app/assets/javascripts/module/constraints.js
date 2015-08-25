@@ -116,10 +116,6 @@ $(function() {
         default: return Routes.edit_cib_location_path($('body').data('cib'), row.id); break;
         };
     };
-
-    console.log($.map(Routes, function(v, k) {
-        return k;
-    }).join(", "));
     
     $('#constraints #middle table.constraints, #states #middle table.constraints')
         .bootstrapTable({
