@@ -64,15 +64,15 @@ var dashboardAddCluster = (function() {
 
     function status_icon_for(status) {
         if (status == "ok") {
-            return '<i class="fa fa-check fa-2x text"></i>';
+            return '<i class="fa fa-check text"></i>';
         } else if (status == "errors") {
-            return '<i class="fa fa-exclamation-triangle fa-2x text"></i>';
+            return '<i class="fa fa-exclamation-triangle text"></i>';
         } else if (status == "maintenance") {
-            return '<i class="fa fa-wrench fa-2x text"></i>';
+            return '<i class="fa fa-wrench text"></i>';
         } else if (status == "nostonith") {
-            return '<i class="fa fa-plug fa-2x text"></i>';
+            return '<i class="fa fa-plug text"></i>';
         } else {
-            return '<i class="fa fa-question fa-2x text"></i>';
+            return '<i class="fa fa-question text"></i>';
         }
     }
 
@@ -81,6 +81,16 @@ var dashboardAddCluster = (function() {
             return word + "s";
         } else {
             return word;
+        }
+    }
+
+    function listGroupClassForState(state) {
+        if (state == "online" || state == "granted" || state == "master" || state == "slave" || state == "started") {
+            return "list-group-item-success";
+        } else if (state == "offline" || state == "unclean" || state == "failed" || state == "stopped") {
+            return "list-group-item-danger";
+        } else {
+            return "list-group-item-warning";
         }
     }
 
@@ -101,9 +111,9 @@ var dashboardAddCluster = (function() {
             $('#' + clusterId).removeClass('panel-warning panel-danger');
         }
 
-        var circle = '<div class="text-center"><div class="circle circle-large ' +
+        var circle = '<div class="circle circle-medium ' +
                  status_class_for(cib.meta.status) + '">' +
-            status_icon_for(cib.meta.status) + '</div></div>';
+            status_icon_for(cib.meta.status) + '</div>';
 
         var text = "";
 
@@ -119,34 +129,34 @@ var dashboardAddCluster = (function() {
         }
         
         text += '<div class="row">';
-        text += '<div class="col-md-3">';
+        text += '<div class="col-sm-4">';
         text += circle;
         text += '</div>';
-        text += '<div class="col-md-9">';
-        text += '<table class="table table-condensed">';
+        text += '<div class="col-sm-8">';
+        text += '<ul class="list-group">';
 
         $.each(cib.tickets, function(idx, obj) {
             $.each(obj, function(ticket, state) {
-                text += '<tr><td>Ticket ' + ticket + ' is <tt>' + state + '</tt></tr>';
+                text += '<li class="list-group-item list-group-item-info">Ticket ' + ticket + ' is <tt>' + state + '</tt></li>';
             });
         });
 
         $.each(cib.node_states, function(state, count) {
             if (count > 0)
-                text += '<tr><td>' + count + ' ' + state + ' ' + plural('node', count) + '</td></tr>';
+                text += '<li class="list-group-item ' + listGroupClassForState(state) + '">' + count + ' ' + state + ' ' + plural('node', count) + '</li>';
         });
 
         $.each(cib.resource_states, function(state, count) {
             if (count > 0)
-                text += '<tr><td>' + count + ' ' + state + ' ' + plural('resource', count) + '</td></tr>';
+                text += '<li class="list-group-item ' + listGroupClassForState(state) + '">' + count + ' ' + state + ' ' + plural('resource', count) + '</li>';
         });
 
         $.each(cib.ticket_states, function(state, count) {
             if (count > 0)
-                text += '<tr><td>' + count + ' ' + state + ' ' + plural('ticket', count) + '</td></tr>';
+                text += '<li class="list-group-item' + listGroupClassForState(state) + '">' + count + ' ' + state + ' ' + plural('ticket', count) + '</li>';
         });
 
-        text += '</table>';
+        text += '</ul>';
         text += '</div>';
         text += '</div>';
 
