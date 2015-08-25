@@ -3,18 +3,20 @@
   .col-sm-5
     = label_tag(param_id, param.title)
   .col-sm-7
+    - opts = { class: "form-control", required: param.required, data: { "param-type" => param.type, "param-required" => param.required } }
+    - if param.required && !step.required
+      - opts[:data][:depends] = "enable:#{step.id}"
+    - if param.type == "email"
+      - opts[:email] = true
+    - elsif param.type == "integer" || param.type == "port"
+      - opts[:number] = true
     - if param.type == "boolean"
       - if param.value
         = hidden_field_tag(param_id, 'false')
-      = check_box_tag(param_id, 'true', param.value)
+      - opts[:include_hidden] = false
+      = select_tag param_id, boolean_options(param.value || false), opts
     - else
-      - opts = { placeholder: param.value || param.example, required: param.required, data: { "param-type" => param.type, "param-required" => param.required } }
-      - if param.required && !step.required
-        - opts[:data][:depends] = "enable:#{step.id}"
-      - if param.type == "email"
-        - opts[:email] = true
-      - elsif param.type == "integer" || param.type == "port"
-        - opts[:number] = true
+      - opts[:placeholder] = param.value || param.example
       = text_field_tag(param_id, nil, opts)
   .col-sm-12.help-block
     = param.shortdesc

@@ -15,7 +15,7 @@ $(function() {
                 // of a non-required step
                 $("[data-depends]").each(function() {
                     var depelem = document.getElementById($(this).attr('data-depends'));
-                    if (!depelem.checked) {
+                    if ($(depelem).val() != "true") {
                         $(this).rules("remove", "required");
                         $(this).removeAttr("required");
                     } else {
