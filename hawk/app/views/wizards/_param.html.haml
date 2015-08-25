@@ -1,22 +1,26 @@
+- param_id = "#{param.id}"
 .form-group
   .col-sm-5
-    = label_tag(param.name, param.title)
+    = label_tag(param_id, param.title)
   .col-sm-7
     - if param.type == "boolean"
-      = check_box_tag(param.name)
+      - if param.value
+        = hidden_field_tag(param_id, 'false')
+      = check_box_tag(param_id, 'true', param.value)
     - elsif param.type == "integer"
-      = text_field_tag(param.name, param.value, placeholder: param.example || param.type)
+      = text_field_tag(param_id, nil, placeholder: param.value || param.example || param.type)
     - elsif param.type == "port"
-      = text_field_tag(param.name, param.value, placeholder: param.example || param.type)
+      = text_field_tag(param_id, nil, placeholder: param.value || param.example || param.type)
     - elsif param.type == "resource"
-      = text_field_tag(param.name, param.value, placeholder: param.example || param.type)
+      = text_field_tag(param_id, nil, placeholder: param.value || param.example || param.type)
     - elsif param.type == "ip_address"
-      = text_field_tag(param.name, param.value, placeholder: param.example || param.type)
+      = text_field_tag(param_id, nil, placeholder: param.value || param.example || param.type)
     - elsif param.type == "ip_network"
-      = text_field_tag(param.name, param.value, placeholder: param.example || param.type)
+      = text_field_tag(param_id, nil, placeholder: param.value || param.example || param.type)
     - elsif param.type == "email"
-      = text_field_tag(param.name, param.value, placeholder: param.example || param.type)
+      = text_field_tag(param_id, nil, placeholder: param.value || param.example || param.type)
     - else
-      = text_field_tag(param.name, param.value, placeholder: param.example || param.type)
+      = text_field_tag(param_id, nil, placeholder: param.value || param.example || param.type)
     %p.help-block
       = param.shortdesc
+      

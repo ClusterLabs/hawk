@@ -2,33 +2,55 @@
 # Copyright (c) 2015 Kristoffer Gronlund <kgronlund@suse.com>
 # See COPYING for license information.
 
-class Step < Tableless
-  attribute :name, String
-  attribute :shortdesc, String
-  attribute :longdesc, String
-  attribute :required, Boolean
-  attribute :parameters, Array[StepParameter]
-  attribute :steps, Array[Step]
+class Step
+  extend ActiveModel::Naming
+  include ActiveModel::Conversion
+  include ActiveModel::Validations
 
-  def initialize(attrs)
-    super(attrs)
+  attr_reader :parent
+  attr_accessor :name
+  attr_accessor :shortdesc
+  attr_accessor :longdesc
+  attr_accessor :required
+  attr_accessor :parameters
+  attr_accessor :steps
+
+  def persisted?
+    false
   end
 
-  def flattened_steps
-    ret = []
-    @steps.each do |step|
-      ret << step unless step.parameters.empty?
-      ret.concat step.flattened_steps
+  def initialize(parent, data)
+    @parent = parent
+    @name = data["name"] || ''
+    @shortdesc = data["shortdesc"].strip
+    @longdesc = data["longdesc"]
+    @required = data["required"] || false
+    @parameters = []
+    dataparams = data["parameters"] || []
+    dataparams.each do |param|
+      @parameters << StepParameter.new(self, param)
     end
-    ret
+    @steps = []
+    datasteps = data["steps"] || []
+    datasteps.each do |step|
+      @steps << Step.new(self, step)
+    end
   end
 
   def id
-    @name || "parameters"
+    if name.blank?
+      parent.id
+    else
+      "#{parent.id}.#{name}"
+    end
   end
 
   def title
-    @name || _("Parameters")
+    if name.blank?
+      @parent.title
+    else
+      @name.gsub(/[_-]/, " ").titleize
+    end
   end
 
   def basic

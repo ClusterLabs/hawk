@@ -8,43 +8,45 @@
       .panel.panel-default
         .panel-steps
           %ul.nav.nav-pills
-            - @wizard.flattened_steps.each_with_index do |step, index|
+            - @wizard.steps.each_with_index do |step, index|
               %li
                 = link_to index + 1, "#step#{index}", class: "btn btn-default btn-circle", data: { toggle: "tab" }
             %li.btn.btn-info.btn-circle{disabled: true}
-              = @wizard.flattened_steps.length + 1
+              = @wizard.steps.length + 1
             %li.btn.btn-info.btn-circle{disabled: true}
-              = @wizard.flattened_steps.length + 2
+              = @wizard.steps.length + 2
 
-        .panel-body{ data: { help_target: "#rightbar > .container-fluid > *" } }
+        .panel-body{ data: { help_target: "#rightbar > .container-fluid > .row.stephelp" } }
           .tab-content
-            - @wizard.flattened_steps.each_with_index do |step, index|
+            - @wizard.steps.each_with_index do |step, index|
               = main_form.fields_for :steps, step do |step_form|
-                .tab-pane.active{ id: "step#{index}", data: { help_filter: ".#{index}-#{step.id}" } }
-                  .well
-                    %h4
-                      = step.shortdesc
-                    = step.longdesc
+                .tab-pane.active{ id: "step#{index}", data: { help_filter: ".step#{index}" } }
                   %fieldset
                     %legend
                       = step.title
                   - unless step.required
                     .form-group
                       .col-sm-5
-                        = label_tag(:required, _("Uncheck to skip this step"))
+                        = label_tag("enable:#{step.id}", _("Enable this step"))
                       .col-sm-7
-                        = check_box_tag(:required)
+                        = check_box_tag("enable:#{step.id}", :required)
                   - step.basic.each do |param|
-                    = render :partial => "param", :locals => { :param => param }
+                    = render :partial => "param", :locals => { :param => param, :step => step, :index => index }
+
+                  - step.steps.each do |substep|
+                    - substep.basic.each do |param|
+                      = render :partial => "param", :locals => { :param => param, :step => step, :index => index }
+
                   - unless step.advanced.empty?
                     %fieldset{ data: { attrlist: step.params_attrlist.to_json, attrlist_mapping: step.params_mapping.to_json, attrlist_prefix: "step[parameters]", attrlist_target: ".content" } }
                       %legend
                         = _("Advanced")
                         %span.pull-right.toggleable
                           = icon_tag("chevron-up")
-
+                        
                       .content
-            - if @wizard.flattened_steps.empty?
+                    
+            - if @wizard.steps.empty?
               .well.text-info
                 .text-center
                   = _("This wizard takes no parameters.")
@@ -55,17 +57,17 @@
               = link_to _("Cancel"), cib_wizards_path(cib_id: current_cib.id), class: "btn btn-default", data: { confirm: _("Do you really want to cancel the wizard setup?") }
               = link_to _("Back"), "#", class: "btn btn-default previous"
               = link_to _("Next"), "#", class: "btn btn-default next"
-              = main_form.submit _("Submit"), class: "btn btn-primary finish hidden", name: "submit"
+              = main_form.submit _("Verify"), class: "btn btn-primary finish hidden", name: "submit"
 
 - content_for :rightbar do
   .container-fluid{ data: { spy: "affix" } }
-    - @wizard.flattened_steps.each_with_index do |step, index|
-      .row{ class: "#{index}-#{step.id}" }
-        %h2.margin-bottom
-          = @wizard.shortdesc
+    %h2.margin-bottom
+      = @wizard.shortdesc
+    .row
+      = longdesc_format @wizard.longdesc
 
-        = longdesc_format @wizard.longdesc
-
+    - @wizard.steps.each_with_index do |step, index|
+      .row.stephelp{ class: "step#{index}" }
         %h3.margin-bottom
           = step.shortdesc
 
