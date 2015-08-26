@@ -13,12 +13,12 @@ module CrmScript
 
   def splitline(line)
     begin
-      if line.strip.eql? '"end"'
-      elsif line.start_with? "Password:"
-      elsif line.start_with? "ERROR:"
-        return nil, line
-      else
+      if line.start_with? "Password:"
+        nil
+      elsif line.start_with?("{") || line.start_with?("[")
         return JSON.parse(line), nil
+      else
+        return nil, line
       end
       return nil, nil
     rescue JSON::ParserError => e
@@ -28,7 +28,7 @@ module CrmScript
   module_function :splitline
 
   def run(jsondata, rootpw)
-    user = rootpw ? 'root' : 'hacluster'
+    user = rootpw.nil? ? 'hacluster' : 'root'
     cmd = crmsh_escape(JSON.dump(jsondata))
 
     tmpf = Tempfile.new 'crmscript'
@@ -37,7 +37,7 @@ module CrmScript
     File.chmod(0666, tmpf.path)
 
     if user.eql? 'root'
-      cmdline = ['/usr/bin/su', '--login', user, '-c',"crm -f #{tmpf.path}", :stdin_data => rootpw]
+      cmdline = ['/usr/bin/su', '--login', user, '-c',"crm -f #{tmpf.path}", :stdin_data => rootpw.lines.first]
     else
       cmdline = ['/usr/sbin/hawk_invoke', user, 'crm', '-f', tmpf.path]
     end
@@ -45,12 +45,15 @@ module CrmScript
     out, err, status = Util.capture3(*cmdline)
     tmpf.unlink
     ENV['HOME'] = old_home
+
+    yield nil, "Error (rc=#{status.exitstatus})" if status.exitstatus != 0
+
     out.split("\n").each do |line|
       a, b = CrmScript.splitline line
       yield a, b if a || b
     end
     err.split("\n").each do |line|
-      a, b = splitline line
+      a, b = CrmScript.splitline line
       yield a, b if a || b
     end
   end
