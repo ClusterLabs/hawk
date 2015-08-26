@@ -29,17 +29,6 @@
 #
 #======================================================================
 
-ActiveSupport::Inflector.inflections do |inflect|
-  inflect.uncountable "crm_config"
-
-  inflect.acronym "DC"
-  inflect.acronym "SAP"
-  inflect.acronym "NFS"
-  inflect.acronym "STONITH"
-  inflect.acronym "IP"
-  inflect.acronym "ID"
-  inflect.acronym "LVS"
-  inflect.acronym "OCFS2"
-  inflect.acronym "cLVM"
-  inflect.acronym "CIDR"
+Mime::Type.tap do |config|
+  config.register "image/svg+xml", :svg
 end
