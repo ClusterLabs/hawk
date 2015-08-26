@@ -124,9 +124,6 @@ class Cib < CibObject
           end
         end
 
-        result[:tags] = tags
-        result[:constraints] = constraints
-
       else
         result[:crm_config] = crm_config
         result[:rsc_defaults] = rsc_defaults
