@@ -46,13 +46,13 @@ module CrmScript
     tmpf.unlink
     ENV['HOME'] = old_home
 
-    yield nil, "Error (rc=#{status.exitstatus})" if status.exitstatus != 0
+    if status.exitstatus != 0
+      yield nil, "Error (rc=#{status.exitstatus}): #{err}"
+    elsif !err.blank?
+      yield nil, "Error: #{err}"
+    end
 
     out.split("\n").each do |line|
-      a, b = CrmScript.splitline line
-      yield a, b if a || b
-    end
-    err.split("\n").each do |line|
       a, b = CrmScript.splitline line
       yield a, b if a || b
     end
