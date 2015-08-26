@@ -5,6 +5,17 @@
 
 var dashboardAddCluster = (function() {
 
+    var checksum = function(s) {
+        var hash = 0, i, chr, len;
+        if (s.length == 0) return hash;
+        for (i = 0, len = s.length; i < len; i++) {
+            chr   = s.charCodeAt(i);
+            hash  = ((hash << 5) - hash) + chr;
+            hash |= 0; // Convert to 32bit integer
+        }
+        return hash;
+    };
+
     var GETTEXT = {
         error: function() {
             return __('Error');
@@ -127,37 +138,129 @@ var dashboardAddCluster = (function() {
             text += '</div>';
             text += '</div>';
         }
-        
+
         text += '<div class="row">';
         text += '<div class="col-md-12">';
-        text += '<ul class="list-group">';
+        text += '<div class="list-group">';
+
+        var makePopoverButton = function(id, content, cls, title) {
+            var body = "";
+            body += '<button id="' + id + '" type="button" style="width: 100%;" class="list-group-item ' + cls + '" ';
+            body += 'data-toggle="popover" data-trigger="focus" title="' + title + '" ';
+            body += 'data-content="" ';
+            body += '>';
+            body += content;
+            body += '</button>';
+            return body;
+        };
+
+        var dlBegin = function() {
+            return '<dl class="dl-horizontal">';
+        };
+
+        var dlEnd = function() {
+            return '</dl>';
+        };
+
+        var dlAdd = function(title, text) {
+            return '<dt>' + title + '</dt><dd>' + text + '</dd>';
+        }
+
+        var descCache = {};
 
         $.each(cib.tickets, function(idx, obj) {
             $.each(obj, function(ticket, state) {
-                text += '<li class="list-group-item list-group-item-info">Ticket ' + ticket + ' is <tt>' + state + '</tt></li>';
+                var details = dlBegin();
+                $.each(cib.booth, function(typ, lst) {
+                    if (lst && lst.length > 0) {
+                        details += dlAdd(typ, lst.join(", "));
+                    }
+                });
+                details += dlEnd();
+                var id = 'ticket_' + ticket + '_' + state;
+                descCache[id] = details;
+
+                text += makePopoverButton(id, 'Ticket ' + ticket + ' is <tt>' + state + '</tt>',
+                                          "list-group-item-info", __("Details"));
             });
         });
 
         $.each(cib.node_states, function(state, count) {
-            if (count > 0)
-                text += '<li class="list-group-item ' + listGroupClassForState(state) + '">' + count + ' ' + state + ' ' + plural('node', count) + '</li>';
+            if (count > 0) {
+                var details = dlBegin();
+                $.each(cib.nodes, function(n, v) {
+                    if (state == v) {
+                        details += dlAdd(n, v);
+                    }
+                });
+                details += dlEnd();
+                descCache['node_btn_' + state] = details;
+
+                text += makePopoverButton('node_btn_' + state, count + ' ' + state + ' ' + plural('node', count),
+                                          listGroupClassForState(state), __("Details"));
+            }
         });
 
         $.each(cib.resource_states, function(state, count) {
-            if (count > 0)
-                text += '<li class="list-group-item ' + listGroupClassForState(state) + '">' + count + ' ' + state + ' ' + plural('resource', count) + '</li>';
+            if (count > 0) {
+                var details = dlBegin();
+                $.each(cib.resources, function(rsc, locs) {
+                    if (state == "stopped" && $.isEmptyObject(locs)) {
+                        details += dlAdd(rsc, "<em>[stopped]</em>");
+                    } else {
+                        var active = "";
+                        $.each(locs, function(node, st) {
+                            if (st == state) {
+                                active += node + " ";
+                            }
+                        });
+                        if (active != "")
+                            details += dlAdd(rsc, active);
+                    }
+                });
+                details += dlEnd();
+                descCache['rsc_btn_' + state] = details;
+
+                text += makePopoverButton('rsc_btn_' + state, count + ' ' + state + ' ' + plural('resource', count),
+                                          listGroupClassForState(state), __("Details"));
+            }
         });
 
         $.each(cib.ticket_states, function(state, count) {
-            if (count > 0)
-                text += '<li class="list-group-item' + listGroupClassForState(state) + '">' + count + ' ' + state + ' ' + plural('ticket', count) + '</li>';
+            if (count > 0) {
+                var details = dlBegin();
+                $.each(cib.tickets, function(i, e) {
+                    $.each(e, function(name, tstate) {
+                        if (state == tstate) {
+                            details += dlAdd(name, state);
+                        }
+                    });
+                });
+                details += dlEnd();
+                descCache['ticket1_btn_' + state] = details;
+
+                text += makePopoverButton('ticket1_btn_' + state, count + ' ' + state + ' ' + plural('ticket', count),
+                                          listGroupClassForState(state), __("Details"));
+            }
         });
 
-        text += '</ul>';
+        text += '</div>';
         text += '</div>';
         text += '</div>';
 
-        tag.html(text);
+        var cs = checksum(text);
+
+        if (tag.data('hash') != cs) {
+            tag.html(text);
+            tag.data('hash', cs);
+
+            $.each(descCache, function(id, desc) {
+                var btn = $('#' + clusterId + ' #' + id);
+                btn.data("content", desc);
+                btn.popover({animation: true, html: true});
+            });
+        }
+
     }
 
     function clusterConnectionError(clusterId, clusterInfo, xhr, status, error, cb) {
@@ -294,7 +397,7 @@ var dashboardAddCluster = (function() {
 
     function startRemoteConnect(clusterId, clusterInfo, bodytag) {
         indicator(clusterId, "refresh");
-        
+
         var username = bodytag.find("input[name=username]").val();
         var password = bodytag.find("input[name=password]").val();
 
@@ -461,4 +564,3 @@ var dashboardSetupAddClusterForm = function() {
         }
     }(jQuery));
 };
-
