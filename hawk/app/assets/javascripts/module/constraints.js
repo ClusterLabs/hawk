@@ -105,6 +105,33 @@ $(function() {
                            });
             }
             break;
+        case 'rsc_ticket':
+            if ("children" in row) {
+                var sets = [];
+                $.each(row.children, function(i, e) {
+                    var to = [];
+                    if ("children" in e) {
+                        $.each(e.children, function(i, e) {
+                            to.push(e.id);
+                        });
+                    }
+                    sets.push(to.join(", "));
+                });
+                sets.join(", ");
+                return mapkeys(__("Ticket %TICKET% controls %RSC%"),
+                               {
+                                   ticket: strong(row.ticket),
+                                   rsc: strong(sets)
+                               });
+            } else {
+                return mapkeys(__("Ticket %TICKET% controls %RSC%"),
+                               {
+                                   ticket: strong(row.ticket),
+                                   rsc: strong(row.rsc)
+                               });
+            }
+            break;
+
         default: return row.type; break;
         }
     };
@@ -113,10 +140,11 @@ $(function() {
         case 'rsc_location': return Routes.edit_cib_location_path($('body').data('cib'), row.id); break;
         case 'rsc_colocation': return Routes.edit_cib_colocation_path($('body').data('cib'), row.id); break;
         case 'rsc_order': return Routes.edit_cib_order_path($('body').data('cib'), row.id); break;
+        case 'rsc_ticket': return Routes.edit_cib_ticket_path($('body').data('cib'), row.id); break;
         default: return Routes.edit_cib_location_path($('body').data('cib'), row.id); break;
         };
     };
-    
+
     $('#constraints #middle table.constraints, #states #middle table.constraints')
         .bootstrapTable({
             method: 'get',
@@ -159,6 +187,11 @@ $(function() {
                         case 'rsc_order': return [
                             '<i class="fa fa-sort text-warning" title="',
                             __("Order"),
+                            '"></i>'
+                        ].join(''); break;
+                        case 'rsc_ticket': return [
+                            '<i class="fa fa-ticket text-default" title="',
+                            __("Ticket"),
                             '"></i>'
                         ].join(''); break;
                         default: return row.type; break;
@@ -212,13 +245,13 @@ $(function() {
                             '<i class="fa fa-search"></i>',
                             '</a> '
                         ].join(''));
-                        
+
                         return [
                             '<div class="btn-group" role="group">',
                             operations.join(''),
                             '</div>',
                         ].join('');
-                    }         
+                    }
                 }],
         });
 
