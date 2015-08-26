@@ -21,6 +21,7 @@ class WizardsController < ApplicationController
 
   def show
     @wizard = Wizard.find params[:id]
+    session[:wizard_session_poke] = "poke"
 
     respond_to do |format|
       format.html
@@ -30,13 +31,29 @@ class WizardsController < ApplicationController
   def update
     @wizard = Wizard.find params[:id]
     pa = build_scriptparams(params)
-    Rails.logger.debug "params=#{params}"
-    Rails.logger.debug "verify=#{pa}"
     @wizard.verify(pa)
-    Rails.logger.debug "actions=#{@wizard.actions}"
+    Rails.cache.write("#{params[:id]}/#{session.id}", pa, expires_in: 6.hours)
 
     respond_to do |format|
       format.html
+    end
+  end
+
+  def submit
+    pa = Rails.cache.fetch("#{params[:id]}/#{session.id}", expires_in: 6.hours) do
+      nil
+    end
+
+    if pa.nil?
+          render json: { error: _("Session has expired") }, status: :unprocessable_entity
+    else
+      @wizard = Wizard.find params[:id]
+      @wizard.run(pa, params[:rootpw])
+      if @wizard.errors.length > 0
+        render json: @wizard.errors.to_json, status: :unprocessable_entity
+      else
+        render json: @wizard.actions
+      end
     end
   end
 
@@ -67,7 +84,6 @@ class WizardsController < ApplicationController
         next unless basestep.required || params.has_key?("enabled:#{basestep.id}")
 
         name = path.last
-        Rails.logger.debug "k=#{k}, v=#{v}, path=#{path}, name=#{name}"
         sub = sp
         path.take(path.length - 1).each do |p|
           sub[p] = {} unless sub.has_key? p
