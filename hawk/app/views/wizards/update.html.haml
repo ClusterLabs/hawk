@@ -1,39 +1,57 @@
-.container-fluid
+.container-fluid.wizard-verify
   .row
     %h1
       = icon_text "magic", @wizard.shortdesc, class: "page"
 
   .row
-    = form_for [@cib, @wizard], horizontal: true, remote: true do |main_form|
+    = form_for [@cib, @wizard], url: { action: "submit" }, method: :post, horizontal: true, remote: true do |main_form|
       .panel.panel-default
         .panel-steps
           %ul.nav.nav-pills
-            %li.btn.btn-info.btn-circle{disabled: false, active: true}
-              = @wizard.steps.length + 1
-            %li.btn.btn-info.btn-circle
-              = @wizard.steps.length + 2
+            - @wizard.steps.each_with_index do |step, index|
+              %li.btn.btn-default.btn-circle.disabled
+                = index + 1
+            - if @wizard.errors.length > 0
+              %li.btn.btn-danger.btn-circle.active
+                = icon_tag "exclamation-triangle"
+            - else
+              %li.btn.btn-success.btn-circle.active
+                = icon_tag "check"
 
         .panel-body
           %fieldset
             %legend
-              = _("Verify configuration")
-            - @wizard.errors.each do |error|
-              .alert.alert-danger
-                = error.to_s
-            %ul.list-group
-              - @wizard.actions.each_with_index do |action, ai|
-                %li.list-group-item
-                  %h4.list-group-item-heading
-                    = "#{ai+1}. " + action['shortdesc']
-                  - unless action['longdesc'].strip.empty?
-                    %p.list-group-item-text= action['longdesc']
-                  - unless action['text'].empty?
-                    %pre.bg-info= action['text']
-
+              = _("Verify and apply")
+            .notifications
+              - @wizard.errors.each do |error|
+                .alert.alert-danger
+                  = error.to_s
+            .actions
+              %ul.list-group
+                - @wizard.actions.each_with_index do |action, ai|
+                  %li.list-group-item
+                    %h4.list-group-item-heading
+                      = "#{ai+1}. " + action['shortdesc']
+                    .col-sm-1
+                    - unless action['longdesc'].strip.empty?
+                      %p.list-group-item-text= action['longdesc']
+                    - unless action['text'].empty?
+                      %pre.bg-info= action['text']
+            - if @wizard.need_rootpw
+              .alert.alert-warning
+                %p= _("To apply the changes, Hawk requires root access, and password-less SSH access must be configured. See the Hawk documentation for more information.")
+              .form-group
+                .col-sm-5
+                  = label_tag(:rootpw, _("Root password"))
+                .col-sm-7
+                  = password_field_tag :rootpw, nil, class: "form-control", required: true
+                .col-sm-12.help-block
           = main_form.button_group class: "wizard" do
             = link_to _("Cancel"), cib_wizards_path(cib_id: current_cib.id), class: "btn btn-default", data: { confirm: _("Do you really want to cancel the wizard setup?") }
             = link_to _("Back"), cib_wizard_path(cib_id: current_cib.id, id: @wizard.name), class: "btn btn-default"
-            = main_form.submit _("Apply"), class: "btn btn-primary finish hidden", disabled: true, name: "submit"
+            - opts = { class: "btn btn-primary finish hidden submit", name: "submit" }
+            - opts[:disabled] = true if @wizard.errors.length > 0
+            = main_form.submit _("Apply"), opts
 
 - content_for :rightbar do
   .container-fluid{ data: { spy: "affix" } }
@@ -41,3 +59,25 @@
       = @wizard.shortdesc
     .row
       = longdesc_format @wizard.longdesc
+:javascript
+  $(function() {
+    $("form").validate();
+    $("form").submit(function() {
+      if (!$("form").valid()) {
+        $('form').validate().focusInvalid();
+        return false;
+      }
+
+      $(".notifications").html('<div class="alert alert-info"><i class="fa fa-spinner fa-spin fa-2x"></i> ' + __("Applying configuration changes...") + '</div>');
+      $(".actions .list-group-item").addClass("disabled");
+      $("form .submit").addClass("disabled");
+    });
+    $(".wizard-verify .form-horizontal").on("ajax:success", function(e, data, status, xhr) {
+      $(".notifications").html('<div class="alert alert-success">' + __("Changes applied successfully.") + '</div>');
+      $(".actions .list-group-item").removeClass("disabled").addClass("list-group-item-success");
+    }).on("ajax:error", function(e, xhr, status, error) {
+      $(".actions .list-group-item:first").removeClass("disabled").addClass("list-group-item-danger");
+      var errors = $.map(xhr.responseJSON, function(e) { return '<div class="alert alert-danger">' + e + '</div>'; }).join("");
+      $(".wizard-verify .notifications").html(errors);
+    });
+  });

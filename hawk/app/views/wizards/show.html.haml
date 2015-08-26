@@ -11,10 +11,8 @@
             - @wizard.steps.each_with_index do |step, index|
               %li
                 = link_to index + 1, "#step#{index}", class: "btn btn-default btn-circle", data: { toggle: "tab" }
-            %li.btn.btn-info.btn-circle{disabled: true}
-              = @wizard.steps.length + 1
-            %li.btn.btn-info.btn-circle{disabled: true}
-              = @wizard.steps.length + 2
+            %li.btn.btn-warning.btn-circle{ data: { toggle: :popover, title: _("Verify and apply"), content: _("Review the wizard actions and apply the changes") } }
+              = icon_tag "check"
 
         .panel-body{ data: { help_target: "#rightbar > .container-fluid > .row.stephelp" } }
           .tab-content
@@ -84,3 +82,6 @@
           = step.shortdesc
 
         = longdesc_format step.longdesc
+
+:javascript
+  $(".nav-pills .btn-warning").popover();
