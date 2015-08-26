@@ -145,12 +145,12 @@ var dashboardAddCluster = (function() {
 
         var makePopoverButton = function(id, content, cls, title) {
             var body = "";
-            body += '<button id="' + id + '" type="button" style="width: 100%;" class="list-group-item ' + cls + '" ';
-            body += 'data-toggle="popover" data-trigger="focus" title="' + title + '" ';
+            body += '<a tabindex="0" id="' + id + '" type="button" style="width: 100%;" class="btn list-group-item ' + cls + '" ';
+            body += 'data-trigger="focus" data-toggle="popover" title="' + title + '" ';
             body += 'data-content="" ';
             body += '>';
             body += content;
-            body += '</button>';
+            body += '</a>';
             return body;
         };
 
