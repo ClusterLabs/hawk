@@ -17,6 +17,7 @@ class Wizard
   attr_reader :params
   attr_reader :actions
   attr_reader :errors
+  attr_reader :need_rootpw
 
   def persisted?
     true
@@ -32,6 +33,7 @@ class Wizard
     @params = nil
     @actions = nil
     @errors = nil
+    @need_rootpw = false
   end
 
   def id
@@ -57,20 +59,31 @@ class Wizard
     @errors = []
     CrmScript.run ["verify", @name, params], nil do |action, err|
       @errors << err if err
-      @errors << action["error"] if action.has_key? "error"
-      action['text'].gsub!(/\t/, "    ") if action.has_key? "text"
-      @actions << action unless action.has_key? "error"
+      unless action.nil?
+        @errors << action["error"] if action.has_key? "error"
+        action['text'].gsub!(/\t/, "    ") if action.has_key? "text"
+        @actions << action unless action.has_key? "error"
+      end
     end
+
+    @need_rootpw = @errors.empty? && @actions.any? { |a| a['name'] != 'cib' }
   end
 
-  def run(params)
-    # TODO: Check loaded
+  def run(params, rootpw=nil)
     # TODO: live-update frontend
-    # TODO: supply rootpw
+    @params = params
+    @actions = []
+    @errors = []
     return false if @errors.nil? || @errors.length > 0
-    CrmScript.run ["run", @name, @params], nil do |result, err|
-      Rails.logger.debug "run: result=#{result}, err=#{err}"
+    CrmScript.run ["run", @name, @params], rootpw do |result, err|
+      @errors << err if err
+      unless result.nil?
+        @errors << result["error"] if result.has_key? "error"
+        result['text'].gsub!(/\t/, "    ") if result.has_key? "text"
+        @actions << result unless result.has_key? "error"
+      end
     end
+    true
   end
 
   class << self
@@ -115,7 +128,6 @@ class Wizard
     def all
       wizards = []
       CrmScript.run ["list"], nil do |item, err|
-        Rails.logger.debug "Wizard.all: #{err}" unless err.nil?
         wizards << Wizard.parse_brief(item) unless item.nil? or self.exclude_wizard(item)
       end
       wizards
