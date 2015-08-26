@@ -98,7 +98,11 @@ Rails.application.routes.draw do
 
     resources :clones
     resources :masters
-    resources :wizards
+    resources :wizards do
+      member do
+        post :submit
+      end
+    end
     resources :locations
     resources :colocations
     resources :orders
