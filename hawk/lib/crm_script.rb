@@ -46,10 +46,10 @@ module CrmScript
     tmpf.unlink
     ENV['HOME'] = old_home
 
-    if status.exitstatus != 0
-      yield nil, "Error (rc=#{status.exitstatus}): #{err}"
-    elsif !err.blank?
-      yield nil, "Error: #{err}"
+    if !err.blank?
+      yield nil, err
+    elsif status.exitstatus != 0
+      yield nil, "Failed to apply configuration (rc=#{status.exitstatus})"
     end
 
     out.split("\n").each do |line|

@@ -77,7 +77,7 @@
       $(".actions .list-group-item").removeClass("disabled").addClass("list-group-item-success");
     }).on("ajax:error", function(e, xhr, status, error) {
       $(".actions .list-group-item:first").removeClass("disabled").addClass("list-group-item-danger");
-      var errors = $.map(xhr.responseJSON, function(e) { return '<div class="alert alert-danger">' + e + '</div>'; }).join("");
+      var errors = $.map(xhr.responseJSON, function(e) { return '<pre class="bg-danger">' + e + '</pre>'; }).join("");
       $(".wizard-verify .notifications").html(errors);
     });
   });
