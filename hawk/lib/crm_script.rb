@@ -3,10 +3,11 @@
 
 require 'pty'
 require 'json'
+require 'tempfile'
 
 module CrmScript
   def crmsh_escape(s)
-    s.to_s.gsub(/[&"'>< ]/) { |special| "\\#{special}" }
+    s.to_s.gsub(/[&"'><]/) { |special| "\\#{special}" }
   end
   module_function :crmsh_escape
 
@@ -29,13 +30,20 @@ module CrmScript
   def run(jsondata, rootpw)
     user = rootpw ? 'root' : 'hacluster'
     cmd = crmsh_escape(JSON.dump(jsondata))
+
+    tmpf = Tempfile.new 'crmscript'
+    tmpf.write("script json \"#{cmd}\"")
+    tmpf.close
+    File.chmod(0666, tmpf.path)
+
     if user.eql? 'root'
-      cmdline = ['/usr/bin/su', '--login', user, '-c',"crm script json " + cmd.join(" "), :stdin_data => rootpw]
+      cmdline = ['/usr/bin/su', '--login', user, '-c',"crm -f #{tmpf.path}", :stdin_data => rootpw]
     else
-      cmdline = ['/usr/sbin/hawk_invoke', user, 'crm', 'script', 'json', cmd]
+      cmdline = ['/usr/sbin/hawk_invoke', user, 'crm', '-f', tmpf.path]
     end
     old_home = Util.ensure_home_for(user)
     out, err, status = Util.capture3(*cmdline)
+    tmpf.unlink
     ENV['HOME'] = old_home
     out.split("\n").each do |line|
       a, b = CrmScript.splitline line
