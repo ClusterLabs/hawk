@@ -12,7 +12,7 @@ $(function() {
     // Returns list of nodes that the resource is started at
     var startedAt = function(row) {
         var ret = [];
-        if ("instances" in row) {
+        if ("instances" in row && "default" in row.instances) {
             if ("started" in row.instances["default"]) {
                 $.each(row.instances["default"].started, function(i, v) {
                     ret.push(v.node);
@@ -21,7 +21,7 @@ $(function() {
         }
         if ("children" in row) {
             $.each(row.children, function(i, v) {
-                if ("instances" in v) {
+                if ("instances" in v && "default" in v.instances) {
                     if ("started" in v.instances["default"]) {
                         $.each(v.instances["default"].started, function(i, v) {
                             ret.push(v.node);
