@@ -24,7 +24,7 @@ $(function() {
       sortOrder: 'asc',
       columns: [{
         field: 'id',
-        title: __('Master/Slave ID'),
+        title: __('Multi-state ID'),
         sortable: true,
         switchable: false,
         clickToSelect: true
