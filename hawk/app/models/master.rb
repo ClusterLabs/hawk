@@ -7,11 +7,11 @@ class Master < Record
   attribute :meta, Hash, default: {}
 
   validates :id,
-    presence: { message: _("Master/Slave ID is required") },
-    format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _("Invalid Master/Slave ID") }
+    presence: { message: _("Multi-state ID is required") },
+    format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _("Invalid Multi-state ID") }
 
   validates :child,
-    presence: { message: _("No Master/Slave child specified") }
+    presence: { message: _("No Multi-state child specified") }
 
   validate do |record|
     # TODO(must): Ensure children are sanitized

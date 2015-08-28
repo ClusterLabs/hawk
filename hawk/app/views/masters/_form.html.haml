@@ -4,10 +4,10 @@
       = errors_for master
 
       - if master.new_record?
-        = main_form.text_field :id, label: _("Master/Slave ID")
+        = main_form.text_field :id, label: _("Multi-state ID")
         = main_form.select :child, master_child_for(master), { include_hidden: false, include_blank: true }, id: nil, label: _("Child Resource")
       - else
-        = main_form.text_field :id, label: _("Master/Slave ID"), readonly: true
+        = main_form.text_field :id, label: _("Multi-state ID"), readonly: true
         = main_form.text_field :child, label: _("Child Resource"), readonly: true
 
       %fieldset{ data: { attrlist: master[:meta].to_json, attrlist_mapping: master.mapping.to_json, attrlist_prefix: "master[meta]", attrlist_target: ".content" } }

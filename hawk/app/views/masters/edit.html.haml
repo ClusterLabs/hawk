@@ -1,7 +1,7 @@
 .container-fluid
   .row
     %h1
-      = icon_text "superscript", _("Edit Master/Slave"), class: "page"
+      = icon_text "superscript", _("Edit Multi-state"), class: "page"
       .pull-right
         .btn-group{ role: "group" }
           = link_to icon_text("trash", _("Delete")), cib_master_path(cib_id: @cib.id, id: @master.id), method: "delete", confirm: _("Are you sure you wish to delete %s?") % @master.id, class: "btn btn-default"
