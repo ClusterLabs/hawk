@@ -22,27 +22,30 @@ class Location < Constraint
       return false
     end
 
-    # @rules.each do |rule|
-    #   rule[:score].strip!
-    #   unless ['mandatory', 'advisory', 'inf', '-inf', 'infinity', '-infinity'].include? rule[:score].downcase
-    #     if simple?
-    #       unless rule[:score].match(/^-?[0-9]+$/)
-    #         error _('Invalid score "%{score}"') % { :score => rule[:score] }
-    #       end
-    #     else
-    #       # We're allowing any old junk for scores for complex resources,
-    #       # because you're allowed to use score-attribute here.
-    #       # TODO(must): Tighten this up if possible
-    #     end
-    #   end
-    #   error _('No expressions specified') if rule[:expressions].empty?
-    #   rule[:expressions].each do |e|
-    #     e[:attribute].strip!
-    #     e[:value].strip!
-    #     error _("Attribute contains both single and double quotes") if e[:attribute].index("'") && e[:attribute].index('"')
-    #     error _("Value contains both single and double quotes") if e[:value].index("'") && e[:value].index('"')
-    #   end
-    # end
+    record.rules.each do |rule|
+      rule[:score].strip!
+
+      unless score_types.include? rule[:score].downcase
+        if record.simple?
+          unless rule[:score].match(/^-?[0-9]+$/)
+            errors.add :base, _('Invalid score "%{score}"') % { :score => rule[:score] }
+          end
+        else
+          # We're allowing any old junk for scores for complex resources,
+          # because you're allowed to use score-attribute here.
+          # TODO(must): Tighten this up if possible
+        end
+      end
+
+      errors.add :base, _('No expressions specified') if rule[:expressions].empty?
+
+      rule[:expressions].each do |e|
+        e[:attribute].strip!
+        e[:value].strip!
+        errors.add :base, _("Attribute contains both single and double quotes") if unquotable? e[:attribute]
+        errors.add :base, _("Value contains both single and double quotes") if unquotable? e[:value]
+      end
+    end
   end
 
   def rules
@@ -82,12 +85,20 @@ class Location < Constraint
 
   protected
 
+  def score_types
+    ['mandatory', 'advisory', 'inf', '-inf', 'infinity', '-infinity']
+  end
+
   def crm_quote(str)
     if str.index("'")
       "\"#{str}\""
     else
       "'#{str}'"
     end
+  end
+
+  def unquotable?(str)
+    str.index("'") && str.index('"')
   end
 
   def shell_syntax
