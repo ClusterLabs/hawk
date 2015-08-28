@@ -55,23 +55,67 @@ class Colocation < Constraint
 
   def shell_syntax
     [].tap do |cmd|
-      cmd.push "colocation #{id} #{score}:"
 
-      resources.each do |set|
-        cmd.push "(" unless set[:sequential] == "true" && set[:sequential]
+      cmd.push "colocation #{@id} #{@score}:"
 
-        set[:resources].each do |resource|
-          if set[:action].empty?
-            cmd.push resource
-          else
-            cmd.push [
-              resource,
-              set[:action]
-            ].join(":")
-          end
+      #
+      # crm syntax matches nasty inconsistency in CIB, i.e. to get:
+      #
+      #   d6 -> d5 -> ( d4 d3 ) -> d2 -> d1 -> d0
+      #
+      # you use:
+      #
+      #   colocation <id> <score>: d5 d6 ( d3 d4 ) d0 d1 d2
+      #
+      # except when using simple constrains, i.e. to get:
+      #
+      #   d1 -> d0
+      #
+      # you use:
+      #
+      #   colocation <id> <score>: d1 d0
+      #
+      # To further confuse matters, duplicate roles in complex chains
+      # are collapsed to sets, so for:
+      #
+      #   d2:Master -> d1:Started -> d0:Started
+      #
+      # you use:
+      #
+      #   colocation <id> <score>: d2:Master d0:Started d1:Started
+      #
+      # To deal with this, we need to collapse all the sets first
+      # then iterate through them (unlike the Order model, where
+      # this is unnecessary)
+
+      # Have to clone out of @resources, else we've just got references
+      # to elements of @resources inside collapsed, which causes @resources
+      # to be modified, which we *really* don't want.
+      collapsed = [ @resources.first.clone ]
+      @resources.last(@resources.length - 1).each do |set|
+        if collapsed.last[:sequential] == set[:sequential] &&
+           collapsed.last[:role] == set[:role]
+          collapsed.last[:resources] += set[:resources]
+        else
+          collapsed << set.clone
         end
+      end
 
-        cmd.push ")" unless set[:sequential] == "true" && set[:sequential]
+      if collapsed.length == 1 && collapsed[0][:resources].length == 2
+        # simple constraint (it's already in reverse order so
+        # don't flip around the other way like we do below)
+        set = collapsed[0]
+        set[:resources].each do |r|
+          cmd.push r + (set[:role] ? ":#{set[:role]}" : "")
+        end
+      else
+        collapsed.each do |set|
+          cmd.push " ( " unless set[:sequential]
+          set[:resources].reverse.each do |r|
+            cmd.push r + (set[:role] ? ":#{set[:role]}" : "")
+          end
+          cmd.push " )" unless set[:sequential]
+        end
       end
 
       unless node_attr.empty?
@@ -89,7 +133,7 @@ class Colocation < Constraint
         if xml.attributes["rsc"]
           resources.push(
             sequential: true,
-            action: xml.attributes["rsc-role"] || nil,
+            role: xml.attributes["rsc-role"] || nil,
             resources: [
               xml.attributes["rsc"]
             ]
@@ -97,7 +141,7 @@ class Colocation < Constraint
 
           resources.push(
             sequential: true,
-            action: xml.attributes["with-rsc-role"] || nil,
+            role: xml.attributes["with-rsc-role"] || nil,
             resources: [
               xml.attributes["with-rsc"]
             ]
@@ -106,7 +150,7 @@ class Colocation < Constraint
           xml.elements.each do |resource|
             set = {
               sequential: Util.unstring(resource.attributes["sequential"], true),
-              action: resource.attributes["role"] || nil,
+              role: resource.attributes["role"] || nil,
               resources: []
             }
 
