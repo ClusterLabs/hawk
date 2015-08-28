@@ -42,4 +42,16 @@ module LocationHelper
       selected
     )
   end
+
+  def location_node_options(selected)
+    available = [
+      @cib.nodes.map(&:id)
+    ].flatten.uniq.sort do |a, b|
+      a.natcmp(b, true)
+    end
+    options_for_select(
+      available,
+      selected
+    )
+  end
 end
