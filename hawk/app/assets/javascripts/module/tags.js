@@ -85,33 +85,33 @@ $(function() {
 
           operations.push([
             '<a href="',
-                Routes.edit_cib_tag_path(
-                  $('body').data('cib'),
-                  row.id
-                ),
-              '" class="edit btn btn-default btn-xs" title="',
-              __('Edit'),
+            Routes.edit_cib_tag_path(
+              $('body').data('cib'),
+              row.id
+            ),
+            '" class="edit btn btn-default btn-xs" title="',
+            __('Edit'),
             '">',
-              '<i class="fa fa-pencil"></i>',
+            '<i class="fa fa-pencil"></i>',
             '</a> '
           ].join(''));
 
           operations.push([
             '<a href="',
-                Routes.cib_tag_path(
-                  $('body').data('cib'),
-                  row.id
-                ),
-              '" class="delete btn btn-default btn-xs" title="',
-              __('Delete'),
+            Routes.cib_tag_path(
+              $('body').data('cib'),
+              row.id
+            ),
+            '" class="delete btn btn-default btn-xs" title="',
+            __('Delete'),
             '" data-confirm="' + i18n.translate('Are you sure you wish to delete %s?').fetch(row.id) + '">',
-              '<i class="fa fa-trash"></i>',
+            '<i class="fa fa-trash"></i>',
             '</a> '
           ].join(''));
 
           return [
             '<div class="btn-group" role="group">',
-              operations.join(''),
+            operations.join(''),
             '</div>',
           ].join('');
         }
