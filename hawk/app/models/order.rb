@@ -19,7 +19,8 @@ class Order < Constraint
 
     unless [
       "mandatory",
-      "advisory",
+      "optional",
+      "serialize",
       "inf",
       "-inf",
       "infinity",
