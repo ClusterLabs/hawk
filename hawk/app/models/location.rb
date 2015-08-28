@@ -82,67 +82,43 @@ class Location < Constraint
 
   protected
 
+  def crm_quote(str)
+    if str.index("'")
+      "\"#{str}\""
+    else
+      "'#{str}'"
+    end
+  end
+
   def shell_syntax
-
-
-
-    raise "Seems to be valid!".inspect
-
-
-
     [].tap do |cmd|
       cmd.push "location #{id}"
 
       if resource.length == 1
         cmd.push resource.first
       else
-        cmd.push [
-          "{",
-          resource.join(" "),
-          "}"
-        ].join(" ")
+        cmd.push ["{", resource.join(" "), "}"].join(" ")
       end
 
       if simple?
-        cmd.push [
-          rules.first.score,
-          rules.first.expressions.first.value
-        ].join(": ")
+        cmd.push "#{rules.first.score}: #{rules.first.expressions.first.value}"
       else
-
-
-
-
-
-        # def crm_quote(str)
-        #   if str.index("'")
-        #     "\"#{str}\""
-        #   else
-        #     "'#{str}'"
-        #   end
-        # end
-
-        # @rules.each do |rule|
-        #   op = rule[:boolean_op]
-        #   op = "and" if op == ""
-        #   cmd += " rule"
-        #   cmd += " $role=\"#{rule[:role]}\"" unless rule[:role].empty?
-        #   cmd += " #{crm_quote(rule[:score])}:"
-        #   cmd += rule[:expressions].map {|e|
-        #     if ["defined", "not_defined"].include? e[:operation]
-        #       " #{e[:operation]} #{crm_quote(e[:attribute])} "
-        #     else
-        #       " #{crm_quote(e[:attribute])} " +
-        #         (e[:type] != "" ? "#{e[:type]}:" : "") +
-        #       "#{e[:operation]} #{crm_quote(e[:value])} "
-        #     end
-        #   }.join(op)
-        # end
-
-
-
-
-
+        rules.each do |rule|
+          op = rule[:boolean_op]
+          op = "and" if op == ""
+          cmd.push "rule"
+          cmd.push "$role=\"#{rule[:role]}\"" unless rule[:role].empty?
+          cmd.push "#{crm_quote(rule[:score])}:"
+          cmd.push rule[:expressions].map {|e|
+            if ["defined", "not_defined"].include? e[:operation]
+              "#{e[:operation]} #{crm_quote(e[:attribute])}"
+            elsif e[:type] == ""
+              "#{crm_quote(e[:attribute])} #{e[:operation]} #{crm_quote(e[:value])}"
+            else
+              "#{crm_quote(e[:attribute])} #{e[:type]}: #{e[:operation]} #{crm_quote(e[:value])}"
+            end
+          }.join(" #{op} ")
+        end
       end
     end.join(" ")
   end
@@ -165,6 +141,7 @@ class Location < Constraint
 
       record.rules = [].tap do |rules|
         if xml.attributes["score"]
+          # Simple location constraint, fold to rule notation
           rules.push(
             score: xml.attributes["score"],
             expressions: [
@@ -176,6 +153,7 @@ class Location < Constraint
             ]
           )
         else
+          # Rule notation
           xml.elements.each("rule") do |rule|
             set = {
               id: rule_elem.attributes["id"],
@@ -187,9 +165,9 @@ class Location < Constraint
 
             rule.elements.each do |el|
               if el.name != "expression"
+                # Considers nested rules and date_expression to be too complex
                 # TODO(should): Handle date expressions
                 record.complex = true
-
                 next
               end
 
