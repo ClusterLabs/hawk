@@ -300,7 +300,11 @@ class Record < Tableless
       return false
     end
 
-    result = Invoker.instance.crm_configure shell_syntax
+    cli = shell_syntax
+
+    Rails.logger.debug "crmsh syntax: #{cli}"
+
+    result = Invoker.instance.crm_configure cli
 
     unless result == true
       errors.add :base, _('Unable to create: %{msg}') % { msg: result }
@@ -316,7 +320,11 @@ class Record < Tableless
       return false
     end
 
-    result = Invoker.instance.crm_configure_load_update shell_syntax
+    cli = shell_syntax
+
+    Rails.logger.debug "crmsh syntax: #{cli}"
+
+    result = Invoker.instance.crm_configure_load_update cli
 
     unless result == true
       errors.add :base, _('Unable to update: %{msg}') % { msg: result }
