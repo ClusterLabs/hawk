@@ -40,7 +40,7 @@ Rails.application.config.tap do |config|
     /dashboard.(css|js)$/,
     /ie\.(css|js)$/,
     /vendor\.(css|js)$/,
-    /\.(jpg|png|gif|svg|ico|eot|woff|ttf)$/
+    /\.(jpg|png|gif|svg|ico|eot|woff|woff2|ttf)$/
   ]
 
   config.assets.paths << config.root.join(
