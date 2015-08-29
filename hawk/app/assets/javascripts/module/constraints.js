@@ -220,8 +220,10 @@ $(function() {
           formatter: function(value, row, index) {
             if ("kind" in row) {
               return row.kind;
-            } else {
+            } else  if ("score" in row) {
               return row.score;
+            } else {
+              return "-";
             }
           }
         },
