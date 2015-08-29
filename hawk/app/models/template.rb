@@ -99,30 +99,24 @@ class Template < Record
           clazzes.delete("heartbeat") unless File.exists?("/etc/ha.d/resource.d")
 
           clazzes.each do |clazz|
+            if match = clazz.match("(^[^.][^/]*)(?:/([^.].*))?")
+              if match.length == 3
+                clazz = match[1].strip
 
-            if match = clazz.match("(.*)/(.*)")
-              clazz = match[1].strip
+                result[clazz] ||= {}
+                result[clazz][""] = types(clazz: clazz)
 
-              result[clazz] ||= {}
-              result[clazz][""] = types(
-                clazz: clazz
-              )
+                providers = match[2].strip.split(" ").sort do |a, b|
+                  a.natcmp(b, true)
+                end
 
-              providers = match[2].strip.split(" ").sort do |a, b|
-                a.natcmp(b, true)
+                providers.each do |provider|
+                  result[clazz][provider] = types(clazz: clazz, provider: provider)
+                end
+              else
+                result[clazz] ||= {}
+                result[clazz][""] = types(clazz: clazz)
               end
-
-              providers.each do |provider|
-                result[clazz][provider] = types(
-                  clazz: clazz,
-                  provider: provider
-                )
-              end
-            else
-              result[clazz] ||= {}
-              result[clazz][""] = types(
-                clazz: clazz
-              )
             end
           end
         end
@@ -130,20 +124,9 @@ class Template < Record
     end
 
     def types(params = {})
-      cmd = [].tap do |cmd|
-        cmd.push "/usr/sbin/crm"
-        cmd.push "ra"
-        cmd.push "list"
-
-        if params[:clazz]
-          cmd.push params[:clazz]
-        end
-
-        if params[:provider]
-          cmd.push params[:provider]
-        end
-      end
-
+      cmd = ["/usr/sbin/crm", "ra", "list"]
+      cmd.push params[:clazz] if params[:clazz]
+      cmd.push params[:provider] if params[:provider]
       Util.safe_x(*cmd).split(/\s+/).sort do |a, b|
         a.natcmp(b, true)
       end
