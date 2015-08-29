@@ -31,7 +31,7 @@ $(function() {
         rsc = row.rsc;
       }
 
-      var tpl = "%RSC% &nbsp; %PLUS% &nbsp; %NODE% (%SCORE%)";
+      var tpl = "%RSC% &nbsp; %PLUS% &nbsp; %NODE%";
       var combiner = ' <i class="fa fa-arrow-right"></i> ';
 
       if (row.score == "INFINITY") {
@@ -42,7 +42,7 @@ $(function() {
       } else {
           combiner = ' <i class="fa fa-thumbs-o-up fa-fw text-success"></i> ';
       }
-      return mapkeys(tpl, {rsc: strong(rsc), node: strong(row.node), score: row.score, plus: combiner});
+      return mapkeys(tpl, {rsc: strong(rsc), node: strong(row.node), plus: combiner});
       break;
 
     case 'rsc_colocation':
@@ -62,7 +62,7 @@ $(function() {
           }
         });
         rsc = sets.join(' <i class="fa fa-long-arrow-right"></i> ');
-        tpl = "%PLUS% &nbsp; %RSC% (%SCORE%)";
+        tpl = "%PLUS% &nbsp; %RSC%";
         combiner = '<i class="fa fa-plus fa-fw text-success"></i> ';
         if (row.score == "INFINITY") {
         } else if (row.score == "-INFINITY") {
@@ -75,7 +75,7 @@ $(function() {
       } else {
         rsc = row.rsc;
         withrsc = row["with-rsc"];
-        tpl = "%RSC% &nbsp; %PLUS% &nbsp; %WITH% (%SCORE%)";
+        tpl = "%RSC% &nbsp; %PLUS% &nbsp; %WITH%";
         combiner = ' <i class="fa fa-plus fa-fw text-success"></i> ';
         if (row.score == "INFINITY") {
         } else if (row.score == "-INFINITY") {
@@ -86,7 +86,7 @@ $(function() {
           combiner = ' <i class="fa fa-thumbs-o-up fa-fw text-success"></i> ';
         }
       }
-      return mapkeys(tpl, {rsc: strong(rsc), with: strong(withrsc), score: row.score, plus: combiner});
+      return mapkeys(tpl, {rsc: strong(rsc), with: strong(withrsc), plus: combiner});
 
       break;
 
@@ -103,13 +103,12 @@ $(function() {
           }
         });
         sets.join(" <i class=\"fa fa-long-arrow-right\"></i> ");
-        return sets + " (" + row.kind + ")";
+        return sets;
       } else {
-        return mapkeys("%FIRST% &nbsp; <i class=\"fa fa-long-arrow-right\"></i> &nbsp; %THEN% (%KIND%)",
+        return mapkeys("%FIRST% &nbsp; <i class=\"fa fa-long-arrow-right\"></i> &nbsp; %THEN%",
                        {
                          first: strong(row.first),
-                         then: strong(row.then),
-                         kind: row.kind
+                         then: strong(row.then)
                        });
       }
       break;
@@ -214,9 +213,22 @@ $(function() {
           clickToSelect: true
         },
         {
+          field: 'score',
+          title: __('Score / Kind'),
+          sortable: false,
+          clickToSelect: true,
+          formatter: function(value, row, index) {
+            if ("kind" in row) {
+              return row.kind;
+            } else {
+              return row.score;
+            }
+          }
+        },
+        {
           field: 'rsc',
           title: __('Resources'),
-          sortable: true,
+          sortable: false,
           clickToSelect: true,
           formatter: function(value, row, index) {
             return description(row);
