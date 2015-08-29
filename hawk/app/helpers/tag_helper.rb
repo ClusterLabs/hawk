@@ -76,7 +76,12 @@ module TagHelper
   end
 
   def tag_refs_list
-    options = @cib.resources.map(&:id).sort do |a, b|
+    options = @cib.resources_by_id.keys
+    Rails.logger.debug "tag_refs_list << #{options}"
+    constraints = @cib.constraints.map { |c| c[:id] }
+    Rails.logger.debug "tag_refs_list << #{@cib.constraints}"
+    options.concat constraints
+    options.sort do |a, b|
       a.natcmp(b, true)
     end
   end
