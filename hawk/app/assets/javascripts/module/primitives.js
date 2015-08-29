@@ -121,58 +121,55 @@ $(function() {
   $('#primitives #middle form')
     .on('change', '#primitive_template', function(e) {
       var $form = $(e.delegateTarget);
-      var $target = $(e.currentTarget);
-
-      if ($target.val()) {
-        $option = $target.find('option:selected');
-
-        $form
-          .find('[name="primitive[clazz]"]')
-            .val($option.data('clazz'))
-            .attr('disabled', true)
-          .end()
-          .find('[name="primitive[provider]"]')
-            .val($option.data('provider'))
-            .attr('disabled', true)
-          .end()
-          .find('[name="primitive[type]"]')
-            .val($option.data('type'))
-            .attr('disabled', true)
-          .end();
-      } else {
-        $form
-          .find('[name="primitive[clazz]"]')
-            .removeAttr('disabled')
-          .end()
-          .find('[name="primitive[provider]"]')
-            .removeAttr('disabled')
-          .end()
-          .find('[name="primitive[type]"]')
-            .removeAttr('disabled')
-          .end();
-      }
-    })
-    .on('change', '#primitive_clazz', function(e) {
-      var $form = $(e.delegateTarget);
-
+      var $template = $form.find('#primitive_template');
       var $clazz = $form.find('#primitive_clazz');
       var $provider = $form.find('#primitive_provider');
       var $type = $form.find('#primitive_type');
 
-      $provider
-        .find('[data-clazz]')
-        .show()
-        .not('[data-clazz="' + $clazz.val() + '"]')
-        .hide();
+      if ($template.val()) {
+        var $option = $template.find('option:selected');
+        $clazz.val($option.data('clazz')).attr('disabled', true);
+        $provider.val($option.data('provider')).attr('disabled', true);
+        $type.val($option.data('type')).attr('disabled', true);
+      } else {
+        $clazz.removeAttr('disabled');
+        if ($clazz.val() == "ocf") {
+          $provider.removeAttr('disabled');
+          $type.removeAttr('disabled');
+        } else if ($clazz.val() == "") {
+          $provider.val('').attr('disabled', true);
+          $type.val('').attr('disabled', true);
+        } else {
+          $provider.val('').attr('disabled', true);
+          $type.removeAttr('disabled');
+        }
+      }
+    })
+    .on('change', '#primitive_clazz', function(e) {
+      var $form = $(e.delegateTarget);
+      var $clazz = $form.find('#primitive_clazz');
+      var $provider = $form.find('#primitive_provider');
+      var $type = $form.find('#primitive_type');
 
+      if ($clazz.val() == "ocf") {
+        $provider
+          .find('[data-clazz]')
+          .show()
+          .not('[data-clazz="' + $clazz.val() + '"]')
+          .hide();
+        $provider.removeAttr('disabled');
+        $provider.val('heartbeat');
+      } else {
+        $provider.val('').attr('disabled', true);
+      }
+
+      $type.removeAttr('disabled');
       $type
         .find('[data-clazz][data-provider]')
         .show()
         .not('[data-clazz="' + $clazz.val() + '"][data-provider="' + $provider.val() + '"]')
         .hide()
         .end();
-
-      $provider.val('');
       $type.val('');
     })
     .on('change', '#primitive_provider', function(e) {
@@ -181,12 +178,6 @@ $(function() {
       var $clazz = $form.find('#primitive_clazz');
       var $provider = $form.find('#primitive_provider');
       var $type = $form.find('#primitive_type');
-
-      $provider
-        .find('[data-clazz]')
-        .show()
-        .not('[data-clazz="' + $clazz.val() + '"]')
-        .hide();
 
       $type
         .find('[data-clazz][data-provider]')

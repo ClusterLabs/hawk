@@ -118,6 +118,53 @@ $(function() {
       }]
     });
 
+  $('#templates #middle form')
+    .on('change', '#template_clazz', function(e) {
+      var $form = $(e.delegateTarget);
+      var $clazz = $form.find('#template_clazz');
+      var $provider = $form.find('#template_provider');
+      var $type = $form.find('#template_type');
+
+      if ($clazz.val() == "ocf") {
+        $provider
+          .find('[data-clazz]')
+          .show()
+          .not('[data-clazz="' + $clazz.val() + '"]')
+          .hide();
+        $provider.removeAttr('disabled');
+        $provider.val('heartbeat');
+      } else {
+        $provider.val('').attr('disabled', true);
+      }
+
+      $type.removeAttr('disabled');
+      $type
+        .find('[data-clazz][data-provider]')
+        .show()
+        .not('[data-clazz="' + $clazz.val() + '"][data-provider="' + $provider.val() + '"]')
+        .hide()
+        .end();
+      $type.val('');
+    })
+    .on('change', '#template_provider', function(e) {
+      var $form = $(e.delegateTarget);
+
+      var $clazz = $form.find('#template_clazz');
+      var $provider = $form.find('#template_provider');
+      var $type = $form.find('#template_type');
+
+      $type
+        .find('[data-clazz][data-provider]')
+        .show()
+        .not('[data-clazz="' + $clazz.val() + '"][data-provider="' + $provider.val() + '"]')
+        .hide()
+        .end();
+
+      $type.val('');
+    })
+    .find('#template_clazz, #template_provider')
+      .trigger('change');
+
   // $('#templates #middle form')
   //   .validate({
   //     rules: {
