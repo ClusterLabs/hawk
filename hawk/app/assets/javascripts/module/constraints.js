@@ -19,85 +19,93 @@ $(function() {
         var rscs = [];
         $.each(row.children, function(i, e) {
           if ("children" in e) {
+            var to = [];
             $.each(e.children, function(i, e) {
-              rscs.push(e.id);
+              to.push(e.id);
             });
+            rscs.push(to.join(", "));
           }
         });
-        rsc = rscs.join(", ");
+        rsc = rscs.join(' <i class="fa fa-long-arrow-right"></i> ');
       } else {
         rsc = row.rsc;
       }
 
+      var tpl = "%RSC% &nbsp; %PLUS% &nbsp; %NODE% (%SCORE%)";
+      var combiner = ' <i class="fa fa-arrow-right"></i> ';
+
       if (row.score == "INFINITY") {
-        return mapkeys(__("Locate %RSC% on %NODE%"), {rsc: strong(rsc), node: strong(row.node)});
       } else if (row.score == "-INFINITY") {
-        return mapkeys(__("Never locate %RSC% on %NODE%"), {rsc: strong(rsc), node: strong(row.node)});
+          combiner = ' <i class="fa fa-ban text-danger"></i> ';
       } else if (row.score[0].match(/^-/)) {
-        return mapkeys(__("Avoid locating %RSC% on %NODE% (score: %SCORE%)"), {rsc: strong(rsc), node: strong(row.node), score: row.score});
+          combiner = ' <i class="fa fa-thumbs-o-down fa-fw text-danger"></i> ';
       } else {
-        return mapkeys(__("Prefer locating %RSC% on %NODE% (score: %SCORE%)"), {rsc: strong(rsc), node: strong(row.node), score: row.score});
+          combiner = ' <i class="fa fa-thumbs-o-up fa-fw text-success"></i> ';
       }
+      return mapkeys(tpl, {rsc: strong(rsc), node: strong(row.node), score: row.score, plus: combiner});
       break;
 
     case 'rsc_colocation':
+      var rsc = '';
+      var tpl = '';
+      var combiner = '';
+      var withrsc = '';
       if ("children" in row) {
         var sets = [];
         $.each(row.children, function(i, e) {
-          var to = [];
           if ("children" in e) {
+            var to = [];
             $.each(e.children, function(i, e) {
               to.push(e.id);
             });
+            sets.push(to.join(", "));
           }
-          sets.push(to.join(", "));
         });
-        var rscs = sets.join(" with ");
-        var prefix = "";
-        var score = "";
+        rsc = sets.join(' <i class="fa fa-long-arrow-right"></i> ');
+        tpl = "%PLUS% &nbsp; %RSC% (%SCORE%)";
+        combiner = '<i class="fa fa-plus fa-fw text-success"></i> ';
         if (row.score == "INFINITY") {
-          prefix = "Locate ";
         } else if (row.score == "-INFINITY") {
-          prefix = "Never locate ";
+          combiner = '<i class="fa fa-ban text-danger"></i> ';
         } else if (row.score[0].match(/^-/)) {
-          prefix = "Avoid locating ";
-          score = " (score: " + row.score + ")";
+          combiner = '<i class="fa fa-thumbs-o-down fa-fw text-danger"></i> ';
         } else {
-          prefix = "Prefer locating ";
-          score = " (score: " + row.score + ")";
+          combiner = '<i class="fa fa-thumbs-o-up fa-fw text-success"></i> ';
         }
-        return prefix + rscs + score;
       } else {
-        var rsc = row.rsc;
-        var withrsc = row["with-rsc"];
+        rsc = row.rsc;
+        withrsc = row["with-rsc"];
+        tpl = "%RSC% &nbsp; %PLUS% &nbsp; %WITH% (%SCORE%)";
+        combiner = ' <i class="fa fa-plus fa-fw text-success"></i> ';
         if (row.score == "INFINITY") {
-          return mapkeys(__("Locate %RSC% with %WITH%"), {rsc: strong(rsc), with: strong(withrsc)});
         } else if (row.score == "-INFINITY") {
-          return mapkeys(__("Never locate %RSC% with %WITH%"), {rsc: strong(rsc), with: strong(withrsc)});
+          combiner = ' <i class="fa fa-ban text-danger"></i> ';
         } else if (row.score[0].match(/^-/)) {
-          return mapkeys(__("Avoid locating %RSC% with %WITH% (score: %SCORE%)"), {rsc: strong(rsc), with: strong(withrsc), score: row.score});
+          combiner = ' <i class="fa fa-thumbs-o-down fa-fw text-danger"></i> ';
         } else {
-          return mapkeys(__("Prefer locating %RSC% with %WITH% (score: %SCORE%)"), {rsc: strong(rsc), with: strong(withrsc), score: row.score});
+          combiner = ' <i class="fa fa-thumbs-o-up fa-fw text-success"></i> ';
         }
       }
+      return mapkeys(tpl, {rsc: strong(rsc), with: strong(withrsc), score: row.score, plus: combiner});
+
       break;
 
     case 'rsc_order':
       if ("children" in row) {
         var sets = [];
         $.each(row.children, function(i, e) {
-          var to = [];
           if ("children" in e) {
+            var to = [];
             $.each(e.children, function(i, e) {
               to.push(e.id);
             });
+            sets.push(to.join(", "));
           }
-          sets.push(to.join(", "));
         });
-        sets.join(", then ");
-        return "First " + sets + " (kind: " + row.kind + ")";
+        sets.join(" <i class=\"fa fa-long-arrow-right\"></i> ");
+        return sets + " (" + row.kind + ")";
       } else {
-        return mapkeys(__("First %FIRST%, then %THEN% (kind: %KIND%)"),
+        return mapkeys("%FIRST% &nbsp; <i class=\"fa fa-long-arrow-right\"></i> &nbsp; %THEN% (%KIND%)",
                        {
                          first: strong(row.first),
                          then: strong(row.then),
@@ -109,22 +117,22 @@ $(function() {
       if ("children" in row) {
         var sets = [];
         $.each(row.children, function(i, e) {
-          var to = [];
           if ("children" in e) {
+            var to = [];
             $.each(e.children, function(i, e) {
               to.push(e.id);
             });
+            sets.push(to.join(", "));
           }
-          sets.push(to.join(", "));
         });
-        sets.join(", ");
-        return mapkeys(__("Ticket %TICKET% controls %RSC%"),
+        sets.join(" <i class=\"fa fa-long-arrow-right\"></i> ");
+        return mapkeys("%TICKET%: %RSC%",
                        {
                          ticket: strong(row.ticket),
                          rsc: strong(sets)
                        });
       } else {
-        return mapkeys(__("Ticket %TICKET% controls %RSC%"),
+        return mapkeys("%TICKET%: %RSC%",
                        {
                          ticket: strong(row.ticket),
                          rsc: strong(row.rsc)
