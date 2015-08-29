@@ -164,8 +164,8 @@ class Cib < CibObject
     ret = []
     @resources.each do |r|
       ret << r
-      if r.has_key? 'children'
-        r['children'].each do |c|
+      if r.has_key? :children
+        r[:children].each do |c|
           ret << c
         end
       end
@@ -312,14 +312,14 @@ class Cib < CibObject
   def get_constraint(elem)
     ret = {}
     elem.attributes.each do |name, value|
-      ret[name] = value
+      ret[name.to_sym] = value
     end
-    ret['type'] = elem.name
+    ret[:type] = elem.name
     children = []
     elem.each_element do |e|
       children << get_constraint(e)
     end
-    ret['children'] = children if children.any?
+    ret[:children] = children if children.any?
     ret
   end
 
