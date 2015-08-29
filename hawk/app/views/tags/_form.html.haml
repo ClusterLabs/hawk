@@ -14,7 +14,7 @@
         %label.col-sm-5.control-label
           = _("Objects")
         .col-sm-7
-          %ul.list-group.sortable
+          %ul.list-group
             - if tag_refs_list.empty?
               %li.list-group-item.text-warning
                 = _('No objects available')
@@ -23,8 +23,6 @@
                 %li.list-group-item
                   = check_box_tag "tag[refs][]", ref, tag.refs.include?(ref)
                   = ref
-                  .pull-right
-                    = icon_tag("bars")
 
       = main_form.button_group do
         - if tag.new_record?
