@@ -126,11 +126,13 @@ class Wizard
     end
 
     def all
-      wizards = []
-      CrmScript.run ["list"], nil do |item, err|
-        wizards << Wizard.parse_brief(item) unless item.nil? or self.exclude_wizard(item)
+      Rails.cache.fetch(:all_wizards, expires_in: 2.hours) do
+        [].tap do |wizards|
+          CrmScript.run ["list"], nil do |item, err|
+            wizards.push Wizard.parse_brief(item) unless item.nil? or self.exclude_wizard(item)
+          end
+        end
       end
-      wizards
     end
   end
 end

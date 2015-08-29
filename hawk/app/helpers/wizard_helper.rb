@@ -70,7 +70,7 @@ module WizardHelper
   end
 
   def categories(wizards)
-    wizards.map { |w| w.category }.uniq
+    wizards.map { |w| w.category }.uniq.sort
   end
 
   def longdesc_format(text)

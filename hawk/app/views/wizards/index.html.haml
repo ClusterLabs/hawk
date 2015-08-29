@@ -5,14 +5,14 @@
 
   .row{ data: { help_target: "#rightbar > .container-fluid > *" } }
     %ul.nav.nav-pills.nav-stacked.nav-topspace
-      - categories(@wizards).sort.each do |category|
+      - categories(@wizards).each do |category|
         %li
           %h3
             = category.titleize
         - @wizards.sort_by(&:name).each do |wizard|
           - next unless wizard.category.eql?(category)
           %li
-            = link_to cib_wizard_path(cib_id: current_cib.id, id: wizard.name), data: { help_filter: ".#{wizard.name}" }, class: "btn btn-default btn-block" do
+            = link_to cib_wizard_path(cib_id: current_cib.id, id: wizard.name), data: { help_filter: ".#{wizard.name}" } do
               = wizard.shortdesc
               .pull-right
                 = icon_tag "plus-circle"
