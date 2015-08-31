@@ -8,7 +8,10 @@
       - categories(@wizards).each do |category|
         %li
           %h3
-            = category.titleize
+            - if category == "wizard"
+              = _("Legacy Wizards")
+            - else
+              = category.titleize
         - @wizards.sort_by(&:name).each do |wizard|
           - next unless wizard.category.eql?(category)
           %li
