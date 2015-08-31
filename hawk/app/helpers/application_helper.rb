@@ -196,6 +196,15 @@ module ApplicationHelper
     end
   end
 
+  def localized_help_for(section, subsection)
+    text = ""
+    [params[:locale], :en].each do |locale|
+      path = "#{Rails.root}/config/help/#{section}/#{subsection}.#{locale}.html"
+      text = IO.read(path).html_safe if File.exists?(path)
+    end
+    text
+  end
+
   def docs_path
     Rails.root.join("public", "doc")
   end
