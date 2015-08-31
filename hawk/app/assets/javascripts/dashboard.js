@@ -114,12 +114,12 @@ var dashboardAddCluster = (function() {
 
     var tag = $('#' + clusterId + ' div.panel-body');
 
-    if (cib.meta.status == "maintenance") {
-      $('#' + clusterId).removeClass('panel-danger').addClass('panel-warning');
+    if (cib.meta.status == "maintenance" || cib.meta.status == "nostonith") {
+      $('#' + clusterId).removeClass('panel-default panel-danger').addClass('panel-warning');
     } else if (cib.meta.status == "errors") {
-      $('#' + clusterId).removeClass('panel-warning').addClass('panel-danger');
+      $('#' + clusterId).removeClass('panel-default panel-warning').addClass('panel-danger');
     } else {
-      $('#' + clusterId).removeClass('panel-warning panel-danger');
+      $('#' + clusterId).removeClass('panel-warning panel-danger').addClass('panel-default');
     }
 
     var circle = '<div class="circle circle-medium ' +
