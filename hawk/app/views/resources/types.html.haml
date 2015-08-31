@@ -3,7 +3,10 @@
     %h1
       = icon_text 'code', _('Add a resource'), class: 'page'
 
-  .row{ data: { help_target: "#rightbar > .container-fluid > *" } }
+  .row
+    = localized_help_for :resources, :intro
+
+  .row{ data: { help_target: "#rightbar > .rightbar_help > *" } }
     %ul.nav.nav-pills.nav-stacked.nav-bighelp.nav-topspace
       %li
         = link_to new_cib_primitive_path(cib_id: current_cib.id), data: { help_filter: ".primitive" }, class: "btn btn-default btn-lg" do
@@ -32,97 +35,18 @@
             = icon_tag "plus-circle"
 
 - content_for :rightbar do
-  .container-fluid{ data: { spy: "affix" } }
+  .container-fluid.rightbar_help{ data: { spy: "affix" } }
     .row.primitive
-      %h2.margin-bottom
-        = _("Add a primitive resource")
-
-      %p
-        Primitive resources are the most basic type of resource.
-
-      %p
-        To create a primitive, define an ID and specify some
-        parameters like class, (provider), and type.
-
-      %p
-        An example of a primitive resource is
-        <code>ocf:heartbeat:IPaddr</code>, which can be used to
-        configure a floating IP address for your cluster.
+      = localized_help_for :resources, :primitive
 
     .row.group
-      %h2.margin-bottom
-        = _("Add a resource group")
-
-      %p
-        Resource groups contain a set of resources that need to be
-        located together, be started sequentially and stopped in the
-        reverse order.
-
-      %p
-        To create a group, define an ID and select the resources that
-        will be members of the group.
-
-      %p
-        An example for use of a group is a Web server that requires an
-        IP address and a file system. Configure IP address and file
-        system as separate resources and combine them into a cluster
-        resource group. This group can run one or more cluster
-        nodes. In case of a software or hardware malfunction, the
-        group will fail over to another cluster node, similar to an
-        individual cluster resource.
+      = localized_help_for :resources, :group
 
     .row.clone
-      %h2.margin-bottom
-        = _("Add a resource clone")
-
-      %p
-        Clones are resources that can run simultaneously on multiple
-        nodes in your cluster.
-
-      %p
-        To create a clone, define an ID and select the child resource
-        that you want to use as clone. Any regular resources or
-        resource groups can be cloned. Instances of clones resources
-        may behave identically. However, they may also be configured
-        differently, depending on which node they are hosted. 
-
-      %p
-        An example of a resource that can be configured as clone is
-        <code>ocf:pacemaker:controld</code> for cluster file systems like OCFS2.
+      = localized_help_for :resources, :clone
 
     .row.multistate
-      %h2.margin-bottom
-        = _("Add a multi-state resource")
-
-
-      %p
-        Multi-state resources are a specialization of clones. They
-        allow the instances to be in one of two operating modes
-        (called active and passive, primary and secondary, or master
-        or slave). To create a multi-state resource, define an ID and
-        select the child resource that you want to use for the
-        multi-state resource. 
-
-      %p
-        An example of a multi-state resource is
-        <code>ocf:linbit:drbd</code> for the configuration of DRBD.
+      = localized_help_for :resources, :multistate
 
     .row.tag
-      %h2.margin-bottom
-        = _("Add a tag")
-
-      %p
-        Tags are a way to refer to multiple resources at once, without
-        creating any colocation or ordering relationship between
-        them. You can use tags for grouping conceptually related
-        resources. All resources belonging to a tag can then be
-        started or stopped with a single command.
-
-      %p
-        To create a tag, define an ID and select the objects that you
-        want to refer to with the tag.
-
-      %p
-        For example, if you have several resources related to a
-        database, you can add all related resources to a tag named
-        <code>database</code>. 
+      = localized_help_for :resources, :tag
