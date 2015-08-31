@@ -38,172 +38,91 @@
         = _("Add a primitive resource")
 
       %p
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-        accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
-        ab illo inventore veritatis et quasi architecto beatae vitae dicta
-        sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-        aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-        eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est,
-        qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
-        sed quia non numquam eius modi tempora incidunt ut labore et dolore
-        magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis
-        nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut
-        aliquid ex ea commodi consequatur? Quis autem vel eum iure
-        reprehenderit qui in ea voluptate velit esse quam nihil molestiae
-        consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla
-        pariatur?
+        Primitive resources are the most basic type of resource.
 
       %p
-        At vero eos et accusamus et iusto odio dignissimos ducimus qui
-        blanditiis praesentium voluptatum deleniti atque corrupti quos
-        dolores et quas molestias excepturi sint occaecati cupiditate non
-        provident, similique sunt in culpa qui officia deserunt mollitia
-        animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis
-        est et expedita distinctio. Nam libero tempore, cum soluta nobis est
-        eligendi optio cumque nihil impedit quo minus id quod maxime placeat
-        facere possimus, omnis voluptas assumenda est, omnis dolor
-        repellendus. Temporibus autem quibusdam et aut officiis debitis aut
-        rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint
-        et molestiae non recusandae. Itaque earum rerum hic tenetur a
-        sapiente delectus, ut aut reiciendis voluptatibus maiores alias
-        consequatur aut perferendis doloribus asperiores repellat.
+        To create a primitive, define an ID and specify some
+        parameters like class, (provider), and type.
+
+      %p
+        An example of a primitive resource is
+        <code>ocf:heartbeat:IPaddr</code>, which can be used to
+        configure a floating IP address for your cluster.
 
     .row.group
       %h2.margin-bottom
         = _("Add a resource group")
 
       %p
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-        accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
-        ab illo inventore veritatis et quasi architecto beatae vitae dicta
-        sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-        aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-        eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est,
-        qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
-        sed quia non numquam eius modi tempora incidunt ut labore et dolore
-        magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis
-        nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut
-        aliquid ex ea commodi consequatur? Quis autem vel eum iure
-        reprehenderit qui in ea voluptate velit esse quam nihil molestiae
-        consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla
-        pariatur?
+        Resource groups contain a set of resources that need to be
+        located together, be started sequentially and stopped in the
+        reverse order.
 
       %p
-        At vero eos et accusamus et iusto odio dignissimos ducimus qui
-        blanditiis praesentium voluptatum deleniti atque corrupti quos
-        dolores et quas molestias excepturi sint occaecati cupiditate non
-        provident, similique sunt in culpa qui officia deserunt mollitia
-        animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis
-        est et expedita distinctio. Nam libero tempore, cum soluta nobis est
-        eligendi optio cumque nihil impedit quo minus id quod maxime placeat
-        facere possimus, omnis voluptas assumenda est, omnis dolor
-        repellendus. Temporibus autem quibusdam et aut officiis debitis aut
-        rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint
-        et molestiae non recusandae. Itaque earum rerum hic tenetur a
-        sapiente delectus, ut aut reiciendis voluptatibus maiores alias
-        consequatur aut perferendis doloribus asperiores repellat.
+        To create a group, define an ID and select the resources that
+        will be members of the group.
+
+      %p
+        An example for use of a group is a Web server that requires an
+        IP address and a file system. Configure IP address and file
+        system as separate resources and combine them into a cluster
+        resource group. This group can run one or more cluster
+        nodes. In case of a software or hardware malfunction, the
+        group will fail over to another cluster node, similar to an
+        individual cluster resource.
 
     .row.clone
       %h2.margin-bottom
         = _("Add a resource clone")
 
       %p
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-        accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
-        ab illo inventore veritatis et quasi architecto beatae vitae dicta
-        sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-        aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-        eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est,
-        qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
-        sed quia non numquam eius modi tempora incidunt ut labore et dolore
-        magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis
-        nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut
-        aliquid ex ea commodi consequatur? Quis autem vel eum iure
-        reprehenderit qui in ea voluptate velit esse quam nihil molestiae
-        consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla
-        pariatur?
+        Clones are resources that can run simultaneously on multiple
+        nodes in your cluster.
 
       %p
-        At vero eos et accusamus et iusto odio dignissimos ducimus qui
-        blanditiis praesentium voluptatum deleniti atque corrupti quos
-        dolores et quas molestias excepturi sint occaecati cupiditate non
-        provident, similique sunt in culpa qui officia deserunt mollitia
-        animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis
-        est et expedita distinctio. Nam libero tempore, cum soluta nobis est
-        eligendi optio cumque nihil impedit quo minus id quod maxime placeat
-        facere possimus, omnis voluptas assumenda est, omnis dolor
-        repellendus. Temporibus autem quibusdam et aut officiis debitis aut
-        rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint
-        et molestiae non recusandae. Itaque earum rerum hic tenetur a
-        sapiente delectus, ut aut reiciendis voluptatibus maiores alias
-        consequatur aut perferendis doloribus asperiores repellat.
+        To create a clone, define an ID and select the child resource
+        that you want to use as clone. Any regular resources or
+        resource groups can be cloned. Instances of clones resources
+        may behave identically. However, they may also be configured
+        differently, depending on which node they are hosted. 
+
+      %p
+        An example of a resource that can be configured as clone is
+        <code>ocf:pacemaker:controld</code> for cluster file systems like OCFS2.
 
     .row.multistate
       %h2.margin-bottom
         = _("Add a multi-state resource")
 
-      %p
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-        accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
-        ab illo inventore veritatis et quasi architecto beatae vitae dicta
-        sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-        aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-        eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est,
-        qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
-        sed quia non numquam eius modi tempora incidunt ut labore et dolore
-        magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis
-        nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut
-        aliquid ex ea commodi consequatur? Quis autem vel eum iure
-        reprehenderit qui in ea voluptate velit esse quam nihil molestiae
-        consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla
-        pariatur?
 
       %p
-        At vero eos et accusamus et iusto odio dignissimos ducimus qui
-        blanditiis praesentium voluptatum deleniti atque corrupti quos
-        dolores et quas molestias excepturi sint occaecati cupiditate non
-        provident, similique sunt in culpa qui officia deserunt mollitia
-        animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis
-        est et expedita distinctio. Nam libero tempore, cum soluta nobis est
-        eligendi optio cumque nihil impedit quo minus id quod maxime placeat
-        facere possimus, omnis voluptas assumenda est, omnis dolor
-        repellendus. Temporibus autem quibusdam et aut officiis debitis aut
-        rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint
-        et molestiae non recusandae. Itaque earum rerum hic tenetur a
-        sapiente delectus, ut aut reiciendis voluptatibus maiores alias
-        consequatur aut perferendis doloribus asperiores repellat.
+        Multi-state resources are a specialization of clones. They
+        allow the instances to be in one of two operating modes
+        (called active and passive, primary and secondary, or master
+        or slave). To create a multi-state resource, define an ID and
+        select the child resource that you want to use for the
+        multi-state resource. 
+
+      %p
+        An example of a multi-state resource is
+        <code>ocf:linbit:drbd</code> for the configuration of DRBD.
 
     .row.tag
       %h2.margin-bottom
         = _("Add a tag")
 
       %p
-        Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-        accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae
-        ab illo inventore veritatis et quasi architecto beatae vitae dicta
-        sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-        aspernatur aut odit aut fugit, sed quia consequuntur magni dolores
-        eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est,
-        qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
-        sed quia non numquam eius modi tempora incidunt ut labore et dolore
-        magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis
-        nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut
-        aliquid ex ea commodi consequatur? Quis autem vel eum iure
-        reprehenderit qui in ea voluptate velit esse quam nihil molestiae
-        consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla
-        pariatur?
+        Tags are a way to refer to multiple resources at once, without
+        creating any colocation or ordering relationship between
+        them. You can use tags for grouping conceptually related
+        resources. All resources belonging to a tag can then be
+        started or stopped with a single command.
 
       %p
-        At vero eos et accusamus et iusto odio dignissimos ducimus qui
-        blanditiis praesentium voluptatum deleniti atque corrupti quos
-        dolores et quas molestias excepturi sint occaecati cupiditate non
-        provident, similique sunt in culpa qui officia deserunt mollitia
-        animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis
-        est et expedita distinctio. Nam libero tempore, cum soluta nobis est
-        eligendi optio cumque nihil impedit quo minus id quod maxime placeat
-        facere possimus, omnis voluptas assumenda est, omnis dolor
-        repellendus. Temporibus autem quibusdam et aut officiis debitis aut
-        rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint
-        et molestiae non recusandae. Itaque earum rerum hic tenetur a
-        sapiente delectus, ut aut reiciendis voluptatibus maiores alias
-        consequatur aut perferendis doloribus asperiores repellat.
+        To create a tag, define an ID and select the objects that you
+        want to refer to with the tag.
+
+      %p
+        For example, if you have several resources related to a
+        database, you can add all related resources to a tag named
+        <code>database</code>. 
