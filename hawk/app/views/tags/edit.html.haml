@@ -7,6 +7,9 @@
           = link_to icon_text("trash", _("Delete")), cib_tag_path(cib_id: @cib.id, id: @tag.id), method: "delete", confirm: _("Are you sure you wish to delete %s?") % @tag.id, class: "btn btn-default"
 
   .row
+    = localized_help_for :resources, :tag
+
+  .row
     = render partial: "form", locals: { cib: @cib, tag: @tag }
 
 - content_for :rightbar do

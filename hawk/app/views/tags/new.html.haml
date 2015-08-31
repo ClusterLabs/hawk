@@ -8,10 +8,14 @@
 
 - content_for :rightbar do
   .container-fluid{ data: { spy: "affix" } }
-    - @tag.mapping.each do |key, values|
-      - next unless values[:longdesc]
+    .row.tag
+      = localized_help_for :resources, :tag
 
+    - @tag.mapping.each do |key, values|
       .row{ class: key }
+
+        - next unless values[:longdesc]
+
         %h2.margin-bottom
           = key
 
