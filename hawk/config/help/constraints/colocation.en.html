@@ -1,0 +1,26 @@
+<h2>Colocation</h2>
+<p>A colocational constraint tells the cluster which resources may or may
+not run together on a node.</p>
+<p>To create a location constraint, specify an ID, select the resources
+between which to define the constraint, and add a score. The score
+determines the location relationship between the resources.</p>
+<ul>
+<li>
+<p>Positive values: The resources should run on the same node. </p>
+</li>
+<li>
+<p>Negative values: The resources should not run on the same node. </p>
+</li>
+<li>
+<p>Score of INFINITY: The resources have to run on the same node. </p>
+</li>
+<li>
+<p>Score of -INFINITY: The resources must not run on the same node.</p>
+</li>
+</ul>
+<p>An example for use of a colocation constraint is a Web service that
+depends on an IP address. Configure individual resources for the IP
+address and the Web service, then add a colocation constraint with a
+score of INFINITY. It defines that the Web service must run on the
+same node as the IP address. This also means that if the IP address is
+not running on any node, the Web service will not be permitted to run.</p>
