@@ -99,24 +99,25 @@ class Template < Record
           clazzes.delete("heartbeat") unless File.exists?("/etc/ha.d/resource.d")
 
           clazzes.each do |clazz|
-            if match = clazz.match("(^[^.][^/]*)(?:/([^.].*))?")
-              if match.length == 3
-                clazz = match[1].strip
+            next if clazz.start_with?(".")
+            s = clazz.split("/").map { |x| x.strip }
+            if s.length >= 2
+              clazz = s[0]
 
-                result[clazz] ||= {}
-                result[clazz][""] = types(clazz: clazz)
+              result[clazz] ||= {}
+              result[clazz][""] = types(clazz: clazz)
 
-                providers = match[2].strip.split(" ").sort do |a, b|
-                  a.natcmp(b, true)
-                end
-
-                providers.each do |provider|
-                  result[clazz][provider] = types(clazz: clazz, provider: provider)
-                end
-              else
-                result[clazz] ||= {}
-                result[clazz][""] = types(clazz: clazz)
+              providers = s[1].split(" ").sort do |a, b|
+                a.natcmp(b, true)
               end
+
+              providers.each do |provider|
+                next if provider.start_with?(".")
+                result[clazz][provider] = types(clazz: clazz, provider: provider)
+              end
+            else
+              result[clazz] ||= {}
+              result[clazz][""] = types(clazz: clazz)
             end
           end
         end
