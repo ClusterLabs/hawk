@@ -8,9 +8,6 @@ class WizardsController < ApplicationController
   before_filter :cib_writable
   before_filter :cluster_online
 
-  helper_method :workflow_path
-  helper_method :workflows
-
   def index
     @wizards = Wizard.all
 
