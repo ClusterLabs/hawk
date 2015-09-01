@@ -1,0 +1,124 @@
+#simulator.simulator
+  .panel.panel-default
+    #simulator-heading.panel-heading
+      %h3.panel-title
+        %a{href: "#simulator-collapse", role: :button, data: {toggle: :collapse, parent: "#simulator"}, aria: {expanded: true, controls: "simulator-collapse"}}
+          = _("Simulator")
+    #simulator-collapse.panel-collapse.collapse.in{aria: {labelledby: "simulator-heading"}}
+      .panel-body
+        %form.form-horizontal
+          .form-group
+            .col-sm-7
+              %select.form-control{multiple: true}
+                %option= "node1 = online"
+                %option= "rsc1#monitor[node1] = generic_error"
+            .col-sm-2
+              %ul
+                %li
+                  %a{href: "#"}
+                    = _("Details")
+                %li
+                  %a{href: "#"}
+                    = _("CIB (in)")
+                %li
+                  %a{href: "#"}
+                    = _("CIB (out)")
+                %li
+                  %a{href: "#"}
+                    = _("Graph")
+          .form-group
+            %button.btn.btn-default{type: :button}
+              = icon_text "plus", _("Node")
+            %button.btn.btn-default{type: :button}
+              = icon_text "plus", _("Operation")
+            %button.btn.btn-default{type: :button}
+              = icon_tag "minus"
+          %button.btn.btn-warning{type: :button}
+            = icon_text "rewind", _("Reset")
+          %button.btn.btn-primary{type: :button}
+            = icon_text "play", _("Run")
+  
+
+.inject-node
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title
+        = _("Inject Node")
+    .panel-body
+      %form.form-horizontal
+        .form-group
+          %label.col-sm-2.control-label{for: "nodeInjectNode"}
+            = _("Node")
+          .col-sm-7
+            %select#nodeInjectNode.form-control
+              - current_cib.nodes.each do |n|
+                %option= n[:uname]
+        .form-group
+          %label.col-sm-2.control-label{for: "nodeInjectState"}
+            = _("State")
+          .col-sm-7
+            %select#nodeInjectState.form-control
+              %option= :online
+              %option= :offline
+              %option= :unclean
+        .col-sm-7.col-sm-offset-2
+          %button.btn.btn-default{type: :button}
+            = _("Cancel")
+          %button.btn.btn-primary{type: :submit}
+            = icon_text "plus", _("OK")
+         
+.inject-operation
+  .panel.panel-default
+    .panel-heading
+      %h3.panel-title
+        = _("Inject Operation")
+    .panel-body
+      %form.form-horizontal
+        .form-group
+          %label.col-sm-2.control-label{for: "opInjectResource"}
+            = _("Resource")
+          .col-sm-7
+            %select#opInjectResource.form-control
+              - current_cib.resources_by_id.keys.sort.each do |r|
+                %option= r
+        .form-group
+          %label.col-sm-2.control-label{for: "opInjectOp"}
+            = _("Operation")
+          .col-sm-7
+            %select#opInjectOp.form-control
+              %option= :monitor
+              %option= :start
+              %option= :stop
+              %option= :promote
+              %option= :demote
+              %option= :notify
+              %option= :migrate_to
+              %option= :migrate_from
+        .form-group
+          %label.col-sm-2.control-label{for: "opInjectInterval"}
+            = _("Interval (ms)")
+          .col-sm-7
+            %input#opInjectInterval.form-control{type: :text}
+        .form-group
+          %label.col-sm-2.control-label{for: "opInjectNode"}
+            = _("Node")
+          .col-sm-7
+            %select#opInjectNode.form-control
+              - current_cib.nodes.each do |n|
+                %option= n[:uname]
+        .form-group
+          %label.col-sm-2.control-label{for: "opInjectResult"}
+            = _("Result")
+          .col-sm-7
+            %select#opInjectResult.form-control
+              %option{value: 0}= _("Success")
+              %option{value: 7}= _("Generic Error")
+        .col-sm-7.col-sm-offset-2
+          %button.btn.btn-default{type: :button}
+            = _("Cancel")
+          %button.btn.btn-primary{type: :submit}
+            = icon_text "plus", _("OK")
+
+.simulator-activator
+:javascript
+  $('#simulator').collapse();

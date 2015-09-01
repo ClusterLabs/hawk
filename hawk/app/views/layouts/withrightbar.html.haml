@@ -24,5 +24,7 @@
         #rightbar.visible-lg-block.col-lg-4
           = yield :rightbar
 
+    - if current_cib.sim?
+      = render partial: "shared/simulator"
     = render partial: "shared/footer"
     = render partial: "shared/modal"
