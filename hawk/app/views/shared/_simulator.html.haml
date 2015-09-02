@@ -11,114 +11,133 @@
         .form-horizontal
           .form-group
             .col-sm-7
-              %select.form-control{multiple: true}
-                %option= "node1 = online"
-                %option= "rsc1#monitor[node1] = generic_error"
-            .col-sm-2
-              %ul
-                %li
-                  %a{href: "#"}
-                    = _("Details")
-                %li
-                  %a{href: "#"}
-                    = _("CIB (in)")
-                %li
-                  %a{href: "#"}
-                    = _("CIB (out)")
-                %li
-                  %a{href: "#"}
-                    = _("Graph")
-          .form-group
-            .col-sm-9
-              %button#sim-addnode.btn.btn-default{type: :button}
+              %select#sim-events.form-control{multiple: true}
+              .row
+                &nbsp;
+              %button#sim-addnode.btn.btn-default.btn-sm{type: :button}
                 = icon_text "plus", _("Node")
-              %button#sim-addop.btn.btn-default{type: :button}
+              %button#sim-addop.btn.btn-default.btn-sm{type: :button}
                 = icon_text "plus", _("Operation")
-              %button#sim-delete.btn.btn-default{type: :button}
+              - unless current_cib.tickets.empty?
+                %button#sim-addticket.btn.btn-default.btn-sm{type: :button}
+                  = icon_text "plus", _("Ticket")
+              %button#sim-delete.btn.btn-default.btn-sm{type: :button}
                 = icon_tag "minus"
-          .col-sm-9
-            %button#sim-reset.btn.btn-warning{type: :button}
-              = icon_text "rewind", _("Reset")
-            %button#sim-run.btn.btn-primary{type: :button}
-              = icon_text "play", _("Run")
-  
+            .col-sm-5
+              %ul.list-group
+                %button#sim-details.list-group-item{type: :button}
+                  = _("Details")
+                %button#sim-cib-in.list-group-item{type: :button}
+                  = _("CIB (in)")
+                %button#sim-cib-out.list-group-item{type: :button}
+                  = _("CIB (out)")
+                %button#sim-graph.list-group-item{type: :button}
+                  = _("Graph")
+                %button#sim-xml.list-group-item{type: :button}
+                  = _("XML")
+      .panel-footer
+        .container-fluid
+          .row
+            .pull-right
+              %button#sim-reset.btn.btn-warning{type: :button}
+                = icon_text "rewind", _("Reset")
+              %button#sim-run.btn.btn-primary{type: :button}
+                = icon_text "play", _("Run")
+
 
 %script#inject-node{type: "text/x-jsrender"}
-  .panel.panel-default
-    .panel-heading
+  %form.form-horizontal{remote: true}
+    .modal-header
       %h3.panel-title
         = _("Inject Node Event")
-    .panel-body
-      %form.form-horizontal
-        .form-group
-          %label.col-sm-2.control-label{for: "nodeInjectNode"}
-            = _("Node")
-          .col-sm-7
-            %select#nodeInjectNode.form-control
-              - current_cib.nodes.each do |n|
-                %option= n[:uname]
-        .form-group
-          %label.col-sm-2.control-label{for: "nodeInjectState"}
-            = _("State")
-          .col-sm-7
-            %select#nodeInjectState.form-control
-              %option= :online
-              %option= :offline
-              %option= :unclean
-        .col-sm-7.col-sm-offset-2
-          %button.btn.btn-default{type: :button}
-            = _("Cancel")
-          %button.btn.btn-primary{type: :submit}
-            = icon_text "plus", _("OK")
-         
+    .modal-body
+      .form-group
+        %label.col-sm-2.control-label{for: "node-inject-node"}
+          = _("Node")
+        .col-sm-7
+          %select#node-inject-node.form-control
+            - current_cib.nodes.each do |n|
+              %option= n[:uname]
+      .form-group
+        %label.col-sm-2.control-label{for: "node-inject-state"}
+          = _("State")
+        .col-sm-7
+          %select#node-inject-state.form-control
+            - node_actions.each do |a|
+              %option= a
+    .modal-footer
+      %button.btn.btn-default{type: :button, data: { dismiss: :modal }}
+        = _("Cancel")
+      %button.btn.btn-primary{type: :submit}
+        = icon_text "plus", _("OK")
+
 %script#inject-op{type: "text/x-jsrender"}
-  .panel.panel-default
-    .panel-heading
+  %form.form-horizontal{remote: true}
+    .modal-header
       %h3.panel-title
         = _("Inject Operation Event")
-    .panel-body
-      %form.form-horizontal
-        .form-group
-          %label.col-sm-2.control-label{for: "opInjectResource"}
-            = _("Resource")
-          .col-sm-7
-            %select#opInjectResource.form-control
-              - current_cib.resources_by_id.keys.sort.each do |r|
-                %option= r
-        .form-group
-          %label.col-sm-2.control-label{for: "opInjectOp"}
-            = _("Operation")
-          .col-sm-7
-            %select#opInjectOp.form-control
-              %option= :monitor
-              %option= :start
-              %option= :stop
-              %option= :promote
-              %option= :demote
-              %option= :notify
-              %option= :migrate_to
-              %option= :migrate_from
-        .form-group
-          %label.col-sm-2.control-label{for: "opInjectInterval"}
-            = _("Interval (ms)")
-          .col-sm-7
-            %input#opInjectInterval.form-control{type: :text}
-        .form-group
-          %label.col-sm-2.control-label{for: "opInjectNode"}
-            = _("Node")
-          .col-sm-7
-            %select#opInjectNode.form-control
-              - current_cib.nodes.each do |n|
-                %option= n[:uname]
-        .form-group
-          %label.col-sm-2.control-label{for: "opInjectResult"}
-            = _("Result")
-          .col-sm-7
-            %select#opInjectResult.form-control
-              %option{value: 0}= _("Success")
-              %option{value: 7}= _("Generic Error")
-        .col-sm-7.col-sm-offset-2
-          %button.btn.btn-default{type: :button}
-            = _("Cancel")
-          %button.btn.btn-primary{type: :submit}
-            = icon_text "plus", _("OK")
+    .modal-body
+      .form-group
+        %label.col-sm-2.control-label{for: "op-inject-rsc"}
+          = _("Resource")
+        .col-sm-7
+          %select#op-inject-rsc.form-control
+            - current_cib.resources_by_id.keys.sort.each do |r|
+              %option= r
+      .form-group
+        %label.col-sm-2.control-label{for: "op-inject-op"}
+          = _("Operation")
+        .col-sm-7
+          %select#op-inject-op.form-control
+            - op_actions.each do |s|
+              %option= s
+      .form-group
+        %label.col-sm-2.control-label{for: "op-inject-interval"}
+          = _("Interval (ms)")
+        .col-sm-7
+          %input#op-inject-interval.form-control{type: :text}
+      .form-group
+        %label.col-sm-2.control-label{for: "op-inject-node"}
+          = _("Node")
+        .col-sm-7
+          %select#op-inject-node.form-control
+            - current_cib.nodes.each do |n|
+              %option= n[:uname]
+      .form-group
+        %label.col-sm-2.control-label{for: "op-inject-result"}
+          = _("Result")
+        .col-sm-7
+          %select#op-inject-result.form-control
+            - op_results.each do |value, name|
+              %option{value: value}= name
+    .modal-footer
+      %button.btn.btn-default{type: :button, data: { dismiss: :modal }}
+        = _("Cancel")
+      %button.btn.btn-primary{type: :submit}
+        = icon_text "plus", _("OK")
+
+%script#inject-ticket{type: "text/x-jsrender"}
+  %form.form-horizontal{remote: true}
+    .modal-header
+      %h3.panel-title
+        = _("Inject Ticket Event")
+    .modal-body
+      .form-group
+        %label.col-sm-2.control-label{for: "ticket-inject-ticket"}
+          = _("Ticket")
+        .col-sm-7
+          %select#ticket-inject-ticket.form-control
+            - current_cib.tickets.each do |t|
+              %option= t[:id]
+      .form-group
+        %label.col-sm-2.control-label{for: "ticket-inject-action"}
+          = _("Action")
+        .col-sm-7
+          %select#ticket-inject-action.form-control
+            - ticket_actions.each do |a|
+              %option= a
+    .modal-footer
+      %button.btn.btn-default{type: :button, data: { dismiss: :modal }}
+        = _("Cancel")
+      %button.btn.btn-primary{type: :submit}
+        = icon_text "plus", _("OK")
