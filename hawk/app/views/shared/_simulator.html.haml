@@ -1,4 +1,6 @@
-#simulator.simulator
+#simulator-node
+
+%script#simulator{type: "text/x-jsrender"}
   .panel.panel-default
     #simulator-heading.panel-heading
       %h3.panel-title
@@ -6,7 +8,7 @@
           = _("Simulator")
     #simulator-collapse.panel-collapse.collapse.in{aria: {labelledby: "simulator-heading"}}
       .panel-body
-        %form.form-horizontal
+        .form-horizontal
           .form-group
             .col-sm-7
               %select.form-control{multiple: true}
@@ -27,23 +29,25 @@
                   %a{href: "#"}
                     = _("Graph")
           .form-group
-            %button.btn.btn-default{type: :button}
-              = icon_text "plus", _("Node")
-            %button.btn.btn-default{type: :button}
-              = icon_text "plus", _("Operation")
-            %button.btn.btn-default{type: :button}
-              = icon_tag "minus"
-          %button.btn.btn-warning{type: :button}
-            = icon_text "rewind", _("Reset")
-          %button.btn.btn-primary{type: :button}
-            = icon_text "play", _("Run")
+            .col-sm-9
+              %button#sim-addnode.btn.btn-default{type: :button}
+                = icon_text "plus", _("Node")
+              %button#sim-addop.btn.btn-default{type: :button}
+                = icon_text "plus", _("Operation")
+              %button#sim-delete.btn.btn-default{type: :button}
+                = icon_tag "minus"
+          .col-sm-9
+            %button#sim-reset.btn.btn-warning{type: :button}
+              = icon_text "rewind", _("Reset")
+            %button#sim-run.btn.btn-primary{type: :button}
+              = icon_text "play", _("Run")
   
 
-.inject-node
+%script#inject-node{type: "text/x-jsrender"}
   .panel.panel-default
     .panel-heading
       %h3.panel-title
-        = _("Inject Node")
+        = _("Inject Node Event")
     .panel-body
       %form.form-horizontal
         .form-group
@@ -67,11 +71,11 @@
           %button.btn.btn-primary{type: :submit}
             = icon_text "plus", _("OK")
          
-.inject-operation
+%script#inject-op{type: "text/x-jsrender"}
   .panel.panel-default
     .panel-heading
       %h3.panel-title
-        = _("Inject Operation")
+        = _("Inject Operation Event")
     .panel-body
       %form.form-horizontal
         .form-group
@@ -118,7 +122,3 @@
             = _("Cancel")
           %button.btn.btn-primary{type: :submit}
             = icon_text "plus", _("OK")
-
-.simulator-activator
-:javascript
-  $('#simulator').collapse();

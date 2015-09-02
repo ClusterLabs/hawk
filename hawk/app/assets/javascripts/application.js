@@ -29,6 +29,7 @@
 //= require module/attrlist
 //= require module/constraint
 //= require module/explorer
+//= require module/simulator
 
 $(function() {
   $(window).on(
