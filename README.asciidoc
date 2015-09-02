@@ -160,7 +160,7 @@ your certificate.
 To hack on Hawk we recommend to use the vagrant setup. There is a
 Vagrantfile attached, maybe you need to change some values to get access
 to the correct files as the current locations are restricted to SUSE
-emplyees.
+employees.
 
 To be prepared for getting our vagrant setup running you need to follow
 some steps.
@@ -179,6 +179,19 @@ some steps.
   # vagrant plugin install vagrant-bindfs
 --------------------------------------
 
+* If you plan to use +libvirt+ as provider make sure you have the 
+  libvirt-plugin installed:
+
+--------------------------------------
+  # vagrant plugin install vagrant-libvirt
+--------------------------------------
+
+* You still need to fetch the git submodules to finish your development setup:
+
+--------------------------------------
+  # git submodule update --init --recursive
+--------------------------------------
+
 This is all you need to prepare initally to set up the vagrant environment,
 now you can simply start the virtual machine with +vagrant up+ and start
 an ssh session with +vagrant ssh webui+ based on +virtualbox+. To start the
@@ -190,6 +203,13 @@ directory.
 You can access the Hawk web interface based on the git source through
 +http://localhost:3000+ now. If you want to access the version installed
 through packages you can reach it through +https://localhost:7630+.
+
+Occasionally it can happen that the source based web interface has not
+started properly and is not responding. In that case restart it with:
+
+--------------------------------------
+vagrant@webui:~> sudo systemctl restart hawk-development.service
+--------------------------------------
 
 If you need to change something on +hawk_chkpwd+, +hawk_invoke+ or
 +hawk_monitor+ you need to provision the machine again with the command
