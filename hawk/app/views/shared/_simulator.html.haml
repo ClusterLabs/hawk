@@ -82,7 +82,7 @@
           = _("Resource")
         .col-sm-7
           %select#op-inject-rsc.form-control
-            - current_cib.resources_by_id.keys.sort.each do |r|
+            - resource_instances.each do |r|
               %option= r
       .form-group
         %label.col-sm-2.control-label{for: "op-inject-op"}
