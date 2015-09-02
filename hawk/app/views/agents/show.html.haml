@@ -1,12 +1,12 @@
 .container-fluid
   .row
     %h1
-      = icon_text "server", "#{agent_name} - #{agent_shortdesc}", class: "page"
+      = icon_text "heartbeat", "#{agent_name} - #{agent_shortdesc}", class: "page"
   .row
     .well
       = longdesc_format agent_longdesc
   .row
-    %h2
+    %h3
       = _("Parameters")
     %table.table
       %tr
@@ -16,14 +16,13 @@
         %th= _("Options")
       - agent_parameters.each do |p|
         %tr
-          - n = p["name"]
-          %td= "<code>#{n}</code>".html_safe
+          %td= content_tag :code, p["name"]
           %td= p["shortdesc"]
           %td= longdesc_format p["longdesc"]
           %td= parameter_options p
       
   .row
-    %h2
+    %h3
       = _("Actions")
     %table.table
       %tr
@@ -33,8 +32,7 @@
         %th= _("Depth")
       - agent_actions.each do |a|
         %tr
-          - n = a["name"]
-          %td= "<code>#{n}</code>".html_safe
+          %td= content_tag :code, a["name"]
           %td= a["timeout"] || "-"
           %td= a["interval"] || "-"
           %td= a["depth"] || "-"
