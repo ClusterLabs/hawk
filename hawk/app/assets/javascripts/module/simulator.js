@@ -102,10 +102,10 @@ $(function() {
       content.find("form").submit(function(event) {
         var rsc = content.find("#op-inject-rsc").val();
         var op = content.find("#op-inject-op").val();
-        var interval = content.find("#op-inject-interval").val();
+        var interval = parseInt(content.find("#op-inject-interval").val());
         var node = content.find("#op-inject-node").val();
         var result = content.find("#op-inject-result").val();
-        if (isNaN(interval) || interval == "" || interval == null)
+        if (isNaN(interval))
           interval = 0;
         var val = ["op", op + ":" + interval, rsc, result, node].join(" ");
         add_event(val, val);
