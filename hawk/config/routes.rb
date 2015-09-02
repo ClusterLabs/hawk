@@ -144,10 +144,9 @@ Rails.application.routes.draw do
     end
   end
 
-  resource :simulator do
-    member do
-      get :reset
-    end
+  scope '/sim' do
+    get 'reset', to: 'simulator#reset'
+    get 'run', to: 'simulator#run'
   end
 
   resource :dashboard, only: [:show, :add, :remove] do
