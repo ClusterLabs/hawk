@@ -124,6 +124,8 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :agents, only: [:show]
+
   scope :reports do
     resource :graph
     resource :heartbeat
