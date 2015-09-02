@@ -28,4 +28,21 @@ module SimulatorHelper
       9 => _('failed (master)')
     }
   end
+
+  def resource_instances
+    [].tap do |instances|
+      current_cib.resources_by_id.each do |name, rsc|
+        next unless rsc.has_key? :instances
+
+        id = name
+        rsc[:instances].each do |iname, inode|
+          if iname == "default"
+            instances.push id
+          else
+            instances.push "#{id}:#{iname}"
+          end
+        end
+      end
+    end
+  end
 end
