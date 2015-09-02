@@ -46,7 +46,10 @@ default["hawk"]["webui"]["packages"] = [
   "glib2-devel",
   "libxml2-devel",
   "pam-devel",
-  "libpacemaker-devel"
+  "libpacemaker-devel",
+
+  # debug stonith agents
+  "libglue-devel"
 ]
 
 default["hawk"]["webui"]["targets"] = %w(

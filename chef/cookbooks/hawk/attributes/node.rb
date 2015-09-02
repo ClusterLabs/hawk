@@ -24,7 +24,10 @@ default["hawk"]["node"]["packages"] = [
   "w3m",
 
   "apache2",
-  "haproxy"
+  "haproxy",
+
+  # debug stonith agents
+  "libglue-devel"
 ]
 
 default["hawk"]["node"]["haproxy_cfg"] = "/etc/haproxy/haproxy.cfg"

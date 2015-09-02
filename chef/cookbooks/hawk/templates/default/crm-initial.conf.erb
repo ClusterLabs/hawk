@@ -1,16 +1,14 @@
-rsc_template web-server apache \
-	params port=8000 \
+rsc_template web-server apache port=8000 \
 	op monitor interval=10s
 primitive proxy systemd:haproxy \
 	op monitor interval=10s
-primitive proxy-vip IPaddr2 \
-	params ip=10.13.37.20
+primitive proxy-vip IPaddr2 ip=10.13.37.20
 primitive srv1 @web-server
 primitive srv2 @web-server
-primitive vip1 IPaddr2 \
-	params ip=10.13.37.21
-primitive vip2 IPaddr2 \
-	params ip=10.13.37.22
+primitive vip1 IPaddr2 ip=10.13.37.21 \
+    op monitor interval=20s
+primitive vip2 IPaddr2 ip=10.13.37.22 \
+    op monitor interval=20s
 group g-proxy proxy-vip proxy
 group g-serv1 vip1 srv1
 group g-serv2 vip2 srv2
@@ -22,3 +20,6 @@ location l-serv1 g-serv1 200: node2
 location l-serv2 g-serv2 200: node3
 # Never put the two web servers on the same node
 colocation co-serv -inf: g-serv1 g-serv2
+# Never use this STONITH agent in production!
+primitive development-stonith stonith:null hostlist="webui node1 node2 node3"
+property stonith-enabled=true
