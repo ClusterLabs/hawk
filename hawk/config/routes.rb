@@ -144,10 +144,9 @@ Rails.application.routes.draw do
     end
   end
 
-  scope '/sim' do
-    get 'reset', to: 'simulator#reset'
-    get 'run', to: 'simulator#run'
-  end
+  get '/sim/reset', as: :sim_reset, to: 'simulator#reset', defaults: { format: 'json' }
+  get '/sim/run', as: :sim_run, to: 'simulator#run', defaults: { format: 'json' }
+  get '/sim/intervals/:id', as: :sim_intervals, to: 'simulator#intervals', defaults: { format: 'json' }
 
   resource :dashboard, only: [:show, :add, :remove] do
     member do
