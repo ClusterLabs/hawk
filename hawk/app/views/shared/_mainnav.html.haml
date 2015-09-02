@@ -1,21 +1,27 @@
 %ul.nav.sidebar-nav
   %li
     %ul
+      - if current_cib.sim?
+        %li
+          %span.label.label-warning= _("Simulator Active")
+
       %li{ class: active_menu_with(:states) }
         = link_to _("Status"), cib_state_path(cib_id: current_cib.id)
 
-      %li{ class: active_menu_with(:dashboards) }
-        = link_to _("Dashboard"), dashboard_path
+      - if current_cib.live?
+        %li{ class: active_menu_with(:dashboards) }
+          = link_to _("Dashboard"), dashboard_path
 
-  %li
-    = _("Report")
+  - if current_cib.live?
+    %li
+      = _("Report")
 
-    %ul
-      %li{ class: active_menu_with(:graphs) }
-        = link_to _("Graph"), graph_path
+      %ul
+        %li{ class: active_menu_with(:graphs) }
+          = link_to _("Graph"), graph_path
 
-      %li{ class: active_menu_with(:explorers) }
-        = link_to _("History"), explorers_path
+        %li{ class: active_menu_with(:explorers) }
+          = link_to _("History"), explorers_path
 
   %li
     = _("Resources")
