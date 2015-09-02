@@ -130,6 +130,7 @@ class Cib < CibObject
         result[:op_defaults] = op_defaults
 
         result[:resources] = resources
+        result[:resources_by_id] = resources_by_id
         result[:nodes] = nodes
         result[:tickets] = tickets
         result[:tags] = tags
