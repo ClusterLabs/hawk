@@ -63,27 +63,21 @@ class Template < Record
         {}
       end
 
-      record.ops = if xml.elements["operations"]
-        vals = xml.elements["operations"].elements.collect do |el|
-          ops = el.attributes.collect do |name, value|
-            next if ["id", "name"].include? name
-
-            [
-              name,
-              value
-            ]
-          end.compact
-
-          [
-            el.attributes["name"],
-            Hash[ops]
-          ]
+      ops = {}
+      xml.elements['operations'].elements.each do |e|
+        name = e.attributes['name']
+        ops[name] = [] unless ops[name]
+        op = Hash[e.attributes.collect{|a| a.to_a}]
+        op.delete 'name'
+        op.delete 'id'
+        if name == "monitor"
+          # special case for OCF_CHECK_LEVEL
+          cl = e.elements['instance_attributes/nvpair[@name="OCF_CHECK_LEVEL"]']
+          op["OCF_CHECK_LEVEL"] = cl.attributes['value'] if cl
         end
-
-        Hash[vals]
-      else
-        {}
-      end
+        ops[name].push op
+      end if xml.elements['operations']
+      record.ops = ops
 
       record
     end
