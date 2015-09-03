@@ -18,10 +18,13 @@
           .tab-content
             - @wizard.steps.each_with_index do |step, index|
               = main_form.fields_for :steps, step do |step_form|
-                .tab-pane.active{ id: "step#{index}", data: { help_filter: ".step#{index}" } }
+                .tab-pane.active{ id: "step#{index}" }
                   %fieldset
                     %legend
                       = step.title
+                    - if step.longdesc.strip.length > 0
+                      .well
+                        = longdesc_format step.longdesc
                   - unless step.required
                     .form-group
                       .col-sm-5
@@ -32,7 +35,7 @@
                     = render :partial => "param", :locals => { :param => param, :step => step, :index => index, :form => main_form }
 
                   - unless step.advanced.empty?
-                    %fieldset{ data: { attrlist: step.params_attrlist.to_json, attrlist_mapping: step.params_mapping.to_json, attrlist_prefix: "step[parameters]", attrlist_target: ".content" } }
+                    %fieldset{ data: { wizattrlist: step.params_attrlist.to_json, wizattrlist_mapping: step.params_mapping.to_json, wizattrlist_target: ".content" } }
                       %legend
                         = _("Advanced")
                         %span.pull-right.toggleable
@@ -48,7 +51,7 @@
                     - substep.basic.each do |param|
                       = render :partial => "param", :locals => { :param => param, :step => step, :index => index, :form => main_form }
                     - unless substep.advanced.empty?
-                      %fieldset{ data: { attrlist: substep.params_attrlist.to_json, attrlist_mapping: substep.params_mapping.to_json, attrlist_prefix: "step[parameters]", attrlist_target: ".content" } }
+                      %fieldset{ data: { wizattrlist: substep.params_attrlist.to_json, wizattrlist_mapping: substep.params_mapping.to_json, wizattrlist_target: ".content" } }
                         %legend
                           = _("Advanced")
                           %span.pull-right.toggleable
@@ -77,11 +80,17 @@
       = longdesc_format @wizard.longdesc
 
     - @wizard.steps.each_with_index do |step, index|
-      .row.stephelp{ class: "step#{index}" }
-        %h3.margin-bottom
-          = step.shortdesc
-
-        = longdesc_format step.longdesc
+      - step.params_mapping_all.each do |id, values|
+        .row.stephelp{ class: "#{values[:help_id]}" }
+          %h3.margin-bottom
+            = content_tag :code, values[:name]
+          = simple_format values[:longdesc]
+      - step.steps.each do |substep|
+        - substep.params_mapping_all.each do |id, values|
+          .row.stephelp{ class: "#{values[:help_id]}" }
+            %h3.margin-bottom
+              = content_tag :code, values[:name]
+            = simple_format values[:longdesc]
 
 :javascript
   $(".nav-pills .btn-warning").popover();
