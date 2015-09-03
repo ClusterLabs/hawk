@@ -8,10 +8,11 @@
 
 - content_for :rightbar do
   .container-fluid{ data: { spy: "affix" } }
+    .row.help-title
+      = localized_help_for :resources, :primitive
     - @group.mapping.each do |key, values|
       - next unless values[:longdesc]
-
-      .row{ class: key }
+      .row.help-item{ class: key }
         %h2.margin-bottom
           = key
 

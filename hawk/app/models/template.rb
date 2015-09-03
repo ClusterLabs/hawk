@@ -140,11 +140,13 @@ class Template < Record
         :meta => {
           "allow-migrate" => {
             type: "boolean",
-            default: "false"
+            default: "false",
+            longdesc: _("Set to true if the resource agent supports the migrate action")
           },
           "is-managed" => {
             type: "boolean",
-            default: "true"
+            default: "true",
+            longdesc: _("Is the cluster allowed to start and stop the resource?")
           },
           "maintenance" => {
             type: "boolean",
@@ -156,29 +158,35 @@ class Template < Record
           },
           "migration-threshold" => {
             type: "integer",
-            default: "0"
+            default: "0",
+            longdesc: _("How many failures may occur for this resource on a node, before this node is marked ineligible to host this resource. A value of INFINITY indicates that this feature is disabled.")
           },
           "priority" => {
             type: "integer",
-            default: "0"
+            default: "0",
+            longdesc: _("If not all resources can be active, the cluster will stop lower priority resources in order to keep higher priority ones active.")
           },
           "multiple-active" => {
             type: "enum",
             default: "stop_start",
-            values: ["block", "stop_only", "stop_start"]
+            values: ["block", "stop_only", "stop_start"],
+            longdesc: _("What should the cluster do if it ever finds the resource active on more than one node?")
           },
           "failure-timeout" => {
             type: "integer",
-            default: "0"
+            default: "0",
+            longdesc: _("How many seconds to wait before acting as if the failure had not occurred, and potentially allowing the resource back to the node on which it failed. A value of 0 indicates that this feature is disabled.")
           },
           "resource-stickiness" => {
             type: "integer",
-            default: "0"
+            default: "0",
+            longdesc: _("How much does the resource prefer to stay where it is?")
           },
           "target-role" => {
             type: "enum",
             default: "Started",
-            values: ["Started", "Stopped", "Master"]
+            values: ["Started", "Stopped", "Master"],
+            longdesc: _("What state should the cluster attempt to keep this resource in?")
           },
           "restart-type" => {
             type: "enum",
@@ -188,6 +196,32 @@ class Template < Record
           "description" => {
             type: "string",
             default: ""
+          },
+          "requires" => {
+            type: "enum",
+            default: "fencing",
+            values: ["nothing", "quorum", "fencing"],
+            longdesc: _("Conditions under which the resource can be started.")
+          },
+          "remote-node" => {
+            type: "string",
+            default: "",
+            longdesc: _("The name of the remote-node this resource defines. This both enables the resource as a remote-node and defines the unique name used to identify the remote-node. If no other parameters are set, this value will also be assumed as the hostname to connect to at the port specified by remote-port. WARNING: This value cannot overlap with any resource or node IDs. If not specified, this feature is disabled.")
+          },
+          "remote-port" => {
+            type: "integer",
+            default: 3121,
+            longdesc: _("Port to use for the guest connection to pacemaker_remote.")
+          },
+          "remote-addr" => {
+            type: "string",
+            default: "",
+            longdesc: _("The IP address or hostname to connect to if remote-node's name is not the hostname of the guest.")
+          },
+          "remote-connect-timeout" => {
+            type: "string",
+            default: "60s",
+            longdesc: _("How long before a pending guest connection will time out.")
           }
         }
       }

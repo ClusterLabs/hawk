@@ -53,11 +53,13 @@ class Group < Record
         {
           "is-managed" => {
             type: "boolean",
-            default: "true"
+            default: "true",
+            longdesc: _("Is the cluster allowed to start and stop the resource?")
           },
           "priority" => {
             type: "integer",
-            default: "0"
+            default: "0",
+            longdesc: _("If not all resources can be active, the cluster will stop lower priority resources in order to keep higher priority ones active.")
           },
           "target-role" => {
             type: "enum",
@@ -66,7 +68,8 @@ class Group < Record
               "Started",
               "Stopped",
               "Master"
-            ]
+            ],
+            longdesc: _("What state should the cluster attempt to keep this resource in?")
           }
         }
       end
