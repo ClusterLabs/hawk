@@ -78,7 +78,7 @@ class WizardsController < ApplicationController
         next if basestep_idx.nil?
 
         basestep = @wizard.steps[basestep_idx]
-        next unless basestep.required || params.has_key?("enabled:#{basestep.id}")
+        next unless basestep.required || params.has_key?("enable:#{basestep.id}")
 
         name = path.last
         sub = sp
@@ -91,6 +91,7 @@ class WizardsController < ApplicationController
         sp[path[0]] = v
       end
     end
+    #Rails.logger.debug "scriptparams: #{params} -> #{sp}"
     sp
   end
 
