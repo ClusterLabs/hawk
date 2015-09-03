@@ -45,6 +45,10 @@ class Step
     end
   end
 
+  def help_id
+    id.gsub(/[.]/, "-")
+  end
+
   def title
     if name.blank?
       @parent.title
@@ -65,7 +69,7 @@ class Step
     m = {}
     @parameters.each do |param|
       next unless param.advanced && param.value
-      m[param.name] = param.value
+      m[param.id] = param.value
     end
     m
   end
@@ -74,11 +78,29 @@ class Step
     m = {}
     @parameters.each do |param|
       next unless param.advanced
-      m[param.name] = {
+      m[param.id] = {
         type: param.attrlist_type,
-        default: param.value || param.example
+        default: param.value || param.example,
+        longdesc: param.longdesc.blank? ? param.shortdesc : param.longdesc,
+        name: param.name,
+        help_id: param.help_id
       }
     end
     m
   end
+
+  def params_mapping_all
+    m = {}
+    @parameters.each do |param|
+      m[param.id] = {
+        type: param.attrlist_type,
+        default: param.value || param.example,
+        longdesc: param.longdesc.blank? ? param.shortdesc : param.longdesc,
+        name: param.name,
+        help_id: param.help_id
+      }
+    end
+    m
+  end
+
 end

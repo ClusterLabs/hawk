@@ -38,6 +38,10 @@ class StepParameter
     "#{parent.id}.#{name}"
   end
 
+  def help_id
+    id.gsub(/[.]/, "-")
+  end
+
   def title
     @name.gsub(/[_-]/, " ").titleize
   end
