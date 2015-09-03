@@ -25,8 +25,10 @@ $(function() {
                 if ($(nav).parents('form').valid()) {
                     return true;
                 } else {
-                    $(nav).parents('form').validate().focusInvalid();
-                    return false;
+                  $(nav).parents('form').validate({
+                    ignore: ".ignore, :hidden"
+                  }).focusInvalid();
+                  return false;
                 }
             },
             onTabClick: function(tab, nav, index) {
@@ -34,7 +36,7 @@ $(function() {
             }
         })
         .validate({
-            ignore: ":hidden"
+            ignore: ".ignore, :hidden"
         });
     $("[data-wizard-enable]").change(function() {
         $('.form-group').each(function () { $(this).removeClass('has-success'); });
