@@ -24,7 +24,7 @@
               = link_to "#resources", data: { toggle: "tab" } do
                 = _("Resources")
                 %span.badge{ data: { link: "resources.length" } }
-                  = @cib.resources.count
+                  = @cib.primitives.count
             %li
               = link_to "#constraints", data: { toggle: "tab" } do
                 = _("Constraints")

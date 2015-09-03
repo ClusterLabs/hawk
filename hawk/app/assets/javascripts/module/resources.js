@@ -114,7 +114,7 @@ $(function() {
                         } else if (row.type == "clone") {
                           return __("Clone");
                         } else if (row.template != null) {
-                          return "@" + row.template;
+                          return '<a href="' + Routes.agent_path("@" + row.template) + '" data-toggle="modal" data-target="#modal-lg">' + "@" + row.template + '</a>';
                         } else if ("class" in row && "provider" in row && "type" in row) {
                           var agent = "";
                           if (row["class"])

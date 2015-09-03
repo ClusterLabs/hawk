@@ -161,14 +161,15 @@ class Cib < CibObject
     constraints
   end
 
-  def flattened_resources
+  def primitives
     ret = []
     @resources.each do |r|
-      ret << r
       if r.has_key? :children
         r[:children].each do |c|
-          ret << c
+          ret << c if c.has_key? :instances
         end
+      elsif r.has_key? :instances
+        ret << r
       end
     end
     ret

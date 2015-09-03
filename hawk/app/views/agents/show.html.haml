@@ -1,6 +1,6 @@
 .container-fluid
   .modal-header
-    = icon_text "heartbeat", "<code>#{params[:id]}</code> - #{agent_shortdesc}", class: "page"
+    = icon_text "heartbeat", "<code>#{@name}</code> - #{agent_shortdesc}", class: "page"
   .modal-body
     .row
       .alert.alert-info
