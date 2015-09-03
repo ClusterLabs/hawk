@@ -3,14 +3,21 @@
 
 module AgentsHelper
   def agent_name
-    @agent["resource_agent"]["name"] || ""
+    resource_agent = @agent["resource_agent"]
+    return "" unless resource_agent
+    resource_agent["name"] || ""
   end
 
   def agent_shortdesc
-    @agent["resource_agent"]["shortdesc"] || ""
+    resource_agent = @agent["resource_agent"]
+    return "" unless resource_agent
+    resource_agent["shortdesc"] || ""
   end
+
   def agent_longdesc
-    @agent["resource_agent"]["longdesc"] || ""
+    resource_agent = @agent["resource_agent"]
+    return "" unless resource_agent
+    resource_agent["longdesc"] || ""
   end
 
   def agent_parameters
@@ -22,11 +29,11 @@ module AgentsHelper
     parameter = parameters["parameter"]
     return "" unless parameter
     if parameter.is_a? Hash
-      return [parameter]
+      [parameter]
     elsif parameter.is_a? Array
-      return parameter
+      parameter
     else
-      return ""
+      ""
     end
   end
 
@@ -39,11 +46,11 @@ module AgentsHelper
     action = actions["action"]
     return "" unless action
     if action.is_a? Hash
-      return [action]
+      [action]
     elsif action.is_a? Array
-      return action
+      action
     else
-      return ""
+      ""
     end
   end
 

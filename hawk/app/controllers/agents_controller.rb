@@ -17,7 +17,7 @@ class AgentsController < ApplicationController
     if @agent
       respond_to do |format|
         format.html do
-          render
+          render layout: "modal"
         end
         format.json do
           render json: @agent.to_json

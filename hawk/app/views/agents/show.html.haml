@@ -1,40 +1,57 @@
 .container-fluid
-  .row
-    %h1
-      = icon_text "heartbeat", "#{agent_name} - #{agent_shortdesc}", class: "page"
-  .row
-    .well
-      = longdesc_format agent_longdesc
-  .row
-    %h3
-      = _("Parameters")
-    %table.table
-      %tr
-        %th= _("Name")
-        %th= _("Shortdesc")
-        %th= _("Longdesc")
-        %th= _("Options")
-      - agent_parameters.each do |p|
-        %tr
-          %td= content_tag :code, p["name"]
-          %td= p["shortdesc"]
-          %td= longdesc_format p["longdesc"]
-          %td= parameter_options p
+  .modal-header
+    = icon_text "heartbeat", "<code>#{params[:id]}</code> - #{agent_shortdesc}", class: "page"
+  .modal-body
+    .row
+      .alert.alert-info
+        = longdesc_format agent_longdesc
+    .row
+      .panel-group#agentinfo{role: :tablist, aria: {multiselectable: true}}
+        .panel.panel-default
+          .panel-heading#agentparamcontrol{role: :tab}
+            %h4.panel-title
+              %a{role: :button, data: {toggle: :collapse, parent: "#agentinfo"}, href: "#agentparams", aria: {expanded: false, controls: "agentparams"}}
+                = _("Parameters")
+                .pull-right
+                  %span.caret
+          #agentparams.panel-collapse.collapse{role: :tabpanel, aria: {labelledby: "agentparamcontrol"}}
+            .panel-body
+              %table.table
+                %tr
+                  %th= _("Name")
+                  %th= _("Shortdesc")
+                  %th= _("Longdesc")
+                  %th= _("Options")
+                - agent_parameters.each do |p|
+                  %tr
+                    %td= content_tag :code, p["name"]
+                    %td= p["shortdesc"]
+                    %td= longdesc_format p["longdesc"]
+                    %td= parameter_options p
+      .panel-group#agentinfo{role: :tablist, aria: {multiselectable: true}}
+        .panel.panel-default
+          .panel-heading#agentactioncontrol{role: :tab}
+            %h4.panel-title
+              %a{role: :button, data: {toggle: :collapse, parent: "#agentinfo"}, href: "#agentactions", aria: {expanded: false, controls: "agentactions"}}
+                = _("Actions")
+                .pull-right
+                  %span.caret
+          #agentactions.panel-collapse.collapse{role: :tabpanel, aria: {labelledby: "agentactioncontrol"}}
+            .panel-body
+              %table.table
+                %tr
+                  %th= _("Name")
+                  %th= _("Timeout")
+                  %th= _("Interval")
+                  %th= _("Depth")
+                - agent_actions.each do |a|
+                  %tr
+                    %td= content_tag :code, a["name"]
+                    %td= a["timeout"] || "-"
+                    %td= a["interval"] || "-"
+                    %td= a["depth"] || "-"
       
-  .row
-    %h3
-      = _("Actions")
-    %table.table
-      %tr
-        %th= _("Name")
-        %th= _("Timeout")
-        %th= _("Interval")
-        %th= _("Depth")
-      - agent_actions.each do |a|
-        %tr
-          %td= content_tag :code, a["name"]
-          %td= a["timeout"] || "-"
-          %td= a["interval"] || "-"
-          %td= a["depth"] || "-"
-      
-    
+  .modal-footer
+    %button.btn.btn-default{type: :button, data: {dismiss: :modal}}
+      = _("Close")
+
