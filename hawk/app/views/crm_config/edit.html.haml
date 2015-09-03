@@ -32,10 +32,10 @@
   .container-fluid{ data: { spy: "affix" } }
     - @crm_config.mapping.each do |section, config|
       - config.each do |key, values|
-        - next unless values[:longdesc]
-
         .row{ class: key }
           %h2.margin-bottom
             = key
 
-          = simple_format values[:longdesc]
+          - if values[:longdesc]
+            = simple_format values[:longdesc]
+          = content_tag :em, "Default: <code>#{sanitize values[:default].to_s}</code>".html_safe
