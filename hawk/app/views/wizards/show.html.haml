@@ -84,13 +84,19 @@
         .row.stephelp{ class: "#{values[:help_id]}" }
           %h3.margin-bottom
             = content_tag :code, values[:name]
-          = simple_format values[:longdesc]
+          - if values[:longdesc]
+            = simple_format values[:longdesc]
+          - unless values[:default].blank?
+            = content_tag :em, "Default: <code>#{sanitize values[:default].to_s}</code>".html_safe
       - step.steps.each do |substep|
         - substep.params_mapping_all.each do |id, values|
           .row.stephelp{ class: "#{values[:help_id]}" }
             %h3.margin-bottom
               = content_tag :code, values[:name]
-            = simple_format values[:longdesc]
+            - if values[:longdesc]
+              = simple_format values[:longdesc]
+            - unless values[:default].blank?
+              = content_tag :em, "Default: <code>#{sanitize values[:default].to_s}</code>".html_safe
 
 :javascript
   $(".nav-pills .btn-warning").popover();

@@ -84,7 +84,7 @@
       ].join(''),
 
       // arguments:
-      // remaining = [{id, name}]
+      // available = [{id, name}]
       // mapping
       // labels
       // enableselect
@@ -97,7 +97,7 @@
             '<div class="input-group">',
               '<select class="form-control select ignore" name="temp[selector]">',
                 '<option></option>',
-                '{{for remaining}}',
+                '{{for available}}',
                   '<option value="{{>id}}">',
                     '{{>name}}',
                   '</option>',
@@ -151,7 +151,8 @@
     var content = {
       labels: self.options.labels,
       mapping: self.mapping,
-      remaining: self.available,
+      available: self.available,
+      values: self.values,
       key: ''
     };
 
@@ -176,14 +177,23 @@
 
       content.key = id;
 
-      // 1. remove from remaining
+      // 1. remove from available
       $.each(self.available, function(at, item) {
         if (item.id == id) {
           $(this).remove();
         }
       });
+
       // 2. add to entries
+
+      content.values[id] = content.mapping[id]["default"];
       tgtnode.find('.addition').before($.templates.entryTemplate.render(content));
+      tgtnode.find("[data-element]").each(function() {
+        if ($(this).data('element') == id) {
+          $(this).find('select, input').val(content.mapping[id]["default"]);
+        }
+      });
+
       // 3. re-render the select
       var toremove = 'option[value="' + id + '"]';
       tgtnode.find('.setter select').find('option:selected').remove();
@@ -199,7 +209,7 @@
         }
       });
 
-      // 2. add to remaining
+      // 2. add to available
       self.available.push({id: id, name: self.mapping[id].name});
       self.available.sort(function(a, b) { return a.name.localeCompare(b.name); });
 
