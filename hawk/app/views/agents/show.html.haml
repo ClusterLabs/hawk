@@ -1,6 +1,6 @@
 .container-fluid
   .modal-header
-    = icon_text "heartbeat", "<code>#{@name}</code> - #{agent_shortdesc}", class: "page"
+    %h4= icon_text "heartbeat", "<code>#{@name}</code> <small>- #{agent_shortdesc}</small>", class: "page"
   .modal-body
     .row
       .alert.alert-info
@@ -28,7 +28,6 @@
                     %td= p["shortdesc"]
                     %td= longdesc_format p["longdesc"]
                     %td= parameter_options p
-      .panel-group#agentinfo{role: :tablist, aria: {multiselectable: true}}
         .panel.panel-default
           .panel-heading#agentactioncontrol{role: :tab}
             %h4.panel-title
