@@ -108,11 +108,23 @@ $(function() {
                     clickToSelect: true,
                     formatter: function(value, row, index) {
                         if (row.type == "group") {
-                            return __("Group");
+                          return __("Group");
+                        } else if (row.type == "master") {
+                          return __("Multi-state");
+                        } else if (row.type == "clone") {
+                          return __("Clone");
                         } else if (row.template != null) {
-                            return "@" + row.template;
+                          return "@" + row.template;
+                        } else if ("class" in row && "provider" in row && "type" in row) {
+                          var agent = "";
+                          if (row["class"])
+                            agent += row["class"] + ":";
+                          if (row["provider"])
+                            agent += row.provider + ":";
+                          agent += row.type;
+                          return '<a href="' + Routes.agent_path(agent) + '" data-toggle="modal" data-target="#modal-lg">' + row.type + '</a>';
                         } else {
-                            return row.type;
+                          return row.type;
                         }
                     }
                 },
@@ -146,7 +158,7 @@ $(function() {
                             '<i class="fa fa-search"></i>',
                             '</a> '
                         ].join(''));
-                        
+
                         return [
                             '<div class="btn-group" role="group">',
                             operations.join(''),
