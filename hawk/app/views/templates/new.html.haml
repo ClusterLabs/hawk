@@ -1,10 +1,12 @@
 .container-fluid
   .row
     %h1
-      = icon_text "file-o", _("Create Template"), class: "page"
+      = icon_text "file-o", _("Add a Resource Template"), class: "page"
 
   .row
     = render partial: "primitives/form", locals: { cib: @cib, primitive: @primitive }
 
 - content_for :rightbar do
-  .container-fluid{ data: { spy: "affix" } }
+  .container-fluid.rightbar_help{ data: { spy: "affix" } }
+    .row.template
+      = localized_help_for :resources, :template
