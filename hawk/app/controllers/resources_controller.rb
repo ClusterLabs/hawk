@@ -17,6 +17,11 @@ class ResourcesController < ApplicationController
     end
   end
 
+  def show
+    @resource = Record.find params[:id]
+    render layout: "modal"
+  end
+
   protected
 
   def set_title

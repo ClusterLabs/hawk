@@ -154,7 +154,7 @@ $(function() {
                             ),
                             '" class="details btn btn-default btn-xs" title="',
                             __('Details'),
-                            '" data-toggle="modal" data-target="#modal">',
+                            '" data-toggle="modal" data-target="#modal-lg">',
                             '<i class="fa fa-search"></i>',
                             '</a> '
                         ].join(''));

@@ -1,0 +1,64 @@
+.container-fluid
+  .modal-header
+    %h4= icon_text "search", "<code>#{@resource.id}</code> <small>#{@resource.type}</small>"
+  .modal-body
+    .row
+      .panel-group#r-info{role: :tablist, aria: {multiselectable: true}}
+        .panel.panel-default
+          .panel-heading#r-paramcontrol{role: :tab}
+            %h4.panel-title
+              %a{role: :button, data: {toggle: :collapse, parent: "#r-info"}, href: "#r-params", aria: {expanded: true, controls: "r-params"}}
+                = _("Parameters")
+                .pull-right
+                  %span.caret
+          #r-params.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "r-paramcontrol"}}
+            .panel-body
+              %table.table
+                %tr
+                  %th= _("Name")
+                  %th= _("Value")
+                - @resource["params"].each do |name, value|
+                  %tr
+                    %td= content_tag :code, name
+                    %td= content_tag :code, value
+        .panel.panel-default
+          .panel-heading#r-metacontrol{role: :tab}
+            %h4.panel-title
+              %a{role: :button, data: {toggle: :collapse, parent: "#r-info"}, href: "#r-metas", aria: {expanded: false, controls: "r-metas"}}
+                = _("Meta")
+                .pull-right
+                  %span.caret
+          #r-metas.panel-collapse.collapse{role: :tabpanel, aria: {labelledby: "r-metacontrol"}}
+            .panel-body
+              %table.table
+                %tr
+                  %th= _("Name")
+                  %th= _("Value")
+                - @resource["meta"].each do |name, value|
+                  %tr
+                    %td= content_tag :code, name
+                    %td= content_tag :code, value
+        .panel.panel-default
+          .panel-heading#r-opcontrol{role: :tab}
+            %h4.panel-title
+              %a{role: :button, data: {toggle: :collapse, parent: "#r-info"}, href: "#r-ops", aria: {expanded: false, controls: "r-ops"}}
+                = _("Operations")
+                .pull-right
+                  %span.caret
+          #r-ops.panel-collapse.collapse{role: :tabpanel, aria: {labelledby: "r-opcontrol"}}
+            .panel-body
+              %table.table
+                %tr
+                  %th= _("Name")
+                  %th= _("Interval")
+                - @resource["ops"].each do |name, variants|
+                  %tr
+                    %td= content_tag :code, name
+                    - variants.each do |v|
+                      - if v.has_key? "interval"
+                        %td= content_tag :code, v["interval"]
+      
+  .modal-footer
+    %button.btn.btn-default{type: :button, data: {dismiss: :modal}}
+      = _("Close")
+
