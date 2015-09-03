@@ -6,6 +6,8 @@
 //= require module/basics
 //= require module/help
 //= require module/forms
+//= require module/attrlist
+//= require module/wizattrlist
 //= require module/modals
 //= require module/wizards
 //= require module/nodes
@@ -26,7 +28,6 @@
 //= require module/profiles
 //= require module/monitor
 //= require module/status
-//= require module/attrlist
 //= require module/constraint
 //= require module/explorer
 //= require module/simulator
