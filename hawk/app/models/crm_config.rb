@@ -60,7 +60,7 @@ class CrmConfig < Tableless
     "description" => {
       type: "string",
       default: ""
-    }
+    },
     "requires" => {
       type: "enum",
       default: "fencing",
