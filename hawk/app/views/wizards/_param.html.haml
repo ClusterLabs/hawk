@@ -1,5 +1,5 @@
 - param_id = "#{param.id}"
-.form-group
+.form-group{data: { help_filter: ".#{param.help_id}" } }
   .col-sm-5
     = label_tag(param_id, param.title)
   .col-sm-7
@@ -9,7 +9,7 @@
     - if param.type == "email"
       - opts[:email] = true
     - elsif param.type == "integer" || param.type == "port"
-      - opts[:number] = true
+      - opts[:digits] = true
     - if param.type == "boolean"
       - if param.value
         = hidden_field_tag(param_id, 'false')
@@ -20,6 +20,3 @@
       = text_field_tag(param_id, nil, opts)
   .col-sm-12.help-block
     = param.shortdesc
-    - unless param.longdesc.empty?
-      %p
-        %small= param.longdesc
