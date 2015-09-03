@@ -188,10 +188,8 @@
 
       content.values[id] = content.mapping[id]["default"];
       tgtnode.find('.addition').before($.templates.entryTemplate.render(content));
-      tgtnode.find("[data-element]").each(function() {
-        if ($(this).data('element') == id) {
-          $(this).find('select, input').val(content.mapping[id]["default"]);
-        }
+      tgtnode.find('[data-element="' + id + '"]').each(function() {
+        $(this).find('select, input').val(content.mapping[id]["default"]);
       });
 
       // 3. re-render the select
@@ -203,11 +201,7 @@
       var id = $(this).data('attr');
 
       // 1. remove from entries
-      tgtnode.find("[data-element]").each(function() {
-        if ($(this).data('element') == id) {
-          $(this).remove();
-        }
-      });
+      tgtnode.find('[data-element="' + id + '"]').remove();
 
       // 2. add to available
       self.available.push({id: id, name: self.mapping[id].name});
