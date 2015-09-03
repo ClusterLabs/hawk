@@ -11,13 +11,11 @@ $(function() {
   $(
     document
   ).on('mouseenter', '[data-help-filter]', function() {
-    $target = $(
-      $(this).parents('[data-help-target]').data('help-target')
-    );
+    $target = $($(this).parents('[data-help-target]').data('help-target'));
 
     $target
       .hide()
-      .filter($(this).data('help-filter'))
+      .filter($(this).attr('data-help-filter'))
       .show();
   });
 });
