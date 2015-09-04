@@ -18,7 +18,7 @@ class SimulatorController < ApplicationController
           head :bad_request
         else
           Invoker.instance.run("crm_shadow", "-b", "-f", "-c", "hawk-#{current_cib.id}")
-          head :ok
+          render json: { success: true }
         end
       end
     end

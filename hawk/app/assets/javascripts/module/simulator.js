@@ -47,6 +47,8 @@ $(function() {
           $btn.button('reset');
         },
         error: function(xhr, status, error) {
+          events.find("option").each(function() { $(this).remove(); });
+          update_events();
           self.find(".errors").html('<div class="alert alert-danger">' + error + '</div>');
           $btn.button('reset');
         }
