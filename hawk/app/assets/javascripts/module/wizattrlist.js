@@ -8,7 +8,6 @@
     this.$el = $(el);
 
     this.values = this.$el.data('wizattrlist');
-
     this.targets = this.$el.data('wizattrlist-target');
     this.mapping = this.$el.data('wizattrlist-mapping');
 
@@ -64,7 +63,6 @@
 
       // arguments:
       // key = param id
-      // value = param value
       // mapping
       // labels
       entryTemplate: [
@@ -85,9 +83,7 @@
 
       // arguments:
       // available = [{id, name}]
-      // mapping
       // labels
-      // enableselect
       adderTemplate: [
         '<div class="form-group addition">',
           '<div class="col-sm-5">',
