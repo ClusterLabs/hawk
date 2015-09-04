@@ -122,12 +122,13 @@ Rails.application.routes.draw do
         get :status
       end
     end
+
+    resource :graph
   end
 
   resources :agents, only: [:show]
 
   scope :reports do
-    resource :graph
     resource :heartbeat
 
     resources :explorers, only: [:index, :destroy] do

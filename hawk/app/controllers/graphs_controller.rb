@@ -3,6 +3,8 @@
 
 class GraphsController < ApplicationController
   before_filter :login_required
+  before_filter :set_title
+  before_filter :set_cib
 
   def show
     respond_to do |format|
@@ -50,5 +52,15 @@ class GraphsController < ApplicationController
         end
       end
     end
+  end
+
+  protected
+
+  def set_title
+    @title = _("Cluster Graph")
+  end
+
+  def set_cib
+    @cib = current_cib
   end
 end

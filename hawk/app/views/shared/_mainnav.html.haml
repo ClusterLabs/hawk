@@ -12,14 +12,14 @@
         %li{ class: active_menu_with(:dashboards) }
           = link_to _("Dashboard"), dashboard_path
 
-  - if current_cib.live?
-    %li
-      = _("Report")
+  %li
+    = _("Report")
 
-      %ul
-        %li{ class: active_menu_with(:graphs) }
-          = link_to _("Graph"), graph_path
+    %ul
+      %li{ class: active_menu_with(:graphs) }
+        = link_to _("Graph"), cib_graph_path(cib_id: current_cib.id)
 
+      - if current_cib.live?
         %li{ class: active_menu_with(:explorers) }
           = link_to _("History"), explorers_path
 
