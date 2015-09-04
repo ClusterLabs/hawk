@@ -11,13 +11,10 @@ $(function() {
 
     var update_events = function() {
       var delbtn = self.find("#sim-delete");
-      var runbtn = self.find("#sim-run");
       if (events.find("option").length == 0) {
         delbtn.prop("disabled", "disabled");
-        runbtn.prop("disabled", "disabled");
       } else {
         delbtn.removeProp("disabled");
-        runbtn.removeProp("disabled");
       }
     };
     update_events();
@@ -32,13 +29,54 @@ $(function() {
       update_events();
     };
 
-    var remove_all_events = function() {
-      events.find("option").each(function() { $(this).remove(); });
-      update_events();
+    var reset_simulation = function() {
+      var $btn = $(this).button('loading');
+
+      var data = {
+        cib_id: $('body').data('cib')
+      };
+
+      var path = Routes.sim_reset_path();
+
+      console.log("Reset:", path, data);
+
+      $.ajax({type: "POST", dataType: "json", url: path, data: data,
+        success: function(data) {
+          events.find("option").each(function() { $(this).remove(); });
+          update_events();
+          $btn.button('reset');
+        },
+        error: function(xhr, status, error) {
+          self.find(".errors").html('<div class="alert alert-danger">' + error + '</div>');
+          $btn.button('reset');
+        }
+      });
     };
 
-    var run_events = function() {
-      console.log("Run simulation...");
+    var run_simulation = function() {
+      var $btn = $(this).button('loading');
+
+      var data = {
+        cib_id: $('body').data('cib'),
+        injections: $.map(events.find("option").toArray(), function(opt) {
+          return opt.value;
+        })
+      };
+
+      var path = Routes.sim_run_path();
+
+      console.log("Run:", path, data);
+
+      $.ajax({type: "POST", dataType: "json", url: path, data: data,
+        success: function(data) {
+          self.find("#sim-results").removeAttr("disabled");
+          $btn.button('reset');
+        },
+        error: function(xhr, status, error) {
+          self.find(".errors").html('<div class="alert alert-danger">' + error + '</div>');
+          $btn.button('reset');
+        }
+      });
     };
 
     self.find("#sim-addnode").click(function() {
@@ -130,8 +168,40 @@ $(function() {
 
     self.find("#sim-delete").click(remove_selected_events);
 
-    self.find("#sim-reset").click(remove_all_events);
+    self.find("#sim-reset").click(reset_simulation);
 
-    self.find("#sim-run").click(run_events);
+    self.find("#sim-run").click(run_simulation);
+
+
+    self.find("#sim-results").click(function() {
+      $("#modal-lg .modal-content").html($("#sim-results").render());
+
+      var fetch_data = function(node, file, format) {
+        $.ajax({
+          url: Routes.sim_result_path(),
+          type: "GET",
+          data: {
+            cib_id: $('body').data('cib'),
+            file: file,
+            format: format || ''
+          },
+          success: function() {
+            node.html($('<pre/>').text(data));
+          },
+          error: function(xhr, status, error) {
+            node.html($('<alert class="alert alert-danger"/>').text(error));
+          }
+        });
+      };
+
+      fetch_data($("#modal-lg .sim-details"), 'info');
+      fetch_data($("#modal-lg .sim-cib-in"), 'in');
+      fetch_data($("#modal-lg .sim-cib-out"), 'out');
+      fetch_data($("#modal-lg .sim-cib-graph"), 'graph');
+      fetch_data($("#modal-lg .sim-cib-xml"), 'graph', 'xml');
+
+
+      $("#modal-lg").modal('show');
+    });
   });
 });

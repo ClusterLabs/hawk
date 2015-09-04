@@ -8,8 +8,11 @@
           = _("Simulator")
     #simulator-collapse.panel-collapse.collapse.in{aria: {labelledby: "simulator-heading"}}
       .panel-body
-        .form-horizontal
-          .form-group
+        .container-fluid
+          .row
+            .col-sm-12
+              .errors
+          .row
             .col-sm-7
               %select#sim-events.form-control{multiple: true}
               .row
@@ -24,17 +27,9 @@
               %button#sim-delete.btn.btn-default.btn-sm{type: :button}
                 = icon_tag "minus"
             .col-sm-5
-              %ul.list-group
-                %button#sim-details.list-group-item{type: :button}
-                  = _("Details")
-                %button#sim-cib-in.list-group-item{type: :button}
-                  = _("CIB (in)")
-                %button#sim-cib-out.list-group-item{type: :button}
-                  = _("CIB (out)")
-                %button#sim-graph.list-group-item{type: :button}
-                  = _("Graph")
-                %button#sim-xml.list-group-item{type: :button}
-                  = _("XML")
+              .well
+                %button#sim-results.btn.btn-default{type: :button, disabled: :disabled}
+                  = _("Results")
       .panel-footer
         .container-fluid
           .row
@@ -44,11 +39,70 @@
               %button#sim-run.btn.btn-primary{type: :button}
                 = icon_text "play", _("Run")
 
+%script#sim-results{type: "text/x-jsrender"}
+  .modal-header
+    %h3.modal-title
+      = _("Simulation Results")
+  .modal-body
+    #accordion.panel-group{role: :tablist, aria: {multiselectable: true}}
+      .panel.panel-default
+        #sim-details-hdr.panel-heading{role: :tab}
+          %h4.panel-title
+            %a{role: :button, href: "#sim-details-body", data: {parent: "#accordion"}, aria: {expanded: true, controls: "sim-details-body"}}
+              = _("Details")
+              .pull-right
+                %span.caret
+        #sim-details-body.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "sim-details-hdr"}}
+          .panel-body.sim-details
+            = icon_tag 'circle-o-notch', class: 'fa-spin'
+      .panel.panel-default
+        #sim-cib-in-hdr.panel-heading{role: :tab}
+          %h4.panel-title
+            %a{role: :button, href: "#sim-cib-in-body", data: {parent: "#accordion"}, aria: {expanded: true, controls: "sim-cib-in-body"}}
+              = _("CIB (in)")
+              .pull-right
+                %span.caret
+        #sim-cib-in-body.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "sim-cib-in-hdr"}}
+          .panel-body.sim-cib-in
+            = icon_tag 'circle-o-notch', class: 'fa-spin'
+      .panel.panel-default
+        #sim-cib-out-hdr.panel-heading{role: :tab}
+          %h4.panel-title
+            %a{role: :button, href: "#sim-cib-out-body", data: {parent: "#accordion"}, aria: {expanded: true, controls: "sim-cib-out-body"}}
+              = _("CIB (out)")
+              .pull-right
+                %span.caret
+        #sim-cib-out-body.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "sim-cib-out-hdr"}}
+          .panel-body.sim-cib-out
+            = icon_tag 'circle-o-notch', class: 'fa-spin'
+      .panel.panel-default
+        #sim-graph-hdr.panel-heading{role: :tab}
+          %h4.panel-title
+            %a{role: :button, href: "#sim-graph-body", data: {parent: "#accordion"}, aria: {expanded: true, controls: "sim-graph-body"}}
+              = _("Graph")
+              .pull-right
+                %span.caret
+        #sim-graph-body.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "sim-graph-hdr"}}
+          .panel-body.sim-graph
+            = icon_tag 'circle-o-notch', class: 'fa-spin'
+      .panel.panel-default
+        #sim-xml-hdr.panel-heading{role: :tab}
+          %h4.panel-title
+            %a{role: :button, href: "#sim-xml-body", data: {parent: "#accordion"}, aria: {expanded: true, controls: "sim-xml-body"}}
+              = _("XML")
+              .pull-right
+                %span.caret
+        #sim-xml-body.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "sim-xml-hdr"}}
+          .panel-body.sim-xml
+            = icon_tag 'circle-o-notch', class: 'fa-spin'
+  .modal-footer
+    %button.btn.btn-default{type: :button, data: { dismiss: :modal }}
+      = _("Close")
 
 %script#inject-node{type: "text/x-jsrender"}
   %form.form-horizontal{remote: true}
     .modal-header
-      %h3.panel-title
+      %h3.modal-title
         = _("Inject Node Event")
     .modal-body
       .form-group
@@ -74,7 +128,7 @@
 %script#inject-op{type: "text/x-jsrender"}
   %form.form-horizontal{remote: true}
     .modal-header
-      %h3.panel-title
+      %h3.modal-title
         = _("Inject Operation Event")
     .modal-body
       .form-group
@@ -119,7 +173,7 @@
 %script#inject-ticket{type: "text/x-jsrender"}
   %form.form-horizontal{remote: true}
     .modal-header
-      %h3.panel-title
+      %h3.modal-title
         = _("Inject Ticket Event")
     .modal-body
       .form-group
