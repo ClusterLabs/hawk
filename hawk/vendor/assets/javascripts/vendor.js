@@ -15,3 +15,5 @@
 //= require font-awesome/font-awesome
 
 //= require js-routes
+
+//= require misc/highlight
