@@ -135,6 +135,11 @@ class Invoker
     # Never reached
   end
 
+  # Used by the simulator
+  def crm_simulate(*cmd)
+    run_as(current_user, 'crm_simulate', *cmd)
+  end
+
   private
 
   # Returns 'true' on successful execution, or STDERR output on failure.
