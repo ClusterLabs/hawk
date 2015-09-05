@@ -2,6 +2,10 @@
 // See COPYING for license.
 
 $(function() {
+  var update_cib = function() {
+    // TODO(must): Implement
+  };
+
   var make_error_handler = function(target, postfn) {
     return function(xhr, status, error) {
       console.log(xhr, status, error);
@@ -61,6 +65,7 @@ $(function() {
       $.ajax({
         type: "POST", dataType: "json", url: path, data: data,
         success: function(data) {
+          update_cib();
           events.find("option").each(function() { $(this).remove(); });
           update_events();
           $btn.button('reset');
@@ -90,6 +95,7 @@ $(function() {
       $.ajax({
         type: "POST", dataType: "json", url: path, data: data,
         success: function(data) {
+          update_cib();
           self.find("#sim-results").removeAttr("disabled").addClass("btn-success");
           $btn.button('reset');
         },
