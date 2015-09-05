@@ -2,6 +2,21 @@
 // See COPYING for license.
 
 $(function() {
+  var make_error_handler = function(target, postfn) {
+    return function(xhr, status, error) {
+      console.log(xhr, status, error);
+      var msg = error + " (" + xhr.status + ")";
+      if ("responseJSON" in xhr && "error" in xhr.responseJSON) {
+        msg += ": " + xhr.responseJSON.error;
+      } else if ("responseText" in xhr) {
+        msg += ": " + xhr.responseText;
+      }
+      target.html($('<div class="alert alert-danger"/>').html(msg));
+      if (post !== undefined) {
+        post(target);
+      }
+    };
+  };
 
   $("#simulator-node").each(function() {
     var self = $(this);
@@ -37,22 +52,24 @@ $(function() {
         cib_id: $('body').data('cib')
       };
 
+      self.find("#sim-results").attr("disabled", "disabled").removeClass("btn-success");
+
       var path = Routes.sim_reset_path();
 
       console.log("Reset:", path, data);
 
-      $.ajax({type: "POST", dataType: "json", url: path, data: data,
+      $.ajax({
+        type: "POST", dataType: "json", url: path, data: data,
         success: function(data) {
           events.find("option").each(function() { $(this).remove(); });
           update_events();
           $btn.button('reset');
         },
-        error: function(xhr, status, error) {
+        error: make_error_handler(self.find(".errors"), function() {
           events.find("option").each(function() { $(this).remove(); });
           update_events();
-          self.find(".errors").html('<div class="alert alert-danger">' + error + '</div>');
           $btn.button('reset');
-        }
+        })
       });
     };
 
@@ -70,15 +87,13 @@ $(function() {
 
       console.log("Run:", path, data);
 
-      $.ajax({type: "POST", dataType: "json", url: path, data: data,
+      $.ajax({
+        type: "POST", dataType: "json", url: path, data: data,
         success: function(data) {
-          self.find("#sim-results").removeAttr("disabled");
+          self.find("#sim-results").removeAttr("disabled").addClass("btn-success");
           $btn.button('reset');
         },
-        error: function(xhr, status, error) {
-          self.find(".errors").html('<div class="alert alert-danger">' + error + '</div>');
-          $btn.button('reset');
-        }
+        error: make_error_handler(self.find(".errors"), function() { $btn.button('reset'); })
       });
     };
 
@@ -179,19 +194,18 @@ $(function() {
     self.find("#sim-results").click(function() {
       $("#modal-lg .modal-content").html($("#sim-results-dialog").render());
 
-      var fetch_data = function(node, file, format) {
+      var fetch_data = function(node, file) {
         $.ajax({
           url: Routes.sim_result_path(),
           type: "GET",
           dataType: "text",
           data: {
             cib_id: $('body').data('cib'),
-            file: file,
-            format: format || ''
+            file: file
           },
           success: function(data) {
             var code = "";
-            if (format == "xml" || file == "in" || file == "out") {
+            if (file == "graph-xml" || file == "in" || file == "out") {
               code = '<pre><code class="xml hljs">';
               code += $('<div/>').text(data).html();
               code += '</code></pre>';
@@ -206,9 +220,7 @@ $(function() {
               hljs.highlightBlock(block);
             });
           },
-          error: function(xhr, status, error) {
-            node.html($('<alert class="alert alert-danger"/>').text(error));
-          }
+          error: make_error_handler(node)
         });
       };
 
@@ -221,19 +233,17 @@ $(function() {
             file: file
           },
           success: function(data) {
-            node.html(data);
+            node.html($(data).find('svg'));
           },
-          error: function(xhr, status, error) {
-            node.html($('<alert class="alert alert-danger"/>').text(error));
-          }
+          error: make_error_handler(node)
         });
       };
 
       fetch_data($("#modal-lg .sim-details"), 'info');
       fetch_data($("#modal-lg .sim-cib-in"), 'in');
       fetch_data($("#modal-lg .sim-cib-out"), 'out');
-      fetch_svg($("#modal-lg .sim-cib-graph"), 'graph');
-      fetch_data($("#modal-lg .sim-cib-xml"), 'graph', 'xml');
+      fetch_data($("#modal-lg .sim-xml"), 'graph-xml');
+      fetch_svg($("#modal-lg .sim-graph"), 'graph');
 
 
       $("#modal-lg").modal('show');

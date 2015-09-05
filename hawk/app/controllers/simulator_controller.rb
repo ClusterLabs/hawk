@@ -9,7 +9,7 @@ class SimulatorController < ApplicationController
   # TODO(must): these both need exception handler for invoker runs
   # TODO(must): only one user at a time can run sims (they stomp on each other)
   # TODO(must): can this ever fail?!?
-  #Invoker.instance.run("crm_shadow", "-b", "-r", "hawk-#{current_cib.id}")
+  #Invoker.instance.run("crm_shadow", "-b", "-r", "#{current_cib.id}")
   # TODO(must): above doesn't clear lrm state - is that a bug? so recreating:
   def reset
     respond_to do |format|
@@ -17,8 +17,12 @@ class SimulatorController < ApplicationController
         if current_cib.id == "live"
           head :bad_request
         else
-          Invoker.instance.run("crm_shadow", "-b", "-f", "-c", "hawk-#{current_cib.id}")
-          render json: { success: true }
+          ok = Invoker.instance.run("crm_shadow", "-b", "-f", "-c", "#{current_cib.id}")
+          if ok == true
+            render json: { success: true }
+          else
+            render json: { error: ok[1], status: ok[0] }, status: 500
+          end
         end
       end
     end
@@ -70,21 +74,18 @@ class SimulatorController < ApplicationController
       end
     end if params[:injections]
     f = File.new("#{Rails.root}/tmp/sim.info", "w")
-    stdout = Util.safe_x("/usr/sbin/crm_simulate",
-      "-S",
-      "-L", # "live", but will be against shadow CIB
-      "-G", "#{Rails.root}/tmp/sim.graph",
-      "-D", "#{Rails.root}/tmp/sim.dot",
-      *injections)
-    status = $?.exitstatus
+    # "live", but will be against shadow CIB
+    out, err, status = Invoker.instance.crm_simulate(
+                "-S", "-L",
+                "-G", "#{Rails.root}/tmp/sim.graph",
+                "-D", "#{Rails.root}/tmp/sim.dot",
+                *injections)
     if status != 0
-      render :json => { error: "Internal error (simulator rc=#{status})" }, :status => 500
+      render :json => { error: err }, :status => 500
       return
     end
-    Rails.logger.debug "crm_simulate out= #{stdout}"
-    f.write(stdout)
+    f.write(out)
     f.close
-    File.chmod(0666, f.path)
     is_empty = true
     begin
       f = File.open("#{Rails.root}/tmp/sim.graph")
@@ -96,8 +97,9 @@ class SimulatorController < ApplicationController
       f.close
     rescue Exception
       # TODO(could): actually handle potential failure of crm_simulate run
+      render json: { error: "Could not read graph" }, status: 500
     end
-    render :json => { :is_empty => is_empty }
+    render json: { :is_empty => is_empty }
   end
 
   # TODO(must): make sure dot is installed
@@ -105,22 +107,22 @@ class SimulatorController < ApplicationController
     case params[:file]
     when "info"
       send_data File.new("#{Rails.root}/tmp/sim.info").read,
-                :type => "text/plain", :disposition => "inline"
+                type: "text/plain", disposition: :inline
     when "in"
       shadow_id = ENV["CIB_shadow"]
       ENV.delete("CIB_shadow")
-      send_data Invoker.instance.cibadmin('-Ql'), :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
+      send_data Invoker.instance.cibadmin('-Ql'), type: (params[:munge] == "txt" ? "text/plain" : "text/xml"), disposition: :inline
       ENV["CIB_shadow"] = shadow_id
     when "out"
-      send_data Invoker.instance.cibadmin('-Ql'), :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
+      send_data Invoker.instance.cibadmin('-Ql'), type: (params[:munge] == "txt" ? "text/plain" : "text/xml"), disposition: :inline
+    when "graph-xml"
+      send_data File.new("#{Rails.root}/tmp/sim.graph").read, type: (params[:munge] == "txt" ? "text/plain" : "text/xml"), disposition: :inline
     when "graph"
-      if params[:format] == "xml"
-        send_data File.new("#{Rails.root}/tmp/sim.graph").read, :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
+      svg, err, status = Util.capture3("/usr/bin/dot", "-Tsvg", "#{Rails.root}/tmp/sim.dot")
+      if status != 0
+        render json: { error: err }, status: 500
       else
-        svg, err, status = Util.capture3("/usr/bin/dot", "-Tsvg", "#{Rails.root}/tmp/sim.dot")
-        # TODO(must): check status.exitstatus
-        Rails.logger.debug "graph/svg #{svg} / #{err} / #{status}"
-        send_data svg, :type => "image/svg+xml", :disposition => "inline"
+        send_data svg, type: :svg, disposition: :inline
       end
     else
       head :not_found
@@ -140,7 +142,7 @@ class SimulatorController < ApplicationController
       Rails.logger.debug "#{params[:id]}, #{op}"
       intervals << Util.crm_get_msec(op["interval"])
     end if res.ops.has_key?("monitor")
-    render :json => intervals
+    render json: intervals
   end
 
   protected
