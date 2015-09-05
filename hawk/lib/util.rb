@@ -141,7 +141,7 @@ module Util
   # Like capture3, but via /usr/sbin/hawk_invoke
   def run_as(user, *cmd)
     old_home = ensure_home_for(user)
-    # RORSCAN_INL: mutli-arg invocation safe from shell injection.
+    # RORSCAN_INL: multi-arg invocation safe from shell injection.
     ret = capture3('/usr/sbin/hawk_invoke', user, *cmd)
     # Having invoked a command, reset $HOME to what it was before,
     # else it sticks, and other (non-invoker) crm invoctiaons, e.g.
