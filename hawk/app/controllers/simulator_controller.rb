@@ -153,6 +153,7 @@ class SimulatorController < ApplicationController
       tmpfile = Tempfile.new("cib_state")
       tmpfile.write(Invoker.instance.cibadmin('-Ql', '--xpath', '//status'))
       tmpfile.close
+      File.chmod(0666, tmpfile.path)
       ENV["CIB_shadow"] = shadow_id
       # TODO(must): Handle error here
       Rails.logger.debug("CIB_shadow: #{shadow_id}")
