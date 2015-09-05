@@ -78,16 +78,17 @@ struct cmd_map
 };
 
 static struct cmd_map commands[] = {
-	{"cibadmin",		SBINDIR"/cibadmin"},
-	{"crm",			SBINDIR"/crm"},
-	{"crmadmin",		SBINDIR"/crmadmin"},
-	{"crmd",		LIBDIR"/heartbeat/crmd"},
-	{"crm_attribute",	SBINDIR"/crm_attribute"},
-	{"crm_mon",		SBINDIR"/crm_mon"},
-	{"crm_shadow",		SBINDIR"/crm_shadow"},
-	{"pengine",		LIBDIR"/heartbeat/pengine"},
-	{"hb_report",		SBINDIR"/hb_report"},
-	{"booth",		SBINDIR"/booth"},
+	{"cibadmin",       SBINDIR"/cibadmin"},
+	{"crm",            SBINDIR"/crm"},
+	{"crmadmin",       SBINDIR"/crmadmin"},
+	{"crmd",           LIBDIR"/heartbeat/crmd"},
+	{"crm_attribute",  SBINDIR"/crm_attribute"},
+	{"crm_mon",        SBINDIR"/crm_mon"},
+	{"crm_shadow",     SBINDIR"/crm_shadow"},
+	{"crm_simulate",   SBINDIR"/crm_simulate"},
+	{"pengine",        LIBDIR"/heartbeat/pengine"},
+	{"hb_report",      SBINDIR"/hb_report"},
+	{"booth",          SBINDIR"/booth"},
 	{NULL, NULL}
 };
 
