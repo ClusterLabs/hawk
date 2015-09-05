@@ -220,7 +220,7 @@ class ApplicationController < ActionController::Base
     result = nil
     if current_cib && current_cib.sim?
       ENV['CIB_shadow'] = current_cib.id
-      unless File.exist?("/var/lib/pacemaker/cib/shadow.#{current_cib.id}") || !false
+      if force || !File.exist?("/var/lib/pacemaker/cib/shadow.#{current_cib.id}")
         result = Invoker.instance.run("crm_shadow", "-b", "-f", "-c", "#{current_cib.id}")
         Rails.logger.debug "Created Shadow CIB for #{current_cib.id}: #{result}"
       else
