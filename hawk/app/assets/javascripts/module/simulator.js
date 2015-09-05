@@ -2,6 +2,7 @@
 // See COPYING for license.
 
 $(function() {
+
   $("#simulator-node").each(function() {
     var self = $(this);
     self.data("simulation-state", 0);
@@ -189,7 +190,21 @@ $(function() {
             format: format || ''
           },
           success: function(data) {
-            node.html($('<pre/>').text(data));
+            var code = "";
+            if (format == "xml" || file == "in" || file == "out") {
+              code = '<pre><code class="xml hljs">';
+              code += $('<div/>').text(data).html();
+              code += '</code></pre>';
+            } else {
+              code = '<pre>';
+              code += data;
+              code += '</pre>';
+            }
+            node.html(code);
+
+            node.find('.hljs').each(function(i, block) {
+              hljs.highlightBlock(block);
+            });
           },
           error: function(xhr, status, error) {
             node.html($('<alert class="alert alert-danger"/>').text(error));

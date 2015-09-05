@@ -78,6 +78,7 @@ class SimulatorController < ApplicationController
       *injections)
     f.write(stdout)
     f.close
+    File.chmod(0666, f.path)
     is_empty = true
     begin
       f = File.open("#{Rails.root}/tmp/sim.graph")
@@ -110,9 +111,9 @@ class SimulatorController < ApplicationController
       if params[:format] == "xml"
         send_data File.new("#{Rails.root}/tmp/sim.graph").read, :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
       else
-        png, err, status = Util.capture3("/usr/bin/dot", "-Tpng", "#{Rails.root}/tmp/sim.dot")
+        svg, err, status = Util.capture3("/usr/bin/dot", "-Tsvg", "#{Rails.root}/tmp/sim.dot")
         # TODO(must): check status.exitstatus
-        send_data png, :type => "image/png", :disposition => "inline"
+        send_data svg, :type => "image/svg+xml", :disposition => "inline"
       end
     else
       head :not_found

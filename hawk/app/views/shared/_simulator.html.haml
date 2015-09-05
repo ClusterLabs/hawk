@@ -48,7 +48,7 @@
       .panel.panel-default
         #sim-details-hdr.panel-heading{role: :tab}
           %h4.panel-title
-            %a{role: :button, href: "#sim-details-body", data: {parent: "#accordion"}, aria: {expanded: true, controls: "sim-details-body"}}
+            %a{role: :button, href: "#sim-details-body", data: {parent: "#accordion", toggle: :collapse}, aria: {expanded: true, controls: "sim-details-body"}}
               = _("Details")
               .pull-right
                 %span.caret
@@ -58,41 +58,41 @@
       .panel.panel-default
         #sim-cib-in-hdr.panel-heading{role: :tab}
           %h4.panel-title
-            %a{role: :button, href: "#sim-cib-in-body", data: {parent: "#accordion"}, aria: {expanded: true, controls: "sim-cib-in-body"}}
+            %a{role: :button, href: "#sim-cib-in-body", data: {parent: "#accordion", toggle: :collapse}, aria: {expanded: false, controls: "sim-cib-in-body"}}
               = _("CIB (in)")
               .pull-right
                 %span.caret
-        #sim-cib-in-body.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "sim-cib-in-hdr"}}
+        #sim-cib-in-body.panel-collapse.collapse{role: :tabpanel, aria: {labelledby: "sim-cib-in-hdr"}}
           .panel-body.sim-cib-in
             = icon_tag 'circle-o-notch', class: 'fa-spin'
       .panel.panel-default
         #sim-cib-out-hdr.panel-heading{role: :tab}
           %h4.panel-title
-            %a{role: :button, href: "#sim-cib-out-body", data: {parent: "#accordion"}, aria: {expanded: true, controls: "sim-cib-out-body"}}
+            %a{role: :button, href: "#sim-cib-out-body", data: {parent: "#accordion", toggle: :collapse}, aria: {expanded: false, controls: "sim-cib-out-body"}}
               = _("CIB (out)")
               .pull-right
                 %span.caret
-        #sim-cib-out-body.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "sim-cib-out-hdr"}}
+        #sim-cib-out-body.panel-collapse.collapse{role: :tabpanel, aria: {labelledby: "sim-cib-out-hdr"}}
           .panel-body.sim-cib-out
             = icon_tag 'circle-o-notch', class: 'fa-spin'
       .panel.panel-default
         #sim-graph-hdr.panel-heading{role: :tab}
           %h4.panel-title
-            %a{role: :button, href: "#sim-graph-body", data: {parent: "#accordion"}, aria: {expanded: true, controls: "sim-graph-body"}}
+            %a{role: :button, href: "#sim-graph-body", data: {parent: "#accordion", toggle: :collapse}, aria: {expanded: false, controls: "sim-graph-body"}}
               = _("Graph")
               .pull-right
                 %span.caret
-        #sim-graph-body.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "sim-graph-hdr"}}
+        #sim-graph-body.panel-collapse.collapse{role: :tabpanel, aria: {labelledby: "sim-graph-hdr"}}
           .panel-body.sim-graph
             = icon_tag 'circle-o-notch', class: 'fa-spin'
       .panel.panel-default
         #sim-xml-hdr.panel-heading{role: :tab}
           %h4.panel-title
-            %a{role: :button, href: "#sim-xml-body", data: {parent: "#accordion"}, aria: {expanded: true, controls: "sim-xml-body"}}
+            %a{role: :button, href: "#sim-xml-body", data: {parent: "#accordion", toggle: :collapse}, aria: {expanded: false, controls: "sim-xml-body"}}
               = _("XML")
               .pull-right
                 %span.caret
-        #sim-xml-body.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "sim-xml-hdr"}}
+        #sim-xml-body.panel-collapse.collapse{role: :tabpanel, aria: {labelledby: "sim-xml-hdr"}}
           .panel-body.sim-xml
             = icon_tag 'circle-o-notch', class: 'fa-spin'
   .modal-footer

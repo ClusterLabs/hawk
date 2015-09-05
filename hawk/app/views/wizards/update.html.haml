@@ -36,7 +36,11 @@
                     - unless action['longdesc'].strip.empty?
                       %p.list-group-item-text= action['longdesc']
                     - unless action['text'].empty?
-                      %pre.bg-info= action['text']
+                      - if action['name'] == "cib"
+                        %pre
+                          %code.crmsh.hljs= action['text']
+                      - else
+                        %pre.bg-info= action['text']
             - if @wizard.need_rootpw
               .alert.alert-warning
                 %p= _("To apply the changes, Hawk requires root access, and password-less SSH access must be configured. See the Hawk documentation for more information.")
@@ -79,5 +83,9 @@
       $(".actions .list-group-item:first").removeClass("disabled").addClass("list-group-item-danger");
       var errors = $.map(xhr.responseJSON, function(e) { return '<pre class="bg-danger">' + e + '</pre>'; }).join("");
       $(".wizard-verify .notifications").html(errors);
+    });
+
+    $('.hljs').each(function(i, block) {
+      hljs.highlightBlock(block);
     });
   });
