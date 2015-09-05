@@ -11,7 +11,7 @@ module SimulatorHelper
   end
 
   def ticket_actions
-    [:grant, :revoke]
+    [:grant, :revoke, :standby, :activate]
   end
 
   def op_results
