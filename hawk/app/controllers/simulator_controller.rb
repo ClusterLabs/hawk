@@ -76,6 +76,12 @@ class SimulatorController < ApplicationController
       "-G", "#{Rails.root}/tmp/sim.graph",
       "-D", "#{Rails.root}/tmp/sim.dot",
       *injections)
+    status = $?.exitstatus
+    if status != 0
+      render :json => { error: "Internal error (simulator rc=#{status})" }, :status => 500
+      return
+    end
+    Rails.logger.debug "crm_simulate out= #{stdout}"
     f.write(stdout)
     f.close
     File.chmod(0666, f.path)
@@ -113,6 +119,7 @@ class SimulatorController < ApplicationController
       else
         svg, err, status = Util.capture3("/usr/bin/dot", "-Tsvg", "#{Rails.root}/tmp/sim.dot")
         # TODO(must): check status.exitstatus
+        Rails.logger.debug "graph/svg #{svg} / #{err} / #{status}"
         send_data svg, :type => "image/svg+xml", :disposition => "inline"
       end
     else

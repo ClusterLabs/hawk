@@ -212,10 +212,27 @@ $(function() {
         });
       };
 
+      var fetch_svg = function(node, file) {
+        $.ajax({
+          url: Routes.sim_result_path(),
+          type: "GET",
+          data: {
+            cib_id: $('body').data('cib'),
+            file: file
+          },
+          success: function(data) {
+            node.html(data);
+          },
+          error: function(xhr, status, error) {
+            node.html($('<alert class="alert alert-danger"/>').text(error));
+          }
+        });
+      };
+
       fetch_data($("#modal-lg .sim-details"), 'info');
       fetch_data($("#modal-lg .sim-cib-in"), 'in');
       fetch_data($("#modal-lg .sim-cib-out"), 'out');
-      fetch_data($("#modal-lg .sim-cib-graph"), 'graph');
+      fetch_svg($("#modal-lg .sim-cib-graph"), 'graph');
       fetch_data($("#modal-lg .sim-cib-xml"), 'graph', 'xml');
 
 
