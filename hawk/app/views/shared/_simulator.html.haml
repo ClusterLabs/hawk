@@ -49,7 +49,7 @@
         #sim-details-hdr.panel-heading{role: :tab}
           %h4.panel-title
             %a{role: :button, href: "#sim-details-body", data: {parent: "#accordion", toggle: :collapse}, aria: {expanded: true, controls: "sim-details-body"}}
-              = _("Details")
+              = _("Summary")
               .pull-right
                 %span.caret
         #sim-details-body.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "sim-details-hdr"}}
@@ -79,7 +79,7 @@
         #sim-graph-hdr.panel-heading{role: :tab}
           %h4.panel-title
             %a{role: :button, href: "#sim-graph-body", data: {parent: "#accordion", toggle: :collapse}, aria: {expanded: false, controls: "sim-graph-body"}}
-              = _("Graph")
+              = _("Transition Graph")
               .pull-right
                 %span.caret
         #sim-graph-body.panel-collapse.collapse{role: :tabpanel, aria: {labelledby: "sim-graph-hdr"}}
@@ -89,7 +89,7 @@
         #sim-xml-hdr.panel-heading{role: :tab}
           %h4.panel-title
             %a{role: :button, href: "#sim-xml-body", data: {parent: "#accordion", toggle: :collapse}, aria: {expanded: false, controls: "sim-xml-body"}}
-              = _("XML")
+              = _("Transition (XML)")
               .pull-right
                 %span.caret
         #sim-xml-body.panel-collapse.collapse{role: :tabpanel, aria: {labelledby: "sim-xml-hdr"}}
