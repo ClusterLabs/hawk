@@ -176,18 +176,19 @@ $(function() {
 
 
     self.find("#sim-results").click(function() {
-      $("#modal-lg .modal-content").html($("#sim-results").render());
+      $("#modal-lg .modal-content").html($("#sim-results-dialog").render());
 
       var fetch_data = function(node, file, format) {
         $.ajax({
           url: Routes.sim_result_path(),
           type: "GET",
+          dataType: "text",
           data: {
             cib_id: $('body').data('cib'),
             file: file,
             format: format || ''
           },
-          success: function() {
+          success: function(data) {
             node.html($('<pre/>').text(data));
           },
           error: function(xhr, status, error) {
