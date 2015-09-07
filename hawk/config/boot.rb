@@ -58,9 +58,6 @@ else
   gem "puma", version: "~> 2.11"
   require "puma"
 
-  gem "haml-rails", version: ">= 0.8"
-  require "haml-rails"
-
   gem "sass-rails", version: "~> 5.0"
   require "sass-rails"
 
@@ -73,9 +70,6 @@ else
   gem "js-routes", version: "~> 1.0"
   require "js-routes"
 
-  gem "sprockets", version: "~> 3.0"
-  require "sprockets"
-
   gem "tilt", version: "~> 1.4"
   require "tilt"
 
@@ -87,4 +81,13 @@ else
 
   gem "gettext_i18n_rails", version: "~> 1.2"
   require "gettext_i18n_rails"
+
+  gem "haml-rails", version: ">= 0.8.2"
+  require "haml-rails"
+
+  gem "sprockets", version: ">= 3.0.0"
+  require "sprockets"
+
+  gem "kramdown", version: ">= 1.3.3"
+  require "kramdown"
 end

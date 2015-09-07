@@ -197,12 +197,26 @@ module ApplicationHelper
   end
 
   def localized_help_for(section, subsection)
-    text = ""
-    [params[:locale], :en].each do |locale|
-      path = "#{Rails.root}/config/help/#{section}/#{subsection}.#{locale}.html"
-      text = IO.read(path).html_safe if File.exists?(path)
+    [
+      I18n.locale,
+      :en
+    ].each do |locale|
+      path = Rails.root.join(
+        "config",
+        "help",
+        locale.to_s,
+        section.to_s,
+        "#{subsection}.md"
+      )
+
+      next unless path.file?
+
+      return Kramdown::Document.new(
+        path.read
+      ).to_html.html_safe
     end
-    text
+
+    ""
   end
 
   def docs_path

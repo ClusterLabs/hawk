@@ -31,6 +31,7 @@ default["hawk"]["webui"]["packages"] = [
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-sprockets",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-tilt-1_4",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-hashie",
+  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-kramdown",
 
   # Development dependencies
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-web-console",
