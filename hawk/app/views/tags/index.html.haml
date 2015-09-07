@@ -9,3 +9,18 @@
   .row
     .panel.panel-default
       %table.table.table-striped.tags
+
+- content_for :rightbar do
+  .container-fluid{ data: { spy: "affix" } }
+    .row.tag
+      = localized_help_for :resources, :tag
+
+    - Tag.mapping.each do |key, values|
+      .row{ class: key }
+
+        - next unless values[:longdesc]
+
+        %h2.margin-bottom
+          = key
+
+        = simple_format values[:longdesc]

@@ -4,10 +4,13 @@
       = icon_text "file-o", _("Edit Template"), class: "page"
       .pull-right
         .btn-group{ role: "group" }
-          = link_to icon_text("trash", _("Delete")), cib_template_path(cib_id: @cib.id, id: @primitive.id), method: "delete", confirm: _("Are you sure you wish to delete %s?") % @primitive.id, class: "btn btn-default"
+          = link_to icon_text("trash", _("Delete")), cib_template_path(cib_id: @cib.id, id: @primitive.id), method: "delete", class: "btn btn-default", data: { confirm: _("Are you sure you wish to delete %s?") % @primitive.id }
+          = link_to icon_text("list-ul", _("List")), cib_templates_path, class: "btn btn-default"
 
   .row
     = render partial: "primitives/form", locals: { cib: @cib, primitive: @primitive }
 
 - content_for :rightbar do
-  .container-fluid{ data: { spy: "affix" } }
+  .container-fluid.rightbar_help{ data: { spy: "affix" } }
+    .row.template
+      = localized_help_for :resources, :template

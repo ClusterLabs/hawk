@@ -2,12 +2,18 @@
   .row
     %h1
       = icon_text "copy", _("Create Clone"), class: "page"
+      .pull-right
+        .btn-group{ role: "group" }
+          = link_to icon_text("list-ul", _("List")), cib_clones_path, class: "btn btn-default"
 
   .row
     = render partial: "form", locals: { cib: @cib, clone: @clone }
 
 - content_for :rightbar do
   .container-fluid{ data: { spy: "affix" } }
+    .row.clone
+      = localized_help_for :resources, :clone
+
     - @clone.mapping.each do |key, values|
       - next unless values[:longdesc]
 

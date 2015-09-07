@@ -2,6 +2,9 @@
   .row
     %h1
       = icon_text "file-o", _("Create Primitive"), class: "page"
+      .pull-right
+        .btn-group{ role: "group" }
+          = link_to icon_text("list-ul", _("List")), cib_primitives_path, class: "btn btn-default"
 
   .row
     = render partial: "form", locals: { cib: @cib, primitive: @primitive }
@@ -10,11 +13,12 @@
   .container-fluid{ data: { spy: "affix" } }
     .row.primitive
       = localized_help_for :resources, :primitive
-    /- @primitive.mapping.each do |key, values|
-    /  - next unless values[:longdesc]
 
-    /  .row{ class: key }
-    /    %h2.margin-bottom
-    /      = key
+    - @primitive.mapping.each do |key, values|
+      - next unless values[:longdesc]
 
-    /    = simple_format values[:longdesc]
+      .row{ class: key }
+        %h2.margin-bottom
+          = key
+
+        = simple_format values[:longdesc]

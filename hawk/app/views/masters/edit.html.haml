@@ -4,13 +4,17 @@
       = icon_text "superscript", _("Edit Multi-state"), class: "page"
       .pull-right
         .btn-group{ role: "group" }
-          = link_to icon_text("trash", _("Delete")), cib_master_path(cib_id: @cib.id, id: @master.id), method: "delete", confirm: _("Are you sure you wish to delete %s?") % @master.id, class: "btn btn-default"
+          = link_to icon_text("trash", _("Delete")), cib_master_path(cib_id: @cib.id, id: @master.id), method: "delete", class: "btn btn-default", data: { confirm: _("Are you sure you wish to delete %s?") % @master.id }
+          = link_to icon_text("list-ul", _("List")), cib_masters_path, class: "btn btn-default"
 
   .row
     = render partial: "form", locals: { cib: @cib, master: @master }
 
 - content_for :rightbar do
   .container-fluid{ data: { spy: "affix" } }
+    .row.master
+      = localized_help_for :resources, :master
+
     - @master.mapping.each do |key, values|
       - next unless values[:longdesc]
 

@@ -4,7 +4,8 @@
       = icon_text "sort-amount-desc", _("Edit Order"), class: "page"
       .pull-right
         .btn-group{ role: "group" }
-          = link_to icon_text("trash", _("Delete")), cib_order_path(cib_id: @cib.id, id: @order.id), method: "delete", confirm: _("Are you sure you wish to delete %s?") % @order.id, class: "btn btn-default"
+          = link_to icon_text("trash", _("Delete")), cib_order_path(cib_id: @cib.id, id: @order.id), method: "delete", class: "btn btn-default", data: { confirm: _("Are you sure you wish to delete %s?") % @order.id }
+          = link_to icon_text("list-ul", _("List")), cib_orders_path, class: "btn btn-default"
 
   .row
     = render partial: "form", locals: { cib: @cib, order: @order }

@@ -106,7 +106,7 @@ class TicketsController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if false #Invoker.instance.crm("--force", "configure", "delete", @ticket.id)
+      if Invoker.instance.crm("--force", "configure", "delete", @ticket.id)
         format.html do
           flash[:success] = _("Ticket deleted successfully")
           redirect_to cib_tickets_url(cib_id: @cib.id)
@@ -207,10 +207,6 @@ class TicketsController < ApplicationController
   end
 
   def default_base_layout
-    if ["new", "create", "edit", "update"].include? params[:action]
-      "withrightbar"
-    else
-      super
-    end
+    "withrightbar"
   end
 end

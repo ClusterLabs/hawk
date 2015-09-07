@@ -9,3 +9,17 @@
   .row
     .panel.panel-default
       %table.table.table-striped.masters
+
+- content_for :rightbar do
+  .container-fluid{ data: { spy: "affix" } }
+    .row.master
+      = localized_help_for :resources, :master
+
+    - Master.mapping.each do |key, values|
+      - next unless values[:longdesc]
+
+      .row{ class: key }
+        %h2.margin-bottom
+          = key
+
+        = simple_format values[:longdesc]

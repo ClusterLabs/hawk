@@ -165,11 +165,7 @@ class PrimitivesController < ApplicationController
   end
 
   def default_base_layout
-    if ["new", "create", "edit", "update"].include? params[:action]
-      "withrightbar"
-    else
-      super
-    end
+    "withrightbar"
   end
 
   def provider_params

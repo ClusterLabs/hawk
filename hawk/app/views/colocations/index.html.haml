@@ -9,3 +9,8 @@
   .row
     .panel.panel-default
       %table.table.table-striped.colocations
+
+- content_for :rightbar do
+  .container-fluid{ data: { spy: "affix" } }
+    .row.colocation
+      = localized_help_for :constraints, :colocation

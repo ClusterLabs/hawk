@@ -9,3 +9,8 @@
   .row
     .panel.panel-default
       %table.table.table-striped.templates
+
+- content_for :rightbar do
+  .container-fluid.rightbar_help{ data: { spy: "affix" } }
+    .row.template
+      = localized_help_for :resources, :template

@@ -9,3 +9,8 @@
   .row
     .panel.panel-default
       %table.table.table-striped.orders
+
+- content_for :rightbar do
+  .container-fluid{ data: { spy: "affix" } }
+    .row.order
+      = localized_help_for :constraints, :order

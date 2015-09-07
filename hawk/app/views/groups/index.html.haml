@@ -9,3 +9,16 @@
   .row
     .panel.panel-default
       %table.table.table-striped.groups
+
+- content_for :rightbar do
+  .container-fluid{ data: { spy: "affix" } }
+    .row.help-title
+      = localized_help_for :resources, :primitive
+
+    - Group.mapping.each do |key, values|
+      - next unless values[:longdesc]
+      .row.help-item{ class: key }
+        %h2.margin-bottom
+          = key
+
+        = simple_format values[:longdesc]

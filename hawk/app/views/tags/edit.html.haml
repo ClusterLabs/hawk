@@ -4,7 +4,8 @@
       = icon_text "copy", _("Edit Tag"), class: "page"
       .pull-right
         .btn-group{ role: "group" }
-          = link_to icon_text("trash", _("Delete")), cib_tag_path(cib_id: @cib.id, id: @tag.id), method: "delete", confirm: _("Are you sure you wish to delete %s?") % @tag.id, class: "btn btn-default"
+          = link_to icon_text("trash", _("Delete")), cib_tag_path(cib_id: @cib.id, id: @tag.id), method: "delete", class: "btn btn-default", data: { confirm: _("Are you sure you wish to delete %s?") % @tag.id }
+          = link_to icon_text("list-ul", _("List")), cib_tags_path, class: "btn btn-default"
 
   .row
     = localized_help_for :resources, :tag

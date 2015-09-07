@@ -2,6 +2,9 @@
   .row
     %h1
       = icon_text "file-o", _("Add a Resource Template"), class: "page"
+      .pull-right
+        .btn-group{ role: "group" }
+          = link_to icon_text("list-ul", _("List")), cib_templates_path, class: "btn btn-default"
 
   .row
     = render partial: "primitives/form", locals: { cib: @cib, primitive: @primitive }

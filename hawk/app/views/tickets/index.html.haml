@@ -9,3 +9,8 @@
   .row
     .panel.panel-default
       %table.table.table-striped.tickets
+
+- content_for :rightbar do
+  .container-fluid{ data: { spy: "affix" } }
+    .row.ticket
+      = localized_help_for :constraints, :ticket
