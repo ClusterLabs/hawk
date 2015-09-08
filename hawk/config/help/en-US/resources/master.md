@@ -1,4 +1,4 @@
-## Multi-state
+### Multi-state
 
 Multi-state resources are a specialization of clones. They allow the
 instances to be in one of two operating modes (called

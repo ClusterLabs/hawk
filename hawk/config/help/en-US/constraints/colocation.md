@@ -1,4 +1,4 @@
-## Colocation
+### Colocation
 
 A colocational constraint tells the cluster which resources may or may not run
 together on a node.

@@ -1,4 +1,4 @@
-## Clone
+### Clone
 
 Clones are resources that can run simultaneously on multiple nodes in
 your cluster.

@@ -1,4 +1,4 @@
-## Order
+### Order
 
 Ordering constraints define the order in which resources are started
 and stopped.

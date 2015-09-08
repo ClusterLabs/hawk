@@ -1,4 +1,4 @@
-## Location
+### Location
 
 A location constraint defines on which node a resource may be run, is
 preferred to be run, or may not be run.

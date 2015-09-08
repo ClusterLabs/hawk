@@ -1,3 +1,5 @@
+## Resources
+
 For every service or application that you want to be highly available,
 configure a cluster resource.  Cluster resources can include Web
 sites, e-mail servers, databases, file systems, virtual machines, and

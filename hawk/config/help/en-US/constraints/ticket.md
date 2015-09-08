@@ -1,4 +1,4 @@
-## Ticket
+### Ticket
 
 Tickets are a special type of constraint used for Geo clustering. A
 ticket grants the right to run certain resources on a specific cluster

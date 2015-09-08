@@ -1,4 +1,4 @@
-## Tag
+### Tag
 
 Tags are a way to refer to multiple resources at once, without
 creating any colocation or ordering relationship between them. You can

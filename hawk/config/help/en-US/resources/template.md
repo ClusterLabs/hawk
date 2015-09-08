@@ -1,4 +1,4 @@
-## Resource Template
+### Resource Template
 
 If you need lots of resources with similar configurations, define a
 resource template. After being defined, it can be referenced in

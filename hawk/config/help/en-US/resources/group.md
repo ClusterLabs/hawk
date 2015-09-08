@@ -1,4 +1,4 @@
-## Group
+### Group
 
 Resource groups contain a set of resources that need to be located
 together, be started sequentially and stopped in the reverse order.

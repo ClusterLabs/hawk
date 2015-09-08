@@ -1,4 +1,4 @@
-## Primitive
+### Primitive
 
 Primitive resources are the most basic type of resource.
 
