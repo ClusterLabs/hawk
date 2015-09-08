@@ -39,45 +39,57 @@ $(function() {
             e.preventDefault();
             var $self = $(this);
 
-            $.ajax({
-              dataType: 'json',
-              method: 'POST',
-              data: {
-                _method: 'delete'
-              },
-              url: Routes.cib_master_path(
-                $('body').data('cib'),
-                row.id,
-                { format: 'json' }
-              ),
+            try {
+              answer = confirm(
+                i18n.translate(
+                  'Are you sure you wish to delete %s?'
+                ).fetch(row.id)
+              );
+            } catch (e) {
+              (console.error || console.log).call(console, e.stack || e);
+            }
 
-              success: function(data) {
-                if (data.success) {
-                  $.growl({
-                    message: data.message
-                  },{
-                    type: 'success'
-                  });
+            if (answer) {
+              $.ajax({
+                dataType: 'json',
+                method: 'POST',
+                data: {
+                  _method: 'delete'
+                },
+                url: Routes.cib_master_path(
+                  $('body').data('cib'),
+                  row.id,
+                  { format: 'json' }
+                ),
 
-                  $self.parents('table').bootstrapTable('refresh')
-                } else {
-                  if (data.error) {
+                success: function(data) {
+                  if (data.success) {
                     $.growl({
-                      message: data.error
+                      message: data.message
                     },{
-                      type: 'danger'
+                      type: 'success'
                     });
+
+                    $self.parents('table').bootstrapTable('refresh')
+                  } else {
+                    if (data.error) {
+                      $.growl({
+                        message: data.error
+                      },{
+                        type: 'danger'
+                      });
+                    }
                   }
+                },
+                error: function(xhr, status, msg) {
+                  $.growl({
+                    message: xhr.responseJSON.error || msg
+                  },{
+                    type: 'danger'
+                  });
                 }
-              },
-              error: function(xhr, status, msg) {
-                $.growl({
-                  message: xhr.responseJSON.error || msg
-                },{
-                  type: 'danger'
-                });
-              }
-            });
+              });
+            }
           }
         },
         formatter: function(value, row, index) {
@@ -104,7 +116,7 @@ $(function() {
                 ),
               '" class="delete btn btn-default btn-xs" title="',
               __('Delete'),
-            '" data-confirm="' + i18n.translate('Are you sure you wish to delete %s?').fetch(row.id) + '">',
+            '">',
               '<i class="fa fa-trash"></i>',
             '</a> '
           ].join(''));

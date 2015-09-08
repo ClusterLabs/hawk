@@ -39,127 +39,163 @@ $(function() {
             e.preventDefault();
             var $self = $(this);
 
-            $.ajax({
-              dataType: 'json',
-              method: 'POST',
-              data: {
-                _method: 'delete'
-              },
-              url: Routes.cib_ticket_path(
-                $('body').data('cib'),
-                row.id,
-                { format: 'json' }
-              ),
+            try {
+              answer = confirm(
+                i18n.translate(
+                  'Are you sure you wish to delete %s?'
+                ).fetch(row.id)
+              );
+            } catch (e) {
+              (console.error || console.log).call(console, e.stack || e);
+            }
 
-              success: function(data) {
-                if (data.success) {
-                  $.growl({
-                    message: data.message
-                  },{
-                    type: 'success'
-                  });
+            if (answer) {
+              $.ajax({
+                dataType: 'json',
+                method: 'POST',
+                data: {
+                  _method: 'delete'
+                },
+                url: Routes.cib_ticket_path(
+                  $('body').data('cib'),
+                  row.id,
+                  { format: 'json' }
+                ),
 
-                  $self.parents('table').bootstrapTable('refresh')
-                } else {
-                  if (data.error) {
+                success: function(data) {
+                  if (data.success) {
                     $.growl({
-                      message: data.error
+                      message: data.message
                     },{
-                      type: 'danger'
+                      type: 'success'
                     });
+
+                    $self.parents('table').bootstrapTable('refresh')
+                  } else {
+                    if (data.error) {
+                      $.growl({
+                        message: data.error
+                      },{
+                        type: 'danger'
+                      });
+                    }
                   }
+                },
+                error: function(xhr, status, msg) {
+                  $.growl({
+                    message: xhr.responseJSON.error || msg
+                  },{
+                    type: 'danger'
+                  });
                 }
-              },
-              error: function(xhr, status, msg) {
-                $.growl({
-                  message: xhr.responseJSON.error || msg
-                },{
-                  type: 'danger'
-                });
-              }
-            });
+              });
+            }
           },
           'click .grant': function (e, value, row, index) {
             e.preventDefault();
             var $self = $(this);
 
-            $.ajax({
-              dataType: 'json',
-              method: 'GET',
-              url: Routes.grant_cib_ticket_path(
-                $('body').data('cib'),
-                row.id,
-                { format: 'json' }
-              ),
+            try {
+              answer = confirm(
+                i18n.translate(
+                  'This will request the ticket %s be granted to the present site. Do you want to continue?'
+                ).fetch(row.id)
+              );
+            } catch (e) {
+              (console.error || console.log).call(console, e.stack || e);
+            }
 
-              success: function(data) {
-                if (data.success) {
-                  $.growl({
-                    message: data.message
-                  },{
-                    type: 'success'
-                  });
+            if (answer) {
+              $.ajax({
+                dataType: 'json',
+                method: 'GET',
+                url: Routes.grant_cib_ticket_path(
+                  $('body').data('cib'),
+                  row.id,
+                  { format: 'json' }
+                ),
 
-                  $self.parents('table').bootstrapTable('refresh')
-                } else {
-                  if (data.error) {
+                success: function(data) {
+                  if (data.success) {
                     $.growl({
-                      message: data.error
+                      message: data.message
                     },{
-                      type: 'danger'
+                      type: 'success'
                     });
+
+                    $self.parents('table').bootstrapTable('refresh')
+                  } else {
+                    if (data.error) {
+                      $.growl({
+                        message: data.error
+                      },{
+                        type: 'danger'
+                      });
+                    }
                   }
+                },
+                error: function(xhr, status, msg) {
+                  $.growl({
+                    message: xhr.responseJSON.error || msg
+                  },{
+                    type: 'danger'
+                  });
                 }
-              },
-              error: function(xhr, status, msg) {
-                $.growl({
-                  message: xhr.responseJSON.error || msg
-                },{
-                  type: 'danger'
-                });
-              }
-            });
+              });
+            }
           },
           'click .revoke': function (e, value, row, index) {
             e.preventDefault();
             var $self = $(this);
 
-            $.ajax({
-              dataType: 'json',
-              method: 'GET',
-              url: Routes.revoke_cib_ticket_path(
-                $('body').data('cib'),
-                row.id,
-                { format: 'json' }
-              ),
+            try {
+              answer = confirm(
+                i18n.translate(
+                  'This will request the ticket %s be revoked. Do you want to continue?'
+                ).fetch(row.id)
+              );
+            } catch (e) {
+              (console.error || console.log).call(console, e.stack || e);
+            }
 
-              success: function(data) {
-                if (data.success) {
-                  $.growl({
-                    message: data.message
-                  },{
-                    type: 'success'
-                  });
+            if (answer) {
+              $.ajax({
+                dataType: 'json',
+                method: 'GET',
+                url: Routes.revoke_cib_ticket_path(
+                  $('body').data('cib'),
+                  row.id,
+                  { format: 'json' }
+                ),
 
-                  $self.parents('table').bootstrapTable('refresh')
-                } else {
-                  if (data.error) {
+                success: function(data) {
+                  if (data.success) {
                     $.growl({
-                      message: data.error
+                      message: data.message
                     },{
-                      type: 'danger'
+                      type: 'success'
                     });
+
+                    $self.parents('table').bootstrapTable('refresh')
+                  } else {
+                    if (data.error) {
+                      $.growl({
+                        message: data.error
+                      },{
+                        type: 'danger'
+                      });
+                    }
                   }
+                },
+                error: function(xhr, status, msg) {
+                  $.growl({
+                    message: xhr.responseJSON.error || msg
+                  },{
+                    type: 'danger'
+                  });
                 }
-              },
-              error: function(xhr, status, msg) {
-                $.growl({
-                  message: xhr.responseJSON.error || msg
-                },{
-                  type: 'danger'
-                });
-              }
-            });
+              });
+            }
           }
         },
         formatter: function(value, row, index) {
@@ -173,7 +209,7 @@ $(function() {
               ),
             '" class="grant btn btn-default btn-xs" title="',
               __('Grant'),
-            '" data-confirm="' + i18n.translate('This will request the ticket %s be granted to the present site. Do you want to continue?').fetch(row.id) + '">',
+            '">',
               '<i class="fa fa-plus"></i>',
             '</a> '
           ].join(''));
@@ -186,7 +222,7 @@ $(function() {
               ),
             '" class="revoke btn btn-default btn-xs" title="',
               __('Revoke'),
-            '" data-confirm="' + i18n.translate('This will request the ticket %s be revoked. Do you want to continue?').fetch(row.id) + '">',
+            '">',
               '<i class="fa fa-remove"></i>',
             '</a> '
           ].join(''));
@@ -212,7 +248,7 @@ $(function() {
                 ),
               '" class="delete btn btn-default btn-xs" title="',
               __('Delete'),
-            '" data-confirm="' + i18n.translate('Are you sure you wish to delete %s?').fetch(row.id) + '">',
+            '">',
               '<i class="fa fa-trash"></i>',
             '</a> '
           ].join(''));

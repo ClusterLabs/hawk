@@ -343,7 +343,17 @@ $(function() {
             e.preventDefault();
             var $self = $(this);
 
-            if (confirm(i18n.translate('Are you sure you wish to delete %s?').fetch(row.id))) {
+            try {
+              answer = confirm(
+                i18n.translate(
+                  'Are you sure you wish to delete %s?'
+                ).fetch(row.id)
+              );
+            } catch (e) {
+              (console.error || console.log).call(console, e.stack || e);
+            }
+
+            if (answer) {
               $.ajax({
                 dataType: 'json',
                 method: 'POST',

@@ -131,9 +131,4 @@
 
 $(function() {
   $('[data-monitor]').monitorCheck();
-
-  // $('body').on('checked.hawk.monitor', function() { console.log('checked'); });
-  // $('body').on('updated.hawk.monitor', function() { console.log('updated'); });
-  // $('body').on('unavailable.hawk.monitor', function() { console.log('unavailable'); });
-  // $('body').on('aborted.hawk.monitor', function() { console.log('aborted'); });
 });
