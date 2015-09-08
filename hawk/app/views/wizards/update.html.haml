@@ -63,29 +63,3 @@
       = @wizard.shortdesc
     .row
       = longdesc_format @wizard.longdesc
-:javascript
-  $(function() {
-    $("form").validate();
-    $("form").submit(function() {
-      if (!$("form").valid()) {
-        $('form').validate().focusInvalid();
-        return false;
-      }
-
-      $(".notifications").html('<div class="alert alert-info"><i class="fa fa-spinner fa-spin fa-2x"></i> ' + __("Applying configuration changes...") + '</div>');
-      $(".actions .list-group-item").addClass("disabled");
-      $("form .submit").addClass("disabled");
-    });
-    $(".wizard-verify .form-horizontal").on("ajax:success", function(e, data, status, xhr) {
-      $(".notifications").html('<div class="alert alert-success">' + __("Changes applied successfully.") + '</div>');
-      $(".actions .list-group-item").removeClass("disabled").addClass("list-group-item-success");
-    }).on("ajax:error", function(e, xhr, status, error) {
-      $(".actions .list-group-item:first").removeClass("disabled").addClass("list-group-item-danger");
-      var errors = $.map(xhr.responseJSON, function(e) { return '<pre class="bg-danger">' + e + '</pre>'; }).join("");
-      $(".wizard-verify .notifications").html(errors);
-    });
-
-    $('.hljs').each(function(i, block) {
-      hljs.highlightBlock(block);
-    });
-  });
