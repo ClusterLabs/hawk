@@ -86,7 +86,6 @@ module WizardHelper
     end
   end
 
-
   def longdesc_format(text)
     text.gsub!(/([^\n])\n([^\n])/, '\1 \2')
     simple_format(html_escape(text), {}, sanitize: false)

@@ -211,12 +211,18 @@ module ApplicationHelper
 
       next unless path.file?
 
-      return Kramdown::Document.new(
+      return markdown_help(
         path.read
-      ).to_html.html_safe
+      )
     end
 
     ""
+  end
+
+  def markdown_help(content)
+    Kramdown::Document.new(
+      content
+    ).to_html.html_safe
   end
 
   def docs_path
