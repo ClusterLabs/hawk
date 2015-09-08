@@ -3,6 +3,7 @@
 
 $(function() {
   $('[data-toggle="tooltip"]').tooltip();
+  $('[data-toggle="popover"]').popover();
   $('.nav-tabs').stickyTabs();
 
   $('ul.list-group.sortable').sortable({
