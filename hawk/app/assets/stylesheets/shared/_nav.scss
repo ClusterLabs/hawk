@@ -8,14 +8,15 @@
 
   &.nav-bighelp {
     li {
-      a {
-        font-size: 20px;
-        line-height: 40px;
-        margin-bottom: 20px;
-        padding: 20px;
-        color: #000;
-        text-align: left;
+      font-size: 20px;
+      line-height: 40px;
+      margin-bottom: 20px;
+      padding: 20px;
+      color: #000;
+      text-align: left;
 
+      a,
+      & > span {
         & > i {
           padding-right: 10px;
         }
@@ -31,8 +32,34 @@
         }
       }
 
+      & > span {
+        display: block;
+
+        .pull-right {
+          font-size: 30px;
+        }
+      }
+
       &:last-child a {
         margin-bottom: 0;
+      }
+
+      ul {
+        margin-top: 20px;
+
+        li {
+          margin: 0;
+          padding: 0;
+
+          a {
+            color: #000;
+            font-size: 15px;
+
+            .pull-right {
+              font-size: 20px;
+            }
+          }
+        }
       }
     }
   }

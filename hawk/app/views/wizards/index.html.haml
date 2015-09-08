@@ -3,25 +3,31 @@
     %h1
       = icon_text "magic", _("Choose a wizard"), class: "page"
 
-  .row{ data: { help_target: "#rightbar > .container-fluid > *" } }
-    %ul.nav.nav-pills.nav-stacked.nav-topspace
-      - categories(@wizards).each do |category|
-        %li
-          %h3
+  .row
+    %ul.nav.nav-pills.nav-stacked.nav-bighelp.nav-topspace{ data: { help_target: "#rightbar > .rightbar_help > *" } }
+      - wizard_categories(@wizards).each do |category|
+        %li.btn.btn-default.btn-lg
+          %span{ href: "##{category}", data: { toggle: "collapse", parent: ".nav-bighelp" } }
             - if category == "wizard"
-              = _("Legacy Wizards")
+              = icon_text wizard_icon(category), _("Legacy Wizards")
             - else
-              = category.titleize
-        - @wizards.sort_by(&:name).each do |wizard|
-          - next unless wizard.category.eql?(category)
-          %li
-            = link_to cib_wizard_path(cib_id: current_cib.id, id: wizard.name), data: { help_filter: ".#{wizard.name}" } do
-              = wizard.shortdesc
-              .pull-right
-                = icon_tag "plus-circle"
+              = icon_text wizard_icon(category), category.titleize
+
+            .pull-right
+              = icon_tag "chevron-down"
+
+          %ul.nav.nav-pills.nav-stacked.collapse{ id: category }
+            - @wizards.sort_by(&:name).each do |wizard|
+              - next unless wizard.category.eql?(category)
+
+              %li
+                = link_to cib_wizard_path(cib_id: current_cib.id, id: wizard.name), data: { help_filter: ".#{wizard.name}" } do
+                  = wizard.shortdesc
+                  .pull-right
+                    = icon_tag "plus-circle"
 
 - content_for :rightbar do
-  .container-fluid{ data: { spy: "affix" } }
+  .container-fluid.rightbar_help{ data: { spy: "affix" } }
     - @wizards.each do |wizard|
       .row{ class: wizard.name }
         %h2.margin-bottom

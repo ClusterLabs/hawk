@@ -69,9 +69,23 @@ module WizardHelper
     hidden_fields.join("\n")
   end
 
-  def categories(wizards)
+  def wizard_categories(wizards)
     wizards.map { |w| w.category }.uniq.sort
   end
+
+  def wizard_icon(wizard)
+    case wizard
+    when "database"
+      "database"
+    when "filesystem"
+      "hdd-o"
+    when "server"
+      "server"
+    else
+      "list"
+    end
+  end
+
 
   def longdesc_format(text)
     text.gsub!(/([^\n])\n([^\n])/, '\1 \2')
