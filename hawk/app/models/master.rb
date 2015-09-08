@@ -1,7 +1,7 @@
 # Copyright (c) 2009-2015 Tim Serong <tserong@suse.com>
 # See COPYING for license.
 
-class Master < Record
+class Master < Resource
   attribute :id, String
   attribute :child, String
   attribute :meta, Hash, default: {}
@@ -22,6 +22,12 @@ class Master < Record
   end
 
   class << self
+    def all
+      super.select do |record|
+        record.is_a? self
+      end
+    end
+
     def instantiate(xml)
       record = allocate
 

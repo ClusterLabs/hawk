@@ -1,7 +1,10 @@
 .container-fluid
   .row
     %h1
-      = icon_text 'code', _('Add a resource'), class: 'page'
+      = icon_text "code", _("Add a resource"), class: "page"
+      .pull-right
+        .btn-group{ role: "group" }
+          = link_to icon_text("list-ul", _("List")), cib_resources_path, class: "btn btn-default"
 
   .row
     = localized_help_for :resources, :intro

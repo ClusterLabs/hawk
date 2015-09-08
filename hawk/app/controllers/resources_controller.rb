@@ -6,26 +6,43 @@ class ResourcesController < ApplicationController
   before_filter :set_title
   before_filter :set_cib
 
-  before_filter :god_required, only: [:events]
-
   def index
     respond_to do |format|
       format.html
+      format.json do
+        render json: Resource.all.reject { |resource|
+          resource.object_type == "template"
+        }.to_json
+      end
+    end
+  end
+
+  def status
+    respond_to do |format|
       format.json do
         render json: @cib.primitives.to_json
       end
     end
   end
 
+  def types
+    respond_to do |format|
+      format.html
+    end
+  end
+
   def show
-    @resource = Record.find params[:id]
-    render layout: "modal"
+    @resource = Resource.find params[:id]
+
+    respond_to do |format|
+      format.html
+    end
   end
 
   protected
 
   def set_title
-    @title = _('Resources')
+    @title = _("Resources")
   end
 
   def set_cib
@@ -33,10 +50,14 @@ class ResourcesController < ApplicationController
   end
 
   def default_base_layout
-    if params[:action] == "types"
+    if ["index", "types"].include? params[:action]
       "withrightbar"
     else
-      super
+      if params[:action] == "show"
+        "modal"
+      else
+        super
+      end
     end
   end
 end

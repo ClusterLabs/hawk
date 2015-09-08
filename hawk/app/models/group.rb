@@ -1,7 +1,7 @@
 # Copyright (c) 2009-2015 Tim Serong <tserong@suse.com>
 # See COPYING for license.
 
-class Group < Record
+class Group < Resource
   attribute :id, String
   attribute :children, Array[String]
   attribute :meta, Hash, default: {}
@@ -20,6 +20,12 @@ class Group < Record
   end
 
   class << self
+    def all
+      super.select do |record|
+        record.is_a? self
+      end
+    end
+
     def instantiate(xml)
       record = allocate
 

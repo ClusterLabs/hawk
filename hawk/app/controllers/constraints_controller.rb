@@ -6,9 +6,16 @@ class ConstraintsController < ApplicationController
   before_filter :set_title
   before_filter :set_cib
 
-  before_filter :god_required, only: [:events]
-
   def index
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: Constraint.all.to_json
+      end
+    end
+  end
+
+  def status
     respond_to do |format|
       format.json do
         render json: @cib.constraints.to_json
@@ -22,10 +29,18 @@ class ConstraintsController < ApplicationController
     end
   end
 
+  def show
+    @constraint = Constraint.find params[:id]
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
   protected
 
   def set_title
-    @title = _('Constraints')
+    @title = _("Constraints")
   end
 
   def set_cib
@@ -33,10 +48,14 @@ class ConstraintsController < ApplicationController
   end
 
   def default_base_layout
-    if params[:action] == "types"
+    if ["index", "types"].include? params[:action]
       "withrightbar"
     else
-      super
+      if params[:action] == "show"
+        "modal"
+      else
+        super
+      end
     end
   end
 end

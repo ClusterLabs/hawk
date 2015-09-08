@@ -1,7 +1,28 @@
 .container-fluid
   .modal-header
-    %h4= icon_text "search", "<code>#{@resource.id}</code> <small>#{@resource.type}</small>"
+    %h4
+      = icon_tag "search"
+
+      = _("Resource:")
+      = @resource.id
+
+      %small
+        = @resource.object_type
+
   .modal-body
+
+
+
+
+
+
+
+
+
+
+
+
+
     .row
       .panel-group#r-info{role: :tablist, aria: {multiselectable: true}}
         .panel.panel-default
@@ -57,8 +78,12 @@
                     - variants.each do |v|
                       - if v.has_key? "interval"
                         %td= content_tag :code, v["interval"]
-      
-  .modal-footer
-    %button.btn.btn-default{type: :button, data: {dismiss: :modal}}
-      = _("Close")
 
+
+
+
+
+
+  .modal-footer
+    %button.btn.btn-default{ type: "button", data: { dismiss: "modal" } }
+      = _("Close")

@@ -13,6 +13,12 @@ class Primitive < Template
   end
 
   class << self
+    def all
+      super.select do |record|
+        record.class.to_s == self.to_s
+      end
+    end
+
     def instantiate(xml)
       record = super
       record.template = xml.attributes["template"] || ""

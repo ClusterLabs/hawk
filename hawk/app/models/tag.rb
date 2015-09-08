@@ -1,7 +1,7 @@
 # Copyright (c) 2009-2015 Tim Serong <tserong@suse.com>
 # See COPYING for license.
 
-class Tag < Record
+class Tag < Resource
   attribute :id, String
   attribute :refs, Array[String]
 
@@ -20,6 +20,12 @@ class Tag < Record
   end
 
   class << self
+    def all
+      super.select do |record|
+        record.is_a? self
+      end
+    end
+
     def instantiate(xml)
       record = allocate
 

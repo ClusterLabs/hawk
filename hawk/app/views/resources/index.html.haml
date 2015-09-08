@@ -1,0 +1,14 @@
+.container-fluid
+  .row
+    %h1
+      = icon_text "code", _("Resources"), class: "page"
+      .pull-right
+        .btn-group{ role: "group" }
+          = link_to icon_text("plus", _("Create")), types_cib_resources_path, class: "btn btn-default"
+
+  .row
+    .panel.panel-default
+      %table.table.table-striped.resources
+
+- content_for :rightbar do
+  .container-fluid{ data: { spy: "affix" } }

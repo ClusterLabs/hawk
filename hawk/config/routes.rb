@@ -66,6 +66,7 @@ Rails.application.routes.draw do
 
       collection do
         get :types
+        get :status
       end
     end
 
@@ -86,6 +87,7 @@ Rails.application.routes.draw do
 
       collection do
         get :types
+        get :status
       end
     end
 

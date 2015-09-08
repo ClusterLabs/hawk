@@ -1,7 +1,7 @@
 # Copyright (c) 2009-2015 Tim Serong <tserong@suse.com>
 # See COPYING for license.
 
-class Template < Record
+class Template < Resource
   attribute :id, String
   attribute :clazz, String, default: "ocf"
   attribute :provider, String
@@ -31,6 +31,12 @@ class Template < Record
   end
 
   class << self
+    def all
+      super.select do |record|
+        record.class.to_s == self.to_s
+      end
+    end
+
     def instantiate(xml)
       record = allocate
       record.clazz = xml.attributes["class"] || ""
@@ -374,17 +380,6 @@ class Template < Record
           ].join("=")
         end
       end
-
-
-
-
-
-      raise cmd.join(" ").inspect
-
-
-
-
-
     end.join(" ")
   end
 end

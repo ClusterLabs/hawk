@@ -1,13 +1,23 @@
 # Copyright (c) 2009-2015 Tim Serong <tserong@suse.com>
 # See COPYING for license.
 
-class Resource < CibObject
+class Resource < Record
+  class CommandError < StandardError
+  end
+
+  attribute :object_type, Symbol
+
+  def object_type
+    self.class.to_s.downcase
+  end
+
   class << self
     def all
-      # Doesn't actually work - only gets top-level resources, not
-      # e.g.: primitive children of groups or clones.
-      super("resources", true)
+      super(true)
+    end
+
+    def cib_type_fetch
+      :resources
     end
   end
 end
-

@@ -1,0 +1,18 @@
+.container-fluid
+  .modal-header
+    %h4
+      = icon_tag "search"
+
+      = _("Constraint:")
+      = @constraint.id
+
+      %small
+        = @constraint.object_type
+
+  .modal-body
+
+
+
+  .modal-footer
+    %button.btn.btn-default{ type: "button", data: { dismiss: "modal" } }
+      = _("Close")
