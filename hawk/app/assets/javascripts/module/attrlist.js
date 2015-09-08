@@ -68,45 +68,16 @@
         '{{/props}}',
 
         '<div class="form-group addition" data-link="visible{:remaining.length > 0}">',
-          '<div class="col-sm-5 select">',
-            '<select class="form-control select" name="temp[selector]">',
-              '<option></option>',
-              '{^{for remaining}}',
-                '<option value="{{:#data}}">',
-                  '{{:#data}}',
-                '</option>',
-              '{{/for}}',
-            '</select>',
-          '</div>',
-
-          '<div class="col-sm-7 setter">',
+          '<div class="col-sm-offset-5 col-sm-7 select">',
             '<div class="input-group">',
-              '{^{if select == \'disabled\'}}',
-                '<input class="form-control text-field" type="number" name="temp[value]" value="" disabled="disabled" />',
-              '{{else select != \'disabled\' && mapping[select][\'type\'] == \'enum\'}}',
-                '<select class="form-control select" name="temp[value]" data-link="mapping[select][\'default\']">',
-                  '<option></option>',
-                  '{^{for #parent.data.mapping[select][\'values\']}}',
-                    '<option value="{{:#data}}">',
-                      '{{:#data}}',
-                    '</option>',
-                  '{{/for}}',
-                '</select>',
-              '{{else select != \'disabled\' && mapping[select][\'type\'] == \'boolean\'}}',
-                '<select class="form-control select" name="temp[value]" data-link="mapping[select][\'default\']">',
-                  '<option value="true">',
-                    '{{>#parent.data.true_label}}',
+              '<select class="form-control select" name="temp[selector]">',
+                '<option></option>',
+                '{^{for remaining}}',
+                  '<option value="{{:#data}}">',
+                    '{{:#data}}',
                   '</option>',
-                  '<option value="false">',
-                    '{{>#parent.data.false_label}}',
-                  '</option>',
-                '</select>',
-              '{{else select != \'disabled\' && mapping[select][\'type\'] == \'integer\'}}',
-                '<input class="form-control text-field" type="number" name="temp[value]" data-link="mapping[select][\'default\']" />',
-              '{{else}}',
-                '<input class="form-control text-field" type="text" name="temp[value]" data-link="mapping[select][\'default\']" />',
-              '{{/if}}',
-
+                '{{/for}}',
+              '</select>',
               '<div class="input-group-btn">',
                 '<a href="#" class="create btn btn-default" title="{{>create_label}}">',
                   '<i class="fa fa-plus fa-lg fa-fw"></i>',
@@ -171,23 +142,19 @@
               .attr('data-confirm', __('Any changes will be lost - do you wish to proceed?'))
               .end();
       })
-      .on('click', '.addition .setter .create', function(e) {
+      .on('click', '.addition .select .create', function(e) {
         e.preventDefault();
 
         var key = $(e.currentTarget)
           .parents('.addition')
           .find('.select select').val();
 
-        var value = $(e.currentTarget)
-          .parents('.addition')
-          .find('.setter .form-control').val();
-
         if (key !== '') {
           $.observable(
             content['entries']
           ).setProperty(
             key,
-            value || ''
+            self.mapping[key]['default'] || ''
           );
 
           $.observable(
@@ -202,10 +169,6 @@
           $(e.currentTarget)
             .parents('.addition')
             .find('.select select').val(null);
-
-          $(e.currentTarget)
-            .parents('.addition')
-            .find('.setter .form-control').val(null);
 
           $.observable(
             content
@@ -256,3 +219,4 @@
 $(function() {
   $('[data-attrlist]').attrList();
 });
+
