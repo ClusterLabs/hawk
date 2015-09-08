@@ -6,7 +6,7 @@
   .row
     %ul.nav.nav-pills.nav-stacked.nav-bighelp.nav-topspace{ data: { help_target: "#rightbar > .rightbar_help > *" } }
       - wizard_categories(@wizards).each do |category|
-        %li.btn.btn-default.btn-lg
+        %li.toggable.btn.btn-default.btn-lg
           %span{ href: "##{category}", data: { toggle: "collapse", parent: ".nav-bighelp" } }
             - if category == "wizard"
               = icon_text wizard_icon(category), _("Legacy Wizards")
