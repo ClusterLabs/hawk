@@ -126,10 +126,43 @@ class PrimitivesController < ApplicationController
     end
   end
 
-  def options
+  def metas
     respond_to do |format|
-      format.json do
-        render json: Primitive.options.to_json
+      format.html do
+        render partial: "meta", locals: {
+          clazz: params[:clazz],
+          provider: params[:provider],
+          type: params[:type],
+          meta: {}
+        }
+      end
+      format.any { not_found  }
+    end
+  end
+
+  def parameters
+    respond_to do |format|
+      format.html do
+        render partial: "params", locals: {
+          clazz: params[:clazz],
+          provider: params[:provider],
+          type: params[:type],
+          params: {}
+        }
+      end
+      format.any { not_found  }
+    end
+  end
+
+  def operations
+    respond_to do |format|
+      format.html do
+        render partial: "ops", locals: {
+          clazz: params[:clazz],
+          provider: params[:provider],
+          type: params[:type],
+          ops: {}
+        }
       end
       format.any { not_found  }
     end

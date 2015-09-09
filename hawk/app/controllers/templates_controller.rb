@@ -126,6 +126,48 @@ class TemplatesController < ApplicationController
     end
   end
 
+  def metas
+    respond_to do |format|
+      format.html do
+        render partial: "meta", locals: {
+          clazz: params[:clazz],
+          provider: params[:provider],
+          type: params[:type],
+          meta: {}
+        }
+      end
+      format.any { not_found  }
+    end
+  end
+
+  def parameters
+    respond_to do |format|
+      format.html do
+        render partial: "params", locals: {
+          clazz: params[:clazz],
+          provider: params[:provider],
+          type: params[:type],
+          params: {}
+        }
+      end
+      format.any { not_found  }
+    end
+  end
+
+  def operations
+    respond_to do |format|
+      format.html do
+        render partial: "ops", locals: {
+          clazz: params[:clazz],
+          provider: params[:provider],
+          type: params[:type],
+          ops: {}
+        }
+      end
+      format.any { not_found  }
+    end
+  end
+
   protected
 
   def feature_support

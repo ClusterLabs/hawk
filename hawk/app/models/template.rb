@@ -30,6 +30,18 @@ class Template < Resource
     self.class.options
   end
 
+  def available_meta(opts = {})
+    self.class.available_params opts
+  end
+
+  def available_params(opts = {})
+    self.class.available_params opts
+  end
+
+  def available_ops(opts = {})
+    self.class.available_ops opts
+  end
+
   class << self
     def all
       super.select do |record|
@@ -69,21 +81,54 @@ class Template < Resource
         {}
       end
 
-      ops = {}
-      xml.elements['operations'].elements.each do |e|
-        name = e.attributes['name']
-        ops[name] = [] unless ops[name]
-        op = Hash[e.attributes.collect{|a| a.to_a}]
-        op.delete 'name'
-        op.delete 'id'
-        if name == "monitor"
-          # special case for OCF_CHECK_LEVEL
-          cl = e.elements['instance_attributes/nvpair[@name="OCF_CHECK_LEVEL"]']
-          op["OCF_CHECK_LEVEL"] = cl.attributes['value'] if cl
+      record.ops = if xml.elements["operations"]
+        # ops = {}
+        # xml.elements['operations'].elements.each do |e|
+        #   name = e.attributes['name']
+        #   ops[name] = [] unless ops[name]
+        #   op = Hash[e.attributes.collect{|a| a.to_a}]
+        #   op.delete 'name'
+        #   op.delete 'id'
+        #   if name == "monitor"
+        #     # special case for OCF_CHECK_LEVEL
+        #     cl = e.elements['instance_attributes/nvpair[@name="OCF_CHECK_LEVEL"]']
+        #     op["OCF_CHECK_LEVEL"] = cl.attributes['value'] if cl
+        #   end
+        #   ops[name].push op
+        # end
+        # ops
+
+        vals = xml.elements["operations"].elements.collect do |el|
+          key = el.attributes["name"]
+
+          ops = el.attributes.collect do |name, value|
+            next if ["id", "name"].include? name
+
+            [
+              name,
+              value
+            ]
+          end.compact
+
+          if key == "monitor"
+            cl = e.elements["instance_attributes/nvpair[@name=\"OCF_CHECK_LEVEL\"]"]
+
+            ops.push [
+              "OCF_CHECK_LEVEL",
+              cl.attributes["value"]
+            ] if cl
+          end
+
+          [
+            key,
+            Hash[ops]
+          ]
         end
-        ops[name].push op
-      end if xml.elements['operations']
-      record.ops = ops
+
+        Hash[vals]
+      else
+        {}
+      end
 
       record
     end
@@ -96,11 +141,12 @@ class Template < Resource
       Rails.cache.fetch(:crm_ra_classes, expires_in: 2.hours) do
         {}.tap do |result|
           clazzes = %x[/usr/sbin/crm ra classes].split(/\n/)
-          clazzes.delete("heartbeat") unless File.exists?("/etc/ha.d/resource.d")
+          clazzes.delete("heartbeat") unless File.directory?("/etc/ha.d/resource.d")
 
           clazzes.each do |clazz|
             next if clazz.start_with?(".")
-            s = clazz.split("/").map { |x| x.strip }
+            s = clazz.split("/").map(&:strip)
+
             if s.length >= 2
               clazz = s[0]
 
@@ -125,174 +171,198 @@ class Template < Resource
     end
 
     def types(params = {})
-      cmd = ["/usr/sbin/crm", "ra", "list"]
-      cmd.push params[:clazz] if params[:clazz]
-      cmd.push params[:provider] if params[:provider]
+      cmd = [].tap do |cmd|
+        cmd.push "/usr/sbin/crm"
+        cmd.push "ra"
+        cmd.push "list"
+
+        if params[:clazz]
+          cmd.push params[:clazz]
+        end
+
+        if params[:provider]
+          cmd.push params[:provider]
+        end
+      end
+
       Util.safe_x(*cmd).split(/\s+/).sort do |a, b|
         a.natcmp(b, true)
       end
     end
 
-
-
-
-
-    def metadata(c, p, t)
-      m = {
-        :shortdesc => "",
-        :longdesc => "",
-        :parameters => {},
-        :ops => {},
-        :meta => {
-          "allow-migrate" => {
-            type: "boolean",
-            default: "false",
-            longdesc: _("Set to true if the resource agent supports the migrate action")
-          },
-          "is-managed" => {
-            type: "boolean",
-            default: "true",
-            longdesc: _("Is the cluster allowed to start and stop the resource?")
-          },
-          "maintenance" => {
-            type: "boolean",
-            default: "false"
-          },
-          "interval-origin" => {
-            type: "integer",
-            default: "0"
-          },
-          "migration-threshold" => {
-            type: "integer",
-            default: "0",
-            longdesc: _("How many failures may occur for this resource on a node, before this node is marked ineligible to host this resource. A value of INFINITY indicates that this feature is disabled.")
-          },
-          "priority" => {
-            type: "integer",
-            default: "0",
-            longdesc: _("If not all resources can be active, the cluster will stop lower priority resources in order to keep higher priority ones active.")
-          },
-          "multiple-active" => {
-            type: "enum",
-            default: "stop_start",
-            values: ["block", "stop_only", "stop_start"],
-            longdesc: _("What should the cluster do if it ever finds the resource active on more than one node?")
-          },
-          "failure-timeout" => {
-            type: "integer",
-            default: "0",
-            longdesc: _("How many seconds to wait before acting as if the failure had not occurred, and potentially allowing the resource back to the node on which it failed. A value of 0 indicates that this feature is disabled.")
-          },
-          "resource-stickiness" => {
-            type: "integer",
-            default: "0",
-            longdesc: _("How much does the resource prefer to stay where it is?")
-          },
-          "target-role" => {
-            type: "enum",
-            default: "Started",
-            values: ["Started", "Stopped", "Master"],
-            longdesc: _("What state should the cluster attempt to keep this resource in?")
-          },
-          "restart-type" => {
-            type: "enum",
-            default: "ignore",
-            values: ["ignore", "restart"]
-          },
-          "description" => {
-            type: "string",
-            default: ""
-          },
-          "requires" => {
-            type: "enum",
-            default: "fencing",
-            values: ["nothing", "quorum", "fencing"],
-            longdesc: _("Conditions under which the resource can be started.")
-          },
-          "remote-node" => {
-            type: "string",
-            default: "",
-            longdesc: _("The name of the remote-node this resource defines. This both enables the resource as a remote-node and defines the unique name used to identify the remote-node. If no other parameters are set, this value will also be assumed as the hostname to connect to at the port specified by remote-port. WARNING: This value cannot overlap with any resource or node IDs. If not specified, this feature is disabled.")
-          },
-          "remote-port" => {
-            type: "integer",
-            default: 3121,
-            longdesc: _("Port to use for the guest connection to pacemaker_remote.")
-          },
-          "remote-addr" => {
-            type: "string",
-            default: "",
-            longdesc: _("The IP address or hostname to connect to if remote-node's name is not the hostname of the guest.")
-          },
-          "remote-connect-timeout" => {
-            type: "string",
-            default: "60s",
-            longdesc: _("How long before a pending guest connection will time out.")
-          }
-        }
-      }
-      return m if c.empty? or t.empty?
-
-      # crm_resource --show-metadata is good since at least pacemaker 1.1.8,
-      # which we require now anyway (previously we were using lrmd_test with
-      # a fallback to lrmadmin, but lrmd_test lives in cts and lrmadmin is gone)
-      xml = REXML::Document.new(Util.safe_x("/usr/sbin/crm_resource", "--show-metadata",
-                                            p.empty? ? "#{c}:#{t}" : "#{c}:#{p}:#{t}"))
-
-      return m unless xml.root
-      # TODO(should): select by language (en), likewise below
-      m[:shortdesc] = Util.get_xml_text(xml.root.elements["shortdesc"])
-      m[:longdesc]  = Util.get_xml_text(xml.root.elements["longdesc"])
-      xml.elements.each("//parameter") do |e|
-        m[:parameters][e.attributes["name"]] = {
-          :shortdesc => Util.get_xml_text(e.elements["shortdesc"]),
-          :longdesc  => Util.get_xml_text(e.elements["longdesc"]),
-          type: e.elements["content"].attributes["type"],
-          default: e.elements["content"].attributes["default"],
-          :required => e.attributes["required"].to_i == 1 ? true : false
-        }
-      end
-      xml.elements.each("//action") do |e|
-        name = e.attributes["name"]
-        m[:ops][name] = [] unless m[:ops][name]
-        op = Hash[e.attributes.collect{|a| a.to_a}]
-        op.delete "name"
-        op.delete "depth"
-        # There"s at least one case (ocf:ocfs2:o2cb) where the
-        # monitor op doesn"t specify an interval, so we set a
-        # "reasonable" default
-        if name == "monitor" && !op.has_key?("interval")
-          op["interval"] = "20"
-        end
-        m[:ops][name].push op
-      end
-      m
+    def available_meta(params = {})
+      mapping[:meta]
     end
 
+    def available_params(params = {})
+      path = [
+        params[:clazz],
+        params[:provider],
+        params[:type]
+      ].compact.reject(&:empty?).join(":")
 
+      xml = REXML::Document.new(
+        Util.safe_x(
+          "/usr/sbin/crm_resource",
+          "--show-metadata",
+          path
+        )
+      )
 
+      return {} unless xml.root
 
+      {}.tap do |result|
+        xml.elements.each("//parameter") do |el|
+          name = el.attributes["name"]
 
+          shortdesc = if el.elements["shortdesc[@lang=\"#{I18n.locale.to_s.gsub("-", "_")}\"]|shortdesc[@lang=\"en\"]"]
+            el.elements["shortdesc[@lang=\"#{I18n.locale.to_s.gsub("-", "_")}\"]|shortdesc[@lang=\"en\"]"].text || ""
+          elsif el.elements["shortdesc"]
+            el.elements["shortdesc"].text || ""
+          end
 
+          longdesc = if el.elements["longdesc[@lang=\"#{I18n.locale.to_s.gsub("-", "_")}\"]|longdesc[@lang=\"en\"]"]
+            el.elements["longdesc[@lang=\"#{I18n.locale.to_s.gsub("-", "_")}\"]|longdesc[@lang=\"en\"]"].text || ""
+          elsif el.elements["longdesc"]
+            el.elements["longdesc"].text || ""
+          end
 
+          result[name] = {
+            shortdesc: shortdesc,
+            longdesc: longdesc,
+            type: el.elements["content"].attributes["type"],
+            default: el.elements["content"].attributes["default"],
+            required: el.attributes["required"].to_i == 1 ? true : false
+          }
+        end
+      end
+    end
 
+    def available_ops(params = {})
+      path = [
+        params[:clazz],
+        params[:provider],
+        params[:type]
+      ].compact.reject(&:empty?).join(":")
 
+      xml = REXML::Document.new(
+        Util.safe_x(
+          "/usr/sbin/crm_resource",
+          "--show-metadata",
+          path
+        )
+      )
 
+      return {} unless xml.root
 
+      {}.tap do |result|
+        xml.elements.each("//action") do |el|
+          name = el.attributes["name"]
 
+          ops = Hash[el.attributes.collect { |a| a.to_a }]
+          ops.delete "name"
+          ops.delete "depth"
 
+          if name == "monitor" && !ops.has_key?("interval")
+            ops["interval"] = "20"
+          end
 
-
-
-
-
-
+          result[name] ||= {}
+          result[name].merge! ops
+        end
+      end
+    end
 
     def mapping
-      # TODO(must): Are other meta attributes for primitive valid?
       @mapping ||= begin
         {
-
+          meta: {
+            "allow-migrate" => {
+              type: "boolean",
+              default: "false",
+              longdesc: _("Set to true if the resource agent supports the migrate action")
+            },
+            "is-managed" => {
+              type: "boolean",
+              default: "true",
+              longdesc: _("Is the cluster allowed to start and stop the resource?")
+            },
+            "maintenance" => {
+              type: "boolean",
+              default: "false"
+            },
+            "interval-origin" => {
+              type: "integer",
+              default: "0"
+            },
+            "migration-threshold" => {
+              type: "integer",
+              default: "0",
+              longdesc: _("How many failures may occur for this resource on a node, before this node is marked ineligible to host this resource. A value of INFINITY indicates that this feature is disabled.")
+            },
+            "priority" => {
+              type: "integer",
+              default: "0",
+              longdesc: _("If not all resources can be active, the cluster will stop lower priority resources in order to keep higher priority ones active.")
+            },
+            "multiple-active" => {
+              type: "enum",
+              default: "stop_start",
+              values: ["block", "stop_only", "stop_start"],
+              longdesc: _("What should the cluster do if it ever finds the resource active on more than one node?")
+            },
+            "failure-timeout" => {
+              type: "integer",
+              default: "0",
+              longdesc: _("How many seconds to wait before acting as if the failure had not occurred, and potentially allowing the resource back to the node on which it failed. A value of 0 indicates that this feature is disabled.")
+            },
+            "resource-stickiness" => {
+              type: "integer",
+              default: "0",
+              longdesc: _("How much does the resource prefer to stay where it is?")
+            },
+            "target-role" => {
+              type: "enum",
+              default: "Started",
+              values: ["Started", "Stopped", "Master"],
+              longdesc: _("What state should the cluster attempt to keep this resource in?")
+            },
+            "restart-type" => {
+              type: "enum",
+              default: "ignore",
+              values: ["ignore", "restart"]
+            },
+            "description" => {
+              type: "string",
+              default: ""
+            },
+            "requires" => {
+              type: "enum",
+              default: "fencing",
+              values: ["nothing", "quorum", "fencing"],
+              longdesc: _("Conditions under which the resource can be started.")
+            },
+            "remote-node" => {
+              type: "string",
+              default: "",
+              longdesc: _("The name of the remote-node this resource defines. This both enables the resource as a remote-node and defines the unique name used to identify the remote-node. If no other parameters are set, this value will also be assumed as the hostname to connect to at the port specified by remote-port. WARNING: This value cannot overlap with any resource or node IDs. If not specified, this feature is disabled.")
+            },
+            "remote-port" => {
+              type: "integer",
+              default: 3121,
+              longdesc: _("Port to use for the guest connection to pacemaker_remote.")
+            },
+            "remote-addr" => {
+              type: "string",
+              default: "",
+              longdesc: _("The IP address or hostname to connect to if remote-node's name is not the hostname of the guest.")
+            },
+            "remote-connect-timeout" => {
+              type: "string",
+              default: "60s",
+              longdesc: _("How long before a pending guest connection will time out.")
+            }
+          }
         }
       end
     end
@@ -310,17 +380,6 @@ class Template < Resource
       merge_operations(ops)
       merge_nvpairs("instance_attributes", params)
       merge_nvpairs("meta_attributes", meta)
-
-
-
-
-
-      Rails.logger.debug(xml.inspect)
-      raise xml.inspect
-
-
-
-
 
       Invoker.instance.cibadmin_replace xml.to_s
     rescue NotFoundError, SecurityError, RuntimeError => e

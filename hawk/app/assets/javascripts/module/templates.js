@@ -131,7 +131,7 @@ $(function() {
     });
 
   $('#templates #middle form')
-    .on('change', '#template_clazz', function(e) {
+    .on('change', 'select#template_clazz', function(e) {
       var $form = $(e.delegateTarget);
       var $clazz = $form.find('#template_clazz');
       var $provider = $form.find('#template_provider');
@@ -158,7 +158,7 @@ $(function() {
         .end();
       $type.val('');
     })
-    .on('change', '#template_provider', function(e) {
+    .on('change', 'select#template_provider', function(e) {
       var $form = $(e.delegateTarget);
 
       var $clazz = $form.find('#template_clazz');
@@ -174,7 +174,89 @@ $(function() {
 
       $type.val('');
     })
-    .find('#template_clazz, #template_provider')
+    .on('change', 'select#template_clazz, select#template_provider, select#template_type', function(e) {
+      var $form = $(e.delegateTarget);
+
+      var $clazz = $form.find('#template_clazz');
+      var $provider = $form.find('#template_provider');
+      var $type = $form.find('#template_type');
+
+      $.ajax({
+        dataType: 'html',
+        method: 'POST',
+        data: {
+          clazz: $clazz.val(),
+          provider: $provider.val(),
+          type: $type.val()
+        },
+        url: Routes.metas_cib_templates_path(
+          $('body').data('cib')
+        ),
+        success: function(data) {
+          $('#metalist').html(data);
+          $('#metalist [data-attrlist]').attrList();
+        },
+        error: function(xhr, status, msg) {
+          console.log('error', arguments);
+          $.growl({
+            message: __('Failed to fetch meta attributes')
+          },{
+            type: 'danger'
+          });
+        }
+      });
+
+      $.ajax({
+        dataType: 'html',
+        method: 'POST',
+        data: {
+          clazz: $clazz.val(),
+          provider: $provider.val(),
+          type: $type.val()
+        },
+        url: Routes.parameters_cib_templates_path(
+          $('body').data('cib')
+        ),
+        success: function(data) {
+          $('#paramslist').html(data);
+          $('#paramslist [data-attrlist]').attrList();
+        },
+        error: function(xhr, status, msg) {
+          console.log('error', arguments);
+          $.growl({
+            message: __('Failed to fetch parameters')
+          },{
+            type: 'danger'
+          });
+        }
+      });
+
+      $.ajax({
+        dataType: 'html',
+        method: 'POST',
+        data: {
+          clazz: $clazz.val(),
+          provider: $provider.val(),
+          type: $type.val()
+        },
+        url: Routes.operations_cib_templates_path(
+          $('body').data('cib')
+        ),
+        success: function(data) {
+          $('#opslist').html(data);
+          $('#opslist [data-attrlist]').attrList();
+        },
+        error: function(xhr, status, msg) {
+          console.log('error', arguments);
+          $.growl({
+            message: __('Failed to fetch operations')
+          },{
+            type: 'danger'
+          });
+        }
+      });
+    })
+    .find('select#template_clazz, select#template_provider')
       .trigger('change');
 
   // $('#templates #middle form')

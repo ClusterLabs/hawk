@@ -8,7 +8,7 @@
           = link_to icon_text("list-ul", _("List")), cib_templates_path, class: "btn btn-default"
 
   .row
-    = render partial: "primitives/form", locals: { cib: @cib, primitive: @primitive }
+    = render partial: "form", locals: { cib: @cib, primitive: @primitive }
 
 - content_for :rightbar do
   .container-fluid.rightbar_help{ data: { spy: "affix" } }

@@ -44,17 +44,6 @@ class Primitive < Template
       merge_nvpairs("instance_attributes", params)
       merge_nvpairs("meta_attributes", meta)
 
-
-
-
-
-      Rails.logger.debug(xml.inspect)
-      raise xml.inspect
-
-
-
-
-
       Invoker.instance.cibadmin_replace xml.to_s
     rescue NotFoundError, SecurityError, RuntimeError => e
       errors.add :base, e.message

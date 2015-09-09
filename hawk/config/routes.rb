@@ -71,12 +71,18 @@ Rails.application.routes.draw do
     end
 
     resources :primitives do
-      member do
-        get :intervals
-      end
-
       collection do
-        get :options
+        post :metas
+        post :parameters
+        post :operations
+      end
+    end
+
+    resources :templates do
+      collection do
+        post :metas
+        post :parameters
+        post :operations
       end
     end
 
@@ -109,7 +115,6 @@ Rails.application.routes.draw do
     resources :colocations
     resources :orders
     resources :groups
-    resources :templates
     resources :roles
     resources :users
     resources :tags

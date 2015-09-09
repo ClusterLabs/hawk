@@ -1,0 +1,8 @@
+- if template_meta_for(clazz: clazz, provider: provider, type: type).present?
+  %fieldset{ data: { attrlist: meta.to_json, attrlist_mapping: template_meta_for(clazz: clazz, provider: provider, type: type).to_json, attrlist_prefix: "template[meta]", attrlist_target: ".content" } }
+    %legend
+      = _("Meta Attributes")
+      %span.pull-right.toggleable
+        = icon_tag("chevron-up")
+
+    .content
