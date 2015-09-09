@@ -5,9 +5,8 @@
   width: 300px;
 
   &.darkbar {
-    background-color: #2b2b2b;
+    background-color: $upstream-strong-blue;
     border-radius: 0px 0px 8px 8px;
-    border: solid 1px #333;
   }
 
   .alert {
@@ -32,12 +31,16 @@
     margin: 50px 20px 55px 20px;
 
     a {
-      color: #00b268;
+      color: #059aaa;
       text-decoration: none;
 
       &:hover {
-        color: #00b268;
+        color: #059aaa;
         text-decoration: none;
+      }
+
+      &.upstream {
+      color: $upstream-strong-blue;
       }
     }
   }

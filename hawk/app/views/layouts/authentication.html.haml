@@ -33,7 +33,8 @@
       %p.logo
         = image_tag "logo/white.png", alt: _("SUSE, LLC")
 
-      %h2
+
+      %h2.upstream
         = link_to _("High Availability Web Konsole"), login_path
 
       = render partial: "shared/flash", locals: { flash: flash }

@@ -8,13 +8,22 @@ html {
 
 body {
   font-family: "Raleway", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
   color: #3a3e40;
   height: 100%;
   cursor: default;
+  @include gradient-directional($start-color: rgba(5,153,170,1), $end-color: rgba(5,85,94,1), $deg: 45deg)
+}
 
-  background: linear-gradient(to right, #1fad7a 0, #80c235 100%);
-  background: -moz-linear-gradient(left, #1fad7a 0, #80c235 100%);
-  background: -webkit-gradient(linear, left top, right top, color-stop(0,#1fad7a), color-stop(100%,#80c235));
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+.btn {
+  font-weight: 600;
+}
+
+.fa-lg {
+  font-size: 0.8em;
+}
+
+.form-control {
+  height: 33px;
 }
