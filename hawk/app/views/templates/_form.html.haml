@@ -6,17 +6,11 @@
       - if primitive.new_record?
         = main_form.text_field :id, label: _("Resource ID")
 
-        - if Util.has_feature?(:rsc_template) && primitive.resource?
-          = main_form.select :template, :primitive_template_options, { include_blank: true, include_hidden: false }, { label: _("Template") }
-
-        = main_form.select :clazz, :primitive_clazz_options, { include_blank: true, include_hidden: false }, { label: _("Class") }
-        = main_form.select :provider, :primitive_provider_options, { include_blank: true, include_hidden: false }, { label: _("Provider") }
-        = main_form.select :type, :primitive_type_options, { include_blank: true, include_hidden: false }, { label: _("Type") }
+        = main_form.select :clazz, :template_clazz_options, { include_blank: true, include_hidden: false }, { label: _("Class") }
+        = main_form.select :provider, :template_provider_options, { include_blank: true, include_hidden: false }, { label: _("Provider") }
+        = main_form.select :type, :template_type_options, { include_blank: true, include_hidden: false }, { label: _("Type") }
       - else
         = main_form.text_field :id, label: _("Primitive ID"), readonly: true
-
-        - if Util.has_feature?(:rsc_template) && primitive.resource?
-          = main_form.text_field :template, label: _("Template"), readonly: true
 
         = main_form.text_field :clazz, label: _("Class"), readonly: true
         = main_form.text_field :provider, label: _("Provider"), readonly: true

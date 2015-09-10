@@ -200,6 +200,92 @@ $(function() {
 
       $type.val('');
     })
+    .on('change', 'select#primitive_template, select#primitive_clazz, select#primitive_provider, select#primitive_type', function(e) {
+      var $form = $(e.delegateTarget);
+
+      var $template = $form.find('#primitive_template');
+      var $clazz = $form.find('#primitive_clazz');
+      var $provider = $form.find('#primitive_provider');
+      var $type = $form.find('#primitive_type');
+
+      $.ajax({
+        dataType: 'html',
+        method: 'POST',
+        data: {
+          template: $template.val(),
+          clazz: $clazz.val(),
+          provider: $provider.val(),
+          type: $type.val()
+        },
+        url: Routes.metas_cib_primitives_path(
+          $('body').data('cib')
+        ),
+        success: function(data) {
+          $('#metalist').html(data);
+          $('#metalist [data-attrlist]').attrList();
+        },
+        error: function(xhr, status, msg) {
+          console.log('error', arguments);
+          $.growl({
+            message: __('Failed to fetch meta attributes')
+          },{
+            type: 'danger'
+          });
+        }
+      });
+
+      $.ajax({
+        dataType: 'html',
+        method: 'POST',
+        data: {
+          template: $template.val(),
+          clazz: $clazz.val(),
+          provider: $provider.val(),
+          type: $type.val()
+        },
+        url: Routes.parameters_cib_primitives_path(
+          $('body').data('cib')
+        ),
+        success: function(data) {
+          $('#paramslist').html(data);
+          $('#paramslist [data-attrlist]').attrList();
+        },
+        error: function(xhr, status, msg) {
+          console.log('error', arguments);
+          $.growl({
+            message: __('Failed to fetch parameters')
+          },{
+            type: 'danger'
+          });
+        }
+      });
+
+      $.ajax({
+        dataType: 'html',
+        method: 'POST',
+        data: {
+          template: $template.val(),
+          clazz: $clazz.val(),
+          provider: $provider.val(),
+          type: $type.val()
+        },
+        url: Routes.operations_cib_primitives_path(
+          $('body').data('cib')
+        ),
+        success: function(data) {
+          $('#opslist').html(data);
+          $('#opslist [data-attrlist]').attrList();
+        },
+        error: function(xhr, status, msg) {
+          console.log('error', arguments);
+          $.growl({
+            message: __('Failed to fetch operations')
+          },{
+            type: 'danger'
+          });
+        }
+      });
+    })
     .find('#primitive_template, #primitive_clazz, #primitive_provider')
       .trigger('change');
 

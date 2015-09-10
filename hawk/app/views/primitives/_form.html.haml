@@ -22,29 +22,17 @@
         = main_form.text_field :provider, label: _("Provider"), readonly: true
         = main_form.text_field :type, label: _("Type"), readonly: true
 
-      %fieldset{ data: { attrlist: primitive.meta.to_json, attrlist_mapping: primitive.mapping[:meta].to_json, attrlist_prefix: "#{primitive.object_type}[meta]", attrlist_target: ".content" } }
-        %legend
-          = _("Meta Attributes")
-          %span.pull-right.toggleable
-            = icon_tag("chevron-up")
+      #metalist
+        - if primitive.persisted?
+          = render partial: "meta", locals: { clazz: primitive.clazz, provider: primitive.provider, type: primitive.type, meta: primitive.meta }
 
-        .content
+      #paramslist
+        - if primitive.persisted?
+          = render partial: "params", locals: { clazz: primitive.clazz, provider: primitive.provider, type: primitive.type, params: primitive.params }
 
-      %fieldset{ data: { attrlist: primitive.params.to_json, attrlist_mapping: primitive.parameters(clazz: primitive.clazz, provider: primitive.provider, type: primitive.type).to_json, attrlist_prefix: "#{primitive.object_type}[params]", attrlist_target: ".content" } }
-        %legend
-          = _("Parameters")
-          %span.pull-right.toggleable
-            = icon_tag("chevron-up")
-
-        .content
-
-      %fieldset
-        %legend
-          = _("Operations")
-          %span.pull-right.toggleable
-            = icon_tag("chevron-up")
-
-        .content
+      #opslist
+        - if primitive.persisted?
+          = render partial: "ops", locals: { clazz: primitive.clazz, provider: primitive.provider, type: primitive.type, ops: primitive.ops }
 
       = main_form.button_group do
         - if primitive.new_record?

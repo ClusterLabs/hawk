@@ -1,0 +1,13 @@
+- if template_ops_for(clazz: clazz, provider: provider, type: type).present?
+  %fieldset
+    %legend
+      = _("Operations")
+      %span.pull-right.toggleable
+        = icon_tag("chevron-up")
+
+    .content
+      %p= template_ops_for(clazz: clazz, provider: provider, type: type)
+      %p= ops
+      %p= clazz
+      %p= provider
+      %p= type

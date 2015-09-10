@@ -127,13 +127,15 @@ class PrimitivesController < ApplicationController
   end
 
   def metas
+    m, clazz, provider, type = partial_attributes(:meta)
+
     respond_to do |format|
       format.html do
         render partial: "meta", locals: {
-          clazz: params[:clazz],
-          provider: params[:provider],
-          type: params[:type],
-          meta: {}
+          clazz: clazz,
+          provider: provider,
+          type: type,
+          meta: m
         }
       end
       format.any { not_found  }
@@ -141,13 +143,15 @@ class PrimitivesController < ApplicationController
   end
 
   def parameters
+    p, clazz, provider, type = partial_attributes(:params)
+
     respond_to do |format|
       format.html do
         render partial: "params", locals: {
-          clazz: params[:clazz],
-          provider: params[:provider],
-          type: params[:type],
-          params: {}
+          clazz: clazz,
+          provider: provider,
+          type: type,
+          params: p
         }
       end
       format.any { not_found  }
@@ -155,13 +159,15 @@ class PrimitivesController < ApplicationController
   end
 
   def operations
+    o, clazz, provider, type = partial_attributes(:ops)
+
     respond_to do |format|
       format.html do
         render partial: "ops", locals: {
-          clazz: params[:clazz],
-          provider: params[:provider],
-          type: params[:type],
-          ops: {}
+          clazz: clazz,
+          provider: provider,
+          type: type,
+          ops: o
         }
       end
       format.any { not_found  }
@@ -169,6 +175,30 @@ class PrimitivesController < ApplicationController
   end
 
   protected
+
+  def partial_attributes(attr)
+    if params[:template].empty?
+      [
+        {},
+        params[:clazz],
+        params[:provider],
+        params[:type]
+      ]
+    else
+      template = ::Template.find params[:template]
+
+      if template.nil?
+        not_found
+      end
+
+      [
+        template.send(attr) || {},
+        template.clazz,
+        template.provider,
+        template.type
+      ]
+    end
+  end
 
   def set_title
     @title = _("Primitives")

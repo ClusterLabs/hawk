@@ -29,9 +29,9 @@
 #
 #======================================================================
 
-module PrimitivesHelper
+module PrimitiveHelper
   def primitive_template_options(selected)
-    options = Template.ordered.map do |template|
+    options = ::Template.ordered.map do |template|
       [
         template.id,
         template.id,
@@ -51,7 +51,7 @@ module PrimitivesHelper
 
   def primitive_clazz_options(selected)
     options = [].tap do |result|
-      Template.options.each do |clazz, providers|
+      ::Primitive.options.each do |clazz, providers|
         next if clazz.empty?
 
         result.push [
@@ -69,7 +69,7 @@ module PrimitivesHelper
 
   def primitive_provider_options(selected)
     options = [].tap do |result|
-      Template.options.each do |clazz, providers|
+      ::Primitive.options.each do |clazz, providers|
         providers.each do |provider, types|
           next if provider.empty?
 
@@ -92,7 +92,7 @@ module PrimitivesHelper
 
   def primitive_type_options(selected)
     options = [].tap do |result|
-      Template.options.each do |clazz, providers|
+      ::Primitive.options.each do |clazz, providers|
         providers.each do |provider, types|
           types.each do |type|
             next if type.empty?
@@ -114,5 +114,27 @@ module PrimitivesHelper
       options,
       selected
     )
+  end
+
+  def primitive_meta_for(options = {})
+    primitive_values_for(:available_meta, options)
+  end
+
+  def primitive_params_for(options = {})
+    primitive_values_for(:available_params, options)
+  end
+
+  def primitive_ops_for(options = {})
+    primitive_values_for(:available_ops, options)
+  end
+
+  protected
+
+  def primitive_values_for(method, options = {})
+    ::Primitive.send(method, {
+      clazz: options[:clazz],
+      provider: options[:provider],
+      type: options[:type]
+    })
   end
 end

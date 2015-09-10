@@ -65,7 +65,7 @@ class Primitive < Template
           type
         ].reject(&:nil?).reject(&:empty?).join(":")
       else
-        cmd.push template
+        cmd.push "@#{template}"
       end
 
       unless params.empty?

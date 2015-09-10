@@ -1,0 +1,8 @@
+- if primitive_meta_for(clazz: clazz, provider: provider, type: type).present?
+  %fieldset{ data: { attrlist: meta.to_json, attrlist_mapping: primitive_meta_for(clazz: clazz, provider: provider, type: type).to_json, attrlist_prefix: "primitive[meta]", attrlist_target: ".content" } }
+    %legend
+      = _("Meta Attributes")
+      %span.pull-right.toggleable
+        = icon_tag("chevron-up")
+
+    .content
