@@ -263,11 +263,60 @@ class Template < Resource
           ops.delete "name"
           ops.delete "depth"
 
-          if name == "monitor" && !ops.has_key?("interval")
-            ops["interval"] = "20"
+          result[name] ||= {
+            "interval" => {
+              type: "string",
+              default: default_interval ||= 0, # default_interval??
+              required: name == "monitor"
+            },
+            "timeout" => {
+              type: "string",
+              default: "0",
+              required: true
+            },
+            "requires" => {
+              type: "enum",
+              default: "fencing",
+              values: ["nothing", "quorum", "fencing"]
+            },
+            "enabled" => {
+              type: "boolean",
+              default: "true"
+            },
+            "role" => {
+              type: "enum",
+              default: "",
+              values: ["Stopped", "Started", "Slave", "Master"]
+            },
+            "on-fail" => {
+              type: "enum",
+              default: "stop",
+              values: ["ignore", "block", "stop", "restart", "standby", "fence"]
+            },
+            "start-delay" => {
+              type: "string",
+              default: "0"
+            },
+            "interval-origin" => {
+              type: "string",
+              default: "0"
+            },
+            "record-pending" => {
+              type: "boolean",
+              default: "false"
+            },
+            "description" => {
+              type: "string",
+              default: ""
+            }
+          }
+          if name == "monitor"
+            result[name]["OCF_CHECK_LEVEL"] = {
+              type: "string",
+              default: "0"
+            }
           end
 
-          result[name] ||= {}
           result[name].merge! ops
         end
       end
