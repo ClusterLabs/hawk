@@ -73,7 +73,7 @@ class Invoker
   # Returns 'true' on successful execution, or STDERR output on failure.
   def crm_script(rootpw, scriptdir, *cmd)
     cmd2 = ["crm", "--scriptdir=#{scriptdir}", "script"] + cmd
-    Rails.logger.debug cmd2
+    CrmEvents.instance.push cmd2
     # TODO(must): figure out if this join thing is kosher (should be, all input looks like plain text... :-/)
     out, err, status = Util.capture3('/usr/bin/su', '--login', 'root', '-c', cmd2.join(' '), :stdin_data => rootpw)
     result = ""
@@ -96,6 +96,7 @@ class Invoker
     # good for testing when running as root), or some other alternative
     # with piping data to crm?
     File.chmod(0666, f.path)
+    CrmEvents.instance.push "#{f.path} = #{cmd}"
     result = crm('-F', 'configure', 'load', 'update', f.path)
     f.unlink
     result
@@ -144,6 +145,11 @@ class Invoker
 
   # Returns 'true' on successful execution, or STDERR output on failure.
   def invoke_crm(input, *cmd)
+    if input
+      CrmEvents.instance.push "crm #{cmd.join(' ')}\n#{input}"
+    else
+      CrmEvents.instance.push "crm #{cmd.join(' ')}"
+    end
     cmd << { :stdin_data => input }
     out, err, status = run_as(current_user, 'crm', *cmd)
     result = fudge_error(status.exitstatus, err)

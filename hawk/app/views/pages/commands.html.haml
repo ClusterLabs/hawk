@@ -1,0 +1,18 @@
+.container-fluid
+  .row
+    %h1
+      = icon_text "code", _("Command Log"), class: "page"
+
+  .row
+    .panel.panel-default
+      .panel-body
+        .row
+          .col-sm-12
+            .alert.alert-info
+              = _("Lists crm commands recently executed by hawk, most recent first.")
+        .row
+          .col-sm-12
+            .commands
+              - @cmds.reverse.each do |cmd|
+                %pre
+                  %code.crmsh.hljs= cmd

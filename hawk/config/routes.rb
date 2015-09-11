@@ -167,6 +167,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get "commands" => "pages#commands", :as => :commands
+
   get "monitor" => "pages#monitor", :as => :monitor
   get "help" => "pages#help", :as => :help
 

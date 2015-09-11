@@ -68,6 +68,19 @@ class PagesController < ApplicationController
     render json: body
   end
 
+  def commands
+    @title = _("Commands")
+
+    @cmds = CrmEvents.instance.cmds
+
+    respond_to do |format|
+      format.html
+      format.json do
+        render json: @cmds
+      end
+    end
+  end
+
   protected
 
   def detect_modal_layout
