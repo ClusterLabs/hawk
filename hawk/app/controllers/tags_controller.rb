@@ -11,7 +11,7 @@ class TagsController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render json: Tag.ordered.to_json
+        render json: current_cib.tags.to_json
       end
     end
   end

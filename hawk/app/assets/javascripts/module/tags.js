@@ -29,6 +29,15 @@ $(function() {
         switchable: false,
         clickToSelect: true
       }, {
+        field: 'refs',
+        title: __('Objects'),
+        sortable: true,
+        switchable: false,
+        clickToSelect: true,
+        formatter: function(value, row, index) {
+          return value.join(", ");
+        }
+      }, {
         field: 'operate',
         title: __('Operations'),
         sortable: false,
