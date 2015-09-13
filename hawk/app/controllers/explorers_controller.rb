@@ -199,17 +199,13 @@ class ExplorersController < ApplicationController
   end
 
   def generate_start
-    @generate_start ||= Time.zone
-      .now
-      .ago(6.days)
-      .beginning_of_day
+    @generate_start ||= Time.now
+      .ago(1.hour)
       .strftime("%b %d, %Y %H:%M")
   end
 
   def generate_until
-    @generate_until ||= Time.zone
-      .now
-      .end_of_day
+    @generate_until ||= Time.now
       .strftime("%b %d, %Y %H:%M")
   end
 

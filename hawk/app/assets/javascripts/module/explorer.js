@@ -48,8 +48,8 @@ $(function() {
   $('#explorers #middle .rangefield')
     .daterangepicker({
       format: 'MM/DD/YYYY HH:mm',
-      startDate: moment().subtract(6, 'days').startOf('day'),
-      endDate: moment().endOf('day'),
+      startDate: moment().subtract(1, 'hour'),
+      endDate: moment(),
       maxDate: moment().endOf('month').endOf('day'),
 
       showDropdowns: true,
