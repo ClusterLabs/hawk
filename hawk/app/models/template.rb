@@ -111,7 +111,7 @@ class Template < Resource
           end.compact
 
           if key == "monitor"
-            cl = e.elements["instance_attributes/nvpair[@name=\"OCF_CHECK_LEVEL\"]"]
+            cl = el.elements["instance_attributes/nvpair[@name=\"OCF_CHECK_LEVEL\"]"]
 
             ops.push [
               "OCF_CHECK_LEVEL",
