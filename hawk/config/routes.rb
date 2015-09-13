@@ -136,8 +136,6 @@ Rails.application.routes.draw do
   resources :agents, only: [:show]
 
   scope :reports do
-    resource :heartbeat
-
     resources :explorers, only: [:index, :destroy] do
       collection do
         post :generate
