@@ -53,3 +53,7 @@
 
       %li{ class: active_menu_with(:configs) }
         = link_to _("Configuration"), edit_cib_crm_config_path(cib_id: current_cib.id)
+
+
+      %li{ class: active_menu_with(:commands) }
+        = link_to _("Command Log"), commands_path
