@@ -1,6 +1,8 @@
 # Copyright (c) 2009-2015 Tim Serong <tserong@suse.com>
 # See COPYING for license.
 
+require 'singleton'
+
 class NotFoundError < RuntimeError
 end
 
@@ -10,14 +12,8 @@ end
 # a "current_user" method into this class.
 #
 class Invoker
+  include Singleton
   include FastGettext::Translation
-
-  @@instance = Invoker.new
-  def self.instance
-    return @@instance
-  end
-  private_class_method :new
-
   include Util
 
   # Invoke some command, returning true or [exitstatus, message]
