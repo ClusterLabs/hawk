@@ -135,20 +135,18 @@ Rails.application.routes.draw do
 
   resources :agents, only: [:show]
 
-  scope :reports do
-    resources :explorers, only: [:index, :destroy] do
-      collection do
-        post :generate
-        post :upload
-      end
+  resources :explorers, only: [:index, :destroy] do
+    collection do
+      post :generate
+      post :upload
+    end
 
-      member do
-        get ":page(.:format)" => "explorers#show", as: :show
-        get ":page/detail(.:format)" => "explorers#detail", as: :detail
-        get ":page/transition(.:format)" => "explorers#transition", as: :transition
-        get ":page/diff(.:format)" => "explorers#diff", as: :diff
-        get ":page/logs(.:format)" => "explorers#logs", as: :logs
-      end
+    member do
+      get ":page(.:format)" => "explorers#show", as: :show
+      get ":page/detail(.:format)" => "explorers#detail", as: :detail
+      get ":page/transition(.:format)" => "explorers#transition", as: :transition
+      get ":page/diff(.:format)" => "explorers#diff", as: :diff
+      get ":page/logs(.:format)" => "explorers#logs", as: :logs
     end
   end
 
