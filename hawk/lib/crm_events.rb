@@ -5,31 +5,41 @@
 # Stores a log of crm commands executed by hawk.
 # This log can then be retrieved and displayed in the UI.
 
-class CrmEvents
-  attr_accessor :cmds
-  attr_accessor :limit
+require 'singleton'
 
-  def initialize
-    Rails.logger.debug "CrmEvents.initialize"
-    @cmds = []
-    @limit = 100
-  end
+class CrmEvents
+  include Singleton
 
   def push(cmd)
-    Rails.logger.debug "CrmEvents.instance.push #{cmd} (#{@cmds.length})"
     cmd = cmd.join(" ") if cmd.is_a? Array
-    @cmds << cmd
-    len = @cmds.length
-    @cmds = @cmds.drop(len - @limit) if len > @limit
+    Rails.logger.debug "CrmEvents.instance.push #{cmd}"
+    begin
+      File.delete(path) if File.mtime(path) < Time.now.ago(1.day)
+    rescue
+    end
+    begin
+      open(path, 'a') do |f|
+        f << cmd
+        f << "@@COMMAND-END@@\n"
+      end
+    rescue Exception => e
+      Rails.logger.debug "CrmEvents: #{e.message}"
+    end
   end
 
   def cmds
-    @cmds
+    begin
+      File.read(path).split("@@COMMAND-END@@\n").map do |cmd|
+        cmd.strip
+      end
+    rescue
+      []
+    end
   end
 
-  def self.instance
-    @@instance ||= new
-  end
+  private
 
-  private_class_method :new
+  def path
+    Rails.root.join("tmp", "commands.log")
+  end
 end
