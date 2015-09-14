@@ -131,7 +131,7 @@ $(function() {
     });
 
   $('#primitives #middle form')
-    .on('change', '#primitive_template', function(e) {
+    .on('change', 'select#primitive_template', function(e) {
       var $form = $(e.delegateTarget);
       var $template = $form.find('#primitive_template');
       var $clazz = $form.find('#primitive_clazz');
@@ -157,7 +157,7 @@ $(function() {
         }
       }
     })
-    .on('change', '#primitive_clazz', function(e) {
+    .on('change', 'select#primitive_clazz', function(e) {
       var $form = $(e.delegateTarget);
       var $clazz = $form.find('#primitive_clazz');
       var $provider = $form.find('#primitive_provider');
@@ -184,7 +184,7 @@ $(function() {
         .end();
       $type.val('');
     })
-    .on('change', '#primitive_provider', function(e) {
+    .on('change', 'select#primitive_provider', function(e) {
       var $form = $(e.delegateTarget);
 
       var $clazz = $form.find('#primitive_clazz');

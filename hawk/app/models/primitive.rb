@@ -4,6 +4,36 @@
 class Primitive < Template
   attribute :template, String
 
+  def clazz_with_template
+    if template.present?
+      ::Template.find(template).try(:clazz)
+    else
+      clazz_without_template
+    end
+  end
+
+  alias_method_chain :clazz, :template
+
+  def provider_with_template
+    if template.present?
+      ::Template.find(template).try(:provider)
+    else
+      provider_without_template
+    end
+  end
+
+  alias_method_chain :provider, :template
+
+  def type_with_template
+    if template.present?
+      ::Template.find(template).try(:type)
+    else
+      type_without_template
+    end
+  end
+
+  alias_method_chain :type, :template
+
   def template?
     false
   end
