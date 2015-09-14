@@ -38,4 +38,4 @@
 
           - if values[:longdesc]
             = simple_format values[:longdesc]
-          = content_tag :em, "Default: <code>#{sanitize values[:default].to_s}</code>".html_safe
+          = content_tag(:em, _("Default")) + ": " + content_tag(:code, "#{sanitize values[:default].to_s}")
