@@ -45,9 +45,14 @@ class Report
     def parse(file)
       name = report_name file
 
-      dates = name.scan(/\d{4}-\d{2}-\d{2}_\d{2}:\d{2}/)
-      from_time_ = dates.length > 0 ? DateTime.parse("#{dates[0]}") : file.ctime.to_datetime
-      to_time_ = dates.length > 1 ? DateTime.parse("#{dates[1]}") : from_time_
+      dates = name.scan(/\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:(?:\+\d{2}:\d{2})|Z)/)
+      if dates.length == 2
+        from_time_ = DateTime.parse dates[0]
+        to_time_ = DateTime.parse dates[1]
+      else
+        from_time_ = file.ctime.to_datetime
+        to_time_ = from_time_
+      end
 
       Report.new id: report_id(name), archive: file, name: name, from_time: from_time_, to_time: to_time_
     end
@@ -104,49 +109,6 @@ class Report
       @report_path ||= Rails.root.join("tmp", "reports")
       @report_path.mkpath unless @report_path.directory?
       @report_path
-    end
-  end
-
-  class Generate < Tableless
-    attr_accessor :from_time
-    attr_accessor :to_time
-
-    validate do |record|
-      begin
-        DateTime.parse record.from_time
-      rescue ArgumentError
-        errors.add(:from_time, _("must be a valid datetime"))
-      end
-
-      begin
-        DateTime.parse record.to_time
-      rescue ArgumentError
-        errors.add(:to_time, _("must be a valid datetime"))
-      end
-    end
-
-    def new_record?
-      false
-    end
-
-    def persisted?
-      false
-    end
-
-    def from_time
-      DateTime.parse(@from_time).change(offset: DateTime.now.zone).strftime("%Y-%m-%d %H:%M")
-    end
-
-    def to_time
-      DateTime.parse(@to_time).change(offset: DateTime.now.zone).strftime("%Y-%m-%d %H:%M")
-    end
-
-    def name
-      ft = DateTime.parse(@from_time).change(offset: DateTime.now.zone).strftime("%Y-%m-%d %H:%M")
-      tt = DateTime.parse(@to_time).change(offset: DateTime.now.zone).strftime("%Y-%m-%d %H:%M")
-      fs = from_time.sub(' ', '_')
-      ts = to_time.sub(' ', '_')
-      "hb_report-hawk-#{fs}-#{ts}"
     end
   end
 

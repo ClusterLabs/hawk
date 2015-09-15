@@ -251,8 +251,8 @@ $(function() {
           switchable: false,
           clickToSelect: true,
           formatter: function(value, row, index) {
-            if (value.slice(0, 15) == "hb_report-hawk-") {
-              return "";
+            if (value.slice(0, 5) == "hawk-") {
+              return "hawk";
             } else {
               return value;
             }

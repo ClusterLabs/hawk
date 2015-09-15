@@ -27,14 +27,27 @@ class ReportsController < ApplicationController
   end
 
   def generate
-    @report = Report::Generate.new params[:report]
-    unless @report.valid?
-      render json: { error: @report.errors.to_sentence }
+    errors = []
+    begin
+      from_time = DateTime.parse(params[:report][:from_time]).iso8601()
+    rescue Exception => e
+      errors << _("from_time must be a valid datetime")
+    end
+    begin
+      to_time = DateTime.parse(params[:report][:to_time]).iso8601()
+    rescue Exception => e
+      errors << _("to_time must be a valid datetime")
+    end
+
+    unless errors.empty?
+      render json: { error: errors.to_sentence }
       return
     end
 
-    @hb_report = HbReport.new @report.name
-    @hb_report.generate(@report.from_time, true, @report.to_time)
+    Rails.logger.debug "Generate: f=#{from_time}, t=#{to_time}"
+
+    @hb_report = HbReport.new "hawk-#{from_time.sub(' ', '_')}-#{to_time.sub(' ', '_')}"
+    @hb_report.generate(from_time, to_time)
 
     respond_to do |format|
       if @hb_report.running?

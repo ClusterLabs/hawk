@@ -81,8 +81,8 @@ class HbReport
   # there), so there's a possibility of a race (or lost hb_report status)
   # if two clients kick off generation at almost exactly the same time.
   # from_time and to_time (if specified) are expected to be in a sensible
-  # format (e.g.: "%Y-%m-%d %H:%M")
-  def generate(from_time, all_nodes=true, to_time=nil)
+  # format (e.g.: iso8601)
+  def generate(from_time, to_time, all_nodes=true)
     [@outfile, @errfile, @exitfile, @timefile].each do |fn|
       File.unlink(fn) if File.exists?(fn)
     end
