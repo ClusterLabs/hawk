@@ -8,6 +8,17 @@
       .panel-heading
         = icon_tag 'spinner', class: 'fa-spin'
         = _("Data collection in progress...")
+      .panel-body
+        %fieldset.disabled
+          .form-group
+            %label.col-sm-5.control-label{for: "running-from_time"}= _("From")
+            .col-sm-7
+              %input#running-from-time.form-control{type: :text, value: ""}
+          .form-group
+            %label.col-sm-5.control-label{for: "running-to_time"}= _("To")
+            .col-sm-7
+              %input#running-to-time.form-control{type: :text, value: ""}
+
     #report-tabs.panel.panel-default.with-nav-tabs.hidden
       .panel-heading
         %ul.nav.nav-tabs

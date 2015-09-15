@@ -5,6 +5,8 @@ $(function() {
   var time_format_string = 'YYYY-MM-DD H:mm';
 
   var build_running = function(start, end) {
+    $('#reports #running-from-time').val(moment(start).format(time_format_string));
+    $('#reports #running-to-time').val(moment(end).format(time_format_string));
     $('#reports #report-running').removeClass('hidden');
     $('#reports #report-tabs').addClass('hidden');
   };
@@ -200,6 +202,11 @@ $(function() {
           });
         } else {
           start_running_refresh();
+          $.growl({
+            message: response.message
+          },{
+            type: 'success'
+          });
         }
       })
       .on('ajax:error', function(xhr, status, msg) {
