@@ -7,6 +7,16 @@
           = link_to icon_text("list-ul", _("Reports")), reports_path, class: "btn btn-default"
 
   .row
+    .panel.panel-info
+      .panel-body
+        %dl.dl-horizontal
+          %dt= _("Report")
+          %dd= @report.name
+          %dt= _("From")
+          %dd= @report.from_time
+          %dt= _("To")
+          %dd= @report.to_time
+  .row
     .panel.panel-default
       .panel-heading
         %ul.nav.nav-pills.nav-justified.iterator
