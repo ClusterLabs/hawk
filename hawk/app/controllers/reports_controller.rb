@@ -310,7 +310,8 @@ class ReportsController < ApplicationController
   end
 
   def format_date(t)
-    DateTime.parse(t).strftime('%F %R')
+    t = DateTime.parse(t) if t.is_a? String
+    t.strftime('%F %R')
   end
 
   def parse_time(t, errors)
