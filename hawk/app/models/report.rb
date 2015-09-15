@@ -148,9 +148,9 @@ class Report
 
     # TODO(must): handle failure of above
 
-    ret = [false, ""]
+    ret = [false, err]
     if rc != 0
-      ret = [false, ""]
+      ret = [false, err]
     elsif format == :xml || format == :json
       # Can't use send_file here, server whines about file not existing(?!?)
       # send_data File.new(tmpfile.path).read, :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
@@ -163,7 +163,6 @@ class Report
         ret = [false, err]
       end
     end
-    Rails.logger.debug "format=#{format}, status=#{status}, ret=#{ret}"
     tmpfile.unlink
     ret
   end

@@ -140,17 +140,17 @@ class ReportsController < ApplicationController
       format.svg do
         ok, data = @report.graph(@hb_report, @transition[:path], :svg)
         send_data data, :type => "image/svg+xml", :disposition => "inline" if ok
-        render text: { error: _("Internal error") }, status: 500 unless ok
+        render text: { error: data }, status: 500 unless ok
       end
       format.xml do
         ok, data = @report.graph(@hb_report, @transition[:path], :xml)
         render xml: data if ok
-        render text: { error: _("Internal error") }, status: 500 unless ok
+        render text: { error: data }, status: 500 unless ok
       end
       format.json do
         ok, data = @report.graph(@hb_report, @transition[:path], :json)
         render json: data if ok
-        render json: { error: _("Internal error") }, status: 500 unless ok
+        render json: { error: data }, status: 500 unless ok
       end
     end
   end
