@@ -15,7 +15,7 @@ Vagrant.configure("2") do |config|
   config.bindfs.bind_folder "/vagrant", "/vagrant",
                             force_user: "hacluster",
                             force_group: "haclient",
-                            perms: "u=rwX:g=rwXD:o=rwXD",
+                            perms: "u=rwX:g=rwXD:o=rXD",
                             after: :provision
 
   config.vm.define "webui", primary: true do |machine|
