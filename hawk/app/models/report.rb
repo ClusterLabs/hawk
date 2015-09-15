@@ -46,8 +46,8 @@ class Report
       name = report_name file
 
       dates = name.scan(/\d{4}-\d{2}-\d{2}_\d{2}:\d{2}/)
-      from_time_ = dates.length > 0 ? DateTime.parse("#{dates[0]} #{Time.zone}") : file.ctime.to_datetime
-      to_time_ = dates.length > 1 ? DateTime.parse("#{dates[1]} #{Time.zone}") : from_time_
+      from_time_ = dates.length > 0 ? DateTime.parse("#{dates[0]}") : file.ctime.to_datetime
+      to_time_ = dates.length > 1 ? DateTime.parse("#{dates[1]}") : from_time_
 
       Report.new id: report_id(name), archive: file, name: name, from_time: from_time_, to_time: to_time_
     end
@@ -134,16 +134,16 @@ class Report
     end
 
     def from_time
-      DateTime.parse(@from_time).strftime("%Y-%m-%d %H:%M")
+      DateTime.parse(@from_time).change(offset: DateTime.now.zone).strftime("%Y-%m-%d %H:%M")
     end
 
     def to_time
-      DateTime.parse(@to_time).strftime("%Y-%m-%d %H:%M")
+      DateTime.parse(@to_time).change(offset: DateTime.now.zone).strftime("%Y-%m-%d %H:%M")
     end
 
     def name
-      ft = DateTime.parse(@from_time).strftime("%Y-%m-%d %H:%M")
-      tt = DateTime.parse(@to_time).strftime("%Y-%m-%d %H:%M")
+      ft = DateTime.parse(@from_time).change(offset: DateTime.now.zone).strftime("%Y-%m-%d %H:%M")
+      tt = DateTime.parse(@to_time).change(offset: DateTime.now.zone).strftime("%Y-%m-%d %H:%M")
       fs = from_time.sub(' ', '_')
       ts = to_time.sub(' ', '_')
       "hb_report-hawk-#{fs}-#{ts}"
