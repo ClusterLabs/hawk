@@ -12,10 +12,16 @@
         %dl.dl-horizontal
           %dt= _("Report")
           %dd= @report.name
-          %dt= _("From")
-          %dd= @report.from_time
-          %dt= _("To")
-          %dd= @report.to_time
+          - if @report.from_time != @report.to_time
+            %dt= _("From")
+            %dd= @report.from_time
+            %dt= _("To")
+            %dd= @report.to_time
+          - else
+            %dt= _("From")
+            %dd= @transitions[0][:timestamp]
+            %dt= _("To")
+            %dd= @transitions[-1][:timestamp]
           %dt= _("Transitions")
           %dd= @transitions.length
 
