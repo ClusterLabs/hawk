@@ -22,15 +22,15 @@ class HbReport
     tmpbase.mkpath unless tmpbase.directory?
     reports.mkpath unless reports.directory?
 
-    @pidfile  = tmpbase.join("report.pid").to_s
+    @pidfile = tmpbase.join("report.pid").to_s
     @exitfile = tmpbase.join("report.exit").to_s
     @timefile = tmpbase.join("report.time").to_s
     if name
-      @path    = reports.join(name).to_s
+      @path = reports.join(name).to_s
       @outfile = reports.join("#{name}.stdout").to_s
       @errfile = reports.join("#{name}.stderr").to_s
     else
-      @path    = nil
+      @path = nil
       @outfile = tmpbase.join("report.stdout").to_s
       @errfile = tmpbase.join("report.stderr").to_s
     end
@@ -71,10 +71,9 @@ class HbReport
   # contents of errfile as array, with "INFO" lines stripped (e.g. for
   # displaying warnings after an otherwise successful run)
   def err_filtered
-    err_lines.select {|e|
-      !e.match(/( INFO: |(cat|tail): write error)/) &&
-      !e.match(/^tar:.*time stamp/)
-    }
+    err_lines.select do |e|
+      !e.match(/( INFO: |(cat|tail): write error)/) && !e.match(/^tar:.*time stamp/)
+    end
   end
 
   # Note: This assumes pidfile doesn't exist (will always blow away what's
@@ -82,7 +81,7 @@ class HbReport
   # if two clients kick off generation at almost exactly the same time.
   # from_time and to_time (if specified) are expected to be in a sensible
   # format (e.g.: iso8601)
-  def generate(from_time, to_time, all_nodes=true)
+  def generate(from_time, to_time, all_nodes = true)
     [@outfile, @errfile, @exitfile, @timefile].each do |fn|
       File.unlink(fn) if File.exists?(fn)
     end
@@ -91,11 +90,11 @@ class HbReport
     f = File.new(@timefile, "w")
     f.write("#{from_time},#{to_time}")
     f.close
-    pid = fork {
+    pid = fork do
       args = ["-f", from_time]
       args.push("-t", to_time) if to_time
-      args.push("-Z")  # Remove destination directories if they exist
-      args.push("-Q")  # Requires a version of crm report which supports this
+      args.push("-Z") # Remove destination directories if they exist
+      args.push("-Q") # Requires a version of crm report which supports this
       args.push("-S") unless all_nodes
       args.push(@path)
 
@@ -114,7 +113,7 @@ class HbReport
 
       # Delete pidfile
       File.unlink(@pidfile)
-    }
+    end
     f = File.new(@pidfile, "w")
     f.write(pid)
     f.close
