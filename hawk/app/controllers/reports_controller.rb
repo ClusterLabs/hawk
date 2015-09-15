@@ -5,7 +5,7 @@ class ReportsController < ApplicationController
   before_filter :login_required
   before_filter :god_required
   before_filter :set_title
-  before_filter :set_record, only: [:show, :detail, :graph, :logs, :diff, :destroy]
+  before_filter :set_record, only: [:show, :detail, :graph, :logs, :diff, :destroy, :download]
 
   helper_method :current_transition
   helper_method :prev_transition
@@ -78,8 +78,6 @@ class ReportsController < ApplicationController
   end
 
   def download
-    @report = Report.find params[:id]
-
     if @report
       send_file @report.archive.realdirpath, type: @report.mimetype, filename: @report.archive.basename, x_sendfile: true
     else
@@ -162,7 +160,6 @@ class ReportsController < ApplicationController
   end
 
   def destroy
-    @report = Report.find params[:id]
     @hb_report = HbReport.new @report.name
 
     respond_to do |format|
