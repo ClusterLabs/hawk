@@ -8,12 +8,15 @@ Vagrant.configure("2") do |config|
 
   config.vm.synced_folder ".", "/vagrant", type: "nfs"
 
-  if Vagrant.has_plugin? "vagrant-bindfs"
-    config.bindfs.bind_folder "/vagrant", "/vagrant",
-      force_user: "vagrant",
-      force_group: "users",
-      perms: "u=rwX:g=rwXD:o=rwXD"
+  unless Vagrant.has_plugin?("vagrant-bindfs")
+    abort 'Missing bindfs plugin! Please install using vagrant plugin install vagrant-bindfs'
   end
+
+  config.bindfs.bind_folder "/vagrant", "/vagrant",
+                            force_user: "hacluster",
+                            force_group: "haclient",
+                            perms: "u=rwX:g=rwXD:o=rwXD",
+                            after: :provision
 
   config.vm.define "webui", primary: true do |machine|
     machine.vm.hostname = "webui"
