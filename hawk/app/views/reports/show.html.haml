@@ -16,6 +16,9 @@
           %dd= @report.from_time
           %dt= _("To")
           %dd= @report.to_time
+          %dt= _("Transitions")
+          %dd= @transitions.length
+
   .row
     .panel.panel-default
       .panel-heading
@@ -30,7 +33,7 @@
                   %strong
                     = transition
               - else
-                = link_to transition, url_for(transition: transition)
+                = link_to transition, url_for(transition: transition), title: @transitions[transition.to_i-1][:timestamp], data: { toggle: :tooltip }
 
           %li{ role: "presentation", class: current_transition == last_transition ? "disabled" : nil }
             = link_to _("Next"), url_for(transition: next_transition)
