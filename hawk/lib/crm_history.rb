@@ -9,11 +9,12 @@
 # - Run new command
 
 module CrmHistory
-  @pidfile = "#{Rails.root}/tmp/pids/crm_history.pid"
-  @cmdfile = "#{Rails.root}/tmp/pids/crm_history.cmd"
-  @outfile = "#{Rails.root}/tmp/pids/crm_history.stdout"
-  @errfile = "#{Rails.root}/tmp/pids/crm_history.stderr"
-  @exitfile = "#{Rails.root}/tmp/pids/crm_history.exit"
+  path = Rails.root.join('tmp', 'pids')
+  @pidfile = path.join("crm_history.pid").to_s
+  @cmdfile = path.join("crm_history.cmd").to_s
+  @outfile = path.join("crm_history.stdout").to_s
+  @errfile = path.join("crm_history.stderr").to_s
+  @exitfile = path.join("crm_history.exit").to_s
 
   def active?
     Util.child_active(@pidfile)

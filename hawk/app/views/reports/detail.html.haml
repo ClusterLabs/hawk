@@ -1,0 +1,12 @@
+.row.margin-bottom
+  .col-sm-12
+    - @transition[:tags].each do |tag|
+      - if tag == "error" || tag == "unclean"
+        %span.label.label-danger= tag
+      - else
+        %span.label.label-default= tag
+
+.row
+  .col-sm-12
+    %pre
+      = @transition[:info]

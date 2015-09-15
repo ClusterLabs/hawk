@@ -170,10 +170,13 @@ some steps.
   with openSUSE/SLED workstation setups.
 
 * Install +virtualbox+, we assume you know how to do that on your OS. If
-  you prefer +libvirt+ you can use that as well. In either case you have to
-  install the bindfs plugin for vagrant with the following command if you
-  want to have write access to the shared source folder within the virtual
-  machine:
+  you prefer +libvirt+ you can use that as well.
+
+  Out of the box, +vagrant+ is configured to synchronize the working
+  folder to +/vagrant+ in the virtual machines using NFS. For this to
+  work properly, the +vagrant-bindfs+ plugin is necessary.
+
+  Install it using the following command:
 
 --------------------------------------
   # vagrant plugin install vagrant-bindfs

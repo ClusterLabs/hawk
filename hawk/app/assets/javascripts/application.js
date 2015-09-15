@@ -29,7 +29,7 @@
 //= require module/monitor
 //= require module/status
 //= require module/constraint
-//= require module/explorer
+//= require module/reports
 //= require module/simulator
 
 $(function() {

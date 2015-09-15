@@ -32,3 +32,30 @@
     border-radius: 20px;
   }
 }
+
+.diff_sub {
+  background: #fdd;
+}
+
+.diff_add {
+  background: #dfd;
+}
+
+.diff_chg {
+  background: #ddf;
+}
+
+
+td.diff_header {
+color: #fff;
+}
+
+table.diff {
+ width: 100%;
+ font-family:monospace;
+ border: none;
+}
+
+.diff_next {
+  background-color: #c0c0c0;
+}

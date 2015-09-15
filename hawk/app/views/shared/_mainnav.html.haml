@@ -20,8 +20,8 @@
         = link_to _("Graph"), cib_graph_path(cib_id: current_cib.id)
 
       - if current_cib.live?
-        %li{ class: active_menu_with(:explorers) }
-          = link_to _("History"), explorers_path
+        %li{ class: active_menu_with(:reports) }
+          = link_to _("History"), reports_path
 
   %li
     = _("Resources")
