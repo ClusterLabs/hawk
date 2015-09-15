@@ -1,0 +1,55 @@
+#report-show.container-fluid
+  %h1
+    = icon_text "clock-o", _("History"), class: "transition"
+
+  .panel.panel-default
+    .panel-body
+      %ul.nav.nav-pills.nav-justified.iterator
+        %li{ role: "presentation", class: current_transition == first_transition ? "disabled" : nil }
+          = link_to _("Previous"), url_for(transition: prev_transition)
+
+        - window_transition.each do |transition|
+          %li{ role: "presentation", class: current_transition == transition ? "active" : nil }
+            - if transition == "..."
+              .text-center
+                %strong
+                  = transition
+            - else
+              = link_to transition, url_for(transition: transition)
+
+        %li{ role: "presentation", class: current_transition == last_transition ? "disabled" : nil }
+          = link_to _("Next"), url_for(transition: next_transition)
+
+  .panel.panel-default.with-nav-tabs
+    .panel-heading
+      %ul.nav.nav-tabs.remote
+        %li.active
+          %a{ href: "#details", data: { toggle: "tab", url: detail_report_path(id: @report.id, transition: current_transition) } }
+            = _("Details")
+        %li
+          %a{ href: "#graph", data: { toggle: "tab", url: graph_report_path(id: @report.id, transition: current_transition) } }
+            = _("Graph")
+        %li
+          %a{ href: "#diff", data: { toggle: "tab", url: diff_report_path(id: @report.id, transition: current_transition) } }
+            = _("Diff")
+        %li
+          %a{ href: "#logs", data: { toggle: "tab", url: logs_report_path(id: @report.id, transition: current_transition) } }
+            = _("Logs")
+
+    .panel-body
+      .tab-content
+        #details.tab-pane.fade.in.active
+          .text-center.spacer
+            = icon_tag("spinner", class: "fa-spinner fa-spin fa-3x")
+
+        #graph.tab-pane.fade
+          .text-center.spacer
+            = icon_tag("spinner", class: "fa-spinner fa-spin fa-3x")
+
+        #diff.tab-pane.fade
+          .text-center.spacer
+            = icon_tag("spinner", class: "fa-spinner fa-spin fa-3x")
+
+        #logs.tab-pane.fade
+          .text-center.spacer
+            = icon_tag("spinner", class: "fa-spinner fa-spin fa-3x")

@@ -1,10 +1,14 @@
-.container-fluid
+#report-index.container-fluid
   .row
     %h1
       = icon_text "clock-o", _("History"), class: "page"
 
-  .row
-    .panel.panel-default.with-nav-tabs
+  .row#report-controls
+    #report-running.panel.panel-info.hidden
+      .panel-heading
+        = icon_tag 'spinner', class: 'fa-spin'
+        = _("Data collection in progress...")
+    #report-tabs.panel.panel-default.with-nav-tabs.hidden
       .panel-heading
         %ul.nav.nav-tabs
           %li.active
@@ -17,16 +21,15 @@
       .panel-body
         .tab-content
           #generate.tab-pane.fade.in.active
-            = form_tag generate_explorers_path(format: "json"), remote: true, multipart: false, method: "post", class: "generate" do
+            = form_tag generate_reports_path(format: "json"), remote: true, multipart: false, method: "post", class: "generate" do
               = hidden_field_tag :authenticity_token, form_authenticity_token
-              = hidden_field_tag "explorer[from]", generate_start
-              = hidden_field_tag "explorer[until]", generate_until
+              = hidden_field_tag "report[from_time]"
+              = hidden_field_tag "report[to_time]"
 
               .form-group.input-group
                 .form-control.form-control-static.rangefield
                   = icon_tag("calendar")
                   %span.current
-                    = generate_range
                   %span.caret
 
                 .input-group-btn
@@ -34,10 +37,13 @@
                     = icon_text("search", _("Generate"))
 
           #upload.tab-pane.fade
-            = form_tag upload_explorers_path(format: "json"), remote: false, multipart: true, method: "post", class: "upload"  do
+            = form_tag upload_reports_path(format: "json"), remote: false, multipart: true, method: "post", class: "upload"  do
               .form-group
-                %input.form-control.uploadfield{ type: "file", name: "explorer[upload]" }
+                %input.form-control.uploadfield{ type: "file", name: "report[upload]" }
 
   .row
     .panel.panel-default
-      %table.table.table-striped.explorers
+      .panel-heading
+        = _("Reports")
+      .panel-body
+        %table.table.table-striped.reports

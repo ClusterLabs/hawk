@@ -107,18 +107,19 @@ Rails.application.routes.draw do
 
   resources :agents, only: [:show]
 
-  resources :explorers, only: [:index, :destroy] do
+  resources :reports, only: [:index, :destroy, :show] do
     collection do
       post :generate
       post :upload
+      get :running, defaults: { format: 'json' }
     end
 
     member do
-      get ":page(.:format)" => "explorers#show", as: :show
-      get ":page/detail(.:format)" => "explorers#detail", as: :detail
-      get ":page/transition(.:format)" => "explorers#transition", as: :transition
-      get ":page/diff(.:format)" => "explorers#diff", as: :diff
-      get ":page/logs(.:format)" => "explorers#logs", as: :logs
+      get "download" => "reports#download", as: :download
+      get ":transition(.:format)" => "reports#detail", as: :detail
+      get ":transition/graph(.:format)" => "reports#graph", as: :graph
+      get ":transition/diff(.:format)" => "reports#diff", as: :diff
+      get ":transition/logs(.:format)" => "reports#logs", as: :logs
     end
   end
 
