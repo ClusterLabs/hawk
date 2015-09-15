@@ -11,7 +11,10 @@
       .panel-body
         %dl.dl-horizontal
           %dt= _("Report")
-          %dd= @report.name
+          - if @report.name.start_with? 'hawk-'
+            %dd= 'hawk'
+          - else
+            %dd= @report.name
           - if @report.from_time != @report.to_time
             %dt= _("From")
             %dd= format_date @report.from_time

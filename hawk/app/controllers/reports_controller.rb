@@ -311,6 +311,7 @@ class ReportsController < ApplicationController
 
   def format_date(t)
     t = DateTime.parse(t) if t.is_a? String
+    t = t.to_time if t.is_a? DateTime
     t.strftime('%F %R')
   end
 
