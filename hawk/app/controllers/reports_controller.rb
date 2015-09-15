@@ -5,7 +5,9 @@ class ReportsController < ApplicationController
   before_filter :login_required
   before_filter :god_required
   before_filter :set_title
-  before_filter :set_record, only: [:show, :detail, :graph, :logs, :diff, :destroy, :download]
+  before_filter :set_record, only: [:destroy, :download]
+  before_filter :set_transitions, only: [:show]
+  before_filter :set_transition, only: [:detail, :graph, :logs, :diff]
 
   helper_method :current_transition
   helper_method :prev_transition
@@ -13,7 +15,6 @@ class ReportsController < ApplicationController
   helper_method :first_transition
   helper_method :last_transition
   helper_method :window_transition
-  helper_method :report_details
 
   def index
     @hb_report = HbReport.new
@@ -98,15 +99,6 @@ class ReportsController < ApplicationController
     end
   end
 
-  def show
-    respond_to do |format|
-      format.html
-      format.json do
-        render json: report_details
-      end
-    end
-  end
-
   def running
     @hb_report = HbReport.new
     running = @hb_report.running?
@@ -118,56 +110,81 @@ class ReportsController < ApplicationController
     end
   end
 
-  def detail
-    # params[:id]
-    # params[:event]
+  def show
 
     respond_to do |format|
+      format.html
+      format.json do
+        render json: @transitions
+      end
+    end
+  end
+
+  def detail
+    @transition[:info] = @report.info(@hb_report, @transition[:path])
+    @transition[:tags] = @report.tags(@hb_report, @transition[:path])
+    respond_to do |format|
       format.html do
-        render text: [
-          "<pre>",
-          Rails.root.join("public", "dummy", "details.txt").read.html_safe,
-          "</pre>"
-        ].join("")
+        render layout: false
+      end
+      format.json do
+        render json: @transition
       end
     end
   end
 
   def graph
-    # params[:id]
-    # params[:event]
-
     respond_to do |format|
-      format.html do
-        render text: [
-          view_context.image_tag("/dummy/transition.png")
-        ].join("")
+      format.svg do
+        ok, data = @report.graph(@hb_report, @transition[:path], :svg)
+        send_data data, :type => "image/svg+xml", :disposition => "inline" if ok
+        render text: { error: _("Internal error") }, status: 500 unless ok
+      end
+      format.xml do
+        ok, data = @report.graph(@hb_report, @transition[:path], :xml)
+        render xml: data if ok
+        render text: { error: _("Internal error") }, status: 500 unless ok
+      end
+      format.json do
+        ok, data = @report.graph(@hb_report, @transition[:path], :json)
+        render json: data if ok
+        render json: { error: _("Internal error") }, status: 500 unless ok
       end
     end
   end
 
   def logs
-    # params[:id]
-    # params[:event]
-
+    @transition[:logs] = @report.logs(@hb_report, @transition[:path])
     respond_to do |format|
       format.html do
         render text: [
           "<pre>",
-          Rails.root.join("public", "dummy", "logs.txt").read.html_safe,
+          @transition[:logs],
           "</pre>"
         ].join("")
+      end
+      format.json do
+        render json: @transition
       end
     end
   end
 
   def diff
-    # params[:id]
-    # params[:event]
+    tidx = @transition[:index]
+    if tidx > 0 && @transitions.length > 1
+      left = @transitions[tidx-1][:path]
+      right = @transition[:path]
+      @transition[:diff] = @report.diff(@hb_report, @transition[:path], left, right, :html)
+    else
+      @transition[:diff] = _("No diff: First transition")
+    end
 
     respond_to do |format|
       format.html do
-        render text: Rails.root.join("public", "dummy", "diff.html").read.html_safe
+        render text: @transition[:diff]
+      end
+      format.json do
+        render json: @transition
       end
     end
   end
@@ -220,8 +237,22 @@ class ReportsController < ApplicationController
     end
   end
 
-  def report_details
-    {}
+  def set_transitions
+    session[:history_session_poke] = "poke"
+    set_record
+    @hb_report = HbReport.new @report.name
+    @transitions = Rails.cache.fetch("#{params[:id]}/#{session.id}", expires_in: 2.hours) do
+      @report.transitions(@hb_report)
+    end
+  end
+
+  def set_transition
+    set_transitions
+    tidx = params[:transition].to_i
+    tidx -= 1 if tidx >= 0
+    tidx = -1 if tidx >= @transitions.length
+    @transition = @transitions[tidx]
+    @transition[:index] = tidx
   end
 
   def current_transition
@@ -253,7 +284,7 @@ class ReportsController < ApplicationController
   end
 
   def last_transition
-    30
+    @transitions.length
   end
 
   def window_transition

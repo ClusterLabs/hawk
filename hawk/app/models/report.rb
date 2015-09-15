@@ -1,6 +1,8 @@
 # Copyright (c) 2009-2015 Tim Serong <tserong@suse.com>
 # See COPYING for license.
 
+require 'fileutils'
+
 class Report
   attr_accessor :id
   attr_accessor :name
@@ -16,7 +18,6 @@ class Report
 
   def delete(hb_report)
     self.archive.delete
-    require "fileutils"
     FileUtils.remove_entry_secure(hb_report.path) if File.exists?(hb_report.path)
     FileUtils.remove_entry_secure(hb_report.outfile) if File.exists?(hb_report.outfile)
     FileUtils.remove_entry_secure(hb_report.errfile) if File.exists?(hb_report.errfile)
@@ -39,6 +40,161 @@ class Report
     else
       "application/x-compressed"
     end
+  end
+
+  def transitions(hb_report)
+    # TODO(fix this)
+    # Have to blow this away if it exists (i.e. is a cached report), else
+    # prior cibadmin calls on individual PE inputs will have wrecked their mtimes.
+    # FileUtils.remove_entry_secure(hb_report.path) if File.exists?(hb_report.path)
+
+    source = archive
+    source = hb_report.path if File.directory?(hb_report.path)
+
+    pcmk_version = nil
+    m = %x[cibadmin -!].match(/^Pacemaker ([^ ]+) \(Build: ([^)]+)\)/)
+    pcmk_version = "#{m[1]}-#{m[2]}" if m
+
+    [].tap do |peinputs|
+      peinputs_raw, err, status = Util.capture3("crm", "history", :stdin_data => "source #{source}\npeinputs\n")
+      if status.exitstatus == 0
+        peinputs_raw.split(/\n/).each do |path|
+          next unless File.exists?(path)
+          v = peinput_version(path)
+          version = v == pcmk_version ? nil : (v ?
+                                                 _("PE Input created by different Pacemaker version (%{version})" % { :version => v }) :
+                                                 _("Pacemaker version not present in PE Input"))
+          peinputs.push({
+                          :timestamp => File.mtime(path).iso8601(),
+                          :basename  => File.basename(path, ".bz2"),
+                          :filename  => File.basename(path),
+                          :path      => path.sub("#{hb_report.path}/", ''),  # only use relative portion
+                          :node      => path.split(File::SEPARATOR)[-3],
+                          :version   => version
+                        })
+        end
+        # sort is going to be off for identical mtimes (stripped back to the second),
+        # so need secondary sort by filename
+      end
+
+      # add errors to output
+      errors = hb_report.err_filtered
+      errors.each do |err|
+        peinputs.push error: err
+      end
+    end
+  end
+
+  def peinput(path, basename, node)
+    basename = basename.gsub(/[^\w-]/, "")
+    node = node.gsub(/[^\w_-]/, "")
+    tname = "#{node}/pengine/#{basename}.bz2"
+    path = path.gsub("..", "") # tear out possible relative junk
+    archive.join(path).to_s
+  end
+
+  def peinput_version(path)
+    nvpair = %x[CIB_file=#{path} cibadmin -Q --xpath "/cib/configuration//crm_config//nvpair[@name='dc-version']" 2>/dev/null]
+    m = nvpair.match(/value="([^"]+)"/)
+    return nil unless m
+    m[1]
+  end
+
+  def transition_cmd(hb_report, path, cmd)
+    source = archive
+    source = hb_report.path if File.directory?(hb_report.path)
+    Util.capture3("crm", "history", :stdin_data => "source #{source}\n#{cmd}\n")
+  end
+
+  def info(hb_report, path)
+    out, err, status = transition_cmd hb_report, path, "transition #{path} nograph"
+    info = out + err
+    info.strip!
+    info = _("No details available") if info.empty?
+    info.insert(0, _("Error:") + "\n") unless status.exitstatus == 0
+    info
+  end
+
+  def tags(hb_report, path)
+    out, err, status = transition_cmd hb_report, path, "transition tags #{path}"
+    out.split()
+  end
+
+  def logs(hb_report, path)
+    out, err, status = transition_cmd hb_report, path, "transition log #{path}"
+    info = out + err
+    info.strip!
+    info = _("No details available") if info.empty?
+    info.insert(0, _("Error:") + "\n") unless status.exitstatus == 0
+    info
+  end
+
+  # Returns [success, data|error]
+  def graph(hb_report, path, format=:svg)
+
+    tpath = Pathname.new(hb_report.path).join(path)
+
+    # Apparently we can't rely on the dot file existing in the hb_report, so we
+    # just use ptest to generate it.  Note that this will fail if hacluster doesn't
+    # have read access to the pengine files (although, this should be OK, because
+    # they're created by hacluster by default).
+    require "tempfile"
+    tmpfile = Tempfile.new("hawk_dot")
+    tmpfile.close
+    File.chmod(0666, tmpfile.path)
+    status = Util.safe_x("/usr/sbin/crm_simulate", "-x", tpath, format == :xml ? "-G" : "-D", tmpfile.path)
+    rc = $?.exitstatus
+    Rails.logger.debug "crm_simulate rc=#{rc}"
+
+    # TODO(must): handle failure of above
+
+    ret = [false, ""]
+    if rc != 0
+      ret = [false, ""]
+    elsif format == :xml || format == :json
+      # Can't use send_file here, server whines about file not existing(?!?)
+      # send_data File.new(tmpfile.path).read, :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
+      ret = [true, File.new(tmpfile.path).read]
+    else
+      svg, err, status = Util.capture3("/usr/bin/dot", "-Tsvg", tmpfile.path)
+      if status.exitstatus == 0
+        ret = [true, svg]
+      else
+        ret = [false, err]
+      end
+    end
+    Rails.logger.debug "format=#{format}, status=#{status}, ret=#{ret}"
+    tmpfile.unlink
+    ret
+  end
+
+  # Returns the diff as a text or html string
+  def diff(hb_report, path, left, right, format=:html)
+    format = "" unless format == :html
+    out, err, status = transition_cmd hb_report, path, "diff #{left} #{right} status #{format}"
+    info = out + err
+
+    info.strip!
+    # TODO(should): option to increase verbosity level
+    info = _("No details available") if info.empty?
+
+    if status.exitstatus == 0
+      if format == :html
+        info += <<-eos
+          <div class="row"><div class="col-sm-2">
+          <table class="table">
+            <tr><th>#{_('Legend')}:</th></tr>
+            <tr><td class="diff_add">#{_('Added')}</th></tr>
+            <tr><td class="diff_chg">#{_('Changed')}</th></tr>
+            <tr><td class="diff_sub">#{_('Deleted')}</th></tr>
+          </table>
+          </div></div>
+        eos
+      end
+    else
+      info.insert(0, _("Error:") + "\n")
+    end
+    info
   end
 
   class << self
@@ -83,6 +239,7 @@ class Report
       n = n.basename(n.extname) if n.extname == ".tar"
       n.to_s
     end
+
 
     def report_id(name)
       Digest::SHA1.hexdigest(name)[0..8]

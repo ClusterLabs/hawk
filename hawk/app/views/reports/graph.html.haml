@@ -1,0 +1,4 @@
+.row
+  .col-sm-12
+    .transition-image
+      = image_tag graph_report_path(id: params[:id], transition: params[:transition], format: "svg", t: Time.now.to_i), class: "img-responsive center-block", alt: _("Graph")
