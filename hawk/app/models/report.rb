@@ -142,9 +142,9 @@ class Report
     tmpfile = Tempfile.new("hawk_dot")
     tmpfile.close
     File.chmod(0666, tmpfile.path)
-    status = Util.safe_x("/usr/sbin/crm_simulate", "-x", tpath, format == :xml ? "-G" : "-D", tmpfile.path)
-    rc = $?.exitstatus
-    Rails.logger.debug "crm_simulate rc=#{rc}"
+    out, err, status = Util.run_as('hacluster', 'crm_simulate', '-x', tpath.to_s, format == :xml ? "-G" : "-D", tmpfile.path.to_s)
+    #status = Util.safe_x("/usr/sbin/crm_simulate", "-x", tpath, format == :xml ? "-G" : "-D", tmpfile.path)
+    rc = status.exitstatus
 
     # TODO(must): handle failure of above
 

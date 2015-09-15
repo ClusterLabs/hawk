@@ -6,8 +6,7 @@ class ReportsController < ApplicationController
   before_filter :god_required
   before_filter :set_title
   before_filter :set_record, only: [:destroy, :download]
-  before_filter :set_transitions, only: [:show]
-  before_filter :set_transition, only: [:detail, :graph, :logs, :diff]
+  before_filter :set_transition, only: [:show, :detail, :graph, :logs, :diff]
 
   helper_method :current_transition
   helper_method :prev_transition
@@ -135,6 +134,9 @@ class ReportsController < ApplicationController
 
   def graph
     respond_to do |format|
+      format.html do
+        render layout: false
+      end
       format.svg do
         ok, data = @report.graph(@hb_report, @transition[:path], :svg)
         send_data data, :type => "image/svg+xml", :disposition => "inline" if ok
@@ -171,12 +173,12 @@ class ReportsController < ApplicationController
 
   def diff
     tidx = @transition[:index]
-    if tidx > 0 && @transitions.length > 1
-      left = @transitions[tidx-1][:path]
-      right = @transition[:path]
-      @transition[:diff] = @report.diff(@hb_report, @transition[:path], left, right, :html)
+    if tidx >= 0 && tidx < @transitions.length-1 && @transitions.length > 1
+      l = @transitions[tidx][:path]
+      r = @transitions[tidx+1][:path]
+      @transition[:diff] = @report.diff(@hb_report, @transition[:path], l, r, :html)
     else
-      @transition[:diff] = _("No diff: First transition")
+      @transition[:diff] = _("No diff: Last transition")
     end
 
     respond_to do |format|
@@ -248,7 +250,8 @@ class ReportsController < ApplicationController
 
   def set_transition
     set_transitions
-    tidx = params[:transition].to_i
+    tidx = 1
+    tidx = params[:transition].to_i if params.has_key? :transition
     tidx -= 1 if tidx >= 0
     tidx = -1 if tidx >= @transitions.length
     @transition = @transitions[tidx]
