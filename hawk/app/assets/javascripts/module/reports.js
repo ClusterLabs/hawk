@@ -191,23 +191,25 @@ $(function() {
         build_running(from_, to_);
       })
       .on('ajax:success', function(data, response, xhr) {
-        if (!response.success) {
+        if ("error" in response) {
+          build_tabs();
           $.growl({
-            message: response.message
+            message: response.error
           },{
-            type: 'warning'
+            type: 'danger'
           });
+        } else {
+          start_running_refresh();
         }
-        start_running_refresh();
       })
       .on('ajax:error', function(xhr, status, msg) {
+        build_tabs();
+
         $.growl({
           message: xhr.responseJSON.error || msg
         },{
           type: 'danger'
         });
-
-        build_tabs();
       });
   };
 
