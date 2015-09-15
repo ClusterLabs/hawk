@@ -8,17 +8,14 @@ class HbReport
   # off path, and callers need to be updated to understand this - this
   # will happen when we allow multiple hb_report runs, as
   # hb_reports_controller is what cares about lastexit)
-  attr_reader :path, :outfile, :errfile, :lastexit
+  attr_reader :path
+  attr_reader :outfile
+  attr_reader :errfile
+  attr_reader :lastexit
 
-  # Call with e.g.:
-  #  ("#{Rails.root}/tmp/pids/hb_report", "/tmp/hb_report-hawk").
-  # pidfile will be set based on 'tmpbase', hb_report will be generated
-  # at 'path'.  If path is nil, generate won't work -- make sure you set
-  # it ASAP, before calling generate or relying on outfile or errfile!
   def initialize(name = nil)
     tmpbase = Rails.root.join('tmp', 'pids')
     reports = Rails.root.join('tmp', 'reports')
-
     tmpbase.mkpath unless tmpbase.directory?
     reports.mkpath unless reports.directory?
 
@@ -35,12 +32,6 @@ class HbReport
       @errfile = tmpbase.join("report.stderr").to_s
     end
     @lastexit = File.exists?(@exitfile) ? File.new(@exitfile).read.to_i : nil
-  end
-
-  def path=(path)
-    @path = path.to_s
-    @outfile = "#{@path}.stdout"
-    @errfile = "#{@path}.stderr"
   end
 
   def running?
