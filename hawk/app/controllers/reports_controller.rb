@@ -315,7 +315,7 @@ class ReportsController < ApplicationController
 
   def parse_time(t, errors)
     begin
-      DateTime.parse(t).iso8601()
+      DateTime.parse(t).iso8601
     rescue Exception => e
       errors << _("must be a valid datetime")
       nil

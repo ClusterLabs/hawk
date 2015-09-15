@@ -11,9 +11,7 @@ class Report
   attr_accessor :to_time
 
   def initialize(attributes)
-    attributes.each do |key, value|
-      self.send("#{key}=".to_sym, value)
-    end
+    attributes.each { |key, value| send("#{key}=".to_sym, value) }
   end
 
   def delete(hb_report)
@@ -52,22 +50,26 @@ class Report
     source = hb_report.path if File.directory?(hb_report.path)
 
     pcmk_version = nil
-    m = %x[cibadmin -!].match(/^Pacemaker ([^ ]+) \(Build: ([^)]+)\)/)
+    m = `cibadmin -!`.match(/^Pacemaker ([^ ]+) \(Build: ([^)]+)\)/)
     pcmk_version = "#{m[1]}-#{m[2]}" if m
 
     [].tap do |peinputs|
-      peinputs_raw, err, status = Util.capture3("crm", "history", :stdin_data => "source #{source}\npeinputs\n")
+      peinputs_raw, err, status = Util.capture3("crm", "history", stdin_data: "source #{source}\npeinputs\n")
       if status.exitstatus == 0
         peinputs_raw.split(/\n/).each do |path|
           next unless File.exists?(path)
-          v = peinput_version(path)
-          version = v == pcmk_version ? nil : (v ?
-                                                 _("PE Input created by different Pacemaker version (%{version})" % { :version => v }) :
-                                                 _("Pacemaker version not present in PE Input"))
-          peinputs.push(timestamp: File.mtime(path).iso8601(),
+          v = peinput_version path
+          if v && v != pcmk_version
+            version = _("PE Input created by different Pacemaker version (%{version})" % { :version => v })
+          elsif v != pcmk_version
+            version = _("Pacemaker version not present in PE Input")
+          else
+            version = nil
+          end
+          peinputs.push(timestamp: File.mtime(path).iso8601,
                         basename: File.basename(path, ".bz2"),
                         filename: File.basename(path),
-                        path: path.sub("#{hb_report.path}/", ''),  # only use relative portion
+                        path: path.sub("#{hb_report.path}/", ''),
                         node: path.split(File::SEPARATOR)[-3],
                         version: version)
         end
@@ -83,16 +85,8 @@ class Report
     end
   end
 
-  def peinput(path, basename, node)
-    basename = basename.gsub(/[^\w-]/, "")
-    node = node.gsub(/[^\w_-]/, "")
-    tname = "#{node}/pengine/#{basename}.bz2"
-    path = path.gsub("..", "") # tear out possible relative junk
-    archive.join(path).to_s
-  end
-
   def peinput_version(path)
-    nvpair = %x[CIB_file=#{path} cibadmin -Q --xpath "/cib/configuration//crm_config//nvpair[@name='dc-version']" 2>/dev/null]
+    nvpair = `CIB_file=#{path} cibadmin -Q --xpath "/cib/configuration//crm_config//nvpair[@name='dc-version']" 2>/dev/null`
     m = nvpair.match(/value="([^"]+)"/)
     return nil unless m
     m[1]
@@ -101,7 +95,7 @@ class Report
   def transition_cmd(hb_report, path, cmd)
     source = archive
     source = hb_report.path if File.directory?(hb_report.path)
-    Util.capture3("crm", "history", :stdin_data => "source #{source}\n#{cmd}\n")
+    Util.capture3("crm", "history", stdin_data: "source #{source}\n#{cmd}\n")
   end
 
   def info(hb_report, path)
@@ -115,7 +109,7 @@ class Report
 
   def tags(hb_report, path)
     out, err, status = transition_cmd hb_report, path, "transition tags #{path}"
-    out.split()
+    out.split
   end
 
   def logs(hb_report, path)
@@ -127,31 +121,24 @@ class Report
     info
   end
 
+  # Apparently we can't rely on the dot file existing in the hb_report, so we
+  # just use ptest to generate it.  Note that this will fail if hacluster doesn't
+  # have read access to the pengine files (although, this should be OK, because
+  # they're created by hacluster by default).
   # Returns [success, data|error]
-  def graph(hb_report, path, format=:svg)
-
+  def graph(hb_report, path, format = :svg)
     tpath = Pathname.new(hb_report.path).join(path)
-
-    # Apparently we can't rely on the dot file existing in the hb_report, so we
-    # just use ptest to generate it.  Note that this will fail if hacluster doesn't
-    # have read access to the pengine files (although, this should be OK, because
-    # they're created by hacluster by default).
     require "tempfile"
     tmpfile = Tempfile.new("hawk_dot")
     tmpfile.close
     File.chmod(0666, tmpfile.path)
     out, err, status = Util.run_as('hacluster', 'crm_simulate', '-x', tpath.to_s, format == :xml ? "-G" : "-D", tmpfile.path.to_s)
-    #status = Util.safe_x("/usr/sbin/crm_simulate", "-x", tpath, format == :xml ? "-G" : "-D", tmpfile.path)
     rc = status.exitstatus
-
-    # TODO(must): handle failure of above
 
     ret = [false, err]
     if rc != 0
       ret = [false, err]
     elsif format == :xml || format == :json
-      # Can't use send_file here, server whines about file not existing(?!?)
-      # send_data File.new(tmpfile.path).read, :type => (params[:munge] == "txt" ? "text/plain" : "text/xml"), :disposition => "inline"
       ret = [true, File.new(tmpfile.path).read]
     else
       svg, err, status = Util.capture3("/usr/bin/dot", "-Tsvg", tmpfile.path)
@@ -166,7 +153,7 @@ class Report
   end
 
   # Returns the diff as a text or html string
-  def diff(hb_report, path, left, right, format=:html)
+  def diff(hb_report, path, left, right, format = :html)
     format = "" unless format == :html
     out, err, status = transition_cmd hb_report, path, "diff #{left} #{right} status #{format}"
     info = out + err
@@ -270,14 +257,12 @@ class Report
     attribute :upload, ActionDispatch::Http::UploadedFile
 
     validate do |record|
-      unless record.upload.content_type == "application/x-bzip" ||
-             record.upload.content_type == "application/x-xz" ||
-             record.upload.content_type == "application/x-gz"
-        errors.add(:from_time, _("must have correct MIME type"))
+      unless ["application/x-bzip", "application/x-xz", "application/x-gz"].include? record.upload.content_type
+        errors.add(:upload, _("must have correct MIME type"))
       end
 
       unless record.upload.original_filename =~ /\.tar\.(bz2|gz|xz)\z/
-        errors.add(:from_time, _("must have correct file extension"))
+        errors.add(:upload, _("must have correct file extension"))
       end
     end
 
