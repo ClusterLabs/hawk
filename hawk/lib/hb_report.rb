@@ -15,23 +15,30 @@ class HbReport
   # pidfile will be set based on 'tmpbase', hb_report will be generated
   # at 'path'.  If path is nil, generate won't work -- make sure you set
   # it ASAP, before calling generate or relying on outfile or errfile!
-  def initialize(tmpbase, path = nil)
-    @pidfile  = "#{tmpbase}.pid"
-    @exitfile = "#{tmpbase}.exit"
-    @timefile = "#{tmpbase}.time"
-    @path     = path
-    if @path
-      @outfile = "#{@path}.stdout"
-      @errfile = "#{@path}.stderr"
+  def initialize(name = nil)
+    tmpbase = Rails.root.join('tmp', 'pids')
+    reports = Rails.root.join('tmp', 'reports')
+
+    tmpbase.mkpath unless tmpbase.directory?
+    reports.mkpath unless reports.directory?
+
+    @pidfile  = tmpbase.join("report.pid").to_s
+    @exitfile = tmpbase.join("report.exit").to_s
+    @timefile = tmpbase.join("report.time").to_s
+    if name
+      @path    = reports.join(name).to_s
+      @outfile = reports.join("#{name}.stdout").to_s
+      @errfile = reports.join("#{name}.stderr").to_s
     else
-      @outfile = "#{tmpbase}.stdout"
-      @errfile = "#{tmpbase}.stderr"
+      @path    = nil
+      @outfile = tmpbase.join("report.stdout").to_s
+      @errfile = tmpbase.join("report.stderr").to_s
     end
     @lastexit = File.exists?(@exitfile) ? File.new(@exitfile).read.to_i : nil
   end
 
   def path=(path)
-    @path = path
+    @path = path.to_s
     @outfile = "#{@path}.stdout"
     @errfile = "#{@path}.stderr"
   end

@@ -5,7 +5,7 @@ class ReportsController < ApplicationController
   before_filter :login_required
   before_filter :god_required
   before_filter :set_title
-  before_filter :set_record, only: [:show, :detail, :transition, :logs, :diff, :destroy]
+  before_filter :set_record, only: [:show, :detail, :graph, :logs, :diff, :destroy]
 
   helper_method :current_transition
   helper_method :prev_transition
@@ -13,9 +13,10 @@ class ReportsController < ApplicationController
   helper_method :first_transition
   helper_method :last_transition
   helper_method :window_transition
+  helper_method :report_details
 
   def index
-    @hb_report = HbReport.new hb_report_path
+    @hb_report = HbReport.new
 
     respond_to do |format|
       format.html
@@ -32,7 +33,7 @@ class ReportsController < ApplicationController
       return
     end
 
-    @hb_report = HbReport.new hb_report_path.to_s, Rails.root.join('tmp', 'reports', @report.name).to_s
+    @hb_report = HbReport.new @report.name
     @hb_report.generate(@report.from_time, true, @report.to_time)
 
     respond_to do |format|
@@ -89,11 +90,14 @@ class ReportsController < ApplicationController
   def show
     respond_to do |format|
       format.html
+      format.json do
+        render json: report_details
+      end
     end
   end
 
   def running
-    @hb_report = HbReport.new hb_report_path.to_s
+    @hb_report = HbReport.new
     running = @hb_report.running?
     t = running ? @hb_report.lasttime : ["", ""]
     respond_to do |format|
@@ -159,7 +163,7 @@ class ReportsController < ApplicationController
 
   def destroy
     @report = Report.find params[:id]
-    @hb_report = HbReport.new hb_report_path.to_s, Rails.root.join('tmp', 'reports', @report.name).to_s
+    @hb_report = HbReport.new @report.name
 
     respond_to do |format|
       begin
@@ -204,17 +208,10 @@ class ReportsController < ApplicationController
         end
       end
     end
+  end
 
-    if current_transition != 1
-      if current_transition > last_transition || current_transition < first_transition
-        respond_to do |format|
-          format.html do
-            flash[:alert] = _("The transition is out of scope")
-            redirect_to report_url(id: @report.id, transition: 1)
-          end
-        end
-      end
-    end
+  def report_details
+    {}
   end
 
   def current_transition
@@ -271,9 +268,5 @@ class ReportsController < ApplicationController
     else
       first_transition.upto(last_transition).to_a
     end
-  end
-
-  def hb_report_path
-      Rails.root.join("tmp", "pids", "report")
   end
 end

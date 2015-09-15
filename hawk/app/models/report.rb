@@ -102,11 +102,7 @@ class Report
 
     def report_path
       @report_path ||= Rails.root.join("tmp", "reports")
-
-      unless @report_path.directory?
-        @report_path.mkpath
-      end
-
+      @report_path.mkpath unless @report_path.directory?
       @report_path
     end
   end
