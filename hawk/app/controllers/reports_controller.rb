@@ -70,7 +70,7 @@ class ReportsController < ApplicationController
         end
       else
         format.json do
-          render json: { error: @report.errors.to_sentence }
+          render json: { error: @report.errors.full_messages.to_sentence }
         end
       end
     end
