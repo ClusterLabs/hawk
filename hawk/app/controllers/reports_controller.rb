@@ -6,7 +6,7 @@ class ReportsController < ApplicationController
   before_filter :god_required
   before_filter :set_title
   before_filter :set_record, only: [:destroy, :download]
-  before_filter :set_transition, only: [:show, :detail, :graph, :logs, :diff]
+  before_filter :set_transition, only: [:show, :detail, :graph, :logs, :diff, :pefile]
 
   helper_method :current_transition
   helper_method :prev_transition
@@ -14,6 +14,8 @@ class ReportsController < ApplicationController
   helper_method :first_transition
   helper_method :last_transition
   helper_method :window_transition
+  helper_method :format_date
+  helper_method :transition_tooltip
 
   def index
     @hb_report = HbReport.new
@@ -28,25 +30,15 @@ class ReportsController < ApplicationController
 
   def generate
     errors = []
-    begin
-      from_time = DateTime.parse(params[:report][:from_time]).iso8601()
-    rescue Exception => e
-      errors << _("from_time must be a valid datetime")
-    end
-    begin
-      to_time = DateTime.parse(params[:report][:to_time]).iso8601()
-    rescue Exception => e
-      errors << _("to_time must be a valid datetime")
-    end
+    from_time = parse_time params[:report][:from_time], errors
+    to_time = parse_time params[:report][:to_time], errors
 
     unless errors.empty?
       render json: { error: errors.to_sentence }
       return
     end
 
-    Rails.logger.debug "Generate: f=#{from_time}, t=#{to_time}"
-
-    @hb_report = HbReport.new "hawk-#{from_time.sub(' ', '_')}-#{to_time.sub(' ', '_')}"
+    @hb_report = HbReport.new make_report_name(from_time, to_time)
     @hb_report.generate(from_time, to_time)
 
     respond_to do |format|
@@ -99,24 +91,28 @@ class ReportsController < ApplicationController
   end
 
   def running
-    @hb_report = HbReport.new
-    running = @hb_report.running?
-    t = running ? @hb_report.lasttime : ["", ""]
     respond_to do |format|
       format.json do
-        render json: { running: running, time: t }
+        @hb_report = HbReport.new
+        running = @hb_report.running?
+        t = running ? @hb_report.lasttime : nil
+        render json: { running: running, time: (t || ["", ""]) }
       end
     end
   end
 
   def show
-
     respond_to do |format|
       format.html
       format.json do
         render json: @transitions
       end
     end
+  end
+
+  def pefile
+    fn = Pathname.new(@hb_report.path).join(@transition[:path])
+    send_file fn.to_s, type: "application/x-bzip", filename: @transition[:filename], x_sendfile: true
   end
 
   def detail
@@ -208,7 +204,6 @@ class ReportsController < ApplicationController
           }
         end
       rescue Exception => e
-        Rails.logger.debug "#{e.message}"
         format.html do
           flash[:alert] = _("Error deleting %s") % @report.id
           redirect_to reports_url
@@ -313,4 +308,27 @@ class ReportsController < ApplicationController
       first_transition.upto(last_transition).to_a
     end
   end
+
+  def format_date(t)
+    DateTime.parse(t).strftime('%F %R')
+  end
+
+  def parse_time(t, errors)
+    begin
+      DateTime.parse(t).iso8601()
+    rescue Exception => e
+      errors << _("must be a valid datetime")
+      nil
+    end
+  end
+
+  def make_report_name(f, t)
+    "hawk-#{f.sub(' ', '_')}-#{t.sub(' ', '_')}"
+  end
+
+  def transition_tooltip(transition)
+    tr = @transitions[transition.to_i-1]
+    format_date(tr[:timestamp])
+  end
+
 end

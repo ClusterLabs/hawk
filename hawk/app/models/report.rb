@@ -64,14 +64,12 @@ class Report
           version = v == pcmk_version ? nil : (v ?
                                                  _("PE Input created by different Pacemaker version (%{version})" % { :version => v }) :
                                                  _("Pacemaker version not present in PE Input"))
-          peinputs.push({
-                          :timestamp => File.mtime(path).iso8601(),
-                          :basename  => File.basename(path, ".bz2"),
-                          :filename  => File.basename(path),
-                          :path      => path.sub("#{hb_report.path}/", ''),  # only use relative portion
-                          :node      => path.split(File::SEPARATOR)[-3],
-                          :version   => version
-                        })
+          peinputs.push(timestamp: File.mtime(path).iso8601(),
+                        basename: File.basename(path, ".bz2"),
+                        filename: File.basename(path),
+                        path: path.sub("#{hb_report.path}/", ''),  # only use relative portion
+                        node: path.split(File::SEPARATOR)[-3],
+                        version: version)
         end
         # sort is going to be off for identical mtimes (stripped back to the second),
         # so need secondary sort by filename

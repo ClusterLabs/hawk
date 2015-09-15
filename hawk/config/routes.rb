@@ -120,6 +120,7 @@ Rails.application.routes.draw do
       get ":transition/graph(.:format)" => "reports#graph", as: :graph
       get ":transition/diff(.:format)" => "reports#diff", as: :diff
       get ":transition/logs(.:format)" => "reports#logs", as: :logs
+      get ":transition/pefile" => "reports#pefile", as: :pefile
     end
   end
 

@@ -14,14 +14,14 @@
           %dd= @report.name
           - if @report.from_time != @report.to_time
             %dt= _("From")
-            %dd= @report.from_time
+            %dd= format_date @report.from_time
             %dt= _("To")
-            %dd= @report.to_time
+            %dd= format_date @report.to_time
           - else
             %dt= _("From")
-            %dd= @transitions[0][:timestamp]
+            %dd= format_date @transitions[0][:timestamp]
             %dt= _("To")
-            %dd= @transitions[-1][:timestamp]
+            %dd= format_date @transitions[-1][:timestamp]
           %dt= _("Transitions")
           %dd= @transitions.length
 
@@ -39,18 +39,18 @@
                   %strong
                     = transition
               - else
-                = link_to transition, url_for(transition: transition), title: @transitions[transition.to_i-1][:timestamp], data: { toggle: :tooltip }
+                = link_to transition, url_for(transition: transition), title: transition_tooltip(transition), data: { toggle: :tooltip }
 
           %li{ role: "presentation", class: current_transition == last_transition ? "disabled" : nil }
             = link_to _("Next"), url_for(transition: next_transition)
       .panel-body
         %dl.dl-horizontal
           %dt= _("PE Name")
-          %dd= @transition[:path]
+          %dd= link_to @transition[:basename], pefile_report_path(id: params[:id], transition: current_transition)
           %dt= _("Node")
           %dd= @transition[:node]
           %dt= _("Time")
-          %dd= @transition[:timestamp]
+          %dd= format_date @transition[:timestamp]
           - if @transition[:version]
             %dt= _("Version")
             %dd= @transition[:version]
