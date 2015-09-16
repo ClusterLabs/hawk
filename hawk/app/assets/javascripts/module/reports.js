@@ -258,11 +258,10 @@ $(function() {
           switchable: false,
           clickToSelect: true,
           formatter: function(value, row, index) {
-            if (value.slice(0, 5) == "hawk-") {
-              return "hawk";
-            } else {
-              return value;
-            }
+            var title = value;
+            if (value.slice(0, 5) == "hawk-")
+              title = "hawk";
+            return ['<a href="', Routes.report_path(row.id), '" title="', __('Show'), '">', title, '</a> '].join("");
           }
         },{
           field: 'from_time',
