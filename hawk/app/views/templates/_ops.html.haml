@@ -1,13 +1,8 @@
 - if template_ops_for(clazz: clazz, provider: provider, type: type).present?
-  %fieldset
+  %fieldset{ data: { oplist: ops.to_json, oplist_mapping: template_ops_for(clazz: clazz, provider: provider, type: type).to_json, oplist_prefix: "primitive[ops]", oplist_target: ".content" } }
     %legend
       = _("Operations")
       %span.pull-right.toggleable
         = icon_tag("chevron-up")
 
     .content
-      %p= template_ops_for(clazz: clazz, provider: provider, type: type)
-      %p= ops
-      %p= clazz
-      %p= provider
-      %p= type

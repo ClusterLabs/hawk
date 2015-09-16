@@ -259,15 +259,38 @@ class Template < Resource
         xml.elements.each("//action") do |el|
           name = el.attributes["name"]
 
-          ops = Hash[el.attributes.collect { |a| a.to_a }]
-          ops.delete "name"
-          ops.delete "depth"
+          available = Hash[el.attributes.collect { |a| a.to_a }]
+          available.delete "name"
+          available.delete "depth"
+
+          ops = {}.tap do |result|
+            available.each do |key, default|
+              result[key] = {
+                type: "string",
+                default: default
+              }
+            end
+          end
+
+          if name == "monitor"
+            unless ops.has_key?("interval")
+              key = "interval"
+              ops[key] ||= {}
+              ops[key][:default] = "20"
+              ops[key][:required] = true
+            end
+
+            key = "OCF_CHECK_LEVEL"
+            ops[key] ||= {}
+            ops[key][:default] = "0"
+            ops[key][:type] = "string"
+          end
 
           result[name] ||= {
             "interval" => {
               type: "string",
-              default: default_interval ||= 0, # default_interval??
-              required: name == "monitor"
+              default: 0,
+              required: false
             },
             "timeout" => {
               type: "string",
@@ -277,7 +300,11 @@ class Template < Resource
             "requires" => {
               type: "enum",
               default: "fencing",
-              values: ["nothing", "quorum", "fencing"]
+              values: [
+                "nothing",
+                "quorum",
+                "fencing"
+              ]
             },
             "enabled" => {
               type: "boolean",
@@ -286,12 +313,24 @@ class Template < Resource
             "role" => {
               type: "enum",
               default: "",
-              values: ["Stopped", "Started", "Slave", "Master"]
+              values: [
+                "Stopped",
+                "Started",
+                "Slave",
+                "Master"
+              ]
             },
             "on-fail" => {
               type: "enum",
               default: "stop",
-              values: ["ignore", "block", "stop", "restart", "standby", "fence"]
+              values: [
+                "ignore",
+                "block",
+                "stop",
+                "restart",
+                "standby",
+                "fence"
+              ]
             },
             "start-delay" => {
               type: "string",
@@ -310,12 +349,6 @@ class Template < Resource
               default: ""
             }
           }
-          if name == "monitor"
-            result[name]["OCF_CHECK_LEVEL"] = {
-              type: "string",
-              default: "0"
-            }
-          end
 
           result[name].merge! ops
         end

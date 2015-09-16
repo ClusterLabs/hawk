@@ -6,6 +6,7 @@
 //= require module/basics
 //= require module/help
 //= require module/forms
+//= require module/oplist
 //= require module/attrlist
 //= require module/wizattrlist
 //= require module/modals
