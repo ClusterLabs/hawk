@@ -44,12 +44,11 @@
 
     %ul
       - if Util.has_feature? :acl_support
-        %li{ class: active_menu_with(:users) }
-          = link_to _("Users"), cib_users_path(cib_id: current_cib.id)
-
-      - if Util.has_feature? :acl_support
         %li{ class: active_menu_with(:roles) }
           = link_to _("Roles"), cib_roles_path(cib_id: current_cib.id)
+
+        %li{ class: active_menu_with(:users) }
+          = link_to _("Users"), cib_users_path(cib_id: current_cib.id)
 
       %li{ class: active_menu_with(:configs) }
         = link_to _("Configuration"), edit_cib_crm_config_path(cib_id: current_cib.id)
