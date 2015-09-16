@@ -172,11 +172,11 @@ some steps.
 * Install +virtualbox+, we assume you know how to do that on your OS. If
   you prefer +libvirt+ you can use that as well.
 
-  Out of the box, +vagrant+ is configured to synchronize the working
-  folder to +/vagrant+ in the virtual machines using NFS. For this to
-  work properly, the +vagrant-bindfs+ plugin is necessary.
+Out of the box, +vagrant+ is configured to synchronize the working
+folder to +/vagrant+ in the virtual machines using NFS. For this to
+work properly, the +vagrant-bindfs+ plugin is necessary.
 
-  Install it using the following command:
+Install it using the following command:
 
 --------------------------------------
   # vagrant plugin install vagrant-bindfs
