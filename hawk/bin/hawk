@@ -1,0 +1,67 @@
+#!/bin/sh
+#
+# a simple script to simplify hawk development
+
+usage() {
+	echo "hawk <start|stop|status|restart|log|syslog>"
+}
+
+hawk_start() {
+	sudo systemctl start hawk-development
+	if [ ! $(systemctl status hawk-development >/dev/null) ]; then
+		rm -f /vagrant/hawk/Gemfile.lock
+		sudo systemctl start hawk-development
+	fi
+}
+
+hawk_stop() {
+	sudo systemctl stop hawk-development
+}
+
+hawk_status() {
+	systemctl status hawk-development
+}
+
+hawk_restart() {
+	hawk_stop
+	hawk_start
+}
+
+hawk_syslog() {
+	sudo journalctl -eu hawk-development
+}
+
+hawk_log() {
+	less +F /vagrant/hawk/log/development.log
+}
+
+if [ $# -lt 1 ]
+then
+	usage
+    exit
+fi
+
+case "$1" in
+	start)
+		hawk_start
+		;;
+	stop)
+		hawk_stop
+		;;
+	restart)
+		hawk_restart
+		;;
+	status)
+		hawk_status
+		;;
+	syslog)
+		hawk_syslog
+		;;
+	log)
+		hawk_log
+		;;
+	*)
+		usage
+		exit
+		;;
+esac
