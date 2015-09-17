@@ -44,4 +44,6 @@ Rails.application.configure do
   config.logger = ActiveSupport::TaggedLogging.new(
     Logger.new(Rails.root.join("log", "development.log"))
   )
+
+  config.web_console.whitelisted_ips = '10.0.2.2'
 end
