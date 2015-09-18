@@ -105,7 +105,7 @@ module PrimitiveHelper
   end
 
   def path_for_new_resource(*args)
-    if controller.controller_name == "primitive"
+    if controller.controller_name == "primitives"
       new_cib_primitive_path(*args)
     else
       new_cib_template_path(*args)
@@ -113,6 +113,10 @@ module PrimitiveHelper
   end
 
   def localized_help
-    localized_help_for :resources, controller.controller_name.to_sym
+    if controller.controller_name == "primitives"
+      localized_help_for :resources, :primitive
+    else
+      localized_help_for :resources, :template
+    end
   end
 end
