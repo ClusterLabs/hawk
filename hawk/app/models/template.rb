@@ -84,7 +84,7 @@ class Template < Resource
           if opname == "monitor"
             interval = el.attributes["interval"]
             # TODO: strip suffix like in frontend
-            key = "#{name}_#{interval}"
+            key = "#{opname}_#{interval}"
           end
 
           ops = el.attributes.collect do |name, value|
