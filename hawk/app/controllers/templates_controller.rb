@@ -10,7 +10,9 @@ class TemplatesController < ApplicationController
 
   def index
     respond_to do |format|
-      format.html
+      format.html do
+        render 'primitives/index'
+      end
       format.json do
         render json: Template.ordered.to_json
       end

@@ -4,7 +4,7 @@
       = icon_text "file-o", @title, class: "page"
       .pull-right
         .btn-group{ role: "group" }
-          = link_to icon_text("list-ul", _("List")), cib_primitives_path, class: "btn btn-default"
+          = link_to icon_text("list-ul", _("List")), path_for_list, class: "btn btn-default"
 
   .row
     = render partial: "primitives/form", locals: { cib: @cib, primitive: @primitive }
@@ -12,10 +12,7 @@
 - content_for :rightbar do
   .container-fluid{ data: { spy: "affix" } }
     .row.primitive
-      - if @primitive.resource?
-        = localized_help_for :resources, :primitive
-      - else
-        = localized_help_for :resources, :template
+      = localized_help
 
     .row.agentinfo
 

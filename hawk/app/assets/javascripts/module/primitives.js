@@ -18,7 +18,7 @@ $(function() {
       type_selector: '#primitive_type',
     },
     template: {
-      table_selector: '#templates #middle table.templates',
+      table_selector: '#templates #middle table.primitives',
       cib_primitives_path: Routes.cib_templates_path,
       cib_primitive_path: Routes.cib_template_path,
       edit_cib_primitive_path: Routes.edit_cib_template_path,

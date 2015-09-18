@@ -87,4 +87,33 @@ module PrimitiveHelper
       selected
     )
   end
+
+  def path_for_list
+    if @primitive.resource?
+      cib_primitives_path
+    else
+      cib_templates_path
+    end
+  end
+
+  def path_for_resource(*args)
+    if @primitive.resource?
+      cib_primitive_path(*args)
+    else
+      cib_template_path(*args)
+    end
+  end
+
+  def path_for_new_resource(*args)
+    if controller.controller_name == "primitive"
+      new_cib_primitive_path(*args)
+    else
+      new_cib_template_path(*args)
+    end
+  end
+
+  def localized_help
+    localized_help_for :resources, controller.controller_name.to_sym
+  end
+
 end
