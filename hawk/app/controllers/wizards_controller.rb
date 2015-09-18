@@ -29,6 +29,7 @@ class WizardsController < ApplicationController
     @wizard = Wizard.find params[:id]
     pa = build_scriptparams(params)
     @wizard.verify(pa)
+    session[:wizard_data] = pa
     Rails.cache.write("#{params[:id]}/#{session.id}", pa, expires_in: 6.hours)
 
     respond_to do |format|
@@ -38,7 +39,7 @@ class WizardsController < ApplicationController
 
   def submit
     pa = Rails.cache.fetch("#{params[:id]}/#{session.id}", expires_in: 6.hours) do
-      nil
+      session[:wizard_data]
     end
 
     if pa.nil?
