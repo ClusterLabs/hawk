@@ -210,13 +210,25 @@ $(function() {
           title: __('Name'),
           sortable: true,
           switchable: false,
-          clickToSelect: true
+          clickToSelect: true,
+          class: 'col-sm-2'
+        },
+        {
+          field: 'rsc',
+          title: __('Resources'),
+          sortable: false,
+          clickToSelect: true,
+          class: 'col-sm-6',
+          formatter: function(value, row, index) {
+            return description(row);
+          }
         },
         {
           field: 'score',
-          title: __('Score / Kind'),
+          title: __('Score'),
           sortable: false,
           clickToSelect: true,
+          class: 'col-sm-1',
           formatter: function(value, row, index) {
             if ("kind" in row) {
               return row.kind;
@@ -225,15 +237,6 @@ $(function() {
             } else {
               return "-";
             }
-          }
-        },
-        {
-          field: 'rsc',
-          title: __('Resources'),
-          sortable: false,
-          clickToSelect: true,
-          formatter: function(value, row, index) {
-            return description(row);
           }
         },
         {

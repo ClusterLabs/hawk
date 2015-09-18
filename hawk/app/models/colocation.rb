@@ -94,7 +94,7 @@ class Colocation < Constraint
       collapsed = [ @resources.first.clone ]
       @resources.last(@resources.length - 1).each do |set|
         if collapsed.last[:sequential] == set[:sequential] &&
-           collapsed.last[:role] == set[:role]
+           collapsed.last[:action] == set[:action]
           collapsed.last[:resources] += set[:resources]
         else
           collapsed << set.clone
@@ -106,13 +106,13 @@ class Colocation < Constraint
         # don't flip around the other way like we do below)
         set = collapsed[0]
         set[:resources].each do |r|
-          cmd.push r + (set[:role] ? ":#{set[:role]}" : "")
+          cmd.push r + (set[:action] ? ":#{set[:action]}" : "")
         end
       else
         collapsed.each do |set|
           cmd.push " ( " unless set[:sequential]
           set[:resources].reverse.each do |r|
-            cmd.push r + (set[:role] ? ":#{set[:role]}" : "")
+            cmd.push r + (set[:action] ? ":#{set[:action]}" : "")
           end
           cmd.push " )" unless set[:sequential]
         end
@@ -133,7 +133,7 @@ class Colocation < Constraint
         if xml.attributes["rsc"]
           resources.push(
             sequential: true,
-            role: xml.attributes["rsc-role"] || nil,
+            action: xml.attributes["rsc-role"] || nil,
             resources: [
               xml.attributes["rsc"]
             ]
@@ -141,7 +141,7 @@ class Colocation < Constraint
 
           resources.push(
             sequential: true,
-            role: xml.attributes["with-rsc-role"] || nil,
+            action: xml.attributes["with-rsc-role"] || nil,
             resources: [
               xml.attributes["with-rsc"]
             ]
@@ -150,7 +150,7 @@ class Colocation < Constraint
           xml.elements.each do |resource|
             set = {
               sequential: Util.unstring(resource.attributes["sequential"], true),
-              role: resource.attributes["role"] || nil,
+              action: resource.attributes["role"] || nil,
               resources: []
             }
 

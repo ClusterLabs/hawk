@@ -66,7 +66,7 @@ $(function() {
           }
         }, {
           field: 'name',
-          title: __('Node'),
+          title: __('Name'),
           sortable: true,
           switchable: false,
           clickToSelect: true

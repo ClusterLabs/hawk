@@ -8,13 +8,13 @@
           = link_to icon_text("list-ul", _("List")), cib_tags_path, class: "btn btn-default"
 
   .row
-    = localized_help_for :resources, :tag
-
-  .row
     = render partial: "form", locals: { cib: @cib, tag: @tag }
 
 - content_for :rightbar do
   .container-fluid{ data: { spy: "affix" } }
+    .row.tag
+      = localized_help_for :resources, :tag
+
     - @tag.mapping.each do |key, values|
       - next unless values[:longdesc]
 

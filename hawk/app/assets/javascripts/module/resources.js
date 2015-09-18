@@ -96,16 +96,28 @@ $(function() {
         },
         {
           field: 'id',
-          title: __('Resource'),
+          title: __('Name'),
           sortable: true,
           switchable: false,
-          clickToSelect: true
+          clickToSelect: true,
+          class: 'col-sm-2'
+        },
+        {
+          field: 'type',
+          title: __('Location'),
+          sortable: true,
+          clickToSelect: true,
+          class: 'col-sm-6',
+          formatter: function(value, row, index) {
+            return startedAt(row).join(", ");
+          }
         },
         {
           field: 'type',
           title: __('Type'),
           sortable: true,
           clickToSelect: true,
+          class: 'col-sm-1',
           formatter: function(value, row, index) {
             if (row.type == "group") {
               return __("Group");
@@ -126,15 +138,6 @@ $(function() {
             } else {
               return row.type;
             }
-          }
-        },
-        {
-          field: 'type',
-          title: __('Location'),
-          sortable: true,
-          clickToSelect: true,
-          formatter: function(value, row, index) {
-            return startedAt(row).join(", ");
           }
         },
         {
