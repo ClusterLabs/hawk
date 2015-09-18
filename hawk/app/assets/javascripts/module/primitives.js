@@ -186,7 +186,11 @@ $(function() {
       var format_longdesc = function(text) {
         var longdesc = $.map(text.split('\n\n'), function(v) { return $.trim(v); });
         var ret = [];
-        $.each(longdesc, function(i, v) { if (v) ret.push('<p>', v, '</p>'); });
+        $.each(longdesc, function(i, v) {
+          if (v) {
+            ret.push('<p>', v, '</p>');
+          }
+        });
         return ret.join("");
       };
 
@@ -235,10 +239,12 @@ $(function() {
               var type = "string";
               var defvalue = "";
               if ("content" in v && v.content) {
-                if ("type" in v.content)
+                if ("type" in v.content) {
                   type = v.content.type;
-                if ("default" in v.content)
+                }
+                if ("default" in v.content) {
                   defvalue = v.content["default"];
+                }
               }
               if (v.required == "1") {
                 pal[v.name] = defvalue;
