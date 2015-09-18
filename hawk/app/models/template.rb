@@ -83,7 +83,16 @@ class Template < Resource
           key = opname
           if opname == "monitor"
             interval = el.attributes["interval"]
-            # TODO: strip suffix like in frontend
+            m = /([0-9]+)\s*(s|m|h)?/.match(interval)
+            if m
+              if m[2] == "m"
+                interval = (m[1].to_i * 60).to_s
+              elsif m[2] == "h"
+                interval = (m[1].to_i * 60 * 60).to_s
+              else
+                interval = m[1]
+              end
+            end
             key = "#{opname}_#{interval}"
           end
 
