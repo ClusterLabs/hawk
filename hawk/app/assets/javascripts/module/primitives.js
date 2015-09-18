@@ -80,6 +80,7 @@ $(function() {
             'click .delete': function (e, value, row, index) {
               e.preventDefault();
               var $self = $(this);
+              var answer = null;
 
               try {
                 answer = confirm(
