@@ -137,7 +137,7 @@
         if (item.id == value)
           found = at;
       });
-      if (found.length > 0) {
+      if (found !== null && found.length > 0) {
         self.available.splice(found, 1);
       }
     });
