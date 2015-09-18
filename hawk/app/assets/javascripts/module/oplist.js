@@ -49,8 +49,6 @@
     // by the modal attrlist
     this.attr_mapping = this.$el.data('oplist-mapping');
 
-    console.log("oplist", this);
-
     this.defaults = {
       create: false, // if true, creating a new resource: add operations for actions
       labels: {
