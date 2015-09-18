@@ -95,7 +95,7 @@ class TemplatesController < ApplicationController
       if Invoker.instance.crm("--force", "configure", "delete", @primitive.id)
         format.html do
           flash[:success] = _("Template deleted successfully")
-          redirect_to types_cib_resources_path(cib_id: @cib.id)
+          redirect_to cib_templates_path(cib_id: @cib.id)
         end
         format.json do
           render json: {
