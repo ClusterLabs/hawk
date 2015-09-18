@@ -68,26 +68,4 @@ module TemplateHelper
       selected
     )
   end
-
-  def template_meta_for(options = {})
-    template_values_for(:available_meta, options)
-  end
-
-  def template_params_for(options = {})
-    template_values_for(:available_params, options)
-  end
-
-  def template_ops_for(options = {})
-    template_values_for(:available_ops, options)
-  end
-
-  protected
-
-  def template_values_for(method, options = {})
-    ::Template.send(method, {
-      clazz: options[:clazz],
-      provider: options[:provider],
-      type: options[:type]
-    })
-  end
 end

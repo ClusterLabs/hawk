@@ -1,8 +1,0 @@
-- if template_params_for(clazz: clazz, provider: provider, type: type).present?
-  %fieldset{ data: { attrlist: params.to_json, attrlist_mapping: template_params_for(clazz: clazz, provider: provider, type: type).to_json, attrlist_prefix: "template[params]", attrlist_target: ".content" } }
-    %legend
-      = _("Parameters")
-      %span.pull-right.toggleable
-        = icon_tag("chevron-up")
-
-    .content

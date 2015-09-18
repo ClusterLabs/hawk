@@ -42,21 +42,8 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :primitives do
-      collection do
-        post :metas
-        post :parameters
-        post :operations
-      end
-    end
-
-    resources :templates do
-      collection do
-        post :metas
-        post :parameters
-        post :operations
-      end
-    end
+    resources :primitives
+    resources :templates
 
     resources :constraints do
       member do
@@ -105,7 +92,7 @@ Rails.application.routes.draw do
     resource :graph
   end
 
-  resources :agents, only: [:show]
+  get '/agent', as: :agent, to: 'agents#show'
 
   resources :reports, only: [:index, :destroy, :show] do
     collection do

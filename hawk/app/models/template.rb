@@ -30,16 +30,12 @@ class Template < Resource
     self.class.options
   end
 
-  def available_meta(opts = {})
-    self.class.available_params opts
+  def available_meta
+    self.class.available_meta
   end
 
-  def available_params(opts = {})
-    self.class.available_params opts
-  end
-
-  def available_ops(opts = {})
-    self.class.available_ops opts
+  def available_opmeta
+    self.class.available_opmeta
   end
 
   class << self
@@ -82,27 +78,17 @@ class Template < Resource
       end
 
       record.ops = if xml.elements["operations"]
-        # ops = {}
-        # xml.elements['operations'].elements.each do |e|
-        #   name = e.attributes['name']
-        #   ops[name] = [] unless ops[name]
-        #   op = Hash[e.attributes.collect{|a| a.to_a}]
-        #   op.delete 'name'
-        #   op.delete 'id'
-        #   if name == "monitor"
-        #     # special case for OCF_CHECK_LEVEL
-        #     cl = e.elements['instance_attributes/nvpair[@name="OCF_CHECK_LEVEL"]']
-        #     op["OCF_CHECK_LEVEL"] = cl.attributes['value'] if cl
-        #   end
-        #   ops[name].push op
-        # end
-        # ops
-
         vals = xml.elements["operations"].elements.collect do |el|
-          key = el.attributes["name"]
+          opname = el.attributes["name"]
+          key = opname
+          if opname == "monitor"
+            interval = el.attributes["interval"]
+            # TODO: strip suffix like in frontend
+            key = "#{name}_#{interval}"
+          end
 
           ops = el.attributes.collect do |name, value|
-            next if ["id", "name"].include? name
+            next if ["id"].include? name
 
             [
               name,
@@ -190,169 +176,12 @@ class Template < Resource
       end
     end
 
-    def available_meta(params = {})
+    def available_meta
       mapping[:meta]
     end
 
-    def available_params(params = {})
-      path = [
-        params[:clazz],
-        params[:provider],
-        params[:type]
-      ].compact.reject(&:empty?).join(":")
-
-      xml = REXML::Document.new(
-        Util.safe_x(
-          "/usr/sbin/crm_resource",
-          "--show-metadata",
-          path
-        )
-      )
-
-      return {} unless xml.root
-
-      {}.tap do |result|
-        xml.elements.each("//parameter") do |el|
-          name = el.attributes["name"]
-
-          shortdesc = if el.elements["shortdesc[@lang=\"#{I18n.locale.to_s.gsub("-", "_")}\"]|shortdesc[@lang=\"en\"]"]
-            el.elements["shortdesc[@lang=\"#{I18n.locale.to_s.gsub("-", "_")}\"]|shortdesc[@lang=\"en\"]"].text || ""
-          elsif el.elements["shortdesc"]
-            el.elements["shortdesc"].text || ""
-          end
-
-          longdesc = if el.elements["longdesc[@lang=\"#{I18n.locale.to_s.gsub("-", "_")}\"]|longdesc[@lang=\"en\"]"]
-            el.elements["longdesc[@lang=\"#{I18n.locale.to_s.gsub("-", "_")}\"]|longdesc[@lang=\"en\"]"].text || ""
-          elsif el.elements["longdesc"]
-            el.elements["longdesc"].text || ""
-          end
-
-          result[name] = {
-            shortdesc: shortdesc,
-            longdesc: longdesc,
-            type: el.elements["content"].attributes["type"],
-            default: el.elements["content"].attributes["default"],
-            required: el.attributes["required"].to_i == 1 ? true : false
-          }
-        end
-      end
-    end
-
-    def available_ops(params = {})
-      path = [
-        params[:clazz],
-        params[:provider],
-        params[:type]
-      ].compact.reject(&:empty?).join(":")
-
-      xml = REXML::Document.new(
-        Util.safe_x(
-          "/usr/sbin/crm_resource",
-          "--show-metadata",
-          path
-        )
-      )
-
-      return {} unless xml.root
-
-      {}.tap do |result|
-        xml.elements.each("//action") do |el|
-          name = el.attributes["name"]
-
-          available = Hash[el.attributes.collect { |a| a.to_a }]
-          available.delete "name"
-          available.delete "depth"
-
-          ops = {}.tap do |result|
-            available.each do |key, default|
-              result[key] = {
-                type: "string",
-                default: default
-              }
-            end
-          end
-
-          if name == "monitor"
-            unless ops.has_key?("interval")
-              key = "interval"
-              ops[key] ||= {}
-              ops[key][:default] = "20"
-              ops[key][:required] = true
-            end
-
-            key = "OCF_CHECK_LEVEL"
-            ops[key] ||= {}
-            ops[key][:default] = "0"
-            ops[key][:type] = "string"
-          end
-
-          result[name] ||= {
-            "interval" => {
-              type: "string",
-              default: 0,
-              required: false
-            },
-            "timeout" => {
-              type: "string",
-              default: "0",
-              required: true
-            },
-            "requires" => {
-              type: "enum",
-              default: "fencing",
-              values: [
-                "nothing",
-                "quorum",
-                "fencing"
-              ]
-            },
-            "enabled" => {
-              type: "boolean",
-              default: "true"
-            },
-            "role" => {
-              type: "enum",
-              default: "",
-              values: [
-                "Stopped",
-                "Started",
-                "Slave",
-                "Master"
-              ]
-            },
-            "on-fail" => {
-              type: "enum",
-              default: "stop",
-              values: [
-                "ignore",
-                "block",
-                "stop",
-                "restart",
-                "standby",
-                "fence"
-              ]
-            },
-            "start-delay" => {
-              type: "string",
-              default: "0"
-            },
-            "interval-origin" => {
-              type: "string",
-              default: "0"
-            },
-            "record-pending" => {
-              type: "boolean",
-              default: "false"
-            },
-            "description" => {
-              type: "string",
-              default: ""
-            }
-          }
-
-          result[name].merge! ops
-        end
-      end
+    def available_opmeta
+      mapping[:opmeta]
     end
 
     def mapping
@@ -444,6 +273,76 @@ class Template < Resource
               default: "60s",
               longdesc: _("How long before a pending guest connection will time out.")
             }
+          },
+          opmeta: {
+            "interval" => {
+              type: "string",
+              default: 0,
+              required: false,
+              longdesc: _("How frequently (in seconds) to perform the operation.")
+            },
+            "timeout" => {
+              type: "string",
+              default: "0",
+              required: true,
+              longdesc: _("How long to wait before declaring the action has failed.")
+            },
+            "requires" => {
+              type: "enum",
+              default: "fencing",
+              values: [
+                "nothing",
+                "quorum",
+                "fencing"
+              ],
+              longdesc: _("What conditions need to be satisfied before this action occurs.")
+            },
+            "enabled" => {
+              type: "boolean",
+              default: "true",
+              longdesc: _("If false, the operation is treated as if it does not exist.")
+            },
+            "role" => {
+              type: "enum",
+              default: "",
+              values: [
+                "Stopped",
+                "Started",
+                "Slave",
+                "Master"
+              ],
+              longdesc: _("This option only makes sense for recurring operations. It restricts the operation to a specific role. The truely paranoid can even specify role=Stopped which allows the cluster to detect an admin that manually started cluster services.")
+            },
+            "on-fail" => {
+              type: "enum",
+              default: "stop",
+              values: [
+                "ignore",
+                "block",
+                "stop",
+                "restart",
+                "standby",
+                "fence"
+              ],
+              longdesc: _("The action to take if this action ever fails.")
+            },
+            "start-delay" => {
+              type: "string",
+              default: "0"
+            },
+            "interval-origin" => {
+              type: "string",
+              default: "0"
+            },
+            "record-pending" => {
+              type: "boolean",
+              default: "false",
+              longdesc: _("If true, the intention to perform the operation is recorded so that GUIs and CLI tools can indicate that an operation is in progress.")
+            },
+            "description" => {
+              type: "string",
+              default: ""
+            }
           }
         }
       end
@@ -484,8 +383,6 @@ class Template < Resource
       ].reject(&:nil?).reject(&:empty?).join(":")
 
       unless params.empty?
-        cmd.push "params"
-
         params.each do |key, value|
           cmd.push [
             key,
@@ -495,18 +392,15 @@ class Template < Resource
       end
 
       unless ops.empty?
-        cmd.push "params"
+        ops.each do |_id, op|
+          cmd.push "op #{op["name"]}"
 
-        ops.each do |op, instances|
-          instances.each do |i, attrlist|
-            cmd.push "op #{op}"
-
-            attrlist.each do |key, value|
-              cmd.push [
-                key,
-                value.shellescape
-              ].join("=")
-            end
+          op.each do |key, value|
+            next if key == "name"
+            cmd.push [
+              key,
+              value.shellescape
+            ].join("=")
           end
         end
       end

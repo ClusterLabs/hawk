@@ -1,5 +1,5 @@
 .panel.panel-default
-  .panel-body
+  .panel-body{ data: { help_target: "#rightbar > .container-fluid > #helpentries > .attrhelp" } }
     = form_for [cib, primitive], horizontal: true do |main_form|
       = errors_for primitive
 
@@ -13,7 +13,7 @@
         = main_form.select :provider, :primitive_provider_options, { include_blank: true, include_hidden: false }, { label: _("Provider") }
         = main_form.select :type, :primitive_type_options, { include_blank: true, include_hidden: false }, { label: _("Type") }
       - else
-        = main_form.text_field :id, label: _("Primitive ID"), readonly: true
+        = main_form.text_field :id, label: _("Resource ID"), readonly: true
 
         - if Util.has_feature?(:rsc_template) && primitive.resource?
           = main_form.text_field :template, label: _("Template"), readonly: true
@@ -22,17 +22,9 @@
         = main_form.text_field :provider, label: _("Provider"), readonly: true
         = main_form.text_field :type, label: _("Type"), readonly: true
 
-      #metalist
-        - if primitive.persisted?
-          = render partial: "meta", locals: { clazz: primitive.clazz, provider: primitive.provider, type: primitive.type, meta: primitive.meta }
-
       #paramslist
-        - if primitive.persisted?
-          = render partial: "params", locals: { clazz: primitive.clazz, provider: primitive.provider, type: primitive.type, params: primitive.params }
-
-      #opslist
-        - if primitive.persisted?
-          = render partial: "ops", locals: { clazz: primitive.clazz, provider: primitive.provider, type: primitive.type, ops: primitive.ops }
+      #oplist
+      #metalist
 
       = main_form.button_group do
         - if primitive.new_record?
@@ -42,3 +34,30 @@
           = revert_button(main_form, primitive)
 
         = link_to _("Back"), types_cib_resources_path(cib_id: cib.id), class: "btn btn-default back"
+
+
+
+%script#jstmpl-paramslist{type: "text/x-jsrender"}
+  %fieldset{ data: {attrlist: primitive.params.to_json, attrlist_target: '.content', attrlist_prefix: "#{primitive.class.cib_type}[params]"}}
+    %legend
+      = _("Parameters")
+      %span.pull-right.toggleable
+        = icon_tag("chevron-up")
+    .content
+
+%script#jstmpl-metalist{type: "text/x-jsrender"}
+  %fieldset{ data: {attrlist: primitive.meta.to_json, attrlist_target: '.content', attrlist_prefix: "#{primitive.class.cib_type}[meta]", attrlist_mapping: primitive.available_meta.to_json }}
+    %legend
+      = _("Meta Attributes")
+      %span.pull-right.toggleable
+        = icon_tag("chevron-up")
+    .content
+
+%script#jstmpl-oplist{type: "text/x-jsrender"}
+  %fieldset{ data: {oplist: primitive.ops.to_json, oplist_target: '.content', oplist_prefix: "#{primitive.class.cib_type}[ops]", oplist_mapping: primitive.available_opmeta.to_json}}
+    %legend
+      = _("Operations")
+      %span.pull-right.toggleable
+        = icon_tag("chevron-up")
+    .content
+ 

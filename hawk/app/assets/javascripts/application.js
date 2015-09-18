@@ -15,7 +15,6 @@
 //= require module/resources
 //= require module/constraints
 //= require module/primitives
-//= require module/templates
 //= require module/masters
 //= require module/clones
 //= require module/groups

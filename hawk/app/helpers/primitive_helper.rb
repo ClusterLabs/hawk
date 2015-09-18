@@ -88,25 +88,35 @@ module PrimitiveHelper
     )
   end
 
-  def primitive_meta_for(options = {})
-    primitive_values_for(:available_meta, options)
+  def path_for_list
+    if @primitive.resource?
+      cib_primitives_path
+    else
+      cib_templates_path
+    end
   end
 
-  def primitive_params_for(options = {})
-    primitive_values_for(:available_params, options)
+  def path_for_resource(*args)
+    if @primitive.resource?
+      cib_primitive_path(*args)
+    else
+      cib_template_path(*args)
+    end
   end
 
-  def primitive_ops_for(options = {})
-    primitive_values_for(:available_ops, options)
+  def path_for_new_resource(*args)
+    if controller.controller_name == "primitives"
+      new_cib_primitive_path(*args)
+    else
+      new_cib_template_path(*args)
+    end
   end
 
-  protected
-
-  def primitive_values_for(method, options = {})
-    ::Primitive.send(method, {
-      clazz: options[:clazz],
-      provider: options[:provider],
-      type: options[:type]
-    })
+  def localized_help
+    if controller.controller_name == "primitives"
+      localized_help_for :resources, :primitive
+    else
+      localized_help_for :resources, :template
+    end
   end
 end

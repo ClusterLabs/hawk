@@ -71,13 +71,13 @@
               %table.table
                 %tr
                   %th= _("Name")
+                  %th= _("Timeout")
                   %th= _("Interval")
-                - @resource["ops"].each do |name, variants|
+                - @resource["ops"].each do |id, op|
                   %tr
-                    %td= content_tag :code, name
-                    - variants.each do |v|
-                      - if v.has_key? "interval"
-                        %td= content_tag :code, v["interval"]
+                    %td= content_tag :code, op["name"]
+                    %td= content_tag :code, op["timeout"] || "-"
+                    %td= content_tag :code, op["interval"] || "-"
 
 
 

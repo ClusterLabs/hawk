@@ -1,8 +1,0 @@
-- if primitive_params_for(clazz: clazz, provider: provider, type: type).present?
-  %fieldset{ data: { attrlist: params.to_json, attrlist_mapping: primitive_params_for(clazz: clazz, provider: provider, type: type).to_json, attrlist_prefix: "primitive[params]", attrlist_target: ".content" } }
-    %legend
-      = _("Parameters")
-      %span.pull-right.toggleable
-        = icon_tag("chevron-up")
-
-    .content

@@ -2,31 +2,7 @@
 // See COPYING for license.
 
 $(function() {
-  $('form fieldset span.toggleable').on('click', function (e) {
-    if ($(this).hasClass('collapsed')) {
-      $(this)
-        .removeClass('collapsed')
-        .parents('fieldset')
-        .find('.content')
-        .slideDown();
-
-      $(this)
-        .find('i')
-        .removeClass('fa-chevron-down')
-        .addClass('fa-chevron-up');
-    } else {
-      $(this)
-        .addClass('collapsed')
-        .parents('fieldset')
-        .find('.content')
-        .slideUp();
-
-      $(this)
-        .find('i')
-        .removeClass('fa-chevron-up')
-        .addClass('fa-chevron-down');
-    }
-  });
+  $('form fieldset').toggleify();
 
   $('#middle form')
     .on('keyup', 'input, select', function(e) {

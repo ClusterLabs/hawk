@@ -18,14 +18,11 @@ class AgentsController < ApplicationController
         name = name + template["class"] + ":" if template["class"]
         name = name + template["provider"] + ":" if template["provider"]
         @name = name + template["type"]
-        @agent = Hash.from_xml(Util.safe_x("/usr/sbin/crm_resource", "--show-metadata", @name))
       end
-    elsif params[:id].match /^[A-Za-z0-9:_-]+$/
-      @name = params[:id]
-      @agent = Hash.from_xml(Util.safe_x("/usr/sbin/crm_resource", "--show-metadata", @name))
     else
-      @agent = nil
+      @name = params[:id]
     end
+    @agent = Hash.from_xml(Util.safe_x("/usr/sbin/crm_resource", "--show-metadata", @name))
 
 
     if @agent
