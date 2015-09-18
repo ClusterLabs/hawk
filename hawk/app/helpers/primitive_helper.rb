@@ -87,26 +87,4 @@ module PrimitiveHelper
       selected
     )
   end
-
-  def primitive_meta_for(options = {})
-    primitive_values_for(:available_meta, options)
-  end
-
-  def primitive_params_for(options = {})
-    primitive_values_for(:available_params, options)
-  end
-
-  def primitive_ops_for(options = {})
-    primitive_values_for(:available_ops, options)
-  end
-
-  protected
-
-  def primitive_values_for(method, options = {})
-    ::Primitive.send(method, {
-      clazz: options[:clazz],
-      provider: options[:provider],
-      type: options[:type]
-    })
-  end
 end

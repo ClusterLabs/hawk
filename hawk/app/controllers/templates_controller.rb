@@ -21,9 +21,7 @@ class TemplatesController < ApplicationController
     @title = _("Create Template")
     @primitive = Template.new
 
-    respond_to do |format|
-      format.html
-    end
+    render 'primitives/new'
   end
 
   def create
@@ -45,7 +43,7 @@ class TemplatesController < ApplicationController
         end
       else
         format.html do
-          render action: "new"
+          render 'primitives/new'
         end
         format.json do
           render json: @primitive.errors, status: :unprocessable_entity
@@ -57,9 +55,7 @@ class TemplatesController < ApplicationController
   def edit
     @title = _("Edit Template")
 
-    respond_to do |format|
-      format.html
-    end
+    render 'primitives/edit'
   end
 
   def update
@@ -83,7 +79,7 @@ class TemplatesController < ApplicationController
         end
       else
         format.html do
-          render action: "edit"
+          render 'primitives/edit'
         end
         format.json do
           render json: @primitive.errors, status: :unprocessable_entity
@@ -97,7 +93,7 @@ class TemplatesController < ApplicationController
       if Invoker.instance.crm("--force", "configure", "delete", @primitive.id)
         format.html do
           flash[:success] = _("Template deleted successfully")
-          redirect_to cib_dashboard_url(cib_id: @cib.id)
+          redirect_to types_cib_resources_path(cib_id: @cib.id)
         end
         format.json do
           render json: {
@@ -121,54 +117,6 @@ class TemplatesController < ApplicationController
     respond_to do |format|
       format.json do
         render json: @primitive.to_json
-      end
-      format.any { not_found  }
-    end
-  end
-
-  def metas
-    m, clazz, provider, type = partial_attributes(:meta)
-
-    respond_to do |format|
-      format.html do
-        render partial: "meta", locals: {
-          clazz: clazz,
-          provider: provider,
-          type: type,
-          meta: m
-        }
-      end
-      format.any { not_found  }
-    end
-  end
-
-  def parameters
-    p, clazz, provider, type = partial_attributes(:params)
-
-    respond_to do |format|
-      format.html do
-        render partial: "params", locals: {
-          clazz: clazz,
-          provider: provider,
-          type: type,
-          params: p
-        }
-      end
-      format.any { not_found  }
-    end
-  end
-
-  def operations
-    o, clazz, provider, type = partial_attributes(:ops)
-
-    respond_to do |format|
-      format.html do
-        render partial: "ops", locals: {
-          clazz: clazz,
-          provider: provider,
-          type: type,
-          ops: o
-        }
       end
       format.any { not_found  }
     end
