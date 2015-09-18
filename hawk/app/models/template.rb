@@ -392,7 +392,7 @@ class Template < Resource
       end
 
       unless ops.empty?
-        ops.each do |id, op|
+        ops.each do |_id, op|
           cmd.push "op #{op["name"]}"
 
           op.each do |key, value|

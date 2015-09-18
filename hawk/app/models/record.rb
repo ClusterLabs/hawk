@@ -234,20 +234,19 @@ class Record < Tableless
       attrs.each do |op_id, attrlist|
         op_name = attrlist['name']
         attrlist['interval'] = '0' unless attrlist.keys.include?('interval')
-        op = xml.elements["operations/op[@name=\"#{op_name}\" and @interval=\"#{attrlist['interval']}\"]"]
+        op = xml.elements["operations/op[@name=\"#{op_name}\" and @interval=\"#{attrlist["interval"]}\"]"]
 
         unless op
-          op = xml.elements['operations'].add_element('op', {
-            'id' => "#{xml.attributes['id']}-#{op_name}-#{attrlist['interval']}",
-            'name' => op_name
-          })
+          op = xml.elements['operations'].add_element('op',
+                                                      id: "#{xml.attributes["id"]}-#{op_name}-#{attrlist["interval"]}",
+                                                      name: op_name)
         end
 
         merge_ocf_check_level(op, attrlist.delete("OCF_CHECK_LEVEL"))
-        op.attributes.each do |n,v|
+        op.attributes.each do |n, _v|
           op.attributes.delete(n) unless n == 'id' || n == 'name' || attrlist.keys.include?(n)
         end
-        attrlist.each do |n,v|
+        attrlist.each do |n, v|
           op.attributes[n] = v
         end
       end

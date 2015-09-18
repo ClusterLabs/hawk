@@ -115,5 +115,4 @@ module PrimitiveHelper
   def localized_help
     localized_help_for :resources, controller.controller_name.to_sym
   end
-
 end
