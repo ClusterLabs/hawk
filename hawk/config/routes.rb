@@ -105,7 +105,7 @@ Rails.application.routes.draw do
     resource :graph
   end
 
-  resources :agents, only: [:show]
+  get '/agent', as: :agent, to: 'agents#show'
 
   resources :reports, only: [:index, :destroy, :show] do
     collection do
