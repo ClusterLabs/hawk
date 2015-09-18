@@ -30,12 +30,12 @@ class Template < Resource
     self.class.options
   end
 
-  def available_meta(opts = {})
-    self.class.available_meta opts
+  def available_meta
+    self.class.available_meta
   end
 
-  def available_opmeta(opts = {})
-    self.class.available_opmeta opts
+  def available_opmeta
+    self.class.available_opmeta
   end
 
   class << self
@@ -176,11 +176,11 @@ class Template < Resource
       end
     end
 
-    def available_meta(params = {})
+    def available_meta
       mapping[:meta]
     end
 
-    def available_opmeta(params = {})
+    def available_opmeta
       mapping[:opmeta]
     end
 
