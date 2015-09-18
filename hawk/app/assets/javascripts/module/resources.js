@@ -114,7 +114,7 @@ $(function() {
             } else if (row.type == "clone") {
               return __("Clone");
             } else if (row.template != null) {
-              return '<a href="' + Routes.agent_path("@" + row.template) + '" data-toggle="modal" data-target="#modal-lg">' + "@" + row.template + '</a>';
+              return '<a href="' + Routes.agent_path({id: "@" + row.template}) + '" data-toggle="modal" data-target="#modal-lg">' + "@" + row.template + '</a>';
             } else if ("class" in row && "provider" in row && "type" in row) {
               var agent = "";
               if (row["class"])
@@ -122,7 +122,7 @@ $(function() {
               if (row["provider"])
               agent += row.provider + ":";
               agent += row.type;
-              return '<a href="' + Routes.agent_path(agent) + '" data-toggle="modal" data-target="#modal-lg">' + row.type + '</a>';
+              return '<a href="' + Routes.agent_path({id: agent}) + '" data-toggle="modal" data-target="#modal-lg">' + row.type + '</a>';
             } else {
               return row.type;
             }

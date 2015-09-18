@@ -219,32 +219,36 @@ class Record < Tableless
       # Get rid of any operations that are no longer set
       if xml.elements['operations']
         xml.elements['operations'].elements.each do |el|
-          el.remove unless attrs[el.attributes['name']] && attrs[el.attributes['name']][el.attributes['interval']]
+          if el.attributes['name'] == 'monitor'
+            op_id = "#{el.attributes['name']}_#{el.attributes['interval']}"
+            el.remove unless attrs[op_id]
+          else
+            el.remove unless attrs[el.attributes['name']]
+          end
         end
       else
         xml.add_element 'operations'
       end
 
       # Write new operations or update existing ones
-      attrs.each do |op_name, instances|
-        instances.each do |i,attrlist|
-          attrlist['interval'] = '0' unless attrlist.keys.include?('interval')
-          op = xml.elements["operations/op[@name=\"#{op_name}\" and @interval=\"#{attrlist['interval']}\"]"]
+      attrs.each do |op_id, attrlist|
+        op_name = attrlist['name']
+        attrlist['interval'] = '0' unless attrlist.keys.include?('interval')
+        op = xml.elements["operations/op[@name=\"#{op_name}\" and @interval=\"#{attrlist['interval']}\"]"]
 
-          unless op
-            op = xml.elements['operations'].add_element('op', {
-              'id' => "#{xml.attributes['id']}-#{op_name}-#{attrlist['interval']}",
-              'name' => op_name
-            })
-          end
+        unless op
+          op = xml.elements['operations'].add_element('op', {
+            'id' => "#{xml.attributes['id']}-#{op_name}-#{attrlist['interval']}",
+            'name' => op_name
+          })
+        end
 
-          merge_ocf_check_level(op, attrlist.delete("OCF_CHECK_LEVEL"))
-          op.attributes.each do |n,v|
-            op.attributes.delete(n) unless n == 'id' || n == 'name' || attrlist.keys.include?(n)
-          end
-          attrlist.each do |n,v|
-            op.attributes[n] = v
-          end
+        merge_ocf_check_level(op, attrlist.delete("OCF_CHECK_LEVEL"))
+        op.attributes.each do |n,v|
+          op.attributes.delete(n) unless n == 'id' || n == 'name' || attrlist.keys.include?(n)
+        end
+        attrlist.each do |n,v|
+          op.attributes[n] = v
         end
       end
     end

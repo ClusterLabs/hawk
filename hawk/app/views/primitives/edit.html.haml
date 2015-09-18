@@ -1,25 +1,48 @@
 .container-fluid
   .row
     %h1
-      = icon_text "file-o", _("Edit Primitive"), class: "page"
+      = icon_text "file-o", @title, class: "page"
       .pull-right
         .btn-group{ role: "group" }
           = link_to icon_text("trash", _("Delete")), cib_primitive_path(cib_id: @cib.id, id: @primitive.id), method: "delete", class: "btn btn-default", data: { confirm: _("Are you sure you wish to delete %s?") % @primitive.id }
           = link_to icon_text("list-ul", _("List")), cib_primitives_path, class: "btn btn-default"
 
   .row
-    = render partial: "form", locals: { cib: @cib, primitive: @primitive }
+    = render partial: "primitives/form", locals: { cib: @cib, primitive: @primitive }
 
 - content_for :rightbar do
   .container-fluid{ data: { spy: "affix" } }
     .row.primitive
-      = localized_help_for :resources, :primitive
+      - if @primitive.resource?
+        = localized_help_for :resources, :primitive
+      - else
+        = localized_help_for :resources, :template
 
-    - @primitive.mapping.each do |key, values|
-      - next unless values[:longdesc]
+    .row.agentinfo
 
-      .row{ class: key }
-        %h2.margin-bottom
-          = key
+    #helpentries
 
+%script#tmpl-helpentry{type: "text/x-jsrender"}
+  .row.attrhelp{ class: "{{:name}}" }
+    %h3.margin-bottom
+      %code
+        {{>name}}
+    {{if longdesc != ""}}
+    {{>longdesc}}
+    {{/if}}
+    {{if default != ""}}
+    %em
+      Default:
+      %code
+        {{>default}}
+    {{/if}}
+
+%script#tmpl-metahelp{type: "text/x-jsrender"}
+  - @primitive.available_meta.each do |key, values|
+    .row.attrhelp{ class: key }
+      %h3.margin-bottom
+        = content_tag :code, key
+      - if values[:longdesc]
         = simple_format values[:longdesc]
+      - unless values[:default].blank?
+        = content_tag :em, "Default: <code>#{sanitize values[:default].to_s}</code>".html_safe

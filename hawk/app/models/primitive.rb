@@ -99,8 +99,6 @@ class Primitive < Template
       end
 
       unless params.empty?
-        cmd.push "params"
-
         params.each do |key, value|
           cmd.push [
             key,
@@ -110,18 +108,15 @@ class Primitive < Template
       end
 
       unless ops.empty?
-        cmd.push "params"
+        ops.each do |id, op|
+          cmd.push "op #{op["name"]}"
 
-        ops.each do |op, instances|
-          instances.each do |i, attrlist|
-            cmd.push "op #{op}"
-
-            attrlist.each do |key, value|
-              cmd.push [
-                key,
-                value.shellescape
-              ].join("=")
-            end
+          op.each do |key, value|
+            next if key == "name"
+            cmd.push [
+              key,
+              value.shellescape
+            ].join("=")
           end
         end
       end
