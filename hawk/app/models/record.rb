@@ -72,9 +72,8 @@ class Record < Tableless
     def all(get_children = false)
       begin
         require 'rexml/document'
-
         xml = REXML::Document.new(
-          Invoker.instance.cibadmin('-Ql', '--xpath', "//#{cib_type_fetch}".shellescape)
+          Invoker.instance.cibadmin('-V', '-Ql', '--xpath', "//#{cib_type_fetch}".gsub(" ", "\ "))
         )
 
         unless xml.root
