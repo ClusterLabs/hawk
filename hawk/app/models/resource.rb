@@ -17,7 +17,7 @@ class Resource < Record
     end
 
     def cib_type_fetch
-      :resources
+      "configuration//*[self::resources or self::tags]/*"
     end
   end
 end
