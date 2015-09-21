@@ -109,9 +109,9 @@ module Util
   end
   module_function :ensure_home_for
 
-
   # Like capture3, but via /usr/sbin/hawk_invoke
   def run_as(user, *cmd)
+    Rails.logger.debug "Executing `#{cmd.join(' ').inspect}` through `run_as`"
     old_home = ensure_home_for(user)
     # RORSCAN_INL: multi-arg invocation safe from shell injection.
     ret = capture3('/usr/sbin/hawk_invoke', user, *cmd)
