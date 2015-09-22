@@ -94,6 +94,7 @@ end
 
 file '/home/vagrant/.profile' do
   content <<-EOF
+    test -z "$PROFILEREAD" && . /etc/profile || true
     export PATH=/vagrant/hawk/bin:$PATH
   EOF
 end
