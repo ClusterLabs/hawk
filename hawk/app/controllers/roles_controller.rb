@@ -154,7 +154,7 @@ class RolesController < ApplicationController
   def check_support
     unless Util.has_feature? :acl_enabled
       flash.now[:warning] = view_context.link_to(
-        _("To enable ACLs, set \"enable-acl\" in the CRM Configuration"),
+        _("To enable ACLs, set \"enable-acl\" in the Cluster Configuration"),
         edit_cib_crm_config_path(cib_id: @cib.id)
       )
     end
