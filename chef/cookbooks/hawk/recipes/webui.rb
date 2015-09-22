@@ -92,7 +92,7 @@ template "/etc/systemd/system/hawk-development.service" do
    mode 0644
 end
 
-file '~/.profile' do
+file '/home/vagrant/.profile' do
   content <<-EOF
     export PATH=/vagrant/hawk/bin:$PATH
   EOF
