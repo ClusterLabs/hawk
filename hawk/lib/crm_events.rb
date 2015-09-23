@@ -12,16 +12,14 @@ class CrmEvents
 
   def push(cmd)
     cmd = cmd.join(" ") if cmd.is_a? Array
-    Rails.logger.debug "CrmEvents.instance.push #{cmd}"
     begin
-      File.delete(path) if File.mtime(path) < Time.now.ago(1.day)
-    rescue
-    end
-    begin
-      open(path, 'a') do |f|
+      File.open(path, 'a') do |f|
+        f.flock(File::LOCK_EX)
+        f.truncate(0) if f.mtime < 1.day.ago
         f << cmd
         f << "@@COMMAND-END@@\n"
       end
+      Rails.logger.debug "CrmEvents.instance.push #{cmd}"
     rescue Exception => e
       Rails.logger.debug "CrmEvents: #{e.message}"
     end
@@ -29,8 +27,11 @@ class CrmEvents
 
   def cmds
     begin
-      File.read(path).split("@@COMMAND-END@@\n").map do |cmd|
-        cmd.strip
+      File.open(path, "r") do |f|
+        f.flock(File::LOCK_SH)
+        f.read.split("@@COMMAND-END@@\n").map do |cmd|
+          cmd.strip
+        end
       end
     rescue
       []
