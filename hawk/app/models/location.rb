@@ -41,7 +41,7 @@ class Location < Constraint
 
       rule[:expressions].each do |e|
         e[:attribute].strip!
-        e[:value].strip!
+        e[:value].to_s.strip!
         errors.add :base, _("Attribute contains both single and double quotes") if unquotable? e[:attribute]
         errors.add :base, _("Value contains both single and double quotes") if unquotable? e[:value]
       end
@@ -98,7 +98,7 @@ class Location < Constraint
   end
 
   def unquotable?(str)
-    str.index("'") && str.index('"')
+    str.to_s.index("'") && str.to_s.index('"')
   end
 
   def shell_syntax
@@ -112,7 +112,7 @@ class Location < Constraint
       end
 
       if simple?
-        cmd.push "#{rules.first.score}: #{rules.first.expressions.first.value}"
+        cmd.push "#{rules.first[:score]}: #{rules.first[:expressions].first[:value]}"
       else
         rules.each do |rule|
           op = rule[:boolean_op]
@@ -159,7 +159,8 @@ class Location < Constraint
               {
                 attribute: "#uname",
                 operation: "eq",
-                value: xml.attributes["node"]
+                value: xml.attributes["node"],
+                kind: "uname"
               }
             ]
           )
@@ -182,11 +183,22 @@ class Location < Constraint
                 next
               end
 
+              kind = if ["not_defined", "defined"].include? el.attributes["operation"]
+                       "attr-def"
+                     else
+                       if el.attributes["attribute"].starts_with? "#"
+                         "uname"
+                       else
+                         "attr-val"
+                       end
+                     end
+
               set[:expressions].push(
                 value: el.attributes["value"] || nil,
                 attribute: el.attributes["attribute"] || nil,
                 type: el.attributes["type"] || "string",
-                operation: el.attributes["operation"] || nil
+                operation: el.attributes["operation"] || nil,
+                kind: kind
               )
             end
 

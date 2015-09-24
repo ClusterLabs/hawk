@@ -31,6 +31,7 @@
 //= require module/constraint
 //= require module/reports
 //= require module/simulator
+//= require module/location
 
 $(function() {
   $(window).on(
