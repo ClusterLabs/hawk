@@ -118,15 +118,15 @@ class Location < Constraint
           op = rule[:boolean_op]
           op = "and" if op == ""
           cmd.push "rule"
-          cmd.push "$role=\"#{rule[:role]}\"" unless rule[:role].empty?
-          cmd.push "#{crm_quote(rule[:score])}:"
+          cmd.push "$role=#{crm_quote(rule[:role])}" unless rule[:role].empty?
+          cmd.push "#{rule[:score]}:"
           cmd.push rule[:expressions].map {|e|
             if ["defined", "not_defined"].include? e[:operation]
               "#{e[:operation]} #{crm_quote(e[:attribute])}"
             elsif e[:type] == ""
               "#{crm_quote(e[:attribute])} #{e[:operation]} #{crm_quote(e[:value])}"
             else
-              "#{crm_quote(e[:attribute])} #{e[:type]}: #{e[:operation]} #{crm_quote(e[:value])}"
+              "#{crm_quote(e[:attribute])} #{e[:type]}:#{e[:operation]} #{crm_quote(e[:value])}"
             end
           }.join(" #{op} ")
         end
