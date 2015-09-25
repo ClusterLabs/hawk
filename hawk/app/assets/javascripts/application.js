@@ -34,24 +34,34 @@
 //= require module/location
 
 $(function() {
+  var resize = function() {
+    console.log('resize');
+
+    var navHeight = $('.navbar-fixed-top').outerHeight();
+    var footHeight = $('footer').outerHeight();
+
+    var winHeight = $(window).outerHeight() - navHeight - footHeight;
+
+    var maxHeight = Math.max.apply(
+      null,
+      $('#sidebar, #middle, #rightbar').map(function() {
+        return $(this).height('auto').outerHeight();
+      }).get()
+    );
+
+    $('#sidebar, #middle, #rightbar').height(
+      winHeight > maxHeight ? winHeight : maxHeight
+    );
+  };
+
   $(window).on(
     'load resize',
-    function() {
-      var navHeight = $('.navbar-fixed-top').outerHeight();
-      var footHeight = $('footer').outerHeight();
+    resize
+  );
 
-      var winHeight = $(window).outerHeight() - navHeight - footHeight;
-
-      var maxHeight = Math.max.apply(
-        null,
-        $('#sidebar, #middle, #rightbar').map(function() {
-          return $(this).height('auto').outerHeight();
-        }).get()
-      );
-
-      $('#sidebar, #middle, #rightbar').height(
-        winHeight > maxHeight ? winHeight : maxHeight
-      );
-    }
+  // TODO(must): This is just a partial footer fix
+  $('#middle > .container-fluid').on(
+    'post-body.bs.table shown.bs.collapse',
+    resize
   );
 });
