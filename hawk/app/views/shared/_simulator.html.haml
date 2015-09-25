@@ -183,8 +183,8 @@
           = _("Ticket")
         .col-sm-7
           %select#ticket-inject-ticket.form-control
-            - current_cib.tickets.each do |t|
-              %option= t[:id]
+            - current_cib.tickets.keys.each do |name|
+              %option= name
       .form-group
         %label.col-sm-2.control-label{for: "ticket-inject-action"}
           = _("Action")
