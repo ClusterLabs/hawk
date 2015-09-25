@@ -149,6 +149,17 @@ class LocationsController < ApplicationController
   end
 
   def normalize_params!(current)
+    if params[:location][:rules].nil?
+      params[:location][:rules] = []
+    else
+      params[:location][:rules] = params[:location][:rules].values
+    end
+
+    params[:location][:rules].each_with_index do |rule, index|
+      if params[:location][:rules][index][:expressions]
+        params[:location][:rules][index][:expressions] = params[:location][:rules][index][:expressions].values
+      end
+    end
   end
 
   def default_base_layout
