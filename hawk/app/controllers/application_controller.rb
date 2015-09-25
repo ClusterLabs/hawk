@@ -16,6 +16,8 @@ class ApplicationController < ActionController::Base
   before_filter :set_current_title
   before_filter :set_shadow_cib
 
+  around_filter :inject_current_cib
+
   before_filter :cors_preflight_check
   after_filter :cors_set_access_control_headers
 
@@ -107,6 +109,23 @@ class ApplicationController < ActionController::Base
 
   def default_base_layout
     "application"
+  end
+
+  def inject_current_cib
+    current_controller = self
+
+    Record.send(
+      :define_method,
+      "current_cib",
+      proc { current_controller.send(:current_cib) }
+    )
+
+    yield
+
+    Record.send(
+      :remove_method,
+      "current_cib"
+    )
   end
 
   def inject_current_user
