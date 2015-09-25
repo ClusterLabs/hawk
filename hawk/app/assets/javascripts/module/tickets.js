@@ -2,7 +2,7 @@
 // See COPYING for license.
 
 $(function() {
-  $('#tickets #middle table.tickets')
+  $('#tickets #middle table.tickets, #states #middle table.tickets')
     .bootstrapTable({
       method: 'get',
       url: Routes.cib_tickets_path(
