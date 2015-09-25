@@ -18,9 +18,45 @@ class ResourcesController < ApplicationController
   end
 
   def status
+    result = [].tap do |result|
+      selected = []
+
+      Resource.all.each do |resource|
+        case resource.object_type
+        when "group"
+          resource.children.map! do |child|
+            r = Resource.find(child)
+
+            selected.push r.id
+            r
+          end
+
+          result.push resource
+        when "clone"
+        when "master"
+          r = Resource.find(resource.child)
+
+          selected.push r.id
+          resource.child = r
+
+          result.push resource
+        when "tag"
+          resource.refs.map! do |child|
+            Resource.find(child)
+          end
+
+          result.push resource
+        end
+      end
+
+      result.push Primitive.all.reject { |resource|
+        selected.include? resource.id
+      }
+    end.flatten
+
     respond_to do |format|
       format.json do
-        render json: @cib.primitives.to_json
+        render json: result.to_json
       end
     end
   end
