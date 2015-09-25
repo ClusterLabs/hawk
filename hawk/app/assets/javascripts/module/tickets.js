@@ -2,7 +2,7 @@
 // See COPYING for license.
 
 $(function() {
-  $('#tickets #middle table.tickets, #states #middle table.tickets')
+  $('#tickets #middle table.tickets')
     .bootstrapTable({
       method: 'get',
       url: Routes.cib_tickets_path(
@@ -90,7 +90,88 @@ $(function() {
                 }
               });
             }
-          },
+          }
+        },
+        formatter: function(value, row, index) {
+          var operations = []
+
+          operations.push([
+            '<a href="',
+                Routes.edit_cib_ticket_path(
+                  $('body').data('cib'),
+                  row.id
+                ),
+              '" class="edit btn btn-default btn-xs" title="',
+              __('Edit'),
+            '">',
+              '<i class="fa fa-pencil"></i>',
+            '</a> '
+          ].join(''));
+
+          operations.push([
+            '<a href="',
+                Routes.cib_ticket_path(
+                  $('body').data('cib'),
+                  row.id
+                ),
+              '" class="delete btn btn-default btn-xs" title="',
+              __('Delete'),
+            '">',
+              '<i class="fa fa-trash"></i>',
+            '</a> '
+          ].join(''));
+
+          return [
+            '<div class="btn-group" role="group">',
+              operations.join(''),
+            '</div>',
+          ].join('');
+        }
+      }]
+    });
+
+  $('#states #middle table.tickets')
+    .bootstrapTable({
+      method: 'get',
+      url: Routes.cib_tickets_path(
+        $('body').data('cib'),
+        { format: 'json' }
+      ),
+      striped: true,
+      pagination: true,
+      pageSize: 50,
+      pageList: [10, 25, 50, 100, 200],
+      sidePagination: 'client',
+      smartDisplay: false,
+      search: true,
+      searchAlign: 'left',
+      showColumns: true,
+      showRefresh: true,
+      minimumCountColumns: 0,
+      sortName: 'id',
+      sortOrder: 'asc',
+      columns: [{
+        field: 'state',
+        title: __('Status'),
+        sortable: true,
+        clickToSelect: true,
+        class: 'col-sm-1',
+        formatter: function(value, row, index) {
+          return '';
+        }
+      }, {
+        field: 'id',
+        title: __('Name'),
+        sortable: true,
+        switchable: false,
+        clickToSelect: true
+      }, {
+        field: null,
+        title: __('Grant'),
+        sortable: false,
+        clickToSelect: true,
+        class: 'col-sm-1',
+        events: {
           'click .grant': function (e, value, row, index) {
             e.preventDefault();
             var $self = $(this);
@@ -143,7 +224,29 @@ $(function() {
                 }
               });
             }
-          },
+          }
+        },
+        formatter: function(value, row, index) {
+          return [
+            '<a href="',
+              Routes.grant_cib_ticket_path(
+                $('body').data('cib'),
+                row.id
+              ),
+            '" class="grant btn btn-default btn-xs" title="',
+              __('Grant'),
+            '">',
+              '<i class="fa fa-toggle-off"></i>',
+            '</a>'
+          ].join('');
+        }
+      }, {
+        field: null,
+        title: __('Revoke'),
+        sortable: false,
+        clickToSelect: true,
+        class: 'col-sm-1',
+        events: {
           'click .revoke': function (e, value, row, index) {
             e.preventDefault();
             var $self = $(this);
@@ -199,22 +302,7 @@ $(function() {
           }
         },
         formatter: function(value, row, index) {
-          var operations = []
-
-          operations.push([
-            '<a href="',
-              Routes.grant_cib_ticket_path(
-                $('body').data('cib'),
-                row.id
-              ),
-            '" class="grant btn btn-default btn-xs" title="',
-              __('Grant'),
-            '">',
-              '<i class="fa fa-plus"></i>',
-            '</a> '
-          ].join(''));
-
-          operations.push([
+          return [
             '<a href="',
               Routes.revoke_cib_ticket_path(
                 $('body').data('cib'),
@@ -223,9 +311,76 @@ $(function() {
             '" class="revoke btn btn-default btn-xs" title="',
               __('Revoke'),
             '">',
-              '<i class="fa fa-remove"></i>',
-            '</a> '
-          ].join(''));
+              '<i class="fa fa-toggle-off"></i>',
+            '</a>'
+          ].join('');
+        }
+      }, {
+        field: 'operate',
+        title: __('Operations'),
+        sortable: false,
+        clickToSelect: false,
+        class: 'col-sm-2',
+        events: {
+          'click .delete': function (e, value, row, index) {
+            e.preventDefault();
+            var $self = $(this);
+
+            try {
+              answer = confirm(
+                i18n.translate(
+                  'Are you sure you wish to delete %s?'
+                ).fetch(row.id)
+              );
+            } catch (e) {
+              (console.error || console.log).call(console, e.stack || e);
+            }
+
+            if (answer) {
+              $.ajax({
+                dataType: 'json',
+                method: 'POST',
+                data: {
+                  _method: 'delete'
+                },
+                url: Routes.cib_ticket_path(
+                  $('body').data('cib'),
+                  row.id,
+                  { format: 'json' }
+                ),
+
+                success: function(data) {
+                  if (data.success) {
+                    $.growl({
+                      message: data.message
+                    },{
+                      type: 'success'
+                    });
+
+                    $self.parents('table').bootstrapTable('refresh')
+                  } else {
+                    if (data.error) {
+                      $.growl({
+                        message: data.error
+                      },{
+                        type: 'danger'
+                      });
+                    }
+                  }
+                },
+                error: function(xhr, status, msg) {
+                  $.growl({
+                    message: xhr.responseJSON.error || msg
+                  },{
+                    type: 'danger'
+                  });
+                }
+              });
+            }
+          }
+        },
+        formatter: function(value, row, index) {
+          var operations = [];
 
           operations.push([
             '<a href="',

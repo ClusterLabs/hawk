@@ -26,16 +26,6 @@
 
         %table.table.table-striped.resources
 
-  .row#nodes
-    .col-lg-12
-      .panel.panel-default
-        .panel-heading
-          %h2.panel-title
-            %a{ href: "#nodes" }
-              = _("Nodes")
-
-        %table.table.table-striped.nodes
-
   .row#tickets
     .col-lg-12
       .panel.panel-default
@@ -45,6 +35,16 @@
               = _("Tickets")
 
         %table.table.table-striped.tickets
+
+  .row#nodes
+    .col-lg-12
+      .panel.panel-default
+        .panel-heading
+          %h2.panel-title
+            %a{ href: "#nodes" }
+              = _("Nodes")
+
+        %table.table.table-striped.nodes
 
 %script#statusError{ type: "text/x-jsrender" }
   %li.list-group-item{ data: { link: "class{merge:success toggle='list-group-item-success'} class{merge:info toggle='list-group-item-info'} class{merge:warning toggle='list-group-item-warning'} class{merge:danger toggle='list-group-item-danger'}" } }

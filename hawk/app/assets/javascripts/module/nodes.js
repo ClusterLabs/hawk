@@ -73,7 +73,7 @@ $(function() {
         }, {
           field: 'maintenance',
           title: __('Maintenance'),
-          sortable: true,
+          sortable: false,
           clickToSelect: true,
           class: 'col-sm-1',
           events: {
@@ -216,7 +216,7 @@ $(function() {
         }, {
           field: 'standby',
           title: __('Standby'),
-          sortable: true,
+          sortable: false,
           clickToSelect: true,
           class: 'col-sm-1',
           events: {
@@ -434,19 +434,6 @@ $(function() {
                 '</a> '
               ].join(''));
             }
-
-            operations.push([
-              '<a href="',
-              Routes.events_cib_node_path(
-                $('body').data('cib'),
-                row.id
-              ),
-              '" class="events btn btn-default btn-xs" title="',
-              __('Events'),
-              '" data-toggle="modal" data-target="#modal">',
-              '<i class="fa fa-files-o"></i>',
-              '</a>'
-            ].join(''));
 
             operations.push([
               '<a href="',
