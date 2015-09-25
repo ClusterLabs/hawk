@@ -6,6 +6,8 @@ class Ticket < Constraint
   attribute :ticket, String
   attribute :loss_policy, String
   attribute :resources, Array[Hash]
+  attribute :granted, Boolean
+  attribute :standby, Boolean
 
   validates :id,
     presence: { message: _("Constraint ID is required") },
@@ -18,6 +20,26 @@ class Ticket < Constraint
   validate do |record|
     if record.resources.empty?
       errors.add :base, _("Constraint must consist of at least one separate resources")
+    end
+  end
+
+  def granted
+    current = current_cib.tickets[ticket] || {}
+
+    if current.has_key? :granted
+      current[:granted]
+    else
+      false
+    end
+  end
+
+  def standby
+    current = current_cib.tickets[ticket] || {}
+
+    if current.has_key? :standby
+      current[:standby]
+    else
+      false
     end
   end
 
