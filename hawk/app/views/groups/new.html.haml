@@ -13,6 +13,7 @@
   .container-fluid{ data: { spy: "affix" } }
     .row.help-title
       = localized_help_for :resources, :group
+
     - @group.mapping.each do |key, values|
       - next unless values[:longdesc]
       .row.help-item{ class: key }
