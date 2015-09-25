@@ -168,23 +168,6 @@ var dashboardAddCluster = (function() {
 
     var descCache = {};
 
-    $.each(cib.tickets, function(idx, obj) {
-      $.each(obj, function(ticket, state) {
-        var details = dlBegin();
-        $.each(cib.booth, function(typ, lst) {
-          if (lst && lst.length > 0) {
-            details += dlAdd(typ, lst.join(", "));
-          }
-        });
-        details += dlEnd();
-        var id = 'ticket_' + ticket + '_' + state;
-        descCache[id] = details;
-
-        text += makePopoverButton(id, 'Ticket ' + ticket + ' is <tt>' + state + '</tt>',
-                                  "list-group-item-info", __("Details"));
-      });
-    });
-
     $.each(cib.node_states, function(state, count) {
       if (count > 0) {
         var details = dlBegin();
