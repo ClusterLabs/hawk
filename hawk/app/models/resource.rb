@@ -6,9 +6,31 @@ class Resource < Record
   end
 
   attribute :object_type, Symbol
+  attribute :state, Symbol
+  attribute :managed, Boolean
 
   def object_type
     self.class.to_s.downcase
+  end
+
+  def state
+    res = cib_by_id(id)
+
+    if res.has_key? :instances
+      # TODO(must): Check instances for state
+    else
+      :unknown
+    end
+  end
+
+  def managed
+    res = cib_by_id(id)
+
+    if res.has_key? :is_managed
+      res[:is_managed]
+    else
+      false
+    end
   end
 
   class << self
@@ -19,5 +41,9 @@ class Resource < Record
     def cib_type_fetch
       "configuration//*[self::resources or self::tags]/*"
     end
+  end
+
+  def cib_by_id(id)
+    current_cib.resources_by_id[id] || {}
   end
 end
