@@ -6,7 +6,7 @@ Vagrant.configure("2") do |config|
   config.vm.box_check_update = true
   config.ssh.insert_key = false
 
-  config.vm.synced_folder ".", "/vagrant", type: "nfs"
+  config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ["rw", "noatime", "async"]
 
   unless Vagrant.has_plugin?("vagrant-bindfs")
     abort 'Missing bindfs plugin! Please install using vagrant plugin install vagrant-bindfs'
