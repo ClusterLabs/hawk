@@ -14,12 +14,3 @@
   .container-fluid{ data: { spy: "affix" } }
     .row.primitive
       = localized_help
-
-    - Primitive.mapping.each do |key, values|
-      - next unless values[:longdesc]
-
-      .row{ class: key }
-        %h2.margin-bottom
-          = key
-
-        = simple_format values[:longdesc]
