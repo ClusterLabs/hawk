@@ -20,74 +20,87 @@
             %dd= format_date @report.from_time
             %dt= _("To")
             %dd= format_date @report.to_time
-          - else
+          - elsif @transitions.length > 0
             %dt= _("From")
             %dd= format_date @transitions[0][:timestamp]
             %dt= _("To")
             %dd= format_date @transitions[-1][:timestamp]
+          - else
+            %dt= _("From")
+            %dd= "-"
+            %dt= _("To")
+            %dd= "-"
           %dt= _("Transitions")
           %dd= @transitions.length
-
-  .row
-    .panel.panel-default
-      .panel-heading
-        %ul.nav.nav-pills.nav-justified.iterator
-          %li{ role: "presentation", class: current_transition == first_transition ? "disabled" : nil }
-            = link_to _("Previous"), url_for(transition: prev_transition)
-
-          - window_transition.each do |transition|
-            %li{ role: "presentation", class: current_transition == transition ? "active" : nil }
-              - if transition == "..."
-                .text-center
-                  %strong
-                    = transition
-              - else
-                = link_to transition, url_for(transition: transition), title: transition_tooltip(transition), data: { toggle: :tooltip }
-
-          %li{ role: "presentation", class: current_transition == last_transition ? "disabled" : nil }
-            = link_to _("Next"), url_for(transition: next_transition)
+  - if @transitions.length < 1
+    .row
+      .panel.panel-default
+        .panel-heading
+          %h3.panel-title
+            = _("Transitions")
       .panel-body
-        %dl.dl-horizontal
-          %dt= _("PE Name")
-          %dd= link_to @transition[:basename], pefile_report_path(id: params[:id], transition: current_transition)
-          %dt= _("Node")
-          %dd= @transition[:node]
-          %dt= _("Time")
-          %dd= format_date @transition[:timestamp]
-          - if @transition[:version]
-            %dt= _("Version")
-            %dd= @transition[:version]
+        = _("No transitions in report")
+  - else
+    .row
+      .panel.panel-default
+        .panel-heading
+          %ul.nav.nav-pills.nav-justified.iterator
+            %li{ role: "presentation", class: current_transition == first_transition ? "disabled" : nil }
+              = link_to _("Previous"), url_for(transition: prev_transition)
 
-    .panel.panel-default.with-nav-tabs
-      .panel-heading
-        %ul.nav.nav-tabs.remote
-          %li.active
-            %a{ href: "#details", data: { toggle: "tab", url: detail_report_path(id: @report.id, transition: current_transition) } }
-              = _("Details")
-          %li
-            %a{ href: "#graph", data: { toggle: "tab", url: graph_report_path(id: @report.id, transition: current_transition) } }
-              = _("Graph")
-          %li
-            %a{ href: "#diff", data: { toggle: "tab", url: diff_report_path(id: @report.id, transition: current_transition) } }
-              = _("Diff")
-          %li
-            %a{ href: "#logs", data: { toggle: "tab", url: logs_report_path(id: @report.id, transition: current_transition) } }
-              = _("Logs")
+            - window_transition.each do |transition|
+              %li{ role: "presentation", class: current_transition == transition ? "active" : nil }
+                - if transition == "..."
+                  .text-center
+                    %strong
+                      = transition
+                - else
+                  = link_to transition, url_for(transition: transition), title: transition_tooltip(transition), data: { toggle: :tooltip }
 
-      .panel-body
-        .tab-content
-          #details.tab-pane.fade.in.active
-            .text-center.spacer
-              = icon_tag("spinner", class: "fa-spinner fa-spin fa-3x")
+            %li{ role: "presentation", class: current_transition == last_transition ? "disabled" : nil }
+              = link_to _("Next"), url_for(transition: next_transition)
+        .panel-body
+          %dl.dl-horizontal
+            %dt= _("PE Name")
+            %dd= link_to @transition[:basename], pefile_report_path(id: params[:id], transition: current_transition)
+            %dt= _("Node")
+            %dd= @transition[:node]
+            %dt= _("Time")
+            %dd= format_date @transition[:timestamp]
+            - if @transition[:version]
+              %dt= _("Version")
+              %dd= @transition[:version]
 
-          #graph.tab-pane.fade
-            .text-center.spacer
-              = icon_tag("spinner", class: "fa-spinner fa-spin fa-3x")
+      .panel.panel-default.with-nav-tabs
+        .panel-heading
+          %ul.nav.nav-tabs.remote
+            %li.active
+              %a{ href: "#details", data: { toggle: "tab", url: detail_report_path(id: @report.id, transition: current_transition) } }
+                = _("Details")
+            %li
+              %a{ href: "#graph", data: { toggle: "tab", url: graph_report_path(id: @report.id, transition: current_transition) } }
+                = _("Graph")
+            %li
+              %a{ href: "#diff", data: { toggle: "tab", url: diff_report_path(id: @report.id, transition: current_transition) } }
+                = _("Diff")
+            %li
+              %a{ href: "#logs", data: { toggle: "tab", url: logs_report_path(id: @report.id, transition: current_transition) } }
+                = _("Logs")
 
-          #diff.tab-pane.fade
-            .text-center.spacer
-              = icon_tag("spinner", class: "fa-spinner fa-spin fa-3x")
+        .panel-body
+          .tab-content
+            #details.tab-pane.fade.in.active
+              .text-center.spacer
+                = icon_tag("spinner", class: "fa-spinner fa-spin fa-3x")
 
-          #logs.tab-pane.fade
-            .text-center.spacer
-              = icon_tag("spinner", class: "fa-spinner fa-spin fa-3x")
+            #graph.tab-pane.fade
+              .text-center.spacer
+                = icon_tag("spinner", class: "fa-spinner fa-spin fa-3x")
+
+            #diff.tab-pane.fade
+              .text-center.spacer
+                = icon_tag("spinner", class: "fa-spinner fa-spin fa-3x")
+
+            #logs.tab-pane.fade
+              .text-center.spacer
+                = icon_tag("spinner", class: "fa-spinner fa-spin fa-3x")

@@ -249,8 +249,13 @@ class ReportsController < ApplicationController
     tidx = params[:transition].to_i if params.has_key? :transition
     tidx -= 1 if tidx >= 0
     tidx = -1 if tidx >= @transitions.length
-    @transition = @transitions[tidx]
-    @transition[:index] = tidx
+    curr_transition = @transitions[tidx]
+    if curr_transition.nil?
+      @transition = {}
+    else
+      @transition = @transitions[tidx]
+      @transition[:index] = tidx
+    end
   end
 
   def current_transition
