@@ -20,16 +20,19 @@
             %dd= format_date @report.from_time
             %dt= _("To")
             %dd= format_date @report.to_time
-          - elsif @transitions.length > 0
+          - elsif @transitions.length > 1
             %dt= _("From")
             %dd= format_date @transitions[0][:timestamp]
             %dt= _("To")
             %dd= format_date @transitions[-1][:timestamp]
-          - else
+          - elsif @transitions.length == 1
             %dt= _("From")
-            %dd= "-"
+            %dd= format_date @transitions[0][:timestamp]
             %dt= _("To")
             %dd= "-"
+          - else
+            %dt= _("Created")
+            %dd= format_date @report.from_time
           %dt= _("Transitions")
           %dd= @transitions.length
   - if @transitions.length < 1

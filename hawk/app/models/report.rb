@@ -190,8 +190,14 @@ class Report
         from_time_ = DateTime.parse dates[0]
         to_time_ = DateTime.parse dates[1]
       else
-        from_time_ = file.ctime.to_datetime
-        to_time_ = from_time_
+        dates = name.scan(/\d{4}-\d{2}-\d{2}_\d{2}:\d{2}/)
+        if dates.length == 2
+          from_time_ = DateTime.parse dates[0]
+          to_time_ = DateTime.parse dates[1]
+        else
+          from_time_ = file.ctime.to_datetime
+          to_time_ = from_time_
+        end
       end
 
       Report.new id: report_id(name), archive: file, name: name, from_time: from_time_, to_time: to_time_
