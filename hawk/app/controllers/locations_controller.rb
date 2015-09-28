@@ -20,6 +20,15 @@ class LocationsController < ApplicationController
     @title = _('Create Location Constraint')
     @location = Location.new
 
+    if @location.rules.empty?
+      @location.rules.push(
+        score: "-INFINITY",
+        role: "",
+        operator: "",
+        expressions: []
+      )
+    end
+
     respond_to do |format|
       format.html
     end
@@ -30,6 +39,15 @@ class LocationsController < ApplicationController
     @title = _('Create Location Constraint')
 
     @location = Location.new params[:location]
+
+    if @location.rules.empty?
+      @location.rules.push(
+        score: "-INFINITY",
+        role: "",
+        operator: "",
+        expressions: []
+      )
+    end
 
     respond_to do |format|
       if @location.save
