@@ -54,6 +54,10 @@ class Cib < CibObject
     id != 'live'
   end
 
+  def offline?
+    @meta.status == :offline
+  end
+
   def status(minimal = false)
     {
       meta: meta.to_h,
@@ -366,21 +370,42 @@ class Cib < CibObject
       cib_path = "#{Rails.root}/test/cib/#{cib_path}.xml"
       raise ArgumentError, _('CIB file "%{path}" not found') % {:path => cib_path } unless File.exist?(cib_path)
       @xml = REXML::Document.new(File.new(cib_path))
-      raise RuntimeError, _('Unable to parse CIB file "%{path}"') % {:path => cib_path } unless @xml.root
+      #raise RuntimeError, _('Unable to parse CIB file "%{path}"') % {:path => cib_path } unless @xml.root
+      unless @xml.root
+        error _('Unable to parse CIB file "%{path}"') % {:path => cib_path }
+        init_offline_cluster id, user, use_file
+        return
+      end
     else
-      raise RuntimeError, _('Pacemaker does not appear to be installed (%{cmd} not found)') %
-                             {:cmd => '/usr/sbin/crm_mon' } unless File.exists?('/usr/sbin/crm_mon')
-      raise RuntimeError, _('Unable to execute %{cmd}') % {:cmd => '/usr/sbin/crm_mon' } unless File.executable?('/usr/sbin/crm_mon')
+      unless File.exists?('/usr/sbin/crm_mon')
+        error _('Pacemaker does not appear to be installed (%{cmd} not found)') % {
+          :cmd => '/usr/sbin/crm_mon' }
+        init_offline_cluster id, user, use_file
+        return
+      end
+      unless File.executable?('/usr/sbin/crm_mon')
+        error _('Unable to execute %{cmd}') % {:cmd => '/usr/sbin/crm_mon' }
+        init_offline_cluster id, user, use_file
+        return
+      end
       out, err, status = Util.run_as(user, 'cibadmin', '-Ql')
       case status.exitstatus
       when 0
         @xml = REXML::Document.new(out)
-        raise RuntimeError, _('Error invoking %{cmd}') % {:cmd => '/usr/sbin/cibadmin -Ql' } unless @xml.root
+        unless @xml.root
+          error _('Error invoking %{cmd}') % {:cmd => '/usr/sbin/cibadmin -Ql' }
+          init_offline_cluster id, user, use_file
+          return
+        end
       when 54, 13
         # 13 is cib_permission_denied (used to be 54, before pacemaker 1.1.8)
-        raise SecurityError, _('Permission denied for user %{user}') % {:user => user}
+        error _('Permission denied for user %{user}') % {:user => user}
+        init_offline_cluster id, user, use_file
+        return
       else
-        raise RuntimeError, _('Error invoking %{cmd}: %{msg}') % {:cmd => '/usr/sbin/cibadmin -Ql', :msg => err }
+        error _('Error invoking %{cmd}: %{msg}') % {:cmd => '/usr/sbin/cibadmin -Ql', :msg => err }
+        init_offline_cluster id, user, use_file
+        return
       end
     end
 
@@ -869,5 +894,30 @@ class Cib < CibObject
         :warning
       )
     end
+  end
+
+  def init_offline_cluster(id, user, use_file)
+    @id = id
+
+    @meta = Hashie::Mash.new(
+      epoch: "",
+      dc: "",
+      host: "",
+      version: "",
+      stack: "",
+      status: :offline
+    )
+
+    @crm_config = Hashie::Mash.new(
+      :"cluster-infrastructure"       => _('None'),
+      :"dc-version"                   => _('None'),
+    )
+    @nodes = []
+    @resources = []
+    @resources_by_id = {}
+    @resource_count = 0
+    @templates = []
+    @constraints = []
+    @tags = []
   end
 end

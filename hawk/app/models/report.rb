@@ -50,11 +50,12 @@ class Report
     source = hb_report.path if File.directory?(hb_report.path)
 
     pcmk_version = nil
-    m = `cibadmin -!`.match(/^Pacemaker ([^ ]+) \(Build: ([^)]+)\)/)
+    m = `/usr/sbin/cibadmin -!`.match(/^Pacemaker ([^ ]+) \(Build: ([^)]+)\)/)
     pcmk_version = "#{m[1]}-#{m[2]}" if m
 
     [].tap do |peinputs|
-      peinputs_raw, err, status = Util.capture3("crm", "history", stdin_data: "source #{source}\npeinputs\n")
+      peinputs_raw, err, status = Util.capture3("/usr/sbin/crm", "history", stdin_data: "source #{source}\npeinputs\n")
+      Rails.logger.debug "#{peinputs_raw}\n #{err}\n #{status}"
       if status.exitstatus == 0
         peinputs_raw.split(/\n/).each do |path|
           next unless File.exists?(path)
@@ -95,7 +96,7 @@ class Report
   def transition_cmd(hb_report, path, cmd)
     source = archive
     source = hb_report.path if File.directory?(hb_report.path)
-    Util.capture3("crm", "history", stdin_data: "source #{source}\n#{cmd}\n")
+    Util.capture3("/usr/sbin/crm", "history", stdin_data: "source #{source}\n#{cmd}\n")
   end
 
   def info(hb_report, path)
