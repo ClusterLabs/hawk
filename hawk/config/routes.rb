@@ -126,7 +126,7 @@ Rails.application.routes.draw do
 
   get "commands" => "pages#commands", :as => :commands
 
-  get "monitor" => "pages#monitor", :as => :monitor
+  get "monitor" => "monitor#monitor", :as => :monitor
   get "help" => "pages#help", :as => :help
 
   get "logout" => "sessions#destroy", :as => :logout

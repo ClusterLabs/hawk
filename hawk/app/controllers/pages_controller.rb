@@ -25,21 +25,6 @@ class PagesController < ApplicationController
     end
   end
 
-  def monitor
-    result = Open3.popen3("/usr/sbin/hawk_monitor") do |i, o|
-      o.read
-    end
-
-    headers, body = result.split("\n\n", 2)
-
-    headers.split("\n").each do |header|
-      name, value = header.split(":")
-      response.headers[name] = value.strip
-    end
-
-    render json: body
-  end
-
   def commands
     @title = _("Commands")
 
