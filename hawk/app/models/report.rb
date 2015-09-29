@@ -93,33 +93,46 @@ class Report
     m[1]
   end
 
-  def transition_cmd(hb_report, path, cmd)
+  def transition_cmd(hb_report, cmd)
     source = archive
     source = hb_report.path if File.directory?(hb_report.path)
     Util.capture3("/usr/sbin/crm", "history", stdin_data: "source #{source}\n#{cmd}\n")
   end
 
   def info(hb_report, path)
-    out, err, status = transition_cmd hb_report, path, "transition #{path} nograph"
-    info = out + err
-    info.strip!
-    info = _("No details available") if info.empty?
-    info.insert(0, _("Error:") + "\n") unless status.exitstatus == 0
-    info
+    out, err, status = transition_cmd hb_report, "transition #{path} nograph"
+    out.strip!
+    out = _("No details available") if out.empty?
+    err.insert(0, _("Error:") + "\n") unless status.exitstatus == 0
+    [out, err]
+  end
+
+  def cib(hb_report, path)
+    out, err, status = transition_cmd hb_report, "show #{path}"
+    out
+  end
+
+  def node_events(hb_report)
+    out, err, status = transition_cmd hb_report, "node"
+    out
+  end
+
+  def resource_events(hb_report)
+    out, err, status = transition_cmd hb_report, "resource"
+    out
   end
 
   def tags(hb_report, path)
-    out, err, status = transition_cmd hb_report, path, "transition tags #{path}"
+    out, err, status = transition_cmd hb_report, "transition tags #{path}"
     out.split
   end
 
   def logs(hb_report, path)
-    out, err, status = transition_cmd hb_report, path, "transition log #{path}"
-    info = out + err
-    info.strip!
-    info = _("No details available") if info.empty?
-    info.insert(0, _("Error:") + "\n") unless status.exitstatus == 0
-    info
+    out, err, status = transition_cmd hb_report, "transition log #{path}"
+    out.strip!
+    out = _("No details available") if out.empty?
+    err.insert(0, _("Error:") + "\n") unless status.exitstatus == 0
+    [out, err]
   end
 
   # Apparently we can't rely on the dot file existing in the hb_report, so we
@@ -156,7 +169,7 @@ class Report
   # Returns the diff as a text or html string
   def diff(hb_report, path, left, right, format = :html)
     format = "" unless format == :html
-    out, err, status = transition_cmd hb_report, path, "diff #{left} #{right} status #{format}"
+    out, err, status = transition_cmd hb_report, "diff #{left} #{right} status #{format}"
     info = out + err
 
     info.strip!

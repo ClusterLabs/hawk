@@ -102,12 +102,13 @@ Rails.application.routes.draw do
     end
 
     member do
-      get "download" => "reports#download", as: :download
-      get ":transition(.:format)" => "reports#detail", as: :detail
-      get ":transition/graph(.:format)" => "reports#graph", as: :graph
-      get ":transition/diff(.:format)" => "reports#diff", as: :diff
-      get ":transition/logs(.:format)" => "reports#logs", as: :logs
-      get ":transition/pefile" => "reports#pefile", as: :pefile
+      get :download
+      get ":transition/detail(.:format)" => "reports#detail", as: :detail, constraints: { transition: /\d+/ }
+      get ":transition/cib(.:format)" => "reports#cib", as: :cib, constraints: { transition: /\d+/ }
+      get ":transition/graph(.:format)" => "reports#graph", as: :graph, constraints: { transition: /\d+/ }
+      get ":transition/diff(.:format)" => "reports#diff", as: :diff, constraints: { transition: /\d+/ }
+      get ":transition/logs(.:format)" => "reports#logs", as: :logs, constraints: { transition: /\d+/ }
+      get ":transition/pefile" => "reports#pefile", as: :pefile, constraints: { transition: /\d+/ }
     end
   end
 

@@ -422,6 +422,9 @@ $(function() {
               }
 
               $(hash).html(data);
+              $(hash).find('.hljs').each(function(i, block) {
+                hljs.highlightBlock(block);
+              });
             }
           },
           fail: function(data) {
@@ -460,6 +463,10 @@ $(function() {
             }
 
             $(hash).html(data);
+
+            $(hash).find('.hljs').each(function(i, block) {
+              hljs.highlightBlock(block);
+            });
           }
         },
         fail: function(data) {

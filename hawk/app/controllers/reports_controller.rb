@@ -6,7 +6,7 @@ class ReportsController < ApplicationController
   before_filter :god_required
   before_filter :set_title
   before_filter :set_record, only: [:destroy, :download]
-  before_filter :set_transition, only: [:show, :detail, :graph, :logs, :diff, :pefile]
+  before_filter :set_transition, only: [:show, :detail, :graph, :logs, :diff, :pefile, :status, :cib]
 
   helper_method :current_transition
   helper_method :prev_transition
@@ -16,6 +16,8 @@ class ReportsController < ApplicationController
   helper_method :window_transition
   helper_method :format_date
   helper_method :transition_tooltip
+  helper_method :history_text_markup
+  helper_method :history_log_markup
 
   def index
     @hb_report = HbReport.new
@@ -102,6 +104,10 @@ class ReportsController < ApplicationController
   end
 
   def show
+    if @transition.nil?
+      @node_events = @report.node_events(HbReport.new(@report.name))
+      @resource_events = @report.resource_events(HbReport.new(@report.name))
+    end
     respond_to do |format|
       format.html
       format.json do
@@ -116,7 +122,9 @@ class ReportsController < ApplicationController
   end
 
   def detail
-    @transition[:info] = @report.info(@hb_report, @transition[:path])
+    info, err = @report.info(@hb_report, @transition[:path])
+    @transition[:info] = info
+    @transition[:info_err] = err
     @transition[:tags] = @report.tags(@hb_report, @transition[:path])
     respond_to do |format|
       format.html do
@@ -151,17 +159,31 @@ class ReportsController < ApplicationController
     end
   end
 
-  def logs
-    @transition[:logs] = @report.logs(@hb_report, @transition[:path])
+  def cib
+    cib = @report.cib(@hb_report, @transition[:path])
     respond_to do |format|
       format.html do
-        render text: [
-          "<pre>",
-          @transition[:logs],
-          "</pre>"
-        ].join("")
+        render text: ['<pre><code class="hljs crmsh">', cib, '</code></pre>'].join("")
       end
       format.json do
+        render json: {cib: cib}
+      end
+    end
+  end
+
+  def logs
+    logs, logs_err = @report.logs(@hb_report, @transition[:path])
+    respond_to do |format|
+      format.html do
+        txt = ['<pre>', history_log_markup(logs), '</pre>']
+        unless logs_err.empty?
+          txt.concat(['<pre>', history_text_markup(logs_err), '</pre>'])
+        end
+        render text: txt.join("")
+      end
+      format.json do
+        @transition[:logs] = logs
+        @transition[:logs_err] = logs_err
         render json: @transition
       end
     end
@@ -245,22 +267,25 @@ class ReportsController < ApplicationController
 
   def set_transition
     set_transitions
-    tidx = 1
-    tidx = params[:transition].to_i if params.has_key? :transition
-    tidx -= 1 if tidx >= 0
-    tidx = -1 if tidx >= @transitions.length
-    curr_transition = @transitions[tidx]
-    if curr_transition.nil?
-      @transition = {}
+    if params.has_key? :transition
+      tidx = params[:transition].to_i
+      tidx -= 1 if tidx > 0
+      tidx = -1 if tidx >= @transitions.length
+      curr_transition = @transitions[tidx]
+      if curr_transition.nil?
+        @transition = {}
+      else
+        @transition = @transitions[tidx]
+        @transition[:index] = tidx
+      end
     else
-      @transition = @transitions[tidx]
-      @transition[:index] = tidx
+      @transition = nil
     end
   end
 
   def current_transition
     if params[:transition].nil?
-      1
+      0
     else
       params[:transition].to_i
     end
@@ -342,4 +367,31 @@ class ReportsController < ApplicationController
     format_date(tr[:timestamp])
   end
 
+  def history_line_markup(line)
+    line.gsub!(/\b(offline|error|unclean|stopped)/i, '<span class="text-danger"><strong>\\1</strong></span>')
+    line.gsub!(/\b(warning)/i, '<span class="text-warning"><strong>\\1</strong></span>')
+    line.gsub!(/\b(info|notice)/i, '<span class="text-info"><strong>\\1</strong></span>')
+    line.gsub!(/\b(online|started)/i, '<span class="text-success"><strong>\\1</strong></span>')
+    line
+  end
+
+  def history_text_markup(text)
+    text.lines.map do |line|
+      history_line_markup line
+    end.join("").html_safe
+  end
+
+  def history_log_markup(text)
+    text.lines.map do |line|
+      parts = line.split(' ', 3)
+      if parts.length == 3
+        parts[0] = '<strong>' + parts[0] + '</strong>'
+        parts[1] = '<span class="text-info">' + parts[1] + '</span>'
+        parts[2] = history_line_markup(parts[2])
+        parts.join(" ")
+      else
+        line
+      end
+    end.join("").html_safe
+  end
 end

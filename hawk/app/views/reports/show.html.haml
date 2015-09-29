@@ -12,9 +12,9 @@
         %dl.dl-horizontal
           %dt= _("Report")
           - if @report.name.start_with? 'hawk-'
-            %dd= 'hawk'
+            %dd= link_to 'hawk', report_path(id: params[:id])
           - else
-            %dd= @report.name
+            %dd= link_to @report.name, report_path(id: params[:id])
           - if @report.from_time != @report.to_time
             %dt= _("From")
             %dd= format_date @report.from_time
@@ -62,48 +62,71 @@
 
             %li{ role: "presentation", class: current_transition == last_transition ? "disabled" : nil }
               = link_to _("Next"), url_for(transition: next_transition)
-        .panel-body
-          %dl.dl-horizontal
-            %dt= _("PE Name")
-            %dd= link_to @transition[:basename], pefile_report_path(id: params[:id], transition: current_transition)
-            %dt= _("Node")
-            %dd= @transition[:node]
-            %dt= _("Time")
-            %dd= format_date @transition[:timestamp]
-            - if @transition[:version]
-              %dt= _("Version")
-              %dd= @transition[:version]
+        - unless @transition.nil?
+          .panel-body
+            %dl.dl-horizontal
+              %dt= _("PE Name")
+              %dd= link_to @transition[:basename], pefile_report_path(id: params[:id], transition: current_transition)
+              %dt= _("Node")
+              %dd= @transition[:node]
+              %dt= _("Time")
+              %dd= format_date @transition[:timestamp]
+              - if @transition[:version]
+                %dt= _("Version")
+                %dd= @transition[:version]
 
-      .panel.panel-default.with-nav-tabs
-        .panel-heading
-          %ul.nav.nav-tabs.remote
-            %li.active
-              %a{ href: "#details", data: { toggle: "tab", url: detail_report_path(id: @report.id, transition: current_transition) } }
-                = _("Details")
-            %li
-              %a{ href: "#graph", data: { toggle: "tab", url: graph_report_path(id: @report.id, transition: current_transition) } }
-                = _("Graph")
-            %li
-              %a{ href: "#diff", data: { toggle: "tab", url: diff_report_path(id: @report.id, transition: current_transition) } }
-                = _("Diff")
-            %li
-              %a{ href: "#logs", data: { toggle: "tab", url: logs_report_path(id: @report.id, transition: current_transition) } }
-                = _("Logs")
+      - unless @transition.nil?
+        .panel.panel-default.with-nav-tabs
+          .panel-heading
+            %ul.nav.nav-tabs.remote
+              %li.active
+                %a{ href: "#details", data: { toggle: "tab", url: detail_report_path(id: @report.id, transition: current_transition) } }
+                  = _("Details")
+              %li
+                %a{ href: "#cib", data: { toggle: "tab", url: cib_report_path(id: @report.id, transition: current_transition) } }
+                  = _("Configuration")
+              %li
+                %a{ href: "#diff", data: { toggle: "tab", url: diff_report_path(id: @report.id, transition: current_transition) } }
+                  = _("Diff")
+              %li
+                %a{ href: "#logs", data: { toggle: "tab", url: logs_report_path(id: @report.id, transition: current_transition) } }
+                  = _("Logs")
+              %li
+                %a{ href: "#graph", data: { toggle: "tab", url: graph_report_path(id: @report.id, transition: current_transition) } }
+                  = _("Graph")
 
-        .panel-body
-          .tab-content
-            #details.tab-pane.fade.in.active
-              .text-center.spacer
-                = icon_tag("spinner", class: "fa-spinner fa-spin fa-3x")
+          .panel-body
+            .tab-content
+              #details.tab-pane.fade.in.active
+                .text-center.spacer
+                  = icon_tag("spinner", class: "fa-spinner fa-spin fa-2x")
 
-            #graph.tab-pane.fade
-              .text-center.spacer
-                = icon_tag("spinner", class: "fa-spinner fa-spin fa-3x")
+              #cib.tab-pane.fade
+                .text-center.spacer
+                  = icon_tag("spinner", class: "fa-spinner fa-spin fa-2x")
 
-            #diff.tab-pane.fade
-              .text-center.spacer
-                = icon_tag("spinner", class: "fa-spinner fa-spin fa-3x")
+              #diff.tab-pane.fade
+                .text-center.spacer
+                  = icon_tag("spinner", class: "fa-spinner fa-spin fa-2x")
 
-            #logs.tab-pane.fade
-              .text-center.spacer
-                = icon_tag("spinner", class: "fa-spinner fa-spin fa-3x")
+              #logs.tab-pane.fade
+                .text-center.spacer
+                  = icon_tag("spinner", class: "fa-spinner fa-spin fa-2x")
+
+              #graph.tab-pane.fade
+                .text-center.spacer
+                  = icon_tag("spinner", class: "fa-spinner fa-spin fa-2x")
+      - else
+        .panel.panel-default
+          .panel-heading
+            %h4.panel-title
+              = _("Node Events")
+          .panel-body
+            %pre= history_log_markup @node_events
+
+        .panel.panel-default
+          .panel-heading
+            %h4.panel-title
+              = _("Resource Events")
+          .panel-body
+            %pre= history_log_markup @resource_events
