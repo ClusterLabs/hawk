@@ -52,27 +52,15 @@ class Ticket < Constraint
   end
 
   def grant!(site)
-    result = Invoker.instance.run(
-      "booth", "client", "grant", "-t", id, "-s", site.to_s
-    )
-
-    if result == true
-      true
-    else
-      raise Constraint::CommandError.new result.last
-    end
+    out, err, rc = Invoker.instance.run "booth", "client", "grant", "-t", id, "-s", site.to_s
+    raise Constraint::CommandError.new err unless rc == 0
+    rc == 0
   end
 
   def revoke!(site)
-    result = Invoker.instance.run(
-      "booth", "client", "revoke", "-t", id
-    )
-
-    if result == true
-      true
-    else
-      raise Constraint::CommandError.new result.last
-    end
+    out, err, rc = Invoker.instance.run "booth", "client", "revoke", "-t", id
+    raise Constraint::CommandError.new err unless rc == 0
+    rc == 0
   end
 
   class << self

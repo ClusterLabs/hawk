@@ -17,11 +17,11 @@ class SimulatorController < ApplicationController
         if current_cib.id == "live"
           head :bad_request
         else
-          ok = Invoker.instance.run("crm_shadow", "-b", "-f", "-c", "#{current_cib.id}")
-          if ok == true
+          out, err, rc = Invoker.instance.run("crm_shadow", "-b", "-f", "-c", "#{current_cib.id}")
+          if rc == 0
             render json: { success: true }
           else
-            render json: { error: ok[1], status: ok[0] }, status: 500
+            render json: { output: out, error: err, status: rc }, status: 500
           end
         end
       end
@@ -167,7 +167,7 @@ class SimulatorController < ApplicationController
       ENV["CIB_shadow"] = shadow_id
       # TODO(must): Handle error here
       Rails.logger.debug("CIB_shadow: #{shadow_id}")
-      result = Invoker.instance.cibadmin('--replace', '--xml-file', tmpfile.path)
+      Invoker.instance.cibadmin('--replace', '--xml-file', tmpfile.path)
     ensure
       tmpfile.unlink
     end

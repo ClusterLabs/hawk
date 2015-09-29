@@ -106,9 +106,11 @@ class TicketsController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if Invoker.instance.crm("--force", "configure", "delete", @ticket.id)
+      out, err, rc = Invoker.instance.crm("--force", "configure", "delete", @ticket.id)
+      if rc == 0
         format.html do
           flash[:success] = _("Ticket deleted successfully")
+          flash[:warning] = err unless err.blank?
           redirect_to cib_tickets_url(cib_id: @cib.id)
         end
         format.json do
@@ -119,11 +121,11 @@ class TicketsController < ApplicationController
         end
       else
         format.html do
-          flash[:alert] = _("Error deleting %s") % @ticket.id
+          flash[:alert] = _("Error deleting %s: %s") % [@ticket.id, err]
           redirect_to edit_cib_ticket_url(cib_id: @cib.id, id: @ticket.id)
         end
         format.json do
-          render json: { error: _("Error deleting %s") % @ticket.id }, status: :unprocessable_entity
+          render json: { error: _("Error deleting %s: %s") % [@ticket.id, err] }, status: :unprocessable_entity
         end
       end
     end

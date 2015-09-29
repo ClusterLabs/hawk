@@ -110,6 +110,7 @@ class Clone < Resource
   protected
 
   def update
+    # TODO(must): use crmsh for this
     unless self.class.exists?(self.id, self.class.cib_type_write)
       errors.add :base, _("The ID \"%{id}\" does not exist") % { id: self.id }
       return false
@@ -117,13 +118,13 @@ class Clone < Resource
 
     begin
       merge_nvpairs("meta_attributes", meta)
-      Invoker.instance.cibadmin_replace xml.to_s
+      out, err, rc = Invoker.instance.cibadmin_replace xml.to_s
+      errors.add :base, err unless rc == 0
+      rc == 0
     rescue NotFoundError, SecurityError, RuntimeError => e
       errors.add :base, e.message
       return false
     end
-
-    true
   end
 
   def shell_syntax

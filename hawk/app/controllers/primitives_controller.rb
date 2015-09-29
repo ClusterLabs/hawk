@@ -94,9 +94,11 @@ class PrimitivesController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if Invoker.instance.crm("--force", "configure", "delete", @primitive.id)
+      out, err, rc = Invoker.instance.crm("--force", "configure", "delete", @primitive.id)
+      if rc == 0
         format.html do
           flash[:success] = _("Primitive deleted successfully")
+          flash[:warning] = err unless err.blank?
           redirect_to types_cib_resources_path(cib_id: @cib.id)
         end
         format.json do
@@ -107,11 +109,11 @@ class PrimitivesController < ApplicationController
         end
       else
         format.html do
-          flash[:alert] = _("Error deleting %s") % @primitive.id
+          flash[:alert] = _("Error deleting %s: %s") % [@primitive.id, err]
           redirect_to edit_cib_primitive_url(cib_id: @cib.id, id: @primitive.id)
         end
         format.json do
-          render json: { error: _("Error deleting %s") % @primitive.id }, status: :unprocessable_entity
+          render json: { error: _("Error deleting %s: %s") % [@primitive.id, err] }, status: :unprocessable_entity
         end
       end
     end

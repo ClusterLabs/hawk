@@ -390,10 +390,11 @@ class CrmConfig < Tableless
       end
     end
 
-    unless cmd.empty?
-      Invoker.instance.crm_configure_load_update(
-        cmd.join(" ")
-      )
+    if cmd.empty?
+      true
+    else
+      out, err, rc = Invoker.instance.crm_configure_load_update(cmd.join(" "))
+      rc == 0
     end
   end
 end

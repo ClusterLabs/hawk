@@ -306,14 +306,10 @@ class Record < Tableless
 
     Rails.logger.debug "crmsh syntax: #{cli}"
 
-    result = Invoker.instance.crm_configure cli
+    out, err, rc = Invoker.instance.crm_configure cli
 
-    unless result == true
-      errors.add :base, _('Unable to create: %{msg}') % { msg: result }
-      return false
-    end
-
-    true
+    errors.add :base, _('Unable to create: %{msg}') % { msg: err } unless rc == 0
+    rc == 0
   end
 
   def update
@@ -326,14 +322,9 @@ class Record < Tableless
 
     Rails.logger.debug "crmsh syntax: #{cli}"
 
-    result = Invoker.instance.crm_configure_load_update cli
-
-    unless result == true
-      errors.add :base, _('Unable to update: %{msg}') % { msg: result }
-      return false
-    end
-
-    true
+    out, err, rc = Invoker.instance.crm_configure_load_update cli
+    errors.add :base, err unless rc == 0
+    rc == 0
   end
 
   def current_cib

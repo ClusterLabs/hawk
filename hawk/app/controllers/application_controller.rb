@@ -192,7 +192,7 @@ class ApplicationController < ActionController::Base
       result = init_shadow_cib(params[:init_cib].to_s.downcase == "true")
       unless result.nil?
         respond_to do |format|
-          if result == true
+          if result[2] == 0
             format.html do
               flash.now[:success] = _("Created a new shadow CIB for %USER%.").sub("%USER%", current_cib.id)
             end
@@ -201,10 +201,7 @@ class ApplicationController < ActionController::Base
               redirect_to root_path, alert: (_("Unable to create shadow CIB") + ": " + result[1].to_s)
             end
             format.json do
-              render json: {
-                       error: _("Unable to create shadow CIB"),
-                       stderr: result[1]
-                     }, status: 500
+              render json: { error: _("Unable to create shadow CIB"), stderr: result[1] }, status: 500
             end
           end
         end

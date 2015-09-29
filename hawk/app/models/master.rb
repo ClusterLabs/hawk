@@ -125,13 +125,13 @@ class Master < Resource
 
     begin
       merge_nvpairs("meta_attributes", meta)
-      Invoker.instance.cibadmin_replace xml.to_s
+      out, err, rc = Invoker.instance.cibadmin_replace xml.to_s
+      errors.add :base, err unless rc == 0
+      rc == 0
     rescue NotFoundError, SecurityError, RuntimeError => e
       errors.add :base, e.message
       return false
     end
-
-    true
   end
 
   def shell_syntax

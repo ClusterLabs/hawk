@@ -94,9 +94,11 @@ class GroupsController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if Invoker.instance.crm("--force", "configure", "delete", @group.id)
+      out, err, rc = Invoker.instance.crm("--force", "configure", "delete", @group.id)
+      if rc == 0
         format.html do
           flash[:success] = _("Group deleted successfully")
+          flash[:warning] = err unless err.blank?
           redirect_to types_cib_resources_path(cib_id: @cib.id)
         end
         format.json do
@@ -107,11 +109,11 @@ class GroupsController < ApplicationController
         end
       else
         format.html do
-          flash[:alert] = _("Error deleting %s") % @group.id
+          flash[:alert] = _("Error deleting %s: %s") % [@group.id, err]
           redirect_to edit_cib_group_url(cib_id: @cib.id, id: @group.id)
         end
         format.json do
-          render json: { error: _("Error deleting %s") % @group.id }, status: :unprocessable_entity
+          render json: { error: _("Error deleting %s: %s") % [@group.id, err] }, status: :unprocessable_entity
         end
       end
     end

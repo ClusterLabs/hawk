@@ -26,15 +26,9 @@ class Node < Tableless
     format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _('Invalid name') }
 
   def online!
-    result = Invoker.instance.run(
-      "crm_attribute", "-N", name, "-n", "standby", "-v", "off", "-l", "forever"
-    )
-
-    if result == true
-      true
-    else
-      raise CommandError.new result.last
-    end
+    out, err, rc = Invoker.instance.run "crm_attribute", "-N", name, "-n", "standby", "-v", "off", "-l", "forever"
+    raise CommandError.new err unless rc == 0
+    true
   end
 
   def online
@@ -42,15 +36,9 @@ class Node < Tableless
   end
 
   def standby!
-    result = Invoker.instance.run(
-      "crm_attribute", "-N", name, "-n", "standby", "-v", "on", "-l", "forever"
-    )
-
-    if result == true
-      true
-    else
-      raise CommandError.new result.last
-    end
+    out, err, rc = Invoker.instance.run "crm_attribute", "-N", name, "-n", "standby", "-v", "on", "-l", "forever"
+    raise CommandError.new err unless rc == 0
+    true
   end
 
   def standby
@@ -58,15 +46,9 @@ class Node < Tableless
   end
 
   def ready!
-    result = Invoker.instance.run(
-      "crm_attribute", "-N", name, "-n", "maintenance", "-v", "off", "-l", "forever"
-    )
-
-    if result == true
-      true
-    else
-      raise CommandError.new result.last
-    end
+    out, err, rc = Invoker.instance.run "crm_attribute", "-N", name, "-n", "maintenance", "-v", "off", "-l", "forever"
+    raise CommandError.new err unless rc == 0
+    true
   end
 
   def ready
@@ -74,27 +56,15 @@ class Node < Tableless
   end
 
   def maintenance!
-    result = Invoker.instance.run(
-      "crm_attribute", "-N", name, "-n", "maintenance", "-v", "on", "-l", "forever"
-    )
-
-    if result == true
-      true
-    else
-      raise CommandError.new result.last
-    end
+    out, err, rc = Invoker.instance.run "crm_attribute", "-N", name, "-n", "maintenance", "-v", "on", "-l", "forever"
+    raise CommandError.new err unless rc == 0
+    true
   end
 
   def fence!
-    result = Invoker.instance.run(
-      "crm_attribute", "-t", "status", "-U", name, "-n", "terminate", "-v", "true"
-    )
-
-    if result == true
-      true
-    else
-      raise CommandError.new result.last
-    end
+    out, err, rc = Invoker.instance.run "crm_attribute", "-t", "status", "-U", name, "-n", "terminate", "-v", "true"
+    raise CommandError.new err unless rc == 0
+    true
   end
 
   def to_param

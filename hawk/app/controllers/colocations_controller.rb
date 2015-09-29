@@ -93,7 +93,8 @@ class ColocationsController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if Invoker.instance.crm("--force", "configure", "delete", @colocation.id)
+      out, err, rc = Invoker.instance.crm("--force", "configure", "delete", @colocation.id)
+      if rc == 0
         format.html do
           flash[:success] = _("Colocation deleted successfully")
           redirect_to types_cib_constraints_url(cib_id: @cib.id)
@@ -106,11 +107,11 @@ class ColocationsController < ApplicationController
         end
       else
         format.html do
-          flash[:alert] = _("Error deleting %s") % @colocation.id
+          flash[:alert] = _("Error deleting %s: %s") % [@colocation.id, err]
           redirect_to edit_cib_colocation_url(cib_id: @cib.id, id: @colocation.id)
         end
         format.json do
-          render json: { error: _("Error deleting %s") % @colocation.id }, status: :unprocessable_entity
+          render json: { error: _("Error deleting %s: %s") % [@colocation.id, err] }, status: :unprocessable_entity
         end
       end
     end

@@ -93,9 +93,11 @@ class OrdersController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if Invoker.instance.crm("--force", "configure", "delete", @order.id)
+      out, err, rc = Invoker.instance.crm("--force", "configure", "delete", @order.id)
+      if rc == 0
         format.html do
           flash[:success] = _("Order deleted successfully")
+          flash[:warning] = err unless err.blank?
           redirect_to types_cib_constraints_url(cib_id: @cib.id)
         end
         format.json do
@@ -106,11 +108,11 @@ class OrdersController < ApplicationController
         end
       else
         format.html do
-          flash[:alert] = _("Error deleting %s") % @order.id
+          flash[:alert] = _("Error deleting %s: %s") % [@order.id, err]
           redirect_to edit_cib_order_url(cib_id: @cib.id, id: @order.id)
         end
         format.json do
-          render json: { error: _("Error deleting %s") % @order.id }, status: :unprocessable_entity
+          render json: { error: _("Error deleting %s: %s") % [@order.id, err] }, status: :unprocessable_entity
         end
       end
     end

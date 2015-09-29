@@ -90,9 +90,11 @@ class RolesController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if Invoker.instance.crm("--force", "configure", "delete", @role.id)
+      out, err, rc = Invoker.instance.crm("--force", "configure", "delete", @role.id)
+      if rc == 0
         format.html do
           flash[:success] = _("Role deleted successfully")
+          flash[:warning] = err unless err.blank?
           redirect_to cib_roles_url(cib_id: @cib.id)
         end
         format.json do
@@ -103,11 +105,11 @@ class RolesController < ApplicationController
         end
       else
         format.html do
-          flash[:alert] = _("Error deleting %s") % @role.id
+          flash[:alert] = _("Error deleting %s: %s") % [@role.id, err]
           redirect_to cib_roles_url(cib_id: @cib.id)
         end
         format.json do
-          render json: { error: _("Error deleting %s") % @role.id }, status: :unprocessable_entity
+          render json: { error: _("Error deleting %s: %s") % [@role.id, err] }, status: :unprocessable_entity
         end
       end
     end

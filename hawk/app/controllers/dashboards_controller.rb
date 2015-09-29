@@ -31,10 +31,11 @@ class DashboardsController < ApplicationController
   def remove
     if request.post?
       name = params[:name]
-      if Cluster.remove(name)
+      out, err, rc = Cluster.remove(name)
+      if rc == 0
         render json: {"name" => name }
       else
-        render json: { error: _("Error removing %s") % name }, status: :unprocessable_entity
+        render json: { error: _("Error removing %s: %s") % [name, err] }, status: :unprocessable_entity
       end
     end
   end

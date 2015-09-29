@@ -94,9 +94,11 @@ class ClonesController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if Invoker.instance.crm("--force", "configure", "delete", @clone.id)
+      out, err, rc = Invoker.instance.crm("--force", "configure", "delete", @clone.id)
+      if rc == 0
         format.html do
           flash[:success] = _("Clone deleted successfully")
+          flash[:warning] = err unless err.blank?
           redirect_to types_cib_resources_path(cib_id: @cib.id)
         end
         format.json do
@@ -107,11 +109,11 @@ class ClonesController < ApplicationController
         end
       else
         format.html do
-          flash[:alert] = _("Error deleting %s") % @clone.id
+          flash[:alert] = _("Error deleting %s: %s") % [@clone.id, err]
           redirect_to edit_cib_clone_url(cib_id: @cib.id, id: @clone.id)
         end
         format.json do
-          render json: { error: _("Error deleting %s") % @clone.id }, status: :unprocessable_entity
+          render json: { error: _("Error deleting %s: %s") % [@clone.id, err] }, status: :unprocessable_entity
         end
       end
     end

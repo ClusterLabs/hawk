@@ -93,9 +93,11 @@ class TagsController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if Invoker.instance.crm("--force", "configure", "delete", @tag.id)
+      out, err, rc = Invoker.instance.crm("--force", "configure", "delete", @tag.id)
+      if rc == 0
         format.html do
           flash[:success] = _("Tag deleted successfully")
+          flash[:warning] = err unless err.blank?
           redirect_to cib_dashboard_url(cib_id: @cib.id)
         end
         format.json do
@@ -106,11 +108,11 @@ class TagsController < ApplicationController
         end
       else
         format.html do
-          flash[:alert] = _("Error deleting %s") % @tag.id
+          flash[:alert] = _("Error deleting %s: %s") % [@tag.id, err]
           redirect_to edit_cib_tag_url(cib_id: @cib.id, id: @tag.id)
         end
         format.json do
-          render json: { error: _("Error deleting %s") % @tag.id }, status: :unprocessable_entity
+          render json: { error: _("Error deleting %s: %s") % [@tag.id, err] }, status: :unprocessable_entity
         end
       end
     end

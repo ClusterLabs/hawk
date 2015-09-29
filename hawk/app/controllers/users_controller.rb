@@ -92,9 +92,11 @@ class UsersController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if Invoker.instance.crm("--force", "configure", "delete", @user.id)
+      out, err, rc = Invoker.instance.crm("--force", "configure", "delete", @user.id)
+      if rc == 0
         format.html do
           flash[:success] = _("User deleted successfully")
+          flash[:warning] = err unless err.blank?
           redirect_to cib_users_url(cib_id: @cib.id)
         end
         format.json do
@@ -105,11 +107,11 @@ class UsersController < ApplicationController
         end
       else
         format.html do
-          flash[:alert] = _("Error deleting %s") % @user.id
+          flash[:alert] = _("Error deleting %s: %s") % [@user.id, err]
           redirect_to cib_users_url(cib_id: @cib.id)
         end
         format.json do
-          render json: { error: _("Error deleting %s") % @user.id }, status: :unprocessable_entity
+          render json: { error: _("Error deleting %s: %s") % [@user.id, err] }, status: :unprocessable_entity
         end
       end
     end

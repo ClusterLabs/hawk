@@ -54,9 +54,9 @@ class Cluster < Tableless
     Rails.logger.debug "chmod 0660 #{fname}..."
     File.chmod(0660, fname)
     Rails.logger.debug "Copy #{fname}..."
-    ret = Invoker.instance.crm("cluster", "copy", fname)
-    Rails.logger.debug "Copy returned #{ret}"
-    ret
+    out, err, rc = Invoker.instance.crm("cluster", "copy", fname)
+    Rails.logger.debug "Copy returned #{out} #{err} #{rc}"
+    rc == 0 ? true : err
   end
 
   def update
@@ -93,9 +93,9 @@ class Cluster < Tableless
       Rails.logger.debug "remove: Writing #{fname}..."
       File.open(fname, "w") { |f| f.write(JSON.pretty_generate(clusters)) }
       File.chmod(0660, fname)
-      ret = Invoker.instance.crm("cluster", "copy", fname)
-      Rails.logger.debug "remove: Copy returned #{ret}"
-      ret
+      out, err, rc = Invoker.instance.crm("cluster", "copy", fname)
+      Rails.logger.debug "remove: Copy returned #{out} #{err} #{rc}"
+      [out, err, rc]
     end
   end
 end

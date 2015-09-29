@@ -111,9 +111,11 @@ class LocationsController < ApplicationController
 
   def destroy
     respond_to do |format|
-      if Invoker.instance.crm('--force', 'configure', 'delete', @location.id)
+      out, err, rc = Invoker.instance.crm('--force', 'configure', 'delete', @location.id)
+      if rc == 0
         format.html do
           flash[:success] = _('Location deleted successfully')
+          flash[:warning] = err unless err.blank?
           redirect_to types_cib_constraints_url(cib_id: @cib.id)
         end
         format.json do
@@ -124,11 +126,11 @@ class LocationsController < ApplicationController
         end
       else
         format.html do
-          flash[:alert] = _('Error deleting %s') % @location.id
+          flash[:alert] = _('Error deleting %s: %s') % [@location.id, err]
           redirect_to edit_cib_location_url(cib_id: @cib.id, id: @location.id)
         end
         format.json do
-          render json: { error: _('Error deleting %s') % @location.id }, status: :unprocessable_entity
+          render json: { error: _('Error deleting %s: %s') % [@location.id, err] }, status: :unprocessable_entity
         end
       end
     end
