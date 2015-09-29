@@ -10,12 +10,19 @@ require 'singleton'
 class CrmEvents
   include Singleton
 
+  TRUNC_LOG_SIZE = 32*1024
+  MAX_LOG_SIZE = 128*1024
+
+  def truncate?(f)
+    (f.mtime < 1.day.ago && f.size > TRUNC_LOG_SIZE) || f.size > MAX_LOG_SIZE
+  end
+
   def push(cmd)
     cmd = cmd.join(" ") if cmd.is_a? Array
     begin
       File.open(path, 'a') do |f|
         f.flock(File::LOCK_EX)
-        f.truncate(0) if f.mtime < 1.day.ago
+        f.truncate(0) if truncate? f
         f << cmd
         f << "@@COMMAND-END@@\n"
       end
