@@ -14,6 +14,8 @@ class ReportsController < ApplicationController
   helper_method :first_transition
   helper_method :last_transition
   helper_method :window_transition
+  helper_method :next_transitions
+  helper_method :prev_transitions
   helper_method :format_date
   helper_method :transition_tooltip
   helper_method :history_text_markup
@@ -322,22 +324,31 @@ class ReportsController < ApplicationController
         start = first_transition
         upper = 10
 
-        start.upto(upper).to_a + ["..."]
+        start.upto(upper).to_a + ["end"]
       when current_transition >= (last_transition - 5)
         start = last_transition - 10
         upper = last_transition
 
-        ["..."] + start.upto(upper).to_a
+        ["begin"] + start.upto(upper).to_a
       else
         start = current_transition - 5
         upper = current_transition + 5
 
-        ["..."] + start.upto(upper).to_a + ["..."]
+        ["begin"] + start.upto(upper).to_a + ["end"]
       end
     else
       first_transition.upto(last_transition).to_a
     end
   end
+
+  def prev_transitions
+    (window_transition[1] - 1).downto(first_transition).to_a[0..20]
+  end
+
+  def next_transitions
+    (window_transition[-2] + 1).upto(last_transition).to_a[0..20]
+  end
+
 
   def format_date(t)
     t = DateTime.parse(t) if t.is_a? String

@@ -395,6 +395,8 @@ $(function() {
 
 
   $('#reports #report-show').each(function() {
+    $(this).find('.dropdown-toggle').dropdown();
+
     $(this).find('.remote a[data-toggle="tab"]')
       .on('show.bs.tab', function(e) {
         var hash = this.hash;
