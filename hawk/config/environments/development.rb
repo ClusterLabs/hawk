@@ -2,8 +2,16 @@
 # See COPYING for license.
 
 Rails.application.configure do
-  config.cache_classes = false
-  config.eager_load = false
+  # Because we have the /monitor controller, we need
+  # to change some settings here. Unfortunately, it
+  # interferes with the auto-reloading of changed code.
+  config.preload_frameworks = true
+  config.allow_concurrency = true
+  config.quiet_assets = false
+  config.cache_classes = true
+  config.eager_load = true
+
+
   config.consider_all_requests_local = true
   config.serve_static_files = true
   config.force_ssl = false
