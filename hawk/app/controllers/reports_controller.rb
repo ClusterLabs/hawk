@@ -263,7 +263,10 @@ class ReportsController < ApplicationController
     set_record
     @hb_report = HbReport.new @report.name
     @transitions = Rails.cache.fetch("#{params[:id]}/#{session.id}", expires_in: 2.hours) do
-      @report.transitions(@hb_report)
+      @report.transitions(@hb_report).select do |t|
+        # TODO(must): handle this better
+        !t.has_key?(:error)
+      end
     end
   end
 
@@ -393,16 +396,6 @@ class ReportsController < ApplicationController
   end
 
   def history_log_markup(text)
-    text.lines.map do |line|
-      parts = line.split(' ', 3)
-      if parts.length == 3
-        parts[0] = '<strong>' + parts[0] + '</strong>'
-        parts[1] = '<span class="text-info">' + parts[1] + '</span>'
-        parts[2] = history_line_markup(parts[2])
-        parts.join(" ")
-      else
-        line
-      end
-    end.join("").html_safe
+    history_text_markup text
   end
 end
