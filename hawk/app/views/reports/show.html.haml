@@ -136,17 +136,18 @@
               #graph.tab-pane.fade
                 .text-center.spacer
                   = icon_tag("spinner", class: "fa-spinner fa-spin fa-2x")
-      - else
-        .panel.panel-default
-          .panel-heading
-            %h4.panel-title
-              = _("Node Events")
-          .panel-body
-            %pre= history_log_markup @node_events
+  - if @transition.nil?
+    .row
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title
+            = _("Node Events")
+        .panel-body
+          %pre= history_log_markup @node_events
 
-        .panel.panel-default
-          .panel-heading
-            %h4.panel-title
-              = _("Resource Events")
-          .panel-body
-            %pre= history_log_markup @resource_events
+      .panel.panel-default
+        .panel-heading
+          %h4.panel-title
+            = _("Resource Events")
+        .panel-body
+          %pre= history_log_markup @resource_events
