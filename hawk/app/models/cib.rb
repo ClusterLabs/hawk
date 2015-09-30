@@ -55,7 +55,7 @@ class Cib < CibObject
   end
 
   def offline?
-    @meta.status == :offline
+    meta.status == :offline
   end
 
   def status(minimal = false)
