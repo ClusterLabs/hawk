@@ -4,10 +4,9 @@ After=network.target
 
 [Service]
 Type=simple
-KillMode=process
-KillSignal=SIGINT
+KillMode=control-group
 TimeoutSec=300
-TimeoutStopSec=300
+TimeoutStopSec=10
 
 User=hacluster
 Group=haclient
@@ -16,8 +15,8 @@ WorkingDirectory=@WWW_BASE@/hawk
 
 Environment="GEM_PATH=@GEM_PATH@"
 Environment="HAWK_ENV=production"
-Environment="HAWK_THREADS=1"
-Environment="HAWK_WORKERS=3"
+Environment="HAWK_THREADS=16"
+Environment="HAWK_WORKERS=1"
 Environment="HAWK_LISTEN=0.0.0.0"
 Environment="HAWK_PORT=7630"
 Environment="HAWK_KEY=/etc/hawk/hawk.pem"
@@ -28,6 +27,7 @@ EnvironmentFile=-/etc/sysconfig/hawk
 PermissionsStartOnly=true
 ExecStartPre=@WWW_BASE@/hawk/bin/generate-ssl-cert
 ExecStart=@GEM_PATH@/bin/puma -C @WWW_BASE@/hawk/config/puma.rb
+ExecStop=@GEM_PATH@/bin/pumactl -S @WWW_BASE@/hawk/tmp/pids/puma.state stop
 ExecReload=@GEM_PATH@/bin/pumactl -S @WWW_BASE@/hawk/tmp/pids/puma.state restart
 
 [Install]
