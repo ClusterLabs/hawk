@@ -7,13 +7,10 @@
   function MonitorCheck(el, options) {
     this.$el = $(el);
 
-    this.currentEpoch = this.$el.data('monitor');
-    this.currentInterval = null;
-    this.currentRefresh = null;
+    this.currentEpoch = this.$el.data('epoch');
 
     this.defaults = {
       faster: 15,
-      refresh: 90,
       timeout: 90,
       cache: false
     };
@@ -31,30 +28,32 @@
 
     if (self.$el.data('cib') === 'live') {
       self.processCheck();
-      self.updateInterval(self.options.refresh);
     }
   };
 
   MonitorCheck.prototype.processCheck = function() {
     var self = this;
 
+    console.log("Start monitor:", self.currentEpoch);
     $.ajax({
       url: Routes.monitor_path(),
 
       type: 'GET',
       data: self.currentEpoch,
+      dataType: "json",
       cache: self.options.cache,
       timeout: self.options.timeout * 1000,
 
       success: function(data) {
+        console.log("Monitor response:", data);
         if (data) {
-          if (self.invalidEpoch(data.epoch)) {
+          if (self.updateEpoch(data.epoch)) {
             $('body').trigger($.Event('updated.hawk.monitor'));
           } else {
             $('body').trigger($.Event('checked.hawk.monitor'));
           }
 
-          self.updateInterval(self.options.refresh);
+          self.processCheck();
         } else {
           $.growl(
             __('Connection to server aborted - will retry every 15 seconds.'),
@@ -62,7 +61,8 @@
           );
 
           $('body').trigger($.Event('aborted.hawk.monitor'));
-          self.updateInterval(self.options.faster);
+
+          setTimeout(function() { self.processCheck(); }, self.options.faster * 1000);
         }
       },
 
@@ -87,39 +87,18 @@
         }
 
         $('body').trigger($.Event('unavailable.hawk.monitor'));
-        self.updateInterval(self.options.faster);
+        setTimeout(function() { self.processCheck(); }, self.options.faster * 1000);
       }
     });
   };
 
-  MonitorCheck.prototype.updateInterval = function(secs) {
-    var self = this;
-
-    if (self.currentRefresh !== secs) {
-      clearInterval(
-        self.currentInterval
-      );
-
-      self.currentInterval = win.setInterval(
-        function() {
-          self.processCheck();
-        },
-        secs * 1000
-      );
-
-      self.currentRefresh = secs;
+  MonitorCheck.prototype.updateEpoch = function(epoch) {
+    if (epoch !== undefined) {
+      var changed = this.currentEpoch !== epoch;
+      this.currentEpoch = epoch;
+      return changed;
     }
-  };
-
-  MonitorCheck.prototype.invalidEpoch = function(epoch) {
-    var self = this;
-
-    if (self.currentEpoch !== epoch) {
-      self.currentEpoch = epoch;
-      return true;
-    } else {
-      return false;
-    }
+    return false;
   };
 
   $.fn.monitorCheck = function(options) {
@@ -130,5 +109,9 @@
 }(jQuery, document, window));
 
 $(function() {
-  $('[data-monitor]').monitorCheck();
+  $('#states').monitorCheck();
+
+  $.updateCib = function() {
+    $('body').trigger($.Event('updated.hawk.monitor'));
+  };
 });
