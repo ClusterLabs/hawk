@@ -150,5 +150,9 @@ class Invoker
       [exitstatus, stderr]
     end
   end
+
+  def current_user
+    Thread.current[:current_user].call
+  end
 end
 

@@ -335,4 +335,9 @@ class Record < Tableless
 
     true
   end
+
+  def current_cib
+    Thread.current[:current_cib].call
+  end
+
 end

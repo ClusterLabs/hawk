@@ -113,49 +113,14 @@ class ApplicationController < ActionController::Base
 
   def inject_current_cib
     current_controller = self
-
-    Record.send(
-      :define_method,
-      "current_cib",
-      proc { current_controller.send(:current_cib) }
-    )
-
+    Thread.current[:current_cib] = proc { current_controller.send(:current_cib) }
     yield
-
-    Record.send(
-      :remove_method,
-      "current_cib"
-    )
   end
 
   def inject_current_user
-    #
-    # Technique based on one presented by a very unhappy sounding person at:
-    #
-    #   http://m.onkey.org/how-to-access-session-cookies-params-request-in-model
-    #
-    # If you ever read this, o unhappy one, I'm not injecting controller data
-    # into my models, but I *do* need the current user when models invoke
-    # external commands to update the cluster configuration (this is required
-    # for ACLs to work properly in this application, which has nothing to do
-    # with Rails at all), and I'm damn well not passing the current user to
-    # every model, when the models themselves actually don't need to care who
-    # is using them.
-    #
     current_controller = self
-
-    Invoker.send(
-      :define_method,
-      "current_user",
-      proc { current_controller.send(:current_user) }
-    )
-
+    Thread.current[:current_user] = proc { current_controller.send(:current_user) }
     yield
-
-    Invoker.send(
-      :remove_method,
-      "current_user"
-    )
   end
 
   def set_users_locale
