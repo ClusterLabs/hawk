@@ -18,13 +18,7 @@ class Resource < Record
   end
 
   def managed
-    res = cib_by_id(id)
-
-    if res.has_key? :is_managed
-      res[:is_managed]
-    else
-      false
-    end
+    cib_by_id(id)[:is_managed] || false
   end
 
   def start!
