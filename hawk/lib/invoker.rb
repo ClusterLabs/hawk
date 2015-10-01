@@ -65,7 +65,7 @@ class Invoker
       # good for testing when running as root), or some other alternative
       # with piping data to crm?
       File.chmod(0666, f.path)
-      CrmEvents.instance.push "#{f.path} = #{cmd}"
+      CrmEvents.instance.push "cat > #{f.path} <<EOF\n#{cmd}\nEOF"
       result = crm '-F', 'configure', 'load', 'update', f.path
     ensure
       f.unlink
