@@ -1,7 +1,7 @@
 .container-fluid
   .row
     %h1
-      = icon_text "user", _("Create User"), class: "page"
+      = icon_text "user", _("Create ACL Target"), class: "page"
 
   .row
     = render partial: "form", locals: { cib: @cib, user: @user }

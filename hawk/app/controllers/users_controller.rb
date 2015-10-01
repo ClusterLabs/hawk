@@ -19,7 +19,7 @@ class UsersController < ApplicationController
   end
 
   def new
-    @title = _("Create User")
+    @title = _("Create ACL Target")
     @user = User.new
 
     respond_to do |format|
@@ -28,7 +28,7 @@ class UsersController < ApplicationController
   end
 
   def create
-    @title = _("Create User")
+    @title = _("Create ACL Target")
     @user = User.new params[:user]
 
     respond_to do |format|
@@ -36,7 +36,7 @@ class UsersController < ApplicationController
         post_process_for! @user
 
         format.html do
-          flash[:success] = _("User created successfully")
+          flash[:success] = _("ACL target created successfully")
           redirect_to cib_users_url(cib_id: @cib.id)
         end
         format.json do
@@ -54,7 +54,7 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @title = _("Edit User")
+    @title = _("Edit ACL Target")
 
     respond_to do |format|
       format.html
@@ -62,7 +62,7 @@ class UsersController < ApplicationController
   end
 
   def update
-    @title = _("Edit User")
+    @title = _("Edit ACL Target")
 
     if params[:revert]
       return redirect_to edit_cib_user_url(cib_id: @cib.id, id: @user.id)
@@ -73,7 +73,7 @@ class UsersController < ApplicationController
         post_process_for! @user
 
         format.html do
-          flash[:success] = _("User updated successfully")
+          flash[:success] = _("ACL target updated successfully")
           redirect_to edit_cib_user_url(cib_id: @cib.id, id: @user.id)
         end
         format.json do
@@ -95,14 +95,14 @@ class UsersController < ApplicationController
       out, err, rc = Invoker.instance.crm("--force", "configure", "delete", @user.id)
       if rc == 0
         format.html do
-          flash[:success] = _("User deleted successfully")
+          flash[:success] = _("ACL target deleted successfully")
           flash[:warning] = err unless err.blank?
           redirect_to cib_users_url(cib_id: @cib.id)
         end
         format.json do
           render json: {
             success: true,
-            message: _("User deleted successfully")
+            message: _("ACL target deleted successfully")
           }
         end
       else
@@ -130,12 +130,12 @@ class UsersController < ApplicationController
 
   def feature_support
     unless Util.has_feature? :acl_support
-      redirect_to root_url, alert: _("You have no acl feature support")
+      redirect_to root_url, alert: _("ACL is not supported by this cluster.")
     end
   end
 
   def set_title
-    @title = _("Users")
+    @title = _("ACL Targets")
   end
 
   def set_cib
@@ -148,7 +148,7 @@ class UsersController < ApplicationController
     unless @user
       respond_to do |format|
         format.html do
-          flash[:alert] = _("The user does not exist")
+          flash[:alert] = _("The ACL target does not exist")
           redirect_to cib_users_url(cib_id: @cib.id)
         end
       end

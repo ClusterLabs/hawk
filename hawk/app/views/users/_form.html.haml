@@ -4,9 +4,9 @@
       = errors_for user
 
       - if user.new_record?
-        = main_form.text_field :id, label: _("User ID")
+        = main_form.text_field :id, label: _("Target ID")
       - else
-        = main_form.text_field :id, label: _("User ID"), readonly: true
+        = main_form.text_field :id, label: _("Target ID"), readonly: true
 
       = main_form.select :roles, :role_options, { include_hidden: false }, { multiple: true, size: 5 }
 
