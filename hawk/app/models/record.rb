@@ -12,19 +12,16 @@ class Record < Tableless
   end
 
   class << self
+    def current_cib
+      Thread.current[:current_cib].call
+    end
+
     # Check whether anything with the given ID exists, or for a specific element
     # with that ID if type is specified.  Note that we run as hacluster, because
     # we need to verify existence regardless of whether the current user can
     # actually see the object in quesion.
     def exists?(id, type = '*')
-      result = Util.safe_x(
-        '/usr/sbin/cibadmin',
-        '-Ql',
-        '--xpath',
-        "//configuration//#{type}[@id='#{id}']"
-      ).chomp
-
-      !result.empty? && result != '<null>'
+      !current_cib.match("//configuration//#{type}[@id='#{id}']").empty?
     end
 
     # Find a CIB object by ID and return an instance of the appropriate class.
@@ -37,19 +34,13 @@ class Record < Tableless
     # Cib isn't parsed unless actually needed for the status page.
     def find(id, attr = 'id')
       begin
-        xml = REXML::Document.new(
-          Invoker.instance.cibadmin(
-            '-Ql',
-            '--xpath',
-            "//configuration//*[self::node or self::primitive or self::template or self::clone or self::group or self::master or self::rsc_order or self::rsc_colocation or self::rsc_location or self::rsc_ticket or self::acl_role or self::acl_target or self::acl_user or self::tag][@#{attr}='#{id}']"
-          )
-        )
+        elems = current_cib.match "//configuration//*[self::node or self::primitive or self::template or self::clone or self::group or self::master or self::rsc_order or self::rsc_colocation or self::rsc_location or self::rsc_ticket or self::acl_role or self::acl_target or self::acl_user or self::tag][@#{attr}='#{id}']"
 
-        unless xml.root
-          raise CibObject::CibObjectError, _('Unable to parse cibadmin output')
+        unless elems
+          raise CibObject::RecordNotFound, _('Object not found: %s=%s') % [attr, id]
         end
 
-        elem = xml.elements[1]
+        elem = elems[0]
 
         obj = class_from_element_name(elem.name).instantiate(elem)
         obj.id = elem.attributes['id']
@@ -58,8 +49,6 @@ class Record < Tableless
         obj
       rescue SecurityError => e
         raise CibObject::PermissionDenied, e.message
-      rescue NotFoundError => e
-        raise CibObject::RecordNotFound, e.message
       rescue RecordNotFound => e
         raise CibObject::RecordNotFound, e.message
       rescue RuntimeError => e
@@ -67,55 +56,38 @@ class Record < Tableless
       end
     end
 
-    # Return all objects of a given type. Pass get_children = true when type is
-    # a parent element (see comment in function below for details).
-    def all(get_children = false)
+    # Return all objects of a given type.
+    # get_children is legacy and is ignored.
+    def all(_get_children = false)
       begin
-        require 'rexml/document'
-        xml = REXML::Document.new(
-          Invoker.instance.cibadmin('-V', '-Ql', '--xpath', "//#{cib_type_fetch}".gsub(" ", "\ "))
-        )
+        elems = current_cib.match "//#{cib_type_fetch}"
 
-        unless xml.root
-          raise CibObject::CibObjectError, _('Unable to parse cibadmin output')
-        end
+        return [] if elems.empty?
 
-        #
         # Now we may have children we want (which may be an empty set), e.g.:
         # when requesting "constraints", this works because there's always one
         # constraints element in the CIB.  It'd work the same if requesting
         # resources or whatnot too.  Where it gets weird is if we want to
         # request all elements of, say, type "template" or "primitive".
         #
-        # In this case we either get back:
-        #  - "<null>" (no matches, but also invalid XML, so throws NotFoundError,
-        #    which is handled below).
-        #
-        #  - a single element of the reqeusted type, in which case that needs
-        #    to be returned as the only element in the array
-        #
-        #  - multiple elements inside an <xpath-query> parent
-        #
+        # lets just see if the first element is something we recognize.
+        # if not, assume we're looking for its' children.
+        if class_from_element_name(elems[0].name).nil?
+          elems = elems[0].elements.to_a
+        end
 
         [].tap do |result|
-          parent = if get_children or xml.root.name == "xpath-query"
-            xml.elements[1]
-          else
-            xml
-          end
-
-          parent.elements.each do |elem|
-            obj = class_from_element_name(elem.name).instantiate(elem)
+          elems.each do |elem|
+            cls = class_from_element_name(elem.name)
+            next unless cls
+            obj = cls.instantiate(elem)
             obj.id = elem.attributes['id']
             obj.xml = elem
-
             result << obj
           end
         end
       rescue SecurityError => e
         raise CibObject::PermissionDenied, e.message
-      rescue NotFoundError => e
-        []
       rescue RecordNotFound => e
         []
       rescue RuntimeError => e
@@ -341,7 +313,6 @@ class Record < Tableless
   end
 
   def current_cib
-    Thread.current[:current_cib].call
+    self.class.current_cib
   end
-
 end

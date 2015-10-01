@@ -80,7 +80,7 @@ class Clone < Resource
           },
           "clone-max" => {
             type: "integer",
-            default: %x[cibadmin -Ql --scope nodes 2>/dev/null].scan("<node ").length
+            default: current_cib.nodes.length.to_s
           },
           "clone-node-max" => {
             type: "integer",

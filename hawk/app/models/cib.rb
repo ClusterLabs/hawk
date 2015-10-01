@@ -207,6 +207,11 @@ class Cib < CibObject
     ret
   end
 
+  def match(xpath)
+    require 'rexml/xpath'
+    REXML::XPath.match(@xml, xpath)
+  end
+
   protected
 
   def get_resource(elem, is_managed = true, clone_max = nil, is_ms = false)
