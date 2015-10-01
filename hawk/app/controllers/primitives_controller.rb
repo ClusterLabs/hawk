@@ -130,30 +130,6 @@ class PrimitivesController < ApplicationController
 
   protected
 
-  def partial_attributes(attr)
-    if params[:template].empty?
-      [
-        {},
-        params[:clazz],
-        params[:provider],
-        params[:type]
-      ]
-    else
-      template = ::Template.find params[:template]
-
-      if template.nil?
-        not_found
-      end
-
-      [
-        template.send(attr) || {},
-        template.clazz,
-        template.provider,
-        template.type
-      ]
-    end
-  end
-
   def set_title
     @title = _("Primitives")
   end

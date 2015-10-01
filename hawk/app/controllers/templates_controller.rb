@@ -128,15 +128,6 @@ class TemplatesController < ApplicationController
 
   protected
 
-  def partial_attributes(attr)
-    [
-      {},
-      params[:clazz],
-      params[:provider],
-      params[:type]
-    ]
-  end
-
   def feature_support
     unless Util.has_feature? :rsc_template
       redirect_to root_url, alert: _("You have no template feature support")
