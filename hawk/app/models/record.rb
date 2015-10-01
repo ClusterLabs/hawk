@@ -12,10 +12,6 @@ class Record < Tableless
   end
 
   class << self
-    def current_cib
-      Thread.current[:current_cib].call
-    end
-
     # Check whether anything with the given ID exists, or for a specific element
     # with that ID if type is specified.  Note that we run as hacluster, because
     # we need to verify existence regardless of whether the current user can
@@ -310,9 +306,5 @@ class Record < Tableless
     out, err, rc = Invoker.instance.crm_configure_load_update cli
     errors.add :base, err unless rc == 0
     rc == 0
-  end
-
-  def current_cib
-    self.class.current_cib
   end
 end

@@ -69,4 +69,14 @@ class Tableless
       update
     end
   end
+
+  class << self
+    def current_cib
+      Thread.current[:current_cib].call
+    end
+  end
+
+  def current_cib
+    self.class.current_cib
+  end
 end
