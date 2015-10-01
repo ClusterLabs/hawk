@@ -213,7 +213,8 @@ class Cib < CibObject
     res = Hashie::Mash.new(
       :id => elem.attributes['id'],
       :attributes => {},
-      :is_managed => is_managed
+      :is_managed => is_managed,
+      :state => :unknown
     )
     @resources_by_id[elem.attributes['id']] = res
     elem.elements.each("meta_attributes/nvpair/") do |nv|
@@ -270,8 +271,8 @@ class Cib < CibObject
   # - remove clone instances from primitives (shouldn't be there, but will be
   #   due to orphans if you un-clone a running cloned primitive or group)
   # - count total number of configured resource instances
-  def fix_clone_instances(resources)
-    for res in resources
+  def fix_clone_instances(rsclist)
+    rsclist.each do |res|
       if res[:clone_max]
         # There'll be a stale default instance lying around if the resource was
         # started before it was cloned (bnc#711180), so ditch it.  This is all
@@ -312,6 +313,46 @@ class Cib < CibObject
       end
       @resource_count += res[:instances].count if res[:instances]
       fix_clone_instances(res[:children]) if res[:children]
+    end
+  end
+
+  # After all the instance states have been calculated, we
+  # can calculate a total resource state
+  def fix_resource_states(rsclist)
+    prio = {
+      unknown: 0,
+      stopped: 1,
+      started: 2,
+      slave: 3,
+      master: 4,
+      pending: 5,
+      failed: 6
+    }
+    rsclist.each do |resource|
+      resource[:state] ||= :stopped
+      if resource.has_key? :instances
+        resource[:instances].each do |_, states|
+          prio.keys.each do |rstate|
+            if states.has_key? rstate.to_s
+              p1 = prio[rstate]
+              p2 = prio[resource[:state]]
+              if p1 > p2
+                resource[:state] = rstate
+              end
+            end
+          end
+        end
+      end
+
+      if resource.has_key? :children
+        fix_resource_states(resource[:children])
+        resource[:children].each do |child|
+          rstate = child[:state]
+          if prio[rstate] > prio[resource[:state]]
+            resource[:state] = rstate
+          end
+        end
+      end
     end
   end
 
@@ -714,70 +755,12 @@ class Cib < CibObject
 
 
         # TODO(should): want some sort of assert "status != :unknown" here
-
         # Now we've got the status on this node, let's stash it away
         (id, instance) = id.split(':')
         # Need check for :instances in case an orphaned resource has same id
         # as a currently extant clone parent (bnc#834198)
         if @resources_by_id[id] && @resources_by_id[id][:instances]
-          # m/s slave state hack (*sigh*)
-          state = :slave if @resources_by_id[id][:is_ms] && state == :started
-
-          if !instance && @resources_by_id[id].has_key?(:clone_max)
-            # Pacemaker commit 427c7fe6ea94a566aaa714daf8d214290632f837 removed
-            # instance numbers from anonymous clones.  Too much of hawk wants
-            # these, so we fake them back in if they're not present, by getting
-            # the current maximum instance number (if present) and incrementing
-            # it.
-            # Note: instance at this point is a string because that's what
-            # everything else expects
-            instance = @resources_by_id[id][:instances].select {|k,v| Util.numeric?(k)}.map {|k,v| k.to_i}.max
-            if instance == nil
-              instance = "0"
-            else
-              instance = (instance + 1).to_s
-            end
-          end
-
-          if instance && state != :stopped && state != :unknown
-            # For clones, it's possible we need to rename an instance if
-            # there's already a running instance with this ID.  An instance
-            # is running (or possibly failed, as after a failed stop) iff:
-            # - @resources_by_id[id][:instances][instance] exists, and,
-            # - there are state keys other than :stopped, :unknown, :is_managed or :failed_ops present
-            alt_i = instance
-            while @resources_by_id[id][:instances][alt_i] &&
-                  @resources_by_id[id][:instances][alt_i].count{|k,v| (k != :stopped && k != :unknown && k != :is_managed && k != :failed_ops)} > 0
-              alt_i = (alt_i.to_i + 1).to_s
-            end
-            if alt_i != instance
-              Rails.logger.debug "Internally renamed #{id}:#{instance} to #{id}:#{alt_i} on #{node[:uname]}"
-              instance = alt_i
-            end
-          else
-            # instance will be nil here for regular primitives
-            instance = :default
-          end
-
-          @resources_by_id[id][:instances][instance] = {
-            # Carry is_managed into the instance itself (needed so we can correctly
-            # display unmanaged clone instances if a single node is on maintenance,
-            # but only do this on first initialization else state may get screwed
-            # up later
-            :is_managed => @resources_by_id[id][:is_managed] && !@crm_config[:"maintenance-mode"]
-          } unless @resources_by_id[id][:instances][instance]
-          @resources_by_id[id][:instances][instance][state] = [] unless @resources_by_id[id][:instances][instance][state]
-          n = { :node => node[:uname] }
-          n[:substate] = substate if substate
-          @resources_by_id[id][:instances][instance][state] << n
-          @resources_by_id[id][:instances][instance][:failed_ops] = [] unless @resources_by_id[id][:instances][instance][:failed_ops]
-          @resources_by_id[id][:instances][instance][:failed_ops].concat failed_ops
-          if state != :unknown && state != :stopped && node[:maintenance]
-            # mark it unmanaged if the node is on maintenance and it's actually
-            # running here (don't mark it unmanaged if it's stopped on this
-            # node - it might be running on another node)
-            @resources_by_id[id][:instances][instance][:is_managed] = false
-          end
+          update_resource_state @resources_by_id[id], node, instance, state, substate, failed_ops
           # NOTE: Do *not* add any more keys here without adjusting the renamer above
         else
           # It's an orphan
@@ -787,6 +770,7 @@ class Cib < CibObject
     end
 
     fix_clone_instances @resources
+    fix_resource_states @resources
 
     # More hack
     @resources_by_id.each do |k,v|
@@ -919,5 +903,69 @@ class Cib < CibObject
     @templates = []
     @constraints = []
     @tags = []
+  end
+
+  def update_resource_state(resource, node, instance, state, substate, failed_ops)
+    # m/s slave state hack (*sigh*)
+    state = :slave if resource[:is_ms] && state == :started
+    instances = resource[:instances]
+
+    if !instance && resource.has_key?(:clone_max)
+      # Pacemaker commit 427c7fe6ea94a566aaa714daf8d214290632f837 removed
+      # instance numbers from anonymous clones.  Too much of hawk wants
+      # these, so we fake them back in if they're not present, by getting
+      # the current maximum instance number (if present) and incrementing
+      # it.
+      # Note: instance at this point is a string because that's what
+      # everything else expects
+      instance = instances.select {|k,v| Util.numeric?(k)}.map {|k,v| k.to_i}.max
+      if instance.nil?
+        instance = "0"
+      else
+        instance = (instance + 1).to_s
+      end
+    end
+
+    if instance && state != :stopped && state != :unknown
+      # For clones, it's possible we need to rename an instance if
+      # there's already a running instance with this ID.  An instance
+      # is running (or possibly failed, as after a failed stop) iff:
+      # - @resources_by_id[id][:instances][instance] exists, and,
+      # - there are state keys other than :stopped, :unknown, :is_managed or :failed_ops present
+      alt_i = instance
+      while instances[alt_i] &&
+            instances[alt_i].count{|k,v| (k != :stopped && k != :unknown && k != :is_managed && k != :failed_ops)} > 0
+        alt_i = (alt_i.to_i + 1).to_s
+      end
+      if alt_i != instance
+        Rails.logger.debug "Internally renamed #{id}:#{instance} to #{id}:#{alt_i} on #{node[:uname]}"
+        instance = alt_i
+      end
+    else
+      # instance will be nil here for regular primitives
+      instance = :default
+    end
+
+    # Carry is_managed into the instance itself (needed so we can correctly
+    # display unmanaged clone instances if a single node is on maintenance,
+    # but only do this on first initialization else state may get screwed
+    # up later
+    instances[instance] = {
+      :is_managed => resource[:is_managed] && !@crm_config[:"maintenance-mode"]
+    } unless instances[instance]
+    instances[instance][state] ||= []
+    n = { :node => node[:uname] }
+    n[:substate] = substate if substate
+    instances[instance][state] << n
+    instances[instance][:failed_ops] = [] unless instances[instance][:failed_ops]
+    instances[instance][:failed_ops].concat failed_ops
+    if state != :unknown && state != :stopped && node[:maintenance]
+      # mark it unmanaged if the node is on maintenance and it's actually
+      # running here (don't mark it unmanaged if it's stopped on this
+      # node - it might be running on another node)
+      instances[instance][:is_managed] = false
+    end
+
+    resource
   end
 end

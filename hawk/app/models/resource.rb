@@ -14,13 +14,7 @@ class Resource < Record
   end
 
   def state
-    res = cib_by_id(id)
-
-    if res.has_key? :instances
-      # TODO(must): Check instances for state
-    else
-      :unknown
-    end
+    cib_by_id(id)[:state] || :unknown
   end
 
   def managed
