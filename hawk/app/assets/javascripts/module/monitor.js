@@ -34,7 +34,6 @@
   MonitorCheck.prototype.processCheck = function() {
     var self = this;
 
-    console.log("Start monitor:", self.currentEpoch);
     $.ajax({
       url: Routes.monitor_path(),
 
@@ -45,7 +44,6 @@
       timeout: self.options.timeout * 1000,
 
       success: function(data) {
-        console.log("Monitor response:", data);
         if (data) {
           if (self.updateEpoch(data.epoch)) {
             $('body').trigger($.Event('updated.hawk.monitor'));
