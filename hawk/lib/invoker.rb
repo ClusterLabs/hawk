@@ -92,6 +92,7 @@ class Invoker
 
   # Invoke "cibadmin -p --replace"
   def cibadmin_replace(xml)
+    CrmEvents.instance.push "cibadmin -p --replace <<EOF\n#{xml}\nEOF"
     cibadmin '-p', '--replace', :stdin_data => xml
   end
 
