@@ -5,6 +5,7 @@ require 'util'
 require 'cibtools'
 require 'natcmp'
 require 'rexml/document' unless defined? REXML::Document
+require 'rexml/xpath' unless defined? REXML::XPath
 
 class Cib < CibObject
   include FastGettext::Translation
@@ -208,8 +209,11 @@ class Cib < CibObject
   end
 
   def match(xpath)
-    require 'rexml/xpath'
     REXML::XPath.match(@xml, xpath)
+  end
+
+  def first(xpath)
+    REXML::XPath.first(@xml, xpath)
   end
 
   protected
