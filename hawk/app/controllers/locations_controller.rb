@@ -117,7 +117,10 @@ class LocationsController < ApplicationController
           redirect_to types_cib_constraints_url(cib_id: @cib.id)
         end
         format.json do
-          head :no_content
+          render json: {
+            success: true,
+            message: _("Location deleted successfully")
+          }
         end
       else
         format.html do
