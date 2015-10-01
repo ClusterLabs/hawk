@@ -210,9 +210,9 @@
         $.observable(
           content['entries']
         ).insert($.view(this).index + 1, {
-          score: '-INFINITY',
+          score: 'INFINITY',
           role: '',
-          operator: '',
+          operator: 'and',
           expressions: []
         });
       })

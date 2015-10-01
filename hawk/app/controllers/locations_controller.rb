@@ -22,9 +22,9 @@ class LocationsController < ApplicationController
 
     if @location.rules.empty?
       @location.rules.push(
-        score: "-INFINITY",
+        score: "INFINITY",
         role: "",
-        operator: "",
+        operator: "and",
         expressions: []
       )
     end
@@ -42,9 +42,9 @@ class LocationsController < ApplicationController
 
     if @location.rules.empty?
       @location.rules.push(
-        score: "-INFINITY",
+        score: "INFINITY",
         role: "",
-        operator: "",
+        operator: "and",
         expressions: []
       )
     end
