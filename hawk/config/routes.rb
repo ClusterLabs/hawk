@@ -30,9 +30,8 @@ Rails.application.routes.draw do
         get :manage
         get :unmanage
         get :unmigrate
-
-        get "migrate/:node" => "resources#migrate"
-        get "cleanup/:node" => "resources#cleanup"
+        get :migrate
+        get :cleanup
       end
 
       collection do

@@ -96,23 +96,23 @@ class Resource < Record
     )
   end
 
-  def migrate!(node)
+  def migrate!(node = nil)
     Invoker.instance.run(
       "crm",
       "resource",
       "migrate",
       id,
-      node
+      node.to_s
     )
   end
 
-  def cleanup!(node)
+  def cleanup!(node = nil)
     Invoker.instance.run(
       "crm",
       "resource",
       "cleanup",
       id,
-      node
+      node.to_s
     )
   end
 
