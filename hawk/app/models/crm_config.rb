@@ -255,28 +255,12 @@ class CrmConfig < Tableless
 
   protected
 
-  def xml
-    @xml ||= REXML::Document.new(
-      Invoker.instance.cibadmin(
-        "-Ql",
-        "--xpath",
-        "//crm_config|//rsc_defaults|//op_defaults"
-      )
-    )
-
-    unless @xml.root
-      raise CibObject::CibObjectError, _("Unable to parse cibadmin output")
-    end
-
-    @xml
-  end
-
   def crm_config_xpath
     @crm_config_xpath ||= "//crm_config/cluster_property_set[@id='cib-bootstrap-options']"
   end
 
   def crm_config_value
-    @crm_config_value ||= xml.elements[crm_config_xpath]
+    @crm_config_value ||= current_cib.first crm_config_xpath
   end
 
   def rsc_defaults_xpath
@@ -284,7 +268,7 @@ class CrmConfig < Tableless
   end
 
   def rsc_defaults_value
-    @rsc_defaults_value ||= xml.elements[rsc_defaults_xpath]
+    @rsc_defaults_value ||= current_cib.first rsc_defaults_xpath
   end
 
   def op_defaults_xpath
@@ -292,7 +276,7 @@ class CrmConfig < Tableless
   end
 
   def op_defaults_value
-    @op_defaults_value ||= xml.elements[op_defaults_xpath]
+    @op_defaults_value ||= current_cib.first op_defaults_xpath
   end
 
   def current_crm_config
