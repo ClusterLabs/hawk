@@ -7,10 +7,10 @@
           = link_to icon_text("plus", _("Create")), new_cib_user_path(cib_id: @cib.id), class: "btn btn-default"
 
   .row
-    - if @supported_schema
-      .panel.panel-default
-        %table.table.table-striped.users
+    .panel.panel-default
+      %table.table.table-striped.users
 
-    - else
-      .alert.alert-warning{ role: "alert" }
-        = _("ACL support requires CIB schema version 2.0, available in Pacemaker 1.1.12 and up. For older versions of Pacemaker, use Hawk version 0.6.")
+- content_for :rightbar do
+  .container-fluid{ data: { spy: "affix" } }
+    .row.help-title
+      = localized_help_for :resources, :user

@@ -162,21 +162,13 @@ class UsersController < ApplicationController
         edit_cib_crm_config_path(cib_id: @cib.id)
       )
     end
-
-    cibadmin = Util.safe_x(
-      "/usr/sbin/cibadmin",
-      "-Ql",
-      "--xpath",
-      "/cib[@validate-with]"
-    ).lines.first.to_s
-
-    if m = cibadmin.match(/validate-with=\"pacemaker-([0-9.]+)\"/)
-      @supported_schema = m.captures[0].to_f >= 2.0
-    else
-      @supported_schema = false
-    end
   end
 
   def post_process_for!(record)
   end
+
+  def default_base_layout
+    "withrightbar"
+  end
+
 end

@@ -128,7 +128,7 @@ class RolesController < ApplicationController
 
   def feature_support
     unless Util.has_feature? :acl_support
-      redirect_to root_url, alert: _("You have no acl feature support")
+      redirect_to root_url, alert: _("ACL is not supported by the cluster")
     end
   end
 
@@ -176,5 +176,9 @@ class RolesController < ApplicationController
   end
 
   def post_process_for!(record)
+  end
+
+  def default_base_layout
+    "withrightbar"
   end
 end

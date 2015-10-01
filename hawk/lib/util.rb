@@ -307,6 +307,19 @@ module Util
   end
   module_function :acl_enabled?
 
+  def acl_version
+    Rails.cache.fetch(:get_acl_version) {
+      vs = %x[/usr/sbin/cibadmin -Ql --xpath /cib[@validate-with]].lines.first.to_s
+      m = vs.match(/validate-with=\"pacemaker-([0-9.]+)\"/)
+      if m
+        m.captures[0].to_f
+      else
+        2.0
+      end
+    }
+  end
+  module_function :acl_version
+
   # get text child of xml element - returns empty string if elem is nil or
   # text child is empty.  trims leading and trailing whitespace
   def get_xml_text(elem)

@@ -41,7 +41,7 @@ class Record < Tableless
           Invoker.instance.cibadmin(
             '-Ql',
             '--xpath',
-            "//configuration//*[self::node or self::primitive or self::template or self::clone or self::group or self::master or self::rsc_order or self::rsc_colocation or self::rsc_location or self::rsc_ticket or self::acl_role or self::acl_target or self::tag][@#{attr}='#{id}']"
+            "//configuration//*[self::node or self::primitive or self::template or self::clone or self::group or self::master or self::rsc_order or self::rsc_colocation or self::rsc_location or self::rsc_ticket or self::acl_role or self::acl_target or self::acl_user or self::tag][@#{attr}='#{id}']"
           )
         )
 
@@ -157,6 +157,7 @@ class Record < Tableless
         rsc_ticket: Ticket,
         acl_role: Role,
         acl_target: User,
+        acl_user: User,
         tag: Tag
       }
 
@@ -292,6 +293,18 @@ class Record < Tableless
         end
       end
     end
+  end
+
+  def crm_quote(str)
+    if str.index("'")
+      "\"#{str}\""
+    else
+      "'#{str}'"
+    end
+  end
+
+  def unquotable?(str)
+    str.to_s.index("'") && str.to_s.index('"')
   end
 
   protected

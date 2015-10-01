@@ -4,10 +4,13 @@
 class Role < Record
   attribute :id, String
   attribute :rules, RuleCollection[Rule]
+  attr_accessor :schema_version
 
   validates :id,
     presence: { message: _('Role ID is required') },
     format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _('Invalid Role ID') }
+
+  validates :rules, presence: { message: _('At least one rule is required') }
 
   def initialize(*args)
     rules.build
@@ -27,7 +30,18 @@ class Role < Record
   end
 
   def valid?
-    super & rules.valid?
+    unless rules.valid?
+      rules.each do |rule|
+        rule.errors.each do |key, message|
+          errors.add key, message
+        end
+      end
+    end
+    super && rules.valid?
+  end
+
+  def schema_version
+    @schema_version ||= Util.acl_version
   end
 
   protected
@@ -35,14 +49,8 @@ class Role < Record
   def shell_syntax
     [].tap do |cmd|
       cmd.push "role #{id}"
-
       rules.each do |rule|
-        cmd.push rule.right
-
-        cmd.push "tag:#{rule.tag}" unless rule.tag.to_s.empty?
-        cmd.push "ref:#{rule.ref}" unless rule.ref.to_s.empty?
-        cmd.push "xpath:#{rule.xpath}" unless rule.xpath.to_s.empty?
-        cmd.push "attribute:#{rule.attribute}" unless rule.attribute.to_s.empty?
+        cmd.concat rule.shell_syntax
       end
     end.join(' ')
   end
@@ -51,14 +59,26 @@ class Role < Record
     def instantiate(xml)
       record = allocate
 
-      xml.elements.each do |elem|
-        record.rules.build(
-          right: elem.attributes['kind'],
-          tag: elem.attributes['object-type'] || nil,
-          ref: elem.attributes['reference'] || nil,
-          xpath: elem.attributes['xpath'] || nil,
-          attribute: elem.attributes['attribute'] || nil
-        )
+      if record.schema_version >= 2.0
+        xml.elements.each do |elem|
+          record.rules.build(
+            right: elem.attributes['kind'],
+            tag: elem.attributes['object-type'] || nil,
+            ref: elem.attributes['reference'] || nil,
+            xpath: elem.attributes['xpath'] || nil,
+            attribute: elem.attributes['attribute'] || nil
+          )
+        end
+      else
+        xml.elements.each do |elem|
+          record.rules.build(
+            right: elem.name,
+            tag: elem.attributes['tag'] || nil,
+            ref: elem.attributes['ref'] || nil,
+            xpath: elem.attributes['xpath'] || nil,
+            attribute: elem.attributes['attribute'] || nil
+          )
+        end
       end
 
       record

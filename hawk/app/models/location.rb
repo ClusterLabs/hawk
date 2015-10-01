@@ -89,18 +89,6 @@ class Location < Constraint
     ['mandatory', 'advisory', 'inf', '-inf', 'infinity', '-infinity']
   end
 
-  def crm_quote(str)
-    if str.index("'")
-      "\"#{str}\""
-    else
-      "'#{str}'"
-    end
-  end
-
-  def unquotable?(str)
-    str.to_s.index("'") && str.to_s.index('"')
-  end
-
   def shell_syntax
     [].tap do |cmd|
       cmd.push "location #{id}"

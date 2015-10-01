@@ -20,11 +20,12 @@
                 = icon_tag("arrow-up", class: "rule up", title: _("Move rule up"))
                 = icon_tag("arrow-down", class: "rule down", title: _("Move rule down"))
 
-            = rule_form.select :right, :rule_options, { include_hidden: false, include_blank: _("Please select") }, id: nil, label: _("Right"), required: true
-            = rule_form.text_field :xpath, id: nil, label: _("XPath"), required: true
-            = rule_form.text_field :tag, id: nil, label: _("Tag")
-            = rule_form.text_field :ref, id: nil, label: _("Ref")
-            = rule_form.text_field :attribute, id: nil, label: _("Attribute")
+            = rule_form.select :right, :rule_options, { include_hidden: false, }, id: nil, label: _("Right"), required: true
+            = rule_form.text_field :xpath, id: nil, label: _("XPath")
+            = rule_form.text_field :tag, id: nil, label: _("Object Type")
+            = rule_form.text_field :ref, id: nil, label: _("Reference")
+            - if role.schema_version < 2.0
+              = rule_form.text_field :attribute, id: nil, label: _("Attribute")
 
       = main_form.button_group do
         - if role.new_record?
