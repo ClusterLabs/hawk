@@ -145,7 +145,7 @@ class Node < Tableless
     def find(id)
       begin
         super(id)
-      rescue CibObject::RecordNotFound
+      rescue Cib::RecordNotFound
         # Can't find by id attribute, try by uname attribute
         super(name, 'uname')
       end

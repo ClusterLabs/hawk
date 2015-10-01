@@ -2,15 +2,6 @@
 # See COPYING for license.
 
 class Record < Tableless
-  class CibObjectError < StandardError
-  end
-
-  class RecordNotFound < CibObjectError
-  end
-
-  class PermissionDenied < CibObjectError
-  end
-
   class << self
     # Check whether anything with the given ID exists, or for a specific element
     # with that ID if type is specified.  Note that we run as hacluster, because
@@ -22,7 +13,7 @@ class Record < Tableless
 
     # Find a CIB object by ID and return an instance of the appropriate class.
     # Note that if the current user doesn't have read access to the primitive,
-    # it appears to result in CibObject::RecordNotFound, due to the way the
+    # it appears to result in Cib::RecordNotFound, due to the way the
     # CIB ACL filtering works internally.
     #
     # TODO(must): really, in the context this is used, we already have a parsed
@@ -33,7 +24,7 @@ class Record < Tableless
         elems = current_cib.match "//configuration//*[self::node or self::primitive or self::template or self::clone or self::group or self::master or self::rsc_order or self::rsc_colocation or self::rsc_location or self::rsc_ticket or self::acl_role or self::acl_target or self::acl_user or self::tag][@#{attr}='#{id}']"
 
         unless elems
-          raise CibObject::RecordNotFound, _('Object not found: %s=%s') % [attr, id]
+          raise Cib::RecordNotFound, _('Object not found: %s=%s') % [attr, id]
         end
 
         elem = elems[0]
@@ -44,11 +35,11 @@ class Record < Tableless
 
         obj
       rescue SecurityError => e
-        raise CibObject::PermissionDenied, e.message
+        raise Cib::PermissionDenied, e.message
       rescue RecordNotFound => e
-        raise CibObject::RecordNotFound, e.message
+        raise Cib::RecordNotFound, e.message
       rescue RuntimeError => e
-        raise CibObject::CibObjectError, e.message
+        raise Cib::CibError, e.message
       end
     end
 
@@ -83,11 +74,11 @@ class Record < Tableless
           end
         end
       rescue SecurityError => e
-        raise CibObject::PermissionDenied, e.message
+        raise Cib::PermissionDenied, e.message
       rescue RecordNotFound => e
         []
       rescue RuntimeError => e
-        raise CibObject::CibObjectError, e.message
+        raise Cib::CibError, e.message
       end
     end
 

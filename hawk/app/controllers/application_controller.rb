@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   helper_method :current_cib
   helper_method :current_user
 
-  rescue_from CibObject::RecordNotFound do |e|
+  rescue_from Cib::RecordNotFound do |e|
     respond_to do |format|
       format.json do
         head :not_found
@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  rescue_from CibObject::CibObjectError do |e|
+  rescue_from Cib::CibError do |e|
     respond_to do |format|
       format.json do
         head :bad_request
@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  rescue_from CibObject::PermissionDenied do |e|
+  rescue_from Cib::PermissionDenied do |e|
     respond_to do |format|
       format.json do
         head :forbidden
@@ -57,7 +57,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  rescue_from CibObject::NotAuthenticated do |e|
+  rescue_from Cib::NotAuthenticated do |e|
     respond_to do |format|
       format.json do
         head :forbidden
@@ -226,11 +226,11 @@ class ApplicationController < ActionController::Base
   end
 
   def permission_denied
-    raise CibObject::PermissionDenied.new
+    raise Cib::PermissionDenied.new
   end
 
   def not_authenticated
-    raise CibObject::NotAuthenticated.new
+    raise Cib::NotAuthenticated.new
   end
 
   def not_found

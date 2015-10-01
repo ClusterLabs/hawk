@@ -107,7 +107,7 @@ class Wizard
       w = nil
       CrmScript.run ["show", name], nil do |item, err|
         Rails.logger.error "Wizard.find: #{err}" unless err.nil?
-        raise CibObject::RecordNotFound, _("Requested wizard does not exist") unless err.nil?
+        raise Cib::RecordNotFound, _("Requested wizard does not exist") unless err.nil?
         w = Wizard.parse_full(item) unless item.nil?
       end
       w

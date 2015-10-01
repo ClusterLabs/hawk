@@ -7,9 +7,42 @@ require 'natcmp'
 require 'rexml/document' unless defined? REXML::Document
 require 'rexml/xpath' unless defined? REXML::XPath
 
-class Cib < CibObject
+class Cib
+  extend ActiveModel::Naming
+  include ActiveModel::Conversion
   include FastGettext::Translation
-  include Rails.application.routes.url_helpers    # needed for explorer_path
+
+  class CibError < StandardError
+  end
+
+  class RecordNotFound < CibError
+  end
+
+  class PermissionDenied < CibError
+  end
+
+  class NotAuthenticated < CibError
+  end
+
+  attr_reader :id
+  attr_reader :dc
+  attr_reader :epoch
+  attr_reader :nodes
+  attr_reader :resources
+  attr_reader :templates
+  attr_reader :crm_config
+  attr_reader :rsc_defaults
+  attr_reader :op_defaults
+  attr_reader :resource_count
+  attr_reader :tickets
+  attr_reader :tags
+  attr_reader :resources_by_id
+  attr_reader :booth
+  attr_reader :constraints
+
+  def persisted?
+    true
+  end
 
   def meta
     @meta ||= begin
@@ -192,7 +225,7 @@ class Cib < CibObject
       if node
         Node.instantiate(node, state[0], can_fence)
       else
-        raise CibObject::RecordNotFound, id
+        raise RecordNotFound, id
       end
     end
   end
@@ -391,24 +424,6 @@ class Cib < CibObject
 
     errors.push additions
   end
-
-  # Notes that errors here overloads what ActiveRecord would
-  # use for reporting errors when editing resources.  This
-  # should almost certainly be changed.
-  attr_reader :dc
-  attr_reader :epoch
-  attr_reader :nodes
-  attr_reader :resources
-  attr_reader :templates
-  attr_reader :crm_config
-  attr_reader :rsc_defaults
-  attr_reader :op_defaults
-  attr_reader :resource_count
-  attr_reader :tickets
-  attr_reader :tags
-  attr_reader :resources_by_id
-  attr_reader :booth
-  attr_reader :constraints
 
   def initialize(id, user, use_file = false)
     Rails.logger.debug "Cib.initialize #{id}, #{user}, #{use_file}"
