@@ -2,10 +2,6 @@
 // See COPYING for license.
 
 $(function() {
-  var update_cib = function() {
-    // TODO(must): Implement
-  };
-
   var make_error_handler = function(target, postfn) {
     return function(xhr, status, error) {
       console.log(xhr, status, error);
@@ -65,12 +61,13 @@ $(function() {
       $.ajax({
         type: "POST", dataType: "json", url: path, data: data,
         success: function(data) {
-          update_cib();
+          $.updateCib();
           events.find("option").each(function() { $(this).remove(); });
           update_events();
           $btn.button('reset');
         },
         error: make_error_handler(self.find(".errors"), function() {
+          $.updateCib();
           events.find("option").each(function() { $(this).remove(); });
           update_events();
           $btn.button('reset');
@@ -95,11 +92,14 @@ $(function() {
       $.ajax({
         type: "POST", dataType: "json", url: path, data: data,
         success: function(data) {
-          update_cib();
+          $.updateCib();
           self.find("#sim-results").removeAttr("disabled").addClass("btn-success");
           $btn.button('reset');
         },
-        error: make_error_handler(self.find(".errors"), function() { $btn.button('reset'); })
+        error: make_error_handler(self.find(".errors"), function() {
+          $.updateCib();
+          $btn.button('reset');
+        })
       });
     };
 

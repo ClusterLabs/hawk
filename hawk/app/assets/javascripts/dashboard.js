@@ -351,7 +351,7 @@ var dashboardAddCluster = (function() {
              dataType: 'json',
              data: spec.data || null,
              type: spec.type || "GET",
-             timeout: 30000,
+             timeout: spec.timeout || 30000,
              crossDomain: spec.crossDomain || false,
              xhrFields: xhrfields,
              success: spec.success || null,
@@ -368,7 +368,30 @@ var dashboardAddCluster = (function() {
                 crossDomain: clusterInfo.host != null,
                 success: function(data) {
                   displayClusterStatus(clusterId, data);
-                  window.setTimeout(function() { clusterRefresh(clusterId, clusterInfo); }, clusterInfo.interval*1000);
+                  clusterUpdate(clusterId, clusterInfo);
+                },
+                error: function(xhr, status, error) {
+                  clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
+                    clusterRefresh(clusterId, clusterInfo);
+                  });
+                }
+              });
+  }
+
+  function clusterUpdate(clusterId, clusterInfo) {
+    var current_epoch = $("#" + clusterId).data('epoch');
+    ajaxQuery({ url: baseUrl(clusterInfo) + "/monitor.json",
+                type: "GET",
+                data: current_epoch,
+                timeout: 90000,
+                crossDomain: clusterInfo.host != null,
+                success: function(data) {
+                  if (data.epoch != current_epoch) {
+                    $("#" + clusterId).data('epoch', data.epoch);
+                    clusterRefresh(clusterId, clusterInfo);
+                  } else {
+                    clusterUpdate(clusterId, clusterInfo);
+                  }
                 },
                 error: function(xhr, status, error) {
                   clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
@@ -445,7 +468,7 @@ var dashboardAddCluster = (function() {
     var text = '<div class="col-lg-4 col-sm-6 col-xs-12">' +
         '<div id="' +
         clusterId +
-        '" class="panel panel-default">' +
+        '" class="panel panel-default" data-epoch="">' +
         '<div class="panel-heading">' +
         '<h3 class="panel-title">' +
         '<span id="refresh"></span> ' +

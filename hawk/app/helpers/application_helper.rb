@@ -39,7 +39,7 @@ module ApplicationHelper
       class: current_cib.id,
       data: {
         cib: current_cib.id,
-        monitor: current_cib.epoch,
+        epoch: current_cib.epoch,
         god: is_god?.to_s,
         user: current_user,
         content: current_cib.status.to_json

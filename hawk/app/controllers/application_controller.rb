@@ -10,20 +10,16 @@ class ApplicationController < ActionController::Base
   layout :detect_current_layout
 
   around_filter :inject_current_user
-
+  around_filter :inject_current_cib
   before_filter :set_users_locale
   before_filter :set_current_home
   before_filter :set_current_title
   before_filter :set_shadow_cib
-
-  around_filter :inject_current_cib
-
   before_filter :cors_preflight_check
   after_filter :cors_set_access_control_headers
 
   helper_method :is_god?
   helper_method :logged_in?
-
   helper_method :production_cib
   helper_method :current_cib
   helper_method :current_user
