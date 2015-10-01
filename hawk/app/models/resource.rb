@@ -33,6 +33,89 @@ class Resource < Record
     end
   end
 
+  def start!
+    Invoker.instance.run(
+      "crm",
+      "resource",
+      "start",
+      id
+    )
+  end
+
+  def stop!
+    Invoker.instance.run(
+      "crm",
+      "resource",
+      "stop",
+      id
+    )
+  end
+
+  def promote!
+    Invoker.instance.run(
+      "crm",
+      "resource",
+      "promote",
+      id
+    )
+  end
+
+  def demote!
+    Invoker.instance.run(
+      "crm",
+      "resource",
+      "demote",
+      id
+    )
+  end
+
+  def manage!
+    Invoker.instance.run(
+      "crm",
+      "resource",
+      "manage",
+      id
+    )
+  end
+
+  def unmanage!
+    Invoker.instance.run(
+      "crm",
+      "resource",
+      "unmanage",
+      id
+    )
+  end
+
+  def unmigrate!
+    Invoker.instance.run(
+      "crm",
+      "resource",
+      "unmigrate",
+      id
+    )
+  end
+
+  def migrate!(node)
+    Invoker.instance.run(
+      "crm",
+      "resource",
+      "migrate",
+      id,
+      node
+    )
+  end
+
+  def cleanup!(node)
+    Invoker.instance.run(
+      "crm",
+      "resource",
+      "cleanup",
+      id,
+      node
+    )
+  end
+
   class << self
     def all
       super(true)
@@ -42,6 +125,8 @@ class Resource < Record
       "configuration//*[self::resources or self::tags]/*"
     end
   end
+
+  protected
 
   def cib_by_id(id)
     current_cib.resources_by_id[id] || {}

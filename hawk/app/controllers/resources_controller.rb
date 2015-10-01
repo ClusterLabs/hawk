@@ -75,6 +75,204 @@ class ResourcesController < ApplicationController
     end
   end
 
+  def start
+    @resource = Resource.find params[:id]
+    result = @resource.start!
+
+    respond_to do |format|
+      if result == true
+        format.json do
+          render json: {
+            success: true,
+            message: _("Successfully started the resource")
+          }
+        end
+      else
+        format.json do
+          render json: {
+            error: _("Failed to start the resource: %{err}", err: result[0])
+          }, status: :unprocessable_entity
+        end
+      end
+    end
+  end
+
+  def stop
+    @resource = Resource.find params[:id]
+    result = @resource.stop!
+
+    respond_to do |format|
+      if result == true
+        format.json do
+          render json: {
+            success: true,
+            message: _("Successfully stopped the resource")
+          }
+        end
+      else
+        format.json do
+          render json: {
+            error: _("Failed to stop the resource: %{err}", err: result[0])
+          }, status: :unprocessable_entity
+        end
+      end
+    end
+  end
+
+  def promote
+    @resource = Resource.find params[:id]
+    result = @resource.promote!
+
+    respond_to do |format|
+      if result == true
+        format.json do
+          render json: {
+            success: true,
+            message: _("Successfully promoted the resource")
+          }
+        end
+      else
+        format.json do
+          render json: {
+            error: _("Failed to promote the resource: %{err}", err: result[0])
+          }, status: :unprocessable_entity
+        end
+      end
+    end
+  end
+
+  def demote
+    @resource = Resource.find params[:id]
+    result = @resource.demote!
+
+    respond_to do |format|
+      if result == true
+        format.json do
+          render json: {
+            success: true,
+            message: _("Successfully demoted the resource")
+          }
+        end
+      else
+        format.json do
+          render json: {
+            error: _("Failed to demote the resource: %{err}", err: result[0])
+          }, status: :unprocessable_entity
+        end
+      end
+    end
+  end
+
+  def manage
+    @resource = Resource.find params[:id]
+    result = @resource.manage!
+
+    respond_to do |format|
+      if result == true
+        format.json do
+          render json: {
+            success: true,
+            message: _("Successfully managed the resource")
+          }
+        end
+      else
+        format.json do
+          render json: {
+            error: _("Failed to manage the resource: %{err}", err: result[0])
+          }, status: :unprocessable_entity
+        end
+      end
+    end
+  end
+
+  def unmanage
+    @resource = Resource.find params[:id]
+    result = @resource.unmanage!
+
+    respond_to do |format|
+      if result == true
+        format.json do
+          render json: {
+            success: true,
+            message: _("Successfully unmanaged the resource")
+          }
+        end
+      else
+        format.json do
+          render json: {
+            error: _("Failed to unmanage the resource: %{err}", err: result[0])
+          }, status: :unprocessable_entity
+        end
+      end
+    end
+  end
+
+  def unmigrate
+    @resource = Resource.find params[:id]
+    result = @resource.unmigrate!
+
+    respond_to do |format|
+      if result == true
+        format.json do
+          render json: {
+            success: true,
+            message: _("Successfully unmigrated the resource")
+          }
+        end
+      else
+        format.json do
+          render json: {
+            error: _("Failed to unmigrate the resource: %{err}", err: result[0])
+          }, status: :unprocessable_entity
+        end
+      end
+    end
+  end
+
+  def migrate
+    @resource = Resource.find params[:id]
+    result = @resource.migrate! params[:node]
+
+    respond_to do |format|
+      if result == true
+        format.json do
+          render json: {
+            success: true,
+            message: _("Successfully migrated the resource")
+          }
+        end
+      else
+        format.json do
+          render json: {
+            error: _("Failed to migrate the resource: %{err}", err: result[0])
+          }, status: :unprocessable_entity
+        end
+      end
+    end
+  end
+
+  def cleanup
+    @resource = Resource.find params[:id]
+    result = @resource.cleanup! params[:node]
+
+    respond_to do |format|
+      if result == true
+        format.json do
+          render json: {
+            success: true,
+            message: _("Successfully cleaned the resource")
+          }
+        end
+      else
+        format.json do
+          render json: {
+            error: _("Failed to cleanup the resource: %{err}", err: result[0])
+          }, status: :unprocessable_entity
+        end
+      end
+    end
+  end
+
   protected
 
   def set_title

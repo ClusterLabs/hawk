@@ -25,15 +25,14 @@ Rails.application.routes.draw do
       member do
         get :start
         get :stop
-        get :unmigrate
         get :promote
         get :demote
-        get :cleanup
         get :manage
         get :unmanage
-        get :migrate
-        get :delete
-        get :events
+        get :unmigrate
+
+        get "migrate/:node" => "resources#migrate"
+        get "cleanup/:node" => "resources#cleanup"
       end
 
       collection do
