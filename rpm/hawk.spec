@@ -28,9 +28,9 @@
 %define	pkg_group	System Environment/Daemons
 %endif
 
-#%%if 0%%{?suse_version} == 1110 || 0%%{?suse_version} == 1315
-#%%define bundle_gems	1
-#%%endif
+%if 0%{?suse_version} == 1110 || 0%{?suse_version} == 1315
+%define bundle_gems	1
+%endif
 
 %define	gname		haclient
 %define	uname		hacluster
@@ -39,16 +39,18 @@ Name:           hawk
 Summary:        HA Web Konsole
 License:        GPL-2.0
 Group:          %{pkg_group}
-Version:        0.6.2
+Version:        1.0.0~alpha1+git.1442580882.11cc227
 Release:        0
 Url:            http://www.clusterlabs.org/wiki/Hawk
 Source:         %{name}-%{version}.tar.bz2
 Source100:      hawk-rpmlintrc
 BuildRoot:      %{_tmppath}/%{name}-%{version}-build
+Provides:       ha-cluster-webui
 Requires:       crmsh
 Requires:       graphviz
 Requires:       graphviz-gd
-Requires:       hawk-templates >= %{version}-%{release}
+# Need a font of some kind for graphviz to work correctly (bsc#931950)
+Requires:       dejavu
 Requires:       pacemaker >= 1.1.8
 %if 0%{?fedora_version} >= 19
 Requires:       rubypick
@@ -75,22 +77,32 @@ BuildRequires:  rubygem(%{rb_default_ruby_abi}:byebug) >= 3.5
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:fast_gettext:0.9)
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:gettext:3.1)
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:gettext_i18n_rails:1.2)
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:gettext_i18n_rails_js)
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:haml-rails) >= 0.8.2
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:hashie) >= 3.4
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:js-routes:1)
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:kramdown:1) >= 1.3
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:mail) >= 2.6
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:mime-types) >= 2.5
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:minitest) >= 5.6
-BuildRequires:  rubygem(%{rb_default_ruby_abi}:puma:2.11)
-BuildRequires:  rubygem(%{rb_default_ruby_abi}:quiet_assets)
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:puma:2) >= 2.11
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:rails:4.2)
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:ruby_parser) >= 3.6.6
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:sass) >= 3.4
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:sass-rails) >= 5.0.1
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:sexp_processor) >= 4.5.1
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:spring:1) >= 1.3
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:virtus)
 
 %if 0%{?suse_version} <= 1310
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:rake:10.4)
 %endif
 
-BuildRequires:  rubygem(%{rb_default_ruby_abi}:spring:1.3)
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:spring:1) >= 1.3
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:sprockets) >= 3.0
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:thor) >= 0.19
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:tilt:1.4)
-BuildRequires:  rubygem(%{rb_default_ruby_abi}:web-console:2.1)
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:web-console:2) >= 2.1
 
 %if 0%{?bundle_gems}
 %else
@@ -98,20 +110,32 @@ BuildRequires:  rubygem(%{rb_default_ruby_abi}:web-console:2.1)
 # use runtime dependencies.
 Requires:       rubygem(%{rb_default_ruby_abi}:fast_gettext:0.9)
 Requires:       rubygem(%{rb_default_ruby_abi}:gettext_i18n_rails:1.2)
-Requires:       rubygem(%{rb_default_ruby_abi}:puma:2.11)
+Requires:       rubygem(%{rb_default_ruby_abi}:gettext_i18n_rails_js)
+Requires:       rubygem(%{rb_default_ruby_abi}:haml-rails) >= 0.8.2
+Requires:       rubygem(%{rb_default_ruby_abi}:hashie) >= 3.4
+Requires:       rubygem(%{rb_default_ruby_abi}:js-routes:1)
+Requires:       rubygem(%{rb_default_ruby_abi}:kramdown:1) >= 1.3
+Requires:       rubygem(%{rb_default_ruby_abi}:puma:2) >= 2.11
 Requires:       rubygem(%{rb_default_ruby_abi}:rails:4.2)
+Requires:       rubygem(%{rb_default_ruby_abi}:sass-rails:5.0) >= 5.0.1
+Requires:       rubygem(%{rb_default_ruby_abi}:sass:3.4)
+Requires:       rubygem(%{rb_default_ruby_abi}:sexp_processor) >= 4.5.1
+Requires:       rubygem(%{rb_default_ruby_abi}:sprockets) >= 3.0
+Requires:       rubygem(%{rb_default_ruby_abi}:tilt:1.4)
+Requires:       rubygem(%{rb_default_ruby_abi}:virtus:1.0)
 
 %if 0%{?suse_version} <= 1310
 Requires:       rubygem(%{rb_default_ruby_abi}:rake:10.4)
 %endif
 
-Requires:       rubygem(%{rb_default_ruby_abi}:sprockets) >= 3.0
-Requires:       rubygem(%{rb_default_ruby_abi}:tilt:1.4)
 %endif
 
+BuildRequires:  %{rubydevel >= 1.8.7}
 BuildRequires:  git
 BuildRequires:  glib2-devel
-BuildRequires:  libxml2-devel
+BuildRequires:  libxml2-devel >= 2.6.21
+BuildRequires:  libxslt-devel
+BuildRequires:  openssl-devel
 BuildRequires:  pam-devel
 
 %description
@@ -121,26 +145,17 @@ High-Availability cluster resource manager.
 Authors: Tim Serong <tserong@suse.com>
 
 
-%package templates
-Summary:        Hawk Setup Wizard Templates
-Group:          Productivity/Clustering/HA
-
-%description templates
-Template files for Hawk's cluster setup wizard.
-
-Authors: Tim Serong <tserong@suse.com>
-
-
 %prep
 %setup
 
 %build
+export NOKOGIRI_USE_SYSTEM_LIBRARIES=1
 CFLAGS="${CFLAGS} ${RPM_OPT_FLAGS}"
 export CFLAGS
-make WWW_BASE=%{www_base} INIT_STYLE=%{init_style} LIBDIR=%{_libdir} BINDIR=%{_bindir} SBINDIR=%{_sbindir} BUNDLE_GEMS=%{expand:%{?bundle_gems:true}%{!?bundle_gems:false}}
+make WWW_BASE=%{www_base} INIT_STYLE=%{init_style} LIBDIR=%{_libdir} BINDIR=%{_bindir} SBINDIR=%{_sbindir} BUNDLE_GEMS=%{expand:%{?bundle_gems:true}%{!?bundle_gems:false}} RUBY_ABI=%{rb_ver}
 
 %install
-make WWW_BASE=%{www_base} INIT_STYLE=%{init_style} DESTDIR=%{buildroot} install
+make WWW_BASE=%{www_base} INIT_STYLE=%{init_style} DESTDIR=%{buildroot} BUNDLE_GEMS=%{expand:%{?bundle_gems:true}%{!?bundle_gems:false}} install
 # copy of GPL
 cp COPYING %{buildroot}%{www_base}/hawk/
 %if 0%{?bundle_gems}
@@ -149,6 +164,8 @@ rm -rf %{buildroot}%{www_base}/hawk/vendor/bundle/ruby/*/gems/*/doc
 rm -rf %{buildroot}%{www_base}/hawk/vendor/bundle/ruby/*/gems/*/examples
 rm -rf %{buildroot}%{www_base}/hawk/vendor/bundle/ruby/*/gems/*/samples
 rm -rf %{buildroot}%{www_base}/hawk/vendor/bundle/ruby/*/gems/*/test
+rm -rf %{buildroot}%{www_base}/hawk/vendor/bundle/ruby/*/gems/*/ports
+rm -rf %{buildroot}%{www_base}/hawk/vendor/bundle/ruby/*/gems/*/ext
 %endif
 %if 0%{?suse_version}
 
@@ -161,7 +178,7 @@ mkdir -p %{buildroot}/usr/share/doc/manual/sle-ha-nfs-quick_en-pdf
 
 # mark .mo files as such (works on SUSE but not FC12, as the latter wants directory to
 # be "share/locale", not just "locale", and it also doesn't support appending to %%{name}.lang)
-%find_lang %{name} %{name}.lang
+%find_lang hawk hawk.lang
 # don't ship .po files (find_lang only grabs the mos, and we don't need the pos anyway)
 rm %{buildroot}%{www_base}/hawk/locale/*/hawk.po
 rm %{buildroot}%{www_base}/hawk/locale/*/hawk.po.time_stamp
@@ -170,7 +187,7 @@ rm %{buildroot}%{www_base}/hawk/locale/*/hawk.edit.po
 %fdupes %{buildroot}
 %else
 # Need file to exist else %%files fails later
-touch %{name}.lang
+touch hawk.lang
 %endif
 # more cruft to clean up (WTF?)
 rm -f %{buildroot}%{www_base}/hawk/log/*
@@ -209,7 +226,7 @@ rm -rf %{buildroot}
 
 %endif
 
-%files -f %{name}.lang
+%files -f hawk.lang
 %defattr(-,root,root)
 %attr(4750, root, %{gname})%{_sbindir}/hawk_chkpwd
 %attr(4750, root, %{gname})%{_sbindir}/hawk_invoke
@@ -217,8 +234,6 @@ rm -rf %{buildroot}
 %dir %{www_base}/hawk
 %{www_base}/hawk/app
 %{www_base}/hawk/config
-# Packaged in hawk-templates
-%exclude %{www_base}/hawk/config/wizard
 %{www_base}/hawk/lib
 %attr(0750, %{uname},%{gname})%{_sysconfdir}/hawk
 %attr(0750, %{uname},%{gname})%{www_base}/hawk/log
@@ -258,19 +273,14 @@ rm -rf %{buildroot}
 %{www_base}/hawk/locale
 %endif
 
-%if 0%{?bundle_gems}
 # Not doing this itemization for %%lang files in vendor, it's frightfully
 # hideous, so we're going to live with a handful of file-not-in-%%lang rpmlint
 # warnings for bundled gems.
 %{www_base}/hawk/vendor
-%endif
+
 %{_unitdir}/hawk.service
 %if 0%{?suse_version}
 %attr(-,root,root) %{_sbindir}/rchawk
 %endif
-
-%files templates
-%defattr(-,root,root)
-%{www_base}/hawk/config/wizard
 
 %changelog

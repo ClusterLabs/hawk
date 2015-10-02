@@ -7,7 +7,6 @@ Rails.application.configure do
   # interferes with the auto-reloading of changed code.
   config.preload_frameworks = true
   config.allow_concurrency = true
-  config.quiet_assets = false
   config.cache_classes = true
   config.eager_load = true
 
