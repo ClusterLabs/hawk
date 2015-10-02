@@ -55,7 +55,6 @@ class Report
 
     [].tap do |peinputs|
       peinputs_raw, err, status = Util.capture3("/usr/sbin/crm", "history", stdin_data: "source #{source}\npeinputs\n")
-      Rails.logger.debug "#{peinputs_raw}\n #{err}\n #{status}"
       if status.exitstatus == 0
         peinputs_raw.split(/\n/).each do |path|
           next unless File.exists?(path)
@@ -220,8 +219,6 @@ class Report
     def find(id)
       file = report_file(id)
 
-      Rails.logger.debug "Found #{file}"
-
       if file
         record = parse(file)
         record.load!
@@ -261,9 +258,7 @@ class Report
     end
 
     def report_file(name)
-      reports = report_files
-      Rails.logger.debug "Reports: #{reports}, looking for #{name}"
-      reports[name]
+      report_files[name]
     end
 
     def report_path
