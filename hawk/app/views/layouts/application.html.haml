@@ -7,17 +7,17 @@
     .navbar.navbar-fixed-top.navbar-inverse{ role: "navigation" }
       .container-fluid{ style: "white-space: nobreak;" }
         .navbar-header
-          = link_to image_tag("head/white.png", size: "160x23"), root_path, class: "navbar-brand"
+          = link_to image_tag("head/white.png"), root_path, class: "navbar-brand"
 
         #navbar.navbar-right
           = render partial: "shared/usernav"
 
     .container-fluid
       .row.row-offcanvas.row-offcanvas-left
-        #sidebar.col-xs-6.col-sm-4.col-md-4.col-lg-2.sidebar-offcanvas
+        #sidebar.col-xs-6.col-sm-2.col-md-4.col-lg-2.sidebar-offcanvas
           = render partial: "shared/mainnav"
 
-        #middle.col-xs-12.col-sm-8.col-md-8.col-lg-10
+        #middle.col-xs-12.col-sm-10.col-md-8.col-lg-10
           = render partial: "shared/flash", locals: { flash: flash }
           = yield
 
