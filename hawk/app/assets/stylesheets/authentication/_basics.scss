@@ -6,11 +6,17 @@ html {
   min-width: 300px;
 }
 
+html {
+  min-height: 100%;
+  position: relative;
+}
+
 body {
   font-family: "Raleway", sans-serif;
   color: #3a3e40;
   height: 100%;
   cursor: default;
+  margin-bottom: 80px;
 
   background: linear-gradient(to right, #1fad7a 0, #80c235 100%);
   background: -moz-linear-gradient(left, #1fad7a 0, #80c235 100%);
