@@ -54,10 +54,10 @@ $(function() {
     );
   };
 
-  $(window).on(
-    'load resize',
-    resize
-  );
+  //$(window).on(
+  //  'load resize',
+  //  resize
+  //);
 
   // TODO(must): This is just a partial footer fix
   $('#middle > .container-fluid').on(
