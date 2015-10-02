@@ -35,8 +35,6 @@
 
 $(function() {
   var resize = function() {
-    console.log('resize');
-
     var navHeight = $('.navbar-fixed-top').outerHeight();
     var footHeight = $('footer').outerHeight();
 
@@ -54,14 +52,24 @@ $(function() {
     );
   };
 
+  var createMutationObserver = function() {
+    var target = document.querySelector('#middle');
+    var observer = new MutationObserver(function(mutations) {
+      observer.disconnect();
+      resize();
+      observer.observe(target, config);
+    });
+    var config = { childList: true, attributes: true, characterData: false, subtree: true };
+    observer.observe(target, config);
+  };
+
   $(window).on(
     'load resize',
     resize
   );
 
-  // TODO(must): This is just a partial footer fix
-  $('#middle > .container-fluid').on(
-    'post-body.bs.table shown.bs.collapse',
-    resize
+  $(window).on(
+    'load',
+    createMutationObserver
   );
 });
