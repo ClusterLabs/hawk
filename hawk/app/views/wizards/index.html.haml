@@ -8,13 +8,13 @@
       - wizard_categories(@wizards).each do |category|
         %li.toggable.btn.btn-default.btn-lg
           %span{ href: "##{category}", data: { toggle: "collapse", parent: ".nav-bighelp" } }
+            .pull-right
+              = icon_tag "chevron-down"
+
             - if category == "wizard"
               = icon_text wizard_icon(category), _("Legacy Wizards")
             - else
               = icon_text wizard_icon(category), category.titleize
-
-            .pull-right
-              = icon_tag "chevron-down"
 
           %ul.nav.nav-pills.nav-stacked.collapse{ id: category }
             - @wizards.sort_by(&:name).each do |wizard|
@@ -22,9 +22,9 @@
 
               %li
                 = link_to cib_wizard_path(cib_id: current_cib.id, id: wizard.name), data: { help_filter: ".#{wizard.name}" } do
-                  = wizard.shortdesc
                   .pull-right
                     = icon_tag "plus-circle"
+                  = wizard.shortdesc
 
 - content_for :rightbar do
   .container-fluid.rightbar_help{ data: { spy: "affix" } }
