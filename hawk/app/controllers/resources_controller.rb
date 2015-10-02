@@ -90,7 +90,7 @@ class ResourcesController < ApplicationController
       else
         format.json do
           render json: {
-            error: _("Failed to start the resource: %{err}", err: result[0])
+            error: _("Failed to start the resource: %{err}") % { err: result[0] }
           }, status: :unprocessable_entity
         end
       end
@@ -112,7 +112,7 @@ class ResourcesController < ApplicationController
       else
         format.json do
           render json: {
-            error: _("Failed to stop the resource: %{err}", err: result[0])
+            error: _("Failed to stop the resource: %{err}") % { err: result[0]  }
           }, status: :unprocessable_entity
         end
       end
@@ -134,7 +134,7 @@ class ResourcesController < ApplicationController
       else
         format.json do
           render json: {
-            error: _("Failed to promote the resource: %{err}", err: result[0])
+            error: _("Failed to promote the resource: %{err}") % { err: result[0]  }
           }, status: :unprocessable_entity
         end
       end
@@ -156,7 +156,7 @@ class ResourcesController < ApplicationController
       else
         format.json do
           render json: {
-            error: _("Failed to demote the resource: %{err}", err: result[0])
+            error: _("Failed to demote the resource: %{err}") % { err: result[0]  }
           }, status: :unprocessable_entity
         end
       end
@@ -178,7 +178,7 @@ class ResourcesController < ApplicationController
       else
         format.json do
           render json: {
-            error: _("Failed to manage the resource: %{err}", err: result[0])
+            error: _("Failed to manage the resource: %{err}") % { err: result[0]  }
           }, status: :unprocessable_entity
         end
       end
@@ -200,7 +200,7 @@ class ResourcesController < ApplicationController
       else
         format.json do
           render json: {
-            error: _("Failed to unmanage the resource: %{err}", err: result[0])
+            error: _("Failed to unmanage the resource: %{err}") % { err: result[0]  }
           }, status: :unprocessable_entity
         end
       end
@@ -222,7 +222,7 @@ class ResourcesController < ApplicationController
       else
         format.json do
           render json: {
-            error: _("Failed to unmigrate the resource: %{err}", err: result[0])
+            error: _("Failed to unmigrate the resource: %{err}") % { err: result[0]  }
           }, status: :unprocessable_entity
         end
       end
@@ -244,7 +244,7 @@ class ResourcesController < ApplicationController
       else
         format.json do
           render json: {
-            error: _("Failed to migrate the resource: %{err}", err: result[0])
+            error: _("Failed to migrate the resource: %{err}") % { err: result[0]  }
           }, status: :unprocessable_entity
         end
       end
@@ -266,7 +266,7 @@ class ResourcesController < ApplicationController
       else
         format.json do
           render json: {
-            error: _("Failed to cleanup the resource: %{err}", err: result[0])
+            error: _("Failed to cleanup the resource: %{err}") % { err: result[0]  }
           }, status: :unprocessable_entity
         end
       end

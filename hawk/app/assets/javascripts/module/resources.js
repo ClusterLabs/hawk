@@ -32,17 +32,54 @@ $(function() {
     }
     return unique(ret);
   };
-  var stateString = function(row) {
-    if (!row.is_managed) {
-      return "unmanaged";
-    } else {
-      var starts = startedAt(row);
-      console.log(row.id + " starts:", starts);
-      if (starts.length > 0)
-        return "started";
+
+  function executeAction(context, confirmMsg) {
+    try {
+      answer = confirm(
+        confirmMsg
+      );
+    } catch (e) {
+      (console.error || console.log).call(console, e.stack || e);
     }
-    return "stopped";
-  };
+
+    if (answer) {
+      $.ajax({
+        dataType: 'json',
+        method: 'GET',
+        url: [
+          context.attr('href'),
+          ".json"
+        ].join(""),
+
+        success: function(data) {
+          if (data.success) {
+            $.growl({
+              message: data.message
+            },{
+              type: 'success'
+            });
+
+            context.parents('table').bootstrapTable('refresh')
+          } else {
+            if (data.error) {
+              $.growl({
+                message: data.error
+              },{
+                type: 'danger'
+              });
+            }
+          }
+        },
+        error: function(xhr, status, msg) {
+          $.growl({
+            message: xhr.responseJSON.error || msg
+          },{
+            type: 'danger'
+          });
+        }
+      });
+    }
+  }
 
   $('#states #middle table.resources')
     .bootstrapTable({
@@ -72,25 +109,28 @@ $(function() {
           clickToSelect: true,
           class: 'col-sm-1',
           formatter: function(value, row, index) {
-            var state = stateString(row);
-            if (state == "unmanaged") {
-              return [
-                '<i class="fa fa-exclamation-triangle text-warning" title="',
-                __("Unmanaged"),
-                '"></i>'
-              ].join('');
-            } else if (state == "started") {
-              return [
-                '<i class="fa fa-play text-success" title="',
-                __("Started"),
-                '"></i>'
-              ].join('');
-            } else {
-              return [
-                '<i class="fa fa-stop text-danger" title="',
-                __("Stopped"),
-                '"></i>'
-              ].join('');
+            switch(value) {
+              case "unmanaged":
+                return [
+                  '<i class="fa fa-exclamation-triangle text-warning" title="',
+                  __("Unmanaged"),
+                  '"></i>'
+                ].join('');
+                break;
+              case "started":
+                return [
+                  '<i class="fa fa-play text-success" title="',
+                  __("Started"),
+                  '"></i>'
+                ].join('');
+                break;
+              default:
+                return [
+                  '<i class="fa fa-stop text-danger" title="',
+                  __("Stopped"),
+                  '"></i>'
+                ].join('');
+                break;
             }
           }
         },
@@ -146,8 +186,230 @@ $(function() {
           sortable: false,
           clickToSelect: false,
           class: 'col-sm-2',
+          events: {
+            'click .start': function (e, value, row, index) {
+              e.preventDefault();
+
+              executeAction(
+                $(this),
+                i18n.translate(
+                  'This will start the resource %s. Do you want to continue?'
+                ).fetch(row.id)
+              );
+            },
+            'click .stop': function (e, value, row, index) {
+              e.preventDefault();
+
+              executeAction(
+                $(this),
+                i18n.translate(
+                  'This will stop the resource %s. Do you want to continue?'
+                ).fetch(row.id)
+              );
+            },
+            'click .manage': function (e, value, row, index) {
+              e.preventDefault();
+
+              executeAction(
+                $(this),
+                i18n.translate(
+                  'This will manage the resource %s. Do you want to continue?'
+                ).fetch(row.id)
+              );
+            },
+            'click .unmanage': function (e, value, row, index) {
+              e.preventDefault();
+
+              executeAction(
+                $(this),
+                i18n.translate(
+                  'This will unmanage the resource %s. Do you want to continue?'
+                ).fetch(row.id)
+              );
+            },
+            'click .migrate': function (e, value, row, index) {
+              e.preventDefault();
+
+              executeAction(
+                $(this),
+                i18n.translate(
+                  'This will migrate the resource %s. Do you want to continue?'
+                ).fetch(row.id)
+              );
+            },
+            'click .unmigrate': function (e, value, row, index) {
+              e.preventDefault();
+
+              executeAction(
+                $(this),
+                i18n.translate(
+                  'This will unmigrate the resource %s. Do you want to continue?'
+                ).fetch(row.id)
+              );
+            },
+            'click .cleanup': function (e, value, row, index) {
+              e.preventDefault();
+
+              executeAction(
+                $(this),
+                i18n.translate(
+                  'This will cleanup the resource %s. Do you want to continue?'
+                ).fetch(row.id)
+              );
+            }
+          },
           formatter: function(value, row, index) {
             var operations = [];
+            var dropdowns = [];
+
+            if (row.state === "started") {
+              dropdowns.push([
+                '<li>',
+                  '<a href="',
+                  Routes.stop_cib_resource_path(
+                    $('body').data('cib'),
+                    row.id
+                  ),
+                  '" class="stop">',
+                    '<i class="fa fa-stop"></i> ',
+                    __('Stop'),
+                  '</a>',
+                '</li>'
+              ].join(''));
+            }
+
+            if (row.state === "stopped") {
+              dropdowns.push([
+                '<li>',
+                  '<a href="',
+                  Routes.start_cib_resource_path(
+                    $('body').data('cib'),
+                    row.id
+                  ),
+                  '" class="start">',
+                    '<i class="fa fa-play"></i> ',
+                    __('Start'),
+                  '</a>',
+                '</li>'
+              ].join(''));
+            }
+
+            if (row.state === "master") {
+              dropdowns.push([
+                '<li>',
+                  '<a href="',
+                  Routes.demote_cib_resource_path(
+                    $('body').data('cib'),
+                    row.id
+                  ),
+                  '" class="demote">',
+                    '<i class="fa fa-thumbs-down"></i> ',
+                    __('Demote'),
+                  '</a>',
+                '</li>'
+              ].join(''));
+            }
+
+            if (row.state === "slave") {
+              dropdowns.push([
+                '<li>',
+                  '<a href="',
+                  Routes.promote_cib_resource_path(
+                    $('body').data('cib'),
+                    row.id
+                  ),
+                  '" class="promote">',
+                    '<i class="fa fa-thumbs-up"></i> ',
+                    __('Promote'),
+                  '</a>',
+                '</li>'
+              ].join(''));
+            }
+
+            if (row.managed === true) {
+              dropdowns.push([
+                '<li>',
+                  '<a href="',
+                  Routes.unmanage_cib_resource_path(
+                    $('body').data('cib'),
+                    row.id
+                  ),
+                  '" class="unmanage">',
+                    '<i class="fa fa-circle"></i> ',
+                    __('Unmanage'),
+                  '</a>',
+                '</li>'
+              ].join(''));
+            }
+
+            if (row.managed === false) {
+              dropdowns.push([
+                '<li>',
+                  '<a href="',
+                  Routes.manage_cib_resource_path(
+                    $('body').data('cib'),
+                    row.id
+                  ),
+                  '" class="manage">',
+                    '<i class="fa fa-dot-circle-o"></i> ',
+                    __('Manage'),
+                  '</a>',
+                '</li>'
+              ].join(''));
+            }
+
+            dropdowns.push([
+              '<li>',
+                '<a href="',
+                Routes.migrate_cib_resource_path(
+                  $('body').data('cib'),
+                  row.id
+                ),
+                '" class="migrate">',
+                  '<i class="fa fa-hand-o-up"></i> ',
+                  __('Migrate'),
+                '</a>',
+              '</li>'
+            ].join(''));
+
+            dropdowns.push([
+              '<li>',
+                '<a href="',
+                Routes.unmigrate_cib_resource_path(
+                  $('body').data('cib'),
+                  row.id
+                ),
+                '" class="unmigrate">',
+                  '<i class="fa fa-hand-o-down"></i> ',
+                  __('Unmigrate'),
+                '</a>',
+              '</li>'
+            ].join(''));
+
+            dropdowns.push([
+              '<li>',
+                '<a href="',
+                Routes.cleanup_cib_resource_path(
+                  $('body').data('cib'),
+                  row.id
+                ),
+                '" class="cleanup">',
+                  '<i class="fa fa-eraser"></i> ',
+                  __('Cleanup'),
+                '</a>',
+              '</li>'
+            ].join(''));
+
+            operations.push([
+              '<div class="btn-group" role="group">',
+                '<button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">',
+                  '<span class="caret"></span>',
+                '</button>',
+                '<ul class="dropdown-menu">',
+                  dropdowns.join(''),
+                '</ul>',
+              '</div>'
+            ].join(''));
 
             operations.push([
               '<a href="',
@@ -158,7 +420,7 @@ $(function() {
               '" class="details btn btn-default btn-xs" title="',
               __('Details'),
               '" data-toggle="modal" data-target="#modal-lg">',
-              '<i class="fa fa-search"></i>',
+                '<i class="fa fa-search"></i>',
               '</a> '
             ].join(''));
 
