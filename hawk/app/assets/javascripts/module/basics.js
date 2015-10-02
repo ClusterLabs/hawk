@@ -53,4 +53,38 @@ $(function() {
       }
     })
   };
+
+  $.fn.statusCircle = function(status) {
+    var statusClass = function() {
+      if (status == "ok") {
+        return "circle-success";
+      } else if (status == "errors") {
+        return "circle-danger";
+      } else if (status == "maintenance") {
+        return "circle-info";
+      } else {
+        return "circle-warning";
+      }
+    };
+
+    var statusIcon = function() {
+      if (status == "ok") {
+        return '<i class="fa fa-check text"></i>';
+      } else if (status == "errors") {
+        return '<i class="fa fa-exclamation-triangle text"></i>';
+      } else if (status == "maintenance") {
+        return '<i class="fa fa-wrench text"></i>';
+      } else if (status == "nostonith") {
+        return '<i class="fa fa-plug text"></i>';
+      } else {
+        return '<i class="fa fa-question text"></i>';
+      }
+    };
+    var circle = ['<div class="circle circle-medium ',
+                  statusClass(),
+                  '">',
+                  statusIcon(),
+                  '</div>'].join("");
+    $(this).html(circle);
+  };
 });

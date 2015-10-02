@@ -68,25 +68,25 @@
       ),
 
       type: 'GET',
+      dataType: 'json',
       cache: self.options.cache,
       timeout: self.options.timeout * 1000,
 
-      success: function(resp) {
-        if (resp) {
-          $(self.options.targets.metadata).link(
-            true,
-            resp
-          );
-
-          $(self.options.targets.content).link(
-            true,
-            resp
-          );
+      success: function(cib) {
+        if (cib) {
+          $('body').data('content', cib);
+          $('#middle .circle').statusCircle(cib.meta.status);
+          $(self.options.targets.metadata).link(true, cib);
+          $(self.options.targets.content).link(true, cib);
         }
       },
 
       error: function(request) {
-        console.log('status update failed', arguments);
+        $.growl(
+          __('Connection to server failed - will retry every 15 seconds.'),
+          { type: 'danger' }
+        );
+        $('#middle .circle').statusCircle('errors');
       }
     });
   };

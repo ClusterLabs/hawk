@@ -58,6 +58,8 @@
             { type: 'warning' }
           );
 
+          $('#middle .circle').statusCircle('errors');
+
           $('body').trigger($.Event('aborted.hawk.monitor'));
 
           setTimeout(function() { self.processCheck(); }, self.options.faster * 1000);
@@ -71,6 +73,7 @@
               __('Connection to server failed - will retry every 15 seconds.'),
               { type: 'danger' }
             );
+            $('#middle .circle').statusCircle('errors');
           } else {
             // $.growl(
             //   request.statusText,
@@ -82,6 +85,7 @@
             __('Connection to server timed out - will retry every 15 seconds.'),
             { type: 'danger' }
           );
+          $('#middle .circle').statusCircle('errors');
         }
 
         $('body').trigger($.Event('unavailable.hawk.monitor'));
@@ -122,5 +126,4 @@ $(function() {
        '#states #middle table.nodes'].join(', '))
       .bootstrapTable('refresh');
   });
-
 });
