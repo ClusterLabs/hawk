@@ -8,7 +8,7 @@ class Tag < Resource
   validates :id,
     presence: { message: _("Tag ID is required") },
     format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _("Invalid Tag ID") }
-    
+
   validates :refs,
     presence: { message: _("No Tag resources specified") }
 
