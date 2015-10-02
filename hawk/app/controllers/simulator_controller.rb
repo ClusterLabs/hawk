@@ -110,9 +110,12 @@ class SimulatorController < ApplicationController
                 type: "text/plain", disposition: :inline
     when "in"
       shadow_id = ENV["CIB_shadow"]
-      ENV.delete("CIB_shadow")
-      send_data Invoker.instance.cibadmin('-Ql'), type: (params[:munge] == "txt" ? "text/plain" : "text/xml"), disposition: :inline
-      ENV["CIB_shadow"] = shadow_id
+      begin
+        ENV.delete("CIB_shadow")
+        send_data Invoker.instance.cibadmin('-Ql'), type: (params[:munge] == "txt" ? "text/plain" : "text/xml"), disposition: :inline
+      ensure
+        ENV["CIB_shadow"] = shadow_id
+      end
     when "out"
       send_data Invoker.instance.cibadmin('-Ql'), type: (params[:munge] == "txt" ? "text/plain" : "text/xml"), disposition: :inline
     when "graph-xml"

@@ -168,38 +168,37 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def init_shadow_cib(force=false)
-    result = nil
-    if current_cib && current_cib.sim?
-      ENV['CIB_shadow'] = current_cib.id
-      if force || !File.exist?("/var/lib/pacemaker/cib/shadow.#{current_cib.id}")
-        result = Invoker.instance.run("crm_shadow", "-b", "-f", "-c", "#{current_cib.id}")
-        Rails.logger.debug "Created Shadow CIB for #{current_cib.id}: #{result}"
-      else
-        Rails.logger.debug "Shadow CIB for #{current_cib.id} already exists"
-      end
-    end
-    result
-  end
-
   def set_shadow_cib
-    ENV.delete("CIB_shadow")
-    if current_cib && current_cib.sim?
-      result = init_shadow_cib(params[:init_cib].to_s.downcase == "true")
-      unless result.nil?
-        respond_to do |format|
-          if result[2] == 0
-            format.html do
-              flash.now[:success] = _("Created a new shadow CIB for %USER%.").sub("%USER%", current_cib.id)
-            end
-          else
-            format.html do
-              redirect_to root_path, alert: (_("Unable to create shadow CIB") + ": " + result[1].to_s)
-            end
-            format.json do
-              render json: { error: _("Unable to create shadow CIB"), stderr: result[1] }, status: 500
-            end
-          end
+    if !current_cib || current_cib.live?
+      ENV.delete("CIB_shadow")
+      return
+    end
+
+    init_cib = params[:init_cib].to_s.downcase == "true"
+    result = nil
+    ENV['CIB_shadow'] = current_cib.id
+    if init_cib || !File.exist?("/var/lib/pacemaker/cib/shadow.#{current_cib.id}")
+      result = Invoker.instance.run("crm_shadow", "-b", "-f", "-c", "#{current_cib.id}")
+    end
+
+    if result.nil?
+      Rails.logger.debug "Using Shadow CIB for #{current_cib.id}"
+      return
+    end
+
+    respond_to do |format|
+      if result[2] == 0
+        format.html do
+          Rails.logger.debug "Created Shadow CIB for #{current_cib.id}: #{result.inspect}"
+          flash.now[:success] = _("Created a new shadow CIB for %USER%.").sub("%USER%", current_cib.id)
+          redirect_to cib_state_path(cib_id: current_cib.id)
+        end
+      else
+        format.html do
+          redirect_to root_path, alert: (_("Unable to create shadow CIB") + ": " + result[1].to_s)
+        end
+        format.json do
+          render json: { error: _("Unable to create shadow CIB"), stderr: result[1] }, status: 500
         end
       end
     end
