@@ -8,12 +8,9 @@ class Tag < Resource
   validates :id,
     presence: { message: _("Tag ID is required") },
     format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _("Invalid Tag ID") }
-
-  validate do |record|
-    # TODO(must): Ensure refs are sanitized
-    errors.add :refs, _("No Tag resources specified") if record.refs.empty?
-  end
-
+    
+  validates :refs,
+    presence: { message: _("No Tag resources specified") }
 
   def mapping
     self.class.mapping
