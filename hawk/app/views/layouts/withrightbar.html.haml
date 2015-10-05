@@ -18,12 +18,12 @@
           = render partial: "shared/mainnav"
 
         #middle.col-xs-12.col-sm-8.col-md-8.col-lg-6
+          - if current_cib.sim?
+            .row
+              = render partial: "shared/simulator"
+
           = render partial: "shared/flash", locals: { flash: flash }
           = yield
-
-          - if current_cib.sim?
-            .container-fluid
-              = render partial: "shared/simulator"
 
         #rightbar.visible-lg-block.col-lg-4
           = yield :rightbar

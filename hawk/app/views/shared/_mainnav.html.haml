@@ -1,10 +1,6 @@
 %ul.nav.sidebar-nav
   %li
     %ul
-      - if current_cib.sim?
-        %li
-          %span.label.label-warning= _("Simulator Active")
-
       %li{ class: active_menu_with(:states) }
         = link_to _("Status"), cib_state_path(cib_id: current_cib.id)
 
