@@ -22,7 +22,7 @@
           = yield
 
           - if current_cib.sim?
-            .container-fluid
+            %nav#menu.panel{ role: "navigation" }
               = render partial: "shared/simulator"
 
         #rightbar.visible-lg-block.col-lg-4

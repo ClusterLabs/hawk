@@ -32,6 +32,7 @@
 //= require module/reports
 //= require module/simulator
 //= require module/location
+//= require bigSlide
 
 $(function() {
   var resize = function() {
@@ -69,7 +70,9 @@ $(function() {
   );
 
   $(window).on(
-    'load',
-    createMutationObserver
+    'load', function(){
+      createMutationObserver();
+      $('.menu-link').bigSlide({side: 'right', menuWidth: '500px'});
+    }
   );
 });
