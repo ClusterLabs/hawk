@@ -2,6 +2,10 @@
 // See COPYING for license.
 
 @media (max-width: 300px) {
+  body {
+    margin-bottom: 0;
+  }
+
   #content {
     &.darkbar {
       border-radius: 0 !important;
