@@ -4,7 +4,9 @@
   .panel.panel-warning
     #simulator-heading.panel-heading
       %h3.panel-title
-        %a{href: "#simulator-collapse", role: :button, data: {toggle: :collapse, parent: "#simulator"}, aria: {expanded: true, controls: "simulator-collapse"}}
+        %a#simulator-toggle{ href: "#simulator-collapse", role: :button,
+         data: {toggle: :collapse, parent: "#simulator"},
+         aria: {expanded: true, controls: "simulator-collapse"} }
           = _("Simulator Active")
           .pull-right
             %span.caret
