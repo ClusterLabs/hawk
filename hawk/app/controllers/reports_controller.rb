@@ -88,7 +88,7 @@ class ReportsController < ApplicationController
 
   def download
     if @report
-      send_file @report.archive.realdirpath, type: @report.mimetype, filename: @report.archive.basename, x_sendfile: true
+      send_file @report.archive.realdirpath, type: @report.mimetype, filename: @report.archive.basename.to_s.gsub(/[ +-]/, '_'), x_sendfile: true
     else
       raise ActionController::RoutingError, 'Not Found'
     end
