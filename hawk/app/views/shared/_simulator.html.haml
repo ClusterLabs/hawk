@@ -1,11 +1,13 @@
 #simulator-node
 
 %script#simulator{type: "text/x-jsrender"}
-  .panel.panel-default
+  .panel.panel-warning
     #simulator-heading.panel-heading
       %h3.panel-title
-        %a{href: "#simulator-collapse", role: :button, data: {toggle: :collapse, parent: "#simulator"}, aria: {expanded: true, controls: "simulator-collapse"}}
-          = _("Simulator")
+        %a#simulator-toggle{ href: "#simulator-collapse", role: :button,
+         data: {toggle: :collapse, parent: "#simulator"},
+         aria: {expanded: true, controls: "simulator-collapse"} }
+          = _("Simulator Active")
           .pull-right
             %span.caret
     #simulator-collapse.panel-collapse.collapse.in{aria: {labelledby: "simulator-heading"}}
@@ -15,31 +17,29 @@
             .col-sm-12
               .errors
           .row
-            .col-sm-7
-              %select#sim-events.form-control{multiple: true}
-              .row
-                &nbsp;
-              %button#sim-addnode.btn.btn-default.btn-sm{type: :button}
-                = icon_text "plus", _("Node")
-              %button#sim-addop.btn.btn-default.btn-sm{type: :button}
-                = icon_text "plus", _("Operation")
-              - unless current_cib.tickets.empty?
-                %button#sim-addticket.btn.btn-default.btn-sm{type: :button}
-                  = icon_text "plus", _("Ticket")
-              %button#sim-delete.btn.btn-default.btn-sm{type: :button}
-                = icon_tag "minus"
-            .col-sm-5
-              .well
-                %button#sim-results.btn.btn-default{type: :button, disabled: :disabled}
-                  = _("Results")
-      .panel-footer
-        .container-fluid
-          .row
-            .pull-right
-              %button#sim-reset.btn.btn-warning{type: :button}
+            .col-sm-9
+              %select.form-control#sim-events{ multiple: true }
+              .btn-group.btn-group-sm.btn-group-justified
+                .btn-group
+                  %button.btn.btn-default#sim-addnode{ type: :button }
+                    = icon_text "plus", _("Node")
+                .btn-group
+                  %button.btn.btn-default#sim-addop{ type: :button }
+                    = icon_text "plus", _("Operation")
+                - unless current_cib.tickets.empty?
+                  .btn-group
+                    %button.btn.btn-default#sim-addticket{ type: :button }
+                      = icon_text "plus", _("Ticket")
+                .btn-group
+                  %button.btn.btn-default#sim-delete{ type: :button }
+                    = icon_tag "minus"
+            .col-sm-3
+              %button.btn.btn-warning.btn-block#sim-reset{ type: :button }
                 = icon_text "rewind", _("Reset")
-              %button#sim-run.btn.btn-primary{type: :button}
+              %button.btn.btn-primary.btn-block#sim-run{ type: :button }
                 = icon_text "play", _("Run")
+              %button.btn.btn-default.btn-block#sim-results{ type: :button, disabled: :disabled }
+                = _("Results")
 
 %script#sim-results-dialog{type: "text/x-jsrender"}
   .modal-header

@@ -23,6 +23,10 @@ $(function() {
     self.data("simulation-state", 0);
     self.html($("#simulator").render());
 
+    if (sessionStorage.getItem("simulator-collapsed") == "true") {
+      self.find('#simulator-toggle').click();
+    }
+
     var events = self.find("#sim-events");
 
     var update_events = function() {
@@ -102,6 +106,10 @@ $(function() {
         })
       });
     };
+
+    self.find('#simulator-toggle').click(function() {
+      sessionStorage.setItem("simulator-collapsed", !$(this).hasClass("collapsed"));
+    });
 
     self.find("#sim-addnode").click(function() {
       var content = $("#modal .modal-content");
