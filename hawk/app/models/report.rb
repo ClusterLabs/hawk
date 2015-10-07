@@ -54,7 +54,7 @@ class Report
     pcmk_version = "#{m[1]}-#{m[2]}" if m
 
     [].tap do |peinputs|
-      peinputs_raw, err, status = Util.capture3("/usr/sbin/crm", "history", stdin_data: "source #{source}\npeinputs\n")
+      peinputs_raw, err, status = Util.capture3("/usr/sbin/crm", "history", stdin_data: "source \"#{source}\"\npeinputs\n")
       if status.exitstatus == 0
         peinputs_raw.split(/\n/).each do |path|
           next unless File.exists?(path)
@@ -95,7 +95,7 @@ class Report
   def transition_cmd(hb_report, cmd)
     source = archive
     source = hb_report.path if File.directory?(hb_report.path)
-    Util.capture3("/usr/sbin/crm", "history", stdin_data: "source #{source}\n#{cmd}\n")
+    Util.capture3("/usr/sbin/crm", "history", stdin_data: "source \"#{source}\"\n#{cmd}\n")
   end
 
   def info(hb_report, path)
@@ -150,6 +150,7 @@ class Report
 
     ret = [false, err]
     if rc != 0
+      Rails.logger.debug "crm_simulate error: #{rc} #{err}"
       ret = [false, err]
     elsif format == :xml || format == :json
       ret = [true, File.new(tmpfile.path).read]
@@ -158,6 +159,7 @@ class Report
       if status.exitstatus == 0
         ret = [true, svg]
       else
+        Rails.logger.debug "dot error: #{status.exitstatus} #{err}"
         ret = [false, err]
       end
     end
