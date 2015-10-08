@@ -539,7 +539,7 @@ class Cib
         :maintenance => maintenance
       )
       if state == :unclean
-        error _("Node _NODE_ is in an unknown state.").gsub('_NODE_', uname)
+        error _('Node "%{node}" is UNCLEAN and needs to be fenced.') % { node: uname }
       end
     end
 
