@@ -93,17 +93,12 @@ class Node < Tableless
         {}
       end
 
-      record.utilization = if xml.elements['utilization']
-        vals = xml.elements['utilization'].elements.collect do |e|
-          [
-            e.attributes['name'],
-            e.attributes['value']
-          ]
+      record.utilization = {}.tap do |util|
+        if xml.elements['utilization']
+          xml.elements['utilization'].elements.each do |e|
+            util[e.attributes['name']] = { total: e.attributes['value'].to_i }
+          end
         end
-
-        Hash[vals.sort]
-      else
-        {}
       end
 
       if record.utilization.any?
