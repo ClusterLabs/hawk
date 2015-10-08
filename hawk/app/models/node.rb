@@ -117,7 +117,7 @@ class Node < Tableless
 
             if record.utilization.has_key? name
               r = record.utilization[name]
-              r[:remaining] = value.to_i
+              r[:remaining] = value.to_i unless value.nil?
               r[:percentage] = 100 - ((r[:remaining].to_f / r[:total].to_f) * 100.0).to_i
             end
           end
