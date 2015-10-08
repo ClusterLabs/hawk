@@ -106,11 +106,10 @@ class Node < Tableless
       end
 
       if record.utilization.any?
-        Util.safe_x('/usr/sbin/crm_simulate', '-LU').split('\n').each do |line|
-          m = line.match(/^Remaining:\s+([^\s]+)\s+capacity:\s+(.*)$/)
+        Util.safe_x('/usr/sbin/crm_simulate', '-LU').split("\n").each do |line|
+          m = line.match /^Remaining:\s+([^\s]+)\s+capacity:\s+(.*)$/
 
-          next unless m
-          next unless m[1] == record.name
+          next unless m && m[1] == record.name
 
           m[2].split(' ').each do |u|
             name, value = u.split('=', 2)
