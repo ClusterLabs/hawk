@@ -22,9 +22,12 @@
                 = name
 
               %td.col-xs-8
-                .progress
-                  .progress-bar{ role: "progressbar", style: "width: #{value[:percentage]}%;" }
-                    = _("%{used} of %{total} (%{percentage}%%)" % { percentage: value[:percentage], total: value[:total], used: value[:total] - value[:remaining] })
+                - if value[:percentage] == 0
+                  = "%{used} / %{total} (%{percentage}%%)" % { percentage: value[:percentage], total: value[:total], used: value[:total] - value[:remaining] }
+                - else
+                  .progress
+                    .progress-bar{role: "progressbar", style: "width: #{value[:percentage]}%;", aria: { valuenow: value[:percentage], valuemin: 0, valuemax: value[:total] } }
+                      = "%{used} / %{total} (%{percentage}%%)" % { percentage: value[:percentage], total: value[:total], used: value[:total] - value[:remaining] }
 
     - else
       .alert.alert-info
