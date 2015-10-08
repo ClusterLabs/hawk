@@ -2,37 +2,6 @@
 // See COPYING for license.
 
 $(function() {
-  function unique(list) {
-    var result = [];
-    $.each(list, function(i, e) {
-      if ($.inArray(e, result) == -1) result.push(e);
-    });
-    return result;
-  }
-  // Returns list of nodes that the resource is started at
-  var startedAt = function(row) {
-    var ret = [];
-    if ("instances" in row && "default" in row.instances) {
-      if ("started" in row.instances["default"]) {
-        $.each(row.instances["default"].started, function(i, v) {
-          ret.push(v.node);
-        });
-      }
-    }
-    if ("children" in row) {
-      $.each(row.children, function(i, v) {
-        if ("instances" in v && "default" in v.instances) {
-          if ("started" in v.instances["default"]) {
-            $.each(v.instances["default"].started, function(i, v) {
-              ret.push(v.node);
-            });
-          }
-        }
-      });
-    }
-    return unique(ret);
-  };
-
   function executeAction(context, confirmMsg) {
     try {
       answer = confirm(
@@ -149,7 +118,7 @@ $(function() {
           clickToSelect: true,
           class: 'col-sm-6',
           formatter: function(value, row, index) {
-            return startedAt(row).join(", ");
+            return Object.keys(row.running_on).join(", ");
           }
         },
         {
