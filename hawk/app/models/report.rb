@@ -171,9 +171,10 @@ class Report
   def diff(hb_report, path, left, right, format = :html)
     format = "" unless format == :html
     out, err, status = transition_cmd hb_report, "diff #{left} #{right} status #{format}"
-    info = out + err
+    out.strip!
+    err.strip!
+    info = out
 
-    info.strip!
     # TODO(should): option to increase verbosity level
     info = _("No details available") if info.empty?
 
@@ -191,7 +192,13 @@ class Report
         eos
       end
     else
-      info.insert(0, _("Error:") + "\n")
+      info += <<-eos
+        <div class="row">
+          <div class="alert alert-danger" role="alert">...</div>
+            #{err}
+          </div>
+        </div>
+      eos
     end
     info
   end
