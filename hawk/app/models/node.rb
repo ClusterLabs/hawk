@@ -96,7 +96,11 @@ class Node < Tableless
       record.utilization = {}.tap do |util|
         if xml.elements['utilization']
           xml.elements['utilization'].elements.each do |e|
-            util[e.attributes['name']] = { total: e.attributes['value'].to_i }
+            util[e.attributes['name']] = {
+              total: e.attributes['value'].to_i,
+              remaining: e.attributes['value'].to_i,
+              percentage: 0,
+            }
           end
         end
       end
@@ -112,7 +116,9 @@ class Node < Tableless
             name, value = u.split('=', 2)
 
             if record.utilization.has_key? name
-              record.utilization[name][:remaining] = value.to_i
+              r = record.utilization[name]
+              r[:remaining] = value.to_i
+              r[:percentage] = 100 - ((r[:remaining].to_f / r[:total].to_f) * 100.0).to_i
             end
           end
         end
