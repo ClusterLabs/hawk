@@ -10,7 +10,7 @@ $(function() {
         { format: 'json' }
       ),
       striped: true,
-      pagination: true,
+      pagination: false,
       pageSize: 50,
       pageList: [10, 25, 50, 100, 200],
       sidePagination: 'client',
