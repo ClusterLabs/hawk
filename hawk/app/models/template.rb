@@ -6,9 +6,6 @@ class Template < Resource
   attribute :clazz, String, default: "ocf"
   attribute :provider, String
   attribute :type, String
-  attribute :ops, Hash, default: {}
-  attribute :params, Hash, default: {}
-  attribute :meta, Hash, default: {}
 
   validates :id,
     presence: { message: _("Resource ID is required") },

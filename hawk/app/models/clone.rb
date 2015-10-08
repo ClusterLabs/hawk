@@ -4,7 +4,6 @@
 class Clone < Resource
   attribute :id, String
   attribute :child, String
-  attribute :meta, Hash, default: {}
 
   validates :id,
     presence: { message: _("Clone ID is required") },

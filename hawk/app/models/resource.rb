@@ -8,6 +8,11 @@ class Resource < Record
   attribute :object_type, Symbol
   attribute :state, Symbol
   attribute :managed, Boolean
+  attribute :ops, Hash
+  attribute :params, Hash
+  attribute :meta, Hash
+  attribute :running_on, Array
+  attribute :failed_ops, Array
 
   def object_type
     self.class.to_s.downcase
@@ -19,6 +24,72 @@ class Resource < Record
 
   def managed
     cib_by_id(id)[:is_managed] || false
+  end
+
+  def ops
+    @ops ||= {}
+  end
+
+  def params
+    @params ||= {}
+  end
+
+  def meta
+    @meta ||= {}
+  end
+
+  def running_on
+    {}.tap do |lst|
+      r = cib_by_id(id)
+      if r.has_key? :children
+        r[:children].each do |c|
+          if c.has_key? :instances
+            c[:instances].each do |name, info|
+              [:master, :slave, :started, :pending].each do |rstate|
+                if info[rstate]
+                  info[rstate].each do |n|
+                    lst[n[:node]] = rstate
+                  end
+                end
+              end
+            end
+          end
+        end
+      elsif r.has_key? :instances
+        r[:instances].each do |name, info|
+          [:master, :slave, :started, :pending].each do |rstate|
+            if info[rstate]
+              info[rstate].each do |n|
+                lst[n[:node]] = rstate
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+
+  def failed_ops
+    [].tap do |lst|
+      r = cib_by_id(id)
+      if r.has_key? :children
+        r[:children].each do |c|
+          if c.has_key? :instances
+            c[:instances].each do |name, info|
+              if info.has_key? :failed_ops
+                lst.concat info[:failed_ops]
+              end
+            end
+          end
+        end
+      elsif r.has_key? :instances
+        r[:instances].each do |name, info|
+          if info.has_key? :failed_ops
+            lst.concat info[:failed_ops]
+          end
+        end
+      end
+    end
   end
 
   def start!

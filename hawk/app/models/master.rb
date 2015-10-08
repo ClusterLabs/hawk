@@ -4,7 +4,6 @@
 class Master < Resource
   attribute :id, String
   attribute :child, String
-  attribute :meta, Hash, default: {}
 
   validates :id,
     presence: { message: _("Multi-state ID is required") },

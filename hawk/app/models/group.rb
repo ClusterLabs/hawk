@@ -4,7 +4,6 @@
 class Group < Resource
   attribute :id, String
   attribute :children, Array[String]
-  attribute :meta, Hash, default: {}
 
   validates :id,
     presence: { message: _("Group ID is required") },
