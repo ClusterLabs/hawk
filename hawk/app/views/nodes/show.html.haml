@@ -24,7 +24,7 @@
               %td.col-xs-8
                 .progress
                   .progress-bar{ role: "progressbar", style: "width: #{value[:percentage]}%;" }
-                    = _("%{used} of %{total} (%{percentage}%)" % { percentage: value[:percentage], total: value[:total], used: value[:total] - value[:remaining] })
+                    = _("%{used} of %{total} (%{percentage}%%)" % { percentage: value[:percentage], total: value[:total], used: value[:total] - value[:remaining] })
 
     - else
       .alert.alert-info
