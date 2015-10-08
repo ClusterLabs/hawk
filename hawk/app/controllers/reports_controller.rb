@@ -197,8 +197,12 @@ class ReportsController < ApplicationController
       l = @transitions[tidx][:path]
       r = @transitions[tidx+1][:path]
       @transition[:diff] = @report.diff(@hb_report, @transition[:path], l, r, :html)
+    elsif tidx == @transitions.length-1 && @transitions.length > 1
+      l = @transitions[tidx-1][:path]
+      r = @transitions[tidx][:path]
+      @transition[:diff] = @report.diff(@hb_report, @transition[:path], l, r, :html)
     else
-      @transition[:diff] = _("No diff: Last transition")
+      @transition[:diff] = _("Cannot display diff, too few transitions")
     end
 
     respond_to do |format|
