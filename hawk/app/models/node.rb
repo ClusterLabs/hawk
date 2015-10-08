@@ -74,7 +74,7 @@ class Node < Tableless
       record = allocate
       record.id = xml.attributes['id']
       record.xml = xml
-      record.name = xml.attributes['uname'] || ''
+      record.name = xml.attributes['uname'] || xml.attributes['id'] || ''
       record.state = state[:state]
       record.standby = state[:standby]
       record.maintenance = state[:maintenance]
@@ -111,7 +111,7 @@ class Node < Tableless
           m = line.match(/^Remaining:\s+([^\s]+)\s+capacity:\s+(.*)$/)
 
           next unless m
-          next unless m[1] == record.uname
+          next unless m[1] == record.name
 
           m[2].split(' ').each do |u|
             name, value = u.split('=', 2)
@@ -143,8 +143,8 @@ class Node < Tableless
       begin
         super(id)
       rescue Cib::RecordNotFound
-        # Can't find by id attribute, try by uname attribute
-        super(name, 'uname')
+        # Can't find by id attribute, try by name attribute
+        super(name, 'name')
       end
     end
   end
