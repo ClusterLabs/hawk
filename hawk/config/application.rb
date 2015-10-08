@@ -36,7 +36,7 @@ module Hawk
     config.i18n.enforce_available_locales = false
 
     if Rails.env.development?
-      config.web_console.whitelisted_ips = "192.168.0.0/16"
+      config.web_console.whitelisted_ips = ["192.168.0.0/16", "10.0.2.2", "10.13.37.0/24"]
     else
       config.middleware.use Rack::Deflater
     end
