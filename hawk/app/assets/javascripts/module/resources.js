@@ -165,12 +165,12 @@ $(function() {
               return __("Multi-state");
             } else if (row.type == "clone") {
               return __("Clone");
-            } else if (row.template != null) {
+            } else if (row.template && row.template.length > 0) {
               return '<a href="' + Routes.agent_path({id: "@" + row.template}) + '" data-toggle="modal" data-target="#modal-lg">' + "@" + row.template + '</a>';
-            } else if ("class" in row && "provider" in row && "type" in row) {
+            } else if ("clazz" in row && "provider" in row && "type" in row) {
               var agent = "";
-              if (row["class"])
-              agent += row["class"] + ":";
+              if (row["clazz"])
+              agent += row["clazz"] + ":";
               if (row["provider"])
               agent += row.provider + ":";
               agent += row.type;
