@@ -512,30 +512,33 @@ class Cib
       uname = n.attributes['uname']
       id = n.attributes['id']
       state = :unclean
+      standby = false
       maintenance = @crm_config[:"maintenance-mode"] ? true : false
       ns = @xml.elements["cib/status/node_state[@uname='#{uname}']"]
       if ns
         state = CibTools.determine_online_status(ns, crm_config[:"stonith-enabled"])
-        if state == :online
-          standby = n.elements["instance_attributes/nvpair[@name='standby']"]
-          # TODO(could): is the below actually a sane test?
-          if standby && ['true', 'yes', '1', 'on'].include?(standby.attributes['value'])
-            state = :standby
-          end
-          m = n.elements["instance_attributes/nvpair[@name='maintenance']"]
-          if m && ['true', 'yes', '1', 'on'].include?(m.attributes['value'])
-            maintenance = true
-          end
+        selems = n.elements["instance_attributes/nvpair[@name='standby']"]
+        # TODO(could): is the below actually a sane test?
+        if selems && ['true', 'yes', '1', 'on'].include?(selems.attributes['value'])
+          standby = true
+        end
+        m = n.elements["instance_attributes/nvpair[@name='maintenance']"]
+        if m && ['true', 'yes', '1', 'on'].include?(m.attributes['value'])
+          maintenance = true
         end
       else
         # If there's no node state at all, the node is unclean if fencing is enabled,
         # and offline if fencing is disabled.
         state = crm_config[:"stonith-enabled"] ? :unclean : :offline
       end
+      if standby and state == :online
+        state = :standby
+      end
       @nodes << Hashie::Mash.new(
         :uname => uname,
         :state => state,
         :id => id,
+        :standby => standby,
         :maintenance => maintenance
       )
       if state == :unclean

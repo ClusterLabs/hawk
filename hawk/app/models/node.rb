@@ -32,17 +32,13 @@ class Node < Tableless
   end
 
   def online
-    state == "online"
+    !standby
   end
 
   def standby!
     out, err, rc = Invoker.instance.run "crm_attribute", "-N", name, "-n", "standby", "-v", "on", "-l", "forever"
     raise CommandError.new err unless rc == 0
     true
-  end
-
-  def standby
-    state == "standby"
   end
 
   def ready!
@@ -80,6 +76,7 @@ class Node < Tableless
       record.xml = xml
       record.name = xml.attributes['uname'] || ''
       record.state = state[:state]
+      record.standby = state[:standby]
       record.maintenance = state[:maintenance]
       record.fence = can_fence
 
