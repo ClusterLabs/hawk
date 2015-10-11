@@ -58,7 +58,19 @@ module WizardHelper
     end
   end
 
+  def shortdesc_format(text)
+    if text.is_a? Hash
+      text = text["__content__"] || ""
+    end
+    return "" if text.blank?
+    return text
+  end
+
   def longdesc_format(text)
+    if text.is_a? Hash
+      text = text["__content__"] || ""
+    end
+    return "" if text.blank?
     text.gsub!(/([^\n])\n([^\n])/, '\1 \2')
     simple_format(html_escape(text), {}, sanitize: false)
   end
