@@ -16,6 +16,36 @@ class Tag < Resource
     self.class.mapping
   end
 
+  def state
+    prio = {
+      unknown: 0,
+      stopped: 1,
+      started: 2,
+      slave: 3,
+      master: 4,
+      pending: 5,
+      failed: 6
+    }
+    sum_state = :unknown
+    # This is a bit magic, but refs can either
+    # be a list of ids or a list of actual child objects
+    refs.each do |ref|
+      tagged = nil
+      if ref.is_a? String
+        tagged = cib_by_id(ref)
+      else
+        tagged = cib_by_id(ref.id)
+      end
+      unless tagged.nil?
+        rstate = tagged[:state]
+        if prio[rstate] > prio[sum_state]
+          sum_state = rstate
+        end
+      end
+    end
+    sum_state
+  end
+
   class << self
     def all
       super.select do |record|
@@ -25,11 +55,9 @@ class Tag < Resource
 
     def instantiate(xml)
       record = allocate
-
       record.refs = xml.elements.collect("obj_ref") do |el|
         el.attributes["id"]
       end
-
       record
     end
 
