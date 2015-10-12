@@ -373,6 +373,7 @@ class Cib
     rsclist.each do |resource|
       resource[:state] ||= :stopped
       if resource.has_key? :instances
+        resource[:state] = :stopped if resource[:state] == :unknown
         resource[:instances].each do |_, states|
           prio.keys.each do |rstate|
             if states.has_key? rstate.to_s
