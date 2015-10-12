@@ -41,8 +41,12 @@ class ResourcesController < ApplicationController
           result.push resource
         when "tag"
           resource.refs.map! do |child|
-            Resource.find(child)
-          end
+            begin
+              Resource.find(child)
+            rescue Cib::RecordNotFound
+              next
+            end
+          end.reject! { |e| e.nil? }
 
           result.push resource
         end

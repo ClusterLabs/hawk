@@ -180,6 +180,12 @@ class Resource < Record
       super(true)
     end
 
+    def find(id, attr = 'id')
+      rsc = super(id, attr)
+      return rsc if rsc.is_a? Resource
+      raise Cib::RecordNotFound, _("Not a resource")
+    end
+
     def cib_type_fetch
       "configuration//*[self::resources or self::tags]/*"
     end

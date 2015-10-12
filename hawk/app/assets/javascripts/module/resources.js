@@ -115,7 +115,11 @@ $(function() {
       clickToSelect: true,
       class: 'col-sm-6',
       formatter: function(value, row, index) {
-        return Object.keys(row.running_on).join(", ");
+        if ("running_on" in row) {
+          return Object.keys(row.running_on).join(", ");
+        } else {
+          return "";
+        }
       }
     },
     {

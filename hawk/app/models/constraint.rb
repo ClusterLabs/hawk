@@ -16,6 +16,12 @@ class Constraint < Record
       super(true)
     end
 
+    def find(id, attr = 'id')
+      rsc = super(id, attr)
+      return rsc if rsc.is_a? Constraint
+      raise Cib::RecordNotFound, _("Not a constraint")
+    end
+
     def cib_type_fetch
       :constraints
     end
