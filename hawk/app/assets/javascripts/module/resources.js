@@ -111,7 +111,7 @@ $(function() {
           return __("Group");
         } else if (row.object_type == "master") {
           return __("Multi-state");
-        } else if (row.type == "clone") {
+        } else if (row.object_type == "clone") {
           return __("Clone");
         } else if (row.object_type == "tag") {
           return __("Tag");
@@ -407,8 +407,16 @@ $(function() {
       sortOrder: 'asc',
       detailView: true,
       onExpandRow: function (index, row, detail) {
-        if (row.children) {
+        if (row.children || row.child || row.refs) {
           var columns = statesResourcesColumns.slice(0);
+          var datasource = [];
+          if (row.children) {
+            datasource = row.children;
+          } else if (row.child) {
+            datasource = [row.child];
+          } else {
+              datasource = row.refs;
+          }
 
           columns.unshift({
             sortable: false,
@@ -423,7 +431,7 @@ $(function() {
             .html('<table></table>')
             .find('table')
             .bootstrapTable({
-              data: row.children,
+              data: datasource,
               striped: true,
               pagination: false,
               smartDisplay: false,

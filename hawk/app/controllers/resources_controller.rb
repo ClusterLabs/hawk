@@ -32,8 +32,7 @@ class ResourcesController < ApplicationController
           end
 
           result.push resource
-        when "clone"
-        when "master"
+        when "clone", "master"
           r = Resource.find(resource.child)
 
           selected.push r.id
