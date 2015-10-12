@@ -38,8 +38,10 @@ class Tag < Resource
       end
       unless tagged.nil?
         rstate = tagged[:state]
-        if prio[rstate] > prio[sum_state]
-          sum_state = rstate
+        unless rstate.nil?
+          if prio[rstate] > prio[sum_state]
+            sum_state = rstate
+          end
         end
       end
     end
