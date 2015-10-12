@@ -33,7 +33,7 @@ $(function() {
             switch(row.state) {
             case 'online':
               return [
-                '<i class="fa fa-play text-success" title="',
+                '<i class="fa fa-play fa-lg text-success" title="',
                 row.state,
                 '"></i>'
               ].join('');
@@ -41,7 +41,7 @@ $(function() {
 
             case 'offline':
               return [
-                '<i class="fa fa-stop text-info" title="',
+                '<i class="fa fa-stop fa-lg text-info" title="',
                 row.state,
                 '"></i>'
               ].join('');
@@ -49,7 +49,7 @@ $(function() {
 
             case 'fence':
               return [
-                '<i class="fa fa-exclamation-triangle text-danger" title="',
+                '<i class="fa fa-exclamation-triangle fa-lg text-danger" title="',
                 row.state,
                 '"></i>'
               ].join('');
@@ -57,7 +57,7 @@ $(function() {
 
             default:
               return [
-                '<i class="fa fa-exclamation-triangle text-warning" title="',
+                '<i class="fa fa-question-circle fa-lg text-warning" title="',
                 row.state,
                 '"></i>'
               ].join('');

@@ -63,20 +63,38 @@ $(function() {
             return '';
           case "unmanaged":
             return [
-              '<i class="fa fa-exclamation-triangle text-warning" title="',
+              '<i class="fa fa-exclamation-triangle fa-lg text-warning" title="',
               __("Unmanaged"),
               '"></i>'
             ].join('');
           case "started":
             return [
-              '<i class="fa fa-play text-success" title="',
+              '<i class="fa fa-play fa-lg text-success" title="',
               __("Started"),
+              '"></i>'
+            ].join('');
+          case "master":
+            return [
+              '<i class="fa fa-circle fa-lg text-info" title="',
+              __("Primary"),
+              '"></i>'
+            ].join('');
+          case "slave":
+            return [
+              '<i class="fa fa-dot-circle-o fa-lg text-success" title="',
+              __("Secondary"),
+              '"></i>'
+            ].join('');
+          case "stopped":
+            return [
+              '<i class="fa fa-stop fa-lg text-danger" title="',
+              __("Stopped"),
               '"></i>'
             ].join('');
           default:
             return [
-              '<i class="fa fa-stop text-danger" title="',
-              __("Stopped"),
+              '<i class="fa fa-question-circle fa-lg text-warning" title="',
+              value,
               '"></i>'
             ].join('');
         }
@@ -394,7 +412,7 @@ $(function() {
       ),
       striped: true,
       pagination: true,
-      pageSize: 50,
+      pageSize: 25,
       pageList: [10, 25, 50, 100, 200],
       sidePagination: 'client',
       smartDisplay: false,
