@@ -372,7 +372,7 @@ $(function() {
 
         operations.push([
           '<div class="btn-group" role="group">',
-            '<button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">',
+            '<button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" data-container="body" aria-haspopup="true" aria-expanded="true">',
               '<span class="caret"></span>',
             '</button>',
             '<ul class="dropdown-menu">',
@@ -690,6 +690,17 @@ $(function() {
         }
       }]
     });
+
+  $('#states #middle table.resources').on("click", ".dropdown-toggle", function(event){
+    var button = $(this);
+    var open = button.attr('aria-expanded');
+    var dropdown = button.siblings('.dropdown-menu');
+    if (open) {
+      dropdown.css('top', button.offset().top - $(window).scrollTop() + button.outerHeight() + "px");
+      dropdown.css('left', button.offset().left + "px");
+      dropdown.css('position', 'fixed');
+    }
+  });
 
   $('#resources #middle form')
     .validate({
