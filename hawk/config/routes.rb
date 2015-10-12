@@ -125,7 +125,7 @@ Rails.application.routes.draw do
 
   get "commands" => "pages#commands", :as => :commands
 
-  get "monitor" => "monitor#monitor", :as => :monitor
+  match "monitor" => "monitor#monitor", :as => :monitor, via: [:get, :options], :as => :monitor
   get "help" => "pages#help", :as => :help
 
   get "logout" => "sessions#destroy", :as => :logout
