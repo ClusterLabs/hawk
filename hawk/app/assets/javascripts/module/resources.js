@@ -177,6 +177,26 @@ $(function() {
             ).fetch(row.id)
           );
         },
+        'click .promote': function (e, value, row, index) {
+          e.preventDefault();
+
+          executeAction(
+            $(this),
+            i18n.translate(
+              'This will promote the resource %s. Do you want to continue?'
+            ).fetch(row.id)
+          );
+        },
+        'click .demote': function (e, value, row, index) {
+          e.preventDefault();
+
+          executeAction(
+            $(this),
+            i18n.translate(
+              'This will demote the resource %s. Do you want to continue?'
+            ).fetch(row.id)
+          );
+        },
         'click .manage': function (e, value, row, index) {
           e.preventDefault();
 
