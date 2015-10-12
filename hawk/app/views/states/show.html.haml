@@ -26,16 +26,6 @@
 
         %table.table.table-striped.resources
 
-  .row#tickets.softhide{ data: { link: "visible{>booth.tickets.length > 0}" } }
-    .col-lg-12
-      .panel.panel-default
-        .panel-heading
-          %h2.panel-title
-            %a{ href: "#tickets" }
-              = _("Tickets")
-
-        %table.table.table-striped.tickets
-
   .row#nodes
     .col-lg-12
       .panel.panel-default
@@ -45,6 +35,16 @@
               = _("Nodes")
 
         %table.table.table-striped.nodes
+
+  .row#tickets.softhide{ data: { link: "visible{>booth.tickets.length > 0}" } }
+    .col-lg-12
+      .panel.panel-default
+        .panel-heading
+          %h2.panel-title
+            %a{ href: "#tickets" }
+              = _("Tickets")
+
+        %table.table.table-striped.tickets
 
 %script#statusError{ type: "text/x-jsrender" }
   %li.list-group-item{ data: { link: "class{merge:success toggle='list-group-item-success'} class{merge:info toggle='list-group-item-info'} class{merge:warning toggle='list-group-item-warning'} class{merge:danger toggle='list-group-item-danger'}" } }
