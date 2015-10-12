@@ -21,6 +21,11 @@ class MonitorController < ApplicationController
     ENV['HTTP_ORIGIN'] = request.headers['Origin']
 
     response.headers['Content-Type'] = 'text/event-stream'
+    response.headers['Access-Control-Allow-Origin'] = request.headers["Origin"]
+    response.headers['Access-Control-Allow-Credentials'] = 'true'
+    response.headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE, OPTIONS'
+    response.headers['Access-Control-Allow-Headers'] = 'Origin, Content-Type, Accept, Authorization, X-CSRF-Token, Token'
+    response.headers['Access-Control-Max-Age'] = "1728000"
     Open3.popen2("/usr/sbin/hawk_monitor") do |_i, o, _t|
       result = o.read
       _, body = result.split("\n\n", 2)
