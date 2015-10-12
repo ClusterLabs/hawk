@@ -59,27 +59,26 @@ $(function() {
       class: 'col-sm-1',
       formatter: function(value, row, index) {
         switch(value) {
+          case "unknown":
+            return '';
           case "unmanaged":
             return [
               '<i class="fa fa-exclamation-triangle text-warning" title="',
               __("Unmanaged"),
               '"></i>'
             ].join('');
-            break;
           case "started":
             return [
               '<i class="fa fa-play text-success" title="',
               __("Started"),
               '"></i>'
             ].join('');
-            break;
           default:
             return [
               '<i class="fa fa-stop text-danger" title="',
               __("Stopped"),
               '"></i>'
             ].join('');
-            break;
         }
       }
     },
@@ -108,13 +107,13 @@ $(function() {
       clickToSelect: true,
       class: 'col-sm-1',
       formatter: function(value, row, index) {
-        if (row.type == "group") {
+        if (row.object_type == "group") {
           return __("Group");
-        } else if (row.type == "master") {
+        } else if (row.object_type == "master") {
           return __("Multi-state");
         } else if (row.type == "clone") {
           return __("Clone");
-        } else if (row.type == "tag") {
+        } else if (row.object_type == "tag") {
           return __("Tag");
         } else if (row.template && row.template.length > 0) {
           return '<a href="' + Routes.agent_path({id: "@" + row.template}) + '" data-toggle="modal" data-target="#modal-lg">' + "@" + row.template + '</a>';
@@ -215,7 +214,7 @@ $(function() {
         var operations = [];
         var dropdowns = [];
 
-        if (row.state === "started") {
+        if (row.state === "started" || row.state === "master" || row.state === "slave" || row.object_type == "tag") {
           dropdowns.push([
             '<li>',
               '<a href="',
@@ -231,7 +230,7 @@ $(function() {
           ].join(''));
         }
 
-        if (row.state === "stopped") {
+        if (row.state === "stopped" || row.object_type == "tag") {
           dropdowns.push([
             '<li>',
               '<a href="',
@@ -247,7 +246,7 @@ $(function() {
           ].join(''));
         }
 
-        if (row.state === "master") {
+        if (row.state === "master" || row.object_type == "tag") {
           dropdowns.push([
             '<li>',
               '<a href="',
@@ -263,7 +262,7 @@ $(function() {
           ].join(''));
         }
 
-        if (row.state === "slave") {
+        if (row.state === "slave" || row.object_type == "tag") {
           dropdowns.push([
             '<li>',
               '<a href="',
