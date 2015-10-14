@@ -295,7 +295,12 @@ class Record < Tableless
     Rails.logger.debug "crmsh syntax: #{cli}"
 
     out, err, rc = Invoker.instance.crm_configure_load_update cli
-    errors.add :base, err unless rc == 0
+    unless rc == 0
+      errmsg = _('Error updating %{id} (rc=%{rc})') % { id: self.id, rc: rc }
+      errmsg = err.to_s unless err.blank?
+      errmsg = out.to_s unless out.blank?
+      errors.add :base, errmsg
+    end
     rc == 0
   end
 end

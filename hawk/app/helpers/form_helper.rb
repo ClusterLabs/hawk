@@ -46,7 +46,7 @@ module FormHelper
   end
 
   def errors_for(record)
-    unless record.errors[:base].empty?
+    unless record.errors[:base].empty? || record.errors[:base].first.nil?
       content_tag(
         :div,
         record.errors[:base].first.html_safe,
