@@ -62,44 +62,49 @@ class Clone < Resource
         {
           "is-managed" => {
             type: "boolean",
-            default: "true"
+            default: "true",
+            longdesc: _("Is the cluster allowed to start and stop the resource?")
           },
           "priority" => {
             type: "integer",
-            default: "0"
+            default: "0",
+            longdesc: _("If not all resources can be active, the cluster will stop lower priority resources in order to keep higher priority ones active.")
           },
           "target-role" => {
             type: "enum",
             default: "Started",
-            values: [
-              "Started",
-              "Stopped",
-              "Master"
-            ]
+            values: ["Started", "Stopped", "Master"],
+            longdesc: _("What state should the cluster attempt to keep this resource in?")
           },
           "clone-max" => {
             type: "integer",
-            default: current_cib.nodes.length.to_s
+            default: current_cib.nodes.length.to_s,
+            longdesc: _("How many copies of the resource to start. Defaults to the number of nodes in the cluster.")
           },
           "clone-node-max" => {
             type: "integer",
-            default: "1"
+            default: "1",
+            longdesc: _("How many copies of the resource can be started on a single node. Defaults to 1.")
           },
           "notify" => {
             type: "boolean",
-            default: "false"
+            default: "false",
+            longdesc: _("When stopping or starting a copy of the clone, tell all the other copies beforehand and when the action was successful.")
           },
           "globally-unique" => {
             type: "boolean",
-            default: "true"
+            default: "true",
+            longdesc: _("Does each copy of the clone perform a different function?")
           },
           "ordered" => {
             type: "boolean",
-            default: "false"
+            default: "false",
+            longdesc: _("Should the copies be started in series (instead of in parallel)?")
           },
           "interleave" => {
             type: "boolean",
-            default: "false"
+            default: "false",
+            longdesc: _("Changes the behavior of ordering constraints (between clones/masters) so that instances can start/stop as soon as their peer instance has (rather than waiting for every instance of the other clone has).")
           }
         }
       end
