@@ -105,10 +105,13 @@ class Invoker
 
   # Returns [out, err, exitstatus]
   def invoke_crm(input, *cmd)
-    if input
-      CrmEvents.instance.push "crm #{cmd.join(' ')}\n#{input}"
-    else
-      CrmEvents.instance.push "crm #{cmd.join(' ')}"
+    # don't log certain calls to crmevents
+    unless cmd[0] == 'cluster' || (cmd[0] == 'configure' && cmd[1] == 'graph')
+      if input
+        CrmEvents.instance.push "crm #{cmd.join(' ')}\n#{input}"
+      else
+        CrmEvents.instance.push "crm #{cmd.join(' ')}"
+      end
     end
     cmd << { :stdin_data => input }
     out, err, status = run_as current_user, 'crm', *cmd
