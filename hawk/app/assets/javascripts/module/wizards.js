@@ -59,7 +59,7 @@ $(function() {
 
     vform.find(".actions .list-group-item").addClass("disabled");
     vform.find(".notifications").html('<div class="alert alert-info"><i class="fa fa-spinner fa-spin fa-2x"></i> ' + __("Applying configuration changes...") + '</div>');
-    vform.find(".submit").addClass("disabled");
+    vform.find(".submit").prop("disabled", true);
   });
   vform.on("ajax:success", function(e, data, status, xhr) {
     vform.find(".actions .list-group-item").removeClass("disabled").addClass("list-group-item-success");
