@@ -1,0 +1,63 @@
+- if request.xhr?
+  .modal-header
+    %h4
+      = icon_tag "search"
+
+      = _("Ticket:")
+      = @ticket.id
+
+      %small
+        = @ticket.ticket
+
+  .modal-body
+    %h4
+      = _("Properties")
+
+    %table.table.table-striped
+      %tbody
+        %tr
+          %th.col-xs-4
+            = _("Granted")
+          %td.col-xs-8
+            - if @ticket.granted
+              = _("Yes")
+            - else
+              = _("No")
+        %tr
+          %th.col-xs-4
+            = _("Loss Policy")
+          %td.col-xs-8
+            - if @ticket.loss_policy.blank?
+              = _("None")
+            - else
+              = @ticket.loss_policy
+    %h4
+      = _("Resources")
+
+    - if @ticket.resources.any?
+      %table.table.table-striped
+        %tbody
+          %tr
+            %th= _("ID")
+            %th= _("Sequential")
+            %th= _("Action")
+          - @ticket.resources.each do |rsc|
+            - rsc[:resources].each do |id|
+              %tr
+                %td
+                  = id
+
+                %td
+                  - if rsc[:sequential]
+                    = _("Yes")
+                  - else
+                    = _("No")
+                %td
+                  = rsc[:action] || '-'
+    - else
+      .alert.alert-info
+        = _("No resources defined for ticket")
+
+  .modal-footer
+    %button.btn.btn-default{ type: "button", data: { dismiss: "modal" } }
+      = _("Close")

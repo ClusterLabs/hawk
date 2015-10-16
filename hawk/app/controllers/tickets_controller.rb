@@ -136,6 +136,7 @@ class TicketsController < ApplicationController
       format.json do
         render json: @ticket.to_json
       end
+      format.html
       format.any { not_found  }
     end
   end
@@ -209,6 +210,14 @@ class TicketsController < ApplicationController
   end
 
   def default_base_layout
-    "withrightbar"
+    if ["index", "types"].include? params[:action]
+      "withrightbar"
+    else
+      if params[:action] == "show"
+        "modal"
+      else
+        super
+      end
+    end
   end
 end
