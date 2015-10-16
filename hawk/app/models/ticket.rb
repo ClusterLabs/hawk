@@ -52,13 +52,15 @@ class Ticket < Constraint
   end
 
   def grant!(site)
-    out, err, rc = Invoker.instance.run "booth", "client", "grant", "-t", id, "-s", site.to_s
+    raise Constraint::CommandError.new _("Simulator active: Use the ticket controls in the simulator") if current_cib.sim?
+    out, err, rc = Invoker.instance.run "booth", "client", "grant", "-t", ticket, "-s", site.to_s
     raise Constraint::CommandError.new err unless rc == 0
     rc == 0
   end
 
   def revoke!(site)
-    out, err, rc = Invoker.instance.run "booth", "client", "revoke", "-t", id
+    raise Constraint::CommandError.new _("Simulator active: Use the ticket controls in the simulator") if current_cib.sim?
+    out, err, rc = Invoker.instance.run "booth", "client", "revoke", "-t", ticket
     raise Constraint::CommandError.new err unless rc == 0
     rc == 0
   end
@@ -94,7 +96,7 @@ class Ticket < Constraint
         cmd.push ")" unless set[:sequential] == "true" && set[:sequential]
       end
 
-      unless loss_policy.empty?
+      unless loss_policy.blank?
         cmd.push "loss-policy=#{loss_policy}"
       end
     end.join(" ")
