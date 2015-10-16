@@ -74,7 +74,6 @@ class Wizard
     @params = params
     @actions = []
     @errors = []
-    return false if @errors.nil? || @errors.length > 0
     CrmScript.run ["run", @name, @params], rootpw do |result, err|
       @errors << err if err
       unless result.nil?

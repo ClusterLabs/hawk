@@ -27,6 +27,18 @@ module CrmScript
   end
   module_function :splitline
 
+  def cleanerr(err)
+    # remove Password: prompt from err
+    err.split("\n").map do |line|
+      if line.start_with? "Password:"
+        ""
+      else
+        line
+      end
+    end.join("\n").strip
+  end
+  module_function :cleanerr
+
   def run(jsondata, rootpw)
     user = rootpw.nil? ? 'hacluster' : 'root'
     cmd = crmsh_escape(JSON.dump(jsondata))
@@ -45,6 +57,12 @@ module CrmScript
     out, err, status = Util.capture3(*cmdline)
     tmpf.unlink
     ENV['HOME'] = old_home
+
+    if err.nil?
+      err = ""
+    else
+      err = cleanerr err
+    end
 
     if !err.blank?
       yield nil, err
