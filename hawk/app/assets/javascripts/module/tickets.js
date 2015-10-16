@@ -24,7 +24,13 @@ $(function() {
       sortOrder: 'asc',
       columns: [{
         field: 'id',
-        title: __('Constraint ID'),
+        title: __('ID'),
+        sortable: true,
+        switchable: false,
+        clickToSelect: true
+      }, {
+        field: 'ticket',
+        title: __('Ticket'),
         sortable: true,
         switchable: false,
         clickToSelect: true
@@ -157,11 +163,29 @@ $(function() {
         clickToSelect: true,
         class: 'col-sm-1',
         formatter: function(value, row, index) {
-          return '';
+          if (row.granted) {
+            return [
+              '<i class="fa fa-check-circle fa-lg text-success" title="',
+              __("Granted"),
+              '"></i>'
+            ].join('');
+          } else {
+            return [
+              '<i class="fa fa-ban fa-lg text-danger" title="',
+              __("Revoked"),
+              '"></i>'
+            ].join('');
+          }
         }
       }, {
         field: 'id',
-        title: __('Name'),
+        title: __('ID'),
+        sortable: true,
+        switchable: false,
+        clickToSelect: true
+      }, {
+        field: 'ticket',
+        title: __('Ticket'),
         sortable: true,
         switchable: false,
         clickToSelect: true
@@ -180,7 +204,7 @@ $(function() {
               answer = confirm(
                 i18n.translate(
                   'This will request the ticket %s be granted to the present site. Do you want to continue?'
-                ).fetch(row.id)
+                ).fetch(row.ticket)
               );
             } catch (e) {
               (console.error || console.log).call(console, e.stack || e);
@@ -255,7 +279,7 @@ $(function() {
               answer = confirm(
                 i18n.translate(
                   'This will request the ticket %s be revoked. Do you want to continue?'
-                ).fetch(row.id)
+                ).fetch(row.ticket)
               );
             } catch (e) {
               (console.error || console.log).call(console, e.stack || e);
