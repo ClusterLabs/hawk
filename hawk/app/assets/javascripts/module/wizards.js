@@ -70,6 +70,9 @@ $(function() {
     var errors = $.map(xhr.responseJSON, function(e) { return '<pre class="bg-danger">' + e + '</pre>'; }).join("");
     vform.find(".notifications").html(errors);
   });
+  vform.on("change", "#rootpw", function() {
+      vform.find(".submit").prop("disabled", false);
+  });
 
   $('.hljs').each(function(i, block) {
     hljs.highlightBlock(block);
