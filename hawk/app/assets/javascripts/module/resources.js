@@ -50,6 +50,39 @@ $(function() {
     }
   }
 
+  function resourceRoutes(row) {
+    var editRoute = null;
+    var destroyRoute = null;
+    var cib = $('body').data('cib');
+    switch(row.object_type) {
+    case "primitive":
+      editRoute = Routes.edit_cib_primitive_path(cib, row.id);
+      destroyRoute = Routes.cib_primitive_path(cib, row.id);
+      break;
+    case "group":
+      editRoute = Routes.edit_cib_group_path(cib, row.id);
+      destroyRoute = Routes.cib_group_path(cib, row.id);
+      break;
+    case "clone":
+      editRoute = Routes.edit_cib_clone_path(cib, row.id);
+      destroyRoute = Routes.cib_clone_path(cib, row.id);
+      break;
+    case "master":
+      editRoute = Routes.edit_cib_master_path(cib, row.id);
+      destroyRoute = Routes.cib_master_path(cib, row.id);
+      break;
+    case "tag":
+      editRoute = Routes.edit_cib_tag_path(cib, row.id);
+      destroyRoute = Routes.cib_tag_path(cib, row.id);
+      break;
+    default:
+      editRoute = Routes.edit_cib_resource_path(cib, row.id);
+      destroyRoute = Routes.cib_resource_path(cib, row.id);
+      break;
+    }
+    return { edit: editRoute, destroy: destroyRoute };
+  }
+
   var statesResourcesColumns = [
     {
       field: 'state',
@@ -405,6 +438,18 @@ $(function() {
           '</div>'
         ].join(''));
 
+        var rsc_routes = resourceRoutes(row);
+
+        operations.push([
+          '<a href="',
+            rsc_routes.edit,
+            '" class="edit btn btn-default btn-xs" title="',
+            __('Edit'),
+          '">',
+            '<i class="fa fa-pencil"></i>',
+          '</a> '
+        ].join(''));
+
         operations.push([
           '<a href="',
           Routes.cib_resource_path(
@@ -611,84 +656,11 @@ $(function() {
         formatter: function(value, row, index) {
           var operations = [];
 
-          switch(row.object_type) {
-            case "primitive":
-              var editRoute = Routes.edit_cib_primitive_path(
-                $('body').data('cib'),
-                row.id
-              );
-
-              var deleteRoute = Routes.cib_primitive_path(
-                $('body').data('cib'),
-                row.id
-              );
-
-              break;
-            case "group":
-              var editRoute = Routes.edit_cib_group_path(
-                $('body').data('cib'),
-                row.id
-              );
-
-              var deleteRoute = Routes.cib_group_path(
-                $('body').data('cib'),
-                row.id
-              );
-
-              break;
-            case "clone":
-              var editRoute = Routes.edit_cib_clone_path(
-                $('body').data('cib'),
-                row.id
-              );
-
-              var deleteRoute = Routes.cib_clone_path(
-                $('body').data('cib'),
-                row.id
-              );
-
-              break;
-            case "master":
-              var editRoute = Routes.edit_cib_master_path(
-                $('body').data('cib'),
-                row.id
-              );
-
-              var deleteRoute = Routes.cib_master_path(
-                $('body').data('cib'),
-                row.id
-              );
-
-              break;
-            case "tag":
-              var editRoute = Routes.edit_cib_tag_path(
-                $('body').data('cib'),
-                row.id
-              );
-
-              var deleteRoute = Routes.cib_tag_path(
-                $('body').data('cib'),
-                row.id
-              );
-
-              break;
-            default:
-              var editRoute = Routes.edit_cib_resource_path(
-                $('body').data('cib'),
-                row.id
-              );
-
-              var deleteRoute = Routes.cib_resource_path(
-                $('body').data('cib'),
-                row.id
-              );
-
-              break;
-          }
+          var rsc_routes = resourceRoutes(row);
 
           operations.push([
             '<a href="',
-                editRoute,
+              rsc_routes.edit,
               '" class="edit btn btn-default btn-xs" title="',
               __('Edit'),
             '">',
@@ -698,7 +670,7 @@ $(function() {
 
           operations.push([
             '<a href="',
-                deleteRoute,
+              rsc_routes.destroy,
               '" class="delete btn btn-default btn-xs" title="',
               __('Delete'),
             '">',

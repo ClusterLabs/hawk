@@ -127,6 +127,7 @@ $(function() {
             '</a> '
           ].join(''));
 
+
           return [
             '<div class="btn-group" role="group">',
               operations.join(''),
@@ -191,7 +192,7 @@ $(function() {
         clickToSelect: true
       }, {
         field: null,
-        title: __('Grant'),
+        title: __('Granted'),
         sortable: false,
         clickToSelect: true,
         class: 'col-sm-1',
@@ -248,29 +249,7 @@ $(function() {
                 }
               });
             }
-          }
-        },
-        formatter: function(value, row, index) {
-          return [
-            '<a href="',
-              Routes.grant_cib_ticket_path(
-                $('body').data('cib'),
-                row.id
-              ),
-            '" class="grant btn btn-default btn-xs" title="',
-              __('Grant'),
-            '">',
-              '<i class="fa fa-toggle-off"></i>',
-            '</a>'
-          ].join('');
-        }
-      }, {
-        field: null,
-        title: __('Revoke'),
-        sortable: false,
-        clickToSelect: true,
-        class: 'col-sm-1',
-        events: {
+          },
           'click .revoke': function (e, value, row, index) {
             e.preventDefault();
             var $self = $(this);
@@ -326,18 +305,33 @@ $(function() {
           }
         },
         formatter: function(value, row, index) {
-          return [
-            '<a href="',
-              Routes.revoke_cib_ticket_path(
-                $('body').data('cib'),
-                row.id
-              ),
-            '" class="revoke btn btn-default btn-xs" title="',
-              __('Revoke'),
-            '">',
-              '<i class="fa fa-toggle-off"></i>',
-            '</a>'
-          ].join('');
+          if (!row.granted) {
+            return [
+              '<a href="',
+                Routes.grant_cib_ticket_path(
+                  $('body').data('cib'),
+                  row.id
+                ),
+              '" class="grant btn btn-default btn-xs" title="',
+                __('Grant'),
+              '">',
+                '<i class="fa fa-toggle-off"></i>',
+              '</a>'
+            ].join('');
+          } else {
+            return [
+              '<a href="',
+                Routes.revoke_cib_ticket_path(
+                  $('body').data('cib'),
+                  row.id
+                ),
+              '" class="revoke btn btn-default btn-xs" title="',
+                __('Revoke'),
+              '">',
+                '<i class="fa fa-toggle-on text-success"></i>',
+              '</a>'
+            ].join('');
+          }
         }
       }, {
         field: 'operate',
@@ -421,14 +415,14 @@ $(function() {
 
           operations.push([
             '<a href="',
-                Routes.cib_ticket_path(
-                  $('body').data('cib'),
-                  row.id
-                ),
-              '" class="delete btn btn-default btn-xs" title="',
-              __('Delete'),
-            '">',
-              '<i class="fa fa-trash"></i>',
+            Routes.cib_ticket_path(
+              $('body').data('cib'),
+              row.id
+            ),
+            '" class="details btn btn-default btn-xs" title="',
+            __('Details'),
+            '" data-toggle="modal" data-target="#modal-lg">',
+            '<i class="fa fa-search"></i>',
             '</a> '
           ].join(''));
 
