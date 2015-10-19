@@ -2,6 +2,8 @@
 # Copyright (c) 2015 Kristoffer Gronlund <kgronlund@suse.com>
 # See COPYING for license information.
 
+require 'shellwords'
+
 class Wizard
   extend ActiveModel::Naming
   include ActiveModel::Conversion
@@ -74,10 +76,10 @@ class Wizard
     @params.each do |k, v|
       if v.is_a? Hash
         v.each do |kk, vv|
-          base.push "#{k}:#{kk}='#{vv}'"
+          base.push "#{k}:#{kk}=#{Shellwords.escape(vv)}"
         end
       else
-        base.push "#{k}='#{v}'"
+        base.push "#{k}=#{Shellwords.escape(v)}"
       end
     end
     base.join(" ")
