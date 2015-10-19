@@ -15,24 +15,24 @@ $(function() {
           .end();
     })
     .on('focus', '.form-group.has-error .form-control', function(e) {
-      var error = $(this)
-        .siblings('span.error-block')
-        .html();
+      var group = $(this).closest('.form-group');
+      var error = group.find('.form-control-feedback').data('title');
+      if (!error) {
+        error = group.find('.form-control-feedback').data('original-title');
+      }
+      if (!error) {
+        error = group.find('.error-block').html();
+      }
 
-      $(this)
-        .siblings('i.fa.form-control-feedback')
-        .tooltip({ title: error })
-        .tooltip('show');
+      group.find('.form-control-feedback').tooltip({title: error }).tooltip('show');
     })
     .on('blur', '.form-group.has-error .form-control', function(e) {
-      $(this)
-        .siblings('i.fa.form-control-feedback')
-        .tooltip('hide');
+      var group = $(this).closest('.form-group');
+      group.find('.form-control-feedback').tooltip('hide');
     })
     .on('keyup', '.form-group.has-error .form-control', function(e) {
-      $(this)
-        .siblings('i.fa.form-control-feedback')
-        .tooltip('hide');
+      var group = $(this).closest('.form-group');
+      group.find('.form-control-feedback').tooltip('hide');
     });
 
   $.validator.setDefaults({

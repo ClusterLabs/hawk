@@ -2,6 +2,15 @@
 // See COPYING for license.
 
 $(function() {
+  jQuery.validator.addMethod("wizard_check", function(value, element) {
+    if (!this.optional(element)) {
+      if ($(element).data('param-type') == 'resource') {
+        return /^[^ ]+$/.test(value);
+      }
+    }
+    return true;
+  }, __("Must be a valid resource ID"));
+
   $('#wizards #middle form')
     .bootstrapWizard({
       tabClass: 'nav nav-pills',
@@ -38,6 +47,7 @@ $(function() {
     .validate({
       ignore: ".ignore, :hidden"
     });
+  $('#wizards #middle form input').addClass('wizard_check');
   $("[data-wizard-enable]").change(function() {
     $('.form-group').each(function () { $(this).removeClass('has-success'); });
     $('.form-group').each(function () { $(this).removeClass('has-error'); });
