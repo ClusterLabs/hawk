@@ -69,11 +69,26 @@ class Wizard
     @need_rootpw = @errors.empty? && @actions.any? { |a| a['name'] != 'cib' }
   end
 
+  def command_string
+    base = ["crm", "script", "run", @name]
+    @params.each do |k, v|
+      if v.is_a? Hash
+        v.each do |kk, vv|
+          base.push "#{k}:#{kk}='#{vv}'"
+        end
+      else
+        base.push "#{k}='#{v}'"
+      end
+    end
+    base.join(" ")
+  end
+
   def run(params, rootpw=nil)
     # TODO: live-update frontend
     @params = params
     @actions = []
     @errors = []
+    CrmEvents.instance.push command_string
     CrmScript.run ["run", @name, @params], rootpw do |result, err|
       @errors << err if err
       unless result.nil?
