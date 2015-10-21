@@ -10,6 +10,9 @@
       = icon_text "server", _("Node: %{name}" % { name: @node.name }), class: "page"
 
   .modal-body
+    - if @node.remote
+      .alert.alert-info{role: :alert}
+        = _("Remote node.")
     %h4
       = _("Utilization")
 

@@ -515,6 +515,7 @@ class Cib
       state = :unclean
       standby = false
       maintenance = @crm_config[:"maintenance-mode"] ? true : false
+      remote = n.attributes['type'] == 'remote'
       ns = @xml.elements["cib/status/node_state[@uname='#{uname}']"]
       if ns
         state = CibTools.determine_online_status(ns, crm_config[:"stonith-enabled"])
@@ -536,14 +537,35 @@ class Cib
         state = :standby
       end
       @nodes << Hashie::Mash.new(
-        :uname => uname,
-        :state => state,
-        :id => id,
-        :standby => standby,
-        :maintenance => maintenance
+        uname: uname,
+        state: state,
+        id: id,
+        standby: standby,
+        maintenance: maintenance,
+        remote: remote
       )
       if state == :unclean
         error _('Node "%{node}" is UNCLEAN and needs to be fenced.') % { node: uname }
+      end
+    end
+
+    # add remote nodes that may not exist in cib/configuration/nodes/node
+    @xml.elements.each("cib/status/node_state[remote_node='true']") do |n|
+      uname = n.attributes['uname']
+      id = n.attributes['id']
+      # To determine the state of remote nodes, we need to look at
+      # the resource by the same name
+      state = :unknown
+      standby = false
+      unless @nodes.any? { |nod| nod[:id] == id }
+        @nodes << Hashie::Mash.new(
+          uname: uname,
+          state: state,
+          id: id,
+          standby: standby,
+          maintenance: maintenance,
+          remote: true
+        )
       end
     end
 

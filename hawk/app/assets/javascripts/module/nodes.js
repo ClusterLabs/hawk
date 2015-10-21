@@ -30,39 +30,29 @@ $(function() {
           clickToSelect: true,
           class: 'col-sm-1',
           formatter: function(value, row, index) {
+            var icon = ['fa', 'fa-lg'];
+            var title = row.state;
             switch(row.state) {
             case 'online':
-              return [
-                '<i class="fa fa-play fa-lg text-success" title="',
-                row.state,
-                '"></i>'
-              ].join('');
+              icon.push('fa-play', 'text-success');
               break;
-
             case 'offline':
-              return [
-                '<i class="fa fa-stop fa-lg text-info" title="',
-                row.state,
-                '"></i>'
-              ].join('');
+              icon.push('fa-stop', 'text-info');
               break;
-
             case 'fence':
-              return [
-                '<i class="fa fa-exclamation-triangle fa-lg text-danger" title="',
-                row.state,
-                '"></i>'
-              ].join('');
+              icon.push('fa-exclamation-triangle', 'text-danger');
               break;
-
             default:
-              return [
-                '<i class="fa fa-question-circle fa-lg text-warning" title="',
-                row.state,
-                '"></i>'
-              ].join('');
+              icon.push('fa-question-circle', 'text-warning');
               break;
             }
+            var ret = ['<i class="', icon.join(' '), '" title="', title, '"></i>'];
+
+            if (row.remote) {
+              ret.push('<i class="fa fa-cloud text-info" title="', __("Remote"), '"></i>');
+            }
+
+            return ret.join('');
           }
         }, {
           field: 'name',
