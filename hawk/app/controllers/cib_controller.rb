@@ -16,21 +16,21 @@ class CibController < ApplicationController
       format.json do
         render json: { errors: [e.message] }, status: :not_found
       end
-      format.any { head :not_found  }
+      format.any { head :not_found }
     end
   rescue SecurityError => e
     respond_to do |format|
       format.json do
         render json: { errors: [e.message] }, status: :forbidden
       end
-      format.any { head :forbidden  }
+      format.any { head :forbidden }
     end
   rescue RuntimeError => e
     respond_to do |format|
       format.json do
         render json: { errors: [e.message] }, status: :internal_server_error
       end
-      format.any { head :internal_server_error  }
+      format.any { head :internal_server_error }
     end
   end
 

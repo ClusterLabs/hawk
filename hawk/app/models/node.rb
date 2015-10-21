@@ -92,10 +92,7 @@ class Node < Tableless
 
       record.attrs = if xml.elements['instance_attributes']
         vals = xml.elements['instance_attributes'].elements.collect do |e|
-          [
-            e.attributes['name'],
-            e.attributes['value']
-          ]
+          [e.attributes['name'], e.attributes['value']]
         end
 
         Hash[vals.sort]
@@ -117,7 +114,7 @@ class Node < Tableless
 
       if record.utilization.any?
         Util.safe_x('/usr/sbin/crm_simulate', '-LU').split("\n").each do |line|
-          m = line.match /^Remaining:\s+([^\s]+)\s+capacity:\s+(.*)$/
+          m = line.match(/^Remaining:\s+([^\s]+)\s+capacity:\s+(.*)$/)
 
           next unless m && m[1] == record.name
 
@@ -150,12 +147,10 @@ class Node < Tableless
     # Record#find will fail when looking for nodes by their human-readable
     # name, so have to override here
     def find(id)
-      begin
-        super(id)
-      rescue Cib::RecordNotFound
-        # Can't find by id attribute, try by name attribute
-        super(name, 'name')
-      end
+      super(id)
+    rescue Cib::RecordNotFound
+      # Can't find by id attribute, try by name attribute
+      super(name, 'name')
     end
   end
 end
