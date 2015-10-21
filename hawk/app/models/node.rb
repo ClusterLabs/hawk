@@ -26,14 +26,6 @@ class Node < Tableless
     presence: { message: _('Name is required') },
     format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _('Invalid name') }
 
-  def state
-    if @remote && @state == :unknown
-      rsc = current_cib.resources_by_id[:id]
-      @state = rsc[:state] if rsc
-    end
-    @state
-  end
-
   def online!
     out, err, rc = Invoker.instance.run "crm_attribute", "-N", name, "-n", "standby", "-v", "off", "-l", "forever"
     raise CommandError.new err unless rc == 0

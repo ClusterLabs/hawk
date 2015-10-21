@@ -839,6 +839,14 @@ class Cib
       end
     end
 
+    # Now we can patch up the state of remote nodes
+    @nodes.each do |n|
+      if n[:remote] && n[:state] != :unclean
+        rsc = @resources_by_id[n[:id]]
+        n[:state] = @resources_by_id[n[:id]][:state] if rsc
+      end
+    end
+
     # Now we can sort the node array
     @nodes.sort!{|a,b| a[:uname].natcmp(b[:uname], true)}
 
