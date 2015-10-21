@@ -54,7 +54,7 @@ class Cluster < Tableless
     Rails.logger.debug "chmod 0660 #{fname}..."
     File.chmod(0660, fname)
     Rails.logger.debug "Copy #{fname}..."
-    out, err, rc = Invoker.instance.crm("cluster", "copy", fname)
+    out, err, rc = Util.run_as("root", "crm", "cluster", "copy", fname)
     Rails.logger.debug "Copy returned #{out} #{err} #{rc}"
     rc == 0 ? true : err
   end
@@ -87,13 +87,13 @@ class Cluster < Tableless
     def remove(name)
       Rails.logger.debug "remove: Removing #{name}..."
       fname = "#{Rails.root}/tmp/dashboard.js"
-      return true unless File.exists?(fname)
+      return true unless File.exist?(fname)
       clusters = JSON.parse(File.read(fname))
-      clusters = clusters.delete_if {|key, value| key == name }
+      clusters = clusters.delete_if { |key, _| key == name }
       Rails.logger.debug "remove: Writing #{fname}..."
       File.open(fname, "w") { |f| f.write(JSON.pretty_generate(clusters)) }
       File.chmod(0660, fname)
-      out, err, rc = Invoker.instance.crm("cluster", "copy", fname)
+      out, err, rc = Util.run_as("root", "crm", "cluster", "copy", fname)
       Rails.logger.debug "remove: Copy returned #{out} #{err} #{rc}"
       [out, err, rc]
     end

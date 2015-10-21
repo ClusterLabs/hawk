@@ -498,11 +498,12 @@ var dashboardAddCluster = (function() {
     } else {
       var close = $("#" + clusterId).find(".panel-title form");
       close.on("ajax:success", function(e, data) {
-        $("#" + clusterId).remove();
+        $("#" + clusterId).parent().remove();
         $.growl({ message: __('Cluster removed successfully.')}, {type: 'success'});
       });
       close.on("ajax:error", function(e, xhr, status, error) {
-        $.growl({ message: __('Failed to remove cluster.')}, {type: 'danger'});
+        $("#" + clusterId).parent().remove();
+        $.growl({ message: __('Error removing cluster.')}, {type: 'danger'});
       });
       var body = $("#" + clusterId).find(".panel-body");
       body.find("button.btn").click(function() {
@@ -513,8 +514,17 @@ var dashboardAddCluster = (function() {
 })();
 
 var dashboardSetupAddClusterForm = function() {
-  $('form').toggleify();
-  $('form').on("ajax:success", function(e, data, status, xhr) {
+  $('#new_cluster').on("submit", function() {
+    $('.modal-content .form-errors').append([
+      '<div class="alert alert-info">',
+      '<i class="fa fa-refresh fa-2x fa-spin"></i> ',
+      __("Please wait..."),
+      '</div>'
+    ].join(''));
+    $(this).find('.submit').prop('disabled', true);
+    return true; // ensure submit actually happens
+  });
+  $('#new_cluster').on("ajax:success", function(e, data, status, xhr) {
     $('#modal').modal('hide');
     $('.modal-content').html('');
     dashboardAddCluster(data);
