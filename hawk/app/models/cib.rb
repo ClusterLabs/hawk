@@ -843,7 +843,13 @@ class Cib
     @nodes.each do |n|
       if n[:remote] && n[:state] != :unclean
         rsc = @resources_by_id[n[:id]]
-        n[:state] = @resources_by_id[n[:id]][:state] if rsc
+        if rsc && [:master, :slave, :started].include?(rsc[:state])
+          n[:state] = :online
+        elsif rsc && [:failed, :pending].include?(rsc[:state])
+          n[:state] = :unclean
+        else
+          n[:state] = :offline
+        end
       end
     end
 
