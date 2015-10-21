@@ -42,6 +42,9 @@ $(function() {
             case 'fence':
               icon.push('fa-exclamation-triangle', 'text-danger');
               break;
+            case 'unclean':
+              icon.push('fa-exclamation-triangle', 'text-danger');
+              break;
             default:
               icon.push('fa-question-circle', 'text-warning');
               break;
