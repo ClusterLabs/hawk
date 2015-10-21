@@ -214,6 +214,8 @@ class Cib
   end
 
   def find_node(id)
+    fail(RecordNotFound, id) if @xml.nil?
+
     state = @nodes.select { |n| n[:id] == id }
     can_fence = @crm_config[:stonith_enabled]
 
@@ -231,8 +233,9 @@ class Cib
   end
 
   def nodes_ordered
-    can_fence = @crm_config[:stonith_enabled]
     ret = []
+    return ret if @xml.nil?
+    can_fence = @crm_config[:stonith_enabled]
     @xml.elements.each('cib/configuration/nodes/node') do |xml|
       id = xml.attributes['id']
       state = @nodes.select { |n| n[:id] == id }
@@ -458,7 +461,7 @@ class Cib
       case status.exitstatus
       when 0
         @xml = REXML::Document.new(out)
-        unless @xml.root
+        unless @xml && @xml.root
           error _('Error invoking %{cmd}') % {:cmd => '/usr/sbin/cibadmin -Ql' }
           init_offline_cluster id, user, use_file
           return
