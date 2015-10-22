@@ -10,19 +10,22 @@ require 'singleton'
 class CrmEvents
   include Singleton
 
-  TRUNC_LOG_SIZE = 32*1024
-  MAX_LOG_SIZE = 128*1024
+  TRUNC_LOG_SIZE = 32 * 1024
+  MAX_LOG_SIZE = 128 * 1024
 
   def truncate?(f)
     (f.mtime < 1.day.ago && f.size > TRUNC_LOG_SIZE) || f.size > MAX_LOG_SIZE
   end
 
   def push(cmd)
+    shadow_id = ENV["CIB_shadow"]
+
     cmd = cmd.join(" ") if cmd.is_a? Array
     begin
       File.open(path, 'a') do |f|
         f.flock(File::LOCK_EX)
         f.truncate(0) if truncate? f
+        f << "# Shadow CIB: #{shadow_id} (Simulated)\n" unless shadow_id.nil?
         f << cmd
         f << "@@COMMAND-END@@\n"
       end
@@ -33,16 +36,14 @@ class CrmEvents
   end
 
   def cmds
-    begin
-      File.open(path, "r") do |f|
-        f.flock(File::LOCK_SH)
-        f.read.split("@@COMMAND-END@@\n").map do |cmd|
-          cmd.strip
-        end
+    File.open(path, "r") do |f|
+      f.flock(File::LOCK_SH)
+      f.read.split("@@COMMAND-END@@\n").map do |cmd|
+        cmd.strip
       end
-    rescue
-      []
     end
+  rescue
+    []
   end
 
   private
