@@ -398,20 +398,39 @@ var dashboardAddCluster = (function() {
     return content;
   }
 
+  var updateLayout = function() {
+    var clusters = $("#clusters").children();
+    var nclusters = clusters.length;
+    if (nclusters == 1) {
+      clusters.removeClass().addClass("col-md-6 col-md-offset-3");
+    } else if (nclusters == 2) {
+      clusters.removeClass().addClass("col-md-6");
+    } else if (nclusters == 3) {
+      clusters.removeClass().addClass("col-md-6 col-lg-4");
+    } else if (nclusters == 4) {
+      clusters.removeClass().addClass("col-md-6");
+    } else {
+      clusters.removeClass().addClass("col-md-4");
+    }
+  };
+
   return function(data) {
     var clusterId = newClusterId();
     var title = data.name || __("Local Status");
 
     var content = basicCreateBody(clusterId, data);
 
-    var text = '<div class="col-lg-4 col-sm-6 col-xs-12">' +
-        '<div id="' +
-        clusterId +
-        '" class="panel panel-default" data-epoch="">' +
-        '<div class="panel-heading">' +
-        '<h3 class="panel-title">' +
-        '<span id="refresh"></span> ' +
-        '<a href="' + baseUrl(data) + '/">' + title + '</a>';
+    var text = [
+      '<div id="outer-',
+      clusterId,
+      '" class="col-lg-4 col-sm-6 col-xs-12">',
+      '<div id="',  clusterId, '" class="panel panel-default" data-epoch="">',
+      '<div class="panel-heading">',
+      '<h3 class="panel-title">',
+      '<span id="refresh"></span> ',
+      '<a href="', baseUrl(data), '/">', title, '</a>'
+    ].join('');
+
     if (data.host != null) {
       var s_remove = __('Remove cluster _NAME_ from dashboard?').replace('_NAME_', data.name);
       text = text +
@@ -432,12 +451,15 @@ var dashboardAddCluster = (function() {
       '</div>';
     $("#clusters").append(text);
 
+    updateLayout();
+
     if (data.host == null) {
       clusterRefresh(clusterId, data);
     } else {
       var close = $("#" + clusterId).find(".panel-title form");
       close.on("ajax:success", function(e, data) {
         $("#" + clusterId).parent().remove();
+        updateLayout();
         $.growl({ message: __('Cluster removed successfully.')}, {type: 'success'});
       });
       close.on("ajax:error", function(e, xhr, status, error) {
