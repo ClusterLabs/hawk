@@ -100,65 +100,43 @@ class Cib
     }.tap do |result|
       if minimal
         result[:resources] = {}
-
-        result[:resource_states] = {
-          pending: 0,
-          started: 0,
-          failed: 0,
-          master: 0,
-          slave: 0,
-          stopped: 0
-        }
-
         result[:nodes] = {}
+        result[:tickets] = {}
 
-        result[:node_states] = {
-          pending: 0,
-          online: 0,
-          standby: 0,
-          offline: 0,
-          unclean: 0
-        }
-
-        result[:tickets] = []
-
-        result[:ticket_states] = {
-          granted: 0,
-          revoked: 0
-        }
-
-        current_resources.each do |key, values|
+        resources.each do |rsc|
+          key = rsc[:id]
           result[:resources][key] ||= {}
-
-          values[:instances].each do |_, attrs|
-            found = false
+          rsc[:instances].each do |_, attrs|
             [:master, :slave, :started, :failed, :pending].each do |rstate|
               if attrs[rstate]
                 attrs[rstate].each do |n|
                   result[:resources][key][n[:node]] = rstate
                 end
-                result[:resource_states][rstate] += 1
-                found = true
               end
             end
-            result[:resource_states][:stopped] += 1 unless found
-          end
+          end if rsc.key? :instances
+          rsc[:children].each do |child|
+            child[:instances].each do |_, attrs|
+              [:master, :slave, :started, :failed, :pending].each do |rstate|
+                if attrs[rstate]
+                  attrs[rstate].each do |n|
+                    result[:resources][key][n[:node]] = rstate
+                  end
+                end
+              end
+            end if child.key? :instances
+          end if rsc.key? :children
         end
 
         current_nodes.each do |node|
           result[:nodes][node[:uname]] = node[:state]
-
-          result[:node_states][node[:state]] += 1
         end
 
         current_tickets.each do |key, values|
-          case
-          when values[:granted]
-            result[:tickets].push(key => :granted)
-            result[:ticket_states][:granted] += 1
+          if values[:granted]
+            result[:tickets][key] = :granted
           else
-            result[:tickets].push(key => :revoked)
-            result[:ticket_states][:revoked] += 1
+            result[:tickets][key] = :revoked
           end
         end
 

@@ -1,4 +1,5 @@
 // Copyright (c) 2009-2015 Tim Serong <tserong@suse.com>
+// Copyright (c) 2015 Kristoffer Gronlund <kgronlund@suse.com>
 // See COPYING for license.
 
 // https://<host>:7630/cib/mini.json
@@ -140,108 +141,46 @@ var dashboardAddCluster = (function() {
     }
 
     text += '<div class="row">';
-    text += '<div class="col-md-12">';
-    text += '<div class="list-group">';
+    text += '<div class="col-md-12 text-center">';
 
-    var makePopoverButton = function(id, content, cls, title) {
-      var body = "";
-      body += '<a tabindex="0" id="' + id + '" type="button" style="width: 100%;" class="btn list-group-item ' + cls + '" ';
-      body += 'data-trigger="focus" data-toggle="popover" title="' + title + '" ';
-      body += 'data-content="" ';
-      body += '>';
-      body += content;
-      body += '</a>';
-      return body;
+    var status_summary = {
+      nodes: [],
+      resources: [],
+      tickets: []
     };
 
-    var dlBegin = function() {
-      return '<dl class="dl-horizontal">';
-    };
-
-    var dlEnd = function() {
-      return '</dl>';
-    };
-
-    var dlAdd = function(title, text) {
-      return '<dt>' + title + '</dt><dd>' + text + '</dd>';
-    }
-
-    var descCache = {};
-
-    $.each(cib.node_states, function(state, count) {
-      if (count > 0) {
-        var details = dlBegin();
-        $.each(cib.nodes, function(n, v) {
-          if (state == v) {
-            details += dlAdd(n, v);
-          }
-        });
-        details += dlEnd();
-        descCache['node_btn_' + state] = details;
-
-        text += makePopoverButton('node_btn_' + state, count + ' ' + state + ' ' + plural('node', count),
-                                  listGroupClassForState(state), __("Details"));
-      }
+    $.each(cib.nodes, function(n, v) {
+      status_summary.nodes.push({name: n, state: v});
     });
 
-    $.each(cib.resource_states, function(state, count) {
-      if (count > 0) {
-        var details = dlBegin();
-        $.each(cib.resources, function(rsc, locs) {
-          if (state == "stopped" && $.isEmptyObject(locs)) {
-            details += dlAdd(rsc, "<em>[stopped]</em>");
-          } else {
-            var active = "";
-            $.each(locs, function(node, st) {
-              if (st == state) {
-                active += node + " ";
-              }
-            });
-            if (active != "")
-              details += dlAdd(rsc, active);
-          }
-        });
-        details += dlEnd();
-        descCache['rsc_btn_' + state] = details;
-
-        text += makePopoverButton('rsc_btn_' + state, count + ' ' + state + ' ' + plural('resource', count),
-                                  listGroupClassForState(state), __("Details"));
-      }
+    $.each(cib.resources, function(n, v) {
+      var rsc = {name: n, instances: []};
+      $.each(v, function(nn, vv) {
+        rsc.instances.push({node: nn, state: vv});
+      });
+      status_summary.resources.push(rsc);
     });
 
-    $.each(cib.ticket_states, function(state, count) {
-      if (count > 0) {
-        var details = dlBegin();
-        $.each(cib.tickets, function(i, e) {
-          $.each(e, function(name, tstate) {
-            if (state == tstate) {
-              details += dlAdd(name, state);
-            }
-          });
-        });
-        details += dlEnd();
-        descCache['ticket1_btn_' + state] = details;
-
-        text += makePopoverButton('ticket1_btn_' + state, count + ' ' + state + ' ' + plural('ticket', count),
-                                  listGroupClassForState(state), __("Details"));
-      }
+    $.each(cib.tickets, function(n, v) {
+      status_summary.tickets.push({name: n, state: v});
     });
+
+    var cwidth = Math.min(status_summary.nodes.length * 36 + 36, 360);
+    var cheight = Math.min(status_summary.resources.length * 24 + status_summary.tickets.length * 24, 550);
+
+    text += '<canvas width="' + cwidth + '" height="' + cheight + '"></canvas>';
 
     text += '</div>';
     text += '</div>';
-    text += '</div>';
 
-    var cs = checksum(text);
+    var cs = checksum(text + JSON.stringify(status_summary));
 
     if (tag.data('hash') != cs) {
       tag.html(text);
       tag.data('hash', cs);
 
-      $.each(descCache, function(id, desc) {
-        var btn = $('#' + clusterId + ' #' + id);
-        btn.data("content", desc);
-        btn.popover({animation: true, html: true});
-      });
+      tag.find('canvas').cibStatusMatrix(status_summary);
+
     }
 
   }
@@ -514,6 +453,7 @@ var dashboardAddCluster = (function() {
 })();
 
 var dashboardSetupAddClusterForm = function() {
+  $('#new_cluster').toggleify();
   $('#new_cluster').on("submit", function() {
     $('.modal-content .form-errors').append([
       '<div class="alert alert-info">',
