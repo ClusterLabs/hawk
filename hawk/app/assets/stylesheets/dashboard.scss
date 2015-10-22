@@ -4,11 +4,14 @@
 #cib-status-matrix-details {
   display: none;
   position: fixed;
-  bottom: 0px;
-  left: 0px;
-  width: 100%;
-  min-height: 32px;
-  background: #EBEBEB;
-  padding: 2em;
+  padding: 0.5em 2em 0.5em 2em;
   z-index: 10000;
+  width: auto !important;
+
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
+  background-clip: padding-box;
 }

@@ -11,44 +11,46 @@ $(function() {
     var ctx = canvas.getContext("2d");
 
     var defaults = {
-        colors: {
-          master: "#00aeef",
-          started: "#7ac143",
-          slave: "#f8981d",
-          stopped: "#d9534f",
-          pending: "#ffd457",
-          failed: "#ed1c24",
-          online: "#d0e4a6",
-          standby: "#747678",
-          offline: "#e4e5e6",
-          unclean: "#ec008c",
-          granted: "#c1d82f",
-          revoked: "#b5bbd4",
-        },
-        icons: {
-          master: "fa-circle text-info",
-          started: "fa-circle text-success",
-          slave: "fa-circle text-warning",
-          stopped: "fa-minus-circle text-danger",
-          pending: "fa-question-circle text-warning",
-          failed: "fa-times-circle text-danger",
-          online: "fa-circle-thin text-success",
-          standby: "fa-dot-circle-o text-warning",
-          offline: "fa-minus-circle text-muted",
-          unclean: "fa-circle text-danger",
-          granted: "fa-check-circle text-success",
-          revoked: "fa-times-circle-o text-muted",
-        },
-        title: __("Details"),
-        info_selector: "#cib-status-matrix-details",
-        info_template: [
-          '{{if item}}',
-          '<h2><i class="fa fa-2x {{>item_icon}}"></i> {{:item.name}} <small>{{:item.state}}</small></h2>',
-          '{{/if}}',
-          '{{if node}}',
-          '<h3><i class="fa fa-lg {{>node_icon}}"></i> {{:node.name}} <small>{{:node.state}}</small></h3>',
-          '{{/if}}'
-        ].join('')
+      colors: {
+        master: "#00aeef",
+        started: "#7ac143",
+        slave: "#f8981d",
+        stopped: "#d9534f",
+        pending: "#ffd457",
+        failed: "#ed1c24",
+        online: "#d0e4a6",
+        standby: "#747678",
+        offline: "#e4e5e6",
+        unclean: "#ec008c",
+        granted: "#c1d82f",
+        revoked: "#b5bbd4",
+      },
+      icons: {
+        master: "fa-circle text-info",
+        started: "fa-circle text-success",
+        slave: "fa-circle text-warning",
+        stopped: "fa-minus-circle text-danger",
+        pending: "fa-question-circle text-warning",
+        failed: "fa-times-circle text-danger",
+        online: "fa-circle-thin text-success",
+        standby: "fa-dot-circle-o text-warning",
+        offline: "fa-minus-circle text-muted",
+        unclean: "fa-circle text-danger",
+        granted: "fa-check-circle text-success",
+        revoked: "fa-times-circle-o text-muted",
+      },
+      title: __("Details"),
+      info_selector: "#cib-status-matrix-details",
+      info_template: [
+        '<ul class="list-unstyled">',
+        '{{if item}}',
+        '<li><h3><i class="fa fa-lg {{>item_icon}}"></i> {{:item.name}} <small>{{:item.state}}</small></h3></li>',
+        '{{/if}}',
+        '{{if node}}',
+        '<li><h3><i class="fa fa-lg {{>node_icon}}"></i> {{:node.name}} <small>{{:node.state}}</small></h3></li>',
+        '{{/if}}',
+        '</ul>'
+      ].join('')
     };
     if (options === undefined) {
       options = defaults;
@@ -177,15 +179,23 @@ $(function() {
           } else {
             data.item_icon = options.icons["stopped"];
           }
-          $(options.info_selector).html(infoTmpl.render(data));
+          var abshitx = $(this).offset().left + hitx*cellw;
+          var abshity = $(this).offset().top + hity*cellh;
+          var target = $(options.info_selector);
+          target.html(infoTmpl.render(data)).width("auto");
+          if (abshitx + (cellw / 2) > $(window).width() / 2) {
+            target.addClass("right").removeClass("left").offset({left: abshitx - 16 - target.outerWidth(), top: abshity - 16});
+          } else {
+            target.removeClass("right").addClass("left").offset({left: abshitx + cellw + 16, top: abshity - 16});
+          }
         }
       }
       lasthitx = hitx;
       lasthity = hity;
     }).on("mouseleave", function(event) {
-      $(options.info_selector).css("display", "none");
+      $(options.info_selector).fadeOut(200);
     }).on("mouseenter", function(event) {
-      $(options.info_selector).css("display", "block");
+      $(options.info_selector).fadeIn(200);
     });
   };
 });
