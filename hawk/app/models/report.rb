@@ -34,7 +34,7 @@ class Report
     elsif archive.extname == ".xz"
       "application/x-xz"
     elsif archive.extname == ".gz"
-      "application/x-gz"
+      "application/gzip"
     else
       "application/x-compressed"
     end
@@ -281,8 +281,11 @@ class Report
     attribute :upload, ActionDispatch::Http::UploadedFile
 
     validate do |record|
-      unless ["application/x-bzip", "application/x-xz", "application/x-gz"].include? record.upload.content_type
-        errors.add(:upload, _("must have correct MIME type"))
+      unless ["application/gzip",
+              "application/x-bzip",
+              "application/x-xz",
+              "application/x-gz"].include? record.upload.content_type
+        errors.add(:upload, _("must have correct MIME type (was %s)") % record.upload.content_type)
       end
 
       unless record.upload.original_filename =~ /\.tar\.(bz2|gz|xz)\z/
