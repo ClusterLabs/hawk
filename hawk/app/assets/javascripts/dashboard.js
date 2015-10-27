@@ -37,7 +37,7 @@ var dashboardAddCluster = (function() {
       return __('Permission denied');
     },
     err_failed_op: function(op, node, rc, reason) {
-      return __('%{op} failed on _NODE_} (rc=_RC_, reason=_REASON_)').replace('_OP_', op).replace('_NODE_', node).replace('_RC_', rc).replace('_REASON_', reason);
+      return __('_OP_ failed on _NODE_} (rc=_RC_, reason=_REASON_)').replace('_OP_', op).replace('_NODE_', node).replace('_RC_', rc).replace('_REASON_', reason);
     }
   };
 
