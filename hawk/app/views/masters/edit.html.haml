@@ -15,11 +15,12 @@
     .row.master
       = localized_help_for :resources, :master
 
-    - @master.mapping.each do |key, values|
-      - next unless values[:longdesc]
+    #helpentries
+      - @master.mapping.each do |key, values|
+        - next unless values[:longdesc]
 
-      .row{ class: key }
-        %h2.margin-bottom
-          = key
+        .row.attrhelp{ class: key }
+          %h2.margin-bottom
+            = key
 
-        = simple_format values[:longdesc]
+          = simple_format values[:longdesc]
