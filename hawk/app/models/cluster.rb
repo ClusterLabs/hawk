@@ -49,14 +49,21 @@ class Cluster < Tableless
       clusters = {}
     end
     clusters[@name] = self.to_hash
-    Rails.logger.debug "Writing #{fname}..."
-    File.open(fname, "w") { |f| f.write(JSON.pretty_generate(clusters)) }
-    Rails.logger.debug "chmod 0660 #{fname}..."
-    File.chmod(0660, fname)
-    Rails.logger.debug "Copy #{fname}..."
-    out, err, rc = Util.run_as("root", "crm", "cluster", "copy", fname)
-    Rails.logger.debug "Copy returned #{out} #{err} #{rc}"
-    rc == 0 ? true : err
+    begin
+      Rails.logger.debug "Writing #{fname}..."
+      File.open(fname, "w") { |f| f.write(JSON.pretty_generate(clusters)) }
+      Rails.logger.debug "chmod 0664 #{fname}..."
+      File.chmod(0660, fname)
+      Rails.logger.debug "Copy #{fname}..."
+      out, err, rc = Util.run_as("root", "crm", "cluster", "copy", fname)
+      if rc == 0
+        out, err, rc = Util.run_as("root", "crm", "cluster", "run", "chown hacluster:haclient #{fname}")
+      end
+      Rails.logger.debug "Copy returned #{out} #{err} #{rc}"
+      rc == 0 ? true : err
+    rescue Exception => e
+      e.message
+    end
   end
 
   def update
@@ -78,8 +85,12 @@ class Cluster < Tableless
       fname = "#{Rails.root}/tmp/dashboard.js"
       return [] unless File.exists?(fname)
       clusters = []
-      JSON.parse(File.read(fname)).each do |id, data|
-        clusters << parse(data)
+      begin
+        JSON.parse(File.read(fname)).each do |id, data|
+          clusters << parse(data)
+        end
+      rescue Exception => e
+        Rails.logger.debug "Error: #{e}"
       end
       clusters
     end
@@ -88,14 +99,21 @@ class Cluster < Tableless
       Rails.logger.debug "remove: Removing #{name}..."
       fname = "#{Rails.root}/tmp/dashboard.js"
       return true unless File.exist?(fname)
-      clusters = JSON.parse(File.read(fname))
-      clusters = clusters.delete_if { |key, _| key == name }
-      Rails.logger.debug "remove: Writing #{fname}..."
-      File.open(fname, "w") { |f| f.write(JSON.pretty_generate(clusters)) }
-      File.chmod(0660, fname)
-      out, err, rc = Util.run_as("root", "crm", "cluster", "copy", fname)
-      Rails.logger.debug "remove: Copy returned #{out} #{err} #{rc}"
-      [out, err, rc]
+      begin
+        clusters = JSON.parse(File.read(fname))
+        clusters = clusters.delete_if { |key, _| key == name }
+        Rails.logger.debug "remove: Writing #{fname}..."
+        File.open(fname, "w") { |f| f.write(JSON.pretty_generate(clusters)) }
+        File.chmod(0660, fname)
+        out, err, rc = Util.run_as("root", "crm", "cluster", "copy", fname)
+        if rc == 0
+          out, err, rc = Util.run_as("root", "crm", "cluster", "run", "chown hacluster:haclient #{fname}")
+        end
+        Rails.logger.debug "remove: Copy returned #{out} #{err} #{rc}"
+        [out, err, rc]
+      rescue Exception => e
+        ["", e.message, 1]
+      end
     end
   end
 end

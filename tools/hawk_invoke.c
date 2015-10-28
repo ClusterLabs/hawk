@@ -108,6 +108,13 @@ static int allow_root(int argc, char** argv)
 	    strcmp(argv[4], "copy") == 0 &&
 	    strendswith(argv[5], "/tmp/dashboard.js"))
 		return 1;
+	if (argc == 6 &&
+	    strcmp(argv[2], "crm") == 0 &&
+	    strcmp(argv[3], "cluster") == 0 &&
+	    strcmp(argv[4], "run") == 0 &&
+	    strendswith(argv[5], "/tmp/dashboard.js") &&
+	    strncmp(argv[5], "chown hacluster:haclient", 24) == 0)
+		return 1;
 	return 0;
 }
 
