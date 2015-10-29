@@ -186,7 +186,8 @@ $(function() {
     });
 
     self.find("#sim-addticket").click(function() {
-      $("#modal .modal-content").html($("#inject-ticket").render());
+      var content = $("#modal .modal-content");
+      content.html($("#inject-ticket").render());
       content.find("form").submit(function(event) {
         var ticket = content.find("#ticket-inject-ticket").val();
         var action = content.find("#ticket-inject-action").val();
