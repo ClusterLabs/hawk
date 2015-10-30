@@ -28,7 +28,7 @@
 %define	pkg_group	System Environment/Daemons
 %endif
 
-%if 0%{?suse_version} == 1110 || 0%{?suse_version} == 1315
+%if 0%{?suse_version} && !0%{?is_opensuse}
 %define bundle_gems	1
 %endif
 
@@ -39,7 +39,7 @@ Name:           hawk
 Summary:        HA Web Konsole
 License:        GPL-2.0
 Group:          %{pkg_group}
-Version:        1.0.0~alpha1+git.1442580882.11cc227
+Version:        1.0.1+git.1446137442.d9c6c0e
 Release:        0
 Url:            http://www.clusterlabs.org/wiki/Hawk
 Source:         %{name}-%{version}.tar.bz2
@@ -74,10 +74,10 @@ BuildRequires:  pacemaker-libs-devel
 
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:builder) >= 3.2
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:byebug) >= 3.5
-BuildRequires:  rubygem(%{rb_default_ruby_abi}:fast_gettext:0.9)
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:fast_gettext) >= 0.9.2
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:gettext:3.1)
-BuildRequires:  rubygem(%{rb_default_ruby_abi}:gettext_i18n_rails:1.2)
-BuildRequires:  rubygem(%{rb_default_ruby_abi}:gettext_i18n_rails_js)
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:gettext_i18n_rails:1) >= 1.2
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:gettext_i18n_rails_js) >= 1.0
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:haml-rails) >= 0.8.2
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:hashie) >= 3.4
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:js-routes:1)
@@ -108,9 +108,9 @@ BuildRequires:  rubygem(%{rb_default_ruby_abi}:web-console:2) >= 2.1
 %else
 # SLES bundles all this stuff at build time, other distros just
 # use runtime dependencies.
-Requires:       rubygem(%{rb_default_ruby_abi}:fast_gettext:0.9)
-Requires:       rubygem(%{rb_default_ruby_abi}:gettext_i18n_rails:1.2)
-Requires:       rubygem(%{rb_default_ruby_abi}:gettext_i18n_rails_js)
+Requires:       rubygem(%{rb_default_ruby_abi}:fast_gettext) >= 0.9.2
+Requires:       rubygem(%{rb_default_ruby_abi}:gettext_i18n_rails:1) >= 1.2
+Requires:       rubygem(%{rb_default_ruby_abi}:gettext_i18n_rails_js) >= 1.0
 Requires:       rubygem(%{rb_default_ruby_abi}:haml-rails) >= 0.8.2
 Requires:       rubygem(%{rb_default_ruby_abi}:hashie) >= 3.4
 Requires:       rubygem(%{rb_default_ruby_abi}:js-routes:1)
@@ -141,8 +141,6 @@ BuildRequires:  pam-devel
 %description
 A web-based GUI for managing and monitoring the Pacemaker
 High-Availability cluster resource manager.
-
-Authors: Tim Serong <tserong@suse.com>
 
 
 %prep
