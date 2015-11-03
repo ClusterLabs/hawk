@@ -36,7 +36,7 @@ class Record < Tableless
         obj
       rescue SecurityError => e
         raise Cib::PermissionDenied, e.message
-      rescue RecordNotFound => e
+      rescue Cib::RecordNotFound => e
         raise Cib::RecordNotFound, e.message
       rescue RuntimeError => e
         raise Cib::CibError, e.message
@@ -75,7 +75,7 @@ class Record < Tableless
         end
       rescue SecurityError => e
         raise Cib::PermissionDenied, e.message
-      rescue RecordNotFound => e
+      rescue Cib::RecordNotFound => e
         []
       rescue RuntimeError => e
         raise Cib::CibError, e.message
