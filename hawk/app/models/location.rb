@@ -156,10 +156,10 @@ class Location < Constraint
           # Rule notation
           xml.elements.each("rule") do |rule|
             set = {
-              id: rule_elem.attributes["id"],
-              role: rule_elem.attributes["role"] || nil,
-              score: rule_elem.attributes["score"] || rule_elem.attributes["score-attribute"] || nil,
-              boolean_op: rule_elem.attributes["boolean-op"] || "and",
+              id: rule.attributes["id"],
+              role: rule.attributes["role"] || nil,
+              score: rule.attributes["score"] || rule.attributes["score-attribute"] || nil,
+              boolean_op: rule.attributes["boolean-op"] || "and",
               expressions: []
             }
 
