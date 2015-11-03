@@ -92,6 +92,23 @@ class Cib
     meta.status == :offline
   end
 
+  def node_state_of_resource(rsc)
+    nodestate = {}
+    rsc[:instances].each do |_, attrs|
+      [:master, :slave, :started, :failed, :pending].each do |rstate|
+        if attrs[rstate]
+          attrs[rstate].each do |n|
+            nodestate[n[:node]] = rstate
+          end
+        end
+      end
+    end if rsc.key? :instances
+    rsc[:children].each do |child|
+      nodestate = nodestate.merge(node_state_of_resource(child))
+    end if rsc.key? :children
+    nodestate
+  end
+
   def status(minimal = false)
     {
       meta: meta.to_h,
@@ -104,28 +121,7 @@ class Cib
         result[:tickets] = {}
 
         resources.each do |rsc|
-          key = rsc[:id]
-          result[:resources][key] ||= {}
-          rsc[:instances].each do |_, attrs|
-            [:master, :slave, :started, :failed, :pending].each do |rstate|
-              if attrs[rstate]
-                attrs[rstate].each do |n|
-                  result[:resources][key][n[:node]] = rstate
-                end
-              end
-            end
-          end if rsc.key? :instances
-          rsc[:children].each do |child|
-            child[:instances].each do |_, attrs|
-              [:master, :slave, :started, :failed, :pending].each do |rstate|
-                if attrs[rstate]
-                  attrs[rstate].each do |n|
-                    result[:resources][key][n[:node]] = rstate
-                  end
-                end
-              end
-            end if child.key? :instances
-          end if rsc.key? :children
+          result[:resources][rsc[:id]] = node_state_of_resource(rsc)
         end
 
         current_nodes.each do |node|
