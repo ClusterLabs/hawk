@@ -246,7 +246,7 @@ $(function() {
         smartDisplay: false,
         search: true,
         searchAlign: 'left',
-        showColumns: true,
+        showColumns: false,
         showRefresh: true,
         minimumCountColumns: 0,
         sortName: 'to_time',
