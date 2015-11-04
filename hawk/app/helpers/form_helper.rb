@@ -49,7 +49,7 @@ module FormHelper
     unless record.errors[:base].empty? || record.errors[:base].first.nil?
       content_tag(
         :div,
-        record.errors[:base].first.html_safe,
+        simple_format(record.errors[:base].first),
         class: "alert alert-danger",
         role: "alert"
       )
