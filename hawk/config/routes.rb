@@ -132,4 +132,5 @@ Rails.application.routes.draw do
 
   get "login" => "sessions#new", :as => :login
   match 'login' => "sessions#create", via: [ :post, :options], :as => :signin
+  get '*path' => redirect('/') # if nothing else matches
 end
