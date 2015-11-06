@@ -33,8 +33,7 @@
           = apply_button(main_form, primitive)
           = revert_button(main_form, primitive)
 
-        = link_to _("Back"), types_cib_resources_path(cib_id: cib.id), class: "btn btn-default back"
-
+        = link_to _("Back"), path_for_primitive_back, class: "btn btn-default back"
 
 
 %script#jstmpl-paramslist{type: "text/x-jsrender"}
