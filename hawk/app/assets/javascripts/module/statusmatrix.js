@@ -6,9 +6,53 @@
 
 $(function() {
   $.fn.cibStatusMatrix = function(status, options) {
-    var canvas = this.get(0);
 
+    var firstelement = null;
+    if (status.resources.length == 0 && status.tickets.length == 0) {
+      return;
+    } else if (status.resources.length == 0) {
+      firstelement = status.tickets[0];
+    } else {
+      firstelement = status.resources[0];
+    }
+    firstelement = ['<th class="status-matrix-element status-matrix-resource">',
+                    firstelement.name,
+                    '</th>'].join('');
+
+    $(this).wrap('<table class="status-matrix-wrapper"><tbody></tbody></table>');
+    $(this).wrap('<tr></tr>')
+      .wrap([
+        '<td class="dash-cell" rowspan="',
+        status.resources.length + status.tickets.length,
+        '"></td>'
+      ].join(''));
+    var canvas = this.get(0);
     var ctx = canvas.getContext("2d");
+
+    // td -> tr -> tbody
+    var wrapper = this.closest('tbody');
+
+    var thetable = this.closest('table');
+    thetable.attr('width', thetable.parent().width());
+    $(window).on('resize', function() {
+      thetable.attr('width', thetable.parent().width());
+    });
+
+    this.closest('tr').prepend(firstelement);
+
+    var resourceheaders = [];
+    $.each(status.resources, function(i, r) {
+      if (i > 0) {
+        resourceheaders.push('<tr><th class="status-matrix-element status-matrix-resource">', r.name, '</th></tr>');
+      }
+    });
+    $.each(status.tickets, function(i, t) {
+      if (status.resources.length > 0 || i > 0) {
+        resourceheaders.push('<tr><th class="status-matrix-element status-matrix-ticket">', t.name, '</th></tr>');
+      }
+    });
+    wrapper.append(resourceheaders.join(''));
+
 
     var defaults = {
       colors: {
@@ -61,9 +105,9 @@ $(function() {
 
     var colorByState = options.colors;
 
-    var render = function(x, y, w, h, node, item) {
-      var inset = 3;
-      ctx.lineWidth = 3;
+    var renderItem = function(x, y, w, h, node, item) {
+      var inset = 2;
+      ctx.lineWidth = 2;
       var hasStroke = false;
       var hasFill = false;
 
@@ -81,23 +125,15 @@ $(function() {
         ctx.strokeStyle = null;
       }
 
-      if (hasFill && !hasStroke) {
-        ctx.strokeStyle = ctx.fillStyle;
+      if (hasFill && hasStroke) {
+        ctx.fillRect(x + inset + 1, y + inset + 1, w - inset*2 - 2, h - inset*2 - 2);
         ctx.strokeRect(x + inset, y + inset, w - inset*2, h - inset*2);
-      }
-      if (hasFill) {
+      } else if (hasFill && !hasStroke) {
         ctx.fillRect(x + inset, y + inset, w - inset*2, h - inset*2);
-      }
-
-      if (hasStroke && !hasFill) {
+      } else if (!hasFill && hasStroke) {
         ctx.fillStyle = ctx.strokeStyle;
         ctx.fillRect(x + inset, y + inset, w - inset*2, h - inset*2);
-      }
-      if (hasStroke) {
-        ctx.strokeRect(x + inset, y + inset, w - inset*2, h - inset*2);
-      }
-
-      if (!hasStroke && !hasFill) {
+      } else {
         ctx.strokeStyle = options.colors.offline;
         ctx.strokeRect(x + inset, y + inset, w - inset*2, h - inset*2);
       }
@@ -108,18 +144,38 @@ $(function() {
     var height = $(this).attr("height") || 240;
     var ncols = status.nodes.length + 1;
     var nrows = Math.max(status.resources.length + status.tickets.length, 1);
-    var cellw = width / ncols;
-    var cellh = height / nrows;
 
     var columns = [];
     for (var i = 0; i < status.nodes.length; ++i) {
-      columns.push({name: status.nodes[i].name, state: status.nodes[i].state, row: []});
-      columns[columns.length-1].row.length = nrows;
+      if (!status.nodes[i].remote) {
+        columns.push({name: status.nodes[i].name, state: status.nodes[i].state, remote: false, row: []});
+        columns[columns.length-1].row.length = nrows;
+      }
     }
-    var stopped = {name: __("Stopped Resources"), state: null, row: []}
+    var hasremotes = false;
+    for (var i = 0; i < status.nodes.length; ++i) {
+      if (status.nodes[i].remote) {
+        hasremotes = true;
+        columns.push({name: status.nodes[i].name, state: status.nodes[i].state, remote: true, row: []});
+        columns[columns.length-1].row.length = nrows;
+      }
+    }
+    var totalspacings = 10;
+    if (hasremotes) {
+      totalspacings += 10;
+    }
+    var cellw = (width - totalspacings) / ncols;
+    var cellh = height / nrows;
+    var stopped = {name: __("Stopped Resources"), remote: false, state: null, row: []}
     columns.push(stopped);
 
     $.each(columns, function(col, node) {
+      var colx = col*cellw;
+      if (node.remote) {
+        colx += 10;
+      } else if (col == columns.length - 1) {
+        colx += totalspacings;
+      }
       $.each(status.resources, function(row, rsc) {
         var hasInstance = false;
         if ("instances" in rsc) {
@@ -128,7 +184,7 @@ $(function() {
               hasInstance = true;
               var inst = {name: rsc.name, state: rsc.instances[i].state};
               node.row[row] = inst;
-              render(col*cellw, row*cellh, cellw, cellh, node, inst);
+              renderItem(colx, row*cellh, cellw, cellh, node, inst);
             }
           }
 
@@ -136,11 +192,14 @@ $(function() {
             rsc._stopped = true;
             var srsc = {name: rsc.name, state: "stopped"};
             stopped.row[row] = srsc;
-            render((ncols-1)*cellw, row*cellh, cellw, cellh, stopped, srsc);
+            if (col == ncols - 1) {
+              hasInstance = true;
+            }
+            renderItem((ncols-1)*cellw + totalspacings, row*cellh, cellw, cellh, stopped, srsc);
           }
         }
         if (!hasInstance) {
-          render(col*cellw, row*cellh, cellw, cellh, node, null);
+          renderItem(colx, row*cellh, cellw, cellh, node, null);
         }
       });
     });
@@ -149,7 +208,7 @@ $(function() {
     $.each(status.tickets, function(trow, ticket) {
       var row = trow + toffset;
       columns[0].row[row] = ticket;
-      render(0*cellw, row*cellh, width, cellh, null, ticket);
+      renderItem(0*cellw, row*cellh, width, cellh, null, ticket);
     });
 
     var lasthitx = null;

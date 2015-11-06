@@ -141,7 +141,7 @@ var dashboardAddCluster = (function() {
     }
 
     text += '<div class="row">';
-    text += '<div class="col-md-12 text-center">';
+    text += '<div class="col-md-12 text-center dash-cluster-content">';
 
     var status_summary = {
       nodes: [],
@@ -150,7 +150,8 @@ var dashboardAddCluster = (function() {
     };
 
     $.each(cib.nodes, function(n, v) {
-      status_summary.nodes.push({name: n, state: v});
+      var isremote = ("remote_nodes" in cib) && (n in cib["remote_nodes"]);
+      status_summary.nodes.push({name: n, state: v, remote: isremote});
     });
 
     $.each(cib.resources, function(n, v) {
@@ -165,8 +166,8 @@ var dashboardAddCluster = (function() {
       status_summary.tickets.push({name: n, state: v});
     });
 
-    var cwidth = Math.min(status_summary.nodes.length * 36 + 36, 360);
-    var cheight = Math.min(status_summary.resources.length * 24 + status_summary.tickets.length * 24, 550);
+    var cwidth = Math.min(status_summary.nodes.length * 36 + 36, 360) + 20;
+    var cheight = status_summary.resources.length * 24 + status_summary.tickets.length * 24;
 
     text += '<canvas width="' + cwidth + '" height="' + cheight + '"></canvas>';
 
@@ -467,6 +468,7 @@ var dashboardAddCluster = (function() {
       });
       close.on("ajax:error", function(e, xhr, status, error) {
         $("#" + clusterId).parent().remove();
+        updateLayout();
         $.growl({ message: __('Error removing cluster.')}, {type: 'danger'});
       });
       var body = $("#" + clusterId).find(".panel-body");

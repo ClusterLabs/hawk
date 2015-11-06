@@ -15,3 +15,30 @@
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   background-clip: padding-box;
 }
+
+table.status-matrix-wrapper {
+  margin-left: auto;
+  margin-right: auto;
+  table-layout: fixed;
+}
+
+.status-matrix-element {
+  text-align: right;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+  font-size: $font-size-small;
+  padding-right: 10px;
+}
+
+#cib-status-matrix-details canvas {
+  vertical-align: middle;
+}
+
+.dash-cluster-content {
+  overflow: hidden;
+}
+
+.dash-cell {
+  text-align: left;
+}
