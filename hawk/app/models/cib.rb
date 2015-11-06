@@ -119,6 +119,7 @@ class Cib
       if minimal
         result[:resources] = {}
         result[:nodes] = {}
+        result[:remote_nodes] = {}
         result[:tickets] = {}
 
         resources.each do |rsc|
@@ -127,6 +128,7 @@ class Cib
 
         current_nodes.each do |node|
           result[:nodes][node[:uname]] = node[:state]
+          result[:remote_nodes][node[:uname]] = node[:state] if node[:remote]
         end
 
         current_tickets.each do |key, values|
