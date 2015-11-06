@@ -52,6 +52,7 @@
 #include <pwd.h>
 #include <grp.h>
 #include <errno.h>
+#include <ctype.h>
 #include "common.h"
 
 struct cmd_map
@@ -75,6 +76,9 @@ static struct cmd_map commands[] = {
 	{NULL, NULL}
 };
 
+#define DASHBOARD_FILE "/tmp/dashboard.js"
+
+
 static void die(const char *format, ...)
 {
 	va_list args;
@@ -87,7 +91,37 @@ static void die(const char *format, ...)
 static int strendswith(char* str, char* tail)
 {
 	size_t l = strlen(str), t = strlen(tail);
-	return l >= t && strcmp(str + l - t, tail) == 0;
+	return l >= t && strncmp(str + l - t, tail, t) == 0;
+}
+
+static int valid_dashboard_file(char* str)
+{
+	char* s;
+	for (s = str; *s; ++s) {
+		if (*s == '.' && *(s + 1) == '.') {
+			return 0;
+		} else if (!isalnum(*s) && strchr(" :/_-.", *s) == NULL) {
+			return 0;
+		}
+	}
+	return strendswith(str, DASHBOARD_FILE);
+}
+
+/*
+ * Allow chmod hacluster:haclient <path>/tmp/dashboard.js
+ * and as little else as possible
+ */
+static int valid_run_command(char* str)
+{
+	#define TMPSTR_SIZE 512
+	char tmp[TMPSTR_SIZE];
+	size_t tmplen;
+	memset(tmp, 0, TMPSTR_SIZE);
+	snprintf(tmp, sizeof(tmp), "chown %s:%s ", HACLUSTER, HACLIENT);
+	tmplen = strlen(tmp);
+	if (strncmp(str, tmp, tmplen) != 0)
+		return 0;
+	return valid_dashboard_file(str + tmplen);
 }
 
 static int allow_root(int argc, char** argv)
@@ -106,14 +140,13 @@ static int allow_root(int argc, char** argv)
 	    strcmp(argv[2], "crm") == 0 &&
 	    strcmp(argv[3], "cluster") == 0 &&
 	    strcmp(argv[4], "copy") == 0 &&
-	    strendswith(argv[5], "/tmp/dashboard.js"))
+	    valid_dashboard_file(argv[5]))
 		return 1;
 	if (argc == 6 &&
 	    strcmp(argv[2], "crm") == 0 &&
 	    strcmp(argv[3], "cluster") == 0 &&
 	    strcmp(argv[4], "run") == 0 &&
-	    strendswith(argv[5], "/tmp/dashboard.js") &&
-	    strncmp(argv[5], "chown hacluster:haclient", 24) == 0)
+	    valid_run_command(argv[5]))
 		return 1;
 	return 0;
 }
@@ -160,8 +193,7 @@ int main(int argc, char **argv)
 		die("ERROR: User '%s' not found\n", argv[1]);
 	}
 
-	if ((pwd->pw_uid == 0 || strcmp(pwd->pw_name, "root") == 0) &&
-	    allow_root(argc, argv)) {
+	if ((pwd->pw_uid == 0 || strcmp(pwd->pw_name, "root") == 0) && allow_root(argc, argv)) {
 
 		/*
 		 * Special case to become root when running hb_report
