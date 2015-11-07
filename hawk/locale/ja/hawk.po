@@ -1,11 +1,11 @@
-# Copyright (C) 2006-2015 SUSE Linux GmbH, Nuernberg
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
 # This file is distributed under the same license as the package.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2014-07-15 11:27\n"
+"PO-Revision-Date: 2015-11-05 16:58\n"
 "Last-Translator: Novell language <language@novell.com>\n"
 "Language-Team: Novell language <language@novell.com>\n"
 "Language: \n"
@@ -14,28 +14,88 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "Any changes will be lost - do you wish to proceed?"
-msgstr "変更内容は失われます。続行しますか?"
+msgid "Error"
+msgstr "エラー"
 
-msgid "Connection to server aborted - will retry every 15 seconds."
-msgstr "サーバとの接続が中止されました - 15秒ごとに再試行します。"
+msgid "Unexpected server error: _MSG_"
+msgstr "予期しないサーバエラー: _MSG_"
 
-#, fuzzy
-msgid "Connection to server failed - will retry every 15 seconds."
-msgstr "サーバとの接続が中止されました - 15秒ごとに再試行します。"
+msgid ""
+"Connection to server failed (server down or network error - will retry every 1"
+"5 seconds)."
+msgstr "サーバとの接続に失敗しました(サーバがダウンしているか、ネットワークエラーです - 15秒ごとに再試行します)。"
 
 msgid "Connection to server timed out - will retry every 15 seconds."
 msgstr "サーバとの接続がタイムアウトになりました - 15秒ごとに再試行します。"
 
-#, fuzzy
-msgid "State"
-msgstr "県または州 :            "
+msgid "Connection to server aborted - will retry every 15 seconds."
+msgstr "サーバとの接続が中止されました - 15秒ごとに再試行します。"
 
-msgid "Name"
-msgstr ""
+msgid "Permission denied"
+msgstr "アクセス承認拒否"
 
-msgid "Maintenance"
-msgstr "メンテナンス"
+msgid "_OP_ failed on _NODE_} (rc=_RC_, reason=_REASON_)"
+msgstr "_NODE_} で _OP_  が失敗しました(rc=_RC_、reason=_REASON_)"
+
+msgid "Permission denied. "
+msgstr "アクセス承認が拒否されました。 "
+
+msgid "Error connecting to server."
+msgstr "サーバへの接続エラーです。"
+
+msgid "Connection to server timed out."
+msgstr "サーバへの接続がタイムアウトしました。"
+
+msgid "Connection to server was aborted."
+msgstr "サーバへの接続が中止されました。"
+
+msgid "Server returned invalid data."
+msgstr "サーバは無効なデータを返しました。"
+
+msgid "Unknown error connecting to server."
+msgstr "サーバへの接続中に不明なエラーが発生しました。"
+
+msgid "Retrying every 15 seconds..."
+msgstr "15秒ごとに再試行します..."
+
+msgid "Cancel"
+msgstr "キャンセル"
+
+msgid "Hostname"
+msgstr "ホスト名"
+
+msgid "Username"
+msgstr "ユーザ名"
+
+msgid "Password"
+msgstr "パスワード"
+
+msgid "Connect"
+msgstr "接続"
+
+msgid "Local Status"
+msgstr "ローカルステータス"
+
+msgid "Remove cluster _NAME_ from dashboard?"
+msgstr "ダッシュボードからクラスタ _NAME_ を削除しますか?"
+
+msgid "Cluster removed successfully."
+msgstr "クラスタが正常に削除されました。"
+
+msgid "Error removing cluster."
+msgstr "クラスタの削除エラーです。"
+
+msgid "Please wait..."
+msgstr "しばらくお待ちください..."
+
+msgid "Cluster added successfully."
+msgstr "クラスタが正常に追加されました。"
+
+msgid "Create"
+msgstr "作成"
+
+msgid "Remove"
+msgstr "削除"
 
 msgid "Yes"
 msgstr "はい"
@@ -43,46 +103,305 @@ msgstr "はい"
 msgid "No"
 msgstr "いいえ"
 
-msgid "Standby"
-msgstr "スタンバイ"
+msgid "Any changes will be lost - do you wish to proceed?"
+msgstr "変更内容は失われます。続行しますか?"
+
+msgid "Clone ID"
+msgstr "クローンID"
 
 msgid "Operations"
 msgstr "操作"
 
-msgid "Online"
-msgstr "オンライン"
+msgid "Edit"
+msgstr "編集"
 
-msgid "Ready"
-msgstr "準備完了"
+msgid "Delete"
+msgstr "削除"
+
+msgid "Constraint ID"
+msgstr "制約ID"
+
+msgid "Swap with entry above"
+msgstr "上のエントリとスワップ"
+
+msgid "Link with entry above"
+msgstr "上のエントリとリンク"
+
+msgid "Unlink from entry above"
+msgstr "上のエントリからリンク解除"
+
+msgid "Type"
+msgstr "種類"
+
+msgid "Location"
+msgstr "場所"
+
+msgid "Colocation"
+msgstr "コロケーション"
+
+msgid "Order"
+msgstr "順序"
+
+msgid "Ticket"
+msgstr "チケット"
+
+msgid "Constraint"
+msgstr "制約"
+
+msgid "Group ID"
+msgstr "グループID"
+
+msgid "Rule"
+msgstr "ルール"
+
+msgid "Score"
+msgstr "スコア"
+
+msgid "Role"
+msgstr "役割"
+
+msgid "Boolean Operator"
+msgstr "ブール値オペレータ"
+
+msgid "Multi-state ID"
+msgstr "複数状態ID"
+
+msgid "Connection to server failed - will retry every 15 seconds."
+msgstr "サーバとの接続が失敗しました - 15秒ごとに再試行します。"
+
+msgid "Status"
+msgstr "状態"
+
+msgid "Remote"
+msgstr "リモート"
+
+msgid "Name"
+msgstr "名前"
+
+msgid "Maintenance"
+msgstr "メンテナンス"
+
+msgid "Switch to ready"
+msgstr "準備完了に切り替える"
+
+msgid "Switch to maintenance"
+msgstr "保守に切り替える"
+
+msgid "Standby"
+msgstr "スタンバイ"
+
+msgid "Switch to online"
+msgstr "オンラインに切り替える"
+
+msgid "Switch to standby"
+msgstr "スタンバイに切り替える"
 
 msgid "Fence"
-msgstr ""
+msgstr "フェンス"
 
 msgid "Details"
 msgstr "詳細情報"
 
-msgid "Events"
-msgstr ""
+msgid "Add"
+msgstr "追加"
+
+msgid "Apply"
+msgstr "適用"
+
+msgid "No interval set for monitor operation"
+msgstr "監視操作に間隔が設定されていません"
+
+msgid "Replacing previously defined monitor operation with same interval"
+msgstr "以前に定義された監視操作を同じ間隔で置き換える"
+
+msgid "Resource ID"
+msgstr "リソースID"
+
+msgid "Failed to fetch meta attributes"
+msgstr "メタ属性をフェッチできませんでした"
+
+msgid "Report generation is complete."
+msgstr "レポート生成が完了しました。"
+
+msgid "From"
+msgstr "開始"
+
+msgid "Until"
+msgstr "終了"
+
+msgid "Custom"
+msgstr "カスタム設定"
+
+msgid "Su"
+msgstr "日"
+
+msgid "Mo"
+msgstr "月"
+
+msgid "Tu"
+msgstr "火"
+
+msgid "We"
+msgstr "水"
+
+msgid "Th"
+msgstr "木"
+
+msgid "Fr"
+msgstr "金"
+
+msgid "Sa"
+msgstr "土"
+
+msgid "January"
+msgstr "1月"
+
+msgid "February"
+msgstr "2月"
+
+msgid "March"
+msgstr "3月"
+
+msgid "April"
+msgstr "4月"
+
+msgid "May"
+msgstr "5月"
+
+msgid "June"
+msgstr "6月"
+
+msgid "July"
+msgstr "7月"
+
+msgid "August"
+msgstr "8月"
+
+msgid "September"
+msgstr "9月"
+
+msgid "October"
+msgstr "10月"
+
+msgid "November"
+msgstr "11月"
+
+msgid "December"
+msgstr "12月"
+
+msgid "Show"
+msgstr "表示"
+
+msgid "Download"
+msgstr "ダウンロード"
+
+msgid "Unmanaged"
+msgstr "非管理対象"
+
+msgid "Started"
+msgstr "開始しました"
+
+msgid "Primary"
+msgstr "プライマリ"
+
+msgid "Secondary"
+msgstr "セカンダリ"
+
+msgid "Stopped"
+msgstr "停止"
+
+msgid "Group"
+msgstr "グループ"
+
+msgid "Multi-state"
+msgstr "複数状態"
+
+msgid "Clone"
+msgstr "クローン"
+
+msgid "Tag"
+msgstr "タグ"
+
+msgid "Stop"
+msgstr "停止"
+
+msgid "Start"
+msgstr "開始"
+
+msgid "Demote"
+msgstr "降格"
+
+msgid "Promote"
+msgstr "昇格"
+
+msgid "Unmanage"
+msgstr "非管理"
+
+msgid "Manage"
+msgstr "管理"
+
+msgid "Migrate"
+msgstr "移行"
+
+msgid "Unmigrate"
+msgstr "移行解除"
+
+msgid "Cleanup"
+msgstr "整理"
+
+msgid "Primitive"
+msgstr "プリミティブ"
+
+msgid "Resource"
+msgstr "リソース"
 
 msgid "Role ID"
 msgstr "役割ID"
 
+msgid "Stopped Resources"
+msgstr "リソースが停止しました"
+
+msgid "Tag ID"
+msgstr "タグID"
+
+msgid "Objects"
+msgstr "オブジェクト"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Granted"
+msgstr "許可済み"
+
+msgid "Revoked"
+msgstr "取り消し"
+
+msgid "Grant"
+msgstr "許可"
+
+msgid "Revoke"
+msgstr "取り消し"
+
 msgid "User ID"
 msgstr "ユーザID"
 
+msgid "Must be a valid resource ID"
+msgstr "有効なリソースIDである必要があります"
+
+msgid "Applying configuration changes..."
+msgstr "設定の変更を適用中..."
+
+msgid "Changes applied successfully."
+msgstr "変更が正常に適用されました。"
+
+msgid "Agent"
+msgstr "エージェント"
+
+msgid "Created a new shadow CIB for %USER%."
+msgstr "%USER% の新規シャドウCIBを作成しました。"
+
 msgid "Unable to create shadow CIB"
 msgstr "シャドウCIBを生成できません"
-
-msgid "1 node configured"
-msgid_plural "%{num} nodes configured"
-msgstr[0] "1 ノードが設定されました"
-
-msgid "1 resource configured"
-msgid_plural "%{num} resources configured"
-msgstr[0] "1 リソースが設定されました"
-
-msgid "Edit Clone"
-msgstr "クローンの編集"
 
 msgid "Create Clone"
 msgstr "クローンの作成"
@@ -90,67 +409,62 @@ msgstr "クローンの作成"
 msgid "Clone created successfully"
 msgstr "クローンが正常に作成されました"
 
+msgid "Edit Clone"
+msgstr "クローンの編集"
+
 msgid "Clone updated successfully"
 msgstr "クローンが正常に更新されました"
 
-msgid "Edit Colocation Constraint"
-msgstr "コロケーション制約の編集"
+msgid "Clone deleted successfully"
+msgstr "クローンが正常に削除されました"
 
-msgid "Create Colocation Constraint"
-msgstr "コロケーション制約の作成"
+msgid "Error deleting %s: %s"
+msgstr "%s の削除エラー: %s"
+
+msgid "Clones"
+msgstr "クローン"
+
+msgid "The clone does not exist"
+msgstr "クローンが存在しません"
+
+msgid "Create Colocation"
+msgstr "コロケーションの作成"
 
 msgid "Constraint created successfully"
 msgstr "制約が正常に作成されました"
 
+msgid "Edit Colocation"
+msgstr "コロケーションの編集"
+
 msgid "Constraint updated successfully"
 msgstr "制約が正常に更新されました"
+
+msgid "Colocation deleted successfully"
+msgstr "コロケーションが正常に削除されました"
+
+msgid "Colocations"
+msgstr "コロケーション"
+
+msgid "The colocation constraint does not exist"
+msgstr "コロケーションの制約が存在しません"
 
 msgid "Constraints"
 msgstr "制約"
 
+msgid "Configuration updated successfully"
+msgstr "設定が正常に更新されました"
+
 msgid "Cluster Configuration"
 msgstr "クラスタ設定"
 
-msgid "Your changes have been saved"
-msgstr "変更が保存されました"
-
-msgid "Unable to apply changes: %{msg}"
-msgstr "変更を適用できません: %{msg}"
-
-msgid ""
-"Can't set property %{p}, because the value contains both single and double quo"
-"tes"
-msgstr "プロパティ%{p}を設定できません。値に一重引用符と二重引用符の両方が含まれているためです"
-
-msgid "Cluster Dashboard"
-msgstr "クラスタダッシュボード"
+msgid "Error removing %s: %s"
+msgstr "%s の削除エラー: %s"
 
 msgid "Dashboard"
 msgstr "ダッシュボード"
 
-msgid "History Explorer"
-msgstr "履歴エクスプローラ"
-
-msgid "PE Input created by different Pacemaker version (%{version})"
-msgstr "PE入力は異なるバージョンのPacemaker (%{version})によって作成されています"
-
-msgid "Pacemaker version not present in PE Input"
-msgstr "PE入力にPacemakerのバージョンが存在しません"
-
-msgid "Required parameters \"basename\" and \"node\" not specified"
-msgstr "必要なパラメータ「basename」と「node」が指定されていません"
-
-msgid "No details available"
-msgstr "詳細情報がありません"
-
-msgid "Error:"
-msgstr "エラー:"
-
-msgid "Required parameters \"left\" and \"right\" not specified"
-msgstr "必要なパラメータ「left」と「right」が指定されていません"
-
-msgid "Edit Group"
-msgstr "グループの編集"
+msgid "Cluster Graph"
+msgstr "クラスタグラフ"
 
 msgid "Create Group"
 msgstr "グループの作成"
@@ -158,82 +472,209 @@ msgstr "グループの作成"
 msgid "Group created successfully"
 msgstr "グループが正常に作成されました"
 
+msgid "Edit Group"
+msgstr "グループの編集"
+
 msgid "Group updated successfully"
 msgstr "グループが正常に更新されました"
 
-msgid "Edit Location Constraint"
-msgstr "場所制約の編集"
+msgid "Group deleted successfully"
+msgstr "グループが正常に削除されました"
+
+msgid "Groups"
+msgstr "グループ"
+
+msgid "The group does not exist"
+msgstr "グループは存在しません"
 
 msgid "Create Location Constraint"
 msgstr "場所制約の作成"
 
-msgid "%{cmd} failed (status: %{status})"
-msgstr "%{cmd} 失敗(ステータス: %{status})"
+msgid "Edit Location Constraint"
+msgstr "場所制約の編集"
 
-msgid "Cluster Status"
-msgstr "クラスタの状態"
+msgid "Location deleted successfully"
+msgstr "場所が正常に削除されました"
 
-msgid "Required parameter \"node\" not specified"
-msgstr "必要なパラメータ「node」が指定されていません"
+msgid "Location Constraints"
+msgstr "場所制約"
 
-msgid "Required parameter \"resource\" not specified"
-msgstr "必要なパラメータ「resource」が指定されていません"
+msgid "The location constraint does not exist"
+msgstr "場所制約は存在しません"
 
-msgid "Required parameters \"resource\" and \"node\" not specified"
-msgstr "必要なパラメータ「resource」と「node」が指定されていません"
+msgid "Create Multi-state resource"
+msgstr "複数状態リソースの作成"
 
-msgid "Error deleting resource"
-msgstr "リソースの削除中にエラーが発生しました"
+msgid "Multi-state resource created successfully"
+msgstr "複数状態リソースが正常に作成されました"
 
-msgid "Required parameters \"ticket\" and \"site\" not specified"
-msgstr "必須パラメータ「ticket」と「site」が指定されていません"
+msgid "Edit Multi-state resource"
+msgstr "複数状態リソースの編集"
 
-msgid "Required parameter \"ticket\" not specified"
-msgstr "必須パラメータ「ticket」が指定されていません"
+msgid "Multi-state resource updated successfully"
+msgstr "複数状態リソースが正常に更新されました"
 
-msgid "Error invoking %{cmd}: %{msg}"
-msgstr "%{cmd} の呼び出し中にエラーが発生しました: %{msg}"
+msgid "Multi-state resource deleted successfully"
+msgstr "複数状態リソースが正常に削除されました"
 
-msgid "Edit Master/Slave"
-msgstr "マスタ/スレーブの編集"
+msgid "Multi-state resource"
+msgstr "複数状態リソース"
 
-msgid "Create Master/Slave"
-msgstr "マスタ/スレーブの作成"
+msgid "The multi-state resource does not exist"
+msgstr "複数状態リソースは存在しません"
 
-msgid "Master/Slave created successfully"
-msgstr "マスタ/スレーブが正常に作成されました"
+msgid "Set the node state to online"
+msgstr "ノード状態をオンラインに設定する"
 
-msgid "Master/Slave updated successfully"
-msgstr "マスタ/スレーブが正常に更新されました"
+msgid "Set the node state to standby"
+msgstr "ノード状態をスタンバイに設定する"
 
-#, fuzzy
+msgid "Set the node state to maintenance"
+msgstr "ノード状態を保守に設定する"
+
+msgid "Set the node state to ready"
+msgstr "ノード状態を準備完了に設定する"
+
+msgid "Set the node state to fence"
+msgstr "ノード状態をフェンスに設定する"
+
 msgid "Nodes"
 msgstr "ノード"
 
-msgid "Edit Order Constraint"
-msgstr "順序制約の編集"
+msgid "The node does not exist"
+msgstr "ノードが存在しません"
 
-msgid "Create Order Constraint"
-msgstr "順序制約の作成"
+msgid "Create Order"
+msgstr "順序の作成"
+
+msgid "Edit Order"
+msgstr "順序の編集"
+
+msgid "Order deleted successfully"
+msgstr "順序が正常に削除されました"
+
+msgid "Orders"
+msgstr "順序"
+
+msgid "The order constraint does not exist"
+msgstr "順序制約が存在しません"
 
 msgid "Welcome"
-msgstr ""
+msgstr "ようこそ"
 
 msgid "Help"
-msgstr ""
+msgstr "ヘルプ"
 
-msgid "Create Resource"
-msgstr "リソースの作成"
+msgid "Commands"
+msgstr "コマンド"
 
-msgid "Resource created successfully"
-msgstr "リソースが正常に作成されました"
+msgid "Create Primitive"
+msgstr "プリミティブの作成"
 
-msgid "Resource updated successfully"
-msgstr "リソースが正常に更新されました"
+msgid "Primitive created successfully"
+msgstr "プリミティブは正常に作成されました"
 
-#, fuzzy
+msgid "Edit Primitive"
+msgstr "プリミティブの編集"
+
+msgid "Primitive updated successfully"
+msgstr "プリミティブが正常に更新されました"
+
+msgid "Primitive deleted successfully"
+msgstr "プリミティブが正常に削除されました"
+
 msgid "Primitives"
 msgstr "プリミティブ"
+
+msgid "The primitive does not exist"
+msgstr "プリミティブが存在しません"
+
+msgid "Preferences updated successfully"
+msgstr "初期設定が正常に更新されました"
+
+msgid "Preferences"
+msgstr "設定"
+
+msgid "Please wait while report is generated..."
+msgstr "レポートの生成中です。しばらくお待ちください..."
+
+msgid "Failed to generate"
+msgstr "生成に失敗しました"
+
+msgid "Upload completed."
+msgstr "アップロードが完了しました。"
+
+msgid "Cannot display diff, too few transitions"
+msgstr "差分を表示できません。遷移数が少なすぎます"
+
+msgid "Report deleted successfully"
+msgstr "レポートが正常に削除されました"
+
+msgid "Error deleting %s"
+msgstr "%s の削除中にエラーが発生しました"
+
+msgid "History Explorer"
+msgstr "履歴エクスプローラ"
+
+msgid "The report does not exist"
+msgstr "レポートが存在しません"
+
+msgid "must be a valid datetime"
+msgstr "有効な日時である必要があります"
+
+msgid "Successfully started the resource"
+msgstr "リソースは正常に開始されました"
+
+msgid "Failed to start the resource: %{err}"
+msgstr "リソースの開始に失敗しました: %{err}"
+
+msgid "Successfully stopped the resource"
+msgstr "リソースは正常に停止されました"
+
+msgid "Failed to stop the resource: %{err}"
+msgstr "リソースの停止に失敗しました: %{err}"
+
+msgid "Successfully promoted the resource"
+msgstr "リソースは正常に昇格されました"
+
+msgid "Failed to promote the resource: %{err}"
+msgstr "リソースの昇格に失敗しました: %{err}"
+
+msgid "Successfully demoted the resource"
+msgstr "リソースは正常に降格されました"
+
+msgid "Failed to demote the resource: %{err}"
+msgstr "リソースの降格に失敗しました: %{err}"
+
+msgid "Successfully set the resource in managed mode"
+msgstr "リソースは管理モードで正常に設定されました"
+
+msgid "Failed to set the resource in managed mode: %{err}"
+msgstr "リソースを管理モードで設定できませんでした: %{err}"
+
+msgid "Successfully set the resource in unmanaged mode"
+msgstr "リソースは非管理モードで正常に設定されました"
+
+msgid "Failed to set the resource in unmanaged mode: %{err}"
+msgstr "リソースを非管理モードで設定できませんでした: %{err}"
+
+msgid "Successfully unmigrated the resource"
+msgstr "リソースは正常に移行解除されました"
+
+msgid "Failed to unmigrate the resource: %{err}"
+msgstr "リソースを正常に移行解除できませんでした: %{err}"
+
+msgid "Successfully migrated the resource"
+msgstr "リソースは正常に移行されました"
+
+msgid "Failed to migrate the resource: %{err}"
+msgstr "リソースを移行できませんでした: %{err}"
+
+msgid "Successfully cleaned the resource"
+msgstr "リソースは正常に削除されました"
+
+msgid "Failed to clean up the resource: %{err}"
+msgstr "リソースをクリーンアップできませんでした: %{err}"
 
 msgid "Resources"
 msgstr "リソース"
@@ -250,22 +691,22 @@ msgstr "役割の編集"
 msgid "Role updated successfully"
 msgstr "役割が正常に更新されました"
 
-#, fuzzy
 msgid "Role deleted successfully"
-msgstr "役割が正常に作成されました"
+msgstr "役割が正常に削除されました"
 
-#, fuzzy
-msgid "Error deleting %s"
-msgstr "リソースの削除中にエラーが発生しました"
+msgid "ACL is not supported by the cluster"
+msgstr "ACLはクラスタでサポートされていません"
 
 msgid "Roles"
 msgstr "役割"
 
 msgid "The role does not exist"
-msgstr ""
+msgstr "役割が存在しません"
 
-msgid "To enable ACLs, set 'enable-acl' in the CRM Configuration"
-msgstr "ACLを有効にするには、［CRMの環境設定］で「enable-acl」を設定します"
+msgid ""
+"To enable ACLs, set \"enable-acl\" in the Cluster Configuration ('Manage > Confi"
+"guration')"
+msgstr "ACLを有効にするには、［クラスタ設定］で、「enable-acl」を設定します （[管理] > [環境設定])"
 
 msgid "Permission denied for user %{user}"
 msgstr "ユーザ %{user} のアクセス承認拒否"
@@ -276,15 +717,29 @@ msgstr "ログアウトしました"
 msgid "Log In"
 msgstr "ログイン"
 
-#, fuzzy
-msgid "Preferences updated successfully"
-msgstr "リソースが正常に更新されました"
+msgid "Simulator"
+msgstr "シミュレータ"
 
-msgid "Preferences"
-msgstr "設定"
+msgid "Create Tag"
+msgstr "タグの作成"
 
-msgid "Edit Template"
-msgstr "テンプレートの編集"
+msgid "Tag created successfully"
+msgstr "タグが正常に作成されました"
+
+msgid "Edit Tag"
+msgstr "タグの編集"
+
+msgid "Tag updated successfully"
+msgstr "タグが正常に更新されました"
+
+msgid "Tag deleted successfully"
+msgstr "タグが正常に削除されました"
+
+msgid "Tags"
+msgstr "タグ"
+
+msgid "The tag does not exist"
+msgstr "タグが存在しません"
 
 msgid "Create Template"
 msgstr "テンプレートの作成"
@@ -292,108 +747,140 @@ msgstr "テンプレートの作成"
 msgid "Template created successfully"
 msgstr "テンプレートが正常に作成されました"
 
+msgid "Edit Template"
+msgstr "テンプレートの編集"
+
 msgid "Template updated successfully"
 msgstr "テンプレートが正常に更新されました"
 
-msgid "Edit Ticket Constraint"
-msgstr "チケット制約の編集"
+msgid "Template deleted successfully"
+msgstr "テンプレートが正常に削除されました"
 
-msgid "Create Ticket Constraint"
-msgstr "チケット制約の作成"
+msgid "You have no template feature support"
+msgstr "テンプレート機能のサポートがありません"
 
-msgid "Create User"
-msgstr "ユーザの作成"
+msgid "Templates"
+msgstr "テンプレート"
 
-msgid "User created successfully"
-msgstr "ユーザが正常に作成されました"
+msgid "The template does not exist"
+msgstr "テンプレートが存在しません"
 
-msgid "Edit User"
-msgstr "ユーザの編集"
+msgid "Create Ticket"
+msgstr "チケットの作成"
 
-msgid "User updated successfully"
-msgstr "ユーザが正常に更新されました"
+msgid "Edit Ticket"
+msgstr "チケットの編集"
 
-#, fuzzy
-msgid "User deleted successfully"
-msgstr "ユーザが正常に作成されました"
+msgid "Ticket deleted successfully"
+msgstr "チケットが正常に削除されました"
 
-#, fuzzy
-msgid "Users"
-msgstr "ユーザ"
+msgid "Successfully granted the ticket"
+msgstr "チケットが正常に認可されました"
 
-msgid "The user does not exist"
-msgstr ""
+msgid "Successfully revoked the ticket"
+msgstr "チケットが正常に取り消されました"
 
-msgid "Cluster Setup Wizard"
-msgstr "クラスタセットアップウィザード"
+msgid "Tickets"
+msgstr "チケット"
 
-msgid "Invalid password"
-msgstr "無効なパスワード"
+msgid "The ticket constraint does not exist"
+msgstr "チケット制約が存在しません"
 
-msgid "Root Password"
-msgstr "ルートパスワード"
+msgid "Create ACL Target"
+msgstr "ACLターゲットの作成"
 
-msgid ""
-"The root password is required in order for this wizard template to make config"
-"uration changes."
-msgstr "このウィザードテンプレートで設定を変更するには、ルートパスワードが必要です。"
+msgid "ACL target created successfully"
+msgstr "ACLターゲットが正常に作成されました"
 
-msgid "The root password for this system"
-msgstr "このシステムのルートパスワード"
+msgid "Edit ACL Target"
+msgstr "ACLターゲットの編集"
 
-msgid "\"Error: #{result}\""
-msgstr "「エラー: #{result}」"
+msgid "ACL target updated successfully"
+msgstr "ACLターゲットが正常に更新されました"
 
-msgid "Parameters"
-msgstr "引数"
+msgid "ACL target deleted successfully"
+msgstr "ACLターゲットが正常に削除されました"
 
-msgid "Confirm"
-msgstr "確認"
+msgid "ACL is not supported by this cluster."
+msgstr "ACLはこのクラスタでサポートされていません。"
 
-msgid "Done"
-msgstr "完了"
+msgid "ACL Targets"
+msgstr "ACLターゲット"
 
-msgid "Required parameter \"%{param}\" not specified"
-msgstr "必要なパラメータ「%{param}」が指定されていません"
+msgid "The ACL target does not exist"
+msgstr "ACLターゲットが存在しません"
+
+msgid "Session has expired"
+msgstr "セッションの有効期限が切れました"
+
+msgid "Wizard cannot be applied when the simulator is active"
+msgstr "シミュレータがアクティブなときにウィザードを適用できません"
+
+msgid "Use a wizard"
+msgstr "ウィザードの使用"
 
 msgid "Permission denied - you do not have write access to the CIB."
 msgstr "許可が拒否されました - CIBに対する書き込みアクセスがありません。"
 
-msgid "Wizard templates and/or workflows are missing"
-msgstr "ウィザードのテンプレートおよびワークフローがありません"
+msgid "Cluster seems to be offline"
+msgstr "クラスタはオフラインである可能性があります"
 
-msgid "Workflow \"%s\" not found"
-msgstr "ワークフロー「%s」が見つかりませんでした"
+msgid "Required"
+msgstr "必要"
 
-msgid "Error parsing template \"%s\""
-msgstr "テンプレート「%s」の解析中にエラーが発生しました"
+msgid "Unique"
+msgstr "固有"
 
-msgid "Error parsing workflow \"%s\""
-msgstr "ワークフロー「%s」の解析中にエラーが発生しました"
+msgid "Master"
+msgstr "マスタ"
 
-msgid "Data collection in progress (%{from_time} to %{to_time})..."
-msgstr "データを収集中です(%{from_time} ～ %{to_time})..."
+msgid "Slave"
+msgstr "スレーブ"
 
-#, fuzzy
 msgid "Revert"
-msgstr "リセット"
+msgstr "元に戻す"
 
-msgid "Apply"
-msgstr ""
-
-#, fuzzy
-msgid "Create"
-msgstr "役割の作成"
-
-#, fuzzy
 msgid "Read"
-msgstr "準備完了"
+msgstr "読み込み"
 
 msgid "Write"
-msgstr ""
+msgstr "書き込み"
 
 msgid "Deny"
-msgstr ""
+msgstr "拒否する"
+
+msgid "success"
+msgstr "成功"
+
+msgid "generic error"
+msgstr "一般的なエラー"
+
+msgid "incorrect arguments"
+msgstr "不正な引数"
+
+msgid "unimplemented action"
+msgstr "未実装のアクション"
+
+msgid "insufficient permissions"
+msgstr "パーミッションが不足しています"
+
+msgid "installation error"
+msgstr "インストールエラー"
+
+msgid "configuration error"
+msgstr "環境設定エラー"
+
+msgid "not running"
+msgstr "実行していません"
+
+msgid "running (master)"
+msgstr "実行しています(マスタ)"
+
+msgid "failed (master)"
+msgstr "失敗しました(マスタ)"
+
+msgid "Freeze"
+msgstr "凍結"
 
 msgid "CIB file \"%{path}\" not found"
 msgstr "CIBファイル「%{path}」が見つかりません"
@@ -410,69 +897,170 @@ msgstr "%{cmd} を実行できません"
 msgid "Error invoking %{cmd}"
 msgstr "%{cmd} の呼び出し中にエラーが発生しました"
 
+msgid "Error invoking %{cmd}: %{msg}"
+msgstr "%{cmd} の呼び出し中にエラーが発生しました: %{msg}"
+
 msgid "Unknown"
 msgstr "不明"
 
+msgid "Node \"%{node}\" is UNCLEAN and needs to be fenced."
+msgstr "ノード「%{node}」は非クリーンであり、フェンシングする必要があります。"
+
 msgid ""
-"Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%"
-"{op}, rc-code=%{rc_code}, exit-reason=%{exit_reason}"
+"%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}"
+": call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_r"
+"eason}"
 msgstr ""
+"%{fail_start}: 操作 %{op} がリソース %{resource} (ノード %{node} 上)で失敗しました: call-id=%{ca"
+"ll_id}、rc-code=%{rc_mapping} (%{rc_code})、exit-reason=%{exit_reason}"
 
-msgid "Invalid Resource ID \"%{id}\""
-msgstr "無効なリソースID「%{id}」"
+msgid "other"
+msgstr "その他"
 
-msgid "Unable to parse cibadmin output"
-msgstr "cibadminの出力を解析できません"
+msgid "STONITH is disabled. For normal cluster operation, STONITH is required."
+msgstr "STONITHが無効です。通常のクラスタ操作については、STONITH が必要です。"
 
-msgid "No clone child specified"
+msgid "None"
+msgstr "なし"
+
+msgid "Clone ID is required"
+msgstr "クローンIDが必要です"
+
+msgid "Invalid Clone ID"
+msgstr "無効なクローンID"
+
+msgid "No Clone child specified"
 msgstr "クローンの子が指定されていません"
 
+msgid "Is the cluster allowed to start and stop the resource?"
+msgstr "クラスタはリソースの開始および停止を許可されていますか?"
+
 msgid ""
-"Can't set meta attribute %{p}, because the value contains both single and doub"
-"le quotes"
-msgstr "メタ属性 %{p} を設定できません。値に一重引用符と二重引用符の両方が含まれているためです"
+"If not all resources can be active, the cluster will stop lower priority resou"
+"rces in order to keep higher priority ones active."
+msgstr "すべてのリソースをアクティブにできない場合、クラスタは優先度の高いリソースをアクティブなままにするために、優先度の低いリソースを停止します。"
 
-msgid "The ID \"%{id}\" is already in use"
-msgstr "ID「%{id}」はすでに使用されています"
+msgid "What state should the cluster attempt to keep this resource in?"
+msgstr "クラスタはこのリソースをどの状態で維持する必要がありますか?"
 
-msgid "Unable to create clone: %{msg}"
-msgstr "クローンを生成できません: %{msg}"
+msgid ""
+"How many copies of the resource to start. Defaults to the number of nodes in t"
+"he cluster."
+msgstr "開始するリソースのコピー数。デフォルトはクラスタ内のノード数です。"
 
-msgid "Clone ID \"%{id}\" does not exist"
-msgstr "クローンID「%{id}」が存在しません"
+msgid ""
+"How many copies of the resource can be started on a single node. Defaults to 1"
+"."
+msgstr "単一ノード上で開始可能なリソースのコピー数。デフォルトは1です。"
 
-msgid "Invalid score"
-msgstr "無効なスコア"
+msgid ""
+"When stopping or starting a copy of the clone, tell all the other copies befor"
+"ehand and when the action was successful."
+msgstr "クローンのコピーの停止または開始時に、事前に他のすべてのコピー数とアクションが成功した日時を伝えます。"
+
+msgid "Does each copy of the clone perform a different function?"
+msgstr "クローンの各コピーは異なる機能を実行しますか?"
+
+msgid "Should the copies be started in series (instead of in parallel)?"
+msgstr "コピーは(同時並行ではなく)順番に開始する必要がありますか?"
+
+msgid ""
+"Changes the behavior of ordering constraints (between clones/masters) so that "
+"instances can start/stop as soon as their peer instance has (rather than waiti"
+"ng for every instance of the other clone has)."
+msgstr ""
+"(他のクローンが持つすべてのインスタンスを待機するのではなく)ピアインスタンスが持つとすぐにインスタンスが開始/停止できるように、(クローン/マスタ間の)順"
+"序制約の動作を変更します。"
+
+msgid "The ID \"%{id}\" does not exist"
+msgstr "タグID「%{id}」が存在しません"
+
+msgid "Constraint ID is required"
+msgstr "制約IDが必要です"
+
+msgid "Invalid Constraint ID"
+msgstr "無効な制約ID"
+
+msgid "Score is required"
+msgstr "スコアが必要です"
+
+msgid "Invalid score value"
+msgstr "無効なスコア値"
 
 msgid "Constraint must consist of at least two separate resources"
 msgstr "制約は2つ以上の別のリソースから構成される必要があります"
 
-msgid "Unable to create constraint: %{msg}"
-msgstr "制約を作成できません: %{msg}"
+msgid "Not a constraint"
+msgstr "制約なし"
 
-msgid "Constraint ID \"%{id}\" does not exist"
-msgstr "制約ID「%{id}」は存在しません"
+msgid "Set to true if the resource agent supports the migrate action"
+msgstr "リソースエージェントが移行アクションをサポートする場合はtrueに設定する"
 
-msgid "Unable to update constraint: %{msg}"
-msgstr "制約を更新できません: %{msg}"
+msgid ""
+"How many failures may occur for this resource on a node, before this node is m"
+"arked ineligible to host this resource. A value of INFINITY indicates that thi"
+"s feature is disabled."
+msgstr ""
+"このノードがこのリソースのホストには不適格とマーク付けされる前に、ノード上でこのリソースに対して発生する可能性のある障害数。INFINITYの値は、この機能"
+"が無効であることを示します。"
 
-msgid "No group children specified"
+msgid ""
+"What should the cluster do if it ever finds the resource active on more than o"
+"ne node?"
+msgstr "複数のノード上でリソースがアクティブであることを検出した場合にクラスタが実行する操作。"
+
+msgid ""
+"How many seconds to wait before acting as if the failure had not occurred, and"
+" potentially allowing the resource back to the node on which it failed. A valu"
+"e of 0 indicates that this feature is disabled."
+msgstr "障害が発生しなかったように動作し、障害が発生したノードにリソースを戻すことが可能になるまで待機する秒数。値0はこの機能が無効であることを示します。"
+
+msgid "How much does the resource prefer to stay where it is?"
+msgstr "リソースが同じ場所で維持される必要がある期間。"
+
+msgid "Conditions under which the resource can be started."
+msgstr "リソースを開始可能な条件。"
+
+msgid ""
+"The name of the remote-node this resource defines. This both enables the resou"
+"rce as a remote-node and defines the unique name used to identify the remote-n"
+"ode. If no other parameters are set, this value will also be assumed as the ho"
+"stname to connect to at the port specified by remote-port. WARNING: This value"
+" cannot overlap with any resource or node IDs. If not specified, this feature "
+"is disabled."
+msgstr ""
+"このリソースが定義するリモートノードの名前。この両方により、リソースはリモートノードとして有効になり、リモートノードの識別に使用される固有の名前が定義されま"
+"す。他のパラメータが設定されない場合、この値はリモートポートで指定されるポートで接続するホスト名としても使用されます。警告: この値はリソースまたはノードI"
+"Dと重複できません。指定されない場合、この機能は無効になります。"
+
+msgid "Port to use for the guest connection to pacemaker_remote."
+msgstr "pacemaker_remoteへのゲスト接続に使用するポート。"
+
+msgid ""
+"The IP address or hostname to connect to if remote-node's name is not the host"
+"name of the guest."
+msgstr "リモートノードの名前がゲストのホスト名でない場合に接続するIPアドレスまたはホスト名。"
+
+msgid "How long before a pending guest connection will time out."
+msgstr "保留中のゲスト接続がタイムアウトするまでの時間。"
+
+msgid "Group ID is required"
+msgstr "グループIDが必要です"
+
+msgid "Invalid Group ID"
+msgstr "無効なグループID"
+
+msgid "No Group children specified"
 msgstr "グループの子が指定されていません"
 
-msgid "Unable to create group: %{msg}"
-msgstr "グループを作成できません: %{msg}"
-
-msgid "Group ID \"%{id}\" does not exist"
-msgstr "グループID「%{id}」は存在しません"
-
-msgid "Constraint is too complex - it contains nested rules"
-msgstr "制約が複雑すぎます。ネストしたルールが含まれています"
+msgid "No resource specified"
+msgstr "リソースが指定されていません"
 
 msgid "No rules specified"
 msgstr "ルールが指定されていません"
 
-msgid "No resource specified"
-msgstr "リソースが指定されていません"
+msgid "Constraint is too complex - it contains nested rules"
+msgstr "制約が複雑すぎます。ネストしたルールが含まれています"
 
 msgid "Invalid score \"%{score}\""
 msgstr "無効なスコア「%{score}」"
@@ -486,174 +1074,213 @@ msgstr "属性に一重引用符と二重引用符の両方が含まれていま
 msgid "Value contains both single and double quotes"
 msgstr "値に一重引用符と二重引用符の両方が含まれています"
 
-msgid "No Master/Slave child specified"
-msgstr "マスタ/スレーブの子が指定されていません"
+msgid "Multi-state ID is required"
+msgstr "複数状態IDは必須です"
 
-msgid "Unable to create master/slave: %{msg}"
-msgstr "マスタ/スレーブを作成できません: %{msg}"
+msgid "Invalid Multi-state ID"
+msgstr "無効な複数状態ID"
 
-msgid "Master/Slave ID \"%{id}\" does not exist"
-msgstr "マスタ/スレーブID「%{id}」が存在しません"
+msgid "No Multi-state child specified"
+msgstr "複数状態の子が指定されていません"
 
-msgid ""
-"Can't set parameter %{p}, because the value contains both single and double qu"
-"otes"
-msgstr "パラメータ %{p} を設定できません。値に一重引用符と二重引用符の両方が含まれているためです"
+msgid "How many copies of the resource can be promoted to master status."
+msgstr "マスタステータスにプロモート可能なリソースのコピー数。"
 
 msgid ""
-"Can't set op %{o} attribute {%a}, because the value contains both single and d"
-"ouble quotes"
-msgstr "操作 %{o} の属性 {%a} を設定できません。値に一重引用符と二重引用符の両方が含まれているためです"
+"How many copies of the resource can be promoted to master status on a single n"
+"ode."
+msgstr "単一ノード上でマスタステータスにプロモート可能なリソースのコピー数。"
 
-msgid "Unable to create resource: %{msg}"
-msgstr "リソースを作成できません: %{msg}"
+msgid "Node ID is required"
+msgstr "ノードIDが必要です"
 
-msgid "Resource ID \"%{id}\" does not exist"
-msgstr "リソースID「%{id}」が存在しません"
+msgid "Invalid Node ID"
+msgstr "無効なノードID"
 
-#, fuzzy
+msgid "Name is required"
+msgstr "名前が必要です"
+
+msgid "Invalid name"
+msgstr "無効な名前"
+
+msgid "is required"
+msgstr "必要です"
+
+msgid "Object not found: %s=%s"
+msgstr "オブジェクトが見つかりません: %s=%s"
+
+msgid "The ID \"%{id}\" is already in use"
+msgstr "ID「%{id}」はすでに使用されています"
+
 msgid "Unable to create: %{msg}"
-msgstr "役割を作成できません: %{msg}"
+msgstr "作成できません: %{msg}"
 
-#, fuzzy
-msgid "The ID \"%{id}\" does not exist"
-msgstr "役割ID「%{id}」は存在しません"
+msgid "Error updating %{id} (rc=%{rc})"
+msgstr "%{id} の更新エラー(rc=%{rc})"
 
-#, fuzzy
-msgid "Unable to update: %{msg}"
-msgstr "役割を更新できません: %{msg}"
+msgid "PE Input created by different Pacemaker version (%{version})"
+msgstr "PE入力は異なるバージョンのPacemaker (%{version})によって作成されています"
+
+msgid "Pacemaker version not present in PE Input"
+msgstr "PE入力にPacemakerのバージョンが存在しません"
+
+msgid "No details available"
+msgstr "詳細情報がありません"
+
+msgid "Error:"
+msgstr "エラー:"
+
+msgid "must have correct MIME type (was %s)"
+msgstr "適切なMIMEタイプが必要です(%sでした)"
+
+msgid "must have correct file extension"
+msgstr "適切なファイル拡張子が必要です"
+
+msgid "Not a resource"
+msgstr "リソースではない"
 
 msgid "Role ID is required"
-msgstr ""
+msgstr "役割IDが必要です"
 
-#, fuzzy
 msgid "Invalid Role ID"
-msgstr "無効なチケットID"
+msgstr "無効な役割ID"
 
-msgid "Username not specified"
-msgstr "ユーザ名が指定されていません。"
+msgid "At least one rule is required"
+msgstr "少なくとも1つのルールが必要です"
 
 msgid "Invalid username"
 msgstr "無効なユーザ名"
 
-msgid "Password not specified"
-msgstr "パスワードが指定されていません"
-
 msgid "%s is not installed"
 msgstr "%s はインストールされていません。"
 
-#, fuzzy
 msgid "%s is not executable"
-msgstr "%s はインストールされていません。"
+msgstr "%s は実行できません"
+
+msgid "Username not specified"
+msgstr "ユーザ名が指定されていません。"
+
+msgid "Password not specified"
+msgstr "パスワードが指定されていません"
 
 msgid "Invalid username or password"
 msgstr "ユーザ名またはパスワードが無効です"
 
-msgid "Language is required"
+msgid "Tag ID is required"
+msgstr "タグIDが必要です"
+
+msgid "Invalid Tag ID"
+msgstr "無効なタグID"
+
+msgid "No Tag resources specified"
+msgstr "タグリソースが指定されていません"
+
+msgid "Resource ID is required"
+msgstr "リソースIDが必要です"
+
+msgid "Invalid Resource ID"
+msgstr "無効なリソースID"
+
+msgid "How frequently (in seconds) to perform the operation."
+msgstr "操作を実行する頻度(秒単位)。"
+
+msgid "How long to wait before declaring the action has failed."
+msgstr "アクションが失敗したことを宣言するまで待機する時間。"
+
+msgid "What conditions need to be satisfied before this action occurs."
+msgstr "このアクションが発生するまでに満たす必要のある条件。"
+
+msgid "If false, the operation is treated as if it does not exist."
+msgstr "falseの場合、操作は存在しないように処理されます。"
+
+msgid ""
+"This option only makes sense for recurring operations. It restricts the operat"
+"ion to a specific role. The truely paranoid can even specify role=Stopped whic"
+"h allows the cluster to detect an admin that manually started cluster services"
+"."
 msgstr ""
+"このオプションは繰り返し操作の場合にのみ意味をなします。これにより操作は特定の役割に制限されます。これは真にパラノイドであるため、管理者がクラスタサービスを"
+"手動で開始したことをクラスタが検出できるようにするrole=Stoppedを指定することもできます。"
+
+msgid "The action to take if this action ever fails."
+msgstr "このアクションが失敗した場合に取るアクション。"
+
+msgid ""
+"If true, the intention to perform the operation is recorded so that GUIs and C"
+"LI tools can indicate that an operation is in progress."
+msgstr "trueの場合、GUIおよびCLIツールが操作が進行中であることを示すことができるように、実行する意図が記録されます。"
+
+msgid "Ticket ID is required"
+msgstr "チケットIDが必要です"
 
 msgid "Invalid Ticket ID"
 msgstr "無効なチケットID"
 
-msgid "No resources specified"
-msgstr "リソースが指定されていません"
+msgid "Constraint must consist of at least one separate resources"
+msgstr "制約は少なくとも1つの個別のリソースから構成される必要があります"
 
-msgid "User ID is required"
-msgstr ""
+msgid "Simulator active: Use the ticket controls in the simulator"
+msgstr "シミュレータを有効にする: シミュレータのチケットコントロールの使用"
 
-#, fuzzy
-msgid "Invalid User ID"
-msgstr "無効なチケットID"
+msgid "ACL target ID is required"
+msgstr "ACLターゲットIDが必要です"
 
-msgid "Meta Attributes"
-msgstr "メタ属性"
+msgid "Invalid ACL target ID"
+msgstr "無効なACLターゲットID"
 
-msgid "Add"
-msgstr "追加"
+msgid "At least one role is required"
+msgstr "少なくとも1つの役割が必要です"
 
-msgid "Remove"
-msgstr "削除"
+msgid "Requested wizard does not exist"
+msgstr "要求されたウィザードが存在しません"
 
-msgid "You must enter a value"
-msgstr "値を入力してください"
+msgid "Parameters"
+msgstr "引数"
 
-msgid "Clone ID"
-msgstr "クローンID"
+msgid "Shortdesc"
+msgstr "ショートデスクリプション"
+
+msgid "Longdesc"
+msgstr "ロングデスクリプション"
+
+msgid "Options"
+msgstr "オプション"
+
+msgid "Actions"
+msgstr "アクション"
+
+msgid "Timeout"
+msgstr "タイムアウト"
+
+msgid "Interval"
+msgstr "間隔"
+
+msgid "Depth"
+msgstr "深さ"
+
+msgid "Close"
+msgstr "閉じる"
 
 msgid "Child Resource"
 msgstr "子リソース"
 
-msgid "Revert Changes"
-msgstr "変更を元に戻す"
+msgid "Meta Attributes"
+msgstr "メタ属性"
 
 msgid "Back"
 msgstr "戻る"
 
-msgid "Apply Changes"
-msgstr "変更の適用"
-
-msgid "Link set"
-msgstr "リンクセット"
-
-msgid "Break set"
-msgstr "ブレークの設定"
-
-msgid "Swap resources"
-msgstr "リソースのスワップ"
-
-msgid "Add resource to constraint"
-msgstr "リソースを制約に追加"
-
-msgid "Constraint ID"
-msgstr "制約ID"
-
-msgid "Score"
-msgstr "スコア"
-
-msgid "Create Constraint"
-msgstr "制約の作成"
-
-msgid "Edit Constraint"
-msgstr "制約の編集"
-
-msgid "Delete Constraint"
-msgstr "制約の削除"
-
 msgid "Are you sure you wish to delete %s?"
 msgstr "%s を削除してもよろしいですか?"
 
-msgid "New Constraint"
-msgstr "新規制約"
+msgid "List"
+msgstr "リスト"
 
-msgid "Location"
-msgstr "場所"
+msgid "Constraint:"
+msgstr "制約:"
 
-msgid "Colocation"
-msgstr "コロケーション"
-
-msgid "Order"
-msgstr "順序"
-
-msgid "Ticket"
-msgstr "チケット"
-
-msgid "(No location constraints defined)"
-msgstr "(場所の制約が定義されていません)"
-
-msgid "[Constraint is too complex to display]"
-msgstr "[制約が複雑すぎて表示できません]"
-
-msgid "(No colocation constraints defined)"
-msgstr "(コロケーションの制約が定義されていません)"
-
-msgid "(No order constraints defined)"
-msgstr "(順序の制約が定義されていません)"
-
-msgid "(No ticket constraints defined)"
-msgstr "(チケット制約が未定義です)"
-
-msgid "CRM Configuration"
-msgstr "CRMの環境設定"
+msgid "Add a constraint"
+msgstr "制約の追加"
 
 msgid "Resource Defaults"
 msgstr "リソースのデフォルト"
@@ -661,234 +1288,86 @@ msgstr "リソースのデフォルト"
 msgid "Operation Defaults"
 msgstr "操作のデフォルト"
 
-msgid "No cluster properties set in %{group}"
-msgstr "クラスタプロパティが %{group} で設定されていません"
-
-msgid "Edit"
-msgstr "編集"
-
-msgid "Username:"
-msgstr "ユーザ名:"
-
-msgid "Password:"
-msgstr "パスワード:"
-
-msgid "Cluster has errors - click for details"
-msgstr "クラスタにエラーがあります - 詳細はクリックしてください"
-
-msgid "Timeout: Please try again"
-msgstr "タイムアウト: もう一度実行してください"
-
-msgid "Permission denied. Please log in to %{node}"
-msgstr "パーミッションが拒否されました。%{node} にログインしてください"
-
-#, fuzzy
-msgid "Geo Site %{ip}"
-msgstr "クローン設定: %{id}"
-
-msgid "Site: %{ip}"
-msgstr ""
-
-msgid "Arbitrator: %{ip}"
-msgstr ""
-
-msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
-msgstr "%{node} 上のHawkに接続できません。5秒ごとに再試行します。"
-
-msgid "Cluster Name:"
-msgstr "クラスタ名:"
-
-msgid "Host Name:"
-msgstr "ホスト名:"
-
-msgid ""
-"(Specify any host name in the cluster.  Other nodes will be found automaticall"
-"y)"
-msgstr "(クラスタ内のホスト名を指定します。その他のノードは自動的に検出されます)"
+msgid "Default"
+msgstr "デフォルト"
 
 msgid "Add Cluster"
 msgstr "クラスタの追加"
 
-msgid "OK"
-msgstr "OK"
+msgid "Cluster name"
+msgstr "クラスタ名"
 
-msgid "A cluster with that name already exists"
-msgstr "その名前のクラスタは既に存在します"
+msgid "West Coast (example)"
+msgstr "West Coast(例)"
 
-msgid "The host %{h} is already present in cluster %{c}"
-msgstr "ホスト %{h} は既にクラスタ %{c} に存在します"
+msgid "node1.west.example.com"
+msgstr "node1.west.example.com"
 
-msgid ""
-"Unable to connect to %{host}. Try opening %{url} in your web browser to ensure"
-" Hawk is accessible."
-msgstr "%{host} に接続できません。Webブラウザで %{url} を開き、Hawkにアクセス可能なことを確認してみてください。"
+msgid "Hostname of node in cluster"
+msgstr "クラスタ内のノードのホスト名"
 
-msgid "Cancel"
-msgstr "キャンセル"
+msgid "Advanced"
+msgstr "拡張"
 
-#, fuzzy
-msgid "Cluster"
-msgstr "クラスタの追加"
+msgid "Update interval (seconds)"
+msgstr "間隔(秒)の更新"
 
-msgid "STONITH Enabled"
-msgstr "STONITHが有効です"
+msgid "Server port to connect to"
+msgstr "接続するサーバポート"
 
-msgid "No Quorum Policy"
-msgstr "クォーラムなしポリシー"
-
-msgid "Symmetric Cluster"
-msgstr "対称クラスタ"
-
-msgid "Resource Stickiness"
-msgstr "リソースの固着性"
-
-msgid "Status"
-msgstr "状態"
-
-msgid "No transitions found for the specified time period."
-msgstr "指定された期間内で遷移がありません。"
-
-msgid "Time"
-msgstr "再生時間"
-
-msgid "PE Input"
-msgstr "PE入力"
-
-msgid "Node"
-msgstr "ノード"
-
-msgid "(full log)"
-msgstr "(ログ全体)"
+msgid "HTTPS"
+msgstr "HTTPS"
 
 msgid "Graph"
 msgstr "図表"
 
-msgid "Diff"
-msgstr "Diff"
+msgid "Children"
+msgstr "子"
 
-msgid "Delete this history archive?"
-msgstr "この履歴アーカイブを削除しますか?"
+msgid "No children available"
+msgstr "利用可能な子がありません"
 
-msgid "Start Time:"
-msgstr "開始時刻:"
-
-msgid "End Time:"
-msgstr "終了時刻:"
-
-msgid "Exploring %{path}"
-msgstr "%{path} を探索しています"
-
-msgid "Display"
-msgstr "ディスプレイ"
-
-msgid "Upload hb_report tarball"
-msgstr "hb_report tarballのアップロード"
-
-msgid "Explore"
-msgstr "探索"
-
-msgid "Error: Permission denied for user '%s'."
-msgstr "エラー:ユーザ「%s」のアクセス承認拒否。"
-
-msgid "Group ID"
-msgstr "グループID"
-
-msgid "Group Children"
-msgstr "グループの子"
-
-msgid "Available Primitives"
-msgstr "使用可能なプリミティブ"
-
-msgid "Start Time not specified"
-msgstr "開始時刻が指定されていません"
-
-msgid "Generate"
-msgstr "生成"
-
-msgid "hb_report generation in progress..."
-msgstr "hb_reportを生成しています..."
-
-msgid "Download hb_report"
-msgstr "hb_reportのダウンロード"
-
-#, fuzzy
 msgid "Please ensure Javascript is enabled"
 msgstr "JavaScriptが有効になっていることを確認してください"
 
 msgid "SUSE, LLC"
-msgstr ""
+msgstr "SUSE、LLC"
 
 msgid "High Availability Web Konsole"
-msgstr ""
+msgstr "高可用性Web Konsole"
 
-msgid "Role"
-msgstr "役割"
+msgid "Edit Location"
+msgstr "場所の編集"
 
-msgid "Boolean Op"
-msgstr "ブール値処理"
+msgid "Locations"
+msgstr "場所"
 
-msgid "Expression"
-msgstr "表現"
+msgid "Create Location"
+msgstr "場所の作成"
 
-msgid "Add Rule"
-msgstr "ルールの追加"
+msgid "History"
+msgstr "履歴"
 
-msgid "Remove Rule"
-msgstr "ルールを削除"
+msgid "Edit Multi-state"
+msgstr "複数状態の編集"
 
-msgid "Show Rule Editor"
-msgstr "ルールエディタの表示"
+msgid "Multi-state Resources"
+msgstr "複数状態リソース"
 
-msgid "Resource"
-msgstr "リソース"
+msgid "Create Multi-state"
+msgstr "複数状態の作成"
 
-msgid "Fence Node"
-msgstr "フェンスノード"
+msgid "Getting recent events..."
+msgstr "最近のイベントを取得しています..."
 
-msgid "View Details..."
-msgstr "詳細の表示..."
+msgid "Another operation is in progress..."
+msgstr "別の操作が進行中です..."
 
-msgid "View Recent Events..."
-msgstr "最近のイベントを表示..."
+msgid "No events found in last hour"
+msgstr "最後の時間にイベントが見つかりませんでした"
 
-msgid "Start"
-msgstr "開始"
-
-msgid "Stop"
-msgstr "停止"
-
-msgid "Move..."
-msgstr "移動..."
-
-msgid "Drop Relocation Rule"
-msgstr "再配置ルールを無視"
-
-msgid "Promote"
-msgstr "昇格"
-
-msgid "Demote"
-msgstr "降格"
-
-msgid "Clean Up"
-msgstr "クリーンアップ"
-
-msgid "Grant"
-msgstr "許可"
-
-msgid "Revoke"
-msgstr "取り消し"
-
-msgid "Master/Slave ID"
-msgstr "マスタ/スレーブID"
-
-msgid "Getting recent events (last hour)..."
-msgstr "最近のイベントを取得しています(最終時間)..."
-
-msgid "Another \"crm history\" operation is in progress..."
-msgstr "別の「crm history」処理が進行中です..."
-
-msgid "No events found in last hour."
-msgstr "最後の時間にイベントが見つかりませんでした。"
+msgid "Remote node."
+msgstr "リモートノード。"
 
 msgid "Utilization"
 msgstr "利用率"
@@ -905,23 +1384,20 @@ msgstr "属性が定義されていません"
 msgid "Symmetrical"
 msgstr "対称的"
 
-msgid "Close"
-msgstr "閉じる"
+msgid "Command Log"
+msgstr "コマンドログ"
+
+msgid "Lists crm commands recently executed by hawk, most recent first."
+msgstr "Hawkによって最近実行されたCRMコマンドを一覧にします(最新のものを最初に表示)。"
 
 msgid "HTML"
-msgstr ""
+msgstr "HTML"
 
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
-msgid "There is already a monitor op with this interval."
-msgstr "この間隔ですでにモニタ処理があります。"
-
-msgid "Resource ID"
-msgstr "リソースID"
-
-msgid "Template ID"
-msgstr "テンプレートID"
+msgid "Template"
+msgstr "テンプレート"
 
 msgid "Class"
 msgstr "クラス"
@@ -929,86 +1405,104 @@ msgstr "クラス"
 msgid "Provider"
 msgstr "プロバイダ"
 
-msgid "Type"
-msgstr "種類"
+msgid "Data collection in progress..."
+msgstr "データ収集が進行中です..."
 
-msgid "Use Template"
-msgstr "テンプレートの使用"
+msgid "To"
+msgstr "宛先"
 
-msgid "Edit Resource"
-msgstr "リソースの編集"
+msgid "Generate"
+msgstr "生成"
 
-msgid "Delete Resource"
-msgstr "リソースの削除"
+msgid "Upload"
+msgstr "アップロード"
 
-msgid "New Resource"
-msgstr "新規リソース"
+msgid "Reports"
+msgstr "レポート"
 
-msgid "Primitive"
-msgstr "プリミティブ"
+msgid "Report"
+msgstr "レポート"
 
-msgid "New Template"
-msgstr "新規テンプレート"
+msgid "Created"
+msgstr "作成日時"
 
-msgid "Template"
-msgstr "テンプレート"
+msgid "Transitions"
+msgstr "遷移"
 
-msgid "New Group"
-msgstr "新しいグループ"
+msgid "No transitions in report"
+msgstr "レポート内に遷移がありません"
 
-msgid "Group"
-msgstr "グループ"
+msgid "Previous"
+msgstr "前へ"
 
-msgid "New Clone"
-msgstr "新規クローン"
+msgid "Next"
+msgstr "次へ"
 
-msgid "Clone"
-msgstr "クローン"
+msgid "PE Name"
+msgstr "PE名"
 
-msgid "New Master/Slave"
-msgstr "新規マスタ/スレーブ"
+msgid "Node"
+msgstr "ノード"
 
-msgid "Master/Slave"
-msgstr "マスタ/スレーブ"
+msgid "Time"
+msgstr "再生時間"
 
-msgid "(No primitive resources defined)"
-msgstr "(プリミティブリソースが未定義です)"
+msgid "Version"
+msgstr "バージョン"
 
-msgid "(No templates defined)"
-msgstr "(テンプレートが未定義です)"
+msgid "Configuration"
+msgstr "環境設定"
 
-msgid "(No groups defined)"
-msgstr "(グループが未定義です)"
+msgid "Diff"
+msgstr "Diff"
 
-msgid "(No clones defined)"
-msgstr "(クローンが未定義です)"
+msgid "Logs"
+msgstr "ログ"
 
-msgid "(No master/slave resources defined)"
-msgstr "(マスタ/スレーブリソースが未定義です)"
+msgid "Node Events"
+msgstr "ノードイベント"
 
-msgid "Fail Count"
-msgstr "失敗数"
+msgid "Resource Events"
+msgstr "リソースイベント"
 
-msgid "Last Failure"
-msgstr "最後のエラー"
+msgid "Resource:"
+msgstr "リソース:"
 
-#, fuzzy
-msgid "Rule"
-msgstr "役割"
+msgid "Value"
+msgstr "値"
+
+msgid "Instances"
+msgstr "インスタンス"
+
+msgid "State"
+msgstr "状態"
+
+msgid "Failed Operations"
+msgstr "操作に失敗しました"
+
+msgid "Call"
+msgstr "コール"
+
+msgid "Operation"
+msgstr "操作"
+
+msgid "Reason"
+msgstr "理由"
+
+msgid "Add a resource"
+msgstr "リソースの追加"
 
 msgid "Add a rule below"
-msgstr ""
+msgstr "下にルールを追加"
 
-#, fuzzy
 msgid "Remove this rule"
-msgstr "ルールを削除"
+msgstr "このルールを削除"
 
-#, fuzzy
 msgid "Move rule up"
-msgstr "リソース %s の移動"
+msgstr "ルールを上に移動"
 
 msgid "Move rule down"
-msgstr ""
+msgstr "ルールを下に移動"
 
 msgid "Right"
 msgstr "右"
@@ -1016,88 +1510,183 @@ msgstr "右"
 msgid "XPath"
 msgstr "XPath"
 
-msgid "Tag"
-msgstr "タグ"
+msgid "Object Type"
+msgstr "オブジェクトタイプ"
 
-msgid "Ref"
+msgid "Reference"
 msgstr "参照"
 
 msgid "Attribute"
 msgstr "属性"
 
-#, fuzzy
-msgid "Delete role"
-msgstr "リソースの削除"
+msgid "ACL Roles"
+msgstr "ACL役割"
 
-#, fuzzy
-msgid "Add role"
-msgstr "ルールの追加"
-
-msgid ""
-"ACL support requires CIB schema version 2.0, available in Pacemaker 1.1.12 and"
-" up. For older versions of Pacemaker, use Hawk version 0.6."
-msgstr ""
-
-#, fuzzy
-msgid "Username"
-msgstr "ユーザ名:"
-
-#, fuzzy
-msgid "Password"
-msgstr "パスワード:"
-
-#, fuzzy
 msgid "Login"
 msgstr "ログイン"
+
+msgid "Version:"
+msgstr "バージョン:"
+
+msgid "DC:"
+msgstr "DC:"
+
+msgid "UI:"
+msgstr "UI:"
+
+msgid "Status:"
+msgstr "Status:"
+
+msgid "Add resource"
+msgstr "リソースの追加"
+
+msgid "Add constraint"
+msgstr "制約の追加"
+
+msgid "Add template"
+msgstr "テンプレートの追加"
+
+msgid "Choose wizard"
+msgstr "ウィザードの選択"
+
+msgid "Simulator Active"
+msgstr "シミュレータを有効にする"
+
+msgid "Reset"
+msgstr "リセット"
+
+msgid "Run"
+msgstr "実行"
+
+msgid "Results"
+msgstr "結果"
+
+msgid "Simulation Results"
+msgstr "シミュレーションの結果"
+
+msgid "Summary"
+msgstr "概要"
+
+msgid "CIB (in)"
+msgstr "CIB(入力)"
+
+msgid "CIB (out)"
+msgstr "CIB(出力)"
+
+msgid "Transition Graph"
+msgstr "遷移グラフ"
+
+msgid "Transition (XML)"
+msgstr "遷移(XML)"
+
+msgid "Inject Node Event"
+msgstr "ノードの挿入イベント"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Inject Operation Event"
+msgstr "挿入操作イベント"
+
+msgid "Interval (ms)"
+msgstr "間隔(ms)"
+
+msgid "Result"
+msgstr "結果"
+
+msgid "Inject Ticket Event"
+msgstr "チケットの挿入イベント"
+
+msgid "Action"
+msgstr "アクション(A)"
+
+msgid "Enable the simulation mode"
+msgstr "シミュレーションモードを有効にする"
+
+msgid "Disable Simulator"
+msgstr "シミュレータを無効にする"
+
+msgid "Disable the simulation mode"
+msgstr "シミュレーションモードを無効にする"
+
+msgid "Profile"
+msgstr "プロファイル"
+
+msgid "Logout"
+msgstr "ログアウト"
+
+msgid "Menu"
+msgstr "メニュー"
+
+msgid "Errors"
+msgstr "エラー"
+
+msgid "No objects available"
+msgstr "使用可能なオブジェクトがありません"
+
+msgid "Ticket ID"
+msgstr "チケットID"
 
 msgid "Loss Policy"
 msgstr "損失ポリシー"
 
-#, fuzzy
-msgid "Delete user"
-msgstr "リソースの削除"
+msgid "Ticket:"
+msgstr "チケット:"
 
-#, fuzzy
-msgid "Add user"
-msgstr "クラスタの追加"
+msgid "Properties"
+msgstr "プロパティ"
 
-msgid "%{workflow}: %{step}"
-msgstr "%{workflow}: %{step}"
+msgid "Sequential"
+msgstr "連続"
 
-msgid "The configuration has been applied."
-msgstr "環境設定が適用されました。"
+msgid "No resources defined for ticket"
+msgstr "チケットに定義されたリソースはありません"
 
-msgid "The following configuration will be applied to the cluster:"
-msgstr "以下の環境設定がクラスタに適用されます:"
+msgid "Target ID"
+msgstr "ターゲットID"
 
-msgid "Error applying configuration:"
-msgstr "環境設定を適用する際にエラーが発生しました:"
+msgid "Verifying parameters..."
+msgstr "パラメータを検証しています..."
 
-msgid "< Back"
-msgstr "< 戻る"
+msgid "Do you really want to cancel the wizard setup?"
+msgstr "ウィザードセットアップをキャンセルしてよろしいですか?"
 
-msgid "Next >"
-msgstr "次へ >"
+msgid "Do you really want to apply the current wizard?"
+msgstr "現在のウィザードを適用してよろしいですか?"
 
-msgid "No workflow descriptions found"
-msgstr "ワークフローの説明が見つかりません"
+msgid "Choose a wizard"
+msgstr "ウィザードの選択"
 
-msgid "Choose Configuration"
-msgstr "環境設定の選択"
+msgid "Legacy Wizards"
+msgstr "レガシーウィザード"
+
+msgid "Verify and apply"
+msgstr "確認および適用"
+
+msgid "Review the wizard actions and apply the changes"
+msgstr "ウィザードアクションを確認し、変更を適用する"
+
+msgid "Enable this step"
+msgstr "このステップを有効にする"
+
+msgid "This wizard takes no parameters."
+msgstr "このウィザードはパラメータを取りません。"
+
+msgid "Verify"
+msgstr "検証"
 
 msgid ""
-"This wizard will guide you through the steps necessary to add one of the follo"
-"wing configurations to the cluster."
-msgstr "このウィザードでは、クラスタへの次の環境設定の1つを追加するために必要な手順を案内します。"
+"To apply the changes, Hawk requires root access, and password-less SSH access "
+"must be configured. See the Hawk documentation for more information."
+msgstr ""
+"変更を適用する場合、Hawkにはルートアクセスが必要です。また、パスワードなしSSHアクセスを設定する必要があります。詳細については、Hawkのドキュメント"
+"を参照してください。"
+
+msgid "Root password"
+msgstr "ルートパスワード"
 
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "オブジェクト/属性が存在しません(cibadmin %{cmd})"
 
 msgid "Error invoking cibadmin %{cmd}: %{msg}"
 msgstr "cibadmin %{cmd} の呼び出しエラー: %{msg}"
-
-msgid "The object/attribute does not exist: %{msg}"
-msgstr "オブジェクト/属性が存在しません: %{msg}"
-
-msgid "Error invoking cibadmin --replace: %{msg}"
-msgstr "cibadmin --replaceの呼び出しエラー: %{msg}"

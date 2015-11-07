@@ -1,11 +1,11 @@
-# Copyright (C) 2006-2015 SUSE Linux GmbH, Nuernberg
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
 # This file is distributed under the same license as the package.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2014-07-15 11:30\n"
+"PO-Revision-Date: 2015-11-05 17:03\n"
 "Last-Translator: Novell language <language@novell.com>\n"
 "Language-Team: Novell language <language@novell.com>\n"
 "Language: \n"
@@ -14,34 +14,94 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Any changes will be lost - do you wish to proceed?"
-msgstr "Wijzigingen gaan verloren. Wilt u doorgaan?"
+msgid "Error"
+msgstr "Fout"
 
-msgid "Connection to server aborted - will retry every 15 seconds."
-msgstr ""
-"Verbinding met server afgebroken. Er wordt elke 15 seconden een nieuwe poging "
-"gedaan."
+msgid "Unexpected server error: _MSG_"
+msgstr "Onverwachte serverfout: _MSG_"
 
-#, fuzzy
-msgid "Connection to server failed - will retry every 15 seconds."
+msgid ""
+"Connection to server failed (server down or network error - will retry every 1"
+"5 seconds)."
 msgstr ""
-"Verbinding met server afgebroken. Er wordt elke 15 seconden een nieuwe poging "
-"gedaan."
+"Verbinding met server mislukt (server uitgevallen of netwerkfout. Er wordt elk"
+"e 15 seconden een nieuwe poging gedaan)."
 
 msgid "Connection to server timed out - will retry every 15 seconds."
 msgstr ""
 "Er is een time-out voor de verbinding met de server opgetreden. Er wordt elke "
 "15 seconden een nieuwe poging gedaan."
 
-#, fuzzy
-msgid "State"
-msgstr "Staat:                    "
-
-msgid "Name"
+msgid "Connection to server aborted - will retry every 15 seconds."
 msgstr ""
+"Verbinding met server afgebroken. Er wordt elke 15 seconden een nieuwe poging "
+"gedaan."
 
-msgid "Maintenance"
-msgstr "Onderhoud"
+msgid "Permission denied"
+msgstr "Toestemming geweigerd"
+
+msgid "_OP_ failed on _NODE_} (rc=_RC_, reason=_REASON_)"
+msgstr "_OP_ failed on _NODE_} (rc=_RC_, reason=_REASON_)"
+
+msgid "Permission denied. "
+msgstr "Toestemming geweigerd. "
+
+msgid "Error connecting to server."
+msgstr "Fout bij het maken van verbinding met server."
+
+msgid "Connection to server timed out."
+msgstr "Er is een time-out opgetreden voor de verbinding met de server."
+
+msgid "Connection to server was aborted."
+msgstr "Verbinding met server is afgebroken."
+
+msgid "Server returned invalid data."
+msgstr "De server heeft ongeldige data geretourneerd."
+
+msgid "Unknown error connecting to server."
+msgstr "Onbekende fout bij het maken van verbinding met server."
+
+msgid "Retrying every 15 seconds..."
+msgstr "Opnieuw proberen elke 15 seconden..."
+
+msgid "Cancel"
+msgstr "Annuleren"
+
+msgid "Hostname"
+msgstr "Hostnaam"
+
+msgid "Username"
+msgstr "Gebruikersnaam"
+
+msgid "Password"
+msgstr "Wachtwoord"
+
+msgid "Connect"
+msgstr "Verbinden"
+
+msgid "Local Status"
+msgstr "Lokale status"
+
+msgid "Remove cluster _NAME_ from dashboard?"
+msgstr "Cluster _NAME_ van dashboard verwijderen?"
+
+msgid "Cluster removed successfully."
+msgstr "Cluster is verwijderd."
+
+msgid "Error removing cluster."
+msgstr "Fout bij het verwijderen van cluster."
+
+msgid "Please wait..."
+msgstr "Een ogenblik geduld..."
+
+msgid "Cluster added successfully."
+msgstr "Cluster is toegevoegd."
+
+msgid "Create"
+msgstr "Maken"
+
+msgid "Remove"
+msgstr "Verwijderen"
 
 msgid "Yes"
 msgstr "Ja"
@@ -49,48 +109,307 @@ msgstr "Ja"
 msgid "No"
 msgstr "Nee"
 
-msgid "Standby"
-msgstr "Standby"
+msgid "Any changes will be lost - do you wish to proceed?"
+msgstr "Wijzigingen gaan verloren. Wilt u doorgaan?"
+
+msgid "Clone ID"
+msgstr "Kloon-id"
 
 msgid "Operations"
 msgstr "Bewerkingen"
 
-msgid "Online"
-msgstr "Online"
+msgid "Edit"
+msgstr "Bewerken"
 
-msgid "Ready"
-msgstr "Gereed"
+msgid "Delete"
+msgstr "Verwijderen"
+
+msgid "Constraint ID"
+msgstr "Beperkings-id"
+
+msgid "Swap with entry above"
+msgstr "Wisselen met bovenstaand item"
+
+msgid "Link with entry above"
+msgstr "Koppelen met bovenstaand item"
+
+msgid "Unlink from entry above"
+msgstr "Ontkoppelen van bovenstaand item"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Location"
+msgstr "Locatie"
+
+msgid "Colocation"
+msgstr "Colocatie"
+
+msgid "Order"
+msgstr "Volgorde"
+
+msgid "Ticket"
+msgstr "Ticket"
+
+msgid "Constraint"
+msgstr "Beperking"
+
+msgid "Group ID"
+msgstr "Groep ID"
+
+msgid "Rule"
+msgstr "Regel"
+
+msgid "Score"
+msgstr "Score"
+
+msgid "Role"
+msgstr "Rol"
+
+msgid "Boolean Operator"
+msgstr "Boolean operator"
+
+msgid "Multi-state ID"
+msgstr "Id meervoudige toestand"
+
+msgid "Connection to server failed - will retry every 15 seconds."
+msgstr ""
+"De verbinding met de server is verbroken. Er wordt elke 15 seconden een nieuwe"
+" poging gedaan."
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Remote"
+msgstr "Extern"
+
+msgid "Name"
+msgstr "Naam"
+
+msgid "Maintenance"
+msgstr "Onderhoud"
+
+msgid "Switch to ready"
+msgstr "Overschakelen naar gereed"
+
+msgid "Switch to maintenance"
+msgstr "Overschakelen naar onderhoud"
+
+msgid "Standby"
+msgstr "Standby"
+
+msgid "Switch to online"
+msgstr "Overschakelen naar online"
+
+msgid "Switch to standby"
+msgstr "Overschakelen naar stand-by"
 
 msgid "Fence"
-msgstr ""
+msgstr "Fence"
 
 msgid "Details"
 msgstr "Details"
 
-msgid "Events"
-msgstr ""
+msgid "Add"
+msgstr "Toevoegen"
+
+msgid "Apply"
+msgstr "Toepassen"
+
+msgid "No interval set for monitor operation"
+msgstr "Geen interval ingesteld voor monitorbewerking"
+
+msgid "Replacing previously defined monitor operation with same interval"
+msgstr "Eerder gedefinieerde monitorbewerking wordt vervangen met hetzelfde interval"
+
+msgid "Resource ID"
+msgstr "Resource-id"
+
+msgid "Failed to fetch meta attributes"
+msgstr "Meta-attributen kunnen niet worden opgehaald"
+
+msgid "Report generation is complete."
+msgstr "Rapport is gegenereerd."
+
+msgid "From"
+msgstr "Van"
+
+msgid "Until"
+msgstr "Tot"
+
+msgid "Custom"
+msgstr "Aangepast"
+
+msgid "Su"
+msgstr "Zo"
+
+msgid "Mo"
+msgstr "Ma"
+
+msgid "Tu"
+msgstr "Di"
+
+msgid "We"
+msgstr "Wo"
+
+msgid "Th"
+msgstr "Do"
+
+msgid "Fr"
+msgstr "Vr"
+
+msgid "Sa"
+msgstr "Za"
+
+msgid "January"
+msgstr "Januari"
+
+msgid "February"
+msgstr "Februari"
+
+msgid "March"
+msgstr "Maart"
+
+msgid "April"
+msgstr "April"
+
+msgid "May"
+msgstr "Mei"
+
+msgid "June"
+msgstr "Juni"
+
+msgid "July"
+msgstr "July"
+
+msgid "August"
+msgstr "Augustus"
+
+msgid "September"
+msgstr "September"
+
+msgid "October"
+msgstr "Oktober"
+
+msgid "November"
+msgstr "November"
+
+msgid "December"
+msgstr "December"
+
+msgid "Show"
+msgstr "Weergeven"
+
+msgid "Download"
+msgstr "Downloaden"
+
+msgid "Unmanaged"
+msgstr "Onbeheerd"
+
+msgid "Started"
+msgstr "Gestart"
+
+msgid "Primary"
+msgstr "Primair"
+
+msgid "Secondary"
+msgstr "Seconden"
+
+msgid "Stopped"
+msgstr "Gestopt"
+
+msgid "Group"
+msgstr "Groep"
+
+msgid "Multi-state"
+msgstr "Meervoudige toestand"
+
+msgid "Clone"
+msgstr "Klonen"
+
+msgid "Tag"
+msgstr "Tag"
+
+msgid "Stop"
+msgstr "Stoppen"
+
+msgid "Start"
+msgstr "Begin"
+
+msgid "Demote"
+msgstr "Degraderen"
+
+msgid "Promote"
+msgstr "Bevorderen"
+
+msgid "Unmanage"
+msgstr "Niet beheren"
+
+msgid "Manage"
+msgstr "Beheren"
+
+msgid "Migrate"
+msgstr "Migreren"
+
+msgid "Unmigrate"
+msgstr "Migratie ongedaan maken"
+
+msgid "Cleanup"
+msgstr "Opschoning"
+
+msgid "Primitive"
+msgstr "Primitieve"
+
+msgid "Resource"
+msgstr "Resource"
 
 msgid "Role ID"
 msgstr "Rol-id"
 
+msgid "Stopped Resources"
+msgstr "Gestopte resources"
+
+msgid "Tag ID"
+msgstr "Tag-id"
+
+msgid "Objects"
+msgstr "Objecten"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Granted"
+msgstr "Toegewezen"
+
+msgid "Revoked"
+msgstr "Ingetrokken"
+
+msgid "Grant"
+msgstr "Toewijzen"
+
+msgid "Revoke"
+msgstr "Intrekken"
+
 msgid "User ID"
 msgstr "Gebruikers-id"
 
+msgid "Must be a valid resource ID"
+msgstr "Moet een geldige resource-id zijn"
+
+msgid "Applying configuration changes..."
+msgstr "Configuratiewijzigingen toepassen..."
+
+msgid "Changes applied successfully."
+msgstr "Wijzigingen zijn toegepast."
+
+msgid "Agent"
+msgstr "Agent"
+
+msgid "Created a new shadow CIB for %USER%."
+msgstr "Er is een nieuwe schaduw-CIB voor %USER% gemaakt."
+
 msgid "Unable to create shadow CIB"
 msgstr "Kan geen schaduw-CIB maken"
-
-msgid "1 node configured"
-msgid_plural "%{num} nodes configured"
-msgstr[0] "1 knooppunt geconfigureerd"
-msgstr[1] "%{num} knooppunten geconfigureerd"
-
-msgid "1 resource configured"
-msgid_plural "%{num} resources configured"
-msgstr[0] "1 resource geconfigureerd"
-msgstr[1] "%{num} resources geconfigureerd"
-
-msgid "Edit Clone"
-msgstr "Kloon bewerken"
 
 msgid "Create Clone"
 msgstr "Kloon maken"
@@ -98,69 +417,62 @@ msgstr "Kloon maken"
 msgid "Clone created successfully"
 msgstr "De kloon is gemaakt"
 
+msgid "Edit Clone"
+msgstr "Kloon bewerken"
+
 msgid "Clone updated successfully"
 msgstr "De kloon is bijgewerkt"
 
-msgid "Edit Colocation Constraint"
-msgstr "Colocatiebeperking bewerken"
+msgid "Clone deleted successfully"
+msgstr "De kloon is verwijderd"
 
-msgid "Create Colocation Constraint"
-msgstr "Colocatiebeperking maken"
+msgid "Error deleting %s: %s"
+msgstr "Fout bij het verwijderen van %s: %s"
+
+msgid "Clones"
+msgstr "Klonen"
+
+msgid "The clone does not exist"
+msgstr "De kloon bestaat niet."
+
+msgid "Create Colocation"
+msgstr "Colocatie maken"
 
 msgid "Constraint created successfully"
 msgstr "De beperking is gemaakt"
 
+msgid "Edit Colocation"
+msgstr "Colocatie bewerken"
+
 msgid "Constraint updated successfully"
 msgstr "Beperking is bijgewerkt"
+
+msgid "Colocation deleted successfully"
+msgstr "De colocatie is verwijderd"
+
+msgid "Colocations"
+msgstr "Colocaties"
+
+msgid "The colocation constraint does not exist"
+msgstr "De colocatiebeperking bestaat niet"
 
 msgid "Constraints"
 msgstr "Beperkingen"
 
+msgid "Configuration updated successfully"
+msgstr "Configuratie is bijgewerkt"
+
 msgid "Cluster Configuration"
 msgstr "Clusterconfiguratie"
 
-msgid "Your changes have been saved"
-msgstr "De wijzigingen zijn opgeslagen"
-
-msgid "Unable to apply changes: %{msg}"
-msgstr "Kan wijzigingen niet toepassen: %{msg}"
-
-msgid ""
-"Can't set property %{p}, because the value contains both single and double quo"
-"tes"
-msgstr ""
-"Kan eigenschap %{p} niet instellen, omdat de waarde enkele en dubbele aanhalin"
-"gstekens bevat"
-
-msgid "Cluster Dashboard"
-msgstr "Clusterdashboard"
+msgid "Error removing %s: %s"
+msgstr "Fout bij het verwijderen van %s: %s"
 
 msgid "Dashboard"
 msgstr "Dashboard"
 
-msgid "History Explorer"
-msgstr "Historieverkenner"
-
-msgid "PE Input created by different Pacemaker version (%{version})"
-msgstr "PE-invoer gemaakt met andere Pacemaker-versie (%{version})"
-
-msgid "Pacemaker version not present in PE Input"
-msgstr "Pacemaker-versie niet aanwezig in PE-invoer"
-
-msgid "Required parameters \"basename\" and \"node\" not specified"
-msgstr "Vereiste parameters \"basisnaam\" en \"knooppunt\" zijn niet opgegeven"
-
-msgid "No details available"
-msgstr "Geen details beschikbaar"
-
-msgid "Error:"
-msgstr "Fout:"
-
-msgid "Required parameters \"left\" and \"right\" not specified"
-msgstr "Vereiste parameters \"links\" en \"rechts\" zijn niet opgegeven"
-
-msgid "Edit Group"
-msgstr "Groep bewerken"
+msgid "Cluster Graph"
+msgstr "Clustergrafiek"
 
 msgid "Create Group"
 msgstr "Groep maken"
@@ -168,82 +480,209 @@ msgstr "Groep maken"
 msgid "Group created successfully"
 msgstr "De groep is gemaakt"
 
+msgid "Edit Group"
+msgstr "Groep bewerken"
+
 msgid "Group updated successfully"
 msgstr "Groep is bijgewerkt"
 
-msgid "Edit Location Constraint"
-msgstr "Locatiebeperking bewerken"
+msgid "Group deleted successfully"
+msgstr "De groep is verwijderd"
+
+msgid "Groups"
+msgstr "Groepen"
+
+msgid "The group does not exist"
+msgstr "Groep bestaat niet"
 
 msgid "Create Location Constraint"
 msgstr "Locatiebeperking maken"
 
-msgid "%{cmd} failed (status: %{status})"
-msgstr "%{cmd} mislukt (status: %{status})"
+msgid "Edit Location Constraint"
+msgstr "Locatiebeperking bewerken"
 
-msgid "Cluster Status"
-msgstr "Clusterstatus"
+msgid "Location deleted successfully"
+msgstr "Locatie is verwijderd"
 
-msgid "Required parameter \"node\" not specified"
-msgstr "Vereiste parameter \"node\" is niet opgegeven"
+msgid "Location Constraints"
+msgstr "Locatiebeperkingen"
 
-msgid "Required parameter \"resource\" not specified"
-msgstr "Vereiste parameter \"resource\" is niet opgegeven"
+msgid "The location constraint does not exist"
+msgstr "De locatiebeperking bestaat niet"
 
-msgid "Required parameters \"resource\" and \"node\" not specified"
-msgstr "Vereiste parameters \"resource\" en \"node\" zijn niet opgegeven"
+msgid "Create Multi-state resource"
+msgstr "Recource meervoudige toestand maken"
 
-msgid "Error deleting resource"
-msgstr "Fout bij het verwijderen van bron"
+msgid "Multi-state resource created successfully"
+msgstr "De resource met meervoudige toestand is gemaakt"
 
-msgid "Required parameters \"ticket\" and \"site\" not specified"
-msgstr "Vereiste parameters \"ticket\" en \"site\" zijn niet opgegeven"
+msgid "Edit Multi-state resource"
+msgstr "Resource meervoudige toestand bewerken"
 
-msgid "Required parameter \"ticket\" not specified"
-msgstr "Vereiste parameter \"ticket\" is niet opgegeven"
+msgid "Multi-state resource updated successfully"
+msgstr "De resource met meervoudige toestand is bijgewerkt"
 
-msgid "Error invoking %{cmd}: %{msg}"
-msgstr "Fout bij het aanroepen van %{cmd}: %{msg}"
+msgid "Multi-state resource deleted successfully"
+msgstr "Resource meervoudige toestand is verwijderd"
 
-msgid "Edit Master/Slave"
-msgstr "Master/slave bewerken"
+msgid "Multi-state resource"
+msgstr "Resource meervoudige toestand"
 
-msgid "Create Master/Slave"
-msgstr "Master/slave maken"
+msgid "The multi-state resource does not exist"
+msgstr "De resource meervoudige toestand bestaat niet"
 
-msgid "Master/Slave created successfully"
-msgstr "Master/slave is gemaakt"
+msgid "Set the node state to online"
+msgstr "Status van knooppunt instellen op online"
 
-msgid "Master/Slave updated successfully"
-msgstr "Master/Slave is bijgewerkt"
+msgid "Set the node state to standby"
+msgstr "Status van knooppunt instellen op stand-by"
 
-#, fuzzy
+msgid "Set the node state to maintenance"
+msgstr "Status van knooppunt instellen op onderhoud"
+
+msgid "Set the node state to ready"
+msgstr "Status van knooppunt instellen op gereed"
+
+msgid "Set the node state to fence"
+msgstr "Status van knooppunt instellen op termijn"
+
 msgid "Nodes"
-msgstr "Knooppunt"
+msgstr "Knooppunten"
 
-msgid "Edit Order Constraint"
-msgstr "Volgordebeperking bewerken"
+msgid "The node does not exist"
+msgstr "Het knooppunt bestaat niet."
 
-msgid "Create Order Constraint"
-msgstr "Volgordebeperking maken"
+msgid "Create Order"
+msgstr "Volgorde maken"
+
+msgid "Edit Order"
+msgstr "Order bewerken"
+
+msgid "Order deleted successfully"
+msgstr "Volgorde is gemaakt"
+
+msgid "Orders"
+msgstr "Volgordes"
+
+msgid "The order constraint does not exist"
+msgstr "De orderbeperking bestaat niet"
 
 msgid "Welcome"
-msgstr ""
+msgstr "Welkom"
 
 msgid "Help"
-msgstr ""
+msgstr "Help"
 
-msgid "Create Resource"
-msgstr "Resource maken"
+msgid "Commands"
+msgstr "Opdrachten"
 
-msgid "Resource created successfully"
-msgstr "De resource is gemaakt"
+msgid "Create Primitive"
+msgstr "Primitief maken"
 
-msgid "Resource updated successfully"
-msgstr "Bron is bijgewerkt"
+msgid "Primitive created successfully"
+msgstr "Primitieve is gemaakt"
 
-#, fuzzy
+msgid "Edit Primitive"
+msgstr "Primitieve bewerken"
+
+msgid "Primitive updated successfully"
+msgstr "De primitieve is bijgewerkt"
+
+msgid "Primitive deleted successfully"
+msgstr "Primitief is verwijderd"
+
 msgid "Primitives"
-msgstr "Primitieve"
+msgstr "Primitieven"
+
+msgid "The primitive does not exist"
+msgstr "De primitieve bestaat niet."
+
+msgid "Preferences updated successfully"
+msgstr "Voorkeuren zijn bijgewerkt"
+
+msgid "Preferences"
+msgstr "Voorkeuren"
+
+msgid "Please wait while report is generated..."
+msgstr "Een ogenblik geduld. Het rapport wordt gegenereerd..."
+
+msgid "Failed to generate"
+msgstr "Genereren is niet mogelijk"
+
+msgid "Upload completed."
+msgstr "Upload is voltooid."
+
+msgid "Cannot display diff, too few transitions"
+msgstr "Verschil kan niet worden weergegeven. Er zijn te veel overgangen."
+
+msgid "Report deleted successfully"
+msgstr "Het rapport is verwijderd"
+
+msgid "Error deleting %s"
+msgstr "Fout bij het verwijderen van %s"
+
+msgid "History Explorer"
+msgstr "Historieverkenner"
+
+msgid "The report does not exist"
+msgstr "Het rapport bestaat niet"
+
+msgid "must be a valid datetime"
+msgstr "moet een geldige datum/tijd zijn"
+
+msgid "Successfully started the resource"
+msgstr "De resource is gestart"
+
+msgid "Failed to start the resource: %{err}"
+msgstr "De resource kan niet worden gestart: %{err}"
+
+msgid "Successfully stopped the resource"
+msgstr "De resource is gestopt"
+
+msgid "Failed to stop the resource: %{err}"
+msgstr "De resource kan niet worden gestopt: %{err}"
+
+msgid "Successfully promoted the resource"
+msgstr "Niveau van resource is verhoogd"
+
+msgid "Failed to promote the resource: %{err}"
+msgstr "Niveau van resource kan niet worden verhoogd: %{err}"
+
+msgid "Successfully demoted the resource"
+msgstr "Niveau van resource is verlaagd"
+
+msgid "Failed to demote the resource: %{err}"
+msgstr "Niveau van resource kan niet worden verlaagd: %{err}"
+
+msgid "Successfully set the resource in managed mode"
+msgstr "De resource is in beheerde modus ingesteld"
+
+msgid "Failed to set the resource in managed mode: %{err}"
+msgstr "De resource kan niet in beheerde modus worden ingesteld: %{err}"
+
+msgid "Successfully set the resource in unmanaged mode"
+msgstr "De resource is  in onbeheerde modus ingesteld"
+
+msgid "Failed to set the resource in unmanaged mode: %{err}"
+msgstr "De resource kan niet in onbeheerde modus worden ingesteld: %{err}"
+
+msgid "Successfully unmigrated the resource"
+msgstr "Migratie van de resource is ongedaan genmaakt"
+
+msgid "Failed to unmigrate the resource: %{err}"
+msgstr "Migratie van de resource kan niet ongedaan worden gemaakt: %{err}"
+
+msgid "Successfully migrated the resource"
+msgstr "De resource is gemigreerd"
+
+msgid "Failed to migrate the resource: %{err}"
+msgstr "Kan resource niet migreren: %{msg}"
+
+msgid "Successfully cleaned the resource"
+msgstr "De resource is opgeschoond"
+
+msgid "Failed to clean up the resource: %{err}"
+msgstr "De resource kan niet worden opgeschoond: %{err}"
 
 msgid "Resources"
 msgstr "Resources"
@@ -260,22 +699,24 @@ msgstr "Rol bewerken"
 msgid "Role updated successfully"
 msgstr "De rol is bijgewerkt"
 
-#, fuzzy
 msgid "Role deleted successfully"
-msgstr "De rol is gemaakt"
+msgstr "De rol is verwijderd"
 
-#, fuzzy
-msgid "Error deleting %s"
-msgstr "Fout bij het verwijderen van bron"
+msgid "ACL is not supported by the cluster"
+msgstr "ACL wordt niet ondersteund door het cluster"
 
 msgid "Roles"
 msgstr "Rollen"
 
 msgid "The role does not exist"
-msgstr ""
+msgstr "De rol bestaat niet"
 
-msgid "To enable ACLs, set 'enable-acl' in the CRM Configuration"
-msgstr "Stel 'enable-acl' in de CRM-configuratie in om ACL's in te schakelen"
+msgid ""
+"To enable ACLs, set \"enable-acl\" in the Cluster Configuration ('Manage > Confi"
+"guration')"
+msgstr ""
+"Als u ACL's wilt inschakelen, stelt u \"enable-acl\" in Clusterconfiguratie ('Be"
+"heren > Configuratie') in"
 
 msgid "Permission denied for user %{user}"
 msgstr "Toestemming geweigerd voor gebruiker %{user}"
@@ -286,15 +727,29 @@ msgstr "U bent afgemeld."
 msgid "Log In"
 msgstr "Aanmelden"
 
-#, fuzzy
-msgid "Preferences updated successfully"
-msgstr "Bron is bijgewerkt"
+msgid "Simulator"
+msgstr "Simulatie"
 
-msgid "Preferences"
-msgstr "Voorkeuren"
+msgid "Create Tag"
+msgstr "Tag maken"
 
-msgid "Edit Template"
-msgstr "Sjabloon bewerken"
+msgid "Tag created successfully"
+msgstr "De tag is gemaakt"
+
+msgid "Edit Tag"
+msgstr "Tag bewerken"
+
+msgid "Tag updated successfully"
+msgstr "De tag is bijgewerkt"
+
+msgid "Tag deleted successfully"
+msgstr "De tag is verwijderd"
+
+msgid "Tags"
+msgstr "Tags"
+
+msgid "The tag does not exist"
+msgstr "De tag bestaat niet"
 
 msgid "Create Template"
 msgstr "Sjabloon maken"
@@ -302,110 +757,140 @@ msgstr "Sjabloon maken"
 msgid "Template created successfully"
 msgstr "De sjabloon is gemaakt"
 
+msgid "Edit Template"
+msgstr "Sjabloon bewerken"
+
 msgid "Template updated successfully"
 msgstr "De sjabloon is bijgewerkt"
 
-msgid "Edit Ticket Constraint"
-msgstr "Ticketbeperking bewerken"
+msgid "Template deleted successfully"
+msgstr "De sjabloon is verwijderd"
 
-msgid "Create Ticket Constraint"
-msgstr "Ticketbeperking maken"
+msgid "You have no template feature support"
+msgstr "U hebt geen ondersteuning voor de sjabloonfunctie"
 
-msgid "Create User"
-msgstr "Gebruiker maken"
+msgid "Templates"
+msgstr "Sjablonen"
 
-msgid "User created successfully"
-msgstr "Gebruiker is gemaakt"
+msgid "The template does not exist"
+msgstr "De sjabloon bestaat niet"
 
-msgid "Edit User"
-msgstr "Gebruiker bewerken"
+msgid "Create Ticket"
+msgstr "Ticket maken"
 
-msgid "User updated successfully"
-msgstr "Gebruiker is bijgewerkt"
+msgid "Edit Ticket"
+msgstr "Ticket bewerken"
 
-#, fuzzy
-msgid "User deleted successfully"
-msgstr "Gebruiker is gemaakt"
+msgid "Ticket deleted successfully"
+msgstr "Ticket is verwijderd"
 
-#, fuzzy
-msgid "Users"
-msgstr "Gebruiker"
+msgid "Successfully granted the ticket"
+msgstr "Het ticket is verleend"
 
-msgid "The user does not exist"
-msgstr ""
+msgid "Successfully revoked the ticket"
+msgstr "Het ticket is ingetrokken"
 
-msgid "Cluster Setup Wizard"
-msgstr "Wizard Clusterinstallatie"
+msgid "Tickets"
+msgstr "Tickets"
 
-msgid "Invalid password"
-msgstr "Ongeldig wachtwoord"
+msgid "The ticket constraint does not exist"
+msgstr "De ticketbeperking bestaat niet"
 
-msgid "Root Password"
-msgstr "Root-wachtwoord"
+msgid "Create ACL Target"
+msgstr "ACL-doel maken"
 
-msgid ""
-"The root password is required in order for this wizard template to make config"
-"uration changes."
-msgstr ""
-"Het root-wachtwoord is vereist om via deze wizardsjabloon configuratiewijzigin"
-"gen door te voeren."
+msgid "ACL target created successfully"
+msgstr "ACL-doel is gemaakt"
 
-msgid "The root password for this system"
-msgstr "Het root-wachtwoord voor dit systeem"
+msgid "Edit ACL Target"
+msgstr "ACL-doel bewerken"
 
-msgid "\"Error: #{result}\""
-msgstr "\"Fout: #{result}\""
+msgid "ACL target updated successfully"
+msgstr "ACL-doel is bijgewerkt"
 
-msgid "Parameters"
-msgstr "Parameters"
+msgid "ACL target deleted successfully"
+msgstr "ACL-doel is verwijderd"
 
-msgid "Confirm"
-msgstr "Bevestigen"
+msgid "ACL is not supported by this cluster."
+msgstr "ACL wordt niet ondersteund door dit cluster"
 
-msgid "Done"
-msgstr "Klaar"
+msgid "ACL Targets"
+msgstr "ACL-doelen"
 
-msgid "Required parameter \"%{param}\" not specified"
-msgstr "Vereiste parameter \"%{param}\" is niet opgegeven"
+msgid "The ACL target does not exist"
+msgstr "Het ACL-doel bestaat niet"
+
+msgid "Session has expired"
+msgstr "Sessie is verlopen"
+
+msgid "Wizard cannot be applied when the simulator is active"
+msgstr "Wizard kan niet worden toegepast wanneer de simulator actief is"
+
+msgid "Use a wizard"
+msgstr "Een wizard gebruiken"
 
 msgid "Permission denied - you do not have write access to the CIB."
 msgstr "Toestemming geweigerd - u hebt geen schrijftoegang tot de CIB."
 
-msgid "Wizard templates and/or workflows are missing"
-msgstr "Wizardsjablonen en/of -werkstromen ontbreken"
+msgid "Cluster seems to be offline"
+msgstr "Cluster lijkt offline te zijn"
 
-msgid "Workflow \"%s\" not found"
-msgstr "Werkstroom \"%s\" is niet gevonden"
+msgid "Required"
+msgstr "Vereist"
 
-msgid "Error parsing template \"%s\""
-msgstr "Fout bij het parseren van sjabloon \"%s\""
+msgid "Unique"
+msgstr "Uniek"
 
-msgid "Error parsing workflow \"%s\""
-msgstr "Fout bij het parseren van werkstroom \"%s\""
+msgid "Master"
+msgstr "Master"
 
-msgid "Data collection in progress (%{from_time} to %{to_time})..."
-msgstr "Gegevens worden verzameld (%{from_time} tot %{to_time})..."
+msgid "Slave"
+msgstr "Slave"
 
-#, fuzzy
 msgid "Revert"
-msgstr "Opnieuw"
+msgstr "Terugdraaien"
 
-msgid "Apply"
-msgstr ""
-
-#, fuzzy
-msgid "Create"
-msgstr "Rol maken"
-
-#, fuzzy
 msgid "Read"
-msgstr "Gereed"
+msgstr "Lezen"
 
 msgid "Write"
-msgstr ""
+msgstr "Schrijven"
 
 msgid "Deny"
-msgstr ""
+msgstr "Blokkeren"
+
+msgid "success"
+msgstr "Succes"
+
+msgid "generic error"
+msgstr "Algemene fout"
+
+msgid "incorrect arguments"
+msgstr "onjuiste argumenten"
+
+msgid "unimplemented action"
+msgstr "ongeïmplementeerde actie"
+
+msgid "insufficient permissions"
+msgstr "onvoldoende rechten"
+
+msgid "installation error"
+msgstr "installatiefout"
+
+msgid "configuration error"
+msgstr "configuratiefout"
+
+msgid "not running"
+msgstr "niet actief"
+
+msgid "running (master)"
+msgstr "actief (master)"
+
+msgid "failed (master)"
+msgstr "mislukt (master)"
+
+msgid "Freeze"
+msgstr "Vastgelopen"
 
 msgid "CIB file \"%{path}\" not found"
 msgstr "CIB-bestand \"%{path}\" niet gevonden"
@@ -422,71 +907,198 @@ msgstr "Kan %{cmd} niet uitvoeren"
 msgid "Error invoking %{cmd}"
 msgstr "Fout bij het aanroepen van %{cmd}"
 
+msgid "Error invoking %{cmd}: %{msg}"
+msgstr "Fout bij het aanroepen van %{cmd}: %{msg}"
+
 msgid "Unknown"
 msgstr "Onbekend"
 
+msgid "Node \"%{node}\" is UNCLEAN and needs to be fenced."
+msgstr "Knooppunt \"%{node}\" is VERVUILD. Er moet een fence op worden toegepast."
+
 msgid ""
-"Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%"
-"{op}, rc-code=%{rc_code}, exit-reason=%{exit_reason}"
+"%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}"
+": call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_r"
+"eason}"
 msgstr ""
+"%{fail_start}: bewerking %{op} is mislukt voor resource %{resource} op knooppu"
+"nt %{node}: oproep-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), reden af"
+"sluiting=%{exit_reason}"
 
-msgid "Invalid Resource ID \"%{id}\""
-msgstr "Ongeldige bron-id \"%{id}\""
+msgid "other"
+msgstr "overig"
 
-msgid "Unable to parse cibadmin output"
-msgstr "Kan cibadmin-uitvoer niet parseren"
+msgid "STONITH is disabled. For normal cluster operation, STONITH is required."
+msgstr ""
+"STONITH is uitgeschakeld. Voor een normale clusterbewerking is STONITH vereist"
+"."
 
-msgid "No clone child specified"
+msgid "None"
+msgstr "Geen"
+
+msgid "Clone ID is required"
+msgstr "Kloon-id is vereist"
+
+msgid "Invalid Clone ID"
+msgstr "Ongeldige kloon-id"
+
+msgid "No Clone child specified"
 msgstr "Er is geen onderliggende kloon opgegeven"
 
+msgid "Is the cluster allowed to start and stop the resource?"
+msgstr "Mag het cluster de resource starten en stoppen?"
+
 msgid ""
-"Can't set meta attribute %{p}, because the value contains both single and doub"
-"le quotes"
+"If not all resources can be active, the cluster will stop lower priority resou"
+"rces in order to keep higher priority ones active."
 msgstr ""
-"Kan meta-attribuut %{p} niet instellen, omdat de waarde enkele en dubbele aanh"
-"alingstekens bevat"
+"Als niet alle resources actief kunnen zijn, stopt het cluster resources met ee"
+"n lagere prioriteit om de resources met een hogere prioriteit actief te houden"
+"."
 
-msgid "The ID \"%{id}\" is already in use"
-msgstr "Id \"%{id}\" is al in gebruik"
+msgid "What state should the cluster attempt to keep this resource in?"
+msgstr "In welke toestand moet het cluster proberen deze resource te behouden?"
 
-msgid "Unable to create clone: %{msg}"
-msgstr "Kan kloon niet maken: %{msg}"
+msgid ""
+"How many copies of the resource to start. Defaults to the number of nodes in t"
+"he cluster."
+msgstr ""
+"Het aantal kopieën van de resource dat moet worden gestart. Wordt standaard in"
+"gesteld op het aantal knooppunten in het cluster."
 
-msgid "Clone ID \"%{id}\" does not exist"
-msgstr "Kloon-id \"%{id}\" bestaat niet"
+msgid ""
+"How many copies of the resource can be started on a single node. Defaults to 1"
+"."
+msgstr ""
+"Het aantal kopieën van de resource dat in één knooppunt kan worden gestart. Wo"
+"rdt standaard ingesteld op 1."
 
-msgid "Invalid score"
-msgstr "Ongeldige score"
+msgid ""
+"When stopping or starting a copy of the clone, tell all the other copies befor"
+"ehand and when the action was successful."
+msgstr ""
+"Geef vooraf aan alle andere kopieën door wanneer een kopie van de kloon wordt "
+"gestart of gestopt en geef door wanneer de actie is geklukt."
+
+msgid "Does each copy of the clone perform a different function?"
+msgstr "Wordt met elke kopie van de kloon een andere functie uitgevoerd?"
+
+msgid "Should the copies be started in series (instead of in parallel)?"
+msgstr "Moeten de kopieën na elkaar (of naast elkaar) worden gestart?"
+
+msgid ""
+"Changes the behavior of ordering constraints (between clones/masters) so that "
+"instances can start/stop as soon as their peer instance has (rather than waiti"
+"ng for every instance of the other clone has)."
+msgstr ""
+"Hiermee wordt het gedrag van ordeningsbeperkingen (tussen klonen/masters) zoda"
+"nig gewijizgd dat instanties kunnen worden gestart/gestopt zodra de peer-insta"
+"nce is gestart/gestopt (in plaats van te wachten tot elke instantie van de and"
+"ere kloon is gestart/gestopt)."
+
+msgid "The ID \"%{id}\" does not exist"
+msgstr "Id \"%{id}\" bestaat niet"
+
+msgid "Constraint ID is required"
+msgstr "Beperkings-id is vereist"
+
+msgid "Invalid Constraint ID"
+msgstr "Ongeldige beperkings-id"
+
+msgid "Score is required"
+msgstr "Score is vereist"
+
+msgid "Invalid score value"
+msgstr "Ongeldige scorewaarde"
 
 msgid "Constraint must consist of at least two separate resources"
 msgstr "Beperking moet uit minimaal twee afzonderlijke bronnen bestaan"
 
-msgid "Unable to create constraint: %{msg}"
-msgstr "Kan beperking niet maken: %{msg}"
+msgid "Not a constraint"
+msgstr "Geen beperking"
 
-msgid "Constraint ID \"%{id}\" does not exist"
-msgstr "Beperkings-id \"%{id}\" bestaat niet"
+msgid "Set to true if the resource agent supports the migrate action"
+msgstr "Instellen op waar als de resource-agent de migratieactie ondersteunt"
 
-msgid "Unable to update constraint: %{msg}"
-msgstr "Kan beperking niet bijwerken: %{msg}"
+msgid ""
+"How many failures may occur for this resource on a node, before this node is m"
+"arked ineligible to host this resource. A value of INFINITY indicates that thi"
+"s feature is disabled."
+msgstr ""
+"Het aantal fouten dat voor deze resource op een knooppunt mag optreden, voorda"
+"t deze node wordt gemarkeerd als ongeschikt om als host te dienen voor deze re"
+"source. Met een waarde van INFINITY wordt aangegeven dat deze functie wordt ui"
+"tgeschakeld."
 
-msgid "No group children specified"
+msgid ""
+"What should the cluster do if it ever finds the resource active on more than o"
+"ne node?"
+msgstr ""
+"Wat moet het cluster doen als blijkt dat de resource op meerdere knooppunten a"
+"ctief is?"
+
+msgid ""
+"How many seconds to wait before acting as if the failure had not occurred, and"
+" potentially allowing the resource back to the node on which it failed. A valu"
+"e of 0 indicates that this feature is disabled."
+msgstr ""
+"Het aantal seconden dat moet worden gewacht voordat de fout wordt genegeerd en"
+" de resource mogelijk op het knooppunt wordt toegestaan waarop het fout ging. "
+"Met een waarde van 0 wordt aangegeven dat deze functie wordt uitgeschakeld."
+
+msgid "How much does the resource prefer to stay where it is?"
+msgstr "Hoeveel voorkeur geeft de resource eraan op de huidige plaats te blijven?"
+
+msgid "Conditions under which the resource can be started."
+msgstr "Voorwaarden waaronder de resource kan worden gestart."
+
+msgid ""
+"The name of the remote-node this resource defines. This both enables the resou"
+"rce as a remote-node and defines the unique name used to identify the remote-n"
+"ode. If no other parameters are set, this value will also be assumed as the ho"
+"stname to connect to at the port specified by remote-port. WARNING: This value"
+" cannot overlap with any resource or node IDs. If not specified, this feature "
+"is disabled."
+msgstr ""
+"De naam van het externe knooppunt dat met deze resource wordt gedefinieerd. Hi"
+"ermee wordt de resource als een extern knooppunt ingeschakeld en wordt de unie"
+"ke naam gedefinieerd waarmee het externe knooppunt wordt geïdentificeerd. Als "
+"er geen andere parameters worden ingesteld, wordt deze waarde ook gebruikt als"
+" de hostnaam waarmee verbinding moet worden gemaakt op de poort die is opgegev"
+"en door de externe poort. WAARSCHUWING: deze waarde mag niet overlappen met re"
+"source- of knooppunt-id's. Als deze waarde niet wordt opgegeven, wordt deze fu"
+"nctie uitgeschakeld."
+
+msgid "Port to use for the guest connection to pacemaker_remote."
+msgstr "Poort die moet worden gebruikt voor de gastverbinding met pacemaker_remote."
+
+msgid ""
+"The IP address or hostname to connect to if remote-node's name is not the host"
+"name of the guest."
+msgstr ""
+"Het IP-adres of de hostnaam waarmee verbinding moet worden gemaakt als de naam"
+" van het externe knooppunt niet de hostnaam van de gast is."
+
+msgid "How long before a pending guest connection will time out."
+msgstr "De tijd voordat een een time-out optreedt voor een wachtende gastverbinding."
+
+msgid "Group ID is required"
+msgstr "Groeps-id is vereist"
+
+msgid "Invalid Group ID"
+msgstr "Ongeldige groep-id"
+
+msgid "No Group children specified"
 msgstr "Geen onderliggende elementen van de groep opgegeven"
 
-msgid "Unable to create group: %{msg}"
-msgstr "Kan groep niet maken: %{msg}"
-
-msgid "Group ID \"%{id}\" does not exist"
-msgstr "Groeps-id \"%{id}\" bestaat niet"
-
-msgid "Constraint is too complex - it contains nested rules"
-msgstr "Beperking is te complex: deze bevat geneste regels"
+msgid "No resource specified"
+msgstr "Er is geen resource opgegeven"
 
 msgid "No rules specified"
 msgstr "Er zijn geen regels opgegeven"
 
-msgid "No resource specified"
-msgstr "Er is geen resource opgegeven"
+msgid "Constraint is too complex - it contains nested rules"
+msgstr "Beperking is te complex: deze bevat geneste regels"
 
 msgid "Invalid score \"%{score}\""
 msgstr "Ongeldige score \"%{score}\""
@@ -500,178 +1112,222 @@ msgstr "Attribuut bevat enkele en dubbele aanhalingstekens"
 msgid "Value contains both single and double quotes"
 msgstr "Waarde bevat enkele en dubbele aanhalingstekens"
 
-msgid "No Master/Slave child specified"
-msgstr "Geen onderliggend element van master/slave opgegeven"
+msgid "Multi-state ID is required"
+msgstr "Id meervoudige toestand is vereist"
 
-msgid "Unable to create master/slave: %{msg}"
-msgstr "Kan master/slave niet maken: %{msg}"
+msgid "Invalid Multi-state ID"
+msgstr "Ongeldige id meervoudige toestand"
 
-msgid "Master/Slave ID \"%{id}\" does not exist"
-msgstr "Master/slave-id \"%{id}\" bestaat niet"
+msgid "No Multi-state child specified"
+msgstr "Geen onderliggend element met meervoudige toestand opgegeven"
 
-msgid ""
-"Can't set parameter %{p}, because the value contains both single and double qu"
-"otes"
-msgstr ""
-"Kan parameter %{p} niet instellen, omdat de waarde enkele en dubbele aanhaling"
-"stekens bevat"
+msgid "How many copies of the resource can be promoted to master status."
+msgstr "Het aantal kopieën van de resource dat kan worden verhoogd naar hoofdstatus."
 
 msgid ""
-"Can't set op %{o} attribute {%a}, because the value contains both single and d"
-"ouble quotes"
+"How many copies of the resource can be promoted to master status on a single n"
+"ode."
 msgstr ""
-"Kan op %{o} attribuut {%a} niet instellen, omdat de waarde enkele en dubbele a"
-"anhalingstekens bevat"
+"Het aantal kopieën van de resource dat kan worden verhoogd naar hoofdstatus op"
+" één knooppunt."
 
-msgid "Unable to create resource: %{msg}"
-msgstr "Kan resource niet maken: %{msg}"
+msgid "Node ID is required"
+msgstr "Knooppunt-id is vereist"
 
-msgid "Resource ID \"%{id}\" does not exist"
-msgstr "Bron-id \"%{id}\" bestaat niet"
+msgid "Invalid Node ID"
+msgstr "Ongeldige knooppunt-id"
 
-#, fuzzy
+msgid "Name is required"
+msgstr "Naam is vereist"
+
+msgid "Invalid name"
+msgstr "Ongeldige naam"
+
+msgid "is required"
+msgstr "is vereist"
+
+msgid "Object not found: %s=%s"
+msgstr "Object is niet gevonden: %s=%s"
+
+msgid "The ID \"%{id}\" is already in use"
+msgstr "Id \"%{id}\" is al in gebruik"
+
 msgid "Unable to create: %{msg}"
-msgstr "Rol kan niet worden gemaakt: %{msg}"
+msgstr "Kan niet maken: %{msg}"
 
-#, fuzzy
-msgid "The ID \"%{id}\" does not exist"
-msgstr "Rol-id \"%{id}\" bestaat niet"
+msgid "Error updating %{id} (rc=%{rc})"
+msgstr "Fout bij bijwerken van %{id} (rc=%{rc})"
 
-#, fuzzy
-msgid "Unable to update: %{msg}"
-msgstr "Rol kan niet worden bijgewerkt: %{msg}"
+msgid "PE Input created by different Pacemaker version (%{version})"
+msgstr "PE-invoer gemaakt met andere Pacemaker-versie (%{version})"
+
+msgid "Pacemaker version not present in PE Input"
+msgstr "Pacemaker-versie niet aanwezig in PE-invoer"
+
+msgid "No details available"
+msgstr "Geen details beschikbaar"
+
+msgid "Error:"
+msgstr "Fout:"
+
+msgid "must have correct MIME type (was %s)"
+msgstr "moet correct MIME-type hebben (was %s)"
+
+msgid "must have correct file extension"
+msgstr "moet juiste bestandsextensie hebben"
+
+msgid "Not a resource"
+msgstr "Geen resource"
 
 msgid "Role ID is required"
-msgstr ""
+msgstr "Rol-id is vereist"
 
-#, fuzzy
 msgid "Invalid Role ID"
-msgstr "Ongeldige ticket-id"
+msgstr "Ongeldige rol-id"
 
-msgid "Username not specified"
-msgstr "Gebruikersnaam is niet opgegeven."
+msgid "At least one rule is required"
+msgstr "Minstens één rol is vereist"
 
 msgid "Invalid username"
 msgstr "Ongeldige gebruikersnaam"
 
-msgid "Password not specified"
-msgstr "Geen wachtwoord opgegeven"
-
 msgid "%s is not installed"
 msgstr "%s is niet geïnstalleerd."
 
-#, fuzzy
 msgid "%s is not executable"
-msgstr "%s is niet geïnstalleerd."
+msgstr "%s is niet uitvoerbaar"
+
+msgid "Username not specified"
+msgstr "Gebruikersnaam is niet opgegeven."
+
+msgid "Password not specified"
+msgstr "Geen wachtwoord opgegeven"
 
 msgid "Invalid username or password"
 msgstr "Ongeldige gebruikersnaam of ongeldig wachtwoord"
 
-msgid "Language is required"
+msgid "Tag ID is required"
+msgstr "Tag-id is vereist"
+
+msgid "Invalid Tag ID"
+msgstr "Ongeldige tag-id"
+
+msgid "No Tag resources specified"
+msgstr "Er zijn geen tagresources opgegeven"
+
+msgid "Resource ID is required"
+msgstr "Resource-id is vereist"
+
+msgid "Invalid Resource ID"
+msgstr "Ongeldige resource-id"
+
+msgid "How frequently (in seconds) to perform the operation."
+msgstr "Hoe vaak (in seconden) de bewerking moet worden uitgevoerd."
+
+msgid "How long to wait before declaring the action has failed."
+msgstr "Hoe lang moet worden gewacht voordat wordt verklaard dat de actie is mislukt."
+
+msgid "What conditions need to be satisfied before this action occurs."
+msgstr "Aan welke voorwaarden moet worden voldaan voordat deze actie plaatsvindt."
+
+msgid "If false, the operation is treated as if it does not exist."
 msgstr ""
+"Indien niet aan de voorwaarde wordt voldaan, wordt de bewerking behandeld also"
+"f deze niet bestaat."
+
+msgid ""
+"This option only makes sense for recurring operations. It restricts the operat"
+"ion to a specific role. The truely paranoid can even specify role=Stopped whic"
+"h allows the cluster to detect an admin that manually started cluster services"
+"."
+msgstr ""
+"Deze optie is alleen zinvol voor terugkerende bewerkingen. Met deze optie word"
+"t de bewerking tot een specifieke rol beperkt. Voor de rol kan zelfs Gestopt w"
+"orden opgegeven, waarmee het cluster een beheerder kan detecteren die clusters"
+"ervices handmatig heeft gestart."
+
+msgid "The action to take if this action ever fails."
+msgstr "De actie die moet worden uitgevoerd als deze actie ooit mislukt."
+
+msgid ""
+"If true, the intention to perform the operation is recorded so that GUIs and C"
+"LI tools can indicate that an operation is in progress."
+msgstr ""
+"Als aan deze voorwaarde wordt voldaan, wordt de intentie om deze bewerking uit"
+" te voeren geregistreerd zodat met GUI's en CLI-programma's kan worden aangege"
+"ven dat een bewerking wordt uitgevoerd."
+
+msgid "Ticket ID is required"
+msgstr "Ticket-id is vereist"
 
 msgid "Invalid Ticket ID"
 msgstr "Ongeldige ticket-id"
 
-msgid "No resources specified"
-msgstr "Er zijn geen resources opgegeven"
+msgid "Constraint must consist of at least one separate resources"
+msgstr "Beperking moet uit minimaal een afzonderlijke bron bestaan"
 
-msgid "User ID is required"
-msgstr ""
+msgid "Simulator active: Use the ticket controls in the simulator"
+msgstr "Simulator actief: gebruik de ticketelementen in de simulator"
 
-#, fuzzy
-msgid "Invalid User ID"
-msgstr "Ongeldige ticket-id"
+msgid "ACL target ID is required"
+msgstr "Id ACL-doel is vereist"
 
-msgid "Meta Attributes"
-msgstr "Meta-attributen"
+msgid "Invalid ACL target ID"
+msgstr "Ongeldige id van ACL-doel"
 
-msgid "Add"
-msgstr "Toevoegen"
+msgid "At least one role is required"
+msgstr "Minstens één rol is vereist."
 
-msgid "Remove"
-msgstr "Verwijderen"
+msgid "Requested wizard does not exist"
+msgstr "Aangevraagde wizard bestaat niet"
 
-msgid "You must enter a value"
-msgstr "U moet een waarde invoeren"
+msgid "Parameters"
+msgstr "Parameters"
 
-msgid "Clone ID"
-msgstr "Kloon-id"
+msgid "Shortdesc"
+msgstr "Korte beschrijving"
+
+msgid "Longdesc"
+msgstr "Lange beschrijving"
+
+msgid "Options"
+msgstr "Opties"
+
+msgid "Actions"
+msgstr "Acties"
+
+msgid "Timeout"
+msgstr "Timeout"
+
+msgid "Interval"
+msgstr "Interval"
+
+msgid "Depth"
+msgstr "Diepte"
+
+msgid "Close"
+msgstr "Sluiten"
 
 msgid "Child Resource"
 msgstr "Onderliggende resource"
 
-msgid "Revert Changes"
-msgstr "Wijzigingen ongedaan maken"
+msgid "Meta Attributes"
+msgstr "Meta-attributen"
 
 msgid "Back"
 msgstr "Terug"
 
-msgid "Apply Changes"
-msgstr "Wijzigingen toepassen"
-
-msgid "Link set"
-msgstr "Set koppelen"
-
-msgid "Break set"
-msgstr "Set onderbreken"
-
-msgid "Swap resources"
-msgstr "Resources wisselen"
-
-msgid "Add resource to constraint"
-msgstr "Resource aan beperking toevoegen"
-
-msgid "Constraint ID"
-msgstr "Beperkings-id"
-
-msgid "Score"
-msgstr "Score"
-
-msgid "Create Constraint"
-msgstr "Beperking maken"
-
-msgid "Edit Constraint"
-msgstr "Beperking bewerken"
-
-msgid "Delete Constraint"
-msgstr "Beperking verwijderen"
-
 msgid "Are you sure you wish to delete %s?"
 msgstr "Weet u zeker dat u %s wilt verwijderen?"
 
-msgid "New Constraint"
-msgstr "Nieuwe beperking"
+msgid "List"
+msgstr "Lijst"
 
-msgid "Location"
-msgstr "Locatie"
+msgid "Constraint:"
+msgstr "Beperking:"
 
-msgid "Colocation"
-msgstr "Colocatie"
-
-msgid "Order"
-msgstr "Volgorde"
-
-msgid "Ticket"
-msgstr "Ticket"
-
-msgid "(No location constraints defined)"
-msgstr "(Geen locatiebeperkingen gedefinieerd)"
-
-msgid "[Constraint is too complex to display]"
-msgstr "[Beperking is te complex om weer te geven]"
-
-msgid "(No colocation constraints defined)"
-msgstr "(Geen colocatiebeperkingen gedefinieerd)"
-
-msgid "(No order constraints defined)"
-msgstr "(Geen volgordebeperkingen gedefinieerd)"
-
-msgid "(No ticket constraints defined)"
-msgstr "(Geen ticketbeperkingen gedefinieerd)"
-
-msgid "CRM Configuration"
-msgstr "CRM-configuratie"
+msgid "Add a constraint"
+msgstr "Een beperking toevoegen"
 
 msgid "Resource Defaults"
 msgstr "Standaardwaarden herstellen"
@@ -679,240 +1335,86 @@ msgstr "Standaardwaarden herstellen"
 msgid "Operation Defaults"
 msgstr "Standaardwaarden voor bewerking"
 
-msgid "No cluster properties set in %{group}"
-msgstr "Geen clustereigenschappen ingesteld in %{group}"
-
-msgid "Edit"
-msgstr "Bewerken"
-
-msgid "Username:"
-msgstr "Gebruikersnaam:"
-
-msgid "Password:"
-msgstr "Wachtwoord:"
-
-msgid "Cluster has errors - click for details"
-msgstr "Cluster bevat fouten. Klik voor meer informatie."
-
-msgid "Timeout: Please try again"
-msgstr "Time-out: Probeer het opnieuw"
-
-msgid "Permission denied. Please log in to %{node}"
-msgstr "Toegang geweigerd. Meld u aan bij %{node}"
-
-#, fuzzy
-msgid "Geo Site %{ip}"
-msgstr "Kloonset: %{id}"
-
-msgid "Site: %{ip}"
-msgstr ""
-
-msgid "Arbitrator: %{ip}"
-msgstr ""
-
-msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
-msgstr ""
-"Kan geen contact opnemen met Hawk op %{node}. Er wordt elke 5 seconden een nie"
-"uwe poging gedaan."
-
-msgid "Cluster Name:"
-msgstr "Clusternaam:"
-
-msgid "Host Name:"
-msgstr "Hostnaam:"
-
-msgid ""
-"(Specify any host name in the cluster.  Other nodes will be found automaticall"
-"y)"
-msgstr ""
-"(Geef een hostnaam in de cluster op. Andere knoppunten worden automatisch gevo"
-"nden)"
+msgid "Default"
+msgstr "Standaard"
 
 msgid "Add Cluster"
 msgstr "Cluster toevoegen"
 
-msgid "OK"
-msgstr "Ok"
+msgid "Cluster name"
+msgstr "Clusternaam"
 
-msgid "A cluster with that name already exists"
-msgstr "Er bestaat al een cluster met deze naam"
+msgid "West Coast (example)"
+msgstr "Westkust (voorbeeld)"
 
-msgid "The host %{h} is already present in cluster %{c}"
-msgstr "De host %{h} is al aanwezig in cluster %{c}"
+msgid "node1.west.example.com"
+msgstr "knooppunt1.west.voorbeeld.com"
 
-msgid ""
-"Unable to connect to %{host}. Try opening %{url} in your web browser to ensure"
-" Hawk is accessible."
-msgstr ""
-"Kan geen verbinding maken met %{host}. Probeer %{url} in een webbrowser te ope"
-"nen om te controleren of Hawk toegankelijk is."
+msgid "Hostname of node in cluster"
+msgstr "Hostnaam van knooppunt in cluster"
 
-msgid "Cancel"
-msgstr "Annuleren"
+msgid "Advanced"
+msgstr "Geavanceerd"
 
-#, fuzzy
-msgid "Cluster"
-msgstr "Cluster toevoegen"
+msgid "Update interval (seconds)"
+msgstr "Bijwerkinterval (seconden)"
 
-msgid "STONITH Enabled"
-msgstr "STONITH ingeschakeld"
+msgid "Server port to connect to"
+msgstr "Serverpoort om verbinding mee te maken"
 
-msgid "No Quorum Policy"
-msgstr "Geen Quorum-beleid"
-
-msgid "Symmetric Cluster"
-msgstr "Symmetrische cluster"
-
-msgid "Resource Stickiness"
-msgstr "Herhaald gebruik resource"
-
-msgid "Status"
-msgstr "Status"
-
-msgid "No transitions found for the specified time period."
-msgstr "Geen overgangen gevonden voor de opgegeven periode."
-
-msgid "Time"
-msgstr "Tijd"
-
-msgid "PE Input"
-msgstr "PE-invoer"
-
-msgid "Node"
-msgstr "Knooppunt"
-
-msgid "(full log)"
-msgstr "(volledig logboekbestand)"
+msgid "HTTPS"
+msgstr "HTTPS"
 
 msgid "Graph"
 msgstr "Grafisch"
 
-msgid "Diff"
-msgstr "Diff"
+msgid "Children"
+msgstr "Onderliggende elementen"
 
-msgid "Delete this history archive?"
-msgstr "Dit historiearchief verwijderen?"
+msgid "No children available"
+msgstr "Geen onderliggende elementen beschikbaar"
 
-msgid "Start Time:"
-msgstr "Begintijd:"
-
-msgid "End Time:"
-msgstr "Eindtijd:"
-
-msgid "Exploring %{path}"
-msgstr "%{path} verkennen"
-
-msgid "Display"
-msgstr "Weergave"
-
-msgid "Upload hb_report tarball"
-msgstr "hb_report-tarball uploaden"
-
-msgid "Explore"
-msgstr "Verkennen"
-
-msgid "Error: Permission denied for user '%s'."
-msgstr "Fout: toestemming geweigerd voor gebruiker '%s'."
-
-msgid "Group ID"
-msgstr "Groep ID"
-
-msgid "Group Children"
-msgstr "Onderliggende elementen groeperen"
-
-msgid "Available Primitives"
-msgstr "Beschikbare primitieven"
-
-msgid "Start Time not specified"
-msgstr "De begintijd is niet opgegeven"
-
-msgid "Generate"
-msgstr "Genereren"
-
-msgid "hb_report generation in progress..."
-msgstr "hb_report wordt gegenereerd..."
-
-msgid "Download hb_report"
-msgstr "hb_report downloaden"
-
-#, fuzzy
 msgid "Please ensure Javascript is enabled"
 msgstr "Controleer of JavaScript is ingeschakeld"
 
 msgid "SUSE, LLC"
-msgstr ""
+msgstr "SUSE, LLC"
 
 msgid "High Availability Web Konsole"
-msgstr ""
+msgstr "Webconsole met hoge beschikbaarheid"
 
-msgid "Role"
-msgstr "Rol"
+msgid "Edit Location"
+msgstr "Locatie bewerken"
 
-msgid "Boolean Op"
-msgstr "Boolean op"
+msgid "Locations"
+msgstr "Locaties"
 
-msgid "Expression"
-msgstr "Expressie"
+msgid "Create Location"
+msgstr "Locatie maken"
 
-msgid "Add Rule"
-msgstr "Regel toevoegen"
+msgid "History"
+msgstr "Geschiedenis"
 
-msgid "Remove Rule"
-msgstr "Regel verwijderen"
+msgid "Edit Multi-state"
+msgstr "Meervoudige toestand bewerken"
 
-msgid "Show Rule Editor"
-msgstr "Regeleditor weergeven"
+msgid "Multi-state Resources"
+msgstr "Resources met meervoudige toestand"
 
-msgid "Resource"
-msgstr "Resource"
+msgid "Create Multi-state"
+msgstr "Meervoudige toestand maken"
 
-msgid "Fence Node"
-msgstr "Knooppunt fence:"
+msgid "Getting recent events..."
+msgstr "Recente gebeurtenissen worden opgehaald..."
 
-msgid "View Details..."
-msgstr "Details weergeven..."
+msgid "Another operation is in progress..."
+msgstr "Er wordt nog een bewerking uitgevoerd..."
 
-msgid "View Recent Events..."
-msgstr "Recente gebeurtenissen weergeven..."
+msgid "No events found in last hour"
+msgstr "Geen gebeurtenissen gevonden in afgelopen uur"
 
-msgid "Start"
-msgstr "Begin"
-
-msgid "Stop"
-msgstr "Stoppen"
-
-msgid "Move..."
-msgstr "Verplaatsen..."
-
-msgid "Drop Relocation Rule"
-msgstr "Verplaatsingsregel negeren"
-
-msgid "Promote"
-msgstr "Bevorderen"
-
-msgid "Demote"
-msgstr "Degraderen"
-
-msgid "Clean Up"
-msgstr "Opruimen"
-
-msgid "Grant"
-msgstr "Toewijzen"
-
-msgid "Revoke"
-msgstr "Intrekken"
-
-msgid "Master/Slave ID"
-msgstr "Master/slave-id"
-
-msgid "Getting recent events (last hour)..."
-msgstr "Bezig met ophalen van recente gebeurtenissen (afgelopen uur)..."
-
-msgid "Another \"crm history\" operation is in progress..."
-msgstr "Er wordt nog een bewerking voor \"crm history\" uitgevoerd..."
-
-msgid "No events found in last hour."
-msgstr "Geen gebeurtenissen gevonden in afgelopen uur."
+msgid "Remote node."
+msgstr "Extern knooppunt."
 
 msgid "Utilization"
 msgstr "Gebruik"
@@ -929,23 +1431,22 @@ msgstr "Geen attributen gedefinieerd"
 msgid "Symmetrical"
 msgstr "Symmetrisch"
 
-msgid "Close"
-msgstr "Sluiten"
+msgid "Command Log"
+msgstr "Commandolog"
+
+msgid "Lists crm commands recently executed by hawk, most recent first."
+msgstr ""
+"Hiermee worden crm-opdrachten weergegeven die onlangs zijn uitgevoerd door Haw"
+"k, waarbij de recentste het eerst worden weergegeven."
 
 msgid "HTML"
-msgstr ""
+msgstr "HTML"
 
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
-msgid "There is already a monitor op with this interval."
-msgstr "Er is al een monitor op met dit interval."
-
-msgid "Resource ID"
-msgstr "Resource-id"
-
-msgid "Template ID"
-msgstr "Sjabloon-id"
+msgid "Template"
+msgstr "Sjabloon"
 
 msgid "Class"
 msgstr "Klasse"
@@ -953,86 +1454,104 @@ msgstr "Klasse"
 msgid "Provider"
 msgstr "Provider"
 
-msgid "Type"
-msgstr "Type"
+msgid "Data collection in progress..."
+msgstr "Gegevensverzameling in uitvoering..."
 
-msgid "Use Template"
-msgstr "Sjabloon gebruiken"
+msgid "To"
+msgstr "Aan"
 
-msgid "Edit Resource"
-msgstr "Resource bewerken"
+msgid "Generate"
+msgstr "Genereren"
 
-msgid "Delete Resource"
-msgstr "Resource verwijdweren"
+msgid "Upload"
+msgstr "Uploaden"
 
-msgid "New Resource"
-msgstr "Nieuwe resource"
+msgid "Reports"
+msgstr "Rapporten"
 
-msgid "Primitive"
-msgstr "Primitieve"
+msgid "Report"
+msgstr "Rapport"
 
-msgid "New Template"
-msgstr "Nieuwe sjabloon"
+msgid "Created"
+msgstr "Aangemaakt"
 
-msgid "Template"
-msgstr "Sjabloon"
+msgid "Transitions"
+msgstr "Overgangen"
 
-msgid "New Group"
-msgstr "Nieuwe groep"
+msgid "No transitions in report"
+msgstr "Geen overgangen in rapport"
 
-msgid "Group"
-msgstr "Groep"
+msgid "Previous"
+msgstr "Vorige"
 
-msgid "New Clone"
-msgstr "Nieuwe kloon"
+msgid "Next"
+msgstr "Volgende"
 
-msgid "Clone"
-msgstr "Klonen"
+msgid "PE Name"
+msgstr "PE-naam"
 
-msgid "New Master/Slave"
-msgstr "Nieuwe master/slave"
+msgid "Node"
+msgstr "Knooppunt"
 
-msgid "Master/Slave"
-msgstr "Master/slave"
+msgid "Time"
+msgstr "Tijd"
 
-msgid "(No primitive resources defined)"
-msgstr "(Geen primitieve resources opgegeven)"
+msgid "Version"
+msgstr "Versie"
 
-msgid "(No templates defined)"
-msgstr "(Geen sjablonen opgegeven)"
+msgid "Configuration"
+msgstr "Configuratie"
 
-msgid "(No groups defined)"
-msgstr "(Geen groepen opgegeven)"
+msgid "Diff"
+msgstr "Diff"
 
-msgid "(No clones defined)"
-msgstr "(Geen klonen opgegeven)"
+msgid "Logs"
+msgstr "Logs"
 
-msgid "(No master/slave resources defined)"
-msgstr "(Geen master/slave-resources opgegeven)"
+msgid "Node Events"
+msgstr "Knooppuntgebeurtenissen"
 
-msgid "Fail Count"
-msgstr "Aantal mislukte pogingen"
+msgid "Resource Events"
+msgstr "Resourcegebeurtenissen"
 
-msgid "Last Failure"
-msgstr "Laatste mislukte poging"
+msgid "Resource:"
+msgstr "Resource:"
 
-#, fuzzy
-msgid "Rule"
-msgstr "Rol"
+msgid "Value"
+msgstr "Waarde"
+
+msgid "Instances"
+msgstr "Instanties"
+
+msgid "State"
+msgstr "Staat"
+
+msgid "Failed Operations"
+msgstr "Mislukte bewerkingen"
+
+msgid "Call"
+msgstr "Aanroep"
+
+msgid "Operation"
+msgstr "Bewerking"
+
+msgid "Reason"
+msgstr "Reden"
+
+msgid "Add a resource"
+msgstr "Een resource toevoegen"
 
 msgid "Add a rule below"
-msgstr ""
+msgstr "Een regel toevoegen hieronder"
 
-#, fuzzy
 msgid "Remove this rule"
-msgstr "Regel verwijderen"
+msgstr "Deze regel verwijderen"
 
-#, fuzzy
 msgid "Move rule up"
-msgstr "Resource %s verplaatsen"
+msgstr "Regel omhoog plaatsen"
 
 msgid "Move rule down"
-msgstr ""
+msgstr "Regel omlaag plaatsen"
 
 msgid "Right"
 msgstr "Rechts"
@@ -1040,90 +1559,184 @@ msgstr "Rechts"
 msgid "XPath"
 msgstr "XPath"
 
-msgid "Tag"
-msgstr "Tag"
+msgid "Object Type"
+msgstr "Objecttype"
 
-msgid "Ref"
-msgstr "Ref"
+msgid "Reference"
+msgstr "Referentie"
 
 msgid "Attribute"
 msgstr "Kenmerk"
 
-#, fuzzy
-msgid "Delete role"
-msgstr "Resource verwijdweren"
+msgid "ACL Roles"
+msgstr "ACL-rollen"
 
-#, fuzzy
-msgid "Add role"
-msgstr "Regel toevoegen"
-
-msgid ""
-"ACL support requires CIB schema version 2.0, available in Pacemaker 1.1.12 and"
-" up. For older versions of Pacemaker, use Hawk version 0.6."
-msgstr ""
-
-#, fuzzy
-msgid "Username"
-msgstr "Gebruikersnaam:"
-
-#, fuzzy
-msgid "Password"
-msgstr "Wachtwoord:"
-
-#, fuzzy
 msgid "Login"
-msgstr "Aanmelden"
+msgstr "Inloggen"
+
+msgid "Version:"
+msgstr "Versie:"
+
+msgid "DC:"
+msgstr "DC:"
+
+msgid "UI:"
+msgstr "UI:"
+
+msgid "Status:"
+msgstr "Status: "
+
+msgid "Add resource"
+msgstr "Bron toevoegen"
+
+msgid "Add constraint"
+msgstr "Beperking toevoegen"
+
+msgid "Add template"
+msgstr "Sjabloon toevoegen"
+
+msgid "Choose wizard"
+msgstr "Wizard kiezen"
+
+msgid "Simulator Active"
+msgstr "Simulator actief"
+
+msgid "Reset"
+msgstr "Opnieuw"
+
+msgid "Run"
+msgstr "Uitvoeren"
+
+msgid "Results"
+msgstr "Resultaten"
+
+msgid "Simulation Results"
+msgstr "Simulatieresultaten"
+
+msgid "Summary"
+msgstr "Samenvatting"
+
+msgid "CIB (in)"
+msgstr "CIB (in)"
+
+msgid "CIB (out)"
+msgstr "CIB (uit)"
+
+msgid "Transition Graph"
+msgstr "Overgangsgrafiek"
+
+msgid "Transition (XML)"
+msgstr "Overgang (XML)"
+
+msgid "Inject Node Event"
+msgstr "Knooppuntgebeurtenis invoeren"
+
+msgid "OK"
+msgstr "Ok"
+
+msgid "Inject Operation Event"
+msgstr "Bewerkinggebeurtenis invoeren"
+
+msgid "Interval (ms)"
+msgstr "Interval (ms)"
+
+msgid "Result"
+msgstr "Resultaat"
+
+msgid "Inject Ticket Event"
+msgstr "Ticketgebeurtenis invoegen"
+
+msgid "Action"
+msgstr "Actie"
+
+msgid "Enable the simulation mode"
+msgstr "De simulatiemodus inschakelen"
+
+msgid "Disable Simulator"
+msgstr "Simulator uitschakelen"
+
+msgid "Disable the simulation mode"
+msgstr "De simulatiemodus uitschakelen"
+
+msgid "Profile"
+msgstr "Profiel"
+
+msgid "Logout"
+msgstr "Afmelden"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "Errors"
+msgstr "Fouten"
+
+msgid "No objects available"
+msgstr "Geen objecten beschikbaar"
+
+msgid "Ticket ID"
+msgstr "Ticket-id"
 
 msgid "Loss Policy"
 msgstr "Verliesbeleid"
 
-#, fuzzy
-msgid "Delete user"
-msgstr "Resource verwijdweren"
+msgid "Ticket:"
+msgstr "Ticket:"
 
-#, fuzzy
-msgid "Add user"
-msgstr "Cluster toevoegen"
+msgid "Properties"
+msgstr "Eigenschappen"
 
-msgid "%{workflow}: %{step}"
-msgstr "%{workflow}: %{step}"
+msgid "Sequential"
+msgstr "Opeenvolgend"
 
-msgid "The configuration has been applied."
-msgstr "De configuratie is toegepast."
+msgid "No resources defined for ticket"
+msgstr "Geen resources gedefinieerd voor ticket"
 
-msgid "The following configuration will be applied to the cluster:"
-msgstr "De volgende configuratie wordt toegepast op de cluster:"
+msgid "Target ID"
+msgstr "Doel-id"
 
-msgid "Error applying configuration:"
-msgstr "Fout bij het toepassen van de configuratie:"
+msgid "Verifying parameters..."
+msgstr "Parameters controleren..."
 
-msgid "< Back"
-msgstr "< Vorige"
+msgid "Do you really want to cancel the wizard setup?"
+msgstr "Weet u zeker dat u de installatiewizard wilt annuleren?"
 
-msgid "Next >"
-msgstr "Volgende >"
+msgid "Do you really want to apply the current wizard?"
+msgstr "Wilt u de huidige wizard werkelijk toepassen?"
 
-msgid "No workflow descriptions found"
-msgstr "Geen werkstroombeschrijvingen gevonden"
+msgid "Choose a wizard"
+msgstr "Een wizard kiezen"
 
-msgid "Choose Configuration"
-msgstr "Configuratie kiezen"
+msgid "Legacy Wizards"
+msgstr "Oudere wizards"
+
+msgid "Verify and apply"
+msgstr "Verifiëren en toepassen"
+
+msgid "Review the wizard actions and apply the changes"
+msgstr "De wizardacties controleren en de wijzigingen toepassen"
+
+msgid "Enable this step"
+msgstr "Deze stap inschakelen"
+
+msgid "This wizard takes no parameters."
+msgstr "Voor deze wizard worden geen parameters gebruikt."
+
+msgid "Verify"
+msgstr "Verifiëren"
 
 msgid ""
-"This wizard will guide you through the steps necessary to add one of the follo"
-"wing configurations to the cluster."
+"To apply the changes, Hawk requires root access, and password-less SSH access "
+"must be configured. See the Hawk documentation for more information."
 msgstr ""
-"Deze wizard begeleidt u door de stappen voor het toevoegen van een van de volg"
-"ende configuraties aan de cluster."
+"Als u de wijzigingen wilt toepassen, vereist Hawk toegang tot de hoofdmap en m"
+"oet SSH-toegang zonder wachtwoord worden geconfigureerd. Raadpleeg de Hawk-doc"
+"umentatie voor meer informatie."
+
+msgid "Root password"
+msgstr "Root-wachtwoord"
 
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "Het object/attribuut bestaat niet (cibadmin %{cmd})"
 
 msgid "Error invoking cibadmin %{cmd}: %{msg}"
 msgstr "Fout bij het aanroepen van cibadmin %{cmd}: %{msg}"
-
-msgid "The object/attribute does not exist: %{msg}"
-msgstr "Het object/attribuut bestaat niet: %{msg}"
-
-msgid "Error invoking cibadmin --replace: %{msg}"
-msgstr "Fout bij het aanroepen van cibadmin --replace: %{msg}"

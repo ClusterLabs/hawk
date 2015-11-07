@@ -1,11 +1,11 @@
-# Copyright (C) 2006-2015 SUSE Linux GmbH, Nuernberg
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
 # This file is distributed under the same license as the package.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2014-07-31 14:31\n"
+"PO-Revision-Date: 2015-11-05 17:02\n"
 "Last-Translator: Novell language <language@novell.com>\n"
 "Language-Team: Novell language <language@novell.com>\n"
 "Language: \n"
@@ -14,30 +14,92 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Any changes will be lost - do you wish to proceed?"
-msgstr "Minden változás el fog veszni - szeretné folytatni?"
+msgid "Error"
+msgstr "Hiba"
 
-msgid "Connection to server aborted - will retry every 15 seconds."
-msgstr "A kapcsolódás a kiszolgálóhoz megszakítva - újrapróbálkozás 15 másodpercenként"
+msgid "Unexpected server error: _MSG_"
+msgstr "Váratlan kiszolgálóhiba: _MSG_"
 
-#, fuzzy
-msgid "Connection to server failed - will retry every 15 seconds."
-msgstr "A kapcsolódás a kiszolgálóhoz megszakítva - újrapróbálkozás 15 másodpercenként"
+msgid ""
+"Connection to server failed (server down or network error - will retry every 1"
+"5 seconds)."
+msgstr ""
+"Sikertelen csatlakozás a kiszolgálóhoz (A kiszolgáló ki van kapcsolva vagy hál"
+"ózati probléma van -újrapróbálkozás 15 másodpercenként)."
 
 msgid "Connection to server timed out - will retry every 15 seconds."
 msgstr ""
 "A kapcsolódás a kiszolgálóhoz időtúllépés miatt sikertelen - újrapróbálkozás 1"
 "5 másodpercenként."
 
-#, fuzzy
-msgid "State"
-msgstr "Állapot:"
+msgid "Connection to server aborted - will retry every 15 seconds."
+msgstr "A kapcsolódás a kiszolgálóhoz megszakítva - újrapróbálkozás 15 másodpercenként"
 
-msgid "Name"
-msgstr ""
+msgid "Permission denied"
+msgstr "Hozzáférés megtagadva"
 
-msgid "Maintenance"
-msgstr "Karbantartás"
+msgid "_OP_ failed on _NODE_} (rc=_RC_, reason=_REASON_)"
+msgstr "A(z) _OP_ hibával leállt itt: _NODE_} (rc=_RC_, ok=_REASON_)"
+
+msgid "Permission denied. "
+msgstr "Engedély megtagadva. "
+
+msgid "Error connecting to server."
+msgstr "Hiba a kiszolgálóhoz való csatlakozáskor."
+
+msgid "Connection to server timed out."
+msgstr "Kiszolgálókapcsolat időtúllépése."
+
+msgid "Connection to server was aborted."
+msgstr "A kiszolgálóhoz való csatlakozás megszakadt."
+
+msgid "Server returned invalid data."
+msgstr "A kiszolgáló érvénytelen adatokat adott vissza."
+
+msgid "Unknown error connecting to server."
+msgstr "Ismeretlen hiba történt a kiszolgálóhoz való csatlakozáskor."
+
+msgid "Retrying every 15 seconds..."
+msgstr "Újrapróbálkozás 15 másodpercenként..."
+
+msgid "Cancel"
+msgstr "Mégse"
+
+msgid "Hostname"
+msgstr "Gépnév"
+
+msgid "Username"
+msgstr "Felhasználónév"
+
+msgid "Password"
+msgstr "Jelszó"
+
+msgid "Connect"
+msgstr "Csatlakozás"
+
+msgid "Local Status"
+msgstr "Helyi állapot"
+
+msgid "Remove cluster _NAME_ from dashboard?"
+msgstr "Eltávolítja a(z) _NAME_ fürtöt az irányítópultról?"
+
+msgid "Cluster removed successfully."
+msgstr "A fürt sikeresen eltávolítva."
+
+msgid "Error removing cluster."
+msgstr "Hiba a fürt eltávolításakor."
+
+msgid "Please wait..."
+msgstr "Kérem, várjon..."
+
+msgid "Cluster added successfully."
+msgstr "A fürt sikeresen létrehozva."
+
+msgid "Create"
+msgstr "Létrehozás"
+
+msgid "Remove"
+msgstr "Eltávolítás"
 
 msgid "Yes"
 msgstr "Igen"
@@ -45,48 +107,305 @@ msgstr "Igen"
 msgid "No"
 msgstr "Nem"
 
-msgid "Standby"
-msgstr "Készenlét"
+msgid "Any changes will be lost - do you wish to proceed?"
+msgstr "Minden változás el fog veszni - szeretné folytatni?"
+
+msgid "Clone ID"
+msgstr "Klón ID"
 
 msgid "Operations"
 msgstr "Műveletek"
 
-msgid "Online"
-msgstr "Online"
+msgid "Edit"
+msgstr "Szerkesztés"
 
-msgid "Ready"
-msgstr "Kész"
+msgid "Delete"
+msgstr "Törlés"
+
+msgid "Constraint ID"
+msgstr "Szabály ID"
+
+msgid "Swap with entry above"
+msgstr "Felcserélés a felette lévő bejegyzéssel"
+
+msgid "Link with entry above"
+msgstr "Összekapcsolás a felette lévő bejegyzéssel"
+
+msgid "Unlink from entry above"
+msgstr "Leválasztás a felette lévő bejegyzésről"
+
+msgid "Type"
+msgstr "Típus"
+
+msgid "Location"
+msgstr "Hely"
+
+msgid "Colocation"
+msgstr "Elhelyezése szabály"
+
+msgid "Order"
+msgstr "Sorrend"
+
+msgid "Ticket"
+msgstr "Jegy"
+
+msgid "Constraint"
+msgstr "Megszorítás"
+
+msgid "Group ID"
+msgstr "Csoportazonosító (ID)"
+
+msgid "Rule"
+msgstr "Szabály"
+
+msgid "Score"
+msgstr "Pontszám"
+
+msgid "Role"
+msgstr "Szerep"
+
+msgid "Boolean Operator"
+msgstr "Logikai operátor"
+
+msgid "Multi-state ID"
+msgstr "Többállapotú azonosító"
+
+msgid "Connection to server failed - will retry every 15 seconds."
+msgstr "A kapcsolódás a kiszolgálóhoz sikertelen - újrapróbálkozás 15 másodpercenként."
+
+msgid "Status"
+msgstr "Állapot"
+
+msgid "Remote"
+msgstr "Távoli"
+
+msgid "Name"
+msgstr "Név"
+
+msgid "Maintenance"
+msgstr "Karbantartás"
+
+msgid "Switch to ready"
+msgstr "Váltás üzemkészre"
+
+msgid "Switch to maintenance"
+msgstr "Váltás karbantartásra"
+
+msgid "Standby"
+msgstr "Készenlét"
+
+msgid "Switch to online"
+msgstr "Váltás online-ra"
+
+msgid "Switch to standby"
+msgstr "Váltás készenléti állapotra"
 
 msgid "Fence"
-msgstr ""
+msgstr "Elkerítés"
 
 msgid "Details"
 msgstr "Részletek"
 
-msgid "Events"
-msgstr ""
+msgid "Add"
+msgstr "Hozzáadás"
+
+msgid "Apply"
+msgstr "Alkalmaz"
+
+msgid "No interval set for monitor operation"
+msgstr "Nincs beállítva a figyelőművelet időköze"
+
+msgid "Replacing previously defined monitor operation with same interval"
+msgstr "A korábban definiált ugyanilyen időközű figyelőművelet lecserélése"
+
+msgid "Resource ID"
+msgstr "Erőforrás ID"
+
+msgid "Failed to fetch meta attributes"
+msgstr "Nem sikerült beolvasni a metaattribútumokat"
+
+msgid "Report generation is complete."
+msgstr "A jelentés generálása befejeződött."
+
+msgid "From"
+msgstr "Ettől:"
+
+msgid "Until"
+msgstr "Eddig:"
+
+msgid "Custom"
+msgstr "Egyéni"
+
+msgid "Su"
+msgstr "V"
+
+msgid "Mo"
+msgstr "H"
+
+msgid "Tu"
+msgstr "K"
+
+msgid "We"
+msgstr "Sze"
+
+msgid "Th"
+msgstr "Cs"
+
+msgid "Fr"
+msgstr "P"
+
+msgid "Sa"
+msgstr "Szo"
+
+msgid "January"
+msgstr "január"
+
+msgid "February"
+msgstr "február"
+
+msgid "March"
+msgstr "március"
+
+msgid "April"
+msgstr "április"
+
+msgid "May"
+msgstr "május"
+
+msgid "June"
+msgstr "június"
+
+msgid "July"
+msgstr "július"
+
+msgid "August"
+msgstr "Augusztus"
+
+msgid "September"
+msgstr "szeptember"
+
+msgid "October"
+msgstr "október"
+
+msgid "November"
+msgstr "november"
+
+msgid "December"
+msgstr "december"
+
+msgid "Show"
+msgstr "Megjelenítés"
+
+msgid "Download"
+msgstr "Letöltés"
+
+msgid "Unmanaged"
+msgstr "Felügyeletlen"
+
+msgid "Started"
+msgstr "Elindítva"
+
+msgid "Primary"
+msgstr "Elsődleges"
+
+msgid "Secondary"
+msgstr "Másodlagos"
+
+msgid "Stopped"
+msgstr "Leállítva"
+
+msgid "Group"
+msgstr "Csoport"
+
+msgid "Multi-state"
+msgstr "Többállapotú"
+
+msgid "Clone"
+msgstr "Klón"
+
+msgid "Tag"
+msgstr "Címke"
+
+msgid "Stop"
+msgstr "Leállítás"
+
+msgid "Start"
+msgstr "Kezdés"
+
+msgid "Demote"
+msgstr "Lefokozás"
+
+msgid "Promote"
+msgstr "Előléptetés"
+
+msgid "Unmanage"
+msgstr "Felügyelet megszüntetése"
+
+msgid "Manage"
+msgstr "Felügyelet"
+
+msgid "Migrate"
+msgstr "Migráció"
+
+msgid "Unmigrate"
+msgstr "Migráció visszavonása"
+
+msgid "Cleanup"
+msgstr "Tisztítás"
+
+msgid "Primitive"
+msgstr "Primitív"
+
+msgid "Resource"
+msgstr "Erőforrás"
 
 msgid "Role ID"
 msgstr "Szerepkör-azonosító"
 
+msgid "Stopped Resources"
+msgstr "Leállított erőforrások"
+
+msgid "Tag ID"
+msgstr "Címkeazonosító"
+
+msgid "Objects"
+msgstr "Objektumok"
+
+msgid "ID"
+msgstr "Azonosító"
+
+msgid "Granted"
+msgstr "Megadva"
+
+msgid "Revoked"
+msgstr "Visszavonva"
+
+msgid "Grant"
+msgstr "Megadás"
+
+msgid "Revoke"
+msgstr "Visszavonás"
+
 msgid "User ID"
 msgstr "Felhasználóazonosító"
 
+msgid "Must be a valid resource ID"
+msgstr "Érvényes erőforrás-azonosítónak kell lennie"
+
+msgid "Applying configuration changes..."
+msgstr "Konfigurációs változtatások mentése..."
+
+msgid "Changes applied successfully."
+msgstr "A változtatások alkalmazása sikeresen megtörtént."
+
+msgid "Agent"
+msgstr "Ügynök"
+
+msgid "Created a new shadow CIB for %USER%."
+msgstr "Megtörtént az új árnyék CIB létrehozása %USER% számára."
+
 msgid "Unable to create shadow CIB"
 msgstr "Nem hozható létre shadow CIB"
-
-msgid "1 node configured"
-msgid_plural "%{num} nodes configured"
-msgstr[0] "1 csomópont beállítva"
-msgstr[1] "%{num} csomópont beállítva"
-
-msgid "1 resource configured"
-msgid_plural "%{num} resources configured"
-msgstr[0] "1 erőforrás beállítva"
-msgstr[1] "%{num} erőforrás beállítva"
-
-msgid "Edit Clone"
-msgstr "Klón szerkesztése"
 
 msgid "Create Clone"
 msgstr "Klón létrehozása"
@@ -94,69 +413,62 @@ msgstr "Klón létrehozása"
 msgid "Clone created successfully"
 msgstr "Klón létrehozása sikeresen"
 
+msgid "Edit Clone"
+msgstr "Klón szerkesztése"
+
 msgid "Clone updated successfully"
 msgstr "Klón sikeresen frissítve"
 
-msgid "Edit Colocation Constraint"
-msgstr "Kapcsolódási szabály szerkesztése"
+msgid "Clone deleted successfully"
+msgstr "Klón törlése sikeres"
 
-msgid "Create Colocation Constraint"
-msgstr "Kapcsolódási szabály létrehozása"
+msgid "Error deleting %s: %s"
+msgstr "Hiba a(z) %s törlésekor: %s"
+
+msgid "Clones"
+msgstr "Klónok"
+
+msgid "The clone does not exist"
+msgstr "A klón nem létezik"
+
+msgid "Create Colocation"
+msgstr "Kolokáció létrehozása"
 
 msgid "Constraint created successfully"
 msgstr "A szabály sikeresen létrejött"
 
+msgid "Edit Colocation"
+msgstr "Kolokáció szerkesztése"
+
 msgid "Constraint updated successfully"
 msgstr "A szabály frissítése sikeres"
+
+msgid "Colocation deleted successfully"
+msgstr "A kolokáció törlése sikeres"
+
+msgid "Colocations"
+msgstr "Kolokációk"
+
+msgid "The colocation constraint does not exist"
+msgstr "A kolokációs megszorítás nem létezik"
 
 msgid "Constraints"
 msgstr "Megszorítások"
 
+msgid "Configuration updated successfully"
+msgstr "A konfiguráció frissítése sikeres"
+
 msgid "Cluster Configuration"
 msgstr "Fürt beállítása"
 
-msgid "Your changes have been saved"
-msgstr "A változások mentése megtörtént"
-
-msgid "Unable to apply changes: %{msg}"
-msgstr "Nem alkalmazhatók a módosítások: %{msg}"
-
-msgid ""
-"Can't set property %{p}, because the value contains both single and double quo"
-"tes"
-msgstr ""
-"Nem állítható be a(z) %{p} tulajdonság, mert az eszköz szimpla és dupla idézőj"
-"elet is tartalmaz"
-
-msgid "Cluster Dashboard"
-msgstr "Fürt vezérlőpult"
+msgid "Error removing %s: %s"
+msgstr "Hiba a(z) %s eltávolításakor: %s"
 
 msgid "Dashboard"
 msgstr "Vezérlőpult"
 
-msgid "History Explorer"
-msgstr "Előzményböngésző"
-
-msgid "PE Input created by different Pacemaker version (%{version})"
-msgstr "A PE-bemenet másik pacemaker-verzióval készült (%{version})"
-
-msgid "Pacemaker version not present in PE Input"
-msgstr "A PE-bemenetben nem szerepel a pacemaker-verzió"
-
-msgid "Required parameters \"basename\" and \"node\" not specified"
-msgstr "Nincs megadva a \"basename\" és a \"node\" paraméter"
-
-msgid "No details available"
-msgstr "Nincsenek részletek"
-
-msgid "Error:"
-msgstr "HIba:"
-
-msgid "Required parameters \"left\" and \"right\" not specified"
-msgstr "Nincs megadva a \"left\" és a \"right\" paraméter"
-
-msgid "Edit Group"
-msgstr "Csoport szerkesztése"
+msgid "Cluster Graph"
+msgstr "Fürtdiagram"
 
 msgid "Create Group"
 msgstr "Csoport létrehozása"
@@ -164,82 +476,209 @@ msgstr "Csoport létrehozása"
 msgid "Group created successfully"
 msgstr "Csoport sikeresen létrehozva"
 
+msgid "Edit Group"
+msgstr "Csoport szerkesztése"
+
 msgid "Group updated successfully"
 msgstr "Csoport sikeresen frissítve"
 
-msgid "Edit Location Constraint"
-msgstr "Elhelyezési szabály szerkesztése"
+msgid "Group deleted successfully"
+msgstr "Csoport sikeresen törölve"
+
+msgid "Groups"
+msgstr "Csoportok"
+
+msgid "The group does not exist"
+msgstr "A csoport nem létezik"
 
 msgid "Create Location Constraint"
 msgstr "Elhelyezési szabály létrehozása"
 
-msgid "%{cmd} failed (status: %{status})"
-msgstr "%{cmd} sikertelen (állapot: %{status})"
+msgid "Edit Location Constraint"
+msgstr "Elhelyezési szabály szerkesztése"
 
-msgid "Cluster Status"
-msgstr "Jelenlegi állapot"
+msgid "Location deleted successfully"
+msgstr "A hely törlése sikeresen megtörtént"
 
-msgid "Required parameter \"node\" not specified"
-msgstr "Nincs megadva a \"node\" paraméter"
+msgid "Location Constraints"
+msgstr "Elhelyezési megszorítások"
 
-msgid "Required parameter \"resource\" not specified"
-msgstr "Nincs megadva a \"resource\" paraméter"
+msgid "The location constraint does not exist"
+msgstr "A helymegszorítás nem létezik"
 
-msgid "Required parameters \"resource\" and \"node\" not specified"
-msgstr "Nincs megadva a \"resource\" és a \"node\" paraméter"
+msgid "Create Multi-state resource"
+msgstr "Többállapotú erőforrás létrehozása"
 
-msgid "Error deleting resource"
-msgstr "Hiba az erőforrás törlésekor"
+msgid "Multi-state resource created successfully"
+msgstr "Többállapotú erőforrás sikeresen létrehozva"
 
-msgid "Required parameters \"ticket\" and \"site\" not specified"
-msgstr "Nincs megadva a kötelező \"ticket\" és a \"site\" paraméter"
+msgid "Edit Multi-state resource"
+msgstr "Többállapotú erőforrás szerkesztése"
 
-msgid "Required parameter \"ticket\" not specified"
-msgstr "Nincs megadva a kötelező \"ticket\" paraméter"
+msgid "Multi-state resource updated successfully"
+msgstr "Többállapotú erőforrás sikeresen frissítve"
 
-msgid "Error invoking %{cmd}: %{msg}"
-msgstr "Hiba a(z) %{cmd} parancs meghívásakor: %{msg}"
+msgid "Multi-state resource deleted successfully"
+msgstr "A többállapotú erőforrás törlése sikeresen megtörtént"
 
-msgid "Edit Master/Slave"
-msgstr "Elsődleges/Másodlagos szerkesztése"
+msgid "Multi-state resource"
+msgstr "Többállapotú erőforrás"
 
-msgid "Create Master/Slave"
-msgstr "Elsődleges/Másodlagos létrehozása"
+msgid "The multi-state resource does not exist"
+msgstr "A többállapotú erőforrás nem létezik"
 
-msgid "Master/Slave created successfully"
-msgstr "Elsődleges/Másodlagos sikeresen létrehozva"
+msgid "Set the node state to online"
+msgstr "A csomópont állapotának átállítása online-ra"
 
-msgid "Master/Slave updated successfully"
-msgstr "Elsődleges/Másodlagos sikeresen frissítve"
+msgid "Set the node state to standby"
+msgstr "A csomópont állapotának átállítása készenlétire"
 
-#, fuzzy
+msgid "Set the node state to maintenance"
+msgstr "A csomópont állapotának átállítása karbantartásra"
+
+msgid "Set the node state to ready"
+msgstr "A csomópont állapotának átállítása üzemkészre"
+
+msgid "Set the node state to fence"
+msgstr "A csomópont állapotának átállítása elkerítésre"
+
 msgid "Nodes"
-msgstr "Csomópont"
+msgstr "Csomópontok"
 
-msgid "Edit Order Constraint"
-msgstr "Szabály sorrendjének szerkesztése"
+msgid "The node does not exist"
+msgstr "A csomópont nem létezik"
 
-msgid "Create Order Constraint"
-msgstr "Szabály sorrendjének létrehozása"
+msgid "Create Order"
+msgstr "Sorrend létrehozása"
+
+msgid "Edit Order"
+msgstr "Sorrend szerkesztése"
+
+msgid "Order deleted successfully"
+msgstr "Sorrend sikeresen törölve"
+
+msgid "Orders"
+msgstr "Sorrendek"
+
+msgid "The order constraint does not exist"
+msgstr "A sorrendmegszorítás nem létezik"
 
 msgid "Welcome"
-msgstr ""
+msgstr "Üdvözlet"
 
 msgid "Help"
-msgstr ""
+msgstr "Súgó"
 
-msgid "Create Resource"
-msgstr "Erőforrások létrehozása"
+msgid "Commands"
+msgstr "Parancsok"
 
-msgid "Resource created successfully"
-msgstr "Erőforrás sikeresen létrehozva"
+msgid "Create Primitive"
+msgstr "Primitív létrehozása"
 
-msgid "Resource updated successfully"
-msgstr "Erőforrás sikeresen frissítve"
+msgid "Primitive created successfully"
+msgstr "A primitív sikeresen elkészült"
 
-#, fuzzy
+msgid "Edit Primitive"
+msgstr "Primitív szerkesztése"
+
+msgid "Primitive updated successfully"
+msgstr "A primitív módosítása sikeres"
+
+msgid "Primitive deleted successfully"
+msgstr "A primitív törlése sikeresen megtörtént"
+
 msgid "Primitives"
-msgstr "Primitív"
+msgstr "Primitívek"
+
+msgid "The primitive does not exist"
+msgstr "A primitív nem létezik."
+
+msgid "Preferences updated successfully"
+msgstr "A beállítások sikeresen frissítve"
+
+msgid "Preferences"
+msgstr "Tulajdonságok"
+
+msgid "Please wait while report is generated..."
+msgstr "Kis türelmet, a jelentés generálása folyamatban van..."
+
+msgid "Failed to generate"
+msgstr "Nem sikerült generálni"
+
+msgid "Upload completed."
+msgstr "A feltöltés befejeződött."
+
+msgid "Cannot display diff, too few transitions"
+msgstr "Nem sikerült megjeleníteni a különbözetet, kevés az átváltás"
+
+msgid "Report deleted successfully"
+msgstr "A jelentés sikeresen törölve"
+
+msgid "Error deleting %s"
+msgstr "Hiba a(z) %s törlésekor"
+
+msgid "History Explorer"
+msgstr "Előzményböngésző"
+
+msgid "The report does not exist"
+msgstr "A jelentés nem létezik."
+
+msgid "must be a valid datetime"
+msgstr "érvényes dátumnak kell lennie"
+
+msgid "Successfully started the resource"
+msgstr "Sikeresen elindította az erőforrást"
+
+msgid "Failed to start the resource: %{err}"
+msgstr "Nem sikerült elindítani az erőforrást: %{err}"
+
+msgid "Successfully stopped the resource"
+msgstr "Sikeresen leállította az erőforrást"
+
+msgid "Failed to stop the resource: %{err}"
+msgstr "Nem sikerült leállítani az erőforrást: %{err}"
+
+msgid "Successfully promoted the resource"
+msgstr "Sikeresen előléptette az erőforrást"
+
+msgid "Failed to promote the resource: %{err}"
+msgstr "Nem sikerült előléptetni az erőforrást: %{err}"
+
+msgid "Successfully demoted the resource"
+msgstr "Sikeresen lefokozta az erőforrást"
+
+msgid "Failed to demote the resource: %{err}"
+msgstr "Nem sikerült lefokozni az erőforrást: %{err}"
+
+msgid "Successfully set the resource in managed mode"
+msgstr "Sikeresen beállította az erőforrást felügyelt módban"
+
+msgid "Failed to set the resource in managed mode: %{err}"
+msgstr "Nem sikerült beállítani az erőforrást felügyelt módban: %{err}"
+
+msgid "Successfully set the resource in unmanaged mode"
+msgstr "Sikeresen beállította az erőforrást felügyeletlen módban"
+
+msgid "Failed to set the resource in unmanaged mode: %{err}"
+msgstr "Nem sikerült beállítani az erőforrást felügyeletlen módban: %{err}"
+
+msgid "Successfully unmigrated the resource"
+msgstr "Sikeresen visszavonta az erőforrás migrációját"
+
+msgid "Failed to unmigrate the resource: %{err}"
+msgstr "Nem sikerült visszavonni az erőforrás migrációját: %{err}"
+
+msgid "Successfully migrated the resource"
+msgstr "Sikeresen migrálta az erőforrást"
+
+msgid "Failed to migrate the resource: %{err}"
+msgstr "Nem sikerült áttelepíteni az erőforrást: %{err}"
+
+msgid "Successfully cleaned the resource"
+msgstr "Sikeresen kitakarította az erőforrást"
+
+msgid "Failed to clean up the resource: %{err}"
+msgstr "Nem sikerült kitakarítani az erőforrást: %{err}"
 
 msgid "Resources"
 msgstr "Erőforrások"
@@ -256,24 +695,24 @@ msgstr "Szerepkör szerkesztése"
 msgid "Role updated successfully"
 msgstr "Szerepkör sikeresen frissítve"
 
-#, fuzzy
 msgid "Role deleted successfully"
-msgstr "Szerepkör sikeresen létrehozva"
+msgstr "Szerepkör sikeresen törölve"
 
-#, fuzzy
-msgid "Error deleting %s"
-msgstr "Hiba az erőforrás törlésekor"
+msgid "ACL is not supported by the cluster"
+msgstr "A fürt nem támogatja az ACL-t"
 
 msgid "Roles"
 msgstr "Szerepkörök"
 
 msgid "The role does not exist"
-msgstr ""
+msgstr "A szerepkör nem létezik."
 
-msgid "To enable ACLs, set 'enable-acl' in the CRM Configuration"
+msgid ""
+"To enable ACLs, set \"enable-acl\" in the Cluster Configuration ('Manage > Confi"
+"guration')"
 msgstr ""
-"Az ACL-ek engedélyezéséhez adja meg az 'enable-acl' beállítást a CRM konfigurá"
-"ciójában"
+"Az ACL-ek engedélyezéséhez adja meg az \"enable-acl\" beállítást a fürt konfigur"
+"ációjában (Felügyelet > Beállítás)"
 
 msgid "Permission denied for user %{user}"
 msgstr "%{user} felhasználónak nincs hozzáférése"
@@ -284,15 +723,29 @@ msgstr "Kijelentkezett"
 msgid "Log In"
 msgstr "Belépés"
 
-#, fuzzy
-msgid "Preferences updated successfully"
-msgstr "Erőforrás sikeresen frissítve"
+msgid "Simulator"
+msgstr "Szimulátor"
 
-msgid "Preferences"
-msgstr "Tulajdonságok"
+msgid "Create Tag"
+msgstr "Címke létrehozása"
 
-msgid "Edit Template"
-msgstr "Sablon szerkesztése"
+msgid "Tag created successfully"
+msgstr "A címke sikeresen elkészült"
+
+msgid "Edit Tag"
+msgstr "Címke szerkesztése"
+
+msgid "Tag updated successfully"
+msgstr "A címke frissítése sikeres"
+
+msgid "Tag deleted successfully"
+msgstr "A címke törlése sikeres"
+
+msgid "Tags"
+msgstr "Címkék"
+
+msgid "The tag does not exist"
+msgstr "A címke nem létezik"
 
 msgid "Create Template"
 msgstr "Sablon létrehozása"
@@ -300,110 +753,140 @@ msgstr "Sablon létrehozása"
 msgid "Template created successfully"
 msgstr "A sablon létrehozása sikeres"
 
+msgid "Edit Template"
+msgstr "Sablon szerkesztése"
+
 msgid "Template updated successfully"
 msgstr "A sablon módosítása sikeres"
 
-msgid "Edit Ticket Constraint"
-msgstr "Jegy megkötésének létrehozása"
+msgid "Template deleted successfully"
+msgstr "A sablon törlése sikeres"
 
-msgid "Create Ticket Constraint"
-msgstr "Jegyek megkötéseinek létrehozása"
+msgid "You have no template feature support"
+msgstr "Nincs sablonfunkció-támogatása"
 
-msgid "Create User"
-msgstr "Felhasználó létrehozása"
+msgid "Templates"
+msgstr "Sablonok"
 
-msgid "User created successfully"
-msgstr "Felhasználó sikeresen létrehozva"
+msgid "The template does not exist"
+msgstr "A sablon nem létezik"
 
-msgid "Edit User"
-msgstr "Felhasználó szerkesztése"
+msgid "Create Ticket"
+msgstr "Jegy létrehozása"
 
-msgid "User updated successfully"
-msgstr "Felhasználó sikeresen frissítve"
+msgid "Edit Ticket"
+msgstr "Jegy szerkesztése"
 
-#, fuzzy
-msgid "User deleted successfully"
-msgstr "Felhasználó sikeresen létrehozva"
+msgid "Ticket deleted successfully"
+msgstr "A jegy törlése sikeres"
 
-#, fuzzy
-msgid "Users"
-msgstr "Felhasználó"
+msgid "Successfully granted the ticket"
+msgstr "A jegy megadása sikeresen megtörtént"
 
-msgid "The user does not exist"
-msgstr ""
+msgid "Successfully revoked the ticket"
+msgstr "A jegy visszavonása sikeresen megtörtént"
 
-msgid "Cluster Setup Wizard"
-msgstr "Fürtbeállítás-varázsló"
+msgid "Tickets"
+msgstr "Jegyek"
 
-msgid "Invalid password"
-msgstr "Érvénytelen jelszó"
+msgid "The ticket constraint does not exist"
+msgstr "A jegymegszorítás nem létezik"
 
-msgid "Root Password"
-msgstr "Root-jelszó"
+msgid "Create ACL Target"
+msgstr "ACL-cél létrehozása"
 
-msgid ""
-"The root password is required in order for this wizard template to make config"
-"uration changes."
-msgstr ""
-"A gyökér szintű jelszó megadása szükséges ahhoz, hogy a varázsló sablonja módo"
-"sítani tudja a beállításokat."
+msgid "ACL target created successfully"
+msgstr "Az ACL-cél sikeresen elkészült"
 
-msgid "The root password for this system"
-msgstr "A rendszer gyökér szintű jelszava"
+msgid "Edit ACL Target"
+msgstr "ACL-cél szerkesztése"
 
-msgid "\"Error: #{result}\""
-msgstr "\"Hiba: #{result}\""
+msgid "ACL target updated successfully"
+msgstr "Az ACL-cél sikeresen frissítve"
 
-msgid "Parameters"
-msgstr "Paraméterek"
+msgid "ACL target deleted successfully"
+msgstr "Az ACL-cél törlése sikeresen megtörtént"
 
-msgid "Confirm"
-msgstr "Megerősítés"
+msgid "ACL is not supported by this cluster."
+msgstr "Ez a fürt nem támogatja az ACL-t."
 
-msgid "Done"
-msgstr "Kész"
+msgid "ACL Targets"
+msgstr "ACL-célok"
 
-msgid "Required parameter \"%{param}\" not specified"
-msgstr "Nincs megadva a(z) \"%{param}\" paraméter"
+msgid "The ACL target does not exist"
+msgstr "Az ACL-cél nem létezik."
+
+msgid "Session has expired"
+msgstr "Lejárt a munkamenet"
+
+msgid "Wizard cannot be applied when the simulator is active"
+msgstr "A varázsló nem alkalmazható, ha a szimulátor aktív"
+
+msgid "Use a wizard"
+msgstr "Varázsló használata"
 
 msgid "Permission denied - you do not have write access to the CIB."
 msgstr "Engedély elutasítva - nincs írási hozzáférése a CIB fájlhoz."
 
-msgid "Wizard templates and/or workflows are missing"
-msgstr "A varázsló sablonjai és/vagy munkafolyamatai hiányoznak"
+msgid "Cluster seems to be offline"
+msgstr "A fürt offline állapotúnak látszik"
 
-msgid "Workflow \"%s\" not found"
-msgstr "A(z) \"%s\" munkafolyamat nem található"
+msgid "Required"
+msgstr "Szükséges"
 
-msgid "Error parsing template \"%s\""
-msgstr "Hiba történt a(z) \"%s\" sablon feldolgozása közben"
+msgid "Unique"
+msgstr "Egyedi"
 
-msgid "Error parsing workflow \"%s\""
-msgstr "Hiba történt a(z) \"%s\" munkafolyamat feldolgozása közben"
+msgid "Master"
+msgstr "Elsődleges"
 
-msgid "Data collection in progress (%{from_time} to %{to_time})..."
-msgstr "Az adatgyűjtés folyamatban (%{from_time} - %{to_time})..."
+msgid "Slave"
+msgstr "Másodlagos"
 
-#, fuzzy
 msgid "Revert"
 msgstr "Visszaállítás"
 
-msgid "Apply"
-msgstr ""
-
-#, fuzzy
-msgid "Create"
-msgstr "Sze_repkör létrehozása"
-
-#, fuzzy
 msgid "Read"
-msgstr "Kész"
+msgstr "Olvasás"
 
 msgid "Write"
-msgstr ""
+msgstr "Írás"
 
 msgid "Deny"
-msgstr ""
+msgstr "Elutasítás"
+
+msgid "success"
+msgstr "sikerült"
+
+msgid "generic error"
+msgstr "általános hiba"
+
+msgid "incorrect arguments"
+msgstr "helytelen argumentumok"
+
+msgid "unimplemented action"
+msgstr "nem implementált művelet"
+
+msgid "insufficient permissions"
+msgstr "elégtelen engedélyek"
+
+msgid "installation error"
+msgstr "telepítési hiba"
+
+msgid "configuration error"
+msgstr "konfigurációs hiba"
+
+msgid "not running"
+msgstr "nem fut"
+
+msgid "running (master)"
+msgstr "fut (elsődleges)"
+
+msgid "failed (master)"
+msgstr "hiba (elsődleges)"
+
+msgid "Freeze"
+msgstr "Fagyasztás"
 
 msgid "CIB file \"%{path}\" not found"
 msgstr "A(z) \"%{path}\" CIB fájl nem található"
@@ -420,71 +903,192 @@ msgstr "Nem futtatható parancs %{cmd}"
 msgid "Error invoking %{cmd}"
 msgstr "Hiba a(z) %{cmd} parancs meghívásakor"
 
+msgid "Error invoking %{cmd}: %{msg}"
+msgstr "Hiba a(z) %{cmd} parancs meghívásakor: %{msg}"
+
 msgid "Unknown"
 msgstr "Ismeretlen"
 
+msgid "Node \"%{node}\" is UNCLEAN and needs to be fenced."
+msgstr "A(z) \"%{node}\" csomópont UNCLEAN állapotú, ezért el kell keríteni."
+
 msgid ""
-"Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%"
-"{op}, rc-code=%{rc_code}, exit-reason=%{exit_reason}"
+"%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}"
+": call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_r"
+"eason}"
 msgstr ""
+"%{fail_start}: A(z) %{op} művelet sikertelen a(z) %{node} csomópont %{resource"
+"} erőforrásán: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-re"
+"ason=%{exit_reason}"
 
-msgid "Invalid Resource ID \"%{id}\""
-msgstr "Érvénytelen erőforrás-azonosító \"%{id}\""
+msgid "other"
+msgstr "egyéb"
 
-msgid "Unable to parse cibadmin output"
-msgstr "Nem dolgozható fel a cibadmin kimenete"
+msgid "STONITH is disabled. For normal cluster operation, STONITH is required."
+msgstr "A STONITH le van tiltva. A fürt rendes működéséhez szükséges a STONITH."
 
-msgid "No clone child specified"
+msgid "None"
+msgstr "Nincs"
+
+msgid "Clone ID is required"
+msgstr "A klónazonosító megadása kötelező"
+
+msgid "Invalid Clone ID"
+msgstr "Érvénytelen klónazonosító"
+
+msgid "No Clone child specified"
 msgstr "Nincs megadva klóngyermek"
 
+msgid "Is the cluster allowed to start and stop the resource?"
+msgstr "Jogosult a fürt az erőforrás elindítására és leállítására?"
+
 msgid ""
-"Can't set meta attribute %{p}, because the value contains both single and doub"
-"le quotes"
+"If not all resources can be active, the cluster will stop lower priority resou"
+"rces in order to keep higher priority ones active."
 msgstr ""
-"Nem állítható be a(z) %{p} attribútum, mert az eszköz szimpla és dupla idézője"
-"let is tartalmaz"
+"Ha nem lehet minden erőforrás aktív, a fürt le fogja állítani a kisebb priorit"
+"ású erőforrásokat, hogy a nagyobb prioritásúak aktívak maradhassanak."
 
-msgid "The ID \"%{id}\" is already in use"
-msgstr "A \"%{id}\" azonosító már használatban van"
+msgid "What state should the cluster attempt to keep this resource in?"
+msgstr "Milyen állapotban próbálja tartani a fürt ezt az erőforrást?"
 
-msgid "Unable to create clone: %{msg}"
-msgstr "Nem hozható létre klón: %{msg}"
+msgid ""
+"How many copies of the resource to start. Defaults to the number of nodes in t"
+"he cluster."
+msgstr ""
+"Ennyi másolatát kell elindítani az erőforrásnak. Az alapértelmezés a fürtöt al"
+"kotó csomópontok száma."
 
-msgid "Clone ID \"%{id}\" does not exist"
-msgstr "A(z) \"%{id}\" klónazonosító nem létezik"
+msgid ""
+"How many copies of the resource can be started on a single node. Defaults to 1"
+"."
+msgstr ""
+"Ennyi másolatát lehet elindítani az erőforrásnak egy csomóponton. Az alapértel"
+"mezés 1."
 
-msgid "Invalid score"
-msgstr "Érvénytelen pontszám"
+msgid ""
+"When stopping or starting a copy of the clone, tell all the other copies befor"
+"ehand and when the action was successful."
+msgstr ""
+"A klón egy másolatának elindításakor és leállításakor előzőleg (és a művelet s"
+"ikeres befejezésekor) értesíti a többi másolatot."
+
+msgid "Does each copy of the clone perform a different function?"
+msgstr "Eltérő funkciót tölt be a klón mindegyik másolata?"
+
+msgid "Should the copies be started in series (instead of in parallel)?"
+msgstr "Sorban egymás után kell elindítani a másolatokat (és nem párhuzamosan)?"
+
+msgid ""
+"Changes the behavior of ordering constraints (between clones/masters) so that "
+"instances can start/stop as soon as their peer instance has (rather than waiti"
+"ng for every instance of the other clone has)."
+msgstr ""
+"Módosítja a fürtök/elsődleges kiszolgálók sorrendmegszorításainak működését, h"
+"ogy a példányok azonnal elindulhassanak vagy leállhassanak, ha a társpéldányuk"
+" már elindult (ahelyett, hogy várnának a másik klón minden példányára)."
+
+msgid "The ID \"%{id}\" does not exist"
+msgstr "A(z) \"%{id}\" azonosító nem létezik"
+
+msgid "Constraint ID is required"
+msgstr "A megszorításazonosítót meg kell adni"
+
+msgid "Invalid Constraint ID"
+msgstr "Érvénytelen megszorításazonosító"
+
+msgid "Score is required"
+msgstr "A pontszám megadása kötelező"
+
+msgid "Invalid score value"
+msgstr "Érvénytelen pontszámérték"
 
 msgid "Constraint must consist of at least two separate resources"
 msgstr "A szabálynak legalább két különböző erőforrást kell tartalmaznia"
 
-msgid "Unable to create constraint: %{msg}"
-msgstr "A szabály nem hozható létre: %{msg}"
+msgid "Not a constraint"
+msgstr "Nem megszorítás"
 
-msgid "Constraint ID \"%{id}\" does not exist"
-msgstr "A(z) \"%{id}\" szabályazonosító nem létezik"
+msgid "Set to true if the resource agent supports the migrate action"
+msgstr "Igaz értékű, ha az erőforrásügynök támogatja a migráció műveletet"
 
-msgid "Unable to update constraint: %{msg}"
-msgstr "A szabály nem frissíthető: %{msg}"
+msgid ""
+"How many failures may occur for this resource on a node, before this node is m"
+"arked ineligible to host this resource. A value of INFINITY indicates that thi"
+"s feature is disabled."
+msgstr ""
+"Ennyi hiba történhet ezzel az erőforrással egy csomóponton ahhoz, hogy a csomó"
+"pont alkalmatlannak minősüljön az erőforrás működtetésére. Az INFINITY érték a"
+"zt jelzi, hogy a funkció le van tiltva."
 
-msgid "No group children specified"
-msgstr "Nincs megadva csoporttag"
+msgid ""
+"What should the cluster do if it ever finds the resource active on more than o"
+"ne node?"
+msgstr ""
+"Mi a fürt teendője, ha bármikor azt tapasztalja, hogy több csomóponton aktív a"
+"z erőforrás?"
 
-msgid "Unable to create group: %{msg}"
-msgstr "Nem hozható létre csoport: %{msg}"
+msgid ""
+"How many seconds to wait before acting as if the failure had not occurred, and"
+" potentially allowing the resource back to the node on which it failed. A valu"
+"e of 0 indicates that this feature is disabled."
+msgstr ""
+"Ennyi másodpercig várakozzon a rendszer úgy, mintha nem történt volna hiba, ez"
+"által lehetővé téve az erőforrás helyreállítását azon a csomóponton, amelyen a"
+" hiba történt. A 0 érték azt jelzi, hogy ez a funkció le van tiltva."
 
-msgid "Group ID \"%{id}\" does not exist"
-msgstr "A(z) \"%{id}\" csoportazonosító nem létezik"
+msgid "How much does the resource prefer to stay where it is?"
+msgstr "Mennyire kedvező, ha az erőforrás ott marad, ahol van?"
 
-msgid "Constraint is too complex - it contains nested rules"
-msgstr "Túl komplex szabály - beágyazott szabályok vannak"
+msgid "Conditions under which the resource can be started."
+msgstr "Az erőforrás elindításának feltételei."
+
+msgid ""
+"The name of the remote-node this resource defines. This both enables the resou"
+"rce as a remote-node and defines the unique name used to identify the remote-n"
+"ode. If no other parameters are set, this value will also be assumed as the ho"
+"stname to connect to at the port specified by remote-port. WARNING: This value"
+" cannot overlap with any resource or node IDs. If not specified, this feature "
+"is disabled."
+msgstr ""
+"Az ez által az erőforrás által meghatározott távoli csomópont neve. Ez részint"
+" távoli csomópontként engedélyezi az erőforrást, részint meghatározza a távoli"
+" csomópont azonosítására használt egyedi nevet. Ha nincs beállítva más paramét"
+"er, akkor a rendszer ezt az értéket tekinti az állomásnévnek is, amelyhez csat"
+"lakoznia kell a remote-port beállítással megadott távoli porton. FIGYELMEZTETÉ"
+"S: Ez az érték nem lehet átfedésben egyetlen erőforrás vagy csomópont azonosít"
+"ójával sem. Ha nincs megadva, ez a funkció le van tiltva."
+
+msgid "Port to use for the guest connection to pacemaker_remote."
+msgstr "A pacemaker_remote elemmel vendégkapcsolat létesítésére használandó port."
+
+msgid ""
+"The IP address or hostname to connect to if remote-node's name is not the host"
+"name of the guest."
+msgstr ""
+"A csatlakozáshoz használandó IP-cím vagy állomásnév abban az esetben, ha a rem"
+"ote-node neve nem a vendég állomásneve."
+
+msgid "How long before a pending guest connection will time out."
+msgstr "Ennyi idő után jár le egy függőben lévő vendégkapcsolat időkorlátja."
+
+msgid "Group ID is required"
+msgstr "A csoportazonosítót meg kell adni"
+
+msgid "Invalid Group ID"
+msgstr "Érvénytelen csoportazonosító"
+
+msgid "No Group children specified"
+msgstr "Nincsenek megadva csoportgyermekek"
+
+msgid "No resource specified"
+msgstr "Nincs megadva erőforrás"
 
 msgid "No rules specified"
 msgstr "Nincsenek szabályok megadva"
 
-msgid "No resource specified"
-msgstr "Nincs megadva erőforrás"
+msgid "Constraint is too complex - it contains nested rules"
+msgstr "Túl komplex szabály - beágyazott szabályok vannak"
 
 msgid "Invalid score \"%{score}\""
 msgstr "Érvénytelen pontszám \"%{score}\""
@@ -498,178 +1102,221 @@ msgstr "Az attribútum szimpla és dupla idézőjelet és tartalmaz"
 msgid "Value contains both single and double quotes"
 msgstr "Az érték szimpla és dupla idézőjelet és tartalmaz"
 
-msgid "No Master/Slave child specified"
-msgstr "Nincs megadva elsődleges/másodlagos gyermek"
+msgid "Multi-state ID is required"
+msgstr "A többállapotú azonosítót meg kell adni"
 
-msgid "Unable to create master/slave: %{msg}"
-msgstr "Nem hozható létre elsődleges/másodlagos: %{msg}"
+msgid "Invalid Multi-state ID"
+msgstr "Érvénytelen többállapotú azonosító"
 
-msgid "Master/Slave ID \"%{id}\" does not exist"
-msgstr "A(z) \"%{id}\" elsődleges/másodlagos azonosító nem létezik"
+msgid "No Multi-state child specified"
+msgstr "Nincs megadva többállapotú gyermek"
 
-msgid ""
-"Can't set parameter %{p}, because the value contains both single and double qu"
-"otes"
-msgstr ""
-"Nem állítható be a(z) %{p} paraméter, mert az eszköz szimpla és dupla idézőjel"
-"et is tartalmaz"
+msgid "How many copies of the resource can be promoted to master status."
+msgstr "Az erőforrás ennyi példányát lehet előléptetni elsődleges (master) állapotúvá."
 
 msgid ""
-"Can't set op %{o} attribute {%a}, because the value contains both single and d"
-"ouble quotes"
+"How many copies of the resource can be promoted to master status on a single n"
+"ode."
 msgstr ""
-"Nem állítható be a(z) op %{o} {%a} attribútum, mert az eszköz szimpla és dupla"
-" idézőjelet is tartalmaz"
+"Az erőforrás ennyi példányát lehet előléptetni elsődleges (master) állapotúvá "
+"ugyanazon a csomóponton."
 
-msgid "Unable to create resource: %{msg}"
-msgstr "Nem hozható létre erőforrás: %{msg}"
+msgid "Node ID is required"
+msgstr "A csomópont-azonosítót meg kell adni"
 
-msgid "Resource ID \"%{id}\" does not exist"
-msgstr "A(z) \"%{id}\" erőforrás-azonosító nem létezik"
+msgid "Invalid Node ID"
+msgstr "Érvénytelen csomópont-azonosító"
 
-#, fuzzy
+msgid "Name is required"
+msgstr "A név megadása kötelező"
+
+msgid "Invalid name"
+msgstr "Érvénytelen név"
+
+msgid "is required"
+msgstr "szükséges"
+
+msgid "Object not found: %s=%s"
+msgstr "Az objektum nem található: %s=%s"
+
+msgid "The ID \"%{id}\" is already in use"
+msgstr "A \"%{id}\" azonosító már használatban van"
+
 msgid "Unable to create: %{msg}"
-msgstr "Nem hozható létre a szerepkör: %{msg}"
+msgstr "A létrehozás sikertelen: %{msg}"
 
-#, fuzzy
-msgid "The ID \"%{id}\" does not exist"
-msgstr "A(z) \"%{id}\" szerepkör-azonosító nem létezik"
+msgid "Error updating %{id} (rc=%{rc})"
+msgstr "Hiba a következő frissítésekor: %{id} (rc=%{rc})"
 
-#, fuzzy
-msgid "Unable to update: %{msg}"
-msgstr "A szerepkört nem sikerült frissíteni: %{msg}"
+msgid "PE Input created by different Pacemaker version (%{version})"
+msgstr "A PE-bemenet másik pacemaker-verzióval készült (%{version})"
+
+msgid "Pacemaker version not present in PE Input"
+msgstr "A PE-bemenetben nem szerepel a pacemaker-verzió"
+
+msgid "No details available"
+msgstr "Nincsenek részletek"
+
+msgid "Error:"
+msgstr "HIba:"
+
+msgid "must have correct MIME type (was %s)"
+msgstr "helyes MIME típusúnak kell lennie (%s volt)"
+
+msgid "must have correct file extension"
+msgstr "helyes fájlkiterjesztésűnek kell lennie"
+
+msgid "Not a resource"
+msgstr "Nem erőforrás"
 
 msgid "Role ID is required"
-msgstr ""
+msgstr "A szerepazonosítót meg kell adni"
 
-#, fuzzy
 msgid "Invalid Role ID"
-msgstr "Érvénytelen jegy ID"
+msgstr "Érvénytelen szerepazonosító"
 
-msgid "Username not specified"
-msgstr "Nincs megadva felhasználónév"
+msgid "At least one rule is required"
+msgstr "Legalább egy szabályt meg kell adni."
 
 msgid "Invalid username"
 msgstr "Érvénytelen felhasználónév"
 
-msgid "Password not specified"
-msgstr "Nincs megadva jelszó"
-
 msgid "%s is not installed"
 msgstr "%s nincs telepítve"
 
-#, fuzzy
 msgid "%s is not executable"
-msgstr "%s nincs telepítve"
+msgstr "A(z) %s nem hajtható végre"
+
+msgid "Username not specified"
+msgstr "Nincs megadva felhasználónév"
+
+msgid "Password not specified"
+msgstr "Nincs megadva jelszó"
 
 msgid "Invalid username or password"
 msgstr "Érvénytelen felhasználónév vagy jelszó"
 
-msgid "Language is required"
+msgid "Tag ID is required"
+msgstr "A címkeazonosítót meg kell adni"
+
+msgid "Invalid Tag ID"
+msgstr "Érvénytelen címkeazonosító"
+
+msgid "No Tag resources specified"
+msgstr "Nincs megadva címkeerőforrás"
+
+msgid "Resource ID is required"
+msgstr "Az erőforrás-azonosítót meg kell adni"
+
+msgid "Invalid Resource ID"
+msgstr "Érvénytelen erőforrás-azonosító"
+
+msgid "How frequently (in seconds) to perform the operation."
+msgstr "Ilyen gyakorisággal kell elvégezni a műveletet (másodpercben)."
+
+msgid "How long to wait before declaring the action has failed."
+msgstr "Ennyi idő után kell sikertelennek minősíteni a műveletet."
+
+msgid "What conditions need to be satisfied before this action occurs."
 msgstr ""
+"Ezeknek a feltételeknek kell teljesülniük ahhoz, hogy sor kerüljön a műveletre"
+"."
+
+msgid "If false, the operation is treated as if it does not exist."
+msgstr "Ha hamis, a rendszer nem létezőként kezeli a műveletet."
+
+msgid ""
+"This option only makes sense for recurring operations. It restricts the operat"
+"ion to a specific role. The truely paranoid can even specify role=Stopped whic"
+"h allows the cluster to detect an admin that manually started cluster services"
+"."
+msgstr ""
+"Ennek a beállításnak csak ismétlődő műveletek esetében van értelme. Egy megado"
+"tt szerepkörre korlátozza a műveletet. Aki valóban paranoid, akár a role=Stopp"
+"ed beállítást is megadhatja, amely észleli, ha egy rendszergazda manuálisan in"
+"dította el a fürtszolgáltatásokat."
+
+msgid "The action to take if this action ever fails."
+msgstr "Ha ez a művelet bármikor sikertelen, ezt a műveletet kell végrehajtani."
+
+msgid ""
+"If true, the intention to perform the operation is recorded so that GUIs and C"
+"LI tools can indicate that an operation is in progress."
+msgstr ""
+"Ha igaz, a rendszer rögzíti a művelet végrehajtásának szándékát, hogy a GUI fe"
+"lületek és a CLI eszközök jelezhessék, hogy a művelet folyamatban van."
+
+msgid "Ticket ID is required"
+msgstr "A jegyazonosítót kötelező megadni"
 
 msgid "Invalid Ticket ID"
 msgstr "Érvénytelen jegy ID"
 
-msgid "No resources specified"
-msgstr "Nincs megadva erőforrás"
+msgid "Constraint must consist of at least one separate resources"
+msgstr "A megszorításnak tartalmaznia kell legalább egy különálló erőforrást"
 
-msgid "User ID is required"
-msgstr ""
+msgid "Simulator active: Use the ticket controls in the simulator"
+msgstr "A szimulátor aktív: használja a szimulátor jegy vezérlőelemeit"
 
-#, fuzzy
-msgid "Invalid User ID"
-msgstr "Érvénytelen jegy ID"
+msgid "ACL target ID is required"
+msgstr "Az ACL-célazonosítót meg kell adni"
 
-msgid "Meta Attributes"
-msgstr "Metaattribútumok"
+msgid "Invalid ACL target ID"
+msgstr "Érvénytelen ACL-célazonosító"
 
-msgid "Add"
-msgstr "Hozzáadás"
+msgid "At least one role is required"
+msgstr "Legalább egy szerepet meg kell adni"
 
-msgid "Remove"
-msgstr "Eltávolítás"
+msgid "Requested wizard does not exist"
+msgstr "A kért varázsló nem létezik"
 
-msgid "You must enter a value"
-msgstr "Érték megadása kötelező"
+msgid "Parameters"
+msgstr "Paraméterek"
 
-msgid "Clone ID"
-msgstr "Klón ID"
+msgid "Shortdesc"
+msgstr "Rövid leírás"
+
+msgid "Longdesc"
+msgstr "Hosszú leírás"
+
+msgid "Options"
+msgstr "Beállítások"
+
+msgid "Actions"
+msgstr "Műveletek"
+
+msgid "Timeout"
+msgstr "Időtúllépés"
+
+msgid "Interval"
+msgstr "Időköz"
+
+msgid "Depth"
+msgstr "Mélység"
+
+msgid "Close"
+msgstr "Bezárás"
 
 msgid "Child Resource"
 msgstr "Gyermek erőforrás"
 
-msgid "Revert Changes"
-msgstr "Változtatások visszavonása"
+msgid "Meta Attributes"
+msgstr "Metaattribútumok"
 
 msgid "Back"
 msgstr "Vissza"
 
-msgid "Apply Changes"
-msgstr "Változások alkalmazása"
-
-msgid "Link set"
-msgstr "Hivatkozás beállítás"
-
-msgid "Break set"
-msgstr "Megszakítás beállítás"
-
-msgid "Swap resources"
-msgstr "Erőforrások felcserélése"
-
-msgid "Add resource to constraint"
-msgstr "Erőforrás hozzáadása a szabályhoz"
-
-msgid "Constraint ID"
-msgstr "Szabály ID"
-
-msgid "Score"
-msgstr "Pontszám"
-
-msgid "Create Constraint"
-msgstr "Szabály létrehozása"
-
-msgid "Edit Constraint"
-msgstr "Szabály szerkesztése"
-
-msgid "Delete Constraint"
-msgstr "Szabály törlése"
-
 msgid "Are you sure you wish to delete %s?"
 msgstr "Biztos, hogy törölni akarja: %s?"
 
-msgid "New Constraint"
-msgstr "Új szabály"
+msgid "List"
+msgstr "Lista"
 
-msgid "Location"
-msgstr "Hely"
+msgid "Constraint:"
+msgstr "Megszorítás:"
 
-msgid "Colocation"
-msgstr "Elhelyezése szabály"
-
-msgid "Order"
-msgstr "Sorrend"
-
-msgid "Ticket"
-msgstr "Jegy"
-
-msgid "(No location constraints defined)"
-msgstr "(Nincsenek megadva helyre vonatkozó szabályok)"
-
-msgid "[Constraint is too complex to display]"
-msgstr "[A szabályok túl komplexek a megjelenítéshez]"
-
-msgid "(No colocation constraints defined)"
-msgstr "(Nincsenek megadva kapcsolódási szabályok)"
-
-msgid "(No order constraints defined)"
-msgstr "(Nincsenek szabálysorrendek megadva)"
-
-msgid "(No ticket constraints defined)"
-msgstr "(Nincsenek szabálysorrendek megadva)"
-
-msgid "CRM Configuration"
-msgstr "CRM beállítás"
+msgid "Add a constraint"
+msgstr "Megszorítás hozzáadása"
 
 msgid "Resource Defaults"
 msgstr "Erőforrás alapértelmezései"
@@ -677,240 +1324,86 @@ msgstr "Erőforrás alapértelmezései"
 msgid "Operation Defaults"
 msgstr "Alapértelmezett műveletek"
 
-msgid "No cluster properties set in %{group}"
-msgstr "Nincsenek beállítva fürttulajdonságok a(z) %{group} csoportban"
-
-msgid "Edit"
-msgstr "Szerkesztés"
-
-msgid "Username:"
-msgstr "Felhasználónév:"
-
-msgid "Password:"
-msgstr "Jelszó:"
-
-msgid "Cluster has errors - click for details"
-msgstr "Fürtprobléma - részletek"
-
-msgid "Timeout: Please try again"
-msgstr "Időtúllépés: Próbálja meg újra"
-
-msgid "Permission denied. Please log in to %{node}"
-msgstr "Hozzáférés megtagadva. Lépjen be a(z) %{node} csomópontra"
-
-#, fuzzy
-msgid "Geo Site %{ip}"
-msgstr "Klóncsoport: %{id}"
-
-msgid "Site: %{ip}"
-msgstr ""
-
-msgid "Arbitrator: %{ip}"
-msgstr ""
-
-msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
-msgstr ""
-"A Hawk nem tud kapcsolódni a(z) %{node} csomóponthoz. Újrapróbálkozás 5 másodp"
-"erc múlva."
-
-msgid "Cluster Name:"
-msgstr "Fürtnév:"
-
-msgid "Host Name:"
-msgstr "Gépnév:"
-
-msgid ""
-"(Specify any host name in the cluster.  Other nodes will be found automaticall"
-"y)"
-msgstr ""
-"(Adja meg bármelyik gép nevét a fürtben, a többi csomópont automatikusan felis"
-"merésre kerül)"
+msgid "Default"
+msgstr "Alapértelmezett"
 
 msgid "Add Cluster"
 msgstr "Fürt hozzáadása"
 
-msgid "OK"
-msgstr "OK"
+msgid "Cluster name"
+msgstr "Fürtnév"
 
-msgid "A cluster with that name already exists"
-msgstr "Ilyen nevű fürt már létezik"
+msgid "West Coast (example)"
+msgstr "Nyugati part (példa)"
 
-msgid "The host %{h} is already present in cluster %{c}"
-msgstr "A(z) %{h} gép már tagja a(z) %{c} fürtnek"
+msgid "node1.west.example.com"
+msgstr "csomopont1.nyugat.pelda.com"
 
-msgid ""
-"Unable to connect to %{host}. Try opening %{url} in your web browser to ensure"
-" Hawk is accessible."
-msgstr ""
-"Nem lehet kapcsolódni a(z) %{host} géphez. Próbálja megnyitni a %{url} címet a"
-" böngészőben, hogy megbizonyosodjon arról, hogy a Hawk elérhető."
+msgid "Hostname of node in cluster"
+msgstr "A fürt egy csomópontjának állomásneve"
 
-msgid "Cancel"
-msgstr "Mégse"
+msgid "Advanced"
+msgstr "Speciális"
 
-#, fuzzy
-msgid "Cluster"
-msgstr "Fürt hozzáadása"
+msgid "Update interval (seconds)"
+msgstr "Frissítési időköz (másodperc)"
 
-msgid "STONITH Enabled"
-msgstr "STONITH engedélyezve"
+msgid "Server port to connect to"
+msgstr "Csatlakozás kiszolgálói portja"
 
-msgid "No Quorum Policy"
-msgstr "Nincs Quorum irányelv"
-
-msgid "Symmetric Cluster"
-msgstr "Szimetrikus fürt"
-
-msgid "Resource Stickiness"
-msgstr "Erőforrás mozgathatósága"
-
-msgid "Status"
-msgstr "Állapot"
-
-msgid "No transitions found for the specified time period."
-msgstr "A megadott időszakban nem található átmenet."
-
-msgid "Time"
-msgstr "Idő"
-
-msgid "PE Input"
-msgstr "PE Input"
-
-msgid "Node"
-msgstr "Csomópont"
-
-msgid "(full log)"
-msgstr "(teljes napló)"
+msgid "HTTPS"
+msgstr "HTTPS"
 
 msgid "Graph"
 msgstr "Grafikon"
 
-msgid "Diff"
-msgstr "Diff"
+msgid "Children"
+msgstr "Gyermekek"
 
-msgid "Delete this history archive?"
-msgstr "Törli ezt az előzményarchívumot?"
+msgid "No children available"
+msgstr "Nem érhető el gyermek"
 
-msgid "Start Time:"
-msgstr "Indítás ideje:"
-
-msgid "End Time:"
-msgstr "Megállítás ideje:"
-
-msgid "Exploring %{path}"
-msgstr "A(z) %{path} tallózása"
-
-msgid "Display"
-msgstr "Megjelenítés"
-
-msgid "Upload hb_report tarball"
-msgstr "hb_report TAR-fájl feltöltése"
-
-msgid "Explore"
-msgstr "Tallózás"
-
-msgid "Error: Permission denied for user '%s'."
-msgstr "Hiba: a(z) '%s' felhasználó engedélye megtagadva."
-
-msgid "Group ID"
-msgstr "Csoportazonosító (ID)"
-
-msgid "Group Children"
-msgstr "Csoporttag"
-
-msgid "Available Primitives"
-msgstr "Elérhető primitívek"
-
-msgid "Start Time not specified"
-msgstr "Indítási idő nincs beállítva"
-
-msgid "Generate"
-msgstr "Előállítás"
-
-msgid "hb_report generation in progress..."
-msgstr "A hb_report elkészítése folyamatban..."
-
-msgid "Download hb_report"
-msgstr "hb_report letöltése"
-
-#, fuzzy
 msgid "Please ensure Javascript is enabled"
 msgstr "Ellenőrizze, hogy a JavaScript engedélyezve van-e"
 
 msgid "SUSE, LLC"
-msgstr ""
+msgstr "SUSE, LLC"
 
 msgid "High Availability Web Konsole"
-msgstr ""
+msgstr "Nagy rendelkezésre állású webkonzol"
 
-msgid "Role"
-msgstr "Szerep"
+msgid "Edit Location"
+msgstr "Hely szerkesztése"
 
-msgid "Boolean Op"
-msgstr "Boolean művelet"
+msgid "Locations"
+msgstr "Helyek"
 
-msgid "Expression"
-msgstr "Kifejezés"
+msgid "Create Location"
+msgstr "Hely létrehozása"
 
-msgid "Add Rule"
-msgstr "Szabály hozzáadása"
+msgid "History"
+msgstr "Történet"
 
-msgid "Remove Rule"
-msgstr "Szabály eltávolítása"
+msgid "Edit Multi-state"
+msgstr "Többállapotú szerkesztése"
 
-msgid "Show Rule Editor"
-msgstr "Szabályszerkesztő megjelenítése"
+msgid "Multi-state Resources"
+msgstr "Többállapotú erőforrások"
 
-msgid "Resource"
-msgstr "Erőforrás"
+msgid "Create Multi-state"
+msgstr "Többállapotú létrehozása"
 
-msgid "Fence Node"
-msgstr "Csomópont leválasztása"
+msgid "Getting recent events..."
+msgstr "Közelmúltbeli események beolvasása..."
 
-msgid "View Details..."
-msgstr "Részletek megjelenítése…"
+msgid "Another operation is in progress..."
+msgstr "Egy másik művelet van folyamatban…"
 
-msgid "View Recent Events..."
-msgstr "Legutóbbi események megjelenítése…"
+msgid "No events found in last hour"
+msgstr "Nem volt esemény az elmúlt órában"
 
-msgid "Start"
-msgstr "Kezdés"
-
-msgid "Stop"
-msgstr "Leállítás"
-
-msgid "Move..."
-msgstr "Áthelyezés..."
-
-msgid "Drop Relocation Rule"
-msgstr "Áthelyezési szabály eldobása"
-
-msgid "Promote"
-msgstr "Előléptetés"
-
-msgid "Demote"
-msgstr "Lefokozás"
-
-msgid "Clean Up"
-msgstr "Tisztítás"
-
-msgid "Grant"
-msgstr "Megadás"
-
-msgid "Revoke"
-msgstr "Visszavonás"
-
-msgid "Master/Slave ID"
-msgstr "Elsődleges/Másodlagos azonosító"
-
-msgid "Getting recent events (last hour)..."
-msgstr "Az elmúlt óra eseményei…"
-
-msgid "Another \"crm history\" operation is in progress..."
-msgstr "Egy másik \"crm előzmény\" művelet folyamatban van…"
-
-msgid "No events found in last hour."
-msgstr "Nem volt esemény az elmúlt órában."
+msgid "Remote node."
+msgstr "Távoli csomópont."
 
 msgid "Utilization"
 msgstr "Kihasználtság"
@@ -927,23 +1420,22 @@ msgstr "Nincsenek megadva attribútumok"
 msgid "Symmetrical"
 msgstr "Szimetrikus"
 
-msgid "Close"
-msgstr "Bezárás"
+msgid "Command Log"
+msgstr "Parancsnapló"
+
+msgid "Lists crm commands recently executed by hawk, most recent first."
+msgstr ""
+"A hawk által nemrégiben végrehajtott crm parancsok listája, elöl a legutóbbiva"
+"l."
 
 msgid "HTML"
-msgstr ""
+msgstr "HTML"
 
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
-msgid "There is already a monitor op with this interval."
-msgstr "Már van egy monitor művelet ebben az intervallumban."
-
-msgid "Resource ID"
-msgstr "Erőforrás ID"
-
-msgid "Template ID"
-msgstr "Sablon ID"
+msgid "Template"
+msgstr "Sablon"
 
 msgid "Class"
 msgstr "Osztály"
@@ -951,86 +1443,104 @@ msgstr "Osztály"
 msgid "Provider"
 msgstr "Szolgáltató"
 
-msgid "Type"
-msgstr "Típus"
+msgid "Data collection in progress..."
+msgstr "Adatgyűjtés folyamatban..."
 
-msgid "Use Template"
-msgstr "Sablon használata"
+msgid "To"
+msgstr "Címzett"
 
-msgid "Edit Resource"
-msgstr "Erőforrások szerkesztése"
+msgid "Generate"
+msgstr "Előállítás"
 
-msgid "Delete Resource"
-msgstr "Erőforrás törlése"
+msgid "Upload"
+msgstr "Feltöltés"
 
-msgid "New Resource"
-msgstr "Új erőforrás"
+msgid "Reports"
+msgstr "Jelentések"
 
-msgid "Primitive"
-msgstr "Primitív"
+msgid "Report"
+msgstr "Jelentés"
 
-msgid "New Template"
-msgstr "Új sablon"
+msgid "Created"
+msgstr "Létrehozva"
 
-msgid "Template"
-msgstr "Sablon"
+msgid "Transitions"
+msgstr "Átváltások"
 
-msgid "New Group"
-msgstr "Új csoport"
+msgid "No transitions in report"
+msgstr "Nincsenek átváltások a jelentésben"
 
-msgid "Group"
-msgstr "Csoport"
+msgid "Previous"
+msgstr "Előző"
 
-msgid "New Clone"
-msgstr "Új klón"
+msgid "Next"
+msgstr "Következő"
 
-msgid "Clone"
-msgstr "Klón"
+msgid "PE Name"
+msgstr "PE neve"
 
-msgid "New Master/Slave"
-msgstr "Új Elsődleges/Másodlagos"
+msgid "Node"
+msgstr "Csomópont"
 
-msgid "Master/Slave"
-msgstr "Elsődleges/Másodlagos"
+msgid "Time"
+msgstr "Idő"
 
-msgid "(No primitive resources defined)"
-msgstr "(Nincsenek megadva primitív erőforrások)"
+msgid "Version"
+msgstr "Verzió"
 
-msgid "(No templates defined)"
-msgstr "(Nincsenek megadva sablonok)"
+msgid "Configuration"
+msgstr "Beállítás"
 
-msgid "(No groups defined)"
-msgstr "(Nincsenek megadva csoportok)"
+msgid "Diff"
+msgstr "Diff"
 
-msgid "(No clones defined)"
-msgstr "(Nincsenek megadva klónok)"
+msgid "Logs"
+msgstr "Naplók"
 
-msgid "(No master/slave resources defined)"
-msgstr "(Nincsenek megadva elsődleges/másodlagos erőforrások)"
+msgid "Node Events"
+msgstr "Csomópontesemények"
 
-msgid "Fail Count"
-msgstr "Hibaszám"
+msgid "Resource Events"
+msgstr "Erőforrás-események"
 
-msgid "Last Failure"
-msgstr "Legutóbbi hiba"
+msgid "Resource:"
+msgstr "Erőforrás:"
 
-#, fuzzy
-msgid "Rule"
-msgstr "Szerep"
+msgid "Value"
+msgstr "Érték"
+
+msgid "Instances"
+msgstr "Példányok"
+
+msgid "State"
+msgstr "Állapot"
+
+msgid "Failed Operations"
+msgstr "Sikertelen műveletek"
+
+msgid "Call"
+msgstr "Hívás"
+
+msgid "Operation"
+msgstr "Művelet"
+
+msgid "Reason"
+msgstr "Ok"
+
+msgid "Add a resource"
+msgstr "Erőforrás hozzáadása"
 
 msgid "Add a rule below"
-msgstr ""
+msgstr "Szabály hozzáadása alább"
 
-#, fuzzy
 msgid "Remove this rule"
-msgstr "Szabály eltávolítása"
+msgstr "A szabály eltávolítása"
 
-#, fuzzy
 msgid "Move rule up"
-msgstr "%s erőforrás mozgatása"
+msgstr "A szabály feljebb mozgatása"
 
 msgid "Move rule down"
-msgstr ""
+msgstr "A szabály lejjebb mozgatása"
 
 msgid "Right"
 msgstr "Jobbra"
@@ -1038,90 +1548,184 @@ msgstr "Jobbra"
 msgid "XPath"
 msgstr "XPath"
 
-msgid "Tag"
-msgstr "Címke"
+msgid "Object Type"
+msgstr "Objektumtípus"
 
-msgid "Ref"
-msgstr "Hiv."
+msgid "Reference"
+msgstr "Hivatkozás"
 
 msgid "Attribute"
 msgstr "Attribútum"
 
-#, fuzzy
-msgid "Delete role"
-msgstr "Erőforrás törlése"
+msgid "ACL Roles"
+msgstr "ACL-szerepek"
 
-#, fuzzy
-msgid "Add role"
-msgstr "Szabály hozzáadása"
-
-msgid ""
-"ACL support requires CIB schema version 2.0, available in Pacemaker 1.1.12 and"
-" up. For older versions of Pacemaker, use Hawk version 0.6."
-msgstr ""
-
-#, fuzzy
-msgid "Username"
-msgstr "Felhasználónév:"
-
-#, fuzzy
-msgid "Password"
-msgstr "Jelszó:"
-
-#, fuzzy
 msgid "Login"
-msgstr "Belépés"
+msgstr "Bejelentkezés"
+
+msgid "Version:"
+msgstr "Verzió:"
+
+msgid "DC:"
+msgstr "Tartományvezérlő:"
+
+msgid "UI:"
+msgstr "Grafikus felület:"
+
+msgid "Status:"
+msgstr "Állapot:"
+
+msgid "Add resource"
+msgstr "Erőforrás hozzáadása"
+
+msgid "Add constraint"
+msgstr "Megszorítás hozzáadása"
+
+msgid "Add template"
+msgstr "Sablon hozzáadása"
+
+msgid "Choose wizard"
+msgstr "Varázsló kiválasztása"
+
+msgid "Simulator Active"
+msgstr "A szimulátor aktív"
+
+msgid "Reset"
+msgstr "Visszaállítás"
+
+msgid "Run"
+msgstr "Futtatás"
+
+msgid "Results"
+msgstr "Eredmények"
+
+msgid "Simulation Results"
+msgstr "A szimuláció eredményei"
+
+msgid "Summary"
+msgstr "Összefoglaló"
+
+msgid "CIB (in)"
+msgstr "CIB (be)"
+
+msgid "CIB (out)"
+msgstr "CIB (ki)"
+
+msgid "Transition Graph"
+msgstr "Átváltási grafikon"
+
+msgid "Transition (XML)"
+msgstr "Átváltás (XML)"
+
+msgid "Inject Node Event"
+msgstr "Csomópont-esemény bejegyzése"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Inject Operation Event"
+msgstr "Műveleti esemény bejegyzése"
+
+msgid "Interval (ms)"
+msgstr "Időköz (ms)"
+
+msgid "Result"
+msgstr "Eredmény"
+
+msgid "Inject Ticket Event"
+msgstr "Jegyesemény bejegyzése"
+
+msgid "Action"
+msgstr "Művelet"
+
+msgid "Enable the simulation mode"
+msgstr "A szimulációs mód engedélyezése"
+
+msgid "Disable Simulator"
+msgstr "Szimulátor letiltása"
+
+msgid "Disable the simulation mode"
+msgstr "A szimulációs mód letiltása"
+
+msgid "Profile"
+msgstr "Profil"
+
+msgid "Logout"
+msgstr "Kijelentkezés"
+
+msgid "Menu"
+msgstr "Menü"
+
+msgid "Errors"
+msgstr "Hibák"
+
+msgid "No objects available"
+msgstr "Nem érhetők el objektumok"
+
+msgid "Ticket ID"
+msgstr "Jegyazonosító"
 
 msgid "Loss Policy"
 msgstr "Adatvesztési házirend"
 
-#, fuzzy
-msgid "Delete user"
-msgstr "Erőforrás törlése"
+msgid "Ticket:"
+msgstr "Jegy:"
 
-#, fuzzy
-msgid "Add user"
-msgstr "Fürt hozzáadása"
+msgid "Properties"
+msgstr "Tulajdonságok"
 
-msgid "%{workflow}: %{step}"
-msgstr "%{workflow}: %{step}"
+msgid "Sequential"
+msgstr "Szekvenciális"
 
-msgid "The configuration has been applied."
-msgstr "A beállítások alkalmazása megtörtént."
+msgid "No resources defined for ticket"
+msgstr "Nincsenek erőforrások definiálva a jegyhez"
 
-msgid "The following configuration will be applied to the cluster:"
-msgstr "A következő beállítások jutnak érvényre a fürtön:"
+msgid "Target ID"
+msgstr "Célazonosító"
 
-msgid "Error applying configuration:"
-msgstr "Hiba történt a beállítások alkalmazásakor:"
+msgid "Verifying parameters..."
+msgstr "Paraméterek ellenőrzése…"
 
-msgid "< Back"
-msgstr "< Vissza"
+msgid "Do you really want to cancel the wizard setup?"
+msgstr "Valóban megszakítja a varázsló telepítését?"
 
-msgid "Next >"
-msgstr "Következő >"
+msgid "Do you really want to apply the current wizard?"
+msgstr "Valóban alkalmazza az aktuális varázslót?"
 
-msgid "No workflow descriptions found"
-msgstr "Nem található munkafolyamat-leírás"
+msgid "Choose a wizard"
+msgstr "Varázsló kiválasztása"
 
-msgid "Choose Configuration"
-msgstr "Válasszon beállítást"
+msgid "Legacy Wizards"
+msgstr "Régi varázslók"
+
+msgid "Verify and apply"
+msgstr "Ellenőrzés és alkalmazás"
+
+msgid "Review the wizard actions and apply the changes"
+msgstr "A varázsló műveleteinek áttekintése és a módosítások alkalmazása"
+
+msgid "Enable this step"
+msgstr "A lépés engedélyezése"
+
+msgid "This wizard takes no parameters."
+msgstr "Ez a varázsló nem fogad paramétereket."
+
+msgid "Verify"
+msgstr "Ellenőrzés"
 
 msgid ""
-"This wizard will guide you through the steps necessary to add one of the follo"
-"wing configurations to the cluster."
+"To apply the changes, Hawk requires root access, and password-less SSH access "
+"must be configured. See the Hawk documentation for more information."
 msgstr ""
-"A varázsló végigvezeti a szükséges lépéseken, hogy hozzá tudja adni a fürthöz "
-"az egyik beállítást."
+"Ahhoz, hogy a Hawk alkalmazni tudja a változtatásokat, root hozzáférés szükség"
+"es, és konfigurálni kell a jelszó nélküli SSH-hozzáférést. További információk"
+"at a Hawk dokumentációjában talál."
+
+msgid "Root password"
+msgstr "Root-jelszó"
 
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "Az objektum/attribútum nem létezik: (cibadmin %{cmd})"
 
 msgid "Error invoking cibadmin %{cmd}: %{msg}"
 msgstr "Hiba történt a cibadmin %{cmd} parancs meghívásakor: %{msg}"
-
-msgid "The object/attribute does not exist: %{msg}"
-msgstr "Az objektum/attribútum nem létezik: %{msg}"
-
-msgid "Error invoking cibadmin --replace: %{msg}"
-msgstr "Hiba történt a cibadmin --replace meghívásakor: %{msg}"

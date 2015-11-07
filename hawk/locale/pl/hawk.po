@@ -1,11 +1,11 @@
-# Copyright (C) 2006-2015 SUSE Linux GmbH, Nuernberg
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
 # This file is distributed under the same license as the package.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2014-07-15 11:30\n"
+"PO-Revision-Date: 2015-11-05 17:03\n"
 "Last-Translator: Novell language <language@novell.com>\n"
 "Language-Team: Novell language <language@novell.com>\n"
 "Language: \n"
@@ -15,34 +15,96 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 ||"
 " n%100>=20) ? 1 : 2;\n"
 
-msgid "Any changes will be lost - do you wish to proceed?"
-msgstr "Wszystkie zmiany zostaną utracone - czy kontynuować?"
+msgid "Error"
+msgstr "Błąd"
 
-msgid "Connection to server aborted - will retry every 15 seconds."
-msgstr ""
-"Połączenie z serwerem zostało przerwane — ponowne próby będą następować co 15 "
-"sekund."
+msgid "Unexpected server error: _MSG_"
+msgstr "Nieoczekiwany błąd serwera: _MSG_"
 
-#, fuzzy
-msgid "Connection to server failed - will retry every 15 seconds."
+msgid ""
+"Connection to server failed (server down or network error - will retry every 1"
+"5 seconds)."
 msgstr ""
-"Połączenie z serwerem zostało przerwane — ponowne próby będą następować co 15 "
-"sekund."
+"Połączenie z serwerem nie powiodło się (serwer jest wyłączony lub wystąpił błą"
+"d sieciowy — ponowne próby będą następować co 15 sekund)."
 
 msgid "Connection to server timed out - will retry every 15 seconds."
 msgstr ""
 "Limit czasu na połączenie z serwerem został przekroczony — ponowne próby będą "
 "następować co 15 sekund."
 
-#, fuzzy
-msgid "State"
-msgstr "Stan:"
-
-msgid "Name"
+msgid "Connection to server aborted - will retry every 15 seconds."
 msgstr ""
+"Połączenie z serwerem zostało przerwane — ponowne próby będą następować co 15 "
+"sekund."
 
-msgid "Maintenance"
-msgstr "Utrzymanie"
+msgid "Permission denied"
+msgstr "Brak dostępu"
+
+msgid "_OP_ failed on _NODE_} (rc=_RC_, reason=_REASON_)"
+msgstr ""
+"Operacja _OP_ nieudana w węźle _NODE_} (kod powrotu =_RC_, przyczyna =_REASON_"
+")"
+
+msgid "Permission denied. "
+msgstr "Odmowa dostępu. "
+
+msgid "Error connecting to server."
+msgstr "Błąd połączenia z serwerem."
+
+msgid "Connection to server timed out."
+msgstr "Przekroczono limit czasu na połączenie z serwerem."
+
+msgid "Connection to server was aborted."
+msgstr "Połączenie z serwerem zostało przerwane."
+
+msgid "Server returned invalid data."
+msgstr "Serwer zwrócił nieprawidłowe dane."
+
+msgid "Unknown error connecting to server."
+msgstr "Nieznany błąd połączenia z serwerem."
+
+msgid "Retrying every 15 seconds..."
+msgstr "Ponowna próba za 15 sekund..."
+
+msgid "Cancel"
+msgstr "Anuluj"
+
+msgid "Hostname"
+msgstr "Nazwa hosta"
+
+msgid "Username"
+msgstr "Nazwa użytkownika"
+
+msgid "Password"
+msgstr "Hasło"
+
+msgid "Connect"
+msgstr "Połącz"
+
+msgid "Local Status"
+msgstr "Stan lokalny"
+
+msgid "Remove cluster _NAME_ from dashboard?"
+msgstr "Czy usunąć klaster _NAME_ z pulpitu nawigacyjnego?"
+
+msgid "Cluster removed successfully."
+msgstr "Klaster został usunięty."
+
+msgid "Error removing cluster."
+msgstr "Błąd podczas usuwania klastra."
+
+msgid "Please wait..."
+msgstr "Proszę czekać..."
+
+msgid "Cluster added successfully."
+msgstr "Klaster został dodany."
+
+msgid "Create"
+msgstr "Utwórz"
+
+msgid "Remove"
+msgstr "Usuń"
 
 msgid "Yes"
 msgstr "Tak"
@@ -50,50 +112,309 @@ msgstr "Tak"
 msgid "No"
 msgstr "Nie"
 
-msgid "Standby"
-msgstr "Stan gotowości"
+msgid "Any changes will be lost - do you wish to proceed?"
+msgstr "Wszystkie zmiany zostaną utracone - czy kontynuować?"
+
+msgid "Clone ID"
+msgstr "Identyfikator klona"
 
 msgid "Operations"
 msgstr "Operacje"
 
-msgid "Online"
-msgstr "Połączony"
+msgid "Edit"
+msgstr "Edycja"
 
-msgid "Ready"
-msgstr "Gotowe"
+msgid "Delete"
+msgstr "Usuń"
+
+msgid "Constraint ID"
+msgstr "Identyfikator ograniczenia"
+
+msgid "Swap with entry above"
+msgstr "Zamień z pozycją powyżej"
+
+msgid "Link with entry above"
+msgstr "Połącz z pozycją powyżej"
+
+msgid "Unlink from entry above"
+msgstr "Usuń połączenie z pozycją powyżej"
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Location"
+msgstr "Położenie"
+
+msgid "Colocation"
+msgstr "Kolokacja"
+
+msgid "Order"
+msgstr "Kolejność"
+
+msgid "Ticket"
+msgstr "Żeton"
+
+msgid "Constraint"
+msgstr "Ograniczenie"
+
+msgid "Group ID"
+msgstr "Identyfikator grupy GID"
+
+msgid "Rule"
+msgstr "Reguła"
+
+msgid "Score"
+msgstr "Punkty"
+
+msgid "Role"
+msgstr "Rola"
+
+msgid "Boolean Operator"
+msgstr "Operator logiczny"
+
+msgid "Multi-state ID"
+msgstr "Identyfikator zasobu wielostanowego"
+
+msgid "Connection to server failed - will retry every 15 seconds."
+msgstr ""
+"Połączenie z serwerem nie powiodło się — ponowne próby będą następować co 15 s"
+"ekund."
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Remote"
+msgstr "Zdalna"
+
+msgid "Name"
+msgstr "Nazwa"
+
+msgid "Maintenance"
+msgstr "Utrzymanie"
+
+msgid "Switch to ready"
+msgstr "Przełącz na: gotowy"
+
+msgid "Switch to maintenance"
+msgstr "Przełącz na: utrzymanie"
+
+msgid "Standby"
+msgstr "Stan gotowości"
+
+msgid "Switch to online"
+msgstr "Przełącz na: online"
+
+msgid "Switch to standby"
+msgstr "Przełącz na: stan gotowości"
 
 msgid "Fence"
-msgstr ""
+msgstr "Izolowanie"
 
 msgid "Details"
 msgstr "Szczegóły"
 
-msgid "Events"
+msgid "Add"
+msgstr "Dodaj"
+
+msgid "Apply"
+msgstr "Zastosuj"
+
+msgid "No interval set for monitor operation"
+msgstr "Dla operacji monitorowania nie ustawiono interwału"
+
+msgid "Replacing previously defined monitor operation with same interval"
 msgstr ""
+"Zastępowanie poprzednio zdefiniowanej operacji monitorowania tym samym interwa"
+"łem"
+
+msgid "Resource ID"
+msgstr "Identyfikator zasobu"
+
+msgid "Failed to fetch meta attributes"
+msgstr "Nie można pobrać atrybutów meta"
+
+msgid "Report generation is complete."
+msgstr "Generowanie raportu zakończone."
+
+msgid "From"
+msgstr "Od"
+
+msgid "Until"
+msgstr "Do"
+
+msgid "Custom"
+msgstr "Własne"
+
+msgid "Su"
+msgstr "Nd"
+
+msgid "Mo"
+msgstr "Pn"
+
+msgid "Tu"
+msgstr "Wt"
+
+msgid "We"
+msgstr "Śr"
+
+msgid "Th"
+msgstr "Cz"
+
+msgid "Fr"
+msgstr "Pt"
+
+msgid "Sa"
+msgstr "So"
+
+msgid "January"
+msgstr "Styczeń"
+
+msgid "February"
+msgstr "Luty"
+
+msgid "March"
+msgstr "Marzec"
+
+msgid "April"
+msgstr "Kwieceń"
+
+msgid "May"
+msgstr "Maj"
+
+msgid "June"
+msgstr "Czerwiec"
+
+msgid "July"
+msgstr "Lipiec"
+
+msgid "August"
+msgstr "Sierpień"
+
+msgid "September"
+msgstr "Wrzesień"
+
+msgid "October"
+msgstr "Październik"
+
+msgid "November"
+msgstr "Listopad"
+
+msgid "December"
+msgstr "Grudzień"
+
+msgid "Show"
+msgstr "Wyświetlaj"
+
+msgid "Download"
+msgstr "Pobierz"
+
+msgid "Unmanaged"
+msgstr "Niezarządzane"
+
+msgid "Started"
+msgstr "Uruchomiony"
+
+msgid "Primary"
+msgstr "Podstawowy"
+
+msgid "Secondary"
+msgstr "Dodatkowy"
+
+msgid "Stopped"
+msgstr "Zatrzymane"
+
+msgid "Group"
+msgstr "Grupa"
+
+msgid "Multi-state"
+msgstr "Zasób wielostanowy"
+
+msgid "Clone"
+msgstr "Klonuj"
+
+msgid "Tag"
+msgstr "Etykieta"
+
+msgid "Stop"
+msgstr "Zatrzymaj"
+
+msgid "Start"
+msgstr "Początek"
+
+msgid "Demote"
+msgstr "Degraduj"
+
+msgid "Promote"
+msgstr "Promuj"
+
+msgid "Unmanage"
+msgstr "Zakończ zarządzanie"
+
+msgid "Manage"
+msgstr "Zarządzaj"
+
+msgid "Migrate"
+msgstr "Migruj"
+
+msgid "Unmigrate"
+msgstr "Zakończ migrowanie"
+
+msgid "Cleanup"
+msgstr "Porządkowanie"
+
+msgid "Primitive"
+msgstr "Element podstawowy"
+
+msgid "Resource"
+msgstr "Zasoby"
 
 msgid "Role ID"
 msgstr "Identyfikator roli"
 
+msgid "Stopped Resources"
+msgstr "Zasoby zatrzymane"
+
+msgid "Tag ID"
+msgstr "Identyfikator znacznika"
+
+msgid "Objects"
+msgstr "Obiekty"
+
+msgid "ID"
+msgstr "Identyfikator"
+
+msgid "Granted"
+msgstr "Przyznany"
+
+msgid "Revoked"
+msgstr "Cofnięty"
+
+msgid "Grant"
+msgstr "Przyznaj"
+
+msgid "Revoke"
+msgstr "Unieważnij"
+
 msgid "User ID"
 msgstr "Identyfikator użytkownika (UID)"
 
+msgid "Must be a valid resource ID"
+msgstr "Musi być poprawnym identyfikatorem zasobu"
+
+msgid "Applying configuration changes..."
+msgstr "Zastosowanie zmian w konfiguracji..."
+
+msgid "Changes applied successfully."
+msgstr "Zmiany zostały zastosowane."
+
+msgid "Agent"
+msgstr "Agent"
+
+msgid "Created a new shadow CIB for %USER%."
+msgstr "Utworzono nowe lustrzane CIB dla użytkownika %USER%."
+
 msgid "Unable to create shadow CIB"
 msgstr "Nie można utworzyć lustrzanego CIB"
-
-msgid "1 node configured"
-msgid_plural "%{num} nodes configured"
-msgstr[0] "1 węzeł skonfigurowany"
-msgstr[1] "%{num} węzły skonfigurowane"
-msgstr[2] "%{num} węzłów skonfigurowanych"
-
-msgid "1 resource configured"
-msgid_plural "%{num} resources configured"
-msgstr[0] "1 zasób skonfigurowany"
-msgstr[1] "%{num} zasoby skonfigurowane"
-msgstr[2] "%{num} zasobów skonfigurowanych"
-
-msgid "Edit Clone"
-msgstr "Edytuj klon"
 
 msgid "Create Clone"
 msgstr "Klonuj"
@@ -101,69 +422,62 @@ msgstr "Klonuj"
 msgid "Clone created successfully"
 msgstr "Klon został utworzony"
 
+msgid "Edit Clone"
+msgstr "Edytuj klon"
+
 msgid "Clone updated successfully"
 msgstr "Klon został zaktualizowany"
 
-msgid "Edit Colocation Constraint"
-msgstr "Edycja ograniczenia kolokacji"
+msgid "Clone deleted successfully"
+msgstr "Klon został usunięty"
 
-msgid "Create Colocation Constraint"
-msgstr "Tworzenie ograniczenia kolokacji"
+msgid "Error deleting %s: %s"
+msgstr "Błąd usuwania %s: %s"
+
+msgid "Clones"
+msgstr "Klony"
+
+msgid "The clone does not exist"
+msgstr "Klon nie istnieje"
+
+msgid "Create Colocation"
+msgstr "Utwórz kolokację"
 
 msgid "Constraint created successfully"
 msgstr "Ograniczenie zostało utworzone"
 
+msgid "Edit Colocation"
+msgstr "Edytuj kolokację"
+
 msgid "Constraint updated successfully"
 msgstr "Ograniczenie zostało zaktualizowane"
+
+msgid "Colocation deleted successfully"
+msgstr "Kolokacja została usunięta"
+
+msgid "Colocations"
+msgstr "Kolokacje"
+
+msgid "The colocation constraint does not exist"
+msgstr "Ograniczenie kolokacji nie istnieje"
 
 msgid "Constraints"
 msgstr "Ograniczenia"
 
+msgid "Configuration updated successfully"
+msgstr "Konfiguracja została zaktualizowana"
+
 msgid "Cluster Configuration"
 msgstr "Konfiguracja klastra"
 
-msgid "Your changes have been saved"
-msgstr "Zmiany zostały zapisane"
-
-msgid "Unable to apply changes: %{msg}"
-msgstr "Nie można zastosować zmian: %{msg}"
-
-msgid ""
-"Can't set property %{p}, because the value contains both single and double quo"
-"tes"
-msgstr ""
-"Nie można ustawić właściwości %{p}, ponieważ wartość zawiera cudzysłowy zarówn"
-"o pojedyncze, jak i podwójne"
-
-msgid "Cluster Dashboard"
-msgstr "Pulpit nawigacyjny klastra"
+msgid "Error removing %s: %s"
+msgstr "Błąd usuwania %s: %s"
 
 msgid "Dashboard"
 msgstr "Pulpit nawigacyjny"
 
-msgid "History Explorer"
-msgstr "Przeglądarka historii"
-
-msgid "PE Input created by different Pacemaker version (%{version})"
-msgstr "Dane wejściowe PE utworzone przez inną wersję programu Pacemaker (%{version})"
-
-msgid "Pacemaker version not present in PE Input"
-msgstr "Wersja programu Pacemaker nie jest dostępna w danych wejściowych PE"
-
-msgid "Required parameters \"basename\" and \"node\" not specified"
-msgstr "Nie podano wymaganych parametrów \"basename\" i \"node\""
-
-msgid "No details available"
-msgstr "Szczegóły nie są dostępne"
-
-msgid "Error:"
-msgstr "Błąd:"
-
-msgid "Required parameters \"left\" and \"right\" not specified"
-msgstr "Nie podano wymaganych parametrów \"left\" i \"right\""
-
-msgid "Edit Group"
-msgstr "Edytuj grupę"
+msgid "Cluster Graph"
+msgstr "Diagram klastra"
 
 msgid "Create Group"
 msgstr "Utwórz grupę"
@@ -171,82 +485,209 @@ msgstr "Utwórz grupę"
 msgid "Group created successfully"
 msgstr "Grupa została utworzona"
 
+msgid "Edit Group"
+msgstr "Edytuj grupę"
+
 msgid "Group updated successfully"
 msgstr "Grupa została zaktualizowana"
 
-msgid "Edit Location Constraint"
-msgstr "Edytuj ograniczenia położenia"
+msgid "Group deleted successfully"
+msgstr "Grupa została usunięta"
+
+msgid "Groups"
+msgstr "Grupy"
+
+msgid "The group does not exist"
+msgstr "Grupa nie istnieje"
 
 msgid "Create Location Constraint"
 msgstr "Tworzenie ograniczenia położenia"
 
-msgid "%{cmd} failed (status: %{status})"
-msgstr "Polecenie %{cmd} się nie powiodło (stan: %{status})"
+msgid "Edit Location Constraint"
+msgstr "Edytuj ograniczenia położenia"
 
-msgid "Cluster Status"
-msgstr "Stan klastrów"
+msgid "Location deleted successfully"
+msgstr "Położenie zostało usunięte"
 
-msgid "Required parameter \"node\" not specified"
-msgstr "Nie podano wymaganego parametru \"node\" (węzeł)"
+msgid "Location Constraints"
+msgstr "Ograniczenia położenia"
 
-msgid "Required parameter \"resource\" not specified"
-msgstr "Nie podano wymaganego parametru \"resource\" (zasób)"
+msgid "The location constraint does not exist"
+msgstr "Ograniczenie położenia nie istnieje"
 
-msgid "Required parameters \"resource\" and \"node\" not specified"
-msgstr "Nie podano wymaganych parametrów \"resource\" (zasób) i \"node\" (węzeł)"
+msgid "Create Multi-state resource"
+msgstr "Utwórz zasób wielostanowy"
 
-msgid "Error deleting resource"
-msgstr "Błąd podczas usuwania zasobu"
+msgid "Multi-state resource created successfully"
+msgstr "Zasób wielostanowy został utworzony"
 
-msgid "Required parameters \"ticket\" and \"site\" not specified"
-msgstr "Nie podano wymaganych parametrów \"ticket\" (żeton) i \"site\" (witryna)"
+msgid "Edit Multi-state resource"
+msgstr "Edytuj zasób wielostanowy"
 
-msgid "Required parameter \"ticket\" not specified"
-msgstr "Nie podano wymaganego parametru \"ticket\" (żeton)"
+msgid "Multi-state resource updated successfully"
+msgstr "Zasób wielostanowy został zaktualizowany"
 
-msgid "Error invoking %{cmd}: %{msg}"
-msgstr "Błąd wywołania %{cmd}: %{msg}"
+msgid "Multi-state resource deleted successfully"
+msgstr "Zasób wielostanowy został usunięty"
 
-msgid "Edit Master/Slave"
-msgstr "Edytuj nośnik nadrzędny/podrzędny"
+msgid "Multi-state resource"
+msgstr "Zasób wielostanowy"
 
-msgid "Create Master/Slave"
-msgstr "Utwórz nośnik nadrzędny/podrzędny"
+msgid "The multi-state resource does not exist"
+msgstr "Zasób wielostanowy nie istnieje"
 
-msgid "Master/Slave created successfully"
-msgstr "Nośnik nadrzędny/podrzędny został utworzony"
+msgid "Set the node state to online"
+msgstr "Ustaw stan węzła na: online"
 
-msgid "Master/Slave updated successfully"
-msgstr "Nośnik nadrzędny/podrzędny został zaktualizowany"
+msgid "Set the node state to standby"
+msgstr "Ustaw stan węzła na: stan gotowości"
 
-#, fuzzy
+msgid "Set the node state to maintenance"
+msgstr "Ustaw stan węzła na: utrzymanie"
+
+msgid "Set the node state to ready"
+msgstr "Ustaw stan węzła na: gotowy"
+
+msgid "Set the node state to fence"
+msgstr "Ustaw stan węzła na: odizolowany"
+
 msgid "Nodes"
-msgstr "Węzeł"
+msgstr "Węzły"
 
-msgid "Edit Order Constraint"
-msgstr "Edycja ograniczenia porządku"
+msgid "The node does not exist"
+msgstr "Węzeł nie istnieje"
 
-msgid "Create Order Constraint"
-msgstr "Tworzenie ograniczenia porządku"
+msgid "Create Order"
+msgstr "Utwórz kolejność"
+
+msgid "Edit Order"
+msgstr "Edytuj kolejność"
+
+msgid "Order deleted successfully"
+msgstr "Kolejność została usunięta"
+
+msgid "Orders"
+msgstr "Kolejności"
+
+msgid "The order constraint does not exist"
+msgstr "Ograniczenie kolejności nie istnieje"
 
 msgid "Welcome"
-msgstr ""
+msgstr "Witamy"
 
 msgid "Help"
-msgstr ""
+msgstr "Pomoc"
 
-msgid "Create Resource"
-msgstr "Utwórz zasób"
+msgid "Commands"
+msgstr "Polecenia"
 
-msgid "Resource created successfully"
-msgstr "Zasób został utworzony"
+msgid "Create Primitive"
+msgstr "Utwórz element podstawowy"
 
-msgid "Resource updated successfully"
-msgstr "Zasób został uaktualniony"
+msgid "Primitive created successfully"
+msgstr "Element podstawowy został utworzony"
 
-#, fuzzy
+msgid "Edit Primitive"
+msgstr "Edytuj element podstawowy"
+
+msgid "Primitive updated successfully"
+msgstr "Element podstawowy został zaktualizowany"
+
+msgid "Primitive deleted successfully"
+msgstr "Element podstawowy został usunięty"
+
 msgid "Primitives"
-msgstr "Element podstawowy"
+msgstr "Elementy podstawowe"
+
+msgid "The primitive does not exist"
+msgstr "Element podstawowy nie istnieje"
+
+msgid "Preferences updated successfully"
+msgstr "Preferencje zostały zaktualizowane"
+
+msgid "Preferences"
+msgstr "Preferencje"
+
+msgid "Please wait while report is generated..."
+msgstr "Proszę czekać, trwa generowanie raportu..."
+
+msgid "Failed to generate"
+msgstr "Generowanie nie powiodło się"
+
+msgid "Upload completed."
+msgstr "Przesyłanie zakończone."
+
+msgid "Cannot display diff, too few transitions"
+msgstr "Nie można wyświetlić różnic. Zbyt mało przejść"
+
+msgid "Report deleted successfully"
+msgstr "Raport został usunięty"
+
+msgid "Error deleting %s"
+msgstr "Błąd podczas usuwania %s"
+
+msgid "History Explorer"
+msgstr "Przeglądarka historii"
+
+msgid "The report does not exist"
+msgstr "Raport nie istnieje"
+
+msgid "must be a valid datetime"
+msgstr "musi być poprawnym typem datetime"
+
+msgid "Successfully started the resource"
+msgstr "Zasób został uruchomiony"
+
+msgid "Failed to start the resource: %{err}"
+msgstr "Uruchamianie zasobu nie powiodło się: %{err}"
+
+msgid "Successfully stopped the resource"
+msgstr "Zasób został zatrzymany"
+
+msgid "Failed to stop the resource: %{err}"
+msgstr "Zatrzymywanie zasobu nie powiodło się: %{err}"
+
+msgid "Successfully promoted the resource"
+msgstr "Zasób został promowany"
+
+msgid "Failed to promote the resource: %{err}"
+msgstr "Promowanie zasobu nie powiodło się: %{err}"
+
+msgid "Successfully demoted the resource"
+msgstr "Zasób został zdegradowany"
+
+msgid "Failed to demote the resource: %{err}"
+msgstr "Degradowanie zasobu nie powiodło się: %{err}"
+
+msgid "Successfully set the resource in managed mode"
+msgstr "Zasób został ustawiony w trybie zarządzanym"
+
+msgid "Failed to set the resource in managed mode: %{err}"
+msgstr "Ustawianie zasobu w trybie zarządzanym nie powiodło się: %{err}"
+
+msgid "Successfully set the resource in unmanaged mode"
+msgstr "Zasób został ustawiony w trybie niezarządzanym"
+
+msgid "Failed to set the resource in unmanaged mode: %{err}"
+msgstr "Ustawianie zasobu w trybie niezarządzanym nie powiodło się: %{err}"
+
+msgid "Successfully unmigrated the resource"
+msgstr "Migracja zasobu została wycofana"
+
+msgid "Failed to unmigrate the resource: %{err}"
+msgstr "Wycofywanie migracji zasobu nie powiodło się: %{err}"
+
+msgid "Successfully migrated the resource"
+msgstr "Zasób został migrowany"
+
+msgid "Failed to migrate the resource: %{err}"
+msgstr "Migrowanie zasobu nie powiodło się: %{err}"
+
+msgid "Successfully cleaned the resource"
+msgstr "Zasób został wyczyszczony"
+
+msgid "Failed to clean up the resource: %{err}"
+msgstr "Czyszczenie zasobu nie powiodło się: %{err}"
 
 msgid "Resources"
 msgstr "Zasoby"
@@ -263,22 +704,24 @@ msgstr "Edycja roli"
 msgid "Role updated successfully"
 msgstr "Rola została zaktualizowana"
 
-#, fuzzy
 msgid "Role deleted successfully"
 msgstr "Rola została utworzona"
 
-#, fuzzy
-msgid "Error deleting %s"
-msgstr "Błąd podczas usuwania zasobu"
+msgid "ACL is not supported by the cluster"
+msgstr "Lista ACL nie jest obsługiwana przez klaster"
 
 msgid "Roles"
 msgstr "Role"
 
 msgid "The role does not exist"
-msgstr ""
+msgstr "Rola nie istnieje"
 
-msgid "To enable ACLs, set 'enable-acl' in the CRM Configuration"
-msgstr "Aby włączyć listy ACL, ustaw parametr enable-acl w konfiguracji CRM"
+msgid ""
+"To enable ACLs, set \"enable-acl\" in the Cluster Configuration ('Manage > Confi"
+"guration')"
+msgstr ""
+"Aby włączyć listy ACL, ustaw parametr enable-acl w opcji Konfiguracja klastra "
+"(Zarządzaj > Konfiguracja)"
 
 msgid "Permission denied for user %{user}"
 msgstr "Dostęp zabroniony dla użytkownika %{user}"
@@ -289,15 +732,29 @@ msgstr "Wylogowano cię."
 msgid "Log In"
 msgstr "Zaloguj"
 
-#, fuzzy
-msgid "Preferences updated successfully"
-msgstr "Zasób został uaktualniony"
+msgid "Simulator"
+msgstr "Symulator"
 
-msgid "Preferences"
-msgstr "Preferencje"
+msgid "Create Tag"
+msgstr "Utwórz znacznik"
 
-msgid "Edit Template"
-msgstr "Edycja szablonu"
+msgid "Tag created successfully"
+msgstr "Znacznik został utworzony"
+
+msgid "Edit Tag"
+msgstr "Edytuj znacznik"
+
+msgid "Tag updated successfully"
+msgstr "Znacznik został zaktualizowany"
+
+msgid "Tag deleted successfully"
+msgstr "Znacznik został usunięty"
+
+msgid "Tags"
+msgstr "Znaczniki"
+
+msgid "The tag does not exist"
+msgstr "Znacznik nie istnieje"
 
 msgid "Create Template"
 msgstr "Utwórz szablon"
@@ -305,110 +762,140 @@ msgstr "Utwórz szablon"
 msgid "Template created successfully"
 msgstr "Szablon został utworzony pomyślnie"
 
+msgid "Edit Template"
+msgstr "Edycja szablonu"
+
 msgid "Template updated successfully"
 msgstr "Szablon został zaktualizowany pomyślnie"
 
-msgid "Edit Ticket Constraint"
-msgstr "Edycja ograniczenia żetonu"
+msgid "Template deleted successfully"
+msgstr "Szablon został usunięty"
 
-msgid "Create Ticket Constraint"
-msgstr "Utwórz ograniczenie żetonu"
+msgid "You have no template feature support"
+msgstr "Brak obsługi funkcji szablonów"
 
-msgid "Create User"
-msgstr "Tworzenie użytkownika"
+msgid "Templates"
+msgstr "Szablony"
 
-msgid "User created successfully"
-msgstr "Użytkownik został utworzony"
+msgid "The template does not exist"
+msgstr "Szablon nie istnieje"
 
-msgid "Edit User"
-msgstr "Edycja użytkownika"
+msgid "Create Ticket"
+msgstr "Utwórz żeton"
 
-msgid "User updated successfully"
-msgstr "Użytkownik został zaktualizowany"
+msgid "Edit Ticket"
+msgstr "Edytuj żeton"
 
-#, fuzzy
-msgid "User deleted successfully"
-msgstr "Użytkownik został utworzony"
+msgid "Ticket deleted successfully"
+msgstr "Żeton został usunięty"
 
-#, fuzzy
-msgid "Users"
-msgstr "Użytkownik"
+msgid "Successfully granted the ticket"
+msgstr "Żeton został przyznany"
 
-msgid "The user does not exist"
-msgstr ""
+msgid "Successfully revoked the ticket"
+msgstr "Żeton został unieważniony"
 
-msgid "Cluster Setup Wizard"
-msgstr "Kreator konfiguracji klastra"
+msgid "Tickets"
+msgstr "Żetony"
 
-msgid "Invalid password"
-msgstr "Nieprawidłowe hasło"
+msgid "The ticket constraint does not exist"
+msgstr "Ograniczenie żetonu nie istnieje"
 
-msgid "Root Password"
-msgstr "Hasło administratora"
+msgid "Create ACL Target"
+msgstr "Utwórz cel listy ACL"
 
-msgid ""
-"The root password is required in order for this wizard template to make config"
-"uration changes."
-msgstr ""
-"Hasło użytkownika root jest wymagane przez szablon kreatora w celu dokonania z"
-"mian konfiguracji."
+msgid "ACL target created successfully"
+msgstr "Cel listy ACL został utworzony"
 
-msgid "The root password for this system"
-msgstr "Hasło użytkownika root dla tego systemu"
+msgid "Edit ACL Target"
+msgstr "Edytuj cel listy ACL"
 
-msgid "\"Error: #{result}\""
-msgstr "\"Błąd: #{result}\""
+msgid "ACL target updated successfully"
+msgstr "Cel listy ACL został zaktualizowany"
 
-msgid "Parameters"
-msgstr "Parametry"
+msgid "ACL target deleted successfully"
+msgstr "Cel listy ACL został usunięty"
 
-msgid "Confirm"
-msgstr "Potwierdzenie"
+msgid "ACL is not supported by this cluster."
+msgstr "Lista ACL nie jest obsługiwana przez ten klaster."
 
-msgid "Done"
-msgstr "Zakończono"
+msgid "ACL Targets"
+msgstr "Cele listy ACL"
 
-msgid "Required parameter \"%{param}\" not specified"
-msgstr "Nie podano wymaganego parametru \"%{param}\""
+msgid "The ACL target does not exist"
+msgstr "Cel listy ACL nie istnieje"
+
+msgid "Session has expired"
+msgstr "Sesja wygasła"
+
+msgid "Wizard cannot be applied when the simulator is active"
+msgstr "Nie można zastosować kreatora, gdy jest aktywny symulator"
+
+msgid "Use a wizard"
+msgstr "Użyj kreatora"
 
 msgid "Permission denied - you do not have write access to the CIB."
 msgstr "Odmowa uprawnień — nie masz dostępu z prawem zapisu do bazy danych CIB."
 
-msgid "Wizard templates and/or workflows are missing"
-msgstr "Brak szablonów i/lub przepływów pracy kreatora"
+msgid "Cluster seems to be offline"
+msgstr "Klaster jest wyłączony"
 
-msgid "Workflow \"%s\" not found"
-msgstr "Nie znaleziono przepływu \"%s\""
+msgid "Required"
+msgstr "Wymagana"
 
-msgid "Error parsing template \"%s\""
-msgstr "Błąd przetwarzania szablonu \"%s\""
+msgid "Unique"
+msgstr "Unikalna"
 
-msgid "Error parsing workflow \"%s\""
-msgstr "Błąd przetwarzania przepływu \"%s\""
+msgid "Master"
+msgstr "Główna"
 
-msgid "Data collection in progress (%{from_time} to %{to_time})..."
-msgstr "Trwa zbieranie danych (%{from_time} do %{to_time})..."
+msgid "Slave"
+msgstr "Podrzędna"
 
-#, fuzzy
 msgid "Revert"
-msgstr "Przywróć"
+msgstr "Cofnij"
 
-msgid "Apply"
-msgstr ""
-
-#, fuzzy
-msgid "Create"
-msgstr "Tworzenie roli"
-
-#, fuzzy
 msgid "Read"
-msgstr "Gotowe"
+msgstr "Prawo do odczytu"
 
 msgid "Write"
-msgstr ""
+msgstr "Prawo do zapisu"
 
 msgid "Deny"
-msgstr ""
+msgstr "Zabroń"
+
+msgid "success"
+msgstr "sukces"
+
+msgid "generic error"
+msgstr "błąd ogólny"
+
+msgid "incorrect arguments"
+msgstr "niepoprawne argumenty"
+
+msgid "unimplemented action"
+msgstr "działanie nie jest zaimplementowane"
+
+msgid "insufficient permissions"
+msgstr "brak wystarczających uprawnień"
+
+msgid "installation error"
+msgstr "błąd instalacji"
+
+msgid "configuration error"
+msgstr "błąd konfiguracji"
+
+msgid "not running"
+msgstr "niedziałający"
+
+msgid "running (master)"
+msgstr "działający (główny)"
+
+msgid "failed (master)"
+msgstr "błąd (główny)"
+
+msgid "Freeze"
+msgstr "Zawieś"
 
 msgid "CIB file \"%{path}\" not found"
 msgstr "Nie znaleziono pliku CIB \"%{path}\""
@@ -427,71 +914,192 @@ msgstr "Nie można wykonać polecenia %{cmd}"
 msgid "Error invoking %{cmd}"
 msgstr "Błąd wywołania %{cmd}"
 
+msgid "Error invoking %{cmd}: %{msg}"
+msgstr "Błąd wywołania %{cmd}: %{msg}"
+
 msgid "Unknown"
 msgstr "Nieznane"
 
-msgid ""
-"Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%"
-"{op}, rc-code=%{rc_code}, exit-reason=%{exit_reason}"
-msgstr ""
-
-msgid "Invalid Resource ID \"%{id}\""
-msgstr "Nieprawidłowy identyfikator zasobu \"%{id}\""
-
-msgid "Unable to parse cibadmin output"
-msgstr "Nie można przetworzyć wyników polecenia cibadmin"
-
-msgid "No clone child specified"
-msgstr "Nie określono elementu potomnego klony"
+msgid "Node \"%{node}\" is UNCLEAN and needs to be fenced."
+msgstr "Węzeł %{node} jest NIEWYCZYSZCZONY i musi być odizolowany."
 
 msgid ""
-"Can't set meta attribute %{p}, because the value contains both single and doub"
-"le quotes"
+"%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}"
+": call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_r"
+"eason}"
 msgstr ""
-"Nie można ustawić metaatrybutu %{p}, ponieważ wartość zawiera cudzysłowy zarów"
-"no pojedyncze, jak i podwójne"
+"%{fail_start}: Błąd operacji %{op} dla zasobu %{resource} w węźle %{node}: ID "
+"wywołania=%{call_id}, kod powrotu=%{rc_mapping} (%{rc_code}), przyczyna wyjści"
+"a=%{exit_reason}"
 
-msgid "The ID \"%{id}\" is already in use"
-msgstr "Identyfikator \"%{id}\" jest już używany"
+msgid "other"
+msgstr "inne"
 
-msgid "Unable to create clone: %{msg}"
-msgstr "Nie można utworzyć klona: %{msg}"
+msgid "STONITH is disabled. For normal cluster operation, STONITH is required."
+msgstr ""
+"STONITH jest wyłączone. W przypadku normalnego działania klastra STONITH jest "
+"wymagane."
 
-msgid "Clone ID \"%{id}\" does not exist"
-msgstr "Klon o identyfikatorze \"%{id}\" nie istnieje"
+msgid "None"
+msgstr "Brak"
 
-msgid "Invalid score"
-msgstr "Nieprawidłowa wartość punktowa"
+msgid "Clone ID is required"
+msgstr "Wymagany jest identyfikator klonowania"
+
+msgid "Invalid Clone ID"
+msgstr "Nieprawidłowy identyfikator klonowania"
+
+msgid "No Clone child specified"
+msgstr "Nie określono elementu potomnego klonowania"
+
+msgid "Is the cluster allowed to start and stop the resource?"
+msgstr "Czy klaster może zatrzymywać i uruchamiać zasób?"
+
+msgid ""
+"If not all resources can be active, the cluster will stop lower priority resou"
+"rces in order to keep higher priority ones active."
+msgstr ""
+"Jeśli nie wszystkie zasoby mogą być aktywne, klaster zatrzyma zasoby o niższym"
+" priorytecie, aby aktywne mogły być te o wyższym priorytecie."
+
+msgid "What state should the cluster attempt to keep this resource in?"
+msgstr "Jaki stan tego zasobu klaster powinien utrzymywać?"
+
+msgid ""
+"How many copies of the resource to start. Defaults to the number of nodes in t"
+"he cluster."
+msgstr ""
+"Liczba kopii zasobu do uruchomienia. Domyślnie jest to liczba węzłów w klastrz"
+"e."
+
+msgid ""
+"How many copies of the resource can be started on a single node. Defaults to 1"
+"."
+msgstr "Liczba kopii zasobu do uruchomienia w pojedynczym węźle. Domyślnie 1."
+
+msgid ""
+"When stopping or starting a copy of the clone, tell all the other copies befor"
+"ehand and when the action was successful."
+msgstr ""
+"W momencie zatrzymywania lub uruchamiania kopii klonu, najpierw powiadom o tym"
+" wszystkie pozostałe kopie. Powiadom także, czy działanie się powiodło."
+
+msgid "Does each copy of the clone perform a different function?"
+msgstr "Czy każda kopia klonu wykonuje inną funkcję?"
+
+msgid "Should the copies be started in series (instead of in parallel)?"
+msgstr "Czy kopie powinny być uruchamiane szeregowo (zamiast równolegle)?"
+
+msgid ""
+"Changes the behavior of ordering constraints (between clones/masters) so that "
+"instances can start/stop as soon as their peer instance has (rather than waiti"
+"ng for every instance of the other clone has)."
+msgstr ""
+"Zmienia zachowanie ograniczeń kolejności (między klonami/elementami głównymi),"
+" dzięki czemu instancje są uruchamiane/zatrzymywane natychmiast po instancji p"
+"artnera (zamiast czekać na każdą instancję pozostałych klonów)."
+
+msgid "The ID \"%{id}\" does not exist"
+msgstr "Identyfikator %{id} nie istnieje"
+
+msgid "Constraint ID is required"
+msgstr "Identyfikator ograniczenia jest wymagany"
+
+msgid "Invalid Constraint ID"
+msgstr "Nieprawidłowy identyfikator ograniczenia"
+
+msgid "Score is required"
+msgstr "Punktacja jest wymagana"
+
+msgid "Invalid score value"
+msgstr "Nieprawidłowa wartość punktacji"
 
 msgid "Constraint must consist of at least two separate resources"
 msgstr "Ograniczenie musi zawierać co najmniej dwa oddzielne zasoby"
 
-msgid "Unable to create constraint: %{msg}"
-msgstr "Nie można utworzyć ograniczenia: %{msg}"
+msgid "Not a constraint"
+msgstr "To nie jest ograniczenie"
 
-msgid "Constraint ID \"%{id}\" does not exist"
-msgstr "Ograniczenie o identyfikatorze \"%{id}\" nie istnieje"
+msgid "Set to true if the resource agent supports the migrate action"
+msgstr "Ustaw wartość prawda, jeśli agent zasobu obsługuje migrację"
 
-msgid "Unable to update constraint: %{msg}"
-msgstr "Nie można zaktualizować ograniczenia: %{msg}"
+msgid ""
+"How many failures may occur for this resource on a node, before this node is m"
+"arked ineligible to host this resource. A value of INFINITY indicates that thi"
+"s feature is disabled."
+msgstr ""
+"Liczba awarii tego zasobu w węźle, które mogą wystąpić zanim węzeł zostanie oz"
+"naczony jako niekwalifikujący się dla tego zasobu. Wartość INFINITY wskazuje, "
+"że ta funkcja jest wyłączona."
 
-msgid "No group children specified"
+msgid ""
+"What should the cluster do if it ever finds the resource active on more than o"
+"ne node?"
+msgstr ""
+"Co klaster powinien zrobić, jeśli znajdzie zasób aktywny w więcej niż jednym w"
+"ęźle?"
+
+msgid ""
+"How many seconds to wait before acting as if the failure had not occurred, and"
+" potentially allowing the resource back to the node on which it failed. A valu"
+"e of 0 indicates that this feature is disabled."
+msgstr ""
+"Liczba sekund oczekiwania na potraktowanie awarii jako niebyłej oraz na potenc"
+"jalny powrót tego zasobu do węzła, w którym uległ awarii. Wartość 0 oznacza, ż"
+"e ta funkcja jest wyłączona."
+
+msgid "How much does the resource prefer to stay where it is?"
+msgstr "Na ile zasób preferuje pozostanie w miejscu, w którym się znajduje?"
+
+msgid "Conditions under which the resource can be started."
+msgstr "Warunki, przy których zasób może zostać uruchomiony."
+
+msgid ""
+"The name of the remote-node this resource defines. This both enables the resou"
+"rce as a remote-node and defines the unique name used to identify the remote-n"
+"ode. If no other parameters are set, this value will also be assumed as the ho"
+"stname to connect to at the port specified by remote-port. WARNING: This value"
+" cannot overlap with any resource or node IDs. If not specified, this feature "
+"is disabled."
+msgstr ""
+"Nazwa zdalnego węzła definiowanego przez ten zasób. Powoduje to aktywowanie za"
+"sobu jako węzła zdalnego oraz definiuje unikalną nazwę używaną do identyfikowa"
+"nia zdalnego węzła. Jeśli inne parametry nie zostaną ustawione, ta wartość zos"
+"tanie także użyta jako nazwa hosta przy połączeniu, razem z portem określonym "
+"przez parametr remote-port. OSTRZEŻENIE: ta wartość nie może pokrywać się z ża"
+"dnym identyfikatorem zasobu ani węzła. Jeśli nie zostanie podana, funkcja jest"
+" wyłączona."
+
+msgid "Port to use for the guest connection to pacemaker_remote."
+msgstr "Port używany dla połączenia gościa z węzłem pacemaker_remote."
+
+msgid ""
+"The IP address or hostname to connect to if remote-node's name is not the host"
+"name of the guest."
+msgstr ""
+"Adres IP lub nazwa hosta dla połączenia, jeśli nazwa węzła zdalnego nie jest n"
+"azwą hosta gościa."
+
+msgid "How long before a pending guest connection will time out."
+msgstr "Limit czasu oczekiwania na połączenie gościa."
+
+msgid "Group ID is required"
+msgstr "Identyfikator grupy jest wymagany"
+
+msgid "Invalid Group ID"
+msgstr "Nieprawidłowy identyfikator grupy"
+
+msgid "No Group children specified"
 msgstr "Nie określono elementów podrzędnych grupy"
 
-msgid "Unable to create group: %{msg}"
-msgstr "Nie można utworzyć grupy: %{msg}"
-
-msgid "Group ID \"%{id}\" does not exist"
-msgstr "Grupa o identyfikatorze \"%{id}\" nie istnieje"
-
-msgid "Constraint is too complex - it contains nested rules"
-msgstr "Ograniczenie jest zbyt złożone - zawiera zagnieżdżone reguły"
+msgid "No resource specified"
+msgstr "Nie podano zasobu"
 
 msgid "No rules specified"
 msgstr "Nie określono reguł"
 
-msgid "No resource specified"
-msgstr "Nie podano zasobu"
+msgid "Constraint is too complex - it contains nested rules"
+msgstr "Ograniczenie jest zbyt złożone - zawiera zagnieżdżone reguły"
 
 msgid "Invalid score \"%{score}\""
 msgstr "Nieprawidłowa wartości punktowa \"%{score}\""
@@ -505,178 +1113,222 @@ msgstr "Atrybut zawiera cudzysłowy zarówno pojedyncze, jak i podwójne"
 msgid "Value contains both single and double quotes"
 msgstr "Wartość zawiera cudzysłowy zarówno pojedyncze, jak i podwójne"
 
-msgid "No Master/Slave child specified"
-msgstr "Nie określono potomka elementu nadrzędnego/podrzędnego"
+msgid "Multi-state ID is required"
+msgstr "Identyfikator zasobu wielostanowego jest wymagany"
 
-msgid "Unable to create master/slave: %{msg}"
-msgstr "Nie można utworzyć elementu nadrzędnego/podrzędnego: %{msg}"
+msgid "Invalid Multi-state ID"
+msgstr "Nieprawidłowy identyfikator zasobu wielostanowego"
 
-msgid "Master/Slave ID \"%{id}\" does not exist"
-msgstr "Identyfikator elementu nadrzędnego/podrzędnego \"%{id}\" nie istnieje"
+msgid "No Multi-state child specified"
+msgstr "Nie określono potomka zasobu wielostanowego"
 
-msgid ""
-"Can't set parameter %{p}, because the value contains both single and double qu"
-"otes"
-msgstr ""
-"Nie można ustawić parametru %{p}, ponieważ wartość zawiera cudzysłowy zarówno "
-"pojedyncze, jak i podwójne"
+msgid "How many copies of the resource can be promoted to master status."
+msgstr "Liczba kopii zasobu, które mogą być promowane do elementu nadrzędnego."
 
 msgid ""
-"Can't set op %{o} attribute {%a}, because the value contains both single and d"
-"ouble quotes"
+"How many copies of the resource can be promoted to master status on a single n"
+"ode."
 msgstr ""
-"Nie można ustawić operacji %{o} atrybutu {%a}, ponieważ wartość zawiera znaki "
-"cudzysłowu oraz apostrofu."
+"Liczba kopii zasobu, które mogą być promowane do elementu nadrzędnego na pojed"
+"ynczym węźle."
 
-msgid "Unable to create resource: %{msg}"
-msgstr "Nie można utworzyć zasobu: %{msg}"
+msgid "Node ID is required"
+msgstr "Identyfikator węzła jest wymagany"
 
-msgid "Resource ID \"%{id}\" does not exist"
-msgstr "Zasób o identyfikatorze \"%{id}\" nie istnieje"
+msgid "Invalid Node ID"
+msgstr "Nieprawidłowy identyfikator węzła"
 
-#, fuzzy
+msgid "Name is required"
+msgstr "Nazwa jest wymagana"
+
+msgid "Invalid name"
+msgstr "Nieprawidłowa nazwa"
+
+msgid "is required"
+msgstr "jest wymagana"
+
+msgid "Object not found: %s=%s"
+msgstr "Nie znaleziono obiektu: %s=%s"
+
+msgid "The ID \"%{id}\" is already in use"
+msgstr "Identyfikator \"%{id}\" jest już używany"
+
 msgid "Unable to create: %{msg}"
-msgstr "Nie można utworzyć roli: %{msg}"
+msgstr "Nie można utworzyć: %{msg}"
 
-#, fuzzy
-msgid "The ID \"%{id}\" does not exist"
-msgstr "Rola o identyfikatorze \"%{id}\" nie istnieje"
+msgid "Error updating %{id} (rc=%{rc})"
+msgstr "Błąd aktualizacji %{id} (kod powrotu=%{rc})"
 
-#, fuzzy
-msgid "Unable to update: %{msg}"
-msgstr "Nie można zaktualizować roli: %{msg}"
+msgid "PE Input created by different Pacemaker version (%{version})"
+msgstr "Dane wejściowe PE utworzone przez inną wersję programu Pacemaker (%{version})"
+
+msgid "Pacemaker version not present in PE Input"
+msgstr "Wersja programu Pacemaker nie jest dostępna w danych wejściowych PE"
+
+msgid "No details available"
+msgstr "Szczegóły nie są dostępne"
+
+msgid "Error:"
+msgstr "Błąd:"
+
+msgid "must have correct MIME type (was %s)"
+msgstr "musi mieć prawidłowy typ MIME (poprzedni: %s)"
+
+msgid "must have correct file extension"
+msgstr "musi mieć prawidłowe rozszerzenie"
+
+msgid "Not a resource"
+msgstr "To nie jest zasób"
 
 msgid "Role ID is required"
-msgstr ""
+msgstr "Identyfikator roli jest wymagany"
 
-#, fuzzy
 msgid "Invalid Role ID"
-msgstr "Nieprawidłowy identyfikator żetonu"
+msgstr "Nieprawidłowy identyfikator roli"
 
-msgid "Username not specified"
-msgstr "Nie określono nazwy użytkownika"
+msgid "At least one rule is required"
+msgstr "Wymagana jest przynajmniej jedna reguła"
 
 msgid "Invalid username"
 msgstr "Nieprawidłowa nazwa użytkownika"
 
-msgid "Password not specified"
-msgstr "Nie określono hasła"
-
 msgid "%s is not installed"
 msgstr "%s nie jest zainstalowany"
 
-#, fuzzy
 msgid "%s is not executable"
-msgstr "%s nie jest zainstalowany"
+msgstr "%s nie jest plikiem wykonywalnym"
+
+msgid "Username not specified"
+msgstr "Nie określono nazwy użytkownika"
+
+msgid "Password not specified"
+msgstr "Nie określono hasła"
 
 msgid "Invalid username or password"
 msgstr "Nieprawidłowa nazwa użytkownika lub hasło"
 
-msgid "Language is required"
+msgid "Tag ID is required"
+msgstr "Identyfikator znacznika jest wymagany"
+
+msgid "Invalid Tag ID"
+msgstr "Nieprawidłowy identyfikator znacznika"
+
+msgid "No Tag resources specified"
+msgstr "Nie określono zasobów znacznika"
+
+msgid "Resource ID is required"
+msgstr "Identyfikator zasobu jest wymagany"
+
+msgid "Invalid Resource ID"
+msgstr "Nieprawidłowy identyfikator zasobu"
+
+msgid "How frequently (in seconds) to perform the operation."
+msgstr "Częstotliwość (w sekundach) wykonywania operacji."
+
+msgid "How long to wait before declaring the action has failed."
+msgstr "Czas oczekiwania zanim działanie zostanie zadeklarowane jako nieudane."
+
+msgid "What conditions need to be satisfied before this action occurs."
+msgstr "Warunki, które muszą być spełnione, zanim to działanie wystąpi."
+
+msgid "If false, the operation is treated as if it does not exist."
+msgstr "Jeśli fałsz, operacja jest traktowana jako nieistniejąca."
+
+msgid ""
+"This option only makes sense for recurring operations. It restricts the operat"
+"ion to a specific role. The truely paranoid can even specify role=Stopped whic"
+"h allows the cluster to detect an admin that manually started cluster services"
+"."
 msgstr ""
+"Ta opcja jest przydatna tylko dla powtarzających się operacji. Ogranicza opera"
+"cję do określonej roli. Jeśli wymagane jest szczególne bezpieczeństwo, można n"
+"awet określić rolę Zatrzymane pozwalającą klastrowi wykryć administratora, któ"
+"ry ręcznie uruchomił usługi klastra."
+
+msgid "The action to take if this action ever fails."
+msgstr ""
+"Działanie, które ma być podejmowane, gdy to działanie kiedykolwiek ulegnie awa"
+"rii."
+
+msgid ""
+"If true, the intention to perform the operation is recorded so that GUIs and C"
+"LI tools can indicate that an operation is in progress."
+msgstr ""
+"Jeśli prawda, cel przeprowadzenia tej operacji jest zapisywany, aby narzędzia "
+"graficznego interfejsu użytkownika oraz CLI mogły wskazywać, że operacja jest "
+"w toku."
+
+msgid "Ticket ID is required"
+msgstr "Identyfikator żetonu jest wymagany"
 
 msgid "Invalid Ticket ID"
 msgstr "Nieprawidłowy identyfikator żetonu"
 
-msgid "No resources specified"
-msgstr "Nie określono zasobów"
+msgid "Constraint must consist of at least one separate resources"
+msgstr "Ograniczenie musi składać się z co najmniej jednego oddzielnego zasobu"
 
-msgid "User ID is required"
-msgstr ""
+msgid "Simulator active: Use the ticket controls in the simulator"
+msgstr "Symulator aktywny: użyj elementów sterujących żetonu w symulatorze"
 
-#, fuzzy
-msgid "Invalid User ID"
-msgstr "Nieprawidłowy identyfikator żetonu"
+msgid "ACL target ID is required"
+msgstr "Identyfikator celu listy ACL jest wymagany"
 
-msgid "Meta Attributes"
-msgstr "Atrybuty meta"
+msgid "Invalid ACL target ID"
+msgstr "Nieprawidłowy identyfikator celu listy ACL"
 
-msgid "Add"
-msgstr "Dodaj"
+msgid "At least one role is required"
+msgstr "Wymagana jest przynajmniej jedna rola"
 
-msgid "Remove"
-msgstr "Usuń"
+msgid "Requested wizard does not exist"
+msgstr "Żądany kreator nie istnieje"
 
-msgid "You must enter a value"
-msgstr "Należy wprowadzić wartość"
+msgid "Parameters"
+msgstr "Parametry"
 
-msgid "Clone ID"
-msgstr "Identyfikator klona"
+msgid "Shortdesc"
+msgstr "Krótki opis"
+
+msgid "Longdesc"
+msgstr "Długi opis"
+
+msgid "Options"
+msgstr "Opcje"
+
+msgid "Actions"
+msgstr "Działania"
+
+msgid "Timeout"
+msgstr "Limit czasu"
+
+msgid "Interval"
+msgstr "Interwał"
+
+msgid "Depth"
+msgstr "Głębokość"
+
+msgid "Close"
+msgstr "Zamknij"
 
 msgid "Child Resource"
 msgstr "Zasób potomny"
 
-msgid "Revert Changes"
-msgstr "Cofnij zmiany"
+msgid "Meta Attributes"
+msgstr "Atrybuty meta"
 
 msgid "Back"
 msgstr "Wstecz"
 
-msgid "Apply Changes"
-msgstr "Zastosuj zmiany"
-
-msgid "Link set"
-msgstr "Ustawione połączenie"
-
-msgid "Break set"
-msgstr "Ustawione rozłączenie"
-
-msgid "Swap resources"
-msgstr "Zasoby wymiany"
-
-msgid "Add resource to constraint"
-msgstr "Dodaj zasób do ograniczenia"
-
-msgid "Constraint ID"
-msgstr "Identyfikator ograniczenia"
-
-msgid "Score"
-msgstr "Punkty"
-
-msgid "Create Constraint"
-msgstr "Utwórz ograniczenie"
-
-msgid "Edit Constraint"
-msgstr "Edycja ograniczenia"
-
-msgid "Delete Constraint"
-msgstr "Usuń ograniczenie"
-
 msgid "Are you sure you wish to delete %s?"
 msgstr "Czy na pewno usunąć %s?"
 
-msgid "New Constraint"
-msgstr "Dowolne proporcje"
+msgid "List"
+msgstr "Lista"
 
-msgid "Location"
-msgstr "Położenie"
+msgid "Constraint:"
+msgstr "Ograniczenie:"
 
-msgid "Colocation"
-msgstr "Kolokacja"
-
-msgid "Order"
-msgstr "Kolejność"
-
-msgid "Ticket"
-msgstr "Żeton"
-
-msgid "(No location constraints defined)"
-msgstr "(Nie zdefiniowano ograniczeń położenia)"
-
-msgid "[Constraint is too complex to display]"
-msgstr "[Ograniczenie jest zbyt złożone, aby je wyświetlić]"
-
-msgid "(No colocation constraints defined)"
-msgstr "(Brak zdefiniowanych ograniczeń kolokacji)"
-
-msgid "(No order constraints defined)"
-msgstr "(Brak zdefiniowanych ograniczeń porządku)"
-
-msgid "(No ticket constraints defined)"
-msgstr "(Nie zdefiniowano ograniczeń żetonu)"
-
-msgid "CRM Configuration"
-msgstr "Konfiguracja CRM"
+msgid "Add a constraint"
+msgstr "Dodaj ograniczenie"
 
 msgid "Resource Defaults"
 msgstr "Wartości domyślne zasobu"
@@ -684,240 +1336,86 @@ msgstr "Wartości domyślne zasobu"
 msgid "Operation Defaults"
 msgstr "Wartości domyślne operacji"
 
-msgid "No cluster properties set in %{group}"
-msgstr "Nie ustawiono właściwości klastra w %{group}"
-
-msgid "Edit"
-msgstr "Edycja"
-
-msgid "Username:"
-msgstr "Nazwa użytkownika:"
-
-msgid "Password:"
-msgstr "Hasło:"
-
-msgid "Cluster has errors - click for details"
-msgstr "Klaster zawiera błędy — kliknij, aby uzyskać więcej szczegółów"
-
-msgid "Timeout: Please try again"
-msgstr "Upłynął limit czasu: Spróbuj ponownie"
-
-msgid "Permission denied. Please log in to %{node}"
-msgstr "Brak autoryzacji. Zaloguj się do węzła %{node}"
-
-#, fuzzy
-msgid "Geo Site %{ip}"
-msgstr "Zestaw kopii: %{id}"
-
-msgid "Site: %{ip}"
-msgstr ""
-
-msgid "Arbitrator: %{ip}"
-msgstr ""
-
-msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
-msgstr ""
-"Nie można nawiązać połączenia z interfejsem Hawk na węźle %{node}. Ponawianie "
-"próby co 5 sekund."
-
-msgid "Cluster Name:"
-msgstr "Nazwa klastra:"
-
-msgid "Host Name:"
-msgstr "Nazwa komputera:"
-
-msgid ""
-"(Specify any host name in the cluster.  Other nodes will be found automaticall"
-"y)"
-msgstr ""
-"(Podaj nazwę dowolnego hosta w klastrze. Pozostałe węzły zostaną znalezione au"
-"tomatycznie)"
+msgid "Default"
+msgstr "Domyślny"
 
 msgid "Add Cluster"
 msgstr "Dodaj klaster"
 
-msgid "OK"
-msgstr "OK"
+msgid "Cluster name"
+msgstr "Nazwa klastra"
 
-msgid "A cluster with that name already exists"
-msgstr "Klaster o takiej nazwie już istnieje"
+msgid "West Coast (example)"
+msgstr "Zachodnie wybrzeże (przykład)"
 
-msgid "The host %{h} is already present in cluster %{c}"
-msgstr "Host %{h} już znajduje się w klastrze %{c}"
+msgid "node1.west.example.com"
+msgstr "wezel1.zachod.przyklad.com"
 
-msgid ""
-"Unable to connect to %{host}. Try opening %{url} in your web browser to ensure"
-" Hawk is accessible."
-msgstr ""
-"Nie można połączyć się z %{host}. Aby sprawdzić, czy Hawk jest dostępny, sprób"
-"uj otworzyć łącze %{url} w przeglądarce internetowej."
+msgid "Hostname of node in cluster"
+msgstr "Nazwa hosta węzła w klastrze"
 
-msgid "Cancel"
-msgstr "Anuluj"
+msgid "Advanced"
+msgstr "Zaawansowane"
 
-#, fuzzy
-msgid "Cluster"
-msgstr "Dodaj klaster"
+msgid "Update interval (seconds)"
+msgstr "Interwał aktualizacji (w sekundach)"
 
-msgid "STONITH Enabled"
-msgstr "Włączone STONITH"
+msgid "Server port to connect to"
+msgstr "Port serwera do połączenia się"
 
-msgid "No Quorum Policy"
-msgstr "Brak założeń kworum"
-
-msgid "Symmetric Cluster"
-msgstr "Klaster symetryczny"
-
-msgid "Resource Stickiness"
-msgstr "Trwałość zasobów"
-
-msgid "Status"
-msgstr "Status"
-
-msgid "No transitions found for the specified time period."
-msgstr "Nie znaleziono przejść dla określonego okresu."
-
-msgid "Time"
-msgstr "Czas"
-
-msgid "PE Input"
-msgstr "Wejście PE"
-
-msgid "Node"
-msgstr "Węzeł"
-
-msgid "(full log)"
-msgstr "(pełny dziennik)"
+msgid "HTTPS"
+msgstr "HTTPS"
 
 msgid "Graph"
 msgstr "Wykresy"
 
-msgid "Diff"
-msgstr "Różnica"
+msgid "Children"
+msgstr "Elementy potomne"
 
-msgid "Delete this history archive?"
-msgstr "Usunąć to archiwum historii?"
+msgid "No children available"
+msgstr "Brak elementu potomnego"
 
-msgid "Start Time:"
-msgstr "Czas rozpoczęcia:"
-
-msgid "End Time:"
-msgstr "Czas zakończenia:"
-
-msgid "Exploring %{path}"
-msgstr "Eksploracja %{path}"
-
-msgid "Display"
-msgstr "Ekran"
-
-msgid "Upload hb_report tarball"
-msgstr "Przekaż archiwum tar hb_report"
-
-msgid "Explore"
-msgstr "Eksploruj"
-
-msgid "Error: Permission denied for user '%s'."
-msgstr "Błąd: brak dostępu dla użytkownika \"%s\"."
-
-msgid "Group ID"
-msgstr "Identyfikator grupy GID"
-
-msgid "Group Children"
-msgstr "Elementy podrzędne grupy"
-
-msgid "Available Primitives"
-msgstr "Dostępne elementy podstawowe"
-
-msgid "Start Time not specified"
-msgstr "Nie podano czasu rozpoczęcia"
-
-msgid "Generate"
-msgstr "Wygeneruj"
-
-msgid "hb_report generation in progress..."
-msgstr "Trwa generowanie hb_report..."
-
-msgid "Download hb_report"
-msgstr "Pobierz hb_report"
-
-#, fuzzy
 msgid "Please ensure Javascript is enabled"
-msgstr "Upewnij się, czy obsługa skryptów JavaScript jest włączona"
+msgstr "Upewnij się, że obsługa skryptów JavaScript jest włączona"
 
 msgid "SUSE, LLC"
-msgstr ""
+msgstr "SUSE, LLC"
 
 msgid "High Availability Web Konsole"
-msgstr ""
+msgstr "Konsola sieci Web wysokiej dostępności"
 
-msgid "Role"
-msgstr "Rola"
+msgid "Edit Location"
+msgstr "Edytuj położenie"
 
-msgid "Boolean Op"
-msgstr "Zmienna logiczna"
+msgid "Locations"
+msgstr "Położenia"
 
-msgid "Expression"
-msgstr "Wyrażenie"
+msgid "Create Location"
+msgstr "Utwórz położenie"
 
-msgid "Add Rule"
-msgstr "Dodaj regułę"
+msgid "History"
+msgstr "Historia"
 
-msgid "Remove Rule"
-msgstr "Usuń regułę"
+msgid "Edit Multi-state"
+msgstr "Edytuj zasób wielostanowy"
 
-msgid "Show Rule Editor"
-msgstr "Wyświetl edytor reguł"
+msgid "Multi-state Resources"
+msgstr "Zasoby wielostanowe"
 
-msgid "Resource"
-msgstr "Zasoby"
+msgid "Create Multi-state"
+msgstr "Utwórz zasób wielostanowy"
 
-msgid "Fence Node"
-msgstr "Węzeł odgradzający"
+msgid "Getting recent events..."
+msgstr "Pobieranie ostatnich zdarzeń..."
 
-msgid "View Details..."
-msgstr "Pokaż szczegóły..."
+msgid "Another operation is in progress..."
+msgstr "Trwa inna operacja..."
 
-msgid "View Recent Events..."
-msgstr "Pokaż ostatnie zdarzenia..."
+msgid "No events found in last hour"
+msgstr "Nie znaleziono zdarzeń w czasie ostatniej godziny"
 
-msgid "Start"
-msgstr "Początek"
-
-msgid "Stop"
-msgstr "Zatrzymaj"
-
-msgid "Move..."
-msgstr "Przenieś..."
-
-msgid "Drop Relocation Rule"
-msgstr "Porzuć regułę relokacji"
-
-msgid "Promote"
-msgstr "Promuj"
-
-msgid "Demote"
-msgstr "Degraduj"
-
-msgid "Clean Up"
-msgstr "Porządkowanie"
-
-msgid "Grant"
-msgstr "Przyznaj"
-
-msgid "Revoke"
-msgstr "Unieważnij"
-
-msgid "Master/Slave ID"
-msgstr "Identyfikator elementu nadrzędnego/podrzędnego"
-
-msgid "Getting recent events (last hour)..."
-msgstr "Pobieranie ostatnich zdarzeń (ostatnia godzina)..."
-
-msgid "Another \"crm history\" operation is in progress..."
-msgstr "Trwa inna operacja \"crm history\"..."
-
-msgid "No events found in last hour."
-msgstr "Nie znaleziono zdarzeń w czasie ostatniej godziny."
+msgid "Remote node."
+msgstr "Węzeł zdalny."
 
 msgid "Utilization"
 msgstr "Użycie"
@@ -934,23 +1432,22 @@ msgstr "Nie zdefiniowano atrybutów"
 msgid "Symmetrical"
 msgstr "Symetrycznie"
 
-msgid "Close"
-msgstr "Zamknij"
+msgid "Command Log"
+msgstr "Dziennik poleceń"
+
+msgid "Lists crm commands recently executed by hawk, most recent first."
+msgstr ""
+"Prezentuje ostatnio wykonywane przez interfejs hawk polecenia crm. Pierwsze na"
+"jnowsze."
 
 msgid "HTML"
-msgstr ""
+msgstr "HTML"
 
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
-msgid "There is already a monitor op with this interval."
-msgstr "Istnieje już operacja monitorowania o tym interwale"
-
-msgid "Resource ID"
-msgstr "Identyfikator zasobu"
-
-msgid "Template ID"
-msgstr "Identyfikator szablonu"
+msgid "Template"
+msgstr "Szablon"
 
 msgid "Class"
 msgstr "Klasa"
@@ -958,86 +1455,104 @@ msgstr "Klasa"
 msgid "Provider"
 msgstr "Dostawca"
 
-msgid "Type"
-msgstr "Typ"
+msgid "Data collection in progress..."
+msgstr "Trwa gromadzenie danych..."
 
-msgid "Use Template"
-msgstr "Użyj szablonu"
+msgid "To"
+msgstr "Do"
 
-msgid "Edit Resource"
-msgstr "Edytuj zasób"
+msgid "Generate"
+msgstr "Wygeneruj"
 
-msgid "Delete Resource"
-msgstr "Usuń zasób"
+msgid "Upload"
+msgstr "Wyślij"
 
-msgid "New Resource"
-msgstr "Nowy zasób"
+msgid "Reports"
+msgstr "Raporty"
 
-msgid "Primitive"
-msgstr "Element podstawowy"
+msgid "Report"
+msgstr "Raport"
 
-msgid "New Template"
-msgstr "Nowy szablon"
+msgid "Created"
+msgstr "Utworzono"
 
-msgid "Template"
-msgstr "Szablon"
+msgid "Transitions"
+msgstr "Przejścia"
 
-msgid "New Group"
-msgstr "Nowa grupa"
+msgid "No transitions in report"
+msgstr "Brak przejść w raporcie"
 
-msgid "Group"
-msgstr "Grupa"
+msgid "Previous"
+msgstr "Wstecz"
 
-msgid "New Clone"
-msgstr "Nowy klon"
+msgid "Next"
+msgstr "Dalej"
 
-msgid "Clone"
-msgstr "Klonuj"
+msgid "PE Name"
+msgstr "Nazwa PE"
 
-msgid "New Master/Slave"
-msgstr "Nowy element nadrzędny/podrzędny"
+msgid "Node"
+msgstr "Węzeł"
 
-msgid "Master/Slave"
-msgstr "Główny/podległy"
+msgid "Time"
+msgstr "Czas"
 
-msgid "(No primitive resources defined)"
-msgstr "(Nie zdefiniowano zasobów podstawowych)"
+msgid "Version"
+msgstr "Wersja"
 
-msgid "(No templates defined)"
-msgstr "(Nie zdefiniowano szablonów)"
+msgid "Configuration"
+msgstr "Konfiguracja"
 
-msgid "(No groups defined)"
-msgstr "(Nie zdefiniowano grup)"
+msgid "Diff"
+msgstr "Różnica"
 
-msgid "(No clones defined)"
-msgstr "(Nie zdefiniowano klonów)"
+msgid "Logs"
+msgstr "Dzienniki"
 
-msgid "(No master/slave resources defined)"
-msgstr "(Nie zdefiniowano zasobów głównych/podległych)"
+msgid "Node Events"
+msgstr "Zdarzenia węzła"
 
-msgid "Fail Count"
-msgstr "Liczba niepowodzeń"
+msgid "Resource Events"
+msgstr "Zdarzenia zasobów"
 
-msgid "Last Failure"
-msgstr "Ostatnie niepowodzenie"
+msgid "Resource:"
+msgstr "Zasób:"
 
-#, fuzzy
-msgid "Rule"
-msgstr "Rola"
+msgid "Value"
+msgstr "Wartość"
+
+msgid "Instances"
+msgstr "Instancje"
+
+msgid "State"
+msgstr "Stan"
+
+msgid "Failed Operations"
+msgstr "Nieudane operacje"
+
+msgid "Call"
+msgstr "Wywołanie"
+
+msgid "Operation"
+msgstr "Operacja"
+
+msgid "Reason"
+msgstr "Przyczyna"
+
+msgid "Add a resource"
+msgstr "Dodaj zasób"
 
 msgid "Add a rule below"
-msgstr ""
+msgstr "Dodaj regułę poniżej"
 
-#, fuzzy
 msgid "Remove this rule"
-msgstr "Usuń regułę"
+msgstr "Usuń tę regułę"
 
-#, fuzzy
 msgid "Move rule up"
-msgstr "Przenieś zasób %s"
+msgstr "Przesuń regułę w górę"
 
 msgid "Move rule down"
-msgstr ""
+msgstr "Przesuń regułę w dół"
 
 msgid "Right"
 msgstr "Prawo"
@@ -1045,90 +1560,184 @@ msgstr "Prawo"
 msgid "XPath"
 msgstr "XPath"
 
-msgid "Tag"
-msgstr "Etykieta"
+msgid "Object Type"
+msgstr "Typ obiektu"
 
-msgid "Ref"
-msgstr "Odwołanie"
+msgid "Reference"
+msgstr "Odniesienie"
 
 msgid "Attribute"
 msgstr "Atrybut"
 
-#, fuzzy
-msgid "Delete role"
-msgstr "Usuń zasób"
+msgid "ACL Roles"
+msgstr "Role ACL"
 
-#, fuzzy
-msgid "Add role"
-msgstr "Dodaj regułę"
-
-msgid ""
-"ACL support requires CIB schema version 2.0, available in Pacemaker 1.1.12 and"
-" up. For older versions of Pacemaker, use Hawk version 0.6."
-msgstr ""
-
-#, fuzzy
-msgid "Username"
-msgstr "Nazwa użytkownika:"
-
-#, fuzzy
-msgid "Password"
-msgstr "Hasło:"
-
-#, fuzzy
 msgid "Login"
-msgstr "Zaloguj"
+msgstr "Login"
+
+msgid "Version:"
+msgstr "Wersja:"
+
+msgid "DC:"
+msgstr "DC:"
+
+msgid "UI:"
+msgstr "UI:"
+
+msgid "Status:"
+msgstr "Status: "
+
+msgid "Add resource"
+msgstr "Dodaj zasób"
+
+msgid "Add constraint"
+msgstr "Dodaj ograniczenie"
+
+msgid "Add template"
+msgstr "Dodaj szablon"
+
+msgid "Choose wizard"
+msgstr "Wybierz kreator"
+
+msgid "Simulator Active"
+msgstr "Symulator jest aktywny"
+
+msgid "Reset"
+msgstr "Przywróć"
+
+msgid "Run"
+msgstr "Uruchom"
+
+msgid "Results"
+msgstr "Wyniki"
+
+msgid "Simulation Results"
+msgstr "Wyniki symulacji"
+
+msgid "Summary"
+msgstr "Podsumowanie"
+
+msgid "CIB (in)"
+msgstr "CIB (we)"
+
+msgid "CIB (out)"
+msgstr "CIB (wy)"
+
+msgid "Transition Graph"
+msgstr "Diagram przejścia"
+
+msgid "Transition (XML)"
+msgstr "Przejście (XML)"
+
+msgid "Inject Node Event"
+msgstr "Zdarzenie wstrzyknięcia węzła"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Inject Operation Event"
+msgstr "Zdarzenie wstrzyknięcia operacji"
+
+msgid "Interval (ms)"
+msgstr "Interwał (ms)"
+
+msgid "Result"
+msgstr "Wynik"
+
+msgid "Inject Ticket Event"
+msgstr "Zdarzenie wstrzyknięcia żetonu"
+
+msgid "Action"
+msgstr "Czynność"
+
+msgid "Enable the simulation mode"
+msgstr "Włącz tryb symulacji"
+
+msgid "Disable Simulator"
+msgstr "Wyłącz symulator"
+
+msgid "Disable the simulation mode"
+msgstr "Wyłącz tryb symulacji"
+
+msgid "Profile"
+msgstr "Profil"
+
+msgid "Logout"
+msgstr "Wyloguj"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "Errors"
+msgstr "Błędy"
+
+msgid "No objects available"
+msgstr "Brak dostępnych obiektów"
+
+msgid "Ticket ID"
+msgstr "Identyfikator żetonu"
 
 msgid "Loss Policy"
 msgstr "Zasady dotyczące utraty"
 
-#, fuzzy
-msgid "Delete user"
-msgstr "Usuń zasób"
+msgid "Ticket:"
+msgstr "Żeton:"
 
-#, fuzzy
-msgid "Add user"
-msgstr "Dodaj klaster"
+msgid "Properties"
+msgstr "Właściwości"
 
-msgid "%{workflow}: %{step}"
-msgstr "%{workflow}: %{step}"
+msgid "Sequential"
+msgstr "Sekwencyjny"
 
-msgid "The configuration has been applied."
-msgstr "Konfiguracja została zastosowana."
+msgid "No resources defined for ticket"
+msgstr "Brak zdefiniowanych zasobów dla żetonu"
 
-msgid "The following configuration will be applied to the cluster:"
-msgstr "Następująca konfiguracja zostanie zastosowana dla tego klastra:"
+msgid "Target ID"
+msgstr "Identyfikator celu"
 
-msgid "Error applying configuration:"
-msgstr "Błąd przy zastosowaniu konfiguracji:"
+msgid "Verifying parameters..."
+msgstr "Weryfikowanie parametrów..."
 
-msgid "< Back"
-msgstr "< Wstecz"
+msgid "Do you really want to cancel the wizard setup?"
+msgstr "Czy na pewno anulować konfigurowanie kreatora?"
 
-msgid "Next >"
-msgstr "Dalej >"
+msgid "Do you really want to apply the current wizard?"
+msgstr "Czy na pewno zastosować bieżący kreator?"
 
-msgid "No workflow descriptions found"
-msgstr "Nie znaleziono opisów przepływu"
+msgid "Choose a wizard"
+msgstr "Wybierz kreator"
 
-msgid "Choose Configuration"
-msgstr "Wybór konfiguracji"
+msgid "Legacy Wizards"
+msgstr "Starsze kreatory"
+
+msgid "Verify and apply"
+msgstr "Sprawdź i zastosuj"
+
+msgid "Review the wizard actions and apply the changes"
+msgstr "Sprawdź działania kreatora i zastosuj zmiany"
+
+msgid "Enable this step"
+msgstr "Włącz ten krok"
+
+msgid "This wizard takes no parameters."
+msgstr "Ten kreator nie przyjmuje parametrów."
+
+msgid "Verify"
+msgstr "Sprawdź"
 
 msgid ""
-"This wizard will guide you through the steps necessary to add one of the follo"
-"wing configurations to the cluster."
+"To apply the changes, Hawk requires root access, and password-less SSH access "
+"must be configured. See the Hawk documentation for more information."
 msgstr ""
-"Ten kreator poprowadzi przez etapy niezbędne do dodania do klastra jednej z na"
-"stępujących konfiguracji."
+"Aby zastosować zmiany, interfejs Hawk wymaga dostępu użytkownika root oraz sko"
+"nfigurowania dostępu SSH bez hasła. Więcej informacji na ten temat można znale"
+"źć w dokumentacji interfejsu Hawk."
+
+msgid "Root password"
+msgstr "Hasło użytkownika root"
 
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "Obiekt/atrybut nie istnieje (cibadmin %{cmd})"
 
 msgid "Error invoking cibadmin %{cmd}: %{msg}"
 msgstr "Błąd wywołania cibadmin %{cmd}: %{msg}"
-
-msgid "The object/attribute does not exist: %{msg}"
-msgstr "Obiekt/atrybut nie istnieje: %{msg}"
-
-msgid "Error invoking cibadmin --replace: %{msg}"
-msgstr "Błąd wywołania cibadmin --replace: %{msg}"

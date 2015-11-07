@@ -1,11 +1,11 @@
-# Copyright (C) 2006-2015 SUSE Linux GmbH, Nuernberg
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
 # This file is distributed under the same license as the package.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2014-07-15 11:32\n"
+"PO-Revision-Date: 2015-11-05 17:02\n"
 "Last-Translator: Novell language <language@novell.com>\n"
 "Language-Team: Novell language <language@novell.com>\n"
 "Language: \n"
@@ -14,28 +14,90 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 
-msgid "Any changes will be lost - do you wish to proceed?"
-msgstr "Všechny změny budou ztraceny – chcete pokračovat?"
+msgid "Error"
+msgstr "Chyba"
 
-msgid "Connection to server aborted - will retry every 15 seconds."
-msgstr "Připojení k serveru bylo zrušeno. Pokus bude opakován každých 15 sekund."
+msgid "Unexpected server error: _MSG_"
+msgstr "Neočekávaná chyba serveru: _MSG_"
 
-#, fuzzy
-msgid "Connection to server failed - will retry every 15 seconds."
-msgstr "Připojení k serveru bylo zrušeno. Pokus bude opakován každých 15 sekund."
+msgid ""
+"Connection to server failed (server down or network error - will retry every 1"
+"5 seconds)."
+msgstr ""
+"Připojení k serveru se nezdařilo (server je vypnutý nebo se vyskytla chyba v s"
+"íti, pokus bude opakován každých 15 sekund)."
 
 msgid "Connection to server timed out - will retry every 15 seconds."
 msgstr "Připojení k serveru vypršelo – pokus bude každých 15 sekund opakován."
 
-#, fuzzy
-msgid "State"
-msgstr "Kraj:                     "
+msgid "Connection to server aborted - will retry every 15 seconds."
+msgstr "Připojení k serveru bylo zrušeno. Pokus bude opakován každých 15 sekund."
 
-msgid "Name"
-msgstr ""
+msgid "Permission denied"
+msgstr "Povolení odepřeno"
 
-msgid "Maintenance"
-msgstr "Údržba"
+msgid "_OP_ failed on _NODE_} (rc=_RC_, reason=_REASON_)"
+msgstr "_OP_ chyba u _NODE_} (rc=_RC_, reason=_REASON_)"
+
+msgid "Permission denied. "
+msgstr "Přístup byl odepřen. "
+
+msgid "Error connecting to server."
+msgstr "Při připojování k serveru došlo k chybě."
+
+msgid "Connection to server timed out."
+msgstr "Časový limit připojení k serveru vypršel."
+
+msgid "Connection to server was aborted."
+msgstr "Připojení k serveru bylo přerušeno."
+
+msgid "Server returned invalid data."
+msgstr "Server vrátil neplatná data."
+
+msgid "Unknown error connecting to server."
+msgstr "Při připojování k serveru došlo k neznámé chybě."
+
+msgid "Retrying every 15 seconds..."
+msgstr "Opakování pokusu každých 15 sekund..."
+
+msgid "Cancel"
+msgstr "Zrušit"
+
+msgid "Hostname"
+msgstr "Název hostitele"
+
+msgid "Username"
+msgstr "Uživ. jméno"
+
+msgid "Password"
+msgstr "Heslo"
+
+msgid "Connect"
+msgstr "Připojit"
+
+msgid "Local Status"
+msgstr "Místní stav"
+
+msgid "Remove cluster _NAME_ from dashboard?"
+msgstr "Chcete cluster _NAME_ odebrat z řídicího panelu?"
+
+msgid "Cluster removed successfully."
+msgstr "Cluster byl úspěšně odebrán."
+
+msgid "Error removing cluster."
+msgstr "Při odebírání clusteru došlo k chybě."
+
+msgid "Please wait..."
+msgstr "Čekejte prosím..."
+
+msgid "Cluster added successfully."
+msgstr "Cluster byl úspěšně přidán."
+
+msgid "Create"
+msgstr "Vytvořit"
+
+msgid "Remove"
+msgstr "Odebrat"
 
 msgid "Yes"
 msgstr "Ano"
@@ -43,50 +105,305 @@ msgstr "Ano"
 msgid "No"
 msgstr "Ne"
 
-msgid "Standby"
-msgstr "Pohotovost"
+msgid "Any changes will be lost - do you wish to proceed?"
+msgstr "Všechny změny budou ztraceny – chcete pokračovat?"
+
+msgid "Clone ID"
+msgstr "ID klonu"
 
 msgid "Operations"
 msgstr "Operace"
 
-msgid "Online"
-msgstr "Online"
+msgid "Edit"
+msgstr "Upravit"
 
-msgid "Ready"
-msgstr "Připraven"
+msgid "Delete"
+msgstr "Smazat"
+
+msgid "Constraint ID"
+msgstr "ID omezení"
+
+msgid "Swap with entry above"
+msgstr "Zaměnit s položkou výše"
+
+msgid "Link with entry above"
+msgstr "Připojit k položce výše."
+
+msgid "Unlink from entry above"
+msgstr "Zrušit připojení k položce výše."
+
+msgid "Type"
+msgstr "Typ"
+
+msgid "Location"
+msgstr "Umístění"
+
+msgid "Colocation"
+msgstr "Kolokace"
+
+msgid "Order"
+msgstr "Pořadí"
+
+msgid "Ticket"
+msgstr "Lístek"
+
+msgid "Constraint"
+msgstr "Omezení"
+
+msgid "Group ID"
+msgstr "ID skupiny"
+
+msgid "Rule"
+msgstr "Pravidlo"
+
+msgid "Score"
+msgstr "Skóre"
+
+msgid "Role"
+msgstr "Role"
+
+msgid "Boolean Operator"
+msgstr "Logický operátor"
+
+msgid "Multi-state ID"
+msgstr "ID vícenásobného stavu"
+
+msgid "Connection to server failed - will retry every 15 seconds."
+msgstr "Připojení k serveru se nezdařilo – pokus bude každých 15 sekund opakován."
+
+msgid "Status"
+msgstr "Stav"
+
+msgid "Remote"
+msgstr "Vzdálený"
+
+msgid "Name"
+msgstr "Jméno"
+
+msgid "Maintenance"
+msgstr "Údržba"
+
+msgid "Switch to ready"
+msgstr "Přepnout do připraveného stavu"
+
+msgid "Switch to maintenance"
+msgstr "Přepnout do stavu údržby"
+
+msgid "Standby"
+msgstr "Pohotovost"
+
+msgid "Switch to online"
+msgstr "Přepnout do stavu online"
+
+msgid "Switch to standby"
+msgstr "Přepnout do pohotovostního stavu"
 
 msgid "Fence"
-msgstr ""
+msgstr "Izolovat"
 
 msgid "Details"
 msgstr "Podrobnosti"
 
-msgid "Events"
-msgstr ""
+msgid "Add"
+msgstr "Přidat"
+
+msgid "Apply"
+msgstr "Použít"
+
+msgid "No interval set for monitor operation"
+msgstr "Pro operaci monitorování není nastaven žádný interval."
+
+msgid "Replacing previously defined monitor operation with same interval"
+msgstr "Probíhá nahrazení dříve definované operace monitorování se stejným intervalem."
+
+msgid "Resource ID"
+msgstr "ID prostředku"
+
+msgid "Failed to fetch meta attributes"
+msgstr "Načtení metaatributů se nezdařilo."
+
+msgid "Report generation is complete."
+msgstr "Vytváření zprávy je dokončeno."
+
+msgid "From"
+msgstr "Od"
+
+msgid "Until"
+msgstr "Do"
+
+msgid "Custom"
+msgstr "Vlastní"
+
+msgid "Su"
+msgstr "Ne"
+
+msgid "Mo"
+msgstr "Po"
+
+msgid "Tu"
+msgstr "Út"
+
+msgid "We"
+msgstr "St"
+
+msgid "Th"
+msgstr "Čt"
+
+msgid "Fr"
+msgstr "Pá"
+
+msgid "Sa"
+msgstr "So"
+
+msgid "January"
+msgstr "Leden"
+
+msgid "February"
+msgstr "Únor"
+
+msgid "March"
+msgstr "Březen"
+
+msgid "April"
+msgstr "Duben"
+
+msgid "May"
+msgstr "Květen"
+
+msgid "June"
+msgstr "Červen"
+
+msgid "July"
+msgstr "Červenec"
+
+msgid "August"
+msgstr "Srpen"
+
+msgid "September"
+msgstr "Září"
+
+msgid "October"
+msgstr "Říjen"
+
+msgid "November"
+msgstr "Listopad"
+
+msgid "December"
+msgstr "Prosinec"
+
+msgid "Show"
+msgstr "Zobrazit"
+
+msgid "Download"
+msgstr "Stáhnout"
+
+msgid "Unmanaged"
+msgstr "Nespravované"
+
+msgid "Started"
+msgstr "Spuštěno"
+
+msgid "Primary"
+msgstr "Primární"
+
+msgid "Secondary"
+msgstr "Sekundární"
+
+msgid "Stopped"
+msgstr "Zastaveno"
+
+msgid "Group"
+msgstr "Skupina"
+
+msgid "Multi-state"
+msgstr "Vícenásobný stav"
+
+msgid "Clone"
+msgstr "Klon"
+
+msgid "Tag"
+msgstr "Značka"
+
+msgid "Stop"
+msgstr "Zastavit"
+
+msgid "Start"
+msgstr "Spustit"
+
+msgid "Demote"
+msgstr "Snížit úroveň"
+
+msgid "Promote"
+msgstr "Zvýšit úroveň"
+
+msgid "Unmanage"
+msgstr "Zrušit správu"
+
+msgid "Manage"
+msgstr "Spravovat"
+
+msgid "Migrate"
+msgstr "Migrovat"
+
+msgid "Unmigrate"
+msgstr "Zrušit migraci"
+
+msgid "Cleanup"
+msgstr "Vyčištění"
+
+msgid "Primitive"
+msgstr "Základní prvek"
+
+msgid "Resource"
+msgstr "Zdroj"
 
 msgid "Role ID"
 msgstr "ID role"
 
+msgid "Stopped Resources"
+msgstr "Zastavené prostředky"
+
+msgid "Tag ID"
+msgstr "ID značky"
+
+msgid "Objects"
+msgstr "Objekty"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Granted"
+msgstr "Uděleno"
+
+msgid "Revoked"
+msgstr "Odvolaný"
+
+msgid "Grant"
+msgstr "Udělit"
+
+msgid "Revoke"
+msgstr "Odvolat"
+
 msgid "User ID"
 msgstr "Uživatelské ID"
 
+msgid "Must be a valid resource ID"
+msgstr "Musí se jednat o platné ID prostředku."
+
+msgid "Applying configuration changes..."
+msgstr "Používají se změny konfigurace..."
+
+msgid "Changes applied successfully."
+msgstr "Změny konfigurace byly úspěšně použity."
+
+msgid "Agent"
+msgstr "Agent"
+
+msgid "Created a new shadow CIB for %USER%."
+msgstr "Byla vytvořena nová stínová kopie souboru CIB pro uživatele %USER%."
+
 msgid "Unable to create shadow CIB"
 msgstr "Nepodařilo se vytvořit stínové CIB"
-
-msgid "1 node configured"
-msgid_plural "%{num} nodes configured"
-msgstr[0] "Nakonfigurované uzly: 1"
-msgstr[1] "Nakonfigurované uzly: %{num}"
-msgstr[2] "Nakonfigurované uzly: %{num}"
-
-msgid "1 resource configured"
-msgid_plural "%{num} resources configured"
-msgstr[0] "Nakonfigurované zdroje: 1"
-msgstr[1] "Nakonfigurované zdroje: %{num}"
-msgstr[2] "Nakonfigurované zdroje: %{num}"
-
-msgid "Edit Clone"
-msgstr "Upravit klon"
 
 msgid "Create Clone"
 msgstr "Vytvořit klon"
@@ -94,69 +411,62 @@ msgstr "Vytvořit klon"
 msgid "Clone created successfully"
 msgstr "Klon byl úspěšně vytvořen"
 
+msgid "Edit Clone"
+msgstr "Upravit klon"
+
 msgid "Clone updated successfully"
 msgstr "Klon byl úspěšně aktualizován"
 
-msgid "Edit Colocation Constraint"
-msgstr "Upravit omezení kolokace"
+msgid "Clone deleted successfully"
+msgstr "Klon byl úspěšně odstraněn."
 
-msgid "Create Colocation Constraint"
-msgstr "Vytvořit omezení kolokace"
+msgid "Error deleting %s: %s"
+msgstr "Při odstraňování položky %s došlo k chybě: %s"
+
+msgid "Clones"
+msgstr "Klony"
+
+msgid "The clone does not exist"
+msgstr "Klon neexistuje."
+
+msgid "Create Colocation"
+msgstr "Vytvořit kolokaci"
 
 msgid "Constraint created successfully"
 msgstr "Omezení bylo úspěšně vytvořeno"
 
+msgid "Edit Colocation"
+msgstr "Upravit kolokaci"
+
 msgid "Constraint updated successfully"
 msgstr "Omezení bylo úspěšně aktualizováno"
+
+msgid "Colocation deleted successfully"
+msgstr "Kolokace byla úspěšně odstraněna."
+
+msgid "Colocations"
+msgstr "Kolokace"
+
+msgid "The colocation constraint does not exist"
+msgstr "Omezení kolokace neexistuje."
 
 msgid "Constraints"
 msgstr "Omezení"
 
+msgid "Configuration updated successfully"
+msgstr "Konfigurace byla úspěšně aktualizována."
+
 msgid "Cluster Configuration"
 msgstr "Konfigurace clusteru"
 
-msgid "Your changes have been saved"
-msgstr "Vaše změny byly uloženy"
-
-msgid "Unable to apply changes: %{msg}"
-msgstr "Nepodařilo se použít změny: %{msg}"
-
-msgid ""
-"Can't set property %{p}, because the value contains both single and double quo"
-"tes"
-msgstr ""
-"Nelze nastavit vlastnost %{p}, protože hodnota obsahuje jednoduché i dvojité u"
-"vozovky"
-
-msgid "Cluster Dashboard"
-msgstr "Řídicí panel clusteru"
+msgid "Error removing %s: %s"
+msgstr "Při odebírání položky %s došlo k chybě: %s"
 
 msgid "Dashboard"
 msgstr "Řídicí panel"
 
-msgid "History Explorer"
-msgstr "Prohlížeč historie"
-
-msgid "PE Input created by different Pacemaker version (%{version})"
-msgstr "Soubor vstupů PE byl vytvořen jinou verzí programu Pacemaker (%{version})"
-
-msgid "Pacemaker version not present in PE Input"
-msgstr "Verze programu Pacemaker není v souboru vstupů PE k dispozici"
-
-msgid "Required parameters \"basename\" and \"node\" not specified"
-msgstr "Nebyly zadány požadované parametry „basename“ a „node“ ."
-
-msgid "No details available"
-msgstr "Podrobnosti nejsou k dispozici."
-
-msgid "Error:"
-msgstr "Chyba:"
-
-msgid "Required parameters \"left\" and \"right\" not specified"
-msgstr "Nebyly zadány požadované parametry „left“ a „right“"
-
-msgid "Edit Group"
-msgstr "Upravit skupinu"
+msgid "Cluster Graph"
+msgstr "Diagram clusteru"
 
 msgid "Create Group"
 msgstr "Vytvořit skupinu"
@@ -164,82 +474,209 @@ msgstr "Vytvořit skupinu"
 msgid "Group created successfully"
 msgstr "Skupina byla úspěšně vytvořena"
 
+msgid "Edit Group"
+msgstr "Upravit skupinu"
+
 msgid "Group updated successfully"
 msgstr "Skupina byla úspěšně aktualizována"
 
-msgid "Edit Location Constraint"
-msgstr "Upravit omezení umístění"
+msgid "Group deleted successfully"
+msgstr "Skupina byla úspěšně odstraněna."
+
+msgid "Groups"
+msgstr "Skupiny"
+
+msgid "The group does not exist"
+msgstr "Skupina neexistuje."
 
 msgid "Create Location Constraint"
 msgstr "Vytvořit omezení umístění"
 
-msgid "%{cmd} failed (status: %{status})"
-msgstr "Příkaz %{cmd} se nezdařil (stav: %{status})."
+msgid "Edit Location Constraint"
+msgstr "Upravit omezení umístění"
 
-msgid "Cluster Status"
-msgstr "Stav clusteru"
+msgid "Location deleted successfully"
+msgstr "Umístění bylo úspěšně odstraněno."
 
-msgid "Required parameter \"node\" not specified"
-msgstr "Požadovaný parametr node nebyl zadán."
+msgid "Location Constraints"
+msgstr "Omezení umístění"
 
-msgid "Required parameter \"resource\" not specified"
-msgstr "Požadovaný parametr resource nebyl zadán."
+msgid "The location constraint does not exist"
+msgstr "Omezení umístění neexistuje."
 
-msgid "Required parameters \"resource\" and \"node\" not specified"
-msgstr "Požadované parametry resource a node nebyly zadány."
+msgid "Create Multi-state resource"
+msgstr "Vytvořit prostředek s vícenásobným stavem"
 
-msgid "Error deleting resource"
-msgstr "Při odstraňování prostředku došlo k chybě"
+msgid "Multi-state resource created successfully"
+msgstr "Prostředek s vícenásobným stavem byl úspěšně vytvořen."
 
-msgid "Required parameters \"ticket\" and \"site\" not specified"
-msgstr "Nebyly zadány požadované parametry ticket a site"
+msgid "Edit Multi-state resource"
+msgstr "Upravit prostředek s vícenásobným stavem"
 
-msgid "Required parameter \"ticket\" not specified"
-msgstr "Požadovaný parametr ticket nebyl zadán"
+msgid "Multi-state resource updated successfully"
+msgstr "Prostředek s vícenásobným stavem byl úspěšně aktualizován."
 
-msgid "Error invoking %{cmd}: %{msg}"
-msgstr "Chyba vyvolávání %{cmd}: %{msg}"
+msgid "Multi-state resource deleted successfully"
+msgstr "Prostředek s vícenásobným stavem byl úspěšně odstraněn."
 
-msgid "Edit Master/Slave"
-msgstr "Upravit hlavní/podřízený prvek"
+msgid "Multi-state resource"
+msgstr "Prostředek s vícenásobným stavem"
 
-msgid "Create Master/Slave"
-msgstr "Vytvořit hlavní/podřízený prvek"
+msgid "The multi-state resource does not exist"
+msgstr "Prostředek s vícenásobným stavem neexistuje."
 
-msgid "Master/Slave created successfully"
-msgstr "Hlavní/podřízený prvek byl úspěšně vytvořen"
+msgid "Set the node state to online"
+msgstr "Nastavit stav uzlu na online"
 
-msgid "Master/Slave updated successfully"
-msgstr "Hlavní/podřízený prvek byl úspěšně aktualizován"
+msgid "Set the node state to standby"
+msgstr "Nastavit stav uzlu na pohotovostní"
 
-#, fuzzy
+msgid "Set the node state to maintenance"
+msgstr "Nastavit stav uzlu na údržbu"
+
+msgid "Set the node state to ready"
+msgstr "Nastavit stav uzlu na připravený"
+
+msgid "Set the node state to fence"
+msgstr "Nastavit stav uzlu na izolovaný"
+
 msgid "Nodes"
-msgstr "Uzel"
+msgstr "Uzly"
 
-msgid "Edit Order Constraint"
-msgstr "Upravit omezení pořadí"
+msgid "The node does not exist"
+msgstr "Uzel neexistuje."
 
-msgid "Create Order Constraint"
-msgstr "Vytvořit omezení pořadí"
+msgid "Create Order"
+msgstr "Vytvořit pořadí"
+
+msgid "Edit Order"
+msgstr "Upravit pořadí"
+
+msgid "Order deleted successfully"
+msgstr "Pořadí bylo úspěšně vytvořeno."
+
+msgid "Orders"
+msgstr "Pořadí"
+
+msgid "The order constraint does not exist"
+msgstr "Omezení pořadí neexistuje."
 
 msgid "Welcome"
-msgstr ""
+msgstr "Vítejte"
 
 msgid "Help"
-msgstr ""
+msgstr "Nápověda"
 
-msgid "Create Resource"
-msgstr "Vytvořit prostředek"
+msgid "Commands"
+msgstr "Příkazy"
 
-msgid "Resource created successfully"
-msgstr "Prostředek byl úspěšně vytvořen"
+msgid "Create Primitive"
+msgstr "Vytvořit základní prvek"
 
-msgid "Resource updated successfully"
-msgstr "Prostředek byl úspěšně aktualizován"
+msgid "Primitive created successfully"
+msgstr "Základní prvek byl úspěšně vytvořen."
 
-#, fuzzy
+msgid "Edit Primitive"
+msgstr "Upravit základní prvek"
+
+msgid "Primitive updated successfully"
+msgstr "Základní prvek byl úspěšně aktualizován."
+
+msgid "Primitive deleted successfully"
+msgstr "Základní prvek byl úspěšně odstraněn."
+
 msgid "Primitives"
-msgstr "Základní prvek"
+msgstr "Základní prvky"
+
+msgid "The primitive does not exist"
+msgstr "Základní prvek neexistuje."
+
+msgid "Preferences updated successfully"
+msgstr "Předvolby byly úspěšně aktualizovány."
+
+msgid "Preferences"
+msgstr "Předvolby"
+
+msgid "Please wait while report is generated..."
+msgstr "Zpráva se vytváří, čekejte prosím..."
+
+msgid "Failed to generate"
+msgstr "Vytvoření se nezdařilo."
+
+msgid "Upload completed."
+msgstr "Nahrání se nezdařilo."
+
+msgid "Cannot display diff, too few transitions"
+msgstr "Nelze zobrazit rozdíl, k dispozici je příliš málo přechodů."
+
+msgid "Report deleted successfully"
+msgstr "Zpráva byla úspěšně odstraněna."
+
+msgid "Error deleting %s"
+msgstr "Při odstraňování položky %s došlo k chybě."
+
+msgid "History Explorer"
+msgstr "Prohlížeč historie"
+
+msgid "The report does not exist"
+msgstr "Zpráva neexistuje."
+
+msgid "must be a valid datetime"
+msgstr "musí být platná hodnota data a času."
+
+msgid "Successfully started the resource"
+msgstr "Prostředek byl úspěšně spuštěn."
+
+msgid "Failed to start the resource: %{err}"
+msgstr "Spuštění prostředku se nezdařilo: %{err}"
+
+msgid "Successfully stopped the resource"
+msgstr "Prostředek byl úspěšně zastaven."
+
+msgid "Failed to stop the resource: %{err}"
+msgstr "Zastavení prostředku se nezdařilo: %{err}"
+
+msgid "Successfully promoted the resource"
+msgstr "Úroveň prostředku byla úspěšně zvýšena."
+
+msgid "Failed to promote the resource: %{err}"
+msgstr "Zvýšení úrovně prostředku se nezdařilo: %{err}"
+
+msgid "Successfully demoted the resource"
+msgstr "Úroveň prostředku byla úspěšně snížena."
+
+msgid "Failed to demote the resource: %{err}"
+msgstr "Snížení úrovně prostředku se nezdařilo: %{err}"
+
+msgid "Successfully set the resource in managed mode"
+msgstr "Prostředek ve spravovaném režimu byl úspěšně nastaven."
+
+msgid "Failed to set the resource in managed mode: %{err}"
+msgstr "Nastavení prostředku ve spravovaném režimu se nezdařilo: %{err}"
+
+msgid "Successfully set the resource in unmanaged mode"
+msgstr "Prostředek v nespravovaném režimu byl úspěšně nastaven."
+
+msgid "Failed to set the resource in unmanaged mode: %{err}"
+msgstr "Nastavení prostředku ve spravovaném režimu se nezdařilo: %{err}"
+
+msgid "Successfully unmigrated the resource"
+msgstr "Migrace prostředku byla úspěšně zrušena."
+
+msgid "Failed to unmigrate the resource: %{err}"
+msgstr "Zrušení migrace prostředku se nezdařilo: %{err}"
+
+msgid "Successfully migrated the resource"
+msgstr "Prostředek byl úspěšně migrován."
+
+msgid "Failed to migrate the resource: %{err}"
+msgstr "Migrace prostředku se nezdařila: %{err}"
+
+msgid "Successfully cleaned the resource"
+msgstr "Prostředek byl úspěšně vyčištěn."
+
+msgid "Failed to clean up the resource: %{err}"
+msgstr "Vyčištění prostředku se nezdařilo: %{err}"
 
 msgid "Resources"
 msgstr "Zdroje"
@@ -256,24 +693,24 @@ msgstr "Upravit roli"
 msgid "Role updated successfully"
 msgstr "Role byla úspěšně aktualizována"
 
-#, fuzzy
 msgid "Role deleted successfully"
-msgstr "Role byla úspěšně vytvořena"
+msgstr "Role byla úspěšně odstraněna."
 
-#, fuzzy
-msgid "Error deleting %s"
-msgstr "Při odstraňování prostředku došlo k chybě"
+msgid "ACL is not supported by the cluster"
+msgstr "Cluster nepodporuje seznamy řízení přístupu."
 
 msgid "Roles"
 msgstr "Role"
 
 msgid "The role does not exist"
-msgstr ""
+msgstr "Role neexistuje."
 
-msgid "To enable ACLs, set 'enable-acl' in the CRM Configuration"
+msgid ""
+"To enable ACLs, set \"enable-acl\" in the Cluster Configuration ('Manage > Confi"
+"guration')"
 msgstr ""
-"Chcete-li povolit seznamy řízení přístupu, nastavte v konfiguraci systému CRM "
-"možnost enable-acl"
+"Chcete-li povolit seznamy řízení přístupu, nastavte parametr enable-acl v konf"
+"iguraci clusteru (Spravovat > Konfigurace)"
 
 msgid "Permission denied for user %{user}"
 msgstr "Uživateli %{user} nebylo uděleno povolení"
@@ -284,15 +721,29 @@ msgstr "Byli jste odhlášeni."
 msgid "Log In"
 msgstr "Přihlásit"
 
-#, fuzzy
-msgid "Preferences updated successfully"
-msgstr "Prostředek byl úspěšně aktualizován"
+msgid "Simulator"
+msgstr "Simulátor"
 
-msgid "Preferences"
-msgstr "Předvolby"
+msgid "Create Tag"
+msgstr "Vytvořit značku"
 
-msgid "Edit Template"
-msgstr "Upravit šablonu"
+msgid "Tag created successfully"
+msgstr "Značka byla úspěšně vytvořena."
+
+msgid "Edit Tag"
+msgstr "Upravit značku"
+
+msgid "Tag updated successfully"
+msgstr "Značka byla úspěšně upravena."
+
+msgid "Tag deleted successfully"
+msgstr "Značka byla úspěšně odstraněna."
+
+msgid "Tags"
+msgstr "Značky"
+
+msgid "The tag does not exist"
+msgstr "Značka neexistuje."
 
 msgid "Create Template"
 msgstr "Vytvořit šablonu"
@@ -300,110 +751,140 @@ msgstr "Vytvořit šablonu"
 msgid "Template created successfully"
 msgstr "Šablona byla úspěšně vytvořena."
 
+msgid "Edit Template"
+msgstr "Upravit šablonu"
+
 msgid "Template updated successfully"
 msgstr "Šablona byla úspěšně aktualizována."
 
-msgid "Edit Ticket Constraint"
-msgstr "Upravit omezení lístku"
+msgid "Template deleted successfully"
+msgstr "Šablona byla úspěšně odstraněna."
 
-msgid "Create Ticket Constraint"
-msgstr "Vytvořit omezení lístku"
+msgid "You have no template feature support"
+msgstr "Není k dispozici žádná podpora funkcí šablon."
 
-msgid "Create User"
-msgstr "Vytvořit uživatele"
+msgid "Templates"
+msgstr "Šablony"
 
-msgid "User created successfully"
-msgstr "Uživatel byl úspěšně vytvořen"
+msgid "The template does not exist"
+msgstr "Šablona neexistuje."
 
-msgid "Edit User"
-msgstr "Upravit uživatele"
+msgid "Create Ticket"
+msgstr "Vytvořit lístek"
 
-msgid "User updated successfully"
-msgstr "Uživatel byl úspěšně aktualizován"
+msgid "Edit Ticket"
+msgstr "Upravit lístek"
 
-#, fuzzy
-msgid "User deleted successfully"
-msgstr "Uživatel byl úspěšně vytvořen"
+msgid "Ticket deleted successfully"
+msgstr "Lístek byl úspěšně odstraněn."
 
-#, fuzzy
-msgid "Users"
-msgstr "Uživatel"
+msgid "Successfully granted the ticket"
+msgstr "Lístek byl úspěšně udělen."
 
-msgid "The user does not exist"
-msgstr ""
+msgid "Successfully revoked the ticket"
+msgstr "Lístek byl úspěšně udělen."
 
-msgid "Cluster Setup Wizard"
-msgstr "Průvodce nastavením clusteru"
+msgid "Tickets"
+msgstr "Lístky"
 
-msgid "Invalid password"
-msgstr "Neplatné heslo"
+msgid "The ticket constraint does not exist"
+msgstr "Omezení lístku neexistuje."
 
-msgid "Root Password"
-msgstr "Heslo superuživatele"
+msgid "Create ACL Target"
+msgstr "Vytvořit cíl seznamu řízení přístupu"
 
-msgid ""
-"The root password is required in order for this wizard template to make config"
-"uration changes."
-msgstr ""
-"Aby mohla tato šablona průvodce provést změny konfigurace, je požadováno heslo"
-" uživatele root."
+msgid "ACL target created successfully"
+msgstr "Cíl seznamu řízení přístupu byl úspěšně vytvořen."
 
-msgid "The root password for this system"
-msgstr "Heslo uživatele root tohoto systému"
+msgid "Edit ACL Target"
+msgstr "Upravit cíl seznamu řízení přístupu"
 
-msgid "\"Error: #{result}\""
-msgstr "Chyba: #{result}"
+msgid "ACL target updated successfully"
+msgstr "Cíl seznamu řízení přístupu byl úspěšně aktualizován."
 
-msgid "Parameters"
-msgstr "Parametry"
+msgid "ACL target deleted successfully"
+msgstr "Cíl seznamu řízení přístupu byl úspěšně odstraněn."
 
-msgid "Confirm"
-msgstr "Potvrdit"
+msgid "ACL is not supported by this cluster."
+msgstr "Tento cluster nepodporuje seznam řízení přístupu."
 
-msgid "Done"
-msgstr "Hotovo"
+msgid "ACL Targets"
+msgstr "Cíle seznamu řízení přístupu"
 
-msgid "Required parameter \"%{param}\" not specified"
-msgstr "Požadovaný parametr „%{param}“ nebyl zadán."
+msgid "The ACL target does not exist"
+msgstr "Cíl seznamu řízení přístupu neexistuje."
+
+msgid "Session has expired"
+msgstr "Platnost relace vypršela."
+
+msgid "Wizard cannot be applied when the simulator is active"
+msgstr "Průvodce nelze použít, když je simulátor aktivní."
+
+msgid "Use a wizard"
+msgstr "Použít průvodce"
 
 msgid "Permission denied - you do not have write access to the CIB."
 msgstr "Přístup byl odepřen, protože nemáte přístup k zápisu do souboru CIB."
 
-msgid "Wizard templates and/or workflows are missing"
-msgstr "Chybí šablony anebo pracovní postupy prohlížeče."
+msgid "Cluster seems to be offline"
+msgstr "Cluster je pravděpodobně v režimu offline."
 
-msgid "Workflow \"%s\" not found"
-msgstr "Pracovní postup „%s“ nebyl nalezen"
+msgid "Required"
+msgstr "Požadováno"
 
-msgid "Error parsing template \"%s\""
-msgstr "Chyba analýzy šablony „%s“"
+msgid "Unique"
+msgstr "Jedinečné"
 
-msgid "Error parsing workflow \"%s\""
-msgstr "Chyba analýzy pracovního postupu „%s“"
+msgid "Master"
+msgstr "Hlavní"
 
-msgid "Data collection in progress (%{from_time} to %{to_time})..."
-msgstr "Probíhá shromažďování dat (%{from_time} do %{to_time})..."
+msgid "Slave"
+msgstr "Podřízená"
 
-#, fuzzy
 msgid "Revert"
-msgstr "Obnovit výchozí"
+msgstr "Vrátit"
 
-msgid "Apply"
-msgstr ""
-
-#, fuzzy
-msgid "Create"
-msgstr "Vytvořit roli"
-
-#, fuzzy
 msgid "Read"
-msgstr "Připraven"
+msgstr "Čtení"
 
 msgid "Write"
-msgstr ""
+msgstr "Zápis"
 
 msgid "Deny"
-msgstr ""
+msgstr "Odepřít"
+
+msgid "success"
+msgstr "úspěch"
+
+msgid "generic error"
+msgstr "obecná chyba"
+
+msgid "incorrect arguments"
+msgstr "nesprávné argumenty"
+
+msgid "unimplemented action"
+msgstr "neimplementovaná akce"
+
+msgid "insufficient permissions"
+msgstr "nedostatečná oprávnění"
+
+msgid "installation error"
+msgstr "chyba instalace"
+
+msgid "configuration error"
+msgstr "konfigurační soubor"
+
+msgid "not running"
+msgstr "nespuštěno"
+
+msgid "running (master)"
+msgstr "spuštěno (hlavní položka)"
+
+msgid "failed (master)"
+msgstr "chyba (hlavní položka)"
+
+msgid "Freeze"
+msgstr "Zakázat"
 
 msgid "CIB file \"%{path}\" not found"
 msgstr "Soubor CIB „%{path}“ nebyl nalezen"
@@ -422,71 +903,196 @@ msgstr "Spuštění příkazu %{cmd} se nezdařilo"
 msgid "Error invoking %{cmd}"
 msgstr "Chyba vyvolávání %{cmd}"
 
+msgid "Error invoking %{cmd}: %{msg}"
+msgstr "Chyba vyvolávání %{cmd}: %{msg}"
+
 msgid "Unknown"
 msgstr "Neznámé"
 
-msgid ""
-"Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%"
-"{op}, rc-code=%{rc_code}, exit-reason=%{exit_reason}"
-msgstr ""
-
-msgid "Invalid Resource ID \"%{id}\""
-msgstr "Neplatné ID prostředku „%{id}“"
-
-msgid "Unable to parse cibadmin output"
-msgstr "Nepodařilo se analyzovat výstup cibadmin"
-
-msgid "No clone child specified"
-msgstr "Nebyl zadán žádný podřízený prvek klonu"
+msgid "Node \"%{node}\" is UNCLEAN and needs to be fenced."
+msgstr "Uzel %{node} není v platném stavu a je nutné jej izolovat."
 
 msgid ""
-"Can't set meta attribute %{p}, because the value contains both single and doub"
-"le quotes"
+"%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}"
+": call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_r"
+"eason}"
 msgstr ""
-"Metaatribut %{p} nelze nastavit, protože hodnota obsahuje jednoduché i dvojité"
-" uvozovky"
+"%{fail_start}: Operace %{op} se nezdařila u prostředku %{resource} uzlu %{node"
+"}: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_"
+"reason}"
 
-msgid "The ID \"%{id}\" is already in use"
-msgstr "ID „%{id}“ je již používáno."
+msgid "other"
+msgstr "jiné"
 
-msgid "Unable to create clone: %{msg}"
-msgstr "Klon nelze vytvořit: %{msg}"
+msgid "STONITH is disabled. For normal cluster operation, STONITH is required."
+msgstr ""
+"Metoda STONITH je zakázána. Metoda STONITH je požadována k normálnímu provozu "
+"clusteru."
 
-msgid "Clone ID \"%{id}\" does not exist"
-msgstr "ID klonu „%{id}“ neexistuje"
+msgid "None"
+msgstr "Nic"
 
-msgid "Invalid score"
-msgstr "Neplatné skóre"
+msgid "Clone ID is required"
+msgstr "Je požadováno ID klonu."
+
+msgid "Invalid Clone ID"
+msgstr "Neplatné ID klonu"
+
+msgid "No Clone child specified"
+msgstr "Není určena žádná podřazená položka klonu."
+
+msgid "Is the cluster allowed to start and stop the resource?"
+msgstr "Určuje, zda cluster může spouštět a zastavovat prostředek."
+
+msgid ""
+"If not all resources can be active, the cluster will stop lower priority resou"
+"rces in order to keep higher priority ones active."
+msgstr ""
+"Pokud nelze aktivovat všechny prostředky, cluster zastaví prostředky s nižší p"
+"rioritou, aby byly prostředky s vyšší prioritou zachovány aktivní."
+
+msgid "What state should the cluster attempt to keep this resource in?"
+msgstr "Určuje stav, v jakém se má cluster pokoušet uchovávat tento prostředek."
+
+msgid ""
+"How many copies of the resource to start. Defaults to the number of nodes in t"
+"he cluster."
+msgstr ""
+"Počet kopií prostředku, které se mají spustit. Ve výchozím nastavení odpovídá "
+"počtu uzlů v clusteru."
+
+msgid ""
+"How many copies of the resource can be started on a single node. Defaults to 1"
+"."
+msgstr "Počet kopií prostředku, které lze spustit v jednom uzlu. Výchozí hodnota je 1."
+
+msgid ""
+"When stopping or starting a copy of the clone, tell all the other copies befor"
+"ehand and when the action was successful."
+msgstr ""
+"Při spouštění a zastavování kopie klonu před spuštěním a po úspěšném dokončení"
+" akce informovat ostatní kopie."
+
+msgid "Does each copy of the clone perform a different function?"
+msgstr "Určuje, zda má každá kopie klonu jinou funkci."
+
+msgid "Should the copies be started in series (instead of in parallel)?"
+msgstr "Určuje, zda se mají kopie spouštět sériově (místo paralelního spouštění)."
+
+msgid ""
+"Changes the behavior of ordering constraints (between clones/masters) so that "
+"instances can start/stop as soon as their peer instance has (rather than waiti"
+"ng for every instance of the other clone has)."
+msgstr ""
+"Mění chování omezení řazení (mezi klony a nadřazenými položkami). Umožňuje spo"
+"uštění a zastavování instancí ihned po spuštění či zastavení jejich partnerský"
+"ch instancí (místo čekání na všechny instance ostatních klonů)."
+
+msgid "The ID \"%{id}\" does not exist"
+msgstr "ID %{id} neexistuje."
+
+msgid "Constraint ID is required"
+msgstr "Je požadováno ID omezení."
+
+msgid "Invalid Constraint ID"
+msgstr "ID omezení není platné."
+
+msgid "Score is required"
+msgstr "Je požadováno skóre."
+
+msgid "Invalid score value"
+msgstr "Hodnota skóre není platná."
 
 msgid "Constraint must consist of at least two separate resources"
 msgstr "Omezení musí obsahovat alespoň dva samostatné prostředky"
 
-msgid "Unable to create constraint: %{msg}"
-msgstr "Nepodařilo se vytvořit omezení: %{msg}"
+msgid "Not a constraint"
+msgstr "Nejedná se o omezení."
 
-msgid "Constraint ID \"%{id}\" does not exist"
-msgstr "ID omezení „%{id}“ neexistuje"
+msgid "Set to true if the resource agent supports the migrate action"
+msgstr ""
+"Pokud agent prostředku podporuje akci migrace, nastavte tuto možnost na hodnot"
+"u True."
 
-msgid "Unable to update constraint: %{msg}"
-msgstr "Nepodařilo se aktualizovat omezení: %{msg}"
+msgid ""
+"How many failures may occur for this resource on a node, before this node is m"
+"arked ineligible to host this resource. A value of INFINITY indicates that thi"
+"s feature is disabled."
+msgstr ""
+"Počet chyb, ke kterým může dojít u prostředku v rámci uzlu předtím, než je uze"
+"l označen jako nevhodný k jeho hostování. Hodnota INFINITY určuje, že je funkc"
+"e zakázána."
 
-msgid "No group children specified"
-msgstr "Nebyly zadány žádné podřízené prvky skupiny"
+msgid ""
+"What should the cluster do if it ever finds the resource active on more than o"
+"ne node?"
+msgstr ""
+"Určuje, jak se má cluster zachovat, pokud nalezne prostředek aktivní ve více n"
+"ež jednom uzlu."
 
-msgid "Unable to create group: %{msg}"
-msgstr "Nelze vytvořit skupinu: %{msg}"
+msgid ""
+"How many seconds to wait before acting as if the failure had not occurred, and"
+" potentially allowing the resource back to the node on which it failed. A valu"
+"e of 0 indicates that this feature is disabled."
+msgstr ""
+"Počet sekund čekání před obnovením stejného chování, jako kdyby k chybě nedošl"
+"o, a potenciálním umožněním opětovného spuštění prostředku v uzlu, ve kterém d"
+"ošlo k jeho chybě. Hodnota 0 značí, že funkce je zakázána."
 
-msgid "Group ID \"%{id}\" does not exist"
-msgstr "ID skupiny „%{id}“ neexistuje"
+msgid "How much does the resource prefer to stay where it is?"
+msgstr "Určuje, do jaké míry prostředek požaduje, aby bylo zachováno jeho umístění."
 
-msgid "Constraint is too complex - it contains nested rules"
-msgstr "Omezení je příliš složité – obsahuje vnořená pravidla"
+msgid "Conditions under which the resource can be started."
+msgstr "Podmínky, za kterých lze prostředek spustit"
+
+msgid ""
+"The name of the remote-node this resource defines. This both enables the resou"
+"rce as a remote-node and defines the unique name used to identify the remote-n"
+"ode. If no other parameters are set, this value will also be assumed as the ho"
+"stname to connect to at the port specified by remote-port. WARNING: This value"
+" cannot overlap with any resource or node IDs. If not specified, this feature "
+"is disabled."
+msgstr ""
+"Název vzdáleného uzlu, který tento prostředek definuje. Tato možnost aktivuje "
+"prostředek jako vzdálený uzel a definuje jedinečný název použitý k identifikac"
+"i vzdáleného uzlu. Pokud nejsou nastaveny žádné jiné parametry, tato hodnota b"
+"ude považována také za název hostitele, ke kterému má být vytvořeno připojení "
+"pomocí portu určeného hodnotou remote-port. UPOZORNĚNÍ: Tato hodnota se nesmí "
+"překrývat s žádnými ID prostředků ani uzlů. Pokud není určena, funkce je zakáz"
+"ána."
+
+msgid "Port to use for the guest connection to pacemaker_remote."
+msgstr ""
+"Port, který se má použít k vytvoření připojení hosta ke službě pacemaker_remot"
+"e."
+
+msgid ""
+"The IP address or hostname to connect to if remote-node's name is not the host"
+"name of the guest."
+msgstr ""
+"IP adresa nebo název hostitele, ke kterému má být vytvořeno připojení, pokud n"
+"ázev vzdáleného uzlu remote-node není názvem hostitele hosta."
+
+msgid "How long before a pending guest connection will time out."
+msgstr "Určuje dobu vypršení platnosti čekajícího připojení hosta."
+
+msgid "Group ID is required"
+msgstr "Je požadováno ID skupiny."
+
+msgid "Invalid Group ID"
+msgstr "ID skupiny není platné."
+
+msgid "No Group children specified"
+msgstr "Nebyly určeny žádné podřazené položky skupiny."
+
+msgid "No resource specified"
+msgstr "Nebyl zadán žádný prostředek"
 
 msgid "No rules specified"
 msgstr "Nebyla zadána žádná pravidla"
 
-msgid "No resource specified"
-msgstr "Nebyl zadán žádný prostředek"
+msgid "Constraint is too complex - it contains nested rules"
+msgstr "Omezení je příliš složité – obsahuje vnořená pravidla"
 
 msgid "Invalid score \"%{score}\""
 msgstr "Neplatné skóre „%{score}“"
@@ -500,178 +1106,220 @@ msgstr "Atribut obsahuje jednoduché i dvojité uvozovky"
 msgid "Value contains both single and double quotes"
 msgstr "Hodnota obsahuje jednoduché i dvojité uvozovky"
 
-msgid "No Master/Slave child specified"
-msgstr "Nebyl zadán žádný hlavní/podřízený prvek"
+msgid "Multi-state ID is required"
+msgstr "Je požadováno ID vícenásobného stavu."
 
-msgid "Unable to create master/slave: %{msg}"
-msgstr "Nepodařilo se vytvořit hlavní/podřízený prvek: %{msg}"
+msgid "Invalid Multi-state ID"
+msgstr "ID vícenásobného stavu není platné."
 
-msgid "Master/Slave ID \"%{id}\" does not exist"
-msgstr "ID hlavního/podřízeného prvku „%{id}“ neexistuje"
+msgid "No Multi-state child specified"
+msgstr "Není určena žádná podřazená položka vícenásobného stavu."
 
-msgid ""
-"Can't set parameter %{p}, because the value contains both single and double qu"
-"otes"
-msgstr ""
-"Parametr %{p} nelze nastavit, protože hodnota obsahuje jednoduché i dvojité uv"
-"ozovky"
+msgid "How many copies of the resource can be promoted to master status."
+msgstr "Určuje, u kolika kopií prostředku lze zvýšit úroveň na hlavní stav."
 
 msgid ""
-"Can't set op %{o} attribute {%a}, because the value contains both single and d"
-"ouble quotes"
+"How many copies of the resource can be promoted to master status on a single n"
+"ode."
 msgstr ""
-"Atribut {%a} operace %{o} nelze nastavit, protože hodnota obsahuje jednoduché "
-"i dvojité uvozovky"
+"Určuje, u kolika kopií prostředku v jednom uzlu lze zvýšit úroveň na hlavní st"
+"av."
 
-msgid "Unable to create resource: %{msg}"
-msgstr "Nelze vytvořit prostředek: %{msg}"
+msgid "Node ID is required"
+msgstr "Je požadováno ID uzlu."
 
-msgid "Resource ID \"%{id}\" does not exist"
-msgstr "ID prostředku „%{id}“ neexistuje"
+msgid "Invalid Node ID"
+msgstr "ID uzlu není platné."
 
-#, fuzzy
+msgid "Name is required"
+msgstr "Je požadován název."
+
+msgid "Invalid name"
+msgstr "Název není platný."
+
+msgid "is required"
+msgstr "je požadováno."
+
+msgid "Object not found: %s=%s"
+msgstr "Objekt nebyl nalezen: %s=%s"
+
+msgid "The ID \"%{id}\" is already in use"
+msgstr "ID „%{id}“ je již používáno."
+
 msgid "Unable to create: %{msg}"
-msgstr "Roli nelze vytvořit: %{msg}"
+msgstr "Nelze vytvořit položku: %{msg}"
 
-#, fuzzy
-msgid "The ID \"%{id}\" does not exist"
-msgstr "ID role %{id} neexistuje"
+msgid "Error updating %{id} (rc=%{rc})"
+msgstr "Chyba při aktualizování položky %{id} (rc=%{rc})"
 
-#, fuzzy
-msgid "Unable to update: %{msg}"
-msgstr "Nelze aktualizovat roli: %{msg}"
+msgid "PE Input created by different Pacemaker version (%{version})"
+msgstr "Soubor vstupů PE byl vytvořen jinou verzí programu Pacemaker (%{version})"
+
+msgid "Pacemaker version not present in PE Input"
+msgstr "Verze programu Pacemaker není v souboru vstupů PE k dispozici"
+
+msgid "No details available"
+msgstr "Podrobnosti nejsou k dispozici."
+
+msgid "Error:"
+msgstr "Chyba:"
+
+msgid "must have correct MIME type (was %s)"
+msgstr "musí mít správný typ MIME (předchozí: %s)."
+
+msgid "must have correct file extension"
+msgstr "musí mít správnou příponu souboru."
+
+msgid "Not a resource"
+msgstr "Nejedná se prostředek."
 
 msgid "Role ID is required"
-msgstr ""
+msgstr "Je požadováno ID role."
 
-#, fuzzy
 msgid "Invalid Role ID"
-msgstr "Neplatné ID lístku"
+msgstr "ID role není platné."
 
-msgid "Username not specified"
-msgstr "Nebylo zadáno uživatelské jméno."
+msgid "At least one rule is required"
+msgstr "Je požadováno alespoň jedno pravidlo."
 
 msgid "Invalid username"
 msgstr "Neplatné uživatelské jméno"
 
-msgid "Password not specified"
-msgstr "Nebylo zadáno heslo."
-
 msgid "%s is not installed"
 msgstr "Položka %s není nainstalována"
 
-#, fuzzy
 msgid "%s is not executable"
-msgstr "Položka %s není nainstalována"
+msgstr "Položka %s není spustitelná."
+
+msgid "Username not specified"
+msgstr "Nebylo zadáno uživatelské jméno."
+
+msgid "Password not specified"
+msgstr "Nebylo zadáno heslo."
 
 msgid "Invalid username or password"
 msgstr "Neplatné uživatelské jméno nebo heslo"
 
-msgid "Language is required"
+msgid "Tag ID is required"
+msgstr "Je požadováno ID značky."
+
+msgid "Invalid Tag ID"
+msgstr "ID značky není platné."
+
+msgid "No Tag resources specified"
+msgstr "Nejsou určeny žádné prostředky značky."
+
+msgid "Resource ID is required"
+msgstr "Je požadováno ID prostředku."
+
+msgid "Invalid Resource ID"
+msgstr "ID prostředku není platné."
+
+msgid "How frequently (in seconds) to perform the operation."
+msgstr "Určuje, jak často se má operace provádět (v sekundách)."
+
+msgid "How long to wait before declaring the action has failed."
+msgstr "Určuje, jak dlouho se má čekat před deklarací akce jako nezdařené."
+
+msgid "What conditions need to be satisfied before this action occurs."
+msgstr "Určuje, jakou podmínku je nutné splnit, aby bylo možné spustit tuto akci."
+
+msgid "If false, the operation is treated as if it does not exist."
+msgstr "Pokud má tato možnost hodnotu False, operace je považována za neexistující."
+
+msgid ""
+"This option only makes sense for recurring operations. It restricts the operat"
+"ion to a specific role. The truely paranoid can even specify role=Stopped whic"
+"h allows the cluster to detect an admin that manually started cluster services"
+"."
 msgstr ""
+"Použití této možnosti má smysl pouze u opakujících se operací. Omezuje operaci"
+" na konkrétní roli. Opravdu opatrný uživatel může použít dokonce i nastavení r"
+"ole=Stopped, které umožňuje clusteru zjistit správce, který ručně spustil služ"
+"by clusteru."
+
+msgid "The action to take if this action ever fails."
+msgstr "Akce, která se má provést, pokud se tato akce nezdaří."
+
+msgid ""
+"If true, the intention to perform the operation is recorded so that GUIs and C"
+"LI tools can indicate that an operation is in progress."
+msgstr ""
+"Pokud má tato možnost hodnotu True, úmysl provést operaci je zaznamenán, což u"
+"možňuje grafickým uživatelským rozhraním a nástrojům CLI zjistit, že operace p"
+"robíhá."
+
+msgid "Ticket ID is required"
+msgstr "Je požadováno ID lístku."
 
 msgid "Invalid Ticket ID"
 msgstr "Neplatné ID lístku"
 
-msgid "No resources specified"
-msgstr "Nejsou zadány žádné prostředky"
+msgid "Constraint must consist of at least one separate resources"
+msgstr "Omezení musí obsahovat alespoň jeden samostatný prostředek."
 
-msgid "User ID is required"
-msgstr ""
+msgid "Simulator active: Use the ticket controls in the simulator"
+msgstr "Simulátor je aktivní: V simulátoru se používají kontroly lístků."
 
-#, fuzzy
-msgid "Invalid User ID"
-msgstr "Neplatné ID lístku"
+msgid "ACL target ID is required"
+msgstr "Je požadováno ID cíle seznamu řízení přístupu."
 
-msgid "Meta Attributes"
-msgstr "Metaatributy"
+msgid "Invalid ACL target ID"
+msgstr "ID cíle seznamu řízení přístupu není platné."
 
-msgid "Add"
-msgstr "Přidat"
+msgid "At least one role is required"
+msgstr "Je požadována alespoň jedna role."
 
-msgid "Remove"
-msgstr "Odebrat"
+msgid "Requested wizard does not exist"
+msgstr "Požadovaný průvodce neexistuje."
 
-msgid "You must enter a value"
-msgstr "Je nutné zadat hodnotu"
+msgid "Parameters"
+msgstr "Parametry"
 
-msgid "Clone ID"
-msgstr "ID klonu"
+msgid "Shortdesc"
+msgstr "Krátký popis"
+
+msgid "Longdesc"
+msgstr "Rozšířený popis"
+
+msgid "Options"
+msgstr "Možnosti"
+
+msgid "Actions"
+msgstr "Akce"
+
+msgid "Timeout"
+msgstr "Časový limit"
+
+msgid "Interval"
+msgstr "Interval"
+
+msgid "Depth"
+msgstr "Hloubka"
+
+msgid "Close"
+msgstr "Zavřít"
 
 msgid "Child Resource"
 msgstr "Podřízený prostředek"
 
-msgid "Revert Changes"
-msgstr "Vrátit změny"
+msgid "Meta Attributes"
+msgstr "Metaatributy"
 
 msgid "Back"
 msgstr "Zpět"
 
-msgid "Apply Changes"
-msgstr "Použít změny"
-
-msgid "Link set"
-msgstr "Propojit sadu"
-
-msgid "Break set"
-msgstr "Rozložit sadu"
-
-msgid "Swap resources"
-msgstr "Zaměnit prostředky"
-
-msgid "Add resource to constraint"
-msgstr "Přidat prostředek k omezení"
-
-msgid "Constraint ID"
-msgstr "ID omezení"
-
-msgid "Score"
-msgstr "Skóre"
-
-msgid "Create Constraint"
-msgstr "Vytvořit omezení"
-
-msgid "Edit Constraint"
-msgstr "Upravit omezení"
-
-msgid "Delete Constraint"
-msgstr "Odstranit omezení"
-
 msgid "Are you sure you wish to delete %s?"
 msgstr "Opravdu chcete odstranit položku %s?"
 
-msgid "New Constraint"
-msgstr "Nové omezení"
+msgid "List"
+msgstr "Seznam"
 
-msgid "Location"
-msgstr "Umístění"
+msgid "Constraint:"
+msgstr "Omezení:"
 
-msgid "Colocation"
-msgstr "Kolokace"
-
-msgid "Order"
-msgstr "Pořadí"
-
-msgid "Ticket"
-msgstr "Lístek"
-
-msgid "(No location constraints defined)"
-msgstr "(Nebyla definována žádná omezení umístění)"
-
-msgid "[Constraint is too complex to display]"
-msgstr "[Omezení je příliš složité pro zobrazení]"
-
-msgid "(No colocation constraints defined)"
-msgstr "(Nebyla definována žádná omezení kolokace)"
-
-msgid "(No order constraints defined)"
-msgstr "(Nebyla definována žádná omezení pořadí)"
-
-msgid "(No ticket constraints defined)"
-msgstr "(Nejsou definovány žádná omezení lístku.)"
-
-msgid "CRM Configuration"
-msgstr "Konfigurace CRM"
+msgid "Add a constraint"
+msgstr "Přidat omezení"
 
 msgid "Resource Defaults"
 msgstr "Výchozí hodnoty prostředku"
@@ -679,240 +1327,86 @@ msgstr "Výchozí hodnoty prostředku"
 msgid "Operation Defaults"
 msgstr "Výchozí hodnoty pro operaci"
 
-msgid "No cluster properties set in %{group}"
-msgstr "Ve skupině %{group} nebyly definovány žádné vlastnosti clusteru"
-
-msgid "Edit"
-msgstr "Upravit"
-
-msgid "Username:"
-msgstr "Uživatelské jméno:"
-
-msgid "Password:"
-msgstr "Heslo:"
-
-msgid "Cluster has errors - click for details"
-msgstr "Cluster obsahuje chyby, kliknutím zobrazíte podrobnosti."
-
-msgid "Timeout: Please try again"
-msgstr "Čas vypršel: Zkuste to znovu"
-
-msgid "Permission denied. Please log in to %{node}"
-msgstr "Oprávnění nebylo uděleno. Přihlaste se k uzlu %{node}."
-
-#, fuzzy
-msgid "Geo Site %{ip}"
-msgstr "Sada klonů: %{id}"
-
-msgid "Site: %{ip}"
-msgstr ""
-
-msgid "Arbitrator: %{ip}"
-msgstr ""
-
-msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
-msgstr ""
-"Konzolu Hawk na uzlu %{node} nelze kontaktovat. Pokus bude každých 5 sekund op"
-"akován."
-
-msgid "Cluster Name:"
-msgstr "Název clusteru:"
-
-msgid "Host Name:"
-msgstr "Jméno počítače:"
-
-msgid ""
-"(Specify any host name in the cluster.  Other nodes will be found automaticall"
-"y)"
-msgstr ""
-"(Zadejte libovolný název hostitele v clusteru. Ostatní uzly budou nalezeny aut"
-"omaticky.)"
+msgid "Default"
+msgstr "Výchozí"
 
 msgid "Add Cluster"
 msgstr "Přidat cluster"
 
-msgid "OK"
-msgstr "OK"
+msgid "Cluster name"
+msgstr "Název clusteru"
 
-msgid "A cluster with that name already exists"
-msgstr "Cluster s tímto názvem již existuje"
+msgid "West Coast (example)"
+msgstr "Západní pobřeží (příklad)"
 
-msgid "The host %{h} is already present in cluster %{c}"
-msgstr "Hostitel %{h} již v clusteru %{c} existuje."
+msgid "node1.west.example.com"
+msgstr "uzel1.zapad.priklad.com"
 
-msgid ""
-"Unable to connect to %{host}. Try opening %{url} in your web browser to ensure"
-" Hawk is accessible."
-msgstr ""
-"Nelze se připojit k hostiteli %{host}. Zkuste v prohlížeči přejít na adresu %{"
-"url}. Tím se přesvědčíte, zda je konzola Hawk přístupná."
+msgid "Hostname of node in cluster"
+msgstr "Název hostitele uzlu v clusteru"
 
-msgid "Cancel"
-msgstr "Zrušit"
+msgid "Advanced"
+msgstr "Pokročilé"
 
-#, fuzzy
-msgid "Cluster"
-msgstr "Přidat cluster"
+msgid "Update interval (seconds)"
+msgstr "Interval aktualizace (sekundy)"
 
-msgid "STONITH Enabled"
-msgstr "STONITH povolen"
+msgid "Server port to connect to"
+msgstr "Port serveru ke kterému má být vytvořeno připojení."
 
-msgid "No Quorum Policy"
-msgstr "Zásady pro případ neexistence kvóra"
-
-msgid "Symmetric Cluster"
-msgstr "Symetrický cluster"
-
-msgid "Resource Stickiness"
-msgstr "Dlouhodobost prostředku"
-
-msgid "Status"
-msgstr "Stav"
-
-msgid "No transitions found for the specified time period."
-msgstr "Pro zadané období nebyly nalezeny žádné transakce."
-
-msgid "Time"
-msgstr "Čas"
-
-msgid "PE Input"
-msgstr "PE Input"
-
-msgid "Node"
-msgstr "Uzel"
-
-msgid "(full log)"
-msgstr "(úplný protokol)"
+msgid "HTTPS"
+msgstr "HTTPS"
 
 msgid "Graph"
 msgstr "Grafy"
 
-msgid "Diff"
-msgstr "Rozdíl"
+msgid "Children"
+msgstr "Podřazené položky"
 
-msgid "Delete this history archive?"
-msgstr "Chcete smazat tento archiv historie?"
+msgid "No children available"
+msgstr "Nejsou k dispozici žádné podřazené položky."
 
-msgid "Start Time:"
-msgstr "Čas zahájení:"
-
-msgid "End Time:"
-msgstr "Čas ukončení:"
-
-msgid "Exploring %{path}"
-msgstr "Prozkoumávání umístění %{path}"
-
-msgid "Display"
-msgstr "Zobrazení"
-
-msgid "Upload hb_report tarball"
-msgstr "Odeslat archiv TAR hb_report"
-
-msgid "Explore"
-msgstr "Prozkoumat"
-
-msgid "Error: Permission denied for user '%s'."
-msgstr "Chyba: Oprávnění pro uživatele „%s“ zamítnuto."
-
-msgid "Group ID"
-msgstr "ID skupiny"
-
-msgid "Group Children"
-msgstr "Seskupit podřízené prvky"
-
-msgid "Available Primitives"
-msgstr "Dostupné základní prvky"
-
-msgid "Start Time not specified"
-msgstr "Nebyl zadán čas zahájení"
-
-msgid "Generate"
-msgstr "Generovat"
-
-msgid "hb_report generation in progress..."
-msgstr "Vytváří se balíček hb_report..."
-
-msgid "Download hb_report"
-msgstr "Stáhnout balíček hb_report"
-
-#, fuzzy
 msgid "Please ensure Javascript is enabled"
-msgstr "Ověřte, zda je povolen JavaScript."
+msgstr "Ověřte, zda je povolen jazyk JavaScript."
 
 msgid "SUSE, LLC"
-msgstr ""
+msgstr "SUSE, LLC"
 
 msgid "High Availability Web Konsole"
-msgstr ""
+msgstr "Webová konzole rozšíření pro vysokou dostupnost"
 
-msgid "Role"
-msgstr "Role"
+msgid "Edit Location"
+msgstr "Upravit umístění"
 
-msgid "Boolean Op"
-msgstr "Logická operace"
+msgid "Locations"
+msgstr "Umístění"
 
-msgid "Expression"
-msgstr "Výraz"
+msgid "Create Location"
+msgstr "Vytvořit umístění"
 
-msgid "Add Rule"
-msgstr "Přidat pravidlo"
+msgid "History"
+msgstr "Historie"
 
-msgid "Remove Rule"
-msgstr "Odebrat pravidlo"
+msgid "Edit Multi-state"
+msgstr "Upravit vícenásobný stav"
 
-msgid "Show Rule Editor"
-msgstr "Zobrazit editor pravidel"
+msgid "Multi-state Resources"
+msgstr "Prostředky s vícenásobnými stavy"
 
-msgid "Resource"
-msgstr "Zdroj"
+msgid "Create Multi-state"
+msgstr "Vytvořit vícenásobný stav"
 
-msgid "Fence Node"
-msgstr "Vytlačit uzel"
+msgid "Getting recent events..."
+msgstr "Načítání posledních událostí..."
 
-msgid "View Details..."
-msgstr "Zobrazit podrobnosti..."
+msgid "Another operation is in progress..."
+msgstr "Probíhá jiná operace..."
 
-msgid "View Recent Events..."
-msgstr "Zobrazit nedávné události..."
-
-msgid "Start"
-msgstr "Začátek"
-
-msgid "Stop"
-msgstr "Zastavit"
-
-msgid "Move..."
-msgstr "Přesunout..."
-
-msgid "Drop Relocation Rule"
-msgstr "Zahodit pravidlo přemístění"
-
-msgid "Promote"
-msgstr "Zvýšit úroveň"
-
-msgid "Demote"
-msgstr "Snížit úroveň"
-
-msgid "Clean Up"
-msgstr "Čištění"
-
-msgid "Grant"
-msgstr "Udělit"
-
-msgid "Revoke"
-msgstr "Odvolat"
-
-msgid "Master/Slave ID"
-msgstr "ID hlavního/podřízeného prvku"
-
-msgid "Getting recent events (last hour)..."
-msgstr "Získávání nejnovějších událostí (za poslední hodinu)..."
-
-msgid "Another \"crm history\" operation is in progress..."
-msgstr "Probíhá jiná operace „historie crm“..."
-
-msgid "No events found in last hour."
+msgid "No events found in last hour"
 msgstr "Za poslední hodinu nebyly nalezeny žádné události."
+
+msgid "Remote node."
+msgstr "Vzdálený uzel"
 
 msgid "Utilization"
 msgstr "Využití"
@@ -929,23 +1423,22 @@ msgstr "Nebyly definovány žádné atributy"
 msgid "Symmetrical"
 msgstr "Symetrické"
 
-msgid "Close"
-msgstr "Zavřít"
+msgid "Command Log"
+msgstr "Protokol příkazů"
+
+msgid "Lists crm commands recently executed by hawk, most recent first."
+msgstr ""
+"Zobrazí v seznamu příkazy naposledy provedené nástrojem Hawk (seřazené od nejn"
+"ovějších)."
 
 msgid "HTML"
-msgstr ""
+msgstr "HTML"
 
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
-msgid "There is already a monitor op with this interval."
-msgstr "Na tomto intervalu již probíhá operace monitorování."
-
-msgid "Resource ID"
-msgstr "ID prostředku"
-
-msgid "Template ID"
-msgstr "ID šablony"
+msgid "Template"
+msgstr "Šablona"
 
 msgid "Class"
 msgstr "Třída"
@@ -953,86 +1446,104 @@ msgstr "Třída"
 msgid "Provider"
 msgstr "Poskytovatel"
 
-msgid "Type"
-msgstr "Typ"
+msgid "Data collection in progress..."
+msgstr "Probíhá shromažďování dat..."
 
-msgid "Use Template"
-msgstr "Použít šablonu"
+msgid "To"
+msgstr "Do"
 
-msgid "Edit Resource"
-msgstr "Upravit prostředek"
+msgid "Generate"
+msgstr "Generovat"
 
-msgid "Delete Resource"
-msgstr "Odstranit prostředek"
+msgid "Upload"
+msgstr "Odeslat"
 
-msgid "New Resource"
-msgstr "Nový prostředek"
+msgid "Reports"
+msgstr "Zprávy"
 
-msgid "Primitive"
-msgstr "Základní prvek"
+msgid "Report"
+msgstr "Zpráva"
 
-msgid "New Template"
-msgstr "Nová šablona"
+msgid "Created"
+msgstr "Vytvořeno"
 
-msgid "Template"
-msgstr "Šablona"
+msgid "Transitions"
+msgstr "Přechody"
 
-msgid "New Group"
-msgstr "Nová skupina"
+msgid "No transitions in report"
+msgstr "Ve zprávě není žádný přechod"
 
-msgid "Group"
-msgstr "Skupina"
+msgid "Previous"
+msgstr "Předchozí"
 
-msgid "New Clone"
-msgstr "Nový klon"
+msgid "Next"
+msgstr "Další"
 
-msgid "Clone"
-msgstr "Klon"
+msgid "PE Name"
+msgstr "Název PE"
 
-msgid "New Master/Slave"
-msgstr "Nový hlavní/podřízený prvek"
+msgid "Node"
+msgstr "Uzel"
 
-msgid "Master/Slave"
-msgstr "Hlavní/podřízený"
+msgid "Time"
+msgstr "Čas"
 
-msgid "(No primitive resources defined)"
-msgstr "(Nejsou definovány žádné základní prostředky.)"
+msgid "Version"
+msgstr "Verze"
 
-msgid "(No templates defined)"
-msgstr "(Nejsou definovány žádné šablony.)"
+msgid "Configuration"
+msgstr "Konfigurace"
 
-msgid "(No groups defined)"
-msgstr "(Nejsou definovány žádné skupiny.)"
+msgid "Diff"
+msgstr "Rozdíl"
 
-msgid "(No clones defined)"
-msgstr "(Nejsou definovány žádné klony.)"
+msgid "Logs"
+msgstr "Protokoly"
 
-msgid "(No master/slave resources defined)"
-msgstr "(Nejsou definovány žádné hlavní/podřízené prostředky.)"
+msgid "Node Events"
+msgstr "Události uzlů"
 
-msgid "Fail Count"
-msgstr "Počet neúspěšných pokusů"
+msgid "Resource Events"
+msgstr "Události prostředků"
 
-msgid "Last Failure"
-msgstr "Poslední neúspěšný pokus"
+msgid "Resource:"
+msgstr "Prostředek:"
 
-#, fuzzy
-msgid "Rule"
-msgstr "Role"
+msgid "Value"
+msgstr "Hodnota"
+
+msgid "Instances"
+msgstr "Instance"
+
+msgid "State"
+msgstr "Stav"
+
+msgid "Failed Operations"
+msgstr "Nezdařené operace"
+
+msgid "Call"
+msgstr "Volání"
+
+msgid "Operation"
+msgstr "Operace"
+
+msgid "Reason"
+msgstr "Příčina"
+
+msgid "Add a resource"
+msgstr "Přidat prostředek"
 
 msgid "Add a rule below"
-msgstr ""
+msgstr "Přidat pravidlo dolů"
 
-#, fuzzy
 msgid "Remove this rule"
 msgstr "Odebrat pravidlo"
 
-#, fuzzy
 msgid "Move rule up"
-msgstr "Přesunout prostředek %s:"
+msgstr "Posunout pravidlo nahoru"
 
 msgid "Move rule down"
-msgstr ""
+msgstr "Posunout pravidlo dolů"
 
 msgid "Right"
 msgstr "Doprava"
@@ -1040,90 +1551,184 @@ msgstr "Doprava"
 msgid "XPath"
 msgstr "XPath"
 
-msgid "Tag"
-msgstr "Značka"
+msgid "Object Type"
+msgstr "Typ objektu"
 
-msgid "Ref"
-msgstr "Ref."
+msgid "Reference"
+msgstr "Reference"
 
 msgid "Attribute"
 msgstr "Atribut"
 
-#, fuzzy
-msgid "Delete role"
-msgstr "Odstranit prostředek"
+msgid "ACL Roles"
+msgstr "Role seznamů řízení přístupu"
 
-#, fuzzy
-msgid "Add role"
-msgstr "Přidat pravidlo"
-
-msgid ""
-"ACL support requires CIB schema version 2.0, available in Pacemaker 1.1.12 and"
-" up. For older versions of Pacemaker, use Hawk version 0.6."
-msgstr ""
-
-#, fuzzy
-msgid "Username"
-msgstr "Uživatelské jméno:"
-
-#, fuzzy
-msgid "Password"
-msgstr "Heslo:"
-
-#, fuzzy
 msgid "Login"
-msgstr "Přihlásit"
+msgstr "Přihlášení"
+
+msgid "Version:"
+msgstr "Verze:"
+
+msgid "DC:"
+msgstr "DC:"
+
+msgid "UI:"
+msgstr "UI:"
+
+msgid "Status:"
+msgstr "Stav: "
+
+msgid "Add resource"
+msgstr "Přidat prostředek"
+
+msgid "Add constraint"
+msgstr "Přidat omezení"
+
+msgid "Add template"
+msgstr "Přidat šablonu"
+
+msgid "Choose wizard"
+msgstr "Vybrat průvodce"
+
+msgid "Simulator Active"
+msgstr "Simulátor je aktivní."
+
+msgid "Reset"
+msgstr "Obnovit výchozí"
+
+msgid "Run"
+msgstr "Spustit"
+
+msgid "Results"
+msgstr "Výsledky"
+
+msgid "Simulation Results"
+msgstr "Výsledky simulací"
+
+msgid "Summary"
+msgstr "Shrnutí"
+
+msgid "CIB (in)"
+msgstr "Soubor CIB (příchozí)"
+
+msgid "CIB (out)"
+msgstr "Soubor CIB (odchozí)"
+
+msgid "Transition Graph"
+msgstr "Graf přechodu"
+
+msgid "Transition (XML)"
+msgstr "Přechod (XML)"
+
+msgid "Inject Node Event"
+msgstr "Událost vložení uzlu"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Inject Operation Event"
+msgstr "Událost operace vložení"
+
+msgid "Interval (ms)"
+msgstr "Interval (ms)"
+
+msgid "Result"
+msgstr "Výsledek"
+
+msgid "Inject Ticket Event"
+msgstr "Událost vložení lístku"
+
+msgid "Action"
+msgstr "Akce"
+
+msgid "Enable the simulation mode"
+msgstr "Povolit režim simulace"
+
+msgid "Disable Simulator"
+msgstr "Zakázat simulátor"
+
+msgid "Disable the simulation mode"
+msgstr "Zakázat režim simulace"
+
+msgid "Profile"
+msgstr "Profil"
+
+msgid "Logout"
+msgstr "Odhlásit"
+
+msgid "Menu"
+msgstr "Nabídka"
+
+msgid "Errors"
+msgstr "Chyby"
+
+msgid "No objects available"
+msgstr "Nejsou k dispozici žádné objekty."
+
+msgid "Ticket ID"
+msgstr "ID lístku"
 
 msgid "Loss Policy"
 msgstr "Zásady ztrát"
 
-#, fuzzy
-msgid "Delete user"
-msgstr "Odstranit prostředek"
+msgid "Ticket:"
+msgstr "Lístek:"
 
-#, fuzzy
-msgid "Add user"
-msgstr "Přidat cluster"
+msgid "Properties"
+msgstr "Vlastnosti"
 
-msgid "%{workflow}: %{step}"
-msgstr "%{workflow}: %{step}"
+msgid "Sequential"
+msgstr "Sekvenční"
 
-msgid "The configuration has been applied."
-msgstr "Konfigurační soubor byl použit."
+msgid "No resources defined for ticket"
+msgstr "Pro lístek nejsou definovány žádné prostředky."
 
-msgid "The following configuration will be applied to the cluster:"
-msgstr "Na cluster se použije následující konfigurace:"
+msgid "Target ID"
+msgstr "ID cíle"
 
-msgid "Error applying configuration:"
-msgstr "Při používání konfigurace došlo k chybě:"
+msgid "Verifying parameters..."
+msgstr "Ověřování parametrů jádra..."
 
-msgid "< Back"
-msgstr "< Zpět"
+msgid "Do you really want to cancel the wizard setup?"
+msgstr "Opravdu chcete zrušit nastavení průvodce?"
 
-msgid "Next >"
-msgstr "Další >"
+msgid "Do you really want to apply the current wizard?"
+msgstr "Opravdu chcete použít aktuálního průvodce?"
 
-msgid "No workflow descriptions found"
-msgstr "Nebyl nalezen žádný popis pracovního postupu"
+msgid "Choose a wizard"
+msgstr "Vybrat průvodce"
 
-msgid "Choose Configuration"
-msgstr "Vybrat konfiguraci"
+msgid "Legacy Wizards"
+msgstr "Starší průvodci"
+
+msgid "Verify and apply"
+msgstr "Ověřit a použít"
+
+msgid "Review the wizard actions and apply the changes"
+msgstr "Zkontrolovat akce průvodce a použít změny"
+
+msgid "Enable this step"
+msgstr "Povolit tento krok"
+
+msgid "This wizard takes no parameters."
+msgstr "Tento průvodce nepřijímá žádné parametry."
+
+msgid "Verify"
+msgstr "Ověřit"
 
 msgid ""
-"This wizard will guide you through the steps necessary to add one of the follo"
-"wing configurations to the cluster."
+"To apply the changes, Hawk requires root access, and password-less SSH access "
+"must be configured. See the Hawk documentation for more information."
 msgstr ""
-"Tento průvodce vás provede kroky, které jsou nezbytné k přidání jedné z násled"
-"ujících konfigurací do clusteru."
+"K použití změn musí mít nástroj Hawk přístup k účtu root a je nutné nakonfigur"
+"ovat přístup SSH bez hesla. Další informace naleznete v dokumentaci k nástroji"
+" Hawk."
+
+msgid "Root password"
+msgstr "Heslo uživatele root"
 
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "Objekt/atribut neexistuje (cibadmin %{cmd})"
 
 msgid "Error invoking cibadmin %{cmd}: %{msg}"
 msgstr "Chyba při vyvolávání souboru cibadmin %{cmd}: %{msg}"
-
-msgid "The object/attribute does not exist: %{msg}"
-msgstr "Objekt/atribut neexistuje: %{msg}"
-
-msgid "Error invoking cibadmin --replace: %{msg}"
-msgstr "Chyba při volání příkazu cibadmin  --replace: %{msg}"

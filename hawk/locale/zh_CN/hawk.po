@@ -1,11 +1,11 @@
-# Copyright (C) 2006-2015 SUSE Linux GmbH, Nuernberg
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
 # This file is distributed under the same license as the package.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2014-07-15 11:28\n"
+"PO-Revision-Date: 2015-11-05 16:59\n"
 "Last-Translator: Novell language <language@novell.com>\n"
 "Language-Team: Novell language <language@novell.com>\n"
 "Language: \n"
@@ -14,28 +14,88 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-msgid "Any changes will be lost - do you wish to proceed?"
-msgstr "所有更改都会丢失 - 是否继续？"
+msgid "Error"
+msgstr "错误"
 
-msgid "Connection to server aborted - will retry every 15 seconds."
-msgstr "与服务器的连接已中断 - 将每 15 秒重试一次。"
+msgid "Unexpected server error: _MSG_"
+msgstr "意外的服务器错误：_MSG_"
 
-#, fuzzy
-msgid "Connection to server failed - will retry every 15 seconds."
-msgstr "与服务器的连接已中断 - 将每 15 秒重试一次。"
+msgid ""
+"Connection to server failed (server down or network error - will retry every 1"
+"5 seconds)."
+msgstr "无法连接到服务器（服务器已关机或发生网络错误 - 将每 15 秒重试一次）。"
 
 msgid "Connection to server timed out - will retry every 15 seconds."
 msgstr "与服务器的连接已超时 - 将每 15 秒重试一次。"
 
-#, fuzzy
-msgid "State"
-msgstr "省/州：              "
+msgid "Connection to server aborted - will retry every 15 seconds."
+msgstr "与服务器的连接已中断 - 将每 15 秒重试一次。"
 
-msgid "Name"
-msgstr ""
+msgid "Permission denied"
+msgstr "权限被拒"
 
-msgid "Maintenance"
-msgstr "维护"
+msgid "_OP_ failed on _NODE_} (rc=_RC_, reason=_REASON_)"
+msgstr "在 _NODE_ 上执行_OP_失败}（rc=_RC_，原因=_REASON_）"
+
+msgid "Permission denied. "
+msgstr "权限被拒。 "
+
+msgid "Error connecting to server."
+msgstr "连接服务器时出错。"
+
+msgid "Connection to server timed out."
+msgstr "连接服务器超时。"
+
+msgid "Connection to server was aborted."
+msgstr "已中止连接服务器操作。"
+
+msgid "Server returned invalid data."
+msgstr "服务器返回的数据无效。"
+
+msgid "Unknown error connecting to server."
+msgstr "连接服务器时发生未知错误。"
+
+msgid "Retrying every 15 seconds..."
+msgstr "每隔 15 秒重试一次..."
+
+msgid "Cancel"
+msgstr "取消"
+
+msgid "Hostname"
+msgstr "主机名"
+
+msgid "Username"
+msgstr "用户名"
+
+msgid "Password"
+msgstr "口令"
+
+msgid "Connect"
+msgstr "连接"
+
+msgid "Local Status"
+msgstr "本地状态"
+
+msgid "Remove cluster _NAME_ from dashboard?"
+msgstr "是否从仪表板中去除群集 _NAME_？"
+
+msgid "Cluster removed successfully."
+msgstr "已成功去除群集。"
+
+msgid "Error removing cluster."
+msgstr "去除群集时出错。"
+
+msgid "Please wait..."
+msgstr "请稍候..."
+
+msgid "Cluster added successfully."
+msgstr "已成功添加群集。"
+
+msgid "Create"
+msgstr "创建"
+
+msgid "Remove"
+msgstr "删除"
 
 msgid "Yes"
 msgstr "是"
@@ -43,46 +103,305 @@ msgstr "是"
 msgid "No"
 msgstr "否"
 
-msgid "Standby"
-msgstr "待机"
+msgid "Any changes will be lost - do you wish to proceed?"
+msgstr "所有更改都会丢失 - 是否继续？"
+
+msgid "Clone ID"
+msgstr "克隆 ID"
 
 msgid "Operations"
 msgstr "操作"
 
-msgid "Online"
-msgstr "联机"
+msgid "Edit"
+msgstr "编辑"
 
-msgid "Ready"
-msgstr "就绪"
+msgid "Delete"
+msgstr "删除"
+
+msgid "Constraint ID"
+msgstr "约束 ID"
+
+msgid "Swap with entry above"
+msgstr "与上面的项交换"
+
+msgid "Link with entry above"
+msgstr "与上面的项链接"
+
+msgid "Unlink from entry above"
+msgstr "与上面的项解除链接"
+
+msgid "Type"
+msgstr "类型"
+
+msgid "Location"
+msgstr "位置"
+
+msgid "Colocation"
+msgstr "共置"
+
+msgid "Order"
+msgstr "顺序"
+
+msgid "Ticket"
+msgstr "票据"
+
+msgid "Constraint"
+msgstr "约束"
+
+msgid "Group ID"
+msgstr "组 ID"
+
+msgid "Rule"
+msgstr "规则"
+
+msgid "Score"
+msgstr "分数"
+
+msgid "Role"
+msgstr "角色"
+
+msgid "Boolean Operator"
+msgstr "布尔运算符"
+
+msgid "Multi-state ID"
+msgstr "多状态 ID"
+
+msgid "Connection to server failed - will retry every 15 seconds."
+msgstr "与服务器的连接失败 - 将每隔 15 秒重试一次。"
+
+msgid "Status"
+msgstr "状态"
+
+msgid "Remote"
+msgstr "远程"
+
+msgid "Name"
+msgstr "名称"
+
+msgid "Maintenance"
+msgstr "维护"
+
+msgid "Switch to ready"
+msgstr "切换为就绪"
+
+msgid "Switch to maintenance"
+msgstr "切换为维护"
+
+msgid "Standby"
+msgstr "待机"
+
+msgid "Switch to online"
+msgstr "切换为联机"
+
+msgid "Switch to standby"
+msgstr "切换为待机"
 
 msgid "Fence"
-msgstr ""
+msgstr "屏蔽"
 
 msgid "Details"
 msgstr "细节"
 
-msgid "Events"
-msgstr ""
+msgid "Add"
+msgstr "添加"
+
+msgid "Apply"
+msgstr "应用"
+
+msgid "No interval set for monitor operation"
+msgstr "未设置监视操作的间隔"
+
+msgid "Replacing previously defined monitor operation with same interval"
+msgstr "正在以相同间隔替换以前定义的监视操作"
+
+msgid "Resource ID"
+msgstr "资源 ID"
+
+msgid "Failed to fetch meta attributes"
+msgstr "无法提取元属性"
+
+msgid "Report generation is complete."
+msgstr "已完成生成报告操作。"
+
+msgid "From"
+msgstr "从"
+
+msgid "Until"
+msgstr "到"
+
+msgid "Custom"
+msgstr "自定义"
+
+msgid "Su"
+msgstr "日"
+
+msgid "Mo"
+msgstr "一"
+
+msgid "Tu"
+msgstr "二"
+
+msgid "We"
+msgstr "三"
+
+msgid "Th"
+msgstr "四"
+
+msgid "Fr"
+msgstr "五"
+
+msgid "Sa"
+msgstr "六"
+
+msgid "January"
+msgstr "一月"
+
+msgid "February"
+msgstr "二月"
+
+msgid "March"
+msgstr "三月"
+
+msgid "April"
+msgstr "四月"
+
+msgid "May"
+msgstr "五月"
+
+msgid "June"
+msgstr "六月"
+
+msgid "July"
+msgstr "七月"
+
+msgid "August"
+msgstr "八月"
+
+msgid "September"
+msgstr "九月"
+
+msgid "October"
+msgstr "十月"
+
+msgid "November"
+msgstr "十一月"
+
+msgid "December"
+msgstr "十二月"
+
+msgid "Show"
+msgstr "显示"
+
+msgid "Download"
+msgstr "下载"
+
+msgid "Unmanaged"
+msgstr "不受管理"
+
+msgid "Started"
+msgstr "已启动"
+
+msgid "Primary"
+msgstr "主要"
+
+msgid "Secondary"
+msgstr "次要"
+
+msgid "Stopped"
+msgstr "已停止"
+
+msgid "Group"
+msgstr "组"
+
+msgid "Multi-state"
+msgstr "多状态"
+
+msgid "Clone"
+msgstr "复制"
+
+msgid "Tag"
+msgstr "标记"
+
+msgid "Stop"
+msgstr "停止"
+
+msgid "Start"
+msgstr "起始"
+
+msgid "Demote"
+msgstr "降级"
+
+msgid "Promote"
+msgstr "升级"
+
+msgid "Unmanage"
+msgstr "不管理"
+
+msgid "Manage"
+msgstr "管理"
+
+msgid "Migrate"
+msgstr "迁移"
+
+msgid "Unmigrate"
+msgstr "取消迁移"
+
+msgid "Cleanup"
+msgstr "清理"
+
+msgid "Primitive"
+msgstr "原始资源"
+
+msgid "Resource"
+msgstr "资源"
 
 msgid "Role ID"
 msgstr "角色 ID"
 
+msgid "Stopped Resources"
+msgstr "停止的资源"
+
+msgid "Tag ID"
+msgstr "标记 ID"
+
+msgid "Objects"
+msgstr "对象"
+
+msgid "ID"
+msgstr "ID"
+
+msgid "Granted"
+msgstr "已授予"
+
+msgid "Revoked"
+msgstr "已撤消"
+
+msgid "Grant"
+msgstr "授予"
+
+msgid "Revoke"
+msgstr "撤消"
+
 msgid "User ID"
 msgstr "用户 ID"
 
+msgid "Must be a valid resource ID"
+msgstr "必须为有效资源 ID"
+
+msgid "Applying configuration changes..."
+msgstr "正在应用配置更改..."
+
+msgid "Changes applied successfully."
+msgstr "已成功应用更改。"
+
+msgid "Agent"
+msgstr "代理"
+
+msgid "Created a new shadow CIB for %USER%."
+msgstr "为 %USER% 创建新阴影 CIB。"
+
 msgid "Unable to create shadow CIB"
 msgstr "无法创建阴影 CIB"
-
-msgid "1 node configured"
-msgid_plural "%{num} nodes configured"
-msgstr[0] "已配置 1 个节点"
-
-msgid "1 resource configured"
-msgid_plural "%{num} resources configured"
-msgstr[0] "已配置 1 项资源"
-
-msgid "Edit Clone"
-msgstr "编辑克隆"
 
 msgid "Create Clone"
 msgstr "创建克隆"
@@ -90,67 +409,62 @@ msgstr "创建克隆"
 msgid "Clone created successfully"
 msgstr "已成功创建克隆"
 
+msgid "Edit Clone"
+msgstr "编辑克隆"
+
 msgid "Clone updated successfully"
 msgstr "已成功更新克隆"
 
-msgid "Edit Colocation Constraint"
-msgstr "编辑共置约束"
+msgid "Clone deleted successfully"
+msgstr "已成功删除克隆"
 
-msgid "Create Colocation Constraint"
-msgstr "创建共置约束"
+msgid "Error deleting %s: %s"
+msgstr "删除 %s 时出错：%s"
+
+msgid "Clones"
+msgstr "克隆"
+
+msgid "The clone does not exist"
+msgstr "该克隆不存在"
+
+msgid "Create Colocation"
+msgstr "创建共置"
 
 msgid "Constraint created successfully"
 msgstr "已成功创建约束"
 
+msgid "Edit Colocation"
+msgstr "编辑共置"
+
 msgid "Constraint updated successfully"
 msgstr "已成功更新约束"
+
+msgid "Colocation deleted successfully"
+msgstr "已成功删除共置"
+
+msgid "Colocations"
+msgstr "共置"
+
+msgid "The colocation constraint does not exist"
+msgstr "该共置约束不存在"
 
 msgid "Constraints"
 msgstr "约束"
 
+msgid "Configuration updated successfully"
+msgstr "已成功更新配置"
+
 msgid "Cluster Configuration"
 msgstr "群集配置"
 
-msgid "Your changes have been saved"
-msgstr "您的更改已保存"
-
-msgid "Unable to apply changes: %{msg}"
-msgstr "无法应用更改：%{msg}"
-
-msgid ""
-"Can't set property %{p}, because the value contains both single and double quo"
-"tes"
-msgstr "无法设置属性 %{p}，因为该值同时包含单引号和双引号"
-
-msgid "Cluster Dashboard"
-msgstr "群集仪表板"
+msgid "Error removing %s: %s"
+msgstr "去除 %s 时出错：%s"
 
 msgid "Dashboard"
 msgstr "仪表板"
 
-msgid "History Explorer"
-msgstr "历史记录浏览器"
-
-msgid "PE Input created by different Pacemaker version (%{version})"
-msgstr "其他 Pacemaker 版本 (%{version}) 创建的 PE 输入"
-
-msgid "Pacemaker version not present in PE Input"
-msgstr "PE 输入中没有 Pacemaker 版本"
-
-msgid "Required parameters \"basename\" and \"node\" not specified"
-msgstr "未指定必需参数“basename”和“node”"
-
-msgid "No details available"
-msgstr "无可用的细节"
-
-msgid "Error:"
-msgstr "错误："
-
-msgid "Required parameters \"left\" and \"right\" not specified"
-msgstr "未指定必需参数“left”和“right”"
-
-msgid "Edit Group"
-msgstr "编辑组"
+msgid "Cluster Graph"
+msgstr "群集图"
 
 msgid "Create Group"
 msgstr "创建组"
@@ -158,82 +472,209 @@ msgstr "创建组"
 msgid "Group created successfully"
 msgstr "已成功创建组"
 
+msgid "Edit Group"
+msgstr "编辑组"
+
 msgid "Group updated successfully"
 msgstr "已成功更新组"
 
-msgid "Edit Location Constraint"
-msgstr "编辑位置约束"
+msgid "Group deleted successfully"
+msgstr "已成功删除组"
+
+msgid "Groups"
+msgstr "组"
+
+msgid "The group does not exist"
+msgstr "该组不存在"
 
 msgid "Create Location Constraint"
 msgstr "创建位置约束"
 
-msgid "%{cmd} failed (status: %{status})"
-msgstr "%{cmd} 失败（状态：%{status}）"
+msgid "Edit Location Constraint"
+msgstr "编辑位置约束"
 
-msgid "Cluster Status"
-msgstr "群集状态"
+msgid "Location deleted successfully"
+msgstr "已成功删除位置"
 
-msgid "Required parameter \"node\" not specified"
-msgstr "未指定必需的参数“node”"
+msgid "Location Constraints"
+msgstr "位置约束"
 
-msgid "Required parameter \"resource\" not specified"
-msgstr "未指定必需的参数“resource”"
+msgid "The location constraint does not exist"
+msgstr "该位置约束不存在"
 
-msgid "Required parameters \"resource\" and \"node\" not specified"
-msgstr "未指定必需的参数“resource”和“node”"
+msgid "Create Multi-state resource"
+msgstr "创建多状态资源"
 
-msgid "Error deleting resource"
-msgstr "删除资源时出错"
+msgid "Multi-state resource created successfully"
+msgstr "已成功创建多状态资源"
 
-msgid "Required parameters \"ticket\" and \"site\" not specified"
-msgstr "未指定必需的参数“ticket”和“site”"
+msgid "Edit Multi-state resource"
+msgstr "编辑多状态资源"
 
-msgid "Required parameter \"ticket\" not specified"
-msgstr "未指定必需的参数“ticket”"
+msgid "Multi-state resource updated successfully"
+msgstr "已成功更新多状态资源"
 
-msgid "Error invoking %{cmd}: %{msg}"
-msgstr "调用 %{cmd} 时出错：%{msg}"
+msgid "Multi-state resource deleted successfully"
+msgstr "已成功删除多状态资源"
 
-msgid "Edit Master/Slave"
-msgstr "编辑主/从"
+msgid "Multi-state resource"
+msgstr "多状态资源"
 
-msgid "Create Master/Slave"
-msgstr "创建主/从"
+msgid "The multi-state resource does not exist"
+msgstr "该多状态资源不存在"
 
-msgid "Master/Slave created successfully"
-msgstr "已成功创建主/从"
+msgid "Set the node state to online"
+msgstr "将节点状态设置为联机"
 
-msgid "Master/Slave updated successfully"
-msgstr "已成功更新主/从"
+msgid "Set the node state to standby"
+msgstr "将节点状态设置为待机"
 
-#, fuzzy
+msgid "Set the node state to maintenance"
+msgstr "将节点状态设置为维护"
+
+msgid "Set the node state to ready"
+msgstr "将节点状态设置为就绪"
+
+msgid "Set the node state to fence"
+msgstr "将节点状态设置为屏蔽"
+
 msgid "Nodes"
 msgstr "节点"
 
-msgid "Edit Order Constraint"
-msgstr "编辑顺序约束"
+msgid "The node does not exist"
+msgstr "该节点不存在"
 
-msgid "Create Order Constraint"
-msgstr "创建顺序约束"
+msgid "Create Order"
+msgstr "创建顺序"
+
+msgid "Edit Order"
+msgstr "编辑顺序"
+
+msgid "Order deleted successfully"
+msgstr "已成功删除顺序"
+
+msgid "Orders"
+msgstr "顺序"
+
+msgid "The order constraint does not exist"
+msgstr "该顺序约束不存在"
 
 msgid "Welcome"
-msgstr ""
+msgstr "欢迎"
 
 msgid "Help"
-msgstr ""
+msgstr "帮助"
 
-msgid "Create Resource"
-msgstr "创建资源"
+msgid "Commands"
+msgstr "命令"
 
-msgid "Resource created successfully"
-msgstr "已成功创建资源"
+msgid "Create Primitive"
+msgstr "创建原始资源"
 
-msgid "Resource updated successfully"
-msgstr "已成功更新资源"
+msgid "Primitive created successfully"
+msgstr "已成功创建原始资源"
 
-#, fuzzy
+msgid "Edit Primitive"
+msgstr "编辑原始资源"
+
+msgid "Primitive updated successfully"
+msgstr "已成功更新原始资源"
+
+msgid "Primitive deleted successfully"
+msgstr "已成功删除原始资源"
+
 msgid "Primitives"
-msgstr "基元"
+msgstr "原始资源"
+
+msgid "The primitive does not exist"
+msgstr "该原始资源不存在"
+
+msgid "Preferences updated successfully"
+msgstr "已成功更新首选项"
+
+msgid "Preferences"
+msgstr "首选项"
+
+msgid "Please wait while report is generated..."
+msgstr "正在生成报告，请稍候..."
+
+msgid "Failed to generate"
+msgstr "无法生成"
+
+msgid "Upload completed."
+msgstr "上载完成。"
+
+msgid "Cannot display diff, too few transitions"
+msgstr "无法显示差异，转换次数太少"
+
+msgid "Report deleted successfully"
+msgstr "已成功删除报告"
+
+msgid "Error deleting %s"
+msgstr "删除 %s 时出错"
+
+msgid "History Explorer"
+msgstr "历史记录浏览器"
+
+msgid "The report does not exist"
+msgstr "该报告不存在"
+
+msgid "must be a valid datetime"
+msgstr "必须为有效的日期时间"
+
+msgid "Successfully started the resource"
+msgstr "已成功启动资源"
+
+msgid "Failed to start the resource: %{err}"
+msgstr "无法启动资源：%{err}"
+
+msgid "Successfully stopped the resource"
+msgstr "已成功停止资源"
+
+msgid "Failed to stop the resource: %{err}"
+msgstr "无法停止资源：%{err}"
+
+msgid "Successfully promoted the resource"
+msgstr "已成功将资源升级"
+
+msgid "Failed to promote the resource: %{err}"
+msgstr "无法将资源升级：%{err}"
+
+msgid "Successfully demoted the resource"
+msgstr "已成功将资源降级"
+
+msgid "Failed to demote the resource: %{err}"
+msgstr "无法将资源降级：%{err}"
+
+msgid "Successfully set the resource in managed mode"
+msgstr "已成功将资源设置为受管模式"
+
+msgid "Failed to set the resource in managed mode: %{err}"
+msgstr "无法将资源设置为受管模式：%{err}"
+
+msgid "Successfully set the resource in unmanaged mode"
+msgstr "已成功将资源设置为不受管理模式"
+
+msgid "Failed to set the resource in unmanaged mode: %{err}"
+msgstr "无法将资源设置为不受管理模式：%{err}"
+
+msgid "Successfully unmigrated the resource"
+msgstr "已成功取消迁移资源"
+
+msgid "Failed to unmigrate the resource: %{err}"
+msgstr "无法取消迁移资源：%{err}"
+
+msgid "Successfully migrated the resource"
+msgstr "已成功迁移资源"
+
+msgid "Failed to migrate the resource: %{err}"
+msgstr "无法迁移资源：%{err}"
+
+msgid "Successfully cleaned the resource"
+msgstr "已成功清理资源"
+
+msgid "Failed to clean up the resource: %{err}"
+msgstr "无法清理资源：%{err}"
 
 msgid "Resources"
 msgstr "资源"
@@ -250,22 +691,22 @@ msgstr "编辑角色"
 msgid "Role updated successfully"
 msgstr "已成功更新角色"
 
-#, fuzzy
 msgid "Role deleted successfully"
-msgstr "已成功创建角色"
+msgstr "已成功删除角色"
 
-#, fuzzy
-msgid "Error deleting %s"
-msgstr "删除资源时出错"
+msgid "ACL is not supported by the cluster"
+msgstr "该群集不支持 ACL"
 
 msgid "Roles"
 msgstr "角色"
 
 msgid "The role does not exist"
-msgstr ""
+msgstr "该角色不存在"
 
-msgid "To enable ACLs, set 'enable-acl' in the CRM Configuration"
-msgstr "要启用 ACL，请在 CRM 配置中设置“enable-acl”"
+msgid ""
+"To enable ACLs, set \"enable-acl\" in the Cluster Configuration ('Manage > Confi"
+"guration')"
+msgstr "要启用 ACL，请在“群集配置”（“管理”>“配置”）中设置“enable-acl”"
 
 msgid "Permission denied for user %{user}"
 msgstr "用户 %{user} 的权限被拒"
@@ -276,15 +717,29 @@ msgstr "您已注销"
 msgid "Log In"
 msgstr "登录"
 
-#, fuzzy
-msgid "Preferences updated successfully"
-msgstr "已成功更新资源"
+msgid "Simulator"
+msgstr "模拟器"
 
-msgid "Preferences"
-msgstr "首选项"
+msgid "Create Tag"
+msgstr "创建标记"
 
-msgid "Edit Template"
-msgstr "编辑模板"
+msgid "Tag created successfully"
+msgstr "已成功创建标记"
+
+msgid "Edit Tag"
+msgstr "编辑标记"
+
+msgid "Tag updated successfully"
+msgstr "已成功更新标记"
+
+msgid "Tag deleted successfully"
+msgstr "已成功删除标记"
+
+msgid "Tags"
+msgstr "标记"
+
+msgid "The tag does not exist"
+msgstr "该标记不存在"
 
 msgid "Create Template"
 msgstr "创建模板"
@@ -292,108 +747,140 @@ msgstr "创建模板"
 msgid "Template created successfully"
 msgstr "已成功创建模板"
 
+msgid "Edit Template"
+msgstr "编辑模板"
+
 msgid "Template updated successfully"
 msgstr "已成功更新模板"
 
-msgid "Edit Ticket Constraint"
-msgstr "编辑票据约束"
+msgid "Template deleted successfully"
+msgstr "已成功删除模板"
 
-msgid "Create Ticket Constraint"
-msgstr "创建票据约束"
+msgid "You have no template feature support"
+msgstr "您没有模板功能支持"
 
-msgid "Create User"
-msgstr "创建用户"
+msgid "Templates"
+msgstr "模板"
 
-msgid "User created successfully"
-msgstr "已成功创建用户"
+msgid "The template does not exist"
+msgstr "该模板不存在"
 
-msgid "Edit User"
-msgstr "编辑用户"
+msgid "Create Ticket"
+msgstr "创建票据"
 
-msgid "User updated successfully"
-msgstr "已成功更新用户"
+msgid "Edit Ticket"
+msgstr "编辑票据"
 
-#, fuzzy
-msgid "User deleted successfully"
-msgstr "已成功创建用户"
+msgid "Ticket deleted successfully"
+msgstr "已成功删除票据"
 
-#, fuzzy
-msgid "Users"
-msgstr "用户"
+msgid "Successfully granted the ticket"
+msgstr "已成功授予票据"
 
-msgid "The user does not exist"
-msgstr ""
+msgid "Successfully revoked the ticket"
+msgstr "已成功撤消票据"
 
-msgid "Cluster Setup Wizard"
-msgstr "群集设置向导"
+msgid "Tickets"
+msgstr "票据"
 
-msgid "Invalid password"
-msgstr "密码无效"
+msgid "The ticket constraint does not exist"
+msgstr "该票据约束不存在"
 
-msgid "Root Password"
-msgstr "Root 口令"
+msgid "Create ACL Target"
+msgstr "创建 ACL 目标"
 
-msgid ""
-"The root password is required in order for this wizard template to make config"
-"uration changes."
-msgstr "要让向导模板进行配置更改，必须拥有根密码。"
+msgid "ACL target created successfully"
+msgstr "已成功创建 ACL 目标"
 
-msgid "The root password for this system"
-msgstr "此系统的根密码"
+msgid "Edit ACL Target"
+msgstr "编辑 ACL 目标"
 
-msgid "\"Error: #{result}\""
-msgstr "“错误：#{result}”"
+msgid "ACL target updated successfully"
+msgstr "已成功更新 ACL 目标"
 
-msgid "Parameters"
-msgstr "参数"
+msgid "ACL target deleted successfully"
+msgstr "已成功删除 ACL 目标"
 
-msgid "Confirm"
-msgstr "确认"
+msgid "ACL is not supported by this cluster."
+msgstr "此群集不支持 ACL。"
 
-msgid "Done"
-msgstr "完毕"
+msgid "ACL Targets"
+msgstr "ACL 目标"
 
-msgid "Required parameter \"%{param}\" not specified"
-msgstr "未指定必需参数“%{param}”"
+msgid "The ACL target does not exist"
+msgstr "该 ACL 目标不存在"
+
+msgid "Session has expired"
+msgstr "会话已失效"
+
+msgid "Wizard cannot be applied when the simulator is active"
+msgstr "当模拟器处于活动状态时，无法应用向导"
+
+msgid "Use a wizard"
+msgstr "使用向导"
 
 msgid "Permission denied - you do not have write access to the CIB."
 msgstr "权限被拒绝 - 您没有 CIB 的写入权限。"
 
-msgid "Wizard templates and/or workflows are missing"
-msgstr "缺少向导模板和/或工作流程"
+msgid "Cluster seems to be offline"
+msgstr "群集似乎已脱机"
 
-msgid "Workflow \"%s\" not found"
-msgstr "找不到工作流程“%s”"
+msgid "Required"
+msgstr "必需"
 
-msgid "Error parsing template \"%s\""
-msgstr "分析模板“%s”时出错"
+msgid "Unique"
+msgstr "唯一"
 
-msgid "Error parsing workflow \"%s\""
-msgstr "分析工作流程“%s”时出错"
+msgid "Master"
+msgstr "主"
 
-msgid "Data collection in progress (%{from_time} to %{to_time})..."
-msgstr "数据收集正在进行中（%{from_time} 至 %{to_time}）..."
+msgid "Slave"
+msgstr "从"
 
-#, fuzzy
 msgid "Revert"
-msgstr "重设置"
+msgstr "还原"
 
-msgid "Apply"
-msgstr ""
-
-#, fuzzy
-msgid "Create"
-msgstr "创建角色"
-
-#, fuzzy
 msgid "Read"
-msgstr "就绪"
+msgstr "读"
 
 msgid "Write"
-msgstr ""
+msgstr "写"
 
 msgid "Deny"
-msgstr ""
+msgstr "拒绝"
+
+msgid "success"
+msgstr "成功"
+
+msgid "generic error"
+msgstr "一般错误"
+
+msgid "incorrect arguments"
+msgstr "不正确的自变量"
+
+msgid "unimplemented action"
+msgstr "未实施的操作"
+
+msgid "insufficient permissions"
+msgstr "权限不足"
+
+msgid "installation error"
+msgstr "安装错误"
+
+msgid "configuration error"
+msgstr "配置错误"
+
+msgid "not running"
+msgstr "未运行"
+
+msgid "running (master)"
+msgstr "正在运行（主资源）"
+
+msgid "failed (master)"
+msgstr "失败（主资源）"
+
+msgid "Freeze"
+msgstr "冻结"
 
 msgid "CIB file \"%{path}\" not found"
 msgstr "找不到 CIB 文件“%{path}”"
@@ -410,69 +897,165 @@ msgstr "无法执行 %{cmd}"
 msgid "Error invoking %{cmd}"
 msgstr "调用 %{cmd} 时出错"
 
+msgid "Error invoking %{cmd}: %{msg}"
+msgstr "调用 %{cmd} 时出错：%{msg}"
+
 msgid "Unknown"
 msgstr "未知"
 
+msgid "Node \"%{node}\" is UNCLEAN and needs to be fenced."
+msgstr "节点“%{node}”未清理，需要屏蔽。"
+
 msgid ""
-"Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%"
-"{op}, rc-code=%{rc_code}, exit-reason=%{exit_reason}"
+"%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}"
+": call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_r"
+"eason}"
 msgstr ""
+"%{fail_start}：对 %{node} 节点上的 %{resource} 资源执行 %{op} 操作失败：调用 ID=%{call_id}，RC 代"
+"码=%{rc_mapping} (%{rc_code})，退出原因=%{exit_reason}"
 
-msgid "Invalid Resource ID \"%{id}\""
-msgstr "资源 ID“%{id}”无效"
+msgid "other"
+msgstr "其他"
 
-msgid "Unable to parse cibadmin output"
-msgstr "无法分析 cibadmin 输出"
+msgid "STONITH is disabled. For normal cluster operation, STONITH is required."
+msgstr "STONITH 已禁用。要正常执行群集操作，需要启用 STONITH。"
 
-msgid "No clone child specified"
+msgid "None"
+msgstr "无"
+
+msgid "Clone ID is required"
+msgstr "需要指定克隆 ID"
+
+msgid "Invalid Clone ID"
+msgstr "无效的克隆 ID"
+
+msgid "No Clone child specified"
 msgstr "未指定克隆子项"
 
+msgid "Is the cluster allowed to start and stop the resource?"
+msgstr "是否允许群集启动和停止该资源？"
+
 msgid ""
-"Can't set meta attribute %{p}, because the value contains both single and doub"
-"le quotes"
-msgstr "无法设置元属性 %{p}，因为该值同时包含单引号和双引号"
+"If not all resources can be active, the cluster will stop lower priority resou"
+"rces in order to keep higher priority ones active."
+msgstr "如果并非所有资源都可处于活动状态，群集将停止优先级较低的资源，以使优先级较高的资源保持为活动状态。"
 
-msgid "The ID \"%{id}\" is already in use"
-msgstr "ID“%{id}”已在使用"
+msgid "What state should the cluster attempt to keep this resource in?"
+msgstr "群集应尝试将此资源保持为什么状态？"
 
-msgid "Unable to create clone: %{msg}"
-msgstr "无法创建克隆：%{msg}"
+msgid ""
+"How many copies of the resource to start. Defaults to the number of nodes in t"
+"he cluster."
+msgstr "要启动的资源副本数。默认设为群集中的节点数。"
 
-msgid "Clone ID \"%{id}\" does not exist"
-msgstr "克隆 ID“%{id}”不存在"
+msgid ""
+"How many copies of the resource can be started on a single node. Defaults to 1"
+"."
+msgstr "单个节点上可以启动的资源副本数。默认设为 1。"
 
-msgid "Invalid score"
-msgstr "分数无效"
+msgid ""
+"When stopping or starting a copy of the clone, tell all the other copies befor"
+"ehand and when the action was successful."
+msgstr "停止或启动克隆副本时，事先告知所有其他副本以及操作成功的时间。"
+
+msgid "Does each copy of the clone perform a different function?"
+msgstr "克隆的每个副本是否都执行不同的功能？"
+
+msgid "Should the copies be started in series (instead of in parallel)?"
+msgstr "副本是否应按序列（而非并行）启动？"
+
+msgid ""
+"Changes the behavior of ordering constraints (between clones/masters) so that "
+"instances can start/stop as soon as their peer instance has (rather than waiti"
+"ng for every instance of the other clone has)."
+msgstr "更改（克隆/主资源之间）顺序约束的行为，让实例在其对等实例启动/停止时立即启动/停止（而非等待其余克隆的每个实例都启动/停止）。"
+
+msgid "The ID \"%{id}\" does not exist"
+msgstr "ID“%{id}”不存在"
+
+msgid "Constraint ID is required"
+msgstr "需要指定约束 ID"
+
+msgid "Invalid Constraint ID"
+msgstr "无效的约束 ID"
+
+msgid "Score is required"
+msgstr "需要指定分数"
+
+msgid "Invalid score value"
+msgstr "分数值无效"
 
 msgid "Constraint must consist of at least two separate resources"
 msgstr "约束必须包含至少两个独立资源"
 
-msgid "Unable to create constraint: %{msg}"
-msgstr "无法创建约束：%{msg}"
+msgid "Not a constraint"
+msgstr "不是约束"
 
-msgid "Constraint ID \"%{id}\" does not exist"
-msgstr "约束 ID“%{id}”不存在"
+msgid "Set to true if the resource agent supports the migrate action"
+msgstr "如果资源代理支持迁移操作，则设置为 true"
 
-msgid "Unable to update constraint: %{msg}"
-msgstr "无法更新约束：%{msg}"
+msgid ""
+"How many failures may occur for this resource on a node, before this node is m"
+"arked ineligible to host this resource. A value of INFINITY indicates that thi"
+"s feature is disabled."
+msgstr "此资源在一个节点上失败多少次后，此节点才会标记为不符合托管此资源的要求。值为“无穷”表示此功能已禁用。"
 
-msgid "No group children specified"
+msgid ""
+"What should the cluster do if it ever finds the resource active on more than o"
+"ne node?"
+msgstr "如果群集发现资源在多个节点上都处于活动状态，应执行什么操作？"
+
+msgid ""
+"How many seconds to wait before acting as if the failure had not occurred, and"
+" potentially allowing the resource back to the node on which it failed. A valu"
+"e of 0 indicates that this feature is disabled."
+msgstr "等待多少秒钟后将故障视为未发生过，并潜在允许资源回到它之前失败的节点上。值为 0 表示此功能已禁用。"
+
+msgid "How much does the resource prefer to stay where it is?"
+msgstr "资源继续保留在所在位置的程度？"
+
+msgid "Conditions under which the resource can be started."
+msgstr "可以启动资源的条件。"
+
+msgid ""
+"The name of the remote-node this resource defines. This both enables the resou"
+"rce as a remote-node and defines the unique name used to identify the remote-n"
+"ode. If no other parameters are set, this value will also be assumed as the ho"
+"stname to connect to at the port specified by remote-port. WARNING: This value"
+" cannot overlap with any resource or node IDs. If not specified, this feature "
+"is disabled."
+msgstr ""
+"此资源定义的 remote-node 的名称。这可以让资源作为 remote-node，同时又可定义用于标识该 remote-node 的唯一名称。如果未设"
+"置其他参数，此值还将用作通过 remote-port 指定的端口来连接的主机名。警告：此值不能与任何资源或节点 ID 重复。如果不指定此值，此功能将会禁用。"
+
+msgid "Port to use for the guest connection to pacemaker_remote."
+msgstr "Guest 用于连接 pacemaker_remote 的端口。"
+
+msgid ""
+"The IP address or hostname to connect to if remote-node's name is not the host"
+"name of the guest."
+msgstr "如果 remote-node 的名称不是 Guest 的主机名，需要连接的 IP 地址或主机名。"
+
+msgid "How long before a pending guest connection will time out."
+msgstr "等待中的 Guest 连接经过多长时间后将会超时。"
+
+msgid "Group ID is required"
+msgstr "需要指定组 ID"
+
+msgid "Invalid Group ID"
+msgstr "无效的组 ID"
+
+msgid "No Group children specified"
 msgstr "未指定组子项"
 
-msgid "Unable to create group: %{msg}"
-msgstr "无法创建组：%{msg}"
-
-msgid "Group ID \"%{id}\" does not exist"
-msgstr "组 ID“%{id}”不存在"
-
-msgid "Constraint is too complex - it contains nested rules"
-msgstr "约束过于复杂 - 它包含嵌套规则"
+msgid "No resource specified"
+msgstr "未指定资源"
 
 msgid "No rules specified"
 msgstr "未指定规则"
 
-msgid "No resource specified"
-msgstr "未指定资源"
+msgid "Constraint is too complex - it contains nested rules"
+msgstr "约束过于复杂 - 它包含嵌套规则"
 
 msgid "Invalid score \"%{score}\""
 msgstr "分数“%{score}”无效"
@@ -486,174 +1069,211 @@ msgstr "属性同时包含单引号和双引号"
 msgid "Value contains both single and double quotes"
 msgstr "值同时包含单引号和双引号"
 
-msgid "No Master/Slave child specified"
-msgstr "未指定主/从子项"
+msgid "Multi-state ID is required"
+msgstr "需要指定多状态 ID"
 
-msgid "Unable to create master/slave: %{msg}"
-msgstr "无法创建主/从：%{msg}"
+msgid "Invalid Multi-state ID"
+msgstr "无效的多状态 ID"
 
-msgid "Master/Slave ID \"%{id}\" does not exist"
-msgstr "主/从 ID“%{id}”不存在"
+msgid "No Multi-state child specified"
+msgstr "未指定多状态子项"
 
-msgid ""
-"Can't set parameter %{p}, because the value contains both single and double qu"
-"otes"
-msgstr "无法设置参数 %{p}，因为该值同时包含单引号和双引号"
+msgid "How many copies of the resource can be promoted to master status."
+msgstr "该资源的多少副本可以升级为主资源状态。"
 
 msgid ""
-"Can't set op %{o} attribute {%a}, because the value contains both single and d"
-"ouble quotes"
-msgstr "无法设置 op %{o} 属性 {%}，因为该值同时包含单引号和双引号"
+"How many copies of the resource can be promoted to master status on a single n"
+"ode."
+msgstr "在单个节点上，该资源的多少副本可以升级为主资源状态。"
 
-msgid "Unable to create resource: %{msg}"
-msgstr "无法创建资源：%{msg}"
+msgid "Node ID is required"
+msgstr "需要指定节点 ID"
 
-msgid "Resource ID \"%{id}\" does not exist"
-msgstr "资源 ID“%{id}”不存在"
+msgid "Invalid Node ID"
+msgstr "无效的节点 ID"
 
-#, fuzzy
+msgid "Name is required"
+msgstr "需要指定名称"
+
+msgid "Invalid name"
+msgstr "无效的名称"
+
+msgid "is required"
+msgstr "需要指定"
+
+msgid "Object not found: %s=%s"
+msgstr "找不到对象：%s=%s"
+
+msgid "The ID \"%{id}\" is already in use"
+msgstr "ID“%{id}”已在使用"
+
 msgid "Unable to create: %{msg}"
-msgstr "无法创建角色：%{msg}"
+msgstr "无法创建：%{msg}"
 
-#, fuzzy
-msgid "The ID \"%{id}\" does not exist"
-msgstr "角色 ID“%{id}”不存在"
+msgid "Error updating %{id} (rc=%{rc})"
+msgstr "上载 %{id} 时出错 (rc=%{rc})"
 
-#, fuzzy
-msgid "Unable to update: %{msg}"
-msgstr "无法更新角色：%{msg}"
+msgid "PE Input created by different Pacemaker version (%{version})"
+msgstr "其他 Pacemaker 版本 (%{version}) 创建的 PE 输入"
+
+msgid "Pacemaker version not present in PE Input"
+msgstr "PE 输入中没有 Pacemaker 版本"
+
+msgid "No details available"
+msgstr "无可用的细节"
+
+msgid "Error:"
+msgstr "错误："
+
+msgid "must have correct MIME type (was %s)"
+msgstr "必须具有正确的 MIME 类型（之前为 %s）"
+
+msgid "must have correct file extension"
+msgstr "必须具有正确的文件扩展名"
+
+msgid "Not a resource"
+msgstr "不是资源"
 
 msgid "Role ID is required"
-msgstr ""
+msgstr "需要指定角色 ID"
 
-#, fuzzy
 msgid "Invalid Role ID"
-msgstr "票据 ID 无效"
+msgstr "无效的角色 ID"
 
-msgid "Username not specified"
-msgstr "未指定用户名"
+msgid "At least one rule is required"
+msgstr "至少需要指定一个规则"
 
 msgid "Invalid username"
 msgstr "无效用户名"
 
-msgid "Password not specified"
-msgstr "未指定口令"
-
 msgid "%s is not installed"
 msgstr "%s 未安装"
 
-#, fuzzy
 msgid "%s is not executable"
-msgstr "%s 未安装"
+msgstr "%s 不是可执行文件"
+
+msgid "Username not specified"
+msgstr "未指定用户名"
+
+msgid "Password not specified"
+msgstr "未指定口令"
 
 msgid "Invalid username or password"
 msgstr "用户名或口令无效"
 
-msgid "Language is required"
-msgstr ""
+msgid "Tag ID is required"
+msgstr "需要指定标记 ID"
+
+msgid "Invalid Tag ID"
+msgstr "无效的标记 ID"
+
+msgid "No Tag resources specified"
+msgstr "未指定标记资源"
+
+msgid "Resource ID is required"
+msgstr "需要指定资源 ID"
+
+msgid "Invalid Resource ID"
+msgstr "无效的资源 ID"
+
+msgid "How frequently (in seconds) to perform the operation."
+msgstr "执行该操作的频率（秒）。"
+
+msgid "How long to wait before declaring the action has failed."
+msgstr "等待多长时间后声明该操作失败。"
+
+msgid "What conditions need to be satisfied before this action occurs."
+msgstr "需要满足什么条件，才会执行此操作。"
+
+msgid "If false, the operation is treated as if it does not exist."
+msgstr "如果为 false，会将该操作视为不存在。"
+
+msgid ""
+"This option only makes sense for recurring operations. It restricts the operat"
+"ion to a specific role. The truely paranoid can even specify role=Stopped whic"
+"h allows the cluster to detect an admin that manually started cluster services"
+"."
+msgstr "此选项仅适用于重复操作。它将操作限定为针对特定角色执行。极度多疑的人甚至可以指定 role=Stopped 来允许群集检测手动停止了群集服务的管理员。"
+
+msgid "The action to take if this action ever fails."
+msgstr "一旦此操作失败，需要执行的操作。"
+
+msgid ""
+"If true, the intention to perform the operation is recorded so that GUIs and C"
+"LI tools can indicate that an operation is in progress."
+msgstr "如果为 true，则记录执行该操作的目的，以便 GUI 和 CLI 工具可以指出某项操作是否正在进行。"
+
+msgid "Ticket ID is required"
+msgstr "需要指定票据 ID"
 
 msgid "Invalid Ticket ID"
 msgstr "票据 ID 无效"
 
-msgid "No resources specified"
-msgstr "未指定资源"
+msgid "Constraint must consist of at least one separate resources"
+msgstr "约束必须至少包含一个独立资源"
 
-msgid "User ID is required"
-msgstr ""
+msgid "Simulator active: Use the ticket controls in the simulator"
+msgstr "模拟器为活动状态：在模拟器中使用票据控制"
 
-#, fuzzy
-msgid "Invalid User ID"
-msgstr "票据 ID 无效"
+msgid "ACL target ID is required"
+msgstr "需要指定 ACL 目标 ID"
 
-msgid "Meta Attributes"
-msgstr "元属性"
+msgid "Invalid ACL target ID"
+msgstr "无效的 ACL 目标 ID"
 
-msgid "Add"
-msgstr "添加"
+msgid "At least one role is required"
+msgstr "至少需要指定一个角色"
 
-msgid "Remove"
-msgstr "删除"
+msgid "Requested wizard does not exist"
+msgstr "请求的向导不存在"
 
-msgid "You must enter a value"
-msgstr "必须输入一个值"
+msgid "Parameters"
+msgstr "参数"
 
-msgid "Clone ID"
-msgstr "克隆 ID"
+msgid "Shortdesc"
+msgstr "简要描述"
+
+msgid "Longdesc"
+msgstr "完整描述"
+
+msgid "Options"
+msgstr "选项"
+
+msgid "Actions"
+msgstr "操作"
+
+msgid "Timeout"
+msgstr "超时"
+
+msgid "Interval"
+msgstr "间隔"
+
+msgid "Depth"
+msgstr "深度"
+
+msgid "Close"
+msgstr "关闭"
 
 msgid "Child Resource"
 msgstr "子资源"
 
-msgid "Revert Changes"
-msgstr "还原更改"
+msgid "Meta Attributes"
+msgstr "元属性"
 
 msgid "Back"
 msgstr "后退"
 
-msgid "Apply Changes"
-msgstr "应用更改"
-
-msgid "Link set"
-msgstr "链路集"
-
-msgid "Break set"
-msgstr "中断集"
-
-msgid "Swap resources"
-msgstr "交换资源"
-
-msgid "Add resource to constraint"
-msgstr "向约束添加资源"
-
-msgid "Constraint ID"
-msgstr "约束 ID"
-
-msgid "Score"
-msgstr "分数"
-
-msgid "Create Constraint"
-msgstr "创建约束"
-
-msgid "Edit Constraint"
-msgstr "编辑约束"
-
-msgid "Delete Constraint"
-msgstr "删除约束"
-
 msgid "Are you sure you wish to delete %s?"
 msgstr "确实要删除 %s 吗？"
 
-msgid "New Constraint"
-msgstr "新建约束"
+msgid "List"
+msgstr "列表"
 
-msgid "Location"
-msgstr "位置"
+msgid "Constraint:"
+msgstr "约束："
 
-msgid "Colocation"
-msgstr "共置"
-
-msgid "Order"
-msgstr "顺序"
-
-msgid "Ticket"
-msgstr "票据"
-
-msgid "(No location constraints defined)"
-msgstr "（未定义任何位置约束）"
-
-msgid "[Constraint is too complex to display]"
-msgstr "[约束过于复杂，无法显示]"
-
-msgid "(No colocation constraints defined)"
-msgstr "（未定义任何共置约束）"
-
-msgid "(No order constraints defined)"
-msgstr "（未定义任何顺序约束）"
-
-msgid "(No ticket constraints defined)"
-msgstr "（未定义票据约束）"
-
-msgid "CRM Configuration"
-msgstr "CRM 配置"
+msgid "Add a constraint"
+msgstr "添加约束"
 
 msgid "Resource Defaults"
 msgstr "默认资源"
@@ -661,234 +1281,86 @@ msgstr "默认资源"
 msgid "Operation Defaults"
 msgstr "默认操作"
 
-msgid "No cluster properties set in %{group}"
-msgstr "%{group} 中未设置任何群集属性 "
-
-msgid "Edit"
-msgstr "编辑"
-
-msgid "Username:"
-msgstr "用户名："
-
-msgid "Password:"
-msgstr "口令："
-
-msgid "Cluster has errors - click for details"
-msgstr "群集存在错误 - 单击查看详情"
-
-msgid "Timeout: Please try again"
-msgstr "超时：请重试"
-
-msgid "Permission denied. Please log in to %{node}"
-msgstr "权限被拒绝。请登录 %{node}"
-
-#, fuzzy
-msgid "Geo Site %{ip}"
-msgstr "克隆集：%{id}"
-
-msgid "Site: %{ip}"
-msgstr ""
-
-msgid "Arbitrator: %{ip}"
-msgstr ""
-
-msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
-msgstr "无法联系 %{node} 上的 Hawk。将每 5 秒重试一次。"
-
-msgid "Cluster Name:"
-msgstr "群集名称："
-
-msgid "Host Name:"
-msgstr "主机名："
-
-msgid ""
-"(Specify any host name in the cluster.  Other nodes will be found automaticall"
-"y)"
-msgstr "（指定群集中的任意主机名称。系统会自动找到其他节点）"
+msgid "Default"
+msgstr "默认"
 
 msgid "Add Cluster"
 msgstr "添加群集"
 
-msgid "OK"
-msgstr "确定"
+msgid "Cluster name"
+msgstr "群集名称"
 
-msgid "A cluster with that name already exists"
-msgstr "已存在同名群集"
+msgid "West Coast (example)"
+msgstr "West Coast（示例）"
 
-msgid "The host %{h} is already present in cluster %{c}"
-msgstr "群集 %{c} 中已存在主机 %{h}"
+msgid "node1.west.example.com"
+msgstr "node1.west.example.com"
 
-msgid ""
-"Unable to connect to %{host}. Try opening %{url} in your web browser to ensure"
-" Hawk is accessible."
-msgstr "无法连接 %{host}。请尝试在 Web 浏览器中打开 %{url} 以确保可以访问 Hawk。"
+msgid "Hostname of node in cluster"
+msgstr "群集中节点的主机名"
 
-msgid "Cancel"
-msgstr "取消"
+msgid "Advanced"
+msgstr "高级"
 
-#, fuzzy
-msgid "Cluster"
-msgstr "添加群集"
+msgid "Update interval (seconds)"
+msgstr "更新间隔（秒）"
 
-msgid "STONITH Enabled"
-msgstr "STONITH 已启用"
+msgid "Server port to connect to"
+msgstr "要连接的服务器端口"
 
-msgid "No Quorum Policy"
-msgstr "无仲裁策略"
-
-msgid "Symmetric Cluster"
-msgstr "对称群集"
-
-msgid "Resource Stickiness"
-msgstr "资源粘性"
-
-msgid "Status"
-msgstr "状态"
-
-msgid "No transitions found for the specified time period."
-msgstr "未找到指定时间段中的转换。"
-
-msgid "Time"
-msgstr "时间"
-
-msgid "PE Input"
-msgstr "PE 输入"
-
-msgid "Node"
-msgstr "节点"
-
-msgid "(full log)"
-msgstr "（完整日志）"
+msgid "HTTPS"
+msgstr "HTTPS"
 
 msgid "Graph"
 msgstr "示意图"
 
-msgid "Diff"
-msgstr "Diff"
+msgid "Children"
+msgstr "子项"
 
-msgid "Delete this history archive?"
-msgstr "删除此历史存档吗？"
+msgid "No children available"
+msgstr "没有可用子项"
 
-msgid "Start Time:"
-msgstr "开始时间："
-
-msgid "End Time:"
-msgstr "结束时间："
-
-msgid "Exploring %{path}"
-msgstr "正在浏览 %{path}"
-
-msgid "Display"
-msgstr "显示"
-
-msgid "Upload hb_report tarball"
-msgstr "上载 hb_report tarball"
-
-msgid "Explore"
-msgstr "浏览"
-
-msgid "Error: Permission denied for user '%s'."
-msgstr "错误：用户“%s”的权限被拒。"
-
-msgid "Group ID"
-msgstr "组 ID"
-
-msgid "Group Children"
-msgstr "组子项"
-
-msgid "Available Primitives"
-msgstr "可用基元"
-
-msgid "Start Time not specified"
-msgstr "未指定开始时间"
-
-msgid "Generate"
-msgstr "生成"
-
-msgid "hb_report generation in progress..."
-msgstr "hb_report 生成正在进行中..."
-
-msgid "Download hb_report"
-msgstr "下载 hb_report"
-
-#, fuzzy
 msgid "Please ensure Javascript is enabled"
-msgstr "请确保已启用 JavaScript"
+msgstr "请确保已启用 Javascript"
 
 msgid "SUSE, LLC"
-msgstr ""
+msgstr "SUSE, LLC"
 
 msgid "High Availability Web Konsole"
-msgstr ""
+msgstr "High Availability Web Konsole"
 
-msgid "Role"
-msgstr "角色"
+msgid "Edit Location"
+msgstr "编辑位置"
 
-msgid "Boolean Op"
-msgstr "布尔 Op"
+msgid "Locations"
+msgstr "位置"
 
-msgid "Expression"
-msgstr "表达式"
+msgid "Create Location"
+msgstr "创建位置"
 
-msgid "Add Rule"
-msgstr "添加规则"
+msgid "History"
+msgstr "历史"
 
-msgid "Remove Rule"
-msgstr "删除规则"
+msgid "Edit Multi-state"
+msgstr "编辑多状态"
 
-msgid "Show Rule Editor"
-msgstr "显示规则编辑器"
+msgid "Multi-state Resources"
+msgstr "多状态资源"
 
-msgid "Resource"
-msgstr "资源"
+msgid "Create Multi-state"
+msgstr "创建多状态"
 
-msgid "Fence Node"
-msgstr "Fence 节点"
+msgid "Getting recent events..."
+msgstr "正在获取最近的事件..."
 
-msgid "View Details..."
-msgstr "查看细节..."
+msgid "Another operation is in progress..."
+msgstr "另一个操作正在执行..."
 
-msgid "View Recent Events..."
-msgstr "查看最近的事件..."
+msgid "No events found in last hour"
+msgstr "找不到过去一小时内的任何事件"
 
-msgid "Start"
-msgstr "起始"
-
-msgid "Stop"
-msgstr "停止"
-
-msgid "Move..."
-msgstr "移动..."
-
-msgid "Drop Relocation Rule"
-msgstr "丢弃重定位规则"
-
-msgid "Promote"
-msgstr "升级"
-
-msgid "Demote"
-msgstr "降级"
-
-msgid "Clean Up"
-msgstr "清理"
-
-msgid "Grant"
-msgstr "授予"
-
-msgid "Revoke"
-msgstr "撤消"
-
-msgid "Master/Slave ID"
-msgstr "主/从 ID"
-
-msgid "Getting recent events (last hour)..."
-msgstr "正在获取最近的事件（过去一小时）..."
-
-msgid "Another \"crm history\" operation is in progress..."
-msgstr "另一个“crm history”操作正在进行中..."
-
-msgid "No events found in last hour."
-msgstr "在过去一小时中找不到任何事件。"
+msgid "Remote node."
+msgstr "远程节点。"
 
 msgid "Utilization"
 msgstr "利用率"
@@ -905,23 +1377,20 @@ msgstr "未定义属性"
 msgid "Symmetrical"
 msgstr "对称"
 
-msgid "Close"
-msgstr "关闭"
+msgid "Command Log"
+msgstr "命令日志"
+
+msgid "Lists crm commands recently executed by hawk, most recent first."
+msgstr "列出 hawk 最近执行的 crm 命令，最近的列在最前面。"
 
 msgid "HTML"
-msgstr ""
+msgstr "HTML"
 
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
-msgid "There is already a monitor op with this interval."
-msgstr "已经存在使用该间隔的监视器 op。"
-
-msgid "Resource ID"
-msgstr "资源 ID"
-
-msgid "Template ID"
-msgstr "模板 ID"
+msgid "Template"
+msgstr "模板"
 
 msgid "Class"
 msgstr "类"
@@ -929,86 +1398,104 @@ msgstr "类"
 msgid "Provider"
 msgstr "提供程序"
 
-msgid "Type"
-msgstr "类型"
+msgid "Data collection in progress..."
+msgstr "正在收集数据..."
 
-msgid "Use Template"
-msgstr "使用模板"
+msgid "To"
+msgstr "到"
 
-msgid "Edit Resource"
-msgstr "编辑资源"
+msgid "Generate"
+msgstr "生成"
 
-msgid "Delete Resource"
-msgstr "删除资源"
+msgid "Upload"
+msgstr "上载"
 
-msgid "New Resource"
-msgstr "新资源"
+msgid "Reports"
+msgstr "报告"
 
-msgid "Primitive"
-msgstr "基元"
+msgid "Report"
+msgstr "报告"
 
-msgid "New Template"
-msgstr "新模板"
+msgid "Created"
+msgstr "已创建"
 
-msgid "Template"
-msgstr "模板"
+msgid "Transitions"
+msgstr "转换"
 
-msgid "New Group"
-msgstr "新建组"
+msgid "No transitions in report"
+msgstr "报告中没有转换"
 
-msgid "Group"
-msgstr "组"
+msgid "Previous"
+msgstr "上一项"
 
-msgid "New Clone"
-msgstr "新建克隆"
+msgid "Next"
+msgstr "下一项"
 
-msgid "Clone"
-msgstr "复制"
+msgid "PE Name"
+msgstr "PE 名称"
 
-msgid "New Master/Slave"
-msgstr "新建主/从"
+msgid "Node"
+msgstr "节点"
 
-msgid "Master/Slave"
-msgstr "主/从"
+msgid "Time"
+msgstr "时间"
 
-msgid "(No primitive resources defined)"
-msgstr "（未定义基元资源）"
+msgid "Version"
+msgstr "版本"
 
-msgid "(No templates defined)"
-msgstr "（未定义模板）"
+msgid "Configuration"
+msgstr "配置"
 
-msgid "(No groups defined)"
-msgstr "（未定义组）"
+msgid "Diff"
+msgstr "差异"
 
-msgid "(No clones defined)"
-msgstr "（未定义克隆）"
+msgid "Logs"
+msgstr "日志"
 
-msgid "(No master/slave resources defined)"
-msgstr "（未定义主/从资源）"
+msgid "Node Events"
+msgstr "节点事件"
 
-msgid "Fail Count"
-msgstr "错误计数"
+msgid "Resource Events"
+msgstr "资源事件"
 
-msgid "Last Failure"
-msgstr "上次失败"
+msgid "Resource:"
+msgstr "资源："
 
-#, fuzzy
-msgid "Rule"
-msgstr "角色"
+msgid "Value"
+msgstr "值"
+
+msgid "Instances"
+msgstr "实例"
+
+msgid "State"
+msgstr "状态"
+
+msgid "Failed Operations"
+msgstr "失败的操作"
+
+msgid "Call"
+msgstr "调用"
+
+msgid "Operation"
+msgstr "操作"
+
+msgid "Reason"
+msgstr "原因"
+
+msgid "Add a resource"
+msgstr "添加资源"
 
 msgid "Add a rule below"
-msgstr ""
+msgstr "在下面添加规则"
 
-#, fuzzy
 msgid "Remove this rule"
-msgstr "删除规则"
+msgstr "去除此规则"
 
-#, fuzzy
 msgid "Move rule up"
-msgstr "移动资源 %s"
+msgstr "将规则上移"
 
 msgid "Move rule down"
-msgstr ""
+msgstr "将规则下移"
 
 msgid "Right"
 msgstr "右"
@@ -1016,88 +1503,181 @@ msgstr "右"
 msgid "XPath"
 msgstr "XPath"
 
-msgid "Tag"
-msgstr "标记"
+msgid "Object Type"
+msgstr "对象类型"
 
-msgid "Ref"
-msgstr "参照"
+msgid "Reference"
+msgstr "参考"
 
 msgid "Attribute"
 msgstr "特性"
 
-#, fuzzy
-msgid "Delete role"
-msgstr "删除资源"
+msgid "ACL Roles"
+msgstr "ACL 角色"
 
-#, fuzzy
-msgid "Add role"
-msgstr "添加规则"
-
-msgid ""
-"ACL support requires CIB schema version 2.0, available in Pacemaker 1.1.12 and"
-" up. For older versions of Pacemaker, use Hawk version 0.6."
-msgstr ""
-
-#, fuzzy
-msgid "Username"
-msgstr "用户名："
-
-#, fuzzy
-msgid "Password"
-msgstr "口令："
-
-#, fuzzy
 msgid "Login"
 msgstr "登录"
+
+msgid "Version:"
+msgstr "版本："
+
+msgid "DC:"
+msgstr "DC："
+
+msgid "UI:"
+msgstr "UI："
+
+msgid "Status:"
+msgstr "状态："
+
+msgid "Add resource"
+msgstr "添加资源"
+
+msgid "Add constraint"
+msgstr "添加约束"
+
+msgid "Add template"
+msgstr "添加模板"
+
+msgid "Choose wizard"
+msgstr "选择向导"
+
+msgid "Simulator Active"
+msgstr "模拟器为活动状态"
+
+msgid "Reset"
+msgstr "重设置"
+
+msgid "Run"
+msgstr "运行"
+
+msgid "Results"
+msgstr "结果"
+
+msgid "Simulation Results"
+msgstr "模拟结果"
+
+msgid "Summary"
+msgstr "小结"
+
+msgid "CIB (in)"
+msgstr "CIB（输入）"
+
+msgid "CIB (out)"
+msgstr "CIB（输出）"
+
+msgid "Transition Graph"
+msgstr "转换图"
+
+msgid "Transition (XML)"
+msgstr "转换 (XML)"
+
+msgid "Inject Node Event"
+msgstr "插入节点事件"
+
+msgid "OK"
+msgstr "确定"
+
+msgid "Inject Operation Event"
+msgstr "插入操作事件"
+
+msgid "Interval (ms)"
+msgstr "间隔（毫秒）"
+
+msgid "Result"
+msgstr "结果"
+
+msgid "Inject Ticket Event"
+msgstr "插入票据事件"
+
+msgid "Action"
+msgstr "操作"
+
+msgid "Enable the simulation mode"
+msgstr "启用模拟模式"
+
+msgid "Disable Simulator"
+msgstr "禁用模拟器"
+
+msgid "Disable the simulation mode"
+msgstr "禁用模拟模式"
+
+msgid "Profile"
+msgstr "配置文件"
+
+msgid "Logout"
+msgstr "注销"
+
+msgid "Menu"
+msgstr "菜单"
+
+msgid "Errors"
+msgstr "错误"
+
+msgid "No objects available"
+msgstr "无可用的对象"
+
+msgid "Ticket ID"
+msgstr "票据 ID"
 
 msgid "Loss Policy"
 msgstr "丢失策略"
 
-#, fuzzy
-msgid "Delete user"
-msgstr "删除资源"
+msgid "Ticket:"
+msgstr "票据："
 
-#, fuzzy
-msgid "Add user"
-msgstr "添加群集"
+msgid "Properties"
+msgstr "属性"
 
-msgid "%{workflow}: %{step}"
-msgstr "%{workflow}：%{step}"
+msgid "Sequential"
+msgstr "顺序"
 
-msgid "The configuration has been applied."
-msgstr "已应用配置。"
+msgid "No resources defined for ticket"
+msgstr "未为此票据定义资源"
 
-msgid "The following configuration will be applied to the cluster:"
-msgstr "下列配置将应用于群集："
+msgid "Target ID"
+msgstr "目标 ID"
 
-msgid "Error applying configuration:"
-msgstr "应用配置时出错："
+msgid "Verifying parameters..."
+msgstr "正在校验参数..."
 
-msgid "< Back"
-msgstr "< 上一步"
+msgid "Do you really want to cancel the wizard setup?"
+msgstr "确实要取消安装向导吗？"
 
-msgid "Next >"
-msgstr "下一步 〉"
+msgid "Do you really want to apply the current wizard?"
+msgstr "确实要应用当前向导吗？"
 
-msgid "No workflow descriptions found"
-msgstr "找不到工作流程描述"
+msgid "Choose a wizard"
+msgstr "选择向导"
 
-msgid "Choose Configuration"
-msgstr "选择配置"
+msgid "Legacy Wizards"
+msgstr "旧式向导"
+
+msgid "Verify and apply"
+msgstr "校验并应用"
+
+msgid "Review the wizard actions and apply the changes"
+msgstr "复查向导操作并应用更改"
+
+msgid "Enable this step"
+msgstr "启用此步骤"
+
+msgid "This wizard takes no parameters."
+msgstr "此向导未采用任何参数。"
+
+msgid "Verify"
+msgstr "校验"
 
 msgid ""
-"This wizard will guide you through the steps necessary to add one of the follo"
-"wing configurations to the cluster."
-msgstr "此向导将引导您执行所需的步骤以向群集中添加下列某个配置。"
+"To apply the changes, Hawk requires root access, and password-less SSH access "
+"must be configured. See the Hawk documentation for more information."
+msgstr "要应用更改，Hawk 需要拥有 root 访问权，并且必须配置无口令 SSH 访问方式。有关详细信息，请参见 Hawk 的相关文档。"
+
+msgid "Root password"
+msgstr "Root 口令"
 
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "对象/属性不存在 (cibadmin %{cmd})"
 
 msgid "Error invoking cibadmin %{cmd}: %{msg}"
 msgstr "调用 cibadmin %{cmd} 时出错：%{msg}"
-
-msgid "The object/attribute does not exist: %{msg}"
-msgstr "对象/属性不存在：%{msg}"
-
-msgid "Error invoking cibadmin --replace: %{msg}"
-msgstr "调用 cibadmin --replace 时出错：%{msg}"

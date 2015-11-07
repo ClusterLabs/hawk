@@ -1,11 +1,11 @@
-# Copyright (C) 2006-2015 SUSE Linux GmbH, Nuernberg
+# Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
 # This file is distributed under the same license as the package.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2014-09-03 10:42\n"
+"PO-Revision-Date: 2015-11-05 17:01\n"
 "Last-Translator: Novell language <language@novell.com>\n"
 "Language-Team: Novell language <language@novell.com>\n"
 "Language: \n"
@@ -14,28 +14,90 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "Any changes will be lost - do you wish to proceed?"
-msgstr "سيتم فقد أية تغييرات - هل تريد المتابعة؟"
+msgid "Error"
+msgstr "خطأ"
 
-msgid "Connection to server aborted - will retry every 15 seconds."
-msgstr "تم إيقاف الاتصال بالخادم، ستُعاد المحاولة كل 15 ثانية."
+msgid "Unexpected server error: _MSG_"
+msgstr "خطأ غير متوقع بالخادم:  _MSG_"
 
-#, fuzzy
-msgid "Connection to server failed - will retry every 15 seconds."
-msgstr "تم إيقاف الاتصال بالخادم، ستُعاد المحاولة كل 15 ثانية."
+msgid ""
+"Connection to server failed (server down or network error - will retry every 1"
+"5 seconds)."
+msgstr ""
+"فشل الاتصال بالخادم (إما أن ‏‏الخادم لا يستجيب وإما أن هناك خطأ في الشبكة - ست"
+"ُعاد المحاولة كل 15 ثانية)."
 
 msgid "Connection to server timed out - will retry every 15 seconds."
 msgstr "انتهت مهلة الاتصال بالخادم - ستُعاد المحاولة كل 15 ثانية."
 
-#, fuzzy
-msgid "State"
-msgstr "الولاية:                    "
+msgid "Connection to server aborted - will retry every 15 seconds."
+msgstr "تم إيقاف الاتصال بالخادم، ستُعاد المحاولة كل 15 ثانية."
 
-msgid "Name"
-msgstr ""
+msgid "Permission denied"
+msgstr "الإذن مرفوض"
 
-msgid "Maintenance"
-msgstr "الصيانة"
+msgid "_OP_ failed on _NODE_} (rc=_RC_, reason=_REASON_)"
+msgstr "_OP_ failed on _NODE_} (rc=_RC_, reason=_REASON_)"
+
+msgid "Permission denied. "
+msgstr "الإذن مرفوض. "
+
+msgid "Error connecting to server."
+msgstr "حدث خطأ أثناء الاتصال بالخادم."
+
+msgid "Connection to server timed out."
+msgstr "انتهت مهلة الاتصال بالخادم."
+
+msgid "Connection to server was aborted."
+msgstr "تم إيقاف الاتصال بالخادم."
+
+msgid "Server returned invalid data."
+msgstr "أرجع الخادم بيانات غير صالحة."
+
+msgid "Unknown error connecting to server."
+msgstr "حدث خطأ غير معروف في الاتصال بالخادم."
+
+msgid "Retrying every 15 seconds..."
+msgstr "إعادة المحاولة كل 15 ثانية..."
+
+msgid "Cancel"
+msgstr "إلغاء"
+
+msgid "Hostname"
+msgstr "اسم المضيف"
+
+msgid "Username"
+msgstr "اسم المستخدم"
+
+msgid "Password"
+msgstr "كلمة السر"
+
+msgid "Connect"
+msgstr "اتصال"
+
+msgid "Local Status"
+msgstr "الحالة المحلية"
+
+msgid "Remove cluster _NAME_ from dashboard?"
+msgstr "إزالة المجموعة المتماثلة _NAME_ من لوحة المعلومات؟"
+
+msgid "Cluster removed successfully."
+msgstr "تمت إزالة المجموعة المتماثلة بنجاح."
+
+msgid "Error removing cluster."
+msgstr "حدث خطأ في إزالة المجموعة المتماثلة."
+
+msgid "Please wait..."
+msgstr "الرجاء الانتظار..."
+
+msgid "Cluster added successfully."
+msgstr "تم إضافة المجموعة المتماثلة بنجاح."
+
+msgid "Create"
+msgstr "إنشاء"
+
+msgid "Remove"
+msgstr "إزالة"
 
 msgid "Yes"
 msgstr "نعم"
@@ -43,48 +105,305 @@ msgstr "نعم"
 msgid "No"
 msgstr "لا"
 
-msgid "Standby"
-msgstr "استعداد"
+msgid "Any changes will be lost - do you wish to proceed?"
+msgstr "سيتم فقد أية تغييرات - هل تريد المتابعة؟"
+
+msgid "Clone ID"
+msgstr "معرف الاستنساخ"
 
 msgid "Operations"
 msgstr "العمليات"
 
-msgid "Online"
-msgstr "متصل"
+msgid "Edit"
+msgstr "تحرير"
 
-msgid "Ready"
-msgstr "جاهز"
+msgid "Delete"
+msgstr "حذف"
+
+msgid "Constraint ID"
+msgstr "معرف القيد"
+
+msgid "Swap with entry above"
+msgstr "التبديل مع الإدخال أعلاه"
+
+msgid "Link with entry above"
+msgstr "الربط مع الإدخال أعلاه"
+
+msgid "Unlink from entry above"
+msgstr "إلغاء الربط من الإدخال أعلاه"
+
+msgid "Type"
+msgstr "النوع"
+
+msgid "Location"
+msgstr "الموقع"
+
+msgid "Colocation"
+msgstr "الموقع المشترك"
+
+msgid "Order"
+msgstr "الترتيب"
+
+msgid "Ticket"
+msgstr "البطاقة"
+
+msgid "Constraint"
+msgstr "القيد"
+
+msgid "Group ID"
+msgstr "معرف المجموعة"
+
+msgid "Rule"
+msgstr "القاعدة"
+
+msgid "Score"
+msgstr "النتيجة"
+
+msgid "Role"
+msgstr "الدور"
+
+msgid "Boolean Operator"
+msgstr "المشغل المنطقي"
+
+msgid "Multi-state ID"
+msgstr "المعرف متعدد الحالات"
+
+msgid "Connection to server failed - will retry every 15 seconds."
+msgstr "فشل الاتصال بالخادم - ستتم إعادة المحاولة كل 15 ثانية."
+
+msgid "Status"
+msgstr "الحالة"
+
+msgid "Remote"
+msgstr "بعيد"
+
+msgid "Name"
+msgstr "الاسم"
+
+msgid "Maintenance"
+msgstr "الصيانة"
+
+msgid "Switch to ready"
+msgstr "التبديل إلى جاهز"
+
+msgid "Switch to maintenance"
+msgstr "التبديل إلى الصيانة"
+
+msgid "Standby"
+msgstr "استعداد"
+
+msgid "Switch to online"
+msgstr "التبديل إلى على الإنترنت"
+
+msgid "Switch to standby"
+msgstr "التبديل إلى وضع الاستعداد"
 
 msgid "Fence"
-msgstr ""
+msgstr "الفاصل"
 
 msgid "Details"
 msgstr "التفاصيل"
 
-msgid "Events"
-msgstr ""
+msgid "Add"
+msgstr "إضافة"
+
+msgid "Apply"
+msgstr "تطبيق"
+
+msgid "No interval set for monitor operation"
+msgstr "لم يتم تعيين فاصل زمني لعملية المراقبة"
+
+msgid "Replacing previously defined monitor operation with same interval"
+msgstr "استبدال عملية المراقبة المحددة سابقًا بنفس الفاصل الزمني"
+
+msgid "Resource ID"
+msgstr "معرف المورد"
+
+msgid "Failed to fetch meta attributes"
+msgstr "فشل إحضار سمات التعريف"
+
+msgid "Report generation is complete."
+msgstr "تم اكتمال إنشاء التقرير."
+
+msgid "From"
+msgstr "من"
+
+msgid "Until"
+msgstr "حتى"
+
+msgid "Custom"
+msgstr "مخصص"
+
+msgid "Su"
+msgstr "الأحد"
+
+msgid "Mo"
+msgstr "الاثنين"
+
+msgid "Tu"
+msgstr "الثلاثاء"
+
+msgid "We"
+msgstr "الأربعاء"
+
+msgid "Th"
+msgstr "الخميس"
+
+msgid "Fr"
+msgstr "الجمعة"
+
+msgid "Sa"
+msgstr "السبت"
+
+msgid "January"
+msgstr "يناير"
+
+msgid "February"
+msgstr "فبراير"
+
+msgid "March"
+msgstr "مارس"
+
+msgid "April"
+msgstr "أبريل"
+
+msgid "May"
+msgstr "مايو"
+
+msgid "June"
+msgstr "يونيه"
+
+msgid "July"
+msgstr "يوليو"
+
+msgid "August"
+msgstr "أغسطس"
+
+msgid "September"
+msgstr "سبتمبر"
+
+msgid "October"
+msgstr "أكتوبر"
+
+msgid "November"
+msgstr "نوفمبر"
+
+msgid "December"
+msgstr "ديسمبر"
+
+msgid "Show"
+msgstr "اعرض"
+
+msgid "Download"
+msgstr "تحميل"
+
+msgid "Unmanaged"
+msgstr "غير مُدار"
+
+msgid "Started"
+msgstr "تم البدء"
+
+msgid "Primary"
+msgstr "رئيسي"
+
+msgid "Secondary"
+msgstr "ثانوي"
+
+msgid "Stopped"
+msgstr "تم الإيقاف"
+
+msgid "Group"
+msgstr "المجموعة"
+
+msgid "Multi-state"
+msgstr "متعدد الحالات"
+
+msgid "Clone"
+msgstr "استنساخ"
+
+msgid "Tag"
+msgstr "علامة"
+
+msgid "Stop"
+msgstr "إيقاف"
+
+msgid "Start"
+msgstr "بداية"
+
+msgid "Demote"
+msgstr "تخفيض"
+
+msgid "Promote"
+msgstr "الترقية"
+
+msgid "Unmanage"
+msgstr "عدم إدارة"
+
+msgid "Manage"
+msgstr "إدارة"
+
+msgid "Migrate"
+msgstr "ترحيل"
+
+msgid "Unmigrate"
+msgstr "إلغاء ترحيل"
+
+msgid "Cleanup"
+msgstr "تنظيف"
+
+msgid "Primitive"
+msgstr "مجموعة أساسية"
+
+msgid "Resource"
+msgstr "مورد"
 
 msgid "Role ID"
 msgstr "معرف الدور"
 
+msgid "Stopped Resources"
+msgstr "الموارد المتوقفة"
+
+msgid "Tag ID"
+msgstr "معرف العلامة"
+
+msgid "Objects"
+msgstr "الكائنات"
+
+msgid "ID"
+msgstr "المعرف"
+
+msgid "Granted"
+msgstr "تم المنح"
+
+msgid "Revoked"
+msgstr "مبطلة"
+
+msgid "Grant"
+msgstr "منح"
+
+msgid "Revoke"
+msgstr "إبطال"
+
 msgid "User ID"
 msgstr "معرف المستخدم"
 
+msgid "Must be a valid resource ID"
+msgstr "يجب أن يكون معرف مورد صالحًا"
+
+msgid "Applying configuration changes..."
+msgstr "جارٍ تطبيق تغييرات التكوين..."
+
+msgid "Changes applied successfully."
+msgstr "تم تطبيق التغييرات بنجاح."
+
+msgid "Agent"
+msgstr "الوكيل"
+
+msgid "Created a new shadow CIB for %USER%."
+msgstr "تم إنشاء ظل CIB احتياطي جديد للمستخدم %USER%."
+
 msgid "Unable to create shadow CIB"
 msgstr "تعذر إنشاء ظل احتياطي لـ CIB"
-
-msgid "1 node configured"
-msgid_plural "%{num} nodes configured"
-msgstr[0] "تم تكوين عقدة واحدة"
-msgstr[1] "تم تكوين %{num} عقدة (عقد)"
-
-msgid "1 resource configured"
-msgid_plural "%{num} resources configured"
-msgstr[0] "تم تكوين مورد واحد"
-msgstr[1] "تم تكوين %{num} مورد (موارد)"
-
-msgid "Edit Clone"
-msgstr "تحرير الاستنساخ"
 
 msgid "Create Clone"
 msgstr "إنشاء استنساخ"
@@ -92,67 +411,62 @@ msgstr "إنشاء استنساخ"
 msgid "Clone created successfully"
 msgstr "تم إنشاء الاستنساخ بنجاح"
 
+msgid "Edit Clone"
+msgstr "تحرير الاستنساخ"
+
 msgid "Clone updated successfully"
 msgstr "تم تحديث الاستنساخ بنجاح"
 
-msgid "Edit Colocation Constraint"
-msgstr "تحرير قيد الموقع المشترك"
+msgid "Clone deleted successfully"
+msgstr "تم حذف الاستنساخ بنجاح"
 
-msgid "Create Colocation Constraint"
-msgstr "إنشاء قيد الموقع المشترك"
+msgid "Error deleting %s: %s"
+msgstr "حدث خطأ في حذف %s: %s"
+
+msgid "Clones"
+msgstr "عمليات الاستنساخ"
+
+msgid "The clone does not exist"
+msgstr "الاستنساخ غير موجود"
+
+msgid "Create Colocation"
+msgstr "إنشاء موقع مشترك"
 
 msgid "Constraint created successfully"
 msgstr "تم إنشاء القيد بنجاح"
 
+msgid "Edit Colocation"
+msgstr "تحرير الموقع المشترك"
+
 msgid "Constraint updated successfully"
 msgstr "تم تحديث القيد بنجاح"
+
+msgid "Colocation deleted successfully"
+msgstr "تم إنشاء الموقع المشترك بنجاح"
+
+msgid "Colocations"
+msgstr "المواقع المشترك"
+
+msgid "The colocation constraint does not exist"
+msgstr "قيد موقع المشترك غير موجود"
 
 msgid "Constraints"
 msgstr "القيود"
 
+msgid "Configuration updated successfully"
+msgstr "تم تحديث التكوين بنجاح"
+
 msgid "Cluster Configuration"
 msgstr "تكوين المجموعة المتماثلة"
 
-msgid "Your changes have been saved"
-msgstr "تم حفظ التغييرات التي قمت بإجرائها"
-
-msgid "Unable to apply changes: %{msg}"
-msgstr "تعذر تطبيق التغييرات: %{msg}"
-
-msgid ""
-"Can't set property %{p}, because the value contains both single and double quo"
-"tes"
-msgstr "يتعذر تعيين الخاصية %{p}، نظرًا لاحتواء القيمة على علامات اقتباس مفردة ومزدوجة"
-
-msgid "Cluster Dashboard"
-msgstr "لوحة معلومات المجموعة المتماثلة"
+msgid "Error removing %s: %s"
+msgstr "حدث خطأ في إزالة %s: %s"
 
 msgid "Dashboard"
 msgstr "لوحة المعلومات"
 
-msgid "History Explorer"
-msgstr "History Explorer"
-
-msgid "PE Input created by different Pacemaker version (%{version})"
-msgstr "تم إنشاء إدخال PE بإصدار Pacemaker مختلف (%{version})"
-
-msgid "Pacemaker version not present in PE Input"
-msgstr "إصدار Pacemaker غير موجود في إدخال PE"
-
-msgid "Required parameters \"basename\" and \"node\" not specified"
-msgstr "المعلمتان المطلوبتان \"basename\" و\"node\" غير محددتين"
-
-msgid "No details available"
-msgstr "لا تتوفر أية تفاصيل"
-
-msgid "Error:"
-msgstr "خطأ:"
-
-msgid "Required parameters \"left\" and \"right\" not specified"
-msgstr "المعلمتان المطلوبتان \"left\" و\"right\" غير محددتين"
-
-msgid "Edit Group"
-msgstr "تحرير مجموعة"
+msgid "Cluster Graph"
+msgstr "الرسم البياني لمجموعة المتماثلة"
 
 msgid "Create Group"
 msgstr "مجموعة الإنشاء"
@@ -160,82 +474,209 @@ msgstr "مجموعة الإنشاء"
 msgid "Group created successfully"
 msgstr "تم إنشاء المجموعة بنجاح"
 
+msgid "Edit Group"
+msgstr "تحرير مجموعة"
+
 msgid "Group updated successfully"
 msgstr "تم تحديث المجموعة بنجاح"
 
-msgid "Edit Location Constraint"
-msgstr "تحرير قيد الموقع"
+msgid "Group deleted successfully"
+msgstr "تم حذف المجموعة بنجاح"
+
+msgid "Groups"
+msgstr "المجموعات"
+
+msgid "The group does not exist"
+msgstr "المجموعة غير موجودة"
 
 msgid "Create Location Constraint"
 msgstr "إنشاء قيد الموقع"
 
-msgid "%{cmd} failed (status: %{status})"
-msgstr "فشل %{cmd} (الحالة:%{status})"
+msgid "Edit Location Constraint"
+msgstr "تحرير قيد الموقع"
 
-msgid "Cluster Status"
-msgstr "حالة المجموعة"
+msgid "Location deleted successfully"
+msgstr "تم حذف الموقع بنجاح"
 
-msgid "Required parameter \"node\" not specified"
-msgstr "المعلمة المطلوبة \"node\" غير محددة"
+msgid "Location Constraints"
+msgstr "قيود الموقع"
 
-msgid "Required parameter \"resource\" not specified"
-msgstr "المعلمة المطلوبة \"resource\" غير محددة"
+msgid "The location constraint does not exist"
+msgstr "قيد الموقع غير موجود"
 
-msgid "Required parameters \"resource\" and \"node\" not specified"
-msgstr "المعلمات المطلوبة \"resource\" و\"node\" غير محددة"
+msgid "Create Multi-state resource"
+msgstr "إنشاء مورد متعدد الحالات"
 
-msgid "Error deleting resource"
-msgstr "حدث خطأ أثناء حذف المورد"
+msgid "Multi-state resource created successfully"
+msgstr "تم إنشاء المورد متعدد الحالات بنجاح"
 
-msgid "Required parameters \"ticket\" and \"site\" not specified"
-msgstr "المعلمتان المطلوبتان \"ticket\" و\"site\" غير محددتين"
+msgid "Edit Multi-state resource"
+msgstr "تحرير مورد متعدد الحالات"
 
-msgid "Required parameter \"ticket\" not specified"
-msgstr "المعلمة المطلوبة \"ticket\" غير محددة"
+msgid "Multi-state resource updated successfully"
+msgstr "تم تحديث المورد متعدد الحالات بنجاح"
 
-msgid "Error invoking %{cmd}: %{msg}"
-msgstr "حدث خطأ أثناء استدعاء %{cmd}: %{msg}"
+msgid "Multi-state resource deleted successfully"
+msgstr "تم حذف المورد متعدد الحالات بنجاح"
 
-msgid "Edit Master/Slave"
-msgstr "تحرير الرئيس/التابع"
+msgid "Multi-state resource"
+msgstr "المورد متعدد الحالات"
 
-msgid "Create Master/Slave"
-msgstr "إنشاء الرئيس/التابع"
+msgid "The multi-state resource does not exist"
+msgstr "المورد متعدد الحالات غير موجود"
 
-msgid "Master/Slave created successfully"
-msgstr "تم إنشاء الرئيس/التابع بنجاح"
+msgid "Set the node state to online"
+msgstr "تعيين حالة العقدة على على الإنترنت"
 
-msgid "Master/Slave updated successfully"
-msgstr "تم تحديث الرئيس/التابع بنجاح"
+msgid "Set the node state to standby"
+msgstr "تعيين حالة العقدة على وضع الاستعداد"
 
-#, fuzzy
+msgid "Set the node state to maintenance"
+msgstr "تعيين حالة العقدة على الصيانة"
+
+msgid "Set the node state to ready"
+msgstr "تعيين حالة العقدة على جاهز"
+
+msgid "Set the node state to fence"
+msgstr "تعيين حالة العقدة على الفاصل"
+
 msgid "Nodes"
-msgstr "عقدة"
+msgstr "العقد"
 
-msgid "Edit Order Constraint"
-msgstr "تحرير قيد الترتيب"
+msgid "The node does not exist"
+msgstr "العقدة غير موجود"
 
-msgid "Create Order Constraint"
-msgstr "إنشاء قيد الترتيب"
+msgid "Create Order"
+msgstr "إنشاء ترتيب"
+
+msgid "Edit Order"
+msgstr "تحرير ترتيب"
+
+msgid "Order deleted successfully"
+msgstr "تم إنشاء الترتيب بنجاح"
+
+msgid "Orders"
+msgstr "عمليات الترتيب"
+
+msgid "The order constraint does not exist"
+msgstr "قيد الترتيب غير موجود"
 
 msgid "Welcome"
-msgstr ""
+msgstr "مرحبًا"
 
 msgid "Help"
-msgstr ""
+msgstr "تعليمات"
 
-msgid "Create Resource"
-msgstr "إنشاء مورد"
+msgid "Commands"
+msgstr "الأوامر"
 
-msgid "Resource created successfully"
-msgstr "تم إنشاء المورد بنجاح"
+msgid "Create Primitive"
+msgstr "إنشاء مجموعة أساسية"
 
-msgid "Resource updated successfully"
-msgstr "تم تحديث المورد بنجاح"
+msgid "Primitive created successfully"
+msgstr "تم إنشاء المجموعة الأساسية بنجاح"
 
-#, fuzzy
+msgid "Edit Primitive"
+msgstr "تحرير المجموعة الأساسية"
+
+msgid "Primitive updated successfully"
+msgstr "تم تحديث المجموعة الأساسية بنجاح"
+
+msgid "Primitive deleted successfully"
+msgstr "تم حذف المجموعة الأساسية بنجاح"
+
 msgid "Primitives"
-msgstr "مجموعة أساسية"
+msgstr "المجموعات الأساسية"
+
+msgid "The primitive does not exist"
+msgstr "المجموعة الأساسية غير موجودة"
+
+msgid "Preferences updated successfully"
+msgstr "تم تحديث التفضيلات بنجاح"
+
+msgid "Preferences"
+msgstr "تفضيلات"
+
+msgid "Please wait while report is generated..."
+msgstr "الرجاء الانتظار حتى يتم إنشاء التقرير..."
+
+msgid "Failed to generate"
+msgstr "فشل الإنشاء"
+
+msgid "Upload completed."
+msgstr "تم اكتمال الإيداع."
+
+msgid "Cannot display diff, too few transitions"
+msgstr "يتعذر عرض الفرق، يوجد القليل من عمليات الانتقال"
+
+msgid "Report deleted successfully"
+msgstr "تم حذف التقرير بنجاح"
+
+msgid "Error deleting %s"
+msgstr "حدث خطأ أثناء حذف %s"
+
+msgid "History Explorer"
+msgstr "History Explorer"
+
+msgid "The report does not exist"
+msgstr "التقرير غير موجود"
+
+msgid "must be a valid datetime"
+msgstr "يجب أن يكون وقتًا وتاريخًا صالحين"
+
+msgid "Successfully started the resource"
+msgstr "تم بدء المورد بنجاح"
+
+msgid "Failed to start the resource: %{err}"
+msgstr "فشل بدء المورد: %{err}"
+
+msgid "Successfully stopped the resource"
+msgstr "تم إيقاف المورد بنجاح"
+
+msgid "Failed to stop the resource: %{err}"
+msgstr "فشل إيقاف المورد: %{err}"
+
+msgid "Successfully promoted the resource"
+msgstr "تمت ترقية المورد بنجاح"
+
+msgid "Failed to promote the resource: %{err}"
+msgstr "فشلت ترقية المورد: %{err}"
+
+msgid "Successfully demoted the resource"
+msgstr "تم تخفيض رتبة المورد بنجاح"
+
+msgid "Failed to demote the resource: %{err}"
+msgstr "فشل تخفيض رتبة المورد: %{err}"
+
+msgid "Successfully set the resource in managed mode"
+msgstr "تم تعيين المورد في الوضع المدار بنجاح"
+
+msgid "Failed to set the resource in managed mode: %{err}"
+msgstr "فشل تعيين المورد في الوضع المدار: %{err}"
+
+msgid "Successfully set the resource in unmanaged mode"
+msgstr "تم تعيين المورد في الوضع غير المدار بنجاح"
+
+msgid "Failed to set the resource in unmanaged mode: %{err}"
+msgstr "فشل تعيين المورد في الوضع غير المدار: %{err}"
+
+msgid "Successfully unmigrated the resource"
+msgstr "تم إلغاء ترحيل المورد بنجاح"
+
+msgid "Failed to unmigrate the resource: %{err}"
+msgstr "فشل إلغاء ترحيل المورد: %{err}"
+
+msgid "Successfully migrated the resource"
+msgstr "تم ترحيل المورد بنجاح"
+
+msgid "Failed to migrate the resource: %{err}"
+msgstr "تعذر ترحيل المورد: %{err}"
+
+msgid "Successfully cleaned the resource"
+msgstr "تم تنظيف المورد بنجاح"
+
+msgid "Failed to clean up the resource: %{err}"
+msgstr "فشل تنظيف المورد: %{err}"
 
 msgid "Resources"
 msgstr "الموارد"
@@ -252,22 +693,24 @@ msgstr "تحرير قاعدة"
 msgid "Role updated successfully"
 msgstr "تم تحديث الدور بنجاح"
 
-#, fuzzy
 msgid "Role deleted successfully"
-msgstr "تم إنشاء الدور بنجاح"
+msgstr "تم حذف الدور بنجاح"
 
-#, fuzzy
-msgid "Error deleting %s"
-msgstr "حدث خطأ أثناء حذف المورد"
+msgid "ACL is not supported by the cluster"
+msgstr "لا تدعم المجموعة المتماثلة ACL"
 
 msgid "Roles"
 msgstr "الدور"
 
 msgid "The role does not exist"
-msgstr ""
+msgstr "الدور غير موجود"
 
-msgid "To enable ACLs, set 'enable-acl' in the CRM Configuration"
-msgstr "لتمكين قوائم التحكم في الوصول (ACL)، عيّن 'enable-acl' في تكوين CRM"
+msgid ""
+"To enable ACLs, set \"enable-acl\" in the Cluster Configuration ('Manage > Confi"
+"guration')"
+msgstr ""
+"لتمكين قوائم ACL، قم بتعيين \"enable-acl\" في تكوين المجموعة المتماثلة ('إدارة >"
+" التكوين')"
 
 msgid "Permission denied for user %{user}"
 msgstr "تم رفض الإذن للمستخدم %{user}"
@@ -278,15 +721,29 @@ msgstr "تم تسجيل خروجك."
 msgid "Log In"
 msgstr "دخول"
 
-#, fuzzy
-msgid "Preferences updated successfully"
-msgstr "تم تحديث المورد بنجاح"
+msgid "Simulator"
+msgstr "محاكي"
 
-msgid "Preferences"
-msgstr "تفضيلات"
+msgid "Create Tag"
+msgstr "إنشاء علامة"
 
-msgid "Edit Template"
-msgstr "تحرير القالب"
+msgid "Tag created successfully"
+msgstr "تم إنشاء العلامة بنجاح"
+
+msgid "Edit Tag"
+msgstr "تحرير علامة"
+
+msgid "Tag updated successfully"
+msgstr "تم تحديث العلامة بنجاح"
+
+msgid "Tag deleted successfully"
+msgstr "تم حذف العلامة بنجاح"
+
+msgid "Tags"
+msgstr "العلامات"
+
+msgid "The tag does not exist"
+msgstr "العلامة غير موجودة"
 
 msgid "Create Template"
 msgstr "إنشاء قالب"
@@ -294,108 +751,140 @@ msgstr "إنشاء قالب"
 msgid "Template created successfully"
 msgstr "تم إنشاء القالب بنجاح"
 
+msgid "Edit Template"
+msgstr "تحرير القالب"
+
 msgid "Template updated successfully"
 msgstr "تم تحديث القالب بنجاح"
 
-msgid "Edit Ticket Constraint"
-msgstr "تحرير قيد البطاقة"
+msgid "Template deleted successfully"
+msgstr "تم حذف القالب بنجاح"
 
-msgid "Create Ticket Constraint"
-msgstr "إنشاء قيد للبطاقة"
+msgid "You have no template feature support"
+msgstr "لا يوجد لديك دعم ميزة القالب"
 
-msgid "Create User"
-msgstr "إنشاء مستخدم"
+msgid "Templates"
+msgstr "القوالب"
 
-msgid "User created successfully"
-msgstr "تم إنشاء المستخدم بنجاح"
+msgid "The template does not exist"
+msgstr "القالب غير موجود"
 
-msgid "Edit User"
-msgstr "تحرير بيانات المستخدم"
+msgid "Create Ticket"
+msgstr "إنشاء بطاقة"
 
-msgid "User updated successfully"
-msgstr "تم تحديث المستخدم بنجاح"
+msgid "Edit Ticket"
+msgstr "تحرير بطاقة"
 
-#, fuzzy
-msgid "User deleted successfully"
-msgstr "تم إنشاء المستخدم بنجاح"
+msgid "Ticket deleted successfully"
+msgstr "تم حذف البطاقة بنجاح"
 
-#, fuzzy
-msgid "Users"
-msgstr "المستخدم"
+msgid "Successfully granted the ticket"
+msgstr "تم منح البطاقة بنجاح"
 
-msgid "The user does not exist"
-msgstr ""
+msgid "Successfully revoked the ticket"
+msgstr "تم إبطال البطاقة بنجاح"
 
-msgid "Cluster Setup Wizard"
-msgstr "معالج إعداد المجموعة"
+msgid "Tickets"
+msgstr "البطاقات"
 
-msgid "Invalid password"
-msgstr "كلمة السر غير صالحة"
+msgid "The ticket constraint does not exist"
+msgstr "قيد البطاقة غير موجود"
 
-msgid "Root Password"
-msgstr "كلمة السر الجذر"
+msgid "Create ACL Target"
+msgstr "إنشاء هدف ACL"
 
-msgid ""
-"The root password is required in order for this wizard template to make config"
-"uration changes."
-msgstr "يستلزم إدخال كلمة السر الجذر لقالب المعالج هذا كي يتم إجراء تغييرات التكوين."
+msgid "ACL target created successfully"
+msgstr "تم إنشاء هدف ACL"
 
-msgid "The root password for this system"
-msgstr "كلمة السر الجذر لهذا النظام"
+msgid "Edit ACL Target"
+msgstr "تحرير هدف ACL"
 
-msgid "\"Error: #{result}\""
-msgstr "\"الخطأ: #{result}\""
+msgid "ACL target updated successfully"
+msgstr "تم تحديث هدف ACL بنجاح"
 
-msgid "Parameters"
-msgstr "المعلمات"
+msgid "ACL target deleted successfully"
+msgstr "تم حذف هدف ACL بنجاح"
 
-msgid "Confirm"
-msgstr "تأكيد"
+msgid "ACL is not supported by this cluster."
+msgstr "لا تدعم المجموعة المتماثلة ACL"
 
-msgid "Done"
-msgstr "تم"
+msgid "ACL Targets"
+msgstr "أهداف ACL"
 
-msgid "Required parameter \"%{param}\" not specified"
-msgstr "المعلمة المطلوبة \"%{param}\" غير محددة"
+msgid "The ACL target does not exist"
+msgstr "هدف ACL غير موجود"
+
+msgid "Session has expired"
+msgstr "انتهت صلاحية الجلسة"
+
+msgid "Wizard cannot be applied when the simulator is active"
+msgstr "لا يمكن تطبيق المعالج والمحاكي نشط"
+
+msgid "Use a wizard"
+msgstr "استخدام معالج"
 
 msgid "Permission denied - you do not have write access to the CIB."
 msgstr "تم رفض الإذن - ليس لديك حق الوصول للكتابة إلى CIB."
 
-msgid "Wizard templates and/or workflows are missing"
-msgstr "قوالب المعالج و/أو التدفقات مفقودة"
+msgid "Cluster seems to be offline"
+msgstr "المجموعة المتماثلة تبدو غير متصلة"
 
-msgid "Workflow \"%s\" not found"
-msgstr "لم يتم العثور على التدفق \"%s\""
+msgid "Required"
+msgstr "مطلوب"
 
-msgid "Error parsing template \"%s\""
-msgstr "حدث خطأ أثناء تحليل القالب \"%s\""
+msgid "Unique"
+msgstr "فريد"
 
-msgid "Error parsing workflow \"%s\""
-msgstr "حدث خطأ أثناء تحليل التدفق \"%s\""
+msgid "Master"
+msgstr "رئيسية"
 
-msgid "Data collection in progress (%{from_time} to %{to_time})..."
-msgstr "جارٍ تجميع البيانات (%{from_time} to %{to_time})..."
+msgid "Slave"
+msgstr "تابع"
 
-#, fuzzy
 msgid "Revert"
-msgstr "إعادة تعيين"
+msgstr "إرجاع"
 
-msgid "Apply"
-msgstr ""
-
-#, fuzzy
-msgid "Create"
-msgstr "إنشاء دور"
-
-#, fuzzy
 msgid "Read"
-msgstr "جاهز"
+msgstr "قراءة"
 
 msgid "Write"
-msgstr ""
+msgstr "كتابة"
 
 msgid "Deny"
-msgstr ""
+msgstr "رفض"
+
+msgid "success"
+msgstr "نجاح"
+
+msgid "generic error"
+msgstr "خطأ عام"
+
+msgid "incorrect arguments"
+msgstr "الوسيطات غير صحيحة"
+
+msgid "unimplemented action"
+msgstr "إجراء غير منفذ"
+
+msgid "insufficient permissions"
+msgstr "الأذونات غير كافية"
+
+msgid "installation error"
+msgstr "خطأ في التثبيت"
+
+msgid "configuration error"
+msgstr "خطأ في التكوين"
+
+msgid "not running"
+msgstr "ليس قيد التشغيل"
+
+msgid "running (master)"
+msgstr "تشغيل (رئيسي)"
+
+msgid "failed (master)"
+msgstr "فشل (رئيسي)"
+
+msgid "Freeze"
+msgstr "تجميد"
 
 msgid "CIB file \"%{path}\" not found"
 msgstr "ملف CIB \"%{path}\" غير موجود"
@@ -412,71 +901,187 @@ msgstr "تعذر تنفيذ %{cmd}"
 msgid "Error invoking %{cmd}"
 msgstr "حدث خطأ أثناء استدعاء %{cmd}"
 
+msgid "Error invoking %{cmd}: %{msg}"
+msgstr "حدث خطأ أثناء استدعاء %{cmd}: %{msg}"
+
 msgid "Unknown"
 msgstr "غير معروف"
 
-msgid ""
-"Failed op: node=%{node}, resource=%{resource}, call-id=%{call_id}, operation=%"
-"{op}, rc-code=%{rc_code}, exit-reason=%{exit_reason}"
-msgstr ""
-
-msgid "Invalid Resource ID \"%{id}\""
-msgstr "معرف مورد غير صالح \"%{id}\""
-
-msgid "Unable to parse cibadmin output"
-msgstr "تعذر تحليل مخرجات cibadmin"
-
-msgid "No clone child specified"
-msgstr "لا يوجد فرع استنساخ محدد"
+msgid "Node \"%{node}\" is UNCLEAN and needs to be fenced."
+msgstr "العقدة \"%{node}\" غير صحيحة وتحتاج إلى وضع فاصل."
 
 msgid ""
-"Can't set meta attribute %{p}, because the value contains both single and doub"
-"le quotes"
+"%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}"
+": call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_r"
+"eason}"
 msgstr ""
-"يتعذر تعيين سمة تعريف %{p}، نظرًا لاحتواء القيمة على علامات اقتباس مفردة ومزدو"
-"جة"
+"%{fail_start}: العملية %{op} فشلت للمورد %{resource} في العقدة %{node}: call-i"
+"d=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_reason}"
 
-msgid "The ID \"%{id}\" is already in use"
-msgstr "المعرف \"%{id}\" قيد الاستخدام بالفعل"
+msgid "other"
+msgstr "أخرى"
 
-msgid "Unable to create clone: %{msg}"
-msgstr "تعذر إنشاء الاستنساخ: %{msg}"
+msgid "STONITH is disabled. For normal cluster operation, STONITH is required."
+msgstr "تم تعطيل STONITH. STONITH  مطلوب لعملية مجموعة متماثلة عادية."
 
-msgid "Clone ID \"%{id}\" does not exist"
-msgstr "معرف الاستنساخ \"%{id}\" غير موجود"
+msgid "None"
+msgstr "بلا"
 
-msgid "Invalid score"
-msgstr "نتيجة غير صحيحة"
+msgid "Clone ID is required"
+msgstr "معرف الاستنساخ مطلوب"
+
+msgid "Invalid Clone ID"
+msgstr "معرف استنساخ غير صالح"
+
+msgid "No Clone child specified"
+msgstr "لا يوجد استنساخ فرعي محدد"
+
+msgid "Is the cluster allowed to start and stop the resource?"
+msgstr "هل مسموح للمجموعة المتماثلة بدء وإيقاف المورد؟"
+
+msgid ""
+"If not all resources can be active, the cluster will stop lower priority resou"
+"rces in order to keep higher priority ones active."
+msgstr ""
+"في حالة عدم إمكانية تنشيط الموارد، ستقوم المجموعة المتماثلة بإيقاف الموارد الأ"
+"قل أولوية لكي تحتفظ بالموارد الأعلى أولوية."
+
+msgid "What state should the cluster attempt to keep this resource in?"
+msgstr "ما هي الحالة التي يجب أن تحاول المجموعة المتماثلة الاحتفاظ بالمورد فيها؟"
+
+msgid ""
+"How many copies of the resource to start. Defaults to the number of nodes in t"
+"he cluster."
+msgstr ""
+"كم عدد نسخ الموارد المطلوب أن تبدأ. يتم التعيين على عدد العقد في المجموعة المت"
+"ماثلة بشكل افتراضي."
+
+msgid ""
+"How many copies of the resource can be started on a single node. Defaults to 1"
+"."
+msgstr ""
+"كم عدد نسخ الموارد التي يمكن أن تبدأ في العقدة المنفردة. يتم التعيين على 1 بشك"
+"ل افتراضي."
+
+msgid ""
+"When stopping or starting a copy of the clone, tell all the other copies befor"
+"ehand and when the action was successful."
+msgstr ""
+"عند بدء أو إيقاف نسخة استنساخ، يتم إعلام النسخ الأخرى مسبقًا وعند نجاح الإجراء"
+"."
+
+msgid "Does each copy of the clone perform a different function?"
+msgstr "هل تقوم كل نسخة استنساخ بوظيفة مختلفة؟"
+
+msgid "Should the copies be started in series (instead of in parallel)?"
+msgstr "هل يجب بدء النسخ في سلسلة (بدلاً من البدء على التوازي)؟"
+
+msgid ""
+"Changes the behavior of ordering constraints (between clones/masters) so that "
+"instances can start/stop as soon as their peer instance has (rather than waiti"
+"ng for every instance of the other clone has)."
+msgstr ""
+"تغيير أداء قيود الترتيب (بين عمليات الاستنساخ والعمليات الرئيسية) وبذلك يمكن ل"
+"لمثيلات أن البدء/الإيقاف بمجرد بدء/إيقاف المثيل النظير (بدلاً من انتظار كل مثي"
+"ل للاستنساخ)."
+
+msgid "The ID \"%{id}\" does not exist"
+msgstr "المعرف  \"%{id}\"غير موجود"
+
+msgid "Constraint ID is required"
+msgstr "معرف القيد مطلوب"
+
+msgid "Invalid Constraint ID"
+msgstr "معرف القيد غير صالح"
+
+msgid "Score is required"
+msgstr "النقاط مطلوبة"
+
+msgid "Invalid score value"
+msgstr "قيمة النقاط غير صالحة"
 
 msgid "Constraint must consist of at least two separate resources"
 msgstr "يجب أن يتكون القيد من موردين منفصلين على الأقل"
 
-msgid "Unable to create constraint: %{msg}"
-msgstr "تعذر إنشاء القيد : %{msg}"
+msgid "Not a constraint"
+msgstr "ليس قيدًا"
 
-msgid "Constraint ID \"%{id}\" does not exist"
-msgstr "معرف القيد \"%{id}\" غير موجود"
+msgid "Set to true if the resource agent supports the migrate action"
+msgstr "تعيين على صحيح في حالة دعم المورد لإجراء الترحيل"
 
-msgid "Unable to update constraint: %{msg}"
-msgstr "تعذر تحديث القيد: %{msg}"
+msgid ""
+"How many failures may occur for this resource on a node, before this node is m"
+"arked ineligible to host this resource. A value of INFINITY indicates that thi"
+"s feature is disabled."
+msgstr ""
+"كم عدد عمليات الفشل التي قد تحدث في عقدة، قبل وضع علامة غير مؤهل لاستضافة هذا "
+"المورد على العقدة. تشير القيمة INFINITY إلى أن هذه الميزة معطلة."
 
-msgid "No group children specified"
+msgid ""
+"What should the cluster do if it ever finds the resource active on more than o"
+"ne node?"
+msgstr ""
+"ماذا يجب أن تفعل المجموعة المتماثلة في حالة العثور على مورد نشط في أكثر من عقد"
+"ة واحدة؟"
+
+msgid ""
+"How many seconds to wait before acting as if the failure had not occurred, and"
+" potentially allowing the resource back to the node on which it failed. A valu"
+"e of 0 indicates that this feature is disabled."
+msgstr ""
+"كم عدد ثواني الانتظار قبل التعامل كما لو كان حدث خطأ، وربما السماح للمورد بالع"
+"ودة إلى العقدة التي فشل فيها. تشير القيمة 0 إلى أن هذه القيمة معطلة."
+
+msgid "How much does the resource prefer to stay where it is?"
+msgstr "ما مدى تفضيل المورد للبقاء في مكانه؟"
+
+msgid "Conditions under which the resource can be started."
+msgstr "الشروط التي يمكن بدء المورد طبقًا لها."
+
+msgid ""
+"The name of the remote-node this resource defines. This both enables the resou"
+"rce as a remote-node and defines the unique name used to identify the remote-n"
+"ode. If no other parameters are set, this value will also be assumed as the ho"
+"stname to connect to at the port specified by remote-port. WARNING: This value"
+" cannot overlap with any resource or node IDs. If not specified, this feature "
+"is disabled."
+msgstr ""
+"اسم العقدة عن بُعد التي يحددها المورد. ويقوم ذلك بكل من تمكين المورد كعقدة عن "
+"بُعد وتحديد الاسم الفريد المستخدم لتحديد العقدة عن بُعد. في حالة عدم تعيين أي "
+"معلمات أخرى، سيتم افتراض هذه القيمة كاسم المضيف المطلوب التوصيل به عند المنفذ "
+"المحدد بواسطة المنفذ عن بُعد. تحذير: لا يمكن تراكب القيمة مع أي مورد أو معرفات"
+" عقدة. في حالة عدم التحديد، يتم تعطيل هذه الميزة."
+
+msgid "Port to use for the guest connection to pacemaker_remote."
+msgstr "المنفذ المطلوب استخدامه لتوصيل الضيف بـ pacemaker_remote."
+
+msgid ""
+"The IP address or hostname to connect to if remote-node's name is not the host"
+"name of the guest."
+msgstr ""
+"عنوان IP واسم المضيف المطلوب التوصيل به إذا لم يكن اسم العقدة عن بُعد هو اسم م"
+"ضيف الضيف."
+
+msgid "How long before a pending guest connection will time out."
+msgstr "كم يستغرق توصيل الضيف المعلق قبل انتهاء المهلة."
+
+msgid "Group ID is required"
+msgstr "معرف المجموعة مطلوب"
+
+msgid "Invalid Group ID"
+msgstr "معرف المجموعة غير صالح"
+
+msgid "No Group children specified"
 msgstr "لم يتم تحديد فروع مجموعة"
 
-msgid "Unable to create group: %{msg}"
-msgstr "تعذر إنشاء المجموعة: %{msg}"
-
-msgid "Group ID \"%{id}\" does not exist"
-msgstr "معرف المجموعة \"%{id}\" غير موجود"
-
-msgid "Constraint is too complex - it contains nested rules"
-msgstr "القيد معقد للغاية - يحتوي على قواعد مضمنة"
+msgid "No resource specified"
+msgstr "لم يتم تحديد مورد"
 
 msgid "No rules specified"
 msgstr "لا توجد قواعد محددة"
 
-msgid "No resource specified"
-msgstr "لم يتم تحديد مورد"
+msgid "Constraint is too complex - it contains nested rules"
+msgstr "القيد معقد للغاية - يحتوي على قواعد مضمنة"
 
 msgid "Invalid score \"%{score}\""
 msgstr "نتيجة غير صحيحة \"%{score}\""
@@ -490,176 +1095,216 @@ msgstr "تحتوي السمة على علامات اقتباس مفردة ومز
 msgid "Value contains both single and double quotes"
 msgstr "تحتوي القيمة على علامات اقتباس مفردة ومزدوجة"
 
-msgid "No Master/Slave child specified"
-msgstr "لم يتم تحديد فرع الرئيس/التابع"
+msgid "Multi-state ID is required"
+msgstr "المعرف متعدد الحالات مطلوب"
 
-msgid "Unable to create master/slave: %{msg}"
-msgstr "تعذر إنشاء الرئيس/التابع: %{msg}"
+msgid "Invalid Multi-state ID"
+msgstr "المعرف متعدد الحالات غير صالح"
 
-msgid "Master/Slave ID \"%{id}\" does not exist"
-msgstr "معرف الرئيس/التابع \"%{id}\" غير موجود"
+msgid "No Multi-state child specified"
+msgstr "لم يتم تحديد فرع متعدد الحالات"
 
-msgid ""
-"Can't set parameter %{p}, because the value contains both single and double qu"
-"otes"
-msgstr "يتعذر تعيين المعلمة %{p}، نظرًا لاحتواء القيمة على علامات اقتباس مفردة ومزدوجة"
+msgid "How many copies of the resource can be promoted to master status."
+msgstr "كم عدد نسخ المورد التي يمكن ترقيتها إلى الحالة الرئيسية."
 
 msgid ""
-"Can't set op %{o} attribute {%a}, because the value contains both single and d"
-"ouble quotes"
-msgstr ""
-"يتعذر تعيين op %{o} سمة {%a}، نظرًا لاحتواء القيمة على علامات اقتباس مفردة ومز"
-"دوجة"
+"How many copies of the resource can be promoted to master status on a single n"
+"ode."
+msgstr "كم عدد نسخ المورد التي يمكن ترقيتها إلى الحالة الرئيسية في العقدة المنفردة."
 
-msgid "Unable to create resource: %{msg}"
-msgstr "تعذر إنشاء المورد: %{msg}"
+msgid "Node ID is required"
+msgstr "معرف العقدة مطلوب"
 
-msgid "Resource ID \"%{id}\" does not exist"
-msgstr "معرف المورد \"%{id}\" غير موجود"
+msgid "Invalid Node ID"
+msgstr "معرِف العقدة غير صالح"
 
-#, fuzzy
+msgid "Name is required"
+msgstr "الاسم مطلوب"
+
+msgid "Invalid name"
+msgstr "اسم غير صالح"
+
+msgid "is required"
+msgstr "مطلوب"
+
+msgid "Object not found: %s=%s"
+msgstr "لم يتم العثور على الكائن: %s=%s"
+
+msgid "The ID \"%{id}\" is already in use"
+msgstr "المعرف \"%{id}\" قيد الاستخدام بالفعل"
+
 msgid "Unable to create: %{msg}"
-msgstr "تعذر إنشاء الدور: %{msg}"
+msgstr "تعذر إنشاء: %{msg}"
 
-#, fuzzy
-msgid "The ID \"%{id}\" does not exist"
-msgstr "معرف الدور \"%{id}\" غير موجود"
+msgid "Error updating %{id} (rc=%{rc})"
+msgstr "حدث خطأ في تحديث %{id} (rc=%{rc})"
 
-#, fuzzy
-msgid "Unable to update: %{msg}"
-msgstr "تعذر تحديث الدور: %{msg}"
+msgid "PE Input created by different Pacemaker version (%{version})"
+msgstr "تم إنشاء إدخال PE بإصدار Pacemaker مختلف (%{version})"
+
+msgid "Pacemaker version not present in PE Input"
+msgstr "إصدار Pacemaker غير موجود في إدخال PE"
+
+msgid "No details available"
+msgstr "لا تتوفر أية تفاصيل"
+
+msgid "Error:"
+msgstr "خطأ:"
+
+msgid "must have correct MIME type (was %s)"
+msgstr "يجب أن يحتوي على نوع MIME صحيح (كان %s)"
+
+msgid "must have correct file extension"
+msgstr "يجب أن يحتوي على ملحق اسم ملف صحيح"
+
+msgid "Not a resource"
+msgstr "ليس موردًا"
 
 msgid "Role ID is required"
-msgstr ""
+msgstr "معرف الدور مطلوب"
 
-#, fuzzy
 msgid "Invalid Role ID"
-msgstr "معرِّف البطاقة غير صحيح"
+msgstr "معرف الدور غير صالح"
 
-msgid "Username not specified"
-msgstr "لم يتم تحديد اسم المستخدم"
+msgid "At least one rule is required"
+msgstr "مطلوب قاعدة واحدة على الأقل"
 
 msgid "Invalid username"
 msgstr "اسم المستخدم غير صالح"
 
-msgid "Password not specified"
-msgstr "لم يتم تحديد كلمة السر"
-
 msgid "%s is not installed"
 msgstr "لم يتم تثبيت %s"
 
-#, fuzzy
 msgid "%s is not executable"
-msgstr "لم يتم تثبيت %s"
+msgstr "%s غير قابل للتنفيذ"
+
+msgid "Username not specified"
+msgstr "لم يتم تحديد اسم المستخدم"
+
+msgid "Password not specified"
+msgstr "لم يتم تحديد كلمة السر"
 
 msgid "Invalid username or password"
 msgstr "اسم المستخدم غير صالح أو كلمة السر غير صالحة"
 
-msgid "Language is required"
+msgid "Tag ID is required"
+msgstr "معرف العلامة مطلوب"
+
+msgid "Invalid Tag ID"
+msgstr "معرف العلامة غير صالح"
+
+msgid "No Tag resources specified"
+msgstr "لم يتم تحديد أي موارد علامة"
+
+msgid "Resource ID is required"
+msgstr "معرف المورد مطلوب"
+
+msgid "Invalid Resource ID"
+msgstr "معرف المورد غير صالح"
+
+msgid "How frequently (in seconds) to perform the operation."
+msgstr "كم عدد المرات (بالثواني) التي يتم فيها أداء العملية."
+
+msgid "How long to wait before declaring the action has failed."
+msgstr "ما مدة الانتظار قبل التصريح بفشل الإجراء."
+
+msgid "What conditions need to be satisfied before this action occurs."
+msgstr "ما الشروط التي يجب استيفاؤها قبل حدوث الإجراء."
+
+msgid "If false, the operation is treated as if it does not exist."
+msgstr "في حالة الخطأ، يتم التعامل مع العملية كما لو كانت غير موجودة."
+
+msgid ""
+"This option only makes sense for recurring operations. It restricts the operat"
+"ion to a specific role. The truely paranoid can even specify role=Stopped whic"
+"h allows the cluster to detect an admin that manually started cluster services"
+"."
 msgstr ""
+"ينطبق هذا الخيار على العمليات المتكررة فقط. فهو يقيد العملية بدور محدد. ومن يش"
+"عر بالارتياب حقًا يمكنه أن يحدد الدور=متوقف الذي يسمح للمجموعة المتماثلة باكتش"
+"اف مسؤول يقوم ببدء خدمات المجموعة المتماثلة يدويًا."
+
+msgid "The action to take if this action ever fails."
+msgstr "الإجراء المطلوب اتباعه في حالة فشل الإجراء."
+
+msgid ""
+"If true, the intention to perform the operation is recorded so that GUIs and C"
+"LI tools can indicate that an operation is in progress."
+msgstr ""
+"إذا كان ذلك صحيحًا، يتم تسجيل اعتزام أداء هذه العملية وبذلك تشير أدوات GUI وCL"
+"I أن هناك عملية قيد التقدم."
+
+msgid "Ticket ID is required"
+msgstr "معرف البطاقة مطلوب"
 
 msgid "Invalid Ticket ID"
 msgstr "معرِّف البطاقة غير صحيح"
 
-msgid "No resources specified"
-msgstr "لم يتم تحديد أي مورد"
+msgid "Constraint must consist of at least one separate resources"
+msgstr "يجب أن يتكون القيد من موردين منفصلين على الأقل"
 
-msgid "User ID is required"
-msgstr ""
+msgid "Simulator active: Use the ticket controls in the simulator"
+msgstr "المحاكي نشط: استخدام وحدات التحكم في البطاقة في المحاكي"
 
-#, fuzzy
-msgid "Invalid User ID"
-msgstr "معرِّف البطاقة غير صحيح"
+msgid "ACL target ID is required"
+msgstr "معرف هدف ACL مطلوب"
 
-msgid "Meta Attributes"
-msgstr "سمات تعريف"
+msgid "Invalid ACL target ID"
+msgstr "معرف هدف ACL غير صالح"
 
-msgid "Add"
-msgstr "إضافة"
+msgid "At least one role is required"
+msgstr "مطلوب دور واحد على الأقل"
 
-msgid "Remove"
-msgstr "إزالة"
+msgid "Requested wizard does not exist"
+msgstr "المعالج المطلوب غير موجود"
 
-msgid "You must enter a value"
-msgstr "يجب عليك إدخال قيمة"
+msgid "Parameters"
+msgstr "المعلمات"
 
-msgid "Clone ID"
-msgstr "معرف الاستنساخ"
+msgid "Shortdesc"
+msgstr "Shortdesc"
+
+msgid "Longdesc"
+msgstr "Longdesc"
+
+msgid "Options"
+msgstr "الخيارات"
+
+msgid "Actions"
+msgstr "إجراءات"
+
+msgid "Timeout"
+msgstr "المهلة"
+
+msgid "Interval"
+msgstr "فاصل زمني"
+
+msgid "Depth"
+msgstr "العمق"
+
+msgid "Close"
+msgstr "إغلاق"
 
 msgid "Child Resource"
 msgstr "مورد فرعي"
 
-msgid "Revert Changes"
-msgstr "إرجاع التغييرات"
+msgid "Meta Attributes"
+msgstr "سمات تعريف"
 
 msgid "Back"
 msgstr "الخلف"
 
-msgid "Apply Changes"
-msgstr "تطبيق التغييرات"
-
-msgid "Link set"
-msgstr "مجموعة الارتباطات"
-
-msgid "Break set"
-msgstr "مجموعة الفواصل"
-
-msgid "Swap resources"
-msgstr "تبديل الموارد"
-
-msgid "Add resource to constraint"
-msgstr "إضافة مورد إلى القيد"
-
-msgid "Constraint ID"
-msgstr "معرف القيد"
-
-msgid "Score"
-msgstr "النتيجة"
-
-msgid "Create Constraint"
-msgstr "إنشاء قيد"
-
-msgid "Edit Constraint"
-msgstr "تحرير قيد"
-
-msgid "Delete Constraint"
-msgstr "حذف قيد"
-
 msgid "Are you sure you wish to delete %s?"
 msgstr "هل تريد بالتأكيد حذف %s؟"
 
-msgid "New Constraint"
-msgstr "قيد جديد"
+msgid "List"
+msgstr "قائمة"
 
-msgid "Location"
-msgstr "الموقع"
+msgid "Constraint:"
+msgstr "القيد:"
 
-msgid "Colocation"
-msgstr "الموقع المشترك"
-
-msgid "Order"
-msgstr "الترتيب"
-
-msgid "Ticket"
-msgstr "البطاقة"
-
-msgid "(No location constraints defined)"
-msgstr "(لم يتم تحديد أي قيود للمواقع)"
-
-msgid "[Constraint is too complex to display]"
-msgstr "[القيد معقد للغاية لدرجة تصعب عرضه]"
-
-msgid "(No colocation constraints defined)"
-msgstr "(لم يتم تحديد أية قيود للموقع المشترك)"
-
-msgid "(No order constraints defined)"
-msgstr "(لم يتم تحديد أي قيود للترتيب)"
-
-msgid "(No ticket constraints defined)"
-msgstr "(لم يتم تحديد أي قيود للبطاقة)"
-
-msgid "CRM Configuration"
-msgstr "تكوين CRM"
+msgid "Add a constraint"
+msgstr "إضافة قيد"
 
 msgid "Resource Defaults"
 msgstr "الإعدادات الافتراضية للمورد"
@@ -667,238 +1312,86 @@ msgstr "الإعدادات الافتراضية للمورد"
 msgid "Operation Defaults"
 msgstr "الإعدادات الافتراضية للعملية"
 
-msgid "No cluster properties set in %{group}"
-msgstr "لم يتم تعيين أية خصائص للمجموعة في %{group}"
-
-msgid "Edit"
-msgstr "تحرير"
-
-msgid "Username:"
-msgstr "اسم المستخدم:"
-
-msgid "Password:"
-msgstr "كلمة السر:"
-
-msgid "Cluster has errors - click for details"
-msgstr "المجموعة المتماثلة بها أخطاء - انقر للحصول على مزيد من التفاصيل"
-
-msgid "Timeout: Please try again"
-msgstr "انتهت المهلة: الرجاء المحاولة مرة أخرى"
-
-msgid "Permission denied. Please log in to %{node}"
-msgstr "الإذن مرفوض. الرجاء تسجيل الدخول إلى %{node}"
-
-#, fuzzy
-msgid "Geo Site %{ip}"
-msgstr "مجموعة الاستنساخ: %{id}"
-
-msgid "Site: %{ip}"
-msgstr ""
-
-msgid "Arbitrator: %{ip}"
-msgstr ""
-
-msgid "Can't contact Hawk on %{node}. Retrying every 5 seconds."
-msgstr "لا يمكن الاتصال بـ Hawk في %{node}. تجري إعادة المحاولة كل 5 ثوانٍ."
-
-msgid "Cluster Name:"
-msgstr "اسم المجموعة المتماثلة:"
-
-msgid "Host Name:"
-msgstr ":اسم المضيف"
-
-msgid ""
-"(Specify any host name in the cluster.  Other nodes will be found automaticall"
-"y)"
-msgstr ""
-"(قم بتحديد أي اسم مضيف في المجموعة المتماثلة. سيتم العثور على نقاط التوصيل الأ"
-"خرى تلقائيًا)"
+msgid "Default"
+msgstr "افتراضي"
 
 msgid "Add Cluster"
 msgstr "إضافة مجموعة متماثلة"
 
-msgid "OK"
-msgstr "موافق"
+msgid "Cluster name"
+msgstr "اسم المجموعة المتماثلة"
 
-msgid "A cluster with that name already exists"
-msgstr "المجموعة المتماثلة التي تحمل هذا الاسم موجودة بالفعل"
+msgid "West Coast (example)"
+msgstr "الساحل الغربي (مثال)"
 
-msgid "The host %{h} is already present in cluster %{c}"
-msgstr "المضيف %{h} موجود بالفعل في المجموعة المتماثلة %{c}"
+msgid "node1.west.example.com"
+msgstr "node1.west.example.com"
 
-msgid ""
-"Unable to connect to %{host}. Try opening %{url} in your web browser to ensure"
-" Hawk is accessible."
-msgstr ""
-"تعذر الاتصال بـ %{host}. حاول فتح %{url} في مستعرض الويب للتأكد من إمكانية الو"
-"صول إلى Hawk."
+msgid "Hostname of node in cluster"
+msgstr "اسم مضيف العقدة في المجموعة المتماثلة"
 
-msgid "Cancel"
-msgstr "إلغاء"
+msgid "Advanced"
+msgstr "خيارات متقدمة"
 
-#, fuzzy
-msgid "Cluster"
-msgstr "إضافة مجموعة متماثلة"
+msgid "Update interval (seconds)"
+msgstr "تحديث الفاصل الزمني (بالثواني)"
 
-msgid "STONITH Enabled"
-msgstr "تم تمكين STONITH"
+msgid "Server port to connect to"
+msgstr "منفذ الخادم المطلوب التوصيل به"
 
-msgid "No Quorum Policy"
-msgstr "لا توجد سياسة حصص"
-
-msgid "Symmetric Cluster"
-msgstr "مجموعة متماثلة"
-
-msgid "Resource Stickiness"
-msgstr "ثبات المورد"
-
-msgid "Status"
-msgstr "الحالة"
-
-msgid "No transitions found for the specified time period."
-msgstr "لم يتم العثور على عمليات انتقال للفترة الزمنية المحددة."
-
-msgid "Time"
-msgstr "الوقت"
-
-msgid "PE Input"
-msgstr "إدخال PE"
-
-msgid "Node"
-msgstr "عقدة"
-
-msgid "(full log)"
-msgstr "(سجل كامل)"
+msgid "HTTPS"
+msgstr "HTTPS"
 
 msgid "Graph"
 msgstr "رسم بياني"
 
-msgid "Diff"
-msgstr "الفرق"
+msgid "Children"
+msgstr "الفروع"
 
-msgid "Delete this history archive?"
-msgstr "هل تريد حذف أرشيف المحفوظات هذا؟"
+msgid "No children available"
+msgstr "لا تتوفر أية فروع"
 
-msgid "Start Time:"
-msgstr "وقت البدء:"
-
-msgid "End Time:"
-msgstr "وقت الانتهاء:"
-
-msgid "Exploring %{path}"
-msgstr "استكشاف %{path}"
-
-msgid "Display"
-msgstr "عرض"
-
-msgid "Upload hb_report tarball"
-msgstr "تحميل أرشيف hb_report"
-
-msgid "Explore"
-msgstr "استكشاف"
-
-msgid "Error: Permission denied for user '%s'."
-msgstr "خطأ: تم رفض الإذن للمستخدم '%s'."
-
-msgid "Group ID"
-msgstr "معرف المجموعة"
-
-msgid "Group Children"
-msgstr "فروع المجموعة"
-
-msgid "Available Primitives"
-msgstr "المجموعات الأساسية المتوفرة"
-
-msgid "Start Time not specified"
-msgstr "وقت البدء غير محدد"
-
-msgid "Generate"
-msgstr "إنشاء"
-
-msgid "hb_report generation in progress..."
-msgstr "جارٍ إنشاء hb_report..."
-
-msgid "Download hb_report"
-msgstr "تحميل hb_report"
-
-#, fuzzy
 msgid "Please ensure Javascript is enabled"
 msgstr "الرجاء التأكد من تمكين JavaScript"
 
 msgid "SUSE, LLC"
-msgstr ""
+msgstr "SUSE, LLC"
 
 msgid "High Availability Web Konsole"
-msgstr ""
+msgstr "High Availability Web Konsole"
 
-msgid "Role"
-msgstr "الدور"
+msgid "Edit Location"
+msgstr "تحرير الموقع"
 
-msgid "Boolean Op"
-msgstr "Op منطقي"
+msgid "Locations"
+msgstr "المواقع"
 
-msgid "Expression"
-msgstr "التعبير"
+msgid "Create Location"
+msgstr "إنشاء موقع"
 
-msgid "Add Rule"
-msgstr "إضافة قاعدة"
+msgid "History"
+msgstr "التاريخ"
 
-msgid "Remove Rule"
-msgstr "إزالة قاعدة"
+msgid "Edit Multi-state"
+msgstr "تحرير متعدد الحالات"
 
-msgid "Show Rule Editor"
-msgstr "إظهار محرر القواعد"
+msgid "Multi-state Resources"
+msgstr "موارد متعددة الحالات"
 
-msgid "Resource"
-msgstr "مورد"
+msgid "Create Multi-state"
+msgstr "إنشاء متعدد الحالات"
 
-msgid "Fence Node"
-msgstr "عقدة السياج"
+msgid "Getting recent events..."
+msgstr "جارٍ الحصول على الأحداث الحديثة..."
 
-msgid "View Details..."
-msgstr "عرض التفاصيل..."
+msgid "Another operation is in progress..."
+msgstr "توجد عملية أخرى قيد التقدم..."
 
-msgid "View Recent Events..."
-msgstr "عرض الأحداث الحديثة..."
+msgid "No events found in last hour"
+msgstr "لم يتم العثور على أي أحداث في الساعة الأخيرة"
 
-msgid "Start"
-msgstr "بداية"
-
-msgid "Stop"
-msgstr "إيقاف"
-
-msgid "Move..."
-msgstr "جارٍ النقل..."
-
-msgid "Drop Relocation Rule"
-msgstr "إسقاط قاعدة إعادة النقل"
-
-msgid "Promote"
-msgstr "الترقية"
-
-msgid "Demote"
-msgstr "تخفيض"
-
-msgid "Clean Up"
-msgstr "تنظيف"
-
-msgid "Grant"
-msgstr "منح"
-
-msgid "Revoke"
-msgstr "إبطال"
-
-msgid "Master/Slave ID"
-msgstr "معرف الرئيس/التابع"
-
-msgid "Getting recent events (last hour)..."
-msgstr "جارٍ الحصول على الأحداث الحديثة (آخر ساعة)..."
-
-msgid "Another \"crm history\" operation is in progress..."
-msgstr "جارٍ تشغيل عملية \"crm history\" أخرى..."
-
-msgid "No events found in last hour."
-msgstr "لم يتم العثور على أي أحداث في الساعة الأخيرة."
+msgid "Remote node."
+msgstr "العقدة عن بُعد."
 
 msgid "Utilization"
 msgstr "الاستخدام"
@@ -915,23 +1408,20 @@ msgstr "لم يتم تحديد أية سمات"
 msgid "Symmetrical"
 msgstr "متماثل"
 
-msgid "Close"
-msgstr "إغلاق"
+msgid "Command Log"
+msgstr "سجل الأمر"
+
+msgid "Lists crm commands recently executed by hawk, most recent first."
+msgstr "إدراج أوامر crm التي تم تنفيذها حديثًا بواسطة hawk، الأحدث أولاً."
 
 msgid "HTML"
-msgstr ""
+msgstr "HTML"
 
 msgid "PDF"
-msgstr ""
+msgstr "PDF"
 
-msgid "There is already a monitor op with this interval."
-msgstr "يوجد بالفعل op لجهاز العرض بهذا الفاصل الزمني."
-
-msgid "Resource ID"
-msgstr "معرف المورد"
-
-msgid "Template ID"
-msgstr "معرِّف القالب"
+msgid "Template"
+msgstr "القالب"
 
 msgid "Class"
 msgstr "طبقة"
@@ -939,86 +1429,104 @@ msgstr "طبقة"
 msgid "Provider"
 msgstr "الموفر"
 
-msgid "Type"
-msgstr "النوع"
+msgid "Data collection in progress..."
+msgstr "تجميع البيانات قيد التقدم..."
 
-msgid "Use Template"
-msgstr "استخدام القالب"
+msgid "To"
+msgstr "إلى"
 
-msgid "Edit Resource"
-msgstr "تحرير مورد"
+msgid "Generate"
+msgstr "إنشاء"
 
-msgid "Delete Resource"
-msgstr "حذف مورد"
+msgid "Upload"
+msgstr "تحميل"
 
-msgid "New Resource"
-msgstr "مورد جديد"
+msgid "Reports"
+msgstr "التقارير"
 
-msgid "Primitive"
-msgstr "مجموعة أساسية"
+msgid "Report"
+msgstr "تقرير"
 
-msgid "New Template"
-msgstr "قالب جديد"
+msgid "Created"
+msgstr "تاريخ الإنشاء"
 
-msgid "Template"
-msgstr "القالب"
+msgid "Transitions"
+msgstr "عمليات انتقال"
 
-msgid "New Group"
-msgstr "مجموعة جديدة"
+msgid "No transitions in report"
+msgstr "لا توجد عمليات انتقال في التقرير"
 
-msgid "Group"
-msgstr "المجموعة"
+msgid "Previous"
+msgstr "السابق"
 
-msgid "New Clone"
-msgstr "استنساخ جديد"
+msgid "Next"
+msgstr "التالي"
 
-msgid "Clone"
-msgstr "استنساخ"
+msgid "PE Name"
+msgstr "اسم PE"
 
-msgid "New Master/Slave"
-msgstr "رئيس/تابع جديد"
+msgid "Node"
+msgstr "عقدة"
 
-msgid "Master/Slave"
-msgstr "الرئيسي/التابع"
+msgid "Time"
+msgstr "الوقت"
 
-msgid "(No primitive resources defined)"
-msgstr "(لم يتم تحديد أي موارد أساسية)"
+msgid "Version"
+msgstr "الإصدار"
 
-msgid "(No templates defined)"
-msgstr "(لم يتم تحديد أي قوالب)"
+msgid "Configuration"
+msgstr "تكوين"
 
-msgid "(No groups defined)"
-msgstr "(لم يتم تحديد أي مجموعات)"
+msgid "Diff"
+msgstr "الفرق"
 
-msgid "(No clones defined)"
-msgstr "(لم يتم تحديد أي استنساخ)"
+msgid "Logs"
+msgstr "السجلات"
 
-msgid "(No master/slave resources defined)"
-msgstr "(لم يتم تحديد أي موارد رئيسية/تابعة)"
+msgid "Node Events"
+msgstr "أحداث العقدة"
 
-msgid "Fail Count"
-msgstr "عدد مرات الفشل"
+msgid "Resource Events"
+msgstr "أحداث المورد"
 
-msgid "Last Failure"
-msgstr "آخر محاولة فاشلة"
+msgid "Resource:"
+msgstr "المورد:"
 
-#, fuzzy
-msgid "Rule"
-msgstr "الدور"
+msgid "Value"
+msgstr "القيمة"
+
+msgid "Instances"
+msgstr "المثيلات"
+
+msgid "State"
+msgstr "الولاية"
+
+msgid "Failed Operations"
+msgstr "العمليات الفاشلة"
+
+msgid "Call"
+msgstr "استدعاء"
+
+msgid "Operation"
+msgstr "العملية"
+
+msgid "Reason"
+msgstr "السبب"
+
+msgid "Add a resource"
+msgstr "إضافة مورد"
 
 msgid "Add a rule below"
-msgstr ""
+msgstr "إضافة قاعدة أدناه"
 
-#, fuzzy
 msgid "Remove this rule"
-msgstr "إزالة قاعدة"
+msgstr "إزالة هذه القاعدة"
 
-#, fuzzy
 msgid "Move rule up"
-msgstr "نقل المورد %s"
+msgstr "نقل القاعدة لأعلى"
 
 msgid "Move rule down"
-msgstr ""
+msgstr "نقل القاعدة لأسفل"
 
 msgid "Right"
 msgstr "يسار"
@@ -1026,90 +1534,183 @@ msgstr "يسار"
 msgid "XPath"
 msgstr "XPath"
 
-msgid "Tag"
-msgstr "علامة"
+msgid "Object Type"
+msgstr "نوع الكائن"
 
-msgid "Ref"
-msgstr "مرجع"
+msgid "Reference"
+msgstr "المرجع"
 
 msgid "Attribute"
 msgstr "سمة"
 
-#, fuzzy
-msgid "Delete role"
-msgstr "حذف مورد"
+msgid "ACL Roles"
+msgstr "أدوار ACL"
 
-#, fuzzy
-msgid "Add role"
-msgstr "إضافة قاعدة"
-
-msgid ""
-"ACL support requires CIB schema version 2.0, available in Pacemaker 1.1.12 and"
-" up. For older versions of Pacemaker, use Hawk version 0.6."
-msgstr ""
-
-#, fuzzy
-msgid "Username"
-msgstr "اسم المستخدم:"
-
-#, fuzzy
-msgid "Password"
-msgstr "كلمة السر:"
-
-#, fuzzy
 msgid "Login"
 msgstr "دخول"
+
+msgid "Version:"
+msgstr "الإصدار:"
+
+msgid "DC:"
+msgstr "DC:"
+
+msgid "UI:"
+msgstr "UI:"
+
+msgid "Status:"
+msgstr "الحالة:"
+
+msgid "Add resource"
+msgstr "إضافة مورد"
+
+msgid "Add constraint"
+msgstr "إضافة قيد"
+
+msgid "Add template"
+msgstr "إضافة قالب"
+
+msgid "Choose wizard"
+msgstr "اختيار معالج"
+
+msgid "Simulator Active"
+msgstr "المحاكي نشط"
+
+msgid "Reset"
+msgstr "إعادة تعيين"
+
+msgid "Run"
+msgstr "تشغيل"
+
+msgid "Results"
+msgstr "النتيجة"
+
+msgid "Simulation Results"
+msgstr "نتائج المحاكاة"
+
+msgid "Summary"
+msgstr "الملخص"
+
+msgid "CIB (in)"
+msgstr "CIB (داخل)"
+
+msgid "CIB (out)"
+msgstr "CIB (خارج)"
+
+msgid "Transition Graph"
+msgstr "الرسم البياني للانتقال"
+
+msgid "Transition (XML)"
+msgstr "الانتقال (XML)"
+
+msgid "Inject Node Event"
+msgstr "حدث عقدة الإدخال"
+
+msgid "OK"
+msgstr "موافق"
+
+msgid "Inject Operation Event"
+msgstr "حدث عملية الإدخال"
+
+msgid "Interval (ms)"
+msgstr "فاصل زمني (دقائق)"
+
+msgid "Result"
+msgstr "النتيجة"
+
+msgid "Inject Ticket Event"
+msgstr "حدث بطاقة الإدخال"
+
+msgid "Action"
+msgstr "الإجراء"
+
+msgid "Enable the simulation mode"
+msgstr "تمكين وضع المحاكاة"
+
+msgid "Disable Simulator"
+msgstr "تعطيل المحاكي"
+
+msgid "Disable the simulation mode"
+msgstr "تعطيل وضع المحاكاة"
+
+msgid "Profile"
+msgstr "ملف التعريف"
+
+msgid "Logout"
+msgstr "تسجيل الخروج"
+
+msgid "Menu"
+msgstr "القائمة"
+
+msgid "Errors"
+msgstr "أخطاء"
+
+msgid "No objects available"
+msgstr "لا تتوفر أي كائنات"
+
+msgid "Ticket ID"
+msgstr "معرف البطاقة"
 
 msgid "Loss Policy"
 msgstr "سياسة الفقد"
 
-#, fuzzy
-msgid "Delete user"
-msgstr "حذف مورد"
+msgid "Ticket:"
+msgstr "البطاقة:"
 
-#, fuzzy
-msgid "Add user"
-msgstr "إضافة مجموعة متماثلة"
+msgid "Properties"
+msgstr "خصائص"
 
-msgid "%{workflow}: %{step}"
-msgstr "%{workflow}: %{step}"
+msgid "Sequential"
+msgstr "تسلسلي"
 
-msgid "The configuration has been applied."
-msgstr "تم تطبيق التكوين."
+msgid "No resources defined for ticket"
+msgstr "لا توجد موارد محددة للبطاقة"
 
-msgid "The following configuration will be applied to the cluster:"
-msgstr "سيتم تطبيق التكوين التالي على المجموعة:"
+msgid "Target ID"
+msgstr "معرف الهدف"
 
-msgid "Error applying configuration:"
-msgstr "حدث خطأ أثناء تطبيق التكوين:"
+msgid "Verifying parameters..."
+msgstr "جارٍ التحقق من المعلمات..."
 
-msgid "< Back"
-msgstr "< الخلف"
+msgid "Do you really want to cancel the wizard setup?"
+msgstr "هل تريد بالفعل إلغاء إعداد المعالج؟"
 
-msgid "Next >"
-msgstr "التالي >"
+msgid "Do you really want to apply the current wizard?"
+msgstr "هل تريد بالفعل تطبيق المعالج الحالي؟"
 
-msgid "No workflow descriptions found"
-msgstr "لم يتم العثور على أوصاف التدفق"
+msgid "Choose a wizard"
+msgstr "اختيار معالج"
 
-msgid "Choose Configuration"
-msgstr "اختيار التكوين"
+msgid "Legacy Wizards"
+msgstr "المعالجات القديمة"
+
+msgid "Verify and apply"
+msgstr "التحقق والتطبيق"
+
+msgid "Review the wizard actions and apply the changes"
+msgstr "مراجعة إجراءات المعالج وتطبيق التغييرات"
+
+msgid "Enable this step"
+msgstr "تمكين هذه الخطوة"
+
+msgid "This wizard takes no parameters."
+msgstr "لا يحتوي هذا المعالج على أي معلمات."
+
+msgid "Verify"
+msgstr "التحقق من"
 
 msgid ""
-"This wizard will guide you through the steps necessary to add one of the follo"
-"wing configurations to the cluster."
+"To apply the changes, Hawk requires root access, and password-less SSH access "
+"must be configured. See the Hawk documentation for more information."
 msgstr ""
-"سيرشدك هذا المعالج عبر الخطوات اللازمة لإضافة أحد التكوينات التالية إلى المجمو"
-"عة."
+"لتطبيق التغييرات، يتطلب Hawk تكوين وصول أولي ووصول SSH بدون كلمة مرور. راجع وث"
+"ائق Hawk للحصول على مزيد من المعلومات."
+
+msgid "Root password"
+msgstr "كلمة مرور أولية"
 
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "الكائن/السمة غير موجودة (cibadmin %{cmd})"
 
 msgid "Error invoking cibadmin %{cmd}: %{msg}"
 msgstr "حدث خطأ أثناء استدعاء cibadmin %{cmd}: %{msg}"
-
-msgid "The object/attribute does not exist: %{msg}"
-msgstr "الكائن/السمة غير موجودة: %{msg}"
-
-msgid "Error invoking cibadmin --replace: %{msg}"
-msgstr "حدث خطأ أثناء استدعاء cibadmin --replace: %{msg}"
