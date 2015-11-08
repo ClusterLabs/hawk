@@ -40,18 +40,18 @@ module CrmScript
   module_function :cleanerr
 
   def run(jsondata, rootpw)
-    user = rootpw.nil? ? 'hacluster' : 'root'
+    user = current_user
     cmd = crmsh_escape(JSON.dump(jsondata))
-
     tmpf = Tempfile.new 'crmscript'
     tmpf.write("script json \"#{cmd}\"")
     tmpf.close
     File.chmod(0666, tmpf.path)
 
-    if user.eql? 'root'
-      cmdline = ['/usr/bin/su', '--login', user, '-c',"crm -f #{tmpf.path}", :stdin_data => rootpw.lines.first]
+    if rootpw.nil?
+      cmdline = ['crm', '-f', tmpf.path]
     else
-      cmdline = ['/usr/sbin/hawk_invoke', user, 'crm', '-f', tmpf.path]
+      user = 'root'
+      cmdline = ['/usr/bin/su', '--login', user, '-c', "crm -f #{tmpf.path}", stdin_data: rootpw.lines.first]
     end
     old_home = Util.ensure_home_for(user)
     out, err, status = Util.capture3(*cmdline)
@@ -76,4 +76,9 @@ module CrmScript
     end
   end
   module_function :run
+
+  def current_user
+    Thread.current[:current_user].call
+  end
+  module_function :current_user
 end
