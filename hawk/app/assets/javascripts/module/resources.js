@@ -3,15 +3,7 @@
 
 $(function() {
   function executeAction(context, confirmMsg) {
-    try {
-      answer = confirm(
-        confirmMsg
-      );
-    } catch (e) {
-      (console.error || console.log).call(console, e.stack || e);
-    }
-
-    if (answer) {
+    $.hawkAsyncConfirm(confirmMsg, function() {
       $.ajax({
         dataType: 'json',
         method: 'GET',
@@ -47,7 +39,7 @@ $(function() {
           });
         }
       });
-    }
+    });
   }
 
   function resourceRoutes(row) {
@@ -89,6 +81,8 @@ $(function() {
       title: __('Status'),
       sortable: true,
       clickToSelect: true,
+      align: "center",
+      halign: "center",
       class: 'col-sm-1',
       formatter: function(value, row, index) {
         switch(value) {
@@ -102,7 +96,7 @@ $(function() {
             ].join('');
           case "started":
             return [
-              '<i class="fa fa-play fa-lg text-success" title="',
+              '<i class="fa fa-circle fa-lg text-success" title="',
               __("Started"),
               '"></i>'
             ].join('');
@@ -120,7 +114,7 @@ $(function() {
             ].join('');
           case "stopped":
             return [
-              '<i class="fa fa-stop fa-lg text-danger" title="',
+              '<i class="fa fa-minus-circle fa-lg text-danger" title="',
               __("Stopped"),
               '"></i>'
             ].join('');
@@ -142,7 +136,7 @@ $(function() {
       class: 'col-sm-2'
     },
     {
-      field: 'type',
+      field: 'running_on',
       title: __('Location'),
       sortable: true,
       clickToSelect: true,
@@ -192,6 +186,8 @@ $(function() {
       title: __('Operations'),
       sortable: false,
       clickToSelect: false,
+      align: 'right',
+      halign: 'right',
       class: 'col-sm-2',
       events: {
         'click .start': function (e, value, row, index) {
@@ -289,143 +285,60 @@ $(function() {
         var operations = [];
         var dropdowns = [];
 
+        var op_destination = "button";
+        if (row.object_type == "tag") {
+          op_destination = "menu";
+        }
+
+        var add_operation = function(dest, path, path_class, icon_class, text) {
+          if (dest == "menu") {
+            dropdowns.push([
+              '<li>',
+                '<a href="', path, '" class="', path_class, '">',
+                  '<i class="fa fa-fw fa-', icon_class, '"></i> ',
+                  text,
+                '</a>',
+              '</li>'
+            ].join(''));
+          } else if (dest == "button") {
+            operations.push([
+              '<a href="', path, '" class="', path_class, ' btn btn-default btn-xs" title="', text, '">',
+                '<i class="fa fa-', icon_class, '"></i>',
+              '</a> '
+            ].join(''));
+          }
+        };
+
         if (row.state === "started" || row.state === "master" || row.state === "slave" || row.object_type == "tag") {
-          dropdowns.push([
-            '<li>',
-              '<a href="',
-              Routes.stop_cib_resource_path(
-                $('body').data('cib'),
-                row.id
-              ),
-              '" class="stop">',
-                '<i class="fa fa-stop"></i> ',
-                __('Stop'),
-              '</a>',
-            '</li>'
-          ].join(''));
+          add_operation(op_destination, Routes.stop_cib_resource_path($('body').data('cib'), row.id), 'stop', 'stop', __('Stop'));
         }
 
         if (row.state === "stopped" || row.object_type == "tag") {
-          dropdowns.push([
-            '<li>',
-              '<a href="',
-              Routes.start_cib_resource_path(
-                $('body').data('cib'),
-                row.id
-              ),
-              '" class="start">',
-                '<i class="fa fa-play"></i> ',
-                __('Start'),
-              '</a>',
-            '</li>'
-          ].join(''));
+          add_operation(op_destination, Routes.start_cib_resource_path($('body').data('cib'), row.id), 'start', 'play', __('Start'));
         }
 
         if (row.state === "master" || row.object_type == "tag") {
-          dropdowns.push([
-            '<li>',
-              '<a href="',
-              Routes.demote_cib_resource_path(
-                $('body').data('cib'),
-                row.id
-              ),
-              '" class="demote">',
-                '<i class="fa fa-thumbs-down"></i> ',
-                __('Demote'),
-              '</a>',
-            '</li>'
-          ].join(''));
+          add_operation(op_destination, Routes.demote_cib_resource_path($('body').data('cib'), row.id), 'demote', 'thumbs-down', __('Demote'));
         }
 
         if (row.state === "slave" || row.object_type == "tag") {
-          dropdowns.push([
-            '<li>',
-              '<a href="',
-              Routes.promote_cib_resource_path(
-                $('body').data('cib'),
-                row.id
-              ),
-              '" class="promote">',
-                '<i class="fa fa-thumbs-up"></i> ',
-                __('Promote'),
-              '</a>',
-            '</li>'
-          ].join(''));
+          add_operation(op_destination, Routes.promote_cib_resource_path($('body').data('cib'), row.id), 'promote', 'thumbs-up', __('Promote'));
         }
 
         if (row.managed === true) {
-          dropdowns.push([
-            '<li>',
-              '<a href="',
-              Routes.unmanage_cib_resource_path(
-                $('body').data('cib'),
-                row.id
-              ),
-              '" class="unmanage">',
-                '<i class="fa fa-circle"></i> ',
-                __('Unmanage'),
-              '</a>',
-            '</li>'
-          ].join(''));
+          add_operation("menu", Routes.unmanage_cib_resource_path($('body').data('cib'), row.id), 'unmanage', 'circle', __('Unmanage'));
         }
 
         if (row.managed === false) {
-          dropdowns.push([
-            '<li>',
-              '<a href="',
-              Routes.manage_cib_resource_path(
-                $('body').data('cib'),
-                row.id
-              ),
-              '" class="manage">',
-                '<i class="fa fa-dot-circle-o"></i> ',
-                __('Manage'),
-              '</a>',
-            '</li>'
-          ].join(''));
+          add_operation("menu", Routes.manage_cib_resource_path($('body').data('cib'), row.id), 'manage', 'dot-circle-o', __('Manage'));
         }
 
-        dropdowns.push([
-          '<li>',
-            '<a href="',
-            Routes.migrate_cib_resource_path(
-              $('body').data('cib'),
-              row.id
-            ),
-            '" class="migrate">',
-              '<i class="fa fa-hand-o-up"></i> ',
-              __('Migrate'),
-            '</a>',
-          '</li>'
-        ].join(''));
+        var rsc_routes = resourceRoutes(row);
 
-        dropdowns.push([
-          '<li>',
-            '<a href="',
-            Routes.unmigrate_cib_resource_path(
-              $('body').data('cib'),
-              row.id
-            ),
-            '" class="unmigrate">',
-              '<i class="fa fa-hand-o-down"></i> ',
-              __('Unmigrate'),
-            '</a>',
-          '</li>'
-        ].join(''));
-
-        dropdowns.push([
-          '<li>',
-            '<a href="',
-            Routes.cleanup_cib_resource_path(
-              $('body').data('cib'),
-              row.id
-            ),
-            '" class="cleanup">',
-              '<i class="fa fa-eraser"></i> ',
-              __('Cleanup'),
-            '</a>',
-          '</li>'
-        ].join(''));
+        add_operation("menu", Routes.migrate_cib_resource_path($('body').data('cib'), row.id), 'migrate', 'hand-o-up', __('Migrate'));
+        add_operation("menu", Routes.unmigrate_cib_resource_path($('body').data('cib'), row.id), 'unmigrate', 'hand-o-down', __('Unmigrate'));
+        add_operation("menu", Routes.cleanup_cib_resource_path($('body').data('cib'), row.id), 'cleanup', 'eraser', __('Cleanup'));
+        add_operation("menu", rsc_routes.edit, 'edit', 'pencil', __('Edit'));
 
         operations.push([
           '<div class="btn-group" role="group">',
@@ -436,18 +349,6 @@ $(function() {
               dropdowns.join(''),
             '</ul>',
           '</div>'
-        ].join(''));
-
-        var rsc_routes = resourceRoutes(row);
-
-        operations.push([
-          '<a href="',
-            rsc_routes.edit,
-            '" class="edit btn btn-default btn-xs" title="',
-            __('Edit'),
-          '">',
-            '<i class="fa fa-pencil"></i>',
-          '</a> '
         ].join(''));
 
         operations.push([
@@ -472,6 +373,24 @@ $(function() {
     }
   ];
 
+  var rowStyleFn = function(row, index) {
+    if (row.state == "unknown") {
+      return {};
+    } else if (row.state == "unmanaged") {
+      return { classes: ["warning"] };
+    } else if (row.state == "master") {
+      return { classes: ["info"] };
+    } else if (row.state == "slave") {
+      return { classes: ["success"] };
+    } else if (row.state == "started") {
+      return { classes: ["success"] };
+    } else if (row.state == "stopped") {
+      return {};
+    } else {
+      return { classes: ["danger"] };
+    }
+  };
+
   $('#states #middle table.resources')
     .bootstrapTable({
       method: 'get',
@@ -479,7 +398,6 @@ $(function() {
         $('body').data('cib'),
         { format: 'json' }
       ),
-      striped: true,
       pagination: true,
       pageSize: 25,
       pageList: [10, 25, 50, 100, 200],
@@ -493,6 +411,7 @@ $(function() {
       sortName: 'id',
       sortOrder: 'asc',
       detailView: true,
+      rowStyle: rowStyleFn,
       onExpandRow: function (index, row, detail) {
         if (row.children || row.child || row.refs) {
           var columns = statesResourcesColumns.slice(0);
@@ -519,13 +438,13 @@ $(function() {
             .find('table')
             .bootstrapTable({
               data: datasource,
-              striped: true,
               pagination: false,
               smartDisplay: false,
               showColumns: false,
               showRefresh: false,
               showHeader: false,
               showFooter: false,
+              rowStyle: rowStyleFn,
               minimumCountColumns: 0,
               sortName: 'id',
               sortOrder: 'asc',
@@ -543,7 +462,6 @@ $(function() {
         $('body').data('cib'),
         { format: 'json' }
       ),
-      striped: true,
       pagination: true,
       pageSize: 50,
       pageList: [10, 25, 50, 100, 200],
@@ -556,6 +474,7 @@ $(function() {
       minimumCountColumns: 0,
       sortName: 'id',
       sortOrder: 'asc',
+      striped: true,
       columns: [{
         field: 'object_type',
         title: __('Type'),
@@ -601,17 +520,7 @@ $(function() {
             e.preventDefault();
             var $self = $(this);
 
-            try {
-              answer = confirm(
-                i18n.translate(
-                  'Are you sure you wish to delete %s?'
-                ).fetch(row.id)
-              );
-            } catch (e) {
-              (console.error || console.log).call(console, e.stack || e);
-            }
-
-            if (answer) {
+            $.hawkAsyncConfirm(i18n.translate('Are you sure you wish to delete %s?').fetch(row.id), function() {
               $.ajax({
                 dataType: 'json',
                 method: 'POST',
@@ -650,7 +559,7 @@ $(function() {
                   });
                 }
               });
-            }
+            });
           }
         },
         formatter: function(value, row, index) {
@@ -692,8 +601,8 @@ $(function() {
     var open = button.attr('aria-expanded');
     var dropdown = button.siblings('.dropdown-menu');
     if (open) {
-      dropdown.css('top', button.offset().top - $(window).scrollTop() + button.outerHeight() + "px");
-      dropdown.css('left', button.offset().left + "px");
+      dropdown.css('top', (button.offset().top - $(window).scrollTop() + button.outerHeight()) + "px");
+      dropdown.css('left', (button.offset().left + button.outerWidth() - dropdown.outerWidth()) + "px");
       dropdown.css('position', 'fixed');
     }
   });

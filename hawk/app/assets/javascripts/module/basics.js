@@ -105,4 +105,58 @@ $(function() {
     $(this).replaceWith(circle);
     parent.find('[data-toggle=tooltip]').tooltip();
   };
+
+  $.rails.allowAction = function(link) {
+    if (!link.attr('data-confirm')) {
+      return true;
+    }
+    $.rails.showConfirmDialog(link);
+    return false;
+  };
+
+  $.rails.confirmed = function(link) {
+    link.removeAttr('data-confirm');
+    link.trigger('click.rails');
+  };
+
+  $.hawkAsyncConfirm = function(message, on_ok) {
+    if (!message) {
+      message = _('Continue?');
+    }
+    var html = [
+      '<div class="modal fade" id="confirmationDialog" role="dialog" tabindex="-1" aria-hidden="true">',
+      '<div class="modal-dialog">',
+      '<div class="modal-content">',
+      '<form>',
+      '<div class="modal-header">',
+      '<button class="close" type="button" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">', __('Close'), '</span></button>',
+      '<div class="text-center">',
+      '<i class="fa fa-5x fa-exclamation-triangle text-warning"></i>',
+      '</div>',
+      '</div>',
+      '<div class="modal-body">',
+      '<div class="center-block">',
+      '<h4 class="text-center">', message, '</h4>',
+      '</div>',
+      '</div>',
+      '<div class="modal-footer">',
+      '<a data-dismiss="modal" class="btn">', __('Cancel'),'</a>',
+      '<input type="submit" name="submit" value="', __('OK'),'" class="btn btn-primary submit">',
+      '</div>',
+      '</form>',
+      '</div>',
+      '</div>',
+      '</div>'
+    ];
+    $(html.join('')).modal();
+    $('#confirmationDialog .confirm').on('click', function() {
+      return on_ok();
+    });
+  };
+
+  $.rails.showConfirmDialog = function(link) {
+    $.hawkAsyncConfirm(link.attr('data-confirm'), function() {
+      $.rails.confirmed(link);
+    });
+  };
 });

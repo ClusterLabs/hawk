@@ -82,17 +82,7 @@ $(function() {
               var $self = $(this);
               var answer = null;
 
-              try {
-                answer = confirm(
-                  i18n.translate(
-                    'Are you sure you wish to delete %s?'
-                  ).fetch(row.id)
-                );
-              } catch (e) {
-                (console.error || console.log).call(console, e.stack || e);
-              }
-
-              if (answer) {
+              $.hawkAsyncConfirm(i18n.translate('Are you sure you wish to delete %s?').fetch(row.id), function() {
                 $.ajax({
                   dataType: 'json',
                   method: 'POST',
@@ -132,7 +122,7 @@ $(function() {
                     });
                   }
                 });
-              }
+              });
             }
           },
           formatter: function(value, row, index) {
