@@ -23,13 +23,33 @@ cert_key_file=/etc/ssl/certs/hawk.key
 cert_file=/etc/ssl/certs/hawk.pem
 [ -n "$HAWK_CERT" ] && cert_file=$HAWK_CERT
 
-log_file=$(dirname $0)/../log/certificate.log
+log_file=$(dirname "$0")/../log/certificate.log
 
-[ -e "$cert_key_file" ] && [ -e $cert_file ] && exit 0
+# Hawk had a strange pair of bugs: generate-ssl-cert will sometimes
+# generate the key in the .pem file and the certificate in the .key
+# file. The service file would also look for the key in the .pem file
+# and vice versa. To work around this, we check and swap the files
+# both before and after generation. (bsc#954159)
+swap_key_certificate() {
+  if [ -e "$cert_key_file" ] && [ -e "$cert_file" ]; then
+    if head -1 <"$cert_key_file" | grep "CERTIFICATE" >/dev/null; then
+      if head -1 <"$cert_file" | grep "PRIVATE KEY" >/dev/null; then
+        mv -f -- "$cert_key_file" "$cert_file.$$"
+        mv -f -- "$cert_file" "$cert_key_file.$$"
+        mv -f -- "$cert_key_file.$$" "$cert_key_file"
+        mv -f -- "$cert_file.$$" "$cert_file"
+      fi
+    fi
+  fi
+}
+
+swap_key_certificate
+
+[ -e "$cert_key_file" ] && [ -e "$cert_file" ] && exit 0
 
 echo "No SSL certificate found. Creating one now."
-mkdir -p $(dirname $cert_key_file)
-mkdir -p $(dirname $cert_file)
+mkdir -p "$(dirname "$cert_key_file")"
+mkdir -p "$(dirname "$cert_file")"
 
 old_mask=$(umask)
 umask 137
@@ -39,7 +59,7 @@ CN=$(hostname -f)
 [ -z "$CN" ] && CN=$(hostname)
 [ -z "$CN" ] && CN=localhost
 
-$openssl_bin req -newkey rsa:2048 -x509 -nodes -days 1095 -batch -config /dev/fd/0 -out $cert_file -keyout $cert_key_file >$log_file 2>&1 <<CONF
+$openssl_bin req -x509 -sha256 -nodes -days 1095 -newkey rsa:2048 -batch -config /dev/fd/0 -keyout "$cert_key_file" -out "$cert_file" >"$log_file" 2>&1 <<CONF
 [req]
 distinguished_name = user_dn
 prompt = no
@@ -54,12 +74,13 @@ CONF
 rc=$?
 
 if [ $rc -eq 0 ]; then
-  [ -x "$c_rehash_bin" ] && $c_rehash_bin $(dirname $cert_file) >/dev/null 2>&1
+  swap_key_certificate
+  [ -x "$c_rehash_bin" ] && $c_rehash_bin "$(dirname "$cert_file")" >/dev/null 2>&1
 else
   echo "Could not generate certificate. Please see $log_file for details"
 fi
 
-chown root:haclient $cert_key_file $cert_file
+chown root:haclient "$cert_key_file" "$cert_file"
 
-umask $old_mask
+umask "$old_mask"
 exit $rc

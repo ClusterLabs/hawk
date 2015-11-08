@@ -18,12 +18,12 @@ Environment="HAWK_THREADS=16"
 Environment="HAWK_WORKERS=1"
 Environment="HAWK_LISTEN=0.0.0.0"
 Environment="HAWK_PORT=3000"
-Environment="HAWK_KEY=/vagrant/hawk/tmp/hawk.pem"
-Environment="HAWK_CERT=/vagrant/hawk/tmp/hawk.key"
+Environment="HAWK_KEY=/vagrant/hawk/tmp/hawk.key"
+Environment="HAWK_CERT=/vagrant/hawk/tmp/hawk.pem"
 
 # Run ExecStartPre with root-permissions
 PermissionsStartOnly=true
-ExecStartPre=/srv/www/hawk/bin/generate-ssl-cert
+ExecStartPre=/vagrant/hawk/bin/generate-ssl-cert
 ExecStart=/usr/bin/puma -C /vagrant/hawk/config/puma.rb
 ExecStop=/usr/bin/pumactl -S /vagrant/hawk/tmp/pids/puma.state stop
 ExecReload=/usr/bin/pumactl -S /vagrant/hawk/tmp/pids/puma.state restart
