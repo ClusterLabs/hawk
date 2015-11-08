@@ -20,8 +20,6 @@ environment ENVIRONMENT
 
 tag "hawk"
 
-quiet
-
 daemonize false
 prune_bundler false
 
