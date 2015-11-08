@@ -18,52 +18,39 @@ class Cluster < Tableless
   def initialize(attrs = nil)
     super
     if self.new_record?
-      self.https = (self.https.nil? ? true : self.https)
-      self.port = self.port || 7630
-      self.interval = self.interval || 30
+      self.https = (https.nil? ? true : https)
+      self.port = port || 7630
+      self.interval = interval || 30
     end
   end
 
   def to_hash
-    {"name" => @name,
-     "host" => @host,
-     "https" => @https,
-     "port" => @port,
-     "interval" => @interval
+    {
+      "name" => @name,
+      "host" => @host,
+      "https" => @https,
+      "port" => @port,
+      "interval" => @interval
     }
   end
 
   def to_json
-    self.to_hash.to_json
+    to_hash.to_json
   end
 
   protected
 
   def create
     fname = "#{Rails.root}/tmp/dashboard.js"
-    if File.exists?(fname)
+    if File.exist? fname
       Rails.logger.debug "Reading #{fname}"
       clusters = JSON.parse(File.read(fname))
     else
       Rails.logger.debug "Creating #{fname}"
       clusters = {}
     end
-    clusters[@name] = self.to_hash
-    begin
-      Rails.logger.debug "Writing #{fname}..."
-      File.open(fname, "w") { |f| f.write(JSON.pretty_generate(clusters)) }
-      Rails.logger.debug "chmod 0664 #{fname}..."
-      File.chmod(0660, fname)
-      Rails.logger.debug "Copy #{fname}..."
-      out, err, rc = Util.run_as("root", "crm", "cluster", "copy", fname)
-      if rc == 0
-        out, err, rc = Util.run_as("root", "crm", "cluster", "run", "chown hacluster:haclient #{fname}")
-      end
-      Rails.logger.debug "Copy returned #{out} #{err} #{rc}"
-      rc == 0 ? true : err
-    rescue Exception => e
-      e.message
-    end
+    clusters[@name] = to_hash
+    Cluster.cluster_copy clusters
   end
 
   def update
@@ -72,21 +59,21 @@ class Cluster < Tableless
 
   class << self
     def parse(data)
-      return Cluster.new(
-               name: data['name'],
-               host: data['host'],
-               https: data['https'],
-               port: data['port'],
-               interval: data['interval']
-             )
+      Cluster.new(
+        name: data['name'],
+        host: data['host'],
+        https: data['https'],
+        port: data['port'],
+        interval: data['interval']
+      )
     end
 
     def all
       fname = "#{Rails.root}/tmp/dashboard.js"
-      return [] unless File.exists?(fname)
+      return [] unless File.exist? fname
       clusters = []
       begin
-        JSON.parse(File.read(fname)).each do |id, data|
+        JSON.parse(File.read(fname)).each do |_, data|
           clusters << parse(data)
         end
       rescue Exception => e
@@ -102,18 +89,27 @@ class Cluster < Tableless
       begin
         clusters = JSON.parse(File.read(fname))
         clusters = clusters.delete_if { |key, _| key == name }
-        Rails.logger.debug "remove: Writing #{fname}..."
-        File.open(fname, "w") { |f| f.write(JSON.pretty_generate(clusters)) }
-        File.chmod(0660, fname)
-        out, err, rc = Util.run_as("root", "crm", "cluster", "copy", fname)
-        if rc == 0
-          out, err, rc = Util.run_as("root", "crm", "cluster", "run", "chown hacluster:haclient #{fname}")
-        end
-        Rails.logger.debug "remove: Copy returned #{out} #{err} #{rc}"
-        [out, err, rc]
+        ret = cluster_copy clusters
+        ["", ret, 1] if ret.is_a? String
+        ["", "", 0]
       rescue Exception => e
+        Rails.logger.debug "Remove cluster: #{e.message}"
         ["", e.message, 1]
       end
+    end
+
+    def cluster_copy(clusters)
+      fname = "#{Rails.root}/tmp/dashboard.js"
+      File.open(fname, "w") { |f| f.write(JSON.pretty_generate(clusters)) }
+      File.chmod(0660, fname)
+      out, err, rc = Util.run_as("root", "crm", "cluster", "copy", fname)
+      out, err, rc = Util.run_as("root", "crm", "cluster", "run", "chown hacluster:haclient #{fname}") if rc == 0
+      Rails.logger.debug "Copy: #{out} #{err} #{rc}"
+      # always succeed here: we don't really care that much if the copy succeeded or not
+      true
+    rescue Exception => e
+      Rails.logger.debug "Copy: #{e.message}"
+      e.message
     end
   end
 end
