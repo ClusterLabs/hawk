@@ -13,6 +13,14 @@
     - if @node.remote
       .alert.alert-info{role: :alert}
         = _("Remote node.")
+
+    %table.table.table-condensed
+      %tbody
+        %tr
+          %th.col-xs-4
+            = _("ID")
+          %td.col-xs-8
+            = @node.id
     %h4
       = _("Utilization")
 
