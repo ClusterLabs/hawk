@@ -45,7 +45,7 @@ class ProfilesController < ApplicationController
   end
 
   def set_record
-    @profile = Profile.new
+    @profile = Profile.new language: cookies[:locale]
   end
 
   def post_process_for!(record)

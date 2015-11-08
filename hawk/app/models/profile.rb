@@ -24,7 +24,7 @@ class Profile < Tableless
     end
   end
 
-  attribute :language, String, default: FastGettext.locale
+  attribute :language, String, default: I18n.locale
 
   validates :language,
     presence: {
