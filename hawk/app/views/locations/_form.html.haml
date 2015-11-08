@@ -10,6 +10,8 @@
 
       = main_form.select :resource, :location_resource_options, { include_hidden: false }, { multiple: true, size: 5 }
 
+      = main_form.select :discovery, :location_discovery_options, { include_blank: true, include_hidden: false }, { label: _("Resource Discovery") }
+
       %div{ data: { locations: location.rules.to_json, locations_prefix: "location[rules]", locations_target: ".content" } }
         .content.locations
 

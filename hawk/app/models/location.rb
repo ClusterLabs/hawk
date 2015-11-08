@@ -5,6 +5,7 @@ class Location < Constraint
   attribute :id, String
   attribute :resource, Array[String]
   attribute :rules, Array[Hash]
+  attribute :discovery, String
 
   validates :id,
     presence: { message: _("Constraint ID is required") },
@@ -17,6 +18,12 @@ class Location < Constraint
     presence: { message: _("No rules specified") }
 
   validate do |record|
+    unless record.discovery.blank?
+      unless discovery_types.include? record.discovery.downcase
+        errors.add :discovery, _("Invalid resource discovery type")
+      end
+    end
+
     if record.complex?
       errors.add :base, _("Constraint is too complex - it contains nested rules")
       return false
@@ -92,6 +99,10 @@ class Location < Constraint
     ['mandatory', 'advisory', 'inf', '-inf', 'infinity', '-infinity']
   end
 
+  def discovery_types
+    ['always', 'never', 'exclusive']
+  end
+
   def shell_syntax
     [].tap do |cmd|
       cmd.push "location #{id}"
@@ -102,8 +113,11 @@ class Location < Constraint
         cmd.push ["{", resource.join(" "), "}"].join(" ")
       end
 
+      cmd.push "resource-discovery=#{crm_quote(discovery)}" unless discovery.blank?
+
       if simple?
-        cmd.push "#{rules.first[:score]}: #{rules.first[:expressions].first[:value]}"
+        cmd.push "#{rules.first[:score]}:"
+        cmd.push "#{rules.first[:expressions].first[:value]}"
       else
         rules.each do |rule|
           op = rule[:boolean_op]
@@ -140,6 +154,8 @@ class Location < Constraint
           end
         end
       end
+
+      record.discovery = xml.attributes["resource-discovery"] if xml.attributes["resource-discovery"]
 
       record.rules = [].tap do |rules|
         if xml.attributes["score"]

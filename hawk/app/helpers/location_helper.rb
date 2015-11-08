@@ -26,4 +26,11 @@ module LocationHelper
       selected
     )
   end
+
+  def location_discovery_options(selected)
+    options_for_select(
+      ["always", "never", "exclusive"],
+      selected
+    )
+  end
 end
