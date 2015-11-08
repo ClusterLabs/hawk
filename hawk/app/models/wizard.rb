@@ -134,18 +134,16 @@ class Wizard
                    'mariadb' => true,
                    'ocfs2-single' => true,
                    'webserver' => true}
-      unsupported = {'gfs2' => true,
-                     'gfs2-base' => true}
       return true if item['category'].strip.downcase.eql? "script"
       return true if item['category'].strip.downcase.eql?("wizard") && workflows.has_key?(item['name'])
-      return unsupported.has_key?(item['name'])
+      false
     end
 
     def all
       Rails.cache.fetch(:all_wizards, expires_in: 2.hours) do
         [].tap do |wizards|
           CrmScript.run ["list"], nil do |item, err|
-            wizards.push Wizard.parse_brief(item) unless item.nil? or self.exclude_wizard(item)
+            wizards.push Wizard.parse_brief(item) unless item.nil? || exclude_wizard(item)
           end
         end
       end
