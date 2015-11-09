@@ -75,18 +75,19 @@
       success: function(cib) {
         if (cib) {
           $('body').data('content', cib);
-          $('#middle .circle').statusCircle(cib.meta.status);
+          $('#middle .circle').statusCircleFromCIB(cib);
           $(self.options.targets.metadata).link(true, cib);
           $(self.options.targets.content).link(true, cib);
         }
       },
 
       error: function(request) {
+        var msg = __('Connection to server failed - will retry every 15 seconds.');
         $.growl(
-          __('Connection to server failed - will retry every 15 seconds.'),
+          msg,
           { type: 'danger' }
         );
-        $('#middle .circle').statusCircle('errors');
+        $('#middle .circle').statusCircle('errors', msg);
       }
     });
   };
@@ -96,8 +97,22 @@
       new StatusCheck(this, options);
     });
   };
+
+  $.fn.statusCircleFromCIB = function(cib) {
+    if (cib === undefined) {
+      cib = $('body').data('content');
+    }
+    if (cib) {
+      var msg = undefined;
+      if (cib.errors.length > 0) {
+        msg = cib.errors[0].msg;
+      }
+      $(this).statusCircle(cib.meta.status, msg);
+    }
+  };
 }(jQuery, document, window));
 
 $(function() {
   $('body').statusCheck();
+  $('#middle .circle').statusCircleFromCIB();
 });

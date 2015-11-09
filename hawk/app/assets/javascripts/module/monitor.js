@@ -34,6 +34,8 @@
   MonitorCheck.prototype.processCheck = function() {
     var self = this;
 
+    $('#middle .circle').statusCircleFromCIB();
+
     $.ajax({
       url: Routes.monitor_path(),
 
@@ -53,12 +55,13 @@
 
           self.processCheck();
         } else {
+          var msg = __('Connection to server aborted - will retry every 15 seconds.');
           $.growl(
-            __('Connection to server aborted - will retry every 15 seconds.'),
+            msg,
             { type: 'warning' }
           );
 
-          $('#middle .circle').statusCircle('errors');
+          $('#middle .circle').statusCircle('errors', msg);
 
           $('body').trigger($.Event('aborted.hawk.monitor'));
 
@@ -69,11 +72,12 @@
       error: function(request) {
         if (request.readyState > 1) {
           if (request.status >= 10000) {
+            var msg =  __('Connection to server failed - will retry every 15 seconds.');
             $.growl(
-              __('Connection to server failed - will retry every 15 seconds.'),
+              msg,
               { type: 'danger' }
             );
-            $('#middle .circle').statusCircle('errors');
+            $('#middle .circle').statusCircle('errors', msg);
           } else {
             // $.growl(
             //   request.statusText,
@@ -81,11 +85,12 @@
             // );
           }
         } else {
+          var msg = __('Connection to server timed out - will retry every 15 seconds.');
           $.growl(
-            __('Connection to server timed out - will retry every 15 seconds.'),
+            msg,
             { type: 'danger' }
           );
-          $('#middle .circle').statusCircle('errors');
+          $('#middle .circle').statusCircle('errors', msg);
         }
 
         $('body').trigger($.Event('unavailable.hawk.monitor'));

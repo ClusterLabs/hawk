@@ -54,7 +54,18 @@ $(function() {
     })
   };
 
-  $.fn.statusCircle = function(status) {
+  $.fn.statusCircle = function(status, tooltip) {
+    if (tooltip === undefined) {
+      if (status == "ok") {
+        tooltip = __("OK");
+      } else if (status == "maintenance") {
+        tooltip = __("Maintenance mode");
+      } else if (status == "errors") {
+        tooltip = __("An error has occurred");
+      } else {
+        tooltip = status;
+      }
+    }
     var statusClass = function() {
       if (status == "ok") {
         return "circle-success";
@@ -82,9 +93,13 @@ $(function() {
     };
     var circle = ['<div class="circle circle-medium ',
                   statusClass(),
+                  '" data-toggle="tooltip" data-placement="left" title="',
+                  tooltip,
                   '">',
                   statusIcon(),
                   '</div>'].join("");
-    $(this).html(circle);
+    var parent = $(this).parent();
+    $(this).replaceWith(circle);
+    parent.find('[data-toggle=tooltip]').tooltip();
   };
 });
