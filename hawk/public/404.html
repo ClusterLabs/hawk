@@ -10,7 +10,10 @@
     <meta content="IE=edge" http-equiv="X-UA-Compatible" />
 
     <link rel="shortcut icon" href="/favicon.ico" />
+    <link rel="stylesheet" href="/assets/vendor.css" />
     <link rel="stylesheet" href="/assets/application.css" />
+    <link rel="stylesheet" href="/assets/authentication.css" />
+    <script src="/assets/vendor.js"></script>
     <script src="/assets/application.js"></script>
 
     <!--[if lt IE 9]>
@@ -29,7 +32,7 @@
         <div id="navbar" class="navbar-right">
           <ul class="nav navbar-nav">
             <li>
-              <a href="/">Go to dashboard</a>
+              <a href="#" onclick="window.history.back()">Go back</a>
             </li>
           </ul>
         </div>
@@ -37,7 +40,7 @@
     </div>
 
     <div class="container" id="errorpage">
-      <div class="panel panel-default panel-warning">
+      <div class="panel panel-default panel-warning" style="margin-top: 80px;">
         <div class="panel-heading">
           <h2>
             We can't find the page you're looking for
@@ -50,16 +53,16 @@
           </p>
         </div>
       </div>
-
-      <footer>
-        <div class="container-fluid">
-          <div class="col-lg-12 copyright">
-            <p>
-              Copyright &copy; 2009-2015 SUSE, LLC
-            </p>
-          </div>
-        </div>
-      </footer>
     </div>
+
+    <footer>
+      <div class="container-fluid">
+        <div class="col-lg-12 copyright">
+          <p>
+            Copyright &copy; 2009-2015 SUSE, LLC
+          </p>
+        </div>
+      </div>
+    </footer>
   </body>
 </html>
