@@ -39,57 +39,11 @@ class Resource < Record
   end
 
   def running_on
-    {}.tap do |lst|
-      r = cib_by_id(id)
-      if r.has_key? :children
-        r[:children].each do |c|
-          if c.has_key? :instances
-            c[:instances].each do |name, info|
-              [:master, :slave, :started, :pending].each do |rstate|
-                if info[rstate]
-                  info[rstate].each do |n|
-                    lst[n[:node]] = rstate
-                  end
-                end
-              end
-            end
-          end
-        end
-      elsif r.has_key? :instances
-        r[:instances].each do |name, info|
-          [:master, :slave, :started, :pending].each do |rstate|
-            if info[rstate]
-              info[rstate].each do |n|
-                lst[n[:node]] = rstate
-              end
-            end
-          end
-        end
-      end
-    end
+    rsc_is_running_on cib_by_id(id)
   end
 
   def failed_ops
-    [].tap do |lst|
-      r = cib_by_id(id)
-      if r.has_key? :children
-        r[:children].each do |c|
-          if c.has_key? :instances
-            c[:instances].each do |name, info|
-              if info.has_key? :failed_ops
-                lst.concat info[:failed_ops]
-              end
-            end
-          end
-        end
-      elsif r.has_key? :instances
-        r[:instances].each do |name, info|
-          if info.has_key? :failed_ops
-            lst.concat info[:failed_ops]
-          end
-        end
-      end
-    end
+    rsc_failed_ops cib_by_id(id)
   end
 
   def start!
@@ -195,5 +149,41 @@ class Resource < Record
 
   def cib_by_id(id)
     current_cib.resources_by_id[id] || {}
+  end
+
+  def rsc_is_running_on(rsc)
+    {}.tap do |lst|
+      if rsc.key? :children
+        rsc[:children].each do |c|
+          lst.merge! rsc_is_running_on(c)
+        end
+      end
+      if rsc.key? :instances
+        rsc[:instances].each do |name, info|
+          [:master, :slave, :started, :pending].each do |rstate|
+            if info[rstate]
+              info[rstate].each do |n|
+                lst[n[:node]] = rstate
+              end
+            end
+          end
+        end
+      end
+    end
+  end
+
+  def rsc_failed_ops(rsc)
+    [].tap do |lst|
+      if rsc.key? :children
+        rsc[:children].each do |c|
+          lst.concat rsc_failed_ops(c)
+        end
+      end
+      if rsc.key? :instances
+        rsc[:instances].each do |_name, info|
+          lst.concat(info[:failed_ops]) if info.key? :failed_ops
+        end
+      end
+    end
   end
 end
