@@ -91,10 +91,13 @@ $(function() {
         return '<i class="fa fa-question text"></i>';
       }
     };
+    var unquote = function(str) {
+      return str.replace(/["']/g, "");
+    };
     var circle = ['<div class="circle circle-medium ',
                   statusClass(),
                   '" data-toggle="tooltip" data-placement="left" title="',
-                  tooltip,
+                  unquote(tooltip),
                   '">',
                   statusIcon(),
                   '</div>'].join("");
