@@ -16,7 +16,8 @@
       - opts[:include_hidden] = false
       = select_tag param_id, boolean_options(param.value || false), opts
     - else
-      - opts[:placeholder] = param.value || param.example
-      = text_field_tag(param_id, nil, opts)
+      - unless param.example.blank?
+        - opts[:placeholder] = "Example: #{sanitize param.example.to_s}"
+      = text_field_tag(param_id, sanitize_value(param.value), opts)
   .col-sm-12.help-block
     = param.shortdesc

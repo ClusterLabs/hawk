@@ -78,7 +78,7 @@ class WizardsController < ApplicationController
   def build_scriptparams(params)
     sp = build_stepmap({}, @wizard)
     id = @wizard.id
-    params.select {|k,v| k.start_with?("#{id}.") }.each do |k, v|
+    params.select { |k, _v| k.start_with?("#{id}.") }.each do |k, v|
       next if v.empty?
       path = k.split(".").drop(1)
       if path.length > 1
@@ -86,12 +86,12 @@ class WizardsController < ApplicationController
         next if basestep_idx.nil?
 
         basestep = @wizard.steps[basestep_idx]
-        next unless basestep.required || params.has_key?("enable:#{basestep.id}")
+        next unless basestep.required || (params.key?("enable:#{basestep.id}") && params["enable:#{basestep.id}"] != "false")
 
         name = path.last
         sub = sp
         path.take(path.length - 1).each do |p|
-          sub[p] = {} unless sub.has_key? p
+          sub[p] = {} unless sub.key? p
           sub = sub[p]
         end
         sub[name] = v
@@ -99,7 +99,7 @@ class WizardsController < ApplicationController
         sp[path[0]] = v
       end
     end
-    #Rails.logger.debug "scriptparams: #{params} -> #{sp}"
+    Rails.logger.debug "scriptparams: #{params} -> #{sp}"
     sp
   end
 

@@ -74,4 +74,11 @@ module WizardHelper
     text.gsub!(/([^\n])\n([^\n])/, '\1 \2')
     simple_format(html_escape(text), {}, sanitize: false)
   end
+
+  def sanitize_value(value)
+    # the script code supports values that
+    # we can't deal with in the UI right now
+    return nil if value && value.to_s.include?('{{')
+    value
+  end
 end
