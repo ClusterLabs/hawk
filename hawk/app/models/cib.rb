@@ -11,6 +11,7 @@ class Cib
   extend ActiveModel::Naming
   include ActiveModel::Conversion
   include FastGettext::Translation
+  include Rails.application.routes.url_helpers # needed for routes
 
   class CibError < StandardError
   end
@@ -187,21 +188,21 @@ class Cib
     ret
   end
 
-  def find_node(id)
-    fail(RecordNotFound, id) if @xml.nil?
+  def find_node(node_id)
+    fail(RecordNotFound, node_id) if @xml.nil?
 
-    state = @nodes.select { |n| n[:id] == id }
+    state = @nodes.select { |n| n[:id] == node_id }
     can_fence = @crm_config[:stonith_enabled]
 
-    node = @xml.elements["cib/configuration/nodes/node[@uname=\"#{id}\"]"]
+    node = @xml.elements["cib/configuration/nodes/node[@uname=\"#{node_id}\"]"]
     if node
       Node.instantiate(node, state[0], can_fence)
     else
-      node = @xml.elements["cib/configuration/nodes/node[@id=\"#{id}\"]"]
+      node = @xml.elements["cib/configuration/nodes/node[@id=\"#{node_id}\"]"]
       if node
         Node.instantiate(node, state[0], can_fence)
       else
-        raise RecordNotFound, id
+        raise RecordNotFound, node_id
       end
     end
   end
@@ -211,8 +212,8 @@ class Cib
     return ret if @xml.nil?
     can_fence = @crm_config[:stonith_enabled]
     @xml.elements.each('cib/configuration/nodes/node') do |xml|
-      id = xml.attributes['id']
-      state = @nodes.select { |n| n[:id] == id }
+      node_id = xml.attributes['id']
+      state = @nodes.select { |n| n[:id] == node_id }
       ret << Node.instantiate(xml, state[0], can_fence)
     end
     ret
@@ -488,7 +489,7 @@ class Cib
     @nodes = []
     @xml.elements.each('cib/configuration/nodes/node') do |n|
       uname = n.attributes['uname']
-      id = n.attributes['id']
+      node_id = n.attributes['id']
       state = :unclean
       standby = false
       maintenance = @crm_config[:"maintenance-mode"] ? true : false
@@ -516,7 +517,7 @@ class Cib
       @nodes << Hashie::Mash.new(
         uname: uname,
         state: state,
-        id: id,
+        id: node_id,
         standby: standby,
         maintenance: maintenance,
         remote: remote
@@ -529,16 +530,16 @@ class Cib
     # add remote nodes that may not exist in cib/configuration/nodes/node
     @xml.elements.each("cib/status/node_state[remote_node='true']") do |n|
       uname = n.attributes['uname']
-      id = n.attributes['id']
+      node_id = n.attributes['id']
       # To determine the state of remote nodes, we need to look at
       # the resource by the same name
       state = :unknown
       standby = false
-      unless @nodes.any? { |nod| nod[:id] == id }
+      unless @nodes.any? { |nod| nod[:id] == node_id }
         @nodes << Hashie::Mash.new(
           uname: uname,
           state: state,
-          id: id,
+          id: node_id,
           standby: standby,
           maintenance: maintenance,
           remote: true
@@ -584,7 +585,7 @@ class Cib
     # IDs be in the same order as pacemaker
     for node in @nodes
       @xml.elements.each("cib/status/node_state[@uname='#{node[:uname]}']/lrm/lrm_resources/lrm_resource") do |lrm_resource|
-        id = lrm_resource.attributes['id']
+        rsc_id = lrm_resource.attributes['id']
         # logic derived somewhat from pacemaker/lib/pengine/unpack.c:unpack_rsc_op()
         state = :unknown
         substate = nil
@@ -694,7 +695,7 @@ class Cib
 
             # if on-fail == ignore for this op, pretend it succeeded for the purposes of state calculation
             ignore_failure = false
-            @xml.elements.each("cib/configuration//primitive[@id='#{id.split(":")[0]}']/operations/op[@name='#{operation}']") do |e|
+            @xml.elements.each("cib/configuration//primitive[@id='#{rsc_id.split(":")[0]}']/operations/op[@name='#{operation}']") do |e|
               next unless e.attributes["on-fail"] && e.attributes["on-fail"] == "ignore"
               # TODO(must): Verify interval is correct
               ignore_failure = true
@@ -737,7 +738,7 @@ class Cib
             failed_ops << { :node => node[:uname], :call_id => op.attributes['call-id'], :op => operation, :rc_code => rc_code, :exit_reason => exit_reason }
             error(_('%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_reason}') % {
                     :node => node[:uname],
-                    :resource => "<strong>#{id}</strong>".html_safe,
+                    :resource => "<strong>#{rsc_id}</strong>".html_safe,
                     :call_id => op.attributes['call-id'],
                     :op => "<strong>#{operation}</strong>".html_safe,
                     :rc_mapping => rc_mapping[rc_code] || _('other'),
@@ -783,15 +784,15 @@ class Cib
 
         # TODO(should): want some sort of assert "status != :unknown" here
         # Now we've got the status on this node, let's stash it away
-        (id, instance) = id.split(':')
+        (rsc_id, instance) = rsc_id.split(':')
         # Need check for :instances in case an orphaned resource has same id
         # as a currently extant clone parent (bnc#834198)
-        if @resources_by_id[id] && @resources_by_id[id][:instances]
-          update_resource_state @resources_by_id[id], node, instance, state, substate, failed_ops
+        if @resources_by_id[rsc_id] && @resources_by_id[rsc_id][:instances]
+          update_resource_state @resources_by_id[rsc_id], node, instance, state, substate, failed_ops
           # NOTE: Do *not* add any more keys here without adjusting the renamer above
         else
           # It's an orphan
-          Rails.logger.debug "Ignoring orphaned resource #{id + (instance ? ':' + instance : '')}"
+          Rails.logger.debug "Ignoring orphaned resource #{rsc_id + (instance ? ':' + instance : '')}"
         end
       end
     end
@@ -800,7 +801,7 @@ class Cib
     fix_resource_states @resources
 
     # More hack
-    @resources_by_id.each do |k,v|
+    @resources_by_id.each do |k, _|
       @resources_by_id[k].delete :is_ms
       # Need to inject a default instance if we don't have any state
       # (e.g. during cluster bringup) else the panel renderer chokes.
@@ -913,12 +914,11 @@ class Cib
     @rsc_defaults = Hashie::Mash.new Hash[@rsc_defaults.map {|k,v| [k.to_s.underscore.to_sym, v]}]
     @op_defaults = Hashie::Mash.new Hash[@op_defaults.map {|k,v| [k.to_s.underscore.to_sym, v]}]
 
-    if not @crm_config[:stonith_enabled]
-      error(
-        _("STONITH is disabled. For normal cluster operation, STONITH is required."),
-        :warning
-      )
-    end
+    error(
+      _("STONITH is disabled. For normal cluster operation, STONITH is required."),
+      :warning,
+      link: edit_cib_crm_config_path(cib_id: @id)
+    ) unless @crm_config[:stonith_enabled]
   end
 
   def init_offline_cluster(id, user, use_file)
@@ -979,7 +979,8 @@ class Cib
         alt_i = (alt_i.to_i + 1).to_s
       end
       if alt_i != instance
-        Rails.logger.debug "Internally renamed #{id}:#{instance} to #{id}:#{alt_i} on #{node[:uname]}"
+        rsc_id = resource[:id]
+        Rails.logger.debug "Internally renamed #{rsc_id}:#{instance} to #{rsc_id}:#{alt_i} on #{node[:uname]}"
         instance = alt_i
       end
     else
