@@ -98,11 +98,11 @@ base/install:
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/sockets
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/home
 	# Get rid of cruft from packed gems
-	-find hawk/vendor -name '*bak' -o -name '*~' -o -name '#*#' | xargs rm
+	-find hawk/vendor -name '*bak' -o -name '*~' -o -name '#*#' -delete
 	cp -a hawk/* $(DESTDIR)$(WWW_BASE)/hawk
 	-cp -a hawk/.bundle $(DESTDIR)$(WWW_BASE)/hawk
-	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/log
-	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/tmp
+	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/log || true
+	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/tmp || true
 	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/home
 	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/explorer
 ifeq ($(BUNDLE_GEMS),true)
@@ -113,11 +113,11 @@ endif
 
 tools/install:
 	install -D -m 4750 tools/hawk_chkpwd $(DESTDIR)/usr/sbin/hawk_chkpwd
-	-chown root.haclient $(DESTDIR)/usr/sbin/hawk_chkpwd
+	-chown root.haclient $(DESTDIR)/usr/sbin/hawk_chkpwd || true
 	-chmod u+s $(DESTDIR)/usr/sbin/hawk_chkpwd
 
 	install -D -m 4750 tools/hawk_invoke $(DESTDIR)/usr/sbin/hawk_invoke
-	-chown root.haclient $(DESTDIR)/usr/sbin/hawk_invoke
+	-chown root.haclient $(DESTDIR)/usr/sbin/hawk_invoke || true
 	-chmod u+s $(DESTDIR)/usr/sbin/hawk_invoke
 
 	install -D -m 0755 tools/hawk_monitor $(DESTDIR)/usr/sbin/hawk_monitor
