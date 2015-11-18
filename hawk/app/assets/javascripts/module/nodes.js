@@ -16,11 +16,14 @@ $(function() {
 
   $('#nodes #middle table.nodes, #states #middle table.nodes')
     .bootstrapTable({
-      method: 'get',
-      url: Routes.cib_nodes_path(
-        $('body').data('cib'),
-        { format: 'json' }
-      ),
+      ajax: function(params) {
+        var cib = $('body').data('content');
+        $.each(cib.nodes, function(i, n) {
+          n.name = n.uname;
+        });
+        params.success(cib.nodes, "success", {});
+        params.complete({}, "success");
+      },
       pagination: false,
       pageSize: 50,
       pageList: [10, 25, 50, 100, 200],
@@ -29,7 +32,7 @@ $(function() {
       search: true,
       searchAlign: 'left',
       showColumns: false,
-      showRefresh: true,
+      showRefresh: false,
       minimumCountColumns: 0,
       sortName: 'name',
       sortOrder: 'asc',
