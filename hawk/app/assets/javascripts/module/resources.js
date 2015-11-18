@@ -182,7 +182,7 @@ $(function() {
       }
     },
     {
-      field: 'operate',
+      field: 'id',
       title: __('Operations'),
       sortable: false,
       clickToSelect: false,
@@ -192,93 +192,39 @@ $(function() {
       events: {
         'click .start': function (e, value, row, index) {
           e.preventDefault();
-
-          executeAction(
-            $(this),
-            i18n.translate(
-              'This will start the resource %s. Do you want to continue?'
-            ).fetch(row.id)
-          );
+          executeAction($(this), i18n.translate('This will start the resource %s. Do you want to continue?').fetch(row.id));
         },
         'click .stop': function (e, value, row, index) {
           e.preventDefault();
-
-          executeAction(
-            $(this),
-            i18n.translate(
-              'This will stop the resource %s. Do you want to continue?'
-            ).fetch(row.id)
-          );
+          executeAction($(this), i18n.translate('This will stop the resource %s. Do you want to continue?').fetch(row.id));
         },
         'click .promote': function (e, value, row, index) {
           e.preventDefault();
-
-          executeAction(
-            $(this),
-            i18n.translate(
-              'This will promote the resource %s. Do you want to continue?'
-            ).fetch(row.id)
-          );
+          executeAction($(this), i18n.translate('This will promote the resource %s. Do you want to continue?').fetch(row.id));
         },
         'click .demote': function (e, value, row, index) {
           e.preventDefault();
-
-          executeAction(
-            $(this),
-            i18n.translate(
-              'This will demote the resource %s. Do you want to continue?'
-            ).fetch(row.id)
-          );
+          executeAction($(this), i18n.translate('This will demote the resource %s. Do you want to continue?').fetch(row.id));
         },
         'click .manage': function (e, value, row, index) {
           e.preventDefault();
-
-          executeAction(
-            $(this),
-            i18n.translate(
-              'This will manage the resource %s. Do you want to continue?'
-            ).fetch(row.id)
-          );
+          executeAction($(this), i18n.translate('This will manage the resource %s. Do you want to continue?').fetch(row.id));
         },
         'click .unmanage': function (e, value, row, index) {
           e.preventDefault();
-
-          executeAction(
-            $(this),
-            i18n.translate(
-              'This will unmanage the resource %s. Do you want to continue?'
-            ).fetch(row.id)
-          );
+          executeAction($(this), i18n.translate('This will unmanage the resource %s. Do you want to continue?').fetch(row.id));
         },
         'click .migrate': function (e, value, row, index) {
           e.preventDefault();
-
-          executeAction(
-            $(this),
-            i18n.translate(
-              'This will migrate the resource %s. Do you want to continue?'
-            ).fetch(row.id)
-          );
+          executeAction($(this), i18n.translate('This will migrate the resource %s. Do you want to continue?').fetch(row.id));
         },
         'click .unmigrate': function (e, value, row, index) {
           e.preventDefault();
-
-          executeAction(
-            $(this),
-            i18n.translate(
-              'This will unmigrate the resource %s. Do you want to continue?'
-            ).fetch(row.id)
-          );
+          executeAction($(this), i18n.translate('This will unmigrate the resource %s. Do you want to continue?').fetch(row.id));
         },
         'click .cleanup': function (e, value, row, index) {
           e.preventDefault();
-
-          executeAction(
-            $(this),
-            i18n.translate(
-              'This will cleanup the resource %s. Do you want to continue?'
-            ).fetch(row.id)
-          );
+          executeAction($(this), i18n.translate('This will cleanup the resource %s. Do you want to continue?').fetch(row.id));
         }
       },
       formatter: function(value, row, index) {
@@ -397,11 +343,8 @@ $(function() {
         var cib = $('body').data('content');
         console.log("Resources CIB epoch:", cib.meta.epoch);
 
-        var resources_and_tags = cib.resources + cib.tags;
-        $.each(resources_and_tags, function(i, item) {
-          item.running_on = {}; // TODO
-        });
-        
+        var resources_and_tags = cib.resources.concat(cib.tags);
+
         if (resources_and_tags.length == 0) {
           params.success([], "success", {});
         } else {
@@ -498,22 +441,16 @@ $(function() {
           switch(row.object_type) {
             case "primitive":
               return __("Primitive");
-              break;
             case "group":
               return __("Group");
-              break;
             case "clone":
               return __("Clone");
-              break;
             case "master":
               return __("Multi-state");
-              break;
             case "tag":
               return __("Tag");
-              break;
             default:
               return row.object_type;
-              break;
           }
         }
       }, {
@@ -523,7 +460,7 @@ $(function() {
         switchable: false,
         clickToSelect: true
       }, {
-        field: 'operate',
+        field: 'id',
         title: __('Operations'),
         sortable: false,
         clickToSelect: false,

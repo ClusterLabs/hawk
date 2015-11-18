@@ -380,6 +380,35 @@ class Cib
     end
   end
 
+  # After all the resource states have been calculated, we
+  # can calculate a total tag state
+  def fix_tag_states
+    prio = {
+      unknown: 0,
+      stopped: 1,
+      started: 2,
+      slave: 3,
+      master: 4,
+      pending: 5,
+      failed: 6
+    }
+    @tags.each do |tag|
+      sum_state = :unknown
+      tag[:refs].each do |ref|
+        tagged = @resource_by_id[ref]
+        unless tagged.nil?
+          rstate = tagged[:state]
+          unless rstate.nil?
+            if prio[rstate] > prio[sum_state]
+              sum_state = rstate
+            end
+          end
+        end
+      end
+      tag[:state] = sum_state
+    end
+  end
+
   def get_constraint(elem)
     ret = {}
     elem.attributes.each do |name, value|
@@ -564,10 +593,10 @@ class Cib
     @templates = []
     @xml.elements.each('cib/configuration/resources/template') do |t|
       @templates << Hashie::Mash.new(
-        :id => t.attributes['id'],
-        :class => t.attributes['class'],
-        :provider => t.attributes['provider'],
-        :type => t.attributes['type']
+        id: t.attributes['id'],
+        class: t.attributes['class'],
+        provider: t.attributes['provider'],
+        type: t.attributes['type']
       )
     end if Util.has_feature?(:rsc_template)
 
@@ -580,8 +609,12 @@ class Cib
     @tags = []
     @xml.elements.each('cib/configuration/tags/tag') do |t|
       @tags << Hashie::Mash.new(
-        :id => t.attributes['id'],
-        :refs => t.elements.collect('obj_ref') { |ref| ref.attributes['id'] }
+        id: t.attributes['id'],
+        state: :unknown,
+        object_type: :tag,
+        is_managed: false,
+        running_on: {},
+        refs: t.elements.collect('obj_ref') { |ref| ref.attributes['id'] }
       )
     end
 
@@ -803,6 +836,7 @@ class Cib
 
     fix_clone_instances @resources
     fix_resource_states @resources
+    fix_tag_states
 
     # More hack
     @resources_by_id.each do |k, _|
@@ -849,20 +883,27 @@ class Cib
     # have a last-granted timestamp too, but this will only be present if a
     # ticket has ever been granted - it won't be there for tickets we only
     # pick up from rsc_ticket constraints.
-    @tickets = Hashie::Mash.new
+    @tickets = {}
     @xml.elements.each("cib/status/tickets/ticket_state") do |ts|
       t = ts.attributes["id"]
-      @tickets[t] = {
-        :granted => Util.unstring(ts.attributes["granted"], false),
-        :standby => Util.unstring(ts.attributes["standby"], false)
+      ticket = {
+        id: t,
+        granted: Util.unstring(ts.attributes["granted"], false),
+        standby: Util.unstring(ts.attributes["standby"], false),
+        last_granted: ts.attributes["last-granted"]
       }
-      @tickets[t][:"last-granted"] = ts.attributes["last-granted"] if ts.attributes["last-granted"]
+      @tickets[t] = ticket
     end
 
     # Pick up tickets defined in rsc_ticket constraints
     @xml.elements.each("cib/configuration/constraints/rsc_ticket") do |rt|
       t = rt.attributes["ticket"]
-      @tickets[t] = { :granted => false } unless @tickets[rt.attributes["ticket"]]
+      @tickets[t] = {
+        id: t,
+        granted: false,
+        standby: false,
+        last_granted: nil,
+      } unless @tickets[rt.attributes["ticket"]]
     end
 
     @booth = Hashie::Mash.new(:sites => [], :arbitrators => [], :tickets => [], :me => nil)
@@ -896,7 +937,11 @@ class Cib
     if @booth[:me]
       # Pick up tickets defined in booth config
       @booth[:tickets].each do |t|
-        @tickets[t] = { :granted => false } unless @tickets[t]
+        @tickets[t] = {
+          granted: false,
+          standby: false,
+          last_granted: nil,
+        } unless @tickets[t]
       end
 
       # try to get a bit more ticket info
