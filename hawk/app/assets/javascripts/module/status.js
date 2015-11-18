@@ -78,6 +78,14 @@
           $('#middle .circle').statusCircleFromCIB(cib);
           $(self.options.targets.metadata).link(true, cib);
           $(self.options.targets.content).link(true, cib);
+
+          $(['#states #middle table.resources',
+             '#resources #middle table.resources',
+             '#states #middle table.tickets',
+             '#tickets #middle table.tickets',
+             '#nodes #middle table.nodes',
+             '#states #middle table.nodes'].join(', '))
+            .bootstrapTable('refresh');
         }
       },
 

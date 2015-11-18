@@ -121,14 +121,4 @@ $(function() {
   $.updateCib = function() {
     $('body').trigger($.Event('updated.hawk.monitor'));
   };
-
-  $('body').on('updated.hawk.monitor', function() {
-    $(['#states #middle table.resources',
-       '#resources #middle table.resources',
-       '#states #middle table.tickets',
-       '#tickets #middle table.tickets',
-       '#nodes #middle table.nodes',
-       '#states #middle table.nodes'].join(', '))
-      .bootstrapTable('refresh');
-  });
 });
