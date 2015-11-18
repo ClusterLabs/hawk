@@ -18,9 +18,6 @@ $(function() {
     .bootstrapTable({
       ajax: function(params) {
         var cib = $('body').data('content');
-        $.each(cib.nodes, function(i, n) {
-          n.name = n.uname;
-        });
         params.success(cib.nodes, "success", {});
         params.complete({}, "success");
       },

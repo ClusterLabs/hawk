@@ -234,6 +234,7 @@ class Cib
   def get_resource(elem, is_managed = true, clone_max = nil, is_ms = false)
     res = Hashie::Mash.new(
       :id => elem.attributes['id'],
+      :object_type => elem.name,
       :attributes => {},
       :is_managed => is_managed,
       :state => :unknown
@@ -517,6 +518,7 @@ class Cib
         state = :standby
       end
       @nodes << Hashie::Mash.new(
+        name: uname || id,
         uname: uname,
         state: state,
         id: node_id,

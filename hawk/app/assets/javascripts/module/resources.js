@@ -166,10 +166,10 @@ $(function() {
           return __("Tag");
         } else if (row.template && row.template.length > 0) {
           return '<a href="' + Routes.agent_path({id: "@" + row.template}) + '" data-toggle="modal" data-target="#modal-lg">' + "@" + row.template + '</a>';
-        } else if ("clazz" in row && "provider" in row && "type" in row) {
+        } else if ("class" in row && "provider" in row && "type" in row) {
           var agent = "";
-          if (row["clazz"]) {
-            agent += row["clazz"] + ":";
+          if (row["class"]) {
+            agent += row["class"] + ":";
           }
           if (row["provider"]) {
             agent += row.provider + ":";
@@ -325,11 +325,11 @@ $(function() {
           add_operation(op_destination, Routes.promote_cib_resource_path($('body').data('cib'), row.id), 'promote', 'thumbs-up', __('Promote'));
         }
 
-        if (row.managed === true) {
+        if (row.is_managed === true) {
           add_operation("menu", Routes.unmanage_cib_resource_path($('body').data('cib'), row.id), 'unmanage', 'circle', __('Unmanage'));
         }
 
-        if (row.managed === false) {
+        if (row.is_managed === false) {
           add_operation("menu", Routes.manage_cib_resource_path($('body').data('cib'), row.id), 'manage', 'dot-circle-o', __('Manage'));
         }
 
@@ -393,11 +393,24 @@ $(function() {
 
   $('#states #middle table.resources')
     .bootstrapTable({
-      method: 'get',
-      url: Routes.status_cib_resources_path(
-        $('body').data('cib'),
-        { format: 'json' }
-      ),
+      ajax: function(params) {
+        var cib = $('body').data('content');
+        console.log("Resources CIB epoch:", cib.meta.epoch);
+
+        var resources_and_tags = cib.resources + cib.tags;
+        $.each(resources_and_tags, function(i, item) {
+          item.running_on = {}; // TODO
+        });
+        
+        if (resources_and_tags.length == 0) {
+          params.success([], "success", {});
+        } else {
+          var offset = Math.min(params.data.offset, resources_and_tags.length - 1);
+          var limit = Math.min(params.data.limit, resources_and_tags.length - offset);
+          params.success(resources_and_tags.slice(offset, offset + limit), "success", {});
+        }
+        params.complete({}, "success");
+      },
       pagination: true,
       pageSize: 25,
       pageList: [10, 25, 50, 100, 200],
@@ -406,7 +419,7 @@ $(function() {
       search: true,
       searchAlign: 'left',
       showColumns: false,
-      showRefresh: true,
+      showRefresh: false,
       minimumCountColumns: 0,
       sortName: 'id',
       sortOrder: 'asc',
