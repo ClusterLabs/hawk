@@ -135,7 +135,7 @@ $(function() {
     },
     {
       field: 'id',
-      title: __('Name'),
+      title: __('ID'),
       sortable: true,
       switchable: false,
       clickToSelect: true,
