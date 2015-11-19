@@ -887,23 +887,33 @@ class Cib
     @xml.elements.each("cib/status/tickets/ticket_state") do |ts|
       t = ts.attributes["id"]
       ticket = {
-        id: t,
+        id: nil,
+        ticket: t,
+        state: :revoked,
         granted: Util.unstring(ts.attributes["granted"], false),
         standby: Util.unstring(ts.attributes["standby"], false),
         last_granted: ts.attributes["last-granted"]
       }
+      ticket[:state] = :granted if ticket[:granted]
+      ticket[:state] = :standby if ticket[:standby]
       @tickets[t] = ticket
     end
 
     # Pick up tickets defined in rsc_ticket constraints
     @xml.elements.each("cib/configuration/constraints/rsc_ticket") do |rt|
       t = rt.attributes["ticket"]
-      @tickets[t] = {
-        id: t,
-        granted: false,
-        standby: false,
-        last_granted: nil,
-      } unless @tickets[rt.attributes["ticket"]]
+      if @tickets[t]
+        @tickets[t][:id] = rt.attributes["id"]
+      else
+        @tickets[t] = {
+          id: rt.attributes["id"],
+          ticket: t,
+          state: :revoked,
+          granted: false,
+          standby: false,
+          last_granted: nil,
+        }
+      end
     end
 
     @booth = Hashie::Mash.new(:sites => [], :arbitrators => [], :tickets => [], :me => nil)
@@ -938,6 +948,9 @@ class Cib
       # Pick up tickets defined in booth config
       @booth[:tickets].each do |t|
         @tickets[t] = {
+          id: nil,
+          ticket: t,
+          state: :revoked,
           granted: false,
           standby: false,
           last_granted: nil,
