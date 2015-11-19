@@ -31,5 +31,11 @@
         }
       }
     }
+    td.col-sm-2 {
+        overflow: hidden;
+        white-space: nowrap;
+        max-width: 240px;
+        text-overflow: ellipsis;
+    }
   }
 }
