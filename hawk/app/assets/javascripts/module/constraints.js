@@ -4,11 +4,11 @@
 $(function() {
   $('#constraints #middle table.constraints')
     .bootstrapTable({
-      method: 'get',
-      url: Routes.cib_constraints_path(
-        $('body').data('cib'),
-        { format: 'json' }
-      ),
+      ajax: function(params) {
+        var cib = $('body').data('content');
+        params.success(cib.constraints, "success", {});
+        params.complete({}, "success");
+      },
       striped: true,
       pagination: true,
       pageSize: 50,
@@ -23,7 +23,7 @@ $(function() {
       sortName: 'id',
       sortOrder: 'asc',
       columns: [{
-        field: 'object_type',
+        field: 'type',
         title: __('Type'),
         sortable: true,
         clickToSelect: true,
@@ -32,19 +32,22 @@ $(function() {
           switch(row.object_type) {
             case "location":
               return __("Location");
-              break;
+            case "rsc_location":
+              return __("Location");
             case "colocation":
               return __("Colocation");
-              break;
+            case "rsc_colocation":
+              return __("Colocation");
             case "order":
               return __("Order");
-              break;
+            case "rsc_order":
+              return __("Order");
             case "ticket":
               return __("Ticket");
-              break;
+            case "rsc_ticket":
+              return __("Ticket");
             default:
-              return row.object_type;
-              break;
+              return value;
           }
         }
       }, {
@@ -54,16 +57,14 @@ $(function() {
         switchable: false,
         clickToSelect: true
       }, {
-        field: 'operate',
+        field: 'id',
         title: __('Operations'),
         sortable: false,
         clickToSelect: false,
         class: 'col-sm-2',
         events: {
           'click .delete': function (e, value, row, index) {
-            e.preventDefault();
             var $self = $(this);
-
             $.hawkAsyncConfirm(i18n.translate('Are you sure you wish to delete %s?').fetch(row.id), function() {
               $.ajax({
                 dataType: 'json',
@@ -104,6 +105,7 @@ $(function() {
                 }
               });
             });
+            return false;
           }
         },
         formatter: function(value, row, index) {

@@ -4,11 +4,13 @@
 $(function() {
   $('#tickets #middle table.tickets')
     .bootstrapTable({
-      method: 'get',
-      url: Routes.cib_tickets_path(
-        $('body').data('cib'),
-        { format: 'json' }
-      ),
+      ajax: function(params) {
+        var cib = $('body').data('content');
+        params.success($.map(cib.tickets, function(t) {
+          return t;
+        }, "success", {}));
+        params.complete({}, "success");
+      },
       striped: true,
       pagination: true,
       pageSize: 50,
@@ -18,7 +20,7 @@ $(function() {
       search: true,
       searchAlign: 'left',
       showColumns: false,
-      showRefresh: true,
+      showRefresh: false,
       minimumCountColumns: 0,
       sortName: 'id',
       sortOrder: 'asc',
@@ -35,7 +37,7 @@ $(function() {
         switchable: false,
         clickToSelect: true
       }, {
-        field: 'operate',
+        field: 'id',
         title: __('Operations'),
         sortable: false,
         clickToSelect: false,
@@ -86,6 +88,7 @@ $(function() {
                 }
               });
             });
+            return false;
           }
         },
         formatter: function(value, row, index) {
@@ -136,7 +139,6 @@ $(function() {
         }, "success", {}));
         params.complete({}, "success");
       },
-      striped: true,
       pagination: false,
       pageSize: 50,
       pageList: [10, 25, 50, 100, 200],
@@ -147,7 +149,16 @@ $(function() {
       showColumns: false,
       showRefresh: false,
       minimumCountColumns: 0,
-      sortName: 'id',
+      rowStyle: function(row, index) {
+        if (row.state == "granted") {
+          return { classes: ["success"] };
+        } else if (row.state == "revoked") {
+          return {};
+        } else {
+          return { classes: ["warning"] };
+        }
+      },
+      sortName: 'ticket',
       sortOrder: 'asc',
       columns: [{
         field: 'state',
@@ -171,8 +182,14 @@ $(function() {
           }
         }
       }, {
-        field: 'id',
+        field: 'ticket',
         title: __('Ticket'),
+        sortable: true,
+        switchable: false,
+        clickToSelect: true
+      }, {
+        field: 'id',
+        title: __('Constraint ID'),
         sortable: true,
         switchable: false,
         clickToSelect: true
@@ -225,6 +242,7 @@ $(function() {
                 }
               });
             });
+            return false;
           },
           'click .revoke': function (e, value, row, index) {
             e.preventDefault();
@@ -268,6 +286,7 @@ $(function() {
                 }
               });
             });
+            return false;
           }
         },
         formatter: function(value, row, index) {
@@ -351,6 +370,7 @@ $(function() {
                 }
               });
             });
+            return false;
           }
         },
         formatter: function(value, row, index) {

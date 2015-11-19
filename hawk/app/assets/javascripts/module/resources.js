@@ -19,8 +19,6 @@ $(function() {
             },{
               type: 'success'
             });
-
-            context.parents('table').bootstrapTable('refresh')
           } else {
             if (data.error) {
               $.growl({
@@ -30,6 +28,7 @@ $(function() {
               });
             }
           }
+          $.updateCib();
         },
         error: function(xhr, status, msg) {
           $.growl({
@@ -37,9 +36,11 @@ $(function() {
           },{
             type: 'danger'
           });
+          $.updateCib();
         }
       });
     });
+    return false;
   }
 
   function resourceRoutes(row) {
@@ -192,39 +193,39 @@ $(function() {
       events: {
         'click .start': function (e, value, row, index) {
           e.preventDefault();
-          executeAction($(this), i18n.translate('This will start the resource %s. Do you want to continue?').fetch(row.id));
+          return executeAction($(this), i18n.translate('This will start the resource %s. Do you want to continue?').fetch(row.id));
         },
         'click .stop': function (e, value, row, index) {
           e.preventDefault();
-          executeAction($(this), i18n.translate('This will stop the resource %s. Do you want to continue?').fetch(row.id));
+          return executeAction($(this), i18n.translate('This will stop the resource %s. Do you want to continue?').fetch(row.id));
         },
         'click .promote': function (e, value, row, index) {
           e.preventDefault();
-          executeAction($(this), i18n.translate('This will promote the resource %s. Do you want to continue?').fetch(row.id));
+          return executeAction($(this), i18n.translate('This will promote the resource %s. Do you want to continue?').fetch(row.id));
         },
         'click .demote': function (e, value, row, index) {
           e.preventDefault();
-          executeAction($(this), i18n.translate('This will demote the resource %s. Do you want to continue?').fetch(row.id));
+          return executeAction($(this), i18n.translate('This will demote the resource %s. Do you want to continue?').fetch(row.id));
         },
         'click .manage': function (e, value, row, index) {
           e.preventDefault();
-          executeAction($(this), i18n.translate('This will manage the resource %s. Do you want to continue?').fetch(row.id));
+          return executeAction($(this), i18n.translate('This will manage the resource %s. Do you want to continue?').fetch(row.id));
         },
         'click .unmanage': function (e, value, row, index) {
           e.preventDefault();
-          executeAction($(this), i18n.translate('This will unmanage the resource %s. Do you want to continue?').fetch(row.id));
+          return executeAction($(this), i18n.translate('This will unmanage the resource %s. Do you want to continue?').fetch(row.id));
         },
         'click .migrate': function (e, value, row, index) {
           e.preventDefault();
-          executeAction($(this), i18n.translate('This will migrate the resource %s. Do you want to continue?').fetch(row.id));
+          return executeAction($(this), i18n.translate('This will migrate the resource %s. Do you want to continue?').fetch(row.id));
         },
         'click .unmigrate': function (e, value, row, index) {
           e.preventDefault();
-          executeAction($(this), i18n.translate('This will unmigrate the resource %s. Do you want to continue?').fetch(row.id));
+          return executeAction($(this), i18n.translate('This will unmigrate the resource %s. Do you want to continue?').fetch(row.id));
         },
         'click .cleanup': function (e, value, row, index) {
           e.preventDefault();
-          executeAction($(this), i18n.translate('This will cleanup the resource %s. Do you want to continue?').fetch(row.id));
+          return executeAction($(this), i18n.translate('This will cleanup the resource %s. Do you want to continue?').fetch(row.id));
         }
       },
       formatter: function(value, row, index) {
@@ -341,17 +342,8 @@ $(function() {
     .bootstrapTable({
       ajax: function(params) {
         var cib = $('body').data('content');
-        console.log("Resources CIB epoch:", cib.meta.epoch);
-
         var resources_and_tags = cib.resources.concat(cib.tags);
-
-        if (resources_and_tags.length == 0) {
-          params.success([], "success", {});
-        } else {
-          var offset = Math.min(params.data.offset, resources_and_tags.length - 1);
-          var limit = Math.min(params.data.limit, resources_and_tags.length - offset);
-          params.success(resources_and_tags.slice(offset, offset + limit), "success", {});
-        }
+        params.success(resources_and_tags, "success", {});
         params.complete({}, "success");
       },
       pagination: true,
@@ -361,6 +353,7 @@ $(function() {
       smartDisplay: false,
       search: true,
       searchAlign: 'left',
+      striped: false,
       showColumns: false,
       showRefresh: false,
       minimumCountColumns: 0,
@@ -413,11 +406,12 @@ $(function() {
 
   $('#resources #middle table.resources')
     .bootstrapTable({
-      method: 'get',
-      url: Routes.cib_resources_path(
-        $('body').data('cib'),
-        { format: 'json' }
-      ),
+      ajax: function(params) {
+        var cib = $('body').data('content');
+        var resources_and_tags = cib.resources.concat(cib.tags);
+        params.success(resources_and_tags, "success", {});
+        params.complete({}, "success");
+      },
       pagination: true,
       pageSize: 50,
       pageList: [10, 25, 50, 100, 200],
@@ -426,7 +420,7 @@ $(function() {
       search: true,
       searchAlign: 'left',
       showColumns: false,
-      showRefresh: true,
+      showRefresh: false,
       minimumCountColumns: 0,
       sortName: 'id',
       sortOrder: 'asc',
@@ -510,6 +504,7 @@ $(function() {
                 }
               });
             });
+            return false;
           }
         },
         formatter: function(value, row, index) {

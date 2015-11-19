@@ -128,6 +128,7 @@ $(function() {
                   }
                 });
               });
+              return false;
             },
             'click .maintenance': function (e, value, row, index) {
               e.preventDefault();
@@ -171,6 +172,7 @@ $(function() {
                   }
                 });
               });
+              return false;
             }
           },
           formatter: function(value, row, index) {
@@ -253,6 +255,7 @@ $(function() {
                   }
                 });
               });
+              return false;
             },
             'click .standby': function (e, value, row, index) {
               e.preventDefault();
@@ -296,6 +299,7 @@ $(function() {
                   }
                 });
               });
+              return false;
             }
           },
           formatter: function(value, row, index) {
@@ -378,6 +382,8 @@ $(function() {
                   }
                 });
               });
+
+              return false;
             }
           },
           formatter: function(value, row, index) {

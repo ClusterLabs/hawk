@@ -127,7 +127,7 @@ $(function() {
       '<div class="modal fade" id="confirmationDialog" role="dialog" tabindex="-1" aria-hidden="true">',
       '<div class="modal-dialog">',
       '<div class="modal-content">',
-      '<form>',
+      '<form class="form-horizontal" role="form" onsubmit="return false;">',
       '<div class="modal-header">',
       '<button class="close" type="button" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">', __('Close'), '</span></button>',
       '<div class="text-center">',
@@ -140,18 +140,29 @@ $(function() {
       '</div>',
       '</div>',
       '<div class="modal-footer">',
-      '<a data-dismiss="modal" class="btn">', __('Cancel'),'</a>',
-      '<input type="submit" name="submit" value="', __('OK'),'" class="btn btn-primary submit">',
+      '<button class="btn btn-default cancel" data-dismiss="modal">', __('Cancel'),'</button>',
+      '<button class="btn btn-danger commit" data-dismiss="modal">', __('OK'),'</button>',
       '</div>',
       '</form>',
       '</div>',
       '</div>',
       '</div>'
     ];
-    $(html.join('')).modal();
-    $('#confirmationDialog .confirm').on('click', function() {
-      return on_ok();
+    var modal = $(html.join(''));
+    modal.css('z-index', 100000);
+    modal.find('.commit').on('click', function() {
+      console.log("commit", this);
+      on_ok();
+      $('#confirmationDialog').modal('hide');
+      return true;
     });
+
+    modal.on('hidden.bs.modal', function () {
+      modal.remove();
+    });
+
+    $('body').append(modal);
+    modal.modal();
   };
 
   $.rails.showConfirmDialog = function(link) {
