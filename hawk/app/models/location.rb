@@ -37,13 +37,15 @@ class Location < Constraint
         end
       end
 
-      errors.add :base, _('No expressions specified') if rule[:expressions].empty?
-
-      rule[:expressions].each do |e|
-        e[:attribute].strip!
-        e[:value].to_s.strip!
-        errors.add :base, _("Attribute contains both single and double quotes") if unquotable? e[:attribute]
-        errors.add :base, _("Value contains both single and double quotes") if unquotable? e[:value]
+      if rule[:expressions].blank?
+        errors.add :base, _('No expressions specified')
+      else
+        rule[:expressions].each do |e|
+          e[:attribute].strip!
+          e[:value].to_s.strip!
+          errors.add :base, _("Attribute contains both single and double quotes") if unquotable? e[:attribute]
+          errors.add :base, _("Value contains both single and double quotes") if unquotable? e[:value]
+        end
       end
     end
   end
@@ -59,6 +61,7 @@ class Location < Constraint
   def simple?
     rules.none? ||
       rules.length == 1 &&
+      rules[0][:expressions] &&
       rules[0][:expressions].length == 1 &&
       (!rules[0].has_key?(:role) || rules[0][:role].empty?) &&
       rules[0][:score] &&
