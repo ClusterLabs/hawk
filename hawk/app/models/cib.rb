@@ -308,7 +308,7 @@ class Cib
           end
           res[:instances][instance.to_s] = {
             :failed_ops => [],
-            :is_managed => res[:is_managed] && !@crm_config[:"maintenance-mode"]
+            :is_managed => res[:is_managed] && !@crm_config[:maintenance_mode]
           }
         end
         res[:instances].delete(:default) if res[:instances].has_key?(:default)
@@ -330,7 +330,7 @@ class Cib
           # working with shadow CIBs.
           res[:instances][:default] = {
             :failed_ops => [],
-            :is_managed => res[:is_managed] && !@crm_config[:"maintenance-mode"]
+            :is_managed => res[:is_managed] && !@crm_config[:maintenance_mode]
           } unless res[:instances].has_key?(:default)
         end
       end
@@ -489,32 +489,32 @@ class Cib
 
     # Special-case defaults for properties we always want to see
     @crm_config = Hashie::Mash.new(
-      :"cluster-infrastructure"       => _('Unknown'),
-      :"dc-version"                   => _('Unknown'),
-      :"stonith-enabled"              => true,
-      :"symmetric-cluster"            => true,
-      :"no-quorum-policy"             => 'stop'
+      cluster_infrastructure: _('Unknown'),
+      dc_version: _('Unknown'),
+      stonith_enabled: true,
+      symmetric_cluster: true,
+      no_quorum_policy: 'stop',
     )
 
     # Pull in everything else
     # TODO(should): This gloms together all cluster property sets; really
     # probably only want cib-bootstrap-options?
     @xml.elements.each('cib/configuration/crm_config//nvpair') do |p|
-      @crm_config[p.attributes['name'].to_sym] = CibTools.get_xml_attr(p, 'value')
+      @crm_config[p.attributes['name'].underscore.to_sym] = CibTools.get_xml_attr(p, 'value')
     end
 
     @rsc_defaults = Hashie::Mash.new
     @xml.elements.each('cib/configuration/rsc_defaults//nvpair') do |p|
-      @rsc_defaults[p.attributes['name'].to_sym] = CibTools.get_xml_attr(p, 'value')
+      @rsc_defaults[p.attributes['name'].underscore.to_sym] = CibTools.get_xml_attr(p, 'value')
     end
 
     @op_defaults = Hashie::Mash.new
     @xml.elements.each('cib/configuration/op_defaults//nvpair') do |p|
-      @op_defaults[p.attributes['name'].to_sym] = CibTools.get_xml_attr(p, 'value')
+      @op_defaults[p.attributes['name'].underscore.to_sym] = CibTools.get_xml_attr(p, 'value')
     end
 
     is_managed_default = true
-    if @crm_config.has_key?(:"is-managed-default") && !@crm_config[:"is-managed-default"]
+    if @crm_config.has_key?(:is_managed_default) && !@crm_config[:is_managed_default]
       is_managed_default = false
     end
 
@@ -524,11 +524,11 @@ class Cib
       node_id = n.attributes['id']
       state = :unclean
       standby = false
-      maintenance = @crm_config[:"maintenance-mode"] ? true : false
+      maintenance = @crm_config[:maintenance_mode] ? true : false
       remote = n.attributes['type'] == 'remote'
       ns = @xml.elements["cib/status/node_state[@uname='#{uname}']"]
       if ns
-        state = CibTools.determine_online_status(ns, crm_config[:"stonith-enabled"])
+        state = CibTools.determine_online_status(ns, crm_config[:stonith_enabled])
         selems = n.elements["instance_attributes/nvpair[@name='standby']"]
         # TODO(could): is the below actually a sane test?
         if selems && ['true', 'yes', '1', 'on'].include?(selems.attributes['value'])
@@ -541,7 +541,7 @@ class Cib
       else
         # If there's no node state at all, the node is unclean if fencing is enabled,
         # and offline if fencing is disabled.
-        state = crm_config[:"stonith-enabled"] ? :unclean : :offline
+        state = crm_config[:stonith_enabled] ? :unclean : :offline
       end
       if standby and state == :online
         state = :standby
@@ -585,7 +585,7 @@ class Cib
     @resource_count = 0
     # This gives only resources capable of being instantiated, and skips (e.g.) templates
     @xml.elements.each('cib/configuration/resources/*[self::primitive or self::group or self::clone or self::master]') do |r|
-      @resources << get_resource(r, is_managed_default && !@crm_config[:"maintenance-mode"])
+      @resources << get_resource(r, is_managed_default && !@crm_config[:maintenance_mode])
     end
     # Templates deliberately kept separate from resources, because
     # we need an easy way of listing them separately, and they don't
@@ -792,7 +792,7 @@ class Cib
                 # We have a failed stop, the resource is failed (bnc#879034)
                 state = :failed
                 # Also, the node is thus unclean if STONITH is enabled.
-                node[:state] = :unclean if @crm_config[:"stonith-enabled"]
+                node[:state] = :unclean if @crm_config[:stonith_enabled]
               end
             end
           end
@@ -847,7 +847,7 @@ class Cib
         # Always include empty failed_ops array (JS status updater relies on it)
         @resources_by_id[k][:instances][:default] = {
           :failed_ops => [],
-          :is_managed => @resources_by_id[k][:is_managed] && !@crm_config[:"maintenance-mode"]
+          :is_managed => @resources_by_id[k][:is_managed] && !@crm_config[:maintenance_mode]
         }
       end
     end
@@ -972,10 +972,6 @@ class Cib
       end
     end
 
-    @crm_config = Hashie::Mash.new Hash[@crm_config.map {|k,v| [k.to_s.underscore.to_sym, v]}]
-    @rsc_defaults = Hashie::Mash.new Hash[@rsc_defaults.map {|k,v| [k.to_s.underscore.to_sym, v]}]
-    @op_defaults = Hashie::Mash.new Hash[@op_defaults.map {|k,v| [k.to_s.underscore.to_sym, v]}]
-
     error(
       _("STONITH is disabled. For normal cluster operation, STONITH is required."),
       :warning,
@@ -996,8 +992,8 @@ class Cib
     )
 
     @crm_config = Hashie::Mash.new(
-      :"cluster-infrastructure"       => _('None'),
-      :"dc-version"                   => _('None'),
+      cluster_infrastructure: _('Unknown'),
+      dc_version: _('Unknown')
     )
     @nodes = []
     @resources = []
@@ -1055,7 +1051,7 @@ class Cib
     # but only do this on first initialization else state may get screwed
     # up later
     instances[instance] = {
-      :is_managed => resource[:is_managed] && !@crm_config[:"maintenance-mode"]
+      :is_managed => resource[:is_managed] && !@crm_config[:maintenance_mode]
     } unless instances[instance]
     instances[instance][state] ||= []
     n = { :node => node[:uname] }
