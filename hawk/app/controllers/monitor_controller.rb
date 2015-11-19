@@ -37,5 +37,4 @@ class MonitorController < ApplicationController
   ensure
     response.stream.close
   end
-
 end
