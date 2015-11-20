@@ -47,6 +47,10 @@ $(function() {
             e.preventDefault();
             var $self = $(this);
 
+            if (row.id == null) {
+              return false;
+            }
+
             $.hawkAsyncConfirm(i18n.translate('Are you sure you wish to delete %s?').fetch(row.id), function() {
               $.ajax({
                 dataType: 'json',
@@ -92,14 +96,16 @@ $(function() {
           }
         },
         formatter: function(value, row, index) {
+
+          if (row.id == null) {
+            return "";
+          }
+
           var operations = []
 
           operations.push([
             '<a href="',
-                Routes.edit_cib_ticket_path(
-                  $('body').data('cib'),
-                  row.id
-                ),
+                Routes.edit_cib_ticket_path($('body').data('cib'), row.id),
               '" class="edit btn btn-default btn-xs" title="',
               __('Edit'),
             '">',
@@ -109,10 +115,7 @@ $(function() {
 
           operations.push([
             '<a href="',
-                Routes.cib_ticket_path(
-                  $('body').data('cib'),
-                  row.id
-                ),
+                Routes.cib_ticket_path($('body').data('cib'), row.id),
               '" class="delete btn btn-default btn-xs" title="',
               __('Delete'),
             '">',
@@ -204,6 +207,10 @@ $(function() {
             e.preventDefault();
             var $self = $(this);
 
+            if (row.id == null) {
+              return false;
+            }
+
             $.hawkAsyncConfirm(i18n.translate('This will request the ticket %s be granted to the present site. Do you want to continue?').fetch(row.ticket), function() {
               $.ajax({
                 dataType: 'json',
@@ -248,6 +255,10 @@ $(function() {
             e.preventDefault();
             var $self = $(this);
 
+            if (row.id == null) {
+              return false;
+            }
+
             $.hawkAsyncConfirm(i18n.translate('This will request the ticket %s be revoked. Do you want to continue?').fetch(row.ticket), function() {
               $.ajax({
                 dataType: 'json',
@@ -290,13 +301,18 @@ $(function() {
           }
         },
         formatter: function(value, row, index) {
+          if (row.id == null) {
+            if (!row.granted) {
+              return '<a class="btn btn-default btn-xs disabled" disabled><i class="fa fa-toggle-off"></i><a>';
+            } else {
+              return '<a class="btn btn-default btn-xs disabled" disabled><i class="fa fa-toggle-on text-success"></i><a>';
+            }
+          }
+
           if (!row.granted) {
             return [
               '<a href="',
-                Routes.grant_cib_ticket_path(
-                  $('body').data('cib'),
-                  row.id
-                ),
+                Routes.grant_cib_ticket_path($('body').data('cib'), row.id),
               '" class="grant btn btn-default btn-xs" title="',
                 __('Grant'),
               '">',
@@ -306,10 +322,7 @@ $(function() {
           } else {
             return [
               '<a href="',
-                Routes.revoke_cib_ticket_path(
-                  $('body').data('cib'),
-                  row.id
-                ),
+                Routes.revoke_cib_ticket_path($('body').data('cib'), row.id),
               '" class="revoke btn btn-default btn-xs" title="',
                 __('Revoke'),
               '">',
@@ -328,6 +341,10 @@ $(function() {
           'click .delete': function (e, value, row, index) {
             e.preventDefault();
             var $self = $(this);
+
+            if (row.id == null) {
+              return false;
+            }
 
             $.hawkAsyncConfirm(i18n.translate('Are you sure you wish to delete %s?').fetch(row.id), function() {
               $.ajax({
@@ -374,14 +391,15 @@ $(function() {
           }
         },
         formatter: function(value, row, index) {
+          if (row.id == null) {
+            return "";
+          }
+
           var operations = [];
 
           operations.push([
             '<a href="',
-                Routes.edit_cib_ticket_path(
-                  $('body').data('cib'),
-                  row.id
-                ),
+                Routes.edit_cib_ticket_path($('body').data('cib'), row.id),
               '" class="edit btn btn-default btn-xs" title="',
               __('Edit'),
             '">',
@@ -391,10 +409,7 @@ $(function() {
 
           operations.push([
             '<a href="',
-            Routes.cib_ticket_path(
-              $('body').data('cib'),
-              row.id
-            ),
+            Routes.cib_ticket_path($('body').data('cib'), row.id),
             '" class="details btn btn-default btn-xs" title="',
             __('Details'),
             '" data-toggle="modal" data-target="#modal-lg">',
