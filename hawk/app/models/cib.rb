@@ -132,11 +132,7 @@ class Cib
         end
 
         current_tickets.each do |key, values|
-          if values[:granted]
-            result[:tickets][key] = :granted
-          else
-            result[:tickets][key] = :revoked
-          end
+          result[:tickets][key] = values[:state]
         end
 
       else
@@ -972,6 +968,13 @@ class Cib
           m = pair.match(/(leader|expires|commit):\s*(.*)/)
           @tickets[t][m[1].to_sym] = m[2] if m
         end if t && @tickets[t]
+      end
+    end
+
+    # set ticket state correctly
+    @tickets.each do |_, ticket|
+      if ticket[:state] == :revoked && (ticket[:leader] && ticket[:leader] != "none")
+        ticket[:state] = :elsewhere
       end
     end
 

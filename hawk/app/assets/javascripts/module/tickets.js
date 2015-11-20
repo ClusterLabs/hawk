@@ -155,8 +155,8 @@ $(function() {
       rowStyle: function(row, index) {
         if (row.state == "granted") {
           return { classes: ["success"] };
-        } else if (row.leader && row.leader.toLowerCase() != "none") {
-          return { classes: ["info"] };
+        } else if (row.state == "elsewhere") {
+          return { classes: ["warning"] };
         } else if (row.state == "revoked") {
           return {};
         } else {
@@ -173,13 +173,13 @@ $(function() {
         class: 'col-sm-1',
         formatter: function(value, row, index) {
           var ret = [];
-          if (row.granted) {
+          if (row.state == "granted") {
             ret = [
               '<i class="fa fa-check-circle fa-lg text-success" title="',
               __("Granted"),
               '"></i>'
             ];
-          } else if (row.leader && row.leader.toLowerCase() != "none") {
+          } else if (row.state == "elsewhere") {
             ret = [
               '<i class="fa fa-arrow-circle-o-left fa-lg text-info" title="',
               __("Elsewhere"),
@@ -412,6 +412,18 @@ $(function() {
           }
 
           var operations = [];
+
+          if (row.state == "elsewhere") {
+            operations.push([
+              '<a href="',
+              Routes.revoke_cib_ticket_path($('body').data('cib'), row.id),
+              '" class="revoke btn btn-default btn-xs" title="',
+              __('Revoke'),
+              '">',
+              '<i class="fa fa-minus"></i>',
+              '</a> '
+            ].join(''));
+          }
 
           operations.push([
             '<a href="',
