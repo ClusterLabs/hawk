@@ -63,6 +63,14 @@ module ApplicationHelper
     end
   end
 
+  def navbar_background_class
+    if current_cib.live?
+      "navbar-inverse"
+    else
+      "navbar-simulator"
+    end
+  end
+
   def flash_class_for(type)
     case type.to_sym
     when :alert
