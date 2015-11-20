@@ -8,7 +8,7 @@
         = link_to navbar_item(_("Disable Simulator"), "toggle-on"), cib_state_path(cib_id: "live"), class: "production", title: _("Disable the simulation mode")
 
   %li
-    = link_to navbar_item(_("Profile"), "user"), edit_cib_profile_path(cib_id: current_cib.id), class: "profile"
+    = link_to navbar_item(profile_title, "user"), edit_cib_profile_path(cib_id: current_cib.id), class: "profile"
 
   - unless installed_docs.empty?
     %li

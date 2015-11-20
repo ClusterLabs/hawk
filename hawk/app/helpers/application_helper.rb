@@ -33,6 +33,10 @@ module ApplicationHelper
     end
   end
 
+  def profile_title
+    current_user || _("Profile")
+  end
+
   def body_attrs
     {
       id: controller_name,
