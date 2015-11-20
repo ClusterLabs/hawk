@@ -168,19 +168,21 @@ class LocationsController < ApplicationController
     end
   end
 
-  def post_process_for!(record)
+  def post_process_for!(_record)
   end
 
   def normalize_params!(current)
-    if params[:location][:rules].nil?
-      params[:location][:rules] = []
+    if current[:rules].nil?
+      current[:rules] = []
     else
-      params[:location][:rules] = params[:location][:rules].values
+      current[:rules] = current[:rules].values
     end
 
-    params[:location][:rules].each_with_index do |rule, index|
-      if params[:location][:rules][index][:expressions]
-        params[:location][:rules][index][:expressions] = params[:location][:rules][index][:expressions].values
+    current[:rules].each_with_index do |_, index|
+      if current[:rules][index][:expressions]
+        current[:rules][index][:expressions] = current[:rules][index][:expressions].values
+      else
+        current[:rules][index][:expressions] = []
       end
     end
   end
