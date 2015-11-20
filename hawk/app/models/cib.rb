@@ -395,7 +395,7 @@ class Cib
     @tags.each do |tag|
       sum_state = :unknown
       tag[:refs].each do |ref|
-        tagged = @resource_by_id[ref]
+        tagged = @resources_by_id[ref]
         unless tagged.nil?
           rstate = tagged[:state]
           unless rstate.nil?
@@ -887,8 +887,7 @@ class Cib
     @xml.elements.each("cib/status/tickets/ticket_state") do |ts|
       t = ts.attributes["id"]
       ticket = {
-        id: nil,
-        ticket: t,
+        id: t,
         state: :revoked,
         granted: Util.unstring(ts.attributes["granted"], false),
         standby: Util.unstring(ts.attributes["standby"], false),
@@ -903,15 +902,16 @@ class Cib
     @xml.elements.each("cib/configuration/constraints/rsc_ticket") do |rt|
       t = rt.attributes["ticket"]
       if @tickets[t]
-        @tickets[t][:id] = rt.attributes["id"]
+        @tickets[t][:constraints] ||= []
+        @tickets[t][:constraints].push rt.attributes["id"]
       else
         @tickets[t] = {
-          id: rt.attributes["id"],
-          ticket: t,
+          id: t,
           state: :revoked,
           granted: false,
           standby: false,
           last_granted: nil,
+          constraints: [rt.attributes["id"]]
         }
       end
     end
@@ -948,8 +948,7 @@ class Cib
       # Pick up tickets defined in booth config
       @booth[:tickets].each do |t|
         @tickets[t] = {
-          id: nil,
-          ticket: t,
+          id: t,
           state: :revoked,
           granted: false,
           standby: false,
@@ -962,7 +961,7 @@ class Cib
         t = nil
         line.split(",").each do |pair|
           m = pair.match(/(ticket):\s*(.*)/)
-          t = m[2] if m[1]
+          t = m[2] if m
         end
         line.split(",").each do |pair|
           m = pair.match(/(leader|expires|commit):\s*(.*)/)
@@ -973,7 +972,7 @@ class Cib
 
     # set ticket state correctly
     @tickets.each do |_, ticket|
-      if ticket[:state] == :revoked && (ticket[:leader] && ticket[:leader] != "none")
+      if ticket[:state] == :revoked && (ticket[:leader] && ticket[:leader].downcase != "none")
         ticket[:state] = :elsewhere
       end
     end

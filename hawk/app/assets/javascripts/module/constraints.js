@@ -4,11 +4,11 @@
 $(function() {
   $('#constraints #middle table.constraints')
     .bootstrapTable({
-      ajax: function(params) {
-        var cib = $('body').data('content');
-        params.success(cib.constraints, "success", {});
-        params.complete({}, "success");
-      },
+      method: 'get',
+      url: Routes.cib_constraints_path(
+        $('body').data('cib'),
+        { format: 'json' }
+      ),
       striped: true,
       pagination: true,
       pageSize: 50,
@@ -23,7 +23,7 @@ $(function() {
       sortName: 'id',
       sortOrder: 'asc',
       columns: [{
-        field: 'type',
+        field: 'object_type',
         title: __('Type'),
         sortable: true,
         clickToSelect: true,
@@ -32,19 +32,11 @@ $(function() {
           switch(row.object_type) {
             case "location":
               return __("Location");
-            case "rsc_location":
-              return __("Location");
             case "colocation":
-              return __("Colocation");
-            case "rsc_colocation":
               return __("Colocation");
             case "order":
               return __("Order");
-            case "rsc_order":
-              return __("Order");
             case "ticket":
-              return __("Ticket");
-            case "rsc_ticket":
               return __("Ticket");
             default:
               return value;

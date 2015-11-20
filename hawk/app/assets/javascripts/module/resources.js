@@ -87,8 +87,6 @@ $(function() {
       class: 'col-sm-1',
       formatter: function(value, row, index) {
         switch(value) {
-          case "unknown":
-            return '';
           case "unmanaged":
             return [
               '<i class="fa fa-exclamation-triangle fa-lg text-warning" title="',

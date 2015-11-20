@@ -55,9 +55,9 @@ Rails.application.routes.draw do
     end
 
     resources :tickets do
-      member do
-        get :grant
-        get :revoke
+      collection do
+        get 'grant/:ticket', as: :grant, to: 'tickets#grant'
+        get 'revoke/:ticket', as: :revoke, to: 'tickets#revoke'
       end
     end
 
