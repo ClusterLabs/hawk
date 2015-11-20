@@ -14,7 +14,7 @@ $(function() {
   });
 
   $('.navbar a.toggle').click(function () {
-    $('.row-offcanvas').toggleClass('active')
+    $('.nav-wrapper').toggleClass('active')
   });
 
   $.growl(

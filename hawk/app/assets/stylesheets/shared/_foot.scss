@@ -6,6 +6,13 @@ footer {
   padding: 20px 10px;
   border-top: 1px solid #999;
 
+  position:absolute;
+  bottom:-60px;
+  height:60px;
+  width:100%;
+  overflow:auto;
+  z-index: 1025;
+
   .container-fluid {
     .row {
       p {

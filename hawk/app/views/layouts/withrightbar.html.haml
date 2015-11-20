@@ -12,22 +12,24 @@
         #navbar.navbar-right
           = render partial: "shared/usernav"
 
-    .container-fluid
-      .row.row-offcanvas.row-offcanvas-left
-        #sidebar.col-xs-6.col-sm-4.col-md-4.col-lg-2.sidebar-offcanvas
-          = render partial: "shared/mainnav"
+    .nav-wrapper
+      #sidebar.sidebar-wrapper
+        = render partial: "shared/mainnav"
 
-        #middle.col-xs-12.col-sm-8.col-md-8.col-lg-6
-          .container-fluid
-            - if current_cib.sim?
-              .row
-                = render partial: "shared/simulator"
+      .page-content-wrapper
+        .page-content.container-fluid
+          .row
+            #middle.col-xs-12.col-sm-8.col-md-7.col-lg-6
+              .container-fluid
+                - if current_cib.sim?
+                  .row
+                    = render partial: "shared/simulator"
 
-            = render partial: "shared/flash", locals: { flash: flash }
-          = yield
+                = render partial: "shared/flash", locals: { flash: flash }
+              = yield
 
-        #rightbar.visible-lg-block.col-lg-4
-          = yield :rightbar
+            #rightbar.hidden-xs.col-sm-4.col-md-5.col-lg-6
+              = yield :rightbar
 
     = render partial: "shared/footer"
     = render partial: "shared/modal"
