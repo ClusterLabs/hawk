@@ -225,12 +225,7 @@ $(function() {
               $.ajax({
                 dataType: 'json',
                 method: 'GET',
-                url: Routes.grant_cib_tickets_path(
-                  $('body').data('cib'),
-                  row.id,
-                  { format: 'json' }
-                ),
-
+                url: [context.attr('href'), ".json"].join(""),
                 success: function(data) {
                   if (data.success) {
                     $.growl({
@@ -273,11 +268,7 @@ $(function() {
               $.ajax({
                 dataType: 'json',
                 method: 'GET',
-                url: Routes.revoke_cib_tickets_path(
-                  $('body').data('cib'),
-                  row.id,
-                  { format: 'json' }
-                ),
+                url: [context.attr('href'), ".json"].join(""),
 
                 success: function(data) {
                   if (data.success) {
@@ -322,7 +313,7 @@ $(function() {
           if (!row.granted) {
             return [
               '<a href="',
-              Routes.grant_cib_tickets_path($('body').data('cib'), row.id, { format: 'json' }),
+              Routes.grant_cib_tickets_path($('body').data('cib'), row.id),
               '" class="grant btn btn-default btn-xs" title="',
                 __('Grant'),
               '">',
