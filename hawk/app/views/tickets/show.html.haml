@@ -38,6 +38,31 @@
                   = _("None")
                 - else
                   = @ticket.loss_policy
+            %tr
+              %th.col-xs-4
+                = _("Last Granted")
+              %td.col-xs-8
+                = @ticket.last_granted
+            %tr
+              %th.col-xs-4
+                = _("State")
+              %td.col-xs-8
+                = @ticket.state
+            %tr
+              %th.col-xs-4
+                = _("Leader")
+              %td.col-xs-8
+                = @ticket.leader
+            %tr
+              %th.col-xs-4
+                = _("Expires")
+              %td.col-xs-8
+                = @ticket.expires
+            %tr
+              %th.col-xs-4
+                = _("Commit")
+              %td.col-xs-8
+                = @ticket.commit
     - if @ticket.resources.any?
       .panel.panel-default
         .panel-heading#t-resources{role: :tab}

@@ -155,6 +155,8 @@ $(function() {
       rowStyle: function(row, index) {
         if (row.state == "granted") {
           return { classes: ["success"] };
+        } else if (row.leader && row.leader.toLowerCase() != "none") {
+          return { classes: ["info"] };
         } else if (row.state == "revoked") {
           return {};
         } else {
@@ -170,19 +172,27 @@ $(function() {
         clickToSelect: true,
         class: 'col-sm-1',
         formatter: function(value, row, index) {
+          var ret = [];
           if (row.granted) {
-            return [
+            ret = [
               '<i class="fa fa-check-circle fa-lg text-success" title="',
               __("Granted"),
               '"></i>'
-            ].join('');
+            ];
+          } else if (row.leader && row.leader.toLowerCase() != "none") {
+            ret = [
+              '<i class="fa fa-arrow-circle-o-left fa-lg text-info" title="',
+              __("Elsewhere"),
+              '"></i>'
+            ];
           } else {
-            return [
+            ret = [
               '<i class="fa fa-ban fa-lg text-danger" title="',
               __("Revoked"),
               '"></i>'
-            ].join('');
+            ];
           }
+          return ret.join('');
         }
       }, {
         field: 'ticket',
@@ -193,6 +203,12 @@ $(function() {
       }, {
         field: 'id',
         title: __('Constraint ID'),
+        sortable: true,
+        switchable: false,
+        clickToSelect: true
+      }, {
+        field: 'last_granted',
+        title: __('Last Granted'),
         sortable: true,
         switchable: false,
         clickToSelect: true

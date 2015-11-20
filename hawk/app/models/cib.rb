@@ -957,7 +957,7 @@ class Cib
           state: :revoked,
           granted: false,
           standby: false,
-          last_granted: nil,
+          last_granted: nil
         } unless @tickets[t]
       end
 
@@ -965,14 +965,13 @@ class Cib
       %x[/usr/sbin/booth client list 2>/dev/null].split("\n").each do |line|
         t = nil
         line.split(",").each do |pair|
-          m = pair.match(/(ticket|leader|expires|commit):\s*(.*)/)
-          case m[1]
-          when 'ticket'
-            t = m[2]
-          else
-            @tickets[t][m[1].to_sym] = m[2] if @tickets[t]
-          end
+          m = pair.match(/(ticket):\s*(.*)/)
+          t = m[2] if m[1]
         end
+        line.split(",").each do |pair|
+          m = pair.match(/(leader|expires|commit):\s*(.*)/)
+          @tickets[t][m[1].to_sym] = m[2] if m
+        end if t && @tickets[t]
       end
     end
 

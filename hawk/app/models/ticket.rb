@@ -8,6 +8,11 @@ class Ticket < Constraint
   attribute :resources, Array[Hash]
   attribute :granted, Boolean
   attribute :standby, Boolean
+  attribute :last_granted, String
+  attribute :state, String
+  attribute :leader, String
+  attribute :expires, String
+  attribute :commit, String
 
   validates :id,
     presence: { message: _("Constraint ID is required") },
@@ -26,7 +31,7 @@ class Ticket < Constraint
   def granted
     current = current_cib.tickets[ticket] || {}
 
-    if current.has_key? :granted
+    if current.key? :granted
       current[:granted]
     else
       false
@@ -36,11 +41,36 @@ class Ticket < Constraint
   def standby
     current = current_cib.tickets[ticket] || {}
 
-    if current.has_key? :standby
+    if current.key? :standby
       current[:standby]
     else
       false
     end
+  end
+
+  def last_granted
+    current = current_cib.tickets[ticket] || {}
+    current[:last_granted] || ''
+  end
+
+  def state
+    current = current_cib.tickets[ticket] || {}
+    current[:state] || :unknown
+  end
+
+  def leader
+    current = current_cib.tickets[ticket] || {}
+    current[:leader] || ''
+  end
+
+  def expires
+    current = current_cib.tickets[ticket] || {}
+    current[:expires] || ''
+  end
+
+  def commit
+    current = current_cib.tickets[ticket] || {}
+    current[:commit] || ''
   end
 
   def resources
@@ -109,8 +139,7 @@ class Ticket < Constraint
       record.loss_policy = xml.attributes["loss-policy"] || nil
 
       record.resources = [].tap do |resources|
-
-       Rails.logger.debug xml.inspect
+        Rails.logger.debug xml.inspect
 
         if xml.attributes["rsc"]
           resources.push(
