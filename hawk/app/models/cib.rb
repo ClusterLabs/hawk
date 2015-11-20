@@ -352,29 +352,33 @@ class Cib
       failed: 6
     }
     rsclist.each do |resource|
+      resource[:running_on] = {}
       resource[:state] ||= :stopped
-      if resource.has_key? :instances
+      if resource.key? :instances
         resource[:state] = :stopped if resource[:state] == :unknown
         resource[:instances].each do |_, states|
           prio.keys.each do |rstate|
-            if states.has_key? rstate.to_s
+            if states.key? rstate.to_s
               p1 = prio[rstate]
               p2 = prio[resource[:state]]
-              if p1 > p2
-                resource[:state] = rstate
+              resource[:state] = rstate if p1 > p2
+
+              unless [:started, :slave, :master].find_index(rstate).nil?
+                states[rstate].each do |instance|
+                  resource[:running_on][instance[:node]] = rstate
+                end
               end
             end
           end
         end
       end
 
-      if resource.has_key? :children
+      if resource.key? :children
         fix_resource_states(resource[:children])
         resource[:children].each do |child|
           rstate = child[:state]
-          if prio[rstate] > prio[resource[:state]]
-            resource[:state] = rstate
-          end
+          resource[:state] = rstate if prio[rstate] > prio[resource[:state]]
+          resource[:running_on].merge! child[:running_on]
         end
       end
     end
