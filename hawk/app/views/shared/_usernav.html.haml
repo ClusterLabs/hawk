@@ -17,5 +17,5 @@
   %li
     = link_to navbar_item(_("Logout"), "sign-out"), logout_path, class: "logout", title: _("Logout")
 
-  %li
-    = link_to navbar_item(_("Menu"), "bars"), "#toggle-menu", class: "toggle", title: _("Menu")
+  %li.visible-xs-inline-block
+    = link_to navbar_item("", "bars"), "#toggle-menu", class: "toggle", title: _("Menu")
