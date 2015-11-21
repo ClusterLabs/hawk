@@ -65,7 +65,7 @@ class Invoker
       # good for testing when running as root), or some other alternative
       # with piping data to crm?
       File.chmod(0666, f.path)
-      CrmEvents.instance.push "cat > #{f.path} <<EOF\n#{cmd}\nEOF"
+      CrmEvents.instance.push "crm configure\n#{cmd}\n"
       result = crm '-F', 'configure', 'load', 'update', f.path
     ensure
       f.unlink
@@ -103,10 +103,20 @@ class Invoker
 
   private
 
+  def ignore_command(input, cmd)
+    return true if cmd[0] == 'cluster'
+    if cmd[0] == 'configure'
+      return true if input == 'show'
+      return true if cmd[1] == 'graph'
+    end
+    return true if cmd[0..3] == ['-F', 'configure', 'load', 'update']
+    false
+  end
+
   # Returns [out, err, exitstatus]
   def invoke_crm(input, *cmd)
     # don't log certain calls to crmevents
-    unless cmd[0] == 'cluster' || (cmd[0] == 'configure' && cmd[1] == 'graph')
+    unless ignore_command(input, cmd)
       if input
         CrmEvents.instance.push "crm #{cmd.join(' ')}\n#{input}"
       else
