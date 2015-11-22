@@ -4,10 +4,12 @@
 Rails.application.routes.draw do
   root to: "pages#index"
 
-  resources :cib, only: [:show] do
+  resources :cib, only: [:show, :meta, :edit] do
     member do
       get action: "show"
       match action: "show", via: [:post, :options]
+      get :meta, as: :meta, to: 'cib#meta'
+      get :edit, as: :edit, to: 'cib#edit'
     end
 
     resources :nodes do
