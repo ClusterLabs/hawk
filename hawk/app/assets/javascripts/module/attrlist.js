@@ -12,6 +12,7 @@
     this.targets = this.$el.data('attrlist-target');
     this.prefixes = this.$el.data('attrlist-prefix');
     this.mapping = this.$el.data('attrlist-mapping');
+    this.freeform = this.$el.data('attrlist-freeform') == 'yes';
 
     this.available = Object.keys(this.mapping);
 
@@ -24,7 +25,7 @@
       },
       template: [
         '{^{props entries}}',
-          '{^{if #parent.parent.data.mapping[key]}}',
+          '{^{if ~root.mapping[key]}}',
             '<div class="form-group" data-help-filter=".row.{{>key}}">',
               '<label class="col-sm-5 control-label" for="{{>key}}">',
                 '{{>key}}',
@@ -32,32 +33,32 @@
 
               '<div class="col-sm-7">',
                 '<div class="input-group">',
-                  '{^{if #parent.parent.parent.data.mapping[key]["type"] == "enum"}}',
-                    '<select class="form-control select" name="{{>#parent.parent.parent.parent.data.prefix}}[{{>key}}]" id="{{>key}}" data-link="prop">',
+                  '{^{if ~root.mapping[key]["type"] == "enum"}}',
+                    '<select class="form-control select" name="{{>~root.prefix}}[{{>key}}]" id="{{>key}}" data-link="prop">',
                       '<option></option>',
-                      '{^{for #parent.parent.parent.parent.data.mapping[key]["values"]}}',
+                      '{^{for ~root.mapping[key]["values"]}}',
                         '<option value="{{:#data}}">',
                           '{{:#data}}',
                         '</option>',
                       '{{/for}}',
                     '</select>',
-                  '{{else #parent.parent.parent.data.mapping[key]["type"] == "boolean"}}',
-                    '<select class="form-control select" name="{{>#parent.parent.parent.parent.data.prefix}}[{{>key}}]" id="{{>key}}" data-link="prop">',
+                  '{{else ~root.mapping[key]["type"] == "boolean"}}',
+                    '<select class="form-control select" name="{{>~root.prefix}}[{{>key}}]" id="{{>key}}" data-link="prop">',
                       '<option value="true">',
-                        '{{>#parent.parent.parent.parent.data.true_label}}',
+                        '{{>~root.true_label}}',
                       '</option>',
                       '<option value="false">',
-                        '{{>#parent.parent.parent.parent.data.false_label}}',
+                        '{{>~root.false_label}}',
                       '</option>',
                     '</select>',
-                  '{{else #parent.parent.parent.data.mapping[key]["type"] == "integer"}}',
-                    '<input class="form-control text-field" type="number" name="{{>#parent.parent.parent.parent.data.prefix}}[{{>key}}]" value="{{>prop}}" id="{{>key}}" />',
+                  '{{else ~root.mapping[key]["type"] == "integer"}}',
+                    '<input class="form-control text-field" type="number" name="{{>~root.prefix}}[{{>key}}]" value="{{>prop}}" id="{{>key}}" />',
                   '{{else}}',
-                    '<input class="form-control text-field" type="text" name="{{>#parent.parent.parent.parent.data.prefix}}[{{>key}}]" value="{{>prop}}" id="{{>key}}" />',
+                    '<input class="form-control text-field" type="text" name="{{>~root.prefix}}[{{>key}}]" value="{{>prop}}" id="{{>key}}" />',
                   '{{/if}}',
 
                   '<div class="input-group-btn">',
-                    '<a href="#" class="remove btn btn-default" data-attr="{{:#data}}" title="{{>#parent.parent.data.remove_label}}">',
+                    '<a href="#" class="remove btn btn-default" data-attr="{{:#data}}" title="{{>~root.remove_label}}">',
                       '<i class="fa fa-minus fa-lg fa-fw"></i>',
                     '</a>',
                   '</div>',
@@ -66,26 +67,40 @@
             '</div>',
           '{{/if}}',
         '{{/props}}',
-
-        '<div class="form-group addition" data-link="visible{:remaining.length > 0}">',
-          '<div class="col-sm-offset-5 col-sm-7 select">',
-            '<div class="input-group">',
-              '<select class="form-control select" name="temp[selector]">',
-                '<option></option>',
-                '{^{for remaining}}',
-                  '<option value="{{:#data}}">',
-                    '{{:#data}}',
-                  '</option>',
-                '{{/for}}',
-              '</select>',
-              '<div class="input-group-btn">',
-                '<a href="#" class="create btn btn-default" title="{{>create_label}}">',
-                  '<i class="fa fa-plus fa-lg fa-fw"></i>',
-                '</a>',
+        '{{if ~root.freeform}}',
+          '<div class="form-group addition">',
+            '<div class="col-sm-offset-5 col-sm-7 select">',
+              '<div class="input-group">',
+                '<input class="form-control newentry" type="text" name="temp[selector]" />',
+                '<div class="input-group-btn">',
+                  '<a href="#" class="create btn btn-default" title="{{>create_label}}">',
+                    '<i class="fa fa-plus fa-lg fa-fw"></i>',
+                  '</a>',
+                '</div>',
               '</div>',
             '</div>',
           '</div>',
-        '</div>'
+        '{{else}}',
+          '<div class="form-group addition" data-link="visible{:remaining.length > 0}">',
+            '<div class="col-sm-offset-5 col-sm-7 select">',
+              '<div class="input-group">',
+                '<select class="form-control newentry" name="temp[selector]">',
+                  '<option></option>',
+                  '{^{for remaining}}',
+                    '<option value="{{:#data}}">',
+                      '{{:#data}}',
+                    '</option>',
+                  '{{/for}}',
+                '</select>',
+                '<div class="input-group-btn">',
+                  '<a href="#" class="create btn btn-default" title="{{>create_label}}">',
+                    '<i class="fa fa-plus fa-lg fa-fw"></i>',
+                  '</a>',
+                '</div>',
+              '</div>',
+            '</div>',
+          '</div>',
+        '{{/if}}'
       ].join('')
     };
 
@@ -104,16 +119,14 @@
   AttrList.prototype.init = function() {
     var self = this;
 
-    $.each(Object.keys(self.values), function(index, value) {
-      if ($.inArray(value, self.available) >= 0) {
-        self.available.splice(
-          $.inArray(value, self.available),
-          1
-        );
-      }
-    });
-
-    self.available.sort();
+    if (!self.freeform) {
+      $.each(Object.keys(self.values), function(index, value) {
+        if ($.inArray(value, self.available) >= 0) {
+          self.available.splice($.inArray(value, self.available), 1);
+        }
+      });
+      self.available.sort();
+    }
 
     var content = {
       create_label: self.options.labels.create,
@@ -125,7 +138,8 @@
       entries: self.values,
       mapping: self.mapping,
       remaining: self.available,
-      select: 'disabled'
+      select: 'disabled',
+      freeform: self.freeform
     };
 
     $.templates.constraints.link(
@@ -145,67 +159,42 @@
       .on('click', '.addition .select .create', function(e) {
         e.preventDefault();
 
-        var key = $(e.currentTarget)
-          .parents('.addition')
-          .find('.select select').val();
+        var key = $(e.currentTarget).parents('.addition').find('.select .newentry').val();
 
         if (key !== '') {
-          $.observable(
-            content['entries']
-          ).setProperty(
-            key,
-            self.mapping[key]['default'] || ''
-          );
+          if (!(key in self.mapping)) {
+            self.mapping[key] = {
+              longdesc: ''
+            };
+            self.mapping[key]["default"] = "";
+          }
 
-          $.observable(
-            content['remaining']
-          ).remove(
-            $.inArray(
-              key,
-              $.view(this).data.remaining
-            )
-          );
+          var defval = '';
+          if (key in self.mapping && 'default' in self.mapping[key]) {
+            defval = self.mapping[key]['default'] || '';
+          }
+          $.observable(content['entries']).setProperty(key, defval);
 
-          $(e.currentTarget)
-            .parents('.addition')
-            .find('.select select').val(null);
+          if (!self.freeform) {
+            $.observable(content['remaining']).remove($.inArray(key, $.view(this).data.remaining));
+          }
 
-          $.observable(
-            content
-          ).setProperty(
-            'select',
-            'disabled'
-          );
+          $(e.currentTarget).parents('.addition').find('.select .newentry').val(null);
+
+          $.observable(content).setProperty('select', 'disabled');
         }
       })
       .on('click', '.remove', function(e) {
         e.preventDefault();
 
-        $.observable(
-          content['remaining']
-        ).insert(
-          $.view(this).data.key
-        );
-
-        $.observable(
-          content['remaining']
-        ).refresh(
-          content['remaining'].sort()
-        );
-
-        $.observable(
-          content['entries']
-        ).removeProperty(
-          $.view(this).data.key
-        );
+        if (!self.freeform) {
+          $.observable(content['remaining']).insert($.view(this).data.key);
+          $.observable(content['remaining']).refresh(content['remaining'].sort());
+        }
+        $.observable(content['entries']) .removeProperty($.view(this).data.key);
       })
-      .on('change', '.select select', function(e) {
-        $.observable(
-          content
-        ).setProperty(
-          'select',
-          $(e.currentTarget).val()
-        );
+      .on('change', '.select .newentry', function(e) {
+        $.observable(content).setProperty('select', $(e.currentTarget).val());
       });
   };
 
