@@ -1,0 +1,26 @@
+.container-fluid
+  .row
+    %h1
+      = icon_text "file-o", _("Edit"), class: "page"
+      .pull-right
+        .btn-group{ role: "group" }
+          = link_to icon_text("file-archive-o", _("CIB")), cib_path(current_cib.id), class: "btn btn-default"
+          = link_to icon_text("file-image-o", _("Graph")), cib_graph_path(cib_id: current_cib.id), class: "btn btn-default"
+
+  .row
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title= _("Nodes")
+      %table.table.table-striped.nodes
+
+  .row
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title= _("Resources")
+      %table.table.table-striped.resources
+
+  .row
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title= _("Constraints")
+      %table.table.table-striped.constraints
