@@ -305,12 +305,15 @@ var dashboardAddCluster = (function() {
   function clusterRefresh(clusterId, clusterInfo) {
     indicator(clusterId, "refresh");
 
+    //console.log("request cib", $("#" + clusterId).data('epoch'), (new Date()).getTime());
     ajaxQuery({ url: baseUrl(clusterInfo) + "/cib/mini.json",
                 type: "GET",
                 data: { _method: 'show' },
                 crossDomain: clusterInfo.host != null,
                 success: function(data) {
                   displayClusterStatus(clusterId, data);
+                  //console.log("response cib", data.meta.epoch, (new Date()).getTime());
+                  $("#" + clusterId).data('epoch', data.meta.epoch);
                   clusterUpdate(clusterId, clusterInfo);
                 },
                 error: function(xhr, status, error) {
@@ -323,14 +326,15 @@ var dashboardAddCluster = (function() {
 
   function clusterUpdate(clusterId, clusterInfo) {
     var current_epoch = $("#" + clusterId).data('epoch');
+    //console.log("request monitor", current_epoch, (new Date()).getTime());
     ajaxQuery({ url: baseUrl(clusterInfo) + "/monitor.json",
                 type: "GET",
                 data: current_epoch,
                 timeout: 90000,
                 crossDomain: clusterInfo.host != null,
                 success: function(data) {
+                  //console.log("response monitor", data.epoch, current_epoch, (new Date()).getTime());
                   if (data.epoch != current_epoch) {
-                    $("#" + clusterId).data('epoch', data.epoch);
                     clusterRefresh(clusterId, clusterInfo);
                   } else {
                     clusterUpdate(clusterId, clusterInfo);
