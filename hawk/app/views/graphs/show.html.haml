@@ -1,6 +1,9 @@
 .container-fluid
   %h1
     = icon_text "line-chart", _("Graph"), class: "page"
+    .pull-right
+      .btn-group{ role: "group" }
+        = link_to icon_text("file-o", _("Edit")), edit_cib_path(current_cib.id), class: "btn btn-default"
 
   .panel.panel-default
     .panel-body
