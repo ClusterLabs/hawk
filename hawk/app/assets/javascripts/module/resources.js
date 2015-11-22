@@ -68,6 +68,10 @@ $(function() {
       editRoute = Routes.edit_cib_tag_path(cib, row.id);
       destroyRoute = Routes.cib_tag_path(cib, row.id);
       break;
+    case "template":
+      editRoute = Routes.edit_cib_template_path(cib, row.id);
+      destroyRoute = Routes.cib_template_path(cib, row.id);
+      break;
     default:
       editRoute = Routes.edit_cib_resource_path(cib, row.id);
       destroyRoute = Routes.cib_resource_path(cib, row.id);
@@ -142,7 +146,12 @@ $(function() {
       class: 'col-sm-6',
       formatter: function(value, row, index) {
         if ("running_on" in row) {
-          return Object.keys(row.running_on).join(", ");
+          var nodes = Object.keys(row.running_on);
+          if (nodes.length > 8) {
+            nodes = nodes.slice(0, 8);
+            nodes.push("...");
+          }
+          return nodes.join(", ");
         } else {
           return "";
         }
@@ -355,72 +364,98 @@ $(function() {
       showColumns: false,
       showRefresh: false,
       minimumCountColumns: 0,
-      sortName: 'id',
+      sortName: 'object_type',
       sortOrder: 'asc',
       detailView: true,
       rowStyle: rowStyleFn,
       onExpandRow: function (index, row, detail) {
+        var columns = statesResourcesColumns.slice(0);
+        var datasource = [];
         if (row.children || row.child || row.refs) {
-          var columns = statesResourcesColumns.slice(0);
           var datasource = [];
           if (row.children) {
             datasource = row.children;
           } else if (row.child) {
             datasource = [row.child];
           } else {
-              datasource = row.refs;
+            var cib = $('body').data('content');
+            datasource = $.grep($.map(row.refs, function(ref) {
+              if (ref in cib.resources_by_id) {
+                return cib.resources_by_id[ref];
+              } else {
+                var ret = null;
+                $.each(cib.constraints, function(i, o) {
+                  if (o.id == ref) {
+                    o.object_type = o.type;
+                    ret = o;
+                  }
+                });
+                if (ret === null) {
+                  $.each(cib.tags, function(i, o) {
+                    if (o.id == ref) {
+                      ret = o;
+                    }
+                  });
+                }
+                return ret;
+              }
+            }), function(o) { return o !== null; });
           }
-
-          columns.unshift({
-            sortable: false,
-            switchable: false,
-            clickToSelect: false,
-            formatter: function(value, row, index) {
-              return '<i class="glyphicon glyphicon-arrow-right"></i>';
-            }
-          });
-
-          detail
-            .html('<table></table>')
-            .find('table')
-            .bootstrapTable({
-              data: datasource,
-              pagination: false,
-              smartDisplay: false,
-              showColumns: false,
-              showRefresh: false,
-              showHeader: false,
-              showFooter: false,
-              rowStyle: rowStyleFn,
-              minimumCountColumns: 0,
-              sortName: 'id',
-              sortOrder: 'asc',
-              columns: columns
-            });
         }
+
+        if (datasource.length == 0) {
+          detail.html(['<div class="text-center text-muted">', __("No child resources"), '</div>'].join(''));
+          return;
+        }
+
+        columns.unshift({
+          sortable: false,
+          switchable: false,
+          clickToSelect: false,
+          formatter: function(value, row, index) {
+            return '<i class="glyphicon glyphicon-arrow-right"></i>';
+          }
+        });
+
+        detail
+          .html('<table></table>')
+          .find('table')
+          .bootstrapTable({
+            data: datasource,
+            pagination: false,
+            smartDisplay: false,
+            showColumns: false,
+            showRefresh: false,
+            showHeader: false,
+            showFooter: false,
+            rowStyle: rowStyleFn,
+            minimumCountColumns: 0,
+            sortName: 'id',
+            sortOrder: 'asc',
+            columns: columns
+          });
       },
       columns: statesResourcesColumns
     });
 
-  $('#resources #middle table.resources')
+  $('#resources #middle table.resources, #cib #middle table.resources')
     .bootstrapTable({
-      ajax: function(params) {
-        var cib = $('body').data('content');
-        var resources_and_tags = cib.resources.concat(cib.tags);
-        params.success(resources_and_tags, "success", {});
-        params.complete({}, "success");
-      },
+      method: 'get',
+      url: Routes.cib_resources_path(
+        $('body').data('cib'),
+        { format: 'json' }
+      ),
       pagination: true,
-      pageSize: 50,
+      pageSize: 25,
       pageList: [10, 25, 50, 100, 200],
       sidePagination: 'client',
       smartDisplay: false,
       search: true,
       searchAlign: 'left',
       showColumns: false,
-      showRefresh: false,
+      showRefresh: true,
       minimumCountColumns: 0,
-      sortName: 'id',
+      sortName: 'object_type',
       sortOrder: 'asc',
       striped: true,
       columns: [{
@@ -441,6 +476,8 @@ $(function() {
               return __("Multi-state");
             case "tag":
               return __("Tag");
+            case "Template":
+              return __("Template");
             default:
               return row.object_type;
           }
@@ -451,6 +488,23 @@ $(function() {
         sortable: true,
         switchable: false,
         clickToSelect: true
+      }, {
+        field: 'id',
+        title: __('Resources'),
+        sortable: true,
+        switchable: false,
+        clickToSelect: true,
+        formatter: function(value, row, index) {
+          if ("child" in row) {
+            return row.child;
+          } else if ("children" in row) {
+            return row.children.join(", ");
+          } else if ("refs" in row) {
+            return row.refs.join(", ");
+          } else {
+            return "";
+          }
+        }
       }, {
         field: 'id',
         title: __('Operations'),

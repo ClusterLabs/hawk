@@ -14,7 +14,7 @@ $(function() {
     }
   };
 
-  $('#nodes #middle table.nodes, #states #middle table.nodes')
+  $('#states #middle table.nodes')
     .bootstrapTable({
       ajax: function(params) {
         var cib = $('body').data('content');
@@ -22,7 +22,7 @@ $(function() {
         params.complete({}, "success");
       },
       pagination: false,
-      pageSize: 50,
+      pageSize: 10,
       pageList: [10, 25, 50, 100, 200],
       sidePagination: 'client',
       smartDisplay: false,
@@ -446,7 +446,70 @@ $(function() {
         }]
     });
 
-  $('#nodes #middle table.nodes, #states #middle table.nodes').on("click", ".dropdown-toggle", function(event){
+    $('#nodes #middle table.nodes, #cib #middle table.nodes')
+    .bootstrapTable({
+      method: 'get',
+      url: Routes.cib_nodes_path(
+        $('body').data('cib'),
+        { format: 'json' }
+      ),
+      pagination: true,
+      pageSize: 25,
+      pageList: [10, 25, 50, 100, 200],
+      sidePagination: 'client',
+      smartDisplay: false,
+      search: true,
+      searchAlign: 'left',
+      showColumns: false,
+      showRefresh: true,
+      minimumCountColumns: 0,
+      sortName: 'id',
+      sortOrder: 'asc',
+      striped: true,
+      columns: [{
+        field: 'id',
+        title: __('ID'),
+        sortable: true,
+        switchable: false,
+        clickToSelect: true
+      }, {
+        field: 'name',
+        title: __('Name'),
+        sortable: true,
+        switchable: false,
+        clickToSelect: true
+      }, {
+        field: 'id',
+        title: __('Operations'),
+        sortable: false,
+        clickToSelect: false,
+        class: 'col-sm-2',
+        events: {
+        },
+        formatter: function(value, row, index) {
+          var operations = [];
+
+          operations.push([
+            '<a href="',
+             Routes.edit_cib_node_path($('body').data('cib'), row.id),
+              '" class="edit btn btn-default btn-xs" title="',
+              __('Edit'),
+            '">',
+              '<i class="fa fa-pencil"></i>',
+            '</a> '
+          ].join(''));
+
+          return [
+            '<div class="btn-group" role="group">',
+            operations.join(''),
+            '</div>',
+          ].join('');
+        }
+      }]
+    });
+
+
+  $('#nodes #middle table.nodes, #states #middle table.nodes, #cib #middle table.nodes').on("click", ".dropdown-toggle", function(event){
     var button = $(this);
     var open = button.attr('aria-expanded');
     var dropdown = button.siblings('.dropdown-menu');

@@ -7,7 +7,7 @@ $(function() {
   // twice, once for primitive and once for template
   var controller_types = {
     primitive: {
-      table_selector: '#primitives #middle table.primitives',
+      table_selector: '#primitives #middle table.primitives, #cib #middle table.primitives',
       cib_primitives_path: Routes.cib_primitives_path,
       cib_primitive_path: Routes.cib_primitive_path,
       edit_cib_primitive_path: Routes.edit_cib_primitive_path,
@@ -18,7 +18,7 @@ $(function() {
       type_selector: '#primitive_type',
     },
     template: {
-      table_selector: '#templates #middle table.primitives',
+      table_selector: '#templates #middle table.primitives, #cib #middle table.templates',
       cib_primitives_path: Routes.cib_templates_path,
       cib_primitive_path: Routes.cib_template_path,
       edit_cib_primitive_path: Routes.edit_cib_template_path,
@@ -53,7 +53,7 @@ $(function() {
         ),
         striped: true,
         pagination: true,
-        pageSize: 50,
+        pageSize: 25,
         pageList: [10, 25, 50, 100, 200],
         sidePagination: 'client',
         smartDisplay: false,

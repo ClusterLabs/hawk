@@ -2,7 +2,36 @@
 // See COPYING for license.
 
 $(function() {
-  $('#constraints #middle table.constraints')
+  var constraintResources = function(row) {
+    var flattenResourceList = null;
+    flattenResourceList = function(obj) {
+      var t = $.type(obj);
+      var ret = [];
+      if (t === "string") {
+        ret.push(obj);
+      } else if (t === "array") {
+        $.each(obj, function(i, o) {
+          ret = ret.concat(flattenResourceList(o));
+        });
+      } else if (t === "object") {
+        if ("resources" in obj) {
+          ret = ret.concat(flattenResourceList(obj.resources));
+        }
+        if ("resource" in row) {
+          ret = ret.concat(flattenResourceList(obj.resource));
+        }
+      }
+      return ret;
+    };
+    var lst = flattenResourceList(row);
+    if (lst.length > 8) {
+      lst = lst.slice(0, 8);
+      lst.push("...");
+    }
+    return lst.join(", ");
+  };
+
+  $('#constraints #middle table.constraints, #cib #middle table.constraints')
     .bootstrapTable({
       method: 'get',
       url: Routes.cib_constraints_path(
@@ -11,7 +40,7 @@ $(function() {
       ),
       striped: true,
       pagination: true,
-      pageSize: 50,
+      pageSize: 25,
       pageList: [10, 25, 50, 100, 200],
       sidePagination: 'client',
       smartDisplay: false,
@@ -20,7 +49,7 @@ $(function() {
       showColumns: false,
       showRefresh: true,
       minimumCountColumns: 0,
-      sortName: 'id',
+      sortName: 'object_type',
       sortOrder: 'asc',
       columns: [{
         field: 'object_type',
@@ -48,6 +77,15 @@ $(function() {
         sortable: true,
         switchable: false,
         clickToSelect: true
+      }, {
+        field: 'id',
+        title: __('Resources'),
+        sortable: true,
+        switchable: false,
+        clickToSelect: true,
+        formatter: function(value, row, index) {
+          return constraintResources(row);
+        }
       }, {
         field: 'id',
         title: __('Operations'),
