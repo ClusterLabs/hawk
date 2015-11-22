@@ -476,7 +476,7 @@ $(function() {
               return __("Multi-state");
             case "tag":
               return __("Tag");
-            case "Template":
+            case "template":
               return __("Template");
             default:
               return row.object_type;
