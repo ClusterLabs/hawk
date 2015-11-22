@@ -96,14 +96,6 @@ module PrimitiveHelper
     end
   end
 
-  def path_for_primitive_back(*args)
-    if @primitive.resource?
-      types_cib_resources_path(*args)
-    else
-      cib_templates_path(*args)
-    end
-  end
-
   def path_for_resource(*args)
     if @primitive.resource?
       cib_primitive_path(*args)
