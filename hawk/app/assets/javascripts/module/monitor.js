@@ -34,7 +34,7 @@
   MonitorCheck.prototype.processCheck = function() {
     var self = this;
 
-    $('#middle .circle').statusCircleFromCIB();
+    $('.circle').statusCircleFromCIB();
 
     $.ajax({
       url: Routes.monitor_path(),
@@ -61,7 +61,7 @@
             { type: 'warning' }
           );
 
-          $('#middle .circle').statusCircle('errors', msg);
+          $('.circle').statusCircle('errors', msg);
 
           $('body').trigger($.Event('aborted.hawk.monitor'));
 
@@ -77,7 +77,7 @@
               msg,
               { type: 'danger' }
             );
-            $('#middle .circle').statusCircle('errors', msg);
+            $('.circle').statusCircle('errors', msg);
           } else {
             // $.growl(
             //   request.statusText,
@@ -90,7 +90,7 @@
             msg,
             { type: 'danger' }
           );
-          $('#middle .circle').statusCircle('errors', msg);
+          $('.circle').statusCircle('errors', msg);
         }
 
         $('body').trigger($.Event('unavailable.hawk.monitor'));

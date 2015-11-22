@@ -1,10 +1,10 @@
 .container-fluid
   .row
+    .pull-left
+      .circle.circle-medium{ class: status_class_for(@cib.meta.status) }
+        = status_icon_for(@cib.meta.status)
     %h1
-      = icon_text "bullhorn", _("Status"), class: "page"
-      .pull-right
-        .circle.circle-medium.page{ class: status_class_for(@cib.meta.status) }
-          = status_icon_for(@cib.meta.status)
+      = _("Status")
 
   .row.errors.softhide#errors{ data: { link: "visible{>errors.length > 0}" } }
     .col-lg-12

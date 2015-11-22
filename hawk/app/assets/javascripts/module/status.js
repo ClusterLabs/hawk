@@ -102,7 +102,7 @@
       success: function(cib) {
         if (cib) {
           $('body').data('content', cib);
-          $('#middle .circle').statusCircleFromCIB(cib);
+          $('.circle').statusCircleFromCIB(cib);
           $(self.options.targets.metadata).link(true, cib);
           $(self.options.targets.content).link(true, cib);
 
@@ -122,7 +122,7 @@
           msg,
           { type: 'danger' }
         );
-        $('#middle .circle').statusCircle('errors', msg);
+        $('.circle').statusCircle('errors', msg);
       }
     });
   };
@@ -149,5 +149,5 @@
 
 $(function() {
   $('body').statusCheck();
-  $('#middle .circle').statusCircleFromCIB();
+  $('.circle').statusCircleFromCIB();
 });

@@ -94,9 +94,17 @@ $(function() {
     var unquote = function(str) {
       return str.replace(/["']/g, "");
     };
-    var circle = ['<div class="circle circle-medium ',
+    var sizeclass = "";
+    if ($(this).hasClass('circle-large')) {
+      sizeclass = 'circle-large ';
+    } else if ($(this).hasClass('circle-medium')) {
+      sizeclass = 'circle-medium ';
+    } else if ($(this).hasClass('circle-medium')) {
+      sizeclass = 'circle-small ';
+    }
+    var circle = ['<div class="circle ', sizeclass,
                   statusClass(),
-                  '" data-toggle="tooltip" data-placement="left" title="',
+                  '" data-toggle="tooltip" data-placement="bottom" title="',
                   unquote(tooltip),
                   '">',
                   statusIcon(),
