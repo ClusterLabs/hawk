@@ -7,6 +7,15 @@ class CibController < ApplicationController
 
   def show
     respond_to do |format|
+      format.html do
+        out, err, rc  = Invoker.instance.crm_configure "show"
+        if rc != 0
+          format.any { head :internal_server_error }
+        else
+          @cibtext = out
+          render
+        end
+      end
       format.json do
         render json: current_cib.status(params[:id] == "mini" || params[:mini] == "true")
       end
@@ -39,6 +48,28 @@ class CibController < ApplicationController
       format.json do
         render json: {}, status: 200
       end
+    end
+  end
+
+  def meta
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def edit
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  protected
+
+  def detect_modal_layout
+    if request.xhr? && params[:action] == :meta
+      "modal"
+    else
+      detect_current_layout
     end
   end
 end
