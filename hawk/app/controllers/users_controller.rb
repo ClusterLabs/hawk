@@ -156,12 +156,10 @@ class UsersController < ApplicationController
   end
 
   def check_support
-    unless Util.acl_enabled?
-      flash.now[:warning] = view_context.link_to(
-        _("To enable ACLs, set \"enable-acl\" in the Cluster Configuration ('Manage > Configuration')"),
-        edit_cib_crm_config_path(cib_id: @cib.id)
-      )
-    end
+    flash.now[:warning] = view_context.link_to(
+      _("To enable ACLs, set \"enable-acl\" in the Cluster Configuration ('Manage > Configuration')"),
+      edit_cib_crm_config_path(cib_id: @cib.id)
+    ) unless Util.acl_enabled?
   end
 
   def post_process_for!(record)
