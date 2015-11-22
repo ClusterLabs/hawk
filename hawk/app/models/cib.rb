@@ -49,6 +49,10 @@ class Cib
     @meta ||= begin
       struct = Hashie::Mash.new
 
+      @xml.root.attributes.each do |n, v|
+        struct[n.underscore.to_sym] = Util.unstring(v, '')
+      end
+
       struct.epoch = epoch
       struct.dc = dc
 
