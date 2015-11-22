@@ -219,4 +219,21 @@ module ApplicationHelper
       ""
     )
   end
+
+  def footer_metadata_items
+    meta = current_cib.meta
+    [].tap do |ret|
+      ret.push [_("Status"), "meta.status", meta.status, nil]
+      ret.push [_("Epoch"), "meta.epoch", meta.epoch, _("Current Configuration Version")]
+      ret.push [_("Host"), "meta.host", meta.host, nil]
+      ret.push [_("DC"), "meta.dc", meta.dc, _("Designated Coordinator")]
+      ret.push [_("Schema"), "meta.validate_with", meta.validate_with, _("CIB Schema Version")] if meta.validate_with?
+      ret.push [_("Last Written"), "meta.cib_last_written", meta.cib_last_written] if meta.cib_last_written?
+      ret.push [_("Update Origin"), "meta.update_origin", meta.update_origin] if meta.update_origin?
+      ret.push [_("Update User"), "meta.update_user", meta.update_user] if meta.update_user?
+      ret.push [_("Have Quorum"), "meta.have_quorum", meta.have_quorum] if meta.have_quorum?
+      ret.push [_("Version"), "meta.version", meta.version, _("Pacemaker Version")]
+      ret.push [_("Stack"), "meta.stack", meta.stack, _("Cluster Communication Stack")]
+    end
+  end
 end

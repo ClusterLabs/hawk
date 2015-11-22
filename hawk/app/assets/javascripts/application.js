@@ -37,7 +37,7 @@
 $(function() {
   var resize = function() {
     var navHeight = $('.navbar-fixed-top').outerHeight();
-    var footHeight = $('footer').outerHeight();
+    var footHeight = $('footer').show().outerHeight();
 
     var winHeight = $(window).outerHeight() - navHeight - footHeight;
 

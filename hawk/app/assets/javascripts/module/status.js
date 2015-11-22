@@ -16,7 +16,7 @@
       ],
       targets: {
         events: el,
-        metadata: 'footer .metadata',
+        metadata: '.metadata',
         content: '#states #middle'
       },
       templates: {
@@ -28,6 +28,33 @@
       this.defaults,
       options
     );
+
+    $.views.converters({
+      statusbuttonclass: function(value) {
+        if (value == "ok") {
+          return "btn btn-success";
+        } else if (value == "errors") {
+          return "btn btn-danger";
+        } else if (value == "maintenance") {
+          return "btn btn-info";
+        } else {
+          return "btn btn-warning";
+        }
+      },
+      statusbuttonicon: function(value) {
+        if (value == "ok") {
+          return 'fa fa-fw fa-check';
+        } else if (value == "errors") {
+          return 'fa fa-fw fa-exclamation-triangle';
+        } else if (value == "maintenance") {
+          return 'fa fa-fw fa-wrench';
+        } else if (value == "nostonith") {
+          return 'fa fa-fw fa-plug';
+        } else {
+          return 'fa fa-fw fa-question';
+        }
+      }
+    });
 
     $.templates({
       statusError: {

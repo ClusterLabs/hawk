@@ -2,24 +2,13 @@
   .container-fluid
     .row
       .col-md-6.copyright
-        %p
-          = branding_config[:provider].html_safe
+        = branding_config[:provider].html_safe
 
       .col-md-6.hidden-xs.hidden-sm.metadata
-        %dl.dl-inline
-          %dt
-            = _("Version:")
-          %dd.status.version{ data: { link: "meta.version" } }
-            = current_cib.meta.version
-          %dt
-            = _("DC:")
-          %dd.status.dc{ data: { link: "meta.dc" } }
-            = current_cib.meta.dc
-          %dt
-            = _("UI:")
-          %dd.status.host{ data: { link: "meta.host" } }
-            = current_cib.meta.host
-          %dt
-            = _("Status:")
-          %dd.status.status{ data: { link: "meta.status" } }
-            = current_cib.meta.status
+        .btn-group.btn-group-sm{role: :group}
+          / %button.btn{type: :button, data: { toggle: :tooltip, title: _("DC"), link: "meta.dc", placement: :top, container: :body } }
+          /  = current_cib.meta.dc
+          / %button.btn{type: :button, data: { toggle: :tooltip, title: _("Host"), link: "meta.host title{:meta.version}", placement: :top, container: :body } }
+          /  = current_cib.meta.host
+          %a.btn.btn-default{type: :button, href: meta_cib_path(current_cib.id), title: _("Cluster Details"), data: { toggle: :modal, target: "#modal", link: "class{statusbuttonclass:meta.status}" } }
+            %i{data:{link:"class{statusbuttonicon:meta.status}"}}
