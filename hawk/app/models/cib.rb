@@ -189,18 +189,19 @@ class Cib
   def find_node(node_id)
     fail(RecordNotFound, node_id) if @xml.nil?
 
-    state = @nodes.select { |n| n[:id] == node_id }
+    state = @nodes.select { |n| n[:id] == node_id || n[:uname] == node_id }
+    fail(RecordNotFound, node_id) if state.blank?
     can_fence = @crm_config[:stonith_enabled]
 
     node = @xml.elements["cib/configuration/nodes/node[@uname=\"#{node_id}\"]"]
     if node
-      Node.instantiate(node, state[0], can_fence)
+      Node.instantiate(node, state.first, can_fence)
     else
       node = @xml.elements["cib/configuration/nodes/node[@id=\"#{node_id}\"]"]
       if node
-        Node.instantiate(node, state[0], can_fence)
+        Node.instantiate(node, state.first, can_fence)
       else
-        raise RecordNotFound, node_id
+        fail RecordNotFound, node_id
       end
     end
   end
