@@ -415,16 +415,26 @@ class Cib
   end
 
   def get_constraint(elem)
-    ret = {}
-    elem.attributes.each do |name, value|
-      ret[name.to_sym] = value
+    objtype = {
+      rsc_location: :location,
+      rsc_colocation: :colocation,
+      rsc_order: :order,
+      rsc_ticket: :ticket
+    }
+    ret = {
+      id: elem.attributes['id'],
+      object_type: objtype[elem.name.to_sym] || elem.name,
+      children: []
+    }
+    ["rsc", "with-rsc", "first", "then"].each do |attr|
+      ret[:children] << elem.attributes[attr] unless elem.attributes[attr].nil?
     end
-    ret[:type] = elem.name
-    children = []
-    elem.each_element do |e|
-      children << get_constraint(e)
+    ["score", "node", "resource-discovery", "ticket"].each do |attr|
+      ret[attr.underscore.to_sym] = elem.attributes[attr] unless elem.attributes[attr].nil?
     end
-    ret[:children] = children if children.any?
+    elem.elements.each("resource_set/resource_ref") do |ref|
+      ret[:children] << ref.attributes['id']
+    end
     ret
   end
 
