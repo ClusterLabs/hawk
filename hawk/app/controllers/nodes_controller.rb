@@ -5,7 +5,7 @@ class NodesController < ApplicationController
   before_filter :login_required
   before_filter :set_title
   before_filter :set_cib
-  before_filter :set_record, only: [:online, :standby, :maintenance, :ready, :fence, :show, :events]
+  before_filter :set_record, only: [:online, :standby, :maintenance, :ready, :fence, :show, :events, :edit, :update]
 
   before_filter :god_required, only: [:events]
 
@@ -27,6 +27,35 @@ class NodesController < ApplicationController
       format.html
       format.json do
         render json: @cib.nodes_ordered.to_json
+      end
+    end
+  end
+
+  def edit
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def update
+    return redirect_to edit_cib_node_url(cib_id: @cib.id, id: @node.id) if params[:revert]
+
+    respond_to do |format|
+      if @node.update_attributes(params[:node])
+        format.html do
+          flash[:success] = _("Node updated successfully")
+          redirect_to edit_cib_node_url(cib_id: @cib.id, id: @node.id)
+        end
+        format.json do
+          render json: @node, status: :updated
+        end
+      else
+        format.html do
+          render action: "edit"
+        end
+        format.json do
+          render json: @node.errors, status: :unprocessable_entity
+        end
       end
     end
   end
@@ -164,5 +193,9 @@ class NodesController < ApplicationController
     else
       detect_current_layout
     end
+  end
+
+  def default_base_layout
+    "withrightbar"
   end
 end
