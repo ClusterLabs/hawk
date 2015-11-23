@@ -10,6 +10,9 @@ class CibController < ApplicationController
       format.html do
         out, err, rc  = Invoker.instance.crm_configure "show"
         if rc != 0
+          format.json do
+            render json: { errors: [err || out] }, status: :internal_server_error
+          end
           format.any { head :internal_server_error }
         else
           @cibtext = out
