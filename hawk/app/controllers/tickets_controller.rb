@@ -106,7 +106,7 @@ class TicketsController < ApplicationController
 
   def destroy
     respond_to do |format|
-      out, err, rc = Invoker.instance.crm("--force", "configure", "delete", @ticket.id)
+      _out, err, rc = Invoker.instance.crm("--force", "configure", "delete", @ticket.id)
       if rc == 0
         format.html do
           flash[:success] = _("Ticket deleted successfully")
@@ -198,16 +198,16 @@ class TicketsController < ApplicationController
   protected
 
   def grant_ticket(ticket, site)
-    raise Constraint::CommandError.new _("Simulator active: Use the ticket controls in the simulator") if current_cib.sim?
-    out, err, rc = Invoker.instance.run "booth", "client", "grant", "-t", ticket, "-s", site.to_s
-    raise Constraint::CommandError.new err unless rc == 0
+    fail(Constraint::CommandError, _("Simulator active: Use the ticket controls in the simulator")) if current_cib.sim?
+    _out, err, rc = Invoker.instance.run "booth", "client", "grant", "-t", ticket, "-s", site.to_s
+    fail(Constraint::CommandError, err) unless rc == 0
     rc == 0
   end
 
   def revoke_ticket(ticket)
-    raise Constraint::CommandError.new _("Simulator active: Use the ticket controls in the simulator") if current_cib.sim?
-    out, err, rc = Invoker.instance.run "booth", "client", "revoke", "-t", ticket
-    raise Constraint::CommandError.new err unless rc == 0
+    fail(Constraint::CommandError, _("Simulator active: Use the ticket controls in the simulator")) if current_cib.sim?
+    _out, err, rc = Invoker.instance.run "booth", "client", "revoke", "-t", ticket
+    fail(Constraint::CommandError, err) unless rc == 0
     rc == 0
   end
 
