@@ -46,7 +46,12 @@ class Tableless
   end
 
   def update_attributes(attrs = nil)
-    self.attributes = attrs unless attrs.nil?
+    unless attrs.nil?
+      ["meta", "params"].each do |key|
+        attrs[key] = {} if self.respond_to?(key.to_sym) && !attrs.key?(key)
+      end
+      self.attributes = attrs
+    end
     self.save
   end
 
