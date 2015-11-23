@@ -629,7 +629,7 @@ class Cib
         object_type: :tag,
         is_managed: false,
         running_on: {},
-        refs: t.elements.map('obj_ref') { |ref| ref.attributes['id'] }
+        refs: t.elements.collect('obj_ref') { |ref| ref.attributes['id'] }
       )
     end
 
