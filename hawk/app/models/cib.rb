@@ -179,11 +179,11 @@ class Cib
   def primitives
     ret = []
     @resources.each do |r|
-      if r.has_key? :children
+      if r.key? :children
         r[:children].each do |c|
-          ret << c if c.has_key? :instances
+          ret << c if c.key? :instances
         end
-      elsif r.has_key? :instances
+      elsif r.key? :instances
         ret << r
       end
     end
@@ -234,20 +234,20 @@ class Cib
 
   def get_resource(elem, is_managed = true, clone_max = nil, is_ms = false)
     res = Hashie::Mash.new(
-      :id => elem.attributes['id'],
-      :object_type => elem.name,
-      :attributes => {},
-      :is_managed => is_managed,
-      :state => :unknown
+      id: elem.attributes['id'],
+      object_type: elem.name,
+      attributes: {},
+      is_managed: is_managed,
+      state: :unknown
     )
     @resources_by_id[elem.attributes['id']] = res
     elem.elements.each("meta_attributes/nvpair/") do |nv|
       res[:attributes][nv.attributes["name"]] = nv.attributes["value"]
     end
-    if res[:attributes].has_key?("is-managed")
+    if res[:attributes].key?("is-managed")
       res[:is_managed] = Util.unstring(res[:attributes]["is-managed"], true)
     end
-    if res[:attributes].has_key?("maintenance")
+    if res[:attributes].key?("maintenance")
       # A resource on maintenance is also flagged as unmanaged
       res[:is_managed] = false if Util.unstring(res[:attributes]["maintenance"], false)
     end
@@ -304,25 +304,25 @@ class Cib
         res[:instances].delete(:default)
         instance = 0
         while res[:instances].length < res[:clone_max]
-          while res[:instances].has_key?(instance.to_s)
+          while res[:instances].key?(instance.to_s)
             instance += 1
           end
           res[:instances][instance.to_s] = {
-            :failed_ops => [],
-            :is_managed => res[:is_managed] && !@crm_config[:maintenance_mode]
+            failed_ops: [],
+            is_managed: res[:is_managed] && !@crm_config[:maintenance_mode]
           }
         end
-        res[:instances].delete(:default) if res[:instances].has_key?(:default)
+        res[:instances].delete(:default) if res[:instances].key?(:default)
         # strip any instances outside 0..clone_max if they're not running (these
         # can be present if, e.g.: you have a clone running on all nodes, then
         # set clone-max < num_nodes, in which case there'll be stopped orphans).
         res[:instances].keys.select{|i| i.to_i >= res[:clone_max]}.each do |k|
           # safe to delete if the instance is present and its only state is stopped
-          res[:instances].delete(k) if res[:instances][k].keys.length == 1 && res[:instances][k].has_key?(:stopped)
+          res[:instances].delete(k) if res[:instances][k].keys.length == 1 && res[:instances][k].key?(:stopped)
         end
         res.delete :clone_max
       else
-        if res.has_key?(:instances)
+        if res.key?(:instances)
 
           res[:instances].delete_if do |k, v|
             k.to_s != "default"
@@ -330,9 +330,9 @@ class Cib
           # Inject a default instance if there's not one, as can be the case when
           # working with shadow CIBs.
           res[:instances][:default] = {
-            :failed_ops => [],
-            :is_managed => res[:is_managed] && !@crm_config[:maintenance_mode]
-          } unless res[:instances].has_key?(:default)
+            failed_ops: [],
+            is_managed: res[:is_managed] && !@crm_config[:maintenance_mode]
+          } unless res[:instances].key?(:default)
         end
       end
       @resource_count += res[:instances].count if res[:instances]
@@ -457,25 +457,25 @@ class Cib
     if use_file
       cib_path = id
       # TODO(must): This is a bit rough
-      cib_path.gsub! /[^\w-]/, ''
+      cib_path.gsub!(/[^\w-]/, '')
       cib_path = "#{Rails.root}/test/cib/#{cib_path}.xml"
-      raise ArgumentError, _('CIB file "%{path}" not found') % {:path => cib_path } unless File.exist?(cib_path)
+      raise ArgumentError, _('CIB file "%{path}" not found') % {path: cib_path } unless File.exist?(cib_path)
       @xml = REXML::Document.new(File.new(cib_path))
-      #raise RuntimeError, _('Unable to parse CIB file "%{path}"') % {:path => cib_path } unless @xml.root
+      #raise RuntimeError, _('Unable to parse CIB file "%{path}"') % {path: cib_path } unless @xml.root
       unless @xml.root
-        error _('Unable to parse CIB file "%{path}"') % {:path => cib_path }
+        error _('Unable to parse CIB file "%{path}"') % {path: cib_path }
         init_offline_cluster id, user, use_file
         return
       end
     else
       unless File.exists?('/usr/sbin/crm_mon')
         error _('Pacemaker does not appear to be installed (%{cmd} not found)') % {
-          :cmd => '/usr/sbin/crm_mon' }
+          cmd: '/usr/sbin/crm_mon' }
         init_offline_cluster id, user, use_file
         return
       end
       unless File.executable?('/usr/sbin/crm_mon')
-        error _('Unable to execute %{cmd}') % {:cmd => '/usr/sbin/crm_mon' }
+        error _('Unable to execute %{cmd}') % {cmd: '/usr/sbin/crm_mon' }
         init_offline_cluster id, user, use_file
         return
       end
@@ -484,17 +484,17 @@ class Cib
       when 0
         @xml = REXML::Document.new(out)
         unless @xml && @xml.root
-          error _('Error invoking %{cmd}') % {:cmd => '/usr/sbin/cibadmin -Ql' }
+          error _('Error invoking %{cmd}') % {cmd: '/usr/sbin/cibadmin -Ql' }
           init_offline_cluster id, user, use_file
           return
         end
       when 54, 13
         # 13 is cib_permission_denied (used to be 54, before pacemaker 1.1.8)
-        error _('Permission denied for user %{user}') % {:user => user}
+        error _('Permission denied for user %{user}') % {user: user}
         init_offline_cluster id, user, use_file
         return
       else
-        error _('Error invoking %{cmd}: %{msg}') % {:cmd => '/usr/sbin/cibadmin -Ql', :msg => err }
+        error _('Error invoking %{cmd}: %{msg}') % {cmd: '/usr/sbin/cibadmin -Ql', msg: err }
         init_offline_cluster id, user, use_file
         return
       end
@@ -529,7 +529,7 @@ class Cib
     end
 
     is_managed_default = true
-    if @crm_config.has_key?(:is_managed_default) && !@crm_config[:is_managed_default]
+    if @crm_config.key?(:is_managed_default) && !@crm_config[:is_managed_default]
       is_managed_default = false
     end
 
@@ -629,7 +629,7 @@ class Cib
         object_type: :tag,
         is_managed: false,
         running_on: {},
-        refs: t.elements.collect('obj_ref') { |ref| ref.attributes['id'] }
+        refs: t.elements.map('obj_ref') { |ref| ref.attributes['id'] }
       )
     end
 
@@ -700,20 +700,20 @@ class Cib
           # key to not be there?
           expected = rc_code
           graph_number = nil
-          if op.attributes.has_key?('transition-key')
+          if op.attributes.key?('transition-key')
             k = op.attributes['transition-key'].split(':')
             graph_number = k[1].to_i
             expected = k[2].to_i
           end
 
-          exit_reason = op.attributes.has_key?('exit-reason') ? op.attributes['exit-reason'] : ''
+          exit_reason = op.attributes.key?('exit-reason') ? op.attributes['exit-reason'] : ''
 
           # skip notifies, deletes, cancels
           next if operation == 'notify' || operation == 'delete' || operation == 'cancel'
 
           # skip allegedly pending "last_failure" ops (hack to fix bnc#706755)
           # TODO(should): see if we can remove this in future
-          next if op.attributes.has_key?('id') &&
+          next if op.attributes.key?('id') &&
             op.attributes['id'].end_with?("_last_failure_0") && op.attributes['call-id'].to_i == -1
 
           if op.attributes['call-id'].to_i == -1
@@ -774,29 +774,24 @@ class Cib
               fail_end = Time.at(fail_end).strftime("%Y-%m-%d %H:%M")
             end
 
-            rc_mapping = {
-              0 => _('success'),
-              1 => _('generic error'),
-              2 => _('incorrect arguments'),
-              3 => _('unimplemented action'),
-              4 => _('insufficient permissions'),
-              5 => _('installation error'),
-              6 => _('configuration error'),
-              7 => _('not running'),
-              8 => _('running (master)'),
-              9 => _('failed (master)')
+            failed_ops << {
+              node: node[:uname],
+              call_id: op.attributes['call-id'],
+              op: operation,
+              rc_code: rc_code,
+              exit_reason: exit_reason,
+              fail_start: fail_start,
+              fail_end: fail_end
             }
-
-            failed_ops << { :node => node[:uname], :call_id => op.attributes['call-id'], :op => operation, :rc_code => rc_code, :exit_reason => exit_reason }
             error(_('%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_reason}') % {
-                    :node => node[:uname],
-                    :resource => "<strong>#{rsc_id}</strong>".html_safe,
-                    :call_id => op.attributes['call-id'],
-                    :op => "<strong>#{operation}</strong>".html_safe,
-                    :rc_mapping => rc_mapping[rc_code] || _('other'),
-                    :rc_code => rc_code,
-                    :exit_reason => exit_reason,
-                    :fail_start => fail_start || '0000-00-00 00:00'
+                    node: node[:uname],
+                    resource: "<strong>#{rsc_id}</strong>".html_safe,
+                    call_id: op.attributes['call-id'],
+                    op: "<strong>#{operation}</strong>".html_safe,
+                    rc_mapping: CibTools.rc_desc(rc_code),
+                    rc_code: rc_code,
+                    exit_reason: exit_reason,
+                    fail_start: fail_start || '0000-00-00 00:00'
                   })
 
             if ignore_failure
@@ -861,8 +856,8 @@ class Cib
       if @resources_by_id[k][:instances] && @resources_by_id[k][:instances].empty?
         # Always include empty failed_ops array (JS status updater relies on it)
         @resources_by_id[k][:instances][:default] = {
-          :failed_ops => [],
-          :is_managed => @resources_by_id[k][:is_managed] && !@crm_config[:maintenance_mode]
+          failed_ops: [],
+          is_managed: @resources_by_id[k][:is_managed] && !@crm_config[:maintenance_mode]
         }
       end
     end
@@ -931,7 +926,7 @@ class Cib
       end
     end
 
-    @booth = Hashie::Mash.new(:sites => [], :arbitrators => [], :tickets => [], :me => nil)
+    @booth = Hashie::Mash.new(sites: [], arbitrators: [], tickets: [], me: nil)
     # Figure out if we're in a geo cluster
     File.readlines("/etc/booth/booth.conf").each do |line|
       m = line.match(/^\s*(site|arbitrator|ticket)\s*=(.+)/)
@@ -1029,7 +1024,7 @@ class Cib
     state = :slave if resource[:is_ms] && state == :started
     instances = resource[:instances]
 
-    if !instance && resource.has_key?(:clone_max)
+    if !instance && resource.key?(:clone_max)
       # Pacemaker commit 427c7fe6ea94a566aaa714daf8d214290632f837 removed
       # instance numbers from anonymous clones.  Too much of hawk wants
       # these, so we fake them back in if they're not present, by getting
@@ -1071,10 +1066,10 @@ class Cib
     # but only do this on first initialization else state may get screwed
     # up later
     instances[instance] = {
-      :is_managed => resource[:is_managed] && !@crm_config[:maintenance_mode]
+      is_managed: resource[:is_managed] && !@crm_config[:maintenance_mode]
     } unless instances[instance]
     instances[instance][state] ||= []
-    n = { :node => node[:uname] }
+    n = { node: node[:uname] }
     n[:substate] = substate if substate
     instances[instance][state] << n
     instances[instance][:failed_ops] = [] unless instances[instance][:failed_ops]
