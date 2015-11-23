@@ -9,7 +9,7 @@
         = main_form.text_field :id, label: _("Constraint ID"), readonly: true
 
       = main_form.text_field :score, label: _("Score")
-      / = main_form.text_field :node_attr, label: _("Node Attribute")
+      = main_form.text_field :node_attr, label: _("Node Attribute")
 
       %fieldset{ data: { constraints: colocation.resources.to_json, constraints_available: available_colocation_resources.to_json, constraints_selects: available_colocation_roles.to_json, constraints_prefix: "colocation[resources]", constraints_target: ".content" } }
         %legend
