@@ -104,21 +104,21 @@ class Colocation < Constraint
       if collapsed.length == 1 && collapsed[0][:resources].length == 2
         # simple constraint (it's already in reverse order so
         # don't flip around the other way like we do below)
-        set = collapsed[0]
-        set[:resources].each do |r|
-          cmd.push r + (set[:action] ? ":#{set[:action]}" : "")
+        simpleset = collapsed[0]
+        simpleset[:resources].each do |r|
+          cmd.push r + (simpleset[:action] ? ":#{simpleset[:action]}" : "")
         end
       else
-        collapsed.each do |set|
-          cmd.push " ( " unless set[:sequential]
-          set[:resources].reverse.each do |r|
-            cmd.push r + (set[:action] ? ":#{set[:action]}" : "")
+        collapsed.each do |set2|
+          cmd.push " ( " unless set2[:sequential]
+          set2[:resources].reverse.each do |r|
+            cmd.push r + (set2[:action] ? ":#{set2[:action]}" : "")
           end
-          cmd.push " )" unless set[:sequential]
+          cmd.push " )" unless set2[:sequential]
         end
       end
 
-      unless node_attr.empty?
+      unless node_attr.blank?
         cmd.push "node-attribute=#{node_attr}"
       end
     end.join(" ")
