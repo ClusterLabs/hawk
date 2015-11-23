@@ -123,7 +123,7 @@ $(function() {
             ].join('');
           default:
             return [
-              '<i class="fa fa-question-circle fa-lg text-warning" title="',
+              '<i class="fa fa-question fa-lg text-warning" title="',
               value,
               '"></i>'
             ].join('');
@@ -384,19 +384,11 @@ $(function() {
                 return cib.resources_by_id[ref];
               } else {
                 var ret = null;
-                $.each(cib.constraints, function(i, o) {
+                $.each(cib.tags, function(i, o) {
                   if (o.id == ref) {
-                    o.object_type = o.type;
                     ret = o;
                   }
                 });
-                if (ret === null) {
-                  $.each(cib.tags, function(i, o) {
-                    if (o.id == ref) {
-                      ret = o;
-                    }
-                  });
-                }
                 return ret;
               }
             }), function(o) { return o !== null; });

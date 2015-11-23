@@ -385,6 +385,21 @@ class Cib
     end
   end
 
+  def inject_default_instance
+    @resources_by_id.each do |k, _|
+      @resources_by_id[k].delete :is_ms
+      # Need to inject a default instance if we don't have any state
+      # (e.g. during cluster bringup) else the panel renderer chokes.
+      if @resources_by_id[k][:instances] && @resources_by_id[k][:instances].empty?
+        # Always include empty failed_ops array (JS status updater relies on it)
+        @resources_by_id[k][:instances][:default] = {
+          failed_ops: [],
+          is_managed: @resources_by_id[k][:is_managed] && !@crm_config[:maintenance_mode]
+        }
+      end
+    end
+  end
+
   # After all the resource states have been calculated, we
   # can calculate a total tag state
   def fix_tag_states
@@ -845,22 +860,9 @@ class Cib
     end
 
     fix_clone_instances @resources
+    inject_default_instance
     fix_resource_states @resources
     fix_tag_states
-
-    # More hack
-    @resources_by_id.each do |k, _|
-      @resources_by_id[k].delete :is_ms
-      # Need to inject a default instance if we don't have any state
-      # (e.g. during cluster bringup) else the panel renderer chokes.
-      if @resources_by_id[k][:instances] && @resources_by_id[k][:instances].empty?
-        # Always include empty failed_ops array (JS status updater relies on it)
-        @resources_by_id[k][:instances][:default] = {
-          failed_ops: [],
-          is_managed: @resources_by_id[k][:is_managed] && !@crm_config[:maintenance_mode]
-        }
-      end
-    end
 
     # Now we can patch up the state of remote nodes
     @nodes.each do |n|
