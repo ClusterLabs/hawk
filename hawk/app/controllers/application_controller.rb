@@ -120,26 +120,13 @@ class ApplicationController < ActionController::Base
   end
 
   def set_users_locale
-    available = [
-      params[:locale],
-      cookies[:locale],
-      default_locale
-    ].compact.first
-
-    I18n.locale = FastGettext.set_locale(
-      available
-    )
-
-    unless cookies[:locale] == FastGettext.locale
-      cookies[:locale] = FastGettext.locale
-    end
+    available = [params[:locale], cookies[:locale], default_locale].compact.first
+    I18n.locale = FastGettext.set_locale(available)
+    cookies[:locale] = FastGettext.locale unless cookies[:locale] == FastGettext.locale
   end
 
   def set_current_home
-    ENV["HOME"] = Rails.root.join(
-      "tmp",
-      "home"
-    ).to_s
+    ENV["HOME"] = Rails.root.join("tmp", "home").to_s
   end
 
   def set_current_title
