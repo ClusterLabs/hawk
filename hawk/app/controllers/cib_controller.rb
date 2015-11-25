@@ -8,7 +8,7 @@ class CibController < ApplicationController
   def show
     respond_to do |format|
       format.json do
-        render json: current_cib.status(params[:id] == "mini")
+        render json: current_cib.status(params[:id] == "mini" || params[:mini] == "true")
       end
     end
   rescue ArgumentError => e
