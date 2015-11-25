@@ -148,10 +148,7 @@ class Record < Tableless
     unless op.elements['instance_attributes']
       op.add_element(
         'instance_attributes',
-        {
-          'id' => "#{op.attributes['id']}-instance_attributes"
-        }
-      )
+        'id' => "#{op.attributes['id']}-instance_attributes")
     end
 
     nvp = op.elements['instance_attributes/nvpair[@name="OCF_CHECK_LEVEL"]']
@@ -161,12 +158,9 @@ class Record < Tableless
     else
       op.elements['instance_attributes'].add_element(
         'nvpair',
-        {
-          'id' => "#{op.attributes['id']}-instance_attributes-OCF_CHECK_LEVEL",
-          'name' => 'OCF_CHECK_LEVEL',
-          'value' => v
-        }
-      )
+        'id' => "#{op.attributes['id']}-instance_attributes-OCF_CHECK_LEVEL",
+        'name' => 'OCF_CHECK_LEVEL',
+        'value' => v)
     end
   end
 
@@ -196,9 +190,10 @@ class Record < Tableless
         op = xml.elements["operations/op[@name=\"#{op_name}\" and @interval=\"#{attrlist["interval"]}\"]"]
 
         unless op
-          op = xml.elements['operations'].add_element('op',
-                                                      id: "#{xml.attributes["id"]}-#{op_name}-#{attrlist["interval"]}",
-                                                      name: op_name)
+          op = xml.elements['operations'].add_element(
+            "op",
+            "id" => "#{xml.attributes["id"]}-#{op_name}-#{attrlist["interval"]}",
+            "name" => op_name)
         end
 
         merge_ocf_check_level(op, attrlist.delete("OCF_CHECK_LEVEL"))
@@ -232,9 +227,9 @@ class Record < Tableless
           el.remove unless attrs.keys.include? el.attributes['name']
         end
       else
-        xml.add_element(list, {
-          "id" => "#{xml.attributes["id"]}-#{list}"
-        })
+        xml.add_element(
+          list,
+          "id" => "#{xml.attributes["id"]}-#{list}")
       end
 
       # Write new attributes or update existing ones
@@ -244,11 +239,11 @@ class Record < Tableless
         if nvp
           nvp.attributes["value"] = v
         else
-          xml.elements[list].add_element("nvpair", {
+          xml.elements[list].add_element(
+            "nvpair",
             "id" => "#{xml.elements[list].attributes['id']}-#{n}",
             "name" => n,
-            "value" => v
-          })
+            "value" => v)
         end
       end
     end
