@@ -79,7 +79,7 @@ class ApplicationController < ActionController::Base
     if current_user
       @current_cib ||= begin
         Cib.new(
-          params[:cib_id] || production_cib,
+          params[:cib_id] || params[:id] || production_cib,
           current_user,
           params[:debug] == "file"
         )
