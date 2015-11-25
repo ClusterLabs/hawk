@@ -345,6 +345,95 @@ $(function() {
     }
   };
 
+  var expandResourcesHandler = function (index, row, detail) {
+    var columns = statesResourcesColumns.slice(0);
+    var datasource = [];
+    if (row.children || row.child || row.refs) {
+      var datasource = [];
+      if (row.children) {
+        datasource = row.children;
+      } else if (row.child) {
+        datasource = [row.child];
+      } else {
+        var cib = $('body').data('content');
+        datasource = $.grep($.map(row.refs, function(ref) {
+          if (ref in cib.resources_by_id) {
+            return cib.resources_by_id[ref];
+          } else {
+            var ret = null;
+            $.each(cib.tags, function(i, o) {
+              if (o.id == ref) {
+                ret = o;
+              }
+            });
+            return ret;
+          }
+        }), function(o) { return o !== null; });
+      }
+    }
+
+    if (datasource.length == 0) {
+      detail.html(['<div class="text-center text-muted">', __("No child resources"), '</div>'].join(''));
+      return;
+    }
+
+    var childwithchildren = false;
+    $.each(datasource, function(_idx, child) {
+      if ("child" in child || "children" in child) {
+        childwithchildren = true;
+      }
+    });
+
+    if (childwithchildren) {
+      detail
+        .html('<table></table>')
+        .find('table')
+        .bootstrapTable({
+          data: datasource,
+          pagination: false,
+          smartDisplay: false,
+          showColumns: false,
+          showRefresh: false,
+          showHeader: false,
+          showFooter: false,
+          rowStyle: rowStyleFn,
+          minimumCountColumns: 0,
+          sortName: 'id',
+          sortOrder: 'asc',
+          detailView: true,
+          onExpandRow: expandResourcesHandler,
+          columns: columns
+        });
+    } else {
+      columns.unshift({
+        sortable: false,
+        switchable: false,
+        clickToSelect: false,
+        formatter: function(value, row, index) {
+          return '<i class="glyphicon glyphicon-arrow-right"></i>';
+        }
+      });
+
+      detail
+        .html('<table></table>')
+        .find('table')
+        .bootstrapTable({
+          data: datasource,
+          pagination: false,
+          smartDisplay: false,
+          showColumns: false,
+          showRefresh: false,
+          showHeader: false,
+          showFooter: false,
+          rowStyle: rowStyleFn,
+          minimumCountColumns: 0,
+          sortName: 'id',
+          sortOrder: 'asc',
+          columns: columns
+        });
+    }
+  };
+
   $('#states #middle table.resources')
     .bootstrapTable({
       ajax: function(params) {
@@ -368,65 +457,7 @@ $(function() {
       sortOrder: 'asc',
       detailView: true,
       rowStyle: rowStyleFn,
-      onExpandRow: function (index, row, detail) {
-        var columns = statesResourcesColumns.slice(0);
-        var datasource = [];
-        if (row.children || row.child || row.refs) {
-          var datasource = [];
-          if (row.children) {
-            datasource = row.children;
-          } else if (row.child) {
-            datasource = [row.child];
-          } else {
-            var cib = $('body').data('content');
-            datasource = $.grep($.map(row.refs, function(ref) {
-              if (ref in cib.resources_by_id) {
-                return cib.resources_by_id[ref];
-              } else {
-                var ret = null;
-                $.each(cib.tags, function(i, o) {
-                  if (o.id == ref) {
-                    ret = o;
-                  }
-                });
-                return ret;
-              }
-            }), function(o) { return o !== null; });
-          }
-        }
-
-        if (datasource.length == 0) {
-          detail.html(['<div class="text-center text-muted">', __("No child resources"), '</div>'].join(''));
-          return;
-        }
-
-        columns.unshift({
-          sortable: false,
-          switchable: false,
-          clickToSelect: false,
-          formatter: function(value, row, index) {
-            return '<i class="glyphicon glyphicon-arrow-right"></i>';
-          }
-        });
-
-        detail
-          .html('<table></table>')
-          .find('table')
-          .bootstrapTable({
-            data: datasource,
-            pagination: false,
-            smartDisplay: false,
-            showColumns: false,
-            showRefresh: false,
-            showHeader: false,
-            showFooter: false,
-            rowStyle: rowStyleFn,
-            minimumCountColumns: 0,
-            sortName: 'id',
-            sortOrder: 'asc',
-            columns: columns
-          });
-      },
+      onExpandRow: expandResourcesHandler,
       columns: statesResourcesColumns
     });
 
