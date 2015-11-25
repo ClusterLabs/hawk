@@ -72,7 +72,8 @@ class Node < Tableless
   def mapping
     {}.tap do |m|
       m["standby"] = {
-        type: "boolean",
+        # TODO: Should be boolean, but pacemaker's crappy (yes|true|1) booleans don't map well to the UI :(
+        type: "string",
         default: "off",
         longdesc: _("Puts the node into standby mode. The specified node is no longer able to host resources. Any resources currently active on the node will be moved to another node.")
       }
