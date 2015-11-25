@@ -345,6 +345,19 @@ $(function() {
     }
   };
 
+  // filter out tags without any resource children
+  var filterTags = function(resources_by_id, tags) {
+    return $.grep(tags, function(tag) {
+      if ("refs" in tag) {
+        var rscrefs = $.grep(tag.refs, function(ref) {
+          return ref in resources_by_id;
+        });
+        return rscrefs.length > 0;
+      }
+      return true;
+    });
+  };
+
   var expandResourcesHandler = function (index, row, detail) {
     var columns = statesResourcesColumns.slice(0);
     var datasource = [];
@@ -438,7 +451,7 @@ $(function() {
     .bootstrapTable({
       ajax: function(params) {
         var cib = $('body').data('content');
-        var resources_and_tags = cib.resources.concat(cib.tags);
+        var resources_and_tags = cib.resources.concat(filterTags(cib.resources_by_id, cib.tags));
         params.success(resources_and_tags, "success", {});
         params.complete({}, "success");
       },
