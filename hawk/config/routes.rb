@@ -29,6 +29,7 @@ Rails.application.routes.draw do
         get :unmigrate
         get :migrate
         get :cleanup
+        get :events
       end
 
       collection do

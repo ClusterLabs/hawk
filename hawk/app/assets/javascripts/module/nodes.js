@@ -332,7 +332,7 @@ $(function() {
             }
           }
         }, {
-          field: 'operate',
+          field: 'id',
           title: __('Operations'),
           sortable: false,
           clickToSelect: false,
@@ -426,10 +426,17 @@ $(function() {
 
             operations.push([
               '<a href="',
-              Routes.cib_node_path(
-                $('body').data('cib'),
-                row.id
-              ),
+              Routes.events_cib_node_path($('body').data('cib'), row.name),
+              '" class="events btn btn-default btn-xs" title="',
+              __('Events'),
+              '" data-toggle="modal" data-target="#modal-lg">',
+              '<i class="fa fa-history"></i>',
+              '</a> '
+            ].join(''));
+
+            operations.push([
+              '<a href="',
+              Routes.cib_node_path($('body').data('cib'), row.id),
               '" class="details btn btn-default btn-xs" title="',
               __('Details'),
               '" data-toggle="modal" data-target="#modal">',

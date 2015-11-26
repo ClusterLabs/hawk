@@ -7,8 +7,6 @@ class NodesController < ApplicationController
   before_filter :set_cib
   before_filter :set_record, only: [:online, :standby, :maintenance, :ready, :fence, :show, :events, :edit, :update]
 
-  before_filter :god_required, only: [:events]
-
   rescue_from Node::CommandError do |e|
     Rails.logger.error e
 
@@ -156,7 +154,6 @@ class NodesController < ApplicationController
 
   def events
     respond_to do |format|
-      format.js
       format.html
     end
   end
@@ -188,7 +185,7 @@ class NodesController < ApplicationController
   end
 
   def detect_modal_layout
-    if request.xhr? && params[:action] == :show
+    if request.xhr? && (params[:action] == :show || params[:action] == :events)
       "modal"
     else
       detect_current_layout

@@ -76,6 +76,14 @@ class ResourcesController < ApplicationController
     end
   end
 
+  def events
+    @resource = Resource.find params[:id]
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
   def start
     @resource = Resource.find params[:id]
     run_resource_action @resource.start!,
@@ -153,7 +161,7 @@ class ResourcesController < ApplicationController
     if ["index", "types"].include? params[:action]
       "withrightbar"
     else
-      if params[:action] == "show"
+      if params[:action] == "show" || params[:action] == "events"
         "modal"
       else
         super

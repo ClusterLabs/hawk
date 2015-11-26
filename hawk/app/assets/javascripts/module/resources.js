@@ -292,6 +292,26 @@ $(function() {
         add_operation("menu", Routes.migrate_cib_resource_path($('body').data('cib'), row.id), 'migrate', 'hand-o-up', __('Migrate'));
         add_operation("menu", Routes.unmigrate_cib_resource_path($('body').data('cib'), row.id), 'unmigrate', 'hand-o-down', __('Unmigrate'));
         add_operation("menu", Routes.cleanup_cib_resource_path($('body').data('cib'), row.id), 'cleanup', 'eraser', __('Cleanup'));
+
+        if (row.object_type == "tag") {
+          dropdowns.push([
+            '<li role="separator" class="divider"></li>'
+          ].join(''));
+        } else {
+          dropdowns.push([
+            '<li role="separator" class="divider"></li>',
+            '<li>',
+            '<a href="',
+            Routes.events_cib_resource_path($('body').data('cib'), row.id),
+            '" class="events" data-toggle="modal" data-target="#modal-lg">',
+            '<i class="fa fa-fw fa-history"></i> ',
+            __('Recent events'),
+            '</a>',
+            '</li>',
+            '<li role="separator" class="divider"></li>'
+          ].join(''));
+        }
+
         add_operation("menu", rsc_routes.edit, 'edit', 'pencil', __('Edit'));
 
         operations.push([
@@ -305,18 +325,17 @@ $(function() {
           '</div>'
         ].join(''));
 
-        operations.push([
-          '<a href="',
-          Routes.cib_resource_path(
-            $('body').data('cib'),
-            row.id
-          ),
-          '" class="details btn btn-default btn-xs" title="',
-          __('Details'),
-          '" data-toggle="modal" data-target="#modal-lg">',
+        if (row.object_type != "tag") {
+          operations.push([
+            '<a href="',
+            Routes.cib_resource_path($('body').data('cib'), row.id),
+            '" class="details btn btn-default btn-xs" title="',
+            __('Details'),
+            '" data-toggle="modal" data-target="#modal-lg">',
             '<i class="fa fa-search"></i>',
-          '</a> '
-        ].join(''));
+            '</a> '
+          ].join(''));
+        }
 
         return [
           '<div class="btn-group" role="group">',
