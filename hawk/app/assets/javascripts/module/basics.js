@@ -104,7 +104,7 @@ $(function() {
     }
     var circle = ['<div class="circle ', sizeclass,
                   statusClass(),
-                  '" data-toggle="tooltip" data-placement="bottom" title="',
+                  '" data-toggle="tooltip" data-placement="bottom" data-html="true" title="',
                   unquote(tooltip),
                   '">',
                   statusIcon(),
