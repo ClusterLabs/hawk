@@ -42,7 +42,7 @@ class StatesController < ApplicationController
         end
       end
     end
-    ops = ops.select { |r| r[:resource] == rsc } if rsc != "*"
+    ops = ops.select { |r| related(rsc).include? r[:resource] } if rsc != "*"
     ops = ops.select { |r| r[:node] == node } if node != "*"
     respond_to do |format|
       format.json do
@@ -59,5 +59,16 @@ class StatesController < ApplicationController
 
   def set_cib
     @cib = current_cib
+  end
+
+  def related(rsc)
+    info = current_cib.resources_by_id[rsc]
+    return [rsc] if info.nil?
+    [].tap do |ret|
+      ret.push rsc
+      info[:children].each do |child|
+        ret.concat related(child[:id])
+      end unless info[:children].nil?
+    end
   end
 end
