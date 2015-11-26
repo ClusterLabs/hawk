@@ -72,7 +72,7 @@ class ApplicationController < ActionController::Base
   protected
 
   def production_cib
-    @production_cib ||= "live"
+    "live"
   end
 
   def current_cib
