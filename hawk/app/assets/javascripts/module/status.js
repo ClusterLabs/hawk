@@ -89,11 +89,7 @@
     var self = this;
 
     $.ajax({
-      url: Routes.cib_path(
-        $('body').data('cib'),
-        { format: 'json' }
-      ),
-
+      url: Routes.cib_path($('body').data('cib'), { format: 'json' }),
       type: 'GET',
       dataType: 'json',
       cache: self.options.cache,

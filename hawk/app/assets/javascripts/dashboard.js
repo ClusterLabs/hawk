@@ -306,7 +306,7 @@ var dashboardAddCluster = (function() {
     indicator(clusterId, "refresh");
 
     //console.log("request cib", $("#" + clusterId).data('epoch'), (new Date()).getTime());
-    ajaxQuery({ url: baseUrl(clusterInfo) + "/cib/mini.json",
+    ajaxQuery({ url: baseUrl(clusterInfo) + "/cib/live?mini=true&format=json",
                 type: "GET",
                 data: { _method: 'show' },
                 crossDomain: clusterInfo.host != null,

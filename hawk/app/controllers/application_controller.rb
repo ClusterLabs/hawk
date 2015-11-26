@@ -78,11 +78,12 @@ class ApplicationController < ActionController::Base
   def current_cib
     if current_user
       @current_cib ||= begin
-        if controller_name == "cib" && params[:cib_id].nil?
-          Cib.new(params[:id] || production_cib, current_user, params[:debug] == "file")
-        else
-          Cib.new(params[:cib_id] || production_cib, current_user, params[:debug] == "file")
+        # backwards compatibility
+        if params[:cib_id] == "mini"
+          params[:mini] = "true"
+          params[:cib_id] = production_cib
         end
+        Cib.new(params[:cib_id] || production_cib, current_user, params[:debug] == "file")
       end
     end
   end
