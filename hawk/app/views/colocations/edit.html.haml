@@ -5,6 +5,7 @@
       .pull-right
         .btn-group{ role: "group" }
           = link_to icon_text("trash", _("Delete")), cib_colocation_path(cib_id: @cib.id, id: @colocation.id), method: "delete", class: "btn btn-default", data: { confirm: _("Are you sure you wish to delete %s?") % @colocation.id }
+          = link_to icon_text("plus", _("Create")), new_cib_colocation_path(cib_id: @cib.id), class: "btn btn-default"
           = link_to icon_text("list-ul", _("List")), cib_colocations_path, class: "btn btn-default"
 
   .row
