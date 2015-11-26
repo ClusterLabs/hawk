@@ -112,7 +112,7 @@
              '#tickets #middle table.tickets',
              '#nodes #middle table.nodes',
              '#states #middle table.nodes',
-             '#cib #middle table'].join(', '))
+             '#configs #middle table'].join(', '))
             .bootstrapTable('refresh');
         }
       },

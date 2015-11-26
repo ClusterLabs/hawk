@@ -26,4 +26,4 @@
           = apply_button(main_form, order)
           = revert_button(main_form, order)
 
-        = link_to _("Back"), edit_cib_path(cib.id), class: "btn btn-default back"
+        = link_to _("Back"), edit_cib_config_path(cib_id: cib.id), class: "btn btn-default back"

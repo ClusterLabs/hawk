@@ -21,6 +21,14 @@
         = main_form.text_field :clazz, label: _("Class"), readonly: true
         = main_form.text_field :provider, label: _("Provider"), readonly: true
         = main_form.text_field :type, label: _("Type"), readonly: true
+      #agent-info.form-group.hidden
+        %label.col-sm-5.control-label
+        .col-sm-7
+          %a.btn.btn-sm.btn-info{ href: "#", role: "button", data: { toggle: :modal, target: "#modal-lg" } }
+            = icon_tag "info"
+
+      %p#editform-loading.centered.text-center{style: "display: none;"}
+        %i.fa.fa-2x.fa-spinner.fa-spin.text-info
 
       #paramslist
       #oplist
@@ -28,12 +36,12 @@
 
       = main_form.button_group do
         - if primitive.new_record?
-          = create_button(main_form, primitive)
+          = main_form.submit(_("Create"), class: "btn btn-primary submit", name: "submit", disabled: true)
         - else
-          = apply_button(main_form, primitive)
+          = main_form.submit(_("Apply"), class: "btn btn-primary submit", name: "submit", disabled: true)
           = revert_button(main_form, primitive)
 
-        = link_to _("Back"), edit_cib_path(cib.id), class: "btn btn-default back"
+        = link_to _("Back"), edit_cib_config_path(cib_id: cib.id), class: "btn btn-default back"
 
 
 %script#jstmpl-paramslist{type: "text/x-jsrender"}

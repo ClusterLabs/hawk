@@ -4,12 +4,10 @@
 Rails.application.routes.draw do
   root to: "pages#index"
 
-  resources :cib, only: [:show, :meta, :edit] do
+  resources :cib, only: [:show] do
     member do
       get action: "show"
       match action: "show", via: [:post, :options]
-      get :meta, as: :meta, to: 'cib#meta'
-      get :edit, as: :edit, to: 'cib#edit'
     end
 
     resources :nodes do
@@ -78,10 +76,17 @@ Rails.application.routes.draw do
     resources :users
     resources :tags
 
+    resource :config, only: [:show] do
+      collection do
+        get :edit
+        get :meta
+      end
+    end
     resource :profile, only: [:edit, :update]
     resource :crm_config, only: [:edit, :update]
 
     resource :state, only: [:show]
+    resources :agents, only: [:show], constraints: { id: %r{[0-9A-Za-z%@\-\.\/]+} }
 
     resource :checks, only: [] do
       collection do
@@ -89,10 +94,10 @@ Rails.application.routes.draw do
       end
     end
 
-    resource :graph
-  end
+    resource :graph, only: [:show]
 
-  get '/agent', as: :agent, to: 'agents#show'
+    resources :commands, only: [:index]
+  end
 
   resources :reports, only: [:index, :destroy, :show] do
     collection do
@@ -124,8 +129,6 @@ Rails.application.routes.draw do
       post :remove
     end
   end
-
-  get "commands" => "pages#commands", :as => :commands
 
   match "monitor" => "monitor#monitor", :as => :monitor, via: [:get, :options]
   get "help" => "pages#help", :as => :help

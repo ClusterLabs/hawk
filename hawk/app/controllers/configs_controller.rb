@@ -1,12 +1,25 @@
 # Copyright (c) 2009-2015 Tim Serong <tserong@suse.com>
+# Copyright (c) 2015 Kristoffer Gronlund <kgronlund@suse.com>
 # See COPYING for license.
 
-class CibController < ApplicationController
+class ConfigsController < ApplicationController
   before_filter :login_required
   skip_before_filter :verify_authenticity_token
 
   def show
     respond_to do |format|
+      format.html do
+        out, err, rc  = Invoker.instance.crm_configure "show"
+        if rc != 0
+          format.json do
+            render json: { errors: [err || out] }, status: :internal_server_error
+          end
+          format.any { head :internal_server_error }
+        else
+          @cibtext = out
+          render
+        end
+      end
       format.json do
         render json: current_cib.status(params[:id] == "mini" || params[:mini] == "true")
       end
@@ -34,11 +47,15 @@ class CibController < ApplicationController
     end
   end
 
-  def options
+  def meta
     respond_to do |format|
-      format.json do
-        render json: {}, status: 200
-      end
+      format.html
+    end
+  end
+
+  def edit
+    respond_to do |format|
+      format.html
     end
   end
 

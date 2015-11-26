@@ -7,7 +7,7 @@ $(function() {
   // twice, once for primitive and once for template
   var controller_types = {
     primitive: {
-      table_selector: '#primitives #middle table.primitives, #cib #middle table.primitives',
+      table_selector: '#primitives #middle table.primitives, #configs #middle table.primitives',
       cib_primitives_path: Routes.cib_primitives_path,
       cib_primitive_path: Routes.cib_primitive_path,
       edit_cib_primitive_path: Routes.edit_cib_primitive_path,
@@ -18,7 +18,7 @@ $(function() {
       type_selector: '#primitive_type',
     },
     template: {
-      table_selector: '#templates #middle table.primitives, #cib #middle table.templates',
+      table_selector: '#templates #middle table.primitives, #configs #middle table.templates',
       cib_primitives_path: Routes.cib_templates_path,
       cib_primitive_path: Routes.cib_template_path,
       edit_cib_primitive_path: Routes.edit_cib_template_path,
@@ -163,6 +163,22 @@ $(function() {
         }]
       });
 
+    var enable_detail_for = function(agent) {
+      // enable create/apply
+      var form = $(controller_type.form_selector);
+      form.find('#agent-info').removeClass('hidden').find('a').attr('href', Routes.cib_agent_path($('body').data('cib'), encodeURIComponent(agent)));
+      form.find('#editform-loading').slideDown();
+      form.find(".submit").prop("disabled", false);
+    };
+
+    var disable_detail = function() {
+      var form = $(controller_type.form_selector);
+      form.find('#agent-info').addClass('hidden').find('a').attr('href', '#');
+      form.find('#editform-loading').slideUp();
+      form.find(".submit").prop("disabled", true);
+      form.find('#paramslist, #oplist, #metalist').html('');
+    };
+
     var render_attrlists = function($template, $clazz, $provider, $type) {
       var new_resource = $('form#new_primitive, form#new_template').length > 0;
       var agent = null;
@@ -186,10 +202,11 @@ $(function() {
       };
 
       if (agent != null) {
+        enable_detail_for(agent);
         $.ajax({
           dataType: "json",
-          url: Routes.agent_path(),
-          data: {id: agent, format: "json"},
+          data: { format: "json" },
+          url: Routes.cib_agent_path($('body').data('cib'), encodeURIComponent(agent)),
           success: function(data) {
             // Update the sidebar with agent info
             var helptext = ['<h3>', data.resource_agent.shortdesc, '</h3>'];
@@ -283,9 +300,11 @@ $(function() {
             // enable toggleables
             $('form').toggleify();
 
+            $(controller_type.form_selector).find('#editform-loading').slideUp();
           },
           error: function(xhr, status, msg) {
             console.log('error', arguments);
+            $(controller_type.form_selector).find('#editform-loading').addClass('hidden');
             $.growl({
               message: __('Failed to fetch meta attributes')
             },{
@@ -293,6 +312,8 @@ $(function() {
             });
           }
         });
+      } else {
+        disable_detail();
       }
     };
 

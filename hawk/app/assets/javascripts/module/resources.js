@@ -173,7 +173,7 @@ $(function() {
         } else if (row.object_type == "tag") {
           return __("Tag");
         } else if (row.template && row.template.length > 0) {
-          return '<a href="' + Routes.agent_path({id: "@" + row.template}) + '" data-toggle="modal" data-target="#modal-lg">' + "@" + row.template + '</a>';
+          return '<a href="' + Routes.cib_agent_path($('body').data('cib'), encodeURIComponent("@" + row.template)) + '" data-toggle="modal" data-target="#modal-lg">' + "@" + row.template + '</a>';
         } else if ("class" in row && "provider" in row && "type" in row) {
           var agent = "";
           if (row["class"]) {
@@ -183,7 +183,7 @@ $(function() {
             agent += row.provider + ":";
           }
           agent += row.type;
-          return '<a href="' + Routes.agent_path({id: agent}) + '" data-toggle="modal" data-target="#modal-lg">' + row.type + '</a>';
+          return '<a href="' + Routes.cib_agent_path($('body').data('cib'), encodeURIComponent(agent)) + '" data-toggle="modal" data-target="#modal-lg">' + row.type + '</a>';
         } else {
           return row.type;
         }
@@ -474,7 +474,7 @@ $(function() {
       columns: statesResourcesColumns
     });
 
-  $('#resources #middle table.resources, #cib #middle table.resources')
+  $('#resources #middle table.resources, #configs #middle table.resources')
     .bootstrapTable({
       method: 'get',
       url: Routes.cib_resources_path(

@@ -10,5 +10,5 @@
           /  = current_cib.meta.dc
           / %button.btn{type: :button, data: { toggle: :tooltip, title: _("Host"), link: "meta.host title{:meta.version}", placement: :top, container: :body } }
           /  = current_cib.meta.host
-          %a.btn.btn-default{type: :button, href: meta_cib_path(current_cib.id), title: _("Cluster Details"), data: { toggle: :modal, target: "#modal", link: "class{statusbuttonclass:meta.status}" } }
+          %a.btn.btn-default{type: :button, href: meta_cib_config_path(cib_id: current_cib.id), title: _("Cluster Details"), data: { toggle: :modal, target: "#modal", link: "class{statusbuttonclass:meta.status}" } }
             %i{data:{link:"class{statusbuttonicon:meta.status}"}}

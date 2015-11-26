@@ -31,7 +31,7 @@ $(function() {
     return lst.join(", ");
   };
 
-  $('#constraints #middle table.constraints, #cib #middle table.constraints')
+  $('#constraints #middle table.constraints, #configs #middle table.constraints')
     .bootstrapTable({
       method: 'get',
       url: Routes.cib_constraints_path(

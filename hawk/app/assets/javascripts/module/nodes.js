@@ -446,7 +446,7 @@ $(function() {
         }]
     });
 
-    $('#nodes #middle table.nodes, #cib #middle table.nodes')
+    $('#nodes #middle table.nodes, #configs #middle table.nodes')
     .bootstrapTable({
       method: 'get',
       url: Routes.cib_nodes_path(
@@ -509,7 +509,7 @@ $(function() {
     });
 
 
-  $('#nodes #middle table.nodes, #states #middle table.nodes, #cib #middle table.nodes').on("click", ".dropdown-toggle", function(event){
+  $('#nodes #middle table.nodes, #states #middle table.nodes, #configs #middle table.nodes').on("click", ".dropdown-toggle", function(event){
     var button = $(this);
     var open = button.attr('aria-expanded');
     var dropdown = button.siblings('.dropdown-menu');
