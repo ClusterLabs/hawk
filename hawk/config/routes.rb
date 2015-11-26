@@ -82,7 +82,11 @@ Rails.application.routes.draw do
     resource :profile, only: [:edit, :update]
     resource :crm_config, only: [:edit, :update]
 
-    resource :state, only: [:show]
+    resource :state, only: [:show] do
+      member do
+        get "/ops/:id", to: "states#ops", as: :ops
+      end
+    end
     resources :agents, only: [:show], constraints: { id: %r{[0-9A-Za-z%@\-\.\/]+} }
 
     resource :checks, only: [] do

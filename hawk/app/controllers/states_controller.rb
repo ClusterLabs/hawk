@@ -9,6 +9,45 @@ class StatesController < ApplicationController
   def show
     respond_to do |format|
       format.html
+      format.json do
+        redirect_to cib_path(cib_id: current_cib.id, format: "json", mini: params[:mini])
+      end
+    end
+  end
+
+  def ops
+    invars = params[:id].split(",", 2)
+    if invars.length == 1
+      rsc = invars[0]
+      node = "*"
+    else
+      rsc, node = invars
+    end
+    ops = [].tap do |ret|
+      Util.safe_x("/usr/sbin/crm_resource", "-o").each_line do |line|
+        m = /(\S+)\s*\(([^\)]+)\):\s*([^:]+):\s*(\S+)\s*\(([^)]+)\):\s*(\S+)/.match(line)
+        if m
+          op = {
+            resource: m[1],
+            agent: m[2].gsub(/::/, ":"),
+            state: m[3].downcase,
+            op: m[4],
+            complete: m[6]
+          }
+          m[5].split(', ').each do |attr|
+            kv = attr.split('=', 2)
+            op[kv[0].underscore.to_sym] = kv[1] if kv.length > 1
+          end
+          ret << op
+        end
+      end
+    end
+    ops = ops.select { |r| r[:resource] == rsc } if rsc != "*"
+    ops = ops.select { |r| r[:node] == node } if node != "*"
+    respond_to do |format|
+      format.json do
+        render json: ops.to_json
+      end
     end
   end
 
