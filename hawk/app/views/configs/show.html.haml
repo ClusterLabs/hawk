@@ -1,11 +1,11 @@
 .container-fluid
   .row
     %h1
-      = icon_text "file-archive-o", _("Show"), class: "page"
+      = icon_text "list", _("Show"), class: "page"
       %small= _("Configuration")
       .pull-right
         .btn-group{ role: "group" }
-          = link_to icon_text("file-o", _("Edit Configuration")), edit_cib_config_path(cib_id: current_cib.id), class: "btn btn-primary"
+          = link_to icon_text("database", _("Edit Configuration")), edit_cib_config_path(cib_id: current_cib.id), class: "btn btn-primary"
 
   .row
     %pre
