@@ -208,6 +208,16 @@ $(function() {
           data: { format: "json" },
           url: Routes.cib_agent_path($('body').data('cib'), encodeURIComponent(agent)),
           success: function(data) {
+            if (data == null || !("resource_agent" in data)) {
+              data = { resource_agent: {
+                shortdesc: agent,
+                longdesc: "",
+              } };
+            }
+            if (!("shortdesc" in data.resource_agent) || !data.resource_agent.shortdesc)
+              data.resource_agent.shortdesc = agent;
+            if (!("longdesc" in data.resource_agent) || !data.resource_agent.longdesc)
+              data.resource_agent.longdesc = "";
             // Update the sidebar with agent info
             var helptext = ['<h3>', data.resource_agent.shortdesc, '</h3>'];
             helptext.push(format_longdesc(data.resource_agent.longdesc));
