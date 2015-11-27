@@ -197,7 +197,7 @@ class Node < Tableless
       else
         xml.add_element(
           list,
-          "id" => "#{xml.attributes["id"]}-#{list}")
+          "id" => "#{element_id(xml)}-#{list}")
       end
 
       # Write new attributes or update existing ones
@@ -209,11 +209,16 @@ class Node < Tableless
         else
           xml.elements[list].add_element(
             "nvpair",
-            "id" => "#{xml.elements[list].attributes['id']}-#{n}",
+            "id" => "#{element_id(xml.elements[list])}-#{n}",
             "name" => n,
             "value" => v)
         end
       end
     end
+  end
+
+  def element_id(elem)
+    return elem.attributes['uname'] if elem.attributes['uname']
+    elem.attributes['id']
   end
 end
