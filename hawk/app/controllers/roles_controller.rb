@@ -159,18 +159,7 @@ class RolesController < ApplicationController
       edit_cib_crm_config_path(cib_id: @cib.id)
     ) unless Util.acl_enabled?
 
-    cibadmin = Util.safe_x(
-      "/usr/sbin/cibadmin",
-      "-Ql",
-      "--xpath",
-      "/cib[@validate-with]"
-    ).lines.first.to_s
-
-    if m = cibadmin.match(/validate-with=\"pacemaker-([0-9.]+)\"/)
-      @supported_schema = m.captures[0].to_f >= 2.0
-    else
-      @supported_schema = false
-    end
+    @supported_schema = Util.acl_version >= 2.0
   end
 
   def post_process_for!(record)

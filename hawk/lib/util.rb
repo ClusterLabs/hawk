@@ -288,7 +288,7 @@ module Util
     when :tags
       Rails.cache.fetch(:has_tags) {
         # TODO: fix this
-        %x[/usr/sbin/cibadmin -Ql -A /cib/configuration/tags >/dev/null 2>&1]
+        %x[/usr/sbin/cibadmin -t 5 -Ql -A /cib/configuration/tags >/dev/null 2>&1]
         $?.exitstatus == 0
       }
     else
@@ -300,6 +300,7 @@ module Util
   def acl_enabled?
     safe_x(
       '/usr/sbin/cibadmin',
+      '-t', '5',
       '-Ql',
       '--xpath',
       '//configuration//crm_config//nvpair[@name=\'enable-acl\' and @value=\'true\']'.shellescape
@@ -308,15 +309,16 @@ module Util
   module_function :acl_enabled?
 
   def acl_version
-    Rails.cache.fetch(:get_acl_version) {
-      vs = %x[/usr/sbin/cibadmin -Ql --xpath /cib[@validate-with]].lines.first.to_s
-      m = vs.match(/validate-with=\"pacemaker-([0-9.]+)\"/)
-      if m
-        m.captures[0].to_f
-      else
-        2.0
-      end
-    }
+    Rails.cache.fetch(:get_acl_version) do
+      m = safe_x(
+        '/usr/sbin/cibadmin',
+        '-t', '5',
+        '-Ql',
+        '--xpath',
+        '/cib[@validate-with]'.shellescape).lines.first.to_s.match(/validate-with=\"pacemaker-([0-9.]+)\"/)
+      return m.captures[0].to_f if m
+      2.0
+    end
   end
   module_function :acl_version
 
