@@ -22,6 +22,11 @@ class StatesController < ApplicationController
       node = "*"
     else
       rsc, node = invars
+      if node
+        current_cib.nodes.each do |n|
+          node = n[:uname] if n[:id].to_s == node && n[:uname]
+        end
+      end
     end
     ops = [].tap do |ret|
       Util.safe_x("/usr/sbin/crm_resource", "-o").each_line do |line|

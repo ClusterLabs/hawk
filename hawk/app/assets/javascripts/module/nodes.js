@@ -426,7 +426,7 @@ $(function() {
 
             operations.push([
               '<a href="',
-              Routes.events_cib_node_path($('body').data('cib'), row.name),
+              Routes.events_cib_node_path($('body').data('cib'), row.id),
               '" class="events btn btn-default btn-xs" title="',
               __('Events'),
               '" data-toggle="modal" data-target="#modal-lg">',
