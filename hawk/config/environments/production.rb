@@ -28,7 +28,7 @@ Rails.application.configure do
 
   config.assets.debug = false
   config.assets.raise_runtime_errors = false
-  config.assets.js_compressor = :uglifier
+  config.assets.js_compressor = nil
   config.assets.css_compressor = nil
   config.assets.compile = true
   config.assets.digest = true
@@ -39,5 +39,7 @@ Rails.application.configure do
   config.log_level = :warn
   config.log_tags = []
 
-  config.logger = ActiveSupport::TaggedLogging.new(Logger.new(STDOUT))
+  config.logger = ActiveSupport::TaggedLogging.new(
+    Logger.new(STDOUT)
+  )
 end
