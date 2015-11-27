@@ -15,7 +15,7 @@
         %tr
           %th{ data: { field: "rc", sortable: true, formatter: "eventsRC" } }= _("RC")
           %th{ data: { field: "node", sortable: true } }= _("Node")
-          %th{ data: { field: "op" } }= _("Op")
+          %th{ data: { field: "op" } }= _("Operation")
           %th{ data: { field: "last_rc_change", sortable: true, sorter: "eventsSorter" } }= _("Last Change")
           %th{ data: { field: "state" } }= _("State")
           %th{ data: { field: "call" } }= _("Call")
@@ -54,9 +54,10 @@
     return {};
   }
   function eventsSorter(a, b) {
-    if (moment(a).isBefore(moment(b))) {
+    var fmt = 'ddd MMM DD HH:mm:SS YYYY';
+    if (moment(a, fmt).isBefore(moment(b, fmt))) {
       return -1;
-    } else if (moment(b).isBefore(moment(a))) {
+    } else if (moment(b, fmt).isBefore(moment(a, fmt))) {
       return 1;
     } else {
       return 0;
