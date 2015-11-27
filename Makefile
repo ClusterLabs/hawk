@@ -58,7 +58,7 @@ all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service scripts/hawk.service.bundle
 		# Finally package and install the gems \
 		bundle package && bundle install --local --deployment ; \
 	 fi ; \
-	 TEXTDOMAIN=hawk rake gettext:pack \
+	 TEXTDOMAIN=hawk rake gettext:pack; \
 	 RAILS_ENV=production rake assets:precompile)
 
 %:: %.in
