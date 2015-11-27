@@ -18,14 +18,11 @@ class CrmEvents
   end
 
   def push(cmd)
-    shadow_id = ENV["CIB_shadow"]
-
     cmd = cmd.join(" ") if cmd.is_a? Array
     begin
       File.open(path, 'a') do |f|
         f.flock(File::LOCK_EX)
         f.truncate(0) if truncate? f
-        f << "# Shadow CIB: #{shadow_id} (Simulated)\n" unless shadow_id.nil?
         f << cmd
         f << "@@COMMAND-END@@\n"
       end
@@ -49,6 +46,11 @@ class CrmEvents
   private
 
   def path
-    Rails.root.join("tmp", "commands.log")
+    shadow_id = ENV["CIB_shadow"]
+    if shadow_id.nil?
+      Rails.root.join("tmp", "commands-live.log")
+    else
+      Rails.root.join("tmp", "commands-#{shadow_id}.log")
+    end
   end
 end

@@ -4,59 +4,110 @@
       = icon_tag "search"
 
       = _("Ticket:")
-      = @ticket.id
-
-      %small
-        = @ticket.ticket
+      = @ticket[:id]
 
   .modal-body
-    %h4
-      = _("Properties")
+    .panel.panel-default
+      .panel-heading#t-properties{role: :tab}
+        %h4.panel-title
+          %a{role: :button, data: {toggle: :collapse}, href: "#t-properties-body", aria: {expanded: false, controls: "t-properties-body"}}
+            = _("Properties")
+            .pull-right
+              %span.caret
+      #t-properties-body.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "t-properties"}}
+        %table.table
+          %tbody
+            %tr
+              %th.col-xs-4
+                = _("Granted")
+              %td.col-xs-8
+                - if @ticket[:granted]
+                  = _("Yes")
+                - else
+                  = _("No")
+            %tr
+              %th.col-xs-4
+                = _("Loss Policy")
+              %td.col-xs-8
+                - if @ticket[:loss_policy].blank?
+                  = _("None")
+                - else
+                  = @ticket[:loss_policy]
+            %tr
+              %th.col-xs-4
+                = _("Last Granted")
+              %td.col-xs-8
+                = @ticket[:last_granted]
+            %tr
+              %th.col-xs-4
+                = _("State")
+              %td.col-xs-8
+                = @ticket[:state]
+            %tr
+              %th.col-xs-4
+                = _("Leader")
+              %td.col-xs-8
+                = @ticket[:leader]
+            %tr
+              %th.col-xs-4
+                = _("Expires")
+              %td.col-xs-8
+                = @ticket[:expires]
+            %tr
+              %th.col-xs-4
+                = _("Commit")
+              %td.col-xs-8
+                = @ticket[:commit]
+    - if @ticket[:constraints].any?
+      .panel.panel-default
+        .panel-heading#t-resources{role: :tab}
+          %h4.panel-title
+            %a{role: :button, data: {toggle: :collapse}, href: "#t-resources-body", aria: {expanded: false, controls: "t-resources-body"}}
+              = _("Constraints")
+              .pull-right
+                %span.caret
+        #t-resources-body.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "t-resources"}}
+          %table.table
+            %tbody
+              - @ticket[:constraints].each do |id|
+                %tr
+                  %td
+                    = link_to id, edit_cib_ticket_path(cib_id: @cib.id, id: id)
 
-    %table.table.table-striped
-      %tbody
-        %tr
-          %th.col-xs-4
-            = _("Granted")
-          %td.col-xs-8
-            - if @ticket.granted
-              = _("Yes")
-            - else
-              = _("No")
-        %tr
-          %th.col-xs-4
-            = _("Loss Policy")
-          %td.col-xs-8
-            - if @ticket.loss_policy.blank?
-              = _("None")
-            - else
-              = @ticket.loss_policy
-    %h4
-      = _("Resources")
+    - if current_cib.booth[:sites].any?
+      .panel.panel-default
+        .panel-heading#t-sites{role: :tab}
+          %h4.panel-title
+            %a{role: :button, data: {toggle: :collapse}, href: "#t-sites-body", aria: {expanded: false, controls: "t-sites-body"}}
+              = _("Sites")
+              .pull-right
+                %span.caret
+        #t-sites-body.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "t-sites"}}
+          %table.table
+            %tbody
+              - current_cib.booth[:sites].each do |site|
+                %tr
+                  %td
+                    - if site.to_s == current_cib.booth[:me]
+                      = content_tag(:strong, site.to_s)
+                    - else
+                      = site.to_s
 
-    - if @ticket.resources.any?
-      %table.table.table-striped
-        %tbody
-          %tr
-            %th= _("ID")
-            %th= _("Sequential")
-            %th= _("Action")
-          - @ticket.resources.each do |rsc|
-            - rsc[:resources].each do |id|
-              %tr
-                %td
-                  = id
-
-                %td
-                  - if rsc[:sequential]
-                    = _("Yes")
-                  - else
-                    = _("No")
-                %td
-                  = rsc[:action] || '-'
-    - else
-      .alert.alert-info
-        = _("No resources defined for ticket")
+    - if current_cib.booth[:arbitrators].any?
+      .panel.panel-default
+        .panel-heading#t-arbitrators{role: :tab}
+          %h4.panel-title
+            %a{role: :button, data: {toggle: :collapse}, href: "#t-arbitrators-body", aria: {expanded: false, controls: "t-arbitrators-body"}}
+              = _("Arbitrators")
+              .pull-right
+                %span.caret
+        #t-arbitrators-body.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "t-arbitrators"}}
+          %table.table
+            %tbody
+              - current_cib.booth[:arbitrators].each do |arb|
+                %tr
+                  %td
+                    = arb.to_s
 
   .modal-footer
     %button.btn.btn-default{ type: "button", data: { dismiss: "modal" } }

@@ -3,15 +3,7 @@
 
 $(function() {
   function executeAction(context, confirmMsg) {
-    try {
-      answer = confirm(
-        confirmMsg
-      );
-    } catch (e) {
-      (console.error || console.log).call(console, e.stack || e);
-    }
-
-    if (answer) {
+    $.hawkAsyncConfirm(confirmMsg, function() {
       $.ajax({
         dataType: 'json',
         method: 'GET',
@@ -27,8 +19,6 @@ $(function() {
             },{
               type: 'success'
             });
-
-            context.parents('table').bootstrapTable('refresh')
           } else {
             if (data.error) {
               $.growl({
@@ -38,6 +28,7 @@ $(function() {
               });
             }
           }
+          $.updateCib();
         },
         error: function(xhr, status, msg) {
           $.growl({
@@ -45,9 +36,11 @@ $(function() {
           },{
             type: 'danger'
           });
+          $.updateCib();
         }
       });
-    }
+    });
+    return false;
   }
 
   function resourceRoutes(row) {
@@ -75,6 +68,10 @@ $(function() {
       editRoute = Routes.edit_cib_tag_path(cib, row.id);
       destroyRoute = Routes.cib_tag_path(cib, row.id);
       break;
+    case "template":
+      editRoute = Routes.edit_cib_template_path(cib, row.id);
+      destroyRoute = Routes.cib_template_path(cib, row.id);
+      break;
     default:
       editRoute = Routes.edit_cib_resource_path(cib, row.id);
       destroyRoute = Routes.cib_resource_path(cib, row.id);
@@ -89,11 +86,11 @@ $(function() {
       title: __('Status'),
       sortable: true,
       clickToSelect: true,
+      align: "center",
+      halign: "center",
       class: 'col-sm-1',
       formatter: function(value, row, index) {
         switch(value) {
-          case "unknown":
-            return '';
           case "unmanaged":
             return [
               '<i class="fa fa-exclamation-triangle fa-lg text-warning" title="',
@@ -102,7 +99,7 @@ $(function() {
             ].join('');
           case "started":
             return [
-              '<i class="fa fa-play fa-lg text-success" title="',
+              '<i class="fa fa-circle fa-lg text-success" title="',
               __("Started"),
               '"></i>'
             ].join('');
@@ -120,13 +117,13 @@ $(function() {
             ].join('');
           case "stopped":
             return [
-              '<i class="fa fa-stop fa-lg text-danger" title="',
+              '<i class="fa fa-minus-circle fa-lg text-danger" title="',
               __("Stopped"),
               '"></i>'
             ].join('');
           default:
             return [
-              '<i class="fa fa-question-circle fa-lg text-warning" title="',
+              '<i class="fa fa-question fa-lg text-warning" title="',
               value,
               '"></i>'
             ].join('');
@@ -142,14 +139,19 @@ $(function() {
       class: 'col-sm-2'
     },
     {
-      field: 'type',
+      field: 'running_on',
       title: __('Location'),
       sortable: true,
       clickToSelect: true,
       class: 'col-sm-6',
       formatter: function(value, row, index) {
         if ("running_on" in row) {
-          return Object.keys(row.running_on).join(", ");
+          var nodes = Object.keys(row.running_on);
+          if (nodes.length > 8) {
+            nodes = nodes.slice(0, 8);
+            nodes.push("...");
+          }
+          return nodes.join(", ");
         } else {
           return "";
         }
@@ -171,261 +173,146 @@ $(function() {
         } else if (row.object_type == "tag") {
           return __("Tag");
         } else if (row.template && row.template.length > 0) {
-          return '<a href="' + Routes.agent_path({id: "@" + row.template}) + '" data-toggle="modal" data-target="#modal-lg">' + "@" + row.template + '</a>';
-        } else if ("clazz" in row && "provider" in row && "type" in row) {
+          return '<a href="' + Routes.cib_agent_path($('body').data('cib'), encodeURIComponent("@" + row.template)) + '" data-toggle="modal" data-target="#modal-lg">' + "@" + row.template + '</a>';
+        } else if ("class" in row && "provider" in row && "type" in row) {
           var agent = "";
-          if (row["clazz"]) {
-            agent += row["clazz"] + ":";
+          if (row["class"]) {
+            agent += row["class"] + ":";
           }
           if (row["provider"]) {
             agent += row.provider + ":";
           }
           agent += row.type;
-          return '<a href="' + Routes.agent_path({id: agent}) + '" data-toggle="modal" data-target="#modal-lg">' + row.type + '</a>';
+          return '<a href="' + Routes.cib_agent_path($('body').data('cib'), encodeURIComponent(agent)) + '" data-toggle="modal" data-target="#modal-lg">' + row.type + '</a>';
         } else {
           return row.type;
         }
       }
     },
     {
-      field: 'operate',
+      field: 'id',
       title: __('Operations'),
       sortable: false,
       clickToSelect: false,
+      align: 'right',
+      halign: 'right',
       class: 'col-sm-2',
       events: {
         'click .start': function (e, value, row, index) {
           e.preventDefault();
-
-          executeAction(
-            $(this),
-            i18n.translate(
-              'This will start the resource %s. Do you want to continue?'
-            ).fetch(row.id)
-          );
+          return executeAction($(this), i18n.translate('This will start the resource %s. Do you want to continue?').fetch(row.id));
         },
         'click .stop': function (e, value, row, index) {
           e.preventDefault();
-
-          executeAction(
-            $(this),
-            i18n.translate(
-              'This will stop the resource %s. Do you want to continue?'
-            ).fetch(row.id)
-          );
+          return executeAction($(this), i18n.translate('This will stop the resource %s. Do you want to continue?').fetch(row.id));
         },
         'click .promote': function (e, value, row, index) {
           e.preventDefault();
-
-          executeAction(
-            $(this),
-            i18n.translate(
-              'This will promote the resource %s. Do you want to continue?'
-            ).fetch(row.id)
-          );
+          return executeAction($(this), i18n.translate('This will promote the resource %s. Do you want to continue?').fetch(row.id));
         },
         'click .demote': function (e, value, row, index) {
           e.preventDefault();
-
-          executeAction(
-            $(this),
-            i18n.translate(
-              'This will demote the resource %s. Do you want to continue?'
-            ).fetch(row.id)
-          );
+          return executeAction($(this), i18n.translate('This will demote the resource %s. Do you want to continue?').fetch(row.id));
         },
         'click .manage': function (e, value, row, index) {
           e.preventDefault();
-
-          executeAction(
-            $(this),
-            i18n.translate(
-              'This will manage the resource %s. Do you want to continue?'
-            ).fetch(row.id)
-          );
+          return executeAction($(this), i18n.translate('This will manage the resource %s. Do you want to continue?').fetch(row.id));
         },
         'click .unmanage': function (e, value, row, index) {
           e.preventDefault();
-
-          executeAction(
-            $(this),
-            i18n.translate(
-              'This will unmanage the resource %s. Do you want to continue?'
-            ).fetch(row.id)
-          );
+          return executeAction($(this), i18n.translate('This will unmanage the resource %s. Do you want to continue?').fetch(row.id));
         },
         'click .migrate': function (e, value, row, index) {
           e.preventDefault();
-
-          executeAction(
-            $(this),
-            i18n.translate(
-              'This will migrate the resource %s. Do you want to continue?'
-            ).fetch(row.id)
-          );
+          return executeAction($(this), i18n.translate('This will migrate the resource %s. Do you want to continue?').fetch(row.id));
         },
         'click .unmigrate': function (e, value, row, index) {
           e.preventDefault();
-
-          executeAction(
-            $(this),
-            i18n.translate(
-              'This will unmigrate the resource %s. Do you want to continue?'
-            ).fetch(row.id)
-          );
+          return executeAction($(this), i18n.translate('This will unmigrate the resource %s. Do you want to continue?').fetch(row.id));
         },
         'click .cleanup': function (e, value, row, index) {
           e.preventDefault();
-
-          executeAction(
-            $(this),
-            i18n.translate(
-              'This will cleanup the resource %s. Do you want to continue?'
-            ).fetch(row.id)
-          );
+          return executeAction($(this), i18n.translate('This will cleanup the resource %s. Do you want to continue?').fetch(row.id));
         }
       },
       formatter: function(value, row, index) {
         var operations = [];
         var dropdowns = [];
 
+        var op_destination = "button";
+        if (row.object_type == "tag") {
+          op_destination = "menu";
+        }
+
+        var add_operation = function(dest, path, path_class, icon_class, text) {
+          if (dest == "menu") {
+            dropdowns.push([
+              '<li>',
+                '<a href="', path, '" class="', path_class, '">',
+                  '<i class="fa fa-fw fa-', icon_class, '"></i> ',
+                  text,
+                '</a>',
+              '</li>'
+            ].join(''));
+          } else if (dest == "button") {
+            operations.push([
+              '<a href="', path, '" class="', path_class, ' btn btn-default btn-xs" title="', text, '">',
+                '<i class="fa fa-', icon_class, '"></i>',
+              '</a> '
+            ].join(''));
+          }
+        };
+
         if (row.state === "started" || row.state === "master" || row.state === "slave" || row.object_type == "tag") {
-          dropdowns.push([
-            '<li>',
-              '<a href="',
-              Routes.stop_cib_resource_path(
-                $('body').data('cib'),
-                row.id
-              ),
-              '" class="stop">',
-                '<i class="fa fa-stop"></i> ',
-                __('Stop'),
-              '</a>',
-            '</li>'
-          ].join(''));
+          add_operation(op_destination, Routes.stop_cib_resource_path($('body').data('cib'), row.id), 'stop', 'stop', __('Stop'));
         }
 
         if (row.state === "stopped" || row.object_type == "tag") {
-          dropdowns.push([
-            '<li>',
-              '<a href="',
-              Routes.start_cib_resource_path(
-                $('body').data('cib'),
-                row.id
-              ),
-              '" class="start">',
-                '<i class="fa fa-play"></i> ',
-                __('Start'),
-              '</a>',
-            '</li>'
-          ].join(''));
+          add_operation(op_destination, Routes.start_cib_resource_path($('body').data('cib'), row.id), 'start', 'play', __('Start'));
         }
 
         if (row.state === "master" || row.object_type == "tag") {
-          dropdowns.push([
-            '<li>',
-              '<a href="',
-              Routes.demote_cib_resource_path(
-                $('body').data('cib'),
-                row.id
-              ),
-              '" class="demote">',
-                '<i class="fa fa-thumbs-down"></i> ',
-                __('Demote'),
-              '</a>',
-            '</li>'
-          ].join(''));
+          add_operation(op_destination, Routes.demote_cib_resource_path($('body').data('cib'), row.id), 'demote', 'thumbs-down', __('Demote'));
         }
 
         if (row.state === "slave" || row.object_type == "tag") {
+          add_operation(op_destination, Routes.promote_cib_resource_path($('body').data('cib'), row.id), 'promote', 'thumbs-up', __('Promote'));
+        }
+
+        if (row.is_managed === true) {
+          add_operation("menu", Routes.unmanage_cib_resource_path($('body').data('cib'), row.id), 'unmanage', 'circle', __('Unmanage'));
+        }
+
+        if (row.is_managed === false) {
+          add_operation("menu", Routes.manage_cib_resource_path($('body').data('cib'), row.id), 'manage', 'dot-circle-o', __('Manage'));
+        }
+
+        var rsc_routes = resourceRoutes(row);
+
+        add_operation("menu", Routes.migrate_cib_resource_path($('body').data('cib'), row.id), 'migrate', 'hand-o-up', __('Migrate'));
+        add_operation("menu", Routes.unmigrate_cib_resource_path($('body').data('cib'), row.id), 'unmigrate', 'hand-o-down', __('Unmigrate'));
+        add_operation("menu", Routes.cleanup_cib_resource_path($('body').data('cib'), row.id), 'cleanup', 'eraser', __('Cleanup'));
+
+        if (row.object_type == "tag") {
           dropdowns.push([
+            '<li role="separator" class="divider"></li>'
+          ].join(''));
+        } else {
+          dropdowns.push([
+            '<li role="separator" class="divider"></li>',
             '<li>',
-              '<a href="',
-              Routes.promote_cib_resource_path(
-                $('body').data('cib'),
-                row.id
-              ),
-              '" class="promote">',
-                '<i class="fa fa-thumbs-up"></i> ',
-                __('Promote'),
-              '</a>',
-            '</li>'
+            '<a href="',
+            Routes.events_cib_resource_path($('body').data('cib'), row.id),
+            '" class="events" data-toggle="modal" data-target="#modal-lg">',
+            '<i class="fa fa-fw fa-history"></i> ',
+            __('Recent events'),
+            '</a>',
+            '</li>',
+            '<li role="separator" class="divider"></li>'
           ].join(''));
         }
 
-        if (row.managed === true) {
-          dropdowns.push([
-            '<li>',
-              '<a href="',
-              Routes.unmanage_cib_resource_path(
-                $('body').data('cib'),
-                row.id
-              ),
-              '" class="unmanage">',
-                '<i class="fa fa-circle"></i> ',
-                __('Unmanage'),
-              '</a>',
-            '</li>'
-          ].join(''));
-        }
-
-        if (row.managed === false) {
-          dropdowns.push([
-            '<li>',
-              '<a href="',
-              Routes.manage_cib_resource_path(
-                $('body').data('cib'),
-                row.id
-              ),
-              '" class="manage">',
-                '<i class="fa fa-dot-circle-o"></i> ',
-                __('Manage'),
-              '</a>',
-            '</li>'
-          ].join(''));
-        }
-
-        dropdowns.push([
-          '<li>',
-            '<a href="',
-            Routes.migrate_cib_resource_path(
-              $('body').data('cib'),
-              row.id
-            ),
-            '" class="migrate">',
-              '<i class="fa fa-hand-o-up"></i> ',
-              __('Migrate'),
-            '</a>',
-          '</li>'
-        ].join(''));
-
-        dropdowns.push([
-          '<li>',
-            '<a href="',
-            Routes.unmigrate_cib_resource_path(
-              $('body').data('cib'),
-              row.id
-            ),
-            '" class="unmigrate">',
-              '<i class="fa fa-hand-o-down"></i> ',
-              __('Unmigrate'),
-            '</a>',
-          '</li>'
-        ].join(''));
-
-        dropdowns.push([
-          '<li>',
-            '<a href="',
-            Routes.cleanup_cib_resource_path(
-              $('body').data('cib'),
-              row.id
-            ),
-            '" class="cleanup">',
-              '<i class="fa fa-eraser"></i> ',
-              __('Cleanup'),
-            '</a>',
-          '</li>'
-        ].join(''));
+        add_operation("menu", rsc_routes.edit, 'edit', 'pencil', __('Edit'));
 
         operations.push([
           '<div class="btn-group" role="group">',
@@ -438,30 +325,17 @@ $(function() {
           '</div>'
         ].join(''));
 
-        var rsc_routes = resourceRoutes(row);
-
-        operations.push([
-          '<a href="',
-            rsc_routes.edit,
-            '" class="edit btn btn-default btn-xs" title="',
-            __('Edit'),
-          '">',
-            '<i class="fa fa-pencil"></i>',
-          '</a> '
-        ].join(''));
-
-        operations.push([
-          '<a href="',
-          Routes.cib_resource_path(
-            $('body').data('cib'),
-            row.id
-          ),
-          '" class="details btn btn-default btn-xs" title="',
-          __('Details'),
-          '" data-toggle="modal" data-target="#modal-lg">',
+        if (row.object_type != "tag") {
+          operations.push([
+            '<a href="',
+            Routes.cib_resource_path($('body').data('cib'), row.id),
+            '" class="details btn btn-default btn-xs" title="',
+            __('Details'),
+            '" data-toggle="modal" data-target="#modal-lg">',
             '<i class="fa fa-search"></i>',
-          '</a> '
-        ].join(''));
+            '</a> '
+          ].join(''));
+        }
 
         return [
           '<div class="btn-group" role="group">',
@@ -472,14 +346,160 @@ $(function() {
     }
   ];
 
+  var rowStyleFn = function(row, index) {
+    if (row.state == "unknown") {
+      return {};
+    } else if (row.state == "unmanaged") {
+      return { classes: ["warning"] };
+    } else if (row.state == "master") {
+      return { classes: ["info"] };
+    } else if (row.state == "slave") {
+      return { classes: ["success"] };
+    } else if (row.state == "started") {
+      return { classes: ["success"] };
+    } else if (row.state == "stopped") {
+      return {};
+    } else {
+      return { classes: ["danger"] };
+    }
+  };
+
+  // filter out tags without any resource children
+  var filterTags = function(resources_by_id, tags) {
+    return $.grep(tags, function(tag) {
+      if ("refs" in tag) {
+        var rscrefs = $.grep(tag.refs, function(ref) {
+          return ref in resources_by_id;
+        });
+        return rscrefs.length > 0;
+      }
+      return true;
+    });
+  };
+
+  var expandResourcesHandler = function (index, row, detail) {
+    var columns = statesResourcesColumns.slice(0);
+    var datasource = [];
+    if (row.children || row.child || row.refs) {
+      var datasource = [];
+      if (row.children) {
+        datasource = row.children;
+      } else if (row.child) {
+        datasource = [row.child];
+      } else {
+        var cib = $('body').data('content');
+        datasource = $.grep($.map(row.refs, function(ref) {
+          if (ref in cib.resources_by_id) {
+            return cib.resources_by_id[ref];
+          } else {
+            var ret = null;
+            $.each(cib.tags, function(i, o) {
+              if (o.id == ref) {
+                ret = o;
+              }
+            });
+            return ret;
+          }
+        }), function(o) { return o !== null; });
+      }
+    }
+
+    if (datasource.length == 0) {
+      detail.html(['<div class="text-center text-muted">', __("No child resources"), '</div>'].join(''));
+      return;
+    }
+
+    var childwithchildren = false;
+    $.each(datasource, function(_idx, child) {
+      if ("child" in child || "children" in child) {
+        childwithchildren = true;
+      }
+    });
+
+    if (childwithchildren) {
+      detail
+        .html('<table></table>')
+        .find('table')
+        .bootstrapTable({
+          data: datasource,
+          pagination: false,
+          smartDisplay: false,
+          showColumns: false,
+          showRefresh: false,
+          showHeader: false,
+          showFooter: false,
+          rowStyle: rowStyleFn,
+          minimumCountColumns: 0,
+          sortName: 'id',
+          sortOrder: 'asc',
+          detailView: true,
+          onExpandRow: expandResourcesHandler,
+          columns: columns
+        });
+    } else {
+      columns.unshift({
+        sortable: false,
+        switchable: false,
+        clickToSelect: false,
+        formatter: function(value, row, index) {
+          return '<i class="glyphicon glyphicon-arrow-right"></i>';
+        }
+      });
+
+      detail
+        .html('<table></table>')
+        .find('table')
+        .bootstrapTable({
+          data: datasource,
+          pagination: false,
+          smartDisplay: false,
+          showColumns: false,
+          showRefresh: false,
+          showHeader: false,
+          showFooter: false,
+          rowStyle: rowStyleFn,
+          minimumCountColumns: 0,
+          sortName: 'id',
+          sortOrder: 'asc',
+          columns: columns
+        });
+    }
+  };
+
   $('#states #middle table.resources')
     .bootstrapTable({
+      ajax: function(params) {
+        var cib = $('body').data('content');
+        var resources_and_tags = cib.resources.concat(filterTags(cib.resources_by_id, cib.tags));
+        params.success(resources_and_tags, "success", {});
+        params.complete({}, "success");
+      },
+      pagination: true,
+      pageSize: 25,
+      pageList: [10, 25, 50, 100, 200],
+      sidePagination: 'client',
+      smartDisplay: false,
+      search: true,
+      searchAlign: 'left',
+      striped: false,
+      showColumns: false,
+      showRefresh: false,
+      minimumCountColumns: 0,
+      sortName: 'object_type',
+      sortOrder: 'asc',
+      detailView: true,
+      rowStyle: rowStyleFn,
+      onExpandRow: expandResourcesHandler,
+      columns: statesResourcesColumns
+    });
+
+  $('#resources #middle table.resources, #configs #middle table.resources')
+    .bootstrapTable({
       method: 'get',
-      url: Routes.status_cib_resources_path(
+      url: Routes.cib_resources_path(
         $('body').data('cib'),
         { format: 'json' }
       ),
-      striped: true,
       pagination: true,
       pageSize: 25,
       pageList: [10, 25, 50, 100, 200],
@@ -490,72 +510,9 @@ $(function() {
       showColumns: false,
       showRefresh: true,
       minimumCountColumns: 0,
-      sortName: 'id',
+      sortName: 'object_type',
       sortOrder: 'asc',
-      detailView: true,
-      onExpandRow: function (index, row, detail) {
-        if (row.children || row.child || row.refs) {
-          var columns = statesResourcesColumns.slice(0);
-          var datasource = [];
-          if (row.children) {
-            datasource = row.children;
-          } else if (row.child) {
-            datasource = [row.child];
-          } else {
-              datasource = row.refs;
-          }
-
-          columns.unshift({
-            sortable: false,
-            switchable: false,
-            clickToSelect: false,
-            formatter: function(value, row, index) {
-              return '<i class="glyphicon glyphicon-arrow-right"></i>';
-            }
-          });
-
-          detail
-            .html('<table></table>')
-            .find('table')
-            .bootstrapTable({
-              data: datasource,
-              striped: true,
-              pagination: false,
-              smartDisplay: false,
-              showColumns: false,
-              showRefresh: false,
-              showHeader: false,
-              showFooter: false,
-              minimumCountColumns: 0,
-              sortName: 'id',
-              sortOrder: 'asc',
-              columns: columns
-            });
-        }
-      },
-      columns: statesResourcesColumns
-    });
-
-  $('#resources #middle table.resources')
-    .bootstrapTable({
-      method: 'get',
-      url: Routes.cib_resources_path(
-        $('body').data('cib'),
-        { format: 'json' }
-      ),
       striped: true,
-      pagination: true,
-      pageSize: 50,
-      pageList: [10, 25, 50, 100, 200],
-      sidePagination: 'client',
-      smartDisplay: false,
-      search: true,
-      searchAlign: 'left',
-      showColumns: false,
-      showRefresh: true,
-      minimumCountColumns: 0,
-      sortName: 'id',
-      sortOrder: 'asc',
       columns: [{
         field: 'object_type',
         title: __('Type'),
@@ -566,22 +523,18 @@ $(function() {
           switch(row.object_type) {
             case "primitive":
               return __("Primitive");
-              break;
             case "group":
               return __("Group");
-              break;
             case "clone":
               return __("Clone");
-              break;
             case "master":
               return __("Multi-state");
-              break;
             case "tag":
               return __("Tag");
-              break;
+            case "template":
+              return __("Template");
             default:
               return row.object_type;
-              break;
           }
         }
       }, {
@@ -591,7 +544,24 @@ $(function() {
         switchable: false,
         clickToSelect: true
       }, {
-        field: 'operate',
+        field: 'id',
+        title: __('Resources'),
+        sortable: true,
+        switchable: false,
+        clickToSelect: true,
+        formatter: function(value, row, index) {
+          if ("child" in row) {
+            return row.child;
+          } else if ("children" in row) {
+            return row.children.join(", ");
+          } else if ("refs" in row) {
+            return row.refs.join(", ");
+          } else {
+            return "";
+          }
+        }
+      }, {
+        field: 'id',
         title: __('Operations'),
         sortable: false,
         clickToSelect: false,
@@ -601,17 +571,7 @@ $(function() {
             e.preventDefault();
             var $self = $(this);
 
-            try {
-              answer = confirm(
-                i18n.translate(
-                  'Are you sure you wish to delete %s?'
-                ).fetch(row.id)
-              );
-            } catch (e) {
-              (console.error || console.log).call(console, e.stack || e);
-            }
-
-            if (answer) {
+            $.hawkAsyncConfirm(i18n.translate('Are you sure you wish to delete %s?').fetch(row.id), function() {
               $.ajax({
                 dataType: 'json',
                 method: 'POST',
@@ -650,7 +610,8 @@ $(function() {
                   });
                 }
               });
-            }
+            });
+            return false;
           }
         },
         formatter: function(value, row, index) {
@@ -692,8 +653,8 @@ $(function() {
     var open = button.attr('aria-expanded');
     var dropdown = button.siblings('.dropdown-menu');
     if (open) {
-      dropdown.css('top', button.offset().top - $(window).scrollTop() + button.outerHeight() + "px");
-      dropdown.css('left', button.offset().left + "px");
+      dropdown.css('top', (button.offset().top - $(window).scrollTop() + button.outerHeight()) + "px");
+      dropdown.css('left', (button.offset().left + button.outerWidth() - dropdown.outerWidth()) + "px");
       dropdown.css('position', 'fixed');
     }
   });

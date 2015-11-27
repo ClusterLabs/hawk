@@ -13,6 +13,6 @@
         .row
           .col-sm-12
             .commands
-              - @cmds.reverse.each do |cmd|
+              - @cmds.reverse_each do |cmd|
                 %pre
                   %code.crmsh.hljs= cmd

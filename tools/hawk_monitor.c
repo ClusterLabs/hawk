@@ -180,7 +180,7 @@ void finish(void)
 		printf("Access-Control-Allow-Origin: %s\n", origin);
 		printf("Access-Control-Allow-Credentials: true\n");	/* may not be necessary */
 	}
-	printf("\n{\"epoch\":\"%s\"}", new_epoch);
+	printf("\n{\"epoch\":\"%s\"}\n", new_epoch);
 	exit(0);
 }
 

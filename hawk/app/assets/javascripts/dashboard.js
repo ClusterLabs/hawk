@@ -187,6 +187,8 @@ var dashboardAddCluster = (function() {
   }
 
   function clusterConnectionError(clusterId, clusterInfo, xhr, status, error, cb) {
+    if (window.userIsNavigatingAway)
+      return;
     var msg = "";
     if (xhr.readyState > 1) {
       if (xhr.status == 403) {
@@ -306,7 +308,7 @@ var dashboardAddCluster = (function() {
     indicator(clusterId, "refresh");
 
     //console.log("request cib", $("#" + clusterId).data('epoch'), (new Date()).getTime());
-    ajaxQuery({ url: baseUrl(clusterInfo) + "/cib/mini.json",
+    ajaxQuery({ url: baseUrl(clusterInfo) + "/cib/live?mini=true&format=json",
                 type: "GET",
                 data: { _method: 'show' },
                 crossDomain: clusterInfo.host != null,
@@ -444,8 +446,7 @@ var dashboardAddCluster = (function() {
       text = text +
         '<form action="/dashboard/remove" method="post" accept-charset="UTF-8" data-remote="true" class="pull-right">' +
         '<input type="hidden" name="name" value="' + escape(data.name) + '">' +
-        '<button type="submit" class="close" onclick="' +
-        "return confirm('" + s_remove + "');" +
+        '<button type="submit" class="close" data-confirm="' + s_remove + '");' +
         '" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
         '</form>';
     }

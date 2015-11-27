@@ -2,6 +2,13 @@
 // See COPYING for license.
 
 $(function() {
+  window.userIsNavigatingAway = false;
+  var _obunload = (window.onbeforeunload) ? window.onbeforeunload : function() {};
+  window.onbeforeunload = function() {
+     _obunload.call( window );
+     window.userIsNavigatingAway = true;
+  };
+
   $('[data-toggle="tooltip"]').tooltip();
   $('[data-toggle="popover"]').popover();
   $('.nav-tabs').stickyTabs();
@@ -14,7 +21,7 @@ $(function() {
   });
 
   $('.navbar a.toggle').click(function () {
-    $('.row-offcanvas').toggleClass('active')
+    $('.nav-wrapper').toggleClass('active')
   });
 
   $.growl(
@@ -94,9 +101,17 @@ $(function() {
     var unquote = function(str) {
       return str.replace(/["']/g, "");
     };
-    var circle = ['<div class="circle circle-medium ',
+    var sizeclass = "";
+    if ($(this).hasClass('circle-large')) {
+      sizeclass = 'circle-large ';
+    } else if ($(this).hasClass('circle-medium')) {
+      sizeclass = 'circle-medium ';
+    } else if ($(this).hasClass('circle-medium')) {
+      sizeclass = 'circle-small ';
+    }
+    var circle = ['<div class="circle ', sizeclass,
                   statusClass(),
-                  '" data-toggle="tooltip" data-placement="left" title="',
+                  '" data-toggle="tooltip" data-placement="bottom" data-html="true" title="',
                   unquote(tooltip),
                   '">',
                   statusIcon(),
@@ -104,5 +119,70 @@ $(function() {
     var parent = $(this).parent();
     $(this).replaceWith(circle);
     parent.find('[data-toggle=tooltip]').tooltip();
+  };
+
+  $.rails.allowAction = function(link) {
+    if (!link.attr('data-confirm')) {
+      return true;
+    }
+    $.rails.showConfirmDialog(link);
+    return false;
+  };
+
+  $.rails.confirmed = function(link) {
+    link.removeAttr('data-confirm');
+    link.trigger('click.rails');
+  };
+
+  $.hawkAsyncConfirm = function(message, on_ok) {
+    if (!message) {
+      message = _('Continue?');
+    }
+    var html = [
+      '<div class="modal fade" id="confirmationDialog" role="dialog" tabindex="-1" aria-hidden="true">',
+      '<div class="modal-dialog">',
+      '<div class="modal-content">',
+      '<form class="form-horizontal" role="form" onsubmit="return false;">',
+      '<div class="modal-header">',
+      '<button class="close" type="button" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">', __('Close'), '</span></button>',
+      '<div class="text-center">',
+      '<i class="fa fa-5x fa-exclamation-triangle text-warning"></i>',
+      '</div>',
+      '</div>',
+      '<div class="modal-body">',
+      '<div class="center-block">',
+      '<h4 class="text-center">', message, '</h4>',
+      '</div>',
+      '</div>',
+      '<div class="modal-footer">',
+      '<button class="btn btn-default cancel" data-dismiss="modal">', __('Cancel'),'</button>',
+      '<button class="btn btn-danger commit" data-dismiss="modal">', __('OK'),'</button>',
+      '</div>',
+      '</form>',
+      '</div>',
+      '</div>',
+      '</div>'
+    ];
+    var modal = $(html.join(''));
+    modal.css('z-index', 100000);
+    modal.find('.commit').on('click', function() {
+      console.log("commit", this);
+      on_ok();
+      $('#confirmationDialog').modal('hide');
+      return true;
+    });
+
+    modal.on('hidden.bs.modal', function () {
+      modal.remove();
+    });
+
+    $('body').append(modal);
+    modal.modal();
+  };
+
+  $.rails.showConfirmDialog = function(link) {
+    $.hawkAsyncConfirm(link.attr('data-confirm'), function() {
+      $.rails.confirmed(link);
+    });
   };
 });

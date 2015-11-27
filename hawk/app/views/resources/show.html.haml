@@ -10,121 +10,102 @@
         = @resource.object_type
 
   .modal-body
-
-
-
-
-
-
-
-
-
-
-
-
-
     .row
-      .panel-group#r-info{role: :tablist, aria: {multiselectable: true}}
-        - if @resource.params.any?
-          .panel.panel-default
-            .panel-heading#r-paramcontrol{role: :tab}
-              %h4.panel-title
-                %a{role: :button, data: {toggle: :collapse, parent: "#r-info"}, href: "#r-params", aria: {expanded: true, controls: "r-params"}}
-                  = _("Parameters")
-                  .pull-right
-                    %span.caret
-            #r-params.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "r-paramcontrol"}}
-              .panel-body
-                %table.table
-                  %tr
-                    %th= _("Name")
-                    %th= _("Value")
-                  - @resource.params.each do |name, value|
-                    %tr
-                      %td= content_tag :code, name
-                      %td= content_tag :code, value
+      - if @resource.params.any?
         .panel.panel-default
-          .panel-heading#r-metacontrol{role: :tab}
+          .panel-heading#r-paramcontrol{role: :tab}
             %h4.panel-title
-              %a{role: :button, data: {toggle: :collapse, parent: "#r-info"}, href: "#r-metas", aria: {expanded: false, controls: "r-metas"}}
-                = _("Meta Attributes")
+              %a{role: :button, data: {toggle: :collapse}, href: "#r-params", aria: {expanded: true, controls: "r-params"}}
+                = _("Parameters")
                 .pull-right
                   %span.caret
-          #r-metas.panel-collapse.collapse{role: :tabpanel, aria: {labelledby: "r-metacontrol"}}
-            .panel-body
-              %table.table
+          #r-params.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "r-paramcontrol"}}
+            %table.table
+              %tr
+                %th= _("Name")
+                %th= _("Value")
+              - @resource.params.each do |name, value|
                 %tr
-                  %th= _("Name")
-                  %th= _("Value")
-                - @resource.meta.each do |name, value|
-                  %tr
-                    %td= content_tag :code, name
-                    %td= content_tag :code, value
+                  %td= content_tag :code, name
+                  %td= content_tag :code, value
+      .panel.panel-default
+        .panel-heading#r-metacontrol{role: :tab}
+          %h4.panel-title
+            %a{role: :button, data: {toggle: :collapse}, href: "#r-metas", aria: {expanded: true, controls: "r-metas"}}
+              = _("Meta Attributes")
+              .pull-right
+                %span.caret
+        #r-metas.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "r-metacontrol"}}
+          %table.table
+            %tr
+              %th= _("Name")
+              %th= _("Value")
+            - @resource.meta.each do |name, value|
+              %tr
+                %td= content_tag :code, name
+                %td= content_tag :code, value
 
-        - if @resource.ops.any?
-          .panel.panel-default
-            .panel-heading#r-opcontrol{role: :tab}
-              %h4.panel-title
-                %a{role: :button, data: {toggle: :collapse, parent: "#r-info"}, href: "#r-ops", aria: {expanded: false, controls: "r-ops"}}
-                  = _("Operations")
-                  .pull-right
-                    %span.caret
-            #r-ops.panel-collapse.collapse{role: :tabpanel, aria: {labelledby: "r-opcontrol"}}
-              .panel-body
-                %table.table
-                  %tr
-                    %th= _("Name")
-                    %th= _("Timeout")
-                    %th= _("Interval")
-                  - @resource.ops.each do |id, op|
-                    %tr
-                      %td= content_tag :code, op["name"]
-                      %td= content_tag :code, op["timeout"] || "-"
-                      %td= content_tag :code, op["interval"] || "-"
+      - if @resource.ops.any?
+        .panel.panel-default
+          .panel-heading#r-opcontrol{role: :tab}
+            %h4.panel-title
+              %a{role: :button, data: {toggle: :collapse}, href: "#r-ops", aria: {expanded: false, controls: "r-ops"}}
+                = _("Operations")
+                .pull-right
+                  %span.caret
+          #r-ops.panel-collapse.collapse{role: :tabpanel, aria: {labelledby: "r-opcontrol"}}
+            %table.table
+              %tr
+                %th= _("Name")
+                %th= _("Timeout")
+                %th= _("Interval")
+              - @resource.ops.each do |id, op|
+                %tr
+                  %td= content_tag :code, op["name"]
+                  %td= content_tag :code, op["timeout"] || "-"
+                  %td= content_tag :code, op["interval"] || "-"
 
-        - if @resource.running_on.any?
-          .panel.panel-default
-            .panel-heading#r-instances{role: :tab}
-              %h4.panel-title
-                %a{role: :button, data: {toggle: :collapse, parent: "#r-info"}, href: "#r-instances-body", aria: {expanded: false, controls: "r-instances-body"}}
-                  = _("Instances")
-                  .pull-right
-                    %span.caret
-            #r-instances-body.panel-collapse.collapse{role: :tabpanel, aria: {labelledby: "r-instances"}}
-              .panel-body
-                %table.table
-                  %tr
-                    %th= _("Node")
-                    %th= _("State")
-                  - @resource.running_on.each do |node, state|
-                    %tr
-                      %td= content_tag :code, node
-                      %td= content_tag :code, state || "-"
+      - if @resource.running_on.any?
+        .panel.panel-default
+          .panel-heading#r-instances{role: :tab}
+            %h4.panel-title
+              %a{role: :button, data: {toggle: :collapse}, href: "#r-instances-body", aria: {expanded: false, controls: "r-instances-body"}}
+                = _("Instances")
+                .pull-right
+                  %span.caret
+          #r-instances-body.panel-collapse.collapse{role: :tabpanel, aria: {labelledby: "r-instances"}}
+            %table.table
+              %tr
+                %th= _("Node")
+                %th= _("State")
+              - @resource.running_on.each do |node, state|
+                %tr
+                  %td= content_tag :code, node
+                  %td= content_tag :code, state || "-"
 
-        - if @resource.failed_ops.any?
-          .panel.panel-default
-            .panel-heading#r-failures{role: :tab}
-              %h4.panel-title
-                %a{role: :button, data: {toggle: :collapse, parent: "#r-info"}, href: "#r-failures-body", aria: {expanded: false, controls: "r-failures-body"}}
-                  = _("Failed Operations")
-                  .pull-right
-                    %span.caret
-            #r-failures-body.panel-collapse.collapse{role: :tabpanel, aria: {labelledby: "r-failures"}}
-              .panel-body
-                %table.table
-                  %tr
-                    %th= _("Node")
-                    %th= _("Call")
-                    %th= _("Operation")
-                    %th= _("Status")
-                    %th= _("Reason")
-                  - @resource.failed_ops.each do |op|
-                    %tr
-                      %td= content_tag :code, op[:node]
-                      %td= content_tag :code, op[:call_id]
-                      %td= content_tag :code, op[:op]
-                      %td= content_tag :code, op[:rc_code]
-                      %td= content_tag :code, op[:exit_reason]
+      - if @resource.failed_ops.any?
+        .panel.panel-default
+          .panel-heading#r-failures{role: :tab}
+            %h4.panel-title
+              %a{role: :button, data: {toggle: :collapse}, href: "#r-failures-body", aria: {expanded: false, controls: "r-failures-body"}}
+                = _("Failed Operations")
+                .pull-right
+                  %span.caret
+          #r-failures-body.panel-collapse.collapse{role: :tabpanel, aria: {labelledby: "r-failures"}}
+            %table.table
+              %tr
+                %th= _("Node")
+                %th= _("Call")
+                %th= _("Operation")
+                %th= _("Status")
+                %th= _("Reason")
+              - @resource.failed_ops.each do |op|
+                %tr
+                  %td= content_tag :code, op[:node]
+                  %td= content_tag :code, op[:call_id]
+                  %td= content_tag :code, op[:op]
+                  %td= content_tag :code, op[:rc_code]
+                  %td= content_tag :code, op[:exit_reason]
 
   .modal-footer
     %button.btn.btn-default{ type: "button", data: { dismiss: "modal" } }

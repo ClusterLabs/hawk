@@ -1,6 +1,10 @@
 .container-fluid
   %h1
-    = icon_text "line-chart", _("Graph"), class: "page"
+    = icon_text "image", _("Graph"), class: "page"
+    %small= _("Configuration")
+    .pull-right
+      .btn-group{ role: "group" }
+        = link_to icon_text("database", _("Edit")), edit_cib_config_path(cib_id: current_cib.id), class: "btn btn-primary"
 
   .panel.panel-default
     .panel-body

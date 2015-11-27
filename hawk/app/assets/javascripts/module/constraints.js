@@ -2,7 +2,36 @@
 // See COPYING for license.
 
 $(function() {
-  $('#constraints #middle table.constraints')
+  var constraintResources = function(row) {
+    var flattenResourceList = null;
+    flattenResourceList = function(obj) {
+      var t = $.type(obj);
+      var ret = [];
+      if (t === "string") {
+        ret.push(obj);
+      } else if (t === "array") {
+        $.each(obj, function(i, o) {
+          ret = ret.concat(flattenResourceList(o));
+        });
+      } else if (t === "object") {
+        if ("resources" in obj) {
+          ret = ret.concat(flattenResourceList(obj.resources));
+        }
+        if ("resource" in row) {
+          ret = ret.concat(flattenResourceList(obj.resource));
+        }
+      }
+      return ret;
+    };
+    var lst = flattenResourceList(row);
+    if (lst.length > 8) {
+      lst = lst.slice(0, 8);
+      lst.push("...");
+    }
+    return lst.join(", ");
+  };
+
+  $('#constraints #middle table.constraints, #configs #middle table.constraints')
     .bootstrapTable({
       method: 'get',
       url: Routes.cib_constraints_path(
@@ -11,7 +40,7 @@ $(function() {
       ),
       striped: true,
       pagination: true,
-      pageSize: 50,
+      pageSize: 25,
       pageList: [10, 25, 50, 100, 200],
       sidePagination: 'client',
       smartDisplay: false,
@@ -20,7 +49,7 @@ $(function() {
       showColumns: false,
       showRefresh: true,
       minimumCountColumns: 0,
-      sortName: 'id',
+      sortName: 'object_type',
       sortOrder: 'asc',
       columns: [{
         field: 'object_type',
@@ -32,19 +61,14 @@ $(function() {
           switch(row.object_type) {
             case "location":
               return __("Location");
-              break;
             case "colocation":
               return __("Colocation");
-              break;
             case "order":
               return __("Order");
-              break;
             case "ticket":
               return __("Ticket");
-              break;
             default:
-              return row.object_type;
-              break;
+              return value;
           }
         }
       }, {
@@ -54,27 +78,24 @@ $(function() {
         switchable: false,
         clickToSelect: true
       }, {
-        field: 'operate',
+        field: 'id',
+        title: __('Resources'),
+        sortable: true,
+        switchable: false,
+        clickToSelect: true,
+        formatter: function(value, row, index) {
+          return constraintResources(row);
+        }
+      }, {
+        field: 'id',
         title: __('Operations'),
         sortable: false,
         clickToSelect: false,
         class: 'col-sm-2',
         events: {
           'click .delete': function (e, value, row, index) {
-            e.preventDefault();
             var $self = $(this);
-
-            try {
-              answer = confirm(
-                i18n.translate(
-                  'Are you sure you wish to delete %s?'
-                ).fetch(row.id)
-              );
-            } catch (e) {
-              (console.error || console.log).call(console, e.stack || e);
-            }
-
-            if (answer) {
+            $.hawkAsyncConfirm(i18n.translate('Are you sure you wish to delete %s?').fetch(row.id), function() {
               $.ajax({
                 dataType: 'json',
                 method: 'POST',
@@ -113,7 +134,8 @@ $(function() {
                   });
                 }
               });
-            }
+            });
+            return false;
           }
         },
         formatter: function(value, row, index) {

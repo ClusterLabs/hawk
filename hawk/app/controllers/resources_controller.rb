@@ -10,9 +10,7 @@ class ResourcesController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render json: Resource.all.reject { |resource|
-          resource.object_type == "template"
-        }.to_json
+        render json: Resource.all.to_json
       end
     end
   end
@@ -71,6 +69,14 @@ class ResourcesController < ApplicationController
   end
 
   def show
+    @resource = Resource.find params[:id]
+
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def events
     @resource = Resource.find params[:id]
 
     respond_to do |format|
@@ -155,7 +161,7 @@ class ResourcesController < ApplicationController
     if ["index", "types"].include? params[:action]
       "withrightbar"
     else
-      if params[:action] == "show"
+      if params[:action] == "show" || params[:action] == "events"
         "modal"
       else
         super

@@ -18,17 +18,21 @@ module StatesHelper
   end
 
   def status_icon_for(type)
+    icon_tag(status_icon_name_for(type))
+  end
+
+  def status_icon_name_for(type)
     case type.to_sym
     when :ok
-      icon_tag("check")
+      "check"
     when :errors
-      icon_tag("exclamation-triangle")
+      "exclamation-triangle"
     when :maintenance
-      icon_tag("wrench")
+      "wrench"
     when :nostonith
-      icon_tag("plug")
+      "plug"
     else
-      icon_tag("question")
+      "question"
     end
   end
 end

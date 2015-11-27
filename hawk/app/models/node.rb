@@ -9,7 +9,7 @@ class Node < Tableless
   attr_accessor :xml
   attribute :id, String
   attribute :name, String
-  attribute :attrs, Hash
+  attribute :params, Hash
   attribute :utilization, Hash
   attribute :state, String
   attribute :online, Boolean
@@ -69,7 +69,44 @@ class Node < Tableless
     name
   end
 
+  def mapping
+    {}.tap do |m|
+      m["standby"] = {
+        # TODO: Should be boolean, but pacemaker's crappy (yes|true|1) booleans don't map well to the UI :(
+        type: "string",
+        default: "off",
+        longdesc: _("Puts the node into standby mode. The specified node is no longer able to host resources. Any resources currently active on the node will be moved to another node.")
+      }
+      params.map do |key, _|
+        m[key] = {
+          type: "string",
+          default: "",
+          longdesc: ""
+        } unless m.key? key
+      end
+    end
+  end
+
   protected
+
+  def update
+    if current_cib.match("//configuration//node[@id='#{id}']").empty?
+      errors.add :base, _('The ID "%{id}" does not exist') % { id: id }
+      return false
+    end
+
+    merge_nvpairs("instance_attributes", params)
+
+    # write new xml
+    begin
+      Invoker.instance.cibadmin_replace xml.to_s
+    rescue NotFoundError, SecurityError, RuntimeError => e
+      Rails.logger.debug e.backtrace
+      errors.add :base, "Error: #{e.message}"
+      return false
+    end
+    true
+  end
 
   class << self
     def instantiate(xml, state, can_fence)
@@ -83,7 +120,7 @@ class Node < Tableless
       record.remote = state[:remote]
       record.fence = can_fence
 
-      record.attrs = if xml.elements['instance_attributes']
+      record.params = if xml.elements['instance_attributes']
         vals = xml.elements['instance_attributes'].elements.collect do |e|
           [e.attributes['name'], e.attributes['value']]
         end
@@ -144,6 +181,39 @@ class Node < Tableless
     rescue Cib::RecordNotFound
       # Can't find by id attribute, try by name attribute
       super(name, 'name')
+    end
+  end
+
+  def merge_nvpairs(list, attrs)
+    if attrs.empty?
+      # No attributes to set, get rid of the list (if it exists)
+      xml.elements[list].remove if xml.elements[list]
+    else
+      # Get rid of any attributes that are no longer set
+      if xml.elements[list]
+        xml.elements[list].elements.each do |el|
+          el.remove unless attrs.keys.include? el.attributes['name']
+        end
+      else
+        xml.add_element(
+          list,
+          "id" => "#{xml.attributes["id"]}-#{list}")
+      end
+
+      # Write new attributes or update existing ones
+      attrs.each do |n, v|
+        nvp = xml.elements["#{list}/nvpair[@name=\"#{n}\"]"]
+
+        if nvp
+          nvp.attributes["value"] = v
+        else
+          xml.elements[list].add_element(
+            "nvpair",
+            "id" => "#{xml.elements[list].attributes['id']}-#{n}",
+            "name" => n,
+            "value" => v)
+        end
+      end
     end
   end
 end

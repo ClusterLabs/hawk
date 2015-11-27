@@ -16,7 +16,7 @@
       ],
       targets: {
         events: el,
-        metadata: 'footer .metadata',
+        metadata: '.metadata',
         content: '#states #middle'
       },
       templates: {
@@ -28,6 +28,33 @@
       this.defaults,
       options
     );
+
+    $.views.converters({
+      statusbuttonclass: function(value) {
+        if (value == "ok") {
+          return "btn btn-success";
+        } else if (value == "errors") {
+          return "btn btn-danger";
+        } else if (value == "maintenance") {
+          return "btn btn-info";
+        } else {
+          return "btn btn-warning";
+        }
+      },
+      statusbuttonicon: function(value) {
+        if (value == "ok") {
+          return 'fa fa-fw fa-check';
+        } else if (value == "errors") {
+          return 'fa fa-fw fa-exclamation-triangle';
+        } else if (value == "maintenance") {
+          return 'fa fa-fw fa-wrench';
+        } else if (value == "nostonith") {
+          return 'fa fa-fw fa-plug';
+        } else {
+          return 'fa fa-fw fa-question';
+        }
+      }
+    });
 
     $.templates({
       statusError: {
@@ -62,11 +89,7 @@
     var self = this;
 
     $.ajax({
-      url: Routes.cib_path(
-        $('body').data('cib'),
-        { format: 'json' }
-      ),
-
+      url: Routes.cib_path($('body').data('cib'), { format: 'json' }),
       type: 'GET',
       dataType: 'json',
       cache: self.options.cache,
@@ -75,9 +98,18 @@
       success: function(cib) {
         if (cib) {
           $('body').data('content', cib);
-          $('#middle .circle').statusCircleFromCIB(cib);
+          $('.circle').statusCircleFromCIB(cib);
           $(self.options.targets.metadata).link(true, cib);
           $(self.options.targets.content).link(true, cib);
+
+          $(['#states #middle table.resources',
+             '#resources #middle table.resources',
+             '#states #middle table.tickets',
+             '#tickets #middle table.tickets',
+             '#nodes #middle table.nodes',
+             '#states #middle table.nodes',
+             '#configs #middle table'].join(', '))
+            .bootstrapTable('refresh');
         }
       },
 
@@ -87,7 +119,7 @@
           msg,
           { type: 'danger' }
         );
-        $('#middle .circle').statusCircle('errors', msg);
+        $('.circle').statusCircle('errors', msg);
       }
     });
   };
@@ -114,5 +146,5 @@
 
 $(function() {
   $('body').statusCheck();
-  $('#middle .circle').statusCircleFromCIB();
+  $('.circle').statusCircleFromCIB();
 });

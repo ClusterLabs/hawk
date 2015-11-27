@@ -2,48 +2,62 @@
 // See COPYING for license.
 
 $(function() {
-  $('#nodes #middle table.nodes, #states #middle table.nodes')
+  var rowStyleFn = function(row, index) {
+    if (row.state == "online") {
+      return { classes: ["success"] };
+    } else if (row.state == "offline") {
+      return { };
+    } else if (row.state == "fence" || row.state == "unclean") {
+      return { classes: ["danger"] };
+    } else {
+      return { classes: ["warning"] };
+    }
+  };
+
+  $('#states #middle table.nodes')
     .bootstrapTable({
-      method: 'get',
-      url: Routes.cib_nodes_path(
-        $('body').data('cib'),
-        { format: 'json' }
-      ),
-      striped: true,
+      ajax: function(params) {
+        var cib = $('body').data('content');
+        params.success(cib.nodes, "success", {});
+        params.complete({}, "success");
+      },
       pagination: false,
-      pageSize: 50,
+      pageSize: 10,
       pageList: [10, 25, 50, 100, 200],
       sidePagination: 'client',
       smartDisplay: false,
       search: true,
       searchAlign: 'left',
       showColumns: false,
-      showRefresh: true,
+      showRefresh: false,
       minimumCountColumns: 0,
       sortName: 'name',
       sortOrder: 'asc',
+      rowStyle: rowStyleFn,
       columns: [
         {
           field: 'state',
-          title: __('Status'),
+          title: __("Status"),
           sortable: true,
           clickToSelect: true,
-          class: 'col-sm-1',
+          align: "center",
+          halign: "center",
+          class: 'detail',
           formatter: function(value, row, index) {
             var icon = ['fa', 'fa-lg'];
             var title = row.state;
             switch(row.state) {
             case 'online':
-              icon.push('fa-play', 'text-success');
+              icon.push('fa-circle', 'text-success');
               break;
             case 'offline':
-              icon.push('fa-stop', 'text-info');
+              icon.push('fa-minus-circle', 'text-danger');
               break;
             case 'fence':
-              icon.push('fa-exclamation-triangle', 'text-danger');
+              icon.push('fa-plug', 'text-danger');
               break;
             case 'unclean':
-              icon.push('fa-exclamation-triangle', 'text-danger');
+              icon.push('fa-plug', 'text-danger');
               break;
             default:
               icon.push('fa-question-circle', 'text-warning');
@@ -66,6 +80,8 @@ $(function() {
         }, {
           field: 'maintenance',
           title: __('Maintenance'),
+          align: 'right',
+          halign: 'right',
           sortable: false,
           clickToSelect: true,
           class: 'col-sm-1',
@@ -74,17 +90,7 @@ $(function() {
               e.preventDefault();
               var $self = $(this);
 
-              try {
-                answer = confirm(
-                  i18n.translate(
-                    'This will bring node %s out of maintenance mode. Do you want to continue?'
-                  ).fetch(row.name)
-                );
-              } catch (e) {
-                (console.error || console.log).call(console, e.stack || e);
-              }
-
-              if (answer) {
+              $.hawkAsyncConfirm(i18n.translate('This will bring node %s out of maintenance mode. Do you want to continue?').fetch(row.name), function() {
                 $.ajax({
                   dataType: 'json',
                   method: 'GET',
@@ -121,23 +127,14 @@ $(function() {
                     });
                   }
                 });
-              }
+              });
+              return false;
             },
             'click .maintenance': function (e, value, row, index) {
               e.preventDefault();
               var $self = $(this);
 
-              try {
-                answer = confirm(
-                  i18n.translate(
-                    'This will put node %s in maintenance mode. All resources on this node will become unmanaged. Do you want to continue?'
-                  ).fetch(row.name)
-                );
-              } catch (e) {
-                (console.error || console.log).call(console, e.stack || e);
-              }
-
-              if (answer) {
+              $.hawkAsyncConfirm(i18n.translate('This will put node %s in maintenance mode. All resources on this node will become unmanaged. Do you want to continue?').fetch(row.name), function() {
                 $.ajax({
                   dataType: 'json',
                   method: 'GET',
@@ -174,7 +171,8 @@ $(function() {
                     });
                   }
                 });
-              }
+              });
+              return false;
             }
           },
           formatter: function(value, row, index) {
@@ -212,22 +210,14 @@ $(function() {
           sortable: false,
           clickToSelect: true,
           class: 'col-sm-1',
+          align: 'right',
+          halign: 'right',
           events: {
             'click .online': function (e, value, row, index) {
               e.preventDefault();
               var $self = $(this);
 
-              try {
-                answer = confirm(
-                  i18n.translate(
-                    'This will bring node %s online if it is currently on standby. Do you want to continue?'
-                  ).fetch(row.name)
-                );
-              } catch (e) {
-                (console.error || console.log).call(console, e.stack || e);
-              }
-
-              if (answer) {
+              $.hawkAsyncConfirm(i18n.translate('This will bring node %s online if it is currently on standby. Do you want to continue?').fetch(row.name), function() {
                 $.ajax({
                   dataType: 'json',
                   method: 'GET',
@@ -264,23 +254,14 @@ $(function() {
                     });
                   }
                 });
-              }
+              });
+              return false;
             },
             'click .standby': function (e, value, row, index) {
               e.preventDefault();
               var $self = $(this);
 
-              try {
-                answer = confirm(
-                  i18n.translate(
-                    'This will put node %s on standby. All resources will be stopped and/or moved to another node. Do you want to continue?'
-                  ).fetch(row.name)
-                );
-              } catch (e) {
-                (console.error || console.log).call(console, e.stack || e);
-              }
-
-              if (answer) {
+              $.hawkAsyncConfirm(i18n.translate('This will put node %s on standby. All resources will be stopped and/or moved to another node. Do you want to continue?').fetch(row.name), function() {
                 $.ajax({
                   dataType: 'json',
                   method: 'GET',
@@ -317,7 +298,8 @@ $(function() {
                     });
                   }
                 });
-              }
+              });
+              return false;
             }
           },
           formatter: function(value, row, index) {
@@ -350,27 +332,19 @@ $(function() {
             }
           }
         }, {
-          field: 'operate',
+          field: 'id',
           title: __('Operations'),
           sortable: false,
           clickToSelect: false,
+          align: 'right',
+          halign: 'right',
           class: 'col-sm-2',
           events: {
             'click .fence': function (e, value, row, index) {
               e.preventDefault();
               var $self = $(this);
 
-              try {
-                answer = confirm(
-                  i18n.translate(
-                    'This will attempt to immediately fence node %s. Do you want to continue?'
-                  ).fetch(row.name)
-                );
-              } catch (e) {
-                (console.error || console.log).call(console, e.stack || e);
-              }
-
-              if (answer) {
+              $.hawkAsyncConfirm(i18n.translate('This will attempt to immediately fence node %s. Do you want to continue?').fetch(row.name), function() {
                 $.ajax({
                   dataType: 'json',
                   method: 'GET',
@@ -407,33 +381,62 @@ $(function() {
                     });
                   }
                 });
-              }
+              });
+
+              return false;
             }
           },
           formatter: function(value, row, index) {
-            var operations = []
+            var operations = [];
+            var dropdowns = [];
+
+            var add_operation = function(dest, path, path_class, icon_class, text) {
+              if (dest == "menu") {
+                dropdowns.push([
+                  '<li>',
+                    '<a href="', path, '" class="', path_class, '">',
+                      '<i class="fa fa-fw fa-', icon_class, '"></i> ',
+                      text,
+                    '</a>',
+                  '</li>'
+                ].join(''));
+              } else if (dest == "button") {
+                operations.push([
+                  '<a href="', path, '" class="', path_class, ' btn btn-default btn-xs" title="', text, '">',
+                    '<i class="fa fa-', icon_class, '"></i>',
+                  '</a> '
+                ].join(''));
+              }
+            };
 
             if (row.fence) {
+              add_operation("menu", Routes.fence_cib_node_path($('body').data('cib'), row.id), 'fence', 'plug', __('Fence'));
+
               operations.push([
-                '<a href="',
-                Routes.fence_cib_node_path(
-                  $('body').data('cib'),
-                  row.id
-                ),
-                '" class="fence btn btn-default btn-xs" title="',
-                __('Fence'),
-                '">',
-                '<i class="fa fa-arrow-circle-right"></i>',
-                '</a> '
+                '<div class="btn-group" role="group">',
+                '<button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" data-container="body" aria-haspopup="true" aria-expanded="true">',
+                '<span class="caret"></span>',
+                '</button>',
+                '<ul class="dropdown-menu">',
+                dropdowns.join(''),
+                '</ul>',
+                '</div>'
               ].join(''));
             }
 
             operations.push([
               '<a href="',
-              Routes.cib_node_path(
-                $('body').data('cib'),
-                row.id
-              ),
+              Routes.events_cib_node_path($('body').data('cib'), row.name),
+              '" class="events btn btn-default btn-xs" title="',
+              __('Events'),
+              '" data-toggle="modal" data-target="#modal-lg">',
+              '<i class="fa fa-history"></i>',
+              '</a> '
+            ].join(''));
+
+            operations.push([
+              '<a href="',
+              Routes.cib_node_path($('body').data('cib'), row.id),
               '" class="details btn btn-default btn-xs" title="',
               __('Details'),
               '" data-toggle="modal" data-target="#modal">',
@@ -449,6 +452,80 @@ $(function() {
           }
         }]
     });
+
+    $('#nodes #middle table.nodes, #configs #middle table.nodes')
+    .bootstrapTable({
+      method: 'get',
+      url: Routes.cib_nodes_path(
+        $('body').data('cib'),
+        { format: 'json' }
+      ),
+      pagination: true,
+      pageSize: 25,
+      pageList: [10, 25, 50, 100, 200],
+      sidePagination: 'client',
+      smartDisplay: false,
+      search: true,
+      searchAlign: 'left',
+      showColumns: false,
+      showRefresh: true,
+      minimumCountColumns: 0,
+      sortName: 'id',
+      sortOrder: 'asc',
+      striped: true,
+      columns: [{
+        field: 'id',
+        title: __('ID'),
+        sortable: true,
+        switchable: false,
+        clickToSelect: true
+      }, {
+        field: 'name',
+        title: __('Name'),
+        sortable: true,
+        switchable: false,
+        clickToSelect: true
+      }, {
+        field: 'id',
+        title: __('Operations'),
+        sortable: false,
+        clickToSelect: false,
+        class: 'col-sm-2',
+        events: {
+        },
+        formatter: function(value, row, index) {
+          var operations = [];
+
+          operations.push([
+            '<a href="',
+             Routes.edit_cib_node_path($('body').data('cib'), row.id),
+              '" class="edit btn btn-default btn-xs" title="',
+              __('Edit'),
+            '">',
+              '<i class="fa fa-pencil"></i>',
+            '</a> '
+          ].join(''));
+
+          return [
+            '<div class="btn-group" role="group">',
+            operations.join(''),
+            '</div>',
+          ].join('');
+        }
+      }]
+    });
+
+
+  $('#nodes #middle table.nodes, #states #middle table.nodes, #configs #middle table.nodes').on("click", ".dropdown-toggle", function(event){
+    var button = $(this);
+    var open = button.attr('aria-expanded');
+    var dropdown = button.siblings('.dropdown-menu');
+    if (open) {
+      dropdown.css('top', button.offset().top - $(window).scrollTop() + button.outerHeight() + "px");
+      dropdown.css('left', (button.offset().left + button.outerWidth() - dropdown.outerWidth()) + "px");
+      dropdown.css('position', 'fixed');
+    }
+  });
 
   $('#nodes #middle form')
     .validate({

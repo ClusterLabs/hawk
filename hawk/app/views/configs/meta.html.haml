@@ -1,0 +1,28 @@
+.modal-header
+  %button.close{ type: "button", data: { dismiss: "modal" } }
+    %span{ aria: { hidden: "true" } }
+      &times;
+    %span.sr-only
+      = _("Close")
+
+  %h3.modal-title
+    = icon_text "info", _("Cluster Details"), class: "page"
+
+.modal-body
+  - unless current_cib.live?
+    .alert.alert-warning{role: :alert}
+      = _("Simulator Active")
+
+  %table.table.table-bordered.metadata
+    %tbody
+      - footer_metadata_items.each do |name, link, value, title|
+        %tr
+          %th.col-xs-4
+            - if title
+              %abbr{title: title}
+                = name
+            - else
+              = name
+          %td.col-xs-8
+            %tt{data: { link: link } }
+              = value

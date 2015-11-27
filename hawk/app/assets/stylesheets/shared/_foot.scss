@@ -2,19 +2,26 @@
 // See COPYING for license.
 
 footer {
-  background-color: #fff;
-  padding: 20px 10px;
-  border-top: 1px solid #999;
+  display: none;
+
+  background-color: #f9f9f9;
+  padding: 15px 10px;
+  border-top: 1px solid #ccc;
+
+  position:absolute;
+  bottom:-60px;
+  height:60px;
+  width:100%;
+  overflow: hidden;
+  z-index: 1025;
 
   .container-fluid {
     .row {
-      p {
-        margin: 0;
-        display: inline-block;
-      }
-
       .copyright {
         text-align: left;
+        vertical-align: middle;
+        height: 30px;
+        line-height: 30px;
       }
 
       .metadata {

@@ -89,7 +89,7 @@ class Primitive < Template
       # TODO(must): Ensure clazz, provider and type are sanitized
       cmd.push "primitive #{id}"
 
-      if template.empty?
+      if template.blank?
         cmd.push [
           clazz,
           provider,
@@ -99,7 +99,7 @@ class Primitive < Template
         cmd.push "@#{template}"
       end
 
-      unless params.empty?
+      unless params.blank?
         params.each do |key, value|
           cmd.push [
             key,
@@ -108,7 +108,7 @@ class Primitive < Template
         end
       end
 
-      unless ops.empty?
+      unless ops.blank?
         ops.each do |_id, op|
           cmd.push "op #{op["name"]}"
 
@@ -122,7 +122,7 @@ class Primitive < Template
         end
       end
 
-      unless meta.empty?
+      unless meta.blank?
         cmd.push "meta"
 
         meta.each do |key, value|

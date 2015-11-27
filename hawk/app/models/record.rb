@@ -45,7 +45,7 @@ class Record < Tableless
 
     # Return all objects of a given type.
     # get_children is legacy and is ignored.
-    def all(_get_children = false)
+    def all(get_children = false)
       begin
         elems = current_cib.match "//#{cib_type_fetch}"
 
@@ -70,7 +70,9 @@ class Record < Tableless
             obj = cls.instantiate(elem)
             obj.id = elem.attributes['id']
             obj.xml = elem
+
             result << obj
+            result.concat Record.children_of(obj) if get_children
           end
         end
       rescue SecurityError => e
@@ -79,6 +81,23 @@ class Record < Tableless
         []
       rescue RuntimeError => e
         raise Cib::CibError, e.message
+      end
+    end
+
+    def children_of(rsc)
+      [].tap do |result|
+        if rsc.respond_to? :children
+          rsc.children.each do |child|
+            cr = Record.find(child)
+            result.push cr
+            result.concat Record.children_of(cr)
+          end
+        end
+        if rsc.respond_to? :child
+          cr = Record.find(rsc.child)
+          result.push cr
+          result.concat Record.children_of(cr)
+        end
       end
     end
 

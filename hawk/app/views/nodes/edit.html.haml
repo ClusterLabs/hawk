@@ -1,0 +1,25 @@
+.container-fluid
+  .row
+    %h1
+      = icon_text "server", _("Edit Node"), class: "page"
+      .pull-right
+        .btn-group{ role: "group" }
+          = link_to icon_text("list-ul", _("List")), cib_nodes_path(@cib.id), class: "btn btn-default"
+
+  .row
+    = render partial: "form", locals: { cib: @cib, node: @node }
+
+- content_for :rightbar do
+  .container-fluid{ data: { spy: "affix" } }
+    .row.node
+      = localized_help_for :resources, :node
+
+    #helpentries
+      - @node.mapping.each do |key, values|
+        - next unless values[:longdesc]
+
+        .row.attrhelp{ class: key }
+          %h2.margin-bottom
+            = key
+
+          = simple_format values[:longdesc]

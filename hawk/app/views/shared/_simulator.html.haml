@@ -19,7 +19,7 @@
           .row
             .col-sm-9
               %select.form-control#sim-events{ multiple: true }
-              .btn-group.btn-group-sm.btn-group-justified
+              .btn-group.btn-group-sm
                 .btn-group
                   %button.btn.btn-default#sim-addnode{ type: :button }
                     = icon_text "plus", _("Node")
@@ -165,7 +165,7 @@
         .col-sm-7
           %select#op-inject-result.form-control
             - op_results.each do |value, name|
-              %option{value: value}= name
+              %option{value: value}= "#{name} (#{value})"
     .modal-footer
       %button.btn.btn-default{type: :button, data: { dismiss: :modal }}
         = _("Cancel")

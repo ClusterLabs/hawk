@@ -99,4 +99,31 @@ module CibTools
   end
   module_function :determine_online_status
 
+  def rc_desc(rc)
+    case rc
+    when 0
+      _('success')
+    when 1
+      _('generic error')
+    when 2
+      _('incorrect arguments')
+    when 3
+      _('unimplemented action')
+    when 4
+      _('insufficient permissions')
+    when 5
+      _('installation error')
+    when 6
+      _('configuration error')
+    when 7
+      _('not running')
+    when 8
+      _('running (master)')
+    when 9
+      _('failed (master)')
+    else
+      _('other')
+    end
+  end
+  module_function :rc_desc
 end

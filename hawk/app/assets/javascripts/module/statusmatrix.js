@@ -68,6 +68,7 @@ $(function() {
         unclean: "#ec008c",
         granted: "#c1d82f",
         revoked: "#b5bbd4",
+        elsewhere: "#ffd457"
       },
       icons: {
         master: "fa-circle text-info",
@@ -82,6 +83,7 @@ $(function() {
         unclean: "fa-circle text-danger",
         granted: "fa-check-circle text-success",
         revoked: "fa-times-circle-o text-muted",
+        elsewhere: "fa-question-circle text-warning",
       },
       title: __("Details"),
       info_selector: "#cib-status-matrix-details",

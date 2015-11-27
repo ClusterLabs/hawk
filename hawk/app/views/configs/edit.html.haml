@@ -1,0 +1,27 @@
+.container-fluid
+  .row
+    %h1
+      = icon_text "database", _("Edit"), class: "page"
+      %small= _("Configuration")
+      .pull-right
+        .btn-group{ role: "group" }
+          = link_to icon_text("list", _("Show")), cib_config_path(cib_id: current_cib.id), class: "btn btn-primary"
+          = link_to icon_text("file-image-o", _("Graph")), cib_graph_path(cib_id: current_cib.id), class: "btn btn-warning"
+
+  .row
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title= _("Nodes")
+      %table.table.table-striped.nodes
+
+  .row
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title= _("Resources")
+      %table.table.table-striped.resources
+
+  .row
+    .panel.panel-default
+      .panel-heading
+        %h3.panel-title= _("Constraints")
+      %table.table.table-striped.constraints

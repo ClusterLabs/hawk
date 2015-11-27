@@ -1,4 +1,5 @@
 # Copyright (c) 2009-2015 Tim Serong <tserong@suse.com>
+# Copyright (c) 2015 Kristoffer Gronlund <kgronlund@suse.com>
 # See COPYING for license.
 
 class AgentsController < ApplicationController
@@ -6,7 +7,6 @@ class AgentsController < ApplicationController
   before_filter :set_title
 
   def show
-
     if params[:id].start_with? "@"
       name = params[:id][1..-1]
       template = Hash.from_xml(Util.safe_x("/usr/sbin/cibadmin", "-l", "--query", "--xpath", "//template[@id='#{name}']"))
@@ -23,7 +23,6 @@ class AgentsController < ApplicationController
       @name = params[:id]
     end
     @agent = Hash.from_xml(Util.safe_x("/usr/sbin/crm_resource", "--show-metadata", @name))
-
 
     if @agent
       respond_to do |format|

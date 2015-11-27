@@ -18,7 +18,7 @@ $(function() {
       search: true,
       searchAlign: 'left',
       showColumns: false,
-      showRefresh: true,
+      showRefresh: false,
       minimumCountColumns: 0,
       sortName: 'id',
       sortOrder: 'asc',
@@ -35,27 +35,23 @@ $(function() {
         switchable: false,
         clickToSelect: true
       }, {
-        field: 'operate',
+        field: 'id',
         title: __('Operations'),
         sortable: false,
         clickToSelect: false,
         class: 'col-sm-2',
+        align: 'right',
+        halign: 'right',
         events: {
           'click .delete': function (e, value, row, index) {
             e.preventDefault();
             var $self = $(this);
 
-            try {
-              answer = confirm(
-                i18n.translate(
-                  'Are you sure you wish to delete %s?'
-                ).fetch(row.id)
-              );
-            } catch (e) {
-              (console.error || console.log).call(console, e.stack || e);
+            if (row.id == null) {
+              return false;
             }
 
-            if (answer) {
+            $.hawkAsyncConfirm(i18n.translate('Are you sure you wish to delete %s?').fetch(row.id), function() {
               $.ajax({
                 dataType: 'json',
                 method: 'POST',
@@ -95,18 +91,21 @@ $(function() {
                   });
                 }
               });
-            }
+            });
+            return false;
           }
         },
         formatter: function(value, row, index) {
+
+          if (row.id == null) {
+            return "";
+          }
+
           var operations = []
 
           operations.push([
             '<a href="',
-                Routes.edit_cib_ticket_path(
-                  $('body').data('cib'),
-                  row.id
-                ),
+                Routes.edit_cib_ticket_path($('body').data('cib'), row.id),
               '" class="edit btn btn-default btn-xs" title="',
               __('Edit'),
             '">',
@@ -116,10 +115,7 @@ $(function() {
 
           operations.push([
             '<a href="',
-                Routes.cib_ticket_path(
-                  $('body').data('cib'),
-                  row.id
-                ),
+                Routes.cib_ticket_path($('body').data('cib'), row.id),
               '" class="delete btn btn-default btn-xs" title="',
               __('Delete'),
             '">',
@@ -139,12 +135,13 @@ $(function() {
 
   $('#states #middle table.tickets')
     .bootstrapTable({
-      method: 'get',
-      url: Routes.cib_tickets_path(
-        $('body').data('cib'),
-        { format: 'json' }
-      ),
-      striped: true,
+      ajax: function(params) {
+        var cib = $('body').data('content');
+        params.success($.map(cib.tickets, function(t) {
+          return t;
+        }, "success", {}));
+        params.complete({}, "success");
+      },
       pagination: false,
       pageSize: 50,
       pageList: [10, 25, 50, 100, 200],
@@ -153,8 +150,19 @@ $(function() {
       search: true,
       searchAlign: 'left',
       showColumns: false,
-      showRefresh: true,
+      showRefresh: false,
       minimumCountColumns: 0,
+      rowStyle: function(row, index) {
+        if (row.state == "granted") {
+          return { classes: ["success"] };
+        } else if (row.state == "elsewhere") {
+          return { classes: ["warning"] };
+        } else if (row.state == "revoked") {
+          return {};
+        } else {
+          return { classes: ["warning"] };
+        }
+      },
       sortName: 'id',
       sortOrder: 'asc',
       columns: [{
@@ -164,34 +172,42 @@ $(function() {
         clickToSelect: true,
         class: 'col-sm-1',
         formatter: function(value, row, index) {
-          if (row.granted) {
-            return [
+          var ret = [];
+          if (row.state == "granted") {
+            ret = [
               '<i class="fa fa-check-circle fa-lg text-success" title="',
               __("Granted"),
               '"></i>'
-            ].join('');
+            ];
+          } else if (row.state == "elsewhere") {
+            ret = [
+              '<i class="fa fa-arrow-circle-o-left fa-lg text-info" title="',
+              __("Elsewhere"),
+              '"></i>'
+            ];
           } else {
-            return [
+            ret = [
               '<i class="fa fa-ban fa-lg text-danger" title="',
               __("Revoked"),
               '"></i>'
-            ].join('');
+            ];
           }
+          return ret.join('');
         }
       }, {
         field: 'id',
-        title: __('ID'),
-        sortable: true,
-        switchable: false,
-        clickToSelect: true
-      }, {
-        field: 'ticket',
         title: __('Ticket'),
         sortable: true,
         switchable: false,
         clickToSelect: true
       }, {
-        field: null,
+        field: 'last_granted',
+        title: __('Last Granted'),
+        sortable: true,
+        switchable: false,
+        clickToSelect: true
+      }, {
+        field: 'granted',
         title: __('Granted'),
         sortable: false,
         clickToSelect: true,
@@ -201,26 +217,15 @@ $(function() {
             e.preventDefault();
             var $self = $(this);
 
-            try {
-              answer = confirm(
-                i18n.translate(
-                  'This will request the ticket %s be granted to the present site. Do you want to continue?'
-                ).fetch(row.ticket)
-              );
-            } catch (e) {
-              (console.error || console.log).call(console, e.stack || e);
+            if (row.id == null) {
+              return false;
             }
 
-            if (answer) {
+            $.hawkAsyncConfirm(i18n.translate('This will request the ticket %s be granted to the present site. Do you want to continue?').fetch(row.id), function() {
               $.ajax({
                 dataType: 'json',
                 method: 'GET',
-                url: Routes.grant_cib_ticket_path(
-                  $('body').data('cib'),
-                  row.id,
-                  { format: 'json' }
-                ),
-
+                url: [context.attr('href'), ".json"].join(""),
                 success: function(data) {
                   if (data.success) {
                     $.growl({
@@ -248,31 +253,22 @@ $(function() {
                   });
                 }
               });
-            }
+            });
+            return false;
           },
           'click .revoke': function (e, value, row, index) {
             e.preventDefault();
             var $self = $(this);
 
-            try {
-              answer = confirm(
-                i18n.translate(
-                  'This will request the ticket %s be revoked. Do you want to continue?'
-                ).fetch(row.ticket)
-              );
-            } catch (e) {
-              (console.error || console.log).call(console, e.stack || e);
+            if (row.id == null) {
+              return false;
             }
 
-            if (answer) {
+            $.hawkAsyncConfirm(i18n.translate('This will request the ticket %s be revoked. Do you want to continue?').fetch(row.id), function() {
               $.ajax({
                 dataType: 'json',
                 method: 'GET',
-                url: Routes.revoke_cib_ticket_path(
-                  $('body').data('cib'),
-                  row.id,
-                  { format: 'json' }
-                ),
+                url: [context.attr('href'), ".json"].join(""),
 
                 success: function(data) {
                   if (data.success) {
@@ -301,17 +297,23 @@ $(function() {
                   });
                 }
               });
-            }
+            });
+            return false;
           }
         },
         formatter: function(value, row, index) {
+          if (row.id == null) {
+            if (!row.granted) {
+              return '<a class="btn btn-default btn-xs disabled" disabled><i class="fa fa-toggle-off"></i><a>';
+            } else {
+              return '<a class="btn btn-default btn-xs disabled" disabled><i class="fa fa-toggle-on text-success"></i><a>';
+            }
+          }
+
           if (!row.granted) {
             return [
               '<a href="',
-                Routes.grant_cib_ticket_path(
-                  $('body').data('cib'),
-                  row.id
-                ),
+              Routes.grant_cib_tickets_path($('body').data('cib'), row.id),
               '" class="grant btn btn-default btn-xs" title="',
                 __('Grant'),
               '">',
@@ -321,10 +323,7 @@ $(function() {
           } else {
             return [
               '<a href="',
-                Routes.revoke_cib_ticket_path(
-                  $('body').data('cib'),
-                  row.id
-                ),
+                Routes.revoke_cib_tickets_path($('body').data('cib'), row.id),
               '" class="revoke btn btn-default btn-xs" title="',
                 __('Revoke'),
               '">',
@@ -334,27 +333,23 @@ $(function() {
           }
         }
       }, {
-        field: 'operate',
+        field: 'id',
         title: __('Operations'),
         sortable: false,
         clickToSelect: false,
         class: 'col-sm-2',
+        align: 'right',
+        halign: 'right',
         events: {
           'click .delete': function (e, value, row, index) {
             e.preventDefault();
             var $self = $(this);
 
-            try {
-              answer = confirm(
-                i18n.translate(
-                  'Are you sure you wish to delete %s?'
-                ).fetch(row.id)
-              );
-            } catch (e) {
-              (console.error || console.log).call(console, e.stack || e);
+            if (row.id == null) {
+              return false;
             }
 
-            if (answer) {
+            $.hawkAsyncConfirm(i18n.translate('Are you sure you wish to delete %s?').fetch(row.id), function() {
               $.ajax({
                 dataType: 'json',
                 method: 'POST',
@@ -394,31 +389,32 @@ $(function() {
                   });
                 }
               });
-            }
+            });
+            return false;
           }
         },
         formatter: function(value, row, index) {
+          if (row.id == null) {
+            return "";
+          }
+
           var operations = [];
 
-          operations.push([
-            '<a href="',
-                Routes.edit_cib_ticket_path(
-                  $('body').data('cib'),
-                  row.id
-                ),
-              '" class="edit btn btn-default btn-xs" title="',
-              __('Edit'),
-            '">',
-              '<i class="fa fa-pencil"></i>',
-            '</a> '
-          ].join(''));
+          if (row.state == "elsewhere") {
+            operations.push([
+              '<a href="',
+              Routes.revoke_cib_tickets_path($('body').data('cib'), row.id),
+              '" class="revoke btn btn-default btn-xs" title="',
+              __('Revoke'),
+              '">',
+              '<i class="fa fa-minus"></i>',
+              '</a> '
+            ].join(''));
+          }
 
           operations.push([
             '<a href="',
-            Routes.cib_ticket_path(
-              $('body').data('cib'),
-              row.id
-            ),
+            Routes.cib_ticket_path($('body').data('cib'), row.id),
             '" class="details btn btn-default btn-xs" title="',
             __('Details'),
             '" data-toggle="modal" data-target="#modal-lg">',

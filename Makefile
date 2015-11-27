@@ -44,7 +44,9 @@ LIBDIR = /usr/lib
 BINDIR = /usr/bin
 SBINDIR = /usr/sbin
 
-all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service scripts/hawk.service.bundle_gems tools/hawk_chkpwd tools/hawk_monitor tools/hawk_invoke
+.PHONY: all clean tools
+
+all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service scripts/hawk.service.bundle_gems tools
 	(cd hawk; \
 	 if $(BUNDLE_GEMS) ; then \
 		# Ignore gems from test \
@@ -84,6 +86,8 @@ tools/hawk_monitor: tools/hawk_monitor.c
 # TODO(must): This is inching towards becoming annoying: want better build infrastructure/deps
 tools/hawk_invoke: tools/hawk_invoke.c tools/common.h
 	gcc -fpie -pie $(CFLAGS) -o $@ $<
+
+tools: tools/hawk_chkpwd tools/hawk_monitor tools/hawk_invoke
 
 base/install:
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/log

@@ -2,13 +2,14 @@
 // See COPYING for license.
 
 .circle {
-  border-radius: 100%;
+  border-radius: 50%;
+  border-style: solid;
+  border-width: 4px;
   text-align: center;
   vertical-align: middle;
-  position: relative;
-  display: table;
-  margin: 0 auto;
-  margin-top: -5px;
+  display: block;
+  margin-left: 24px;
+  margin-right: 15px;
 
   //box-shadow: inset -10px -10px 100px #000, 10px 10px 20px black, inset 0px 0px 10px black;
 
@@ -50,20 +51,23 @@
 
   &.circle-large {
     font-size: 30px;
+    line-height: 96px;
     height: 100px;
     width: 100px;
   }
 
   &.circle-medium {
     font-size: 28px;
-    height: 15px;
-    width: 15px;
+    line-height: 52px;
+    height: 56px;
+    width: 56px;
   }
 
   &.circle-small {
     font-size: 14px;
-    height: 15px;
-    width: 15px;
+    line-height: 20px;
+    height: 24px;
+    width: 24px;
   }
 
   > .fa {
