@@ -2,6 +2,13 @@
 // See COPYING for license.
 
 $(function() {
+  window.userIsNavigatingAway = false;
+  var _obunload = (window.onbeforeunload) ? window.onbeforeunload : function() {};
+  window.onbeforeunload = function() {
+     _obunload.call( window );
+     window.userIsNavigatingAway = true;
+  };
+
   $('[data-toggle="tooltip"]').tooltip();
   $('[data-toggle="popover"]').popover();
   $('.nav-tabs').stickyTabs();

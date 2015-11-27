@@ -4,6 +4,13 @@
 ;(function($, doc, win) {
   'use strict';
 
+  window.userIsNavigatingAway = false;
+  var _obunload = (window.onbeforeunload) ? window.onbeforeunload : function() {};
+  window.onbeforeunload = function() {
+     _obunload.call( window );
+     window.userIsNavigatingAway = false;
+  };
+
   function MonitorCheck(el, options) {
     this.$el = $(el);
 
@@ -55,45 +62,35 @@
 
           self.processCheck();
         } else {
+          if (window.userIsNavigatingAway)
+            return;
           var msg = __('Connection to server aborted - will retry every 15 seconds.');
-          $.growl(
-            msg,
-            { type: 'warning' }
-          );
-
+          $.growl(msg, { type: 'warning' });
           $('.circle').statusCircle('errors', msg);
-
           $('body').trigger($.Event('aborted.hawk.monitor'));
-
-          setTimeout(function() { self.processCheck(); }, self.options.faster * 1000);
+          setTimeout(function() {
+            self.processCheck(); }, self.options.faster * 1000);
         }
       },
 
       error: function(request) {
+        if (window.userIsNavigatingAway)
+          return;
         if (request.readyState > 1) {
+          var msg = null;
           if (request.status >= 10000) {
-            var msg =  __('Connection to server failed - will retry every 15 seconds.');
-            $.growl(
-              msg,
-              { type: 'danger' }
-            );
-            $('.circle').statusCircle('errors', msg);
+            msg =  __('Connection to server failed - will retry every 15 seconds.');
           } else {
-            // $.growl(
-            //   request.statusText,
-            //   { type: 'danger' }
-            // );
           }
         } else {
-          var msg = __('Connection to server timed out - will retry every 15 seconds.');
-          $.growl(
-            msg,
-            { type: 'danger' }
-          );
-          $('.circle').statusCircle('errors', msg);
+          msg = __('Connection to server timed out - will retry every 15 seconds.');
         }
 
-        $('body').trigger($.Event('unavailable.hawk.monitor'));
+        if (msg != null) {
+          $.growl(msg, { type: 'danger' });
+          $('.circle').statusCircle('errors', msg);
+          $('body').trigger($.Event('unavailable.hawk.monitor'));
+        }
         setTimeout(function() { self.processCheck(); }, self.options.faster * 1000);
       }
     });

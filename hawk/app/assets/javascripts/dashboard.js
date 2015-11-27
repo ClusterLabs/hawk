@@ -187,6 +187,8 @@ var dashboardAddCluster = (function() {
   }
 
   function clusterConnectionError(clusterId, clusterInfo, xhr, status, error, cb) {
+    if (window.userIsNavigatingAway)
+      return;
     var msg = "";
     if (xhr.readyState > 1) {
       if (xhr.status == 403) {
