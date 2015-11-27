@@ -1,6 +1,8 @@
 // Copyright (c) 2009-2015 Tim Serong <tserong@suse.com>
 // See COPYING for license.
 
+$dashboard-font-size: 12px;
+
 #cib-status-matrix-details {
   display: none;
   position: fixed;
@@ -27,7 +29,7 @@ table.status-matrix-wrapper {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
-  font-size: $font-size-small;
+  font-size: $dashboard-font-size;
   padding-right: 10px;
 }
 
