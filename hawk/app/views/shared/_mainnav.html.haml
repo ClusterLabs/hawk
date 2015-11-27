@@ -18,7 +18,7 @@
 
   - unless current_cib.offline?
     %li
-      = _("Configure")
+      = _("Configuration")
 
       %ul
         %li{ class: active_menu_with(:resources, :primitives, :clones, :masters, :templates, :tags) }
@@ -28,7 +28,7 @@
         %li{ class: active_menu_with(:wizards) }
           = link_to _("Choose a wizard"), cib_wizards_path(cib_id: current_cib.id)
         %li{ class: active_menu_with(:configs, :graphs) }
-          = link_to _("Edit Configuration"), edit_cib_config_path(cib_id: current_cib.id)
+          = link_to _("Edit"), edit_cib_config_path(cib_id: current_cib.id)
         %li{ class: active_menu_with(:crm_config) }
           = link_to _("Cluster Configuration"), edit_cib_crm_config_path(cib_id: current_cib.id)
         %li{ class: active_menu_with(:commands) }
