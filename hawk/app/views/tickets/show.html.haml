@@ -58,7 +58,7 @@
                 = _("Commit")
               %td.col-xs-8
                 = @ticket[:commit]
-    - if @ticket[:constraints].any?
+    - if @ticket[:constraints] && @ticket[:constraints].any?
       .panel.panel-default
         .panel-heading#t-resources{role: :tab}
           %h4.panel-title
