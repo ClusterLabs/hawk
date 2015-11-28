@@ -20,7 +20,9 @@ class Resource < Record
     # if it fails, report errors
     if record.new_record
       cli = record.shell_syntax
-      _out, err, rc = Invoker.instance.crm_configure ['cib new', cli, 'verify', 'commit'].join("\n")
+      _out, err, rc = Invoker.instance.no_log do |i|
+        i.crm_configure ['cib new', cli, 'verify', 'commit'].join("\n")
+      end
       err.lines.each do |l|
         record.errors.add :base, l[7..-1] if l.start_with? "ERROR:"
       end if rc != 0
