@@ -22,27 +22,15 @@ class Tableless
   end
 
   def save
-    if valid? and persist!
-      true
-    else
-      false
-    end
+    valid? && persist!
   end
 
   def persisted?
-    if self.new_record
-      false
-    else
-      true
-    end
+    !new_record
   end
 
   def new_record?
-    if self.new_record
-      true
-    else
-      false
-    end
+    new_record
   end
 
   def update_attributes(attrs = nil)
@@ -52,11 +40,11 @@ class Tableless
       end
       self.attributes = attrs
     end
-    self.save
+    save
   end
 
   def validate!
-    raise ValidationError, errors unless valid?
+    fail(ValidationError, errors) unless valid?
   end
 
   protected
