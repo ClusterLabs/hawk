@@ -26,6 +26,13 @@ class Invoker
     [out, fudge_error(status.exitstatus, err), status.exitstatus]
   end
 
+  def no_log
+    @no_log = true
+    yield self
+  ensure
+    @no_log = false
+  end
+
   # Run "crm [...]"
   # Returns [out, err, exitstatus]
   def crm(*cmd)
@@ -42,7 +49,7 @@ class Invoker
   # Returns [out, err, exitstatus]
   def crm_script(rootpw, scriptdir, *cmd)
     cmd2 = ["crm", "--scriptdir=#{scriptdir}", "script"] + cmd
-    CrmEvents.instance.push cmd2
+    CrmEvents.instance.push cmd2 unless @no_log
     # TODO(must): figure out if this join thing is kosher (should be, all input looks like plain text... :-/)
     out, err, status = Util.capture3('/usr/bin/su', '--login', 'root', '-c', cmd2.join(' '), :stdin_data => rootpw)
     err = err.split("\n").map do |line|
@@ -65,7 +72,7 @@ class Invoker
       # good for testing when running as root), or some other alternative
       # with piping data to crm?
       File.chmod(0666, f.path)
-      CrmEvents.instance.push "crm configure\n#{cmd}\n"
+      CrmEvents.instance.push "crm configure\n#{cmd}\n" unless @no_log
       result = crm '-F', 'configure', 'load', 'update', f.path
     ensure
       f.unlink
@@ -92,8 +99,8 @@ class Invoker
 
   # Invoke "cibadmin -p --replace"
   def cibadmin_replace(xml)
-    CrmEvents.instance.push "cibadmin -p --replace <<EOF\n#{xml}\nEOF"
-    cibadmin '-p', '--replace', :stdin_data => xml
+    CrmEvents.instance.push "cibadmin -p --replace <<EOF\n#{xml}\nEOF" unless @no_log
+    cibadmin '-p', '--replace', stdin_data: xml
   end
 
   # Used by the simulator
@@ -116,7 +123,7 @@ class Invoker
   # Returns [out, err, exitstatus]
   def invoke_crm(input, *cmd)
     # don't log certain calls to crmevents
-    unless ignore_command(input, cmd)
+    unless @no_log || ignore_command(input, cmd)
       if input
         CrmEvents.instance.push "crm #{cmd.join(' ')}\n#{input}"
       else
