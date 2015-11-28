@@ -12,7 +12,9 @@ class GraphsController < ApplicationController
       format.svg do
         path = Pathname.new("#{Rails.root}/tmp").join(Dir::Tmpname.make_tmpname(["graph", ".svg"], nil))
         begin
-          out, err, rc = Invoker.instance.crm("configure", "graph", "dot", path.to_s, "svg")
+          _out, err, rc = Invoker.instance.no_log do |invoker|
+            invoker.crm("configure", "graph", "dot", path.to_s, "svg")
+          end
           if rc == 0
             send_data path.read, type: "image/svg+xml", disposition: "inline"
           else
