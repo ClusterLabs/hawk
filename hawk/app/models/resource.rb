@@ -14,6 +14,19 @@ class Resource < Record
   attribute :running_on, Array
   attribute :failed_ops, Array
 
+  validate do |record|
+    # to validate a new record:
+    # try making the shell form and running verify;commit in a temporary shadow cib in crm
+    # if it fails, report errors
+    if record.new_record
+      cli = record.shell_syntax
+      _out, err, rc = Invoker.instance.crm_configure ['cib new', cli, 'verify', 'commit'].join("\n")
+      err.lines.each do |l|
+        record.errors.add :base, l[7..-1] if l.start_with? "ERROR:"
+      end if rc != 0
+    end
+  end
+
   def object_type
     self.class.to_s.downcase
   end
