@@ -340,6 +340,12 @@ $(function() {
           $clazz.val($option.data('clazz')).attr('disabled', true);
           $provider.val($option.data('provider')).attr('disabled', true);
           $type.val($option.data('type')).attr('disabled', true);
+        } else if ($clazz.val() && $type.val()) {
+          $clazz.removeAttr('disabled');
+          if ($provider.val()) {
+            $provider.removeAttr('disabled');
+          }
+          $type.removeAttr('disabled');
         } else {
           $clazz.val('').removeAttr('disabled');
           $provider.val('');
@@ -351,6 +357,11 @@ $(function() {
         var $clazz = $form.find(controller_type.clazz_selector);
         var $provider = $form.find(controller_type.provider_selector);
         var $type = $form.find(controller_type.type_selector);
+
+        if ($clazz.attr('disabled') == 'disabled') {
+          // changing while disabled: we're a template
+          return;
+        }
 
         if ($clazz.val() == "ocf") {
           $provider
@@ -375,7 +386,10 @@ $(function() {
           .not('[data-clazz="' + $clazz.val() + '"][data-provider="' + $provider.val() + '"]')
           .hide()
           .end();
-        $type.val('');
+
+        if ($type.find('[data-clazz="' + $clazz.val() + '"][data-provider="' + $provider.val() + '"][value="' + $type.val() + '"]').length == 0) {
+          $type.val('');
+        }
       })
       .on('change', controller_type.sel_provider, function(e) {
         var $form = $(e.delegateTarget);
@@ -384,6 +398,11 @@ $(function() {
         var $provider = $form.find(controller_type.provider_selector);
         var $type = $form.find(controller_type.type_selector);
 
+        if ($provider.attr('disabled') == 'disabled') {
+          // changing while disabled: we're a template
+          return;
+        }
+
         $type
           .find('[data-clazz][data-provider]')
           .show()
@@ -391,7 +410,9 @@ $(function() {
           .hide()
           .end();
 
-        $type.val('');
+        if ($type.find('[data-clazz="' + $clazz.val() + '"][data-provider="' + $provider.val() + '"][value="' + $type.val() + '"]').length == 0) {
+          $type.val('');
+        }
       })
       .on('change', controller_type.selects, function(e) {
         var $form = $(e.delegateTarget);
