@@ -10,5 +10,4 @@
     .panel.panel-default
       %table.table.table-striped.constraints
 
-- content_for :rightbar do
-  .container-fluid{ data: { spy: "affix" } }
+= render partial: "shared/helpsidebar", locals: { category: :constraints, help: :intro, mapping: nil }

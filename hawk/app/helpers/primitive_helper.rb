@@ -112,7 +112,7 @@ module PrimitiveHelper
     end
   end
 
-  def localized_help
+  def localized_help_for_primitives
     if controller.controller_name == "primitives"
       localized_help_for :resources, :primitive
     else

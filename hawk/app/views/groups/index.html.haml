@@ -10,7 +10,4 @@
     .panel.panel-default
       %table.table.table-striped.groups
 
-- content_for :rightbar do
-  .container-fluid{ data: { spy: "affix" } }
-    .row.help-title
-      = localized_help_for :resources, :group
+= render partial: "shared/helpsidebar", locals: { category: :resources, help: :group, mapping: nil }

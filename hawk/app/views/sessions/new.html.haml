@@ -1,4 +1,4 @@
-= form_for @session, url: signin_path, simple: true do |main_form|
+= form_for @session, url: signin_path, simple: true, bootstrap: true do |main_form|
   = main_form.text_field :username, placeholder: _("Username"), label: { class: 'sr-only' }
   = main_form.password_field :password, placeholder: _("Password"), label: { class: 'sr-only' }
 

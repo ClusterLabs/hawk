@@ -1,5 +1,5 @@
 - if request.xhr?
-  = form_for(@cluster, url: {action: "add"}, horizontal: true, remote: true) do |f|
+  = form_for(@cluster, url: {action: "add"}, horizontal: true, bootstrap: true, remote: true) do |f|
     .modal-header
       %button.close{ type: "button", data: { dismiss: "modal" } }
         %span{ aria: { hidden: "true" } }

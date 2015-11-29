@@ -29,7 +29,7 @@
 - content_for :rightbar do
   .container-fluid.rightbar_help{ data: { spy: "affix" } }
     - @wizards.each do |wizard|
-      .row{ class: wizard.name }
+      .row.help-title.margin-bottom{ class: wizard.name }
         %h2.margin-bottom
           = wizard.shortdesc
 

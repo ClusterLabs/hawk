@@ -10,5 +10,4 @@
     .panel.panel-default
       %table.table.table-striped.resources
 
-- content_for :rightbar do
-  .container-fluid{ data: { spy: "affix" } }
+= render partial: "shared/helpsidebar", locals: { category: :resources, help: :intro, mapping: nil }

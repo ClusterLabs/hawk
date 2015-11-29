@@ -10,7 +10,4 @@
     .panel.panel-default
       %table.table.table-striped.masters
 
-- content_for :rightbar do
-  .container-fluid{ data: { spy: "affix" } }
-    .row.master
-      = localized_help_for :resources, :master
+= render partial: "shared/helpsidebar", locals: { category: :resources, help: :master, mapping: nil }

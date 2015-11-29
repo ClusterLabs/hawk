@@ -3,7 +3,7 @@
 
 .panel.panel-default
   .panel-body
-    = form_for [@cib, @profile], horizontal: true, method: :put do |main_form|
+    = form_for [@cib, @profile], horizontal: true, bootstrap: true, method: :put do |main_form|
       = main_form.select :language, :language_options, { include_hidden: false }, {  }
 
       = main_form.button_group do

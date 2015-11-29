@@ -9,36 +9,4 @@
   .row
     = render partial: "primitives/form", locals: { cib: @cib, primitive: @primitive }
 
-- content_for :rightbar do
-  .container-fluid{ data: { spy: "affix" } }
-    .row.primitive
-      = localized_help
-
-    .row.agentinfo
-
-    #helpentries
-
-%script#tmpl-helpentry{type: "text/x-jsrender"}
-  .row.attrhelp{ class: "{{:name}}" }
-    %h3.margin-bottom
-      %code
-        {{>name}}
-    {{if longdesc != ""}}
-    {{>longdesc}}
-    {{/if}}
-    {{if default != ""}}
-    %em
-      Default:
-      %code
-        {{>default}}
-    {{/if}}
-
-%script#tmpl-metahelp{type: "text/x-jsrender"}
-  - @primitive.available_meta.each do |key, values|
-    .row.attrhelp{ class: key }
-      %h3.margin-bottom
-        = content_tag :code, key
-      - if values[:longdesc]
-        = simple_format values[:longdesc]
-      - unless values[:default].blank?
-        = content_tag :em, "Default: <code>#{sanitize values[:default].to_s}</code>".html_safe
+= render partial: "primitives/help", locals: { cib: @cib, primitive: @primitive }

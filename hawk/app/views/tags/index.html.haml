@@ -10,7 +10,4 @@
     .panel.panel-default
       %table.table.table-striped.tags
 
-- content_for :rightbar do
-  .container-fluid{ data: { spy: "affix" } }
-    .row.tag
-      = localized_help_for :resources, :tag
+= render partial: "shared/helpsidebar", locals: { category: :resources, help: :tag, mapping: nil }

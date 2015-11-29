@@ -9,7 +9,4 @@
   .row
     = render partial: "form", locals: { cib: @cib, role: @role }
 
-- content_for :rightbar do
-  .container-fluid{ data: { spy: "affix" } }
-    .row.help-title
-      = localized_help_for :resources, :role
+= render partial: "shared/helpsidebar", locals: { category: :resources, help: :role, mapping: nil }

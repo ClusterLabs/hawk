@@ -10,7 +10,4 @@
     .panel.panel-default
       %table.table.table-striped.locations
 
-- content_for :rightbar do
-  .container-fluid{ data: { spy: "affix" } }
-    .row.location
-      = localized_help_for :constraints, :location
+= render partial: "shared/helpsidebar", locals: { category: :constraints, help: :location, mapping: nil }

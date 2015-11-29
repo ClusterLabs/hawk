@@ -9,7 +9,4 @@
   .row
     = render partial: "form", locals: { cib: @cib, order: @order }
 
-- content_for :rightbar do
-  .container-fluid{ data: { spy: "affix" } }
-    .row.order
-      = localized_help_for :constraints, :order
+= render partial: "shared/helpsidebar", locals: { category: :constraints, help: :order, mapping: @order.mapping }

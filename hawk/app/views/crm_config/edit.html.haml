@@ -3,8 +3,8 @@
     = icon_text "cog", _("Cluster Configuration"), class: "page"
 
   .panel.panel-default
-    .panel-body{ data: { help_target: "#rightbar > .container-fluid > .row.help-item" } }
-      = form_for [@cib, @crm_config], horizontal: true, method: :put do |main_form|
+    .panel-body{ data: { help_target: "#rightbar > .container-fluid > #helpentries > .attrhelp" } }
+      = form_for [@cib, @crm_config], horizontal: true, bootstrap: true, method: :put do |main_form|
         %fieldset{ data: { attrlist: @crm_config[:crm_config].to_json, attrlist_mapping: @crm_config.maplist(:crm_config).to_json, attrlist_prefix: "crm_config[crm_config]", attrlist_target: ".content" } }
           .content
 
@@ -28,17 +28,4 @@
           = crm_config_apply_button(main_form, @crm_config)
           = crm_config_revert_button(main_form, @crm_config)
 
-- content_for :rightbar do
-  .container-fluid{ data: { spy: "affix" } }
-    .row.help-title.margin-bottom
-      = localized_help_for :crm_config, :intro
-
-    - @crm_config.mapping.each do |section, config|
-      - config.each do |key, values|
-        .row.help-item{ class: key }
-          %h4.margin-bottom
-            = key
-
-          - if values[:longdesc]
-            = simple_format values[:longdesc]
-          = content_tag(:em, _("Default")) + ": " + content_tag(:code, "#{sanitize values[:default].to_s}")
+= render partial: "shared/helpsidebar", locals: { category: :crm_config, help: :intro, mapping: @crm_config.mapping }

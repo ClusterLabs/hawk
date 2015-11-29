@@ -10,7 +10,4 @@
     .panel.panel-default
       %table.table.table-striped.clones
 
-- content_for :rightbar do
-  .container-fluid{ data: { spy: "affix" } }
-    .row.clone
-      = localized_help_for :resources, :clone
+= render partial: "shared/helpsidebar", locals: { category: :resources, help: :clone, mapping: nil }

@@ -11,7 +11,4 @@
     .panel.panel-default
       %table.table.table-striped.roles
 
-- content_for :rightbar do
-  .container-fluid{ data: { spy: "affix" } }
-    .row.help-title
-      = localized_help_for :resources, :role
+= render partial: "shared/helpsidebar", locals: { category: :resources, help: :role, mapping: nil }

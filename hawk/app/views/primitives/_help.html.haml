@@ -1,0 +1,25 @@
+- content_for :rightbar do
+  .container-fluid{ data: { spy: "affix" } }
+    .row.help-title.margin-bottom
+      = localized_help_for_primitives
+
+    .row.agentinfo
+
+    #helpentries
+
+%script#tmpl-helpentry{type: "text/x-jsrender"}
+  .row.attrhelp{ class: "{{:name}}" }
+    %h3.margin-bottom
+      %code
+        {{>name}}
+    {{if longdesc != ""}}{{>longdesc}}{{/if}}
+    {{if default != ""}}
+    %em
+      = _("Default") + ": "
+      %code
+        {{>default}}
+    {{/if}}
+
+%script#tmpl-metahelp{type: "text/x-jsrender"}
+  - primitive.available_meta.each do |key, values|
+    = render partial: "shared/helpentry", locals: { key: key, values: values }

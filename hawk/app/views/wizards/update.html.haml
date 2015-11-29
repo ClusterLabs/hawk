@@ -4,7 +4,7 @@
       = icon_text "magic", @wizard.shortdesc, class: "page"
 
   .row
-    = form_for [@cib, @wizard], url: { action: "submit" }, method: :post, horizontal: true, remote: true do |main_form|
+    = form_for [@cib, @wizard], url: { action: "submit" }, method: :post, horizontal: true, bootstrap: true, remote: true do |main_form|
       .panel.panel-default
         .panel-steps
           %ul.nav.nav-pills

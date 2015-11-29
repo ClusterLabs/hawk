@@ -9,15 +9,4 @@
   .row
     = render partial: "form", locals: { cib: @cib, group: @group }
 
-- content_for :rightbar do
-  .container-fluid{ data: { spy: "affix" } }
-    .row.help-title
-      = localized_help_for :resources, :group
-
-    - @group.mapping.each do |key, values|
-      - next unless values[:longdesc]
-      .row.help-item{ class: key }
-        %h2.margin-bottom
-          = key
-
-        = simple_format values[:longdesc]
+= render partial: "shared/helpsidebar", locals: { category: :resources, help: :group, mapping: @group.mapping }

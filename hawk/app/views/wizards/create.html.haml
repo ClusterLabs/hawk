@@ -4,7 +4,7 @@
       = icon_text "magic", @wizard.shortdesc, class: "page"
 
   .row
-    = form_for [@cib, @wizard], horizontal: true do |main_form|
+    = form_for [@cib, @wizard], horizontal: true, bootstrap: true do |main_form|
       .panel.panel-default
         .panel-body{ data: { help_target: "#rightbar > .container-fluid > *" } }
           .well
@@ -17,7 +17,9 @@
 
 - content_for :rightbar do
   .container-fluid{ data: { spy: "affix" } }
-    .row
+    .row.help-title.margin-bottom
       %h2.margin-bottom
         = @wizard.shortdesc
       = longdesc_format @wizard.longdesc
+
+    #helpentries
