@@ -85,6 +85,17 @@ class Location < Constraint
     @complex = value
   end
 
+  def mapping
+    super.merge({
+      "resource-discovery" => {
+        type: "enum",
+        default: "always",
+        values: discovery_types,
+        longdesc: _("Controls resource discovery for the specified resource on nodes covered by the constraint. always: Always perform resource discovery (default). never: Never perform resource discovery for the specified resource on this node. This option should generally be used with a -INFINITY score. exclusive: Only perform resource discovery for the specified resource on this node.")
+      }
+    })
+  end
+
   class << self
     def all
       super.select do |record|

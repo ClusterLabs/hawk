@@ -4,16 +4,50 @@
       = errors_for location
 
       - if location.new_record?
-        = main_form.text_field :id, label: _("Constraint ID")
+        = main_form.text_field :id, label: _("Constraint ID"), data: { help_filter: ".id" }
       - else
-        = main_form.text_field :id, label: _("Constraint ID"), readonly: true
+        = main_form.text_field :id, label: _("Constraint ID"), readonly: true, data: { help_filter: ".id" }
 
-      = main_form.select :resource, :location_resource_options, { include_hidden: false }, { multiple: true, size: 5 }
+      = main_form.select :resource, :location_resource_options, { include_hidden: false }, { multiple: true, size: 5, data: { help_filter: ".resource" } }
 
-      = main_form.select :discovery, :location_discovery_options, { include_blank: true, include_hidden: false }, { label: _("Resource Discovery") }
+      #location-variants
+        %ul.nav.nav-tabs{ role: :tablist }
+          %li.active{ role: :presentation }
+            %a{ role: :tab, href: "#locsimple", aria: { controls: :locsimple }, data: { toggle: :tab } }
+              = _("Simple")
+          %li{ role: :presentation }
+            %a{ role: :tab, href: "#locadvanced", aria: { controls: :locadvanced }, data: { toggle: :tab } }
+              = _("Advanced")
+        .tab-content
+          #locsimple.tab-pane.active{ role: :tabpanel }
+            .panel-body
+              .form-group{ data: { help_filter: ".score" } }
+                %label.col-sm-5.control-label{ for: "simple-score" }= _("Score")
+                .col-sm-7
+                  .input-group
+                    .input-group-btn
+                      %button#simple-score-btn.btn.btn-default.dropdown-toggle{ type: :button, aria: { haspopup: true, expanded: false }, data: { toggle: :dropdown } }
+                        %span.caret
+                      %ul.dropdown-menu
+                        %li
+                          %a{ href: "#", data: { value: "INFINITY" } }= _("Always")
+                          %a{ href: "#", data: { value: "-INFINITY" } }= _("Never")
+                          %a{ href: "#", data: { value: "0" } }= _("Advisory")
+                    %input#simple-score.form-control{ type: :text }
+              .form-group{ data: { help_filter: ".node" } }
+                %label.col-sm-5.control-label{ for: "simple-node" }= _("Node")
+                .col-sm-7
+                  %select#simple-node.form-control
+                    %option{ value: "", selected: "selected" }
+                    - @cib.nodes.each do |node|
+                      %option{ value: node[:name] }= node[:name]
 
-      %div{ data: { locations: location.rules.to_json, locations_prefix: "location[rules]", locations_target: ".content" } }
-        .content.locations
+          #locadvanced.tab-pane{ role: :tabpanel }
+            .panel-body
+              = main_form.select :discovery, :location_discovery_options, { include_blank: true, include_hidden: false }, { label: _("Resource Discovery"), data: { help_filter: ".resource-discovery" } }
+
+              %div{ data: { locations: location.rules.to_json, locations_prefix: "location[rules]", locations_target: ".content" } }
+                .content.locations
 
       = main_form.button_group do
         - if location.new_record?

@@ -243,4 +243,76 @@
 
 $(function() {
   $('[data-locations]').rulesList();
+
+  var simpleui = $('#locations #middle #locsimple');
+  var advancedui = $('#locations #middle #locadvanced');
+
+  function updateFromSimple(score, node) {
+    if (!score)
+      return;
+    var expr = [];
+    if (node) {
+      expr.push({ value: node, attribute: "#uname", operation: "eq", kind: "uname" });
+    }
+    var rules = [{ score: score, expressions: expr }];
+    var newloc = $('<div><div class="content locations"></div></div>');
+    newloc.data('locations', rules);
+    newloc.data('locations-prefix', advancedui.find('[data-locations]').data('locations-prefix'))
+    newloc.data('locations-target', advancedui.find('[data-locations]').data('locations-target'));
+    advancedui.find('[data-locations]').replaceWith(newloc);
+    newloc.rulesList();
+  }
+
+  simpleui.on('click', ".dropdown-menu a", function() {
+    var value = $(this).data('value');
+    simpleui.find('#simple-score').val(value).trigger('change');
+  }).on('change', "#simple-score", function() {
+    var value = $(this).val();
+    var node = simpleui.find("#simple-score").val();
+    updateFromSimple(value, node);
+  }).on('change', "#simple-node", function() {
+    var value = $(this).val();
+    var score = simpleui.find('#simple-score').val();
+    updateFromSimple(score, value);
+  });
+
+  $('[data-locations]').each(function() {
+    var values = $(this).data('locations');
+    var node_value = null;
+    var score_value = null;
+    if (values.length == 1 &&
+        values[0].expressions &&
+        values[0].expressions.length == 1) {
+      var rule = values[0];
+      var expr = rule.expressions[0];
+      if (!("score" in rule) || rule.score == "") {
+      } else if ("role" in rule && rule.role != "") {
+      } else if (!expr.value || expr.attribute != "#uname" || expr.operation != "eq") {
+      } else {
+        score_value = rule.score;
+        node_value = expr.value;
+      }
+    } else if (values.length == 1 &&
+               ("expressions" in values[0]) &&
+               values[0].expressions.length == 0) {
+      if (values[0]["score"] == "INFINITY" &&
+          values[0]["role"] == "" &&
+          values[0]["operator"] == "and") {
+        score_value = "INFINITY";
+        node_value = '';
+      }
+    }
+    if (score_value !== null && node_value !== null) {
+      simpleui.find("#simple-score").val(score_value);
+      if ($.grep(simpleui.find("#simple-node option"), function(opt) {
+        return opt.value == node_value;
+      }).length == 0) {
+        simpleui.find("#simple-node").append('<option value="' + node_value + '">' + node_value + '</option>');
+      }
+      simpleui.find("#simple-node").val(node_value);
+    }
+    if (score_value === null || node_value === null || advancedui.find('[name="location[discovery]"]').val() != '') {
+      $('[aria-controls="locadvanced"]').tab('show');
+    }
+  });
 });

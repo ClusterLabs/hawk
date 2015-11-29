@@ -26,6 +26,16 @@ class Constraint < Record
     self.class.to_s.downcase
   end
 
+  def mapping
+    {
+      id: {
+        type: "string",
+        longdesc: "",
+        default: "",
+      }
+    }
+  end
+
   class << self
     def all
       super(true)
