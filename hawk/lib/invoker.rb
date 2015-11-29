@@ -2,6 +2,7 @@
 # See COPYING for license.
 
 require 'singleton'
+require 'thread'
 
 class NotFoundError < RuntimeError
 end
@@ -16,6 +17,10 @@ class Invoker
   include FastGettext::Translation
   include Util
 
+  def initialize
+    @mutex = Mutex.new
+  end
+
   # Invoke some command, returning true or [exitstatus, message]
   # as appropriate (refactored somewhat from MainController::invoke,
   # and suspiciously similar to invoke_crm - obviously this can be
@@ -27,10 +32,14 @@ class Invoker
   end
 
   def no_log
-    @no_log = true
-    yield self
-  ensure
-    @no_log = false
+    @mutex.synchronize {
+      begin
+        @no_log = true
+        yield self
+      ensure
+        @no_log = false
+      end
+    }
   end
 
   # Run "crm [...]"
