@@ -62,9 +62,9 @@ class Cluster < Tableless
       Cluster.new(
         name: data['name'],
         host: data['host'],
-        https: data['https'],
-        port: data['port'],
-        interval: data['interval']
+        https: (data['https'].nil? ? true : data['https']),
+        port: data['port'] || 7630,
+        interval: data['interval'] || 30
       )
     end
 

@@ -15,18 +15,7 @@
       .form-errors
       = f.text_field :name, placeholder: _("West Coast (example)"), label: _("Cluster name")
       = f.text_field :host, placeholder: _("node1.west.example.com"), label: _("Hostname of node in cluster")
-      %fieldset
-        %legend
-          = _("Advanced")
-          %span.pull-right.toggleable.collapsed
-            = icon_tag("chevron-down")
-        .content{style: "display: none;"}
-          = f.text_field :interval, label: _("Update interval (seconds)"), class: "input-mini"
-          = f.text_field :port, label: _("Server port to connect to"), class: "input-mini"
-          .form-group
-            = f.label :https, _("HTTPS"), class: "col-sm-5 control-label"
-            .col-sm-7
-              = f.check_box :https
+      = f.text_field :port, label: _("Server port to connect to")
 
     .modal-footer
       = add_button(f, @cluster)
