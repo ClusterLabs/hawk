@@ -43,6 +43,12 @@ Rails.application.configure do
   config.assets.digest = true
   config.assets.manifest = Rails.root.join("public", "assets", "manifest.json")
 
+  config.assets.configure do |env|
+    if Rails.env.development? || Rails.env.test?
+      env.cache = ActiveSupport::Cache.lookup_store(:memory_store)
+    end
+  end
+
   config.i18n.fallbacks = false
 
   config.log_level = :debug
