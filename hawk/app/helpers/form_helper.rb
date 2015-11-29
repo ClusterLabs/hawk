@@ -11,7 +11,7 @@ module FormHelper
     options_for_select(vals, sel)
   end
 
-  def revert_button(form, record)
+  def revert_button(form, _record)
     form.submit(
       _("Revert"),
       class: "btn btn-default cancel revert simple-hidden",
@@ -20,45 +20,27 @@ module FormHelper
     )
   end
 
-  def apply_button(form, record)
-    form.submit(
-      _("Apply"),
-      class: "btn btn-primary submit",
-      name: "submit"
-    )
+  def apply_button(form, _record)
+    form.submit(_("Apply"), class: "btn btn-primary submit", name: "submit")
   end
 
-  def create_button(form, record)
-    form.submit(
-      _("Create"),
-      class: "btn btn-primary submit",
-      name: "submit"
-    )
+  def create_button(form, _record)
+    form.submit(_("Create"), class: "btn btn-primary submit", name: "submit")
   end
 
-  def add_button(form, record)
-    form.submit(
-      _("Add"),
-      class: "btn btn-primary submit",
-      name: "submit"
-    )
+  def add_button(form, _record)
+    form.submit(_("Add"), class: "btn btn-primary submit", name: "submit")
   end
 
   def errors_for(record)
-    unless record.errors[:base].empty? || record.errors[:base].first.nil?
-      content_tag(
-        :div,
-        simple_format(record.errors[:base].first),
-        class: "alert alert-danger",
-        role: "alert"
-      )
-    end
+    content_tag(
+      :div,
+      simple_format(record.errors[:base].first), class: "alert alert-danger", role: "alert"
+    ) unless record.errors[:base].empty? || record.errors[:base].first.nil?
   end
 
   def form_for(record, options, &proc)
-    unless options.fetch(:bootstrap, true)
-      return super(record, options, &proc)
-    end
+    return super(record, options, &proc) unless options.fetch(:bootstrap, true)
 
     options[:validate] = true
 
