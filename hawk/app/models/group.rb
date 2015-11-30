@@ -87,9 +87,7 @@ class Group < Resource
 
     begin
       merge_nvpairs("meta_attributes", meta)
-      out, err, rc = Invoker.instance.cibadmin_replace xml.to_s
-      errors.add :base, err unless rc == 0
-      rc == 0
+      Invoker.instance.cibadmin_replace xml.to_s
     rescue NotFoundError, SecurityError, RuntimeError => e
       errors.add :base, e.message
       return false
