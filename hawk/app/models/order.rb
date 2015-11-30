@@ -2,14 +2,9 @@
 # See COPYING for license.
 
 class Order < Constraint
-  attribute :id, String
   attribute :score, String
   attribute :symmetrical, Boolean
   attribute :resources, Array[Hash]
-
-  validates :id,
-    presence: { message: _("Constraint ID is required") },
-    format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _("Invalid Constraint ID") }
 
   validates :score,
     presence: { message: _("Score is required") }

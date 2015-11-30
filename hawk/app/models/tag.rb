@@ -3,15 +3,17 @@
 require 'invoker'
 
 class Tag < Resource
-  attribute :id, String
   attribute :refs, Array[String]
-
-  validates :id,
-    presence: { message: _("Tag ID is required") },
-    format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _("Invalid Tag ID") }
 
   validates :refs,
     presence: { message: _("No Tag resources specified") }
+
+  validate do |record|
+    validid = /\A[a-zA-Z0-9_-]+\z/
+    record.refs.each do |ref|
+      errors.add :base, _("Invalid ID") unless validid.match(ref)
+    end
+  end
 
   def mapping
     self.class.mapping

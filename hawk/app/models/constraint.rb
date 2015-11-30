@@ -5,6 +5,8 @@ class Constraint < Record
   class CommandError < StandardError
   end
 
+  attribute :object_type, Symbol
+
   validate do |record|
     # to validate a new record:
     # try making the shell form and running verify;commit in a temporary shadow cib in crm
@@ -20,8 +22,6 @@ class Constraint < Record
     end
   end
 
-  attribute :object_type, Symbol
-
   def object_type
     self.class.to_s.downcase
   end
@@ -30,9 +30,10 @@ class Constraint < Record
     {
       id: {
         type: "string",
-        longdesc: "",
-        default: "",
-      }
+        shortdesc: _("Constraint ID"),
+        longdesc: _("Unique identifier for the constraint. May not contain spaces."),
+        default: ""
+      },
     }
   end
 

@@ -2,14 +2,9 @@
 # See COPYING for license.
 
 class Location < Constraint
-  attribute :id, String
   attribute :resource, Array[String]
   attribute :rules, Array[Hash]
   attribute :discovery, String
-
-  validates :id,
-    presence: { message: _("Constraint ID is required") },
-    format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _("Invalid Constraint ID") }
 
   validates :resource,
     presence: { message: _("No resource specified") }
@@ -86,14 +81,51 @@ class Location < Constraint
   end
 
   def mapping
-    super.merge({
+    super.merge(
+      "resource" => {
+        type: "string",
+        shortdesc: _("Resource"),
+        longdesc: _('A resource ID.'),
+        default: "",
+      },
+      "score" => {
+        type: "string",
+        shortdesc: _("Score"),
+        longdesc: _('Positive values indicate the resource should run on this node. Negative values indicate the resource should not run on this node. Values of +/- INFINITY change "should"/"should not" to "must"/"must not".'),
+        default: "INFINITY",
+      },
+      "node" => {
+        type: "string",
+        shortdesc: _("Node"),
+        longdesc: _("Name of a node in the cluster."),
+        default: "",
+      },
       "resource-discovery" => {
         type: "enum",
         default: "always",
         values: discovery_types,
+        shortdesc: _("Resource Discovery"),
         longdesc: _("Controls resource discovery for the specified resource on nodes covered by the constraint. always: Always perform resource discovery (default). never: Never perform resource discovery for the specified resource on this node. This option should generally be used with a -INFINITY score. exclusive: Only perform resource discovery for the specified resource on this node.")
-      }
-    })
+      },
+      "role" => {
+        type: "string",
+        shortdesc: _("Role"),
+        longdesc: _('Limits the rule to apply only when the resource is in the specified role.'),
+        default: "started",
+      },
+      "operator" => {
+        type: "string",
+        shortdesc: _("Operator"),
+        longdesc: _('How to combine the result of multiple expression objects. Allowed values are and and or.'),
+        default: "and",
+      },
+      "expression" => {
+        type: "string",
+        shortdesc: _("Expression"),
+        longdesc: _("Each rule can contain a number of expressions. The results of the expressions are combined based on the rule's boolean operator."),
+        default: "",
+      },
+    )
   end
 
   class << self

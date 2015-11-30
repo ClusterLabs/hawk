@@ -2,6 +2,14 @@
 # See COPYING for license.
 
 class Record < Tableless
+  attribute :id, String
+
+  attr_accessor :xml
+
+  validates :id,
+    presence: { message: _("ID is required") },
+    format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _("Invalid ID") }
+
   class << self
     # Check whether anything with the given ID exists, or for a specific element
     # with that ID if type is specified.  Note that we run as hacluster, because
@@ -142,9 +150,6 @@ class Record < Tableless
       @map[name.to_sym]
     end
   end
-
-  attr_accessor :id
-  attr_accessor :xml
 
 
 

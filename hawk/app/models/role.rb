@@ -2,13 +2,8 @@
 # See COPYING for license.
 
 class Role < Record
-  attribute :id, String
   attribute :rules, RuleCollection[Rule]
   attr_accessor :schema_version
-
-  validates :id,
-    presence: { message: _('Role ID is required') },
-    format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _('Invalid Role ID') }
 
   validates :rules, presence: { message: _('At least one rule is required') }
 

@@ -2,14 +2,9 @@
 # See COPYING for license.
 
 class Colocation < Constraint
-  attribute :id, String
   attribute :score, String
   attribute :node_attr, String
   attribute :resources, Array[Hash]
-
-  validates :id,
-    presence: { message: _("Constraint ID is required") },
-    format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _("Invalid Constraint ID") }
 
   validates :score,
     presence: { message: _("Score is required") }
@@ -27,6 +22,12 @@ class Colocation < Constraint
     ].include? record.score.downcase
       unless record.score.match(/^-?[0-9]+$/)
         errors.add :score, _("Invalid score value")
+      end
+    end
+
+    unless record.node_attr.blank?
+      unless record.node_attr.match(/\A[a-zA-Z0-9_-]+\z/)
+        errors.add :node_attr, _("Invalid node attribute")
       end
     end
 

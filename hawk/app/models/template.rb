@@ -3,14 +3,9 @@
 require 'invoker'
 
 class Template < Resource
-  attribute :id, String
   attribute :clazz, String, default: "ocf"
   attribute :provider, String
   attribute :type, String
-
-  validates :id,
-    presence: { message: _("Resource ID is required") },
-    format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _("Invalid Resource ID") }
 
   def mapping
     self.class.mapping

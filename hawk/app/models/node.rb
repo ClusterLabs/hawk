@@ -21,7 +21,7 @@ class Node < Tableless
 
   validates :id,
     presence: { message: _('Node ID is required') },
-    format: { with: /\A[0-9]+\z/, message: _('Invalid Node ID') }
+    format: { with: /\A[a-zA-Z0-9_]+\z/, message: _('Invalid Node ID') }
 
   validates :name,
     presence: { message: _('Name is required') },

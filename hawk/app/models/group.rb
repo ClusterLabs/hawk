@@ -3,12 +3,7 @@
 require 'invoker'
 
 class Group < Resource
-  attribute :id, String
   attribute :children, Array[String]
-
-  validates :id,
-    presence: { message: _("Group ID is required") },
-    format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _("Invalid Group ID") }
 
   validate do |record|
     # TODO(must): Ensure children are sanitized

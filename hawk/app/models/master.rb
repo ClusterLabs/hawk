@@ -3,12 +3,7 @@
 require 'invoker'
 
 class Master < Resource
-  attribute :id, String
   attribute :child, String
-
-  validates :id,
-    presence: { message: _("Multi-state ID is required") },
-    format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _("Invalid Multi-state ID") }
 
   validates :child,
     presence: { message: _("No Multi-state child specified") }

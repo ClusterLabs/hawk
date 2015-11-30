@@ -158,6 +158,17 @@ class Resource < Record
     def cib_type_fetch
       "configuration//*[self::resources or self::tags]/*"
     end
+
+    def mapping
+      {
+        id: {
+          type: "string",
+          shortdesc: _("Resource ID"),
+          longdesc: _("Unique identifier for the resource. May not contain spaces."),
+          default: ""
+        }
+      }
+    end
   end
 
   protected
