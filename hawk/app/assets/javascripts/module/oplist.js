@@ -62,7 +62,7 @@
       },
 
       entryTemplate: [
-        '<div class="form-group {{>op.name}}" data-element="{{>id}}">',
+        '<div class="form-group {{>op.name}}" data-element="{{>id}}" data-help-filter=".row.op-{{>op.name}}">',
           '{{props op}}',
             '<input type="hidden" name="{{>~root.prefix}}[{{>~root.id}}][{{>key}}]" value="{{>prop}}">',
           '{{/props}}',

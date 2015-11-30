@@ -4,23 +4,23 @@
       = errors_for primitive
 
       - if primitive.new_record?
-        = main_form.text_field :id, label: _("Resource ID")
+        = main_form.text_field :id, label: _("Resource ID"), data: { help_filter: ".row.id" }
 
         - if Util.has_feature?(:rsc_template) && primitive.resource?
-          = main_form.select :template, :primitive_template_options, { include_blank: true, include_hidden: false }, { label: _("Template") }
+          = main_form.select :template, :primitive_template_options, { include_blank: true, include_hidden: false }, { label: _("Template"), data: { help_filter: ".row.template" } }
 
-        = main_form.select :clazz, :primitive_clazz_options, { include_blank: true, include_hidden: false }, { label: _("Class") }
-        = main_form.select :provider, :primitive_provider_options, { include_blank: true, include_hidden: false }, { label: _("Provider") }
-        = main_form.select :type, :primitive_type_options, { include_blank: true, include_hidden: false }, { label: _("Type") }
+        = main_form.select :clazz, :primitive_clazz_options, { include_blank: true, include_hidden: false }, { label: _("Class"), data: { help_filter: ".row.clazz" } }
+        = main_form.select :provider, :primitive_provider_options, { include_blank: true, include_hidden: false }, { label: _("Provider"), data: { help_filter: ".row.provider" } }
+        = main_form.select :type, :primitive_type_options, { include_blank: true, include_hidden: false }, { label: _("Type"), data: { help_filter: ".row.type" } }
       - else
-        = main_form.text_field :id, label: _("Resource ID"), readonly: true
+        = main_form.text_field :id, label: _("Resource ID"), readonly: true, data: { help_filter: ".row.id" }
 
         - if Util.has_feature?(:rsc_template) && primitive.resource?
-          = main_form.text_field :template, label: _("Template"), readonly: true
+          = main_form.text_field :template, label: _("Template"), readonly: true, data: { help_filter: ".row.template" }
 
-        = main_form.text_field :clazz, label: _("Class"), readonly: true
-        = main_form.text_field :provider, label: _("Provider"), readonly: true
-        = main_form.text_field :type, label: _("Type"), readonly: true
+        = main_form.text_field :clazz, label: _("Class"), readonly: true, data: { help_filter: ".row.clazz" }
+        = main_form.text_field :provider, label: _("Provider"), readonly: true, data: { help_filter: ".row.provider" }
+        = main_form.text_field :type, label: _("Type"), readonly: true, data: { help_filter: ".row.type" }
       #agent-info.form-group.hidden
         %label.col-sm-5.control-label
         .col-sm-7
