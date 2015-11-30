@@ -85,12 +85,24 @@ class Group < Resource
       return false
     end
 
-    begin
-      merge_nvpairs("meta_attributes", meta)
-      Invoker.instance.cibadmin_replace xml.to_s
-    rescue NotFoundError, SecurityError, RuntimeError => e
-      errors.add :base, e.message
-      return false
+    old_children = xml.elements.collect("primitive") { |el| el.attributes["id"] }
+    if children != old_children
+      cmd = shell_syntax
+      _out, err, rc = Invoker.instance.crm_configure_load_update(cmd)
+      if rc != 0
+        errors.add :base, err
+        false
+      else
+        true
+      end
+    else
+      begin
+        merge_nvpairs("meta_attributes", meta)
+        Invoker.instance.cibadmin_replace xml.to_s
+      rescue NotFoundError, SecurityError, RuntimeError => e
+        errors.add :base, e.message
+        return false
+      end
     end
   end
 
