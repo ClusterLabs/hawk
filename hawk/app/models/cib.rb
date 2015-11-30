@@ -474,7 +474,7 @@ class Cib
       # TODO(must): This is a bit rough
       cib_path.gsub!(/[^\w-]/, '')
       cib_path = "#{Rails.root}/test/cib/#{cib_path}.xml"
-      raise ArgumentError, _('CIB file "%{path}" not found') % {path: cib_path } unless File.exist?(cib_path)
+      raise ArgumentError, _('CIB file "%{path}" not found') % { path: cib_path } unless File.exist?(cib_path)
       @xml = REXML::Document.new(File.new(cib_path))
       #raise RuntimeError, _('Unable to parse CIB file "%{path}"') % {path: cib_path } unless @xml.root
       unless @xml.root
