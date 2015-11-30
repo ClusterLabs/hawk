@@ -18,6 +18,10 @@
             %label.col-sm-5.control-label{for: "running-to_time"}= _("To")
             .col-sm-7
               %input#running-to-time.form-control{type: :text, value: ""}
+          .form-group
+            %label.col-sm-5.control-label{for: "running-cancel"}= _("Cancel")
+            .col-sm-7
+              %a.btn.btn-danger#running-cancel.form-control{type: :button}
 
     #report-tabs.panel.panel-default.with-nav-tabs.hidden
       .panel-heading

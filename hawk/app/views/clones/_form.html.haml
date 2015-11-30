@@ -21,8 +21,8 @@
       = main_form.button_group do
         - if clone.new_record?
           = create_button(main_form, clone)
+          = link_to _("Back"), types_cib_resources_path(cib_id: cib.id), class: "btn btn-default back"
         - else
           = apply_button(main_form, clone)
           = revert_button(main_form, clone)
-
-        = link_to _("Back"), edit_cib_config_path(cib_id: cib.id), class: "btn btn-default back"
+          = link_to _("Back"), edit_cib_config_path(cib_id: cib.id), class: "btn btn-default back"

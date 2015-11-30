@@ -60,13 +60,7 @@ class Clone < Resource
     def mapping
       # TODO(must): Are other meta attributes for clone valid?
       @mapping ||= begin
-        super.merge({
-          "resource" => {
-            type: "string",
-            default: "",
-            shortdesc: _("Child Resource"),
-            longdesc: _("Child resource to use as clone.")
-          },
+        {
           "is-managed" => {
             type: "boolean",
             default: "true",
@@ -113,8 +107,19 @@ class Clone < Resource
             default: "false",
             longdesc: _("Changes the behavior of ordering constraints (between clones/masters) so that instances can start/stop as soon as their peer instance has (rather than waiting for every instance of the other clone has).")
           }
-        })
+        }
       end
+    end
+
+    def help_text
+      super.merge(
+        "resource" => {
+          type: "string",
+          default: "",
+          shortdesc: _("Child Resource"),
+          longdesc: _("Child resource to use as clone.")
+        }
+      )
     end
   end
 

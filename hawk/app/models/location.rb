@@ -2,11 +2,11 @@
 # See COPYING for license.
 
 class Location < Constraint
-  attribute :resource, Array[String]
+  attribute :resources, Array[String]
   attribute :rules, Array[Hash]
   attribute :discovery, String
 
-  validates :resource,
+  validates :resources,
     presence: { message: _("No resource specified") }
 
   validates :rules,
@@ -14,7 +14,7 @@ class Location < Constraint
 
   validate do |record|
     unless record.discovery.blank?
-      unless discovery_types.include? record.discovery.downcase
+      unless self.class.discovery_types.include? record.discovery.downcase
         errors.add :discovery, _("Invalid resource discovery type")
       end
     end
@@ -80,54 +80,6 @@ class Location < Constraint
     @complex = value
   end
 
-  def mapping
-    super.merge(
-      "resource" => {
-        type: "string",
-        shortdesc: _("Resource"),
-        longdesc: _('A resource ID.'),
-        default: "",
-      },
-      "score" => {
-        type: "string",
-        shortdesc: _("Score"),
-        longdesc: _('Positive values indicate the resource should run on this node. Negative values indicate the resource should not run on this node. Values of +/- INFINITY change "should"/"should not" to "must"/"must not".'),
-        default: "INFINITY",
-      },
-      "node" => {
-        type: "string",
-        shortdesc: _("Node"),
-        longdesc: _("Name of a node in the cluster."),
-        default: "",
-      },
-      "resource-discovery" => {
-        type: "enum",
-        default: "always",
-        values: discovery_types,
-        shortdesc: _("Resource Discovery"),
-        longdesc: _("Controls resource discovery for the specified resource on nodes covered by the constraint. always: Always perform resource discovery (default). never: Never perform resource discovery for the specified resource on this node. This option should generally be used with a -INFINITY score. exclusive: Only perform resource discovery for the specified resource on this node.")
-      },
-      "role" => {
-        type: "string",
-        shortdesc: _("Role"),
-        longdesc: _('Limits the rule to apply only when the resource is in the specified role.'),
-        default: "started",
-      },
-      "operator" => {
-        type: "string",
-        shortdesc: _("Operator"),
-        longdesc: _('How to combine the result of multiple expression objects. Allowed values are and and or.'),
-        default: "and",
-      },
-      "expression" => {
-        type: "string",
-        shortdesc: _("Expression"),
-        longdesc: _("Each rule can contain a number of expressions. The results of the expressions are combined based on the rule's boolean operator."),
-        default: "",
-      },
-    )
-  end
-
   class << self
     def all
       super.select do |record|
@@ -142,18 +94,14 @@ class Location < Constraint
     ['mandatory', 'advisory', 'inf', '-inf', 'infinity', '-infinity']
   end
 
-  def discovery_types
-    ['always', 'never', 'exclusive']
-  end
-
   def shell_syntax
     [].tap do |cmd|
       cmd.push "location #{id}"
 
-      if resource.length == 1
-        cmd.push resource.first
+      if resources.length == 1
+        cmd.push resources.first
       else
-        cmd.push ["{", resource.join(" "), "}"].join(" ")
+        cmd.push ["{", resources.join(" "), "}"].join(" ")
       end
 
       cmd.push "resource-discovery=#{crm_quote(discovery)}" unless discovery.blank?
@@ -186,13 +134,13 @@ class Location < Constraint
     def instantiate(xml)
       record = allocate
 
-      record.resource = [].tap do |resource|
+      record.resources = [].tap do |resources|
         if xml.attributes["rsc"]
-          resource.push xml.attributes["rsc"]
+          resources.push xml.attributes["rsc"]
         else
           xml.elements.each("resource_set") do |set|
             set.elements.each do |el|
-              resource.push el.attributes["id"]
+              resources.push el.attributes["id"]
             end
           end
         end
@@ -262,6 +210,58 @@ class Location < Constraint
 
     def cib_type_write
       :rsc_location
+    end
+
+    def discovery_types
+      ['always', 'never', 'exclusive']
+    end
+
+    def help_text
+      super.merge(
+        "resources" => {
+          type: "string",
+          shortdesc: _("Resources"),
+          longdesc: _('Resources to apply the constraint to.'),
+          default: "",
+        },
+        "score" => {
+          type: "string",
+          shortdesc: _("Score"),
+          longdesc: _('Positive values indicate the resources should run on this node. Negative values indicate the resources should not run on this node. Values of +/- INFINITY change "should"/"should not" to "must"/"must not".'),
+          default: "INFINITY",
+        },
+        "node" => {
+          type: "string",
+          shortdesc: _("Node"),
+          longdesc: _("Name of a node in the cluster."),
+          default: "",
+        },
+        "resource-discovery" => {
+          type: "enum",
+          default: "always",
+          values: discovery_types,
+          shortdesc: _("Resource Discovery"),
+          longdesc: _("Controls resource discovery for the specified resource on nodes covered by the constraint. always: Always perform resource discovery (default). never: Never perform resource discovery for the specified resource on this node. This option should generally be used with a -INFINITY score. exclusive: Only perform resource discovery for the specified resource on this node.")
+        },
+        "role" => {
+          type: "string",
+          shortdesc: _("Role"),
+          longdesc: _('Limits the rule to apply only when the resource is in the specified role.'),
+          default: "started",
+        },
+        "operator" => {
+          type: "string",
+          shortdesc: _("Operator"),
+          longdesc: _('How to combine the result of multiple expression objects. Allowed values are and and or.'),
+          default: "and",
+        },
+        "expression" => {
+          type: "string",
+          shortdesc: _("Expression"),
+          longdesc: _("Each rule can contain a number of expressions. The results of the expressions are combined based on the rule's boolean operator."),
+          default: "",
+        },
+      )
     end
   end
 end

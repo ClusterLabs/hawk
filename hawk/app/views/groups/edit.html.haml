@@ -11,4 +11,4 @@
   .row
     = render partial: "form", locals: { cib: @cib, group: @group }
 
-= render partial: "shared/helpsidebar", locals: { category: :resources, help: :group, mapping: @group.mapping }
+= render partial: "shared/helpsidebar", locals: { category: :resources, help: :group, mapping: @group.help_text.merge(@group.mapping) }

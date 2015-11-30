@@ -9,4 +9,4 @@
   .row
     = render partial: "form", locals: { cib: @cib, tag: @tag }
 
-= render partial: "shared/helpsidebar", locals: { category: :resources, help: :tag, mapping: @tag.mapping }
+= render partial: "shared/helpsidebar", locals: { category: :resources, help: :tag, mapping: @tag.help_text.merge(@tag.mapping) }

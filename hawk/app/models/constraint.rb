@@ -26,17 +26,6 @@ class Constraint < Record
     self.class.to_s.downcase
   end
 
-  def mapping
-    {
-      id: {
-        type: "string",
-        shortdesc: _("Constraint ID"),
-        longdesc: _("Unique identifier for the constraint. May not contain spaces."),
-        default: ""
-      },
-    }
-  end
-
   class << self
     def all
       super(true)
@@ -50,6 +39,17 @@ class Constraint < Record
 
     def cib_type_fetch
       :constraints
+    end
+
+    def help_text
+      super.merge(
+        id: {
+          type: "string",
+          shortdesc: _("Constraint ID"),
+          longdesc: _("Unique identifier for the constraint. May not contain spaces."),
+          default: ""
+        }
+      )
     end
   end
 end

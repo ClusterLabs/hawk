@@ -69,10 +69,27 @@ class Node < Tableless
     name
   end
 
+  def help_text
+    {
+      id: {
+        type: "string",
+        shortdesc: _("Node ID"),
+        longdesc: _("Unique identifier for the node."),
+        default: ""
+      },
+      name: {
+        type: "string",
+        shortdesc: _("Node Name"),
+        longdesc: _("Name used to refer to the node in the cluster."),
+        default: ""
+      }
+    }
+  end
+
   def mapping
     {}.tap do |m|
       m["standby"] = {
-        # TODO: Should be boolean, but pacemaker's crappy (yes|true|1) booleans don't map well to the UI :(
+        # TODO: Should be boolean, but pacemaker's crappy (yes|true|1) booleans don't map well to the attrlist boolean type :/
         type: "string",
         default: "off",
         longdesc: _("Puts the node into standby mode. The specified node is no longer able to host resources. Any resources currently active on the node will be moved to another node.")

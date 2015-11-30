@@ -3,10 +3,10 @@
     = form_for [cib, node], horizontal: true, bootstrap: true do |main_form|
       = errors_for node
 
-      = main_form.text_field :id, label: _("ID"), readonly: true
-      = main_form.text_field :name, label: _("Name"), readonly: true
+      = main_form.text_field :id, label: _("ID"), readonly: true, data: { help_filter: ".row.id" }
+      = main_form.text_field :name, label: _("Name"), readonly: true, data: { help_filter: ".row.name" }
 
-      %fieldset{ data: {attrlist: node.params.to_json, attrlist_mapping: node.mapping.to_json, attrlist_prefix: "node[params]", attrlist_target: '.content', attrlist_freeform: 'yes' }}
+      %fieldset{ data: {attrlist: node.params.to_json, attrlist_mapping: node.help_text.merge(node.mapping).to_json, attrlist_prefix: "node[params]", attrlist_target: '.content', attrlist_freeform: 'yes' }}
         %legend
           = _("Attributes")
           %span.pull-right.toggleable

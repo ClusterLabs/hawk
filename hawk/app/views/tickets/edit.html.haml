@@ -11,4 +11,4 @@
   .row
     = render partial: "form", locals: { cib: @cib, ticket: @ticket }
 
-= render partial: "shared/helpsidebar", locals: { category: :constraints, help: :ticket, mapping: @tag.mapping }
+= render partial: "shared/helpsidebar", locals: { category: :constraints, help: :ticket, mapping: @ticket.help_text.merge(@ticket.mapping) }

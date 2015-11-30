@@ -159,15 +159,15 @@ class Resource < Record
       "configuration//*[self::resources or self::tags]/*"
     end
 
-    def mapping
-      {
+    def help_text
+      super.merge(
         id: {
           type: "string",
           shortdesc: _("Resource ID"),
           longdesc: _("Unique identifier for the resource. May not contain spaces."),
           default: ""
         }
-      }
+      )
     end
   end
 

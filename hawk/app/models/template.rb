@@ -191,48 +191,6 @@ class Template < Resource
       @mapping ||= begin
         {
           meta: super.merge(
-            "template" => {
-              type: "string",
-              default: "",
-              shortdesc: _("Template"),
-              longdesc: _("Resource template to inherit from.")
-            },
-            "clazz" => {
-              type: "string",
-              default: "",
-              shortdesc: _("Class"),
-              longdesc: _("Standard which the resource agent conforms to.")
-            },
-            "provider" => {
-              type: "string",
-              default: "",
-              shortdesc: _("Provider"),
-              longdesc: _("Vendor or project which provided the resource agent.")
-            },
-            "type" => {
-              type: "string",
-              default: "",
-              shortdesc: _("Type"),
-              longdesc: _("Resource agent name.")
-            },
-            "op-start" => {
-              type: "string",
-              default: "",
-              shortdesc: _("Start"),
-              longdesc: _("After the specified timeout period, the operation will be treated as failed.")
-            },
-            "op-stop" => {
-              type: "string",
-              default: "",
-              shortdesc: _("Stop"),
-              longdesc: _("After the specified timeout period, the operation will be treated as failed.")
-            },
-            "op-monitor" => {
-              type: "string",
-              default: "",
-              shortdesc: _("Monitor"),
-              longdesc: _("Define a monitor operation to instruct the cluster to ensure that the resource is still healthy.")
-            },
             "allow-migrate" => {
               type: "boolean",
               default: "false",
@@ -391,6 +349,53 @@ class Template < Resource
           }
         }
       end
+    end
+
+    def help_text
+      super.merge(
+        "template" => {
+          type: "string",
+          default: "",
+          shortdesc: _("Template"),
+          longdesc: _("Resource template to inherit from.")
+        },
+        "clazz" => {
+          type: "string",
+          default: "",
+          shortdesc: _("Class"),
+          longdesc: _("Standard which the resource agent conforms to.")
+        },
+        "provider" => {
+          type: "string",
+          default: "",
+          shortdesc: _("Provider"),
+          longdesc: _("Vendor or project which provided the resource agent.")
+        },
+        "type" => {
+          type: "string",
+          default: "",
+          shortdesc: _("Type"),
+          longdesc: _("Resource agent name.")
+        },
+        "op-start" => {
+          type: "string",
+          default: "",
+          shortdesc: _("Start"),
+          longdesc: _("After the specified timeout period, the operation will be treated as failed.")
+        },
+        "op-stop" => {
+          type: "string",
+          default: "",
+          shortdesc: _("Stop"),
+          longdesc: _("After the specified timeout period, the operation will be treated as failed.")
+        },
+        "op-monitor" => {
+          type: "string",
+          default: "",
+          shortdesc: _("Monitor"),
+          longdesc: _("Define a monitor operation to instruct the cluster to ensure that the resource is still healthy.")
+        },
+      )
     end
   end
 

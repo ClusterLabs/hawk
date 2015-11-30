@@ -8,7 +8,7 @@
       - else
         = main_form.text_field :id, label: _("Constraint ID"), readonly: true, data: { help_filter: ".row.id" }
 
-      = main_form.select :resource, :location_resource_options, { include_hidden: false }, { multiple: true, size: 5, data: { help_filter: ".row.resource" } }
+      = main_form.select :resources, :location_resource_options, { include_hidden: false }, { multiple: true, size: 5, data: { help_filter: ".row.resources" } }
 
       #location-variants
         %ul.nav.nav-tabs{ role: :tablist }

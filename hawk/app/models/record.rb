@@ -92,6 +92,14 @@ class Record < Tableless
       end
     end
 
+    def help_text
+      {}
+    end
+
+    def mapping
+      {}
+    end
+
     def children_of(rsc)
       [].tap do |result|
         if rsc.respond_to? :children
@@ -283,6 +291,14 @@ class Record < Tableless
 
   def unquotable?(str)
     str.to_s.index("'") && str.to_s.index('"')
+  end
+
+  def help_text
+    self.class.help_text
+  end
+
+  def mapping
+    self.class.mapping
   end
 
   protected

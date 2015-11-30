@@ -6,7 +6,7 @@
     .row.agentinfo
 
     #helpentries
-      - primitive.available_meta.each do |key, values|
+      - primitive.help_text.each do |key, values|
         = render partial: "shared/helpentry", locals: { key: key, values: values }
 
 %script#tmpl-helpentry{type: "text/x-jsrender"}
@@ -23,5 +23,7 @@
     {{/if}}
 
 %script#tmpl-metahelp{type: "text/x-jsrender"}
+  - primitive.help_text.each do |key, values|
+    = render partial: "shared/helpentry", locals: { key: key, values: values }
   - primitive.available_meta.each do |key, values|
     = render partial: "shared/helpentry", locals: { key: key, values: values }

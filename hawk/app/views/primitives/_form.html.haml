@@ -16,10 +16,16 @@
         = main_form.text_field :id, label: _("Resource ID"), readonly: true, data: { help_filter: ".row.id" }
 
         - if Util.has_feature?(:rsc_template) && primitive.resource?
-          = main_form.text_field :template, label: _("Template"), readonly: true, data: { help_filter: ".row.template" }
+          - if primitive.template.blank?
+            = main_form.hidden_field :template
+          - else
+            = main_form.text_field :template, label: _("Template"), readonly: true, data: { help_filter: ".row.template" }
 
         = main_form.text_field :clazz, label: _("Class"), readonly: true, data: { help_filter: ".row.clazz" }
-        = main_form.text_field :provider, label: _("Provider"), readonly: true, data: { help_filter: ".row.provider" }
+        - if primitive.provider.blank?
+          = main_form.hidden_field :provider
+        - else
+          = main_form.text_field :provider, label: _("Provider"), readonly: true, data: { help_filter: ".row.provider" }
         = main_form.text_field :type, label: _("Type"), readonly: true, data: { help_filter: ".row.type" }
       #agent-info.form-group.hidden
         %label.col-sm-5.control-label
@@ -37,11 +43,11 @@
       = main_form.button_group do
         - if primitive.new_record?
           = main_form.submit(_("Create"), class: "btn btn-primary submit", name: "submit", disabled: true)
+          = link_to _("Back"), types_cib_resources_path(cib_id: cib.id), class: "btn btn-default back"
         - else
           = main_form.submit(_("Apply"), class: "btn btn-primary submit", name: "submit", disabled: true)
           = revert_button(main_form, primitive)
-
-        = link_to _("Back"), edit_cib_config_path(cib_id: cib.id), class: "btn btn-default back"
+          = link_to _("Back"), edit_cib_config_path(cib_id: cib.id), class: "btn btn-default back"
 
 
 %script#jstmpl-paramslist{type: "text/x-jsrender"}

@@ -9,4 +9,4 @@
   .row
     = render partial: "form", locals: { cib: @cib, colocation: @colocation }
 
-= render partial: "shared/helpsidebar", locals: { category: :constraints, help: :colocation, mapping: @colocation.mapping }
+= render partial: "shared/helpsidebar", locals: { category: :constraints, help: :colocation, mapping: @colocation.help_text.merge(@colocation.mapping) }
