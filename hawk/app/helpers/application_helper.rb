@@ -183,12 +183,13 @@ module ApplicationHelper
   def localized_help_for(section, subsection)
     [
       I18n.locale,
+      :en_US,
       :en
     ].each do |locale|
       path = Rails.root.join(
         "config",
         "help",
-        locale.to_s,
+        locale.to_s.dasherize,
         section.to_s,
         "#{subsection}.md"
       )
