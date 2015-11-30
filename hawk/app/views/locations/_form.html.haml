@@ -4,11 +4,11 @@
       = errors_for location
 
       - if location.new_record?
-        = main_form.text_field :id, label: _("Constraint ID"), data: { help_filter: ".id" }
+        = main_form.text_field :id, label: _("Constraint ID"), data: { help_filter: ".row.id" }
       - else
-        = main_form.text_field :id, label: _("Constraint ID"), readonly: true, data: { help_filter: ".id" }
+        = main_form.text_field :id, label: _("Constraint ID"), readonly: true, data: { help_filter: ".row.id" }
 
-      = main_form.select :resource, :location_resource_options, { include_hidden: false }, { multiple: true, size: 5, data: { help_filter: ".resource" } }
+      = main_form.select :resource, :location_resource_options, { include_hidden: false }, { multiple: true, size: 5, data: { help_filter: ".row.resource" } }
 
       #location-variants
         %ul.nav.nav-tabs{ role: :tablist }
@@ -21,7 +21,7 @@
         .tab-content
           #locsimple.tab-pane.active{ role: :tabpanel }
             .panel-body
-              .form-group{ data: { help_filter: ".score" } }
+              .form-group{ data: { help_filter: ".row.score" } }
                 %label.col-sm-5.control-label{ for: "simple-score" }= _("Score")
                 .col-sm-7
                   .input-group
@@ -34,7 +34,7 @@
                           %a{ href: "#", data: { value: "-INFINITY" } }= _("Never")
                           %a{ href: "#", data: { value: "0" } }= _("Advisory")
                     %input#simple-score.form-control{ type: :text }
-              .form-group{ data: { help_filter: ".node" } }
+              .form-group{ data: { help_filter: ".row.node" } }
                 %label.col-sm-5.control-label{ for: "simple-node" }= _("Node")
                 .col-sm-7
                   %select#simple-node.form-control
@@ -44,7 +44,7 @@
 
           #locadvanced.tab-pane{ role: :tabpanel }
             .panel-body
-              = main_form.select :discovery, :location_discovery_options, { include_blank: true, include_hidden: false }, { label: _("Resource Discovery"), data: { help_filter: ".resource-discovery" } }
+              = main_form.select :discovery, :location_discovery_options, { include_blank: true, include_hidden: false }, { label: _("Resource Discovery"), data: { help_filter: ".row.resource-discovery" } }
 
               %div{ data: { locations: location.rules.to_json, locations_prefix: "location[rules]", locations_target: ".content" } }
                 .content.locations

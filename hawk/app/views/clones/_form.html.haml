@@ -4,11 +4,11 @@
       = errors_for clone
 
       - if clone.new_record?
-        = main_form.text_field :id, label: _("Clone ID")
-        = main_form.select :child, clone_child_for(clone), { include_hidden: false, include_blank: true }, id: nil, label: _("Child Resource")
+        = main_form.text_field :id, label: _("Clone ID"), data: { help_filter: ".row.id" }
+        = main_form.select :child, clone_child_for(clone), { include_hidden: false, include_blank: true }, id: nil, label: _("Child Resource"), data: { help_filter: ".row.resource" }
       - else
-        = main_form.text_field :id, label: _("Clone ID"), readonly: true
-        = main_form.text_field :child, label: _("Child Resource"), readonly: true
+        = main_form.text_field :id, label: _("Clone ID"), readonly: true, data: { help_filter: ".row.id" }
+        = main_form.text_field :child, label: _("Child Resource"), readonly: true, data: { help_filter: ".row.resource" }
 
       %fieldset{ data: { attrlist: clone[:meta].to_json, attrlist_mapping: clone.mapping.to_json, attrlist_prefix: "clone[meta]", attrlist_target: ".content" } }
         %legend
