@@ -6,17 +6,18 @@ Vagrant.configure("2") do |config|
   config.vm.box_check_update = true
   config.ssh.insert_key = false
 
-  config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ["rw", "noatime", "async"]
+  #config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ["rw", "noatime", "async"]
+  config.vm.synced_folder ".", "/vagrant"
 
-  unless Vagrant.has_plugin?("vagrant-bindfs")
-    abort 'Missing bindfs plugin! Please install using vagrant plugin install vagrant-bindfs'
-  end
+  #unless Vagrant.has_plugin?("vagrant-bindfs")
+  #  abort 'Missing bindfs plugin! Please install using vagrant plugin install vagrant-bindfs'
+  #end
 
-  config.bindfs.bind_folder "/vagrant", "/vagrant",
-                            force_user: "hacluster",
-                            force_group: "haclient",
-                            perms: "u=rwX:g=rwXD:o=rXD",
-                            after: :provision
+  #config.bindfs.bind_folder "/vagrant", "/vagrant",
+  #                          force_user: "hacluster",
+  #                          force_group: "haclient",
+  #                          perms: "u=rwX:g=rwXD:o=rXD",
+  #                          after: :provision
 
   config.vm.define "webui", primary: true do |machine|
     machine.vm.hostname = "webui"
