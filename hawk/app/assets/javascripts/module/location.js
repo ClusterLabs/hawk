@@ -234,10 +234,27 @@
       });
   };
 
+  rulesList.prototype.refresh = function(values) {
+    $.observable(this.values).refresh(values);
+  };
+
   $.fn.rulesList = function(options) {
+    var value;
+    var args = Array.prototype.slice.call(arguments, 1);
     return this.each(function() {
-      new rulesList(this, options);
+      var $this = $(this),
+          data = $this.data('location.rules');
+      if (typeof options === 'string') {
+        if (options != "refresh") {
+          throw new Error("Unknown method: " + options);
+        }
+        value = data[options].apply(data, args);
+      }
+      if (!data) {
+        $this.data('location.rules', (data = new rulesList(this, (typeof options === 'string' ? {} : options))));
+      }
     });
+    return typeof value === 'undefined' ? this : value;
   };
 }(jQuery));
 
@@ -255,12 +272,7 @@ $(function() {
       expr.push({ value: node, attribute: "#uname", operation: "eq", kind: "uname" });
     }
     var rules = [{ score: score, expressions: expr }];
-    var newloc = $('<div><div class="content locations"></div></div>');
-    newloc.data('locations', rules);
-    newloc.data('locations-prefix', advancedui.find('[data-locations]').data('locations-prefix'))
-    newloc.data('locations-target', advancedui.find('[data-locations]').data('locations-target'));
-    advancedui.find('[data-locations]').replaceWith(newloc);
-    newloc.rulesList();
+    advancedui.find('[data-locations]').rulesList('refresh', rules);
   }
 
   simpleui.on('click', ".dropdown-menu a", function() {
@@ -268,7 +280,7 @@ $(function() {
     simpleui.find('#simple-score').val(value).trigger('change');
   }).on('change', "#simple-score", function() {
     var value = $(this).val();
-    var node = simpleui.find("#simple-score").val();
+    var node = simpleui.find("#simple-node").val();
     updateFromSimple(value, node);
   }).on('change', "#simple-node", function() {
     var value = $(this).val();
