@@ -3,12 +3,7 @@
 
 module FormHelper
   def boolean_options(selected)
-    sel = selected.to_s.downcase
-    vals = [[_("Yes"), "true"], [_("No"), "false"]]
-    vals = [[_("True"), "true"], [_("False"), "false"]] if ["true", "false"].include? sel
-    vals = [[_("Yes"), "yes"], [_("No"), "no"]] if ["yes", "no"].include? sel
-    vals = [[_("On"), "on"], [_("Off"), "off"]] if ["on", "off"].include? sel
-    options_for_select(vals, sel)
+    options_for_select([[_("Yes"), "true"], [_("No"), "false"]], selected.to_s.downcase)
   end
 
   def revert_button(form, _record)
