@@ -23,6 +23,7 @@ class CrmEvents
       File.open(path, 'a') do |f|
         f.flock(File::LOCK_EX)
         f.truncate(0) if truncate? f
+        f << "# #{DateTime.current}\n"
         f << cmd
         f << "@@COMMAND-END@@\n"
       end
