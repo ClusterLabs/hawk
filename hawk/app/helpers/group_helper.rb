@@ -8,9 +8,9 @@ module GroupHelper
 
   def group_children_for(group)
     if group.children
-      group_children_list.push(group.children).flatten.sort
+      group_children_list.push(group.children).flatten
     else
-      group_children_list.sort
+      group_children_list
     end
   end
 end
