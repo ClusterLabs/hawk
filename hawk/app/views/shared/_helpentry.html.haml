@@ -1,6 +1,9 @@
 .row.attrhelp{ class: key }
   %h3.margin-bottom
-    = content_tag :code, key
+    - if values[:shortdesc]
+      = values[:shortdesc]
+    - else
+      = content_tag :code, key
   - if values[:longdesc]
     = simple_format values[:longdesc]
   - unless values[:default].blank?
