@@ -35,8 +35,8 @@
       = main_form.button_group do
         - if order.new_record?
           = create_button(main_form, order)
+          = link_to _("Back"), types_cib_constraints_path(cib_id: cib.id), class: "btn btn-default back"
         - else
           = apply_button(main_form, order)
           = revert_button(main_form, order)
-
-        = link_to _("Back"), edit_cib_config_path(cib_id: cib.id), class: "btn btn-default back"
+          = link_to _("Back"), edit_cib_config_path(cib_id: cib.id), class: "btn btn-default back"
