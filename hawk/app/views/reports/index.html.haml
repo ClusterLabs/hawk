@@ -21,8 +21,9 @@
       .panel-footer
         %fieldset
           .form-group
-            .col-sm-12.text-danger
-              = _("Report collection is a potentially long-running operation.")
+            .col-sm-12
+              %button#cancel-report.btn.btn-danger{ type: :button }
+                = _("Cancel")
 
     #report-tabs.panel.panel-default.with-nav-tabs.hidden
       .panel-heading

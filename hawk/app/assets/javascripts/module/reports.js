@@ -3,6 +3,8 @@
 
 $(function() {
   var time_format_string = 'YYYY-MM-DD H:mm';
+  var REFRESH_INTERVAL = 5000;
+  var running_timeout = null;
 
   var build_running = function(start, end) {
     $('#reports #running-from-time').val(moment(start).format(time_format_string));
@@ -10,8 +12,6 @@ $(function() {
     $('#reports #report-running').removeClass('hidden');
     $('#reports #report-tabs').addClass('hidden');
   };
-
-  var running_timeout = null;
 
   var start_running_refresh = function() {
     if (running_timeout !== null) {
@@ -27,17 +27,30 @@ $(function() {
             clearInterval(running_timeout);
             running_timeout = null;
           }
-          $.growl({
-            message: __("Report generation is complete.")
-          },{
-            type: 'success'
-          });
+          $.growl({ message: __("Report generation is complete.") }, { type: 'success' });
           $('#reports #middle table.reports').bootstrapTable('refresh');
           build_tabs();
         }
       });
-    }, 5000);
+    }, REFRESH_INTERVAL);
   };
+
+  $('#reports #report-running').on('click', '#cancel-report', function() {
+    $.getJSON(Routes.cancel_reports_path(), {}, function(data) {
+      if (data.error) {
+        $.growl({ message: data.error },{ type: 'danger' });
+      } else {
+        if (running_timeout !== null) {
+          clearInterval(running_timeout);
+          running_timeout = null;
+        }
+        $.growl({ message: __("Report generation cancelled.") },{ type: 'danger' });
+        $('#reports #middle table.reports').bootstrapTable('refresh');
+        build_tabs();
+      }
+    });
+  });
+
 
   var build_tabs = function() {
     $('#reports #report-running').addClass('hidden');

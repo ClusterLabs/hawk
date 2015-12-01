@@ -106,6 +106,7 @@ Rails.application.routes.draw do
       post :generate
       post :upload
       get :running, defaults: { format: 'json' }
+      get :cancel, defaults: { format: 'json' }
     end
 
     member do

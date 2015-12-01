@@ -38,6 +38,16 @@ class HbReport
     Util.child_active(@pidfile)
   end
 
+  def cancel!
+    pid = File.new(@pidfile).read.to_i
+    return 0 if pid <= 0
+    Process.detach(pid)
+    Process.kill("TERM", pid)
+    pid
+  rescue Errno::ENOENT, Errno::ESRCH, Errno::EINVAL
+    0
+  end
+
   # Returns [from_time, to_time], as strings.  Note that to_time might be
   # an empty string, if no to_time was specified when calling generate.
   def lasttime

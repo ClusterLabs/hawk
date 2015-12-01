@@ -105,6 +105,20 @@ class ReportsController < ApplicationController
     end
   end
 
+  def cancel
+    respond_to do |format|
+      format.json do
+        @hb_report = HbReport.new
+        pid = @hb_report.cancel!
+        if pid > 0
+          render json: { cancelled: pid }
+        else
+          render json: { error: _("Could not cancel report collection"), status: :unprocessable_entity }
+        end
+      end
+    end
+  end
+
   def show
     if @transition.nil?
       @node_events = @report.node_events(HbReport.new(@report.name))
