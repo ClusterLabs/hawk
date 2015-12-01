@@ -21,7 +21,7 @@
                   %a{ href: "#", data: { value: "-INFINITY" } }= _("Never")
             %input#colocation_score.form-control.text-field{ type: :text, name: "colocation[score]", value: colocation.score }
 
-      %fieldset{ data: { constraints: colocation.resources.to_json, constraints_available: available_colocation_resources.to_json, constraints_selects: available_colocation_roles.to_json, constraints_prefix: "colocation[resources]", constraints_target: ".content" } }
+      %fieldset{ data: { constraints: colocation.resources.to_json, constraints_available: available_colocation_resources.to_json, constraints_selects: available_colocation_roles.to_json, constraints_prefix: "colocation[resources]", constraints_target: ".content.constraints" } }
         %legend
           = _("Resources")
           %span.pull-right.toggleable
@@ -32,7 +32,9 @@
       %fieldset
         %legend
           = _("Advanced")
-        .advanced
+          %span.pull-right.toggleable
+            = icon_tag("chevron-up")
+        .content.advanced
           = main_form.text_field :node_attr, label: _("Node Attribute"), data: { help_filter: ".row.node-attribute" }
 
       = main_form.button_group do
