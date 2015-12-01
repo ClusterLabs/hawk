@@ -86,7 +86,7 @@ class Report
   end
 
   def peinput_version(path)
-    nvpair = `CIB_file=#{path} cibadmin -Q --xpath "/cib/configuration//crm_config//nvpair[@name='dc-version']" 2>/dev/null`
+    nvpair = `CIB_file="#{path}" cibadmin -Q --xpath "/cib/configuration//crm_config//nvpair[@name='dc-version']" 2>/dev/null`
     m = nvpair.match(/value="([^"]+)"/)
     return nil unless m
     m[1]
