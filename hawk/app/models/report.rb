@@ -15,10 +15,10 @@ class Report
   end
 
   def delete(hb_report)
-    self.archive.delete
-    FileUtils.remove_entry_secure(hb_report.path) if File.exists?(hb_report.path)
-    FileUtils.remove_entry_secure(hb_report.outfile) if File.exists?(hb_report.outfile)
-    FileUtils.remove_entry_secure(hb_report.errfile) if File.exists?(hb_report.errfile)
+    archive.delete
+    FileUtils.remove_entry_secure(hb_report.path) if File.exist?(hb_report.path)
+    FileUtils.remove_entry_secure(hb_report.outfile) if File.exist?(hb_report.outfile)
+    FileUtils.remove_entry_secure(hb_report.errfile) if File.exist?(hb_report.errfile)
   end
 
   def load!
@@ -54,13 +54,13 @@ class Report
     pcmk_version = "#{m[1]}-#{m[2]}" if m
 
     [].tap do |peinputs|
-      peinputs_raw, err, status = Util.capture3("/usr/sbin/crm", "history", stdin_data: "source \"#{source}\"\npeinputs\n")
+      peinputs_raw, _err, status = Util.capture3("/usr/sbin/crm", "history", stdin_data: "source \"#{source}\"\npeinputs\n")
       if status.exitstatus == 0
         peinputs_raw.split(/\n/).each do |path|
-          next unless File.exists?(path)
+          next unless File.exist?(path)
           v = peinput_version path
           if v && v != pcmk_version
-            version = _("PE Input created by different Pacemaker version (%{version})" % { :version => v })
+            version = _("PE Input created by different Pacemaker version (%{version})") % { version: v }
           elsif v != pcmk_version
             version = _("Pacemaker version not present in PE Input")
           else
@@ -107,22 +107,22 @@ class Report
   end
 
   def cib(hb_report, path)
-    out, err, status = transition_cmd hb_report, "show #{path}"
+    out, _err, _status = transition_cmd hb_report, "show #{path}"
     out
   end
 
   def node_events(hb_report)
-    out, err, status = transition_cmd hb_report, "node"
+    out, _err, _status = transition_cmd hb_report, "node"
     out
   end
 
   def resource_events(hb_report)
-    out, err, status = transition_cmd hb_report, "resource"
+    out, _err, _status = transition_cmd hb_report, "resource"
     out
   end
 
   def tags(hb_report, path)
-    out, err, status = transition_cmd hb_report, "transition tags #{path}"
+    out, _err, _status = transition_cmd hb_report, "transition tags #{path}"
     out.split
   end
 
@@ -145,7 +145,7 @@ class Report
     tmpfile = Tempfile.new("hawk_dot")
     tmpfile.close
     File.chmod(0666, tmpfile.path)
-    out, err, status = Util.run_as('hacluster', 'crm_simulate', '-x', tpath.to_s, format == :xml ? "-G" : "-D", tmpfile.path.to_s)
+    _out, err, status = Util.run_as('hacluster', 'crm_simulate', '-x', tpath.to_s, format == :xml ? "-G" : "-D", tmpfile.path.to_s)
     rc = status.exitstatus
 
     ret = [false, err]
@@ -249,7 +249,6 @@ class Report
       n = n.basename(n.extname) if n.extname == ".tar"
       n.to_s
     end
-
 
     def report_id(name)
       Digest::SHA1.hexdigest(name)[0..8]
