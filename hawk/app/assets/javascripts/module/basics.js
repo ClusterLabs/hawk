@@ -166,7 +166,6 @@ $(function() {
     var modal = $(html.join(''));
     modal.css('z-index', 100000);
     modal.find('.commit').on('click', function() {
-      console.log("commit", this);
       on_ok();
       $('#confirmationDialog').modal('hide');
       return true;
