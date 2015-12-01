@@ -57,7 +57,7 @@ class Order < Constraint
         cmd.push "(" unless set[:sequential] == "true" && set[:sequential]
 
         set[:resources].each do |resource|
-          if set[:action].empty?
+          if set[:action].blank?
             cmd.push resource
           else
             cmd.push [
@@ -79,7 +79,7 @@ class Order < Constraint
   class << self
     def instantiate(xml)
       record = allocate
-      record.score = xml.attributes["score"] || nil
+      record.score = xml.attributes["score"] || xml.attributes["kind"] || nil
 
       record.symmetrical = Util.unstring(
         xml.attributes["symmetrical"],

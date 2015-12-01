@@ -4,12 +4,22 @@
       = errors_for colocation
 
       - if colocation.new_record?
-        = main_form.text_field :id, label: _("Constraint ID")
+        = main_form.text_field :id, label: _("Constraint ID"), data: { help_filter: ".row.id" }
       - else
-        = main_form.text_field :id, label: _("Constraint ID"), readonly: true
+        = main_form.text_field :id, label: _("Constraint ID"), readonly: true, data: { help_filter: ".row.id" }
 
-      = main_form.text_field :score, label: _("Score")
-      = main_form.text_field :node_attr, label: _("Node Attribute")
+      #colocation_score_group.form-group{ data: { help_filter: ".row.score" } }
+        %label.col-sm-5.control-label{ for: "colocation_score" }= _("Score")
+        .col-sm-7
+          .input-group
+            .input-group-btn
+              %button#colocation_score_btn.btn.btn-default.dropdown-toggle{ type: :button, aria: { haspopup: true, expanded: false }, data: { toggle: :dropdown } }
+                %span.caret
+              %ul.dropdown-menu
+                %li
+                  %a{ href: "#", data: { value: "INFINITY" } }= _("Always")
+                  %a{ href: "#", data: { value: "-INFINITY" } }= _("Never")
+            %input#colocation_score.form-control.text-field{ type: :text, name: "colocation[score]", value: colocation.score }
 
       %fieldset{ data: { constraints: colocation.resources.to_json, constraints_available: available_colocation_resources.to_json, constraints_selects: available_colocation_roles.to_json, constraints_prefix: "colocation[resources]", constraints_target: ".content" } }
         %legend
@@ -18,6 +28,12 @@
             = icon_tag("chevron-up")
 
         .content.constraints
+
+      %fieldset
+        %legend
+          = _("Advanced")
+        .advanced
+          = main_form.text_field :node_attr, label: _("Node Attribute"), data: { help_filter: ".row.node-attribute" }
 
       = main_form.button_group do
         - if colocation.new_record?

@@ -122,6 +122,12 @@ $(function() {
       }]
     });
 
+
+  $('#colocation_score_group').on('click', '.dropdown-menu a', function() {
+    var value = $(this).data('value');
+    $('#colocation_score_group #colocation_score').val(value);
+  });
+
   // $('#colocations #middle form')
   //   .validate({
   //     rules: {

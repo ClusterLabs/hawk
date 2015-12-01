@@ -120,6 +120,11 @@ $(function() {
       }]
     });
 
+  $('#order_score_group').on('click', '.dropdown-menu a', function() {
+    var value = $(this).data('value');
+    $('#order_score_group #order_score').val(value);
+  });
+
   // $('#orders #middle form')
   //   .validate({
   //     rules: {

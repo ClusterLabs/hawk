@@ -107,13 +107,13 @@ class Colocation < Constraint
         # don't flip around the other way like we do below)
         simpleset = collapsed[0]
         simpleset[:resources].each do |r|
-          cmd.push r + (simpleset[:action] ? ":#{simpleset[:action]}" : "")
+          cmd.push r + (simpleset[:action].blank? ? "" : ":#{simpleset[:action]}")
         end
       else
         collapsed.each do |set2|
           cmd.push " ( " unless set2[:sequential]
           set2[:resources].reverse_each do |r|
-            cmd.push r + (set2[:action] ? ":#{set2[:action]}" : "")
+            cmd.push r + (set2[:action].blank? ? "" : ":#{set2[:action]}")
           end
           cmd.push " )" unless set2[:sequential]
         end
@@ -171,6 +171,23 @@ class Colocation < Constraint
 
     def cib_type_write
       :rsc_colocation
+    end
+
+    def help_text
+      super.merge(
+        "score" => {
+          type: "string",
+          shortdesc: _("Score"),
+          longdesc: _('The score determines the location relationship between the resources.'),
+          default: ""
+        },
+        "node-attribute" => {
+          type: "string",
+          shortdesc: _("Node Attribute"),
+          longdesc: _("Colocate resources by the given node attribute instead of by node name (the default)."),
+          default: ""
+        }
+      )
     end
   end
 end
