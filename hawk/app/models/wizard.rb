@@ -102,6 +102,20 @@ class Wizard
     true
   end
 
+  def update_step_values(step, params)
+    params.each do |key, value|
+      if Hash === value
+        step.steps.select { |s| s.name == key }.each do |s|
+          update_step_values(s, value)
+        end
+      else
+        step.steps.select { |s| s.name.empty? }.each do |s|
+          s.parameters.each { |p| p.value = value if p.name == key }
+        end
+      end
+    end
+  end
+
   class << self
     def parse_brief(data)
       return Wizard.new(data['name'],

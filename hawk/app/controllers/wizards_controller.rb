@@ -17,8 +17,10 @@ class WizardsController < ApplicationController
   end
 
   def show
+    session[:hawk_wizard] = params[:id]
     @wizard = Wizard.find params[:id]
-    session[:wizard_session_poke] = "poke"
+    pa = Rails.cache.read("#{session.id}-#{params[:id]}")
+    @wizard.update_step_values(@wizard, pa) if pa
 
     respond_to do |format|
       format.html
@@ -28,9 +30,8 @@ class WizardsController < ApplicationController
   def update
     @wizard = Wizard.find params[:id]
     pa = build_scriptparams(params)
+    Rails.cache.write("#{session.id}-#{params[:id]}", pa, expires_in: 1.hour)
     @wizard.verify(pa)
-    session[:wizard_data] = pa
-    Rails.cache.write("#{params[:id]}/#{session.id}", pa, expires_in: 6.hours)
 
     respond_to do |format|
       format.html
@@ -38,9 +39,8 @@ class WizardsController < ApplicationController
   end
 
   def submit
-    pa = Rails.cache.fetch("#{params[:id]}/#{session.id}", expires_in: 6.hours) do
-      session[:wizard_data]
-    end
+    pa = build_scriptparams(params)
+    Rails.cache.write("#{session.id}-#{params[:id]}", pa, expires_in: 1.hour)
 
     if pa.nil?
       render json: [_("Session has expired")], status: :unprocessable_entity
@@ -65,13 +65,7 @@ class WizardsController < ApplicationController
   protected
 
   def build_stepmap(m, container)
-    container.steps.each do |s|
-      if !s.name.empty?
-        if s.required
-          m[s.name] = {}
-        end
-      end
-    end
+    container.steps.each { |s| m[s.name] = {} unless s.name.empty? || !s.required }
     m
   end
 
