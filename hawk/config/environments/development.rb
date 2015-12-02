@@ -33,7 +33,7 @@ Rails.application.configure do
   # config.active_record.migration_error = :page_load
   # config.active_record.dump_schema_after_migration = true
 
-  config.cache_store = :null_store
+  config.cache_store = :memory_store
 
   config.assets.debug = true
   config.assets.raise_runtime_errors = true
