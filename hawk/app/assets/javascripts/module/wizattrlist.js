@@ -222,6 +222,24 @@
         tgtnode.find('.setter').removeAttr("data-help-filter");
       }
     });
+
+    // add the initial values
+    $.each(content.values, function(key, value) {
+      content.key = key;
+
+      // 1. remove from available
+      $.each(self.available, function(at, item) {
+        if (item.id == key) {
+          $(this).remove();
+        }
+      });
+
+      // 2. add to entries
+      tgtnode.find('.addition').before($.templates.entryTemplate.render(content));
+      tgtnode.find('[data-element="' + key + '"]').each(function() {
+        $(this).find('select, input').val(value);
+      });
+    });
   };
 
   $.fn.wizAttrList = function(options) {
