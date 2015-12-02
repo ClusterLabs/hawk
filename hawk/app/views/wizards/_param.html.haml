@@ -10,6 +10,8 @@
       - opts[:email] = true
     - elsif param.type == "integer" || param.type == "port"
       - opts[:digits] = true
+    - elsif param.type == "resource"
+      - opts[:class] += " resource-id"
     - if param.type == "boolean"
       - if param.value
         = hidden_field_tag(param_id, 'false')

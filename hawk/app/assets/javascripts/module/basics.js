@@ -9,6 +9,10 @@ $(function() {
      window.userIsNavigatingAway = true;
   };
 
+  $.validator.addMethod("resource-id", function(value, element) {
+    return this.optional(element) || /^[a-zA-Z_-][a-zA-Z0-9_-]*$/i.test(value);
+  }, __("Invalid ID"));
+
   $('[data-toggle="tooltip"]').tooltip();
   $('[data-toggle="popover"]').popover();
   $('.nav-tabs').stickyTabs();
