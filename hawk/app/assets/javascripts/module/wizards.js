@@ -55,8 +55,6 @@ $(function() {
     $('.form-control-feedback').each(function () { $(this).remove(); });
   });
 
-  $("#wizards .nav-pills .btn-warning").popover();
-
   var verify = $(".wizard-verify");
   var vform = verify.find("form");
 
