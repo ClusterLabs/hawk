@@ -25,7 +25,7 @@ class Record < Tableless
 
     def find(id, attr = 'id')
       elems = current_cib.match "//configuration//*[self::node or self::primitive or self::template or self::clone or self::group or self::master or self::rsc_order or self::rsc_colocation or self::rsc_location or self::rsc_ticket or self::acl_role or self::acl_target or self::acl_user or self::tag][@#{attr}='#{id}']"
-      fail(Cib::RecordNotFound, _('Object not found: %s=%s') % [attr, id]) unless elems
+      fail(Cib::RecordNotFound, _('Object not found: %s=%s') % [attr, id]) unless elems && elems[0]
 
       elem = elems[0]
       obj = class_from_element_name(elem.name).instantiate(elem)
