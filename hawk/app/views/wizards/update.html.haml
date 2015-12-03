@@ -5,6 +5,7 @@
 
   .row
     = form_for [@cib, @wizard], url: { action: "submit" }, method: :post, horizontal: true, bootstrap: true, remote: true do |main_form|
+      = hidden_field_tag :pa, @pa.to_json
       .panel.panel-default
         .panel-steps
           %ul.nav.nav-pills

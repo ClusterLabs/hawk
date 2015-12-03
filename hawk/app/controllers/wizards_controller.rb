@@ -30,6 +30,7 @@ class WizardsController < ApplicationController
   def update
     @wizard = Wizard.find params[:id]
     pa = build_scriptparams(params)
+    @pa = pa
     Rails.cache.write("#{session.id}-#{params[:id]}", pa, expires_in: 1.hour)
     @wizard.verify(pa)
 
@@ -39,8 +40,8 @@ class WizardsController < ApplicationController
   end
 
   def submit
-    pa = build_scriptparams(params)
-    Rails.cache.write("#{session.id}-#{params[:id]}", pa, expires_in: 1.hour)
+    pa = JSON.parse(params[:pa]) if params[:pa]
+    pa = Rails.cache.read("#{session.id}-#{params[:id]}") if pa.nil?
 
     if pa.nil?
       render json: [_("Session has expired")], status: :unprocessable_entity
@@ -65,6 +66,7 @@ class WizardsController < ApplicationController
   protected
 
   def build_stepmap(m, container)
+    return m if container.nil?
     container.steps.each { |s| m[s.name] = {} unless s.name.empty? || !s.required }
     m
   end
