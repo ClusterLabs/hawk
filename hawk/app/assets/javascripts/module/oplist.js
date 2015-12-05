@@ -17,6 +17,17 @@
 ;(function($) {
   'use strict';
 
+  $.views.converters("complexOp", function(op) {
+    console.log(op);
+    if ($.grep(Object.keys(op), function(k) {
+      return k.match(/interval|timeout|name|jQuery\d+/) == null;
+    }).length > 0) {
+      return '<i class="fa fa-ellipsis-h fa-fw text-muted"></i>&nbsp;';
+    } else {
+      return "";
+    }
+  });
+
   function OpList(el, options) {
     this.$el = $(el);
 
@@ -80,6 +91,7 @@
                 '{{if op.interval}}',
                   '<span class="label label-info" title="interval" data-toggle="tooltip">{{>op.interval}}</span>&nbsp;',
                 '{{/if}}',
+                '{{complexOp:op}}',
                 '<a class="edit btn btn-xs btn-default" title="{{>labels.edit}}" data-attr="{{>id}}" data-name="{{>op.name}}"><i class="fa fa-pencil fa-fw"></i></a>',
                 '<a class="remove btn btn-xs btn-default" title="{{>labels.remove}}" data-attr="{{>id}}" data-name="{{>op.name}}"><i class="fa fa-minus fa-fw"></i></a>',
               '</div>',
@@ -122,10 +134,15 @@
           '{{>name}}',
           '</h3>',
           '</div>',
-          '<div class="modal-body">',
+          '<div class="modal-body" data-help-target="#oplist-edit-help > .row">',
             '<fieldset data-attrlist="" data-attrlist-target=".content" data-attrlist-prefix="op">',
               '<div class="content">',
             '</fieldset>',
+        '<div id="oplist-edit-help" class="container-fluid">',
+        '{{props mapping}}',
+        '<div class="row help-block {{>key}}" style="display: none;">{{>prop.longdesc}}</div>',
+        '{{/props}}',
+        '</div>',
           '</div>',
           '<div class="modal-footer">',
             '<input type="submit" name="submit" value="{{>submit}}" class="btn btn-primary submit">',
@@ -219,13 +236,16 @@
       var submit_text = (edit_mode == MODAL_MODE_CREATE) ? content.labels.add : content.labels.apply;
       if (!name)
         name = id;
+      var attrmapping = self.attr_mapping;
       var modal = $('#modal');
-      var medit = $.templates.editTemplate.render({id: id, name: name, submit: submit_text});
+      var medit = $.templates.editTemplate.render({id: id, name: name, submit: submit_text, mapping: attrmapping});
       modal.find('.modal-content').html(medit);
       var alist = modal.find('[data-attrlist]');
-      alist.data('attrlist', content.actions[name]);
-
-      var attrmapping = self.attr_mapping;
+      if (id in content.values) {
+        alist.data('attrlist', content.values[id]);
+      } else {
+        alist.data('attrlist', content.actions[name]);
+      }
 
       // special case for OCF_CHECK_LEVEL
       if (name == "monitor") {
