@@ -17,8 +17,6 @@
 # limitations under the License.
 #
 
-include_recipe "ruby"
-
 case node["platform_family"]
 when "suse"
   include_recipe "zypper"

@@ -2,22 +2,22 @@
 # vi: set ft=ruby :
 
 Vagrant.configure("2") do |config|
-  config.vm.box = "webhippie/opensuse-13.2"
+  config.vm.box = "opensuse/openSUSE-42.1-x86_64"
   config.vm.box_check_update = true
   config.ssh.insert_key = false
 
-  #config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ["rw", "noatime", "async"]
-  config.vm.synced_folder ".", "/vagrant"
+  config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ["rw", "noatime", "async"]
+  #config.vm.synced_folder ".", "/vagrant"
 
-  #unless Vagrant.has_plugin?("vagrant-bindfs")
-  #  abort 'Missing bindfs plugin! Please install using vagrant plugin install vagrant-bindfs'
-  #end
+  unless Vagrant.has_plugin?("vagrant-bindfs")
+    abort 'Missing bindfs plugin! Please install using vagrant plugin install vagrant-bindfs'
+  end
 
-  #config.bindfs.bind_folder "/vagrant", "/vagrant",
-  #                          force_user: "hacluster",
-  #                          force_group: "haclient",
-  #                          perms: "u=rwX:g=rwXD:o=rXD",
-  #                          after: :provision
+  config.bindfs.bind_folder "/vagrant", "/vagrant",
+                            force_user: "hacluster",
+                            force_group: "haclient",
+                            perms: "u=rwX:g=rwXD:o=rXD",
+                            after: :provision
 
   config.vm.define "webui", primary: true do |machine|
     machine.vm.hostname = "webui"
@@ -42,6 +42,8 @@ Vagrant.configure("2") do |config|
 
     machine.vm.network :private_network,
       ip: "10.13.37.10"
+
+    machine.vm.provision "shell", path: "chef/suse-prepare.sh"
 
     machine.vm.provision :chef_solo do |chef|
       chef.cookbooks_path = ["chef/cookbooks"]
@@ -83,7 +85,9 @@ Vagrant.configure("2") do |config|
         host: 7630 + i
 
       machine.vm.network :private_network,
-        ip: "10.13.37.#{10 + i}"
+                         ip: "10.13.37.#{10 + i}"
+
+      machine.vm.provision "shell", path: "chef/suse-prepare.sh"
 
       machine.vm.provision :chef_solo do |chef|
         chef.cookbooks_path = ["chef/cookbooks"]

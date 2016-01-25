@@ -9,8 +9,7 @@ run_list(
   "recipe[sshkey]",
   "recipe[ntp]",
   "recipe[openssh]",
-  "recipe[sudo]",
-  "recipe[ruby]"
+  "recipe[sudo]"
 )
 
 default_attributes({

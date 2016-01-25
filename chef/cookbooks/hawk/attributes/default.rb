@@ -17,8 +17,22 @@
 # limitations under the License.
 #
 
-default["hawk"]["zypper"]["enabled"] = true
-default["hawk"]["zypper"]["alias"] = "network-ha-clustering"
-default["hawk"]["zypper"]["title"] = "Network HA Clustering"
-default["hawk"]["zypper"]["repo"] = "http://download.opensuse.org/repositories/network:/ha-clustering:/Factory/openSUSE_#{node["platform_version"]}/"
-default["hawk"]["zypper"]["key"] = "#{node["hawk"]["zypper"]["repo"]}repodata/repomd.xml.key"
+case node["platform_family"]
+when "suse"
+  repo = case node["platform_version"]
+  when /\A13\.\d+\z/
+    "openSUSE_#{node["platform_version"]}"
+  when /\A42\.\d+\z/
+    "openSUSE_Leap_#{node["platform_version"]}"
+  when /\A\d{8}\z/
+    "openSUSE_Tumbleweed"
+  else
+    raise "Unsupported SUSE version"
+  end
+
+  default["hawk"]["zypper"]["enabled"] = true
+  default["hawk"]["zypper"]["alias"] = "network-ha-clustering"
+  default["hawk"]["zypper"]["title"] = "Network HA Clustering"
+  default["hawk"]["zypper"]["repo"] = "http://download.opensuse.org/repositories/network:/ha-clustering:/Factory/#{repo}/"
+  default["hawk"]["zypper"]["key"] = "#{node["hawk"]["zypper"]["repo"]}repodata/repomd.xml.key"
+end
