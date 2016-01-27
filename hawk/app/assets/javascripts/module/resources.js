@@ -43,6 +43,112 @@ $(function() {
     return false;
   }
 
+  function executeNodeSelectionAction(context, message, defaultmsg) {
+    var html = [
+      '<div class="modal fade" id="nodeSelectionDialog" role="dialog" tabindex="-1" aria-hidden="true">',
+      '<div class="modal-dialog">',
+      '<div class="modal-content">',
+      '<form class="form-horizontal" role="form" onsubmit="return false;">',
+      '<div class="modal-header">',
+      '<button class="close" type="button" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">', __('Close'), '</span></button>',
+      '<div class="text-center">', message,
+      '</div>',
+      '</div>',
+      '<div class="modal-body">',
+      '<select id="nodeSel" class="form-control">',
+      '<option value="">',
+      defaultmsg,
+      '</option>',
+    ];
+
+    var cib = $('body').data('content');
+
+    $.each(cib.nodes, function(index, node) {
+      html.push(
+        '<option value="', node.name, '">',
+        node.name,
+        '</option>'
+      );
+    });
+
+    html.push(
+      '</select>',
+      '</div>',
+      '<div class="modal-footer">',
+      '<button class="btn btn-default cancel" data-dismiss="modal">', __('Cancel'),'</button>',
+      '<button class="btn btn-primary commit" data-dismiss="modal">', __('OK'),'</button>',
+      '</div>',
+      '</form>',
+      '</div>',
+      '</div>',
+      '</div>'
+    );
+
+    var applyFunction = function(dialog) {
+      var nodename = dialog.find('#nodeSel').val();
+      var url = "";
+      if (nodename.length > 0) {
+        url = [
+          context.attr('href'),
+          ".json",
+          '?node=',
+          encodeURIComponent(nodename)
+        ].join("");
+      } else {
+        url = [ context.attr('href'), ".json" ].join("");
+      }
+      $.ajax({
+        dataType: 'json',
+        method: 'GET',
+        url: url,
+        success: function(data) {
+          if (data.success) {
+            $.growl({
+              message: data.message
+            },{
+              type: 'success'
+            });
+          } else {
+            if (data.error) {
+              $.growl({
+                message: data.error
+              },{
+                type: 'danger'
+              });
+            }
+          }
+          $.updateCib();
+        },
+        error: function(xhr, status, msg) {
+          $.growl({
+            message: xhr.responseJSON.error || msg
+          },{
+            type: 'danger'
+          });
+          $.updateCib();
+        }
+      });
+    };
+
+    var modal = $(html.join(''));
+    modal.css('z-index', 100000);
+    modal.find('.commit').on('click', function() {
+      var dialog = $('#nodeSelectionDialog');
+      applyFunction(dialog);
+      dialog.modal('hide');
+      return true;
+    });
+
+    modal.on('hidden.bs.modal', function () {
+      modal.remove();
+    });
+
+    $('body').append(modal);
+    modal.modal();
+
+    return false;
+  }
+
   function resourceRoutes(row) {
     var editRoute = null;
     var destroyRoute = null;
@@ -224,7 +330,9 @@ $(function() {
         },
         'click .migrate': function (e, value, row, index) {
           e.preventDefault();
-          return executeAction($(this), i18n.translate('This will migrate the resource %s. Do you want to continue?').fetch(row.id));
+          return executeNodeSelectionAction($(this),
+                                            i18n.translate('Migrate %s').fetch(row.id),
+                                            __("Away from current node"));
         },
         'click .unmigrate': function (e, value, row, index) {
           e.preventDefault();
@@ -232,7 +340,9 @@ $(function() {
         },
         'click .cleanup': function (e, value, row, index) {
           e.preventDefault();
-          return executeAction($(this), i18n.translate('This will cleanup the resource %s. Do you want to continue?').fetch(row.id));
+          return executeNodeSelectionAction($(this),
+                                            i18n.translate('Clean up %s').fetch(row.id),
+                                            __("Clean up on all nodes"));
         }
       },
       formatter: function(value, row, index) {
