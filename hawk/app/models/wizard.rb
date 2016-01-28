@@ -143,21 +143,26 @@ class Wizard
       w
     end
 
-    def exclude_wizard(item)
+    def wizard_ok(item)
       workflows = {'60-nfsserver' => true,
                    'mariadb' => true,
                    'ocfs2-single' => true,
                    'webserver' => true}
-      return true if item['category'].strip.downcase.eql? "script"
-      return true if item['category'].strip.downcase.eql?("wizard") && workflows.has_key?(item['name'])
-      false
+      return false if item.nil? || item['name'].nil? || item['shortdesc'].nil?
+      if item['category'].nil?
+        item['category'] = 'basic'
+      else
+        return false if item['category'].strip.downcase.eql? "script"
+        return false if item['category'].strip.downcase.eql?("wizard") && workflows.has_key?(item['name'])
+      end
+      true
     end
 
     def all
       Rails.cache.fetch(:all_wizards, expires_in: 2.hours) do
         [].tap do |wizards|
           CrmScript.run ["list"], nil do |item, err|
-            wizards.push Wizard.parse_brief(item) unless item.nil? || exclude_wizard(item)
+            wizards.push Wizard.parse_brief(item) if wizard_ok(item)
           end
         end
       end
