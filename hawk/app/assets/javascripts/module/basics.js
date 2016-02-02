@@ -188,4 +188,11 @@ $(function() {
       $.rails.confirmed(link);
     });
   };
+
+  $.views.helpers({
+    objectHasKeys: function(arg) {
+      console.log("objectHasKeys", arg);
+      return !($.isEmptyObject(arg));
+    }
+  });
 });
