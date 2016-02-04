@@ -9,19 +9,27 @@ class ConfigsController < ApplicationController
   def show
     respond_to do |format|
       format.html do
-        out, err, rc  = Invoker.instance.crm_configure "show"
+        cmd = "show"
+        cmd = "show xml" if params[:xml] == "true"
+        out, err, rc  = Invoker.instance.crm_configure cmd
         if rc != 0
-          format.json do
-            render json: { errors: [err || out] }, status: :internal_server_error
-          end
           format.any { head :internal_server_error }
         else
           @cibtext = out
+          @xml = params[:xml] == "true"
           render
         end
       end
       format.json do
         render json: current_cib.status(params[:id] == "mini" || params[:mini] == "true")
+      end
+      format.xml do
+        out, err, rc  = Invoker.instance.crm_configure "show xml"
+        if rc != 0
+          format.any { head :internal_server_error }
+        else
+          render xml: out
+        end
       end
     end
   rescue ArgumentError => e

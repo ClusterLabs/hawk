@@ -5,8 +5,15 @@
       %small= _("Configuration")
       .pull-right
         .btn-group{ role: "group" }
+          - if @xml
+            = link_to icon_text("list", _("Show")), cib_config_path(cib_id: current_cib.id), class: "btn btn-default"
+          - else
+            = link_to icon_text("file-code-o", _("XML")), cib_config_path(cib_id: current_cib.id, xml: true), class: "btn btn-default"
           = link_to icon_text("database", _("Edit")), edit_cib_config_path(cib_id: current_cib.id), class: "btn btn-primary"
 
   .row
     %pre
-      %code.crmsh.hljs= @cibtext.to_s
+      - if @xml
+        %code.xml.hljs= @cibtext.to_s
+      - else
+        %code.crmsh.hljs= @cibtext.to_s
