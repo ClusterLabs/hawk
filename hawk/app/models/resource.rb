@@ -11,6 +11,7 @@ class Resource < Record
   attribute :ops, Hash
   attribute :params, Hash
   attribute :meta, Hash
+  attribute :utilization, Hash
   attribute :running_on, Array
   attribute :failed_ops, Array
 
@@ -51,6 +52,10 @@ class Resource < Record
 
   def meta
     @meta ||= {}
+  end
+
+  def utilization
+    @utilization ||= {}
   end
 
   def running_on

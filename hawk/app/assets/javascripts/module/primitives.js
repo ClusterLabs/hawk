@@ -176,7 +176,7 @@ $(function() {
       form.find('#agent-info').addClass('hidden').find('a').attr('href', '#');
       form.find('#editform-loading').slideUp();
       form.find(".submit").prop("disabled", true);
-      form.find('#paramslist, #oplist, #metalist').html('');
+      form.find('#paramslist, #oplist, #metalist, #utilizationlist').html('');
     };
 
     var render_attrlists = function($template, $clazz, $provider, $type) {
@@ -295,6 +295,11 @@ $(function() {
             }
             metalist.attrList();
             $("#helpentries").append($("#tmpl-metahelp").render());
+
+            // utilization
+            $('form #utilizationlist').html($("#jstmpl-utilizationlist").render());
+            var utilizationlist = $('form #utilizationlist fieldset');
+            utilizationlist.attrList();
 
             $('form #oplist').html($("#jstmpl-oplist").render());
             var oplist = $('form #oplist fieldset');

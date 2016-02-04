@@ -39,6 +39,7 @@
       #paramslist
       #oplist
       #metalist
+      #utilizationlist
 
       = main_form.button_group do
         - if primitive.new_record?
@@ -66,6 +67,14 @@
         = icon_tag("chevron-up")
     .content
 
+%script#jstmpl-utilizationlist{type: "text/x-jsrender"}
+  %fieldset{ data: {attrlist: primitive.utilization.to_json, attrlist_target: '.content', attrlist_prefix: "#{primitive.class.cib_type}[utilization]", attrlist_mapping: primitive.available_utilization.to_json }}
+    %legend
+      = _("Utilization")
+      %span.pull-right.toggleable
+        = icon_tag("chevron-up")
+    .content
+
 %script#jstmpl-oplist{type: "text/x-jsrender"}
   %fieldset{ data: {oplist: primitive.ops.to_json, oplist_target: '.content', oplist_prefix: "#{primitive.class.cib_type}[ops]", oplist_mapping: primitive.available_opmeta.to_json}}
     %legend
@@ -73,4 +82,3 @@
       %span.pull-right.toggleable
         = icon_tag("chevron-up")
     .content
- 

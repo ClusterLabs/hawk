@@ -74,6 +74,7 @@ class Primitive < Template
       merge_operations(ops)
       merge_nvpairs("instance_attributes", params)
       merge_nvpairs("meta_attributes", meta)
+      merge_nvpairs("utilization", utilization)
       Invoker.instance.cibadmin_replace xml.to_s
     rescue NotFoundError, SecurityError, RuntimeError => e
       errors.add :base, e.message

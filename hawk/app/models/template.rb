@@ -32,6 +32,21 @@ class Template < Resource
     self.class.available_opmeta
   end
 
+  def available_utilization
+    # collect utilization mapping keys from nodes
+    {}.tap do |u|
+      current_cib.nodes_ordered.each do |node|
+        node.utilization.keys.each do |key|
+          u[key] = {
+            type: "integer",
+            default: "",
+            longdesc: ""
+          }
+        end
+      end
+    end
+  end
+
   class << self
     def all
       super.select do |record|
@@ -60,6 +75,19 @@ class Template < Resource
 
       record.meta = if xml.elements["meta_attributes"]
         vals = xml.elements["meta_attributes"].elements.collect do |el|
+          [
+            el.attributes["name"],
+            el.attributes["value"]
+          ]
+        end
+
+        Hash[vals]
+      else
+        {}
+      end
+
+      record.utilization = if xml.elements["utilization"]
+        vals = xml.elements["utilization"].elements.collect do |el|
           [
             el.attributes["name"],
             el.attributes["value"]
@@ -411,6 +439,7 @@ class Template < Resource
       merge_operations(ops)
       merge_nvpairs("instance_attributes", params)
       merge_nvpairs("meta_attributes", meta)
+      merge_nvpairs("utilization", utilization)
 
       Invoker.instance.cibadmin_replace xml.to_s
     rescue NotFoundError, SecurityError, RuntimeError => e
