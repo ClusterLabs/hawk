@@ -332,8 +332,8 @@ end up with something like:
 
 +hawk_chkpwd+ is almost identical to +unix2_chkpwd+, except it restricts
 acccess to users in the +haclient+ group, and doesn't inject any delay
-when invoked by the +hacluster+ user (which is the user Hawk's lighttpd
-instance runs as).
+when invoked by the +hacluster+ user (which is the user the Hawk web
+server instance runs as).
 
 +hawk_invoke+ allows the +hacluster+ user to run a small assortment
 of Pacemaker CLI tools as another user in order to support Pacemaker's
