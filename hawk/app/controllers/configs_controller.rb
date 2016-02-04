@@ -11,7 +11,9 @@ class ConfigsController < ApplicationController
       format.html do
         cmd = "show"
         cmd = "show xml" if params[:xml] == "true"
-        out, err, rc  = Invoker.instance.crm_configure cmd
+        out, err, rc = Invoker.instance.no_log do |invoker|
+          invoker.crm_configure cmd
+        end
         if rc != 0
           format.any { head :internal_server_error }
         else
@@ -24,7 +26,9 @@ class ConfigsController < ApplicationController
         render json: current_cib.status(params[:id] == "mini" || params[:mini] == "true")
       end
       format.xml do
-        out, err, rc  = Invoker.instance.crm_configure "show xml"
+        out, err, rc = Invoker.instance.no_log do |invoker|
+          invoker.crm_configure "show xml"
+        end
         if rc != 0
           format.any { head :internal_server_error }
         else
