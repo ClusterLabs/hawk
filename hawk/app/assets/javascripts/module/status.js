@@ -99,6 +99,7 @@
         if (cib) {
           $('body').data('content', cib);
           $('.circle').statusCircleFromCIB(cib);
+          self.options.content = cib;
           $(self.options.targets.metadata).link(true, cib);
           $(self.options.targets.content).link(true, cib);
 

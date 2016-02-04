@@ -189,10 +189,7 @@ $(function() {
     });
   };
 
-  $.views.helpers({
-    objectHasKeys: function(arg) {
-      console.log("objectHasKeys", arg);
-      return !($.isEmptyObject(arg));
-    }
+  $.views.converters("hasKeys", function(val) {
+    return !($.isEmptyObject(val));
   });
 });
