@@ -24,21 +24,21 @@
     %h4
       = _("Utilization")
 
-    - if @node.utilization.any?
+    - if @node.utilization_details.any?
       %table.table.table-striped
         %tbody
-          - @node.utilization.each do |name, value|
+          - @node.utilization_details.each do |name, value|
             %tr
               %th.col-xs-4
                 = name
 
               %td.col-xs-8
                 - if value[:percentage] == 0
-                  = "%{used} / %{total} (%{percentage}%%)" % { percentage: value[:percentage], total: value[:total], used: value[:total] - value[:remaining] }
+                  = "%{used} / %{total} (%{percentage}%%)" % value
                 - else
                   .progress
                     .progress-bar{role: "progressbar", style: "width: #{value[:percentage]}%;", aria: { valuenow: value[:percentage], valuemin: 0, valuemax: value[:total] } }
-                      = "%{used} / %{total} (%{percentage}%%)" % { percentage: value[:percentage], total: value[:total], used: value[:total] - value[:remaining] }
+                      = "%{used} / %{total} (%{percentage}%%)" % value
 
     - else
       .alert.alert-info

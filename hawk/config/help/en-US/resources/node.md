@@ -2,8 +2,6 @@
 
 Each node in the cluster will have an entry in the nodes section.
 
-#### Name
-
 The name of a node may be different from the node ID. The name is
 taken from one of these locations:
 
@@ -20,3 +18,11 @@ the node’s attributes, such as how much RAM, disk, what OS or kernel
 version it has, perhaps even its physical location. This information
 can then be used by the cluster when deciding where to place
 resources.
+
+#### Utilization
+
+To configure the capacity a node provides and the resource’s
+requirements, use utilization attributes. You can name the utilization
+attributes according to your preferences and define as many name/value
+pairs as your configuration needs. However, the attribute’s values
+must be integers.

@@ -11,6 +11,7 @@ class Node < Tableless
   attribute :name, String
   attribute :params, Hash
   attribute :utilization, Hash
+  attribute :utilization_details, Hash
   attribute :state, String
   attribute :online, Boolean
   attribute :standby, Boolean
@@ -101,6 +102,13 @@ class Node < Tableless
           longdesc: ""
         } unless m.key? key
       end
+      utilization.map do |key, _|
+        m[key] = {
+          type: "integer",
+          default: "",
+          longdesc: ""
+        } unless m.key? key
+      end
     end
   end
 
@@ -113,6 +121,8 @@ class Node < Tableless
     end
 
     merge_nvpairs("instance_attributes", params)
+
+    merge_nvpairs("utilization", utilization)
 
     # write new xml
     begin
@@ -147,19 +157,22 @@ class Node < Tableless
         {}
       end
 
+      record.utilization_details = {}
       record.utilization = {}.tap do |util|
         if xml.elements['utilization']
           xml.elements['utilization'].elements.each do |e|
-            util[e.attributes['name']] = {
-              total: e.attributes['value'].to_i,
-              remaining: e.attributes['value'].to_i,
-              percentage: 0,
+            val = e.attributes['value'].to_i
+            util[e.attributes['name']] = val
+            record.utilization_details[e.attributes['name']] = {
+              total: val.to_i,
+              used: 0,
+              percentage: 0
             }
           end
         end
       end
 
-      if record.utilization.any?
+      if record.utilization_details.any?
         Util.safe_x('/usr/sbin/crm_simulate', '-LU').split("\n").each do |line|
           m = line.match(/^Remaining:\s+([^\s]+)\s+capacity:\s+(.*)$/)
 
@@ -168,10 +181,12 @@ class Node < Tableless
           m[2].split(' ').each do |u|
             name, value = u.split('=', 2)
 
-            if record.utilization.has_key? name
-              r = record.utilization[name]
-              r[:remaining] = value.to_i unless value.nil?
-              r[:percentage] = 100 - ((r[:remaining].to_f / r[:total].to_f) * 100.0).to_i
+            if record.utilization_details.has_key? name
+              r = record.utilization_details[name]
+              remaining = 0
+              remaining = value.to_i unless value.nil?
+              r[:used] = r[:total] - remaining
+              r[:percentage] = 100 - ((remaining.to_f / r[:total].to_f) * 100.0).to_i
             end
           end
         end
