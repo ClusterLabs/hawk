@@ -62,6 +62,11 @@ class Primitive < Template
     end
   end
 
+  def agent_name
+    return super if template.blank?
+    "@#{template}"
+  end
+
   protected
 
   def update
@@ -89,15 +94,7 @@ class Primitive < Template
       # TODO(must): Ensure clazz, provider and type are sanitized
       cmd.push "primitive #{id}"
 
-      if template.blank?
-        cmd.push [
-          clazz,
-          provider,
-          type
-        ].reject(&:nil?).reject(&:empty?).join(":")
-      else
-        cmd.push "@#{template}"
-      end
+      cmd.push agent_name
 
       unless params.blank?
         params.each do |key, value|
