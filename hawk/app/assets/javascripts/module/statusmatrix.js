@@ -80,7 +80,7 @@ $(function() {
         online: "fa-circle-thin text-success",
         standby: "fa-dot-circle-o text-warning",
         offline: "fa-minus-circle text-muted",
-        unclean: "fa-circle text-danger",
+        unclean: "fa-warning text-danger",
         granted: "fa-check-circle text-success",
         revoked: "fa-times-circle-o text-muted",
         elsewhere: "fa-question-circle text-warning",
@@ -88,16 +88,31 @@ $(function() {
       title: __("Details"),
       info_selector: "#cib-status-matrix-details",
       info_template: [
-        '<dl class="dl-horizontal">',
+        '<div class="media" style="max-width: 320px;">',
+        '<div class="media-left media-middle">',
         '{{if item}}',
-        '<dt>{{:item.name}}</dt>',
-        '<dd>{{:item.state}}</dd>',
+        '<i class="fa fa-4x fa-fw {{>item_icon}}"></i>',
         '{{/if}}',
-        '{{if node}}',
-        '<dt>{{:node.name}}</td>',
-        '<dd>{{:node.state}}</dd>',
+        '{{if !item && node}}',
+        '<i class="fa fa-4x fa-fw {{>node_icon}}"></i>',
         '{{/if}}',
-        '</dl>'
+        '</div>',
+        '<div class="media-body">',
+        '<div class="container-fluid">',
+        '<div class="row">',
+        '<div class="col-md-12">',
+        '{{if item}}{{:item.name}}{{/if}}&nbsp;',
+        '{{if item}}<span class="label label-info pull-right">{{:item.state}}</span>{{/if}}&nbsp;',
+        '</div>',
+        '</div>',
+        '<div class="row text-muted">',
+        '<div class="col-md-12">',
+        '{{if node}}{{:node.name}}{{/if}}&nbsp;',
+        '{{if node}}<span class="label label-default pull-right">{{:node.state}}</span>{{/if}}&nbsp;',
+        '</div>',
+        '</div>',
+        '</div>',
+        '</div>',
       ].join('')
     };
     if (options === undefined) {
@@ -170,7 +185,7 @@ $(function() {
     }
     var cellw = (width - totalspacings) / ncols;
     var cellh = height / nrows;
-    var stopped = {name: __("Stopped Resources"), remote: false, state: null, row: []}
+    var stopped = {name: "", remote: false, state: null, row: []}
     columns.push(stopped);
 
     $.each(columns, function(col, node) {
@@ -262,7 +277,7 @@ $(function() {
             target.removeClass("right").addClass("left").offset({left: abshitx + cellw + 16, top: abshity - 16});
           }
           */
-          target.offset({left: abshitx + (cellw / 2) + 16 - target.outerWidth(), top: abshity + cellh + 16});
+          target.offset({left: abshitx + (cellw + 4) - target.outerWidth(), top: abshity + cellh + 14});
         }
       }
       lasthitx = hitx;
