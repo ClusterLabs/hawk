@@ -441,7 +441,7 @@ $(function() {
             Routes.cib_resource_path($('body').data('cib'), row.id),
             '" class="details btn btn-default btn-xs" title="',
             __('Details'),
-            '" data-toggle="modal" data-target="#modal-lg">',
+            '" data-toggle="modal" data-target="#modal">',
             '<i class="fa fa-search"></i>',
             '</a> '
           ].join(''));

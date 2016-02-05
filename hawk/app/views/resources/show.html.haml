@@ -3,13 +3,30 @@
     %h4
       = icon_tag "search"
 
-      = _("Resource:")
       = @resource.id
-
-      %small
+      .pull-right.text-muted.small.text-uppercase
         = @resource.object_type
 
   .modal-body
+    .panel
+      - if @resource.class.cib_type == :template || @resource.class.cib_type == :primitive
+        .row
+          .col-md-5
+            %label= _("Agent")
+          .col-md-7
+            = @resource.agent_name
+      - elsif @resource.class.cib_type == :group
+        .row
+          .col-md-5
+            %label= _("Children")
+          .col-md-7
+            = @resource.children.join(", ")
+      - elsif @resource.class.cib_type == :master || @resource.class.cib_type == :clone
+        .row
+          .col-md-5
+            %label= _("Child")
+          .col-md-7
+            = @resource.child
     .row
       - if @resource.params.any?
         .panel.panel-default
@@ -20,14 +37,11 @@
                 .pull-right
                   %span.caret
           #r-params.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "r-paramcontrol"}}
-            %table.table
-              %tr
-                %th= _("Name")
-                %th= _("Value")
+            %table.table.table-condensed
               - @resource.params.each do |name, value|
                 %tr
-                  %td= content_tag :code, name
-                  %td= content_tag :code, value
+                  %td.col-sm-5= name
+                  %td.col-sm-7= content_tag :code, value
       - if @resource.meta.any?
         .panel.panel-default
           .panel-heading#r-metacontrol{role: :tab}
@@ -37,14 +51,11 @@
                 .pull-right
                   %span.caret
           #r-metas.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "r-metacontrol"}}
-            %table.table
-              %tr
-                %th= _("Name")
-                %th= _("Value")
+            %table.table.table-condensed
               - @resource.meta.each do |name, value|
                 %tr
-                  %td= content_tag :code, name
-                  %td= content_tag :code, value
+                  %td.col-sm-5= name
+                  %td.col-sm-7= content_tag :code, value
 
       - if @resource.utilization.any?
         .panel.panel-default
@@ -55,34 +66,35 @@
                 .pull-right
                   %span.caret
           #r-utils.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "r-utilcontrol"}}
-            %table.table
-              %tr
-                %th= _("Name")
-                %th= _("Value")
+            %table.table.table-condensed
               - @resource.utilization.each do |name, value|
                 %tr
-                  %td= content_tag :code, name
-                  %td= content_tag :code, value
+                  %td.col-sm-5= name
+                  %td.col-sm-7= content_tag :code, value
 
       - if @resource.ops.any?
         .panel.panel-default
           .panel-heading#r-opcontrol{role: :tab}
             %h4.panel-title
-              %a{role: :button, data: {toggle: :collapse}, href: "#r-ops", aria: {expanded: false, controls: "r-ops"}}
+              %a{role: :button, data: {toggle: :collapse}, href: "#r-ops", aria: {expanded: true, controls: "r-ops"}}
                 = _("Operations")
                 .pull-right
                   %span.caret
-          #r-ops.panel-collapse.collapse{role: :tabpanel, aria: {labelledby: "r-opcontrol"}}
-            %table.table
+          #r-ops.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "r-opcontrol"}}
+            %table.table.table-condensed
               %tr
-                %th= _("Name")
-                %th= _("Timeout")
-                %th= _("Interval")
+                %th.col-sm-5= _("Name")
+                %th.col-sm-4= _("Timeout")
+                %th.col-sm-3= _("Interval")
               - @resource.ops.each do |id, op|
                 %tr
-                  %td= content_tag :code, op["name"]
-                  %td= content_tag :code, op["timeout"] || "-"
-                  %td= content_tag :code, op["interval"] || "-"
+                  %td= op["name"]
+                  %td
+                    - if op["timeout"]
+                      = content_tag(:code, op["timeout"] || "-")
+                  %td
+                    - if op["interval"]
+                      = content_tag(:code, op["interval"] || "-")
 
       - if @resource.running_on.any?
         .panel.panel-default
@@ -93,13 +105,10 @@
                 .pull-right
                   %span.caret
           #r-instances-body.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "r-instances"}}
-            %table.table
-              %tr
-                %th= _("Node")
-                %th= _("State")
+            %table.table.table-condensed
               - @resource.running_on.each do |node, state|
                 %tr
-                  %td= content_tag :code, node
+                  %td= node
                   %td= content_tag :code, state || "-"
 
       - if @resource.failed_ops.any?
@@ -111,7 +120,7 @@
                 .pull-right
                   %span.caret
           #r-failures-body.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "r-failures"}}
-            %table.table
+            %table.table.table-condensed
               %tr
                 %th= _("Node")
                 %th= _("Call")

@@ -3,8 +3,9 @@
     %h4= icon_text "cogs", "<code>#{@name}</code> <small>- #{agent_shortdesc}</small>", class: "page"
   .modal-body
     .row
-      .col-md-12
+      .col-md-offset-1.col-md-10
         = longdesc_format agent_longdesc
+        %p
     .row
       .panel-group#agentinfo{role: :tablist, aria: {multiselectable: true}}
         .panel.panel-default
