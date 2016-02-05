@@ -88,7 +88,7 @@ Rails.application.routes.draw do
         get "/ops/:id", to: "states#ops", as: :ops
       end
     end
-    resources :agents, only: [:show], constraints: { id: %r{[0-9A-Za-z%@\-\.\/]+} }
+    resources :agents, only: [:show], constraints: { id: %r{[0-9A-Za-z:%@\-\.\/]+} }
 
     resource :checks, only: [] do
       collection do
