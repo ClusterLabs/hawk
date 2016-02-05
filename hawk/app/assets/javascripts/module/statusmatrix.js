@@ -88,14 +88,16 @@ $(function() {
       title: __("Details"),
       info_selector: "#cib-status-matrix-details",
       info_template: [
-        '<ul class="list-unstyled">',
+        '<dl class="dl-horizontal">',
         '{{if item}}',
-        '<li><h3><i class="fa fa-lg {{>item_icon}}"></i> {{:item.name}} <small>{{:item.state}}</small></h3></li>',
+        '<dt>{{:item.name}}</dt>',
+        '<dd>{{:item.state}}</dd>',
         '{{/if}}',
         '{{if node}}',
-        '<li><h3><i class="fa fa-lg {{>node_icon}}"></i> {{:node.name}} <small>{{:node.state}}</small></h3></li>',
+        '<dt>{{:node.name}}</td>',
+        '<dd>{{:node.state}}</dd>',
         '{{/if}}',
-        '</ul>'
+        '</dl>'
       ].join('')
     };
     if (options === undefined) {
@@ -154,16 +156,16 @@ $(function() {
         columns[columns.length-1].row.length = nrows;
       }
     }
-    var hasremotes = false;
+    var numremotes = 0;
     for (var i = 0; i < status.nodes.length; ++i) {
       if (status.nodes[i].remote) {
-        hasremotes = true;
+        numremotes = numremotes + 1;
         columns.push({name: status.nodes[i].name, state: status.nodes[i].state, remote: true, row: []});
         columns[columns.length-1].row.length = nrows;
       }
     }
     var totalspacings = 10;
-    if (hasremotes) {
+    if (numremotes > 0) {
       totalspacings += 10;
     }
     var cellw = (width - totalspacings) / ncols;
@@ -221,7 +223,15 @@ $(function() {
     this.on("mousemove", function(event) {
       var rx = event.pageX - $(this).offset().left;
       var ry = event.pageY - $(this).offset().top;
-      var hitx = Math.floor(rx / cellw);
+
+      // compensate for column spacing
+      var xoffset = 0;
+      if (numremotes > 0 && rx > (ncols - numremotes - 1)*cellw)
+        xoffset += 10;
+      if (rx > (ncols - 1)*cellw)
+        xoffset += 10;
+
+      var hitx = Math.floor((rx - xoffset) / cellw);
       var hity = Math.floor(ry / cellh);
       var hitc = columns[hitx];
       if (hitc) {
@@ -240,15 +250,19 @@ $(function() {
           } else {
             data.item_icon = options.icons["stopped"];
           }
-          var abshitx = $(this).offset().left + hitx*cellw;
+
+          var abshitx = $(this).offset().left + hitx*cellw + xoffset;
           var abshity = $(this).offset().top + hity*cellh;
           var target = $(options.info_selector);
           target.html(infoTmpl.render(data)).width("auto");
+          /*
           if (abshitx + (cellw / 2) > $(window).width() / 2) {
             target.addClass("right").removeClass("left").offset({left: abshitx - 16 - target.outerWidth(), top: abshity - 16});
           } else {
             target.removeClass("right").addClass("left").offset({left: abshitx + cellw + 16, top: abshity - 16});
           }
+          */
+          target.offset({left: abshitx + (cellw / 2) + 16 - target.outerWidth(), top: abshity + cellh + 16});
         }
       }
       lasthitx = hitx;

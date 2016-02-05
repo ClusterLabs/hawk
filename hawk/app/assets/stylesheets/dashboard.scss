@@ -6,16 +6,28 @@ $dashboard-font-size: 12px;
 #cib-status-matrix-details {
   display: none;
   position: fixed;
-  padding: 0.5em 2em 0.5em 2em;
   z-index: 10000;
   width: auto !important;
+  padding: 1em;
 
-  background-color: #fff;
-  border: 1px solid #ccc;
+  background-color: #f5f5f5;
+  color: #222;
+  border: 1px solid #80c235;
   border-radius: 4px;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
   background-clip: padding-box;
+}
+
+#cib-status-matrix-details:before {
+    border-bottom: 11px solid rgba(0, 0, 0, 0.3);
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
+    content: "";
+    display: inline-block;
+    position: absolute;
+    right: 12px;
+    top: -11px;
 }
 
 table.status-matrix-wrapper {
