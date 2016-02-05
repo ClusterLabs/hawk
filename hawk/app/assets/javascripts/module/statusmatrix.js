@@ -65,7 +65,7 @@ $(function() {
         online: "#d0e4a6",
         standby: "#747678",
         offline: "#e4e5e6",
-        unclean: "#ec008c",
+        unclean: "#ff0051",
         granted: "#c1d82f",
         revoked: "#b5bbd4",
         elsewhere: "#ffd457"
