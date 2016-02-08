@@ -1,0 +1,23 @@
+.container-fluid
+  %form#rename-resource.form-horizontal{ role: :form, method: :post, action: rename_cib_resource_url(cib_id: @cib.id) }
+    .modal-header
+      %h3.modal-title
+        = _("Rename Resource")
+    .modal-body
+      %input{type: :hidden, name: request_forgery_protection_token.to_s, value: form_authenticity_token}
+      .form-group
+        %label.col-sm-5.control-label{ for: "from" }
+          = _("Rename")
+        .col-sm-7
+          %input#from.form-control.text-field{ name: :id, type: :text, readonly: :readonly, value: @resource.id }
+      .form-group
+        %label.col-sm-5.control-label{ for: "to" }
+          = _("To")
+        .col-sm-7
+          %input#to.form-control.text-field{ name: :to, type: :text, value: @resource.id }
+
+    .modal-footer
+      %button.btn.btn-default{type: :button, data: { dismiss: :modal }}
+        = _("Cancel")
+      %button.btn.btn-primary{type: :submit}
+        = icon_text "save", _("Rename")

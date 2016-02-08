@@ -147,6 +147,51 @@ class ResourcesController < ApplicationController
                         _("Failed to clean up the resource: %{err}")
   end
 
+  def rename
+    from = params[:id]
+    to = params[:to]
+    @resource = Resource.find from
+
+    if to.nil?
+      respond_to do |format|
+        format.html
+      end
+    else
+      _out, err, rc = Invoker.instance.crm_configure("rename #{from} #{to}")
+
+      respond_to do |format|
+        if rc == 0
+          msg = _("Successfully renamed %{A} to %{B}") % { A: params[:id], B: params[:to] }
+          format.html do
+            flash[:success] = msg
+            redirect_to edit_cib_resource_url(cib_id: @cib.id, id: params[:to])
+          end
+          format.json do
+            render json: { success: true, message: msg }
+          end
+        else
+          msg = _("Failed to rename %{A} to %{B}: %{E}") % { A: params[:id], B: params[:to], E: err }
+          format.html do
+            flash[:danger] = msg
+            redirect_to edit_cib_config_url(cib_id: @cib.id)
+          end
+          format.json do
+            render json: {
+              error: msg
+            }, status: :unprocessable_entity
+          end
+        end
+      end
+    end
+  end
+
+  def edit
+    # redirect depending on type of resource
+    resource = Resource.find params[:id]
+    edit_url = "edit_cib_#{resource.object_type}_url".to_sym
+    redirect_to send(edit_url, cib_id: @cib.id, id: params[:id])
+  end
+
   protected
 
   def set_title
@@ -160,12 +205,10 @@ class ResourcesController < ApplicationController
   def default_base_layout
     if ["index", "types"].include? params[:action]
       "withrightbar"
+    elsif params[:action] == "show" || params[:action] == "events" || params[:action] == "rename"
+      "modal"
     else
-      if params[:action] == "show" || params[:action] == "events"
-        "modal"
-      else
-        super
-      end
+      super
     end
   end
 
