@@ -4,7 +4,6 @@
       = icon_text "superscript", _("Create Multi-state"), class: "page"
       .pull-right
         .btn-group{ role: "group" }
-          = link_to icon_text("list-ul", _("List")), cib_masters_path, class: "btn btn-default"
 
   .row
     = render partial: "form", locals: { cib: @cib, master: @master }

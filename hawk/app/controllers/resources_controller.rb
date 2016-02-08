@@ -150,6 +150,7 @@ class ResourcesController < ApplicationController
   def rename
     from = params[:id]
     to = params[:to]
+    @source = params[:source] || "edit"
     @resource = Resource.find from
 
     if to.nil?
@@ -161,19 +162,24 @@ class ResourcesController < ApplicationController
 
       respond_to do |format|
         if rc == 0
-          msg = _("Successfully renamed %{A} to %{B}") % { A: params[:id], B: params[:to] }
+          msg = _("Successfully renamed %{A} to %{B}") % { A: from, B: to }
           format.html do
             flash[:success] = msg
-            redirect_to edit_cib_resource_url(cib_id: @cib.id, id: params[:to])
+            redirect_to edit_cib_resource_url(cib_id: @cib.id, id: to)
           end
           format.json do
             render json: { success: true, message: msg }
           end
         else
-          msg = _("Failed to rename %{A} to %{B}: %{E}") % { A: params[:id], B: params[:to], E: err }
+          msg = _("Failed to rename %{A} to %{B}: %{E}") % { A: from, B: to, E: err }
           format.html do
             flash[:danger] = msg
-            redirect_to edit_cib_config_url(cib_id: @cib.id)
+
+            if @source == "resource"
+              redirect_to edit_cib_resource_url(cib_id: @cib.id, id: from)
+            else
+              redirect_to edit_cib_config_url(cib_id: @cib.id)
+            end
           end
           format.json do
             render json: {

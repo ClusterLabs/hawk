@@ -5,6 +5,7 @@
         = _("Rename Resource")
     .modal-body
       %input{type: :hidden, name: request_forgery_protection_token.to_s, value: form_authenticity_token}
+      %input{type: :hidden, name: :source, value: @source}
       .form-group
         %label.col-sm-5.control-label{ for: "from" }
           = _("Rename")

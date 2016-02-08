@@ -4,7 +4,6 @@
       = icon_text "group", _("Create Group"), class: "page"
       .pull-right
         .btn-group{ role: "group" }
-          = link_to icon_text("list-ul", _("List")), cib_groups_path, class: "btn btn-default"
 
   .row
     = render partial: "form", locals: { cib: @cib, group: @group }

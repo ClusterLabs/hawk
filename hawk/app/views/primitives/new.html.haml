@@ -4,7 +4,6 @@
       = icon_text "file-o", @title, class: "page"
       .pull-right
         .btn-group{ role: "group" }
-          = link_to icon_text("list-ul", _("List")), path_for_list, class: "btn btn-default"
 
   .row
     = render partial: "primitives/form", locals: { cib: @cib, primitive: @primitive }

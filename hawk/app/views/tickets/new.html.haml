@@ -4,7 +4,6 @@
       = icon_text "ticket", _("Create Ticket"), class: "page"
       .pull-right
         .btn-group{ role: "group" }
-          = link_to icon_text("list-ul", _("List")), cib_tickets_path, class: "btn btn-default"
 
   .row
     = render partial: "form", locals: { cib: @cib, ticket: @ticket }
