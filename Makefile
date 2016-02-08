@@ -13,7 +13,7 @@ BUILD_VERSION = $(shell git log --pretty="format:%h" -n 1)
 BUILD_TAG = $(shell git describe --tags --abbrev=0 | sed -e 's/^hawk-//')
 
 ifeq "$(BUILD_TAG)" ""
-BUILD_TAG = 0.0.0
+BUILD_TAG = 2.0.0
 endif
 
 RPM_ROOT = $(shell pwd)/rpm

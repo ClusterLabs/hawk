@@ -1,7 +1,7 @@
 #
 # spec file for package hawk
 #
-# Copyright (c) 2015 SUSE LINUX GmbH, Nuernberg, Germany.
+# Copyright (c) 2016 SUSE LINUX GmbH, Nuernberg, Germany.
 #
 # All modifications and additions to the file contributed by third parties
 # remain the property of their copyright owners, unless otherwise agreed
@@ -28,10 +28,6 @@
 %define	pkg_group	System Environment/Daemons
 %endif
 
-%if 0%{?suse_version} && !0%{?is_opensuse}
-%define bundle_gems	1
-%endif
-
 %define	gname		haclient
 %define	uname		hacluster
 
@@ -39,7 +35,7 @@ Name:           hawk
 Summary:        HA Web Konsole
 License:        GPL-2.0
 Group:          %{pkg_group}
-Version:        1.0.1+git.1446137442.d9c6c0e
+Version:        2.0.0
 Release:        0
 Url:            http://www.clusterlabs.org/wiki/Hawk
 Source:         %{name}-%{version}.tar.bz2
@@ -75,7 +71,7 @@ BuildRequires:  pacemaker-libs-devel
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:builder) >= 3.2
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:byebug) >= 3.5
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:fast_gettext) >= 0.9.2
-BuildRequires:  rubygem(%{rb_default_ruby_abi}:gettext:3.1)
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:gettext:3) >= 3.1
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:gettext_i18n_rails:1) >= 1.2
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:gettext_i18n_rails_js) >= 1.0
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:haml-rails) >= 0.8.2
@@ -83,6 +79,7 @@ BuildRequires:  rubygem(%{rb_default_ruby_abi}:hashie) >= 3.4
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:js-routes:1)
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:kramdown:1) >= 1.3
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:mail) >= 2.6
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:mime-types) < 3
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:mime-types) >= 2.5
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:minitest) >= 5.6
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:puma:2) >= 2.11
@@ -98,10 +95,10 @@ BuildRequires:  rubygem(%{rb_default_ruby_abi}:virtus)
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:rake:10.4)
 %endif
 
-BuildRequires:  rubygem(%{rb_default_ruby_abi}:spring:1) >= 1.3
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:sprockets) >= 3.0
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:thor) >= 0.19
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:tilt:1.4)
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:uglifier)
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:web-console:2) >= 2.1
 
 %if 0%{?bundle_gems}
@@ -225,24 +222,29 @@ rm -rf %{buildroot}
 %endif
 
 %files -f hawk.lang
-%defattr(-,root,root)
+%defattr(644,root,root,755)
 %attr(4750, root, %{gname})%{_sbindir}/hawk_chkpwd
 %attr(4750, root, %{gname})%{_sbindir}/hawk_invoke
-%{_sbindir}/hawk_monitor
+%attr(0755, root, root) %{_sbindir}/hawk_monitor
 %dir %{www_base}/hawk
 %{www_base}/hawk/app
 %{www_base}/hawk/config
 %{www_base}/hawk/lib
+%dir %{www_base}/hawk/bin
+%attr(0755, root, root)%{www_base}/hawk/bin/rake
+%attr(0755, root, root)%{www_base}/hawk/bin/rails
+%exclude %{www_base}/hawk/bin/hawk
+%attr(0755, root, root)%{www_base}/hawk/bin/generate-ssl-cert
+%attr(0755, root, root)%{www_base}/hawk/bin/bundle
 %attr(0750, %{uname},%{gname})%{_sysconfdir}/hawk
 %attr(0750, %{uname},%{gname})%{www_base}/hawk/log
 %dir %attr(0750, %{uname},%{gname})%{www_base}/hawk/tmp
-%attr(0750, %{uname},%{gname})%{www_base}/hawk/tmp/cache
-%attr(0770, %{uname},%{gname})%{www_base}/hawk/tmp/explorer
-%attr(0770, %{uname},%{gname})%{www_base}/hawk/tmp/explorer/uploads
-%attr(0770, %{uname},%{gname})%{www_base}/hawk/tmp/home
-%attr(0750, %{uname},%{gname})%{www_base}/hawk/tmp/pids
-%attr(0750, %{uname},%{gname})%{www_base}/hawk/tmp/sessions
-%attr(0750, %{uname},%{gname})%{www_base}/hawk/tmp/sockets
+%attr(-, %{uname},%{gname})%{www_base}/hawk/tmp/cache
+%attr(-, %{uname},%{gname})%{www_base}/hawk/tmp/explorer
+%attr(-, %{uname},%{gname})%{www_base}/hawk/tmp/home
+%attr(-, %{uname},%{gname})%{www_base}/hawk/tmp/pids
+%attr(-, %{uname},%{gname})%{www_base}/hawk/tmp/sessions
+%attr(-, %{uname},%{gname})%{www_base}/hawk/tmp/sockets
 %exclude %{www_base}/hawk/tmp/session_secret
 %{www_base}/hawk/locale/hawk.pot
 %if 0%{?bundle_gems}
@@ -259,7 +261,6 @@ rm -rf %{buildroot}
 %endif
 %{www_base}/hawk/COPYING
 %{www_base}/hawk/config.ru
-%{www_base}/hawk/bin
 %{www_base}/hawk/test
 %if 0%{?suse_version}
 # itemizing content in %%{www_base}/hawk/locale to avoid
@@ -275,6 +276,11 @@ rm -rf %{buildroot}
 # hideous, so we're going to live with a handful of file-not-in-%%lang rpmlint
 # warnings for bundled gems.
 %{www_base}/hawk/vendor
+
+%if 0%{?bundle_gems}
+%attr(0755, root, root) %{www_base}/hawk/vendor/bundle/ruby/*/bin/puma
+%attr(0755, root, root) %{www_base}/hawk/vendor/bundle/ruby/*/bin/pumactl
+%endif
 
 %{_unitdir}/hawk.service
 %if 0%{?suse_version}
