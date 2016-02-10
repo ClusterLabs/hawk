@@ -4,9 +4,7 @@
 footer {
   display: none;
 
-  background-color: #f9f9f9;
-  padding: 15px 10px;
-  border-top: 1px solid #ccc;
+  @include footer-theme();
 
   position:absolute;
   bottom:-60px;

@@ -33,7 +33,5 @@
 }
 
 .navbar-simulator {
-  background: linear-gradient(to right, #1fad7a 0, #80c235 100%);
-  background: -moz-linear-gradient(left, #1fad7a 0, #80c235 100%);
-  background: -webkit-gradient(linear, left top, right top, color-stop(0,#1fad7a), color-stop(100%,#80c235));
+    @include horizontal-gradient-background($simulator-left, $simulator-right);
 }

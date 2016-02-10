@@ -2,8 +2,8 @@
 // See COPYING for license.
 
 #sidebar {
-  background-color: #383c3e;
-  color: #fff;
+  background-color: $sidebar-bg;
+  color: $sidebar-fg;
 
   padding-left: 0;
   padding-right: 0;
@@ -12,14 +12,14 @@
     & > li {
       text-transform: uppercase;
       padding: 0 0 0 20px;
-      color: #00b268;
+      color: $sidebar-heading-fg;
     }
 
     ul {
       list-style-type: none;
       line-height: 2.8em;
       font-weight: lighter;
-      border-bottom: 1px solid #333;
+      border-bottom: 1px solid $sidebar-separator-fg;
       padding: 0 0 10px 0;
       margin: 10px 0 10px 10px;
 
@@ -29,7 +29,7 @@
         margin-left: 20px;
 
         a {
-          color: #fff;
+          color: $sidebar-link-fg;
           text-decoration: none;
           display: inline-block;
           width: 100%;
@@ -37,11 +37,11 @@
 
         &.active a,
         a:hover {
-          border-right: 5px solid #80c235;
+          border-right: 5px solid $sidebar-highlight-fg;
         }
 
         a:hover {
-          color: darken(#fff, 20.0%);
+          color: $sidebar-link-hover-fg;
         }
       }
     }
@@ -79,19 +79,18 @@
 
   .panel-default {
     .panel-heading {
-      @include gradient-vertical(#f4f4f4, #e7e7e7);
+      @include panel-heading-bg();
 
       h2 {
-        font-family: Roboto, 'Helvetica Neue', Helvetica, Arial, sans-serif;
-        color: rgb(58, 62, 64);
-        -webkit-font-smoothing: antialiased;
-        font-size: 14px;
+        font-family: $sidebar-headings-font-family;
+        color: $sidebar-headings-fg;
+        font-size: $font-size-base;
         font-weight: bold;
       }
     }
 
     .panel-footer {
-      @include gradient-vertical(#f4f4f4, #e7e7e7);
+      @include panel-heading-bg();
     }
   }
 
@@ -101,7 +100,7 @@
 }
 
 #rightbar {
-  background-color: #EBEBEB;
+  background-color: $rightbar-bg;
 
   padding-left: 0;
   padding-right: 0;
