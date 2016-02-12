@@ -58,6 +58,16 @@
           .panel-body.sim-details
             = icon_tag 'circle-o-notch', class: 'fa-spin'
       .panel.panel-default
+        #sim-diff-hdr.panel-heading{role: :tab}
+          %h4.panel-title
+            %a{role: :button, href: "#sim-diff-body", data: {parent: "#accordion", toggle: :collapse}, aria: {expanded: true, controls: "sim-diff-body"}}
+              = _("Diff")
+              .pull-right
+                %span.caret
+        #sim-diff-body.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "sim-diff-hdr"}}
+          .panel-body.sim-diff
+            = icon_tag 'circle-o-notch', class: 'fa-spin'
+      .panel.panel-default
         #sim-cib-in-hdr.panel-heading{role: :tab}
           %h4.panel-title
             %a{role: :button, href: "#sim-cib-in-body", data: {parent: "#accordion", toggle: :collapse}, aria: {expanded: false, controls: "sim-cib-in-body"}}

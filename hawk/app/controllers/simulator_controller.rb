@@ -120,6 +120,13 @@ class SimulatorController < ApplicationController
       send_data Invoker.instance.cibadmin('-Ql'), type: (params[:munge] == "txt" ? "text/plain" : "text/xml"), disposition: :inline
     when "graph-xml"
       send_data File.new("#{Rails.root}/tmp/sim.graph").read, type: (params[:munge] == "txt" ? "text/plain" : "text/xml"), disposition: :inline
+    when "diff"
+      out, err, rc = Invoker.instance.crm_configure("cib diff")
+      if rc == 0
+        send_data out, type: "text/plain", disposition: :inline
+      else
+        render json: { error: err }, status: 500
+      end
     when "graph"
       svg, err, status = Util.capture3("/usr/bin/dot", "-Tsvg", "#{Rails.root}/tmp/sim.dot")
       if status != 0

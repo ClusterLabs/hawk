@@ -224,6 +224,10 @@ $(function() {
               code = '<pre><code class="xml hljs">';
               code += $('<div/>').text(data).html();
               code += '</code></pre>';
+            } else if (file == "diff") {
+              code = '<pre><code class="xml hljs">';
+              code += $('<div/>').text(data).html();
+              code += '</code></pre>';
             } else {
               code = '<pre>';
               code += data;
@@ -257,6 +261,7 @@ $(function() {
       fetch_data($("#modal-lg .sim-details"), 'info');
       fetch_data($("#modal-lg .sim-cib-in"), 'in');
       fetch_data($("#modal-lg .sim-cib-out"), 'out');
+      fetch_data($("#modal-lg .sim-diff"), 'diff');
       fetch_data($("#modal-lg .sim-xml"), 'graph-xml');
       fetch_svg($("#modal-lg .sim-graph"), 'graph');
 
