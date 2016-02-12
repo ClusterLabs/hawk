@@ -121,9 +121,25 @@ class SimulatorController < ApplicationController
     when "graph-xml"
       send_data File.new("#{Rails.root}/tmp/sim.graph").read, type: (params[:munge] == "txt" ? "text/plain" : "text/xml"), disposition: :inline
     when "diff"
-      out, err, rc = Invoker.instance.crm_configure("cib diff")
-      if rc == 0
-        send_data out, type: "text/plain", disposition: :inline
+      shadow_id = ENV["CIB_shadow"]
+      begin
+        ENV.delete("CIB_shadow")
+        base_configuration, err, rc = Invoker.instance.crm_configure("show")
+      ensure
+        ENV["CIB_shadow"] = shadow_id
+      end
+      if rc != 0
+        render json: { error: err }, status: 500
+        return
+      end
+      shadow_configuration, err, rc = Invoker.instance.crm_configure("show")
+      if rc != 0
+        render json: { error: err }, status: 500
+        return
+      end
+      cibdiff, ok = Util.diff(base_configuration.gsub(/\s+\\$\s+/, ' '), shadow_configuration.gsub(/\s+\\$\s+/, ' '))
+      if ok
+        send_data cibdiff, type: "text/plain", disposition: :inline
       else
         render json: { error: err }, status: 500
       end
@@ -155,6 +171,10 @@ class SimulatorController < ApplicationController
     render json: intervals
   end
 
+  def help
+    render
+  end
+
   protected
 
   def set_title
@@ -163,6 +183,14 @@ class SimulatorController < ApplicationController
 
   def set_cib
     @cib = current_cib
+  end
+
+  def default_base_layout
+    if ["help"].include? params[:action]
+      "modal"
+    else
+      super
+    end
   end
 
   def sim_reload_state

@@ -34,6 +34,23 @@ class CibController < ApplicationController
     end
   end
 
+  def apply
+    if request.post?
+      out, err, rc = Invoker.instance.crm_configure("cib commit #{current_cib.id}")
+      if rc != 0
+        Rails.logger.debug "apply fail: #{err}, #{current_cib.id}"
+        flash[:danger] = _("Failed to apply configuration")
+        redirect_to cib_state_path(cib_id: current_cib.id)
+        return
+      end
+      Rails.logger.debug "apply OK: #{out}"
+      flash[:success] = _("Applied configuration successfully")
+      redirect_to cib_state_path(cib_id: :live)
+    else
+      render
+    end
+  end
+
   def options
     respond_to do |format|
       format.json do
@@ -45,7 +62,7 @@ class CibController < ApplicationController
   protected
 
   def detect_modal_layout
-    if request.xhr? && params[:action] == :meta
+    if request.xhr? && (params[:action] == :meta || params[:action] == :apply)
       "modal"
     else
       detect_current_layout

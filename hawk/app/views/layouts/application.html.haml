@@ -13,6 +13,9 @@
         #navbar.navbar-right
           = render partial: "shared/usernav"
 
+    - if current_cib.sim?
+      = render partial: "shared/simulator"
+
     .nav-wrapper
       #sidebar.sidebar-wrapper
         = render partial: "shared/mainnav"
@@ -22,10 +25,6 @@
           .row
             #middle.col-sm-12
               .container-fluid
-                - if current_cib.sim?
-                  .row
-                    = render partial: "shared/simulator"
-
                 = render partial: "shared/flash", locals: { flash: flash }
               = yield
 

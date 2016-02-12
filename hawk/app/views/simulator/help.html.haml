@@ -1,0 +1,9 @@
+.container-fluid
+  .modal-body
+    .row
+      .col-sm-12
+        = localized_help_for :simulator, :index
+
+  .modal-footer
+    %button.btn.btn-default{ type: "button", data: { dismiss: "modal" } }
+      = _("Close")

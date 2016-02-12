@@ -31,7 +31,7 @@
 //= require module/status
 //= require module/constraint
 //= require module/reports
-//= require module/simulator
+//= require module/batch
 //= require module/location
 
 $(function() {

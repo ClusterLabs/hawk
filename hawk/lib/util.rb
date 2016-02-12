@@ -126,6 +126,37 @@ module Util
   end
   module_function :run_as
 
+  def diff(a, b)
+    # call diff on a and b
+    # returns [data, ok?]
+    require 'tempfile.rb'
+    fa = Tempfile.new 'simdiff_a'
+    fb = Tempfile.new 'simdiff_b'
+    begin
+      fa << a
+      fb << b
+      fa.close
+      fb.close
+
+      out, err, status = capture3 '/usr/bin/diff', "-a", "-U", "0", "--from-file=#{fa.path}", fb.path.to_s
+      if status.exitstatus == 2
+        [err, false]
+      else
+        cleaned = [].tap do |o|
+          out.lines.each do |line|
+            next if line.start_with?("--- ", "+++ ", "@@ ")
+            o.push line
+          end
+        end.join("")
+        [cleaned, true]
+      end
+    ensure
+      fa.unlink
+      fb.unlink
+    end
+  end
+  module_function :diff
+
   # Like %x[...], but without risk of shell injection.  Returns STDOUT
   # as a string.  STDERR is ignored. $?.exitstatus is set appropriately.
   # May block indefinitely if the command executed is expecting something

@@ -118,4 +118,12 @@ $(function() {
   $.updateCib = function() {
     $('body').trigger($.Event('updated.hawk.monitor'));
   };
+
+  $.runSimulator = function() {
+    if ($('body').data('cib') != "live") {
+      $('body').trigger($.Event('hawk.run.simulator'));
+    } else {
+      $.updateCib();
+    }
+  };
 });

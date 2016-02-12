@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   resources :cib, only: [] do
     get "/", via: [:get, :post, :options], to: "cib#show", as: ""
 
+    match "/apply", as: :apply, to: 'cib#apply', via: [:get, :post]
+
     resources :nodes do
       member do
         get :online
@@ -126,6 +128,7 @@ Rails.application.routes.draw do
   post '/sim/reset', as: :sim_reset, to: 'simulator#reset', defaults: { format: 'json' }
   get '/sim/result', as: :sim_result, to: 'simulator#result', defaults: { format: 'json' }
   get '/sim/intervals/:id', as: :sim_intervals, to: 'simulator#intervals', defaults: { format: 'json' }
+  get '/sim/help', as: :sim_help, to: 'simulator#help'
 
   resource :dashboard, only: [:show, :add, :remove] do
     member do

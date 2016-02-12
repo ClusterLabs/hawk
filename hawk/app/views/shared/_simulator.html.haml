@@ -1,209 +1,223 @@
-#simulator-node
+.batch-control-bar
+  %a{ href: sim_help_path, data: { toggle: :modal, target: "#modal" }, class: "help-cursor" }
+    %strong.text-uppercase= icon_text("rocket", _("Simulator Active"))
+  .pull-right
+    %a#btn-show-batch.btn{ role: :button, data: { target: "#" } }
+      = icon_text("cog", _("Show"))
+    %a#btn-discard-batch.btn{ role: :button, href: cib_state_path(cib_id: :live), data: { confirm: _("Any changes to the configuration will be lost - do you wish to proceed?") } }
+      = icon_text("trash", _("Discard"))
+    %a#btn-apply-batch.btn{ role: :button, href: cib_apply_path(cib_id: current_cib.id), data: { toggle: :modal, target: "#modal-lg" } }
+      = icon_text("check", _("Apply"))
 
-%script#simulator{type: "text/x-jsrender"}
-  .panel.panel-warning
-    #simulator-heading.panel-heading
-      %h3.panel-title
-        %a#simulator-toggle{ href: "#simulator-collapse", role: :button,
-         data: {toggle: :collapse, parent: "#simulator"},
-         aria: {expanded: true, controls: "simulator-collapse"} }
-          = _("Simulator Active")
+%script#batch-entry{type: "text/x-jsrender"}
+  %li.list-group-item{ data: { entry: "{{:value}}" } }
+    = "{{:name}}"
+    .pull-right
+      = link_to icon_tag("remove"), "#", class: "text-danger"
+
+%script#batch-template{type: "text/x-jsrender"}
+  .tab-content
+    #batch-view.tab-pane.active{ role: :tabpanel }
+      .modal-header
+        %h3.modal-title
+          = icon_text("cog", _("Batch Mode"))
           .pull-right
-            %span.caret
-    #simulator-collapse.panel-collapse.collapse.in{aria: {labelledby: "simulator-heading"}}
-      .panel-body
+            %small= current_cib.id
+      .modal-body
         .container-fluid
+          .row
+            .col-sm-12
+              .btn-toolbar{ role: :toolbar }
+                .btn-group{ role: :group }
+                  .dropdown
+                    %a.btn.btn-default.btn-block{ role: :button, data: { toggle: :dropdown } }
+                      = icon_text("rocket", _("Simulator"))
+                    %ul.dropdown-menu
+                      %li= link_to _("Summary"), "#batch-summary", data: { toggle: :tab }
+                      %li= link_to _("CIB (in)"), "#batch-cib-in", data: { toggle: :tab }
+                      %li= link_to _("CIB (out)"), "#batch-cib-out", data: { toggle: :tab }
+                      %li= link_to _("Transition Graph"), "#batch-transition-graph", data: { toggle: :tab }
+                      %li= link_to _("Transition"), "#batch-transition", data: { toggle: :tab }
+                .btn-group{ role: :group }
+                  .dropdown
+                    %a.btn.btn-default.btn-block{ role: :button, data: { toggle: :dropdown } }
+                      = icon_text("bolt", _("Inject"))
+                    %ul.dropdown-menu
+                      - unless current_cib.nodes.empty?
+                        %li= link_to _("Node Event"), "#batch-node-event", data: { toggle: :tab }
+                      - unless current_cib.resources.empty?
+                        %li= link_to _("Resource Event"), "#batch-resource-event", data: { toggle: :tab }
+                      - unless current_cib.tickets.empty?
+                        %li= link_to _("Ticket Event"), "#batch-ticket-event", data: { toggle: :tab }
+          .row
+            .col-sm-12
+              %hr
           .row
             .col-sm-12
               .errors
           .row
             .col-sm-9
-              %select.form-control#sim-events{ multiple: true }
-              .btn-group.btn-group-sm
-                .btn-group
-                  %button.btn.btn-default#sim-addnode{ type: :button }
-                    = icon_text "plus", _("Node")
-                .btn-group
-                  %button.btn.btn-default#sim-addop{ type: :button }
-                    = icon_text "plus", _("Operation")
-                - unless current_cib.tickets.empty?
-                  .btn-group
-                    %button.btn.btn-default#sim-addticket{ type: :button }
-                      = icon_text "plus", _("Ticket")
-                .btn-group
-                  %button.btn.btn-default#sim-delete{ type: :button }
-                    = icon_tag "minus"
+              #batch-entries
+                %ul.list-group
             .col-sm-3
-              %button.btn.btn-warning.btn-block#sim-reset{ type: :button }
-                = icon_text "rewind", _("Reset")
-              %button.btn.btn-primary.btn-block#sim-run{ type: :button }
-                = icon_text "play", _("Run")
-              %button.btn.btn-default.btn-block#sim-results{ type: :button, disabled: :disabled }
-                = _("Results")
+          .row
+            .col-sm-12
+              .batch-diff-data
+                .text-center.text-muted
+                  = icon_tag 'circle-o-notch', class: 'fa-spin'
+                  = _("Calculating list of changes...")
+      .modal-footer
+        %button.btn.btn-default{type: :button, data: { dismiss: :modal }}
+          = _("Close")
 
-%script#sim-results-dialog{type: "text/x-jsrender"}
-  .modal-header
-    %h3.modal-title
-      = _("Simulation Results")
-  .modal-body
-    #accordion.panel-group{role: :tablist, aria: {multiselectable: true}}
-      .panel.panel-default
-        #sim-details-hdr.panel-heading{role: :tab}
-          %h4.panel-title
-            %a{role: :button, href: "#sim-details-body", data: {parent: "#accordion", toggle: :collapse}, aria: {expanded: true, controls: "sim-details-body"}}
-              = _("Summary")
-              .pull-right
-                %span.caret
-        #sim-details-body.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "sim-details-hdr"}}
-          .panel-body.sim-details
-            = icon_tag 'circle-o-notch', class: 'fa-spin'
-      .panel.panel-default
-        #sim-diff-hdr.panel-heading{role: :tab}
-          %h4.panel-title
-            %a{role: :button, href: "#sim-diff-body", data: {parent: "#accordion", toggle: :collapse}, aria: {expanded: true, controls: "sim-diff-body"}}
-              = _("Diff")
-              .pull-right
-                %span.caret
-        #sim-diff-body.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "sim-diff-hdr"}}
-          .panel-body.sim-diff
-            = icon_tag 'circle-o-notch', class: 'fa-spin'
-      .panel.panel-default
-        #sim-cib-in-hdr.panel-heading{role: :tab}
-          %h4.panel-title
-            %a{role: :button, href: "#sim-cib-in-body", data: {parent: "#accordion", toggle: :collapse}, aria: {expanded: false, controls: "sim-cib-in-body"}}
-              = _("CIB (in)")
-              .pull-right
-                %span.caret
-        #sim-cib-in-body.panel-collapse.collapse{role: :tabpanel, aria: {labelledby: "sim-cib-in-hdr"}}
-          .panel-body.sim-cib-in
-            = icon_tag 'circle-o-notch', class: 'fa-spin'
-      .panel.panel-default
-        #sim-cib-out-hdr.panel-heading{role: :tab}
-          %h4.panel-title
-            %a{role: :button, href: "#sim-cib-out-body", data: {parent: "#accordion", toggle: :collapse}, aria: {expanded: false, controls: "sim-cib-out-body"}}
-              = _("CIB (out)")
-              .pull-right
-                %span.caret
-        #sim-cib-out-body.panel-collapse.collapse{role: :tabpanel, aria: {labelledby: "sim-cib-out-hdr"}}
-          .panel-body.sim-cib-out
-            = icon_tag 'circle-o-notch', class: 'fa-spin'
-      .panel.panel-default
-        #sim-graph-hdr.panel-heading{role: :tab}
-          %h4.panel-title
-            %a{role: :button, href: "#sim-graph-body", data: {parent: "#accordion", toggle: :collapse}, aria: {expanded: false, controls: "sim-graph-body"}}
-              = _("Transition Graph")
-              .pull-right
-                %span.caret
-        #sim-graph-body.panel-collapse.collapse{role: :tabpanel, aria: {labelledby: "sim-graph-hdr"}}
-          .panel-body.sim-graph
-            = icon_tag 'circle-o-notch', class: 'fa-spin'
-      .panel.panel-default
-        #sim-xml-hdr.panel-heading{role: :tab}
-          %h4.panel-title
-            %a{role: :button, href: "#sim-xml-body", data: {parent: "#accordion", toggle: :collapse}, aria: {expanded: false, controls: "sim-xml-body"}}
-              = _("Transition (XML)")
-              .pull-right
-                %span.caret
-        #sim-xml-body.panel-collapse.collapse{role: :tabpanel, aria: {labelledby: "sim-xml-hdr"}}
-          .panel-body.sim-xml
-            = icon_tag 'circle-o-notch', class: 'fa-spin'
-  .modal-footer
-    %button.btn.btn-default{type: :button, data: { dismiss: :modal }}
-      = _("Close")
+    #batch-summary.tab-pane{ role: :tabpanel }
+      .modal-header
+        %h3.modal-title
+          = icon_text("cog", _("Summary"))
+      .modal-body
+        .batch-summary-data
+          = icon_tag 'circle-o-notch', class: 'fa-spin'
+      .modal-footer
+        %a.btn.btn-primary{role: :button, data: { toggle: :tab }, href: "#batch-view" }
+          = _("OK")
 
-%script#inject-node{type: "text/x-jsrender"}
-  %form.form-horizontal{remote: true}
-    .modal-header
-      %h3.modal-title
-        = _("Inject Node Event")
-    .modal-body
-      .form-group
-        %label.col-sm-2.control-label{for: "node-inject-node"}
-          = _("Node")
-        .col-sm-7
-          %select#node-inject-node.form-control
-            - current_cib.nodes.each do |n|
-              %option= n[:uname]
-      .form-group
-        %label.col-sm-2.control-label{for: "node-inject-state"}
-          = _("State")
-        .col-sm-7
-          %select#node-inject-state.form-control
-            - node_actions.each do |a|
-              %option= a
-    .modal-footer
-      %button.btn.btn-default{type: :button, data: { dismiss: :modal }}
-        = _("Cancel")
-      %button.btn.btn-primary{type: :submit}
-        = icon_text "plus", _("OK")
+    #batch-cib-in.tab-pane{ role: :tabpanel }
+      .modal-header
+        %h3.modal-title
+          = icon_text("cog", _("CIB (in)"))
+      .modal-body
+        .batch-cib-in-data
+          = icon_tag 'circle-o-notch', class: 'fa-spin'
+      .modal-footer
+        %a.btn.btn-primary{role: :button, data: { toggle: :tab }, href: "#batch-view" }
+          = _("OK")
 
-%script#inject-op{type: "text/x-jsrender"}
-  %form.form-horizontal{remote: true}
-    .modal-header
-      %h3.modal-title
-        = _("Inject Operation Event")
-    .modal-body
-      .form-group
-        %label.col-sm-2.control-label{for: "op-inject-rsc"}
-          = _("Resource")
-        .col-sm-7
-          %select#op-inject-rsc.form-control
-            - resource_instances.each do |r|
-              %option= r
-      .form-group
-        %label.col-sm-2.control-label{for: "op-inject-op"}
-          = _("Operation")
-        .col-sm-7
-          %select#op-inject-op.form-control
-            - op_actions.each do |s|
-              %option= s
-      .form-group
-        %label.col-sm-2.control-label{for: "op-inject-interval"}
-          = _("Interval (ms)")
-        .col-sm-7
-          %input#op-inject-interval.form-control{type: :text}
-      .form-group
-        %label.col-sm-2.control-label{for: "op-inject-node"}
-          = _("Node")
-        .col-sm-7
-          %select#op-inject-node.form-control
-            - current_cib.nodes.each do |n|
-              %option= n[:uname]
-      .form-group
-        %label.col-sm-2.control-label{for: "op-inject-result"}
-          = _("Result")
-        .col-sm-7
-          %select#op-inject-result.form-control
-            - op_results.each do |value, name|
-              %option{value: value}= "#{name} (#{value})"
-    .modal-footer
-      %button.btn.btn-default{type: :button, data: { dismiss: :modal }}
-        = _("Cancel")
-      %button.btn.btn-primary{type: :submit}
-        = icon_text "plus", _("OK")
+    #batch-cib-out.tab-pane{ role: :tabpanel }
+      .modal-header
+        %h3.modal-title
+          = icon_text("cog", _("CIB (out)"))
+      .modal-body
+        .batch-cib-out-data
+          = icon_tag 'circle-o-notch', class: 'fa-spin'
+      .modal-footer
+        %a.btn.btn-primary{role: :button, data: { toggle: :tab }, href: "#batch-view" }
+          = _("OK")
 
-%script#inject-ticket{type: "text/x-jsrender"}
-  %form.form-horizontal{remote: true}
-    .modal-header
-      %h3.modal-title
-        = _("Inject Ticket Event")
-    .modal-body
-      .form-group
-        %label.col-sm-2.control-label{for: "ticket-inject-ticket"}
-          = _("Ticket")
-        .col-sm-7
-          %select#ticket-inject-ticket.form-control
-            - current_cib.tickets.keys.each do |name|
-              %option= name
-      .form-group
-        %label.col-sm-2.control-label{for: "ticket-inject-action"}
-          = _("Action")
-        .col-sm-7
-          %select#ticket-inject-action.form-control
-            - ticket_actions.each do |a|
-              %option= a
-    .modal-footer
-      %button.btn.btn-default{type: :button, data: { dismiss: :modal }}
-        = _("Cancel")
-      %button.btn.btn-primary{type: :submit}
-        = icon_text "plus", _("OK")
+    #batch-transition-graph.tab-pane{ role: :tabpanel }
+      .modal-header
+        %h3.modal-title
+          = icon_text("cog", _("Transition Graph"))
+      .modal-body
+        .batch-transition-graph-data
+          = icon_tag 'circle-o-notch', class: 'fa-spin'
+      .modal-footer
+        %a.btn.btn-primary{role: :button, data: { toggle: :tab }, href: "#batch-view" }
+          = _("OK")
+
+    #batch-transition.tab-pane{ role: :tabpanel }
+      .modal-header
+        %h3.modal-title
+          = icon_text("cog", _("Transition (XML)"))
+      .modal-body
+        .batch-transition-data
+          = icon_tag 'circle-o-notch', class: 'fa-spin'
+      .modal-footer
+        %a.btn.btn-primary{role: :button, data: { toggle: :tab }, href: "#batch-view" }
+          = _("OK")
+
+    #batch-node-event.tab-pane{ role: :tabpanel }
+      %form.form-horizontal{remote: true}
+        .modal-header
+          %h3.modal-title
+            = icon_text("cog", _("Inject Node Event"))
+        .modal-body
+          .form-group
+            %label.col-sm-2.control-label{for: "node-inject-node"}
+              = _("Node")
+            .col-sm-7
+              %select#node-inject-node.form-control
+                - current_cib.nodes.each do |n|
+                  %option= n[:uname]
+          .form-group
+            %label.col-sm-2.control-label{for: "node-inject-state"}
+              = _("State")
+            .col-sm-7
+              %select#node-inject-state.form-control
+                - node_actions.each do |a|
+                  %option= a
+        .modal-footer
+          %a.btn.btn-default{role: :button, data: { toggle: :tab }, href: "#batch-view" }
+            = _("Cancel")
+          %a.btn.btn-primary{role: :button, data: { toggle: :tab }, href: "#batch-view" }
+            = icon_text "plus", _("OK")
+
+    #batch-resource-event.tab-pane{ role: :tabpanel }
+      %form.form-horizontal{remote: true}
+        .modal-header
+          %h3.modal-title
+            = icon_text("cog", _("Inject Resource Event"))
+        .modal-body
+          .form-group
+            %label.col-sm-2.control-label{for: "op-inject-rsc"}
+              = _("Resource")
+            .col-sm-7
+              %select#op-inject-rsc.form-control
+                - resource_instances.each do |r|
+                  %option= r
+          .form-group
+            %label.col-sm-2.control-label{for: "op-inject-op"}
+              = _("Operation")
+            .col-sm-7
+              %select#op-inject-op.form-control
+                - op_actions.each do |s|
+                  %option= s
+          .form-group
+            %label.col-sm-2.control-label{for: "op-inject-interval"}
+              = _("Interval (ms)")
+            .col-sm-7
+              %input#op-inject-interval.form-control{type: :text}
+          .form-group
+            %label.col-sm-2.control-label{for: "op-inject-node"}
+              = _("Node")
+            .col-sm-7
+              %select#op-inject-node.form-control
+                - current_cib.nodes.each do |n|
+                  %option= n[:uname]
+          .form-group
+            %label.col-sm-2.control-label{for: "op-inject-result"}
+              = _("Result")
+            .col-sm-7
+              %select#op-inject-result.form-control
+                - op_results.each do |value, name|
+                  %option{value: value}= "#{name} (#{value})"
+        .modal-footer
+          %a.btn.btn-default{role: :button, data: { toggle: :tab }, href: "#batch-view" }
+            = _("Cancel")
+          %a.btn.btn-primary{role: :button, data: { toggle: :tab }, href: "#batch-view" }
+            = icon_text "plus", _("OK")
+        
+    #batch-ticket-event.tab-pane{ role: :tabpanel }
+      %form.form-horizontal{remote: true}
+        .modal-header
+          %h3.modal-title
+            = icon_text("cog", _("Inject Ticket Event"))
+        .modal-body
+          .form-group
+            %label.col-sm-2.control-label{for: "ticket-inject-ticket"}
+              = _("Ticket")
+            .col-sm-7
+              %select#ticket-inject-ticket.form-control
+                - current_cib.tickets.keys.each do |name|
+                  %option= name
+          .form-group
+            %label.col-sm-2.control-label{for: "ticket-inject-action"}
+              = _("Action")
+            .col-sm-7
+              %select#ticket-inject-action.form-control
+                - ticket_actions.each do |a|
+                  %option= a
+        .modal-footer
+          %a.btn.btn-default{role: :button, data: { toggle: :tab }, href: "#batch-view" }
+            = _("Cancel")
+          %a.btn.btn-primary{role: :button, data: { toggle: :tab }, href: "#batch-view" }
+            = icon_text "plus", _("OK")

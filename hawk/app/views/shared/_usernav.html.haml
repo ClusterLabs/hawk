@@ -2,10 +2,11 @@
   - unless current_cib.offline?
     - if current_cib.live?
       %li
-        = link_to navbar_item(_("Simulator"), "toggle-off"), cib_state_path(cib_id: current_user, init_cib: true), class: "simulator", title: _("Enable the simulation mode")
+        = link_to navbar_item(_("Batch"), "toggle-off"), cib_state_path(cib_id: current_user, init_cib: true), class: "simulator", title: _("Batch Configuration Changes")
     - else
       %li
-        = link_to navbar_item(_("Disable Simulator"), "toggle-on"), cib_state_path(cib_id: "live"), class: "production", title: _("Disable the simulation mode")
+        .batch-navbar-on
+          = navbar_item(_("Batch"), "toggle-on")
 
   %li
     = link_to navbar_item(profile_title, "user"), edit_cib_profile_path(cib_id: current_cib.id), class: "profile", title: profile_title

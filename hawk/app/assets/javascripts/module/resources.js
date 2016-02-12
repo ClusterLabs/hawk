@@ -28,7 +28,7 @@ $(function() {
               });
             }
           }
-          $.updateCib();
+          $.runSimulator();
         },
         error: function(xhr, status, msg) {
           $.growl({
@@ -36,7 +36,7 @@ $(function() {
           },{
             type: 'danger'
           });
-          $.updateCib();
+          $.runSimulator();
         }
       });
     });
@@ -117,7 +117,7 @@ $(function() {
               });
             }
           }
-          $.updateCib();
+          $.runSimulator();
         },
         error: function(xhr, status, msg) {
           $.growl({
@@ -125,7 +125,7 @@ $(function() {
           },{
             type: 'danger'
           });
-          $.updateCib();
+          $.runSimulator();
         }
       });
     };
