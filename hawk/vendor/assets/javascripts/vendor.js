@@ -14,5 +14,6 @@
 //= require bootstrap
 //= require font-awesome/font-awesome
 //= require misc/highlight
+//= require misc/js.cookie
 
 //= require js-routes
