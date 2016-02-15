@@ -126,7 +126,8 @@ $(function() {
   };
 
   $.rails.allowAction = function(link) {
-    if (!link.attr('data-confirm')) {
+    var message = link.data('confirm');
+    if (!message) {
       return true;
     }
     $.rails.showConfirmDialog(link);
@@ -134,8 +135,14 @@ $(function() {
   };
 
   $.rails.confirmed = function(link) {
-    link.removeAttr('data-confirm');
-    link.trigger('click.rails');
+    var message = link.data('confirm');
+    link.data('confirm', null);
+    if (link.data('method')) {
+      link.trigger('click.rails');
+    } else {
+      location.href = link.attr('href');
+    }
+    link.data('confirm', message);
   };
 
   $.hawkAsyncConfirm = function(message, on_ok) {
