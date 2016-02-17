@@ -1,12 +1,12 @@
 .container-fluid
   .row
     %h1
-      = icon_text "database", _("Edit"), class: "page"
-      %small= _("Configuration")
+      = icon_text "database", _("Edit Configuration"), class: "page"
       .pull-right
         .btn-group{ role: "group" }
-          = link_to icon_text("list", _("Show")), cib_config_path(cib_id: current_cib.id), class: "btn btn-primary"
-          = link_to icon_text("file-image-o", _("Graph")), cib_graph_path(cib_id: current_cib.id), class: "btn btn-warning"
+          = link_to icon_text("list", _("Show")), cib_config_path(cib_id: current_cib.id), class: "btn btn-default"
+          = link_to icon_text("file-code-o", _("XML")), cib_config_path(cib_id: current_cib.id, xml: true), class: "btn btn-default"
+          = link_to icon_text("file-image-o", _("Graph")), cib_graph_path(cib_id: current_cib.id), class: "btn btn-default"
 
   .row
     .panel.panel-default
