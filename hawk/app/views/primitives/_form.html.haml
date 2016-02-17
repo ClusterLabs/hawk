@@ -3,6 +3,9 @@
     = form_for [cib, primitive], horizontal: true, bootstrap: true do |main_form|
       = errors_for primitive
 
+      - if primitive.resource?
+        = main_form.hidden_field :parent
+
       - if primitive.new_record?
         = main_form.text_field :id, label: _("Resource ID"), data: { help_filter: ".row.id" }
 

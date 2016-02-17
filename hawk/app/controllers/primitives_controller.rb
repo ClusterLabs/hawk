@@ -20,10 +20,14 @@ class PrimitivesController < ApplicationController
     @title = _("Create Primitive")
     @primitive = Primitive.new
     @primitive.meta["target-role"] = "Stopped" if @cib.id == "live"
+    @primitive.parent = params[:parent] unless params[:parent].nil?
 
     respond_to do |format|
       format.html
     end
+  end
+
+  class CreateFailure < Exception
   end
 
   def create
@@ -32,24 +36,38 @@ class PrimitivesController < ApplicationController
 
     @primitive = Primitive.new params[:primitive]
 
-    respond_to do |format|
-      if @primitive.save
-        post_process_for! @primitive
+    fail CreateFailure, @primitive.errors.to_sentence unless @primitive.save
+    post_process_for! @primitive
 
-        format.html do
-          flash[:success] = _("Primitive created successfully")
+    if @primitive.parent
+      parent = Group.find @primitive.parent
+      if parent
+        parent.children.push @primitive.id
+        fail CreateFailure, parent.errors.to_sentence unless parent.save
+      end
+    end
+
+    respond_to do |format|
+      format.html do
+        flash[:success] = _("Primitive created successfully")
+        if @primitive.parent
+          redirect_to edit_cib_group_url(cib_id: @cib.id, id: @primitive.parent)
+        else
           redirect_to edit_cib_primitive_url(cib_id: @cib.id, id: @primitive.id)
         end
-        format.json do
-          render json: @primitive, status: :created
-        end
-      else
-        format.html do
-          render action: "new"
-        end
-        format.json do
-          render json: @primitive.errors, status: :unprocessable_entity
-        end
+      end
+      format.json do
+        render json: @primitive, status: :created
+      end
+    end
+  rescue CreateFailure => e
+    respond_to do |format|
+      format.html do
+        flash[:danger] = e.to_s
+        render action: "new"
+      end
+      format.json do
+        render json: @primitive.errors, status: :unprocessable_entity
       end
     end
   end

@@ -191,6 +191,13 @@ class ResourcesController < ApplicationController
     end
   end
 
+  def new
+    # redirect depending on type of resource
+    resource = Resource.find params[:id]
+    new_url = "new_cib_#{resource.object_type}_url".to_sym
+    redirect_to send(new_url, cib_id: @cib.id, id: params[:id])
+  end
+
   def edit
     # redirect depending on type of resource
     resource = Resource.find params[:id]

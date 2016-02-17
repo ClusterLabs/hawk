@@ -4,6 +4,7 @@ require 'invoker'
 
 class Primitive < Template
   attribute :template, String
+  attribute :parent, String
 
   def clazz_with_template
     if template.present?
