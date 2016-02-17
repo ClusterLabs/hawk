@@ -64,7 +64,7 @@
             .col-sm-12
               .batch-diff-data
                 .text-center.text-muted
-                  = icon_tag 'circle-o-notch', class: 'fa-spin'
+                  = icon_tag 'refresh', class: 'fa-pulse-opacity'
                   = _("Calculating list of changes...")
       .modal-footer
         %button.btn.btn-default{type: :button, data: { dismiss: :modal }}
@@ -76,7 +76,8 @@
           = icon_text("cog", _("Summary"))
       .modal-body
         .batch-summary-data
-          = icon_tag 'circle-o-notch', class: 'fa-spin'
+          .text-center.text-muted
+            = icon_tag 'refresh', class: 'fa-pulse-opacity'
       .modal-footer
         %a.btn.btn-primary{role: :button, data: { toggle: :tab }, href: "#batch-view" }
           = _("OK")
@@ -87,7 +88,8 @@
           = icon_text("cog", _("CIB (in)"))
       .modal-body
         .batch-cib-in-data
-          = icon_tag 'circle-o-notch', class: 'fa-spin'
+          .text-center.text-muted
+            = icon_tag 'refresh', class: 'fa-pulse-opacity'
       .modal-footer
         %a.btn.btn-primary{role: :button, data: { toggle: :tab }, href: "#batch-view" }
           = _("OK")
@@ -98,7 +100,8 @@
           = icon_text("cog", _("CIB (out)"))
       .modal-body
         .batch-cib-out-data
-          = icon_tag 'circle-o-notch', class: 'fa-spin'
+          .text-center.text-muted
+            = icon_tag 'refresh', class: 'fa-pulse-opacity'
       .modal-footer
         %a.btn.btn-primary{role: :button, data: { toggle: :tab }, href: "#batch-view" }
           = _("OK")
@@ -109,7 +112,8 @@
           = icon_text("cog", _("Transition Graph"))
       .modal-body
         .batch-transition-graph-data
-          = icon_tag 'circle-o-notch', class: 'fa-spin'
+          .text-center.text-muted
+            = icon_tag 'refresh', class: 'fa-pulse-opacity'
       .modal-footer
         %a.btn.btn-primary{role: :button, data: { toggle: :tab }, href: "#batch-view" }
           = _("OK")
@@ -120,7 +124,8 @@
           = icon_text("cog", _("Transition (XML)"))
       .modal-body
         .batch-transition-data
-          = icon_tag 'circle-o-notch', class: 'fa-spin'
+          .text-center.text-muted
+            = icon_tag 'refresh', class: 'fa-pulse-opacity'
       .modal-footer
         %a.btn.btn-primary{role: :button, data: { toggle: :tab }, href: "#batch-view" }
           = _("OK")

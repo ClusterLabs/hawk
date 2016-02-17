@@ -98,6 +98,8 @@ $(function() {
         return '<i class="fa fa-wrench text"></i>';
       } else if (status == "nostonith") {
         return '<i class="fa fa-plug text"></i>';
+      } else if (status == "disconnected") {
+        return '<i class="fa fa-refresh fa-pulse-opacity text"></i>';
       } else {
         return '<i class="fa fa-question text"></i>';
       }

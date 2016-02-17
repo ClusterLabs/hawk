@@ -56,7 +56,7 @@ var dashboardAddCluster = (function() {
     if (state == "ok") {
       tag.html('<i class="fa fa-check"></i>');
     } else if (state == "refresh") {
-      tag.html('<i class="fa fa-refresh fa-spin"></i>');
+      tag.html('<i class="fa fa-refresh fa-pulse-opacity"></i>');
     } else if (state == "error") {
       tag.html('<i class="fa fa-exclamation-triangle"></i>');
     }
@@ -489,7 +489,7 @@ var dashboardSetupAddClusterForm = function() {
   $('#new_cluster').on("submit", function() {
     $('.modal-content .form-errors').append([
       '<div class="alert alert-info">',
-      '<i class="fa fa-refresh fa-2x fa-spin"></i> ',
+      '<i class="fa fa-refresh fa-2x fa-pulse-opacity"></i> ',
       __("Please wait..."),
       '</div>'
     ].join(''));

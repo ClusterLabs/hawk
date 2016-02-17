@@ -136,9 +136,9 @@
         var msg = __('Connection to server failed - will retry every 15 seconds.');
         $.growl(
           msg,
-          { type: 'danger' }
+          { type: 'warning' }
         );
-        $('.circle').statusCircle('errors', msg);
+        $('.circle').statusCircle('disconnected', msg);
       }
     });
   };
