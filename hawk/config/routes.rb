@@ -133,7 +133,6 @@ Rails.application.routes.draw do
   end
 
   post '/sim/run', as: :sim_run, to: 'simulator#run', defaults: { format: 'json' }
-  post '/sim/reset', as: :sim_reset, to: 'simulator#reset', defaults: { format: 'json' }
   get '/sim/result', as: :sim_result, to: 'simulator#result', defaults: { format: 'json' }
   get '/sim/intervals/:id', as: :sim_intervals, to: 'simulator#intervals', defaults: { format: 'json' }
   get '/sim/help', as: :sim_help, to: 'simulator#help'

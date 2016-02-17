@@ -71,6 +71,7 @@ module Util
     else
       opts = {}
     end
+    Rails.logger.debug "Executing `#{cmd.join(' ').inspect}` through `capture3`"
     stdin_data = opts.delete(:stdin_data) || ''
     Util.popen3(*cmd) {|i, o, e, t|
       out_reader = Thread.new { o.read }

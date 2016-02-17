@@ -126,26 +126,6 @@ $(function() {
 
       var events = content.find('#batch-entries .list-group');
 
-      var reset_simulation = function() {
-        var data = {
-          cib_id: $('body').data('cib')
-        };
-
-        var path = Routes.sim_reset_path();
-
-        $.ajax({
-          type: "POST", dataType: "json", url: path, data: data,
-          success: function(data) {
-            $.updateCib();
-            events.find("li").each(function() { $(this).remove(); });
-          },
-          error: make_error_handler(self.find(".errors"), function() {
-            $.updateCib();
-            events.find("li").each(function() { $(this).remove(); });
-          })
-        });
-      };
-
       function add_event(e) {
         events.append($("#batch-entry").render({ name: e, value: e }));
         events.find("li:last a").on("click", function(e) {
@@ -159,7 +139,7 @@ $(function() {
       // load events from cookie (if any)
       (function() {
         var stored_events = Cookies.getJSON('hawk-batch-events');
-        if (stored_events) {
+        if (stored_events !== undefined && stored_events !== null) {
           $.each(stored_events, function(i, e) {
             events.append($("#batch-entry").render({ name: e, value: e }));
           });
@@ -168,10 +148,8 @@ $(function() {
             $(this).closest("li").remove();
             run_simulation();
           });
-          run_simulation();
-        } else {
-          reset_simulation();
         }
+        run_simulation();
       }());
 
       content.find('a[href="#batch-summary"]').on('shown.bs.tab', function (e) {

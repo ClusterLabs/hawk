@@ -6,39 +6,18 @@ class SimulatorController < ApplicationController
   before_filter :set_title
   before_filter :set_cib
 
-  # TODO(must): these both need exception handler for invoker runs
-  # TODO(must): only one user at a time can run sims (they stomp on each other)
-  # TODO(must): can this ever fail?!?
-  #Invoker.instance.run("crm_shadow", "-b", "-r", "#{current_cib.id}")
-  # TODO(must): above doesn't clear lrm state - is that a bug? so recreating:
-  def reset
-    respond_to do |format|
-      format.json do
-        if current_cib.id == "live"
-          head :bad_request
-        else
-          out, err, rc = Invoker.instance.run("crm_shadow", "-b", "-f", "-c", "#{current_cib.id}")
-          if rc == 0
-            render json: { success: true }
-          else
-            render json: { output: out, error: err, status: rc }, status: 500
-          end
-        end
-      end
-    end
-  end
-
   def run
     if current_cib.id == "live"
       head :bad_request
       return
     end
 
+    # TODO: cache simulator runs
+
     # always reset status before run (so we effectively run from current
     # state of cluster, not state as saved back to shadow cib)
     sim_reload_state
 
-    # TODO(must): sanitize input a bit
     injections = []
     params[:injections].each do |i|
       parts = i.split(/\s+/)
@@ -58,7 +37,6 @@ class SimulatorController < ApplicationController
         parts[1].sub!(":", "_")
         injections << "-i" << "#{parts[2]}_#{parts[1]}@#{parts[4]}=#{parts[3]}"
       when "ticket"
-        # TODO(could): Warn if feature doesn't exist (or don't show ticket button in UI at all)
         if Util.has_feature?(:sim_ticket)
           case parts[2]
           when "grant"
@@ -81,7 +59,7 @@ class SimulatorController < ApplicationController
                 "-D", "#{Rails.root}/tmp/sim.dot",
                 *injections)
     if status != 0
-      render :json => { error: err }, :status => 500
+      render json: { error: err }, status: 500
       return
     end
     f.write(out)
@@ -99,7 +77,7 @@ class SimulatorController < ApplicationController
       # TODO(could): actually handle potential failure of crm_simulate run
       render json: { error: "Could not read graph" }, status: 500
     end
-    render json: { :is_empty => is_empty }
+    render json: { is_empty: is_empty }
   end
 
   # TODO(must): make sure dot is installed
@@ -167,7 +145,7 @@ class SimulatorController < ApplicationController
     res.ops["monitor"].each do |op|
       Rails.logger.debug "#{params[:id]}, #{op}"
       intervals << Util.crm_get_msec(op["interval"])
-    end if res.ops.has_key?("monitor")
+    end if res.ops.key?("monitor")
     render json: intervals
   end
 

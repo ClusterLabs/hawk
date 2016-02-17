@@ -85,8 +85,21 @@
     );
   };
 
+  var hashCode = function(s) {
+    var hash = 0, i, chr, len;
+    if (s.length === 0) return hash;
+    for (i = 0, len = s.length; i < len; i++) {
+      chr   = s.charCodeAt(i);
+      hash  = ((hash << 5) - hash) + chr;
+      hash |= 0; // Convert to 32bit integer
+    }
+    return hash;
+  };
+
   StatusCheck.prototype.update = function() {
     var self = this;
+
+    self.cib_hash = 0;
 
     $.ajax({
       url: Routes.cib_path($('body').data('cib'), { format: 'json' }),
@@ -96,7 +109,12 @@
       timeout: self.options.timeout * 1000,
 
       success: function(cib) {
-        if (cib) {
+        if (!cib) {
+          return;
+        }
+        var h = hashCode(cib);
+        if (self.cib_hash != h) {
+          self.cib_hash = h;
           $('body').data('content', cib);
           $('.circle').statusCircleFromCIB(cib);
           self.options.content = cib;
