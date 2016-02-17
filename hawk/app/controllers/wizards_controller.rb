@@ -123,7 +123,7 @@ class WizardsController < ApplicationController
       respond_to do |format|
         format.html do
           redirect_to(
-            cib_state_url(cib_id: @cib.id),
+            cib_url(cib_id: @cib.id),
             alert: _("Permission denied - you do not have write access to the CIB.")
           )
         end
@@ -145,7 +145,7 @@ class WizardsController < ApplicationController
       respond_to do |format|
         format.html do
           redirect_to(
-            cib_state_url(cib_id: @cib.id),
+            cib_url(cib_id: @cib.id),
             alert: _("Cluster seems to be offline")
           )
         end

@@ -17,7 +17,7 @@
       targets: {
         events: el,
         metadata: '.metadata',
-        content: '#states #middle'
+        content: '#cib #middle'
       },
       templates: {
         error: '#statusError'
@@ -121,12 +121,12 @@
           $(self.options.targets.metadata).link(true, cib);
           $(self.options.targets.content).link(true, cib);
 
-          $(['#states #middle table.resources',
+          $(['#cib #middle table.resources',
              '#resources #middle table.resources',
-             '#states #middle table.tickets',
+             '#cib #middle table.tickets',
              '#tickets #middle table.tickets',
              '#nodes #middle table.nodes',
-             '#states #middle table.nodes',
+             '#cib #middle table.nodes',
              '#configs #middle table'].join(', '))
             .bootstrapTable('refresh');
         }

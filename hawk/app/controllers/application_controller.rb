@@ -179,7 +179,7 @@ class ApplicationController < ActionController::Base
         format.html do
           Rails.logger.debug "Created Shadow CIB for #{current_cib.id}: #{result.inspect}"
           flash.now[:success] = _("Created a new shadow CIB for %USER%.").sub("%USER%", current_cib.id)
-          redirect_to cib_state_path(cib_id: current_cib.id)
+          redirect_to cib_path(cib_id: current_cib.id)
         end
       else
         format.html do

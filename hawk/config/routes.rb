@@ -6,8 +6,8 @@ Rails.application.routes.draw do
 
   resources :cib, only: [] do
     get "/", via: [:get, :post, :options], to: "cib#show", as: ""
-
     match "/apply", as: :apply, to: 'cib#apply', via: [:get, :post]
+    get "/ops/:id", to: "cib#ops", as: :ops
 
     resources :nodes do
       member do
@@ -95,18 +95,7 @@ Rails.application.routes.draw do
     resource :profile, only: [:edit, :update]
     resource :crm_config, only: [:edit, :update]
 
-    resource :state, only: [:show] do
-      member do
-        get "/ops/:id", to: "states#ops", as: :ops
-      end
-    end
     resources :agents, only: [:show], constraints: { id: %r{[0-9A-Za-z:%@\-\.\/]+} }
-
-    resource :checks, only: [] do
-      collection do
-        get :status
-      end
-    end
 
     resource :graph, only: [:show]
 

@@ -576,7 +576,7 @@ $(function() {
     }
   };
 
-  $('#states #middle table.resources')
+  $('#cib #middle table.resources')
     .bootstrapTable({
       ajax: function(params) {
         var cib = $('body').data('content');
@@ -770,7 +770,7 @@ $(function() {
       }]
     });
 
-  $('#states #middle table.resources').on("click", ".dropdown-toggle", function(event){
+  $('#cib #middle table.resources').on("click", ".dropdown-toggle", function(event){
     var button = $(this);
     var open = button.attr('aria-expanded');
     var dropdown = button.siblings('.dropdown-menu');

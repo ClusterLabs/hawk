@@ -4,7 +4,7 @@
   .pull-right
     %a#btn-show-batch.btn{ role: :button, data: { target: "#" } }
       = icon_text("cog", _("Show"))
-    %a#btn-discard-batch.btn{ role: :button, href: cib_state_path(cib_id: :live), data: { confirm: _("Any changes to the configuration will be lost - do you wish to proceed?") } }
+    %a#btn-discard-batch.btn{ role: :button, href: cib_path(cib_id: :live), data: { confirm: _("Any pending changes to the configuration will be lost - do you wish to proceed?") } }
       = icon_text("trash", _("Discard"))
     %a#btn-apply-batch.btn{ role: :button, href: cib_apply_path(cib_id: current_cib.id), data: { toggle: :modal, target: "#modal-lg" } }
       = icon_text("check", _("Apply"))

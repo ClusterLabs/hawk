@@ -2,7 +2,7 @@
   - unless current_cib.offline?
     - if current_cib.live?
       %li
-        = link_to navbar_item(_("Batch"), "toggle-off"), cib_state_path(cib_id: current_user, init_cib: true), class: "simulator", title: _("Batch Configuration Changes")
+        = link_to navbar_item(_("Batch"), "toggle-off"), cib_path(cib_id: current_user, init_cib: true), class: "simulator", title: _("Batch Configuration Changes")
     - else
       %li
         .batch-navbar-on

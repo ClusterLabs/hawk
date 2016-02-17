@@ -10,7 +10,7 @@
       = icon_text "history", _("Recent events: %{name}" % { name: @node.name }), class: "page"
 
   .modal-body
-    %table#node-events{ data: { toggle: :table, url: ops_cib_state_path("*,#{@node.name}", cib_id: current_cib, format: "json"), sortable: true, sort_name: "last_rc_change", sort_order: "desc", row_style: "eventsRowStyle" } }
+    %table#node-events{ data: { toggle: :table, url: cib_ops_path("*,#{@node.name}", cib_id: current_cib, format: "json"), sortable: true, sort_name: "last_rc_change", sort_order: "desc", row_style: "eventsRowStyle" } }
       %thead
         %tr
           %th{ data: { field: "rc", sortable: true, formatter: "eventsRC" } }= _("RC")

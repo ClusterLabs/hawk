@@ -12,7 +12,7 @@ class PagesController < ApplicationController
 
     respond_to do |format|
       format.html do
-        redirect_to cib_state_path(cib_id: view_context.current_cib.id), status: 301
+        redirect_to cib_path(cib_id: view_context.current_cib.id), status: 301
       end
     end
   end

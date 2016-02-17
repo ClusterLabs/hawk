@@ -10,7 +10,7 @@
       = icon_text "history", _("Recent events: %{name}" % { name: @resource.id }), class: "page"
 
   .modal-body
-    %table#resource-events{ data: { toggle: :table, url: ops_cib_state_path("#{@resource.id},*", cib_id: current_cib, format: "json"), sortable: true, sort_name: "last_rc_change", sort_order: "desc", row_style: "eventsRowStyle" } }
+    %table#resource-events{ data: { toggle: :table, url: cib_ops_path("#{@resource.id},*", cib_id: current_cib, format: "json"), sortable: true, sort_name: "last_rc_change", sort_order: "desc", row_style: "eventsRowStyle" } }
       %thead
         %tr
           %th{ data: { field: "rc", sortable: true, formatter: "eventsRC" } }= _("RC")

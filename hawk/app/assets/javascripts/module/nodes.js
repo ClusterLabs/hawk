@@ -14,7 +14,7 @@ $(function() {
     }
   };
 
-  $('#states #middle table.nodes')
+  $('#cib #middle table.nodes')
     .bootstrapTable({
       ajax: function(params) {
         var cib = $('body').data('content');
@@ -516,7 +516,7 @@ $(function() {
     });
 
 
-  $('#nodes #middle table.nodes, #states #middle table.nodes, #configs #middle table.nodes').on("click", ".dropdown-toggle", function(event){
+  $('#nodes #middle table.nodes, #cib #middle table.nodes, #configs #middle table.nodes').on("click", ".dropdown-toggle", function(event){
     var button = $(this);
     var open = button.attr('aria-expanded');
     var dropdown = button.siblings('.dropdown-menu');
