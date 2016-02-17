@@ -30,7 +30,7 @@
         %li{ class: active_menu_with(:configs, :graphs) }
           = link_to _("Edit Configuration"), edit_cib_config_path(cib_id: current_cib.id)
         %li{ class: active_menu_with(:crm_config) }
-          = link_to _("Cluster Properties"), edit_cib_crm_config_path(cib_id: current_cib.id)
+          = link_to _("Cluster Configuration"), edit_cib_crm_config_path(cib_id: current_cib.id)
         %li{ class: active_menu_with(:commands) }
           = link_to _("Command Log"), cib_commands_path(cib_id: current_cib.id)
 
