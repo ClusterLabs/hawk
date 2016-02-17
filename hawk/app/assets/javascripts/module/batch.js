@@ -33,9 +33,15 @@ $(function() {
           code += $('<div/>').text(data).html();
           code += '</code></pre>';
         } else if (file == "diff") {
-          code = '<pre><code class="crmsh hljs">';
-          code += $('<div/>').text(data).html();
-          code += '</code></pre>';
+          if (data) {
+            code = '<pre><code class="crmsh hljs">';
+            code += $('<div/>').text(data).html();
+            code += '</code></pre>';
+          } else {
+            code = '<div class="text-muted text-center">';
+            code += __("No configuration changes.");
+            code += '</div>';
+          }
         } else {
           code = '<pre>';
           code += data;
