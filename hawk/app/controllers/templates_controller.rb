@@ -60,6 +60,22 @@ class TemplatesController < ApplicationController
     render 'primitives/edit'
   end
 
+  def copy
+    @title = _("Create Template")
+    other = @primitive
+    @primitive = Template.new
+    @primitive.unique_id! other.id
+    @primitive.clazz = other.clazz
+    @primitive.provider = other.provider
+    @primitive.type = other.type
+    @primitive.params = other.params
+    @primitive.meta = other.meta
+    @primitive.ops = other.ops
+    @primitive.utilization = other.utilization
+
+    render 'primitives/new'
+  end
+
   def update
     normalize_params! params[:template]
     @title = _("Edit Template")

@@ -5,7 +5,7 @@ class PrimitivesController < ApplicationController
   before_filter :login_required
   before_filter :set_title
   before_filter :set_cib
-  before_filter :set_record, only: [:edit, :update, :destroy, :show]
+  before_filter :set_record, only: [:edit, :update, :destroy, :show, :copy]
 
   def index
     respond_to do |format|
@@ -60,6 +60,23 @@ class PrimitivesController < ApplicationController
     respond_to do |format|
       format.html
     end
+  end
+
+  def copy
+    @title = _("Create Primitive")
+    other = @primitive
+    @primitive = Primitive.new
+    @primitive.unique_id! other.id
+    @primitive.clazz = other.clazz
+    @primitive.provider = other.provider
+    @primitive.type = other.type
+    @primitive.template = other.template
+    @primitive.params = other.params
+    @primitive.meta = other.meta
+    @primitive.ops = other.ops
+    @primitive.utilization = other.utilization
+
+    render 'primitives/new'
   end
 
   def update

@@ -176,6 +176,15 @@ class Resource < Record
     end
   end
 
+  def unique_id!(other)
+    m = /(.*)-(\d+)/.match(other)
+    other = m[1] if m
+    i = 1
+    i = m[2].to_i + 1 if m
+    i += 1 while current_cib.resources_by_id.key?("#{other}-#{i}")
+    @id = "#{other}-#{i}"
+  end
+
   protected
 
   def cib_by_id(id)

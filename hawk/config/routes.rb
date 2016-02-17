@@ -42,8 +42,16 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :primitives
-    resources :templates
+    resources :primitives do
+      member do
+        get :copy
+      end
+    end
+    resources :templates do
+      member do
+        get :copy
+      end
+    end
 
     resources :constraints do
       member do

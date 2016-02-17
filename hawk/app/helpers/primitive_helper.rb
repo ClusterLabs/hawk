@@ -98,6 +98,8 @@ module PrimitiveHelper
 
   def path_for_resource(*args)
     if @primitive.resource?
+
+
       cib_primitive_path(*args)
     else
       cib_template_path(*args)
@@ -106,7 +108,13 @@ module PrimitiveHelper
 
   def path_for_new_resource(*args)
     if controller.controller_name == "primitives"
-      new_cib_primitive_path(*args)
+      if args.length > 0
+        copy_cib_primitive_path(*args)
+      else
+        new_cib_primitive_path(*args)
+      end
+    elsif args.length > 0
+      copy_cib_template_path(*args)
     else
       new_cib_template_path(*args)
     end
