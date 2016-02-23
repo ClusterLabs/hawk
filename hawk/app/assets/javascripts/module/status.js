@@ -85,8 +85,12 @@
     );
   };
 
-  var hashCode = function(s) {
+  var hashCodeForCib = function(cib) {
+    var s;
     var hash = 0, i, chr, len;
+    s = $.map(cib, function(val, key) {
+      return key + "=" + val;
+    }).join("|");
     if (s.length === 0) return hash;
     for (i = 0, len = s.length; i < len; i++) {
       chr   = s.charCodeAt(i);
@@ -112,7 +116,7 @@
         if (!cib) {
           return;
         }
-        var h = hashCode(cib);
+        var h = hashCodeForCib(cib);
         if (self.cib_hash != h) {
           self.cib_hash = h;
           $('body').data('content', cib);
