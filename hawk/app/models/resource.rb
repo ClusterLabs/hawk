@@ -67,86 +67,39 @@ class Resource < Record
   end
 
   def start!
-    Invoker.instance.run(
-      "crm",
-      "resource",
-      "start",
-      id
-    )
+    Invoker.instance.no_log { |i| i.crm("-F", "resource", "start", id) }
   end
 
   def stop!
-    Invoker.instance.run(
-      "crm",
-      "resource",
-      "stop",
-      id
-    )
+    Invoker.instance.no_log { |i| i.crm("-F", "resource", "stop", id) }
   end
 
   def promote!
-    Invoker.instance.run(
-      "crm",
-      "resource",
-      "promote",
-      id
-    )
+    Invoker.instance.no_log { |i| i.crm("-F", "resource", "promote", id) }
   end
 
   def demote!
-    Invoker.instance.run(
-      "crm",
-      "resource",
-      "demote",
-      id
-    )
+    Invoker.instance.no_log { |i| i.crm("-F", "resource", "demote", id) }
   end
 
   def manage!
-    Invoker.instance.run(
-      "crm",
-      "resource",
-      "manage",
-      id
-    )
+    Invoker.instance.no_log { |i| i.crm("-F", "resource", "manage", id) }
   end
 
   def unmanage!
-    Invoker.instance.run(
-      "crm",
-      "resource",
-      "unmanage",
-      id
-    )
+    Invoker.instance.no_log { |i| i.crm("-F", "resource", "unmanage", id) }
   end
 
   def unmigrate!
-    Invoker.instance.run(
-      "crm",
-      "resource",
-      "unmigrate",
-      id
-    )
+    Invoker.instance.no_log { |i| i.crm("-F", "resource", "unmigrate", id) }
   end
 
   def migrate!(node = nil)
-    Invoker.instance.run(
-      "crm",
-      "resource",
-      "migrate",
-      id,
-      node.to_s
-    )
+    Invoker.instance.no_log { |i| i.crm("-F", "resource", "migrate", id, node.to_s) }
   end
 
   def cleanup!(node = nil)
-    Invoker.instance.run(
-      "crm",
-      "resource",
-      "cleanup",
-      id,
-      node.to_s
-    )
+    Invoker.instance.no_log { |i| i.crm("-F", "resource", "cleanup", id, node.to_s) }
   end
 
   class << self
