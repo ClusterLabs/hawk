@@ -39,7 +39,7 @@ class PrimitivesController < ApplicationController
     fail CreateFailure, @primitive.errors.to_sentence unless @primitive.save
     post_process_for! @primitive
 
-    if @primitive.parent
+    unless @primitive.parent.blank?
       parent = Group.find @primitive.parent
       if parent
         parent.children.push @primitive.id
@@ -50,10 +50,10 @@ class PrimitivesController < ApplicationController
     respond_to do |format|
       format.html do
         flash[:success] = _("Primitive created successfully")
-        if @primitive.parent
-          redirect_to edit_cib_group_url(cib_id: @cib.id, id: @primitive.parent)
-        else
+        if @primitive.parent.blank?
           redirect_to edit_cib_primitive_url(cib_id: @cib.id, id: @primitive.id)
+        else
+          redirect_to edit_cib_group_url(cib_id: @cib.id, id: @primitive.parent)
         end
       end
       format.json do
