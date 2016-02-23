@@ -121,8 +121,9 @@ class ReportsController < ApplicationController
 
   def show
     if @transition.nil?
-      @node_events = @report.node_events(HbReport.new(@report.name))
-      @resource_events = @report.resource_events(HbReport.new(@report.name))
+      hbr = HbReport.new @report.name
+      @node_events = @report.node_events hbr
+      @resource_events = @report.resource_events hbr
     end
     respond_to do |format|
       format.html
