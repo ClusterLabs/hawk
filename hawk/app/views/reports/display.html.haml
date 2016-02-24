@@ -7,14 +7,20 @@
           = link_to icon_text("list-ul", _("Reports")), reports_path, class: "btn btn-default"
 
   .row
-    .panel.panel-info
+    .panel.panel-default
+      .panel-heading
       .panel-body
+        .pull-right
+          .btn-group{ role: :group }
+            %a.show.btn.btn-success.btn-xs{ title: _("Show"), href: display_report_path(id: @report.id) }= icon_tag("search")
+            %a.download.btn.btn-info.btn-xs{ title: _("Download"), href: download_report_path(id: @report.id) }= icon_tag("download")
+            %a.delete.btn.btn-danger.btn-xs{ title: _("Delete"), href: report_path(id: @report.id), data: { method: :delete, confirm: _('Are you sure you wish to delete %s?') % [@report.name] } }= icon_tag("trash")
         %dl.dl-horizontal
-          %dt= _("Report")
+          %dt= _("Name")
           - if @report.name.start_with? 'hawk-'
-            %dd= link_to 'hawk', report_path(id: params[:id])
+            %dd= "hawk"
           - else
-            %dd= link_to @report.name, report_path(id: params[:id])
+            %dd= @report.name
           - if @report.from_time != @report.to_time
             %dt= _("From")
             %dd= format_date @report.from_time
