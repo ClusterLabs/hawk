@@ -396,8 +396,21 @@ $(function() {
       });
   });
 
-
   $('#reports #report-show').each(function() {
+    var report_id = $(this).data('report');
+    $(this).find('#cancel-report-loading').on('click', function(e) {
+      location.href = Routes.reports_path();
+    });
+    $.ajax({
+      url: Routes.cache_report_path({id: report_id}),
+      dataType: "json",
+      success: function(data) {
+        location.href = Routes.display_report_path({id: report_id});
+      }
+    });
+  });
+
+  $('#reports #report-display').each(function() {
     $(this).find('.dropdown-toggle').dropdown();
 
     $(this).find('.remote a[data-toggle="tab"]')

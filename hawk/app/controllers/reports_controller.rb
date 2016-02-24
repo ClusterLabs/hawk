@@ -5,8 +5,8 @@ class ReportsController < ApplicationController
   before_filter :login_required
   before_filter :god_required
   before_filter :set_title
-  before_filter :set_record, only: [:destroy, :download]
-  before_filter :set_transition, only: [:show, :detail, :graph, :logs, :diff, :pefile, :status, :cib]
+  before_filter :set_record, only: [:show, :destroy, :download, :cache]
+  before_filter :set_transition, only: [:display, :detail, :graph, :logs, :diff, :pefile, :status, :cib]
 
   helper_method :current_transition
   helper_method :prev_transition
@@ -120,6 +120,17 @@ class ReportsController < ApplicationController
   end
 
   def show
+    respond_to do |format|
+      format.html
+    end
+  end
+
+  def cache
+    set_transitions
+    render json: { status: true }
+  end
+
+  def display
     if @transition.nil?
       hbr = HbReport.new @report.name
       @node_events = @report.node_events hbr

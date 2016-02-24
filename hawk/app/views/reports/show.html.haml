@@ -1,4 +1,4 @@
-#report-show.container-fluid
+#report-show.container-fluid{ data: { report: @report.id } }
   .row
     %h1
       = icon_text "clock-o", _("History Explorer"), class: "transition"
@@ -7,147 +7,14 @@
           = link_to icon_text("list-ul", _("Reports")), reports_path, class: "btn btn-default"
 
   .row
-    .panel.panel-info
-      .panel-body
-        %dl.dl-horizontal
-          %dt= _("Report")
-          - if @report.name.start_with? 'hawk-'
-            %dd= link_to 'hawk', report_path(id: params[:id])
-          - else
-            %dd= link_to @report.name, report_path(id: params[:id])
-          - if @report.from_time != @report.to_time
-            %dt= _("From")
-            %dd= format_date @report.from_time
-            %dt= _("To")
-            %dd= format_date @report.to_time
-          - elsif @transitions.length > 1
-            %dt= _("From")
-            %dd= format_date @transitions[0][:timestamp]
-            %dt= _("To")
-            %dd= format_date @transitions[-1][:timestamp]
-          - elsif @transitions.length == 1
-            %dt= _("From")
-            %dd= format_date @transitions[0][:timestamp]
-            %dt= _("To")
-            %dd= "-"
-          - else
-            %dt= _("Created")
-            %dd= format_date @report.from_time
-          %dt= _("Transitions")
-          %dd= @transitions.length
-  - if @transitions.length < 1
-    .row
-      .panel.panel-default
+    .col-md-offset-3.col-md-6
+      .panel.panel-info
         .panel-heading
-          %h3.panel-title
-            = _("Transitions")
-        .panel-body
-          = _("No transitions in report")
-  - else
-    .row
-      .panel.panel-default
-        .panel-heading
-          %ul.nav.nav-pills.nav-justified.iterator
-            %li{ role: "presentation", class: current_transition == first_transition ? "disabled" : nil }
-              = link_to _("Previous"), url_for(transition: prev_transition)
-
-            - window_transition.each do |transition|
-              %li{ role: "presentation", class: current_transition == transition ? "active" : nil }
-                - if transition == "begin"
-                  .dropdown
-                    %button#dropdownBegin.btn.dropdown-toggle{type: :button, data: { toggle: "dropdown" }, aria: { haspopup: true, expanded: true } }
-                      .text-center
-                        %strong
-                          = '... <span class="caret"></span>'.html_safe
-                    %ul#collapsed.dropdown-menu{ aria: { labelledby: "dropdownBegin" } }
-                      - prev_transitions.each do |n|
-                        %li= link_to n, url_for(transition: n), title: transition_tooltip(n), data: { toggle: :tooltip }
-                      %li.divider{role: :separator}
-                      - lt = first_transition
-                      %li.text-center= link_to icon_tag('fast-backward'), url_for(transition: lt), title: transition_tooltip(lt), data: { toggle: :tooltip }
-                - elsif transition == "end"
-                  .dropdown
-                    %button#dropdownEnd.btn.dropdown-toggle{type: :button, data: { toggle: "dropdown" }, aria: { haspopup: true, expanded: true } }
-                      .text-center
-                        %strong
-                          = '... <span class="caret"></span>'.html_safe
-                    %ul#collapsed.dropdown-menu{ aria: { labelledby: "dropdownEnd" } }
-                      - next_transitions.each do |n|
-                        %li= link_to n, url_for(transition: n), title: transition_tooltip(n), data: { toggle: :tooltip }
-                      %li.divider{role: :separator}
-                      - lt = last_transition
-                      %li.text-center= link_to icon_tag('fast-forward'), url_for(transition: lt), title: transition_tooltip(lt), data: { toggle: :tooltip }
-                - else
-                  = link_to transition, url_for(transition: transition), title: transition_tooltip(transition), data: { toggle: :tooltip }
-
-            %li{ role: "presentation", class: current_transition == last_transition ? "disabled" : nil }
-              = link_to _("Next"), url_for(transition: next_transition)
-        - unless @transition.nil?
-          .panel-body
-            %dl.dl-horizontal
-              %dt= _("PE Name")
-              %dd= link_to @transition[:basename], pefile_report_path(id: params[:id], transition: current_transition)
-              %dt= _("Node")
-              %dd= @transition[:node]
-              %dt= _("Time")
-              %dd= format_date @transition[:timestamp]
-              - if @transition[:version]
-                %dt= _("Version")
-                %dd= @transition[:version]
-
-      - unless @transition.nil?
-        .panel.panel-default.with-nav-tabs
-          .panel-heading
-            %ul.nav.nav-tabs.remote
-              %li.active
-                %a{ href: "#details", data: { toggle: "tab", url: detail_report_path(id: @report.id, transition: current_transition) } }
-                  = _("Details")
-              %li
-                %a{ href: "#cib", data: { toggle: "tab", url: cib_report_path(id: @report.id, transition: current_transition) } }
-                  = _("Configuration")
-              %li
-                %a{ href: "#diff", data: { toggle: "tab", url: diff_report_path(id: @report.id, transition: current_transition) } }
-                  = _("Diff")
-              %li
-                %a{ href: "#logs", data: { toggle: "tab", url: logs_report_path(id: @report.id, transition: current_transition) } }
-                  = _("Logs")
-              %li
-                %a{ href: "#graph", data: { toggle: "tab", url: graph_report_path(id: @report.id, transition: current_transition) } }
-                  = _("Graph")
-
-          .panel-body
-            .tab-content
-              #details.tab-pane.fade.in.active
-                .text-center.spacer
-                  = icon_tag("spinner", class: "fa-spin fa-2x")
-
-              #cib.tab-pane.fade
-                .text-center.spacer
-                  = icon_tag("spinner", class: "fa-spin fa-2x")
-
-              #diff.tab-pane.fade
-                .text-center.spacer
-                  = icon_tag("spinner", class: "fa-spin fa-2x")
-
-              #logs.tab-pane.fade
-                .text-center.spacer
-                  = icon_tag("spinner", class: "fa-spin fa-2x")
-
-              #graph.tab-pane.fade
-                .text-center.spacer
-                  = icon_tag("spinner", class: "fa-spin fa-2x")
-  - if @transition.nil?
-    .row
-      .panel.panel-default
-        .panel-heading
-          %h4.panel-title
-            = _("Node Events")
-        .panel-body
-          %pre= history_log_markup @node_events
-
-      .panel.panel-default
-        .panel-heading
-          %h4.panel-title
-            = _("Resource Events")
-        .panel-body
-          %pre= history_log_markup @resource_events
+          = icon_tag 'spinner', class: 'fa-spin'
+          = _("Loading report...")
+        .panel-footer
+          %fieldset
+            .form-group
+              .col-sm-12
+                %button#cancel-report-loading.btn.btn-danger{ type: :button }
+                  = _("Cancel")
