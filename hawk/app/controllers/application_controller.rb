@@ -24,35 +24,13 @@ class ApplicationController < ActionController::Base
   helper_method :current_cib
   helper_method :current_user
 
-  rescue_from Cib::RecordNotFound do |e|
-    respond_to do |format|
-      format.json do
-        head :not_found
-      end
-      format.html do
-        redirect_to root_url, alert: e.message
-      end
-    end
-  end
-
   rescue_from Cib::CibError do |e|
     respond_to do |format|
       format.json do
-        head :bad_request
+        head e.head
       end
       format.html do
-        redirect_to root_url, alert: e.message
-      end
-    end
-  end
-
-  rescue_from Cib::PermissionDenied do |e|
-    respond_to do |format|
-      format.json do
-        head :forbidden
-      end
-      format.html do
-        redirect_to root_url, alert: e.message
+        redirect_to e.redirect!(root_url), alert: e.message
       end
     end
   end

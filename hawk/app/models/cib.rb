@@ -14,15 +14,40 @@ class Cib
   include Rails.application.routes.url_helpers # needed for routes
 
   class CibError < StandardError
+    def initialize(message = nil, data = nil)
+      super(message)
+      @redirect_to = data.nil? ? nil : data[:redirect_to]
+    end
+
+    def head
+      :bad_request
+    end
+
+    def redirect!(or_else)
+      if @redirect_to.blank?
+        or_else
+      else
+        @redirect_to
+      end
+    end
   end
 
   class RecordNotFound < CibError
+    def head
+      :not_found
+    end
   end
 
   class PermissionDenied < CibError
+    def head
+      :forbidden
+    end
   end
 
   class NotAuthenticated < CibError
+    def head
+      :forbidden
+    end
   end
 
   attr_reader :id

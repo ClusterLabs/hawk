@@ -273,14 +273,7 @@ class ReportsController < ApplicationController
   def set_record
     @report = Report.find params[:id]
 
-    unless @report
-      respond_to do |format|
-        format.html do
-          flash[:alert] = _("The report does not exist")
-          redirect_to reports_url
-        end
-      end
-    end
+    fail Cib::RecordNotFound.new(_("The report does not exist"), redirect_to: reports_path) if @report.nil?
   end
 
   def set_transitions
@@ -290,7 +283,7 @@ class ReportsController < ApplicationController
     @transitions = Rails.cache.fetch("#{params[:id]}/#{session.id}", expires_in: 2.hours) do
       @report.transitions(@hb_report).select do |t|
         # TODO(must): handle this better
-        !t.has_key?(:error)
+        !t.key?(:error)
       end
     end
   end
