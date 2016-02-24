@@ -125,11 +125,6 @@ class ReportsController < ApplicationController
     end
   end
 
-  def cache
-    set_transitions
-    render json: { status: true }
-  end
-
   def display
     if @transition.nil?
       hbr = HbReport.new @report.name

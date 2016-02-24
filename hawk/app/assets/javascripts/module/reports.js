@@ -402,10 +402,10 @@ $(function() {
       location.href = Routes.reports_path();
     });
     $.ajax({
-      url: Routes.cache_report_path({id: report_id}),
-      dataType: "json",
+      url: Routes.display_report_path({id: report_id}),
+      dataType: "html",
       success: function(data) {
-        location.href = Routes.display_report_path({id: report_id});
+        $('#reports #report-show').html(data);
       }
     });
   });

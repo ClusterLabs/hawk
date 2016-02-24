@@ -112,7 +112,6 @@ Rails.application.routes.draw do
     end
 
     member do
-      get :cache
       get :display
       get :download
       get ":transition/detail(.:format)" => "reports#detail", as: :detail, constraints: { transition: /\d+/ }
