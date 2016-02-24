@@ -73,11 +73,6 @@ Rails.application.routes.draw do
 
     resources :clones
     resources :masters
-    resources :wizards do
-      member do
-        post :submit
-      end
-    end
     resources :locations
     resources :colocations
     resources :orders
@@ -85,6 +80,12 @@ Rails.application.routes.draw do
     resources :roles
     resources :users
     resources :tags
+
+    resources :wizards do
+      member do
+        post :submit
+      end
+    end
 
     resource :config, only: [:show] do
       collection do
