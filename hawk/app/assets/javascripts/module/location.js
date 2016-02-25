@@ -241,7 +241,7 @@
   $.fn.rulesList = function(options) {
     var value;
     var args = Array.prototype.slice.call(arguments, 1);
-    return this.each(function() {
+    this.each(function() {
       var $this = $(this),
           data = $this.data('location.rules');
       if (typeof options === 'string') {
@@ -254,7 +254,11 @@
         $this.data('location.rules', (data = new rulesList(this, (typeof options === 'string' ? {} : options))));
       }
     });
-    return typeof value === 'undefined' ? this : value;
+    if (typeof value === 'undefined') {
+      return this;
+    } else {
+      return value;
+    }
   };
 }(jQuery));
 
