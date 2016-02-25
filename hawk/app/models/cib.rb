@@ -76,7 +76,7 @@ class Cib
 
       @xml.root.attributes.each do |n, v|
         struct[n.underscore.to_sym] = Util.unstring(v, '')
-      end
+      end unless @xml.nil?
 
       struct.epoch = epoch
       struct.dc = dc
@@ -248,10 +248,12 @@ class Cib
   end
 
   def match(xpath)
+    return [] if @xml.nil?
     REXML::XPath.match(@xml, xpath)
   end
 
   def first(xpath)
+    return [] if @xml.nil?
     REXML::XPath.first(@xml, xpath)
   end
 
