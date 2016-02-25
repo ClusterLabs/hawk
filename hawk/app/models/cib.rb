@@ -1046,6 +1046,7 @@ class Cib
     @templates = []
     @constraints = []
     @tags = []
+    @tickets = []
   end
 
   def update_resource_state(resource, node, instance, state, substate, failed_ops)
