@@ -54,20 +54,6 @@ class Invoker
     invoke_crm input, "configure"
   end
 
-  # Run "crm script" as root to execute cluster scripts.
-  # Returns [out, err, exitstatus]
-  def crm_script(rootpw, scriptdir, *cmd)
-    cmd2 = ["crm", "--scriptdir=#{scriptdir}", "script"] + cmd
-    CrmEvents.instance.push cmd2 unless @no_log
-    # TODO(must): figure out if this join thing is kosher (should be, all input looks like plain text... :-/)
-    out, err, status = Util.capture3('/usr/bin/su', '--login', 'root', '-c', cmd2.join(' '), :stdin_data => rootpw)
-    err = err.split("\n").map do |line|
-      next if line.starts_with?('Password:')
-      line
-    end.join("\n")
-    [out, err, status.exitstatus]
-  end
-
   # Run "crm -F configure load update"
   # Returns [out, err, exitstatus]
   def crm_configure_load_update(cmd)
