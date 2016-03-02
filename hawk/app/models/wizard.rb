@@ -62,13 +62,20 @@ class Wizard
     CrmScript.run ["verify", @name, params], nil do |action, err|
       @errors << err if err
       unless action.nil?
-        @errors << action["error"] if action.has_key? "error"
-        action['text'].gsub!(/\t/, "    ") if action.has_key? "text"
-        @actions << action unless action.has_key? "error"
+        @errors << action["error"] if action.key? "error"
+        action['text'].gsub!(/\t/, "    ") if action.key? "text"
+        @actions << action unless action.key? "error"
       end
     end
 
-    @need_rootpw = @errors.empty? && @actions.any? { |a| a['name'] != 'cib' }
+    @need_rootpw = @errors.empty? && @actions.any? do |action|
+      return false if action['name'] == 'cib'
+      if action['name'] == 'crm'
+        t = (action['text'] || '').split.first || ''
+        return false if ['configure', 'resource'].any? { |c| c == t }
+      end
+      true
+    end
   end
 
   def command_string
