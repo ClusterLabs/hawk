@@ -18,8 +18,7 @@
 #
 
 default["hawk"]["node"]["packages"] = [
-  "hawk",
-  "hawk-templates",
+  "hawk2",
   "ha-cluster-bootstrap",
   "w3m",
 
