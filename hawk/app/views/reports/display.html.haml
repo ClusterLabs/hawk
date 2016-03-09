@@ -53,41 +53,17 @@
     .row
       .panel.panel-default
         .panel-heading
-          %ul.nav.nav-pills.nav-justified.iterator
-            %li{ role: "presentation", class: current_transition == first_transition ? "disabled" : nil }
-              = link_to _("Previous"), url_for(transition: prev_transition)
-
-            - window_transition.each do |transition|
-              %li{ role: "presentation", class: current_transition == transition ? "active" : nil }
-                - if transition == "begin"
-                  .dropdown
-                    %button#dropdownBegin.btn.dropdown-toggle{type: :button, data: { toggle: "dropdown" }, aria: { haspopup: true, expanded: true } }
-                      .text-center
-                        %strong
-                          = '... <span class="caret"></span>'.html_safe
-                    %ul#collapsed.dropdown-menu{ aria: { labelledby: "dropdownBegin" } }
-                      - prev_transitions.each do |n|
-                        %li= link_to n, url_for(transition: n), title: transition_tooltip(n), data: { toggle: :tooltip }
-                      %li.divider{role: :separator}
-                      - lt = first_transition
-                      %li.text-center= link_to icon_tag('fast-backward'), url_for(transition: lt), title: transition_tooltip(lt), data: { toggle: :tooltip }
-                - elsif transition == "end"
-                  .dropdown
-                    %button#dropdownEnd.btn.dropdown-toggle{type: :button, data: { toggle: "dropdown" }, aria: { haspopup: true, expanded: true } }
-                      .text-center
-                        %strong
-                          = '... <span class="caret"></span>'.html_safe
-                    %ul#collapsed.dropdown-menu{ aria: { labelledby: "dropdownEnd" } }
-                      - next_transitions.each do |n|
-                        %li= link_to n, url_for(transition: n), title: transition_tooltip(n), data: { toggle: :tooltip }
-                      %li.divider{role: :separator}
-                      - lt = last_transition
-                      %li.text-center= link_to icon_tag('fast-forward'), url_for(transition: lt), title: transition_tooltip(lt), data: { toggle: :tooltip }
-                - else
-                  = link_to transition, url_for(transition: transition), title: transition_tooltip(transition), data: { toggle: :tooltip }
-
-            %li{ role: "presentation", class: current_transition == last_transition ? "disabled" : nil }
-              = link_to _("Next"), url_for(transition: next_transition)
+          #eventcontrol.eventcontrol
+          .row.clearfix.breather
+            .col-md-4
+              .pull-left
+                = link_to icon_tag("step-backward"), url_for(transition: prev_transition), class: 'btn btn-xs btn-primary'
+            .col-md-4.col-md-offset-4
+              .pull-right
+                = link_to icon_tag("step-forward"), url_for(transition: next_transition), class: 'btn btn-xs btn-primary'
+          %script#transition-data{type: "application/json", data: { report: @report.id, current: current_transition } }
+            :plain
+              #{@transitions.to_json}
         - unless @transition.nil?
           .panel-body
             %dl.dl-horizontal

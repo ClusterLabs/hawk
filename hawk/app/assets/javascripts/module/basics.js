@@ -28,6 +28,15 @@ $(function() {
     $('.nav-wrapper').toggleClass('active')
   });
 
+  $.urlParam = function(name){
+	  var results = new RegExp('[\?&]' + name + '=([^&#]*)').exec(window.location.href);
+    if (results && results.length >= 1) {
+	    return results[1];
+    } else {
+      return undefined;
+    }
+  };
+
   $.growl(
     false,
     {

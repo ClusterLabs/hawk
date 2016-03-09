@@ -9,11 +9,13 @@
 //= require jquery/jsviews
 //= require jquery/sortable
 //= require jquery/blockui
+//= require jquery/mousewheel
 //= require misc/moment
 //= require bootstrap-sprockets
 //= require bootstrap
 //= require font-awesome/font-awesome
 //= require misc/highlight
 //= require misc/js.cookie
+//= require misc/eventcontrol
 
 //= require js-routes

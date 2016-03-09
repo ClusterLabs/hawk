@@ -122,6 +122,7 @@ class Report
 
   def tags(hb_report, path)
     out, _err, _status = transition_cmd hb_report, "transition tags #{path}"
+    return [] if out == "No tags.\n"
     out.split
   end
 
