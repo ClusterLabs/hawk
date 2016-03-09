@@ -141,8 +141,10 @@ $(function() {
     link.data('confirm', null);
     if (link.data('method')) {
       link.trigger('click.rails');
-    } else {
+    } else if (link.attr('href')) {
       location.href = link.attr('href');
+    } else {
+      link.trigger('click.rails');
     }
     link.data('confirm', message);
   };

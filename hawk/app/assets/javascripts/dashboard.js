@@ -446,8 +446,8 @@ var dashboardAddCluster = (function() {
       text = text +
         '<form action="/dashboard/remove" method="post" accept-charset="UTF-8" data-remote="true" class="pull-right">' +
         '<input type="hidden" name="name" value="' + escape(data.name) + '">' +
-        '<button type="submit" class="close" data-confirm="' + s_remove + '");' +
-        '" aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+        '<button type="submit" class="close" data-confirm="' + s_remove + '"' +
+        ' aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
         '</form>';
     }
     text = text +
