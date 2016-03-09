@@ -15,4 +15,8 @@ rvm:
 gemfile: hawk/Gemfile
 script: sh -c 'cd hawk && bin/rake brakeman:run test'
 notifications:
-  irc: "chat.freenode.net#clusterlabs-dev"
+  irc:
+    channels:
+      - "chat.freenode.net#clusterlabs-dev"
+    on_success: never
+    on_failure: change
