@@ -26,6 +26,8 @@ Rails.application.configure do
   # config.active_record.migration_error = :page_load
   # config.active_record.dump_schema_after_migration = false
 
+  config.middleware.insert_before ActionDispatch::Static, Rack::Deflater
+
   config.cache_store = :memory_store
 
   config.assets.debug = false
