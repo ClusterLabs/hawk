@@ -72,8 +72,9 @@ class Wizard
       return false if action['name'] == 'cib'
       if action['name'] == 'crm'
         t = (action['text'] || '').split.first || ''
-        return false if ['configure', 'resource'].any? { |c| c == t }
+        return false if ['configure', 'resource', 'cib'].any? { |c| c == t }
       end
+      return false if action['name'] == 'call' && action['sudo'].nil?
       true
     end
   end
