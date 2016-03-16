@@ -49,12 +49,18 @@ module WizardHelper
     case wizard
     when "database"
       "database"
-    when "filesystem"
+    when "file system"
       "hdd-o"
+    when "nfs"
+      "globe"
     when "server"
       "server"
-    else
+    when "stonith"
+      "plug"
+    when "wizard"
       "list"
+    else
+      "magic"
     end
   end
 
