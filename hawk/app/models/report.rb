@@ -60,9 +60,8 @@ class Report
           next unless File.exist?(path)
           v = peinput_version path
           if v && v != pcmk_version
-            version = _("PE Input created by different Pacemaker version (%{version})") % { version: v }
-          elsif v != pcmk_version
-            version = _("Pacemaker version not present in PE Input")
+          # version = _("PE Input created by different Pacemaker version (%{version})") % { version: v }
+            version = v
           else
             version = nil
           end
