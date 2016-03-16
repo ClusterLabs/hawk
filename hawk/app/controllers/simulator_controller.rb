@@ -58,7 +58,11 @@ class SimulatorController < ApplicationController
                 "-G", "#{Rails.root}/tmp/sim.graph",
                 "-D", "#{Rails.root}/tmp/sim.dot",
                 *injections)
-    if status != 0
+    # FIXME: Return value of crm_simulate is
+    # completely unpredictable and nonsensical,
+    # so only presume it's an error if there's
+    # actually output on stderr.
+    if status != 0 && !err.blank?
       render json: { error: err }, status: 500
       return
     end
