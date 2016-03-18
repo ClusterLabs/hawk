@@ -442,8 +442,17 @@ $(function() {
       },
       onclick: function(item, element, event) {
         Cookies.set("hawk-eventcontrol", {report: report, state: this.save_state()});
-        location.href = Routes.display_report_path(report, {transition: item.index + 1});
+        var hash = location.hash;
+        if (!hash) {
+          hash = '';
+        }
+        location.href = Routes.display_report_path(report, {transition: item.index + 1}) + hash;
       },
+    });
+
+    $('#reports #middle .panel-heading .btn').each(function(index, link) {
+          var a = $(link)
+          a.attr('href', a.attr('href').split('#')[0] + location.hash);
     });
 
     var state = Cookies.getJSON('hawk-eventcontrol');
@@ -458,7 +467,7 @@ $(function() {
         var hash = this.hash;
         var target = $(e.target);
 
-        $('#reports #middle .iterator a').each(function(index, link) {
+        $('#reports #middle .panel-heading .btn').each(function(index, link) {
           var $link = $(link)
 
           $link.attr(
