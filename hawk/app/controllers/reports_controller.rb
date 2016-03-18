@@ -377,7 +377,7 @@ class ReportsController < ApplicationController
     if t.nil?
       ''
     else
-      t.strftime('%F %R')
+      t.strftime('%F %R %Z')
     end
   end
 

@@ -2,7 +2,7 @@
 // See COPYING for license.
 
 $(function() {
-  var time_format_string = 'YYYY-MM-DD H:mm';
+  var time_format_string = 'YYYY-MM-DD HH:mm Z';
   var REFRESH_INTERVAL = 5000;
   var running_timeout = null;
 
