@@ -2,50 +2,52 @@
 // See COPYING for license.
 
 (function($) {
-  'use strict';
-
-  function fa(name) {
-    return '<i class="fa fa-' + name + '"></i>';
-  }
-
   function unit_in_timespan(h, min_time, timespan) {
     var s = min_time - (min_time % h);
+    var e = min_time + timespan;
+    if (h > 15*60*1000) {
+      s -= 3600*1000;
+    }
     var r = [s];
-    while (s < min_time + timespan) {
+    while (s < e) {
       s += h;
-      if (s >= min_time && s <= min_time + timespan) {
+      if (s >= min_time && s <= e) {
         r.push(s);
       }
     }
-    if (r.length == 0) {
-      r.push(min_time);
-    }
-    if (r.length > 12) {
-      r = r.slice(0, 12);
+    if (r.length > 20) {
+      r = r.slice(0, 20);
     }
     return r;
   }
 
   var MIN_SPAN = 10000;
   var MAX_SPAN = 1000 * 3600 * 24 * 365 * 100;
+  var MAJSPANS = [4*365*24*3600*1000, 365*24*3600*1000, 120*24*3600*1000, 42*24*3600*1000, 28*24*3600*1000, 21*24*3600*1000, 14*24*3600*1000, 10*24*3600*1000];
+  var MAJUNITS = [365*24*3600*1000, 120*24*3600*1000, 31*24*3600*1000, 21*24*3600*1000, 14*24*3600*1000, 7*24*3600*1000, 4*24*3600*1000, 2*24*3600*1000];
+  var MINSPANS = [3*24*3600*1000, 2*24*3600*1000, 24*3600*1000, 12*3600*1000, 6*3600*1000, 3*3600*1000,  3600*1000, 45*60*1000, 30*60*1000, 20*60*1000, 10*60*1000, 5*60*1000, 3*60*1000, 60*1000, 45*1000, 20*1000, 12*1000, 0];
+  var MINUNITS = [  12*3600*1000,    6*3600*1000,  4*3600*1000,  3*3600*1000,   3600*1000,  30*60*1000, 15*60*1000,  5*60*1000,  4*60*1000,  3*60*1000,  2*60*1000,   60*1000,   30*1000, 15*1000, 10*1000,  5*1000,  2*1000, 1000];
 
   var EventControl = function(element, options) {
-
     this.settings = $.extend({
       onhover: function(item, element, event, inout) {},
       onclick: function(item, element, event) {},
       oncreate: function(item, element) {},
       data: [],
+      hammertime: false,
+      items_height: 101,
+      markers_height: 31
     }, options);
 
     this.element = element;
     this.width = element.width();
 
-    this.items_h = (6*8) + 4;
-    this.markers_h = 31;
+    this.items_h = this.settings.items_height;
+    this.markers_h = this.settings.markers_height;
     this._dragging = null;
     this._drag_x = 0;
 
+    element.addClass('eventcontrol');
     element.append(['<div class="ec-items ec-draggable" style="top:0px;height:', this.items_h, 'px;"></div>',
                     '<div class="ec-markers ec-draggable" style="top:', (this.items_h + 1), 'px;height:', this.markers_h, 'px;">',
                     '<div class="ec-ticks"></div>',
@@ -62,9 +64,7 @@
     this.timespan = MAX_SPAN;
     this.max_timespan = MAX_SPAN;
     this.center_time = this.min_time.valueOf() + MAX_SPAN * 0.5;
-
     this.init();
-
     return this;
   };
 
@@ -72,71 +72,107 @@
     var self = this;
     var element = this.element;
 
-    element.on('click', function(e) {
-      var tgt = $(e.target);
-      if (tgt.hasClass('ec-dot')) {
-        self.settings.onclick.call(self, tgt.data('event'), tgt, e);
-      }
-    });
-
-    element.mousedown(function(e) {
-      if (e.which == 1) {
-        element.children('.ec-draggable').addClass('ec-dragging');
-        self._dragging = true;
-        self._drag_x = e.pageX;
-        self._drag_min_time = self.min_time.valueOf();
-        self._drag_max_time = self.max_time.valueOf();
-        return false;
-      }
-    });
-
     function stop_dragging() {
       element.children('.ec-draggable').removeClass('ec-dragging');
       self._dragging = null;
     }
 
-    $('body').mouseup(function(e) {
-      if (e.which == 1) {
-        stop_dragging();
+    function pan_with_delta(dragdelta, min_time, max_time) {
+      if (dragdelta > 0.9) {
+        dragdelta = 0.9;
+      } else if (dragdelta < -0.9) {
+        dragdelta = -0.9;
       }
-    });
+      var time_offset = dragdelta * self.timespan;
+      var new_min_time = moment(min_time + time_offset);
+      var new_max_time = moment(max_time + time_offset);
+      if (!new_min_time.isSame(self.min_time) || new_max_time.isSame(self.max_time)) {
+        self.update_timespan(new_min_time, new_max_time);
+      }
+    }
 
-    $('body').on("dragend",function(){
-      stop_dragging();
-    });
+    if (self.settings.hammertime) {
+      self.mc = new Hammer.Manager(self.element.get()[0]);
+      self.mc.add(new Hammer.Pan());
+      // Tap recognizer with minimal 2 taps
+      self.mc.add( new Hammer.Tap({ event: 'doubletap', taps: 2 }) );
+      // Single tap recognizer
+      self.mc.add( new Hammer.Tap({ event: 'singletap' }) );
+      self.mc.get('doubletap').recognizeWith('singletap');
+      // we only want to trigger a tap, when we don't have detected a doubletap
+      self.mc.get('singletap').requireFailure('doubletap');
+
+      self.mc.on("panstart panleft panright singletap doubletap tap", function(e) {
+        if (e.type == "singletap") {
+          var tgt = $(e.target);
+          if (tgt.hasClass('ec-dot')) {
+            self.settings.onclick.call(self, tgt.data('event'), tgt, e);
+          }
+        } else if (e.type == "panstart") {
+          self._pan_min_time = self.min_time.valueOf();
+          self._pan_max_time = self.max_time.valueOf();
+        } else if (e.type == "panleft" || e.type == "panright") {
+          var deltapx = -e.deltaX;
+          var dragdelta = deltapx / self.width;
+
+          pan_with_delta(dragdelta, self._pan_min_time, self._pan_max_time);
+        } else if (e.type == "doubletap") {
+          var base = element.offset();
+          var dir = 1;
+          var offset = (e.center.x - base.left) / self.width;
+          self.zoom(dir, offset);
+        } else {
+          console.log("Unexpected hammer event", e.type);
+        }
+      });
+
+    } else {
+      element.on('click', function(e) {
+        var tgt = $(e.target);
+        if (tgt.hasClass('ec-dot')) {
+          self.settings.onclick.call(self, tgt.data('event'), tgt, e);
+        }
+      });
+
+      element.mousedown(function(e) {
+        if (e.which == 1) {
+          element.children('.ec-draggable').addClass('ec-dragging');
+          self._dragging = true;
+          self._drag_x = e.pageX;
+          self._drag_min_time = self.min_time.valueOf();
+          self._drag_max_time = self.max_time.valueOf();
+          return false;
+        }
+      });
+
+      $('body').mouseup(function(e) {
+        if (e.which == 1) {
+          stop_dragging();
+        }
+      });
+
+      $('body').on("dragend",function(){
+        stop_dragging();
+      });
+
+      $('body').mousemove(function(e) {
+        if (e.which == 1 && self._dragging) {
+          var deltapx = -(e.pageX - self._drag_x);
+          var dragdelta = deltapx / self.width;
+          pan_with_delta(dragdelta, self._drag_min_time, self._drag_max_time);
+        }
+      });
+    }
 
     $(window).resize(function() {
       if (!self._dirty) {
-        self._dirty = true;
         if (self.min_time && self.max_time) {
-          var mit = self.min_time.clone();
-          var mat = self.max_time.clone();
+          self._dirty = true;
           window.setTimeout(function() {
-            if (mit.isSame(self.min_time) && mat.isSame(self.max_time)) {
-              self.update_timespan(mit, mat);
-            }
+            var mit = self.min_time.clone();
+            var mat = self.max_time.clone();
+            self.update_timespan(mit, mat);
           }, 400);
-        }
-      }
-    });
-
-    $('body').mousemove(function(e) {
-      if (e.which == 1 && self._dragging) {
-        var deltapx = -(e.pageX - self._drag_x);
-        deltapx = deltapx - (deltapx % 4);
-        var dragdelta = deltapx / self.width;
-
-        if (dragdelta > 0.9)
-          dragdelta = 0.9;
-        else if (dragdelta < -0.9)
-          dragdelta = -0.9;
-
-        var time_offset = dragdelta * self.timespan;
-
-        var new_min_time = moment(self._drag_min_time + time_offset);
-        var new_max_time = moment(self._drag_max_time + time_offset);
-        if (!new_min_time.isSame(self.min_time) || new_max_time.isSame(self.max_time)) {
-          self.update_timespan(new_min_time, new_max_time);
         }
       }
     });
@@ -144,31 +180,14 @@
     element.on('mousewheel', function(event) {
       event.preventDefault();
       var dir = event.deltaY;
-      // factor = event.deltaFactor;
-
       var base = element.offset();
-
       var offset = (event.pageX - base.left) / self.width;
-
-      var new_min_time = self.min_time.clone();
-      var new_max_time = self.max_time.clone();
-
-      if (dir < 0) {
-        var delta = self.timespan * 0.5;
-        new_min_time.subtract(delta * offset, 'milliseconds');
-        new_max_time.add(delta * (1.0 - offset), 'milliseconds');
-      } else {
-        var delta = self.timespan * 0.25;
-        new_min_time.add(delta * offset, 'milliseconds');
-        new_max_time.subtract(delta * (1.0 - offset), 'milliseconds');
-      }
-
-      self.update_timespan(new_min_time, new_max_time);
+      self.zoom(dir, offset);
     });
 
     $.each(self.settings.data, function(i, item) {
       self.items.append('<div class="ec-dot" style="left:0px;top:0px;"></div>');
-      var elem = self.items.children('.ec-dot').last();
+      var elem = self.items.children('.ec-dot:last-child');
       elem.data('event', item);
       item._starttime = moment(item.timestamp).valueOf();
 
@@ -189,8 +208,8 @@
       }
     });
 
-    self.min_time.subtract(5, 'seconds');
-    self.max_time.add(5, 'seconds');
+    self.min_time.subtract(5, 's');
+    self.max_time.add(5, 's');
     self.center_time = self.min_time.valueOf() + (self.max_time.valueOf() - self.min_time.valueOf()) * 0.5;
 
     self.update_timespan(self.min_time.clone(), self.max_time.clone());
@@ -204,15 +223,35 @@
     this.update_timespan(state.min_time, state.max_time);
   };
 
+  EventControl.prototype.zoom = function(dir, focus) {
+    if (focus === undefined) {
+      focus = 0.5;
+    }
+
+    var new_min_time = this.min_time.clone();
+    var new_max_time = this.max_time.clone();
+    var delta;
+
+    if (dir < 0) {
+      delta = this.timespan * 0.5;
+      new_min_time.subtract(delta * focus, 'ms');
+      new_max_time.add(delta * (1.0 - focus), 'ms');
+    } else {
+      delta = this.timespan * 0.25;
+      new_min_time.add(delta * focus, 'ms');
+      new_max_time.subtract(delta * (1.0 - focus), 'ms');
+    }
+
+    return this.update_timespan(new_min_time, new_max_time);
+  };
+
   EventControl.prototype.update_timespan = function(new_min_time, new_max_time) {
     var self = this;
     var element = this.element;
+    var i = 0;
 
     self._dirty = false;
     self.width = element.width();
-
-    self.ticks.empty();
-    self.labels.empty();
 
     if (!moment.isMoment(new_min_time)) {
       new_min_time = moment(new_min_time);
@@ -242,141 +281,97 @@
     self.max_time = new_max_time;
 
     var min_time_ms = self.min_time.valueOf();
-
     var major;
     var minor;
     var major_fmt = 'YYYY-MM-DD';
     var minor_fmt = 'HH:mm';
     var maj_unit = 24*3600*1000;
-    var min_unit = 24*3600*1000;
+    var min_unit = null;
 
-    if (self.timespan > 365*24*3600*1000) {
-      maj_unit = 120*24*3600*1000;
-      major_fmt = 'YYYY-MM';
+
+    if (self.timespan >= 6*24*3600*1000) {
       min_unit = null;
-    } else if (self.timespan > 120*24*3600*1000) {
-      maj_unit = 31*24*3600*1000;
-      major_fmt = 'YYYY-MM';
-      min_unit = null;
-    } else if (self.timespan > 31*24*3600*1000) {
-      maj_unit = 31*24*3600*1000;
-      min_unit = null;
-    } else if (self.timespan > 24*24*3600*1000) {
-      maj_unit = 14*24*3600*1000;
-      min_unit = null;
-    } else if (self.timespan > 12*24*3600*1000) {
-      maj_unit = 7*24*3600*1000;
-      min_unit = null;
-    }
-
-    if (self.timespan < 6*24*3600*1000) {
-      min_unit = 12*3600*1000;
-    }
-
-    if (self.timespan < 3*24*3600*1000) {
-      min_unit = 6*3600*1000;
-    }
-
-    if (self.timespan < 3*24*3600*1000) {
-      min_unit = 6*3600*1000;
-    }
-
-    if (self.timespan < 2*24*3600*1000) {
-      min_unit = 3*3600*1000;
-    }
-
-    if (self.timespan < 24*3600*1000) {
-      min_unit = 3*3600*1000;
-    }
-
-    if (self.timespan < 12*3600*1000) {
-      min_unit = 3600*1000;
-    }
-
-    if (self.timespan < 6*3600*1000) {
-      min_unit = 30*60*1000;
-    }
-
-    if (self.timespan < 3*3600*1000) {
-      min_unit = 15*60*1000;
-    }
-
-    if (self.timespan < 3600*1000) {
-      min_unit = 5*60*1000;
-    }
-
-    if (self.timespan < 45*60*1000) {
-      min_unit = 4*60*1000;
-    }
-
-    if (self.timespan < 30*60*1000) {
-      min_unit = 3*60*1000;
-    }
-
-    if (self.timespan < 20*60*1000) {
-      min_unit = 2*60*1000;
-    }
-
-    if (self.timespan < 10*60*1000) {
-      min_unit = 60*1000;
-    }
-
-    if (self.timespan < 5*60*1000) {
-      min_unit = 30*1000;
-    }
-
-    if (self.timespan < 2*60*1000) {
-      min_unit = 15*1000;
-    }
-
-    if (self.timespan < 60*1000) {
-      min_unit = 10*1000;
-    }
-
-    if (self.timespan < 45*1000) {
-      min_unit = 5*1000;
-    }
-
-    if (self.timespan < 20*1000) {
-      min_unit = 2*1000;
-    }
-
-    if (self.timespan < 12*1000) {
-      min_unit = 1*1000;
+      if (self.timespan > 4*365*24*3600*1000) {
+        major_fmt = 'YYYY';
+      } else if (self.timespan > 120*24*3600*1000) {
+        major_fmt = 'YYYY-MM';
+      }
+      for (i = 0; i < MAJSPANS.length; i++) {
+        if (self.timespan > MAJSPANS[i]) {
+          maj_unit = MAJUNITS[i];
+          break;
+        }
+      }
+    } else {
+      for (i = 0; i < MINSPANS.length; i++) {
+        if (self.timespan > MINSPANS[i]) {
+          min_unit = MINUNITS[i];
+          break;
+        }
+      }
+      if (min_unit < 60*1000) {
+        minor_fmt = 'HH:mm:ss';
+      }
     }
 
     major = unit_in_timespan(maj_unit, min_time_ms, self.timespan);
 
-    if (min_unit != null) {
-      if (min_unit < 60*1000) {
-        minor_fmt = 'HH:mm:ss';
+    var lastlblend = -1;
+    var existing_ticks = self.ticks.children('.ec-tick');
+    var existing_labels = self.labels.children('.ec-label,.ec-region-label');
+    var tick_idx = 0;
+    var label_idx = 0;
+
+    function addlabel(cls, l, t, lbl) {
+      if (l > lastlblend) {
+        if (label_idx < existing_labels.length) {
+          var label = $(existing_labels[label_idx]);
+          label.css('left', l).css('top', t).text(lbl).addClass(cls).removeClass((cls == 'ec-label') ? 'ec-region-label' : 'ec-label');
+          lastlblend = l + label.width();
+          label_idx += 1;
+        } else {
+          self.labels.append(['<div class="', cls, '" style="left:', l, 'px;top:', t, 'px;">', lbl, '</div>'].join(""));
+          lastlblend = l + self.labels.children('.' + cls + ':last-child').width();
+        }
       }
-
-      minor = unit_in_timespan(min_unit, min_time_ms, self.timespan);
-
-      $.each(minor, function(i, ts) {
-        var xoffs = (self.width / self.timespan) * (ts - min_time_ms);
-        self.ticks.append(['<div class="ec-tick" style="left:', xoffs, 'px;top:', 1, 'px;height:', self.items_h + 1 + self.markers_h, 'px;"></div>'].join(''));
-
-        var l = (self.width / self.timespan) * (ts - min_time_ms);
-        var t = self.items_h + 1;
-        var lbl = moment(ts).format(minor_fmt);
-        self.labels.append(['<div class="ec-label" style="left:', l, 'px;top:', t, 'px;">', lbl, '</div>'].join(""));
-      });
-    } else {
-      $.each(major, function(i, ts) {
-        var xoffs = (self.width / self.timespan) * (ts - min_time_ms);
-        self.ticks.append(['<div class="ec-tick" style="left:', xoffs, 'px;top:', 1, 'px;height:', self.items_h * 0.5, 'px;"></div>'].join(''));
-      });
     }
 
-    $.each(major, function(i, ts) {
-      var l = ((self.width - 4) / self.timespan) * (ts - min_time_ms) + 2;
-      var t = self.items_h + self.markers_h - 14;
-      var lbl = moment(ts).format(major_fmt);
-      if (l < 0) {
-        if (i < major.length-1) {
-          var next = ((self.width - 4) / self.timespan) * (major[i + 1] - min_time_ms) + 2;
+    function addtick(l, t, h) {
+      if (tick_idx < existing_ticks.length) {
+        var tick = $(existing_ticks[tick_idx]);
+        tick.css('left', l).css('top', t).css('height', h);
+        tick_idx += 1;
+      } else {
+        self.ticks.append(['<div class="ec-tick" style="left:', l, 'px;top:', t, 'px;height:', h, 'px;"></div>'].join(''));
+      }
+    }
+
+    var span = self.width / self.timespan;
+    var ts;
+    var xoffs;
+
+    if (min_unit !== null) {
+      minor = unit_in_timespan(min_unit, min_time_ms, self.timespan);
+
+      for (i = 0; i < minor.length; i++) {
+        ts = minor[i];
+        xoffs = span * (ts - min_time_ms);
+        addtick(xoffs, 1, self.items_h + 1 + self.markers_h);
+        addlabel('ec-label', xoffs + 1, self.items_h + 1, moment(ts).format(minor_fmt));
+      }
+    } else {
+      for (i = 0; i < major.length; i++) {
+        addtick(span * (major[i] - min_time_ms), 1, self.items_h * 0.5);
+      }
+    }
+
+    lastlblend = -1;
+    for (i = 0; i < major.length; i++) {
+      ts = major[i];
+      var l = span * (ts - min_time_ms);
+      if (l < 2) {
+        if (i + 1 < major.length) {
+          var next = span * (major[i + 1] - min_time_ms);
           if (next > 60) {
             l = 2;
           }
@@ -384,57 +379,58 @@
           l = 2;
         }
       }
+      addlabel('ec-region-label', l + 1, self.items_h + self.markers_h - 14, moment(ts).format(major_fmt));
+    }
 
-      self.labels.append(['<div class="ec-region-label" style="left:', l, 'px;top:', t, 'px;">', lbl, '</div>'].join(""));
-    });
+    for (i = tick_idx; i < existing_ticks.length; i++) {
+      $(existing_ticks[i]).remove();
+    }
+    for (i = label_idx; i < existing_labels.length; i++) {
+      $(existing_labels[i]).remove();
+    }
 
     var item_offset = 2;
     var item_slot_x = -100;
     var item_slot_y = item_offset;
     var item_w = 8;
     var item_d = item_w + item_offset;
+    var items = self.items.children('.ec-dot');
 
-    self.items.children('.ec-dot').each(function() {
-      var item = $(this).data('event');
+    span = (self.width - (item_offset * 2)) / self.timespan;
+
+    for (i = 0; i < items.length; i++) {
+      var elem = $(items[i]);
+      var item = elem.data('event');
       var m = item._starttime;
 
-
-      var x = Math.floor(item_offset + ((self.width - (item_offset*2)) / self.timespan) * (m - min_time_ms));
-
-      if (x < -item_w) {
-        $(this).css('left', -200);
-      } else if (x > self.width + item_w) {
-        $(this).css('left', self.width + 200);
-      } else {
-        var xf = x % item_d;
-        x = x - xf;
-        var y = item_offset;
-
-        var pushed = false;
-        var xoffs = item_slot_x;
-        if ((x + xf - item_slot_x) <= item_w) {
-          pushed = true;
+      var x = Math.floor(item_offset + span * (m - min_time_ms));
+      var xf = x % item_d;
+      x = x - xf;
+      var y = item_offset;
+      var pushed = false;
+      xoffs = item_slot_x;
+      if ((x + xf - item_slot_x) <= item_w) {
+        pushed = true;
+        x = xoffs;
+        y = item_slot_y + item_d;
+        if (y > self.items_h - item_offset) {
+          xoffs += item_d;
           x = xoffs;
-          y = item_slot_y + item_d;
-          if (y > self.items_h - item_offset) {
-            xoffs += item_d;
-            x = xoffs;
-            y = item_offset;
-          }
-        } else {
-          item_slot_y = item_offset;
+          y = item_offset;
         }
-
-        if (!pushed) {
-          x += xf;
-        }
-
-        item_slot_x = x;
-        item_slot_y = y;
-
-        $(this).css('left', x).css('top', y);
+      } else {
+        item_slot_y = item_offset;
       }
-    });
+
+      if (!pushed) {
+        x += xf;
+      }
+
+      item_slot_x = x;
+      item_slot_y = y;
+
+      elem.css('left', x).css('top', y);
+    }
   };
 
   $.fn.EventControl = function(options) {
@@ -442,13 +438,18 @@
       var element = $(this);
       var self = element.data('eventcontrol');
       if (!self) {
-        element.data('eventcontrol', new EventControl(element, options));
+        self = new EventControl(element, options);
+        element.data('eventcontrol', self);
       } else if (options === undefined) {
         return self.save_state();
+      } else if (options == 'zoom-in') {
+        return self.zoom.apply(self, [1] + arguments.slice(1, 2));
+      } else if (options == 'zoom-out') {
+        return self.zoom.apply(self, [-1] + arguments.slice(1, 2));
       } else {
         self.load_state(options);
       }
+      return self;
     });
   };
-
 }(jQuery));
