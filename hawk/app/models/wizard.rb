@@ -74,7 +74,9 @@ class Wizard
         t = (action['text'] || '').split.first || ''
         return false if ['configure', 'resource', 'cib'].any? { |c| c == t }
       end
-      return false if action['name'] == 'call' && action['sudo'].nil?
+      if action['name'] == 'call' && action['sudo'].nil? && action['nodes'] == 'local'
+        return false
+      end
       true
     end
   end
