@@ -1,8 +1,8 @@
 .container-fluid
   .row
     .pull-left
-      .circle.circle-medium{ class: status_class_for(@cib.meta.status) }
-        = status_icon_for(@cib.meta.status)
+      .circle.circle-medium{ class: status_class_for(@cib.meta[:status]) }
+        = status_icon_for(@cib.meta[:status])
     %h1
       = _("Status")
 

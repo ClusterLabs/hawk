@@ -218,19 +218,24 @@ module ApplicationHelper
   end
 
   def footer_metadata_items
+    meta_items = [
+      [_("Status"), "meta.status", :status, nil],
+      [_("Epoch"), "meta.epoch", :epoch, _("Current Configuration Version")],
+      [_("Host"), "meta.host", :host, nil],
+      [_("DC"), "meta.dc", :dc, _("Designated Coordinator")],
+      [_("Schema"), "meta.validate_with", :validate_with, _("CIB Schema Version")],
+      [_("Last Written"), "meta.cib_last_written", :cib_last_written],
+      [_("Update Origin"), "meta.update_origin", :update_origin],
+      [_("Update User"), "meta.update_user", :update_user],
+      [_("Have Quorum"), "meta.have_quorum", :have_quorum],
+      [_("Version"), "meta.version", :version, _("Pacemaker Version")],
+      [_("Stack"), "meta.stack", :stack, _("Cluster Communication Stack")]
+    ]
     meta = current_cib.meta
-    [].tap do |ret|
-      ret.push [_("Status"), "meta.status", meta.status, nil]
-      ret.push [_("Epoch"), "meta.epoch", meta.epoch, _("Current Configuration Version")]
-      ret.push [_("Host"), "meta.host", meta.host, nil]
-      ret.push [_("DC"), "meta.dc", meta.dc, _("Designated Coordinator")]
-      ret.push [_("Schema"), "meta.validate_with", meta.validate_with, _("CIB Schema Version")] if meta.validate_with?
-      ret.push [_("Last Written"), "meta.cib_last_written", meta.cib_last_written] if meta.cib_last_written?
-      ret.push [_("Update Origin"), "meta.update_origin", meta.update_origin] if meta.update_origin?
-      ret.push [_("Update User"), "meta.update_user", meta.update_user] if meta.update_user?
-      ret.push [_("Have Quorum"), "meta.have_quorum", meta.have_quorum] if meta.have_quorum?
-      ret.push [_("Version"), "meta.version", meta.version, _("Pacemaker Version")]
-      ret.push [_("Stack"), "meta.stack", meta.stack, _("Cluster Communication Stack")]
+    ret = []
+    meta_items.each do |item|
+      ret.push [item[0], item[1], meta[item[2]], item[3]] if meta.key? item[2]
     end
+    ret
   end
 end

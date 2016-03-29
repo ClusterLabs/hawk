@@ -72,21 +72,21 @@ class Cib
 
   def meta
     @meta ||= begin
-      struct = Hashie::Mash.new
+      struct = {}
 
       @xml.root.attributes.each do |n, v|
         struct[n.underscore.to_sym] = Util.unstring(v, '')
       end unless @xml.nil?
 
-      struct.epoch = epoch
-      struct.dc = dc
+      struct[:epoch] = epoch
+      struct[:dc] = dc
 
-      struct.host = Socket.gethostname
+      struct[:host] = Socket.gethostname
 
-      struct.version = crm_config[:dc_version]
-      struct.stack = crm_config[:cluster_infrastructure]
+      struct[:version] = crm_config[:dc_version]
+      struct[:stack] = crm_config[:cluster_infrastructure]
 
-      struct.status = case
+      struct[:status] = case
       when errors.empty?
         # TODO(must): Add stopped checks
 
@@ -119,18 +119,16 @@ class Cib
   end
 
   def offline?
-    meta.status == :offline
+    meta[:status] == :offline
   end
 
   def node_state_of_resource(rsc)
     nodestate = {}
     rsc[:instances].each do |_, attrs|
       [:master, :slave, :started, :failed, :pending].each do |rstate|
-        if attrs[rstate]
-          attrs[rstate].each do |n|
-            nodestate[n[:node]] = rstate
-          end
-        end
+        attrs[rstate].each do |n|
+          nodestate[n[:node]] = rstate
+        end if attrs[rstate]
       end
     end if rsc.key? :instances
     rsc[:children].each do |child|
@@ -141,7 +139,7 @@ class Cib
 
   def status(minimal = false)
     {
-      meta: meta.to_h,
+      meta: meta,
       errors: errors,
       booth: booth
     }.tap do |result|
@@ -260,13 +258,13 @@ class Cib
   protected
 
   def get_resource(elem, is_managed = true, clone_max = nil, is_ms = false)
-    res = Hashie::Mash.new(
+    res = {
       id: elem.attributes['id'],
       object_type: elem.name,
       attributes: {},
       is_managed: is_managed,
       state: :unknown
-    )
+    }
     @resources_by_id[elem.attributes['id']] = res
     elem.elements.each("meta_attributes/nvpair/") do |nv|
       res[:attributes][nv.attributes["name"]] = nv.attributes["value"]
@@ -331,10 +329,10 @@ class Cib
         res[:instances].delete(:default)
         instance = 0
         while res[:instances].length < res[:clone_max]
-          while res[:instances].key?(instance.to_s)
+          while res[:instances].key?(instance.to_s.to_sym)
             instance += 1
           end
-          res[:instances][instance.to_s] = {
+          res[:instances][instance.to_s.to_sym] = {
             failed_ops: [],
             is_managed: res[:is_managed] && !@crm_config[:maintenance_mode]
           }
@@ -352,7 +350,7 @@ class Cib
         if res.key?(:instances)
 
           res[:instances].delete_if do |k, v|
-            k.to_s != "default"
+            k != :default
           end
           # Inject a default instance if there's not one, as can be the case when
           # working with shadow CIBs.
@@ -386,7 +384,7 @@ class Cib
         resource[:state] = :stopped if resource[:state] == :unknown
         resource[:instances].each do |_, states|
           prio.keys.each do |rstate|
-            if states.key? rstate.to_s
+            if states.key? rstate
               p1 = prio[rstate]
               p2 = prio[resource[:state]]
               resource[:state] = rstate if p1 > p2
@@ -545,13 +543,13 @@ class Cib
     @id = id
 
     # Special-case defaults for properties we always want to see
-    @crm_config = Hashie::Mash.new(
+    @crm_config = {
       cluster_infrastructure: _('Unknown'),
       dc_version: _('Unknown'),
       stonith_enabled: true,
       symmetric_cluster: true,
       no_quorum_policy: 'stop',
-    )
+    }
 
     # Pull in everything else
     # TODO(should): This gloms together all cluster property sets; really
@@ -560,12 +558,12 @@ class Cib
       @crm_config[p.attributes['name'].underscore.to_sym] = CibTools.get_xml_attr(p, 'value')
     end
 
-    @rsc_defaults = Hashie::Mash.new
+    @rsc_defaults = {}
     @xml.elements.each('cib/configuration/rsc_defaults//nvpair') do |p|
       @rsc_defaults[p.attributes['name'].underscore.to_sym] = CibTools.get_xml_attr(p, 'value')
     end
 
-    @op_defaults = Hashie::Mash.new
+    @op_defaults = {}
     @xml.elements.each('cib/configuration/op_defaults//nvpair') do |p|
       @op_defaults[p.attributes['name'].underscore.to_sym] = CibTools.get_xml_attr(p, 'value')
     end
@@ -603,7 +601,7 @@ class Cib
       if standby and state == :online
         state = :standby
       end
-      @nodes << Hashie::Mash.new(
+      @nodes << {
         name: uname || id,
         uname: uname,
         state: state,
@@ -611,7 +609,7 @@ class Cib
         standby: standby,
         maintenance: maintenance,
         remote: remote
-      )
+      }
       if state == :unclean
         error _('Node "%{node}" is UNCLEAN and needs to be fenced.') % { node: uname }
       end
@@ -626,14 +624,14 @@ class Cib
       state = :unknown
       standby = false
       unless @nodes.any? { |nod| nod[:id] == node_id }
-        @nodes << Hashie::Mash.new(
+        @nodes << {
           uname: uname,
           state: state,
           id: node_id,
           standby: standby,
           maintenance: maintenance,
           remote: true
-        )
+        }
       end
     end
 
@@ -649,12 +647,12 @@ class Cib
     # have state we care about.
     @templates = []
     @xml.elements.each('cib/configuration/resources/template') do |t|
-      @templates << Hashie::Mash.new(
+      @templates << {
         id: t.attributes['id'],
         class: t.attributes['class'],
         provider: t.attributes['provider'],
         type: t.attributes['type']
-      )
+      }
     end if Util.has_feature?(:rsc_template)
 
     # TODO(must): fix me
@@ -665,14 +663,14 @@ class Cib
 
     @tags = []
     @xml.elements.each('cib/configuration/tags/tag') do |t|
-      @tags << Hashie::Mash.new(
+      @tags << {
         id: t.attributes['id'],
         state: :unknown,
         object_type: :tag,
         is_managed: false,
         running_on: {},
         refs: t.elements.collect('obj_ref') { |ref| ref.attributes['id'] }
-      )
+      }
     end
 
     # Iterate nodes in cib order here which makes the faked up clone & ms instance
@@ -955,7 +953,7 @@ class Cib
       end
     end
 
-    @booth = Hashie::Mash.new(sites: [], arbitrators: [], tickets: [], me: nil)
+    @booth = {sites: [], arbitrators: [], tickets: [], me: nil}
     # Figure out if we're in a geo cluster
     File.readlines("/etc/booth/booth.conf").each do |line|
       m = line.match(/^\s*(site|arbitrator|ticket)\s*=(.+)/)
@@ -1026,19 +1024,19 @@ class Cib
   def init_offline_cluster(id, user, use_file)
     @id = id
 
-    @meta = Hashie::Mash.new(
+    @meta = {
       epoch: "",
       dc: "",
       host: "",
       version: "",
       stack: "",
       status: :offline
-    )
+    }
 
-    @crm_config = Hashie::Mash.new(
+    @crm_config = {
       cluster_infrastructure: _('Unknown'),
       dc_version: _('Unknown')
-    )
+    }
     @nodes = []
     @resources = []
     @resources_by_id = {}
@@ -1090,6 +1088,8 @@ class Cib
       # instance will be nil here for regular primitives
       instance = :default
     end
+
+    instance = instance.to_sym
 
     # Carry is_managed into the instance itself (needed so we can correctly
     # display unmanaged clone instances if a single node is on maintenance,
