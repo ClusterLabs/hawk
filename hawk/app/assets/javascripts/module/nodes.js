@@ -69,6 +69,10 @@ $(function() {
               ret.push(' <i class="fa fa-cloud text-info" title="', __("Remote"), '"></i>');
             }
 
+            if (row.fence_history) {
+              ret.push(' <i class="fa fa-refresh text-warning" title="', row.fence_history, '" style="font-size: 66%;vertical-align:top;"></i>');
+            }
+
             return ret.join('');
           }
         }, {

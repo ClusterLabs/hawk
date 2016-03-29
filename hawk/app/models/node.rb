@@ -19,6 +19,7 @@ class Node < Tableless
   attribute :remote, Boolean
   attribute :maintenance, Boolean
   attribute :fence, Boolean
+  attribute :fence_history, String
 
   validates :id,
     presence: { message: _('Node ID is required') },
@@ -145,6 +146,7 @@ class Node < Tableless
       record.standby = state[:standby]
       record.maintenance = state[:maintenance]
       record.remote = state[:remote]
+      record.fence_history = state[:fence_history]
       record.fence = can_fence
 
       record.params = if xml.elements['instance_attributes']

@@ -601,6 +601,14 @@ class Cib
       if standby and state == :online
         state = :standby
       end
+
+      # check stonith history
+      if crm_config[:stonith_enabled]
+        fence_history = %x[/usr/sbin/stonith_admin -H #{uname} 2>/dev/null].strip
+      else
+        fence_history = ""
+      end
+
       @nodes << {
         name: uname || id,
         uname: uname,
@@ -608,7 +616,8 @@ class Cib
         id: node_id,
         standby: standby,
         maintenance: maintenance,
-        remote: remote
+        remote: remote,
+        fence_history: fence_history
       }
       if state == :unclean
         error _('Node "%{node}" is UNCLEAN and needs to be fenced.') % { node: uname }

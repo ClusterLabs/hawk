@@ -13,6 +13,9 @@
     - if @node.remote
       .alert.alert-info{role: :alert}
         = _("Remote node.")
+    - unless @node.fence_history.blank?
+      .alert.alert-warning{role: :warning}
+        = @node.fence_history
 
     %table.table.table-condensed
       %tbody
