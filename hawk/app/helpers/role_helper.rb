@@ -4,7 +4,7 @@
 module RoleHelper
   def role_options(selected)
     options_for_select(
-      Role.ordered.map(&:id),
+      Role.ordered.map{|x| x[:id]},
       selected
     )
   end

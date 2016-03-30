@@ -3,9 +3,9 @@
 
 module MasterHelper
   def master_child_list
-    options = @cib.resources.select do |r|
+    @cib.resources.select do |r|
       !r.key?(:children) || (r.key?(:children) && r[:type] == "group")
-    end.map(&:id).sort do |a, b|
+    end.map{|x| x[:id]}.sort do |a, b|
       a.natcmp(b, true)
     end
   end

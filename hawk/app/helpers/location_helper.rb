@@ -4,7 +4,7 @@
 module LocationHelper
   def location_resource_options(selected)
     available = [
-      @cib.resources.map(&:id)
+      @cib.resources.map{|x| x[:id]}
     ].flatten.uniq.sort do |a, b|
       a.natcmp(b, true)
     end
@@ -17,7 +17,7 @@ module LocationHelper
 
   def location_node_options(selected)
     available = [
-      @cib.nodes.map(&:id)
+      @cib.nodes.map{|x| x[:id]}
     ].flatten.uniq.sort do |a, b|
       a.natcmp(b, true)
     end

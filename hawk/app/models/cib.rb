@@ -341,7 +341,7 @@ class Cib
         # strip any instances outside 0..clone_max if they're not running (these
         # can be present if, e.g.: you have a clone running on all nodes, then
         # set clone-max < num_nodes, in which case there'll be stopped orphans).
-        res[:instances].keys.select{|i| i.to_i >= res[:clone_max]}.each do |k|
+        res[:instances].keys.select{|i| i.to_s.to_i >= res[:clone_max]}.each do |k|
           # safe to delete if the instance is present and its only state is stopped
           res[:instances].delete(k) if res[:instances][k].keys.length == 1 && res[:instances][k].key?(:stopped)
         end

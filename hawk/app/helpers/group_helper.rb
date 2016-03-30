@@ -3,7 +3,7 @@
 
 module GroupHelper
   def group_children_list
-    @cib.resources.select { |r| !r.key?(:children) }.map(&:id).sort { |a, b| a.natcmp(b, true) }
+    @cib.resources.select { |r| !r.key?(:children) }.map { |x| x[:id] }.sort { |a, b| a.natcmp(b, true) }
   end
 
   def group_children_for(group)

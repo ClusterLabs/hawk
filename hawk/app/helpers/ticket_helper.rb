@@ -25,8 +25,8 @@ module TicketHelper
 
   def available_ticket_resources
     [
-      @cib.resources.map(&:id),
-      @cib.templates.map(&:id)
+      @cib.resources.map{|x| x[:id]},
+      @cib.templates.map{|x| x[:id]}
     ].flatten.sort do |a, b|
       a.natcmp(b, true)
     end

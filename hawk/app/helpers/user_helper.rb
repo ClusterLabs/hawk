@@ -4,7 +4,7 @@
 module UserHelper
   def user_options(selected)
     options_for_select(
-      User.ordered.map(&:id),
+      User.ordered.map{|x| x[:id]},
       selected
     )
   end
