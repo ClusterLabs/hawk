@@ -49,8 +49,8 @@ SBINDIR = /usr/sbin
 all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service scripts/hawk.service.bundle_gems tools
 	(cd hawk; \
 	 if $(BUNDLE_GEMS) ; then \
-		# Ignore gems from test \
-		export BUNDLE_WITHOUT=test && \
+		# Ignore gems from test and development \
+		export BUNDLE_WITHOUT="test development" && \
 		# Generate Gemfile.lock \
 		bundle list && \
 		# Strip unwanted gems from Gemfile.lock \
