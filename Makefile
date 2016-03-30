@@ -49,8 +49,8 @@ SBINDIR = /usr/sbin
 all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service scripts/hawk.service.bundle_gems tools
 	(cd hawk; \
 	 if $(BUNDLE_GEMS) ; then \
-		# Ignore gems from test and development \
-		export BUNDLE_WITHOUT="test development" && \
+		# Ignore gems from test \
+		export BUNDLE_WITHOUT="test" && \
 		# Generate Gemfile.lock \
 		bundle list && \
 		# Strip unwanted gems from Gemfile.lock \
@@ -59,7 +59,7 @@ all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service scripts/hawk.service.bundle
 		bundle package && bundle install --local --deployment ; \
 	 fi ; \
 	 TEXTDOMAIN=hawk bin/rake gettext:pack; \
-	 RAILS_ENV=production bin/rake assets:precompile)
+	 RAILS_ENV=production bundle exec rake assets:precompile)
 
 %:: %.in
 	sed \
