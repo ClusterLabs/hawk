@@ -33,7 +33,7 @@ Rails.application.configure do
   config.assets.debug = false
   config.assets.raise_runtime_errors = false
   config.assets.js_compressor = :uglifier
-  config.assets.css_compressor = nil
+  config.assets.css_compressor = :sass
   config.assets.compile = true
   config.assets.digest = true
   config.assets.manifest = Rails.root.join("public", "assets", "manifest.json")
