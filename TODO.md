@@ -1,12 +1,10 @@
 # TODO
 
+* Show constraints for resource:
+
+  Parse output of `crm_resource --resource <rsc> -A`
+
 * Controls for all resources: stop all, start all, ... ?
-
-* Show fencing history for each node:
-
-        stonith_admin -H <node>
-
-* Indicate when there is fencing history for a node
 
 * Display allocation scores and blocked status
 
