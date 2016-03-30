@@ -138,6 +138,25 @@ class Resource < Record
     @id = "#{other}-#{i}"
   end
 
+  def rsc_constraints
+    outp = %x[/usr/sbin/crm_resource --resource "#{id}" -A 2>/dev/null]
+    info = {}
+    outp.each_line do |l|
+      l.strip!
+      next if l.blank? || l.start_with?('* ')
+      m = l.match(/\s*: Node (\S+)\s+\(score=([^,]+), id=([^)]+)\)/)
+      if m && !info.key?(m[3])
+        info[m[3]] = { id: m[3], type: :location, score: m[2], other: m[1] }
+      else
+        m = l.match(/\s*(\S+)\s+\(score=([^,]+), id=([^)]+)\)/)
+        if m && !info.key?(m[3])
+          info[m[3]] = { id: m[3], type: :colocation, score: m[2], other: m[1] }
+        end
+      end
+    end
+    info.values
+  end
+
   protected
 
   def cib_by_id(id)

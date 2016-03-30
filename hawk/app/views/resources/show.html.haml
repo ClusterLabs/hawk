@@ -134,6 +134,26 @@
                   %td= content_tag :code, op[:op]
                   %td= content_tag :code, op[:rc_code]
                   %td= content_tag :code, op[:exit_reason]
+      .panel.panel-default
+        .panel-heading#r-constraints{role: :tab}
+          %h4.panel-title
+            %a{role: :button, data: {toggle: :collapse}, href: "#r-constraints-body", aria: {expanded: true, controls: "r-constraints-body"}}
+              = _("Constraints")
+              .pull-right
+                %span.caret
+        #r-constraints-body.panel-collapse.collapse.in{role: :tabpanel, aria: {labelledby: "r-constraints"}}
+          %table.table.table-condensed
+            %tr
+              %th= _("ID")
+              %th= _("Type")
+              %th= _("Score")
+              %th= _("To")
+            - @resource.rsc_constraints.each do |constraint|
+              %tr
+                %td= constraint[:id]
+                %td= constraint[:type]
+                %td= constraint[:score]
+                %td= constraint[:other]
 
   .modal-footer
     %button.btn.btn-default{ type: "button", data: { dismiss: "modal" } }

@@ -1,9 +1,5 @@
 # TODO
 
-* Show constraints for resource:
-
-  Parse output of `crm_resource --resource <rsc> -A`
-
 * Controls for all resources: stop all, start all, ... ?
 
 * Display allocation scores and blocked status
