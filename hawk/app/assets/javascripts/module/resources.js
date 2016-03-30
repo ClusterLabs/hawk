@@ -186,6 +186,23 @@ $(function() {
     return { edit: editRoute, destroy: destroyRoute };
   }
 
+  function startswith(str, prefix) {
+    return str.substr(0, prefix.length) === prefix;
+  }
+
+  function resourceMigrationConstraints(rsc) {
+    var cib = $('body').data('content');
+    var ban = "cli-ban-" + rsc + "-on-";
+    var prefer = "cli-prefer-" + rsc;
+    var ret = [];
+    $.each(cib.constraints, function(i, c) {
+      if (c.id == prefer || startswith(c.id, ban)) {
+        ret.push(c.id);
+      }
+    });
+    return ret;
+  }
+
   var statesResourcesColumns = [
     {
       field: 'state',
@@ -196,44 +213,31 @@ $(function() {
       halign: "center",
       class: 'col-sm-1',
       formatter: function(value, row, index) {
+        var fmt = [];
         switch(value) {
-          case "unmanaged":
-            return [
-              '<i class="fa fa-exclamation-triangle fa-lg text-warning" title="',
-              __("Unmanaged"),
-              '"></i>'
-            ].join('');
-          case "started":
-            return [
-              '<i class="fa fa-circle fa-lg text-success" title="',
-              __("Started"),
-              '"></i>'
-            ].join('');
-          case "master":
-            return [
-              '<i class="fa fa-circle fa-lg text-info" title="',
-              __("Primary"),
-              '"></i>'
-            ].join('');
-          case "slave":
-            return [
-              '<i class="fa fa-dot-circle-o fa-lg text-success" title="',
-              __("Secondary"),
-              '"></i>'
-            ].join('');
-          case "stopped":
-            return [
-              '<i class="fa fa-minus-circle fa-lg text-danger" title="',
-              __("Stopped"),
-              '"></i>'
-            ].join('');
-          default:
-            return [
-              '<i class="fa fa-question fa-lg text-warning" title="',
-              value,
-              '"></i>'
-            ].join('');
+        case "unmanaged":
+          fmt.push('<i class="fa fa-exclamation-triangle fa-lg text-warning" title="', __("Unmanaged"), '"></i>');
+          break;
+        case "started":
+          fmt.push('<i class="fa fa-circle fa-lg text-success" title="', __("Started"), '"></i>');
+          break;
+        case "master":
+          fmt.push('<i class="fa fa-circle fa-lg text-info" title="', __("Primary"), '"></i>');
+          break;
+        case "slave":
+          fmt.push('<i class="fa fa-dot-circle-o fa-lg text-success" title="', __("Secondary"), '"></i>');
+          break;
+        case "stopped":
+          fmt.push('<i class="fa fa-minus-circle fa-lg text-danger" title="', __("Stopped"), '"></i>');
+          break;
+        default:
+          fmt.push('<i class="fa fa-question fa-lg text-warning" title="', value, '"></i>');
+          break;
         }
+        $.each(resourceMigrationConstraints(row.id), function(i, c) {
+          fmt.push('<i class="fa fa-link fa-status-small text-info" title="', c, '"></i>');
+        });
+        return fmt.join("");
       }
     },
     {
@@ -399,8 +403,11 @@ $(function() {
 
         var rsc_routes = resourceRoutes(row);
 
-        add_operation("menu", Routes.migrate_cib_resource_path($('body').data('cib'), row.id), 'migrate', 'hand-o-up', __('Migrate'));
-        add_operation("menu", Routes.unmigrate_cib_resource_path($('body').data('cib'), row.id), 'unmigrate', 'hand-o-down', __('Unmigrate'));
+        if (resourceMigrationConstraints(row.id).length > 0) {
+          add_operation("menu", Routes.unmigrate_cib_resource_path($('body').data('cib'), row.id), 'unmigrate', 'chain-broken', __('Unmigrate'));
+        } else {
+          add_operation("menu", Routes.migrate_cib_resource_path($('body').data('cib'), row.id), 'migrate', 'arrows', __('Migrate'));
+        }
         add_operation("menu", Routes.cleanup_cib_resource_path($('body').data('cib'), row.id), 'cleanup', 'eraser', __('Cleanup'));
 
         if (row.object_type == "tag") {

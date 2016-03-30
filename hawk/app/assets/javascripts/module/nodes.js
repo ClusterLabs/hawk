@@ -70,7 +70,7 @@ $(function() {
             }
 
             if (row.fence_history) {
-              ret.push(' <i class="fa fa-refresh text-warning" title="', row.fence_history, '" style="font-size: 66%;vertical-align:top;"></i>');
+              ret.push(' <i class="fa fa-refresh fa-status-small text-warning" title="', row.fence_history, '"></i>');
             }
 
             return ret.join('');
