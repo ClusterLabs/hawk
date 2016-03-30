@@ -66,7 +66,7 @@ $(function() {
             var ret = ['<i class="', icon.join(' '), '" title="', title, '"></i>'];
 
             if (row.remote) {
-              ret.push(' <i class="fa fa-cloud text-info" title="', __("Remote"), '"></i>');
+              ret.push(' <i class="fa fa-cloud fa-status-small text-info" title="', __("Remote"), '"></i>');
             }
 
             if (row.fence_history) {
