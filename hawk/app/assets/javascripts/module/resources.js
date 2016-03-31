@@ -403,10 +403,9 @@ $(function() {
 
         var rsc_routes = resourceRoutes(row);
 
+        add_operation("menu", Routes.migrate_cib_resource_path($('body').data('cib'), row.id), 'migrate', 'arrows', __('Migrate'));
         if (resourceMigrationConstraints(row.id).length > 0) {
           add_operation("menu", Routes.unmigrate_cib_resource_path($('body').data('cib'), row.id), 'unmigrate', 'chain-broken', __('Unmigrate'));
-        } else {
-          add_operation("menu", Routes.migrate_cib_resource_path($('body').data('cib'), row.id), 'migrate', 'arrows', __('Migrate'));
         }
         add_operation("menu", Routes.cleanup_cib_resource_path($('body').data('cib'), row.id), 'cleanup', 'eraser', __('Cleanup'));
 
