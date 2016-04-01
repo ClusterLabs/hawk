@@ -122,6 +122,11 @@ class Cib
     meta[:status] == :offline
   end
 
+  def not_a_node?
+    return false unless offline?
+    !File.exist?('/var/lib/pacemaker')
+  end
+
   def node_state_of_resource(rsc)
     nodestate = {}
     rsc[:instances].each do |_, attrs|

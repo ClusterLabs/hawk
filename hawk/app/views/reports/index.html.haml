@@ -28,7 +28,7 @@
     #report-tabs.panel.panel-default.with-nav-tabs.hidden
       .panel-heading
         %ul.nav.nav-tabs
-          - unless current_cib.offline?
+          - unless current_cib.not_a_node?
             %li.active
               %a{ href: "#generate", data: { toggle: "tab" } }
                 = _("Generate")
