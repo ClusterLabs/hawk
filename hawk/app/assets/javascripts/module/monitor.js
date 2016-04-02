@@ -2,8 +2,6 @@
 // See COPYING for license.
 
 ;(function($, doc, win) {
-  'use strict';
-
   window.userIsNavigatingAway = false;
   var _obunload = (window.onbeforeunload) ? window.onbeforeunload : function() {};
   window.onbeforeunload = function() {
@@ -12,31 +10,16 @@
   };
 
   function MonitorCheck(el, options) {
-    this.$el = $(el);
-
-    this.currentEpoch = this.$el.data('epoch');
-
     this.defaults = {
       faster: 15,
       timeout: 90,
       cache: false
     };
-
-    this.options = $.extend(
-      this.defaults,
-      options
-    );
-
-    this.init();
-  }
-
-  MonitorCheck.prototype.init = function() {
-    var self = this;
-
-    if (self.$el.data('cib') === 'live') {
-      self.processCheck();
+    this.options = $.extend(this.defaults, options);
+    if ($('body').data('cib') === 'live') {
+      this.processCheck();
     }
-  };
+  }
 
   MonitorCheck.prototype.processCheck = function() {
     var self = this;
@@ -45,9 +28,8 @@
 
     $.ajax({
       url: Routes.monitor_path(),
-
       type: 'GET',
-      data: self.currentEpoch,
+      data: $('body').data('content').meta.epoch,
       dataType: "json",
       cache: self.options.cache,
       timeout: self.options.timeout * 1000,
@@ -59,17 +41,16 @@
           } else {
             $('body').trigger($.Event('checked.hawk.monitor'));
           }
-
           self.processCheck();
         } else {
-          if (window.userIsNavigatingAway)
+          if (window.userIsNavigatingAway) {
             return;
+          }
           var msg = __('Connection to server aborted - will retry every 15 seconds.');
           $.growl(msg, { type: 'warning' });
           $('.circle').statusCircle('disconnected', msg);
           $('body').trigger($.Event('aborted.hawk.monitor'));
-          setTimeout(function() {
-            self.processCheck(); }, self.options.faster * 1000);
+          setTimeout(function() { self.processCheck(); }, self.options.faster * 1000);
         }
       },
 
@@ -79,10 +60,12 @@
         var msg = null;
         var code = 'danger';
         var status = 'errors';
-        if (request.readyState > 1) {
+        if (request.readyState == 4 && request.status == 200) {
+          msg = __('Failed to parse monitor response - Internal server error.');
+          code = 'warning';
+        } else if (request.readyState > 1) {
           if (request.status >= 10000) {
             msg =  __('Connection to server failed - will retry every 15 seconds.');
-          } else {
           }
         } else {
           msg = __('Connection to server timed out - will retry every 15 seconds.');
@@ -102,9 +85,8 @@
 
   MonitorCheck.prototype.updateEpoch = function(epoch) {
     if (epoch !== undefined) {
-      var changed = this.currentEpoch !== epoch;
-      this.currentEpoch = epoch;
-      return changed;
+      var cib = $('body').data('content');
+      return !cib || cib.meta.epoch !== epoch;
     }
     return false;
   };
