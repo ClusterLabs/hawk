@@ -226,7 +226,7 @@ class ResourcesController < ApplicationController
   end
 
   def run_resource_action(result, success, error)
-    out, err, rc = result
+    _out, err, rc = result
 
     respond_to do |format|
       if rc == 0

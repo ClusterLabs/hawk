@@ -388,6 +388,50 @@ $(function() {
               });
 
               return false;
+            },
+            'click .clearstate': function (e, value, row, index) {
+              e.preventDefault();
+              var $self = $(this);
+
+              $.hawkAsyncConfirm(i18n.translate('Clear the state of node %s. The node is afterwards assumed clean and offline. This command can be used to manually confirm that a node has been fenced. Be careful! This can cause data corruption if the node is not cleanly down! Do you want to clear the state?').fetch(row.name), function() {
+                $.ajax({
+                  dataType: 'json',
+                  method: 'GET',
+                  url: Routes.clearstate_cib_node_path(
+                    $('body').data('cib'),
+                    row.id,
+                    { format: 'json' }
+                  ),
+
+                  success: function(data) {
+                    if (data.success) {
+                      $.growl({
+                        message: data.message
+                      }, {
+                        type: 'success'
+                      });
+
+                      $self.parents('table').bootstrapTable('refresh')
+                    } else {
+                      if (data.error) {
+                        $.growl({
+                          message: data.error
+                        }, {
+                          type: 'danger'
+                        });
+                      }
+                    }
+                  },
+                  error: function(xhr, status, msg) {
+                    $.growl({
+                      message: xhr.responseJSON.error || msg
+                    },{
+                      type: 'danger'
+                    });
+                  }
+                });
+              });
+              return false;
             }
           },
           formatter: function(value, row, index) {
@@ -415,7 +459,13 @@ $(function() {
 
             if (row.fence) {
               add_operation("menu", Routes.fence_cib_node_path($('body').data('cib'), row.id), 'fence', 'plug', __('Fence'));
+              add_operation("menu", Routes.clearstate_cib_node_path($('body').data('cib'), row.id), 'clearstate', 'eraser', __('Clear state'));
+              dropdowns.push(['<li role="separator" class="divider"></li>'].join(''));
+            }
 
+            add_operation("menu", Routes.edit_cib_node_path($('body').data('cib'), row.id), 'edit', 'pencil', __('Edit'));
+
+            if (dropdowns.length > 0) {
               operations.push([
                 '<div class="btn-group" role="group">',
                 '<button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" data-container="body" aria-haspopup="true" aria-expanded="true">',

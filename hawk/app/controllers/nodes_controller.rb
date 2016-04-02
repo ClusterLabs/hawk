@@ -5,7 +5,7 @@ class NodesController < ApplicationController
   before_filter :login_required
   before_filter :set_title
   before_filter :set_cib
-  before_filter :set_record, only: [:online, :standby, :maintenance, :ready, :fence, :show, :events, :edit, :update]
+  before_filter :set_record, only: [:online, :standby, :maintenance, :ready, :fence, :clearstate, :show, :events, :edit, :update]
 
   rescue_from Node::CommandError do |e|
     Rails.logger.error e
@@ -59,88 +59,27 @@ class NodesController < ApplicationController
   end
 
   def online
-    @node.online!
-
-    respond_to do |format|
-      format.html do
-        flash[:success] = _("Set the node state to online")
-        redirect_to cib_nodes_url(cib_id: @cib.id)
-      end
-      format.json do
-        render json: {
-          success: true,
-          message: _("Set the node state to online")
-        }
-      end
-    end
+    run_node_action @node.online!, _("Set the node state to online"), _("Failed to set the node online: %{err}")
   end
 
   def standby
-    @node.standby!
-
-    respond_to do |format|
-      format.html do
-        flash[:success] = _("Set the node state to standby")
-        redirect_to cib_nodes_url(cib_id: @cib.id)
-      end
-      format.json do
-        render json: {
-          success: true,
-          message: _("Set the node state to standby")
-        }
-      end
-    end
+    run_node_action @node.standby!, _("Set the node state to standby"), _("Failed to set the node standby: %{err}")
   end
 
   def maintenance
-    @node.maintenance!
-
-    respond_to do |format|
-      format.html do
-        flash[:success] = _("Set the node state to maintenance")
-        redirect_to cib_nodes_url(cib_id: @cib.id)
-      end
-      format.json do
-        render json: {
-          success: true,
-          message: _("Set the node state to maintenance")
-        }
-      end
-    end
+    run_node_action @node.maintenance!, _("Set the node state to maintenance"), _("Failed to set the node state to maintenance: %{err}")
   end
 
   def ready
-    @node.ready!
-
-    respond_to do |format|
-      format.html do
-        flash[:success] = _("Set the node state to ready")
-        redirect_to cib_nodes_url(cib_id: @cib.id)
-      end
-      format.json do
-        render json: {
-          success: true,
-          message: _("Set the node state to ready")
-        }
-      end
-    end
+    run_node_action @node.ready!, _("Set the node state to ready"), _("Failed to set the node state to ready: %{err}")
   end
 
   def fence
-    @node.fence!
+    run_node_action @node.fence!, _("Successfully fenced the node"), _("Failed to fence the node: %{err}")
+  end
 
-    respond_to do |format|
-      format.html do
-        flash[:success] = _("Set the node state to fence")
-        redirect_to cib_nodes_url(cib_id: @cib.id)
-      end
-      format.json do
-        render json: {
-          success: true,
-          message: _("Set the node state to fence")
-        }
-      end
-    end
+  def clearstate
+    run_node_action @node.clearstate!, _("Cleared the node state"), _("Failed to clear the node state: %{err}")
   end
 
   def show
@@ -195,4 +134,26 @@ class NodesController < ApplicationController
   def default_base_layout
     "withrightbar"
   end
+
+  def run_node_action(result, success, error)
+    _out, err, rc = result
+
+    respond_to do |format|
+      if rc == 0
+        format.json do
+          render json: {
+            success: true,
+            message: success
+          }
+        end
+      else
+        format.json do
+          render json: {
+            error: error % { err: err }
+          }, status: :unprocessable_entity
+        end
+      end
+    end
+  end
+
 end

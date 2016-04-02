@@ -30,9 +30,7 @@ class Node < Tableless
     format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _('Invalid name') }
 
   def online!
-    out, err, rc = Invoker.instance.run "crm_attribute", "-N", name, "-n", "standby", "-v", "off", "-l", "forever"
-    raise CommandError.new err unless rc == 0
-    true
+    Invoker.instance.no_log { |i| i.crm("-F", "node", "online", name) }
   end
 
   def online
@@ -40,31 +38,27 @@ class Node < Tableless
   end
 
   def standby!
-    out, err, rc = Invoker.instance.run "crm_attribute", "-N", name, "-n", "standby", "-v", "on", "-l", "forever"
-    raise CommandError.new err unless rc == 0
-    true
+    Invoker.instance.no_log { |i| i.crm("-F", "node", "standby", name) }
   end
 
   def ready!
-    out, err, rc = Invoker.instance.run "crm_attribute", "-N", name, "-n", "maintenance", "-v", "off", "-l", "forever"
-    raise CommandError.new err unless rc == 0
-    true
+    Invoker.instance.no_log { |i| i.crm("-F", "node", "ready", name) }
+  end
+
+  def maintenance!
+    Invoker.instance.no_log { |i| i.crm("-F", "node", "maintenance", name) }
+  end
+
+  def fence!
+    Invoker.instance.no_log { |i| i.crm("-F", "node", "fence", name) }
+  end
+
+  def clearstate!
+    Invoker.instance.no_log { |i| i.crm("-F", "node", "clearstate", name) }
   end
 
   def ready
     !maintenance
-  end
-
-  def maintenance!
-    out, err, rc = Invoker.instance.run "crm_attribute", "-N", name, "-n", "maintenance", "-v", "on", "-l", "forever"
-    raise CommandError.new err unless rc == 0
-    true
-  end
-
-  def fence!
-    out, err, rc = Invoker.instance.run "crm_attribute", "-t", "status", "-U", name, "-n", "terminate", "-v", "true"
-    raise CommandError.new err unless rc == 0
-    true
   end
 
   def to_param
@@ -255,4 +249,5 @@ class Node < Tableless
     return elem.attributes['uname'] if elem.attributes['uname']
     elem.attributes['id']
   end
+
 end

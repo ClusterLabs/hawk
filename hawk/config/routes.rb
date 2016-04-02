@@ -16,6 +16,7 @@ Rails.application.routes.draw do
         get :maintenance
         get :ready
         get :fence
+        get :clearstate
         get :events
       end
     end
