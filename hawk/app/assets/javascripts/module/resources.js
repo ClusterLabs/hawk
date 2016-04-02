@@ -3,43 +3,7 @@
 
 $(function() {
   function executeAction(context, confirmMsg) {
-    $.hawkAsyncConfirm(confirmMsg, function() {
-      $.ajax({
-        dataType: 'json',
-        method: 'GET',
-        url: [
-          context.attr('href'),
-          ".json"
-        ].join(""),
-
-        success: function(data) {
-          if (data.success) {
-            $.growl({
-              message: data.message
-            },{
-              type: 'success'
-            });
-          } else {
-            if (data.error) {
-              $.growl({
-                message: data.error
-              },{
-                type: 'danger'
-              });
-            }
-          }
-          $.runSimulator();
-        },
-        error: function(xhr, status, msg) {
-          $.growl({
-            message: xhr.responseJSON.error || msg
-          },{
-            type: 'danger'
-          });
-          $.runSimulator();
-        }
-      });
-    });
+    $.hawkRunOperation(confirmMsg, [context.attr('href'), ".json"].join(""));
     return false;
   }
 
@@ -685,48 +649,7 @@ $(function() {
         events: {
           'click .delete': function (e, value, row, index) {
             e.preventDefault();
-            var $self = $(this);
-
-            $.hawkAsyncConfirm(i18n.translate('Are you sure you wish to delete %s?').fetch(row.id), function() {
-              $.ajax({
-                dataType: 'json',
-                method: 'POST',
-                data: {
-                  _method: 'delete'
-                },
-                url: [
-                  $self.attr('href'),
-                  ".json"
-                ].join(""),
-
-                success: function(data) {
-                  if (data.success) {
-                    $.growl({
-                      message: data.message
-                    },{
-                      type: 'success'
-                    });
-
-                    $self.parents('table').bootstrapTable('refresh')
-                  } else {
-                    if (data.error) {
-                      $.growl({
-                        message: data.error
-                      },{
-                        type: 'danger'
-                      });
-                    }
-                  }
-                },
-                error: function(xhr, status, msg) {
-                  $.growl({
-                    message: xhr.responseJSON.error || msg
-                  },{
-                    type: 'danger'
-                  });
-                }
-              });
-            });
+            $.hawkDeleteOperation(row.id, [$(this).attr('href'), ".json"].join(""));
             return false;
           }
         },

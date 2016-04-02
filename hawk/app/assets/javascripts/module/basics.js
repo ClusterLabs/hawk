@@ -212,4 +212,55 @@ $(function() {
   $.views.converters("hasKeys", function(val) {
     return !($.isEmptyObject(val));
   });
+
+  $.hawkRunOperation = function(confirmMsg, route) {
+    $.hawkAsyncConfirm(confirmMsg, function() {
+      $.ajax({
+        dataType: 'json',
+        method: 'GET',
+        url: route,
+        success: function(data) {
+          if (data.success) {
+            $.growl({ message: data.message }, { type: 'success' });
+          } else {
+            if (data.error) {
+              $.growl({ message: data.error }, { type: 'danger' });
+            }
+          }
+          $.runSimulator();
+        },
+        error: function(xhr, status, msg) {
+          $.growl({ message: xhr.responseJSON.error || msg }, { type: 'danger' });
+          $.runSimulator();
+        }
+      });
+    });
+  };
+
+  $.hawkDeleteOperation = function(id, url) {
+    $.hawkAsyncConfirm(i18n.translate('Are you sure you wish to delete %s?').fetch(id), function() {
+      $.ajax({
+        dataType: 'json',
+        method: 'POST',
+        data: {
+          _method: 'delete'
+        },
+        url: url,
+        success: function(data) {
+          if (data.success) {
+            $.growl({ message: data.message }, { type: 'success' });
+          } else {
+            if (data.error) {
+              $.growl({ message: data.error }, { type: 'danger' });
+            }
+          }
+          $.runSimulator();
+        },
+        error: function(xhr, status, msg) {
+          $.growl({ message: xhr.responseJSON.error || msg }, { type: 'danger' });
+          $.runSimulator();
+        }
+      });
+    });
+  };
 });

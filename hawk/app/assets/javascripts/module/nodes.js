@@ -92,90 +92,17 @@ $(function() {
           events: {
             'click .ready': function (e, value, row, index) {
               e.preventDefault();
-              var $self = $(this);
-
-              $.hawkAsyncConfirm(i18n.translate('This will bring node %s out of maintenance mode. Do you want to continue?').fetch(row.name), function() {
-                $.ajax({
-                  dataType: 'json',
-                  method: 'GET',
-                  url: Routes.ready_cib_node_path(
-                    $('body').data('cib'),
-                    row.id,
-                    { format: 'json' }
-                  ),
-
-                  success: function(data) {
-                    if (data.success) {
-                      $.growl({
-                        message: data.message
-                      }, {
-                        type: 'success'
-                      });
-
-                      $self.parents('table').bootstrapTable('refresh')
-                    } else {
-                      if (data.error) {
-                        $.growl({
-                          message: data.error
-                        }, {
-                          type: 'danger'
-                        });
-                      }
-                    }
-                  },
-                  error: function(xhr, status, msg) {
-                    $.growl({
-                      message: xhr.responseJSON.error || msg
-                    },{
-                      type: 'danger'
-                    });
-                  }
-                });
-              });
+              $.hawkRunOperation(
+                i18n.translate('This will bring node %s out of maintenance mode. Do you want to continue?').fetch(row.name),
+                Routes.ready_cib_node_path($('body').data('cib'), row.id, { format: 'json' }));
               return false;
             },
             'click .maintenance': function (e, value, row, index) {
               e.preventDefault();
-              var $self = $(this);
 
-              $.hawkAsyncConfirm(i18n.translate('This will put node %s in maintenance mode. All resources on this node will become unmanaged. Do you want to continue?').fetch(row.name), function() {
-                $.ajax({
-                  dataType: 'json',
-                  method: 'GET',
-                  url: Routes.maintenance_cib_node_path(
-                    $('body').data('cib'),
-                    row.id,
-                    { format: 'json' }
-                  ),
-
-                  success: function(data) {
-                    if (data.success) {
-                      $.growl({
-                        message: data.message
-                      }, {
-                        type: 'success'
-                      });
-
-                      $self.parents('table').bootstrapTable('refresh')
-                    } else {
-                      if (data.error) {
-                        $.growl({
-                          message: data.error
-                        }, {
-                          type: 'danger'
-                        });
-                      }
-                    }
-                  },
-                  error: function(xhr, status, msg) {
-                    $.growl({
-                      message: xhr.responseJSON.error || msg
-                    },{
-                      type: 'danger'
-                    });
-                  }
-                });
-              });
+              $.hawkRunOperation(
+                i18n.translate('This will put node %s in maintenance mode. All resources on this node will become unmanaged. Do you want to continue?').fetch(row.name),
+                Routes.maintenance_cib_node_path($('body').data('cib'), row.id, { format: 'json' }));
               return false;
             }
           },
@@ -219,90 +146,16 @@ $(function() {
           events: {
             'click .online': function (e, value, row, index) {
               e.preventDefault();
-              var $self = $(this);
-
-              $.hawkAsyncConfirm(i18n.translate('This will bring node %s online if it is currently on standby. Do you want to continue?').fetch(row.name), function() {
-                $.ajax({
-                  dataType: 'json',
-                  method: 'GET',
-                  url: Routes.online_cib_node_path(
-                    $('body').data('cib'),
-                    row.id,
-                    { format: 'json' }
-                  ),
-
-                  success: function(data) {
-                    if (data.success) {
-                      $.growl({
-                        message: data.message
-                      }, {
-                        type: 'success'
-                      });
-
-                      $self.parents('table').bootstrapTable('refresh')
-                    } else {
-                      if (data.error) {
-                        $.growl({
-                          message: data.error
-                        }, {
-                          type: 'danger'
-                        });
-                      }
-                    }
-                  },
-                  error: function(xhr, status, msg) {
-                    $.growl({
-                      message: xhr.responseJSON.error || msg
-                    },{
-                      type: 'danger'
-                    });
-                  }
-                });
-              });
+              $.hawkRunOperation(
+                i18n.translate('This will bring node %s online if it is currently on standby. Do you want to continue?').fetch(row.name),
+                Routes.online_cib_node_path($('body').data('cib'), row.id, { format: 'json' }));
               return false;
             },
             'click .standby': function (e, value, row, index) {
               e.preventDefault();
-              var $self = $(this);
-
-              $.hawkAsyncConfirm(i18n.translate('This will put node %s on standby. All resources will be stopped and/or moved to another node. Do you want to continue?').fetch(row.name), function() {
-                $.ajax({
-                  dataType: 'json',
-                  method: 'GET',
-                  url: Routes.standby_cib_node_path(
-                    $('body').data('cib'),
-                    row.id,
-                    { format: 'json' }
-                  ),
-
-                  success: function(data) {
-                    if (data.success) {
-                      $.growl({
-                        message: data.message
-                      }, {
-                        type: 'success'
-                      });
-
-                      $self.parents('table').bootstrapTable('refresh')
-                    } else {
-                      if (data.error) {
-                        $.growl({
-                          message: data.error
-                        }, {
-                          type: 'danger'
-                        });
-                      }
-                    }
-                  },
-                  error: function(xhr, status, msg) {
-                    $.growl({
-                      message: xhr.responseJSON.error || msg
-                    },{
-                      type: 'danger'
-                    });
-                  }
-                });
-              });
+              $.hawkRunOperation(
+                i18n.translate('This will put node %s on standby. All resources will be stopped and/or moved to another node. Do you want to continue?').fetch(row.name),
+                Routes.standby_cib_node_path($('body').data('cib'), row.id, { format: 'json' }));
               return false;
             }
           },
@@ -346,91 +199,16 @@ $(function() {
           events: {
             'click .fence': function (e, value, row, index) {
               e.preventDefault();
-              var $self = $(this);
-
-              $.hawkAsyncConfirm(i18n.translate('This will attempt to immediately fence node %s. Do you want to continue?').fetch(row.name), function() {
-                $.ajax({
-                  dataType: 'json',
-                  method: 'GET',
-                  url: Routes.fence_cib_node_path(
-                    $('body').data('cib'),
-                    row.id,
-                    { format: 'json' }
-                  ),
-
-                  success: function(data) {
-                    if (data.success) {
-                      $.growl({
-                        message: data.message
-                      }, {
-                        type: 'success'
-                      });
-
-                      $self.parents('table').bootstrapTable('refresh')
-                    } else {
-                      if (data.error) {
-                        $.growl({
-                          message: data.error
-                        }, {
-                          type: 'danger'
-                        });
-                      }
-                    }
-                  },
-                  error: function(xhr, status, msg) {
-                    $.growl({
-                      message: xhr.responseJSON.error || msg
-                    },{
-                      type: 'danger'
-                    });
-                  }
-                });
-              });
-
+              $.hawkRunOperation(
+                i18n.translate('This will attempt to immediately fence node %s. Do you want to continue?').fetch(row.name),
+                Routes.fence_cib_node_path($('body').data('cib'), row.id, { format: 'json' }));
               return false;
             },
             'click .clearstate': function (e, value, row, index) {
               e.preventDefault();
-              var $self = $(this);
-
-              $.hawkAsyncConfirm(i18n.translate('Clear the state of node %s. The node is afterwards assumed clean and offline. This command can be used to manually confirm that a node has been fenced. Be careful! This can cause data corruption if the node is not cleanly down! Do you want to clear the state?').fetch(row.name), function() {
-                $.ajax({
-                  dataType: 'json',
-                  method: 'GET',
-                  url: Routes.clearstate_cib_node_path(
-                    $('body').data('cib'),
-                    row.id,
-                    { format: 'json' }
-                  ),
-
-                  success: function(data) {
-                    if (data.success) {
-                      $.growl({
-                        message: data.message
-                      }, {
-                        type: 'success'
-                      });
-
-                      $self.parents('table').bootstrapTable('refresh')
-                    } else {
-                      if (data.error) {
-                        $.growl({
-                          message: data.error
-                        }, {
-                          type: 'danger'
-                        });
-                      }
-                    }
-                  },
-                  error: function(xhr, status, msg) {
-                    $.growl({
-                      message: xhr.responseJSON.error || msg
-                    },{
-                      type: 'danger'
-                    });
-                  }
-                });
-              });
+              $.hawkRunOperation(
+                i18n.translate('Clear the state of node %s. The node is afterwards assumed clean and offline. This command can be used to manually confirm that a node has been fenced. Be careful! This can cause data corruption if the node is not cleanly down! Do you want to clear the state?').fetch(row.name),
+                Routes.clearstate_cib_node_path($('body').data('cib'), row.id, { format: 'json' }));
               return false;
             }
           },
