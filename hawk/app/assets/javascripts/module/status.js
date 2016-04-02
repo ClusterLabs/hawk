@@ -62,6 +62,9 @@
       }
     });
 
+    this.currCib = $('body').data('cib');
+    this.currEpoch = -1;
+
     this.init();
   }
 
@@ -85,28 +88,13 @@
     );
   };
 
-  var hashCodeForCib = function(cib) {
-    var s;
-    var hash = 0, i, chr, len;
-    s = $.map(cib, function(val, key) {
-      return key + "=" + val;
-    }).join("|");
-    if (s.length === 0) return hash;
-    for (i = 0, len = s.length; i < len; i++) {
-      chr   = s.charCodeAt(i);
-      hash  = ((hash << 5) - hash) + chr;
-      hash |= 0; // Convert to 32bit integer
-    }
-    return hash;
-  };
-
   StatusCheck.prototype.update = function() {
     var self = this;
 
-    self.cib_hash = 0;
+    var cibName = $('body').data('cib');
 
     $.ajax({
-      url: Routes.cib_path($('body').data('cib'), { format: 'json' }),
+      url: Routes.cib_path(cibName, { format: 'json' }),
       type: 'GET',
       dataType: 'json',
       cache: self.options.cache,
@@ -116,9 +104,10 @@
         if (!cib) {
           return;
         }
-        var h = hashCodeForCib(cib);
-        if (self.cib_hash != h) {
-          self.cib_hash = h;
+        var newEpoch = hawkEpochValue(cib.meta.epoch);
+        if (self.currCib != cibName || self.currEpoch < newEpoch) {
+          self.currCib = cibName;
+          self.currEpoch = newEpoch;
           $('body').data('content', cib);
           $('.circle').statusCircleFromCIB(cib);
           self.options.content = cib;

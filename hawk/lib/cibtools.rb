@@ -17,7 +17,7 @@ module CibTools
 
   # Format the epoch string "admin_epoch:epoch:num_updates"
   def epoch_string(elem)
-    "#{CibTools.get_xml_attr(elem, 'admin_epoch')}:#{CibTools.get_xml_attr(elem, 'epoch')}:#{CibTools.get_xml_attr(elem, 'num_updates')}";
+    "#{CibTools.get_xml_attr(elem, 'admin_epoch', '0')}:#{CibTools.get_xml_attr(elem, 'epoch', '0')}:#{CibTools.get_xml_attr(elem, 'num_updates', '0')}";
   end
   module_function :epoch_string
 

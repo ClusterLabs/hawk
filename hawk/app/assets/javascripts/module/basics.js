@@ -263,4 +263,12 @@ $(function() {
       });
     });
   };
+
+  window.hawkEpochValue = function(epochString) {
+    var parts = epochString.split(":");
+    if (parts.length == 3) {
+      return parseInt(parts[0]) * 1000000 + parseInt(parts[1]) * 10000 + parseInt(parts[2]);
+    }
+    return 0;
+  };
 });
