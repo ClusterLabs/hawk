@@ -137,7 +137,7 @@ class Node < Tableless
   end
 
   class << self
-    def instantiate(xml, state, can_fence)
+    def instantiate(xml, state)
       record = allocate
       record.id = xml.attributes['id']
       record.xml = xml
@@ -147,7 +147,7 @@ class Node < Tableless
       record.maintenance = state[:maintenance]
       record.remote = state[:remote]
       record.fence_history = state[:fence_history]
-      record.fence = can_fence
+      record.fence = state[:fence]
 
       record.params = if xml.elements['instance_attributes']
         vals = xml.elements['instance_attributes'].elements.collect do |e|

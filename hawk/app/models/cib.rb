@@ -223,15 +223,14 @@ class Cib
 
     state = @nodes.select { |n| n[:id] == node_id || n[:uname] == node_id }
     fail(RecordNotFound, node_id) if state.blank?
-    can_fence = @crm_config[:stonith_enabled]
 
     node = @xml.elements["cib/configuration/nodes/node[@uname=\"#{node_id}\"]"]
     if node
-      Node.instantiate(node, state.first, can_fence)
+      Node.instantiate(node, state.first)
     else
       node = @xml.elements["cib/configuration/nodes/node[@id=\"#{node_id}\"]"]
       if node
-        Node.instantiate(node, state.first, can_fence)
+        Node.instantiate(node, state.first)
       else
         fail RecordNotFound, node_id
       end
@@ -241,11 +240,10 @@ class Cib
   def nodes_ordered
     ret = []
     return ret if @xml.nil?
-    can_fence = @crm_config[:stonith_enabled]
     @xml.elements.each('cib/configuration/nodes/node') do |xml|
       node_id = xml.attributes['id']
       state = @nodes.select { |n| n[:id] == node_id }
-      ret << Node.instantiate(xml, state[0], can_fence)
+      ret << Node.instantiate(xml, state[0])
     end
     ret
   end
@@ -607,8 +605,10 @@ class Cib
         state = :standby
       end
 
+      can_fence = @crm_config[:stonith_enabled]
+
       # check stonith history
-      if crm_config[:stonith_enabled]
+      if can_fence
         fence_history = %x[/usr/sbin/stonith_admin -H #{uname} 2>/dev/null].strip
       else
         fence_history = ""
@@ -622,6 +622,7 @@ class Cib
         standby: standby,
         maintenance: maintenance,
         remote: remote,
+        fence: can_fence,
         fence_history: fence_history
       }
       if state == :unclean
