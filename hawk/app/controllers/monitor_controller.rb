@@ -18,7 +18,8 @@ class MonitorController < ApplicationController
   skip_after_filter :cors_set_access_control_headers
 
   def monitor
-    ENV['QUERY_STRING'] = request.query_string.to_s
+    epoch = request.query_string.to_s.split('&').first || ""
+    ENV['QUERY_STRING'] = epoch
     ENV['HTTP_ORIGIN'] = request.headers['Origin']
 
     response.headers['Content-Type'] = 'text/event-stream'
@@ -30,9 +31,11 @@ class MonitorController < ApplicationController
       response.headers['Access-Control-Max-Age'] = "1728000"
     end
     Open3.popen2("/usr/sbin/hawk_monitor") do |_i, o, _t|
+      _i.close
       result = o.read
       _, body = result.split("\n\n", 2)
-      response.stream.write(body.to_s + "\n")
+      body = body.to_s.strip + "\n"
+      response.stream.write(body)
     end
   ensure
     response.stream.close
