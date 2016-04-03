@@ -33,9 +33,6 @@ else
   gem "sass-rails", version: "~> 5.0"
   require "sass-rails"
 
-  gem "hashie", version: "~> 3.4"
-  require "hashie"
-
   gem "virtus", version: "~> 1.0"
   require "virtus"
 
