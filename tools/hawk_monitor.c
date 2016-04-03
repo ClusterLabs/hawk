@@ -1,8 +1,9 @@
 /*
- * Copyright (c) 2010-2013 SUSE LLC, All Rights Reserved.
+ * Copyright (c) 2010-2016 SUSE LLC, All Rights Reserved.
  * See COPYING for license.
  *
- * Author: Tim Serong <tserong@suse.com>
+ * Author: Tim Serong <tserong@suse.com>,
+ *         Kristoffer Gronlund <kgronlund@suse.com>
  *
  */
 
@@ -11,17 +12,17 @@
  * Its only purpose is to be polled by the user's web browser, to
  * indicate whether the state of the cluster has changed since the
  * status display was last rendered.  If something has changed, the
- * browser needs to make another proper request (to the Rails app)
- * to update the status display accordingly.
+ * browser needs to make another request to update the status display
+ * accordingly.
  *
  * USAGE:
  *
- * 1) Client invokes with QUERY_STRING == epoch (e.g.: /monitor?0:36:2),
+ * 1) Rails invokes with environment variable QUERY_STRING set to epoch,
  *    where epoch is either "admin_epoch:epoch:num_updates" from the CIB,
  *    or is an empty string (for unknown, or previously disconnected).
  *    Other parameters ("&..." after the epoch) are ignored.
  *
- * 2) Server connects to CIB, and:
+ * 2) hawk_monitor connects to CIB, and:
  *    - If client epoch is empty string:
  *      - If CIB connection succeeds, respond immediately with new epoch.
  *      - If connection fails, attept to connect for up to 60 seconds.
@@ -47,14 +48,10 @@
  * 1) Request https://SERVER:7630/monitor?EPOCH
  * 2) Wait and see what comes back.  If the epoch returned is in any
  *    way different to what you started with, fire off another request
- *    to update the display (https://SERVER:7630/main/status?format=json)
+ *    to update the display (https://SERVER:7630/cib/live.json)
  * 3) Remember the new epoch, and go back to step 1.
  *
  * SECURITY/PERFORMANCE CONSIDERATIONS:
- *
- * - hawk_monitor runs as a regular CGI application, i.e. the web server forks
- *   a new process for each request.  This overhead is deemed acceptable, as
- *   this is for a low use monitoring app, not a heavy load public web site.
  *
  * - No authentication is performed, so anyone can get the current epoch from
  *   the CIB.  This data should not however constitute any sort of security
@@ -95,14 +92,14 @@ enum cib_errors {
 #define T_CIB_DIFF_NOTIFY       "cib_diff_notify"
 #endif
 
-int cib_connect(void);
-void mon_cib_connection_destroy(gpointer user_data);
-void crm_diff_update(const char *event, xmlNode *msg);
-gboolean mon_timer_popped(gpointer data);
-void mon_shutdown(int nsig);
-void cleanup(void);
-void finish(void);
-void get_new_epoch(void);
+static int cib_connect(void);
+static void mon_cib_connection_destroy(gpointer user_data);
+static void crm_diff_update(const char *event, xmlNode *msg);
+static gboolean mon_timer_popped(gpointer data);
+static void mon_shutdown(int nsig);
+static void cleanup(void);
+static void finish(void);
+static void get_new_epoch(void);
 
 char *origin = NULL;
 
@@ -144,16 +141,12 @@ void mon_cib_connection_destroy(gpointer user_data)
 
 void crm_diff_update(const char *event, xmlNode *msg)
 {
-	if (mainloop != NULL && g_main_loop_is_running(mainloop)) {
-		g_main_loop_quit(mainloop);
-	}
+	mon_cib_connection_destroy(NULL);
 }
 
 gboolean mon_timer_popped(gpointer data)
 {
-	if (mainloop != NULL && g_main_loop_is_running(mainloop)) {
-		g_main_loop_quit(mainloop);
-	}
+	mon_cib_connection_destroy(NULL);
 	return FALSE;
 }
 
