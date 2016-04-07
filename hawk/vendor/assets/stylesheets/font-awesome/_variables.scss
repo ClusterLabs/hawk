@@ -1,7 +1,7 @@
 // Variables
 // --------------------------
 
-$fa-font-path:        "/assets/font-awesome" !default;
+$fa-font-path:        if($bootstrap-sass-asset-helper, "font-awesome/", "../fonts/font-awesome/") !default;
 $fa-font-size-base:   14px !default;
 $fa-line-height-base: 1 !default;
 //$fa-font-path:        "//netdna.bootstrapcdn.com/font-awesome/4.5.0/fonts" !default; // for referencing Bootstrap CDN font files directly
