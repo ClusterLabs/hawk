@@ -66,7 +66,7 @@ $(function() {
     }
 
     vform.find(".actions .list-group-item").addClass("disabled");
-    vform.find(".notifications").html('<div class="alert alert-info"><i class="fa fa-spinner fa-spin fa-2x"></i> ' + __("Applying configuration changes...") + '</div>');
+    vform.find(".notifications").html('<div class="alert alert-info"><i class="fa fa-refresh fa-pulse-opacity fa-2x"></i> ' + __("Applying configuration changes...") + '</div>');
     vform.find(".submit").prop("disabled", true);
   });
   vform.on("ajax:success", function(e, data, status, xhr) {

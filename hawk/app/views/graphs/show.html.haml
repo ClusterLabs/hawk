@@ -10,10 +10,10 @@
   .panel.panel-default
     .panel-body
       .graph-placeholder.text-center
-        = '<i class="fa fa-spinner fa-spin fa-4x"></i>'.html_safe
+        = '<i class="fa fa-refresh fa-pulse-opacity fa-2x"></i>'.html_safe
       .graph-image
         = image_tag cib_graph_path(cib_id: current_cib.id, format: "svg", t: Time.now.to_i), class: "img-responsive center-block", alt: _("Graph")
 :javascript
   $(window).load(function() {
-    $(".graph-placeholder").slideUp();
+    $(".graph-placeholder").hide();
   });
