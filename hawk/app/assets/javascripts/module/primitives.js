@@ -167,14 +167,14 @@ $(function() {
       // enable create/apply
       var form = $(controller_type.form_selector);
       form.find('#agent-info').removeClass('hidden').find('a').attr('href', Routes.cib_agent_path($('body').data('cib'), encodeURIComponent(agent)));
-      form.find('#editform-loading').slideDown();
+      form.find('#editform-loading').show();
       form.find(".submit").prop("disabled", false);
     };
 
     var disable_detail = function() {
       var form = $(controller_type.form_selector);
       form.find('#agent-info').addClass('hidden').find('a').attr('href', '#');
-      form.find('#editform-loading').slideUp();
+      form.find('#editform-loading').hide();
       form.find(".submit").prop("disabled", true);
       form.find('#paramslist, #oplist, #metalist, #utilizationlist').html('');
     };
@@ -315,11 +315,10 @@ $(function() {
             // enable toggleables
             $('form').toggleify();
 
-            $(controller_type.form_selector).find('#editform-loading').slideUp();
+            $(controller_type.form_selector).find('#editform-loading').hide();
           },
           error: function(xhr, status, msg) {
-            console.log('error', arguments);
-            $(controller_type.form_selector).find('#editform-loading').addClass('hidden');
+            $(controller_type.form_selector).find('#editform-loading').hide();
             $.growl({
               message: __('Failed to fetch meta attributes')
             },{
