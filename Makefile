@@ -59,7 +59,7 @@ all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service scripts/hawk.service.bundle
 		bundle package && bundle install --local --deployment ; \
 	 fi ; \
 	 TEXTDOMAIN=hawk bin/rake gettext:pack; \
-	 RAILS_ENV=production bundle exec rake assets:precompile)
+	 RAILS_ENV=production bin/rake assets:precompile)
 
 %:: %.in
 	sed \
