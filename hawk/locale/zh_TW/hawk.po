@@ -106,6 +106,27 @@ msgstr "否"
 msgid "Any changes will be lost - do you wish to proceed?"
 msgstr "所有變更都將遺失，是否繼續？"
 
+#, fuzzy
+msgid "Invalid ID"
+msgstr "無效的標記 ID"
+
+msgid "OK"
+msgstr "確定"
+
+#, fuzzy
+msgid "Maintenance mode"
+msgstr "維護"
+
+msgid "An error has occurred"
+msgstr ""
+
+msgid "Close"
+msgstr "關閉"
+
+#, fuzzy
+msgid "No configuration changes."
+msgstr "正在套用組態變更..."
+
 msgid "Clone ID"
 msgstr "複製品 ID"
 
@@ -148,6 +169,9 @@ msgstr "票證"
 msgid "Constraint"
 msgstr "條件約束"
 
+msgid "Resources"
+msgstr "資源"
+
 msgid "Group ID"
 msgstr "群組 ID"
 
@@ -165,6 +189,9 @@ msgstr "布林運算子"
 
 msgid "Multi-state ID"
 msgstr "多狀態 ID"
+
+msgid "Failed to parse monitor response - Internal server error."
+msgstr ""
 
 msgid "Connection to server failed - will retry every 15 seconds."
 msgstr "與伺服器的連接失敗 - 將每隔 15 秒重試一次。"
@@ -199,8 +226,17 @@ msgstr "切換為待命"
 msgid "Fence"
 msgstr "圍籬區隔"
 
+msgid "Clear state"
+msgstr ""
+
+msgid "Events"
+msgstr ""
+
 msgid "Details"
 msgstr "詳細資料"
+
+msgid "ID"
+msgstr "ID"
 
 msgid "Add"
 msgstr "新增"
@@ -221,6 +257,10 @@ msgid "Failed to fetch meta attributes"
 msgstr "無法擷取中繼屬性"
 
 msgid "Report generation is complete."
+msgstr "已完成報告產生操作。"
+
+#, fuzzy
+msgid "Report generation cancelled."
 msgstr "已完成報告產生操作。"
 
 msgid "From"
@@ -322,6 +362,12 @@ msgstr "複製品"
 msgid "Tag"
 msgstr "標記"
 
+msgid "Away from current node"
+msgstr ""
+
+msgid "Clean up on all nodes"
+msgstr ""
+
 msgid "Stop"
 msgstr "停止"
 
@@ -349,17 +395,28 @@ msgstr "取消移轉"
 msgid "Cleanup"
 msgstr "清理"
 
+msgid "Recent events"
+msgstr ""
+
+#, fuzzy
+msgid "No child resources"
+msgstr "子資源"
+
 msgid "Primitive"
 msgstr "基本資源"
+
+msgid "Template"
+msgstr "樣板"
 
 msgid "Resource"
 msgstr "資源"
 
+#, fuzzy
+msgid "Rename"
+msgstr "使用者名稱"
+
 msgid "Role ID"
 msgstr "角色 ID"
-
-msgid "Stopped Resources"
-msgstr "停止的資源"
 
 msgid "Tag ID"
 msgstr "標記 ID"
@@ -367,14 +424,18 @@ msgstr "標記 ID"
 msgid "Objects"
 msgstr "物件"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Granted"
 msgstr "已授權"
 
+msgid "Elsewhere"
+msgstr ""
+
 msgid "Revoked"
 msgstr "撤銷"
+
+#, fuzzy
+msgid "Last Granted"
+msgstr "已授權"
 
 msgid "Grant"
 msgstr "授權"
@@ -402,6 +463,13 @@ msgstr "已為 %USER% 建立新陰影 CIB。"
 
 msgid "Unable to create shadow CIB"
 msgstr "無法建立陰影 CIB"
+
+msgid "Failed to apply configuration"
+msgstr ""
+
+#, fuzzy
+msgid "Applied configuration successfully"
+msgstr "成功"
 
 msgid "Create Clone"
 msgstr "建立複製品"
@@ -447,6 +515,9 @@ msgstr "並存"
 
 msgid "The colocation constraint does not exist"
 msgstr "該並存條件約束不存在"
+
+msgid "Command Log"
+msgstr "指令記錄"
 
 msgid "Constraints"
 msgstr "條件約束"
@@ -523,11 +594,25 @@ msgstr "多狀態資源"
 msgid "The multi-state resource does not exist"
 msgstr "該多狀態資源不存在"
 
+#, fuzzy
+msgid "Node updated successfully"
+msgstr "成功更新角色"
+
+#, fuzzy
+msgid "Failed to set the node online: %{err}"
+msgstr "無法啟動該資源︰%{err}"
+
 msgid "Set the node state to online"
 msgstr "將節點狀態設為線上"
 
+msgid "Failed to set the node standby: %{err}"
+msgstr ""
+
 msgid "Set the node state to standby"
 msgstr "將節點狀態設為待命"
+
+msgid "Failed to set the node state to maintenance: %{err}"
+msgstr ""
 
 msgid "Set the node state to maintenance"
 msgstr "將節點狀態設為維護"
@@ -535,8 +620,23 @@ msgstr "將節點狀態設為維護"
 msgid "Set the node state to ready"
 msgstr "將節點狀態設為就緒"
 
-msgid "Set the node state to fence"
-msgstr "將節點狀態設為圍籬區隔"
+msgid "Failed to set the node state to ready: %{err}"
+msgstr ""
+
+#, fuzzy
+msgid "Successfully fenced the node"
+msgstr "已成功授予票證"
+
+#, fuzzy
+msgid "Failed to fence the node: %{err}"
+msgstr "無法將該資源降級︰%{err}"
+
+#, fuzzy
+msgid "Failed to clear the node state: %{err}"
+msgstr "無法清理該資源︰%{err}"
+
+msgid "Cleared the node state"
+msgstr ""
 
 msgid "Nodes"
 msgstr "節點"
@@ -564,9 +664,6 @@ msgstr "歡迎使用"
 
 msgid "Help"
 msgstr "說明"
-
-msgid "Commands"
-msgstr "指令"
 
 msgid "Create Primitive"
 msgstr "建立基本資源"
@@ -603,6 +700,9 @@ msgstr "無法產生"
 
 msgid "Upload completed."
 msgstr "已完成上傳。"
+
+msgid "Could not cancel report collection"
+msgstr ""
 
 msgid "Cannot display diff, too few transitions"
 msgstr "無法顯示差異，轉換次數太少"
@@ -676,8 +776,12 @@ msgstr "已成功清理該資源"
 msgid "Failed to clean up the resource: %{err}"
 msgstr "無法清理該資源︰%{err}"
 
-msgid "Resources"
-msgstr "資源"
+#, fuzzy
+msgid "Successfully renamed %{A} to %{B}"
+msgstr "日"
+
+msgid "Failed to rename %{A} to %{B}: %{E}"
+msgstr ""
 
 msgid "Create Role"
 msgstr "建立角色"
@@ -777,8 +881,19 @@ msgstr "已成功刪除票證"
 msgid "Successfully granted the ticket"
 msgstr "已成功授予票證"
 
+#, fuzzy
+msgid "Error granting the ticket"
+msgstr "錯誤"
+
 msgid "Successfully revoked the ticket"
 msgstr "已成功撤銷票證"
+
+#, fuzzy
+msgid "Error revoking the ticket"
+msgstr "錯誤"
+
+msgid "Simulator active: Use the ticket controls in the simulator"
+msgstr "模擬器為使用中狀態︰在模擬器中使用票證控制"
 
 msgid "Tickets"
 msgstr "票證"
@@ -830,6 +945,59 @@ msgstr "需要"
 
 msgid "Unique"
 msgstr "唯一"
+
+msgid "Profile"
+msgstr "設定檔 "
+
+msgid "Epoch"
+msgstr ""
+
+#, fuzzy
+msgid "Current Configuration Version"
+msgstr "組態"
+
+msgid "Host"
+msgstr ""
+
+msgid "Designated Coordinator"
+msgstr ""
+
+#, fuzzy
+msgid "DC"
+msgstr "DC︰"
+
+#, fuzzy
+msgid "CIB Schema Version"
+msgstr "版本"
+
+msgid "Schema"
+msgstr ""
+
+msgid "Last Written"
+msgstr ""
+
+msgid "Update Origin"
+msgstr ""
+
+msgid "Update User"
+msgstr ""
+
+msgid "Have Quorum"
+msgstr ""
+
+msgid "Version"
+msgstr "版本"
+
+#, fuzzy
+msgid "Pacemaker Version"
+msgstr "版本"
+
+#, fuzzy
+msgid "Stack"
+msgstr "開始"
+
+msgid "Cluster Communication Stack"
+msgstr ""
 
 msgid "Master"
 msgstr "主要"
@@ -914,14 +1082,8 @@ msgstr ""
 "%{fail_start}︰對 %{node} 節點上的 %{resource} 資源執行 %{op} 操作失敗︰呼叫 ID=%{call_id}，RC 代"
 "碼=%{rc_mapping} (%{rc_code})，離開原因=%{exit_reason}"
 
-msgid "other"
-msgstr "其他"
-
 msgid "STONITH is disabled. For normal cluster operation, STONITH is required."
 msgstr "STONITH 已停用。若要正常執行叢集操作，需要啟用 STONITH。"
-
-msgid "None"
-msgstr "無"
 
 msgid "Clone ID is required"
 msgstr "需要指定複製品 ID"
@@ -970,14 +1132,14 @@ msgid ""
 "ng for every instance of the other clone has)."
 msgstr "變更 (複製品/主資源之間) 順序條件約束的行為，讓例項在其對等例項啟動/停止時立即啟動/停止 (而不是等待其餘複製品的每個例項都啟動/停止)。"
 
+msgid "Child Resource"
+msgstr "子資源"
+
+msgid "Child resource to use as clone."
+msgstr ""
+
 msgid "The ID \"%{id}\" does not exist"
 msgstr "ID「%{id}」不存在"
-
-msgid "Constraint ID is required"
-msgstr "需要指定條件約束 ID"
-
-msgid "Invalid Constraint ID"
-msgstr "無效的條件約束 ID"
 
 msgid "Score is required"
 msgstr "需要指定分數"
@@ -985,11 +1147,31 @@ msgstr "需要指定分數"
 msgid "Invalid score value"
 msgstr "分數值無效"
 
+msgid "Invalid node attribute"
+msgstr ""
+
 msgid "Constraint must consist of at least two separate resources"
 msgstr "條件約束必須至少包含兩個獨立的資源"
 
+#, fuzzy
+msgid "The score determines the location relationship between the resources."
+msgstr "四"
+
+#, fuzzy
+msgid "Node Attribute"
+msgstr "屬性"
+
+msgid ""
+"Colocate resources by the given node attribute instead of by node name (the de"
+"fault)."
+msgstr ""
+
 msgid "Not a constraint"
 msgstr "不是條件約束"
+
+#, fuzzy
+msgid "Unique identifier for the constraint. May not contain spaces."
+msgstr "唯一"
 
 msgid "Set to true if the resource agent supports the migrate action"
 msgstr "如果資源代辦支援移轉動作，則設定為 true"
@@ -1040,12 +1222,6 @@ msgstr "如果 remote-node 的名稱不是客體的主機名稱，需要連接�
 msgid "How long before a pending guest connection will time out."
 msgstr "等待中的客體連接經過多長時間後將會逾時。"
 
-msgid "Group ID is required"
-msgstr "需要指定群組 ID"
-
-msgid "Invalid Group ID"
-msgstr "無效的群組 ID"
-
 msgid "No Group children specified"
 msgstr "未指定群組子項"
 
@@ -1054,6 +1230,9 @@ msgstr "未指定資源"
 
 msgid "No rules specified"
 msgstr "未指定規則"
+
+msgid "Invalid resource discovery type"
+msgstr ""
 
 msgid "Constraint is too complex - it contains nested rules"
 msgstr "條件約束過於複雜，它含有巢狀規則"
@@ -1070,11 +1249,57 @@ msgstr "屬性同時包含單引號和雙引號"
 msgid "Value contains both single and double quotes"
 msgstr "值同時包含單引號和雙引號"
 
-msgid "Multi-state ID is required"
-msgstr "需要指定多狀態 ID"
+#, fuzzy
+msgid "Resources to apply the constraint to."
+msgstr "資源"
 
-msgid "Invalid Multi-state ID"
-msgstr "無效的多狀態 ID"
+#, fuzzy
+msgid ""
+"Positive values indicate the resources should run on this node. Negative value"
+"s indicate the resources should not run on this node. Values of +/- INFINITY c"
+"hange \"should\"/\"should not\" to \"must\"/\"must not\"."
+msgstr "值"
+
+msgid "Node"
+msgstr "節點"
+
+#, fuzzy
+msgid "Name of a node in the cluster."
+msgstr "名稱"
+
+#, fuzzy
+msgid "Resource Discovery"
+msgstr "資源"
+
+#, fuzzy
+msgid ""
+"Controls resource discovery for the specified resource on nodes covered by the"
+" constraint. always: Always perform resource discovery (default). never: Never"
+" perform resource discovery for the specified resource on this node. This opti"
+"on should generally be used with a -INFINITY score. exclusive: Only perform re"
+"source discovery for the specified resource on this node."
+msgstr "四"
+
+msgid "Limits the rule to apply only when the resource is in the specified role."
+msgstr ""
+
+#, fuzzy
+msgid "Operator"
+msgstr "操作"
+
+msgid ""
+"How to combine the result of multiple expression objects. Allowed values are a"
+"nd and or."
+msgstr ""
+
+msgid "Expression"
+msgstr ""
+
+#, fuzzy
+msgid ""
+"Each rule can contain a number of expressions. The results of the expressions "
+"are combined based on the rule's boolean operator."
+msgstr "四"
 
 msgid "No Multi-state child specified"
 msgstr "未指定多狀態子項"
@@ -1099,7 +1324,34 @@ msgstr "需要指定名稱"
 msgid "Invalid name"
 msgstr "無效的名稱"
 
+#, fuzzy
+msgid "Node ID"
+msgstr "節點"
+
+#, fuzzy
+msgid "Unique identifier for the node."
+msgstr "唯一"
+
+#, fuzzy
+msgid "Node Name"
+msgstr "名稱"
+
+#, fuzzy
+msgid "Name used to refer to the node in the cluster."
+msgstr "名稱"
+
+#, fuzzy
+msgid ""
+"Puts the node into standby mode. The specified node is no longer able to host "
+"resources. Any resources currently active on the node will be moved to another"
+" node."
+msgstr "其他"
+
 msgid "is required"
+msgstr "需要指定"
+
+#, fuzzy
+msgid "ID is required"
 msgstr "需要指定"
 
 msgid "Object not found: %s=%s"
@@ -1113,12 +1365,6 @@ msgstr "無法建立︰%{msg}"
 
 msgid "Error updating %{id} (rc=%{rc})"
 msgstr "上傳 %{id} 時發生錯誤 (rc=%{rc})"
-
-msgid "PE Input created by different Pacemaker version (%{version})"
-msgstr "由不同 Pacemaker 版本  (%{version}) 建立的 PE 輸入"
-
-msgid "Pacemaker version not present in PE Input"
-msgstr "PE 輸入中不存在 Pacemaker 版本"
 
 msgid "No details available"
 msgstr "沒有可用的詳細資訊"
@@ -1135,11 +1381,9 @@ msgstr "必須具有正確的檔案副檔名"
 msgid "Not a resource"
 msgstr "不是資源"
 
-msgid "Role ID is required"
-msgstr "需要指定角色 ID"
-
-msgid "Invalid Role ID"
-msgstr "無效的角色 ID"
+#, fuzzy
+msgid "Unique identifier for the resource. May not contain spaces."
+msgstr "唯一"
 
 msgid "At least one rule is required"
 msgstr "至少需要指定一個規則"
@@ -1162,20 +1406,8 @@ msgstr "未指定密碼"
 msgid "Invalid username or password"
 msgstr "無效的使用者名稱或密碼"
 
-msgid "Tag ID is required"
-msgstr "需要指定標記 ID"
-
-msgid "Invalid Tag ID"
-msgstr "無效的標記 ID"
-
 msgid "No Tag resources specified"
 msgstr "未指定標記資源"
-
-msgid "Resource ID is required"
-msgstr "需要指定資源 ID"
-
-msgid "Invalid Resource ID"
-msgstr "無效的資源 ID"
 
 msgid "How frequently (in seconds) to perform the operation."
 msgstr "執行該操作的頻率 (秒)。"
@@ -1204,6 +1436,44 @@ msgid ""
 "LI tools can indicate that an operation is in progress."
 msgstr "如果為 true，則記錄執行該操作的目的，以便 GUI 和 CLI 工具可以指出某項操作是否正在進行。"
 
+#, fuzzy
+msgid "Resource template to inherit from."
+msgstr "資源"
+
+msgid "Class"
+msgstr "類別"
+
+msgid "Standard which the resource agent conforms to."
+msgstr ""
+
+msgid "Provider"
+msgstr "提供者"
+
+msgid "Vendor or project which provided the resource agent."
+msgstr ""
+
+#, fuzzy
+msgid "Resource agent name."
+msgstr "資源"
+
+msgid "After the specified timeout period, the operation will be treated as failed."
+msgstr ""
+
+#, fuzzy
+msgid "Monitor"
+msgstr "一"
+
+msgid ""
+"Define a monitor operation to instruct the cluster to ensure that the resource"
+" is still healthy."
+msgstr ""
+
+msgid "Constraint ID is required"
+msgstr "需要指定條件約束 ID"
+
+msgid "Invalid Constraint ID"
+msgstr "無效的條件約束 ID"
+
 msgid "Ticket ID is required"
 msgstr "需要指定票證 ID"
 
@@ -1212,9 +1482,6 @@ msgstr "無效的票證 ID"
 
 msgid "Constraint must consist of at least one separate resources"
 msgstr "條件約束必須至少包含一個單獨的資源"
-
-msgid "Simulator active: Use the ticket controls in the simulator"
-msgstr "模擬器為使用中狀態︰在模擬器中使用票證控制"
 
 msgid "ACL target ID is required"
 msgstr "需要指定 ACL 目標 ID"
@@ -1252,11 +1519,15 @@ msgstr "間隔"
 msgid "Depth"
 msgstr "深度"
 
-msgid "Close"
-msgstr "關閉"
+#, fuzzy
+msgid "Apply Configuration"
+msgstr "組態"
 
-msgid "Child Resource"
-msgstr "子資源"
+msgid "Calculating list of changes..."
+msgstr ""
+
+msgid "Errors"
+msgstr "錯誤"
 
 msgid "Meta Attributes"
 msgstr "中繼屬性"
@@ -1267,14 +1538,50 @@ msgstr "上一步"
 msgid "Are you sure you wish to delete %s?"
 msgstr "確定要刪除 %s 嗎？"
 
-msgid "List"
-msgstr "清單"
+msgid "Always"
+msgstr ""
+
+#, fuzzy
+msgid "Never"
+msgstr "回復"
+
+msgid "Advanced"
+msgstr "進階"
+
+msgid "Lists crm commands recently executed by hawk, most recent first."
+msgstr "列出 hawk 最近執行的 crm 指令，最近的列在最前面。"
+
+#, fuzzy
+msgid "Edit Configuration"
+msgstr "組態"
+
+msgid "XML"
+msgstr ""
+
+msgid "Graph"
+msgstr "圖形"
+
+#, fuzzy
+msgid "Cluster Details"
+msgstr "詳細資料"
+
+#, fuzzy
+msgid "Batch Mode Active"
+msgstr "一"
+
+#, fuzzy
+msgid "Show Configuration"
+msgstr "組態"
 
 msgid "Constraint:"
 msgstr "條件約束︰"
 
-msgid "Add Constraint"
+#, fuzzy
+msgid "Add a constraint"
 msgstr "新增條件約束"
+
+msgid "List"
+msgstr "清單"
 
 msgid "Resource Defaults"
 msgstr "資源預設值"
@@ -1282,38 +1589,23 @@ msgstr "資源預設值"
 msgid "Operation Defaults"
 msgstr "操作預設值"
 
-msgid "Default"
-msgstr "預設值"
-
 msgid "Add Cluster"
 msgstr "新增叢集"
-
-msgid "Cluster name"
-msgstr "叢集名稱"
 
 msgid "West Coast (example)"
 msgstr "West Coast (範例)"
 
-msgid "node1.west.example.com"
-msgstr "node1.west.example.com"
+msgid "Cluster name"
+msgstr "叢集名稱"
 
 msgid "Hostname of node in cluster"
 msgstr "叢集中節點的主機名稱"
 
-msgid "Advanced"
-msgstr "進階"
-
-msgid "Update interval (seconds)"
-msgstr "更新間隔 (秒)"
+msgid "node1.west.example.com"
+msgstr "node1.west.example.com"
 
 msgid "Server port to connect to"
 msgstr "要連接的伺服器連接埠"
-
-msgid "HTTPS"
-msgstr "HTTPS"
-
-msgid "Graph"
-msgstr "圖形"
 
 msgid "Children"
 msgstr "子項"
@@ -1329,6 +1621,12 @@ msgstr "SUSE, LLC"
 
 msgid "High Availability Web Konsole"
 msgstr "High Availability Web Konsole"
+
+msgid "Simple"
+msgstr ""
+
+msgid "Advisory"
+msgstr ""
 
 msgid "Edit Location"
 msgstr "編輯位置"
@@ -1351,38 +1649,59 @@ msgstr "多狀態資源"
 msgid "Create Multi-state"
 msgstr "建立多狀態"
 
-msgid "Getting recent events..."
-msgstr "正在獲取最近的事件..."
-
-msgid "Another operation is in progress..."
-msgstr "另一個操作正在執行..."
-
-msgid "No events found in last hour"
-msgstr "找不到過去一小時內的任何事件"
-
-msgid "Remote node."
-msgstr "遠端節點。"
+msgid "Attributes"
+msgstr "屬性"
 
 msgid "Utilization"
 msgstr "使用率"
 
+#, fuzzy
+msgid "Edit Node"
+msgstr "編輯角色"
+
+msgid "RC"
+msgstr ""
+
+msgid "Operation"
+msgstr "操作"
+
+msgid "Last Change"
+msgstr ""
+
+msgid "State"
+msgstr "州/省"
+
+msgid "Call"
+msgstr "呼叫"
+
+msgid "Exec"
+msgstr ""
+
+#, fuzzy
+msgid "Complete"
+msgstr "樣板"
+
+msgid "Remote node."
+msgstr "遠端節點。"
+
 msgid "No utilization defined"
 msgstr "未定義使用率"
-
-msgid "Attributes"
-msgstr "屬性"
 
 msgid "No attributes defined"
 msgstr "未定義屬性"
 
+msgid "Mandatory"
+msgstr ""
+
+#, fuzzy
+msgid "Optional"
+msgstr "選項"
+
+msgid "Serialize"
+msgstr ""
+
 msgid "Symmetrical"
 msgstr "對稱"
-
-msgid "Command Log"
-msgstr "指令記錄"
-
-msgid "Lists crm commands recently executed by hawk, most recent first."
-msgstr "列出 hawk 最近執行的 crm 指令，最近的列在最前面。"
 
 msgid "HTML"
 msgstr "HTML"
@@ -1390,32 +1709,17 @@ msgstr "HTML"
 msgid "PDF"
 msgstr "PDF"
 
-msgid "Template"
-msgstr "樣板"
+msgid "Default"
+msgstr "預設值"
 
-msgid "Class"
-msgstr "類別"
-
-msgid "Provider"
-msgstr "提供者"
-
-msgid "Data collection in progress..."
-msgstr "正在收集資料..."
-
-msgid "To"
-msgstr "到"
-
-msgid "Generate"
-msgstr "產生"
-
-msgid "Upload"
-msgstr "上載"
+msgid "Copy"
+msgstr ""
 
 msgid "Reports"
 msgstr "報告"
 
-msgid "Report"
-msgstr "報告"
+msgid "To"
+msgstr "到"
 
 msgid "Created"
 msgstr "已建立"
@@ -1426,23 +1730,11 @@ msgstr "轉換"
 msgid "No transitions in report"
 msgstr "報告中沒有轉換"
 
-msgid "Previous"
-msgstr "上一個"
-
-msgid "Next"
-msgstr "下一個"
-
 msgid "PE Name"
 msgstr "PE 名稱"
 
-msgid "Node"
-msgstr "節點"
-
 msgid "Time"
 msgstr "時間"
-
-msgid "Version"
-msgstr "版本"
 
 msgid "Configuration"
 msgstr "組態"
@@ -1459,26 +1751,31 @@ msgstr "節點事件"
 msgid "Resource Events"
 msgstr "資源事件"
 
-msgid "Resource:"
-msgstr "資源︰"
+msgid "Data collection in progress..."
+msgstr "正在收集資料..."
 
-msgid "Value"
-msgstr "值"
+msgid "Generate"
+msgstr "產生"
+
+msgid "Upload"
+msgstr "上載"
+
+msgid "Loading report..."
+msgstr ""
+
+#, fuzzy
+msgid "Rename Resource"
+msgstr "資源"
+
+#, fuzzy
+msgid "Child"
+msgstr "子項"
 
 msgid "Instances"
 msgstr "例項"
 
-msgid "State"
-msgstr "州/省"
-
 msgid "Failed Operations"
 msgstr "失敗的操作"
-
-msgid "Call"
-msgstr "呼叫"
-
-msgid "Operation"
-msgstr "操作"
 
 msgid "Reason"
 msgstr "原因"
@@ -1513,50 +1810,37 @@ msgstr "參考"
 msgid "Attribute"
 msgstr "屬性"
 
-msgid "ACL Roles"
-msgstr "ACL 角色"
+#, fuzzy
+msgid "Access Control Lists"
+msgstr "清單"
 
 msgid "Login"
 msgstr "登入"
 
-msgid "Version:"
-msgstr "版本："
-
-msgid "DC:"
-msgstr "DC︰"
-
-msgid "UI:"
-msgstr "UI︰"
-
-msgid "Status:"
-msgstr "狀態："
-
-msgid "Add resource"
-msgstr "新增資源"
-
-msgid "Add constraint"
+msgid "Add Constraint"
 msgstr "新增條件約束"
 
-msgid "Add template"
-msgstr "新增樣板"
-
-msgid "Choose wizard"
+msgid "Wizards"
 msgstr "選擇精靈"
 
-msgid "Simulator Active"
-msgstr "模擬器為使用中狀態"
+msgid "Access Control"
+msgstr ""
 
-msgid "Reset"
-msgstr "重設"
+#, fuzzy
+msgid "Targets"
+msgstr "目標 ID"
 
-msgid "Run"
-msgstr "執行"
+msgid ""
+"Any pending changes to the configuration will be lost - do you wish to proceed"
+"?"
+msgstr ""
 
-msgid "Results"
-msgstr "結果"
+msgid "Discard"
+msgstr ""
 
-msgid "Simulation Results"
-msgstr "模擬結果"
+#, fuzzy
+msgid "Batch Mode"
+msgstr "一"
 
 msgid "Summary"
 msgstr "摘要"
@@ -1570,17 +1854,35 @@ msgstr "CIB (出)"
 msgid "Transition Graph"
 msgstr "轉換圖形"
 
+#, fuzzy
+msgid "Transition"
+msgstr "轉換"
+
+#, fuzzy
+msgid "Inject"
+msgstr "連接"
+
+#, fuzzy
+msgid "Node Event"
+msgstr "節點事件"
+
+#, fuzzy
+msgid "Resource Event"
+msgstr "資源事件"
+
+#, fuzzy
+msgid "Ticket Event"
+msgstr "票證"
+
 msgid "Transition (XML)"
 msgstr "轉換 (XML)"
 
 msgid "Inject Node Event"
 msgstr "插入節點事件"
 
-msgid "OK"
-msgstr "確定"
-
-msgid "Inject Operation Event"
-msgstr "插入操作事件"
+#, fuzzy
+msgid "Inject Resource Event"
+msgstr "插入節點事件"
 
 msgid "Interval (ms)"
 msgstr "間隔 (毫秒)"
@@ -1594,26 +1896,19 @@ msgstr "插入票證事件"
 msgid "Action"
 msgstr "動作"
 
-msgid "Enable the simulation mode"
-msgstr "啟用模擬模式"
+#, fuzzy
+msgid "Batch Configuration Changes"
+msgstr "組態"
 
-msgid "Disable Simulator"
-msgstr "停用模擬器"
-
-msgid "Disable the simulation mode"
-msgstr "停用模擬模式"
-
-msgid "Profile"
-msgstr "設定檔 "
+#, fuzzy
+msgid "Batch"
+msgstr "3 月"
 
 msgid "Logout"
 msgstr "登出"
 
 msgid "Menu"
 msgstr "功能表"
-
-msgid "Errors"
-msgstr "錯誤"
 
 msgid "No objects available"
 msgstr "沒有可用的物件"
@@ -1630,11 +1925,23 @@ msgstr "票證︰"
 msgid "Properties"
 msgstr "內容"
 
-msgid "Sequential"
-msgstr "循序"
+msgid "None"
+msgstr "無"
 
-msgid "No resources defined for ticket"
-msgstr "未為此票證定義資源"
+msgid "Leader"
+msgstr ""
+
+msgid "Expires"
+msgstr ""
+
+msgid "Commit"
+msgstr ""
+
+msgid "Sites"
+msgstr ""
+
+msgid "Arbitrators"
+msgstr ""
 
 msgid "Target ID"
 msgstr "目標 ID"
@@ -1648,17 +1955,8 @@ msgstr "確實要取消安裝精靈嗎？"
 msgid "Do you really want to apply the current wizard?"
 msgstr "確實要套用目前精靈嗎？"
 
-msgid "Wizards"
-msgstr "選擇精靈"
-
 msgid "Legacy Wizards"
 msgstr "舊版精靈"
-
-msgid "Verify and apply"
-msgstr "驗證並套用"
-
-msgid "Review the wizard actions and apply the changes"
-msgstr "檢閱精靈動作並套用變更"
 
 msgid "Enable this step"
 msgstr "啟用此步驟"
@@ -1666,8 +1964,14 @@ msgstr "啟用此步驟"
 msgid "This wizard takes no parameters."
 msgstr "此精靈未採用任何參數。"
 
+msgid "Next"
+msgstr "下一個"
+
 msgid "Verify"
 msgstr "驗證"
+
+msgid "Verify and apply"
+msgstr "驗證並套用"
 
 msgid ""
 "To apply the changes, Hawk requires root access, and password-less SSH access "
@@ -1676,6 +1980,9 @@ msgstr "若要套用變更，Hawk 需要擁有 root 存取權限，並且必須�
 
 msgid "Root password"
 msgstr "Root 密碼"
+
+msgid "other"
+msgstr "其他"
 
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "物件/屬性不存在 (cibadmin %{cmd})"

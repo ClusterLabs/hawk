@@ -110,6 +110,27 @@ msgstr "Nem"
 msgid "Any changes will be lost - do you wish to proceed?"
 msgstr "Minden változás el fog veszni - szeretné folytatni?"
 
+#, fuzzy
+msgid "Invalid ID"
+msgstr "Érvénytelen címkeazonosító"
+
+msgid "OK"
+msgstr "OK"
+
+#, fuzzy
+msgid "Maintenance mode"
+msgstr "Karbantartás"
+
+msgid "An error has occurred"
+msgstr ""
+
+msgid "Close"
+msgstr "Bezárás"
+
+#, fuzzy
+msgid "No configuration changes."
+msgstr "Konfigurációs változtatások mentése..."
+
 msgid "Clone ID"
 msgstr "Klón ID"
 
@@ -152,6 +173,9 @@ msgstr "Jegy"
 msgid "Constraint"
 msgstr "Megszorítás"
 
+msgid "Resources"
+msgstr "Erőforrások"
+
 msgid "Group ID"
 msgstr "Csoportazonosító (ID)"
 
@@ -169,6 +193,9 @@ msgstr "Logikai operátor"
 
 msgid "Multi-state ID"
 msgstr "Többállapotú azonosító"
+
+msgid "Failed to parse monitor response - Internal server error."
+msgstr ""
 
 msgid "Connection to server failed - will retry every 15 seconds."
 msgstr "A kapcsolódás a kiszolgálóhoz sikertelen - újrapróbálkozás 15 másodpercenként."
@@ -203,8 +230,17 @@ msgstr "Váltás készenléti állapotra"
 msgid "Fence"
 msgstr "Elkerítés"
 
+msgid "Clear state"
+msgstr ""
+
+msgid "Events"
+msgstr ""
+
 msgid "Details"
 msgstr "Részletek"
+
+msgid "ID"
+msgstr "Azonosító"
 
 msgid "Add"
 msgstr "Hozzáadás"
@@ -225,6 +261,10 @@ msgid "Failed to fetch meta attributes"
 msgstr "Nem sikerült beolvasni a metaattribútumokat"
 
 msgid "Report generation is complete."
+msgstr "A jelentés generálása befejeződött."
+
+#, fuzzy
+msgid "Report generation cancelled."
 msgstr "A jelentés generálása befejeződött."
 
 msgid "From"
@@ -326,6 +366,12 @@ msgstr "Klón"
 msgid "Tag"
 msgstr "Címke"
 
+msgid "Away from current node"
+msgstr ""
+
+msgid "Clean up on all nodes"
+msgstr ""
+
 msgid "Stop"
 msgstr "Leállítás"
 
@@ -353,17 +399,28 @@ msgstr "Migráció visszavonása"
 msgid "Cleanup"
 msgstr "Tisztítás"
 
+msgid "Recent events"
+msgstr ""
+
+#, fuzzy
+msgid "No child resources"
+msgstr "Gyermek erőforrás"
+
 msgid "Primitive"
 msgstr "Primitív"
+
+msgid "Template"
+msgstr "Sablon"
 
 msgid "Resource"
 msgstr "Erőforrás"
 
+#, fuzzy
+msgid "Rename"
+msgstr "Felhasználónév"
+
 msgid "Role ID"
 msgstr "Szerepkör-azonosító"
-
-msgid "Stopped Resources"
-msgstr "Leállított erőforrások"
 
 msgid "Tag ID"
 msgstr "Címkeazonosító"
@@ -371,14 +428,18 @@ msgstr "Címkeazonosító"
 msgid "Objects"
 msgstr "Objektumok"
 
-msgid "ID"
-msgstr "Azonosító"
-
 msgid "Granted"
 msgstr "Megadva"
 
+msgid "Elsewhere"
+msgstr ""
+
 msgid "Revoked"
 msgstr "Visszavonva"
+
+#, fuzzy
+msgid "Last Granted"
+msgstr "Megadva"
 
 msgid "Grant"
 msgstr "Megadás"
@@ -406,6 +467,13 @@ msgstr "Megtörtént az új árnyék CIB létrehozása %USER% számára."
 
 msgid "Unable to create shadow CIB"
 msgstr "Nem hozható létre shadow CIB"
+
+msgid "Failed to apply configuration"
+msgstr ""
+
+#, fuzzy
+msgid "Applied configuration successfully"
+msgstr "sikerült"
 
 msgid "Create Clone"
 msgstr "Klón létrehozása"
@@ -451,6 +519,9 @@ msgstr "Kolokációk"
 
 msgid "The colocation constraint does not exist"
 msgstr "A kolokációs megszorítás nem létezik"
+
+msgid "Command Log"
+msgstr "Parancsnapló"
 
 msgid "Constraints"
 msgstr "Megszorítások"
@@ -527,11 +598,25 @@ msgstr "Többállapotú erőforrás"
 msgid "The multi-state resource does not exist"
 msgstr "A többállapotú erőforrás nem létezik"
 
+#, fuzzy
+msgid "Node updated successfully"
+msgstr "Szerepkör sikeresen frissítve"
+
+#, fuzzy
+msgid "Failed to set the node online: %{err}"
+msgstr "Nem sikerült elindítani az erőforrást: %{err}"
+
 msgid "Set the node state to online"
 msgstr "A csomópont állapotának átállítása online-ra"
 
+msgid "Failed to set the node standby: %{err}"
+msgstr ""
+
 msgid "Set the node state to standby"
 msgstr "A csomópont állapotának átállítása készenlétire"
+
+msgid "Failed to set the node state to maintenance: %{err}"
+msgstr ""
 
 msgid "Set the node state to maintenance"
 msgstr "A csomópont állapotának átállítása karbantartásra"
@@ -539,8 +624,23 @@ msgstr "A csomópont állapotának átállítása karbantartásra"
 msgid "Set the node state to ready"
 msgstr "A csomópont állapotának átállítása üzemkészre"
 
-msgid "Set the node state to fence"
-msgstr "A csomópont állapotának átállítása elkerítésre"
+msgid "Failed to set the node state to ready: %{err}"
+msgstr ""
+
+#, fuzzy
+msgid "Successfully fenced the node"
+msgstr "A jegy megadása sikeresen megtörtént"
+
+#, fuzzy
+msgid "Failed to fence the node: %{err}"
+msgstr "Nem sikerült lefokozni az erőforrást: %{err}"
+
+#, fuzzy
+msgid "Failed to clear the node state: %{err}"
+msgstr "Nem sikerült kitakarítani az erőforrást: %{err}"
+
+msgid "Cleared the node state"
+msgstr ""
 
 msgid "Nodes"
 msgstr "Csomópontok"
@@ -568,9 +668,6 @@ msgstr "Üdvözlet"
 
 msgid "Help"
 msgstr "Súgó"
-
-msgid "Commands"
-msgstr "Parancsok"
 
 msgid "Create Primitive"
 msgstr "Primitív létrehozása"
@@ -607,6 +704,9 @@ msgstr "Nem sikerült generálni"
 
 msgid "Upload completed."
 msgstr "A feltöltés befejeződött."
+
+msgid "Could not cancel report collection"
+msgstr ""
 
 msgid "Cannot display diff, too few transitions"
 msgstr "Nem sikerült megjeleníteni a különbözetet, kevés az átváltás"
@@ -680,8 +780,12 @@ msgstr "Sikeresen kitakarította az erőforrást"
 msgid "Failed to clean up the resource: %{err}"
 msgstr "Nem sikerült kitakarítani az erőforrást: %{err}"
 
-msgid "Resources"
-msgstr "Erőforrások"
+#, fuzzy
+msgid "Successfully renamed %{A} to %{B}"
+msgstr "V"
+
+msgid "Failed to rename %{A} to %{B}: %{E}"
+msgstr ""
 
 msgid "Create Role"
 msgstr "Sze_repkör létrehozása"
@@ -783,8 +887,19 @@ msgstr "A jegy törlése sikeres"
 msgid "Successfully granted the ticket"
 msgstr "A jegy megadása sikeresen megtörtént"
 
+#, fuzzy
+msgid "Error granting the ticket"
+msgstr "Hiba"
+
 msgid "Successfully revoked the ticket"
 msgstr "A jegy visszavonása sikeresen megtörtént"
+
+#, fuzzy
+msgid "Error revoking the ticket"
+msgstr "Hiba"
+
+msgid "Simulator active: Use the ticket controls in the simulator"
+msgstr "A szimulátor aktív: használja a szimulátor jegy vezérlőelemeit"
 
 msgid "Tickets"
 msgstr "Jegyek"
@@ -836,6 +951,59 @@ msgstr "Szükséges"
 
 msgid "Unique"
 msgstr "Egyedi"
+
+msgid "Profile"
+msgstr "Profil"
+
+msgid "Epoch"
+msgstr ""
+
+#, fuzzy
+msgid "Current Configuration Version"
+msgstr "Beállítás"
+
+msgid "Host"
+msgstr ""
+
+msgid "Designated Coordinator"
+msgstr ""
+
+#, fuzzy
+msgid "DC"
+msgstr "Tartományvezérlő:"
+
+#, fuzzy
+msgid "CIB Schema Version"
+msgstr "Verzió"
+
+msgid "Schema"
+msgstr ""
+
+msgid "Last Written"
+msgstr ""
+
+msgid "Update Origin"
+msgstr ""
+
+msgid "Update User"
+msgstr ""
+
+msgid "Have Quorum"
+msgstr ""
+
+msgid "Version"
+msgstr "Verzió"
+
+#, fuzzy
+msgid "Pacemaker Version"
+msgstr "Verzió"
+
+#, fuzzy
+msgid "Stack"
+msgstr "Kezdés"
+
+msgid "Cluster Communication Stack"
+msgstr ""
 
 msgid "Master"
 msgstr "Elsődleges"
@@ -921,14 +1089,8 @@ msgstr ""
 "} erőforrásán: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-re"
 "ason=%{exit_reason}"
 
-msgid "other"
-msgstr "egyéb"
-
 msgid "STONITH is disabled. For normal cluster operation, STONITH is required."
 msgstr "A STONITH le van tiltva. A fürt rendes működéséhez szükséges a STONITH."
-
-msgid "None"
-msgstr "Nincs"
 
 msgid "Clone ID is required"
 msgstr "A klónazonosító megadása kötelező"
@@ -988,14 +1150,14 @@ msgstr ""
 "ogy a példányok azonnal elindulhassanak vagy leállhassanak, ha a társpéldányuk"
 " már elindult (ahelyett, hogy várnának a másik klón minden példányára)."
 
+msgid "Child Resource"
+msgstr "Gyermek erőforrás"
+
+msgid "Child resource to use as clone."
+msgstr ""
+
 msgid "The ID \"%{id}\" does not exist"
 msgstr "A(z) \"%{id}\" azonosító nem létezik"
-
-msgid "Constraint ID is required"
-msgstr "A megszorításazonosítót meg kell adni"
-
-msgid "Invalid Constraint ID"
-msgstr "Érvénytelen megszorításazonosító"
 
 msgid "Score is required"
 msgstr "A pontszám megadása kötelező"
@@ -1003,11 +1165,31 @@ msgstr "A pontszám megadása kötelező"
 msgid "Invalid score value"
 msgstr "Érvénytelen pontszámérték"
 
+msgid "Invalid node attribute"
+msgstr ""
+
 msgid "Constraint must consist of at least two separate resources"
 msgstr "A szabálynak legalább két különböző erőforrást kell tartalmaznia"
 
+#, fuzzy
+msgid "The score determines the location relationship between the resources."
+msgstr "Cs"
+
+#, fuzzy
+msgid "Node Attribute"
+msgstr "Attribútum"
+
+msgid ""
+"Colocate resources by the given node attribute instead of by node name (the de"
+"fault)."
+msgstr ""
+
 msgid "Not a constraint"
 msgstr "Nem megszorítás"
+
+#, fuzzy
+msgid "Unique identifier for the constraint. May not contain spaces."
+msgstr "Egyedi"
 
 msgid "Set to true if the resource agent supports the migrate action"
 msgstr "Igaz értékű, ha az erőforrásügynök támogatja a migráció műveletet"
@@ -1072,12 +1254,6 @@ msgstr ""
 msgid "How long before a pending guest connection will time out."
 msgstr "Ennyi idő után jár le egy függőben lévő vendégkapcsolat időkorlátja."
 
-msgid "Group ID is required"
-msgstr "A csoportazonosítót meg kell adni"
-
-msgid "Invalid Group ID"
-msgstr "Érvénytelen csoportazonosító"
-
 msgid "No Group children specified"
 msgstr "Nincsenek megadva csoportgyermekek"
 
@@ -1086,6 +1262,9 @@ msgstr "Nincs megadva erőforrás"
 
 msgid "No rules specified"
 msgstr "Nincsenek szabályok megadva"
+
+msgid "Invalid resource discovery type"
+msgstr ""
 
 msgid "Constraint is too complex - it contains nested rules"
 msgstr "Túl komplex szabály - beágyazott szabályok vannak"
@@ -1102,11 +1281,57 @@ msgstr "Az attribútum szimpla és dupla idézőjelet és tartalmaz"
 msgid "Value contains both single and double quotes"
 msgstr "Az érték szimpla és dupla idézőjelet és tartalmaz"
 
-msgid "Multi-state ID is required"
-msgstr "A többállapotú azonosítót meg kell adni"
+#, fuzzy
+msgid "Resources to apply the constraint to."
+msgstr "Erőforrások"
 
-msgid "Invalid Multi-state ID"
-msgstr "Érvénytelen többállapotú azonosító"
+#, fuzzy
+msgid ""
+"Positive values indicate the resources should run on this node. Negative value"
+"s indicate the resources should not run on this node. Values of +/- INFINITY c"
+"hange \"should\"/\"should not\" to \"must\"/\"must not\"."
+msgstr "Érték"
+
+msgid "Node"
+msgstr "Csomópont"
+
+#, fuzzy
+msgid "Name of a node in the cluster."
+msgstr "Név"
+
+#, fuzzy
+msgid "Resource Discovery"
+msgstr "Erőforrás"
+
+#, fuzzy
+msgid ""
+"Controls resource discovery for the specified resource on nodes covered by the"
+" constraint. always: Always perform resource discovery (default). never: Never"
+" perform resource discovery for the specified resource on this node. This opti"
+"on should generally be used with a -INFINITY score. exclusive: Only perform re"
+"source discovery for the specified resource on this node."
+msgstr "Cs"
+
+msgid "Limits the rule to apply only when the resource is in the specified role."
+msgstr ""
+
+#, fuzzy
+msgid "Operator"
+msgstr "Művelet"
+
+msgid ""
+"How to combine the result of multiple expression objects. Allowed values are a"
+"nd and or."
+msgstr ""
+
+msgid "Expression"
+msgstr ""
+
+#, fuzzy
+msgid ""
+"Each rule can contain a number of expressions. The results of the expressions "
+"are combined based on the rule's boolean operator."
+msgstr "Cs"
 
 msgid "No Multi-state child specified"
 msgstr "Nincs megadva többállapotú gyermek"
@@ -1133,7 +1358,34 @@ msgstr "A név megadása kötelező"
 msgid "Invalid name"
 msgstr "Érvénytelen név"
 
+#, fuzzy
+msgid "Node ID"
+msgstr "Csomópont"
+
+#, fuzzy
+msgid "Unique identifier for the node."
+msgstr "Egyedi"
+
+#, fuzzy
+msgid "Node Name"
+msgstr "Név"
+
+#, fuzzy
+msgid "Name used to refer to the node in the cluster."
+msgstr "Név"
+
+#, fuzzy
+msgid ""
+"Puts the node into standby mode. The specified node is no longer able to host "
+"resources. Any resources currently active on the node will be moved to another"
+" node."
+msgstr "egyéb"
+
 msgid "is required"
+msgstr "szükséges"
+
+#, fuzzy
+msgid "ID is required"
 msgstr "szükséges"
 
 msgid "Object not found: %s=%s"
@@ -1147,12 +1399,6 @@ msgstr "A létrehozás sikertelen: %{msg}"
 
 msgid "Error updating %{id} (rc=%{rc})"
 msgstr "Hiba a következő frissítésekor: %{id} (rc=%{rc})"
-
-msgid "PE Input created by different Pacemaker version (%{version})"
-msgstr "A PE-bemenet másik pacemaker-verzióval készült (%{version})"
-
-msgid "Pacemaker version not present in PE Input"
-msgstr "A PE-bemenetben nem szerepel a pacemaker-verzió"
 
 msgid "No details available"
 msgstr "Nincsenek részletek"
@@ -1169,11 +1415,9 @@ msgstr "helyes fájlkiterjesztésűnek kell lennie"
 msgid "Not a resource"
 msgstr "Nem erőforrás"
 
-msgid "Role ID is required"
-msgstr "A szerepazonosítót meg kell adni"
-
-msgid "Invalid Role ID"
-msgstr "Érvénytelen szerepazonosító"
+#, fuzzy
+msgid "Unique identifier for the resource. May not contain spaces."
+msgstr "Egyedi"
 
 msgid "At least one rule is required"
 msgstr "Legalább egy szabályt meg kell adni."
@@ -1196,20 +1440,8 @@ msgstr "Nincs megadva jelszó"
 msgid "Invalid username or password"
 msgstr "Érvénytelen felhasználónév vagy jelszó"
 
-msgid "Tag ID is required"
-msgstr "A címkeazonosítót meg kell adni"
-
-msgid "Invalid Tag ID"
-msgstr "Érvénytelen címkeazonosító"
-
 msgid "No Tag resources specified"
 msgstr "Nincs megadva címkeerőforrás"
-
-msgid "Resource ID is required"
-msgstr "Az erőforrás-azonosítót meg kell adni"
-
-msgid "Invalid Resource ID"
-msgstr "Érvénytelen erőforrás-azonosító"
 
 msgid "How frequently (in seconds) to perform the operation."
 msgstr "Ilyen gyakorisággal kell elvégezni a műveletet (másodpercben)."
@@ -1246,6 +1478,44 @@ msgstr ""
 "Ha igaz, a rendszer rögzíti a művelet végrehajtásának szándékát, hogy a GUI fe"
 "lületek és a CLI eszközök jelezhessék, hogy a művelet folyamatban van."
 
+#, fuzzy
+msgid "Resource template to inherit from."
+msgstr "Erőforrás"
+
+msgid "Class"
+msgstr "Osztály"
+
+msgid "Standard which the resource agent conforms to."
+msgstr ""
+
+msgid "Provider"
+msgstr "Szolgáltató"
+
+msgid "Vendor or project which provided the resource agent."
+msgstr ""
+
+#, fuzzy
+msgid "Resource agent name."
+msgstr "Erőforrás"
+
+msgid "After the specified timeout period, the operation will be treated as failed."
+msgstr ""
+
+#, fuzzy
+msgid "Monitor"
+msgstr "H"
+
+msgid ""
+"Define a monitor operation to instruct the cluster to ensure that the resource"
+" is still healthy."
+msgstr ""
+
+msgid "Constraint ID is required"
+msgstr "A megszorításazonosítót meg kell adni"
+
+msgid "Invalid Constraint ID"
+msgstr "Érvénytelen megszorításazonosító"
+
 msgid "Ticket ID is required"
 msgstr "A jegyazonosítót kötelező megadni"
 
@@ -1254,9 +1524,6 @@ msgstr "Érvénytelen jegy ID"
 
 msgid "Constraint must consist of at least one separate resources"
 msgstr "A megszorításnak tartalmaznia kell legalább egy különálló erőforrást"
-
-msgid "Simulator active: Use the ticket controls in the simulator"
-msgstr "A szimulátor aktív: használja a szimulátor jegy vezérlőelemeit"
 
 msgid "ACL target ID is required"
 msgstr "Az ACL-célazonosítót meg kell adni"
@@ -1294,11 +1561,15 @@ msgstr "Időköz"
 msgid "Depth"
 msgstr "Mélység"
 
-msgid "Close"
-msgstr "Bezárás"
+#, fuzzy
+msgid "Apply Configuration"
+msgstr "Beállítás"
 
-msgid "Child Resource"
-msgstr "Gyermek erőforrás"
+msgid "Calculating list of changes..."
+msgstr ""
+
+msgid "Errors"
+msgstr "Hibák"
 
 msgid "Meta Attributes"
 msgstr "Metaattribútumok"
@@ -1309,14 +1580,52 @@ msgstr "Vissza"
 msgid "Are you sure you wish to delete %s?"
 msgstr "Biztos, hogy törölni akarja: %s?"
 
-msgid "List"
-msgstr "Lista"
+msgid "Always"
+msgstr ""
+
+#, fuzzy
+msgid "Never"
+msgstr "Visszaállítás"
+
+msgid "Advanced"
+msgstr "Speciális"
+
+msgid "Lists crm commands recently executed by hawk, most recent first."
+msgstr ""
+"A hawk által nemrégiben végrehajtott crm parancsok listája, elöl a legutóbbiva"
+"l."
+
+#, fuzzy
+msgid "Edit Configuration"
+msgstr "Beállítás"
+
+msgid "XML"
+msgstr ""
+
+msgid "Graph"
+msgstr "Grafikon"
+
+#, fuzzy
+msgid "Cluster Details"
+msgstr "Részletek"
+
+#, fuzzy
+msgid "Batch Mode Active"
+msgstr "H"
+
+#, fuzzy
+msgid "Show Configuration"
+msgstr "Beállítás"
 
 msgid "Constraint:"
 msgstr "Megszorítás:"
 
-msgid "Add Constraint"
+#, fuzzy
+msgid "Add a constraint"
 msgstr "Megszorítás hozzáadása"
+
+msgid "List"
+msgstr "Lista"
 
 msgid "Resource Defaults"
 msgstr "Erőforrás alapértelmezései"
@@ -1324,38 +1633,23 @@ msgstr "Erőforrás alapértelmezései"
 msgid "Operation Defaults"
 msgstr "Alapértelmezett műveletek"
 
-msgid "Default"
-msgstr "Alapértelmezett"
-
 msgid "Add Cluster"
 msgstr "Fürt hozzáadása"
-
-msgid "Cluster name"
-msgstr "Fürtnév"
 
 msgid "West Coast (example)"
 msgstr "Nyugati part (példa)"
 
-msgid "node1.west.example.com"
-msgstr "csomopont1.nyugat.pelda.com"
+msgid "Cluster name"
+msgstr "Fürtnév"
 
 msgid "Hostname of node in cluster"
 msgstr "A fürt egy csomópontjának állomásneve"
 
-msgid "Advanced"
-msgstr "Speciális"
-
-msgid "Update interval (seconds)"
-msgstr "Frissítési időköz (másodperc)"
+msgid "node1.west.example.com"
+msgstr "csomopont1.nyugat.pelda.com"
 
 msgid "Server port to connect to"
 msgstr "Csatlakozás kiszolgálói portja"
-
-msgid "HTTPS"
-msgstr "HTTPS"
-
-msgid "Graph"
-msgstr "Grafikon"
 
 msgid "Children"
 msgstr "Gyermekek"
@@ -1371,6 +1665,12 @@ msgstr "SUSE, LLC"
 
 msgid "High Availability Web Konsole"
 msgstr "Nagy rendelkezésre állású webkonzol"
+
+msgid "Simple"
+msgstr ""
+
+msgid "Advisory"
+msgstr ""
 
 msgid "Edit Location"
 msgstr "Hely szerkesztése"
@@ -1393,40 +1693,59 @@ msgstr "Többállapotú erőforrások"
 msgid "Create Multi-state"
 msgstr "Többállapotú létrehozása"
 
-msgid "Getting recent events..."
-msgstr "Közelmúltbeli események beolvasása..."
-
-msgid "Another operation is in progress..."
-msgstr "Egy másik művelet van folyamatban…"
-
-msgid "No events found in last hour"
-msgstr "Nem volt esemény az elmúlt órában"
-
-msgid "Remote node."
-msgstr "Távoli csomópont."
+msgid "Attributes"
+msgstr "Attribútumok"
 
 msgid "Utilization"
 msgstr "Kihasználtság"
 
+#, fuzzy
+msgid "Edit Node"
+msgstr "Szerepkör szerkesztése"
+
+msgid "RC"
+msgstr ""
+
+msgid "Operation"
+msgstr "Művelet"
+
+msgid "Last Change"
+msgstr ""
+
+msgid "State"
+msgstr "Állapot"
+
+msgid "Call"
+msgstr "Hívás"
+
+msgid "Exec"
+msgstr ""
+
+#, fuzzy
+msgid "Complete"
+msgstr "Sablon"
+
+msgid "Remote node."
+msgstr "Távoli csomópont."
+
 msgid "No utilization defined"
 msgstr "Nincs meghatározva kihasználtság"
-
-msgid "Attributes"
-msgstr "Attribútumok"
 
 msgid "No attributes defined"
 msgstr "Nincsenek megadva attribútumok"
 
+msgid "Mandatory"
+msgstr ""
+
+#, fuzzy
+msgid "Optional"
+msgstr "Beállítások"
+
+msgid "Serialize"
+msgstr ""
+
 msgid "Symmetrical"
 msgstr "Szimetrikus"
-
-msgid "Command Log"
-msgstr "Parancsnapló"
-
-msgid "Lists crm commands recently executed by hawk, most recent first."
-msgstr ""
-"A hawk által nemrégiben végrehajtott crm parancsok listája, elöl a legutóbbiva"
-"l."
 
 msgid "HTML"
 msgstr "HTML"
@@ -1434,32 +1753,17 @@ msgstr "HTML"
 msgid "PDF"
 msgstr "PDF"
 
-msgid "Template"
-msgstr "Sablon"
+msgid "Default"
+msgstr "Alapértelmezett"
 
-msgid "Class"
-msgstr "Osztály"
-
-msgid "Provider"
-msgstr "Szolgáltató"
-
-msgid "Data collection in progress..."
-msgstr "Adatgyűjtés folyamatban..."
-
-msgid "To"
-msgstr "Címzett"
-
-msgid "Generate"
-msgstr "Előállítás"
-
-msgid "Upload"
-msgstr "Feltöltés"
+msgid "Copy"
+msgstr ""
 
 msgid "Reports"
 msgstr "Jelentések"
 
-msgid "Report"
-msgstr "Jelentés"
+msgid "To"
+msgstr "Címzett"
 
 msgid "Created"
 msgstr "Létrehozva"
@@ -1470,23 +1774,11 @@ msgstr "Átváltások"
 msgid "No transitions in report"
 msgstr "Nincsenek átváltások a jelentésben"
 
-msgid "Previous"
-msgstr "Előző"
-
-msgid "Next"
-msgstr "Következő"
-
 msgid "PE Name"
 msgstr "PE neve"
 
-msgid "Node"
-msgstr "Csomópont"
-
 msgid "Time"
 msgstr "Idő"
-
-msgid "Version"
-msgstr "Verzió"
 
 msgid "Configuration"
 msgstr "Beállítás"
@@ -1503,26 +1795,31 @@ msgstr "Csomópontesemények"
 msgid "Resource Events"
 msgstr "Erőforrás-események"
 
-msgid "Resource:"
-msgstr "Erőforrás:"
+msgid "Data collection in progress..."
+msgstr "Adatgyűjtés folyamatban..."
 
-msgid "Value"
-msgstr "Érték"
+msgid "Generate"
+msgstr "Előállítás"
+
+msgid "Upload"
+msgstr "Feltöltés"
+
+msgid "Loading report..."
+msgstr ""
+
+#, fuzzy
+msgid "Rename Resource"
+msgstr "Erőforrás"
+
+#, fuzzy
+msgid "Child"
+msgstr "Gyermekek"
 
 msgid "Instances"
 msgstr "Példányok"
 
-msgid "State"
-msgstr "Állapot"
-
 msgid "Failed Operations"
 msgstr "Sikertelen műveletek"
-
-msgid "Call"
-msgstr "Hívás"
-
-msgid "Operation"
-msgstr "Művelet"
 
 msgid "Reason"
 msgstr "Ok"
@@ -1557,50 +1854,37 @@ msgstr "Hivatkozás"
 msgid "Attribute"
 msgstr "Attribútum"
 
-msgid "ACL Roles"
-msgstr "ACL-szerepek"
+#, fuzzy
+msgid "Access Control Lists"
+msgstr "Lista"
 
 msgid "Login"
 msgstr "Bejelentkezés"
 
-msgid "Version:"
-msgstr "Verzió:"
-
-msgid "DC:"
-msgstr "Tartományvezérlő:"
-
-msgid "UI:"
-msgstr "Grafikus felület:"
-
-msgid "Status:"
-msgstr "Állapot:"
-
-msgid "Add resource"
-msgstr "Erőforrás hozzáadása"
-
-msgid "Add constraint"
+msgid "Add Constraint"
 msgstr "Megszorítás hozzáadása"
 
-msgid "Add template"
-msgstr "Sablon hozzáadása"
-
-msgid "Choose wizard"
+msgid "Wizards"
 msgstr "Varázsló kiválasztása"
 
-msgid "Simulator Active"
-msgstr "A szimulátor aktív"
+msgid "Access Control"
+msgstr ""
 
-msgid "Reset"
-msgstr "Visszaállítás"
+#, fuzzy
+msgid "Targets"
+msgstr "Célazonosító"
 
-msgid "Run"
-msgstr "Futtatás"
+msgid ""
+"Any pending changes to the configuration will be lost - do you wish to proceed"
+"?"
+msgstr ""
 
-msgid "Results"
-msgstr "Eredmények"
+msgid "Discard"
+msgstr ""
 
-msgid "Simulation Results"
-msgstr "A szimuláció eredményei"
+#, fuzzy
+msgid "Batch Mode"
+msgstr "H"
 
 msgid "Summary"
 msgstr "Összefoglaló"
@@ -1614,17 +1898,35 @@ msgstr "CIB (ki)"
 msgid "Transition Graph"
 msgstr "Átváltási grafikon"
 
+#, fuzzy
+msgid "Transition"
+msgstr "Átváltások"
+
+#, fuzzy
+msgid "Inject"
+msgstr "Csatlakozás"
+
+#, fuzzy
+msgid "Node Event"
+msgstr "Csomópontesemények"
+
+#, fuzzy
+msgid "Resource Event"
+msgstr "Erőforrás-események"
+
+#, fuzzy
+msgid "Ticket Event"
+msgstr "Jegy"
+
 msgid "Transition (XML)"
 msgstr "Átváltás (XML)"
 
 msgid "Inject Node Event"
 msgstr "Csomópont-esemény bejegyzése"
 
-msgid "OK"
-msgstr "OK"
-
-msgid "Inject Operation Event"
-msgstr "Műveleti esemény bejegyzése"
+#, fuzzy
+msgid "Inject Resource Event"
+msgstr "Csomópont-esemény bejegyzése"
 
 msgid "Interval (ms)"
 msgstr "Időköz (ms)"
@@ -1638,26 +1940,19 @@ msgstr "Jegyesemény bejegyzése"
 msgid "Action"
 msgstr "Művelet"
 
-msgid "Enable the simulation mode"
-msgstr "A szimulációs mód engedélyezése"
+#, fuzzy
+msgid "Batch Configuration Changes"
+msgstr "Beállítás"
 
-msgid "Disable Simulator"
-msgstr "Szimulátor letiltása"
-
-msgid "Disable the simulation mode"
-msgstr "A szimulációs mód letiltása"
-
-msgid "Profile"
-msgstr "Profil"
+#, fuzzy
+msgid "Batch"
+msgstr "március"
 
 msgid "Logout"
 msgstr "Kijelentkezés"
 
 msgid "Menu"
 msgstr "Menü"
-
-msgid "Errors"
-msgstr "Hibák"
 
 msgid "No objects available"
 msgstr "Nem érhetők el objektumok"
@@ -1674,11 +1969,23 @@ msgstr "Jegy:"
 msgid "Properties"
 msgstr "Tulajdonságok"
 
-msgid "Sequential"
-msgstr "Szekvenciális"
+msgid "None"
+msgstr "Nincs"
 
-msgid "No resources defined for ticket"
-msgstr "Nincsenek erőforrások definiálva a jegyhez"
+msgid "Leader"
+msgstr ""
+
+msgid "Expires"
+msgstr ""
+
+msgid "Commit"
+msgstr ""
+
+msgid "Sites"
+msgstr ""
+
+msgid "Arbitrators"
+msgstr ""
 
 msgid "Target ID"
 msgstr "Célazonosító"
@@ -1692,17 +1999,8 @@ msgstr "Valóban megszakítja a varázsló telepítését?"
 msgid "Do you really want to apply the current wizard?"
 msgstr "Valóban alkalmazza az aktuális varázslót?"
 
-msgid "Wizards"
-msgstr "Varázsló kiválasztása"
-
 msgid "Legacy Wizards"
 msgstr "Régi varázslók"
-
-msgid "Verify and apply"
-msgstr "Ellenőrzés és alkalmazás"
-
-msgid "Review the wizard actions and apply the changes"
-msgstr "A varázsló műveleteinek áttekintése és a módosítások alkalmazása"
 
 msgid "Enable this step"
 msgstr "A lépés engedélyezése"
@@ -1710,8 +2008,14 @@ msgstr "A lépés engedélyezése"
 msgid "This wizard takes no parameters."
 msgstr "Ez a varázsló nem fogad paramétereket."
 
+msgid "Next"
+msgstr "Következő"
+
 msgid "Verify"
 msgstr "Ellenőrzés"
+
+msgid "Verify and apply"
+msgstr "Ellenőrzés és alkalmazás"
 
 msgid ""
 "To apply the changes, Hawk requires root access, and password-less SSH access "
@@ -1723,6 +2027,9 @@ msgstr ""
 
 msgid "Root password"
 msgstr "Root-jelszó"
+
+msgid "other"
+msgstr "egyéb"
 
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "Az objektum/attribútum nem létezik: (cibadmin %{cmd})"

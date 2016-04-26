@@ -110,6 +110,27 @@ msgstr "Não"
 msgid "Any changes will be lost - do you wish to proceed?"
 msgstr "Qualquer mudança será perdida. Deseja continuar?"
 
+#, fuzzy
+msgid "Invalid ID"
+msgstr "ID da Tag Inválido"
+
+msgid "OK"
+msgstr "OK"
+
+#, fuzzy
+msgid "Maintenance mode"
+msgstr "Manutenção"
+
+msgid "An error has occurred"
+msgstr ""
+
+msgid "Close"
+msgstr "Fechar"
+
+#, fuzzy
+msgid "No configuration changes."
+msgstr "Aplicando mudanças de configuração..."
+
 msgid "Clone ID"
 msgstr "ID do Clone"
 
@@ -152,6 +173,9 @@ msgstr "Ticket"
 msgid "Constraint"
 msgstr "Restrição"
 
+msgid "Resources"
+msgstr "Recursos"
+
 msgid "Group ID"
 msgstr "ID de grupo"
 
@@ -169,6 +193,9 @@ msgstr "Operador Booliano"
 
 msgid "Multi-state ID"
 msgstr "ID de Vários Estados"
+
+msgid "Failed to parse monitor response - Internal server error."
+msgstr ""
 
 msgid "Connection to server failed - will retry every 15 seconds."
 msgstr "Falha na conexão com o servidor. Será repetida a cada 15 segundos."
@@ -203,8 +230,17 @@ msgstr "Alternar para standby"
 msgid "Fence"
 msgstr "Limite"
 
+msgid "Clear state"
+msgstr ""
+
+msgid "Events"
+msgstr ""
+
 msgid "Details"
 msgstr "Detalhes"
+
+msgid "ID"
+msgstr "ID"
 
 msgid "Add"
 msgstr "Adicionar"
@@ -225,6 +261,10 @@ msgid "Failed to fetch meta attributes"
 msgstr "Falha ao buscar atributos meta"
 
 msgid "Report generation is complete."
+msgstr "Geração de relatório concluída."
+
+#, fuzzy
+msgid "Report generation cancelled."
 msgstr "Geração de relatório concluída."
 
 msgid "From"
@@ -326,6 +366,12 @@ msgstr "Clonar"
 msgid "Tag"
 msgstr "Tag"
 
+msgid "Away from current node"
+msgstr ""
+
+msgid "Clean up on all nodes"
+msgstr ""
+
 msgid "Stop"
 msgstr "Parar"
 
@@ -353,17 +399,28 @@ msgstr "Cancelar Migração"
 msgid "Cleanup"
 msgstr "Limpeza"
 
+msgid "Recent events"
+msgstr ""
+
+#, fuzzy
+msgid "No child resources"
+msgstr "Recurso Filho"
+
 msgid "Primitive"
 msgstr "Primitivo"
+
+msgid "Template"
+msgstr "Gabarito"
 
 msgid "Resource"
 msgstr "Recursos"
 
+#, fuzzy
+msgid "Rename"
+msgstr "Nome do usuário"
+
 msgid "Role ID"
 msgstr "ID da Função"
-
-msgid "Stopped Resources"
-msgstr "Recursos Parados"
 
 msgid "Tag ID"
 msgstr "ID da Tag"
@@ -371,14 +428,18 @@ msgstr "ID da Tag"
 msgid "Objects"
 msgstr "Objetos"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Granted"
 msgstr "Concedido"
 
+msgid "Elsewhere"
+msgstr ""
+
 msgid "Revoked"
 msgstr "Revogado"
+
+#, fuzzy
+msgid "Last Granted"
+msgstr "Concedido"
 
 msgid "Grant"
 msgstr "Conceder"
@@ -406,6 +467,13 @@ msgstr "Novo CIB de sombra criado para %USER%."
 
 msgid "Unable to create shadow CIB"
 msgstr "Impossível criar CIB de sombra"
+
+msgid "Failed to apply configuration"
+msgstr ""
+
+#, fuzzy
+msgid "Applied configuration successfully"
+msgstr "êxito"
 
 msgid "Create Clone"
 msgstr "Criar Clone"
@@ -451,6 +519,9 @@ msgstr "Colocations"
 
 msgid "The colocation constraint does not exist"
 msgstr "A restrição de colocation não existe"
+
+msgid "Command Log"
+msgstr "Registro do Comando"
 
 msgid "Constraints"
 msgstr "Restrições"
@@ -527,11 +598,25 @@ msgstr "Recurso de vários estados"
 msgid "The multi-state resource does not exist"
 msgstr "O recurso de vários estados não existe"
 
+#, fuzzy
+msgid "Node updated successfully"
+msgstr "Função atualizada com êxito"
+
+#, fuzzy
+msgid "Failed to set the node online: %{err}"
+msgstr "Falha ao iniciar o recurso: %{err}"
+
 msgid "Set the node state to online"
 msgstr "Definir estado do nó como online"
 
+msgid "Failed to set the node standby: %{err}"
+msgstr ""
+
 msgid "Set the node state to standby"
 msgstr "Definir estado do nó como standby"
+
+msgid "Failed to set the node state to maintenance: %{err}"
+msgstr ""
 
 msgid "Set the node state to maintenance"
 msgstr "Definir estado do nó como manutenção"
@@ -539,8 +624,23 @@ msgstr "Definir estado do nó como manutenção"
 msgid "Set the node state to ready"
 msgstr "Definir estado do nó como pronto"
 
-msgid "Set the node state to fence"
-msgstr "Definir estado do nó como limite"
+msgid "Failed to set the node state to ready: %{err}"
+msgstr ""
+
+#, fuzzy
+msgid "Successfully fenced the node"
+msgstr "Ticket concedido com êxito"
+
+#, fuzzy
+msgid "Failed to fence the node: %{err}"
+msgstr "Falha ao retroceder o recurso: %{err}"
+
+#, fuzzy
+msgid "Failed to clear the node state: %{err}"
+msgstr "Falha ao limpar o recurso: %{err}"
+
+msgid "Cleared the node state"
+msgstr ""
 
 msgid "Nodes"
 msgstr "Nós"
@@ -568,9 +668,6 @@ msgstr "Bem-vindo"
 
 msgid "Help"
 msgstr "Ajuda"
-
-msgid "Commands"
-msgstr "Comandos"
 
 msgid "Create Primitive"
 msgstr "Criar Primitivo"
@@ -607,6 +704,9 @@ msgstr "Falha ao gerar"
 
 msgid "Upload completed."
 msgstr "Upload concluído."
+
+msgid "Could not cancel report collection"
+msgstr ""
 
 msgid "Cannot display diff, too few transitions"
 msgstr "Impossível exibir dif. Há bem poucas transições"
@@ -680,8 +780,12 @@ msgstr "Recurso limpo com êxito"
 msgid "Failed to clean up the resource: %{err}"
 msgstr "Falha ao limpar o recurso: %{err}"
 
-msgid "Resources"
-msgstr "Recursos"
+#, fuzzy
+msgid "Successfully renamed %{A} to %{B}"
+msgstr "Dom"
+
+msgid "Failed to rename %{A} to %{B}: %{E}"
+msgstr ""
 
 msgid "Create Role"
 msgstr "Criar Função"
@@ -783,8 +887,19 @@ msgstr "Ticket apagado com êxito"
 msgid "Successfully granted the ticket"
 msgstr "Ticket concedido com êxito"
 
+#, fuzzy
+msgid "Error granting the ticket"
+msgstr "Erro"
+
 msgid "Successfully revoked the ticket"
 msgstr "Ticket revogado com êxito"
+
+#, fuzzy
+msgid "Error revoking the ticket"
+msgstr "Erro"
+
+msgid "Simulator active: Use the ticket controls in the simulator"
+msgstr "Simulador ativo: Usar controles de ticket no simulador"
 
 msgid "Tickets"
 msgstr "Tickets"
@@ -836,6 +951,59 @@ msgstr "Obrigatório"
 
 msgid "Unique"
 msgstr "Exclusivo"
+
+msgid "Profile"
+msgstr "Perfil"
+
+msgid "Epoch"
+msgstr ""
+
+#, fuzzy
+msgid "Current Configuration Version"
+msgstr "Configuração"
+
+msgid "Host"
+msgstr ""
+
+msgid "Designated Coordinator"
+msgstr ""
+
+#, fuzzy
+msgid "DC"
+msgstr "DC:"
+
+#, fuzzy
+msgid "CIB Schema Version"
+msgstr "Versão"
+
+msgid "Schema"
+msgstr ""
+
+msgid "Last Written"
+msgstr ""
+
+msgid "Update Origin"
+msgstr ""
+
+msgid "Update User"
+msgstr ""
+
+msgid "Have Quorum"
+msgstr ""
+
+msgid "Version"
+msgstr "Versão"
+
+#, fuzzy
+msgid "Pacemaker Version"
+msgstr "Versão"
+
+#, fuzzy
+msgid "Stack"
+msgstr "Início"
+
+msgid "Cluster Communication Stack"
+msgstr ""
 
 msgid "Master"
 msgstr "Mestre"
@@ -921,16 +1089,10 @@ msgstr ""
 "}: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_"
 "reason}"
 
-msgid "other"
-msgstr "outros"
-
 msgid "STONITH is disabled. For normal cluster operation, STONITH is required."
 msgstr ""
 "STONITH desabilitado. Para operação normal do cluster, o STONITH é obrigatório"
 "."
-
-msgid "None"
-msgstr "Nenhum"
 
 msgid "Clone ID is required"
 msgstr "ID do clone obrigatório"
@@ -988,14 +1150,14 @@ msgstr ""
 "s instâncias sejam iniciadas/paradas logo após sua instância peer (em vez de t"
 "er que aguardar por cada instância do outro clone)."
 
+msgid "Child Resource"
+msgstr "Recurso Filho"
+
+msgid "Child resource to use as clone."
+msgstr ""
+
 msgid "The ID \"%{id}\" does not exist"
 msgstr "O ID \"%{id}\" não existe"
-
-msgid "Constraint ID is required"
-msgstr "ID da Restrição obrigatório"
-
-msgid "Invalid Constraint ID"
-msgstr "ID da Restrição Inválido"
 
 msgid "Score is required"
 msgstr "Pontuação obrigatória"
@@ -1003,11 +1165,31 @@ msgstr "Pontuação obrigatória"
 msgid "Invalid score value"
 msgstr "Valor de pontuação inválido"
 
+msgid "Invalid node attribute"
+msgstr ""
+
 msgid "Constraint must consist of at least two separate resources"
 msgstr "A restrição deve consistir em pelo menos dois recursos separados"
 
+#, fuzzy
+msgid "The score determines the location relationship between the resources."
+msgstr "Qui"
+
+#, fuzzy
+msgid "Node Attribute"
+msgstr "Atributo"
+
+msgid ""
+"Colocate resources by the given node attribute instead of by node name (the de"
+"fault)."
+msgstr ""
+
 msgid "Not a constraint"
 msgstr "Não é uma restrição"
+
+#, fuzzy
+msgid "Unique identifier for the constraint. May not contain spaces."
+msgstr "Exclusivo"
 
 msgid "Set to true if the resource agent supports the migrate action"
 msgstr "Definir como verdadeiro se o agente do recurso suportar a ação de migração"
@@ -1073,12 +1255,6 @@ msgstr ""
 "Quanto tempo até esgotar o tempo de espera de uma conexão de convidado pendent"
 "e."
 
-msgid "Group ID is required"
-msgstr "ID do Grupo obrigatório"
-
-msgid "Invalid Group ID"
-msgstr "ID do Grupo Inválido"
-
 msgid "No Group children specified"
 msgstr "Nenhum filho do Grupo especificado"
 
@@ -1087,6 +1263,9 @@ msgstr "Nenhum recurso especificado"
 
 msgid "No rules specified"
 msgstr "Nenhuma regra especificada"
+
+msgid "Invalid resource discovery type"
+msgstr ""
 
 msgid "Constraint is too complex - it contains nested rules"
 msgstr "Restrição complexa demais; contém regras aninhadas"
@@ -1103,11 +1282,57 @@ msgstr "O atributo contém aspas simples e duplas"
 msgid "Value contains both single and double quotes"
 msgstr "O valor contém aspas simples e duplas"
 
-msgid "Multi-state ID is required"
-msgstr "ID de Vários Estados obrigatório"
+#, fuzzy
+msgid "Resources to apply the constraint to."
+msgstr "Recursos"
 
-msgid "Invalid Multi-state ID"
-msgstr "ID de Vários Estados Inválido"
+#, fuzzy
+msgid ""
+"Positive values indicate the resources should run on this node. Negative value"
+"s indicate the resources should not run on this node. Values of +/- INFINITY c"
+"hange \"should\"/\"should not\" to \"must\"/\"must not\"."
+msgstr "Valor"
+
+msgid "Node"
+msgstr "Nó"
+
+#, fuzzy
+msgid "Name of a node in the cluster."
+msgstr "Nome"
+
+#, fuzzy
+msgid "Resource Discovery"
+msgstr "Recursos"
+
+#, fuzzy
+msgid ""
+"Controls resource discovery for the specified resource on nodes covered by the"
+" constraint. always: Always perform resource discovery (default). never: Never"
+" perform resource discovery for the specified resource on this node. This opti"
+"on should generally be used with a -INFINITY score. exclusive: Only perform re"
+"source discovery for the specified resource on this node."
+msgstr "Qui"
+
+msgid "Limits the rule to apply only when the resource is in the specified role."
+msgstr ""
+
+#, fuzzy
+msgid "Operator"
+msgstr "Operação"
+
+msgid ""
+"How to combine the result of multiple expression objects. Allowed values are a"
+"nd and or."
+msgstr ""
+
+msgid "Expression"
+msgstr ""
+
+#, fuzzy
+msgid ""
+"Each rule can contain a number of expressions. The results of the expressions "
+"are combined based on the rule's boolean operator."
+msgstr "Qui"
 
 msgid "No Multi-state child specified"
 msgstr "Nenhum filho de Vários estados especificado"
@@ -1134,7 +1359,34 @@ msgstr "Nome obrigatório"
 msgid "Invalid name"
 msgstr "Nome inválido"
 
+#, fuzzy
+msgid "Node ID"
+msgstr "Nó"
+
+#, fuzzy
+msgid "Unique identifier for the node."
+msgstr "Exclusivo"
+
+#, fuzzy
+msgid "Node Name"
+msgstr "Nome"
+
+#, fuzzy
+msgid "Name used to refer to the node in the cluster."
+msgstr "Nome"
+
+#, fuzzy
+msgid ""
+"Puts the node into standby mode. The specified node is no longer able to host "
+"resources. Any resources currently active on the node will be moved to another"
+" node."
+msgstr "outros"
+
 msgid "is required"
+msgstr "obrigatório(a)"
+
+#, fuzzy
+msgid "ID is required"
 msgstr "obrigatório(a)"
 
 msgid "Object not found: %s=%s"
@@ -1148,12 +1400,6 @@ msgstr "Impossível criar: %{msg}"
 
 msgid "Error updating %{id} (rc=%{rc})"
 msgstr "Erro ao atualizar %{id} (rc=%{rc})"
-
-msgid "PE Input created by different Pacemaker version (%{version})"
-msgstr "Entrada PE criada por versão diferente do Pacemaker (%{version})"
-
-msgid "Pacemaker version not present in PE Input"
-msgstr "Versão do Pacemaker ausente da Entrada PE"
 
 msgid "No details available"
 msgstr "Nenhum detalhe disponível"
@@ -1170,11 +1416,9 @@ msgstr "deve ter extensão de arquivo correta"
 msgid "Not a resource"
 msgstr "Não é um recurso"
 
-msgid "Role ID is required"
-msgstr "ID da Função obrigatório"
-
-msgid "Invalid Role ID"
-msgstr "ID da Função Inválido"
+#, fuzzy
+msgid "Unique identifier for the resource. May not contain spaces."
+msgstr "Exclusivo"
 
 msgid "At least one rule is required"
 msgstr "No mínimo, uma regra é necessária"
@@ -1197,20 +1441,8 @@ msgstr "Nenhuma senha especificada"
 msgid "Invalid username or password"
 msgstr "Nome de usuário ou senha inválida"
 
-msgid "Tag ID is required"
-msgstr "ID da Tag obrigatório"
-
-msgid "Invalid Tag ID"
-msgstr "ID da Tag Inválido"
-
 msgid "No Tag resources specified"
 msgstr "Nenhum recurso de Tag especificado"
-
-msgid "Resource ID is required"
-msgstr "ID do Recurso obrigatório"
-
-msgid "Invalid Resource ID"
-msgstr "ID do Recurso Inválido"
 
 msgid "How frequently (in seconds) to perform the operation."
 msgstr "Com que frequência (em segundos) executar a operação."
@@ -1245,6 +1477,44 @@ msgstr ""
 "Se verdadeiro, a intenção de executar a operação será registrada para que os G"
 "UIs e as ferramentas CLI possam indicar que há uma operação em andamento."
 
+#, fuzzy
+msgid "Resource template to inherit from."
+msgstr "Recursos"
+
+msgid "Class"
+msgstr "Classe"
+
+msgid "Standard which the resource agent conforms to."
+msgstr ""
+
+msgid "Provider"
+msgstr "Provedor"
+
+msgid "Vendor or project which provided the resource agent."
+msgstr ""
+
+#, fuzzy
+msgid "Resource agent name."
+msgstr "Recursos"
+
+msgid "After the specified timeout period, the operation will be treated as failed."
+msgstr ""
+
+#, fuzzy
+msgid "Monitor"
+msgstr "Seg"
+
+msgid ""
+"Define a monitor operation to instruct the cluster to ensure that the resource"
+" is still healthy."
+msgstr ""
+
+msgid "Constraint ID is required"
+msgstr "ID da Restrição obrigatório"
+
+msgid "Invalid Constraint ID"
+msgstr "ID da Restrição Inválido"
+
 msgid "Ticket ID is required"
 msgstr "ID do Ticket obrigatório"
 
@@ -1253,9 +1523,6 @@ msgstr "ID do Ticket Inválido"
 
 msgid "Constraint must consist of at least one separate resources"
 msgstr "A restrição deve consistir em pelo menos um recurso separado"
-
-msgid "Simulator active: Use the ticket controls in the simulator"
-msgstr "Simulador ativo: Usar controles de ticket no simulador"
 
 msgid "ACL target ID is required"
 msgstr "ID do destino da ACL obrigatório"
@@ -1293,11 +1560,15 @@ msgstr "Intevalo"
 msgid "Depth"
 msgstr "Profundidade"
 
-msgid "Close"
-msgstr "Fechar"
+#, fuzzy
+msgid "Apply Configuration"
+msgstr "Configuração"
 
-msgid "Child Resource"
-msgstr "Recurso Filho"
+msgid "Calculating list of changes..."
+msgstr ""
+
+msgid "Errors"
+msgstr "Erros"
 
 msgid "Meta Attributes"
 msgstr "Atributos Meta"
@@ -1308,14 +1579,52 @@ msgstr "Voltar"
 msgid "Are you sure you wish to delete %s?"
 msgstr "Tem certeza de que deseja apagar %s?"
 
-msgid "List"
-msgstr "Listar"
+msgid "Always"
+msgstr ""
+
+#, fuzzy
+msgid "Never"
+msgstr "Reverter"
+
+msgid "Advanced"
+msgstr "Avançado"
+
+msgid "Lists crm commands recently executed by hawk, most recent first."
+msgstr ""
+"Lista os comandos crm executados recentemente pelo hawk, os mais recentes prim"
+"eiro."
+
+#, fuzzy
+msgid "Edit Configuration"
+msgstr "Configuração"
+
+msgid "XML"
+msgstr ""
+
+msgid "Graph"
+msgstr "Gráficos"
+
+#, fuzzy
+msgid "Cluster Details"
+msgstr "Detalhes"
+
+#, fuzzy
+msgid "Batch Mode Active"
+msgstr "Seg"
+
+#, fuzzy
+msgid "Show Configuration"
+msgstr "Configuração"
 
 msgid "Constraint:"
 msgstr "Restrição:"
 
-msgid "Add Constraint"
+#, fuzzy
+msgid "Add a constraint"
 msgstr "Adicionar restrição"
+
+msgid "List"
+msgstr "Listar"
 
 msgid "Resource Defaults"
 msgstr "Padrões de Recursos"
@@ -1323,38 +1632,23 @@ msgstr "Padrões de Recursos"
 msgid "Operation Defaults"
 msgstr "Padrões de Operação"
 
-msgid "Default"
-msgstr "Padrão"
-
 msgid "Add Cluster"
 msgstr "Adicionar Cluster"
-
-msgid "Cluster name"
-msgstr "Nome do cluster"
 
 msgid "West Coast (example)"
 msgstr "Costa Oeste (exemplo)"
 
-msgid "node1.west.example.com"
-msgstr "nó1.oeste.exemplo.com"
+msgid "Cluster name"
+msgstr "Nome do cluster"
 
 msgid "Hostname of node in cluster"
 msgstr "Nome de host do nó no cluster"
 
-msgid "Advanced"
-msgstr "Avançado"
-
-msgid "Update interval (seconds)"
-msgstr "Intervalo de atualização (segundos)"
+msgid "node1.west.example.com"
+msgstr "nó1.oeste.exemplo.com"
 
 msgid "Server port to connect to"
 msgstr "Porta do servidor para conexão"
-
-msgid "HTTPS"
-msgstr "HTTPS"
-
-msgid "Graph"
-msgstr "Gráficos"
 
 msgid "Children"
 msgstr "Filhos"
@@ -1370,6 +1664,12 @@ msgstr "SUSE, LLC"
 
 msgid "High Availability Web Konsole"
 msgstr "High Availability Web Konsole"
+
+msgid "Simple"
+msgstr ""
+
+msgid "Advisory"
+msgstr ""
 
 msgid "Edit Location"
 msgstr "Editar Local"
@@ -1392,40 +1692,59 @@ msgstr "Recurso de Vários Estados"
 msgid "Create Multi-state"
 msgstr "Criar Vários Estados"
 
-msgid "Getting recent events..."
-msgstr "Obtendo eventos recentes..."
-
-msgid "Another operation is in progress..."
-msgstr "Outra operação está em andamento..."
-
-msgid "No events found in last hour"
-msgstr "Nenhum evento encontrado na última hora"
-
-msgid "Remote node."
-msgstr "Nó remoto."
+msgid "Attributes"
+msgstr "Atributos"
 
 msgid "Utilization"
 msgstr "Utilização"
 
+#, fuzzy
+msgid "Edit Node"
+msgstr "Editar Função"
+
+msgid "RC"
+msgstr ""
+
+msgid "Operation"
+msgstr "Operação"
+
+msgid "Last Change"
+msgstr ""
+
+msgid "State"
+msgstr "Estado"
+
+msgid "Call"
+msgstr "Chamar"
+
+msgid "Exec"
+msgstr ""
+
+#, fuzzy
+msgid "Complete"
+msgstr "Gabarito"
+
+msgid "Remote node."
+msgstr "Nó remoto."
+
 msgid "No utilization defined"
 msgstr "Nenhuma utilização definida"
-
-msgid "Attributes"
-msgstr "Atributos"
 
 msgid "No attributes defined"
 msgstr "Nenhum atributo definido"
 
+msgid "Mandatory"
+msgstr ""
+
+#, fuzzy
+msgid "Optional"
+msgstr "Opções"
+
+msgid "Serialize"
+msgstr ""
+
 msgid "Symmetrical"
 msgstr "Simétrico"
-
-msgid "Command Log"
-msgstr "Registro do Comando"
-
-msgid "Lists crm commands recently executed by hawk, most recent first."
-msgstr ""
-"Lista os comandos crm executados recentemente pelo hawk, os mais recentes prim"
-"eiro."
 
 msgid "HTML"
 msgstr "HTML"
@@ -1433,32 +1752,17 @@ msgstr "HTML"
 msgid "PDF"
 msgstr "PDF"
 
-msgid "Template"
-msgstr "Gabarito"
+msgid "Default"
+msgstr "Padrão"
 
-msgid "Class"
-msgstr "Classe"
-
-msgid "Provider"
-msgstr "Provedor"
-
-msgid "Data collection in progress..."
-msgstr "Coleta de dados em andamento..."
-
-msgid "To"
-msgstr "Para"
-
-msgid "Generate"
-msgstr "Gerar"
-
-msgid "Upload"
-msgstr "Fazer Upload"
+msgid "Copy"
+msgstr ""
 
 msgid "Reports"
 msgstr "Relatórios"
 
-msgid "Report"
-msgstr "Relatório"
+msgid "To"
+msgstr "Para"
 
 msgid "Created"
 msgstr "Criado"
@@ -1469,23 +1773,11 @@ msgstr "Transições"
 msgid "No transitions in report"
 msgstr "Nenhuma transição no relatório"
 
-msgid "Previous"
-msgstr "Anterior"
-
-msgid "Next"
-msgstr "Avançar"
-
 msgid "PE Name"
 msgstr "Nome PE"
 
-msgid "Node"
-msgstr "Nó"
-
 msgid "Time"
 msgstr "Horário"
-
-msgid "Version"
-msgstr "Versão"
 
 msgid "Configuration"
 msgstr "Configuração"
@@ -1502,26 +1794,31 @@ msgstr "Eventos do Nó"
 msgid "Resource Events"
 msgstr "Eventos de Recursos"
 
-msgid "Resource:"
-msgstr "Recurso:"
+msgid "Data collection in progress..."
+msgstr "Coleta de dados em andamento..."
 
-msgid "Value"
-msgstr "Valor"
+msgid "Generate"
+msgstr "Gerar"
+
+msgid "Upload"
+msgstr "Fazer Upload"
+
+msgid "Loading report..."
+msgstr ""
+
+#, fuzzy
+msgid "Rename Resource"
+msgstr "Recursos"
+
+#, fuzzy
+msgid "Child"
+msgstr "Filhos"
 
 msgid "Instances"
 msgstr "Instâncias"
 
-msgid "State"
-msgstr "Estado"
-
 msgid "Failed Operations"
 msgstr "Operações com Falha"
-
-msgid "Call"
-msgstr "Chamar"
-
-msgid "Operation"
-msgstr "Operação"
 
 msgid "Reason"
 msgstr "Motivo"
@@ -1556,50 +1853,37 @@ msgstr "Referência"
 msgid "Attribute"
 msgstr "Atributo"
 
-msgid "ACL Roles"
-msgstr "Funções da ACL"
+#, fuzzy
+msgid "Access Control Lists"
+msgstr "Listar"
 
 msgid "Login"
 msgstr "Login"
 
-msgid "Version:"
-msgstr "Versão:"
-
-msgid "DC:"
-msgstr "DC:"
-
-msgid "UI:"
-msgstr "IU:"
-
-msgid "Status:"
-msgstr "Status: "
-
-msgid "Add resource"
-msgstr "Adicionar recurso"
-
-msgid "Add constraint"
+msgid "Add Constraint"
 msgstr "Adicionar restrição"
 
-msgid "Add template"
-msgstr "Adicionar gabarito"
-
-msgid "Choose wizard"
+msgid "Wizards"
 msgstr "Escolher assistente"
 
-msgid "Simulator Active"
-msgstr "Simulador Ativo"
+msgid "Access Control"
+msgstr ""
 
-msgid "Reset"
-msgstr "Redefinir"
+#, fuzzy
+msgid "Targets"
+msgstr "ID do Destino"
 
-msgid "Run"
-msgstr "Executar"
+msgid ""
+"Any pending changes to the configuration will be lost - do you wish to proceed"
+"?"
+msgstr ""
 
-msgid "Results"
-msgstr "Resultados"
+msgid "Discard"
+msgstr ""
 
-msgid "Simulation Results"
-msgstr "Resultados da Simulação"
+#, fuzzy
+msgid "Batch Mode"
+msgstr "Seg"
 
 msgid "Summary"
 msgstr "Sumário"
@@ -1613,17 +1897,35 @@ msgstr "CIB (saída)"
 msgid "Transition Graph"
 msgstr "Gráfico de Transição"
 
+#, fuzzy
+msgid "Transition"
+msgstr "Transições"
+
+#, fuzzy
+msgid "Inject"
+msgstr "Conectar"
+
+#, fuzzy
+msgid "Node Event"
+msgstr "Eventos do Nó"
+
+#, fuzzy
+msgid "Resource Event"
+msgstr "Eventos de Recursos"
+
+#, fuzzy
+msgid "Ticket Event"
+msgstr "Ticket"
+
 msgid "Transition (XML)"
 msgstr "Transição (XML)"
 
 msgid "Inject Node Event"
 msgstr "Evento de Injeção de Nó"
 
-msgid "OK"
-msgstr "OK"
-
-msgid "Inject Operation Event"
-msgstr "Evento de Operação de Injeção"
+#, fuzzy
+msgid "Inject Resource Event"
+msgstr "Evento de Injeção de Nó"
 
 msgid "Interval (ms)"
 msgstr "Intervalo (ms)"
@@ -1637,26 +1939,19 @@ msgstr "Evento de Injeção de Ticket"
 msgid "Action"
 msgstr "Ação"
 
-msgid "Enable the simulation mode"
-msgstr "Habilitar modo de simulação"
+#, fuzzy
+msgid "Batch Configuration Changes"
+msgstr "Configuração"
 
-msgid "Disable Simulator"
-msgstr "Desabilitar Simulador"
-
-msgid "Disable the simulation mode"
-msgstr "Desabilitar modo de simulação"
-
-msgid "Profile"
-msgstr "Perfil"
+#, fuzzy
+msgid "Batch"
+msgstr "Março"
 
 msgid "Logout"
 msgstr "Logout"
 
 msgid "Menu"
 msgstr "Menu"
-
-msgid "Errors"
-msgstr "Erros"
 
 msgid "No objects available"
 msgstr "Nenhum objeto disponível"
@@ -1673,11 +1968,23 @@ msgstr "Ticket:"
 msgid "Properties"
 msgstr "Propriedades"
 
-msgid "Sequential"
-msgstr "Sequencial"
+msgid "None"
+msgstr "Nenhum"
 
-msgid "No resources defined for ticket"
-msgstr "Nenhum recurso definido para o ticket"
+msgid "Leader"
+msgstr ""
+
+msgid "Expires"
+msgstr ""
+
+msgid "Commit"
+msgstr ""
+
+msgid "Sites"
+msgstr ""
+
+msgid "Arbitrators"
+msgstr ""
 
 msgid "Target ID"
 msgstr "ID do Destino"
@@ -1691,17 +1998,8 @@ msgstr "Deseja realmente cancelar a instalação do assistente?"
 msgid "Do you really want to apply the current wizard?"
 msgstr "Deseja realmente aplicar o assistente atual?"
 
-msgid "Wizards"
-msgstr "Escolher assistente"
-
 msgid "Legacy Wizards"
 msgstr "Assistentes Legados"
-
-msgid "Verify and apply"
-msgstr "Verificar e aplicar"
-
-msgid "Review the wizard actions and apply the changes"
-msgstr "Revisar as ações do assistente e aplicar as mudanças"
 
 msgid "Enable this step"
 msgstr "Habilitar esta etapa"
@@ -1709,8 +2007,14 @@ msgstr "Habilitar esta etapa"
 msgid "This wizard takes no parameters."
 msgstr "Este assistente não usa parâmetros."
 
+msgid "Next"
+msgstr "Avançar"
+
 msgid "Verify"
 msgstr "Verificar"
+
+msgid "Verify and apply"
+msgstr "Verificar e aplicar"
 
 msgid ""
 "To apply the changes, Hawk requires root access, and password-less SSH access "
@@ -1721,6 +2025,9 @@ msgstr ""
 
 msgid "Root password"
 msgstr "Senha root"
+
+msgid "other"
+msgstr "outros"
 
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "O objeto/atributo não existe (cibadmin %{cmd})"

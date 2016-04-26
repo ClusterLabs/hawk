@@ -106,6 +106,27 @@ msgstr "아니오"
 msgid "Any changes will be lost - do you wish to proceed?"
 msgstr "변경 사항이 유실됩니다. 계속하시겠습니까?"
 
+#, fuzzy
+msgid "Invalid ID"
+msgstr "잘못된 태그 ID"
+
+msgid "OK"
+msgstr "확인"
+
+#, fuzzy
+msgid "Maintenance mode"
+msgstr "유지보수"
+
+msgid "An error has occurred"
+msgstr ""
+
+msgid "Close"
+msgstr "닫기"
+
+#, fuzzy
+msgid "No configuration changes."
+msgstr "구성 변경 내용 적용 중..."
+
 msgid "Clone ID"
 msgstr "복제 ID"
 
@@ -148,6 +169,9 @@ msgstr "티켓"
 msgid "Constraint"
 msgstr "제약 조건"
 
+msgid "Resources"
+msgstr "리소스"
+
 msgid "Group ID"
 msgstr "그룹 ID"
 
@@ -165,6 +189,9 @@ msgstr "부울 연산자"
 
 msgid "Multi-state ID"
 msgstr "다중 상태 ID"
+
+msgid "Failed to parse monitor response - Internal server error."
+msgstr ""
 
 msgid "Connection to server failed - will retry every 15 seconds."
 msgstr "서버 연결 실패 - 15초마다 재시도합니다."
@@ -199,8 +226,17 @@ msgstr "대기로 전환"
 msgid "Fence"
 msgstr "펜스"
 
+msgid "Clear state"
+msgstr ""
+
+msgid "Events"
+msgstr ""
+
 msgid "Details"
 msgstr "자세히"
+
+msgid "ID"
+msgstr "ID"
 
 msgid "Add"
 msgstr "추가"
@@ -221,6 +257,10 @@ msgid "Failed to fetch meta attributes"
 msgstr "메타 특성을 가져오지 못했습니다."
 
 msgid "Report generation is complete."
+msgstr "보고서 생성이 완료되었습니다."
+
+#, fuzzy
+msgid "Report generation cancelled."
 msgstr "보고서 생성이 완료되었습니다."
 
 msgid "From"
@@ -322,6 +362,12 @@ msgstr "복제"
 msgid "Tag"
 msgstr "태그"
 
+msgid "Away from current node"
+msgstr ""
+
+msgid "Clean up on all nodes"
+msgstr ""
+
 msgid "Stop"
 msgstr "중지"
 
@@ -349,17 +395,28 @@ msgstr "마이그레이트 취소"
 msgid "Cleanup"
 msgstr "정리"
 
+msgid "Recent events"
+msgstr ""
+
+#, fuzzy
+msgid "No child resources"
+msgstr "하위 리소스"
+
 msgid "Primitive"
 msgstr "기본"
+
+msgid "Template"
+msgstr "템플릿"
 
 msgid "Resource"
 msgstr "자원"
 
+#, fuzzy
+msgid "Rename"
+msgstr "사용자 이름"
+
 msgid "Role ID"
 msgstr "역할 ID"
-
-msgid "Stopped Resources"
-msgstr "정지된 리소스"
 
 msgid "Tag ID"
 msgstr "태그 ID"
@@ -367,14 +424,18 @@ msgstr "태그 ID"
 msgid "Objects"
 msgstr "객체"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Granted"
 msgstr "부여됨"
 
+msgid "Elsewhere"
+msgstr ""
+
 msgid "Revoked"
 msgstr "해지"
+
+#, fuzzy
+msgid "Last Granted"
+msgstr "부여됨"
 
 msgid "Grant"
 msgstr "부여"
@@ -402,6 +463,13 @@ msgstr "%USER%에 대한 새 섀도 CIB를 생성했습니다."
 
 msgid "Unable to create shadow CIB"
 msgstr "섀도 CIB를 생성할 수 없습니다."
+
+msgid "Failed to apply configuration"
+msgstr ""
+
+#, fuzzy
+msgid "Applied configuration successfully"
+msgstr "성공"
 
 msgid "Create Clone"
 msgstr "복제 생성"
@@ -447,6 +515,9 @@ msgstr "코로케이션"
 
 msgid "The colocation constraint does not exist"
 msgstr "코로케이션 제약 조건이 없습니다."
+
+msgid "Command Log"
+msgstr "명령어 로그"
 
 msgid "Constraints"
 msgstr "제약 조건"
@@ -523,11 +594,25 @@ msgstr "다중 상태 리소스"
 msgid "The multi-state resource does not exist"
 msgstr "다중 상태 리소스가 없습니다."
 
+#, fuzzy
+msgid "Node updated successfully"
+msgstr "역할을 성공적으로 업데이트했습니다."
+
+#, fuzzy
+msgid "Failed to set the node online: %{err}"
+msgstr "리소스를 시작하지 못했습니다. %{err}"
+
 msgid "Set the node state to online"
 msgstr "노드 상태를 온라인으로 설정"
 
+msgid "Failed to set the node standby: %{err}"
+msgstr ""
+
 msgid "Set the node state to standby"
 msgstr "노드 상태를 대기로 설정"
+
+msgid "Failed to set the node state to maintenance: %{err}"
+msgstr ""
 
 msgid "Set the node state to maintenance"
 msgstr "노드 상태를 유지보수로 설정"
@@ -535,8 +620,23 @@ msgstr "노드 상태를 유지보수로 설정"
 msgid "Set the node state to ready"
 msgstr "노드 상태를 준비로 설정"
 
-msgid "Set the node state to fence"
-msgstr "노드 상태를 펜스로 설정"
+msgid "Failed to set the node state to ready: %{err}"
+msgstr ""
+
+#, fuzzy
+msgid "Successfully fenced the node"
+msgstr "티켓을 부여했습니다."
+
+#, fuzzy
+msgid "Failed to fence the node: %{err}"
+msgstr "리소스를 강등하지 못했습니다. %{err}"
+
+#, fuzzy
+msgid "Failed to clear the node state: %{err}"
+msgstr "리소스를 정리하지 못했습니다. %{err}"
+
+msgid "Cleared the node state"
+msgstr ""
 
 msgid "Nodes"
 msgstr "노드"
@@ -564,9 +664,6 @@ msgstr "시작"
 
 msgid "Help"
 msgstr "도움말"
-
-msgid "Commands"
-msgstr "명령"
 
 msgid "Create Primitive"
 msgstr "기본 생성"
@@ -603,6 +700,9 @@ msgstr "생성 실패"
 
 msgid "Upload completed."
 msgstr "업로드가 완료되었습니다."
+
+msgid "Could not cancel report collection"
+msgstr ""
 
 msgid "Cannot display diff, too few transitions"
 msgstr "차이를 표시할 수 없습니다. 전환이 너무 적습니다."
@@ -676,8 +776,12 @@ msgstr "리소스를 정리했습니다."
 msgid "Failed to clean up the resource: %{err}"
 msgstr "리소스를 정리하지 못했습니다. %{err}"
 
-msgid "Resources"
-msgstr "리소스"
+#, fuzzy
+msgid "Successfully renamed %{A} to %{B}"
+msgstr "일"
+
+msgid "Failed to rename %{A} to %{B}: %{E}"
+msgstr ""
 
 msgid "Create Role"
 msgstr "역할 생성"
@@ -777,8 +881,19 @@ msgstr "티켓이 삭제되었습니다."
 msgid "Successfully granted the ticket"
 msgstr "티켓을 부여했습니다."
 
+#, fuzzy
+msgid "Error granting the ticket"
+msgstr "오류"
+
 msgid "Successfully revoked the ticket"
 msgstr "티켓을 해지했습니다."
+
+#, fuzzy
+msgid "Error revoking the ticket"
+msgstr "오류"
+
+msgid "Simulator active: Use the ticket controls in the simulator"
+msgstr "시뮬레이터 활성: 시뮬레이터에서 티켓 제어 사용"
 
 msgid "Tickets"
 msgstr "티켓"
@@ -830,6 +945,59 @@ msgstr "필수"
 
 msgid "Unique"
 msgstr "고유"
+
+msgid "Profile"
+msgstr "프로파일"
+
+msgid "Epoch"
+msgstr ""
+
+#, fuzzy
+msgid "Current Configuration Version"
+msgstr "구성"
+
+msgid "Host"
+msgstr ""
+
+msgid "Designated Coordinator"
+msgstr ""
+
+#, fuzzy
+msgid "DC"
+msgstr "DC:"
+
+#, fuzzy
+msgid "CIB Schema Version"
+msgstr "버전"
+
+msgid "Schema"
+msgstr ""
+
+msgid "Last Written"
+msgstr ""
+
+msgid "Update Origin"
+msgstr ""
+
+msgid "Update User"
+msgstr ""
+
+msgid "Have Quorum"
+msgstr ""
+
+msgid "Version"
+msgstr "버전"
+
+#, fuzzy
+msgid "Pacemaker Version"
+msgstr "버전"
+
+#, fuzzy
+msgid "Stack"
+msgstr "시작"
+
+msgid "Cluster Communication Stack"
+msgstr ""
 
 msgid "Master"
 msgstr "주"
@@ -914,14 +1082,8 @@ msgstr ""
 "%{fail_start}: %{node} 노드의 %{resource} 리소스에 대한 %{op} 작업 실패: call-id=%{call_id}"
 ", rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_reason}"
 
-msgid "other"
-msgstr "기타"
-
 msgid "STONITH is disabled. For normal cluster operation, STONITH is required."
 msgstr "STONITH가 비활성화되었습니다. 클러스터가 정상적으로 작동하려면 STONITH가 필요합니다."
-
-msgid "None"
-msgstr "없음"
 
 msgid "Clone ID is required"
 msgstr "복제 ID가 필요합니다."
@@ -972,14 +1134,14 @@ msgstr ""
 "마스터 사이의 순서 시정 제약 조건에 대한 동작을 변경하여 인스턴스가 다른 복제의 모든 인스턴스가 시작/정지될 때까지 기다리지 않고 피어 인"
 "스턴스가 시작/정지되는 즉시 시작/정지할 수 있도록 합니다."
 
+msgid "Child Resource"
+msgstr "하위 리소스"
+
+msgid "Child resource to use as clone."
+msgstr ""
+
 msgid "The ID \"%{id}\" does not exist"
 msgstr "ID \"%{id}\"이(가) 없습니다."
-
-msgid "Constraint ID is required"
-msgstr "제약 조건 ID가 필요합니다."
-
-msgid "Invalid Constraint ID"
-msgstr "잘못된 제약 조건 ID"
 
 msgid "Score is required"
 msgstr "점수가 필요합니다."
@@ -987,11 +1149,31 @@ msgstr "점수가 필요합니다."
 msgid "Invalid score value"
 msgstr "잘못된 점수 값"
 
+msgid "Invalid node attribute"
+msgstr ""
+
 msgid "Constraint must consist of at least two separate resources"
 msgstr "제약 조건은 2개 이상의 개별 리소스로 구성되어야 합니다."
 
+#, fuzzy
+msgid "The score determines the location relationship between the resources."
+msgstr "목"
+
+#, fuzzy
+msgid "Node Attribute"
+msgstr "속성"
+
+msgid ""
+"Colocate resources by the given node attribute instead of by node name (the de"
+"fault)."
+msgstr ""
+
 msgid "Not a constraint"
 msgstr "제약 조건이 아님"
+
+#, fuzzy
+msgid "Unique identifier for the constraint. May not contain spaces."
+msgstr "고유"
 
 msgid "Set to true if the resource agent supports the migrate action"
 msgstr "리소스 에이전트가 마이그레이션 작업을 지원하는 경우 true로 설정하십시오."
@@ -1046,12 +1228,6 @@ msgstr "원격 노드의 이름이 게스트의 호스트 이름이 아닌 경�
 msgid "How long before a pending guest connection will time out."
 msgstr "대기중 게스트 연결이 시간 초과되기 전까지의 시간입니다."
 
-msgid "Group ID is required"
-msgstr "그룹 ID가 필요합니다."
-
-msgid "Invalid Group ID"
-msgstr "잘못된 그룹 ID"
-
 msgid "No Group children specified"
 msgstr "지정된 그룹 하위가 없습니다."
 
@@ -1060,6 +1236,9 @@ msgstr "지정된 리소스가 없습니다."
 
 msgid "No rules specified"
 msgstr "지정된 규칙이 없습니다."
+
+msgid "Invalid resource discovery type"
+msgstr ""
 
 msgid "Constraint is too complex - it contains nested rules"
 msgstr "제약 조건이 너무 복잡합니다. 중첩 규칙을 포함합니다."
@@ -1076,11 +1255,57 @@ msgstr "특성에 작은따옴표와 큰따옴표가 모두 포함되어 있습�
 msgid "Value contains both single and double quotes"
 msgstr "값에 작은따옴표와 큰따옴표가 모두 포함되어 있습니다."
 
-msgid "Multi-state ID is required"
-msgstr "다중 상태 ID가 필요합니다."
+#, fuzzy
+msgid "Resources to apply the constraint to."
+msgstr "리소스"
 
-msgid "Invalid Multi-state ID"
-msgstr "잘못된 다중 상태 ID"
+#, fuzzy
+msgid ""
+"Positive values indicate the resources should run on this node. Negative value"
+"s indicate the resources should not run on this node. Values of +/- INFINITY c"
+"hange \"should\"/\"should not\" to \"must\"/\"must not\"."
+msgstr "값"
+
+msgid "Node"
+msgstr "노드"
+
+#, fuzzy
+msgid "Name of a node in the cluster."
+msgstr "이름"
+
+#, fuzzy
+msgid "Resource Discovery"
+msgstr "자원"
+
+#, fuzzy
+msgid ""
+"Controls resource discovery for the specified resource on nodes covered by the"
+" constraint. always: Always perform resource discovery (default). never: Never"
+" perform resource discovery for the specified resource on this node. This opti"
+"on should generally be used with a -INFINITY score. exclusive: Only perform re"
+"source discovery for the specified resource on this node."
+msgstr "목"
+
+msgid "Limits the rule to apply only when the resource is in the specified role."
+msgstr ""
+
+#, fuzzy
+msgid "Operator"
+msgstr "작업"
+
+msgid ""
+"How to combine the result of multiple expression objects. Allowed values are a"
+"nd and or."
+msgstr ""
+
+msgid "Expression"
+msgstr ""
+
+#, fuzzy
+msgid ""
+"Each rule can contain a number of expressions. The results of the expressions "
+"are combined based on the rule's boolean operator."
+msgstr "목"
 
 msgid "No Multi-state child specified"
 msgstr "지정된 다중 상태 하위가 없습니다."
@@ -1105,7 +1330,34 @@ msgstr "이름은 필수입니다."
 msgid "Invalid name"
 msgstr "잘못된 이름"
 
+#, fuzzy
+msgid "Node ID"
+msgstr "노드"
+
+#, fuzzy
+msgid "Unique identifier for the node."
+msgstr "고유"
+
+#, fuzzy
+msgid "Node Name"
+msgstr "이름"
+
+#, fuzzy
+msgid "Name used to refer to the node in the cluster."
+msgstr "이름"
+
+#, fuzzy
+msgid ""
+"Puts the node into standby mode. The specified node is no longer able to host "
+"resources. Any resources currently active on the node will be moved to another"
+" node."
+msgstr "기타"
+
 msgid "is required"
+msgstr "필수임"
+
+#, fuzzy
+msgid "ID is required"
 msgstr "필수임"
 
 msgid "Object not found: %s=%s"
@@ -1119,12 +1371,6 @@ msgstr "태그를 생성할 수 없음: %{msg}"
 
 msgid "Error updating %{id} (rc=%{rc})"
 msgstr "%{id}을(를) 업데이트하는 중 오류가 발생했습니다(rc=%{rc})."
-
-msgid "PE Input created by different Pacemaker version (%{version})"
-msgstr "다른 Pacemaker 버전(%{version})으로 만든 PE Input"
-
-msgid "Pacemaker version not present in PE Input"
-msgstr "Pacemaker 버전이 PE Input에 없습니다."
 
 msgid "No details available"
 msgstr "사용할 수 있는 세부 사항 없음"
@@ -1141,11 +1387,9 @@ msgstr "올바른 파일 확장명이어야 합니다."
 msgid "Not a resource"
 msgstr "리소스가 아님"
 
-msgid "Role ID is required"
-msgstr "역할 ID가 필요합니다."
-
-msgid "Invalid Role ID"
-msgstr "잘못된 역할 ID"
+#, fuzzy
+msgid "Unique identifier for the resource. May not contain spaces."
+msgstr "고유"
 
 msgid "At least one rule is required"
 msgstr "규칙이 적어도 하나는 필요합니다."
@@ -1168,20 +1412,8 @@ msgstr "비밀번호가 지정되지 않았습니다."
 msgid "Invalid username or password"
 msgstr "사용자 이름 또는 비밀번호가 잘못되었습니다."
 
-msgid "Tag ID is required"
-msgstr "태그 ID가 필요합니다."
-
-msgid "Invalid Tag ID"
-msgstr "잘못된 태그 ID"
-
 msgid "No Tag resources specified"
 msgstr "지정된 태그 리소스가 없습니다."
-
-msgid "Resource ID is required"
-msgstr "리소스 ID가 필요합니다."
-
-msgid "Invalid Resource ID"
-msgstr "잘못된 리소스 ID"
 
 msgid "How frequently (in seconds) to perform the operation."
 msgstr "작업을 수행할 빈도(초)입니다."
@@ -1212,6 +1444,44 @@ msgid ""
 "LI tools can indicate that an operation is in progress."
 msgstr "true인 경우 작업을 수행하려는 의도가 기록되므로 GUI 및 CLI 도구에서 작업이 진행 중이라고 표시할 수 있습니다."
 
+#, fuzzy
+msgid "Resource template to inherit from."
+msgstr "자원"
+
+msgid "Class"
+msgstr "클래스"
+
+msgid "Standard which the resource agent conforms to."
+msgstr ""
+
+msgid "Provider"
+msgstr "공급자"
+
+msgid "Vendor or project which provided the resource agent."
+msgstr ""
+
+#, fuzzy
+msgid "Resource agent name."
+msgstr "자원"
+
+msgid "After the specified timeout period, the operation will be treated as failed."
+msgstr ""
+
+#, fuzzy
+msgid "Monitor"
+msgstr "월"
+
+msgid ""
+"Define a monitor operation to instruct the cluster to ensure that the resource"
+" is still healthy."
+msgstr ""
+
+msgid "Constraint ID is required"
+msgstr "제약 조건 ID가 필요합니다."
+
+msgid "Invalid Constraint ID"
+msgstr "잘못된 제약 조건 ID"
+
 msgid "Ticket ID is required"
 msgstr "티켓 ID가 필요합니다."
 
@@ -1220,9 +1490,6 @@ msgstr "잘못된 티켓 ID"
 
 msgid "Constraint must consist of at least one separate resources"
 msgstr "제약 조건은 하나 이상의 개별 리소스로 구성되어야 합니다."
-
-msgid "Simulator active: Use the ticket controls in the simulator"
-msgstr "시뮬레이터 활성: 시뮬레이터에서 티켓 제어 사용"
 
 msgid "ACL target ID is required"
 msgstr "ACL 대상 ID가 필요합니다."
@@ -1260,11 +1527,15 @@ msgstr "간격"
 msgid "Depth"
 msgstr "깊이"
 
-msgid "Close"
-msgstr "닫기"
+#, fuzzy
+msgid "Apply Configuration"
+msgstr "구성"
 
-msgid "Child Resource"
-msgstr "하위 리소스"
+msgid "Calculating list of changes..."
+msgstr ""
+
+msgid "Errors"
+msgstr "오류"
 
 msgid "Meta Attributes"
 msgstr "메타 특성"
@@ -1275,14 +1546,50 @@ msgstr "뒤로"
 msgid "Are you sure you wish to delete %s?"
 msgstr "%s을(를) 삭제하시겠습니까?"
 
-msgid "List"
-msgstr "목록"
+msgid "Always"
+msgstr ""
+
+#, fuzzy
+msgid "Never"
+msgstr "되돌리기"
+
+msgid "Advanced"
+msgstr "고급"
+
+msgid "Lists crm commands recently executed by hawk, most recent first."
+msgstr "Hawk에서 최근 실행할 crm 명령을 최근 순서대로 나열합니다."
+
+#, fuzzy
+msgid "Edit Configuration"
+msgstr "구성"
+
+msgid "XML"
+msgstr ""
+
+msgid "Graph"
+msgstr "그래프"
+
+#, fuzzy
+msgid "Cluster Details"
+msgstr "자세히"
+
+#, fuzzy
+msgid "Batch Mode Active"
+msgstr "월"
+
+#, fuzzy
+msgid "Show Configuration"
+msgstr "구성"
 
 msgid "Constraint:"
 msgstr "제약 조건:"
 
-msgid "Add Constraint"
+#, fuzzy
+msgid "Add a constraint"
 msgstr "제약 조건 추가"
+
+msgid "List"
+msgstr "목록"
 
 msgid "Resource Defaults"
 msgstr "리소스 기본값"
@@ -1290,38 +1597,23 @@ msgstr "리소스 기본값"
 msgid "Operation Defaults"
 msgstr "작업 기본값"
 
-msgid "Default"
-msgstr "기본값"
-
 msgid "Add Cluster"
 msgstr "클러스터 추가"
-
-msgid "Cluster name"
-msgstr "클러스터 이름:"
 
 msgid "West Coast (example)"
 msgstr "West Coast(예)"
 
-msgid "node1.west.example.com"
-msgstr "node1.west.example.com"
+msgid "Cluster name"
+msgstr "클러스터 이름:"
 
 msgid "Hostname of node in cluster"
 msgstr "클러스터에 있는 노드의 호스트 이름"
 
-msgid "Advanced"
-msgstr "고급"
-
-msgid "Update interval (seconds)"
-msgstr "업데이트 간격(초)"
+msgid "node1.west.example.com"
+msgstr "node1.west.example.com"
 
 msgid "Server port to connect to"
 msgstr "연결할 서버 포트"
-
-msgid "HTTPS"
-msgstr "HTTPS"
-
-msgid "Graph"
-msgstr "그래프"
 
 msgid "Children"
 msgstr "하위"
@@ -1337,6 +1629,12 @@ msgstr "SUSE, LLC"
 
 msgid "High Availability Web Konsole"
 msgstr "고가용성 웹 콘솔"
+
+msgid "Simple"
+msgstr ""
+
+msgid "Advisory"
+msgstr ""
 
 msgid "Edit Location"
 msgstr "위치 편집"
@@ -1359,38 +1657,59 @@ msgstr "다중 상태 리소스"
 msgid "Create Multi-state"
 msgstr "다중 상태 생성"
 
-msgid "Getting recent events..."
-msgstr "최근 이벤트를 가져오는 중..."
-
-msgid "Another operation is in progress..."
-msgstr "다른 작업이 진행 중..."
-
-msgid "No events found in last hour"
-msgstr "마지막 시간에 검색된 이벤트가 없습니다."
-
-msgid "Remote node."
-msgstr "원격 노드입니다."
+msgid "Attributes"
+msgstr "특성"
 
 msgid "Utilization"
 msgstr "사용량"
 
+#, fuzzy
+msgid "Edit Node"
+msgstr "역할 편집"
+
+msgid "RC"
+msgstr ""
+
+msgid "Operation"
+msgstr "작업"
+
+msgid "Last Change"
+msgstr ""
+
+msgid "State"
+msgstr "상태"
+
+msgid "Call"
+msgstr "콜"
+
+msgid "Exec"
+msgstr ""
+
+#, fuzzy
+msgid "Complete"
+msgstr "템플릿"
+
+msgid "Remote node."
+msgstr "원격 노드입니다."
+
 msgid "No utilization defined"
 msgstr "정의된 사용률이 없습니다."
-
-msgid "Attributes"
-msgstr "특성"
 
 msgid "No attributes defined"
 msgstr "정의된 특성이 없습니다."
 
+msgid "Mandatory"
+msgstr ""
+
+#, fuzzy
+msgid "Optional"
+msgstr "옵션"
+
+msgid "Serialize"
+msgstr ""
+
 msgid "Symmetrical"
 msgstr "대칭적"
-
-msgid "Command Log"
-msgstr "명령어 로그"
-
-msgid "Lists crm commands recently executed by hawk, most recent first."
-msgstr "Hawk에서 최근 실행할 crm 명령을 최근 순서대로 나열합니다."
 
 msgid "HTML"
 msgstr "HTML"
@@ -1398,32 +1717,17 @@ msgstr "HTML"
 msgid "PDF"
 msgstr "PDF"
 
-msgid "Template"
-msgstr "템플릿"
+msgid "Default"
+msgstr "기본값"
 
-msgid "Class"
-msgstr "클래스"
-
-msgid "Provider"
-msgstr "공급자"
-
-msgid "Data collection in progress..."
-msgstr "데이터 수집 진행 중..."
-
-msgid "To"
-msgstr "받는 사람"
-
-msgid "Generate"
-msgstr "생성"
-
-msgid "Upload"
-msgstr "업로드"
+msgid "Copy"
+msgstr ""
 
 msgid "Reports"
 msgstr "보고서"
 
-msgid "Report"
-msgstr "보고서"
+msgid "To"
+msgstr "받는 사람"
 
 msgid "Created"
 msgstr "만든일시"
@@ -1434,23 +1738,11 @@ msgstr "전환"
 msgid "No transitions in report"
 msgstr "보고서에 전환이 없습니다."
 
-msgid "Previous"
-msgstr "이전"
-
-msgid "Next"
-msgstr "다음"
-
 msgid "PE Name"
 msgstr "PE 이름"
 
-msgid "Node"
-msgstr "노드"
-
 msgid "Time"
 msgstr "시간"
-
-msgid "Version"
-msgstr "버전"
 
 msgid "Configuration"
 msgstr "구성"
@@ -1467,26 +1759,31 @@ msgstr "노드 이벤트"
 msgid "Resource Events"
 msgstr "리소스 이벤트"
 
-msgid "Resource:"
-msgstr "리소스:"
+msgid "Data collection in progress..."
+msgstr "데이터 수집 진행 중..."
 
-msgid "Value"
-msgstr "값"
+msgid "Generate"
+msgstr "생성"
+
+msgid "Upload"
+msgstr "업로드"
+
+msgid "Loading report..."
+msgstr ""
+
+#, fuzzy
+msgid "Rename Resource"
+msgstr "자원"
+
+#, fuzzy
+msgid "Child"
+msgstr "하위"
 
 msgid "Instances"
 msgstr "인스턴스"
 
-msgid "State"
-msgstr "상태"
-
 msgid "Failed Operations"
 msgstr "실패한 작업"
-
-msgid "Call"
-msgstr "콜"
-
-msgid "Operation"
-msgstr "작업"
 
 msgid "Reason"
 msgstr "이유"
@@ -1521,50 +1818,37 @@ msgstr "참조"
 msgid "Attribute"
 msgstr "속성"
 
-msgid "ACL Roles"
-msgstr "ACL 역할"
+#, fuzzy
+msgid "Access Control Lists"
+msgstr "목록"
 
 msgid "Login"
 msgstr "로그인"
 
-msgid "Version:"
-msgstr "버전:"
-
-msgid "DC:"
-msgstr "DC:"
-
-msgid "UI:"
-msgstr "UI:"
-
-msgid "Status:"
-msgstr "상태:"
-
-msgid "Add resource"
-msgstr "리소스 추가"
-
-msgid "Add constraint"
+msgid "Add Constraint"
 msgstr "제약 조건 추가"
 
-msgid "Add template"
-msgstr "템플릿 추가"
-
-msgid "Choose wizard"
+msgid "Wizards"
 msgstr "마법사 선택"
 
-msgid "Simulator Active"
-msgstr "시뮬레이터 활성"
+msgid "Access Control"
+msgstr ""
 
-msgid "Reset"
-msgstr "재설정"
+#, fuzzy
+msgid "Targets"
+msgstr "대상 ID"
 
-msgid "Run"
-msgstr "실행"
+msgid ""
+"Any pending changes to the configuration will be lost - do you wish to proceed"
+"?"
+msgstr ""
 
-msgid "Results"
-msgstr "결과"
+msgid "Discard"
+msgstr ""
 
-msgid "Simulation Results"
-msgstr "시뮬레이션 결과"
+#, fuzzy
+msgid "Batch Mode"
+msgstr "월"
 
 msgid "Summary"
 msgstr "요약"
@@ -1578,17 +1862,35 @@ msgstr "CIB (출력)"
 msgid "Transition Graph"
 msgstr "전환 그래프"
 
+#, fuzzy
+msgid "Transition"
+msgstr "전환"
+
+#, fuzzy
+msgid "Inject"
+msgstr "연결"
+
+#, fuzzy
+msgid "Node Event"
+msgstr "노드 이벤트"
+
+#, fuzzy
+msgid "Resource Event"
+msgstr "리소스 이벤트"
+
+#, fuzzy
+msgid "Ticket Event"
+msgstr "티켓"
+
 msgid "Transition (XML)"
 msgstr "전환(XML)"
 
 msgid "Inject Node Event"
 msgstr "삽입 노드 이벤트"
 
-msgid "OK"
-msgstr "확인"
-
-msgid "Inject Operation Event"
-msgstr "삽입 작업 이벤트"
+#, fuzzy
+msgid "Inject Resource Event"
+msgstr "삽입 노드 이벤트"
 
 msgid "Interval (ms)"
 msgstr "간격(ms)"
@@ -1602,26 +1904,19 @@ msgstr "삽입 티켓 이벤트"
 msgid "Action"
 msgstr "동작"
 
-msgid "Enable the simulation mode"
-msgstr "시뮬레이션 모드 활성화"
+#, fuzzy
+msgid "Batch Configuration Changes"
+msgstr "구성"
 
-msgid "Disable Simulator"
-msgstr "시뮬레이터 비활성화"
-
-msgid "Disable the simulation mode"
-msgstr "시뮬레이션 모드 비활성화"
-
-msgid "Profile"
-msgstr "프로파일"
+#, fuzzy
+msgid "Batch"
+msgstr "3월"
 
 msgid "Logout"
 msgstr "로그아웃"
 
 msgid "Menu"
 msgstr "메뉴"
-
-msgid "Errors"
-msgstr "오류"
 
 msgid "No objects available"
 msgstr "사용할 수 있는 객체 없음"
@@ -1638,11 +1933,23 @@ msgstr "티켓:"
 msgid "Properties"
 msgstr "속성"
 
-msgid "Sequential"
-msgstr "순차"
+msgid "None"
+msgstr "없음"
 
-msgid "No resources defined for ticket"
-msgstr "티켓에 대한 리소스를 정의하지 않았습니다."
+msgid "Leader"
+msgstr ""
+
+msgid "Expires"
+msgstr ""
+
+msgid "Commit"
+msgstr ""
+
+msgid "Sites"
+msgstr ""
+
+msgid "Arbitrators"
+msgstr ""
 
 msgid "Target ID"
 msgstr "대상 ID"
@@ -1656,17 +1963,8 @@ msgstr "마법사 설정을 취소하시겠습니까?"
 msgid "Do you really want to apply the current wizard?"
 msgstr "현재 마법사를 적용하시겠습니까?"
 
-msgid "Wizards"
-msgstr "마법사 선택"
-
 msgid "Legacy Wizards"
 msgstr "레거시 마법사"
-
-msgid "Verify and apply"
-msgstr "확인 및 적용"
-
-msgid "Review the wizard actions and apply the changes"
-msgstr "마법사 작업을 검토하고 변경 내용 적용"
 
 msgid "Enable this step"
 msgstr "이 단계 활성화"
@@ -1674,8 +1972,14 @@ msgstr "이 단계 활성화"
 msgid "This wizard takes no parameters."
 msgstr "이 마법사에서는 파라미터를 사용하지 않습니다."
 
+msgid "Next"
+msgstr "다음"
+
 msgid "Verify"
 msgstr "확인"
+
+msgid "Verify and apply"
+msgstr "확인 및 적용"
 
 msgid ""
 "To apply the changes, Hawk requires root access, and password-less SSH access "
@@ -1686,6 +1990,9 @@ msgstr ""
 
 msgid "Root password"
 msgstr "루트 비밀번호"
+
+msgid "other"
+msgstr "기타"
 
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "객체/특성이 없습니다(cibadmin %{cmd})."

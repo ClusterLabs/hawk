@@ -110,6 +110,27 @@ msgstr "Nej"
 msgid "Any changes will be lost - do you wish to proceed?"
 msgstr "Alla ändringar går förlorade. Vill du fortsätta?"
 
+#, fuzzy
+msgid "Invalid ID"
+msgstr "Ogiltigt tagg-ID"
+
+msgid "OK"
+msgstr "OK"
+
+#, fuzzy
+msgid "Maintenance mode"
+msgstr "Underhåll"
+
+msgid "An error has occurred"
+msgstr ""
+
+msgid "Close"
+msgstr "Stäng"
+
+#, fuzzy
+msgid "No configuration changes."
+msgstr "Tillämpar inställningsändringar..."
+
 msgid "Clone ID"
 msgstr "Klon-ID"
 
@@ -152,6 +173,9 @@ msgstr "Biljett"
 msgid "Constraint"
 msgstr "Begränsning"
 
+msgid "Resources"
+msgstr "Resurser"
+
 msgid "Group ID"
 msgstr "Grupp-ID"
 
@@ -169,6 +193,9 @@ msgstr "Boolesk operand"
 
 msgid "Multi-state ID"
 msgstr "Multistatus-ID"
+
+msgid "Failed to parse monitor response - Internal server error."
+msgstr ""
 
 msgid "Connection to server failed - will retry every 15 seconds."
 msgstr "Anslutning till server kunde inte upprättas - försöker igen var 15:e sekund."
@@ -203,8 +230,17 @@ msgstr "Växla till standby"
 msgid "Fence"
 msgstr "Fence"
 
+msgid "Clear state"
+msgstr ""
+
+msgid "Events"
+msgstr ""
+
 msgid "Details"
 msgstr "Detaljer"
+
+msgid "ID"
+msgstr "ID"
 
 msgid "Add"
 msgstr "Lägg till"
@@ -225,6 +261,10 @@ msgid "Failed to fetch meta attributes"
 msgstr "Metaattribut kunde inte hämtas"
 
 msgid "Report generation is complete."
+msgstr "Rapportgenereringen är klar."
+
+#, fuzzy
+msgid "Report generation cancelled."
 msgstr "Rapportgenereringen är klar."
 
 msgid "From"
@@ -326,6 +366,12 @@ msgstr "Klon"
 msgid "Tag"
 msgstr "Tagg"
 
+msgid "Away from current node"
+msgstr ""
+
+msgid "Clean up on all nodes"
+msgstr ""
+
 msgid "Stop"
 msgstr "Stopp"
 
@@ -353,17 +399,28 @@ msgstr "Avmigrera"
 msgid "Cleanup"
 msgstr "Upprensning"
 
+msgid "Recent events"
+msgstr ""
+
+#, fuzzy
+msgid "No child resources"
+msgstr "Underordnad resurs"
+
 msgid "Primitive"
 msgstr "Primitiv"
+
+msgid "Template"
+msgstr "Mall"
 
 msgid "Resource"
 msgstr "Resurs"
 
+#, fuzzy
+msgid "Rename"
+msgstr "Användarnamn"
+
 msgid "Role ID"
 msgstr "Roll-ID"
-
-msgid "Stopped Resources"
-msgstr "Stoppade resurser"
 
 msgid "Tag ID"
 msgstr "Tagg-ID"
@@ -371,14 +428,18 @@ msgstr "Tagg-ID"
 msgid "Objects"
 msgstr "Objekt"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Granted"
 msgstr "Beviljad"
 
+msgid "Elsewhere"
+msgstr ""
+
 msgid "Revoked"
 msgstr "Återkallat"
+
+#, fuzzy
+msgid "Last Granted"
+msgstr "Beviljad"
 
 msgid "Grant"
 msgstr "Bevilja"
@@ -406,6 +467,13 @@ msgstr "Skapade nytt skugg-CIB för %USER%."
 
 msgid "Unable to create shadow CIB"
 msgstr "Det går inte att skapa skugg-CIB"
+
+msgid "Failed to apply configuration"
+msgstr ""
+
+#, fuzzy
+msgid "Applied configuration successfully"
+msgstr "lyckades"
 
 msgid "Create Clone"
 msgstr "Skapa klon"
@@ -451,6 +519,9 @@ msgstr "Colocationer"
 
 msgid "The colocation constraint does not exist"
 msgstr "Colocationsbegränsningen finns inte"
+
+msgid "Command Log"
+msgstr "Kommandologg"
 
 msgid "Constraints"
 msgstr "Begränsningar"
@@ -527,11 +598,25 @@ msgstr "Multistatusresurs"
 msgid "The multi-state resource does not exist"
 msgstr "Multistatusresursen finns inte"
 
+#, fuzzy
+msgid "Node updated successfully"
+msgstr "Rollen har uppdaterats"
+
+#, fuzzy
+msgid "Failed to set the node online: %{err}"
+msgstr "Resursen kunde inte startas: %{err}"
+
 msgid "Set the node state to online"
 msgstr "Ange nodstatus online"
 
+msgid "Failed to set the node standby: %{err}"
+msgstr ""
+
 msgid "Set the node state to standby"
 msgstr "Ange nodstatus standby"
+
+msgid "Failed to set the node state to maintenance: %{err}"
+msgstr ""
 
 msgid "Set the node state to maintenance"
 msgstr "Ange nodstatus underhåll"
@@ -539,8 +624,23 @@ msgstr "Ange nodstatus underhåll"
 msgid "Set the node state to ready"
 msgstr "Ange nodstatus klar"
 
-msgid "Set the node state to fence"
-msgstr "Ange nodstatus fence"
+msgid "Failed to set the node state to ready: %{err}"
+msgstr ""
+
+#, fuzzy
+msgid "Successfully fenced the node"
+msgstr "Biljetten har beviljats"
+
+#, fuzzy
+msgid "Failed to fence the node: %{err}"
+msgstr "Resursen kunde inte nedgraderas: %{err}"
+
+#, fuzzy
+msgid "Failed to clear the node state: %{err}"
+msgstr "Resursen kunde inte rensas: %{err}"
+
+msgid "Cleared the node state"
+msgstr ""
 
 msgid "Nodes"
 msgstr "Noder"
@@ -568,9 +668,6 @@ msgstr "Välkommen"
 
 msgid "Help"
 msgstr "Hjälp"
-
-msgid "Commands"
-msgstr "Kommandon"
 
 msgid "Create Primitive"
 msgstr "Skapa primitiv"
@@ -607,6 +704,9 @@ msgstr "Generering misslyckades"
 
 msgid "Upload completed."
 msgstr "Uppladdning klar."
+
+msgid "Could not cancel report collection"
+msgstr ""
 
 msgid "Cannot display diff, too few transitions"
 msgstr "Kan inte visa diff, för få övergångar"
@@ -680,8 +780,12 @@ msgstr "Resursen har rensats"
 msgid "Failed to clean up the resource: %{err}"
 msgstr "Resursen kunde inte rensas: %{err}"
 
-msgid "Resources"
-msgstr "Resurser"
+#, fuzzy
+msgid "Successfully renamed %{A} to %{B}"
+msgstr "Sö"
+
+msgid "Failed to rename %{A} to %{B}: %{E}"
+msgstr ""
 
 msgid "Create Role"
 msgstr "Skapa roll"
@@ -783,8 +887,19 @@ msgstr "Biljetten har tagits bort"
 msgid "Successfully granted the ticket"
 msgstr "Biljetten har beviljats"
 
+#, fuzzy
+msgid "Error granting the ticket"
+msgstr "Fel"
+
 msgid "Successfully revoked the ticket"
 msgstr "Biljetten har upphävts"
+
+#, fuzzy
+msgid "Error revoking the ticket"
+msgstr "Fel"
+
+msgid "Simulator active: Use the ticket controls in the simulator"
+msgstr "Simulator aktiv: använd biljettreglagen i simulatorn"
 
 msgid "Tickets"
 msgstr "Biljetter"
@@ -836,6 +951,59 @@ msgstr "Krävs"
 
 msgid "Unique"
 msgstr "Unikt"
+
+msgid "Profile"
+msgstr "Ny profil"
+
+msgid "Epoch"
+msgstr ""
+
+#, fuzzy
+msgid "Current Configuration Version"
+msgstr "Inställningar"
+
+msgid "Host"
+msgstr ""
+
+msgid "Designated Coordinator"
+msgstr ""
+
+#, fuzzy
+msgid "DC"
+msgstr "DC:"
+
+#, fuzzy
+msgid "CIB Schema Version"
+msgstr "Version"
+
+msgid "Schema"
+msgstr ""
+
+msgid "Last Written"
+msgstr ""
+
+msgid "Update Origin"
+msgstr ""
+
+msgid "Update User"
+msgstr ""
+
+msgid "Have Quorum"
+msgstr ""
+
+msgid "Version"
+msgstr "Version"
+
+#, fuzzy
+msgid "Pacemaker Version"
+msgstr "Version"
+
+#, fuzzy
+msgid "Stack"
+msgstr "Början"
+
+msgid "Cluster Communication Stack"
+msgstr ""
 
 msgid "Master"
 msgstr "Huvudserver"
@@ -921,14 +1089,8 @@ msgstr ""
 "{node}: anrops-id=%{call_id}, rc-kod=%{rc_mapping} (%{rc_code}), avslutningsor"
 "sak=%{exit_reason}"
 
-msgid "other"
-msgstr "övriga"
-
 msgid "STONITH is disabled. For normal cluster operation, STONITH is required."
 msgstr "STONITH är inaktiverat. STONITH krävs för normal klusteranvändning."
-
-msgid "None"
-msgstr "Ingen"
 
 msgid "Clone ID is required"
 msgstr "Klon-ID krävs"
@@ -986,14 +1148,14 @@ msgstr ""
 "anser kan startas/stoppas så fort som deras peer-instans har gjort det (i stäl"
 "let för att vänta tills varje instans av den andra klonen har gjort det)."
 
+msgid "Child Resource"
+msgstr "Underordnad resurs"
+
+msgid "Child resource to use as clone."
+msgstr ""
+
 msgid "The ID \"%{id}\" does not exist"
 msgstr "ID:t \"%{id}\" finns inte"
-
-msgid "Constraint ID is required"
-msgstr "Begränsnings-ID krävs"
-
-msgid "Invalid Constraint ID"
-msgstr "Ogiltigt begränsnings-ID"
 
 msgid "Score is required"
 msgstr "Poäng krävs"
@@ -1001,11 +1163,31 @@ msgstr "Poäng krävs"
 msgid "Invalid score value"
 msgstr "Ogiltigt poängvärde"
 
+msgid "Invalid node attribute"
+msgstr ""
+
 msgid "Constraint must consist of at least two separate resources"
 msgstr "Begränsningen måste bestå av minst två separata resurser"
 
+#, fuzzy
+msgid "The score determines the location relationship between the resources."
+msgstr "To"
+
+#, fuzzy
+msgid "Node Attribute"
+msgstr "Attribut"
+
+msgid ""
+"Colocate resources by the given node attribute instead of by node name (the de"
+"fault)."
+msgstr ""
+
 msgid "Not a constraint"
 msgstr "Inte en begränsning"
+
+#, fuzzy
+msgid "Unique identifier for the constraint. May not contain spaces."
+msgstr "Unikt"
 
 msgid "Set to true if the resource agent supports the migrate action"
 msgstr "Anges som sant om resursagenten har stöd för migreringsåtgärden"
@@ -1067,12 +1249,6 @@ msgstr ""
 msgid "How long before a pending guest connection will time out."
 msgstr "Tidsåtgång innan en väntande gästanslutning överskrider tidsgränsen."
 
-msgid "Group ID is required"
-msgstr "Grupp-ID krävs"
-
-msgid "Invalid Group ID"
-msgstr "Ogiltigt grupp-ID"
-
 msgid "No Group children specified"
 msgstr "Inga underordnade till gruppen har specificerats"
 
@@ -1081,6 +1257,9 @@ msgstr "Ingen resurs angiven"
 
 msgid "No rules specified"
 msgstr "Inga regler har angetts"
+
+msgid "Invalid resource discovery type"
+msgstr ""
 
 msgid "Constraint is too complex - it contains nested rules"
 msgstr "Begränsningen är för komplex - den innehåller kapslade regler"
@@ -1097,11 +1276,57 @@ msgstr "Attributet innehåller både enkla och dubbla citattecken"
 msgid "Value contains both single and double quotes"
 msgstr "Värdet innehåller både enkla och dubbla citattecken"
 
-msgid "Multi-state ID is required"
-msgstr "Multistatus-ID krävs"
+#, fuzzy
+msgid "Resources to apply the constraint to."
+msgstr "Resurser"
 
-msgid "Invalid Multi-state ID"
-msgstr "Ogiltigt multistatus-ID"
+#, fuzzy
+msgid ""
+"Positive values indicate the resources should run on this node. Negative value"
+"s indicate the resources should not run on this node. Values of +/- INFINITY c"
+"hange \"should\"/\"should not\" to \"must\"/\"must not\"."
+msgstr "Värde"
+
+msgid "Node"
+msgstr "Nod"
+
+#, fuzzy
+msgid "Name of a node in the cluster."
+msgstr "Namn"
+
+#, fuzzy
+msgid "Resource Discovery"
+msgstr "Resurs"
+
+#, fuzzy
+msgid ""
+"Controls resource discovery for the specified resource on nodes covered by the"
+" constraint. always: Always perform resource discovery (default). never: Never"
+" perform resource discovery for the specified resource on this node. This opti"
+"on should generally be used with a -INFINITY score. exclusive: Only perform re"
+"source discovery for the specified resource on this node."
+msgstr "To"
+
+msgid "Limits the rule to apply only when the resource is in the specified role."
+msgstr ""
+
+#, fuzzy
+msgid "Operator"
+msgstr "Åtgärd"
+
+msgid ""
+"How to combine the result of multiple expression objects. Allowed values are a"
+"nd and or."
+msgstr ""
+
+msgid "Expression"
+msgstr ""
+
+#, fuzzy
+msgid ""
+"Each rule can contain a number of expressions. The results of the expressions "
+"are combined based on the rule's boolean operator."
+msgstr "To"
 
 msgid "No Multi-state child specified"
 msgstr "Ingen underordnad till multistatus angiven"
@@ -1128,7 +1353,34 @@ msgstr "Namn krävs"
 msgid "Invalid name"
 msgstr "Ogiltigt namn"
 
+#, fuzzy
+msgid "Node ID"
+msgstr "Nod"
+
+#, fuzzy
+msgid "Unique identifier for the node."
+msgstr "Unikt"
+
+#, fuzzy
+msgid "Node Name"
+msgstr "Namn"
+
+#, fuzzy
+msgid "Name used to refer to the node in the cluster."
+msgstr "Namn"
+
+#, fuzzy
+msgid ""
+"Puts the node into standby mode. The specified node is no longer able to host "
+"resources. Any resources currently active on the node will be moved to another"
+" node."
+msgstr "övriga"
+
 msgid "is required"
+msgstr "krävs"
+
+#, fuzzy
+msgid "ID is required"
 msgstr "krävs"
 
 msgid "Object not found: %s=%s"
@@ -1142,12 +1394,6 @@ msgstr "Det går inte att skapa: %{msg}"
 
 msgid "Error updating %{id} (rc=%{rc})"
 msgstr "Fel vid uppdatering av %{id} (rc=%{rc})"
-
-msgid "PE Input created by different Pacemaker version (%{version})"
-msgstr "PE-indata skapade av en annan Pacemaker-version (%{version})"
-
-msgid "Pacemaker version not present in PE Input"
-msgstr "Pacemaker-versionen finns inte i PE-indata"
 
 msgid "No details available"
 msgstr "Inga detaljer tillgängliga"
@@ -1164,11 +1410,9 @@ msgstr "måste ha rätt filändelse"
 msgid "Not a resource"
 msgstr "Inte en resurs"
 
-msgid "Role ID is required"
-msgstr "Roll-ID krävs"
-
-msgid "Invalid Role ID"
-msgstr "Ogiltigt roll-ID"
+#, fuzzy
+msgid "Unique identifier for the resource. May not contain spaces."
+msgstr "Unikt"
 
 msgid "At least one rule is required"
 msgstr "Minst en regel krävs"
@@ -1191,20 +1435,8 @@ msgstr "Inget lösenord har angetts"
 msgid "Invalid username or password"
 msgstr "Fel användarnamn eller lösenord"
 
-msgid "Tag ID is required"
-msgstr "Tagg-ID krävs"
-
-msgid "Invalid Tag ID"
-msgstr "Ogiltigt tagg-ID"
-
 msgid "No Tag resources specified"
 msgstr "Inga taggresurser angivna"
-
-msgid "Resource ID is required"
-msgstr "Resurs-ID krävs"
-
-msgid "Invalid Resource ID"
-msgstr "Ogiltigt resurs-ID"
 
 msgid "How frequently (in seconds) to perform the operation."
 msgstr "Hur ofta (i sekunder) som åtgärden ska utföras."
@@ -1239,6 +1471,44 @@ msgstr ""
 "Om värdet är sant, registreras avsikten att utföra åtgärden, så att användargr"
 "änssnitt och CLI-verktyg kan indikera att en åtgärd är pågående."
 
+#, fuzzy
+msgid "Resource template to inherit from."
+msgstr "Resurs"
+
+msgid "Class"
+msgstr "Klass"
+
+msgid "Standard which the resource agent conforms to."
+msgstr ""
+
+msgid "Provider"
+msgstr "Leverantör"
+
+msgid "Vendor or project which provided the resource agent."
+msgstr ""
+
+#, fuzzy
+msgid "Resource agent name."
+msgstr "Resurs"
+
+msgid "After the specified timeout period, the operation will be treated as failed."
+msgstr ""
+
+#, fuzzy
+msgid "Monitor"
+msgstr "Må"
+
+msgid ""
+"Define a monitor operation to instruct the cluster to ensure that the resource"
+" is still healthy."
+msgstr ""
+
+msgid "Constraint ID is required"
+msgstr "Begränsnings-ID krävs"
+
+msgid "Invalid Constraint ID"
+msgstr "Ogiltigt begränsnings-ID"
+
 msgid "Ticket ID is required"
 msgstr "Biljett-ID krävs"
 
@@ -1247,9 +1517,6 @@ msgstr "Ogiltigt biljett-ID"
 
 msgid "Constraint must consist of at least one separate resources"
 msgstr "Begränsningen måste bestå av minst en separat resurs"
-
-msgid "Simulator active: Use the ticket controls in the simulator"
-msgstr "Simulator aktiv: använd biljettreglagen i simulatorn"
 
 msgid "ACL target ID is required"
 msgstr "ACL-mål-ID krävs"
@@ -1287,11 +1554,15 @@ msgstr "Intervall"
 msgid "Depth"
 msgstr "Djup"
 
-msgid "Close"
-msgstr "Stäng"
+#, fuzzy
+msgid "Apply Configuration"
+msgstr "Inställningar"
 
-msgid "Child Resource"
-msgstr "Underordnad resurs"
+msgid "Calculating list of changes..."
+msgstr ""
+
+msgid "Errors"
+msgstr "Fel"
 
 msgid "Meta Attributes"
 msgstr "Metaattribut"
@@ -1302,14 +1573,50 @@ msgstr "Tillbaka"
 msgid "Are you sure you wish to delete %s?"
 msgstr "Är du säker på att du vill ta bort %s?"
 
-msgid "List"
-msgstr "Lista"
+msgid "Always"
+msgstr ""
+
+#, fuzzy
+msgid "Never"
+msgstr "Återgå"
+
+msgid "Advanced"
+msgstr "Avancerat"
+
+msgid "Lists crm commands recently executed by hawk, most recent first."
+msgstr "Visar lista med crm-kommandon som nyligen körts av hawk, nyaste först."
+
+#, fuzzy
+msgid "Edit Configuration"
+msgstr "Inställningar"
+
+msgid "XML"
+msgstr ""
+
+msgid "Graph"
+msgstr "Graf"
+
+#, fuzzy
+msgid "Cluster Details"
+msgstr "Detaljer"
+
+#, fuzzy
+msgid "Batch Mode Active"
+msgstr "Må"
+
+#, fuzzy
+msgid "Show Configuration"
+msgstr "Inställningar"
 
 msgid "Constraint:"
 msgstr "Begränsning:"
 
-msgid "Add Constraint"
-msgstr "Lägg till en begränsning"
+#, fuzzy
+msgid "Add a constraint"
+msgstr "Lägg till begränsning"
+
+msgid "List"
+msgstr "Lista"
 
 msgid "Resource Defaults"
 msgstr "Resursstandard"
@@ -1317,38 +1624,23 @@ msgstr "Resursstandard"
 msgid "Operation Defaults"
 msgstr "Åtgärdsstandard"
 
-msgid "Default"
-msgstr "Standard"
-
 msgid "Add Cluster"
 msgstr "Lägg till kluster"
-
-msgid "Cluster name"
-msgstr "Klusternamn"
 
 msgid "West Coast (example)"
 msgstr "Västkusten (exempel)"
 
-msgid "node1.west.example.com"
-msgstr "node1.west.example.com"
+msgid "Cluster name"
+msgstr "Klusternamn"
 
 msgid "Hostname of node in cluster"
 msgstr "Värdnamn för nod i kluster"
 
-msgid "Advanced"
-msgstr "Avancerat"
-
-msgid "Update interval (seconds)"
-msgstr "Uppdateringsintervall (sekunder)"
+msgid "node1.west.example.com"
+msgstr "node1.west.example.com"
 
 msgid "Server port to connect to"
 msgstr "Serverport att ansluta till"
-
-msgid "HTTPS"
-msgstr "HTTPS"
-
-msgid "Graph"
-msgstr "Graf"
 
 msgid "Children"
 msgstr "Underordnade"
@@ -1364,6 +1656,12 @@ msgstr "SUSE, LLC"
 
 msgid "High Availability Web Konsole"
 msgstr "Webbkonsol för hög tillgänglighet"
+
+msgid "Simple"
+msgstr ""
+
+msgid "Advisory"
+msgstr ""
 
 msgid "Edit Location"
 msgstr "Redigera plats"
@@ -1386,38 +1684,59 @@ msgstr "Multistatusresurser"
 msgid "Create Multi-state"
 msgstr "Skapa multistatus"
 
-msgid "Getting recent events..."
-msgstr "Hämtar nyligen inträffade händelser..."
-
-msgid "Another operation is in progress..."
-msgstr "En annan åtgärd pågår..."
-
-msgid "No events found in last hour"
-msgstr "Inga händelser hittades den senaste timmen"
-
-msgid "Remote node."
-msgstr "Fjärrnod."
+msgid "Attributes"
+msgstr "Attribut"
 
 msgid "Utilization"
 msgstr "Användning"
 
+#, fuzzy
+msgid "Edit Node"
+msgstr "Redigera roll"
+
+msgid "RC"
+msgstr ""
+
+msgid "Operation"
+msgstr "Åtgärd"
+
+msgid "Last Change"
+msgstr ""
+
+msgid "State"
+msgstr "Status"
+
+msgid "Call"
+msgstr "Anrop"
+
+msgid "Exec"
+msgstr ""
+
+#, fuzzy
+msgid "Complete"
+msgstr "Mall"
+
+msgid "Remote node."
+msgstr "Fjärrnod."
+
 msgid "No utilization defined"
 msgstr "Ingen användning definierad"
-
-msgid "Attributes"
-msgstr "Attribut"
 
 msgid "No attributes defined"
 msgstr "Inga attribut definierade"
 
+msgid "Mandatory"
+msgstr ""
+
+#, fuzzy
+msgid "Optional"
+msgstr "Alternativ"
+
+msgid "Serialize"
+msgstr ""
+
 msgid "Symmetrical"
 msgstr "Symmetrisk"
-
-msgid "Command Log"
-msgstr "Kommandologg"
-
-msgid "Lists crm commands recently executed by hawk, most recent first."
-msgstr "Visar lista med crm-kommandon som nyligen körts av hawk, nyaste först."
 
 msgid "HTML"
 msgstr "HTML"
@@ -1425,32 +1744,17 @@ msgstr "HTML"
 msgid "PDF"
 msgstr "PDF"
 
-msgid "Template"
-msgstr "Mall"
+msgid "Default"
+msgstr "Standard"
 
-msgid "Class"
-msgstr "Klass"
-
-msgid "Provider"
-msgstr "Leverantör"
-
-msgid "Data collection in progress..."
-msgstr "Datainsamling pågår..."
-
-msgid "To"
-msgstr "Till"
-
-msgid "Generate"
-msgstr "Generera"
-
-msgid "Upload"
-msgstr "Överför"
+msgid "Copy"
+msgstr ""
 
 msgid "Reports"
 msgstr "Rapporter"
 
-msgid "Report"
-msgstr "Rapport"
+msgid "To"
+msgstr "Till"
 
 msgid "Created"
 msgstr "Skapad"
@@ -1461,23 +1765,11 @@ msgstr "Övergångar"
 msgid "No transitions in report"
 msgstr "Inga övergångar att rapportera"
 
-msgid "Previous"
-msgstr "Föregående"
-
-msgid "Next"
-msgstr "Nästa"
-
 msgid "PE Name"
 msgstr "PE-namn"
 
-msgid "Node"
-msgstr "Nod"
-
 msgid "Time"
 msgstr "Tid"
-
-msgid "Version"
-msgstr "Version"
 
 msgid "Configuration"
 msgstr "Inställningar"
@@ -1494,26 +1786,31 @@ msgstr "Nodhändelser"
 msgid "Resource Events"
 msgstr "Resurshändelser"
 
-msgid "Resource:"
-msgstr "Resurs:"
+msgid "Data collection in progress..."
+msgstr "Datainsamling pågår..."
 
-msgid "Value"
-msgstr "Värde"
+msgid "Generate"
+msgstr "Generera"
+
+msgid "Upload"
+msgstr "Överför"
+
+msgid "Loading report..."
+msgstr ""
+
+#, fuzzy
+msgid "Rename Resource"
+msgstr "Resurs"
+
+#, fuzzy
+msgid "Child"
+msgstr "Underordnade"
 
 msgid "Instances"
 msgstr "Instanser"
 
-msgid "State"
-msgstr "Status"
-
 msgid "Failed Operations"
 msgstr "Misslyckade åtgärder"
-
-msgid "Call"
-msgstr "Anrop"
-
-msgid "Operation"
-msgstr "Åtgärd"
 
 msgid "Reason"
 msgstr "Anledning"
@@ -1548,50 +1845,37 @@ msgstr "Referens"
 msgid "Attribute"
 msgstr "Attribut"
 
-msgid "ACL Roles"
-msgstr "ACL-roller"
+#, fuzzy
+msgid "Access Control Lists"
+msgstr "Lista"
 
 msgid "Login"
 msgstr "Logga in"
 
-msgid "Version:"
-msgstr "Version:"
+msgid "Add Constraint"
+msgstr "Lägg till en begränsning"
 
-msgid "DC:"
-msgstr "DC:"
+msgid "Wizards"
+msgstr "Välj en guide"
 
-msgid "UI:"
-msgstr "UI:"
+msgid "Access Control"
+msgstr ""
 
-msgid "Status:"
-msgstr "Status:"
+#, fuzzy
+msgid "Targets"
+msgstr "Mål-ID"
 
-msgid "Add resource"
-msgstr "Lägg till resurs"
+msgid ""
+"Any pending changes to the configuration will be lost - do you wish to proceed"
+"?"
+msgstr ""
 
-msgid "Add constraint"
-msgstr "Lägg till begränsning"
+msgid "Discard"
+msgstr ""
 
-msgid "Add template"
-msgstr "Lägg till mall"
-
-msgid "Choose wizard"
-msgstr "Välj guide"
-
-msgid "Simulator Active"
-msgstr "Simulator aktiv"
-
-msgid "Reset"
-msgstr "Återställ"
-
-msgid "Run"
-msgstr "Kör"
-
-msgid "Results"
-msgstr "Resultat"
-
-msgid "Simulation Results"
-msgstr "Simuleringsresultat"
+#, fuzzy
+msgid "Batch Mode"
+msgstr "Må"
 
 msgid "Summary"
 msgstr "Sammanfattning"
@@ -1605,17 +1889,35 @@ msgstr "CIB (ut)"
 msgid "Transition Graph"
 msgstr "Övergångsgraf"
 
+#, fuzzy
+msgid "Transition"
+msgstr "Övergångar"
+
+#, fuzzy
+msgid "Inject"
+msgstr "Anslut"
+
+#, fuzzy
+msgid "Node Event"
+msgstr "Nodhändelser"
+
+#, fuzzy
+msgid "Resource Event"
+msgstr "Resurshändelser"
+
+#, fuzzy
+msgid "Ticket Event"
+msgstr "Biljett"
+
 msgid "Transition (XML)"
 msgstr "Övergång (XML)"
 
 msgid "Inject Node Event"
 msgstr "Infoga nod (händelse)"
 
-msgid "OK"
-msgstr "OK"
-
-msgid "Inject Operation Event"
-msgstr "Infoga åtgärd (händelse)"
+#, fuzzy
+msgid "Inject Resource Event"
+msgstr "Infoga nod (händelse)"
 
 msgid "Interval (ms)"
 msgstr "Intervall (ms)"
@@ -1629,26 +1931,19 @@ msgstr "Infoga biljett (händelse)"
 msgid "Action"
 msgstr "Åtgärd"
 
-msgid "Enable the simulation mode"
-msgstr "Aktivera simuleringsläge"
+#, fuzzy
+msgid "Batch Configuration Changes"
+msgstr "Inställningar"
 
-msgid "Disable Simulator"
-msgstr "Inaktivera simulator"
-
-msgid "Disable the simulation mode"
-msgstr "Inaktivera simuleringsläge"
-
-msgid "Profile"
-msgstr "Ny profil"
+#, fuzzy
+msgid "Batch"
+msgstr "Mars"
 
 msgid "Logout"
 msgstr "Logga ut"
 
 msgid "Menu"
 msgstr "Meny"
-
-msgid "Errors"
-msgstr "Fel"
 
 msgid "No objects available"
 msgstr "Inga objekt tillgängliga"
@@ -1665,11 +1960,23 @@ msgstr "Biljett:"
 msgid "Properties"
 msgstr "Egenskaper"
 
-msgid "Sequential"
-msgstr "Sekventiellt"
+msgid "None"
+msgstr "Ingen"
 
-msgid "No resources defined for ticket"
-msgstr "Inga resurser definierade för biljetten"
+msgid "Leader"
+msgstr ""
+
+msgid "Expires"
+msgstr ""
+
+msgid "Commit"
+msgstr ""
+
+msgid "Sites"
+msgstr ""
+
+msgid "Arbitrators"
+msgstr ""
 
 msgid "Target ID"
 msgstr "Mål-ID"
@@ -1683,17 +1990,8 @@ msgstr "Är det säkert att du vill avbryta guideinstallationen?"
 msgid "Do you really want to apply the current wizard?"
 msgstr "Vill du verkligen tillämpa den aktuella guiden?"
 
-msgid "Wizards"
-msgstr "Välj en guide"
-
 msgid "Legacy Wizards"
 msgstr "Äldre guider"
-
-msgid "Verify and apply"
-msgstr "Verifiera och tillämpa"
-
-msgid "Review the wizard actions and apply the changes"
-msgstr "Granska guideåtgärderna och tillämpa ändringarna"
 
 msgid "Enable this step"
 msgstr "Aktivera det här steget"
@@ -1701,8 +1999,14 @@ msgstr "Aktivera det här steget"
 msgid "This wizard takes no parameters."
 msgstr "Det finns inga parametrar för den här guiden."
 
+msgid "Next"
+msgstr "Nästa"
+
 msgid "Verify"
 msgstr "Verifiera"
+
+msgid "Verify and apply"
+msgstr "Verifiera och tillämpa"
 
 msgid ""
 "To apply the changes, Hawk requires root access, and password-less SSH access "
@@ -1714,6 +2018,9 @@ msgstr ""
 
 msgid "Root password"
 msgstr "Root-lösenord"
+
+msgid "other"
+msgstr "övriga"
 
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "Objektet/attributet finns inte (cibadmin %{cmd})"

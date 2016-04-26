@@ -108,6 +108,27 @@ msgstr "Ne"
 msgid "Any changes will be lost - do you wish to proceed?"
 msgstr "Všechny změny budou ztraceny – chcete pokračovat?"
 
+#, fuzzy
+msgid "Invalid ID"
+msgstr "ID značky není platné."
+
+msgid "OK"
+msgstr "OK"
+
+#, fuzzy
+msgid "Maintenance mode"
+msgstr "Údržba"
+
+msgid "An error has occurred"
+msgstr ""
+
+msgid "Close"
+msgstr "Zavřít"
+
+#, fuzzy
+msgid "No configuration changes."
+msgstr "Používají se změny konfigurace..."
+
 msgid "Clone ID"
 msgstr "ID klonu"
 
@@ -150,6 +171,9 @@ msgstr "Lístek"
 msgid "Constraint"
 msgstr "Omezení"
 
+msgid "Resources"
+msgstr "Zdroje"
+
 msgid "Group ID"
 msgstr "ID skupiny"
 
@@ -167,6 +191,9 @@ msgstr "Logický operátor"
 
 msgid "Multi-state ID"
 msgstr "ID vícenásobného stavu"
+
+msgid "Failed to parse monitor response - Internal server error."
+msgstr ""
 
 msgid "Connection to server failed - will retry every 15 seconds."
 msgstr "Připojení k serveru se nezdařilo – pokus bude každých 15 sekund opakován."
@@ -201,8 +228,17 @@ msgstr "Přepnout do pohotovostního stavu"
 msgid "Fence"
 msgstr "Izolovat"
 
+msgid "Clear state"
+msgstr ""
+
+msgid "Events"
+msgstr ""
+
 msgid "Details"
 msgstr "Podrobnosti"
+
+msgid "ID"
+msgstr "ID"
 
 msgid "Add"
 msgstr "Přidat"
@@ -223,6 +259,10 @@ msgid "Failed to fetch meta attributes"
 msgstr "Načtení metaatributů se nezdařilo."
 
 msgid "Report generation is complete."
+msgstr "Vytváření zprávy je dokončeno."
+
+#, fuzzy
+msgid "Report generation cancelled."
 msgstr "Vytváření zprávy je dokončeno."
 
 msgid "From"
@@ -324,6 +364,12 @@ msgstr "Klon"
 msgid "Tag"
 msgstr "Značka"
 
+msgid "Away from current node"
+msgstr ""
+
+msgid "Clean up on all nodes"
+msgstr ""
+
 msgid "Stop"
 msgstr "Zastavit"
 
@@ -351,17 +397,28 @@ msgstr "Zrušit migraci"
 msgid "Cleanup"
 msgstr "Vyčištění"
 
+msgid "Recent events"
+msgstr ""
+
+#, fuzzy
+msgid "No child resources"
+msgstr "Podřízený prostředek"
+
 msgid "Primitive"
 msgstr "Základní prvek"
+
+msgid "Template"
+msgstr "Šablona"
 
 msgid "Resource"
 msgstr "Zdroj"
 
+#, fuzzy
+msgid "Rename"
+msgstr "Uživ. jméno"
+
 msgid "Role ID"
 msgstr "ID role"
-
-msgid "Stopped Resources"
-msgstr "Zastavené prostředky"
 
 msgid "Tag ID"
 msgstr "ID značky"
@@ -369,14 +426,18 @@ msgstr "ID značky"
 msgid "Objects"
 msgstr "Objekty"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Granted"
 msgstr "Uděleno"
 
+msgid "Elsewhere"
+msgstr ""
+
 msgid "Revoked"
 msgstr "Odvolaný"
+
+#, fuzzy
+msgid "Last Granted"
+msgstr "Uděleno"
 
 msgid "Grant"
 msgstr "Udělit"
@@ -404,6 +465,13 @@ msgstr "Byla vytvořena nová stínová kopie souboru CIB pro uživatele %USER%.
 
 msgid "Unable to create shadow CIB"
 msgstr "Nepodařilo se vytvořit stínové CIB"
+
+msgid "Failed to apply configuration"
+msgstr ""
+
+#, fuzzy
+msgid "Applied configuration successfully"
+msgstr "úspěch"
 
 msgid "Create Clone"
 msgstr "Vytvořit klon"
@@ -449,6 +517,9 @@ msgstr "Kolokace"
 
 msgid "The colocation constraint does not exist"
 msgstr "Omezení kolokace neexistuje."
+
+msgid "Command Log"
+msgstr "Protokol příkazů"
 
 msgid "Constraints"
 msgstr "Omezení"
@@ -525,11 +596,25 @@ msgstr "Prostředek s vícenásobným stavem"
 msgid "The multi-state resource does not exist"
 msgstr "Prostředek s vícenásobným stavem neexistuje."
 
+#, fuzzy
+msgid "Node updated successfully"
+msgstr "Role byla úspěšně aktualizována"
+
+#, fuzzy
+msgid "Failed to set the node online: %{err}"
+msgstr "Spuštění prostředku se nezdařilo: %{err}"
+
 msgid "Set the node state to online"
 msgstr "Nastavit stav uzlu na online"
 
+msgid "Failed to set the node standby: %{err}"
+msgstr ""
+
 msgid "Set the node state to standby"
 msgstr "Nastavit stav uzlu na pohotovostní"
+
+msgid "Failed to set the node state to maintenance: %{err}"
+msgstr ""
 
 msgid "Set the node state to maintenance"
 msgstr "Nastavit stav uzlu na údržbu"
@@ -537,8 +622,23 @@ msgstr "Nastavit stav uzlu na údržbu"
 msgid "Set the node state to ready"
 msgstr "Nastavit stav uzlu na připravený"
 
-msgid "Set the node state to fence"
-msgstr "Nastavit stav uzlu na izolovaný"
+msgid "Failed to set the node state to ready: %{err}"
+msgstr ""
+
+#, fuzzy
+msgid "Successfully fenced the node"
+msgstr "Lístek byl úspěšně udělen."
+
+#, fuzzy
+msgid "Failed to fence the node: %{err}"
+msgstr "Snížení úrovně prostředku se nezdařilo: %{err}"
+
+#, fuzzy
+msgid "Failed to clear the node state: %{err}"
+msgstr "Vyčištění prostředku se nezdařilo: %{err}"
+
+msgid "Cleared the node state"
+msgstr ""
 
 msgid "Nodes"
 msgstr "Uzly"
@@ -566,9 +666,6 @@ msgstr "Vítejte"
 
 msgid "Help"
 msgstr "Nápověda"
-
-msgid "Commands"
-msgstr "Příkazy"
 
 msgid "Create Primitive"
 msgstr "Vytvořit základní prvek"
@@ -605,6 +702,9 @@ msgstr "Vytvoření se nezdařilo."
 
 msgid "Upload completed."
 msgstr "Nahrání se nezdařilo."
+
+msgid "Could not cancel report collection"
+msgstr ""
 
 msgid "Cannot display diff, too few transitions"
 msgstr "Nelze zobrazit rozdíl, k dispozici je příliš málo přechodů."
@@ -678,8 +778,12 @@ msgstr "Prostředek byl úspěšně vyčištěn."
 msgid "Failed to clean up the resource: %{err}"
 msgstr "Vyčištění prostředku se nezdařilo: %{err}"
 
-msgid "Resources"
-msgstr "Zdroje"
+#, fuzzy
+msgid "Successfully renamed %{A} to %{B}"
+msgstr "Ne"
+
+msgid "Failed to rename %{A} to %{B}: %{E}"
+msgstr ""
 
 msgid "Create Role"
 msgstr "Vytvořit roli"
@@ -781,8 +885,19 @@ msgstr "Lístek byl úspěšně odstraněn."
 msgid "Successfully granted the ticket"
 msgstr "Lístek byl úspěšně udělen."
 
+#, fuzzy
+msgid "Error granting the ticket"
+msgstr "Chyba"
+
 msgid "Successfully revoked the ticket"
 msgstr "Lístek byl úspěšně udělen."
+
+#, fuzzy
+msgid "Error revoking the ticket"
+msgstr "Chyba"
+
+msgid "Simulator active: Use the ticket controls in the simulator"
+msgstr "Simulátor je aktivní: V simulátoru se používají kontroly lístků."
 
 msgid "Tickets"
 msgstr "Lístky"
@@ -834,6 +949,59 @@ msgstr "Požadováno"
 
 msgid "Unique"
 msgstr "Jedinečné"
+
+msgid "Profile"
+msgstr "Profil"
+
+msgid "Epoch"
+msgstr ""
+
+#, fuzzy
+msgid "Current Configuration Version"
+msgstr "Konfigurace"
+
+msgid "Host"
+msgstr ""
+
+msgid "Designated Coordinator"
+msgstr ""
+
+#, fuzzy
+msgid "DC"
+msgstr "DC:"
+
+#, fuzzy
+msgid "CIB Schema Version"
+msgstr "Verze"
+
+msgid "Schema"
+msgstr ""
+
+msgid "Last Written"
+msgstr ""
+
+msgid "Update Origin"
+msgstr ""
+
+msgid "Update User"
+msgstr ""
+
+msgid "Have Quorum"
+msgstr ""
+
+msgid "Version"
+msgstr "Verze"
+
+#, fuzzy
+msgid "Pacemaker Version"
+msgstr "Verze"
+
+#, fuzzy
+msgid "Stack"
+msgstr "Spustit"
+
+msgid "Cluster Communication Stack"
+msgstr ""
 
 msgid "Master"
 msgstr "Hlavní"
@@ -921,16 +1089,10 @@ msgstr ""
 "}: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_"
 "reason}"
 
-msgid "other"
-msgstr "jiné"
-
 msgid "STONITH is disabled. For normal cluster operation, STONITH is required."
 msgstr ""
 "Metoda STONITH je zakázána. Metoda STONITH je požadována k normálnímu provozu "
 "clusteru."
-
-msgid "None"
-msgstr "Nic"
 
 msgid "Clone ID is required"
 msgstr "Je požadováno ID klonu."
@@ -988,14 +1150,14 @@ msgstr ""
 "uštění a zastavování instancí ihned po spuštění či zastavení jejich partnerský"
 "ch instancí (místo čekání na všechny instance ostatních klonů)."
 
+msgid "Child Resource"
+msgstr "Podřízený prostředek"
+
+msgid "Child resource to use as clone."
+msgstr ""
+
 msgid "The ID \"%{id}\" does not exist"
 msgstr "ID %{id} neexistuje."
-
-msgid "Constraint ID is required"
-msgstr "Je požadováno ID omezení."
-
-msgid "Invalid Constraint ID"
-msgstr "ID omezení není platné."
 
 msgid "Score is required"
 msgstr "Je požadováno skóre."
@@ -1003,11 +1165,31 @@ msgstr "Je požadováno skóre."
 msgid "Invalid score value"
 msgstr "Hodnota skóre není platná."
 
+msgid "Invalid node attribute"
+msgstr ""
+
 msgid "Constraint must consist of at least two separate resources"
 msgstr "Omezení musí obsahovat alespoň dva samostatné prostředky"
 
+#, fuzzy
+msgid "The score determines the location relationship between the resources."
+msgstr "Čt"
+
+#, fuzzy
+msgid "Node Attribute"
+msgstr "Atribut"
+
+msgid ""
+"Colocate resources by the given node attribute instead of by node name (the de"
+"fault)."
+msgstr ""
+
 msgid "Not a constraint"
 msgstr "Nejedná se o omezení."
+
+#, fuzzy
+msgid "Unique identifier for the constraint. May not contain spaces."
+msgstr "Jedinečné"
 
 msgid "Set to true if the resource agent supports the migrate action"
 msgstr ""
@@ -1076,12 +1258,6 @@ msgstr ""
 msgid "How long before a pending guest connection will time out."
 msgstr "Určuje dobu vypršení platnosti čekajícího připojení hosta."
 
-msgid "Group ID is required"
-msgstr "Je požadováno ID skupiny."
-
-msgid "Invalid Group ID"
-msgstr "ID skupiny není platné."
-
 msgid "No Group children specified"
 msgstr "Nebyly určeny žádné podřazené položky skupiny."
 
@@ -1090,6 +1266,9 @@ msgstr "Nebyl zadán žádný prostředek"
 
 msgid "No rules specified"
 msgstr "Nebyla zadána žádná pravidla"
+
+msgid "Invalid resource discovery type"
+msgstr ""
 
 msgid "Constraint is too complex - it contains nested rules"
 msgstr "Omezení je příliš složité – obsahuje vnořená pravidla"
@@ -1106,11 +1285,57 @@ msgstr "Atribut obsahuje jednoduché i dvojité uvozovky"
 msgid "Value contains both single and double quotes"
 msgstr "Hodnota obsahuje jednoduché i dvojité uvozovky"
 
-msgid "Multi-state ID is required"
-msgstr "Je požadováno ID vícenásobného stavu."
+#, fuzzy
+msgid "Resources to apply the constraint to."
+msgstr "Zdroje"
 
-msgid "Invalid Multi-state ID"
-msgstr "ID vícenásobného stavu není platné."
+#, fuzzy
+msgid ""
+"Positive values indicate the resources should run on this node. Negative value"
+"s indicate the resources should not run on this node. Values of +/- INFINITY c"
+"hange \"should\"/\"should not\" to \"must\"/\"must not\"."
+msgstr "Hodnota"
+
+msgid "Node"
+msgstr "Uzel"
+
+#, fuzzy
+msgid "Name of a node in the cluster."
+msgstr "Jméno"
+
+#, fuzzy
+msgid "Resource Discovery"
+msgstr "Zdroj"
+
+#, fuzzy
+msgid ""
+"Controls resource discovery for the specified resource on nodes covered by the"
+" constraint. always: Always perform resource discovery (default). never: Never"
+" perform resource discovery for the specified resource on this node. This opti"
+"on should generally be used with a -INFINITY score. exclusive: Only perform re"
+"source discovery for the specified resource on this node."
+msgstr "Čt"
+
+msgid "Limits the rule to apply only when the resource is in the specified role."
+msgstr ""
+
+#, fuzzy
+msgid "Operator"
+msgstr "Operace"
+
+msgid ""
+"How to combine the result of multiple expression objects. Allowed values are a"
+"nd and or."
+msgstr ""
+
+msgid "Expression"
+msgstr ""
+
+#, fuzzy
+msgid ""
+"Each rule can contain a number of expressions. The results of the expressions "
+"are combined based on the rule's boolean operator."
+msgstr "Čt"
 
 msgid "No Multi-state child specified"
 msgstr "Není určena žádná podřazená položka vícenásobného stavu."
@@ -1137,7 +1362,34 @@ msgstr "Je požadován název."
 msgid "Invalid name"
 msgstr "Název není platný."
 
+#, fuzzy
+msgid "Node ID"
+msgstr "Uzel"
+
+#, fuzzy
+msgid "Unique identifier for the node."
+msgstr "Jedinečné"
+
+#, fuzzy
+msgid "Node Name"
+msgstr "Jméno"
+
+#, fuzzy
+msgid "Name used to refer to the node in the cluster."
+msgstr "Jméno"
+
+#, fuzzy
+msgid ""
+"Puts the node into standby mode. The specified node is no longer able to host "
+"resources. Any resources currently active on the node will be moved to another"
+" node."
+msgstr "jiné"
+
 msgid "is required"
+msgstr "je požadováno."
+
+#, fuzzy
+msgid "ID is required"
 msgstr "je požadováno."
 
 msgid "Object not found: %s=%s"
@@ -1151,12 +1403,6 @@ msgstr "Nelze vytvořit položku: %{msg}"
 
 msgid "Error updating %{id} (rc=%{rc})"
 msgstr "Chyba při aktualizování položky %{id} (rc=%{rc})"
-
-msgid "PE Input created by different Pacemaker version (%{version})"
-msgstr "Soubor vstupů PE byl vytvořen jinou verzí programu Pacemaker (%{version})"
-
-msgid "Pacemaker version not present in PE Input"
-msgstr "Verze programu Pacemaker není v souboru vstupů PE k dispozici"
 
 msgid "No details available"
 msgstr "Podrobnosti nejsou k dispozici."
@@ -1173,11 +1419,9 @@ msgstr "musí mít správnou příponu souboru."
 msgid "Not a resource"
 msgstr "Nejedná se prostředek."
 
-msgid "Role ID is required"
-msgstr "Je požadováno ID role."
-
-msgid "Invalid Role ID"
-msgstr "ID role není platné."
+#, fuzzy
+msgid "Unique identifier for the resource. May not contain spaces."
+msgstr "Jedinečné"
 
 msgid "At least one rule is required"
 msgstr "Je požadováno alespoň jedno pravidlo."
@@ -1200,20 +1444,8 @@ msgstr "Nebylo zadáno heslo."
 msgid "Invalid username or password"
 msgstr "Neplatné uživatelské jméno nebo heslo"
 
-msgid "Tag ID is required"
-msgstr "Je požadováno ID značky."
-
-msgid "Invalid Tag ID"
-msgstr "ID značky není platné."
-
 msgid "No Tag resources specified"
 msgstr "Nejsou určeny žádné prostředky značky."
-
-msgid "Resource ID is required"
-msgstr "Je požadováno ID prostředku."
-
-msgid "Invalid Resource ID"
-msgstr "ID prostředku není platné."
 
 msgid "How frequently (in seconds) to perform the operation."
 msgstr "Určuje, jak často se má operace provádět (v sekundách)."
@@ -1249,6 +1481,44 @@ msgstr ""
 "možňuje grafickým uživatelským rozhraním a nástrojům CLI zjistit, že operace p"
 "robíhá."
 
+#, fuzzy
+msgid "Resource template to inherit from."
+msgstr "Zdroj"
+
+msgid "Class"
+msgstr "Třída"
+
+msgid "Standard which the resource agent conforms to."
+msgstr ""
+
+msgid "Provider"
+msgstr "Poskytovatel"
+
+msgid "Vendor or project which provided the resource agent."
+msgstr ""
+
+#, fuzzy
+msgid "Resource agent name."
+msgstr "Zdroj"
+
+msgid "After the specified timeout period, the operation will be treated as failed."
+msgstr ""
+
+#, fuzzy
+msgid "Monitor"
+msgstr "Po"
+
+msgid ""
+"Define a monitor operation to instruct the cluster to ensure that the resource"
+" is still healthy."
+msgstr ""
+
+msgid "Constraint ID is required"
+msgstr "Je požadováno ID omezení."
+
+msgid "Invalid Constraint ID"
+msgstr "ID omezení není platné."
+
 msgid "Ticket ID is required"
 msgstr "Je požadováno ID lístku."
 
@@ -1257,9 +1527,6 @@ msgstr "Neplatné ID lístku"
 
 msgid "Constraint must consist of at least one separate resources"
 msgstr "Omezení musí obsahovat alespoň jeden samostatný prostředek."
-
-msgid "Simulator active: Use the ticket controls in the simulator"
-msgstr "Simulátor je aktivní: V simulátoru se používají kontroly lístků."
 
 msgid "ACL target ID is required"
 msgstr "Je požadováno ID cíle seznamu řízení přístupu."
@@ -1297,11 +1564,15 @@ msgstr "Interval"
 msgid "Depth"
 msgstr "Hloubka"
 
-msgid "Close"
-msgstr "Zavřít"
+#, fuzzy
+msgid "Apply Configuration"
+msgstr "Konfigurace"
 
-msgid "Child Resource"
-msgstr "Podřízený prostředek"
+msgid "Calculating list of changes..."
+msgstr ""
+
+msgid "Errors"
+msgstr "Chyby"
 
 msgid "Meta Attributes"
 msgstr "Metaatributy"
@@ -1312,14 +1583,52 @@ msgstr "Zpět"
 msgid "Are you sure you wish to delete %s?"
 msgstr "Opravdu chcete odstranit položku %s?"
 
-msgid "List"
-msgstr "Seznam"
+msgid "Always"
+msgstr ""
+
+#, fuzzy
+msgid "Never"
+msgstr "Vrátit"
+
+msgid "Advanced"
+msgstr "Pokročilé"
+
+msgid "Lists crm commands recently executed by hawk, most recent first."
+msgstr ""
+"Zobrazí v seznamu příkazy naposledy provedené nástrojem Hawk (seřazené od nejn"
+"ovějších)."
+
+#, fuzzy
+msgid "Edit Configuration"
+msgstr "Konfigurace"
+
+msgid "XML"
+msgstr ""
+
+msgid "Graph"
+msgstr "Grafy"
+
+#, fuzzy
+msgid "Cluster Details"
+msgstr "Podrobnosti"
+
+#, fuzzy
+msgid "Batch Mode Active"
+msgstr "Po"
+
+#, fuzzy
+msgid "Show Configuration"
+msgstr "Konfigurace"
 
 msgid "Constraint:"
 msgstr "Omezení:"
 
-msgid "Add Constraint"
+#, fuzzy
+msgid "Add a constraint"
 msgstr "Přidat omezení"
+
+msgid "List"
+msgstr "Seznam"
 
 msgid "Resource Defaults"
 msgstr "Výchozí hodnoty prostředku"
@@ -1327,38 +1636,23 @@ msgstr "Výchozí hodnoty prostředku"
 msgid "Operation Defaults"
 msgstr "Výchozí hodnoty pro operaci"
 
-msgid "Default"
-msgstr "Výchozí"
-
 msgid "Add Cluster"
 msgstr "Přidat cluster"
-
-msgid "Cluster name"
-msgstr "Název clusteru"
 
 msgid "West Coast (example)"
 msgstr "Západní pobřeží (příklad)"
 
-msgid "node1.west.example.com"
-msgstr "uzel1.zapad.priklad.com"
+msgid "Cluster name"
+msgstr "Název clusteru"
 
 msgid "Hostname of node in cluster"
 msgstr "Název hostitele uzlu v clusteru"
 
-msgid "Advanced"
-msgstr "Pokročilé"
-
-msgid "Update interval (seconds)"
-msgstr "Interval aktualizace (sekundy)"
+msgid "node1.west.example.com"
+msgstr "uzel1.zapad.priklad.com"
 
 msgid "Server port to connect to"
 msgstr "Port serveru ke kterému má být vytvořeno připojení."
-
-msgid "HTTPS"
-msgstr "HTTPS"
-
-msgid "Graph"
-msgstr "Grafy"
 
 msgid "Children"
 msgstr "Podřazené položky"
@@ -1374,6 +1668,12 @@ msgstr "SUSE, LLC"
 
 msgid "High Availability Web Konsole"
 msgstr "Webová konzole rozšíření pro vysokou dostupnost"
+
+msgid "Simple"
+msgstr ""
+
+msgid "Advisory"
+msgstr ""
 
 msgid "Edit Location"
 msgstr "Upravit umístění"
@@ -1396,40 +1696,59 @@ msgstr "Prostředky s vícenásobnými stavy"
 msgid "Create Multi-state"
 msgstr "Vytvořit vícenásobný stav"
 
-msgid "Getting recent events..."
-msgstr "Načítání posledních událostí..."
-
-msgid "Another operation is in progress..."
-msgstr "Probíhá jiná operace..."
-
-msgid "No events found in last hour"
-msgstr "Za poslední hodinu nebyly nalezeny žádné události."
-
-msgid "Remote node."
-msgstr "Vzdálený uzel"
+msgid "Attributes"
+msgstr "Atributy"
 
 msgid "Utilization"
 msgstr "Využití"
 
+#, fuzzy
+msgid "Edit Node"
+msgstr "Upravit roli"
+
+msgid "RC"
+msgstr ""
+
+msgid "Operation"
+msgstr "Operace"
+
+msgid "Last Change"
+msgstr ""
+
+msgid "State"
+msgstr "Stav"
+
+msgid "Call"
+msgstr "Volání"
+
+msgid "Exec"
+msgstr ""
+
+#, fuzzy
+msgid "Complete"
+msgstr "Šablona"
+
+msgid "Remote node."
+msgstr "Vzdálený uzel"
+
 msgid "No utilization defined"
 msgstr "Nebylo definováno žádné využití"
-
-msgid "Attributes"
-msgstr "Atributy"
 
 msgid "No attributes defined"
 msgstr "Nebyly definovány žádné atributy"
 
+msgid "Mandatory"
+msgstr ""
+
+#, fuzzy
+msgid "Optional"
+msgstr "Možnosti"
+
+msgid "Serialize"
+msgstr ""
+
 msgid "Symmetrical"
 msgstr "Symetrické"
-
-msgid "Command Log"
-msgstr "Protokol příkazů"
-
-msgid "Lists crm commands recently executed by hawk, most recent first."
-msgstr ""
-"Zobrazí v seznamu příkazy naposledy provedené nástrojem Hawk (seřazené od nejn"
-"ovějších)."
 
 msgid "HTML"
 msgstr "HTML"
@@ -1437,32 +1756,17 @@ msgstr "HTML"
 msgid "PDF"
 msgstr "PDF"
 
-msgid "Template"
-msgstr "Šablona"
+msgid "Default"
+msgstr "Výchozí"
 
-msgid "Class"
-msgstr "Třída"
-
-msgid "Provider"
-msgstr "Poskytovatel"
-
-msgid "Data collection in progress..."
-msgstr "Probíhá shromažďování dat..."
-
-msgid "To"
-msgstr "Do"
-
-msgid "Generate"
-msgstr "Generovat"
-
-msgid "Upload"
-msgstr "Odeslat"
+msgid "Copy"
+msgstr ""
 
 msgid "Reports"
 msgstr "Zprávy"
 
-msgid "Report"
-msgstr "Zpráva"
+msgid "To"
+msgstr "Do"
 
 msgid "Created"
 msgstr "Vytvořeno"
@@ -1473,23 +1777,11 @@ msgstr "Přechody"
 msgid "No transitions in report"
 msgstr "Ve zprávě není žádný přechod"
 
-msgid "Previous"
-msgstr "Předchozí"
-
-msgid "Next"
-msgstr "Další"
-
 msgid "PE Name"
 msgstr "Název PE"
 
-msgid "Node"
-msgstr "Uzel"
-
 msgid "Time"
 msgstr "Čas"
-
-msgid "Version"
-msgstr "Verze"
 
 msgid "Configuration"
 msgstr "Konfigurace"
@@ -1506,26 +1798,31 @@ msgstr "Události uzlů"
 msgid "Resource Events"
 msgstr "Události prostředků"
 
-msgid "Resource:"
-msgstr "Prostředek:"
+msgid "Data collection in progress..."
+msgstr "Probíhá shromažďování dat..."
 
-msgid "Value"
-msgstr "Hodnota"
+msgid "Generate"
+msgstr "Generovat"
+
+msgid "Upload"
+msgstr "Odeslat"
+
+msgid "Loading report..."
+msgstr ""
+
+#, fuzzy
+msgid "Rename Resource"
+msgstr "Zdroj"
+
+#, fuzzy
+msgid "Child"
+msgstr "Podřazené položky"
 
 msgid "Instances"
 msgstr "Instance"
 
-msgid "State"
-msgstr "Stav"
-
 msgid "Failed Operations"
 msgstr "Nezdařené operace"
-
-msgid "Call"
-msgstr "Volání"
-
-msgid "Operation"
-msgstr "Operace"
 
 msgid "Reason"
 msgstr "Příčina"
@@ -1560,50 +1857,37 @@ msgstr "Reference"
 msgid "Attribute"
 msgstr "Atribut"
 
-msgid "ACL Roles"
-msgstr "Role seznamů řízení přístupu"
+#, fuzzy
+msgid "Access Control Lists"
+msgstr "Seznam"
 
 msgid "Login"
 msgstr "Přihlášení"
 
-msgid "Version:"
-msgstr "Verze:"
-
-msgid "DC:"
-msgstr "DC:"
-
-msgid "UI:"
-msgstr "UI:"
-
-msgid "Status:"
-msgstr "Stav: "
-
-msgid "Add resource"
-msgstr "Přidat prostředek"
-
-msgid "Add constraint"
+msgid "Add Constraint"
 msgstr "Přidat omezení"
 
-msgid "Add template"
-msgstr "Přidat šablonu"
-
-msgid "Choose wizard"
+msgid "Wizards"
 msgstr "Vybrat průvodce"
 
-msgid "Simulator Active"
-msgstr "Simulátor je aktivní."
+msgid "Access Control"
+msgstr ""
 
-msgid "Reset"
-msgstr "Obnovit výchozí"
+#, fuzzy
+msgid "Targets"
+msgstr "ID cíle"
 
-msgid "Run"
-msgstr "Spustit"
+msgid ""
+"Any pending changes to the configuration will be lost - do you wish to proceed"
+"?"
+msgstr ""
 
-msgid "Results"
-msgstr "Výsledky"
+msgid "Discard"
+msgstr ""
 
-msgid "Simulation Results"
-msgstr "Výsledky simulací"
+#, fuzzy
+msgid "Batch Mode"
+msgstr "Po"
 
 msgid "Summary"
 msgstr "Shrnutí"
@@ -1617,17 +1901,35 @@ msgstr "Soubor CIB (odchozí)"
 msgid "Transition Graph"
 msgstr "Graf přechodu"
 
+#, fuzzy
+msgid "Transition"
+msgstr "Přechody"
+
+#, fuzzy
+msgid "Inject"
+msgstr "Připojit"
+
+#, fuzzy
+msgid "Node Event"
+msgstr "Události uzlů"
+
+#, fuzzy
+msgid "Resource Event"
+msgstr "Události prostředků"
+
+#, fuzzy
+msgid "Ticket Event"
+msgstr "Lístek"
+
 msgid "Transition (XML)"
 msgstr "Přechod (XML)"
 
 msgid "Inject Node Event"
 msgstr "Událost vložení uzlu"
 
-msgid "OK"
-msgstr "OK"
-
-msgid "Inject Operation Event"
-msgstr "Událost operace vložení"
+#, fuzzy
+msgid "Inject Resource Event"
+msgstr "Událost vložení uzlu"
 
 msgid "Interval (ms)"
 msgstr "Interval (ms)"
@@ -1641,26 +1943,19 @@ msgstr "Událost vložení lístku"
 msgid "Action"
 msgstr "Akce"
 
-msgid "Enable the simulation mode"
-msgstr "Povolit režim simulace"
+#, fuzzy
+msgid "Batch Configuration Changes"
+msgstr "Konfigurace"
 
-msgid "Disable Simulator"
-msgstr "Zakázat simulátor"
-
-msgid "Disable the simulation mode"
-msgstr "Zakázat režim simulace"
-
-msgid "Profile"
-msgstr "Profil"
+#, fuzzy
+msgid "Batch"
+msgstr "Březen"
 
 msgid "Logout"
 msgstr "Odhlásit"
 
 msgid "Menu"
 msgstr "Nabídka"
-
-msgid "Errors"
-msgstr "Chyby"
 
 msgid "No objects available"
 msgstr "Nejsou k dispozici žádné objekty."
@@ -1677,11 +1972,23 @@ msgstr "Lístek:"
 msgid "Properties"
 msgstr "Vlastnosti"
 
-msgid "Sequential"
-msgstr "Sekvenční"
+msgid "None"
+msgstr "Nic"
 
-msgid "No resources defined for ticket"
-msgstr "Pro lístek nejsou definovány žádné prostředky."
+msgid "Leader"
+msgstr ""
+
+msgid "Expires"
+msgstr ""
+
+msgid "Commit"
+msgstr ""
+
+msgid "Sites"
+msgstr ""
+
+msgid "Arbitrators"
+msgstr ""
 
 msgid "Target ID"
 msgstr "ID cíle"
@@ -1695,17 +2002,8 @@ msgstr "Opravdu chcete zrušit nastavení průvodce?"
 msgid "Do you really want to apply the current wizard?"
 msgstr "Opravdu chcete použít aktuálního průvodce?"
 
-msgid "Wizards"
-msgstr "Vybrat průvodce"
-
 msgid "Legacy Wizards"
 msgstr "Starší průvodci"
-
-msgid "Verify and apply"
-msgstr "Ověřit a použít"
-
-msgid "Review the wizard actions and apply the changes"
-msgstr "Zkontrolovat akce průvodce a použít změny"
 
 msgid "Enable this step"
 msgstr "Povolit tento krok"
@@ -1713,8 +2011,14 @@ msgstr "Povolit tento krok"
 msgid "This wizard takes no parameters."
 msgstr "Tento průvodce nepřijímá žádné parametry."
 
+msgid "Next"
+msgstr "Další"
+
 msgid "Verify"
 msgstr "Ověřit"
+
+msgid "Verify and apply"
+msgstr "Ověřit a použít"
 
 msgid ""
 "To apply the changes, Hawk requires root access, and password-less SSH access "
@@ -1726,6 +2030,9 @@ msgstr ""
 
 msgid "Root password"
 msgstr "Heslo uživatele root"
+
+msgid "other"
+msgstr "jiné"
 
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "Objekt/atribut neexistuje (cibadmin %{cmd})"

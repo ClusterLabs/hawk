@@ -106,6 +106,27 @@ msgstr "否"
 msgid "Any changes will be lost - do you wish to proceed?"
 msgstr "所有更改都会丢失 - 是否继续？"
 
+#, fuzzy
+msgid "Invalid ID"
+msgstr "无效的标记 ID"
+
+msgid "OK"
+msgstr "确定"
+
+#, fuzzy
+msgid "Maintenance mode"
+msgstr "维护"
+
+msgid "An error has occurred"
+msgstr ""
+
+msgid "Close"
+msgstr "关闭"
+
+#, fuzzy
+msgid "No configuration changes."
+msgstr "正在应用配置更改..."
+
 msgid "Clone ID"
 msgstr "克隆 ID"
 
@@ -148,6 +169,9 @@ msgstr "票据"
 msgid "Constraint"
 msgstr "约束"
 
+msgid "Resources"
+msgstr "资源"
+
 msgid "Group ID"
 msgstr "组 ID"
 
@@ -165,6 +189,9 @@ msgstr "布尔运算符"
 
 msgid "Multi-state ID"
 msgstr "多状态 ID"
+
+msgid "Failed to parse monitor response - Internal server error."
+msgstr ""
 
 msgid "Connection to server failed - will retry every 15 seconds."
 msgstr "与服务器的连接失败 - 将每隔 15 秒重试一次。"
@@ -199,8 +226,17 @@ msgstr "切换为待机"
 msgid "Fence"
 msgstr "屏蔽"
 
+msgid "Clear state"
+msgstr ""
+
+msgid "Events"
+msgstr ""
+
 msgid "Details"
 msgstr "细节"
+
+msgid "ID"
+msgstr "ID"
 
 msgid "Add"
 msgstr "添加"
@@ -221,6 +257,10 @@ msgid "Failed to fetch meta attributes"
 msgstr "无法提取元属性"
 
 msgid "Report generation is complete."
+msgstr "已完成生成报告操作。"
+
+#, fuzzy
+msgid "Report generation cancelled."
 msgstr "已完成生成报告操作。"
 
 msgid "From"
@@ -322,6 +362,12 @@ msgstr "复制"
 msgid "Tag"
 msgstr "标记"
 
+msgid "Away from current node"
+msgstr ""
+
+msgid "Clean up on all nodes"
+msgstr ""
+
 msgid "Stop"
 msgstr "停止"
 
@@ -349,17 +395,28 @@ msgstr "取消迁移"
 msgid "Cleanup"
 msgstr "清理"
 
+msgid "Recent events"
+msgstr ""
+
+#, fuzzy
+msgid "No child resources"
+msgstr "子资源"
+
 msgid "Primitive"
 msgstr "原始资源"
+
+msgid "Template"
+msgstr "模板"
 
 msgid "Resource"
 msgstr "资源"
 
+#, fuzzy
+msgid "Rename"
+msgstr "用户名"
+
 msgid "Role ID"
 msgstr "角色 ID"
-
-msgid "Stopped Resources"
-msgstr "停止的资源"
 
 msgid "Tag ID"
 msgstr "标记 ID"
@@ -367,14 +424,18 @@ msgstr "标记 ID"
 msgid "Objects"
 msgstr "对象"
 
-msgid "ID"
-msgstr "ID"
-
 msgid "Granted"
 msgstr "已授予"
 
+msgid "Elsewhere"
+msgstr ""
+
 msgid "Revoked"
 msgstr "已撤消"
+
+#, fuzzy
+msgid "Last Granted"
+msgstr "已授予"
 
 msgid "Grant"
 msgstr "授予"
@@ -402,6 +463,13 @@ msgstr "为 %USER% 创建新阴影 CIB。"
 
 msgid "Unable to create shadow CIB"
 msgstr "无法创建阴影 CIB"
+
+msgid "Failed to apply configuration"
+msgstr ""
+
+#, fuzzy
+msgid "Applied configuration successfully"
+msgstr "成功"
 
 msgid "Create Clone"
 msgstr "创建克隆"
@@ -447,6 +515,9 @@ msgstr "共置"
 
 msgid "The colocation constraint does not exist"
 msgstr "该共置约束不存在"
+
+msgid "Command Log"
+msgstr "命令日志"
 
 msgid "Constraints"
 msgstr "约束"
@@ -523,11 +594,25 @@ msgstr "多状态资源"
 msgid "The multi-state resource does not exist"
 msgstr "该多状态资源不存在"
 
+#, fuzzy
+msgid "Node updated successfully"
+msgstr "已成功更新角色"
+
+#, fuzzy
+msgid "Failed to set the node online: %{err}"
+msgstr "无法启动资源：%{err}"
+
 msgid "Set the node state to online"
 msgstr "将节点状态设置为联机"
 
+msgid "Failed to set the node standby: %{err}"
+msgstr ""
+
 msgid "Set the node state to standby"
 msgstr "将节点状态设置为待机"
+
+msgid "Failed to set the node state to maintenance: %{err}"
+msgstr ""
 
 msgid "Set the node state to maintenance"
 msgstr "将节点状态设置为维护"
@@ -535,8 +620,23 @@ msgstr "将节点状态设置为维护"
 msgid "Set the node state to ready"
 msgstr "将节点状态设置为就绪"
 
-msgid "Set the node state to fence"
-msgstr "将节点状态设置为屏蔽"
+msgid "Failed to set the node state to ready: %{err}"
+msgstr ""
+
+#, fuzzy
+msgid "Successfully fenced the node"
+msgstr "已成功授予票据"
+
+#, fuzzy
+msgid "Failed to fence the node: %{err}"
+msgstr "无法将资源降级：%{err}"
+
+#, fuzzy
+msgid "Failed to clear the node state: %{err}"
+msgstr "无法清理资源：%{err}"
+
+msgid "Cleared the node state"
+msgstr ""
 
 msgid "Nodes"
 msgstr "节点"
@@ -564,9 +664,6 @@ msgstr "欢迎"
 
 msgid "Help"
 msgstr "帮助"
-
-msgid "Commands"
-msgstr "命令"
 
 msgid "Create Primitive"
 msgstr "创建原始资源"
@@ -603,6 +700,9 @@ msgstr "无法生成"
 
 msgid "Upload completed."
 msgstr "上载完成。"
+
+msgid "Could not cancel report collection"
+msgstr ""
 
 msgid "Cannot display diff, too few transitions"
 msgstr "无法显示差异，转换次数太少"
@@ -676,8 +776,12 @@ msgstr "已成功清理资源"
 msgid "Failed to clean up the resource: %{err}"
 msgstr "无法清理资源：%{err}"
 
-msgid "Resources"
-msgstr "资源"
+#, fuzzy
+msgid "Successfully renamed %{A} to %{B}"
+msgstr "日"
+
+msgid "Failed to rename %{A} to %{B}: %{E}"
+msgstr ""
 
 msgid "Create Role"
 msgstr "创建角色"
@@ -777,8 +881,19 @@ msgstr "已成功删除票据"
 msgid "Successfully granted the ticket"
 msgstr "已成功授予票据"
 
+#, fuzzy
+msgid "Error granting the ticket"
+msgstr "错误"
+
 msgid "Successfully revoked the ticket"
 msgstr "已成功撤消票据"
+
+#, fuzzy
+msgid "Error revoking the ticket"
+msgstr "错误"
+
+msgid "Simulator active: Use the ticket controls in the simulator"
+msgstr "模拟器为活动状态：在模拟器中使用票据控制"
 
 msgid "Tickets"
 msgstr "票据"
@@ -830,6 +945,59 @@ msgstr "必需"
 
 msgid "Unique"
 msgstr "唯一"
+
+msgid "Profile"
+msgstr "配置文件"
+
+msgid "Epoch"
+msgstr ""
+
+#, fuzzy
+msgid "Current Configuration Version"
+msgstr "配置"
+
+msgid "Host"
+msgstr ""
+
+msgid "Designated Coordinator"
+msgstr ""
+
+#, fuzzy
+msgid "DC"
+msgstr "DC："
+
+#, fuzzy
+msgid "CIB Schema Version"
+msgstr "版本"
+
+msgid "Schema"
+msgstr ""
+
+msgid "Last Written"
+msgstr ""
+
+msgid "Update Origin"
+msgstr ""
+
+msgid "Update User"
+msgstr ""
+
+msgid "Have Quorum"
+msgstr ""
+
+msgid "Version"
+msgstr "版本"
+
+#, fuzzy
+msgid "Pacemaker Version"
+msgstr "版本"
+
+#, fuzzy
+msgid "Stack"
+msgstr "起始"
+
+msgid "Cluster Communication Stack"
+msgstr ""
 
 msgid "Master"
 msgstr "主"
@@ -914,14 +1082,8 @@ msgstr ""
 "%{fail_start}：对 %{node} 节点上的 %{resource} 资源执行 %{op} 操作失败：调用 ID=%{call_id}，RC 代"
 "码=%{rc_mapping} (%{rc_code})，退出原因=%{exit_reason}"
 
-msgid "other"
-msgstr "其他"
-
 msgid "STONITH is disabled. For normal cluster operation, STONITH is required."
 msgstr "STONITH 已禁用。要正常执行群集操作，需要启用 STONITH。"
-
-msgid "None"
-msgstr "无"
 
 msgid "Clone ID is required"
 msgstr "需要指定克隆 ID"
@@ -970,14 +1132,14 @@ msgid ""
 "ng for every instance of the other clone has)."
 msgstr "更改（克隆/主资源之间）顺序约束的行为，让实例在其对等实例启动/停止时立即启动/停止（而非等待其余克隆的每个实例都启动/停止）。"
 
+msgid "Child Resource"
+msgstr "子资源"
+
+msgid "Child resource to use as clone."
+msgstr ""
+
 msgid "The ID \"%{id}\" does not exist"
 msgstr "ID“%{id}”不存在"
-
-msgid "Constraint ID is required"
-msgstr "需要指定约束 ID"
-
-msgid "Invalid Constraint ID"
-msgstr "无效的约束 ID"
 
 msgid "Score is required"
 msgstr "需要指定分数"
@@ -985,11 +1147,31 @@ msgstr "需要指定分数"
 msgid "Invalid score value"
 msgstr "分数值无效"
 
+msgid "Invalid node attribute"
+msgstr ""
+
 msgid "Constraint must consist of at least two separate resources"
 msgstr "约束必须包含至少两个独立资源"
 
+#, fuzzy
+msgid "The score determines the location relationship between the resources."
+msgstr "四"
+
+#, fuzzy
+msgid "Node Attribute"
+msgstr "特性"
+
+msgid ""
+"Colocate resources by the given node attribute instead of by node name (the de"
+"fault)."
+msgstr ""
+
 msgid "Not a constraint"
 msgstr "不是约束"
+
+#, fuzzy
+msgid "Unique identifier for the constraint. May not contain spaces."
+msgstr "唯一"
 
 msgid "Set to true if the resource agent supports the migrate action"
 msgstr "如果资源代理支持迁移操作，则设置为 true"
@@ -1039,12 +1221,6 @@ msgstr "如果 remote-node 的名称不是 Guest 的主机名，需要连接的 
 msgid "How long before a pending guest connection will time out."
 msgstr "等待中的 Guest 连接经过多长时间后将会超时。"
 
-msgid "Group ID is required"
-msgstr "需要指定组 ID"
-
-msgid "Invalid Group ID"
-msgstr "无效的组 ID"
-
 msgid "No Group children specified"
 msgstr "未指定组子项"
 
@@ -1053,6 +1229,9 @@ msgstr "未指定资源"
 
 msgid "No rules specified"
 msgstr "未指定规则"
+
+msgid "Invalid resource discovery type"
+msgstr ""
 
 msgid "Constraint is too complex - it contains nested rules"
 msgstr "约束过于复杂 - 它包含嵌套规则"
@@ -1069,11 +1248,57 @@ msgstr "属性同时包含单引号和双引号"
 msgid "Value contains both single and double quotes"
 msgstr "值同时包含单引号和双引号"
 
-msgid "Multi-state ID is required"
-msgstr "需要指定多状态 ID"
+#, fuzzy
+msgid "Resources to apply the constraint to."
+msgstr "资源"
 
-msgid "Invalid Multi-state ID"
-msgstr "无效的多状态 ID"
+#, fuzzy
+msgid ""
+"Positive values indicate the resources should run on this node. Negative value"
+"s indicate the resources should not run on this node. Values of +/- INFINITY c"
+"hange \"should\"/\"should not\" to \"must\"/\"must not\"."
+msgstr "值"
+
+msgid "Node"
+msgstr "节点"
+
+#, fuzzy
+msgid "Name of a node in the cluster."
+msgstr "名称"
+
+#, fuzzy
+msgid "Resource Discovery"
+msgstr "资源"
+
+#, fuzzy
+msgid ""
+"Controls resource discovery for the specified resource on nodes covered by the"
+" constraint. always: Always perform resource discovery (default). never: Never"
+" perform resource discovery for the specified resource on this node. This opti"
+"on should generally be used with a -INFINITY score. exclusive: Only perform re"
+"source discovery for the specified resource on this node."
+msgstr "四"
+
+msgid "Limits the rule to apply only when the resource is in the specified role."
+msgstr ""
+
+#, fuzzy
+msgid "Operator"
+msgstr "操作"
+
+msgid ""
+"How to combine the result of multiple expression objects. Allowed values are a"
+"nd and or."
+msgstr ""
+
+msgid "Expression"
+msgstr ""
+
+#, fuzzy
+msgid ""
+"Each rule can contain a number of expressions. The results of the expressions "
+"are combined based on the rule's boolean operator."
+msgstr "四"
 
 msgid "No Multi-state child specified"
 msgstr "未指定多状态子项"
@@ -1098,7 +1323,34 @@ msgstr "需要指定名称"
 msgid "Invalid name"
 msgstr "无效的名称"
 
+#, fuzzy
+msgid "Node ID"
+msgstr "节点"
+
+#, fuzzy
+msgid "Unique identifier for the node."
+msgstr "唯一"
+
+#, fuzzy
+msgid "Node Name"
+msgstr "名称"
+
+#, fuzzy
+msgid "Name used to refer to the node in the cluster."
+msgstr "名称"
+
+#, fuzzy
+msgid ""
+"Puts the node into standby mode. The specified node is no longer able to host "
+"resources. Any resources currently active on the node will be moved to another"
+" node."
+msgstr "其他"
+
 msgid "is required"
+msgstr "需要指定"
+
+#, fuzzy
+msgid "ID is required"
 msgstr "需要指定"
 
 msgid "Object not found: %s=%s"
@@ -1112,12 +1364,6 @@ msgstr "无法创建：%{msg}"
 
 msgid "Error updating %{id} (rc=%{rc})"
 msgstr "上载 %{id} 时出错 (rc=%{rc})"
-
-msgid "PE Input created by different Pacemaker version (%{version})"
-msgstr "其他 Pacemaker 版本 (%{version}) 创建的 PE 输入"
-
-msgid "Pacemaker version not present in PE Input"
-msgstr "PE 输入中没有 Pacemaker 版本"
 
 msgid "No details available"
 msgstr "无可用的细节"
@@ -1134,11 +1380,9 @@ msgstr "必须具有正确的文件扩展名"
 msgid "Not a resource"
 msgstr "不是资源"
 
-msgid "Role ID is required"
-msgstr "需要指定角色 ID"
-
-msgid "Invalid Role ID"
-msgstr "无效的角色 ID"
+#, fuzzy
+msgid "Unique identifier for the resource. May not contain spaces."
+msgstr "唯一"
 
 msgid "At least one rule is required"
 msgstr "至少需要指定一个规则"
@@ -1161,20 +1405,8 @@ msgstr "未指定口令"
 msgid "Invalid username or password"
 msgstr "用户名或口令无效"
 
-msgid "Tag ID is required"
-msgstr "需要指定标记 ID"
-
-msgid "Invalid Tag ID"
-msgstr "无效的标记 ID"
-
 msgid "No Tag resources specified"
 msgstr "未指定标记资源"
-
-msgid "Resource ID is required"
-msgstr "需要指定资源 ID"
-
-msgid "Invalid Resource ID"
-msgstr "无效的资源 ID"
 
 msgid "How frequently (in seconds) to perform the operation."
 msgstr "执行该操作的频率（秒）。"
@@ -1203,6 +1435,44 @@ msgid ""
 "LI tools can indicate that an operation is in progress."
 msgstr "如果为 true，则记录执行该操作的目的，以便 GUI 和 CLI 工具可以指出某项操作是否正在进行。"
 
+#, fuzzy
+msgid "Resource template to inherit from."
+msgstr "资源"
+
+msgid "Class"
+msgstr "类"
+
+msgid "Standard which the resource agent conforms to."
+msgstr ""
+
+msgid "Provider"
+msgstr "提供程序"
+
+msgid "Vendor or project which provided the resource agent."
+msgstr ""
+
+#, fuzzy
+msgid "Resource agent name."
+msgstr "资源"
+
+msgid "After the specified timeout period, the operation will be treated as failed."
+msgstr ""
+
+#, fuzzy
+msgid "Monitor"
+msgstr "一"
+
+msgid ""
+"Define a monitor operation to instruct the cluster to ensure that the resource"
+" is still healthy."
+msgstr ""
+
+msgid "Constraint ID is required"
+msgstr "需要指定约束 ID"
+
+msgid "Invalid Constraint ID"
+msgstr "无效的约束 ID"
+
 msgid "Ticket ID is required"
 msgstr "需要指定票据 ID"
 
@@ -1211,9 +1481,6 @@ msgstr "票据 ID 无效"
 
 msgid "Constraint must consist of at least one separate resources"
 msgstr "约束必须至少包含一个独立资源"
-
-msgid "Simulator active: Use the ticket controls in the simulator"
-msgstr "模拟器为活动状态：在模拟器中使用票据控制"
 
 msgid "ACL target ID is required"
 msgstr "需要指定 ACL 目标 ID"
@@ -1251,11 +1518,15 @@ msgstr "间隔"
 msgid "Depth"
 msgstr "深度"
 
-msgid "Close"
-msgstr "关闭"
+#, fuzzy
+msgid "Apply Configuration"
+msgstr "配置"
 
-msgid "Child Resource"
-msgstr "子资源"
+msgid "Calculating list of changes..."
+msgstr ""
+
+msgid "Errors"
+msgstr "错误"
 
 msgid "Meta Attributes"
 msgstr "元属性"
@@ -1266,14 +1537,50 @@ msgstr "后退"
 msgid "Are you sure you wish to delete %s?"
 msgstr "确实要删除 %s 吗？"
 
-msgid "List"
-msgstr "列表"
+msgid "Always"
+msgstr ""
+
+#, fuzzy
+msgid "Never"
+msgstr "还原"
+
+msgid "Advanced"
+msgstr "高级"
+
+msgid "Lists crm commands recently executed by hawk, most recent first."
+msgstr "列出 hawk 最近执行的 crm 命令，最近的列在最前面。"
+
+#, fuzzy
+msgid "Edit Configuration"
+msgstr "配置"
+
+msgid "XML"
+msgstr ""
+
+msgid "Graph"
+msgstr "示意图"
+
+#, fuzzy
+msgid "Cluster Details"
+msgstr "细节"
+
+#, fuzzy
+msgid "Batch Mode Active"
+msgstr "一"
+
+#, fuzzy
+msgid "Show Configuration"
+msgstr "配置"
 
 msgid "Constraint:"
 msgstr "约束："
 
-msgid "Add Constraint"
+#, fuzzy
+msgid "Add a constraint"
 msgstr "添加约束"
+
+msgid "List"
+msgstr "列表"
 
 msgid "Resource Defaults"
 msgstr "默认资源"
@@ -1281,38 +1588,23 @@ msgstr "默认资源"
 msgid "Operation Defaults"
 msgstr "默认操作"
 
-msgid "Default"
-msgstr "默认"
-
 msgid "Add Cluster"
 msgstr "添加群集"
-
-msgid "Cluster name"
-msgstr "群集名称"
 
 msgid "West Coast (example)"
 msgstr "West Coast（示例）"
 
-msgid "node1.west.example.com"
-msgstr "node1.west.example.com"
+msgid "Cluster name"
+msgstr "群集名称"
 
 msgid "Hostname of node in cluster"
 msgstr "群集中节点的主机名"
 
-msgid "Advanced"
-msgstr "高级"
-
-msgid "Update interval (seconds)"
-msgstr "更新间隔（秒）"
+msgid "node1.west.example.com"
+msgstr "node1.west.example.com"
 
 msgid "Server port to connect to"
 msgstr "要连接的服务器端口"
-
-msgid "HTTPS"
-msgstr "HTTPS"
-
-msgid "Graph"
-msgstr "示意图"
 
 msgid "Children"
 msgstr "子项"
@@ -1328,6 +1620,12 @@ msgstr "SUSE, LLC"
 
 msgid "High Availability Web Konsole"
 msgstr "High Availability Web Konsole"
+
+msgid "Simple"
+msgstr ""
+
+msgid "Advisory"
+msgstr ""
 
 msgid "Edit Location"
 msgstr "编辑位置"
@@ -1350,38 +1648,59 @@ msgstr "多状态资源"
 msgid "Create Multi-state"
 msgstr "创建多状态"
 
-msgid "Getting recent events..."
-msgstr "正在获取最近的事件..."
-
-msgid "Another operation is in progress..."
-msgstr "另一个操作正在执行..."
-
-msgid "No events found in last hour"
-msgstr "找不到过去一小时内的任何事件"
-
-msgid "Remote node."
-msgstr "远程节点。"
+msgid "Attributes"
+msgstr "属性"
 
 msgid "Utilization"
 msgstr "利用率"
 
+#, fuzzy
+msgid "Edit Node"
+msgstr "编辑角色"
+
+msgid "RC"
+msgstr ""
+
+msgid "Operation"
+msgstr "操作"
+
+msgid "Last Change"
+msgstr ""
+
+msgid "State"
+msgstr "状态"
+
+msgid "Call"
+msgstr "调用"
+
+msgid "Exec"
+msgstr ""
+
+#, fuzzy
+msgid "Complete"
+msgstr "模板"
+
+msgid "Remote node."
+msgstr "远程节点。"
+
 msgid "No utilization defined"
 msgstr "未定义利用率"
-
-msgid "Attributes"
-msgstr "属性"
 
 msgid "No attributes defined"
 msgstr "未定义属性"
 
+msgid "Mandatory"
+msgstr ""
+
+#, fuzzy
+msgid "Optional"
+msgstr "选项"
+
+msgid "Serialize"
+msgstr ""
+
 msgid "Symmetrical"
 msgstr "对称"
-
-msgid "Command Log"
-msgstr "命令日志"
-
-msgid "Lists crm commands recently executed by hawk, most recent first."
-msgstr "列出 hawk 最近执行的 crm 命令，最近的列在最前面。"
 
 msgid "HTML"
 msgstr "HTML"
@@ -1389,32 +1708,17 @@ msgstr "HTML"
 msgid "PDF"
 msgstr "PDF"
 
-msgid "Template"
-msgstr "模板"
+msgid "Default"
+msgstr "默认"
 
-msgid "Class"
-msgstr "类"
-
-msgid "Provider"
-msgstr "提供程序"
-
-msgid "Data collection in progress..."
-msgstr "正在收集数据..."
-
-msgid "To"
-msgstr "到"
-
-msgid "Generate"
-msgstr "生成"
-
-msgid "Upload"
-msgstr "上载"
+msgid "Copy"
+msgstr ""
 
 msgid "Reports"
 msgstr "报告"
 
-msgid "Report"
-msgstr "报告"
+msgid "To"
+msgstr "到"
 
 msgid "Created"
 msgstr "已创建"
@@ -1425,23 +1729,11 @@ msgstr "转换"
 msgid "No transitions in report"
 msgstr "报告中没有转换"
 
-msgid "Previous"
-msgstr "上一项"
-
-msgid "Next"
-msgstr "下一项"
-
 msgid "PE Name"
 msgstr "PE 名称"
 
-msgid "Node"
-msgstr "节点"
-
 msgid "Time"
 msgstr "时间"
-
-msgid "Version"
-msgstr "版本"
 
 msgid "Configuration"
 msgstr "配置"
@@ -1458,26 +1750,31 @@ msgstr "节点事件"
 msgid "Resource Events"
 msgstr "资源事件"
 
-msgid "Resource:"
-msgstr "资源："
+msgid "Data collection in progress..."
+msgstr "正在收集数据..."
 
-msgid "Value"
-msgstr "值"
+msgid "Generate"
+msgstr "生成"
+
+msgid "Upload"
+msgstr "上载"
+
+msgid "Loading report..."
+msgstr ""
+
+#, fuzzy
+msgid "Rename Resource"
+msgstr "资源"
+
+#, fuzzy
+msgid "Child"
+msgstr "子项"
 
 msgid "Instances"
 msgstr "实例"
 
-msgid "State"
-msgstr "状态"
-
 msgid "Failed Operations"
 msgstr "失败的操作"
-
-msgid "Call"
-msgstr "调用"
-
-msgid "Operation"
-msgstr "操作"
 
 msgid "Reason"
 msgstr "原因"
@@ -1512,50 +1809,37 @@ msgstr "参考"
 msgid "Attribute"
 msgstr "特性"
 
-msgid "ACL Roles"
-msgstr "ACL 角色"
+#, fuzzy
+msgid "Access Control Lists"
+msgstr "列表"
 
 msgid "Login"
 msgstr "登录"
 
-msgid "Version:"
-msgstr "版本："
-
-msgid "DC:"
-msgstr "DC："
-
-msgid "UI:"
-msgstr "UI："
-
-msgid "Status:"
-msgstr "状态："
-
-msgid "Add resource"
-msgstr "添加资源"
-
-msgid "Add constraint"
+msgid "Add Constraint"
 msgstr "添加约束"
 
-msgid "Add template"
-msgstr "添加模板"
-
-msgid "Choose wizard"
+msgid "Wizards"
 msgstr "选择向导"
 
-msgid "Simulator Active"
-msgstr "模拟器为活动状态"
+msgid "Access Control"
+msgstr ""
 
-msgid "Reset"
-msgstr "重设置"
+#, fuzzy
+msgid "Targets"
+msgstr "目标 ID"
 
-msgid "Run"
-msgstr "运行"
+msgid ""
+"Any pending changes to the configuration will be lost - do you wish to proceed"
+"?"
+msgstr ""
 
-msgid "Results"
-msgstr "结果"
+msgid "Discard"
+msgstr ""
 
-msgid "Simulation Results"
-msgstr "模拟结果"
+#, fuzzy
+msgid "Batch Mode"
+msgstr "一"
 
 msgid "Summary"
 msgstr "小结"
@@ -1569,17 +1853,35 @@ msgstr "CIB（输出）"
 msgid "Transition Graph"
 msgstr "转换图"
 
+#, fuzzy
+msgid "Transition"
+msgstr "转换"
+
+#, fuzzy
+msgid "Inject"
+msgstr "连接"
+
+#, fuzzy
+msgid "Node Event"
+msgstr "节点事件"
+
+#, fuzzy
+msgid "Resource Event"
+msgstr "资源事件"
+
+#, fuzzy
+msgid "Ticket Event"
+msgstr "票据"
+
 msgid "Transition (XML)"
 msgstr "转换 (XML)"
 
 msgid "Inject Node Event"
 msgstr "插入节点事件"
 
-msgid "OK"
-msgstr "确定"
-
-msgid "Inject Operation Event"
-msgstr "插入操作事件"
+#, fuzzy
+msgid "Inject Resource Event"
+msgstr "插入节点事件"
 
 msgid "Interval (ms)"
 msgstr "间隔（毫秒）"
@@ -1593,26 +1895,19 @@ msgstr "插入票据事件"
 msgid "Action"
 msgstr "操作"
 
-msgid "Enable the simulation mode"
-msgstr "启用模拟模式"
+#, fuzzy
+msgid "Batch Configuration Changes"
+msgstr "配置"
 
-msgid "Disable Simulator"
-msgstr "禁用模拟器"
-
-msgid "Disable the simulation mode"
-msgstr "禁用模拟模式"
-
-msgid "Profile"
-msgstr "配置文件"
+#, fuzzy
+msgid "Batch"
+msgstr "三月"
 
 msgid "Logout"
 msgstr "注销"
 
 msgid "Menu"
 msgstr "菜单"
-
-msgid "Errors"
-msgstr "错误"
 
 msgid "No objects available"
 msgstr "无可用的对象"
@@ -1629,11 +1924,23 @@ msgstr "票据："
 msgid "Properties"
 msgstr "属性"
 
-msgid "Sequential"
-msgstr "顺序"
+msgid "None"
+msgstr "无"
 
-msgid "No resources defined for ticket"
-msgstr "未为此票据定义资源"
+msgid "Leader"
+msgstr ""
+
+msgid "Expires"
+msgstr ""
+
+msgid "Commit"
+msgstr ""
+
+msgid "Sites"
+msgstr ""
+
+msgid "Arbitrators"
+msgstr ""
 
 msgid "Target ID"
 msgstr "目标 ID"
@@ -1647,17 +1954,8 @@ msgstr "确实要取消安装向导吗？"
 msgid "Do you really want to apply the current wizard?"
 msgstr "确实要应用当前向导吗？"
 
-msgid "Wizards"
-msgstr "选择向导"
-
 msgid "Legacy Wizards"
 msgstr "旧式向导"
-
-msgid "Verify and apply"
-msgstr "校验并应用"
-
-msgid "Review the wizard actions and apply the changes"
-msgstr "复查向导操作并应用更改"
 
 msgid "Enable this step"
 msgstr "启用此步骤"
@@ -1665,8 +1963,14 @@ msgstr "启用此步骤"
 msgid "This wizard takes no parameters."
 msgstr "此向导未采用任何参数。"
 
+msgid "Next"
+msgstr "下一项"
+
 msgid "Verify"
 msgstr "校验"
+
+msgid "Verify and apply"
+msgstr "校验并应用"
 
 msgid ""
 "To apply the changes, Hawk requires root access, and password-less SSH access "
@@ -1675,6 +1979,9 @@ msgstr "要应用更改，Hawk 需要拥有 root 访问权，并且必须配置�
 
 msgid "Root password"
 msgstr "Root 口令"
+
+msgid "other"
+msgstr "其他"
 
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "对象/属性不存在 (cibadmin %{cmd})"
