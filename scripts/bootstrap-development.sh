@@ -7,7 +7,7 @@ BASE="$HOME/hawk"
 echo "*** Add Virtualization repository"
 if grep 'VERSION="Tumbleweed"' < /etc/os-release >/dev/null 2>&1; then
 	sudo zypper ar http://download.opensuse.org/repositories/Virtualization/openSUSE_Factory/ Virtualization
-elif grep 'Leap' < /etc/os-release >/dev/null 2>&1; then
+elif grep 'VERSION="42.1"' < /etc/os-release >/dev/null 2>&1; then
 	sudo zypper ar http://download.opensuse.org/repositories/Virtualization/openSUSE_Leap_42.1/ Virtualization
 else
 	osver="$(grep 'VERSION=' < /etc/os-release)"
