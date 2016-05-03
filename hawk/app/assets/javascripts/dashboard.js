@@ -408,7 +408,7 @@ var dashboardAddCluster = (function() {
     var clusters = $("#clusters").children();
     var nclusters = clusters.length;
     if (nclusters == 1) {
-      clusters.removeClass().addClass("col-md-6 col-md-offset-3");
+      clusters.removeClass().addClass("col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2");
     } else if (nclusters == 2) {
       clusters.removeClass().addClass("col-md-6");
     } else if (nclusters == 3) {
