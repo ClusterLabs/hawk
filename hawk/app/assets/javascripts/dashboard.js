@@ -290,60 +290,63 @@ var dashboardAddCluster = (function() {
       xhrfields.withCredentials = true;
     }
 
-    $.ajax({ url: spec.url,
-             beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
-             contentType: 'application/x-www-form-urlencoded',
-             dataType: 'json',
-             data: spec.data || null,
-             type: spec.type || "GET",
-             timeout: spec.timeout || 30000,
-             crossDomain: spec.crossDomain || false,
-             xhrFields: xhrfields,
-             success: spec.success || null,
-             error: spec.error || null
-           });
+    $.ajax({
+      url: spec.url,
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
+      contentType: 'application/x-www-form-urlencoded',
+      dataType: 'json',
+      data: spec.data || null,
+      type: spec.type || "GET",
+      timeout: spec.timeout || 30000,
+      crossDomain: spec.crossDomain || false,
+      xhrFields: xhrfields,
+      success: spec.success || null,
+      error: spec.error || null
+    });
   }
 
   function clusterRefresh(clusterId, clusterInfo) {
     indicator(clusterId, "refresh");
 
-    ajaxQuery({ url: baseUrl(clusterInfo) + "/cib/live?mini=true&format=json",
-                type: "GET",
-                data: { _method: 'show' },
-                crossDomain: clusterInfo.host != null,
-                success: function(data) {
-                  displayClusterStatus(clusterId, data);
-                  $("#" + clusterId).data('epoch', data.meta.epoch);
-                  clusterUpdate(clusterId, clusterInfo);
-                },
-                error: function(xhr, status, error) {
-                  clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
-                    clusterRefresh(clusterId, clusterInfo);
-                  });
-                }
-              });
+    ajaxQuery({
+      url: baseUrl(clusterInfo) + "/cib/live?mini=true&format=json",
+      type: "GET",
+      data: { _method: 'show' },
+      crossDomain: clusterInfo.host != null,
+      success: function(data) {
+        displayClusterStatus(clusterId, data);
+        $("#" + clusterId).data('epoch', data.meta.epoch);
+        clusterUpdate(clusterId, clusterInfo);
+      },
+      error: function(xhr, status, error) {
+        clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
+          clusterRefresh(clusterId, clusterInfo);
+        });
+      }
+    });
   }
 
   function clusterUpdate(clusterId, clusterInfo) {
     var current_epoch = $("#" + clusterId).data('epoch');
-    ajaxQuery({ url: baseUrl(clusterInfo) + "/monitor.json",
-                type: "GET",
-                data: current_epoch,
-                timeout: 90000,
-                crossDomain: clusterInfo.host != null,
-                success: function(data) {
-                  if (data.epoch != current_epoch) {
-                    clusterRefresh(clusterId, clusterInfo);
-                  } else {
-                    clusterUpdate(clusterId, clusterInfo);
-                  }
-                },
-                error: function(xhr, status, error) {
-                  clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
-                    clusterRefresh(clusterId, clusterInfo);
-                  });
-                }
-              });
+    ajaxQuery({
+      url: baseUrl(clusterInfo) + "/monitor.json",
+      type: "GET",
+      data: current_epoch,
+      timeout: 90000,
+      crossDomain: clusterInfo.host != null,
+      success: function(data) {
+        if (data.epoch != current_epoch) {
+          clusterRefresh(clusterId, clusterInfo);
+        } else {
+          clusterUpdate(clusterId, clusterInfo);
+        }
+      },
+      error: function(xhr, status, error) {
+        clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
+          clusterRefresh(clusterId, clusterInfo);
+        });
+      }
+    });
   }
 
   function startRemoteConnect(clusterId, clusterInfo, bodytag) {
@@ -355,19 +358,20 @@ var dashboardAddCluster = (function() {
     bodytag.find('.btn-success').attr('disabled', true);
     bodytag.find('input').attr('disabled', true);
 
-    ajaxQuery({ url: baseUrl(clusterInfo) + "/login.json",
-                crossDomain: true,
-                type: "POST",
-                data: {"session": {"username": username, "password": password } },
-                success: function(data) {
-                  clusterRefresh(clusterId, clusterInfo);
-                },
-                error: function(xhr, status, error) {
-                  clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
-                    startRemoteConnect(clusterId, clusterInfo, bodytag);
-                  });
-                }
-              });
+    ajaxQuery({
+      url: baseUrl(clusterInfo) + "/login.json",
+      crossDomain: true,
+      type: "POST",
+      data: {"session": {"username": username, "password": password } },
+      success: function(data) {
+        clusterRefresh(clusterId, clusterInfo);
+      },
+      error: function(xhr, status, error) {
+        clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
+          startRemoteConnect(clusterId, clusterInfo, bodytag);
+        });
+      }
+    });
   }
 
   function basicCreateBody(clusterId, data) {
