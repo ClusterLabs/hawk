@@ -3,9 +3,7 @@
 // See COPYING for license.
 
 // https://<host>:7630/cib/mini.json
-
-var dashboardAddCluster = (function() {
-
+;(function($) {
   var checksum = function(s) {
     var hash = 0, i, chr, len;
     if (s.length == 0) return hash;
@@ -106,6 +104,23 @@ var dashboardAddCluster = (function() {
     }
   }
 
+  function isRemote(cib, node) {
+    return ("remote_nodes" in cib) && (node in cib["remote_nodes"]);
+  }
+
+  function scheduleReconnect(clusterInfo, cb, time) {
+    if (clusterInfo.conntry !== null) {
+      window.clearTimeout(clusterInfo.conntry);
+      clusterInfo.conntry = null;
+    }
+    if (cb !== undefined) {
+      if (time === undefined) {
+        time = 15000;
+      }
+      clusterInfo.conntry = window.setTimeout(cb, time);
+    }
+  }
+
   function displayClusterStatus(clusterId, cib) {
     if (cib.meta.status == "ok") {
       indicator(clusterId, "ok");
@@ -150,8 +165,7 @@ var dashboardAddCluster = (function() {
     };
 
     $.each(cib.nodes, function(n, v) {
-      var isremote = ("remote_nodes" in cib) && (n in cib["remote_nodes"]);
-      status_summary.nodes.push({name: n, state: v, remote: isremote});
+      status_summary.nodes.push({ name: n, state: v, remote: isRemote(cib, n) });
     });
 
     $.each(cib.resources, function(n, v) {
@@ -244,7 +258,7 @@ var dashboardAddCluster = (function() {
 
     tag.find('.circle').addClass('circle-danger').removeClass('circle-success circle-info circle-warning').html(status_icon_for('errors'));
 
-    var next = window.setTimeout(cb, 15000);
+    scheduleReconnect(clusterInfo, cb);
 
     var btn = tag.find('button.btn')
     btn.text(__('Cancel'));
@@ -252,14 +266,20 @@ var dashboardAddCluster = (function() {
     btn.removeClass('btn-success').addClass('btn-default');
     btn.attr("disabled", false);
     btn.click(function() {
-      window.clearTimeout(next);
+      scheduleReconnect(clusterInfo);
       tag.html(basicCreateBody(clusterId, clusterInfo));
 
       if (clusterInfo.host == null) {
         clusterRefresh(clusterId, clusterInfo);
       } else {
         tag.find("button.btn").click(function() {
-          startRemoteConnect(clusterId, clusterInfo, tag);
+          var username = tag.find("input[name=username]").val();
+          var password = tag.find("input[name=password]").val();
+          tag.find('.btn-success').attr('disabled', true);
+          tag.find('input').attr('disabled', true);
+          clusterInfo.username = username;
+          clusterInfo.password = password;
+          startRemoteConnect(clusterId, clusterInfo);
         });
       }
     });
@@ -280,7 +300,8 @@ var dashboardAddCluster = (function() {
       return "";
     } else {
       var transport = clusterInfo.https ? "https" : "http";
-      return transport + "://" + clusterInfo.host + ":" + clusterInfo.port;
+      var port = clusterInfo.port || "7630";
+      return transport + "://" + clusterInfo.host + ":" + port;
     }
   }
 
@@ -314,13 +335,35 @@ var dashboardAddCluster = (function() {
       data: { _method: 'show' },
       crossDomain: clusterInfo.host != null,
       success: function(data) {
+        $.each(data.nodes, function(node, _state) {
+          if (!isRemote(data, node)) {
+            if ($.inArray(clusterInfo.reconnections, node) === -1) {
+              clusterInfo.reconnections.push(node);
+            }
+          }
+        });
         displayClusterStatus(clusterId, data);
         $("#" + clusterId).data('epoch', data.meta.epoch);
         clusterUpdate(clusterId, clusterInfo);
       },
       error: function(xhr, status, error) {
         clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
-          clusterRefresh(clusterId, clusterInfo);
+          if (clusterInfo.password == null) {
+            clusterRefresh(clusterId, clusterInfo);
+          } else if (("reconnections" in clusterInfo) && clusterInfo.reconnections.length > 1) {
+            var currHost = clusterInfo.host;
+            var currFirst = clusterInfo.reconnections[0];
+            clusterInfo.reconnections.splice(0, 1);
+            clusterInfo.reconnections.push(currHost);
+            clusterInfo.host = currFirst;
+            if (currFirst == null) {
+              clusterRefresh(clusterId, clusterInfo);
+            } else {
+              startRemoteConnect(clusterId, clusterInfo);
+            }
+          } else {
+            clusterRefresh(clusterId, clusterInfo);
+          }
         });
       }
     });
@@ -349,14 +392,16 @@ var dashboardAddCluster = (function() {
     });
   }
 
-  function startRemoteConnect(clusterId, clusterInfo, bodytag) {
+  function startRemoteConnect(clusterId, clusterInfo) {
     indicator(clusterId, "refresh");
 
-    var username = bodytag.find("input[name=username]").val();
-    var password = bodytag.find("input[name=password]").val();
+    var username = clusterInfo.username || "hacluster";
+    var password = clusterInfo.password;
 
-    bodytag.find('.btn-success').attr('disabled', true);
-    bodytag.find('input').attr('disabled', true);
+    if (password === null) {
+      clusterConnectionError(clusterId, clusterInfo, { readyState: 1, status: 0 }, "error", "", function() {});
+      return;
+    }
 
     ajaxQuery({
       url: baseUrl(clusterInfo) + "/login.json",
@@ -368,7 +413,18 @@ var dashboardAddCluster = (function() {
       },
       error: function(xhr, status, error) {
         clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
-          startRemoteConnect(clusterId, clusterInfo, bodytag);
+          if (("reconnections" in clusterInfo) && clusterInfo.reconnections.length > 1) {
+            var currHost = clusterInfo.host;
+            var currFirst = clusterInfo.reconnections[0];
+            clusterInfo.reconnections.splice(0, 1);
+            clusterInfo.reconnections.push(currHost);
+            clusterInfo.host = currFirst;
+          }
+          if (clusterInfo.host == null) {
+            clusterRefresh(clusterId, clusterInfo);
+          } else {
+            startRemoteConnect(clusterId, clusterInfo);
+          }
         });
       }
     });
@@ -382,28 +438,42 @@ var dashboardAddCluster = (function() {
     var v_username = $('body').data('user');
     var content = '';
     if (data.host != null) {
-      content = '<div class="cluster-errors"></div>' +
-        '<form class="form-horizontal" role="form" onsubmit="return false;">' +
-        '<div class="input-group dashboard-login">' +
-        '<span class="input-group-addon"><i class="fa fa-server"></i></span>' +
-        '<input type="text" class="form-control" name="host" id="host" readonly="readonly" value="' + data.host + '">' +
-        '</div>' +
-        '<div class="input-group dashboard-login">' +
-        '<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>' +
-        '<input type="text" class="form-control" name="username" id="username" placeholder="' + s_username + '" value="' + v_username + '">' +
-        '</div>' +
-        '<div class="input-group dashboard-login">' +
-        '<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>' +
-        '<input type="password" class="form-control" name="password" id="password" placeholder="' + s_password + '">' +
-        '</div>' +
-        '<div class="form-group">' +
-        '<div class="col-sm-12 controls">' +
-        '<button type="submit" class="btn btn-success">' +
-        s_connect +
-        '</button>' +
-        '</div>' +
-        '</div>' +
-        '</form>';
+      content = [
+        '<div class="cluster-errors"></div>',
+        '<form class="form-horizontal" role="form" onsubmit="return false;">',
+        '<div class="form-group">',
+        '<div class="col-sm-12">',
+        '<div class="input-group dashboard-login">',
+        '<span class="input-group-addon"><i class="fa fa-server"></i></span>',
+        '<input type="text" class="form-control" name="host" id="host" readonly="readonly" value="', data.host, '">',
+        '</div>',
+        '</div>',
+        '</div>',
+        '<div class="form-group">',
+        '<div class="col-sm-12">',
+        '<div class="input-group dashboard-login">',
+        '<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>',
+        '<input type="text" class="form-control" name="username" id="username" placeholder="', s_username, '" value="', v_username, '">',
+        '</div>',
+        '</div>',
+        '</div>',
+        '<div class="form-group">',
+        '<div class="col-sm-12">',
+        '<div class="input-group dashboard-login">',
+        '<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>',
+        '<input type="password" class="form-control" name="password" id="password" placeholder="', s_password, '">',
+        '</div>',
+        '</div>',
+        '</div>',
+        '<div class="form-group">',
+        '<div class="col-sm-12 controls">',
+        '<button type="submit" class="btn btn-success">',
+        s_connect,
+        '</button>',
+        '</div>',
+        '</div>',
+          '</form>'
+      ].join("");
     }
     return content;
   }
@@ -424,9 +494,13 @@ var dashboardAddCluster = (function() {
     }
   };
 
-  return function(data) {
+  window.dashboardAddCluster = function(data) {
     var clusterId = newClusterId();
     var title = data.name || __("Local Status");
+    data.conntry = null;
+    data.reconnections = [];
+    data.username = null;
+    data.password = null;
 
     var content = basicCreateBody(clusterId, data);
 
@@ -478,37 +552,39 @@ var dashboardAddCluster = (function() {
       });
       var body = $("#" + clusterId).find(".panel-body");
       body.find("button.btn").click(function() {
-        startRemoteConnect(clusterId, data, body);
+        var username = body.find("input[name=username]").val();
+        var password = body.find("input[name=password]").val();
+        body.find('.btn-success').attr('disabled', true);
+        body.find('input').attr('disabled', true);
+        data.username = username;
+        data.password = password;
+        startRemoteConnect(clusterId, data);
       });
     }
   };
-})();
 
-var dashboardSetupAddClusterForm = function() {
-  $('#new_cluster').toggleify();
-  $('#new_cluster').on("submit", function() {
-    $('.modal-content .form-errors').append([
-      '<div class="alert alert-info">',
-      '<i class="fa fa-refresh fa-2x fa-pulse-opacity"></i> ',
-      __("Please wait..."),
-      '</div>'
-    ].join(''));
-    $(this).find('.submit').prop('disabled', true);
-    return true; // ensure submit actually happens
-  });
-  $('#new_cluster').on("ajax:success", function(e, data, status, xhr) {
-    $('#modal').modal('hide');
-    $('.modal-content').html('');
-    dashboardAddCluster(data);
-    $.growl({ message: __('Cluster added successfully.')}, {type: 'success'});
-  }).on("ajax:error", function(e, xhr, status, error) {
-    $(e.data).render_form_errors( $.parseJSON(xhr.responseText) );
-  });
-
-  (function($) {
+  window.dashboardSetupAddClusterForm = function() {
+    $('#new_cluster').toggleify();
+    $('#new_cluster').on("submit", function() {
+      $('.modal-content .form-errors').append([
+        '<div class="alert alert-info">',
+        '<i class="fa fa-refresh fa-2x fa-pulse-opacity"></i> ',
+        __("Please wait..."),
+        '</div>'
+      ].join(''));
+      $(this).find('.submit').prop('disabled', true);
+      return true; // ensure submit actually happens
+    });
+    $('#new_cluster').on("ajax:success", function(e, data, status, xhr) {
+      $('#modal').modal('hide');
+      $('.modal-content').html('');
+      dashboardAddCluster(data);
+      $.growl({ message: __('Cluster added successfully.')}, {type: 'success'});
+    }).on("ajax:error", function(e, xhr, status, error) {
+      $(e.data).render_form_errors( $.parseJSON(xhr.responseText) );
+    });
 
     $.fn.render_form_errors = function(errors){
-
       this.clear_previous_errors();
 
       // show error messages in input form-group help-block
@@ -520,11 +596,11 @@ var dashboardSetupAddClusterForm = function() {
       });
 
       $('form').find('.form-errors').html(text);
-
     };
 
     $.fn.clear_previous_errors = function(){
       $('form').find('.form-errors').html('');
     }
-  }(jQuery));
-};
+  };
+
+}(jQuery));
