@@ -766,6 +766,9 @@ class Cib
           # skip notifies, deletes, cancels
           next if operation == 'notify' || operation == 'delete' || operation == 'cancel'
 
+          # set crm_feature_set in node information
+          node[:crm_feature_set] = op.attributes['crm_feature_set'] if operation == 'monitor'
+
           # skip allegedly pending "last_failure" ops (hack to fix bnc#706755)
           # TODO(should): see if we can remove this in future
           next if op.attributes.key?('id') &&
@@ -920,6 +923,19 @@ class Cib
 
     # Now we can sort the node array
     @nodes.sort!{|a,b| a[:uname].natcmp(b[:uname], true)}
+
+    feature_sets = {}
+    @nodes.each do |n|
+      if n.key? :crm_feature_set
+        fs = n[:crm_feature_set]
+        feature_sets[fs] ||= []
+        feature_sets[fs] << n
+      end
+    end
+    if feature_sets.count > 1
+      details = feature_sets.map { |k, v| "%s = %s" % [v.join(", "), k] }.join("; ")
+      error _('Partial upgrade detected! Nodes report different CRM versions: %s') % details, :warning
+    end
 
     # TODO(should): Can we just use cib attribute dc-uuid?  Or is that not viable
     # during cluster bringup, given we're using cibadmin -l?
