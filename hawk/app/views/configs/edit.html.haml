@@ -9,19 +9,22 @@
           = link_to icon_text("file-image-o", _("Graph")), cib_graph_path(cib_id: current_cib.id), class: "btn btn-default"
 
   .row
-    .panel.panel-default
-      .panel-heading
-        %h3.panel-title= _("Nodes")
-      %table.table.table-striped.nodes
+    %ul.nav.nav-tabs{role: :tablist}
+      %li.active{role: :presentation}
+        %a{href: "#nodes", role: :tab, data: { toggle: :tab }, aria: { controls: "nodes" } }
+          = _("Nodes")
+      %li{role: :presentation}
+        %a{href: "#resources", role: :tab, data: { toggle: :tab }, aria: { controls: "resources" } }
+          = _("Resources")
+      %li{role: :presentation}
+        %a{href: "#constraints", role: :tab, data: { toggle: :tab }, aria: { controls: "constraints" } }
+          = _("Constraints")
 
   .row
-    .panel.panel-default
-      .panel-heading
-        %h3.panel-title= _("Resources")
-      %table.table.table-striped.resources
-
-  .row
-    .panel.panel-default
-      .panel-heading
-        %h3.panel-title= _("Constraints")
-      %table.table.table-striped.constraints
+    .tab-content
+      #nodes.tab-pane.active{ role: :tabpanel }
+        %table.table.table-striped.nodes
+      #resources.tab-pane{ role: :tabpanel }
+        %table.table.table-striped.resources
+      #constraints.tab-pane{ role: :tabpanel }
+        %table.table.table-striped.constraints
