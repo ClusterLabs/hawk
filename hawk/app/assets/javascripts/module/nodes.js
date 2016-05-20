@@ -44,11 +44,17 @@ $(function() {
           halign: "center",
           class: 'detail',
           formatter: function(value, row, index) {
+            var cib = $('body').data('content');
             var icon = ['fa', 'fa-lg'];
             var title = row.state;
             switch(row.state) {
             case 'online':
-              icon.push('fa-circle', 'text-success');
+              if (cib.meta.dc == row.name) {
+                icon.push('fa-home', 'text-success');
+                title += " (DC)";
+              } else {
+                icon.push('fa-circle', 'text-success');
+              }
               break;
             case 'offline':
               icon.push('fa-minus-circle', 'text-danger');
