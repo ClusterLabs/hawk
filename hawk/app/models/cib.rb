@@ -110,6 +110,10 @@ class Cib
     end
   end
 
+  def no_quorum?
+      meta[:have_quorum] == "0" && @crm_config[:no_quorum_policy] != "ignore"
+  end
+
   def live?
     id == 'live'
   end
@@ -626,7 +630,7 @@ class Cib
         fence_history: fence_history
       }
       if state == :unclean
-        error _('Node "%{node}" is UNCLEAN and needs to be fenced.') % { node: uname }
+        error _('Node "%{node}" is UNCLEAN and needs to be fenced.') % { node: "<strong>#{uname}</strong>".html_safe }
       end
     end
 
@@ -1044,6 +1048,8 @@ class Cib
         ticket[:state] = :elsewhere
       end
     end
+
+    error _("Partition without quorum! Fencing and resource management is disabled.") if no_quorum?
 
     error(
       _("STONITH is disabled. For normal cluster operation, STONITH is required."),
