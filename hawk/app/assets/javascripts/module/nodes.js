@@ -21,11 +21,11 @@ $(function() {
         params.success(cib.nodes, "success", {});
         params.complete({}, "success");
       },
-      pagination: false,
+      pagination: true,
       pageSize: 10,
       pageList: [10, 25, 50, 100, 200],
       sidePagination: 'client',
-      smartDisplay: false,
+      smartDisplay: true,
       search: true,
       searchAlign: 'left',
       showColumns: false,

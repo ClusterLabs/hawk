@@ -558,7 +558,7 @@ $(function() {
       pageSize: 25,
       pageList: [10, 25, 50, 100, 200],
       sidePagination: 'client',
-      smartDisplay: false,
+      smartDisplay: true,
       search: true,
       searchAlign: 'left',
       striped: false,
