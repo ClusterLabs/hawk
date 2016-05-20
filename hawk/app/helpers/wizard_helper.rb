@@ -87,4 +87,9 @@ module WizardHelper
     return nil if value && value.to_s.include?('{{')
     value
   end
+
+  def wizard_category_title(category)
+    return _("Legacy Wizards") if category == "wizard"
+    category.titleize
+  end
 end

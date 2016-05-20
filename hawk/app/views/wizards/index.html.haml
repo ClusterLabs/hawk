@@ -10,11 +10,7 @@
           %span{ href: "##{category.dehumanize}", data: { toggle: "collapse", parent: ".nav-bighelp" } }
             .pull-right
               = icon_tag "chevron-down"
-
-            - if category == "wizard"
-              = icon_text wizard_icon(category), _("Legacy Wizards")
-            - else
-              = icon_text wizard_icon(category), category.titleize
+            = icon_text wizard_icon(category), wizard_category_title(category)
 
           %ul.nav.nav-pills.nav-stacked.collapse{ id: category.dehumanize }
             - @wizards.sort_by(&:name).each do |wizard|
