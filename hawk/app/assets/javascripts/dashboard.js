@@ -147,10 +147,12 @@
     if (cib.errors.length > 0) {
       text += '<div class="row">';
       text += '<div class="cluster-errors col-md-12">';
+      text += '<ul class="list-group">';
       cib.errors.forEach(function(err) {
         var type = err.type || "danger";
-        text += "<div class=\"alert alert-" + type + "\">" + err.msg + "</div>";
+        text += "<li class=\"list-group-item list-group-item-" + type + "\">" + err.msg + "</li>";
       });
+      text += '</ul>';
       text += '</div>';
       text += '</div>';
     }
