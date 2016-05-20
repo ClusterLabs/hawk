@@ -629,9 +629,6 @@ class Cib
         fence: can_fence,
         fence_history: fence_history
       }
-      if state == :unclean
-        error _('Node "%{node}" is UNCLEAN and needs to be fenced.') % { node: "<strong>#{uname}</strong>".html_safe }
-      end
     end
 
     # add remote nodes that may not exist in cib/configuration/nodes/node
@@ -1050,6 +1047,12 @@ class Cib
     end
 
     error _("Partition without quorum! Fencing and resource management is disabled.") if no_quorum?
+
+    @nodes.each do |n|
+      if n[:state] == :unclean
+        error _('Node "%{node}" is UNCLEAN and needs to be fenced.') % { node: "<strong>#{n[:uname]}</strong>".html_safe }
+      end
+    end
 
     error(
       _("STONITH is disabled. For normal cluster operation, STONITH is required."),
