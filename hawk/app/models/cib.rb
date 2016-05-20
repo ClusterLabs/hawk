@@ -86,25 +86,7 @@ class Cib
       struct[:version] = crm_config[:dc_version]
       struct[:stack] = crm_config[:cluster_infrastructure]
 
-      struct[:status] = case
-      when errors.empty?
-        # TODO(must): Add stopped checks
-
-        maintain = nodes.map do |node|
-          node[:maintenance] || false
-        end
-
-        case
-        when maintain.include?(true)
-          :maintenance
-        else
-          :ok
-        end
-      when !@crm_config[:stonith_enabled]
-        :nostonith
-      else
-        :errors
-      end
+      struct[:status] = cluster_status
 
       struct
     end
@@ -112,6 +94,26 @@ class Cib
 
   def no_quorum?
       meta[:have_quorum] == "0" && @crm_config[:no_quorum_policy] != "ignore"
+  end
+
+  def cluster_status
+    case
+    when errors.empty?
+      maintain = nodes.map do |node|
+        node[:maintenance] || false
+      end
+
+      case
+      when maintain.include?(true)
+        :maintenance
+      else
+        :ok
+      end
+    when !@crm_config[:stonith_enabled]
+      :nostonith
+    else
+      :errors
+    end
   end
 
   def live?
@@ -496,6 +498,7 @@ class Cib
     additions[type] = true
 
     errors.push additions
+    @meta[:status] = cluster_status
   end
 
   def initialize(id, user, use_file = false)
