@@ -1,13 +1,13 @@
 .container-fluid
   .row
-    .pull-left
-      .circle.circle-medium{ class: status_class_for(@cib.meta[:status]) }
+    .col-lg-4
+      .circle.circle-large{ class: status_class_for(@cib.meta[:status]) }
         = status_icon_for(@cib.meta[:status])
-    %h1
-      = _("Status")
 
-  .row.errors.softhide#errors{ data: { link: "visible{>errors.length > 0}" } }
-    .col-lg-12
+    .col-lg-8{ data: { link: "visible{>errors.length == 0}" } }
+      %h1
+        = _("Status")
+    .col-lg-8.errors.softhide#errors{ data: { link: "visible{>errors.length > 0}" } }
       .panel.panel-default
         .panel-heading
           %h2.panel-title
@@ -16,35 +16,26 @@
 
         %ul.list-group{ data: { link: "{for errors tmpl='statusError'}" } }
 
-  .row#resources
-    .col-lg-12
-      .panel.panel-default
-        .panel-heading
-          %h2.panel-title
-            %a{ href: "#resources" }
-              = _("Resources")
+  .row
+    %ul.nav.nav-tabs{role: :tablist}
+      %li.active{role: :presentation}
+        %a{href: "#nodes", role: :tab, data: { toggle: :tab }, aria: { controls: "nodes" } }
+          = _("Nodes")
+      %li{role: :presentation}
+        %a{href: "#resources", role: :tab, data: { toggle: :tab }, aria: { controls: "resources" } }
+          = _("Resources")
+      %li{role: :presentation, data: { link: "visible{hasKeys:tickets}" } }
+        %a{href: "#tickets", role: :tab, data: { toggle: :tab }, aria: { controls: "tickets" } }
+          = _("Tickets")
 
-        %table.table.table-striped.resources
-
-  .row#nodes
-    .col-lg-12
-      .panel.panel-default
-        .panel-heading
-          %h2.panel-title
-            %a{ href: "#nodes" }
-              = _("Nodes")
-
-        %table.table.table-striped.nodes
-
-  .row.softhide#tickets{ data: { link: "visible{hasKeys:tickets}" } }
-    .col-lg-12
-      .panel.panel-default
-        .panel-heading
-          %h2.panel-title
-            %a{ href: "#tickets" }
-              = _("Tickets")
-
-        %table.table.table-striped.tickets
+  .row
+    .tab-content
+      #nodes.tab-pane.active{ role: :tabpanel }
+        %table.table.nodes
+      #resources.tab-pane{ role: :tabpanel }
+        %table.table.resources
+      #tickets.tab-pane{ role: :tabpanel, data: { link: "visible{hasKeys:tickets}" } }
+        %table.table.tickets
 
 %script#statusError{ type: "text/x-jsrender" }
   %li.list-group-item{ data: { link: "class{merge:success toggle='list-group-item-success'} class{merge:info toggle='list-group-item-info'} class{merge:warning toggle='list-group-item-warning'} class{merge:danger toggle='list-group-item-danger'}" } }

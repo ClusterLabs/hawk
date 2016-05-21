@@ -90,7 +90,7 @@ $(function() {
       }]
     });
 
-  $('#states #middle table.tickets')
+  $('#cib #middle table.tickets')
     .bootstrapTable({
       ajax: function(params) {
         var cib = $('body').data('content');
@@ -104,7 +104,7 @@ $(function() {
       pageList: [10, 25, 50, 100, 200],
       sidePagination: 'client',
       smartDisplay: false,
-      search: true,
+      search: false,
       searchAlign: 'left',
       showColumns: false,
       showRefresh: false,
@@ -125,8 +125,8 @@ $(function() {
       columns: [{
         field: 'state',
         title: __('Status'),
-        sortable: true,
-        clickToSelect: true,
+        sortable: false,
+        clickToSelect: false,
         class: 'col-sm-1',
         formatter: function(value, row, index) {
           var ret = [];
@@ -154,9 +154,9 @@ $(function() {
       }, {
         field: 'id',
         title: __('Ticket'),
-        sortable: true,
+        sortable: false,
         switchable: false,
-        clickToSelect: true
+        clickToSelect: false
       }, {
         field: 'last_granted',
         title: __('Last Granted'),

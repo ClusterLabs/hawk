@@ -171,8 +171,8 @@ $(function() {
     {
       field: 'state',
       title: __('Status'),
-      sortable: true,
-      clickToSelect: true,
+      sortable: false,
+      clickToSelect: false,
       align: "center",
       halign: "center",
       class: 'col-sm-1',
@@ -207,16 +207,15 @@ $(function() {
     {
       field: 'id',
       title: __('ID'),
-      sortable: true,
-      switchable: false,
-      clickToSelect: true,
+      sortable: false,
+      clickToSelect: false,
       class: 'col-sm-2'
     },
     {
       field: 'running_on',
       title: __('Location'),
-      sortable: true,
-      clickToSelect: true,
+      sortable: false,
+      clickToSelect: false,
       class: 'col-sm-6',
       formatter: function(value, row, index) {
         if ("running_on" in row) {
@@ -234,8 +233,8 @@ $(function() {
     {
       field: 'type',
       title: __('Type'),
-      sortable: true,
-      clickToSelect: true,
+      sortable: false,
+      clickToSelect: false,
       class: 'col-sm-1',
       formatter: function(value, row, index) {
         if (row.object_type == "group") {
@@ -554,18 +553,19 @@ $(function() {
         params.success(resources_and_tags, "success", {});
         params.complete({}, "success");
       },
-      pagination: true,
+      classes: "table table-hover table-no-bordered",
+      pagination: false,
       pageSize: 25,
       pageList: [10, 25, 50, 100, 200],
       sidePagination: 'client',
-      smartDisplay: true,
-      search: true,
+      smartDisplay: false,
+      search: false,
       searchAlign: 'left',
       striped: false,
       showColumns: false,
       showRefresh: false,
       minimumCountColumns: 0,
-      sortName: 'object_type',
+      sortName: 'id',
       sortOrder: 'asc',
       detailView: true,
       rowStyle: rowStyleFn,
