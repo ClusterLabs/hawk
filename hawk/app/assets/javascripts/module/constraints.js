@@ -217,6 +217,16 @@ $(function() {
 
           operations.push([
             '<a href="',
+            Routes.rename_cib_constraint_path($('body').data('cib'), row.id),
+            '" class="rename btn btn-default btn-xs" title="',
+            __('Rename'),
+            '" data-toggle="modal" data-target="#modal">',
+            '<i class="fa fa-font"></i>',
+            '</a> '
+          ].join(''));
+
+          operations.push([
+            '<a href="',
                 deleteRoute,
               '" class="delete btn btn-default btn-xs" title="',
               __('Delete'),
