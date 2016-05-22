@@ -600,21 +600,28 @@ $(function() {
         clickToSelect: true,
         class: 'col-sm-2',
         formatter: function(value, row, index) {
-          switch(row.object_type) {
-            case "primitive":
-              return __("Primitive");
-            case "group":
-              return __("Group");
-            case "clone":
-              return __("Clone");
-            case "master":
-              return __("Multi-state");
-            case "tag":
-              return __("Tag");
-            case "template":
-              return __("Template");
-            default:
-              return row.object_type;
+          if (row.object_type == "group") {
+            return __("Group");
+          } else if (row.object_type == "master") {
+            return __("Multi-state");
+          } else if (row.object_type == "clone") {
+            return __("Clone");
+          } else if (row.object_type == "tag") {
+            return __("Tag");
+          } else if (row.template && row.template.length > 0) {
+            return '<a href="' + Routes.cib_agent_path($('body').data('cib'), encodeURIComponent("@" + row.template)) + '" data-toggle="modal" data-target="#modal-lg">' + "@" + row.template + '</a>';
+          } else if ("clazz" in row && "provider" in row && "type" in row) {
+            var agent = "";
+            if (row["clazz"]) {
+              agent += row["clazz"] + ":";
+            }
+            if (row["provider"]) {
+              agent += row.provider + ":";
+            }
+            agent += row.type;
+            return '<a href="' + Routes.cib_agent_path($('body').data('cib'), encodeURIComponent(agent)) + '" data-toggle="modal" data-target="#modal-lg">' + row.type + '</a>';
+          } else {
+            return row.type;
           }
         }
       }, {
