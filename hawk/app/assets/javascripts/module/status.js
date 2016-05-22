@@ -120,6 +120,7 @@
              '#tickets #middle table.tickets',
              '#nodes #middle table.nodes',
              '#cib #middle table.nodes',
+             '#cib #middle table.tagtable',
              '#configs #middle table'].join(', '))
             .bootstrapTable('refresh');
         }

@@ -19,23 +19,47 @@
   .row
     %ul.nav.nav-tabs{role: :tablist}
       %li.active{role: :presentation}
-        %a{href: "#nodes", role: :tab, data: { toggle: :tab }, aria: { controls: "nodes" } }
-          = _("Nodes")
-      %li{role: :presentation}
         %a{href: "#resources", role: :tab, data: { toggle: :tab }, aria: { controls: "resources" } }
           = _("Resources")
+      %li{role: :presentation}
+        %a{href: "#nodes", role: :tab, data: { toggle: :tab }, aria: { controls: "nodes" } }
+          = _("Nodes")
       %li{role: :presentation, data: { link: "visible{hasKeys:tickets}" } }
         %a{href: "#tickets", role: :tab, data: { toggle: :tab }, aria: { controls: "tickets" } }
           = _("Tickets")
+      - tags_with_resources.each do |tag|
+        %li{role: :presentation }
+          %a{href: "\#tag-#{tag[:id]}", role: :tab, data: { toggle: :tab }, aria: { controls: "tag-#{tag[:id]}" } }
+            = "\##{tag[:id]}"
 
   .row
     .tab-content
-      #nodes.tab-pane.active{ role: :tabpanel }
-        %table.table.nodes
-      #resources.tab-pane{ role: :tabpanel }
+      #resources.tab-pane.active{ role: :tabpanel }
         %table.table.resources
+      #nodes.tab-pane{ role: :tabpanel }
+        %table.table.nodes
       #tickets.tab-pane{ role: :tabpanel, data: { link: "visible{hasKeys:tickets}" } }
         %table.table.tickets
+      - tags_with_resources.each do |tag|
+        .tab-pane{ role: :tabpanel, id: "tag-#{tag[:id]}" }
+          .form-group
+            .tag-controls.dropdown.pull-right
+              %button.btn.btn-default.dropdown-toggle{ type: :button, data: { toggle: :dropdown }, aria: { haspopup: true, expanded: false } }
+                = _("Operations")
+                %span.caret
+              %ul.dropdown-menu{data: { tagname: tag[:id] } }
+                %li= link_to(icon_text('play', _("Start")), start_cib_resource_path(cib_id: @cib.id, id: tag[:id]), class: :start)
+                %li= link_to(icon_text('stop', _("Stop")), stop_cib_resource_path(cib_id: @cib.id, id: tag[:id]), class: :stop)
+                %li= link_to(icon_text('thumbs-up', _("Promote")), promote_cib_resource_path(cib_id: @cib.id, id: tag[:id]), class: :promote)
+                %li= link_to(icon_text('thumbs-down', _("Demote")), demote_cib_resource_path(cib_id: @cib.id, id: tag[:id]), class: :demote)
+                %li= link_to(icon_text('circle', _("Manage")), manage_cib_resource_path(cib_id: @cib.id, id: tag[:id]), class: :manage)
+                %li= link_to(icon_text('dot-circle-o', _("Unmanage")), unmanage_cib_resource_path(cib_id: @cib.id, id: tag[:id]), class: :unmanage)
+                %li= link_to(icon_text('arrows', _("Migrate")), migrate_cib_resource_path(cib_id: @cib.id, id: tag[:id]), class: :migrate)
+                %li= link_to(icon_text('chain-broken', _("Unmigrate")), unmigrate_cib_resource_path(cib_id: @cib.id, id: tag[:id]), class: :unmigrate)
+                %li= link_to(icon_text('eraser', _("Cleanup")), cleanup_cib_resource_path(cib_id: @cib.id, id: tag[:id]), class: :cleanup)
+                %li.separator.divider
+                %li= link_to(icon_text('pencil', _("Edit")), edit_cib_tag_path(cib_id: @cib.id, id: tag[:id]))
+          %table.table.tagtable{ data: { tagname: tag[:id] } }
 
 %script#statusError{ type: "text/x-jsrender" }
   %li.list-group-item{ data: { link: "class{merge:success toggle='list-group-item-success'} class{merge:info toggle='list-group-item-info'} class{merge:warning toggle='list-group-item-warning'} class{merge:danger toggle='list-group-item-danger'}" } }

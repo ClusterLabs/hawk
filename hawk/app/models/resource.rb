@@ -114,7 +114,7 @@ class Resource < Record
     end
 
     def cib_type_fetch
-      "configuration//*[self::resources or self::tags]/*"
+      "configuration//*[self::resources]/*"
     end
 
     def help_text

@@ -19,6 +19,9 @@
       %li{role: :presentation}
         %a{href: "#constraints", role: :tab, data: { toggle: :tab }, aria: { controls: "constraints" } }
           = _("Constraints")
+      %li{role: :presentation}
+        %a{href: "#tags", role: :tab, data: { toggle: :tab }, aria: { controls: "tags" } }
+          = _("Tags")
 
   .row
     .tab-content
@@ -28,3 +31,5 @@
         %table.table.table-striped.resources
       #constraints.tab-pane{ role: :tabpanel }
         %table.table.table-striped.constraints
+      #tags.tab-pane{ role: :tabpanel }
+        %table.table.table-striped.tags

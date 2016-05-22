@@ -35,4 +35,8 @@ module StatesHelper
       "question"
     end
   end
+
+  def tags_with_resources
+    @cib.tags.select { |tag| tag[:refs].any? { |ref| @cib.resources_by_id.include? ref } }
+  end
 end

@@ -317,9 +317,6 @@ $(function() {
         var dropdowns = [];
 
         var op_destination = "button";
-        if (row.object_type == "tag") {
-          op_destination = "menu";
-        }
 
         var add_operation = function(dest, path, path_class, icon_class, text) {
           if (dest == "menu") {
@@ -340,19 +337,19 @@ $(function() {
           }
         };
 
-        if (row.state === "started" || row.state === "master" || row.state === "slave" || row.object_type == "tag") {
+        if (row.state === "started" || row.state === "master" || row.state === "slave") {
           add_operation(op_destination, Routes.stop_cib_resource_path($('body').data('cib'), row.id), 'stop', 'stop', __('Stop'));
         }
 
-        if (row.state === "stopped" || row.object_type == "tag") {
+        if (row.state === "stopped") {
           add_operation(op_destination, Routes.start_cib_resource_path($('body').data('cib'), row.id), 'start', 'play', __('Start'));
         }
 
-        if (row.state === "master" || row.object_type == "tag") {
+        if (row.state === "master") {
           add_operation(op_destination, Routes.demote_cib_resource_path($('body').data('cib'), row.id), 'demote', 'thumbs-down', __('Demote'));
         }
 
-        if (row.state === "slave" || row.object_type == "tag") {
+        if (row.state === "slave") {
           add_operation(op_destination, Routes.promote_cib_resource_path($('body').data('cib'), row.id), 'promote', 'thumbs-up', __('Promote'));
         }
 
@@ -372,24 +369,18 @@ $(function() {
         }
         add_operation("menu", Routes.cleanup_cib_resource_path($('body').data('cib'), row.id), 'cleanup', 'eraser', __('Cleanup'));
 
-        if (row.object_type == "tag") {
-          dropdowns.push([
-            '<li role="separator" class="divider"></li>'
-          ].join(''));
-        } else {
-          dropdowns.push([
-            '<li role="separator" class="divider"></li>',
-            '<li>',
-            '<a href="',
-            Routes.events_cib_resource_path($('body').data('cib'), row.id),
-            '" class="events" data-toggle="modal" data-target="#modal-lg">',
-            '<i class="fa fa-fw fa-history"></i> ',
-            __('Recent events'),
-            '</a>',
-            '</li>',
-            '<li role="separator" class="divider"></li>'
-          ].join(''));
-        }
+        dropdowns.push([
+          '<li role="separator" class="divider"></li>',
+          '<li>',
+          '<a href="',
+          Routes.events_cib_resource_path($('body').data('cib'), row.id),
+          '" class="events" data-toggle="modal" data-target="#modal-lg">',
+          '<i class="fa fa-fw fa-history"></i> ',
+          __('Recent events'),
+          '</a>',
+          '</li>',
+          '<li role="separator" class="divider"></li>'
+        ].join(''));
 
         add_operation("menu", rsc_routes.edit, 'edit', 'pencil', __('Edit'));
 
@@ -404,17 +395,15 @@ $(function() {
           '</div>'
         ].join(''));
 
-        if (row.object_type != "tag") {
-          operations.push([
-            '<a href="',
-            Routes.cib_resource_path($('body').data('cib'), row.id),
-            '" class="details btn btn-default btn-xs" title="',
-            __('Details'),
-            '" data-toggle="modal" data-target="#modal">',
-            '<i class="fa fa-search"></i>',
-            '</a> '
-          ].join(''));
-        }
+        operations.push([
+          '<a href="',
+          Routes.cib_resource_path($('body').data('cib'), row.id),
+          '" class="details btn btn-default btn-xs" title="',
+          __('Details'),
+          '" data-toggle="modal" data-target="#modal">',
+          '<i class="fa fa-search"></i>',
+          '</a> '
+        ].join(''));
 
         return [
           '<div class="btn-group" role="group">',
@@ -441,19 +430,6 @@ $(function() {
     } else {
       return { classes: ["danger"] };
     }
-  };
-
-  // filter out tags without any resource children
-  var filterTags = function(resources_by_id, tags) {
-    return $.grep(tags, function(tag) {
-      if ("refs" in tag) {
-        var rscrefs = $.grep(tag.refs, function(ref) {
-          return ref in resources_by_id;
-        });
-        return rscrefs.length > 0;
-      }
-      return true;
-    });
   };
 
   var expandResourcesHandler = function (index, row, detail) {
@@ -549,8 +525,7 @@ $(function() {
     .bootstrapTable({
       ajax: function(params) {
         var cib = $('body').data('content');
-        var resources_and_tags = cib.resources.concat(filterTags(cib.resources_by_id, cib.tags));
-        params.success(resources_and_tags, "success", {});
+        params.success(cib.resources, "success", {});
         params.complete({}, "success");
       },
       classes: "table table-hover table-no-bordered",
@@ -572,6 +547,60 @@ $(function() {
       onExpandRow: expandResourcesHandler,
       columns: statesResourcesColumns
     });
+
+  $('#cib #middle table.tagtable').each(function() {
+    var tabletag = $(this);
+    tabletag.bootstrapTable({
+      ajax: function(params) {
+        var cib = $('body').data('content');
+        var tagname = tabletag.data('tagname');
+        var taglst = $.grep(cib.tags, function(t) { return t.id == tagname; });
+        if (taglst.length == 0) {
+          params.error([], "error", {});
+          params.complete({}, "error");
+          return;
+        }
+        var tagdata = taglst[0];
+        var matches = [];
+        function recmatch(res) {
+          if (tagdata.refs.indexOf(res.id) > -1) {
+            matches.push(res);
+          }
+          if ("child" in res) {
+            recmatch(res.child);
+          }
+          if ("children" in res) {
+            for (var i = 0; i < res.children.length; i++) {
+              recmatch(res.children[i]);
+            }
+          }
+        }
+        for (var i = 0; i < cib.resources.length; i++) {
+          recmatch(cib.resources[i]);
+        }
+        params.success(matches, "success", {});
+        params.complete({}, "success");
+      },
+      classes: "table table-hover table-no-bordered",
+      pagination: false,
+      pageSize: 25,
+      pageList: [10, 25, 50, 100, 200],
+      sidePagination: 'client',
+      smartDisplay: false,
+      search: false,
+      searchAlign: 'left',
+      striped: false,
+      showColumns: false,
+      showRefresh: false,
+      minimumCountColumns: 0,
+      sortName: 'id',
+      sortOrder: 'asc',
+      detailView: true,
+      rowStyle: rowStyleFn,
+      onExpandRow: expandResourcesHandler,
+      columns: statesResourcesColumns
+    });
+  });
 
   $('#resources #middle table.resources, #configs #middle table.resources')
     .bootstrapTable({
@@ -704,7 +733,7 @@ $(function() {
       }]
     });
 
-  $('#cib #middle table.resources').on("click", ".dropdown-toggle", function(event){
+  $('#cib #middle table.resources, #cib #middle table.tagtable, #cib #middle .tag-controls').on("click", ".dropdown-toggle", function(event){
     var button = $(this);
     var open = button.attr('aria-expanded');
     var dropdown = button.siblings('.dropdown-menu');
@@ -724,4 +753,39 @@ $(function() {
         }
       }
     });
+
+  $('#cib #middle .tab-pane .tag-controls').each(function() {
+    $(this).on('click', '.start', function(e) {
+      e.preventDefault();
+      return executeAction($(this), __('This will start the tagged resources. Do you want to continue?'));
+    }).on('click', '.stop', function(e) {
+      e.preventDefault();
+      return executeAction($(this), __('This will stop the tagged resources. Do you want to continue?'));
+    }).on('click', '.promote', function(e) {
+      e.preventDefault();
+      return executeAction($(this), __('This will promote the tagged resources. Do you want to continue?'));
+    }).on('click', '.demote', function(e) {
+      e.preventDefault();
+      return executeAction($(this), __('This will demote the tagged resources. Do you want to continue?'));
+    }).on('click', '.manage', function(e) {
+      e.preventDefault();
+      return executeAction($(this), __('This will manage the tagged resources. Do you want to continue?'));
+    }).on('click', '.unmanage', function(e) {
+      e.preventDefault();
+      return executeAction($(this), __('This will unmanage the tagged resources. Do you want to continue?'));
+    }).on('click', '.migrate', function(e) {
+      e.preventDefault();
+      return executeNodeSelectionAction($(this),
+                                        __('Migrate tagged resources'),
+                                        __("Away from current node"));
+    }).on('click', '.unmigrate', function(e) {
+      e.preventDefault();
+      return executeAction($(this), __('This will unmigrate the tagged resources. Do you want to continue?'));
+    }).on('click', '.cleanup', function(e) {
+      e.preventDefault();
+      return executeNodeSelectionAction($(this),
+                                        __('Clean up tagged resources'),
+                                        __("Clean up on all nodes"));
+    });
+  });
 });

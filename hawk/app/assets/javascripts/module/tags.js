@@ -2,7 +2,8 @@
 // See COPYING for license.
 
 $(function() {
-  $('#tags #middle table.tags')
+
+  $('#configs #middle table.tags, #tags #middle table.tags')
     .bootstrapTable({
       method: 'get',
       url: Routes.cib_tags_path(
@@ -11,7 +12,7 @@ $(function() {
       ),
       striped: true,
       pagination: true,
-      pageSize: 50,
+      pageSize: 25,
       pageList: [10, 25, 50, 100, 200],
       sidePagination: 'client',
       smartDisplay: false,
@@ -24,7 +25,7 @@ $(function() {
       sortOrder: 'asc',
       columns: [{
         field: 'id',
-        title: __('Tag ID'),
+        title: __('Tag'),
         sortable: true,
         switchable: false,
         clickToSelect: true
@@ -104,6 +105,16 @@ $(function() {
             __('Edit'),
             '">',
             '<i class="fa fa-pencil"></i>',
+            '</a> '
+          ].join(''));
+
+          operations.push([
+            '<a href="',
+            Routes.rename_cib_resource_path($('body').data('cib'), row.id),
+            '" class="rename btn btn-default btn-xs" title="',
+            __('Rename'),
+            '" data-toggle="modal" data-target="#modal">',
+            '<i class="fa fa-font"></i>',
             '</a> '
           ].join(''));
 
