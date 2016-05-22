@@ -25,16 +25,17 @@ $(function() {
       sortOrder: 'asc',
       columns: [{
         field: 'id',
-        title: __('Tag'),
+        title: __('Name'),
+        class: 'col-sm-4',
         sortable: true,
         switchable: false,
         clickToSelect: true
       }, {
         field: 'refs',
         title: __('Objects'),
-        sortable: true,
+        sortable: false,
         switchable: false,
-        clickToSelect: true,
+        clickToSelect: false,
         formatter: function(value, row, index) {
           return value.join(", ");
         }
@@ -44,6 +45,8 @@ $(function() {
         sortable: false,
         clickToSelect: false,
         class: 'col-sm-2',
+        align: 'right',
+        halign: 'right',
         events: {
           'click .delete': function (e, value, row, index) {
             e.preventDefault();

@@ -49,9 +49,16 @@ $(function() {
       showColumns: false,
       showRefresh: true,
       minimumCountColumns: 0,
-      sortName: 'object_type',
+      sortName: 'id',
       sortOrder: 'asc',
-      columns: [{
+      columns: [ {
+        field: 'id',
+        title: __('Name'),
+        class: 'col-sm-4',
+        sortable: true,
+        switchable: false,
+        clickToSelect: true
+      }, {
         field: 'object_type',
         title: __('Type'),
         sortable: true,
@@ -73,16 +80,10 @@ $(function() {
         }
       }, {
         field: 'id',
-        title: __('Constraint'),
-        sortable: true,
-        switchable: false,
-        clickToSelect: true
-      }, {
-        field: 'id',
         title: __('Resources'),
-        sortable: true,
+        sortable: false,
         switchable: false,
-        clickToSelect: true,
+        clickToSelect: false,
         formatter: function(value, row, index) {
           return constraintResources(row);
         }
@@ -92,6 +93,8 @@ $(function() {
         sortable: false,
         clickToSelect: false,
         class: 'col-sm-2',
+        align: 'right',
+        halign: 'right',
         events: {
           'click .delete': function (e, value, row, index) {
             e.preventDefault();

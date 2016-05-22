@@ -6,6 +6,7 @@ class Resource < Record
   end
 
   attribute :object_type, Symbol
+  attribute :sort_type, String
   attribute :state, Symbol
   attribute :managed, Boolean
   attribute :ops, Hash
@@ -32,6 +33,14 @@ class Resource < Record
 
   def object_type
     self.class.to_s.downcase
+  end
+
+  def sort_type
+    if @xml.name == 'primitive'
+      agent_name
+    else
+      @xml.name
+    end
   end
 
   def state

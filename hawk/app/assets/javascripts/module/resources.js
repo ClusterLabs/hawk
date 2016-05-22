@@ -206,7 +206,7 @@ $(function() {
     },
     {
       field: 'id',
-      title: __('ID'),
+      title: __('Name'),
       sortable: false,
       clickToSelect: false,
       class: 'col-sm-2'
@@ -256,7 +256,7 @@ $(function() {
             agent += row.provider + ":";
           }
           agent += row.type;
-          return '<a href="' + Routes.cib_agent_path($('body').data('cib'), encodeURIComponent(agent)) + '" data-toggle="modal" data-target="#modal-lg">' + row.type + '</a>';
+          return '<a href="' + Routes.cib_agent_path($('body').data('cib'), encodeURIComponent(agent)) + '" data-toggle="modal" data-target="#modal-lg">' + agent + '</a>';
         } else {
           return row.type;
         }
@@ -478,6 +478,7 @@ $(function() {
         .bootstrapTable({
           data: datasource,
           pagination: false,
+          classes: "table table-hover table-no-bordered",
           smartDisplay: false,
           showColumns: false,
           showRefresh: false,
@@ -506,6 +507,7 @@ $(function() {
         .find('table')
         .bootstrapTable({
           data: datasource,
+          classes: "table table-hover table-no-bordered",
           pagination: false,
           smartDisplay: false,
           showColumns: false,
@@ -619,11 +621,18 @@ $(function() {
       showColumns: false,
       showRefresh: true,
       minimumCountColumns: 0,
-      sortName: 'object_type',
+      sortName: 'id',
       sortOrder: 'asc',
       striped: true,
       columns: [{
-        field: 'object_type',
+        field: 'id',
+        title: __('Name'),
+        class: 'col-sm-4',
+        sortable: true,
+        switchable: false,
+        clickToSelect: true
+      }, {
+        field: 'sort_type',
         title: __('Type'),
         sortable: true,
         clickToSelect: true,
@@ -638,7 +647,7 @@ $(function() {
           } else if (row.object_type == "tag") {
             return __("Tag");
           } else if (row.template && row.template.length > 0) {
-            return '<a href="' + Routes.cib_agent_path($('body').data('cib'), encodeURIComponent("@" + row.template)) + '" data-toggle="modal" data-target="#modal-lg">' + "@" + row.template + '</a>';
+            return '<a href="' + Routes.cib_agent_path($('body').data('cib'), encodeURIComponent("@" + row.template)) + '" data-toggle="modal" data-target="#modal-lg">' + value + '</a>';
           } else if ("clazz" in row && "provider" in row && "type" in row) {
             var agent = "";
             if (row["clazz"]) {
@@ -648,23 +657,21 @@ $(function() {
               agent += row.provider + ":";
             }
             agent += row.type;
-            return '<a href="' + Routes.cib_agent_path($('body').data('cib'), encodeURIComponent(agent)) + '" data-toggle="modal" data-target="#modal-lg">' + row.type + '</a>';
+            var display = agent;
+            if (row.object_type == 'template') {
+              display = "Template (" + agent + ")";
+            }
+            return '<a href="' + Routes.cib_agent_path($('body').data('cib'), encodeURIComponent(agent)) + '" data-toggle="modal" data-target="#modal-lg">' + display + '</a>';
           } else {
             return row.type;
           }
         }
       }, {
         field: 'id',
-        title: __('Resource'),
-        sortable: true,
+        title: __('Children'),
+        sortable: false,
         switchable: false,
-        clickToSelect: true
-      }, {
-        field: 'id',
-        title: __('Resources'),
-        sortable: true,
-        switchable: false,
-        clickToSelect: true,
+        clickToSelect: false,
         formatter: function(value, row, index) {
           if ("child" in row) {
             return row.child;
@@ -682,6 +689,8 @@ $(function() {
         sortable: false,
         clickToSelect: false,
         class: 'col-sm-2',
+        align: 'right',
+        halign: 'right',
         events: {
           'click .delete': function (e, value, row, index) {
             e.preventDefault();

@@ -309,18 +309,19 @@ $(function() {
       showColumns: false,
       showRefresh: true,
       minimumCountColumns: 0,
-      sortName: 'id',
+      sortName: 'name',
       sortOrder: 'asc',
       striped: true,
       columns: [{
-        field: 'id',
-        title: __('ID'),
+        field: 'name',
+        title: __('Name'),
+        class: 'col-sm-4',
         sortable: true,
         switchable: false,
         clickToSelect: true
       }, {
-        field: 'name',
-        title: __('Name'),
+        field: 'id',
+        title: __('ID'),
         sortable: true,
         switchable: false,
         clickToSelect: true
@@ -330,6 +331,8 @@ $(function() {
         sortable: false,
         clickToSelect: false,
         class: 'col-sm-2',
+        align: 'right',
+        halign: 'right',
         events: {
         },
         formatter: function(value, row, index) {
