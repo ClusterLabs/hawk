@@ -668,17 +668,15 @@ $(function() {
             '</a> '
           ].join(''));
 
-          if (row.object_type != "tag") {
-            operations.push([
-              '<a href="',
-              Routes.rename_cib_resource_path($('body').data('cib'), row.id),
-              '" class="rename btn btn-default btn-xs" title="',
-              __('Rename'),
-              '" data-toggle="modal" data-target="#modal">',
-              '<i class="fa fa-font"></i>',
-              '</a> '
-            ].join(''));
-          }
+          operations.push([
+            '<a href="',
+            Routes.rename_cib_resource_path($('body').data('cib'), row.id),
+            '" class="rename btn btn-default btn-xs" title="',
+            __('Rename'),
+            '" data-toggle="modal" data-target="#modal">',
+            '<i class="fa fa-font"></i>',
+            '</a> '
+          ].join(''));
 
           operations.push([
             '<a href="',
