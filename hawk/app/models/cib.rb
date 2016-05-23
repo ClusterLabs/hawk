@@ -184,6 +184,7 @@ class Cib
         result[:tickets] = tickets
         result[:tags] = tags
         result[:constraints] = constraints
+        result[:resource_count] = resource_count
       end
     end
   end

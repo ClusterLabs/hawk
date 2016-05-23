@@ -53,6 +53,9 @@
         } else {
           return 'fa fa-fw fa-question';
         }
+      },
+      countkeys: function(obj) {
+        return Object.keys(obj).length;
       }
     });
 

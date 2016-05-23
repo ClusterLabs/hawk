@@ -18,12 +18,15 @@
       %li.active{role: :presentation}
         %a{href: "#resources", role: :tab, data: { toggle: :tab }, aria: { controls: "resources" } }
           = _("Resources")
+          %span.badge{ data: { link: "resource_count" }}
       %li{role: :presentation}
         %a{href: "#nodes", role: :tab, data: { toggle: :tab }, aria: { controls: "nodes" } }
           = _("Nodes")
+          %span.badge{ data: { link: "nodes.length" }}
       %li{role: :presentation, data: { link: "visible{hasKeys:tickets}" } }
         %a{href: "#tickets", role: :tab, data: { toggle: :tab }, aria: { controls: "tickets" } }
           = _("Tickets")
+          %span.badge{ data: { link: "countkeys:tickets" }}
       - tags_with_resources.each do |tag|
         %li{role: :presentation }
           %a{href: "\#tag-#{tag[:id]}", role: :tab, data: { toggle: :tab }, aria: { controls: "tag-#{tag[:id]}" } }
