@@ -3,6 +3,9 @@
 
 $dashboard-font-size: 12px;
 $details-border: #80c235;
+$matrix-details-bg: #f5f5f5;
+$matrix-details-text: #222;
+
 
 #cib-status-matrix-details {
   display: none;
@@ -11,8 +14,8 @@ $details-border: #80c235;
   width: auto !important;
   padding: 1em;
 
-  background-color: #f5f5f5;
-  color: #222;
+  background-color: $matrix-details-bg;
+  color: $matrix-details-text;
   border: 1px solid $details-border;
   border-radius: 4px;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);

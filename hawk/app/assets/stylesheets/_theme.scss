@@ -2,22 +2,67 @@
 // Should have all theme-related variables that we can override
 // to rebrand the UI
 
+
+/* ----  basics.scss variables ---- */
+$body-text-color: #3a3e40;
+
+
+/* ----  content.scss variables - login page ---- */
+$darkbar-bg: #2b2b2b;
+$darkbar-heading-fg:#00b268;
+$rightbar-bg: #ebebeb;
+$sidebar-headings-fg: rgb(58, 62, 64);
+$sidebar-headings-font-family: $headings-font-family;
+$sidebar-highlight-fg: #80c235;
+$sidebar-link-hover-fg: darken(#fff, 20.0%);
+$sidebar-separator-fg: #333;
+$sidebar-link-fg: #fff;
+$sidebar-heading-fg: #00b268;
+$sidebar-fg: #fff;
+$sidebar-bg: #383c3e;
+
+
+/* ----  login page background color ---- */
 $simulator-left: #1fad7a;
 $simulator-right: #80c235;
 
-$sidebar-bg: #383c3e;
-$sidebar-fg: #fff;
-$sidebar-heading-fg: #00b268;
-$sidebar-link-fg: #fff;
-$sidebar-link-hover-fg: darken(#fff, 20.0%);
-$sidebar-separator-fg: #333;
-$sidebar-highlight-fg: #80c235;
 
-$rightbar-bg: #ebebeb;
 
-$sidebar-headings-font-family: $headings-font-family;
-$sidebar-headings-fg: rgb(58, 62, 64);
+/* ----  head.scss variables ---- */
+$batch-bar-bg: #d35400;
+$batch-control-bar-text : #fff;
 
+
+/* ----  simulator.scss variables ---- */
+$batch-bar-text: #f1c40f;
+$batch-button-active-fg: #84c66a;
+
+
+/* ----  misc.scss variables ---- */
+$diff_sub_bg: #fdd;
+$diff_add_bg: #dfd;
+$diff_chg_bg: #ddf;
+$diff_header_fg: #fff;
+$diff_next_bg: #c0c0c0;
+
+
+/* ----  nav.scss variables ---- */
+$nav-bighelp-fg: #000;
+$pull-right-hover: #00b268;
+
+
+/* ----  panel.scss variables ---- */
+$nav-tabs-lightgray: #ddd;
+$panel-steps-bg: #ccc;
+$panel-default-fg: #777;
+$nav-tabs-active-bg: #fff;
+$nav-tabs-active-fg: #555;
+$dropdown-menu-bg: #f5f5f5;
+$dropdown-menu-active-bg: #555;
+$dropdown-menu-active-fg: #fff;
+
+
+/* ----  mixins ---- */
 @mixin panel-heading-bg() {
     @include gradient-vertical(#f4f4f4, #e7e7e7);
 }
@@ -34,6 +79,7 @@ $sidebar-headings-fg: rgb(58, 62, 64);
   border-top: 1px solid #ccc;
 };
 
-$batch-bar-bg: #d35400;
-$batch-bar-text: #f1c40f;
-$batch-button-active-fg: #84c66a;
+
+
+
+

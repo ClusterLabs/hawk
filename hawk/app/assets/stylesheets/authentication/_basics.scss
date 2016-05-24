@@ -13,14 +13,15 @@ html {
 
 body {
   font-family: $font-family-base;
-  color: #3a3e40;
+  color: $body-text-color;
   height: 100%;
   cursor: default;
   margin-bottom: 80px;
-
-  background: linear-gradient(to right, #1fad7a 0, #80c235 100%);
+  @include horizontal-gradient-background(#1fad7a, #80c235);
+  
+  /* background: linear-gradient(to right, #1fad7a 0, #80c235 100%);
   background: -moz-linear-gradient(left, #1fad7a 0, #80c235 100%);
-  background: -webkit-gradient(linear, left top, right top, color-stop(0,#1fad7a), color-stop(100%,#80c235));
+  background: -webkit-gradient(linear, left top, right top, color-stop(0,#1fad7a), color-stop(100%,#80c235)); */
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }

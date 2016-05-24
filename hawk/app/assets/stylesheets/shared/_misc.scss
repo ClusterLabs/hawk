@@ -34,20 +34,20 @@
 }
 
 .diff_sub {
-  background: #fdd;
+  background: $diff_sub_bg;
 }
 
 .diff_add {
-  background: #dfd;
+  background: $diff_add_bg;
 }
 
 .diff_chg {
-  background: #ddf;
+  background: $diff_chg_bg;
 }
 
 
 td.diff_header {
-color: #fff;
+color: $diff_header_fg;
 }
 
 table.diff {
@@ -57,7 +57,7 @@ table.diff {
 }
 
 .diff_next {
-  background-color: #c0c0c0;
+  background-color: $diff_next_bg;
 }
 
 .fa-status-small {

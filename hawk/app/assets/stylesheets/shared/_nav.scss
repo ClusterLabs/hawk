@@ -14,7 +14,7 @@
         line-height: 40px;
         margin-bottom: 20px;
         padding: 20px;
-        color: #000;
+        color: $nav-bighelp-fg;
         text-align: left;
 
         span {
@@ -31,7 +31,7 @@
             padding: 0;
 
             a {
-              color: #000;
+              color: $nav-bighelp-fg;
               font-size: 15px;
               margin: 0;
               padding: 0 10px;
@@ -49,7 +49,7 @@
         line-height: 40px;
         margin-bottom: 20px;
         padding: 20px;
-        color: #000;
+        color: $nav-bighelp-fg;
         text-align: left;
 
         & > i {
@@ -62,7 +62,7 @@
 
         &:hover {
           .pull-right {
-            color: #00b268;
+            color: $pull-right-hover;
           }
         }
       }

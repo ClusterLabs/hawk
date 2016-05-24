@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
       host_ip: ENV['VAGRANT_INSECURE_FORWARDS'] =~ /^(y(es)?|true|on)$/i ?
         '*' : '127.0.0.1',
       guest: 22,
-      host: 3022
+      host: 3122
 
     machine.vm.network :forwarded_port,
       host_ip: ENV['VAGRANT_INSECURE_FORWARDS'] =~ /^(y(es)?|true|on)$/i ?
