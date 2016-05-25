@@ -10,11 +10,13 @@ class CrmConfig < Tableless
     },
     "is-managed" => {
       type: "boolean",
-      default: "true"
+      default: "true",
+      longdesc: _("Is the cluster allowed to start and stop the resource?")
     },
     "maintenance" => {
       type: "boolean",
-      default: "false"
+      default: "false",
+      longdesc: _("Resources in maintenance mode are not monitored by the cluster.")
     },
     "interval-origin" => {
       type: "integer",

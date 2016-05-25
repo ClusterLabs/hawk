@@ -112,18 +112,18 @@ class ResourcesController < ApplicationController
                         _("Failed to demote the resource: %{err}")
   end
 
-  def manage
+  def maintenance_on
     @resource = Resource.find params[:id]
-    run_resource_action @resource.manage!,
-                        _("Successfully set the resource in managed mode"),
-                        _("Failed to set the resource in managed mode: %{err}")
+    run_resource_action @resource.maintenance!("on"),
+                        _("Successfully set the resource in maintenance mode"),
+                        _("Failed to set the resource in maintenance mode: %{err}")
   end
 
-  def unmanage
+  def maintenance_off
     @resource = Resource.find params[:id]
-    run_resource_action @resource.unmanage!,
-                        _("Successfully set the resource in unmanaged mode"),
-                        _("Failed to set the resource in unmanaged mode: %{err}")
+    run_resource_action @resource.maintenance!("off"),
+                        _("Successfully disabled maintenance mode for resource"),
+                        _("Failed to disable maintenance mode for resource: %{err}")
   end
 
   def unmigrate

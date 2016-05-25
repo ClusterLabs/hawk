@@ -3,7 +3,9 @@
 
 $(function() {
   var rowStyleFn = function(row, index) {
-    if (row.state == "online") {
+    if (row.maintenance == true) {
+      return { classes: ["info"] };
+    } else if (row.state == "online") {
       return { classes: ["success"] };
     } else if (row.state == "offline") {
       return { };

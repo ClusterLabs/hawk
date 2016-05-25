@@ -231,7 +231,8 @@ class Template < Resource
             },
             "maintenance" => {
               type: "boolean",
-              default: "false"
+              default: "false",
+              longdesc: _("Resources in maintenance mode are not monitored by the cluster.")
             },
             "interval-origin" => {
               type: "integer",

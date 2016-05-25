@@ -179,6 +179,9 @@ $(function() {
       formatter: function(value, row, index) {
         var fmt = [];
         switch(value) {
+        case "maintenance":
+          fmt.push('<i class="fa fa-wrench fa-lg text-info" title="', __("Maintenance Mode"), '"></i>');
+          break;
         case "unmanaged":
           fmt.push('<i class="fa fa-exclamation-triangle fa-lg text-warning" title="', __("Unmanaged"), '"></i>');
           break;
@@ -289,13 +292,13 @@ $(function() {
           e.preventDefault();
           return executeAction($(this), i18n.translate('This will demote the resource %s. Do you want to continue?').fetch(row.id));
         },
-        'click .manage': function (e, value, row, index) {
+        'click .maintenance_on': function (e, value, row, index) {
           e.preventDefault();
-          return executeAction($(this), i18n.translate('This will manage the resource %s. Do you want to continue?').fetch(row.id));
+          return executeAction($(this), i18n.translate('This will enable maintenance mode for resource %s. Do you want to continue?').fetch(row.id));
         },
-        'click .unmanage': function (e, value, row, index) {
+        'click .maintenance_off': function (e, value, row, index) {
           e.preventDefault();
-          return executeAction($(this), i18n.translate('This will unmanage the resource %s. Do you want to continue?').fetch(row.id));
+          return executeAction($(this), i18n.translate('This will disable maintenance mode for resource %s. Do you want to continue?').fetch(row.id));
         },
         'click .migrate': function (e, value, row, index) {
           e.preventDefault();
@@ -355,12 +358,10 @@ $(function() {
           add_operation(op_destination, Routes.promote_cib_resource_path($('body').data('cib'), row.id), 'promote', 'thumbs-up', __('Promote'));
         }
 
-        if (row.is_managed === true) {
-          add_operation("menu", Routes.unmanage_cib_resource_path($('body').data('cib'), row.id), 'unmanage', 'circle', __('Unmanage'));
-        }
-
-        if (row.is_managed === false) {
-          add_operation("menu", Routes.manage_cib_resource_path($('body').data('cib'), row.id), 'manage', 'dot-circle-o', __('Manage'));
+        if (row.maintenance === false) {
+          add_operation("menu", Routes.maintenance_on_cib_resource_path($('body').data('cib'), row.id), 'maintenance_on', 'wrench', __('Maintenance'));
+        } else {
+          add_operation("button", Routes.maintenance_off_cib_resource_path($('body').data('cib'), row.id), 'maintenance_off', 'toggle-on', __('Disable Maintenance Mode'));
         }
 
         var rsc_routes = resourceRoutes(row);
@@ -419,10 +420,12 @@ $(function() {
   var rowStyleFn = function(row, index) {
     if (row.state == "unknown") {
       return {};
+    } else if (row.state == "maintenance") {
+      return { classes: ["info"] };
     } else if (row.state == "unmanaged") {
       return { classes: ["warning"] };
     } else if (row.state == "master") {
-      return { classes: ["info"] };
+      return { classes: ["success"] };
     } else if (row.state == "slave") {
       return { classes: ["success"] };
     } else if (row.state == "started") {
@@ -778,12 +781,12 @@ $(function() {
     }).on('click', '.demote', function(e) {
       e.preventDefault();
       return executeAction($(this), __('This will demote the tagged resources. Do you want to continue?'));
-    }).on('click', '.manage', function(e) {
+    }).on('click', '.maintenance_on', function(e) {
       e.preventDefault();
-      return executeAction($(this), __('This will manage the tagged resources. Do you want to continue?'));
-    }).on('click', '.unmanage', function(e) {
+      return executeAction($(this), __('This will enable maintenance mode for the tagged resources. Do you want to continue?'));
+    }).on('click', '.maintenance_off', function(e) {
       e.preventDefault();
-      return executeAction($(this), __('This will unmanage the tagged resources. Do you want to continue?'));
+      return executeAction($(this), __('This will disable maintenance mode for the tagged resources. Do you want to continue?'));
     }).on('click', '.migrate', function(e) {
       e.preventDefault();
       return executeNodeSelectionAction($(this),

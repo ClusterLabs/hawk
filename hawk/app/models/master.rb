@@ -61,6 +61,11 @@ class Master < Resource
             default: "true",
             longdesc: _("Is the cluster allowed to start and stop the resource?")
           },
+          "maintenance" => {
+            type: "boolean",
+            default: "false",
+            longdesc: _("Resources in maintenance mode are not monitored by the cluster.")
+          },
           "priority" => {
             type: "integer",
             default: "0",

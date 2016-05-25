@@ -8,7 +8,6 @@ class Resource < Record
   attribute :object_type, Symbol
   attribute :sort_type, String
   attribute :state, Symbol
-  attribute :managed, Boolean
   attribute :ops, Hash
   attribute :params, Hash
   attribute :meta, Hash
@@ -45,10 +44,6 @@ class Resource < Record
 
   def state
     cib_by_id(id)[:state] || :unknown
-  end
-
-  def managed
-    cib_by_id(id)[:is_managed] || false
   end
 
   def ops
@@ -91,12 +86,8 @@ class Resource < Record
     Invoker.instance.no_log { |i| i.crm("-F", "resource", "demote", id) }
   end
 
-  def manage!
-    Invoker.instance.no_log { |i| i.crm("-F", "resource", "manage", id) }
-  end
-
-  def unmanage!
-    Invoker.instance.no_log { |i| i.crm("-F", "resource", "unmanage", id) }
+  def maintenance!(on)
+    Invoker.instance.no_log { |i| i.crm("-F", "resource", "maintenance", id, on) }
   end
 
   def unmigrate!

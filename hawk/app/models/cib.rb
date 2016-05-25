@@ -267,12 +267,13 @@ class Cib
 
   protected
 
-  def get_resource(elem, is_managed = true, clone_max = nil, is_ms = false)
+  def get_resource(elem, is_managed = true, maintenance = false, clone_max = nil, is_ms = false)
     res = {
       id: elem.attributes['id'],
       object_type: elem.name,
       attributes: {},
-      is_managed: is_managed,
+      is_managed: is_managed && !maintenance,
+      maintenance: maintenance || false,
       state: :unknown
     }
     @resources_by_id[elem.attributes['id']] = res
@@ -284,7 +285,8 @@ class Cib
     end
     if res[:attributes].key?("maintenance")
       # A resource on maintenance is also flagged as unmanaged
-      res[:is_managed] = false if Util.unstring(res[:attributes]["maintenance"], false)
+      res[:maintenance] = Util.unstring(res[:attributes]["maintenance"], false)
+      res[:is_managed] = false if res[:maintenance]
     end
     case elem.name
     when 'primitive'
@@ -308,10 +310,10 @@ class Cib
       end
       if elem.elements['primitive']
         elem.elements.each('primitive') do |p|
-          res[:children] << get_resource(p, res[:is_managed], clone_max, is_ms || elem.name == 'master')
+          res[:children] << get_resource(p, res[:is_managed], res[:maintenance], clone_max, is_ms || elem.name == 'master')
         end
       elsif elem.elements['group']
-        res[:children] << get_resource(elem.elements['group'], res[:is_managed], clone_max, is_ms || elem.name == 'master')
+        res[:children] << get_resource(elem.elements['group'], res[:is_managed], res[:maintenance], clone_max, is_ms || elem.name == 'master')
       else
         # This can't happen
         Rails.logger.error "Got #{elem.name} without 'primitive' or 'group' child"
@@ -344,7 +346,8 @@ class Cib
           end
           res[:instances][instance.to_s.to_sym] = {
             failed_ops: [],
-            is_managed: res[:is_managed] && !@crm_config[:maintenance_mode]
+            is_managed: res[:is_managed] && !@crm_config[:maintenance_mode],
+            maintenance: res[:maintenance] || @crm_config[:maintenance_mode] || false
           }
         end
         res[:instances].delete(:default) if res[:instances].key?(:default)
@@ -366,7 +369,8 @@ class Cib
           # working with shadow CIBs.
           res[:instances][:default] = {
             failed_ops: [],
-            is_managed: res[:is_managed] && !@crm_config[:maintenance_mode]
+            is_managed: res[:is_managed] && !@crm_config[:maintenance_mode],
+            maintenance: res[:maintenance] || @crm_config[:maintenance_mode] || false
           } unless res[:instances].key?(:default)
         end
       end
@@ -413,10 +417,13 @@ class Cib
         fix_resource_states(resource[:children])
         resource[:children].each do |child|
           rstate = child[:state]
-          resource[:state] = rstate if prio[rstate] > prio[resource[:state]]
+          resource[:state] = rstate if (prio[rstate] || 0) > (prio[resource[:state]] || 0)
           resource[:running_on].merge! child[:running_on]
         end
       end
+
+      resource[:state] = :unmanaged unless resource[:is_managed]
+      resource[:state] = :maintenance if resource[:maintenance] == true
     end
   end
 
@@ -429,7 +436,8 @@ class Cib
         # Always include empty failed_ops array (JS status updater relies on it)
         @resources_by_id[k][:instances][:default] = {
           failed_ops: [],
-          is_managed: @resources_by_id[k][:is_managed] && !@crm_config[:maintenance_mode]
+          is_managed: @resources_by_id[k][:is_managed] && !@crm_config[:maintenance_mode],
+          maintenance: @resources_by_id[k][:maintenance] || @crm_config[:maintenance_mode] || false
         }
       end
     end
@@ -440,12 +448,14 @@ class Cib
   def fix_tag_states
     prio = {
       unknown: 0,
-      stopped: 1,
-      started: 2,
-      slave: 3,
-      master: 4,
-      pending: 5,
-      failed: 6
+      unmanaged: 1,
+      maintenance: 2,
+      stopped: 3,
+      started: 4,
+      slave: 5,
+      master: 6,
+      pending: 7,
+      failed: 8
     }
     @tags.each do |tag|
       sum_state = :unknown
@@ -660,7 +670,7 @@ class Cib
     @resource_count = 0
     # This gives only resources capable of being instantiated, and skips (e.g.) templates
     @xml.elements.each('cib/configuration/resources/*[self::primitive or self::group or self::clone or self::master]') do |r|
-      @resources << get_resource(r, is_managed_default && !@crm_config[:maintenance_mode])
+      @resources << get_resource(r, is_managed_default && !@crm_config[:maintenance_mode], @crm_config[:maintenance_mode])
     end
     # Templates deliberately kept separate from resources, because
     # we need an easy way of listing them separately, and they don't
@@ -687,7 +697,8 @@ class Cib
         id: t.attributes['id'],
         state: :unknown,
         object_type: :tag,
-        is_managed: false,
+        is_managed: true,
+        maintenance: false,
         running_on: {},
         refs: t.elements.collect('obj_ref') { |ref| ref.attributes['id'] }
       }
@@ -1120,7 +1131,7 @@ class Cib
       # - there are state keys other than :stopped, :unknown, :is_managed or :failed_ops present
       alt_i = instance
       while instances[alt_i] &&
-            instances[alt_i].count{|k,v| (k != :stopped && k != :unknown && k != :is_managed && k != :failed_ops)} > 0
+            instances[alt_i].count{|k,v| (k != :stopped && k != :unknown && k != :is_managed && k != :failed_ops && k != :maintenance)} > 0
         alt_i = (alt_i.to_i + 1).to_s
       end
       if alt_i != instance
@@ -1140,7 +1151,8 @@ class Cib
     # but only do this on first initialization else state may get screwed
     # up later
     instances[instance] = {
-      is_managed: resource[:is_managed] && !@crm_config[:maintenance_mode]
+      is_managed: resource[:is_managed] && !@crm_config[:maintenance_mode],
+      maintenance: resource[:maintenance] || @crm_config[:maintenance_mode] || false
     } unless instances[instance]
     instances[instance][state] ||= []
     n = { node: node[:uname] }
@@ -1153,6 +1165,7 @@ class Cib
       # running here (don't mark it unmanaged if it's stopped on this
       # node - it might be running on another node)
       instances[instance][:is_managed] = false
+      instances[instance][:maintenance] = true
     end
 
     resource

@@ -27,8 +27,8 @@ Rails.application.routes.draw do
         get :stop
         get :promote
         get :demote
-        get :manage
-        get :unmanage
+        get :maintenance_on
+        get :maintenance_off
         get :unmigrate
         get :migrate
         get :cleanup
