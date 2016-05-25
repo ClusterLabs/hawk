@@ -152,6 +152,10 @@ class GroupsController < ApplicationController
   end
 
   def post_process_for!(record)
+    role = record.meta["target-role"]
+    record.start! if role == "Started"
+    record.stop! if role == "Stopped"
+    record.promote! if role == "Master"
   end
 
   def normalize_params!(current)
