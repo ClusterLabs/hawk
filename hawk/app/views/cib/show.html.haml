@@ -50,13 +50,6 @@
               %ul.dropdown-menu{data: { tagname: tag[:id] } }
                 %li= link_to(icon_text('play', _("Start")), start_cib_resource_path(cib_id: @cib.id, id: tag[:id]), class: :start)
                 %li= link_to(icon_text('stop', _("Stop")), stop_cib_resource_path(cib_id: @cib.id, id: tag[:id]), class: :stop)
-                %li= link_to(icon_text('thumbs-up', _("Promote")), promote_cib_resource_path(cib_id: @cib.id, id: tag[:id]), class: :promote)
-                %li= link_to(icon_text('thumbs-down', _("Demote")), demote_cib_resource_path(cib_id: @cib.id, id: tag[:id]), class: :demote)
-                %li= link_to(icon_text('circle', _("Manage")), manage_cib_resource_path(cib_id: @cib.id, id: tag[:id]), class: :manage)
-                %li= link_to(icon_text('dot-circle-o', _("Unmanage")), unmanage_cib_resource_path(cib_id: @cib.id, id: tag[:id]), class: :unmanage)
-                %li= link_to(icon_text('arrows', _("Migrate")), migrate_cib_resource_path(cib_id: @cib.id, id: tag[:id]), class: :migrate)
-                %li= link_to(icon_text('chain-broken', _("Unmigrate")), unmigrate_cib_resource_path(cib_id: @cib.id, id: tag[:id]), class: :unmigrate)
-                %li= link_to(icon_text('eraser', _("Cleanup")), cleanup_cib_resource_path(cib_id: @cib.id, id: tag[:id]), class: :cleanup)
                 %li.separator.divider
                 %li= link_to(icon_text('pencil', _("Edit")), edit_cib_tag_path(cib_id: @cib.id, id: tag[:id]))
           %table.table.tagtable{ data: { tagname: tag[:id] } }
