@@ -43,7 +43,7 @@ $(function() {
           clickToSelect: false,
           align: "center",
           halign: "center",
-          class: 'detail',
+          class: 'col-sm-1',
           formatter: function(value, row, index) {
             var cib = $('body').data('content');
             var icon = ['fa', 'fa-lg'];

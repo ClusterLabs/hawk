@@ -99,6 +99,7 @@ $(function() {
         }, "success", {}));
         params.complete({}, "success");
       },
+      classes: "table table-hover table-no-bordered",
       pagination: false,
       pageSize: 50,
       pageList: [10, 25, 50, 100, 200],
@@ -166,8 +167,10 @@ $(function() {
       }, {
         field: 'granted',
         title: __('Granted'),
+        align: 'right',
+        halign: 'right',
         sortable: false,
-        clickToSelect: true,
+        clickToSelect: false,
         class: 'col-sm-1',
         events: {
           'click .grant': function (e, value, row, index) {

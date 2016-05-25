@@ -38,7 +38,7 @@
         %table.table.resources
       #nodes.tab-pane{ role: :tabpanel }
         %table.table.nodes
-      #tickets.tab-pane{ role: :tabpanel, data: { link: "visible{hasKeys:tickets}" } }
+      #tickets.tab-pane{ role: :tabpanel }
         %table.table.tickets
       - tags_with_resources.each do |tag|
         .tab-pane{ role: :tabpanel, id: "tag-#{tag[:id]}" }
