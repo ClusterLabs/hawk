@@ -219,12 +219,14 @@ $(function() {
       class: 'col-sm-6',
       formatter: function(value, row, index) {
         if ("running_on" in row) {
-          var nodes = Object.keys(row.running_on);
-          if (nodes.length > 8) {
-            nodes = nodes.slice(0, 8);
-            nodes.push("...");
+          var all_nodes = Object.keys(row.running_on);
+          var masters = $.grep(all_nodes, function(n) { return row.running_on[n] == "master"; });
+          var others = $.grep(all_nodes, function(n) { return row.running_on[n] != "master"; });
+          if (others.length > 8) {
+            others = others.slice(0, 8);
+            others.push("...");
           }
-          return nodes.join(", ");
+          return $.map(masters, function(n) { return "<b>" + n + "</b>"; }).concat(others).join(", ");
         } else {
           return "";
         }
