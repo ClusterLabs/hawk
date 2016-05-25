@@ -36,14 +36,14 @@ class PrimitivesController < ApplicationController
 
     @primitive = Primitive.new params[:primitive]
 
-    fail CreateFailure, @primitive.errors.to_sentence unless @primitive.save
+    fail CreateFailure, @primitive.errors.full_messages.to_sentence unless @primitive.save
     post_process_for! @primitive
 
     unless @primitive.parent.blank?
       parent = Group.find @primitive.parent
       if parent
         parent.children.push @primitive.id
-        fail CreateFailure, parent.errors.to_sentence unless parent.save
+        fail CreateFailure, parent.errors.full_messages.to_sentence unless parent.save
       end
     end
 

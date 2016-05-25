@@ -38,7 +38,7 @@ class ReportsController < ApplicationController
     to_time = parse_time params[:report][:to_time], errors
 
     unless errors.empty?
-      render json: { error: errors.to_sentence }
+      render json: { error: errors.full_messages.to_sentence }
       return
     end
 
