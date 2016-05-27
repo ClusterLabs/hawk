@@ -53,7 +53,7 @@
       .nav-tabs > li > a,
       .nav-tabs > li > a:hover,
       .nav-tabs > li > a:focus {
-          color: $panel-default-fg;
+        color: $panel-default-fg;
       }
 
       .nav-tabs > .open > a,
@@ -61,17 +61,17 @@
       .nav-tabs > .open > a:focus,
       .nav-tabs > li > a:hover,
       .nav-tabs > li > a:focus {
-        color: $panel-default-fg;
         background-color: $nav-tabs-lightgray;
         border-color: transparent;
+        color: $panel-default-fg;
       }
       .nav-tabs > li.active > a,
       .nav-tabs > li.active > a:hover,
       .nav-tabs > li.active > a:focus {
-        color: $nav-tabs-active-fg;
         background-color: $nav-tabs-active-bg;
-        border-color: $nav-tabs-lightgray;
         border-bottom-color: transparent;
+        border-color: $nav-tabs-lightgray;
+        color: $nav-tabs-active-fg;
       }
       .nav-tabs > li.dropdown .dropdown-menu {
         background-color: $dropdown-menu-bg;
@@ -87,8 +87,8 @@
       .nav-tabs > li.dropdown .dropdown-menu > .active > a,
       .nav-tabs > li.dropdown .dropdown-menu > .active > a:hover,
       .nav-tabs > li.dropdown .dropdown-menu > .active > a:focus {
-        color: $dropdown-menu-active-fg;
         background-color: $dropdown-menu-active-bg;
+        color: $dropdown-menu-active-fg;
       }
     }
   }

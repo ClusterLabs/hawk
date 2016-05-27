@@ -34,33 +34,33 @@
 }
 
 .diff_sub {
-  background: $diff_sub_bg;
+  background: $diff-sub-bg;
 }
 
 .diff_add {
-  background: $diff_add_bg;
+  background: $diff-add-bg;
 }
 
 .diff_chg {
-  background: $diff_chg_bg;
+  background: $diff-chg-bg;
 }
 
 
 td.diff_header {
-color: $diff_header_fg;
+  color: $diff-header-fg;
 }
 
 table.diff {
- width: 100%;
- font-family:monospace;
- border: none;
+  width: 100%;
+  font-family:monospace;
+  border: none;
 }
 
 .diff_next {
-  background-color: $diff_next_bg;
+  background-color: $diff-next-bg;
 }
 
 .fa-status-small {
-    font-size: 66%;
-    vertical-align: top;
+  font-size: 66%;
+  vertical-align: top;
 }
