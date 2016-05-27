@@ -12,7 +12,7 @@ html {
 }
 
 body {
-  @include horizontal-gradient-background( $simulator-left, $simulator-right);
+  @include horizontal-gradient-background($simulator-left, $simulator-right);
   font-family: $font-family-base;
   color: $body-text-color;
   height: 100%;

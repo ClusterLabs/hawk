@@ -3,13 +3,13 @@
 // to rebrand the UI
 
 
-// ----  basics.scss variables ---- 
+// ----  basics.scss variables ----
 $body-text-color: #3a3e40;
 $simulator-left: #1fad7a;
 $simulator-right: #80c235;
 
 
-// ----  content.scss variables - login page ---- 
+// ----  content.scss variables - login page ----
 $darkbar-bg: #2b2b2b;
 $darkbar-heading-fg:#00b268;
 $rightbar-bg: #ebebeb;
@@ -24,17 +24,17 @@ $sidebar-fg: #fff;
 $sidebar-bg: #383c3e;
 
 
-//  ----  head.scss variables ---- 
+//  ----  head.scss variables ----
 $batch-bar-bg: #d35400;
-$batch-control-bar-text : #fff;
+$batch-control-bar-text: #fff;
 
 
-// ----  simulator.scss variables ---- 
+// ----  simulator.scss variables ----
 $batch-bar-text: #f1c40f;
 $batch-button-active-fg: #84c66a;
 
 
-// ----  misc.scss variables ---- 
+// ----  misc.scss variables ----
 $diff-sub-bg: #fdd;
 $diff-add-bg: #dfd;
 $diff-chg-bg: #ddf;
@@ -42,12 +42,12 @@ $diff-header-fg: #fff;
 $diff-next-bg: #c0c0c0;
 
 
-// ----  nav.scss variables ---- 
+// ----  nav.scss variables ----
 $nav-bighelp-fg: #000;
 $pull-right-hover: #00b268;
 
 
-// ----  panel.scss variables ---- 
+// ----  panel.scss variables ----
 $nav-tabs-lightgray: #ddd;
 $panel-steps-bg: #ccc;
 $panel-default-fg: #777;
@@ -58,7 +58,7 @@ $dropdown-menu-active-bg: #555;
 $dropdown-menu-active-fg: #fff;
 
 
-// ----  mixins ---- 
+// ----  mixins ----
 @mixin panel-heading-bg() {
   @include gradient-vertical(#f4f4f4, #e7e7e7);
 }
@@ -74,8 +74,3 @@ $dropdown-menu-active-fg: #fff;
   padding: 15px 10px;
   border-top: 1px solid #ccc;
 }
-
-
-
-
-
