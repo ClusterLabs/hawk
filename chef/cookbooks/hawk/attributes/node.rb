@@ -20,7 +20,7 @@
 default["hawk"]["node"]["packages"] = [
   "hawk2",
   "ha-cluster-bootstrap",
-  "w3m",
+  "fence-agents",
 
   "apache2",
   "haproxy",

@@ -30,7 +30,6 @@ default["hawk"]["webui"]["packages"] = [
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-js-routes",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-sprockets",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-tilt-1_4",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-hashie",
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-kramdown",
 
   # Development dependencies
@@ -42,8 +41,8 @@ default["hawk"]["webui"]["packages"] = [
   "git-core",
 
   "hawk2",
+  "fence-agents",
   "ha-cluster-bootstrap",
-  "w3m",
 
   "glib2-devel",
   "libxml2-devel",
