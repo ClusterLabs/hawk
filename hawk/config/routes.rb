@@ -99,7 +99,7 @@ Rails.application.routes.draw do
     resource :profile, only: [:edit, :update]
     resource :crm_config, only: [:edit, :update]
 
-    resources :agents, only: [:show], constraints: { id: %r{[0-9A-Za-z:%@\-\.\/]+} }
+    resources :agents, only: [:show], constraints: { id: %r{[0-9A-Za-z:%@_\-\.\/]+} }
 
     resource :graph, only: [:show]
 
