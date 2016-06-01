@@ -172,6 +172,7 @@ class Wizard
       Rails.cache.fetch(:all_wizards, expires_in: 2.hours) do
         [].tap do |wizards|
           CrmScript.run ["list"], nil do |item, err|
+            Rails.logger.debug "Error listing scripts: #{err}" unless err.blank?
             wizards.push Wizard.parse_brief(item) if wizard_ok(item)
           end
         end

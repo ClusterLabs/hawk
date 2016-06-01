@@ -48,7 +48,7 @@ module CrmScript
     File.chmod(0666, tmpf.path)
 
     if rootpw.nil?
-      cmdline = ['/usr/sbin/crm', '-f', tmpf.path]
+      cmdline = ['/usr/sbin/hawk_invoke', user, 'crm', '-f', tmpf.path]
     else
       user = 'root'
       cmdline = ['/usr/bin/su', user, '--shell=/bin/sh', '-c', "/usr/sbin/crm -f #{tmpf.path}", stdin_data: rootpw.lines.first]

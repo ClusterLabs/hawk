@@ -95,7 +95,7 @@ class WizardsController < ApplicationController
         sp[path[0]] = v
       end
     end
-    Rails.logger.debug "scriptparams: #{params} -> #{sp}"
+    # Rails.logger.debug "scriptparams: #{params} -> #{sp}"
     sp
   end
 
@@ -133,8 +133,10 @@ class WizardsController < ApplicationController
           }, status: :unprocessable_entity
         end
       end
-    rescue NotFoundError
-    rescue RuntimeError
+    rescue NotFoundError => e
+      Rails.logger.debug "NotFoundError: #{e}"
+    rescue RuntimeError => e
+      Rails.logger.debug "RuntimeError: #{e}"
     end
   end
 

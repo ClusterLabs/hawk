@@ -191,15 +191,15 @@ class ApplicationController < ActionController::Base
   end
 
   def permission_denied
-    raise Cib::PermissionDenied.new
+    raise Cib::PermissionDenied.new _("Error: Permission denied for user (%s)") % [current_user]
   end
 
   def not_authenticated
-    raise Cib::NotAuthenticated.new
+    raise Cib::NotAuthenticated.new _("Error: Not authenticated")
   end
 
   def not_found
-    raise ActionController::RoutingError.new "Record not found"
+    raise ActionController::RoutingError.new _("Error: Record not found")
   end
 
   def default_locale
