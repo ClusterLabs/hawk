@@ -475,7 +475,7 @@ $(function() {
         var hash = this.hash;
         var target = $(e.target);
 
-        $('#reports #middle .panel-heading .btn').each(function(index, link) {
+        $('#reports #middle .panel-heading .btn-primary').each(function(index, link) {
           var $link = $(link)
 
           $link.attr(
