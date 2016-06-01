@@ -32,12 +32,12 @@
         = main_form.text_field :type, label: _("Type"), readonly: true, data: { help_filter: ".row.type" }
       #agent-info.form-group.hidden
         %label.col-sm-5.control-label
-        .col-sm-7
+        .col-sm-4
           %a.btn.btn-sm.btn-info{ href: "#", role: "button", data: { toggle: :modal, target: "#modal-lg" } }
             = icon_tag "info"
 
-      %p#editform-loading.centered.text-center{style: "display: none;"}
-        %i.fa.fa-refresh.fa-pulse-opacity.text-info
+        #editform-loading.col-sm-3.text-right{style: "display: none;"}
+          %i.fa.fa-lg.fa-refresh.fa-pulse-opacity.text-info
 
       #paramslist
       #oplist
