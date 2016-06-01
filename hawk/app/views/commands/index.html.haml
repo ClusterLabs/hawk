@@ -8,11 +8,10 @@
       .panel-body
         .row
           .col-sm-12
-            .alert.alert-info
-              = _("Lists crm commands recently executed by hawk, most recent first.")
+            %p.text-muted= _("Lists crm commands recently executed by hawk, most recent first.")
         .row
           .col-sm-12
             .commands
               - @cmds.reverse_each do |cmd|
                 %pre
-                  %code.crmsh.hljs= cmd
+                  %code.crmsh.hljs{ title: cmd.lines.first }= cmd.lines[1..-1].join
