@@ -412,7 +412,14 @@ $(function() {
       onhover: function(item, element, event, inout) {
         if (inout == 'in') {
           element.data('title', item.basename);
-          element.data('content', moment(item.timestamp).format(time_format_string));
+          element.data('content', [
+            "<dl>",
+            "<dt>", __("Time"),  "</dt>",
+            "<dd>", moment(item.timestamp).format(time_format_string),  "</dd>",
+            "<dt>", __("Node"),  "</dt>",
+            "<dd>", item.node,  "</dd>",
+            "</dl>"
+          ].join(""));
 
           if (last_popover_element != element) {
             if (last_popover_element != null) {
@@ -420,7 +427,8 @@ $(function() {
             }
             element.popover({
               placement: 'top',
-              container: 'body'
+              container: 'body',
+              html: true
             });
             last_popover_element = element;
           }
