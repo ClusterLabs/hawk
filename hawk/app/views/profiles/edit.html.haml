@@ -2,7 +2,7 @@
   = icon_text 'home', _('Preferences'), class: 'page'
 
 .panel.panel-default
-  .panel-body
+  .panel-body{ style: "overflow: inherit;" }
     = form_for [@cib, @profile], horizontal: true, bootstrap: true, method: :put do |main_form|
       = main_form.select :language, :language_options, { include_hidden: false }, {  }
 
