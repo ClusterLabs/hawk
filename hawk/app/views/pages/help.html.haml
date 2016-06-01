@@ -11,6 +11,15 @@
 
   .modal-body
     %ul.media-list
+      - base_docs.each do |doc|
+        %li.media
+          .media-body
+            %h4.media-heading
+              .btn-group.pull-right
+                = link_to icon_tag("#{doc[:icon]} fa-fw fa-lg"), doc[:url], target: '_blank', class: "btn btn-#{doc[:style]} btn-lg", title: doc[:title]
+              = doc[:title]
+            = doc[:desc]
+
       - installed_docs.each do |doc|
         %li.media
           .media-body

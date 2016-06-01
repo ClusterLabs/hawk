@@ -11,9 +11,8 @@
   %li
     = link_to navbar_item(profile_title, "user"), edit_cib_profile_path(cib_id: current_cib.id), class: "profile", title: profile_title
 
-  - unless installed_docs.empty?
-    %li
-      = link_to navbar_item(_("Help"), "question"), help_path, class: "help", data: { toggle: "modal", target: "#modal" }, title: _("Help")
+  %li
+    = link_to navbar_item(_("Help"), "question"), help_path, class: "help", data: { toggle: "modal", target: "#modal" }, title: _("Help")
 
   %li
     = link_to navbar_item(_("Logout"), "sign-out"), logout_path, class: "logout", title: _("Logout")
