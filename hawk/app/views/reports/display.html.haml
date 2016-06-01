@@ -58,7 +58,11 @@
             .col-md-4
               .pull-left
                 = link_to icon_tag("step-backward"), url_for(transition: prev_transition), class: 'btn btn-xs btn-primary'
-            .col-md-4.col-md-offset-4
+            .col-md-4.text-center
+              .btn-group{ role: :group }
+                %button.btn.btn-default.zoom-in{ type: :button, title: _("Zoom in") }= icon_tag('search-plus')
+                %button.btn.btn-default.zoom-out{ type: :button, title: _("Zoom out") }= icon_tag('search-minus')
+            .col-md-4
               .pull-right
                 = link_to icon_tag("step-forward"), url_for(transition: next_transition), class: 'btn btn-xs btn-primary'
           %script#transition-data{type: "application/json", data: { report: @report.id, current: current_transition } }

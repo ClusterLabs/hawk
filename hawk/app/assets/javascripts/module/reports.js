@@ -450,7 +450,15 @@ $(function() {
       },
     });
 
-    $('#reports #middle .panel-heading .btn').each(function(index, link) {
+    $('#reports #middle .zoom-in').on('click', function() {
+      $('#reports #eventcontrol').EventControl('zoom-in');
+    });
+
+    $('#reports #middle .zoom-out').on('click', function() {
+      $('#reports #eventcontrol').EventControl('zoom-out');
+    });
+
+    $('#reports #middle .panel-heading .btn-primary').each(function(index, link) {
           var a = $(link)
           a.attr('href', a.attr('href').split('#')[0] + location.hash);
     });

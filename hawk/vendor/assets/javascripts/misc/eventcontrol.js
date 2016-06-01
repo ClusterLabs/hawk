@@ -434,6 +434,7 @@
   };
 
   $.fn.EventControl = function(options) {
+    var command_args = Array.prototype.slice(arguments, 1);
     return this.each(function() {
       var element = $(this);
       var self = element.data('eventcontrol');
@@ -443,9 +444,9 @@
       } else if (options === undefined) {
         return self.save_state();
       } else if (options == 'zoom-in') {
-        return self.zoom.apply(self, [1] + arguments.slice(1, 2));
+        return self.zoom.apply(self, [1].concat(command_args));
       } else if (options == 'zoom-out') {
-        return self.zoom.apply(self, [-1] + arguments.slice(1, 2));
+        return self.zoom.apply(self, [-1].concat(command_args));
       } else {
         self.load_state(options);
       }
