@@ -1,7 +1,7 @@
 .container-fluid
   .row
     .col-lg-4
-      .circle.circle-large{ class: status_class_for(@cib.meta[:status]) }
+      .circle.circle-medium{ class: status_class_for(@cib.meta[:status]) }
         = status_icon_for(@cib.meta[:status])
 
     .col-lg-8.errors.softhide#errors{ data: { link: "visible{>errors.length > 0}" } }
