@@ -509,7 +509,7 @@ class Cib
     additions[type] = true
 
     errors.push additions
-    @meta[:status] = cluster_status
+    @meta[:status] = cluster_status unless @meta.nil?
   end
 
   def initialize(id, user, use_file = false)
