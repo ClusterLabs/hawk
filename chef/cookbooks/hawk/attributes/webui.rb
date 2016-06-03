@@ -44,6 +44,9 @@ default["hawk"]["webui"]["packages"] = [
   "fence-agents",
   "ha-cluster-bootstrap",
 
+  "apache2",
+  "haproxy",
+
   "glib2-devel",
   "libxml2-devel",
   "pam-devel",
