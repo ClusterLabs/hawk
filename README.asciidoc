@@ -196,15 +196,13 @@ Some dependencies may differ depending on the distribution:
 
 Hawk is included with SLE HA 11 SP1, openSUSE 11.4, and later
 SUSE releases. Recent versions are also available
-http://software.opensuse.org/download?project=network:ha-clustering:Stable&package=hawk[for download from OBS].
+http://software.opensuse.org/download?project=network:ha-clustering:Factory&package=hawk2[for download from OBS].
 
 Just install the RPM, then run:
 
 --------------------------------------
-# chkconfig hawk on
---------------------------------------
---------------------------------------
-# service hawk start
+# systemctl enable hawk
+# systemctl start hawk
 --------------------------------------
 
 === Installing The Other Easy Way ===
@@ -216,10 +214,8 @@ and run "make rpm".
 Once built, install the RPM on your cluster nodes and:
 
 --------------------------------------
-# chkconfig hawk on
---------------------------------------
---------------------------------------
-# service hawk start
+# systemctl enable hawk
+# systemctl start hawk
 --------------------------------------
 
 === Installing The Hard Way ===
@@ -230,8 +226,6 @@ you'll be happy with the outcome!
 
 --------------------------------------
 # make
---------------------------------------
---------------------------------------
 # sudo make install
 --------------------------------------
 
@@ -264,9 +258,8 @@ your certificate.
 == Hacking Hawk ==
 
 To hack on Hawk we recommend to use the vagrant setup. There is a
-Vagrantfile attached, maybe you need to change some values to get access
-to the correct files as the current locations are restricted to SUSE
-employees.
+Vagrantfile attached, which creates a three-node cluster with a basic
+configuration suitable for development and testing.
 
 To be prepared for getting our vagrant setup running you need to follow
 some steps.
@@ -295,7 +288,7 @@ Install it using the following command:
   # vagrant plugin install vagrant-libvirt
 --------------------------------------
 
-* You still need to fetch the git submodules to finish your development setup:
+* You need to fetch the git submodules to finish your development setup:
 
 --------------------------------------
   # git submodule update --init --recursive
@@ -313,12 +306,21 @@ You can access the Hawk web interface based on the git source through
 +http://localhost:3000+ now. If you want to access the version installed
 through packages you can reach it through +https://localhost:7630+.
 
-Occasionally it can happen that the source based web interface has not
-started properly and is not responding. In that case restart it with:
+Installed on the development VM is a script called +hawk+, which can be used
+to control the development instance of hawk.
 
 --------------------------------------
-vagrant@webui:~> sudo systemctl restart hawk-development.service
+$ vagrant ssh webui
+vagrant@webui:~> hawk status
+vagrant@webui:~> hawk log
+vagrant@webui:~> hawk start
+vagrant@webui:~> hawk stop
+vagrant@webui:~> hawk restart
 --------------------------------------
+
+Because Hawk is multi-threaded, the Rails asset auto-loading doesn't work properly.
+Unfortunately this means that you need to run +hawk restart+ after changing
+most files. The exception is the HAML view files which update automatically.
 
 If you need to change something on +hawk_chkpwd+, +hawk_invoke+ or
 +hawk_monitor+ you need to provision the machine again with the command
