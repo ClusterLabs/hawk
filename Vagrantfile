@@ -1,6 +1,9 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+shared_disk = ".vagrant/_shared_disk.vdi"
+shared_disk_size = 128 # MB
+
 Vagrant.configure("2") do |config|
   config.vm.box = "opensuse/openSUSE-42.1-x86_64"
   config.vm.box_check_update = true
@@ -59,6 +62,13 @@ Vagrant.configure("2") do |config|
       provider.memory = 1024
       provider.cpus = 1
       provider.name = "hawk-webui"
+
+      unless File.exist?(shared_disk)
+        provider.customize ['createhd', '--filename', shared_disk, '--size', shared_disk_size, '--variant', 'Fixed']
+        provider.customize ['modifyhd', shared_disk, '--type', 'shareable']
+      end
+      provider.customize ['storageattach', :id, '--storagectl', 'SATA Controller',
+                          '--port', 1, '--device', 0, '--type', 'hdd', '--medium', shared_disk]
     end
 
     machine.vm.provider :libvirt do |provider, override|
@@ -103,6 +113,13 @@ Vagrant.configure("2") do |config|
         provider.memory = 512
         provider.cpus = 1
         provider.name = "hawk-node#{i}"
+
+        unless File.exist?(shared_disk)
+          provider.customize ['createhd', '--filename', shared_disk, '--size', shared_disk_size, '--variant', 'fixed']
+          provider.customize ['modifyhd', shared_disk, '--type', 'shareable']
+        end
+        provider.customize ['storageattach', :id, '--storagectl', 'SATA Controller',
+                            '--port', 1, '--device', 0, '--type', 'hdd', '--medium', shared_disk]
       end
 
       machine.vm.provider :libvirt do |provider, override|

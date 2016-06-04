@@ -67,6 +67,6 @@ default["hawk"]["webui"]["targets"] = %w(
 default["hawk"]["webui"]["haproxy_cfg"] = "/etc/haproxy/haproxy.cfg"
 default["hawk"]["webui"]["apache_port"] = "sed -i 's/^Listen 80$/Listen 8000/g' /etc/apache2/listen.conf"
 default["hawk"]["webui"]["apache_index"] = "/srv/www/htdocs/index.html"
-default["hawk"]["webui"]["init_command"] = "ha-cluster-init -i eth1 -y"
+default["hawk"]["webui"]["init_command"] = "ha-cluster-init -i eth1 -y -t ocfs2 -p /dev/sdb"
 default["hawk"]["webui"]["init_check"] = "systemctl -q is-active corosync.service"
 default["hawk"]["webui"]["initial_cib"] = "/root/crm-initial.conf"

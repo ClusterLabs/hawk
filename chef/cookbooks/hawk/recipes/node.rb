@@ -17,6 +17,19 @@
 # limitations under the License.
 #
 
+bash "probe_watchdog" do
+  user "root"
+  cwd "/"
+  code "modprobe softdog"
+end
+
+template "/etc/modules-load.d/softdog.conf" do
+  source "softdog.conf"
+  owner "root"
+  group "root"
+  mode 0644
+end
+
 case node["platform_family"]
 when "suse"
   include_recipe "zypper"

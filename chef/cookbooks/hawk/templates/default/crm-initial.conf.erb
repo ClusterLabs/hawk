@@ -11,6 +11,3 @@ group g-proxy proxy-vip proxy
 location l-proxy-on-webui g-proxy 200: webui
 location l-web-on-node1 cl-servers 200: node1
 location l-web-on-node2 cl-servers 200: node2
-# Never use this STONITH agent in production!
-primitive development-stonith stonith:null hostlist="webui node1 node2"
-property stonith-enabled=true

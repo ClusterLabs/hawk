@@ -17,6 +17,19 @@
 # limitations under the License.
 #
 
+bash "probe_watchdog" do
+  user "root"
+  cwd "/"
+  code "modprobe softdog"
+end
+
+template "/etc/modules-load.d/softdog.conf" do
+  source "softdog.conf"
+  owner "root"
+  group "root"
+  mode 0644
+end
+
 case node["platform_family"]
 when "suse"
   include_recipe "zypper"
@@ -63,6 +76,19 @@ bash "hawk_init" do
     ).run_command.error?
   end
 end
+
+bash "increase_numslots_ocfs2" do
+  user "root"
+
+  code <<-EOH
+if [ "$(tunefs.ocfs2 -Q "%N" /dev/sdb2)" != "4" ]; then
+  crm -w resource stop c-clusterfs
+  tunefs.ocfs2 -N 4 /dev/sdb2
+  crm -w resource start c-clusterfs
+fi
+EOH
+end
+
 
 group "haclient" do
   members %w(vagrant)
