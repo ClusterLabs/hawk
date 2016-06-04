@@ -7,12 +7,10 @@ primitive server-instance @web-server
 clone cl-servers server-instance \
   meta globally-unique=false clone-max=2 clone-node-max=1
 group g-proxy proxy-vip proxy
-# Never put any web server or haproxy on webui
-location l-avoid-webui { g-proxy cl-servers } -inf: webui
-# Prever to spread groups across nodes
-location l-proxy-on-node1 g-proxy 200: node1
+# Spread resources across nodes
+location l-proxy-on-webui g-proxy 200: webui
+location l-web-on-node1 cl-servers 200: node1
 location l-web-on-node2 cl-servers 200: node2
-location l-web-on-node3 cl-servers 200: node3
 # Never use this STONITH agent in production!
-primitive development-stonith stonith:null hostlist="webui node1 node2 node3"
+primitive development-stonith stonith:null hostlist="webui node1 node2"
 property stonith-enabled=true

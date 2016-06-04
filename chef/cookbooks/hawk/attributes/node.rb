@@ -31,11 +31,8 @@ default["hawk"]["node"]["packages"] = [
 
 default["hawk"]["node"]["haproxy_cfg"] = "/etc/haproxy/haproxy.cfg"
 default["hawk"]["node"]["apache_port"] = "sed -i 's/^Listen 80$/Listen 8000/g' /etc/apache2/listen.conf"
-
+default["hawk"]["node"]["apache_index"] = "/srv/www/htdocs/index.html"
 default["hawk"]["node"]["join_command"] = "ha-cluster-join -c 10.13.37.10 -i eth1 -y"
 default["hawk"]["node"]["join_check"] = "systemctl -q is-active corosync.service"
-
 default["hawk"]["node"]["ssh_host"] = "10.13.37.10"
 default["hawk"]["node"]["ssh_check"] = "/usr/sbin/crm_mon -1"
-
-default["hawk"]["node"]["apache_index"] = "/srv/www/htdocs/index.html"

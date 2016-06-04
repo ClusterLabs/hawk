@@ -71,6 +71,39 @@ group "haclient" do
   action :manage
 end
 
+template node["hawk"]["webui"]["haproxy_cfg"] do
+  source "haproxy.cfg.erb"
+  owner "root"
+  group "root"
+  mode 0644
+
+  variables(
+    node["hawk"]["webui"]
+  )
+
+  not_if do
+    node["hawk"]["webui"]["haproxy_cfg"].empty?
+  end
+end
+
+template node["hawk"]["webui"]["apache_index"] do
+  source "index.html.erb"
+  owner "root"
+  group "root"
+  mode 0644
+  variables(
+    :hostname => node[:hostname]
+  )
+end
+
+bash "apache_port" do
+  user "root"
+  cwd "/etc/apache2"
+
+  code node["hawk"]["webui"]["apache_port"]
+end
+
+
 template node["hawk"]["webui"]["initial_cib"] do
   source "crm-initial.conf.erb"
   owner "root"

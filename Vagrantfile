@@ -68,8 +68,8 @@ Vagrant.configure("2") do |config|
     end
   end
 
-  1.upto(3).each do |i|
-    config.vm.define "node#{i}", autostart: false do |machine|
+  1.upto(2).each do |i|
+    config.vm.define "node#{i}", autostart: true do |machine|
       machine.vm.hostname = "node#{i}"
 
       machine.vm.network :forwarded_port,
