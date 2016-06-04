@@ -113,6 +113,23 @@ $(function() {
     return false;
   }
 
+  var agentLinkForResource = function(resource) {
+    var cib = $('body').data('cib');
+    if (resource.template && resource.template.length > 0) {
+      return '<a href="' + Routes.cib_agent_path(cib, encodeURIComponent("@" + resource.template)) + '" data-toggle="modal" data-target="#modal-lg">' + "@" + resource.template + '</a>';
+    }
+
+    var agent = "";
+    if (resource["class"]) {
+      agent += resource["class"] + ":";
+    }
+    if (resource["provider"]) {
+      agent += resource.provider + ":";
+    }
+    agent += resource.type;
+    return '<a href="' + Routes.cib_agent_path(cib, encodeURIComponent(agent)) + '" data-toggle="modal" data-target="#modal-lg">' + agent + '</a>';
+  };
+
   function resourceRoutes(row) {
     var editRoute = null;
     var destroyRoute = null;
@@ -240,28 +257,22 @@ $(function() {
       title: __('Type'),
       sortable: false,
       clickToSelect: false,
-      class: 'col-sm-1',
+      class: 'col-sm-2',
       formatter: function(value, row, index) {
         if (row.object_type == "group") {
-          return __("Group");
+          return __("Group") + " (" + row.children.length + ")";
         } else if (row.object_type == "master") {
           return __("Multi-state");
         } else if (row.object_type == "clone") {
-          return __("Clone");
+          if (row.children.length > 0) {
+            return agentLinkForResource(row.children[0]) + " (" + __("Clone") + ")";
+          } else {
+            return __("Clone");
+          }
         } else if (row.object_type == "tag") {
           return __("Tag");
-        } else if (row.template && row.template.length > 0) {
-          return '<a href="' + Routes.cib_agent_path($('body').data('cib'), encodeURIComponent("@" + row.template)) + '" data-toggle="modal" data-target="#modal-lg">' + "@" + row.template + '</a>';
-        } else if ("class" in row && "provider" in row && "type" in row) {
-          var agent = "";
-          if (row["class"]) {
-            agent += row["class"] + ":";
-          }
-          if (row["provider"]) {
-            agent += row.provider + ":";
-          }
-          agent += row.type;
-          return '<a href="' + Routes.cib_agent_path($('body').data('cib'), encodeURIComponent(agent)) + '" data-toggle="modal" data-target="#modal-lg">' + agent + '</a>';
+        } else if ("template" in row || ("class" in row && "provider" in row && "type" in row)) {
+          return agentLinkForResource(row);
         } else {
           return row.type;
         }
