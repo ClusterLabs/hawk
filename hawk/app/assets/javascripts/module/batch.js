@@ -58,18 +58,8 @@ $(function() {
   };
 
   var fetch_svg = function(node, file) {
-    $.ajax({
-      url: Routes.sim_result_path(),
-      type: "GET",
-      data: {
-        cib_id: $('body').data('cib'),
-        file: file
-      },
-      success: function(data) {
-        node.html($(data).find('svg'));
-      },
-      error: make_error_handler(node)
-    });
+    url = Routes.sim_result_path() + "?cib_id=" + encodeURIComponent($('body').data('cib')) + "&file=" + encodeURIComponent(file) + "&_ts=" + Date.now();
+    node.html('<a href="' + url + '" target="_blank"><img src="' + url + '"></a>');
   };
 
   function run_simulation() {
