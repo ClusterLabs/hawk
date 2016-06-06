@@ -1115,7 +1115,7 @@ class Cib
       # it.
       # Note: instance at this point is a string because that's what
       # everything else expects
-      instance = instances.select {|k,v| Util.numeric?(k)}.map {|k,v| k.to_i}.max
+      instance = instances.select {|k,v| Util.numeric?(k.to_s)}.map {|k,v| k.to_s.to_i}.max
       if instance.nil?
         instance = "0"
       else
@@ -1139,12 +1139,11 @@ class Cib
         Rails.logger.debug "Internally renamed #{rsc_id}:#{instance} to #{rsc_id}:#{alt_i} on #{node[:uname]}"
         instance = alt_i
       end
+      instance = instance.to_sym
     else
       # instance will be nil here for regular primitives
       instance = :default
     end
-
-    instance = instance.to_sym
 
     # Carry is_managed into the instance itself (needed so we can correctly
     # display unmanaged clone instances if a single node is on maintenance,
