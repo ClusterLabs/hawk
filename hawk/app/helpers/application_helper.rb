@@ -259,4 +259,9 @@ module ApplicationHelper
     graph_path = graph_report_path(id: id, transition: transition, format: "svg", t: Time.now.to_i)
     link_to image_tag(graph_path, class: "img-thumbnail center-block", alt: _("Graph")), graph_path, target: "_blank"
   end
+
+  def config_graph_image(cib_id)
+    graph_path = cib_graph_path(cib_id: cib_id, format: "svg", t: Time.now.to_i)
+    link_to image_tag(graph_path, class: "img-responsive center-block", alt: _("Graph")), graph_path, target: "_blank"
+  end
 end
