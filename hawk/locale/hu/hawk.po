@@ -5,7 +5,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-26 18:17+0200\n"
 "PO-Revision-Date: 2016-06-01 11:29\n"
 "Last-Translator: Novell language <language@novell.com>\n"
 "Language-Team: Novell language <language@novell.com>\n"
@@ -15,2970 +14,1948 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../app/assets/javascripts/dashboard.js:22
-msgid "Error"
-msgstr "Hiba"
-
-#: ../app/assets/javascripts/dashboard.js:25
-msgid "Unexpected server error: _MSG_"
-msgstr "Váratlan kiszolgálóhiba: _MSG_"
-
-#: ../app/assets/javascripts/dashboard.js:28
-msgid "Connection to server failed (server down or network error - will retry every 15 seconds)."
-msgstr "Sikertelen csatlakozás a kiszolgálóhoz (A kiszolgáló ki van kapcsolva vagy hálózati probléma van -újrapróbálkozás 15 másodpercenként)."
-
-#: ../app/assets/javascripts/dashboard.js:31
-#: ../app/assets/javascripts/module/monitor.js:71
-msgid "Connection to server timed out - will retry every 15 seconds."
-msgstr "A kapcsolódás a kiszolgálóhoz időtúllépés miatt sikertelen - újrapróbálkozás 15 másodpercenként."
-
-#: ../app/assets/javascripts/dashboard.js:34
-#: ../app/assets/javascripts/module/monitor.js:49
-msgid "Connection to server aborted - will retry every 15 seconds."
-msgstr "A kapcsolódás a kiszolgálóhoz megszakítva - újrapróbálkozás 15 másodpercenként"
-
-#: ../app/assets/javascripts/dashboard.js:37
-msgid "Permission denied"
-msgstr "Hozzáférés megtagadva"
-
-#: ../app/assets/javascripts/dashboard.js:40
-msgid "_OP_ failed on _NODE_} (rc=_RC_, reason=_REASON_)"
-msgstr "A(z) _OP_ hibával leállt itt: _NODE_} (rc=_RC_, ok=_REASON_)"
-
-#: ../app/assets/javascripts/dashboard.js:195
-msgid "Permission denied. "
-msgstr "Engedély megtagadva. "
-
-#: ../app/assets/javascripts/dashboard.js:215
-msgid "Error connecting to server."
-msgstr "Hiba a kiszolgálóhoz való csatlakozáskor."
-
-#: ../app/assets/javascripts/dashboard.js:217
-msgid "Connection to server timed out."
-msgstr "Kiszolgálókapcsolat időtúllépése."
-
-#: ../app/assets/javascripts/dashboard.js:219
-msgid "Connection to server was aborted."
-msgstr "A kiszolgálóhoz való csatlakozás megszakadt."
-
-#: ../app/assets/javascripts/dashboard.js:221
-msgid "Server returned invalid data."
-msgstr "A kiszolgáló érvénytelen adatokat adott vissza."
-
-#: ../app/assets/javascripts/dashboard.js:225
-msgid "Unknown error connecting to server."
-msgstr "Ismeretlen hiba történt a kiszolgálóhoz való csatlakozáskor."
-
-#: ../app/assets/javascripts/dashboard.js:228
-msgid "Retrying every 15 seconds..."
-msgstr "Újrapróbálkozás 15 másodpercenként..."
-
-#: ../app/assets/javascripts/dashboard.js:250
-#: ../app/assets/javascripts/module/basics.js:182
-#: ../app/assets/javascripts/module/reports.js:168
-#: ../app/assets/javascripts/module/resources.js:42
-#: ../app/views/cib/apply.html.haml:43 ../app/views/reports/index.html.haml:59
-#: ../app/views/reports/show.html.haml:43
-#: ../app/views/resources/rename.html.haml:51
-#: ../app/views/shared/_simulator.html.haml:386
-#: ../app/views/shared/_simulator.html.haml:498
-#: ../app/views/shared/_simulator.html.haml:563
-#: ../app/views/wizards/create.html.haml:26
-#: ../app/views/wizards/show.html.haml:129
-#: ../app/views/wizards/update.html.haml:106
-msgid "Cancel"
-msgstr "Mégse"
-
-#: ../app/assets/javascripts/dashboard.js:374
-msgid "Hostname"
-msgstr "Gépnév"
-
-#: ../app/assets/javascripts/dashboard.js:375
-#: ../app/views/sessions/new.html.haml:2
-msgid "Username"
-msgstr "Felhasználónév"
-
-#: ../app/assets/javascripts/dashboard.js:376
-#: ../app/views/sessions/new.html.haml:4
-msgid "Password"
-msgstr "Jelszó"
-
-#: ../app/assets/javascripts/dashboard.js:377
-msgid "Connect"
-msgstr "Csatlakozás"
-
-#: ../app/assets/javascripts/dashboard.js:425
-msgid "Local Status"
-msgstr "Helyi állapot"
-
-#: ../app/assets/javascripts/dashboard.js:441
-msgid "Remove cluster _NAME_ from dashboard?"
-msgstr "Eltávolítja a(z) _NAME_ fürtöt az irányítópultról?"
-
-#: ../app/assets/javascripts/dashboard.js:468
-msgid "Cluster removed successfully."
-msgstr "A fürt sikeresen eltávolítva."
-
-#: ../app/assets/javascripts/dashboard.js:473
-msgid "Error removing cluster."
-msgstr "Hiba a fürt eltávolításakor."
-
-#: ../app/assets/javascripts/dashboard.js:489
-msgid "Please wait..."
-msgstr "Kérem, várjon..."
-
-#: ../app/assets/javascripts/dashboard.js:499
-msgid "Cluster added successfully."
-msgstr "A fürt sikeresen létrehozva."
-
-#: ../app/assets/javascripts/module/attrlist.js:21
-#: ../app/assets/javascripts/module/constraint.js:19
-#: ../app/assets/javascripts/module/location.js:16
-#: ../app/assets/javascripts/module/oplist.js:66
-#: ../app/assets/javascripts/module/wizattrlist.js:20
-#: ../app/helpers/form_helper.rb:23 ../app/helpers/role_helper.rb:31
-#: ../app/helpers/user_helper.rb:31 ../app/views/clones/edit.html.haml:13
-#: ../app/views/clones/index.html.haml:13
-#: ../app/views/colocations/edit.html.haml:13
-#: ../app/views/colocations/index.html.haml:13
-#: ../app/views/constraints/index.html.haml:13
-#: ../app/views/groups/edit.html.haml:13
-#: ../app/views/groups/index.html.haml:13
-#: ../app/views/locations/edit.html.haml:13
-#: ../app/views/locations/index.html.haml:13
-#: ../app/views/masters/edit.html.haml:13
-#: ../app/views/masters/index.html.haml:13
-#: ../app/views/orders/edit.html.haml:13
-#: ../app/views/orders/index.html.haml:13
-#: ../app/views/primitives/_form.html.haml:80
-#: ../app/views/primitives/index.html.haml:13
-#: ../app/views/resources/index.html.haml:13
-#: ../app/views/roles/index.html.haml:15 ../app/views/tags/edit.html.haml:13
-#: ../app/views/tags/index.html.haml:13 ../app/views/tickets/edit.html.haml:13
-#: ../app/views/tickets/index.html.haml:13
-#: ../app/views/users/index.html.haml:15
-msgid "Create"
-msgstr "Létrehozás"
-
-#: ../app/assets/javascripts/module/attrlist.js:22
-#: ../app/assets/javascripts/module/constraint.js:20
-#: ../app/assets/javascripts/module/location.js:17
-#: ../app/assets/javascripts/module/oplist.js:68
-#: ../app/assets/javascripts/module/wizattrlist.js:21
-msgid "Remove"
-msgstr "Eltávolítás"
-
-#: ../app/assets/javascripts/module/attrlist.js:23
-#: ../app/assets/javascripts/module/oplist.js:69
-#: ../app/assets/javascripts/module/wizattrlist.js:22
-#: ../app/helpers/form_helper.rb:6 ../app/views/tickets/show.html.haml:52
-msgid "Yes"
-msgstr "Igen"
-
-#: ../app/assets/javascripts/module/attrlist.js:24
-#: ../app/assets/javascripts/module/oplist.js:70
-#: ../app/assets/javascripts/module/wizattrlist.js:23
-#: ../app/helpers/form_helper.rb:6 ../app/views/tickets/show.html.haml:55
-msgid "No"
-msgstr "Nem"
-
-#: ../app/assets/javascripts/module/attrlist.js:156
-#: ../app/assets/javascripts/module/constraint.js:159
-#: ../app/assets/javascripts/module/forms.js:14
-#: ../app/assets/javascripts/module/location.js:183
-#: ../app/assets/javascripts/module/oplist.js:342
-#: ../app/assets/javascripts/module/profiles.js:23
-#: ../app/assets/javascripts/module/roles.js:179
-#: ../app/assets/javascripts/module/users.js:135
-#: ../app/assets/javascripts/module/wizattrlist.js:165
-#: ../app/helpers/crm_config_helper.rb:10 ../app/helpers/form_helper.rb:14
-#: ../app/helpers/profile_helper.rb:21 ../app/helpers/role_helper.rb:17
-#: ../app/helpers/user_helper.rb:17
-msgid "Any changes will be lost - do you wish to proceed?"
-msgstr "Minden változás el fog veszni - szeretné folytatni?"
-
-#: ../app/assets/javascripts/module/basics.js:14 ../app/models/record.rb:11
-#: ../app/models/tag.rb:14
-msgid "Invalid ID"
-msgstr "Érvénytelen azonosító"
-
-#: ../app/assets/javascripts/module/basics.js:80
-#: ../app/assets/javascripts/module/basics.js:183
-#: ../app/assets/javascripts/module/resources.js:43
-#: ../app/views/shared/_simulator.html.haml:203
-#: ../app/views/shared/_simulator.html.haml:234
-#: ../app/views/shared/_simulator.html.haml:265
-#: ../app/views/shared/_simulator.html.haml:296
-#: ../app/views/shared/_simulator.html.haml:327
-#: ../app/views/shared/_simulator.html.haml:391
-#: ../app/views/shared/_simulator.html.haml:503
-#: ../app/views/shared/_simulator.html.haml:568
-msgid "OK"
-msgstr "OK"
-
-#: ../app/assets/javascripts/module/basics.js:82
-msgid "Maintenance mode"
-msgstr "Karbantartási mód"
-
-#: ../app/assets/javascripts/module/basics.js:84
-msgid "An error has occurred"
-msgstr "Hiba történt"
-
-#: ../app/assets/javascripts/module/basics.js:171
-#: ../app/assets/javascripts/module/resources.js:17
-#: ../app/views/agents/show.html.haml:134
-#: ../app/views/configs/meta.html.haml:12
-#: ../app/views/constraints/show.html.haml:32
-#: ../app/views/dashboards/add.html.haml:14
-#: ../app/views/nodes/events.html.haml:13
-#: ../app/views/nodes/events.html.haml:60 ../app/views/nodes/show.html.haml:13
-#: ../app/views/nodes/show.html.haml:138 ../app/views/pages/help.html.haml:13
-#: ../app/views/pages/help.html.haml:58
-#: ../app/views/resources/events.html.haml:13
-#: ../app/views/resources/events.html.haml:60
-#: ../app/views/resources/show.html.haml:346
-#: ../app/views/shared/_flash.html.haml:14
-#: ../app/views/shared/_simulator.html.haml:172
-#: ../app/views/simulator/help.html.haml:19
-#: ../app/views/tickets/show.html.haml:255
-msgid "Close"
-msgstr "Bezárás"
-
-#: ../app/assets/javascripts/module/batch.js:42
-msgid "No configuration changes."
-msgstr "Nem történt konfigurációs változtatás."
-
-#: ../app/assets/javascripts/module/clones.js:27
-#: ../app/views/clones/_form.html.haml:10
-#: ../app/views/clones/_form.html.haml:15
-msgid "Clone ID"
-msgstr "Klón ID"
-
-#: ../app/assets/javascripts/module/clones.js:33
-#: ../app/assets/javascripts/module/colocations.js:33
-#: ../app/assets/javascripts/module/constraints.js:91
-#: ../app/assets/javascripts/module/groups.js:33
-#: ../app/assets/javascripts/module/locations.js:33
-#: ../app/assets/javascripts/module/masters.js:33
-#: ../app/assets/javascripts/module/nodes.js:193
-#: ../app/assets/javascripts/module/nodes.js:322
-#: ../app/assets/javascripts/module/orders.js:33
-#: ../app/assets/javascripts/module/primitives.js:75
-#: ../app/assets/javascripts/module/reports.js:303
-#: ../app/assets/javascripts/module/resources.js:268
-#: ../app/assets/javascripts/module/resources.js:645
-#: ../app/assets/javascripts/module/roles.js:33
-#: ../app/assets/javascripts/module/tags.js:42
-#: ../app/assets/javascripts/module/tickets.js:39
-#: ../app/assets/javascripts/module/tickets.js:229
-#: ../app/assets/javascripts/module/users.js:33
-#: ../app/views/primitives/_form.html.haml:159
-#: ../app/views/resources/show.html.haml:171
-msgid "Operations"
-msgstr "Műveletek"
-
-#: ../app/assets/javascripts/module/clones.js:95
-#: ../app/assets/javascripts/module/colocations.js:97
-#: ../app/assets/javascripts/module/constraints.js:212
-#: ../app/assets/javascripts/module/groups.js:95
-#: ../app/assets/javascripts/module/locations.js:95
-#: ../app/assets/javascripts/module/masters.js:95
-#: ../app/assets/javascripts/module/nodes.js:244
-#: ../app/assets/javascripts/module/nodes.js:335
-#: ../app/assets/javascripts/module/oplist.js:67
-#: ../app/assets/javascripts/module/orders.js:95
-#: ../app/assets/javascripts/module/primitives.js:138
-#: ../app/assets/javascripts/module/resources.js:395
-#: ../app/assets/javascripts/module/resources.js:665
-#: ../app/assets/javascripts/module/roles.js:95
-#: ../app/assets/javascripts/module/tags.js:104
-#: ../app/assets/javascripts/module/tickets.js:67
-#: ../app/assets/javascripts/module/users.js:95
-#: ../app/views/configs/show.html.haml:13
-#: ../app/views/graphs/show.html.haml:11
-msgid "Edit"
-msgstr "Szerkesztés"
-
-#: ../app/assets/javascripts/module/clones.js:108
-#: ../app/assets/javascripts/module/colocations.js:110
-#: ../app/assets/javascripts/module/constraints.js:222
-#: ../app/assets/javascripts/module/groups.js:108
-#: ../app/assets/javascripts/module/locations.js:108
-#: ../app/assets/javascripts/module/masters.js:108
-#: ../app/assets/javascripts/module/orders.js:108
-#: ../app/assets/javascripts/module/primitives.js:151
-#: ../app/assets/javascripts/module/reports.js:383
-#: ../app/assets/javascripts/module/resources.js:687
-#: ../app/assets/javascripts/module/roles.js:108
-#: ../app/assets/javascripts/module/tags.js:117
-#: ../app/assets/javascripts/module/tickets.js:77
-#: ../app/assets/javascripts/module/users.js:108
-#: ../app/views/clones/edit.html.haml:17
-#: ../app/views/colocations/edit.html.haml:15
-#: ../app/views/groups/edit.html.haml:17
-#: ../app/views/locations/edit.html.haml:15
-#: ../app/views/masters/edit.html.haml:17
-#: ../app/views/orders/edit.html.haml:15
-#: ../app/views/primitives/edit.html.haml:17
-#: ../app/views/reports/display.html.haml:36
-#: ../app/views/roles/edit.html.haml:13 ../app/views/tags/edit.html.haml:15
-#: ../app/views/tickets/edit.html.haml:15 ../app/views/users/edit.html.haml:13
-msgid "Delete"
-msgstr "Törlés"
-
-#: ../app/assets/javascripts/module/colocations.js:27
-#: ../app/assets/javascripts/module/locations.js:27
-#: ../app/assets/javascripts/module/orders.js:27
-#: ../app/models/constraint.rb:48 ../app/views/colocations/_form.html.haml:10
-#: ../app/views/colocations/_form.html.haml:13
-#: ../app/views/locations/_form.html.haml:10
-#: ../app/views/locations/_form.html.haml:13
-#: ../app/views/orders/_form.html.haml:10
-#: ../app/views/orders/_form.html.haml:13
-#: ../app/views/tickets/_form.html.haml:10
-#: ../app/views/tickets/_form.html.haml:13
-msgid "Constraint ID"
-msgstr "Szabály ID"
-
-#: ../app/assets/javascripts/module/constraint.js:22
-msgid "Swap with entry above"
-msgstr "Felcserélés a felette lévő bejegyzéssel"
-
-#: ../app/assets/javascripts/module/constraint.js:23
-msgid "Link with entry above"
-msgstr "Összekapcsolás a felette lévő bejegyzéssel"
-
-#: ../app/assets/javascripts/module/constraint.js:24
-msgid "Unlink from entry above"
-msgstr "Leválasztás a felette lévő bejegyzésről"
-
-#: ../app/assets/javascripts/module/constraints.js:56
-#: ../app/assets/javascripts/module/resources.js:236
-#: ../app/assets/javascripts/module/resources.js:598
-#: ../app/models/template.rb:405 ../app/views/primitives/_form.html.haml:25
-#: ../app/views/primitives/_form.html.haml:47
-#: ../app/views/resources/show.html.haml:317
-msgid "Type"
-msgstr "Típus"
-
-#: ../app/assets/javascripts/module/constraints.js:63
-#: ../app/assets/javascripts/module/resources.js:217
-#: ../app/views/constraints/types.html.haml:32
-msgid "Location"
-msgstr "Hely"
-
-#: ../app/assets/javascripts/module/constraints.js:65
-#: ../app/views/constraints/types.html.haml:41
-msgid "Colocation"
-msgstr "Elhelyezése szabály"
-
-#: ../app/assets/javascripts/module/constraints.js:67
-#: ../app/views/constraints/types.html.haml:50
-msgid "Order"
-msgstr "Sorrend"
-
-#: ../app/assets/javascripts/module/constraints.js:69
-#: ../app/assets/javascripts/module/tickets.js:33
-#: ../app/assets/javascripts/module/tickets.js:156
-#: ../app/views/constraints/types.html.haml:59
-#: ../app/views/shared/_simulator.html.haml:528
-msgid "Ticket"
-msgstr "Jegy"
-
-#: ../app/assets/javascripts/module/constraints.js:76
-msgid "Constraint"
-msgstr "Megszorítás"
-
-#: ../app/assets/javascripts/module/constraints.js:82
-#: ../app/assets/javascripts/module/resources.js:628
-#: ../app/controllers/resources_controller.rb:211
-#: ../app/models/location.rb:223 ../app/views/cib/show.html.haml:56
-#: ../app/views/colocations/_form.html.haml:52
-#: ../app/views/configs/edit.html.haml:44
-#: ../app/views/orders/_form.html.haml:57
-#: ../app/views/resources/index.html.haml:7
-#: ../app/views/tickets/_form.html.haml:25
-msgid "Resources"
-msgstr "Erőforrások"
-
-#: ../app/assets/javascripts/module/groups.js:27
-#: ../app/views/groups/_form.html.haml:10
-#: ../app/views/groups/_form.html.haml:15
-msgid "Group ID"
-msgstr "Csoportazonosító (ID)"
-
-#: ../app/assets/javascripts/module/location.js:23
-#: ../app/views/roles/_form.html.haml:22
-msgid "Rule"
-msgstr "Szabály"
-
-#: ../app/assets/javascripts/module/location.js:33
-#: ../app/models/colocation.rb:180 ../app/models/location.rb:229
-#: ../app/views/colocations/_form.html.haml:18
-#: ../app/views/locations/_form.html.haml:48
-#: ../app/views/orders/_form.html.haml:18
-#: ../app/views/resources/show.html.haml:319
-msgid "Score"
-msgstr "Pontszám"
-
-#: ../app/assets/javascripts/module/location.js:41
-#: ../app/models/location.rb:248
-msgid "Role"
-msgstr "Szerep"
-
-#: ../app/assets/javascripts/module/location.js:54
-msgid "Boolean Operator"
-msgstr "Logikai operátor"
-
-#: ../app/assets/javascripts/module/masters.js:27
-#: ../app/views/masters/_form.html.haml:10
-#: ../app/views/masters/_form.html.haml:15
-msgid "Multi-state ID"
-msgstr "Többállapotú azonosító"
-
-#: ../app/assets/javascripts/module/monitor.js:64
-msgid "Failed to parse monitor response - Internal server error."
-msgstr "A monitor válaszát nem sikerült elemezni – belső kiszolgálóhiba."
-
-#: ../app/assets/javascripts/module/monitor.js:68
-#: ../app/assets/javascripts/module/status.js:129
-msgid "Connection to server failed - will retry every 15 seconds."
-msgstr "A kapcsolódás a kiszolgálóhoz sikertelen - újrapróbálkozás 15 másodpercenként."
-
-#: ../app/assets/javascripts/module/nodes.js:40
-#: ../app/assets/javascripts/module/resources.js:173
-#: ../app/assets/javascripts/module/tickets.js:127
-#: ../app/controllers/cib_controller.rb:108
-#: ../app/helpers/application_helper.rb:222 ../app/views/cib/show.html.haml:15
-#: ../app/views/resources/show.html.haml:272
-#: ../app/views/shared/_mainnav.html.haml:17
-msgid "Status"
-msgstr "Állapot"
-
-#: ../app/assets/javascripts/module/nodes.js:69
-msgid "Remote"
-msgstr "Távoli"
-
-#: ../app/assets/javascripts/module/nodes.js:80
-#: ../app/assets/javascripts/module/nodes.js:316
-#: ../app/assets/javascripts/module/reports.js:269
-#: ../app/views/agents/show.html.haml:50
-#: ../app/views/agents/show.html.haml:101
-#: ../app/views/nodes/_form.html.haml:11
-#: ../app/views/reports/display.html.haml:42
-#: ../app/views/resources/show.html.haml:187
-msgid "Name"
-msgstr "Név"
-
-#: ../app/assets/javascripts/module/nodes.js:86
-msgid "Maintenance"
-msgstr "Karbantartás"
-
-#: ../app/assets/javascripts/module/nodes.js:118
-msgid "Switch to ready"
-msgstr "Váltás üzemkészre"
-
-#: ../app/assets/javascripts/module/nodes.js:131
-msgid "Switch to maintenance"
-msgstr "Váltás karbantartásra"
-
-#: ../app/assets/javascripts/module/nodes.js:140
-msgid "Standby"
-msgstr "Készenlét"
-
-#: ../app/assets/javascripts/module/nodes.js:171
-msgid "Switch to online"
-msgstr "Váltás online-ra"
-
-#: ../app/assets/javascripts/module/nodes.js:184
-msgid "Switch to standby"
-msgstr "Váltás készenléti állapotra"
-
-#: ../app/assets/javascripts/module/nodes.js:239
-#: ../app/helpers/ticket_helper.rb:10
-msgid "Fence"
-msgstr "Elkerítés"
-
-#: ../app/assets/javascripts/module/nodes.js:240
-msgid "Clear state"
-msgstr "Állapot törlése"
-
-#: ../app/assets/javascripts/module/nodes.js:263
-msgid "Events"
-msgstr "Események"
-
-#: ../app/assets/javascripts/module/nodes.js:273
-#: ../app/assets/javascripts/module/resources.js:413
-#: ../app/assets/javascripts/module/statusmatrix.js:88
-#: ../app/assets/javascripts/module/tickets.js:268
-#: ../app/views/reports/display.html.haml:180
-msgid "Details"
-msgstr "Részletek"
-
-#: ../app/assets/javascripts/module/nodes.js:310
-#: ../app/assets/javascripts/module/resources.js:209
-#: ../app/assets/javascripts/module/tickets.js:27
-#: ../app/views/nodes/_form.html.haml:9 ../app/views/nodes/show.html.haml:48
-#: ../app/views/resources/show.html.haml:315
-msgid "ID"
-msgstr "Azonosító"
-
-#: ../app/assets/javascripts/module/oplist.js:71
-#: ../app/helpers/form_helper.rb:27
-msgid "Add"
-msgstr "Hozzáadás"
-
-#: ../app/assets/javascripts/module/oplist.js:72
-#: ../app/assets/javascripts/module/reports.js:167
-#: ../app/helpers/crm_config_helper.rb:16 ../app/helpers/form_helper.rb:19
-#: ../app/helpers/profile_helper.rb:27 ../app/helpers/role_helper.rb:23
-#: ../app/helpers/user_helper.rb:23 ../app/views/cib/apply.html.haml:46
-#: ../app/views/primitives/_form.html.haml:85
-#: ../app/views/shared/_simulator.html.haml:22
-#: ../app/views/wizards/create.html.haml:30
-#: ../app/views/wizards/update.html.haml:112
-msgid "Apply"
-msgstr "Alkalmaz"
-
-#: ../app/assets/javascripts/module/oplist.js:281
-msgid "No interval set for monitor operation"
-msgstr "Nincs beállítva a figyelőművelet időköze"
-
-#: ../app/assets/javascripts/module/oplist.js:327
-msgid "Replacing previously defined monitor operation with same interval"
-msgstr "A korábban definiált ugyanilyen időközű figyelőművelet lecserélése"
-
-#: ../app/assets/javascripts/module/primitives.js:69
-#: ../app/models/resource.rb:124 ../app/views/primitives/_form.html.haml:14
-#: ../app/views/primitives/_form.html.haml:28
-msgid "Resource ID"
-msgstr "Erőforrás ID"
-
-#: ../app/assets/javascripts/module/primitives.js:323
-msgid "Failed to fetch meta attributes"
-msgstr "Nem sikerült beolvasni a metaattribútumokat"
-
-#: ../app/assets/javascripts/module/reports.js:30
-msgid "Report generation is complete."
-msgstr "A jelentés generálása befejeződött."
-
-#: ../app/assets/javascripts/module/reports.js:47
-msgid "Report generation cancelled."
-msgstr "A jelentés generálása visszavonva."
-
-#: ../app/assets/javascripts/module/reports.js:169
-#: ../app/assets/javascripts/module/reports.js:281
-#: ../app/views/reports/display.html.haml:51
-#: ../app/views/reports/display.html.haml:60
-#: ../app/views/reports/display.html.haml:69
-#: ../app/views/reports/index.html.haml:29
-msgid "From"
-msgstr "Ettől:"
-
-#: ../app/assets/javascripts/module/reports.js:170
-#: ../app/assets/javascripts/module/reports.js:294
-msgid "Until"
-msgstr "Eddig:"
-
-#: ../app/assets/javascripts/module/reports.js:171
-msgid "Custom"
-msgstr "Egyéni"
-
-#: ../app/assets/javascripts/module/reports.js:173
-msgid "Su"
-msgstr "V"
-
-#: ../app/assets/javascripts/module/reports.js:174
-msgid "Mo"
-msgstr "H"
-
-#: ../app/assets/javascripts/module/reports.js:175
-msgid "Tu"
-msgstr "K"
-
-#: ../app/assets/javascripts/module/reports.js:176
-msgid "We"
-msgstr "Sze"
-
-#: ../app/assets/javascripts/module/reports.js:177
-msgid "Th"
-msgstr "Cs"
-
-#: ../app/assets/javascripts/module/reports.js:178
-msgid "Fr"
-msgstr "P"
-
-#: ../app/assets/javascripts/module/reports.js:179
-msgid "Sa"
-msgstr "Szo"
-
-#: ../app/assets/javascripts/module/reports.js:182
-msgid "January"
-msgstr "január"
-
-#: ../app/assets/javascripts/module/reports.js:183
-msgid "February"
-msgstr "február"
-
-#: ../app/assets/javascripts/module/reports.js:184
-msgid "March"
-msgstr "március"
-
-#: ../app/assets/javascripts/module/reports.js:185
-msgid "April"
-msgstr "április"
-
-#: ../app/assets/javascripts/module/reports.js:186
-msgid "May"
-msgstr "május"
-
-#: ../app/assets/javascripts/module/reports.js:187
-msgid "June"
-msgstr "június"
-
-#: ../app/assets/javascripts/module/reports.js:188
-msgid "July"
-msgstr "július"
-
-#: ../app/assets/javascripts/module/reports.js:189
-msgid "August"
-msgstr "Augusztus"
-
-#: ../app/assets/javascripts/module/reports.js:190
-msgid "September"
-msgstr "szeptember"
-
-#: ../app/assets/javascripts/module/reports.js:191
-msgid "October"
-msgstr "október"
-
-#: ../app/assets/javascripts/module/reports.js:192
-msgid "November"
-msgstr "november"
-
-#: ../app/assets/javascripts/module/reports.js:193
-msgid "December"
-msgstr "december"
-
-#: ../app/assets/javascripts/module/reports.js:277
-#: ../app/assets/javascripts/module/reports.js:361
-#: ../app/views/configs/edit.html.haml:13
-#: ../app/views/configs/show.html.haml:16
-#: ../app/views/graphs/show.html.haml:13
-#: ../app/views/reports/display.html.haml:32
-#: ../app/views/shared/_simulator.html.haml:12
-msgid "Show"
-msgstr "Megjelenítés"
-
-#: ../app/assets/javascripts/module/reports.js:371
-#: ../app/views/reports/display.html.haml:34
-msgid "Download"
-msgstr "Letöltés"
-
-#: ../app/assets/javascripts/module/resources.js:183
-msgid "Unmanaged"
-msgstr "Felügyeletlen"
-
-#: ../app/assets/javascripts/module/resources.js:186
-#: ../app/helpers/colocation_helper.rb:7 ../app/helpers/ticket_helper.rb:19
-msgid "Started"
-msgstr "Elindítva"
-
-#: ../app/assets/javascripts/module/resources.js:189
-msgid "Primary"
-msgstr "Elsődleges"
-
-#: ../app/assets/javascripts/module/resources.js:192
-msgid "Secondary"
-msgstr "Másodlagos"
-
-#: ../app/assets/javascripts/module/resources.js:195
-#: ../app/helpers/colocation_helper.rb:10 ../app/helpers/ticket_helper.rb:22
-msgid "Stopped"
-msgstr "Leállítva"
-
-#: ../app/assets/javascripts/module/resources.js:242
-#: ../app/assets/javascripts/module/resources.js:607
-#: ../app/views/resources/types.html.haml:41
-msgid "Group"
-msgstr "Csoport"
-
-#: ../app/assets/javascripts/module/resources.js:244
-#: ../app/assets/javascripts/module/resources.js:611
-#: ../app/views/resources/types.html.haml:59
-msgid "Multi-state"
-msgstr "Többállapotú"
-
-#: ../app/assets/javascripts/module/resources.js:246
-#: ../app/assets/javascripts/module/resources.js:609
-#: ../app/views/resources/types.html.haml:50
-msgid "Clone"
-msgstr "Klón"
-
-#: ../app/assets/javascripts/module/resources.js:248
-#: ../app/assets/javascripts/module/resources.js:613
-#: ../app/views/resources/types.html.haml:68
-msgid "Tag"
-msgstr "Címke"
-
-#: ../app/assets/javascripts/module/resources.js:303
-msgid "Away from current node"
-msgstr "Eltávolítás a jelenlegi csomópontról"
-
-#: ../app/assets/javascripts/module/resources.js:313
-msgid "Clean up on all nodes"
-msgstr "Törlés az összes csomóponton"
-
-#: ../app/assets/javascripts/module/resources.js:345
-#: ../app/helpers/order_helper.rb:10 ../app/helpers/ticket_helper.rb:8
-#: ../app/models/template.rb:417
-msgid "Stop"
-msgstr "Leállítás"
-
-#: ../app/assets/javascripts/module/resources.js:349
-#: ../app/helpers/order_helper.rb:7 ../app/models/template.rb:411
-msgid "Start"
-msgstr "Kezdés"
-
-#: ../app/assets/javascripts/module/resources.js:353
-#: ../app/helpers/order_helper.rb:9 ../app/helpers/ticket_helper.rb:9
-msgid "Demote"
-msgstr "Lefokozás"
-
-#: ../app/assets/javascripts/module/resources.js:357
-#: ../app/helpers/order_helper.rb:8
-msgid "Promote"
-msgstr "Előléptetés"
-
-#: ../app/assets/javascripts/module/resources.js:361
-msgid "Unmanage"
-msgstr "Felügyelet megszüntetése"
-
-#: ../app/assets/javascripts/module/resources.js:365
-#: ../app/views/shared/_mainnav.html.haml:10
-msgid "Manage"
-msgstr "Felügyelet"
-
-#: ../app/assets/javascripts/module/resources.js:370
-msgid "Migrate"
-msgstr "Migráció"
-
-#: ../app/assets/javascripts/module/resources.js:372
-msgid "Unmigrate"
-msgstr "Migráció visszavonása"
-
-#: ../app/assets/javascripts/module/resources.js:374
-msgid "Cleanup"
-msgstr "Tisztítás"
-
-#: ../app/assets/javascripts/module/resources.js:388
-msgid "Recent events"
-msgstr "Legutóbbi események"
-
-#: ../app/assets/javascripts/module/resources.js:488
-msgid "No child resources"
-msgstr "Nincsenek gyermekerőforrások"
-
-#: ../app/assets/javascripts/module/resources.js:605
-#: ../app/views/resources/types.html.haml:32
-msgid "Primitive"
-msgstr "Primitív"
-
-#: ../app/assets/javascripts/module/resources.js:615
-#: ../app/models/template.rb:387 ../app/views/primitives/_form.html.haml:18
-#: ../app/views/primitives/_form.html.haml:36
-#: ../app/views/resources/types.html.haml:78
-msgid "Template"
-msgstr "Sablon"
-
-#: ../app/assets/javascripts/module/resources.js:622
-#: ../app/views/nodes/events.html.haml:35
-#: ../app/views/shared/_simulator.html.haml:416
-msgid "Resource"
-msgstr "Erőforrás"
-
-#: ../app/assets/javascripts/module/resources.js:676
-#: ../app/views/clones/edit.html.haml:15 ../app/views/groups/edit.html.haml:15
-#: ../app/views/masters/edit.html.haml:15
-#: ../app/views/primitives/edit.html.haml:15
-#: ../app/views/resources/rename.html.haml:23
-#: ../app/views/resources/rename.html.haml:56
-msgid "Rename"
-msgstr "Átnevezés"
-
-#: ../app/assets/javascripts/module/roles.js:27
-#: ../app/views/roles/_form.html.haml:10 ../app/views/roles/_form.html.haml:13
-msgid "Role ID"
-msgstr "Szerepkör-azonosító"
-
-#: ../app/assets/javascripts/module/tags.js:27
-#: ../app/views/tags/_form.html.haml:10 ../app/views/tags/_form.html.haml:15
-msgid "Tag ID"
-msgstr "Címkeazonosító"
-
-#: ../app/assets/javascripts/module/tags.js:33
-#: ../app/views/tags/_form.html.haml:24
-msgid "Objects"
-msgstr "Objektumok"
-
-#: ../app/assets/javascripts/module/tickets.js:136
-#: ../app/assets/javascripts/module/tickets.js:168
-#: ../app/views/tickets/show.html.haml:46
-msgid "Granted"
-msgstr "Megadva"
-
-#: ../app/assets/javascripts/module/tickets.js:142
-msgid "Elsewhere"
-msgstr "Másutt"
-
-#: ../app/assets/javascripts/module/tickets.js:148
-msgid "Revoked"
-msgstr "Visszavonva"
-
-#: ../app/assets/javascripts/module/tickets.js:162
-#: ../app/views/tickets/show.html.haml:80
-msgid "Last Granted"
-msgstr "Legutóbb megadva"
-
-#: ../app/assets/javascripts/module/tickets.js:210
-msgid "Grant"
-msgstr "Megadás"
-
-#: ../app/assets/javascripts/module/tickets.js:220
-#: ../app/assets/javascripts/module/tickets.js:257
-msgid "Revoke"
-msgstr "Visszavonás"
-
-#: ../app/assets/javascripts/module/users.js:27
-msgid "User ID"
-msgstr "Felhasználóazonosító"
-
-#: ../app/assets/javascripts/module/wizards.js:12
-msgid "Must be a valid resource ID"
-msgstr "Érvényes erőforrás-azonosítónak kell lennie"
-
-#: ../app/assets/javascripts/module/wizards.js:69
-msgid "Applying configuration changes..."
-msgstr "Konfigurációs változtatások mentése..."
-
-#: ../app/assets/javascripts/module/wizards.js:74
-msgid "Changes applied successfully."
-msgstr "A változtatások alkalmazása sikeresen megtörtént."
-
-#: ../app/controllers/agents_controller.rb:46
-#: ../app/views/resources/show.html.haml:29
-msgid "Agent"
-msgstr "Ügynök"
-
-#: ../app/controllers/application_controller.rb:159
-msgid "Created a new shadow CIB for %USER%."
-msgstr "Megtörtént az új árnyék CIB létrehozása %USER% számára."
-
-#: ../app/controllers/application_controller.rb:164
-#: ../app/controllers/application_controller.rb:167
-msgid "Unable to create shadow CIB"
-msgstr "Nem hozható létre shadow CIB"
-
-#: ../app/controllers/cib_controller.rb:44
-msgid "Failed to apply configuration"
-msgstr "A konfigurációt nem sikerült alkalmazni."
-
-#: ../app/controllers/cib_controller.rb:49
-msgid "Applied configuration successfully"
-msgstr "A konfiguráció alkalmazása sikeresen megtörtént."
-
-#: ../app/controllers/clones_controller.rb:20
-#: ../app/controllers/clones_controller.rb:31
-#: ../app/views/clones/new.html.haml:7
-msgid "Create Clone"
-msgstr "Klón létrehozása"
-
-#: ../app/controllers/clones_controller.rb:40
-msgid "Clone created successfully"
-msgstr "Klón létrehozása sikeresen"
-
-#: ../app/controllers/clones_controller.rb:58
-#: ../app/controllers/clones_controller.rb:67
-#: ../app/views/clones/edit.html.haml:7
-msgid "Edit Clone"
-msgstr "Klón szerkesztése"
-
-#: ../app/controllers/clones_controller.rb:78
-msgid "Clone updated successfully"
-msgstr "Klón sikeresen frissítve"
-
-#: ../app/controllers/clones_controller.rb:100
-#: ../app/controllers/clones_controller.rb:107
-msgid "Clone deleted successfully"
-msgstr "Klón törlése sikeres"
-
-#: ../app/controllers/clones_controller.rb:112
-#: ../app/controllers/clones_controller.rb:116
-#: ../app/controllers/colocations_controller.rb:110
-#: ../app/controllers/colocations_controller.rb:114
-#: ../app/controllers/groups_controller.rb:112
-#: ../app/controllers/groups_controller.rb:116
-#: ../app/controllers/locations_controller.rb:129
-#: ../app/controllers/locations_controller.rb:133
-#: ../app/controllers/masters_controller.rb:112
-#: ../app/controllers/masters_controller.rb:116
-#: ../app/controllers/orders_controller.rb:111
-#: ../app/controllers/orders_controller.rb:115
-#: ../app/controllers/primitives_controller.rb:147
-#: ../app/controllers/primitives_controller.rb:151
-#: ../app/controllers/roles_controller.rb:108
-#: ../app/controllers/roles_controller.rb:112
-#: ../app/controllers/tags_controller.rb:111
-#: ../app/controllers/tags_controller.rb:115
-#: ../app/controllers/templates_controller.rb:126
-#: ../app/controllers/templates_controller.rb:130
-#: ../app/controllers/tickets_controller.rb:124
-#: ../app/controllers/tickets_controller.rb:128
-#: ../app/controllers/users_controller.rb:110
-#: ../app/controllers/users_controller.rb:114
-msgid "Error deleting %s: %s"
-msgstr "Hiba a(z) %s törlésekor: %s"
-
-#: ../app/controllers/clones_controller.rb:134
-#: ../app/views/clones/index.html.haml:7
-msgid "Clones"
-msgstr "Klónok"
-
-#: ../app/controllers/clones_controller.rb:147
-msgid "The clone does not exist"
-msgstr "A klón nem létezik"
-
-#: ../app/controllers/colocations_controller.rb:20
-#: ../app/controllers/colocations_controller.rb:30
-#: ../app/views/colocations/new.html.haml:7
-msgid "Create Colocation"
-msgstr "Kolokáció létrehozása"
-
-#: ../app/controllers/colocations_controller.rb:39
-#: ../app/controllers/locations_controller.rb:57
-#: ../app/controllers/orders_controller.rb:39
-#: ../app/controllers/tickets_controller.rb:52
-msgid "Constraint created successfully"
-msgstr "A szabály sikeresen létrejött"
-
-#: ../app/controllers/colocations_controller.rb:57
-#: ../app/controllers/colocations_controller.rb:66
-#: ../app/views/colocations/edit.html.haml:7
-msgid "Edit Colocation"
-msgstr "Kolokáció szerkesztése"
-
-#: ../app/controllers/colocations_controller.rb:77
-#: ../app/controllers/locations_controller.rb:95
-#: ../app/controllers/orders_controller.rb:77
-#: ../app/controllers/tickets_controller.rb:90
-msgid "Constraint updated successfully"
-msgstr "A szabály frissítése sikeres"
-
-#: ../app/controllers/colocations_controller.rb:99
-#: ../app/controllers/colocations_controller.rb:105
-msgid "Colocation deleted successfully"
-msgstr "A kolokáció törlése sikeres"
-
-#: ../app/controllers/colocations_controller.rb:132
-#: ../app/views/colocations/index.html.haml:7
-msgid "Colocations"
-msgstr "Kolokációk"
-
-#: ../app/controllers/colocations_controller.rb:145
-msgid "The colocation constraint does not exist"
-msgstr "A kolokációs megszorítás nem létezik"
-
-#: ../app/controllers/commands_controller.rb:22
-#: ../app/views/commands/index.html.haml:7
-#: ../app/views/shared/_mainnav.html.haml:70
-msgid "Command Log"
-msgstr "Parancsnapló"
-
-#: ../app/controllers/constraints_controller.rb:43
-#: ../app/views/configs/edit.html.haml:58
-#: ../app/views/constraints/index.html.haml:7
-#: ../app/views/resources/show.html.haml:299
-#: ../app/views/tickets/show.html.haml:154
-msgid "Constraints"
-msgstr "Megszorítások"
-
-#: ../app/controllers/crm_config_controller.rb:26
-msgid "Configuration updated successfully"
-msgstr "A konfiguráció frissítése sikeres"
-
-#: ../app/controllers/crm_config_controller.rb:46
-#: ../app/views/crm_config/edit.html.haml:5
-#: ../app/views/shared/_mainnav.html.haml:65
-msgid "Cluster Configuration"
-msgstr "Fürt beállítása"
-
-#: ../app/controllers/dashboards_controller.rb:38
-msgid "Error removing %s: %s"
-msgstr "Hiba a(z) %s eltávolításakor: %s"
-
-#: ../app/controllers/dashboards_controller.rb:46
-#: ../app/views/dashboards/show.html.haml:12
-#: ../app/views/shared/_mainnav.html.haml:24
-msgid "Dashboard"
-msgstr "Vezérlőpult"
-
-#: ../app/controllers/graphs_controller.rb:49
-msgid "Cluster Graph"
-msgstr "Fürtdiagram"
-
-#: ../app/controllers/groups_controller.rb:20
-#: ../app/controllers/groups_controller.rb:31
-#: ../app/views/groups/new.html.haml:7
-msgid "Create Group"
-msgstr "Csoport létrehozása"
-
-#: ../app/controllers/groups_controller.rb:40
-msgid "Group created successfully"
-msgstr "Csoport sikeresen létrehozva"
-
-#: ../app/controllers/groups_controller.rb:58
-#: ../app/controllers/groups_controller.rb:67
-#: ../app/views/groups/edit.html.haml:7
-msgid "Edit Group"
-msgstr "Csoport szerkesztése"
-
-#: ../app/controllers/groups_controller.rb:78
-msgid "Group updated successfully"
-msgstr "Csoport sikeresen frissítve"
-
-#: ../app/controllers/groups_controller.rb:100
-#: ../app/controllers/groups_controller.rb:107
-msgid "Group deleted successfully"
-msgstr "Csoport sikeresen törölve"
-
-#: ../app/controllers/groups_controller.rb:134
-#: ../app/views/groups/index.html.haml:7
-msgid "Groups"
-msgstr "Csoportok"
-
-#: ../app/controllers/groups_controller.rb:147
-msgid "The group does not exist"
-msgstr "A csoport nem létezik"
-
-#: ../app/controllers/locations_controller.rb:20
-#: ../app/controllers/locations_controller.rb:39
-msgid "Create Location Constraint"
-msgstr "Elhelyezési szabály létrehozása"
-
-#: ../app/controllers/locations_controller.rb:75
-#: ../app/controllers/locations_controller.rb:84
-msgid "Edit Location Constraint"
-msgstr "Elhelyezési szabály szerkesztése"
-
-#: ../app/controllers/locations_controller.rb:117
-#: ../app/controllers/locations_controller.rb:124
-msgid "Location deleted successfully"
-msgstr "A hely törlése sikeresen megtörtént"
-
-#: ../app/controllers/locations_controller.rb:151
-msgid "Location Constraints"
-msgstr "Elhelyezési megszorítások"
-
-#: ../app/controllers/locations_controller.rb:164
-msgid "The location constraint does not exist"
-msgstr "A helymegszorítás nem létezik"
-
-#: ../app/controllers/masters_controller.rb:20
-#: ../app/controllers/masters_controller.rb:31
-msgid "Create Multi-state resource"
-msgstr "Többállapotú erőforrás létrehozása"
-
-#: ../app/controllers/masters_controller.rb:40
-msgid "Multi-state resource created successfully"
-msgstr "Többállapotú erőforrás sikeresen létrehozva"
-
-#: ../app/controllers/masters_controller.rb:58
-#: ../app/controllers/masters_controller.rb:67
-msgid "Edit Multi-state resource"
-msgstr "Többállapotú erőforrás szerkesztése"
-
-#: ../app/controllers/masters_controller.rb:78
-msgid "Multi-state resource updated successfully"
-msgstr "Többállapotú erőforrás sikeresen frissítve"
-
-#: ../app/controllers/masters_controller.rb:100
-#: ../app/controllers/masters_controller.rb:107
-msgid "Multi-state resource deleted successfully"
-msgstr "A többállapotú erőforrás törlése sikeresen megtörtént"
-
-#: ../app/controllers/masters_controller.rb:134
-msgid "Multi-state resource"
-msgstr "Többállapotú erőforrás"
-
-#: ../app/controllers/masters_controller.rb:147
-msgid "The multi-state resource does not exist"
-msgstr "A többállapotú erőforrás nem létezik"
-
-#: ../app/controllers/nodes_controller.rb:44
-msgid "Node updated successfully"
-msgstr "Csomópont sikeresen frissítve"
-
-#: ../app/controllers/nodes_controller.rb:62
-msgid "Failed to set the node online: %{err}"
-msgstr "Nem sikerült online-ra állítani a csomópontot: %{err}"
-
-#: ../app/controllers/nodes_controller.rb:62
-msgid "Set the node state to online"
-msgstr "A csomópont állapotának átállítása online-ra"
-
-#: ../app/controllers/nodes_controller.rb:66
-msgid "Set the node state to standby"
-msgstr "A csomópont állapotának átállítása készenlétire"
-
-#: ../app/controllers/nodes_controller.rb:66
-msgid "Failed to set the node standby: %{err}"
-msgstr "Nem sikerült készenléti állapotra állítani a csomópontot: %{err}"
-
-#: ../app/controllers/nodes_controller.rb:70
-msgid "Failed to set the node state to maintenance: %{err}"
-msgstr "Nem sikerült karbantartási állapotra állítani a csomópontot: %{err}"
-
-#: ../app/controllers/nodes_controller.rb:70
-msgid "Set the node state to maintenance"
-msgstr "A csomópont állapotának átállítása karbantartásra"
-
-#: ../app/controllers/nodes_controller.rb:74
-msgid "Failed to set the node state to ready: %{err}"
-msgstr "Nem sikerült üzemkész állapotra állítani a csomópontot: %{err}"
-
-#: ../app/controllers/nodes_controller.rb:74
-msgid "Set the node state to ready"
-msgstr "A csomópont állapotának átállítása üzemkészre"
-
-#: ../app/controllers/nodes_controller.rb:78
-msgid "Successfully fenced the node"
-msgstr "Sikeresen elkerítette a csomópontot"
-
-#: ../app/controllers/nodes_controller.rb:78
-msgid "Failed to fence the node: %{err}"
-msgstr "Nem sikerült elkeríteni a csomópontot: %{err}"
-
-#: ../app/controllers/nodes_controller.rb:82
-msgid "Failed to clear the node state: %{err}"
-msgstr "Nem sikerült törölni a csomópont állapotát: %{err}"
-
-#: ../app/controllers/nodes_controller.rb:82
-msgid "Cleared the node state"
-msgstr "A csomópont állapota törölve"
-
-#: ../app/controllers/nodes_controller.rb:103
-#: ../app/views/cib/show.html.haml:80 ../app/views/configs/edit.html.haml:30
-#: ../app/views/nodes/index.html.haml:7
-msgid "Nodes"
-msgstr "Csomópontok"
-
-#: ../app/controllers/nodes_controller.rb:116
-msgid "The node does not exist"
-msgstr "A csomópont nem létezik"
-
-#: ../app/controllers/orders_controller.rb:20
-#: ../app/controllers/orders_controller.rb:30
-#: ../app/views/orders/new.html.haml:7
-msgid "Create Order"
-msgstr "Sorrend létrehozása"
-
-#: ../app/controllers/orders_controller.rb:57
-#: ../app/controllers/orders_controller.rb:66
-#: ../app/views/orders/edit.html.haml:7
-msgid "Edit Order"
-msgstr "Sorrend szerkesztése"
-
-#: ../app/controllers/orders_controller.rb:99
-#: ../app/controllers/orders_controller.rb:106
-msgid "Order deleted successfully"
-msgstr "Sorrend sikeresen törölve"
-
-#: ../app/controllers/orders_controller.rb:133
-#: ../app/views/orders/index.html.haml:7
-msgid "Orders"
-msgstr "Sorrendek"
-
-#: ../app/controllers/orders_controller.rb:146
-msgid "The order constraint does not exist"
-msgstr "A sorrendmegszorítás nem létezik"
-
-#: ../app/controllers/pages_controller.rb:11
-msgid "Welcome"
-msgstr "Üdvözlet"
-
-#: ../app/controllers/pages_controller.rb:21
-#: ../app/views/shared/_usernav.html.haml:28
-msgid "Help"
-msgstr "Súgó"
-
-#: ../app/controllers/primitives_controller.rb:20
-#: ../app/controllers/primitives_controller.rb:35
-#: ../app/controllers/primitives_controller.rb:84
-msgid "Create Primitive"
-msgstr "Primitív létrehozása"
-
-#: ../app/controllers/primitives_controller.rb:52
-msgid "Primitive created successfully"
-msgstr "A primitív sikeresen elkészült"
-
-#: ../app/controllers/primitives_controller.rb:76
-#: ../app/controllers/primitives_controller.rb:102
-msgid "Edit Primitive"
-msgstr "Primitív szerkesztése"
-
-#: ../app/controllers/primitives_controller.rb:113
-msgid "Primitive updated successfully"
-msgstr "A primitív módosítása sikeres"
-
-#: ../app/controllers/primitives_controller.rb:135
-#: ../app/controllers/primitives_controller.rb:142
-msgid "Primitive deleted successfully"
-msgstr "A primitív törlése sikeresen megtörtént"
-
-#: ../app/controllers/primitives_controller.rb:169
-msgid "Primitives"
-msgstr "Primitívek"
-
-#: ../app/controllers/primitives_controller.rb:182
-msgid "The primitive does not exist"
-msgstr "A primitív nem létezik."
-
-#: ../app/controllers/profiles_controller.rb:26
-msgid "Preferences updated successfully"
-msgstr "A beállítások sikeresen frissítve"
-
-#: ../app/controllers/profiles_controller.rb:40
-#: ../app/views/profiles/edit.html.haml:3
-msgid "Preferences"
-msgstr "Tulajdonságok"
-
-#: ../app/controllers/reports_controller.rb:51
-msgid "Please wait while report is generated..."
-msgstr "Kis türelmet, a jelentés generálása folyamatban van..."
-
-#: ../app/controllers/reports_controller.rb:55
-msgid "Failed to generate"
-msgstr "Nem sikerült generálni"
-
-#: ../app/controllers/reports_controller.rb:73
-msgid "Upload completed."
-msgstr "A feltöltés befejeződött."
-
-#: ../app/controllers/reports_controller.rb:116
-msgid "Could not cancel report collection"
-msgstr "A jelentés adatgyűjtését nem sikerült leállítani"
-
-#: ../app/controllers/reports_controller.rb:226
-msgid "Cannot display diff, too few transitions"
-msgstr "Nem sikerült megjeleníteni a különbözetet, kevés az átváltás"
-
-#: ../app/controllers/reports_controller.rb:246
-#: ../app/controllers/reports_controller.rb:252
-msgid "Report deleted successfully"
-msgstr "A jelentés sikeresen törölve"
-
-#: ../app/controllers/reports_controller.rb:257
-#: ../app/controllers/reports_controller.rb:261
-msgid "Error deleting %s"
-msgstr "Hiba a(z) %s törlésekor"
-
-#: ../app/controllers/reports_controller.rb:270
-#: ../app/views/reports/display.html.haml:7
-#: ../app/views/reports/index.html.haml:7
-#: ../app/views/reports/show.html.haml:7
-msgid "History Explorer"
-msgstr "Előzményböngésző"
-
-#: ../app/controllers/reports_controller.rb:276
-msgid "The report does not exist"
-msgstr "A jelentés nem létezik."
-
-#: ../app/controllers/reports_controller.rb:388
-msgid "must be a valid datetime"
-msgstr "érvényes dátumnak kell lennie"
-
-#: ../app/controllers/resources_controller.rb:90
-msgid "Successfully started the resource"
-msgstr "Sikeresen elindította az erőforrást"
-
-#: ../app/controllers/resources_controller.rb:91
-msgid "Failed to start the resource: %{err}"
-msgstr "Nem sikerült elindítani az erőforrást: %{err}"
-
-#: ../app/controllers/resources_controller.rb:97
-msgid "Successfully stopped the resource"
-msgstr "Sikeresen leállította az erőforrást"
-
-#: ../app/controllers/resources_controller.rb:98
-msgid "Failed to stop the resource: %{err}"
-msgstr "Nem sikerült leállítani az erőforrást: %{err}"
-
-#: ../app/controllers/resources_controller.rb:104
-msgid "Successfully promoted the resource"
-msgstr "Sikeresen előléptette az erőforrást"
-
-#: ../app/controllers/resources_controller.rb:105
-msgid "Failed to promote the resource: %{err}"
-msgstr "Nem sikerült előléptetni az erőforrást: %{err}"
-
-#: ../app/controllers/resources_controller.rb:111
-msgid "Successfully demoted the resource"
-msgstr "Sikeresen lefokozta az erőforrást"
-
-#: ../app/controllers/resources_controller.rb:112
-msgid "Failed to demote the resource: %{err}"
-msgstr "Nem sikerült lefokozni az erőforrást: %{err}"
-
-#: ../app/controllers/resources_controller.rb:118
-msgid "Successfully set the resource in managed mode"
-msgstr "Sikeresen beállította az erőforrást felügyelt módban"
-
-#: ../app/controllers/resources_controller.rb:119
-msgid "Failed to set the resource in managed mode: %{err}"
-msgstr "Nem sikerült beállítani az erőforrást felügyelt módban: %{err}"
-
-#: ../app/controllers/resources_controller.rb:125
-msgid "Successfully set the resource in unmanaged mode"
-msgstr "Sikeresen beállította az erőforrást felügyeletlen módban"
-
-#: ../app/controllers/resources_controller.rb:126
-msgid "Failed to set the resource in unmanaged mode: %{err}"
-msgstr "Nem sikerült beállítani az erőforrást felügyeletlen módban: %{err}"
-
-#: ../app/controllers/resources_controller.rb:132
-msgid "Successfully unmigrated the resource"
-msgstr "Sikeresen visszavonta az erőforrás migrációját"
-
-#: ../app/controllers/resources_controller.rb:133
-msgid "Failed to unmigrate the resource: %{err}"
-msgstr "Nem sikerült visszavonni az erőforrás migrációját: %{err}"
-
-#: ../app/controllers/resources_controller.rb:139
-msgid "Successfully migrated the resource"
-msgstr "Sikeresen migrálta az erőforrást"
-
-#: ../app/controllers/resources_controller.rb:140
-msgid "Failed to migrate the resource: %{err}"
-msgstr "Nem sikerült áttelepíteni az erőforrást: %{err}"
-
-#: ../app/controllers/resources_controller.rb:146
-msgid "Successfully cleaned the resource"
-msgstr "Sikeresen kitakarította az erőforrást"
-
-#: ../app/controllers/resources_controller.rb:147
-msgid "Failed to clean up the resource: %{err}"
-msgstr "Nem sikerült kitakarítani az erőforrást: %{err}"
-
-#: ../app/controllers/resources_controller.rb:165
-msgid "Successfully renamed %{A} to %{B}"
-msgstr "Sikeres átnevezés, a korábbi név: %{A}, az új név: %{B}"
-
-#: ../app/controllers/resources_controller.rb:174
-msgid "Failed to rename %{A} to %{B}: %{E}"
-msgstr "Sikertelen átnevezés – %{A} helyett %{B} névre: %{E}"
-
-#: ../app/controllers/roles_controller.rb:22
-#: ../app/controllers/roles_controller.rb:31
-#: ../app/views/roles/new.html.haml:7
-msgid "Create Role"
-msgstr "Sze_repkör létrehozása"
-
-#: ../app/controllers/roles_controller.rb:39
-msgid "Role created successfully"
-msgstr "Szerepkör sikeresen létrehozva"
-
-#: ../app/controllers/roles_controller.rb:63
-#: ../app/views/roles/edit.html.haml:7
-msgid "Edit Role"
-msgstr "Szerepkör szerkesztése"
-
-#: ../app/controllers/roles_controller.rb:74
-msgid "Role updated successfully"
-msgstr "Szerepkör sikeresen frissítve"
-
-#: ../app/controllers/roles_controller.rb:96
-#: ../app/controllers/roles_controller.rb:103
-msgid "Role deleted successfully"
-msgstr "Szerepkör sikeresen törölve"
-
-#: ../app/controllers/roles_controller.rb:131
-msgid "ACL is not supported by the cluster"
-msgstr "A fürt nem támogatja az ACL-t"
-
-#: ../app/controllers/roles_controller.rb:136
-#: ../app/views/roles/index.html.haml:7
-#: ../app/views/shared/_mainnav.html.haml:86
-msgid "Roles"
-msgstr "Szerepkörök"
-
-#: ../app/controllers/roles_controller.rb:149
-msgid "The role does not exist"
-msgstr "A szerepkör nem létezik."
-
-#: ../app/controllers/roles_controller.rb:158
-#: ../app/controllers/users_controller.rb:160
-msgid "To enable ACLs, set \"enable-acl\" in the Cluster Configuration ('Manage > Configuration')"
-msgstr "Az ACL-ek engedélyezéséhez adja meg az \"enable-acl\" beállítást a fürt konfigurációjában (Felügyelet > Beállítás)"
-
-#: ../app/controllers/sessions_controller.rb:50 ../app/models/cib.rb:536
-#: ../lib/invoker.rb:88 ../lib/invoker.rb:141
-msgid "Permission denied for user %{user}"
-msgstr "%{user} felhasználónak nincs hozzáférése"
-
-#: ../app/controllers/sessions_controller.rb:52
-msgid "You have been logged out"
-msgstr "Kijelentkezett"
-
-#: ../app/controllers/sessions_controller.rb:80
-msgid "Log In"
-msgstr "Belépés"
-
-#: ../app/controllers/simulator_controller.rb:163
-#: ../app/views/shared/_simulator.html.haml:77
-msgid "Simulator"
-msgstr "Szimulátor"
-
-#: ../app/controllers/tags_controller.rb:20
-#: ../app/controllers/tags_controller.rb:30 ../app/views/tags/new.html.haml:7
-msgid "Create Tag"
-msgstr "Címke létrehozása"
-
-#: ../app/controllers/tags_controller.rb:39
-msgid "Tag created successfully"
-msgstr "A címke sikeresen elkészült"
-
-#: ../app/controllers/tags_controller.rb:57
-#: ../app/controllers/tags_controller.rb:66 ../app/views/tags/edit.html.haml:7
-msgid "Edit Tag"
-msgstr "Címke szerkesztése"
-
-#: ../app/controllers/tags_controller.rb:77
-msgid "Tag updated successfully"
-msgstr "A címke frissítése sikeres"
-
-#: ../app/controllers/tags_controller.rb:99
-#: ../app/controllers/tags_controller.rb:106
-msgid "Tag deleted successfully"
-msgstr "A címke törlése sikeres"
-
-#: ../app/controllers/tags_controller.rb:133
-#: ../app/views/tags/index.html.haml:7
-msgid "Tags"
-msgstr "Címkék"
-
-#: ../app/controllers/tags_controller.rb:146
-msgid "The tag does not exist"
-msgstr "A címke nem létezik"
-
-#: ../app/controllers/templates_controller.rb:23
-#: ../app/controllers/templates_controller.rb:31
-#: ../app/controllers/templates_controller.rb:64
-msgid "Create Template"
-msgstr "Sablon létrehozása"
-
-#: ../app/controllers/templates_controller.rb:40
-msgid "Template created successfully"
-msgstr "A sablon létrehozása sikeres"
-
-#: ../app/controllers/templates_controller.rb:58
-#: ../app/controllers/templates_controller.rb:81
-msgid "Edit Template"
-msgstr "Sablon szerkesztése"
-
-#: ../app/controllers/templates_controller.rb:92
-msgid "Template updated successfully"
-msgstr "A sablon módosítása sikeres"
-
-#: ../app/controllers/templates_controller.rb:114
-#: ../app/controllers/templates_controller.rb:121
-msgid "Template deleted successfully"
-msgstr "A sablon törlése sikeres"
-
-#: ../app/controllers/templates_controller.rb:149
-msgid "You have no template feature support"
-msgstr "Nincs sablonfunkció-támogatása"
-
-#: ../app/controllers/templates_controller.rb:154
-msgid "Templates"
-msgstr "Sablonok"
-
-#: ../app/controllers/templates_controller.rb:167
-msgid "The template does not exist"
-msgstr "A sablon nem létezik"
-
-#: ../app/controllers/tickets_controller.rb:33
-#: ../app/controllers/tickets_controller.rb:43
-#: ../app/views/tickets/new.html.haml:7
-msgid "Create Ticket"
-msgstr "Jegy létrehozása"
-
-#: ../app/controllers/tickets_controller.rb:70
-#: ../app/controllers/tickets_controller.rb:79
-#: ../app/views/tickets/edit.html.haml:7
-msgid "Edit Ticket"
-msgstr "Jegy szerkesztése"
-
-#: ../app/controllers/tickets_controller.rb:112
-#: ../app/controllers/tickets_controller.rb:119
-msgid "Ticket deleted successfully"
-msgstr "A jegy törlése sikeres"
-
-#: ../app/controllers/tickets_controller.rb:151
-#: ../app/controllers/tickets_controller.rb:155
-msgid "Successfully granted the ticket"
-msgstr "A jegy megadása sikeresen megtörtént"
-
-#: ../app/controllers/tickets_controller.rb:161
-#: ../app/controllers/tickets_controller.rb:165
-msgid "Error granting the ticket"
-msgstr "Hiba a jegy megadásakor"
-
-#: ../app/controllers/tickets_controller.rb:175
-#: ../app/controllers/tickets_controller.rb:181
-msgid "Successfully revoked the ticket"
-msgstr "A jegy visszavonása sikeresen megtörtént"
-
-#: ../app/controllers/tickets_controller.rb:188
-#: ../app/controllers/tickets_controller.rb:192
-msgid "Error revoking the ticket"
-msgstr "Hiba a jegy visszavonásakor"
-
-#: ../app/controllers/tickets_controller.rb:201
-#: ../app/controllers/tickets_controller.rb:208 ../app/models/ticket.rb:85
-#: ../app/models/ticket.rb:92
-msgid "Simulator active: Use the ticket controls in the simulator"
-msgstr "A szimulátor aktív: használja a szimulátor jegy vezérlőelemeit"
-
-#: ../app/controllers/tickets_controller.rb:215
-#: ../app/views/cib/show.html.haml:104 ../app/views/tickets/index.html.haml:7
-msgid "Tickets"
-msgstr "Jegyek"
-
-#: ../app/controllers/tickets_controller.rb:228
-msgid "The ticket constraint does not exist"
-msgstr "A jegymegszorítás nem létezik"
-
-#: ../app/controllers/users_controller.rb:22
-#: ../app/controllers/users_controller.rb:31
-#: ../app/views/users/new.html.haml:7
-msgid "Create ACL Target"
-msgstr "ACL-cél létrehozása"
-
-#: ../app/controllers/users_controller.rb:39
-msgid "ACL target created successfully"
-msgstr "Az ACL-cél sikeresen elkészült"
-
-#: ../app/controllers/users_controller.rb:57
-#: ../app/controllers/users_controller.rb:65
-#: ../app/views/users/edit.html.haml:7
-msgid "Edit ACL Target"
-msgstr "ACL-cél szerkesztése"
-
-#: ../app/controllers/users_controller.rb:76
-msgid "ACL target updated successfully"
-msgstr "Az ACL-cél sikeresen frissítve"
-
-#: ../app/controllers/users_controller.rb:98
-#: ../app/controllers/users_controller.rb:105
-msgid "ACL target deleted successfully"
-msgstr "Az ACL-cél törlése sikeresen megtörtént"
-
-#: ../app/controllers/users_controller.rb:133
-msgid "ACL is not supported by this cluster."
-msgstr "Ez a fürt nem támogatja az ACL-t."
-
-#: ../app/controllers/users_controller.rb:138
-msgid "ACL Targets"
-msgstr "ACL-célok"
-
-#: ../app/controllers/users_controller.rb:151
-msgid "The ACL target does not exist"
-msgstr "Az ACL-cél nem létezik."
-
-#: ../app/controllers/wizards_controller.rb:47
-msgid "Session has expired"
-msgstr "Lejárt a munkamenet"
-
-#: ../app/controllers/wizards_controller.rb:54
-msgid "Wizard cannot be applied when the simulator is active"
-msgstr "A varázsló nem alkalmazható, ha a szimulátor aktív"
-
-#: ../app/controllers/wizards_controller.rb:109
-msgid "Use a wizard"
-msgstr "Varázsló használata"
-
-#: ../app/controllers/wizards_controller.rb:127
-#: ../app/controllers/wizards_controller.rb:132
-msgid "Permission denied - you do not have write access to the CIB."
-msgstr "Engedély elutasítva - nincs írási hozzáférése a CIB fájlhoz."
-
-#: ../app/controllers/wizards_controller.rb:149
-#: ../app/controllers/wizards_controller.rb:154
-msgid "Cluster seems to be offline"
-msgstr "A fürt offline állapotúnak látszik"
-
-#: ../app/helpers/agents_helper.rb:59
-msgid "Required"
-msgstr "Szükséges"
-
-#: ../app/helpers/agents_helper.rb:60
-msgid "Unique"
-msgstr "Egyedi"
-
-#: ../app/helpers/application_helper.rb:37
-msgid "Profile"
-msgstr "Profil"
-
-#: ../app/helpers/application_helper.rb:223
-msgid "Current Configuration Version"
-msgstr "Jelenlegi konfiguráció verziója"
-
-#: ../app/helpers/application_helper.rb:223
-msgid "Epoch"
-msgstr "Epoch"
-
-#: ../app/helpers/application_helper.rb:224
-msgid "Host"
-msgstr "Gép"
-
-#: ../app/helpers/application_helper.rb:225
-msgid "DC"
-msgstr "DC"
-
-#: ../app/helpers/application_helper.rb:225
-msgid "Designated Coordinator"
-msgstr "Kijelölt koordinátor"
-
-#: ../app/helpers/application_helper.rb:226
-msgid "Schema"
-msgstr "Séma"
-
-#: ../app/helpers/application_helper.rb:226
-msgid "CIB Schema Version"
-msgstr "CIB-sémaverzió"
-
-#: ../app/helpers/application_helper.rb:227
-msgid "Last Written"
-msgstr "Legutóbbi írás"
-
-#: ../app/helpers/application_helper.rb:228
-msgid "Update Origin"
-msgstr "Eredet frissítése"
-
-#: ../app/helpers/application_helper.rb:229
-msgid "Update User"
-msgstr "Felhasználó frissítése"
-
-#: ../app/helpers/application_helper.rb:230
-msgid "Have Quorum"
-msgstr "Van kvórum"
-
-#: ../app/helpers/application_helper.rb:231
-#: ../app/views/reports/display.html.haml:164
-msgid "Version"
-msgstr "Verzió"
-
-#: ../app/helpers/application_helper.rb:231
-msgid "Pacemaker Version"
-msgstr "Pacemaker-verzió"
-
-#: ../app/helpers/application_helper.rb:232
-msgid "Stack"
-msgstr "Verem"
-
-#: ../app/helpers/application_helper.rb:232
-msgid "Cluster Communication Stack"
-msgstr "Fürt kommunikációs verme"
-
-#: ../app/helpers/colocation_helper.rb:8 ../app/helpers/ticket_helper.rb:20
-msgid "Master"
-msgstr "Elsődleges"
-
-#: ../app/helpers/colocation_helper.rb:9 ../app/helpers/ticket_helper.rb:21
-msgid "Slave"
-msgstr "Másodlagos"
-
-#: ../app/helpers/crm_config_helper.rb:7 ../app/helpers/form_helper.rb:11
-#: ../app/helpers/profile_helper.rb:18 ../app/helpers/role_helper.rb:14
-#: ../app/helpers/user_helper.rb:14
-msgid "Revert"
-msgstr "Visszaállítás"
-
-#: ../app/helpers/rule_helper.rb:8
-msgid "Read"
-msgstr "Olvasás"
-
-#: ../app/helpers/rule_helper.rb:9
-msgid "Write"
-msgstr "Írás"
-
-#: ../app/helpers/rule_helper.rb:10
-msgid "Deny"
-msgstr "Elutasítás"
-
-#: ../app/helpers/simulator_helper.rb:19 ../lib/cibtools.rb:105
-msgid "success"
-msgstr "sikerült"
-
-#: ../app/helpers/simulator_helper.rb:20 ../lib/cibtools.rb:107
-msgid "generic error"
-msgstr "általános hiba"
-
-#: ../app/helpers/simulator_helper.rb:21 ../lib/cibtools.rb:109
-msgid "incorrect arguments"
-msgstr "helytelen argumentumok"
-
-#: ../app/helpers/simulator_helper.rb:22 ../lib/cibtools.rb:111
-msgid "unimplemented action"
-msgstr "nem implementált művelet"
-
-#: ../app/helpers/simulator_helper.rb:23 ../lib/cibtools.rb:113
-msgid "insufficient permissions"
-msgstr "elégtelen engedélyek"
-
-#: ../app/helpers/simulator_helper.rb:24 ../lib/cibtools.rb:115
-msgid "installation error"
-msgstr "telepítési hiba"
-
-#: ../app/helpers/simulator_helper.rb:25 ../lib/cibtools.rb:117
-msgid "configuration error"
-msgstr "konfigurációs hiba"
-
-#: ../app/helpers/simulator_helper.rb:26 ../lib/cibtools.rb:119
-msgid "not running"
-msgstr "nem fut"
-
-#: ../app/helpers/simulator_helper.rb:27 ../lib/cibtools.rb:121
-msgid "running (master)"
-msgstr "fut (elsődleges)"
-
-#: ../app/helpers/simulator_helper.rb:28 ../lib/cibtools.rb:123
-msgid "failed (master)"
-msgstr "hiba (elsődleges)"
-
-#: ../app/helpers/ticket_helper.rb:11
-msgid "Freeze"
-msgstr "Fagyasztás"
-
-#: ../app/models/cib.rb:505
-msgid "CIB file \"%{path}\" not found"
-msgstr "A(z) \"%{path}\" CIB fájl nem található"
-
-#: ../app/models/cib.rb:509
-msgid "Unable to parse CIB file \"%{path}\""
-msgstr "A(z) \"%{path}\" CIB fájl nem dolgozható fel"
-
-#: ../app/models/cib.rb:515
-msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
-msgstr "A Pacemaker nincs telepítve (%{cmd} parancs nem található)"
-
-#: ../app/models/cib.rb:521
-msgid "Unable to execute %{cmd}"
-msgstr "Nem futtatható parancs %{cmd}"
-
-#: ../app/models/cib.rb:530
-msgid "Error invoking %{cmd}"
-msgstr "Hiba a(z) %{cmd} parancs meghívásakor"
-
-#: ../app/models/cib.rb:540
-msgid "Error invoking %{cmd}: %{msg}"
-msgstr "Hiba a(z) %{cmd} parancs meghívásakor: %{msg}"
-
-#: ../app/models/cib.rb:550 ../app/models/cib.rb:551 ../app/models/cib.rb:930
-#: ../app/models/cib.rb:1052 ../app/models/cib.rb:1053
-msgid "Unknown"
-msgstr "Ismeretlen"
-
-#: ../app/models/cib.rb:629
-msgid "Node \"%{node}\" is UNCLEAN and needs to be fenced."
-msgstr "A(z) \"%{node}\" csomópont UNCLEAN állapotú, ezért el kell keríteni."
-
-#: ../app/models/cib.rb:841
-msgid "%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_reason}"
-msgstr "%{fail_start}: A(z) %{op} művelet sikertelen a(z) %{node} csomópont %{resource} erőforrásán: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_reason}"
-
-#: ../app/models/cib.rb:1033
-msgid "STONITH is disabled. For normal cluster operation, STONITH is required."
-msgstr "A STONITH le van tiltva. A fürt rendes működéséhez szükséges a STONITH."
-
-#: ../app/models/clone.rb:10
-msgid "Clone ID is required"
-msgstr "A klónazonosító megadása kötelező"
-
-#: ../app/models/clone.rb:11
-msgid "Invalid Clone ID"
-msgstr "Érvénytelen klónazonosító"
-
-#: ../app/models/clone.rb:14
-msgid "No Clone child specified"
-msgstr "Nincs megadva klóngyermek"
-
-#: ../app/models/clone.rb:67 ../app/models/group.rb:58
-#: ../app/models/master.rb:62 ../app/models/template.rb:230
-msgid "Is the cluster allowed to start and stop the resource?"
-msgstr "Jogosult a fürt az erőforrás elindítására és leállítására?"
-
-#: ../app/models/clone.rb:72 ../app/models/crm_config.rb:31
-#: ../app/models/group.rb:63 ../app/models/master.rb:67
-#: ../app/models/template.rb:248
-msgid "If not all resources can be active, the cluster will stop lower priority resources in order to keep higher priority ones active."
-msgstr "Ha nem lehet minden erőforrás aktív, a fürt le fogja állítani a kisebb prioritású erőforrásokat, hogy a nagyobb prioritásúak aktívak maradhassanak."
-
-#: ../app/models/clone.rb:78 ../app/models/crm_config.rb:53
-#: ../app/models/group.rb:73 ../app/models/master.rb:77
-#: ../app/models/template.rb:270
-msgid "What state should the cluster attempt to keep this resource in?"
-msgstr "Milyen állapotban próbálja tartani a fürt ezt az erőforrást?"
-
-#: ../app/models/clone.rb:83 ../app/models/master.rb:82
-msgid "How many copies of the resource to start. Defaults to the number of nodes in the cluster."
-msgstr "Ennyi másolatát kell elindítani az erőforrásnak. Az alapértelmezés a fürtöt alkotó csomópontok száma."
-
-#: ../app/models/clone.rb:88 ../app/models/master.rb:87
-msgid "How many copies of the resource can be started on a single node. Defaults to 1."
-msgstr "Ennyi másolatát lehet elindítani az erőforrásnak egy csomóponton. Az alapértelmezés 1."
-
-#: ../app/models/clone.rb:93 ../app/models/master.rb:92
-msgid "When stopping or starting a copy of the clone, tell all the other copies beforehand and when the action was successful."
-msgstr "A klón egy másolatának elindításakor és leállításakor előzőleg (és a művelet sikeres befejezésekor) értesíti a többi másolatot."
-
-#: ../app/models/clone.rb:98 ../app/models/master.rb:97
-msgid "Does each copy of the clone perform a different function?"
-msgstr "Eltérő funkciót tölt be a klón mindegyik másolata?"
-
-#: ../app/models/clone.rb:103 ../app/models/master.rb:102
-msgid "Should the copies be started in series (instead of in parallel)?"
-msgstr "Sorban egymás után kell elindítani a másolatokat (és nem párhuzamosan)?"
-
-#: ../app/models/clone.rb:108 ../app/models/master.rb:107
-msgid "Changes the behavior of ordering constraints (between clones/masters) so that instances can start/stop as soon as their peer instance has (rather than waiting for every instance of the other clone has)."
-msgstr "Módosítja a fürtök/elsődleges kiszolgálók sorrendmegszorításainak működését, hogy a példányok azonnal elindulhassanak vagy leállhassanak, ha a társpéldányuk már elindult (ahelyett, hogy várnának a másik klón minden példányára)."
-
-#: ../app/models/clone.rb:119 ../app/views/clones/_form.html.haml:12
-#: ../app/views/clones/_form.html.haml:17
-#: ../app/views/masters/_form.html.haml:12
-#: ../app/views/masters/_form.html.haml:17
-msgid "Child Resource"
-msgstr "Gyermek erőforrás"
-
-#: ../app/models/clone.rb:120
-msgid "Child resource to use as clone."
-msgstr "Klónként használandó gyermekerőforrás"
-
-#: ../app/models/clone.rb:131 ../app/models/group.rb:84
-#: ../app/models/master.rb:128 ../app/models/node.rb:114
-#: ../app/models/primitive.rb:75 ../app/models/record.rb:285
-#: ../app/models/tag.rb:82 ../app/models/template.rb:438
-msgid "The ID \"%{id}\" does not exist"
-msgstr "A(z) \"%{id}\" azonosító nem létezik"
-
-#: ../app/models/colocation.rb:10 ../app/models/order.rb:10
-msgid "Score is required"
-msgstr "A pontszám megadása kötelező"
-
-#: ../app/models/colocation.rb:24 ../app/models/order.rb:25
-msgid "Invalid score value"
-msgstr "Érvénytelen pontszámérték"
-
-#: ../app/models/colocation.rb:30
-msgid "Invalid node attribute"
-msgstr "Érvénytelen csomópont-attribútum"
-
-#: ../app/models/colocation.rb:35 ../app/models/order.rb:30
-msgid "Constraint must consist of at least two separate resources"
-msgstr "A szabálynak legalább két különböző erőforrást kell tartalmaznia"
-
-#: ../app/models/colocation.rb:181
-msgid "The score determines the location relationship between the resources."
-msgstr "A pontszám határozza meg az erőforrások közötti helykapcsolatot."
-
-#: ../app/models/colocation.rb:186 ../app/views/colocations/_form.html.haml:79
-msgid "Node Attribute"
-msgstr "Csomópont-attribútum"
-
-#: ../app/models/colocation.rb:187
-msgid "Colocate resources by the given node attribute instead of by node name (the default)."
-msgstr "Erőforrások párhuzamos elhelyezése a megadott csomópont-attribútummal a csomópont neve helyett (alapértelmezés)"
-
-#: ../app/models/constraint.rb:37
-msgid "Not a constraint"
-msgstr "Nem megszorítás"
-
-#: ../app/models/constraint.rb:49
-msgid "Unique identifier for the constraint. May not contain spaces."
-msgstr "A megszorítás egyedi azonosítója. Szóközt nem tartalmazhat."
-
-#: ../app/models/crm_config.rb:9 ../app/models/template.rb:225
-msgid "Set to true if the resource agent supports the migrate action"
-msgstr "Igaz értékű, ha az erőforrásügynök támogatja a migráció műveletet"
-
-#: ../app/models/crm_config.rb:26 ../app/models/template.rb:243
-msgid "How many failures may occur for this resource on a node, before this node is marked ineligible to host this resource. A value of INFINITY indicates that this feature is disabled."
-msgstr "Ennyi hiba történhet ezzel az erőforrással egy csomóponton ahhoz, hogy a csomópont alkalmatlannak minősüljön az erőforrás működtetésére. Az INFINITY érték azt jelzi, hogy a funkció le van tiltva."
-
-#: ../app/models/crm_config.rb:37 ../app/models/template.rb:254
-msgid "What should the cluster do if it ever finds the resource active on more than one node?"
-msgstr "Mi a fürt teendője, ha bármikor azt tapasztalja, hogy több csomóponton aktív az erőforrás?"
-
-#: ../app/models/crm_config.rb:42 ../app/models/template.rb:259
-msgid "How many seconds to wait before acting as if the failure had not occurred, and potentially allowing the resource back to the node on which it failed. A value of 0 indicates that this feature is disabled."
-msgstr "Ennyi másodpercig várakozzon a rendszer úgy, mintha nem történt volna hiba, ezáltal lehetővé téve az erőforrás helyreállítását azon a csomóponton, amelyen a hiba történt. A 0 érték azt jelzi, hogy ez a funkció le van tiltva."
-
-#: ../app/models/crm_config.rb:47 ../app/models/template.rb:264
-msgid "How much does the resource prefer to stay where it is?"
-msgstr "Mennyire kedvező, ha az erőforrás ott marad, ahol van?"
-
-#: ../app/models/crm_config.rb:68 ../app/models/crm_config.rb:105
-#: ../app/models/template.rb:285
-msgid "Conditions under which the resource can be started."
-msgstr "Az erőforrás elindításának feltételei."
-
-#: ../app/models/crm_config.rb:73 ../app/models/template.rb:290
-msgid "The name of the remote-node this resource defines. This both enables the resource as a remote-node and defines the unique name used to identify the remote-node. If no other parameters are set, this value will also be assumed as the hostname to connect to at the port specified by remote-port. WARNING: This value cannot overlap with any resource or node IDs. If not specified, this feature is disabled."
-msgstr "Az ez által az erőforrás által meghatározott távoli csomópont neve. Ez részint távoli csomópontként engedélyezi az erőforrást, részint meghatározza a távoli csomópont azonosítására használt egyedi nevet. Ha nincs beállítva más paraméter, akkor a rendszer ezt az értéket tekinti az állomásnévnek is, amelyhez csatlakoznia kell a remote-port beállítással megadott távoli porton. FIGYELMEZTETÉS: Ez az érték nem lehet átfedésben egyetlen erőforrás vagy csomópont azonosítójával sem. Ha nincs megadva, ez a funkció le van tiltva."
-
-#: ../app/models/crm_config.rb:78 ../app/models/template.rb:295
-msgid "Port to use for the guest connection to pacemaker_remote."
-msgstr "A pacemaker_remote elemmel vendégkapcsolat létesítésére használandó port."
-
-#: ../app/models/crm_config.rb:83 ../app/models/template.rb:300
-msgid "The IP address or hostname to connect to if remote-node's name is not the hostname of the guest."
-msgstr "A csatlakozáshoz használandó IP-cím vagy állomásnév abban az esetben, ha a remote-node neve nem a vendég állomásneve."
-
-#: ../app/models/crm_config.rb:88 ../app/models/template.rb:305
-msgid "How long before a pending guest connection will time out."
-msgstr "Ennyi idő után jár le egy függőben lévő vendégkapcsolat időkorlátja."
-
-#: ../app/models/group.rb:10
-msgid "No Group children specified"
-msgstr "Nincsenek megadva csoportgyermekek"
-
-#: ../app/models/location.rb:10
-msgid "No resource specified"
-msgstr "Nincs megadva erőforrás"
-
-#: ../app/models/location.rb:13
-msgid "No rules specified"
-msgstr "Nincsenek szabályok megadva"
-
-#: ../app/models/location.rb:18
-msgid "Invalid resource discovery type"
-msgstr "Érvénytelen erőforrás-felfedezési típus"
-
-#: ../app/models/location.rb:23
-msgid "Constraint is too complex - it contains nested rules"
-msgstr "Túl komplex szabály - beágyazott szabályok vannak"
-
-#: ../app/models/location.rb:33
-msgid "Invalid score \"%{score}\""
-msgstr "Érvénytelen pontszám \"%{score}\""
-
-#: ../app/models/location.rb:43
-msgid "No expressions specified"
-msgstr "Nincsenek megadva kifejezések"
-
-#: ../app/models/location.rb:48
-msgid "Attribute contains both single and double quotes"
-msgstr "Az attribútum szimpla és dupla idézőjelet és tartalmaz"
-
-#: ../app/models/location.rb:49
-msgid "Value contains both single and double quotes"
-msgstr "Az érték szimpla és dupla idézőjelet és tartalmaz"
-
-#: ../app/models/location.rb:224
-msgid "Resources to apply the constraint to."
-msgstr "Azok az erőforrások, amelyekre alkalmazni kell a megszorítást."
-
-#: ../app/models/location.rb:230
-msgid "Positive values indicate the resources should run on this node. Negative values indicate the resources should not run on this node. Values of +/- INFINITY change \"should\"/\"should not\" to \"must\"/\"must not\"."
-msgstr "A pozitív értékek azt jelzik, hogy az erőforrásoknak ezen a csomóponton kell futniuk. A negatív értékek azt jelzik, hogy az erőforrásoknak nem ezen a csomóponton kell futniuk. A +/- INFINITY értékek hatására a \"should\"/\"should not\" értékek \"must\"/\"must not\" értékre váltanak."
-
-#: ../app/models/location.rb:235 ../app/views/locations/_form.html.haml:81
-#: ../app/views/reports/display.html.haml:155
-#: ../app/views/resources/events.html.haml:35
-#: ../app/views/resources/show.html.haml:266
-#: ../app/views/shared/_simulator.html.haml:351
-#: ../app/views/shared/_simulator.html.haml:463
-msgid "Node"
-msgstr "Csomópont"
-
-#: ../app/models/location.rb:236
-msgid "Name of a node in the cluster."
-msgstr "A csomópont neve a fürtben."
-
-#: ../app/models/location.rb:243 ../app/views/locations/_form.html.haml:102
-msgid "Resource Discovery"
-msgstr "Erőforrások felfedezése"
-
-#: ../app/models/location.rb:244
-msgid "Controls resource discovery for the specified resource on nodes covered by the constraint. always: Always perform resource discovery (default). never: Never perform resource discovery for the specified resource on this node. This option should generally be used with a -INFINITY score. exclusive: Only perform resource discovery for the specified resource on this node."
-msgstr "A megadott erőforrás felfedezését szabályozza azokon a csomópontokon, amelyekre érvényes a megszorítás. always: az erőforrás felfedezése mindig történjen meg (alapértelmezés). never: ezen a csomóponton soha ne történjen meg a megadott erőforrás felfedezése. Ezt a paramétert általában -INFINITY pontszámmal kell használni. exclusive: A megadott erőforrásra vonatkozóan csak ezen a csomóponton történjen felfedezés."
-
-#: ../app/models/location.rb:249
-msgid "Limits the rule to apply only when the resource is in the specified role."
-msgstr "A szabály korlátozása arra az esetre, amikor az erőforrás a megadott szerepkörben van."
-
-#: ../app/models/location.rb:254
-msgid "Operator"
-msgstr "Operátor"
-
-#: ../app/models/location.rb:255
-msgid "How to combine the result of multiple expression objects. Allowed values are and and or."
-msgstr "Több kifejezésobjektum eredményének együttes alkalmazási módja. Megengedett értékek: AND és OR."
-
-#: ../app/models/location.rb:260
-msgid "Expression"
-msgstr "Kifejezés"
-
-#: ../app/models/location.rb:261
-msgid "Each rule can contain a number of expressions. The results of the expressions are combined based on the rule's boolean operator."
-msgstr "Minden szabályban több kifejezés szerepelhet. A kifejezések eredményei a szabály logikai operátorának megfelelően vannak kombinálva."
-
-#: ../app/models/master.rb:9
-msgid "No Multi-state child specified"
-msgstr "Nincs megadva többállapotú gyermek"
-
-#: ../app/models/master.rb:112
-msgid "How many copies of the resource can be promoted to master status."
-msgstr "Az erőforrás ennyi példányát lehet előléptetni elsődleges (master) állapotúvá."
-
-#: ../app/models/master.rb:117
-msgid "How many copies of the resource can be promoted to master status on a single node."
-msgstr "Az erőforrás ennyi példányát lehet előléptetni elsődleges (master) állapotúvá ugyanazon a csomóponton."
-
-#: ../app/models/node.rb:25
-msgid "Node ID is required"
-msgstr "A csomópont-azonosítót meg kell adni"
-
-#: ../app/models/node.rb:26
-msgid "Invalid Node ID"
-msgstr "Érvénytelen csomópont-azonosító"
-
-#: ../app/models/node.rb:29
-msgid "Name is required"
-msgstr "A név megadása kötelező"
-
-#: ../app/models/node.rb:30
-msgid "Invalid name"
-msgstr "Érvénytelen név"
-
-#: ../app/models/node.rb:72
-msgid "Node ID"
-msgstr "Csomópont azonosítója"
-
-#: ../app/models/node.rb:73
-msgid "Unique identifier for the node."
-msgstr "A csomópont egyedi azonosítója."
-
-#: ../app/models/node.rb:78
-msgid "Node Name"
-msgstr "Csomópont neve"
-
-#: ../app/models/node.rb:79
-msgid "Name used to refer to the node in the cluster."
-msgstr "A csomópont neve a fürtben."
-
-#: ../app/models/node.rb:91
-msgid "Puts the node into standby mode. The specified node is no longer able to host resources. Any resources currently active on the node will be moved to another node."
-msgstr "A csomópont készenléti módba helyezése. A megadott csomóponton ettől kezdve nem működhetnek erőforrások. A csomóponton éppen aktív erőforrások egy másik csomópontra kerülnek át."
-
-#: ../app/models/profile.rb:31
-msgid "is required"
-msgstr "szükséges"
-
-#: ../app/models/record.rb:10
-msgid "ID is required"
-msgstr "Azonosító szükséges"
-
-#: ../app/models/record.rb:28
-msgid "Object not found: %s=%s"
-msgstr "Az objektum nem található: %s=%s"
-
-#: ../app/models/record.rb:268
-msgid "The ID \"%{id}\" is already in use"
-msgstr "A \"%{id}\" azonosító már használatban van"
-
-#: ../app/models/record.rb:279
-msgid "Unable to create: %{msg}"
-msgstr "A létrehozás sikertelen: %{msg}"
-
-#: ../app/models/record.rb:295
-msgid "Error updating %{id} (rc=%{rc})"
-msgstr "Hiba a következő frissítésekor: %{id} (rc=%{rc})"
-
-#: ../app/models/report.rb:103 ../app/models/report.rb:132
-#: ../app/models/report.rb:179
-msgid "No details available"
-msgstr "Nincsenek részletek"
-
-#: ../app/models/report.rb:104 ../app/models/report.rb:133
-msgid "Error:"
-msgstr "HIba:"
-
-#: ../app/models/report.rb:287
-msgid "must have correct MIME type (was %s)"
-msgstr "helyes MIME típusúnak kell lennie (%s volt)"
-
-#: ../app/models/report.rb:291
-msgid "must have correct file extension"
-msgstr "helyes fájlkiterjesztésűnek kell lennie"
-
-#: ../app/models/resource.rb:113
-msgid "Not a resource"
-msgstr "Nem erőforrás"
-
-#: ../app/models/resource.rb:125
-msgid "Unique identifier for the resource. May not contain spaces."
-msgstr "Az erőforrás egyedi azonosítója. Szóköz nem szerepelhet benne."
-
-#: ../app/models/role.rb:8
-msgid "At least one rule is required"
-msgstr "Legalább egy szabályt meg kell adni."
-
-#: ../app/models/session.rb:10
-msgid "Invalid username"
-msgstr "Érvénytelen felhasználónév"
-
-#: ../app/models/session.rb:16
-msgid "%s is not installed"
-msgstr "%s nincs telepítve"
-
-#: ../app/models/session.rb:21
 msgid "%s is not executable"
 msgstr "A(z) %s nem hajtható végre"
 
-#: ../app/models/session.rb:26
-msgid "Username not specified"
-msgstr "Nincs megadva felhasználónév"
+msgid "%s is not installed"
+msgstr "%s nincs telepítve"
 
-#: ../app/models/session.rb:31
-msgid "Password not specified"
-msgstr "Nincs megadva jelszó"
+msgid "%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_reason}"
+msgstr "%{fail_start}: A(z) %{op} művelet sikertelen a(z) %{node} csomópont %{resource} erőforrásán: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_reason}"
 
-#: ../app/models/session.rb:42
-msgid "Invalid username or password"
-msgstr "Érvénytelen felhasználónév vagy jelszó"
+msgid "ACL Targets"
+msgstr "ACL-célok"
 
-#: ../app/models/tag.rb:9
-msgid "No Tag resources specified"
-msgstr "Nincs megadva címkeerőforrás"
+msgid "ACL is not supported by the cluster"
+msgstr "A fürt nem támogatja az ACL-t"
 
-#: ../app/models/template.rb:313
-msgid "How frequently (in seconds) to perform the operation."
-msgstr "Ilyen gyakorisággal kell elvégezni a műveletet (másodpercben)."
+msgid "ACL is not supported by this cluster."
+msgstr "Ez a fürt nem támogatja az ACL-t."
 
-#: ../app/models/template.rb:319
-msgid "How long to wait before declaring the action has failed."
-msgstr "Ennyi idő után kell sikertelennek minősíteni a műveletet."
-
-#: ../app/models/template.rb:329
-msgid "What conditions need to be satisfied before this action occurs."
-msgstr "Ezeknek a feltételeknek kell teljesülniük ahhoz, hogy sor kerüljön a műveletre."
-
-#: ../app/models/template.rb:334
-msgid "If false, the operation is treated as if it does not exist."
-msgstr "Ha hamis, a rendszer nem létezőként kezeli a műveletet."
-
-#: ../app/models/template.rb:345
-msgid "This option only makes sense for recurring operations. It restricts the operation to a specific role. The truely paranoid can even specify role=Stopped which allows the cluster to detect an admin that manually started cluster services."
-msgstr "Ennek a beállításnak csak ismétlődő műveletek esetében van értelme. Egy megadott szerepkörre korlátozza a műveletet. Aki valóban paranoid, akár a role=Stopped beállítást is megadhatja, amely észleli, ha egy rendszergazda manuálisan indította el a fürtszolgáltatásokat."
-
-#: ../app/models/template.rb:358
-msgid "The action to take if this action ever fails."
-msgstr "Ha ez a művelet bármikor sikertelen, ezt a műveletet kell végrehajtani."
-
-#: ../app/models/template.rb:371
-msgid "If true, the intention to perform the operation is recorded so that GUIs and CLI tools can indicate that an operation is in progress."
-msgstr "Ha igaz, a rendszer rögzíti a művelet végrehajtásának szándékát, hogy a GUI felületek és a CLI eszközök jelezhessék, hogy a művelet folyamatban van."
-
-#: ../app/models/template.rb:388
-msgid "Resource template to inherit from."
-msgstr "Az örökléshez használandó erőforrássablon."
-
-#: ../app/models/template.rb:393 ../app/views/primitives/_form.html.haml:21
-#: ../app/views/primitives/_form.html.haml:39
-msgid "Class"
-msgstr "Osztály"
-
-#: ../app/models/template.rb:394
-msgid "Standard which the resource agent conforms to."
-msgstr "A szabvány, amelynek az erőforrásügynök megfelel."
-
-#: ../app/models/template.rb:399 ../app/views/primitives/_form.html.haml:23
-#: ../app/views/primitives/_form.html.haml:45
-msgid "Provider"
-msgstr "Szolgáltató"
-
-#: ../app/models/template.rb:400
-msgid "Vendor or project which provided the resource agent."
-msgstr "Az erőforrásügynököt biztosító gyártó vagy projekt."
-
-#: ../app/models/template.rb:406
-msgid "Resource agent name."
-msgstr "Erőforrásügynök neve."
-
-#: ../app/models/template.rb:412 ../app/models/template.rb:418
-msgid "After the specified timeout period, the operation will be treated as failed."
-msgstr "A megadott időtúllépési időszak után a műveletet sikertelennek tekinti a rendszer."
-
-#: ../app/models/template.rb:423
-msgid "Monitor"
-msgstr "Monitor"
-
-#: ../app/models/template.rb:424
-msgid "Define a monitor operation to instruct the cluster to ensure that the resource is still healthy."
-msgstr "Olyan figyelési művelet meghatározása, amely arra utasítja a fürtöt, hogy győződjön meg az erőforrás megfelelő állapotáról."
-
-#: ../app/models/ticket.rb:18
-msgid "Constraint ID is required"
-msgstr "A megszorításazonosítót meg kell adni"
-
-#: ../app/models/ticket.rb:19
-msgid "Invalid Constraint ID"
-msgstr "Érvénytelen megszorításazonosító"
-
-#: ../app/models/ticket.rb:22
-msgid "Ticket ID is required"
-msgstr "A jegyazonosítót kötelező megadni"
-
-#: ../app/models/ticket.rb:23
-msgid "Invalid Ticket ID"
-msgstr "Érvénytelen jegy ID"
-
-#: ../app/models/ticket.rb:27
-msgid "Constraint must consist of at least one separate resources"
-msgstr "A megszorításnak tartalmaznia kell legalább egy különálló erőforrást"
-
-#: ../app/models/user.rb:10
 msgid "ACL target ID is required"
 msgstr "Az ACL-célazonosítót meg kell adni"
 
-#: ../app/models/user.rb:11
-msgid "Invalid ACL target ID"
-msgstr "Érvénytelen ACL-célazonosító"
+msgid "ACL target created successfully"
+msgstr "Az ACL-cél sikeresen elkészült"
 
-#: ../app/models/user.rb:13
-msgid "At least one role is required"
-msgstr "Legalább egy szerepet meg kell adni"
+msgid "ACL target deleted successfully"
+msgstr "Az ACL-cél törlése sikeresen megtörtént"
 
-#: ../app/models/wizard.rb:150
-msgid "Requested wizard does not exist"
-msgstr "A kért varázsló nem létezik"
+msgid "ACL target updated successfully"
+msgstr "Az ACL-cél sikeresen frissítve"
 
-#: ../app/views/agents/show.html.haml:32
-#: ../app/views/primitives/_form.html.haml:102
-#: ../app/views/resources/show.html.haml:76
-msgid "Parameters"
-msgstr "Paraméterek"
-
-#: ../app/views/agents/show.html.haml:52
-msgid "Shortdesc"
-msgstr "Rövid leírás"
-
-#: ../app/views/agents/show.html.haml:54
-msgid "Longdesc"
-msgstr "Hosszú leírás"
-
-#: ../app/views/agents/show.html.haml:56
-msgid "Options"
-msgstr "Beállítások"
-
-#: ../app/views/agents/show.html.haml:83
-msgid "Actions"
-msgstr "Műveletek"
-
-#: ../app/views/agents/show.html.haml:103
-#: ../app/views/resources/show.html.haml:189
-msgid "Timeout"
-msgstr "Időtúllépés"
-
-#: ../app/views/agents/show.html.haml:105
-#: ../app/views/resources/show.html.haml:191
-msgid "Interval"
-msgstr "Időköz"
-
-#: ../app/views/agents/show.html.haml:107
-msgid "Depth"
-msgstr "Mélység"
-
-#: ../app/views/cib/apply.html.haml:9
-msgid "Apply Configuration"
-msgstr "A konfiguráció alkalmazása"
-
-#: ../app/views/cib/apply.html.haml:31
-#: ../app/views/shared/_simulator.html.haml:160
-msgid "Calculating list of changes..."
-msgstr "A változások listájának kiszámítása…"
-
-#: ../app/views/cib/show.html.haml:32
-msgid "Errors"
-msgstr "Hibák"
-
-#: ../app/views/clones/_form.html.haml:24
-#: ../app/views/groups/_form.html.haml:68
-#: ../app/views/masters/_form.html.haml:24
-#: ../app/views/primitives/_form.html.haml:121
-#: ../app/views/resources/show.html.haml:107
-msgid "Meta Attributes"
-msgstr "Metaattribútumok"
-
-#: ../app/views/clones/_form.html.haml:41
-#: ../app/views/clones/_form.html.haml:48
-#: ../app/views/colocations/_form.html.haml:88
-#: ../app/views/colocations/_form.html.haml:95
-#: ../app/views/groups/_form.html.haml:85
-#: ../app/views/groups/_form.html.haml:92
-#: ../app/views/locations/_form.html.haml:119
-#: ../app/views/locations/_form.html.haml:126
-#: ../app/views/masters/_form.html.haml:41
-#: ../app/views/masters/_form.html.haml:48
-#: ../app/views/nodes/_form.html.haml:53
-#: ../app/views/orders/_form.html.haml:74
-#: ../app/views/orders/_form.html.haml:81
-#: ../app/views/primitives/_form.html.haml:82
-#: ../app/views/primitives/_form.html.haml:89
-#: ../app/views/roles/_form.html.haml:60 ../app/views/tags/_form.html.haml:51
-#: ../app/views/tags/_form.html.haml:58
-#: ../app/views/tickets/_form.html.haml:42
-#: ../app/views/tickets/_form.html.haml:49
-#: ../app/views/users/_form.html.haml:29
-#: ../app/views/wizards/create.html.haml:28
-#: ../app/views/wizards/show.html.haml:131
-#: ../app/views/wizards/update.html.haml:108
-msgid "Back"
-msgstr "Vissza"
-
-#: ../app/views/clones/edit.html.haml:17
-#: ../app/views/colocations/edit.html.haml:15
-#: ../app/views/groups/edit.html.haml:17
-#: ../app/views/locations/edit.html.haml:15
-#: ../app/views/masters/edit.html.haml:17
-#: ../app/views/orders/edit.html.haml:15
-#: ../app/views/primitives/edit.html.haml:17
-#: ../app/views/reports/display.html.haml:36
-#: ../app/views/roles/edit.html.haml:13 ../app/views/tags/edit.html.haml:15
-#: ../app/views/tickets/edit.html.haml:15 ../app/views/users/edit.html.haml:13
-msgid "Are you sure you wish to delete %s?"
-msgstr "Biztos, hogy törölni akarja: %s?"
-
-#: ../app/views/colocations/_form.html.haml:35
-#: ../app/views/locations/_form.html.haml:65
-msgid "Always"
-msgstr "Mindig"
-
-#: ../app/views/colocations/_form.html.haml:37
-#: ../app/views/locations/_form.html.haml:67
-msgid "Never"
-msgstr "Soha"
-
-#: ../app/views/colocations/_form.html.haml:69
-#: ../app/views/locations/_form.html.haml:35
-#: ../app/views/wizards/show.html.haml:74
-#: ../app/views/wizards/show.html.haml:105
-msgid "Advanced"
-msgstr "Speciális"
-
-#: ../app/views/commands/index.html.haml:24
-msgid "Lists crm commands recently executed by hawk, most recent first."
-msgstr "A hawk által nemrégiben végrehajtott crm parancsok listája, elöl a legutóbbival."
-
-#: ../app/views/configs/edit.html.haml:7
-#: ../app/views/shared/_mainnav.html.haml:60
-msgid "Edit Configuration"
-msgstr "Konfiguráció szerkesztése"
-
-#: ../app/views/configs/edit.html.haml:15
-#: ../app/views/configs/show.html.haml:19
-#: ../app/views/graphs/show.html.haml:15
-msgid "XML"
-msgstr "XML"
-
-#: ../app/views/configs/edit.html.haml:17
-#: ../app/views/configs/show.html.haml:21 ../app/views/graphs/show.html.haml:5
-#: ../app/views/graphs/show.html.haml:32
-#: ../app/views/reports/display.html.haml:212
-#: ../app/views/reports/graph.html.haml:7
-msgid "Graph"
-msgstr "Grafikon"
-
-#: ../app/views/configs/meta.html.haml:19
-#: ../app/views/shared/_footer.html.haml:17
-msgid "Cluster Details"
-msgstr "Fürt részletei"
-
-#: ../app/views/configs/meta.html.haml:29
-#: ../app/views/shared/_simulator.html.haml:5
-msgid "Batch Mode Active"
-msgstr "A kötegelt mód aktív"
-
-#: ../app/views/configs/show.html.haml:7
-msgid "Show Configuration"
-msgstr "Konfiguráció megjelenítése"
-
-#: ../app/views/constraints/show.html.haml:10
-msgid "Constraint:"
-msgstr "Megszorítás:"
-
-#: ../app/views/constraints/types.html.haml:7
-msgid "Add a constraint"
-msgstr "Megszorítás hozzáadása"
-
-#: ../app/views/constraints/types.html.haml:13
-#: ../app/views/resources/types.html.haml:13
-msgid "List"
-msgstr "Lista"
-
-#: ../app/views/crm_config/edit.html.haml:24
-msgid "Resource Defaults"
-msgstr "Erőforrás alapértelmezései"
-
-#: ../app/views/crm_config/edit.html.haml:41
-msgid "Operation Defaults"
-msgstr "Alapértelmezett műveletek"
-
-#: ../app/views/dashboards/add.html.haml:21
-#: ../app/views/dashboards/show.html.haml:18
-msgid "Add Cluster"
-msgstr "Fürt hozzáadása"
-
-#: ../app/views/dashboards/add.html.haml:32
-msgid "Cluster name"
-msgstr "Fürtnév"
-
-#: ../app/views/dashboards/add.html.haml:32
-msgid "West Coast (example)"
-msgstr "Nyugati part (példa)"
-
-#: ../app/views/dashboards/add.html.haml:34
-msgid "Hostname of node in cluster"
-msgstr "A fürt egy csomópontjának állomásneve"
-
-#: ../app/views/dashboards/add.html.haml:34
-msgid "node1.west.example.com"
-msgstr "csomopont1.nyugat.pelda.com"
-
-#: ../app/views/dashboards/add.html.haml:36
-msgid "Server port to connect to"
-msgstr "Csatlakozás kiszolgálói portja"
-
-#: ../app/views/groups/_form.html.haml:24
-#: ../app/views/resources/show.html.haml:43
-msgid "Children"
-msgstr "Gyermekek"
-
-#: ../app/views/groups/_form.html.haml:34
-msgid "No children available"
-msgstr "Nem érhető el gyermek"
-
-#: ../app/views/layouts/authentication.html.haml:55
-msgid "Please ensure Javascript is enabled"
-msgstr "Ellenőrizze, hogy a JavaScript engedélyezve van-e"
-
-#: ../app/views/layouts/authentication.html.haml:62
-msgid "SUSE, LLC"
-msgstr "SUSE, LLC"
-
-#: ../app/views/layouts/authentication.html.haml:68
-msgid "High Availability Web Konsole"
-msgstr "Nagy rendelkezésre állású webkonzol"
-
-#: ../app/views/locations/_form.html.haml:27
-msgid "Simple"
-msgstr "Egyszerű"
-
-#: ../app/views/locations/_form.html.haml:69
-msgid "Advisory"
-msgstr "Tájékoztatás"
-
-#: ../app/views/locations/edit.html.haml:7
-msgid "Edit Location"
-msgstr "Hely szerkesztése"
-
-#: ../app/views/locations/index.html.haml:7
-msgid "Locations"
-msgstr "Helyek"
-
-#: ../app/views/locations/new.html.haml:7
-msgid "Create Location"
-msgstr "Hely létrehozása"
-
-#: ../app/views/logs/index.html.haml:5
-#: ../app/views/shared/_mainnav.html.haml:31
-msgid "History"
-msgstr "Történet"
-
-#: ../app/views/masters/edit.html.haml:7
-msgid "Edit Multi-state"
-msgstr "Többállapotú szerkesztése"
-
-#: ../app/views/masters/index.html.haml:7
-msgid "Multi-state Resources"
-msgstr "Többállapotú erőforrások"
-
-#: ../app/views/masters/new.html.haml:7
-msgid "Create Multi-state"
-msgstr "Többállapotú létrehozása"
-
-#: ../app/views/nodes/_form.html.haml:18 ../app/views/nodes/show.html.haml:104
-msgid "Attributes"
-msgstr "Attribútumok"
-
-#: ../app/views/nodes/_form.html.haml:34 ../app/views/nodes/show.html.haml:61
-#: ../app/views/primitives/_form.html.haml:140
-#: ../app/views/resources/show.html.haml:139
-msgid "Utilization"
-msgstr "Kihasználtság"
-
-#: ../app/views/nodes/edit.html.haml:7
-msgid "Edit Node"
-msgstr "Csomópont szerkesztése"
-
-#: ../app/views/nodes/events.html.haml:33
-#: ../app/views/resources/events.html.haml:33
-msgid "RC"
-msgstr "RC"
-
-#: ../app/views/nodes/events.html.haml:37
-#: ../app/views/resources/events.html.haml:37
-#: ../app/views/resources/show.html.haml:270
-#: ../app/views/shared/_simulator.html.haml:433
-msgid "Operation"
-msgstr "Művelet"
-
-#: ../app/views/nodes/events.html.haml:39
-#: ../app/views/resources/events.html.haml:39
-msgid "Last Change"
-msgstr "Legutóbbi módosítás"
-
-#: ../app/views/nodes/events.html.haml:41
-#: ../app/views/resources/events.html.haml:41
-#: ../app/views/shared/_simulator.html.haml:368
-#: ../app/views/tickets/show.html.haml:93
-msgid "State"
-msgstr "Állapot"
-
-#: ../app/views/nodes/events.html.haml:43
-#: ../app/views/resources/events.html.haml:43
-#: ../app/views/resources/show.html.haml:268
-msgid "Call"
-msgstr "Hívás"
-
-#: ../app/views/nodes/events.html.haml:45
-#: ../app/views/resources/events.html.haml:45
-msgid "Exec"
-msgstr "Exec"
-
-#: ../app/views/nodes/events.html.haml:47
-#: ../app/views/resources/events.html.haml:47
-msgid "Complete"
-msgstr "Befejeződött"
-
-#: ../app/views/nodes/show.html.haml:30
-msgid "Remote node."
-msgstr "Távoli csomópont."
-
-#: ../app/views/nodes/show.html.haml:95
-msgid "No utilization defined"
-msgstr "Nincs meghatározva kihasználtság"
-
-#: ../app/views/nodes/show.html.haml:129
-msgid "No attributes defined"
-msgstr "Nincsenek megadva attribútumok"
-
-#: ../app/views/orders/_form.html.haml:35
-msgid "Mandatory"
-msgstr "Kötelező"
-
-#: ../app/views/orders/_form.html.haml:37
-msgid "Optional"
-msgstr "Opcionális"
-
-#: ../app/views/orders/_form.html.haml:39
-msgid "Serialize"
-msgstr "Szerializálás"
-
-#: ../app/views/orders/_form.html.haml:50
-msgid "Symmetrical"
-msgstr "Szimetrikus"
-
-#: ../app/views/pages/help.html.haml:35
-msgid "HTML"
-msgstr "HTML"
-
-#: ../app/views/pages/help.html.haml:39
-msgid "PDF"
-msgstr "PDF"
-
-#: ../app/views/primitives/_help.html.haml:35
-#: ../app/views/shared/_helpentry.html.haml:15
-msgid "Default"
-msgstr "Alapértelmezett"
-
-#: ../app/views/primitives/edit.html.haml:13
-msgid "Copy"
-msgstr "Másolás"
-
-#: ../app/views/reports/display.html.haml:13
-#: ../app/views/reports/index.html.haml:156
-#: ../app/views/reports/show.html.haml:13
-msgid "Reports"
-msgstr "Jelentések"
-
-#: ../app/views/reports/display.html.haml:55
-#: ../app/views/reports/display.html.haml:64
-#: ../app/views/reports/display.html.haml:73
-#: ../app/views/reports/index.html.haml:39
-#: ../app/views/resources/rename.html.haml:36
-#: ../app/views/resources/show.html.haml:321
-msgid "To"
-msgstr "Címzett"
-
-#: ../app/views/reports/display.html.haml:78
-msgid "Created"
-msgstr "Létrehozva"
-
-#: ../app/views/reports/display.html.haml:82
-#: ../app/views/reports/display.html.haml:99
-msgid "Transitions"
-msgstr "Átváltások"
-
-#: ../app/views/reports/display.html.haml:105
-msgid "No transitions in report"
-msgstr "Nincsenek átváltások a jelentésben"
-
-#: ../app/views/reports/display.html.haml:151
-msgid "PE Name"
-msgstr "PE neve"
-
-#: ../app/views/reports/display.html.haml:159
-msgid "Time"
-msgstr "Idő"
-
-#: ../app/views/reports/display.html.haml:188
-#: ../app/views/shared/_mainnav.html.haml:38
-msgid "Configuration"
-msgstr "Beállítás"
-
-#: ../app/views/reports/display.html.haml:196
-msgid "Diff"
-msgstr "Diff"
-
-#: ../app/views/reports/display.html.haml:204
-msgid "Logs"
-msgstr "Naplók"
-
-#: ../app/views/reports/display.html.haml:279
-msgid "Node Events"
-msgstr "Csomópontesemények"
-
-#: ../app/views/reports/display.html.haml:296
-msgid "Resource Events"
-msgstr "Erőforrás-események"
-
-#: ../app/views/reports/index.html.haml:20
-msgid "Data collection in progress..."
-msgstr "Adatgyűjtés folyamatban..."
-
-#: ../app/views/reports/index.html.haml:79
-#: ../app/views/reports/index.html.haml:124
-msgid "Generate"
-msgstr "Előállítás"
-
-#: ../app/views/reports/index.html.haml:87
-msgid "Upload"
-msgstr "Feltöltés"
-
-#: ../app/views/reports/show.html.haml:30
-msgid "Loading report..."
-msgstr "Jelentés betöltése…"
-
-#: ../app/views/resources/rename.html.haml:9
-msgid "Rename Resource"
-msgstr "Erőforrás átnevezése"
-
-#: ../app/views/resources/show.html.haml:57
-msgid "Child"
-msgstr "Gyermek"
-
-#: ../app/views/resources/show.html.haml:218
-msgid "Instances"
-msgstr "Példányok"
-
-#: ../app/views/resources/show.html.haml:250
-msgid "Failed Operations"
-msgstr "Sikertelen műveletek"
-
-#: ../app/views/resources/show.html.haml:274
-msgid "Reason"
-msgstr "Ok"
-
-#: ../app/views/resources/types.html.haml:7
-#: ../app/views/shared/_mainnav.html.haml:45
-msgid "Add Resource"
-msgstr "Erőforrás hozzáadása"
-
-#: ../app/views/roles/_form.html.haml:27
-msgid "Add a rule below"
-msgstr "Szabály hozzáadása alább"
-
-#: ../app/views/roles/_form.html.haml:29
-msgid "Remove this rule"
-msgstr "A szabály eltávolítása"
-
-#: ../app/views/roles/_form.html.haml:31
-msgid "Move rule up"
-msgstr "A szabály feljebb mozgatása"
-
-#: ../app/views/roles/_form.html.haml:33
-msgid "Move rule down"
-msgstr "A szabály lejjebb mozgatása"
-
-#: ../app/views/roles/_form.html.haml:38
-msgid "Right"
-msgstr "Jobbra"
-
-#: ../app/views/roles/_form.html.haml:40
-msgid "XPath"
-msgstr "XPath"
-
-#: ../app/views/roles/_form.html.haml:42
-msgid "Object Type"
-msgstr "Objektumtípus"
-
-#: ../app/views/roles/_form.html.haml:44
-msgid "Reference"
-msgstr "Hivatkozás"
-
-#: ../app/views/roles/_form.html.haml:47
-msgid "Attribute"
-msgstr "Attribútum"
-
-#: ../app/views/roles/index.html.haml:9 ../app/views/users/index.html.haml:9
-msgid "Access Control Lists"
-msgstr "Hozzáférés-felügyeleti listák"
-
-#: ../app/views/sessions/new.html.haml:7
-msgid "Login"
-msgstr "Bejelentkezés"
-
-#: ../app/views/shared/_mainnav.html.haml:50
-msgid "Add Constraint"
-msgstr "Megszorítás hozzáadása"
-
-#: ../app/views/shared/_mainnav.html.haml:55
-#: ../app/views/wizards/index.html.haml:7
-msgid "Wizards"
-msgstr "Varázslók"
-
-#: ../app/views/shared/_mainnav.html.haml:79
 msgid "Access Control"
 msgstr "Hozzáférési jogosultságlisták (ACL)"
 
-#: ../app/views/shared/_mainnav.html.haml:92
-#: ../app/views/users/index.html.haml:7
-msgid "Targets"
-msgstr "Tárolók"
+msgid "Access Control Lists"
+msgstr "Hozzáférés-felügyeleti listák"
 
-#: ../app/views/shared/_simulator.html.haml:15
-msgid "Any pending changes to the configuration will be lost - do you wish to proceed?"
-msgstr "Minden függőben lévő konfigurációváltozás el fog veszni. Szeretné folytatni?"
-
-#: ../app/views/shared/_simulator.html.haml:17
-msgid "Discard"
-msgstr "Elvetés"
-
-#: ../app/views/shared/_simulator.html.haml:52
-msgid "Batch Mode"
-msgstr "Kötegelt mód"
-
-#: ../app/views/shared/_simulator.html.haml:82
-#: ../app/views/shared/_simulator.html.haml:184
-msgid "Summary"
-msgstr "Összefoglaló"
-
-#: ../app/views/shared/_simulator.html.haml:84
-#: ../app/views/shared/_simulator.html.haml:215
-msgid "CIB (in)"
-msgstr "CIB (be)"
-
-#: ../app/views/shared/_simulator.html.haml:86
-#: ../app/views/shared/_simulator.html.haml:246
-msgid "CIB (out)"
-msgstr "CIB (ki)"
-
-#: ../app/views/shared/_simulator.html.haml:88
-#: ../app/views/shared/_simulator.html.haml:277
-msgid "Transition Graph"
-msgstr "Átváltási grafikon"
-
-#: ../app/views/shared/_simulator.html.haml:90
-msgid "Transition"
-msgstr "Átváltások"
-
-#: ../app/views/shared/_simulator.html.haml:101
-msgid "Inject"
-msgstr "Bejegyzés"
-
-#: ../app/views/shared/_simulator.html.haml:107
-msgid "Node Event"
-msgstr "Csomópontesemény"
-
-#: ../app/views/shared/_simulator.html.haml:110
-msgid "Resource Event"
-msgstr "Erőforrás-esemény"
-
-#: ../app/views/shared/_simulator.html.haml:113
-msgid "Ticket Event"
-msgstr "Jegyesemény"
-
-#: ../app/views/shared/_simulator.html.haml:308
-msgid "Transition (XML)"
-msgstr "Átváltás (XML)"
-
-#: ../app/views/shared/_simulator.html.haml:341
-msgid "Inject Node Event"
-msgstr "Csomópont-esemény bejegyzése"
-
-#: ../app/views/shared/_simulator.html.haml:406
-msgid "Inject Resource Event"
-msgstr "Erőforrás-esemény bejegyzése"
-
-#: ../app/views/shared/_simulator.html.haml:450
-msgid "Interval (ms)"
-msgstr "Időköz (ms)"
-
-#: ../app/views/shared/_simulator.html.haml:480
-msgid "Result"
-msgstr "Eredmény"
-
-#: ../app/views/shared/_simulator.html.haml:518
-msgid "Inject Ticket Event"
-msgstr "Jegyesemény bejegyzése"
-
-#: ../app/views/shared/_simulator.html.haml:545
 msgid "Action"
 msgstr "Művelet"
 
-#: ../app/views/shared/_usernav.html.haml:6
-msgid "Batch Configuration Changes"
-msgstr "Konfiguráció kötegelt módosításai"
+msgid "Actions"
+msgstr "Műveletek"
 
-#: ../app/views/shared/_usernav.html.haml:6
-#: ../app/views/shared/_usernav.html.haml:14
-msgid "Batch"
-msgstr "Köteg"
+msgid "Add"
+msgstr "Hozzáadás"
 
-#: ../app/views/shared/_usernav.html.haml:34
-msgid "Logout"
-msgstr "Kijelentkezés"
+msgid "Add Cluster"
+msgstr "Fürt hozzáadása"
 
-#: ../app/views/shared/_usernav.html.haml:40
-msgid "Menu"
-msgstr "Menü"
+msgid "Add Constraint"
+msgstr "Megszorítás hozzáadása"
 
-#: ../app/views/tags/_form.html.haml:34
-msgid "No objects available"
-msgstr "Nem érhetők el objektumok"
+msgid "Add Resource"
+msgstr "Erőforrás hozzáadása"
 
-#: ../app/views/tickets/_form.html.haml:16
-msgid "Ticket ID"
-msgstr "Jegyazonosító"
+msgid "Add a rule below"
+msgstr "Szabály hozzáadása alább"
 
-#: ../app/views/tickets/_form.html.haml:18
-#: ../app/views/tickets/show.html.haml:63
-msgid "Loss Policy"
-msgstr "Adatvesztési házirend"
+msgid "Advanced"
+msgstr "Speciális"
 
-#: ../app/views/tickets/show.html.haml:9
-msgid "Ticket:"
-msgstr "Jegy:"
+msgid "Advisory"
+msgstr "Tájékoztatás"
 
-#: ../app/views/tickets/show.html.haml:26
-msgid "Properties"
-msgstr "Tulajdonságok"
+msgid "After the specified timeout period, the operation will be treated as failed."
+msgstr "A megadott időtúllépési időszak után a műveletet sikertelennek tekinti a rendszer."
 
-#: ../app/views/tickets/show.html.haml:69
-msgid "None"
-msgstr "Nincs"
+msgid "Agent"
+msgstr "Ügynök"
 
-#: ../app/views/tickets/show.html.haml:106
-msgid "Leader"
-msgstr "Vezető"
+msgid "Always"
+msgstr "Mindig"
 
-#: ../app/views/tickets/show.html.haml:119
-msgid "Expires"
-msgstr "Lejár"
+msgid "An error has occurred"
+msgstr "Hiba történt"
 
-#: ../app/views/tickets/show.html.haml:132
-msgid "Commit"
-msgstr "Véglegesítés"
+msgid "Any changes will be lost - do you wish to proceed?"
+msgstr "Minden változás el fog veszni - szeretné folytatni?"
 
-#: ../app/views/tickets/show.html.haml:189
-msgid "Sites"
-msgstr "Helyek"
+msgid "Any pending changes to the configuration will be lost - do you wish to proceed?"
+msgstr "Minden függőben lévő konfigurációváltozás el fog veszni. Szeretné folytatni?"
 
-#: ../app/views/tickets/show.html.haml:224
+msgid "Applied configuration successfully"
+msgstr "A konfiguráció alkalmazása sikeresen megtörtént."
+
+msgid "Apply"
+msgstr "Alkalmaz"
+
+msgid "Apply Configuration"
+msgstr "A konfiguráció alkalmazása"
+
+msgid "Applying configuration changes..."
+msgstr "Konfigurációs változtatások mentése..."
+
+msgid "April"
+msgstr "április"
+
 msgid "Arbitrators"
 msgstr "Értelmezők"
 
-#: ../app/views/users/_form.html.haml:10 ../app/views/users/_form.html.haml:13
-msgid "Target ID"
-msgstr "Célazonosító"
+msgid "Are you sure you wish to delete %s?"
+msgstr "Biztos, hogy törölni akarja: %s?"
 
-#: ../app/views/wizards/create.html.haml:21
-msgid "Verifying parameters..."
-msgstr "Paraméterek ellenőrzése…"
+msgid "At least one role is required"
+msgstr "Legalább egy szerepet meg kell adni"
 
-#: ../app/views/wizards/create.html.haml:26
-#: ../app/views/wizards/show.html.haml:129
-#: ../app/views/wizards/update.html.haml:106
-msgid "Do you really want to cancel the wizard setup?"
-msgstr "Valóban megszakítja a varázsló telepítését?"
+msgid "At least one rule is required"
+msgstr "Legalább egy szabályt meg kell adni."
 
-#: ../app/views/wizards/create.html.haml:30
+msgid "Attribute"
+msgstr "Attribútum"
+
+msgid "Attribute contains both single and double quotes"
+msgstr "Az attribútum szimpla és dupla idézőjelet és tartalmaz"
+
+msgid "Attributes"
+msgstr "Attribútumok"
+
+msgid "August"
+msgstr "Augusztus"
+
+msgid "Away from current node"
+msgstr "Eltávolítás a jelenlegi csomópontról"
+
+msgid "Back"
+msgstr "Vissza"
+
+msgid "Batch"
+msgstr "Köteg"
+
+msgid "Batch Configuration Changes"
+msgstr "Konfiguráció kötegelt módosításai"
+
+msgid "Batch Mode"
+msgstr "Kötegelt mód"
+
+msgid "Batch Mode Active"
+msgstr "A kötegelt mód aktív"
+
+msgid "Boolean Operator"
+msgstr "Logikai operátor"
+
+msgid "CIB (in)"
+msgstr "CIB (be)"
+
+msgid "CIB (out)"
+msgstr "CIB (ki)"
+
+msgid "CIB Schema Version"
+msgstr "CIB-sémaverzió"
+
+msgid "CIB file \"%{path}\" not found"
+msgstr "A(z) \"%{path}\" CIB fájl nem található"
+
+msgid "Calculating list of changes..."
+msgstr "A változások listájának kiszámítása…"
+
+msgid "Call"
+msgstr "Hívás"
+
+msgid "Cancel"
+msgstr "Mégse"
+
+msgid "Cannot display diff, too few transitions"
+msgstr "Nem sikerült megjeleníteni a különbözetet, kevés az átváltás"
+
+msgid "Changes applied successfully."
+msgstr "A változtatások alkalmazása sikeresen megtörtént."
+
+msgid "Changes the behavior of ordering constraints (between clones/masters) so that instances can start/stop as soon as their peer instance has (rather than waiting for every instance of the other clone has)."
+msgstr "Módosítja a fürtök/elsődleges kiszolgálók sorrendmegszorításainak működését, hogy a példányok azonnal elindulhassanak vagy leállhassanak, ha a társpéldányuk már elindult (ahelyett, hogy várnának a másik klón minden példányára)."
+
+msgid "Child"
+msgstr "Gyermek"
+
+msgid "Child Resource"
+msgstr "Gyermek erőforrás"
+
+msgid "Child resource to use as clone."
+msgstr "Klónként használandó gyermekerőforrás"
+
+msgid "Children"
+msgstr "Gyermekek"
+
+msgid "Class"
+msgstr "Osztály"
+
+msgid "Clean up on all nodes"
+msgstr "Törlés az összes csomóponton"
+
+msgid "Clean up tagged resources"
+msgstr ""
+
+msgid "Cleanup"
+msgstr "Tisztítás"
+
+msgid "Clear state"
+msgstr "Állapot törlése"
+
+msgid "Cleared the node state"
+msgstr "A csomópont állapota törölve"
+
+msgid "Clone"
+msgstr "Klón"
+
+msgid "Clone ID"
+msgstr "Klón ID"
+
+msgid "Clone ID is required"
+msgstr "A klónazonosító megadása kötelező"
+
+msgid "Clone created successfully"
+msgstr "Klón létrehozása sikeresen"
+
+msgid "Clone deleted successfully"
+msgstr "Klón törlése sikeres"
+
+msgid "Clone updated successfully"
+msgstr "Klón sikeresen frissítve"
+
+msgid "Clones"
+msgstr "Klónok"
+
+msgid "Close"
+msgstr "Bezárás"
+
+msgid "Cluster Communication Stack"
+msgstr "Fürt kommunikációs verme"
+
+msgid "Cluster Configuration"
+msgstr "Fürt beállítása"
+
+msgid "Cluster Details"
+msgstr "Fürt részletei"
+
+msgid "Cluster Graph"
+msgstr "Fürtdiagram"
+
+msgid "Cluster added successfully."
+msgstr "A fürt sikeresen létrehozva."
+
+msgid "Cluster name"
+msgstr "Fürtnév"
+
+msgid "Cluster removed successfully."
+msgstr "A fürt sikeresen eltávolítva."
+
+msgid "Cluster seems to be offline"
+msgstr "A fürt offline állapotúnak látszik"
+
+msgid "Colocate resources by the given node attribute instead of by node name (the default)."
+msgstr "Erőforrások párhuzamos elhelyezése a megadott csomópont-attribútummal a csomópont neve helyett (alapértelmezés)"
+
+msgid "Colocation"
+msgstr "Elhelyezése szabály"
+
+msgid "Colocation deleted successfully"
+msgstr "A kolokáció törlése sikeres"
+
+msgid "Colocations"
+msgstr "Kolokációk"
+
+msgid "Command Log"
+msgstr "Parancsnapló"
+
+msgid "Commit"
+msgstr "Véglegesítés"
+
+msgid "Complete"
+msgstr "Befejeződött"
+
+msgid "Conditions under which the resource can be started."
+msgstr "Az erőforrás elindításának feltételei."
+
+msgid "Configuration"
+msgstr "Beállítás"
+
+msgid "Configuration updated successfully"
+msgstr "A konfiguráció frissítése sikeres"
+
+msgid "Connect"
+msgstr "Csatlakozás"
+
+msgid "Connection to server aborted - will retry every 15 seconds."
+msgstr "A kapcsolódás a kiszolgálóhoz megszakítva - újrapróbálkozás 15 másodpercenként"
+
+msgid "Connection to server failed (server down or network error - will retry every 15 seconds)."
+msgstr "Sikertelen csatlakozás a kiszolgálóhoz (A kiszolgáló ki van kapcsolva vagy hálózati probléma van -újrapróbálkozás 15 másodpercenként)."
+
+msgid "Connection to server failed - will retry every 15 seconds."
+msgstr "A kapcsolódás a kiszolgálóhoz sikertelen - újrapróbálkozás 15 másodpercenként."
+
+msgid "Connection to server timed out - will retry every 15 seconds."
+msgstr "A kapcsolódás a kiszolgálóhoz időtúllépés miatt sikertelen - újrapróbálkozás 15 másodpercenként."
+
+msgid "Connection to server timed out."
+msgstr "Kiszolgálókapcsolat időtúllépése."
+
+msgid "Connection to server was aborted."
+msgstr "A kiszolgálóhoz való csatlakozás megszakadt."
+
+msgid "Constraint ID"
+msgstr "Szabály ID"
+
+msgid "Constraint ID is required"
+msgstr "A megszorításazonosítót meg kell adni"
+
+msgid "Constraint created successfully"
+msgstr "A szabály sikeresen létrejött"
+
+msgid "Constraint is too complex - it contains nested rules"
+msgstr "Túl komplex szabály - beágyazott szabályok vannak"
+
+msgid "Constraint must consist of at least one separate resources"
+msgstr "A megszorításnak tartalmaznia kell legalább egy különálló erőforrást"
+
+msgid "Constraint must consist of at least two separate resources"
+msgstr "A szabálynak legalább két különböző erőforrást kell tartalmaznia"
+
+msgid "Constraint updated successfully"
+msgstr "A szabály frissítése sikeres"
+
+msgid "Constraint:"
+msgstr "Megszorítás:"
+
+msgid "Constraints"
+msgstr "Megszorítások"
+
+msgid "Controls resource discovery for the specified resource on nodes covered by the constraint. always: Always perform resource discovery (default). never: Never perform resource discovery for the specified resource on this node. This option should generally be used with a -INFINITY score. exclusive: Only perform resource discovery for the specified resource on this node."
+msgstr "A megadott erőforrás felfedezését szabályozza azokon a csomópontokon, amelyekre érvényes a megszorítás. always: az erőforrás felfedezése mindig történjen meg (alapértelmezés). never: ezen a csomóponton soha ne történjen meg a megadott erőforrás felfedezése. Ezt a paramétert általában -INFINITY pontszámmal kell használni. exclusive: A megadott erőforrásra vonatkozóan csak ezen a csomóponton történjen felfedezés."
+
+msgid "Copy"
+msgstr "Másolás"
+
+msgid "Could not cancel report collection"
+msgstr "A jelentés adatgyűjtését nem sikerült leállítani"
+
+msgid "Create"
+msgstr "Létrehozás"
+
+msgid "Create ACL Target"
+msgstr "ACL-cél létrehozása"
+
+msgid "Create Clone"
+msgstr "Klón létrehozása"
+
+msgid "Create Colocation"
+msgstr "Kolokáció létrehozása"
+
+msgid "Create Group"
+msgstr "Csoport létrehozása"
+
+msgid "Create Location"
+msgstr "Hely létrehozása"
+
+msgid "Create Location Constraint"
+msgstr "Elhelyezési szabály létrehozása"
+
+msgid "Create Multi-state"
+msgstr "Többállapotú létrehozása"
+
+msgid "Create Multi-state resource"
+msgstr "Többállapotú erőforrás létrehozása"
+
+msgid "Create Order"
+msgstr "Sorrend létrehozása"
+
+msgid "Create Primitive"
+msgstr "Primitív létrehozása"
+
+msgid "Create Role"
+msgstr "Sze_repkör létrehozása"
+
+msgid "Create Tag"
+msgstr "Címke létrehozása"
+
+msgid "Create Template"
+msgstr "Sablon létrehozása"
+
+msgid "Create Ticket"
+msgstr "Jegy létrehozása"
+
+msgid "Created"
+msgstr "Létrehozva"
+
+msgid "Created a new shadow CIB for %USER%."
+msgstr "Megtörtént az új árnyék CIB létrehozása %USER% számára."
+
+msgid "Current Configuration Version"
+msgstr "Jelenlegi konfiguráció verziója"
+
+msgid "Custom"
+msgstr "Egyéni"
+
+msgid "DC"
+msgstr "DC"
+
+msgid "Dashboard"
+msgstr "Vezérlőpult"
+
+msgid "Data collection in progress..."
+msgstr "Adatgyűjtés folyamatban..."
+
+msgid "December"
+msgstr "december"
+
+msgid "Default"
+msgstr "Alapértelmezett"
+
+msgid "Define a monitor operation to instruct the cluster to ensure that the resource is still healthy."
+msgstr "Olyan figyelési művelet meghatározása, amely arra utasítja a fürtöt, hogy győződjön meg az erőforrás megfelelő állapotáról."
+
+msgid "Delete"
+msgstr "Törlés"
+
+msgid "Demote"
+msgstr "Lefokozás"
+
+msgid "Deny"
+msgstr "Elutasítás"
+
+msgid "Depth"
+msgstr "Mélység"
+
+msgid "Designated Coordinator"
+msgstr "Kijelölt koordinátor"
+
+msgid "Details"
+msgstr "Részletek"
+
+msgid "Diff"
+msgstr "Diff"
+
+#, fuzzy
+msgid "Disable Maintenance Mode"
+msgstr "Karbantartás"
+
+msgid "Discard"
+msgstr "Elvetés"
+
 msgid "Do you really want to apply the current wizard?"
 msgstr "Valóban alkalmazza az aktuális varázslót?"
 
-#: ../app/views/wizards/index.html.haml:28
-msgid "Legacy Wizards"
-msgstr "Régi varázslók"
+msgid "Do you really want to cancel the wizard setup?"
+msgstr "Valóban megszakítja a varázsló telepítését?"
 
-#: ../app/views/wizards/show.html.haml:56
+msgid "Does each copy of the clone perform a different function?"
+msgstr "Eltérő funkciót tölt be a klón mindegyik másolata?"
+
+msgid "Download"
+msgstr "Letöltés"
+
+msgid "Each rule can contain a number of expressions. The results of the expressions are combined based on the rule's boolean operator."
+msgstr "Minden szabályban több kifejezés szerepelhet. A kifejezések eredményei a szabály logikai operátorának megfelelően vannak kombinálva."
+
+msgid "Edit"
+msgstr "Szerkesztés"
+
+msgid "Edit ACL Target"
+msgstr "ACL-cél szerkesztése"
+
+msgid "Edit Clone"
+msgstr "Klón szerkesztése"
+
+msgid "Edit Colocation"
+msgstr "Kolokáció szerkesztése"
+
+msgid "Edit Configuration"
+msgstr "Konfiguráció szerkesztése"
+
+msgid "Edit Group"
+msgstr "Csoport szerkesztése"
+
+msgid "Edit Location"
+msgstr "Hely szerkesztése"
+
+msgid "Edit Location Constraint"
+msgstr "Elhelyezési szabály szerkesztése"
+
+msgid "Edit Multi-state"
+msgstr "Többállapotú szerkesztése"
+
+msgid "Edit Multi-state resource"
+msgstr "Többállapotú erőforrás szerkesztése"
+
+msgid "Edit Node"
+msgstr "Csomópont szerkesztése"
+
+msgid "Edit Order"
+msgstr "Sorrend szerkesztése"
+
+msgid "Edit Primitive"
+msgstr "Primitív szerkesztése"
+
+msgid "Edit Role"
+msgstr "Szerepkör szerkesztése"
+
+msgid "Edit Tag"
+msgstr "Címke szerkesztése"
+
+msgid "Edit Template"
+msgstr "Sablon szerkesztése"
+
+msgid "Edit Ticket"
+msgstr "Jegy szerkesztése"
+
+msgid "Elsewhere"
+msgstr "Másutt"
+
 msgid "Enable this step"
 msgstr "A lépés engedélyezése"
 
-#: ../app/views/wizards/show.html.haml:123
-msgid "This wizard takes no parameters."
-msgstr "Ez a varázsló nem fogad paramétereket."
+msgid "Epoch"
+msgstr "Epoch"
 
-#: ../app/views/wizards/show.html.haml:133
+msgid "Error"
+msgstr "Hiba"
+
+msgid "Error connecting to server."
+msgstr "Hiba a kiszolgálóhoz való csatlakozáskor."
+
+msgid "Error deleting %s"
+msgstr "Hiba a(z) %s törlésekor"
+
+msgid "Error deleting %s: %s"
+msgstr "Hiba a(z) %s törlésekor: %s"
+
+msgid "Error granting the ticket"
+msgstr "Hiba a jegy megadásakor"
+
+msgid "Error invoking %{cmd}"
+msgstr "Hiba a(z) %{cmd} parancs meghívásakor"
+
+msgid "Error invoking %{cmd}: %{msg}"
+msgstr "Hiba a(z) %{cmd} parancs meghívásakor: %{msg}"
+
+msgid "Error invoking cibadmin %{cmd}: %{msg}"
+msgstr "Hiba történt a cibadmin %{cmd} parancs meghívásakor: %{msg}"
+
+msgid "Error removing %s: %s"
+msgstr "Hiba a(z) %s eltávolításakor: %s"
+
+msgid "Error removing cluster."
+msgstr "Hiba a fürt eltávolításakor."
+
+msgid "Error revoking the ticket"
+msgstr "Hiba a jegy visszavonásakor"
+
+msgid "Error updating %{id} (rc=%{rc})"
+msgstr "Hiba a következő frissítésekor: %{id} (rc=%{rc})"
+
+msgid "Error:"
+msgstr "HIba:"
+
+#, fuzzy
+msgid "Error: Not authenticated"
+msgstr "HIba:"
+
+#, fuzzy
+msgid "Error: Permission denied for user (%s)"
+msgstr "Hozzáférés megtagadva"
+
+#, fuzzy
+msgid "Error: Record not found"
+msgstr "HIba:"
+
+msgid "Errors"
+msgstr "Hibák"
+
+msgid "Events"
+msgstr "Események"
+
+msgid "Exec"
+msgstr "Exec"
+
+msgid "Expires"
+msgstr "Lejár"
+
+msgid "Expression"
+msgstr "Kifejezés"
+
+msgid "Failed Operations"
+msgstr "Sikertelen műveletek"
+
+msgid "Failed to apply configuration"
+msgstr "A konfigurációt nem sikerült alkalmazni."
+
+msgid "Failed to clean up the resource: %{err}"
+msgstr "Nem sikerült kitakarítani az erőforrást: %{err}"
+
+msgid "Failed to clear the node state: %{err}"
+msgstr "Nem sikerült törölni a csomópont állapotát: %{err}"
+
+msgid "Failed to demote the resource: %{err}"
+msgstr "Nem sikerült lefokozni az erőforrást: %{err}"
+
+msgid "Failed to disable maintenance mode for resource: %{err}"
+msgstr ""
+
+msgid "Failed to fence the node: %{err}"
+msgstr "Nem sikerült elkeríteni a csomópontot: %{err}"
+
+msgid "Failed to fetch meta attributes"
+msgstr "Nem sikerült beolvasni a metaattribútumokat"
+
+msgid "Failed to generate"
+msgstr "Nem sikerült generálni"
+
+msgid "Failed to migrate the resource: %{err}"
+msgstr "Nem sikerült áttelepíteni az erőforrást: %{err}"
+
+msgid "Failed to parse monitor response - Internal server error."
+msgstr "A monitor válaszát nem sikerült elemezni – belső kiszolgálóhiba."
+
+msgid "Failed to promote the resource: %{err}"
+msgstr "Nem sikerült előléptetni az erőforrást: %{err}"
+
+msgid "Failed to rename %{A} to %{B}: %{E}"
+msgstr "Sikertelen átnevezés – %{A} helyett %{B} névre: %{E}"
+
+msgid "Failed to set the node online: %{err}"
+msgstr "Nem sikerült online-ra állítani a csomópontot: %{err}"
+
+msgid "Failed to set the node standby: %{err}"
+msgstr "Nem sikerült készenléti állapotra állítani a csomópontot: %{err}"
+
+msgid "Failed to set the node state to maintenance: %{err}"
+msgstr "Nem sikerült karbantartási állapotra állítani a csomópontot: %{err}"
+
+msgid "Failed to set the node state to ready: %{err}"
+msgstr "Nem sikerült üzemkész állapotra állítani a csomópontot: %{err}"
+
+#, fuzzy
+msgid "Failed to set the resource in maintenance mode: %{err}"
+msgstr "Nem sikerült beállítani az erőforrást felügyelt módban: %{err}"
+
+msgid "Failed to start the resource: %{err}"
+msgstr "Nem sikerült elindítani az erőforrást: %{err}"
+
+msgid "Failed to stop the resource: %{err}"
+msgstr "Nem sikerült leállítani az erőforrást: %{err}"
+
+msgid "Failed to unmigrate the resource: %{err}"
+msgstr "Nem sikerült visszavonni az erőforrás migrációját: %{err}"
+
+msgid "February"
+msgstr "február"
+
+msgid "Fence"
+msgstr "Elkerítés"
+
+msgid "File a Bug Report"
+msgstr ""
+
+msgid "Fr"
+msgstr "P"
+
+msgid "Freeze"
+msgstr "Fagyasztás"
+
+msgid "From"
+msgstr "Ettől:"
+
+msgid "Generate"
+msgstr "Előállítás"
+
+#, fuzzy
+msgid "Getting Started using Hawk"
+msgstr "Elindítva"
+
+msgid "Grant"
+msgstr "Megadás"
+
+msgid "Granted"
+msgstr "Megadva"
+
+msgid "Graph"
+msgstr "Grafikon"
+
+msgid "Group"
+msgstr "Csoport"
+
+msgid "Group ID"
+msgstr "Csoportazonosító (ID)"
+
+msgid "Group created successfully"
+msgstr "Csoport sikeresen létrehozva"
+
+msgid "Group deleted successfully"
+msgstr "Csoport sikeresen törölve"
+
+msgid "Group updated successfully"
+msgstr "Csoport sikeresen frissítve"
+
+msgid "Groups"
+msgstr "Csoportok"
+
+msgid "HTML"
+msgstr "HTML"
+
+msgid "Have Quorum"
+msgstr "Van kvórum"
+
+msgid "Help"
+msgstr "Súgó"
+
+msgid "High Availability Web Konsole"
+msgstr "Nagy rendelkezésre állású webkonzol"
+
+msgid "History"
+msgstr "Történet"
+
+msgid "History Explorer"
+msgstr "Előzményböngésző"
+
+msgid "Host"
+msgstr "Gép"
+
+msgid "Hostname"
+msgstr "Gépnév"
+
+msgid "Hostname of node in cluster"
+msgstr "A fürt egy csomópontjának állomásneve"
+
+msgid "How frequently (in seconds) to perform the operation."
+msgstr "Ilyen gyakorisággal kell elvégezni a műveletet (másodpercben)."
+
+msgid "How long before a pending guest connection will time out."
+msgstr "Ennyi idő után jár le egy függőben lévő vendégkapcsolat időkorlátja."
+
+msgid "How long to wait before declaring the action has failed."
+msgstr "Ennyi idő után kell sikertelennek minősíteni a műveletet."
+
+msgid "How many copies of the resource can be promoted to master status on a single node."
+msgstr "Az erőforrás ennyi példányát lehet előléptetni elsődleges (master) állapotúvá ugyanazon a csomóponton."
+
+msgid "How many copies of the resource can be promoted to master status."
+msgstr "Az erőforrás ennyi példányát lehet előléptetni elsődleges (master) állapotúvá."
+
+msgid "How many copies of the resource can be started on a single node. Defaults to 1."
+msgstr "Ennyi másolatát lehet elindítani az erőforrásnak egy csomóponton. Az alapértelmezés 1."
+
+msgid "How many copies of the resource to start. Defaults to the number of nodes in the cluster."
+msgstr "Ennyi másolatát kell elindítani az erőforrásnak. Az alapértelmezés a fürtöt alkotó csomópontok száma."
+
+msgid "How many failures may occur for this resource on a node, before this node is marked ineligible to host this resource. A value of INFINITY indicates that this feature is disabled."
+msgstr "Ennyi hiba történhet ezzel az erőforrással egy csomóponton ahhoz, hogy a csomópont alkalmatlannak minősüljön az erőforrás működtetésére. Az INFINITY érték azt jelzi, hogy a funkció le van tiltva."
+
+msgid "How many seconds to wait before acting as if the failure had not occurred, and potentially allowing the resource back to the node on which it failed. A value of 0 indicates that this feature is disabled."
+msgstr "Ennyi másodpercig várakozzon a rendszer úgy, mintha nem történt volna hiba, ezáltal lehetővé téve az erőforrás helyreállítását azon a csomóponton, amelyen a hiba történt. A 0 érték azt jelzi, hogy ez a funkció le van tiltva."
+
+msgid "How much does the resource prefer to stay where it is?"
+msgstr "Mennyire kedvező, ha az erőforrás ott marad, ahol van?"
+
+msgid "How to combine the result of multiple expression objects. Allowed values are and and or."
+msgstr "Több kifejezésobjektum eredményének együttes alkalmazási módja. Megengedett értékek: AND és OR."
+
+msgid "ID"
+msgstr "Azonosító"
+
+msgid "ID is required"
+msgstr "Azonosító szükséges"
+
+msgid "If false, the operation is treated as if it does not exist."
+msgstr "Ha hamis, a rendszer nem létezőként kezeli a műveletet."
+
+msgid "If not all resources can be active, the cluster will stop lower priority resources in order to keep higher priority ones active."
+msgstr "Ha nem lehet minden erőforrás aktív, a fürt le fogja állítani a kisebb prioritású erőforrásokat, hogy a nagyobb prioritásúak aktívak maradhassanak."
+
+msgid "If true, the intention to perform the operation is recorded so that GUIs and CLI tools can indicate that an operation is in progress."
+msgstr "Ha igaz, a rendszer rögzíti a művelet végrehajtásának szándékát, hogy a GUI felületek és a CLI eszközök jelezhessék, hogy a művelet folyamatban van."
+
+msgid "Inject"
+msgstr "Bejegyzés"
+
+msgid "Inject Node Event"
+msgstr "Csomópont-esemény bejegyzése"
+
+msgid "Inject Resource Event"
+msgstr "Erőforrás-esemény bejegyzése"
+
+msgid "Inject Ticket Event"
+msgstr "Jegyesemény bejegyzése"
+
+msgid "Instances"
+msgstr "Példányok"
+
+msgid "Interval"
+msgstr "Időköz"
+
+msgid "Interval (ms)"
+msgstr "Időköz (ms)"
+
+msgid "Invalid ACL target ID"
+msgstr "Érvénytelen ACL-célazonosító"
+
+msgid "Invalid Clone ID"
+msgstr "Érvénytelen klónazonosító"
+
+msgid "Invalid Constraint ID"
+msgstr "Érvénytelen megszorításazonosító"
+
+msgid "Invalid ID"
+msgstr "Érvénytelen azonosító"
+
+msgid "Invalid Node ID"
+msgstr "Érvénytelen csomópont-azonosító"
+
+msgid "Invalid Ticket ID"
+msgstr "Érvénytelen jegy ID"
+
+msgid "Invalid name"
+msgstr "Érvénytelen név"
+
+msgid "Invalid node attribute"
+msgstr "Érvénytelen csomópont-attribútum"
+
+msgid "Invalid resource discovery type"
+msgstr "Érvénytelen erőforrás-felfedezési típus"
+
+msgid "Invalid score \"%{score}\""
+msgstr "Érvénytelen pontszám \"%{score}\""
+
+msgid "Invalid score value"
+msgstr "Érvénytelen pontszámérték"
+
+msgid "Invalid username"
+msgstr "Érvénytelen felhasználónév"
+
+msgid "Invalid username or password"
+msgstr "Érvénytelen felhasználónév vagy jelszó"
+
+msgid "Is the cluster allowed to start and stop the resource?"
+msgstr "Jogosult a fürt az erőforrás elindítására és leállítására?"
+
+msgid "January"
+msgstr "január"
+
+msgid "July"
+msgstr "július"
+
+msgid "June"
+msgstr "június"
+
+msgid "Last Change"
+msgstr "Legutóbbi módosítás"
+
+msgid "Last Granted"
+msgstr "Legutóbb megadva"
+
+msgid "Last Written"
+msgstr "Legutóbbi írás"
+
+msgid "Leader"
+msgstr "Vezető"
+
+msgid "Legacy Wizards"
+msgstr "Régi varázslók"
+
+msgid "Limits the rule to apply only when the resource is in the specified role."
+msgstr "A szabály korlátozása arra az esetre, amikor az erőforrás a megadott szerepkörben van."
+
+msgid "Link with entry above"
+msgstr "Összekapcsolás a felette lévő bejegyzéssel"
+
+msgid "List"
+msgstr "Lista"
+
+msgid "Lists crm commands recently executed by hawk, most recent first."
+msgstr "A hawk által nemrégiben végrehajtott crm parancsok listája, elöl a legutóbbival."
+
+msgid "Loading report..."
+msgstr "Jelentés betöltése…"
+
+msgid "Local Status"
+msgstr "Helyi állapot"
+
+msgid "Location"
+msgstr "Hely"
+
+msgid "Location Constraints"
+msgstr "Elhelyezési megszorítások"
+
+msgid "Location deleted successfully"
+msgstr "A hely törlése sikeresen megtörtént"
+
+msgid "Locations"
+msgstr "Helyek"
+
+msgid "Log In"
+msgstr "Belépés"
+
+msgid "Login"
+msgstr "Bejelentkezés"
+
+msgid "Logout"
+msgstr "Kijelentkezés"
+
+msgid "Logs"
+msgstr "Naplók"
+
+msgid "Longdesc"
+msgstr "Hosszú leírás"
+
+msgid "Loss Policy"
+msgstr "Adatvesztési házirend"
+
+msgid "Maintenance"
+msgstr "Karbantartás"
+
+#, fuzzy
+msgid "Maintenance Mode"
+msgstr "Karbantartási mód"
+
+msgid "Maintenance mode"
+msgstr "Karbantartási mód"
+
+msgid "Manage"
+msgstr "Felügyelet"
+
+msgid "Mandatory"
+msgstr "Kötelező"
+
+msgid "March"
+msgstr "március"
+
+msgid "Master"
+msgstr "Elsődleges"
+
+msgid "May"
+msgstr "május"
+
+msgid "Menu"
+msgstr "Menü"
+
+msgid "Meta Attributes"
+msgstr "Metaattribútumok"
+
+msgid "Migrate"
+msgstr "Migráció"
+
+#, fuzzy
+msgid "Migrate tagged resources"
+msgstr "Migráció"
+
+msgid "Mo"
+msgstr "H"
+
+msgid "Monitor"
+msgstr "Monitor"
+
+msgid "Move rule down"
+msgstr "A szabály lejjebb mozgatása"
+
+msgid "Move rule up"
+msgstr "A szabály feljebb mozgatása"
+
+msgid "Multi-state"
+msgstr "Többállapotú"
+
+msgid "Multi-state ID"
+msgstr "Többállapotú azonosító"
+
+msgid "Multi-state Resources"
+msgstr "Többállapotú erőforrások"
+
+msgid "Multi-state resource"
+msgstr "Többállapotú erőforrás"
+
+msgid "Multi-state resource created successfully"
+msgstr "Többállapotú erőforrás sikeresen létrehozva"
+
+msgid "Multi-state resource deleted successfully"
+msgstr "A többállapotú erőforrás törlése sikeresen megtörtént"
+
+msgid "Multi-state resource updated successfully"
+msgstr "Többállapotú erőforrás sikeresen frissítve"
+
+msgid "Must be a valid resource ID"
+msgstr "Érvényes erőforrás-azonosítónak kell lennie"
+
+msgid "Name"
+msgstr "Név"
+
+msgid "Name is required"
+msgstr "A név megadása kötelező"
+
+msgid "Name of a node in the cluster."
+msgstr "A csomópont neve a fürtben."
+
+msgid "Name used to refer to the node in the cluster."
+msgstr "A csomópont neve a fürtben."
+
+msgid "Never"
+msgstr "Soha"
+
+msgid "News"
+msgstr ""
+
 msgid "Next"
 msgstr "Következő"
 
-#: ../app/views/wizards/show.html.haml:135
-msgid "Verify"
-msgstr "Ellenőrzés"
+msgid "No"
+msgstr "Nem"
 
-#: ../app/views/wizards/update.html.haml:50
-msgid "Verify and apply"
-msgstr "Ellenőrzés és alkalmazás"
+msgid "No Clone child specified"
+msgstr "Nincs megadva klóngyermek"
 
-#: ../app/views/wizards/update.html.haml:87
-msgid "To apply the changes, Hawk requires root access, and password-less SSH access must be configured. See the Hawk documentation for more information."
-msgstr "Ahhoz, hogy a Hawk alkalmazni tudja a változtatásokat, root hozzáférés szükséges, és konfigurálni kell a jelszó nélküli SSH-hozzáférést. További információkat a Hawk dokumentációjában talál."
+msgid "No Group children specified"
+msgstr "Nincsenek megadva csoportgyermekek"
 
-#: ../app/views/wizards/update.html.haml:94
+msgid "No Multi-state child specified"
+msgstr "Nincs megadva többállapotú gyermek"
+
+msgid "No Tag resources specified"
+msgstr "Nincs megadva címkeerőforrás"
+
+msgid "No attributes defined"
+msgstr "Nincsenek megadva attribútumok"
+
+msgid "No child resources"
+msgstr "Nincsenek gyermekerőforrások"
+
+msgid "No children available"
+msgstr "Nem érhető el gyermek"
+
+msgid "No configuration changes."
+msgstr "Nem történt konfigurációs változtatás."
+
+msgid "No details available"
+msgstr "Nincsenek részletek"
+
+msgid "No expressions specified"
+msgstr "Nincsenek megadva kifejezések"
+
+msgid "No interval set for monitor operation"
+msgstr "Nincs beállítva a figyelőművelet időköze"
+
+msgid "No objects available"
+msgstr "Nem érhetők el objektumok"
+
+msgid "No resource specified"
+msgstr "Nincs megadva erőforrás"
+
+msgid "No rules specified"
+msgstr "Nincsenek szabályok megadva"
+
+msgid "No transitions in report"
+msgstr "Nincsenek átváltások a jelentésben"
+
+msgid "No utilization defined"
+msgstr "Nincs meghatározva kihasználtság"
+
+msgid "Node"
+msgstr "Csomópont"
+
+msgid "Node \"%{node}\" is UNCLEAN and needs to be fenced."
+msgstr "A(z) \"%{node}\" csomópont UNCLEAN állapotú, ezért el kell keríteni."
+
+msgid "Node Attribute"
+msgstr "Csomópont-attribútum"
+
+msgid "Node Event"
+msgstr "Csomópontesemény"
+
+msgid "Node Events"
+msgstr "Csomópontesemények"
+
+msgid "Node ID"
+msgstr "Csomópont azonosítója"
+
+msgid "Node ID is required"
+msgstr "A csomópont-azonosítót meg kell adni"
+
+msgid "Node Name"
+msgstr "Csomópont neve"
+
+msgid "Node updated successfully"
+msgstr "Csomópont sikeresen frissítve"
+
+msgid "Nodes"
+msgstr "Csomópontok"
+
+msgid "None"
+msgstr "Nincs"
+
+msgid "Not a constraint"
+msgstr "Nem megszorítás"
+
+msgid "Not a resource"
+msgstr "Nem erőforrás"
+
+msgid "November"
+msgstr "november"
+
+msgid "OK"
+msgstr "OK"
+
+msgid "Object Type"
+msgstr "Objektumtípus"
+
+msgid "Object not found: %s=%s"
+msgstr "Az objektum nem található: %s=%s"
+
+msgid "Objects"
+msgstr "Objektumok"
+
+msgid "October"
+msgstr "október"
+
+msgid "Online Documentation"
+msgstr ""
+
+msgid "Operation"
+msgstr "Művelet"
+
+msgid "Operation Defaults"
+msgstr "Alapértelmezett műveletek"
+
+msgid "Operations"
+msgstr "Műveletek"
+
+msgid "Operator"
+msgstr "Operátor"
+
+msgid "Optional"
+msgstr "Opcionális"
+
+msgid "Options"
+msgstr "Beállítások"
+
+msgid "Order"
+msgstr "Sorrend"
+
+msgid "Order deleted successfully"
+msgstr "Sorrend sikeresen törölve"
+
+msgid "Orders"
+msgstr "Sorrendek"
+
+msgid "PDF"
+msgstr "PDF"
+
+msgid "PE Name"
+msgstr "PE neve"
+
+msgid "Pacemaker Version"
+msgstr "Pacemaker-verzió"
+
+msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
+msgstr "A Pacemaker nincs telepítve (%{cmd} parancs nem található)"
+
+msgid "Parameters"
+msgstr "Paraméterek"
+
+#, fuzzy
+msgid "Partial upgrade detected! Nodes report different CRM versions: %s"
+msgstr "Csomópontok"
+
+msgid "Partition without quorum! Fencing and resource management is disabled."
+msgstr ""
+
+msgid "Password"
+msgstr "Jelszó"
+
+msgid "Password not specified"
+msgstr "Nincs megadva jelszó"
+
+msgid "Permission denied"
+msgstr "Hozzáférés megtagadva"
+
+msgid "Permission denied - you do not have write access to the CIB."
+msgstr "Engedély elutasítva - nincs írási hozzáférése a CIB fájlhoz."
+
+msgid "Permission denied for user %{user}"
+msgstr "%{user} felhasználónak nincs hozzáférése"
+
+msgid "Permission denied. "
+msgstr "Engedély megtagadva. "
+
+msgid "Please ensure Javascript is enabled"
+msgstr "Ellenőrizze, hogy a JavaScript engedélyezve van-e"
+
+msgid "Please wait while report is generated..."
+msgstr "Kis türelmet, a jelentés generálása folyamatban van..."
+
+msgid "Please wait..."
+msgstr "Kérem, várjon..."
+
+msgid "Port to use for the guest connection to pacemaker_remote."
+msgstr "A pacemaker_remote elemmel vendégkapcsolat létesítésére használandó port."
+
+msgid "Positive values indicate the resources should run on this node. Negative values indicate the resources should not run on this node. Values of +/- INFINITY change \"should\"/\"should not\" to \"must\"/\"must not\"."
+msgstr "A pozitív értékek azt jelzik, hogy az erőforrásoknak ezen a csomóponton kell futniuk. A negatív értékek azt jelzik, hogy az erőforrásoknak nem ezen a csomóponton kell futniuk. A +/- INFINITY értékek hatására a \"should\"/\"should not\" értékek \"must\"/\"must not\" értékre váltanak."
+
+msgid "Preferences"
+msgstr "Tulajdonságok"
+
+msgid "Preferences updated successfully"
+msgstr "A beállítások sikeresen frissítve"
+
+msgid "Previous"
+msgstr ""
+
+msgid "Primary"
+msgstr "Elsődleges"
+
+msgid "Primitive"
+msgstr "Primitív"
+
+msgid "Primitive created successfully"
+msgstr "A primitív sikeresen elkészült"
+
+msgid "Primitive deleted successfully"
+msgstr "A primitív törlése sikeresen megtörtént"
+
+msgid "Primitive updated successfully"
+msgstr "A primitív módosítása sikeres"
+
+msgid "Primitives"
+msgstr "Primitívek"
+
+msgid "Profile"
+msgstr "Profil"
+
+msgid "Promote"
+msgstr "Előléptetés"
+
+msgid "Properties"
+msgstr "Tulajdonságok"
+
+msgid "Provider"
+msgstr "Szolgáltató"
+
+msgid "Puts the node into standby mode. The specified node is no longer able to host resources. Any resources currently active on the node will be moved to another node."
+msgstr "A csomópont készenléti módba helyezése. A megadott csomóponton ettől kezdve nem működhetnek erőforrások. A csomóponton éppen aktív erőforrások egy másik csomópontra kerülnek át."
+
+msgid "RC"
+msgstr "RC"
+
+msgid "Read"
+msgstr "Olvasás"
+
+#, fuzzy
+msgid "Read the most up-to-date documentation at the suse.com website."
+msgstr "Olvasás"
+
+#, fuzzy
+msgid "Read the release notes for the SUSE High Availability Extension."
+msgstr "Olvasás"
+
+msgid "Reason"
+msgstr "Ok"
+
+msgid "Recent events"
+msgstr "Legutóbbi események"
+
+msgid "Reference"
+msgstr "Hivatkozás"
+
+#, fuzzy
+msgid "Release Notes"
+msgstr "Nem"
+
+msgid "Remote"
+msgstr "Távoli"
+
+msgid "Remote node."
+msgstr "Távoli csomópont."
+
+msgid "Remove"
+msgstr "Eltávolítás"
+
+msgid "Remove cluster _NAME_ from dashboard?"
+msgstr "Eltávolítja a(z) _NAME_ fürtöt az irányítópultról?"
+
+msgid "Remove this rule"
+msgstr "A szabály eltávolítása"
+
+msgid "Rename"
+msgstr "Átnevezés"
+
+#, fuzzy
+msgid "Rename Constraint"
+msgstr "Megszorítás"
+
+msgid "Rename Resource"
+msgstr "Erőforrás átnevezése"
+
+msgid "Replacing previously defined monitor operation with same interval"
+msgstr "A korábban definiált ugyanilyen időközű figyelőművelet lecserélése"
+
+msgid "Report a bug or request a feature!"
+msgstr ""
+
+msgid "Report deleted successfully"
+msgstr "A jelentés sikeresen törölve"
+
+msgid "Report generation cancelled."
+msgstr "A jelentés generálása visszavonva."
+
+msgid "Report generation is complete."
+msgstr "A jelentés generálása befejeződött."
+
+msgid "Reports"
+msgstr "Jelentések"
+
+msgid "Requested wizard does not exist"
+msgstr "A kért varázsló nem létezik"
+
+msgid "Required"
+msgstr "Szükséges"
+
+msgid "Resource"
+msgstr "Erőforrás"
+
+msgid "Resource Defaults"
+msgstr "Erőforrás alapértelmezései"
+
+msgid "Resource Discovery"
+msgstr "Erőforrások felfedezése"
+
+msgid "Resource Event"
+msgstr "Erőforrás-esemény"
+
+msgid "Resource Events"
+msgstr "Erőforrás-események"
+
+msgid "Resource ID"
+msgstr "Erőforrás ID"
+
+msgid "Resource agent name."
+msgstr "Erőforrásügynök neve."
+
+msgid "Resource template to inherit from."
+msgstr "Az örökléshez használandó erőforrássablon."
+
+msgid "Resources"
+msgstr "Erőforrások"
+
+#, fuzzy
+msgid "Resources in maintenance mode are not monitored by the cluster."
+msgstr "Erőforrások"
+
+msgid "Resources to apply the constraint to."
+msgstr "Azok az erőforrások, amelyekre alkalmazni kell a megszorítást."
+
+msgid "Result"
+msgstr "Eredmény"
+
+msgid "Retrying every 15 seconds..."
+msgstr "Újrapróbálkozás 15 másodpercenként..."
+
+msgid "Revert"
+msgstr "Visszaállítás"
+
+msgid "Revoke"
+msgstr "Visszavonás"
+
+msgid "Revoked"
+msgstr "Visszavonva"
+
+msgid "Right"
+msgstr "Jobbra"
+
+msgid "Role"
+msgstr "Szerep"
+
+msgid "Role ID"
+msgstr "Szerepkör-azonosító"
+
+msgid "Role created successfully"
+msgstr "Szerepkör sikeresen létrehozva"
+
+msgid "Role deleted successfully"
+msgstr "Szerepkör sikeresen törölve"
+
+msgid "Role updated successfully"
+msgstr "Szerepkör sikeresen frissítve"
+
+msgid "Roles"
+msgstr "Szerepkörök"
+
 msgid "Root password"
 msgstr "Root-jelszó"
 
-#: ../lib/cibtools.rb:125
-msgid "other"
-msgstr "egyéb"
+msgid "Rule"
+msgstr "Szabály"
 
-#: ../lib/invoker.rb:86
+msgid "STONITH is disabled. For normal cluster operation, STONITH is required."
+msgstr "A STONITH le van tiltva. A fürt rendes működéséhez szükséges a STONITH."
+
+msgid "SUSE, LLC"
+msgstr "SUSE, LLC"
+
+msgid "Sa"
+msgstr "Szo"
+
+msgid "Schema"
+msgstr "Séma"
+
+msgid "Score"
+msgstr "Pontszám"
+
+msgid "Score is required"
+msgstr "A pontszám megadása kötelező"
+
+msgid "Secondary"
+msgstr "Másodlagos"
+
+msgid "September"
+msgstr "szeptember"
+
+msgid "Serialize"
+msgstr "Szerializálás"
+
+msgid "Server port to connect to"
+msgstr "Csatlakozás kiszolgálói portja"
+
+msgid "Server returned invalid data."
+msgstr "A kiszolgáló érvénytelen adatokat adott vissza."
+
+msgid "Session has expired"
+msgstr "Lejárt a munkamenet"
+
+msgid "Set the node state to maintenance"
+msgstr "A csomópont állapotának átállítása karbantartásra"
+
+msgid "Set the node state to online"
+msgstr "A csomópont állapotának átállítása online-ra"
+
+msgid "Set the node state to ready"
+msgstr "A csomópont állapotának átállítása üzemkészre"
+
+msgid "Set the node state to standby"
+msgstr "A csomópont állapotának átállítása készenlétire"
+
+msgid "Set to true if the resource agent supports the migrate action"
+msgstr "Igaz értékű, ha az erőforrásügynök támogatja a migráció műveletet"
+
+msgid "Shortdesc"
+msgstr "Rövid leírás"
+
+msgid "Should the copies be started in series (instead of in parallel)?"
+msgstr "Sorban egymás után kell elindítani a másolatokat (és nem párhuzamosan)?"
+
+msgid "Show"
+msgstr "Megjelenítés"
+
+msgid "Show Configuration"
+msgstr "Konfiguráció megjelenítése"
+
+msgid "Simple"
+msgstr "Egyszerű"
+
+msgid "Simulator"
+msgstr "Szimulátor"
+
+msgid "Simulator active: Use the ticket controls in the simulator"
+msgstr "A szimulátor aktív: használja a szimulátor jegy vezérlőelemeit"
+
+msgid "Sites"
+msgstr "Helyek"
+
+msgid "Slave"
+msgstr "Másodlagos"
+
+msgid "Stack"
+msgstr "Verem"
+
+msgid "Standard which the resource agent conforms to."
+msgstr "A szabvány, amelynek az erőforrásügynök megfelel."
+
+msgid "Standby"
+msgstr "Készenlét"
+
+msgid "Start"
+msgstr "Kezdés"
+
+msgid "Started"
+msgstr "Elindítva"
+
+msgid "State"
+msgstr "Állapot"
+
+msgid "Status"
+msgstr "Állapot"
+
+msgid "Stop"
+msgstr "Leállítás"
+
+msgid "Stopped"
+msgstr "Leállítva"
+
+msgid "Su"
+msgstr "V"
+
+msgid "Successfully cleaned the resource"
+msgstr "Sikeresen kitakarította az erőforrást"
+
+msgid "Successfully demoted the resource"
+msgstr "Sikeresen lefokozta az erőforrást"
+
+#, fuzzy
+msgid "Successfully disabled maintenance mode for resource"
+msgstr "V"
+
+msgid "Successfully fenced the node"
+msgstr "Sikeresen elkerítette a csomópontot"
+
+msgid "Successfully granted the ticket"
+msgstr "A jegy megadása sikeresen megtörtént"
+
+msgid "Successfully migrated the resource"
+msgstr "Sikeresen migrálta az erőforrást"
+
+msgid "Successfully promoted the resource"
+msgstr "Sikeresen előléptette az erőforrást"
+
+msgid "Successfully renamed %{A} to %{B}"
+msgstr "Sikeres átnevezés, a korábbi név: %{A}, az új név: %{B}"
+
+msgid "Successfully revoked the ticket"
+msgstr "A jegy visszavonása sikeresen megtörtént"
+
+#, fuzzy
+msgid "Successfully set the resource in maintenance mode"
+msgstr "Sikeresen beállította az erőforrást felügyelt módban"
+
+msgid "Successfully started the resource"
+msgstr "Sikeresen elindította az erőforrást"
+
+msgid "Successfully stopped the resource"
+msgstr "Sikeresen leállította az erőforrást"
+
+msgid "Successfully unmigrated the resource"
+msgstr "Sikeresen visszavonta az erőforrás migrációját"
+
+msgid "Summary"
+msgstr "Összefoglaló"
+
+msgid "Swap with entry above"
+msgstr "Felcserélés a felette lévő bejegyzéssel"
+
+msgid "Switch to maintenance"
+msgstr "Váltás karbantartásra"
+
+msgid "Switch to online"
+msgstr "Váltás online-ra"
+
+msgid "Switch to ready"
+msgstr "Váltás üzemkészre"
+
+msgid "Switch to standby"
+msgstr "Váltás készenléti állapotra"
+
+msgid "Symmetrical"
+msgstr "Szimetrikus"
+
+msgid "Tag"
+msgstr "Címke"
+
+msgid "Tag ID"
+msgstr "Címkeazonosító"
+
+msgid "Tag created successfully"
+msgstr "A címke sikeresen elkészült"
+
+msgid "Tag deleted successfully"
+msgstr "A címke törlése sikeres"
+
+msgid "Tag updated successfully"
+msgstr "A címke frissítése sikeres"
+
+msgid "Tags"
+msgstr "Címkék"
+
+msgid "Target ID"
+msgstr "Célazonosító"
+
+msgid "Targets"
+msgstr "Tárolók"
+
+msgid "Template"
+msgstr "Sablon"
+
+msgid "Template created successfully"
+msgstr "A sablon létrehozása sikeres"
+
+msgid "Template deleted successfully"
+msgstr "A sablon törlése sikeres"
+
+msgid "Template updated successfully"
+msgstr "A sablon módosítása sikeres"
+
+msgid "Templates"
+msgstr "Sablonok"
+
+msgid "Th"
+msgstr "Cs"
+
+msgid "The ACL target does not exist"
+msgstr "Az ACL-cél nem létezik."
+
+msgid "The ID \"%{id}\" does not exist"
+msgstr "A(z) \"%{id}\" azonosító nem létezik"
+
+msgid "The ID \"%{id}\" is already in use"
+msgstr "A \"%{id}\" azonosító már használatban van"
+
+msgid "The IP address or hostname to connect to if remote-node's name is not the hostname of the guest."
+msgstr "A csatlakozáshoz használandó IP-cím vagy állomásnév abban az esetben, ha a remote-node neve nem a vendég állomásneve."
+
+msgid "The action to take if this action ever fails."
+msgstr "Ha ez a művelet bármikor sikertelen, ezt a műveletet kell végrehajtani."
+
+msgid "The clone does not exist"
+msgstr "A klón nem létezik"
+
+msgid "The colocation constraint does not exist"
+msgstr "A kolokációs megszorítás nem létezik"
+
+msgid "The group does not exist"
+msgstr "A csoport nem létezik"
+
+msgid "The location constraint does not exist"
+msgstr "A helymegszorítás nem létezik"
+
+msgid "The multi-state resource does not exist"
+msgstr "A többállapotú erőforrás nem létezik"
+
+msgid "The name of the remote-node this resource defines. This both enables the resource as a remote-node and defines the unique name used to identify the remote-node. If no other parameters are set, this value will also be assumed as the hostname to connect to at the port specified by remote-port. WARNING: This value cannot overlap with any resource or node IDs. If not specified, this feature is disabled."
+msgstr "Az ez által az erőforrás által meghatározott távoli csomópont neve. Ez részint távoli csomópontként engedélyezi az erőforrást, részint meghatározza a távoli csomópont azonosítására használt egyedi nevet. Ha nincs beállítva más paraméter, akkor a rendszer ezt az értéket tekinti az állomásnévnek is, amelyhez csatlakoznia kell a remote-port beállítással megadott távoli porton. FIGYELMEZTETÉS: Ez az érték nem lehet átfedésben egyetlen erőforrás vagy csomópont azonosítójával sem. Ha nincs megadva, ez a funkció le van tiltva."
+
+msgid "The node does not exist"
+msgstr "A csomópont nem létezik"
+
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "Az objektum/attribútum nem létezik: (cibadmin %{cmd})"
 
-#: ../lib/invoker.rb:90
-msgid "Error invoking cibadmin %{cmd}: %{msg}"
-msgstr "Hiba történt a cibadmin %{cmd} parancs meghívásakor: %{msg}"
+msgid "The order constraint does not exist"
+msgstr "A sorrendmegszorítás nem létezik"
+
+msgid "The primitive does not exist"
+msgstr "A primitív nem létezik."
+
+msgid "The report does not exist"
+msgstr "A jelentés nem létezik."
+
+msgid "The role does not exist"
+msgstr "A szerepkör nem létezik."
+
+msgid "The score determines the location relationship between the resources."
+msgstr "A pontszám határozza meg az erőforrások közötti helykapcsolatot."
+
+msgid "The tag does not exist"
+msgstr "A címke nem létezik"
+
+msgid "The template does not exist"
+msgstr "A sablon nem létezik"
+
+msgid "The ticket constraint does not exist"
+msgstr "A jegymegszorítás nem létezik"
+
+msgid "This option only makes sense for recurring operations. It restricts the operation to a specific role. The truely paranoid can even specify role=Stopped which allows the cluster to detect an admin that manually started cluster services."
+msgstr "Ennek a beállításnak csak ismétlődő műveletek esetében van értelme. Egy megadott szerepkörre korlátozza a műveletet. Aki valóban paranoid, akár a role=Stopped beállítást is megadhatja, amely észleli, ha egy rendszergazda manuálisan indította el a fürtszolgáltatásokat."
+
+#, fuzzy
+msgid "This will demote the tagged resources. Do you want to continue?"
+msgstr "Cs"
+
+#, fuzzy
+msgid "This will disable maintenance mode for the tagged resources. Do you want to continue?"
+msgstr "Cs"
+
+#, fuzzy
+msgid "This will enable maintenance mode for the tagged resources. Do you want to continue?"
+msgstr "Cs"
+
+#, fuzzy
+msgid "This will promote the tagged resources. Do you want to continue?"
+msgstr "Cs"
+
+#, fuzzy
+msgid "This will start the tagged resources. Do you want to continue?"
+msgstr "Cs"
+
+#, fuzzy
+msgid "This will stop the tagged resources. Do you want to continue?"
+msgstr "Cs"
+
+#, fuzzy
+msgid "This will unmigrate the tagged resources. Do you want to continue?"
+msgstr "Cs"
+
+msgid "This wizard takes no parameters."
+msgstr "Ez a varázsló nem fogad paramétereket."
+
+msgid "Ticket"
+msgstr "Jegy"
+
+msgid "Ticket Event"
+msgstr "Jegyesemény"
+
+msgid "Ticket ID"
+msgstr "Jegyazonosító"
+
+msgid "Ticket ID is required"
+msgstr "A jegyazonosítót kötelező megadni"
+
+msgid "Ticket deleted successfully"
+msgstr "A jegy törlése sikeres"
+
+msgid "Ticket:"
+msgstr "Jegy:"
+
+msgid "Tickets"
+msgstr "Jegyek"
+
+msgid "Time"
+msgstr "Idő"
+
+msgid "Timeout"
+msgstr "Időtúllépés"
+
+msgid "To"
+msgstr "Címzett"
+
+msgid "To apply the changes, Hawk requires root access, and password-less SSH access must be configured. See the Hawk documentation for more information."
+msgstr "Ahhoz, hogy a Hawk alkalmazni tudja a változtatásokat, root hozzáférés szükséges, és konfigurálni kell a jelszó nélküli SSH-hozzáférést. További információkat a Hawk dokumentációjában talál."
+
+msgid "To enable ACLs, set \"enable-acl\" in the Cluster Configuration ('Manage > Configuration')"
+msgstr "Az ACL-ek engedélyezéséhez adja meg az \"enable-acl\" beállítást a fürt konfigurációjában (Felügyelet > Beállítás)"
+
+msgid "Transition"
+msgstr "Átváltások"
+
+msgid "Transition (XML)"
+msgstr "Átváltás (XML)"
+
+msgid "Transition Graph"
+msgstr "Átváltási grafikon"
+
+msgid "Transitions"
+msgstr "Átváltások"
+
+msgid "Tu"
+msgstr "K"
+
+msgid "Type"
+msgstr "Típus"
+
+msgid "Unable to create shadow CIB"
+msgstr "Nem hozható létre shadow CIB"
+
+msgid "Unable to create: %{msg}"
+msgstr "A létrehozás sikertelen: %{msg}"
+
+msgid "Unable to execute %{cmd}"
+msgstr "Nem futtatható parancs %{cmd}"
+
+msgid "Unable to parse CIB file \"%{path}\""
+msgstr "A(z) \"%{path}\" CIB fájl nem dolgozható fel"
+
+msgid "Unexpected server error: _MSG_"
+msgstr "Váratlan kiszolgálóhiba: _MSG_"
+
+msgid "Unique"
+msgstr "Egyedi"
+
+msgid "Unique identifier for the constraint. May not contain spaces."
+msgstr "A megszorítás egyedi azonosítója. Szóközt nem tartalmazhat."
+
+msgid "Unique identifier for the node."
+msgstr "A csomópont egyedi azonosítója."
+
+msgid "Unique identifier for the resource. May not contain spaces."
+msgstr "Az erőforrás egyedi azonosítója. Szóköz nem szerepelhet benne."
+
+msgid "Unknown"
+msgstr "Ismeretlen"
+
+msgid "Unknown error connecting to server."
+msgstr "Ismeretlen hiba történt a kiszolgálóhoz való csatlakozáskor."
+
+msgid "Unlink from entry above"
+msgstr "Leválasztás a felette lévő bejegyzésről"
+
+msgid "Unmanaged"
+msgstr "Felügyeletlen"
+
+msgid "Unmigrate"
+msgstr "Migráció visszavonása"
+
+msgid "Until"
+msgstr "Eddig:"
+
+msgid "Update Origin"
+msgstr "Eredet frissítése"
+
+msgid "Update User"
+msgstr "Felhasználó frissítése"
+
+msgid "Upload"
+msgstr "Feltöltés"
+
+msgid "Upload completed."
+msgstr "A feltöltés befejeződött."
+
+msgid "Use a wizard"
+msgstr "Varázsló használata"
+
+msgid "User ID"
+msgstr "Felhasználóazonosító"
+
+msgid "Username"
+msgstr "Felhasználónév"
+
+msgid "Username not specified"
+msgstr "Nincs megadva felhasználónév"
+
+msgid "Utilization"
+msgstr "Kihasználtság"
+
+msgid "Value contains both single and double quotes"
+msgstr "Az érték szimpla és dupla idézőjelet és tartalmaz"
+
+msgid "Vendor or project which provided the resource agent."
+msgstr "Az erőforrásügynököt biztosító gyártó vagy projekt."
+
+msgid "Verify"
+msgstr "Ellenőrzés"
+
+msgid "Verify and apply"
+msgstr "Ellenőrzés és alkalmazás"
+
+msgid "Verifying parameters..."
+msgstr "Paraméterek ellenőrzése…"
+
+msgid "Version"
+msgstr "Verzió"
+
+msgid "Visit the Hawk website for information about the latest release."
+msgstr ""
+
+msgid "We"
+msgstr "Sze"
+
+msgid "Welcome"
+msgstr "Üdvözlet"
+
+msgid "West Coast (example)"
+msgstr "Nyugati part (példa)"
+
+msgid "What conditions need to be satisfied before this action occurs."
+msgstr "Ezeknek a feltételeknek kell teljesülniük ahhoz, hogy sor kerüljön a műveletre."
+
+msgid "What should the cluster do if it ever finds the resource active on more than one node?"
+msgstr "Mi a fürt teendője, ha bármikor azt tapasztalja, hogy több csomóponton aktív az erőforrás?"
+
+msgid "What state should the cluster attempt to keep this resource in?"
+msgstr "Milyen állapotban próbálja tartani a fürt ezt az erőforrást?"
+
+msgid "When stopping or starting a copy of the clone, tell all the other copies beforehand and when the action was successful."
+msgstr "A klón egy másolatának elindításakor és leállításakor előzőleg (és a művelet sikeres befejezésekor) értesíti a többi másolatot."
+
+msgid "Wizard cannot be applied when the simulator is active"
+msgstr "A varázsló nem alkalmazható, ha a szimulátor aktív"
+
+msgid "Wizards"
+msgstr "Varázslók"
+
+msgid "Write"
+msgstr "Írás"
+
+msgid "XML"
+msgstr "XML"
+
+msgid "XPath"
+msgstr "XPath"
+
+msgid "Yes"
+msgstr "Igen"
+
+msgid "You have been logged out"
+msgstr "Kijelentkezett"
+
+msgid "You have no template feature support"
+msgstr "Nincs sablonfunkció-támogatása"
+
+msgid "Zoom in"
+msgstr ""
+
+msgid "Zoom out"
+msgstr ""
+
+msgid "_OP_ failed on _NODE_} (rc=_RC_, reason=_REASON_)"
+msgstr "A(z) _OP_ hibával leállt itt: _NODE_} (rc=_RC_, ok=_REASON_)"
+
+msgid "configuration error"
+msgstr "konfigurációs hiba"
+
+msgid "failed (master)"
+msgstr "hiba (elsődleges)"
+
+msgid "generic error"
+msgstr "általános hiba"
+
+msgid "incorrect arguments"
+msgstr "helytelen argumentumok"
+
+msgid "installation error"
+msgstr "telepítési hiba"
+
+msgid "insufficient permissions"
+msgstr "elégtelen engedélyek"
+
+msgid "is required"
+msgstr "szükséges"
+
+msgid "must be a valid datetime"
+msgstr "érvényes dátumnak kell lennie"
+
+msgid "must have correct MIME type (was %s)"
+msgstr "helyes MIME típusúnak kell lennie (%s volt)"
+
+msgid "must have correct file extension"
+msgstr "helyes fájlkiterjesztésűnek kell lennie"
+
+msgid "node1.west.example.com"
+msgstr "csomopont1.nyugat.pelda.com"
+
+msgid "not running"
+msgstr "nem fut"
+
+msgid "other"
+msgstr "egyéb"
+
+msgid "running (master)"
+msgstr "fut (elsődleges)"
+
+msgid "success"
+msgstr "sikerült"
+
+msgid "unimplemented action"
+msgstr "nem implementált művelet"

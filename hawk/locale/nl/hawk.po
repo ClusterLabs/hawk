@@ -5,7 +5,6 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-04-26 18:17+0200\n"
 "PO-Revision-Date: 2016-06-01 11:30\n"
 "Last-Translator: Novell language <language@novell.com>\n"
 "Language-Team: Novell language <language@novell.com>\n"
@@ -15,2970 +14,1948 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: ../app/assets/javascripts/dashboard.js:22
-msgid "Error"
-msgstr "Fout"
-
-#: ../app/assets/javascripts/dashboard.js:25
-msgid "Unexpected server error: _MSG_"
-msgstr "Onverwachte serverfout: _MSG_"
-
-#: ../app/assets/javascripts/dashboard.js:28
-msgid "Connection to server failed (server down or network error - will retry every 15 seconds)."
-msgstr "Verbinding met server mislukt (server uitgevallen of netwerkfout. Er wordt elke 15 seconden een nieuwe poging gedaan)."
-
-#: ../app/assets/javascripts/dashboard.js:31
-#: ../app/assets/javascripts/module/monitor.js:71
-msgid "Connection to server timed out - will retry every 15 seconds."
-msgstr "Er is een time-out voor de verbinding met de server opgetreden. Er wordt elke 15 seconden een nieuwe poging gedaan."
-
-#: ../app/assets/javascripts/dashboard.js:34
-#: ../app/assets/javascripts/module/monitor.js:49
-msgid "Connection to server aborted - will retry every 15 seconds."
-msgstr "Verbinding met server afgebroken. Er wordt elke 15 seconden een nieuwe poging gedaan."
-
-#: ../app/assets/javascripts/dashboard.js:37
-msgid "Permission denied"
-msgstr "Toestemming geweigerd"
-
-#: ../app/assets/javascripts/dashboard.js:40
-msgid "_OP_ failed on _NODE_} (rc=_RC_, reason=_REASON_)"
-msgstr "_OP_ failed on _NODE_} (rc=_RC_, reason=_REASON_)"
-
-#: ../app/assets/javascripts/dashboard.js:195
-msgid "Permission denied. "
-msgstr "Toestemming geweigerd. "
-
-#: ../app/assets/javascripts/dashboard.js:215
-msgid "Error connecting to server."
-msgstr "Fout bij het maken van verbinding met server."
-
-#: ../app/assets/javascripts/dashboard.js:217
-msgid "Connection to server timed out."
-msgstr "Er is een time-out opgetreden voor de verbinding met de server."
-
-#: ../app/assets/javascripts/dashboard.js:219
-msgid "Connection to server was aborted."
-msgstr "Verbinding met server is afgebroken."
-
-#: ../app/assets/javascripts/dashboard.js:221
-msgid "Server returned invalid data."
-msgstr "De server heeft ongeldige data geretourneerd."
-
-#: ../app/assets/javascripts/dashboard.js:225
-msgid "Unknown error connecting to server."
-msgstr "Onbekende fout bij het maken van verbinding met server."
-
-#: ../app/assets/javascripts/dashboard.js:228
-msgid "Retrying every 15 seconds..."
-msgstr "Opnieuw proberen elke 15 seconden..."
-
-#: ../app/assets/javascripts/dashboard.js:250
-#: ../app/assets/javascripts/module/basics.js:182
-#: ../app/assets/javascripts/module/reports.js:168
-#: ../app/assets/javascripts/module/resources.js:42
-#: ../app/views/cib/apply.html.haml:43 ../app/views/reports/index.html.haml:59
-#: ../app/views/reports/show.html.haml:43
-#: ../app/views/resources/rename.html.haml:51
-#: ../app/views/shared/_simulator.html.haml:386
-#: ../app/views/shared/_simulator.html.haml:498
-#: ../app/views/shared/_simulator.html.haml:563
-#: ../app/views/wizards/create.html.haml:26
-#: ../app/views/wizards/show.html.haml:129
-#: ../app/views/wizards/update.html.haml:106
-msgid "Cancel"
-msgstr "Annuleren"
-
-#: ../app/assets/javascripts/dashboard.js:374
-msgid "Hostname"
-msgstr "Hostnaam"
-
-#: ../app/assets/javascripts/dashboard.js:375
-#: ../app/views/sessions/new.html.haml:2
-msgid "Username"
-msgstr "Gebruikersnaam"
-
-#: ../app/assets/javascripts/dashboard.js:376
-#: ../app/views/sessions/new.html.haml:4
-msgid "Password"
-msgstr "Wachtwoord"
-
-#: ../app/assets/javascripts/dashboard.js:377
-msgid "Connect"
-msgstr "Verbinden"
-
-#: ../app/assets/javascripts/dashboard.js:425
-msgid "Local Status"
-msgstr "Lokale status"
-
-#: ../app/assets/javascripts/dashboard.js:441
-msgid "Remove cluster _NAME_ from dashboard?"
-msgstr "Cluster _NAME_ van dashboard verwijderen?"
-
-#: ../app/assets/javascripts/dashboard.js:468
-msgid "Cluster removed successfully."
-msgstr "Cluster is verwijderd."
-
-#: ../app/assets/javascripts/dashboard.js:473
-msgid "Error removing cluster."
-msgstr "Fout bij het verwijderen van cluster."
-
-#: ../app/assets/javascripts/dashboard.js:489
-msgid "Please wait..."
-msgstr "Een ogenblik geduld..."
-
-#: ../app/assets/javascripts/dashboard.js:499
-msgid "Cluster added successfully."
-msgstr "Cluster is toegevoegd."
-
-#: ../app/assets/javascripts/module/attrlist.js:21
-#: ../app/assets/javascripts/module/constraint.js:19
-#: ../app/assets/javascripts/module/location.js:16
-#: ../app/assets/javascripts/module/oplist.js:66
-#: ../app/assets/javascripts/module/wizattrlist.js:20
-#: ../app/helpers/form_helper.rb:23 ../app/helpers/role_helper.rb:31
-#: ../app/helpers/user_helper.rb:31 ../app/views/clones/edit.html.haml:13
-#: ../app/views/clones/index.html.haml:13
-#: ../app/views/colocations/edit.html.haml:13
-#: ../app/views/colocations/index.html.haml:13
-#: ../app/views/constraints/index.html.haml:13
-#: ../app/views/groups/edit.html.haml:13
-#: ../app/views/groups/index.html.haml:13
-#: ../app/views/locations/edit.html.haml:13
-#: ../app/views/locations/index.html.haml:13
-#: ../app/views/masters/edit.html.haml:13
-#: ../app/views/masters/index.html.haml:13
-#: ../app/views/orders/edit.html.haml:13
-#: ../app/views/orders/index.html.haml:13
-#: ../app/views/primitives/_form.html.haml:80
-#: ../app/views/primitives/index.html.haml:13
-#: ../app/views/resources/index.html.haml:13
-#: ../app/views/roles/index.html.haml:15 ../app/views/tags/edit.html.haml:13
-#: ../app/views/tags/index.html.haml:13 ../app/views/tickets/edit.html.haml:13
-#: ../app/views/tickets/index.html.haml:13
-#: ../app/views/users/index.html.haml:15
-msgid "Create"
-msgstr "Maken"
-
-#: ../app/assets/javascripts/module/attrlist.js:22
-#: ../app/assets/javascripts/module/constraint.js:20
-#: ../app/assets/javascripts/module/location.js:17
-#: ../app/assets/javascripts/module/oplist.js:68
-#: ../app/assets/javascripts/module/wizattrlist.js:21
-msgid "Remove"
-msgstr "Verwijderen"
-
-#: ../app/assets/javascripts/module/attrlist.js:23
-#: ../app/assets/javascripts/module/oplist.js:69
-#: ../app/assets/javascripts/module/wizattrlist.js:22
-#: ../app/helpers/form_helper.rb:6 ../app/views/tickets/show.html.haml:52
-msgid "Yes"
-msgstr "Ja"
-
-#: ../app/assets/javascripts/module/attrlist.js:24
-#: ../app/assets/javascripts/module/oplist.js:70
-#: ../app/assets/javascripts/module/wizattrlist.js:23
-#: ../app/helpers/form_helper.rb:6 ../app/views/tickets/show.html.haml:55
-msgid "No"
-msgstr "Nee"
-
-#: ../app/assets/javascripts/module/attrlist.js:156
-#: ../app/assets/javascripts/module/constraint.js:159
-#: ../app/assets/javascripts/module/forms.js:14
-#: ../app/assets/javascripts/module/location.js:183
-#: ../app/assets/javascripts/module/oplist.js:342
-#: ../app/assets/javascripts/module/profiles.js:23
-#: ../app/assets/javascripts/module/roles.js:179
-#: ../app/assets/javascripts/module/users.js:135
-#: ../app/assets/javascripts/module/wizattrlist.js:165
-#: ../app/helpers/crm_config_helper.rb:10 ../app/helpers/form_helper.rb:14
-#: ../app/helpers/profile_helper.rb:21 ../app/helpers/role_helper.rb:17
-#: ../app/helpers/user_helper.rb:17
-msgid "Any changes will be lost - do you wish to proceed?"
-msgstr "Wijzigingen gaan verloren. Wilt u doorgaan?"
-
-#: ../app/assets/javascripts/module/basics.js:14 ../app/models/record.rb:11
-#: ../app/models/tag.rb:14
-msgid "Invalid ID"
-msgstr "Ongeldige id"
-
-#: ../app/assets/javascripts/module/basics.js:80
-#: ../app/assets/javascripts/module/basics.js:183
-#: ../app/assets/javascripts/module/resources.js:43
-#: ../app/views/shared/_simulator.html.haml:203
-#: ../app/views/shared/_simulator.html.haml:234
-#: ../app/views/shared/_simulator.html.haml:265
-#: ../app/views/shared/_simulator.html.haml:296
-#: ../app/views/shared/_simulator.html.haml:327
-#: ../app/views/shared/_simulator.html.haml:391
-#: ../app/views/shared/_simulator.html.haml:503
-#: ../app/views/shared/_simulator.html.haml:568
-msgid "OK"
-msgstr "Ok"
-
-#: ../app/assets/javascripts/module/basics.js:82
-msgid "Maintenance mode"
-msgstr "Onderhoudsmodus"
-
-#: ../app/assets/javascripts/module/basics.js:84
-msgid "An error has occurred"
-msgstr "Er is een fout opgetreden"
-
-#: ../app/assets/javascripts/module/basics.js:171
-#: ../app/assets/javascripts/module/resources.js:17
-#: ../app/views/agents/show.html.haml:134
-#: ../app/views/configs/meta.html.haml:12
-#: ../app/views/constraints/show.html.haml:32
-#: ../app/views/dashboards/add.html.haml:14
-#: ../app/views/nodes/events.html.haml:13
-#: ../app/views/nodes/events.html.haml:60 ../app/views/nodes/show.html.haml:13
-#: ../app/views/nodes/show.html.haml:138 ../app/views/pages/help.html.haml:13
-#: ../app/views/pages/help.html.haml:58
-#: ../app/views/resources/events.html.haml:13
-#: ../app/views/resources/events.html.haml:60
-#: ../app/views/resources/show.html.haml:346
-#: ../app/views/shared/_flash.html.haml:14
-#: ../app/views/shared/_simulator.html.haml:172
-#: ../app/views/simulator/help.html.haml:19
-#: ../app/views/tickets/show.html.haml:255
-msgid "Close"
-msgstr "Sluiten"
-
-#: ../app/assets/javascripts/module/batch.js:42
-msgid "No configuration changes."
-msgstr "Geen configuratiewijzigingen."
-
-#: ../app/assets/javascripts/module/clones.js:27
-#: ../app/views/clones/_form.html.haml:10
-#: ../app/views/clones/_form.html.haml:15
-msgid "Clone ID"
-msgstr "Kloon-id"
-
-#: ../app/assets/javascripts/module/clones.js:33
-#: ../app/assets/javascripts/module/colocations.js:33
-#: ../app/assets/javascripts/module/constraints.js:91
-#: ../app/assets/javascripts/module/groups.js:33
-#: ../app/assets/javascripts/module/locations.js:33
-#: ../app/assets/javascripts/module/masters.js:33
-#: ../app/assets/javascripts/module/nodes.js:193
-#: ../app/assets/javascripts/module/nodes.js:322
-#: ../app/assets/javascripts/module/orders.js:33
-#: ../app/assets/javascripts/module/primitives.js:75
-#: ../app/assets/javascripts/module/reports.js:303
-#: ../app/assets/javascripts/module/resources.js:268
-#: ../app/assets/javascripts/module/resources.js:645
-#: ../app/assets/javascripts/module/roles.js:33
-#: ../app/assets/javascripts/module/tags.js:42
-#: ../app/assets/javascripts/module/tickets.js:39
-#: ../app/assets/javascripts/module/tickets.js:229
-#: ../app/assets/javascripts/module/users.js:33
-#: ../app/views/primitives/_form.html.haml:159
-#: ../app/views/resources/show.html.haml:171
-msgid "Operations"
-msgstr "Bewerkingen"
-
-#: ../app/assets/javascripts/module/clones.js:95
-#: ../app/assets/javascripts/module/colocations.js:97
-#: ../app/assets/javascripts/module/constraints.js:212
-#: ../app/assets/javascripts/module/groups.js:95
-#: ../app/assets/javascripts/module/locations.js:95
-#: ../app/assets/javascripts/module/masters.js:95
-#: ../app/assets/javascripts/module/nodes.js:244
-#: ../app/assets/javascripts/module/nodes.js:335
-#: ../app/assets/javascripts/module/oplist.js:67
-#: ../app/assets/javascripts/module/orders.js:95
-#: ../app/assets/javascripts/module/primitives.js:138
-#: ../app/assets/javascripts/module/resources.js:395
-#: ../app/assets/javascripts/module/resources.js:665
-#: ../app/assets/javascripts/module/roles.js:95
-#: ../app/assets/javascripts/module/tags.js:104
-#: ../app/assets/javascripts/module/tickets.js:67
-#: ../app/assets/javascripts/module/users.js:95
-#: ../app/views/configs/show.html.haml:13
-#: ../app/views/graphs/show.html.haml:11
-msgid "Edit"
-msgstr "Bewerken"
-
-#: ../app/assets/javascripts/module/clones.js:108
-#: ../app/assets/javascripts/module/colocations.js:110
-#: ../app/assets/javascripts/module/constraints.js:222
-#: ../app/assets/javascripts/module/groups.js:108
-#: ../app/assets/javascripts/module/locations.js:108
-#: ../app/assets/javascripts/module/masters.js:108
-#: ../app/assets/javascripts/module/orders.js:108
-#: ../app/assets/javascripts/module/primitives.js:151
-#: ../app/assets/javascripts/module/reports.js:383
-#: ../app/assets/javascripts/module/resources.js:687
-#: ../app/assets/javascripts/module/roles.js:108
-#: ../app/assets/javascripts/module/tags.js:117
-#: ../app/assets/javascripts/module/tickets.js:77
-#: ../app/assets/javascripts/module/users.js:108
-#: ../app/views/clones/edit.html.haml:17
-#: ../app/views/colocations/edit.html.haml:15
-#: ../app/views/groups/edit.html.haml:17
-#: ../app/views/locations/edit.html.haml:15
-#: ../app/views/masters/edit.html.haml:17
-#: ../app/views/orders/edit.html.haml:15
-#: ../app/views/primitives/edit.html.haml:17
-#: ../app/views/reports/display.html.haml:36
-#: ../app/views/roles/edit.html.haml:13 ../app/views/tags/edit.html.haml:15
-#: ../app/views/tickets/edit.html.haml:15 ../app/views/users/edit.html.haml:13
-msgid "Delete"
-msgstr "Verwijderen"
-
-#: ../app/assets/javascripts/module/colocations.js:27
-#: ../app/assets/javascripts/module/locations.js:27
-#: ../app/assets/javascripts/module/orders.js:27
-#: ../app/models/constraint.rb:48 ../app/views/colocations/_form.html.haml:10
-#: ../app/views/colocations/_form.html.haml:13
-#: ../app/views/locations/_form.html.haml:10
-#: ../app/views/locations/_form.html.haml:13
-#: ../app/views/orders/_form.html.haml:10
-#: ../app/views/orders/_form.html.haml:13
-#: ../app/views/tickets/_form.html.haml:10
-#: ../app/views/tickets/_form.html.haml:13
-msgid "Constraint ID"
-msgstr "Beperkings-id"
-
-#: ../app/assets/javascripts/module/constraint.js:22
-msgid "Swap with entry above"
-msgstr "Wisselen met bovenstaand item"
-
-#: ../app/assets/javascripts/module/constraint.js:23
-msgid "Link with entry above"
-msgstr "Koppelen met bovenstaand item"
-
-#: ../app/assets/javascripts/module/constraint.js:24
-msgid "Unlink from entry above"
-msgstr "Ontkoppelen van bovenstaand item"
-
-#: ../app/assets/javascripts/module/constraints.js:56
-#: ../app/assets/javascripts/module/resources.js:236
-#: ../app/assets/javascripts/module/resources.js:598
-#: ../app/models/template.rb:405 ../app/views/primitives/_form.html.haml:25
-#: ../app/views/primitives/_form.html.haml:47
-#: ../app/views/resources/show.html.haml:317
-msgid "Type"
-msgstr "Type"
-
-#: ../app/assets/javascripts/module/constraints.js:63
-#: ../app/assets/javascripts/module/resources.js:217
-#: ../app/views/constraints/types.html.haml:32
-msgid "Location"
-msgstr "Locatie"
-
-#: ../app/assets/javascripts/module/constraints.js:65
-#: ../app/views/constraints/types.html.haml:41
-msgid "Colocation"
-msgstr "Colocatie"
-
-#: ../app/assets/javascripts/module/constraints.js:67
-#: ../app/views/constraints/types.html.haml:50
-msgid "Order"
-msgstr "Volgorde"
-
-#: ../app/assets/javascripts/module/constraints.js:69
-#: ../app/assets/javascripts/module/tickets.js:33
-#: ../app/assets/javascripts/module/tickets.js:156
-#: ../app/views/constraints/types.html.haml:59
-#: ../app/views/shared/_simulator.html.haml:528
-msgid "Ticket"
-msgstr "Ticket"
-
-#: ../app/assets/javascripts/module/constraints.js:76
-msgid "Constraint"
-msgstr "Beperking"
-
-#: ../app/assets/javascripts/module/constraints.js:82
-#: ../app/assets/javascripts/module/resources.js:628
-#: ../app/controllers/resources_controller.rb:211
-#: ../app/models/location.rb:223 ../app/views/cib/show.html.haml:56
-#: ../app/views/colocations/_form.html.haml:52
-#: ../app/views/configs/edit.html.haml:44
-#: ../app/views/orders/_form.html.haml:57
-#: ../app/views/resources/index.html.haml:7
-#: ../app/views/tickets/_form.html.haml:25
-msgid "Resources"
-msgstr "Resources"
-
-#: ../app/assets/javascripts/module/groups.js:27
-#: ../app/views/groups/_form.html.haml:10
-#: ../app/views/groups/_form.html.haml:15
-msgid "Group ID"
-msgstr "Groep ID"
-
-#: ../app/assets/javascripts/module/location.js:23
-#: ../app/views/roles/_form.html.haml:22
-msgid "Rule"
-msgstr "Regel"
-
-#: ../app/assets/javascripts/module/location.js:33
-#: ../app/models/colocation.rb:180 ../app/models/location.rb:229
-#: ../app/views/colocations/_form.html.haml:18
-#: ../app/views/locations/_form.html.haml:48
-#: ../app/views/orders/_form.html.haml:18
-#: ../app/views/resources/show.html.haml:319
-msgid "Score"
-msgstr "Score"
-
-#: ../app/assets/javascripts/module/location.js:41
-#: ../app/models/location.rb:248
-msgid "Role"
-msgstr "Rol"
-
-#: ../app/assets/javascripts/module/location.js:54
-msgid "Boolean Operator"
-msgstr "Boolean operator"
-
-#: ../app/assets/javascripts/module/masters.js:27
-#: ../app/views/masters/_form.html.haml:10
-#: ../app/views/masters/_form.html.haml:15
-msgid "Multi-state ID"
-msgstr "Id meervoudige toestand"
-
-#: ../app/assets/javascripts/module/monitor.js:64
-msgid "Failed to parse monitor response - Internal server error."
-msgstr "Monitorrespons parseren mislukt - interne serverfout."
-
-#: ../app/assets/javascripts/module/monitor.js:68
-#: ../app/assets/javascripts/module/status.js:129
-msgid "Connection to server failed - will retry every 15 seconds."
-msgstr "De verbinding met de server is verbroken. Er wordt elke 15 seconden een nieuwe poging gedaan."
-
-#: ../app/assets/javascripts/module/nodes.js:40
-#: ../app/assets/javascripts/module/resources.js:173
-#: ../app/assets/javascripts/module/tickets.js:127
-#: ../app/controllers/cib_controller.rb:108
-#: ../app/helpers/application_helper.rb:222 ../app/views/cib/show.html.haml:15
-#: ../app/views/resources/show.html.haml:272
-#: ../app/views/shared/_mainnav.html.haml:17
-msgid "Status"
-msgstr "Status"
-
-#: ../app/assets/javascripts/module/nodes.js:69
-msgid "Remote"
-msgstr "Extern"
-
-#: ../app/assets/javascripts/module/nodes.js:80
-#: ../app/assets/javascripts/module/nodes.js:316
-#: ../app/assets/javascripts/module/reports.js:269
-#: ../app/views/agents/show.html.haml:50
-#: ../app/views/agents/show.html.haml:101
-#: ../app/views/nodes/_form.html.haml:11
-#: ../app/views/reports/display.html.haml:42
-#: ../app/views/resources/show.html.haml:187
-msgid "Name"
-msgstr "Naam"
-
-#: ../app/assets/javascripts/module/nodes.js:86
-msgid "Maintenance"
-msgstr "Onderhoud"
-
-#: ../app/assets/javascripts/module/nodes.js:118
-msgid "Switch to ready"
-msgstr "Overschakelen naar gereed"
-
-#: ../app/assets/javascripts/module/nodes.js:131
-msgid "Switch to maintenance"
-msgstr "Overschakelen naar onderhoud"
-
-#: ../app/assets/javascripts/module/nodes.js:140
-msgid "Standby"
-msgstr "Standby"
-
-#: ../app/assets/javascripts/module/nodes.js:171
-msgid "Switch to online"
-msgstr "Overschakelen naar online"
-
-#: ../app/assets/javascripts/module/nodes.js:184
-msgid "Switch to standby"
-msgstr "Overschakelen naar stand-by"
-
-#: ../app/assets/javascripts/module/nodes.js:239
-#: ../app/helpers/ticket_helper.rb:10
-msgid "Fence"
-msgstr "Fence"
-
-#: ../app/assets/javascripts/module/nodes.js:240
-msgid "Clear state"
-msgstr "Status wissen"
-
-#: ../app/assets/javascripts/module/nodes.js:263
-msgid "Events"
-msgstr "Gebeurtenissen"
-
-#: ../app/assets/javascripts/module/nodes.js:273
-#: ../app/assets/javascripts/module/resources.js:413
-#: ../app/assets/javascripts/module/statusmatrix.js:88
-#: ../app/assets/javascripts/module/tickets.js:268
-#: ../app/views/reports/display.html.haml:180
-msgid "Details"
-msgstr "Details"
-
-#: ../app/assets/javascripts/module/nodes.js:310
-#: ../app/assets/javascripts/module/resources.js:209
-#: ../app/assets/javascripts/module/tickets.js:27
-#: ../app/views/nodes/_form.html.haml:9 ../app/views/nodes/show.html.haml:48
-#: ../app/views/resources/show.html.haml:315
-msgid "ID"
-msgstr "ID"
-
-#: ../app/assets/javascripts/module/oplist.js:71
-#: ../app/helpers/form_helper.rb:27
-msgid "Add"
-msgstr "Toevoegen"
-
-#: ../app/assets/javascripts/module/oplist.js:72
-#: ../app/assets/javascripts/module/reports.js:167
-#: ../app/helpers/crm_config_helper.rb:16 ../app/helpers/form_helper.rb:19
-#: ../app/helpers/profile_helper.rb:27 ../app/helpers/role_helper.rb:23
-#: ../app/helpers/user_helper.rb:23 ../app/views/cib/apply.html.haml:46
-#: ../app/views/primitives/_form.html.haml:85
-#: ../app/views/shared/_simulator.html.haml:22
-#: ../app/views/wizards/create.html.haml:30
-#: ../app/views/wizards/update.html.haml:112
-msgid "Apply"
-msgstr "Toepassen"
-
-#: ../app/assets/javascripts/module/oplist.js:281
-msgid "No interval set for monitor operation"
-msgstr "Geen interval ingesteld voor monitorbewerking"
-
-#: ../app/assets/javascripts/module/oplist.js:327
-msgid "Replacing previously defined monitor operation with same interval"
-msgstr "Eerder gedefinieerde monitorbewerking wordt vervangen met hetzelfde interval"
-
-#: ../app/assets/javascripts/module/primitives.js:69
-#: ../app/models/resource.rb:124 ../app/views/primitives/_form.html.haml:14
-#: ../app/views/primitives/_form.html.haml:28
-msgid "Resource ID"
-msgstr "Resource-id"
-
-#: ../app/assets/javascripts/module/primitives.js:323
-msgid "Failed to fetch meta attributes"
-msgstr "Meta-attributen kunnen niet worden opgehaald"
-
-#: ../app/assets/javascripts/module/reports.js:30
-msgid "Report generation is complete."
-msgstr "Rapport is gegenereerd."
-
-#: ../app/assets/javascripts/module/reports.js:47
-msgid "Report generation cancelled."
-msgstr "Rapport genereren geannuleerd."
-
-#: ../app/assets/javascripts/module/reports.js:169
-#: ../app/assets/javascripts/module/reports.js:281
-#: ../app/views/reports/display.html.haml:51
-#: ../app/views/reports/display.html.haml:60
-#: ../app/views/reports/display.html.haml:69
-#: ../app/views/reports/index.html.haml:29
-msgid "From"
-msgstr "Van"
-
-#: ../app/assets/javascripts/module/reports.js:170
-#: ../app/assets/javascripts/module/reports.js:294
-msgid "Until"
-msgstr "Tot"
-
-#: ../app/assets/javascripts/module/reports.js:171
-msgid "Custom"
-msgstr "Aangepast"
-
-#: ../app/assets/javascripts/module/reports.js:173
-msgid "Su"
-msgstr "Zo"
-
-#: ../app/assets/javascripts/module/reports.js:174
-msgid "Mo"
-msgstr "Ma"
-
-#: ../app/assets/javascripts/module/reports.js:175
-msgid "Tu"
-msgstr "Di"
-
-#: ../app/assets/javascripts/module/reports.js:176
-msgid "We"
-msgstr "Wo"
-
-#: ../app/assets/javascripts/module/reports.js:177
-msgid "Th"
-msgstr "Do"
-
-#: ../app/assets/javascripts/module/reports.js:178
-msgid "Fr"
-msgstr "Vr"
-
-#: ../app/assets/javascripts/module/reports.js:179
-msgid "Sa"
-msgstr "Za"
-
-#: ../app/assets/javascripts/module/reports.js:182
-msgid "January"
-msgstr "Januari"
-
-#: ../app/assets/javascripts/module/reports.js:183
-msgid "February"
-msgstr "Februari"
-
-#: ../app/assets/javascripts/module/reports.js:184
-msgid "March"
-msgstr "Maart"
-
-#: ../app/assets/javascripts/module/reports.js:185
-msgid "April"
-msgstr "April"
-
-#: ../app/assets/javascripts/module/reports.js:186
-msgid "May"
-msgstr "Mei"
-
-#: ../app/assets/javascripts/module/reports.js:187
-msgid "June"
-msgstr "Juni"
-
-#: ../app/assets/javascripts/module/reports.js:188
-msgid "July"
-msgstr "July"
-
-#: ../app/assets/javascripts/module/reports.js:189
-msgid "August"
-msgstr "Augustus"
-
-#: ../app/assets/javascripts/module/reports.js:190
-msgid "September"
-msgstr "September"
-
-#: ../app/assets/javascripts/module/reports.js:191
-msgid "October"
-msgstr "Oktober"
-
-#: ../app/assets/javascripts/module/reports.js:192
-msgid "November"
-msgstr "November"
-
-#: ../app/assets/javascripts/module/reports.js:193
-msgid "December"
-msgstr "December"
-
-#: ../app/assets/javascripts/module/reports.js:277
-#: ../app/assets/javascripts/module/reports.js:361
-#: ../app/views/configs/edit.html.haml:13
-#: ../app/views/configs/show.html.haml:16
-#: ../app/views/graphs/show.html.haml:13
-#: ../app/views/reports/display.html.haml:32
-#: ../app/views/shared/_simulator.html.haml:12
-msgid "Show"
-msgstr "Weergeven"
-
-#: ../app/assets/javascripts/module/reports.js:371
-#: ../app/views/reports/display.html.haml:34
-msgid "Download"
-msgstr "Downloaden"
-
-#: ../app/assets/javascripts/module/resources.js:183
-msgid "Unmanaged"
-msgstr "Onbeheerd"
-
-#: ../app/assets/javascripts/module/resources.js:186
-#: ../app/helpers/colocation_helper.rb:7 ../app/helpers/ticket_helper.rb:19
-msgid "Started"
-msgstr "Gestart"
-
-#: ../app/assets/javascripts/module/resources.js:189
-msgid "Primary"
-msgstr "Primair"
-
-#: ../app/assets/javascripts/module/resources.js:192
-msgid "Secondary"
-msgstr "Seconden"
-
-#: ../app/assets/javascripts/module/resources.js:195
-#: ../app/helpers/colocation_helper.rb:10 ../app/helpers/ticket_helper.rb:22
-msgid "Stopped"
-msgstr "Gestopt"
-
-#: ../app/assets/javascripts/module/resources.js:242
-#: ../app/assets/javascripts/module/resources.js:607
-#: ../app/views/resources/types.html.haml:41
-msgid "Group"
-msgstr "Groep"
-
-#: ../app/assets/javascripts/module/resources.js:244
-#: ../app/assets/javascripts/module/resources.js:611
-#: ../app/views/resources/types.html.haml:59
-msgid "Multi-state"
-msgstr "Meervoudige toestand"
-
-#: ../app/assets/javascripts/module/resources.js:246
-#: ../app/assets/javascripts/module/resources.js:609
-#: ../app/views/resources/types.html.haml:50
-msgid "Clone"
-msgstr "Klonen"
-
-#: ../app/assets/javascripts/module/resources.js:248
-#: ../app/assets/javascripts/module/resources.js:613
-#: ../app/views/resources/types.html.haml:68
-msgid "Tag"
-msgstr "Tag"
-
-#: ../app/assets/javascripts/module/resources.js:303
-msgid "Away from current node"
-msgstr "Weg van huidig knooppunt"
-
-#: ../app/assets/javascripts/module/resources.js:313
-msgid "Clean up on all nodes"
-msgstr "Op alle knooppunten opschonen"
-
-#: ../app/assets/javascripts/module/resources.js:345
-#: ../app/helpers/order_helper.rb:10 ../app/helpers/ticket_helper.rb:8
-#: ../app/models/template.rb:417
-msgid "Stop"
-msgstr "Stoppen"
-
-#: ../app/assets/javascripts/module/resources.js:349
-#: ../app/helpers/order_helper.rb:7 ../app/models/template.rb:411
-msgid "Start"
-msgstr "Begin"
-
-#: ../app/assets/javascripts/module/resources.js:353
-#: ../app/helpers/order_helper.rb:9 ../app/helpers/ticket_helper.rb:9
-msgid "Demote"
-msgstr "Degraderen"
-
-#: ../app/assets/javascripts/module/resources.js:357
-#: ../app/helpers/order_helper.rb:8
-msgid "Promote"
-msgstr "Bevorderen"
-
-#: ../app/assets/javascripts/module/resources.js:361
-msgid "Unmanage"
-msgstr "Niet beheren"
-
-#: ../app/assets/javascripts/module/resources.js:365
-#: ../app/views/shared/_mainnav.html.haml:10
-msgid "Manage"
-msgstr "Beheren"
-
-#: ../app/assets/javascripts/module/resources.js:370
-msgid "Migrate"
-msgstr "Migreren"
-
-#: ../app/assets/javascripts/module/resources.js:372
-msgid "Unmigrate"
-msgstr "Migratie ongedaan maken"
-
-#: ../app/assets/javascripts/module/resources.js:374
-msgid "Cleanup"
-msgstr "Opschoning"
-
-#: ../app/assets/javascripts/module/resources.js:388
-msgid "Recent events"
-msgstr "Recente gebeurtenissen"
-
-#: ../app/assets/javascripts/module/resources.js:488
-msgid "No child resources"
-msgstr "Geen onderliggende resources"
-
-#: ../app/assets/javascripts/module/resources.js:605
-#: ../app/views/resources/types.html.haml:32
-msgid "Primitive"
-msgstr "Primitieve"
-
-#: ../app/assets/javascripts/module/resources.js:615
-#: ../app/models/template.rb:387 ../app/views/primitives/_form.html.haml:18
-#: ../app/views/primitives/_form.html.haml:36
-#: ../app/views/resources/types.html.haml:78
-msgid "Template"
-msgstr "Sjabloon"
-
-#: ../app/assets/javascripts/module/resources.js:622
-#: ../app/views/nodes/events.html.haml:35
-#: ../app/views/shared/_simulator.html.haml:416
-msgid "Resource"
-msgstr "Resource"
-
-#: ../app/assets/javascripts/module/resources.js:676
-#: ../app/views/clones/edit.html.haml:15 ../app/views/groups/edit.html.haml:15
-#: ../app/views/masters/edit.html.haml:15
-#: ../app/views/primitives/edit.html.haml:15
-#: ../app/views/resources/rename.html.haml:23
-#: ../app/views/resources/rename.html.haml:56
-msgid "Rename"
-msgstr "Hernoemen"
-
-#: ../app/assets/javascripts/module/roles.js:27
-#: ../app/views/roles/_form.html.haml:10 ../app/views/roles/_form.html.haml:13
-msgid "Role ID"
-msgstr "Rol-id"
-
-#: ../app/assets/javascripts/module/tags.js:27
-#: ../app/views/tags/_form.html.haml:10 ../app/views/tags/_form.html.haml:15
-msgid "Tag ID"
-msgstr "Tag-id"
-
-#: ../app/assets/javascripts/module/tags.js:33
-#: ../app/views/tags/_form.html.haml:24
-msgid "Objects"
-msgstr "Objecten"
-
-#: ../app/assets/javascripts/module/tickets.js:136
-#: ../app/assets/javascripts/module/tickets.js:168
-#: ../app/views/tickets/show.html.haml:46
-msgid "Granted"
-msgstr "Toegewezen"
-
-#: ../app/assets/javascripts/module/tickets.js:142
-msgid "Elsewhere"
-msgstr "Elders"
-
-#: ../app/assets/javascripts/module/tickets.js:148
-msgid "Revoked"
-msgstr "Ingetrokken"
-
-#: ../app/assets/javascripts/module/tickets.js:162
-#: ../app/views/tickets/show.html.haml:80
-msgid "Last Granted"
-msgstr "Laatst toegewezen"
-
-#: ../app/assets/javascripts/module/tickets.js:210
-msgid "Grant"
-msgstr "Toewijzen"
-
-#: ../app/assets/javascripts/module/tickets.js:220
-#: ../app/assets/javascripts/module/tickets.js:257
-msgid "Revoke"
-msgstr "Intrekken"
-
-#: ../app/assets/javascripts/module/users.js:27
-msgid "User ID"
-msgstr "Gebruikers-id"
-
-#: ../app/assets/javascripts/module/wizards.js:12
-msgid "Must be a valid resource ID"
-msgstr "Moet een geldige resource-id zijn"
-
-#: ../app/assets/javascripts/module/wizards.js:69
-msgid "Applying configuration changes..."
-msgstr "Configuratiewijzigingen toepassen..."
-
-#: ../app/assets/javascripts/module/wizards.js:74
-msgid "Changes applied successfully."
-msgstr "Wijzigingen zijn toegepast."
-
-#: ../app/controllers/agents_controller.rb:46
-#: ../app/views/resources/show.html.haml:29
-msgid "Agent"
-msgstr "Agent"
-
-#: ../app/controllers/application_controller.rb:159
-msgid "Created a new shadow CIB for %USER%."
-msgstr "Er is een nieuwe schaduw-CIB voor %USER% gemaakt."
-
-#: ../app/controllers/application_controller.rb:164
-#: ../app/controllers/application_controller.rb:167
-msgid "Unable to create shadow CIB"
-msgstr "Kan geen schaduw-CIB maken"
-
-#: ../app/controllers/cib_controller.rb:44
-msgid "Failed to apply configuration"
-msgstr "Configuratie toepassen mislukt"
-
-#: ../app/controllers/cib_controller.rb:49
-msgid "Applied configuration successfully"
-msgstr "Configuratie is toegepast"
-
-#: ../app/controllers/clones_controller.rb:20
-#: ../app/controllers/clones_controller.rb:31
-#: ../app/views/clones/new.html.haml:7
-msgid "Create Clone"
-msgstr "Kloon maken"
-
-#: ../app/controllers/clones_controller.rb:40
-msgid "Clone created successfully"
-msgstr "De kloon is gemaakt"
-
-#: ../app/controllers/clones_controller.rb:58
-#: ../app/controllers/clones_controller.rb:67
-#: ../app/views/clones/edit.html.haml:7
-msgid "Edit Clone"
-msgstr "Kloon bewerken"
-
-#: ../app/controllers/clones_controller.rb:78
-msgid "Clone updated successfully"
-msgstr "De kloon is bijgewerkt"
-
-#: ../app/controllers/clones_controller.rb:100
-#: ../app/controllers/clones_controller.rb:107
-msgid "Clone deleted successfully"
-msgstr "De kloon is verwijderd"
-
-#: ../app/controllers/clones_controller.rb:112
-#: ../app/controllers/clones_controller.rb:116
-#: ../app/controllers/colocations_controller.rb:110
-#: ../app/controllers/colocations_controller.rb:114
-#: ../app/controllers/groups_controller.rb:112
-#: ../app/controllers/groups_controller.rb:116
-#: ../app/controllers/locations_controller.rb:129
-#: ../app/controllers/locations_controller.rb:133
-#: ../app/controllers/masters_controller.rb:112
-#: ../app/controllers/masters_controller.rb:116
-#: ../app/controllers/orders_controller.rb:111
-#: ../app/controllers/orders_controller.rb:115
-#: ../app/controllers/primitives_controller.rb:147
-#: ../app/controllers/primitives_controller.rb:151
-#: ../app/controllers/roles_controller.rb:108
-#: ../app/controllers/roles_controller.rb:112
-#: ../app/controllers/tags_controller.rb:111
-#: ../app/controllers/tags_controller.rb:115
-#: ../app/controllers/templates_controller.rb:126
-#: ../app/controllers/templates_controller.rb:130
-#: ../app/controllers/tickets_controller.rb:124
-#: ../app/controllers/tickets_controller.rb:128
-#: ../app/controllers/users_controller.rb:110
-#: ../app/controllers/users_controller.rb:114
-msgid "Error deleting %s: %s"
-msgstr "Fout bij het verwijderen van %s: %s"
-
-#: ../app/controllers/clones_controller.rb:134
-#: ../app/views/clones/index.html.haml:7
-msgid "Clones"
-msgstr "Klonen"
-
-#: ../app/controllers/clones_controller.rb:147
-msgid "The clone does not exist"
-msgstr "De kloon bestaat niet."
-
-#: ../app/controllers/colocations_controller.rb:20
-#: ../app/controllers/colocations_controller.rb:30
-#: ../app/views/colocations/new.html.haml:7
-msgid "Create Colocation"
-msgstr "Colocatie maken"
-
-#: ../app/controllers/colocations_controller.rb:39
-#: ../app/controllers/locations_controller.rb:57
-#: ../app/controllers/orders_controller.rb:39
-#: ../app/controllers/tickets_controller.rb:52
-msgid "Constraint created successfully"
-msgstr "De beperking is gemaakt"
-
-#: ../app/controllers/colocations_controller.rb:57
-#: ../app/controllers/colocations_controller.rb:66
-#: ../app/views/colocations/edit.html.haml:7
-msgid "Edit Colocation"
-msgstr "Colocatie bewerken"
-
-#: ../app/controllers/colocations_controller.rb:77
-#: ../app/controllers/locations_controller.rb:95
-#: ../app/controllers/orders_controller.rb:77
-#: ../app/controllers/tickets_controller.rb:90
-msgid "Constraint updated successfully"
-msgstr "Beperking is bijgewerkt"
-
-#: ../app/controllers/colocations_controller.rb:99
-#: ../app/controllers/colocations_controller.rb:105
-msgid "Colocation deleted successfully"
-msgstr "De colocatie is verwijderd"
-
-#: ../app/controllers/colocations_controller.rb:132
-#: ../app/views/colocations/index.html.haml:7
-msgid "Colocations"
-msgstr "Colocaties"
-
-#: ../app/controllers/colocations_controller.rb:145
-msgid "The colocation constraint does not exist"
-msgstr "De colocatiebeperking bestaat niet"
-
-#: ../app/controllers/commands_controller.rb:22
-#: ../app/views/commands/index.html.haml:7
-#: ../app/views/shared/_mainnav.html.haml:70
-msgid "Command Log"
-msgstr "Commandolog"
-
-#: ../app/controllers/constraints_controller.rb:43
-#: ../app/views/configs/edit.html.haml:58
-#: ../app/views/constraints/index.html.haml:7
-#: ../app/views/resources/show.html.haml:299
-#: ../app/views/tickets/show.html.haml:154
-msgid "Constraints"
-msgstr "Beperkingen"
-
-#: ../app/controllers/crm_config_controller.rb:26
-msgid "Configuration updated successfully"
-msgstr "Configuratie is bijgewerkt"
-
-#: ../app/controllers/crm_config_controller.rb:46
-#: ../app/views/crm_config/edit.html.haml:5
-#: ../app/views/shared/_mainnav.html.haml:65
-msgid "Cluster Configuration"
-msgstr "Clusterconfiguratie"
-
-#: ../app/controllers/dashboards_controller.rb:38
-msgid "Error removing %s: %s"
-msgstr "Fout bij het verwijderen van %s: %s"
-
-#: ../app/controllers/dashboards_controller.rb:46
-#: ../app/views/dashboards/show.html.haml:12
-#: ../app/views/shared/_mainnav.html.haml:24
-msgid "Dashboard"
-msgstr "Dashboard"
-
-#: ../app/controllers/graphs_controller.rb:49
-msgid "Cluster Graph"
-msgstr "Clustergrafiek"
-
-#: ../app/controllers/groups_controller.rb:20
-#: ../app/controllers/groups_controller.rb:31
-#: ../app/views/groups/new.html.haml:7
-msgid "Create Group"
-msgstr "Groep maken"
-
-#: ../app/controllers/groups_controller.rb:40
-msgid "Group created successfully"
-msgstr "De groep is gemaakt"
-
-#: ../app/controllers/groups_controller.rb:58
-#: ../app/controllers/groups_controller.rb:67
-#: ../app/views/groups/edit.html.haml:7
-msgid "Edit Group"
-msgstr "Groep bewerken"
-
-#: ../app/controllers/groups_controller.rb:78
-msgid "Group updated successfully"
-msgstr "Groep is bijgewerkt"
-
-#: ../app/controllers/groups_controller.rb:100
-#: ../app/controllers/groups_controller.rb:107
-msgid "Group deleted successfully"
-msgstr "De groep is verwijderd"
-
-#: ../app/controllers/groups_controller.rb:134
-#: ../app/views/groups/index.html.haml:7
-msgid "Groups"
-msgstr "Groepen"
-
-#: ../app/controllers/groups_controller.rb:147
-msgid "The group does not exist"
-msgstr "Groep bestaat niet"
-
-#: ../app/controllers/locations_controller.rb:20
-#: ../app/controllers/locations_controller.rb:39
-msgid "Create Location Constraint"
-msgstr "Locatiebeperking maken"
-
-#: ../app/controllers/locations_controller.rb:75
-#: ../app/controllers/locations_controller.rb:84
-msgid "Edit Location Constraint"
-msgstr "Locatiebeperking bewerken"
-
-#: ../app/controllers/locations_controller.rb:117
-#: ../app/controllers/locations_controller.rb:124
-msgid "Location deleted successfully"
-msgstr "Locatie is verwijderd"
-
-#: ../app/controllers/locations_controller.rb:151
-msgid "Location Constraints"
-msgstr "Locatiebeperkingen"
-
-#: ../app/controllers/locations_controller.rb:164
-msgid "The location constraint does not exist"
-msgstr "De locatiebeperking bestaat niet"
-
-#: ../app/controllers/masters_controller.rb:20
-#: ../app/controllers/masters_controller.rb:31
-msgid "Create Multi-state resource"
-msgstr "Recource meervoudige toestand maken"
-
-#: ../app/controllers/masters_controller.rb:40
-msgid "Multi-state resource created successfully"
-msgstr "De resource met meervoudige toestand is gemaakt"
-
-#: ../app/controllers/masters_controller.rb:58
-#: ../app/controllers/masters_controller.rb:67
-msgid "Edit Multi-state resource"
-msgstr "Resource meervoudige toestand bewerken"
-
-#: ../app/controllers/masters_controller.rb:78
-msgid "Multi-state resource updated successfully"
-msgstr "De resource met meervoudige toestand is bijgewerkt"
-
-#: ../app/controllers/masters_controller.rb:100
-#: ../app/controllers/masters_controller.rb:107
-msgid "Multi-state resource deleted successfully"
-msgstr "Resource meervoudige toestand is verwijderd"
-
-#: ../app/controllers/masters_controller.rb:134
-msgid "Multi-state resource"
-msgstr "Resource meervoudige toestand"
-
-#: ../app/controllers/masters_controller.rb:147
-msgid "The multi-state resource does not exist"
-msgstr "De resource meervoudige toestand bestaat niet"
-
-#: ../app/controllers/nodes_controller.rb:44
-msgid "Node updated successfully"
-msgstr "Knooppunt is bijgewerkt"
-
-#: ../app/controllers/nodes_controller.rb:62
-msgid "Failed to set the node online: %{err}"
-msgstr "Knooppunt online zetten mislukt: %{err}"
-
-#: ../app/controllers/nodes_controller.rb:62
-msgid "Set the node state to online"
-msgstr "Status van knooppunt instellen op online"
-
-#: ../app/controllers/nodes_controller.rb:66
-msgid "Set the node state to standby"
-msgstr "Status van knooppunt instellen op stand-by"
-
-#: ../app/controllers/nodes_controller.rb:66
-msgid "Failed to set the node standby: %{err}"
-msgstr "Knooppunt stand-by zetten mislukt: %{err}"
-
-#: ../app/controllers/nodes_controller.rb:70
-msgid "Failed to set the node state to maintenance: %{err}"
-msgstr "Status van knooppunt instellen op onderhoud mislukt: %{err}"
-
-#: ../app/controllers/nodes_controller.rb:70
-msgid "Set the node state to maintenance"
-msgstr "Status van knooppunt instellen op onderhoud"
-
-#: ../app/controllers/nodes_controller.rb:74
-msgid "Failed to set the node state to ready: %{err}"
-msgstr "Status van knooppunt instellen op gereed mislukt: %{err}"
-
-#: ../app/controllers/nodes_controller.rb:74
-msgid "Set the node state to ready"
-msgstr "Status van knooppunt instellen op gereed"
-
-#: ../app/controllers/nodes_controller.rb:78
-msgid "Successfully fenced the node"
-msgstr "Fence is toegepast op knooppunt"
-
-#: ../app/controllers/nodes_controller.rb:78
-msgid "Failed to fence the node: %{err}"
-msgstr "Fence toepassen op knooppunt mislukt: %{err}"
-
-#: ../app/controllers/nodes_controller.rb:82
-msgid "Failed to clear the node state: %{err}"
-msgstr "Knooppuntstatus wissen mislukt: %{err}"
-
-#: ../app/controllers/nodes_controller.rb:82
-msgid "Cleared the node state"
-msgstr "Knooppuntstatus is gewist"
-
-#: ../app/controllers/nodes_controller.rb:103
-#: ../app/views/cib/show.html.haml:80 ../app/views/configs/edit.html.haml:30
-#: ../app/views/nodes/index.html.haml:7
-msgid "Nodes"
-msgstr "Knooppunten"
-
-#: ../app/controllers/nodes_controller.rb:116
-msgid "The node does not exist"
-msgstr "Het knooppunt bestaat niet."
-
-#: ../app/controllers/orders_controller.rb:20
-#: ../app/controllers/orders_controller.rb:30
-#: ../app/views/orders/new.html.haml:7
-msgid "Create Order"
-msgstr "Volgorde maken"
-
-#: ../app/controllers/orders_controller.rb:57
-#: ../app/controllers/orders_controller.rb:66
-#: ../app/views/orders/edit.html.haml:7
-msgid "Edit Order"
-msgstr "Order bewerken"
-
-#: ../app/controllers/orders_controller.rb:99
-#: ../app/controllers/orders_controller.rb:106
-msgid "Order deleted successfully"
-msgstr "Volgorde is gemaakt"
-
-#: ../app/controllers/orders_controller.rb:133
-#: ../app/views/orders/index.html.haml:7
-msgid "Orders"
-msgstr "Volgordes"
-
-#: ../app/controllers/orders_controller.rb:146
-msgid "The order constraint does not exist"
-msgstr "De orderbeperking bestaat niet"
-
-#: ../app/controllers/pages_controller.rb:11
-msgid "Welcome"
-msgstr "Welkom"
-
-#: ../app/controllers/pages_controller.rb:21
-#: ../app/views/shared/_usernav.html.haml:28
-msgid "Help"
-msgstr "Help"
-
-#: ../app/controllers/primitives_controller.rb:20
-#: ../app/controllers/primitives_controller.rb:35
-#: ../app/controllers/primitives_controller.rb:84
-msgid "Create Primitive"
-msgstr "Primitief maken"
-
-#: ../app/controllers/primitives_controller.rb:52
-msgid "Primitive created successfully"
-msgstr "Primitieve is gemaakt"
-
-#: ../app/controllers/primitives_controller.rb:76
-#: ../app/controllers/primitives_controller.rb:102
-msgid "Edit Primitive"
-msgstr "Primitieve bewerken"
-
-#: ../app/controllers/primitives_controller.rb:113
-msgid "Primitive updated successfully"
-msgstr "De primitieve is bijgewerkt"
-
-#: ../app/controllers/primitives_controller.rb:135
-#: ../app/controllers/primitives_controller.rb:142
-msgid "Primitive deleted successfully"
-msgstr "Primitief is verwijderd"
-
-#: ../app/controllers/primitives_controller.rb:169
-msgid "Primitives"
-msgstr "Primitieven"
-
-#: ../app/controllers/primitives_controller.rb:182
-msgid "The primitive does not exist"
-msgstr "De primitieve bestaat niet."
-
-#: ../app/controllers/profiles_controller.rb:26
-msgid "Preferences updated successfully"
-msgstr "Voorkeuren zijn bijgewerkt"
-
-#: ../app/controllers/profiles_controller.rb:40
-#: ../app/views/profiles/edit.html.haml:3
-msgid "Preferences"
-msgstr "Voorkeuren"
-
-#: ../app/controllers/reports_controller.rb:51
-msgid "Please wait while report is generated..."
-msgstr "Een ogenblik geduld. Het rapport wordt gegenereerd..."
-
-#: ../app/controllers/reports_controller.rb:55
-msgid "Failed to generate"
-msgstr "Genereren is niet mogelijk"
-
-#: ../app/controllers/reports_controller.rb:73
-msgid "Upload completed."
-msgstr "Upload is voltooid."
-
-#: ../app/controllers/reports_controller.rb:116
-msgid "Could not cancel report collection"
-msgstr "Kan ophalen rapport niet annuleren"
-
-#: ../app/controllers/reports_controller.rb:226
-msgid "Cannot display diff, too few transitions"
-msgstr "Verschil kan niet worden weergegeven. Er zijn te veel overgangen."
-
-#: ../app/controllers/reports_controller.rb:246
-#: ../app/controllers/reports_controller.rb:252
-msgid "Report deleted successfully"
-msgstr "Het rapport is verwijderd"
-
-#: ../app/controllers/reports_controller.rb:257
-#: ../app/controllers/reports_controller.rb:261
-msgid "Error deleting %s"
-msgstr "Fout bij het verwijderen van %s"
-
-#: ../app/controllers/reports_controller.rb:270
-#: ../app/views/reports/display.html.haml:7
-#: ../app/views/reports/index.html.haml:7
-#: ../app/views/reports/show.html.haml:7
-msgid "History Explorer"
-msgstr "Historieverkenner"
-
-#: ../app/controllers/reports_controller.rb:276
-msgid "The report does not exist"
-msgstr "Het rapport bestaat niet"
-
-#: ../app/controllers/reports_controller.rb:388
-msgid "must be a valid datetime"
-msgstr "moet een geldige datum/tijd zijn"
-
-#: ../app/controllers/resources_controller.rb:90
-msgid "Successfully started the resource"
-msgstr "De resource is gestart"
-
-#: ../app/controllers/resources_controller.rb:91
-msgid "Failed to start the resource: %{err}"
-msgstr "De resource kan niet worden gestart: %{err}"
-
-#: ../app/controllers/resources_controller.rb:97
-msgid "Successfully stopped the resource"
-msgstr "De resource is gestopt"
-
-#: ../app/controllers/resources_controller.rb:98
-msgid "Failed to stop the resource: %{err}"
-msgstr "De resource kan niet worden gestopt: %{err}"
-
-#: ../app/controllers/resources_controller.rb:104
-msgid "Successfully promoted the resource"
-msgstr "Niveau van resource is verhoogd"
-
-#: ../app/controllers/resources_controller.rb:105
-msgid "Failed to promote the resource: %{err}"
-msgstr "Niveau van resource kan niet worden verhoogd: %{err}"
-
-#: ../app/controllers/resources_controller.rb:111
-msgid "Successfully demoted the resource"
-msgstr "Niveau van resource is verlaagd"
-
-#: ../app/controllers/resources_controller.rb:112
-msgid "Failed to demote the resource: %{err}"
-msgstr "Niveau van resource kan niet worden verlaagd: %{err}"
-
-#: ../app/controllers/resources_controller.rb:118
-msgid "Successfully set the resource in managed mode"
-msgstr "De resource is in beheerde modus ingesteld"
-
-#: ../app/controllers/resources_controller.rb:119
-msgid "Failed to set the resource in managed mode: %{err}"
-msgstr "De resource kan niet in beheerde modus worden ingesteld: %{err}"
-
-#: ../app/controllers/resources_controller.rb:125
-msgid "Successfully set the resource in unmanaged mode"
-msgstr "De resource is  in onbeheerde modus ingesteld"
-
-#: ../app/controllers/resources_controller.rb:126
-msgid "Failed to set the resource in unmanaged mode: %{err}"
-msgstr "De resource kan niet in onbeheerde modus worden ingesteld: %{err}"
-
-#: ../app/controllers/resources_controller.rb:132
-msgid "Successfully unmigrated the resource"
-msgstr "Migratie van de resource is ongedaan genmaakt"
-
-#: ../app/controllers/resources_controller.rb:133
-msgid "Failed to unmigrate the resource: %{err}"
-msgstr "Migratie van de resource kan niet ongedaan worden gemaakt: %{err}"
-
-#: ../app/controllers/resources_controller.rb:139
-msgid "Successfully migrated the resource"
-msgstr "De resource is gemigreerd"
-
-#: ../app/controllers/resources_controller.rb:140
-msgid "Failed to migrate the resource: %{err}"
-msgstr "Kan resource niet migreren: %{msg}"
-
-#: ../app/controllers/resources_controller.rb:146
-msgid "Successfully cleaned the resource"
-msgstr "De resource is opgeschoond"
-
-#: ../app/controllers/resources_controller.rb:147
-msgid "Failed to clean up the resource: %{err}"
-msgstr "De resource kan niet worden opgeschoond: %{err}"
-
-#: ../app/controllers/resources_controller.rb:165
-msgid "Successfully renamed %{A} to %{B}"
-msgstr "Naam %{A} is veranderd in %{B}"
-
-#: ../app/controllers/resources_controller.rb:174
-msgid "Failed to rename %{A} to %{B}: %{E}"
-msgstr "Kan naam %{A} niet veranderen in %{B}: %{E}"
-
-#: ../app/controllers/roles_controller.rb:22
-#: ../app/controllers/roles_controller.rb:31
-#: ../app/views/roles/new.html.haml:7
-msgid "Create Role"
-msgstr "Rol maken"
-
-#: ../app/controllers/roles_controller.rb:39
-msgid "Role created successfully"
-msgstr "De rol is gemaakt"
-
-#: ../app/controllers/roles_controller.rb:63
-#: ../app/views/roles/edit.html.haml:7
-msgid "Edit Role"
-msgstr "Rol bewerken"
-
-#: ../app/controllers/roles_controller.rb:74
-msgid "Role updated successfully"
-msgstr "De rol is bijgewerkt"
-
-#: ../app/controllers/roles_controller.rb:96
-#: ../app/controllers/roles_controller.rb:103
-msgid "Role deleted successfully"
-msgstr "De rol is verwijderd"
-
-#: ../app/controllers/roles_controller.rb:131
-msgid "ACL is not supported by the cluster"
-msgstr "ACL wordt niet ondersteund door het cluster"
-
-#: ../app/controllers/roles_controller.rb:136
-#: ../app/views/roles/index.html.haml:7
-#: ../app/views/shared/_mainnav.html.haml:86
-msgid "Roles"
-msgstr "Rollen"
-
-#: ../app/controllers/roles_controller.rb:149
-msgid "The role does not exist"
-msgstr "De rol bestaat niet"
-
-#: ../app/controllers/roles_controller.rb:158
-#: ../app/controllers/users_controller.rb:160
-msgid "To enable ACLs, set \"enable-acl\" in the Cluster Configuration ('Manage > Configuration')"
-msgstr "Als u ACL's wilt inschakelen, stelt u \"enable-acl\" in Clusterconfiguratie ('Beheren > Configuratie') in"
-
-#: ../app/controllers/sessions_controller.rb:50 ../app/models/cib.rb:536
-#: ../lib/invoker.rb:88 ../lib/invoker.rb:141
-msgid "Permission denied for user %{user}"
-msgstr "Toestemming geweigerd voor gebruiker %{user}"
-
-#: ../app/controllers/sessions_controller.rb:52
-msgid "You have been logged out"
-msgstr "U bent afgemeld."
-
-#: ../app/controllers/sessions_controller.rb:80
-msgid "Log In"
-msgstr "Aanmelden"
-
-#: ../app/controllers/simulator_controller.rb:163
-#: ../app/views/shared/_simulator.html.haml:77
-msgid "Simulator"
-msgstr "Simulatie"
-
-#: ../app/controllers/tags_controller.rb:20
-#: ../app/controllers/tags_controller.rb:30 ../app/views/tags/new.html.haml:7
-msgid "Create Tag"
-msgstr "Tag maken"
-
-#: ../app/controllers/tags_controller.rb:39
-msgid "Tag created successfully"
-msgstr "De tag is gemaakt"
-
-#: ../app/controllers/tags_controller.rb:57
-#: ../app/controllers/tags_controller.rb:66 ../app/views/tags/edit.html.haml:7
-msgid "Edit Tag"
-msgstr "Tag bewerken"
-
-#: ../app/controllers/tags_controller.rb:77
-msgid "Tag updated successfully"
-msgstr "De tag is bijgewerkt"
-
-#: ../app/controllers/tags_controller.rb:99
-#: ../app/controllers/tags_controller.rb:106
-msgid "Tag deleted successfully"
-msgstr "De tag is verwijderd"
-
-#: ../app/controllers/tags_controller.rb:133
-#: ../app/views/tags/index.html.haml:7
-msgid "Tags"
-msgstr "Tags"
-
-#: ../app/controllers/tags_controller.rb:146
-msgid "The tag does not exist"
-msgstr "De tag bestaat niet"
-
-#: ../app/controllers/templates_controller.rb:23
-#: ../app/controllers/templates_controller.rb:31
-#: ../app/controllers/templates_controller.rb:64
-msgid "Create Template"
-msgstr "Sjabloon maken"
-
-#: ../app/controllers/templates_controller.rb:40
-msgid "Template created successfully"
-msgstr "De sjabloon is gemaakt"
-
-#: ../app/controllers/templates_controller.rb:58
-#: ../app/controllers/templates_controller.rb:81
-msgid "Edit Template"
-msgstr "Sjabloon bewerken"
-
-#: ../app/controllers/templates_controller.rb:92
-msgid "Template updated successfully"
-msgstr "De sjabloon is bijgewerkt"
-
-#: ../app/controllers/templates_controller.rb:114
-#: ../app/controllers/templates_controller.rb:121
-msgid "Template deleted successfully"
-msgstr "De sjabloon is verwijderd"
-
-#: ../app/controllers/templates_controller.rb:149
-msgid "You have no template feature support"
-msgstr "U hebt geen ondersteuning voor de sjabloonfunctie"
-
-#: ../app/controllers/templates_controller.rb:154
-msgid "Templates"
-msgstr "Sjablonen"
-
-#: ../app/controllers/templates_controller.rb:167
-msgid "The template does not exist"
-msgstr "De sjabloon bestaat niet"
-
-#: ../app/controllers/tickets_controller.rb:33
-#: ../app/controllers/tickets_controller.rb:43
-#: ../app/views/tickets/new.html.haml:7
-msgid "Create Ticket"
-msgstr "Ticket maken"
-
-#: ../app/controllers/tickets_controller.rb:70
-#: ../app/controllers/tickets_controller.rb:79
-#: ../app/views/tickets/edit.html.haml:7
-msgid "Edit Ticket"
-msgstr "Ticket bewerken"
-
-#: ../app/controllers/tickets_controller.rb:112
-#: ../app/controllers/tickets_controller.rb:119
-msgid "Ticket deleted successfully"
-msgstr "Ticket is verwijderd"
-
-#: ../app/controllers/tickets_controller.rb:151
-#: ../app/controllers/tickets_controller.rb:155
-msgid "Successfully granted the ticket"
-msgstr "Het ticket is verleend"
-
-#: ../app/controllers/tickets_controller.rb:161
-#: ../app/controllers/tickets_controller.rb:165
-msgid "Error granting the ticket"
-msgstr "Fout bij verlenen van ticket"
-
-#: ../app/controllers/tickets_controller.rb:175
-#: ../app/controllers/tickets_controller.rb:181
-msgid "Successfully revoked the ticket"
-msgstr "Het ticket is ingetrokken"
-
-#: ../app/controllers/tickets_controller.rb:188
-#: ../app/controllers/tickets_controller.rb:192
-msgid "Error revoking the ticket"
-msgstr "Fout bij intrekken van ticket"
-
-#: ../app/controllers/tickets_controller.rb:201
-#: ../app/controllers/tickets_controller.rb:208 ../app/models/ticket.rb:85
-#: ../app/models/ticket.rb:92
-msgid "Simulator active: Use the ticket controls in the simulator"
-msgstr "Simulator actief: gebruik de ticketelementen in de simulator"
-
-#: ../app/controllers/tickets_controller.rb:215
-#: ../app/views/cib/show.html.haml:104 ../app/views/tickets/index.html.haml:7
-msgid "Tickets"
-msgstr "Tickets"
-
-#: ../app/controllers/tickets_controller.rb:228
-msgid "The ticket constraint does not exist"
-msgstr "De ticketbeperking bestaat niet"
-
-#: ../app/controllers/users_controller.rb:22
-#: ../app/controllers/users_controller.rb:31
-#: ../app/views/users/new.html.haml:7
-msgid "Create ACL Target"
-msgstr "ACL-doel maken"
-
-#: ../app/controllers/users_controller.rb:39
-msgid "ACL target created successfully"
-msgstr "ACL-doel is gemaakt"
-
-#: ../app/controllers/users_controller.rb:57
-#: ../app/controllers/users_controller.rb:65
-#: ../app/views/users/edit.html.haml:7
-msgid "Edit ACL Target"
-msgstr "ACL-doel bewerken"
-
-#: ../app/controllers/users_controller.rb:76
-msgid "ACL target updated successfully"
-msgstr "ACL-doel is bijgewerkt"
-
-#: ../app/controllers/users_controller.rb:98
-#: ../app/controllers/users_controller.rb:105
-msgid "ACL target deleted successfully"
-msgstr "ACL-doel is verwijderd"
-
-#: ../app/controllers/users_controller.rb:133
-msgid "ACL is not supported by this cluster."
-msgstr "ACL wordt niet ondersteund door dit cluster"
-
-#: ../app/controllers/users_controller.rb:138
-msgid "ACL Targets"
-msgstr "ACL-doelen"
-
-#: ../app/controllers/users_controller.rb:151
-msgid "The ACL target does not exist"
-msgstr "Het ACL-doel bestaat niet"
-
-#: ../app/controllers/wizards_controller.rb:47
-msgid "Session has expired"
-msgstr "Sessie is verlopen"
-
-#: ../app/controllers/wizards_controller.rb:54
-msgid "Wizard cannot be applied when the simulator is active"
-msgstr "Wizard kan niet worden toegepast wanneer de simulator actief is"
-
-#: ../app/controllers/wizards_controller.rb:109
-msgid "Use a wizard"
-msgstr "Een wizard gebruiken"
-
-#: ../app/controllers/wizards_controller.rb:127
-#: ../app/controllers/wizards_controller.rb:132
-msgid "Permission denied - you do not have write access to the CIB."
-msgstr "Toestemming geweigerd - u hebt geen schrijftoegang tot de CIB."
-
-#: ../app/controllers/wizards_controller.rb:149
-#: ../app/controllers/wizards_controller.rb:154
-msgid "Cluster seems to be offline"
-msgstr "Cluster lijkt offline te zijn"
-
-#: ../app/helpers/agents_helper.rb:59
-msgid "Required"
-msgstr "Vereist"
-
-#: ../app/helpers/agents_helper.rb:60
-msgid "Unique"
-msgstr "Uniek"
-
-#: ../app/helpers/application_helper.rb:37
-msgid "Profile"
-msgstr "Profiel"
-
-#: ../app/helpers/application_helper.rb:223
-msgid "Current Configuration Version"
-msgstr "Huidige configuratieversie"
-
-#: ../app/helpers/application_helper.rb:223
-msgid "Epoch"
-msgstr "Tijdperk"
-
-#: ../app/helpers/application_helper.rb:224
-msgid "Host"
-msgstr "Host"
-
-#: ../app/helpers/application_helper.rb:225
-msgid "DC"
-msgstr "DC"
-
-#: ../app/helpers/application_helper.rb:225
-msgid "Designated Coordinator"
-msgstr "Aangestelde coördinator"
-
-#: ../app/helpers/application_helper.rb:226
-msgid "Schema"
-msgstr "Schema"
-
-#: ../app/helpers/application_helper.rb:226
-msgid "CIB Schema Version"
-msgstr "Versie CIB-schema"
-
-#: ../app/helpers/application_helper.rb:227
-msgid "Last Written"
-msgstr "Laatst geschreven"
-
-#: ../app/helpers/application_helper.rb:228
-msgid "Update Origin"
-msgstr "Oorsprong van bijwerken"
-
-#: ../app/helpers/application_helper.rb:229
-msgid "Update User"
-msgstr "Gebruiker van bijwerken"
-
-#: ../app/helpers/application_helper.rb:230
-msgid "Have Quorum"
-msgstr "Met quorum"
-
-#: ../app/helpers/application_helper.rb:231
-#: ../app/views/reports/display.html.haml:164
-msgid "Version"
-msgstr "Versie"
-
-#: ../app/helpers/application_helper.rb:231
-msgid "Pacemaker Version"
-msgstr "Pacemakerversie"
-
-#: ../app/helpers/application_helper.rb:232
-msgid "Stack"
-msgstr "Stapel"
-
-#: ../app/helpers/application_helper.rb:232
-msgid "Cluster Communication Stack"
-msgstr "Cluster maken van communicatiestapel"
-
-#: ../app/helpers/colocation_helper.rb:8 ../app/helpers/ticket_helper.rb:20
-msgid "Master"
-msgstr "Master"
-
-#: ../app/helpers/colocation_helper.rb:9 ../app/helpers/ticket_helper.rb:21
-msgid "Slave"
-msgstr "Slave"
-
-#: ../app/helpers/crm_config_helper.rb:7 ../app/helpers/form_helper.rb:11
-#: ../app/helpers/profile_helper.rb:18 ../app/helpers/role_helper.rb:14
-#: ../app/helpers/user_helper.rb:14
-msgid "Revert"
-msgstr "Terugdraaien"
-
-#: ../app/helpers/rule_helper.rb:8
-msgid "Read"
-msgstr "Lezen"
-
-#: ../app/helpers/rule_helper.rb:9
-msgid "Write"
-msgstr "Schrijven"
-
-#: ../app/helpers/rule_helper.rb:10
-msgid "Deny"
-msgstr "Blokkeren"
-
-#: ../app/helpers/simulator_helper.rb:19 ../lib/cibtools.rb:105
-msgid "success"
-msgstr "Succes"
-
-#: ../app/helpers/simulator_helper.rb:20 ../lib/cibtools.rb:107
-msgid "generic error"
-msgstr "Algemene fout"
-
-#: ../app/helpers/simulator_helper.rb:21 ../lib/cibtools.rb:109
-msgid "incorrect arguments"
-msgstr "onjuiste argumenten"
-
-#: ../app/helpers/simulator_helper.rb:22 ../lib/cibtools.rb:111
-msgid "unimplemented action"
-msgstr "ongeïmplementeerde actie"
-
-#: ../app/helpers/simulator_helper.rb:23 ../lib/cibtools.rb:113
-msgid "insufficient permissions"
-msgstr "onvoldoende rechten"
-
-#: ../app/helpers/simulator_helper.rb:24 ../lib/cibtools.rb:115
-msgid "installation error"
-msgstr "installatiefout"
-
-#: ../app/helpers/simulator_helper.rb:25 ../lib/cibtools.rb:117
-msgid "configuration error"
-msgstr "configuratiefout"
-
-#: ../app/helpers/simulator_helper.rb:26 ../lib/cibtools.rb:119
-msgid "not running"
-msgstr "niet actief"
-
-#: ../app/helpers/simulator_helper.rb:27 ../lib/cibtools.rb:121
-msgid "running (master)"
-msgstr "actief (master)"
-
-#: ../app/helpers/simulator_helper.rb:28 ../lib/cibtools.rb:123
-msgid "failed (master)"
-msgstr "mislukt (master)"
-
-#: ../app/helpers/ticket_helper.rb:11
-msgid "Freeze"
-msgstr "Vastgelopen"
-
-#: ../app/models/cib.rb:505
-msgid "CIB file \"%{path}\" not found"
-msgstr "CIB-bestand \"%{path}\" niet gevonden"
-
-#: ../app/models/cib.rb:509
-msgid "Unable to parse CIB file \"%{path}\""
-msgstr "Kan CIB-bestand \"%{path}\" niet parseren"
-
-#: ../app/models/cib.rb:515
-msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
-msgstr "Pacemaker lijkt niet geïnstalleerd (%{cmd} niet gevonden)"
-
-#: ../app/models/cib.rb:521
-msgid "Unable to execute %{cmd}"
-msgstr "Kan %{cmd} niet uitvoeren"
-
-#: ../app/models/cib.rb:530
-msgid "Error invoking %{cmd}"
-msgstr "Fout bij het aanroepen van %{cmd}"
-
-#: ../app/models/cib.rb:540
-msgid "Error invoking %{cmd}: %{msg}"
-msgstr "Fout bij het aanroepen van %{cmd}: %{msg}"
-
-#: ../app/models/cib.rb:550 ../app/models/cib.rb:551 ../app/models/cib.rb:930
-#: ../app/models/cib.rb:1052 ../app/models/cib.rb:1053
-msgid "Unknown"
-msgstr "Onbekend"
-
-#: ../app/models/cib.rb:629
-msgid "Node \"%{node}\" is UNCLEAN and needs to be fenced."
-msgstr "Knooppunt \"%{node}\" is VERVUILD. Er moet een fence op worden toegepast."
-
-#: ../app/models/cib.rb:841
-msgid "%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_reason}"
-msgstr "%{fail_start}: bewerking %{op} is mislukt voor resource %{resource} op knooppunt %{node}: oproep-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), reden afsluiting=%{exit_reason}"
-
-#: ../app/models/cib.rb:1033
-msgid "STONITH is disabled. For normal cluster operation, STONITH is required."
-msgstr "STONITH is uitgeschakeld. Voor een normale clusterbewerking is STONITH vereist."
-
-#: ../app/models/clone.rb:10
-msgid "Clone ID is required"
-msgstr "Kloon-id is vereist"
-
-#: ../app/models/clone.rb:11
-msgid "Invalid Clone ID"
-msgstr "Ongeldige kloon-id"
-
-#: ../app/models/clone.rb:14
-msgid "No Clone child specified"
-msgstr "Er is geen onderliggende kloon opgegeven"
-
-#: ../app/models/clone.rb:67 ../app/models/group.rb:58
-#: ../app/models/master.rb:62 ../app/models/template.rb:230
-msgid "Is the cluster allowed to start and stop the resource?"
-msgstr "Mag het cluster de resource starten en stoppen?"
-
-#: ../app/models/clone.rb:72 ../app/models/crm_config.rb:31
-#: ../app/models/group.rb:63 ../app/models/master.rb:67
-#: ../app/models/template.rb:248
-msgid "If not all resources can be active, the cluster will stop lower priority resources in order to keep higher priority ones active."
-msgstr "Als niet alle resources actief kunnen zijn, stopt het cluster resources met een lagere prioriteit om de resources met een hogere prioriteit actief te houden."
-
-#: ../app/models/clone.rb:78 ../app/models/crm_config.rb:53
-#: ../app/models/group.rb:73 ../app/models/master.rb:77
-#: ../app/models/template.rb:270
-msgid "What state should the cluster attempt to keep this resource in?"
-msgstr "In welke toestand moet het cluster proberen deze resource te behouden?"
-
-#: ../app/models/clone.rb:83 ../app/models/master.rb:82
-msgid "How many copies of the resource to start. Defaults to the number of nodes in the cluster."
-msgstr "Het aantal kopieën van de resource dat moet worden gestart. Wordt standaard ingesteld op het aantal knooppunten in het cluster."
-
-#: ../app/models/clone.rb:88 ../app/models/master.rb:87
-msgid "How many copies of the resource can be started on a single node. Defaults to 1."
-msgstr "Het aantal kopieën van de resource dat in één knooppunt kan worden gestart. Wordt standaard ingesteld op 1."
-
-#: ../app/models/clone.rb:93 ../app/models/master.rb:92
-msgid "When stopping or starting a copy of the clone, tell all the other copies beforehand and when the action was successful."
-msgstr "Geef vooraf aan alle andere kopieën door wanneer een kopie van de kloon wordt gestart of gestopt en geef door wanneer de actie is geklukt."
-
-#: ../app/models/clone.rb:98 ../app/models/master.rb:97
-msgid "Does each copy of the clone perform a different function?"
-msgstr "Wordt met elke kopie van de kloon een andere functie uitgevoerd?"
-
-#: ../app/models/clone.rb:103 ../app/models/master.rb:102
-msgid "Should the copies be started in series (instead of in parallel)?"
-msgstr "Moeten de kopieën na elkaar (of naast elkaar) worden gestart?"
-
-#: ../app/models/clone.rb:108 ../app/models/master.rb:107
-msgid "Changes the behavior of ordering constraints (between clones/masters) so that instances can start/stop as soon as their peer instance has (rather than waiting for every instance of the other clone has)."
-msgstr "Hiermee wordt het gedrag van ordeningsbeperkingen (tussen klonen/masters) zodanig gewijizgd dat instanties kunnen worden gestart/gestopt zodra de peer-instance is gestart/gestopt (in plaats van te wachten tot elke instantie van de andere kloon is gestart/gestopt)."
-
-#: ../app/models/clone.rb:119 ../app/views/clones/_form.html.haml:12
-#: ../app/views/clones/_form.html.haml:17
-#: ../app/views/masters/_form.html.haml:12
-#: ../app/views/masters/_form.html.haml:17
-msgid "Child Resource"
-msgstr "Onderliggende resource"
-
-#: ../app/models/clone.rb:120
-msgid "Child resource to use as clone."
-msgstr "Onderliggende resource die als kloon moet worden gebruikt."
-
-#: ../app/models/clone.rb:131 ../app/models/group.rb:84
-#: ../app/models/master.rb:128 ../app/models/node.rb:114
-#: ../app/models/primitive.rb:75 ../app/models/record.rb:285
-#: ../app/models/tag.rb:82 ../app/models/template.rb:438
-msgid "The ID \"%{id}\" does not exist"
-msgstr "Id \"%{id}\" bestaat niet"
-
-#: ../app/models/colocation.rb:10 ../app/models/order.rb:10
-msgid "Score is required"
-msgstr "Score is vereist"
-
-#: ../app/models/colocation.rb:24 ../app/models/order.rb:25
-msgid "Invalid score value"
-msgstr "Ongeldige scorewaarde"
-
-#: ../app/models/colocation.rb:30
-msgid "Invalid node attribute"
-msgstr "Ongeldig knooppuntattribuut"
-
-#: ../app/models/colocation.rb:35 ../app/models/order.rb:30
-msgid "Constraint must consist of at least two separate resources"
-msgstr "Beperking moet uit minimaal twee afzonderlijke bronnen bestaan"
-
-#: ../app/models/colocation.rb:181
-msgid "The score determines the location relationship between the resources."
-msgstr "De score bepaalt de relatie tussen de locaties van de resources."
-
-#: ../app/models/colocation.rb:186 ../app/views/colocations/_form.html.haml:79
-msgid "Node Attribute"
-msgstr "Knooppuntattribuut"
-
-#: ../app/models/colocation.rb:187
-msgid "Colocate resources by the given node attribute instead of by node name (the default)."
-msgstr "Plaats resources op dezelfde locatie op basis van het opgegeven knooppuntattribuut in plaats van op basis van knooppuntnaam (de standaardinstelling)."
-
-#: ../app/models/constraint.rb:37
-msgid "Not a constraint"
-msgstr "Geen beperking"
-
-#: ../app/models/constraint.rb:49
-msgid "Unique identifier for the constraint. May not contain spaces."
-msgstr "Unieke id voor de beperking. Mag geen spaties bevatten."
-
-#: ../app/models/crm_config.rb:9 ../app/models/template.rb:225
-msgid "Set to true if the resource agent supports the migrate action"
-msgstr "Instellen op waar als de resource-agent de migratieactie ondersteunt"
-
-#: ../app/models/crm_config.rb:26 ../app/models/template.rb:243
-msgid "How many failures may occur for this resource on a node, before this node is marked ineligible to host this resource. A value of INFINITY indicates that this feature is disabled."
-msgstr "Het aantal fouten dat voor deze resource op een knooppunt mag optreden, voordat deze node wordt gemarkeerd als ongeschikt om als host te dienen voor deze resource. Met een waarde van INFINITY wordt aangegeven dat deze functie wordt uitgeschakeld."
-
-#: ../app/models/crm_config.rb:37 ../app/models/template.rb:254
-msgid "What should the cluster do if it ever finds the resource active on more than one node?"
-msgstr "Wat moet het cluster doen als blijkt dat de resource op meerdere knooppunten actief is?"
-
-#: ../app/models/crm_config.rb:42 ../app/models/template.rb:259
-msgid "How many seconds to wait before acting as if the failure had not occurred, and potentially allowing the resource back to the node on which it failed. A value of 0 indicates that this feature is disabled."
-msgstr "Het aantal seconden dat moet worden gewacht voordat de fout wordt genegeerd en de resource mogelijk op het knooppunt wordt toegestaan waarop het fout ging. Met een waarde van 0 wordt aangegeven dat deze functie wordt uitgeschakeld."
-
-#: ../app/models/crm_config.rb:47 ../app/models/template.rb:264
-msgid "How much does the resource prefer to stay where it is?"
-msgstr "Hoeveel voorkeur geeft de resource eraan op de huidige plaats te blijven?"
-
-#: ../app/models/crm_config.rb:68 ../app/models/crm_config.rb:105
-#: ../app/models/template.rb:285
-msgid "Conditions under which the resource can be started."
-msgstr "Voorwaarden waaronder de resource kan worden gestart."
-
-#: ../app/models/crm_config.rb:73 ../app/models/template.rb:290
-msgid "The name of the remote-node this resource defines. This both enables the resource as a remote-node and defines the unique name used to identify the remote-node. If no other parameters are set, this value will also be assumed as the hostname to connect to at the port specified by remote-port. WARNING: This value cannot overlap with any resource or node IDs. If not specified, this feature is disabled."
-msgstr "De naam van het externe knooppunt dat met deze resource wordt gedefinieerd. Hiermee wordt de resource als een extern knooppunt ingeschakeld en wordt de unieke naam gedefinieerd waarmee het externe knooppunt wordt geïdentificeerd. Als er geen andere parameters worden ingesteld, wordt deze waarde ook gebruikt als de hostnaam waarmee verbinding moet worden gemaakt op de poort die is opgegeven door de externe poort. WAARSCHUWING: deze waarde mag niet overlappen met resource- of knooppunt-id's. Als deze waarde niet wordt opgegeven, wordt deze functie uitgeschakeld."
-
-#: ../app/models/crm_config.rb:78 ../app/models/template.rb:295
-msgid "Port to use for the guest connection to pacemaker_remote."
-msgstr "Poort die moet worden gebruikt voor de gastverbinding met pacemaker_remote."
-
-#: ../app/models/crm_config.rb:83 ../app/models/template.rb:300
-msgid "The IP address or hostname to connect to if remote-node's name is not the hostname of the guest."
-msgstr "Het IP-adres of de hostnaam waarmee verbinding moet worden gemaakt als de naam van het externe knooppunt niet de hostnaam van de gast is."
-
-#: ../app/models/crm_config.rb:88 ../app/models/template.rb:305
-msgid "How long before a pending guest connection will time out."
-msgstr "De tijd voordat een een time-out optreedt voor een wachtende gastverbinding."
-
-#: ../app/models/group.rb:10
-msgid "No Group children specified"
-msgstr "Geen onderliggende elementen van de groep opgegeven"
-
-#: ../app/models/location.rb:10
-msgid "No resource specified"
-msgstr "Er is geen resource opgegeven"
-
-#: ../app/models/location.rb:13
-msgid "No rules specified"
-msgstr "Er zijn geen regels opgegeven"
-
-#: ../app/models/location.rb:18
-msgid "Invalid resource discovery type"
-msgstr "Ongeldig type resourcedetectie"
-
-#: ../app/models/location.rb:23
-msgid "Constraint is too complex - it contains nested rules"
-msgstr "Beperking is te complex: deze bevat geneste regels"
-
-#: ../app/models/location.rb:33
-msgid "Invalid score \"%{score}\""
-msgstr "Ongeldige score \"%{score}\""
-
-#: ../app/models/location.rb:43
-msgid "No expressions specified"
-msgstr "Er zijn geen expressies opgegeven"
-
-#: ../app/models/location.rb:48
-msgid "Attribute contains both single and double quotes"
-msgstr "Attribuut bevat enkele en dubbele aanhalingstekens"
-
-#: ../app/models/location.rb:49
-msgid "Value contains both single and double quotes"
-msgstr "Waarde bevat enkele en dubbele aanhalingstekens"
-
-#: ../app/models/location.rb:224
-msgid "Resources to apply the constraint to."
-msgstr "Resources waarop de beperking moet worden toegepast."
-
-#: ../app/models/location.rb:230
-msgid "Positive values indicate the resources should run on this node. Negative values indicate the resources should not run on this node. Values of +/- INFINITY change \"should\"/\"should not\" to \"must\"/\"must not\"."
-msgstr "Positieve waarden geven aan dat de resources op dit knooppunt moeten worden uitgevoerd. Negatieve waarden geven aan dat de resources niet op dit knooppunt moeten worden uitgevoerd. Waarden van +/- INFINITY wijzigen \"zou moeten\"/\"zou niet moeten\" in \"moeten\"/\"mogen niet\"."
-
-#: ../app/models/location.rb:235 ../app/views/locations/_form.html.haml:81
-#: ../app/views/reports/display.html.haml:155
-#: ../app/views/resources/events.html.haml:35
-#: ../app/views/resources/show.html.haml:266
-#: ../app/views/shared/_simulator.html.haml:351
-#: ../app/views/shared/_simulator.html.haml:463
-msgid "Node"
-msgstr "Knooppunt"
-
-#: ../app/models/location.rb:236
-msgid "Name of a node in the cluster."
-msgstr "Naam van een knooppunt in het cluster."
-
-#: ../app/models/location.rb:243 ../app/views/locations/_form.html.haml:102
-msgid "Resource Discovery"
-msgstr "Resourcedetectie"
-
-#: ../app/models/location.rb:244
-msgid "Controls resource discovery for the specified resource on nodes covered by the constraint. always: Always perform resource discovery (default). never: Never perform resource discovery for the specified resource on this node. This option should generally be used with a -INFINITY score. exclusive: Only perform resource discovery for the specified resource on this node."
-msgstr "Hiermee wordt de resourcedetectie bepaald voor de opgegeven resource op knooppunten die onder de beperking vallen. altijd: resourcedetectie altijd uitvoeren (standaard). nooit: resourcedetectie nooit uitvoeren voor de opgegeven resource op dit knooppunt. Deze optie dient over het algemeen te worden gebruikt met een -INFINITY-score. exclusief: resourcedetectie alleen uitvoeren voor de opgegeven resource op dit knooppunt."
-
-#: ../app/models/location.rb:249
-msgid "Limits the rule to apply only when the resource is in the specified role."
-msgstr "Hiermee wordt de regel beperkt zodat deze alleen van toepassing is wanneer de resource de opgegeven rol heeft."
-
-#: ../app/models/location.rb:254
-msgid "Operator"
-msgstr "Operator"
-
-#: ../app/models/location.rb:255
-msgid "How to combine the result of multiple expression objects. Allowed values are and and or."
-msgstr "Hiermee kunt u het resultaat van meerdere expressieobjecten combineren. Toegestane waarden zijn and en or."
-
-#: ../app/models/location.rb:260
-msgid "Expression"
-msgstr "Expressie"
-
-#: ../app/models/location.rb:261
-msgid "Each rule can contain a number of expressions. The results of the expressions are combined based on the rule's boolean operator."
-msgstr "Elke regel kan meerdere expressies bevatten. De resultaten van de expressies worden gecombineerd op basis van de boolean operator van de regel."
-
-#: ../app/models/master.rb:9
-msgid "No Multi-state child specified"
-msgstr "Geen onderliggend element met meervoudige toestand opgegeven"
-
-#: ../app/models/master.rb:112
-msgid "How many copies of the resource can be promoted to master status."
-msgstr "Het aantal kopieën van de resource dat kan worden verhoogd naar hoofdstatus."
-
-#: ../app/models/master.rb:117
-msgid "How many copies of the resource can be promoted to master status on a single node."
-msgstr "Het aantal kopieën van de resource dat kan worden verhoogd naar hoofdstatus op één knooppunt."
-
-#: ../app/models/node.rb:25
-msgid "Node ID is required"
-msgstr "Knooppunt-id is vereist"
-
-#: ../app/models/node.rb:26
-msgid "Invalid Node ID"
-msgstr "Ongeldige knooppunt-id"
-
-#: ../app/models/node.rb:29
-msgid "Name is required"
-msgstr "Naam is vereist"
-
-#: ../app/models/node.rb:30
-msgid "Invalid name"
-msgstr "Ongeldige naam"
-
-#: ../app/models/node.rb:72
-msgid "Node ID"
-msgstr "Knooppunt-id"
-
-#: ../app/models/node.rb:73
-msgid "Unique identifier for the node."
-msgstr "Unieke id voor het knooppunt."
-
-#: ../app/models/node.rb:78
-msgid "Node Name"
-msgstr "Knooppuntnaam"
-
-#: ../app/models/node.rb:79
-msgid "Name used to refer to the node in the cluster."
-msgstr "Naam waarmee wordt verwezen naar het knooppunt in het cluster."
-
-#: ../app/models/node.rb:91
-msgid "Puts the node into standby mode. The specified node is no longer able to host resources. Any resources currently active on the node will be moved to another node."
-msgstr "Zet het knooppunt in de stand-bymodus. Op het opgegeven knooppunt kunnen niet langer resources worden gehost. Resources die momenteel op het knooppunt actief zijn, worden naar een ander knooppunt verplaatst."
-
-#: ../app/models/profile.rb:31
-msgid "is required"
-msgstr "is vereist"
-
-#: ../app/models/record.rb:10
-msgid "ID is required"
-msgstr "Id is vereist"
-
-#: ../app/models/record.rb:28
-msgid "Object not found: %s=%s"
-msgstr "Object is niet gevonden: %s=%s"
-
-#: ../app/models/record.rb:268
-msgid "The ID \"%{id}\" is already in use"
-msgstr "Id \"%{id}\" is al in gebruik"
-
-#: ../app/models/record.rb:279
-msgid "Unable to create: %{msg}"
-msgstr "Kan niet maken: %{msg}"
-
-#: ../app/models/record.rb:295
-msgid "Error updating %{id} (rc=%{rc})"
-msgstr "Fout bij bijwerken van %{id} (rc=%{rc})"
-
-#: ../app/models/report.rb:103 ../app/models/report.rb:132
-#: ../app/models/report.rb:179
-msgid "No details available"
-msgstr "Geen details beschikbaar"
-
-#: ../app/models/report.rb:104 ../app/models/report.rb:133
-msgid "Error:"
-msgstr "Fout:"
-
-#: ../app/models/report.rb:287
-msgid "must have correct MIME type (was %s)"
-msgstr "moet correct MIME-type hebben (was %s)"
-
-#: ../app/models/report.rb:291
-msgid "must have correct file extension"
-msgstr "moet juiste bestandsextensie hebben"
-
-#: ../app/models/resource.rb:113
-msgid "Not a resource"
-msgstr "Geen resource"
-
-#: ../app/models/resource.rb:125
-msgid "Unique identifier for the resource. May not contain spaces."
-msgstr "Unieke id voor de resource. Mag geen spaties bevatten."
-
-#: ../app/models/role.rb:8
-msgid "At least one rule is required"
-msgstr "Minstens één rol is vereist"
-
-#: ../app/models/session.rb:10
-msgid "Invalid username"
-msgstr "Ongeldige gebruikersnaam"
-
-#: ../app/models/session.rb:16
-msgid "%s is not installed"
-msgstr "%s is niet geïnstalleerd."
-
-#: ../app/models/session.rb:21
 msgid "%s is not executable"
 msgstr "%s is niet uitvoerbaar"
 
-#: ../app/models/session.rb:26
-msgid "Username not specified"
-msgstr "Gebruikersnaam is niet opgegeven."
+msgid "%s is not installed"
+msgstr "%s is niet geïnstalleerd."
 
-#: ../app/models/session.rb:31
-msgid "Password not specified"
-msgstr "Geen wachtwoord opgegeven"
+msgid "%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_reason}"
+msgstr "%{fail_start}: bewerking %{op} is mislukt voor resource %{resource} op knooppunt %{node}: oproep-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), reden afsluiting=%{exit_reason}"
 
-#: ../app/models/session.rb:42
-msgid "Invalid username or password"
-msgstr "Ongeldige gebruikersnaam of ongeldig wachtwoord"
+msgid "ACL Targets"
+msgstr "ACL-doelen"
 
-#: ../app/models/tag.rb:9
-msgid "No Tag resources specified"
-msgstr "Er zijn geen tagresources opgegeven"
+msgid "ACL is not supported by the cluster"
+msgstr "ACL wordt niet ondersteund door het cluster"
 
-#: ../app/models/template.rb:313
-msgid "How frequently (in seconds) to perform the operation."
-msgstr "Hoe vaak (in seconden) de bewerking moet worden uitgevoerd."
+msgid "ACL is not supported by this cluster."
+msgstr "ACL wordt niet ondersteund door dit cluster"
 
-#: ../app/models/template.rb:319
-msgid "How long to wait before declaring the action has failed."
-msgstr "Hoe lang moet worden gewacht voordat wordt verklaard dat de actie is mislukt."
-
-#: ../app/models/template.rb:329
-msgid "What conditions need to be satisfied before this action occurs."
-msgstr "Aan welke voorwaarden moet worden voldaan voordat deze actie plaatsvindt."
-
-#: ../app/models/template.rb:334
-msgid "If false, the operation is treated as if it does not exist."
-msgstr "Indien niet aan de voorwaarde wordt voldaan, wordt de bewerking behandeld alsof deze niet bestaat."
-
-#: ../app/models/template.rb:345
-msgid "This option only makes sense for recurring operations. It restricts the operation to a specific role. The truely paranoid can even specify role=Stopped which allows the cluster to detect an admin that manually started cluster services."
-msgstr "Deze optie is alleen zinvol voor terugkerende bewerkingen. Met deze optie wordt de bewerking tot een specifieke rol beperkt. Voor de rol kan zelfs Gestopt worden opgegeven, waarmee het cluster een beheerder kan detecteren die clusterservices handmatig heeft gestart."
-
-#: ../app/models/template.rb:358
-msgid "The action to take if this action ever fails."
-msgstr "De actie die moet worden uitgevoerd als deze actie ooit mislukt."
-
-#: ../app/models/template.rb:371
-msgid "If true, the intention to perform the operation is recorded so that GUIs and CLI tools can indicate that an operation is in progress."
-msgstr "Als aan deze voorwaarde wordt voldaan, wordt de intentie om deze bewerking uit te voeren geregistreerd zodat met GUI's en CLI-programma's kan worden aangegeven dat een bewerking wordt uitgevoerd."
-
-#: ../app/models/template.rb:388
-msgid "Resource template to inherit from."
-msgstr "Resourcesjabloon waarvan waarden moeten worden overgenomen."
-
-#: ../app/models/template.rb:393 ../app/views/primitives/_form.html.haml:21
-#: ../app/views/primitives/_form.html.haml:39
-msgid "Class"
-msgstr "Klasse"
-
-#: ../app/models/template.rb:394
-msgid "Standard which the resource agent conforms to."
-msgstr "Standaard waaraan de resource-agent voldoet."
-
-#: ../app/models/template.rb:399 ../app/views/primitives/_form.html.haml:23
-#: ../app/views/primitives/_form.html.haml:45
-msgid "Provider"
-msgstr "Provider"
-
-#: ../app/models/template.rb:400
-msgid "Vendor or project which provided the resource agent."
-msgstr "Bron van waaruit de resource-agent is aangeleverd (leverancier of project)."
-
-#: ../app/models/template.rb:406
-msgid "Resource agent name."
-msgstr "Naam van resource-agent."
-
-#: ../app/models/template.rb:412 ../app/models/template.rb:418
-msgid "After the specified timeout period, the operation will be treated as failed."
-msgstr "Na de opgegeven time-outperiode wordt de bewerking als mislukt aangemerkt."
-
-#: ../app/models/template.rb:423
-msgid "Monitor"
-msgstr "Monitor"
-
-#: ../app/models/template.rb:424
-msgid "Define a monitor operation to instruct the cluster to ensure that the resource is still healthy."
-msgstr "Definieer een monitorbewerking waarmee u het cluster instrueert om te controleren of de resource nog in goede staat verkeert."
-
-#: ../app/models/ticket.rb:18
-msgid "Constraint ID is required"
-msgstr "Beperkings-id is vereist"
-
-#: ../app/models/ticket.rb:19
-msgid "Invalid Constraint ID"
-msgstr "Ongeldige beperkings-id"
-
-#: ../app/models/ticket.rb:22
-msgid "Ticket ID is required"
-msgstr "Ticket-id is vereist"
-
-#: ../app/models/ticket.rb:23
-msgid "Invalid Ticket ID"
-msgstr "Ongeldige ticket-id"
-
-#: ../app/models/ticket.rb:27
-msgid "Constraint must consist of at least one separate resources"
-msgstr "Beperking moet uit minimaal een afzonderlijke bron bestaan"
-
-#: ../app/models/user.rb:10
 msgid "ACL target ID is required"
 msgstr "Id ACL-doel is vereist"
 
-#: ../app/models/user.rb:11
-msgid "Invalid ACL target ID"
-msgstr "Ongeldige id van ACL-doel"
+msgid "ACL target created successfully"
+msgstr "ACL-doel is gemaakt"
 
-#: ../app/models/user.rb:13
-msgid "At least one role is required"
-msgstr "Minstens één rol is vereist."
+msgid "ACL target deleted successfully"
+msgstr "ACL-doel is verwijderd"
 
-#: ../app/models/wizard.rb:150
-msgid "Requested wizard does not exist"
-msgstr "Aangevraagde wizard bestaat niet"
+msgid "ACL target updated successfully"
+msgstr "ACL-doel is bijgewerkt"
 
-#: ../app/views/agents/show.html.haml:32
-#: ../app/views/primitives/_form.html.haml:102
-#: ../app/views/resources/show.html.haml:76
-msgid "Parameters"
-msgstr "Parameters"
-
-#: ../app/views/agents/show.html.haml:52
-msgid "Shortdesc"
-msgstr "Korte beschrijving"
-
-#: ../app/views/agents/show.html.haml:54
-msgid "Longdesc"
-msgstr "Lange beschrijving"
-
-#: ../app/views/agents/show.html.haml:56
-msgid "Options"
-msgstr "Opties"
-
-#: ../app/views/agents/show.html.haml:83
-msgid "Actions"
-msgstr "Acties"
-
-#: ../app/views/agents/show.html.haml:103
-#: ../app/views/resources/show.html.haml:189
-msgid "Timeout"
-msgstr "Timeout"
-
-#: ../app/views/agents/show.html.haml:105
-#: ../app/views/resources/show.html.haml:191
-msgid "Interval"
-msgstr "Interval"
-
-#: ../app/views/agents/show.html.haml:107
-msgid "Depth"
-msgstr "Diepte"
-
-#: ../app/views/cib/apply.html.haml:9
-msgid "Apply Configuration"
-msgstr "Configuratie toepassen"
-
-#: ../app/views/cib/apply.html.haml:31
-#: ../app/views/shared/_simulator.html.haml:160
-msgid "Calculating list of changes..."
-msgstr "Lijst met wijzigingen berekenen..."
-
-#: ../app/views/cib/show.html.haml:32
-msgid "Errors"
-msgstr "Fouten"
-
-#: ../app/views/clones/_form.html.haml:24
-#: ../app/views/groups/_form.html.haml:68
-#: ../app/views/masters/_form.html.haml:24
-#: ../app/views/primitives/_form.html.haml:121
-#: ../app/views/resources/show.html.haml:107
-msgid "Meta Attributes"
-msgstr "Meta-attributen"
-
-#: ../app/views/clones/_form.html.haml:41
-#: ../app/views/clones/_form.html.haml:48
-#: ../app/views/colocations/_form.html.haml:88
-#: ../app/views/colocations/_form.html.haml:95
-#: ../app/views/groups/_form.html.haml:85
-#: ../app/views/groups/_form.html.haml:92
-#: ../app/views/locations/_form.html.haml:119
-#: ../app/views/locations/_form.html.haml:126
-#: ../app/views/masters/_form.html.haml:41
-#: ../app/views/masters/_form.html.haml:48
-#: ../app/views/nodes/_form.html.haml:53
-#: ../app/views/orders/_form.html.haml:74
-#: ../app/views/orders/_form.html.haml:81
-#: ../app/views/primitives/_form.html.haml:82
-#: ../app/views/primitives/_form.html.haml:89
-#: ../app/views/roles/_form.html.haml:60 ../app/views/tags/_form.html.haml:51
-#: ../app/views/tags/_form.html.haml:58
-#: ../app/views/tickets/_form.html.haml:42
-#: ../app/views/tickets/_form.html.haml:49
-#: ../app/views/users/_form.html.haml:29
-#: ../app/views/wizards/create.html.haml:28
-#: ../app/views/wizards/show.html.haml:131
-#: ../app/views/wizards/update.html.haml:108
-msgid "Back"
-msgstr "Terug"
-
-#: ../app/views/clones/edit.html.haml:17
-#: ../app/views/colocations/edit.html.haml:15
-#: ../app/views/groups/edit.html.haml:17
-#: ../app/views/locations/edit.html.haml:15
-#: ../app/views/masters/edit.html.haml:17
-#: ../app/views/orders/edit.html.haml:15
-#: ../app/views/primitives/edit.html.haml:17
-#: ../app/views/reports/display.html.haml:36
-#: ../app/views/roles/edit.html.haml:13 ../app/views/tags/edit.html.haml:15
-#: ../app/views/tickets/edit.html.haml:15 ../app/views/users/edit.html.haml:13
-msgid "Are you sure you wish to delete %s?"
-msgstr "Weet u zeker dat u %s wilt verwijderen?"
-
-#: ../app/views/colocations/_form.html.haml:35
-#: ../app/views/locations/_form.html.haml:65
-msgid "Always"
-msgstr "Altijd"
-
-#: ../app/views/colocations/_form.html.haml:37
-#: ../app/views/locations/_form.html.haml:67
-msgid "Never"
-msgstr "Nooit"
-
-#: ../app/views/colocations/_form.html.haml:69
-#: ../app/views/locations/_form.html.haml:35
-#: ../app/views/wizards/show.html.haml:74
-#: ../app/views/wizards/show.html.haml:105
-msgid "Advanced"
-msgstr "Geavanceerd"
-
-#: ../app/views/commands/index.html.haml:24
-msgid "Lists crm commands recently executed by hawk, most recent first."
-msgstr "Hiermee worden crm-opdrachten weergegeven die onlangs zijn uitgevoerd door Hawk, waarbij de recentste het eerst worden weergegeven."
-
-#: ../app/views/configs/edit.html.haml:7
-#: ../app/views/shared/_mainnav.html.haml:60
-msgid "Edit Configuration"
-msgstr "Configuratie bewerken"
-
-#: ../app/views/configs/edit.html.haml:15
-#: ../app/views/configs/show.html.haml:19
-#: ../app/views/graphs/show.html.haml:15
-msgid "XML"
-msgstr "XML"
-
-#: ../app/views/configs/edit.html.haml:17
-#: ../app/views/configs/show.html.haml:21 ../app/views/graphs/show.html.haml:5
-#: ../app/views/graphs/show.html.haml:32
-#: ../app/views/reports/display.html.haml:212
-#: ../app/views/reports/graph.html.haml:7
-msgid "Graph"
-msgstr "Grafisch"
-
-#: ../app/views/configs/meta.html.haml:19
-#: ../app/views/shared/_footer.html.haml:17
-msgid "Cluster Details"
-msgstr "Clusterdetails"
-
-#: ../app/views/configs/meta.html.haml:29
-#: ../app/views/shared/_simulator.html.haml:5
-msgid "Batch Mode Active"
-msgstr "Batchmodus actief"
-
-#: ../app/views/configs/show.html.haml:7
-msgid "Show Configuration"
-msgstr "Configuratie weergeven"
-
-#: ../app/views/constraints/show.html.haml:10
-msgid "Constraint:"
-msgstr "Beperking:"
-
-#: ../app/views/constraints/types.html.haml:7
-msgid "Add a constraint"
-msgstr "Een beperking toevoegen"
-
-#: ../app/views/constraints/types.html.haml:13
-#: ../app/views/resources/types.html.haml:13
-msgid "List"
-msgstr "Lijst"
-
-#: ../app/views/crm_config/edit.html.haml:24
-msgid "Resource Defaults"
-msgstr "Standaardwaarden herstellen"
-
-#: ../app/views/crm_config/edit.html.haml:41
-msgid "Operation Defaults"
-msgstr "Standaardwaarden voor bewerking"
-
-#: ../app/views/dashboards/add.html.haml:21
-#: ../app/views/dashboards/show.html.haml:18
-msgid "Add Cluster"
-msgstr "Cluster toevoegen"
-
-#: ../app/views/dashboards/add.html.haml:32
-msgid "Cluster name"
-msgstr "Clusternaam"
-
-#: ../app/views/dashboards/add.html.haml:32
-msgid "West Coast (example)"
-msgstr "Westkust (voorbeeld)"
-
-#: ../app/views/dashboards/add.html.haml:34
-msgid "Hostname of node in cluster"
-msgstr "Hostnaam van knooppunt in cluster"
-
-#: ../app/views/dashboards/add.html.haml:34
-msgid "node1.west.example.com"
-msgstr "knooppunt1.west.voorbeeld.com"
-
-#: ../app/views/dashboards/add.html.haml:36
-msgid "Server port to connect to"
-msgstr "Serverpoort om verbinding mee te maken"
-
-#: ../app/views/groups/_form.html.haml:24
-#: ../app/views/resources/show.html.haml:43
-msgid "Children"
-msgstr "Onderliggende elementen"
-
-#: ../app/views/groups/_form.html.haml:34
-msgid "No children available"
-msgstr "Geen onderliggende elementen beschikbaar"
-
-#: ../app/views/layouts/authentication.html.haml:55
-msgid "Please ensure Javascript is enabled"
-msgstr "Controleer of JavaScript is ingeschakeld"
-
-#: ../app/views/layouts/authentication.html.haml:62
-msgid "SUSE, LLC"
-msgstr "SUSE, LLC"
-
-#: ../app/views/layouts/authentication.html.haml:68
-msgid "High Availability Web Konsole"
-msgstr "Webconsole met hoge beschikbaarheid"
-
-#: ../app/views/locations/_form.html.haml:27
-msgid "Simple"
-msgstr "Eenvoudig"
-
-#: ../app/views/locations/_form.html.haml:69
-msgid "Advisory"
-msgstr "Adviserend"
-
-#: ../app/views/locations/edit.html.haml:7
-msgid "Edit Location"
-msgstr "Locatie bewerken"
-
-#: ../app/views/locations/index.html.haml:7
-msgid "Locations"
-msgstr "Locaties"
-
-#: ../app/views/locations/new.html.haml:7
-msgid "Create Location"
-msgstr "Locatie maken"
-
-#: ../app/views/logs/index.html.haml:5
-#: ../app/views/shared/_mainnav.html.haml:31
-msgid "History"
-msgstr "Geschiedenis"
-
-#: ../app/views/masters/edit.html.haml:7
-msgid "Edit Multi-state"
-msgstr "Meervoudige toestand bewerken"
-
-#: ../app/views/masters/index.html.haml:7
-msgid "Multi-state Resources"
-msgstr "Resources met meervoudige toestand"
-
-#: ../app/views/masters/new.html.haml:7
-msgid "Create Multi-state"
-msgstr "Meervoudige toestand maken"
-
-#: ../app/views/nodes/_form.html.haml:18 ../app/views/nodes/show.html.haml:104
-msgid "Attributes"
-msgstr "Attributen"
-
-#: ../app/views/nodes/_form.html.haml:34 ../app/views/nodes/show.html.haml:61
-#: ../app/views/primitives/_form.html.haml:140
-#: ../app/views/resources/show.html.haml:139
-msgid "Utilization"
-msgstr "Gebruik"
-
-#: ../app/views/nodes/edit.html.haml:7
-msgid "Edit Node"
-msgstr "Knooppunt bewerken"
-
-#: ../app/views/nodes/events.html.haml:33
-#: ../app/views/resources/events.html.haml:33
-msgid "RC"
-msgstr "RC"
-
-#: ../app/views/nodes/events.html.haml:37
-#: ../app/views/resources/events.html.haml:37
-#: ../app/views/resources/show.html.haml:270
-#: ../app/views/shared/_simulator.html.haml:433
-msgid "Operation"
-msgstr "Bewerking"
-
-#: ../app/views/nodes/events.html.haml:39
-#: ../app/views/resources/events.html.haml:39
-msgid "Last Change"
-msgstr "Laatste wijziging"
-
-#: ../app/views/nodes/events.html.haml:41
-#: ../app/views/resources/events.html.haml:41
-#: ../app/views/shared/_simulator.html.haml:368
-#: ../app/views/tickets/show.html.haml:93
-msgid "State"
-msgstr "Staat"
-
-#: ../app/views/nodes/events.html.haml:43
-#: ../app/views/resources/events.html.haml:43
-#: ../app/views/resources/show.html.haml:268
-msgid "Call"
-msgstr "Aanroep"
-
-#: ../app/views/nodes/events.html.haml:45
-#: ../app/views/resources/events.html.haml:45
-msgid "Exec"
-msgstr "Exec"
-
-#: ../app/views/nodes/events.html.haml:47
-#: ../app/views/resources/events.html.haml:47
-msgid "Complete"
-msgstr "Voltooid"
-
-#: ../app/views/nodes/show.html.haml:30
-msgid "Remote node."
-msgstr "Extern knooppunt."
-
-#: ../app/views/nodes/show.html.haml:95
-msgid "No utilization defined"
-msgstr "Geen verbruik gedefinieerd"
-
-#: ../app/views/nodes/show.html.haml:129
-msgid "No attributes defined"
-msgstr "Geen attributen gedefinieerd"
-
-#: ../app/views/orders/_form.html.haml:35
-msgid "Mandatory"
-msgstr "Verplicht"
-
-#: ../app/views/orders/_form.html.haml:37
-msgid "Optional"
-msgstr "Optioneel"
-
-#: ../app/views/orders/_form.html.haml:39
-msgid "Serialize"
-msgstr "Serialiseren"
-
-#: ../app/views/orders/_form.html.haml:50
-msgid "Symmetrical"
-msgstr "Symmetrisch"
-
-#: ../app/views/pages/help.html.haml:35
-msgid "HTML"
-msgstr "HTML"
-
-#: ../app/views/pages/help.html.haml:39
-msgid "PDF"
-msgstr "PDF"
-
-#: ../app/views/primitives/_help.html.haml:35
-#: ../app/views/shared/_helpentry.html.haml:15
-msgid "Default"
-msgstr "Standaard"
-
-#: ../app/views/primitives/edit.html.haml:13
-msgid "Copy"
-msgstr "Kopiëren"
-
-#: ../app/views/reports/display.html.haml:13
-#: ../app/views/reports/index.html.haml:156
-#: ../app/views/reports/show.html.haml:13
-msgid "Reports"
-msgstr "Rapporten"
-
-#: ../app/views/reports/display.html.haml:55
-#: ../app/views/reports/display.html.haml:64
-#: ../app/views/reports/display.html.haml:73
-#: ../app/views/reports/index.html.haml:39
-#: ../app/views/resources/rename.html.haml:36
-#: ../app/views/resources/show.html.haml:321
-msgid "To"
-msgstr "Aan"
-
-#: ../app/views/reports/display.html.haml:78
-msgid "Created"
-msgstr "Aangemaakt"
-
-#: ../app/views/reports/display.html.haml:82
-#: ../app/views/reports/display.html.haml:99
-msgid "Transitions"
-msgstr "Overgangen"
-
-#: ../app/views/reports/display.html.haml:105
-msgid "No transitions in report"
-msgstr "Geen overgangen in rapport"
-
-#: ../app/views/reports/display.html.haml:151
-msgid "PE Name"
-msgstr "PE-naam"
-
-#: ../app/views/reports/display.html.haml:159
-msgid "Time"
-msgstr "Tijd"
-
-#: ../app/views/reports/display.html.haml:188
-#: ../app/views/shared/_mainnav.html.haml:38
-msgid "Configuration"
-msgstr "Configuratie"
-
-#: ../app/views/reports/display.html.haml:196
-msgid "Diff"
-msgstr "Diff"
-
-#: ../app/views/reports/display.html.haml:204
-msgid "Logs"
-msgstr "Logs"
-
-#: ../app/views/reports/display.html.haml:279
-msgid "Node Events"
-msgstr "Knooppuntgebeurtenissen"
-
-#: ../app/views/reports/display.html.haml:296
-msgid "Resource Events"
-msgstr "Resourcegebeurtenissen"
-
-#: ../app/views/reports/index.html.haml:20
-msgid "Data collection in progress..."
-msgstr "Gegevensverzameling in uitvoering..."
-
-#: ../app/views/reports/index.html.haml:79
-#: ../app/views/reports/index.html.haml:124
-msgid "Generate"
-msgstr "Genereren"
-
-#: ../app/views/reports/index.html.haml:87
-msgid "Upload"
-msgstr "Uploaden"
-
-#: ../app/views/reports/show.html.haml:30
-msgid "Loading report..."
-msgstr "Rapport laden..."
-
-#: ../app/views/resources/rename.html.haml:9
-msgid "Rename Resource"
-msgstr "Resource hernoemen"
-
-#: ../app/views/resources/show.html.haml:57
-msgid "Child"
-msgstr "Kind"
-
-#: ../app/views/resources/show.html.haml:218
-msgid "Instances"
-msgstr "Instanties"
-
-#: ../app/views/resources/show.html.haml:250
-msgid "Failed Operations"
-msgstr "Mislukte bewerkingen"
-
-#: ../app/views/resources/show.html.haml:274
-msgid "Reason"
-msgstr "Reden"
-
-#: ../app/views/resources/types.html.haml:7
-#: ../app/views/shared/_mainnav.html.haml:45
-msgid "Add Resource"
-msgstr "Resource toevoegen"
-
-#: ../app/views/roles/_form.html.haml:27
-msgid "Add a rule below"
-msgstr "Een regel toevoegen hieronder"
-
-#: ../app/views/roles/_form.html.haml:29
-msgid "Remove this rule"
-msgstr "Deze regel verwijderen"
-
-#: ../app/views/roles/_form.html.haml:31
-msgid "Move rule up"
-msgstr "Regel omhoog plaatsen"
-
-#: ../app/views/roles/_form.html.haml:33
-msgid "Move rule down"
-msgstr "Regel omlaag plaatsen"
-
-#: ../app/views/roles/_form.html.haml:38
-msgid "Right"
-msgstr "Rechts"
-
-#: ../app/views/roles/_form.html.haml:40
-msgid "XPath"
-msgstr "XPath"
-
-#: ../app/views/roles/_form.html.haml:42
-msgid "Object Type"
-msgstr "Objecttype"
-
-#: ../app/views/roles/_form.html.haml:44
-msgid "Reference"
-msgstr "Referentie"
-
-#: ../app/views/roles/_form.html.haml:47
-msgid "Attribute"
-msgstr "Kenmerk"
-
-#: ../app/views/roles/index.html.haml:9 ../app/views/users/index.html.haml:9
-msgid "Access Control Lists"
-msgstr "Toegangsbeheerlijsten"
-
-#: ../app/views/sessions/new.html.haml:7
-msgid "Login"
-msgstr "Inloggen"
-
-#: ../app/views/shared/_mainnav.html.haml:50
-msgid "Add Constraint"
-msgstr "Beperking toevoegen"
-
-#: ../app/views/shared/_mainnav.html.haml:55
-#: ../app/views/wizards/index.html.haml:7
-msgid "Wizards"
-msgstr "Wizards"
-
-#: ../app/views/shared/_mainnav.html.haml:79
 msgid "Access Control"
 msgstr "Toegangscontrole"
 
-#: ../app/views/shared/_mainnav.html.haml:92
-#: ../app/views/users/index.html.haml:7
-msgid "Targets"
-msgstr "Doelen"
+msgid "Access Control Lists"
+msgstr "Toegangsbeheerlijsten"
 
-#: ../app/views/shared/_simulator.html.haml:15
-msgid "Any pending changes to the configuration will be lost - do you wish to proceed?"
-msgstr "Niet-opgeslagen wijzigingen in de configuratie gaan verloren. Wilt u doorgaan?"
-
-#: ../app/views/shared/_simulator.html.haml:17
-msgid "Discard"
-msgstr "Negeren"
-
-#: ../app/views/shared/_simulator.html.haml:52
-msgid "Batch Mode"
-msgstr "Batchmodus"
-
-#: ../app/views/shared/_simulator.html.haml:82
-#: ../app/views/shared/_simulator.html.haml:184
-msgid "Summary"
-msgstr "Samenvatting"
-
-#: ../app/views/shared/_simulator.html.haml:84
-#: ../app/views/shared/_simulator.html.haml:215
-msgid "CIB (in)"
-msgstr "CIB (in)"
-
-#: ../app/views/shared/_simulator.html.haml:86
-#: ../app/views/shared/_simulator.html.haml:246
-msgid "CIB (out)"
-msgstr "CIB (uit)"
-
-#: ../app/views/shared/_simulator.html.haml:88
-#: ../app/views/shared/_simulator.html.haml:277
-msgid "Transition Graph"
-msgstr "Overgangsgrafiek"
-
-#: ../app/views/shared/_simulator.html.haml:90
-msgid "Transition"
-msgstr "Overgang"
-
-#: ../app/views/shared/_simulator.html.haml:101
-msgid "Inject"
-msgstr "Invoegen"
-
-#: ../app/views/shared/_simulator.html.haml:107
-msgid "Node Event"
-msgstr "Knooppuntgebeurtenis"
-
-#: ../app/views/shared/_simulator.html.haml:110
-msgid "Resource Event"
-msgstr "Resourcegebeurtenis"
-
-#: ../app/views/shared/_simulator.html.haml:113
-msgid "Ticket Event"
-msgstr "Ticketgebeurtenis"
-
-#: ../app/views/shared/_simulator.html.haml:308
-msgid "Transition (XML)"
-msgstr "Overgang (XML)"
-
-#: ../app/views/shared/_simulator.html.haml:341
-msgid "Inject Node Event"
-msgstr "Knooppuntgebeurtenis invoeren"
-
-#: ../app/views/shared/_simulator.html.haml:406
-msgid "Inject Resource Event"
-msgstr "Resourcegebeurtenis invoegen"
-
-#: ../app/views/shared/_simulator.html.haml:450
-msgid "Interval (ms)"
-msgstr "Interval (ms)"
-
-#: ../app/views/shared/_simulator.html.haml:480
-msgid "Result"
-msgstr "Resultaat"
-
-#: ../app/views/shared/_simulator.html.haml:518
-msgid "Inject Ticket Event"
-msgstr "Ticketgebeurtenis invoegen"
-
-#: ../app/views/shared/_simulator.html.haml:545
 msgid "Action"
 msgstr "Actie"
 
-#: ../app/views/shared/_usernav.html.haml:6
-msgid "Batch Configuration Changes"
-msgstr "Batch configuratiewijzigingen"
+msgid "Actions"
+msgstr "Acties"
 
-#: ../app/views/shared/_usernav.html.haml:6
-#: ../app/views/shared/_usernav.html.haml:14
-msgid "Batch"
-msgstr "Batch"
+msgid "Add"
+msgstr "Toevoegen"
 
-#: ../app/views/shared/_usernav.html.haml:34
-msgid "Logout"
-msgstr "Afmelden"
+msgid "Add Cluster"
+msgstr "Cluster toevoegen"
 
-#: ../app/views/shared/_usernav.html.haml:40
-msgid "Menu"
-msgstr "Menu"
+msgid "Add Constraint"
+msgstr "Beperking toevoegen"
 
-#: ../app/views/tags/_form.html.haml:34
-msgid "No objects available"
-msgstr "Geen objecten beschikbaar"
+msgid "Add Resource"
+msgstr "Resource toevoegen"
 
-#: ../app/views/tickets/_form.html.haml:16
-msgid "Ticket ID"
-msgstr "Ticket-id"
+msgid "Add a rule below"
+msgstr "Een regel toevoegen hieronder"
 
-#: ../app/views/tickets/_form.html.haml:18
-#: ../app/views/tickets/show.html.haml:63
-msgid "Loss Policy"
-msgstr "Verliesbeleid"
+msgid "Advanced"
+msgstr "Geavanceerd"
 
-#: ../app/views/tickets/show.html.haml:9
-msgid "Ticket:"
-msgstr "Ticket:"
+msgid "Advisory"
+msgstr "Adviserend"
 
-#: ../app/views/tickets/show.html.haml:26
-msgid "Properties"
-msgstr "Eigenschappen"
+msgid "After the specified timeout period, the operation will be treated as failed."
+msgstr "Na de opgegeven time-outperiode wordt de bewerking als mislukt aangemerkt."
 
-#: ../app/views/tickets/show.html.haml:69
-msgid "None"
-msgstr "Geen"
+msgid "Agent"
+msgstr "Agent"
 
-#: ../app/views/tickets/show.html.haml:106
-msgid "Leader"
-msgstr "Leider"
+msgid "Always"
+msgstr "Altijd"
 
-#: ../app/views/tickets/show.html.haml:119
-msgid "Expires"
-msgstr "Verloopt"
+msgid "An error has occurred"
+msgstr "Er is een fout opgetreden"
 
-#: ../app/views/tickets/show.html.haml:132
-msgid "Commit"
-msgstr "Vastleggen"
+msgid "Any changes will be lost - do you wish to proceed?"
+msgstr "Wijzigingen gaan verloren. Wilt u doorgaan?"
 
-#: ../app/views/tickets/show.html.haml:189
-msgid "Sites"
-msgstr "Sites"
+msgid "Any pending changes to the configuration will be lost - do you wish to proceed?"
+msgstr "Niet-opgeslagen wijzigingen in de configuratie gaan verloren. Wilt u doorgaan?"
 
-#: ../app/views/tickets/show.html.haml:224
+msgid "Applied configuration successfully"
+msgstr "Configuratie is toegepast"
+
+msgid "Apply"
+msgstr "Toepassen"
+
+msgid "Apply Configuration"
+msgstr "Configuratie toepassen"
+
+msgid "Applying configuration changes..."
+msgstr "Configuratiewijzigingen toepassen..."
+
+msgid "April"
+msgstr "April"
+
 msgid "Arbitrators"
 msgstr "Arbitrators"
 
-#: ../app/views/users/_form.html.haml:10 ../app/views/users/_form.html.haml:13
-msgid "Target ID"
-msgstr "Doel-id"
+msgid "Are you sure you wish to delete %s?"
+msgstr "Weet u zeker dat u %s wilt verwijderen?"
 
-#: ../app/views/wizards/create.html.haml:21
-msgid "Verifying parameters..."
-msgstr "Parameters controleren..."
+msgid "At least one role is required"
+msgstr "Minstens één rol is vereist."
 
-#: ../app/views/wizards/create.html.haml:26
-#: ../app/views/wizards/show.html.haml:129
-#: ../app/views/wizards/update.html.haml:106
-msgid "Do you really want to cancel the wizard setup?"
-msgstr "Weet u zeker dat u de installatiewizard wilt annuleren?"
+msgid "At least one rule is required"
+msgstr "Minstens één rol is vereist"
 
-#: ../app/views/wizards/create.html.haml:30
+msgid "Attribute"
+msgstr "Kenmerk"
+
+msgid "Attribute contains both single and double quotes"
+msgstr "Attribuut bevat enkele en dubbele aanhalingstekens"
+
+msgid "Attributes"
+msgstr "Attributen"
+
+msgid "August"
+msgstr "Augustus"
+
+msgid "Away from current node"
+msgstr "Weg van huidig knooppunt"
+
+msgid "Back"
+msgstr "Terug"
+
+msgid "Batch"
+msgstr "Batch"
+
+msgid "Batch Configuration Changes"
+msgstr "Batch configuratiewijzigingen"
+
+msgid "Batch Mode"
+msgstr "Batchmodus"
+
+msgid "Batch Mode Active"
+msgstr "Batchmodus actief"
+
+msgid "Boolean Operator"
+msgstr "Boolean operator"
+
+msgid "CIB (in)"
+msgstr "CIB (in)"
+
+msgid "CIB (out)"
+msgstr "CIB (uit)"
+
+msgid "CIB Schema Version"
+msgstr "Versie CIB-schema"
+
+msgid "CIB file \"%{path}\" not found"
+msgstr "CIB-bestand \"%{path}\" niet gevonden"
+
+msgid "Calculating list of changes..."
+msgstr "Lijst met wijzigingen berekenen..."
+
+msgid "Call"
+msgstr "Aanroep"
+
+msgid "Cancel"
+msgstr "Annuleren"
+
+msgid "Cannot display diff, too few transitions"
+msgstr "Verschil kan niet worden weergegeven. Er zijn te veel overgangen."
+
+msgid "Changes applied successfully."
+msgstr "Wijzigingen zijn toegepast."
+
+msgid "Changes the behavior of ordering constraints (between clones/masters) so that instances can start/stop as soon as their peer instance has (rather than waiting for every instance of the other clone has)."
+msgstr "Hiermee wordt het gedrag van ordeningsbeperkingen (tussen klonen/masters) zodanig gewijizgd dat instanties kunnen worden gestart/gestopt zodra de peer-instance is gestart/gestopt (in plaats van te wachten tot elke instantie van de andere kloon is gestart/gestopt)."
+
+msgid "Child"
+msgstr "Kind"
+
+msgid "Child Resource"
+msgstr "Onderliggende resource"
+
+msgid "Child resource to use as clone."
+msgstr "Onderliggende resource die als kloon moet worden gebruikt."
+
+msgid "Children"
+msgstr "Onderliggende elementen"
+
+msgid "Class"
+msgstr "Klasse"
+
+msgid "Clean up on all nodes"
+msgstr "Op alle knooppunten opschonen"
+
+msgid "Clean up tagged resources"
+msgstr ""
+
+msgid "Cleanup"
+msgstr "Opschoning"
+
+msgid "Clear state"
+msgstr "Status wissen"
+
+msgid "Cleared the node state"
+msgstr "Knooppuntstatus is gewist"
+
+msgid "Clone"
+msgstr "Klonen"
+
+msgid "Clone ID"
+msgstr "Kloon-id"
+
+msgid "Clone ID is required"
+msgstr "Kloon-id is vereist"
+
+msgid "Clone created successfully"
+msgstr "De kloon is gemaakt"
+
+msgid "Clone deleted successfully"
+msgstr "De kloon is verwijderd"
+
+msgid "Clone updated successfully"
+msgstr "De kloon is bijgewerkt"
+
+msgid "Clones"
+msgstr "Klonen"
+
+msgid "Close"
+msgstr "Sluiten"
+
+msgid "Cluster Communication Stack"
+msgstr "Cluster maken van communicatiestapel"
+
+msgid "Cluster Configuration"
+msgstr "Clusterconfiguratie"
+
+msgid "Cluster Details"
+msgstr "Clusterdetails"
+
+msgid "Cluster Graph"
+msgstr "Clustergrafiek"
+
+msgid "Cluster added successfully."
+msgstr "Cluster is toegevoegd."
+
+msgid "Cluster name"
+msgstr "Clusternaam"
+
+msgid "Cluster removed successfully."
+msgstr "Cluster is verwijderd."
+
+msgid "Cluster seems to be offline"
+msgstr "Cluster lijkt offline te zijn"
+
+msgid "Colocate resources by the given node attribute instead of by node name (the default)."
+msgstr "Plaats resources op dezelfde locatie op basis van het opgegeven knooppuntattribuut in plaats van op basis van knooppuntnaam (de standaardinstelling)."
+
+msgid "Colocation"
+msgstr "Colocatie"
+
+msgid "Colocation deleted successfully"
+msgstr "De colocatie is verwijderd"
+
+msgid "Colocations"
+msgstr "Colocaties"
+
+msgid "Command Log"
+msgstr "Commandolog"
+
+msgid "Commit"
+msgstr "Vastleggen"
+
+msgid "Complete"
+msgstr "Voltooid"
+
+msgid "Conditions under which the resource can be started."
+msgstr "Voorwaarden waaronder de resource kan worden gestart."
+
+msgid "Configuration"
+msgstr "Configuratie"
+
+msgid "Configuration updated successfully"
+msgstr "Configuratie is bijgewerkt"
+
+msgid "Connect"
+msgstr "Verbinden"
+
+msgid "Connection to server aborted - will retry every 15 seconds."
+msgstr "Verbinding met server afgebroken. Er wordt elke 15 seconden een nieuwe poging gedaan."
+
+msgid "Connection to server failed (server down or network error - will retry every 15 seconds)."
+msgstr "Verbinding met server mislukt (server uitgevallen of netwerkfout. Er wordt elke 15 seconden een nieuwe poging gedaan)."
+
+msgid "Connection to server failed - will retry every 15 seconds."
+msgstr "De verbinding met de server is verbroken. Er wordt elke 15 seconden een nieuwe poging gedaan."
+
+msgid "Connection to server timed out - will retry every 15 seconds."
+msgstr "Er is een time-out voor de verbinding met de server opgetreden. Er wordt elke 15 seconden een nieuwe poging gedaan."
+
+msgid "Connection to server timed out."
+msgstr "Er is een time-out opgetreden voor de verbinding met de server."
+
+msgid "Connection to server was aborted."
+msgstr "Verbinding met server is afgebroken."
+
+msgid "Constraint ID"
+msgstr "Beperkings-id"
+
+msgid "Constraint ID is required"
+msgstr "Beperkings-id is vereist"
+
+msgid "Constraint created successfully"
+msgstr "De beperking is gemaakt"
+
+msgid "Constraint is too complex - it contains nested rules"
+msgstr "Beperking is te complex: deze bevat geneste regels"
+
+msgid "Constraint must consist of at least one separate resources"
+msgstr "Beperking moet uit minimaal een afzonderlijke bron bestaan"
+
+msgid "Constraint must consist of at least two separate resources"
+msgstr "Beperking moet uit minimaal twee afzonderlijke bronnen bestaan"
+
+msgid "Constraint updated successfully"
+msgstr "Beperking is bijgewerkt"
+
+msgid "Constraint:"
+msgstr "Beperking:"
+
+msgid "Constraints"
+msgstr "Beperkingen"
+
+msgid "Controls resource discovery for the specified resource on nodes covered by the constraint. always: Always perform resource discovery (default). never: Never perform resource discovery for the specified resource on this node. This option should generally be used with a -INFINITY score. exclusive: Only perform resource discovery for the specified resource on this node."
+msgstr "Hiermee wordt de resourcedetectie bepaald voor de opgegeven resource op knooppunten die onder de beperking vallen. altijd: resourcedetectie altijd uitvoeren (standaard). nooit: resourcedetectie nooit uitvoeren voor de opgegeven resource op dit knooppunt. Deze optie dient over het algemeen te worden gebruikt met een -INFINITY-score. exclusief: resourcedetectie alleen uitvoeren voor de opgegeven resource op dit knooppunt."
+
+msgid "Copy"
+msgstr "Kopiëren"
+
+msgid "Could not cancel report collection"
+msgstr "Kan ophalen rapport niet annuleren"
+
+msgid "Create"
+msgstr "Maken"
+
+msgid "Create ACL Target"
+msgstr "ACL-doel maken"
+
+msgid "Create Clone"
+msgstr "Kloon maken"
+
+msgid "Create Colocation"
+msgstr "Colocatie maken"
+
+msgid "Create Group"
+msgstr "Groep maken"
+
+msgid "Create Location"
+msgstr "Locatie maken"
+
+msgid "Create Location Constraint"
+msgstr "Locatiebeperking maken"
+
+msgid "Create Multi-state"
+msgstr "Meervoudige toestand maken"
+
+msgid "Create Multi-state resource"
+msgstr "Recource meervoudige toestand maken"
+
+msgid "Create Order"
+msgstr "Volgorde maken"
+
+msgid "Create Primitive"
+msgstr "Primitief maken"
+
+msgid "Create Role"
+msgstr "Rol maken"
+
+msgid "Create Tag"
+msgstr "Tag maken"
+
+msgid "Create Template"
+msgstr "Sjabloon maken"
+
+msgid "Create Ticket"
+msgstr "Ticket maken"
+
+msgid "Created"
+msgstr "Aangemaakt"
+
+msgid "Created a new shadow CIB for %USER%."
+msgstr "Er is een nieuwe schaduw-CIB voor %USER% gemaakt."
+
+msgid "Current Configuration Version"
+msgstr "Huidige configuratieversie"
+
+msgid "Custom"
+msgstr "Aangepast"
+
+msgid "DC"
+msgstr "DC"
+
+msgid "Dashboard"
+msgstr "Dashboard"
+
+msgid "Data collection in progress..."
+msgstr "Gegevensverzameling in uitvoering..."
+
+msgid "December"
+msgstr "December"
+
+msgid "Default"
+msgstr "Standaard"
+
+msgid "Define a monitor operation to instruct the cluster to ensure that the resource is still healthy."
+msgstr "Definieer een monitorbewerking waarmee u het cluster instrueert om te controleren of de resource nog in goede staat verkeert."
+
+msgid "Delete"
+msgstr "Verwijderen"
+
+msgid "Demote"
+msgstr "Degraderen"
+
+msgid "Deny"
+msgstr "Blokkeren"
+
+msgid "Depth"
+msgstr "Diepte"
+
+msgid "Designated Coordinator"
+msgstr "Aangestelde coördinator"
+
+msgid "Details"
+msgstr "Details"
+
+msgid "Diff"
+msgstr "Diff"
+
+#, fuzzy
+msgid "Disable Maintenance Mode"
+msgstr "Onderhoud"
+
+msgid "Discard"
+msgstr "Negeren"
+
 msgid "Do you really want to apply the current wizard?"
 msgstr "Wilt u de huidige wizard werkelijk toepassen?"
 
-#: ../app/views/wizards/index.html.haml:28
-msgid "Legacy Wizards"
-msgstr "Oudere wizards"
+msgid "Do you really want to cancel the wizard setup?"
+msgstr "Weet u zeker dat u de installatiewizard wilt annuleren?"
 
-#: ../app/views/wizards/show.html.haml:56
+msgid "Does each copy of the clone perform a different function?"
+msgstr "Wordt met elke kopie van de kloon een andere functie uitgevoerd?"
+
+msgid "Download"
+msgstr "Downloaden"
+
+msgid "Each rule can contain a number of expressions. The results of the expressions are combined based on the rule's boolean operator."
+msgstr "Elke regel kan meerdere expressies bevatten. De resultaten van de expressies worden gecombineerd op basis van de boolean operator van de regel."
+
+msgid "Edit"
+msgstr "Bewerken"
+
+msgid "Edit ACL Target"
+msgstr "ACL-doel bewerken"
+
+msgid "Edit Clone"
+msgstr "Kloon bewerken"
+
+msgid "Edit Colocation"
+msgstr "Colocatie bewerken"
+
+msgid "Edit Configuration"
+msgstr "Configuratie bewerken"
+
+msgid "Edit Group"
+msgstr "Groep bewerken"
+
+msgid "Edit Location"
+msgstr "Locatie bewerken"
+
+msgid "Edit Location Constraint"
+msgstr "Locatiebeperking bewerken"
+
+msgid "Edit Multi-state"
+msgstr "Meervoudige toestand bewerken"
+
+msgid "Edit Multi-state resource"
+msgstr "Resource meervoudige toestand bewerken"
+
+msgid "Edit Node"
+msgstr "Knooppunt bewerken"
+
+msgid "Edit Order"
+msgstr "Order bewerken"
+
+msgid "Edit Primitive"
+msgstr "Primitieve bewerken"
+
+msgid "Edit Role"
+msgstr "Rol bewerken"
+
+msgid "Edit Tag"
+msgstr "Tag bewerken"
+
+msgid "Edit Template"
+msgstr "Sjabloon bewerken"
+
+msgid "Edit Ticket"
+msgstr "Ticket bewerken"
+
+msgid "Elsewhere"
+msgstr "Elders"
+
 msgid "Enable this step"
 msgstr "Deze stap inschakelen"
 
-#: ../app/views/wizards/show.html.haml:123
-msgid "This wizard takes no parameters."
-msgstr "Voor deze wizard worden geen parameters gebruikt."
+msgid "Epoch"
+msgstr "Tijdperk"
 
-#: ../app/views/wizards/show.html.haml:133
+msgid "Error"
+msgstr "Fout"
+
+msgid "Error connecting to server."
+msgstr "Fout bij het maken van verbinding met server."
+
+msgid "Error deleting %s"
+msgstr "Fout bij het verwijderen van %s"
+
+msgid "Error deleting %s: %s"
+msgstr "Fout bij het verwijderen van %s: %s"
+
+msgid "Error granting the ticket"
+msgstr "Fout bij verlenen van ticket"
+
+msgid "Error invoking %{cmd}"
+msgstr "Fout bij het aanroepen van %{cmd}"
+
+msgid "Error invoking %{cmd}: %{msg}"
+msgstr "Fout bij het aanroepen van %{cmd}: %{msg}"
+
+msgid "Error invoking cibadmin %{cmd}: %{msg}"
+msgstr "Fout bij het aanroepen van cibadmin %{cmd}: %{msg}"
+
+msgid "Error removing %s: %s"
+msgstr "Fout bij het verwijderen van %s: %s"
+
+msgid "Error removing cluster."
+msgstr "Fout bij het verwijderen van cluster."
+
+msgid "Error revoking the ticket"
+msgstr "Fout bij intrekken van ticket"
+
+msgid "Error updating %{id} (rc=%{rc})"
+msgstr "Fout bij bijwerken van %{id} (rc=%{rc})"
+
+msgid "Error:"
+msgstr "Fout:"
+
+#, fuzzy
+msgid "Error: Not authenticated"
+msgstr "Fout:"
+
+#, fuzzy
+msgid "Error: Permission denied for user (%s)"
+msgstr "Toestemming geweigerd"
+
+#, fuzzy
+msgid "Error: Record not found"
+msgstr "Fout:"
+
+msgid "Errors"
+msgstr "Fouten"
+
+msgid "Events"
+msgstr "Gebeurtenissen"
+
+msgid "Exec"
+msgstr "Exec"
+
+msgid "Expires"
+msgstr "Verloopt"
+
+msgid "Expression"
+msgstr "Expressie"
+
+msgid "Failed Operations"
+msgstr "Mislukte bewerkingen"
+
+msgid "Failed to apply configuration"
+msgstr "Configuratie toepassen mislukt"
+
+msgid "Failed to clean up the resource: %{err}"
+msgstr "De resource kan niet worden opgeschoond: %{err}"
+
+msgid "Failed to clear the node state: %{err}"
+msgstr "Knooppuntstatus wissen mislukt: %{err}"
+
+msgid "Failed to demote the resource: %{err}"
+msgstr "Niveau van resource kan niet worden verlaagd: %{err}"
+
+msgid "Failed to disable maintenance mode for resource: %{err}"
+msgstr ""
+
+msgid "Failed to fence the node: %{err}"
+msgstr "Fence toepassen op knooppunt mislukt: %{err}"
+
+msgid "Failed to fetch meta attributes"
+msgstr "Meta-attributen kunnen niet worden opgehaald"
+
+msgid "Failed to generate"
+msgstr "Genereren is niet mogelijk"
+
+msgid "Failed to migrate the resource: %{err}"
+msgstr "Kan resource niet migreren: %{msg}"
+
+msgid "Failed to parse monitor response - Internal server error."
+msgstr "Monitorrespons parseren mislukt - interne serverfout."
+
+msgid "Failed to promote the resource: %{err}"
+msgstr "Niveau van resource kan niet worden verhoogd: %{err}"
+
+msgid "Failed to rename %{A} to %{B}: %{E}"
+msgstr "Kan naam %{A} niet veranderen in %{B}: %{E}"
+
+msgid "Failed to set the node online: %{err}"
+msgstr "Knooppunt online zetten mislukt: %{err}"
+
+msgid "Failed to set the node standby: %{err}"
+msgstr "Knooppunt stand-by zetten mislukt: %{err}"
+
+msgid "Failed to set the node state to maintenance: %{err}"
+msgstr "Status van knooppunt instellen op onderhoud mislukt: %{err}"
+
+msgid "Failed to set the node state to ready: %{err}"
+msgstr "Status van knooppunt instellen op gereed mislukt: %{err}"
+
+#, fuzzy
+msgid "Failed to set the resource in maintenance mode: %{err}"
+msgstr "De resource kan niet in beheerde modus worden ingesteld: %{err}"
+
+msgid "Failed to start the resource: %{err}"
+msgstr "De resource kan niet worden gestart: %{err}"
+
+msgid "Failed to stop the resource: %{err}"
+msgstr "De resource kan niet worden gestopt: %{err}"
+
+msgid "Failed to unmigrate the resource: %{err}"
+msgstr "Migratie van de resource kan niet ongedaan worden gemaakt: %{err}"
+
+msgid "February"
+msgstr "Februari"
+
+msgid "Fence"
+msgstr "Fence"
+
+msgid "File a Bug Report"
+msgstr ""
+
+msgid "Fr"
+msgstr "Vr"
+
+msgid "Freeze"
+msgstr "Vastgelopen"
+
+msgid "From"
+msgstr "Van"
+
+msgid "Generate"
+msgstr "Genereren"
+
+#, fuzzy
+msgid "Getting Started using Hawk"
+msgstr "Gestart"
+
+msgid "Grant"
+msgstr "Toewijzen"
+
+msgid "Granted"
+msgstr "Toegewezen"
+
+msgid "Graph"
+msgstr "Grafisch"
+
+msgid "Group"
+msgstr "Groep"
+
+msgid "Group ID"
+msgstr "Groep ID"
+
+msgid "Group created successfully"
+msgstr "De groep is gemaakt"
+
+msgid "Group deleted successfully"
+msgstr "De groep is verwijderd"
+
+msgid "Group updated successfully"
+msgstr "Groep is bijgewerkt"
+
+msgid "Groups"
+msgstr "Groepen"
+
+msgid "HTML"
+msgstr "HTML"
+
+msgid "Have Quorum"
+msgstr "Met quorum"
+
+msgid "Help"
+msgstr "Help"
+
+msgid "High Availability Web Konsole"
+msgstr "Webconsole met hoge beschikbaarheid"
+
+msgid "History"
+msgstr "Geschiedenis"
+
+msgid "History Explorer"
+msgstr "Historieverkenner"
+
+msgid "Host"
+msgstr "Host"
+
+msgid "Hostname"
+msgstr "Hostnaam"
+
+msgid "Hostname of node in cluster"
+msgstr "Hostnaam van knooppunt in cluster"
+
+msgid "How frequently (in seconds) to perform the operation."
+msgstr "Hoe vaak (in seconden) de bewerking moet worden uitgevoerd."
+
+msgid "How long before a pending guest connection will time out."
+msgstr "De tijd voordat een een time-out optreedt voor een wachtende gastverbinding."
+
+msgid "How long to wait before declaring the action has failed."
+msgstr "Hoe lang moet worden gewacht voordat wordt verklaard dat de actie is mislukt."
+
+msgid "How many copies of the resource can be promoted to master status on a single node."
+msgstr "Het aantal kopieën van de resource dat kan worden verhoogd naar hoofdstatus op één knooppunt."
+
+msgid "How many copies of the resource can be promoted to master status."
+msgstr "Het aantal kopieën van de resource dat kan worden verhoogd naar hoofdstatus."
+
+msgid "How many copies of the resource can be started on a single node. Defaults to 1."
+msgstr "Het aantal kopieën van de resource dat in één knooppunt kan worden gestart. Wordt standaard ingesteld op 1."
+
+msgid "How many copies of the resource to start. Defaults to the number of nodes in the cluster."
+msgstr "Het aantal kopieën van de resource dat moet worden gestart. Wordt standaard ingesteld op het aantal knooppunten in het cluster."
+
+msgid "How many failures may occur for this resource on a node, before this node is marked ineligible to host this resource. A value of INFINITY indicates that this feature is disabled."
+msgstr "Het aantal fouten dat voor deze resource op een knooppunt mag optreden, voordat deze node wordt gemarkeerd als ongeschikt om als host te dienen voor deze resource. Met een waarde van INFINITY wordt aangegeven dat deze functie wordt uitgeschakeld."
+
+msgid "How many seconds to wait before acting as if the failure had not occurred, and potentially allowing the resource back to the node on which it failed. A value of 0 indicates that this feature is disabled."
+msgstr "Het aantal seconden dat moet worden gewacht voordat de fout wordt genegeerd en de resource mogelijk op het knooppunt wordt toegestaan waarop het fout ging. Met een waarde van 0 wordt aangegeven dat deze functie wordt uitgeschakeld."
+
+msgid "How much does the resource prefer to stay where it is?"
+msgstr "Hoeveel voorkeur geeft de resource eraan op de huidige plaats te blijven?"
+
+msgid "How to combine the result of multiple expression objects. Allowed values are and and or."
+msgstr "Hiermee kunt u het resultaat van meerdere expressieobjecten combineren. Toegestane waarden zijn and en or."
+
+msgid "ID"
+msgstr "ID"
+
+msgid "ID is required"
+msgstr "Id is vereist"
+
+msgid "If false, the operation is treated as if it does not exist."
+msgstr "Indien niet aan de voorwaarde wordt voldaan, wordt de bewerking behandeld alsof deze niet bestaat."
+
+msgid "If not all resources can be active, the cluster will stop lower priority resources in order to keep higher priority ones active."
+msgstr "Als niet alle resources actief kunnen zijn, stopt het cluster resources met een lagere prioriteit om de resources met een hogere prioriteit actief te houden."
+
+msgid "If true, the intention to perform the operation is recorded so that GUIs and CLI tools can indicate that an operation is in progress."
+msgstr "Als aan deze voorwaarde wordt voldaan, wordt de intentie om deze bewerking uit te voeren geregistreerd zodat met GUI's en CLI-programma's kan worden aangegeven dat een bewerking wordt uitgevoerd."
+
+msgid "Inject"
+msgstr "Invoegen"
+
+msgid "Inject Node Event"
+msgstr "Knooppuntgebeurtenis invoeren"
+
+msgid "Inject Resource Event"
+msgstr "Resourcegebeurtenis invoegen"
+
+msgid "Inject Ticket Event"
+msgstr "Ticketgebeurtenis invoegen"
+
+msgid "Instances"
+msgstr "Instanties"
+
+msgid "Interval"
+msgstr "Interval"
+
+msgid "Interval (ms)"
+msgstr "Interval (ms)"
+
+msgid "Invalid ACL target ID"
+msgstr "Ongeldige id van ACL-doel"
+
+msgid "Invalid Clone ID"
+msgstr "Ongeldige kloon-id"
+
+msgid "Invalid Constraint ID"
+msgstr "Ongeldige beperkings-id"
+
+msgid "Invalid ID"
+msgstr "Ongeldige id"
+
+msgid "Invalid Node ID"
+msgstr "Ongeldige knooppunt-id"
+
+msgid "Invalid Ticket ID"
+msgstr "Ongeldige ticket-id"
+
+msgid "Invalid name"
+msgstr "Ongeldige naam"
+
+msgid "Invalid node attribute"
+msgstr "Ongeldig knooppuntattribuut"
+
+msgid "Invalid resource discovery type"
+msgstr "Ongeldig type resourcedetectie"
+
+msgid "Invalid score \"%{score}\""
+msgstr "Ongeldige score \"%{score}\""
+
+msgid "Invalid score value"
+msgstr "Ongeldige scorewaarde"
+
+msgid "Invalid username"
+msgstr "Ongeldige gebruikersnaam"
+
+msgid "Invalid username or password"
+msgstr "Ongeldige gebruikersnaam of ongeldig wachtwoord"
+
+msgid "Is the cluster allowed to start and stop the resource?"
+msgstr "Mag het cluster de resource starten en stoppen?"
+
+msgid "January"
+msgstr "Januari"
+
+msgid "July"
+msgstr "July"
+
+msgid "June"
+msgstr "Juni"
+
+msgid "Last Change"
+msgstr "Laatste wijziging"
+
+msgid "Last Granted"
+msgstr "Laatst toegewezen"
+
+msgid "Last Written"
+msgstr "Laatst geschreven"
+
+msgid "Leader"
+msgstr "Leider"
+
+msgid "Legacy Wizards"
+msgstr "Oudere wizards"
+
+msgid "Limits the rule to apply only when the resource is in the specified role."
+msgstr "Hiermee wordt de regel beperkt zodat deze alleen van toepassing is wanneer de resource de opgegeven rol heeft."
+
+msgid "Link with entry above"
+msgstr "Koppelen met bovenstaand item"
+
+msgid "List"
+msgstr "Lijst"
+
+msgid "Lists crm commands recently executed by hawk, most recent first."
+msgstr "Hiermee worden crm-opdrachten weergegeven die onlangs zijn uitgevoerd door Hawk, waarbij de recentste het eerst worden weergegeven."
+
+msgid "Loading report..."
+msgstr "Rapport laden..."
+
+msgid "Local Status"
+msgstr "Lokale status"
+
+msgid "Location"
+msgstr "Locatie"
+
+msgid "Location Constraints"
+msgstr "Locatiebeperkingen"
+
+msgid "Location deleted successfully"
+msgstr "Locatie is verwijderd"
+
+msgid "Locations"
+msgstr "Locaties"
+
+msgid "Log In"
+msgstr "Aanmelden"
+
+msgid "Login"
+msgstr "Inloggen"
+
+msgid "Logout"
+msgstr "Afmelden"
+
+msgid "Logs"
+msgstr "Logs"
+
+msgid "Longdesc"
+msgstr "Lange beschrijving"
+
+msgid "Loss Policy"
+msgstr "Verliesbeleid"
+
+msgid "Maintenance"
+msgstr "Onderhoud"
+
+#, fuzzy
+msgid "Maintenance Mode"
+msgstr "Onderhoudsmodus"
+
+msgid "Maintenance mode"
+msgstr "Onderhoudsmodus"
+
+msgid "Manage"
+msgstr "Beheren"
+
+msgid "Mandatory"
+msgstr "Verplicht"
+
+msgid "March"
+msgstr "Maart"
+
+msgid "Master"
+msgstr "Master"
+
+msgid "May"
+msgstr "Mei"
+
+msgid "Menu"
+msgstr "Menu"
+
+msgid "Meta Attributes"
+msgstr "Meta-attributen"
+
+msgid "Migrate"
+msgstr "Migreren"
+
+#, fuzzy
+msgid "Migrate tagged resources"
+msgstr "Migreren"
+
+msgid "Mo"
+msgstr "Ma"
+
+msgid "Monitor"
+msgstr "Monitor"
+
+msgid "Move rule down"
+msgstr "Regel omlaag plaatsen"
+
+msgid "Move rule up"
+msgstr "Regel omhoog plaatsen"
+
+msgid "Multi-state"
+msgstr "Meervoudige toestand"
+
+msgid "Multi-state ID"
+msgstr "Id meervoudige toestand"
+
+msgid "Multi-state Resources"
+msgstr "Resources met meervoudige toestand"
+
+msgid "Multi-state resource"
+msgstr "Resource meervoudige toestand"
+
+msgid "Multi-state resource created successfully"
+msgstr "De resource met meervoudige toestand is gemaakt"
+
+msgid "Multi-state resource deleted successfully"
+msgstr "Resource meervoudige toestand is verwijderd"
+
+msgid "Multi-state resource updated successfully"
+msgstr "De resource met meervoudige toestand is bijgewerkt"
+
+msgid "Must be a valid resource ID"
+msgstr "Moet een geldige resource-id zijn"
+
+msgid "Name"
+msgstr "Naam"
+
+msgid "Name is required"
+msgstr "Naam is vereist"
+
+msgid "Name of a node in the cluster."
+msgstr "Naam van een knooppunt in het cluster."
+
+msgid "Name used to refer to the node in the cluster."
+msgstr "Naam waarmee wordt verwezen naar het knooppunt in het cluster."
+
+msgid "Never"
+msgstr "Nooit"
+
+msgid "News"
+msgstr ""
+
 msgid "Next"
 msgstr "Volgende"
 
-#: ../app/views/wizards/show.html.haml:135
-msgid "Verify"
-msgstr "Verifiëren"
+msgid "No"
+msgstr "Nee"
 
-#: ../app/views/wizards/update.html.haml:50
-msgid "Verify and apply"
-msgstr "Verifiëren en toepassen"
+msgid "No Clone child specified"
+msgstr "Er is geen onderliggende kloon opgegeven"
 
-#: ../app/views/wizards/update.html.haml:87
-msgid "To apply the changes, Hawk requires root access, and password-less SSH access must be configured. See the Hawk documentation for more information."
-msgstr "Als u de wijzigingen wilt toepassen, vereist Hawk toegang tot de hoofdmap en moet SSH-toegang zonder wachtwoord worden geconfigureerd. Raadpleeg de Hawk-documentatie voor meer informatie."
+msgid "No Group children specified"
+msgstr "Geen onderliggende elementen van de groep opgegeven"
 
-#: ../app/views/wizards/update.html.haml:94
+msgid "No Multi-state child specified"
+msgstr "Geen onderliggend element met meervoudige toestand opgegeven"
+
+msgid "No Tag resources specified"
+msgstr "Er zijn geen tagresources opgegeven"
+
+msgid "No attributes defined"
+msgstr "Geen attributen gedefinieerd"
+
+msgid "No child resources"
+msgstr "Geen onderliggende resources"
+
+msgid "No children available"
+msgstr "Geen onderliggende elementen beschikbaar"
+
+msgid "No configuration changes."
+msgstr "Geen configuratiewijzigingen."
+
+msgid "No details available"
+msgstr "Geen details beschikbaar"
+
+msgid "No expressions specified"
+msgstr "Er zijn geen expressies opgegeven"
+
+msgid "No interval set for monitor operation"
+msgstr "Geen interval ingesteld voor monitorbewerking"
+
+msgid "No objects available"
+msgstr "Geen objecten beschikbaar"
+
+msgid "No resource specified"
+msgstr "Er is geen resource opgegeven"
+
+msgid "No rules specified"
+msgstr "Er zijn geen regels opgegeven"
+
+msgid "No transitions in report"
+msgstr "Geen overgangen in rapport"
+
+msgid "No utilization defined"
+msgstr "Geen verbruik gedefinieerd"
+
+msgid "Node"
+msgstr "Knooppunt"
+
+msgid "Node \"%{node}\" is UNCLEAN and needs to be fenced."
+msgstr "Knooppunt \"%{node}\" is VERVUILD. Er moet een fence op worden toegepast."
+
+msgid "Node Attribute"
+msgstr "Knooppuntattribuut"
+
+msgid "Node Event"
+msgstr "Knooppuntgebeurtenis"
+
+msgid "Node Events"
+msgstr "Knooppuntgebeurtenissen"
+
+msgid "Node ID"
+msgstr "Knooppunt-id"
+
+msgid "Node ID is required"
+msgstr "Knooppunt-id is vereist"
+
+msgid "Node Name"
+msgstr "Knooppuntnaam"
+
+msgid "Node updated successfully"
+msgstr "Knooppunt is bijgewerkt"
+
+msgid "Nodes"
+msgstr "Knooppunten"
+
+msgid "None"
+msgstr "Geen"
+
+msgid "Not a constraint"
+msgstr "Geen beperking"
+
+msgid "Not a resource"
+msgstr "Geen resource"
+
+msgid "November"
+msgstr "November"
+
+msgid "OK"
+msgstr "Ok"
+
+msgid "Object Type"
+msgstr "Objecttype"
+
+msgid "Object not found: %s=%s"
+msgstr "Object is niet gevonden: %s=%s"
+
+msgid "Objects"
+msgstr "Objecten"
+
+msgid "October"
+msgstr "Oktober"
+
+msgid "Online Documentation"
+msgstr ""
+
+msgid "Operation"
+msgstr "Bewerking"
+
+msgid "Operation Defaults"
+msgstr "Standaardwaarden voor bewerking"
+
+msgid "Operations"
+msgstr "Bewerkingen"
+
+msgid "Operator"
+msgstr "Operator"
+
+msgid "Optional"
+msgstr "Optioneel"
+
+msgid "Options"
+msgstr "Opties"
+
+msgid "Order"
+msgstr "Volgorde"
+
+msgid "Order deleted successfully"
+msgstr "Volgorde is gemaakt"
+
+msgid "Orders"
+msgstr "Volgordes"
+
+msgid "PDF"
+msgstr "PDF"
+
+msgid "PE Name"
+msgstr "PE-naam"
+
+msgid "Pacemaker Version"
+msgstr "Pacemakerversie"
+
+msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
+msgstr "Pacemaker lijkt niet geïnstalleerd (%{cmd} niet gevonden)"
+
+msgid "Parameters"
+msgstr "Parameters"
+
+#, fuzzy
+msgid "Partial upgrade detected! Nodes report different CRM versions: %s"
+msgstr "Knooppunten"
+
+msgid "Partition without quorum! Fencing and resource management is disabled."
+msgstr ""
+
+msgid "Password"
+msgstr "Wachtwoord"
+
+msgid "Password not specified"
+msgstr "Geen wachtwoord opgegeven"
+
+msgid "Permission denied"
+msgstr "Toestemming geweigerd"
+
+msgid "Permission denied - you do not have write access to the CIB."
+msgstr "Toestemming geweigerd - u hebt geen schrijftoegang tot de CIB."
+
+msgid "Permission denied for user %{user}"
+msgstr "Toestemming geweigerd voor gebruiker %{user}"
+
+msgid "Permission denied. "
+msgstr "Toestemming geweigerd. "
+
+msgid "Please ensure Javascript is enabled"
+msgstr "Controleer of JavaScript is ingeschakeld"
+
+msgid "Please wait while report is generated..."
+msgstr "Een ogenblik geduld. Het rapport wordt gegenereerd..."
+
+msgid "Please wait..."
+msgstr "Een ogenblik geduld..."
+
+msgid "Port to use for the guest connection to pacemaker_remote."
+msgstr "Poort die moet worden gebruikt voor de gastverbinding met pacemaker_remote."
+
+msgid "Positive values indicate the resources should run on this node. Negative values indicate the resources should not run on this node. Values of +/- INFINITY change \"should\"/\"should not\" to \"must\"/\"must not\"."
+msgstr "Positieve waarden geven aan dat de resources op dit knooppunt moeten worden uitgevoerd. Negatieve waarden geven aan dat de resources niet op dit knooppunt moeten worden uitgevoerd. Waarden van +/- INFINITY wijzigen \"zou moeten\"/\"zou niet moeten\" in \"moeten\"/\"mogen niet\"."
+
+msgid "Preferences"
+msgstr "Voorkeuren"
+
+msgid "Preferences updated successfully"
+msgstr "Voorkeuren zijn bijgewerkt"
+
+msgid "Previous"
+msgstr ""
+
+msgid "Primary"
+msgstr "Primair"
+
+msgid "Primitive"
+msgstr "Primitieve"
+
+msgid "Primitive created successfully"
+msgstr "Primitieve is gemaakt"
+
+msgid "Primitive deleted successfully"
+msgstr "Primitief is verwijderd"
+
+msgid "Primitive updated successfully"
+msgstr "De primitieve is bijgewerkt"
+
+msgid "Primitives"
+msgstr "Primitieven"
+
+msgid "Profile"
+msgstr "Profiel"
+
+msgid "Promote"
+msgstr "Bevorderen"
+
+msgid "Properties"
+msgstr "Eigenschappen"
+
+msgid "Provider"
+msgstr "Provider"
+
+msgid "Puts the node into standby mode. The specified node is no longer able to host resources. Any resources currently active on the node will be moved to another node."
+msgstr "Zet het knooppunt in de stand-bymodus. Op het opgegeven knooppunt kunnen niet langer resources worden gehost. Resources die momenteel op het knooppunt actief zijn, worden naar een ander knooppunt verplaatst."
+
+msgid "RC"
+msgstr "RC"
+
+msgid "Read"
+msgstr "Lezen"
+
+#, fuzzy
+msgid "Read the most up-to-date documentation at the suse.com website."
+msgstr "Lezen"
+
+#, fuzzy
+msgid "Read the release notes for the SUSE High Availability Extension."
+msgstr "Lezen"
+
+msgid "Reason"
+msgstr "Reden"
+
+msgid "Recent events"
+msgstr "Recente gebeurtenissen"
+
+msgid "Reference"
+msgstr "Referentie"
+
+#, fuzzy
+msgid "Release Notes"
+msgstr "Nee"
+
+msgid "Remote"
+msgstr "Extern"
+
+msgid "Remote node."
+msgstr "Extern knooppunt."
+
+msgid "Remove"
+msgstr "Verwijderen"
+
+msgid "Remove cluster _NAME_ from dashboard?"
+msgstr "Cluster _NAME_ van dashboard verwijderen?"
+
+msgid "Remove this rule"
+msgstr "Deze regel verwijderen"
+
+msgid "Rename"
+msgstr "Hernoemen"
+
+#, fuzzy
+msgid "Rename Constraint"
+msgstr "Beperking"
+
+msgid "Rename Resource"
+msgstr "Resource hernoemen"
+
+msgid "Replacing previously defined monitor operation with same interval"
+msgstr "Eerder gedefinieerde monitorbewerking wordt vervangen met hetzelfde interval"
+
+msgid "Report a bug or request a feature!"
+msgstr ""
+
+msgid "Report deleted successfully"
+msgstr "Het rapport is verwijderd"
+
+msgid "Report generation cancelled."
+msgstr "Rapport genereren geannuleerd."
+
+msgid "Report generation is complete."
+msgstr "Rapport is gegenereerd."
+
+msgid "Reports"
+msgstr "Rapporten"
+
+msgid "Requested wizard does not exist"
+msgstr "Aangevraagde wizard bestaat niet"
+
+msgid "Required"
+msgstr "Vereist"
+
+msgid "Resource"
+msgstr "Resource"
+
+msgid "Resource Defaults"
+msgstr "Standaardwaarden herstellen"
+
+msgid "Resource Discovery"
+msgstr "Resourcedetectie"
+
+msgid "Resource Event"
+msgstr "Resourcegebeurtenis"
+
+msgid "Resource Events"
+msgstr "Resourcegebeurtenissen"
+
+msgid "Resource ID"
+msgstr "Resource-id"
+
+msgid "Resource agent name."
+msgstr "Naam van resource-agent."
+
+msgid "Resource template to inherit from."
+msgstr "Resourcesjabloon waarvan waarden moeten worden overgenomen."
+
+msgid "Resources"
+msgstr "Resources"
+
+#, fuzzy
+msgid "Resources in maintenance mode are not monitored by the cluster."
+msgstr "Resources"
+
+msgid "Resources to apply the constraint to."
+msgstr "Resources waarop de beperking moet worden toegepast."
+
+msgid "Result"
+msgstr "Resultaat"
+
+msgid "Retrying every 15 seconds..."
+msgstr "Opnieuw proberen elke 15 seconden..."
+
+msgid "Revert"
+msgstr "Terugdraaien"
+
+msgid "Revoke"
+msgstr "Intrekken"
+
+msgid "Revoked"
+msgstr "Ingetrokken"
+
+msgid "Right"
+msgstr "Rechts"
+
+msgid "Role"
+msgstr "Rol"
+
+msgid "Role ID"
+msgstr "Rol-id"
+
+msgid "Role created successfully"
+msgstr "De rol is gemaakt"
+
+msgid "Role deleted successfully"
+msgstr "De rol is verwijderd"
+
+msgid "Role updated successfully"
+msgstr "De rol is bijgewerkt"
+
+msgid "Roles"
+msgstr "Rollen"
+
 msgid "Root password"
 msgstr "Root-wachtwoord"
 
-#: ../lib/cibtools.rb:125
-msgid "other"
-msgstr "overig"
+msgid "Rule"
+msgstr "Regel"
 
-#: ../lib/invoker.rb:86
+msgid "STONITH is disabled. For normal cluster operation, STONITH is required."
+msgstr "STONITH is uitgeschakeld. Voor een normale clusterbewerking is STONITH vereist."
+
+msgid "SUSE, LLC"
+msgstr "SUSE, LLC"
+
+msgid "Sa"
+msgstr "Za"
+
+msgid "Schema"
+msgstr "Schema"
+
+msgid "Score"
+msgstr "Score"
+
+msgid "Score is required"
+msgstr "Score is vereist"
+
+msgid "Secondary"
+msgstr "Seconden"
+
+msgid "September"
+msgstr "September"
+
+msgid "Serialize"
+msgstr "Serialiseren"
+
+msgid "Server port to connect to"
+msgstr "Serverpoort om verbinding mee te maken"
+
+msgid "Server returned invalid data."
+msgstr "De server heeft ongeldige data geretourneerd."
+
+msgid "Session has expired"
+msgstr "Sessie is verlopen"
+
+msgid "Set the node state to maintenance"
+msgstr "Status van knooppunt instellen op onderhoud"
+
+msgid "Set the node state to online"
+msgstr "Status van knooppunt instellen op online"
+
+msgid "Set the node state to ready"
+msgstr "Status van knooppunt instellen op gereed"
+
+msgid "Set the node state to standby"
+msgstr "Status van knooppunt instellen op stand-by"
+
+msgid "Set to true if the resource agent supports the migrate action"
+msgstr "Instellen op waar als de resource-agent de migratieactie ondersteunt"
+
+msgid "Shortdesc"
+msgstr "Korte beschrijving"
+
+msgid "Should the copies be started in series (instead of in parallel)?"
+msgstr "Moeten de kopieën na elkaar (of naast elkaar) worden gestart?"
+
+msgid "Show"
+msgstr "Weergeven"
+
+msgid "Show Configuration"
+msgstr "Configuratie weergeven"
+
+msgid "Simple"
+msgstr "Eenvoudig"
+
+msgid "Simulator"
+msgstr "Simulatie"
+
+msgid "Simulator active: Use the ticket controls in the simulator"
+msgstr "Simulator actief: gebruik de ticketelementen in de simulator"
+
+msgid "Sites"
+msgstr "Sites"
+
+msgid "Slave"
+msgstr "Slave"
+
+msgid "Stack"
+msgstr "Stapel"
+
+msgid "Standard which the resource agent conforms to."
+msgstr "Standaard waaraan de resource-agent voldoet."
+
+msgid "Standby"
+msgstr "Standby"
+
+msgid "Start"
+msgstr "Begin"
+
+msgid "Started"
+msgstr "Gestart"
+
+msgid "State"
+msgstr "Staat"
+
+msgid "Status"
+msgstr "Status"
+
+msgid "Stop"
+msgstr "Stoppen"
+
+msgid "Stopped"
+msgstr "Gestopt"
+
+msgid "Su"
+msgstr "Zo"
+
+msgid "Successfully cleaned the resource"
+msgstr "De resource is opgeschoond"
+
+msgid "Successfully demoted the resource"
+msgstr "Niveau van resource is verlaagd"
+
+#, fuzzy
+msgid "Successfully disabled maintenance mode for resource"
+msgstr "Zo"
+
+msgid "Successfully fenced the node"
+msgstr "Fence is toegepast op knooppunt"
+
+msgid "Successfully granted the ticket"
+msgstr "Het ticket is verleend"
+
+msgid "Successfully migrated the resource"
+msgstr "De resource is gemigreerd"
+
+msgid "Successfully promoted the resource"
+msgstr "Niveau van resource is verhoogd"
+
+msgid "Successfully renamed %{A} to %{B}"
+msgstr "Naam %{A} is veranderd in %{B}"
+
+msgid "Successfully revoked the ticket"
+msgstr "Het ticket is ingetrokken"
+
+#, fuzzy
+msgid "Successfully set the resource in maintenance mode"
+msgstr "De resource is in beheerde modus ingesteld"
+
+msgid "Successfully started the resource"
+msgstr "De resource is gestart"
+
+msgid "Successfully stopped the resource"
+msgstr "De resource is gestopt"
+
+msgid "Successfully unmigrated the resource"
+msgstr "Migratie van de resource is ongedaan genmaakt"
+
+msgid "Summary"
+msgstr "Samenvatting"
+
+msgid "Swap with entry above"
+msgstr "Wisselen met bovenstaand item"
+
+msgid "Switch to maintenance"
+msgstr "Overschakelen naar onderhoud"
+
+msgid "Switch to online"
+msgstr "Overschakelen naar online"
+
+msgid "Switch to ready"
+msgstr "Overschakelen naar gereed"
+
+msgid "Switch to standby"
+msgstr "Overschakelen naar stand-by"
+
+msgid "Symmetrical"
+msgstr "Symmetrisch"
+
+msgid "Tag"
+msgstr "Tag"
+
+msgid "Tag ID"
+msgstr "Tag-id"
+
+msgid "Tag created successfully"
+msgstr "De tag is gemaakt"
+
+msgid "Tag deleted successfully"
+msgstr "De tag is verwijderd"
+
+msgid "Tag updated successfully"
+msgstr "De tag is bijgewerkt"
+
+msgid "Tags"
+msgstr "Tags"
+
+msgid "Target ID"
+msgstr "Doel-id"
+
+msgid "Targets"
+msgstr "Doelen"
+
+msgid "Template"
+msgstr "Sjabloon"
+
+msgid "Template created successfully"
+msgstr "De sjabloon is gemaakt"
+
+msgid "Template deleted successfully"
+msgstr "De sjabloon is verwijderd"
+
+msgid "Template updated successfully"
+msgstr "De sjabloon is bijgewerkt"
+
+msgid "Templates"
+msgstr "Sjablonen"
+
+msgid "Th"
+msgstr "Do"
+
+msgid "The ACL target does not exist"
+msgstr "Het ACL-doel bestaat niet"
+
+msgid "The ID \"%{id}\" does not exist"
+msgstr "Id \"%{id}\" bestaat niet"
+
+msgid "The ID \"%{id}\" is already in use"
+msgstr "Id \"%{id}\" is al in gebruik"
+
+msgid "The IP address or hostname to connect to if remote-node's name is not the hostname of the guest."
+msgstr "Het IP-adres of de hostnaam waarmee verbinding moet worden gemaakt als de naam van het externe knooppunt niet de hostnaam van de gast is."
+
+msgid "The action to take if this action ever fails."
+msgstr "De actie die moet worden uitgevoerd als deze actie ooit mislukt."
+
+msgid "The clone does not exist"
+msgstr "De kloon bestaat niet."
+
+msgid "The colocation constraint does not exist"
+msgstr "De colocatiebeperking bestaat niet"
+
+msgid "The group does not exist"
+msgstr "Groep bestaat niet"
+
+msgid "The location constraint does not exist"
+msgstr "De locatiebeperking bestaat niet"
+
+msgid "The multi-state resource does not exist"
+msgstr "De resource meervoudige toestand bestaat niet"
+
+msgid "The name of the remote-node this resource defines. This both enables the resource as a remote-node and defines the unique name used to identify the remote-node. If no other parameters are set, this value will also be assumed as the hostname to connect to at the port specified by remote-port. WARNING: This value cannot overlap with any resource or node IDs. If not specified, this feature is disabled."
+msgstr "De naam van het externe knooppunt dat met deze resource wordt gedefinieerd. Hiermee wordt de resource als een extern knooppunt ingeschakeld en wordt de unieke naam gedefinieerd waarmee het externe knooppunt wordt geïdentificeerd. Als er geen andere parameters worden ingesteld, wordt deze waarde ook gebruikt als de hostnaam waarmee verbinding moet worden gemaakt op de poort die is opgegeven door de externe poort. WAARSCHUWING: deze waarde mag niet overlappen met resource- of knooppunt-id's. Als deze waarde niet wordt opgegeven, wordt deze functie uitgeschakeld."
+
+msgid "The node does not exist"
+msgstr "Het knooppunt bestaat niet."
+
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "Het object/attribuut bestaat niet (cibadmin %{cmd})"
 
-#: ../lib/invoker.rb:90
-msgid "Error invoking cibadmin %{cmd}: %{msg}"
-msgstr "Fout bij het aanroepen van cibadmin %{cmd}: %{msg}"
+msgid "The order constraint does not exist"
+msgstr "De orderbeperking bestaat niet"
+
+msgid "The primitive does not exist"
+msgstr "De primitieve bestaat niet."
+
+msgid "The report does not exist"
+msgstr "Het rapport bestaat niet"
+
+msgid "The role does not exist"
+msgstr "De rol bestaat niet"
+
+msgid "The score determines the location relationship between the resources."
+msgstr "De score bepaalt de relatie tussen de locaties van de resources."
+
+msgid "The tag does not exist"
+msgstr "De tag bestaat niet"
+
+msgid "The template does not exist"
+msgstr "De sjabloon bestaat niet"
+
+msgid "The ticket constraint does not exist"
+msgstr "De ticketbeperking bestaat niet"
+
+msgid "This option only makes sense for recurring operations. It restricts the operation to a specific role. The truely paranoid can even specify role=Stopped which allows the cluster to detect an admin that manually started cluster services."
+msgstr "Deze optie is alleen zinvol voor terugkerende bewerkingen. Met deze optie wordt de bewerking tot een specifieke rol beperkt. Voor de rol kan zelfs Gestopt worden opgegeven, waarmee het cluster een beheerder kan detecteren die clusterservices handmatig heeft gestart."
+
+#, fuzzy
+msgid "This will demote the tagged resources. Do you want to continue?"
+msgstr "Do"
+
+#, fuzzy
+msgid "This will disable maintenance mode for the tagged resources. Do you want to continue?"
+msgstr "Do"
+
+#, fuzzy
+msgid "This will enable maintenance mode for the tagged resources. Do you want to continue?"
+msgstr "Do"
+
+#, fuzzy
+msgid "This will promote the tagged resources. Do you want to continue?"
+msgstr "Do"
+
+#, fuzzy
+msgid "This will start the tagged resources. Do you want to continue?"
+msgstr "Do"
+
+#, fuzzy
+msgid "This will stop the tagged resources. Do you want to continue?"
+msgstr "Do"
+
+#, fuzzy
+msgid "This will unmigrate the tagged resources. Do you want to continue?"
+msgstr "Do"
+
+msgid "This wizard takes no parameters."
+msgstr "Voor deze wizard worden geen parameters gebruikt."
+
+msgid "Ticket"
+msgstr "Ticket"
+
+msgid "Ticket Event"
+msgstr "Ticketgebeurtenis"
+
+msgid "Ticket ID"
+msgstr "Ticket-id"
+
+msgid "Ticket ID is required"
+msgstr "Ticket-id is vereist"
+
+msgid "Ticket deleted successfully"
+msgstr "Ticket is verwijderd"
+
+msgid "Ticket:"
+msgstr "Ticket:"
+
+msgid "Tickets"
+msgstr "Tickets"
+
+msgid "Time"
+msgstr "Tijd"
+
+msgid "Timeout"
+msgstr "Timeout"
+
+msgid "To"
+msgstr "Aan"
+
+msgid "To apply the changes, Hawk requires root access, and password-less SSH access must be configured. See the Hawk documentation for more information."
+msgstr "Als u de wijzigingen wilt toepassen, vereist Hawk toegang tot de hoofdmap en moet SSH-toegang zonder wachtwoord worden geconfigureerd. Raadpleeg de Hawk-documentatie voor meer informatie."
+
+msgid "To enable ACLs, set \"enable-acl\" in the Cluster Configuration ('Manage > Configuration')"
+msgstr "Als u ACL's wilt inschakelen, stelt u \"enable-acl\" in Clusterconfiguratie ('Beheren > Configuratie') in"
+
+msgid "Transition"
+msgstr "Overgang"
+
+msgid "Transition (XML)"
+msgstr "Overgang (XML)"
+
+msgid "Transition Graph"
+msgstr "Overgangsgrafiek"
+
+msgid "Transitions"
+msgstr "Overgangen"
+
+msgid "Tu"
+msgstr "Di"
+
+msgid "Type"
+msgstr "Type"
+
+msgid "Unable to create shadow CIB"
+msgstr "Kan geen schaduw-CIB maken"
+
+msgid "Unable to create: %{msg}"
+msgstr "Kan niet maken: %{msg}"
+
+msgid "Unable to execute %{cmd}"
+msgstr "Kan %{cmd} niet uitvoeren"
+
+msgid "Unable to parse CIB file \"%{path}\""
+msgstr "Kan CIB-bestand \"%{path}\" niet parseren"
+
+msgid "Unexpected server error: _MSG_"
+msgstr "Onverwachte serverfout: _MSG_"
+
+msgid "Unique"
+msgstr "Uniek"
+
+msgid "Unique identifier for the constraint. May not contain spaces."
+msgstr "Unieke id voor de beperking. Mag geen spaties bevatten."
+
+msgid "Unique identifier for the node."
+msgstr "Unieke id voor het knooppunt."
+
+msgid "Unique identifier for the resource. May not contain spaces."
+msgstr "Unieke id voor de resource. Mag geen spaties bevatten."
+
+msgid "Unknown"
+msgstr "Onbekend"
+
+msgid "Unknown error connecting to server."
+msgstr "Onbekende fout bij het maken van verbinding met server."
+
+msgid "Unlink from entry above"
+msgstr "Ontkoppelen van bovenstaand item"
+
+msgid "Unmanaged"
+msgstr "Onbeheerd"
+
+msgid "Unmigrate"
+msgstr "Migratie ongedaan maken"
+
+msgid "Until"
+msgstr "Tot"
+
+msgid "Update Origin"
+msgstr "Oorsprong van bijwerken"
+
+msgid "Update User"
+msgstr "Gebruiker van bijwerken"
+
+msgid "Upload"
+msgstr "Uploaden"
+
+msgid "Upload completed."
+msgstr "Upload is voltooid."
+
+msgid "Use a wizard"
+msgstr "Een wizard gebruiken"
+
+msgid "User ID"
+msgstr "Gebruikers-id"
+
+msgid "Username"
+msgstr "Gebruikersnaam"
+
+msgid "Username not specified"
+msgstr "Gebruikersnaam is niet opgegeven."
+
+msgid "Utilization"
+msgstr "Gebruik"
+
+msgid "Value contains both single and double quotes"
+msgstr "Waarde bevat enkele en dubbele aanhalingstekens"
+
+msgid "Vendor or project which provided the resource agent."
+msgstr "Bron van waaruit de resource-agent is aangeleverd (leverancier of project)."
+
+msgid "Verify"
+msgstr "Verifiëren"
+
+msgid "Verify and apply"
+msgstr "Verifiëren en toepassen"
+
+msgid "Verifying parameters..."
+msgstr "Parameters controleren..."
+
+msgid "Version"
+msgstr "Versie"
+
+msgid "Visit the Hawk website for information about the latest release."
+msgstr ""
+
+msgid "We"
+msgstr "Wo"
+
+msgid "Welcome"
+msgstr "Welkom"
+
+msgid "West Coast (example)"
+msgstr "Westkust (voorbeeld)"
+
+msgid "What conditions need to be satisfied before this action occurs."
+msgstr "Aan welke voorwaarden moet worden voldaan voordat deze actie plaatsvindt."
+
+msgid "What should the cluster do if it ever finds the resource active on more than one node?"
+msgstr "Wat moet het cluster doen als blijkt dat de resource op meerdere knooppunten actief is?"
+
+msgid "What state should the cluster attempt to keep this resource in?"
+msgstr "In welke toestand moet het cluster proberen deze resource te behouden?"
+
+msgid "When stopping or starting a copy of the clone, tell all the other copies beforehand and when the action was successful."
+msgstr "Geef vooraf aan alle andere kopieën door wanneer een kopie van de kloon wordt gestart of gestopt en geef door wanneer de actie is geklukt."
+
+msgid "Wizard cannot be applied when the simulator is active"
+msgstr "Wizard kan niet worden toegepast wanneer de simulator actief is"
+
+msgid "Wizards"
+msgstr "Wizards"
+
+msgid "Write"
+msgstr "Schrijven"
+
+msgid "XML"
+msgstr "XML"
+
+msgid "XPath"
+msgstr "XPath"
+
+msgid "Yes"
+msgstr "Ja"
+
+msgid "You have been logged out"
+msgstr "U bent afgemeld."
+
+msgid "You have no template feature support"
+msgstr "U hebt geen ondersteuning voor de sjabloonfunctie"
+
+msgid "Zoom in"
+msgstr ""
+
+msgid "Zoom out"
+msgstr ""
+
+msgid "_OP_ failed on _NODE_} (rc=_RC_, reason=_REASON_)"
+msgstr "_OP_ failed on _NODE_} (rc=_RC_, reason=_REASON_)"
+
+msgid "configuration error"
+msgstr "configuratiefout"
+
+msgid "failed (master)"
+msgstr "mislukt (master)"
+
+msgid "generic error"
+msgstr "Algemene fout"
+
+msgid "incorrect arguments"
+msgstr "onjuiste argumenten"
+
+msgid "installation error"
+msgstr "installatiefout"
+
+msgid "insufficient permissions"
+msgstr "onvoldoende rechten"
+
+msgid "is required"
+msgstr "is vereist"
+
+msgid "must be a valid datetime"
+msgstr "moet een geldige datum/tijd zijn"
+
+msgid "must have correct MIME type (was %s)"
+msgstr "moet correct MIME-type hebben (was %s)"
+
+msgid "must have correct file extension"
+msgstr "moet juiste bestandsextensie hebben"
+
+msgid "node1.west.example.com"
+msgstr "knooppunt1.west.voorbeeld.com"
+
+msgid "not running"
+msgstr "niet actief"
+
+msgid "other"
+msgstr "overig"
+
+msgid "running (master)"
+msgstr "actief (master)"
+
+msgid "success"
+msgstr "Succes"
+
+msgid "unimplemented action"
+msgstr "ongeïmplementeerde actie"
