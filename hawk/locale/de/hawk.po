@@ -5,7 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2015-11-05 16:56\n"
+"POT-Creation-Date: 2016-04-26 18:17+0200\n"
+"PO-Revision-Date: 2016-06-01 12:21\n"
 "Last-Translator: Novell language <language@novell.com>\n"
 "Language-Team: Novell language <language@novell.com>\n"
 "Language: \n"
@@ -14,2036 +15,2970 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
+#: ../app/assets/javascripts/dashboard.js:22
 msgid "Error"
 msgstr "Fehler"
 
+#: ../app/assets/javascripts/dashboard.js:25
 msgid "Unexpected server error: _MSG_"
 msgstr "Unerwarteter Serverfehler: _MSG_"
 
-msgid ""
-"Connection to server failed (server down or network error - will retry every 1"
-"5 seconds)."
-msgstr ""
-"Verbindung zum Server fehlgeschlagen (Server nicht erreichbar oder Netzwerkfeh"
-"ler - Neuversuch alle 15 Sekunden)."
+#: ../app/assets/javascripts/dashboard.js:28
+msgid "Connection to server failed (server down or network error - will retry every 15 seconds)."
+msgstr "Verbindung zum Server fehlgeschlagen (Server nicht erreichbar oder Netzwerkfehler - Neuversuch alle 15 Sekunden)."
 
+#: ../app/assets/javascripts/dashboard.js:31
+#: ../app/assets/javascripts/module/monitor.js:71
 msgid "Connection to server timed out - will retry every 15 seconds."
-msgstr ""
-"Abbruch der Verbindung zum Server wegen Zeitüberschreitung - Neuversuch alle 1"
-"5 Sekunden."
+msgstr "Abbruch der Verbindung zum Server wegen Zeitüberschreitung - Neuversuch alle 15 Sekunden."
 
+#: ../app/assets/javascripts/dashboard.js:34
+#: ../app/assets/javascripts/module/monitor.js:49
 msgid "Connection to server aborted - will retry every 15 seconds."
 msgstr "Verbindung zum Server abgebrochen - Neuversuch alle 15 Sekunden."
 
+#: ../app/assets/javascripts/dashboard.js:37
 msgid "Permission denied"
 msgstr "Berechtigung verweigert"
 
+#: ../app/assets/javascripts/dashboard.js:40
 msgid "_OP_ failed on _NODE_} (rc=_RC_, reason=_REASON_)"
 msgstr "_OP_ failed on _NODE_} (rc=_RC_, reason=_REASON_)"
 
+#: ../app/assets/javascripts/dashboard.js:195
 msgid "Permission denied. "
 msgstr "Berechtigung verweigert. "
 
+#: ../app/assets/javascripts/dashboard.js:215
 msgid "Error connecting to server."
 msgstr "Serververbindungsfehler."
 
+#: ../app/assets/javascripts/dashboard.js:217
 msgid "Connection to server timed out."
 msgstr "Zeitüberschreitung der Serververbindung."
 
+#: ../app/assets/javascripts/dashboard.js:219
 msgid "Connection to server was aborted."
 msgstr "Serververbindung abgebrochen."
 
+#: ../app/assets/javascripts/dashboard.js:221
 msgid "Server returned invalid data."
 msgstr "Der Server gab ungültige Daten zurück."
 
+#: ../app/assets/javascripts/dashboard.js:225
 msgid "Unknown error connecting to server."
 msgstr "Unbekannter Serververbindungsfehler."
 
+#: ../app/assets/javascripts/dashboard.js:228
 msgid "Retrying every 15 seconds..."
 msgstr "Neuversuch alle 15 Sekunden..."
 
+#: ../app/assets/javascripts/dashboard.js:250
+#: ../app/assets/javascripts/module/basics.js:182
+#: ../app/assets/javascripts/module/reports.js:168
+#: ../app/assets/javascripts/module/resources.js:42
+#: ../app/views/cib/apply.html.haml:43 ../app/views/reports/index.html.haml:59
+#: ../app/views/reports/show.html.haml:43
+#: ../app/views/resources/rename.html.haml:51
+#: ../app/views/shared/_simulator.html.haml:386
+#: ../app/views/shared/_simulator.html.haml:498
+#: ../app/views/shared/_simulator.html.haml:563
+#: ../app/views/wizards/create.html.haml:26
+#: ../app/views/wizards/show.html.haml:129
+#: ../app/views/wizards/update.html.haml:106
 msgid "Cancel"
 msgstr "Abbrechen"
 
+#: ../app/assets/javascripts/dashboard.js:374
 msgid "Hostname"
 msgstr "Hostname"
 
+#: ../app/assets/javascripts/dashboard.js:375
+#: ../app/views/sessions/new.html.haml:2
 msgid "Username"
 msgstr "Benutzername"
 
+#: ../app/assets/javascripts/dashboard.js:376
+#: ../app/views/sessions/new.html.haml:4
 msgid "Password"
 msgstr "Passwort"
 
+#: ../app/assets/javascripts/dashboard.js:377
 msgid "Connect"
 msgstr "Verbinden"
 
+#: ../app/assets/javascripts/dashboard.js:425
 msgid "Local Status"
 msgstr "Lokaler Status"
 
+#: ../app/assets/javascripts/dashboard.js:441
 msgid "Remove cluster _NAME_ from dashboard?"
 msgstr "Soll der Cluster _NAME_ aus dem Dashboard entfernt werden?"
 
+#: ../app/assets/javascripts/dashboard.js:468
 msgid "Cluster removed successfully."
 msgstr "Cluster erfolgreich entfernt."
 
+#: ../app/assets/javascripts/dashboard.js:473
 msgid "Error removing cluster."
 msgstr "Fehler beim Entfernen des Clusters."
 
+#: ../app/assets/javascripts/dashboard.js:489
 msgid "Please wait..."
 msgstr "Bitte warten..."
 
+#: ../app/assets/javascripts/dashboard.js:499
 msgid "Cluster added successfully."
 msgstr "Cluster erfolgreich hinzugefügt."
 
+#: ../app/assets/javascripts/module/attrlist.js:21
+#: ../app/assets/javascripts/module/constraint.js:19
+#: ../app/assets/javascripts/module/location.js:16
+#: ../app/assets/javascripts/module/oplist.js:66
+#: ../app/assets/javascripts/module/wizattrlist.js:20
+#: ../app/helpers/form_helper.rb:23 ../app/helpers/role_helper.rb:31
+#: ../app/helpers/user_helper.rb:31 ../app/views/clones/edit.html.haml:13
+#: ../app/views/clones/index.html.haml:13
+#: ../app/views/colocations/edit.html.haml:13
+#: ../app/views/colocations/index.html.haml:13
+#: ../app/views/constraints/index.html.haml:13
+#: ../app/views/groups/edit.html.haml:13
+#: ../app/views/groups/index.html.haml:13
+#: ../app/views/locations/edit.html.haml:13
+#: ../app/views/locations/index.html.haml:13
+#: ../app/views/masters/edit.html.haml:13
+#: ../app/views/masters/index.html.haml:13
+#: ../app/views/orders/edit.html.haml:13
+#: ../app/views/orders/index.html.haml:13
+#: ../app/views/primitives/_form.html.haml:80
+#: ../app/views/primitives/index.html.haml:13
+#: ../app/views/resources/index.html.haml:13
+#: ../app/views/roles/index.html.haml:15 ../app/views/tags/edit.html.haml:13
+#: ../app/views/tags/index.html.haml:13 ../app/views/tickets/edit.html.haml:13
+#: ../app/views/tickets/index.html.haml:13
+#: ../app/views/users/index.html.haml:15
 msgid "Create"
 msgstr "Erstellen"
 
+#: ../app/assets/javascripts/module/attrlist.js:22
+#: ../app/assets/javascripts/module/constraint.js:20
+#: ../app/assets/javascripts/module/location.js:17
+#: ../app/assets/javascripts/module/oplist.js:68
+#: ../app/assets/javascripts/module/wizattrlist.js:21
 msgid "Remove"
 msgstr "Entfernen"
 
+#: ../app/assets/javascripts/module/attrlist.js:23
+#: ../app/assets/javascripts/module/oplist.js:69
+#: ../app/assets/javascripts/module/wizattrlist.js:22
+#: ../app/helpers/form_helper.rb:6 ../app/views/tickets/show.html.haml:52
 msgid "Yes"
 msgstr "Ja"
 
+#: ../app/assets/javascripts/module/attrlist.js:24
+#: ../app/assets/javascripts/module/oplist.js:70
+#: ../app/assets/javascripts/module/wizattrlist.js:23
+#: ../app/helpers/form_helper.rb:6 ../app/views/tickets/show.html.haml:55
 msgid "No"
 msgstr "Nein"
 
+#: ../app/assets/javascripts/module/attrlist.js:156
+#: ../app/assets/javascripts/module/constraint.js:159
+#: ../app/assets/javascripts/module/forms.js:14
+#: ../app/assets/javascripts/module/location.js:183
+#: ../app/assets/javascripts/module/oplist.js:342
+#: ../app/assets/javascripts/module/profiles.js:23
+#: ../app/assets/javascripts/module/roles.js:179
+#: ../app/assets/javascripts/module/users.js:135
+#: ../app/assets/javascripts/module/wizattrlist.js:165
+#: ../app/helpers/crm_config_helper.rb:10 ../app/helpers/form_helper.rb:14
+#: ../app/helpers/profile_helper.rb:21 ../app/helpers/role_helper.rb:17
+#: ../app/helpers/user_helper.rb:17
 msgid "Any changes will be lost - do you wish to proceed?"
 msgstr "Alle Änderungen gehen verloren - möchten Sie wirklich fortfahren?"
 
-#, fuzzy
+#: ../app/assets/javascripts/module/basics.js:14 ../app/models/record.rb:11
+#: ../app/models/tag.rb:14
 msgid "Invalid ID"
-msgstr "Ungültige Markierungs-ID"
+msgstr "Ungültige ID"
 
+#: ../app/assets/javascripts/module/basics.js:80
+#: ../app/assets/javascripts/module/basics.js:183
+#: ../app/assets/javascripts/module/resources.js:43
+#: ../app/views/shared/_simulator.html.haml:203
+#: ../app/views/shared/_simulator.html.haml:234
+#: ../app/views/shared/_simulator.html.haml:265
+#: ../app/views/shared/_simulator.html.haml:296
+#: ../app/views/shared/_simulator.html.haml:327
+#: ../app/views/shared/_simulator.html.haml:391
+#: ../app/views/shared/_simulator.html.haml:503
+#: ../app/views/shared/_simulator.html.haml:568
 msgid "OK"
 msgstr "OK"
 
-#, fuzzy
+#: ../app/assets/javascripts/module/basics.js:82
 msgid "Maintenance mode"
-msgstr "Wartung"
+msgstr "Wartungsmodus"
 
+#: ../app/assets/javascripts/module/basics.js:84
 msgid "An error has occurred"
-msgstr ""
+msgstr "Ein Fehler ist aufgetreten"
 
+#: ../app/assets/javascripts/module/basics.js:171
+#: ../app/assets/javascripts/module/resources.js:17
+#: ../app/views/agents/show.html.haml:134
+#: ../app/views/configs/meta.html.haml:12
+#: ../app/views/constraints/show.html.haml:32
+#: ../app/views/dashboards/add.html.haml:14
+#: ../app/views/nodes/events.html.haml:13
+#: ../app/views/nodes/events.html.haml:60 ../app/views/nodes/show.html.haml:13
+#: ../app/views/nodes/show.html.haml:138 ../app/views/pages/help.html.haml:13
+#: ../app/views/pages/help.html.haml:58
+#: ../app/views/resources/events.html.haml:13
+#: ../app/views/resources/events.html.haml:60
+#: ../app/views/resources/show.html.haml:346
+#: ../app/views/shared/_flash.html.haml:14
+#: ../app/views/shared/_simulator.html.haml:172
+#: ../app/views/simulator/help.html.haml:19
+#: ../app/views/tickets/show.html.haml:255
 msgid "Close"
 msgstr "Schließen"
 
-#, fuzzy
+#: ../app/assets/javascripts/module/batch.js:42
 msgid "No configuration changes."
-msgstr "Konfigurationsänderungen werden angewendet..."
+msgstr "Keine Konfigurationsänderungen."
 
+#: ../app/assets/javascripts/module/clones.js:27
+#: ../app/views/clones/_form.html.haml:10
+#: ../app/views/clones/_form.html.haml:15
 msgid "Clone ID"
 msgstr "Klon-ID"
 
+#: ../app/assets/javascripts/module/clones.js:33
+#: ../app/assets/javascripts/module/colocations.js:33
+#: ../app/assets/javascripts/module/constraints.js:91
+#: ../app/assets/javascripts/module/groups.js:33
+#: ../app/assets/javascripts/module/locations.js:33
+#: ../app/assets/javascripts/module/masters.js:33
+#: ../app/assets/javascripts/module/nodes.js:193
+#: ../app/assets/javascripts/module/nodes.js:322
+#: ../app/assets/javascripts/module/orders.js:33
+#: ../app/assets/javascripts/module/primitives.js:75
+#: ../app/assets/javascripts/module/reports.js:303
+#: ../app/assets/javascripts/module/resources.js:268
+#: ../app/assets/javascripts/module/resources.js:645
+#: ../app/assets/javascripts/module/roles.js:33
+#: ../app/assets/javascripts/module/tags.js:42
+#: ../app/assets/javascripts/module/tickets.js:39
+#: ../app/assets/javascripts/module/tickets.js:229
+#: ../app/assets/javascripts/module/users.js:33
+#: ../app/views/primitives/_form.html.haml:159
+#: ../app/views/resources/show.html.haml:171
 msgid "Operations"
 msgstr "Vorgänge"
 
+#: ../app/assets/javascripts/module/clones.js:95
+#: ../app/assets/javascripts/module/colocations.js:97
+#: ../app/assets/javascripts/module/constraints.js:212
+#: ../app/assets/javascripts/module/groups.js:95
+#: ../app/assets/javascripts/module/locations.js:95
+#: ../app/assets/javascripts/module/masters.js:95
+#: ../app/assets/javascripts/module/nodes.js:244
+#: ../app/assets/javascripts/module/nodes.js:335
+#: ../app/assets/javascripts/module/oplist.js:67
+#: ../app/assets/javascripts/module/orders.js:95
+#: ../app/assets/javascripts/module/primitives.js:138
+#: ../app/assets/javascripts/module/resources.js:395
+#: ../app/assets/javascripts/module/resources.js:665
+#: ../app/assets/javascripts/module/roles.js:95
+#: ../app/assets/javascripts/module/tags.js:104
+#: ../app/assets/javascripts/module/tickets.js:67
+#: ../app/assets/javascripts/module/users.js:95
+#: ../app/views/configs/show.html.haml:13
+#: ../app/views/graphs/show.html.haml:11
 msgid "Edit"
 msgstr "Bearbeiten"
 
+#: ../app/assets/javascripts/module/clones.js:108
+#: ../app/assets/javascripts/module/colocations.js:110
+#: ../app/assets/javascripts/module/constraints.js:222
+#: ../app/assets/javascripts/module/groups.js:108
+#: ../app/assets/javascripts/module/locations.js:108
+#: ../app/assets/javascripts/module/masters.js:108
+#: ../app/assets/javascripts/module/orders.js:108
+#: ../app/assets/javascripts/module/primitives.js:151
+#: ../app/assets/javascripts/module/reports.js:383
+#: ../app/assets/javascripts/module/resources.js:687
+#: ../app/assets/javascripts/module/roles.js:108
+#: ../app/assets/javascripts/module/tags.js:117
+#: ../app/assets/javascripts/module/tickets.js:77
+#: ../app/assets/javascripts/module/users.js:108
+#: ../app/views/clones/edit.html.haml:17
+#: ../app/views/colocations/edit.html.haml:15
+#: ../app/views/groups/edit.html.haml:17
+#: ../app/views/locations/edit.html.haml:15
+#: ../app/views/masters/edit.html.haml:17
+#: ../app/views/orders/edit.html.haml:15
+#: ../app/views/primitives/edit.html.haml:17
+#: ../app/views/reports/display.html.haml:36
+#: ../app/views/roles/edit.html.haml:13 ../app/views/tags/edit.html.haml:15
+#: ../app/views/tickets/edit.html.haml:15 ../app/views/users/edit.html.haml:13
 msgid "Delete"
 msgstr "Löschen"
 
+#: ../app/assets/javascripts/module/colocations.js:27
+#: ../app/assets/javascripts/module/locations.js:27
+#: ../app/assets/javascripts/module/orders.js:27
+#: ../app/models/constraint.rb:48 ../app/views/colocations/_form.html.haml:10
+#: ../app/views/colocations/_form.html.haml:13
+#: ../app/views/locations/_form.html.haml:10
+#: ../app/views/locations/_form.html.haml:13
+#: ../app/views/orders/_form.html.haml:10
+#: ../app/views/orders/_form.html.haml:13
+#: ../app/views/tickets/_form.html.haml:10
+#: ../app/views/tickets/_form.html.haml:13
 msgid "Constraint ID"
 msgstr "Einschränkungs-ID"
 
+#: ../app/assets/javascripts/module/constraint.js:22
 msgid "Swap with entry above"
 msgstr "Mit Eintrag oben austauschen"
 
+#: ../app/assets/javascripts/module/constraint.js:23
 msgid "Link with entry above"
 msgstr "Mit Eintrag oben verknüpfen"
 
+#: ../app/assets/javascripts/module/constraint.js:24
 msgid "Unlink from entry above"
 msgstr "Verknüpfung mit Eintrag oben aufheben"
 
+#: ../app/assets/javascripts/module/constraints.js:56
+#: ../app/assets/javascripts/module/resources.js:236
+#: ../app/assets/javascripts/module/resources.js:598
+#: ../app/models/template.rb:405 ../app/views/primitives/_form.html.haml:25
+#: ../app/views/primitives/_form.html.haml:47
+#: ../app/views/resources/show.html.haml:317
 msgid "Type"
 msgstr "Typ"
 
+#: ../app/assets/javascripts/module/constraints.js:63
+#: ../app/assets/javascripts/module/resources.js:217
+#: ../app/views/constraints/types.html.haml:32
 msgid "Location"
 msgstr "Standort"
 
+#: ../app/assets/javascripts/module/constraints.js:65
+#: ../app/views/constraints/types.html.haml:41
 msgid "Colocation"
 msgstr "Server-Housing"
 
+#: ../app/assets/javascripts/module/constraints.js:67
+#: ../app/views/constraints/types.html.haml:50
 msgid "Order"
 msgstr "Reihenfolge"
 
+#: ../app/assets/javascripts/module/constraints.js:69
+#: ../app/assets/javascripts/module/tickets.js:33
+#: ../app/assets/javascripts/module/tickets.js:156
+#: ../app/views/constraints/types.html.haml:59
+#: ../app/views/shared/_simulator.html.haml:528
 msgid "Ticket"
 msgstr "Ticket"
 
+#: ../app/assets/javascripts/module/constraints.js:76
 msgid "Constraint"
 msgstr "Einschränkung"
 
+#: ../app/assets/javascripts/module/constraints.js:82
+#: ../app/assets/javascripts/module/resources.js:628
+#: ../app/controllers/resources_controller.rb:211
+#: ../app/models/location.rb:223 ../app/views/cib/show.html.haml:56
+#: ../app/views/colocations/_form.html.haml:52
+#: ../app/views/configs/edit.html.haml:44
+#: ../app/views/orders/_form.html.haml:57
+#: ../app/views/resources/index.html.haml:7
+#: ../app/views/tickets/_form.html.haml:25
 msgid "Resources"
 msgstr "Ressourcen"
 
+#: ../app/assets/javascripts/module/groups.js:27
+#: ../app/views/groups/_form.html.haml:10
+#: ../app/views/groups/_form.html.haml:15
 msgid "Group ID"
 msgstr "Gruppenkennung"
 
+#: ../app/assets/javascripts/module/location.js:23
+#: ../app/views/roles/_form.html.haml:22
 msgid "Rule"
 msgstr "Regel"
 
+#: ../app/assets/javascripts/module/location.js:33
+#: ../app/models/colocation.rb:180 ../app/models/location.rb:229
+#: ../app/views/colocations/_form.html.haml:18
+#: ../app/views/locations/_form.html.haml:48
+#: ../app/views/orders/_form.html.haml:18
+#: ../app/views/resources/show.html.haml:319
 msgid "Score"
 msgstr "Note"
 
+#: ../app/assets/javascripts/module/location.js:41
+#: ../app/models/location.rb:248
 msgid "Role"
 msgstr "Rolle"
 
+#: ../app/assets/javascripts/module/location.js:54
 msgid "Boolean Operator"
 msgstr "Boolescher Operator"
 
+#: ../app/assets/javascripts/module/masters.js:27
+#: ../app/views/masters/_form.html.haml:10
+#: ../app/views/masters/_form.html.haml:15
 msgid "Multi-state ID"
 msgstr "Multi-Status-ID"
 
+#: ../app/assets/javascripts/module/monitor.js:64
 msgid "Failed to parse monitor response - Internal server error."
-msgstr ""
+msgstr "Fehler beim Analysieren der Überwachungsantwort - Interner Serverfehler."
 
+#: ../app/assets/javascripts/module/monitor.js:68
+#: ../app/assets/javascripts/module/status.js:129
 msgid "Connection to server failed - will retry every 15 seconds."
 msgstr "Verbindung zum Server fehlgeschlagen - Neuversuch alle 15 Sekunden."
 
+#: ../app/assets/javascripts/module/nodes.js:40
+#: ../app/assets/javascripts/module/resources.js:173
+#: ../app/assets/javascripts/module/tickets.js:127
+#: ../app/controllers/cib_controller.rb:108
+#: ../app/helpers/application_helper.rb:222 ../app/views/cib/show.html.haml:15
+#: ../app/views/resources/show.html.haml:272
+#: ../app/views/shared/_mainnav.html.haml:17
 msgid "Status"
 msgstr "Status"
 
+#: ../app/assets/javascripts/module/nodes.js:69
 msgid "Remote"
 msgstr "Entfernt"
 
+#: ../app/assets/javascripts/module/nodes.js:80
+#: ../app/assets/javascripts/module/nodes.js:316
+#: ../app/assets/javascripts/module/reports.js:269
+#: ../app/views/agents/show.html.haml:50
+#: ../app/views/agents/show.html.haml:101
+#: ../app/views/nodes/_form.html.haml:11
+#: ../app/views/reports/display.html.haml:42
+#: ../app/views/resources/show.html.haml:187
 msgid "Name"
 msgstr "Name"
 
+#: ../app/assets/javascripts/module/nodes.js:86
 msgid "Maintenance"
 msgstr "Wartung"
 
+#: ../app/assets/javascripts/module/nodes.js:118
 msgid "Switch to ready"
 msgstr "Wechsel zu 'Fertig'"
 
+#: ../app/assets/javascripts/module/nodes.js:131
 msgid "Switch to maintenance"
 msgstr "Wechsel zu 'Wartung'"
 
+#: ../app/assets/javascripts/module/nodes.js:140
 msgid "Standby"
 msgstr "Stand-by"
 
+#: ../app/assets/javascripts/module/nodes.js:171
 msgid "Switch to online"
 msgstr "Wechsel zu 'Online'"
 
+#: ../app/assets/javascripts/module/nodes.js:184
 msgid "Switch to standby"
 msgstr "Wechsel zu 'Standby'"
 
+#: ../app/assets/javascripts/module/nodes.js:239
+#: ../app/helpers/ticket_helper.rb:10
 msgid "Fence"
 msgstr "Eingrenzung"
 
+#: ../app/assets/javascripts/module/nodes.js:240
 msgid "Clear state"
-msgstr ""
+msgstr "Status löschen"
 
+#: ../app/assets/javascripts/module/nodes.js:263
 msgid "Events"
-msgstr ""
+msgstr "Ereignisse"
 
+#: ../app/assets/javascripts/module/nodes.js:273
+#: ../app/assets/javascripts/module/resources.js:413
+#: ../app/assets/javascripts/module/statusmatrix.js:88
+#: ../app/assets/javascripts/module/tickets.js:268
+#: ../app/views/reports/display.html.haml:180
 msgid "Details"
 msgstr "Details"
 
+#: ../app/assets/javascripts/module/nodes.js:310
+#: ../app/assets/javascripts/module/resources.js:209
+#: ../app/assets/javascripts/module/tickets.js:27
+#: ../app/views/nodes/_form.html.haml:9 ../app/views/nodes/show.html.haml:48
+#: ../app/views/resources/show.html.haml:315
 msgid "ID"
 msgstr "ID"
 
+#: ../app/assets/javascripts/module/oplist.js:71
+#: ../app/helpers/form_helper.rb:27
 msgid "Add"
 msgstr "Hinzufügen"
 
+#: ../app/assets/javascripts/module/oplist.js:72
+#: ../app/assets/javascripts/module/reports.js:167
+#: ../app/helpers/crm_config_helper.rb:16 ../app/helpers/form_helper.rb:19
+#: ../app/helpers/profile_helper.rb:27 ../app/helpers/role_helper.rb:23
+#: ../app/helpers/user_helper.rb:23 ../app/views/cib/apply.html.haml:46
+#: ../app/views/primitives/_form.html.haml:85
+#: ../app/views/shared/_simulator.html.haml:22
+#: ../app/views/wizards/create.html.haml:30
+#: ../app/views/wizards/update.html.haml:112
 msgid "Apply"
 msgstr "Anwenden"
 
+#: ../app/assets/javascripts/module/oplist.js:281
 msgid "No interval set for monitor operation"
 msgstr "Für Überwachungsoperation wurde kein Intervall festgelegt"
 
+#: ../app/assets/javascripts/module/oplist.js:327
 msgid "Replacing previously defined monitor operation with same interval"
 msgstr "Zuvor definierte Überwachungsoperation wird durch gleiches Intervall ersetzt"
 
+#: ../app/assets/javascripts/module/primitives.js:69
+#: ../app/models/resource.rb:124 ../app/views/primitives/_form.html.haml:14
+#: ../app/views/primitives/_form.html.haml:28
 msgid "Resource ID"
 msgstr "Ressourcen-ID"
 
+#: ../app/assets/javascripts/module/primitives.js:323
 msgid "Failed to fetch meta attributes"
 msgstr "Fehler beim Abrufen der Meta-Attribute"
 
+#: ../app/assets/javascripts/module/reports.js:30
 msgid "Report generation is complete."
 msgstr "Berichtsgenerierung abgeschlossen."
 
-#, fuzzy
+#: ../app/assets/javascripts/module/reports.js:47
 msgid "Report generation cancelled."
-msgstr "Berichtsgenerierung abgeschlossen."
+msgstr "Berichterstellung abgebrochen."
 
+#: ../app/assets/javascripts/module/reports.js:169
+#: ../app/assets/javascripts/module/reports.js:281
+#: ../app/views/reports/display.html.haml:51
+#: ../app/views/reports/display.html.haml:60
+#: ../app/views/reports/display.html.haml:69
+#: ../app/views/reports/index.html.haml:29
 msgid "From"
 msgstr "Von"
 
+#: ../app/assets/javascripts/module/reports.js:170
+#: ../app/assets/javascripts/module/reports.js:294
 msgid "Until"
 msgstr "Bis"
 
+#: ../app/assets/javascripts/module/reports.js:171
 msgid "Custom"
 msgstr "Benutzerdefiniert"
 
+#: ../app/assets/javascripts/module/reports.js:173
 msgid "Su"
 msgstr "So"
 
+#: ../app/assets/javascripts/module/reports.js:174
 msgid "Mo"
 msgstr "Mo"
 
+#: ../app/assets/javascripts/module/reports.js:175
 msgid "Tu"
 msgstr "Di"
 
+#: ../app/assets/javascripts/module/reports.js:176
 msgid "We"
 msgstr "Mi"
 
+#: ../app/assets/javascripts/module/reports.js:177
 msgid "Th"
 msgstr "Do"
 
+#: ../app/assets/javascripts/module/reports.js:178
 msgid "Fr"
 msgstr "Fr"
 
+#: ../app/assets/javascripts/module/reports.js:179
 msgid "Sa"
 msgstr "Sa"
 
+#: ../app/assets/javascripts/module/reports.js:182
 msgid "January"
 msgstr "Januar"
 
+#: ../app/assets/javascripts/module/reports.js:183
 msgid "February"
 msgstr "Februar"
 
+#: ../app/assets/javascripts/module/reports.js:184
 msgid "March"
 msgstr "März"
 
+#: ../app/assets/javascripts/module/reports.js:185
 msgid "April"
 msgstr "April"
 
+#: ../app/assets/javascripts/module/reports.js:186
 msgid "May"
 msgstr "Mai"
 
+#: ../app/assets/javascripts/module/reports.js:187
 msgid "June"
 msgstr "Juni"
 
+#: ../app/assets/javascripts/module/reports.js:188
 msgid "July"
 msgstr "Juli"
 
+#: ../app/assets/javascripts/module/reports.js:189
 msgid "August"
 msgstr "August"
 
+#: ../app/assets/javascripts/module/reports.js:190
 msgid "September"
 msgstr "September"
 
+#: ../app/assets/javascripts/module/reports.js:191
 msgid "October"
 msgstr "Oktober"
 
+#: ../app/assets/javascripts/module/reports.js:192
 msgid "November"
 msgstr "November"
 
+#: ../app/assets/javascripts/module/reports.js:193
 msgid "December"
 msgstr "Dezember"
 
+#: ../app/assets/javascripts/module/reports.js:277
+#: ../app/assets/javascripts/module/reports.js:361
+#: ../app/views/configs/edit.html.haml:13
+#: ../app/views/configs/show.html.haml:16
+#: ../app/views/graphs/show.html.haml:13
+#: ../app/views/reports/display.html.haml:32
+#: ../app/views/shared/_simulator.html.haml:12
 msgid "Show"
 msgstr "Anzeigen"
 
+#: ../app/assets/javascripts/module/reports.js:371
+#: ../app/views/reports/display.html.haml:34
 msgid "Download"
 msgstr "Herunterladen"
 
+#: ../app/assets/javascripts/module/resources.js:183
 msgid "Unmanaged"
 msgstr "Nicht verwaltet"
 
+#: ../app/assets/javascripts/module/resources.js:186
+#: ../app/helpers/colocation_helper.rb:7 ../app/helpers/ticket_helper.rb:19
 msgid "Started"
 msgstr "Gestartet"
 
+#: ../app/assets/javascripts/module/resources.js:189
 msgid "Primary"
 msgstr "Primär"
 
+#: ../app/assets/javascripts/module/resources.js:192
 msgid "Secondary"
 msgstr "Sekundär"
 
+#: ../app/assets/javascripts/module/resources.js:195
+#: ../app/helpers/colocation_helper.rb:10 ../app/helpers/ticket_helper.rb:22
 msgid "Stopped"
 msgstr "Angehalten"
 
+#: ../app/assets/javascripts/module/resources.js:242
+#: ../app/assets/javascripts/module/resources.js:607
+#: ../app/views/resources/types.html.haml:41
 msgid "Group"
 msgstr "Gruppe"
 
+#: ../app/assets/javascripts/module/resources.js:244
+#: ../app/assets/javascripts/module/resources.js:611
+#: ../app/views/resources/types.html.haml:59
 msgid "Multi-state"
 msgstr "Multi-Status"
 
+#: ../app/assets/javascripts/module/resources.js:246
+#: ../app/assets/javascripts/module/resources.js:609
+#: ../app/views/resources/types.html.haml:50
 msgid "Clone"
 msgstr "Klon"
 
+#: ../app/assets/javascripts/module/resources.js:248
+#: ../app/assets/javascripts/module/resources.js:613
+#: ../app/views/resources/types.html.haml:68
 msgid "Tag"
 msgstr "Markierung"
 
+#: ../app/assets/javascripts/module/resources.js:303
 msgid "Away from current node"
-msgstr ""
+msgstr "Weg vom aktuellen Knoten"
 
+#: ../app/assets/javascripts/module/resources.js:313
 msgid "Clean up on all nodes"
-msgstr ""
+msgstr "Auf allen Knoten bereinigen"
 
+#: ../app/assets/javascripts/module/resources.js:345
+#: ../app/helpers/order_helper.rb:10 ../app/helpers/ticket_helper.rb:8
+#: ../app/models/template.rb:417
 msgid "Stop"
 msgstr "Stopp"
 
+#: ../app/assets/javascripts/module/resources.js:349
+#: ../app/helpers/order_helper.rb:7 ../app/models/template.rb:411
 msgid "Start"
 msgstr "Anfang"
 
+#: ../app/assets/javascripts/module/resources.js:353
+#: ../app/helpers/order_helper.rb:9 ../app/helpers/ticket_helper.rb:9
 msgid "Demote"
 msgstr "Zurückstufen"
 
+#: ../app/assets/javascripts/module/resources.js:357
+#: ../app/helpers/order_helper.rb:8
 msgid "Promote"
 msgstr "Hochstufen"
 
+#: ../app/assets/javascripts/module/resources.js:361
 msgid "Unmanage"
 msgstr "Nicht verwalten"
 
+#: ../app/assets/javascripts/module/resources.js:365
+#: ../app/views/shared/_mainnav.html.haml:10
 msgid "Manage"
 msgstr "Verwalten"
 
+#: ../app/assets/javascripts/module/resources.js:370
 msgid "Migrate"
 msgstr "Migrieren"
 
+#: ../app/assets/javascripts/module/resources.js:372
 msgid "Unmigrate"
 msgstr "Migrierung zurücknehmen"
 
+#: ../app/assets/javascripts/module/resources.js:374
 msgid "Cleanup"
 msgstr "Bereinigen"
 
+#: ../app/assets/javascripts/module/resources.js:388
 msgid "Recent events"
-msgstr ""
+msgstr "Letzte Ereignisse"
 
-#, fuzzy
+#: ../app/assets/javascripts/module/resources.js:488
 msgid "No child resources"
-msgstr "Untergeordnete Ressource"
+msgstr "Keine untergeordneten Ressourcen"
 
+#: ../app/assets/javascripts/module/resources.js:605
+#: ../app/views/resources/types.html.haml:32
 msgid "Primitive"
 msgstr "Primitive"
 
+#: ../app/assets/javascripts/module/resources.js:615
+#: ../app/models/template.rb:387 ../app/views/primitives/_form.html.haml:18
+#: ../app/views/primitives/_form.html.haml:36
+#: ../app/views/resources/types.html.haml:78
 msgid "Template"
 msgstr "Vorlage"
 
+#: ../app/assets/javascripts/module/resources.js:622
+#: ../app/views/nodes/events.html.haml:35
+#: ../app/views/shared/_simulator.html.haml:416
 msgid "Resource"
 msgstr "Ressource"
 
-#, fuzzy
+#: ../app/assets/javascripts/module/resources.js:676
+#: ../app/views/clones/edit.html.haml:15 ../app/views/groups/edit.html.haml:15
+#: ../app/views/masters/edit.html.haml:15
+#: ../app/views/primitives/edit.html.haml:15
+#: ../app/views/resources/rename.html.haml:23
+#: ../app/views/resources/rename.html.haml:56
 msgid "Rename"
-msgstr "Benutzername"
+msgstr "Umbenennen"
 
+#: ../app/assets/javascripts/module/roles.js:27
+#: ../app/views/roles/_form.html.haml:10 ../app/views/roles/_form.html.haml:13
 msgid "Role ID"
 msgstr "Rollen-ID"
 
+#: ../app/assets/javascripts/module/tags.js:27
+#: ../app/views/tags/_form.html.haml:10 ../app/views/tags/_form.html.haml:15
 msgid "Tag ID"
 msgstr "Markierungs-ID"
 
+#: ../app/assets/javascripts/module/tags.js:33
+#: ../app/views/tags/_form.html.haml:24
 msgid "Objects"
 msgstr "Objekte"
 
+#: ../app/assets/javascripts/module/tickets.js:136
+#: ../app/assets/javascripts/module/tickets.js:168
+#: ../app/views/tickets/show.html.haml:46
 msgid "Granted"
 msgstr "Gewährt"
 
+#: ../app/assets/javascripts/module/tickets.js:142
 msgid "Elsewhere"
-msgstr ""
+msgstr "An anderer Stelle"
 
+#: ../app/assets/javascripts/module/tickets.js:148
 msgid "Revoked"
 msgstr "Zurückgenommen"
 
-#, fuzzy
+#: ../app/assets/javascripts/module/tickets.js:162
+#: ../app/views/tickets/show.html.haml:80
 msgid "Last Granted"
-msgstr "Gewährt"
+msgstr "Zuletzt gewährt"
 
+#: ../app/assets/javascripts/module/tickets.js:210
 msgid "Grant"
 msgstr "Gewähren"
 
+#: ../app/assets/javascripts/module/tickets.js:220
+#: ../app/assets/javascripts/module/tickets.js:257
 msgid "Revoke"
 msgstr "Aufheben"
 
+#: ../app/assets/javascripts/module/users.js:27
 msgid "User ID"
 msgstr "Benutzer-ID"
 
+#: ../app/assets/javascripts/module/wizards.js:12
 msgid "Must be a valid resource ID"
 msgstr "Muss eine gültige Ressourcen-ID sein"
 
+#: ../app/assets/javascripts/module/wizards.js:69
 msgid "Applying configuration changes..."
 msgstr "Konfigurationsänderungen werden angewendet..."
 
+#: ../app/assets/javascripts/module/wizards.js:74
 msgid "Changes applied successfully."
 msgstr "Änderungen erfolgreich angewendet."
 
+#: ../app/controllers/agents_controller.rb:46
+#: ../app/views/resources/show.html.haml:29
 msgid "Agent"
 msgstr "Agent"
 
+#: ../app/controllers/application_controller.rb:159
 msgid "Created a new shadow CIB for %USER%."
 msgstr "Für %USER% wurde eine neue Schatten-CIB erstellt."
 
+#: ../app/controllers/application_controller.rb:164
+#: ../app/controllers/application_controller.rb:167
 msgid "Unable to create shadow CIB"
 msgstr "Schatten-CIB kann nicht erstellt werden"
 
+#: ../app/controllers/cib_controller.rb:44
 msgid "Failed to apply configuration"
-msgstr ""
+msgstr "Fehler beim Anwenden der Konfiguration"
 
-#, fuzzy
+#: ../app/controllers/cib_controller.rb:49
 msgid "Applied configuration successfully"
-msgstr "Erfolg"
+msgstr "Konfiguration erfolgreich angewendet"
 
+#: ../app/controllers/clones_controller.rb:20
+#: ../app/controllers/clones_controller.rb:31
+#: ../app/views/clones/new.html.haml:7
 msgid "Create Clone"
 msgstr "Klon erstellen"
 
+#: ../app/controllers/clones_controller.rb:40
 msgid "Clone created successfully"
 msgstr "Klon erfolgreich erstellt"
 
+#: ../app/controllers/clones_controller.rb:58
+#: ../app/controllers/clones_controller.rb:67
+#: ../app/views/clones/edit.html.haml:7
 msgid "Edit Clone"
 msgstr "Klon bearbeiten"
 
+#: ../app/controllers/clones_controller.rb:78
 msgid "Clone updated successfully"
 msgstr "Klon erfolgreich aktualisiert"
 
+#: ../app/controllers/clones_controller.rb:100
+#: ../app/controllers/clones_controller.rb:107
 msgid "Clone deleted successfully"
 msgstr "Klon erfolgreich gelöscht"
 
+#: ../app/controllers/clones_controller.rb:112
+#: ../app/controllers/clones_controller.rb:116
+#: ../app/controllers/colocations_controller.rb:110
+#: ../app/controllers/colocations_controller.rb:114
+#: ../app/controllers/groups_controller.rb:112
+#: ../app/controllers/groups_controller.rb:116
+#: ../app/controllers/locations_controller.rb:129
+#: ../app/controllers/locations_controller.rb:133
+#: ../app/controllers/masters_controller.rb:112
+#: ../app/controllers/masters_controller.rb:116
+#: ../app/controllers/orders_controller.rb:111
+#: ../app/controllers/orders_controller.rb:115
+#: ../app/controllers/primitives_controller.rb:147
+#: ../app/controllers/primitives_controller.rb:151
+#: ../app/controllers/roles_controller.rb:108
+#: ../app/controllers/roles_controller.rb:112
+#: ../app/controllers/tags_controller.rb:111
+#: ../app/controllers/tags_controller.rb:115
+#: ../app/controllers/templates_controller.rb:126
+#: ../app/controllers/templates_controller.rb:130
+#: ../app/controllers/tickets_controller.rb:124
+#: ../app/controllers/tickets_controller.rb:128
+#: ../app/controllers/users_controller.rb:110
+#: ../app/controllers/users_controller.rb:114
 msgid "Error deleting %s: %s"
 msgstr "Fehler beim Löschen von %s: %s"
 
+#: ../app/controllers/clones_controller.rb:134
+#: ../app/views/clones/index.html.haml:7
 msgid "Clones"
 msgstr "Klone"
 
+#: ../app/controllers/clones_controller.rb:147
 msgid "The clone does not exist"
 msgstr "Der Klon ist nicht vorhanden"
 
+#: ../app/controllers/colocations_controller.rb:20
+#: ../app/controllers/colocations_controller.rb:30
+#: ../app/views/colocations/new.html.haml:7
 msgid "Create Colocation"
 msgstr "Server-Housing erstellen"
 
+#: ../app/controllers/colocations_controller.rb:39
+#: ../app/controllers/locations_controller.rb:57
+#: ../app/controllers/orders_controller.rb:39
+#: ../app/controllers/tickets_controller.rb:52
 msgid "Constraint created successfully"
 msgstr "Einschränkung erfolgreich erstellt"
 
+#: ../app/controllers/colocations_controller.rb:57
+#: ../app/controllers/colocations_controller.rb:66
+#: ../app/views/colocations/edit.html.haml:7
 msgid "Edit Colocation"
 msgstr "Server-Housing bearbeiten"
 
+#: ../app/controllers/colocations_controller.rb:77
+#: ../app/controllers/locations_controller.rb:95
+#: ../app/controllers/orders_controller.rb:77
+#: ../app/controllers/tickets_controller.rb:90
 msgid "Constraint updated successfully"
 msgstr "Einschränkung erfolgreich aktualisiert"
 
+#: ../app/controllers/colocations_controller.rb:99
+#: ../app/controllers/colocations_controller.rb:105
 msgid "Colocation deleted successfully"
 msgstr "Server-Housing erfolgreich gelöscht"
 
+#: ../app/controllers/colocations_controller.rb:132
+#: ../app/views/colocations/index.html.haml:7
 msgid "Colocations"
 msgstr "Server-Housings"
 
+#: ../app/controllers/colocations_controller.rb:145
 msgid "The colocation constraint does not exist"
 msgstr "Die Einschränkung für Server-Housing ist nicht vorhanden"
 
+#: ../app/controllers/commands_controller.rb:22
+#: ../app/views/commands/index.html.haml:7
+#: ../app/views/shared/_mainnav.html.haml:70
 msgid "Command Log"
 msgstr "Befehlsprotokoll"
 
+#: ../app/controllers/constraints_controller.rb:43
+#: ../app/views/configs/edit.html.haml:58
+#: ../app/views/constraints/index.html.haml:7
+#: ../app/views/resources/show.html.haml:299
+#: ../app/views/tickets/show.html.haml:154
 msgid "Constraints"
 msgstr "Einschränkungen"
 
+#: ../app/controllers/crm_config_controller.rb:26
 msgid "Configuration updated successfully"
 msgstr "Konfiguration erfolgreich aktualisiert"
 
+#: ../app/controllers/crm_config_controller.rb:46
+#: ../app/views/crm_config/edit.html.haml:5
+#: ../app/views/shared/_mainnav.html.haml:65
 msgid "Cluster Configuration"
 msgstr "Cluster-Konfiguration"
 
+#: ../app/controllers/dashboards_controller.rb:38
 msgid "Error removing %s: %s"
 msgstr "Fehler beim Entfernen von %s: %s"
 
+#: ../app/controllers/dashboards_controller.rb:46
+#: ../app/views/dashboards/show.html.haml:12
+#: ../app/views/shared/_mainnav.html.haml:24
 msgid "Dashboard"
 msgstr "Dashboard"
 
+#: ../app/controllers/graphs_controller.rb:49
 msgid "Cluster Graph"
 msgstr "Clusterdiagramm"
 
+#: ../app/controllers/groups_controller.rb:20
+#: ../app/controllers/groups_controller.rb:31
+#: ../app/views/groups/new.html.haml:7
 msgid "Create Group"
 msgstr "Gruppe erstellen"
 
+#: ../app/controllers/groups_controller.rb:40
 msgid "Group created successfully"
 msgstr "Gruppe erfolgreich erstellt"
 
+#: ../app/controllers/groups_controller.rb:58
+#: ../app/controllers/groups_controller.rb:67
+#: ../app/views/groups/edit.html.haml:7
 msgid "Edit Group"
 msgstr "Gruppe bearbeiten"
 
+#: ../app/controllers/groups_controller.rb:78
 msgid "Group updated successfully"
 msgstr "Gruppe erfolgreich aktualisiert"
 
+#: ../app/controllers/groups_controller.rb:100
+#: ../app/controllers/groups_controller.rb:107
 msgid "Group deleted successfully"
 msgstr "Gruppe erfolgreich gelöscht"
 
+#: ../app/controllers/groups_controller.rb:134
+#: ../app/views/groups/index.html.haml:7
 msgid "Groups"
 msgstr "Gruppen"
 
+#: ../app/controllers/groups_controller.rb:147
 msgid "The group does not exist"
 msgstr "Die Gruppe ist nicht vorhanden"
 
+#: ../app/controllers/locations_controller.rb:20
+#: ../app/controllers/locations_controller.rb:39
 msgid "Create Location Constraint"
 msgstr "Standorteinschränkung erstellen"
 
+#: ../app/controllers/locations_controller.rb:75
+#: ../app/controllers/locations_controller.rb:84
 msgid "Edit Location Constraint"
 msgstr "Standorteinschränkung bearbeiten"
 
+#: ../app/controllers/locations_controller.rb:117
+#: ../app/controllers/locations_controller.rb:124
 msgid "Location deleted successfully"
 msgstr "Standort erfolgreich gelöscht"
 
+#: ../app/controllers/locations_controller.rb:151
 msgid "Location Constraints"
 msgstr "Standorteinschränkungen"
 
+#: ../app/controllers/locations_controller.rb:164
 msgid "The location constraint does not exist"
 msgstr "Die Standorteinschränkung ist nicht vorhanden"
 
+#: ../app/controllers/masters_controller.rb:20
+#: ../app/controllers/masters_controller.rb:31
 msgid "Create Multi-state resource"
 msgstr "Multi-Status-Ressource erstellen"
 
+#: ../app/controllers/masters_controller.rb:40
 msgid "Multi-state resource created successfully"
 msgstr "Multi-Status-Ressource erfolgreich erstellt"
 
+#: ../app/controllers/masters_controller.rb:58
+#: ../app/controllers/masters_controller.rb:67
 msgid "Edit Multi-state resource"
 msgstr "Multi-Status-Ressource bearbeiten"
 
+#: ../app/controllers/masters_controller.rb:78
 msgid "Multi-state resource updated successfully"
 msgstr "Multi-Status-Ressource erfolgreich aktualisiert"
 
+#: ../app/controllers/masters_controller.rb:100
+#: ../app/controllers/masters_controller.rb:107
 msgid "Multi-state resource deleted successfully"
 msgstr "Multi-Status-Ressource erfolgreich gelöscht"
 
+#: ../app/controllers/masters_controller.rb:134
 msgid "Multi-state resource"
 msgstr "Multi-Status-Ressource"
 
+#: ../app/controllers/masters_controller.rb:147
 msgid "The multi-state resource does not exist"
 msgstr "Die Multi-Status-Ressource ist nicht vorhanden"
 
-#, fuzzy
+#: ../app/controllers/nodes_controller.rb:44
 msgid "Node updated successfully"
-msgstr "Rolle erfolgreich aktualisiert"
+msgstr "Knoten erfolgreich aktualisiert"
 
-#, fuzzy
+#: ../app/controllers/nodes_controller.rb:62
 msgid "Failed to set the node online: %{err}"
-msgstr "Ressource konnte nicht gestartet werden: %{err}"
+msgstr "Fehler beim Online-Schalten des Knotens: %{err}"
 
+#: ../app/controllers/nodes_controller.rb:62
 msgid "Set the node state to online"
 msgstr "Knotenstatus auf 'Online' setzen"
 
-msgid "Failed to set the node standby: %{err}"
-msgstr ""
-
+#: ../app/controllers/nodes_controller.rb:66
 msgid "Set the node state to standby"
 msgstr "Knotenstatus auf 'Standby' setzen"
 
-msgid "Failed to set the node state to maintenance: %{err}"
-msgstr ""
+#: ../app/controllers/nodes_controller.rb:66
+msgid "Failed to set the node standby: %{err}"
+msgstr "Fehler beim Setzen des Knotenstatus auf 'Standby': %{err}"
 
+#: ../app/controllers/nodes_controller.rb:70
+msgid "Failed to set the node state to maintenance: %{err}"
+msgstr "Fehler beim Setzen des Knotenstatus auf 'Wartung': %{err}"
+
+#: ../app/controllers/nodes_controller.rb:70
 msgid "Set the node state to maintenance"
 msgstr "Knotenstatus auf 'Wartung' setzen"
 
+#: ../app/controllers/nodes_controller.rb:74
+msgid "Failed to set the node state to ready: %{err}"
+msgstr "Fehler beim Setzen des Knotenstatus auf 'Bereit': %{err}"
+
+#: ../app/controllers/nodes_controller.rb:74
 msgid "Set the node state to ready"
 msgstr "Knotenstatus auf 'Fertig' setzen"
 
-msgid "Failed to set the node state to ready: %{err}"
-msgstr ""
-
-#, fuzzy
+#: ../app/controllers/nodes_controller.rb:78
 msgid "Successfully fenced the node"
-msgstr "Ticket erfolgreich gewährt"
+msgstr "Knoten erfolgreich eingegrenzt"
 
-#, fuzzy
+#: ../app/controllers/nodes_controller.rb:78
 msgid "Failed to fence the node: %{err}"
-msgstr "Ressource konnte nicht zurückgestuft werden: %{err}"
+msgstr "Fehler beim Eingrenzen des Knotens : %{err}"
 
-#, fuzzy
+#: ../app/controllers/nodes_controller.rb:82
 msgid "Failed to clear the node state: %{err}"
-msgstr "Ressource konnte nicht bereinigt werden: %{err}"
+msgstr "Fehler beim Löschen des Knotenstatus: %{err}"
 
+#: ../app/controllers/nodes_controller.rb:82
 msgid "Cleared the node state"
-msgstr ""
+msgstr "Knotenstatus bereinigt"
 
+#: ../app/controllers/nodes_controller.rb:103
+#: ../app/views/cib/show.html.haml:80 ../app/views/configs/edit.html.haml:30
+#: ../app/views/nodes/index.html.haml:7
 msgid "Nodes"
 msgstr "Knoten"
 
+#: ../app/controllers/nodes_controller.rb:116
 msgid "The node does not exist"
 msgstr "Der Knoten ist nicht vorhanden"
 
+#: ../app/controllers/orders_controller.rb:20
+#: ../app/controllers/orders_controller.rb:30
+#: ../app/views/orders/new.html.haml:7
 msgid "Create Order"
 msgstr "Reihenfolge erstellen"
 
+#: ../app/controllers/orders_controller.rb:57
+#: ../app/controllers/orders_controller.rb:66
+#: ../app/views/orders/edit.html.haml:7
 msgid "Edit Order"
 msgstr "Reihenfolge bearbeiten"
 
+#: ../app/controllers/orders_controller.rb:99
+#: ../app/controllers/orders_controller.rb:106
 msgid "Order deleted successfully"
 msgstr "Reihenfolge erfolgreich gelöscht"
 
+#: ../app/controllers/orders_controller.rb:133
+#: ../app/views/orders/index.html.haml:7
 msgid "Orders"
 msgstr "Reihenfolgen"
 
+#: ../app/controllers/orders_controller.rb:146
 msgid "The order constraint does not exist"
 msgstr "Die Einschränkung für Reihenfolge ist nicht vorhanden"
 
+#: ../app/controllers/pages_controller.rb:11
 msgid "Welcome"
 msgstr "Willkommen"
 
+#: ../app/controllers/pages_controller.rb:21
+#: ../app/views/shared/_usernav.html.haml:28
 msgid "Help"
 msgstr "Hilfe"
 
+#: ../app/controllers/primitives_controller.rb:20
+#: ../app/controllers/primitives_controller.rb:35
+#: ../app/controllers/primitives_controller.rb:84
 msgid "Create Primitive"
 msgstr "Primitive erstellen"
 
+#: ../app/controllers/primitives_controller.rb:52
 msgid "Primitive created successfully"
 msgstr "Primitive erfolgreich erstellt"
 
+#: ../app/controllers/primitives_controller.rb:76
+#: ../app/controllers/primitives_controller.rb:102
 msgid "Edit Primitive"
 msgstr "Primitive bearbeiten"
 
+#: ../app/controllers/primitives_controller.rb:113
 msgid "Primitive updated successfully"
 msgstr "Primitive erfolgreich aktualisiert"
 
+#: ../app/controllers/primitives_controller.rb:135
+#: ../app/controllers/primitives_controller.rb:142
 msgid "Primitive deleted successfully"
 msgstr "Primitive erfolgreich gelöscht"
 
+#: ../app/controllers/primitives_controller.rb:169
 msgid "Primitives"
 msgstr "Primitives"
 
+#: ../app/controllers/primitives_controller.rb:182
 msgid "The primitive does not exist"
 msgstr "Das Primitive ist nicht vorhanden"
 
+#: ../app/controllers/profiles_controller.rb:26
 msgid "Preferences updated successfully"
 msgstr "Einstellungen erfolgreich aktualisiert"
 
+#: ../app/controllers/profiles_controller.rb:40
+#: ../app/views/profiles/edit.html.haml:3
 msgid "Preferences"
 msgstr "Einstellungen"
 
+#: ../app/controllers/reports_controller.rb:51
 msgid "Please wait while report is generated..."
 msgstr "Bitte warten Sie, während der Bericht generiert wird..."
 
+#: ../app/controllers/reports_controller.rb:55
 msgid "Failed to generate"
 msgstr "Generierung fehlgeschlagen"
 
+#: ../app/controllers/reports_controller.rb:73
 msgid "Upload completed."
 msgstr "Hochladen abgeschlossen."
 
+#: ../app/controllers/reports_controller.rb:116
 msgid "Could not cancel report collection"
-msgstr ""
+msgstr "Berichterfassung konnte nicht abgebrochen werden"
 
+#: ../app/controllers/reports_controller.rb:226
 msgid "Cannot display diff, too few transitions"
 msgstr "Unterschiede können nicht angezeigt werden, zu wenige Übergänge"
 
+#: ../app/controllers/reports_controller.rb:246
+#: ../app/controllers/reports_controller.rb:252
 msgid "Report deleted successfully"
 msgstr "Bericht erfolgreich gelöscht"
 
+#: ../app/controllers/reports_controller.rb:257
+#: ../app/controllers/reports_controller.rb:261
 msgid "Error deleting %s"
 msgstr "Fehler beim Löschen von %s"
 
+#: ../app/controllers/reports_controller.rb:270
+#: ../app/views/reports/display.html.haml:7
+#: ../app/views/reports/index.html.haml:7
+#: ../app/views/reports/show.html.haml:7
 msgid "History Explorer"
 msgstr "Verlaufs-Explorer"
 
+#: ../app/controllers/reports_controller.rb:276
 msgid "The report does not exist"
 msgstr "Der Bericht ist nicht vorhanden"
 
+#: ../app/controllers/reports_controller.rb:388
 msgid "must be a valid datetime"
 msgstr "muss ein gültiger Datetime-Wert sein"
 
+#: ../app/controllers/resources_controller.rb:90
 msgid "Successfully started the resource"
 msgstr "Ressource erfolgreich gestartet"
 
+#: ../app/controllers/resources_controller.rb:91
 msgid "Failed to start the resource: %{err}"
 msgstr "Ressource konnte nicht gestartet werden: %{err}"
 
+#: ../app/controllers/resources_controller.rb:97
 msgid "Successfully stopped the resource"
 msgstr "Ressource erfolgreich gestoppt"
 
+#: ../app/controllers/resources_controller.rb:98
 msgid "Failed to stop the resource: %{err}"
 msgstr "Ressource konnte nicht gestoppt werden: %{err}"
 
+#: ../app/controllers/resources_controller.rb:104
 msgid "Successfully promoted the resource"
 msgstr "Ressource erfolgreich hochgestuft"
 
+#: ../app/controllers/resources_controller.rb:105
 msgid "Failed to promote the resource: %{err}"
 msgstr "Ressource konnte nicht hochgestuft werden: %{err}"
 
+#: ../app/controllers/resources_controller.rb:111
 msgid "Successfully demoted the resource"
 msgstr "Ressource erfolgreich zurückgestuft"
 
+#: ../app/controllers/resources_controller.rb:112
 msgid "Failed to demote the resource: %{err}"
 msgstr "Ressource konnte nicht zurückgestuft werden: %{err}"
 
+#: ../app/controllers/resources_controller.rb:118
 msgid "Successfully set the resource in managed mode"
 msgstr "Ressource erfolgreich in den verwalteten Modus versetzt"
 
+#: ../app/controllers/resources_controller.rb:119
 msgid "Failed to set the resource in managed mode: %{err}"
 msgstr "Ressource konnte nicht in den verwalteten Modus versetzt werden: %{err}"
 
+#: ../app/controllers/resources_controller.rb:125
 msgid "Successfully set the resource in unmanaged mode"
 msgstr "Ressource erfolgreich in den unverwalteten Modus versetzt"
 
+#: ../app/controllers/resources_controller.rb:126
 msgid "Failed to set the resource in unmanaged mode: %{err}"
 msgstr "Ressource konnte nicht in den unverwalteten Modus versetzt werden: %{err}"
 
+#: ../app/controllers/resources_controller.rb:132
 msgid "Successfully unmigrated the resource"
 msgstr "Migration der Ressource erfolgreich zurückgenommen"
 
+#: ../app/controllers/resources_controller.rb:133
 msgid "Failed to unmigrate the resource: %{err}"
 msgstr "Migration der Ressource konnte nicht zurückgenommen werden: %{err}"
 
+#: ../app/controllers/resources_controller.rb:139
 msgid "Successfully migrated the resource"
 msgstr "Ressource erfolgreich migriert"
 
+#: ../app/controllers/resources_controller.rb:140
 msgid "Failed to migrate the resource: %{err}"
 msgstr "Ressource konnte nicht migriert werden: %{err}"
 
+#: ../app/controllers/resources_controller.rb:146
 msgid "Successfully cleaned the resource"
 msgstr "Ressource erfolgreich bereinigt"
 
+#: ../app/controllers/resources_controller.rb:147
 msgid "Failed to clean up the resource: %{err}"
 msgstr "Ressource konnte nicht bereinigt werden: %{err}"
 
-#, fuzzy
+#: ../app/controllers/resources_controller.rb:165
 msgid "Successfully renamed %{A} to %{B}"
-msgstr "So"
+msgstr "%{A} erfolgreich in %{B} umbenannt"
 
+#: ../app/controllers/resources_controller.rb:174
 msgid "Failed to rename %{A} to %{B}: %{E}"
-msgstr ""
+msgstr "Fehler beim Umbenennen von %{A} in %{B}: %{E}"
 
+#: ../app/controllers/roles_controller.rb:22
+#: ../app/controllers/roles_controller.rb:31
+#: ../app/views/roles/new.html.haml:7
 msgid "Create Role"
 msgstr "Rolle erstellen"
 
+#: ../app/controllers/roles_controller.rb:39
 msgid "Role created successfully"
 msgstr "Rolle erfolgreich erstellt"
 
+#: ../app/controllers/roles_controller.rb:63
+#: ../app/views/roles/edit.html.haml:7
 msgid "Edit Role"
 msgstr "Rolle bearbeiten"
 
+#: ../app/controllers/roles_controller.rb:74
 msgid "Role updated successfully"
 msgstr "Rolle erfolgreich aktualisiert"
 
+#: ../app/controllers/roles_controller.rb:96
+#: ../app/controllers/roles_controller.rb:103
 msgid "Role deleted successfully"
 msgstr "Rolle erfolgreich gelöscht"
 
+#: ../app/controllers/roles_controller.rb:131
 msgid "ACL is not supported by the cluster"
 msgstr "Die ACL wird vom Cluster nicht unterstützt"
 
+#: ../app/controllers/roles_controller.rb:136
+#: ../app/views/roles/index.html.haml:7
+#: ../app/views/shared/_mainnav.html.haml:86
 msgid "Roles"
 msgstr "Rollen"
 
+#: ../app/controllers/roles_controller.rb:149
 msgid "The role does not exist"
 msgstr "Die Rolle ist nicht vorhanden"
 
-msgid ""
-"To enable ACLs, set \"enable-acl\" in the Cluster Configuration ('Manage > Confi"
-"guration')"
-msgstr ""
-"Zur Aktivierung von ACLs legen Sie in der Clusterkonfiguration ('Verwalten > K"
-"onfiguration') \"enable-acl\" fest"
+#: ../app/controllers/roles_controller.rb:158
+#: ../app/controllers/users_controller.rb:160
+msgid "To enable ACLs, set \"enable-acl\" in the Cluster Configuration ('Manage > Configuration')"
+msgstr "Zur Aktivierung von ACLs legen Sie in der Clusterkonfiguration ('Verwalten > Konfiguration') \"enable-acl\" fest"
 
+#: ../app/controllers/sessions_controller.rb:50 ../app/models/cib.rb:536
+#: ../lib/invoker.rb:88 ../lib/invoker.rb:141
 msgid "Permission denied for user %{user}"
 msgstr "Berechtigung für Benutzer %{user} verweigert"
 
+#: ../app/controllers/sessions_controller.rb:52
 msgid "You have been logged out"
 msgstr "Sie wurden abgemeldet"
 
+#: ../app/controllers/sessions_controller.rb:80
 msgid "Log In"
 msgstr "Anmelden"
 
+#: ../app/controllers/simulator_controller.rb:163
+#: ../app/views/shared/_simulator.html.haml:77
 msgid "Simulator"
 msgstr "Simulator"
 
+#: ../app/controllers/tags_controller.rb:20
+#: ../app/controllers/tags_controller.rb:30 ../app/views/tags/new.html.haml:7
 msgid "Create Tag"
 msgstr "Markierung erstellen"
 
+#: ../app/controllers/tags_controller.rb:39
 msgid "Tag created successfully"
 msgstr "Markierung erfolgreich erstellt"
 
+#: ../app/controllers/tags_controller.rb:57
+#: ../app/controllers/tags_controller.rb:66 ../app/views/tags/edit.html.haml:7
 msgid "Edit Tag"
 msgstr "Markierung bearbeiten"
 
+#: ../app/controllers/tags_controller.rb:77
 msgid "Tag updated successfully"
 msgstr "Markierung erfolgreich aktualisiert"
 
+#: ../app/controllers/tags_controller.rb:99
+#: ../app/controllers/tags_controller.rb:106
 msgid "Tag deleted successfully"
 msgstr "Markierung erfolgreich gelöscht"
 
+#: ../app/controllers/tags_controller.rb:133
+#: ../app/views/tags/index.html.haml:7
 msgid "Tags"
 msgstr "Markierungen"
 
+#: ../app/controllers/tags_controller.rb:146
 msgid "The tag does not exist"
 msgstr "Die Markierung ist nicht vorhanden"
 
+#: ../app/controllers/templates_controller.rb:23
+#: ../app/controllers/templates_controller.rb:31
+#: ../app/controllers/templates_controller.rb:64
 msgid "Create Template"
 msgstr "Vorlage erstellen"
 
+#: ../app/controllers/templates_controller.rb:40
 msgid "Template created successfully"
 msgstr "Vorlage erfolgreich erstellt"
 
+#: ../app/controllers/templates_controller.rb:58
+#: ../app/controllers/templates_controller.rb:81
 msgid "Edit Template"
 msgstr "Vorlage bearbeiten"
 
+#: ../app/controllers/templates_controller.rb:92
 msgid "Template updated successfully"
 msgstr "Vorlage erfolgreich aktualisiert"
 
+#: ../app/controllers/templates_controller.rb:114
+#: ../app/controllers/templates_controller.rb:121
 msgid "Template deleted successfully"
 msgstr "Vorlage erfolgreich gelöscht"
 
+#: ../app/controllers/templates_controller.rb:149
 msgid "You have no template feature support"
 msgstr "Die Vorlagenfunktion wird nicht unterstützt"
 
+#: ../app/controllers/templates_controller.rb:154
 msgid "Templates"
 msgstr "Vorlagen"
 
+#: ../app/controllers/templates_controller.rb:167
 msgid "The template does not exist"
 msgstr "Die Vorlage ist nicht vorhanden"
 
+#: ../app/controllers/tickets_controller.rb:33
+#: ../app/controllers/tickets_controller.rb:43
+#: ../app/views/tickets/new.html.haml:7
 msgid "Create Ticket"
 msgstr "Ticket erstellen"
 
+#: ../app/controllers/tickets_controller.rb:70
+#: ../app/controllers/tickets_controller.rb:79
+#: ../app/views/tickets/edit.html.haml:7
 msgid "Edit Ticket"
 msgstr "Ticket bearbeiten"
 
+#: ../app/controllers/tickets_controller.rb:112
+#: ../app/controllers/tickets_controller.rb:119
 msgid "Ticket deleted successfully"
 msgstr "Ticket erfolgreich gelöscht"
 
+#: ../app/controllers/tickets_controller.rb:151
+#: ../app/controllers/tickets_controller.rb:155
 msgid "Successfully granted the ticket"
 msgstr "Ticket erfolgreich gewährt"
 
-#, fuzzy
+#: ../app/controllers/tickets_controller.rb:161
+#: ../app/controllers/tickets_controller.rb:165
 msgid "Error granting the ticket"
-msgstr "Fehler"
+msgstr "Fehler beim Gewähren des Tickets"
 
+#: ../app/controllers/tickets_controller.rb:175
+#: ../app/controllers/tickets_controller.rb:181
 msgid "Successfully revoked the ticket"
 msgstr "Ticket erfolgreich zurückgezogen"
 
-#, fuzzy
+#: ../app/controllers/tickets_controller.rb:188
+#: ../app/controllers/tickets_controller.rb:192
 msgid "Error revoking the ticket"
-msgstr "Fehler"
+msgstr "Fehler beim Zurückziehen des Tickets"
 
+#: ../app/controllers/tickets_controller.rb:201
+#: ../app/controllers/tickets_controller.rb:208 ../app/models/ticket.rb:85
+#: ../app/models/ticket.rb:92
 msgid "Simulator active: Use the ticket controls in the simulator"
 msgstr "Simulator aktiv: Verwenden Sie die Ticketsteuerungen des Simulators"
 
+#: ../app/controllers/tickets_controller.rb:215
+#: ../app/views/cib/show.html.haml:104 ../app/views/tickets/index.html.haml:7
 msgid "Tickets"
 msgstr "Tickets"
 
+#: ../app/controllers/tickets_controller.rb:228
 msgid "The ticket constraint does not exist"
 msgstr "Die Ticketeinschränkung ist nicht vorhanden"
 
+#: ../app/controllers/users_controller.rb:22
+#: ../app/controllers/users_controller.rb:31
+#: ../app/views/users/new.html.haml:7
 msgid "Create ACL Target"
 msgstr "ACL-Ziel erstellen"
 
+#: ../app/controllers/users_controller.rb:39
 msgid "ACL target created successfully"
 msgstr "ACL-Ziel erfolgreich erstellt"
 
+#: ../app/controllers/users_controller.rb:57
+#: ../app/controllers/users_controller.rb:65
+#: ../app/views/users/edit.html.haml:7
 msgid "Edit ACL Target"
 msgstr "ACL-Ziel bearbeiten"
 
+#: ../app/controllers/users_controller.rb:76
 msgid "ACL target updated successfully"
 msgstr "ACL-Ziel erfolgreich aktualisiert"
 
+#: ../app/controllers/users_controller.rb:98
+#: ../app/controllers/users_controller.rb:105
 msgid "ACL target deleted successfully"
 msgstr "ACL-Ziel erfolgreich gelöscht"
 
+#: ../app/controllers/users_controller.rb:133
 msgid "ACL is not supported by this cluster."
 msgstr "Die ACL wird vom Cluster nicht unterstützt."
 
+#: ../app/controllers/users_controller.rb:138
 msgid "ACL Targets"
 msgstr "ACL-Ziele"
 
+#: ../app/controllers/users_controller.rb:151
 msgid "The ACL target does not exist"
 msgstr "Das ACL-Ziel ist nicht vorhanden"
 
+#: ../app/controllers/wizards_controller.rb:47
 msgid "Session has expired"
 msgstr "Sitzung ist abgelaufen"
 
+#: ../app/controllers/wizards_controller.rb:54
 msgid "Wizard cannot be applied when the simulator is active"
 msgstr "Assistent kann nicht angewendet werden, solange der Simulator aktiv ist"
 
+#: ../app/controllers/wizards_controller.rb:109
 msgid "Use a wizard"
 msgstr "Assistent verwenden"
 
+#: ../app/controllers/wizards_controller.rb:127
+#: ../app/controllers/wizards_controller.rb:132
 msgid "Permission denied - you do not have write access to the CIB."
 msgstr "Berechtigung verweigert - Sie haben keinen Schreibzugriff auf die CIB-Datei."
 
+#: ../app/controllers/wizards_controller.rb:149
+#: ../app/controllers/wizards_controller.rb:154
 msgid "Cluster seems to be offline"
 msgstr "Cluster scheint offline zu sein"
 
+#: ../app/helpers/agents_helper.rb:59
 msgid "Required"
 msgstr "Erforderlich"
 
+#: ../app/helpers/agents_helper.rb:60
 msgid "Unique"
 msgstr "Eindeutig"
 
+#: ../app/helpers/application_helper.rb:37
 msgid "Profile"
 msgstr "Profil"
 
-msgid "Epoch"
-msgstr ""
-
-#, fuzzy
+#: ../app/helpers/application_helper.rb:223
 msgid "Current Configuration Version"
-msgstr "Konfiguration"
+msgstr "Aktuelle Konfigurationsversion"
 
+#: ../app/helpers/application_helper.rb:223
+msgid "Epoch"
+msgstr "Epoche"
+
+#: ../app/helpers/application_helper.rb:224
 msgid "Host"
-msgstr ""
+msgstr "Host"
 
-msgid "Designated Coordinator"
-msgstr ""
-
-#, fuzzy
+#: ../app/helpers/application_helper.rb:225
 msgid "DC"
-msgstr "DC:"
+msgstr "DC"
 
-#, fuzzy
-msgid "CIB Schema Version"
-msgstr "Version"
+#: ../app/helpers/application_helper.rb:225
+msgid "Designated Coordinator"
+msgstr "Designierter Koordinator"
 
+#: ../app/helpers/application_helper.rb:226
 msgid "Schema"
-msgstr ""
+msgstr "Schema"
 
+#: ../app/helpers/application_helper.rb:226
+msgid "CIB Schema Version"
+msgstr "CIB-Schemaversion"
+
+#: ../app/helpers/application_helper.rb:227
 msgid "Last Written"
-msgstr ""
+msgstr "Zuletzt geschrieben"
 
+#: ../app/helpers/application_helper.rb:228
 msgid "Update Origin"
-msgstr ""
+msgstr "Ursprung aktualisieren"
 
+#: ../app/helpers/application_helper.rb:229
 msgid "Update User"
-msgstr ""
+msgstr "Benutzer aktualisieren"
 
+#: ../app/helpers/application_helper.rb:230
 msgid "Have Quorum"
-msgstr ""
+msgstr "Mit Quorum"
 
+#: ../app/helpers/application_helper.rb:231
+#: ../app/views/reports/display.html.haml:164
 msgid "Version"
 msgstr "Version"
 
-#, fuzzy
+#: ../app/helpers/application_helper.rb:231
 msgid "Pacemaker Version"
-msgstr "Version"
+msgstr "Pacemaker-Version"
 
-#, fuzzy
+#: ../app/helpers/application_helper.rb:232
 msgid "Stack"
-msgstr "Anfang"
+msgstr "Stapel"
 
+#: ../app/helpers/application_helper.rb:232
 msgid "Cluster Communication Stack"
-msgstr ""
+msgstr "Cluster-Kommunikationsstapel"
 
+#: ../app/helpers/colocation_helper.rb:8 ../app/helpers/ticket_helper.rb:20
 msgid "Master"
 msgstr "Master"
 
+#: ../app/helpers/colocation_helper.rb:9 ../app/helpers/ticket_helper.rb:21
 msgid "Slave"
 msgstr "Slave"
 
+#: ../app/helpers/crm_config_helper.rb:7 ../app/helpers/form_helper.rb:11
+#: ../app/helpers/profile_helper.rb:18 ../app/helpers/role_helper.rb:14
+#: ../app/helpers/user_helper.rb:14
 msgid "Revert"
 msgstr "Zurücknehmen"
 
+#: ../app/helpers/rule_helper.rb:8
 msgid "Read"
 msgstr "Lesen"
 
+#: ../app/helpers/rule_helper.rb:9
 msgid "Write"
 msgstr "Schreiben"
 
+#: ../app/helpers/rule_helper.rb:10
 msgid "Deny"
 msgstr "Verweigern"
 
+#: ../app/helpers/simulator_helper.rb:19 ../lib/cibtools.rb:105
 msgid "success"
 msgstr "Erfolg"
 
+#: ../app/helpers/simulator_helper.rb:20 ../lib/cibtools.rb:107
 msgid "generic error"
 msgstr "Allgemeiner Fehler"
 
+#: ../app/helpers/simulator_helper.rb:21 ../lib/cibtools.rb:109
 msgid "incorrect arguments"
 msgstr "Falsche Argumente"
 
+#: ../app/helpers/simulator_helper.rb:22 ../lib/cibtools.rb:111
 msgid "unimplemented action"
 msgstr "Nicht implementierte Aktion"
 
+#: ../app/helpers/simulator_helper.rb:23 ../lib/cibtools.rb:113
 msgid "insufficient permissions"
 msgstr "Nicht ausreichende Berechtigungen"
 
+#: ../app/helpers/simulator_helper.rb:24 ../lib/cibtools.rb:115
 msgid "installation error"
 msgstr "Installationsfehler"
 
+#: ../app/helpers/simulator_helper.rb:25 ../lib/cibtools.rb:117
 msgid "configuration error"
 msgstr "Konfigurationsfehler"
 
+#: ../app/helpers/simulator_helper.rb:26 ../lib/cibtools.rb:119
 msgid "not running"
 msgstr "Wird nicht ausgeführt"
 
+#: ../app/helpers/simulator_helper.rb:27 ../lib/cibtools.rb:121
 msgid "running (master)"
 msgstr "Wird ausgeführt (Master)"
 
+#: ../app/helpers/simulator_helper.rb:28 ../lib/cibtools.rb:123
 msgid "failed (master)"
 msgstr "Fehlgeschlagen (Master)"
 
+#: ../app/helpers/ticket_helper.rb:11
 msgid "Freeze"
 msgstr "Einfrieren"
 
+#: ../app/models/cib.rb:505
 msgid "CIB file \"%{path}\" not found"
 msgstr "\"%{path}\" der CIB-Datei nicht gefunden"
 
+#: ../app/models/cib.rb:509
 msgid "Unable to parse CIB file \"%{path}\""
 msgstr "\"%{path}\" der CIB-Datei kann nicht analysiert werden"
 
+#: ../app/models/cib.rb:515
 msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
 msgstr "Pacemaker scheint nicht installiert zu sein (%{cmd} nicht gefunden)"
 
+#: ../app/models/cib.rb:521
 msgid "Unable to execute %{cmd}"
 msgstr "Ausführung von %{cmd} nicht möglich"
 
+#: ../app/models/cib.rb:530
 msgid "Error invoking %{cmd}"
 msgstr "Fehler beim Aufruf von %{cmd}"
 
+#: ../app/models/cib.rb:540
 msgid "Error invoking %{cmd}: %{msg}"
 msgstr "Fehler beim Aufruf von %{cmd}: %{msg}"
 
+#: ../app/models/cib.rb:550 ../app/models/cib.rb:551 ../app/models/cib.rb:930
+#: ../app/models/cib.rb:1052 ../app/models/cib.rb:1053
 msgid "Unknown"
 msgstr "Unbekannt"
 
+#: ../app/models/cib.rb:629
 msgid "Node \"%{node}\" is UNCLEAN and needs to be fenced."
 msgstr "Knoten \"%{node}\" ist fehlerhaft (UNCLEAN) und muss eingegrenzt werden."
 
-msgid ""
-"%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}"
-": call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_r"
-"eason}"
-msgstr ""
-"%{fail_start}: Operation %{op} für Ressource %{resource} auf Knoten %{node} fe"
-"hlgeschlagen: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-rea"
-"son=%{exit_reason}"
+#: ../app/models/cib.rb:841
+msgid "%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_reason}"
+msgstr "%{fail_start}: Operation %{op} für Ressource %{resource} auf Knoten %{node} fehlgeschlagen: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_reason}"
 
+#: ../app/models/cib.rb:1033
 msgid "STONITH is disabled. For normal cluster operation, STONITH is required."
-msgstr ""
-"STONITH ist deaktiviert. Für den normalen Clusterbetrieb ist STONITH erforderl"
-"ich."
+msgstr "STONITH ist deaktiviert. Für den normalen Clusterbetrieb ist STONITH erforderlich."
 
+#: ../app/models/clone.rb:10
 msgid "Clone ID is required"
 msgstr "Klon-ID erforderlich"
 
+#: ../app/models/clone.rb:11
 msgid "Invalid Clone ID"
 msgstr "Ungültige Klon-ID"
 
+#: ../app/models/clone.rb:14
 msgid "No Clone child specified"
 msgstr "Kein untergeordnetes Klon-Element angegeben"
 
+#: ../app/models/clone.rb:67 ../app/models/group.rb:58
+#: ../app/models/master.rb:62 ../app/models/template.rb:230
 msgid "Is the cluster allowed to start and stop the resource?"
 msgstr "Darf die Ressource durch den Cluster gestartet und gestoppt werden?"
 
-msgid ""
-"If not all resources can be active, the cluster will stop lower priority resou"
-"rces in order to keep higher priority ones active."
-msgstr ""
-"Wenn nicht alle Ressourcen aktiv sein können, stoppt der Cluster Ressourcen mi"
-"t niedrigerer Priorität, damit Ressourcen mit höherer Priorität aktiv bleiben "
-"können."
+#: ../app/models/clone.rb:72 ../app/models/crm_config.rb:31
+#: ../app/models/group.rb:63 ../app/models/master.rb:67
+#: ../app/models/template.rb:248
+msgid "If not all resources can be active, the cluster will stop lower priority resources in order to keep higher priority ones active."
+msgstr "Wenn nicht alle Ressourcen aktiv sein können, stoppt der Cluster Ressourcen mit niedrigerer Priorität, damit Ressourcen mit höherer Priorität aktiv bleiben können."
 
+#: ../app/models/clone.rb:78 ../app/models/crm_config.rb:53
+#: ../app/models/group.rb:73 ../app/models/master.rb:77
+#: ../app/models/template.rb:270
 msgid "What state should the cluster attempt to keep this resource in?"
 msgstr "In welchem Status sollte der Cluster versuchen, diese Ressource zu halten?"
 
-msgid ""
-"How many copies of the resource to start. Defaults to the number of nodes in t"
-"he cluster."
-msgstr ""
-"Anzahl der zu startenden Ressourcenkopien. Der Standardwert entspricht der Anz"
-"ahl der Knoten im Cluster."
+#: ../app/models/clone.rb:83 ../app/models/master.rb:82
+msgid "How many copies of the resource to start. Defaults to the number of nodes in the cluster."
+msgstr "Anzahl der zu startenden Ressourcenkopien. Der Standardwert entspricht der Anzahl der Knoten im Cluster."
 
-msgid ""
-"How many copies of the resource can be started on a single node. Defaults to 1"
-"."
-msgstr ""
-"Anzahl der Ressourcenkopien, die auf einem Knoten gestartet werden können. Der"
-" Standardwert ist 1."
+#: ../app/models/clone.rb:88 ../app/models/master.rb:87
+msgid "How many copies of the resource can be started on a single node. Defaults to 1."
+msgstr "Anzahl der Ressourcenkopien, die auf einem Knoten gestartet werden können. Der Standardwert ist 1."
 
-msgid ""
-"When stopping or starting a copy of the clone, tell all the other copies befor"
-"ehand and when the action was successful."
-msgstr ""
-"Beim Stoppen oder Starten einer Klonkopie alle anderen Kopien vorab informiere"
-"n und den Erfolg der Aktion zurückmelden."
+#: ../app/models/clone.rb:93 ../app/models/master.rb:92
+msgid "When stopping or starting a copy of the clone, tell all the other copies beforehand and when the action was successful."
+msgstr "Beim Stoppen oder Starten einer Klonkopie alle anderen Kopien vorab informieren und den Erfolg der Aktion zurückmelden."
 
+#: ../app/models/clone.rb:98 ../app/models/master.rb:97
 msgid "Does each copy of the clone perform a different function?"
 msgstr "Haben die einzelnen Klonkopien unterschiedliche Funktionen?"
 
+#: ../app/models/clone.rb:103 ../app/models/master.rb:102
 msgid "Should the copies be started in series (instead of in parallel)?"
 msgstr "Sollen die Kopien nacheinander (nicht gleichzeitig) gestartet werden?"
 
-msgid ""
-"Changes the behavior of ordering constraints (between clones/masters) so that "
-"instances can start/stop as soon as their peer instance has (rather than waiti"
-"ng for every instance of the other clone has)."
-msgstr ""
-"Ändert das Verhalten von Einschränkungen für die Reihenfolge (zwischen Klon un"
-"d Master), so dass Instanzen sofort nach gleichgeordneten Instanzen gestartet "
-"bzw. gestoppt werden können (statt abzuwarten, bis die einzelnen Instanzen der"
-" Reihenfolge nach gestartet bzw. gestoppt wurden)."
+#: ../app/models/clone.rb:108 ../app/models/master.rb:107
+msgid "Changes the behavior of ordering constraints (between clones/masters) so that instances can start/stop as soon as their peer instance has (rather than waiting for every instance of the other clone has)."
+msgstr "Ändert das Verhalten von Einschränkungen für die Reihenfolge (zwischen Klon und Master), so dass Instanzen sofort nach gleichgeordneten Instanzen gestartet bzw. gestoppt werden können (statt abzuwarten, bis die einzelnen Instanzen der Reihenfolge nach gestartet bzw. gestoppt wurden)."
 
+#: ../app/models/clone.rb:119 ../app/views/clones/_form.html.haml:12
+#: ../app/views/clones/_form.html.haml:17
+#: ../app/views/masters/_form.html.haml:12
+#: ../app/views/masters/_form.html.haml:17
 msgid "Child Resource"
 msgstr "Untergeordnete Ressource"
 
+#: ../app/models/clone.rb:120
 msgid "Child resource to use as clone."
-msgstr ""
+msgstr "Untergeordnete Ressource, die als Klon verwendet werden soll."
 
+#: ../app/models/clone.rb:131 ../app/models/group.rb:84
+#: ../app/models/master.rb:128 ../app/models/node.rb:114
+#: ../app/models/primitive.rb:75 ../app/models/record.rb:285
+#: ../app/models/tag.rb:82 ../app/models/template.rb:438
 msgid "The ID \"%{id}\" does not exist"
 msgstr "Die ID \"%{id}\" ist nicht vorhanden"
 
+#: ../app/models/colocation.rb:10 ../app/models/order.rb:10
 msgid "Score is required"
 msgstr "Note erforderlich"
 
+#: ../app/models/colocation.rb:24 ../app/models/order.rb:25
 msgid "Invalid score value"
 msgstr "Ungültige Note"
 
+#: ../app/models/colocation.rb:30
 msgid "Invalid node attribute"
-msgstr ""
+msgstr "Ungültiges Knotenattribut"
 
+#: ../app/models/colocation.rb:35 ../app/models/order.rb:30
 msgid "Constraint must consist of at least two separate resources"
 msgstr "Die Einschränkung muss mindestens zwei separate Ressourcen enthalten"
 
-#, fuzzy
+#: ../app/models/colocation.rb:181
 msgid "The score determines the location relationship between the resources."
-msgstr "Do"
+msgstr "Die Note bestimmt die Standortbeziehung zwischen den Ressourcen."
 
-#, fuzzy
+#: ../app/models/colocation.rb:186 ../app/views/colocations/_form.html.haml:79
 msgid "Node Attribute"
-msgstr "Attribut"
+msgstr "Knotenattribut"
 
-msgid ""
-"Colocate resources by the given node attribute instead of by node name (the de"
-"fault)."
-msgstr ""
+#: ../app/models/colocation.rb:187
+msgid "Colocate resources by the given node attribute instead of by node name (the default)."
+msgstr "Führt das Server-Housing der Ressourcen nach dem angegebenen Knotenattribut statt nach dem Knotennamen (Standard) durch."
 
+#: ../app/models/constraint.rb:37
 msgid "Not a constraint"
 msgstr "Keine Einschränkung"
 
-#, fuzzy
+#: ../app/models/constraint.rb:49
 msgid "Unique identifier for the constraint. May not contain spaces."
-msgstr "Eindeutig"
+msgstr "Eindeutige Kennung für die Einschränkung. Leerzeichen sind nicht zulässig."
 
+#: ../app/models/crm_config.rb:9 ../app/models/template.rb:225
 msgid "Set to true if the resource agent supports the migrate action"
-msgstr ""
-"Auf 'wahr' einstellen, wenn der Ressourcenagent die Migrationsaktion unterstüt"
-"zt"
+msgstr "Auf 'wahr' einstellen, wenn der Ressourcenagent die Migrationsaktion unterstützt"
 
-msgid ""
-"How many failures may occur for this resource on a node, before this node is m"
-"arked ineligible to host this resource. A value of INFINITY indicates that thi"
-"s feature is disabled."
-msgstr ""
-"Anzahl der Fehler für diese Ressource auf einem Knoten, bevor dieser Knoten al"
-"s ungeeignet für die Bereitstellung der betreffenden Ressource gekennzeichnet "
-"wird. Bei der Einstellung INFINITY (unbegrenzt) ist diese Funktion deaktiviert"
-"."
+#: ../app/models/crm_config.rb:26 ../app/models/template.rb:243
+msgid "How many failures may occur for this resource on a node, before this node is marked ineligible to host this resource. A value of INFINITY indicates that this feature is disabled."
+msgstr "Anzahl der Fehler für diese Ressource auf einem Knoten, bevor dieser Knoten als ungeeignet für die Bereitstellung der betreffenden Ressource gekennzeichnet wird. Bei der Einstellung INFINITY (unbegrenzt) ist diese Funktion deaktiviert."
 
-msgid ""
-"What should the cluster do if it ever finds the resource active on more than o"
-"ne node?"
-msgstr ""
-"Was der Cluster machen soll, wenn er feststellt, dass die Ressource auf mehrer"
-"en Knoten aktiv ist."
+#: ../app/models/crm_config.rb:37 ../app/models/template.rb:254
+msgid "What should the cluster do if it ever finds the resource active on more than one node?"
+msgstr "Was der Cluster machen soll, wenn er feststellt, dass die Ressource auf mehreren Knoten aktiv ist."
 
-msgid ""
-"How many seconds to wait before acting as if the failure had not occurred, and"
-" potentially allowing the resource back to the node on which it failed. A valu"
-"e of 0 indicates that this feature is disabled."
-msgstr ""
-"Zeitraum (in Sekunden), über den gewartet werden soll, bevor so vorgegangen wi"
-"rd, als ob der Fehler nicht aufgetreten wäre und der Ressource somit die Mögli"
-"chkeit eingeräumt wird, auf den Knoten zurückzukehren, auf dem der Fehler aufg"
-"etreten ist. Bei der Einstellung 0 ist diese Funktion deaktiviert."
+#: ../app/models/crm_config.rb:42 ../app/models/template.rb:259
+msgid "How many seconds to wait before acting as if the failure had not occurred, and potentially allowing the resource back to the node on which it failed. A value of 0 indicates that this feature is disabled."
+msgstr "Zeitraum (in Sekunden), über den gewartet werden soll, bevor so vorgegangen wird, als ob der Fehler nicht aufgetreten wäre und der Ressource somit die Möglichkeit eingeräumt wird, auf den Knoten zurückzukehren, auf dem der Fehler aufgetreten ist. Bei der Einstellung 0 ist diese Funktion deaktiviert."
 
+#: ../app/models/crm_config.rb:47 ../app/models/template.rb:264
 msgid "How much does the resource prefer to stay where it is?"
 msgstr "Priorität der Ressource dort zu bleiben, wo sie ist."
 
+#: ../app/models/crm_config.rb:68 ../app/models/crm_config.rb:105
+#: ../app/models/template.rb:285
 msgid "Conditions under which the resource can be started."
 msgstr "Bedingungen, unter denen die Ressource gestartet werden kann."
 
-msgid ""
-"The name of the remote-node this resource defines. This both enables the resou"
-"rce as a remote-node and defines the unique name used to identify the remote-n"
-"ode. If no other parameters are set, this value will also be assumed as the ho"
-"stname to connect to at the port specified by remote-port. WARNING: This value"
-" cannot overlap with any resource or node IDs. If not specified, this feature "
-"is disabled."
-msgstr ""
-"Der Name des fernen Knotens, den diese Ressource definiert. Die Ressource wird"
-" durch diese Einstellung zum einen als ferner Knoten aktiviert, zum anderen wi"
-"rd aber auch der eindeutige Name des fernen Knotens festgelegt. Wenn keine Par"
-"ameter festgelegt sind, wird dieser Wert auch als Hostname für die Verbindung "
-"an dem durch 'remote-port' festgelegten Port verwendet. WARNUNG: Dieser Wert d"
-"arf nicht identisch mit Ressourcen- oder Knoten-IDs sein. Ohne Angabe eines We"
-"rts ist diese Funktion deaktiviert."
+#: ../app/models/crm_config.rb:73 ../app/models/template.rb:290
+msgid "The name of the remote-node this resource defines. This both enables the resource as a remote-node and defines the unique name used to identify the remote-node. If no other parameters are set, this value will also be assumed as the hostname to connect to at the port specified by remote-port. WARNING: This value cannot overlap with any resource or node IDs. If not specified, this feature is disabled."
+msgstr "Der Name des fernen Knotens, den diese Ressource definiert. Die Ressource wird durch diese Einstellung zum einen als ferner Knoten aktiviert, zum anderen wird aber auch der eindeutige Name des fernen Knotens festgelegt. Wenn keine Parameter festgelegt sind, wird dieser Wert auch als Hostname für die Verbindung an dem durch 'remote-port' festgelegten Port verwendet. WARNUNG: Dieser Wert darf nicht identisch mit Ressourcen- oder Knoten-IDs sein. Ohne Angabe eines Werts ist diese Funktion deaktiviert."
 
+#: ../app/models/crm_config.rb:78 ../app/models/template.rb:295
 msgid "Port to use for the guest connection to pacemaker_remote."
 msgstr "Zu verwendender Port für die Gastverbindung mit pacemaker_remote."
 
-msgid ""
-"The IP address or hostname to connect to if remote-node's name is not the host"
-"name of the guest."
-msgstr ""
-"Die IP-Adresse oder der Hostname für die Verbindung, wenn der Name des fernen "
-"Knotens nicht der Hostname des Gasts ist."
+#: ../app/models/crm_config.rb:83 ../app/models/template.rb:300
+msgid "The IP address or hostname to connect to if remote-node's name is not the hostname of the guest."
+msgstr "Die IP-Adresse oder der Hostname für die Verbindung, wenn der Name des fernen Knotens nicht der Hostname des Gasts ist."
 
+#: ../app/models/crm_config.rb:88 ../app/models/template.rb:305
 msgid "How long before a pending guest connection will time out."
 msgstr "Dauer bis zur Zeitüberschreitung einer ausstehenden Gastverbindung."
 
+#: ../app/models/group.rb:10
 msgid "No Group children specified"
 msgstr "Kein untergeordnetes Gruppenelement angegeben"
 
+#: ../app/models/location.rb:10
 msgid "No resource specified"
 msgstr "Keine Ressource angegeben"
 
+#: ../app/models/location.rb:13
 msgid "No rules specified"
 msgstr "Kein Regeln angegeben"
 
+#: ../app/models/location.rb:18
 msgid "Invalid resource discovery type"
-msgstr ""
+msgstr "Ungültiger Ressourcenerkennungstyp"
 
+#: ../app/models/location.rb:23
 msgid "Constraint is too complex - it contains nested rules"
 msgstr "Die Einschränkung ist zu komplex - sie enthält verschachtelte Regeln"
 
+#: ../app/models/location.rb:33
 msgid "Invalid score \"%{score}\""
 msgstr "Ungültige Note \"%{score}\""
 
+#: ../app/models/location.rb:43
 msgid "No expressions specified"
 msgstr "Kein Ausdruck angegeben"
 
+#: ../app/models/location.rb:48
 msgid "Attribute contains both single and double quotes"
 msgstr "Attribut enthält sowohl einfache als auch doppelte Anführungszeichen"
 
+#: ../app/models/location.rb:49
 msgid "Value contains both single and double quotes"
 msgstr "Wert enthält sowohl einfache als auch doppelte Anführungszeichen"
 
-#, fuzzy
+#: ../app/models/location.rb:224
 msgid "Resources to apply the constraint to."
-msgstr "Ressourcen"
+msgstr "Ressourcen, auf die die Einschränkung angewendet werden soll."
 
-#, fuzzy
-msgid ""
-"Positive values indicate the resources should run on this node. Negative value"
-"s indicate the resources should not run on this node. Values of +/- INFINITY c"
-"hange \"should\"/\"should not\" to \"must\"/\"must not\"."
-msgstr "Wert"
+#: ../app/models/location.rb:230
+msgid "Positive values indicate the resources should run on this node. Negative values indicate the resources should not run on this node. Values of +/- INFINITY change \"should\"/\"should not\" to \"must\"/\"must not\"."
+msgstr "Bei positiven Werten werden die Ressourcen auf diesem Knoten ausgeführt, bei negativen Werten dagegen nicht. Mit dem Wert \"+/- INFINITY\" (+/- unbegrenzt) wird \"soll\"/\"soll nicht\" durch \"muss\"/\"darf nicht\" ersetzt."
 
+#: ../app/models/location.rb:235 ../app/views/locations/_form.html.haml:81
+#: ../app/views/reports/display.html.haml:155
+#: ../app/views/resources/events.html.haml:35
+#: ../app/views/resources/show.html.haml:266
+#: ../app/views/shared/_simulator.html.haml:351
+#: ../app/views/shared/_simulator.html.haml:463
 msgid "Node"
 msgstr "Knoten"
 
-#, fuzzy
+#: ../app/models/location.rb:236
 msgid "Name of a node in the cluster."
-msgstr "Name"
+msgstr "Name eines Knotens im Cluster."
 
-#, fuzzy
+#: ../app/models/location.rb:243 ../app/views/locations/_form.html.haml:102
 msgid "Resource Discovery"
-msgstr "Ressource"
+msgstr "Ressourcenerkennung"
 
-#, fuzzy
-msgid ""
-"Controls resource discovery for the specified resource on nodes covered by the"
-" constraint. always: Always perform resource discovery (default). never: Never"
-" perform resource discovery for the specified resource on this node. This opti"
-"on should generally be used with a -INFINITY score. exclusive: Only perform re"
-"source discovery for the specified resource on this node."
-msgstr "Do"
+#: ../app/models/location.rb:244
+msgid "Controls resource discovery for the specified resource on nodes covered by the constraint. always: Always perform resource discovery (default). never: Never perform resource discovery for the specified resource on this node. This option should generally be used with a -INFINITY score. exclusive: Only perform resource discovery for the specified resource on this node."
+msgstr "Steuert die Ressourcenerkennung für die angegebenen Ressourcen auf den Knoten, die unter die Einschränkung fallen. \"always\": Die Ressourcenerkennung wird immer durchgeführt (Standard). \"never\": Die Ressourcenerkennung für die angegebene Ressource wird auf diesem Knoten nie durchgeführt. Diese Option soll grundsätzlich mit der Note -INFINITY (-unbegrenzt) verwendet werden. \"exclusive\": Die Ressourcenerkennung wird ausschließlich für die angegebene Ressource auf diesem Knoten durchgeführt."
 
+#: ../app/models/location.rb:249
 msgid "Limits the rule to apply only when the resource is in the specified role."
-msgstr ""
+msgstr "Setzt die Einschränkung nur dann um, wenn die Ressource die angegebene Rolle aufweist."
 
-#, fuzzy
+#: ../app/models/location.rb:254
 msgid "Operator"
-msgstr "Operation"
+msgstr "Operator"
 
-msgid ""
-"How to combine the result of multiple expression objects. Allowed values are a"
-"nd and or."
-msgstr ""
+#: ../app/models/location.rb:255
+msgid "How to combine the result of multiple expression objects. Allowed values are and and or."
+msgstr "Verbindet die Ergebnisse mehrerer Ausdrucksobjekte. Zulässige Werte sind \"and\" und \"or\"."
 
+#: ../app/models/location.rb:260
 msgid "Expression"
-msgstr ""
+msgstr "Ausdruck"
 
-#, fuzzy
-msgid ""
-"Each rule can contain a number of expressions. The results of the expressions "
-"are combined based on the rule's boolean operator."
-msgstr "Do"
+#: ../app/models/location.rb:261
+msgid "Each rule can contain a number of expressions. The results of the expressions are combined based on the rule's boolean operator."
+msgstr "Die einzelnen Regeln können jeweils mehrere Ausdrücke enthalten. Die Ergebnisse der Ausdrücke werden gemäß dem booleschen Operator der Regel miteinander verbunden."
 
+#: ../app/models/master.rb:9
 msgid "No Multi-state child specified"
 msgstr "Kein untergeordnetes Multi-Status-Element angegeben"
 
+#: ../app/models/master.rb:112
 msgid "How many copies of the resource can be promoted to master status."
-msgstr ""
-"Anzahl der Ressourcenkopien, die auf den Status 'Master' hochgestuft werden kö"
-"nnen."
+msgstr "Anzahl der Ressourcenkopien, die auf den Status 'Master' hochgestuft werden können."
 
-msgid ""
-"How many copies of the resource can be promoted to master status on a single n"
-"ode."
-msgstr ""
-"Anzahl der Ressourcenkopien, die auf einem einzelnen Knoten auf den Status 'Ma"
-"ster' hochgestuft werden können."
+#: ../app/models/master.rb:117
+msgid "How many copies of the resource can be promoted to master status on a single node."
+msgstr "Anzahl der Ressourcenkopien, die auf einem einzelnen Knoten auf den Status 'Master' hochgestuft werden können."
 
+#: ../app/models/node.rb:25
 msgid "Node ID is required"
 msgstr "Knoten-ID ist erforderlich"
 
+#: ../app/models/node.rb:26
 msgid "Invalid Node ID"
 msgstr "Ungültige Knoten-ID"
 
+#: ../app/models/node.rb:29
 msgid "Name is required"
 msgstr "Name erforderlich"
 
+#: ../app/models/node.rb:30
 msgid "Invalid name"
 msgstr "Ungültiger Name"
 
-#, fuzzy
+#: ../app/models/node.rb:72
 msgid "Node ID"
-msgstr "Knoten"
+msgstr "Knoten-ID"
 
-#, fuzzy
+#: ../app/models/node.rb:73
 msgid "Unique identifier for the node."
-msgstr "Eindeutig"
+msgstr "Eindeutige Kennung für den Knoten."
 
-#, fuzzy
+#: ../app/models/node.rb:78
 msgid "Node Name"
-msgstr "Name"
+msgstr "Knotenname"
 
-#, fuzzy
+#: ../app/models/node.rb:79
 msgid "Name used to refer to the node in the cluster."
-msgstr "Name"
+msgstr "Name des Knotens im Cluster."
 
-#, fuzzy
-msgid ""
-"Puts the node into standby mode. The specified node is no longer able to host "
-"resources. Any resources currently active on the node will be moved to another"
-" node."
-msgstr "Andere"
+#: ../app/models/node.rb:91
+msgid "Puts the node into standby mode. The specified node is no longer able to host resources. Any resources currently active on the node will be moved to another node."
+msgstr "Versetzt den Knoten in den Standby-Modus. Auf dem angegebenen Knoten können keine Ressourcen mehr gehostet werden. Alle Ressourcen, die derzeit auf diesem Knoten aktiv sind, werden auf einen anderen Knoten verschoben."
 
+#: ../app/models/profile.rb:31
 msgid "is required"
 msgstr "ist erforderlich"
 
-#, fuzzy
+#: ../app/models/record.rb:10
 msgid "ID is required"
-msgstr "ist erforderlich"
+msgstr "ID ist erforderlich"
 
+#: ../app/models/record.rb:28
 msgid "Object not found: %s=%s"
 msgstr "Objekt nicht gefunden: %s=%s"
 
+#: ../app/models/record.rb:268
 msgid "The ID \"%{id}\" is already in use"
 msgstr "Die ID \"%{id}\" wird bereits verwendet"
 
+#: ../app/models/record.rb:279
 msgid "Unable to create: %{msg}"
 msgstr "Erstellung nicht möglich: %{msg}"
 
+#: ../app/models/record.rb:295
 msgid "Error updating %{id} (rc=%{rc})"
 msgstr "Fehler bei Aktualisierung von %{id} (rc=%{rc})"
 
+#: ../app/models/report.rb:103 ../app/models/report.rb:132
+#: ../app/models/report.rb:179
 msgid "No details available"
 msgstr "Keine Details verfügbar"
 
+#: ../app/models/report.rb:104 ../app/models/report.rb:133
 msgid "Error:"
 msgstr "Fehler:"
 
+#: ../app/models/report.rb:287
 msgid "must have correct MIME type (was %s)"
 msgstr "muss einen korrekten MIME-Typ haben (zuvor %s)"
 
+#: ../app/models/report.rb:291
 msgid "must have correct file extension"
 msgstr "muss eine korrekte Dateierweiterung haben"
 
+#: ../app/models/resource.rb:113
 msgid "Not a resource"
 msgstr "Keine Ressource"
 
-#, fuzzy
+#: ../app/models/resource.rb:125
 msgid "Unique identifier for the resource. May not contain spaces."
-msgstr "Eindeutig"
+msgstr "Eindeutige Kennung für die Ressource. Leerzeichen sind nicht zulässig."
 
+#: ../app/models/role.rb:8
 msgid "At least one rule is required"
 msgstr "Es ist zumindest eine Regel erforderlich"
 
+#: ../app/models/session.rb:10
 msgid "Invalid username"
 msgstr "Ungültiger Benutzername"
 
+#: ../app/models/session.rb:16
 msgid "%s is not installed"
 msgstr "%s ist nicht installiert"
 
+#: ../app/models/session.rb:21
 msgid "%s is not executable"
 msgstr "%s ist nicht ausführbar"
 
+#: ../app/models/session.rb:26
 msgid "Username not specified"
 msgstr "Kein Benutzername angegeben"
 
+#: ../app/models/session.rb:31
 msgid "Password not specified"
 msgstr "Kein Passwort angegeben"
 
+#: ../app/models/session.rb:42
 msgid "Invalid username or password"
 msgstr "Benutzername oder Passwort ungültig"
 
+#: ../app/models/tag.rb:9
 msgid "No Tag resources specified"
 msgstr "Keine Markierungsressourcen angegeben"
 
+#: ../app/models/template.rb:313
 msgid "How frequently (in seconds) to perform the operation."
 msgstr "Intervall in Sekunden, in dem diese Operation ausgeführt werden soll."
 
+#: ../app/models/template.rb:319
 msgid "How long to wait before declaring the action has failed."
-msgstr ""
-"Zeitraum, über den gewartet werden soll, bis die Aktion als fehlgeschlagen dek"
-"lariert wird."
+msgstr "Zeitraum, über den gewartet werden soll, bis die Aktion als fehlgeschlagen deklariert wird."
 
+#: ../app/models/template.rb:329
 msgid "What conditions need to be satisfied before this action occurs."
-msgstr ""
-"Bedingungen, die erfüllt sein müssen, damit diese Aktion ausgeführt werden kan"
-"n."
+msgstr "Bedingungen, die erfüllt sein müssen, damit diese Aktion ausgeführt werden kann."
 
+#: ../app/models/template.rb:334
 msgid "If false, the operation is treated as if it does not exist."
 msgstr "Wenn 'falsch', wird die Operation behandelt, als ob sie nicht existiert."
 
-msgid ""
-"This option only makes sense for recurring operations. It restricts the operat"
-"ion to a specific role. The truely paranoid can even specify role=Stopped whic"
-"h allows the cluster to detect an admin that manually started cluster services"
-"."
-msgstr ""
-"Diese Option ist nur für wiederkehrende Operationen sinnvoll. Sie beschränkt d"
-"ie Operation auf eine bestimmte Rolle. Ganz Besorgte können sogar 'role=Stoppe"
-"d' (Rolle=Gestoppt) angeben, in welchem Fall der Cluster Administratoren erken"
-"nt, die Clusterdienste manuell starten."
+#: ../app/models/template.rb:345
+msgid "This option only makes sense for recurring operations. It restricts the operation to a specific role. The truely paranoid can even specify role=Stopped which allows the cluster to detect an admin that manually started cluster services."
+msgstr "Diese Option ist nur für wiederkehrende Operationen sinnvoll. Sie beschränkt die Operation auf eine bestimmte Rolle. Ganz Besorgte können sogar 'role=Stopped' (Rolle=Gestoppt) angeben, in welchem Fall der Cluster Administratoren erkennt, die Clusterdienste manuell starten."
 
+#: ../app/models/template.rb:358
 msgid "The action to take if this action ever fails."
 msgstr "Die auszuführende Aktion, falls diese Aktion fehlschlägt."
 
-msgid ""
-"If true, the intention to perform the operation is recorded so that GUIs and C"
-"LI tools can indicate that an operation is in progress."
-msgstr ""
-"Wenn 'wahr', wird die Absicht, die Operation auszuführen, aufgezeichnet, so da"
-"ss Benutzerschnittstellen und CLI-Tools anzeigen können, dass eine Operation a"
-"usgeführt wird."
+#: ../app/models/template.rb:371
+msgid "If true, the intention to perform the operation is recorded so that GUIs and CLI tools can indicate that an operation is in progress."
+msgstr "Wenn 'wahr', wird die Absicht, die Operation auszuführen, aufgezeichnet, so dass Benutzerschnittstellen und CLI-Tools anzeigen können, dass eine Operation ausgeführt wird."
 
-#, fuzzy
+#: ../app/models/template.rb:388
 msgid "Resource template to inherit from."
-msgstr "Ressource"
+msgstr "Zu übernehmende Ressourcenvorlage."
 
+#: ../app/models/template.rb:393 ../app/views/primitives/_form.html.haml:21
+#: ../app/views/primitives/_form.html.haml:39
 msgid "Class"
 msgstr "Klasse"
 
+#: ../app/models/template.rb:394
 msgid "Standard which the resource agent conforms to."
-msgstr ""
+msgstr "Die Norm, die der Ressourcenagent erfüllt."
 
+#: ../app/models/template.rb:399 ../app/views/primitives/_form.html.haml:23
+#: ../app/views/primitives/_form.html.haml:45
 msgid "Provider"
 msgstr "Anbieter"
 
+#: ../app/models/template.rb:400
 msgid "Vendor or project which provided the resource agent."
-msgstr ""
+msgstr "Hersteller oder Projekt, von dem der Ressourcenagent bereitgestellt wurde."
 
-#, fuzzy
+#: ../app/models/template.rb:406
 msgid "Resource agent name."
-msgstr "Ressource"
+msgstr "Name des Ressourcenagenten."
 
+#: ../app/models/template.rb:412 ../app/models/template.rb:418
 msgid "After the specified timeout period, the operation will be treated as failed."
-msgstr ""
+msgstr "Nach Ablauf des angegebenen Zeitraums gilt der Vorgang als fehlgeschlagen."
 
-#, fuzzy
+#: ../app/models/template.rb:423
 msgid "Monitor"
-msgstr "Mo"
+msgstr "Monitor"
 
-msgid ""
-"Define a monitor operation to instruct the cluster to ensure that the resource"
-" is still healthy."
-msgstr ""
+#: ../app/models/template.rb:424
+msgid "Define a monitor operation to instruct the cluster to ensure that the resource is still healthy."
+msgstr "Definiert einen Überwachungsvorgang, mit dem der Cluster angewiesen wird, den Zustand der Ressource zu überprüfen."
 
+#: ../app/models/ticket.rb:18
 msgid "Constraint ID is required"
 msgstr "Einschränkungs-ID erforderlich"
 
+#: ../app/models/ticket.rb:19
 msgid "Invalid Constraint ID"
 msgstr "Ungültige Einschränkungs-ID"
 
+#: ../app/models/ticket.rb:22
 msgid "Ticket ID is required"
 msgstr "Ticket-ID erforderlich"
 
+#: ../app/models/ticket.rb:23
 msgid "Invalid Ticket ID"
 msgstr "Ungültige Ticket-ID"
 
+#: ../app/models/ticket.rb:27
 msgid "Constraint must consist of at least one separate resources"
 msgstr "Die Einschränkung muss mindestens eine separate Ressource enthalten"
 
+#: ../app/models/user.rb:10
 msgid "ACL target ID is required"
 msgstr "ACL-Ziel-ID erforderlich"
 
+#: ../app/models/user.rb:11
 msgid "Invalid ACL target ID"
 msgstr "Ungültige ACL-Ziel-ID"
 
+#: ../app/models/user.rb:13
 msgid "At least one role is required"
 msgstr "Es ist zumindest eine Rolle erforderlich"
 
+#: ../app/models/wizard.rb:150
 msgid "Requested wizard does not exist"
 msgstr "Der angeforderte Assistent ist nicht vorhanden"
 
+#: ../app/views/agents/show.html.haml:32
+#: ../app/views/primitives/_form.html.haml:102
+#: ../app/views/resources/show.html.haml:76
 msgid "Parameters"
 msgstr "Parameter"
 
+#: ../app/views/agents/show.html.haml:52
 msgid "Shortdesc"
 msgstr "Kurze Beschr."
 
+#: ../app/views/agents/show.html.haml:54
 msgid "Longdesc"
 msgstr "Lange Beschr."
 
+#: ../app/views/agents/show.html.haml:56
 msgid "Options"
 msgstr "Optionen"
 
+#: ../app/views/agents/show.html.haml:83
 msgid "Actions"
 msgstr "Aktionen"
 
+#: ../app/views/agents/show.html.haml:103
+#: ../app/views/resources/show.html.haml:189
 msgid "Timeout"
 msgstr "Zeitüberschreitung"
 
+#: ../app/views/agents/show.html.haml:105
+#: ../app/views/resources/show.html.haml:191
 msgid "Interval"
 msgstr "Intervall"
 
+#: ../app/views/agents/show.html.haml:107
 msgid "Depth"
 msgstr "Tiefe"
 
-#, fuzzy
+#: ../app/views/cib/apply.html.haml:9
 msgid "Apply Configuration"
-msgstr "Konfiguration"
+msgstr "Konfiguration anwenden"
 
+#: ../app/views/cib/apply.html.haml:31
+#: ../app/views/shared/_simulator.html.haml:160
 msgid "Calculating list of changes..."
-msgstr ""
+msgstr "Liste der Änderungen wird berechnet..."
 
+#: ../app/views/cib/show.html.haml:32
 msgid "Errors"
 msgstr "Fehler"
 
+#: ../app/views/clones/_form.html.haml:24
+#: ../app/views/groups/_form.html.haml:68
+#: ../app/views/masters/_form.html.haml:24
+#: ../app/views/primitives/_form.html.haml:121
+#: ../app/views/resources/show.html.haml:107
 msgid "Meta Attributes"
 msgstr "Meta-Attribute"
 
+#: ../app/views/clones/_form.html.haml:41
+#: ../app/views/clones/_form.html.haml:48
+#: ../app/views/colocations/_form.html.haml:88
+#: ../app/views/colocations/_form.html.haml:95
+#: ../app/views/groups/_form.html.haml:85
+#: ../app/views/groups/_form.html.haml:92
+#: ../app/views/locations/_form.html.haml:119
+#: ../app/views/locations/_form.html.haml:126
+#: ../app/views/masters/_form.html.haml:41
+#: ../app/views/masters/_form.html.haml:48
+#: ../app/views/nodes/_form.html.haml:53
+#: ../app/views/orders/_form.html.haml:74
+#: ../app/views/orders/_form.html.haml:81
+#: ../app/views/primitives/_form.html.haml:82
+#: ../app/views/primitives/_form.html.haml:89
+#: ../app/views/roles/_form.html.haml:60 ../app/views/tags/_form.html.haml:51
+#: ../app/views/tags/_form.html.haml:58
+#: ../app/views/tickets/_form.html.haml:42
+#: ../app/views/tickets/_form.html.haml:49
+#: ../app/views/users/_form.html.haml:29
+#: ../app/views/wizards/create.html.haml:28
+#: ../app/views/wizards/show.html.haml:131
+#: ../app/views/wizards/update.html.haml:108
 msgid "Back"
 msgstr "Zurück"
 
+#: ../app/views/clones/edit.html.haml:17
+#: ../app/views/colocations/edit.html.haml:15
+#: ../app/views/groups/edit.html.haml:17
+#: ../app/views/locations/edit.html.haml:15
+#: ../app/views/masters/edit.html.haml:17
+#: ../app/views/orders/edit.html.haml:15
+#: ../app/views/primitives/edit.html.haml:17
+#: ../app/views/reports/display.html.haml:36
+#: ../app/views/roles/edit.html.haml:13 ../app/views/tags/edit.html.haml:15
+#: ../app/views/tickets/edit.html.haml:15 ../app/views/users/edit.html.haml:13
 msgid "Are you sure you wish to delete %s?"
 msgstr "Wollen Sie %s wirklich löschen?"
 
+#: ../app/views/colocations/_form.html.haml:35
+#: ../app/views/locations/_form.html.haml:65
 msgid "Always"
-msgstr ""
+msgstr "Immer"
 
-#, fuzzy
+#: ../app/views/colocations/_form.html.haml:37
+#: ../app/views/locations/_form.html.haml:67
 msgid "Never"
-msgstr "Zurücknehmen"
+msgstr "Niemals"
 
+#: ../app/views/colocations/_form.html.haml:69
+#: ../app/views/locations/_form.html.haml:35
+#: ../app/views/wizards/show.html.haml:74
+#: ../app/views/wizards/show.html.haml:105
 msgid "Advanced"
 msgstr "Erweitert"
 
+#: ../app/views/commands/index.html.haml:24
 msgid "Lists crm commands recently executed by hawk, most recent first."
 msgstr "Listet die kürzlich von Hawk ausgeführten CRM-Befehle nach Aktualität auf."
 
-#, fuzzy
+#: ../app/views/configs/edit.html.haml:7
+#: ../app/views/shared/_mainnav.html.haml:60
 msgid "Edit Configuration"
-msgstr "Konfiguration"
+msgstr "Konfiguration bearbeiten"
 
+#: ../app/views/configs/edit.html.haml:15
+#: ../app/views/configs/show.html.haml:19
+#: ../app/views/graphs/show.html.haml:15
 msgid "XML"
-msgstr ""
+msgstr "XML"
 
+#: ../app/views/configs/edit.html.haml:17
+#: ../app/views/configs/show.html.haml:21 ../app/views/graphs/show.html.haml:5
+#: ../app/views/graphs/show.html.haml:32
+#: ../app/views/reports/display.html.haml:212
+#: ../app/views/reports/graph.html.haml:7
 msgid "Graph"
 msgstr "Graph"
 
-#, fuzzy
+#: ../app/views/configs/meta.html.haml:19
+#: ../app/views/shared/_footer.html.haml:17
 msgid "Cluster Details"
-msgstr "Details"
+msgstr "Cluster-Details"
 
-#, fuzzy
+#: ../app/views/configs/meta.html.haml:29
+#: ../app/views/shared/_simulator.html.haml:5
 msgid "Batch Mode Active"
-msgstr "Mo"
+msgstr "Batch-Modus aktiv"
 
-#, fuzzy
+#: ../app/views/configs/show.html.haml:7
 msgid "Show Configuration"
-msgstr "Konfiguration"
+msgstr "Konfiguration anzeigen"
 
+#: ../app/views/constraints/show.html.haml:10
 msgid "Constraint:"
 msgstr "Einschränkung:"
 
-#, fuzzy
+#: ../app/views/constraints/types.html.haml:7
 msgid "Add a constraint"
 msgstr "Einschränkung hinzufügen"
 
+#: ../app/views/constraints/types.html.haml:13
+#: ../app/views/resources/types.html.haml:13
 msgid "List"
 msgstr "Liste"
 
+#: ../app/views/crm_config/edit.html.haml:24
 msgid "Resource Defaults"
 msgstr "Standardwerte für Ressource"
 
+#: ../app/views/crm_config/edit.html.haml:41
 msgid "Operation Defaults"
 msgstr "Standardwerte für Vorgang"
 
+#: ../app/views/dashboards/add.html.haml:21
+#: ../app/views/dashboards/show.html.haml:18
 msgid "Add Cluster"
 msgstr "Cluster hinzufügen"
 
-msgid "West Coast (example)"
-msgstr "Westküste (Beispiel)"
-
+#: ../app/views/dashboards/add.html.haml:32
 msgid "Cluster name"
 msgstr "Clustername"
 
+#: ../app/views/dashboards/add.html.haml:32
+msgid "West Coast (example)"
+msgstr "Westküste (Beispiel)"
+
+#: ../app/views/dashboards/add.html.haml:34
 msgid "Hostname of node in cluster"
 msgstr "Hostname des Knotens im Cluster"
 
+#: ../app/views/dashboards/add.html.haml:34
 msgid "node1.west.example.com"
 msgstr "node1.west.example.com"
 
+#: ../app/views/dashboards/add.html.haml:36
 msgid "Server port to connect to"
 msgstr "Serverport für Verbindung"
 
+#: ../app/views/groups/_form.html.haml:24
+#: ../app/views/resources/show.html.haml:43
 msgid "Children"
 msgstr "Untergeordnete Elemente"
 
+#: ../app/views/groups/_form.html.haml:34
 msgid "No children available"
 msgstr "Kein untergeordnetes Element verfügbar"
 
+#: ../app/views/layouts/authentication.html.haml:55
 msgid "Please ensure Javascript is enabled"
 msgstr "Überprüfen Sie, ob JavaScript aktiviert ist"
 
+#: ../app/views/layouts/authentication.html.haml:62
 msgid "SUSE, LLC"
 msgstr "SUSE, LLC"
 
+#: ../app/views/layouts/authentication.html.haml:68
 msgid "High Availability Web Konsole"
 msgstr "Web-Konsole mit hoher Verfügbarkeit"
 
+#: ../app/views/locations/_form.html.haml:27
 msgid "Simple"
-msgstr ""
+msgstr "Einfach"
 
+#: ../app/views/locations/_form.html.haml:69
 msgid "Advisory"
-msgstr ""
+msgstr "Beratung"
 
+#: ../app/views/locations/edit.html.haml:7
 msgid "Edit Location"
 msgstr "Standort bearbeiten"
 
+#: ../app/views/locations/index.html.haml:7
 msgid "Locations"
 msgstr "Standorte"
 
+#: ../app/views/locations/new.html.haml:7
 msgid "Create Location"
 msgstr "Standort erstellen"
 
+#: ../app/views/logs/index.html.haml:5
+#: ../app/views/shared/_mainnav.html.haml:31
 msgid "History"
 msgstr "Verlauf"
 
+#: ../app/views/masters/edit.html.haml:7
 msgid "Edit Multi-state"
 msgstr "Multi-Status bearbeiten"
 
+#: ../app/views/masters/index.html.haml:7
 msgid "Multi-state Resources"
 msgstr "Multi-Status-Ressourcen"
 
+#: ../app/views/masters/new.html.haml:7
 msgid "Create Multi-state"
 msgstr "Multi-Status erstellen"
 
+#: ../app/views/nodes/_form.html.haml:18 ../app/views/nodes/show.html.haml:104
 msgid "Attributes"
 msgstr "Attribute"
 
+#: ../app/views/nodes/_form.html.haml:34 ../app/views/nodes/show.html.haml:61
+#: ../app/views/primitives/_form.html.haml:140
+#: ../app/views/resources/show.html.haml:139
 msgid "Utilization"
 msgstr "Belegung"
 
-#, fuzzy
+#: ../app/views/nodes/edit.html.haml:7
 msgid "Edit Node"
-msgstr "Rolle bearbeiten"
+msgstr "Knoten bearbeiten"
 
+#: ../app/views/nodes/events.html.haml:33
+#: ../app/views/resources/events.html.haml:33
 msgid "RC"
-msgstr ""
+msgstr "RC"
 
+#: ../app/views/nodes/events.html.haml:37
+#: ../app/views/resources/events.html.haml:37
+#: ../app/views/resources/show.html.haml:270
+#: ../app/views/shared/_simulator.html.haml:433
 msgid "Operation"
 msgstr "Operation"
 
+#: ../app/views/nodes/events.html.haml:39
+#: ../app/views/resources/events.html.haml:39
 msgid "Last Change"
-msgstr ""
+msgstr "Letzte Änderung"
 
+#: ../app/views/nodes/events.html.haml:41
+#: ../app/views/resources/events.html.haml:41
+#: ../app/views/shared/_simulator.html.haml:368
+#: ../app/views/tickets/show.html.haml:93
 msgid "State"
 msgstr "Bundesland"
 
+#: ../app/views/nodes/events.html.haml:43
+#: ../app/views/resources/events.html.haml:43
+#: ../app/views/resources/show.html.haml:268
 msgid "Call"
 msgstr "Aufruf"
 
+#: ../app/views/nodes/events.html.haml:45
+#: ../app/views/resources/events.html.haml:45
 msgid "Exec"
-msgstr ""
+msgstr "Ausf."
 
-#, fuzzy
+#: ../app/views/nodes/events.html.haml:47
+#: ../app/views/resources/events.html.haml:47
 msgid "Complete"
-msgstr "Vorlage"
+msgstr "Abgeschlossen"
 
+#: ../app/views/nodes/show.html.haml:30
 msgid "Remote node."
 msgstr "Ferner Knoten."
 
+#: ../app/views/nodes/show.html.haml:95
 msgid "No utilization defined"
 msgstr "Keine Belegung definiert"
 
+#: ../app/views/nodes/show.html.haml:129
 msgid "No attributes defined"
 msgstr "Keine Attribute definiert"
 
+#: ../app/views/orders/_form.html.haml:35
 msgid "Mandatory"
-msgstr ""
+msgstr "Obligatorisch"
 
-#, fuzzy
+#: ../app/views/orders/_form.html.haml:37
 msgid "Optional"
-msgstr "Optionen"
+msgstr "Optional"
 
+#: ../app/views/orders/_form.html.haml:39
 msgid "Serialize"
-msgstr ""
+msgstr "Serialisieren"
 
+#: ../app/views/orders/_form.html.haml:50
 msgid "Symmetrical"
 msgstr "Symmetrisch"
 
+#: ../app/views/pages/help.html.haml:35
 msgid "HTML"
 msgstr "HTML"
 
+#: ../app/views/pages/help.html.haml:39
 msgid "PDF"
 msgstr "PDF"
 
+#: ../app/views/primitives/_help.html.haml:35
+#: ../app/views/shared/_helpentry.html.haml:15
 msgid "Default"
 msgstr "Standard"
 
+#: ../app/views/primitives/edit.html.haml:13
 msgid "Copy"
-msgstr ""
+msgstr "Kopieren"
 
+#: ../app/views/reports/display.html.haml:13
+#: ../app/views/reports/index.html.haml:156
+#: ../app/views/reports/show.html.haml:13
 msgid "Reports"
 msgstr "Berichte"
 
+#: ../app/views/reports/display.html.haml:55
+#: ../app/views/reports/display.html.haml:64
+#: ../app/views/reports/display.html.haml:73
+#: ../app/views/reports/index.html.haml:39
+#: ../app/views/resources/rename.html.haml:36
+#: ../app/views/resources/show.html.haml:321
 msgid "To"
 msgstr "An"
 
+#: ../app/views/reports/display.html.haml:78
 msgid "Created"
 msgstr "Angelegt"
 
+#: ../app/views/reports/display.html.haml:82
+#: ../app/views/reports/display.html.haml:99
 msgid "Transitions"
 msgstr "Übergänge"
 
+#: ../app/views/reports/display.html.haml:105
 msgid "No transitions in report"
 msgstr "Keine Übergänge im Bericht"
 
+#: ../app/views/reports/display.html.haml:151
 msgid "PE Name"
 msgstr "PE-Name"
 
+#: ../app/views/reports/display.html.haml:159
 msgid "Time"
 msgstr "Zeit"
 
+#: ../app/views/reports/display.html.haml:188
+#: ../app/views/shared/_mainnav.html.haml:38
 msgid "Configuration"
 msgstr "Konfiguration"
 
+#: ../app/views/reports/display.html.haml:196
 msgid "Diff"
 msgstr "Diff"
 
+#: ../app/views/reports/display.html.haml:204
 msgid "Logs"
 msgstr "Protokolle"
 
+#: ../app/views/reports/display.html.haml:279
 msgid "Node Events"
 msgstr "Knotenereignisse"
 
+#: ../app/views/reports/display.html.haml:296
 msgid "Resource Events"
 msgstr "Ressourcenereignisse"
 
+#: ../app/views/reports/index.html.haml:20
 msgid "Data collection in progress..."
 msgstr "Daten werden erfasst..."
 
+#: ../app/views/reports/index.html.haml:79
+#: ../app/views/reports/index.html.haml:124
 msgid "Generate"
 msgstr "Generieren"
 
+#: ../app/views/reports/index.html.haml:87
 msgid "Upload"
 msgstr "Hochladen"
 
+#: ../app/views/reports/show.html.haml:30
 msgid "Loading report..."
-msgstr ""
+msgstr "Bericht wird geladen..."
 
-#, fuzzy
+#: ../app/views/resources/rename.html.haml:9
 msgid "Rename Resource"
-msgstr "Ressource"
+msgstr "Ressource umbenennen"
 
-#, fuzzy
+#: ../app/views/resources/show.html.haml:57
 msgid "Child"
-msgstr "Untergeordnete Elemente"
+msgstr "Untergeordnetes Element"
 
+#: ../app/views/resources/show.html.haml:218
 msgid "Instances"
 msgstr "Instanzen"
 
+#: ../app/views/resources/show.html.haml:250
 msgid "Failed Operations"
 msgstr "Fehlgeschlagene Operationen"
 
+#: ../app/views/resources/show.html.haml:274
 msgid "Reason"
 msgstr "Grund"
 
+#: ../app/views/resources/types.html.haml:7
+#: ../app/views/shared/_mainnav.html.haml:45
 msgid "Add Resource"
 msgstr "Ressource hinzufügen"
 
+#: ../app/views/roles/_form.html.haml:27
 msgid "Add a rule below"
 msgstr "Regel unten hinzufügen"
 
+#: ../app/views/roles/_form.html.haml:29
 msgid "Remove this rule"
 msgstr "Diese Regel entfernen"
 
+#: ../app/views/roles/_form.html.haml:31
 msgid "Move rule up"
 msgstr "Regel nach oben verschieben"
 
+#: ../app/views/roles/_form.html.haml:33
 msgid "Move rule down"
 msgstr "Regel nach unten verschieben"
 
+#: ../app/views/roles/_form.html.haml:38
 msgid "Right"
 msgstr "Rechts"
 
+#: ../app/views/roles/_form.html.haml:40
 msgid "XPath"
 msgstr "XPfad"
 
+#: ../app/views/roles/_form.html.haml:42
 msgid "Object Type"
 msgstr "Objekttyp"
 
+#: ../app/views/roles/_form.html.haml:44
 msgid "Reference"
 msgstr "Referenz"
 
+#: ../app/views/roles/_form.html.haml:47
 msgid "Attribute"
 msgstr "Attribut"
 
-#, fuzzy
+#: ../app/views/roles/index.html.haml:9 ../app/views/users/index.html.haml:9
 msgid "Access Control Lists"
-msgstr "Liste"
+msgstr "Zugriffssteuerungslisten"
 
+#: ../app/views/sessions/new.html.haml:7
 msgid "Login"
 msgstr "Login"
 
+#: ../app/views/shared/_mainnav.html.haml:50
 msgid "Add Constraint"
 msgstr "Einschränkung hinzufügen"
 
+#: ../app/views/shared/_mainnav.html.haml:55
+#: ../app/views/wizards/index.html.haml:7
 msgid "Wizards"
-msgstr "Assistent auswählen"
+msgstr "Assistenten"
 
+#: ../app/views/shared/_mainnav.html.haml:79
 msgid "Access Control"
-msgstr ""
+msgstr "Zugrifffssteuerung"
 
-#, fuzzy
+#: ../app/views/shared/_mainnav.html.haml:92
+#: ../app/views/users/index.html.haml:7
 msgid "Targets"
-msgstr "Ziel-ID"
+msgstr "Ziele"
 
-msgid ""
-"Any pending changes to the configuration will be lost - do you wish to proceed"
-"?"
-msgstr ""
+#: ../app/views/shared/_simulator.html.haml:15
+msgid "Any pending changes to the configuration will be lost - do you wish to proceed?"
+msgstr "Alle ausstehenden Änderungen an der Konfiguration gehen verloren. Wirklich fortfahren?"
 
+#: ../app/views/shared/_simulator.html.haml:17
 msgid "Discard"
-msgstr ""
+msgstr "Verwerfen"
 
-#, fuzzy
+#: ../app/views/shared/_simulator.html.haml:52
 msgid "Batch Mode"
-msgstr "Mo"
+msgstr "Batch-Modus"
 
+#: ../app/views/shared/_simulator.html.haml:82
+#: ../app/views/shared/_simulator.html.haml:184
 msgid "Summary"
 msgstr "Zusammenfassung"
 
+#: ../app/views/shared/_simulator.html.haml:84
+#: ../app/views/shared/_simulator.html.haml:215
 msgid "CIB (in)"
 msgstr "CIB (ein)"
 
+#: ../app/views/shared/_simulator.html.haml:86
+#: ../app/views/shared/_simulator.html.haml:246
 msgid "CIB (out)"
 msgstr "CIB (aus)"
 
+#: ../app/views/shared/_simulator.html.haml:88
+#: ../app/views/shared/_simulator.html.haml:277
 msgid "Transition Graph"
 msgstr "Übergangsdiagramm"
 
-#, fuzzy
+#: ../app/views/shared/_simulator.html.haml:90
 msgid "Transition"
-msgstr "Übergänge"
+msgstr "Übergang"
 
-#, fuzzy
+#: ../app/views/shared/_simulator.html.haml:101
 msgid "Inject"
-msgstr "Verbinden"
+msgstr "Injizieren"
 
-#, fuzzy
+#: ../app/views/shared/_simulator.html.haml:107
 msgid "Node Event"
-msgstr "Knotenereignisse"
+msgstr "Knotenereignis"
 
-#, fuzzy
+#: ../app/views/shared/_simulator.html.haml:110
 msgid "Resource Event"
-msgstr "Ressourcenereignisse"
+msgstr "Ressourcenereignis"
 
-#, fuzzy
+#: ../app/views/shared/_simulator.html.haml:113
 msgid "Ticket Event"
-msgstr "Ticket"
+msgstr "Ticketereignis"
 
+#: ../app/views/shared/_simulator.html.haml:308
 msgid "Transition (XML)"
 msgstr "Übergang (XML)"
 
+#: ../app/views/shared/_simulator.html.haml:341
 msgid "Inject Node Event"
 msgstr "Knotenereignis injizieren"
 
-#, fuzzy
+#: ../app/views/shared/_simulator.html.haml:406
 msgid "Inject Resource Event"
-msgstr "Knotenereignis injizieren"
+msgstr "Ressourcenereignis injizieren"
 
+#: ../app/views/shared/_simulator.html.haml:450
 msgid "Interval (ms)"
 msgstr "Intervall (ms)"
 
+#: ../app/views/shared/_simulator.html.haml:480
 msgid "Result"
 msgstr "Ergebnis"
 
+#: ../app/views/shared/_simulator.html.haml:518
 msgid "Inject Ticket Event"
 msgstr "Ticketereignis injizieren"
 
+#: ../app/views/shared/_simulator.html.haml:545
 msgid "Action"
 msgstr "Aktion"
 
-#, fuzzy
+#: ../app/views/shared/_usernav.html.haml:6
 msgid "Batch Configuration Changes"
-msgstr "Konfiguration"
+msgstr "Batch-Konfigurationsänderungen"
 
-#, fuzzy
+#: ../app/views/shared/_usernav.html.haml:6
+#: ../app/views/shared/_usernav.html.haml:14
 msgid "Batch"
-msgstr "März"
+msgstr "Batch"
 
+#: ../app/views/shared/_usernav.html.haml:34
 msgid "Logout"
 msgstr "Abmelden"
 
+#: ../app/views/shared/_usernav.html.haml:40
 msgid "Menu"
 msgstr "Menü"
 
+#: ../app/views/tags/_form.html.haml:34
 msgid "No objects available"
 msgstr "Keine Objekte verfügbar"
 
+#: ../app/views/tickets/_form.html.haml:16
 msgid "Ticket ID"
 msgstr "Ticket-ID"
 
+#: ../app/views/tickets/_form.html.haml:18
+#: ../app/views/tickets/show.html.haml:63
 msgid "Loss Policy"
 msgstr "Verlustrichtlinie"
 
+#: ../app/views/tickets/show.html.haml:9
 msgid "Ticket:"
 msgstr "Ticket:"
 
+#: ../app/views/tickets/show.html.haml:26
 msgid "Properties"
 msgstr "Eigenschaften"
 
+#: ../app/views/tickets/show.html.haml:69
 msgid "None"
 msgstr "Keine"
 
+#: ../app/views/tickets/show.html.haml:106
 msgid "Leader"
-msgstr ""
+msgstr "Leiter"
 
+#: ../app/views/tickets/show.html.haml:119
 msgid "Expires"
-msgstr ""
+msgstr "Läuft ab"
 
+#: ../app/views/tickets/show.html.haml:132
 msgid "Commit"
-msgstr ""
+msgstr "Übertragen"
 
+#: ../app/views/tickets/show.html.haml:189
 msgid "Sites"
-msgstr ""
+msgstr "Sites"
 
+#: ../app/views/tickets/show.html.haml:224
 msgid "Arbitrators"
-msgstr ""
+msgstr "Vermittler"
 
+#: ../app/views/users/_form.html.haml:10 ../app/views/users/_form.html.haml:13
 msgid "Target ID"
 msgstr "Ziel-ID"
 
+#: ../app/views/wizards/create.html.haml:21
 msgid "Verifying parameters..."
 msgstr "Parameter werden überprüft..."
 
+#: ../app/views/wizards/create.html.haml:26
+#: ../app/views/wizards/show.html.haml:129
+#: ../app/views/wizards/update.html.haml:106
 msgid "Do you really want to cancel the wizard setup?"
 msgstr "Soll die Assistentenkonfiguration wirklich abgebrochen werden?"
 
+#: ../app/views/wizards/create.html.haml:30
 msgid "Do you really want to apply the current wizard?"
 msgstr "Soll der aktuelle Assistent wirklich angewendet werden?"
 
+#: ../app/views/wizards/index.html.haml:28
 msgid "Legacy Wizards"
 msgstr "Alte Assistenten"
 
+#: ../app/views/wizards/show.html.haml:56
 msgid "Enable this step"
 msgstr "Diesen Schritt aktivieren"
 
+#: ../app/views/wizards/show.html.haml:123
 msgid "This wizard takes no parameters."
 msgstr "Dieser Assistent nimmt keine Parameter an."
 
+#: ../app/views/wizards/show.html.haml:133
 msgid "Next"
 msgstr "Weiter"
 
+#: ../app/views/wizards/show.html.haml:135
 msgid "Verify"
 msgstr "Überprüfen"
 
+#: ../app/views/wizards/update.html.haml:50
 msgid "Verify and apply"
 msgstr "Überprüfen und anwenden"
 
-msgid ""
-"To apply the changes, Hawk requires root access, and password-less SSH access "
-"must be configured. See the Hawk documentation for more information."
-msgstr ""
-"Zur Anwendung der Änderungen benötigt Hawk Root-Zugriff. Außerdem muss passwor"
-"tloser SSH-Zugriff konfiguriert sein. Weitere Informationen finden Sie in der "
-"Dokumentation zu Hawk."
+#: ../app/views/wizards/update.html.haml:87
+msgid "To apply the changes, Hawk requires root access, and password-less SSH access must be configured. See the Hawk documentation for more information."
+msgstr "Zur Anwendung der Änderungen benötigt Hawk Root-Zugriff. Außerdem muss passwortloser SSH-Zugriff konfiguriert sein. Weitere Informationen finden Sie in der Dokumentation zu Hawk."
 
+#: ../app/views/wizards/update.html.haml:94
 msgid "Root password"
 msgstr "Root-Passwort"
 
+#: ../lib/cibtools.rb:125
 msgid "other"
 msgstr "Andere"
 
+#: ../lib/invoker.rb:86
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "Das Objekt/Attribut ist nicht vorhanden (cibadmin %{cmd})"
 
+#: ../lib/invoker.rb:90
 msgid "Error invoking cibadmin %{cmd}: %{msg}"
 msgstr "Fehler beim Aufruf von cibadmin %{cmd}: %{msg}"

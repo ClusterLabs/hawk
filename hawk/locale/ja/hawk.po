@@ -5,7 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2015-11-05 16:58\n"
+"POT-Creation-Date: 2016-04-26 18:17+0200\n"
+"PO-Revision-Date: 2016-06-01 12:23\n"
 "Last-Translator: Novell language <language@novell.com>\n"
 "Language-Team: Novell language <language@novell.com>\n"
 "Language: \n"
@@ -14,1986 +15,2970 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
+#: ../app/assets/javascripts/dashboard.js:22
 msgid "Error"
 msgstr "エラー"
 
+#: ../app/assets/javascripts/dashboard.js:25
 msgid "Unexpected server error: _MSG_"
 msgstr "予期しないサーバエラー: _MSG_"
 
-msgid ""
-"Connection to server failed (server down or network error - will retry every 1"
-"5 seconds)."
+#: ../app/assets/javascripts/dashboard.js:28
+msgid "Connection to server failed (server down or network error - will retry every 15 seconds)."
 msgstr "サーバとの接続に失敗しました(サーバがダウンしているか、ネットワークエラーです - 15秒ごとに再試行します)。"
 
+#: ../app/assets/javascripts/dashboard.js:31
+#: ../app/assets/javascripts/module/monitor.js:71
 msgid "Connection to server timed out - will retry every 15 seconds."
 msgstr "サーバとの接続がタイムアウトになりました - 15秒ごとに再試行します。"
 
+#: ../app/assets/javascripts/dashboard.js:34
+#: ../app/assets/javascripts/module/monitor.js:49
 msgid "Connection to server aborted - will retry every 15 seconds."
 msgstr "サーバとの接続が中止されました - 15秒ごとに再試行します。"
 
+#: ../app/assets/javascripts/dashboard.js:37
 msgid "Permission denied"
 msgstr "アクセス承認拒否"
 
+#: ../app/assets/javascripts/dashboard.js:40
 msgid "_OP_ failed on _NODE_} (rc=_RC_, reason=_REASON_)"
 msgstr "_NODE_} で _OP_  が失敗しました(rc=_RC_、reason=_REASON_)"
 
+#: ../app/assets/javascripts/dashboard.js:195
 msgid "Permission denied. "
 msgstr "アクセス承認が拒否されました。 "
 
+#: ../app/assets/javascripts/dashboard.js:215
 msgid "Error connecting to server."
 msgstr "サーバへの接続エラーです。"
 
+#: ../app/assets/javascripts/dashboard.js:217
 msgid "Connection to server timed out."
 msgstr "サーバへの接続がタイムアウトしました。"
 
+#: ../app/assets/javascripts/dashboard.js:219
 msgid "Connection to server was aborted."
 msgstr "サーバへの接続が中止されました。"
 
+#: ../app/assets/javascripts/dashboard.js:221
 msgid "Server returned invalid data."
 msgstr "サーバは無効なデータを返しました。"
 
+#: ../app/assets/javascripts/dashboard.js:225
 msgid "Unknown error connecting to server."
 msgstr "サーバへの接続中に不明なエラーが発生しました。"
 
+#: ../app/assets/javascripts/dashboard.js:228
 msgid "Retrying every 15 seconds..."
 msgstr "15秒ごとに再試行します..."
 
+#: ../app/assets/javascripts/dashboard.js:250
+#: ../app/assets/javascripts/module/basics.js:182
+#: ../app/assets/javascripts/module/reports.js:168
+#: ../app/assets/javascripts/module/resources.js:42
+#: ../app/views/cib/apply.html.haml:43 ../app/views/reports/index.html.haml:59
+#: ../app/views/reports/show.html.haml:43
+#: ../app/views/resources/rename.html.haml:51
+#: ../app/views/shared/_simulator.html.haml:386
+#: ../app/views/shared/_simulator.html.haml:498
+#: ../app/views/shared/_simulator.html.haml:563
+#: ../app/views/wizards/create.html.haml:26
+#: ../app/views/wizards/show.html.haml:129
+#: ../app/views/wizards/update.html.haml:106
 msgid "Cancel"
 msgstr "キャンセル"
 
+#: ../app/assets/javascripts/dashboard.js:374
 msgid "Hostname"
 msgstr "ホスト名"
 
+#: ../app/assets/javascripts/dashboard.js:375
+#: ../app/views/sessions/new.html.haml:2
 msgid "Username"
 msgstr "ユーザ名"
 
+#: ../app/assets/javascripts/dashboard.js:376
+#: ../app/views/sessions/new.html.haml:4
 msgid "Password"
 msgstr "パスワード"
 
+#: ../app/assets/javascripts/dashboard.js:377
 msgid "Connect"
 msgstr "接続"
 
+#: ../app/assets/javascripts/dashboard.js:425
 msgid "Local Status"
 msgstr "ローカルステータス"
 
+#: ../app/assets/javascripts/dashboard.js:441
 msgid "Remove cluster _NAME_ from dashboard?"
 msgstr "ダッシュボードからクラスタ _NAME_ を削除しますか?"
 
+#: ../app/assets/javascripts/dashboard.js:468
 msgid "Cluster removed successfully."
 msgstr "クラスタが正常に削除されました。"
 
+#: ../app/assets/javascripts/dashboard.js:473
 msgid "Error removing cluster."
 msgstr "クラスタの削除エラーです。"
 
+#: ../app/assets/javascripts/dashboard.js:489
 msgid "Please wait..."
 msgstr "しばらくお待ちください..."
 
+#: ../app/assets/javascripts/dashboard.js:499
 msgid "Cluster added successfully."
 msgstr "クラスタが正常に追加されました。"
 
+#: ../app/assets/javascripts/module/attrlist.js:21
+#: ../app/assets/javascripts/module/constraint.js:19
+#: ../app/assets/javascripts/module/location.js:16
+#: ../app/assets/javascripts/module/oplist.js:66
+#: ../app/assets/javascripts/module/wizattrlist.js:20
+#: ../app/helpers/form_helper.rb:23 ../app/helpers/role_helper.rb:31
+#: ../app/helpers/user_helper.rb:31 ../app/views/clones/edit.html.haml:13
+#: ../app/views/clones/index.html.haml:13
+#: ../app/views/colocations/edit.html.haml:13
+#: ../app/views/colocations/index.html.haml:13
+#: ../app/views/constraints/index.html.haml:13
+#: ../app/views/groups/edit.html.haml:13
+#: ../app/views/groups/index.html.haml:13
+#: ../app/views/locations/edit.html.haml:13
+#: ../app/views/locations/index.html.haml:13
+#: ../app/views/masters/edit.html.haml:13
+#: ../app/views/masters/index.html.haml:13
+#: ../app/views/orders/edit.html.haml:13
+#: ../app/views/orders/index.html.haml:13
+#: ../app/views/primitives/_form.html.haml:80
+#: ../app/views/primitives/index.html.haml:13
+#: ../app/views/resources/index.html.haml:13
+#: ../app/views/roles/index.html.haml:15 ../app/views/tags/edit.html.haml:13
+#: ../app/views/tags/index.html.haml:13 ../app/views/tickets/edit.html.haml:13
+#: ../app/views/tickets/index.html.haml:13
+#: ../app/views/users/index.html.haml:15
 msgid "Create"
 msgstr "作成"
 
+#: ../app/assets/javascripts/module/attrlist.js:22
+#: ../app/assets/javascripts/module/constraint.js:20
+#: ../app/assets/javascripts/module/location.js:17
+#: ../app/assets/javascripts/module/oplist.js:68
+#: ../app/assets/javascripts/module/wizattrlist.js:21
 msgid "Remove"
 msgstr "削除"
 
+#: ../app/assets/javascripts/module/attrlist.js:23
+#: ../app/assets/javascripts/module/oplist.js:69
+#: ../app/assets/javascripts/module/wizattrlist.js:22
+#: ../app/helpers/form_helper.rb:6 ../app/views/tickets/show.html.haml:52
 msgid "Yes"
 msgstr "はい"
 
+#: ../app/assets/javascripts/module/attrlist.js:24
+#: ../app/assets/javascripts/module/oplist.js:70
+#: ../app/assets/javascripts/module/wizattrlist.js:23
+#: ../app/helpers/form_helper.rb:6 ../app/views/tickets/show.html.haml:55
 msgid "No"
 msgstr "いいえ"
 
+#: ../app/assets/javascripts/module/attrlist.js:156
+#: ../app/assets/javascripts/module/constraint.js:159
+#: ../app/assets/javascripts/module/forms.js:14
+#: ../app/assets/javascripts/module/location.js:183
+#: ../app/assets/javascripts/module/oplist.js:342
+#: ../app/assets/javascripts/module/profiles.js:23
+#: ../app/assets/javascripts/module/roles.js:179
+#: ../app/assets/javascripts/module/users.js:135
+#: ../app/assets/javascripts/module/wizattrlist.js:165
+#: ../app/helpers/crm_config_helper.rb:10 ../app/helpers/form_helper.rb:14
+#: ../app/helpers/profile_helper.rb:21 ../app/helpers/role_helper.rb:17
+#: ../app/helpers/user_helper.rb:17
 msgid "Any changes will be lost - do you wish to proceed?"
 msgstr "変更内容は失われます。続行しますか?"
 
-#, fuzzy
+#: ../app/assets/javascripts/module/basics.js:14 ../app/models/record.rb:11
+#: ../app/models/tag.rb:14
 msgid "Invalid ID"
-msgstr "無効なタグID"
+msgstr "無効なID"
 
+#: ../app/assets/javascripts/module/basics.js:80
+#: ../app/assets/javascripts/module/basics.js:183
+#: ../app/assets/javascripts/module/resources.js:43
+#: ../app/views/shared/_simulator.html.haml:203
+#: ../app/views/shared/_simulator.html.haml:234
+#: ../app/views/shared/_simulator.html.haml:265
+#: ../app/views/shared/_simulator.html.haml:296
+#: ../app/views/shared/_simulator.html.haml:327
+#: ../app/views/shared/_simulator.html.haml:391
+#: ../app/views/shared/_simulator.html.haml:503
+#: ../app/views/shared/_simulator.html.haml:568
 msgid "OK"
 msgstr "OK"
 
-#, fuzzy
+#: ../app/assets/javascripts/module/basics.js:82
 msgid "Maintenance mode"
-msgstr "メンテナンス"
+msgstr "保守モード"
 
+#: ../app/assets/javascripts/module/basics.js:84
 msgid "An error has occurred"
-msgstr ""
+msgstr "エラーが発生しました"
 
+#: ../app/assets/javascripts/module/basics.js:171
+#: ../app/assets/javascripts/module/resources.js:17
+#: ../app/views/agents/show.html.haml:134
+#: ../app/views/configs/meta.html.haml:12
+#: ../app/views/constraints/show.html.haml:32
+#: ../app/views/dashboards/add.html.haml:14
+#: ../app/views/nodes/events.html.haml:13
+#: ../app/views/nodes/events.html.haml:60 ../app/views/nodes/show.html.haml:13
+#: ../app/views/nodes/show.html.haml:138 ../app/views/pages/help.html.haml:13
+#: ../app/views/pages/help.html.haml:58
+#: ../app/views/resources/events.html.haml:13
+#: ../app/views/resources/events.html.haml:60
+#: ../app/views/resources/show.html.haml:346
+#: ../app/views/shared/_flash.html.haml:14
+#: ../app/views/shared/_simulator.html.haml:172
+#: ../app/views/simulator/help.html.haml:19
+#: ../app/views/tickets/show.html.haml:255
 msgid "Close"
 msgstr "閉じる"
 
-#, fuzzy
+#: ../app/assets/javascripts/module/batch.js:42
 msgid "No configuration changes."
-msgstr "設定の変更を適用中..."
+msgstr "設定の変更はありません。"
 
+#: ../app/assets/javascripts/module/clones.js:27
+#: ../app/views/clones/_form.html.haml:10
+#: ../app/views/clones/_form.html.haml:15
 msgid "Clone ID"
 msgstr "クローンID"
 
+#: ../app/assets/javascripts/module/clones.js:33
+#: ../app/assets/javascripts/module/colocations.js:33
+#: ../app/assets/javascripts/module/constraints.js:91
+#: ../app/assets/javascripts/module/groups.js:33
+#: ../app/assets/javascripts/module/locations.js:33
+#: ../app/assets/javascripts/module/masters.js:33
+#: ../app/assets/javascripts/module/nodes.js:193
+#: ../app/assets/javascripts/module/nodes.js:322
+#: ../app/assets/javascripts/module/orders.js:33
+#: ../app/assets/javascripts/module/primitives.js:75
+#: ../app/assets/javascripts/module/reports.js:303
+#: ../app/assets/javascripts/module/resources.js:268
+#: ../app/assets/javascripts/module/resources.js:645
+#: ../app/assets/javascripts/module/roles.js:33
+#: ../app/assets/javascripts/module/tags.js:42
+#: ../app/assets/javascripts/module/tickets.js:39
+#: ../app/assets/javascripts/module/tickets.js:229
+#: ../app/assets/javascripts/module/users.js:33
+#: ../app/views/primitives/_form.html.haml:159
+#: ../app/views/resources/show.html.haml:171
 msgid "Operations"
 msgstr "操作"
 
+#: ../app/assets/javascripts/module/clones.js:95
+#: ../app/assets/javascripts/module/colocations.js:97
+#: ../app/assets/javascripts/module/constraints.js:212
+#: ../app/assets/javascripts/module/groups.js:95
+#: ../app/assets/javascripts/module/locations.js:95
+#: ../app/assets/javascripts/module/masters.js:95
+#: ../app/assets/javascripts/module/nodes.js:244
+#: ../app/assets/javascripts/module/nodes.js:335
+#: ../app/assets/javascripts/module/oplist.js:67
+#: ../app/assets/javascripts/module/orders.js:95
+#: ../app/assets/javascripts/module/primitives.js:138
+#: ../app/assets/javascripts/module/resources.js:395
+#: ../app/assets/javascripts/module/resources.js:665
+#: ../app/assets/javascripts/module/roles.js:95
+#: ../app/assets/javascripts/module/tags.js:104
+#: ../app/assets/javascripts/module/tickets.js:67
+#: ../app/assets/javascripts/module/users.js:95
+#: ../app/views/configs/show.html.haml:13
+#: ../app/views/graphs/show.html.haml:11
 msgid "Edit"
 msgstr "編集"
 
+#: ../app/assets/javascripts/module/clones.js:108
+#: ../app/assets/javascripts/module/colocations.js:110
+#: ../app/assets/javascripts/module/constraints.js:222
+#: ../app/assets/javascripts/module/groups.js:108
+#: ../app/assets/javascripts/module/locations.js:108
+#: ../app/assets/javascripts/module/masters.js:108
+#: ../app/assets/javascripts/module/orders.js:108
+#: ../app/assets/javascripts/module/primitives.js:151
+#: ../app/assets/javascripts/module/reports.js:383
+#: ../app/assets/javascripts/module/resources.js:687
+#: ../app/assets/javascripts/module/roles.js:108
+#: ../app/assets/javascripts/module/tags.js:117
+#: ../app/assets/javascripts/module/tickets.js:77
+#: ../app/assets/javascripts/module/users.js:108
+#: ../app/views/clones/edit.html.haml:17
+#: ../app/views/colocations/edit.html.haml:15
+#: ../app/views/groups/edit.html.haml:17
+#: ../app/views/locations/edit.html.haml:15
+#: ../app/views/masters/edit.html.haml:17
+#: ../app/views/orders/edit.html.haml:15
+#: ../app/views/primitives/edit.html.haml:17
+#: ../app/views/reports/display.html.haml:36
+#: ../app/views/roles/edit.html.haml:13 ../app/views/tags/edit.html.haml:15
+#: ../app/views/tickets/edit.html.haml:15 ../app/views/users/edit.html.haml:13
 msgid "Delete"
 msgstr "削除"
 
+#: ../app/assets/javascripts/module/colocations.js:27
+#: ../app/assets/javascripts/module/locations.js:27
+#: ../app/assets/javascripts/module/orders.js:27
+#: ../app/models/constraint.rb:48 ../app/views/colocations/_form.html.haml:10
+#: ../app/views/colocations/_form.html.haml:13
+#: ../app/views/locations/_form.html.haml:10
+#: ../app/views/locations/_form.html.haml:13
+#: ../app/views/orders/_form.html.haml:10
+#: ../app/views/orders/_form.html.haml:13
+#: ../app/views/tickets/_form.html.haml:10
+#: ../app/views/tickets/_form.html.haml:13
 msgid "Constraint ID"
 msgstr "制約ID"
 
+#: ../app/assets/javascripts/module/constraint.js:22
 msgid "Swap with entry above"
 msgstr "上のエントリとスワップ"
 
+#: ../app/assets/javascripts/module/constraint.js:23
 msgid "Link with entry above"
 msgstr "上のエントリとリンク"
 
+#: ../app/assets/javascripts/module/constraint.js:24
 msgid "Unlink from entry above"
 msgstr "上のエントリからリンク解除"
 
+#: ../app/assets/javascripts/module/constraints.js:56
+#: ../app/assets/javascripts/module/resources.js:236
+#: ../app/assets/javascripts/module/resources.js:598
+#: ../app/models/template.rb:405 ../app/views/primitives/_form.html.haml:25
+#: ../app/views/primitives/_form.html.haml:47
+#: ../app/views/resources/show.html.haml:317
 msgid "Type"
 msgstr "種類"
 
+#: ../app/assets/javascripts/module/constraints.js:63
+#: ../app/assets/javascripts/module/resources.js:217
+#: ../app/views/constraints/types.html.haml:32
 msgid "Location"
 msgstr "場所"
 
+#: ../app/assets/javascripts/module/constraints.js:65
+#: ../app/views/constraints/types.html.haml:41
 msgid "Colocation"
 msgstr "コロケーション"
 
+#: ../app/assets/javascripts/module/constraints.js:67
+#: ../app/views/constraints/types.html.haml:50
 msgid "Order"
 msgstr "順序"
 
+#: ../app/assets/javascripts/module/constraints.js:69
+#: ../app/assets/javascripts/module/tickets.js:33
+#: ../app/assets/javascripts/module/tickets.js:156
+#: ../app/views/constraints/types.html.haml:59
+#: ../app/views/shared/_simulator.html.haml:528
 msgid "Ticket"
 msgstr "チケット"
 
+#: ../app/assets/javascripts/module/constraints.js:76
 msgid "Constraint"
 msgstr "制約"
 
+#: ../app/assets/javascripts/module/constraints.js:82
+#: ../app/assets/javascripts/module/resources.js:628
+#: ../app/controllers/resources_controller.rb:211
+#: ../app/models/location.rb:223 ../app/views/cib/show.html.haml:56
+#: ../app/views/colocations/_form.html.haml:52
+#: ../app/views/configs/edit.html.haml:44
+#: ../app/views/orders/_form.html.haml:57
+#: ../app/views/resources/index.html.haml:7
+#: ../app/views/tickets/_form.html.haml:25
 msgid "Resources"
 msgstr "リソース"
 
+#: ../app/assets/javascripts/module/groups.js:27
+#: ../app/views/groups/_form.html.haml:10
+#: ../app/views/groups/_form.html.haml:15
 msgid "Group ID"
 msgstr "グループID"
 
+#: ../app/assets/javascripts/module/location.js:23
+#: ../app/views/roles/_form.html.haml:22
 msgid "Rule"
 msgstr "ルール"
 
+#: ../app/assets/javascripts/module/location.js:33
+#: ../app/models/colocation.rb:180 ../app/models/location.rb:229
+#: ../app/views/colocations/_form.html.haml:18
+#: ../app/views/locations/_form.html.haml:48
+#: ../app/views/orders/_form.html.haml:18
+#: ../app/views/resources/show.html.haml:319
 msgid "Score"
 msgstr "スコア"
 
+#: ../app/assets/javascripts/module/location.js:41
+#: ../app/models/location.rb:248
 msgid "Role"
 msgstr "役割"
 
+#: ../app/assets/javascripts/module/location.js:54
 msgid "Boolean Operator"
 msgstr "ブール値オペレータ"
 
+#: ../app/assets/javascripts/module/masters.js:27
+#: ../app/views/masters/_form.html.haml:10
+#: ../app/views/masters/_form.html.haml:15
 msgid "Multi-state ID"
 msgstr "複数状態ID"
 
+#: ../app/assets/javascripts/module/monitor.js:64
 msgid "Failed to parse monitor response - Internal server error."
-msgstr ""
+msgstr "モニタ応答の解析に失敗しました - 内部サーバエラー。"
 
+#: ../app/assets/javascripts/module/monitor.js:68
+#: ../app/assets/javascripts/module/status.js:129
 msgid "Connection to server failed - will retry every 15 seconds."
 msgstr "サーバとの接続が失敗しました - 15秒ごとに再試行します。"
 
+#: ../app/assets/javascripts/module/nodes.js:40
+#: ../app/assets/javascripts/module/resources.js:173
+#: ../app/assets/javascripts/module/tickets.js:127
+#: ../app/controllers/cib_controller.rb:108
+#: ../app/helpers/application_helper.rb:222 ../app/views/cib/show.html.haml:15
+#: ../app/views/resources/show.html.haml:272
+#: ../app/views/shared/_mainnav.html.haml:17
 msgid "Status"
 msgstr "状態"
 
+#: ../app/assets/javascripts/module/nodes.js:69
 msgid "Remote"
 msgstr "リモート"
 
+#: ../app/assets/javascripts/module/nodes.js:80
+#: ../app/assets/javascripts/module/nodes.js:316
+#: ../app/assets/javascripts/module/reports.js:269
+#: ../app/views/agents/show.html.haml:50
+#: ../app/views/agents/show.html.haml:101
+#: ../app/views/nodes/_form.html.haml:11
+#: ../app/views/reports/display.html.haml:42
+#: ../app/views/resources/show.html.haml:187
 msgid "Name"
 msgstr "名前"
 
+#: ../app/assets/javascripts/module/nodes.js:86
 msgid "Maintenance"
 msgstr "メンテナンス"
 
+#: ../app/assets/javascripts/module/nodes.js:118
 msgid "Switch to ready"
 msgstr "準備完了に切り替える"
 
+#: ../app/assets/javascripts/module/nodes.js:131
 msgid "Switch to maintenance"
 msgstr "保守に切り替える"
 
+#: ../app/assets/javascripts/module/nodes.js:140
 msgid "Standby"
 msgstr "スタンバイ"
 
+#: ../app/assets/javascripts/module/nodes.js:171
 msgid "Switch to online"
 msgstr "オンラインに切り替える"
 
+#: ../app/assets/javascripts/module/nodes.js:184
 msgid "Switch to standby"
 msgstr "スタンバイに切り替える"
 
+#: ../app/assets/javascripts/module/nodes.js:239
+#: ../app/helpers/ticket_helper.rb:10
 msgid "Fence"
 msgstr "フェンス"
 
+#: ../app/assets/javascripts/module/nodes.js:240
 msgid "Clear state"
-msgstr ""
+msgstr "状態のクリア"
 
+#: ../app/assets/javascripts/module/nodes.js:263
 msgid "Events"
-msgstr ""
+msgstr "イベント"
 
+#: ../app/assets/javascripts/module/nodes.js:273
+#: ../app/assets/javascripts/module/resources.js:413
+#: ../app/assets/javascripts/module/statusmatrix.js:88
+#: ../app/assets/javascripts/module/tickets.js:268
+#: ../app/views/reports/display.html.haml:180
 msgid "Details"
 msgstr "詳細情報"
 
+#: ../app/assets/javascripts/module/nodes.js:310
+#: ../app/assets/javascripts/module/resources.js:209
+#: ../app/assets/javascripts/module/tickets.js:27
+#: ../app/views/nodes/_form.html.haml:9 ../app/views/nodes/show.html.haml:48
+#: ../app/views/resources/show.html.haml:315
 msgid "ID"
 msgstr "ID"
 
+#: ../app/assets/javascripts/module/oplist.js:71
+#: ../app/helpers/form_helper.rb:27
 msgid "Add"
 msgstr "追加"
 
+#: ../app/assets/javascripts/module/oplist.js:72
+#: ../app/assets/javascripts/module/reports.js:167
+#: ../app/helpers/crm_config_helper.rb:16 ../app/helpers/form_helper.rb:19
+#: ../app/helpers/profile_helper.rb:27 ../app/helpers/role_helper.rb:23
+#: ../app/helpers/user_helper.rb:23 ../app/views/cib/apply.html.haml:46
+#: ../app/views/primitives/_form.html.haml:85
+#: ../app/views/shared/_simulator.html.haml:22
+#: ../app/views/wizards/create.html.haml:30
+#: ../app/views/wizards/update.html.haml:112
 msgid "Apply"
 msgstr "適用"
 
+#: ../app/assets/javascripts/module/oplist.js:281
 msgid "No interval set for monitor operation"
 msgstr "監視操作に間隔が設定されていません"
 
+#: ../app/assets/javascripts/module/oplist.js:327
 msgid "Replacing previously defined monitor operation with same interval"
 msgstr "以前に定義された監視操作を同じ間隔で置き換える"
 
+#: ../app/assets/javascripts/module/primitives.js:69
+#: ../app/models/resource.rb:124 ../app/views/primitives/_form.html.haml:14
+#: ../app/views/primitives/_form.html.haml:28
 msgid "Resource ID"
 msgstr "リソースID"
 
+#: ../app/assets/javascripts/module/primitives.js:323
 msgid "Failed to fetch meta attributes"
 msgstr "メタ属性をフェッチできませんでした"
 
+#: ../app/assets/javascripts/module/reports.js:30
 msgid "Report generation is complete."
 msgstr "レポート生成が完了しました。"
 
-#, fuzzy
+#: ../app/assets/javascripts/module/reports.js:47
 msgid "Report generation cancelled."
-msgstr "レポート生成が完了しました。"
+msgstr "レポートの生成がキャンセルされました。"
 
+#: ../app/assets/javascripts/module/reports.js:169
+#: ../app/assets/javascripts/module/reports.js:281
+#: ../app/views/reports/display.html.haml:51
+#: ../app/views/reports/display.html.haml:60
+#: ../app/views/reports/display.html.haml:69
+#: ../app/views/reports/index.html.haml:29
 msgid "From"
 msgstr "開始"
 
+#: ../app/assets/javascripts/module/reports.js:170
+#: ../app/assets/javascripts/module/reports.js:294
 msgid "Until"
 msgstr "終了"
 
+#: ../app/assets/javascripts/module/reports.js:171
 msgid "Custom"
 msgstr "カスタム設定"
 
+#: ../app/assets/javascripts/module/reports.js:173
 msgid "Su"
 msgstr "日"
 
+#: ../app/assets/javascripts/module/reports.js:174
 msgid "Mo"
 msgstr "月"
 
+#: ../app/assets/javascripts/module/reports.js:175
 msgid "Tu"
 msgstr "火"
 
+#: ../app/assets/javascripts/module/reports.js:176
 msgid "We"
 msgstr "水"
 
+#: ../app/assets/javascripts/module/reports.js:177
 msgid "Th"
 msgstr "木"
 
+#: ../app/assets/javascripts/module/reports.js:178
 msgid "Fr"
 msgstr "金"
 
+#: ../app/assets/javascripts/module/reports.js:179
 msgid "Sa"
 msgstr "土"
 
+#: ../app/assets/javascripts/module/reports.js:182
 msgid "January"
 msgstr "1月"
 
+#: ../app/assets/javascripts/module/reports.js:183
 msgid "February"
 msgstr "2月"
 
+#: ../app/assets/javascripts/module/reports.js:184
 msgid "March"
 msgstr "3月"
 
+#: ../app/assets/javascripts/module/reports.js:185
 msgid "April"
 msgstr "4月"
 
+#: ../app/assets/javascripts/module/reports.js:186
 msgid "May"
 msgstr "5月"
 
+#: ../app/assets/javascripts/module/reports.js:187
 msgid "June"
 msgstr "6月"
 
+#: ../app/assets/javascripts/module/reports.js:188
 msgid "July"
 msgstr "7月"
 
+#: ../app/assets/javascripts/module/reports.js:189
 msgid "August"
 msgstr "8月"
 
+#: ../app/assets/javascripts/module/reports.js:190
 msgid "September"
 msgstr "9月"
 
+#: ../app/assets/javascripts/module/reports.js:191
 msgid "October"
 msgstr "10月"
 
+#: ../app/assets/javascripts/module/reports.js:192
 msgid "November"
 msgstr "11月"
 
+#: ../app/assets/javascripts/module/reports.js:193
 msgid "December"
 msgstr "12月"
 
+#: ../app/assets/javascripts/module/reports.js:277
+#: ../app/assets/javascripts/module/reports.js:361
+#: ../app/views/configs/edit.html.haml:13
+#: ../app/views/configs/show.html.haml:16
+#: ../app/views/graphs/show.html.haml:13
+#: ../app/views/reports/display.html.haml:32
+#: ../app/views/shared/_simulator.html.haml:12
 msgid "Show"
 msgstr "表示"
 
+#: ../app/assets/javascripts/module/reports.js:371
+#: ../app/views/reports/display.html.haml:34
 msgid "Download"
 msgstr "ダウンロード"
 
+#: ../app/assets/javascripts/module/resources.js:183
 msgid "Unmanaged"
 msgstr "非管理対象"
 
+#: ../app/assets/javascripts/module/resources.js:186
+#: ../app/helpers/colocation_helper.rb:7 ../app/helpers/ticket_helper.rb:19
 msgid "Started"
 msgstr "開始しました"
 
+#: ../app/assets/javascripts/module/resources.js:189
 msgid "Primary"
 msgstr "プライマリ"
 
+#: ../app/assets/javascripts/module/resources.js:192
 msgid "Secondary"
 msgstr "セカンダリ"
 
+#: ../app/assets/javascripts/module/resources.js:195
+#: ../app/helpers/colocation_helper.rb:10 ../app/helpers/ticket_helper.rb:22
 msgid "Stopped"
 msgstr "停止"
 
+#: ../app/assets/javascripts/module/resources.js:242
+#: ../app/assets/javascripts/module/resources.js:607
+#: ../app/views/resources/types.html.haml:41
 msgid "Group"
 msgstr "グループ"
 
+#: ../app/assets/javascripts/module/resources.js:244
+#: ../app/assets/javascripts/module/resources.js:611
+#: ../app/views/resources/types.html.haml:59
 msgid "Multi-state"
 msgstr "複数状態"
 
+#: ../app/assets/javascripts/module/resources.js:246
+#: ../app/assets/javascripts/module/resources.js:609
+#: ../app/views/resources/types.html.haml:50
 msgid "Clone"
 msgstr "クローン"
 
+#: ../app/assets/javascripts/module/resources.js:248
+#: ../app/assets/javascripts/module/resources.js:613
+#: ../app/views/resources/types.html.haml:68
 msgid "Tag"
 msgstr "タグ"
 
+#: ../app/assets/javascripts/module/resources.js:303
 msgid "Away from current node"
-msgstr ""
+msgstr "現在のノードから離れて"
 
+#: ../app/assets/javascripts/module/resources.js:313
 msgid "Clean up on all nodes"
-msgstr ""
+msgstr "すべてのノードをクリーンアップ"
 
+#: ../app/assets/javascripts/module/resources.js:345
+#: ../app/helpers/order_helper.rb:10 ../app/helpers/ticket_helper.rb:8
+#: ../app/models/template.rb:417
 msgid "Stop"
 msgstr "停止"
 
+#: ../app/assets/javascripts/module/resources.js:349
+#: ../app/helpers/order_helper.rb:7 ../app/models/template.rb:411
 msgid "Start"
 msgstr "開始"
 
+#: ../app/assets/javascripts/module/resources.js:353
+#: ../app/helpers/order_helper.rb:9 ../app/helpers/ticket_helper.rb:9
 msgid "Demote"
 msgstr "降格"
 
+#: ../app/assets/javascripts/module/resources.js:357
+#: ../app/helpers/order_helper.rb:8
 msgid "Promote"
 msgstr "昇格"
 
+#: ../app/assets/javascripts/module/resources.js:361
 msgid "Unmanage"
 msgstr "非管理"
 
+#: ../app/assets/javascripts/module/resources.js:365
+#: ../app/views/shared/_mainnav.html.haml:10
 msgid "Manage"
 msgstr "管理"
 
+#: ../app/assets/javascripts/module/resources.js:370
 msgid "Migrate"
 msgstr "移行"
 
+#: ../app/assets/javascripts/module/resources.js:372
 msgid "Unmigrate"
 msgstr "移行解除"
 
+#: ../app/assets/javascripts/module/resources.js:374
 msgid "Cleanup"
 msgstr "整理"
 
+#: ../app/assets/javascripts/module/resources.js:388
 msgid "Recent events"
-msgstr ""
+msgstr "最新のイベント"
 
-#, fuzzy
+#: ../app/assets/javascripts/module/resources.js:488
 msgid "No child resources"
-msgstr "子リソース"
+msgstr "子リソースなし"
 
+#: ../app/assets/javascripts/module/resources.js:605
+#: ../app/views/resources/types.html.haml:32
 msgid "Primitive"
 msgstr "プリミティブ"
 
+#: ../app/assets/javascripts/module/resources.js:615
+#: ../app/models/template.rb:387 ../app/views/primitives/_form.html.haml:18
+#: ../app/views/primitives/_form.html.haml:36
+#: ../app/views/resources/types.html.haml:78
 msgid "Template"
 msgstr "テンプレート"
 
+#: ../app/assets/javascripts/module/resources.js:622
+#: ../app/views/nodes/events.html.haml:35
+#: ../app/views/shared/_simulator.html.haml:416
 msgid "Resource"
 msgstr "リソース"
 
-#, fuzzy
+#: ../app/assets/javascripts/module/resources.js:676
+#: ../app/views/clones/edit.html.haml:15 ../app/views/groups/edit.html.haml:15
+#: ../app/views/masters/edit.html.haml:15
+#: ../app/views/primitives/edit.html.haml:15
+#: ../app/views/resources/rename.html.haml:23
+#: ../app/views/resources/rename.html.haml:56
 msgid "Rename"
-msgstr "ユーザ名"
+msgstr "名前変更"
 
+#: ../app/assets/javascripts/module/roles.js:27
+#: ../app/views/roles/_form.html.haml:10 ../app/views/roles/_form.html.haml:13
 msgid "Role ID"
 msgstr "役割ID"
 
+#: ../app/assets/javascripts/module/tags.js:27
+#: ../app/views/tags/_form.html.haml:10 ../app/views/tags/_form.html.haml:15
 msgid "Tag ID"
 msgstr "タグID"
 
+#: ../app/assets/javascripts/module/tags.js:33
+#: ../app/views/tags/_form.html.haml:24
 msgid "Objects"
 msgstr "オブジェクト"
 
+#: ../app/assets/javascripts/module/tickets.js:136
+#: ../app/assets/javascripts/module/tickets.js:168
+#: ../app/views/tickets/show.html.haml:46
 msgid "Granted"
 msgstr "許可済み"
 
+#: ../app/assets/javascripts/module/tickets.js:142
 msgid "Elsewhere"
-msgstr ""
+msgstr "他の場所"
 
+#: ../app/assets/javascripts/module/tickets.js:148
 msgid "Revoked"
 msgstr "取り消し"
 
-#, fuzzy
+#: ../app/assets/javascripts/module/tickets.js:162
+#: ../app/views/tickets/show.html.haml:80
 msgid "Last Granted"
-msgstr "許可済み"
+msgstr "前回の許可"
 
+#: ../app/assets/javascripts/module/tickets.js:210
 msgid "Grant"
 msgstr "許可"
 
+#: ../app/assets/javascripts/module/tickets.js:220
+#: ../app/assets/javascripts/module/tickets.js:257
 msgid "Revoke"
 msgstr "取り消し"
 
+#: ../app/assets/javascripts/module/users.js:27
 msgid "User ID"
 msgstr "ユーザID"
 
+#: ../app/assets/javascripts/module/wizards.js:12
 msgid "Must be a valid resource ID"
 msgstr "有効なリソースIDである必要があります"
 
+#: ../app/assets/javascripts/module/wizards.js:69
 msgid "Applying configuration changes..."
 msgstr "設定の変更を適用中..."
 
+#: ../app/assets/javascripts/module/wizards.js:74
 msgid "Changes applied successfully."
 msgstr "変更が正常に適用されました。"
 
+#: ../app/controllers/agents_controller.rb:46
+#: ../app/views/resources/show.html.haml:29
 msgid "Agent"
 msgstr "エージェント"
 
+#: ../app/controllers/application_controller.rb:159
 msgid "Created a new shadow CIB for %USER%."
 msgstr "%USER% の新規シャドウCIBを作成しました。"
 
+#: ../app/controllers/application_controller.rb:164
+#: ../app/controllers/application_controller.rb:167
 msgid "Unable to create shadow CIB"
 msgstr "シャドウCIBを生成できません"
 
+#: ../app/controllers/cib_controller.rb:44
 msgid "Failed to apply configuration"
-msgstr ""
+msgstr "設定の適用に失敗しました"
 
-#, fuzzy
+#: ../app/controllers/cib_controller.rb:49
 msgid "Applied configuration successfully"
-msgstr "成功"
+msgstr "設定が正常に適用されました"
 
+#: ../app/controllers/clones_controller.rb:20
+#: ../app/controllers/clones_controller.rb:31
+#: ../app/views/clones/new.html.haml:7
 msgid "Create Clone"
 msgstr "クローンの作成"
 
+#: ../app/controllers/clones_controller.rb:40
 msgid "Clone created successfully"
 msgstr "クローンが正常に作成されました"
 
+#: ../app/controllers/clones_controller.rb:58
+#: ../app/controllers/clones_controller.rb:67
+#: ../app/views/clones/edit.html.haml:7
 msgid "Edit Clone"
 msgstr "クローンの編集"
 
+#: ../app/controllers/clones_controller.rb:78
 msgid "Clone updated successfully"
 msgstr "クローンが正常に更新されました"
 
+#: ../app/controllers/clones_controller.rb:100
+#: ../app/controllers/clones_controller.rb:107
 msgid "Clone deleted successfully"
 msgstr "クローンが正常に削除されました"
 
+#: ../app/controllers/clones_controller.rb:112
+#: ../app/controllers/clones_controller.rb:116
+#: ../app/controllers/colocations_controller.rb:110
+#: ../app/controllers/colocations_controller.rb:114
+#: ../app/controllers/groups_controller.rb:112
+#: ../app/controllers/groups_controller.rb:116
+#: ../app/controllers/locations_controller.rb:129
+#: ../app/controllers/locations_controller.rb:133
+#: ../app/controllers/masters_controller.rb:112
+#: ../app/controllers/masters_controller.rb:116
+#: ../app/controllers/orders_controller.rb:111
+#: ../app/controllers/orders_controller.rb:115
+#: ../app/controllers/primitives_controller.rb:147
+#: ../app/controllers/primitives_controller.rb:151
+#: ../app/controllers/roles_controller.rb:108
+#: ../app/controllers/roles_controller.rb:112
+#: ../app/controllers/tags_controller.rb:111
+#: ../app/controllers/tags_controller.rb:115
+#: ../app/controllers/templates_controller.rb:126
+#: ../app/controllers/templates_controller.rb:130
+#: ../app/controllers/tickets_controller.rb:124
+#: ../app/controllers/tickets_controller.rb:128
+#: ../app/controllers/users_controller.rb:110
+#: ../app/controllers/users_controller.rb:114
 msgid "Error deleting %s: %s"
 msgstr "%s の削除エラー: %s"
 
+#: ../app/controllers/clones_controller.rb:134
+#: ../app/views/clones/index.html.haml:7
 msgid "Clones"
 msgstr "クローン"
 
+#: ../app/controllers/clones_controller.rb:147
 msgid "The clone does not exist"
 msgstr "クローンが存在しません"
 
+#: ../app/controllers/colocations_controller.rb:20
+#: ../app/controllers/colocations_controller.rb:30
+#: ../app/views/colocations/new.html.haml:7
 msgid "Create Colocation"
 msgstr "コロケーションの作成"
 
+#: ../app/controllers/colocations_controller.rb:39
+#: ../app/controllers/locations_controller.rb:57
+#: ../app/controllers/orders_controller.rb:39
+#: ../app/controllers/tickets_controller.rb:52
 msgid "Constraint created successfully"
 msgstr "制約が正常に作成されました"
 
+#: ../app/controllers/colocations_controller.rb:57
+#: ../app/controllers/colocations_controller.rb:66
+#: ../app/views/colocations/edit.html.haml:7
 msgid "Edit Colocation"
 msgstr "コロケーションの編集"
 
+#: ../app/controllers/colocations_controller.rb:77
+#: ../app/controllers/locations_controller.rb:95
+#: ../app/controllers/orders_controller.rb:77
+#: ../app/controllers/tickets_controller.rb:90
 msgid "Constraint updated successfully"
 msgstr "制約が正常に更新されました"
 
+#: ../app/controllers/colocations_controller.rb:99
+#: ../app/controllers/colocations_controller.rb:105
 msgid "Colocation deleted successfully"
 msgstr "コロケーションが正常に削除されました"
 
+#: ../app/controllers/colocations_controller.rb:132
+#: ../app/views/colocations/index.html.haml:7
 msgid "Colocations"
 msgstr "コロケーション"
 
+#: ../app/controllers/colocations_controller.rb:145
 msgid "The colocation constraint does not exist"
 msgstr "コロケーションの制約が存在しません"
 
+#: ../app/controllers/commands_controller.rb:22
+#: ../app/views/commands/index.html.haml:7
+#: ../app/views/shared/_mainnav.html.haml:70
 msgid "Command Log"
 msgstr "コマンドログ"
 
+#: ../app/controllers/constraints_controller.rb:43
+#: ../app/views/configs/edit.html.haml:58
+#: ../app/views/constraints/index.html.haml:7
+#: ../app/views/resources/show.html.haml:299
+#: ../app/views/tickets/show.html.haml:154
 msgid "Constraints"
 msgstr "制約"
 
+#: ../app/controllers/crm_config_controller.rb:26
 msgid "Configuration updated successfully"
 msgstr "設定が正常に更新されました"
 
+#: ../app/controllers/crm_config_controller.rb:46
+#: ../app/views/crm_config/edit.html.haml:5
+#: ../app/views/shared/_mainnav.html.haml:65
 msgid "Cluster Configuration"
 msgstr "クラスタ設定"
 
+#: ../app/controllers/dashboards_controller.rb:38
 msgid "Error removing %s: %s"
 msgstr "%s の削除エラー: %s"
 
+#: ../app/controllers/dashboards_controller.rb:46
+#: ../app/views/dashboards/show.html.haml:12
+#: ../app/views/shared/_mainnav.html.haml:24
 msgid "Dashboard"
 msgstr "ダッシュボード"
 
+#: ../app/controllers/graphs_controller.rb:49
 msgid "Cluster Graph"
 msgstr "クラスタグラフ"
 
+#: ../app/controllers/groups_controller.rb:20
+#: ../app/controllers/groups_controller.rb:31
+#: ../app/views/groups/new.html.haml:7
 msgid "Create Group"
 msgstr "グループの作成"
 
+#: ../app/controllers/groups_controller.rb:40
 msgid "Group created successfully"
 msgstr "グループが正常に作成されました"
 
+#: ../app/controllers/groups_controller.rb:58
+#: ../app/controllers/groups_controller.rb:67
+#: ../app/views/groups/edit.html.haml:7
 msgid "Edit Group"
 msgstr "グループの編集"
 
+#: ../app/controllers/groups_controller.rb:78
 msgid "Group updated successfully"
 msgstr "グループが正常に更新されました"
 
+#: ../app/controllers/groups_controller.rb:100
+#: ../app/controllers/groups_controller.rb:107
 msgid "Group deleted successfully"
 msgstr "グループが正常に削除されました"
 
+#: ../app/controllers/groups_controller.rb:134
+#: ../app/views/groups/index.html.haml:7
 msgid "Groups"
 msgstr "グループ"
 
+#: ../app/controllers/groups_controller.rb:147
 msgid "The group does not exist"
 msgstr "グループは存在しません"
 
+#: ../app/controllers/locations_controller.rb:20
+#: ../app/controllers/locations_controller.rb:39
 msgid "Create Location Constraint"
 msgstr "場所制約の作成"
 
+#: ../app/controllers/locations_controller.rb:75
+#: ../app/controllers/locations_controller.rb:84
 msgid "Edit Location Constraint"
 msgstr "場所制約の編集"
 
+#: ../app/controllers/locations_controller.rb:117
+#: ../app/controllers/locations_controller.rb:124
 msgid "Location deleted successfully"
 msgstr "場所が正常に削除されました"
 
+#: ../app/controllers/locations_controller.rb:151
 msgid "Location Constraints"
 msgstr "場所制約"
 
+#: ../app/controllers/locations_controller.rb:164
 msgid "The location constraint does not exist"
 msgstr "場所制約は存在しません"
 
+#: ../app/controllers/masters_controller.rb:20
+#: ../app/controllers/masters_controller.rb:31
 msgid "Create Multi-state resource"
 msgstr "複数状態リソースの作成"
 
+#: ../app/controllers/masters_controller.rb:40
 msgid "Multi-state resource created successfully"
 msgstr "複数状態リソースが正常に作成されました"
 
+#: ../app/controllers/masters_controller.rb:58
+#: ../app/controllers/masters_controller.rb:67
 msgid "Edit Multi-state resource"
 msgstr "複数状態リソースの編集"
 
+#: ../app/controllers/masters_controller.rb:78
 msgid "Multi-state resource updated successfully"
 msgstr "複数状態リソースが正常に更新されました"
 
+#: ../app/controllers/masters_controller.rb:100
+#: ../app/controllers/masters_controller.rb:107
 msgid "Multi-state resource deleted successfully"
 msgstr "複数状態リソースが正常に削除されました"
 
+#: ../app/controllers/masters_controller.rb:134
 msgid "Multi-state resource"
 msgstr "複数状態リソース"
 
+#: ../app/controllers/masters_controller.rb:147
 msgid "The multi-state resource does not exist"
 msgstr "複数状態リソースは存在しません"
 
-#, fuzzy
+#: ../app/controllers/nodes_controller.rb:44
 msgid "Node updated successfully"
-msgstr "役割が正常に更新されました"
+msgstr "ノードが正常に更新されました"
 
-#, fuzzy
+#: ../app/controllers/nodes_controller.rb:62
 msgid "Failed to set the node online: %{err}"
-msgstr "リソースの開始に失敗しました: %{err}"
+msgstr "ノードをオンラインに設定できませんでした: %{err}"
 
+#: ../app/controllers/nodes_controller.rb:62
 msgid "Set the node state to online"
 msgstr "ノード状態をオンラインに設定する"
 
-msgid "Failed to set the node standby: %{err}"
-msgstr ""
-
+#: ../app/controllers/nodes_controller.rb:66
 msgid "Set the node state to standby"
 msgstr "ノード状態をスタンバイに設定する"
 
-msgid "Failed to set the node state to maintenance: %{err}"
-msgstr ""
+#: ../app/controllers/nodes_controller.rb:66
+msgid "Failed to set the node standby: %{err}"
+msgstr "ノード状態をスタンバイに設定できませんでした: %{err}"
 
+#: ../app/controllers/nodes_controller.rb:70
+msgid "Failed to set the node state to maintenance: %{err}"
+msgstr "ノード状態を保守に設定できませんでした: %{err}"
+
+#: ../app/controllers/nodes_controller.rb:70
 msgid "Set the node state to maintenance"
 msgstr "ノード状態を保守に設定する"
 
+#: ../app/controllers/nodes_controller.rb:74
+msgid "Failed to set the node state to ready: %{err}"
+msgstr "ノード状態を準備完了に設定できませんでした: %{err}"
+
+#: ../app/controllers/nodes_controller.rb:74
 msgid "Set the node state to ready"
 msgstr "ノード状態を準備完了に設定する"
 
-msgid "Failed to set the node state to ready: %{err}"
-msgstr ""
-
-#, fuzzy
+#: ../app/controllers/nodes_controller.rb:78
 msgid "Successfully fenced the node"
-msgstr "チケットが正常に認可されました"
+msgstr "ノードは正常にフェンスされました"
 
-#, fuzzy
+#: ../app/controllers/nodes_controller.rb:78
 msgid "Failed to fence the node: %{err}"
-msgstr "リソースの降格に失敗しました: %{err}"
+msgstr "ノードのフェンスに失敗しました: %{err}"
 
-#, fuzzy
+#: ../app/controllers/nodes_controller.rb:82
 msgid "Failed to clear the node state: %{err}"
-msgstr "リソースをクリーンアップできませんでした: %{err}"
+msgstr "ノード状態をクリアできませんでした: %{err}"
 
+#: ../app/controllers/nodes_controller.rb:82
 msgid "Cleared the node state"
-msgstr ""
+msgstr "ノード状態がクリアされました"
 
+#: ../app/controllers/nodes_controller.rb:103
+#: ../app/views/cib/show.html.haml:80 ../app/views/configs/edit.html.haml:30
+#: ../app/views/nodes/index.html.haml:7
 msgid "Nodes"
 msgstr "ノード"
 
+#: ../app/controllers/nodes_controller.rb:116
 msgid "The node does not exist"
 msgstr "ノードが存在しません"
 
+#: ../app/controllers/orders_controller.rb:20
+#: ../app/controllers/orders_controller.rb:30
+#: ../app/views/orders/new.html.haml:7
 msgid "Create Order"
 msgstr "順序の作成"
 
+#: ../app/controllers/orders_controller.rb:57
+#: ../app/controllers/orders_controller.rb:66
+#: ../app/views/orders/edit.html.haml:7
 msgid "Edit Order"
 msgstr "順序の編集"
 
+#: ../app/controllers/orders_controller.rb:99
+#: ../app/controllers/orders_controller.rb:106
 msgid "Order deleted successfully"
 msgstr "順序が正常に削除されました"
 
+#: ../app/controllers/orders_controller.rb:133
+#: ../app/views/orders/index.html.haml:7
 msgid "Orders"
 msgstr "順序"
 
+#: ../app/controllers/orders_controller.rb:146
 msgid "The order constraint does not exist"
 msgstr "順序制約が存在しません"
 
+#: ../app/controllers/pages_controller.rb:11
 msgid "Welcome"
 msgstr "ようこそ"
 
+#: ../app/controllers/pages_controller.rb:21
+#: ../app/views/shared/_usernav.html.haml:28
 msgid "Help"
 msgstr "ヘルプ"
 
+#: ../app/controllers/primitives_controller.rb:20
+#: ../app/controllers/primitives_controller.rb:35
+#: ../app/controllers/primitives_controller.rb:84
 msgid "Create Primitive"
 msgstr "プリミティブの作成"
 
+#: ../app/controllers/primitives_controller.rb:52
 msgid "Primitive created successfully"
 msgstr "プリミティブは正常に作成されました"
 
+#: ../app/controllers/primitives_controller.rb:76
+#: ../app/controllers/primitives_controller.rb:102
 msgid "Edit Primitive"
 msgstr "プリミティブの編集"
 
+#: ../app/controllers/primitives_controller.rb:113
 msgid "Primitive updated successfully"
 msgstr "プリミティブが正常に更新されました"
 
+#: ../app/controllers/primitives_controller.rb:135
+#: ../app/controllers/primitives_controller.rb:142
 msgid "Primitive deleted successfully"
 msgstr "プリミティブが正常に削除されました"
 
+#: ../app/controllers/primitives_controller.rb:169
 msgid "Primitives"
 msgstr "プリミティブ"
 
+#: ../app/controllers/primitives_controller.rb:182
 msgid "The primitive does not exist"
 msgstr "プリミティブが存在しません"
 
+#: ../app/controllers/profiles_controller.rb:26
 msgid "Preferences updated successfully"
 msgstr "初期設定が正常に更新されました"
 
+#: ../app/controllers/profiles_controller.rb:40
+#: ../app/views/profiles/edit.html.haml:3
 msgid "Preferences"
 msgstr "設定"
 
+#: ../app/controllers/reports_controller.rb:51
 msgid "Please wait while report is generated..."
 msgstr "レポートの生成中です。しばらくお待ちください..."
 
+#: ../app/controllers/reports_controller.rb:55
 msgid "Failed to generate"
 msgstr "生成に失敗しました"
 
+#: ../app/controllers/reports_controller.rb:73
 msgid "Upload completed."
 msgstr "アップロードが完了しました。"
 
+#: ../app/controllers/reports_controller.rb:116
 msgid "Could not cancel report collection"
-msgstr ""
+msgstr "レポート収集をキャンセルできませんでした"
 
+#: ../app/controllers/reports_controller.rb:226
 msgid "Cannot display diff, too few transitions"
 msgstr "差分を表示できません。遷移数が少なすぎます"
 
+#: ../app/controllers/reports_controller.rb:246
+#: ../app/controllers/reports_controller.rb:252
 msgid "Report deleted successfully"
 msgstr "レポートが正常に削除されました"
 
+#: ../app/controllers/reports_controller.rb:257
+#: ../app/controllers/reports_controller.rb:261
 msgid "Error deleting %s"
 msgstr "%s の削除中にエラーが発生しました"
 
+#: ../app/controllers/reports_controller.rb:270
+#: ../app/views/reports/display.html.haml:7
+#: ../app/views/reports/index.html.haml:7
+#: ../app/views/reports/show.html.haml:7
 msgid "History Explorer"
 msgstr "履歴エクスプローラ"
 
+#: ../app/controllers/reports_controller.rb:276
 msgid "The report does not exist"
 msgstr "レポートが存在しません"
 
+#: ../app/controllers/reports_controller.rb:388
 msgid "must be a valid datetime"
 msgstr "有効な日時である必要があります"
 
+#: ../app/controllers/resources_controller.rb:90
 msgid "Successfully started the resource"
 msgstr "リソースは正常に開始されました"
 
+#: ../app/controllers/resources_controller.rb:91
 msgid "Failed to start the resource: %{err}"
 msgstr "リソースの開始に失敗しました: %{err}"
 
+#: ../app/controllers/resources_controller.rb:97
 msgid "Successfully stopped the resource"
 msgstr "リソースは正常に停止されました"
 
+#: ../app/controllers/resources_controller.rb:98
 msgid "Failed to stop the resource: %{err}"
 msgstr "リソースの停止に失敗しました: %{err}"
 
+#: ../app/controllers/resources_controller.rb:104
 msgid "Successfully promoted the resource"
 msgstr "リソースは正常に昇格されました"
 
+#: ../app/controllers/resources_controller.rb:105
 msgid "Failed to promote the resource: %{err}"
 msgstr "リソースの昇格に失敗しました: %{err}"
 
+#: ../app/controllers/resources_controller.rb:111
 msgid "Successfully demoted the resource"
 msgstr "リソースは正常に降格されました"
 
+#: ../app/controllers/resources_controller.rb:112
 msgid "Failed to demote the resource: %{err}"
 msgstr "リソースの降格に失敗しました: %{err}"
 
+#: ../app/controllers/resources_controller.rb:118
 msgid "Successfully set the resource in managed mode"
 msgstr "リソースは管理モードで正常に設定されました"
 
+#: ../app/controllers/resources_controller.rb:119
 msgid "Failed to set the resource in managed mode: %{err}"
 msgstr "リソースを管理モードで設定できませんでした: %{err}"
 
+#: ../app/controllers/resources_controller.rb:125
 msgid "Successfully set the resource in unmanaged mode"
 msgstr "リソースは非管理モードで正常に設定されました"
 
+#: ../app/controllers/resources_controller.rb:126
 msgid "Failed to set the resource in unmanaged mode: %{err}"
 msgstr "リソースを非管理モードで設定できませんでした: %{err}"
 
+#: ../app/controllers/resources_controller.rb:132
 msgid "Successfully unmigrated the resource"
 msgstr "リソースは正常に移行解除されました"
 
+#: ../app/controllers/resources_controller.rb:133
 msgid "Failed to unmigrate the resource: %{err}"
 msgstr "リソースを正常に移行解除できませんでした: %{err}"
 
+#: ../app/controllers/resources_controller.rb:139
 msgid "Successfully migrated the resource"
 msgstr "リソースは正常に移行されました"
 
+#: ../app/controllers/resources_controller.rb:140
 msgid "Failed to migrate the resource: %{err}"
 msgstr "リソースを移行できませんでした: %{err}"
 
+#: ../app/controllers/resources_controller.rb:146
 msgid "Successfully cleaned the resource"
 msgstr "リソースは正常に削除されました"
 
+#: ../app/controllers/resources_controller.rb:147
 msgid "Failed to clean up the resource: %{err}"
 msgstr "リソースをクリーンアップできませんでした: %{err}"
 
-#, fuzzy
+#: ../app/controllers/resources_controller.rb:165
 msgid "Successfully renamed %{A} to %{B}"
-msgstr "日"
+msgstr "%{A} を %{B} に正常に名前変更しました"
 
+#: ../app/controllers/resources_controller.rb:174
 msgid "Failed to rename %{A} to %{B}: %{E}"
-msgstr ""
+msgstr "%{A} を %{B} に名前変更できませんでした: %{E}"
 
+#: ../app/controllers/roles_controller.rb:22
+#: ../app/controllers/roles_controller.rb:31
+#: ../app/views/roles/new.html.haml:7
 msgid "Create Role"
 msgstr "役割の作成"
 
+#: ../app/controllers/roles_controller.rb:39
 msgid "Role created successfully"
 msgstr "役割が正常に作成されました"
 
+#: ../app/controllers/roles_controller.rb:63
+#: ../app/views/roles/edit.html.haml:7
 msgid "Edit Role"
 msgstr "役割の編集"
 
+#: ../app/controllers/roles_controller.rb:74
 msgid "Role updated successfully"
 msgstr "役割が正常に更新されました"
 
+#: ../app/controllers/roles_controller.rb:96
+#: ../app/controllers/roles_controller.rb:103
 msgid "Role deleted successfully"
 msgstr "役割が正常に削除されました"
 
+#: ../app/controllers/roles_controller.rb:131
 msgid "ACL is not supported by the cluster"
 msgstr "ACLはクラスタでサポートされていません"
 
+#: ../app/controllers/roles_controller.rb:136
+#: ../app/views/roles/index.html.haml:7
+#: ../app/views/shared/_mainnav.html.haml:86
 msgid "Roles"
 msgstr "役割"
 
+#: ../app/controllers/roles_controller.rb:149
 msgid "The role does not exist"
 msgstr "役割が存在しません"
 
-msgid ""
-"To enable ACLs, set \"enable-acl\" in the Cluster Configuration ('Manage > Confi"
-"guration')"
+#: ../app/controllers/roles_controller.rb:158
+#: ../app/controllers/users_controller.rb:160
+msgid "To enable ACLs, set \"enable-acl\" in the Cluster Configuration ('Manage > Configuration')"
 msgstr "ACLを有効にするには、［クラスタ設定］で、「enable-acl」を設定します （[管理] > [環境設定])"
 
+#: ../app/controllers/sessions_controller.rb:50 ../app/models/cib.rb:536
+#: ../lib/invoker.rb:88 ../lib/invoker.rb:141
 msgid "Permission denied for user %{user}"
 msgstr "ユーザ %{user} のアクセス承認拒否"
 
+#: ../app/controllers/sessions_controller.rb:52
 msgid "You have been logged out"
 msgstr "ログアウトしました"
 
+#: ../app/controllers/sessions_controller.rb:80
 msgid "Log In"
 msgstr "ログイン"
 
+#: ../app/controllers/simulator_controller.rb:163
+#: ../app/views/shared/_simulator.html.haml:77
 msgid "Simulator"
 msgstr "シミュレータ"
 
+#: ../app/controllers/tags_controller.rb:20
+#: ../app/controllers/tags_controller.rb:30 ../app/views/tags/new.html.haml:7
 msgid "Create Tag"
 msgstr "タグの作成"
 
+#: ../app/controllers/tags_controller.rb:39
 msgid "Tag created successfully"
 msgstr "タグが正常に作成されました"
 
+#: ../app/controllers/tags_controller.rb:57
+#: ../app/controllers/tags_controller.rb:66 ../app/views/tags/edit.html.haml:7
 msgid "Edit Tag"
 msgstr "タグの編集"
 
+#: ../app/controllers/tags_controller.rb:77
 msgid "Tag updated successfully"
 msgstr "タグが正常に更新されました"
 
+#: ../app/controllers/tags_controller.rb:99
+#: ../app/controllers/tags_controller.rb:106
 msgid "Tag deleted successfully"
 msgstr "タグが正常に削除されました"
 
+#: ../app/controllers/tags_controller.rb:133
+#: ../app/views/tags/index.html.haml:7
 msgid "Tags"
 msgstr "タグ"
 
+#: ../app/controllers/tags_controller.rb:146
 msgid "The tag does not exist"
 msgstr "タグが存在しません"
 
+#: ../app/controllers/templates_controller.rb:23
+#: ../app/controllers/templates_controller.rb:31
+#: ../app/controllers/templates_controller.rb:64
 msgid "Create Template"
 msgstr "テンプレートの作成"
 
+#: ../app/controllers/templates_controller.rb:40
 msgid "Template created successfully"
 msgstr "テンプレートが正常に作成されました"
 
+#: ../app/controllers/templates_controller.rb:58
+#: ../app/controllers/templates_controller.rb:81
 msgid "Edit Template"
 msgstr "テンプレートの編集"
 
+#: ../app/controllers/templates_controller.rb:92
 msgid "Template updated successfully"
 msgstr "テンプレートが正常に更新されました"
 
+#: ../app/controllers/templates_controller.rb:114
+#: ../app/controllers/templates_controller.rb:121
 msgid "Template deleted successfully"
 msgstr "テンプレートが正常に削除されました"
 
+#: ../app/controllers/templates_controller.rb:149
 msgid "You have no template feature support"
 msgstr "テンプレート機能のサポートがありません"
 
+#: ../app/controllers/templates_controller.rb:154
 msgid "Templates"
 msgstr "テンプレート"
 
+#: ../app/controllers/templates_controller.rb:167
 msgid "The template does not exist"
 msgstr "テンプレートが存在しません"
 
+#: ../app/controllers/tickets_controller.rb:33
+#: ../app/controllers/tickets_controller.rb:43
+#: ../app/views/tickets/new.html.haml:7
 msgid "Create Ticket"
 msgstr "チケットの作成"
 
+#: ../app/controllers/tickets_controller.rb:70
+#: ../app/controllers/tickets_controller.rb:79
+#: ../app/views/tickets/edit.html.haml:7
 msgid "Edit Ticket"
 msgstr "チケットの編集"
 
+#: ../app/controllers/tickets_controller.rb:112
+#: ../app/controllers/tickets_controller.rb:119
 msgid "Ticket deleted successfully"
 msgstr "チケットが正常に削除されました"
 
+#: ../app/controllers/tickets_controller.rb:151
+#: ../app/controllers/tickets_controller.rb:155
 msgid "Successfully granted the ticket"
 msgstr "チケットが正常に認可されました"
 
-#, fuzzy
+#: ../app/controllers/tickets_controller.rb:161
+#: ../app/controllers/tickets_controller.rb:165
 msgid "Error granting the ticket"
-msgstr "エラー"
+msgstr "チケットの認可でエラーが発生しました"
 
+#: ../app/controllers/tickets_controller.rb:175
+#: ../app/controllers/tickets_controller.rb:181
 msgid "Successfully revoked the ticket"
 msgstr "チケットが正常に取り消されました"
 
-#, fuzzy
+#: ../app/controllers/tickets_controller.rb:188
+#: ../app/controllers/tickets_controller.rb:192
 msgid "Error revoking the ticket"
-msgstr "エラー"
+msgstr "チケットの取り消しでエラーが発生しました"
 
+#: ../app/controllers/tickets_controller.rb:201
+#: ../app/controllers/tickets_controller.rb:208 ../app/models/ticket.rb:85
+#: ../app/models/ticket.rb:92
 msgid "Simulator active: Use the ticket controls in the simulator"
 msgstr "シミュレータを有効にする: シミュレータのチケットコントロールの使用"
 
+#: ../app/controllers/tickets_controller.rb:215
+#: ../app/views/cib/show.html.haml:104 ../app/views/tickets/index.html.haml:7
 msgid "Tickets"
 msgstr "チケット"
 
+#: ../app/controllers/tickets_controller.rb:228
 msgid "The ticket constraint does not exist"
 msgstr "チケット制約が存在しません"
 
+#: ../app/controllers/users_controller.rb:22
+#: ../app/controllers/users_controller.rb:31
+#: ../app/views/users/new.html.haml:7
 msgid "Create ACL Target"
 msgstr "ACLターゲットの作成"
 
+#: ../app/controllers/users_controller.rb:39
 msgid "ACL target created successfully"
 msgstr "ACLターゲットが正常に作成されました"
 
+#: ../app/controllers/users_controller.rb:57
+#: ../app/controllers/users_controller.rb:65
+#: ../app/views/users/edit.html.haml:7
 msgid "Edit ACL Target"
 msgstr "ACLターゲットの編集"
 
+#: ../app/controllers/users_controller.rb:76
 msgid "ACL target updated successfully"
 msgstr "ACLターゲットが正常に更新されました"
 
+#: ../app/controllers/users_controller.rb:98
+#: ../app/controllers/users_controller.rb:105
 msgid "ACL target deleted successfully"
 msgstr "ACLターゲットが正常に削除されました"
 
+#: ../app/controllers/users_controller.rb:133
 msgid "ACL is not supported by this cluster."
 msgstr "ACLはこのクラスタでサポートされていません。"
 
+#: ../app/controllers/users_controller.rb:138
 msgid "ACL Targets"
 msgstr "ACLターゲット"
 
+#: ../app/controllers/users_controller.rb:151
 msgid "The ACL target does not exist"
 msgstr "ACLターゲットが存在しません"
 
+#: ../app/controllers/wizards_controller.rb:47
 msgid "Session has expired"
 msgstr "セッションの有効期限が切れました"
 
+#: ../app/controllers/wizards_controller.rb:54
 msgid "Wizard cannot be applied when the simulator is active"
 msgstr "シミュレータがアクティブなときにウィザードを適用できません"
 
+#: ../app/controllers/wizards_controller.rb:109
 msgid "Use a wizard"
 msgstr "ウィザードの使用"
 
+#: ../app/controllers/wizards_controller.rb:127
+#: ../app/controllers/wizards_controller.rb:132
 msgid "Permission denied - you do not have write access to the CIB."
 msgstr "許可が拒否されました - CIBに対する書き込みアクセスがありません。"
 
+#: ../app/controllers/wizards_controller.rb:149
+#: ../app/controllers/wizards_controller.rb:154
 msgid "Cluster seems to be offline"
 msgstr "クラスタはオフラインである可能性があります"
 
+#: ../app/helpers/agents_helper.rb:59
 msgid "Required"
 msgstr "必要"
 
+#: ../app/helpers/agents_helper.rb:60
 msgid "Unique"
 msgstr "固有"
 
+#: ../app/helpers/application_helper.rb:37
 msgid "Profile"
 msgstr "プロファイル"
 
-msgid "Epoch"
-msgstr ""
-
-#, fuzzy
+#: ../app/helpers/application_helper.rb:223
 msgid "Current Configuration Version"
-msgstr "環境設定"
+msgstr "現在の設定バージョン"
 
+#: ../app/helpers/application_helper.rb:223
+msgid "Epoch"
+msgstr "エポック"
+
+#: ../app/helpers/application_helper.rb:224
 msgid "Host"
-msgstr ""
+msgstr "ホスト(H)"
 
-msgid "Designated Coordinator"
-msgstr ""
-
-#, fuzzy
+#: ../app/helpers/application_helper.rb:225
 msgid "DC"
-msgstr "DC:"
+msgstr "DC"
 
-#, fuzzy
-msgid "CIB Schema Version"
-msgstr "バージョン"
+#: ../app/helpers/application_helper.rb:225
+msgid "Designated Coordinator"
+msgstr "指定コーディネータ"
 
+#: ../app/helpers/application_helper.rb:226
 msgid "Schema"
-msgstr ""
+msgstr "スキーマ"
 
+#: ../app/helpers/application_helper.rb:226
+msgid "CIB Schema Version"
+msgstr "CIBスキーマのバージョン"
+
+#: ../app/helpers/application_helper.rb:227
 msgid "Last Written"
-msgstr ""
+msgstr "前回の書き込み"
 
+#: ../app/helpers/application_helper.rb:228
 msgid "Update Origin"
-msgstr ""
+msgstr "更新元"
 
+#: ../app/helpers/application_helper.rb:229
 msgid "Update User"
-msgstr ""
+msgstr "更新ユーザ"
 
+#: ../app/helpers/application_helper.rb:230
 msgid "Have Quorum"
-msgstr ""
+msgstr "クォーラムの保持"
 
+#: ../app/helpers/application_helper.rb:231
+#: ../app/views/reports/display.html.haml:164
 msgid "Version"
 msgstr "バージョン"
 
-#, fuzzy
+#: ../app/helpers/application_helper.rb:231
 msgid "Pacemaker Version"
-msgstr "バージョン"
+msgstr "ペースメーカのバージョン"
 
-#, fuzzy
+#: ../app/helpers/application_helper.rb:232
 msgid "Stack"
-msgstr "開始"
+msgstr "スタック"
 
+#: ../app/helpers/application_helper.rb:232
 msgid "Cluster Communication Stack"
-msgstr ""
+msgstr "クラスタ通信のスタック"
 
+#: ../app/helpers/colocation_helper.rb:8 ../app/helpers/ticket_helper.rb:20
 msgid "Master"
 msgstr "マスタ"
 
+#: ../app/helpers/colocation_helper.rb:9 ../app/helpers/ticket_helper.rb:21
 msgid "Slave"
 msgstr "スレーブ"
 
+#: ../app/helpers/crm_config_helper.rb:7 ../app/helpers/form_helper.rb:11
+#: ../app/helpers/profile_helper.rb:18 ../app/helpers/role_helper.rb:14
+#: ../app/helpers/user_helper.rb:14
 msgid "Revert"
 msgstr "元に戻す"
 
+#: ../app/helpers/rule_helper.rb:8
 msgid "Read"
 msgstr "読み込み"
 
+#: ../app/helpers/rule_helper.rb:9
 msgid "Write"
 msgstr "書き込み"
 
+#: ../app/helpers/rule_helper.rb:10
 msgid "Deny"
 msgstr "拒否する"
 
+#: ../app/helpers/simulator_helper.rb:19 ../lib/cibtools.rb:105
 msgid "success"
 msgstr "成功"
 
+#: ../app/helpers/simulator_helper.rb:20 ../lib/cibtools.rb:107
 msgid "generic error"
 msgstr "一般的なエラー"
 
+#: ../app/helpers/simulator_helper.rb:21 ../lib/cibtools.rb:109
 msgid "incorrect arguments"
 msgstr "不正な引数"
 
+#: ../app/helpers/simulator_helper.rb:22 ../lib/cibtools.rb:111
 msgid "unimplemented action"
 msgstr "未実装のアクション"
 
+#: ../app/helpers/simulator_helper.rb:23 ../lib/cibtools.rb:113
 msgid "insufficient permissions"
 msgstr "パーミッションが不足しています"
 
+#: ../app/helpers/simulator_helper.rb:24 ../lib/cibtools.rb:115
 msgid "installation error"
 msgstr "インストールエラー"
 
+#: ../app/helpers/simulator_helper.rb:25 ../lib/cibtools.rb:117
 msgid "configuration error"
 msgstr "環境設定エラー"
 
+#: ../app/helpers/simulator_helper.rb:26 ../lib/cibtools.rb:119
 msgid "not running"
 msgstr "実行していません"
 
+#: ../app/helpers/simulator_helper.rb:27 ../lib/cibtools.rb:121
 msgid "running (master)"
 msgstr "実行しています(マスタ)"
 
+#: ../app/helpers/simulator_helper.rb:28 ../lib/cibtools.rb:123
 msgid "failed (master)"
 msgstr "失敗しました(マスタ)"
 
+#: ../app/helpers/ticket_helper.rb:11
 msgid "Freeze"
 msgstr "凍結"
 
+#: ../app/models/cib.rb:505
 msgid "CIB file \"%{path}\" not found"
 msgstr "CIBファイル「%{path}」が見つかりません"
 
+#: ../app/models/cib.rb:509
 msgid "Unable to parse CIB file \"%{path}\""
 msgstr "CIBファイル「%{path}」を解析できません"
 
+#: ../app/models/cib.rb:515
 msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
 msgstr "Pacemakerがインストールされていないと思われます(%{cmd} が見つかりません)"
 
+#: ../app/models/cib.rb:521
 msgid "Unable to execute %{cmd}"
 msgstr "%{cmd} を実行できません"
 
+#: ../app/models/cib.rb:530
 msgid "Error invoking %{cmd}"
 msgstr "%{cmd} の呼び出し中にエラーが発生しました"
 
+#: ../app/models/cib.rb:540
 msgid "Error invoking %{cmd}: %{msg}"
 msgstr "%{cmd} の呼び出し中にエラーが発生しました: %{msg}"
 
+#: ../app/models/cib.rb:550 ../app/models/cib.rb:551 ../app/models/cib.rb:930
+#: ../app/models/cib.rb:1052 ../app/models/cib.rb:1053
 msgid "Unknown"
 msgstr "不明"
 
+#: ../app/models/cib.rb:629
 msgid "Node \"%{node}\" is UNCLEAN and needs to be fenced."
 msgstr "ノード「%{node}」は非クリーンであり、フェンシングする必要があります。"
 
-msgid ""
-"%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}"
-": call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_r"
-"eason}"
-msgstr ""
-"%{fail_start}: 操作 %{op} がリソース %{resource} (ノード %{node} 上)で失敗しました: call-id=%{ca"
-"ll_id}、rc-code=%{rc_mapping} (%{rc_code})、exit-reason=%{exit_reason}"
+#: ../app/models/cib.rb:841
+msgid "%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_reason}"
+msgstr "%{fail_start}: 操作 %{op} がリソース %{resource} (ノード %{node} 上)で失敗しました: call-id=%{call_id}、rc-code=%{rc_mapping} (%{rc_code})、exit-reason=%{exit_reason}"
 
+#: ../app/models/cib.rb:1033
 msgid "STONITH is disabled. For normal cluster operation, STONITH is required."
 msgstr "STONITHが無効です。通常のクラスタ操作については、STONITH が必要です。"
 
+#: ../app/models/clone.rb:10
 msgid "Clone ID is required"
 msgstr "クローンIDが必要です"
 
+#: ../app/models/clone.rb:11
 msgid "Invalid Clone ID"
 msgstr "無効なクローンID"
 
+#: ../app/models/clone.rb:14
 msgid "No Clone child specified"
 msgstr "クローンの子が指定されていません"
 
+#: ../app/models/clone.rb:67 ../app/models/group.rb:58
+#: ../app/models/master.rb:62 ../app/models/template.rb:230
 msgid "Is the cluster allowed to start and stop the resource?"
 msgstr "クラスタはリソースの開始および停止を許可されていますか?"
 
-msgid ""
-"If not all resources can be active, the cluster will stop lower priority resou"
-"rces in order to keep higher priority ones active."
+#: ../app/models/clone.rb:72 ../app/models/crm_config.rb:31
+#: ../app/models/group.rb:63 ../app/models/master.rb:67
+#: ../app/models/template.rb:248
+msgid "If not all resources can be active, the cluster will stop lower priority resources in order to keep higher priority ones active."
 msgstr "すべてのリソースをアクティブにできない場合、クラスタは優先度の高いリソースをアクティブなままにするために、優先度の低いリソースを停止します。"
 
+#: ../app/models/clone.rb:78 ../app/models/crm_config.rb:53
+#: ../app/models/group.rb:73 ../app/models/master.rb:77
+#: ../app/models/template.rb:270
 msgid "What state should the cluster attempt to keep this resource in?"
 msgstr "クラスタはこのリソースをどの状態で維持する必要がありますか?"
 
-msgid ""
-"How many copies of the resource to start. Defaults to the number of nodes in t"
-"he cluster."
+#: ../app/models/clone.rb:83 ../app/models/master.rb:82
+msgid "How many copies of the resource to start. Defaults to the number of nodes in the cluster."
 msgstr "開始するリソースのコピー数。デフォルトはクラスタ内のノード数です。"
 
-msgid ""
-"How many copies of the resource can be started on a single node. Defaults to 1"
-"."
+#: ../app/models/clone.rb:88 ../app/models/master.rb:87
+msgid "How many copies of the resource can be started on a single node. Defaults to 1."
 msgstr "単一ノード上で開始可能なリソースのコピー数。デフォルトは1です。"
 
-msgid ""
-"When stopping or starting a copy of the clone, tell all the other copies befor"
-"ehand and when the action was successful."
+#: ../app/models/clone.rb:93 ../app/models/master.rb:92
+msgid "When stopping or starting a copy of the clone, tell all the other copies beforehand and when the action was successful."
 msgstr "クローンのコピーの停止または開始時に、事前に他のすべてのコピー数とアクションが成功した日時を伝えます。"
 
+#: ../app/models/clone.rb:98 ../app/models/master.rb:97
 msgid "Does each copy of the clone perform a different function?"
 msgstr "クローンの各コピーは異なる機能を実行しますか?"
 
+#: ../app/models/clone.rb:103 ../app/models/master.rb:102
 msgid "Should the copies be started in series (instead of in parallel)?"
 msgstr "コピーは(同時並行ではなく)順番に開始する必要がありますか?"
 
-msgid ""
-"Changes the behavior of ordering constraints (between clones/masters) so that "
-"instances can start/stop as soon as their peer instance has (rather than waiti"
-"ng for every instance of the other clone has)."
-msgstr ""
-"(他のクローンが持つすべてのインスタンスを待機するのではなく)ピアインスタンスが持つとすぐにインスタンスが開始/停止できるように、(クローン/マスタ間の)順"
-"序制約の動作を変更します。"
+#: ../app/models/clone.rb:108 ../app/models/master.rb:107
+msgid "Changes the behavior of ordering constraints (between clones/masters) so that instances can start/stop as soon as their peer instance has (rather than waiting for every instance of the other clone has)."
+msgstr "(他のクローンが持つすべてのインスタンスを待機するのではなく)ピアインスタンスが持つとすぐにインスタンスが開始/停止できるように、(クローン/マスタ間の)順序制約の動作を変更します。"
 
+#: ../app/models/clone.rb:119 ../app/views/clones/_form.html.haml:12
+#: ../app/views/clones/_form.html.haml:17
+#: ../app/views/masters/_form.html.haml:12
+#: ../app/views/masters/_form.html.haml:17
 msgid "Child Resource"
 msgstr "子リソース"
 
+#: ../app/models/clone.rb:120
 msgid "Child resource to use as clone."
-msgstr ""
+msgstr "クローンとして使用する子リソース。"
 
+#: ../app/models/clone.rb:131 ../app/models/group.rb:84
+#: ../app/models/master.rb:128 ../app/models/node.rb:114
+#: ../app/models/primitive.rb:75 ../app/models/record.rb:285
+#: ../app/models/tag.rb:82 ../app/models/template.rb:438
 msgid "The ID \"%{id}\" does not exist"
 msgstr "タグID「%{id}」が存在しません"
 
+#: ../app/models/colocation.rb:10 ../app/models/order.rb:10
 msgid "Score is required"
 msgstr "スコアが必要です"
 
+#: ../app/models/colocation.rb:24 ../app/models/order.rb:25
 msgid "Invalid score value"
 msgstr "無効なスコア値"
 
+#: ../app/models/colocation.rb:30
 msgid "Invalid node attribute"
-msgstr ""
+msgstr "無効なノード属性"
 
+#: ../app/models/colocation.rb:35 ../app/models/order.rb:30
 msgid "Constraint must consist of at least two separate resources"
 msgstr "制約は2つ以上の別のリソースから構成される必要があります"
 
-#, fuzzy
+#: ../app/models/colocation.rb:181
 msgid "The score determines the location relationship between the resources."
-msgstr "木"
+msgstr "このスコアによって、リソース間の位置関係が指定されます。"
 
-#, fuzzy
+#: ../app/models/colocation.rb:186 ../app/views/colocations/_form.html.haml:79
 msgid "Node Attribute"
-msgstr "属性"
+msgstr "ノード属性"
 
-msgid ""
-"Colocate resources by the given node attribute instead of by node name (the de"
-"fault)."
-msgstr ""
+#: ../app/models/colocation.rb:187
+msgid "Colocate resources by the given node attribute instead of by node name (the default)."
+msgstr "ノード名(デフォルト)ではなく指定のノード属性を使用してリソースを同一場所に配置します。"
 
+#: ../app/models/constraint.rb:37
 msgid "Not a constraint"
 msgstr "制約なし"
 
-#, fuzzy
+#: ../app/models/constraint.rb:49
 msgid "Unique identifier for the constraint. May not contain spaces."
-msgstr "固有"
+msgstr "制約の固有識別子。スペースを含めることはできません。"
 
+#: ../app/models/crm_config.rb:9 ../app/models/template.rb:225
 msgid "Set to true if the resource agent supports the migrate action"
 msgstr "リソースエージェントが移行アクションをサポートする場合はtrueに設定する"
 
-msgid ""
-"How many failures may occur for this resource on a node, before this node is m"
-"arked ineligible to host this resource. A value of INFINITY indicates that thi"
-"s feature is disabled."
-msgstr ""
-"このノードがこのリソースのホストには不適格とマーク付けされる前に、ノード上でこのリソースに対して発生する可能性のある障害数。INFINITYの値は、この機能"
-"が無効であることを示します。"
+#: ../app/models/crm_config.rb:26 ../app/models/template.rb:243
+msgid "How many failures may occur for this resource on a node, before this node is marked ineligible to host this resource. A value of INFINITY indicates that this feature is disabled."
+msgstr "このノードがこのリソースのホストには不適格とマーク付けされる前に、ノード上でこのリソースに対して発生する可能性のある障害数。INFINITYの値は、この機能が無効であることを示します。"
 
-msgid ""
-"What should the cluster do if it ever finds the resource active on more than o"
-"ne node?"
+#: ../app/models/crm_config.rb:37 ../app/models/template.rb:254
+msgid "What should the cluster do if it ever finds the resource active on more than one node?"
 msgstr "複数のノード上でリソースがアクティブであることを検出した場合にクラスタが実行する操作。"
 
-msgid ""
-"How many seconds to wait before acting as if the failure had not occurred, and"
-" potentially allowing the resource back to the node on which it failed. A valu"
-"e of 0 indicates that this feature is disabled."
+#: ../app/models/crm_config.rb:42 ../app/models/template.rb:259
+msgid "How many seconds to wait before acting as if the failure had not occurred, and potentially allowing the resource back to the node on which it failed. A value of 0 indicates that this feature is disabled."
 msgstr "障害が発生しなかったように動作し、障害が発生したノードにリソースを戻すことが可能になるまで待機する秒数。値0はこの機能が無効であることを示します。"
 
+#: ../app/models/crm_config.rb:47 ../app/models/template.rb:264
 msgid "How much does the resource prefer to stay where it is?"
 msgstr "リソースが同じ場所で維持される必要がある期間。"
 
+#: ../app/models/crm_config.rb:68 ../app/models/crm_config.rb:105
+#: ../app/models/template.rb:285
 msgid "Conditions under which the resource can be started."
 msgstr "リソースを開始可能な条件。"
 
-msgid ""
-"The name of the remote-node this resource defines. This both enables the resou"
-"rce as a remote-node and defines the unique name used to identify the remote-n"
-"ode. If no other parameters are set, this value will also be assumed as the ho"
-"stname to connect to at the port specified by remote-port. WARNING: This value"
-" cannot overlap with any resource or node IDs. If not specified, this feature "
-"is disabled."
-msgstr ""
-"このリソースが定義するリモートノードの名前。この両方により、リソースはリモートノードとして有効になり、リモートノードの識別に使用される固有の名前が定義されま"
-"す。他のパラメータが設定されない場合、この値はリモートポートで指定されるポートで接続するホスト名としても使用されます。警告: この値はリソースまたはノードI"
-"Dと重複できません。指定されない場合、この機能は無効になります。"
+#: ../app/models/crm_config.rb:73 ../app/models/template.rb:290
+msgid "The name of the remote-node this resource defines. This both enables the resource as a remote-node and defines the unique name used to identify the remote-node. If no other parameters are set, this value will also be assumed as the hostname to connect to at the port specified by remote-port. WARNING: This value cannot overlap with any resource or node IDs. If not specified, this feature is disabled."
+msgstr "このリソースが定義するリモートノードの名前。この両方により、リソースはリモートノードとして有効になり、リモートノードの識別に使用される固有の名前が定義されます。他のパラメータが設定されない場合、この値はリモートポートで指定されるポートで接続するホスト名としても使用されます。警告: この値はリソースまたはノードIDと重複できません。指定されない場合、この機能は無効になります。"
 
+#: ../app/models/crm_config.rb:78 ../app/models/template.rb:295
 msgid "Port to use for the guest connection to pacemaker_remote."
 msgstr "pacemaker_remoteへのゲスト接続に使用するポート。"
 
-msgid ""
-"The IP address or hostname to connect to if remote-node's name is not the host"
-"name of the guest."
+#: ../app/models/crm_config.rb:83 ../app/models/template.rb:300
+msgid "The IP address or hostname to connect to if remote-node's name is not the hostname of the guest."
 msgstr "リモートノードの名前がゲストのホスト名でない場合に接続するIPアドレスまたはホスト名。"
 
+#: ../app/models/crm_config.rb:88 ../app/models/template.rb:305
 msgid "How long before a pending guest connection will time out."
 msgstr "保留中のゲスト接続がタイムアウトするまでの時間。"
 
+#: ../app/models/group.rb:10
 msgid "No Group children specified"
 msgstr "グループの子が指定されていません"
 
+#: ../app/models/location.rb:10
 msgid "No resource specified"
 msgstr "リソースが指定されていません"
 
+#: ../app/models/location.rb:13
 msgid "No rules specified"
 msgstr "ルールが指定されていません"
 
+#: ../app/models/location.rb:18
 msgid "Invalid resource discovery type"
-msgstr ""
+msgstr "無効なリソースディスカバリタイプ"
 
+#: ../app/models/location.rb:23
 msgid "Constraint is too complex - it contains nested rules"
 msgstr "制約が複雑すぎます。ネストしたルールが含まれています"
 
+#: ../app/models/location.rb:33
 msgid "Invalid score \"%{score}\""
 msgstr "無効なスコア「%{score}」"
 
+#: ../app/models/location.rb:43
 msgid "No expressions specified"
 msgstr "式が指定されていません"
 
+#: ../app/models/location.rb:48
 msgid "Attribute contains both single and double quotes"
 msgstr "属性に一重引用符と二重引用符の両方が含まれています"
 
+#: ../app/models/location.rb:49
 msgid "Value contains both single and double quotes"
 msgstr "値に一重引用符と二重引用符の両方が含まれています"
 
-#, fuzzy
+#: ../app/models/location.rb:224
 msgid "Resources to apply the constraint to."
-msgstr "リソース"
+msgstr "制約の適用先のリソース。"
 
-#, fuzzy
-msgid ""
-"Positive values indicate the resources should run on this node. Negative value"
-"s indicate the resources should not run on this node. Values of +/- INFINITY c"
-"hange \"should\"/\"should not\" to \"must\"/\"must not\"."
-msgstr "値"
+#: ../app/models/location.rb:230
+msgid "Positive values indicate the resources should run on this node. Negative values indicate the resources should not run on this node. Values of +/- INFINITY change \"should\"/\"should not\" to \"must\"/\"must not\"."
+msgstr "正の値は、リソースをこのノードで実行する必要があることを示します。負の値は、リソースをこのノードで実行できないことを示します。値 +/-INFINITYによって、「実行する必要がある」/「実行できない」が、「実行しなければならない」/「実行してはならない」 に変わります。"
 
+#: ../app/models/location.rb:235 ../app/views/locations/_form.html.haml:81
+#: ../app/views/reports/display.html.haml:155
+#: ../app/views/resources/events.html.haml:35
+#: ../app/views/resources/show.html.haml:266
+#: ../app/views/shared/_simulator.html.haml:351
+#: ../app/views/shared/_simulator.html.haml:463
 msgid "Node"
 msgstr "ノード"
 
-#, fuzzy
+#: ../app/models/location.rb:236
 msgid "Name of a node in the cluster."
-msgstr "名前"
+msgstr "クラスタ内でのノードの名前です。"
 
-#, fuzzy
+#: ../app/models/location.rb:243 ../app/views/locations/_form.html.haml:102
 msgid "Resource Discovery"
-msgstr "リソース"
+msgstr "リソースディスカバリ"
 
-#, fuzzy
-msgid ""
-"Controls resource discovery for the specified resource on nodes covered by the"
-" constraint. always: Always perform resource discovery (default). never: Never"
-" perform resource discovery for the specified resource on this node. This opti"
-"on should generally be used with a -INFINITY score. exclusive: Only perform re"
-"source discovery for the specified resource on this node."
-msgstr "木"
+#: ../app/models/location.rb:244
+msgid "Controls resource discovery for the specified resource on nodes covered by the constraint. always: Always perform resource discovery (default). never: Never perform resource discovery for the specified resource on this node. This option should generally be used with a -INFINITY score. exclusive: Only perform resource discovery for the specified resource on this node."
+msgstr "制約が適用されたノード上の指定されたリソースに対し、リソースディスカバリを制御します。always: 常にリソースディスカバリを実行します(デフォルト)。never: ノード上の指定されたリソースに対しリソースディスカバリを決して実行しません。このオプションは通常、-INFINITYスコアを指定して使用する必要があります。exclusive: このノード上の指定されたリソースに対してのみリソースディスカバリを実行します。"
 
+#: ../app/models/location.rb:249
 msgid "Limits the rule to apply only when the resource is in the specified role."
-msgstr ""
+msgstr "指定された役割にリソースが含まれる場合にのみルールが適用されるよう制限します。"
 
-#, fuzzy
+#: ../app/models/location.rb:254
 msgid "Operator"
-msgstr "操作"
+msgstr "オペレータ"
 
-msgid ""
-"How to combine the result of multiple expression objects. Allowed values are a"
-"nd and or."
-msgstr ""
+#: ../app/models/location.rb:255
+msgid "How to combine the result of multiple expression objects. Allowed values are and and or."
+msgstr "複数のexpressionオブジェクトの結果を組み合わせる方法。指定できる値はandとorです。"
 
+#: ../app/models/location.rb:260
 msgid "Expression"
-msgstr ""
+msgstr "表現"
 
-#, fuzzy
-msgid ""
-"Each rule can contain a number of expressions. The results of the expressions "
-"are combined based on the rule's boolean operator."
-msgstr "木"
+#: ../app/models/location.rb:261
+msgid "Each rule can contain a number of expressions. The results of the expressions are combined based on the rule's boolean operator."
+msgstr "各ルールに複数の式を含めることができます。式の結果はルールのブール演算子に基づいて組み合わされます。"
 
+#: ../app/models/master.rb:9
 msgid "No Multi-state child specified"
 msgstr "複数状態の子が指定されていません"
 
+#: ../app/models/master.rb:112
 msgid "How many copies of the resource can be promoted to master status."
 msgstr "マスタステータスにプロモート可能なリソースのコピー数。"
 
-msgid ""
-"How many copies of the resource can be promoted to master status on a single n"
-"ode."
+#: ../app/models/master.rb:117
+msgid "How many copies of the resource can be promoted to master status on a single node."
 msgstr "単一ノード上でマスタステータスにプロモート可能なリソースのコピー数。"
 
+#: ../app/models/node.rb:25
 msgid "Node ID is required"
 msgstr "ノードIDが必要です"
 
+#: ../app/models/node.rb:26
 msgid "Invalid Node ID"
 msgstr "無効なノードID"
 
+#: ../app/models/node.rb:29
 msgid "Name is required"
 msgstr "名前が必要です"
 
+#: ../app/models/node.rb:30
 msgid "Invalid name"
 msgstr "無効な名前"
 
-#, fuzzy
+#: ../app/models/node.rb:72
 msgid "Node ID"
-msgstr "ノード"
+msgstr "ノードID"
 
-#, fuzzy
+#: ../app/models/node.rb:73
 msgid "Unique identifier for the node."
-msgstr "固有"
+msgstr "ノードの固有識別子。"
 
-#, fuzzy
+#: ../app/models/node.rb:78
 msgid "Node Name"
-msgstr "名前"
+msgstr "ノード名"
 
-#, fuzzy
+#: ../app/models/node.rb:79
 msgid "Name used to refer to the node in the cluster."
-msgstr "名前"
+msgstr "クラスタ内でノードの参照に使用する名前です。"
 
-#, fuzzy
-msgid ""
-"Puts the node into standby mode. The specified node is no longer able to host "
-"resources. Any resources currently active on the node will be moved to another"
-" node."
-msgstr "その他"
+#: ../app/models/node.rb:91
+msgid "Puts the node into standby mode. The specified node is no longer able to host resources. Any resources currently active on the node will be moved to another node."
+msgstr "ノードをスタンバイモードにします。指定されたノードではリソースをホストできなくなります。このノードで現在アクティブになっているリソースはすべて、別のノードに移動されます。"
 
+#: ../app/models/profile.rb:31
 msgid "is required"
 msgstr "必要です"
 
-#, fuzzy
+#: ../app/models/record.rb:10
 msgid "ID is required"
-msgstr "必要です"
+msgstr "IDが必要です"
 
+#: ../app/models/record.rb:28
 msgid "Object not found: %s=%s"
 msgstr "オブジェクトが見つかりません: %s=%s"
 
+#: ../app/models/record.rb:268
 msgid "The ID \"%{id}\" is already in use"
 msgstr "ID「%{id}」はすでに使用されています"
 
+#: ../app/models/record.rb:279
 msgid "Unable to create: %{msg}"
 msgstr "作成できません: %{msg}"
 
+#: ../app/models/record.rb:295
 msgid "Error updating %{id} (rc=%{rc})"
 msgstr "%{id} の更新エラー(rc=%{rc})"
 
+#: ../app/models/report.rb:103 ../app/models/report.rb:132
+#: ../app/models/report.rb:179
 msgid "No details available"
 msgstr "詳細情報がありません"
 
+#: ../app/models/report.rb:104 ../app/models/report.rb:133
 msgid "Error:"
 msgstr "エラー:"
 
+#: ../app/models/report.rb:287
 msgid "must have correct MIME type (was %s)"
 msgstr "適切なMIMEタイプが必要です(%sでした)"
 
+#: ../app/models/report.rb:291
 msgid "must have correct file extension"
 msgstr "適切なファイル拡張子が必要です"
 
+#: ../app/models/resource.rb:113
 msgid "Not a resource"
 msgstr "リソースではない"
 
-#, fuzzy
+#: ../app/models/resource.rb:125
 msgid "Unique identifier for the resource. May not contain spaces."
-msgstr "固有"
+msgstr "リソースの固有識別子。スペースを含めることはできません。"
 
+#: ../app/models/role.rb:8
 msgid "At least one rule is required"
 msgstr "少なくとも1つのルールが必要です"
 
+#: ../app/models/session.rb:10
 msgid "Invalid username"
 msgstr "無効なユーザ名"
 
+#: ../app/models/session.rb:16
 msgid "%s is not installed"
 msgstr "%s はインストールされていません。"
 
+#: ../app/models/session.rb:21
 msgid "%s is not executable"
 msgstr "%s は実行できません"
 
+#: ../app/models/session.rb:26
 msgid "Username not specified"
 msgstr "ユーザ名が指定されていません。"
 
+#: ../app/models/session.rb:31
 msgid "Password not specified"
 msgstr "パスワードが指定されていません"
 
+#: ../app/models/session.rb:42
 msgid "Invalid username or password"
 msgstr "ユーザ名またはパスワードが無効です"
 
+#: ../app/models/tag.rb:9
 msgid "No Tag resources specified"
 msgstr "タグリソースが指定されていません"
 
+#: ../app/models/template.rb:313
 msgid "How frequently (in seconds) to perform the operation."
 msgstr "操作を実行する頻度(秒単位)。"
 
+#: ../app/models/template.rb:319
 msgid "How long to wait before declaring the action has failed."
 msgstr "アクションが失敗したことを宣言するまで待機する時間。"
 
+#: ../app/models/template.rb:329
 msgid "What conditions need to be satisfied before this action occurs."
 msgstr "このアクションが発生するまでに満たす必要のある条件。"
 
+#: ../app/models/template.rb:334
 msgid "If false, the operation is treated as if it does not exist."
 msgstr "falseの場合、操作は存在しないように処理されます。"
 
-msgid ""
-"This option only makes sense for recurring operations. It restricts the operat"
-"ion to a specific role. The truely paranoid can even specify role=Stopped whic"
-"h allows the cluster to detect an admin that manually started cluster services"
-"."
-msgstr ""
-"このオプションは繰り返し操作の場合にのみ意味をなします。これにより操作は特定の役割に制限されます。これは真にパラノイドであるため、管理者がクラスタサービスを"
-"手動で開始したことをクラスタが検出できるようにするrole=Stoppedを指定することもできます。"
+#: ../app/models/template.rb:345
+msgid "This option only makes sense for recurring operations. It restricts the operation to a specific role. The truely paranoid can even specify role=Stopped which allows the cluster to detect an admin that manually started cluster services."
+msgstr "このオプションは繰り返し操作の場合にのみ意味をなします。これにより操作は特定の役割に制限されます。これは真にパラノイドであるため、管理者がクラスタサービスを手動で開始したことをクラスタが検出できるようにするrole=Stoppedを指定することもできます。"
 
+#: ../app/models/template.rb:358
 msgid "The action to take if this action ever fails."
 msgstr "このアクションが失敗した場合に取るアクション。"
 
-msgid ""
-"If true, the intention to perform the operation is recorded so that GUIs and C"
-"LI tools can indicate that an operation is in progress."
+#: ../app/models/template.rb:371
+msgid "If true, the intention to perform the operation is recorded so that GUIs and CLI tools can indicate that an operation is in progress."
 msgstr "trueの場合、GUIおよびCLIツールが操作が進行中であることを示すことができるように、実行する意図が記録されます。"
 
-#, fuzzy
+#: ../app/models/template.rb:388
 msgid "Resource template to inherit from."
-msgstr "リソース"
+msgstr "継承元のリソースのテンプレート。"
 
+#: ../app/models/template.rb:393 ../app/views/primitives/_form.html.haml:21
+#: ../app/views/primitives/_form.html.haml:39
 msgid "Class"
 msgstr "クラス"
 
+#: ../app/models/template.rb:394
 msgid "Standard which the resource agent conforms to."
-msgstr ""
+msgstr "リソースエージェントが準拠する標準。"
 
+#: ../app/models/template.rb:399 ../app/views/primitives/_form.html.haml:23
+#: ../app/views/primitives/_form.html.haml:45
 msgid "Provider"
 msgstr "プロバイダ"
 
+#: ../app/models/template.rb:400
 msgid "Vendor or project which provided the resource agent."
-msgstr ""
+msgstr "リソースエージェントを提供したベンダまたはプロジェクト。"
 
-#, fuzzy
+#: ../app/models/template.rb:406
 msgid "Resource agent name."
-msgstr "リソース"
+msgstr "リソースエージェント名。"
 
+#: ../app/models/template.rb:412 ../app/models/template.rb:418
 msgid "After the specified timeout period, the operation will be treated as failed."
-msgstr ""
+msgstr "指定したタイムアウト期間が過ぎると、操作は失敗として扱われます。"
 
-#, fuzzy
+#: ../app/models/template.rb:423
 msgid "Monitor"
-msgstr "月"
+msgstr "モニタ"
 
-msgid ""
-"Define a monitor operation to instruct the cluster to ensure that the resource"
-" is still healthy."
-msgstr ""
+#: ../app/models/template.rb:424
+msgid "Define a monitor operation to instruct the cluster to ensure that the resource is still healthy."
+msgstr "リソースが引き続き正常であることの確認をクラスタに指示するようモニタ操作を定義します。"
 
+#: ../app/models/ticket.rb:18
 msgid "Constraint ID is required"
 msgstr "制約IDが必要です"
 
+#: ../app/models/ticket.rb:19
 msgid "Invalid Constraint ID"
 msgstr "無効な制約ID"
 
+#: ../app/models/ticket.rb:22
 msgid "Ticket ID is required"
 msgstr "チケットIDが必要です"
 
+#: ../app/models/ticket.rb:23
 msgid "Invalid Ticket ID"
 msgstr "無効なチケットID"
 
+#: ../app/models/ticket.rb:27
 msgid "Constraint must consist of at least one separate resources"
 msgstr "制約は少なくとも1つの個別のリソースから構成される必要があります"
 
+#: ../app/models/user.rb:10
 msgid "ACL target ID is required"
 msgstr "ACLターゲットIDが必要です"
 
+#: ../app/models/user.rb:11
 msgid "Invalid ACL target ID"
 msgstr "無効なACLターゲットID"
 
+#: ../app/models/user.rb:13
 msgid "At least one role is required"
 msgstr "少なくとも1つの役割が必要です"
 
+#: ../app/models/wizard.rb:150
 msgid "Requested wizard does not exist"
 msgstr "要求されたウィザードが存在しません"
 
+#: ../app/views/agents/show.html.haml:32
+#: ../app/views/primitives/_form.html.haml:102
+#: ../app/views/resources/show.html.haml:76
 msgid "Parameters"
 msgstr "引数"
 
+#: ../app/views/agents/show.html.haml:52
 msgid "Shortdesc"
 msgstr "ショートデスクリプション"
 
+#: ../app/views/agents/show.html.haml:54
 msgid "Longdesc"
 msgstr "ロングデスクリプション"
 
+#: ../app/views/agents/show.html.haml:56
 msgid "Options"
 msgstr "オプション"
 
+#: ../app/views/agents/show.html.haml:83
 msgid "Actions"
 msgstr "アクション"
 
+#: ../app/views/agents/show.html.haml:103
+#: ../app/views/resources/show.html.haml:189
 msgid "Timeout"
 msgstr "タイムアウト"
 
+#: ../app/views/agents/show.html.haml:105
+#: ../app/views/resources/show.html.haml:191
 msgid "Interval"
 msgstr "間隔"
 
+#: ../app/views/agents/show.html.haml:107
 msgid "Depth"
 msgstr "深さ"
 
-#, fuzzy
+#: ../app/views/cib/apply.html.haml:9
 msgid "Apply Configuration"
-msgstr "環境設定"
+msgstr "設定の適用"
 
+#: ../app/views/cib/apply.html.haml:31
+#: ../app/views/shared/_simulator.html.haml:160
 msgid "Calculating list of changes..."
-msgstr ""
+msgstr "変更のリストを計算しています..."
 
+#: ../app/views/cib/show.html.haml:32
 msgid "Errors"
 msgstr "エラー"
 
+#: ../app/views/clones/_form.html.haml:24
+#: ../app/views/groups/_form.html.haml:68
+#: ../app/views/masters/_form.html.haml:24
+#: ../app/views/primitives/_form.html.haml:121
+#: ../app/views/resources/show.html.haml:107
 msgid "Meta Attributes"
 msgstr "メタ属性"
 
+#: ../app/views/clones/_form.html.haml:41
+#: ../app/views/clones/_form.html.haml:48
+#: ../app/views/colocations/_form.html.haml:88
+#: ../app/views/colocations/_form.html.haml:95
+#: ../app/views/groups/_form.html.haml:85
+#: ../app/views/groups/_form.html.haml:92
+#: ../app/views/locations/_form.html.haml:119
+#: ../app/views/locations/_form.html.haml:126
+#: ../app/views/masters/_form.html.haml:41
+#: ../app/views/masters/_form.html.haml:48
+#: ../app/views/nodes/_form.html.haml:53
+#: ../app/views/orders/_form.html.haml:74
+#: ../app/views/orders/_form.html.haml:81
+#: ../app/views/primitives/_form.html.haml:82
+#: ../app/views/primitives/_form.html.haml:89
+#: ../app/views/roles/_form.html.haml:60 ../app/views/tags/_form.html.haml:51
+#: ../app/views/tags/_form.html.haml:58
+#: ../app/views/tickets/_form.html.haml:42
+#: ../app/views/tickets/_form.html.haml:49
+#: ../app/views/users/_form.html.haml:29
+#: ../app/views/wizards/create.html.haml:28
+#: ../app/views/wizards/show.html.haml:131
+#: ../app/views/wizards/update.html.haml:108
 msgid "Back"
 msgstr "戻る"
 
+#: ../app/views/clones/edit.html.haml:17
+#: ../app/views/colocations/edit.html.haml:15
+#: ../app/views/groups/edit.html.haml:17
+#: ../app/views/locations/edit.html.haml:15
+#: ../app/views/masters/edit.html.haml:17
+#: ../app/views/orders/edit.html.haml:15
+#: ../app/views/primitives/edit.html.haml:17
+#: ../app/views/reports/display.html.haml:36
+#: ../app/views/roles/edit.html.haml:13 ../app/views/tags/edit.html.haml:15
+#: ../app/views/tickets/edit.html.haml:15 ../app/views/users/edit.html.haml:13
 msgid "Are you sure you wish to delete %s?"
 msgstr "%s を削除してもよろしいですか?"
 
+#: ../app/views/colocations/_form.html.haml:35
+#: ../app/views/locations/_form.html.haml:65
 msgid "Always"
-msgstr ""
+msgstr "常に"
 
-#, fuzzy
+#: ../app/views/colocations/_form.html.haml:37
+#: ../app/views/locations/_form.html.haml:67
 msgid "Never"
-msgstr "元に戻す"
+msgstr "起動しない"
 
+#: ../app/views/colocations/_form.html.haml:69
+#: ../app/views/locations/_form.html.haml:35
+#: ../app/views/wizards/show.html.haml:74
+#: ../app/views/wizards/show.html.haml:105
 msgid "Advanced"
 msgstr "拡張"
 
+#: ../app/views/commands/index.html.haml:24
 msgid "Lists crm commands recently executed by hawk, most recent first."
 msgstr "Hawkによって最近実行されたCRMコマンドを一覧にします(最新のものを最初に表示)。"
 
-#, fuzzy
+#: ../app/views/configs/edit.html.haml:7
+#: ../app/views/shared/_mainnav.html.haml:60
 msgid "Edit Configuration"
-msgstr "環境設定"
+msgstr "設定の編集"
 
+#: ../app/views/configs/edit.html.haml:15
+#: ../app/views/configs/show.html.haml:19
+#: ../app/views/graphs/show.html.haml:15
 msgid "XML"
-msgstr ""
+msgstr "XML"
 
+#: ../app/views/configs/edit.html.haml:17
+#: ../app/views/configs/show.html.haml:21 ../app/views/graphs/show.html.haml:5
+#: ../app/views/graphs/show.html.haml:32
+#: ../app/views/reports/display.html.haml:212
+#: ../app/views/reports/graph.html.haml:7
 msgid "Graph"
 msgstr "図表"
 
-#, fuzzy
+#: ../app/views/configs/meta.html.haml:19
+#: ../app/views/shared/_footer.html.haml:17
 msgid "Cluster Details"
-msgstr "詳細情報"
+msgstr "クラスタの詳細"
 
-#, fuzzy
+#: ../app/views/configs/meta.html.haml:29
+#: ../app/views/shared/_simulator.html.haml:5
 msgid "Batch Mode Active"
-msgstr "月"
+msgstr "バッチモードがアクティブです"
 
-#, fuzzy
+#: ../app/views/configs/show.html.haml:7
 msgid "Show Configuration"
-msgstr "環境設定"
+msgstr "設定の表示"
 
+#: ../app/views/constraints/show.html.haml:10
 msgid "Constraint:"
 msgstr "制約:"
 
-#, fuzzy
+#: ../app/views/constraints/types.html.haml:7
 msgid "Add a constraint"
 msgstr "制約の追加"
 
+#: ../app/views/constraints/types.html.haml:13
+#: ../app/views/resources/types.html.haml:13
 msgid "List"
 msgstr "リスト"
 
+#: ../app/views/crm_config/edit.html.haml:24
 msgid "Resource Defaults"
 msgstr "リソースのデフォルト"
 
+#: ../app/views/crm_config/edit.html.haml:41
 msgid "Operation Defaults"
 msgstr "操作のデフォルト"
 
+#: ../app/views/dashboards/add.html.haml:21
+#: ../app/views/dashboards/show.html.haml:18
 msgid "Add Cluster"
 msgstr "クラスタの追加"
 
-msgid "West Coast (example)"
-msgstr "West Coast(例)"
-
+#: ../app/views/dashboards/add.html.haml:32
 msgid "Cluster name"
 msgstr "クラスタ名"
 
+#: ../app/views/dashboards/add.html.haml:32
+msgid "West Coast (example)"
+msgstr "West Coast(例)"
+
+#: ../app/views/dashboards/add.html.haml:34
 msgid "Hostname of node in cluster"
 msgstr "クラスタ内のノードのホスト名"
 
+#: ../app/views/dashboards/add.html.haml:34
 msgid "node1.west.example.com"
 msgstr "node1.west.example.com"
 
+#: ../app/views/dashboards/add.html.haml:36
 msgid "Server port to connect to"
 msgstr "接続するサーバポート"
 
+#: ../app/views/groups/_form.html.haml:24
+#: ../app/views/resources/show.html.haml:43
 msgid "Children"
 msgstr "子"
 
+#: ../app/views/groups/_form.html.haml:34
 msgid "No children available"
 msgstr "利用可能な子がありません"
 
+#: ../app/views/layouts/authentication.html.haml:55
 msgid "Please ensure Javascript is enabled"
 msgstr "JavaScriptが有効になっていることを確認してください"
 
+#: ../app/views/layouts/authentication.html.haml:62
 msgid "SUSE, LLC"
 msgstr "SUSE、LLC"
 
+#: ../app/views/layouts/authentication.html.haml:68
 msgid "High Availability Web Konsole"
 msgstr "高可用性Web Konsole"
 
+#: ../app/views/locations/_form.html.haml:27
 msgid "Simple"
-msgstr ""
+msgstr "シンプル"
 
+#: ../app/views/locations/_form.html.haml:69
 msgid "Advisory"
-msgstr ""
+msgstr "推奨"
 
+#: ../app/views/locations/edit.html.haml:7
 msgid "Edit Location"
 msgstr "場所の編集"
 
+#: ../app/views/locations/index.html.haml:7
 msgid "Locations"
 msgstr "場所"
 
+#: ../app/views/locations/new.html.haml:7
 msgid "Create Location"
 msgstr "場所の作成"
 
+#: ../app/views/logs/index.html.haml:5
+#: ../app/views/shared/_mainnav.html.haml:31
 msgid "History"
 msgstr "履歴"
 
+#: ../app/views/masters/edit.html.haml:7
 msgid "Edit Multi-state"
 msgstr "複数状態の編集"
 
+#: ../app/views/masters/index.html.haml:7
 msgid "Multi-state Resources"
 msgstr "複数状態リソース"
 
+#: ../app/views/masters/new.html.haml:7
 msgid "Create Multi-state"
 msgstr "複数状態の作成"
 
+#: ../app/views/nodes/_form.html.haml:18 ../app/views/nodes/show.html.haml:104
 msgid "Attributes"
 msgstr "属性"
 
+#: ../app/views/nodes/_form.html.haml:34 ../app/views/nodes/show.html.haml:61
+#: ../app/views/primitives/_form.html.haml:140
+#: ../app/views/resources/show.html.haml:139
 msgid "Utilization"
 msgstr "利用率"
 
-#, fuzzy
+#: ../app/views/nodes/edit.html.haml:7
 msgid "Edit Node"
-msgstr "役割の編集"
+msgstr "ノードの編集"
 
+#: ../app/views/nodes/events.html.haml:33
+#: ../app/views/resources/events.html.haml:33
 msgid "RC"
-msgstr ""
+msgstr "RC"
 
+#: ../app/views/nodes/events.html.haml:37
+#: ../app/views/resources/events.html.haml:37
+#: ../app/views/resources/show.html.haml:270
+#: ../app/views/shared/_simulator.html.haml:433
 msgid "Operation"
 msgstr "操作"
 
+#: ../app/views/nodes/events.html.haml:39
+#: ../app/views/resources/events.html.haml:39
 msgid "Last Change"
-msgstr ""
+msgstr "前回変更日"
 
+#: ../app/views/nodes/events.html.haml:41
+#: ../app/views/resources/events.html.haml:41
+#: ../app/views/shared/_simulator.html.haml:368
+#: ../app/views/tickets/show.html.haml:93
 msgid "State"
 msgstr "状態"
 
+#: ../app/views/nodes/events.html.haml:43
+#: ../app/views/resources/events.html.haml:43
+#: ../app/views/resources/show.html.haml:268
 msgid "Call"
 msgstr "コール"
 
+#: ../app/views/nodes/events.html.haml:45
+#: ../app/views/resources/events.html.haml:45
 msgid "Exec"
-msgstr ""
+msgstr "Exec"
 
-#, fuzzy
+#: ../app/views/nodes/events.html.haml:47
+#: ../app/views/resources/events.html.haml:47
 msgid "Complete"
-msgstr "テンプレート"
+msgstr "完了"
 
+#: ../app/views/nodes/show.html.haml:30
 msgid "Remote node."
 msgstr "リモートノード。"
 
+#: ../app/views/nodes/show.html.haml:95
 msgid "No utilization defined"
 msgstr "利用率が定義されていません"
 
+#: ../app/views/nodes/show.html.haml:129
 msgid "No attributes defined"
 msgstr "属性が定義されていません"
 
+#: ../app/views/orders/_form.html.haml:35
 msgid "Mandatory"
-msgstr ""
+msgstr "必須"
 
-#, fuzzy
+#: ../app/views/orders/_form.html.haml:37
 msgid "Optional"
 msgstr "オプション"
 
+#: ../app/views/orders/_form.html.haml:39
 msgid "Serialize"
-msgstr ""
+msgstr "シリアライズ"
 
+#: ../app/views/orders/_form.html.haml:50
 msgid "Symmetrical"
 msgstr "対称的"
 
+#: ../app/views/pages/help.html.haml:35
 msgid "HTML"
 msgstr "HTML"
 
+#: ../app/views/pages/help.html.haml:39
 msgid "PDF"
 msgstr "PDF"
 
+#: ../app/views/primitives/_help.html.haml:35
+#: ../app/views/shared/_helpentry.html.haml:15
 msgid "Default"
 msgstr "デフォルト"
 
+#: ../app/views/primitives/edit.html.haml:13
 msgid "Copy"
-msgstr ""
+msgstr "コピー"
 
+#: ../app/views/reports/display.html.haml:13
+#: ../app/views/reports/index.html.haml:156
+#: ../app/views/reports/show.html.haml:13
 msgid "Reports"
 msgstr "レポート"
 
+#: ../app/views/reports/display.html.haml:55
+#: ../app/views/reports/display.html.haml:64
+#: ../app/views/reports/display.html.haml:73
+#: ../app/views/reports/index.html.haml:39
+#: ../app/views/resources/rename.html.haml:36
+#: ../app/views/resources/show.html.haml:321
 msgid "To"
 msgstr "宛先"
 
+#: ../app/views/reports/display.html.haml:78
 msgid "Created"
 msgstr "作成日時"
 
+#: ../app/views/reports/display.html.haml:82
+#: ../app/views/reports/display.html.haml:99
 msgid "Transitions"
 msgstr "遷移"
 
+#: ../app/views/reports/display.html.haml:105
 msgid "No transitions in report"
 msgstr "レポート内に遷移がありません"
 
+#: ../app/views/reports/display.html.haml:151
 msgid "PE Name"
 msgstr "PE名"
 
+#: ../app/views/reports/display.html.haml:159
 msgid "Time"
 msgstr "再生時間"
 
+#: ../app/views/reports/display.html.haml:188
+#: ../app/views/shared/_mainnav.html.haml:38
 msgid "Configuration"
 msgstr "環境設定"
 
+#: ../app/views/reports/display.html.haml:196
 msgid "Diff"
 msgstr "Diff"
 
+#: ../app/views/reports/display.html.haml:204
 msgid "Logs"
 msgstr "ログ"
 
+#: ../app/views/reports/display.html.haml:279
 msgid "Node Events"
 msgstr "ノードイベント"
 
+#: ../app/views/reports/display.html.haml:296
 msgid "Resource Events"
 msgstr "リソースイベント"
 
+#: ../app/views/reports/index.html.haml:20
 msgid "Data collection in progress..."
 msgstr "データ収集が進行中です..."
 
+#: ../app/views/reports/index.html.haml:79
+#: ../app/views/reports/index.html.haml:124
 msgid "Generate"
 msgstr "生成"
 
+#: ../app/views/reports/index.html.haml:87
 msgid "Upload"
 msgstr "アップロード"
 
+#: ../app/views/reports/show.html.haml:30
 msgid "Loading report..."
-msgstr ""
+msgstr "レポートをロード中..."
 
-#, fuzzy
+#: ../app/views/resources/rename.html.haml:9
 msgid "Rename Resource"
-msgstr "リソース"
+msgstr "リソースの名前変更"
 
-#, fuzzy
+#: ../app/views/resources/show.html.haml:57
 msgid "Child"
 msgstr "子"
 
+#: ../app/views/resources/show.html.haml:218
 msgid "Instances"
 msgstr "インスタンス"
 
+#: ../app/views/resources/show.html.haml:250
 msgid "Failed Operations"
 msgstr "操作に失敗しました"
 
+#: ../app/views/resources/show.html.haml:274
 msgid "Reason"
 msgstr "理由"
 
+#: ../app/views/resources/types.html.haml:7
+#: ../app/views/shared/_mainnav.html.haml:45
 msgid "Add Resource"
 msgstr "リソースの追加"
 
+#: ../app/views/roles/_form.html.haml:27
 msgid "Add a rule below"
 msgstr "下にルールを追加"
 
+#: ../app/views/roles/_form.html.haml:29
 msgid "Remove this rule"
 msgstr "このルールを削除"
 
+#: ../app/views/roles/_form.html.haml:31
 msgid "Move rule up"
 msgstr "ルールを上に移動"
 
+#: ../app/views/roles/_form.html.haml:33
 msgid "Move rule down"
 msgstr "ルールを下に移動"
 
+#: ../app/views/roles/_form.html.haml:38
 msgid "Right"
 msgstr "右"
 
+#: ../app/views/roles/_form.html.haml:40
 msgid "XPath"
 msgstr "XPath"
 
+#: ../app/views/roles/_form.html.haml:42
 msgid "Object Type"
 msgstr "オブジェクトタイプ"
 
+#: ../app/views/roles/_form.html.haml:44
 msgid "Reference"
 msgstr "参照"
 
+#: ../app/views/roles/_form.html.haml:47
 msgid "Attribute"
 msgstr "属性"
 
-#, fuzzy
+#: ../app/views/roles/index.html.haml:9 ../app/views/users/index.html.haml:9
 msgid "Access Control Lists"
-msgstr "リスト"
+msgstr "アクセス制御リスト"
 
+#: ../app/views/sessions/new.html.haml:7
 msgid "Login"
 msgstr "ログイン"
 
+#: ../app/views/shared/_mainnav.html.haml:50
 msgid "Add Constraint"
 msgstr "制約の追加"
 
+#: ../app/views/shared/_mainnav.html.haml:55
+#: ../app/views/wizards/index.html.haml:7
 msgid "Wizards"
-msgstr "ウィザードの選択"
+msgstr "ウィザード"
 
+#: ../app/views/shared/_mainnav.html.haml:79
 msgid "Access Control"
-msgstr ""
+msgstr "アクセス制御"
 
-#, fuzzy
+#: ../app/views/shared/_mainnav.html.haml:92
+#: ../app/views/users/index.html.haml:7
 msgid "Targets"
-msgstr "ターゲットID"
+msgstr "ターゲット"
 
-msgid ""
-"Any pending changes to the configuration will be lost - do you wish to proceed"
-"?"
-msgstr ""
+#: ../app/views/shared/_simulator.html.haml:15
+msgid "Any pending changes to the configuration will be lost - do you wish to proceed?"
+msgstr "設定に対する保留中の変更は失われます。続行しますか?"
 
+#: ../app/views/shared/_simulator.html.haml:17
 msgid "Discard"
-msgstr ""
+msgstr "破棄"
 
-#, fuzzy
+#: ../app/views/shared/_simulator.html.haml:52
 msgid "Batch Mode"
-msgstr "月"
+msgstr "バッチモード"
 
+#: ../app/views/shared/_simulator.html.haml:82
+#: ../app/views/shared/_simulator.html.haml:184
 msgid "Summary"
 msgstr "概要"
 
+#: ../app/views/shared/_simulator.html.haml:84
+#: ../app/views/shared/_simulator.html.haml:215
 msgid "CIB (in)"
 msgstr "CIB(入力)"
 
+#: ../app/views/shared/_simulator.html.haml:86
+#: ../app/views/shared/_simulator.html.haml:246
 msgid "CIB (out)"
 msgstr "CIB(出力)"
 
+#: ../app/views/shared/_simulator.html.haml:88
+#: ../app/views/shared/_simulator.html.haml:277
 msgid "Transition Graph"
 msgstr "遷移グラフ"
 
-#, fuzzy
+#: ../app/views/shared/_simulator.html.haml:90
 msgid "Transition"
 msgstr "遷移"
 
-#, fuzzy
+#: ../app/views/shared/_simulator.html.haml:101
 msgid "Inject"
-msgstr "接続"
+msgstr "挿入"
 
-#, fuzzy
+#: ../app/views/shared/_simulator.html.haml:107
 msgid "Node Event"
 msgstr "ノードイベント"
 
-#, fuzzy
+#: ../app/views/shared/_simulator.html.haml:110
 msgid "Resource Event"
 msgstr "リソースイベント"
 
-#, fuzzy
+#: ../app/views/shared/_simulator.html.haml:113
 msgid "Ticket Event"
-msgstr "チケット"
+msgstr "チケットイベント"
 
+#: ../app/views/shared/_simulator.html.haml:308
 msgid "Transition (XML)"
 msgstr "遷移(XML)"
 
+#: ../app/views/shared/_simulator.html.haml:341
 msgid "Inject Node Event"
 msgstr "ノードの挿入イベント"
 
-#, fuzzy
+#: ../app/views/shared/_simulator.html.haml:406
 msgid "Inject Resource Event"
-msgstr "ノードの挿入イベント"
+msgstr "リソースの挿入イベント"
 
+#: ../app/views/shared/_simulator.html.haml:450
 msgid "Interval (ms)"
 msgstr "間隔(ms)"
 
+#: ../app/views/shared/_simulator.html.haml:480
 msgid "Result"
 msgstr "結果"
 
+#: ../app/views/shared/_simulator.html.haml:518
 msgid "Inject Ticket Event"
 msgstr "チケットの挿入イベント"
 
+#: ../app/views/shared/_simulator.html.haml:545
 msgid "Action"
 msgstr "アクション(A)"
 
-#, fuzzy
+#: ../app/views/shared/_usernav.html.haml:6
 msgid "Batch Configuration Changes"
-msgstr "環境設定"
+msgstr "バッチ設定の変更"
 
-#, fuzzy
+#: ../app/views/shared/_usernav.html.haml:6
+#: ../app/views/shared/_usernav.html.haml:14
 msgid "Batch"
-msgstr "3月"
+msgstr "バッチ"
 
+#: ../app/views/shared/_usernav.html.haml:34
 msgid "Logout"
 msgstr "ログアウト"
 
+#: ../app/views/shared/_usernav.html.haml:40
 msgid "Menu"
 msgstr "メニュー"
 
+#: ../app/views/tags/_form.html.haml:34
 msgid "No objects available"
 msgstr "使用可能なオブジェクトがありません"
 
+#: ../app/views/tickets/_form.html.haml:16
 msgid "Ticket ID"
 msgstr "チケットID"
 
+#: ../app/views/tickets/_form.html.haml:18
+#: ../app/views/tickets/show.html.haml:63
 msgid "Loss Policy"
 msgstr "損失ポリシー"
 
+#: ../app/views/tickets/show.html.haml:9
 msgid "Ticket:"
 msgstr "チケット:"
 
+#: ../app/views/tickets/show.html.haml:26
 msgid "Properties"
 msgstr "プロパティ"
 
+#: ../app/views/tickets/show.html.haml:69
 msgid "None"
 msgstr "なし"
 
+#: ../app/views/tickets/show.html.haml:106
 msgid "Leader"
-msgstr ""
+msgstr "リーダ"
 
+#: ../app/views/tickets/show.html.haml:119
 msgid "Expires"
-msgstr ""
+msgstr "有効期限"
 
+#: ../app/views/tickets/show.html.haml:132
 msgid "Commit"
-msgstr ""
+msgstr "コミット"
 
+#: ../app/views/tickets/show.html.haml:189
 msgid "Sites"
-msgstr ""
+msgstr "サイト"
 
+#: ../app/views/tickets/show.html.haml:224
 msgid "Arbitrators"
-msgstr ""
+msgstr "アービトレータ"
 
+#: ../app/views/users/_form.html.haml:10 ../app/views/users/_form.html.haml:13
 msgid "Target ID"
 msgstr "ターゲットID"
 
+#: ../app/views/wizards/create.html.haml:21
 msgid "Verifying parameters..."
 msgstr "パラメータを検証しています..."
 
+#: ../app/views/wizards/create.html.haml:26
+#: ../app/views/wizards/show.html.haml:129
+#: ../app/views/wizards/update.html.haml:106
 msgid "Do you really want to cancel the wizard setup?"
 msgstr "ウィザードセットアップをキャンセルしてよろしいですか?"
 
+#: ../app/views/wizards/create.html.haml:30
 msgid "Do you really want to apply the current wizard?"
 msgstr "現在のウィザードを適用してよろしいですか?"
 
+#: ../app/views/wizards/index.html.haml:28
 msgid "Legacy Wizards"
 msgstr "レガシーウィザード"
 
+#: ../app/views/wizards/show.html.haml:56
 msgid "Enable this step"
 msgstr "このステップを有効にする"
 
+#: ../app/views/wizards/show.html.haml:123
 msgid "This wizard takes no parameters."
 msgstr "このウィザードはパラメータを取りません。"
 
+#: ../app/views/wizards/show.html.haml:133
 msgid "Next"
 msgstr "次へ"
 
+#: ../app/views/wizards/show.html.haml:135
 msgid "Verify"
 msgstr "検証"
 
+#: ../app/views/wizards/update.html.haml:50
 msgid "Verify and apply"
 msgstr "確認および適用"
 
-msgid ""
-"To apply the changes, Hawk requires root access, and password-less SSH access "
-"must be configured. See the Hawk documentation for more information."
-msgstr ""
-"変更を適用する場合、Hawkにはルートアクセスが必要です。また、パスワードなしSSHアクセスを設定する必要があります。詳細については、Hawkのドキュメント"
-"を参照してください。"
+#: ../app/views/wizards/update.html.haml:87
+msgid "To apply the changes, Hawk requires root access, and password-less SSH access must be configured. See the Hawk documentation for more information."
+msgstr "変更を適用する場合、Hawkにはルートアクセスが必要です。また、パスワードなしSSHアクセスを設定する必要があります。詳細については、Hawkのドキュメントを参照してください。"
 
+#: ../app/views/wizards/update.html.haml:94
 msgid "Root password"
 msgstr "ルートパスワード"
 
+#: ../lib/cibtools.rb:125
 msgid "other"
 msgstr "その他"
 
+#: ../lib/invoker.rb:86
 msgid "The object/attribute does not exist (cibadmin %{cmd})"
 msgstr "オブジェクト/属性が存在しません(cibadmin %{cmd})"
 
+#: ../lib/invoker.rb:90
 msgid "Error invoking cibadmin %{cmd}: %{msg}"
 msgstr "cibadmin %{cmd} の呼び出しエラー: %{msg}"
