@@ -43,6 +43,10 @@ group :test do
     gem "rubocop"
     gem "rake"
     gem "brakeman"
+
+    gem "rspec-rails", "~> 3.4.2"
+    gem "capybara", "~> 2.7.1"
+    gem "guard-rspec", "~> 4.7.2"
   end
 end
 
