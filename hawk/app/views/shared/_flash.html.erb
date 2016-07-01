@@ -1,0 +1,15 @@
+<div class="row" id="flashes">
+  <% flash.each do |name, message| %>
+    <div class="<%= flash_class_for(name) %> alert alert-dismissible" role="alert">
+      <button class="close" data-dismiss="alert" type="button">}
+        <span aria-hidden="true">}
+          &times;
+        </span>
+        <span class="sr-only">
+          <%= _("Close") %>
+        </span>
+      </button>
+      <%= simple_format message %>
+    </div>
+  <% end %>
+</div>
