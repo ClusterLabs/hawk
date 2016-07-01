@@ -14,7 +14,11 @@
       <div class="panel-heading"></div>
       <div class="panel-body">
         <div class="pull-right">
+<<<<<<< 7849df0902ad5942025fa7538006f3d67f258b08
           <div class="btn-group" role="group">
+=======
+          <div class="btn-group" role="<%= :group %>">
+>>>>>>> UI: Rewrite view/dashboard/*.haml and view/reports/*.haml with erb
             <a class="show btn btn-success btn-xs" href="<%= display_report_path(id: @report.id) %>" title="<%= _("Show") %>">
               <%= icon_tag("search") %>
             </a>
@@ -22,7 +26,11 @@
               <%= icon_tag("download") %>
             </a>
             <a class="delete btn btn-danger btn-xs" data-method="delete" data-confirm="<%= _('Are you sure you wish to delete %s?') % [@report.name] %>" href="<%= report_path(id: @report.id) %>" title="<%= _("Delete") %>">
+<<<<<<< 7849df0902ad5942025fa7538006f3d67f258b08
               <%= icon_tag("trash") %>
+=======
+              = icon_tag("trash")
+>>>>>>> UI: Rewrite view/dashboard/*.haml and view/reports/*.haml with erb
             </a>
           </div>
         </div>
@@ -121,11 +129,19 @@
               </div>
             </div>
             <div class="col-md-4 text-center">
+<<<<<<< 7849df0902ad5942025fa7538006f3d67f258b08
               <div class="btn-group" role="group">
                 <button class="btn btn-default zoom-in" title="<%= _("Zoom in") %>" type="button">
                   <%= icon_tag('search-plus') %>
                 </button>
                 <button class="btn btn-default zoom-out" title="<%= _("Zoom out") %>" type="button">
+=======
+              <div class="btn-group" role="<%= :group %>">
+                <button class="btn btn-default zoom-in" title="<%= _("Zoom in") %>" type="<%= :button %>">
+                  <%= icon_tag('search-plus') %>
+                </button>
+                <button class="btn btn-default zoom-out" title="<%= _("Zoom out") %>" type="<%= :button %>">
+>>>>>>> UI: Rewrite view/dashboard/*.haml and view/reports/*.haml with erb
                   <%= icon_tag('search-minus') %>
                 </button>
               </div>
