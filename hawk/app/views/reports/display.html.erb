@@ -1,0 +1,272 @@
+<div class="container-fluid" id="report-display">
+  <div class="row">
+    <h1>
+      <%= icon_text "clock-o", _("History Explorer"), class: "transition" %>
+      <div class="pull-right">
+        <div class="btn-group" role="group">
+          <%= link_to icon_text("list-ul", _("Reports")), reports_path, class: "btn btn-default" %>
+        </div>
+      </div>
+    </h1>
+  </div>
+  <div class="row">
+    <div class="panel panel-default">
+      <div class="panel-heading"></div>
+      <div class="panel-body">
+        <div class="pull-right">
+          <div class="btn-group" role="<%= :group %>">
+            <a class="show btn btn-success btn-xs" href="<%= display_report_path(id: @report.id) %>" title="<%= _("Show") %>">
+              <%= icon_tag("search") %>
+            </a>
+            <a class="download btn btn-info btn-xs" href="<%= download_report_path(id: @report.id) %>" title="<%= _("Download") %>">
+              <%= icon_tag("download") %>
+            </a>
+            <a class="delete btn btn-danger btn-xs" data-method="delete" data-confirm="<%= _('Are you sure you wish to delete %s?') % [@report.name] %>" href="<%= report_path(id: @report.id) %>" title="<%= _("Delete") %>">
+              = icon_tag("trash")
+            </a>
+          </div>
+        </div>
+        <dl class="dl-horizontal">
+          <dt>
+            <%= _("Name") %>
+          </dt>
+          <% if @report.name.start_with? 'hawk-' %>
+            <dd>
+              <%= "hawk" %>
+            </dd>
+          <% else %>
+            <dd>
+              <%= @report.name %>
+            </dd>
+          <% end %>
+          <% if @report.from_time != @report.to_time %>
+            <dt>
+              <%= _("From") %>
+            </dt>
+            <dd>
+              <%= format_date @report.from_time %>
+            </dd>
+            <dt>
+              <%= _("To") %>
+            </dt>
+            <dd>
+              <%= format_date @report.to_time %>
+            </dd>
+          <% elsif @transitions.length > 1 %>
+            <dt>
+              <%= _("From") %>
+            </dt>
+            <dd>
+              <%= format_date @transitions[0][:timestamp] %>
+            </dd>
+            <dt>
+              <%= _("To") %>
+            </dt>
+            <dd>
+              <%= format_date @transitions[-1][:timestamp] %>
+            </dd>
+          <% elsif @transitions.length == 1 %>
+            <dt>
+              <%= _("From") %>
+            </dt>
+            <dd>
+              <%= format_date @transitions[0][:timestamp] %>
+            </dd>
+            <dt>
+              <%= _("To") %>
+            </dt>
+            <dd>
+              <%= "-" %>
+            </dd>
+          <% else %>
+            <dt>
+              <%= _("Created") %>
+            </dt>
+            <dd>
+              <%= format_date @report.from_time %>
+            </dd>
+          <% end %>
+          <dt>
+            <%= _("Transitions") %>
+          </dt>
+          <dd>
+            <%= @transitions.length %>
+          </dd>
+        </dl>
+      </div>
+    </div>
+  </div>
+  <% if @transitions.length < 1 %>
+    <div class="row">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">
+            <%= _("Transitions") %>
+          </h3>
+        </div>
+        <div class="panel-body">
+          <%= _("No transitions in report") %>
+        </div>
+      </div>
+    </div>
+  <% else %>
+    <div class="row">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <div class="eventcontrol" id="eventcontrol"></div>
+          <div class="row clearfix breather">
+            <div class="col-md-4">
+              <div class="pull-left">
+                <%= link_to icon_tag("step-backward"), url_for(transition: prev_transition), class: 'btn btn-primary', title: _("Previous") %>
+              </div>
+            </div>
+            <div class="col-md-4 text-center">
+              <div class="btn-group" role="<%= :group %>">
+                <button class="btn btn-default zoom-in" title="<%= _("Zoom in") %>" type="<%= :button %>">
+                  <%= icon_tag('search-plus') %>
+                </button>
+                <button class="btn btn-default zoom-out" title="<%= _("Zoom out") %>" type="<%= :button %>">
+                  <%= icon_tag('search-minus') %>
+                </button>
+              </div>
+            </div>
+            <div class="col-md-4">
+              <div class="pull-right">
+                <%= link_to icon_tag("step-forward"), url_for(transition: next_transition), class: 'btn btn-primary', title: _("Next") %>
+              </div>
+            </div>
+          </div>
+          <script data-report="<%= @report.id %>" data-current="<%= current_transition %>" id="transition-data" type="application/json">
+            <plain>
+
+              #{@transitions.to_json}
+
+            </plain>
+          </script>
+        </div>
+        <% unless @transition.nil? %>
+          <div class="panel-body">
+            <dl class="dl-horizontal">
+              <dt>
+                <%= _("PE Name") %>
+              </dt>
+              <dd>
+                <%= link_to @transition[:basename], pefile_report_path(id: params[:id], transition: current_transition) %>
+              </dd>
+              <dt>
+                <%= _("Node") %>
+              </dt>
+              <dd>
+                <%= @transition[:node] %>
+              </dd>
+              <dt>
+                <%= _("Time") %>
+              </dt>
+              <dd>
+                <%= format_date @transition[:timestamp] %>
+              </dd>
+              <% if @transition[:version] %>
+                <dt>
+                  <%= _("Version") %>
+                </dt>
+                <dd>
+                  <%= @transition[:version] %>
+                </dd>
+              <% end %>
+            </dl>
+          </div>
+        <% end %>
+      </div>
+      <% unless @transition.nil? %>
+        <div class="panel panel-default with-nav-tabs">
+          <div class="panel-heading">
+            <ul class="nav nav-tabs remote">
+              <li class="active">
+                <a data-toggle="tab" data-url="<%= detail_report_path(id: @report.id, transition: current_transition) %>" href="#details">
+                  <%= _("Details") %>
+                </a>
+              </li>
+              <li>
+                <a data-toggle="tab" data-url="<%= cib_report_path(id: @report.id, transition: current_transition) %>" href="#cib">
+                  <%= _("Configuration") %>
+                </a>
+              </li>
+              <li>
+                <a data-toggle="tab" data-url="<%= diff_report_path(id: @report.id, transition: current_transition) %>" href="#diff">
+                  <%= _("Diff") %>
+                </a>
+              </li>
+              <li>
+                <a data-toggle="tab" data-url="<%= logs_report_path(id: @report.id, transition: current_transition) %>" href="#logs">
+                  <%= _("Logs") %>
+                </a>
+              </li>
+              <li>
+                <a data-toggle="tab" data-url="<%= graph_report_path(id: @report.id, transition: current_transition) %>" href="#graph">
+                  <%= _("Graph") %>
+                </a>
+              </li>
+            </ul>
+          </div>
+          <div class="panel-body">
+            <div class="tab-content">
+              <div class="tab-pane fade in active" id="details">
+                <div class="text-center spacer">
+                  <%= icon_tag("spinner", class: "fa-spin fa-2x") %>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="cib">
+                <div class="text-center spacer">
+                  <%= icon_tag("spinner", class: "fa-spin fa-2x") %>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="diff">
+                <div class="text-center spacer">
+                  <%= icon_tag("spinner", class: "fa-spin fa-2x") %>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="logs">
+                <div class="text-center spacer">
+                  <%= icon_tag("spinner", class: "fa-spin fa-2x") %>
+                </div>
+              </div>
+              <div class="tab-pane fade" id="graph">
+                <div class="text-center spacer">
+                  <%= icon_tag("spinner", class: "fa-spin fa-2x") %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  <% end %>
+  <% if @transition.nil? %>
+    <div class="row">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <%= _("Node Events") %>
+          </h4>
+        </div>
+        <div class="panel-body">
+          <pre>
+            <%= history_log_markup @node_events %>
+          </pre>
+        </div>
+      </div>
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">
+            <%= _("Resource Events") %>
+          </h4>
+        </div>
+        <div class="panel-body">
+          <pre>
+            <%= history_log_markup @resource_events %>
+          </pre>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>

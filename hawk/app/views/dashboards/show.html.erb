@@ -1,0 +1,32 @@
+<%= content_for :javascripts do %>
+  <%= javascript_include_tag "dashboard" %>
+<% end %>
+<div class="container-fluid">
+  <div class="row">
+    <h1>
+      <%= icon_text "dashboard", _("Dashboard"), class: "page" %>
+      <div class="pull-right">
+        <div class="btn-group" role="group">
+          <%= link_to icon_text("plus", _("Add Cluster")), add_dashboard_path, class: "btn btn-default", data: {toggle: "modal", target: "#modal" } %>
+        </div>
+      </div>
+    </h1>
+  </div>
+  <div class="row" id="clusters"></div>
+  <% # passing null as name and host means to fetch local cluster information %>
+  <% unless current_cib.offline? %>
+    <script>
+
+      dashboardAddCluster({"name":null, "host":null, "port":null, https:null, "interval":10});
+
+
+    </script>
+  <% end %>
+  <script>
+
+    #{javascript_for_clusters @clusters}
+
+
+  </script>
+  <div id="cib-status-matrix-details"></div>
+</div>

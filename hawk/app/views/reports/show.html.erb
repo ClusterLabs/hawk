@@ -1,0 +1,33 @@
+<div class="container-fluid" data-report="<%= @report.id %>" id="report-show">
+  <div class="row">
+    <h1>
+      <%= icon_text "clock-o", _("History Explorer"), class: "transition" %>
+      <div class="pull-right">
+        <div class="btn-group" role="group">
+          <%= link_to icon_text("list-ul", _("Reports")), reports_path, class: "btn btn-default" %>
+        </div>
+      </div>
+    </h1>
+  </div>
+  <div class="row">
+    <div class="col-md-offset-3 col-md-6">
+      <div class="panel panel-info">
+        <div class="panel-heading">
+          <%= icon_tag 'spinner', class: 'fa-spin' %>
+          <%= _("Loading report...") %>
+        </div>
+        <div class="panel-footer">
+          <fieldset>
+            <div class="form-group">
+              <div class="col-sm-12">
+                <button class="btn btn-danger" id="cancel-report-loading" type="<%= :button %>">
+                  <%= _("Cancel") %>
+                </button>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

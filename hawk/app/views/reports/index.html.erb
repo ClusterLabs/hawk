@@ -1,0 +1,114 @@
+<div class="container-fluid" id="report-index">
+  <div class="row">
+    <h1>
+      <%= icon_text "clock-o", _("History Explorer"), class: "page" %>
+    </h1>
+  </div>
+  <div class="row" id="report-controls">
+    <div class="panel panel-info hidden" id="report-running">
+      <div class="panel-heading">
+        <%= icon_tag 'spinner', class: 'fa-spin' %>
+        <%= _("Data collection in progress...") %>
+      </div>
+      <div class="panel-body">
+        <fieldset class="disabled">
+          <div class="form-group">
+            <label class="col-sm-5 control-label" for="running-from_time">
+              <%= _("From") %>
+            </label>
+            <div class="col-sm-7">
+              <input class="form-control" id="running-from-time" type="<%= :text %>"></input>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-5 control-label" for="running-to_time">
+              <%= _("To") %>
+            </label>
+            <div class="col-sm-7">
+              <input class="form-control" id="running-to-time" type="<%= :text %>"></input>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+      <div class="panel-footer">
+        <fieldset>
+          <div class="form-group">
+            <div class="col-sm-12">
+              <button class="btn btn-danger" id="cancel-report" type="<%= :button %>">
+                <%= _("Cancel") %>
+              </button>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+    </div>
+    <div class="panel panel-default with-nav-tabs hidden" id="report-tabs">
+      <div class="panel-heading">
+        <ul class="nav nav-tabs">
+          <% unless current_cib.not_a_node? %>
+            <li class="active">
+              <a data-toggle="tab" href="#generate">
+                <%= _("Generate") %>
+              </a>
+            </li>
+          <% end %>
+          <li>
+            <a data-toggle="tab" href="#upload">
+              <%= _("Upload") %>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="panel-body">
+        <div class="tab-content">
+          <% unless current_cib.offline? %>
+            <div class="tab-pane fade in active" id="generate">
+              <%= form_tag generate_reports_path(format: "json"), remote: true, multipart: false, method: "post", class: "generate" do %>
+                <%= hidden_field_tag :authenticity_token, form_authenticity_token %>
+                <%= hidden_field_tag "report[from_time]" %>
+                <%= hidden_field_tag "report[to_time]" %>
+                <div class="form-group input-group">
+                  <div class="form-control form-control-static rangefield">
+                    <%= icon_tag("calendar") %>
+                    <span class="current"></span>
+                    <span class="caret"></span>
+                  </div>
+                  <div class="input-group-btn">
+                    <button class="btn btn-primary" name="generate" type="submit">
+                      <%= icon_text("search", _("Generate")) %>
+                    </button>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+            <div class="tab-pane fade" id="upload">
+              <%= form_tag upload_reports_path(format: "json"), remote: false, multipart: true, method: "post", class: "upload"  do %>
+                <div class="form-group">
+                  <input class="form-control uploadfield" name="report[upload]" type="file"></input>
+                </div>
+              <% end %>
+            </div>
+          <% else %>
+            <div class="tab-pane fade in active" id="upload">
+              <%= form_tag upload_reports_path(format: "json"), remote: false, multipart: true, method: "post", class: "upload"  do %>
+                <div class="form-group">
+                  <input class="form-control uploadfield" name="report[upload]" type="file"></input>
+                </div>
+              <% end %>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="panel panel-default">
+      <div class="panel-heading">
+        <%= _("Reports") %>
+      </div>
+      <div class="panel-body">
+        <table class="table table-striped reports"></table>
+      </div>
+    </div>
+  </div>
+</div>
