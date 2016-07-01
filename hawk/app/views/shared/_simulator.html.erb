@@ -1,10 +1,15 @@
 <div class="batch-control-bar">
+<<<<<<< 792fa759b0ae15123460406e38238b12f7213dca
   <a data-toggle="modal" data-target="#modal" href="<%= sim_help_path %>" class="help-cursor">
+=======
+  <a data-toggle="<%= :modal %>" data-target="#modal" href="<%= sim_help_path %>" class="help-cursor">
+>>>>>>> UI: Remove Haml gem, replace Haml template engine and rewrite files in views/shared in erb
     <strong class="text-uppercase">
       <%= icon_text("warning", _("Batch Mode Active")) %>
     </strong>
   </a>
   <div class="pull-right">
+<<<<<<< 792fa759b0ae15123460406e38238b12f7213dca
     <a class="btn" data-target="#" id="btn-show-batch" role="button">
       <%= icon_text("cog", _("Show")) %>
     </a>
@@ -12,12 +17,25 @@
       <%= icon_text("trash", _("Discard")) %>
     </a>
     <a class="btn" data-toggle="modal" data-target="#modal-lg" href="<%= cib_apply_path(cib_id: current_cib.id) %>" id="btn-apply-batch" role="button">
+=======
+    <a class="btn" data-target="#" id="btn-show-batch" role="<%= :button %>">
+      <%= icon_text("cog", _("Show")) %>
+    </a>
+    <a class="btn" data-confirm="<%= _("Any pending changes to the configuration will be lost - do you wish to proceed?") %>" href="<%= cib_path(cib_id: :live) %>" id="btn-discard-batch" role="<%= :button %>">
+      <%= icon_text("trash", _("Discard")) %>
+    </a>
+    <a class="btn" data-toggle="<%= :modal %>" data-target="#modal-lg" href="<%= cib_apply_path(cib_id: current_cib.id) %>" id="btn-apply-batch" role="<%= :button %>">
+>>>>>>> UI: Remove Haml gem, replace Haml template engine and rewrite files in views/shared in erb
       <%= icon_text("check", _("Apply")) %>
     </a>
   </div>
 </div>
 <script id="batch-entry" type="text/x-jsrender">
+<<<<<<< 792fa759b0ae15123460406e38238b12f7213dca
   <li class="list-group-item" data-entry="{{:value}}">
+=======
+  <li class="list-group-item" data-entry='<%= "{{:value}}" %>>'
+>>>>>>> UI: Remove Haml gem, replace Haml template engine and rewrite files in views/shared in erb
     <%= "{{:name}}" %>
     <div class="pull-right">
       <%= link_to icon_tag("remove"), "#", class: "text-danger" %>
@@ -26,7 +44,11 @@
 </script>
 <script id="batch-template" type="text/x-jsrender">
   <div class="tab-content">
+<<<<<<< 792fa759b0ae15123460406e38238b12f7213dca
     <div class="tab-pane active" id="batch-view" role="tabpanel">
+=======
+    <div class="tab-pane active" id="batch-view" role="<%= :tabpanel %>">
+>>>>>>> UI: Remove Haml gem, replace Haml template engine and rewrite files in views/shared in erb
       <div class="modal-header">
         <h3 class="modal-title">
           <%= icon_text("cog", _("Batch Mode")) %>
@@ -41,10 +63,17 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-sm-12">
+<<<<<<< 792fa759b0ae15123460406e38238b12f7213dca
               <div class="btn-toolbar" role="toolbar">
                 <div class="btn-group" role="group">
                   <div class="dropdown">
                     <a class="btn btn-default btn-block" data-toggle="dropdown" role="button">
+=======
+              <div class="btn-toolbar" role="<%= :toolbar %>">
+                <div class="btn-group" role="<%= :group %>">
+                  <div class="dropdown">
+                    <a class="btn btn-default btn-block" data-toggle="<%= :dropdown %>" role="<%= :button %>">
+>>>>>>> UI: Remove Haml gem, replace Haml template engine and rewrite files in views/shared in erb
                       <%= icon_text("rocket", _("Simulator")) %>
                     </a>
                     <ul class="dropdown-menu">
@@ -66,9 +95,15 @@
                     </ul>
                   </div>
                 </div>
+<<<<<<< 792fa759b0ae15123460406e38238b12f7213dca
                 <div class="btn-group" role="group">
                   <div class="dropdown">
                     <a class="btn btn-default btn-block" data-toggle="dropdown" role="button">
+=======
+                <div class="btn-group" role="<%= :group %>">
+                  <div class="dropdown">
+                    <a class="btn btn-default btn-block" data-toggle="<%= :dropdown %>" role="<%= :button %>">
+>>>>>>> UI: Remove Haml gem, replace Haml template engine and rewrite files in views/shared in erb
                       <%= icon_text("bolt", _("Inject")) %>
                     </a>
                     <ul class="dropdown-menu">
@@ -124,12 +159,20 @@
         </div>
       </div>
       <div class="modal-footer">
+<<<<<<< 792fa759b0ae15123460406e38238b12f7213dca
         <button class="btn btn-default" data-dismiss="modal" type="button">
+=======
+        <button class="btn btn-default" data-dismiss="<%= :modal %>" type="<%= :button %>">
+>>>>>>> UI: Remove Haml gem, replace Haml template engine and rewrite files in views/shared in erb
           <%= _("Close") %>
         </button>
       </div>
     </div>
+<<<<<<< 792fa759b0ae15123460406e38238b12f7213dca
     <div class="tab-pane" id="batch-summary" role="tabpanel">
+=======
+    <div class="tab-pane" id="batch-summary" role="<%= :tabpanel %>">
+>>>>>>> UI: Remove Haml gem, replace Haml template engine and rewrite files in views/shared in erb
       <div class="modal-header">
         <h3 class="modal-title">
           <%= icon_text("cog", _("Summary")) %>
@@ -143,12 +186,20 @@
         </div>
       </div>
       <div class="modal-footer">
+<<<<<<< 792fa759b0ae15123460406e38238b12f7213dca
         <a class="btn btn-primary" data-toggle="tab" role="button" href="#batch-view">
+=======
+        <a class="btn btn-primary" data-toggle="<%= :tab %>" role="<%= :button %>" href: "#batch-view">
+>>>>>>> UI: Remove Haml gem, replace Haml template engine and rewrite files in views/shared in erb
           <%= _("OK") %>
         </a>
       </div>
     </div>
+<<<<<<< 792fa759b0ae15123460406e38238b12f7213dca
     <div class="tab-pane" id="batch-cib-in" role="tabpanel">
+=======
+    <div class="tab-pane" id="batch-cib-in" role="<%= :tabpanel %>">
+>>>>>>> UI: Remove Haml gem, replace Haml template engine and rewrite files in views/shared in erb
       <div class="modal-header">
         <h3 class="modal-title">
           <%= icon_text("cog", _("CIB (in)")) %>
@@ -162,12 +213,20 @@
         </div>
       </div>
       <div class="modal-footer">
+<<<<<<< 792fa759b0ae15123460406e38238b12f7213dca
         <a class="btn btn-primary" data-toggle="tab" role="button" href="#batch-view">
+=======
+        <a class="btn btn-primary" data-toggle="<%= :tab %>" role="<%= :button %>" href: "#batch-view">
+>>>>>>> UI: Remove Haml gem, replace Haml template engine and rewrite files in views/shared in erb
           <%= _("OK") %>
         </a>
       </div>
     </div>
+<<<<<<< 792fa759b0ae15123460406e38238b12f7213dca
     <div class="tab-pane" id="batch-cib-out" role="tabpanel">
+=======
+    <div class="tab-pane" id="batch-cib-out" role="<%= :tabpanel %>">
+>>>>>>> UI: Remove Haml gem, replace Haml template engine and rewrite files in views/shared in erb
       <div class="modal-header">
         <h3 class="modal-title">
           <%= icon_text("cog", _("CIB (out)")) %>
@@ -181,12 +240,20 @@
         </div>
       </div>
       <div class="modal-footer">
+<<<<<<< 792fa759b0ae15123460406e38238b12f7213dca
         <a class="btn btn-primary" data-toggle="tab" role="button" href="#batch-view">
+=======
+        <a class="btn btn-primary" data-toggle="<%= :tab %>" role="<%= :button %>" href: "#batch-view">
+>>>>>>> UI: Remove Haml gem, replace Haml template engine and rewrite files in views/shared in erb
           <%= _("OK") %>
         </a>
       </div>
     </div>
+<<<<<<< 792fa759b0ae15123460406e38238b12f7213dca
     <div class="tab-pane" id="batch-transition-graph" role="tabpanel">
+=======
+    <div class="tab-pane" id="batch-transition-graph" role="<%= :tabpanel %>">
+>>>>>>> UI: Remove Haml gem, replace Haml template engine and rewrite files in views/shared in erb
       <div class="modal-header">
         <h3 class="modal-title">
           <%= icon_text("cog", _("Transition Graph")) %>
@@ -200,12 +267,20 @@
         </div>
       </div>
       <div class="modal-footer">
+<<<<<<< 792fa759b0ae15123460406e38238b12f7213dca
         <a class="btn btn-primary" data-toggle="tab" role="button" href="#batch-view">
+=======
+        <a class="btn btn-primary" data-toggle="<%= :tab %>" role="<%= :button %>" href: "#batch-view">
+>>>>>>> UI: Remove Haml gem, replace Haml template engine and rewrite files in views/shared in erb
           <%= _("OK") %>
         </a>
       </div>
     </div>
+<<<<<<< 792fa759b0ae15123460406e38238b12f7213dca
     <div class="tab-pane" id="batch-transition" role="tabpanel">
+=======
+    <div class="tab-pane" id="batch-transition" role="<%= :tabpanel %>">
+>>>>>>> UI: Remove Haml gem, replace Haml template engine and rewrite files in views/shared in erb
       <div class="modal-header">
         <h3 class="modal-title">
           <%= icon_text("cog", _("Transition (XML)")) %>
@@ -219,13 +294,22 @@
         </div>
       </div>
       <div class="modal-footer">
+<<<<<<< 792fa759b0ae15123460406e38238b12f7213dca
         <a class="btn btn-primary" data-toggle="tab" role="button" href="#batch-view">
+=======
+        <a class="btn btn-primary" data-toggle="<%= :tab %>" role="<%= :button %>" href: "#batch-view">
+>>>>>>> UI: Remove Haml gem, replace Haml template engine and rewrite files in views/shared in erb
           <%= _("OK") %>
         </a>
       </div>
     </div>
+<<<<<<< 792fa759b0ae15123460406e38238b12f7213dca
     <div class="tab-pane" id="batch-node-event" role="tabpanel">
       <form class="form-horizontal" remote="true">
+=======
+    <div class="tab-pane" id="batch-node-event" role="<%= :tabpanel %>">
+      <form class="form-horizontal" remote="<%= true %>">
+>>>>>>> UI: Remove Haml gem, replace Haml template engine and rewrite files in views/shared in erb
         <div class="modal-header">
           <h3 class="modal-title">
             <%= icon_text("cog", _("Inject Node Event")) %>
@@ -262,17 +346,29 @@
           </div>
         </div>
         <div class="modal-footer">
+<<<<<<< 792fa759b0ae15123460406e38238b12f7213dca
           <a class="btn btn-default" href="#batch-view" data-toggle="tab" role="button">
             <%= _("Cancel") %>
           </a>
           <a class="btn btn-primary" href="#batch-view" data-toggle="tab" role="button">
+=======
+          <a class="btn btn-default" href: "#batch-view" data-toggle="<%= :tab %>" role="<%= :button %>">
+            <%= _("Cancel") %>
+          </a>
+          <a class="btn btn-primary" href: "#batch-view" data-toggle="<%= :tab %>" role="<%= :button %>">
+>>>>>>> UI: Remove Haml gem, replace Haml template engine and rewrite files in views/shared in erb
             <%= icon_text "plus", _("OK") %>
           </a>
         </div>
       </form>
     </div>
+<<<<<<< 792fa759b0ae15123460406e38238b12f7213dca
     <div class="tab-pane" id="batch-resource-event" role="tabpanel">
       <form class="form-horizontal" remote="true">
+=======
+    <div class="tab-pane" id="batch-resource-event" role="<%= :tabpanel %>">
+      <form class="form-horizontal" remote="<%= true %>">
+>>>>>>> UI: Remove Haml gem, replace Haml template engine and rewrite files in views/shared in erb
         <div class="modal-header">
           <h3 class="modal-title">
             <%= icon_text("cog", _("Inject Resource Event")) %>
@@ -312,7 +408,11 @@
               <%= _("Interval (ms)") %>
             </label>
             <div class="col-sm-7">
+<<<<<<< 792fa759b0ae15123460406e38238b12f7213dca
               <input class="form-control" id="op-inject-interval" type="text"></input>
+=======
+              <input class="form-control" id="op-inject-interval" type="<%= :text %>"></input>
+>>>>>>> UI: Remove Haml gem, replace Haml template engine and rewrite files in views/shared in erb
             </div>
           </div>
           <div class="form-group">
@@ -345,17 +445,29 @@
           </div>
         </div>
         <div class="modal-footer">
+<<<<<<< 792fa759b0ae15123460406e38238b12f7213dca
           <a class="btn btn-default" href="#batch-view" data-toggle="tab" role="button">
             <%= _("Cancel") %>
           </a>
           <a class="btn btn-primary" href="#batch-view" data-toggle="tab" role="button">
+=======
+          <a class="btn btn-default" href: "#batch-view" data-toggle="<%= :tab %>" role="<%= :button %>">
+            <%= _("Cancel") %>
+          </a>
+          <a class="btn btn-primary" href: "#batch-view" data-toggle="<%= :tab %>" role="<%= :button %>">
+>>>>>>> UI: Remove Haml gem, replace Haml template engine and rewrite files in views/shared in erb
             <%= icon_text "plus", _("OK") %>
           </a>
         </div>
       </form>
     </div>
+<<<<<<< 792fa759b0ae15123460406e38238b12f7213dca
     <div class="tab-pane" id="batch-ticket-event" role="tabpanel">
       <form class="form-horizontal" remote="true">
+=======
+    <div class="tab-pane" id="batch-ticket-event" role="<%= :tabpanel %>">
+      <form class="form-horizontal" remote="<%= true %>">
+>>>>>>> UI: Remove Haml gem, replace Haml template engine and rewrite files in views/shared in erb
         <div class="modal-header">
           <h3 class="modal-title">
             <%= icon_text("cog", _("Inject Ticket Event")) %>
@@ -392,10 +504,17 @@
           </div>
         </div>
         <div class="modal-footer">
+<<<<<<< 792fa759b0ae15123460406e38238b12f7213dca
           <a class="btn btn-default" href="#batch-view" data-toggle="tab" role="button">
             <%= _("Cancel") %>
           </a>
           <a class="btn btn-primary" href="#batch-view" data-toggle="tab" role="button">
+=======
+          <a class="btn btn-default" href: "#batch-view" data-toggle="<%= :tab %>" role="<%= :button %>">
+            <%= _("Cancel") %>
+          </a>
+          <a class="btn btn-primary" href: "#batch-view" data-toggle="<%= :tab %>" role="<%= :button %>">
+>>>>>>> UI: Remove Haml gem, replace Haml template engine and rewrite files in views/shared in erb
             <%= icon_text "plus", _("OK") %>
           </a>
         </div>
