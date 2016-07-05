@@ -113,6 +113,7 @@ class ApplicationController < ActionController::Base
   end
 
   def cors_set_access_control_headers
+    response.headers['Content-Security-Policy'] = "frame-ancestors 'self'"
     if request.headers['Origin']
       response.headers['Access-Control-Allow-Origin'] = request.headers["Origin"]
       response.headers['Access-Control-Allow-Credentials'] = 'true'
