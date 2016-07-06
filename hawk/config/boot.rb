@@ -51,9 +51,6 @@ else
   gem "gettext_i18n_rails", version: "~> 1.2"
   require "gettext_i18n_rails"
 
-  gem "haml-rails", version: ">= 0.8.2"
-  require "haml-rails"
-
   gem "sprockets", version: ">= 3.0.0"
   require "sprockets"
 
