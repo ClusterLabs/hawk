@@ -1,11 +1,7 @@
 <% if request.xhr? %>
   <%= form_for(@cluster, url: {action: "add"}, horizontal: true, bootstrap: true, remote: true) do |f| %>
     <div class="modal-header">
-<<<<<<< 7849df0902ad5942025fa7538006f3d67f258b08
       <button class="close" type="button" data-dismiss="modal">
-=======
-      <button class="close" data-dismiss="modal" type="button">
->>>>>>> UI: Rewrite view/dashboard/*.haml and view/reports/*.haml with erb
         <span aria-hidden="true">
           &times;
         </span>

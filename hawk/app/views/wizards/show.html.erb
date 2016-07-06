@@ -8,9 +8,15 @@
     <%= form_for [@cib, @wizard], horizontal: true, bootstrap: true do |main_form| %>
       <div class="panel panel-default">
         <div class="panel-steps">
+<<<<<<< 2662fecc3f7a7a3d3f779ff0427be756722e5b25
           <ul class="nav nav-pills" role="tablist">
             <% @wizard.steps.each_with_index do |step, index| %>
               <li role="presentation">
+=======
+          <ul class="nav nav-pills" role="<%= :tablist %>">
+            <% @wizard.steps.each_with_index do |step, index| %>
+              <li role="<%= :presentation %>">
+>>>>>>> UI: Change file's extension in views/* to erb
                 <%= link_to index + 1, "#step#{index}", class: "btn btn-default btn-circle", data: { toggle: "tab" }, role: :tab, aria: { controls: "step#{index}" } %>
               </li>
             <% end %>
@@ -20,7 +26,11 @@
           <div class="tab-content">
             <% @wizard.steps.each_with_index do |step, index| %>
               <%= main_form.fields_for :steps, step do |step_form| %>
+<<<<<<< 2662fecc3f7a7a3d3f779ff0427be756722e5b25
                 <div class="tab-pane" id="step<%= index %>" role="tabpanel">
+=======
+                <div class="tab-pane" id="step<%= index %>" role="<%= :tabpanel %>">
+>>>>>>> UI: Change file's extension in views/* to erb
                   <fieldset>
                     <legend>
                       <%= step.title %>

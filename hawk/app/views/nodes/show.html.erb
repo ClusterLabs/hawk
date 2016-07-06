@@ -14,12 +14,20 @@
   </div>
   <div class="modal-body">
     <% if @node.remote %>
+<<<<<<< 2662fecc3f7a7a3d3f779ff0427be756722e5b25
       <div class="alert alert-info" role="alert">
+=======
+      <div class="alert alert-info" role="<%= :alert %>">
+>>>>>>> UI: Change file's extension in views/* to erb
         <%= _("Remote node.") %>
       </div>
     <% end %>
     <% unless @node.fence_history.blank? %>
+<<<<<<< 2662fecc3f7a7a3d3f779ff0427be756722e5b25
       <div class="alert alert-warning" role="warning">
+=======
+      <div class="alert alert-warning" role="<%= :warning %>">
+>>>>>>> UI: Change file's extension in views/* to erb
         <%= @node.fence_history %>
       </div>
     <% end %>

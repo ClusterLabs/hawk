@@ -1,13 +1,22 @@
 <div class="container-fluid">
+<<<<<<< 2662fecc3f7a7a3d3f779ff0427be756722e5b25
   <form action="<%= rename_cib_resource_url(cib_id: @cib.id) %>" class="form-horizontal" id="rename-resource" method="post" role="form">
+=======
+  <form action="<%= rename_cib_resource_url(cib_id: @cib.id) %>" class="form-horizontal" id="rename-resource" method="<%= :post %>" role="<%= :form %>">
+>>>>>>> UI: Change file's extension in views/* to erb
     <div class="modal-header">
       <h3 class="modal-title">
         <%= _("Rename Resource") %>
       </h3>
     </div>
     <div class="modal-body">
+<<<<<<< 2662fecc3f7a7a3d3f779ff0427be756722e5b25
       <input name="<%= request_forgery_protection_token.to_s %>" type="hidden" value="<%= form_authenticity_token %>"></input>
       <input name="source" type="hidden" value="<%= @source %>"></input>
+=======
+      <input name="<%= request_forgery_protection_token.to_s %>" type="<%= :hidden %>" value="<%= form_authenticity_token %>"></input>
+      <input name="<%= :source %>" type="<%= :hidden %>" value="<%= @source %>"></input>
+>>>>>>> UI: Change file's extension in views/* to erb
       <div class="form-group">
         <label class="col-sm-5 control-label" for="from">
           <%= _("Rename") %>
@@ -21,7 +30,11 @@
           <%= _("To") %>
         </label>
         <div class="col-sm-7">
+<<<<<<< 2662fecc3f7a7a3d3f779ff0427be756722e5b25
           <input class="form-control text-field" id="to" name="to" type="text" value="<%= @resource.id %>"></input>
+=======
+          <input class="form-control text-field" id="to" name="<%= :to %>" type="<%= :text %>" value="<%= @resource.id %>"></input>
+>>>>>>> UI: Change file's extension in views/* to erb
         </div>
       </div>
     </div>
@@ -29,7 +42,11 @@
       <button class="btn btn-default" data-dismiss="modal" type="button">
         <%= _("Cancel") %>
       </button>
+<<<<<<< 2662fecc3f7a7a3d3f779ff0427be756722e5b25
       <button class="btn btn-primary" type="submit">
+=======
+      <button class="btn btn-primary" type="<%= :submit %>">
+>>>>>>> UI: Change file's extension in views/* to erb
         <%= icon_text "save", _("Rename") %>
       </button>
     </div>

@@ -19,7 +19,11 @@
               <% next unless wizard.category.eql?(category) %>
               <li>
                 <%= link_to cib_wizard_path(cib_id: current_cib.id, id: wizard.name), data: { help_filter: ".#{wizard.name}" } do %>
+<<<<<<< 2662fecc3f7a7a3d3f779ff0427be756722e5b25
                   <div class="pull-right p-t-10">
+=======
+                  <div class="pull-right">
+>>>>>>> UI: Change file's extension in views/* to erb
                     <%= icon_tag "plus-circle" %>
                   </div>
                   <%= wizard.shortdesc %>

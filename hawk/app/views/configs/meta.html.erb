@@ -13,7 +13,11 @@
 </div>
 <div class="modal-body">
   <% unless current_cib.live? %>
+<<<<<<< 2662fecc3f7a7a3d3f779ff0427be756722e5b25
     <div class="alert alert-warning" role="alert">
+=======
+    <div class="alert alert-warning" role="<%= :alert %>">
+>>>>>>> UI: Change file's extension in views/* to erb
       <%= _("Batch Mode Active") %>
     </div>
   <% end %>

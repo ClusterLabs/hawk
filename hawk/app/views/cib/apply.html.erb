@@ -1,4 +1,8 @@
+<<<<<<< 2662fecc3f7a7a3d3f779ff0427be756722e5b25
 <form class="form-horizontal" action="<%= cib_apply_path(cib_id: current_cib.id) %>" method="post" role="form">
+=======
+<form action="<%= cib_apply_path(cib_id: current_cib.id) %>" class="form-horizontal" method="<%= :post %>" role="<%= :form %>">
+>>>>>>> UI: Change file's extension in views/* to erb
   <div class="modal-header">
     <h4>
       <%= icon_tag "rocket" %>
@@ -24,10 +28,21 @@
     <button class="btn btn-default cancel" data-dismiss="modal" type="button">
       <%= _("Cancel") %>
     </button>
+<<<<<<< 2662fecc3f7a7a3d3f779ff0427be756722e5b25
     <input class="btn btn-primary submit" name="submit" type="submit" value="<%= _("Apply") %>"></input>
   </div>
 </form>
 
 <script>
   $(".cib-apply-diff").fetchShadowCIBDiff();
+=======
+    <input class="btn btn-primary submit" name="<%= :submit %>" type="<%= :submit %>" value="<%= _("Apply") %>"></input>
+  </div>
+</form>
+<script>
+
+  $(".cib-apply-diff").fetchShadowCIBDiff();
+
+
+>>>>>>> UI: Change file's extension in views/* to erb
 </script>
