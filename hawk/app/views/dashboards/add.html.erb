@@ -1,7 +1,7 @@
 <% if request.xhr? %>
   <%= form_for(@cluster, url: {action: "add"}, horizontal: true, bootstrap: true, remote: true) do |f| %>
     <div class="modal-header">
-      <button class="close" data-dismiss="modal" type="button">
+      <button class="close" type="button" data-dismiss="modal">
         <span aria-hidden="true">
           &times;
         </span>

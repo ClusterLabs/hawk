@@ -1,0 +1,14 @@
+<h1>
+  <%= icon_text 'home', _('Preferences'), class: 'page' %>
+</h1>
+<div class="panel panel-default">
+  <div class="panel-body" style="overflow: inherit;">
+    <%= form_for [@cib, @profile], horizontal: true, bootstrap: true, method: :put do |main_form| %>
+      <%= main_form.select :language, :language_options, { include_hidden: false }, {  } %>
+      <%= main_form.button_group do %>
+        <%= profile_apply_button(main_form, @profile) %>
+        <%= profile_revert_button(main_form, @profile) %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

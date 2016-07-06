@@ -1,0 +1,69 @@
+<div class="container-fluid">
+  <div class="row">
+    <h1>
+      <%= icon_text "eye", _("Add Constraint"), class: "page" %>
+      <div class="pull-right">
+        <div class="btn-group" role="group">
+          <%= link_to icon_text("list-ul", _("List")), cib_constraints_path, class: "btn btn-default" %>
+        </div>
+      </div>
+    </h1>
+  </div>
+  <div class="row">
+    <ul class="nav nav-pills nav-stacked nav-bighelp nav-topspace" data-help-target="#rightbar .rightbar_help > *">
+      <li>
+        <%= link_to new_cib_location_path(cib_id: current_cib.id), data: { help_filter: ".location" }, class: "btn btn-default btn-lg" do %>
+          <div class="pull-right">
+            <%= icon_tag "plus-circle" %>
+          </div>
+          <%= icon_text "globe", _("Location") %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to new_cib_colocation_path(cib_id: current_cib.id), data: { help_filter: ".colocation" }, class: "btn btn-default btn-lg" do %>
+          <div class="pull-right">
+            <%= icon_tag "plus-circle" %>
+          </div>
+          <%= icon_text "tasks", _("Colocation") %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to new_cib_order_path(cib_id: current_cib.id), data: { help_filter: ".order" }, class: "btn btn-default btn-lg" do %>
+          <div class="pull-right">
+            <%= icon_tag "plus-circle" %>
+          </div>
+          <%= icon_text "sort-amount-desc", _("Order") %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to new_cib_ticket_path(cib_id: current_cib.id), data: { help_filter: ".ticket" }, class: "btn btn-default btn-lg" do %>
+          <div class="pull-right">
+            <%= icon_tag "plus-circle" %>
+          </div>
+          <%= icon_text "ticket", _("Ticket") %>
+        <% end %>
+      </li>
+    </ul>
+  </div>
+</div>
+<% content_for :rightbar do %>
+  <div class="container-fluid" data-spy="affix">
+    <div class="row help-title margin-bottom">
+      <%= localized_help_for :constraints, :intro %>
+    </div>
+    <div class="rightbar_help">
+      <div class="row location">
+        <%= localized_help_for :constraints, :location %>
+      </div>
+      <div class="row colocation">
+        <%= localized_help_for :constraints, :colocation %>
+      </div>
+      <div class="row order">
+        <%= localized_help_for :constraints, :order %>
+      </div>
+      <div class="row ticket">
+        <%= localized_help_for :constraints, :ticket %>
+      </div>
+    </div>
+  </div>
+<% end %>

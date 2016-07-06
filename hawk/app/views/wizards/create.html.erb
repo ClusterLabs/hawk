@@ -1,0 +1,34 @@
+<div class="container-fluid">
+  <div class="row">
+    <h1>
+      <%= icon_text "magic", @wizard.shortdesc, class: "page" %>
+    </h1>
+  </div>
+  <div class="row">
+    <%= form_for [@cib, @wizard], horizontal: true, bootstrap: true do |main_form| %>
+      <div class="panel panel-default">
+        <div class="panel-body" data-help-target="#rightbar > .container-fluid > *">
+          <div class="well">
+            <%= _("Verifying parameters...") %>
+          </div>
+          <%= main_form.button_group class: "wizard" do %>
+            <%= link_to _("Cancel"), cib_wizards_path(cib_id: current_cib.id), class: "btn btn-default", data: { confirm: _("Do you really want to cancel the wizard setup?") } %>
+            <%= link_to _("Back"), "#", class: "btn btn-default previous" %>
+            <%= main_form.submit _("Apply"), class: "btn btn-primary finish hidden", name: "submit", data: { confirm: _("Do you really want to apply the current wizard?") } %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<% content_for :rightbar do %>
+  <div class="container-fluid" data-spy="affix">
+    <div class="row help-title margin-bottom">
+      <h2 class="margin-bottom">
+        <%= @wizard.shortdesc %>
+      </h2>
+      <%= longdesc_format @wizard.longdesc %>
+    </div>
+    <div id="helpentries"></div>
+  </div>
+<% end %>

@@ -1,0 +1,18 @@
+<div class="container-fluid">
+  <div class="modal-header">
+    <h4>
+      <%= icon_tag "search" %>
+      <%= _("Constraint:") %>
+      <%= @constraint.id %>
+      <small>
+        <%= @constraint.object_type %>
+      </small>
+    </h4>
+  </div>
+  <div class="modal-body"></div>
+  <div class="modal-footer">
+    <button class="btn btn-default" data-dismiss="modal" type="button">
+      <%= _("Close") %>
+    </button>
+  </div>
+</div>

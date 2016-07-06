@@ -1,0 +1,14 @@
+<div class="container-fluid">
+  <div class="row">
+    <h1>
+      <%= icon_text "copy", _("Create Clone"), class: "page" %>
+      <div class="pull-right">
+        <div class="btn-group" role="group"></div>
+      </div>
+    </h1>
+  </div>
+  <div class="row">
+    <%= render partial: "form", locals: { cib: @cib, clone: @clone } %>
+  </div>
+</div>
+<%= render partial: "shared/helpsidebar", locals: { category: :resources, help: :clone, mapping: @clone.help_text.merge(@clone.mapping) } %>

@@ -1,0 +1,120 @@
+<div class="container-fluid">
+  <div class="modal-header">
+    <h4>
+      <%= icon_text "cogs", "<code>#{@name}</code> <small>- #{agent_shortdesc}</small>", class: "page" %>
+    </h4>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-md-offset-1 col-md-10">
+        <%= longdesc_format agent_longdesc %>
+        <p></p>
+      </div>
+    </div>
+    <div class="row">
+      <div aria-multiselectable="true" class="panel-group" id="agentinfo" role="tablist">
+        <div class="panel panel-default">
+          <div class="panel-heading" id="agentparamcontrol" role="tab">
+            <h4 class="panel-title">
+              <a href="#agentparams" data-toggle="collapse" data-parent="#agentinfo" role="button" aria-expanded="false" aria-controls="agentparams">
+                <%= _("Parameters") %>
+                <div class="pull-right">
+                  <span class="caret"></span>
+                </div>
+              </a>
+            </h4>
+          </div>
+          <div aria-labelledby="agentparamcontrol" class="panel-collapse collapse" id="agentparams" role="tabpanel">
+            <div class="panel-body">
+              <table class="table">
+                <tr>
+                  <th>
+                    <%= _("Name") %>
+                  </th>
+                  <th>
+                    <%= _("Shortdesc") %>
+                  </th>
+                  <th>
+                    <%= _("Longdesc") %>
+                  </th>
+                  <th>
+                    <%= _("Options") %>
+                  </th>
+                </tr>
+                <% agent_parameters.each do |p| %>
+                  <tr>
+                    <td>
+                      <%= content_tag :code, p["name"] %>
+                    </td>
+                    <td>
+                      <%= shortdesc_format p["shortdesc"] %>
+                    </td>
+                    <td>
+                      <%= longdesc_format p["longdesc"] %>
+                    </td>
+                    <td>
+                      <%= parameter_options p %>
+                    </td>
+                  </tr>
+                <% end %>
+              </table>
+            </div>
+          </div>
+        </div>
+        <div class="panel panel-default">
+          <div class="panel-heading" id="agentactioncontrol" role="tab">
+            <h4 class="panel-title">
+              <a href="#agentactions" data-toggle="collapse" data-parent="#agentinfo" role="button" aria-expanded="false" aria-controls="agentactions">
+                <%= _("Actions") %>
+                <div class="pull-right">
+                  <span class="caret"></span>
+                </div>
+              </a>
+            </h4>
+          </div>
+          <div aria-labelledby="agentactioncontrol" class="panel-collapse collapse" id="agentactions" role="tabpanel">
+            <div class="panel-body">
+              <table class="table">
+                <tr>
+                  <th>
+                    <%= _("Name") %>
+                  </th>
+                  <th>
+                    <%= _("Timeout") %>
+                  </th>
+                  <th>
+                    <%= _("Interval") %>
+                  </th>
+                  <th>
+                    <%= _("Depth") %>
+                  </th>
+                </tr>
+                <% agent_actions.each do |a| %>
+                  <tr>
+                    <td>
+                      <%= content_tag :code, a["name"] %>
+                    </td>
+                    <td>
+                      <%= a["timeout"] || "-" %>
+                    </td>
+                    <td>
+                      <%= a["interval"] || "-" %>
+                    </td>
+                    <td>
+                      <%= a["depth"] || "-" %>
+                    </td>
+                  </tr>
+                <% end %>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-default" data-dismiss="modal" type="button">
+      <%= _("Close") %>
+    </button>
+  </div>
+</div>

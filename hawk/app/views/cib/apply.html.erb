@@ -1,0 +1,35 @@
+<form action="<%= cib_apply_path(cib_id: current_cib.id) %>" class="form-horizontal" method="<%= :post %>" role="<%= :form %>">
+  <div class="modal-header">
+    <h4>
+      <%= icon_tag "rocket" %>
+      <%= _("Apply Configuration") %>
+      <div class="pull-right text-muted small">
+        <%= current_cib.id %>
+      </div>
+    </h4>
+  </div>
+  <div class="modal-body">
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="cib-apply-diff">
+          <div class="text-center text-muted">
+            <%= icon_tag 'refresh', class: 'fa-pulse-opacity' %>
+            <%= _("Calculating list of changes...") %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-default cancel" data-dismiss="modal" type="button">
+      <%= _("Cancel") %>
+    </button>
+    <input class="btn btn-primary submit" name="<%= :submit %>" type="<%= :submit %>" value="<%= _("Apply") %>"></input>
+  </div>
+</form>
+<script>
+
+  $(".cib-apply-diff").fetchShadowCIBDiff();
+
+
+</script>

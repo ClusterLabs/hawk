@@ -1,0 +1,99 @@
+<% if request.xhr? %>
+  <div class="modal-header">
+    <button class="close" data-dismiss="modal" type="button">
+      <span aria="<%= { %>">}
+        &times;
+      </span>
+      <span class="sr-only">
+        <%= _("Close") %>
+      </span>
+    </button>
+    <h3 class="modal-title">
+      <%= icon_text "server", _("Node: %{name}" % { name: @node.name }), class: "page" %>
+    </h3>
+  </div>
+  <div class="modal-body">
+    <% if @node.remote %>
+      <div class="alert alert-info" role="<%= :alert %>">
+        <%= _("Remote node.") %>
+      </div>
+    <% end %>
+    <% unless @node.fence_history.blank? %>
+      <div class="alert alert-warning" role="<%= :warning %>">
+        <%= @node.fence_history %>
+      </div>
+    <% end %>
+    <table class="table table-condensed">
+      <tbody>
+        <tr>
+          <th class="col-xs-4">
+            <%= _("ID") %>
+          </th>
+          <td class="col-xs-8">
+            <%= @node.id %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h4>
+      <%= _("Utilization") %>
+    </h4>
+    <% if @node.utilization_details.any? %>
+      <table class="table table-striped">
+        <tbody>
+          <% @node.utilization_details.each do |name, value| %>
+            <tr>
+              <th class="col-xs-4">
+                <%= name %>
+              </th>
+              <td class="col-xs-8">
+                <% if value[:percentage] == 0 %>
+                  <%= "%{used} / %{total} (%{percentage}%%)" % value %>
+                <% else %>
+                  <div class="progress">
+                    <div aria-valuenow="<%= value[:percentage] %>" aria-valuemin="0" aria-valuemax="<%= value[:total] %>" class="progress-bar" role="progressbar" style="width: <%= value[:percentage] %>%;">
+                      <%= "%{used} / %{total} (%{percentage}%%)" % value %>
+                    </div>
+                  </div>
+                <% end %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <div class="alert alert-info">
+        <%= _("No utilization defined") %>
+      </div>
+    <% end %>
+    <hr/>
+    <h4>
+      <%= _("Attributes") %>
+    </h4>
+    <% if @node.params.any? %>
+      <table class="table table-striped">
+        <tbody>
+          <% @node.params.each do |name, value| %>
+            <tr>
+              <th class="col-xs-4">
+                <%= name %>
+              </th>
+              <td class="col-xs-8">
+                <%= value %>
+              </td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    <% else %>
+      <div class="alert alert-info">
+        <%= _("No attributes defined") %>
+      </div>
+    <% end %>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-default" data-dismiss="modal" type="button">
+      <%= _("Close") %>
+    </button>
+  </div>
+<% end %>

@@ -1,0 +1,31 @@
+<div class="container-fluid">
+  <div class="row">
+    <h1>
+      <%= icon_text "list", _("Show Configuration"), class: "page" %>
+      <div class="pull-right">
+        <div class="btn-group" role="group">
+          <%= link_to icon_text("database", _("Edit")), edit_cib_config_path(cib_id: current_cib.id), class: "btn btn-default" %>
+          <% if @xml %>
+            <%= link_to icon_text("list", _("Show")), cib_config_path(cib_id: current_cib.id), class: "btn btn-default" %>
+          <% else %>
+            <%= link_to icon_text("file-code-o", _("XML")), cib_config_path(cib_id: current_cib.id, xml: true), class: "btn btn-default" %>
+          <% end %>
+          <%= link_to icon_text("file-image-o", _("Graph")), cib_graph_path(cib_id: current_cib.id), class: "btn btn-default" %>
+        </div>
+      </div>
+    </h1>
+  </div>
+  <div class="row">
+    <pre>
+      <% if @xml %>
+        <code class="xml hljs">
+          <%= @cibtext.to_s %>
+        </code>
+      <% else %>
+        <code class="crmsh hljs">
+          <%= @cibtext.to_s %>
+        </code>
+      <% end %>
+    </pre>
+  </div>
+</div>

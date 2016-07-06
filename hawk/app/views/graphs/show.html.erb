@@ -1,0 +1,27 @@
+<div class="container-fluid">
+  <h1>
+    <%= icon_text "image", _("Graph"), class: "page" %>
+    <div class="pull-right">
+      <div class="btn-group" role="group">
+        <%= link_to icon_text("database", _("Edit")), edit_cib_config_path(cib_id: current_cib.id), class: "btn btn-default" %>
+        <%= link_to icon_text("list", _("Show")), cib_config_path(cib_id: current_cib.id), class: "btn btn-default" %>
+        <%= link_to icon_text("file-code-o", _("XML")), cib_config_path(cib_id: current_cib.id, xml: true), class: "btn btn-default" %>
+      </div>
+    </div>
+  </h1>
+  <div class="panel panel-default">
+    <div class="panel-body">
+      <div class="graph-placeholder text-center">
+        <%= '<i class="fa fa-refresh fa-pulse-opacity fa-2x"></i>'.html_safe %>
+      </div>
+      <div class="graph-image">
+        <%= config_graph_image(current_cib.id) %>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  $(window).load(function() {
+    $(".graph-placeholder").hide();
+  });
+</script>

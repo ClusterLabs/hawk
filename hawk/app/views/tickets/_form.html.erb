@@ -1,0 +1,33 @@
+<div class="panel panel-default">
+  <div class="panel-body" data-help-target="#rightbar > .container-fluid > #helpentries > .attrhelp">
+    <%= form_for [cib, ticket], horizontal: true, bootstrap: true do |main_form| %>
+      <%= errors_for ticket %>
+      <% if ticket.new_record? %>
+        <%= main_form.text_field :id, label: _("Constraint ID") %>
+      <% else %>
+        <%= main_form.text_field :id, label: _("Constraint ID"), readonly: true %>
+      <% end %>
+      <%= main_form.text_field :ticket, label: _("Ticket ID") %>
+      <%= main_form.select :loss_policy, :ticket_losspolicy_options, { include_hidden: false, include_blank: true }, id: nil, label: _("Loss Policy") %>
+      <fieldset data-constraints="<%= ticket.resources.to_json %>" data-constraints-available="<%= available_ticket_resources.to_json %>" data-constraints-selects="<%=  available_ticket_roles.to_json %>" data-constraints-linker="false" data-constraints-prefix="ticket[resources]" data-constraints-handle="role" data-constraints-target=".content">
+        <legend>
+          <%= _("Resources") %>
+          <span class="pull-right toggleable">
+            <%= icon_tag("chevron-up") %>
+          </span>
+        </legend>
+        <div class="content constraints"></div>
+      </fieldset>
+      <%= main_form.button_group do %>
+        <% if ticket.new_record? %>
+          <%= create_button(main_form, ticket) %>
+          <%= link_to _("Back"), types_cib_constraints_path(cib_id: cib.id), class: "btn btn-default back" %>
+        <% else %>
+          <%= apply_button(main_form, ticket) %>
+          <%= revert_button(main_form, ticket) %>
+          <%= link_to _("Back"), edit_cib_config_path(cib_id: cib.id), class: "btn btn-default back" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

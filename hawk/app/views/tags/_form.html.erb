@@ -1,0 +1,47 @@
+<div class="panel panel-default">
+  <div class="panel-body" data-help-target="#rightbar > .container-fluid > #helpentries > .attrhelp">
+    <%= form_for [cib, tag], horizontal: true, bootstrap: true do |main_form| %>
+      <%= errors_for tag %>
+      <% if tag.new_record? %>
+        <%= main_form.text_field :id, label: _("Tag ID") %>
+        <!--= main_form.select :refs, tag_refs_list, { include_hidden: false, include_blank: true }, id: nil, label: _("Objects")
+        -->
+      <% else %>
+        <%= main_form.text_field :id, label: _("Tag ID"), readonly: true %>
+        <!--= main_form.text_field :refs, label: _("Objects"), readonly: true
+        -->
+      <% end %>
+      <div class="form-group">
+        <label class="col-sm-5 control-label">
+          <%= _("Objects") %>
+        </label>
+        <div class="col-sm-7">
+          <ul class="list-group">
+            <% if tag_refs_list.empty? %>
+              <li class="list-group-item text-warning">
+                <%= _('No objects available') %>
+              </li>
+            <% else %>
+              <% tag_refs_list.each do |ref| %>
+                <li class="list-group-item">
+                  <%= check_box_tag "tag[refs][]", ref, tag.refs.include?(ref) %>
+                  <%= ref %>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+        </div>
+      </div>
+      <%= main_form.button_group do %>
+        <% if tag.new_record? %>
+          <%= create_button(main_form, tag) %>
+          <%= link_to _("Back"), types_cib_resources_path(cib_id: cib.id), class: "btn btn-default back" %>
+        <% else %>
+          <%= apply_button(main_form, tag) %>
+          <%= revert_button(main_form, tag) %>
+          <%= link_to _("Back"), edit_cib_config_path(cib_id: cib.id), class: "btn btn-default back" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

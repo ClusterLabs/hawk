@@ -1,0 +1,14 @@
+<div class="container-fluid">
+  <div class="row">
+    <h1>
+      <%= icon_text "group", _("Create Group"), class: "page" %>
+      <div class="pull-right">
+        <div class="btn-group" role="group"></div>
+      </div>
+    </h1>
+  </div>
+  <div class="row">
+    <%= render partial: "form", locals: { cib: @cib, group: @group } %>
+  </div>
+</div>
+<%= render partial: "shared/helpsidebar", locals: { category: :resources, help: :group, mapping: @group.help_text.merge(@group.mapping) } %>

@@ -1,0 +1,39 @@
+<% content_for :rightbar do %>
+  <div class="container-fluid" data-spy="affix">
+    <div class="row help-title margin-bottom">
+      <%= localized_help_for_primitives %>
+    </div>
+    <div class="row agentinfo"></div>
+    <div id="helpentries">
+      <% primitive.help_text.each do |key, values| %>
+        <%= render partial: "shared/helpentry", locals: { key: key, values: values } %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<script id="tmpl-helpentry" type="text/x-jsrender">
+  <div class="{{:name %> %> row attrhelp">
+    <h3 class="margin-bottom">
+      <code>
+        {{>name}}
+      </code>
+    </h3>
+    {{if longdesc != ""}}{{>longdesc}}{{/if}}
+    {{if default != ""}}
+    <em>
+      <%= _("Default") + ": " %>
+      <code>
+        {{>default}}
+      </code>
+    </em>
+    {{/if}}
+  </div>
+</script>
+<script id="tmpl-metahelp" type="text/x-jsrender">
+  <% primitive.help_text.each do |key, values| %>
+    <%= render partial: "shared/helpentry", locals: { key: key, values: values } %>
+  <% end %>
+  <% primitive.available_meta.each do |key, values| %>
+    <%= render partial: "shared/helpentry", locals: { key: key, values: values } %>
+  <% end %>
+</script>
