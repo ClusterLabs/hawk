@@ -43,7 +43,10 @@ Rails.application.configure do
   config.log_level = :warn
   config.log_tags = []
 
-  config.logger = ActiveSupport::TaggedLogging.new(
-    Logger.new(STDOUT)
-  )
+  # Log into STDOUT (Rails logs) when starting the Puma server in production
+  config.logger = Logger.new(STDOUT)
+
+  # config.logger = ActiveSupport::TaggedLogging.new(
+  #   Logger.new(STDOUT)
+  # )
 end
