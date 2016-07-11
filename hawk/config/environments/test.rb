@@ -39,9 +39,8 @@ Rails.application.configure do
   config.log_level = :debug
   config.log_tags = []
 
-  config.logger = ActiveSupport::TaggedLogging.new(
-    Logger.new(Rails.root.join("log", "test.log"))
-  )
+  # Log into STDOUT (Rails logs) when starting the Puma server in test
+  config.logger = Logger.new(STDOUT)
 
   config.active_support.test_order = :random
 end

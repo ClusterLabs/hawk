@@ -57,4 +57,6 @@ Rails.application.configure do
   config.logger = ActiveSupport::TaggedLogging.new(
     Logger.new(Rails.root.join("log", "development.log"))
   )
+  # Log into STDOUT (Rails logs) when starting the Puma server
+  config.logger = Logger.new(STDOUT)
 end
