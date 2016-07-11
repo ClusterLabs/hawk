@@ -15,12 +15,6 @@ WorkingDirectory=@WWW_BASE@/hawk
 
 Environment="GEM_PATH=@GEM_PATH@"
 Environment="HAWK_ENV=production"
-Environment="HAWK_THREADS=16"
-Environment="HAWK_WORKERS=1"
-Environment="HAWK_LISTEN=0.0.0.0"
-Environment="HAWK_PORT=7630"
-Environment="HAWK_KEY=/etc/hawk/hawk.key"
-Environment="HAWK_CERT=/etc/hawk/hawk.pem"
 EnvironmentFile=-/etc/sysconfig/hawk
 
 # Run ExecStartPre with root-permissions
