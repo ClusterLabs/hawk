@@ -41,12 +41,6 @@ Rails.application.configure do
   config.i18n.fallbacks = true
 
   config.log_level = :warn
-  config.log_tags = []
 
-  # Log into STDOUT (Rails logs) when starting the Puma server in production
   config.logger = Logger.new(STDOUT)
-
-  # config.logger = ActiveSupport::TaggedLogging.new(
-  #   Logger.new(STDOUT)
-  # )
 end
