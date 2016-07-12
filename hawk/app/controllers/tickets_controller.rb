@@ -169,7 +169,7 @@ class TicketsController < ApplicationController
   end
 
   def revoke
-    if @ticket.revoke! params[:ticket]
+    if revoke_ticket(params[:ticket])
       respond_to do |format|
         format.html do
           flash[:success] = _("Successfully revoked the ticket")
