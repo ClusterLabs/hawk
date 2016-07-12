@@ -36,7 +36,8 @@ hawk_log() {
 }
 
 hawk_server() {
-	sudo systemctl start hawk-development
+	hawk_stop #stop any other running instance of the puma server
+	HAWK_ENV=development LOGGER=stdout /usr/bin/puma -C /vagrant/hawk/config/puma.rb
 }
 
 if [ $# -lt 1 ]
@@ -64,7 +65,7 @@ case "$1" in
 	log)
 		hawk_log
 		;;
-	server)
+	server|s)
 		hawk_server
 		;;
 	*)
