@@ -208,7 +208,7 @@ $(function() {
           if (!row.granted) {
             return [
               '<a href="',
-              Routes.grant_cib_tickets_path($('body').data('cib'), row.id),
+              Routes.grant_cib_tickets_path($('body').data('cib'), row.ticket),
               '" class="grant btn btn-default btn-xs" title="',
                 __('Grant'),
               '">',
@@ -218,7 +218,7 @@ $(function() {
           } else {
             return [
               '<a href="',
-                Routes.revoke_cib_tickets_path($('body').data('cib'), row.id),
+                Routes.revoke_cib_tickets_path($('body').data('cib'), row.ticket),
               '" class="revoke btn btn-default btn-xs" title="',
                 __('Revoke'),
               '">',
