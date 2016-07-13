@@ -270,6 +270,8 @@ your certificate.
 
 == Hacking Hawk ==
 
+=== Vagrant
+
 To hack on Hawk we recommend to use the vagrant setup. There is a
 Vagrantfile attached, which creates a three-node cluster with a basic
 configuration suitable for development and testing.
@@ -315,9 +317,13 @@ above commands, e.g. +vagrant up --provider=libvirt+. If you want to access
 the source within the virtual machine you have to switch to the +/vagrant+
 directory.
 
+=== Web server instances
+
 You can access the Hawk web interface based on the git source through
 +http://localhost:3000+ now. If you want to access the version installed
 through packages you can reach it through +https://localhost:7630+.
+
+=== Managing the application instances
 
 Installed on the development VM is a script called +hawk+, which can be used
 to control the development instance of hawk.
@@ -334,6 +340,14 @@ vagrant@webui:~> hawk restart
 Because Hawk is multi-threaded, the Rails asset auto-loading doesn't work properly.
 Unfortunately this means that you need to run +hawk restart+ after changing
 most files. The exception is the HAML view files which update automatically.
+
+If the development hawk instance isn't running, it can be started using this command:
+
+--------------------------------------
+webui:/vagrant/hawk # sudo -u vagrant bin/rails s
+--------------------------------------
+
+=== Hacking hawk's tools
 
 If you need to change something on +hawk_chkpwd+, +hawk_invoke+ or
 +hawk_monitor+ you need to provision the machine again with the command
@@ -361,13 +375,6 @@ tasks.
 +hawk_monitor+ is not installed setuid-root.  It exists to be polled
 by the web browser, to facilitate near-realtime updates of the cluster
 status display.  It is not used when running Hawk via WEBrick.
-
-
-If the development hawk instance isn't running, it can be started using this command:
-
---------------------------------------
-webui:/vagrant/hawk # sudo -u vagrant bin/rails s
---------------------------------------
 
 
 == Questions, Feedback, etc. ==
