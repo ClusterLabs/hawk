@@ -50,10 +50,10 @@ class Step
   end
 
   def title
-    if name.blank?
+    if shortdesc.blank?
       @parent.title
     else
-      @name.gsub(/[_-]/, " ").titleize
+      shortdesc
     end
   end
 

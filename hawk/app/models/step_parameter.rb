@@ -43,7 +43,7 @@ class StepParameter
   end
 
   def title
-    @name.gsub(/[_-]/, " ").titleize
+    @name.gsub(/[_-]/, " ")
   end
 
   def attrlist_type

@@ -18,8 +18,6 @@
               = main_form.fields_for :steps, step do |step_form|
                 .tab-pane{ id: "step#{index}", role: :tabpanel }
                   %fieldset
-                    %legend
-                      = step.title
                     - if step.longdesc.strip.length > 0
                       .well
                         = longdesc_format step.longdesc
@@ -42,10 +40,6 @@
                       .content
 
                   - step.steps.each do |substep|
-                    - if substep.title != step.title
-                      %fieldset
-                        %legend
-                          = substep.title
                     - substep.basic.each do |param|
                       = render :partial => "param", :locals => { :param => param, :step => step, :index => index, :form => main_form }
                     - unless substep.advanced.empty?

@@ -43,7 +43,7 @@ class Wizard
   end
 
   def title
-    @name.gsub(/[_-]/, " ").titleize
+    @name.gsub(/[_-]/, " ")
   end
 
   def load_from(data)
