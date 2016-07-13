@@ -181,7 +181,7 @@ $(function() {
 
             $.hawkRunOperation(
               i18n.translate('This will request the ticket %s be granted to the present site. Do you want to continue?').fetch(row.id),
-              [context.attr('href'), ".json"].join(""));
+              [$(this).attr('href'), ".json"].join(""));
             return false;
           },
           'click .revoke': function (e, value, row, index) {
@@ -192,7 +192,7 @@ $(function() {
 
             $.hawkRunOperation(
               i18n.translate('This will request the ticket %s be revoked. Do you want to continue?').fetch(row.id),
-              [context.attr('href'), ".json"].join(""));
+              [$(this).attr('href'), ".json"].join(""));
             return false;
           }
         },
@@ -208,7 +208,7 @@ $(function() {
           if (!row.granted) {
             return [
               '<a href="',
-              Routes.grant_cib_tickets_path($('body').data('cib'), row.ticket),
+              Routes.grant_cib_tickets_path($('body').data('cib'), row.id),
               '" class="grant btn btn-default btn-xs" title="',
                 __('Grant'),
               '">',
@@ -218,7 +218,7 @@ $(function() {
           } else {
             return [
               '<a href="',
-                Routes.revoke_cib_tickets_path($('body').data('cib'), row.ticket),
+                Routes.revoke_cib_tickets_path($('body').data('cib'), row.id),
               '" class="revoke btn btn-default btn-xs" title="',
                 __('Revoke'),
               '">',

@@ -199,15 +199,15 @@ class TicketsController < ApplicationController
 
   def grant_ticket(ticket, site)
     fail(Constraint::CommandError, _("Simulator active: Use the ticket controls in the simulator")) if current_cib.sim?
-    _out, err, rc = Invoker.instance.run "booth", "client", "grant", "-t", ticket, "-s", site.to_s
-    fail(Constraint::CommandError, err) unless rc == 0
+    out, err, rc = Invoker.instance.run "booth", "client", "grant", "-t", ticket, "-s", site.to_s
+    fail(Constraint::CommandError, err || out) unless rc == 0
     rc == 0
   end
 
   def revoke_ticket(ticket)
     fail(Constraint::CommandError, _("Simulator active: Use the ticket controls in the simulator")) if current_cib.sim?
-    _out, err, rc = Invoker.instance.run "booth", "client", "revoke", "-t", ticket
-    fail(Constraint::CommandError, err) unless rc == 0
+    out, err, rc = Invoker.instance.run "booth", "client", "revoke", "-t", ticket
+    fail(Constraint::CommandError, err || out) unless rc == 0
     rc == 0
   end
 
