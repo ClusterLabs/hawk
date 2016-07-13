@@ -5,7 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2016-06-01 12:22\n"
+"POT-Creation-Date: 2016-06-12 19:52+0200\n"
+"PO-Revision-Date: 2016-06-29 12:12\n"
 "Last-Translator: Novell language <language@novell.com>\n"
 "Language-Team: Novell language <language@novell.com>\n"
 "Language: \n"
@@ -14,1948 +15,3105 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
 
-msgid "%s is not executable"
-msgstr "%s n'est pas exécutable."
-
-msgid "%s is not installed"
-msgstr "%s n'est pas installé"
-
-msgid "%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_reason}"
-msgstr "%{fail_start}: Echec de l'opération %{op} pour la ressource %{resource} sur le noeud %{node}: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_reason}"
-
-msgid "ACL Targets"
-msgstr "Cibles ACL"
-
-msgid "ACL is not supported by the cluster"
-msgstr "ACL n'est pas pris en charge par la grappe."
-
-msgid "ACL is not supported by this cluster."
-msgstr "ACL n'est pas pris en charge par cette grappe."
-
-msgid "ACL target ID is required"
-msgstr "L'ID de la cible ACL est requis."
-
-msgid "ACL target created successfully"
-msgstr "Cible ACL créée avec succès"
-
-msgid "ACL target deleted successfully"
-msgstr "Cible ACL supprimée avec succès"
-
-msgid "ACL target updated successfully"
-msgstr "Cible ACL mise à jour avec succès"
-
-msgid "Access Control"
-msgstr "Contrôle des accès"
-
-msgid "Access Control Lists"
-msgstr "Listes de contrôle d'accès"
-
-msgid "Action"
-msgstr "Action"
-
-msgid "Actions"
-msgstr "Actions"
-
-msgid "Add"
-msgstr "Ajouter"
-
-msgid "Add Cluster"
-msgstr "Ajouter une grappe"
-
-msgid "Add Constraint"
-msgstr "Ajouter une contrainte"
-
-msgid "Add Resource"
-msgstr "Ajouter une ressource"
-
-msgid "Add a rule below"
-msgstr "Ajouter une règle en dessous"
-
-msgid "Advanced"
-msgstr "Avancés"
-
-msgid "Advisory"
-msgstr "Consultatif"
-
-msgid "After the specified timeout period, the operation will be treated as failed."
-msgstr "À l'issue du délai spécifié, l'opération sera considérée comme ayant échoué."
-
-msgid "Agent"
-msgstr "Agent"
-
-msgid "Always"
-msgstr "Toujours"
-
-msgid "An error has occurred"
-msgstr "Une erreur s'est produite."
-
-msgid "Any changes will be lost - do you wish to proceed?"
-msgstr "Toutes les modifications seront perdues. Voulez-vous continuer ?"
-
-msgid "Any pending changes to the configuration will be lost - do you wish to proceed?"
-msgstr "Tous les changements en attente à apporter à la configuration seront perdus. Voulez-vous continuer ?"
-
-msgid "Applied configuration successfully"
-msgstr "La configuration a été appliquée."
-
-msgid "Apply"
-msgstr "Appliquer"
-
-msgid "Apply Configuration"
-msgstr "Appliquer la configuration"
-
-msgid "Applying configuration changes..."
-msgstr "Implémentation des modifications de la configuration..."
-
-msgid "April"
-msgstr "Avril"
-
-msgid "Arbitrators"
-msgstr "Arbitres"
-
-msgid "Are you sure you wish to delete %s?"
-msgstr "Êtes-vous sûr de vouloir supprimer %s ?"
-
-msgid "At least one role is required"
-msgstr "Au moins un rôle est requis."
-
-msgid "At least one rule is required"
-msgstr "Au moins une règle est requise."
-
-msgid "Attribute"
-msgstr "Attribut"
-
-msgid "Attribute contains both single and double quotes"
-msgstr "L'attribut contient des guillemets simples et doubles."
-
-msgid "Attributes"
-msgstr "Attributs"
-
-msgid "August"
-msgstr "Août"
-
-msgid "Away from current node"
-msgstr "Loin du nœud actuel"
-
-msgid "Back"
-msgstr "Retour"
-
-msgid "Batch"
-msgstr "Traitement par lots"
-
-msgid "Batch Configuration Changes"
-msgstr "Changements de la configuration du traitement par lots"
-
-msgid "Batch Mode"
-msgstr "Mode de traitement par lots"
-
-msgid "Batch Mode Active"
-msgstr "Mode de traitement par lots actif"
-
-msgid "Boolean Operator"
-msgstr "Opérateur booléen"
-
-msgid "CIB (in)"
-msgstr "CIB (entrée)"
-
-msgid "CIB (out)"
-msgstr "CIB (sortie)"
-
-msgid "CIB Schema Version"
-msgstr "Version du schéma CIB"
-
-msgid "CIB file \"%{path}\" not found"
-msgstr "Le fichier CIB \"%{path}\" est introuvable."
-
-msgid "Calculating list of changes..."
-msgstr "Calcul de la liste des changements..."
-
-msgid "Call"
-msgstr "Appeler"
-
-msgid "Cancel"
-msgstr "Annuler"
-
-msgid "Cannot display diff, too few transitions"
-msgstr "Impossible d'afficher diff, trop peu de transitions"
-
-msgid "Changes applied successfully."
-msgstr "Modifications appliquées avec succès"
-
-msgid "Changes the behavior of ordering constraints (between clones/masters) so that instances can start/stop as soon as their peer instance has (rather than waiting for every instance of the other clone has)."
-msgstr "Modifie le comportement des contraintes d'ordre (entre clones/maîtres) de sorte que les instances puissent démarrer/s'arrêter dès que leur instance homologue le fait (plutôt que d'attendre que chaque instance de l'autre clone l'ai fait)."
-
-msgid "Child"
-msgstr "Enfant"
-
-msgid "Child Resource"
-msgstr "Ressources enfant"
-
-msgid "Child resource to use as clone."
-msgstr "Ressource enfant à utiliser en tant que clone."
-
-msgid "Children"
-msgstr "Enfants"
-
-msgid "Class"
-msgstr "Classe"
-
-msgid "Clean up on all nodes"
-msgstr "Effacer sur tous les noeuds"
-
-msgid "Clean up tagged resources"
-msgstr ""
-
-msgid "Cleanup"
-msgstr "Nettoyage"
-
-msgid "Clear state"
-msgstr "Effacer l'état"
-
-msgid "Cleared the node state"
-msgstr "État du noeud effacé"
-
-msgid "Clone"
-msgstr "Clone"
-
-msgid "Clone ID"
-msgstr "ID du clone"
-
-msgid "Clone ID is required"
-msgstr "L'ID de clone est requis."
-
-msgid "Clone created successfully"
-msgstr "Le clone a été créé avec succès."
-
-msgid "Clone deleted successfully"
-msgstr "Clone supprimé avec succès"
-
-msgid "Clone updated successfully"
-msgstr "Le clone a été mis à jour avec succès."
-
-msgid "Clones"
-msgstr "Clones"
-
-msgid "Close"
-msgstr "Fermer"
-
-msgid "Cluster Communication Stack"
-msgstr "Pile de communication de la grappe"
-
-msgid "Cluster Configuration"
-msgstr "Configuration de la grappe"
-
-msgid "Cluster Details"
-msgstr "Détails de la grappe"
-
-msgid "Cluster Graph"
-msgstr "Graphique de la grappe"
-
-msgid "Cluster added successfully."
-msgstr "Grappe ajoutée avec succès"
-
-msgid "Cluster name"
-msgstr "Nom de la grappe"
-
-msgid "Cluster removed successfully."
-msgstr "Grappe supprimée avec succès"
-
-msgid "Cluster seems to be offline"
-msgstr "La grappe semble être hors ligne."
-
-msgid "Colocate resources by the given node attribute instead of by node name (the default)."
-msgstr "Effectuer une colocalisation des ressources en fonction de l'attribut de noeud donné au lieu du nom du noeud (par défaut)."
-
-msgid "Colocation"
-msgstr "Colocalisation"
-
-msgid "Colocation deleted successfully"
-msgstr "Colocation supprimée avec succès"
-
-msgid "Colocations"
-msgstr "Colocations"
-
-msgid "Command Log"
-msgstr "Journal de commande"
-
-msgid "Commit"
-msgstr "Appliquer"
-
-msgid "Complete"
-msgstr "Effectué"
-
-msgid "Conditions under which the resource can be started."
-msgstr "Conditions pour que la ressource puisse être démarrée."
-
-msgid "Configuration"
-msgstr "Configuration"
-
-msgid "Configuration updated successfully"
-msgstr "Configuration mise à jour avec succès"
-
-msgid "Connect"
-msgstr "Connecter"
-
-msgid "Connection to server aborted - will retry every 15 seconds."
-msgstr "Connexion au serveur abandonnée, nouvelle tentative toutes les 15 secondes."
-
-msgid "Connection to server failed (server down or network error - will retry every 15 seconds)."
-msgstr "Échec de la connexion au serveur (serveur arrêté ou erreur réseau, nouvelle tentative toutes les 15 secondes)."
-
-msgid "Connection to server failed - will retry every 15 seconds."
-msgstr "Echec de la connexion au serveur, nouvel essai toutes les 15 secondes."
-
-msgid "Connection to server timed out - will retry every 15 seconds."
-msgstr "Expiration du délai de connexion au serveur, nouvelle tentative toutes les 15 secondes."
-
-msgid "Connection to server timed out."
-msgstr "Timeout de la connexion au serveur."
-
-msgid "Connection to server was aborted."
-msgstr "Avortement de la connexion au serveur."
-
-msgid "Constraint ID"
-msgstr "ID de la contrainte"
-
-msgid "Constraint ID is required"
-msgstr "L'ID de la contrainte est requis."
-
-msgid "Constraint created successfully"
-msgstr "La contrainte a été créée avec succès."
-
-msgid "Constraint is too complex - it contains nested rules"
-msgstr "La contrainte est trop complexe car elle contient des règles imbriquées."
-
-msgid "Constraint must consist of at least one separate resources"
-msgstr "La contrainte doit contenir au moins deux ressources distinctes."
-
-msgid "Constraint must consist of at least two separate resources"
-msgstr "La contrainte doit contenir au moins deux ressources distinctes."
-
-msgid "Constraint updated successfully"
-msgstr "La contrainte a été mise à jour avec succès."
-
-msgid "Constraint:"
-msgstr "Contrainte :"
-
-msgid "Constraints"
-msgstr "Contraintes"
-
-msgid "Controls resource discovery for the specified resource on nodes covered by the constraint. always: Always perform resource discovery (default). never: Never perform resource discovery for the specified resource on this node. This option should generally be used with a -INFINITY score. exclusive: Only perform resource discovery for the specified resource on this node."
-msgstr "Contrôle le niveau de découverte pour la ressource spécifiée sur les noeuds affectés par la contrainte. always : effectue toujours la découverte des ressources (valeur par défaut). never : n'effectue jamais la découverte des ressources pour la ressource spécifiée sur ce noeud. Cette option doit généralement être utilisée avec un score -INFINITY. exclusive : n'effectue la découverte que pour la ressource spécifiée sur ce noeud."
-
-msgid "Copy"
-msgstr "Copier"
-
-msgid "Could not cancel report collection"
-msgstr "La collecte de rapport n'a pas pu être annulée."
-
-msgid "Create"
-msgstr "Créer"
-
-msgid "Create ACL Target"
-msgstr "Créer la cible ACL"
-
-msgid "Create Clone"
-msgstr "Créer un clone"
-
-msgid "Create Colocation"
-msgstr "Créer une colocation"
-
-msgid "Create Group"
-msgstr "Créer un groupe"
-
-msgid "Create Location"
-msgstr "Créer l'emplacement"
-
-msgid "Create Location Constraint"
-msgstr "Créer une contrainte de localisation"
-
-msgid "Create Multi-state"
-msgstr "Créer le multi-état"
-
-msgid "Create Multi-state resource"
-msgstr "Créer la ressource multi-état"
-
-msgid "Create Order"
-msgstr "Créer un ordre"
-
-msgid "Create Primitive"
-msgstr "Créer une primitive"
-
-msgid "Create Role"
-msgstr "Créer un rôle"
-
-msgid "Create Tag"
-msgstr "Créer une balise"
-
-msgid "Create Template"
-msgstr "Créer un modèle"
-
-msgid "Create Ticket"
-msgstr "Créer le ticket"
-
-msgid "Created"
-msgstr "Créé"
-
-msgid "Created a new shadow CIB for %USER%."
-msgstr "Un nouveau CIB shadow a été créé pour %USER%."
-
-msgid "Current Configuration Version"
-msgstr "Version de la configuration actuelle"
-
-msgid "Custom"
-msgstr "Personnaliser"
-
-msgid "DC"
-msgstr "CD"
-
-msgid "Dashboard"
-msgstr "Tableau de bord"
-
-msgid "Data collection in progress..."
-msgstr "Collecte de données en cours..."
-
-msgid "December"
-msgstr "Décembre"
-
-msgid "Default"
-msgstr "Par défaut"
-
-msgid "Define a monitor operation to instruct the cluster to ensure that the resource is still healthy."
-msgstr "Définissez une opération de surveillance pour demander à la grappe de veiller à ce que l'état de santé de la ressource soit toujours bon."
-
-msgid "Delete"
-msgstr "Effacer"
-
-msgid "Demote"
-msgstr "Rétrograder"
-
-msgid "Deny"
-msgstr "Refuser"
-
-msgid "Depth"
-msgstr "Profondeur"
-
-msgid "Designated Coordinator"
-msgstr "Coordinateur désigné"
-
-msgid "Details"
-msgstr "Détails"
-
-msgid "Diff"
-msgstr "Diff"
-
-#, fuzzy
-msgid "Disable Maintenance Mode"
-msgstr "Maintenance"
-
-msgid "Discard"
-msgstr "Rejeter"
-
-msgid "Do you really want to apply the current wizard?"
-msgstr "Voulez-vous vraiment appliquer l'assistant actuel ?"
-
-msgid "Do you really want to cancel the wizard setup?"
-msgstr "Voulez-vous vraiment annuler la configuration de l'assistant ?"
-
-msgid "Does each copy of the clone perform a different function?"
-msgstr "Chaque copie du clone remplit-elle une fonction différente ?"
-
-msgid "Download"
-msgstr "Télécharger"
-
-msgid "Each rule can contain a number of expressions. The results of the expressions are combined based on the rule's boolean operator."
-msgstr "Chaque règle contient un nombre d'expressions. Les résultats des expressions sont combinés en fonction de l'opérateur booléen de la règle."
-
-msgid "Edit"
-msgstr "Modifier"
-
-msgid "Edit ACL Target"
-msgstr "Modifier la cible ACL"
-
-msgid "Edit Clone"
-msgstr "Modifier le clone"
-
-msgid "Edit Colocation"
-msgstr "Modifier la colocation"
-
-msgid "Edit Configuration"
-msgstr "Modifier la configuration"
-
-msgid "Edit Group"
-msgstr "Modifier le groupe"
-
-msgid "Edit Location"
-msgstr "Modifier l'emplacement"
-
-msgid "Edit Location Constraint"
-msgstr "Modifier la contrainte de localisation"
-
-msgid "Edit Multi-state"
-msgstr "Modifier le multi-état"
-
-msgid "Edit Multi-state resource"
-msgstr "Modifier la ressource multi-état"
-
-msgid "Edit Node"
-msgstr "Éditer le noeud"
-
-msgid "Edit Order"
-msgstr "Modifier l'ordre"
-
-msgid "Edit Primitive"
-msgstr "Modifier la primitive"
-
-msgid "Edit Role"
-msgstr "Éditer le rôle"
-
-msgid "Edit Tag"
-msgstr "Modifier la balise"
-
-msgid "Edit Template"
-msgstr "Éditer le modèle"
-
-msgid "Edit Ticket"
-msgstr "Modifier le ticket"
-
-msgid "Elsewhere"
-msgstr "Ailleurs"
-
-msgid "Enable this step"
-msgstr "Activer cette étape"
-
-msgid "Epoch"
-msgstr "Période"
-
+#: ../app/assets/javascripts/dashboard.js:20
 msgid "Error"
 msgstr "Erreur"
 
-msgid "Error connecting to server."
-msgstr "Erreur lors de la connexion au serveur."
-
-msgid "Error deleting %s"
-msgstr "Erreur lors de la suppression de %s"
-
-msgid "Error deleting %s: %s"
-msgstr "Erreur lors de la suppression de %s: %s"
-
-msgid "Error granting the ticket"
-msgstr "Erreur lors de l'octroi du ticket"
-
-msgid "Error invoking %{cmd}"
-msgstr "Erreur lors de l'appel de %{cmd}"
-
-msgid "Error invoking %{cmd}: %{msg}"
-msgstr "Erreur lors de l'appel de %{cmd} : %{msg}"
-
-msgid "Error invoking cibadmin %{cmd}: %{msg}"
-msgstr "Erreur lors de l'appel de cibadmin %{cmd} : %{msg}"
-
-msgid "Error removing %s: %s"
-msgstr "Erreur lors de la suppression de %s: %s"
-
-msgid "Error removing cluster."
-msgstr "Erreur lors de la suppression de la grappe."
-
-msgid "Error revoking the ticket"
-msgstr "Erreur lors de la révocation du ticket"
-
-msgid "Error updating %{id} (rc=%{rc})"
-msgstr "Erreur lors de la mise à jour de %{id} (rc=%{rc})"
-
-msgid "Error:"
-msgstr "Erreur :"
-
-#, fuzzy
-msgid "Error: Not authenticated"
-msgstr "Erreur :"
-
-#, fuzzy
-msgid "Error: Permission denied for user (%s)"
-msgstr "Autorisation refusée"
-
-#, fuzzy
-msgid "Error: Record not found"
-msgstr "Erreur :"
-
-msgid "Errors"
-msgstr "Erreurs"
-
-msgid "Events"
-msgstr "Événements"
-
-msgid "Exec"
-msgstr "Exec"
-
-msgid "Expires"
-msgstr "Expire"
-
-msgid "Expression"
-msgstr "Expression"
-
-msgid "Failed Operations"
-msgstr "Opérations ayant échoué"
-
-msgid "Failed to apply configuration"
-msgstr "La configuration n'a pas pu être appliquée."
-
-msgid "Failed to clean up the resource: %{err}"
-msgstr "Echec lors du nettoyage de la ressource : %{err}"
-
-msgid "Failed to clear the node state: %{err}"
-msgstr "L'état du noeud n'a pas pu être effacé : %{err}"
-
-msgid "Failed to demote the resource: %{err}"
-msgstr "Echec lors de la rétrogradation de la ressource : %{err}"
-
-msgid "Failed to disable maintenance mode for resource: %{err}"
-msgstr ""
-
-msgid "Failed to fence the node: %{err}"
-msgstr "Le noeud n'a pas pu être délimité : %{err}"
-
-msgid "Failed to fetch meta attributes"
-msgstr "Echec lors de la récupération des attributs META"
-
-msgid "Failed to generate"
-msgstr "Echec lors de la génération"
-
-msgid "Failed to migrate the resource: %{err}"
-msgstr "Echec de la migration de la ressource : %{err}"
-
-msgid "Failed to parse monitor response - Internal server error."
-msgstr "La réponse du moniteur n'a pas pu être analysée. Erreur du serveur interne."
-
-msgid "Failed to promote the resource: %{err}"
-msgstr "Echec lors de la promotion de la ressource : %{err}"
-
-msgid "Failed to rename %{A} to %{B}: %{E}"
-msgstr "%{A} n'a pas pu être renommé %{B} : %{E}"
-
-msgid "Failed to set the node online: %{err}"
-msgstr "Le noeud n'a pas pu être défini en ligne : %{err}"
-
-msgid "Failed to set the node standby: %{err}"
-msgstr "Impossible de définir la mise en veille du noeud : %{err}"
-
-msgid "Failed to set the node state to maintenance: %{err}"
-msgstr "L'état du noeud n'a pas pu être défini sur Maintenance : %{err}"
-
-msgid "Failed to set the node state to ready: %{err}"
-msgstr "Impossible de définir l'état du noeud sur prêt : %{err}"
-
-#, fuzzy
-msgid "Failed to set the resource in maintenance mode: %{err}"
-msgstr "Echec lors de la configuration de la ressource en mode géré : %{err}"
-
-msgid "Failed to start the resource: %{err}"
-msgstr "Echec lors du démarrage de la ressource : %{err}"
-
-msgid "Failed to stop the resource: %{err}"
-msgstr "Echec lors de l'arrêt de la ressource : %{err}"
-
-msgid "Failed to unmigrate the resource: %{err}"
-msgstr "Echec lors de l'annulation de la migration de la ressource : %{err}"
-
-msgid "February"
-msgstr "Février"
-
-msgid "Fence"
-msgstr "Délimitation"
-
-msgid "File a Bug Report"
-msgstr ""
-
-msgid "Fr"
-msgstr "Ve"
-
-msgid "Freeze"
-msgstr "Figer"
-
-msgid "From"
-msgstr "De"
-
-msgid "Generate"
-msgstr "Générer"
-
-#, fuzzy
-msgid "Getting Started using Hawk"
-msgstr "Commencé"
-
-msgid "Grant"
-msgstr "Accorder"
-
-msgid "Granted"
-msgstr "Accordé"
-
-msgid "Graph"
-msgstr "Graphe"
-
-msgid "Group"
-msgstr "Groupe"
-
-msgid "Group ID"
-msgstr "ID du groupe"
-
-msgid "Group created successfully"
-msgstr "Le groupe a été créé avec succès."
-
-msgid "Group deleted successfully"
-msgstr "Groupe supprimé avec succès"
-
-msgid "Group updated successfully"
-msgstr "Le groupe a été mis à jour avec succès."
-
-msgid "Groups"
-msgstr "Groupes"
-
-msgid "HTML"
-msgstr "HTML"
-
-msgid "Have Quorum"
-msgstr "Avoir un quorum"
-
-msgid "Help"
-msgstr "Aide"
-
-msgid "High Availability Web Konsole"
-msgstr "Console Web haute disponibilité"
-
-msgid "History"
-msgstr "Historique"
-
-msgid "History Explorer"
-msgstr "Explorateur d'historique"
-
-msgid "Host"
-msgstr "Hôte"
-
-msgid "Hostname"
-msgstr "Nom de machine"
-
-msgid "Hostname of node in cluster"
-msgstr "Nom d'hôte du noeud dans la grappe"
-
-msgid "How frequently (in seconds) to perform the operation."
-msgstr "Fréquence d'exécution de l'opération (en secondes)."
-
-msgid "How long before a pending guest connection will time out."
-msgstr "Délai avant le timeout d'une connexion invité en attente."
-
-msgid "How long to wait before declaring the action has failed."
-msgstr "Délai avant de déclarer l'échec de l'opération."
-
-msgid "How many copies of the resource can be promoted to master status on a single node."
-msgstr "Nombre de copies de la ressource pouvant être promues à l'état de maître sur un noeud unique."
-
-msgid "How many copies of the resource can be promoted to master status."
-msgstr "Nombre de copies de la ressource pouvant être promues à l'état de maître."
-
-msgid "How many copies of the resource can be started on a single node. Defaults to 1."
-msgstr "Nombre de copies de la ressource pouvant être démarrées sur un nœud unique. 1 par défaut."
-
-msgid "How many copies of the resource to start. Defaults to the number of nodes in the cluster."
-msgstr "Nombre de copies de la ressource à démarrer. Défini par défaut sur le nombre de nœuds de la grappe."
-
-msgid "How many failures may occur for this resource on a node, before this node is marked ineligible to host this resource. A value of INFINITY indicates that this feature is disabled."
-msgstr "Nombre d'échecs acceptable pour cette ressource sur un nœud avant que ce dernier ne soit marqué comme inéligible pour héberger cette ressource. La valeur INFINITY indique que cette fonctionnalité est désactivée."
-
-msgid "How many seconds to wait before acting as if the failure had not occurred, and potentially allowing the resource back to the node on which it failed. A value of 0 indicates that this feature is disabled."
-msgstr "Délai en secondes avant d'agir comme si aucun échec ne s'était produit, et éventuellement permettre à la ressource de revenir sur le nœud sur lequel elle a échoué. Une valeur de 0 indique que la fonctionnalité est désactivée."
-
-msgid "How much does the resource prefer to stay where it is?"
-msgstr "Dans quelle mesure la ressource préfère-t-elle rester où elle est ?"
-
-msgid "How to combine the result of multiple expression objects. Allowed values are and and or."
-msgstr "Mode de combinaison du résultat de plusieurs objets Expression. Les valeurs autorisées sont and (et) et or (ou)."
-
-msgid "ID"
-msgstr "ID"
-
-msgid "ID is required"
-msgstr "Un ID est requis."
-
-msgid "If false, the operation is treated as if it does not exist."
-msgstr "Si la valeur est false, l'opération est traitée comme si elle n'existait pas."
-
-msgid "If not all resources can be active, the cluster will stop lower priority resources in order to keep higher priority ones active."
-msgstr "Si toutes les ressources ne peuvent pas être actives, la grappe arrête les ressources de priorité inférieure afin de garder actives celles de priorité supérieure."
-
-msgid "If true, the intention to perform the operation is recorded so that GUIs and CLI tools can indicate that an operation is in progress."
-msgstr "Si la valeur est true, l'intention d'effectuer l'opération est enregistrée de sorte que les IUG et les outils CLI puissent indiquer que l'opération est en cours."
-
-msgid "Inject"
-msgstr "Injecter"
-
-msgid "Inject Node Event"
-msgstr "Injecter l'événement de nœud"
-
-msgid "Inject Resource Event"
-msgstr "Injecter l'événement de ressource"
-
-msgid "Inject Ticket Event"
-msgstr "Injecter l'événement de ticket"
-
-msgid "Instances"
-msgstr "Instances"
-
-msgid "Interval"
-msgstr "Intervalle "
-
-msgid "Interval (ms)"
-msgstr "Intervalle (ms) "
-
-msgid "Invalid ACL target ID"
-msgstr "ID de cible ACL non valide"
-
-msgid "Invalid Clone ID"
-msgstr "ID de clone non valide"
-
-msgid "Invalid Constraint ID"
-msgstr "ID de contrainte non valide"
-
-msgid "Invalid ID"
-msgstr "ID non valide"
-
-msgid "Invalid Node ID"
-msgstr "ID de nœud non valide"
-
-msgid "Invalid Ticket ID"
-msgstr "ID de ticket non valide"
-
-msgid "Invalid name"
-msgstr "Nom non valide"
-
-msgid "Invalid node attribute"
-msgstr "Attribut de noeud non valide"
-
-msgid "Invalid resource discovery type"
-msgstr "Type de découverte de la ressource non valide"
-
-msgid "Invalid score \"%{score}\""
-msgstr "Score \"%{score}\" non valide"
-
-msgid "Invalid score value"
-msgstr "Valeur de score non valide"
-
-msgid "Invalid username"
-msgstr "Nom d'utilisateur non valide"
-
-msgid "Invalid username or password"
-msgstr "Nom d'utilisateur ou mot de passe non valide"
-
-msgid "Is the cluster allowed to start and stop the resource?"
-msgstr "La grappe est-elle autorisée à démarrer et arrêter la ressource ?"
-
-msgid "January"
-msgstr "Janvier"
-
-msgid "July"
-msgstr "Juillet"
-
-msgid "June"
-msgstr "Juin"
-
-msgid "Last Change"
-msgstr "Dernier changement"
-
-msgid "Last Granted"
-msgstr "Accordé pour la dernière fois"
-
-msgid "Last Written"
-msgstr "Dernière inscription"
-
-msgid "Leader"
-msgstr "Leader"
-
-msgid "Legacy Wizards"
-msgstr "Anciens assistants"
-
-msgid "Limits the rule to apply only when the resource is in the specified role."
-msgstr "Limite la règle pour qu'elle ne s'applique que lorsque la ressource se trouve dans le rôle spécifié."
-
-msgid "Link with entry above"
-msgstr "Lier à l'entrée au-dessus"
-
-msgid "List"
-msgstr "Lister"
-
-msgid "Lists crm commands recently executed by hawk, most recent first."
-msgstr "Liste les commandes CRM récemment éxécutées par Hawk, les plus récentes d'abord."
-
-msgid "Loading report..."
-msgstr "Chargement du rapport..."
-
-msgid "Local Status"
-msgstr "Etat local"
-
-msgid "Location"
-msgstr "Emplacement"
-
-msgid "Location Constraints"
-msgstr "Contraintes d'emplacement"
-
-msgid "Location deleted successfully"
-msgstr "Emplacement supprimé avec succès"
-
-msgid "Locations"
-msgstr "Emplacements"
-
-msgid "Log In"
-msgstr "Se connecter"
-
-msgid "Login"
-msgstr "Identifiant"
-
-msgid "Logout"
-msgstr "Déconnecter"
-
-msgid "Logs"
-msgstr "Journaux"
-
-msgid "Longdesc"
-msgstr "Longdesc"
-
-msgid "Loss Policy"
-msgstr "Stratégie relative aux pertes"
-
-msgid "Maintenance"
-msgstr "Maintenance"
-
-#, fuzzy
-msgid "Maintenance Mode"
-msgstr "Mode de maintenance"
-
-msgid "Maintenance mode"
-msgstr "Mode de maintenance"
-
-msgid "Manage"
-msgstr "Gérer"
-
-msgid "Mandatory"
-msgstr "Obligatoire"
-
-msgid "March"
-msgstr "Mars"
-
-msgid "Master"
-msgstr "Maître"
-
-msgid "May"
-msgstr "Mai"
-
-msgid "Menu"
-msgstr "Menu"
-
-msgid "Meta Attributes"
-msgstr "Attributs méta"
-
-msgid "Migrate"
-msgstr "Migrer"
-
-#, fuzzy
-msgid "Migrate tagged resources"
-msgstr "Migrer"
-
-msgid "Mo"
-msgstr "Lu"
-
-msgid "Monitor"
-msgstr "Surveiller"
-
-msgid "Move rule down"
-msgstr "Déplacer la règle vers le bas"
-
-msgid "Move rule up"
-msgstr "Déplacer la règle vers le haut"
-
-msgid "Multi-state"
-msgstr "Multi-état"
-
-msgid "Multi-state ID"
-msgstr "ID de multi-état"
-
-msgid "Multi-state Resources"
-msgstr "Ressources multi-état"
-
-msgid "Multi-state resource"
-msgstr "Ressource multi-état"
-
-msgid "Multi-state resource created successfully"
-msgstr "Ressource multi-état créée avec succès"
-
-msgid "Multi-state resource deleted successfully"
-msgstr "Ressource multi-état supprimée avec succès"
-
-msgid "Multi-state resource updated successfully"
-msgstr "Ressource multi-état mise à jour avec succès"
-
-msgid "Must be a valid resource ID"
-msgstr "Doit être un ID de ressource valide"
-
-msgid "Name"
-msgstr "Nom"
-
-msgid "Name is required"
-msgstr "Le nom est requis."
-
-msgid "Name of a node in the cluster."
-msgstr "Nom du noeud de la grappe."
-
-msgid "Name used to refer to the node in the cluster."
-msgstr "Nom utilisé pour faire référence au noeud dans la grappe."
-
-msgid "Never"
-msgstr "Jamais"
-
-msgid "News"
-msgstr ""
-
-msgid "Next"
-msgstr "Suivant"
-
-msgid "No"
-msgstr "Non"
-
-msgid "No Clone child specified"
-msgstr "Aucun enfant clone n'est spécifié."
-
-msgid "No Group children specified"
-msgstr "Aucun enfant du groupe n'est spécifié."
-
-msgid "No Multi-state child specified"
-msgstr "Aucun enfant multi-état n'est spécifié."
-
-msgid "No Tag resources specified"
-msgstr "Aucune ressource de balise n'est spécifiée."
-
-msgid "No attributes defined"
-msgstr "Aucun attribut n'est défini."
-
-msgid "No child resources"
-msgstr "Aucune ressource enfant"
-
-msgid "No children available"
-msgstr "Aucun enfant disponible"
-
-msgid "No configuration changes."
-msgstr "Aucune modification de la configuration."
-
-msgid "No details available"
-msgstr "Aucun détail n'est disponible."
-
-msgid "No expressions specified"
-msgstr "Aucune expression n'est spécifiée."
-
-msgid "No interval set for monitor operation"
-msgstr "Aucun intervalle défini pour l'opération de contrôle"
-
-msgid "No objects available"
-msgstr "Aucun objet n'est disponible."
-
-msgid "No resource specified"
-msgstr "Aucune ressource n'est spécifiée."
-
-msgid "No rules specified"
-msgstr "Aucune règle n'est spécifiée."
-
-msgid "No transitions in report"
-msgstr "Pas de transitions dans le rapport"
-
-msgid "No utilization defined"
-msgstr "Aucune utilisation n'est définie."
-
-msgid "Node"
-msgstr "Nœud"
-
-msgid "Node \"%{node}\" is UNCLEAN and needs to be fenced."
-msgstr "Le noeud \"%{node}\" n'est pas nettoyé et doit être délimité."
-
-msgid "Node Attribute"
-msgstr "Attribut du noeud"
-
-msgid "Node Event"
-msgstr "Événement de noeud"
-
-msgid "Node Events"
-msgstr "Evénements de noeud"
-
-msgid "Node ID"
-msgstr "ID de noeud"
-
-msgid "Node ID is required"
-msgstr "L'ID de noeud est requis."
-
-msgid "Node Name"
-msgstr "Nom du noeud"
-
-msgid "Node updated successfully"
-msgstr "Le noeud a été mis à jour."
-
-msgid "Nodes"
-msgstr "Nœuds"
-
-msgid "None"
-msgstr "Aucun"
-
-msgid "Not a constraint"
-msgstr "Pas une contrainte"
-
-msgid "Not a resource"
-msgstr "Pas une ressource"
-
-msgid "November"
-msgstr "Novembre"
-
-msgid "OK"
-msgstr "OK"
-
-msgid "Object Type"
-msgstr "Type d'objet"
-
-msgid "Object not found: %s=%s"
-msgstr "Objet introuvable : %s=%s"
-
-msgid "Objects"
-msgstr "Objets"
-
-msgid "October"
-msgstr "Octobre"
-
-msgid "Online Documentation"
-msgstr ""
-
-msgid "Operation"
-msgstr "Opération"
-
-msgid "Operation Defaults"
-msgstr "Valeurs par défaut d'opération"
-
-msgid "Operations"
-msgstr "Opérations"
-
-msgid "Operator"
-msgstr "Opérateur"
-
-msgid "Optional"
-msgstr "Optionnel"
-
-msgid "Options"
-msgstr "Options"
-
-msgid "Order"
-msgstr "Ordre"
-
-msgid "Order deleted successfully"
-msgstr "Ordre supprimé avec succès"
-
-msgid "Orders"
-msgstr "Ordres"
-
-msgid "PDF"
-msgstr "PDF"
-
-msgid "PE Name"
-msgstr "Nom PE"
-
-msgid "Pacemaker Version"
-msgstr "Version de Pacemaker"
-
-msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
-msgstr "Il semble que Pacemaker ne soit pas installé (%{cmd} introuvable)"
-
-msgid "Parameters"
-msgstr "Paramètres"
-
-#, fuzzy
-msgid "Partial upgrade detected! Nodes report different CRM versions: %s"
-msgstr "Nœuds"
-
-msgid "Partition without quorum! Fencing and resource management is disabled."
-msgstr ""
-
-msgid "Password"
-msgstr "Mot de passe"
-
-msgid "Password not specified"
-msgstr "Mot de passe non spécifié"
-
-msgid "Permission denied"
-msgstr "Autorisation refusée"
-
-msgid "Permission denied - you do not have write access to the CIB."
-msgstr "Autorisation refusée : vous ne possédez pas d'accès en écriture sur le CIB."
-
-msgid "Permission denied for user %{user}"
-msgstr "Autorisation refusée pour l'utilisateur %{user}"
-
-msgid "Permission denied. "
-msgstr "Autorisation refusée."
-
-msgid "Please ensure Javascript is enabled"
-msgstr "Assurez-vous que JavaScript est activé."
-
-msgid "Please wait while report is generated..."
-msgstr "Veuillez patienter pendant la génération du rapport."
-
-msgid "Please wait..."
-msgstr "Veuillez patienter..."
-
-msgid "Port to use for the guest connection to pacemaker_remote."
-msgstr "Port à utiliser pour la connexion invé à pacemaker_remote."
-
-msgid "Positive values indicate the resources should run on this node. Negative values indicate the resources should not run on this node. Values of +/- INFINITY change \"should\"/\"should not\" to \"must\"/\"must not\"."
-msgstr "Des valeurs positives indiquent que les ressources doivent être exécutées sur ce noeud. Des valeurs négatives indiquent que les ressources ne doivent pas être exécutées sur ce noeud. Les valeurs de +/- INFINITY, anciennement \"should\"/\"should not\" ont été modifiées en \"must\"/\"must not\"."
-
-msgid "Preferences"
-msgstr "Préférences"
-
-msgid "Preferences updated successfully"
-msgstr "Préférences mises à jour avec succès"
-
-msgid "Previous"
-msgstr ""
-
-msgid "Primary"
-msgstr "Primaire"
-
-msgid "Primitive"
-msgstr "Primitive"
-
-msgid "Primitive created successfully"
-msgstr "Primitive créée avec succès"
-
-msgid "Primitive deleted successfully"
-msgstr "Primitive supprimée avec succès"
-
-msgid "Primitive updated successfully"
-msgstr "Primitive mise à jour avec succès"
-
-msgid "Primitives"
-msgstr "Primitives"
-
-msgid "Profile"
-msgstr "Profil"
-
-msgid "Promote"
-msgstr "Promouvoir"
-
-msgid "Properties"
-msgstr "Propriétés"
-
-msgid "Provider"
-msgstr "Fournisseur"
-
-msgid "Puts the node into standby mode. The specified node is no longer able to host resources. Any resources currently active on the node will be moved to another node."
-msgstr "Met le noeud en mode veille. Le noeud spécifié ne peut plus héberger de ressources. Toutes les ressources actuellement actives sur le noeud seront déplacées vers un autre noeud."
-
-msgid "RC"
-msgstr "RC"
-
-msgid "Read"
-msgstr "Lecture"
-
-#, fuzzy
-msgid "Read the most up-to-date documentation at the suse.com website."
-msgstr "Lecture"
-
-#, fuzzy
-msgid "Read the release notes for the SUSE High Availability Extension."
-msgstr "Lecture"
-
-msgid "Reason"
-msgstr "Motif"
-
-msgid "Recent events"
-msgstr "Événements récents"
-
-msgid "Reference"
-msgstr "Référence"
-
-#, fuzzy
-msgid "Release Notes"
-msgstr "Non"
-
-msgid "Remote"
-msgstr "Distante"
-
-msgid "Remote node."
-msgstr "Noeud distant."
-
-msgid "Remove"
-msgstr "Supprimer"
-
-msgid "Remove cluster _NAME_ from dashboard?"
-msgstr "Supprimer la grappe _NAME_ du tableau de bord ?"
-
-msgid "Remove this rule"
-msgstr "Supprimer cette règle"
-
-msgid "Rename"
-msgstr "Renommer"
-
-#, fuzzy
-msgid "Rename Constraint"
-msgstr "Contrainte"
-
-msgid "Rename Resource"
-msgstr "Renommer la ressource"
-
-msgid "Replacing previously defined monitor operation with same interval"
-msgstr "Remplacement de l'opération de contrôle définie précédemment avec le même intervalle"
-
-msgid "Report a bug or request a feature!"
-msgstr ""
-
-msgid "Report deleted successfully"
-msgstr "Rapport supprimé avec succès"
-
-msgid "Report generation cancelled."
-msgstr "La création de rapport a été annulée."
-
-msgid "Report generation is complete."
-msgstr "La génération du rapport est terminée."
-
-msgid "Reports"
-msgstr "Rapports"
-
-msgid "Requested wizard does not exist"
-msgstr "L'assistant demandé n'existe pas."
-
-msgid "Required"
-msgstr "Requis"
-
-msgid "Resource"
-msgstr "Ressource"
-
-msgid "Resource Defaults"
-msgstr "Valeurs par défaut de ressource"
-
-msgid "Resource Discovery"
-msgstr "Découverte de la ressource"
-
-msgid "Resource Event"
-msgstr "Événement de ressources"
-
-msgid "Resource Events"
-msgstr "Evénements de ressources"
-
-msgid "Resource ID"
-msgstr "ID de la ressource"
-
-msgid "Resource agent name."
-msgstr "Nom de l'agent de la ressource."
-
-msgid "Resource template to inherit from."
-msgstr "Modèle de ressource utilisé pour l'héritage."
-
-msgid "Resources"
-msgstr "Ressources"
-
-#, fuzzy
-msgid "Resources in maintenance mode are not monitored by the cluster."
-msgstr "Ressources"
-
-msgid "Resources to apply the constraint to."
-msgstr "Ressources auxquelles appliquer la contrainte."
-
-msgid "Result"
-msgstr "Résultat"
-
-msgid "Retrying every 15 seconds..."
-msgstr "Nouvel essai toutes les 15 secondes..."
-
-msgid "Revert"
-msgstr "Rétablir"
-
-msgid "Revoke"
-msgstr "Révoquer"
-
-msgid "Revoked"
-msgstr "Révoqué"
-
-msgid "Right"
-msgstr "Droite"
-
-msgid "Role"
-msgstr "Rôle"
-
-msgid "Role ID"
-msgstr "ID de rôle"
-
-msgid "Role created successfully"
-msgstr "Le rôle a été créé avec succès."
-
-msgid "Role deleted successfully"
-msgstr "Rôle supprimé avec succès"
-
-msgid "Role updated successfully"
-msgstr "Le rôle a été mis à jour avec succès."
-
-msgid "Roles"
-msgstr "Rôles"
-
-msgid "Root password"
-msgstr "Mot de passe root"
-
-msgid "Rule"
-msgstr "Règle"
-
-msgid "STONITH is disabled. For normal cluster operation, STONITH is required."
-msgstr "STONITH est désactivé alors qu'il est requis pour le fonctionnement normal de la grappe."
-
-msgid "SUSE, LLC"
-msgstr "SUSE, LLC"
-
-msgid "Sa"
-msgstr "Sa"
-
-msgid "Schema"
-msgstr "Schéma"
-
-msgid "Score"
-msgstr "Score"
-
-msgid "Score is required"
-msgstr "Le score est requis."
-
-msgid "Secondary"
-msgstr "Secondaire"
-
-msgid "September"
-msgstr "Septembre"
-
-msgid "Serialize"
-msgstr "Mettre en série"
-
-msgid "Server port to connect to"
-msgstr "Port serveur auquel se connecter"
-
-msgid "Server returned invalid data."
-msgstr "Le serveur retourne des données incorrectes."
-
-msgid "Session has expired"
-msgstr "La session a expiré."
-
-msgid "Set the node state to maintenance"
-msgstr "Définir l'état du noeud sur maintenance"
-
-msgid "Set the node state to online"
-msgstr "Définir l'état du noeud sur en ligne"
-
-msgid "Set the node state to ready"
-msgstr "Définir l'état du noeud sur prêt"
-
-msgid "Set the node state to standby"
-msgstr "Définir l'état du noeud sur en veille"
-
-msgid "Set to true if the resource agent supports the migrate action"
-msgstr "Définir sur true si l'agent de la ressource prend en charge l'action de migration"
-
-msgid "Shortdesc"
-msgstr "Shortdesc"
-
-msgid "Should the copies be started in series (instead of in parallel)?"
-msgstr "Les copies doivent-elles être démarrées en série (et non en parallèle) ?"
-
-msgid "Show"
-msgstr "Afficher"
-
-msgid "Show Configuration"
-msgstr "Afficher la configuration"
-
-msgid "Simple"
-msgstr "Simple"
-
-msgid "Simulator"
-msgstr "Simulateur"
-
-msgid "Simulator active: Use the ticket controls in the simulator"
-msgstr "Simulateur actif : utiliser les commandes du ticket dans le simulateur"
-
-msgid "Sites"
-msgstr "Sites"
-
-msgid "Slave"
-msgstr "Esclave"
-
-msgid "Stack"
-msgstr "Pile"
-
-msgid "Standard which the resource agent conforms to."
-msgstr "Norme à laquelle l'agent de la ressource se conforme."
-
-msgid "Standby"
-msgstr "Veille"
-
-msgid "Start"
-msgstr "Début"
-
-msgid "Started"
-msgstr "Commencé"
-
-msgid "State"
-msgstr "État"
-
-msgid "Status"
-msgstr "État"
-
-msgid "Stop"
-msgstr "Arrêter"
-
-msgid "Stopped"
-msgstr "Interrompu"
-
-msgid "Su"
-msgstr "Di"
-
-msgid "Successfully cleaned the resource"
-msgstr "Ressource nettoyée avec succès"
-
-msgid "Successfully demoted the resource"
-msgstr "Ressource rétrogradée avec succès"
-
-#, fuzzy
-msgid "Successfully disabled maintenance mode for resource"
-msgstr "Di"
-
-msgid "Successfully fenced the node"
-msgstr "Le noeud a été délimité."
-
-msgid "Successfully granted the ticket"
-msgstr "Ticket accordé avec succès"
-
-msgid "Successfully migrated the resource"
-msgstr "Ressource migrée avec succès"
-
-msgid "Successfully promoted the resource"
-msgstr "Ressource promue avec succès"
-
-msgid "Successfully renamed %{A} to %{B}"
-msgstr "%{A} a été renommé %{B}."
-
-msgid "Successfully revoked the ticket"
-msgstr "Ticket révoqué avec succès"
-
-#, fuzzy
-msgid "Successfully set the resource in maintenance mode"
-msgstr "Ressource définie en mode géré avec succès"
-
-msgid "Successfully started the resource"
-msgstr "Ressource démarrée avec succès"
-
-msgid "Successfully stopped the resource"
-msgstr "Ressource arrêtée avec succès"
-
-msgid "Successfully unmigrated the resource"
-msgstr "Migration de la ressource annulée avec succès"
-
-msgid "Summary"
-msgstr "Résumé"
-
-msgid "Swap with entry above"
-msgstr "Permuter avec l'entrée au-dessus"
-
-msgid "Switch to maintenance"
-msgstr "Basculer vers le mode maintenance"
-
-msgid "Switch to online"
-msgstr "Basculer vers le mode en ligne"
-
-msgid "Switch to ready"
-msgstr "Basculer vers le mode prêt"
-
-msgid "Switch to standby"
-msgstr "Basculer vers le mode en veille"
-
-msgid "Symmetrical"
-msgstr "Symétrique"
-
-msgid "Tag"
-msgstr "Étiquette"
-
-msgid "Tag ID"
-msgstr "ID de balise"
-
-msgid "Tag created successfully"
-msgstr "Balise créée avec succès"
-
-msgid "Tag deleted successfully"
-msgstr "Balise supprimée avec succès"
-
-msgid "Tag updated successfully"
-msgstr "Balise mise à jour avec succès"
-
-msgid "Tags"
-msgstr "Balises"
-
-msgid "Target ID"
-msgstr "ID de la cible"
-
-msgid "Targets"
-msgstr "Cibles"
-
-msgid "Template"
-msgstr "Modèle"
-
-msgid "Template created successfully"
-msgstr "Le modèle a été créé."
-
-msgid "Template deleted successfully"
-msgstr "Modèle supprimé avec succès"
-
-msgid "Template updated successfully"
-msgstr "Le modèle a été mis à jour."
-
-msgid "Templates"
-msgstr "Modèles"
-
-msgid "Th"
-msgstr "Je"
-
-msgid "The ACL target does not exist"
-msgstr "La cible ACL n'existe pas."
-
-msgid "The ID \"%{id}\" does not exist"
-msgstr "L'ID \"%{id}\" n'existe pas."
-
-msgid "The ID \"%{id}\" is already in use"
-msgstr "L'ID \"%{id}\" est déjà utilisé."
-
-msgid "The IP address or hostname to connect to if remote-node's name is not the hostname of the guest."
-msgstr "L'adresse IP ou le nom d'hôte auquel se connecter si le nom de noeud distant n'est pas le nom d'hôte de l'invité."
-
-msgid "The action to take if this action ever fails."
-msgstr "Mesure à prendre si cette action échoue."
-
-msgid "The clone does not exist"
-msgstr "Le clone n'existe pas."
-
-msgid "The colocation constraint does not exist"
-msgstr "La contrainte de colocation n'existe pas."
-
-msgid "The group does not exist"
-msgstr "Ce groupe n'existe pas."
-
-msgid "The location constraint does not exist"
-msgstr "La contrainte d'emplacement n'existe pas."
-
-msgid "The multi-state resource does not exist"
-msgstr "Le ressource multi-état n'existe pas."
-
-msgid "The name of the remote-node this resource defines. This both enables the resource as a remote-node and defines the unique name used to identify the remote-node. If no other parameters are set, this value will also be assumed as the hostname to connect to at the port specified by remote-port. WARNING: This value cannot overlap with any resource or node IDs. If not specified, this feature is disabled."
-msgstr "Nom du noeud distant défini par cette ressource. Cela active la ressource en tant que noeud distant et définit le nom unique utilisé pour identifier le noeud distant. Si aucun autre paramètre n'est défini, cette valeur est aussi considérée comme étant le nom de l'hôte auquel se connecter au port spécifé par le port distant. Avertissement : cette valeur ne peut chevaucher aucun ID de ressource ou de noeud. Si aucune valeur n'est spécifiée, cette fonctionnalité est désactivée."
-
-msgid "The node does not exist"
-msgstr "Le nœud n'existe pas."
-
-msgid "The object/attribute does not exist (cibadmin %{cmd})"
-msgstr "L'objet/attribut n'existe pas (cibadmin %{cmd})."
-
-msgid "The order constraint does not exist"
-msgstr "La contrainte d'ordre n'existe pas."
-
-msgid "The primitive does not exist"
-msgstr "Le primitive n'existe pas."
-
-msgid "The report does not exist"
-msgstr "Le rapport n'existe pas."
-
-msgid "The role does not exist"
-msgstr "Le rôle n'existe pas."
-
-msgid "The score determines the location relationship between the resources."
-msgstr "Le score détermine la relation de l'emplacement entre les ressources."
-
-msgid "The tag does not exist"
-msgstr "La balise n'existe pas."
-
-msgid "The template does not exist"
-msgstr "Modèle inexistant"
-
-msgid "The ticket constraint does not exist"
-msgstr "La contrainte de ticket n'existe pas."
-
-msgid "This option only makes sense for recurring operations. It restricts the operation to a specific role. The truely paranoid can even specify role=Stopped which allows the cluster to detect an admin that manually started cluster services."
-msgstr "Cette option n'est pertinente que pour les opérations récurrentes. Elle limite l'opération à un rôle spécifique. Un technicien paranoïaque peut même spécifier role=Stopped afin que la grappe détecte un administrateur qui démarre manuellement des services de grappe."
-
-#, fuzzy
-msgid "This will demote the tagged resources. Do you want to continue?"
-msgstr "Je"
-
-#, fuzzy
-msgid "This will disable maintenance mode for the tagged resources. Do you want to continue?"
-msgstr "Je"
-
-#, fuzzy
-msgid "This will enable maintenance mode for the tagged resources. Do you want to continue?"
-msgstr "Je"
-
-#, fuzzy
-msgid "This will promote the tagged resources. Do you want to continue?"
-msgstr "Je"
-
-#, fuzzy
-msgid "This will start the tagged resources. Do you want to continue?"
-msgstr "Je"
-
-#, fuzzy
-msgid "This will stop the tagged resources. Do you want to continue?"
-msgstr "Je"
-
-#, fuzzy
-msgid "This will unmigrate the tagged resources. Do you want to continue?"
-msgstr "Je"
-
-msgid "This wizard takes no parameters."
-msgstr "Cet assistant n'utilise aucun paramètre."
-
-msgid "Ticket"
-msgstr "Ticket"
-
-msgid "Ticket Event"
-msgstr "Événement de ticket"
-
-msgid "Ticket ID"
-msgstr "ID de ticket"
-
-msgid "Ticket ID is required"
-msgstr "L'ID de ticket est requis."
-
-msgid "Ticket deleted successfully"
-msgstr "Ticket supprimé avec succès"
-
-msgid "Ticket:"
-msgstr "Ticket :"
-
-msgid "Tickets"
-msgstr "Tickets"
-
-msgid "Time"
-msgstr "Durée"
-
-msgid "Timeout"
-msgstr "Timeout"
-
-msgid "To"
-msgstr "A"
-
-msgid "To apply the changes, Hawk requires root access, and password-less SSH access must be configured. See the Hawk documentation for more information."
-msgstr "Pour appliquer les modifications, Hawk nécessite un accès root, et un accès SSH sans mot de passe doit être configuré. Pour plus d'informations, consultez la documentation Hawk."
-
-msgid "To enable ACLs, set \"enable-acl\" in the Cluster Configuration ('Manage > Configuration')"
-msgstr "Pour activer les ACL, définissez \"enable-acl\" dans la configuration de la grappe ('Gérer > Configuration')"
-
-msgid "Transition"
-msgstr "Transition"
-
-msgid "Transition (XML)"
-msgstr "Transition (XML)"
-
-msgid "Transition Graph"
-msgstr "Graphique de transition"
-
-msgid "Transitions"
-msgstr "Transitions"
-
-msgid "Tu"
-msgstr "Ma"
-
-msgid "Type"
-msgstr "Type"
-
-msgid "Unable to create shadow CIB"
-msgstr "Impossible de créer le CIB fantôme."
-
-msgid "Unable to create: %{msg}"
-msgstr "Impossible de créer %{msg}"
-
-msgid "Unable to execute %{cmd}"
-msgstr "Impossible d'exécuter %{cmd}"
-
-msgid "Unable to parse CIB file \"%{path}\""
-msgstr "Impossible d'analyser le fichier CIB \"%{path}\""
-
+#: ../app/assets/javascripts/dashboard.js:23
 msgid "Unexpected server error: _MSG_"
 msgstr "Erreur de serveur inattendue : _MSG_"
 
-msgid "Unique"
-msgstr "Unique"
+#: ../app/assets/javascripts/dashboard.js:26
+msgid "Connection to server failed (server down or network error - will retry every 15 seconds)."
+msgstr "Échec de la connexion au serveur (serveur arrêté ou erreur réseau, nouvelle tentative toutes les 15 secondes)."
 
-msgid "Unique identifier for the constraint. May not contain spaces."
-msgstr "Identificateur unique pour la contrainte. Ne peut pas contenir d'espaces."
+#: ../app/assets/javascripts/dashboard.js:29
+#: ../app/assets/javascripts/module/monitor.js:71
+msgid "Connection to server timed out - will retry every 15 seconds."
+msgstr "Expiration du délai de connexion au serveur, nouvelle tentative toutes les 15 secondes."
 
-msgid "Unique identifier for the node."
-msgstr "Identificateur unique pour le noeud."
+#: ../app/assets/javascripts/dashboard.js:32
+#: ../app/assets/javascripts/module/monitor.js:49
+msgid "Connection to server aborted - will retry every 15 seconds."
+msgstr "Connexion au serveur abandonnée, nouvelle tentative toutes les 15 secondes."
 
-msgid "Unique identifier for the resource. May not contain spaces."
-msgstr "Identificateur unique pour la ressource. Ne peut pas contenir d'espaces."
+#: ../app/assets/javascripts/dashboard.js:35
+msgid "Permission denied"
+msgstr "Autorisation refusée"
 
-msgid "Unknown"
-msgstr "Inconnu"
-
-msgid "Unknown error connecting to server."
-msgstr "Erreur inconnue lors de la connexion au serveur."
-
-msgid "Unlink from entry above"
-msgstr "Supprimer le lien avec l'entrée au-dessus"
-
-msgid "Unmanaged"
-msgstr "Non géré"
-
-msgid "Unmigrate"
-msgstr "Annuler la migration"
-
-msgid "Until"
-msgstr "jusqu'à"
-
-msgid "Update Origin"
-msgstr "Origine de la mise à jour"
-
-msgid "Update User"
-msgstr "Utilisateur ayant effectué la mise à jour"
-
-msgid "Upload"
-msgstr "Télécharger"
-
-msgid "Upload completed."
-msgstr "Téléchargement effectué."
-
-msgid "Use a wizard"
-msgstr "Utiliser un assistant"
-
-msgid "User ID"
-msgstr "ID utilisateur"
-
-msgid "Username"
-msgstr "Nom d'utilisateur"
-
-msgid "Username not specified"
-msgstr "Nom d'utilisateur non spécifié"
-
-msgid "Utilization"
-msgstr "Utilisation"
-
-msgid "Value contains both single and double quotes"
-msgstr "La valeur contient des guillemets simples et doubles."
-
-msgid "Vendor or project which provided the resource agent."
-msgstr "Fournisseur ou projet ayant fourni l'agent de la ressource."
-
-msgid "Verify"
-msgstr "Vérifier"
-
-msgid "Verify and apply"
-msgstr "Vérifier et appliquer"
-
-msgid "Verifying parameters..."
-msgstr "Vérification des paramètres..."
-
-msgid "Version"
-msgstr "Version"
-
-msgid "Visit the Hawk website for information about the latest release."
-msgstr ""
-
-msgid "We"
-msgstr "Me"
-
-msgid "Welcome"
-msgstr "Bienvenue"
-
-msgid "West Coast (example)"
-msgstr "Côte Ouest (exemple)"
-
-msgid "What conditions need to be satisfied before this action occurs."
-msgstr "Conditions à remplir pour l'exécution de cette action."
-
-msgid "What should the cluster do if it ever finds the resource active on more than one node?"
-msgstr "Que doit faire la grappe si elle découvre que la ressource est active sur plusieurs noeuds ?"
-
-msgid "What state should the cluster attempt to keep this resource in?"
-msgstr "Dans quel état la grappe doit-elle essayer de conserver cette ressource ?"
-
-msgid "When stopping or starting a copy of the clone, tell all the other copies beforehand and when the action was successful."
-msgstr "Lors de l'arrêt ou du démarrage d'une copie du clone, informez-en les autres copies au préalable ainsi que lorsque l'action a été effectuée avec succès."
-
-msgid "Wizard cannot be applied when the simulator is active"
-msgstr "L'assistant ne peut pas être appliqué lorsque le simulateur est actif."
-
-msgid "Wizards"
-msgstr "Assistants"
-
-msgid "Write"
-msgstr "Écriture"
-
-msgid "XML"
-msgstr "XML"
-
-msgid "XPath"
-msgstr "XPath"
-
-msgid "Yes"
-msgstr "Oui"
-
-msgid "You have been logged out"
-msgstr "Vous avez été délogué."
-
-msgid "You have no template feature support"
-msgstr "Vous ne disposez pas d'une assistance pour la fonctionnalité de modèle."
-
-msgid "Zoom in"
-msgstr ""
-
-msgid "Zoom out"
-msgstr ""
-
+#: ../app/assets/javascripts/dashboard.js:38
 msgid "_OP_ failed on _NODE_} (rc=_RC_, reason=_REASON_)"
 msgstr "_OP_ a échoué sur le noeud _NODE_} (rc=_RC_, Motif =_REASON_)"
 
-msgid "configuration error"
-msgstr "erreur de configuration"
+#: ../app/assets/javascripts/dashboard.js:211
+msgid "Permission denied. "
+msgstr "Autorisation refusée."
 
-msgid "failed (master)"
-msgstr "échec (maître)"
+#: ../app/assets/javascripts/dashboard.js:231
+msgid "Error connecting to server."
+msgstr "Erreur lors de la connexion au serveur."
 
-msgid "generic error"
-msgstr "erreur générique"
+#: ../app/assets/javascripts/dashboard.js:233
+msgid "Connection to server timed out."
+msgstr "Timeout de la connexion au serveur."
 
-msgid "incorrect arguments"
-msgstr "arguments incorrects"
+#: ../app/assets/javascripts/dashboard.js:235
+msgid "Connection to server was aborted."
+msgstr "Avortement de la connexion au serveur."
 
-msgid "installation error"
-msgstr "erreur d'installation"
+#: ../app/assets/javascripts/dashboard.js:237
+msgid "Server returned invalid data."
+msgstr "Le serveur retourne des données incorrectes."
 
-msgid "insufficient permissions"
-msgstr "permissions insuffisantes"
+#: ../app/assets/javascripts/dashboard.js:241
+msgid "Unknown error connecting to server."
+msgstr "Erreur inconnue lors de la connexion au serveur."
 
-msgid "is required"
-msgstr "est requis"
+#: ../app/assets/javascripts/dashboard.js:244
+msgid "Retrying every 15 seconds..."
+msgstr "Nouvel essai toutes les 15 secondes..."
 
+#: ../app/assets/javascripts/dashboard.js:266
+#: ../app/assets/javascripts/module/basics.js:182
+#: ../app/assets/javascripts/module/reports.js:168
+#: ../app/assets/javascripts/module/resources.js:42
+#: ../app/views/cib/apply.html.haml:43
+#: ../app/views/constraints/rename.html.haml:51
+#: ../app/views/reports/index.html.haml:59
+#: ../app/views/reports/show.html.haml:43
+#: ../app/views/resources/rename.html.haml:51
+#: ../app/views/shared/_simulator.html.haml:386
+#: ../app/views/shared/_simulator.html.haml:498
+#: ../app/views/shared/_simulator.html.haml:563
+#: ../app/views/wizards/create.html.haml:26
+#: ../app/views/wizards/show.html.haml:129
+#: ../app/views/wizards/update.html.haml:106
+msgid "Cancel"
+msgstr "Annuler"
+
+#: ../app/assets/javascripts/dashboard.js:436
+msgid "Hostname"
+msgstr "Nom de machine"
+
+#: ../app/assets/javascripts/dashboard.js:437
+#: ../app/views/sessions/new.html.haml:2
+msgid "Username"
+msgstr "Nom d'utilisateur"
+
+#: ../app/assets/javascripts/dashboard.js:438
+#: ../app/views/sessions/new.html.haml:4
+msgid "Password"
+msgstr "Mot de passe"
+
+#: ../app/assets/javascripts/dashboard.js:439
+msgid "Connect"
+msgstr "Connecter"
+
+#: ../app/assets/javascripts/dashboard.js:501
+msgid "Local Status"
+msgstr "Etat local"
+
+#: ../app/assets/javascripts/dashboard.js:521
+msgid "Remove cluster _NAME_ from dashboard?"
+msgstr "Supprimer la grappe _NAME_ du tableau de bord ?"
+
+#: ../app/assets/javascripts/dashboard.js:548
+msgid "Cluster removed successfully."
+msgstr "Grappe supprimée avec succès"
+
+#: ../app/assets/javascripts/dashboard.js:553
+msgid "Error removing cluster."
+msgstr "Erreur lors de la suppression de la grappe."
+
+#: ../app/assets/javascripts/dashboard.js:574
+msgid "Please wait..."
+msgstr "Veuillez patienter..."
+
+#: ../app/assets/javascripts/dashboard.js:584
+msgid "Cluster added successfully."
+msgstr "Grappe ajoutée avec succès"
+
+#: ../app/assets/javascripts/module/attrlist.js:21
+#: ../app/assets/javascripts/module/constraint.js:19
+#: ../app/assets/javascripts/module/location.js:16
+#: ../app/assets/javascripts/module/oplist.js:66
+#: ../app/assets/javascripts/module/wizattrlist.js:20
+#: ../app/helpers/form_helper.rb:23 ../app/helpers/role_helper.rb:31
+#: ../app/helpers/user_helper.rb:31 ../app/views/clones/edit.html.haml:13
+#: ../app/views/clones/index.html.haml:13
+#: ../app/views/colocations/edit.html.haml:13
+#: ../app/views/colocations/index.html.haml:13
+#: ../app/views/constraints/index.html.haml:13
+#: ../app/views/groups/edit.html.haml:13
+#: ../app/views/groups/index.html.haml:13
+#: ../app/views/locations/edit.html.haml:13
+#: ../app/views/locations/index.html.haml:13
+#: ../app/views/masters/edit.html.haml:13
+#: ../app/views/masters/index.html.haml:13
+#: ../app/views/orders/edit.html.haml:13
+#: ../app/views/orders/index.html.haml:13
+#: ../app/views/primitives/_form.html.haml:80
+#: ../app/views/primitives/index.html.haml:13
+#: ../app/views/resources/index.html.haml:13
+#: ../app/views/roles/index.html.haml:15 ../app/views/tags/edit.html.haml:13
+#: ../app/views/tags/index.html.haml:13 ../app/views/tickets/edit.html.haml:13
+#: ../app/views/tickets/index.html.haml:13
+#: ../app/views/users/index.html.haml:15
+msgid "Create"
+msgstr "Créer"
+
+#: ../app/assets/javascripts/module/attrlist.js:22
+#: ../app/assets/javascripts/module/constraint.js:20
+#: ../app/assets/javascripts/module/location.js:17
+#: ../app/assets/javascripts/module/oplist.js:68
+#: ../app/assets/javascripts/module/wizattrlist.js:21
+msgid "Remove"
+msgstr "Supprimer"
+
+#: ../app/assets/javascripts/module/attrlist.js:23
+#: ../app/assets/javascripts/module/oplist.js:69
+#: ../app/assets/javascripts/module/wizattrlist.js:22
+#: ../app/helpers/form_helper.rb:6 ../app/views/tickets/show.html.haml:52
+msgid "Yes"
+msgstr "Oui"
+
+#: ../app/assets/javascripts/module/attrlist.js:24
+#: ../app/assets/javascripts/module/oplist.js:70
+#: ../app/assets/javascripts/module/wizattrlist.js:23
+#: ../app/helpers/form_helper.rb:6 ../app/views/tickets/show.html.haml:55
+msgid "No"
+msgstr "Non"
+
+#: ../app/assets/javascripts/module/attrlist.js:156
+#: ../app/assets/javascripts/module/constraint.js:159
+#: ../app/assets/javascripts/module/forms.js:14
+#: ../app/assets/javascripts/module/location.js:183
+#: ../app/assets/javascripts/module/oplist.js:342
+#: ../app/assets/javascripts/module/profiles.js:23
+#: ../app/assets/javascripts/module/roles.js:179
+#: ../app/assets/javascripts/module/users.js:135
+#: ../app/assets/javascripts/module/wizattrlist.js:165
+#: ../app/helpers/crm_config_helper.rb:10 ../app/helpers/form_helper.rb:14
+#: ../app/helpers/profile_helper.rb:21 ../app/helpers/role_helper.rb:17
+#: ../app/helpers/user_helper.rb:17
+msgid "Any changes will be lost - do you wish to proceed?"
+msgstr "Toutes les modifications seront perdues. Voulez-vous continuer ?"
+
+#: ../app/assets/javascripts/module/basics.js:14 ../app/models/record.rb:11
+#: ../app/models/tag.rb:14
+msgid "Invalid ID"
+msgstr "ID non valide"
+
+#: ../app/assets/javascripts/module/basics.js:80
+#: ../app/assets/javascripts/module/basics.js:183
+#: ../app/assets/javascripts/module/resources.js:43
+#: ../app/views/shared/_simulator.html.haml:203
+#: ../app/views/shared/_simulator.html.haml:234
+#: ../app/views/shared/_simulator.html.haml:265
+#: ../app/views/shared/_simulator.html.haml:296
+#: ../app/views/shared/_simulator.html.haml:327
+#: ../app/views/shared/_simulator.html.haml:391
+#: ../app/views/shared/_simulator.html.haml:503
+#: ../app/views/shared/_simulator.html.haml:568
+msgid "OK"
+msgstr "OK"
+
+#: ../app/assets/javascripts/module/basics.js:82
+msgid "Maintenance mode"
+msgstr "Mode de maintenance"
+
+#: ../app/assets/javascripts/module/basics.js:84
+msgid "An error has occurred"
+msgstr "Une erreur s'est produite."
+
+#: ../app/assets/javascripts/module/basics.js:171
+#: ../app/assets/javascripts/module/resources.js:17
+#: ../app/views/agents/show.html.haml:134
+#: ../app/views/configs/meta.html.haml:12
+#: ../app/views/constraints/show.html.haml:32
+#: ../app/views/dashboards/add.html.haml:14
+#: ../app/views/nodes/events.html.haml:13
+#: ../app/views/nodes/events.html.haml:60 ../app/views/nodes/show.html.haml:13
+#: ../app/views/nodes/show.html.haml:138 ../app/views/pages/help.html.haml:13
+#: ../app/views/pages/help.html.haml:78
+#: ../app/views/resources/events.html.haml:13
+#: ../app/views/resources/events.html.haml:60
+#: ../app/views/resources/show.html.haml:346
+#: ../app/views/shared/_flash.html.haml:14
+#: ../app/views/shared/_simulator.html.haml:172
+#: ../app/views/simulator/help.html.haml:19
+#: ../app/views/tickets/show.html.haml:255
+msgid "Close"
+msgstr "Fermer"
+
+#: ../app/assets/javascripts/module/batch.js:42
+msgid "No configuration changes."
+msgstr "Aucune modification de la configuration."
+
+#: ../app/assets/javascripts/module/clones.js:27
+#: ../app/views/clones/_form.html.haml:10
+#: ../app/views/clones/_form.html.haml:15
+msgid "Clone ID"
+msgstr "ID du clone"
+
+#: ../app/assets/javascripts/module/clones.js:33
+#: ../app/assets/javascripts/module/colocations.js:33
+#: ../app/assets/javascripts/module/constraints.js:92
+#: ../app/assets/javascripts/module/groups.js:33
+#: ../app/assets/javascripts/module/locations.js:33
+#: ../app/assets/javascripts/module/masters.js:33
+#: ../app/assets/javascripts/module/nodes.js:202
+#: ../app/assets/javascripts/module/nodes.js:332
+#: ../app/assets/javascripts/module/orders.js:33
+#: ../app/assets/javascripts/module/primitives.js:75
+#: ../app/assets/javascripts/module/reports.js:303
+#: ../app/assets/javascripts/module/resources.js:283
+#: ../app/assets/javascripts/module/resources.js:704
+#: ../app/assets/javascripts/module/roles.js:33
+#: ../app/assets/javascripts/module/tags.js:44
+#: ../app/assets/javascripts/module/tickets.js:39
+#: ../app/assets/javascripts/module/tickets.js:232
+#: ../app/assets/javascripts/module/users.js:33
+#: ../app/views/cib/show.html.haml:114
+#: ../app/views/primitives/_form.html.haml:159
+#: ../app/views/resources/show.html.haml:171
+msgid "Operations"
+msgstr "Opérations"
+
+#: ../app/assets/javascripts/module/clones.js:95
+#: ../app/assets/javascripts/module/colocations.js:97
+#: ../app/assets/javascripts/module/constraints.js:215
+#: ../app/assets/javascripts/module/groups.js:95
+#: ../app/assets/javascripts/module/locations.js:95
+#: ../app/assets/javascripts/module/masters.js:95
+#: ../app/assets/javascripts/module/nodes.js:253
+#: ../app/assets/javascripts/module/nodes.js:347
+#: ../app/assets/javascripts/module/oplist.js:67
+#: ../app/assets/javascripts/module/orders.js:95
+#: ../app/assets/javascripts/module/primitives.js:138
+#: ../app/assets/javascripts/module/resources.js:399
+#: ../app/assets/javascripts/module/resources.js:726
+#: ../app/assets/javascripts/module/roles.js:95
+#: ../app/assets/javascripts/module/tags.js:108
+#: ../app/assets/javascripts/module/tickets.js:67
+#: ../app/assets/javascripts/module/users.js:95
+#: ../app/views/cib/show.html.haml:127 ../app/views/configs/show.html.haml:13
+#: ../app/views/graphs/show.html.haml:11
+msgid "Edit"
+msgstr "Modifier"
+
+#: ../app/assets/javascripts/module/clones.js:108
+#: ../app/assets/javascripts/module/colocations.js:110
+#: ../app/assets/javascripts/module/constraints.js:235
+#: ../app/assets/javascripts/module/groups.js:108
+#: ../app/assets/javascripts/module/locations.js:108
+#: ../app/assets/javascripts/module/masters.js:108
+#: ../app/assets/javascripts/module/orders.js:108
+#: ../app/assets/javascripts/module/primitives.js:151
+#: ../app/assets/javascripts/module/reports.js:383
+#: ../app/assets/javascripts/module/resources.js:746
+#: ../app/assets/javascripts/module/roles.js:108
+#: ../app/assets/javascripts/module/tags.js:131
+#: ../app/assets/javascripts/module/tickets.js:77
+#: ../app/assets/javascripts/module/users.js:108
+#: ../app/views/clones/edit.html.haml:17
+#: ../app/views/colocations/edit.html.haml:17
+#: ../app/views/groups/edit.html.haml:17
+#: ../app/views/locations/edit.html.haml:17
+#: ../app/views/masters/edit.html.haml:17
+#: ../app/views/orders/edit.html.haml:17
+#: ../app/views/primitives/edit.html.haml:17
+#: ../app/views/reports/display.html.haml:36
+#: ../app/views/roles/edit.html.haml:13 ../app/views/tags/edit.html.haml:17
+#: ../app/views/tickets/edit.html.haml:17 ../app/views/users/edit.html.haml:13
+msgid "Delete"
+msgstr "Effacer"
+
+#: ../app/assets/javascripts/module/colocations.js:27
+#: ../app/assets/javascripts/module/locations.js:27
+#: ../app/assets/javascripts/module/orders.js:27
+#: ../app/models/constraint.rb:48 ../app/views/colocations/_form.html.haml:10
+#: ../app/views/colocations/_form.html.haml:13
+#: ../app/views/locations/_form.html.haml:10
+#: ../app/views/locations/_form.html.haml:13
+#: ../app/views/orders/_form.html.haml:10
+#: ../app/views/orders/_form.html.haml:13
+#: ../app/views/tickets/_form.html.haml:10
+#: ../app/views/tickets/_form.html.haml:13
+msgid "Constraint ID"
+msgstr "ID de la contrainte"
+
+#: ../app/assets/javascripts/module/constraint.js:22
+msgid "Swap with entry above"
+msgstr "Permuter avec l'entrée au-dessus"
+
+#: ../app/assets/javascripts/module/constraint.js:23
+msgid "Link with entry above"
+msgstr "Lier à l'entrée au-dessus"
+
+#: ../app/assets/javascripts/module/constraint.js:24
+msgid "Unlink from entry above"
+msgstr "Supprimer le lien avec l'entrée au-dessus"
+
+#: ../app/assets/javascripts/module/constraints.js:56
+#: ../app/assets/javascripts/module/nodes.js:89
+#: ../app/assets/javascripts/module/nodes.js:319
+#: ../app/assets/javascripts/module/reports.js:269
+#: ../app/assets/javascripts/module/resources.js:229
+#: ../app/assets/javascripts/module/resources.js:645
+#: ../app/assets/javascripts/module/tags.js:28
+#: ../app/views/agents/show.html.haml:50
+#: ../app/views/agents/show.html.haml:101
+#: ../app/views/nodes/_form.html.haml:11
+#: ../app/views/reports/display.html.haml:42
+#: ../app/views/resources/show.html.haml:187
+msgid "Name"
+msgstr "Nom"
+
+#: ../app/assets/javascripts/module/constraints.js:63
+#: ../app/assets/javascripts/module/resources.js:257
+#: ../app/assets/javascripts/module/resources.js:652
+#: ../app/models/template.rb:406 ../app/views/primitives/_form.html.haml:25
+#: ../app/views/primitives/_form.html.haml:47
+#: ../app/views/resources/show.html.haml:317
+msgid "Type"
+msgstr "Type"
+
+#: ../app/assets/javascripts/module/constraints.js:70
+#: ../app/assets/javascripts/module/resources.js:236
+#: ../app/views/constraints/types.html.haml:32
+msgid "Location"
+msgstr "Emplacement"
+
+#: ../app/assets/javascripts/module/constraints.js:72
+#: ../app/views/constraints/types.html.haml:41
+msgid "Colocation"
+msgstr "Colocalisation"
+
+#: ../app/assets/javascripts/module/constraints.js:74
+#: ../app/views/constraints/types.html.haml:50
+msgid "Order"
+msgstr "Ordre"
+
+#: ../app/assets/javascripts/module/constraints.js:76
+#: ../app/assets/javascripts/module/tickets.js:33
+#: ../app/assets/javascripts/module/tickets.js:157
+#: ../app/views/constraints/types.html.haml:59
+#: ../app/views/shared/_simulator.html.haml:528
+msgid "Ticket"
+msgstr "Ticket"
+
+#: ../app/assets/javascripts/module/constraints.js:83
+#: ../app/controllers/resources_controller.rb:211
+#: ../app/models/location.rb:223 ../app/views/cib/show.html.haml:48
+#: ../app/views/colocations/_form.html.haml:52
+#: ../app/views/configs/edit.html.haml:36
+#: ../app/views/orders/_form.html.haml:57
+#: ../app/views/resources/index.html.haml:7
+#: ../app/views/tickets/_form.html.haml:25
+msgid "Resources"
+msgstr "Ressources"
+
+#: ../app/assets/javascripts/module/constraints.js:225
+#: ../app/assets/javascripts/module/resources.js:736
+#: ../app/assets/javascripts/module/tags.js:118
+#: ../app/views/clones/edit.html.haml:15
+#: ../app/views/colocations/edit.html.haml:15
+#: ../app/views/constraints/rename.html.haml:23
+#: ../app/views/constraints/rename.html.haml:56
+#: ../app/views/groups/edit.html.haml:15
+#: ../app/views/locations/edit.html.haml:15
+#: ../app/views/masters/edit.html.haml:15
+#: ../app/views/orders/edit.html.haml:15
+#: ../app/views/primitives/edit.html.haml:15
+#: ../app/views/resources/rename.html.haml:23
+#: ../app/views/resources/rename.html.haml:56
+#: ../app/views/tags/edit.html.haml:15 ../app/views/tickets/edit.html.haml:15
+msgid "Rename"
+msgstr "Renommer"
+
+#: ../app/assets/javascripts/module/groups.js:27
+#: ../app/views/groups/_form.html.haml:10
+#: ../app/views/groups/_form.html.haml:15
+msgid "Group ID"
+msgstr "ID du groupe"
+
+#: ../app/assets/javascripts/module/location.js:23
+#: ../app/views/roles/_form.html.haml:22
+msgid "Rule"
+msgstr "Règle"
+
+#: ../app/assets/javascripts/module/location.js:33
+#: ../app/models/colocation.rb:180 ../app/models/location.rb:229
+#: ../app/views/colocations/_form.html.haml:18
+#: ../app/views/locations/_form.html.haml:53
+#: ../app/views/orders/_form.html.haml:18
+#: ../app/views/resources/show.html.haml:319
+msgid "Score"
+msgstr "Score"
+
+#: ../app/assets/javascripts/module/location.js:41
+#: ../app/models/location.rb:248
+msgid "Role"
+msgstr "Rôle"
+
+#: ../app/assets/javascripts/module/location.js:54
+msgid "Boolean Operator"
+msgstr "Opérateur booléen"
+
+#: ../app/assets/javascripts/module/masters.js:27
+#: ../app/views/masters/_form.html.haml:10
+#: ../app/views/masters/_form.html.haml:15
+msgid "Multi-state ID"
+msgstr "ID de multi-état"
+
+#: ../app/assets/javascripts/module/monitor.js:64
+msgid "Failed to parse monitor response - Internal server error."
+msgstr "La réponse du moniteur n'a pas pu être analysée. Erreur interne du serveur."
+
+#: ../app/assets/javascripts/module/monitor.js:68
+#: ../app/assets/javascripts/module/status.js:133
+msgid "Connection to server failed - will retry every 15 seconds."
+msgstr "Echec de la connexion au serveur, nouvel essai toutes les 15 secondes."
+
+#: ../app/assets/javascripts/module/nodes.js:43
+#: ../app/assets/javascripts/module/resources.js:190
+#: ../app/assets/javascripts/module/tickets.js:128
+#: ../app/controllers/cib_controller.rb:108
+#: ../app/helpers/application_helper.rb:238
+#: ../app/views/resources/show.html.haml:272
+#: ../app/views/shared/_mainnav.html.haml:17
+msgid "Status"
+msgstr "État"
+
+#: ../app/assets/javascripts/module/nodes.js:78
+msgid "Remote"
+msgstr "Distante"
+
+#: ../app/assets/javascripts/module/nodes.js:95
+#: ../app/assets/javascripts/module/resources.js:373
+msgid "Maintenance"
+msgstr "Maintenance"
+
+#: ../app/assets/javascripts/module/nodes.js:127
+msgid "Switch to ready"
+msgstr "Basculer vers le mode prêt"
+
+#: ../app/assets/javascripts/module/nodes.js:140
+msgid "Switch to maintenance"
+msgstr "Basculer vers le mode maintenance"
+
+#: ../app/assets/javascripts/module/nodes.js:149
+msgid "Standby"
+msgstr "Veille"
+
+#: ../app/assets/javascripts/module/nodes.js:180
+msgid "Switch to online"
+msgstr "Basculer vers le mode en ligne"
+
+#: ../app/assets/javascripts/module/nodes.js:193
+msgid "Switch to standby"
+msgstr "Basculer vers le mode en veille"
+
+#: ../app/assets/javascripts/module/nodes.js:248
+#: ../app/helpers/ticket_helper.rb:10
+msgid "Fence"
+msgstr "Délimitation"
+
+#: ../app/assets/javascripts/module/nodes.js:249
+msgid "Clear state"
+msgstr "Effacer l'état"
+
+#: ../app/assets/javascripts/module/nodes.js:272
+msgid "Events"
+msgstr "Événements"
+
+#: ../app/assets/javascripts/module/nodes.js:282
+#: ../app/assets/javascripts/module/resources.js:416
+#: ../app/assets/javascripts/module/statusmatrix.js:88
+#: ../app/assets/javascripts/module/tickets.js:271
+#: ../app/views/reports/display.html.haml:190
+msgid "Details"
+msgstr "Détails"
+
+#: ../app/assets/javascripts/module/nodes.js:326
+#: ../app/assets/javascripts/module/tickets.js:27
+#: ../app/views/nodes/_form.html.haml:9 ../app/views/nodes/show.html.haml:48
+#: ../app/views/resources/show.html.haml:315
+msgid "ID"
+msgstr "ID"
+
+#: ../app/assets/javascripts/module/oplist.js:71
+#: ../app/helpers/form_helper.rb:27
+msgid "Add"
+msgstr "Ajouter"
+
+#: ../app/assets/javascripts/module/oplist.js:72
+#: ../app/assets/javascripts/module/reports.js:167
+#: ../app/helpers/crm_config_helper.rb:16 ../app/helpers/form_helper.rb:19
+#: ../app/helpers/profile_helper.rb:27 ../app/helpers/role_helper.rb:23
+#: ../app/helpers/user_helper.rb:23 ../app/views/cib/apply.html.haml:46
+#: ../app/views/primitives/_form.html.haml:85
+#: ../app/views/shared/_simulator.html.haml:22
+#: ../app/views/wizards/create.html.haml:30
+#: ../app/views/wizards/update.html.haml:112
+msgid "Apply"
+msgstr "Appliquer"
+
+#: ../app/assets/javascripts/module/oplist.js:281
+msgid "No interval set for monitor operation"
+msgstr "Aucun intervalle défini pour l'opération de contrôle"
+
+#: ../app/assets/javascripts/module/oplist.js:327
+msgid "Replacing previously defined monitor operation with same interval"
+msgstr "Remplacement de l'opération de contrôle définie précédemment avec le même intervalle"
+
+#: ../app/assets/javascripts/module/primitives.js:69
+#: ../app/models/resource.rb:124 ../app/views/primitives/_form.html.haml:14
+#: ../app/views/primitives/_form.html.haml:28
+msgid "Resource ID"
+msgstr "ID de la ressource"
+
+#: ../app/assets/javascripts/module/primitives.js:323
+msgid "Failed to fetch meta attributes"
+msgstr "Echec lors de la récupération des attributs META"
+
+#: ../app/assets/javascripts/module/reports.js:30
+msgid "Report generation is complete."
+msgstr "La génération du rapport est terminée."
+
+#: ../app/assets/javascripts/module/reports.js:47
+msgid "Report generation cancelled."
+msgstr "La création de rapport a été annulée."
+
+#: ../app/assets/javascripts/module/reports.js:169
+#: ../app/assets/javascripts/module/reports.js:281
+#: ../app/views/reports/display.html.haml:51
+#: ../app/views/reports/display.html.haml:60
+#: ../app/views/reports/display.html.haml:69
+#: ../app/views/reports/index.html.haml:29
+msgid "From"
+msgstr "De"
+
+#: ../app/assets/javascripts/module/reports.js:170
+#: ../app/assets/javascripts/module/reports.js:294
+msgid "Until"
+msgstr "jusqu'à"
+
+#: ../app/assets/javascripts/module/reports.js:171
+msgid "Custom"
+msgstr "Personnaliser"
+
+#: ../app/assets/javascripts/module/reports.js:173
+msgid "Su"
+msgstr "Di"
+
+#: ../app/assets/javascripts/module/reports.js:174
+msgid "Mo"
+msgstr "Lu"
+
+#: ../app/assets/javascripts/module/reports.js:175
+msgid "Tu"
+msgstr "Ma"
+
+#: ../app/assets/javascripts/module/reports.js:176
+msgid "We"
+msgstr "Me"
+
+#: ../app/assets/javascripts/module/reports.js:177
+msgid "Th"
+msgstr "Je"
+
+#: ../app/assets/javascripts/module/reports.js:178
+msgid "Fr"
+msgstr "Ve"
+
+#: ../app/assets/javascripts/module/reports.js:179
+msgid "Sa"
+msgstr "Sa"
+
+#: ../app/assets/javascripts/module/reports.js:182
+msgid "January"
+msgstr "Janvier"
+
+#: ../app/assets/javascripts/module/reports.js:183
+msgid "February"
+msgstr "Février"
+
+#: ../app/assets/javascripts/module/reports.js:184
+msgid "March"
+msgstr "Mars"
+
+#: ../app/assets/javascripts/module/reports.js:185
+msgid "April"
+msgstr "Avril"
+
+#: ../app/assets/javascripts/module/reports.js:186
+msgid "May"
+msgstr "Mai"
+
+#: ../app/assets/javascripts/module/reports.js:187
+msgid "June"
+msgstr "Juin"
+
+#: ../app/assets/javascripts/module/reports.js:188
+msgid "July"
+msgstr "Juillet"
+
+#: ../app/assets/javascripts/module/reports.js:189
+msgid "August"
+msgstr "Août"
+
+#: ../app/assets/javascripts/module/reports.js:190
+msgid "September"
+msgstr "Septembre"
+
+#: ../app/assets/javascripts/module/reports.js:191
+msgid "October"
+msgstr "Octobre"
+
+#: ../app/assets/javascripts/module/reports.js:192
+msgid "November"
+msgstr "Novembre"
+
+#: ../app/assets/javascripts/module/reports.js:193
+msgid "December"
+msgstr "Décembre"
+
+#: ../app/assets/javascripts/module/reports.js:277
+#: ../app/assets/javascripts/module/reports.js:361
+#: ../app/views/configs/edit.html.haml:13
+#: ../app/views/configs/show.html.haml:16
+#: ../app/views/graphs/show.html.haml:13
+#: ../app/views/reports/display.html.haml:32
+#: ../app/views/shared/_simulator.html.haml:12
+msgid "Show"
+msgstr "Afficher"
+
+#: ../app/assets/javascripts/module/reports.js:371
+#: ../app/views/reports/display.html.haml:34
+msgid "Download"
+msgstr "Télécharger"
+
+#: ../app/assets/javascripts/module/reports.js:417
+#: ../app/views/reports/display.html.haml:169
+msgid "Time"
+msgstr "Durée"
+
+#: ../app/assets/javascripts/module/reports.js:419
+#: ../app/models/location.rb:235 ../app/views/locations/_form.html.haml:86
+#: ../app/views/reports/display.html.haml:165
+#: ../app/views/resources/events.html.haml:35
+#: ../app/views/resources/show.html.haml:266
+#: ../app/views/shared/_simulator.html.haml:351
+#: ../app/views/shared/_simulator.html.haml:463
+msgid "Node"
+msgstr "Nœud"
+
+#: ../app/assets/javascripts/module/resources.js:200
+msgid "Maintenance Mode"
+msgstr ""
+
+#: ../app/assets/javascripts/module/resources.js:203
+msgid "Unmanaged"
+msgstr "Non géré"
+
+#: ../app/assets/javascripts/module/resources.js:206
+#: ../app/helpers/colocation_helper.rb:7 ../app/helpers/ticket_helper.rb:19
+msgid "Started"
+msgstr "Commencé"
+
+#: ../app/assets/javascripts/module/resources.js:209
+msgid "Primary"
+msgstr "Primaire"
+
+#: ../app/assets/javascripts/module/resources.js:212
+msgid "Secondary"
+msgstr "Secondaire"
+
+#: ../app/assets/javascripts/module/resources.js:215
+#: ../app/helpers/colocation_helper.rb:10 ../app/helpers/ticket_helper.rb:22
+msgid "Stopped"
+msgstr "Interrompu"
+
+#: ../app/assets/javascripts/module/resources.js:263
+#: ../app/assets/javascripts/module/resources.js:658
+#: ../app/views/resources/types.html.haml:41
+msgid "Group"
+msgstr "Groupe"
+
+#: ../app/assets/javascripts/module/resources.js:265
+#: ../app/assets/javascripts/module/resources.js:660
+#: ../app/views/resources/types.html.haml:59
+msgid "Multi-state"
+msgstr "Multi-état"
+
+#: ../app/assets/javascripts/module/resources.js:268
+#: ../app/assets/javascripts/module/resources.js:270
+#: ../app/assets/javascripts/module/resources.js:662
+#: ../app/views/resources/types.html.haml:50
+msgid "Clone"
+msgstr "Clone"
+
+#: ../app/assets/javascripts/module/resources.js:273
+#: ../app/assets/javascripts/module/resources.js:664
+#: ../app/views/resources/types.html.haml:68
+msgid "Tag"
+msgstr "Étiquette"
+
+#: ../app/assets/javascripts/module/resources.js:318
+#: ../app/assets/javascripts/module/resources.js:805
+msgid "Away from current node"
+msgstr "Loin du nœud actuel"
+
+#: ../app/assets/javascripts/module/resources.js:328
+#: ../app/assets/javascripts/module/resources.js:813
+msgid "Clean up on all nodes"
+msgstr "Effacer sur tous les noeuds"
+
+#: ../app/assets/javascripts/module/resources.js:357
+#: ../app/helpers/order_helper.rb:10 ../app/helpers/ticket_helper.rb:8
+#: ../app/models/template.rb:418 ../app/views/cib/show.html.haml:123
+msgid "Stop"
+msgstr "Arrêter"
+
+#: ../app/assets/javascripts/module/resources.js:361
+#: ../app/helpers/order_helper.rb:7 ../app/models/template.rb:412
+#: ../app/views/cib/show.html.haml:121
+msgid "Start"
+msgstr "Début"
+
+#: ../app/assets/javascripts/module/resources.js:365
+#: ../app/helpers/order_helper.rb:9 ../app/helpers/ticket_helper.rb:9
+msgid "Demote"
+msgstr "Rétrograder"
+
+#: ../app/assets/javascripts/module/resources.js:369
+#: ../app/helpers/order_helper.rb:8
+msgid "Promote"
+msgstr "Promouvoir"
+
+#: ../app/assets/javascripts/module/resources.js:375
+msgid "Disable Maintenance Mode"
+msgstr ""
+
+#: ../app/assets/javascripts/module/resources.js:380
+msgid "Migrate"
+msgstr "Migrer"
+
+#: ../app/assets/javascripts/module/resources.js:382
+msgid "Unmigrate"
+msgstr "Annuler la migration"
+
+#: ../app/assets/javascripts/module/resources.js:384
+msgid "Cleanup"
+msgstr "Nettoyage"
+
+#: ../app/assets/javascripts/module/resources.js:393
+msgid "Recent events"
+msgstr "Événements récents"
+
+#: ../app/assets/javascripts/module/resources.js:479
+msgid "No child resources"
+msgstr "Aucune ressource enfant"
+
+#: ../app/assets/javascripts/module/resources.js:687
+#: ../app/views/groups/_form.html.haml:24
+#: ../app/views/resources/show.html.haml:43
+msgid "Children"
+msgstr "Enfants"
+
+#: ../app/assets/javascripts/module/resources.js:785
+msgid "This will start the tagged resources. Do you want to continue?"
+msgstr ""
+
+#: ../app/assets/javascripts/module/resources.js:788
+msgid "This will stop the tagged resources. Do you want to continue?"
+msgstr ""
+
+#: ../app/assets/javascripts/module/resources.js:791
+msgid "This will promote the tagged resources. Do you want to continue?"
+msgstr ""
+
+#: ../app/assets/javascripts/module/resources.js:794
+msgid "This will demote the tagged resources. Do you want to continue?"
+msgstr ""
+
+#: ../app/assets/javascripts/module/resources.js:797
+msgid "This will enable maintenance mode for the tagged resources. Do you want to continue?"
+msgstr ""
+
+#: ../app/assets/javascripts/module/resources.js:800
+msgid "This will disable maintenance mode for the tagged resources. Do you want to continue?"
+msgstr ""
+
+#: ../app/assets/javascripts/module/resources.js:804
+msgid "Migrate tagged resources"
+msgstr ""
+
+#: ../app/assets/javascripts/module/resources.js:808
+msgid "This will unmigrate the tagged resources. Do you want to continue?"
+msgstr ""
+
+#: ../app/assets/javascripts/module/resources.js:812
+msgid "Clean up tagged resources"
+msgstr ""
+
+#: ../app/assets/javascripts/module/roles.js:27
+#: ../app/views/roles/_form.html.haml:10 ../app/views/roles/_form.html.haml:13
+msgid "Role ID"
+msgstr "ID de rôle"
+
+#: ../app/assets/javascripts/module/tags.js:35
+#: ../app/views/tags/_form.html.haml:24
+msgid "Objects"
+msgstr "Objets"
+
+#: ../app/assets/javascripts/module/tickets.js:137
+#: ../app/assets/javascripts/module/tickets.js:169
+#: ../app/views/tickets/show.html.haml:46
+msgid "Granted"
+msgstr "Accordé"
+
+#: ../app/assets/javascripts/module/tickets.js:143
+msgid "Elsewhere"
+msgstr "Ailleurs"
+
+#: ../app/assets/javascripts/module/tickets.js:149
+msgid "Revoked"
+msgstr "Révoqué"
+
+#: ../app/assets/javascripts/module/tickets.js:163
+#: ../app/views/tickets/show.html.haml:80
+msgid "Last Granted"
+msgstr "Accordé pour la dernière fois"
+
+#: ../app/assets/javascripts/module/tickets.js:213
+msgid "Grant"
+msgstr "Accorder"
+
+#: ../app/assets/javascripts/module/tickets.js:223
+#: ../app/assets/javascripts/module/tickets.js:260
+msgid "Revoke"
+msgstr "Révoquer"
+
+#: ../app/assets/javascripts/module/users.js:27
+msgid "User ID"
+msgstr "ID utilisateur"
+
+#: ../app/assets/javascripts/module/wizards.js:12
+msgid "Must be a valid resource ID"
+msgstr "Doit être un ID de ressource valide"
+
+#: ../app/assets/javascripts/module/wizards.js:69
+msgid "Applying configuration changes..."
+msgstr "Implémentation des modifications de la configuration..."
+
+#: ../app/assets/javascripts/module/wizards.js:74
+msgid "Changes applied successfully."
+msgstr "Modifications appliquées avec succès"
+
+#: ../app/controllers/agents_controller.rb:46
+#: ../app/views/resources/show.html.haml:29
+msgid "Agent"
+msgstr "Agent"
+
+#: ../app/controllers/application_controller.rb:159
+msgid "Created a new shadow CIB for %USER%."
+msgstr "Un nouveau CIB shadow a été créé pour %USER%."
+
+#: ../app/controllers/application_controller.rb:164
+#: ../app/controllers/application_controller.rb:167
+msgid "Unable to create shadow CIB"
+msgstr "Impossible de créer le CIB fantôme."
+
+#: ../app/controllers/application_controller.rb:194
+msgid "Error: Permission denied for user (%s)"
+msgstr ""
+
+#: ../app/controllers/application_controller.rb:198
+msgid "Error: Not authenticated"
+msgstr ""
+
+#: ../app/controllers/application_controller.rb:202
+msgid "Error: Record not found"
+msgstr ""
+
+#: ../app/controllers/cib_controller.rb:44
+msgid "Failed to apply configuration"
+msgstr "La configuration n'a pas pu être appliquée."
+
+#: ../app/controllers/cib_controller.rb:49
+msgid "Applied configuration successfully"
+msgstr "La configuration a été appliquée."
+
+#: ../app/controllers/clones_controller.rb:20
+#: ../app/controllers/clones_controller.rb:31
+#: ../app/views/clones/new.html.haml:7
+msgid "Create Clone"
+msgstr "Créer un clone"
+
+#: ../app/controllers/clones_controller.rb:40
+msgid "Clone created successfully"
+msgstr "Le clone a été créé avec succès."
+
+#: ../app/controllers/clones_controller.rb:58
+#: ../app/controllers/clones_controller.rb:67
+#: ../app/views/clones/edit.html.haml:7
+msgid "Edit Clone"
+msgstr "Modifier le clone"
+
+#: ../app/controllers/clones_controller.rb:78
+msgid "Clone updated successfully"
+msgstr "Le clone a été mis à jour avec succès."
+
+#: ../app/controllers/clones_controller.rb:100
+#: ../app/controllers/clones_controller.rb:107
+msgid "Clone deleted successfully"
+msgstr "Clone supprimé avec succès"
+
+#: ../app/controllers/clones_controller.rb:112
+#: ../app/controllers/clones_controller.rb:116
+#: ../app/controllers/colocations_controller.rb:110
+#: ../app/controllers/colocations_controller.rb:114
+#: ../app/controllers/groups_controller.rb:112
+#: ../app/controllers/groups_controller.rb:116
+#: ../app/controllers/locations_controller.rb:129
+#: ../app/controllers/locations_controller.rb:133
+#: ../app/controllers/masters_controller.rb:112
+#: ../app/controllers/masters_controller.rb:116
+#: ../app/controllers/orders_controller.rb:111
+#: ../app/controllers/orders_controller.rb:115
+#: ../app/controllers/primitives_controller.rb:147
+#: ../app/controllers/primitives_controller.rb:151
+#: ../app/controllers/roles_controller.rb:108
+#: ../app/controllers/roles_controller.rb:112
+#: ../app/controllers/tags_controller.rb:111
+#: ../app/controllers/tags_controller.rb:115
+#: ../app/controllers/templates_controller.rb:126
+#: ../app/controllers/templates_controller.rb:130
+#: ../app/controllers/tickets_controller.rb:124
+#: ../app/controllers/tickets_controller.rb:128
+#: ../app/controllers/users_controller.rb:110
+#: ../app/controllers/users_controller.rb:114
+msgid "Error deleting %s: %s"
+msgstr "Erreur lors de la suppression de %s: %s"
+
+#: ../app/controllers/clones_controller.rb:134
+#: ../app/views/clones/index.html.haml:7
+msgid "Clones"
+msgstr "Clones"
+
+#: ../app/controllers/clones_controller.rb:147
+msgid "The clone does not exist"
+msgstr "Le clone n'existe pas."
+
+#: ../app/controllers/colocations_controller.rb:20
+#: ../app/controllers/colocations_controller.rb:30
+#: ../app/views/colocations/new.html.haml:7
+msgid "Create Colocation"
+msgstr "Créer une colocation"
+
+#: ../app/controllers/colocations_controller.rb:39
+#: ../app/controllers/locations_controller.rb:57
+#: ../app/controllers/orders_controller.rb:39
+#: ../app/controllers/tickets_controller.rb:52
+msgid "Constraint created successfully"
+msgstr "La contrainte a été créée avec succès."
+
+#: ../app/controllers/colocations_controller.rb:57
+#: ../app/controllers/colocations_controller.rb:66
+#: ../app/views/colocations/edit.html.haml:7
+msgid "Edit Colocation"
+msgstr "Modifier la colocation"
+
+#: ../app/controllers/colocations_controller.rb:77
+#: ../app/controllers/locations_controller.rb:95
+#: ../app/controllers/orders_controller.rb:77
+#: ../app/controllers/tickets_controller.rb:90
+msgid "Constraint updated successfully"
+msgstr "La contrainte a été mise à jour avec succès."
+
+#: ../app/controllers/colocations_controller.rb:99
+#: ../app/controllers/colocations_controller.rb:105
+msgid "Colocation deleted successfully"
+msgstr "Colocation supprimée avec succès"
+
+#: ../app/controllers/colocations_controller.rb:132
+#: ../app/views/colocations/index.html.haml:7
+msgid "Colocations"
+msgstr "Colocations"
+
+#: ../app/controllers/colocations_controller.rb:145
+msgid "The colocation constraint does not exist"
+msgstr "La contrainte de colocation n'existe pas."
+
+#: ../app/controllers/commands_controller.rb:22
+#: ../app/views/commands/index.html.haml:7
+#: ../app/views/shared/_mainnav.html.haml:70
+msgid "Command Log"
+msgstr "Journal de commande"
+
+#: ../app/controllers/constraints_controller.rb:69
+#: ../app/controllers/resources_controller.rb:165
+msgid "Successfully renamed %{A} to %{B}"
+msgstr "%{A} a été renommé %{B}."
+
+#: ../app/controllers/constraints_controller.rb:78
+#: ../app/controllers/resources_controller.rb:174
+msgid "Failed to rename %{A} to %{B}: %{E}"
+msgstr "%{A} n'a pas pu être renommé %{B} : %{E}"
+
+#: ../app/controllers/constraints_controller.rb:101
+#: ../app/views/configs/edit.html.haml:44
+#: ../app/views/constraints/index.html.haml:7
+#: ../app/views/resources/show.html.haml:299
+#: ../app/views/tickets/show.html.haml:154
+msgid "Constraints"
+msgstr "Contraintes"
+
+#: ../app/controllers/crm_config_controller.rb:26
+msgid "Configuration updated successfully"
+msgstr "Configuration mise à jour avec succès"
+
+#: ../app/controllers/crm_config_controller.rb:46
+#: ../app/views/crm_config/edit.html.haml:5
+#: ../app/views/shared/_mainnav.html.haml:65
+msgid "Cluster Configuration"
+msgstr "Configuration de la grappe"
+
+#: ../app/controllers/dashboards_controller.rb:38
+msgid "Error removing %s: %s"
+msgstr "Erreur lors de la suppression de %s: %s"
+
+#: ../app/controllers/dashboards_controller.rb:46
+#: ../app/views/dashboards/show.html.haml:12
+#: ../app/views/shared/_mainnav.html.haml:24
+msgid "Dashboard"
+msgstr "Tableau de bord"
+
+#: ../app/controllers/graphs_controller.rb:49
+msgid "Cluster Graph"
+msgstr "Graphique de la grappe"
+
+#: ../app/controllers/groups_controller.rb:20
+#: ../app/controllers/groups_controller.rb:31
+#: ../app/views/groups/new.html.haml:7
+msgid "Create Group"
+msgstr "Créer un groupe"
+
+#: ../app/controllers/groups_controller.rb:40
+msgid "Group created successfully"
+msgstr "Le groupe a été créé avec succès."
+
+#: ../app/controllers/groups_controller.rb:58
+#: ../app/controllers/groups_controller.rb:67
+#: ../app/views/groups/edit.html.haml:7
+msgid "Edit Group"
+msgstr "Modifier le groupe"
+
+#: ../app/controllers/groups_controller.rb:78
+msgid "Group updated successfully"
+msgstr "Le groupe a été mis à jour avec succès."
+
+#: ../app/controllers/groups_controller.rb:100
+#: ../app/controllers/groups_controller.rb:107
+msgid "Group deleted successfully"
+msgstr "Groupe supprimé avec succès"
+
+#: ../app/controllers/groups_controller.rb:134
+#: ../app/views/groups/index.html.haml:7
+msgid "Groups"
+msgstr "Groupes"
+
+#: ../app/controllers/groups_controller.rb:147
+msgid "The group does not exist"
+msgstr "Ce groupe n'existe pas."
+
+#: ../app/controllers/locations_controller.rb:20
+#: ../app/controllers/locations_controller.rb:39
+msgid "Create Location Constraint"
+msgstr "Créer une contrainte de localisation"
+
+#: ../app/controllers/locations_controller.rb:75
+#: ../app/controllers/locations_controller.rb:84
+msgid "Edit Location Constraint"
+msgstr "Modifier la contrainte de localisation"
+
+#: ../app/controllers/locations_controller.rb:117
+#: ../app/controllers/locations_controller.rb:124
+msgid "Location deleted successfully"
+msgstr "Emplacement supprimé avec succès"
+
+#: ../app/controllers/locations_controller.rb:151
+msgid "Location Constraints"
+msgstr "Contraintes d'emplacement"
+
+#: ../app/controllers/locations_controller.rb:164
+msgid "The location constraint does not exist"
+msgstr "La contrainte d'emplacement n'existe pas."
+
+#: ../app/controllers/masters_controller.rb:20
+#: ../app/controllers/masters_controller.rb:31
+msgid "Create Multi-state resource"
+msgstr "Créer la ressource multi-état"
+
+#: ../app/controllers/masters_controller.rb:40
+msgid "Multi-state resource created successfully"
+msgstr "Ressource multi-état créée avec succès"
+
+#: ../app/controllers/masters_controller.rb:58
+#: ../app/controllers/masters_controller.rb:67
+msgid "Edit Multi-state resource"
+msgstr "Modifier la ressource multi-état"
+
+#: ../app/controllers/masters_controller.rb:78
+msgid "Multi-state resource updated successfully"
+msgstr "Ressource multi-état mise à jour avec succès"
+
+#: ../app/controllers/masters_controller.rb:100
+#: ../app/controllers/masters_controller.rb:107
+msgid "Multi-state resource deleted successfully"
+msgstr "Ressource multi-état supprimée avec succès"
+
+#: ../app/controllers/masters_controller.rb:134
+msgid "Multi-state resource"
+msgstr "Ressource multi-état"
+
+#: ../app/controllers/masters_controller.rb:147
+msgid "The multi-state resource does not exist"
+msgstr "Le ressource multi-état n'existe pas."
+
+#: ../app/controllers/nodes_controller.rb:44
+msgid "Node updated successfully"
+msgstr "Le noeud a été mis à jour."
+
+#: ../app/controllers/nodes_controller.rb:62
+msgid "Set the node state to online"
+msgstr "Définir l'état du noeud sur en ligne"
+
+#: ../app/controllers/nodes_controller.rb:62
+msgid "Failed to set the node online: %{err}"
+msgstr "Le noeud n'a pas pu être défini en ligne : %{err}"
+
+#: ../app/controllers/nodes_controller.rb:66
+msgid "Failed to set the node standby: %{err}"
+msgstr "Impossible de définir la mise en veille du noeud : %{err}"
+
+#: ../app/controllers/nodes_controller.rb:66
+msgid "Set the node state to standby"
+msgstr "Définir l'état du noeud sur en veille"
+
+#: ../app/controllers/nodes_controller.rb:70
+msgid "Failed to set the node state to maintenance: %{err}"
+msgstr "L'état du noeud n'a pas pu être défini sur Maintenance : %{err}"
+
+#: ../app/controllers/nodes_controller.rb:70
+msgid "Set the node state to maintenance"
+msgstr "Définir l'état du noeud sur maintenance"
+
+#: ../app/controllers/nodes_controller.rb:74
+msgid "Failed to set the node state to ready: %{err}"
+msgstr "Impossible de définir l'état du noeud sur Prêt : %{err}"
+
+#: ../app/controllers/nodes_controller.rb:74
+msgid "Set the node state to ready"
+msgstr "Définir l'état du noeud sur prêt"
+
+#: ../app/controllers/nodes_controller.rb:78
+msgid "Successfully fenced the node"
+msgstr "Le noeud a été délimité."
+
+#: ../app/controllers/nodes_controller.rb:78
+msgid "Failed to fence the node: %{err}"
+msgstr "Le noeud n'a pas pu être délimité : %{err}"
+
+#: ../app/controllers/nodes_controller.rb:82
+msgid "Failed to clear the node state: %{err}"
+msgstr "L'état du noeud n'a pas pu être effacé : %{err}"
+
+#: ../app/controllers/nodes_controller.rb:82
+msgid "Cleared the node state"
+msgstr "État du noeud effacé"
+
+#: ../app/controllers/nodes_controller.rb:103
+#: ../app/views/cib/show.html.haml:58 ../app/views/configs/edit.html.haml:52
+#: ../app/views/nodes/index.html.haml:7
+msgid "Nodes"
+msgstr "Nœuds"
+
+#: ../app/controllers/nodes_controller.rb:116
+msgid "The node does not exist"
+msgstr "Le nœud n'existe pas."
+
+#: ../app/controllers/orders_controller.rb:20
+#: ../app/controllers/orders_controller.rb:30
+#: ../app/views/orders/new.html.haml:7
+msgid "Create Order"
+msgstr "Créer un ordre"
+
+#: ../app/controllers/orders_controller.rb:57
+#: ../app/controllers/orders_controller.rb:66
+#: ../app/views/orders/edit.html.haml:7
+msgid "Edit Order"
+msgstr "Modifier l'ordre"
+
+#: ../app/controllers/orders_controller.rb:99
+#: ../app/controllers/orders_controller.rb:106
+msgid "Order deleted successfully"
+msgstr "Ordre supprimé avec succès"
+
+#: ../app/controllers/orders_controller.rb:133
+#: ../app/views/orders/index.html.haml:7
+msgid "Orders"
+msgstr "Ordres"
+
+#: ../app/controllers/orders_controller.rb:146
+msgid "The order constraint does not exist"
+msgstr "La contrainte d'ordre n'existe pas."
+
+#: ../app/controllers/pages_controller.rb:11
+msgid "Welcome"
+msgstr "Bienvenue"
+
+#: ../app/controllers/pages_controller.rb:21
+#: ../app/views/shared/_usernav.html.haml:27
+msgid "Help"
+msgstr "Aide"
+
+#: ../app/controllers/primitives_controller.rb:20
+#: ../app/controllers/primitives_controller.rb:35
+#: ../app/controllers/primitives_controller.rb:84
+msgid "Create Primitive"
+msgstr "Créer une primitive"
+
+#: ../app/controllers/primitives_controller.rb:52
+msgid "Primitive created successfully"
+msgstr "Primitive créée avec succès"
+
+#: ../app/controllers/primitives_controller.rb:76
+#: ../app/controllers/primitives_controller.rb:102
+msgid "Edit Primitive"
+msgstr "Modifier la primitive"
+
+#: ../app/controllers/primitives_controller.rb:113
+msgid "Primitive updated successfully"
+msgstr "Primitive mise à jour avec succès"
+
+#: ../app/controllers/primitives_controller.rb:135
+#: ../app/controllers/primitives_controller.rb:142
+msgid "Primitive deleted successfully"
+msgstr "Primitive supprimée avec succès"
+
+#: ../app/controllers/primitives_controller.rb:169
+msgid "Primitives"
+msgstr "Primitives"
+
+#: ../app/controllers/primitives_controller.rb:182
+msgid "The primitive does not exist"
+msgstr "Le primitive n'existe pas."
+
+#: ../app/controllers/profiles_controller.rb:26
+msgid "Preferences updated successfully"
+msgstr "Préférences mises à jour avec succès"
+
+#: ../app/controllers/profiles_controller.rb:40
+#: ../app/views/profiles/edit.html.haml:3
+msgid "Preferences"
+msgstr "Préférences"
+
+#: ../app/controllers/reports_controller.rb:51
+msgid "Please wait while report is generated..."
+msgstr "Veuillez patienter pendant la génération du rapport."
+
+#: ../app/controllers/reports_controller.rb:55
+msgid "Failed to generate"
+msgstr "Echec lors de la génération"
+
+#: ../app/controllers/reports_controller.rb:73
+msgid "Upload completed."
+msgstr "Téléchargement effectué."
+
+#: ../app/controllers/reports_controller.rb:116
+msgid "Could not cancel report collection"
+msgstr "La collecte de rapport n'a pas pu être annulée."
+
+#: ../app/controllers/reports_controller.rb:226
+msgid "Cannot display diff, too few transitions"
+msgstr "Impossible d'afficher diff, trop peu de transitions"
+
+#: ../app/controllers/reports_controller.rb:246
+#: ../app/controllers/reports_controller.rb:252
+msgid "Report deleted successfully"
+msgstr "Rapport supprimé avec succès"
+
+#: ../app/controllers/reports_controller.rb:257
+#: ../app/controllers/reports_controller.rb:261
+msgid "Error deleting %s"
+msgstr "Erreur lors de la suppression de %s"
+
+#: ../app/controllers/reports_controller.rb:270
+#: ../app/views/reports/display.html.haml:7
+#: ../app/views/reports/index.html.haml:7
+#: ../app/views/reports/show.html.haml:7
+msgid "History Explorer"
+msgstr "Explorateur d'historique"
+
+#: ../app/controllers/reports_controller.rb:276
+msgid "The report does not exist"
+msgstr "Le rapport n'existe pas."
+
+#: ../app/controllers/reports_controller.rb:388
 msgid "must be a valid datetime"
 msgstr "doit être une date/heure valide"
 
-msgid "must have correct MIME type (was %s)"
-msgstr "doit avoir un type MIME valide (%s avant)"
+#: ../app/controllers/resources_controller.rb:90
+msgid "Successfully started the resource"
+msgstr "Ressource démarrée avec succès"
 
-msgid "must have correct file extension"
-msgstr "doit avoir une extension de fichier valide"
+#: ../app/controllers/resources_controller.rb:91
+msgid "Failed to start the resource: %{err}"
+msgstr "Echec lors du démarrage de la ressource : %{err}"
 
-msgid "node1.west.example.com"
-msgstr "node1.west.example.com"
+#: ../app/controllers/resources_controller.rb:97
+msgid "Successfully stopped the resource"
+msgstr "Ressource arrêtée avec succès"
 
-msgid "not running"
-msgstr "non démarré"
+#: ../app/controllers/resources_controller.rb:98
+msgid "Failed to stop the resource: %{err}"
+msgstr "Echec lors de l'arrêt de la ressource : %{err}"
 
-msgid "other"
-msgstr "autre"
+#: ../app/controllers/resources_controller.rb:104
+msgid "Successfully promoted the resource"
+msgstr "Ressource promue avec succès"
 
-msgid "running (master)"
-msgstr "en cours d'exécution (maître)"
+#: ../app/controllers/resources_controller.rb:105
+msgid "Failed to promote the resource: %{err}"
+msgstr "Echec lors de la promotion de la ressource : %{err}"
 
+#: ../app/controllers/resources_controller.rb:111
+msgid "Successfully demoted the resource"
+msgstr "Ressource rétrogradée avec succès"
+
+#: ../app/controllers/resources_controller.rb:112
+msgid "Failed to demote the resource: %{err}"
+msgstr "Echec lors de la rétrogradation de la ressource : %{err}"
+
+#: ../app/controllers/resources_controller.rb:118
+msgid "Successfully set the resource in maintenance mode"
+msgstr ""
+
+#: ../app/controllers/resources_controller.rb:119
+msgid "Failed to set the resource in maintenance mode: %{err}"
+msgstr ""
+
+#: ../app/controllers/resources_controller.rb:125
+msgid "Successfully disabled maintenance mode for resource"
+msgstr ""
+
+#: ../app/controllers/resources_controller.rb:126
+msgid "Failed to disable maintenance mode for resource: %{err}"
+msgstr ""
+
+#: ../app/controllers/resources_controller.rb:132
+msgid "Successfully unmigrated the resource"
+msgstr "Migration de la ressource annulée avec succès"
+
+#: ../app/controllers/resources_controller.rb:133
+msgid "Failed to unmigrate the resource: %{err}"
+msgstr "Echec lors de l'annulation de la migration de la ressource : %{err}"
+
+#: ../app/controllers/resources_controller.rb:139
+msgid "Successfully migrated the resource"
+msgstr "Ressource migrée avec succès"
+
+#: ../app/controllers/resources_controller.rb:140
+msgid "Failed to migrate the resource: %{err}"
+msgstr "Echec de la migration de la ressource : %{err}"
+
+#: ../app/controllers/resources_controller.rb:146
+msgid "Successfully cleaned the resource"
+msgstr "Ressource nettoyée avec succès"
+
+#: ../app/controllers/resources_controller.rb:147
+msgid "Failed to clean up the resource: %{err}"
+msgstr "Echec lors du nettoyage de la ressource : %{err}"
+
+#: ../app/controllers/roles_controller.rb:22
+#: ../app/controllers/roles_controller.rb:31
+#: ../app/views/roles/new.html.haml:7
+msgid "Create Role"
+msgstr "Créer un rôle"
+
+#: ../app/controllers/roles_controller.rb:39
+msgid "Role created successfully"
+msgstr "Le rôle a été créé avec succès."
+
+#: ../app/controllers/roles_controller.rb:63
+#: ../app/views/roles/edit.html.haml:7
+msgid "Edit Role"
+msgstr "Éditer le rôle"
+
+#: ../app/controllers/roles_controller.rb:74
+msgid "Role updated successfully"
+msgstr "Le rôle a été mis à jour avec succès."
+
+#: ../app/controllers/roles_controller.rb:96
+#: ../app/controllers/roles_controller.rb:103
+msgid "Role deleted successfully"
+msgstr "Rôle supprimé avec succès"
+
+#: ../app/controllers/roles_controller.rb:131
+msgid "ACL is not supported by the cluster"
+msgstr "ACL n'est pas pris en charge par la grappe."
+
+#: ../app/controllers/roles_controller.rb:136
+#: ../app/views/roles/index.html.haml:7
+#: ../app/views/shared/_mainnav.html.haml:86
+msgid "Roles"
+msgstr "Rôles"
+
+#: ../app/controllers/roles_controller.rb:149
+msgid "The role does not exist"
+msgstr "Le rôle n'existe pas."
+
+#: ../app/controllers/roles_controller.rb:158
+#: ../app/controllers/users_controller.rb:160
+msgid "To enable ACLs, set \"enable-acl\" in the Cluster Configuration ('Manage > Configuration')"
+msgstr "Pour activer les ACL, définissez \"enable-acl\" dans la configuration de la grappe ('Gérer > Configuration')"
+
+#: ../app/controllers/sessions_controller.rb:50 ../app/models/cib.rb:554
+#: ../lib/invoker.rb:88 ../lib/invoker.rb:141
+msgid "Permission denied for user %{user}"
+msgstr "Autorisation refusée pour l'utilisateur %{user}"
+
+#: ../app/controllers/sessions_controller.rb:52
+msgid "You have been logged out"
+msgstr "Vous avez été délogué."
+
+#: ../app/controllers/sessions_controller.rb:80
+msgid "Log In"
+msgstr "Se connecter"
+
+#: ../app/controllers/simulator_controller.rb:163
+#: ../app/views/shared/_simulator.html.haml:77
+msgid "Simulator"
+msgstr "Simulateur"
+
+#: ../app/controllers/tags_controller.rb:20
+#: ../app/controllers/tags_controller.rb:30 ../app/views/tags/new.html.haml:7
+msgid "Create Tag"
+msgstr "Créer une balise"
+
+#: ../app/controllers/tags_controller.rb:39
+msgid "Tag created successfully"
+msgstr "Balise créée avec succès"
+
+#: ../app/controllers/tags_controller.rb:57
+#: ../app/controllers/tags_controller.rb:66 ../app/views/tags/edit.html.haml:7
+msgid "Edit Tag"
+msgstr "Modifier la balise"
+
+#: ../app/controllers/tags_controller.rb:77
+msgid "Tag updated successfully"
+msgstr "Balise mise à jour avec succès"
+
+#: ../app/controllers/tags_controller.rb:99
+#: ../app/controllers/tags_controller.rb:106
+msgid "Tag deleted successfully"
+msgstr "Balise supprimée avec succès"
+
+#: ../app/controllers/tags_controller.rb:133
+#: ../app/views/configs/edit.html.haml:60 ../app/views/tags/index.html.haml:7
+msgid "Tags"
+msgstr "Balises"
+
+#: ../app/controllers/tags_controller.rb:146
+msgid "The tag does not exist"
+msgstr "La balise n'existe pas."
+
+#: ../app/controllers/templates_controller.rb:23
+#: ../app/controllers/templates_controller.rb:31
+#: ../app/controllers/templates_controller.rb:64
+msgid "Create Template"
+msgstr "Créer un modèle"
+
+#: ../app/controllers/templates_controller.rb:40
+msgid "Template created successfully"
+msgstr "Le modèle a été créé."
+
+#: ../app/controllers/templates_controller.rb:58
+#: ../app/controllers/templates_controller.rb:81
+msgid "Edit Template"
+msgstr "Éditer le modèle"
+
+#: ../app/controllers/templates_controller.rb:92
+msgid "Template updated successfully"
+msgstr "Le modèle a été mis à jour."
+
+#: ../app/controllers/templates_controller.rb:114
+#: ../app/controllers/templates_controller.rb:121
+msgid "Template deleted successfully"
+msgstr "Modèle supprimé avec succès"
+
+#: ../app/controllers/templates_controller.rb:149
+msgid "You have no template feature support"
+msgstr "Vous ne disposez pas d'une assistance pour la fonctionnalité de modèle."
+
+#: ../app/controllers/templates_controller.rb:154
+msgid "Templates"
+msgstr "Modèles"
+
+#: ../app/controllers/templates_controller.rb:167
+msgid "The template does not exist"
+msgstr "Modèle inexistant"
+
+#: ../app/controllers/tickets_controller.rb:33
+#: ../app/controllers/tickets_controller.rb:43
+#: ../app/views/tickets/new.html.haml:7
+msgid "Create Ticket"
+msgstr "Créer le ticket"
+
+#: ../app/controllers/tickets_controller.rb:70
+#: ../app/controllers/tickets_controller.rb:79
+#: ../app/views/tickets/edit.html.haml:7
+msgid "Edit Ticket"
+msgstr "Modifier le ticket"
+
+#: ../app/controllers/tickets_controller.rb:112
+#: ../app/controllers/tickets_controller.rb:119
+msgid "Ticket deleted successfully"
+msgstr "Ticket supprimé avec succès"
+
+#: ../app/controllers/tickets_controller.rb:151
+#: ../app/controllers/tickets_controller.rb:155
+msgid "Successfully granted the ticket"
+msgstr "Ticket accordé avec succès"
+
+#: ../app/controllers/tickets_controller.rb:161
+#: ../app/controllers/tickets_controller.rb:165
+msgid "Error granting the ticket"
+msgstr "Erreur lors de l'octroi du ticket"
+
+#: ../app/controllers/tickets_controller.rb:175
+#: ../app/controllers/tickets_controller.rb:181
+msgid "Successfully revoked the ticket"
+msgstr "Ticket révoqué avec succès"
+
+#: ../app/controllers/tickets_controller.rb:188
+#: ../app/controllers/tickets_controller.rb:192
+msgid "Error revoking the ticket"
+msgstr "Erreur lors de la révocation du ticket"
+
+#: ../app/controllers/tickets_controller.rb:201
+#: ../app/controllers/tickets_controller.rb:208 ../app/models/ticket.rb:85
+#: ../app/models/ticket.rb:92
+msgid "Simulator active: Use the ticket controls in the simulator"
+msgstr "Simulateur actif : utiliser les commandes du ticket dans le simulateur"
+
+#: ../app/controllers/tickets_controller.rb:215
+#: ../app/views/cib/show.html.haml:68 ../app/views/tickets/index.html.haml:7
+msgid "Tickets"
+msgstr "Tickets"
+
+#: ../app/controllers/tickets_controller.rb:228
+msgid "The ticket constraint does not exist"
+msgstr "La contrainte de ticket n'existe pas."
+
+#: ../app/controllers/users_controller.rb:22
+#: ../app/controllers/users_controller.rb:31
+#: ../app/views/users/new.html.haml:7
+msgid "Create ACL Target"
+msgstr "Créer la cible ACL"
+
+#: ../app/controllers/users_controller.rb:39
+msgid "ACL target created successfully"
+msgstr "Cible ACL créée avec succès"
+
+#: ../app/controllers/users_controller.rb:57
+#: ../app/controllers/users_controller.rb:65
+#: ../app/views/users/edit.html.haml:7
+msgid "Edit ACL Target"
+msgstr "Modifier la cible ACL"
+
+#: ../app/controllers/users_controller.rb:76
+msgid "ACL target updated successfully"
+msgstr "Cible ACL mise à jour avec succès"
+
+#: ../app/controllers/users_controller.rb:98
+#: ../app/controllers/users_controller.rb:105
+msgid "ACL target deleted successfully"
+msgstr "Cible ACL supprimée avec succès"
+
+#: ../app/controllers/users_controller.rb:133
+msgid "ACL is not supported by this cluster."
+msgstr "ACL n'est pas pris en charge par cette grappe."
+
+#: ../app/controllers/users_controller.rb:138
+msgid "ACL Targets"
+msgstr "Cibles ACL"
+
+#: ../app/controllers/users_controller.rb:151
+msgid "The ACL target does not exist"
+msgstr "La cible ACL n'existe pas."
+
+#: ../app/controllers/wizards_controller.rb:47
+msgid "Session has expired"
+msgstr "La session a expiré."
+
+#: ../app/controllers/wizards_controller.rb:54
+msgid "Wizard cannot be applied when the simulator is active"
+msgstr "L'assistant ne peut pas être appliqué lorsque le simulateur est actif."
+
+#: ../app/controllers/wizards_controller.rb:109
+msgid "Use a wizard"
+msgstr "Utiliser un assistant"
+
+#: ../app/controllers/wizards_controller.rb:127
+#: ../app/controllers/wizards_controller.rb:132
+msgid "Permission denied - you do not have write access to the CIB."
+msgstr "Autorisation refusée : vous ne possédez pas d'accès en écriture sur le CIB."
+
+#: ../app/controllers/wizards_controller.rb:151
+#: ../app/controllers/wizards_controller.rb:156
+msgid "Cluster seems to be offline"
+msgstr "La grappe semble être hors ligne."
+
+#: ../app/helpers/agents_helper.rb:59
+msgid "Required"
+msgstr "Requis"
+
+#: ../app/helpers/agents_helper.rb:60
+msgid "Unique"
+msgstr "Unique"
+
+#: ../app/helpers/application_helper.rb:37
+msgid "Profile"
+msgstr "Profil"
+
+#: ../app/helpers/application_helper.rb:223
+#: ../app/helpers/application_helper.rb:229
+msgid "File a Bug Report"
+msgstr ""
+
+#: ../app/helpers/application_helper.rb:223
+#: ../app/helpers/application_helper.rb:229
+msgid "Report a bug or request a feature!"
+msgstr ""
+
+#: ../app/helpers/application_helper.rb:224
+msgid "Read the release notes for the SUSE High Availability Extension."
+msgstr ""
+
+#: ../app/helpers/application_helper.rb:224
+msgid "Release Notes"
+msgstr "Notes de version"
+
+#: ../app/helpers/application_helper.rb:225
+msgid "Read the most up-to-date documentation at the suse.com website."
+msgstr ""
+
+#: ../app/helpers/application_helper.rb:225
+#: ../app/helpers/application_helper.rb:231
+msgid "Online Documentation"
+msgstr ""
+
+#: ../app/helpers/application_helper.rb:230
+msgid "Visit the Hawk website for information about the latest release."
+msgstr ""
+
+#: ../app/helpers/application_helper.rb:230
+msgid "News"
+msgstr "News"
+
+#: ../app/helpers/application_helper.rb:231
+msgid "Getting Started using Hawk"
+msgstr ""
+
+#: ../app/helpers/application_helper.rb:239
+msgid "Current Configuration Version"
+msgstr "Version de la configuration actuelle"
+
+#: ../app/helpers/application_helper.rb:239
+msgid "Epoch"
+msgstr "Période"
+
+#: ../app/helpers/application_helper.rb:240
+msgid "Host"
+msgstr "Hôte"
+
+#: ../app/helpers/application_helper.rb:241
+msgid "DC"
+msgstr "CD"
+
+#: ../app/helpers/application_helper.rb:241
+msgid "Designated Coordinator"
+msgstr "Coordinateur désigné"
+
+#: ../app/helpers/application_helper.rb:242
+msgid "CIB Schema Version"
+msgstr "Version du schéma CIB"
+
+#: ../app/helpers/application_helper.rb:242
+msgid "Schema"
+msgstr "Schéma"
+
+#: ../app/helpers/application_helper.rb:243
+msgid "Last Written"
+msgstr "Dernière inscription"
+
+#: ../app/helpers/application_helper.rb:244
+msgid "Update Origin"
+msgstr "Origine de la mise à jour"
+
+#: ../app/helpers/application_helper.rb:245
+msgid "Update User"
+msgstr "Utilisateur ayant effectué la mise à jour"
+
+#: ../app/helpers/application_helper.rb:246
+msgid "Have Quorum"
+msgstr "Avoir un quorum"
+
+#: ../app/helpers/application_helper.rb:247
+#: ../app/views/reports/display.html.haml:174
+msgid "Version"
+msgstr "Version"
+
+#: ../app/helpers/application_helper.rb:247
+msgid "Pacemaker Version"
+msgstr "Version de Pacemaker"
+
+#: ../app/helpers/application_helper.rb:248
+msgid "Cluster Communication Stack"
+msgstr "Pile de communication de la grappe"
+
+#: ../app/helpers/application_helper.rb:248
+msgid "Stack"
+msgstr "Pile"
+
+#: ../app/helpers/application_helper.rb:260
+#: ../app/helpers/application_helper.rb:265
+#: ../app/views/configs/edit.html.haml:17
+#: ../app/views/configs/show.html.haml:21 ../app/views/graphs/show.html.haml:5
+#: ../app/views/reports/display.html.haml:222
+msgid "Graph"
+msgstr "Graphe"
+
+#: ../app/helpers/colocation_helper.rb:8 ../app/helpers/ticket_helper.rb:20
+msgid "Master"
+msgstr "Maître"
+
+#: ../app/helpers/colocation_helper.rb:9 ../app/helpers/ticket_helper.rb:21
+msgid "Slave"
+msgstr "Esclave"
+
+#: ../app/helpers/crm_config_helper.rb:7 ../app/helpers/form_helper.rb:11
+#: ../app/helpers/profile_helper.rb:18 ../app/helpers/role_helper.rb:14
+#: ../app/helpers/user_helper.rb:14
+msgid "Revert"
+msgstr "Rétablir"
+
+#: ../app/helpers/rule_helper.rb:8
+msgid "Read"
+msgstr "Lecture"
+
+#: ../app/helpers/rule_helper.rb:9
+msgid "Write"
+msgstr "Écriture"
+
+#: ../app/helpers/rule_helper.rb:10
+msgid "Deny"
+msgstr "Refuser"
+
+#: ../app/helpers/simulator_helper.rb:19 ../lib/cibtools.rb:105
 msgid "success"
 msgstr "Succès"
 
+#: ../app/helpers/simulator_helper.rb:20 ../lib/cibtools.rb:107
+msgid "generic error"
+msgstr "erreur générique"
+
+#: ../app/helpers/simulator_helper.rb:21 ../lib/cibtools.rb:109
+msgid "incorrect arguments"
+msgstr "arguments incorrects"
+
+#: ../app/helpers/simulator_helper.rb:22 ../lib/cibtools.rb:111
 msgid "unimplemented action"
 msgstr "action non mise en oeuvre"
+
+#: ../app/helpers/simulator_helper.rb:23 ../lib/cibtools.rb:113
+msgid "insufficient permissions"
+msgstr "permissions insuffisantes"
+
+#: ../app/helpers/simulator_helper.rb:24 ../lib/cibtools.rb:115
+msgid "installation error"
+msgstr "erreur d'installation"
+
+#: ../app/helpers/simulator_helper.rb:25 ../lib/cibtools.rb:117
+msgid "configuration error"
+msgstr "erreur de configuration"
+
+#: ../app/helpers/simulator_helper.rb:26 ../lib/cibtools.rb:119
+msgid "not running"
+msgstr "non démarré"
+
+#: ../app/helpers/simulator_helper.rb:27 ../lib/cibtools.rb:121
+msgid "running (master)"
+msgstr "en cours d'exécution (maître)"
+
+#: ../app/helpers/simulator_helper.rb:28 ../lib/cibtools.rb:123
+msgid "failed (master)"
+msgstr "échec (maître)"
+
+#: ../app/helpers/ticket_helper.rb:11
+msgid "Freeze"
+msgstr "Figer"
+
+#: ../app/helpers/wizard_helper.rb:92
+msgid "Legacy Wizards"
+msgstr "Anciens assistants"
+
+#: ../app/models/cib.rb:523
+msgid "CIB file \"%{path}\" not found"
+msgstr "Le fichier CIB \"%{path}\" est introuvable."
+
+#: ../app/models/cib.rb:527
+msgid "Unable to parse CIB file \"%{path}\""
+msgstr "Impossible d'analyser le fichier CIB \"%{path}\""
+
+#: ../app/models/cib.rb:533
+msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
+msgstr "Il semble que Pacemaker ne soit pas installé (%{cmd} introuvable)"
+
+#: ../app/models/cib.rb:539
+msgid "Unable to execute %{cmd}"
+msgstr "Impossible d'exécuter %{cmd}"
+
+#: ../app/models/cib.rb:548
+msgid "Error invoking %{cmd}"
+msgstr "Erreur lors de l'appel de %{cmd}"
+
+#: ../app/models/cib.rb:558
+msgid "Error invoking %{cmd}: %{msg}"
+msgstr "Erreur lors de l'appel de %{cmd} : %{msg}"
+
+#: ../app/models/cib.rb:568 ../app/models/cib.rb:569 ../app/models/cib.rb:962
+#: ../app/models/cib.rb:1092 ../app/models/cib.rb:1093
+msgid "Unknown"
+msgstr "Inconnu"
+
+#: ../app/models/cib.rb:860
+msgid "%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_reason}"
+msgstr "%{fail_start}: Echec de l'opération %{op} pour la ressource %{resource} sur le noeud %{node}: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_reason}"
+
+#: ../app/models/cib.rb:953
+msgid "Partial upgrade detected! Nodes report different CRM versions: %s"
+msgstr ""
+
+#: ../app/models/cib.rb:1064
+msgid "Partition without quorum! Fencing and resource management is disabled."
+msgstr ""
+
+#: ../app/models/cib.rb:1068
+msgid "Node \"%{node}\" is UNCLEAN and needs to be fenced."
+msgstr "Le noeud \"%{node}\" n'est pas nettoyé et doit être délimité."
+
+#: ../app/models/cib.rb:1073
+msgid "STONITH is disabled. For normal cluster operation, STONITH is required."
+msgstr "STONITH est désactivé alors qu'il est requis pour le fonctionnement normal de la grappe."
+
+#: ../app/models/clone.rb:10
+msgid "Clone ID is required"
+msgstr "L'ID de clone est requis."
+
+#: ../app/models/clone.rb:11
+msgid "Invalid Clone ID"
+msgstr "ID de clone non valide"
+
+#: ../app/models/clone.rb:14
+msgid "No Clone child specified"
+msgstr "Aucun enfant clone n'est spécifié."
+
+#: ../app/models/clone.rb:67 ../app/models/crm_config.rb:14
+#: ../app/models/group.rb:58 ../app/models/master.rb:62
+#: ../app/models/template.rb:230
+msgid "Is the cluster allowed to start and stop the resource?"
+msgstr "La grappe est-elle autorisée à démarrer et arrêter la ressource ?"
+
+#: ../app/models/clone.rb:72 ../app/models/crm_config.rb:19
+#: ../app/models/group.rb:63 ../app/models/master.rb:67
+#: ../app/models/template.rb:235
+msgid "Resources in maintenance mode are not monitored by the cluster."
+msgstr ""
+
+#: ../app/models/clone.rb:77 ../app/models/crm_config.rb:33
+#: ../app/models/group.rb:68 ../app/models/master.rb:72
+#: ../app/models/template.rb:249
+msgid "If not all resources can be active, the cluster will stop lower priority resources in order to keep higher priority ones active."
+msgstr "Si toutes les ressources ne peuvent pas être actives, la grappe arrête les ressources de priorité inférieure afin de garder actives celles de priorité supérieure."
+
+#: ../app/models/clone.rb:83 ../app/models/crm_config.rb:55
+#: ../app/models/group.rb:78 ../app/models/master.rb:82
+#: ../app/models/template.rb:271
+msgid "What state should the cluster attempt to keep this resource in?"
+msgstr "Dans quel état la grappe doit-elle essayer de conserver cette ressource ?"
+
+#: ../app/models/clone.rb:88 ../app/models/master.rb:87
+msgid "How many copies of the resource to start. Defaults to the number of nodes in the cluster."
+msgstr "Nombre de copies de la ressource à démarrer. Défini par défaut sur le nombre de nœuds de la grappe."
+
+#: ../app/models/clone.rb:93 ../app/models/master.rb:92
+msgid "How many copies of the resource can be started on a single node. Defaults to 1."
+msgstr "Nombre de copies de la ressource pouvant être démarrées sur un nœud unique. 1 par défaut."
+
+#: ../app/models/clone.rb:98 ../app/models/master.rb:97
+msgid "When stopping or starting a copy of the clone, tell all the other copies beforehand and when the action was successful."
+msgstr "Lors de l'arrêt ou du démarrage d'une copie du clone, informez-en les autres copies au préalable ainsi que lorsque l'action a été effectuée avec succès."
+
+#: ../app/models/clone.rb:103 ../app/models/master.rb:102
+msgid "Does each copy of the clone perform a different function?"
+msgstr "Chaque copie du clone remplit-elle une fonction différente ?"
+
+#: ../app/models/clone.rb:108 ../app/models/master.rb:107
+msgid "Should the copies be started in series (instead of in parallel)?"
+msgstr "Les copies doivent-elles être démarrées en série (et non en parallèle) ?"
+
+#: ../app/models/clone.rb:113 ../app/models/master.rb:112
+msgid "Changes the behavior of ordering constraints (between clones/masters) so that instances can start/stop as soon as their peer instance has (rather than waiting for every instance of the other clone has)."
+msgstr "Modifie le comportement des contraintes d'ordre (entre clones/maîtres) de sorte que les instances puissent démarrer/s'arrêter dès que leur instance homologue le fait (plutôt que d'attendre que chaque instance de l'autre clone l'ai fait)."
+
+#: ../app/models/clone.rb:124 ../app/views/clones/_form.html.haml:12
+#: ../app/views/clones/_form.html.haml:17
+#: ../app/views/masters/_form.html.haml:12
+#: ../app/views/masters/_form.html.haml:17
+msgid "Child Resource"
+msgstr "Ressources enfant"
+
+#: ../app/models/clone.rb:125
+msgid "Child resource to use as clone."
+msgstr "Ressource enfant à utiliser en tant que clone."
+
+#: ../app/models/clone.rb:136 ../app/models/group.rb:89
+#: ../app/models/master.rb:133 ../app/models/node.rb:114
+#: ../app/models/primitive.rb:75 ../app/models/record.rb:285
+#: ../app/models/tag.rb:82 ../app/models/template.rb:439
+msgid "The ID \"%{id}\" does not exist"
+msgstr "L'ID \"%{id}\" n'existe pas."
+
+#: ../app/models/colocation.rb:10 ../app/models/order.rb:10
+msgid "Score is required"
+msgstr "Le score est requis."
+
+#: ../app/models/colocation.rb:24 ../app/models/order.rb:25
+msgid "Invalid score value"
+msgstr "Valeur de score non valide"
+
+#: ../app/models/colocation.rb:30
+msgid "Invalid node attribute"
+msgstr "Attribut de noeud non valide"
+
+#: ../app/models/colocation.rb:35 ../app/models/order.rb:30
+msgid "Constraint must consist of at least two separate resources"
+msgstr "La contrainte doit contenir au moins deux ressources distinctes."
+
+#: ../app/models/colocation.rb:181
+msgid "The score determines the location relationship between the resources."
+msgstr "Le score détermine la relation de l'emplacement entre les ressources."
+
+#: ../app/models/colocation.rb:186 ../app/views/colocations/_form.html.haml:79
+msgid "Node Attribute"
+msgstr "Attribut du noeud"
+
+#: ../app/models/colocation.rb:187
+msgid "Colocate resources by the given node attribute instead of by node name (the default)."
+msgstr "Effectuer une colocalisation des ressources en fonction de l'attribut de noeud donné au lieu du nom du noeud (par défaut)."
+
+#: ../app/models/constraint.rb:37
+msgid "Not a constraint"
+msgstr "Pas une contrainte"
+
+#: ../app/models/constraint.rb:49
+msgid "Unique identifier for the constraint. May not contain spaces."
+msgstr "Identificateur unique pour la contrainte. Ne peut pas contenir d'espaces."
+
+#: ../app/models/crm_config.rb:9 ../app/models/template.rb:225
+msgid "Set to true if the resource agent supports the migrate action"
+msgstr "Définir sur true si l'agent de la ressource prend en charge l'action de migration"
+
+#: ../app/models/crm_config.rb:28 ../app/models/template.rb:244
+msgid "How many failures may occur for this resource on a node, before this node is marked ineligible to host this resource. A value of INFINITY indicates that this feature is disabled."
+msgstr "Nombre d'échecs acceptable pour cette ressource sur un nœud avant que ce dernier ne soit marqué comme inéligible pour héberger cette ressource. La valeur INFINITY indique que cette fonctionnalité est désactivée."
+
+#: ../app/models/crm_config.rb:39 ../app/models/template.rb:255
+msgid "What should the cluster do if it ever finds the resource active on more than one node?"
+msgstr "Que doit faire la grappe si elle découvre que la ressource est active sur plusieurs noeuds ?"
+
+#: ../app/models/crm_config.rb:44 ../app/models/template.rb:260
+msgid "How many seconds to wait before acting as if the failure had not occurred, and potentially allowing the resource back to the node on which it failed. A value of 0 indicates that this feature is disabled."
+msgstr "Délai en secondes avant d'agir comme si aucun échec ne s'était produit, et éventuellement permettre à la ressource de revenir sur le nœud sur lequel elle a échoué. Une valeur de 0 indique que la fonctionnalité est désactivée."
+
+#: ../app/models/crm_config.rb:49 ../app/models/template.rb:265
+msgid "How much does the resource prefer to stay where it is?"
+msgstr "Dans quelle mesure la ressource préfère-t-elle rester où elle est ?"
+
+#: ../app/models/crm_config.rb:70 ../app/models/crm_config.rb:107
+#: ../app/models/template.rb:286
+msgid "Conditions under which the resource can be started."
+msgstr "Conditions pour que la ressource puisse être démarrée."
+
+#: ../app/models/crm_config.rb:75 ../app/models/template.rb:291
+msgid "The name of the remote-node this resource defines. This both enables the resource as a remote-node and defines the unique name used to identify the remote-node. If no other parameters are set, this value will also be assumed as the hostname to connect to at the port specified by remote-port. WARNING: This value cannot overlap with any resource or node IDs. If not specified, this feature is disabled."
+msgstr "Nom du noeud distant défini par cette ressource. Cela active la ressource en tant que noeud distant et définit le nom unique utilisé pour identifier le noeud distant. Si aucun autre paramètre n'est défini, cette valeur est aussi considérée comme étant le nom de l'hôte auquel se connecter au port spécifé par le port distant. Avertissement : cette valeur ne peut chevaucher aucun ID de ressource ou de noeud. Si aucune valeur n'est spécifiée, cette fonctionnalité est désactivée."
+
+#: ../app/models/crm_config.rb:80 ../app/models/template.rb:296
+msgid "Port to use for the guest connection to pacemaker_remote."
+msgstr "Port à utiliser pour la connexion invé à pacemaker_remote."
+
+#: ../app/models/crm_config.rb:85 ../app/models/template.rb:301
+msgid "The IP address or hostname to connect to if remote-node's name is not the hostname of the guest."
+msgstr "L'adresse IP ou le nom d'hôte auquel se connecter si le nom de noeud distant n'est pas le nom d'hôte de l'invité."
+
+#: ../app/models/crm_config.rb:90 ../app/models/template.rb:306
+msgid "How long before a pending guest connection will time out."
+msgstr "Délai avant le timeout d'une connexion invité en attente."
+
+#: ../app/models/group.rb:10
+msgid "No Group children specified"
+msgstr "Aucun enfant du groupe n'est spécifié."
+
+#: ../app/models/location.rb:10
+msgid "No resource specified"
+msgstr "Aucune ressource n'est spécifiée."
+
+#: ../app/models/location.rb:13
+msgid "No rules specified"
+msgstr "Aucune règle n'est spécifiée."
+
+#: ../app/models/location.rb:18
+msgid "Invalid resource discovery type"
+msgstr "Type de découverte de la ressource non valide"
+
+#: ../app/models/location.rb:23
+msgid "Constraint is too complex - it contains nested rules"
+msgstr "La contrainte est trop complexe car elle contient des règles imbriquées."
+
+#: ../app/models/location.rb:33
+msgid "Invalid score \"%{score}\""
+msgstr "Score \"%{score}\" non valide"
+
+#: ../app/models/location.rb:43
+msgid "No expressions specified"
+msgstr "Aucune expression n'est spécifiée."
+
+#: ../app/models/location.rb:48
+msgid "Attribute contains both single and double quotes"
+msgstr "L'attribut contient des guillemets simples et doubles."
+
+#: ../app/models/location.rb:49
+msgid "Value contains both single and double quotes"
+msgstr "La valeur contient des guillemets simples et doubles."
+
+#: ../app/models/location.rb:224
+msgid "Resources to apply the constraint to."
+msgstr "Ressources auxquelles appliquer la contrainte."
+
+#: ../app/models/location.rb:230
+msgid "Positive values indicate the resources should run on this node. Negative values indicate the resources should not run on this node. Values of +/- INFINITY change \"should\"/\"should not\" to \"must\"/\"must not\"."
+msgstr "Des valeurs positives indiquent que les ressources doivent être exécutées sur ce noeud. Des valeurs négatives indiquent que les ressources ne doivent pas être exécutées sur ce noeud. Les valeurs de +/- INFINITY, anciennement \"should\"/\"should not\" ont été modifiées en \"must\"/\"must not\"."
+
+#: ../app/models/location.rb:236
+msgid "Name of a node in the cluster."
+msgstr "Nom d'un noeud de la grappe."
+
+#: ../app/models/location.rb:243 ../app/views/locations/_form.html.haml:107
+msgid "Resource Discovery"
+msgstr "Découverte de la ressource"
+
+#: ../app/models/location.rb:244
+msgid "Controls resource discovery for the specified resource on nodes covered by the constraint. always: Always perform resource discovery (default). never: Never perform resource discovery for the specified resource on this node. This option should generally be used with a -INFINITY score. exclusive: Only perform resource discovery for the specified resource on this node."
+msgstr "Contrôle le niveau de découverte pour la ressource spécifiée sur les noeuds affectés par la contrainte. always : effectue toujours la découverte des ressources (valeur par défaut). never : n'effectue jamais la découverte des ressources pour la ressource spécifiée sur ce noeud. Cette option doit généralement être utilisée avec un score -INFINITY. exclusive : n'effectue la découverte que pour la ressource spécifiée sur ce noeud."
+
+#: ../app/models/location.rb:249
+msgid "Limits the rule to apply only when the resource is in the specified role."
+msgstr "Limite la règle pour qu'elle ne s'applique que lorsque la ressource se trouve dans le rôle spécifié."
+
+#: ../app/models/location.rb:254
+msgid "Operator"
+msgstr "Opérateur"
+
+#: ../app/models/location.rb:255
+msgid "How to combine the result of multiple expression objects. Allowed values are and and or."
+msgstr "Mode de combinaison du résultat de plusieurs objets Expression. Les valeurs autorisées sont and (et) et or (ou)."
+
+#: ../app/models/location.rb:260
+msgid "Expression"
+msgstr "Expression"
+
+#: ../app/models/location.rb:261
+msgid "Each rule can contain a number of expressions. The results of the expressions are combined based on the rule's boolean operator."
+msgstr "Chaque règle contient un nombre d'expressions. Les résultats des expressions sont combinés en fonction de l'opérateur booléen de la règle."
+
+#: ../app/models/master.rb:9
+msgid "No Multi-state child specified"
+msgstr "Aucun enfant multi-état n'est spécifié."
+
+#: ../app/models/master.rb:117
+msgid "How many copies of the resource can be promoted to master status."
+msgstr "Nombre de copies de la ressource pouvant être promues à l'état de maître."
+
+#: ../app/models/master.rb:122
+msgid "How many copies of the resource can be promoted to master status on a single node."
+msgstr "Nombre de copies de la ressource pouvant être promues à l'état de maître sur un noeud unique."
+
+#: ../app/models/node.rb:25
+msgid "Node ID is required"
+msgstr "L'ID de noeud est requis."
+
+#: ../app/models/node.rb:26
+msgid "Invalid Node ID"
+msgstr "ID de nœud non valide"
+
+#: ../app/models/node.rb:29
+msgid "Name is required"
+msgstr "Le nom est requis."
+
+#: ../app/models/node.rb:30
+msgid "Invalid name"
+msgstr "Nom non valide"
+
+#: ../app/models/node.rb:72
+msgid "Node ID"
+msgstr "ID de noeud"
+
+#: ../app/models/node.rb:73
+msgid "Unique identifier for the node."
+msgstr "Identificateur unique pour le noeud."
+
+#: ../app/models/node.rb:78
+msgid "Node Name"
+msgstr "Nom du noeud"
+
+#: ../app/models/node.rb:79
+msgid "Name used to refer to the node in the cluster."
+msgstr "Nom utilisé pour faire référence au noeud dans la grappe."
+
+#: ../app/models/node.rb:91
+msgid "Puts the node into standby mode. The specified node is no longer able to host resources. Any resources currently active on the node will be moved to another node."
+msgstr "Met le noeud en mode veille. Le noeud spécifié ne peut plus héberger de ressources. Toutes les ressources actuellement actives sur le noeud seront déplacées vers un autre noeud."
+
+#: ../app/models/profile.rb:31
+msgid "is required"
+msgstr "est requis"
+
+#: ../app/models/record.rb:10
+msgid "ID is required"
+msgstr "Un ID est requis."
+
+#: ../app/models/record.rb:28
+msgid "Object not found: %s=%s"
+msgstr "Objet introuvable : %s=%s"
+
+#: ../app/models/record.rb:268
+msgid "The ID \"%{id}\" is already in use"
+msgstr "L'ID \"%{id}\" est déjà utilisé."
+
+#: ../app/models/record.rb:279
+msgid "Unable to create: %{msg}"
+msgstr "Impossible de créer %{msg}"
+
+#: ../app/models/record.rb:295
+msgid "Error updating %{id} (rc=%{rc})"
+msgstr "Erreur lors de la mise à jour de %{id} (rc=%{rc})"
+
+#: ../app/models/report.rb:103 ../app/models/report.rb:132
+#: ../app/models/report.rb:179
+msgid "No details available"
+msgstr "Aucun détail n'est disponible."
+
+#: ../app/models/report.rb:104 ../app/models/report.rb:133
+msgid "Error:"
+msgstr "Erreur :"
+
+#: ../app/models/report.rb:287
+msgid "must have correct MIME type (was %s)"
+msgstr "doit avoir un type MIME valide (%s avant)"
+
+#: ../app/models/report.rb:291
+msgid "must have correct file extension"
+msgstr "doit avoir une extension de fichier valide"
+
+#: ../app/models/resource.rb:113
+msgid "Not a resource"
+msgstr "Pas une ressource"
+
+#: ../app/models/resource.rb:125
+msgid "Unique identifier for the resource. May not contain spaces."
+msgstr "Identificateur unique pour la ressource. Ne peut pas contenir d'espaces."
+
+#: ../app/models/role.rb:8
+msgid "At least one rule is required"
+msgstr "Au moins une règle est requise."
+
+#: ../app/models/session.rb:10
+msgid "Invalid username"
+msgstr "Nom d'utilisateur non valide"
+
+#: ../app/models/session.rb:16
+msgid "%s is not installed"
+msgstr "%s n'est pas installé"
+
+#: ../app/models/session.rb:21
+msgid "%s is not executable"
+msgstr "%s n'est pas exécutable."
+
+#: ../app/models/session.rb:26
+msgid "Username not specified"
+msgstr "Nom d'utilisateur non spécifié"
+
+#: ../app/models/session.rb:31
+msgid "Password not specified"
+msgstr "Mot de passe non spécifié"
+
+#: ../app/models/session.rb:42
+msgid "Invalid username or password"
+msgstr "Nom d'utilisateur ou mot de passe non valide"
+
+#: ../app/models/tag.rb:9
+msgid "No Tag resources specified"
+msgstr "Aucune ressource de balise n'est spécifiée."
+
+#: ../app/models/template.rb:314
+msgid "How frequently (in seconds) to perform the operation."
+msgstr "Fréquence d'exécution de l'opération (en secondes)."
+
+#: ../app/models/template.rb:320
+msgid "How long to wait before declaring the action has failed."
+msgstr "Délai avant de déclarer l'échec de l'opération."
+
+#: ../app/models/template.rb:330
+msgid "What conditions need to be satisfied before this action occurs."
+msgstr "Conditions à remplir pour l'exécution de cette action."
+
+#: ../app/models/template.rb:335
+msgid "If false, the operation is treated as if it does not exist."
+msgstr "Si la valeur est false, l'opération est traitée comme si elle n'existait pas."
+
+#: ../app/models/template.rb:346
+msgid "This option only makes sense for recurring operations. It restricts the operation to a specific role. The truely paranoid can even specify role=Stopped which allows the cluster to detect an admin that manually started cluster services."
+msgstr "Cette option n'est pertinente que pour les opérations récurrentes. Elle limite l'opération à un rôle spécifique. Un technicien paranoïaque peut même spécifier role=Stopped afin que la grappe détecte un administrateur qui démarre manuellement des services de grappe."
+
+#: ../app/models/template.rb:359
+msgid "The action to take if this action ever fails."
+msgstr "Mesure à prendre si cette action échoue."
+
+#: ../app/models/template.rb:372
+msgid "If true, the intention to perform the operation is recorded so that GUIs and CLI tools can indicate that an operation is in progress."
+msgstr "Si la valeur est true, l'intention d'effectuer l'opération est enregistrée de sorte que les IUG et les outils CLI puissent indiquer que l'opération est en cours."
+
+#: ../app/models/template.rb:388 ../app/views/primitives/_form.html.haml:18
+#: ../app/views/primitives/_form.html.haml:36
+#: ../app/views/resources/types.html.haml:78
+msgid "Template"
+msgstr "Modèle"
+
+#: ../app/models/template.rb:389
+msgid "Resource template to inherit from."
+msgstr "Modèle de ressource utilisé pour l'héritage."
+
+#: ../app/models/template.rb:394 ../app/views/primitives/_form.html.haml:21
+#: ../app/views/primitives/_form.html.haml:39
+msgid "Class"
+msgstr "Classe"
+
+#: ../app/models/template.rb:395
+msgid "Standard which the resource agent conforms to."
+msgstr "Norme à laquelle l'agent de la ressource se conforme."
+
+#: ../app/models/template.rb:400 ../app/views/primitives/_form.html.haml:23
+#: ../app/views/primitives/_form.html.haml:45
+msgid "Provider"
+msgstr "Fournisseur"
+
+#: ../app/models/template.rb:401
+msgid "Vendor or project which provided the resource agent."
+msgstr "Fournisseur ou projet ayant fourni l'agent de la ressource."
+
+#: ../app/models/template.rb:407
+msgid "Resource agent name."
+msgstr "Nom de l'agent de la ressource."
+
+#: ../app/models/template.rb:413 ../app/models/template.rb:419
+msgid "After the specified timeout period, the operation will be treated as failed."
+msgstr "À l'issue du délai spécifié, l'opération sera considérée comme ayant échoué."
+
+#: ../app/models/template.rb:424
+msgid "Monitor"
+msgstr "Surveiller"
+
+#: ../app/models/template.rb:425
+msgid "Define a monitor operation to instruct the cluster to ensure that the resource is still healthy."
+msgstr "Définissez une opération de surveillance pour demander à la grappe de veiller à ce que l'état de santé de la ressource soit toujours bon."
+
+#: ../app/models/ticket.rb:18
+msgid "Constraint ID is required"
+msgstr "L'ID de la contrainte est requis."
+
+#: ../app/models/ticket.rb:19
+msgid "Invalid Constraint ID"
+msgstr "ID de contrainte non valide"
+
+#: ../app/models/ticket.rb:22
+msgid "Ticket ID is required"
+msgstr "L'ID de ticket est requis."
+
+#: ../app/models/ticket.rb:23
+msgid "Invalid Ticket ID"
+msgstr "ID de ticket non valide"
+
+#: ../app/models/ticket.rb:27
+msgid "Constraint must consist of at least one separate resources"
+msgstr "La contrainte doit contenir au moins deux ressources distinctes."
+
+#: ../app/models/user.rb:10
+msgid "ACL target ID is required"
+msgstr "L'ID de la cible ACL est requis."
+
+#: ../app/models/user.rb:11
+msgid "Invalid ACL target ID"
+msgstr "ID de cible ACL non valide"
+
+#: ../app/models/user.rb:13
+msgid "At least one role is required"
+msgstr "Au moins un rôle est requis."
+
+#: ../app/models/wizard.rb:150
+msgid "Requested wizard does not exist"
+msgstr "L'assistant demandé n'existe pas."
+
+#: ../app/views/agents/show.html.haml:32
+#: ../app/views/primitives/_form.html.haml:102
+#: ../app/views/resources/show.html.haml:76
+msgid "Parameters"
+msgstr "Paramètres"
+
+#: ../app/views/agents/show.html.haml:52
+msgid "Shortdesc"
+msgstr "Shortdesc"
+
+#: ../app/views/agents/show.html.haml:54
+msgid "Longdesc"
+msgstr "Longdesc"
+
+#: ../app/views/agents/show.html.haml:56
+msgid "Options"
+msgstr "Options"
+
+#: ../app/views/agents/show.html.haml:83
+msgid "Actions"
+msgstr "Actions"
+
+#: ../app/views/agents/show.html.haml:103
+#: ../app/views/resources/show.html.haml:189
+msgid "Timeout"
+msgstr "Timeout"
+
+#: ../app/views/agents/show.html.haml:105
+#: ../app/views/resources/show.html.haml:191
+msgid "Interval"
+msgstr "Intervalle "
+
+#: ../app/views/agents/show.html.haml:107
+msgid "Depth"
+msgstr "Profondeur"
+
+#: ../app/views/cib/apply.html.haml:9
+msgid "Apply Configuration"
+msgstr "Appliquer la configuration"
+
+#: ../app/views/cib/apply.html.haml:31
+#: ../app/views/shared/_simulator.html.haml:160
+msgid "Calculating list of changes..."
+msgstr "Calcul de la liste des changements..."
+
+#: ../app/views/cib/show.html.haml:24
+msgid "Errors"
+msgstr "Erreurs"
+
+#: ../app/views/clones/_form.html.haml:24
+#: ../app/views/groups/_form.html.haml:68
+#: ../app/views/masters/_form.html.haml:24
+#: ../app/views/primitives/_form.html.haml:121
+#: ../app/views/resources/show.html.haml:107
+msgid "Meta Attributes"
+msgstr "Attributs méta"
+
+#: ../app/views/clones/_form.html.haml:41
+#: ../app/views/clones/_form.html.haml:48
+#: ../app/views/colocations/_form.html.haml:88
+#: ../app/views/colocations/_form.html.haml:95
+#: ../app/views/groups/_form.html.haml:85
+#: ../app/views/groups/_form.html.haml:92
+#: ../app/views/locations/_form.html.haml:125
+#: ../app/views/locations/_form.html.haml:132
+#: ../app/views/masters/_form.html.haml:41
+#: ../app/views/masters/_form.html.haml:48
+#: ../app/views/nodes/_form.html.haml:53
+#: ../app/views/orders/_form.html.haml:74
+#: ../app/views/orders/_form.html.haml:81
+#: ../app/views/primitives/_form.html.haml:82
+#: ../app/views/primitives/_form.html.haml:89
+#: ../app/views/roles/_form.html.haml:60 ../app/views/tags/_form.html.haml:51
+#: ../app/views/tags/_form.html.haml:58
+#: ../app/views/tickets/_form.html.haml:42
+#: ../app/views/tickets/_form.html.haml:49
+#: ../app/views/users/_form.html.haml:29
+#: ../app/views/wizards/create.html.haml:28
+#: ../app/views/wizards/show.html.haml:131
+#: ../app/views/wizards/update.html.haml:108
+msgid "Back"
+msgstr "Retour"
+
+#: ../app/views/clones/edit.html.haml:17
+#: ../app/views/colocations/edit.html.haml:17
+#: ../app/views/groups/edit.html.haml:17
+#: ../app/views/locations/edit.html.haml:17
+#: ../app/views/masters/edit.html.haml:17
+#: ../app/views/orders/edit.html.haml:17
+#: ../app/views/primitives/edit.html.haml:17
+#: ../app/views/reports/display.html.haml:36
+#: ../app/views/roles/edit.html.haml:13 ../app/views/tags/edit.html.haml:17
+#: ../app/views/tickets/edit.html.haml:17 ../app/views/users/edit.html.haml:13
+msgid "Are you sure you wish to delete %s?"
+msgstr "Êtes-vous sûr de vouloir supprimer %s ?"
+
+#: ../app/views/colocations/_form.html.haml:35
+#: ../app/views/locations/_form.html.haml:70
+msgid "Always"
+msgstr "Toujours"
+
+#: ../app/views/colocations/_form.html.haml:37
+#: ../app/views/locations/_form.html.haml:72
+msgid "Never"
+msgstr "Jamais"
+
+#: ../app/views/colocations/_form.html.haml:69
+#: ../app/views/locations/_form.html.haml:37
+#: ../app/views/wizards/show.html.haml:74
+#: ../app/views/wizards/show.html.haml:105
+msgid "Advanced"
+msgstr "Avancés"
+
+#: ../app/views/commands/index.html.haml:22
+msgid "Lists crm commands recently executed by hawk, most recent first."
+msgstr "Liste les commandes CRM récemment éxécutées par Hawk, les plus récentes d'abord."
+
+#: ../app/views/configs/edit.html.haml:7
+#: ../app/views/shared/_mainnav.html.haml:60
+msgid "Edit Configuration"
+msgstr "Modifier la configuration"
+
+#: ../app/views/configs/edit.html.haml:15
+#: ../app/views/configs/show.html.haml:19
+#: ../app/views/graphs/show.html.haml:15
+msgid "XML"
+msgstr "XML"
+
+#: ../app/views/configs/meta.html.haml:19
+#: ../app/views/shared/_footer.html.haml:17
+msgid "Cluster Details"
+msgstr "Détails de la grappe"
+
+#: ../app/views/configs/meta.html.haml:29
+#: ../app/views/shared/_simulator.html.haml:5
+msgid "Batch Mode Active"
+msgstr "Mode de traitement par lots actif"
+
+#: ../app/views/configs/show.html.haml:7
+msgid "Show Configuration"
+msgstr "Afficher la configuration"
+
+#: ../app/views/constraints/rename.html.haml:9
+msgid "Rename Constraint"
+msgstr ""
+
+#: ../app/views/constraints/rename.html.haml:36
+#: ../app/views/reports/display.html.haml:55
+#: ../app/views/reports/display.html.haml:64
+#: ../app/views/reports/display.html.haml:73
+#: ../app/views/reports/index.html.haml:39
+#: ../app/views/resources/rename.html.haml:36
+#: ../app/views/resources/show.html.haml:321
+msgid "To"
+msgstr "A"
+
+#: ../app/views/constraints/show.html.haml:10
+msgid "Constraint:"
+msgstr "Contrainte :"
+
+#: ../app/views/constraints/types.html.haml:7
+#: ../app/views/shared/_mainnav.html.haml:50
+msgid "Add Constraint"
+msgstr "Ajouter une contrainte"
+
+#: ../app/views/constraints/types.html.haml:13
+#: ../app/views/resources/types.html.haml:13
+msgid "List"
+msgstr "Lister"
+
+#: ../app/views/crm_config/edit.html.haml:24
+msgid "Resource Defaults"
+msgstr "Valeurs par défaut de ressource"
+
+#: ../app/views/crm_config/edit.html.haml:41
+msgid "Operation Defaults"
+msgstr "Valeurs par défaut d'opération"
+
+#: ../app/views/dashboards/add.html.haml:21
+#: ../app/views/dashboards/show.html.haml:18
+msgid "Add Cluster"
+msgstr "Ajouter une grappe"
+
+#: ../app/views/dashboards/add.html.haml:32
+msgid "West Coast (example)"
+msgstr "Côte Ouest (exemple)"
+
+#: ../app/views/dashboards/add.html.haml:32
+msgid "Cluster name"
+msgstr "Nom de la grappe"
+
+#: ../app/views/dashboards/add.html.haml:34
+msgid "node1.west.example.com"
+msgstr "node1.west.example.com"
+
+#: ../app/views/dashboards/add.html.haml:34
+msgid "Hostname of node in cluster"
+msgstr "Nom d'hôte du noeud dans la grappe"
+
+#: ../app/views/dashboards/add.html.haml:36
+msgid "Server port to connect to"
+msgstr "Port serveur auquel se connecter"
+
+#: ../app/views/groups/_form.html.haml:34
+msgid "No children available"
+msgstr "Aucun enfant disponible"
+
+#: ../app/views/layouts/authentication.html.haml:55
+msgid "Please ensure Javascript is enabled"
+msgstr "Assurez-vous que JavaScript est activé."
+
+#: ../app/views/layouts/authentication.html.haml:62
+msgid "SUSE, LLC"
+msgstr "SUSE, LLC"
+
+#: ../app/views/layouts/authentication.html.haml:68
+msgid "High Availability Web Konsole"
+msgstr "Console Web haute disponibilité"
+
+#: ../app/views/locations/_form.html.haml:29
+msgid "Simple"
+msgstr "Simple"
+
+#: ../app/views/locations/_form.html.haml:74
+msgid "Advisory"
+msgstr "Consultatif"
+
+#: ../app/views/locations/edit.html.haml:7
+msgid "Edit Location"
+msgstr "Modifier l'emplacement"
+
+#: ../app/views/locations/index.html.haml:7
+msgid "Locations"
+msgstr "Emplacements"
+
+#: ../app/views/locations/new.html.haml:7
+msgid "Create Location"
+msgstr "Créer l'emplacement"
+
+#: ../app/views/masters/edit.html.haml:7
+msgid "Edit Multi-state"
+msgstr "Modifier le multi-état"
+
+#: ../app/views/masters/index.html.haml:7
+msgid "Multi-state Resources"
+msgstr "Ressources multi-état"
+
+#: ../app/views/masters/new.html.haml:7
+msgid "Create Multi-state"
+msgstr "Créer le multi-état"
+
+#: ../app/views/nodes/_form.html.haml:18 ../app/views/nodes/show.html.haml:104
+msgid "Attributes"
+msgstr "Attributs"
+
+#: ../app/views/nodes/_form.html.haml:34 ../app/views/nodes/show.html.haml:61
+#: ../app/views/primitives/_form.html.haml:140
+#: ../app/views/resources/show.html.haml:139
+msgid "Utilization"
+msgstr "Utilisation"
+
+#: ../app/views/nodes/edit.html.haml:7
+msgid "Edit Node"
+msgstr "Éditer le noeud"
+
+#: ../app/views/nodes/events.html.haml:33
+#: ../app/views/resources/events.html.haml:33
+msgid "RC"
+msgstr "RC"
+
+#: ../app/views/nodes/events.html.haml:35
+#: ../app/views/shared/_simulator.html.haml:416
+msgid "Resource"
+msgstr "Ressource"
+
+#: ../app/views/nodes/events.html.haml:37
+#: ../app/views/resources/events.html.haml:37
+#: ../app/views/resources/show.html.haml:270
+#: ../app/views/shared/_simulator.html.haml:433
+msgid "Operation"
+msgstr "Opération"
+
+#: ../app/views/nodes/events.html.haml:39
+#: ../app/views/resources/events.html.haml:39
+msgid "Last Change"
+msgstr "Dernier changement"
+
+#: ../app/views/nodes/events.html.haml:41
+#: ../app/views/resources/events.html.haml:41
+#: ../app/views/shared/_simulator.html.haml:368
+#: ../app/views/tickets/show.html.haml:93
+msgid "State"
+msgstr "État"
+
+#: ../app/views/nodes/events.html.haml:43
+#: ../app/views/resources/events.html.haml:43
+#: ../app/views/resources/show.html.haml:268
+msgid "Call"
+msgstr "Appeler"
+
+#: ../app/views/nodes/events.html.haml:45
+#: ../app/views/resources/events.html.haml:45
+msgid "Exec"
+msgstr "Exec"
+
+#: ../app/views/nodes/events.html.haml:47
+#: ../app/views/resources/events.html.haml:47
+msgid "Complete"
+msgstr "Effectué"
+
+#: ../app/views/nodes/show.html.haml:30
+msgid "Remote node."
+msgstr "Noeud distant."
+
+#: ../app/views/nodes/show.html.haml:95
+msgid "No utilization defined"
+msgstr "Aucune utilisation n'est définie."
+
+#: ../app/views/nodes/show.html.haml:129
+msgid "No attributes defined"
+msgstr "Aucun attribut n'est défini."
+
+#: ../app/views/orders/_form.html.haml:35
+msgid "Mandatory"
+msgstr "Obligatoire"
+
+#: ../app/views/orders/_form.html.haml:37
+msgid "Optional"
+msgstr "Optionnel"
+
+#: ../app/views/orders/_form.html.haml:39
+msgid "Serialize"
+msgstr "Mettre en série"
+
+#: ../app/views/orders/_form.html.haml:50
+msgid "Symmetrical"
+msgstr "Symétrique"
+
+#: ../app/views/pages/help.html.haml:55
+msgid "HTML"
+msgstr "HTML"
+
+#: ../app/views/pages/help.html.haml:59
+msgid "PDF"
+msgstr "PDF"
+
+#: ../app/views/primitives/_help.html.haml:35
+#: ../app/views/shared/_helpentry.html.haml:15
+msgid "Default"
+msgstr "Par défaut"
+
+#: ../app/views/primitives/edit.html.haml:13
+msgid "Copy"
+msgstr "Copier"
+
+#: ../app/views/reports/display.html.haml:13
+#: ../app/views/reports/index.html.haml:156
+#: ../app/views/reports/show.html.haml:13
+msgid "Reports"
+msgstr "Rapports"
+
+#: ../app/views/reports/display.html.haml:78
+msgid "Created"
+msgstr "Créé"
+
+#: ../app/views/reports/display.html.haml:82
+#: ../app/views/reports/display.html.haml:99
+msgid "Transitions"
+msgstr "Transitions"
+
+#: ../app/views/reports/display.html.haml:105
+msgid "No transitions in report"
+msgstr "Pas de transitions dans le rapport"
+
+#: ../app/views/reports/display.html.haml:125
+msgid "Previous"
+msgstr ""
+
+#: ../app/views/reports/display.html.haml:133
+msgid "Zoom in"
+msgstr ""
+
+#: ../app/views/reports/display.html.haml:135
+msgid "Zoom out"
+msgstr ""
+
+#: ../app/views/reports/display.html.haml:143
+#: ../app/views/wizards/show.html.haml:133
+msgid "Next"
+msgstr "Suivant"
+
+#: ../app/views/reports/display.html.haml:161
+msgid "PE Name"
+msgstr "Nom PE"
+
+#: ../app/views/reports/display.html.haml:198
+#: ../app/views/shared/_mainnav.html.haml:38
+msgid "Configuration"
+msgstr "Configuration"
+
+#: ../app/views/reports/display.html.haml:206
+msgid "Diff"
+msgstr "Diff"
+
+#: ../app/views/reports/display.html.haml:214
+msgid "Logs"
+msgstr "Journaux"
+
+#: ../app/views/reports/display.html.haml:289
+msgid "Node Events"
+msgstr "Evénements de noeud"
+
+#: ../app/views/reports/display.html.haml:306
+msgid "Resource Events"
+msgstr "Evénements de ressources"
+
+#: ../app/views/reports/index.html.haml:20
+msgid "Data collection in progress..."
+msgstr "Collecte de données en cours..."
+
+#: ../app/views/reports/index.html.haml:79
+#: ../app/views/reports/index.html.haml:124
+msgid "Generate"
+msgstr "Générer"
+
+#: ../app/views/reports/index.html.haml:87
+msgid "Upload"
+msgstr "Télécharger"
+
+#: ../app/views/reports/show.html.haml:30
+msgid "Loading report..."
+msgstr "Chargement du rapport..."
+
+#: ../app/views/resources/rename.html.haml:9
+msgid "Rename Resource"
+msgstr "Renommer la ressource"
+
+#: ../app/views/resources/show.html.haml:57
+msgid "Child"
+msgstr "Enfant"
+
+#: ../app/views/resources/show.html.haml:218
+msgid "Instances"
+msgstr "Instances"
+
+#: ../app/views/resources/show.html.haml:250
+msgid "Failed Operations"
+msgstr "Opérations ayant échoué"
+
+#: ../app/views/resources/show.html.haml:274
+msgid "Reason"
+msgstr "Motif"
+
+#: ../app/views/resources/types.html.haml:7
+#: ../app/views/shared/_mainnav.html.haml:45
+msgid "Add Resource"
+msgstr "Ajouter une ressource"
+
+#: ../app/views/resources/types.html.haml:32
+msgid "Primitive"
+msgstr "Primitive"
+
+#: ../app/views/roles/_form.html.haml:27
+msgid "Add a rule below"
+msgstr "Ajouter une règle en dessous"
+
+#: ../app/views/roles/_form.html.haml:29
+msgid "Remove this rule"
+msgstr "Supprimer cette règle"
+
+#: ../app/views/roles/_form.html.haml:31
+msgid "Move rule up"
+msgstr "Déplacer la règle vers le haut"
+
+#: ../app/views/roles/_form.html.haml:33
+msgid "Move rule down"
+msgstr "Déplacer la règle vers le bas"
+
+#: ../app/views/roles/_form.html.haml:38
+msgid "Right"
+msgstr "Droite"
+
+#: ../app/views/roles/_form.html.haml:40
+msgid "XPath"
+msgstr "XPath"
+
+#: ../app/views/roles/_form.html.haml:42
+msgid "Object Type"
+msgstr "Type d'objet"
+
+#: ../app/views/roles/_form.html.haml:44
+msgid "Reference"
+msgstr "Référence"
+
+#: ../app/views/roles/_form.html.haml:47
+msgid "Attribute"
+msgstr "Attribut"
+
+#: ../app/views/roles/index.html.haml:9 ../app/views/users/index.html.haml:9
+msgid "Access Control Lists"
+msgstr "Listes de contrôle d'accès"
+
+#: ../app/views/sessions/new.html.haml:7
+msgid "Login"
+msgstr "Identifiant"
+
+#: ../app/views/shared/_mainnav.html.haml:10
+msgid "Manage"
+msgstr "Gérer"
+
+#: ../app/views/shared/_mainnav.html.haml:31
+msgid "History"
+msgstr "Historique"
+
+#: ../app/views/shared/_mainnav.html.haml:55
+#: ../app/views/wizards/index.html.haml:7
+msgid "Wizards"
+msgstr "Assistants"
+
+#: ../app/views/shared/_mainnav.html.haml:79
+msgid "Access Control"
+msgstr "Contrôle des accès"
+
+#: ../app/views/shared/_mainnav.html.haml:92
+#: ../app/views/users/index.html.haml:7
+msgid "Targets"
+msgstr "Cibles"
+
+#: ../app/views/shared/_simulator.html.haml:15
+msgid "Any pending changes to the configuration will be lost - do you wish to proceed?"
+msgstr "Tous les changements en attente à apporter à la configuration seront perdus. Voulez-vous continuer ?"
+
+#: ../app/views/shared/_simulator.html.haml:17
+msgid "Discard"
+msgstr "Rejeter"
+
+#: ../app/views/shared/_simulator.html.haml:52
+msgid "Batch Mode"
+msgstr "Mode de traitement par lots"
+
+#: ../app/views/shared/_simulator.html.haml:82
+#: ../app/views/shared/_simulator.html.haml:184
+msgid "Summary"
+msgstr "Résumé"
+
+#: ../app/views/shared/_simulator.html.haml:84
+#: ../app/views/shared/_simulator.html.haml:215
+msgid "CIB (in)"
+msgstr "CIB (entrée)"
+
+#: ../app/views/shared/_simulator.html.haml:86
+#: ../app/views/shared/_simulator.html.haml:246
+msgid "CIB (out)"
+msgstr "CIB (sortie)"
+
+#: ../app/views/shared/_simulator.html.haml:88
+#: ../app/views/shared/_simulator.html.haml:277
+msgid "Transition Graph"
+msgstr "Graphique de transition"
+
+#: ../app/views/shared/_simulator.html.haml:90
+msgid "Transition"
+msgstr "Transition"
+
+#: ../app/views/shared/_simulator.html.haml:101
+msgid "Inject"
+msgstr "Injecter"
+
+#: ../app/views/shared/_simulator.html.haml:107
+msgid "Node Event"
+msgstr "Événement de noeud"
+
+#: ../app/views/shared/_simulator.html.haml:110
+msgid "Resource Event"
+msgstr "Événement de ressources"
+
+#: ../app/views/shared/_simulator.html.haml:113
+msgid "Ticket Event"
+msgstr "Événement de ticket"
+
+#: ../app/views/shared/_simulator.html.haml:308
+msgid "Transition (XML)"
+msgstr "Transition (XML)"
+
+#: ../app/views/shared/_simulator.html.haml:341
+msgid "Inject Node Event"
+msgstr "Injecter l'événement de nœud"
+
+#: ../app/views/shared/_simulator.html.haml:406
+msgid "Inject Resource Event"
+msgstr "Injecter l'événement de ressource"
+
+#: ../app/views/shared/_simulator.html.haml:450
+msgid "Interval (ms)"
+msgstr "Intervalle (ms) "
+
+#: ../app/views/shared/_simulator.html.haml:480
+msgid "Result"
+msgstr "Résultat"
+
+#: ../app/views/shared/_simulator.html.haml:518
+msgid "Inject Ticket Event"
+msgstr "Injecter l'événement de ticket"
+
+#: ../app/views/shared/_simulator.html.haml:545
+msgid "Action"
+msgstr "Action"
+
+#: ../app/views/shared/_usernav.html.haml:6
+msgid "Batch Configuration Changes"
+msgstr "Changements de la configuration du traitement par lots"
+
+#: ../app/views/shared/_usernav.html.haml:6
+#: ../app/views/shared/_usernav.html.haml:14
+msgid "Batch"
+msgstr "Traitement par lots"
+
+#: ../app/views/shared/_usernav.html.haml:33
+msgid "Logout"
+msgstr "Déconnecter"
+
+#: ../app/views/shared/_usernav.html.haml:39
+msgid "Menu"
+msgstr "Menu"
+
+#: ../app/views/tags/_form.html.haml:10 ../app/views/tags/_form.html.haml:15
+msgid "Tag ID"
+msgstr "ID de balise"
+
+#: ../app/views/tags/_form.html.haml:34
+msgid "No objects available"
+msgstr "Aucun objet n'est disponible."
+
+#: ../app/views/tickets/_form.html.haml:16
+msgid "Ticket ID"
+msgstr "ID de ticket"
+
+#: ../app/views/tickets/_form.html.haml:18
+#: ../app/views/tickets/show.html.haml:63
+msgid "Loss Policy"
+msgstr "Stratégie relative aux pertes"
+
+#: ../app/views/tickets/show.html.haml:9
+msgid "Ticket:"
+msgstr "Ticket :"
+
+#: ../app/views/tickets/show.html.haml:26
+msgid "Properties"
+msgstr "Propriétés"
+
+#: ../app/views/tickets/show.html.haml:69
+msgid "None"
+msgstr "Aucun"
+
+#: ../app/views/tickets/show.html.haml:106
+msgid "Leader"
+msgstr "Leader"
+
+#: ../app/views/tickets/show.html.haml:119
+msgid "Expires"
+msgstr "Expire"
+
+#: ../app/views/tickets/show.html.haml:132
+msgid "Commit"
+msgstr "Appliquer"
+
+#: ../app/views/tickets/show.html.haml:189
+msgid "Sites"
+msgstr "Sites"
+
+#: ../app/views/tickets/show.html.haml:224
+msgid "Arbitrators"
+msgstr "Arbitres"
+
+#: ../app/views/users/_form.html.haml:10 ../app/views/users/_form.html.haml:13
+msgid "Target ID"
+msgstr "ID de la cible"
+
+#: ../app/views/wizards/create.html.haml:21
+msgid "Verifying parameters..."
+msgstr "Vérification des paramètres..."
+
+#: ../app/views/wizards/create.html.haml:26
+#: ../app/views/wizards/show.html.haml:129
+#: ../app/views/wizards/update.html.haml:106
+msgid "Do you really want to cancel the wizard setup?"
+msgstr "Voulez-vous vraiment annuler la configuration de l'assistant ?"
+
+#: ../app/views/wizards/create.html.haml:30
+msgid "Do you really want to apply the current wizard?"
+msgstr "Voulez-vous vraiment appliquer l'assistant actuel ?"
+
+#: ../app/views/wizards/show.html.haml:56
+msgid "Enable this step"
+msgstr "Activer cette étape"
+
+#: ../app/views/wizards/show.html.haml:123
+msgid "This wizard takes no parameters."
+msgstr "Cet assistant n'utilise aucun paramètre."
+
+#: ../app/views/wizards/show.html.haml:135
+msgid "Verify"
+msgstr "Vérifier"
+
+#: ../app/views/wizards/update.html.haml:50
+msgid "Verify and apply"
+msgstr "Vérifier et appliquer"
+
+#: ../app/views/wizards/update.html.haml:87
+msgid "To apply the changes, Hawk requires root access, and password-less SSH access must be configured. See the Hawk documentation for more information."
+msgstr "Pour appliquer les modifications, Hawk nécessite un accès root, et un accès SSH sans mot de passe doit être configuré. Pour plus d'informations, consultez la documentation Hawk."
+
+#: ../app/views/wizards/update.html.haml:94
+msgid "Root password"
+msgstr "Mot de passe root"
+
+#: ../lib/cibtools.rb:125
+msgid "other"
+msgstr "autre"
+
+#: ../lib/invoker.rb:86
+msgid "The object/attribute does not exist (cibadmin %{cmd})"
+msgstr "L'objet/attribut n'existe pas (cibadmin %{cmd})."
+
+#: ../lib/invoker.rb:90
+msgid "Error invoking cibadmin %{cmd}: %{msg}"
+msgstr "Erreur lors de l'appel de cibadmin %{cmd} : %{msg}"

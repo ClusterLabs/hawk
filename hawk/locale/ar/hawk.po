@@ -5,7 +5,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"PO-Revision-Date: 2016-06-01 11:28\n"
+"POT-Creation-Date: 2016-06-12 19:52+0200\n"
+"PO-Revision-Date: 2016-06-29 11:55\n"
 "Last-Translator: Novell language <language@novell.com>\n"
 "Language-Team: Novell language <language@novell.com>\n"
 "Language: \n"
@@ -14,1948 +15,3105 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-msgid "%s is not executable"
-msgstr "%s غير قابل للتنفيذ"
-
-msgid "%s is not installed"
-msgstr "لم يتم تثبيت %s"
-
-msgid "%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_reason}"
-msgstr "%{fail_start}: العملية %{op} فشلت للمورد %{resource} في العقدة %{node}: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_reason}"
-
-msgid "ACL Targets"
-msgstr "أهداف ACL"
-
-msgid "ACL is not supported by the cluster"
-msgstr "لا تدعم المجموعة المتماثلة ACL"
-
-msgid "ACL is not supported by this cluster."
-msgstr "لا تدعم المجموعة المتماثلة ACL"
-
-msgid "ACL target ID is required"
-msgstr "معرف هدف ACL مطلوب"
-
-msgid "ACL target created successfully"
-msgstr "تم إنشاء هدف ACL"
-
-msgid "ACL target deleted successfully"
-msgstr "تم حذف هدف ACL بنجاح"
-
-msgid "ACL target updated successfully"
-msgstr "تم تحديث هدف ACL بنجاح"
-
-msgid "Access Control"
-msgstr "التحكم في الوصول"
-
-msgid "Access Control Lists"
-msgstr "قوائم التحكم في الوصول"
-
-msgid "Action"
-msgstr "الإجراء"
-
-msgid "Actions"
-msgstr "إجراءات"
-
-msgid "Add"
-msgstr "إضافة"
-
-msgid "Add Cluster"
-msgstr "إضافة مجموعة متماثلة"
-
-msgid "Add Constraint"
-msgstr "إضافة قيد"
-
-msgid "Add Resource"
-msgstr "إضافة مورِد"
-
-msgid "Add a rule below"
-msgstr "إضافة قاعدة أدناه"
-
-msgid "Advanced"
-msgstr "خيارات متقدمة"
-
-msgid "Advisory"
-msgstr "استشاري"
-
-msgid "After the specified timeout period, the operation will be treated as failed."
-msgstr "بعد فترة المهلة المحددة، سيتم التعامل مع العملية كعملية فاشلة."
-
-msgid "Agent"
-msgstr "الوكيل"
-
-msgid "Always"
-msgstr "دائمًا"
-
-msgid "An error has occurred"
-msgstr "حدث خطأ"
-
-msgid "Any changes will be lost - do you wish to proceed?"
-msgstr "سيتم فقد أية تغييرات - هل تريد المتابعة؟"
-
-msgid "Any pending changes to the configuration will be lost - do you wish to proceed?"
-msgstr "سيتم فقد أية تغييرات معلقة على التكوين - هل تريد المتابعة؟"
-
-msgid "Applied configuration successfully"
-msgstr "تم تطبيق التكوين بنجاح"
-
-msgid "Apply"
-msgstr "تطبيق"
-
-msgid "Apply Configuration"
-msgstr "تطبيق التكوين"
-
-msgid "Applying configuration changes..."
-msgstr "جارٍ تطبيق تغييرات التكوين..."
-
-msgid "April"
-msgstr "أبريل"
-
-msgid "Arbitrators"
-msgstr "الوسطاء"
-
-msgid "Are you sure you wish to delete %s?"
-msgstr "هل تريد بالتأكيد حذف %s؟"
-
-msgid "At least one role is required"
-msgstr "مطلوب دور واحد على الأقل"
-
-msgid "At least one rule is required"
-msgstr "مطلوب قاعدة واحدة على الأقل"
-
-msgid "Attribute"
-msgstr "سمة"
-
-msgid "Attribute contains both single and double quotes"
-msgstr "تحتوي السمة على علامات اقتباس مفردة ومزدوجة"
-
-msgid "Attributes"
-msgstr "السمات"
-
-msgid "August"
-msgstr "أغسطس"
-
-msgid "Away from current node"
-msgstr "بعيدًا عن نقطة التوصيل الحالية"
-
-msgid "Back"
-msgstr "الخلف"
-
-msgid "Batch"
-msgstr "دفعة"
-
-msgid "Batch Configuration Changes"
-msgstr "تغييرات تكوين الدفعة"
-
-msgid "Batch Mode"
-msgstr "وضع الدفعة"
-
-msgid "Batch Mode Active"
-msgstr "وضع الدُفعات نشط"
-
-msgid "Boolean Operator"
-msgstr "المشغل المنطقي"
-
-msgid "CIB (in)"
-msgstr "CIB (داخل)"
-
-msgid "CIB (out)"
-msgstr "CIB (خارج)"
-
-msgid "CIB Schema Version"
-msgstr "إصدار مخطط CIB"
-
-msgid "CIB file \"%{path}\" not found"
-msgstr "ملف CIB \"%{path}\" غير موجود"
-
-msgid "Calculating list of changes..."
-msgstr "جارٍ حساب قائمة التغييرات..."
-
-msgid "Call"
-msgstr "استدعاء"
-
-msgid "Cancel"
-msgstr "إلغاء"
-
-msgid "Cannot display diff, too few transitions"
-msgstr "يتعذر عرض الفرق، يوجد القليل من عمليات الانتقال"
-
-msgid "Changes applied successfully."
-msgstr "تم تطبيق التغييرات بنجاح."
-
-msgid "Changes the behavior of ordering constraints (between clones/masters) so that instances can start/stop as soon as their peer instance has (rather than waiting for every instance of the other clone has)."
-msgstr "تغيير أداء قيود الترتيب (بين عمليات الاستنساخ والعمليات الرئيسية) وبذلك يمكن للمثيلات أن البدء/الإيقاف بمجرد بدء/إيقاف المثيل النظير (بدلاً من انتظار كل مثيل للاستنساخ)."
-
-msgid "Child"
-msgstr "عنصر فرعي"
-
-msgid "Child Resource"
-msgstr "مورد فرعي"
-
-msgid "Child resource to use as clone."
-msgstr "مورد فرعي لاستخدامه كاستنساخ."
-
-msgid "Children"
-msgstr "الفروع"
-
-msgid "Class"
-msgstr "طبقة"
-
-msgid "Clean up on all nodes"
-msgstr "تنظيف كل العُقد"
-
-msgid "Clean up tagged resources"
-msgstr ""
-
-msgid "Cleanup"
-msgstr "تنظيف"
-
-msgid "Clear state"
-msgstr "مسح الحالة"
-
-msgid "Cleared the node state"
-msgstr "حالة العقدة ممسوحة"
-
-msgid "Clone"
-msgstr "استنساخ"
-
-msgid "Clone ID"
-msgstr "معرف الاستنساخ"
-
-msgid "Clone ID is required"
-msgstr "معرف الاستنساخ مطلوب"
-
-msgid "Clone created successfully"
-msgstr "تم إنشاء الاستنساخ بنجاح"
-
-msgid "Clone deleted successfully"
-msgstr "تم حذف الاستنساخ بنجاح"
-
-msgid "Clone updated successfully"
-msgstr "تم تحديث الاستنساخ بنجاح"
-
-msgid "Clones"
-msgstr "عمليات الاستنساخ"
-
-msgid "Close"
-msgstr "إغلاق"
-
-msgid "Cluster Communication Stack"
-msgstr "مكدس اتصالات المجموعة المتماثلة"
-
-msgid "Cluster Configuration"
-msgstr "تكوين المجموعة المتماثلة"
-
-msgid "Cluster Details"
-msgstr "تفاصيل المجموعة المتماثلة"
-
-msgid "Cluster Graph"
-msgstr "الرسم البياني لمجموعة المتماثلة"
-
-msgid "Cluster added successfully."
-msgstr "تم إضافة المجموعة المتماثلة بنجاح."
-
-msgid "Cluster name"
-msgstr "اسم المجموعة المتماثلة"
-
-msgid "Cluster removed successfully."
-msgstr "تمت إزالة المجموعة المتماثلة بنجاح."
-
-msgid "Cluster seems to be offline"
-msgstr "المجموعة المتماثلة تبدو غير متصلة"
-
-msgid "Colocate resources by the given node attribute instead of by node name (the default)."
-msgstr "حدد الموقع المشترك للموارد حسب سمة العقدة المحددة بدلاً من اسم العقدة (الافتراضي)."
-
-msgid "Colocation"
-msgstr "الموقع المشترك"
-
-msgid "Colocation deleted successfully"
-msgstr "تم إنشاء الموقع المشترك بنجاح"
-
-msgid "Colocations"
-msgstr "المواقع المشترك"
-
-msgid "Command Log"
-msgstr "سجل الأمر"
-
-msgid "Commit"
-msgstr "تثبيت"
-
-msgid "Complete"
-msgstr "مكتمل"
-
-msgid "Conditions under which the resource can be started."
-msgstr "الشروط التي يمكن بدء المورد طبقًا لها."
-
-msgid "Configuration"
-msgstr "تكوين"
-
-msgid "Configuration updated successfully"
-msgstr "تم تحديث التكوين بنجاح"
-
-msgid "Connect"
-msgstr "اتصال"
-
-msgid "Connection to server aborted - will retry every 15 seconds."
-msgstr "تم إيقاف الاتصال بالخادم، ستُعاد المحاولة كل 15 ثانية."
-
-msgid "Connection to server failed (server down or network error - will retry every 15 seconds)."
-msgstr "فشل الاتصال بالخادم (إما أن ‏‏الخادم لا يستجيب وإما أن هناك خطأ في الشبكة - ستُعاد المحاولة كل 15 ثانية)."
-
-msgid "Connection to server failed - will retry every 15 seconds."
-msgstr "فشل الاتصال بالخادم - ستتم إعادة المحاولة كل 15 ثانية."
-
-msgid "Connection to server timed out - will retry every 15 seconds."
-msgstr "انتهت مهلة الاتصال بالخادم - ستُعاد المحاولة كل 15 ثانية."
-
-msgid "Connection to server timed out."
-msgstr "انتهت مهلة الاتصال بالخادم."
-
-msgid "Connection to server was aborted."
-msgstr "تم إيقاف الاتصال بالخادم."
-
-msgid "Constraint ID"
-msgstr "معرف القيد"
-
-msgid "Constraint ID is required"
-msgstr "معرف القيد مطلوب"
-
-msgid "Constraint created successfully"
-msgstr "تم إنشاء القيد بنجاح"
-
-msgid "Constraint is too complex - it contains nested rules"
-msgstr "القيد معقد للغاية - يحتوي على قواعد مضمنة"
-
-msgid "Constraint must consist of at least one separate resources"
-msgstr "يجب أن يتكون القيد من موردين منفصلين على الأقل"
-
-msgid "Constraint must consist of at least two separate resources"
-msgstr "يجب أن يتكون القيد من موردين منفصلين على الأقل"
-
-msgid "Constraint updated successfully"
-msgstr "تم تحديث القيد بنجاح"
-
-msgid "Constraint:"
-msgstr "القيد:"
-
-msgid "Constraints"
-msgstr "القيود"
-
-msgid "Controls resource discovery for the specified resource on nodes covered by the constraint. always: Always perform resource discovery (default). never: Never perform resource discovery for the specified resource on this node. This option should generally be used with a -INFINITY score. exclusive: Only perform resource discovery for the specified resource on this node."
-msgstr "يتحكم في اكتشاف المورد للمورد المحدد بالعُقد المتضمنة بواسطة القيد. \"دائمًا\": يقوم بتنفيذ اكتشاف المورد دائمًا (افتراضي). و\"أبدًا\": لا يقوم بتنفيذ اكتشاف المورد للمورد المحدد بهذه العقدة أبدًا. وبشكل عام، يجب استخدام هذا الخيار مع نتيجة -INFINITY سالبة. \"حصري\": يقوم بتنفيذ اكتشاف المورد فقط للمورد المحدد بهذه العقدة."
-
-msgid "Copy"
-msgstr "نسخ"
-
-msgid "Could not cancel report collection"
-msgstr "تعذر إلغاء مجموعة التقارير"
-
-msgid "Create"
-msgstr "إنشاء"
-
-msgid "Create ACL Target"
-msgstr "إنشاء هدف ACL"
-
-msgid "Create Clone"
-msgstr "إنشاء استنساخ"
-
-msgid "Create Colocation"
-msgstr "إنشاء موقع مشترك"
-
-msgid "Create Group"
-msgstr "مجموعة الإنشاء"
-
-msgid "Create Location"
-msgstr "إنشاء موقع"
-
-msgid "Create Location Constraint"
-msgstr "إنشاء قيد الموقع"
-
-msgid "Create Multi-state"
-msgstr "إنشاء متعدد الحالات"
-
-msgid "Create Multi-state resource"
-msgstr "إنشاء مورد متعدد الحالات"
-
-msgid "Create Order"
-msgstr "إنشاء ترتيب"
-
-msgid "Create Primitive"
-msgstr "إنشاء مجموعة أساسية"
-
-msgid "Create Role"
-msgstr "إنشاء دور"
-
-msgid "Create Tag"
-msgstr "إنشاء علامة"
-
-msgid "Create Template"
-msgstr "إنشاء قالب"
-
-msgid "Create Ticket"
-msgstr "إنشاء بطاقة"
-
-msgid "Created"
-msgstr "تاريخ الإنشاء"
-
-msgid "Created a new shadow CIB for %USER%."
-msgstr "تم إنشاء ظل CIB احتياطي جديد للمستخدم %USER%."
-
-msgid "Current Configuration Version"
-msgstr "إصدار التكوين الحالي"
-
-msgid "Custom"
-msgstr "مخصص"
-
-msgid "DC"
-msgstr "DC"
-
-msgid "Dashboard"
-msgstr "لوحة المعلومات"
-
-msgid "Data collection in progress..."
-msgstr "تجميع البيانات قيد التقدم..."
-
-msgid "December"
-msgstr "ديسمبر"
-
-msgid "Default"
-msgstr "افتراضي"
-
-msgid "Define a monitor operation to instruct the cluster to ensure that the resource is still healthy."
-msgstr "حدد عملية مراقبة لتوجيه المجموعة للتأكد من أن المورد لا يزال سليمًا."
-
-msgid "Delete"
-msgstr "حذف"
-
-msgid "Demote"
-msgstr "تخفيض"
-
-msgid "Deny"
-msgstr "رفض"
-
-msgid "Depth"
-msgstr "العمق"
-
-msgid "Designated Coordinator"
-msgstr "المنسق المستهدف"
-
-msgid "Details"
-msgstr "التفاصيل"
-
-msgid "Diff"
-msgstr "الفرق"
-
-#, fuzzy
-msgid "Disable Maintenance Mode"
-msgstr "الصيانة"
-
-msgid "Discard"
-msgstr "تجاهل"
-
-msgid "Do you really want to apply the current wizard?"
-msgstr "هل تريد بالفعل تطبيق المعالج الحالي؟"
-
-msgid "Do you really want to cancel the wizard setup?"
-msgstr "هل تريد بالفعل إلغاء إعداد المعالج؟"
-
-msgid "Does each copy of the clone perform a different function?"
-msgstr "هل تقوم كل نسخة استنساخ بوظيفة مختلفة؟"
-
-msgid "Download"
-msgstr "تحميل"
-
-msgid "Each rule can contain a number of expressions. The results of the expressions are combined based on the rule's boolean operator."
-msgstr "يمكن أن تحتوي كل قاعدة على عدد من التعابير. يتم جمع نتائج التعابير استنادًا إلى المشغل المنطقي للقاعدة."
-
-msgid "Edit"
-msgstr "تحرير"
-
-msgid "Edit ACL Target"
-msgstr "تحرير هدف ACL"
-
-msgid "Edit Clone"
-msgstr "تحرير الاستنساخ"
-
-msgid "Edit Colocation"
-msgstr "تحرير الموقع المشترك"
-
-msgid "Edit Configuration"
-msgstr "تحرير التكوين"
-
-msgid "Edit Group"
-msgstr "تحرير مجموعة"
-
-msgid "Edit Location"
-msgstr "تحرير الموقع"
-
-msgid "Edit Location Constraint"
-msgstr "تحرير قيد الموقع"
-
-msgid "Edit Multi-state"
-msgstr "تحرير متعدد الحالات"
-
-msgid "Edit Multi-state resource"
-msgstr "تحرير مورد متعدد الحالات"
-
-msgid "Edit Node"
-msgstr "تحرير عقدة"
-
-msgid "Edit Order"
-msgstr "تحرير ترتيب"
-
-msgid "Edit Primitive"
-msgstr "تحرير المجموعة الأساسية"
-
-msgid "Edit Role"
-msgstr "تحرير قاعدة"
-
-msgid "Edit Tag"
-msgstr "تحرير علامة"
-
-msgid "Edit Template"
-msgstr "تحرير القالب"
-
-msgid "Edit Ticket"
-msgstr "تحرير بطاقة"
-
-msgid "Elsewhere"
-msgstr "مكان آخر"
-
-msgid "Enable this step"
-msgstr "تمكين هذه الخطوة"
-
-msgid "Epoch"
-msgstr "Epoch"
-
+#: ../app/assets/javascripts/dashboard.js:20
 msgid "Error"
 msgstr "خطأ"
 
-msgid "Error connecting to server."
-msgstr "حدث خطأ أثناء الاتصال بالخادم."
-
-msgid "Error deleting %s"
-msgstr "حدث خطأ أثناء حذف %s"
-
-msgid "Error deleting %s: %s"
-msgstr "حدث خطأ في حذف %s: %s"
-
-msgid "Error granting the ticket"
-msgstr "حدث خطأ أثناء منح البطاقة"
-
-msgid "Error invoking %{cmd}"
-msgstr "حدث خطأ أثناء استدعاء %{cmd}"
-
-msgid "Error invoking %{cmd}: %{msg}"
-msgstr "حدث خطأ أثناء استدعاء %{cmd}: %{msg}"
-
-msgid "Error invoking cibadmin %{cmd}: %{msg}"
-msgstr "حدث خطأ أثناء استدعاء cibadmin %{cmd}: %{msg}"
-
-msgid "Error removing %s: %s"
-msgstr "حدث خطأ في إزالة %s: %s"
-
-msgid "Error removing cluster."
-msgstr "حدث خطأ في إزالة المجموعة المتماثلة."
-
-msgid "Error revoking the ticket"
-msgstr "حدث خطأ أثناء إبطال البطاقة"
-
-msgid "Error updating %{id} (rc=%{rc})"
-msgstr "حدث خطأ في تحديث %{id} (rc=%{rc})"
-
-msgid "Error:"
-msgstr "خطأ:"
-
-#, fuzzy
-msgid "Error: Not authenticated"
-msgstr "خطأ:"
-
-#, fuzzy
-msgid "Error: Permission denied for user (%s)"
-msgstr "الإذن مرفوض"
-
-#, fuzzy
-msgid "Error: Record not found"
-msgstr "خطأ:"
-
-msgid "Errors"
-msgstr "أخطاء"
-
-msgid "Events"
-msgstr "الأحداث"
-
-msgid "Exec"
-msgstr "تنفيذ"
-
-msgid "Expires"
-msgstr "انتهاء مدة الصلاحية"
-
-msgid "Expression"
-msgstr "التعبير"
-
-msgid "Failed Operations"
-msgstr "العمليات الفاشلة"
-
-msgid "Failed to apply configuration"
-msgstr "فشل تطبيق التكوين"
-
-msgid "Failed to clean up the resource: %{err}"
-msgstr "فشل تنظيف المورد: %{err}"
-
-msgid "Failed to clear the node state: %{err}"
-msgstr "فشل مسح حالة العقدة: %{err}"
-
-msgid "Failed to demote the resource: %{err}"
-msgstr "فشل تخفيض رتبة المورد: %{err}"
-
-msgid "Failed to disable maintenance mode for resource: %{err}"
-msgstr ""
-
-msgid "Failed to fence the node: %{err}"
-msgstr "فشل وضع فاصل للعقدة: %{err}"
-
-msgid "Failed to fetch meta attributes"
-msgstr "فشل إحضار سمات التعريف"
-
-msgid "Failed to generate"
-msgstr "فشل الإنشاء"
-
-msgid "Failed to migrate the resource: %{err}"
-msgstr "تعذر ترحيل المورد: %{err}"
-
-msgid "Failed to parse monitor response - Internal server error."
-msgstr "فشل تحليل استجابة المراقبة - حدث خطأ داخلي في الخادم."
-
-msgid "Failed to promote the resource: %{err}"
-msgstr "فشلت ترقية المورد: %{err}"
-
-msgid "Failed to rename %{A} to %{B}: %{E}"
-msgstr "فشلت إعادة تسمية %{A} إلى %{B}: %{E}"
-
-msgid "Failed to set the node online: %{err}"
-msgstr "فشل تعيين العقدة عبر الإنترنت: %{err}"
-
-msgid "Failed to set the node standby: %{err}"
-msgstr "فشل تعيين حالة العقدة على وضع الاستعداد: %{err}"
-
-msgid "Failed to set the node state to maintenance: %{err}"
-msgstr "فشل تعيين حالة العقدة على الصيانة: %{err}"
-
-msgid "Failed to set the node state to ready: %{err}"
-msgstr "فشل تعيين حالة العقدة على جاهز: %{err}"
-
-#, fuzzy
-msgid "Failed to set the resource in maintenance mode: %{err}"
-msgstr "فشل تعيين المورد في الوضع المدار: %{err}"
-
-msgid "Failed to start the resource: %{err}"
-msgstr "فشل بدء المورد: %{err}"
-
-msgid "Failed to stop the resource: %{err}"
-msgstr "فشل إيقاف المورد: %{err}"
-
-msgid "Failed to unmigrate the resource: %{err}"
-msgstr "فشل إلغاء ترحيل المورد: %{err}"
-
-msgid "February"
-msgstr "فبراير"
-
-msgid "Fence"
-msgstr "الفاصل"
-
-msgid "File a Bug Report"
-msgstr ""
-
-msgid "Fr"
-msgstr "الجمعة"
-
-msgid "Freeze"
-msgstr "تجميد"
-
-msgid "From"
-msgstr "من"
-
-msgid "Generate"
-msgstr "إنشاء"
-
-#, fuzzy
-msgid "Getting Started using Hawk"
-msgstr "تم البدء"
-
-msgid "Grant"
-msgstr "منح"
-
-msgid "Granted"
-msgstr "تم المنح"
-
-msgid "Graph"
-msgstr "رسم بياني"
-
-msgid "Group"
-msgstr "المجموعة"
-
-msgid "Group ID"
-msgstr "معرف المجموعة"
-
-msgid "Group created successfully"
-msgstr "تم إنشاء المجموعة بنجاح"
-
-msgid "Group deleted successfully"
-msgstr "تم حذف المجموعة بنجاح"
-
-msgid "Group updated successfully"
-msgstr "تم تحديث المجموعة بنجاح"
-
-msgid "Groups"
-msgstr "المجموعات"
-
-msgid "HTML"
-msgstr "HTML"
-
-msgid "Have Quorum"
-msgstr "لديه نصاب"
-
-msgid "Help"
-msgstr "تعليمات"
-
-msgid "High Availability Web Konsole"
-msgstr "High Availability Web Konsole"
-
-msgid "History"
-msgstr "التاريخ"
-
-msgid "History Explorer"
-msgstr "History Explorer"
-
-msgid "Host"
-msgstr "المضيف"
-
-msgid "Hostname"
-msgstr "اسم المضيف"
-
-msgid "Hostname of node in cluster"
-msgstr "اسم مضيف العقدة في المجموعة المتماثلة"
-
-msgid "How frequently (in seconds) to perform the operation."
-msgstr "كم عدد المرات (بالثواني) التي يتم فيها أداء العملية."
-
-msgid "How long before a pending guest connection will time out."
-msgstr "كم يستغرق توصيل الضيف المعلق قبل انتهاء المهلة."
-
-msgid "How long to wait before declaring the action has failed."
-msgstr "ما مدة الانتظار قبل التصريح بفشل الإجراء."
-
-msgid "How many copies of the resource can be promoted to master status on a single node."
-msgstr "كم عدد نسخ المورد التي يمكن ترقيتها إلى الحالة الرئيسية في العقدة المنفردة."
-
-msgid "How many copies of the resource can be promoted to master status."
-msgstr "كم عدد نسخ المورد التي يمكن ترقيتها إلى الحالة الرئيسية."
-
-msgid "How many copies of the resource can be started on a single node. Defaults to 1."
-msgstr "كم عدد نسخ الموارد التي يمكن أن تبدأ في العقدة المنفردة. يتم التعيين على 1 بشكل افتراضي."
-
-msgid "How many copies of the resource to start. Defaults to the number of nodes in the cluster."
-msgstr "كم عدد نسخ الموارد المطلوب أن تبدأ. يتم التعيين على عدد العقد في المجموعة المتماثلة بشكل افتراضي."
-
-msgid "How many failures may occur for this resource on a node, before this node is marked ineligible to host this resource. A value of INFINITY indicates that this feature is disabled."
-msgstr "كم عدد عمليات الفشل التي قد تحدث في عقدة، قبل وضع علامة غير مؤهل لاستضافة هذا المورد على العقدة. تشير القيمة INFINITY إلى أن هذه الميزة معطلة."
-
-msgid "How many seconds to wait before acting as if the failure had not occurred, and potentially allowing the resource back to the node on which it failed. A value of 0 indicates that this feature is disabled."
-msgstr "كم عدد ثواني الانتظار قبل التعامل كما لو كان حدث خطأ، وربما السماح للمورد بالعودة إلى العقدة التي فشل فيها. تشير القيمة 0 إلى أن هذه القيمة معطلة."
-
-msgid "How much does the resource prefer to stay where it is?"
-msgstr "ما مدى تفضيل المورد للبقاء في مكانه؟"
-
-msgid "How to combine the result of multiple expression objects. Allowed values are and and or."
-msgstr "كيفية جمع نتيجة كائنات متعددة التعابير. القيم المسموح بها \"and\" و\"or\"."
-
-msgid "ID"
-msgstr "المعرف"
-
-msgid "ID is required"
-msgstr "المعرف مطلوب"
-
-msgid "If false, the operation is treated as if it does not exist."
-msgstr "في حالة الخطأ، يتم التعامل مع العملية كما لو كانت غير موجودة."
-
-msgid "If not all resources can be active, the cluster will stop lower priority resources in order to keep higher priority ones active."
-msgstr "في حالة عدم إمكانية تنشيط الموارد، ستقوم المجموعة المتماثلة بإيقاف الموارد الأقل أولوية لكي تحتفظ بالموارد الأعلى أولوية."
-
-msgid "If true, the intention to perform the operation is recorded so that GUIs and CLI tools can indicate that an operation is in progress."
-msgstr "إذا كان ذلك صحيحًا، يتم تسجيل اعتزام أداء هذه العملية وبذلك تشير أدوات GUI وCLI أن هناك عملية قيد التقدم."
-
-msgid "Inject"
-msgstr "إدخال"
-
-msgid "Inject Node Event"
-msgstr "حدث عقدة الإدخال"
-
-msgid "Inject Resource Event"
-msgstr "حدث مورد الإدخال"
-
-msgid "Inject Ticket Event"
-msgstr "حدث بطاقة الإدخال"
-
-msgid "Instances"
-msgstr "المثيلات"
-
-msgid "Interval"
-msgstr "فاصل زمني"
-
-msgid "Interval (ms)"
-msgstr "فاصل زمني (دقائق)"
-
-msgid "Invalid ACL target ID"
-msgstr "معرف هدف ACL غير صالح"
-
-msgid "Invalid Clone ID"
-msgstr "معرف استنساخ غير صالح"
-
-msgid "Invalid Constraint ID"
-msgstr "معرف القيد غير صالح"
-
-msgid "Invalid ID"
-msgstr "المعرف غير صالح"
-
-msgid "Invalid Node ID"
-msgstr "معرِف العقدة غير صالح"
-
-msgid "Invalid Ticket ID"
-msgstr "معرِّف البطاقة غير صحيح"
-
-msgid "Invalid name"
-msgstr "اسم غير صالح"
-
-msgid "Invalid node attribute"
-msgstr "سمة عقدة غير صالحة"
-
-msgid "Invalid resource discovery type"
-msgstr "نوع اكتشاف مورد غير صالح"
-
-msgid "Invalid score \"%{score}\""
-msgstr "نتيجة غير صحيحة \"%{score}\""
-
-msgid "Invalid score value"
-msgstr "قيمة النقاط غير صالحة"
-
-msgid "Invalid username"
-msgstr "اسم المستخدم غير صالح"
-
-msgid "Invalid username or password"
-msgstr "اسم المستخدم غير صالح أو كلمة السر غير صالحة"
-
-msgid "Is the cluster allowed to start and stop the resource?"
-msgstr "هل مسموح للمجموعة المتماثلة بدء وإيقاف المورد؟"
-
-msgid "January"
-msgstr "يناير"
-
-msgid "July"
-msgstr "يوليو"
-
-msgid "June"
-msgstr "يونيه"
-
-msgid "Last Change"
-msgstr "آخر تغيير"
-
-msgid "Last Granted"
-msgstr "آخر عملية منح"
-
-msgid "Last Written"
-msgstr "آخر ما تمت كتابته"
-
-msgid "Leader"
-msgstr "قائد"
-
-msgid "Legacy Wizards"
-msgstr "المعالجات القديمة"
-
-msgid "Limits the rule to apply only when the resource is in the specified role."
-msgstr "يحدد القاعدة ليتم تطبيقها فقط عند وجود المورد في الدور المحدد."
-
-msgid "Link with entry above"
-msgstr "الربط مع الإدخال أعلاه"
-
-msgid "List"
-msgstr "قائمة"
-
-msgid "Lists crm commands recently executed by hawk, most recent first."
-msgstr "إدراج أوامر crm التي تم تنفيذها حديثًا بواسطة hawk، الأحدث أولاً."
-
-msgid "Loading report..."
-msgstr "جارٍ تحميل التقرير..."
-
-msgid "Local Status"
-msgstr "الحالة المحلية"
-
-msgid "Location"
-msgstr "الموقع"
-
-msgid "Location Constraints"
-msgstr "قيود الموقع"
-
-msgid "Location deleted successfully"
-msgstr "تم حذف الموقع بنجاح"
-
-msgid "Locations"
-msgstr "المواقع"
-
-msgid "Log In"
-msgstr "دخول"
-
-msgid "Login"
-msgstr "دخول"
-
-msgid "Logout"
-msgstr "تسجيل الخروج"
-
-msgid "Logs"
-msgstr "السجلات"
-
-msgid "Longdesc"
-msgstr "Longdesc"
-
-msgid "Loss Policy"
-msgstr "سياسة الفقد"
-
-msgid "Maintenance"
-msgstr "الصيانة"
-
-#, fuzzy
-msgid "Maintenance Mode"
-msgstr "وضع الصيانة"
-
-msgid "Maintenance mode"
-msgstr "وضع الصيانة"
-
-msgid "Manage"
-msgstr "إدارة"
-
-msgid "Mandatory"
-msgstr "إلزامي"
-
-msgid "March"
-msgstr "مارس"
-
-msgid "Master"
-msgstr "رئيسية"
-
-msgid "May"
-msgstr "مايو"
-
-msgid "Menu"
-msgstr "القائمة"
-
-msgid "Meta Attributes"
-msgstr "سمات تعريف"
-
-msgid "Migrate"
-msgstr "ترحيل"
-
-#, fuzzy
-msgid "Migrate tagged resources"
-msgstr "ترحيل"
-
-msgid "Mo"
-msgstr "الاثنين"
-
-msgid "Monitor"
-msgstr "الشاشة"
-
-msgid "Move rule down"
-msgstr "نقل القاعدة لأسفل"
-
-msgid "Move rule up"
-msgstr "نقل القاعدة لأعلى"
-
-msgid "Multi-state"
-msgstr "متعدد الحالات"
-
-msgid "Multi-state ID"
-msgstr "المعرف متعدد الحالات"
-
-msgid "Multi-state Resources"
-msgstr "موارد متعددة الحالات"
-
-msgid "Multi-state resource"
-msgstr "المورد متعدد الحالات"
-
-msgid "Multi-state resource created successfully"
-msgstr "تم إنشاء المورد متعدد الحالات بنجاح"
-
-msgid "Multi-state resource deleted successfully"
-msgstr "تم حذف المورد متعدد الحالات بنجاح"
-
-msgid "Multi-state resource updated successfully"
-msgstr "تم تحديث المورد متعدد الحالات بنجاح"
-
-msgid "Must be a valid resource ID"
-msgstr "يجب أن يكون معرف مورد صالحًا"
-
-msgid "Name"
-msgstr "الاسم"
-
-msgid "Name is required"
-msgstr "الاسم مطلوب"
-
-msgid "Name of a node in the cluster."
-msgstr "اسم عقدة في المجموعة المتماثلة."
-
-msgid "Name used to refer to the node in the cluster."
-msgstr "الاسم المستخدم للإشارة إلى العقدة في المجموعة المتماثلة."
-
-msgid "Never"
-msgstr "أبدًا"
-
-msgid "News"
-msgstr ""
-
-msgid "Next"
-msgstr "التالي"
-
-msgid "No"
-msgstr "لا"
-
-msgid "No Clone child specified"
-msgstr "لا يوجد استنساخ فرعي محدد"
-
-msgid "No Group children specified"
-msgstr "لم يتم تحديد فروع مجموعة"
-
-msgid "No Multi-state child specified"
-msgstr "لم يتم تحديد فرع متعدد الحالات"
-
-msgid "No Tag resources specified"
-msgstr "لم يتم تحديد أي موارد علامة"
-
-msgid "No attributes defined"
-msgstr "لم يتم تحديد أية سمات"
-
-msgid "No child resources"
-msgstr "لا توجد موارد فرعية"
-
-msgid "No children available"
-msgstr "لا تتوفر أية فروع"
-
-msgid "No configuration changes."
-msgstr "لا توجد تغييرات في التكوين."
-
-msgid "No details available"
-msgstr "لا تتوفر أية تفاصيل"
-
-msgid "No expressions specified"
-msgstr "لم يتم تحديد أي تعبير"
-
-msgid "No interval set for monitor operation"
-msgstr "لم يتم تعيين فاصل زمني لعملية المراقبة"
-
-msgid "No objects available"
-msgstr "لا تتوفر أي كائنات"
-
-msgid "No resource specified"
-msgstr "لم يتم تحديد مورد"
-
-msgid "No rules specified"
-msgstr "لا توجد قواعد محددة"
-
-msgid "No transitions in report"
-msgstr "لا توجد عمليات انتقال في التقرير"
-
-msgid "No utilization defined"
-msgstr "لم يتم تحديد أية عملية استخدام"
-
-msgid "Node"
-msgstr "عقدة"
-
-msgid "Node \"%{node}\" is UNCLEAN and needs to be fenced."
-msgstr "العقدة \"%{node}\" غير صحيحة وتحتاج إلى وضع فاصل."
-
-msgid "Node Attribute"
-msgstr "سمة العقدة"
-
-msgid "Node Event"
-msgstr "حدث العقدة"
-
-msgid "Node Events"
-msgstr "أحداث العقدة"
-
-msgid "Node ID"
-msgstr "معرف العقدة"
-
-msgid "Node ID is required"
-msgstr "معرف العقدة مطلوب"
-
-msgid "Node Name"
-msgstr "اسم العقدة"
-
-msgid "Node updated successfully"
-msgstr "تم تحديث العقدة بنجاح"
-
-msgid "Nodes"
-msgstr "العقد"
-
-msgid "None"
-msgstr "بلا"
-
-msgid "Not a constraint"
-msgstr "ليس قيدًا"
-
-msgid "Not a resource"
-msgstr "ليس موردًا"
-
-msgid "November"
-msgstr "نوفمبر"
-
-msgid "OK"
-msgstr "موافق"
-
-msgid "Object Type"
-msgstr "نوع الكائن"
-
-msgid "Object not found: %s=%s"
-msgstr "لم يتم العثور على الكائن: %s=%s"
-
-msgid "Objects"
-msgstr "الكائنات"
-
-msgid "October"
-msgstr "أكتوبر"
-
-msgid "Online Documentation"
-msgstr ""
-
-msgid "Operation"
-msgstr "العملية"
-
-msgid "Operation Defaults"
-msgstr "الإعدادات الافتراضية للعملية"
-
-msgid "Operations"
-msgstr "العمليات"
-
-msgid "Operator"
-msgstr "المشغِّل"
-
-msgid "Optional"
-msgstr "اختياري"
-
-msgid "Options"
-msgstr "الخيارات"
-
-msgid "Order"
-msgstr "الترتيب"
-
-msgid "Order deleted successfully"
-msgstr "تم إنشاء الترتيب بنجاح"
-
-msgid "Orders"
-msgstr "عمليات الترتيب"
-
-msgid "PDF"
-msgstr "PDF"
-
-msgid "PE Name"
-msgstr "اسم PE"
-
-msgid "Pacemaker Version"
-msgstr "إصدار Pacemaker"
-
-msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
-msgstr "يبدو أنه لم يتم تثبيت Pacemaker، (لم يتم العثور على %{cmd})"
-
-msgid "Parameters"
-msgstr "المعلمات"
-
-#, fuzzy
-msgid "Partial upgrade detected! Nodes report different CRM versions: %s"
-msgstr "العقد"
-
-msgid "Partition without quorum! Fencing and resource management is disabled."
-msgstr ""
-
-msgid "Password"
-msgstr "كلمة السر"
-
-msgid "Password not specified"
-msgstr "لم يتم تحديد كلمة السر"
-
-msgid "Permission denied"
-msgstr "الإذن مرفوض"
-
-msgid "Permission denied - you do not have write access to the CIB."
-msgstr "تم رفض الإذن - ليس لديك حق الوصول للكتابة إلى CIB."
-
-msgid "Permission denied for user %{user}"
-msgstr "تم رفض الإذن للمستخدم %{user}"
-
-msgid "Permission denied. "
-msgstr "الإذن مرفوض. "
-
-msgid "Please ensure Javascript is enabled"
-msgstr "الرجاء التأكد من تمكين JavaScript"
-
-msgid "Please wait while report is generated..."
-msgstr "الرجاء الانتظار حتى يتم إنشاء التقرير..."
-
-msgid "Please wait..."
-msgstr "الرجاء الانتظار..."
-
-msgid "Port to use for the guest connection to pacemaker_remote."
-msgstr "المنفذ المطلوب استخدامه لتوصيل الضيف بـ pacemaker_remote."
-
-msgid "Positive values indicate the resources should run on this node. Negative values indicate the resources should not run on this node. Values of +/- INFINITY change \"should\"/\"should not\" to \"must\"/\"must not\"."
-msgstr "تشير القيم الموجبة إلى أنه يجب تشغيل الموارد بهذه العقدة. وتشير القيم السالبة إلى أنه لا يجب تشغيل الموارد بهذه العقدة. تقوم القيم +/- INFINITY بتغيير \"ينبغي\"/\"لا ينبغي\" إلى \"يجب\"/\"لا يجب\"."
-
-msgid "Preferences"
-msgstr "تفضيلات"
-
-msgid "Preferences updated successfully"
-msgstr "تم تحديث التفضيلات بنجاح"
-
-msgid "Previous"
-msgstr ""
-
-msgid "Primary"
-msgstr "رئيسي"
-
-msgid "Primitive"
-msgstr "مجموعة أساسية"
-
-msgid "Primitive created successfully"
-msgstr "تم إنشاء المجموعة الأساسية بنجاح"
-
-msgid "Primitive deleted successfully"
-msgstr "تم حذف المجموعة الأساسية بنجاح"
-
-msgid "Primitive updated successfully"
-msgstr "تم تحديث المجموعة الأساسية بنجاح"
-
-msgid "Primitives"
-msgstr "المجموعات الأساسية"
-
-msgid "Profile"
-msgstr "ملف التعريف"
-
-msgid "Promote"
-msgstr "الترقية"
-
-msgid "Properties"
-msgstr "خصائص"
-
-msgid "Provider"
-msgstr "الموفر"
-
-msgid "Puts the node into standby mode. The specified node is no longer able to host resources. Any resources currently active on the node will be moved to another node."
-msgstr "يضع العقدة في الوضع استعداد. لا يمكن للعقدة المحددة استضافة الموارد بعد الآن. سيتم نقل أي موارد نشطة حاليًا بالعقدة إلى عقدة أخرى."
-
-msgid "RC"
-msgstr "RC"
-
-msgid "Read"
-msgstr "قراءة"
-
-#, fuzzy
-msgid "Read the most up-to-date documentation at the suse.com website."
-msgstr "قراءة"
-
-#, fuzzy
-msgid "Read the release notes for the SUSE High Availability Extension."
-msgstr "قراءة"
-
-msgid "Reason"
-msgstr "السبب"
-
-msgid "Recent events"
-msgstr "الأحداث الحديثة"
-
-msgid "Reference"
-msgstr "المرجع"
-
-#, fuzzy
-msgid "Release Notes"
-msgstr "لا"
-
-msgid "Remote"
-msgstr "بعيد"
-
-msgid "Remote node."
-msgstr "العقدة عن بُعد."
-
-msgid "Remove"
-msgstr "إزالة"
-
-msgid "Remove cluster _NAME_ from dashboard?"
-msgstr "إزالة المجموعة المتماثلة _NAME_ من لوحة المعلومات؟"
-
-msgid "Remove this rule"
-msgstr "إزالة هذه القاعدة"
-
-msgid "Rename"
-msgstr "إعادة التسمية"
-
-#, fuzzy
-msgid "Rename Constraint"
-msgstr "القيد"
-
-msgid "Rename Resource"
-msgstr "إعادة تسمية مورد"
-
-msgid "Replacing previously defined monitor operation with same interval"
-msgstr "استبدال عملية المراقبة المحددة سابقًا بنفس الفاصل الزمني"
-
-msgid "Report a bug or request a feature!"
-msgstr ""
-
-msgid "Report deleted successfully"
-msgstr "تم حذف التقرير بنجاح"
-
-msgid "Report generation cancelled."
-msgstr "تم إلغاء إنشاء التقرير."
-
-msgid "Report generation is complete."
-msgstr "تم اكتمال إنشاء التقرير."
-
-msgid "Reports"
-msgstr "التقارير"
-
-msgid "Requested wizard does not exist"
-msgstr "المعالج المطلوب غير موجود"
-
-msgid "Required"
-msgstr "مطلوب"
-
-msgid "Resource"
-msgstr "مورد"
-
-msgid "Resource Defaults"
-msgstr "الإعدادات الافتراضية للمورد"
-
-msgid "Resource Discovery"
-msgstr "اكتشاف المورد"
-
-msgid "Resource Event"
-msgstr "حدث المورد"
-
-msgid "Resource Events"
-msgstr "أحداث المورد"
-
-msgid "Resource ID"
-msgstr "معرف المورد"
-
-msgid "Resource agent name."
-msgstr "اسم وكيل المورد."
-
-msgid "Resource template to inherit from."
-msgstr "قالب المورد للاكتساب منه."
-
-msgid "Resources"
-msgstr "الموارد"
-
-#, fuzzy
-msgid "Resources in maintenance mode are not monitored by the cluster."
-msgstr "الموارد"
-
-msgid "Resources to apply the constraint to."
-msgstr "الموارد التي يجب تطبيق القيد عليها."
-
-msgid "Result"
-msgstr "النتيجة"
-
-msgid "Retrying every 15 seconds..."
-msgstr "إعادة المحاولة كل 15 ثانية..."
-
-msgid "Revert"
-msgstr "إرجاع"
-
-msgid "Revoke"
-msgstr "إبطال"
-
-msgid "Revoked"
-msgstr "مبطلة"
-
-msgid "Right"
-msgstr "يسار"
-
-msgid "Role"
-msgstr "الدور"
-
-msgid "Role ID"
-msgstr "معرف الدور"
-
-msgid "Role created successfully"
-msgstr "تم إنشاء الدور بنجاح"
-
-msgid "Role deleted successfully"
-msgstr "تم حذف الدور بنجاح"
-
-msgid "Role updated successfully"
-msgstr "تم تحديث الدور بنجاح"
-
-msgid "Roles"
-msgstr "الدور"
-
-msgid "Root password"
-msgstr "كلمة مرور أولية"
-
-msgid "Rule"
-msgstr "القاعدة"
-
-msgid "STONITH is disabled. For normal cluster operation, STONITH is required."
-msgstr "تم تعطيل STONITH. STONITH  مطلوب لعملية مجموعة متماثلة عادية."
-
-msgid "SUSE, LLC"
-msgstr "SUSE, LLC"
-
-msgid "Sa"
-msgstr "السبت"
-
-msgid "Schema"
-msgstr "المخطط"
-
-msgid "Score"
-msgstr "النتيجة"
-
-msgid "Score is required"
-msgstr "النقاط مطلوبة"
-
-msgid "Secondary"
-msgstr "ثانوي"
-
-msgid "September"
-msgstr "سبتمبر"
-
-msgid "Serialize"
-msgstr "تحويل تسلسلي"
-
-msgid "Server port to connect to"
-msgstr "منفذ الخادم المطلوب التوصيل به"
-
-msgid "Server returned invalid data."
-msgstr "أرجع الخادم بيانات غير صالحة."
-
-msgid "Session has expired"
-msgstr "انتهت صلاحية الجلسة"
-
-msgid "Set the node state to maintenance"
-msgstr "تعيين حالة العقدة على الصيانة"
-
-msgid "Set the node state to online"
-msgstr "تعيين حالة العقدة على على الإنترنت"
-
-msgid "Set the node state to ready"
-msgstr "تعيين حالة العقدة على جاهز"
-
-msgid "Set the node state to standby"
-msgstr "تعيين حالة العقدة على وضع الاستعداد"
-
-msgid "Set to true if the resource agent supports the migrate action"
-msgstr "تعيين على صحيح في حالة دعم المورد لإجراء الترحيل"
-
-msgid "Shortdesc"
-msgstr "Shortdesc"
-
-msgid "Should the copies be started in series (instead of in parallel)?"
-msgstr "هل يجب بدء النسخ في سلسلة (بدلاً من البدء على التوازي)؟"
-
-msgid "Show"
-msgstr "اعرض"
-
-msgid "Show Configuration"
-msgstr "عرض التكوين"
-
-msgid "Simple"
-msgstr "بسيط"
-
-msgid "Simulator"
-msgstr "محاكي"
-
-msgid "Simulator active: Use the ticket controls in the simulator"
-msgstr "المحاكي نشط: استخدام وحدات التحكم في البطاقة في المحاكي"
-
-msgid "Sites"
-msgstr "مواقع"
-
-msgid "Slave"
-msgstr "تابع"
-
-msgid "Stack"
-msgstr "تكدس"
-
-msgid "Standard which the resource agent conforms to."
-msgstr "المعيار الذي يلتزم وكيل المورد به."
-
-msgid "Standby"
-msgstr "استعداد"
-
-msgid "Start"
-msgstr "بداية"
-
-msgid "Started"
-msgstr "تم البدء"
-
-msgid "State"
-msgstr "الولاية"
-
-msgid "Status"
-msgstr "الحالة"
-
-msgid "Stop"
-msgstr "إيقاف"
-
-msgid "Stopped"
-msgstr "تم الإيقاف"
-
-msgid "Su"
-msgstr "الأحد"
-
-msgid "Successfully cleaned the resource"
-msgstr "تم تنظيف المورد بنجاح"
-
-msgid "Successfully demoted the resource"
-msgstr "تم تخفيض رتبة المورد بنجاح"
-
-#, fuzzy
-msgid "Successfully disabled maintenance mode for resource"
-msgstr "الأحد"
-
-msgid "Successfully fenced the node"
-msgstr "تم وضع فاصل للعقدة بنجاح"
-
-msgid "Successfully granted the ticket"
-msgstr "تم منح البطاقة بنجاح"
-
-msgid "Successfully migrated the resource"
-msgstr "تم ترحيل المورد بنجاح"
-
-msgid "Successfully promoted the resource"
-msgstr "تمت ترقية المورد بنجاح"
-
-msgid "Successfully renamed %{A} to %{B}"
-msgstr "تمت إعادة تسمية %{A} إلى %{B} بنجاح"
-
-msgid "Successfully revoked the ticket"
-msgstr "تم إبطال البطاقة بنجاح"
-
-#, fuzzy
-msgid "Successfully set the resource in maintenance mode"
-msgstr "تم تعيين المورد في الوضع المدار بنجاح"
-
-msgid "Successfully started the resource"
-msgstr "تم بدء المورد بنجاح"
-
-msgid "Successfully stopped the resource"
-msgstr "تم إيقاف المورد بنجاح"
-
-msgid "Successfully unmigrated the resource"
-msgstr "تم إلغاء ترحيل المورد بنجاح"
-
-msgid "Summary"
-msgstr "الملخص"
-
-msgid "Swap with entry above"
-msgstr "التبديل مع الإدخال أعلاه"
-
-msgid "Switch to maintenance"
-msgstr "التبديل إلى الصيانة"
-
-msgid "Switch to online"
-msgstr "التبديل إلى على الإنترنت"
-
-msgid "Switch to ready"
-msgstr "التبديل إلى جاهز"
-
-msgid "Switch to standby"
-msgstr "التبديل إلى وضع الاستعداد"
-
-msgid "Symmetrical"
-msgstr "متماثل"
-
-msgid "Tag"
-msgstr "علامة"
-
-msgid "Tag ID"
-msgstr "معرف العلامة"
-
-msgid "Tag created successfully"
-msgstr "تم إنشاء العلامة بنجاح"
-
-msgid "Tag deleted successfully"
-msgstr "تم حذف العلامة بنجاح"
-
-msgid "Tag updated successfully"
-msgstr "تم تحديث العلامة بنجاح"
-
-msgid "Tags"
-msgstr "العلامات"
-
-msgid "Target ID"
-msgstr "معرف الهدف"
-
-msgid "Targets"
-msgstr "الأهداف"
-
-msgid "Template"
-msgstr "القالب"
-
-msgid "Template created successfully"
-msgstr "تم إنشاء القالب بنجاح"
-
-msgid "Template deleted successfully"
-msgstr "تم حذف القالب بنجاح"
-
-msgid "Template updated successfully"
-msgstr "تم تحديث القالب بنجاح"
-
-msgid "Templates"
-msgstr "القوالب"
-
-msgid "Th"
-msgstr "الخميس"
-
-msgid "The ACL target does not exist"
-msgstr "هدف ACL غير موجود"
-
-msgid "The ID \"%{id}\" does not exist"
-msgstr "المعرف  \"%{id}\"غير موجود"
-
-msgid "The ID \"%{id}\" is already in use"
-msgstr "المعرف \"%{id}\" قيد الاستخدام بالفعل"
-
-msgid "The IP address or hostname to connect to if remote-node's name is not the hostname of the guest."
-msgstr "عنوان IP واسم المضيف المطلوب التوصيل به إذا لم يكن اسم العقدة عن بُعد هو اسم مضيف الضيف."
-
-msgid "The action to take if this action ever fails."
-msgstr "الإجراء المطلوب اتباعه في حالة فشل الإجراء."
-
-msgid "The clone does not exist"
-msgstr "الاستنساخ غير موجود"
-
-msgid "The colocation constraint does not exist"
-msgstr "قيد موقع المشترك غير موجود"
-
-msgid "The group does not exist"
-msgstr "المجموعة غير موجودة"
-
-msgid "The location constraint does not exist"
-msgstr "قيد الموقع غير موجود"
-
-msgid "The multi-state resource does not exist"
-msgstr "المورد متعدد الحالات غير موجود"
-
-msgid "The name of the remote-node this resource defines. This both enables the resource as a remote-node and defines the unique name used to identify the remote-node. If no other parameters are set, this value will also be assumed as the hostname to connect to at the port specified by remote-port. WARNING: This value cannot overlap with any resource or node IDs. If not specified, this feature is disabled."
-msgstr "اسم العقدة عن بُعد التي يحددها المورد. ويقوم ذلك بكل من تمكين المورد كعقدة عن بُعد وتحديد الاسم الفريد المستخدم لتحديد العقدة عن بُعد. في حالة عدم تعيين أي معلمات أخرى، سيتم افتراض هذه القيمة كاسم المضيف المطلوب التوصيل به عند المنفذ المحدد بواسطة المنفذ عن بُعد. تحذير: لا يمكن تراكب القيمة مع أي مورد أو معرفات عقدة. في حالة عدم التحديد، يتم تعطيل هذه الميزة."
-
-msgid "The node does not exist"
-msgstr "العقدة غير موجود"
-
-msgid "The object/attribute does not exist (cibadmin %{cmd})"
-msgstr "الكائن/السمة غير موجودة (cibadmin %{cmd})"
-
-msgid "The order constraint does not exist"
-msgstr "قيد الترتيب غير موجود"
-
-msgid "The primitive does not exist"
-msgstr "المجموعة الأساسية غير موجودة"
-
-msgid "The report does not exist"
-msgstr "التقرير غير موجود"
-
-msgid "The role does not exist"
-msgstr "الدور غير موجود"
-
-msgid "The score determines the location relationship between the resources."
-msgstr "تحدد النتيجة علاقة الموقع بين الموارد."
-
-msgid "The tag does not exist"
-msgstr "العلامة غير موجودة"
-
-msgid "The template does not exist"
-msgstr "القالب غير موجود"
-
-msgid "The ticket constraint does not exist"
-msgstr "قيد البطاقة غير موجود"
-
-msgid "This option only makes sense for recurring operations. It restricts the operation to a specific role. The truely paranoid can even specify role=Stopped which allows the cluster to detect an admin that manually started cluster services."
-msgstr "ينطبق هذا الخيار على العمليات المتكررة فقط. فهو يقيد العملية بدور محدد. ومن يشعر بالارتياب حقًا يمكنه أن يحدد الدور=متوقف الذي يسمح للمجموعة المتماثلة باكتشاف مسؤول يقوم ببدء خدمات المجموعة المتماثلة يدويًا."
-
-#, fuzzy
-msgid "This will demote the tagged resources. Do you want to continue?"
-msgstr "الخميس"
-
-#, fuzzy
-msgid "This will disable maintenance mode for the tagged resources. Do you want to continue?"
-msgstr "الخميس"
-
-#, fuzzy
-msgid "This will enable maintenance mode for the tagged resources. Do you want to continue?"
-msgstr "الخميس"
-
-#, fuzzy
-msgid "This will promote the tagged resources. Do you want to continue?"
-msgstr "الخميس"
-
-#, fuzzy
-msgid "This will start the tagged resources. Do you want to continue?"
-msgstr "الخميس"
-
-#, fuzzy
-msgid "This will stop the tagged resources. Do you want to continue?"
-msgstr "الخميس"
-
-#, fuzzy
-msgid "This will unmigrate the tagged resources. Do you want to continue?"
-msgstr "الخميس"
-
-msgid "This wizard takes no parameters."
-msgstr "لا يحتوي هذا المعالج على أي معلمات."
-
-msgid "Ticket"
-msgstr "البطاقة"
-
-msgid "Ticket Event"
-msgstr "حدث بطاقة"
-
-msgid "Ticket ID"
-msgstr "معرف البطاقة"
-
-msgid "Ticket ID is required"
-msgstr "معرف البطاقة مطلوب"
-
-msgid "Ticket deleted successfully"
-msgstr "تم حذف البطاقة بنجاح"
-
-msgid "Ticket:"
-msgstr "البطاقة:"
-
-msgid "Tickets"
-msgstr "البطاقات"
-
-msgid "Time"
-msgstr "الوقت"
-
-msgid "Timeout"
-msgstr "المهلة"
-
-msgid "To"
-msgstr "إلى"
-
-msgid "To apply the changes, Hawk requires root access, and password-less SSH access must be configured. See the Hawk documentation for more information."
-msgstr "لتطبيق التغييرات، يتطلب Hawk تكوين وصول أولي ووصول SSH بدون كلمة مرور. راجع وثائق Hawk للحصول على مزيد من المعلومات."
-
-msgid "To enable ACLs, set \"enable-acl\" in the Cluster Configuration ('Manage > Configuration')"
-msgstr "لتمكين قوائم ACL، قم بتعيين \"enable-acl\" في تكوين المجموعة المتماثلة ('إدارة > التكوين')"
-
-msgid "Transition"
-msgstr "انتقال"
-
-msgid "Transition (XML)"
-msgstr "الانتقال (XML)"
-
-msgid "Transition Graph"
-msgstr "الرسم البياني للانتقال"
-
-msgid "Transitions"
-msgstr "عمليات انتقال"
-
-msgid "Tu"
-msgstr "الثلاثاء"
-
-msgid "Type"
-msgstr "النوع"
-
-msgid "Unable to create shadow CIB"
-msgstr "تعذر إنشاء ظل احتياطي لـ CIB"
-
-msgid "Unable to create: %{msg}"
-msgstr "تعذر إنشاء: %{msg}"
-
-msgid "Unable to execute %{cmd}"
-msgstr "تعذر تنفيذ %{cmd}"
-
-msgid "Unable to parse CIB file \"%{path}\""
-msgstr "تعذر تحليل ملف CIB \"%{path}\""
-
+#: ../app/assets/javascripts/dashboard.js:23
 msgid "Unexpected server error: _MSG_"
 msgstr "خطأ غير متوقع بالخادم:  _MSG_"
 
-msgid "Unique"
-msgstr "فريد"
+#: ../app/assets/javascripts/dashboard.js:26
+msgid "Connection to server failed (server down or network error - will retry every 15 seconds)."
+msgstr "فشل الاتصال بالخادم (إما أن ‏‏الخادم لا يستجيب وإما أن هناك خطأ في الشبكة - ستُعاد المحاولة كل 15 ثانية)."
 
-msgid "Unique identifier for the constraint. May not contain spaces."
-msgstr "معرف فريد للقيد. يمكن ألا يحتوي على مسافات."
+#: ../app/assets/javascripts/dashboard.js:29
+#: ../app/assets/javascripts/module/monitor.js:71
+msgid "Connection to server timed out - will retry every 15 seconds."
+msgstr "انتهت مهلة الاتصال بالخادم - ستُعاد المحاولة كل 15 ثانية."
 
-msgid "Unique identifier for the node."
-msgstr "معرف فريد للعقدة."
+#: ../app/assets/javascripts/dashboard.js:32
+#: ../app/assets/javascripts/module/monitor.js:49
+msgid "Connection to server aborted - will retry every 15 seconds."
+msgstr "تم إيقاف الاتصال بالخادم، ستُعاد المحاولة كل 15 ثانية."
 
-msgid "Unique identifier for the resource. May not contain spaces."
-msgstr "معرف فريد للمورد. يمكن ألا يحتوي على مسافات."
+#: ../app/assets/javascripts/dashboard.js:35
+msgid "Permission denied"
+msgstr "الإذن مرفوض"
 
-msgid "Unknown"
-msgstr "غير معروف"
-
-msgid "Unknown error connecting to server."
-msgstr "حدث خطأ غير معروف في الاتصال بالخادم."
-
-msgid "Unlink from entry above"
-msgstr "إلغاء الربط من الإدخال أعلاه"
-
-msgid "Unmanaged"
-msgstr "غير مُدار"
-
-msgid "Unmigrate"
-msgstr "إلغاء ترحيل"
-
-msgid "Until"
-msgstr "حتى"
-
-msgid "Update Origin"
-msgstr "تحديث المنشأ"
-
-msgid "Update User"
-msgstr "تحديث المستخدم"
-
-msgid "Upload"
-msgstr "تحميل"
-
-msgid "Upload completed."
-msgstr "تم اكتمال الإيداع."
-
-msgid "Use a wizard"
-msgstr "استخدام معالج"
-
-msgid "User ID"
-msgstr "معرف المستخدم"
-
-msgid "Username"
-msgstr "اسم المستخدم"
-
-msgid "Username not specified"
-msgstr "لم يتم تحديد اسم المستخدم"
-
-msgid "Utilization"
-msgstr "الاستخدام"
-
-msgid "Value contains both single and double quotes"
-msgstr "تحتوي القيمة على علامات اقتباس مفردة ومزدوجة"
-
-msgid "Vendor or project which provided the resource agent."
-msgstr "المورِّد أو المشروع الذي قام بتوفير وكيل المورد."
-
-msgid "Verify"
-msgstr "التحقق من"
-
-msgid "Verify and apply"
-msgstr "التحقق والتطبيق"
-
-msgid "Verifying parameters..."
-msgstr "جارٍ التحقق من المعلمات..."
-
-msgid "Version"
-msgstr "الإصدار"
-
-msgid "Visit the Hawk website for information about the latest release."
-msgstr ""
-
-msgid "We"
-msgstr "الأربعاء"
-
-msgid "Welcome"
-msgstr "مرحبًا"
-
-msgid "West Coast (example)"
-msgstr "الساحل الغربي (مثال)"
-
-msgid "What conditions need to be satisfied before this action occurs."
-msgstr "ما الشروط التي يجب استيفاؤها قبل حدوث الإجراء."
-
-msgid "What should the cluster do if it ever finds the resource active on more than one node?"
-msgstr "ماذا يجب أن تفعل المجموعة المتماثلة في حالة العثور على مورد نشط في أكثر من عقدة واحدة؟"
-
-msgid "What state should the cluster attempt to keep this resource in?"
-msgstr "ما هي الحالة التي يجب أن تحاول المجموعة المتماثلة الاحتفاظ بالمورد فيها؟"
-
-msgid "When stopping or starting a copy of the clone, tell all the other copies beforehand and when the action was successful."
-msgstr "عند بدء أو إيقاف نسخة استنساخ، يتم إعلام النسخ الأخرى مسبقًا وعند نجاح الإجراء."
-
-msgid "Wizard cannot be applied when the simulator is active"
-msgstr "لا يمكن تطبيق المعالج والمحاكي نشط"
-
-msgid "Wizards"
-msgstr "معالجات"
-
-msgid "Write"
-msgstr "كتابة"
-
-msgid "XML"
-msgstr "XML"
-
-msgid "XPath"
-msgstr "XPath"
-
-msgid "Yes"
-msgstr "نعم"
-
-msgid "You have been logged out"
-msgstr "تم تسجيل خروجك."
-
-msgid "You have no template feature support"
-msgstr "لا يوجد لديك دعم ميزة القالب"
-
-msgid "Zoom in"
-msgstr ""
-
-msgid "Zoom out"
-msgstr ""
-
+#: ../app/assets/javascripts/dashboard.js:38
 msgid "_OP_ failed on _NODE_} (rc=_RC_, reason=_REASON_)"
 msgstr "_OP_ failed on _NODE_} (rc=_RC_, reason=_REASON_)"
 
-msgid "configuration error"
-msgstr "خطأ في التكوين"
+#: ../app/assets/javascripts/dashboard.js:211
+msgid "Permission denied. "
+msgstr "الإذن مرفوض. "
 
-msgid "failed (master)"
-msgstr "فشل (رئيسي)"
+#: ../app/assets/javascripts/dashboard.js:231
+msgid "Error connecting to server."
+msgstr "حدث خطأ أثناء الاتصال بالخادم."
 
-msgid "generic error"
-msgstr "خطأ عام"
+#: ../app/assets/javascripts/dashboard.js:233
+msgid "Connection to server timed out."
+msgstr "انتهت مهلة الاتصال بالخادم."
 
-msgid "incorrect arguments"
-msgstr "الوسيطات غير صحيحة"
+#: ../app/assets/javascripts/dashboard.js:235
+msgid "Connection to server was aborted."
+msgstr "تم إيقاف الاتصال بالخادم."
 
-msgid "installation error"
-msgstr "خطأ في التثبيت"
+#: ../app/assets/javascripts/dashboard.js:237
+msgid "Server returned invalid data."
+msgstr "أرجع الخادم بيانات غير صالحة."
 
-msgid "insufficient permissions"
-msgstr "الأذونات غير كافية"
+#: ../app/assets/javascripts/dashboard.js:241
+msgid "Unknown error connecting to server."
+msgstr "حدث خطأ غير معروف في الاتصال بالخادم."
 
-msgid "is required"
-msgstr "مطلوب"
+#: ../app/assets/javascripts/dashboard.js:244
+msgid "Retrying every 15 seconds..."
+msgstr "إعادة المحاولة كل 15 ثانية..."
 
+#: ../app/assets/javascripts/dashboard.js:266
+#: ../app/assets/javascripts/module/basics.js:182
+#: ../app/assets/javascripts/module/reports.js:168
+#: ../app/assets/javascripts/module/resources.js:42
+#: ../app/views/cib/apply.html.haml:43
+#: ../app/views/constraints/rename.html.haml:51
+#: ../app/views/reports/index.html.haml:59
+#: ../app/views/reports/show.html.haml:43
+#: ../app/views/resources/rename.html.haml:51
+#: ../app/views/shared/_simulator.html.haml:386
+#: ../app/views/shared/_simulator.html.haml:498
+#: ../app/views/shared/_simulator.html.haml:563
+#: ../app/views/wizards/create.html.haml:26
+#: ../app/views/wizards/show.html.haml:129
+#: ../app/views/wizards/update.html.haml:106
+msgid "Cancel"
+msgstr "إلغاء"
+
+#: ../app/assets/javascripts/dashboard.js:436
+msgid "Hostname"
+msgstr "اسم المضيف"
+
+#: ../app/assets/javascripts/dashboard.js:437
+#: ../app/views/sessions/new.html.haml:2
+msgid "Username"
+msgstr "اسم المستخدم"
+
+#: ../app/assets/javascripts/dashboard.js:438
+#: ../app/views/sessions/new.html.haml:4
+msgid "Password"
+msgstr "كلمة السر"
+
+#: ../app/assets/javascripts/dashboard.js:439
+msgid "Connect"
+msgstr "اتصال"
+
+#: ../app/assets/javascripts/dashboard.js:501
+msgid "Local Status"
+msgstr "الحالة المحلية"
+
+#: ../app/assets/javascripts/dashboard.js:521
+msgid "Remove cluster _NAME_ from dashboard?"
+msgstr "إزالة المجموعة المتماثلة _NAME_ من لوحة المعلومات؟"
+
+#: ../app/assets/javascripts/dashboard.js:548
+msgid "Cluster removed successfully."
+msgstr "تمت إزالة المجموعة المتماثلة بنجاح."
+
+#: ../app/assets/javascripts/dashboard.js:553
+msgid "Error removing cluster."
+msgstr "حدث خطأ في إزالة المجموعة المتماثلة."
+
+#: ../app/assets/javascripts/dashboard.js:574
+msgid "Please wait..."
+msgstr "الرجاء الانتظار..."
+
+#: ../app/assets/javascripts/dashboard.js:584
+msgid "Cluster added successfully."
+msgstr "تم إضافة المجموعة المتماثلة بنجاح."
+
+#: ../app/assets/javascripts/module/attrlist.js:21
+#: ../app/assets/javascripts/module/constraint.js:19
+#: ../app/assets/javascripts/module/location.js:16
+#: ../app/assets/javascripts/module/oplist.js:66
+#: ../app/assets/javascripts/module/wizattrlist.js:20
+#: ../app/helpers/form_helper.rb:23 ../app/helpers/role_helper.rb:31
+#: ../app/helpers/user_helper.rb:31 ../app/views/clones/edit.html.haml:13
+#: ../app/views/clones/index.html.haml:13
+#: ../app/views/colocations/edit.html.haml:13
+#: ../app/views/colocations/index.html.haml:13
+#: ../app/views/constraints/index.html.haml:13
+#: ../app/views/groups/edit.html.haml:13
+#: ../app/views/groups/index.html.haml:13
+#: ../app/views/locations/edit.html.haml:13
+#: ../app/views/locations/index.html.haml:13
+#: ../app/views/masters/edit.html.haml:13
+#: ../app/views/masters/index.html.haml:13
+#: ../app/views/orders/edit.html.haml:13
+#: ../app/views/orders/index.html.haml:13
+#: ../app/views/primitives/_form.html.haml:80
+#: ../app/views/primitives/index.html.haml:13
+#: ../app/views/resources/index.html.haml:13
+#: ../app/views/roles/index.html.haml:15 ../app/views/tags/edit.html.haml:13
+#: ../app/views/tags/index.html.haml:13 ../app/views/tickets/edit.html.haml:13
+#: ../app/views/tickets/index.html.haml:13
+#: ../app/views/users/index.html.haml:15
+msgid "Create"
+msgstr "إنشاء"
+
+#: ../app/assets/javascripts/module/attrlist.js:22
+#: ../app/assets/javascripts/module/constraint.js:20
+#: ../app/assets/javascripts/module/location.js:17
+#: ../app/assets/javascripts/module/oplist.js:68
+#: ../app/assets/javascripts/module/wizattrlist.js:21
+msgid "Remove"
+msgstr "إزالة"
+
+#: ../app/assets/javascripts/module/attrlist.js:23
+#: ../app/assets/javascripts/module/oplist.js:69
+#: ../app/assets/javascripts/module/wizattrlist.js:22
+#: ../app/helpers/form_helper.rb:6 ../app/views/tickets/show.html.haml:52
+msgid "Yes"
+msgstr "نعم"
+
+#: ../app/assets/javascripts/module/attrlist.js:24
+#: ../app/assets/javascripts/module/oplist.js:70
+#: ../app/assets/javascripts/module/wizattrlist.js:23
+#: ../app/helpers/form_helper.rb:6 ../app/views/tickets/show.html.haml:55
+msgid "No"
+msgstr "لا"
+
+#: ../app/assets/javascripts/module/attrlist.js:156
+#: ../app/assets/javascripts/module/constraint.js:159
+#: ../app/assets/javascripts/module/forms.js:14
+#: ../app/assets/javascripts/module/location.js:183
+#: ../app/assets/javascripts/module/oplist.js:342
+#: ../app/assets/javascripts/module/profiles.js:23
+#: ../app/assets/javascripts/module/roles.js:179
+#: ../app/assets/javascripts/module/users.js:135
+#: ../app/assets/javascripts/module/wizattrlist.js:165
+#: ../app/helpers/crm_config_helper.rb:10 ../app/helpers/form_helper.rb:14
+#: ../app/helpers/profile_helper.rb:21 ../app/helpers/role_helper.rb:17
+#: ../app/helpers/user_helper.rb:17
+msgid "Any changes will be lost - do you wish to proceed?"
+msgstr "سيتم فقد أية تغييرات - هل تريد المتابعة؟"
+
+#: ../app/assets/javascripts/module/basics.js:14 ../app/models/record.rb:11
+#: ../app/models/tag.rb:14
+msgid "Invalid ID"
+msgstr "المعرف غير صالح"
+
+#: ../app/assets/javascripts/module/basics.js:80
+#: ../app/assets/javascripts/module/basics.js:183
+#: ../app/assets/javascripts/module/resources.js:43
+#: ../app/views/shared/_simulator.html.haml:203
+#: ../app/views/shared/_simulator.html.haml:234
+#: ../app/views/shared/_simulator.html.haml:265
+#: ../app/views/shared/_simulator.html.haml:296
+#: ../app/views/shared/_simulator.html.haml:327
+#: ../app/views/shared/_simulator.html.haml:391
+#: ../app/views/shared/_simulator.html.haml:503
+#: ../app/views/shared/_simulator.html.haml:568
+msgid "OK"
+msgstr "موافق"
+
+#: ../app/assets/javascripts/module/basics.js:82
+msgid "Maintenance mode"
+msgstr "وضع الصيانة"
+
+#: ../app/assets/javascripts/module/basics.js:84
+msgid "An error has occurred"
+msgstr "حدث خطأ"
+
+#: ../app/assets/javascripts/module/basics.js:171
+#: ../app/assets/javascripts/module/resources.js:17
+#: ../app/views/agents/show.html.haml:134
+#: ../app/views/configs/meta.html.haml:12
+#: ../app/views/constraints/show.html.haml:32
+#: ../app/views/dashboards/add.html.haml:14
+#: ../app/views/nodes/events.html.haml:13
+#: ../app/views/nodes/events.html.haml:60 ../app/views/nodes/show.html.haml:13
+#: ../app/views/nodes/show.html.haml:138 ../app/views/pages/help.html.haml:13
+#: ../app/views/pages/help.html.haml:78
+#: ../app/views/resources/events.html.haml:13
+#: ../app/views/resources/events.html.haml:60
+#: ../app/views/resources/show.html.haml:346
+#: ../app/views/shared/_flash.html.haml:14
+#: ../app/views/shared/_simulator.html.haml:172
+#: ../app/views/simulator/help.html.haml:19
+#: ../app/views/tickets/show.html.haml:255
+msgid "Close"
+msgstr "إغلاق"
+
+#: ../app/assets/javascripts/module/batch.js:42
+msgid "No configuration changes."
+msgstr "لا توجد تغييرات في التكوين."
+
+#: ../app/assets/javascripts/module/clones.js:27
+#: ../app/views/clones/_form.html.haml:10
+#: ../app/views/clones/_form.html.haml:15
+msgid "Clone ID"
+msgstr "معرف الاستنساخ"
+
+#: ../app/assets/javascripts/module/clones.js:33
+#: ../app/assets/javascripts/module/colocations.js:33
+#: ../app/assets/javascripts/module/constraints.js:92
+#: ../app/assets/javascripts/module/groups.js:33
+#: ../app/assets/javascripts/module/locations.js:33
+#: ../app/assets/javascripts/module/masters.js:33
+#: ../app/assets/javascripts/module/nodes.js:202
+#: ../app/assets/javascripts/module/nodes.js:332
+#: ../app/assets/javascripts/module/orders.js:33
+#: ../app/assets/javascripts/module/primitives.js:75
+#: ../app/assets/javascripts/module/reports.js:303
+#: ../app/assets/javascripts/module/resources.js:283
+#: ../app/assets/javascripts/module/resources.js:704
+#: ../app/assets/javascripts/module/roles.js:33
+#: ../app/assets/javascripts/module/tags.js:44
+#: ../app/assets/javascripts/module/tickets.js:39
+#: ../app/assets/javascripts/module/tickets.js:232
+#: ../app/assets/javascripts/module/users.js:33
+#: ../app/views/cib/show.html.haml:114
+#: ../app/views/primitives/_form.html.haml:159
+#: ../app/views/resources/show.html.haml:171
+msgid "Operations"
+msgstr "العمليات"
+
+#: ../app/assets/javascripts/module/clones.js:95
+#: ../app/assets/javascripts/module/colocations.js:97
+#: ../app/assets/javascripts/module/constraints.js:215
+#: ../app/assets/javascripts/module/groups.js:95
+#: ../app/assets/javascripts/module/locations.js:95
+#: ../app/assets/javascripts/module/masters.js:95
+#: ../app/assets/javascripts/module/nodes.js:253
+#: ../app/assets/javascripts/module/nodes.js:347
+#: ../app/assets/javascripts/module/oplist.js:67
+#: ../app/assets/javascripts/module/orders.js:95
+#: ../app/assets/javascripts/module/primitives.js:138
+#: ../app/assets/javascripts/module/resources.js:399
+#: ../app/assets/javascripts/module/resources.js:726
+#: ../app/assets/javascripts/module/roles.js:95
+#: ../app/assets/javascripts/module/tags.js:108
+#: ../app/assets/javascripts/module/tickets.js:67
+#: ../app/assets/javascripts/module/users.js:95
+#: ../app/views/cib/show.html.haml:127 ../app/views/configs/show.html.haml:13
+#: ../app/views/graphs/show.html.haml:11
+msgid "Edit"
+msgstr "تحرير"
+
+#: ../app/assets/javascripts/module/clones.js:108
+#: ../app/assets/javascripts/module/colocations.js:110
+#: ../app/assets/javascripts/module/constraints.js:235
+#: ../app/assets/javascripts/module/groups.js:108
+#: ../app/assets/javascripts/module/locations.js:108
+#: ../app/assets/javascripts/module/masters.js:108
+#: ../app/assets/javascripts/module/orders.js:108
+#: ../app/assets/javascripts/module/primitives.js:151
+#: ../app/assets/javascripts/module/reports.js:383
+#: ../app/assets/javascripts/module/resources.js:746
+#: ../app/assets/javascripts/module/roles.js:108
+#: ../app/assets/javascripts/module/tags.js:131
+#: ../app/assets/javascripts/module/tickets.js:77
+#: ../app/assets/javascripts/module/users.js:108
+#: ../app/views/clones/edit.html.haml:17
+#: ../app/views/colocations/edit.html.haml:17
+#: ../app/views/groups/edit.html.haml:17
+#: ../app/views/locations/edit.html.haml:17
+#: ../app/views/masters/edit.html.haml:17
+#: ../app/views/orders/edit.html.haml:17
+#: ../app/views/primitives/edit.html.haml:17
+#: ../app/views/reports/display.html.haml:36
+#: ../app/views/roles/edit.html.haml:13 ../app/views/tags/edit.html.haml:17
+#: ../app/views/tickets/edit.html.haml:17 ../app/views/users/edit.html.haml:13
+msgid "Delete"
+msgstr "حذف"
+
+#: ../app/assets/javascripts/module/colocations.js:27
+#: ../app/assets/javascripts/module/locations.js:27
+#: ../app/assets/javascripts/module/orders.js:27
+#: ../app/models/constraint.rb:48 ../app/views/colocations/_form.html.haml:10
+#: ../app/views/colocations/_form.html.haml:13
+#: ../app/views/locations/_form.html.haml:10
+#: ../app/views/locations/_form.html.haml:13
+#: ../app/views/orders/_form.html.haml:10
+#: ../app/views/orders/_form.html.haml:13
+#: ../app/views/tickets/_form.html.haml:10
+#: ../app/views/tickets/_form.html.haml:13
+msgid "Constraint ID"
+msgstr "معرف القيد"
+
+#: ../app/assets/javascripts/module/constraint.js:22
+msgid "Swap with entry above"
+msgstr "التبديل مع الإدخال أعلاه"
+
+#: ../app/assets/javascripts/module/constraint.js:23
+msgid "Link with entry above"
+msgstr "الربط مع الإدخال أعلاه"
+
+#: ../app/assets/javascripts/module/constraint.js:24
+msgid "Unlink from entry above"
+msgstr "إلغاء الربط من الإدخال أعلاه"
+
+#: ../app/assets/javascripts/module/constraints.js:56
+#: ../app/assets/javascripts/module/nodes.js:89
+#: ../app/assets/javascripts/module/nodes.js:319
+#: ../app/assets/javascripts/module/reports.js:269
+#: ../app/assets/javascripts/module/resources.js:229
+#: ../app/assets/javascripts/module/resources.js:645
+#: ../app/assets/javascripts/module/tags.js:28
+#: ../app/views/agents/show.html.haml:50
+#: ../app/views/agents/show.html.haml:101
+#: ../app/views/nodes/_form.html.haml:11
+#: ../app/views/reports/display.html.haml:42
+#: ../app/views/resources/show.html.haml:187
+msgid "Name"
+msgstr "الاسم"
+
+#: ../app/assets/javascripts/module/constraints.js:63
+#: ../app/assets/javascripts/module/resources.js:257
+#: ../app/assets/javascripts/module/resources.js:652
+#: ../app/models/template.rb:406 ../app/views/primitives/_form.html.haml:25
+#: ../app/views/primitives/_form.html.haml:47
+#: ../app/views/resources/show.html.haml:317
+msgid "Type"
+msgstr "النوع"
+
+#: ../app/assets/javascripts/module/constraints.js:70
+#: ../app/assets/javascripts/module/resources.js:236
+#: ../app/views/constraints/types.html.haml:32
+msgid "Location"
+msgstr "الموقع"
+
+#: ../app/assets/javascripts/module/constraints.js:72
+#: ../app/views/constraints/types.html.haml:41
+msgid "Colocation"
+msgstr "الموقع المشترك"
+
+#: ../app/assets/javascripts/module/constraints.js:74
+#: ../app/views/constraints/types.html.haml:50
+msgid "Order"
+msgstr "الترتيب"
+
+#: ../app/assets/javascripts/module/constraints.js:76
+#: ../app/assets/javascripts/module/tickets.js:33
+#: ../app/assets/javascripts/module/tickets.js:157
+#: ../app/views/constraints/types.html.haml:59
+#: ../app/views/shared/_simulator.html.haml:528
+msgid "Ticket"
+msgstr "البطاقة"
+
+#: ../app/assets/javascripts/module/constraints.js:83
+#: ../app/controllers/resources_controller.rb:211
+#: ../app/models/location.rb:223 ../app/views/cib/show.html.haml:48
+#: ../app/views/colocations/_form.html.haml:52
+#: ../app/views/configs/edit.html.haml:36
+#: ../app/views/orders/_form.html.haml:57
+#: ../app/views/resources/index.html.haml:7
+#: ../app/views/tickets/_form.html.haml:25
+msgid "Resources"
+msgstr "الموارد"
+
+#: ../app/assets/javascripts/module/constraints.js:225
+#: ../app/assets/javascripts/module/resources.js:736
+#: ../app/assets/javascripts/module/tags.js:118
+#: ../app/views/clones/edit.html.haml:15
+#: ../app/views/colocations/edit.html.haml:15
+#: ../app/views/constraints/rename.html.haml:23
+#: ../app/views/constraints/rename.html.haml:56
+#: ../app/views/groups/edit.html.haml:15
+#: ../app/views/locations/edit.html.haml:15
+#: ../app/views/masters/edit.html.haml:15
+#: ../app/views/orders/edit.html.haml:15
+#: ../app/views/primitives/edit.html.haml:15
+#: ../app/views/resources/rename.html.haml:23
+#: ../app/views/resources/rename.html.haml:56
+#: ../app/views/tags/edit.html.haml:15 ../app/views/tickets/edit.html.haml:15
+msgid "Rename"
+msgstr "إعادة التسمية"
+
+#: ../app/assets/javascripts/module/groups.js:27
+#: ../app/views/groups/_form.html.haml:10
+#: ../app/views/groups/_form.html.haml:15
+msgid "Group ID"
+msgstr "معرف المجموعة"
+
+#: ../app/assets/javascripts/module/location.js:23
+#: ../app/views/roles/_form.html.haml:22
+msgid "Rule"
+msgstr "القاعدة"
+
+#: ../app/assets/javascripts/module/location.js:33
+#: ../app/models/colocation.rb:180 ../app/models/location.rb:229
+#: ../app/views/colocations/_form.html.haml:18
+#: ../app/views/locations/_form.html.haml:53
+#: ../app/views/orders/_form.html.haml:18
+#: ../app/views/resources/show.html.haml:319
+msgid "Score"
+msgstr "النتيجة"
+
+#: ../app/assets/javascripts/module/location.js:41
+#: ../app/models/location.rb:248
+msgid "Role"
+msgstr "الدور"
+
+#: ../app/assets/javascripts/module/location.js:54
+msgid "Boolean Operator"
+msgstr "المشغل المنطقي"
+
+#: ../app/assets/javascripts/module/masters.js:27
+#: ../app/views/masters/_form.html.haml:10
+#: ../app/views/masters/_form.html.haml:15
+msgid "Multi-state ID"
+msgstr "المعرف متعدد الحالات"
+
+#: ../app/assets/javascripts/module/monitor.js:64
+msgid "Failed to parse monitor response - Internal server error."
+msgstr "فشل تحليل استجابة المراقبة - حدث خطأ داخلي في الخادم."
+
+#: ../app/assets/javascripts/module/monitor.js:68
+#: ../app/assets/javascripts/module/status.js:133
+msgid "Connection to server failed - will retry every 15 seconds."
+msgstr "فشل الاتصال بالخادم - ستتم إعادة المحاولة كل 15 ثانية."
+
+#: ../app/assets/javascripts/module/nodes.js:43
+#: ../app/assets/javascripts/module/resources.js:190
+#: ../app/assets/javascripts/module/tickets.js:128
+#: ../app/controllers/cib_controller.rb:108
+#: ../app/helpers/application_helper.rb:238
+#: ../app/views/resources/show.html.haml:272
+#: ../app/views/shared/_mainnav.html.haml:17
+msgid "Status"
+msgstr "الحالة"
+
+#: ../app/assets/javascripts/module/nodes.js:78
+msgid "Remote"
+msgstr "بعيد"
+
+#: ../app/assets/javascripts/module/nodes.js:95
+#: ../app/assets/javascripts/module/resources.js:373
+msgid "Maintenance"
+msgstr "الصيانة"
+
+#: ../app/assets/javascripts/module/nodes.js:127
+msgid "Switch to ready"
+msgstr "التبديل إلى جاهز"
+
+#: ../app/assets/javascripts/module/nodes.js:140
+msgid "Switch to maintenance"
+msgstr "التبديل إلى الصيانة"
+
+#: ../app/assets/javascripts/module/nodes.js:149
+msgid "Standby"
+msgstr "استعداد"
+
+#: ../app/assets/javascripts/module/nodes.js:180
+msgid "Switch to online"
+msgstr "التبديل إلى على الإنترنت"
+
+#: ../app/assets/javascripts/module/nodes.js:193
+msgid "Switch to standby"
+msgstr "التبديل إلى وضع الاستعداد"
+
+#: ../app/assets/javascripts/module/nodes.js:248
+#: ../app/helpers/ticket_helper.rb:10
+msgid "Fence"
+msgstr "الفاصل"
+
+#: ../app/assets/javascripts/module/nodes.js:249
+msgid "Clear state"
+msgstr "مسح الحالة"
+
+#: ../app/assets/javascripts/module/nodes.js:272
+msgid "Events"
+msgstr "الأحداث"
+
+#: ../app/assets/javascripts/module/nodes.js:282
+#: ../app/assets/javascripts/module/resources.js:416
+#: ../app/assets/javascripts/module/statusmatrix.js:88
+#: ../app/assets/javascripts/module/tickets.js:271
+#: ../app/views/reports/display.html.haml:190
+msgid "Details"
+msgstr "التفاصيل"
+
+#: ../app/assets/javascripts/module/nodes.js:326
+#: ../app/assets/javascripts/module/tickets.js:27
+#: ../app/views/nodes/_form.html.haml:9 ../app/views/nodes/show.html.haml:48
+#: ../app/views/resources/show.html.haml:315
+msgid "ID"
+msgstr "المعرف"
+
+#: ../app/assets/javascripts/module/oplist.js:71
+#: ../app/helpers/form_helper.rb:27
+msgid "Add"
+msgstr "إضافة"
+
+#: ../app/assets/javascripts/module/oplist.js:72
+#: ../app/assets/javascripts/module/reports.js:167
+#: ../app/helpers/crm_config_helper.rb:16 ../app/helpers/form_helper.rb:19
+#: ../app/helpers/profile_helper.rb:27 ../app/helpers/role_helper.rb:23
+#: ../app/helpers/user_helper.rb:23 ../app/views/cib/apply.html.haml:46
+#: ../app/views/primitives/_form.html.haml:85
+#: ../app/views/shared/_simulator.html.haml:22
+#: ../app/views/wizards/create.html.haml:30
+#: ../app/views/wizards/update.html.haml:112
+msgid "Apply"
+msgstr "تطبيق"
+
+#: ../app/assets/javascripts/module/oplist.js:281
+msgid "No interval set for monitor operation"
+msgstr "لم يتم تعيين فاصل زمني لعملية المراقبة"
+
+#: ../app/assets/javascripts/module/oplist.js:327
+msgid "Replacing previously defined monitor operation with same interval"
+msgstr "استبدال عملية المراقبة المحددة سابقًا بنفس الفاصل الزمني"
+
+#: ../app/assets/javascripts/module/primitives.js:69
+#: ../app/models/resource.rb:124 ../app/views/primitives/_form.html.haml:14
+#: ../app/views/primitives/_form.html.haml:28
+msgid "Resource ID"
+msgstr "معرف المورد"
+
+#: ../app/assets/javascripts/module/primitives.js:323
+msgid "Failed to fetch meta attributes"
+msgstr "فشل إحضار سمات التعريف"
+
+#: ../app/assets/javascripts/module/reports.js:30
+msgid "Report generation is complete."
+msgstr "تم اكتمال إنشاء التقرير."
+
+#: ../app/assets/javascripts/module/reports.js:47
+msgid "Report generation cancelled."
+msgstr "تم إلغاء إنشاء التقرير."
+
+#: ../app/assets/javascripts/module/reports.js:169
+#: ../app/assets/javascripts/module/reports.js:281
+#: ../app/views/reports/display.html.haml:51
+#: ../app/views/reports/display.html.haml:60
+#: ../app/views/reports/display.html.haml:69
+#: ../app/views/reports/index.html.haml:29
+msgid "From"
+msgstr "من"
+
+#: ../app/assets/javascripts/module/reports.js:170
+#: ../app/assets/javascripts/module/reports.js:294
+msgid "Until"
+msgstr "حتى"
+
+#: ../app/assets/javascripts/module/reports.js:171
+msgid "Custom"
+msgstr "مخصص"
+
+#: ../app/assets/javascripts/module/reports.js:173
+msgid "Su"
+msgstr "الأحد"
+
+#: ../app/assets/javascripts/module/reports.js:174
+msgid "Mo"
+msgstr "الاثنين"
+
+#: ../app/assets/javascripts/module/reports.js:175
+msgid "Tu"
+msgstr "الثلاثاء"
+
+#: ../app/assets/javascripts/module/reports.js:176
+msgid "We"
+msgstr "الأربعاء"
+
+#: ../app/assets/javascripts/module/reports.js:177
+msgid "Th"
+msgstr "الخميس"
+
+#: ../app/assets/javascripts/module/reports.js:178
+msgid "Fr"
+msgstr "الجمعة"
+
+#: ../app/assets/javascripts/module/reports.js:179
+msgid "Sa"
+msgstr "السبت"
+
+#: ../app/assets/javascripts/module/reports.js:182
+msgid "January"
+msgstr "يناير"
+
+#: ../app/assets/javascripts/module/reports.js:183
+msgid "February"
+msgstr "فبراير"
+
+#: ../app/assets/javascripts/module/reports.js:184
+msgid "March"
+msgstr "مارس"
+
+#: ../app/assets/javascripts/module/reports.js:185
+msgid "April"
+msgstr "أبريل"
+
+#: ../app/assets/javascripts/module/reports.js:186
+msgid "May"
+msgstr "مايو"
+
+#: ../app/assets/javascripts/module/reports.js:187
+msgid "June"
+msgstr "يونيه"
+
+#: ../app/assets/javascripts/module/reports.js:188
+msgid "July"
+msgstr "يوليو"
+
+#: ../app/assets/javascripts/module/reports.js:189
+msgid "August"
+msgstr "أغسطس"
+
+#: ../app/assets/javascripts/module/reports.js:190
+msgid "September"
+msgstr "سبتمبر"
+
+#: ../app/assets/javascripts/module/reports.js:191
+msgid "October"
+msgstr "أكتوبر"
+
+#: ../app/assets/javascripts/module/reports.js:192
+msgid "November"
+msgstr "نوفمبر"
+
+#: ../app/assets/javascripts/module/reports.js:193
+msgid "December"
+msgstr "ديسمبر"
+
+#: ../app/assets/javascripts/module/reports.js:277
+#: ../app/assets/javascripts/module/reports.js:361
+#: ../app/views/configs/edit.html.haml:13
+#: ../app/views/configs/show.html.haml:16
+#: ../app/views/graphs/show.html.haml:13
+#: ../app/views/reports/display.html.haml:32
+#: ../app/views/shared/_simulator.html.haml:12
+msgid "Show"
+msgstr "اعرض"
+
+#: ../app/assets/javascripts/module/reports.js:371
+#: ../app/views/reports/display.html.haml:34
+msgid "Download"
+msgstr "تحميل"
+
+#: ../app/assets/javascripts/module/reports.js:417
+#: ../app/views/reports/display.html.haml:169
+msgid "Time"
+msgstr "الوقت"
+
+#: ../app/assets/javascripts/module/reports.js:419
+#: ../app/models/location.rb:235 ../app/views/locations/_form.html.haml:86
+#: ../app/views/reports/display.html.haml:165
+#: ../app/views/resources/events.html.haml:35
+#: ../app/views/resources/show.html.haml:266
+#: ../app/views/shared/_simulator.html.haml:351
+#: ../app/views/shared/_simulator.html.haml:463
+msgid "Node"
+msgstr "عقدة"
+
+#: ../app/assets/javascripts/module/resources.js:200
+msgid "Maintenance Mode"
+msgstr ""
+
+#: ../app/assets/javascripts/module/resources.js:203
+msgid "Unmanaged"
+msgstr "غير مُدار"
+
+#: ../app/assets/javascripts/module/resources.js:206
+#: ../app/helpers/colocation_helper.rb:7 ../app/helpers/ticket_helper.rb:19
+msgid "Started"
+msgstr "تم البدء"
+
+#: ../app/assets/javascripts/module/resources.js:209
+msgid "Primary"
+msgstr "رئيسي"
+
+#: ../app/assets/javascripts/module/resources.js:212
+msgid "Secondary"
+msgstr "ثانوي"
+
+#: ../app/assets/javascripts/module/resources.js:215
+#: ../app/helpers/colocation_helper.rb:10 ../app/helpers/ticket_helper.rb:22
+msgid "Stopped"
+msgstr "تم الإيقاف"
+
+#: ../app/assets/javascripts/module/resources.js:263
+#: ../app/assets/javascripts/module/resources.js:658
+#: ../app/views/resources/types.html.haml:41
+msgid "Group"
+msgstr "المجموعة"
+
+#: ../app/assets/javascripts/module/resources.js:265
+#: ../app/assets/javascripts/module/resources.js:660
+#: ../app/views/resources/types.html.haml:59
+msgid "Multi-state"
+msgstr "متعدد الحالات"
+
+#: ../app/assets/javascripts/module/resources.js:268
+#: ../app/assets/javascripts/module/resources.js:270
+#: ../app/assets/javascripts/module/resources.js:662
+#: ../app/views/resources/types.html.haml:50
+msgid "Clone"
+msgstr "استنساخ"
+
+#: ../app/assets/javascripts/module/resources.js:273
+#: ../app/assets/javascripts/module/resources.js:664
+#: ../app/views/resources/types.html.haml:68
+msgid "Tag"
+msgstr "علامة"
+
+#: ../app/assets/javascripts/module/resources.js:318
+#: ../app/assets/javascripts/module/resources.js:805
+msgid "Away from current node"
+msgstr "بعيدًا عن نقطة التوصيل الحالية"
+
+#: ../app/assets/javascripts/module/resources.js:328
+#: ../app/assets/javascripts/module/resources.js:813
+msgid "Clean up on all nodes"
+msgstr "تنظيف كل العُقد"
+
+#: ../app/assets/javascripts/module/resources.js:357
+#: ../app/helpers/order_helper.rb:10 ../app/helpers/ticket_helper.rb:8
+#: ../app/models/template.rb:418 ../app/views/cib/show.html.haml:123
+msgid "Stop"
+msgstr "إيقاف"
+
+#: ../app/assets/javascripts/module/resources.js:361
+#: ../app/helpers/order_helper.rb:7 ../app/models/template.rb:412
+#: ../app/views/cib/show.html.haml:121
+msgid "Start"
+msgstr "بداية"
+
+#: ../app/assets/javascripts/module/resources.js:365
+#: ../app/helpers/order_helper.rb:9 ../app/helpers/ticket_helper.rb:9
+msgid "Demote"
+msgstr "تخفيض"
+
+#: ../app/assets/javascripts/module/resources.js:369
+#: ../app/helpers/order_helper.rb:8
+msgid "Promote"
+msgstr "الترقية"
+
+#: ../app/assets/javascripts/module/resources.js:375
+msgid "Disable Maintenance Mode"
+msgstr ""
+
+#: ../app/assets/javascripts/module/resources.js:380
+msgid "Migrate"
+msgstr "ترحيل"
+
+#: ../app/assets/javascripts/module/resources.js:382
+msgid "Unmigrate"
+msgstr "إلغاء ترحيل"
+
+#: ../app/assets/javascripts/module/resources.js:384
+msgid "Cleanup"
+msgstr "تنظيف"
+
+#: ../app/assets/javascripts/module/resources.js:393
+msgid "Recent events"
+msgstr "الأحداث الحديثة"
+
+#: ../app/assets/javascripts/module/resources.js:479
+msgid "No child resources"
+msgstr "لا توجد موارد فرعية"
+
+#: ../app/assets/javascripts/module/resources.js:687
+#: ../app/views/groups/_form.html.haml:24
+#: ../app/views/resources/show.html.haml:43
+msgid "Children"
+msgstr "الفروع"
+
+#: ../app/assets/javascripts/module/resources.js:785
+msgid "This will start the tagged resources. Do you want to continue?"
+msgstr ""
+
+#: ../app/assets/javascripts/module/resources.js:788
+msgid "This will stop the tagged resources. Do you want to continue?"
+msgstr ""
+
+#: ../app/assets/javascripts/module/resources.js:791
+msgid "This will promote the tagged resources. Do you want to continue?"
+msgstr ""
+
+#: ../app/assets/javascripts/module/resources.js:794
+msgid "This will demote the tagged resources. Do you want to continue?"
+msgstr ""
+
+#: ../app/assets/javascripts/module/resources.js:797
+msgid "This will enable maintenance mode for the tagged resources. Do you want to continue?"
+msgstr ""
+
+#: ../app/assets/javascripts/module/resources.js:800
+msgid "This will disable maintenance mode for the tagged resources. Do you want to continue?"
+msgstr ""
+
+#: ../app/assets/javascripts/module/resources.js:804
+msgid "Migrate tagged resources"
+msgstr ""
+
+#: ../app/assets/javascripts/module/resources.js:808
+msgid "This will unmigrate the tagged resources. Do you want to continue?"
+msgstr ""
+
+#: ../app/assets/javascripts/module/resources.js:812
+msgid "Clean up tagged resources"
+msgstr ""
+
+#: ../app/assets/javascripts/module/roles.js:27
+#: ../app/views/roles/_form.html.haml:10 ../app/views/roles/_form.html.haml:13
+msgid "Role ID"
+msgstr "معرف الدور"
+
+#: ../app/assets/javascripts/module/tags.js:35
+#: ../app/views/tags/_form.html.haml:24
+msgid "Objects"
+msgstr "الكائنات"
+
+#: ../app/assets/javascripts/module/tickets.js:137
+#: ../app/assets/javascripts/module/tickets.js:169
+#: ../app/views/tickets/show.html.haml:46
+msgid "Granted"
+msgstr "تم المنح"
+
+#: ../app/assets/javascripts/module/tickets.js:143
+msgid "Elsewhere"
+msgstr "مكان آخر"
+
+#: ../app/assets/javascripts/module/tickets.js:149
+msgid "Revoked"
+msgstr "مبطلة"
+
+#: ../app/assets/javascripts/module/tickets.js:163
+#: ../app/views/tickets/show.html.haml:80
+msgid "Last Granted"
+msgstr "آخر عملية منح"
+
+#: ../app/assets/javascripts/module/tickets.js:213
+msgid "Grant"
+msgstr "منح"
+
+#: ../app/assets/javascripts/module/tickets.js:223
+#: ../app/assets/javascripts/module/tickets.js:260
+msgid "Revoke"
+msgstr "إبطال"
+
+#: ../app/assets/javascripts/module/users.js:27
+msgid "User ID"
+msgstr "معرف المستخدم"
+
+#: ../app/assets/javascripts/module/wizards.js:12
+msgid "Must be a valid resource ID"
+msgstr "يجب أن يكون معرف مورد صالحًا"
+
+#: ../app/assets/javascripts/module/wizards.js:69
+msgid "Applying configuration changes..."
+msgstr "جارٍ تطبيق تغييرات التكوين..."
+
+#: ../app/assets/javascripts/module/wizards.js:74
+msgid "Changes applied successfully."
+msgstr "تم تطبيق التغييرات بنجاح."
+
+#: ../app/controllers/agents_controller.rb:46
+#: ../app/views/resources/show.html.haml:29
+msgid "Agent"
+msgstr "الوكيل"
+
+#: ../app/controllers/application_controller.rb:159
+msgid "Created a new shadow CIB for %USER%."
+msgstr "تم إنشاء ظل CIB احتياطي جديد للمستخدم %USER%."
+
+#: ../app/controllers/application_controller.rb:164
+#: ../app/controllers/application_controller.rb:167
+msgid "Unable to create shadow CIB"
+msgstr "تعذر إنشاء ظل احتياطي لـ CIB"
+
+#: ../app/controllers/application_controller.rb:194
+msgid "Error: Permission denied for user (%s)"
+msgstr ""
+
+#: ../app/controllers/application_controller.rb:198
+msgid "Error: Not authenticated"
+msgstr ""
+
+#: ../app/controllers/application_controller.rb:202
+msgid "Error: Record not found"
+msgstr ""
+
+#: ../app/controllers/cib_controller.rb:44
+msgid "Failed to apply configuration"
+msgstr "فشل تطبيق التكوين"
+
+#: ../app/controllers/cib_controller.rb:49
+msgid "Applied configuration successfully"
+msgstr "تم تطبيق التكوين بنجاح"
+
+#: ../app/controllers/clones_controller.rb:20
+#: ../app/controllers/clones_controller.rb:31
+#: ../app/views/clones/new.html.haml:7
+msgid "Create Clone"
+msgstr "إنشاء استنساخ"
+
+#: ../app/controllers/clones_controller.rb:40
+msgid "Clone created successfully"
+msgstr "تم إنشاء الاستنساخ بنجاح"
+
+#: ../app/controllers/clones_controller.rb:58
+#: ../app/controllers/clones_controller.rb:67
+#: ../app/views/clones/edit.html.haml:7
+msgid "Edit Clone"
+msgstr "تحرير الاستنساخ"
+
+#: ../app/controllers/clones_controller.rb:78
+msgid "Clone updated successfully"
+msgstr "تم تحديث الاستنساخ بنجاح"
+
+#: ../app/controllers/clones_controller.rb:100
+#: ../app/controllers/clones_controller.rb:107
+msgid "Clone deleted successfully"
+msgstr "تم حذف الاستنساخ بنجاح"
+
+#: ../app/controllers/clones_controller.rb:112
+#: ../app/controllers/clones_controller.rb:116
+#: ../app/controllers/colocations_controller.rb:110
+#: ../app/controllers/colocations_controller.rb:114
+#: ../app/controllers/groups_controller.rb:112
+#: ../app/controllers/groups_controller.rb:116
+#: ../app/controllers/locations_controller.rb:129
+#: ../app/controllers/locations_controller.rb:133
+#: ../app/controllers/masters_controller.rb:112
+#: ../app/controllers/masters_controller.rb:116
+#: ../app/controllers/orders_controller.rb:111
+#: ../app/controllers/orders_controller.rb:115
+#: ../app/controllers/primitives_controller.rb:147
+#: ../app/controllers/primitives_controller.rb:151
+#: ../app/controllers/roles_controller.rb:108
+#: ../app/controllers/roles_controller.rb:112
+#: ../app/controllers/tags_controller.rb:111
+#: ../app/controllers/tags_controller.rb:115
+#: ../app/controllers/templates_controller.rb:126
+#: ../app/controllers/templates_controller.rb:130
+#: ../app/controllers/tickets_controller.rb:124
+#: ../app/controllers/tickets_controller.rb:128
+#: ../app/controllers/users_controller.rb:110
+#: ../app/controllers/users_controller.rb:114
+msgid "Error deleting %s: %s"
+msgstr "حدث خطأ في حذف %s: %s"
+
+#: ../app/controllers/clones_controller.rb:134
+#: ../app/views/clones/index.html.haml:7
+msgid "Clones"
+msgstr "عمليات الاستنساخ"
+
+#: ../app/controllers/clones_controller.rb:147
+msgid "The clone does not exist"
+msgstr "الاستنساخ غير موجود"
+
+#: ../app/controllers/colocations_controller.rb:20
+#: ../app/controllers/colocations_controller.rb:30
+#: ../app/views/colocations/new.html.haml:7
+msgid "Create Colocation"
+msgstr "إنشاء موقع مشترك"
+
+#: ../app/controllers/colocations_controller.rb:39
+#: ../app/controllers/locations_controller.rb:57
+#: ../app/controllers/orders_controller.rb:39
+#: ../app/controllers/tickets_controller.rb:52
+msgid "Constraint created successfully"
+msgstr "تم إنشاء القيد بنجاح"
+
+#: ../app/controllers/colocations_controller.rb:57
+#: ../app/controllers/colocations_controller.rb:66
+#: ../app/views/colocations/edit.html.haml:7
+msgid "Edit Colocation"
+msgstr "تحرير الموقع المشترك"
+
+#: ../app/controllers/colocations_controller.rb:77
+#: ../app/controllers/locations_controller.rb:95
+#: ../app/controllers/orders_controller.rb:77
+#: ../app/controllers/tickets_controller.rb:90
+msgid "Constraint updated successfully"
+msgstr "تم تحديث القيد بنجاح"
+
+#: ../app/controllers/colocations_controller.rb:99
+#: ../app/controllers/colocations_controller.rb:105
+msgid "Colocation deleted successfully"
+msgstr "تم إنشاء الموقع المشترك بنجاح"
+
+#: ../app/controllers/colocations_controller.rb:132
+#: ../app/views/colocations/index.html.haml:7
+msgid "Colocations"
+msgstr "المواقع المشترك"
+
+#: ../app/controllers/colocations_controller.rb:145
+msgid "The colocation constraint does not exist"
+msgstr "قيد موقع المشترك غير موجود"
+
+#: ../app/controllers/commands_controller.rb:22
+#: ../app/views/commands/index.html.haml:7
+#: ../app/views/shared/_mainnav.html.haml:70
+msgid "Command Log"
+msgstr "سجل الأمر"
+
+#: ../app/controllers/constraints_controller.rb:69
+#: ../app/controllers/resources_controller.rb:165
+msgid "Successfully renamed %{A} to %{B}"
+msgstr "تمت إعادة تسمية %{A} إلى %{B} بنجاح"
+
+#: ../app/controllers/constraints_controller.rb:78
+#: ../app/controllers/resources_controller.rb:174
+msgid "Failed to rename %{A} to %{B}: %{E}"
+msgstr "فشلت إعادة تسمية %{A} إلى %{B}: %{E}"
+
+#: ../app/controllers/constraints_controller.rb:101
+#: ../app/views/configs/edit.html.haml:44
+#: ../app/views/constraints/index.html.haml:7
+#: ../app/views/resources/show.html.haml:299
+#: ../app/views/tickets/show.html.haml:154
+msgid "Constraints"
+msgstr "القيود"
+
+#: ../app/controllers/crm_config_controller.rb:26
+msgid "Configuration updated successfully"
+msgstr "تم تحديث التكوين بنجاح"
+
+#: ../app/controllers/crm_config_controller.rb:46
+#: ../app/views/crm_config/edit.html.haml:5
+#: ../app/views/shared/_mainnav.html.haml:65
+msgid "Cluster Configuration"
+msgstr "تكوين المجموعة المتماثلة"
+
+#: ../app/controllers/dashboards_controller.rb:38
+msgid "Error removing %s: %s"
+msgstr "حدث خطأ في إزالة %s: %s"
+
+#: ../app/controllers/dashboards_controller.rb:46
+#: ../app/views/dashboards/show.html.haml:12
+#: ../app/views/shared/_mainnav.html.haml:24
+msgid "Dashboard"
+msgstr "لوحة المعلومات"
+
+#: ../app/controllers/graphs_controller.rb:49
+msgid "Cluster Graph"
+msgstr "الرسم البياني لمجموعة المتماثلة"
+
+#: ../app/controllers/groups_controller.rb:20
+#: ../app/controllers/groups_controller.rb:31
+#: ../app/views/groups/new.html.haml:7
+msgid "Create Group"
+msgstr "مجموعة الإنشاء"
+
+#: ../app/controllers/groups_controller.rb:40
+msgid "Group created successfully"
+msgstr "تم إنشاء المجموعة بنجاح"
+
+#: ../app/controllers/groups_controller.rb:58
+#: ../app/controllers/groups_controller.rb:67
+#: ../app/views/groups/edit.html.haml:7
+msgid "Edit Group"
+msgstr "تحرير مجموعة"
+
+#: ../app/controllers/groups_controller.rb:78
+msgid "Group updated successfully"
+msgstr "تم تحديث المجموعة بنجاح"
+
+#: ../app/controllers/groups_controller.rb:100
+#: ../app/controllers/groups_controller.rb:107
+msgid "Group deleted successfully"
+msgstr "تم حذف المجموعة بنجاح"
+
+#: ../app/controllers/groups_controller.rb:134
+#: ../app/views/groups/index.html.haml:7
+msgid "Groups"
+msgstr "المجموعات"
+
+#: ../app/controllers/groups_controller.rb:147
+msgid "The group does not exist"
+msgstr "المجموعة غير موجودة"
+
+#: ../app/controllers/locations_controller.rb:20
+#: ../app/controllers/locations_controller.rb:39
+msgid "Create Location Constraint"
+msgstr "إنشاء قيد الموقع"
+
+#: ../app/controllers/locations_controller.rb:75
+#: ../app/controllers/locations_controller.rb:84
+msgid "Edit Location Constraint"
+msgstr "تحرير قيد الموقع"
+
+#: ../app/controllers/locations_controller.rb:117
+#: ../app/controllers/locations_controller.rb:124
+msgid "Location deleted successfully"
+msgstr "تم حذف الموقع بنجاح"
+
+#: ../app/controllers/locations_controller.rb:151
+msgid "Location Constraints"
+msgstr "قيود الموقع"
+
+#: ../app/controllers/locations_controller.rb:164
+msgid "The location constraint does not exist"
+msgstr "قيد الموقع غير موجود"
+
+#: ../app/controllers/masters_controller.rb:20
+#: ../app/controllers/masters_controller.rb:31
+msgid "Create Multi-state resource"
+msgstr "إنشاء مورد متعدد الحالات"
+
+#: ../app/controllers/masters_controller.rb:40
+msgid "Multi-state resource created successfully"
+msgstr "تم إنشاء المورد متعدد الحالات بنجاح"
+
+#: ../app/controllers/masters_controller.rb:58
+#: ../app/controllers/masters_controller.rb:67
+msgid "Edit Multi-state resource"
+msgstr "تحرير مورد متعدد الحالات"
+
+#: ../app/controllers/masters_controller.rb:78
+msgid "Multi-state resource updated successfully"
+msgstr "تم تحديث المورد متعدد الحالات بنجاح"
+
+#: ../app/controllers/masters_controller.rb:100
+#: ../app/controllers/masters_controller.rb:107
+msgid "Multi-state resource deleted successfully"
+msgstr "تم حذف المورد متعدد الحالات بنجاح"
+
+#: ../app/controllers/masters_controller.rb:134
+msgid "Multi-state resource"
+msgstr "المورد متعدد الحالات"
+
+#: ../app/controllers/masters_controller.rb:147
+msgid "The multi-state resource does not exist"
+msgstr "المورد متعدد الحالات غير موجود"
+
+#: ../app/controllers/nodes_controller.rb:44
+msgid "Node updated successfully"
+msgstr "تم تحديث العقدة بنجاح"
+
+#: ../app/controllers/nodes_controller.rb:62
+msgid "Set the node state to online"
+msgstr "تعيين حالة العقدة على على الإنترنت"
+
+#: ../app/controllers/nodes_controller.rb:62
+msgid "Failed to set the node online: %{err}"
+msgstr "فشل تعيين العقدة عبر الإنترنت: %{err}"
+
+#: ../app/controllers/nodes_controller.rb:66
+msgid "Failed to set the node standby: %{err}"
+msgstr "فشل تعيين حالة العقدة على وضع الاستعداد: %{err}"
+
+#: ../app/controllers/nodes_controller.rb:66
+msgid "Set the node state to standby"
+msgstr "تعيين حالة العقدة على وضع الاستعداد"
+
+#: ../app/controllers/nodes_controller.rb:70
+msgid "Failed to set the node state to maintenance: %{err}"
+msgstr "فشل تعيين حالة العقدة على الصيانة: %{err}"
+
+#: ../app/controllers/nodes_controller.rb:70
+msgid "Set the node state to maintenance"
+msgstr "تعيين حالة العقدة على الصيانة"
+
+#: ../app/controllers/nodes_controller.rb:74
+msgid "Failed to set the node state to ready: %{err}"
+msgstr "فشل تعيين حالة العقدة على جاهز: %{err}"
+
+#: ../app/controllers/nodes_controller.rb:74
+msgid "Set the node state to ready"
+msgstr "تعيين حالة العقدة على جاهز"
+
+#: ../app/controllers/nodes_controller.rb:78
+msgid "Successfully fenced the node"
+msgstr "تم وضع فاصل للعقدة بنجاح"
+
+#: ../app/controllers/nodes_controller.rb:78
+msgid "Failed to fence the node: %{err}"
+msgstr "فشل وضع فاصل للعقدة: %{err}"
+
+#: ../app/controllers/nodes_controller.rb:82
+msgid "Failed to clear the node state: %{err}"
+msgstr "فشل مسح حالة العقدة: %{err}"
+
+#: ../app/controllers/nodes_controller.rb:82
+msgid "Cleared the node state"
+msgstr "حالة العقدة ممسوحة"
+
+#: ../app/controllers/nodes_controller.rb:103
+#: ../app/views/cib/show.html.haml:58 ../app/views/configs/edit.html.haml:52
+#: ../app/views/nodes/index.html.haml:7
+msgid "Nodes"
+msgstr "العقد"
+
+#: ../app/controllers/nodes_controller.rb:116
+msgid "The node does not exist"
+msgstr "العقدة غير موجود"
+
+#: ../app/controllers/orders_controller.rb:20
+#: ../app/controllers/orders_controller.rb:30
+#: ../app/views/orders/new.html.haml:7
+msgid "Create Order"
+msgstr "إنشاء ترتيب"
+
+#: ../app/controllers/orders_controller.rb:57
+#: ../app/controllers/orders_controller.rb:66
+#: ../app/views/orders/edit.html.haml:7
+msgid "Edit Order"
+msgstr "تحرير ترتيب"
+
+#: ../app/controllers/orders_controller.rb:99
+#: ../app/controllers/orders_controller.rb:106
+msgid "Order deleted successfully"
+msgstr "تم إنشاء الترتيب بنجاح"
+
+#: ../app/controllers/orders_controller.rb:133
+#: ../app/views/orders/index.html.haml:7
+msgid "Orders"
+msgstr "عمليات الترتيب"
+
+#: ../app/controllers/orders_controller.rb:146
+msgid "The order constraint does not exist"
+msgstr "قيد الترتيب غير موجود"
+
+#: ../app/controllers/pages_controller.rb:11
+msgid "Welcome"
+msgstr "مرحبًا"
+
+#: ../app/controllers/pages_controller.rb:21
+#: ../app/views/shared/_usernav.html.haml:27
+msgid "Help"
+msgstr "تعليمات"
+
+#: ../app/controllers/primitives_controller.rb:20
+#: ../app/controllers/primitives_controller.rb:35
+#: ../app/controllers/primitives_controller.rb:84
+msgid "Create Primitive"
+msgstr "إنشاء مجموعة أساسية"
+
+#: ../app/controllers/primitives_controller.rb:52
+msgid "Primitive created successfully"
+msgstr "تم إنشاء المجموعة الأساسية بنجاح"
+
+#: ../app/controllers/primitives_controller.rb:76
+#: ../app/controllers/primitives_controller.rb:102
+msgid "Edit Primitive"
+msgstr "تحرير المجموعة الأساسية"
+
+#: ../app/controllers/primitives_controller.rb:113
+msgid "Primitive updated successfully"
+msgstr "تم تحديث المجموعة الأساسية بنجاح"
+
+#: ../app/controllers/primitives_controller.rb:135
+#: ../app/controllers/primitives_controller.rb:142
+msgid "Primitive deleted successfully"
+msgstr "تم حذف المجموعة الأساسية بنجاح"
+
+#: ../app/controllers/primitives_controller.rb:169
+msgid "Primitives"
+msgstr "المجموعات الأساسية"
+
+#: ../app/controllers/primitives_controller.rb:182
+msgid "The primitive does not exist"
+msgstr "المجموعة الأساسية غير موجودة"
+
+#: ../app/controllers/profiles_controller.rb:26
+msgid "Preferences updated successfully"
+msgstr "تم تحديث التفضيلات بنجاح"
+
+#: ../app/controllers/profiles_controller.rb:40
+#: ../app/views/profiles/edit.html.haml:3
+msgid "Preferences"
+msgstr "تفضيلات"
+
+#: ../app/controllers/reports_controller.rb:51
+msgid "Please wait while report is generated..."
+msgstr "الرجاء الانتظار حتى يتم إنشاء التقرير..."
+
+#: ../app/controllers/reports_controller.rb:55
+msgid "Failed to generate"
+msgstr "فشل الإنشاء"
+
+#: ../app/controllers/reports_controller.rb:73
+msgid "Upload completed."
+msgstr "تم اكتمال الإيداع."
+
+#: ../app/controllers/reports_controller.rb:116
+msgid "Could not cancel report collection"
+msgstr "تعذر إلغاء مجموعة التقارير"
+
+#: ../app/controllers/reports_controller.rb:226
+msgid "Cannot display diff, too few transitions"
+msgstr "يتعذر عرض الفرق، يوجد القليل من عمليات الانتقال"
+
+#: ../app/controllers/reports_controller.rb:246
+#: ../app/controllers/reports_controller.rb:252
+msgid "Report deleted successfully"
+msgstr "تم حذف التقرير بنجاح"
+
+#: ../app/controllers/reports_controller.rb:257
+#: ../app/controllers/reports_controller.rb:261
+msgid "Error deleting %s"
+msgstr "حدث خطأ أثناء حذف %s"
+
+#: ../app/controllers/reports_controller.rb:270
+#: ../app/views/reports/display.html.haml:7
+#: ../app/views/reports/index.html.haml:7
+#: ../app/views/reports/show.html.haml:7
+msgid "History Explorer"
+msgstr "History Explorer"
+
+#: ../app/controllers/reports_controller.rb:276
+msgid "The report does not exist"
+msgstr "التقرير غير موجود"
+
+#: ../app/controllers/reports_controller.rb:388
 msgid "must be a valid datetime"
 msgstr "يجب أن يكون وقتًا وتاريخًا صالحين"
 
-msgid "must have correct MIME type (was %s)"
-msgstr "يجب أن يحتوي على نوع MIME صحيح (كان %s)"
+#: ../app/controllers/resources_controller.rb:90
+msgid "Successfully started the resource"
+msgstr "تم بدء المورد بنجاح"
 
-msgid "must have correct file extension"
-msgstr "يجب أن يحتوي على ملحق اسم ملف صحيح"
+#: ../app/controllers/resources_controller.rb:91
+msgid "Failed to start the resource: %{err}"
+msgstr "فشل بدء المورد: %{err}"
 
-msgid "node1.west.example.com"
-msgstr "node1.west.example.com"
+#: ../app/controllers/resources_controller.rb:97
+msgid "Successfully stopped the resource"
+msgstr "تم إيقاف المورد بنجاح"
 
-msgid "not running"
-msgstr "ليس قيد التشغيل"
+#: ../app/controllers/resources_controller.rb:98
+msgid "Failed to stop the resource: %{err}"
+msgstr "فشل إيقاف المورد: %{err}"
 
-msgid "other"
-msgstr "أخرى"
+#: ../app/controllers/resources_controller.rb:104
+msgid "Successfully promoted the resource"
+msgstr "تمت ترقية المورد بنجاح"
 
-msgid "running (master)"
-msgstr "تشغيل (رئيسي)"
+#: ../app/controllers/resources_controller.rb:105
+msgid "Failed to promote the resource: %{err}"
+msgstr "فشلت ترقية المورد: %{err}"
 
+#: ../app/controllers/resources_controller.rb:111
+msgid "Successfully demoted the resource"
+msgstr "تم تخفيض رتبة المورد بنجاح"
+
+#: ../app/controllers/resources_controller.rb:112
+msgid "Failed to demote the resource: %{err}"
+msgstr "فشل تخفيض رتبة المورد: %{err}"
+
+#: ../app/controllers/resources_controller.rb:118
+msgid "Successfully set the resource in maintenance mode"
+msgstr ""
+
+#: ../app/controllers/resources_controller.rb:119
+msgid "Failed to set the resource in maintenance mode: %{err}"
+msgstr ""
+
+#: ../app/controllers/resources_controller.rb:125
+msgid "Successfully disabled maintenance mode for resource"
+msgstr ""
+
+#: ../app/controllers/resources_controller.rb:126
+msgid "Failed to disable maintenance mode for resource: %{err}"
+msgstr ""
+
+#: ../app/controllers/resources_controller.rb:132
+msgid "Successfully unmigrated the resource"
+msgstr "تم إلغاء ترحيل المورد بنجاح"
+
+#: ../app/controllers/resources_controller.rb:133
+msgid "Failed to unmigrate the resource: %{err}"
+msgstr "فشل إلغاء ترحيل المورد: %{err}"
+
+#: ../app/controllers/resources_controller.rb:139
+msgid "Successfully migrated the resource"
+msgstr "تم ترحيل المورد بنجاح"
+
+#: ../app/controllers/resources_controller.rb:140
+msgid "Failed to migrate the resource: %{err}"
+msgstr "تعذر ترحيل المورد: %{err}"
+
+#: ../app/controllers/resources_controller.rb:146
+msgid "Successfully cleaned the resource"
+msgstr "تم تنظيف المورد بنجاح"
+
+#: ../app/controllers/resources_controller.rb:147
+msgid "Failed to clean up the resource: %{err}"
+msgstr "فشل تنظيف المورد: %{err}"
+
+#: ../app/controllers/roles_controller.rb:22
+#: ../app/controllers/roles_controller.rb:31
+#: ../app/views/roles/new.html.haml:7
+msgid "Create Role"
+msgstr "إنشاء دور"
+
+#: ../app/controllers/roles_controller.rb:39
+msgid "Role created successfully"
+msgstr "تم إنشاء الدور بنجاح"
+
+#: ../app/controllers/roles_controller.rb:63
+#: ../app/views/roles/edit.html.haml:7
+msgid "Edit Role"
+msgstr "تحرير قاعدة"
+
+#: ../app/controllers/roles_controller.rb:74
+msgid "Role updated successfully"
+msgstr "تم تحديث الدور بنجاح"
+
+#: ../app/controllers/roles_controller.rb:96
+#: ../app/controllers/roles_controller.rb:103
+msgid "Role deleted successfully"
+msgstr "تم حذف الدور بنجاح"
+
+#: ../app/controllers/roles_controller.rb:131
+msgid "ACL is not supported by the cluster"
+msgstr "لا تدعم المجموعة المتماثلة ACL"
+
+#: ../app/controllers/roles_controller.rb:136
+#: ../app/views/roles/index.html.haml:7
+#: ../app/views/shared/_mainnav.html.haml:86
+msgid "Roles"
+msgstr "الدور"
+
+#: ../app/controllers/roles_controller.rb:149
+msgid "The role does not exist"
+msgstr "الدور غير موجود"
+
+#: ../app/controllers/roles_controller.rb:158
+#: ../app/controllers/users_controller.rb:160
+msgid "To enable ACLs, set \"enable-acl\" in the Cluster Configuration ('Manage > Configuration')"
+msgstr "لتمكين قوائم ACL، قم بتعيين \"enable-acl\" في تكوين المجموعة المتماثلة ('إدارة > التكوين')"
+
+#: ../app/controllers/sessions_controller.rb:50 ../app/models/cib.rb:554
+#: ../lib/invoker.rb:88 ../lib/invoker.rb:141
+msgid "Permission denied for user %{user}"
+msgstr "تم رفض الإذن للمستخدم %{user}"
+
+#: ../app/controllers/sessions_controller.rb:52
+msgid "You have been logged out"
+msgstr "تم تسجيل خروجك."
+
+#: ../app/controllers/sessions_controller.rb:80
+msgid "Log In"
+msgstr "دخول"
+
+#: ../app/controllers/simulator_controller.rb:163
+#: ../app/views/shared/_simulator.html.haml:77
+msgid "Simulator"
+msgstr "محاكي"
+
+#: ../app/controllers/tags_controller.rb:20
+#: ../app/controllers/tags_controller.rb:30 ../app/views/tags/new.html.haml:7
+msgid "Create Tag"
+msgstr "إنشاء علامة"
+
+#: ../app/controllers/tags_controller.rb:39
+msgid "Tag created successfully"
+msgstr "تم إنشاء العلامة بنجاح"
+
+#: ../app/controllers/tags_controller.rb:57
+#: ../app/controllers/tags_controller.rb:66 ../app/views/tags/edit.html.haml:7
+msgid "Edit Tag"
+msgstr "تحرير علامة"
+
+#: ../app/controllers/tags_controller.rb:77
+msgid "Tag updated successfully"
+msgstr "تم تحديث العلامة بنجاح"
+
+#: ../app/controllers/tags_controller.rb:99
+#: ../app/controllers/tags_controller.rb:106
+msgid "Tag deleted successfully"
+msgstr "تم حذف العلامة بنجاح"
+
+#: ../app/controllers/tags_controller.rb:133
+#: ../app/views/configs/edit.html.haml:60 ../app/views/tags/index.html.haml:7
+msgid "Tags"
+msgstr "العلامات"
+
+#: ../app/controllers/tags_controller.rb:146
+msgid "The tag does not exist"
+msgstr "العلامة غير موجودة"
+
+#: ../app/controllers/templates_controller.rb:23
+#: ../app/controllers/templates_controller.rb:31
+#: ../app/controllers/templates_controller.rb:64
+msgid "Create Template"
+msgstr "إنشاء قالب"
+
+#: ../app/controllers/templates_controller.rb:40
+msgid "Template created successfully"
+msgstr "تم إنشاء القالب بنجاح"
+
+#: ../app/controllers/templates_controller.rb:58
+#: ../app/controllers/templates_controller.rb:81
+msgid "Edit Template"
+msgstr "تحرير القالب"
+
+#: ../app/controllers/templates_controller.rb:92
+msgid "Template updated successfully"
+msgstr "تم تحديث القالب بنجاح"
+
+#: ../app/controllers/templates_controller.rb:114
+#: ../app/controllers/templates_controller.rb:121
+msgid "Template deleted successfully"
+msgstr "تم حذف القالب بنجاح"
+
+#: ../app/controllers/templates_controller.rb:149
+msgid "You have no template feature support"
+msgstr "لا يوجد لديك دعم ميزة القالب"
+
+#: ../app/controllers/templates_controller.rb:154
+msgid "Templates"
+msgstr "القوالب"
+
+#: ../app/controllers/templates_controller.rb:167
+msgid "The template does not exist"
+msgstr "القالب غير موجود"
+
+#: ../app/controllers/tickets_controller.rb:33
+#: ../app/controllers/tickets_controller.rb:43
+#: ../app/views/tickets/new.html.haml:7
+msgid "Create Ticket"
+msgstr "إنشاء بطاقة"
+
+#: ../app/controllers/tickets_controller.rb:70
+#: ../app/controllers/tickets_controller.rb:79
+#: ../app/views/tickets/edit.html.haml:7
+msgid "Edit Ticket"
+msgstr "تحرير بطاقة"
+
+#: ../app/controllers/tickets_controller.rb:112
+#: ../app/controllers/tickets_controller.rb:119
+msgid "Ticket deleted successfully"
+msgstr "تم حذف البطاقة بنجاح"
+
+#: ../app/controllers/tickets_controller.rb:151
+#: ../app/controllers/tickets_controller.rb:155
+msgid "Successfully granted the ticket"
+msgstr "تم منح البطاقة بنجاح"
+
+#: ../app/controllers/tickets_controller.rb:161
+#: ../app/controllers/tickets_controller.rb:165
+msgid "Error granting the ticket"
+msgstr "حدث خطأ أثناء منح البطاقة"
+
+#: ../app/controllers/tickets_controller.rb:175
+#: ../app/controllers/tickets_controller.rb:181
+msgid "Successfully revoked the ticket"
+msgstr "تم إبطال البطاقة بنجاح"
+
+#: ../app/controllers/tickets_controller.rb:188
+#: ../app/controllers/tickets_controller.rb:192
+msgid "Error revoking the ticket"
+msgstr "حدث خطأ أثناء إبطال البطاقة"
+
+#: ../app/controllers/tickets_controller.rb:201
+#: ../app/controllers/tickets_controller.rb:208 ../app/models/ticket.rb:85
+#: ../app/models/ticket.rb:92
+msgid "Simulator active: Use the ticket controls in the simulator"
+msgstr "المحاكي نشط: استخدام وحدات التحكم في البطاقة في المحاكي"
+
+#: ../app/controllers/tickets_controller.rb:215
+#: ../app/views/cib/show.html.haml:68 ../app/views/tickets/index.html.haml:7
+msgid "Tickets"
+msgstr "البطاقات"
+
+#: ../app/controllers/tickets_controller.rb:228
+msgid "The ticket constraint does not exist"
+msgstr "قيد البطاقة غير موجود"
+
+#: ../app/controllers/users_controller.rb:22
+#: ../app/controllers/users_controller.rb:31
+#: ../app/views/users/new.html.haml:7
+msgid "Create ACL Target"
+msgstr "إنشاء هدف ACL"
+
+#: ../app/controllers/users_controller.rb:39
+msgid "ACL target created successfully"
+msgstr "تم إنشاء هدف ACL"
+
+#: ../app/controllers/users_controller.rb:57
+#: ../app/controllers/users_controller.rb:65
+#: ../app/views/users/edit.html.haml:7
+msgid "Edit ACL Target"
+msgstr "تحرير هدف ACL"
+
+#: ../app/controllers/users_controller.rb:76
+msgid "ACL target updated successfully"
+msgstr "تم تحديث هدف ACL بنجاح"
+
+#: ../app/controllers/users_controller.rb:98
+#: ../app/controllers/users_controller.rb:105
+msgid "ACL target deleted successfully"
+msgstr "تم حذف هدف ACL بنجاح"
+
+#: ../app/controllers/users_controller.rb:133
+msgid "ACL is not supported by this cluster."
+msgstr "لا تدعم المجموعة المتماثلة ACL"
+
+#: ../app/controllers/users_controller.rb:138
+msgid "ACL Targets"
+msgstr "أهداف ACL"
+
+#: ../app/controllers/users_controller.rb:151
+msgid "The ACL target does not exist"
+msgstr "هدف ACL غير موجود"
+
+#: ../app/controllers/wizards_controller.rb:47
+msgid "Session has expired"
+msgstr "انتهت صلاحية الجلسة"
+
+#: ../app/controllers/wizards_controller.rb:54
+msgid "Wizard cannot be applied when the simulator is active"
+msgstr "لا يمكن تطبيق المعالج والمحاكي نشط"
+
+#: ../app/controllers/wizards_controller.rb:109
+msgid "Use a wizard"
+msgstr "استخدام معالج"
+
+#: ../app/controllers/wizards_controller.rb:127
+#: ../app/controllers/wizards_controller.rb:132
+msgid "Permission denied - you do not have write access to the CIB."
+msgstr "تم رفض الإذن - ليس لديك حق الوصول للكتابة إلى CIB."
+
+#: ../app/controllers/wizards_controller.rb:151
+#: ../app/controllers/wizards_controller.rb:156
+msgid "Cluster seems to be offline"
+msgstr "المجموعة المتماثلة تبدو غير متصلة"
+
+#: ../app/helpers/agents_helper.rb:59
+msgid "Required"
+msgstr "مطلوب"
+
+#: ../app/helpers/agents_helper.rb:60
+msgid "Unique"
+msgstr "فريد"
+
+#: ../app/helpers/application_helper.rb:37
+msgid "Profile"
+msgstr "ملف التعريف"
+
+#: ../app/helpers/application_helper.rb:223
+#: ../app/helpers/application_helper.rb:229
+msgid "File a Bug Report"
+msgstr ""
+
+#: ../app/helpers/application_helper.rb:223
+#: ../app/helpers/application_helper.rb:229
+msgid "Report a bug or request a feature!"
+msgstr ""
+
+#: ../app/helpers/application_helper.rb:224
+msgid "Read the release notes for the SUSE High Availability Extension."
+msgstr ""
+
+#: ../app/helpers/application_helper.rb:224
+msgid "Release Notes"
+msgstr "ملاحظات الإصدار"
+
+#: ../app/helpers/application_helper.rb:225
+msgid "Read the most up-to-date documentation at the suse.com website."
+msgstr ""
+
+#: ../app/helpers/application_helper.rb:225
+#: ../app/helpers/application_helper.rb:231
+msgid "Online Documentation"
+msgstr ""
+
+#: ../app/helpers/application_helper.rb:230
+msgid "Visit the Hawk website for information about the latest release."
+msgstr ""
+
+#: ../app/helpers/application_helper.rb:230
+msgid "News"
+msgstr "أخبار"
+
+#: ../app/helpers/application_helper.rb:231
+msgid "Getting Started using Hawk"
+msgstr ""
+
+#: ../app/helpers/application_helper.rb:239
+msgid "Current Configuration Version"
+msgstr "إصدار التكوين الحالي"
+
+#: ../app/helpers/application_helper.rb:239
+msgid "Epoch"
+msgstr "Epoch"
+
+#: ../app/helpers/application_helper.rb:240
+msgid "Host"
+msgstr "المضيف"
+
+#: ../app/helpers/application_helper.rb:241
+msgid "DC"
+msgstr "DC"
+
+#: ../app/helpers/application_helper.rb:241
+msgid "Designated Coordinator"
+msgstr "المنسق المستهدف"
+
+#: ../app/helpers/application_helper.rb:242
+msgid "CIB Schema Version"
+msgstr "إصدار مخطط CIB"
+
+#: ../app/helpers/application_helper.rb:242
+msgid "Schema"
+msgstr "المخطط"
+
+#: ../app/helpers/application_helper.rb:243
+msgid "Last Written"
+msgstr "آخر ما تمت كتابته"
+
+#: ../app/helpers/application_helper.rb:244
+msgid "Update Origin"
+msgstr "أصل التحديث"
+
+#: ../app/helpers/application_helper.rb:245
+msgid "Update User"
+msgstr "مستخدم التحديث"
+
+#: ../app/helpers/application_helper.rb:246
+msgid "Have Quorum"
+msgstr "لديه نصاب"
+
+#: ../app/helpers/application_helper.rb:247
+#: ../app/views/reports/display.html.haml:174
+msgid "Version"
+msgstr "الإصدار"
+
+#: ../app/helpers/application_helper.rb:247
+msgid "Pacemaker Version"
+msgstr "إصدار Pacemaker"
+
+#: ../app/helpers/application_helper.rb:248
+msgid "Cluster Communication Stack"
+msgstr "مكدس اتصالات المجموعة المتماثلة"
+
+#: ../app/helpers/application_helper.rb:248
+msgid "Stack"
+msgstr "تكدس"
+
+#: ../app/helpers/application_helper.rb:260
+#: ../app/helpers/application_helper.rb:265
+#: ../app/views/configs/edit.html.haml:17
+#: ../app/views/configs/show.html.haml:21 ../app/views/graphs/show.html.haml:5
+#: ../app/views/reports/display.html.haml:222
+msgid "Graph"
+msgstr "رسم بياني"
+
+#: ../app/helpers/colocation_helper.rb:8 ../app/helpers/ticket_helper.rb:20
+msgid "Master"
+msgstr "رئيسية"
+
+#: ../app/helpers/colocation_helper.rb:9 ../app/helpers/ticket_helper.rb:21
+msgid "Slave"
+msgstr "تابع"
+
+#: ../app/helpers/crm_config_helper.rb:7 ../app/helpers/form_helper.rb:11
+#: ../app/helpers/profile_helper.rb:18 ../app/helpers/role_helper.rb:14
+#: ../app/helpers/user_helper.rb:14
+msgid "Revert"
+msgstr "إرجاع"
+
+#: ../app/helpers/rule_helper.rb:8
+msgid "Read"
+msgstr "قراءة"
+
+#: ../app/helpers/rule_helper.rb:9
+msgid "Write"
+msgstr "كتابة"
+
+#: ../app/helpers/rule_helper.rb:10
+msgid "Deny"
+msgstr "رفض"
+
+#: ../app/helpers/simulator_helper.rb:19 ../lib/cibtools.rb:105
 msgid "success"
 msgstr "نجاح"
 
+#: ../app/helpers/simulator_helper.rb:20 ../lib/cibtools.rb:107
+msgid "generic error"
+msgstr "خطأ عام"
+
+#: ../app/helpers/simulator_helper.rb:21 ../lib/cibtools.rb:109
+msgid "incorrect arguments"
+msgstr "الوسيطات غير صحيحة"
+
+#: ../app/helpers/simulator_helper.rb:22 ../lib/cibtools.rb:111
 msgid "unimplemented action"
 msgstr "إجراء غير منفذ"
+
+#: ../app/helpers/simulator_helper.rb:23 ../lib/cibtools.rb:113
+msgid "insufficient permissions"
+msgstr "الأذونات غير كافية"
+
+#: ../app/helpers/simulator_helper.rb:24 ../lib/cibtools.rb:115
+msgid "installation error"
+msgstr "خطأ في التثبيت"
+
+#: ../app/helpers/simulator_helper.rb:25 ../lib/cibtools.rb:117
+msgid "configuration error"
+msgstr "خطأ في التكوين"
+
+#: ../app/helpers/simulator_helper.rb:26 ../lib/cibtools.rb:119
+msgid "not running"
+msgstr "ليس قيد التشغيل"
+
+#: ../app/helpers/simulator_helper.rb:27 ../lib/cibtools.rb:121
+msgid "running (master)"
+msgstr "تشغيل (رئيسي)"
+
+#: ../app/helpers/simulator_helper.rb:28 ../lib/cibtools.rb:123
+msgid "failed (master)"
+msgstr "فشل (رئيسي)"
+
+#: ../app/helpers/ticket_helper.rb:11
+msgid "Freeze"
+msgstr "تجميد"
+
+#: ../app/helpers/wizard_helper.rb:92
+msgid "Legacy Wizards"
+msgstr "المعالجات القديمة"
+
+#: ../app/models/cib.rb:523
+msgid "CIB file \"%{path}\" not found"
+msgstr "ملف CIB \"%{path}\" غير موجود"
+
+#: ../app/models/cib.rb:527
+msgid "Unable to parse CIB file \"%{path}\""
+msgstr "تعذر تحليل ملف CIB \"%{path}\""
+
+#: ../app/models/cib.rb:533
+msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
+msgstr "يبدو أنه لم يتم تثبيت Pacemaker، (لم يتم العثور على %{cmd})"
+
+#: ../app/models/cib.rb:539
+msgid "Unable to execute %{cmd}"
+msgstr "تعذر تنفيذ %{cmd}"
+
+#: ../app/models/cib.rb:548
+msgid "Error invoking %{cmd}"
+msgstr "حدث خطأ أثناء استدعاء %{cmd}"
+
+#: ../app/models/cib.rb:558
+msgid "Error invoking %{cmd}: %{msg}"
+msgstr "حدث خطأ أثناء استدعاء %{cmd}: %{msg}"
+
+#: ../app/models/cib.rb:568 ../app/models/cib.rb:569 ../app/models/cib.rb:962
+#: ../app/models/cib.rb:1092 ../app/models/cib.rb:1093
+msgid "Unknown"
+msgstr "غير معروف"
+
+#: ../app/models/cib.rb:860
+msgid "%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_reason}"
+msgstr "%{fail_start}: العملية %{op} فشلت للمورد %{resource} في العقدة %{node}: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_reason}"
+
+#: ../app/models/cib.rb:953
+msgid "Partial upgrade detected! Nodes report different CRM versions: %s"
+msgstr ""
+
+#: ../app/models/cib.rb:1064
+msgid "Partition without quorum! Fencing and resource management is disabled."
+msgstr ""
+
+#: ../app/models/cib.rb:1068
+msgid "Node \"%{node}\" is UNCLEAN and needs to be fenced."
+msgstr "العقدة \"%{node}\" غير صحيحة وتحتاج إلى وضع فاصل."
+
+#: ../app/models/cib.rb:1073
+msgid "STONITH is disabled. For normal cluster operation, STONITH is required."
+msgstr "تم تعطيل STONITH. STONITH  مطلوب لعملية مجموعة متماثلة عادية."
+
+#: ../app/models/clone.rb:10
+msgid "Clone ID is required"
+msgstr "معرف الاستنساخ مطلوب"
+
+#: ../app/models/clone.rb:11
+msgid "Invalid Clone ID"
+msgstr "معرف استنساخ غير صالح"
+
+#: ../app/models/clone.rb:14
+msgid "No Clone child specified"
+msgstr "لا يوجد استنساخ فرعي محدد"
+
+#: ../app/models/clone.rb:67 ../app/models/crm_config.rb:14
+#: ../app/models/group.rb:58 ../app/models/master.rb:62
+#: ../app/models/template.rb:230
+msgid "Is the cluster allowed to start and stop the resource?"
+msgstr "هل مسموح للمجموعة المتماثلة بدء وإيقاف المورد؟"
+
+#: ../app/models/clone.rb:72 ../app/models/crm_config.rb:19
+#: ../app/models/group.rb:63 ../app/models/master.rb:67
+#: ../app/models/template.rb:235
+msgid "Resources in maintenance mode are not monitored by the cluster."
+msgstr ""
+
+#: ../app/models/clone.rb:77 ../app/models/crm_config.rb:33
+#: ../app/models/group.rb:68 ../app/models/master.rb:72
+#: ../app/models/template.rb:249
+msgid "If not all resources can be active, the cluster will stop lower priority resources in order to keep higher priority ones active."
+msgstr "في حالة عدم إمكانية تنشيط الموارد، ستقوم المجموعة المتماثلة بإيقاف الموارد الأقل أولوية لكي تحتفظ بالموارد الأعلى أولوية."
+
+#: ../app/models/clone.rb:83 ../app/models/crm_config.rb:55
+#: ../app/models/group.rb:78 ../app/models/master.rb:82
+#: ../app/models/template.rb:271
+msgid "What state should the cluster attempt to keep this resource in?"
+msgstr "ما هي الحالة التي يجب أن تحاول المجموعة المتماثلة الاحتفاظ بالمورد فيها؟"
+
+#: ../app/models/clone.rb:88 ../app/models/master.rb:87
+msgid "How many copies of the resource to start. Defaults to the number of nodes in the cluster."
+msgstr "كم عدد نسخ الموارد المطلوب أن تبدأ. يتم التعيين على عدد العقد في المجموعة المتماثلة بشكل افتراضي."
+
+#: ../app/models/clone.rb:93 ../app/models/master.rb:92
+msgid "How many copies of the resource can be started on a single node. Defaults to 1."
+msgstr "كم عدد نسخ الموارد التي يمكن أن تبدأ في العقدة المنفردة. يتم التعيين على 1 بشكل افتراضي."
+
+#: ../app/models/clone.rb:98 ../app/models/master.rb:97
+msgid "When stopping or starting a copy of the clone, tell all the other copies beforehand and when the action was successful."
+msgstr "عند بدء أو إيقاف نسخة استنساخ، يتم إعلام النسخ الأخرى مسبقًا وعند نجاح الإجراء."
+
+#: ../app/models/clone.rb:103 ../app/models/master.rb:102
+msgid "Does each copy of the clone perform a different function?"
+msgstr "هل تقوم كل نسخة استنساخ بوظيفة مختلفة؟"
+
+#: ../app/models/clone.rb:108 ../app/models/master.rb:107
+msgid "Should the copies be started in series (instead of in parallel)?"
+msgstr "هل يجب بدء النسخ في سلسلة (بدلاً من البدء على التوازي)؟"
+
+#: ../app/models/clone.rb:113 ../app/models/master.rb:112
+msgid "Changes the behavior of ordering constraints (between clones/masters) so that instances can start/stop as soon as their peer instance has (rather than waiting for every instance of the other clone has)."
+msgstr "تغيير أداء قيود الترتيب (بين عمليات الاستنساخ والعمليات الرئيسية) وبذلك يمكن للمثيلات أن البدء/الإيقاف بمجرد بدء/إيقاف المثيل النظير (بدلاً من انتظار كل مثيل للاستنساخ)."
+
+#: ../app/models/clone.rb:124 ../app/views/clones/_form.html.haml:12
+#: ../app/views/clones/_form.html.haml:17
+#: ../app/views/masters/_form.html.haml:12
+#: ../app/views/masters/_form.html.haml:17
+msgid "Child Resource"
+msgstr "مورد فرعي"
+
+#: ../app/models/clone.rb:125
+msgid "Child resource to use as clone."
+msgstr "مورد فرعي لاستخدامه كاستنساخ."
+
+#: ../app/models/clone.rb:136 ../app/models/group.rb:89
+#: ../app/models/master.rb:133 ../app/models/node.rb:114
+#: ../app/models/primitive.rb:75 ../app/models/record.rb:285
+#: ../app/models/tag.rb:82 ../app/models/template.rb:439
+msgid "The ID \"%{id}\" does not exist"
+msgstr "المعرف  \"%{id}\"غير موجود"
+
+#: ../app/models/colocation.rb:10 ../app/models/order.rb:10
+msgid "Score is required"
+msgstr "النقاط مطلوبة"
+
+#: ../app/models/colocation.rb:24 ../app/models/order.rb:25
+msgid "Invalid score value"
+msgstr "قيمة النقاط غير صالحة"
+
+#: ../app/models/colocation.rb:30
+msgid "Invalid node attribute"
+msgstr "سمة عقدة غير صالحة"
+
+#: ../app/models/colocation.rb:35 ../app/models/order.rb:30
+msgid "Constraint must consist of at least two separate resources"
+msgstr "يجب أن يتكون القيد من موردين منفصلين على الأقل"
+
+#: ../app/models/colocation.rb:181
+msgid "The score determines the location relationship between the resources."
+msgstr "تحدد النتيجة علاقة الموقع بين الموارد."
+
+#: ../app/models/colocation.rb:186 ../app/views/colocations/_form.html.haml:79
+msgid "Node Attribute"
+msgstr "سمة العقدة"
+
+#: ../app/models/colocation.rb:187
+msgid "Colocate resources by the given node attribute instead of by node name (the default)."
+msgstr "حدد الموقع المشترك للموارد حسب سمة العقدة المحددة بدلاً من اسم العقدة (الافتراضي)."
+
+#: ../app/models/constraint.rb:37
+msgid "Not a constraint"
+msgstr "ليس قيدًا"
+
+#: ../app/models/constraint.rb:49
+msgid "Unique identifier for the constraint. May not contain spaces."
+msgstr "معرف فريد للقيد. يمكن ألا يحتوي على مسافات."
+
+#: ../app/models/crm_config.rb:9 ../app/models/template.rb:225
+msgid "Set to true if the resource agent supports the migrate action"
+msgstr "تعيين على صحيح في حالة دعم المورد لإجراء الترحيل"
+
+#: ../app/models/crm_config.rb:28 ../app/models/template.rb:244
+msgid "How many failures may occur for this resource on a node, before this node is marked ineligible to host this resource. A value of INFINITY indicates that this feature is disabled."
+msgstr "كم عدد عمليات الفشل التي قد تحدث في عقدة، قبل وضع علامة غير مؤهل لاستضافة هذا المورد على العقدة. تشير القيمة INFINITY إلى أن هذه الميزة معطلة."
+
+#: ../app/models/crm_config.rb:39 ../app/models/template.rb:255
+msgid "What should the cluster do if it ever finds the resource active on more than one node?"
+msgstr "ماذا يجب أن تفعل المجموعة المتماثلة في حالة العثور على مورد نشط في أكثر من عقدة واحدة؟"
+
+#: ../app/models/crm_config.rb:44 ../app/models/template.rb:260
+msgid "How many seconds to wait before acting as if the failure had not occurred, and potentially allowing the resource back to the node on which it failed. A value of 0 indicates that this feature is disabled."
+msgstr "كم عدد ثواني الانتظار قبل التعامل كما لو كان حدث خطأ، وربما السماح للمورد بالعودة إلى العقدة التي فشل فيها. تشير القيمة 0 إلى أن هذه القيمة معطلة."
+
+#: ../app/models/crm_config.rb:49 ../app/models/template.rb:265
+msgid "How much does the resource prefer to stay where it is?"
+msgstr "ما مدى تفضيل المورد للبقاء في مكانه؟"
+
+#: ../app/models/crm_config.rb:70 ../app/models/crm_config.rb:107
+#: ../app/models/template.rb:286
+msgid "Conditions under which the resource can be started."
+msgstr "الشروط التي يمكن بدء المورد طبقًا لها."
+
+#: ../app/models/crm_config.rb:75 ../app/models/template.rb:291
+msgid "The name of the remote-node this resource defines. This both enables the resource as a remote-node and defines the unique name used to identify the remote-node. If no other parameters are set, this value will also be assumed as the hostname to connect to at the port specified by remote-port. WARNING: This value cannot overlap with any resource or node IDs. If not specified, this feature is disabled."
+msgstr "اسم العقدة عن بُعد التي يحددها المورد. ويقوم ذلك بكل من تمكين المورد كعقدة عن بُعد وتحديد الاسم الفريد المستخدم لتحديد العقدة عن بُعد. في حالة عدم تعيين أي معلمات أخرى، سيتم افتراض هذه القيمة كاسم المضيف المطلوب التوصيل به عند المنفذ المحدد بواسطة المنفذ عن بُعد. تحذير: لا يمكن تراكب القيمة مع أي مورد أو معرفات عقدة. في حالة عدم التحديد، يتم تعطيل هذه الميزة."
+
+#: ../app/models/crm_config.rb:80 ../app/models/template.rb:296
+msgid "Port to use for the guest connection to pacemaker_remote."
+msgstr "المنفذ المطلوب استخدامه لتوصيل الضيف بـ pacemaker_remote."
+
+#: ../app/models/crm_config.rb:85 ../app/models/template.rb:301
+msgid "The IP address or hostname to connect to if remote-node's name is not the hostname of the guest."
+msgstr "عنوان IP واسم المضيف المطلوب التوصيل به إذا لم يكن اسم العقدة عن بُعد هو اسم مضيف الضيف."
+
+#: ../app/models/crm_config.rb:90 ../app/models/template.rb:306
+msgid "How long before a pending guest connection will time out."
+msgstr "كم يستغرق توصيل الضيف المعلق قبل انتهاء المهلة."
+
+#: ../app/models/group.rb:10
+msgid "No Group children specified"
+msgstr "لم يتم تحديد فروع مجموعة"
+
+#: ../app/models/location.rb:10
+msgid "No resource specified"
+msgstr "لم يتم تحديد مورد"
+
+#: ../app/models/location.rb:13
+msgid "No rules specified"
+msgstr "لا توجد قواعد محددة"
+
+#: ../app/models/location.rb:18
+msgid "Invalid resource discovery type"
+msgstr "نوع اكتشاف مورد غير صالح"
+
+#: ../app/models/location.rb:23
+msgid "Constraint is too complex - it contains nested rules"
+msgstr "القيد معقد للغاية - يحتوي على قواعد مضمنة"
+
+#: ../app/models/location.rb:33
+msgid "Invalid score \"%{score}\""
+msgstr "نتيجة غير صحيحة \"%{score}\""
+
+#: ../app/models/location.rb:43
+msgid "No expressions specified"
+msgstr "لم يتم تحديد أي تعبير"
+
+#: ../app/models/location.rb:48
+msgid "Attribute contains both single and double quotes"
+msgstr "تحتوي السمة على علامات اقتباس مفردة ومزدوجة"
+
+#: ../app/models/location.rb:49
+msgid "Value contains both single and double quotes"
+msgstr "تحتوي القيمة على علامات اقتباس مفردة ومزدوجة"
+
+#: ../app/models/location.rb:224
+msgid "Resources to apply the constraint to."
+msgstr "الموارد التي يجب تطبيق القيد عليها."
+
+#: ../app/models/location.rb:230
+msgid "Positive values indicate the resources should run on this node. Negative values indicate the resources should not run on this node. Values of +/- INFINITY change \"should\"/\"should not\" to \"must\"/\"must not\"."
+msgstr "تشير القيم الموجبة إلى أنه يجب تشغيل الموارد بهذه العقدة. وتشير القيم السالبة إلى أنه لا يجب تشغيل الموارد بهذه العقدة. تقوم القيم +/- INFINITY بتغيير \"ينبغي\"/\"لا ينبغي\" إلى \"يجب\"/\"لا يجب\"."
+
+#: ../app/models/location.rb:236
+msgid "Name of a node in the cluster."
+msgstr "اسم عقدة في المجموعة المتماثلة."
+
+#: ../app/models/location.rb:243 ../app/views/locations/_form.html.haml:107
+msgid "Resource Discovery"
+msgstr "اكتشاف المورد"
+
+#: ../app/models/location.rb:244
+msgid "Controls resource discovery for the specified resource on nodes covered by the constraint. always: Always perform resource discovery (default). never: Never perform resource discovery for the specified resource on this node. This option should generally be used with a -INFINITY score. exclusive: Only perform resource discovery for the specified resource on this node."
+msgstr "يتحكم في اكتشاف المورد للمورد المحدد بالعُقد المتضمنة بواسطة القيد. \"دائً\": يقوم بتنفيذ اكتشاف المورد دائمًا (افتراضي). \"أبدًا\": لا يقوم بتنفيذ اكتشاف المورد للمورد المحدد بهذه العقدة أبدًا. وبشكل عام، يجب استخدام هذا الخيار مع نتيجة -INFINITY سالبة. \"حصري\": يقوم بتنفيذ اكتشاف المورد فقط للمورد المحدد بهذه العقدة."
+
+#: ../app/models/location.rb:249
+msgid "Limits the rule to apply only when the resource is in the specified role."
+msgstr "يحدد القاعدة ليتم تطبيقها فقط عند وجود المورد في الدور المحدد."
+
+#: ../app/models/location.rb:254
+msgid "Operator"
+msgstr "المشغِّل"
+
+#: ../app/models/location.rb:255
+msgid "How to combine the result of multiple expression objects. Allowed values are and and or."
+msgstr "كيفية جمع نتيجة كائنات متعددة التعابير. القيم المسموح بها \"and\" و\"or\"."
+
+#: ../app/models/location.rb:260
+msgid "Expression"
+msgstr "التعبير"
+
+#: ../app/models/location.rb:261
+msgid "Each rule can contain a number of expressions. The results of the expressions are combined based on the rule's boolean operator."
+msgstr "يمكن أن تحتوي كل قاعدة على عدد من التعابير. يتم جمع نتائج التعابير استنادًا إلى المشغل المنطقي للقاعدة."
+
+#: ../app/models/master.rb:9
+msgid "No Multi-state child specified"
+msgstr "لم يتم تحديد فرع متعدد الحالات"
+
+#: ../app/models/master.rb:117
+msgid "How many copies of the resource can be promoted to master status."
+msgstr "كم عدد نسخ المورد التي يمكن ترقيتها إلى الحالة الرئيسية."
+
+#: ../app/models/master.rb:122
+msgid "How many copies of the resource can be promoted to master status on a single node."
+msgstr "كم عدد نسخ المورد التي يمكن ترقيتها إلى الحالة الرئيسية في العقدة المنفردة."
+
+#: ../app/models/node.rb:25
+msgid "Node ID is required"
+msgstr "معرف العقدة مطلوب"
+
+#: ../app/models/node.rb:26
+msgid "Invalid Node ID"
+msgstr "معرِف العقدة غير صالح"
+
+#: ../app/models/node.rb:29
+msgid "Name is required"
+msgstr "الاسم مطلوب"
+
+#: ../app/models/node.rb:30
+msgid "Invalid name"
+msgstr "اسم غير صالح"
+
+#: ../app/models/node.rb:72
+msgid "Node ID"
+msgstr "معرف العقدة"
+
+#: ../app/models/node.rb:73
+msgid "Unique identifier for the node."
+msgstr "معرف فريد للعقدة."
+
+#: ../app/models/node.rb:78
+msgid "Node Name"
+msgstr "اسم العقدة"
+
+#: ../app/models/node.rb:79
+msgid "Name used to refer to the node in the cluster."
+msgstr "الاسم المستخدم للإشارة إلى العقدة في المجموعة المتماثلة."
+
+#: ../app/models/node.rb:91
+msgid "Puts the node into standby mode. The specified node is no longer able to host resources. Any resources currently active on the node will be moved to another node."
+msgstr "يضع العقدة في الوضع استعداد. لا يمكن للعقدة المحددة استضافة الموارد بعد الآن. سيتم نقل أي موارد نشطة حاليًا بالعقدة إلى عقدة أخرى."
+
+#: ../app/models/profile.rb:31
+msgid "is required"
+msgstr "مطلوب"
+
+#: ../app/models/record.rb:10
+msgid "ID is required"
+msgstr "المعرف مطلوب"
+
+#: ../app/models/record.rb:28
+msgid "Object not found: %s=%s"
+msgstr "لم يتم العثور على الكائن: %s=%s"
+
+#: ../app/models/record.rb:268
+msgid "The ID \"%{id}\" is already in use"
+msgstr "المعرف \"%{id}\" قيد الاستخدام بالفعل"
+
+#: ../app/models/record.rb:279
+msgid "Unable to create: %{msg}"
+msgstr "تعذر إنشاء: %{msg}"
+
+#: ../app/models/record.rb:295
+msgid "Error updating %{id} (rc=%{rc})"
+msgstr "حدث خطأ في تحديث %{id} (rc=%{rc})"
+
+#: ../app/models/report.rb:103 ../app/models/report.rb:132
+#: ../app/models/report.rb:179
+msgid "No details available"
+msgstr "لا تتوفر أية تفاصيل"
+
+#: ../app/models/report.rb:104 ../app/models/report.rb:133
+msgid "Error:"
+msgstr "خطأ:"
+
+#: ../app/models/report.rb:287
+msgid "must have correct MIME type (was %s)"
+msgstr "يجب أن يحتوي على نوع MIME صحيح (كان %s)"
+
+#: ../app/models/report.rb:291
+msgid "must have correct file extension"
+msgstr "يجب أن يحتوي على ملحق اسم ملف صحيح"
+
+#: ../app/models/resource.rb:113
+msgid "Not a resource"
+msgstr "ليس موردًا"
+
+#: ../app/models/resource.rb:125
+msgid "Unique identifier for the resource. May not contain spaces."
+msgstr "معرف فريد للمورد. يمكن ألا يحتوي على مسافات."
+
+#: ../app/models/role.rb:8
+msgid "At least one rule is required"
+msgstr "مطلوب قاعدة واحدة على الأقل"
+
+#: ../app/models/session.rb:10
+msgid "Invalid username"
+msgstr "اسم المستخدم غير صالح"
+
+#: ../app/models/session.rb:16
+msgid "%s is not installed"
+msgstr "لم يتم تثبيت %s"
+
+#: ../app/models/session.rb:21
+msgid "%s is not executable"
+msgstr "%s غير قابل للتنفيذ"
+
+#: ../app/models/session.rb:26
+msgid "Username not specified"
+msgstr "لم يتم تحديد اسم المستخدم"
+
+#: ../app/models/session.rb:31
+msgid "Password not specified"
+msgstr "لم يتم تحديد كلمة السر"
+
+#: ../app/models/session.rb:42
+msgid "Invalid username or password"
+msgstr "اسم المستخدم غير صالح أو كلمة السر غير صالحة"
+
+#: ../app/models/tag.rb:9
+msgid "No Tag resources specified"
+msgstr "لم يتم تحديد أي موارد علامة"
+
+#: ../app/models/template.rb:314
+msgid "How frequently (in seconds) to perform the operation."
+msgstr "كم عدد المرات (بالثواني) التي يتم فيها أداء العملية."
+
+#: ../app/models/template.rb:320
+msgid "How long to wait before declaring the action has failed."
+msgstr "ما مدة الانتظار قبل التصريح بفشل الإجراء."
+
+#: ../app/models/template.rb:330
+msgid "What conditions need to be satisfied before this action occurs."
+msgstr "ما الشروط التي يجب استيفاؤها قبل حدوث الإجراء."
+
+#: ../app/models/template.rb:335
+msgid "If false, the operation is treated as if it does not exist."
+msgstr "في حالة الخطأ، يتم التعامل مع العملية كما لو كانت غير موجودة."
+
+#: ../app/models/template.rb:346
+msgid "This option only makes sense for recurring operations. It restricts the operation to a specific role. The truely paranoid can even specify role=Stopped which allows the cluster to detect an admin that manually started cluster services."
+msgstr "ينطبق هذا الخيار على العمليات المتكررة فقط. فهو يقيد العملية بدور محدد. ومن يشعر بالارتياب حقًا يمكنه أن يحدد الدور=متوقف الذي يسمح للمجموعة المتماثلة باكتشاف مسؤول يقوم ببدء خدمات المجموعة المتماثلة يدويًا."
+
+#: ../app/models/template.rb:359
+msgid "The action to take if this action ever fails."
+msgstr "الإجراء المطلوب اتباعه في حالة فشل الإجراء."
+
+#: ../app/models/template.rb:372
+msgid "If true, the intention to perform the operation is recorded so that GUIs and CLI tools can indicate that an operation is in progress."
+msgstr "إذا كان ذلك صحيحًا، يتم تسجيل اعتزام أداء هذه العملية وبذلك تشير أدوات GUI وCLI أن هناك عملية قيد التقدم."
+
+#: ../app/models/template.rb:388 ../app/views/primitives/_form.html.haml:18
+#: ../app/views/primitives/_form.html.haml:36
+#: ../app/views/resources/types.html.haml:78
+msgid "Template"
+msgstr "القالب"
+
+#: ../app/models/template.rb:389
+msgid "Resource template to inherit from."
+msgstr "قالب المورد للاكتساب منه."
+
+#: ../app/models/template.rb:394 ../app/views/primitives/_form.html.haml:21
+#: ../app/views/primitives/_form.html.haml:39
+msgid "Class"
+msgstr "طبقة"
+
+#: ../app/models/template.rb:395
+msgid "Standard which the resource agent conforms to."
+msgstr "المعيار الذي يلتزم وكيل المورد به."
+
+#: ../app/models/template.rb:400 ../app/views/primitives/_form.html.haml:23
+#: ../app/views/primitives/_form.html.haml:45
+msgid "Provider"
+msgstr "الموفر"
+
+#: ../app/models/template.rb:401
+msgid "Vendor or project which provided the resource agent."
+msgstr "المورِّد أو المشروع الذي قام بتوفير وكيل المورد."
+
+#: ../app/models/template.rb:407
+msgid "Resource agent name."
+msgstr "اسم وكيل المورد."
+
+#: ../app/models/template.rb:413 ../app/models/template.rb:419
+msgid "After the specified timeout period, the operation will be treated as failed."
+msgstr "بعد فترة المهلة المحددة، سيتم التعامل مع العملية كعملية فاشلة."
+
+#: ../app/models/template.rb:424
+msgid "Monitor"
+msgstr "الشاشة"
+
+#: ../app/models/template.rb:425
+msgid "Define a monitor operation to instruct the cluster to ensure that the resource is still healthy."
+msgstr "حدد عملية مراقبة لتوجيه المجموعة للتأكد من أن المورد لا يزال سليمًا."
+
+#: ../app/models/ticket.rb:18
+msgid "Constraint ID is required"
+msgstr "معرف القيد مطلوب"
+
+#: ../app/models/ticket.rb:19
+msgid "Invalid Constraint ID"
+msgstr "معرف القيد غير صالح"
+
+#: ../app/models/ticket.rb:22
+msgid "Ticket ID is required"
+msgstr "معرف البطاقة مطلوب"
+
+#: ../app/models/ticket.rb:23
+msgid "Invalid Ticket ID"
+msgstr "معرِّف البطاقة غير صحيح"
+
+#: ../app/models/ticket.rb:27
+msgid "Constraint must consist of at least one separate resources"
+msgstr "يجب أن يتكون القيد من موردين منفصلين على الأقل"
+
+#: ../app/models/user.rb:10
+msgid "ACL target ID is required"
+msgstr "معرف هدف ACL مطلوب"
+
+#: ../app/models/user.rb:11
+msgid "Invalid ACL target ID"
+msgstr "معرف هدف ACL غير صالح"
+
+#: ../app/models/user.rb:13
+msgid "At least one role is required"
+msgstr "مطلوب دور واحد على الأقل"
+
+#: ../app/models/wizard.rb:150
+msgid "Requested wizard does not exist"
+msgstr "المعالج المطلوب غير موجود"
+
+#: ../app/views/agents/show.html.haml:32
+#: ../app/views/primitives/_form.html.haml:102
+#: ../app/views/resources/show.html.haml:76
+msgid "Parameters"
+msgstr "المعلمات"
+
+#: ../app/views/agents/show.html.haml:52
+msgid "Shortdesc"
+msgstr "Shortdesc"
+
+#: ../app/views/agents/show.html.haml:54
+msgid "Longdesc"
+msgstr "Longdesc"
+
+#: ../app/views/agents/show.html.haml:56
+msgid "Options"
+msgstr "الخيارات"
+
+#: ../app/views/agents/show.html.haml:83
+msgid "Actions"
+msgstr "إجراءات"
+
+#: ../app/views/agents/show.html.haml:103
+#: ../app/views/resources/show.html.haml:189
+msgid "Timeout"
+msgstr "المهلة"
+
+#: ../app/views/agents/show.html.haml:105
+#: ../app/views/resources/show.html.haml:191
+msgid "Interval"
+msgstr "فاصل زمني"
+
+#: ../app/views/agents/show.html.haml:107
+msgid "Depth"
+msgstr "العمق"
+
+#: ../app/views/cib/apply.html.haml:9
+msgid "Apply Configuration"
+msgstr "تطبيق التكوين"
+
+#: ../app/views/cib/apply.html.haml:31
+#: ../app/views/shared/_simulator.html.haml:160
+msgid "Calculating list of changes..."
+msgstr "جارٍ حساب قائمة التغييرات..."
+
+#: ../app/views/cib/show.html.haml:24
+msgid "Errors"
+msgstr "أخطاء"
+
+#: ../app/views/clones/_form.html.haml:24
+#: ../app/views/groups/_form.html.haml:68
+#: ../app/views/masters/_form.html.haml:24
+#: ../app/views/primitives/_form.html.haml:121
+#: ../app/views/resources/show.html.haml:107
+msgid "Meta Attributes"
+msgstr "سمات تعريف"
+
+#: ../app/views/clones/_form.html.haml:41
+#: ../app/views/clones/_form.html.haml:48
+#: ../app/views/colocations/_form.html.haml:88
+#: ../app/views/colocations/_form.html.haml:95
+#: ../app/views/groups/_form.html.haml:85
+#: ../app/views/groups/_form.html.haml:92
+#: ../app/views/locations/_form.html.haml:125
+#: ../app/views/locations/_form.html.haml:132
+#: ../app/views/masters/_form.html.haml:41
+#: ../app/views/masters/_form.html.haml:48
+#: ../app/views/nodes/_form.html.haml:53
+#: ../app/views/orders/_form.html.haml:74
+#: ../app/views/orders/_form.html.haml:81
+#: ../app/views/primitives/_form.html.haml:82
+#: ../app/views/primitives/_form.html.haml:89
+#: ../app/views/roles/_form.html.haml:60 ../app/views/tags/_form.html.haml:51
+#: ../app/views/tags/_form.html.haml:58
+#: ../app/views/tickets/_form.html.haml:42
+#: ../app/views/tickets/_form.html.haml:49
+#: ../app/views/users/_form.html.haml:29
+#: ../app/views/wizards/create.html.haml:28
+#: ../app/views/wizards/show.html.haml:131
+#: ../app/views/wizards/update.html.haml:108
+msgid "Back"
+msgstr "الخلف"
+
+#: ../app/views/clones/edit.html.haml:17
+#: ../app/views/colocations/edit.html.haml:17
+#: ../app/views/groups/edit.html.haml:17
+#: ../app/views/locations/edit.html.haml:17
+#: ../app/views/masters/edit.html.haml:17
+#: ../app/views/orders/edit.html.haml:17
+#: ../app/views/primitives/edit.html.haml:17
+#: ../app/views/reports/display.html.haml:36
+#: ../app/views/roles/edit.html.haml:13 ../app/views/tags/edit.html.haml:17
+#: ../app/views/tickets/edit.html.haml:17 ../app/views/users/edit.html.haml:13
+msgid "Are you sure you wish to delete %s?"
+msgstr "هل تريد بالتأكيد حذف %s؟"
+
+#: ../app/views/colocations/_form.html.haml:35
+#: ../app/views/locations/_form.html.haml:70
+msgid "Always"
+msgstr "دائمًا"
+
+#: ../app/views/colocations/_form.html.haml:37
+#: ../app/views/locations/_form.html.haml:72
+msgid "Never"
+msgstr "أبدًا"
+
+#: ../app/views/colocations/_form.html.haml:69
+#: ../app/views/locations/_form.html.haml:37
+#: ../app/views/wizards/show.html.haml:74
+#: ../app/views/wizards/show.html.haml:105
+msgid "Advanced"
+msgstr "خيارات متقدمة"
+
+#: ../app/views/commands/index.html.haml:22
+msgid "Lists crm commands recently executed by hawk, most recent first."
+msgstr "إدراج أوامر crm التي تم تنفيذها حديثًا بواسطة hawk، الأحدث أولاً."
+
+#: ../app/views/configs/edit.html.haml:7
+#: ../app/views/shared/_mainnav.html.haml:60
+msgid "Edit Configuration"
+msgstr "تحرير التكوين"
+
+#: ../app/views/configs/edit.html.haml:15
+#: ../app/views/configs/show.html.haml:19
+#: ../app/views/graphs/show.html.haml:15
+msgid "XML"
+msgstr "XML"
+
+#: ../app/views/configs/meta.html.haml:19
+#: ../app/views/shared/_footer.html.haml:17
+msgid "Cluster Details"
+msgstr "تفاصيل المجموعة المتماثلة"
+
+#: ../app/views/configs/meta.html.haml:29
+#: ../app/views/shared/_simulator.html.haml:5
+msgid "Batch Mode Active"
+msgstr "وضع الدُفعات نشط"
+
+#: ../app/views/configs/show.html.haml:7
+msgid "Show Configuration"
+msgstr "عرض التكوين"
+
+#: ../app/views/constraints/rename.html.haml:9
+msgid "Rename Constraint"
+msgstr ""
+
+#: ../app/views/constraints/rename.html.haml:36
+#: ../app/views/reports/display.html.haml:55
+#: ../app/views/reports/display.html.haml:64
+#: ../app/views/reports/display.html.haml:73
+#: ../app/views/reports/index.html.haml:39
+#: ../app/views/resources/rename.html.haml:36
+#: ../app/views/resources/show.html.haml:321
+msgid "To"
+msgstr "إلى"
+
+#: ../app/views/constraints/show.html.haml:10
+msgid "Constraint:"
+msgstr "القيد:"
+
+#: ../app/views/constraints/types.html.haml:7
+#: ../app/views/shared/_mainnav.html.haml:50
+msgid "Add Constraint"
+msgstr "إضافة قيد"
+
+#: ../app/views/constraints/types.html.haml:13
+#: ../app/views/resources/types.html.haml:13
+msgid "List"
+msgstr "قائمة"
+
+#: ../app/views/crm_config/edit.html.haml:24
+msgid "Resource Defaults"
+msgstr "الإعدادات الافتراضية للمورد"
+
+#: ../app/views/crm_config/edit.html.haml:41
+msgid "Operation Defaults"
+msgstr "الإعدادات الافتراضية للعملية"
+
+#: ../app/views/dashboards/add.html.haml:21
+#: ../app/views/dashboards/show.html.haml:18
+msgid "Add Cluster"
+msgstr "إضافة مجموعة متماثلة"
+
+#: ../app/views/dashboards/add.html.haml:32
+msgid "West Coast (example)"
+msgstr "الساحل الغربي (مثال)"
+
+#: ../app/views/dashboards/add.html.haml:32
+msgid "Cluster name"
+msgstr "اسم المجموعة المتماثلة"
+
+#: ../app/views/dashboards/add.html.haml:34
+msgid "node1.west.example.com"
+msgstr "node1.west.example.com"
+
+#: ../app/views/dashboards/add.html.haml:34
+msgid "Hostname of node in cluster"
+msgstr "اسم مضيف العقدة في المجموعة المتماثلة"
+
+#: ../app/views/dashboards/add.html.haml:36
+msgid "Server port to connect to"
+msgstr "منفذ الخادم المطلوب التوصيل به"
+
+#: ../app/views/groups/_form.html.haml:34
+msgid "No children available"
+msgstr "لا تتوفر أية فروع"
+
+#: ../app/views/layouts/authentication.html.haml:55
+msgid "Please ensure Javascript is enabled"
+msgstr "الرجاء التأكد من تمكين JavaScript"
+
+#: ../app/views/layouts/authentication.html.haml:62
+msgid "SUSE, LLC"
+msgstr "SUSE, LLC"
+
+#: ../app/views/layouts/authentication.html.haml:68
+msgid "High Availability Web Konsole"
+msgstr "High Availability Web Konsole"
+
+#: ../app/views/locations/_form.html.haml:29
+msgid "Simple"
+msgstr "بسيط"
+
+#: ../app/views/locations/_form.html.haml:74
+msgid "Advisory"
+msgstr "استشاري"
+
+#: ../app/views/locations/edit.html.haml:7
+msgid "Edit Location"
+msgstr "تحرير الموقع"
+
+#: ../app/views/locations/index.html.haml:7
+msgid "Locations"
+msgstr "المواقع"
+
+#: ../app/views/locations/new.html.haml:7
+msgid "Create Location"
+msgstr "إنشاء موقع"
+
+#: ../app/views/masters/edit.html.haml:7
+msgid "Edit Multi-state"
+msgstr "تحرير متعدد الحالات"
+
+#: ../app/views/masters/index.html.haml:7
+msgid "Multi-state Resources"
+msgstr "موارد متعددة الحالات"
+
+#: ../app/views/masters/new.html.haml:7
+msgid "Create Multi-state"
+msgstr "إنشاء متعدد الحالات"
+
+#: ../app/views/nodes/_form.html.haml:18 ../app/views/nodes/show.html.haml:104
+msgid "Attributes"
+msgstr "السمات"
+
+#: ../app/views/nodes/_form.html.haml:34 ../app/views/nodes/show.html.haml:61
+#: ../app/views/primitives/_form.html.haml:140
+#: ../app/views/resources/show.html.haml:139
+msgid "Utilization"
+msgstr "الاستخدام"
+
+#: ../app/views/nodes/edit.html.haml:7
+msgid "Edit Node"
+msgstr "تحرير عقدة"
+
+#: ../app/views/nodes/events.html.haml:33
+#: ../app/views/resources/events.html.haml:33
+msgid "RC"
+msgstr "RC"
+
+#: ../app/views/nodes/events.html.haml:35
+#: ../app/views/shared/_simulator.html.haml:416
+msgid "Resource"
+msgstr "مورد"
+
+#: ../app/views/nodes/events.html.haml:37
+#: ../app/views/resources/events.html.haml:37
+#: ../app/views/resources/show.html.haml:270
+#: ../app/views/shared/_simulator.html.haml:433
+msgid "Operation"
+msgstr "العملية"
+
+#: ../app/views/nodes/events.html.haml:39
+#: ../app/views/resources/events.html.haml:39
+msgid "Last Change"
+msgstr "آخر تغيير"
+
+#: ../app/views/nodes/events.html.haml:41
+#: ../app/views/resources/events.html.haml:41
+#: ../app/views/shared/_simulator.html.haml:368
+#: ../app/views/tickets/show.html.haml:93
+msgid "State"
+msgstr "الولاية"
+
+#: ../app/views/nodes/events.html.haml:43
+#: ../app/views/resources/events.html.haml:43
+#: ../app/views/resources/show.html.haml:268
+msgid "Call"
+msgstr "استدعاء"
+
+#: ../app/views/nodes/events.html.haml:45
+#: ../app/views/resources/events.html.haml:45
+msgid "Exec"
+msgstr "تنفيذ"
+
+#: ../app/views/nodes/events.html.haml:47
+#: ../app/views/resources/events.html.haml:47
+msgid "Complete"
+msgstr "مكتمل"
+
+#: ../app/views/nodes/show.html.haml:30
+msgid "Remote node."
+msgstr "العقدة عن بُعد."
+
+#: ../app/views/nodes/show.html.haml:95
+msgid "No utilization defined"
+msgstr "لم يتم تحديد أية عملية استخدام"
+
+#: ../app/views/nodes/show.html.haml:129
+msgid "No attributes defined"
+msgstr "لم يتم تحديد أية سمات"
+
+#: ../app/views/orders/_form.html.haml:35
+msgid "Mandatory"
+msgstr "إلزامي"
+
+#: ../app/views/orders/_form.html.haml:37
+msgid "Optional"
+msgstr "اختياري"
+
+#: ../app/views/orders/_form.html.haml:39
+msgid "Serialize"
+msgstr "تحويل تسلسلي"
+
+#: ../app/views/orders/_form.html.haml:50
+msgid "Symmetrical"
+msgstr "متماثل"
+
+#: ../app/views/pages/help.html.haml:55
+msgid "HTML"
+msgstr "HTML"
+
+#: ../app/views/pages/help.html.haml:59
+msgid "PDF"
+msgstr "PDF"
+
+#: ../app/views/primitives/_help.html.haml:35
+#: ../app/views/shared/_helpentry.html.haml:15
+msgid "Default"
+msgstr "افتراضي"
+
+#: ../app/views/primitives/edit.html.haml:13
+msgid "Copy"
+msgstr "نسخ"
+
+#: ../app/views/reports/display.html.haml:13
+#: ../app/views/reports/index.html.haml:156
+#: ../app/views/reports/show.html.haml:13
+msgid "Reports"
+msgstr "التقارير"
+
+#: ../app/views/reports/display.html.haml:78
+msgid "Created"
+msgstr "تاريخ الإنشاء"
+
+#: ../app/views/reports/display.html.haml:82
+#: ../app/views/reports/display.html.haml:99
+msgid "Transitions"
+msgstr "عمليات انتقال"
+
+#: ../app/views/reports/display.html.haml:105
+msgid "No transitions in report"
+msgstr "لا توجد عمليات انتقال في التقرير"
+
+#: ../app/views/reports/display.html.haml:125
+msgid "Previous"
+msgstr ""
+
+#: ../app/views/reports/display.html.haml:133
+msgid "Zoom in"
+msgstr ""
+
+#: ../app/views/reports/display.html.haml:135
+msgid "Zoom out"
+msgstr ""
+
+#: ../app/views/reports/display.html.haml:143
+#: ../app/views/wizards/show.html.haml:133
+msgid "Next"
+msgstr "التالي"
+
+#: ../app/views/reports/display.html.haml:161
+msgid "PE Name"
+msgstr "اسم PE"
+
+#: ../app/views/reports/display.html.haml:198
+#: ../app/views/shared/_mainnav.html.haml:38
+msgid "Configuration"
+msgstr "تكوين"
+
+#: ../app/views/reports/display.html.haml:206
+msgid "Diff"
+msgstr "الفرق"
+
+#: ../app/views/reports/display.html.haml:214
+msgid "Logs"
+msgstr "السجلات"
+
+#: ../app/views/reports/display.html.haml:289
+msgid "Node Events"
+msgstr "أحداث العقدة"
+
+#: ../app/views/reports/display.html.haml:306
+msgid "Resource Events"
+msgstr "أحداث المورد"
+
+#: ../app/views/reports/index.html.haml:20
+msgid "Data collection in progress..."
+msgstr "تجميع البيانات قيد التقدم..."
+
+#: ../app/views/reports/index.html.haml:79
+#: ../app/views/reports/index.html.haml:124
+msgid "Generate"
+msgstr "إنشاء"
+
+#: ../app/views/reports/index.html.haml:87
+msgid "Upload"
+msgstr "تحميل"
+
+#: ../app/views/reports/show.html.haml:30
+msgid "Loading report..."
+msgstr "جارٍ تحميل التقرير..."
+
+#: ../app/views/resources/rename.html.haml:9
+msgid "Rename Resource"
+msgstr "إعادة تسمية مورد"
+
+#: ../app/views/resources/show.html.haml:57
+msgid "Child"
+msgstr "عنصر فرعي"
+
+#: ../app/views/resources/show.html.haml:218
+msgid "Instances"
+msgstr "المثيلات"
+
+#: ../app/views/resources/show.html.haml:250
+msgid "Failed Operations"
+msgstr "العمليات الفاشلة"
+
+#: ../app/views/resources/show.html.haml:274
+msgid "Reason"
+msgstr "السبب"
+
+#: ../app/views/resources/types.html.haml:7
+#: ../app/views/shared/_mainnav.html.haml:45
+msgid "Add Resource"
+msgstr "إضافة مورِد"
+
+#: ../app/views/resources/types.html.haml:32
+msgid "Primitive"
+msgstr "مجموعة أساسية"
+
+#: ../app/views/roles/_form.html.haml:27
+msgid "Add a rule below"
+msgstr "إضافة قاعدة أدناه"
+
+#: ../app/views/roles/_form.html.haml:29
+msgid "Remove this rule"
+msgstr "إزالة هذه القاعدة"
+
+#: ../app/views/roles/_form.html.haml:31
+msgid "Move rule up"
+msgstr "نقل القاعدة لأعلى"
+
+#: ../app/views/roles/_form.html.haml:33
+msgid "Move rule down"
+msgstr "نقل القاعدة لأسفل"
+
+#: ../app/views/roles/_form.html.haml:38
+msgid "Right"
+msgstr "يسار"
+
+#: ../app/views/roles/_form.html.haml:40
+msgid "XPath"
+msgstr "XPath"
+
+#: ../app/views/roles/_form.html.haml:42
+msgid "Object Type"
+msgstr "نوع الكائن"
+
+#: ../app/views/roles/_form.html.haml:44
+msgid "Reference"
+msgstr "المرجع"
+
+#: ../app/views/roles/_form.html.haml:47
+msgid "Attribute"
+msgstr "سمة"
+
+#: ../app/views/roles/index.html.haml:9 ../app/views/users/index.html.haml:9
+msgid "Access Control Lists"
+msgstr "قوائم التحكم في الوصول"
+
+#: ../app/views/sessions/new.html.haml:7
+msgid "Login"
+msgstr "دخول"
+
+#: ../app/views/shared/_mainnav.html.haml:10
+msgid "Manage"
+msgstr "إدارة"
+
+#: ../app/views/shared/_mainnav.html.haml:31
+msgid "History"
+msgstr "التاريخ"
+
+#: ../app/views/shared/_mainnav.html.haml:55
+#: ../app/views/wizards/index.html.haml:7
+msgid "Wizards"
+msgstr "معالجات"
+
+#: ../app/views/shared/_mainnav.html.haml:79
+msgid "Access Control"
+msgstr "التحكم في الوصول"
+
+#: ../app/views/shared/_mainnav.html.haml:92
+#: ../app/views/users/index.html.haml:7
+msgid "Targets"
+msgstr "الأهداف"
+
+#: ../app/views/shared/_simulator.html.haml:15
+msgid "Any pending changes to the configuration will be lost - do you wish to proceed?"
+msgstr "سيتم فقد أية تغييرات معلقة على التكوين - هل تريد المتابعة؟"
+
+#: ../app/views/shared/_simulator.html.haml:17
+msgid "Discard"
+msgstr "تجاهل"
+
+#: ../app/views/shared/_simulator.html.haml:52
+msgid "Batch Mode"
+msgstr "وضع الدفعة"
+
+#: ../app/views/shared/_simulator.html.haml:82
+#: ../app/views/shared/_simulator.html.haml:184
+msgid "Summary"
+msgstr "الملخص"
+
+#: ../app/views/shared/_simulator.html.haml:84
+#: ../app/views/shared/_simulator.html.haml:215
+msgid "CIB (in)"
+msgstr "CIB (داخل)"
+
+#: ../app/views/shared/_simulator.html.haml:86
+#: ../app/views/shared/_simulator.html.haml:246
+msgid "CIB (out)"
+msgstr "CIB (خارج)"
+
+#: ../app/views/shared/_simulator.html.haml:88
+#: ../app/views/shared/_simulator.html.haml:277
+msgid "Transition Graph"
+msgstr "الرسم البياني للانتقال"
+
+#: ../app/views/shared/_simulator.html.haml:90
+msgid "Transition"
+msgstr "انتقال"
+
+#: ../app/views/shared/_simulator.html.haml:101
+msgid "Inject"
+msgstr "إدخال"
+
+#: ../app/views/shared/_simulator.html.haml:107
+msgid "Node Event"
+msgstr "حدث العقدة"
+
+#: ../app/views/shared/_simulator.html.haml:110
+msgid "Resource Event"
+msgstr "حدث المورد"
+
+#: ../app/views/shared/_simulator.html.haml:113
+msgid "Ticket Event"
+msgstr "حدث بطاقة"
+
+#: ../app/views/shared/_simulator.html.haml:308
+msgid "Transition (XML)"
+msgstr "الانتقال (XML)"
+
+#: ../app/views/shared/_simulator.html.haml:341
+msgid "Inject Node Event"
+msgstr "حدث عقدة الإدخال"
+
+#: ../app/views/shared/_simulator.html.haml:406
+msgid "Inject Resource Event"
+msgstr "حدث مورد الإدخال"
+
+#: ../app/views/shared/_simulator.html.haml:450
+msgid "Interval (ms)"
+msgstr "فاصل زمني (دقائق)"
+
+#: ../app/views/shared/_simulator.html.haml:480
+msgid "Result"
+msgstr "النتيجة"
+
+#: ../app/views/shared/_simulator.html.haml:518
+msgid "Inject Ticket Event"
+msgstr "حدث بطاقة الإدخال"
+
+#: ../app/views/shared/_simulator.html.haml:545
+msgid "Action"
+msgstr "الإجراء"
+
+#: ../app/views/shared/_usernav.html.haml:6
+msgid "Batch Configuration Changes"
+msgstr "تغييرات تكوين الدفعة"
+
+#: ../app/views/shared/_usernav.html.haml:6
+#: ../app/views/shared/_usernav.html.haml:14
+msgid "Batch"
+msgstr "دفعة"
+
+#: ../app/views/shared/_usernav.html.haml:33
+msgid "Logout"
+msgstr "تسجيل الخروج"
+
+#: ../app/views/shared/_usernav.html.haml:39
+msgid "Menu"
+msgstr "القائمة"
+
+#: ../app/views/tags/_form.html.haml:10 ../app/views/tags/_form.html.haml:15
+msgid "Tag ID"
+msgstr "معرف العلامة"
+
+#: ../app/views/tags/_form.html.haml:34
+msgid "No objects available"
+msgstr "لا تتوفر أي كائنات"
+
+#: ../app/views/tickets/_form.html.haml:16
+msgid "Ticket ID"
+msgstr "معرف البطاقة"
+
+#: ../app/views/tickets/_form.html.haml:18
+#: ../app/views/tickets/show.html.haml:63
+msgid "Loss Policy"
+msgstr "سياسة الفقد"
+
+#: ../app/views/tickets/show.html.haml:9
+msgid "Ticket:"
+msgstr "البطاقة:"
+
+#: ../app/views/tickets/show.html.haml:26
+msgid "Properties"
+msgstr "خصائص"
+
+#: ../app/views/tickets/show.html.haml:69
+msgid "None"
+msgstr "بلا"
+
+#: ../app/views/tickets/show.html.haml:106
+msgid "Leader"
+msgstr "قائد"
+
+#: ../app/views/tickets/show.html.haml:119
+msgid "Expires"
+msgstr "انتهاء مدة الصلاحية"
+
+#: ../app/views/tickets/show.html.haml:132
+msgid "Commit"
+msgstr "تثبيت"
+
+#: ../app/views/tickets/show.html.haml:189
+msgid "Sites"
+msgstr "مواقع"
+
+#: ../app/views/tickets/show.html.haml:224
+msgid "Arbitrators"
+msgstr "الوسطاء"
+
+#: ../app/views/users/_form.html.haml:10 ../app/views/users/_form.html.haml:13
+msgid "Target ID"
+msgstr "معرف الهدف"
+
+#: ../app/views/wizards/create.html.haml:21
+msgid "Verifying parameters..."
+msgstr "جارٍ التحقق من المعلمات..."
+
+#: ../app/views/wizards/create.html.haml:26
+#: ../app/views/wizards/show.html.haml:129
+#: ../app/views/wizards/update.html.haml:106
+msgid "Do you really want to cancel the wizard setup?"
+msgstr "هل تريد بالفعل إلغاء إعداد المعالج؟"
+
+#: ../app/views/wizards/create.html.haml:30
+msgid "Do you really want to apply the current wizard?"
+msgstr "هل تريد بالفعل تطبيق المعالج الحالي؟"
+
+#: ../app/views/wizards/show.html.haml:56
+msgid "Enable this step"
+msgstr "تمكين هذه الخطوة"
+
+#: ../app/views/wizards/show.html.haml:123
+msgid "This wizard takes no parameters."
+msgstr "لا يحتوي هذا المعالج على أي معلمات."
+
+#: ../app/views/wizards/show.html.haml:135
+msgid "Verify"
+msgstr "التحقق من"
+
+#: ../app/views/wizards/update.html.haml:50
+msgid "Verify and apply"
+msgstr "التحقق والتطبيق"
+
+#: ../app/views/wizards/update.html.haml:87
+msgid "To apply the changes, Hawk requires root access, and password-less SSH access must be configured. See the Hawk documentation for more information."
+msgstr "لتطبيق التغييرات، يتطلب Hawk تكوين وصول أولي ووصول SSH بدون كلمة مرور. راجع وثائق Hawk للحصول على مزيد من المعلومات."
+
+#: ../app/views/wizards/update.html.haml:94
+msgid "Root password"
+msgstr "كلمة مرور أولية"
+
+#: ../lib/cibtools.rb:125
+msgid "other"
+msgstr "أخرى"
+
+#: ../lib/invoker.rb:86
+msgid "The object/attribute does not exist (cibadmin %{cmd})"
+msgstr "الكائن/السمة غير موجودة (cibadmin %{cmd})"
+
+#: ../lib/invoker.rb:90
+msgid "Error invoking cibadmin %{cmd}: %{msg}"
+msgstr "حدث خطأ أثناء استدعاء cibadmin %{cmd}: %{msg}"
