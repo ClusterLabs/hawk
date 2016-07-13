@@ -6,12 +6,25 @@ image:https://travis-ci.org/ClusterLabs/hawk.svg?branch=master["Build Status", l
 image:https://codeclimate.com/github/ClusterLabs/hawk/badges/gpa.svg["Code Climate", link="https://codeclimate.com/github/ClusterLabs/hawk"]
 image:https://readthedocs.org/projects/hawk-guide/badge/?style=flat["Documentation", link="http://hawk-guide.readthedocs.org/"]
 
-== Overview ==
-
 Hawk is a web interface for the Pacemaker High Availability stack. The
 goal of the project is to create a complete interface to the HA
 cluster, including the configuration, management and monitoring of
 cluster resources.
+
+http://hawk-ui.github.io[http://hawk-ui.github.io]
+
+== Table of contents
+* <<overview>>
+* <<documentation>>
+* <<screenshots>>
+* <<features>>
+* <<installation>>
+* <<build-dependencies>>
+* <<a-note-on-ssl-certificates>>
+* <<hacking-hawk>>
+* <<questions-feedback-etc>>
+
+== Overview ==
 
 Hawk runs on every node in the cluster, so that you can just point
 your web browser at any node to access it. E.g.:
