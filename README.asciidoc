@@ -18,6 +18,13 @@ http://hawk-ui.github.io[http://hawk-ui.github.io]
 * <<documentation>>
 * <<screenshots>>
 * <<features>>
+  - <<resource-management>>
+  - <<resource-management>>
+  - <<resource-management>>
+  - <<resource-management>>
+  - <<resource-management>>
+  - <<resource-management>>
+  - <<resource-management>>
 * <<installation>>
 * <<build-dependencies>>
 * <<a-note-on-ssl-certificates>>
@@ -269,8 +276,7 @@ your certificate.
 
 
 == Hacking Hawk ==
-
-=== Vagrant
+=== Preconfigured Vagrant environment
 
 To hack on Hawk we recommend to use the vagrant setup. There is a
 Vagrantfile attached, which creates a three-node cluster with a basic
@@ -282,7 +288,6 @@ some steps.
 * Install the vagrant package from http://www.vagrantup.com/downloads.html,
   the minimal version requirement is +>= 1.7.0+ in order to work properly
   with openSUSE/SLED workstation setups.
-
 * Install +virtualbox+, we assume you know how to do that on your OS. If
   you prefer +libvirt+ you can use that as well.
 
@@ -292,22 +297,22 @@ work properly, the +vagrant-bindfs+ plugin is necessary.
 
 Install it using the following command:
 
---------------------------------------
-  # vagrant plugin install vagrant-bindfs
---------------------------------------
+----------
+# vagrant plugin install vagrant-bindfs
+----------
 
-* If you plan to use +libvirt+ as provider make sure you have the 
-  libvirt-plugin installed:
 
---------------------------------------
-  # vagrant plugin install vagrant-libvirt
---------------------------------------
+* If you plan to use +libvirt+ as provider make sure you have the libvirt-plugin installed:
+
+----------
+# vagrant plugin install vagrant-libvirt
+----------
 
 * You need to fetch the git submodules to finish your development setup:
 
---------------------------------------
-  # git submodule update --init --recursive
---------------------------------------
+----------
+# git submodule update --init --recursive
+----------
 
 This is all you need to prepare initially to set up the vagrant environment,
 now you can simply start the virtual machine with +vagrant up+ and start
@@ -318,24 +323,45 @@ the source within the virtual machine you have to switch to the +/vagrant+
 directory.
 
 === Web server instances
-
 You can access the Hawk web interface based on the git source through
 +http://localhost:3000+ now. If you want to access the version installed
 through packages you can reach it through +https://localhost:7630+.
 
-=== Managing the application instances
+In fact, within the Vagrant environment, there are two instances of the Puma web
+server running. The first one is accessible through +https://localhost:7630+, with
++/srv/www/hawk+ as the root directory. This instance is launched by default as a
+production server when installing hawk through the package manager or when
+launching the vagrant environment. It is used to monitor and manage the cluster
+in the real production environment. Note also that this puma server instance is
+running automatically at startup through a systemd script.
 
-Installed on the development VM is a script called +hawk+, which can be used
-to control the development instance of hawk.
+The commands used to control this server are:
 
---------------------------------------
+----------
+$ vagrant ssh webui
+vagrant@webui:~> sudo systemctl start hawk
+vagrant@webui:~> sudo systemctl stop hawk
+vagrant@webui:~> sudo systemctl restart hawk
+vagrant@webui:~> sudo systemctl status hawk
+----------
+
+The other instance is used for development purposes. Its root directory is
++/vagrant/hawk/hawk+. That's because the /vagrant folder is synced with the host
+machine's working folder (the local git repository), so any changes in that folder
+is detected instantly by this server instance in the guest machine.
+This instance is accessible through +http://localhost:3000+.
+Also, You can find installed on the development VM a script called +hawk+
+(hawk/bin/hawk), which can be used to control the development instance of hawk:
+
+----------
 $ vagrant ssh webui
 vagrant@webui:~> hawk status
 vagrant@webui:~> hawk log
 vagrant@webui:~> hawk start
 vagrant@webui:~> hawk stop
 vagrant@webui:~> hawk restart
---------------------------------------
+vagrant@webui:~> hawk server
+----------
 
 Because Hawk is multi-threaded, the Rails asset auto-loading doesn't work properly.
 Unfortunately this means that you need to run +hawk restart+ after changing
@@ -343,24 +369,40 @@ most files. The exception is the HAML view files which update automatically.
 
 If the development hawk instance isn't running, it can be started using this command:
 
---------------------------------------
+----------
 webui:/vagrant/hawk # sudo -u vagrant bin/rails s
---------------------------------------
+----------
+
+=== Puma server configuration
+
+You can change the configurations of both instances of the Puma sever through
+the configuration file in hawk/config/puma.rb. You can also pass options directly
+through environment variables.
+
+Please also note that the Puma server is configured to use a maximum number of
+16 threads withing one worker in clustered mode. This application is thread safe
+and you can customize this through the puma.rb file. You may need to provision
+the vm again with +vagrant provision+ in order for this to takes effect in production
+environment.
+For further information about threads and workers in Puma, please take a look at
+this great article by Heroku:
+https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server[Puma web server article]
 
 === Hacking hawk's tools
 
-If you need to change something on +hawk_chkpwd+, +hawk_invoke+ or
-+hawk_monitor+ you need to provision the machine again with the command
+Hawk's tools are the programs under the +hawk/tools+ folder
+(+hawk_chkpwd+, +hawk_invoke+ and +hawk_monitor+). If you need to change something
+on these files,  you need to provision the machine again with the command
 +vagrant provision+ to get this scripts compiled and copied to the correct
 places, setuid-root and group to haclient in /usr/bin again. You should
 end up with something like:
 
---------------------------------------
-# ls /usr/sbin/hawk_* -l+ +
+----------
+ls /usr/sbin/hawk_* -l+ +
 -rwsr-x--- 1 root haclient 9884 2011-04-14 22:56 /usr/sbin/hawk_chkpwd+
 -rwsr-x--- 1 root haclient 9928 2011-04-14 22:56 /usr/sbin/hawk_invoke+
--rwxr-xr-x 1 root root     9992 2011-04-14 22:56 /usr/sbin/hawk_monitor+
---------------------------------------
+-rwxr-xr-x 1 root root 9992 2011-04-14 22:56 /usr/sbin/hawk_monitor+
+----------
 
 +hawk_chkpwd+ is almost identical to +unix2_chkpwd+, except it restricts
 acccess to users in the +haclient+ group, and doesn't inject any delay
@@ -369,12 +411,12 @@ server instance runs as).
 
 +hawk_invoke+ allows the +hacluster+ user to run a small assortment
 of Pacemaker CLI tools as another user in order to support Pacemaker's
-ACL feature.  It is used by Hawk when performing various management
+ACL feature. It is used by Hawk when performing various management
 tasks.
 
-+hawk_monitor+ is not installed setuid-root.  It exists to be polled
++hawk_monitor+ is not installed setuid-root. It exists to be polled
 by the web browser, to facilitate near-realtime updates of the cluster
-status display.  It is not used when running Hawk via WEBrick.
+status display. It is not used when running Hawk via WEBrick.
 
 
 == Questions, Feedback, etc. ==
