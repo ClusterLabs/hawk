@@ -19,16 +19,27 @@ http://hawk-ui.github.io[http://hawk-ui.github.io]
 * <<screenshots>>
 * <<features>>
   - <<resource-management>>
-  - <<resource-management>>
-  - <<resource-management>>
-  - <<resource-management>>
-  - <<resource-management>>
-  - <<resource-management>>
-  - <<resource-management>>
-* <<installation>>
+  - <<multi-cluster-dashboard>>
+  - <<history-explorer>>
+  - <<configuration>>
+  - <<wizards>>
+  - <<view-configuration-and-graph>>
+  - <<command-log>>
+  - <<access-control-lists>>
+  - <<simulator>>
 * <<build-dependencies>>
+  - <<dependencies>>
+* <<installation>>
+  - <<installing-the-easy-way>>
+  - <<installing-the-other-easy-way>>
+  - <<installing-the-hard-way>>
+  - <<installing-the-other-hard-way>>
 * <<a-note-on-ssl-certificates>>
 * <<hacking-hawk>>
+  - <<preconfigured-vagrant-environment>>
+  - <<web-server-instances>>
+  - <<puma-server-configuration>>
+  - <<hacking-hawks-tools>>
 * <<questions-feedback-etc>>
 
 == Overview ==
@@ -168,17 +179,6 @@ failure or node failure can be simulated, and the user can see what
 the resulting cluster response would be. This can be very useful when
 configuring constraints, to ensure that the rules work as intended.
 
-== Installation ==
-
-Hawk is a Ruby on Rails app which runs using the Puma web server
-(http://puma.io/).
-
-There is a special build mode which vendors all the rubygems used by
-Hawk, to create a package which bundles all of the gems. See the
-included RPM spec file in +rpm/hawk.spec+ for details.
-
-For details on the rubygems used by hawk, see the gemfile in
-+hawk/Gemfile+.
 
 == Build Dependencies ==
 
@@ -211,6 +211,20 @@ Hawk also requires the rubygems listed in +hawk/Gemfile+.
 Some dependencies may differ depending on the distribution:
 
 * rubypick (Fedora)
+
+
+== Installation ==
+
+Hawk is a Ruby on Rails app which runs using the Puma web server
+(http://puma.io/).
+
+There is a special build mode which vendors all the rubygems used by
+Hawk, to create a package which bundles all of the gems. See the
+included RPM spec file in +rpm/hawk.spec+ for details.
+
+For details on the rubygems used by hawk, see the gemfile in
++hawk/Gemfile+.
+
 
 === Installing The Easy Way ===
 
