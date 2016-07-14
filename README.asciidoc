@@ -39,7 +39,7 @@ http://hawk-ui.github.io[http://hawk-ui.github.io]
   - <<preconfigured-vagrant-environment>>
   - <<web-server-instances>>
   - <<puma-server-configuration>>
-  - <<hacking-hawks-tools>>
+  - <<hacking-hawk-tools>>
 * <<questions-feedback-etc>>
 
 == Overview ==
@@ -402,7 +402,7 @@ For further information about threads and workers in Puma, please take a look at
 this great article by Heroku:
 https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server[Puma web server article]
 
-=== Hacking hawk's tools
+=== Hacking hawk tools
 
 Hawk's tools are the programs under the +hawk/tools+ folder
 (+hawk_chkpwd+, +hawk_invoke+ and +hawk_monitor+). If you need to change something
