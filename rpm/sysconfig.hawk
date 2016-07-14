@@ -1,5 +1,5 @@
 ## Path:            Cluster/Hawk
-## Description:     Mode of operation 
+## Description:     Mode of operation
 ## Type:            string(production,development,test)
 ## Default:         production
 ## ServiceRestart:  hawk
@@ -14,7 +14,7 @@ HAWK_ENV="production"
 ## Default:         1
 ## ServiceRestart:  hawk
 # Sets the maximum number of threads used by the web server.
-HAWK_THREADS="1"
+HAWK_THREADS="16"
 
 ## Path:            Cluster/Hawk
 ## Description:     Maximum number of worker processes
@@ -23,7 +23,7 @@ HAWK_THREADS="1"
 ## ServiceRestart:  hawk
 # Sets the maximum number of separate worker processes spawned by the
 # web server.
-HAWK_WORKERS="2"
+HAWK_WORKERS="1"
 
 ## Path:            Cluster/Hawk
 ## Description:     Listen address

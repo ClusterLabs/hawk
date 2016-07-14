@@ -41,9 +41,6 @@ Rails.application.configure do
   config.i18n.fallbacks = true
 
   config.log_level = :warn
-  config.log_tags = []
 
-  config.logger = ActiveSupport::TaggedLogging.new(
-    Logger.new(STDOUT)
-  )
+  config.logger = Logger.new(STDOUT)
 end

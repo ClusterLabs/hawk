@@ -52,9 +52,9 @@ Rails.application.configure do
   config.i18n.fallbacks = false
 
   config.log_level = :debug
-  config.log_tags = []
+  # Prints Logs to STDOUT when starting the Puma server in development mode with
+  # the environment variable LOGGER is set to stdout
+  # The default is Rails.root/log/development.log
+  config.logger = Logger.new(STDOUT) if ENV["LOGGER"] == "stdout"
 
-  config.logger = ActiveSupport::TaggedLogging.new(
-    Logger.new(Rails.root.join("log", "development.log"))
-  )
 end
