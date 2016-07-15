@@ -14,12 +14,12 @@
   </div>
   <div class="modal-body">
     <% if @node.remote %>
-      <div class="alert alert-info" role="<%= :alert %>">
+      <div class="alert alert-info" role="alert">
         <%= _("Remote node.") %>
       </div>
     <% end %>
     <% unless @node.fence_history.blank? %>
-      <div class="alert alert-warning" role="<%= :warning %>">
+      <div class="alert alert-warning" role="warning">
         <%= @node.fence_history %>
       </div>
     <% end %>

@@ -51,7 +51,7 @@
                           </li>
                         </ul>
                       </div>
-                      <input class="form-control" id="simple-score" type="<%= :text %>"></input>
+                      <input class="form-control" id="simple-score" type="text"></input>
                     </div>
                   </div>
                 </div>
@@ -72,7 +72,7 @@
                 </div>
               </div>
             </div>
-            <div class="tab-pane" id="locadvanced" role="<%= :tabpanel %>">
+            <div class="tab-pane" id="locadvanced" role="tabpanel">
               <div class="panel-body">
                 <%= main_form.select :discovery, :location_discovery_options, { include_blank: true, include_hidden: false }, { label: _("Resource Discovery"), data: { help_filter: ".row.resource-discovery" } } %>
                 <div data-locations="<%= location.rules.to_json %>" data-locations-prefix="location[rules]" data-locations-target=".content">

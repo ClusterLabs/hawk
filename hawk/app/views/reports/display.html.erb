@@ -14,7 +14,7 @@
       <div class="panel-heading"></div>
       <div class="panel-body">
         <div class="pull-right">
-          <div class="btn-group" role="<%= :group %>">
+          <div class="btn-group" role="group">
             <a class="show btn btn-success btn-xs" href="<%= display_report_path(id: @report.id) %>" title="<%= _("Show") %>">
               <%= icon_tag("search") %>
             </a>
@@ -121,11 +121,11 @@
               </div>
             </div>
             <div class="col-md-4 text-center">
-              <div class="btn-group" role="<%= :group %>">
-                <button class="btn btn-default zoom-in" title="<%= _("Zoom in") %>" type="<%= :button %>">
+              <div class="btn-group" role="group">
+                <button class="btn btn-default zoom-in" title="<%= _("Zoom in") %>" type="button">
                   <%= icon_tag('search-plus') %>
                 </button>
-                <button class="btn btn-default zoom-out" title="<%= _("Zoom out") %>" type="<%= :button %>">
+                <button class="btn btn-default zoom-out" title="<%= _("Zoom out") %>" type="button">
                   <%= icon_tag('search-minus') %>
                 </button>
               </div>

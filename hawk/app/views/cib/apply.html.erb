@@ -1,4 +1,4 @@
-<form action="<%= cib_apply_path(cib_id: current_cib.id) %>" class="form-horizontal" method="<%= :post %>" role="<%= :form %>">
+<form class="form-horizontal" action="<%= cib_apply_path(cib_id: current_cib.id) %>" method="post" role="form">
   <div class="modal-header">
     <h4>
       <%= icon_tag "rocket" %>
@@ -24,12 +24,10 @@
     <button class="btn btn-default cancel" data-dismiss="modal" type="button">
       <%= _("Cancel") %>
     </button>
-    <input class="btn btn-primary submit" name="<%= :submit %>" type="<%= :submit %>" value="<%= _("Apply") %>"></input>
+    <input class="btn btn-primary submit" name="submit" type="submit" value="<%= _("Apply") %>"></input>
   </div>
 </form>
+
 <script>
-
   $(".cib-apply-diff").fetchShadowCIBDiff();
-
-
 </script>

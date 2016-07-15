@@ -5,8 +5,8 @@
         <%= branding_config[:provider].html_safe %>
       </div>
       <div class="col-xs-3 metadata">
-        <div class="btn-group btn-group-sm" role="<%= :group %>">
-          <a class="btn btn-default" data-toggle="<%= :modal %>" data-target="#modal" data-link="class{statusbuttonclass:meta.status}" href="<%= meta_cib_config_path(cib_id: current_cib.id) %>" title="<%= _("Cluster Details") %>" type="<%= :button %>">
+        <div class="btn-group btn-group-sm" role="group">
+          <a class="btn btn-default" data-toggle="modal" data-target="#modal" data-link="class{statusbuttonclass:meta.status}" href="<%= meta_cib_config_path(cib_id: current_cib.id) %>" title="<%= _("Cluster Details") %>" type="<button">
             <i data-link="<%= 'class{statusbuttonicon:meta.status}' %>"></i>
           </a>
         </div>

@@ -1,17 +1,17 @@
 <div class="batch-control-bar">
-  <a data-toggle="<%= :modal %>" data-target="#modal" href="<%= sim_help_path %>" class="help-cursor">
+  <a data-toggle="modal" data-target="#modal" href="<%= sim_help_path %>" class="help-cursor">
     <strong class="text-uppercase">
       <%= icon_text("warning", _("Batch Mode Active")) %>
     </strong>
   </a>
   <div class="pull-right">
-    <a class="btn" data-target="#" id="btn-show-batch" role="<%= :button %>">
+    <a class="btn" data-target="#" id="btn-show-batch" role="button">
       <%= icon_text("cog", _("Show")) %>
     </a>
-    <a class="btn" data-confirm="<%= _("Any pending changes to the configuration will be lost - do you wish to proceed?") %>" href="<%= cib_path(cib_id: :live) %>" id="btn-discard-batch" role="<%= :button %>">
+    <a class="btn" data-confirm="<%= _("Any pending changes to the configuration will be lost - do you wish to proceed?") %>" href="<%= cib_path(cib_id: :live) %>" id="btn-discard-batch" role="button">
       <%= icon_text("trash", _("Discard")) %>
     </a>
-    <a class="btn" data-toggle="<%= :modal %>" data-target="#modal-lg" href="<%= cib_apply_path(cib_id: current_cib.id) %>" id="btn-apply-batch" role="<%= :button %>">
+    <a class="btn" data-toggle="modal" data-target="#modal-lg" href="<%= cib_apply_path(cib_id: current_cib.id) %>" id="btn-apply-batch" role="button">
       <%= icon_text("check", _("Apply")) %>
     </a>
   </div>
@@ -26,7 +26,7 @@
 </script>
 <script id="batch-template" type="text/x-jsrender">
   <div class="tab-content">
-    <div class="tab-pane active" id="batch-view" role="<%= :tabpanel %>">
+    <div class="tab-pane active" id="batch-view" role="tabpanel">
       <div class="modal-header">
         <h3 class="modal-title">
           <%= icon_text("cog", _("Batch Mode")) %>
@@ -41,10 +41,10 @@
         <div class="container-fluid">
           <div class="row">
             <div class="col-sm-12">
-              <div class="btn-toolbar" role="<%= :toolbar %>">
-                <div class="btn-group" role="<%= :group %>">
+              <div class="btn-toolbar" role="toolbar">
+                <div class="btn-group" role="group">
                   <div class="dropdown">
-                    <a class="btn btn-default btn-block" data-toggle="<%= :dropdown %>" role="<%= :button %>">
+                    <a class="btn btn-default btn-block" data-toggle="dropdown" role="button">
                       <%= icon_text("rocket", _("Simulator")) %>
                     </a>
                     <ul class="dropdown-menu">
@@ -66,9 +66,9 @@
                     </ul>
                   </div>
                 </div>
-                <div class="btn-group" role="<%= :group %>">
+                <div class="btn-group" role="group">
                   <div class="dropdown">
-                    <a class="btn btn-default btn-block" data-toggle="<%= :dropdown %>" role="<%= :button %>">
+                    <a class="btn btn-default btn-block" data-toggle="dropdown" role="button">
                       <%= icon_text("bolt", _("Inject")) %>
                     </a>
                     <ul class="dropdown-menu">
@@ -124,12 +124,12 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn btn-default" data-dismiss="<%= :modal %>" type="<%= :button %>">
+        <button class="btn btn-default" data-dismiss="modal" type="button">
           <%= _("Close") %>
         </button>
       </div>
     </div>
-    <div class="tab-pane" id="batch-summary" role="<%= :tabpanel %>">
+    <div class="tab-pane" id="batch-summary" role="tabpanel">
       <div class="modal-header">
         <h3 class="modal-title">
           <%= icon_text("cog", _("Summary")) %>
@@ -143,12 +143,12 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a class="btn btn-primary" data-toggle="<%= :tab %>" role="<%= :button %>" href: "#batch-view">
+        <a class="btn btn-primary" data-toggle="tab" role="button" href: "#batch-view">
           <%= _("OK") %>
         </a>
       </div>
     </div>
-    <div class="tab-pane" id="batch-cib-in" role="<%= :tabpanel %>">
+    <div class="tab-pane" id="batch-cib-in" role="tabpanel">
       <div class="modal-header">
         <h3 class="modal-title">
           <%= icon_text("cog", _("CIB (in)")) %>
@@ -162,12 +162,12 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a class="btn btn-primary" data-toggle="<%= :tab %>" role="<%= :button %>" href: "#batch-view">
+        <a class="btn btn-primary" data-toggle="tab" role="button" href: "#batch-view">
           <%= _("OK") %>
         </a>
       </div>
     </div>
-    <div class="tab-pane" id="batch-cib-out" role="<%= :tabpanel %>">
+    <div class="tab-pane" id="batch-cib-out" role="tabpanel">
       <div class="modal-header">
         <h3 class="modal-title">
           <%= icon_text("cog", _("CIB (out)")) %>
@@ -181,12 +181,12 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a class="btn btn-primary" data-toggle="<%= :tab %>" role="<%= :button %>" href: "#batch-view">
+        <a class="btn btn-primary" data-toggle="tab" role="button" href: "#batch-view">
           <%= _("OK") %>
         </a>
       </div>
     </div>
-    <div class="tab-pane" id="batch-transition-graph" role="<%= :tabpanel %>">
+    <div class="tab-pane" id="batch-transition-graph" role="tabpanel">
       <div class="modal-header">
         <h3 class="modal-title">
           <%= icon_text("cog", _("Transition Graph")) %>
@@ -200,12 +200,12 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a class="btn btn-primary" data-toggle="<%= :tab %>" role="<%= :button %>" href: "#batch-view">
+        <a class="btn btn-primary" data-toggle="tab" role="button" href: "#batch-view">
           <%= _("OK") %>
         </a>
       </div>
     </div>
-    <div class="tab-pane" id="batch-transition" role="<%= :tabpanel %>">
+    <div class="tab-pane" id="batch-transition" role="tabpanel">
       <div class="modal-header">
         <h3 class="modal-title">
           <%= icon_text("cog", _("Transition (XML)")) %>
@@ -219,12 +219,12 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a class="btn btn-primary" data-toggle="<%= :tab %>" role="<%= :button %>" href: "#batch-view">
+        <a class="btn btn-primary" data-toggle="tab" role="button" href: "#batch-view">
           <%= _("OK") %>
         </a>
       </div>
     </div>
-    <div class="tab-pane" id="batch-node-event" role="<%= :tabpanel %>">
+    <div class="tab-pane" id="batch-node-event" role="tabpanel">
       <form class="form-horizontal" remote="<%= true %>">
         <div class="modal-header">
           <h3 class="modal-title">
@@ -262,16 +262,16 @@
           </div>
         </div>
         <div class="modal-footer">
-          <a class="btn btn-default" href: "#batch-view" data-toggle="<%= :tab %>" role="<%= :button %>">
+          <a class="btn btn-default" href: "#batch-view" data-toggle="tab" role="button">
             <%= _("Cancel") %>
           </a>
-          <a class="btn btn-primary" href: "#batch-view" data-toggle="<%= :tab %>" role="<%= :button %>">
+          <a class="btn btn-primary" href: "#batch-view" data-toggle="tab" role="button">
             <%= icon_text "plus", _("OK") %>
           </a>
         </div>
       </form>
     </div>
-    <div class="tab-pane" id="batch-resource-event" role="<%= :tabpanel %>">
+    <div class="tab-pane" id="batch-resource-event" role="tabpanel">
       <form class="form-horizontal" remote="<%= true %>">
         <div class="modal-header">
           <h3 class="modal-title">
@@ -312,7 +312,7 @@
               <%= _("Interval (ms)") %>
             </label>
             <div class="col-sm-7">
-              <input class="form-control" id="op-inject-interval" type="<%= :text %>"></input>
+              <input class="form-control" id="op-inject-interval" type="text"></input>
             </div>
           </div>
           <div class="form-group">
@@ -345,16 +345,16 @@
           </div>
         </div>
         <div class="modal-footer">
-          <a class="btn btn-default" href: "#batch-view" data-toggle="<%= :tab %>" role="<%= :button %>">
+          <a class="btn btn-default" href: "#batch-view" data-toggle="tab" role="button">
             <%= _("Cancel") %>
           </a>
-          <a class="btn btn-primary" href: "#batch-view" data-toggle="<%= :tab %>" role="<%= :button %>">
+          <a class="btn btn-primary" href: "#batch-view" data-toggle="tab" role="button">
             <%= icon_text "plus", _("OK") %>
           </a>
         </div>
       </form>
     </div>
-    <div class="tab-pane" id="batch-ticket-event" role="<%= :tabpanel %>">
+    <div class="tab-pane" id="batch-ticket-event" role="tabpanel">
       <form class="form-horizontal" remote="<%= true %>">
         <div class="modal-header">
           <h3 class="modal-title">
@@ -392,10 +392,10 @@
           </div>
         </div>
         <div class="modal-footer">
-          <a class="btn btn-default" href: "#batch-view" data-toggle="<%= :tab %>" role="<%= :button %>">
+          <a class="btn btn-default" href: "#batch-view" data-toggle="tab" role="button">
             <%= _("Cancel") %>
           </a>
-          <a class="btn btn-primary" href: "#batch-view" data-toggle="<%= :tab %>" role="<%= :button %>">
+          <a class="btn btn-primary" href: "#batch-view" data-toggle="tab" role="button">
             <%= icon_text "plus", _("OK") %>
           </a>
         </div>

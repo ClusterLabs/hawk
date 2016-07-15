@@ -8,9 +8,9 @@
     <%= form_for [@cib, @wizard], horizontal: true, bootstrap: true do |main_form| %>
       <div class="panel panel-default">
         <div class="panel-steps">
-          <ul class="nav nav-pills" role="<%= :tablist %>">
+          <ul class="nav nav-pills" role="tablist">
             <% @wizard.steps.each_with_index do |step, index| %>
-              <li role="<%= :presentation %>">
+              <li role="presentation">
                 <%= link_to index + 1, "#step#{index}", class: "btn btn-default btn-circle", data: { toggle: "tab" }, role: :tab, aria: { controls: "step#{index}" } %>
               </li>
             <% end %>
@@ -20,7 +20,7 @@
           <div class="tab-content">
             <% @wizard.steps.each_with_index do |step, index| %>
               <%= main_form.fields_for :steps, step do |step_form| %>
-                <div class="tab-pane" id="step<%= index %>" role="<%= :tabpanel %>">
+                <div class="tab-pane" id="step<%= index %>" role="tabpanel">
                   <fieldset>
                     <legend>
                       <%= step.title %>

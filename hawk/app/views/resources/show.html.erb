@@ -76,7 +76,7 @@
       <% end %>
       <% if @resource.meta.any? %>
         <div class="panel panel-default">
-          <div class="panel-heading" id="r-metacontrol" role="<%= :tab %>">
+          <div class="panel-heading" id="r-metacontrol" role="tab">
             <h4 class="panel-title">
               <a href="#r-metas" data-toggle="collapse" role="button" aria-expanded='true' aria-controls='r-metas'>
                 <%= _("Meta Attributes") %>
@@ -132,7 +132,7 @@
       <% end %>
       <% if @resource.ops.any? %>
         <div class="panel panel-default">
-          <div class="panel-heading" id="r-opcontrol" role="<%= :tab %>">
+          <div class="panel-heading" id="r-opcontrol" role="tab">
             <h4 class="panel-title">
               <a href="#r-ops" data-toggle="collapse" role="button" aria-expanded='true' aria-controls='r-ops'>
                 <%= _("Operations") %>
@@ -178,7 +178,7 @@
       <% end %>
       <% if @resource.running_on.any? %>
         <div class="panel panel-default">
-          <div class="panel-heading" id="r-instances" role="<%= :tab %>">
+          <div class="panel-heading" id="r-instances" role="tab">
             <h4 class="panel-title">
               <a href="#r-instances-body" data-toggle="collapse" role="button" aria-expanded='true' aria-controls='r-instances-body'>
                 <%= _("Instances") %>
@@ -259,7 +259,7 @@
         </div>
       <% end %>
       <div class="panel panel-default">
-        <div class="panel-heading" id="r-constraints" role="<%= :tab %>">
+        <div class="panel-heading" id="r-constraints" role="tab">
           <h4 class="panel-title">
             <a href="#r-constraints-body" data-toggle="collapse" role="button" aria-expanded='true' aria-controls='r-constraints-body'>
               <%= _("Constraints") %>
