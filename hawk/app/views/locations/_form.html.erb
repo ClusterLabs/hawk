@@ -34,13 +34,8 @@
                   <div class="col-sm-7">
                     <div class="input-group">
                       <div class="input-group-btn">
-<<<<<<< 2662fecc3f7a7a3d3f779ff0427be756722e5b25
                         <button aria-haspopup="true" aria-expanded="false" class="btn btn-default dropdown-toggle p-y-9" id="simple-score-btn" type="button" data-toggle='dropdown'>
                           <i class="fa fa-caret-down" aria-hidden="true"></i>
-=======
-                        <button aria-haspopup="true" aria-expanded="false" class="btn btn-default dropdown-toggle" id="simple-score-btn" type="button" data-toggle='dropdown'>
-                          <span class="caret"></span>
->>>>>>> UI: Change file's extension in views/* to erb
                         </button>
                         <ul class="dropdown-menu">
                           <li>
@@ -56,11 +51,7 @@
                           </li>
                         </ul>
                       </div>
-<<<<<<< 2662fecc3f7a7a3d3f779ff0427be756722e5b25
                       <input class="form-control" id="simple-score" type="text"></input>
-=======
-                      <input class="form-control" id="simple-score" type="<%= :text %>"></input>
->>>>>>> UI: Change file's extension in views/* to erb
                     </div>
                   </div>
                 </div>
@@ -81,11 +72,7 @@
                 </div>
               </div>
             </div>
-<<<<<<< 2662fecc3f7a7a3d3f779ff0427be756722e5b25
             <div class="tab-pane" id="locadvanced" role="tabpanel">
-=======
-            <div class="tab-pane" id="locadvanced" role="<%= :tabpanel %>">
->>>>>>> UI: Change file's extension in views/* to erb
               <div class="panel-body">
                 <%= main_form.select :discovery, :location_discovery_options, { include_blank: true, include_hidden: false }, { label: _("Resource Discovery"), data: { help_filter: ".row.resource-discovery" } } %>
                 <div data-locations="<%= location.rules.to_json %>" data-locations-prefix="location[rules]" data-locations-target=".content">

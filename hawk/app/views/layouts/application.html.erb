@@ -1,13 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<<<<<<< 792fa759b0ae15123460406e38238b12f7213dca
 <html lang="<%= I18n.locale.to_s.gsub('-', '_') %>">
   <%= render partial: "shared/header" %>
-  <body class="<%= current_cib.id %>" data-cib="<%= current_cib.id %>" data-content='<%= raw current_cib.status.to_json %>' data-epoch="<%= current_cib.epoch %>" data-god="<%= is_god?.to_s %>" data-user="<%= current_user %>" id="<%= controller_name %>" >
-=======
-<html lang="<%= I18n.locale.to_s.gsub("-", "_") %>">
-  <%= render partial: "shared/header" %>
-  <body class="<%= current_cib.id %>" id="<%= controller_name %>" data-cib="<%= current_cib.id %>" data-epoch="<%= current_cib.epoch %>" data-god="<%= is_god?.to_s %>" data-user="<%= current_user %>" data-content="<%= current_cib.status.to_json %>">
->>>>>>> UI: Remove Haml gem, replace Haml template engine and rewrite files in views/shared in erb
+  <body  <%= body_attrs %> >
     <div class="<%= navbar_background_class %> navbar navbar-fixed-top" role="navigation">
       <div class="container-fluid" style="white-space: nobreak;">
         <div class="navbar-header">

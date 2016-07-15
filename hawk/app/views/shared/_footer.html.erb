@@ -5,13 +5,8 @@
         <%= branding_config[:provider].html_safe %>
       </div>
       <div class="col-xs-3 metadata">
-<<<<<<< 792fa759b0ae15123460406e38238b12f7213dca
         <div class="btn-group btn-group-sm" role="group">
           <a class="btn btn-default" data-toggle="modal" data-target="#modal" data-link="class{statusbuttonclass:meta.status}" href="<%= meta_cib_config_path(cib_id: current_cib.id) %>" title="<%= _("Cluster Details") %>" type="<button">
-=======
-        <div class="btn-group btn-group-sm" role="<%= :group %>">
-          <a class="btn btn-default" data-toggle="<%= :modal %>" data-target="#modal" data-link="class{statusbuttonclass:meta.status}" href="<%= meta_cib_config_path(cib_id: current_cib.id) %>" title="<%= _("Cluster Details") %>" type="<%= :button %>">
->>>>>>> UI: Remove Haml gem, replace Haml template engine and rewrite files in views/shared in erb
             <i data-link="<%= 'class{statusbuttonicon:meta.status}' %>"></i>
           </a>
         </div>
