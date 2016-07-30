@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   resources :cib, only: [] do
     get "/", via: [:get, :post, :options], to: "cib#show", as: ""
+    match "/", via: [:options], to: "cib#show"
     match "/apply", as: :apply, to: 'cib#apply', via: [:get, :post]
     get "/ops/:id", to: "cib#ops", as: :ops
 
