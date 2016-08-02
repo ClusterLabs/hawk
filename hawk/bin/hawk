@@ -40,6 +40,11 @@ hawk_server() {
 	HAWK_ENV=development LOGGER=stdout /usr/bin/puma -C /vagrant/hawk/config/puma.rb
 }
 
+hawk_production() {
+	sudo systemctl stop hawk #stop the running production instance on port 7630
+	/usr/bin/puma -C /vagrant/hawk/config/puma.rb
+}
+
 if [ $# -lt 1 ]
 then
 	usage
@@ -67,6 +72,9 @@ case "$1" in
 		;;
 	server|s)
 		hawk_server
+		;;
+	production)
+		hawk_production
 		;;
 	*)
 		usage
