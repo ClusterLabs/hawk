@@ -121,7 +121,7 @@ $(function() {
       sizeclass = 'circle-large ';
     } else if ($(this).hasClass('circle-medium')) {
       sizeclass = 'circle-medium ';
-    } else if ($(this).hasClass('circle-medium')) {
+    } else if ($(this).hasClass('circle-small')) {
       sizeclass = 'circle-small ';
     }
     var circle = ['<div class="circle ', sizeclass,
