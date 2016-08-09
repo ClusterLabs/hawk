@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-12 19:52+0200\n"
-"PO-Revision-Date: 2016-06-29 12:14\n"
+"PO-Revision-Date: 2016-07-26 14:18\n"
 "Last-Translator: Novell language <language@novell.com>\n"
 "Language-Team: Novell language <language@novell.com>\n"
 "Language: \n"
@@ -712,7 +712,7 @@ msgstr "节点"
 
 #: ../app/assets/javascripts/module/resources.js:200
 msgid "Maintenance Mode"
-msgstr ""
+msgstr "维护模式"
 
 #: ../app/assets/javascripts/module/resources.js:203
 msgid "Unmanaged"
@@ -795,7 +795,7 @@ msgstr "升级"
 
 #: ../app/assets/javascripts/module/resources.js:375
 msgid "Disable Maintenance Mode"
-msgstr ""
+msgstr "禁用维护模式"
 
 #: ../app/assets/javascripts/module/resources.js:380
 msgid "Migrate"
@@ -825,39 +825,39 @@ msgstr "子项"
 
 #: ../app/assets/javascripts/module/resources.js:785
 msgid "This will start the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "这会启动标记的资源。要继续吗？"
 
 #: ../app/assets/javascripts/module/resources.js:788
 msgid "This will stop the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "这会停止标记的资源。要继续吗？"
 
 #: ../app/assets/javascripts/module/resources.js:791
 msgid "This will promote the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "这会提升标记的资源。要继续吗？"
 
 #: ../app/assets/javascripts/module/resources.js:794
 msgid "This will demote the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "这会降级标记的资源。要继续吗？"
 
 #: ../app/assets/javascripts/module/resources.js:797
 msgid "This will enable maintenance mode for the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "这会对标记的资源启用维护模式。要继续吗？"
 
 #: ../app/assets/javascripts/module/resources.js:800
 msgid "This will disable maintenance mode for the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "这会对标记的资源禁用维护模式。要继续吗？"
 
 #: ../app/assets/javascripts/module/resources.js:804
 msgid "Migrate tagged resources"
-msgstr ""
+msgstr "迁移标记的资源"
 
 #: ../app/assets/javascripts/module/resources.js:808
 msgid "This will unmigrate the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "这会取消迁移标记的资源。要继续吗？"
 
 #: ../app/assets/javascripts/module/resources.js:812
 msgid "Clean up tagged resources"
-msgstr ""
+msgstr "清理标记的资源"
 
 #: ../app/assets/javascripts/module/roles.js:27
 #: ../app/views/roles/_form.html.haml:10 ../app/views/roles/_form.html.haml:13
@@ -929,15 +929,15 @@ msgstr "无法创建阴影 CIB"
 
 #: ../app/controllers/application_controller.rb:194
 msgid "Error: Permission denied for user (%s)"
-msgstr ""
+msgstr "错误：用户 (%s) 的权限被拒"
 
 #: ../app/controllers/application_controller.rb:198
 msgid "Error: Not authenticated"
-msgstr ""
+msgstr "错误：未经过身份验证"
 
 #: ../app/controllers/application_controller.rb:202
 msgid "Error: Record not found"
-msgstr ""
+msgstr "错误：找不到记录"
 
 #: ../app/controllers/cib_controller.rb:44
 msgid "Failed to apply configuration"
@@ -1401,19 +1401,19 @@ msgstr "无法将资源降级：%{err}"
 
 #: ../app/controllers/resources_controller.rb:118
 msgid "Successfully set the resource in maintenance mode"
-msgstr ""
+msgstr "已成功将资源设置为维护模式"
 
 #: ../app/controllers/resources_controller.rb:119
 msgid "Failed to set the resource in maintenance mode: %{err}"
-msgstr ""
+msgstr "无法将资源设置为维护模式：%{err}"
 
 #: ../app/controllers/resources_controller.rb:125
 msgid "Successfully disabled maintenance mode for resource"
-msgstr ""
+msgstr "已成功对资源禁用维护模式"
 
 #: ../app/controllers/resources_controller.rb:126
 msgid "Failed to disable maintenance mode for resource: %{err}"
-msgstr ""
+msgstr "无法对资源禁用维护模式：%{err}"
 
 #: ../app/controllers/resources_controller.rb:132
 msgid "Successfully unmigrated the resource"
@@ -1694,16 +1694,16 @@ msgstr "配置文件"
 #: ../app/helpers/application_helper.rb:223
 #: ../app/helpers/application_helper.rb:229
 msgid "File a Bug Report"
-msgstr ""
+msgstr "创建 Bug 报告"
 
 #: ../app/helpers/application_helper.rb:223
 #: ../app/helpers/application_helper.rb:229
 msgid "Report a bug or request a feature!"
-msgstr ""
+msgstr "报告 Bug 或请求某个功能！"
 
 #: ../app/helpers/application_helper.rb:224
 msgid "Read the release notes for the SUSE High Availability Extension."
-msgstr ""
+msgstr "阅读 SUSE High Availability Extension 的发行说明。"
 
 #: ../app/helpers/application_helper.rb:224
 msgid "Release Notes"
@@ -1711,16 +1711,16 @@ msgstr "发行说明"
 
 #: ../app/helpers/application_helper.rb:225
 msgid "Read the most up-to-date documentation at the suse.com website."
-msgstr ""
+msgstr "阅读 suse.com 网站上的最新文档。"
 
 #: ../app/helpers/application_helper.rb:225
 #: ../app/helpers/application_helper.rb:231
 msgid "Online Documentation"
-msgstr ""
+msgstr "联机文档"
 
 #: ../app/helpers/application_helper.rb:230
 msgid "Visit the Hawk website for information about the latest release."
-msgstr ""
+msgstr "访问 Hawk 网站以了解有关最新版本的信息。"
 
 #: ../app/helpers/application_helper.rb:230
 msgid "News"
@@ -1728,7 +1728,7 @@ msgstr "新闻"
 
 #: ../app/helpers/application_helper.rb:231
 msgid "Getting Started using Hawk"
-msgstr ""
+msgstr "开始使用 Hawk"
 
 #: ../app/helpers/application_helper.rb:239
 msgid "Current Configuration Version"
@@ -1908,11 +1908,11 @@ msgstr "%{fail_start}：对 %{node} 节点上的 %{resource} 资源执行 %{op} 
 
 #: ../app/models/cib.rb:953
 msgid "Partial upgrade detected! Nodes report different CRM versions: %s"
-msgstr ""
+msgstr "检测到部分升级！多个节点报告了不同的 CRM 版本：%s"
 
 #: ../app/models/cib.rb:1064
 msgid "Partition without quorum! Fencing and resource management is disabled."
-msgstr ""
+msgstr "分区没有仲裁！已禁用屏蔽和资源管理功能。"
 
 #: ../app/models/cib.rb:1068
 msgid "Node \"%{node}\" is UNCLEAN and needs to be fenced."
@@ -1944,7 +1944,7 @@ msgstr "是否允许群集启动和停止该资源？"
 #: ../app/models/group.rb:63 ../app/models/master.rb:67
 #: ../app/models/template.rb:235
 msgid "Resources in maintenance mode are not monitored by the cluster."
-msgstr ""
+msgstr "群集不会监视处于维护模式的资源。"
 
 #: ../app/models/clone.rb:77 ../app/models/crm_config.rb:33
 #: ../app/models/group.rb:68 ../app/models/master.rb:72
@@ -2534,7 +2534,7 @@ msgstr "显示配置"
 
 #: ../app/views/constraints/rename.html.haml:9
 msgid "Rename Constraint"
-msgstr ""
+msgstr "重命名约束"
 
 #: ../app/views/constraints/rename.html.haml:36
 #: ../app/views/reports/display.html.haml:55
@@ -2766,20 +2766,20 @@ msgstr "报告中没有转换"
 
 #: ../app/views/reports/display.html.haml:125
 msgid "Previous"
-msgstr ""
+msgstr "上一页"
 
 #: ../app/views/reports/display.html.haml:133
 msgid "Zoom in"
-msgstr ""
+msgstr "放大"
 
 #: ../app/views/reports/display.html.haml:135
 msgid "Zoom out"
-msgstr ""
+msgstr "缩小"
 
 #: ../app/views/reports/display.html.haml:143
 #: ../app/views/wizards/show.html.haml:133
 msgid "Next"
-msgstr "下一项"
+msgstr "下一页"
 
 #: ../app/views/reports/display.html.haml:161
 msgid "PE Name"

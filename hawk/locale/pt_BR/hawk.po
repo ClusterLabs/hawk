@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-12 19:52+0200\n"
-"PO-Revision-Date: 2016-06-29 12:14\n"
+"PO-Revision-Date: 2016-07-26 14:18\n"
 "Last-Translator: Novell language <language@novell.com>\n"
 "Language-Team: Novell language <language@novell.com>\n"
 "Language: \n"
@@ -712,7 +712,7 @@ msgstr "Nó"
 
 #: ../app/assets/javascripts/module/resources.js:200
 msgid "Maintenance Mode"
-msgstr ""
+msgstr "Modo de Manutenção"
 
 #: ../app/assets/javascripts/module/resources.js:203
 msgid "Unmanaged"
@@ -795,7 +795,7 @@ msgstr "Promover"
 
 #: ../app/assets/javascripts/module/resources.js:375
 msgid "Disable Maintenance Mode"
-msgstr ""
+msgstr "Desabilitar Modo de Manutenção"
 
 #: ../app/assets/javascripts/module/resources.js:380
 msgid "Migrate"
@@ -825,39 +825,39 @@ msgstr "Filhos"
 
 #: ../app/assets/javascripts/module/resources.js:785
 msgid "This will start the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "Isso iniciará os recursos com tag. Deseja continuar?"
 
 #: ../app/assets/javascripts/module/resources.js:788
 msgid "This will stop the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "Isso interromperá os recursos com tag. Deseja continuar?"
 
 #: ../app/assets/javascripts/module/resources.js:791
 msgid "This will promote the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "Isso promoverá os recursos com tag. Deseja continuar?"
 
 #: ../app/assets/javascripts/module/resources.js:794
 msgid "This will demote the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "Isso retrocederá os recursos com tag. Deseja continuar?"
 
 #: ../app/assets/javascripts/module/resources.js:797
 msgid "This will enable maintenance mode for the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "Isso habilitará o modo de manutenção nos recursos com tag. Deseja continuar?"
 
 #: ../app/assets/javascripts/module/resources.js:800
 msgid "This will disable maintenance mode for the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "Isso desabilitará o modo de manutenção nos recursos com tag. Deseja continuar?"
 
 #: ../app/assets/javascripts/module/resources.js:804
 msgid "Migrate tagged resources"
-msgstr ""
+msgstr "Migrar recursos com tag"
 
 #: ../app/assets/javascripts/module/resources.js:808
 msgid "This will unmigrate the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "Isso cancelará a migração dos recursos com tag. Deseja continuar?"
 
 #: ../app/assets/javascripts/module/resources.js:812
 msgid "Clean up tagged resources"
-msgstr ""
+msgstr "Limpar recursos com tag"
 
 #: ../app/assets/javascripts/module/roles.js:27
 #: ../app/views/roles/_form.html.haml:10 ../app/views/roles/_form.html.haml:13
@@ -929,15 +929,15 @@ msgstr "Impossível criar CIB de sombra"
 
 #: ../app/controllers/application_controller.rb:194
 msgid "Error: Permission denied for user (%s)"
-msgstr ""
+msgstr "Erro: Permissão negada para usuário (%s)"
 
 #: ../app/controllers/application_controller.rb:198
 msgid "Error: Not authenticated"
-msgstr ""
+msgstr "Erro: Não autenticado"
 
 #: ../app/controllers/application_controller.rb:202
 msgid "Error: Record not found"
-msgstr ""
+msgstr "Erro: Registro não encontrado"
 
 #: ../app/controllers/cib_controller.rb:44
 msgid "Failed to apply configuration"
@@ -1401,19 +1401,19 @@ msgstr "Falha ao retroceder o recurso: %{err}"
 
 #: ../app/controllers/resources_controller.rb:118
 msgid "Successfully set the resource in maintenance mode"
-msgstr ""
+msgstr "Recurso definido com êxito no modo de manutenção"
 
 #: ../app/controllers/resources_controller.rb:119
 msgid "Failed to set the resource in maintenance mode: %{err}"
-msgstr ""
+msgstr "Falha ao definir o recurso no modo de manutenção: %{err}"
 
 #: ../app/controllers/resources_controller.rb:125
 msgid "Successfully disabled maintenance mode for resource"
-msgstr ""
+msgstr "Modo de manutenção desabilitado com êxito no recurso"
 
 #: ../app/controllers/resources_controller.rb:126
 msgid "Failed to disable maintenance mode for resource: %{err}"
-msgstr ""
+msgstr "Falha ao desabilitar o modo de manutenção no recurso: %{err}"
 
 #: ../app/controllers/resources_controller.rb:132
 msgid "Successfully unmigrated the resource"
@@ -1694,16 +1694,16 @@ msgstr "Perfil"
 #: ../app/helpers/application_helper.rb:223
 #: ../app/helpers/application_helper.rb:229
 msgid "File a Bug Report"
-msgstr ""
+msgstr "Registrar Relatório de Bug"
 
 #: ../app/helpers/application_helper.rb:223
 #: ../app/helpers/application_helper.rb:229
 msgid "Report a bug or request a feature!"
-msgstr ""
+msgstr "Relate um bug ou solicite um recurso!"
 
 #: ../app/helpers/application_helper.rb:224
 msgid "Read the release notes for the SUSE High Availability Extension."
-msgstr ""
+msgstr "Leia as notas de versão da SUSE High Availability Extension."
 
 #: ../app/helpers/application_helper.rb:224
 msgid "Release Notes"
@@ -1711,16 +1711,16 @@ msgstr "Notas de Versão"
 
 #: ../app/helpers/application_helper.rb:225
 msgid "Read the most up-to-date documentation at the suse.com website."
-msgstr ""
+msgstr "Leia a documentação mais atualizada no site suse.com na Web."
 
 #: ../app/helpers/application_helper.rb:225
 #: ../app/helpers/application_helper.rb:231
 msgid "Online Documentation"
-msgstr ""
+msgstr "Documentação Online"
 
 #: ../app/helpers/application_helper.rb:230
 msgid "Visit the Hawk website for information about the latest release."
-msgstr ""
+msgstr "Visite o site do Hawk na Web para obter informações sobre a versão mais recente."
 
 #: ../app/helpers/application_helper.rb:230
 msgid "News"
@@ -1728,7 +1728,7 @@ msgstr "News"
 
 #: ../app/helpers/application_helper.rb:231
 msgid "Getting Started using Hawk"
-msgstr ""
+msgstr "Introdução ao Hawk"
 
 #: ../app/helpers/application_helper.rb:239
 msgid "Current Configuration Version"
@@ -1908,11 +1908,11 @@ msgstr "%{fail_start}: Falha na operação %{op} para o recurso %{resource} no n
 
 #: ../app/models/cib.rb:953
 msgid "Partial upgrade detected! Nodes report different CRM versions: %s"
-msgstr ""
+msgstr "Upgrade parcial detectado! Os nós relatam versões de CRM diferentes: %s"
 
 #: ../app/models/cib.rb:1064
 msgid "Partition without quorum! Fencing and resource management is disabled."
-msgstr ""
+msgstr "Partição sem quorum! Limitação e gerenciamento de recursos desabilitados."
 
 #: ../app/models/cib.rb:1068
 msgid "Node \"%{node}\" is UNCLEAN and needs to be fenced."
@@ -1944,7 +1944,7 @@ msgstr "O cluster permitiu iniciar e parar o recurso?"
 #: ../app/models/group.rb:63 ../app/models/master.rb:67
 #: ../app/models/template.rb:235
 msgid "Resources in maintenance mode are not monitored by the cluster."
-msgstr ""
+msgstr "Os recursos no modo de manutenção não são monitorados pelo cluster."
 
 #: ../app/models/clone.rb:77 ../app/models/crm_config.rb:33
 #: ../app/models/group.rb:68 ../app/models/master.rb:72
@@ -2534,7 +2534,7 @@ msgstr "Mostrar Configuração"
 
 #: ../app/views/constraints/rename.html.haml:9
 msgid "Rename Constraint"
-msgstr ""
+msgstr "Renomear Restrição"
 
 #: ../app/views/constraints/rename.html.haml:36
 #: ../app/views/reports/display.html.haml:55
@@ -2766,15 +2766,15 @@ msgstr "Nenhuma transição no relatório"
 
 #: ../app/views/reports/display.html.haml:125
 msgid "Previous"
-msgstr ""
+msgstr "Anterior"
 
 #: ../app/views/reports/display.html.haml:133
 msgid "Zoom in"
-msgstr ""
+msgstr "Ampliar"
 
 #: ../app/views/reports/display.html.haml:135
 msgid "Zoom out"
-msgstr ""
+msgstr "Reduzir"
 
 #: ../app/views/reports/display.html.haml:143
 #: ../app/views/wizards/show.html.haml:133

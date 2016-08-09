@@ -1,21 +1,19 @@
 # Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
 # This file is distributed under the same license as the package.
 #
-# Freek de Kruijf <freek@opensuse.org>, 2016.
 msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-12 19:52+0200\n"
-"PO-Revision-Date: 2016-06-20 22:48+0200\n"
-"Last-Translator: Freek de Kruijf <freek@opensuse.org>\n"
-"Language-Team: Dutch <opensuse-nl@opensuse.org>\n"
-"Language: nl\n"
+"PO-Revision-Date: 2016-07-26 14:24\n"
+"Last-Translator: Novell language <language@novell.com>\n"
+"Language-Team: Novell language <language@novell.com>\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 1.5\n"
 
 #: ../app/assets/javascripts/dashboard.js:20
 msgid "Error"
@@ -26,26 +24,18 @@ msgid "Unexpected server error: _MSG_"
 msgstr "Onverwachte serverfout: _MSG_"
 
 #: ../app/assets/javascripts/dashboard.js:26
-msgid ""
-"Connection to server failed (server down or network error - will retry every "
-"15 seconds)."
-msgstr ""
-"Verbinding met server mislukt (server uitgevallen of netwerkfout. Er wordt "
-"elke 15 seconden een nieuwe poging gedaan)."
+msgid "Connection to server failed (server down or network error - will retry every 15 seconds)."
+msgstr "Verbinding met server mislukt (server uitgevallen of netwerkfout. Er wordt elke 15 seconden een nieuwe poging gedaan)."
 
 #: ../app/assets/javascripts/dashboard.js:29
 #: ../app/assets/javascripts/module/monitor.js:71
 msgid "Connection to server timed out - will retry every 15 seconds."
-msgstr ""
-"Er is een time-out voor de verbinding met de server opgetreden. Er wordt "
-"elke 15 seconden een nieuwe poging gedaan."
+msgstr "Er is een time-out voor de verbinding met de server opgetreden. Er wordt elke 15 seconden een nieuwe poging gedaan."
 
 #: ../app/assets/javascripts/dashboard.js:32
 #: ../app/assets/javascripts/module/monitor.js:49
 msgid "Connection to server aborted - will retry every 15 seconds."
-msgstr ""
-"Verbinding met server afgebroken. Er wordt elke 15 seconden een nieuwe "
-"poging gedaan."
+msgstr "Verbinding met server afgebroken. Er wordt elke 15 seconden een nieuwe poging gedaan."
 
 #: ../app/assets/javascripts/dashboard.js:35
 msgid "Permission denied"
@@ -484,9 +474,7 @@ msgstr "Monitorrespons parseren mislukt - interne serverfout."
 #: ../app/assets/javascripts/module/monitor.js:68
 #: ../app/assets/javascripts/module/status.js:133
 msgid "Connection to server failed - will retry every 15 seconds."
-msgstr ""
-"De verbinding met de server is verbroken. Er wordt elke 15 seconden een "
-"nieuwe poging gedaan."
+msgstr "De verbinding met de server is verbroken. Er wordt elke 15 seconden een nieuwe poging gedaan."
 
 #: ../app/assets/javascripts/module/nodes.js:43
 #: ../app/assets/javascripts/module/resources.js:190
@@ -578,8 +566,7 @@ msgstr "Geen interval ingesteld voor monitorbewerking"
 
 #: ../app/assets/javascripts/module/oplist.js:327
 msgid "Replacing previously defined monitor operation with same interval"
-msgstr ""
-"Eerder gedefinieerde monitorbewerking wordt vervangen met hetzelfde interval"
+msgstr "Eerder gedefinieerde monitorbewerking wordt vervangen met hetzelfde interval"
 
 #: ../app/assets/javascripts/module/primitives.js:69
 #: ../app/models/resource.rb:124 ../app/views/primitives/_form.html.haml:14
@@ -724,7 +711,6 @@ msgid "Node"
 msgstr "Knooppunt"
 
 #: ../app/assets/javascripts/module/resources.js:200
-#| msgid "Maintenance mode"
 msgid "Maintenance Mode"
 msgstr "Onderhoudsmodus"
 
@@ -808,7 +794,6 @@ msgid "Promote"
 msgstr "Bevorderen"
 
 #: ../app/assets/javascripts/module/resources.js:375
-#| msgid "Maintenance mode"
 msgid "Disable Maintenance Mode"
 msgstr "Onderhoudsmodus uitschakelen"
 
@@ -840,50 +825,39 @@ msgstr "Onderliggende elementen"
 
 #: ../app/assets/javascripts/module/resources.js:785
 msgid "This will start the tagged resources. Do you want to continue?"
-msgstr "Dit zal de hulpmiddelen met een tag starten. Wilt u doorgaan?"
+msgstr "Hiermee worden de getagde resources gestart. Wilt u doorgaan?"
 
 #: ../app/assets/javascripts/module/resources.js:788
 msgid "This will stop the tagged resources. Do you want to continue?"
-msgstr "Dit zal de hulpmiddelen met een tag stoppen. Wilt u doorgaan?"
+msgstr "Hiermee worden de getagde resources gestopt. Wilt u doorgaan?"
 
 #: ../app/assets/javascripts/module/resources.js:791
 msgid "This will promote the tagged resources. Do you want to continue?"
-msgstr "Dit zal de hulpmiddelen met een tag verhogen. Wilt u doorgaan?"
+msgstr "Hiermee worden de getagde resources bevorderd. Wilt u doorgaan?"
 
 #: ../app/assets/javascripts/module/resources.js:794
 msgid "This will demote the tagged resources. Do you want to continue?"
-msgstr "Dit zal de hulpmiddelen met een tag verlagen. Wilt u doorgaan?"
+msgstr "Hiermee worden de getagde resources gedegradeerd. Wilt u doorgaan?"
 
 #: ../app/assets/javascripts/module/resources.js:797
-msgid ""
-"This will enable maintenance mode for the tagged resources. Do you want to "
-"continue?"
-msgstr ""
-"Dit zal de onderhoudsmodus van hulpmiddelen met een tag inschakelen. Wilt u "
-"doorgaan?"
+msgid "This will enable maintenance mode for the tagged resources. Do you want to continue?"
+msgstr "Hiermee wordt de onderhoudsmodus voor de getagde resources ingeschakeld. Wilt u doorgaan?"
 
 #: ../app/assets/javascripts/module/resources.js:800
-msgid ""
-"This will disable maintenance mode for the tagged resources. Do you want to "
-"continue?"
-msgstr ""
-"Dit zal de onderhoudsmodus van hulpmiddelen met een tag uitschakelen. Wilt u "
-"doorgaan?"
+msgid "This will disable maintenance mode for the tagged resources. Do you want to continue?"
+msgstr "Hiermee wordt de onderhoudsmodus voor de getagde resources uitgeschakeld. Wilt u doorgaan?"
 
 #: ../app/assets/javascripts/module/resources.js:804
-#| msgid "Create Multi-state resource"
 msgid "Migrate tagged resources"
-msgstr "Hulpmiddelen met een tag migreren"
+msgstr "Getagde resources migreren"
 
 #: ../app/assets/javascripts/module/resources.js:808
 msgid "This will unmigrate the tagged resources. Do you want to continue?"
-msgstr ""
-"Dit zal de hulpmiddelen met een tag uit de migratie halen. Wilt u doorgaan?"
+msgstr "Hiermee wordt het migreren van de getagde resources ongedaan gemaakt. Wilt u doorgaan?"
 
 #: ../app/assets/javascripts/module/resources.js:812
-#| msgid "Create Multi-state resource"
 msgid "Clean up tagged resources"
-msgstr "Hulpmiddelen met een tag opschonen"
+msgstr "Getagde resources opschonen"
 
 #: ../app/assets/javascripts/module/roles.js:27
 #: ../app/views/roles/_form.html.haml:10 ../app/views/roles/_form.html.haml:13
@@ -954,14 +928,12 @@ msgid "Unable to create shadow CIB"
 msgstr "Kan geen schaduw-CIB maken"
 
 #: ../app/controllers/application_controller.rb:194
-#| msgid "Permission denied for user %{user}"
 msgid "Error: Permission denied for user (%s)"
-msgstr "Fout: toestemming geweigerd voor gebruiker (%s)"
+msgstr "Fout: toegang geweigerd voor gebruiker (%s)"
 
 #: ../app/controllers/application_controller.rb:198
-#| msgid "Error granting the ticket"
 msgid "Error: Not authenticated"
-msgstr "Fout: niet geauthenticeerd"
+msgstr "Fout: niet geverifieerd"
 
 #: ../app/controllers/application_controller.rb:202
 msgid "Error: Record not found"
@@ -1428,24 +1400,20 @@ msgid "Failed to demote the resource: %{err}"
 msgstr "Niveau van resource kan niet worden verlaagd: %{err}"
 
 #: ../app/controllers/resources_controller.rb:118
-#| msgid "Successfully set the resource in managed mode"
 msgid "Successfully set the resource in maintenance mode"
-msgstr "Het hulpmiddel is met succes in onderhoudsmodus gezet"
+msgstr "De resource is in de onderhoudsmodus ingesteld"
 
 #: ../app/controllers/resources_controller.rb:119
-#| msgid "Failed to set the resource in managed mode: %{err}"
 msgid "Failed to set the resource in maintenance mode: %{err}"
-msgstr "Het hulpmiddel is in onderhoudsmodus zetten is mislukt: %{err}"
+msgstr "Fout bij het instellen van de resource in de onderhoudsmodus: %{err}"
 
 #: ../app/controllers/resources_controller.rb:125
-#| msgid "Successfully demoted the resource"
 msgid "Successfully disabled maintenance mode for resource"
-msgstr "Het hulpmiddel is met succes uit onderhoudsmodus gehaald"
+msgstr "Onderhoudsmodus uitgeschakeld voor resource"
 
 #: ../app/controllers/resources_controller.rb:126
-#| msgid "Failed to demote the resource: %{err}"
 msgid "Failed to disable maintenance mode for resource: %{err}"
-msgstr "Het hulpmiddel uit onderhoudsmodus halen is mislukt: %{err}"
+msgstr "Fout bij het uitschakelen van de onderhoudsmodus voor de resource: %{err}"
 
 #: ../app/controllers/resources_controller.rb:132
 msgid "Successfully unmigrated the resource"
@@ -1511,12 +1479,8 @@ msgstr "De rol bestaat niet"
 
 #: ../app/controllers/roles_controller.rb:158
 #: ../app/controllers/users_controller.rb:160
-msgid ""
-"To enable ACLs, set \"enable-acl\" in the Cluster Configuration ('Manage > "
-"Configuration')"
-msgstr ""
-"Als u ACL's wilt inschakelen, stelt u \"enable-acl\" in Clusterconfiguratie "
-"('Beheren > Configuratie') in"
+msgid "To enable ACLs, set \"enable-acl\" in the Cluster Configuration ('Manage > Configuration')"
+msgstr "Als u ACL's wilt inschakelen, stelt u \"enable-acl\" in Clusterconfiguratie ('Beheren > Configuratie') in"
 
 #: ../app/controllers/sessions_controller.rb:50 ../app/models/cib.rb:554
 #: ../lib/invoker.rb:88 ../lib/invoker.rb:141
@@ -1730,17 +1694,16 @@ msgstr "Profiel"
 #: ../app/helpers/application_helper.rb:223
 #: ../app/helpers/application_helper.rb:229
 msgid "File a Bug Report"
-msgstr "Maak een bugrapport"
+msgstr "Een bugrapport opslaan"
 
 #: ../app/helpers/application_helper.rb:223
 #: ../app/helpers/application_helper.rb:229
 msgid "Report a bug or request a feature!"
-msgstr "Een bug rapporteren of om een functie verzoeken!"
+msgstr "Meld een bug of vraag een functie aan."
 
 #: ../app/helpers/application_helper.rb:224
 msgid "Read the release notes for the SUSE High Availability Extension."
-msgstr ""
-"De uitgavenotities lezen van de SUSE Extensie voor hoge beschikbaarheid."
+msgstr "Lees de releaseopmerkingen voor de SUSE High Availability Extension."
 
 #: ../app/helpers/application_helper.rb:224
 msgid "Release Notes"
@@ -1748,17 +1711,16 @@ msgstr "Uitgavenotities"
 
 #: ../app/helpers/application_helper.rb:225
 msgid "Read the most up-to-date documentation at the suse.com website."
-msgstr "De meest bijgewerkte documentatie lezen op de website suse.com."
+msgstr "Lees de meest recente documentatie op suse.com."
 
 #: ../app/helpers/application_helper.rb:225
 #: ../app/helpers/application_helper.rb:231
-#| msgid "unimplemented action"
 msgid "Online Documentation"
 msgstr "Online documentatie"
 
 #: ../app/helpers/application_helper.rb:230
 msgid "Visit the Hawk website for information about the latest release."
-msgstr "De Hawk website voor informatie over de laatste uitgave."
+msgstr "Ga naar de Hawk-website voor informatie over de nieuwste release."
 
 #: ../app/helpers/application_helper.rb:230
 msgid "News"
@@ -1766,7 +1728,7 @@ msgstr "Nieuws"
 
 #: ../app/helpers/application_helper.rb:231
 msgid "Getting Started using Hawk"
-msgstr "Grondbeginselen van Hawk gebruiken"
+msgstr "Aan de slag met Hawk"
 
 #: ../app/helpers/application_helper.rb:239
 msgid "Current Configuration Version"
@@ -1782,7 +1744,7 @@ msgstr "Host"
 
 #: ../app/helpers/application_helper.rb:241
 msgid "DC"
-msgstr "DC"
+msgstr "AC"
 
 #: ../app/helpers/application_helper.rb:241
 msgid "Designated Coordinator"
@@ -1941,37 +1903,24 @@ msgid "Unknown"
 msgstr "Onbekend"
 
 #: ../app/models/cib.rb:860
-msgid ""
-"%{fail_start}: Operation %{op} failed for resource %{resource} on node "
-"%{node}: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason="
-"%{exit_reason}"
-msgstr ""
-"%{fail_start}: bewerking %{op} is mislukt voor resource %{resource} op "
-"knooppunt %{node}: oproep-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), "
-"reden afsluiting=%{exit_reason}"
+msgid "%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_reason}"
+msgstr "%{fail_start}: bewerking %{op} is mislukt voor resource %{resource} op knooppunt %{node}: oproep-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), reden afsluiting=%{exit_reason}"
 
 #: ../app/models/cib.rb:953
 msgid "Partial upgrade detected! Nodes report different CRM versions: %s"
-msgstr ""
-"Partiële opwaardering gedetecteerd! Nodes rapporteren verschillende CRM "
-"versies: %s"
+msgstr "Gedeeltelijke upgrade gedetecteerd. Nodes melden verschillende CRM-versies: %s"
 
 #: ../app/models/cib.rb:1064
 msgid "Partition without quorum! Fencing and resource management is disabled."
-msgstr ""
-"Partitie zonder quorum! Afschermen en beheer van hulpmiddelen is "
-"uitgeschakeld."
+msgstr "Partitie zonder quorum. Fencing en resource management zijn uitgeschakeld."
 
 #: ../app/models/cib.rb:1068
 msgid "Node \"%{node}\" is UNCLEAN and needs to be fenced."
-msgstr ""
-"Knooppunt \"%{node}\" is VERVUILD. Er moet een fence op worden toegepast."
+msgstr "Knooppunt \"%{node}\" is VERVUILD. Er moet een fence op worden toegepast."
 
 #: ../app/models/cib.rb:1073
 msgid "STONITH is disabled. For normal cluster operation, STONITH is required."
-msgstr ""
-"STONITH is uitgeschakeld. Voor een normale clusterbewerking is STONITH "
-"vereist."
+msgstr "STONITH is uitgeschakeld. Voor een normale clusterbewerking is STONITH vereist."
 
 #: ../app/models/clone.rb:10
 msgid "Clone ID is required"
@@ -1995,19 +1944,13 @@ msgstr "Mag het cluster de resource starten en stoppen?"
 #: ../app/models/group.rb:63 ../app/models/master.rb:67
 #: ../app/models/template.rb:235
 msgid "Resources in maintenance mode are not monitored by the cluster."
-msgstr ""
-"Hulpmiddelen in onderhoudsmodus worden niet gemonitord door het cluster."
+msgstr "Resources in de onderhoudsmodus worden niet gemonitord door het cluster."
 
 #: ../app/models/clone.rb:77 ../app/models/crm_config.rb:33
 #: ../app/models/group.rb:68 ../app/models/master.rb:72
 #: ../app/models/template.rb:249
-msgid ""
-"If not all resources can be active, the cluster will stop lower priority "
-"resources in order to keep higher priority ones active."
-msgstr ""
-"Als niet alle resources actief kunnen zijn, stopt het cluster resources met "
-"een lagere prioriteit om de resources met een hogere prioriteit actief te "
-"houden."
+msgid "If not all resources can be active, the cluster will stop lower priority resources in order to keep higher priority ones active."
+msgstr "Als niet alle resources actief kunnen zijn, stopt het cluster resources met een lagere prioriteit om de resources met een hogere prioriteit actief te houden."
 
 #: ../app/models/clone.rb:83 ../app/models/crm_config.rb:55
 #: ../app/models/group.rb:78 ../app/models/master.rb:82
@@ -2016,28 +1959,16 @@ msgid "What state should the cluster attempt to keep this resource in?"
 msgstr "In welke toestand moet het cluster proberen deze resource te behouden?"
 
 #: ../app/models/clone.rb:88 ../app/models/master.rb:87
-msgid ""
-"How many copies of the resource to start. Defaults to the number of nodes in "
-"the cluster."
-msgstr ""
-"Het aantal kopieën van de resource dat moet worden gestart. Wordt standaard "
-"ingesteld op het aantal knooppunten in het cluster."
+msgid "How many copies of the resource to start. Defaults to the number of nodes in the cluster."
+msgstr "Het aantal kopieën van de resource dat moet worden gestart. Wordt standaard ingesteld op het aantal knooppunten in het cluster."
 
 #: ../app/models/clone.rb:93 ../app/models/master.rb:92
-msgid ""
-"How many copies of the resource can be started on a single node. Defaults to "
-"1."
-msgstr ""
-"Het aantal kopieën van de resource dat in één knooppunt kan worden gestart. "
-"Wordt standaard ingesteld op 1."
+msgid "How many copies of the resource can be started on a single node. Defaults to 1."
+msgstr "Het aantal kopieën van de resource dat in één knooppunt kan worden gestart. Wordt standaard ingesteld op 1."
 
 #: ../app/models/clone.rb:98 ../app/models/master.rb:97
-msgid ""
-"When stopping or starting a copy of the clone, tell all the other copies "
-"beforehand and when the action was successful."
-msgstr ""
-"Geef vooraf aan alle andere kopieën door wanneer een kopie van de kloon "
-"wordt gestart of gestopt en geef door wanneer de actie is geklukt."
+msgid "When stopping or starting a copy of the clone, tell all the other copies beforehand and when the action was successful."
+msgstr "Geef vooraf aan alle andere kopieën door wanneer een kopie van de kloon wordt gestart of gestopt en geef door wanneer de actie is geklukt."
 
 #: ../app/models/clone.rb:103 ../app/models/master.rb:102
 msgid "Does each copy of the clone perform a different function?"
@@ -2048,15 +1979,8 @@ msgid "Should the copies be started in series (instead of in parallel)?"
 msgstr "Moeten de kopieën na elkaar (of naast elkaar) worden gestart?"
 
 #: ../app/models/clone.rb:113 ../app/models/master.rb:112
-msgid ""
-"Changes the behavior of ordering constraints (between clones/masters) so "
-"that instances can start/stop as soon as their peer instance has (rather "
-"than waiting for every instance of the other clone has)."
-msgstr ""
-"Hiermee wordt het gedrag van ordeningsbeperkingen (tussen klonen/masters) "
-"zodanig gewijizgd dat instanties kunnen worden gestart/gestopt zodra de peer-"
-"instance is gestart/gestopt (in plaats van te wachten tot elke instantie van "
-"de andere kloon is gestart/gestopt)."
+msgid "Changes the behavior of ordering constraints (between clones/masters) so that instances can start/stop as soon as their peer instance has (rather than waiting for every instance of the other clone has)."
+msgstr "Hiermee wordt het gedrag van ordeningsbeperkingen (tussen klonen/masters) zodanig gewijizgd dat instanties kunnen worden gestart/gestopt zodra de peer-instance is gestart/gestopt (in plaats van te wachten tot elke instantie van de andere kloon is gestart/gestopt)."
 
 #: ../app/models/clone.rb:124 ../app/views/clones/_form.html.haml:12
 #: ../app/views/clones/_form.html.haml:17
@@ -2101,13 +2025,8 @@ msgid "Node Attribute"
 msgstr "Knooppuntattribuut"
 
 #: ../app/models/colocation.rb:187
-msgid ""
-"Colocate resources by the given node attribute instead of by node name (the "
-"default)."
-msgstr ""
-"Plaats resources op dezelfde locatie op basis van het opgegeven "
-"knooppuntattribuut in plaats van op basis van knooppuntnaam (de "
-"standaardinstelling)."
+msgid "Colocate resources by the given node attribute instead of by node name (the default)."
+msgstr "Plaats resources op dezelfde locatie op basis van het opgegeven knooppuntattribuut in plaats van op basis van knooppuntnaam (de standaardinstelling)."
 
 #: ../app/models/constraint.rb:37
 msgid "Not a constraint"
@@ -2122,39 +2041,20 @@ msgid "Set to true if the resource agent supports the migrate action"
 msgstr "Instellen op waar als de resource-agent de migratieactie ondersteunt"
 
 #: ../app/models/crm_config.rb:28 ../app/models/template.rb:244
-msgid ""
-"How many failures may occur for this resource on a node, before this node is "
-"marked ineligible to host this resource. A value of INFINITY indicates that "
-"this feature is disabled."
-msgstr ""
-"Het aantal fouten dat voor deze resource op een knooppunt mag optreden, "
-"voordat deze node wordt gemarkeerd als ongeschikt om als host te dienen voor "
-"deze resource. Met een waarde van INFINITY wordt aangegeven dat deze functie "
-"wordt uitgeschakeld."
+msgid "How many failures may occur for this resource on a node, before this node is marked ineligible to host this resource. A value of INFINITY indicates that this feature is disabled."
+msgstr "Het aantal fouten dat voor deze resource op een knooppunt mag optreden, voordat deze node wordt gemarkeerd als ongeschikt om als host te dienen voor deze resource. Met een waarde van INFINITY wordt aangegeven dat deze functie wordt uitgeschakeld."
 
 #: ../app/models/crm_config.rb:39 ../app/models/template.rb:255
-msgid ""
-"What should the cluster do if it ever finds the resource active on more than "
-"one node?"
-msgstr ""
-"Wat moet het cluster doen als blijkt dat de resource op meerdere knooppunten "
-"actief is?"
+msgid "What should the cluster do if it ever finds the resource active on more than one node?"
+msgstr "Wat moet het cluster doen als blijkt dat de resource op meerdere knooppunten actief is?"
 
 #: ../app/models/crm_config.rb:44 ../app/models/template.rb:260
-msgid ""
-"How many seconds to wait before acting as if the failure had not occurred, "
-"and potentially allowing the resource back to the node on which it failed. A "
-"value of 0 indicates that this feature is disabled."
-msgstr ""
-"Het aantal seconden dat moet worden gewacht voordat de fout wordt genegeerd "
-"en de resource mogelijk op het knooppunt wordt toegestaan waarop het fout "
-"ging. Met een waarde van 0 wordt aangegeven dat deze functie wordt "
-"uitgeschakeld."
+msgid "How many seconds to wait before acting as if the failure had not occurred, and potentially allowing the resource back to the node on which it failed. A value of 0 indicates that this feature is disabled."
+msgstr "Het aantal seconden dat moet worden gewacht voordat de fout wordt genegeerd en de resource mogelijk op het knooppunt wordt toegestaan waarop het fout ging. Met een waarde van 0 wordt aangegeven dat deze functie wordt uitgeschakeld."
 
 #: ../app/models/crm_config.rb:49 ../app/models/template.rb:265
 msgid "How much does the resource prefer to stay where it is?"
-msgstr ""
-"Hoeveel voorkeur geeft de resource eraan op de huidige plaats te blijven?"
+msgstr "Hoeveel voorkeur geeft de resource eraan op de huidige plaats te blijven?"
 
 #: ../app/models/crm_config.rb:70 ../app/models/crm_config.rb:107
 #: ../app/models/template.rb:286
@@ -2162,40 +2062,20 @@ msgid "Conditions under which the resource can be started."
 msgstr "Voorwaarden waaronder de resource kan worden gestart."
 
 #: ../app/models/crm_config.rb:75 ../app/models/template.rb:291
-msgid ""
-"The name of the remote-node this resource defines. This both enables the "
-"resource as a remote-node and defines the unique name used to identify the "
-"remote-node. If no other parameters are set, this value will also be assumed "
-"as the hostname to connect to at the port specified by remote-port. WARNING: "
-"This value cannot overlap with any resource or node IDs. If not specified, "
-"this feature is disabled."
-msgstr ""
-"De naam van het externe knooppunt dat met deze resource wordt gedefinieerd. "
-"Hiermee wordt de resource als een extern knooppunt ingeschakeld en wordt de "
-"unieke naam gedefinieerd waarmee het externe knooppunt wordt "
-"geïdentificeerd. Als er geen andere parameters worden ingesteld, wordt deze "
-"waarde ook gebruikt als de hostnaam waarmee verbinding moet worden gemaakt "
-"op de poort die is opgegeven door de externe poort. WAARSCHUWING: deze "
-"waarde mag niet overlappen met resource- of knooppunt-id's. Als deze waarde "
-"niet wordt opgegeven, wordt deze functie uitgeschakeld."
+msgid "The name of the remote-node this resource defines. This both enables the resource as a remote-node and defines the unique name used to identify the remote-node. If no other parameters are set, this value will also be assumed as the hostname to connect to at the port specified by remote-port. WARNING: This value cannot overlap with any resource or node IDs. If not specified, this feature is disabled."
+msgstr "De naam van het externe knooppunt dat met deze resource wordt gedefinieerd. Hiermee wordt de resource als een extern knooppunt ingeschakeld en wordt de unieke naam gedefinieerd waarmee het externe knooppunt wordt geïdentificeerd. Als er geen andere parameters worden ingesteld, wordt deze waarde ook gebruikt als de hostnaam waarmee verbinding moet worden gemaakt op de poort die is opgegeven door de externe poort. WAARSCHUWING: deze waarde mag niet overlappen met resource- of knooppunt-id's. Als deze waarde niet wordt opgegeven, wordt deze functie uitgeschakeld."
 
 #: ../app/models/crm_config.rb:80 ../app/models/template.rb:296
 msgid "Port to use for the guest connection to pacemaker_remote."
-msgstr ""
-"Poort die moet worden gebruikt voor de gastverbinding met pacemaker_remote."
+msgstr "Poort die moet worden gebruikt voor de gastverbinding met pacemaker_remote."
 
 #: ../app/models/crm_config.rb:85 ../app/models/template.rb:301
-msgid ""
-"The IP address or hostname to connect to if remote-node's name is not the "
-"hostname of the guest."
-msgstr ""
-"Het IP-adres of de hostnaam waarmee verbinding moet worden gemaakt als de "
-"naam van het externe knooppunt niet de hostnaam van de gast is."
+msgid "The IP address or hostname to connect to if remote-node's name is not the hostname of the guest."
+msgstr "Het IP-adres of de hostnaam waarmee verbinding moet worden gemaakt als de naam van het externe knooppunt niet de hostnaam van de gast is."
 
 #: ../app/models/crm_config.rb:90 ../app/models/template.rb:306
 msgid "How long before a pending guest connection will time out."
-msgstr ""
-"De tijd voordat een een time-out optreedt voor een wachtende gastverbinding."
+msgstr "De tijd voordat een een time-out optreedt voor een wachtende gastverbinding."
 
 #: ../app/models/group.rb:10
 msgid "No Group children specified"
@@ -2238,15 +2118,8 @@ msgid "Resources to apply the constraint to."
 msgstr "Resources waarop de beperking moet worden toegepast."
 
 #: ../app/models/location.rb:230
-msgid ""
-"Positive values indicate the resources should run on this node. Negative "
-"values indicate the resources should not run on this node. Values of +/- "
-"INFINITY change \"should\"/\"should not\" to \"must\"/\"must not\"."
-msgstr ""
-"Positieve waarden geven aan dat de resources op dit knooppunt moeten worden "
-"uitgevoerd. Negatieve waarden geven aan dat de resources niet op dit "
-"knooppunt moeten worden uitgevoerd. Waarden van +/- INFINITY wijzigen \"zou "
-"moeten\"/\"zou niet moeten\" in \"moeten\"/\"mogen niet\"."
+msgid "Positive values indicate the resources should run on this node. Negative values indicate the resources should not run on this node. Values of +/- INFINITY change \"should\"/\"should not\" to \"must\"/\"must not\"."
+msgstr "Positieve waarden geven aan dat de resources op dit knooppunt moeten worden uitgevoerd. Negatieve waarden geven aan dat de resources niet op dit knooppunt moeten worden uitgevoerd. Waarden van +/- INFINITY wijzigen \"zou moeten\"/\"zou niet moeten\" in \"moeten\"/\"mogen niet\"."
 
 #: ../app/models/location.rb:236
 msgid "Name of a node in the cluster."
@@ -2257,50 +2130,28 @@ msgid "Resource Discovery"
 msgstr "Resourcedetectie"
 
 #: ../app/models/location.rb:244
-msgid ""
-"Controls resource discovery for the specified resource on nodes covered by "
-"the constraint. always: Always perform resource discovery (default). never: "
-"Never perform resource discovery for the specified resource on this node. "
-"This option should generally be used with a -INFINITY score. exclusive: Only "
-"perform resource discovery for the specified resource on this node."
-msgstr ""
-"Hiermee wordt de resourcedetectie bepaald voor de opgegeven resource op "
-"knooppunten die onder de beperking vallen. altijd: resourcedetectie altijd "
-"uitvoeren (standaard). nooit: resourcedetectie nooit uitvoeren voor de "
-"opgegeven resource op dit knooppunt. Deze optie dient over het algemeen te "
-"worden gebruikt met een -INFINITY-score. exclusief: resourcedetectie alleen "
-"uitvoeren voor de opgegeven resource op dit knooppunt."
+msgid "Controls resource discovery for the specified resource on nodes covered by the constraint. always: Always perform resource discovery (default). never: Never perform resource discovery for the specified resource on this node. This option should generally be used with a -INFINITY score. exclusive: Only perform resource discovery for the specified resource on this node."
+msgstr "Hiermee wordt de resourcedetectie bepaald voor de opgegeven resource op knooppunten die onder de beperking vallen. altijd: resourcedetectie altijd uitvoeren (standaard). nooit: resourcedetectie nooit uitvoeren voor de opgegeven resource op dit knooppunt. Deze optie dient over het algemeen te worden gebruikt met een -INFINITY-score. exclusief: resourcedetectie alleen uitvoeren voor de opgegeven resource op dit knooppunt."
 
 #: ../app/models/location.rb:249
-msgid ""
-"Limits the rule to apply only when the resource is in the specified role."
-msgstr ""
-"Hiermee wordt de regel beperkt zodat deze alleen van toepassing is wanneer "
-"de resource de opgegeven rol heeft."
+msgid "Limits the rule to apply only when the resource is in the specified role."
+msgstr "Hiermee wordt de regel beperkt zodat deze alleen van toepassing is wanneer de resource de opgegeven rol heeft."
 
 #: ../app/models/location.rb:254
 msgid "Operator"
 msgstr "Operator"
 
 #: ../app/models/location.rb:255
-msgid ""
-"How to combine the result of multiple expression objects. Allowed values are "
-"and and or."
-msgstr ""
-"Hiermee kunt u het resultaat van meerdere expressieobjecten combineren. "
-"Toegestane waarden zijn and en or."
+msgid "How to combine the result of multiple expression objects. Allowed values are and and or."
+msgstr "Hiermee kunt u het resultaat van meerdere expressieobjecten combineren. Toegestane waarden zijn and en or."
 
 #: ../app/models/location.rb:260
 msgid "Expression"
 msgstr "Expressie"
 
 #: ../app/models/location.rb:261
-msgid ""
-"Each rule can contain a number of expressions. The results of the "
-"expressions are combined based on the rule's boolean operator."
-msgstr ""
-"Elke regel kan meerdere expressies bevatten. De resultaten van de expressies "
-"worden gecombineerd op basis van de boolean operator van de regel."
+msgid "Each rule can contain a number of expressions. The results of the expressions are combined based on the rule's boolean operator."
+msgstr "Elke regel kan meerdere expressies bevatten. De resultaten van de expressies worden gecombineerd op basis van de boolean operator van de regel."
 
 #: ../app/models/master.rb:9
 msgid "No Multi-state child specified"
@@ -2308,16 +2159,11 @@ msgstr "Geen onderliggend element met meervoudige toestand opgegeven"
 
 #: ../app/models/master.rb:117
 msgid "How many copies of the resource can be promoted to master status."
-msgstr ""
-"Het aantal kopieën van de resource dat kan worden verhoogd naar hoofdstatus."
+msgstr "Het aantal kopieën van de resource dat kan worden verhoogd naar hoofdstatus."
 
 #: ../app/models/master.rb:122
-msgid ""
-"How many copies of the resource can be promoted to master status on a single "
-"node."
-msgstr ""
-"Het aantal kopieën van de resource dat kan worden verhoogd naar hoofdstatus "
-"op één knooppunt."
+msgid "How many copies of the resource can be promoted to master status on a single node."
+msgstr "Het aantal kopieën van de resource dat kan worden verhoogd naar hoofdstatus op één knooppunt."
 
 #: ../app/models/node.rb:25
 msgid "Node ID is required"
@@ -2352,14 +2198,8 @@ msgid "Name used to refer to the node in the cluster."
 msgstr "Naam waarmee wordt verwezen naar het knooppunt in het cluster."
 
 #: ../app/models/node.rb:91
-msgid ""
-"Puts the node into standby mode. The specified node is no longer able to "
-"host resources. Any resources currently active on the node will be moved to "
-"another node."
-msgstr ""
-"Zet het knooppunt in de stand-bymodus. Op het opgegeven knooppunt kunnen "
-"niet langer resources worden gehost. Resources die momenteel op het "
-"knooppunt actief zijn, worden naar een ander knooppunt verplaatst."
+msgid "Puts the node into standby mode. The specified node is no longer able to host resources. Any resources currently active on the node will be moved to another node."
+msgstr "Zet het knooppunt in de stand-bymodus. Op het opgegeven knooppunt kunnen niet langer resources worden gehost. Resources die momenteel op het knooppunt actief zijn, worden naar een ander knooppunt verplaatst."
 
 #: ../app/models/profile.rb:31
 msgid "is required"
@@ -2448,44 +2288,27 @@ msgstr "Hoe vaak (in seconden) de bewerking moet worden uitgevoerd."
 
 #: ../app/models/template.rb:320
 msgid "How long to wait before declaring the action has failed."
-msgstr ""
-"Hoe lang moet worden gewacht voordat wordt verklaard dat de actie is mislukt."
+msgstr "Hoe lang moet worden gewacht voordat wordt verklaard dat de actie is mislukt."
 
 #: ../app/models/template.rb:330
 msgid "What conditions need to be satisfied before this action occurs."
-msgstr ""
-"Aan welke voorwaarden moet worden voldaan voordat deze actie plaatsvindt."
+msgstr "Aan welke voorwaarden moet worden voldaan voordat deze actie plaatsvindt."
 
 #: ../app/models/template.rb:335
 msgid "If false, the operation is treated as if it does not exist."
-msgstr ""
-"Indien niet aan de voorwaarde wordt voldaan, wordt de bewerking behandeld "
-"alsof deze niet bestaat."
+msgstr "Indien niet aan de voorwaarde wordt voldaan, wordt de bewerking behandeld alsof deze niet bestaat."
 
 #: ../app/models/template.rb:346
-msgid ""
-"This option only makes sense for recurring operations. It restricts the "
-"operation to a specific role. The truely paranoid can even specify "
-"role=Stopped which allows the cluster to detect an admin that manually "
-"started cluster services."
-msgstr ""
-"Deze optie is alleen zinvol voor terugkerende bewerkingen. Met deze optie "
-"wordt de bewerking tot een specifieke rol beperkt. Voor de rol kan zelfs "
-"Gestopt worden opgegeven, waarmee het cluster een beheerder kan detecteren "
-"die clusterservices handmatig heeft gestart."
+msgid "This option only makes sense for recurring operations. It restricts the operation to a specific role. The truely paranoid can even specify role=Stopped which allows the cluster to detect an admin that manually started cluster services."
+msgstr "Deze optie is alleen zinvol voor terugkerende bewerkingen. Met deze optie wordt de bewerking tot een specifieke rol beperkt. Voor de rol kan zelfs Gestopt worden opgegeven, waarmee het cluster een beheerder kan detecteren die clusterservices handmatig heeft gestart."
 
 #: ../app/models/template.rb:359
 msgid "The action to take if this action ever fails."
 msgstr "De actie die moet worden uitgevoerd als deze actie ooit mislukt."
 
 #: ../app/models/template.rb:372
-msgid ""
-"If true, the intention to perform the operation is recorded so that GUIs and "
-"CLI tools can indicate that an operation is in progress."
-msgstr ""
-"Als aan deze voorwaarde wordt voldaan, wordt de intentie om deze bewerking "
-"uit te voeren geregistreerd zodat met GUI's en CLI-programma's kan worden "
-"aangegeven dat een bewerking wordt uitgevoerd."
+msgid "If true, the intention to perform the operation is recorded so that GUIs and CLI tools can indicate that an operation is in progress."
+msgstr "Als aan deze voorwaarde wordt voldaan, wordt de intentie om deze bewerking uit te voeren geregistreerd zodat met GUI's en CLI-programma's kan worden aangegeven dat een bewerking wordt uitgevoerd."
 
 #: ../app/models/template.rb:388 ../app/views/primitives/_form.html.haml:18
 #: ../app/views/primitives/_form.html.haml:36
@@ -2513,30 +2336,23 @@ msgstr "Provider"
 
 #: ../app/models/template.rb:401
 msgid "Vendor or project which provided the resource agent."
-msgstr ""
-"Bron van waaruit de resource-agent is aangeleverd (leverancier of project)."
+msgstr "Bron van waaruit de resource-agent is aangeleverd (leverancier of project)."
 
 #: ../app/models/template.rb:407
 msgid "Resource agent name."
 msgstr "Naam van resource-agent."
 
 #: ../app/models/template.rb:413 ../app/models/template.rb:419
-msgid ""
-"After the specified timeout period, the operation will be treated as failed."
-msgstr ""
-"Na de opgegeven time-outperiode wordt de bewerking als mislukt aangemerkt."
+msgid "After the specified timeout period, the operation will be treated as failed."
+msgstr "Na de opgegeven time-outperiode wordt de bewerking als mislukt aangemerkt."
 
 #: ../app/models/template.rb:424
 msgid "Monitor"
 msgstr "Monitor"
 
 #: ../app/models/template.rb:425
-msgid ""
-"Define a monitor operation to instruct the cluster to ensure that the "
-"resource is still healthy."
-msgstr ""
-"Definieer een monitorbewerking waarmee u het cluster instrueert om te "
-"controleren of de resource nog in goede staat verkeert."
+msgid "Define a monitor operation to instruct the cluster to ensure that the resource is still healthy."
+msgstr "Definieer een monitorbewerking waarmee u het cluster instrueert om te controleren of de resource nog in goede staat verkeert."
 
 #: ../app/models/ticket.rb:18
 msgid "Constraint ID is required"
@@ -2689,9 +2505,7 @@ msgstr "Geavanceerd"
 
 #: ../app/views/commands/index.html.haml:22
 msgid "Lists crm commands recently executed by hawk, most recent first."
-msgstr ""
-"Hiermee worden crm-opdrachten weergegeven die onlangs zijn uitgevoerd door "
-"Hawk, waarbij de recentste het eerst worden weergegeven."
+msgstr "Hiermee worden crm-opdrachten weergegeven die onlangs zijn uitgevoerd door Hawk, waarbij de recentste het eerst worden weergegeven."
 
 #: ../app/views/configs/edit.html.haml:7
 #: ../app/views/shared/_mainnav.html.haml:60
@@ -2719,9 +2533,8 @@ msgid "Show Configuration"
 msgstr "Configuratie weergeven"
 
 #: ../app/views/constraints/rename.html.haml:9
-#| msgid "Constraint"
 msgid "Rename Constraint"
-msgstr "Beperking voor hernoemen"
+msgstr "Beperking hernoemen"
 
 #: ../app/views/constraints/rename.html.haml:36
 #: ../app/views/reports/display.html.haml:55
@@ -3106,12 +2919,8 @@ msgid "Targets"
 msgstr "Doelen"
 
 #: ../app/views/shared/_simulator.html.haml:15
-msgid ""
-"Any pending changes to the configuration will be lost - do you wish to "
-"proceed?"
-msgstr ""
-"Niet-opgeslagen wijzigingen in de configuratie gaan verloren. Wilt u "
-"doorgaan?"
+msgid "Any pending changes to the configuration will be lost - do you wish to proceed?"
+msgstr "Niet-opgeslagen wijzigingen in de configuratie gaan verloren. Wilt u doorgaan?"
 
 #: ../app/views/shared/_simulator.html.haml:17
 msgid "Discard"
@@ -3290,13 +3099,8 @@ msgid "Verify and apply"
 msgstr "Verifiëren en toepassen"
 
 #: ../app/views/wizards/update.html.haml:87
-msgid ""
-"To apply the changes, Hawk requires root access, and password-less SSH "
-"access must be configured. See the Hawk documentation for more information."
-msgstr ""
-"Als u de wijzigingen wilt toepassen, vereist Hawk toegang tot de hoofdmap en "
-"moet SSH-toegang zonder wachtwoord worden geconfigureerd. Raadpleeg de Hawk-"
-"documentatie voor meer informatie."
+msgid "To apply the changes, Hawk requires root access, and password-less SSH access must be configured. See the Hawk documentation for more information."
+msgstr "Als u de wijzigingen wilt toepassen, vereist Hawk toegang tot de hoofdmap en moet SSH-toegang zonder wachtwoord worden geconfigureerd. Raadpleeg de Hawk-documentatie voor meer informatie."
 
 #: ../app/views/wizards/update.html.haml:94
 msgid "Root password"
@@ -3313,15 +3117,3 @@ msgstr "Het object/attribuut bestaat niet (cibadmin %{cmd})"
 #: ../lib/invoker.rb:90
 msgid "Error invoking cibadmin %{cmd}: %{msg}"
 msgstr "Fout bij het aanroepen van cibadmin %{cmd}: %{msg}"
-
-#~ msgid "Unmanage"
-#~ msgstr "Niet beheren"
-
-#~ msgid "Successfully set the resource in unmanaged mode"
-#~ msgstr "De resource is  in onbeheerde modus ingesteld"
-
-#~ msgid "Failed to set the resource in unmanaged mode: %{err}"
-#~ msgstr "De resource kan niet in onbeheerde modus worden ingesteld: %{err}"
-
-#~ msgid "Add a constraint"
-#~ msgstr "Een beperking toevoegen"

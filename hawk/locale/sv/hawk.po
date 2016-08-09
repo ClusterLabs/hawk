@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-12 19:52+0200\n"
-"PO-Revision-Date: 2016-06-29 11:59\n"
+"PO-Revision-Date: 2016-07-26 14:25\n"
 "Last-Translator: Novell language <language@novell.com>\n"
 "Language-Team: Novell language <language@novell.com>\n"
 "Language: \n"
@@ -712,7 +712,7 @@ msgstr "Nod"
 
 #: ../app/assets/javascripts/module/resources.js:200
 msgid "Maintenance Mode"
-msgstr ""
+msgstr "Underhållsläge"
 
 #: ../app/assets/javascripts/module/resources.js:203
 msgid "Unmanaged"
@@ -795,7 +795,7 @@ msgstr "Höj"
 
 #: ../app/assets/javascripts/module/resources.js:375
 msgid "Disable Maintenance Mode"
-msgstr ""
+msgstr "Avaktivera underhållsläget"
 
 #: ../app/assets/javascripts/module/resources.js:380
 msgid "Migrate"
@@ -825,39 +825,39 @@ msgstr "Underordnade"
 
 #: ../app/assets/javascripts/module/resources.js:785
 msgid "This will start the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "De märkta resurserna kommer att startas. Vill du fortsätta?"
 
 #: ../app/assets/javascripts/module/resources.js:788
 msgid "This will stop the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "De märkta resurserna kommer att stoppas. Vill du fortsätta?"
 
 #: ../app/assets/javascripts/module/resources.js:791
 msgid "This will promote the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "De märkta resurserna kommer att främjas. Vill du fortsätta?"
 
 #: ../app/assets/javascripts/module/resources.js:794
 msgid "This will demote the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "De märkta resurserna kommer att degraderas. Vill du fortsätta?"
 
 #: ../app/assets/javascripts/module/resources.js:797
 msgid "This will enable maintenance mode for the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "Underhållsläget kommer att aktiveras för de märkta resurserna. Vill du fortsätta?"
 
 #: ../app/assets/javascripts/module/resources.js:800
 msgid "This will disable maintenance mode for the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "Underhållsläget kommer att avaktiveras för de märkta resurserna. Vill du fortsätta?"
 
 #: ../app/assets/javascripts/module/resources.js:804
 msgid "Migrate tagged resources"
-msgstr ""
+msgstr "Migrera de märkta resurserna"
 
 #: ../app/assets/javascripts/module/resources.js:808
 msgid "This will unmigrate the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "De märkta resurserna kommer att avmigreras. Vill du fortsätta?"
 
 #: ../app/assets/javascripts/module/resources.js:812
 msgid "Clean up tagged resources"
-msgstr ""
+msgstr "Rensa märkta resurser"
 
 #: ../app/assets/javascripts/module/roles.js:27
 #: ../app/views/roles/_form.html.haml:10 ../app/views/roles/_form.html.haml:13
@@ -929,15 +929,15 @@ msgstr "Det går inte att skapa skugg-CIB"
 
 #: ../app/controllers/application_controller.rb:194
 msgid "Error: Permission denied for user (%s)"
-msgstr ""
+msgstr "Fel: Behörighet nekad för användaren (%s)"
 
 #: ../app/controllers/application_controller.rb:198
 msgid "Error: Not authenticated"
-msgstr ""
+msgstr "Fel: Ej behörig"
 
 #: ../app/controllers/application_controller.rb:202
 msgid "Error: Record not found"
-msgstr ""
+msgstr "Fel: Det gick inte att hitta posten"
 
 #: ../app/controllers/cib_controller.rb:44
 msgid "Failed to apply configuration"
@@ -1401,19 +1401,19 @@ msgstr "Resursen kunde inte nedgraderas: %{err}"
 
 #: ../app/controllers/resources_controller.rb:118
 msgid "Successfully set the resource in maintenance mode"
-msgstr ""
+msgstr "Resursen ställdes in i underhållsläge"
 
 #: ../app/controllers/resources_controller.rb:119
 msgid "Failed to set the resource in maintenance mode: %{err}"
-msgstr ""
+msgstr "Det gick inte att ställa in resursen i underhållsläge: %{err}"
 
 #: ../app/controllers/resources_controller.rb:125
 msgid "Successfully disabled maintenance mode for resource"
-msgstr ""
+msgstr "Underhållsläget avaktiverades för resursen"
 
 #: ../app/controllers/resources_controller.rb:126
 msgid "Failed to disable maintenance mode for resource: %{err}"
-msgstr ""
+msgstr "Det gick inte att avaktivera underhållsläget för resursen: %{err}"
 
 #: ../app/controllers/resources_controller.rb:132
 msgid "Successfully unmigrated the resource"
@@ -1694,16 +1694,16 @@ msgstr "Ny profil"
 #: ../app/helpers/application_helper.rb:223
 #: ../app/helpers/application_helper.rb:229
 msgid "File a Bug Report"
-msgstr ""
+msgstr "Registrera en felrapport"
 
 #: ../app/helpers/application_helper.rb:223
 #: ../app/helpers/application_helper.rb:229
 msgid "Report a bug or request a feature!"
-msgstr ""
+msgstr "Registrera ett fel eller beställ en funktion."
 
 #: ../app/helpers/application_helper.rb:224
 msgid "Read the release notes for the SUSE High Availability Extension."
-msgstr ""
+msgstr "Läs versionsfakta för SUSE High Availability Extension."
 
 #: ../app/helpers/application_helper.rb:224
 msgid "Release Notes"
@@ -1711,16 +1711,16 @@ msgstr "Versionsfakta"
 
 #: ../app/helpers/application_helper.rb:225
 msgid "Read the most up-to-date documentation at the suse.com website."
-msgstr ""
+msgstr "Läs den senaste dokumentationen på webbplatsen suse.com."
 
 #: ../app/helpers/application_helper.rb:225
 #: ../app/helpers/application_helper.rb:231
 msgid "Online Documentation"
-msgstr ""
+msgstr "Online Documentation"
 
 #: ../app/helpers/application_helper.rb:230
 msgid "Visit the Hawk website for information about the latest release."
-msgstr ""
+msgstr "Information om den senaste versionen finns på Hawks webbplats."
 
 #: ../app/helpers/application_helper.rb:230
 msgid "News"
@@ -1728,7 +1728,7 @@ msgstr "Nyheter"
 
 #: ../app/helpers/application_helper.rb:231
 msgid "Getting Started using Hawk"
-msgstr ""
+msgstr "Kom igång med Hawk"
 
 #: ../app/helpers/application_helper.rb:239
 msgid "Current Configuration Version"
@@ -1908,11 +1908,11 @@ msgstr "%{fail_start}: Åtgärden %{op} misslyckades för resursen %{resource} p
 
 #: ../app/models/cib.rb:953
 msgid "Partial upgrade detected! Nodes report different CRM versions: %s"
-msgstr ""
+msgstr "En deluppgradering upptäcktes. Noder ger information om olika CRM-versioner: %s"
 
 #: ../app/models/cib.rb:1064
 msgid "Partition without quorum! Fencing and resource management is disabled."
-msgstr ""
+msgstr "Partition utan kvorum. Fence-åtgärder och resurshantering har avaktiverats."
 
 #: ../app/models/cib.rb:1068
 msgid "Node \"%{node}\" is UNCLEAN and needs to be fenced."
@@ -1944,7 +1944,7 @@ msgstr "Får klustret starta och stoppa resursen?"
 #: ../app/models/group.rb:63 ../app/models/master.rb:67
 #: ../app/models/template.rb:235
 msgid "Resources in maintenance mode are not monitored by the cluster."
-msgstr ""
+msgstr "Resurser i underhållsläge övervakas inte av klustret."
 
 #: ../app/models/clone.rb:77 ../app/models/crm_config.rb:33
 #: ../app/models/group.rb:68 ../app/models/master.rb:72
@@ -2534,7 +2534,7 @@ msgstr "Visa konfiguration"
 
 #: ../app/views/constraints/rename.html.haml:9
 msgid "Rename Constraint"
-msgstr ""
+msgstr "Byt begränsningens namn"
 
 #: ../app/views/constraints/rename.html.haml:36
 #: ../app/views/reports/display.html.haml:55
@@ -2766,15 +2766,15 @@ msgstr "Inga övergångar att rapportera"
 
 #: ../app/views/reports/display.html.haml:125
 msgid "Previous"
-msgstr ""
+msgstr "Föregående"
 
 #: ../app/views/reports/display.html.haml:133
 msgid "Zoom in"
-msgstr ""
+msgstr "Zooma in"
 
 #: ../app/views/reports/display.html.haml:135
 msgid "Zoom out"
-msgstr ""
+msgstr "Zooma ut"
 
 #: ../app/views/reports/display.html.haml:143
 #: ../app/views/wizards/show.html.haml:133

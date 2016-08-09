@@ -6,7 +6,7 @@ msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2016-06-12 19:52+0200\n"
-"PO-Revision-Date: 2016-06-29 11:56\n"
+"PO-Revision-Date: 2016-07-26 14:21\n"
 "Last-Translator: Novell language <language@novell.com>\n"
 "Language-Team: Novell language <language@novell.com>\n"
 "Language: \n"
@@ -712,7 +712,7 @@ msgstr "Uzel"
 
 #: ../app/assets/javascripts/module/resources.js:200
 msgid "Maintenance Mode"
-msgstr ""
+msgstr "Režim údržby"
 
 #: ../app/assets/javascripts/module/resources.js:203
 msgid "Unmanaged"
@@ -795,7 +795,7 @@ msgstr "Zvýšit úroveň"
 
 #: ../app/assets/javascripts/module/resources.js:375
 msgid "Disable Maintenance Mode"
-msgstr ""
+msgstr "Zakázat režim údržby"
 
 #: ../app/assets/javascripts/module/resources.js:380
 msgid "Migrate"
@@ -825,39 +825,39 @@ msgstr "Podřazené položky"
 
 #: ../app/assets/javascripts/module/resources.js:785
 msgid "This will start the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "Spustí značkované prostředky. Chcete pokračovat?"
 
 #: ../app/assets/javascripts/module/resources.js:788
 msgid "This will stop the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "Zastaví značkované prostředky. Chcete pokračovat?"
 
 #: ../app/assets/javascripts/module/resources.js:791
 msgid "This will promote the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "Zvýší úroveň značkovaných prostředků. Chcete pokračovat?"
 
 #: ../app/assets/javascripts/module/resources.js:794
 msgid "This will demote the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "Sníží úroveň značkovaných prostředků. Chcete pokračovat?"
 
 #: ../app/assets/javascripts/module/resources.js:797
 msgid "This will enable maintenance mode for the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "Povolí režim údržby pro značkované prostředky. Chcete pokračovat?"
 
 #: ../app/assets/javascripts/module/resources.js:800
 msgid "This will disable maintenance mode for the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "Zakáže režim údržby pro značkované prostředky. Chcete pokračovat?"
 
 #: ../app/assets/javascripts/module/resources.js:804
 msgid "Migrate tagged resources"
-msgstr ""
+msgstr "Migrovat značkované prostředky"
 
 #: ../app/assets/javascripts/module/resources.js:808
 msgid "This will unmigrate the tagged resources. Do you want to continue?"
-msgstr ""
+msgstr "Zruší migraci značkovaných prostředků. Chcete pokračovat?"
 
 #: ../app/assets/javascripts/module/resources.js:812
 msgid "Clean up tagged resources"
-msgstr ""
+msgstr "Vyčistit značkované prostředky"
 
 #: ../app/assets/javascripts/module/roles.js:27
 #: ../app/views/roles/_form.html.haml:10 ../app/views/roles/_form.html.haml:13
@@ -929,15 +929,15 @@ msgstr "Nepodařilo se vytvořit stínové CIB"
 
 #: ../app/controllers/application_controller.rb:194
 msgid "Error: Permission denied for user (%s)"
-msgstr ""
+msgstr "Chyba: Povolení odepřeno pro uživatele (%s)"
 
 #: ../app/controllers/application_controller.rb:198
 msgid "Error: Not authenticated"
-msgstr ""
+msgstr "Chyba: Neověřeno"
 
 #: ../app/controllers/application_controller.rb:202
 msgid "Error: Record not found"
-msgstr ""
+msgstr "Chyba: Záznam nebyl nalezen"
 
 #: ../app/controllers/cib_controller.rb:44
 msgid "Failed to apply configuration"
@@ -1401,19 +1401,19 @@ msgstr "Snížení úrovně prostředku se nezdařilo: %{err}"
 
 #: ../app/controllers/resources_controller.rb:118
 msgid "Successfully set the resource in maintenance mode"
-msgstr ""
+msgstr "Prostředek byl úspěšně nastaven do režimu údržby"
 
 #: ../app/controllers/resources_controller.rb:119
 msgid "Failed to set the resource in maintenance mode: %{err}"
-msgstr ""
+msgstr "Prostředek se nepodařilo nastavit do režimu údržby: %{err}"
 
 #: ../app/controllers/resources_controller.rb:125
 msgid "Successfully disabled maintenance mode for resource"
-msgstr ""
+msgstr "Úspěšně zakázán režim údržby pro prostředek"
 
 #: ../app/controllers/resources_controller.rb:126
 msgid "Failed to disable maintenance mode for resource: %{err}"
-msgstr ""
+msgstr "Nepodařilo se zakázat režim údržby pro prostředek: %{err}"
 
 #: ../app/controllers/resources_controller.rb:132
 msgid "Successfully unmigrated the resource"
@@ -1694,16 +1694,16 @@ msgstr "Profil"
 #: ../app/helpers/application_helper.rb:223
 #: ../app/helpers/application_helper.rb:229
 msgid "File a Bug Report"
-msgstr ""
+msgstr "Podat hlášení o chybě"
 
 #: ../app/helpers/application_helper.rb:223
 #: ../app/helpers/application_helper.rb:229
 msgid "Report a bug or request a feature!"
-msgstr ""
+msgstr "Nahlaste chybu nebo požádejte o nějakou funkci!"
 
 #: ../app/helpers/application_helper.rb:224
 msgid "Read the release notes for the SUSE High Availability Extension."
-msgstr ""
+msgstr "Přečtěte si poznámky k verzi pro SUSE High Availability Extension."
 
 #: ../app/helpers/application_helper.rb:224
 msgid "Release Notes"
@@ -1711,16 +1711,16 @@ msgstr "Poznámky k verzi"
 
 #: ../app/helpers/application_helper.rb:225
 msgid "Read the most up-to-date documentation at the suse.com website."
-msgstr ""
+msgstr "Přečtěte si nejaktuálnější dokumentaci na webu suse.com."
 
 #: ../app/helpers/application_helper.rb:225
 #: ../app/helpers/application_helper.rb:231
 msgid "Online Documentation"
-msgstr ""
+msgstr "Online dokumentace"
 
 #: ../app/helpers/application_helper.rb:230
 msgid "Visit the Hawk website for information about the latest release."
-msgstr ""
+msgstr "Navštivte web Hawk, kde naleznete informace o poslední verzi."
 
 #: ../app/helpers/application_helper.rb:230
 msgid "News"
@@ -1728,7 +1728,7 @@ msgstr "News"
 
 #: ../app/helpers/application_helper.rb:231
 msgid "Getting Started using Hawk"
-msgstr ""
+msgstr "Začínáme používat Hawk"
 
 #: ../app/helpers/application_helper.rb:239
 msgid "Current Configuration Version"
@@ -1908,11 +1908,11 @@ msgstr "%{fail_start}: Operace %{op} se nezdařila u prostředku %{resource} uzl
 
 #: ../app/models/cib.rb:953
 msgid "Partial upgrade detected! Nodes report different CRM versions: %s"
-msgstr ""
+msgstr "Detekována částečná inovace! Uzly hlásí různé verze CRM: %s"
 
 #: ../app/models/cib.rb:1064
 msgid "Partition without quorum! Fencing and resource management is disabled."
-msgstr ""
+msgstr "Oddíl bez kvora! Ochrana a správa prostředků jsou zakázány."
 
 #: ../app/models/cib.rb:1068
 msgid "Node \"%{node}\" is UNCLEAN and needs to be fenced."
@@ -1944,7 +1944,7 @@ msgstr "Určuje, zda cluster může spouštět a zastavovat prostředek."
 #: ../app/models/group.rb:63 ../app/models/master.rb:67
 #: ../app/models/template.rb:235
 msgid "Resources in maintenance mode are not monitored by the cluster."
-msgstr ""
+msgstr "Prostředky v režimu údržby nejsou clusterem monitorovány."
 
 #: ../app/models/clone.rb:77 ../app/models/crm_config.rb:33
 #: ../app/models/group.rb:68 ../app/models/master.rb:72
@@ -2534,7 +2534,7 @@ msgstr "Zobrazit konfiguraci"
 
 #: ../app/views/constraints/rename.html.haml:9
 msgid "Rename Constraint"
-msgstr ""
+msgstr "Přejmenovat omezení"
 
 #: ../app/views/constraints/rename.html.haml:36
 #: ../app/views/reports/display.html.haml:55
@@ -2766,15 +2766,15 @@ msgstr "Ve zprávě není žádný přechod"
 
 #: ../app/views/reports/display.html.haml:125
 msgid "Previous"
-msgstr ""
+msgstr "Předchozí"
 
 #: ../app/views/reports/display.html.haml:133
 msgid "Zoom in"
-msgstr ""
+msgstr "Přiblížit"
 
 #: ../app/views/reports/display.html.haml:135
 msgid "Zoom out"
-msgstr ""
+msgstr "Oddálit"
 
 #: ../app/views/reports/display.html.haml:143
 #: ../app/views/wizards/show.html.haml:133
