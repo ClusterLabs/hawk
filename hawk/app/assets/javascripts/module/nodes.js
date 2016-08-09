@@ -123,7 +123,7 @@ $(function() {
                   $('body').data('cib'),
                   row.id
                 ),
-                '" class="ready btn btn-default btn-xs" title="',
+                '" class="ready btn btn-default btn-xs p-y-4" title="',
                 __('Switch to ready'),
                 '">',
                 '<i class="fa fa-toggle-on text-danger"></i>',
@@ -136,7 +136,7 @@ $(function() {
                   $('body').data('cib'),
                   row.id
                 ),
-                '" class="maintenance btn btn-default btn-xs" title="',
+                '"class="maintenance btn btn-default btn-xs p-y-4" title="',
                 __('Switch to maintenance'),
                 '">',
                 '<i class="fa fa-toggle-off text-success"></i>',
@@ -176,7 +176,7 @@ $(function() {
                   $('body').data('cib'),
                   row.id
                 ),
-                '" class="online btn btn-default btn-xs" title="',
+                '" class="online btn btn-default btn-xs p-y-4" title="',
                 __('Switch to online'),
                 '">',
                 '<i class="fa fa-toggle-on text-danger"></i>',
@@ -189,7 +189,7 @@ $(function() {
                   $('body').data('cib'),
                   row.id
                 ),
-                '" class="standby btn btn-default btn-xs" title="',
+                '"class="standby btn btn-default btn-xs p-y-4" title="',
                 __('Switch to standby'),
                 '">',
                 '<i class="fa fa-toggle-off text-success"></i>',
@@ -229,7 +229,7 @@ $(function() {
               if (dest == "menu") {
                 dropdowns.push([
                   '<li>',
-                    '<a href="', path, '" class="', path_class, '">',
+                    '<a href="', path, '" class="', path_class, ' p-y-4">',
                       '<i class="fa fa-fw fa-', icon_class, '"></i> ',
                       text,
                     '</a>',
@@ -237,7 +237,7 @@ $(function() {
                 ].join(''));
               } else if (dest == "button") {
                 operations.push([
-                  '<a href="', path, '" class="', path_class, ' btn btn-default btn-xs" title="', text, '">',
+                  '<a href="', path, '" class="', path_class, ' p-y-4 btn btn-default btn-xs" title="', text, '">',
                     '<i class="fa fa-', icon_class, '"></i>',
                   '</a> '
                 ].join(''));
@@ -255,8 +255,8 @@ $(function() {
             if (dropdowns.length > 0) {
               operations.push([
                 '<div class="btn-group" role="group">',
-                '<button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" data-container="body" aria-haspopup="true" aria-expanded="true">',
-                '<span class="caret"></span>',
+                '<button class="btn btn-default btn-xs dropdown-toggle p-y-4" type="button" data-toggle="dropdown" data-container="body" aria-haspopup="true" aria-expanded="true">',
+                '<i class="fa fa-caret-down" aria-hidden="true"></i>',
                 '</button>',
                 '<ul class="dropdown-menu">',
                 dropdowns.join(''),
@@ -268,7 +268,7 @@ $(function() {
             operations.push([
               '<a href="',
               Routes.events_cib_node_path($('body').data('cib'), row.id),
-              '" class="events btn btn-default btn-xs" title="',
+              '"class="events btn btn-default btn-xs p-y-4" title="',
               __('Events'),
               '" data-toggle="modal" data-target="#modal-lg">',
               '<i class="fa fa-history"></i>',
@@ -278,7 +278,7 @@ $(function() {
             operations.push([
               '<a href="',
               Routes.cib_node_path($('body').data('cib'), row.id),
-              '" class="details btn btn-default btn-xs" title="',
+              '"class="details btn btn-default btn-xs p-y-4" title="',
               __('Details'),
               '" data-toggle="modal" data-target="#modal">',
               '<i class="fa fa-search"></i>',
@@ -343,7 +343,7 @@ $(function() {
           operations.push([
             '<a href="',
              Routes.edit_cib_node_path($('body').data('cib'), row.id),
-              '" class="edit btn btn-default btn-xs" title="',
+              '" class="edit btn btn-default btn-xs p-y-4" title="',
               __('Edit'),
             '">',
               '<i class="fa fa-pencil"></i>',
