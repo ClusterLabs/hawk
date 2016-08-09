@@ -17,7 +17,7 @@
   </div>
 </div>
 <script id="batch-entry" type="text/x-jsrender">
-  <li class="list-group-item" data-entry='<%= "{{:value}}" %>>'
+  <li class="list-group-item" data-entry="{{:value}}">
     <%= "{{:name}}" %>
     <div class="pull-right">
       <%= link_to icon_tag("remove"), "#", class: "text-danger" %>
@@ -143,7 +143,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a class="btn btn-primary" data-toggle="tab" role="button" href: "#batch-view">
+        <a class="btn btn-primary" data-toggle="tab" role="button" href="#batch-view">
           <%= _("OK") %>
         </a>
       </div>
@@ -162,7 +162,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a class="btn btn-primary" data-toggle="tab" role="button" href: "#batch-view">
+        <a class="btn btn-primary" data-toggle="tab" role="button" href="#batch-view">
           <%= _("OK") %>
         </a>
       </div>
@@ -181,7 +181,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a class="btn btn-primary" data-toggle="tab" role="button" href: "#batch-view">
+        <a class="btn btn-primary" data-toggle="tab" role="button" href="#batch-view">
           <%= _("OK") %>
         </a>
       </div>
@@ -200,7 +200,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a class="btn btn-primary" data-toggle="tab" role="button" href: "#batch-view">
+        <a class="btn btn-primary" data-toggle="tab" role="button" href="#batch-view">
           <%= _("OK") %>
         </a>
       </div>
@@ -219,13 +219,13 @@
         </div>
       </div>
       <div class="modal-footer">
-        <a class="btn btn-primary" data-toggle="tab" role="button" href: "#batch-view">
+        <a class="btn btn-primary" data-toggle="tab" role="button" href="#batch-view">
           <%= _("OK") %>
         </a>
       </div>
     </div>
     <div class="tab-pane" id="batch-node-event" role="tabpanel">
-      <form class="form-horizontal" remote="<%= true %>">
+      <form class="form-horizontal" remote="true">
         <div class="modal-header">
           <h3 class="modal-title">
             <%= icon_text("cog", _("Inject Node Event")) %>
@@ -262,17 +262,17 @@
           </div>
         </div>
         <div class="modal-footer">
-          <a class="btn btn-default" href: "#batch-view" data-toggle="tab" role="button">
+          <a class="btn btn-default" href="#batch-view" data-toggle="tab" role="button">
             <%= _("Cancel") %>
           </a>
-          <a class="btn btn-primary" href: "#batch-view" data-toggle="tab" role="button">
+          <a class="btn btn-primary" href="#batch-view" data-toggle="tab" role="button">
             <%= icon_text "plus", _("OK") %>
           </a>
         </div>
       </form>
     </div>
     <div class="tab-pane" id="batch-resource-event" role="tabpanel">
-      <form class="form-horizontal" remote="<%= true %>">
+      <form class="form-horizontal" remote="true">
         <div class="modal-header">
           <h3 class="modal-title">
             <%= icon_text("cog", _("Inject Resource Event")) %>
@@ -345,17 +345,17 @@
           </div>
         </div>
         <div class="modal-footer">
-          <a class="btn btn-default" href: "#batch-view" data-toggle="tab" role="button">
+          <a class="btn btn-default" href="#batch-view" data-toggle="tab" role="button">
             <%= _("Cancel") %>
           </a>
-          <a class="btn btn-primary" href: "#batch-view" data-toggle="tab" role="button">
+          <a class="btn btn-primary" href="#batch-view" data-toggle="tab" role="button">
             <%= icon_text "plus", _("OK") %>
           </a>
         </div>
       </form>
     </div>
     <div class="tab-pane" id="batch-ticket-event" role="tabpanel">
-      <form class="form-horizontal" remote="<%= true %>">
+      <form class="form-horizontal" remote="true">
         <div class="modal-header">
           <h3 class="modal-title">
             <%= icon_text("cog", _("Inject Ticket Event")) %>
@@ -392,10 +392,10 @@
           </div>
         </div>
         <div class="modal-footer">
-          <a class="btn btn-default" href: "#batch-view" data-toggle="tab" role="button">
+          <a class="btn btn-default" href="#batch-view" data-toggle="tab" role="button">
             <%= _("Cancel") %>
           </a>
-          <a class="btn btn-primary" href: "#batch-view" data-toggle="tab" role="button">
+          <a class="btn btn-primary" href="#batch-view" data-toggle="tab" role="button">
             <%= icon_text "plus", _("OK") %>
           </a>
         </div>
