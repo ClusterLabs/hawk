@@ -21,11 +21,7 @@
               </li>
             <% else %>
               <li class="btn btn-success btn-circle active">
-<<<<<<< 2662fecc3f7a7a3d3f779ff0427be756722e5b25
                 <i class="fa fa-check p-t-3"></i>
-=======
-                <%= icon_tag "check" %>
->>>>>>> UI: Change file's extension in views/* to erb
               </li>
             <% end %>
           </ul>
@@ -57,15 +53,9 @@
                     <% end %>
                     <% unless action['text'].empty? %>
                       <% if action['name'] == "cib" %>
-                        <pre>
-                          <code class="crmsh hljs">
-                            <%= action['text'] %>
-                          </code>
-                        </pre>
+                        <pre><code class="crmsh hljs"><%= action['text'] %></code></pre>
                       <% else %>
-                        <pre class="bg-info">
-                          <%= action['text'] %>
-                        </pre>
+                        <pre class="bg-info"><%= action['text'] %></pre>
                       <% end %>
                     <% end %>
                   </li>
