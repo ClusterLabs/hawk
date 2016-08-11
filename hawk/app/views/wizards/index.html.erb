@@ -19,7 +19,7 @@
               <% next unless wizard.category.eql?(category) %>
               <li>
                 <%= link_to cib_wizard_path(cib_id: current_cib.id, id: wizard.name), data: { help_filter: ".#{wizard.name}" } do %>
-                  <div class="pull-right">
+                  <div class="pull-right p-t-10">
                     <%= icon_tag "plus-circle" %>
                   </div>
                   <%= wizard.shortdesc %>

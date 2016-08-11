@@ -22,7 +22,7 @@
               <%= icon_tag("download") %>
             </a>
             <a class="delete btn btn-danger btn-xs" data-method="delete" data-confirm="<%= _('Are you sure you wish to delete %s?') % [@report.name] %>" href="<%= report_path(id: @report.id) %>" title="<%= _("Delete") %>">
-              = icon_tag("trash")
+              <%= icon_tag("trash") %>
             </a>
           </div>
         </div>

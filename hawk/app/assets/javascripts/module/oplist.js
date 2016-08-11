@@ -116,7 +116,7 @@
                 '{{/for}}',
               '</select>',
               '<div class="input-group-btn">',
-                '<a href="#" class="create btn btn-default" title="{{>labels.create}}">',
+                '<a href="#" class="create btn btn-default p-y-9" title="{{>labels.create}}">',
                   '<i class="fa fa-plus fa-lg fa-fw"></i>',
                 '</a>',
               '</div>',

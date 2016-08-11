@@ -96,7 +96,7 @@
               '</select>',
 
               '<div class="input-group-btn">',
-                '<a href="#" class="create btn btn-default" title="{{>create_label}}">',
+                '<a href="#" class="create btn btn-default p-y-9" title="{{>create_label}}">',
                   '<i class="fa fa-plus fa-lg fa-fw"></i>',
                 '</a>',
               '</div>',

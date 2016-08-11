@@ -1,5 +1,5 @@
 <% param_id = "#{param.id}" %>
-<div class="form-group" data-help-filter=".#{param.help_id}">
+<div class="form-group" data-help-filter=".<%= param.help_id %>">
   <div class="col-sm-5">
     <%= label_tag(param_id, param.title) %>
   </div>
