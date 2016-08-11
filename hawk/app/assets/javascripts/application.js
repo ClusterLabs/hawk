@@ -35,19 +35,20 @@
 //= require module/location
 
 $(function() {
+
+  $(".hljs").html($.trim($(".hljs").html()));
+  $(".bg-info").html($.trim($(".bg-info").html()));
+
   var resize = function() {
     var navHeight = $('.navbar-fixed-top').outerHeight();
     var footHeight = $('footer').show().outerHeight();
-
     var winHeight = $(window).outerHeight() - navHeight - footHeight;
-
     var maxHeight = Math.max.apply(
       null,
       $('#sidebar, #middle, #rightbar').map(function() {
         return $(this).height('auto').outerHeight();
       }).get()
     );
-
     $('#sidebar, #middle, #rightbar').height(
       winHeight > maxHeight ? winHeight : maxHeight
     );
