@@ -14,6 +14,9 @@
 # trying to build packaged software?
 #
 
+# Disabling ruby_dep's warnings when building on Travis
+ENV['RUBY_DEP_GEM_SILENCE_WARNINGS'] = '1'
+
 gem "rails", "~> 4.2.0"
 gem "puma", ">= 2.11"
 gem "sass-rails", "~> 5.0.1"
