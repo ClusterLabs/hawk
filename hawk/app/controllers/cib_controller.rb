@@ -6,6 +6,8 @@ class CibController < ApplicationController
   before_filter :set_title
   before_filter :set_cib
 
+  skip_before_action :verify_authenticity_token, only: [:show]
+
   def show
     respond_to do |format|
       format.html
