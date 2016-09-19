@@ -45,7 +45,7 @@ class ProfilesController < ApplicationController
   end
 
   def set_record
-    @profile = Profile.new language: cookies[:locale]
+    @profile = Profile.new language: cookies[:locale], stonithwarning: cookies[:stonithwarning].nil? || cookies[:stonithwarning] == "true"
   end
 
   def post_process_for!(record)
@@ -56,6 +56,8 @@ class ProfilesController < ApplicationController
     end.gsub("_", "-")
 
     cookies[:locale] = locale
+    cookies.delete(:stonithwarning) if record.stonithwarning
+    cookies[:stonithwarning] = "false" unless record.stonithwarning
 
     I18n.locale = FastGettext.set_locale(
       locale

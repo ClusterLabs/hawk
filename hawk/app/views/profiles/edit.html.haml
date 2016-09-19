@@ -6,6 +6,8 @@
     = form_for [@cib, @profile], horizontal: true, bootstrap: true, method: :put do |main_form|
       = main_form.select :language, :language_options, { include_hidden: false }, {  }
 
+      = main_form.select :stonithwarning, { _("Yes") => true, _("No") => false }, { include_hidden: false }, label: _("Display warning if STONITH is disabled")
+
       = main_form.button_group do
         = profile_apply_button(main_form, @profile)
         = profile_revert_button(main_form, @profile)

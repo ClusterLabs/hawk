@@ -512,7 +512,7 @@ class Cib
     @meta[:status] = cluster_status unless @meta.nil?
   end
 
-  def initialize(id, user, use_file = false)
+  def initialize(id, user, use_file = false, stonithwarning = false)
     Rails.logger.debug "Cib.initialize #{id}, #{user}, #{use_file}"
 
     if use_file
@@ -1073,7 +1073,7 @@ class Cib
       _("STONITH is disabled. For normal cluster operation, STONITH is required."),
       :warning,
       link: edit_cib_crm_config_path(cib_id: @id)
-    ) unless @crm_config[:stonith_enabled]
+    ) unless @crm_config[:stonith_enabled] || !stonithwarning
   end
 
   def init_offline_cluster(id, user, use_file)

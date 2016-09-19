@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
           params[:mini] = "true"
           params[:cib_id] = production_cib
         end
-        Cib.new(params[:cib_id] || production_cib, current_user, params[:debug] == "file")
+        Cib.new(params[:cib_id] || production_cib, current_user, params[:debug] == "file", cookies[:stonithwarning].nil? || cookies[:stonithwarning] == true)
       end
     end
   end
