@@ -8,11 +8,7 @@
     <div class="col-lg-8 errors softhide" data-link="visible{>errors.length > 0}" id="errors">
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h2 class="panel-title">
-            <a href="#errors">
-              <%= _("Errors") %>
-            </a>
-          </h2>
+          <h2 class="panel-title"><a href="#errors"><%= _("Errors") %></a></h2>
         </div>
         <ul class="list-group" data-link="{for errors tmpl='statusError'}"></ul>
       </div>
