@@ -59,8 +59,8 @@ module ApplicationHelper
     # e.g: hash_to_attrs({class: "a", data: {cib: "b", epoch: "c"}) will return:
     # "class='a' data-cib='b' data-epoch='c'"
     hash.map{|key, value|
-       value.is_a?(Hash) ? value.map{|k, v| "data-#{k}='#{v}'"}:"#{key}='#{value}'"
-     }.join(" ").html_safe
+       value.is_a?(Hash) ? value.map{ |k, v| "data-#{k}='#{v}'" } : "#{key}='#{value}'"
+    }.join(" ").html_safe
   end
 
   def active_menu_with(*list)
