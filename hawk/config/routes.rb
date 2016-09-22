@@ -84,6 +84,7 @@ Rails.application.routes.draw do
     resources :roles
     resources :users
     resources :tags
+    resources :alerts
 
     resources :wizards do
       member do

@@ -24,6 +24,9 @@
           %li{role: :presentation}
             %a{href: "#tags", role: :tab, data: { toggle: :tab }, aria: { controls: "tags" } }
               = _("Tags")
+          %li{role: :presentation}
+            %a{href: "#alerts", role: :tab, data: { toggle: :tab }, aria: { controls: "alerts" } }
+              = _("Alerts")
 
       .panel-body
         .tab-content
@@ -35,3 +38,5 @@
             %table.table.table-striped.nodes
           #tags.tab-pane{ role: :tabpanel }
             %table.table.table-striped.tags
+          #alerts.tab-pane{ role: :tabpanel }
+            %table.table.table-striped.alerts

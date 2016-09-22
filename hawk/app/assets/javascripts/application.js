@@ -10,6 +10,7 @@
 //= require module/oplist
 //= require module/attrlist
 //= require module/wizattrlist
+//= require module/recipientlist
 //= require module/modals
 //= require module/wizards
 //= require module/nodes
@@ -20,6 +21,7 @@
 //= require module/clones
 //= require module/groups
 //= require module/tags
+//= require module/alerts
 //= require module/locations
 //= require module/colocations
 //= require module/orders

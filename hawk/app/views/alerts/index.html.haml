@@ -1,0 +1,13 @@
+.container-fluid
+  .row
+    %h1
+      = icon_text "copy", _("Alerts"), class: "page"
+      .pull-right
+        .btn-group{ role: "group" }
+          = link_to icon_text("plus", _("Create")), new_cib_alert_path, class: "btn btn-default"
+
+  .row
+    .panel.panel-default
+      %table.table.table-striped.alerts
+
+= render partial: "shared/helpsidebar", locals: { category: :resources, help: :alert, mapping: nil }
