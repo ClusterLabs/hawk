@@ -39,7 +39,6 @@ module ApplicationHelper
 
   def body_attrs
     hash_to_attrs(
-      {
         id: controller_name,
         class: current_cib.id,
         data: {
@@ -49,7 +48,6 @@ module ApplicationHelper
           user: current_user,
           content: current_cib.status.to_json
         }
-      }
     )
   end
 
@@ -59,7 +57,7 @@ module ApplicationHelper
     # e.g: hash_to_attrs({class: "a", data: {cib: "b", epoch: "c"}) will return:
     # "class='a' data-cib='b' data-epoch='c'"
     hash.map{|key, value|
-       value.is_a?(Hash) ? value.map{ |k, v| "data-#{k}='#{v}'" } : "#{key}='#{value}'"
+      value.is_a?(Hash) ? value.map { |k, v| "data-#{k}='#{v}'" } : "#{key}='#{value}'"
     }.join(" ").html_safe
   end
 
