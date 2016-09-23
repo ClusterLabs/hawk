@@ -38,7 +38,7 @@
           </li>
           <% tags_with_resources.each do |tag| %>
             <li role="presentation">
-              <a href="<%= '\#tag-#{tag[:id]}' %>" role="tab" data-toggle="tab" aria-controls='<%= "tag-#{tag[:id]}"%>' >
+              <a href='<%= "#tag-#{tag[:id]}" %>' role="tab" data-toggle="tab" aria-controls='<%= "tag-#{tag[:id]}"%>' >
                 <%= "\##{tag[:id]}" %>
               </a>
             </li>
@@ -64,7 +64,7 @@
                     <%= _("Operations") %>
                     <span class="caret"></span>
                   </button>
-                  <ul class="dropdown-menu" data-tagname="<%= tag[:id] %>">}
+                  <ul class="dropdown-menu" data-tagname="<%= tag[:id] %>">
                     <li>
                       <%= link_to(icon_text('play', _("Start")), start_cib_resource_path(cib_id: @cib.id, id: tag[:id]), class: :start) %>
                     </li>
