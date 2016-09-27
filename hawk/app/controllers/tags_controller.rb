@@ -98,7 +98,7 @@ class TagsController < ApplicationController
         format.html do
           flash[:success] = _("Tag deleted successfully")
           flash[:warning] = err unless err.blank?
-          redirect_to cib_dashboard_url(cib_id: @cib.id)
+          redirect_to edit_cib_config_url(cib_id: @cib.id)
         end
         format.json do
           render json: {
@@ -144,7 +144,7 @@ class TagsController < ApplicationController
       respond_to do |format|
         format.html do
           flash[:alert] = _("The tag does not exist")
-          redirect_to cib_dashboard_url(cib_id: @cib.id)
+          redirect_to edit_cib_config_url(cib_id: @cib.id)
         end
       end
     end
