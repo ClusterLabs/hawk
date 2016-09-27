@@ -4,13 +4,8 @@
 require 'invoker'
 
 class Alert < Resource
-  attribute :id, String
   attribute :path, String
   attribute :recipients, Array[Recipient]
-
-  validates :id,
-    presence: { message: _("Alert ID is required") },
-    format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _("Invalid Alert ID") }
 
   validates :path, presence: { message: _("Path is required") }
   validate :path_must_exist, :path_must_exist
@@ -50,6 +45,7 @@ class Alert < Resource
 
     def instantiate(xml)
       record = allocate
+      record.id = xml.attributes["id"] || ""
       record.path = xml.attributes["path"] || ""
 
       record.params = if xml.elements["instance_attributes"]
