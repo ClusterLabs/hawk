@@ -165,7 +165,7 @@ class TemplatesController < ApplicationController
       respond_to do |format|
         format.html do
           flash[:alert] = _("The template does not exist")
-          redirect_to cib_dashboard_url(cib_id: @cib.id)
+          redirect_to edit_cib_config_url(cib_id: @cib.id)
         end
       end
     end
