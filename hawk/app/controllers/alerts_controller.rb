@@ -29,7 +29,9 @@ class AlertsController < ApplicationController
     normalize_params! params[:alert]
     @title = _("Create Alert")
 
-    @alert = Alert.new params[:alert]
+    alertdata = params[:alert]
+    alertdata["recipients"] = alertdata["recipients"].values
+    @alert = Alert.new alertdata
 
     respond_to do |format|
       if @alert.save
@@ -100,7 +102,7 @@ class AlertsController < ApplicationController
         format.html do
           flash[:success] = _("Alert deleted successfully")
           flash[:warning] = err unless err.blank?
-          redirect_to cib_dashboard_url(cib_id: @cib.id)
+          redirect_to edit_cib_config_url(cib_id: @cib.id)
         end
         format.json do
           render json: {
@@ -146,7 +148,7 @@ class AlertsController < ApplicationController
       respond_to do |format|
         format.html do
           flash[:alert] = _("The alert does not exist")
-          redirect_to cib_dashboard_url(cib_id: @cib.id)
+          redirect_to edit_cib_config_url(cib_id: @cib.id)
         end
       end
     end
