@@ -24,7 +24,7 @@
   var MIN_SPAN = 10000;
   var MAX_SPAN = 1000 * 3600 * 24 * 365 * 100;
   var MAJSPANS = [4*365*24*3600*1000, 365*24*3600*1000, 120*24*3600*1000, 42*24*3600*1000, 28*24*3600*1000, 21*24*3600*1000, 14*24*3600*1000, 10*24*3600*1000];
-  var MAJUNITS = [365*24*3600*1000, 120*24*3600*1000, 31*24*3600*1000, 21*24*3600*1000, 14*24*3600*1000, 7*24*3600*1000, 4*24*3600*1000, 2*24*3600*1000];
+  var MAJUNITS = [  365*24*3600*1000, 120*24*3600*1000,  31*24*3600*1000, 21*24*3600*1000, 14*24*3600*1000, 7*24*3600*1000,   4*24*3600*1000,  2*24*3600*1000];
   var MINSPANS = [3*24*3600*1000, 2*24*3600*1000, 24*3600*1000, 12*3600*1000, 6*3600*1000, 3*3600*1000,  3600*1000, 45*60*1000, 30*60*1000, 20*60*1000, 10*60*1000, 5*60*1000, 3*60*1000, 60*1000, 45*1000, 20*1000, 12*1000, 0];
   var MINUNITS = [  12*3600*1000,    6*3600*1000,  4*3600*1000,  3*3600*1000,   3600*1000,  30*60*1000, 15*60*1000,  5*60*1000,  4*60*1000,  3*60*1000,  2*60*1000,   60*1000,   30*1000, 15*1000, 10*1000,  5*1000,  2*1000, 1000];
 
@@ -35,8 +35,11 @@
       oncreate: function(item, element) {},
       data: [],
       hammertime: false,
-      items_height: 101,
-      markers_height: 31
+      items_height: 113,
+      markers_height: 31,
+      item_width: 14,
+      item_offset: 2,
+      item_slot_x: -100,
     }, options);
 
     this.element = element;
@@ -44,6 +47,9 @@
 
     this.items_h = this.settings.items_height;
     this.markers_h = this.settings.markers_height;
+    this.item_width = this.settings.item_width;
+    this.item_offset = this.settings.item_offset;
+    this.item_slot_x = this.settings.item_slot_x;
     this._dragging = null;
     this._drag_x = 0;
 
@@ -389,19 +395,28 @@
       $(existing_labels[i]).remove();
     }
 
-    var item_offset = 2;
-    var item_slot_x = -100;
+    var item_offset = self.item_offset;
+    var item_slot_x = self.item_slot_x;
     var item_slot_y = item_offset;
-    var item_w = 8;
+    var item_w = self.item_width;
     var item_d = item_w + item_offset;
     var items = self.items.children('.ec-dot');
 
     span = (self.width - (item_offset * 2)) / self.timespan;
 
+    var push_rows = 0;
+
     for (i = 0; i < items.length; i++) {
       var elem = $(items[i]);
       var item = elem.data('event');
       var m = item._starttime;
+
+      if ((span * (m - min_time_ms)) < -(item_w + item_offset) * 6) {
+        elem.css('display', 'none');
+        continue;
+      } else {
+        elem.css('display', '');
+      }
 
       var x = Math.floor(item_offset + span * (m - min_time_ms));
       var xf = x % item_d;
@@ -417,13 +432,18 @@
           xoffs += item_d;
           x = xoffs;
           y = item_offset;
+          push_rows += 1;
         }
       } else {
         item_slot_y = item_offset;
+        push_rows = 0;
       }
 
       if (!pushed) {
         x += xf;
+      } else if (push_rows > 5) {
+        elem.css('display', 'none');
+        continue;
       }
 
       item_slot_x = x;
