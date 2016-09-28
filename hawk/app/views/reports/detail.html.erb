@@ -17,17 +17,13 @@
 <% end %>
 <div class="row">
   <div class="col-sm-12">
-    <pre>
-      <%= history_text_markup @transition[:info] %>
-    </pre>
+    <pre><%= history_text_markup @transition[:info] %></pre>
   </div>
 </div>
 <% unless @transition[:info_err].blank? %>
   <div class="row">
     <div class="col-sm-12">
-      <pre>
-        <%= history_text_markup @transition[:info_err] %>
-      </pre>
+      <pre><%= history_text_markup @transition[:info_err] %></pre>
     </div>
   </div>
 <% end %>

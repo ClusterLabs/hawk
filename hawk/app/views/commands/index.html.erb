@@ -18,11 +18,7 @@
           <div class="col-sm-12">
             <div class="commands">
               <% @cmds.reverse_each do |cmd| %>
-                <pre>
-                  <code class="crmsh hljs" title="<%= cmd.lines.first %>">
-                    <%= cmd.lines[1..-1].join %>
-                  </code>
-                </pre>
+                <pre><code class="crmsh hljs" title="<%= cmd.lines.first %>"><%= cmd.lines[1..-1].join %></code></pre>
               <% end %>
             </div>
           </div>

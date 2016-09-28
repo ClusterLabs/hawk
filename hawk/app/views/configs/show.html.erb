@@ -16,16 +16,6 @@
     </h1>
   </div>
   <div class="row">
-    <pre>
-      <% if @xml %>
-        <code class="xml hljs">
-          <%= @cibtext.to_s %>
-        </code>
-      <% else %>
-        <code class="crmsh hljs">
-          <%= @cibtext.to_s %>
-        </code>
-      <% end %>
-    </pre>
+    <pre><% if @xml %><code class="xml hljs"><%= @cibtext.to_s %></code><% else %><code class="crmsh hljs"><%= @cibtext.to_s %></code><% end %></pre>
   </div>
 </div>
