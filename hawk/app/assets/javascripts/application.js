@@ -36,9 +36,6 @@
 
 $(function() {
 
-  $(".hljs").html($.trim($(".hljs").html()));
-  $(".bg-info").html($.trim($(".bg-info").html()));
-
   var resize = function() {
     var navHeight = $('.navbar-fixed-top').outerHeight();
     var footHeight = $('footer').show().outerHeight();
