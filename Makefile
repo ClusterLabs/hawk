@@ -63,12 +63,12 @@ all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service scripts/hawk.service.bundle
 
 %:: %.in
 	sed \
-		-e 's|@WWW_BASE@|$(WWW_BASE)|' \
-		-e 's|@LIBDIR@|$(LIBDIR)|' \
-		-e 's|@BINDIR@|$(BINDIR)|' \
-		-e 's|@SBINDIR@|$(SBINDIR)|' \
-		-e 's|@WITHIN_VAGRANT@|$(WITHIN_VAGRANT)|' \
-		-e 's|@GEM_PATH@|$(WWW_BASE)/hawk/vendor/bundle/ruby/$(RUBY_ABI)|' \
+		-e 's|@WWW_BASE@|$(WWW_BASE)|g' \
+		-e 's|@LIBDIR@|$(LIBDIR)|g' \
+		-e 's|@BINDIR@|$(BINDIR)|g' \
+		-e 's|@SBINDIR@|$(SBINDIR)|g' \
+		-e 's|@WITHIN_VAGRANT@|$(WITHIN_VAGRANT)|g' \
+		-e 's|@GEM_PATH@|$(WWW_BASE)/hawk/vendor/bundle/ruby/$(RUBY_ABI)|g' \
 		$< > $@
 
 tools/hawk_chkpwd: tools/hawk_chkpwd.c tools/common.h
