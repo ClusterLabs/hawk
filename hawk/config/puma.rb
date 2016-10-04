@@ -18,7 +18,7 @@ else
              ENV["HAWK_PORT"] || "7630",
              ENV["HAWK_KEY"] || "/etc/hawk/hawk.key",
              ENV["HAWK_CERT"] || "/etc/hawk/hawk.pem")
-  ssl_bind @listen, @port, cert: @cert, key: @key
+  ssl_bind @listen, @port, cert: @cert, key: @key, verify_mode: 'none'
 end
 
 directory ROOT
