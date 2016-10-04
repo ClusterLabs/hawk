@@ -63,12 +63,12 @@ all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service scripts/hawk.service.bundle
 
 %:: %.in
 	sed \
-		-e 's|@WWW_BASE@|$(WWW_BASE)|' \
-		-e 's|@LIBDIR@|$(LIBDIR)|' \
-		-e 's|@BINDIR@|$(BINDIR)|' \
-		-e 's|@SBINDIR@|$(SBINDIR)|' \
-		-e 's|@WITHIN_VAGRANT@|$(WITHIN_VAGRANT)|' \
-		-e 's|@GEM_PATH@|$(WWW_BASE)/hawk/vendor/bundle/ruby/$(RUBY_ABI)|' \
+		-e 's|@WWW_BASE@|$(WWW_BASE)|g' \
+		-e 's|@LIBDIR@|$(LIBDIR)|g' \
+		-e 's|@BINDIR@|$(BINDIR)|g' \
+		-e 's|@SBINDIR@|$(SBINDIR)|g' \
+		-e 's|@WITHIN_VAGRANT@|$(WITHIN_VAGRANT)|g' \
+		-e 's|@GEM_PATH@|$(WWW_BASE)/hawk/vendor/bundle/ruby/$(RUBY_ABI)|g' \
 		$< > $@
 
 tools/hawk_chkpwd: tools/hawk_chkpwd.c tools/common.h
@@ -110,6 +110,7 @@ base/install:
 	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/tmp || true
 	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/home
 	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/explorer
+	install -D -m 0644 rpm/sysconfig.hawk $(DESTDIR)/etc/sysconfig/hawk
 ifeq ($(BUNDLE_GEMS),true)
 		install -D -m 0644 scripts/hawk.service.bundle_gems $(DESTDIR)/usr/lib/systemd/system/hawk.service
 else
