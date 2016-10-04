@@ -19,9 +19,9 @@ EnvironmentFile=-/etc/sysconfig/hawk
 # Run ExecStartPre with root-permissions
 PermissionsStartOnly=true
 ExecStartPre=@WWW_BASE@/hawk/bin/generate-ssl-cert
-ExecStart=@WWW_BASE@/hawk/bin/bundle exec /usr/bin/puma -C @WWW_BASE@/hawk/config/puma.rb
-ExecStop=@WWW_BASE@/hawk/bin/bundle exec /usr/bin/pumactl -S @WWW_BASE@/hawk/tmp/pids/puma.state stop
-ExecReload=@WWW_BASE@/hawk/bin/bundle exec /usr/bin/pumactl -S @WWW_BASE@/hawk/tmp/pids/puma.state restart
+ExecStart=/usr/bin/puma -C @WWW_BASE@/hawk/config/puma.rb
+ExecStop=/usr/bin/pumactl -S @WWW_BASE@/hawk/tmp/pids/puma.state stop
+ExecReload=/usr/bin/pumactl -S @WWW_BASE@/hawk/tmp/pids/puma.state restart
 
 [Install]
 WantedBy=multi-user.target
