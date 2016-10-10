@@ -88,7 +88,7 @@ BuildRequires:  rubygem(%{rb_default_ruby_abi}:ruby_parser) >= 3.6.6
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:sass) >= 3.4
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:sass-rails) >= 5.0.1
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:sexp_processor) >= 4.5.1
-BuildRequires:  rubygem(%{rb_default_ruby_abi}:spring:1) >= 1.3
+BuildRequires:  rubygem(%{rb_default_ruby_abi}:spring) >= 1.3
 BuildRequires:  rubygem(%{rb_default_ruby_abi}:virtus)
 
 %if 0%{?suse_version} <= 1310
