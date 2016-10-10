@@ -58,8 +58,10 @@
     <% end %>
   </div>
 </div>
+
+
 <script id="jstmpl-paramslist" type="text/x-jsrender">
-  <fieldset data-attrlist="<%= primitive.params.to_json %>" data-attrlist-target=".content" data-attrlist-prefix='<%= "#{primitive.class.cib_type}[params]" %>'>
+  <fieldset data-attrlist="<%= primitive.params.to_json %>" data-attrlist-target=".content" data-attrlist-prefix="<%= primitive.class.cib_type.to_s + '[params]' %>">
     <legend>
       <%= _("Parameters") %>
       <span class="pull-right toggleable">
@@ -69,8 +71,10 @@
     <div class="content"></div>
   </fieldset>
 </script>
+
+
 <script id="jstmpl-metalist" type="text/x-jsrender">
-  <fieldset data-attrlist="<%= primitive.meta.to_json %>" data-attrlist-target=".content" data-attrlist-prefix="<%= '#{primitive.class.cib_type}[meta]' %>" data-attrlist-mapping="<%= primitive.available_meta.to_json %>">
+  <fieldset data-attrlist="<%= primitive.meta.to_json %>" data-attrlist-target=".content" data-attrlist-prefix="<%= primitive.class.cib_type.to_s + '[meta]' %>" data-attrlist-mapping="<%= primitive.available_meta.to_json %>">
     <legend>
       <%= _("Meta Attributes") %>
       <span class="pull-right toggleable">
@@ -80,8 +84,10 @@
     <div class="content"></div>
   </fieldset>
 </script>
+
+
 <script id="jstmpl-utilizationlist" type="text/x-jsrender">
-  <fieldset data-attrlist="<%= primitive.utilization.to_json %>" data-attrlist-target=".content" data-attrlist-prefix="<%= '#{primitive.class.cib_type}[utilization]'%>" data-attrlist-mapping="<%= primitive.available_utilization.to_json %>">
+  <fieldset data-attrlist="<%= primitive.utilization.to_json %>" data-attrlist-target=".content" data-attrlist-prefix="<%= primitive.class.cib_type.to_s + '[utilization]'%>" data-attrlist-mapping="<%= primitive.available_utilization.to_json %>">
     <legend>
       <%= _("Utilization") %>
       <span class="pull-right toggleable">
@@ -91,8 +97,10 @@
     <div class="content"></div>
   </fieldset>
 </script>
+
+
 <script id="jstmpl-oplist" type="text/x-jsrender">
-  <fieldset data-oplist="<%= primitive.ops.to_json %>" data-oplist-target=".content" data-oplist-prefix="<%= '#{primitive.class.cib_type}[ops]' %>" data-oplist-mapping="primitive.available_opmeta.to_json">
+  <fieldset data-oplist="<%= primitive.ops.to_json %>" data-oplist-target=".content" data-oplist-prefix="<%= primitive.class.cib_type.to_s + '[ops]' %>" data-oplist-mapping="<%= primitive.available_opmeta.to_json %>">
     <legend>
       <%= _("Operations") %>
       <span class="pull-right toggleable">
