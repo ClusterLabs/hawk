@@ -1,0 +1,55 @@
+<% if request.xhr? %>
+  <div class="modal-header">
+    <button class="close" data-dismiss="modal" type="button">
+      <span aria-hidden="true">
+        &times;
+      </span>
+      <span class="sr-only">
+        <%= _('Close') %>
+      </span>
+    </button>
+    <h3 class="modal-title">
+      <%= icon_text 'question', page_title, class: 'page' %>
+    </h3>
+  </div>
+  <div class="modal-body">
+    <ul class="media-list">
+      <% base_docs.each do |doc| %>
+        <li class="media">
+          <div class="media-body">
+            <h4 class="media-heading">
+              <div class="btn-group pull-right">
+                <%= link_to icon_tag("#{doc[:icon]} fa-fw fa-lg"), doc[:url], target: '_blank', class: "btn btn-#{doc[:style]} btn-lg", title: doc[:title] %>
+              </div>
+              <%= doc[:title] %>
+            </h4>
+            <%= doc[:desc] %>
+          </div>
+        </li>
+      <% end %>
+      <% installed_docs.each do |doc| %>
+        <li class="media">
+          <div class="media-body">
+            <h4 class="media-heading">
+              <div class="btn-group pull-right">
+                <% if doc[:html].exist? %>
+                  <%= link_to icon_text('file-image-o', _('HTML')), docs_link(doc, :html), target: '_blank', class: 'btn btn-default btn-xs' %>
+                <% end %>
+                <% if doc[:pdf].exist? %>
+                  <%= link_to icon_text('file-pdf-o', _('PDF')), docs_link(doc, :pdf), target: '_blank', class: 'btn btn-default btn-xs' %>
+                <% end %>
+              </div>
+              <%= doc[:title] %>
+            </h4>
+            <%= doc[:desc] %>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-default" data-dismiss="modal" type="button">
+      <%= _('Close') %>
+    </button>
+  </div>
+<% end %>

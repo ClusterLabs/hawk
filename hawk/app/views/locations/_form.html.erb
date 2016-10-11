@@ -1,0 +1,98 @@
+<div class="panel panel-default">
+  <div class="panel-body" data-help-target="#rightbar > .container-fluid > #helpentries > .attrhelp">
+    <%= form_for [cib, location], horizontal: true, bootstrap: true do |main_form| %>
+      <%= errors_for location %>
+      <% if location.new_record? %>
+        <%= main_form.text_field :id, label: _("Constraint ID"), data: { help_filter: ".row.id" } %>
+      <% else %>
+        <%= main_form.text_field :id, label: _("Constraint ID"), readonly: true, data: { help_filter: ".row.id" } %>
+      <% end %>
+      <%= main_form.select :resources, :location_resource_options, { include_hidden: false }, { multiple: true, size: 5, data: { help_filter: ".row.resources" } } %>
+      <div class="panel panel-default with-nav-tabs" id="location-variants">
+        <div class="panel-heading">
+          <ul class="nav nav-tabs" role="tablist">
+            <li class="active" role="presentation">
+              <a aria-controls="locsimple" href="#locsimple" role="tab" data-toggle="tab">
+                <%= _("Simple") %>
+              </a>
+            </li>
+            <li role="presentation">
+              <a aria-controls="locadvanced" href="#locadvanced" role="tab" data-toggle="tab">
+                <%= _("Advanced") %>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="panel-body">
+          <div class="tab-content">
+            <div class="tab-pane active" id="locsimple" role="tabpanel">
+              <div class="panel-body">
+                <div class="form-group" data-help-filter=".row.score">
+                  <label class="col-sm-5 control-label" for="simple-score">
+                    <%= _("Score") %>
+                  </label>
+                  <div class="col-sm-7">
+                    <div class="input-group">
+                      <div class="input-group-btn">
+                        <button aria-haspopup="true" aria-expanded="false" class="btn btn-default dropdown-toggle p-y-9" id="simple-score-btn" type="button" data-toggle='dropdown'>
+                          <i class="fa fa-caret-down" aria-hidden="true"></i>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li>
+                            <a data-value="INFINITY" href="#">
+                              <%= _("Always") %>
+                            </a>
+                            <a data-value="-INFINITY" href="#">
+                              <%= _("Never") %>
+                            </a>
+                            <a data-value="0" href="#">
+                              <%= _("Advisory") %>
+                            </a>
+                          </li>
+                        </ul>
+                      </div>
+                      <input class="form-control" id="simple-score" type="text"></input>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group" data-help-filter=".row.node">
+                  <label class="col-sm-5 control-label" for="simple-node">
+                    <%= _("Node") %>
+                  </label>
+                  <div class="col-sm-7">
+                    <select class="form-control" id="simple-node">
+                      <option selected="selected"></option>
+                      <% @cib.nodes.each do |node| %>
+                        <option value="<%= node[:name] %>">
+                          <%= node[:name] %>
+                        </option>
+                      <% end %>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tab-pane" id="locadvanced" role="tabpanel">
+              <div class="panel-body">
+                <%= main_form.select :discovery, :location_discovery_options, { include_blank: true, include_hidden: false }, { label: _("Resource Discovery"), data: { help_filter: ".row.resource-discovery" } } %>
+                <div data-locations="<%= location.rules.to_json %>" data-locations-prefix="location[rules]" data-locations-target=".content">
+                  <div class="content locations"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <%= main_form.button_group do %>
+        <% if location.new_record? %>
+          <%= create_button(main_form, location) %>
+          <%= link_to _("Back"), types_cib_constraints_path(cib_id: cib.id), class: "btn btn-default back" %>
+        <% else %>
+          <%= apply_button(main_form, location) %>
+          <%= revert_button(main_form, location) %>
+          <%= link_to _("Back"), edit_cib_config_path(cib_id: cib.id), class: "btn btn-default back" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,93 @@
+<div class="container-fluid">
+  <div class="row">
+    <h1>
+      <%= icon_text "code", _("Add Resource"), class: "page" %>
+      <div class="pull-right">
+        <div class="btn-group" role="group">
+          <%= link_to icon_text("list-ul", _("List")), cib_resources_path, class: "btn btn-default" %>
+        </div>
+      </div>
+    </h1>
+  </div>
+  <div class="row" data-help-target="#rightbar .rightbar_help > *">
+    <ul class="nav nav-pills nav-stacked nav-bighelp nav-topspace">
+      <li>
+        <%= link_to new_cib_primitive_path(cib_id: current_cib.id), data: { help_filter: ".primitive" }, class: "btn btn-default btn-lg" do %>
+          <div class="pull-right">
+            <%= icon_tag "plus-circle" %>
+          </div>
+          <%= icon_text "file-o", _("Primitive") %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to new_cib_group_path(cib_id: current_cib.id), data: { help_filter: ".group" }, class: "btn btn-default btn-lg" do %>
+          <div class="pull-right">
+            <%= icon_tag "plus-circle" %>
+          </div>
+          <%= icon_text "group", _("Group") %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to new_cib_clone_path(cib_id: current_cib.id), data: { help_filter: ".clone" }, class: "btn btn-default btn-lg" do %>
+          <div class="pull-right">
+            <%= icon_tag "plus-circle" %>
+          </div>
+          <%= icon_text "copy", _("Clone") %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to new_cib_master_path(cib_id: current_cib.id), data: { help_filter: ".multistate" }, class: "btn btn-default btn-lg" do %>
+          <div class="pull-right">
+            <%= icon_tag "plus-circle" %>
+          </div>
+          <%= icon_text "superscript", _("Multi-state") %>
+        <% end %>
+      </li>
+      <li>
+        <%= link_to new_cib_tag_path(cib_id: current_cib.id), data: { help_filter: ".tag" }, class: "btn btn-default btn-lg" do %>
+          <div class="pull-right">
+            <%= icon_tag "plus-circle" %>
+          </div>
+          <%= icon_text "tag", _("Tag") %>
+        <% end %>
+      </li>
+      <% if Util.has_feature? :rsc_template %>
+        <li>
+          <%= link_to new_cib_template_path(cib_id: current_cib.id), data: { help_filter: ".template" }, class: "btn btn-default btn-lg" do %>
+            <div class="pull-right">
+              <%= icon_tag "plus-circle" %>
+            </div>
+            <%= icon_text "file-text-o", _("Template") %>
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+</div>
+<% content_for :rightbar do %>
+  <div class="container-fluid" data-spy="affix">
+    <div class="row">
+      <%= localized_help_for :resources, :intro %>
+    </div>
+    <div class="rightbar_help">
+      <div class="row primitive">
+        <%= localized_help_for :resources, :primitive %>
+      </div>
+      <div class="row group">
+        <%= localized_help_for :resources, :group %>
+      </div>
+      <div class="row clone">
+        <%= localized_help_for :resources, :clone %>
+      </div>
+      <div class="row multistate">
+        <%= localized_help_for :resources, :master %>
+      </div>
+      <div class="row tag">
+        <%= localized_help_for :resources, :tag %>
+      </div>
+      <div class="row template">
+        <%= localized_help_for :resources, :template %>
+      </div>
+    </div>
+  </div>
+<% end %>

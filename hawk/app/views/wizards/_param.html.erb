@@ -1,0 +1,34 @@
+<% param_id = "#{param.id}" %>
+<div class="form-group" data-help-filter=".<%= param.help_id %>">
+  <div class="col-sm-5">
+    <%= label_tag(param_id, param.title) %>
+  </div>
+  <div class="col-sm-7">
+    <% opts = { class: "form-control", required: param.required, data: { "param-type" => param.type, "param-required" => param.required } } %>
+    <% if param.required && !step.required %>
+      <% opts[:data][:depends] = "enable:#{step.id}" %>
+    <% end %>
+    <% if param.type == "email" %>
+      <% opts[:email] = true %>
+    <% elsif param.type == "integer" || param.type == "port" %>
+      <% opts[:digits] = true %>
+    <% elsif param.type == "resource" %>
+      <% opts[:class] += " resource-id" %>
+    <% end %>
+    <% if param.type == "boolean" %>
+      <% if param.value %>
+        <%= hidden_field_tag(param_id, 'false') %>
+      <% end %>
+      <% opts[:include_hidden] = false %>
+      <%= select_tag param_id, boolean_options(param.value || false), opts %>
+    <% else %>
+      <% unless param.example.blank? %>
+        <% opts[:placeholder] = "Example: #{sanitize param.example.to_s}" %>
+      <% end %>
+      <%= text_field_tag(param_id, sanitize_value(param.value), opts) %>
+    <% end %>
+  </div>
+  <div class="col-sm-12 help-block">
+    <%= param.shortdesc %>
+  </div>
+</div>

@@ -1,0 +1,43 @@
+<div class="panel panel-default">
+  <div class="panel-body" data-help-target="#rightbar > .container-fluid > #helpentries > .attrhelp">
+    <%= form_for [cib, role], horizontal: true, bootstrap: true do |main_form| %>
+      <%= errors_for role %>
+      <% if role.new_record? %>
+        <%= main_form.text_field :id, label: _("Role ID") %>
+      <% else %>
+        <%= main_form.text_field :id, label: _("Role ID"), readonly: true %>
+      <% end %>
+      <div id="rules">
+        <%= main_form.fields_for :rules do |rule_form| %>
+          <fieldset>
+            <legend>
+              <%= _("Rule") %>
+              <div class="pull-right">
+                <%= icon_tag("plus", class: "rule add", title: _("Add a rule below")) %>
+                <%= icon_tag("minus", class: "rule remove", title: _("Remove this rule")) %>
+                <%= icon_tag("arrow-up", class: "rule up", title: _("Move rule up")) %>
+                <%= icon_tag("arrow-down", class: "rule down", title: _("Move rule down")) %>
+              </div>
+            </legend>
+            <%= rule_form.select :right, :rule_options, { include_hidden: false, }, id: nil, label: _("Right"), required: true %>
+            <%= rule_form.text_field :xpath, id: nil, label: _("XPath") %>
+            <%= rule_form.text_field :tag, id: nil, label: _("Object Type") %>
+            <%= rule_form.text_field :ref, id: nil, label: _("Reference") %>
+            <% if role.schema_version < 2.0 %>
+              <%= rule_form.text_field :attribute, id: nil, label: _("Attribute") %>
+            <% end %>
+          </fieldset>
+        <% end %>
+      </div>
+      <%= main_form.button_group do %>
+        <% if role.new_record? %>
+          <%= role_create_button(main_form, role) %>
+        <% else %>
+          <%= role_apply_button(main_form, role) %>
+          <%= role_revert_button(main_form, role) %>
+        <% end %>
+        <%= link_to _("Back"), cib_roles_path(cib_id: cib.id), class: "btn btn-default back" %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

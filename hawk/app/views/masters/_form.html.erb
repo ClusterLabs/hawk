@@ -1,0 +1,33 @@
+<div class="panel panel-default">
+  <div class="panel-body" data-help-target="#rightbar > .container-fluid > #helpentries > .attrhelp">
+    <%= form_for [cib, master], horizontal: true, bootstrap: true do |main_form| %>
+      <%= errors_for master %>
+      <% if master.new_record? %>
+        <%= main_form.text_field :id, label: _("Multi-state ID") %>
+        <%= main_form.select :child, master_child_for(master), { include_hidden: false, include_blank: true }, id: nil, label: _("Child Resource") %>
+      <% else %>
+        <%= main_form.text_field :id, label: _("Multi-state ID"), readonly: true %>
+        <%= main_form.text_field :child, label: _("Child Resource"), readonly: true %>
+      <% end %>
+      <fieldset data-attrlist="<%= master[:meta].to_json %>" data-attrlist-mapping="<%= master.mapping.to_json %>" data-attrlist-prefix="master[meta]" data-attrlist-target=".content">
+        <legend>
+          <%= _("Meta Attributes") %>
+          <span class="pull-right toggleable">
+            <%= icon_tag("chevron-up") %>
+          </span>
+        </legend>
+        <div class="content"></div>
+      </fieldset>
+      <%= main_form.button_group do %>
+        <% if master.new_record? %>
+          <%= create_button(main_form, master) %>
+          <%= link_to _("Back"), types_cib_resources_path(cib_id: cib.id), class: "btn btn-default back" %>
+        <% else %>
+          <%= apply_button(main_form, master) %>
+          <%= revert_button(main_form, master) %>
+          <%= link_to _("Back"), edit_cib_config_path(cib_id: cib.id), class: "btn btn-default back" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

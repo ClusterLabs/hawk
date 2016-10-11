@@ -1,9 +1,0 @@
-.container-fluid
-  .row
-    %h1
-      = icon_text "user", _("Create ACL Target"), class: "page"
-
-  .row
-    = render partial: "form", locals: { cib: @cib, user: @user }
-
-= render partial: "shared/helpsidebar", locals: { category: :resources, help: :user, mapping: nil }

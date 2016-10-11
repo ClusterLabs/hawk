@@ -1,0 +1,16 @@
+<% content_for :rightbar do %>
+  <div class="container-fluid" data-spy="affix">
+    <div class="row help-title margin-bottom">
+      <% unless category.nil? || help.nil? %>
+        <%= localized_help_for category, help %>
+      <% end %>
+    </div>
+    <div id="helpentries">
+      <% unless mapping.nil? %>
+        <% mapping.each do |key, values| %>
+          <%= render partial: "shared/helpentry", locals: { key: key, values: values } %>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>

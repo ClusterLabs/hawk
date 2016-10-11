@@ -1,0 +1,24 @@
+<div class="container-fluid">
+  <div class="row">
+    <h1>
+      <%= icon_text "file-o", @title, class: "page" %>
+      <div class="pull-right">
+        <div class="btn-group" role="group">
+          <%= link_to icon_text("plus", _("Create")), path_for_new_resource, class: "btn btn-default" %>
+        </div>
+      </div>
+    </h1>
+  </div>
+  <div class="row">
+    <div class="panel panel-default">
+      <table class="table table-striped primitives"></table>
+    </div>
+  </div>
+</div>
+<% content_for :rightbar do %>
+  <div class="container-fluid" data-spy="affix">
+    <div class="row primitive">
+      <%= localized_help_for_primitives %>
+    </div>
+  </div>
+<% end %>

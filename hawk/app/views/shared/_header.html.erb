@@ -1,0 +1,20 @@
+<head>
+  <title>
+    <%= meta_title %>
+  </title>
+  <%= current_metatags %>
+  <%= favicon_link_tag "favicon.png" %>
+  <%= stylesheet_link_tag "vendor" %>
+  <%= stylesheet_link_tag "gettext" %>
+  <%= stylesheet_link_tag "application" %>
+  <%= yield :stylesheets %>
+  <%= javascript_include_tag "vendor" %>
+  <%= javascript_include_tag "gettext" %>
+  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag localized_js %>
+  <%= yield :javascripts %>
+  <!--[if lt IE 9]
+    <%= stylesheet_link_tag "ie" %>
+    <%= javascript_include_tag "ie" %>
+  -->
+</head>

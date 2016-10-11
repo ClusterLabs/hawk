@@ -1,0 +1,17 @@
+<div class="<%= key %> row attrhelp">
+  <h3 class="margin-bottom">
+    <% if values[:shortdesc] %>
+      <%= values[:shortdesc] %>
+    <% else %>
+      <%= content_tag :code, key %>
+    <% end %>
+  </h3>
+  <% if values[:longdesc] %>
+    <%= simple_format values[:longdesc] %>
+  <% end %>
+  <% unless values[:default].blank? %>
+    <%= content_tag :em, _("Default") %>
+    <%= ": " %>
+    <%= content_tag :code, sanitize(values[:default].to_s) %>
+  <% end %>
+</div>

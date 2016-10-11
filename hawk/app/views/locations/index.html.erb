@@ -1,0 +1,18 @@
+<div class="container-fluid">
+  <div class="row">
+    <h1>
+      <%= icon_text "globe", _("Locations"), class: "page" %>
+      <div class="pull-right">
+        <div class="btn-group" role="group">
+          <%= link_to icon_text("plus", _("Create")), new_cib_location_path, class: "btn btn-default" %>
+        </div>
+      </div>
+    </h1>
+  </div>
+  <div class="row">
+    <div class="panel panel-default">
+      <table class="table table-striped locations"></table>
+    </div>
+  </div>
+</div>
+<%= render partial: "shared/helpsidebar", locals: { category: :constraints, help: :location, mapping: nil } %>

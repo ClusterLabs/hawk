@@ -338,7 +338,7 @@ $(function() {
           if (dest == "menu") {
             dropdowns.push([
               '<li>',
-                '<a href="', path, '" class="', path_class, '">',
+                '<a href="', path, '"class="', path_class, ' p-y-4">',
                   '<i class="fa fa-fw fa-', icon_class, '"></i> ',
                   text,
                 '</a>',
@@ -346,7 +346,7 @@ $(function() {
             ].join(''));
           } else if (dest == "button") {
             operations.push([
-              '<a href="', path, '" class="', path_class, ' btn btn-default btn-xs" title="', text, '">',
+              '<a href="', path, '" class="', path_class, ' p-y-4 btn btn-default btn-xs" title="', text, '">',
                 '<i class="fa fa-', icon_class, '"></i>',
               '</a> '
             ].join(''));
@@ -400,8 +400,8 @@ $(function() {
 
         operations.push([
           '<div class="btn-group" role="group">',
-            '<button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" data-container="body" aria-haspopup="true" aria-expanded="true">',
-              '<span class="caret"></span>',
+            '<button class="btn btn-default btn-xs dropdown-toggle p-y-4" type="button" data-toggle="dropdown" data-container="body" aria-haspopup="true" aria-expanded="true">',
+              '<i class="fa fa-caret-down" aria-hidden="true"></i>',
             '</button>',
             '<ul class="dropdown-menu">',
               dropdowns.join(''),
@@ -412,7 +412,7 @@ $(function() {
         operations.push([
           '<a href="',
           Routes.cib_resource_path($('body').data('cib'), row.id),
-          '" class="details btn btn-default btn-xs" title="',
+          '"class="details btn btn-default btn-xs p-y-4" title="',
           __('Details'),
           '" data-toggle="modal" data-target="#modal">',
           '<i class="fa fa-search"></i>',

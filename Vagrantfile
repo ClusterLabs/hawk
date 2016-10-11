@@ -72,6 +72,7 @@ Vagrant.configure("2") do |config|
   config.vm.define "webui", primary: true do |machine|
     machine.vm.hostname = "webui"
     machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 3000, host: 3000
+    machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 8808, host: 8808
     configure_machine machine, 0, ["base", "webui"], 1024
   end
 

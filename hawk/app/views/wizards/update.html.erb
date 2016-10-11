@@ -1,0 +1,103 @@
+<div class="container-fluid wizard-verify">
+  <div class="row">
+    <h1>
+      <%= icon_text "magic", @wizard.shortdesc, class: "page" %>
+    </h1>
+  </div>
+  <div class="row">
+    <%= form_for [@cib, @wizard], url: { action: "submit" }, method: :post, horizontal: true, bootstrap: true, remote: true do |main_form| %>
+      <%= hidden_field_tag :pa, @pa.to_json %>
+      <div class="panel panel-default">
+        <div class="panel-steps">
+          <ul class="nav nav-pills">
+            <% @wizard.steps.each_with_index do |step, index| %>
+              <li class="btn btn-default btn-circle disabled">
+                <%= index + 1 %>
+              </li>
+            <% end %>
+            <% if @wizard.errors.length > 0 %>
+              <li class="btn btn-danger btn-circle active">
+                <%= icon_tag "exclamation-triangle" %>
+              </li>
+            <% else %>
+              <li class="btn btn-success btn-circle active">
+                <i class="fa fa-check p-t-3"></i>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="panel-body">
+          <fieldset>
+            <legend>
+              <%= _("Verify and apply") %>
+            </legend>
+            <div class="notifications">
+              <% @wizard.errors.each do |error| %>
+                <div class="alert alert-danger">
+                  <%= error.to_s %>
+                </div>
+              <% end %>
+            </div>
+            <div class="actions">
+              <ul class="list-group">
+                <% @wizard.actions.each_with_index do |action, ai| %>
+                  <li class="list-group-item">
+                    <h4 class="list-group-item-heading">
+                      <%= "#{ai+1}. " + action['shortdesc'] %>
+                    </h4>
+                    <div class="col-sm-1"></div>
+                    <% unless action['longdesc'].strip.empty? %>
+                      <p class="list-group-item-text">
+                        <%= action['longdesc'] %>
+                      </p>
+                    <% end %>
+                    <% unless action['text'].empty? %>
+                      <% if action['name'] == "cib" %>
+                        <pre><code class="crmsh hljs"><%= action['text'] %></code></pre>
+                      <% else %>
+                        <pre class="bg-info"><%= action['text'] %></pre>
+                      <% end %>
+                    <% end %>
+                  </li>
+                <% end %>
+              </ul>
+            </div>
+            <% if @wizard.need_rootpw %>
+              <div class="alert alert-warning">
+                <p>
+                  <%= _("To apply the changes, Hawk requires root access, and password-less SSH access must be configured. See the Hawk documentation for more information.") %>
+                </p>
+              </div>
+              <div class="form-group">
+                <div class="col-sm-5">
+                  <%= label_tag(:rootpw, _("Root password")) %>
+                </div>
+                <div class="col-sm-7">
+                  <%= password_field_tag :rootpw, nil, class: "form-control", required: true %>
+                </div>
+                <div class="col-sm-12 help-block"></div>
+              </div>
+            <% end %>
+          </fieldset>
+          <%= main_form.button_group class: "wizard" do %>
+            <%= link_to _("Cancel"), cib_wizards_path(cib_id: current_cib.id), class: "btn btn-default", data: { confirm: _("Do you really want to cancel the wizard setup?") } %>
+            <%= link_to _("Back"), cib_wizard_path(cib_id: current_cib.id, id: @wizard.name), class: "btn btn-default" %>
+            <% opts = { class: "btn btn-primary finish hidden submit", name: "submit" } %>
+            <% opts[:disabled] = true if @wizard.errors.length > 0 %>
+            <%= main_form.submit _("Apply"), opts %>
+          <% end %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<% content_for :rightbar do %>
+  <div class="container-fluid" data-spy="affix">
+    <h2 class="margin-bottom">
+      <%= @wizard.shortdesc %>
+    </h2>
+    <div class="row">
+      <%= longdesc_format @wizard.longdesc %>
+    </div>
+  </div>
+<% end %>

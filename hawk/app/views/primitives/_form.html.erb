@@ -1,0 +1,112 @@
+<div class="panel panel-default">
+  <div class="panel-body" data-help-target="#rightbar > .container-fluid > #helpentries > .attrhelp">
+    <%= form_for [cib, primitive], horizontal: true, bootstrap: true do |main_form| %>
+      <%= errors_for primitive %>
+      <% if primitive.resource? %>
+        <%= main_form.hidden_field :parent %>
+      <% end %>
+      <% if primitive.new_record? %>
+        <%= main_form.text_field :id, label: _("Resource ID"), data: { help_filter: ".row.id" } %>
+        <% if Util.has_feature?(:rsc_template) && primitive.resource? %>
+          <%= main_form.select :template, :primitive_template_options, { include_blank: true, include_hidden: false }, { label: _("Template"), data: { help_filter: ".row.template" } } %>
+        <% end %>
+        <%= main_form.select :clazz, :primitive_clazz_options, { include_blank: true, include_hidden: false }, { label: _("Class"), data: { help_filter: ".row.clazz" } } %>
+        <%= main_form.select :provider, :primitive_provider_options, { include_blank: true, include_hidden: false }, { label: _("Provider"), data: { help_filter: ".row.provider" } } %>
+        <%= main_form.select :type, :primitive_type_options, { include_blank: true, include_hidden: false }, { label: _("Type"), data: { help_filter: ".row.type" } } %>
+      <% else %>
+        <%= main_form.text_field :id, label: _("Resource ID"), readonly: true, data: { help_filter: ".row.id" } %>
+        <% if Util.has_feature?(:rsc_template) && primitive.resource? %>
+          <% if primitive.template.blank? %>
+            <%= main_form.hidden_field :template %>
+          <% else %>
+            <%= main_form.text_field :template, label: _("Template"), readonly: true, data: { help_filter: ".row.template" } %>
+          <% end %>
+        <% end %>
+        <%= main_form.text_field :clazz, label: _("Class"), readonly: true, data: { help_filter: ".row.clazz" } %>
+        <% if primitive.provider.blank? %>
+          <%= main_form.hidden_field :provider %>
+        <% else %>
+          <%= main_form.text_field :provider, label: _("Provider"), readonly: true, data: { help_filter: ".row.provider" } %>
+        <% end %>
+        <%= main_form.text_field :type, label: _("Type"), readonly: true, data: { help_filter: ".row.type" } %>
+      <% end %>
+      <div class="form-group hidden" id="agent-info">
+        <label class="col-sm-5 control-label"></label>
+        <div class="col-sm-4">
+          <a class="btn btn-sm btn-info" data-toggle="modal" data-target="#modal-lg" href="#" role="button">
+            <%= icon_tag "info" %>
+          </a>
+        </div>
+        <div class="col-sm-3 text-right" id="editform-loading" style="display: none;">
+          <i class="fa fa-lg fa-refresh fa-pulse-opacity text-info"></i>
+        </div>
+      </div>
+      <div id="paramslist"></div>
+      <div id="oplist"></div>
+      <div id="metalist"></div>
+      <div id="utilizationlist"></div>
+      <%= main_form.button_group do %>
+        <% if primitive.new_record? %>
+          <%= main_form.submit(_("Create"), class: "btn btn-primary submit", name: "submit", disabled: true) %>
+          <%= link_to _("Back"), types_cib_resources_path(cib_id: cib.id), class: "btn btn-default back" %>
+        <% else %>
+          <%= main_form.submit(_("Apply"), class: "btn btn-primary submit", name: "submit", disabled: true) %>
+          <%= revert_button(main_form, primitive) %>
+          <%= link_to _("Back"), edit_cib_config_path(cib_id: cib.id), class: "btn btn-default back" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>
+
+
+<script id="jstmpl-paramslist" type="text/x-jsrender">
+  <fieldset data-attrlist="<%= primitive.params.to_json %>" data-attrlist-target=".content" data-attrlist-prefix="<%= primitive.class.cib_type.to_s + '[params]' %>">
+    <legend>
+      <%= _("Parameters") %>
+      <span class="pull-right toggleable">
+        <%= icon_tag("chevron-up") %>
+      </span>
+    </legend>
+    <div class="content"></div>
+  </fieldset>
+</script>
+
+
+<script id="jstmpl-metalist" type="text/x-jsrender">
+  <fieldset data-attrlist="<%= primitive.meta.to_json %>" data-attrlist-target=".content" data-attrlist-prefix="<%= primitive.class.cib_type.to_s + '[meta]' %>" data-attrlist-mapping="<%= primitive.available_meta.to_json %>">
+    <legend>
+      <%= _("Meta Attributes") %>
+      <span class="pull-right toggleable">
+        <%= icon_tag("chevron-up") %>
+      </span>
+    </legend>
+    <div class="content"></div>
+  </fieldset>
+</script>
+
+
+<script id="jstmpl-utilizationlist" type="text/x-jsrender">
+  <fieldset data-attrlist="<%= primitive.utilization.to_json %>" data-attrlist-target=".content" data-attrlist-prefix="<%= primitive.class.cib_type.to_s + '[utilization]'%>" data-attrlist-mapping="<%= primitive.available_utilization.to_json %>">
+    <legend>
+      <%= _("Utilization") %>
+      <span class="pull-right toggleable">
+        <%= icon_tag("chevron-up") %>
+      </span>
+    </legend>
+    <div class="content"></div>
+  </fieldset>
+</script>
+
+
+<script id="jstmpl-oplist" type="text/x-jsrender">
+  <fieldset data-oplist="<%= primitive.ops.to_json %>" data-oplist-target=".content" data-oplist-prefix="<%= primitive.class.cib_type.to_s + '[ops]' %>" data-oplist-mapping="<%= primitive.available_opmeta.to_json %>">
+    <legend>
+      <%= _("Operations") %>
+      <span class="pull-right toggleable">
+        <%= icon_tag("chevron-up") %>
+      </span>
+    </legend>
+    <div class="content"></div>
+  </fieldset>
+</script>
