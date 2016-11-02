@@ -7,7 +7,12 @@ class Group < Resource
 
   validate do |record|
     # TODO(must): Ensure children are sanitized
-    errors.add :children, _("No Group children specified") if record.children.empty?
+    if record.children.empty?
+      # Delete previously detected errors as they are confusing,
+      # but caused by not having any children (bsc#1006169)
+      record.errors.delete :base
+      record.errors.add :base, _("Group cannot be empty, expected at least one child")
+    end
   end
 
   def mapping

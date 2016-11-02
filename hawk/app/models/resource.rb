@@ -25,7 +25,10 @@ class Resource < Record
         i.crm_configure ['cib new', cli, 'verify', 'commit'].join("\n")
       end
       err.lines.each do |l|
-        record.errors.add :base, l[7..-1] if l.start_with? "ERROR:"
+        if l.start_with? "ERROR:"
+          record.errors.add :base, l[7..-1]
+          break
+        end
       end if rc != 0
     end
   end
