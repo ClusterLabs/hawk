@@ -29,6 +29,12 @@ class Node < Tableless
     presence: { message: _('Name is required') },
     format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _('Invalid name') }
 
+  validate do |record|
+    record.utilization.each do |u|
+      errors.add(:base, "#{u[0]}: %s" % _("No utilization value set!")) if  u[1].blank?
+    end
+  end
+
   def online!
     Invoker.instance.no_log { |i| i.crm("-F", "node", "online", name) }
   end
@@ -182,7 +188,11 @@ class Node < Tableless
               remaining = 0
               remaining = value.to_i unless value.nil?
               r[:used] = r[:total] - remaining
-              r[:percentage] = 100 - ((remaining.to_f / r[:total].to_f) * 100.0).to_i
+              begin
+                r[:percentage] = 100 - ((remaining.to_f / r[:total].to_f) * 100.0).to_i
+              rescue FloatDomainError
+                r[:percentage] = 0
+              end
             end
           end
         end
