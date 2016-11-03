@@ -957,7 +957,7 @@ class Cib
       if n.key? :crm_feature_set
         fs = n[:crm_feature_set]
         feature_sets[fs] ||= []
-        feature_sets[fs] << n
+        feature_sets[fs] << n[:name]
       end
     end
     if feature_sets.count > 1
