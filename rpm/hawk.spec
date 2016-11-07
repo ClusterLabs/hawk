@@ -170,6 +170,7 @@ mkdir -p %{buildroot}/usr/share/doc/manual/sle-ha-guide_en-pdf
 mkdir -p %{buildroot}/usr/share/doc/manual/sle-ha-manuals_en
 mkdir -p %{buildroot}/usr/share/doc/manual/sle-ha-geo-manuals_en
 mkdir -p %{buildroot}/usr/share/doc/manual/sle-ha-nfs-quick_en-pdf
+mkdir -p %{buildroot}/usr/share/doc/manual/sle-ha-install-quick_en
 
 # mark .mo files as such (works on SUSE but not FC12, as the latter wants directory to
 # be "share/locale", not just "locale", and it also doesn't support appending to %%{name}.lang)

@@ -170,6 +170,19 @@ module ApplicationHelper
           geographically dispersed clusters (Geo clusters), including storage
           replication via DRBD\u00AE.
         EOS
+      },
+      {
+        title: "Installation and Setup Quick Start",
+        pdf: docs_path.join(
+          "sle-ha-install-quick_en-pdf",
+          "sle-ha-install-quick_en.pdf"
+        ),
+        desc: <<-EOS
+          Guides you through the setup of a very basic two-node cluster,
+using the bootstrap scripts provided by the ha-cluster-bootstrap package.
+This includes the configuration of a virtual IP address as a cluster resource
+and the user of SBD on shared storage as a fencing mechanism.
+        EOS
       }
     ].select do |h|
       h[:html].exist? || h[:pdf].exist?
