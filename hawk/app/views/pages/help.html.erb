@@ -1,5 +1,5 @@
 <% if request.xhr? %>
-  <div class="modal-header">
+  <div class="modal-header help">
     <button class="close" data-dismiss="modal" type="button">
       <span aria-hidden="true">
         &times;
@@ -12,7 +12,7 @@
       <%= icon_text 'question', page_title, class: 'page' %>
     </h3>
   </div>
-  <div class="modal-body">
+  <div class="modal-body help">
     <ul class="media-list">
       <% base_docs.each do |doc| %>
         <li class="media">

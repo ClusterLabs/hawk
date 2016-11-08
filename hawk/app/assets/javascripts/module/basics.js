@@ -170,7 +170,7 @@ $(function() {
       '<div class="modal-header">',
       '<button class="close" type="button" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">', __('Close'), '</span></button>',
       '<div class="text-center">',
-      '<i class="fa fa-5x fa-exclamation-triangle text-warning"></i>',
+      '<i class="fa fa-3x fa-exclamation-triangle text-warning"></i>',
       '</div>',
       '</div>',
       '<div class="modal-body">',

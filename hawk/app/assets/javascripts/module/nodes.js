@@ -23,7 +23,7 @@ $(function() {
         params.success(cib.nodes, "success", {});
         params.complete({}, "success");
       },
-      classes: "table table-hover table-no-bordered",
+      classes: "table table-striped reports table-hover",
       pagination: false,
       pageSize: 10,
       pageList: [10, 25, 50, 100, 200],

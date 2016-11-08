@@ -357,7 +357,7 @@ $(function() {
             operations.push([
               '<a href="',
               Routes.report_path(row.id),
-              '" class="show btn btn-success btn-xs" title="',
+              '" class="show btn btn-default btn-xs" title="',
               __('Show'),
               '">',
               '<i class="fa fa-search"></i>',
@@ -367,7 +367,7 @@ $(function() {
             operations.push([
               '<a href="',
               Routes.download_report_path(row.id),
-              '" class="download btn btn-info btn-xs" title="',
+              '" class="download btn btn-default btn-xs" title="',
               __('Download'),
               '" download>',
               '<i class="fa fa-download"></i>',
@@ -379,7 +379,7 @@ $(function() {
               Routes.report_path(
                 row.id
               ),
-              '" class="delete btn btn-danger btn-xs" title="',
+              '" class="delete btn btn-default btn-xs" title="',
               __('Delete'),
               '">',
               '<i class="fa fa-trash"></i>',

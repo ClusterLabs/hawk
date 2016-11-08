@@ -494,7 +494,7 @@ $(function() {
         .bootstrapTable({
           data: datasource,
           pagination: false,
-          classes: "table table-hover table-no-bordered",
+          classes: "table table-striped reports table-hover",
           smartDisplay: false,
           showColumns: false,
           showRefresh: false,
@@ -523,7 +523,7 @@ $(function() {
         .find('table')
         .bootstrapTable({
           data: datasource,
-          classes: "table table-hover table-no-bordered",
+          classes: "table table-striped reports table-hover",
           pagination: false,
           smartDisplay: false,
           showColumns: false,
@@ -546,7 +546,7 @@ $(function() {
         params.success(cib.resources, "success", {});
         params.complete({}, "success");
       },
-      classes: "table table-hover table-no-bordered",
+      classes: "table table-striped reports table-hover",
       pagination: false,
       pageSize: 25,
       pageList: [10, 25, 50, 100, 200],
@@ -599,7 +599,7 @@ $(function() {
         params.success(matches, "success", {});
         params.complete({}, "success");
       },
-      classes: "table table-hover table-no-bordered",
+      classes: "table table-striped reports table-hover",
       pagination: false,
       pageSize: 25,
       pageList: [10, 25, 50, 100, 200],

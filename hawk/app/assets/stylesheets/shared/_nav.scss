@@ -10,14 +10,16 @@
 
     li {
       &.toggable {
-        font-size: 20px;
-        line-height: 40px;
+        font-size: 1.2em;
         margin-bottom: 20px;
-        padding: 20px;
+        padding: 15px 20px;
         color: $nav-bighelp-fg;
         text-align: left;
 
         span {
+          .pull-right {
+            font-size: 1.4em;
+          }
           & > i {
             padding-right: 10px;
           }
@@ -34,30 +36,49 @@
               color: $nav-bighelp-fg;
               font-size: 15px;
               margin: 0;
-              padding: 0 10px;
+              padding: 10px 10px;
+              border: 1px solid #ddd;
+              margin-bottom: 14px;
+              background: #fff;
 
               .pull-right {
                 font-size: 20px;
+                margin: 0;
+                padding: 0;
+                .fa {
+                  font-size: 1.0em;
+                }
               }
             }
           }
         }
+        &:hover {
+          background-color: #FAFAFA;
+          border-color: #ccc;
+        }
       }
 
       a {
-        font-size: 20px;
-        line-height: 40px;
+        font-size: 1.2em;
         margin-bottom: 20px;
-        padding: 20px;
+        padding: 15px 20px;
         color: $nav-bighelp-fg;
         text-align: left;
+        &:hover {
+          background-color: #FAFAFA;
+          border-color: #ccc;
+        }
 
         & > i {
           padding-right: 10px;
+          font-size: 1.0em;
         }
 
         .pull-right {
           font-size: 40px;
+          .fa {
+            font-size: 0.6em;
+          }
         }
 
         &:hover {

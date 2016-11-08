@@ -102,16 +102,17 @@
 </div>
 <% content_for :rightbar do %>
   <div class="container-fluid" data-spy="affix">
-    <h2 class="margin-bottom">
-      <%= @wizard.shortdesc %>
-    </h2>
+
     <div class="row">
+      <h2 class="margin-bottom">
+        <%= @wizard.shortdesc %>
+      </h2>
       <%= longdesc_format @wizard.longdesc %>
     </div>
     <% @wizard.steps.each_with_index do |step, index| %>
       <% step.params_mapping_all.each do |id, values| %>
         <div class="<%= values[:help_id] %> row stephelp">
-          <h3 class="margin-bottom">
+          <h3>
             <%= content_tag :code, values[:name] %>
           </h3>
           <% if values[:longdesc] %>
@@ -125,7 +126,7 @@
       <% step.steps.each do |substep| %>
         <% substep.params_mapping_all.each do |id, values| %>
           <div class="<%= values[:help_id] %> row stephelp">
-            <h3 class="margin-bottom">
+            <h3>
               <%= content_tag :code, values[:name] %>
             </h3>
             <% if values[:longdesc] %>

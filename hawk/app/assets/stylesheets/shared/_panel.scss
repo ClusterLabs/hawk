@@ -26,7 +26,7 @@
       & > li {
         display: inline-block;
         float: none;
-        margin: 0 10px;
+        margin: 0 8px;
 
         & > a {
           display: inline-block;
@@ -34,6 +34,15 @@
         }
       }
     }
+    
+    .nav-pills {
+      li.active {
+        & > a {
+          background: #089E5F;
+        }
+      }
+    }
+
   }
 
   &.with-nav-tabs {
