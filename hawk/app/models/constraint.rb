@@ -11,7 +11,7 @@ class Constraint < Record
     # to validate a new record:
     # try making the shell form and running verify;commit in a temporary shadow cib in crm
     # if it fails, report errors
-    if record.new_record
+    if record.new_record && current_cib.live?
       cli = record.shell_syntax
       _out, err, rc = Invoker.instance.no_log do |i|
         i.crm_configure ['cib new', cli, 'verify', 'commit'].join("\n")

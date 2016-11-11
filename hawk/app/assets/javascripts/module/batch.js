@@ -20,6 +20,7 @@ $(function() {
   var fetch_data = function(node, file) {
     $.ajax({
       url: Routes.sim_result_path(),
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
       type: "GET",
       dataType: "text",
       data: {
@@ -88,6 +89,7 @@ $(function() {
 
     $.ajax({
       type: "POST", dataType: "json", url: path, data: data,
+      beforeSend: function(xhr) {xhr.setRequestHeader('X-CSRF-Token', $('meta[name="csrf-token"]').attr('content'))},
       success: function(data) {
         $.updateCib();
 
