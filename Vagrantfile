@@ -72,13 +72,13 @@ Vagrant.configure("2") do |config|
   config.vm.define "webui", primary: true do |machine|
     machine.vm.hostname = "webui"
     machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 3000, host: 3000
-    configure_machine machine, 0, ["base", "webui"], 1024
+    configure_machine machine, 0, ["base", "webui"], 1536
   end
 
   1.upto(2).each do |i|
     config.vm.define "node#{i}", autostart: true do |machine|
       machine.vm.hostname = "node#{i}"
-      configure_machine machine, i, ["base", "node"], 512
+      configure_machine machine, i, ["base", "node"], 1536
     end
   end
 
