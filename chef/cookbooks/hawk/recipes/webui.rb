@@ -81,10 +81,18 @@ bash "increase_numslots_ocfs2" do
   user "root"
 
   code <<-EOH
-if [ "$(tunefs.ocfs2 -Q "%N" /dev/sdb2)" != "4" ]; then
-  crm -w resource stop c-clusterfs
-  tunefs.ocfs2 -N 4 /dev/sdb2
-  crm -w resource start c-clusterfs
+if [ -e /dev/sdb2 ]; then
+  if [ "$(tunefs.ocfs2 -Q "%N" /dev/sdb2)" != "4" ]; then
+    crm -w resource stop c-clusterfs
+    tunefs.ocfs2 -N 4 /dev/sdb2
+    crm -w resource start c-clusterfs
+  fi
+else
+  if [ "$(tunefs.ocfs2 -Q "%N" /dev/vdb2)" != "4" ]; then
+    crm -w resource stop c-clusterfs
+    tunefs.ocfs2 -N 4 /dev/vdb2
+    crm -w resource start c-clusterfs
+  fi
 fi
 EOH
 end
