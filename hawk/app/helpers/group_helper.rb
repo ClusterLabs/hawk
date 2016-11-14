@@ -7,10 +7,9 @@ module GroupHelper
   end
 
   def group_children_for(group)
-    if group.children
-      group_children_list.push(group.children).flatten
-    else
-      group_children_list
-    end
+    ch = []
+    ch = ch.push(group.children).flatten if group.children
+    group_children_list.each {|child| ch.push(child) if !ch.include? child}
+    ch
   end
 end
