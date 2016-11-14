@@ -349,24 +349,40 @@
         clusterUpdate(clusterId, clusterInfo);
       },
       error: function(xhr, status, error) {
-        clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
-          if (clusterInfo.password == null) {
-            clusterRefresh(clusterId, clusterInfo);
-          } else if (("reconnections" in clusterInfo) && clusterInfo.reconnections.length > 1) {
-            var currHost = clusterInfo.host;
-            var currFirst = clusterInfo.reconnections[0];
-            clusterInfo.reconnections.splice(0, 1);
-            clusterInfo.reconnections.push(currHost);
-            clusterInfo.host = currFirst;
-            if (currFirst == null) {
+        var tag = $('#' + clusterId + ' div.panel-body');
+        if (clusterInfo.host != null && clusterInfo.password == null) {
+          tag.html(basicCreateBody(clusterId, clusterInfo));
+          var btn = tag.find("button.btn");
+          btn.attr("disabled", false);
+          btn.click(function() {
+            var username = tag.find("input[name=username]").val();
+            var password = tag.find("input[name=password]").val();
+            tag.find('.btn-success').attr('disabled', true);
+            tag.find('input').attr('disabled', true);
+            clusterInfo.username = username;
+            clusterInfo.password = password;
+            startRemoteConnect(clusterId, clusterInfo);
+          });
+        } else {
+          clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
+            if (clusterInfo.host == null) {
               clusterRefresh(clusterId, clusterInfo);
+            } else if (("reconnections" in clusterInfo) && clusterInfo.reconnections.length > 1) {
+              var currHost = clusterInfo.host;
+              var currFirst = clusterInfo.reconnections[0];
+              clusterInfo.reconnections.splice(0, 1);
+              clusterInfo.reconnections.push(currHost);
+              clusterInfo.host = currFirst;
+              if (currFirst == null) {
+                clusterRefresh(clusterId, clusterInfo);
+              } else {
+                startRemoteConnect(clusterId, clusterInfo);
+              }
             } else {
-              startRemoteConnect(clusterId, clusterInfo);
+              clusterRefresh(clusterId, clusterInfo);
             }
-          } else {
-            clusterRefresh(clusterId, clusterInfo);
-          }
-        });
+          });
+        }
       }
     });
   }
@@ -504,7 +520,7 @@
     data.username = null;
     data.password = null;
 
-    var content = basicCreateBody(clusterId, data);
+    var content = '<div class="cluster-errors"></div>';
 
     var text = [
       '<div id="outer-',
@@ -538,31 +554,7 @@
 
     updateLayout();
 
-    if (data.host == null) {
-      clusterRefresh(clusterId, data);
-    } else {
-      var close = $("#" + clusterId).find(".panel-title form");
-      close.on("ajax:success", function(e, data) {
-        $("#" + clusterId).parent().remove();
-        updateLayout();
-        $.growl({ message: __('Cluster removed successfully.')}, {type: 'success'});
-      });
-      close.on("ajax:error", function(e, xhr, status, error) {
-        $("#" + clusterId).parent().remove();
-        updateLayout();
-        $.growl({ message: __('Error removing cluster.')}, {type: 'danger'});
-      });
-      var body = $("#" + clusterId).find(".panel-body");
-      body.find("button.btn").click(function() {
-        var username = body.find("input[name=username]").val();
-        var password = body.find("input[name=password]").val();
-        body.find('.btn-success').attr('disabled', true);
-        body.find('input').attr('disabled', true);
-        data.username = username;
-        data.password = password;
-        startRemoteConnect(clusterId, data);
-      });
-    }
+    clusterRefresh(clusterId, data);
   };
 
   window.dashboardSetupAddClusterForm = function() {
