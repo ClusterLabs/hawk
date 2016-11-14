@@ -99,7 +99,7 @@
 
   h1 {
     margin: 10px 0px;
-    font-size: 1.3em;
+    font-size: 1.4em;
     line-height: 2.0em;
     .fa.page,
     .circle.page {
@@ -136,11 +136,24 @@
   [data-growl="container"] {
     min-width: 250px;
   }
+
+  .softhide {
+    .panel-default {
+      border-color: $error-message;
+      .panel-heading {
+        background: $error-message-border;
+        border-width: 0;
+      }
+      ul li {
+        border-width: 0;
+      }
+    }
+  }
 }
 
 #rightbar {
+  width: 50%;
   background-color: $rightbar-bg;
-
   padding-left: 0;
   padding-right: 0;
 

@@ -9,16 +9,38 @@
   &.nav-bighelp {
 
     li {
-      &.toggable {
-        font-size: 1.2em;
-        margin-bottom: 20px;
-        padding: 15px 20px;
-        color: $nav-bighelp-fg;
-        text-align: left;
+      @include tablist-background(#fdfdfd, #ececec);
+      font-size: 1.2em;
+      margin-bottom: 20px;
+      padding: 15px 20px;
+      color: $nav-bighelp-fg;
+      text-align: left;
+      border-color: $tablist-border;
+      a {
+        padding: 0;
+        color: #444;
+        &:hover {
+          background: none;
+        }
+        & > i {
+          padding-right: 10px;
+          font-size: 1.0em;
+        }
 
+        .pull-right {
+          font-size: 1.3em;
+        }
+        &:hover {
+          .pull-right {
+            color: $pull-right-hover;
+          }
+        }
+      }
+
+      &.toggable {
         span {
           .pull-right {
-            font-size: 1.4em;
+            font-size: 1.3em;
           }
           & > i {
             padding-right: 10px;
@@ -31,7 +53,7 @@
           li {
             margin: 0;
             padding: 0;
-
+            border-radius: 4px;
             a {
               color: $nav-bighelp-fg;
               font-size: 15px;
@@ -39,65 +61,39 @@
               padding: 10px 10px;
               border: 1px solid #ddd;
               margin-bottom: 14px;
-              background: #fff;
+              background: $white;
 
               .pull-right {
                 font-size: 20px;
                 margin: 0;
                 padding: 0;
+
                 .fa {
                   font-size: 1.0em;
+                }
+                &:hover{
+                  color: $pull-right-hover;
                 }
               }
             }
           }
         }
-        &:hover {
-          background-color: #FAFAFA;
-          border-color: #ccc;
-        }
-      }
 
-      a {
-        font-size: 1.2em;
-        margin-bottom: 20px;
-        padding: 15px 20px;
-        color: $nav-bighelp-fg;
-        text-align: left;
-        &:hover {
-          background-color: #FAFAFA;
-          border-color: #ccc;
-        }
-
-        & > i {
-          padding-right: 10px;
-          font-size: 1.0em;
-        }
-
-        .pull-right {
-          font-size: 40px;
-          .fa {
-            font-size: 0.6em;
-          }
-        }
-
-        &:hover {
+        & > span {
+          display: block;
           .pull-right {
-            color: $pull-right-hover;
+            font-size: 1.3em;
           }
         }
-      }
 
-      & > span {
-        display: block;
-
-        .pull-right {
-          font-size: 30px;
+        &:last-child a {
+          margin-bottom: 0;
         }
       }
-
-      &:last-child a {
-        margin-bottom: 0;
+      &:hover {
+        @include tablist-background(#DCDCDC, #EAEAEA);
+        border-color: $tablist-border-hover;
+        color: #000;      
       }
     }
   }

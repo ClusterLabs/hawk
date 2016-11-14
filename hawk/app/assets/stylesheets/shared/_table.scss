@@ -3,15 +3,22 @@
 
 .panel {
   .bootstrap-table {
-    .table > tbody > tr > td {
-      vertical-align: baseline;
+
+    .table > tbody {
+      
+      tr > td {
+        vertical-align: baseline;
+
       .fa-lg {
-        font-size: 1.1em;
+          font-size: 1.1em;
+        }
+      }
+
+      tr.success > td {
+        background-color: transparent;
       }
     }
-    .table > tbody > tr.success > td{
-      background-color:transparent;
-    }
+
     .fixed-table-container {
       border-radius: 3px;
     }
@@ -25,8 +32,10 @@
 
       & > .pagination {
         margin: 10px 0 8px 0;
-        .pagination > .active > a {
-          background: #00b268;
+
+        .active > a {
+          background: $theme-green;
+          border-color: $theme-green-border;
         }
       }
 
@@ -41,7 +50,7 @@
         }
       }
     }
-  
+
     td.col-sm-2 {
         overflow: hidden;
         white-space: nowrap;

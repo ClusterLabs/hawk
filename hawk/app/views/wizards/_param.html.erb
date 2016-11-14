@@ -1,6 +1,6 @@
 <% param_id = "#{param.id}" %>
 <div class="form-group" data-help-filter=".<%= param.help_id %>">
-  <div class="col-sm-5">
+  <div class="col-sm-5 text-right">
     <%= label_tag(param_id, param.title) %>
   </div>
   <div class="col-sm-7">
@@ -28,7 +28,7 @@
       <%= text_field_tag(param_id, sanitize_value(param.value), opts) %>
     <% end %>
   </div>
-  <div class="col-sm-12 help-block">
+  <div class="col-sm-5 help-block">
     <%= param.shortdesc %>
   </div>
 </div>

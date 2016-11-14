@@ -28,7 +28,7 @@
         </div>
         <div class="panel-body">
           <fieldset>
-            <legend>
+            <legend class="no-bottom-border">
               <%= _("Verify and apply") %>
             </legend>
             <div class="notifications">
@@ -45,7 +45,6 @@
                     <h4 class="list-group-item-heading">
                       <%= "#{ai+1}. " + action['shortdesc'] %>
                     </h4>
-                    <div class="col-sm-1"></div>
                     <% unless action['longdesc'].strip.empty? %>
                       <p class="list-group-item-text">
                         <%= action['longdesc'] %>
@@ -69,13 +68,13 @@
                 </p>
               </div>
               <div class="form-group">
-                <div class="col-sm-5">
+                <div class="col-sm-5 text-right">
                   <%= label_tag(:rootpw, _("Root password")) %>
                 </div>
                 <div class="col-sm-7">
                   <%= password_field_tag :rootpw, nil, class: "form-control", required: true %>
                 </div>
-                <div class="col-sm-12 help-block"></div>
+                <div class="col-sm-5 help-block"></div>
               </div>
             <% end %>
           </fieldset>

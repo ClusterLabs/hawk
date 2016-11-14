@@ -6,12 +6,52 @@
   .control-label {
     font-weight: normal;
   }
-  .btn-primary {
-    background: #00b268;
-    border-color:#089E5F;
-    &:hover {
-      background: #089E5F;
-    } 
+  .panel-body {
+    .list-group .list-group-item {
+      padding: 15px 15px 7px 15px;
+      h4.list-group-item-heading{
+        margin-top: 0;
+        margin-bottom: 15px;
+        font-size: 1.1em;
+        font-weight: normal;
+      }
+      pre {
+        background-color: $pre-bg;
+        border: 1px solid $pre-bg-border;
+        margin-left: 15px;
+      }
+      .bg-info {
+        background-color: $bg-info-bg;
+        border-color: $bg-info-border;
+      }
+    }
+    .tab-content {
+      legend {
+        font-size: 1.2em;
+      }
+      .well{
+        color: #666;
+        font-size: 1.0em;
+        background-color: $well-bg;
+        border:0;
+        box-shadow: none;
+        -webkit-box-shadow:none;
+      }
+      label { 
+        margin-bottom: 0;
+      }
+      .help-block {
+        font-size: 0.9em;
+        text-align: right;
+      }
+    }
+    .no-bottom-border { 
+      border-bottom: 0px;
+    }
+    label { 
+      font-weight: normal;
+      line-height: 2.4em;
+    }
   }
   legend {
     font-size: 1.2em;
@@ -39,7 +79,11 @@
     h4 {
       font-size: 1.1em;
       font-weight: normal;
-      line-height: 1.4em
+      line-height: 1.4em;
+
+      .pull-right .caret { 
+        margin-top: 5px;
+      }
     }
   }
 
@@ -98,16 +142,42 @@
   border-top-left-radius: 4px;
 }
 
+.multiselect-container .input-group .form-control:not(:first-child):not(:last-child) {
+  border-bottom-left-radius: 0px;
+  border-top-left-radius: 0px; 
+}
+
 .file-caption,
 .form-control-static {
   padding-top: 9px;
   min-height: 40px;
 }
 
+.btn-primary.disabled, .btn-primary.disabled:active, .btn-primary.disabled:focus,
+.btn-primary[disabled], .btn-primary[disabled]:active, .btn-primary[disabled]:focus,
+fieldset[disabled], fieldset[disabled]:active, fieldset[disabled]:focus,
 .btn-primary {
-    background: #00b268;
-    border-color:#089E5F;
-    &:hover {
-      background: #089E5F;
-    } 
+  background: $theme-green;
+  border-color: $theme-green-border;
+  &:hover {
+    background: $theme-green;
+    border-color: $theme-green-border;
   }
+  &:active, &:focus, .active, &:active:focus {
+    @extend .btn-primary;
+    &:hover {
+      background: $theme-green;
+      border-color: $theme-green-border;
+    }
+  }
+}
+
+.daterangepicker .ranges li {
+  color: #666;
+  }
+
+.daterangepicker td.active, .daterangepicker td.active:hover,
+.daterangepicker .ranges li.active, .daterangepicker .ranges li:hover{
+  background: $theme-green;
+  border-color: $theme-green-border;
+}

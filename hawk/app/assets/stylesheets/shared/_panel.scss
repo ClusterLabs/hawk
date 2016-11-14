@@ -27,6 +27,11 @@
         display: inline-block;
         float: none;
         margin: 0 8px;
+        &.btn-circle{
+          .fa-exclamation-triangle {
+            line-height: 1.5em;
+          }
+        }
 
         & > a {
           display: inline-block;
@@ -36,13 +41,12 @@
     }
     
     .nav-pills {
-      li.active {
-        & > a {
+      .active {
+        a {
           background: #089E5F;
         }
       }
     }
-
   }
 
   &.with-nav-tabs {

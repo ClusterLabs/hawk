@@ -1,6 +1,5 @@
 // Copyright (c) 2009-2015 Tim Serong <tserong@suse.com>
 // See COPYING for license.
-@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900');
 
 html {
   position: relative;
@@ -10,6 +9,7 @@ body {
   cursor: default;
   padding-top: 94px;
   font-family: $body-text;
+  font-weight: 400;
 }
 
 body.live {
