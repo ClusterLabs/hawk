@@ -67,14 +67,17 @@
     case 5: desc = __('installation error'); break;
     case 6: desc = __('configuration error'); break;
     case 7: desc = __('not running'); break;
-    case 8: desc = __('running (master); break;'); break;
-    case 9: desc = __('failed (master); break;'); break;
+    case 8: desc = __('running (master)'); break;
+    case 9: desc = __('failed (master)'); break;
     default: desc = __('other'); break;
     };
     return '<abbr title="' + desc + '">' + value + '</abbr>';
   }
   function eventsRowStyle(row, index) {
-    if (parseInt(row.rc) != 0) {
+    var rc = parseInt(row.rc);
+    if (rc == 8) {
+      return { classes: "info" };
+    } else if (rc != 0) {
       return { classes: "danger" };
     }
     return {};
