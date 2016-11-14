@@ -28,11 +28,8 @@ module FormHelper
   end
 
   def errors_for(record)
-    safe_join(record.errors[:base].map do |err|
-      content_tag(
-        :div,
-        simple_format(err), class: "alert alert-danger", role: "alert"
-      ) unless err.nil?
+    safe_join(record.errors.full_messages_for(:base).map do |err|
+      content_tag(:div, simple_format(err), class: "alert alert-danger", role: "alert")
     end)
   end
 
