@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="<%= I18n.locale.to_s.gsub("-", "_") %>">
+  <%= render partial: "shared/header" %>
+  <body class="<%= current_cib.id %>" id="<%= controller_name %>" data-cib="<%= current_cib.id %>" data-epoch="<%= current_cib.epoch %>" data-god="<%= is_god?.to_s %>" data-user="<%= current_user %>" data-content="<%= current_cib.status.to_json %>">
+    <div class="<%= navbar_background_class %> navbar navbar-fixed-top" role="navigation">
+      <div class="container-fluid" style="white-space: nobreak;">
+        <div class="navbar-header">
+          <%= link_to image_tag("head/white.png", size: "160x30", style: "padding-top: 7px"), root_path, class: "navbar-brand" %>
+        </div>
+        <div class="navbar-right" id="navbar">
+          <%= render partial: "shared/usernav" %>
+        </div>
+      </div>
+    </div>
+    <div class="nav-wrapper">
+      <div class="sidebar-wrapper" id="sidebar">
+        <%= render partial: "shared/mainnav" %>
+      </div>
+      <div class="page-content-wrapper">
+        <div class="page-content container-fluid">
+          <div class="row">
+            <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6" id="middle">
+              <div class="container-fluid">
+                <% if current_cib.sim? %>
+                  <div class="row">
+                    <%= render partial: "shared/simulator" %>
+                  </div>
+                <% end %>
+                <%= render partial: "shared/flash", locals: { flash: flash } %>
+              </div>
+              <%= yield %>
+            </div>
+            <div class="hidden-xs col-sm-4 col-md-5 col-lg-6" id="rightbar">
+              <%= yield :rightbar %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= render partial: "shared/footer" %>
+    <%= render partial: "shared/modal" %>
+  </body>
+</html>

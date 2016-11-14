@@ -1,0 +1,14 @@
+<div class="container-fluid">
+  <div class="row">
+    <h1>
+      <%= icon_text "copy", _("Create Tag"), class: "page" %>
+      <div class="pull-right">
+        <div class="btn-group" role="group"></div>
+      </div>
+    </h1>
+  </div>
+  <div class="row">
+    <%= render partial: "form", locals: { cib: @cib, tag: @tag } %>
+  </div>
+</div>
+<%= render partial: "shared/helpsidebar", locals: { category: :resources, help: :tag, mapping: @tag.help_text.merge(@tag.mapping) } %>

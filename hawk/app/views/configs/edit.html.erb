@@ -1,0 +1,58 @@
+<div class="container-fluid">
+  <div class="row">
+    <h1>
+      <%= icon_text "database", _("Edit Configuration"), class: "page" %>
+      <div class="pull-right">
+        <div class="btn-group" role="group">
+          <%= link_to icon_text("list", _("Show")), cib_config_path(cib_id: current_cib.id), class: "btn btn-default" %>
+          <%= link_to icon_text("file-code-o", _("XML")), cib_config_path(cib_id: current_cib.id, xml: true), class: "btn btn-default" %>
+          <%= link_to icon_text("file-image-o", _("Graph")), cib_graph_path(cib_id: current_cib.id), class: "btn btn-default" %>
+        </div>
+      </div>
+    </h1>
+  </div>
+  <div class="row">
+    <div class="panel panel-default with-nav-tabs">
+      <div class="panel-heading">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="active" role="presentation">
+            <a data-toggle="tab" href="#resources" role="tab" aria-controls="resources">
+              <%= _("Resources") %>
+            </a>
+          </li>
+          <li role="presentation">
+            <a data-toggle="tab" href="#constraints" role="tab" aria-controls="constraints">
+              <%= _("Constraints") %>
+            </a>
+          </li>
+          <li role="presentation">
+            <a data-toggle="tab" href="#nodes" role="tab" aria-controls="nodes">
+              <%= _("Nodes") %>
+            </a>
+          </li>
+          <li role="presentation">
+            <a data-toggle="tab" href="#tags" role="tab" aria-controls="tags">
+              <%= _("Tags") %>
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="panel-body">
+        <div class="tab-content">
+          <div class="tab-pane active" id="resources" role="tabpanel">
+            <table class="table table-striped resources"></table>
+          </div>
+          <div class="tab-pane" id="constraints" role="tabpanel">
+            <table class="table table-striped constraints"></table>
+          </div>
+          <div class="tab-pane" id="nodes" role="tabpanel">
+            <table class="table table-striped nodes"></table>
+          </div>
+          <div class="tab-pane" id="tags" role="tabpanel">
+            <table class="table table-striped tags"></table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

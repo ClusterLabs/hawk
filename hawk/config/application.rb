@@ -9,7 +9,7 @@ module Hawk
       g.assets false
       g.helper false
       g.orm :active_record
-      g.template_engine :haml
+      g.template_engine :erb
 
       # g.test_framework :rspec, fixture: true
       # g.fallbacks[:rspec] = :test_unit

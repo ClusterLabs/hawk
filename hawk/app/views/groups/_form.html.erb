@@ -1,0 +1,68 @@
+<div class="panel panel-default">
+  <div class="panel-body" data-help-target="#rightbar > .container-fluid > #helpentries > .attrhelp">
+    <%= form_for [cib, group], horizontal: true, bootstrap: true do |main_form| %>
+      <%= errors_for group %>
+      <% if group.new_record? %>
+        <%= main_form.text_field :id, label: _("Group ID") %>
+        <!--= main_form.select :children, group_children_for(group), { include_hidden: false, include_blank: true }, id: nil, label: _("Children")
+        -->
+      <% else %>
+        <%= main_form.text_field :id, label: _("Group ID"), readonly: true %>
+        <!--= main_form.text_field :children, label: _("Children"), readonly: true
+        -->
+      <% end %>
+      <div class="form-group">
+        <label class="col-sm-5 control-label">
+          <%= _("Children") %>
+        </label>
+        <div class="col-sm-7">
+          <ul class="list-group sortable">
+            <% if group_children_for(group).empty? %>
+              <li class="list-group-item text-warning">
+                <%= _('No children available') %>
+              </li>
+            <% else %>
+              <% group_children_for(group).each do |child| %>
+                <li class="list-group-item">
+                  <%= check_box_tag "group[children][]", child, group.children.include?(child) %>
+                  <%= link_to child, edit_cib_resource_path(cib_id: current_cib.id, id: child) %>
+                  <div class="pull-right">
+                    <%= icon_tag("bars") %>
+                  </div>
+                </li>
+              <% end %>
+            <% end %>
+          </ul>
+          <% unless group.new_record? %>
+            <div class="pull-right">
+              <a class="btn btn-default" href="<%= new_cib_primitive_path(cib_id: current_cib.id, parent: group.id) %>" title="Create Child">
+                <%= icon_tag("plus") %>
+              </a>
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <fieldset data-attrlist="<%= group[:meta].to_json %>" data-attrlist-mapping="<%= group.mapping.to_json %>" data-attrlist-prefix="group[meta]" data-attrlist-target=".content">
+        <legend>
+          <%= _("Meta Attributes") %>
+          <span class="pull-right toggleable">
+            <%= icon_tag("chevron-up") %>
+          </span>
+        </legend>
+        <div class="content">
+          <!-- Here goes the content of the form  -->
+        </div>
+      </fieldset>
+      <%= main_form.button_group do %>
+        <% if group.new_record? %>
+          <%= create_button(main_form, group) %>
+          <%= link_to _("Back"), types_cib_resources_path(cib_id: cib.id), class: "btn btn-default back" %>
+        <% else %>
+          <%= apply_button(main_form, group) %>
+          <%= revert_button(main_form, group) %>
+          <%= link_to _("Back"), edit_cib_config_path(cib_id: cib.id), class: "btn btn-default back" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

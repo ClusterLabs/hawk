@@ -1,0 +1,101 @@
+<% if request.xhr? %>
+  <div class="modal-header">
+    <button class="close" data-dismiss="modal" type="button">
+      <span aria-hidden="true">
+        &times;
+      </span>
+      <span class="sr-only">
+        <%= _("Close") %>
+      </span>
+    </button>
+    <h3 class="modal-title">
+      <%= icon_text "history", _("Recent events: %{name}" % { name: @node.name }), class: "page" %>
+    </h3>
+  </div>
+  <div class="modal-body">
+    <table id="node-events" data-toggle="table" data-url="<%= cib_ops_path('*,#{@node.name}', cib_id: current_cib, format: 'json') %>" data-sortable="true" data-sort-name="last_rc_change" data-sort-order="desc" data-row-style="eventsRowStyle">
+      <thead>
+        <tr>
+          <th data-field="rc" data-sortable="true" data-formatter="eventsRC">
+            <%= _("RC") %>
+          </th>
+          <th data-field="resource" data-sortable="true">
+            <%= _("Resource") %>
+          </th>
+          <th data-field="op">
+            <%= _("Operation") %>
+          </th>
+          <th data-field="last_rc_change" data-sortable="true" data-sorter="eventsSorter">
+            <%= _("Last Change") %>
+          </th>
+          <th data-field="state">
+            <%= _("State") %>
+          </th>
+          <th data-field="call">
+            <%= _("Call") %>
+          </th>
+          <th data-field="exec">
+            <%= _("Exec") %>
+          </th>
+          <th data-field="complete" data-formatter="eventsComplete">
+            <%= _("Complete") %>
+          </th>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+  <div class="modal-footer">
+    <button class="btn btn-default" data-dismiss="modal" type="button">
+      <%= _("Close") %>
+    </button>
+  </div>
+<% end %>
+<script>
+
+  $("#modal,#modal-lg").find("table").bootstrapTable({
+    height: Math.max(window.innerHeight - 300, 300)
+  });
+  function eventsRC(value, row) {
+  var desc = "";
+    switch (parseInt(value)) {
+    case 0: desc = __("success"); break;
+    case 1: desc = __('generic error'); break;
+    case 2: desc = __('incorrect arguments'); break;
+    case 3: desc = __('unimplemented action'); break;
+    case 4: desc = __('insufficient permissions'); break;
+    case 5: desc = __('installation error'); break;
+    case 6: desc = __('configuration error'); break;
+    case 7: desc = __('not running'); break;
+    case 8: desc = __('running (master); break;'); break;
+    case 9: desc = __('failed (master); break;'); break;
+    default: desc = __('other'); break;
+    };
+    return '<abbr title="' + desc + '">' + value + '</abbr>';
+  }
+  function eventsRowStyle(row, index) {
+    if (parseInt(row.rc) != 0) {
+      return { classes: "danger" };
+    }
+    return {};
+  }
+  function eventsSorter(a, b) {
+    var fmt = 'ddd MMM DD HH:mm:SS YYYY';
+    if (moment(a, fmt).isBefore(moment(b, fmt))) {
+      return -1;
+    } else if (moment(b, fmt).isBefore(moment(a, fmt))) {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
+  function eventsComplete(value, row) {
+    if (value == "complete") {
+      return '<i class="fa fa-check"></i>';
+    } else {
+      return '<i class="fa fa-refresh text-muted"></i>';
+    }
+  }
+
+
+</script>

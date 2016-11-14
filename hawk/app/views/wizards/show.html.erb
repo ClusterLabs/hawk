@@ -1,0 +1,142 @@
+<div class="container-fluid">
+  <div class="row">
+    <h1>
+      <%= icon_text "magic", @wizard.shortdesc, class: "page" %>
+    </h1>
+  </div>
+  <div class="row">
+    <%= form_for [@cib, @wizard], horizontal: true, bootstrap: true do |main_form| %>
+      <div class="panel panel-default">
+        <div class="panel-steps">
+          <ul class="nav nav-pills" role="tablist">
+            <% @wizard.steps.each_with_index do |step, index| %>
+              <li role="presentation">
+                <%= link_to index + 1, "#step#{index}", class: "btn btn-default btn-circle", data: { toggle: "tab" }, role: :tab, aria: { controls: "step#{index}" } %>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="panel-body" data-help-target="#rightbar > .container-fluid > .row.stephelp">
+          <div class="tab-content">
+            <% @wizard.steps.each_with_index do |step, index| %>
+              <%= main_form.fields_for :steps, step do |step_form| %>
+                <div class="tab-pane" id="step<%= index %>" role="tabpanel">
+                  <fieldset>
+                    <legend>
+                      <%= step.title %>
+                    </legend>
+                    <% if step.longdesc.strip.length > 0 %>
+                      <div class="well">
+                        <%= longdesc_format step.longdesc %>
+                      </div>
+                    <% end %>
+                  </fieldset>
+                  <% unless step.required %>
+                    <div class="form-group">
+                      <div class="col-sm-5">
+                        <%= label_tag("enable:#{step.id}", _("Enable this step")) %>
+                      </div>
+                      <div class="col-sm-7">
+                        <%= select_tag("enable:#{step.id}", boolean_options(false), class: "form-control", data: { "wizard-enable" => :true }, include_hidden: true) %>
+                      </div>
+                    </div>
+                  <% end %>
+                  <% step.basic.each do |param| %>
+                    <%= render :partial => "param", :locals => { :param => param, :step => step, :index => index, :form => main_form } %>
+                  <% end %>
+                  <% unless step.advanced.empty? %>
+                    <fieldset data-wizattrlist="<%= step.params_attrlist.to_json %>" data-wizattrlist-mapping="<%= step.params_mapping.to_json %>" data-wizattrlist-target=".content">
+                      <legend>
+                        <%= _("Advanced") %>
+                        <span class="pull-right toggleable">
+                          <%= icon_tag("chevron-up") %>
+                        </span>
+                      </legend>
+                      <div class="content"></div>
+                    </fieldset>
+                  <% end %>
+                  <% step.steps.each do |substep| %>
+                    <% if substep.title != step.title %>
+                      <fieldset>
+                        <legend>
+                          <%= substep.title %>
+                        </legend>
+                      </fieldset>
+                    <% end %>
+                    <% substep.basic.each do |param| %>
+                      <%= render :partial => "param", :locals => { :param => param, :step => step, :index => index, :form => main_form } %>
+                    <% end %>
+                    <% unless substep.advanced.empty? %>
+                      <fieldset data-wizattrlist="<%= substep.params_attrlist.to_json %>" data-wizattrlist-mapping="<%= substep.params_mapping.to_json %>" data-wizattrlist-target=".content">
+                        <legend>
+                          <%= _("Advanced") %>
+                          <span class="pull-right toggleable">
+                            <%= icon_tag("chevron-up") %>
+                          </span>
+                        </legend>
+                        <div class="content"></div>
+                      </fieldset>
+                    <% end %>
+                  <% end %>
+                </div>
+              <% end %>
+            <% end %>
+            <% if @wizard.steps.empty? %>
+              <div class="well text-info">
+                <div class="text-center">
+                  <%= _("This wizard takes no parameters.") %>
+                </div>
+              </div>
+            <% end %>
+            <%= main_form.button_group class: "wizard" do %>
+              <%= link_to _("Cancel"), cib_wizards_path(cib_id: current_cib.id), class: "btn btn-default", data: { confirm: _("Do you really want to cancel the wizard setup?") } %>
+              <%= link_to _("Back"), "#", class: "btn btn-default previous" %>
+              <%= link_to _("Next"), "#", class: "btn btn-default next" %>
+              <%= main_form.submit _("Verify"), class: "btn btn-primary finish hidden", name: "submit" %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<% content_for :rightbar do %>
+  <div class="container-fluid" data-spy="affix">
+    <h2 class="margin-bottom">
+      <%= @wizard.shortdesc %>
+    </h2>
+    <div class="row">
+      <%= longdesc_format @wizard.longdesc %>
+    </div>
+    <% @wizard.steps.each_with_index do |step, index| %>
+      <% step.params_mapping_all.each do |id, values| %>
+        <div class="<%= values[:help_id] %> row stephelp">
+          <h3 class="margin-bottom">
+            <%= content_tag :code, values[:name] %>
+          </h3>
+          <% if values[:longdesc] %>
+            <%= simple_format values[:longdesc] %>
+          <% end %>
+          <% unless values[:default].blank? %>
+            <%= content_tag :em, "Default: <code>#{sanitize values[:default].to_s}</code>".html_safe %>
+          <% end %>
+        </div>
+      <% end %>
+      <% step.steps.each do |substep| %>
+        <% substep.params_mapping_all.each do |id, values| %>
+          <div class="<%= values[:help_id] %> row stephelp">
+            <h3 class="margin-bottom">
+              <%= content_tag :code, values[:name] %>
+            </h3>
+            <% if values[:longdesc] %>
+              <%= simple_format values[:longdesc] %>
+            <% end %>
+            <% unless values[:default].blank? %>
+              <%= content_tag :em, "Default: <code>#{sanitize values[:default].to_s}</code>".html_safe %>
+            <% end %>
+          </div>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+<% end %>

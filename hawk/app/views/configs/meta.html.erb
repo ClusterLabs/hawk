@@ -1,0 +1,42 @@
+<div class="modal-header">
+  <button class="close" data-dismiss="modal" type="button">
+    <span aria-hidden="true">
+      &times;
+    </span>
+    <span class="sr-only">
+      <%= _("Close") %>
+    </span>
+  </button>
+  <h3 class="modal-title">
+    <%= icon_text "info", _("Cluster Details"), class: "page" %>
+  </h3>
+</div>
+<div class="modal-body">
+  <% unless current_cib.live? %>
+    <div class="alert alert-warning" role="alert">
+      <%= _("Batch Mode Active") %>
+    </div>
+  <% end %>
+  <table class="table table-bordered metadata">
+    <tbody>
+      <% footer_metadata_items.each do |name, link, value, title| %>
+        <tr>
+          <th class="col-xs-4">
+            <% if title %>
+              <abbr title="<%= title %>">
+                <%= name %>
+              </abbr>
+            <% else %>
+              <%= name %>
+            <% end %>
+          </th>
+          <td class="col-xs-8">
+            <tt data-link="<%= link %>">
+              <%= value %>
+            </tt>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

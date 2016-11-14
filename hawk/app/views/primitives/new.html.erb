@@ -1,0 +1,14 @@
+<div class="container-fluid">
+  <div class="row">
+    <h1>
+      <%= icon_text "file-o", @title, class: "page" %>
+      <div class="pull-right">
+        <div class="btn-group" role="group"></div>
+      </div>
+    </h1>
+  </div>
+  <div class="row">
+    <%= render partial: "primitives/form", locals: { cib: @cib, primitive: @primitive } %>
+  </div>
+</div>
+<%= render partial: "primitives/help", locals: { cib: @cib, primitive: @primitive } %>

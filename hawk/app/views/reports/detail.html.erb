@@ -1,0 +1,29 @@
+<% unless @transition[:tags].empty? %>
+  <div class="row margin-bottom">
+    <div class="col-sm-12">
+      <% @transition[:tags].each do |tag| %>
+        <% if tag == "error" || tag == "unclean" %>
+          <span class="label label-danger">
+            <%= tag %>
+          </span>
+        <% else %>
+          <span class="label label-default">
+            <%= tag %>
+          </span>
+        <% end %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<div class="row">
+  <div class="col-sm-12">
+    <pre><%= history_text_markup @transition[:info] %></pre>
+  </div>
+</div>
+<% unless @transition[:info_err].blank? %>
+  <div class="row">
+    <div class="col-sm-12">
+      <pre><%= history_text_markup @transition[:info_err] %></pre>
+    </div>
+  </div>
+<% end %>

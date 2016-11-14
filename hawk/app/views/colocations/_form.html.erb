@@ -1,0 +1,67 @@
+<div class="panel panel-default">
+  <div class="panel-body" data-help-target="#rightbar > .container-fluid > #helpentries > .attrhelp">
+    <%= form_for [cib, colocation], horizontal: true, bootstrap: true do |main_form| %>
+      <%= errors_for colocation %>
+      <% if colocation.new_record? %>
+        <%= main_form.text_field :id, label: _("Constraint ID"), data: { help_filter: ".row.id" } %>
+      <% else %>
+        <%= main_form.text_field :id, label: _("Constraint ID"), readonly: true, data: { help_filter: ".row.id" } %>
+      <% end %>
+      <div class="form-group" data-help-filter=".row.score" id="colocation_score_group">
+        <label class="col-sm-5 control-label" for="colocation_score">
+          <%= _("Score") %>
+        </label>
+        <div class="col-sm-7">
+          <div class="input-group">
+            <div class="input-group-btn">
+              <button aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle p-y-14" id="colocation_score_btn" type="button">
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a data-value="INFINITY" href="#">
+                    <%= _("Always") %>
+                  </a>
+                  <a data-value="-INFINITY" href="#">
+                    <%= _("Never") %>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <input class="form-control text-field" id="colocation_score" name="colocation[score]" type="text" value="<%= colocation.score %>"></input>
+          </div>
+        </div>
+      </div>
+      <fieldset data-constraints="<%= colocation.resources.to_json %>" data-constraints-available="<%= available_colocation_resources.to_json %>" data-constraints-selects="<%= available_colocation_roles.to_json %>" data-constraints-prefix="colocation[resources]" data-constraints-target=".content.constraints">
+        <legend>
+          <%= _("Resources") %>
+          <span class="pull-right toggleable">
+            <%= icon_tag("chevron-up") %>
+          </span>
+        </legend>
+        <div class="content constraints"></div>
+      </fieldset>
+      <fieldset>
+        <legend>
+          <%= _("Advanced") %>
+          <span class="pull-right toggleable">
+            <%= icon_tag("chevron-up") %>
+          </span>
+        </legend>
+        <div class="content advanced">
+          <%= main_form.text_field :node_attr, label: _("Node Attribute"), data: { help_filter: ".row.node-attribute" } %>
+        </div>
+      </fieldset>
+      <%= main_form.button_group do %>
+        <% if colocation.new_record? %>
+          <%= create_button(main_form, colocation) %>
+          <%= link_to _("Back"), types_cib_constraints_path(cib_id: cib.id), class: "btn btn-default back" %>
+        <% else %>
+          <%= apply_button(main_form, colocation) %>
+          <%= revert_button(main_form, colocation) %>
+          <%= link_to _("Back"), edit_cib_config_path(cib_id: cib.id), class: "btn btn-default back" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

@@ -1,0 +1,405 @@
+<div class="batch-control-bar">
+  <a data-toggle="modal" data-target="#modal" href="<%= sim_help_path %>" class="help-cursor">
+    <strong class="text-uppercase">
+      <%= icon_text("warning", _("Batch Mode Active")) %>
+    </strong>
+  </a>
+  <div class="pull-right">
+    <a class="btn" data-target="#" id="btn-show-batch" role="button">
+      <%= icon_text("cog", _("Show")) %>
+    </a>
+    <a class="btn" data-confirm="<%= _("Any pending changes to the configuration will be lost - do you wish to proceed?") %>" href="<%= cib_path(cib_id: :live) %>" id="btn-discard-batch" role="button">
+      <%= icon_text("trash", _("Discard")) %>
+    </a>
+    <a class="btn" data-toggle="modal" data-target="#modal-lg" href="<%= cib_apply_path(cib_id: current_cib.id) %>" id="btn-apply-batch" role="button">
+      <%= icon_text("check", _("Apply")) %>
+    </a>
+  </div>
+</div>
+<script id="batch-entry" type="text/x-jsrender">
+  <li class="list-group-item" data-entry="{{:value}}">
+    <%= "{{:name}}" %>
+    <div class="pull-right">
+      <%= link_to icon_tag("remove"), "#", class: "text-danger" %>
+    </div>
+  </li>
+</script>
+<script id="batch-template" type="text/x-jsrender">
+  <div class="tab-content">
+    <div class="tab-pane active" id="batch-view" role="tabpanel">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          <%= icon_text("cog", _("Batch Mode")) %>
+          <div class="pull-right">
+            <small>
+              <%= current_cib.id %>
+            </small>
+          </div>
+        </h3>
+      </div>
+      <div class="modal-body">
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="btn-toolbar" role="toolbar">
+                <div class="btn-group" role="group">
+                  <div class="dropdown">
+                    <a class="btn btn-default btn-block" data-toggle="dropdown" role="button">
+                      <%= icon_text("rocket", _("Simulator")) %>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <li>
+                        <%= link_to _("Summary"), "#batch-summary", data: { toggle: :tab  } %>
+                      </li>
+                      <li>
+                        <%= link_to _("CIB (in)"), "#batch-cib-in", data: { toggle: :tab  } %>
+                      </li>
+                      <li>
+                        <%= link_to _("CIB (out)"), "#batch-cib-out", data: { toggle: :tab  } %>
+                      </li>
+                      <li>
+                        <%= link_to _("Transition Graph"), "#batch-transition-graph", data: { toggle: :tab  } %>
+                      </li>
+                      <li>
+                        <%= link_to _("Transition"), "#batch-transition", data: { toggle: :tab  } %>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="btn-group" role="group">
+                  <div class="dropdown">
+                    <a class="btn btn-default btn-block" data-toggle="dropdown" role="button">
+                      <%= icon_text("bolt", _("Inject")) %>
+                    </a>
+                    <ul class="dropdown-menu">
+                      <% unless current_cib.nodes.empty? %>
+                        <li>
+                          <%= link_to _("Node Event"), "#batch-node-event", data: { toggle: :tab } %>
+                        </li>
+                      <% end %>
+                      <% unless current_cib.resources.empty? %>
+                        <li>
+                          <%= link_to _("Resource Event"), "#batch-resource-event", data: { toggle: :tab } %>
+                        </li>
+                      <% end %>
+                      <% unless current_cib.tickets.empty? %>
+                        <li>
+                          <%= link_to _("Ticket Event"), "#batch-ticket-event", data: { toggle: :tab } %>
+                        </li>
+                      <% end %>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <hr/>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="errors"></div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-9">
+              <div id="batch-entries">
+                <ul class="list-group"></ul>
+              </div>
+            </div>
+            <div class="col-sm-3"></div>
+          </div>
+          <div class="row">
+            <div class="col-sm-12">
+              <div class="batch-diff-data">
+                <div class="text-center text-muted">
+                  <%= icon_tag 'refresh', class: 'fa-pulse-opacity' %>
+                  <%= _("Calculating list of changes...") %>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-default" data-dismiss="modal" type="button">
+          <%= _("Close") %>
+        </button>
+      </div>
+    </div>
+    <div class="tab-pane" id="batch-summary" role="tabpanel">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          <%= icon_text("cog", _("Summary")) %>
+        </h3>
+      </div>
+      <div class="modal-body">
+        <div class="batch-summary-data">
+          <div class="text-center text-muted">
+            <%= icon_tag 'refresh', class: 'fa-pulse-opacity' %>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary" data-toggle="tab" role="button" href="#batch-view">
+          <%= _("OK") %>
+        </a>
+      </div>
+    </div>
+    <div class="tab-pane" id="batch-cib-in" role="tabpanel">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          <%= icon_text("cog", _("CIB (in)")) %>
+        </h3>
+      </div>
+      <div class="modal-body">
+        <div class="batch-cib-in-data">
+          <div class="text-center text-muted">
+            <%= icon_tag 'refresh', class: 'fa-pulse-opacity' %>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary" data-toggle="tab" role="button" href="#batch-view">
+          <%= _("OK") %>
+        </a>
+      </div>
+    </div>
+    <div class="tab-pane" id="batch-cib-out" role="tabpanel">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          <%= icon_text("cog", _("CIB (out)")) %>
+        </h3>
+      </div>
+      <div class="modal-body">
+        <div class="batch-cib-out-data">
+          <div class="text-center text-muted">
+            <%= icon_tag 'refresh', class: 'fa-pulse-opacity' %>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary" data-toggle="tab" role="button" href="#batch-view">
+          <%= _("OK") %>
+        </a>
+      </div>
+    </div>
+    <div class="tab-pane" id="batch-transition-graph" role="tabpanel">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          <%= icon_text("cog", _("Transition Graph")) %>
+        </h3>
+      </div>
+      <div class="modal-body">
+        <div class="batch-transition-graph-data">
+          <div class="text-center text-muted">
+            <%= icon_tag 'refresh', class: 'fa-pulse-opacity' %>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary" data-toggle="tab" role="button" href="#batch-view">
+          <%= _("OK") %>
+        </a>
+      </div>
+    </div>
+    <div class="tab-pane" id="batch-transition" role="tabpanel">
+      <div class="modal-header">
+        <h3 class="modal-title">
+          <%= icon_text("cog", _("Transition (XML)")) %>
+        </h3>
+      </div>
+      <div class="modal-body">
+        <div class="batch-transition-data">
+          <div class="text-center text-muted">
+            <%= icon_tag 'refresh', class: 'fa-pulse-opacity' %>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <a class="btn btn-primary" data-toggle="tab" role="button" href="#batch-view">
+          <%= _("OK") %>
+        </a>
+      </div>
+    </div>
+    <div class="tab-pane" id="batch-node-event" role="tabpanel">
+      <form class="form-horizontal" remote="true">
+        <div class="modal-header">
+          <h3 class="modal-title">
+            <%= icon_text("cog", _("Inject Node Event")) %>
+          </h3>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="node-inject-node">
+              <%= _("Node") %>
+            </label>
+            <div class="col-sm-7">
+              <select class="form-control" id="node-inject-node">
+                <% current_cib.nodes.each do |n| %>
+                  <option>
+                    <%= n[:uname] %>
+                  </option>
+                <% end %>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="node-inject-state">
+              <%= _("State") %>
+            </label>
+            <div class="col-sm-7">
+              <select class="form-control" id="node-inject-state">
+                <% node_actions.each do |a| %>
+                  <option>
+                    <%= a %>
+                  </option>
+                <% end %>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-default" href="#batch-view" data-toggle="tab" role="button">
+            <%= _("Cancel") %>
+          </a>
+          <a class="btn btn-primary" href="#batch-view" data-toggle="tab" role="button">
+            <%= icon_text "plus", _("OK") %>
+          </a>
+        </div>
+      </form>
+    </div>
+    <div class="tab-pane" id="batch-resource-event" role="tabpanel">
+      <form class="form-horizontal" remote="true">
+        <div class="modal-header">
+          <h3 class="modal-title">
+            <%= icon_text("cog", _("Inject Resource Event")) %>
+          </h3>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="op-inject-rsc">
+              <%= _("Resource") %>
+            </label>
+            <div class="col-sm-7">
+              <select class="form-control" id="op-inject-rsc">
+                <% resource_instances.each do |r| %>
+                  <option>
+                    <%= r %>
+                  </option>
+                <% end %>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="op-inject-op">
+              <%= _("Operation") %>
+            </label>
+            <div class="col-sm-7">
+              <select class="form-control" id="op-inject-op">
+                <% op_actions.each do |s| %>
+                  <option>
+                    <%= s %>
+                  </option>
+                <% end %>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="op-inject-interval">
+              <%= _("Interval (ms)") %>
+            </label>
+            <div class="col-sm-7">
+              <input class="form-control" id="op-inject-interval" type="text"></input>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="op-inject-node">
+              <%= _("Node") %>
+            </label>
+            <div class="col-sm-7">
+              <select class="form-control" id="op-inject-node">
+                <% current_cib.nodes.each do |n| %>
+                  <option>
+                    <%= n[:uname] %>
+                  </option>
+                <% end %>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="op-inject-result">
+              <%= _("Result") %>
+            </label>
+            <div class="col-sm-7">
+              <select class="form-control" id="op-inject-result">
+                <% op_results.each do |value, name| %>
+                  <option value="<%= value %>">
+                    <%= "#{name} (#{value})" %>
+                  </option>
+                <% end %>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-default" href="#batch-view" data-toggle="tab" role="button">
+            <%= _("Cancel") %>
+          </a>
+          <a class="btn btn-primary" href="#batch-view" data-toggle="tab" role="button">
+            <%= icon_text "plus", _("OK") %>
+          </a>
+        </div>
+      </form>
+    </div>
+    <div class="tab-pane" id="batch-ticket-event" role="tabpanel">
+      <form class="form-horizontal" remote="true">
+        <div class="modal-header">
+          <h3 class="modal-title">
+            <%= icon_text("cog", _("Inject Ticket Event")) %>
+          </h3>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="ticket-inject-ticket">
+              <%= _("Ticket") %>
+            </label>
+            <div class="col-sm-7">
+              <select class="form-control" id="ticket-inject-ticket">
+                <% current_cib.tickets.keys.each do |name| %>
+                  <option>
+                    <%= name %>
+                  </option>
+                <% end %>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label class="col-sm-2 control-label" for="ticket-inject-action">
+              <%= _("Action") %>
+            </label>
+            <div class="col-sm-7">
+              <select class="form-control" id="ticket-inject-action">
+                <% ticket_actions.each do |a| %>
+                  <option>
+                    <%= a %>
+                  </option>
+                <% end %>
+              </select>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-default" href="#batch-view" data-toggle="tab" role="button">
+            <%= _("Cancel") %>
+          </a>
+          <a class="btn btn-primary" href="#batch-view" data-toggle="tab" role="button">
+            <%= icon_text "plus", _("OK") %>
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</script>

@@ -1,0 +1,14 @@
+<div class="container-fluid">
+  <div class="row">
+    <h1>
+      <%= icon_text "ticket", _("Create Ticket"), class: "page" %>
+      <div class="pull-right">
+        <div class="btn-group" role="group"></div>
+      </div>
+    </h1>
+  </div>
+  <div class="row">
+    <%= render partial: "form", locals: { cib: @cib, ticket: @ticket } %>
+  </div>
+</div>
+<%= render partial: "shared/helpsidebar", locals: { category: :constraints, help: :ticket, mapping: @ticket.help_text.merge(@ticket.mapping) } %>

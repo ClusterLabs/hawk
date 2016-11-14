@@ -38,17 +38,27 @@ module ApplicationHelper
   end
 
   def body_attrs
-    {
-      id: controller_name,
-      class: current_cib.id,
-      data: {
-        cib: current_cib.id,
-        epoch: current_cib.epoch,
-        god: is_god?.to_s,
-        user: current_user,
-        content: current_cib.status.to_json
-      }
-    }
+    hash_to_attrs(
+        id: controller_name,
+        class: current_cib.id,
+        data: {
+          cib: current_cib.id,
+          epoch: current_cib.epoch,
+          god: is_god?.to_s,
+          user: current_user,
+          content: current_cib.status.to_json
+        }
+    )
+  end
+
+  def hash_to_attrs(hash)
+    # This simple helper method is used to convert a ruby hash into an HTML
+    # attributes string
+    # e.g: hash_to_attrs({class: "a", data: {cib: "b", epoch: "c"}) will return:
+    # "class='a' data-cib='b' data-epoch='c'"
+    hash.map{|key, value|
+      value.is_a?(Hash) ? value.map { |k, v| "data-#{k}='#{v}'" } : "#{key}='#{value}'"
+    }.join(" ").html_safe
   end
 
   def active_menu_with(*list)

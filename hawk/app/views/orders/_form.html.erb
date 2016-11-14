@@ -1,0 +1,60 @@
+<div class="panel panel-default">
+  <div class="panel-body" data-help-target="#rightbar > .container-fluid > #helpentries > .attrhelp">
+    <%= form_for [cib, order], horizontal: true, bootstrap: true do |main_form| %>
+      <%= errors_for order %>
+      <% if order.new_record? %>
+        <%= main_form.text_field :id, label: _("Constraint ID") %>
+      <% else %>
+        <%= main_form.text_field :id, label: _("Constraint ID"), readonly: true %>
+      <% end %>
+      <div class="form-group" data-help-filter=".row.score" id="order_score_group">
+        <label class="col-sm-5 control-label" for="order_score">
+          <%= _("Score") %>
+        </label>
+        <div class="col-sm-7">
+          <div class="input-group">
+            <div class="input-group-btn">
+              <button aria-haspopup="true" aria-expanded="false" data-toggle="dropdown" class="btn btn-default dropdown-toggle p-y-14" id="order_score_btn" type="button">
+                <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <a data-value="Mandatory" href="#">
+                    <%= _("Mandatory")%>
+                  </a>
+                  <a data-value="Optional" href="#">
+                    <%= _("Optional")%>
+                  </a>
+                  <a data-value="Serialize" href="#">
+                    <%= _("Serialize")%>
+                  </a>
+                </li>
+              </ul>
+            </div>
+            <input class="form-control text-field" id="order_score" name="order[score]" type="text" value="<%= order.score %>"></input>
+          </div>
+        </div>
+      </div>
+      <%= main_form.select :symmetrical, :boolean_options, { include_hidden: false, include_blank: false }, id: nil, label: _("Symmetrical") %>
+      <fieldset data-constraints="<%= order.resources.to_json %>" data-constraints-available="<%= available_order_resources.to_json %>" data-constraints-selects="<%= available_order_actions.to_json %>" data-constraints-prefix="order[resources]" data-constraints-target=".content">
+        <legend>
+          <%= _("Resources") %>
+          <span class="pull-right toggleable">
+            <%= icon_tag("chevron-up") %>
+          </span>
+        </legend>
+        <div class="content constraints"></div>
+      </fieldset>
+      <%= main_form.button_group do %>
+        <% if order.new_record? %>
+          <%= create_button(main_form, order) %>
+          <%= link_to _("Back"), types_cib_constraints_path(cib_id: cib.id), class: "btn btn-default back" %>
+        <% else %>
+          <%= apply_button(main_form, order) %>
+          <%= revert_button(main_form, order) %>
+          <%= link_to _("Back"), edit_cib_config_path(cib_id: cib.id), class: "btn btn-default back" %>
+        <% end %>
+      <% end %>
+    <% end %>
+  </div>
+</div>

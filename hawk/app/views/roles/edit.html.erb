@@ -1,0 +1,16 @@
+<div class="container-fluid">
+  <div class="row">
+    <h1>
+      <%= icon_text "group", _("Edit Role"), class: "page" %>
+      <div class="pull-right">
+        <div class="btn-group" role="group">
+          <%= link_to icon_text("trash", _("Delete")), cib_role_path(cib_id: @cib.id, id: @role.id), method: "delete", class: "btn btn-default", data: { confirm: _("Are you sure you wish to delete %s?") % @role.id } %>
+        </div>
+      </div>
+    </h1>
+  </div>
+  <div class="row">
+    <%= render partial: "form", locals: { cib: @cib, role: @role } %>
+  </div>
+</div>
+<%= render partial: "shared/helpsidebar", locals: { category: :resources, help: :role, mapping: nil } %>

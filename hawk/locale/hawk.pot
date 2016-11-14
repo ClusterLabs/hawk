@@ -3,14 +3,15 @@
 # This file is distributed under the same license as the hawk package.
 # Tim Serong <tserong@suse.com>, 2011.
 # Kristoffer Gronlund <kgronlund@suse.com>, 2013.
+# Ayoub Belarbi <abelarbi@suse.com>
 #
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: hawk 1.0.0\n"
+"Project-Id-Version: hawk2 1.0.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-06-12 19:52+0200\n"
-"PO-Revision-Date: 2016-06-12 19:52+0200\n"
+"POT-Creation-Date: 2016-08-24 18:15+0200\n"
+"PO-Revision-Date: 2016-08-24 18:15+0200\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
 "Language: \n"
@@ -75,7 +76,7 @@ msgstr ""
 msgid "Retrying every 15 seconds..."
 msgstr ""
 
-#: ../app/assets/javascripts/dashboard.js:266 ../app/assets/javascripts/module/basics.js:182 ../app/assets/javascripts/module/reports.js:168 ../app/assets/javascripts/module/resources.js:42 ../app/views/cib/apply.html.haml:43 ../app/views/constraints/rename.html.haml:51 ../app/views/reports/index.html.haml:59 ../app/views/reports/show.html.haml:43 ../app/views/resources/rename.html.haml:51 ../app/views/shared/_simulator.html.haml:386 ../app/views/shared/_simulator.html.haml:498 ../app/views/shared/_simulator.html.haml:563 ../app/views/wizards/create.html.haml:26 ../app/views/wizards/show.html.haml:129 ../app/views/wizards/update.html.haml:106
+#: ../app/assets/javascripts/dashboard.js:266 ../app/assets/javascripts/module/basics.js:182 ../app/assets/javascripts/module/reports.js:168 ../app/assets/javascripts/module/resources.js:42 ../app/views/cib/apply.html.erb:25 ../app/views/constraints/rename.html.erb:30 ../app/views/reports/index.html.erb:38 ../app/views/reports/show.html.erb:24 ../app/views/resources/rename.html.erb:30 ../app/views/shared/_simulator.html.erb:266 ../app/views/shared/_simulator.html.erb:349 ../app/views/shared/_simulator.html.erb:396 ../app/views/wizards/create.html.erb:15 ../app/views/wizards/show.html.erb:92 ../app/views/wizards/update.html.erb:89
 msgid "Cancel"
 msgstr ""
 
@@ -83,11 +84,11 @@ msgstr ""
 msgid "Hostname"
 msgstr ""
 
-#: ../app/assets/javascripts/dashboard.js:437 ../app/views/sessions/new.html.haml:2
+#: ../app/assets/javascripts/dashboard.js:437 ../app/views/sessions/new.html.erb:2
 msgid "Username"
 msgstr ""
 
-#: ../app/assets/javascripts/dashboard.js:438 ../app/views/sessions/new.html.haml:4
+#: ../app/assets/javascripts/dashboard.js:438 ../app/views/sessions/new.html.erb:3
 msgid "Password"
 msgstr ""
 
@@ -119,7 +120,7 @@ msgstr ""
 msgid "Cluster added successfully."
 msgstr ""
 
-#: ../app/assets/javascripts/module/attrlist.js:21 ../app/assets/javascripts/module/constraint.js:19 ../app/assets/javascripts/module/location.js:16 ../app/assets/javascripts/module/oplist.js:66 ../app/assets/javascripts/module/wizattrlist.js:20 ../app/helpers/form_helper.rb:23 ../app/helpers/role_helper.rb:31 ../app/helpers/user_helper.rb:31 ../app/views/clones/edit.html.haml:13 ../app/views/clones/index.html.haml:13 ../app/views/colocations/edit.html.haml:13 ../app/views/colocations/index.html.haml:13 ../app/views/constraints/index.html.haml:13 ../app/views/groups/edit.html.haml:13 ../app/views/groups/index.html.haml:13 ../app/views/locations/edit.html.haml:13 ../app/views/locations/index.html.haml:13 ../app/views/masters/edit.html.haml:13 ../app/views/masters/index.html.haml:13 ../app/views/orders/edit.html.haml:13 ../app/views/orders/index.html.haml:13 ../app/views/primitives/_form.html.haml:80 ../app/views/primitives/index.html.haml:13 ../app/views/resources/index.html.haml:13 ../app/views/roles/index.html.haml:15 ../app/views/tags/edit.html.haml:13 ../app/views/tags/index.html.haml:13 ../app/views/tickets/edit.html.haml:13 ../app/views/tickets/index.html.haml:13 ../app/views/users/index.html.haml:15
+#: ../app/assets/javascripts/module/attrlist.js:21 ../app/assets/javascripts/module/constraint.js:19 ../app/assets/javascripts/module/location.js:16 ../app/assets/javascripts/module/oplist.js:66 ../app/assets/javascripts/module/wizattrlist.js:20 ../app/helpers/form_helper.rb:23 ../app/helpers/role_helper.rb:31 ../app/helpers/user_helper.rb:31 ../app/views/clones/edit.html.erb:7 ../app/views/clones/index.html.erb:7 ../app/views/colocations/edit.html.erb:7 ../app/views/colocations/index.html.erb:7 ../app/views/constraints/index.html.erb:7 ../app/views/groups/edit.html.erb:7 ../app/views/groups/index.html.erb:7 ../app/views/locations/edit.html.erb:7 ../app/views/locations/index.html.erb:7 ../app/views/masters/edit.html.erb:7 ../app/views/masters/index.html.erb:7 ../app/views/orders/edit.html.erb:7 ../app/views/orders/index.html.erb:7 ../app/views/primitives/_form.html.erb:50 ../app/views/primitives/index.html.erb:7 ../app/views/resources/index.html.erb:7 ../app/views/roles/index.html.erb:10 ../app/views/tags/edit.html.erb:7 ../app/views/tags/index.html.erb:7 ../app/views/tickets/edit.html.erb:7 ../app/views/tickets/index.html.erb:7 ../app/views/users/index.html.erb:10
 msgid "Create"
 msgstr ""
 
@@ -127,11 +128,11 @@ msgstr ""
 msgid "Remove"
 msgstr ""
 
-#: ../app/assets/javascripts/module/attrlist.js:23 ../app/assets/javascripts/module/oplist.js:69 ../app/assets/javascripts/module/wizattrlist.js:22 ../app/helpers/form_helper.rb:6 ../app/views/tickets/show.html.haml:52
+#: ../app/assets/javascripts/module/attrlist.js:23 ../app/assets/javascripts/module/oplist.js:69 ../app/assets/javascripts/module/wizattrlist.js:22 ../app/helpers/form_helper.rb:6 ../app/views/tickets/show.html.erb:30
 msgid "Yes"
 msgstr ""
 
-#: ../app/assets/javascripts/module/attrlist.js:24 ../app/assets/javascripts/module/oplist.js:70 ../app/assets/javascripts/module/wizattrlist.js:23 ../app/helpers/form_helper.rb:6 ../app/views/tickets/show.html.haml:55
+#: ../app/assets/javascripts/module/attrlist.js:24 ../app/assets/javascripts/module/oplist.js:70 ../app/assets/javascripts/module/wizattrlist.js:23 ../app/helpers/form_helper.rb:6 ../app/views/tickets/show.html.erb:32
 msgid "No"
 msgstr ""
 
@@ -143,7 +144,7 @@ msgstr ""
 msgid "Invalid ID"
 msgstr ""
 
-#: ../app/assets/javascripts/module/basics.js:80 ../app/assets/javascripts/module/basics.js:183 ../app/assets/javascripts/module/resources.js:43 ../app/views/shared/_simulator.html.haml:203 ../app/views/shared/_simulator.html.haml:234 ../app/views/shared/_simulator.html.haml:265 ../app/views/shared/_simulator.html.haml:296 ../app/views/shared/_simulator.html.haml:327 ../app/views/shared/_simulator.html.haml:391 ../app/views/shared/_simulator.html.haml:503 ../app/views/shared/_simulator.html.haml:568
+#: ../app/assets/javascripts/module/basics.js:80 ../app/assets/javascripts/module/basics.js:183 ../app/assets/javascripts/module/resources.js:43 ../app/views/shared/_simulator.html.erb:147 ../app/views/shared/_simulator.html.erb:166 ../app/views/shared/_simulator.html.erb:185 ../app/views/shared/_simulator.html.erb:204 ../app/views/shared/_simulator.html.erb:223 ../app/views/shared/_simulator.html.erb:269 ../app/views/shared/_simulator.html.erb:352 ../app/views/shared/_simulator.html.erb:399
 msgid "OK"
 msgstr ""
 
@@ -155,7 +156,7 @@ msgstr ""
 msgid "An error has occurred"
 msgstr ""
 
-#: ../app/assets/javascripts/module/basics.js:171 ../app/assets/javascripts/module/resources.js:17 ../app/views/agents/show.html.haml:134 ../app/views/configs/meta.html.haml:12 ../app/views/constraints/show.html.haml:32 ../app/views/dashboards/add.html.haml:14 ../app/views/nodes/events.html.haml:13 ../app/views/nodes/events.html.haml:60 ../app/views/nodes/show.html.haml:13 ../app/views/nodes/show.html.haml:138 ../app/views/pages/help.html.haml:13 ../app/views/pages/help.html.haml:78 ../app/views/resources/events.html.haml:13 ../app/views/resources/events.html.haml:60 ../app/views/resources/show.html.haml:346 ../app/views/shared/_flash.html.haml:14 ../app/views/shared/_simulator.html.haml:172 ../app/views/simulator/help.html.haml:19 ../app/views/tickets/show.html.haml:255
+#: ../app/assets/javascripts/module/basics.js:171 ../app/assets/javascripts/module/resources.js:17 ../app/views/agents/show.html.erb:117 ../app/views/configs/meta.html.erb:7 ../app/views/constraints/show.html.erb:15 ../app/views/dashboards/add.html.erb:9 ../app/views/nodes/events.html.erb:8 ../app/views/nodes/events.html.erb:50 ../app/views/nodes/show.html.erb:8 ../app/views/nodes/show.html.erb:96 ../app/views/pages/help.html.erb:8 ../app/views/pages/help.html.erb:52 ../app/views/resources/events.html.erb:8 ../app/views/resources/events.html.erb:50 ../app/views/resources/show.html.erb:311 ../app/views/shared/_flash.html.erb:9 ../app/views/shared/_simulator.html.erb:128 ../app/views/simulator/help.html.erb:11 ../app/views/tickets/show.html.erb:180
 msgid "Close"
 msgstr ""
 
@@ -163,23 +164,23 @@ msgstr ""
 msgid "No configuration changes."
 msgstr ""
 
-#: ../app/assets/javascripts/module/clones.js:27 ../app/views/clones/_form.html.haml:10 ../app/views/clones/_form.html.haml:15
+#: ../app/assets/javascripts/module/clones.js:27 ../app/views/clones/_form.html.erb:6 ../app/views/clones/_form.html.erb:9
 msgid "Clone ID"
 msgstr ""
 
-#: ../app/assets/javascripts/module/clones.js:33 ../app/assets/javascripts/module/colocations.js:33 ../app/assets/javascripts/module/constraints.js:92 ../app/assets/javascripts/module/groups.js:33 ../app/assets/javascripts/module/locations.js:33 ../app/assets/javascripts/module/masters.js:33 ../app/assets/javascripts/module/nodes.js:202 ../app/assets/javascripts/module/nodes.js:332 ../app/assets/javascripts/module/orders.js:33 ../app/assets/javascripts/module/primitives.js:75 ../app/assets/javascripts/module/reports.js:303 ../app/assets/javascripts/module/resources.js:283 ../app/assets/javascripts/module/resources.js:704 ../app/assets/javascripts/module/roles.js:33 ../app/assets/javascripts/module/tags.js:44 ../app/assets/javascripts/module/tickets.js:39 ../app/assets/javascripts/module/tickets.js:232 ../app/assets/javascripts/module/users.js:33 ../app/views/cib/show.html.haml:114 ../app/views/primitives/_form.html.haml:159 ../app/views/resources/show.html.haml:171
+#: ../app/assets/javascripts/module/clones.js:33 ../app/assets/javascripts/module/colocations.js:33 ../app/assets/javascripts/module/constraints.js:92 ../app/assets/javascripts/module/groups.js:33 ../app/assets/javascripts/module/locations.js:33 ../app/assets/javascripts/module/masters.js:33 ../app/assets/javascripts/module/nodes.js:202 ../app/assets/javascripts/module/nodes.js:332 ../app/assets/javascripts/module/orders.js:33 ../app/assets/javascripts/module/primitives.js:75 ../app/assets/javascripts/module/reports.js:303 ../app/assets/javascripts/module/resources.js:283 ../app/assets/javascripts/module/resources.js:704 ../app/assets/javascripts/module/roles.js:33 ../app/assets/javascripts/module/tags.js:44 ../app/assets/javascripts/module/tickets.js:39 ../app/assets/javascripts/module/tickets.js:232 ../app/assets/javascripts/module/users.js:33 ../app/views/cib/show.html.erb:68 ../app/views/primitives/_form.html.erb:97 ../app/views/resources/show.html.erb:138
 msgid "Operations"
 msgstr ""
 
-#: ../app/assets/javascripts/module/clones.js:95 ../app/assets/javascripts/module/colocations.js:97 ../app/assets/javascripts/module/constraints.js:215 ../app/assets/javascripts/module/groups.js:95 ../app/assets/javascripts/module/locations.js:95 ../app/assets/javascripts/module/masters.js:95 ../app/assets/javascripts/module/nodes.js:253 ../app/assets/javascripts/module/nodes.js:347 ../app/assets/javascripts/module/oplist.js:67 ../app/assets/javascripts/module/orders.js:95 ../app/assets/javascripts/module/primitives.js:138 ../app/assets/javascripts/module/resources.js:399 ../app/assets/javascripts/module/resources.js:726 ../app/assets/javascripts/module/roles.js:95 ../app/assets/javascripts/module/tags.js:108 ../app/assets/javascripts/module/tickets.js:67 ../app/assets/javascripts/module/users.js:95 ../app/views/cib/show.html.haml:127 ../app/views/configs/show.html.haml:13 ../app/views/graphs/show.html.haml:11
+#: ../app/assets/javascripts/module/clones.js:95 ../app/assets/javascripts/module/colocations.js:97 ../app/assets/javascripts/module/constraints.js:215 ../app/assets/javascripts/module/groups.js:95 ../app/assets/javascripts/module/locations.js:95 ../app/assets/javascripts/module/masters.js:95 ../app/assets/javascripts/module/nodes.js:253 ../app/assets/javascripts/module/nodes.js:347 ../app/assets/javascripts/module/oplist.js:67 ../app/assets/javascripts/module/orders.js:95 ../app/assets/javascripts/module/primitives.js:138 ../app/assets/javascripts/module/resources.js:399 ../app/assets/javascripts/module/resources.js:726 ../app/assets/javascripts/module/roles.js:95 ../app/assets/javascripts/module/tags.js:108 ../app/assets/javascripts/module/tickets.js:67 ../app/assets/javascripts/module/users.js:95 ../app/views/cib/show.html.erb:80 ../app/views/configs/show.html.erb:7 ../app/views/graphs/show.html.erb:6
 msgid "Edit"
 msgstr ""
 
-#: ../app/assets/javascripts/module/clones.js:108 ../app/assets/javascripts/module/colocations.js:110 ../app/assets/javascripts/module/constraints.js:235 ../app/assets/javascripts/module/groups.js:108 ../app/assets/javascripts/module/locations.js:108 ../app/assets/javascripts/module/masters.js:108 ../app/assets/javascripts/module/orders.js:108 ../app/assets/javascripts/module/primitives.js:151 ../app/assets/javascripts/module/reports.js:383 ../app/assets/javascripts/module/resources.js:746 ../app/assets/javascripts/module/roles.js:108 ../app/assets/javascripts/module/tags.js:131 ../app/assets/javascripts/module/tickets.js:77 ../app/assets/javascripts/module/users.js:108 ../app/views/clones/edit.html.haml:17 ../app/views/colocations/edit.html.haml:17 ../app/views/groups/edit.html.haml:17 ../app/views/locations/edit.html.haml:17 ../app/views/masters/edit.html.haml:17 ../app/views/orders/edit.html.haml:17 ../app/views/primitives/edit.html.haml:17 ../app/views/reports/display.html.haml:36 ../app/views/roles/edit.html.haml:13 ../app/views/tags/edit.html.haml:17 ../app/views/tickets/edit.html.haml:17 ../app/views/users/edit.html.haml:13
+#: ../app/assets/javascripts/module/clones.js:108 ../app/assets/javascripts/module/colocations.js:110 ../app/assets/javascripts/module/constraints.js:235 ../app/assets/javascripts/module/groups.js:108 ../app/assets/javascripts/module/locations.js:108 ../app/assets/javascripts/module/masters.js:108 ../app/assets/javascripts/module/orders.js:108 ../app/assets/javascripts/module/primitives.js:151 ../app/assets/javascripts/module/reports.js:383 ../app/assets/javascripts/module/resources.js:746 ../app/assets/javascripts/module/roles.js:108 ../app/assets/javascripts/module/tags.js:131 ../app/assets/javascripts/module/tickets.js:77 ../app/assets/javascripts/module/users.js:108 ../app/views/clones/edit.html.erb:9 ../app/views/colocations/edit.html.erb:9 ../app/views/groups/edit.html.erb:9 ../app/views/locations/edit.html.erb:9 ../app/views/masters/edit.html.erb:9 ../app/views/orders/edit.html.erb:9 ../app/views/primitives/edit.html.erb:9 ../app/views/reports/display.html.erb:24 ../app/views/roles/edit.html.erb:7 ../app/views/tags/edit.html.erb:9 ../app/views/tickets/edit.html.erb:9 ../app/views/users/edit.html.erb:7
 msgid "Delete"
 msgstr ""
 
-#: ../app/assets/javascripts/module/colocations.js:27 ../app/assets/javascripts/module/locations.js:27 ../app/assets/javascripts/module/orders.js:27 ../app/models/constraint.rb:48 ../app/views/colocations/_form.html.haml:10 ../app/views/colocations/_form.html.haml:13 ../app/views/locations/_form.html.haml:10 ../app/views/locations/_form.html.haml:13 ../app/views/orders/_form.html.haml:10 ../app/views/orders/_form.html.haml:13 ../app/views/tickets/_form.html.haml:10 ../app/views/tickets/_form.html.haml:13
+#: ../app/assets/javascripts/module/colocations.js:27 ../app/assets/javascripts/module/locations.js:27 ../app/assets/javascripts/module/orders.js:27 ../app/models/constraint.rb:48 ../app/views/colocations/_form.html.erb:6 ../app/views/colocations/_form.html.erb:8 ../app/views/locations/_form.html.erb:6 ../app/views/locations/_form.html.erb:8 ../app/views/orders/_form.html.erb:6 ../app/views/orders/_form.html.erb:8 ../app/views/tickets/_form.html.erb:6 ../app/views/tickets/_form.html.erb:8
 msgid "Constraint ID"
 msgstr ""
 
@@ -195,47 +196,47 @@ msgstr ""
 msgid "Unlink from entry above"
 msgstr ""
 
-#: ../app/assets/javascripts/module/constraints.js:56 ../app/assets/javascripts/module/nodes.js:89 ../app/assets/javascripts/module/nodes.js:319 ../app/assets/javascripts/module/reports.js:269 ../app/assets/javascripts/module/resources.js:229 ../app/assets/javascripts/module/resources.js:645 ../app/assets/javascripts/module/tags.js:28 ../app/views/agents/show.html.haml:50 ../app/views/agents/show.html.haml:101 ../app/views/nodes/_form.html.haml:11 ../app/views/reports/display.html.haml:42 ../app/views/resources/show.html.haml:187
+#: ../app/assets/javascripts/module/constraints.js:56 ../app/assets/javascripts/module/nodes.js:89 ../app/assets/javascripts/module/nodes.js:319 ../app/assets/javascripts/module/reports.js:269 ../app/assets/javascripts/module/resources.js:229 ../app/assets/javascripts/module/resources.js:645 ../app/assets/javascripts/module/tags.js:28 ../app/views/agents/show.html.erb:32 ../app/views/agents/show.html.erb:80 ../app/views/nodes/_form.html.erb:6 ../app/views/reports/display.html.erb:31 ../app/views/resources/show.html.erb:149
 msgid "Name"
 msgstr ""
 
-#: ../app/assets/javascripts/module/constraints.js:63 ../app/assets/javascripts/module/resources.js:257 ../app/assets/javascripts/module/resources.js:652 ../app/models/template.rb:406 ../app/views/primitives/_form.html.haml:25 ../app/views/primitives/_form.html.haml:47 ../app/views/resources/show.html.haml:317
+#: ../app/assets/javascripts/module/constraints.js:63 ../app/assets/javascripts/module/resources.js:257 ../app/assets/javascripts/module/resources.js:652 ../app/models/template.rb:406 ../app/views/primitives/_form.html.erb:15 ../app/views/primitives/_form.html.erb:31 ../app/views/resources/show.html.erb:279
 msgid "Type"
 msgstr ""
 
-#: ../app/assets/javascripts/module/constraints.js:70 ../app/assets/javascripts/module/resources.js:236 ../app/views/constraints/types.html.haml:32
+#: ../app/assets/javascripts/module/constraints.js:70 ../app/assets/javascripts/module/resources.js:236 ../app/views/constraints/types.html.erb:19
 msgid "Location"
 msgstr ""
 
-#: ../app/assets/javascripts/module/constraints.js:72 ../app/views/constraints/types.html.haml:41
+#: ../app/assets/javascripts/module/constraints.js:72 ../app/views/constraints/types.html.erb:27
 msgid "Colocation"
 msgstr ""
 
-#: ../app/assets/javascripts/module/constraints.js:74 ../app/views/constraints/types.html.haml:50
+#: ../app/assets/javascripts/module/constraints.js:74 ../app/views/constraints/types.html.erb:35
 msgid "Order"
 msgstr ""
 
-#: ../app/assets/javascripts/module/constraints.js:76 ../app/assets/javascripts/module/tickets.js:33 ../app/assets/javascripts/module/tickets.js:157 ../app/views/constraints/types.html.haml:59 ../app/views/shared/_simulator.html.haml:528
+#: ../app/assets/javascripts/module/constraints.js:76 ../app/assets/javascripts/module/tickets.js:33 ../app/assets/javascripts/module/tickets.js:157 ../app/views/constraints/types.html.erb:43 ../app/views/shared/_simulator.html.erb:367
 msgid "Ticket"
 msgstr ""
 
-#: ../app/assets/javascripts/module/constraints.js:83 ../app/controllers/resources_controller.rb:211 ../app/models/location.rb:223 ../app/views/cib/show.html.haml:48 ../app/views/colocations/_form.html.haml:52 ../app/views/configs/edit.html.haml:36 ../app/views/orders/_form.html.haml:57 ../app/views/resources/index.html.haml:7 ../app/views/tickets/_form.html.haml:25
+#: ../app/assets/javascripts/module/constraints.js:83 ../app/controllers/resources_controller.rb:211 ../app/models/location.rb:223 ../app/views/cib/show.html.erb:27 ../app/views/colocations/_form.html.erb:37 ../app/views/configs/edit.html.erb:20 ../app/views/orders/_form.html.erb:41 ../app/views/resources/index.html.erb:4 ../app/views/tickets/_form.html.erb:14
 msgid "Resources"
 msgstr ""
 
-#: ../app/assets/javascripts/module/constraints.js:225 ../app/assets/javascripts/module/resources.js:736 ../app/assets/javascripts/module/tags.js:118 ../app/views/clones/edit.html.haml:15 ../app/views/colocations/edit.html.haml:15 ../app/views/constraints/rename.html.haml:23 ../app/views/constraints/rename.html.haml:56 ../app/views/groups/edit.html.haml:15 ../app/views/locations/edit.html.haml:15 ../app/views/masters/edit.html.haml:15 ../app/views/orders/edit.html.haml:15 ../app/views/primitives/edit.html.haml:15 ../app/views/resources/rename.html.haml:23 ../app/views/resources/rename.html.haml:56 ../app/views/tags/edit.html.haml:15 ../app/views/tickets/edit.html.haml:15
+#: ../app/assets/javascripts/module/constraints.js:225 ../app/assets/javascripts/module/resources.js:736 ../app/assets/javascripts/module/tags.js:118 ../app/views/clones/edit.html.erb:8 ../app/views/colocations/edit.html.erb:8 ../app/views/constraints/rename.html.erb:13 ../app/views/constraints/rename.html.erb:33 ../app/views/groups/edit.html.erb:8 ../app/views/locations/edit.html.erb:8 ../app/views/masters/edit.html.erb:8 ../app/views/orders/edit.html.erb:8 ../app/views/primitives/edit.html.erb:8 ../app/views/resources/rename.html.erb:13 ../app/views/resources/rename.html.erb:33 ../app/views/tags/edit.html.erb:8 ../app/views/tickets/edit.html.erb:8
 msgid "Rename"
 msgstr ""
 
-#: ../app/assets/javascripts/module/groups.js:27 ../app/views/groups/_form.html.haml:10 ../app/views/groups/_form.html.haml:15
+#: ../app/assets/javascripts/module/groups.js:27 ../app/views/groups/_form.html.erb:6 ../app/views/groups/_form.html.erb:10
 msgid "Group ID"
 msgstr ""
 
-#: ../app/assets/javascripts/module/location.js:23 ../app/views/roles/_form.html.haml:22
+#: ../app/assets/javascripts/module/location.js:23 ../app/views/roles/_form.html.erb:14
 msgid "Rule"
 msgstr ""
 
-#: ../app/assets/javascripts/module/location.js:33 ../app/models/colocation.rb:180 ../app/models/location.rb:229 ../app/views/colocations/_form.html.haml:18 ../app/views/locations/_form.html.haml:53 ../app/views/orders/_form.html.haml:18 ../app/views/resources/show.html.haml:319
+#: ../app/assets/javascripts/module/location.js:33 ../app/models/colocation.rb:180 ../app/models/location.rb:229 ../app/views/colocations/_form.html.erb:12 ../app/views/locations/_form.html.erb:32 ../app/views/orders/_form.html.erb:12 ../app/views/resources/show.html.erb:282
 msgid "Score"
 msgstr ""
 
@@ -247,7 +248,7 @@ msgstr ""
 msgid "Boolean Operator"
 msgstr ""
 
-#: ../app/assets/javascripts/module/masters.js:27 ../app/views/masters/_form.html.haml:10 ../app/views/masters/_form.html.haml:15
+#: ../app/assets/javascripts/module/masters.js:27 ../app/views/masters/_form.html.erb:6 ../app/views/masters/_form.html.erb:9
 msgid "Multi-state ID"
 msgstr ""
 
@@ -259,7 +260,7 @@ msgstr ""
 msgid "Connection to server failed - will retry every 15 seconds."
 msgstr ""
 
-#: ../app/assets/javascripts/module/nodes.js:43 ../app/assets/javascripts/module/resources.js:190 ../app/assets/javascripts/module/tickets.js:128 ../app/controllers/cib_controller.rb:108 ../app/helpers/application_helper.rb:238 ../app/views/resources/show.html.haml:272 ../app/views/shared/_mainnav.html.haml:17
+#: ../app/assets/javascripts/module/nodes.js:43 ../app/assets/javascripts/module/resources.js:190 ../app/assets/javascripts/module/tickets.js:128 ../app/controllers/cib_controller.rb:110 ../app/helpers/application_helper.rb:238 ../app/views/resources/show.html.erb:232 ../app/views/shared/_mainnav.html.erb:9
 msgid "Status"
 msgstr ""
 
@@ -303,11 +304,11 @@ msgstr ""
 msgid "Events"
 msgstr ""
 
-#: ../app/assets/javascripts/module/nodes.js:282 ../app/assets/javascripts/module/resources.js:416 ../app/assets/javascripts/module/statusmatrix.js:88 ../app/assets/javascripts/module/tickets.js:271 ../app/views/reports/display.html.haml:190
+#: ../app/assets/javascripts/module/nodes.js:282 ../app/assets/javascripts/module/resources.js:416 ../app/assets/javascripts/module/statusmatrix.js:88 ../app/assets/javascripts/module/tickets.js:271 ../app/views/reports/display.html.erb:186
 msgid "Details"
 msgstr ""
 
-#: ../app/assets/javascripts/module/nodes.js:326 ../app/assets/javascripts/module/tickets.js:27 ../app/views/nodes/_form.html.haml:9 ../app/views/nodes/show.html.haml:48 ../app/views/resources/show.html.haml:315
+#: ../app/assets/javascripts/module/nodes.js:326 ../app/assets/javascripts/module/tickets.js:27 ../app/views/nodes/_form.html.erb:5 ../app/views/nodes/show.html.erb:30 ../app/views/resources/show.html.erb:276
 msgid "ID"
 msgstr ""
 
@@ -315,7 +316,7 @@ msgstr ""
 msgid "Add"
 msgstr ""
 
-#: ../app/assets/javascripts/module/oplist.js:72 ../app/assets/javascripts/module/reports.js:167 ../app/helpers/crm_config_helper.rb:16 ../app/helpers/form_helper.rb:19 ../app/helpers/profile_helper.rb:27 ../app/helpers/role_helper.rb:23 ../app/helpers/user_helper.rb:23 ../app/views/cib/apply.html.haml:46 ../app/views/primitives/_form.html.haml:85 ../app/views/shared/_simulator.html.haml:22 ../app/views/wizards/create.html.haml:30 ../app/views/wizards/update.html.haml:112
+#: ../app/assets/javascripts/module/oplist.js:72 ../app/assets/javascripts/module/reports.js:167 ../app/helpers/crm_config_helper.rb:16 ../app/helpers/form_helper.rb:19 ../app/helpers/profile_helper.rb:27 ../app/helpers/role_helper.rb:23 ../app/helpers/user_helper.rb:23 ../app/views/cib/apply.html.erb:27 ../app/views/primitives/_form.html.erb:53 ../app/views/shared/_simulator.html.erb:15 ../app/views/wizards/create.html.erb:17 ../app/views/wizards/update.html.erb:93
 msgid "Apply"
 msgstr ""
 
@@ -327,7 +328,7 @@ msgstr ""
 msgid "Replacing previously defined monitor operation with same interval"
 msgstr ""
 
-#: ../app/assets/javascripts/module/primitives.js:69 ../app/models/resource.rb:124 ../app/views/primitives/_form.html.haml:14 ../app/views/primitives/_form.html.haml:28
+#: ../app/assets/javascripts/module/primitives.js:69 ../app/models/resource.rb:124 ../app/views/primitives/_form.html.erb:9 ../app/views/primitives/_form.html.erb:17
 msgid "Resource ID"
 msgstr ""
 
@@ -343,7 +344,7 @@ msgstr ""
 msgid "Report generation cancelled."
 msgstr ""
 
-#: ../app/assets/javascripts/module/reports.js:169 ../app/assets/javascripts/module/reports.js:281 ../app/views/reports/display.html.haml:51 ../app/views/reports/display.html.haml:60 ../app/views/reports/display.html.haml:69 ../app/views/reports/index.html.haml:29
+#: ../app/assets/javascripts/module/reports.js:169 ../app/assets/javascripts/module/reports.js:281 ../app/views/reports/display.html.erb:44 ../app/views/reports/display.html.erb:57 ../app/views/reports/display.html.erb:70 ../app/views/reports/index.html.erb:17
 msgid "From"
 msgstr ""
 
@@ -431,19 +432,19 @@ msgstr ""
 msgid "December"
 msgstr ""
 
-#: ../app/assets/javascripts/module/reports.js:277 ../app/assets/javascripts/module/reports.js:361 ../app/views/configs/edit.html.haml:13 ../app/views/configs/show.html.haml:16 ../app/views/graphs/show.html.haml:13 ../app/views/reports/display.html.haml:32 ../app/views/shared/_simulator.html.haml:12
+#: ../app/assets/javascripts/module/reports.js:277 ../app/assets/javascripts/module/reports.js:361 ../app/views/configs/edit.html.erb:7 ../app/views/configs/show.html.erb:9 ../app/views/graphs/show.html.erb:7 ../app/views/reports/display.html.erb:18 ../app/views/shared/_simulator.html.erb:9
 msgid "Show"
 msgstr ""
 
-#: ../app/assets/javascripts/module/reports.js:371 ../app/views/reports/display.html.haml:34
+#: ../app/assets/javascripts/module/reports.js:371 ../app/views/reports/display.html.erb:21
 msgid "Download"
 msgstr ""
 
-#: ../app/assets/javascripts/module/reports.js:417 ../app/views/reports/display.html.haml:169
+#: ../app/assets/javascripts/module/reports.js:417 ../app/views/reports/display.html.erb:163
 msgid "Time"
 msgstr ""
 
-#: ../app/assets/javascripts/module/reports.js:419 ../app/models/location.rb:235 ../app/views/locations/_form.html.haml:86 ../app/views/reports/display.html.haml:165 ../app/views/resources/events.html.haml:35 ../app/views/resources/show.html.haml:266 ../app/views/shared/_simulator.html.haml:351 ../app/views/shared/_simulator.html.haml:463
+#: ../app/assets/javascripts/module/reports.js:419 ../app/models/location.rb:235 ../app/views/locations/_form.html.erb:60 ../app/views/reports/display.html.erb:157 ../app/views/resources/events.html.erb:23 ../app/views/resources/show.html.erb:223 ../app/views/shared/_simulator.html.erb:237 ../app/views/shared/_simulator.html.erb:320
 msgid "Node"
 msgstr ""
 
@@ -471,19 +472,19 @@ msgstr ""
 msgid "Stopped"
 msgstr ""
 
-#: ../app/assets/javascripts/module/resources.js:263 ../app/assets/javascripts/module/resources.js:658 ../app/views/resources/types.html.haml:41
+#: ../app/assets/javascripts/module/resources.js:263 ../app/assets/javascripts/module/resources.js:658 ../app/views/resources/types.html.erb:27
 msgid "Group"
 msgstr ""
 
-#: ../app/assets/javascripts/module/resources.js:265 ../app/assets/javascripts/module/resources.js:660 ../app/views/resources/types.html.haml:59
+#: ../app/assets/javascripts/module/resources.js:265 ../app/assets/javascripts/module/resources.js:660 ../app/views/resources/types.html.erb:43
 msgid "Multi-state"
 msgstr ""
 
-#: ../app/assets/javascripts/module/resources.js:268 ../app/assets/javascripts/module/resources.js:270 ../app/assets/javascripts/module/resources.js:662 ../app/views/resources/types.html.haml:50
+#: ../app/assets/javascripts/module/resources.js:268 ../app/assets/javascripts/module/resources.js:270 ../app/assets/javascripts/module/resources.js:662 ../app/views/resources/types.html.erb:35
 msgid "Clone"
 msgstr ""
 
-#: ../app/assets/javascripts/module/resources.js:273 ../app/assets/javascripts/module/resources.js:664 ../app/views/resources/types.html.haml:68
+#: ../app/assets/javascripts/module/resources.js:273 ../app/assets/javascripts/module/resources.js:664 ../app/views/resources/types.html.erb:51
 msgid "Tag"
 msgstr ""
 
@@ -495,11 +496,11 @@ msgstr ""
 msgid "Clean up on all nodes"
 msgstr ""
 
-#: ../app/assets/javascripts/module/resources.js:357 ../app/helpers/order_helper.rb:10 ../app/helpers/ticket_helper.rb:8 ../app/models/template.rb:418 ../app/views/cib/show.html.haml:123
+#: ../app/assets/javascripts/module/resources.js:357 ../app/helpers/order_helper.rb:10 ../app/helpers/ticket_helper.rb:8 ../app/models/template.rb:418 ../app/views/cib/show.html.erb:76
 msgid "Stop"
 msgstr ""
 
-#: ../app/assets/javascripts/module/resources.js:361 ../app/helpers/order_helper.rb:7 ../app/models/template.rb:412 ../app/views/cib/show.html.haml:121
+#: ../app/assets/javascripts/module/resources.js:361 ../app/helpers/order_helper.rb:7 ../app/models/template.rb:412 ../app/views/cib/show.html.erb:73
 msgid "Start"
 msgstr ""
 
@@ -535,7 +536,7 @@ msgstr ""
 msgid "No child resources"
 msgstr ""
 
-#: ../app/assets/javascripts/module/resources.js:687 ../app/views/groups/_form.html.haml:24 ../app/views/resources/show.html.haml:43
+#: ../app/assets/javascripts/module/resources.js:687 ../app/views/groups/_form.html.erb:16 ../app/views/resources/show.html.erb:28
 msgid "Children"
 msgstr ""
 
@@ -575,15 +576,15 @@ msgstr ""
 msgid "Clean up tagged resources"
 msgstr ""
 
-#: ../app/assets/javascripts/module/roles.js:27 ../app/views/roles/_form.html.haml:10 ../app/views/roles/_form.html.haml:13
+#: ../app/assets/javascripts/module/roles.js:27 ../app/views/roles/_form.html.erb:6 ../app/views/roles/_form.html.erb:8
 msgid "Role ID"
 msgstr ""
 
-#: ../app/assets/javascripts/module/tags.js:35 ../app/views/tags/_form.html.haml:24
+#: ../app/assets/javascripts/module/tags.js:35 ../app/views/tags/_form.html.erb:16
 msgid "Objects"
 msgstr ""
 
-#: ../app/assets/javascripts/module/tickets.js:137 ../app/assets/javascripts/module/tickets.js:169 ../app/views/tickets/show.html.haml:46
+#: ../app/assets/javascripts/module/tickets.js:137 ../app/assets/javascripts/module/tickets.js:169 ../app/views/tickets/show.html.erb:26
 msgid "Granted"
 msgstr ""
 
@@ -595,7 +596,7 @@ msgstr ""
 msgid "Revoked"
 msgstr ""
 
-#: ../app/assets/javascripts/module/tickets.js:163 ../app/views/tickets/show.html.haml:80
+#: ../app/assets/javascripts/module/tickets.js:163 ../app/views/tickets/show.html.erb:50
 msgid "Last Granted"
 msgstr ""
 
@@ -623,39 +624,39 @@ msgstr ""
 msgid "Changes applied successfully."
 msgstr ""
 
-#: ../app/controllers/agents_controller.rb:46 ../app/views/resources/show.html.haml:29
+#: ../app/controllers/agents_controller.rb:46 ../app/views/resources/show.html.erb:17
 msgid "Agent"
 msgstr ""
 
-#: ../app/controllers/application_controller.rb:159
+#: ../app/controllers/application_controller.rb:160
 msgid "Created a new shadow CIB for %USER%."
 msgstr ""
 
-#: ../app/controllers/application_controller.rb:164 ../app/controllers/application_controller.rb:167
+#: ../app/controllers/application_controller.rb:165 ../app/controllers/application_controller.rb:168
 msgid "Unable to create shadow CIB"
 msgstr ""
 
-#: ../app/controllers/application_controller.rb:194
+#: ../app/controllers/application_controller.rb:195
 msgid "Error: Permission denied for user (%s)"
 msgstr ""
 
-#: ../app/controllers/application_controller.rb:198
+#: ../app/controllers/application_controller.rb:199
 msgid "Error: Not authenticated"
 msgstr ""
 
-#: ../app/controllers/application_controller.rb:202
+#: ../app/controllers/application_controller.rb:203
 msgid "Error: Record not found"
 msgstr ""
 
-#: ../app/controllers/cib_controller.rb:44
+#: ../app/controllers/cib_controller.rb:46
 msgid "Failed to apply configuration"
 msgstr ""
 
-#: ../app/controllers/cib_controller.rb:49
+#: ../app/controllers/cib_controller.rb:51
 msgid "Applied configuration successfully"
 msgstr ""
 
-#: ../app/controllers/clones_controller.rb:20 ../app/controllers/clones_controller.rb:31 ../app/views/clones/new.html.haml:7
+#: ../app/controllers/clones_controller.rb:20 ../app/controllers/clones_controller.rb:31 ../app/views/clones/new.html.erb:4
 msgid "Create Clone"
 msgstr ""
 
@@ -663,7 +664,7 @@ msgstr ""
 msgid "Clone created successfully"
 msgstr ""
 
-#: ../app/controllers/clones_controller.rb:58 ../app/controllers/clones_controller.rb:67 ../app/views/clones/edit.html.haml:7
+#: ../app/controllers/clones_controller.rb:58 ../app/controllers/clones_controller.rb:67 ../app/views/clones/edit.html.erb:4
 msgid "Edit Clone"
 msgstr ""
 
@@ -679,7 +680,7 @@ msgstr ""
 msgid "Error deleting %s: %s"
 msgstr ""
 
-#: ../app/controllers/clones_controller.rb:134 ../app/views/clones/index.html.haml:7
+#: ../app/controllers/clones_controller.rb:134 ../app/views/clones/index.html.erb:4
 msgid "Clones"
 msgstr ""
 
@@ -687,7 +688,7 @@ msgstr ""
 msgid "The clone does not exist"
 msgstr ""
 
-#: ../app/controllers/colocations_controller.rb:20 ../app/controllers/colocations_controller.rb:30 ../app/views/colocations/new.html.haml:7
+#: ../app/controllers/colocations_controller.rb:20 ../app/controllers/colocations_controller.rb:30 ../app/views/colocations/new.html.erb:4
 msgid "Create Colocation"
 msgstr ""
 
@@ -695,7 +696,7 @@ msgstr ""
 msgid "Constraint created successfully"
 msgstr ""
 
-#: ../app/controllers/colocations_controller.rb:57 ../app/controllers/colocations_controller.rb:66 ../app/views/colocations/edit.html.haml:7
+#: ../app/controllers/colocations_controller.rb:57 ../app/controllers/colocations_controller.rb:66 ../app/views/colocations/edit.html.erb:4
 msgid "Edit Colocation"
 msgstr ""
 
@@ -707,7 +708,7 @@ msgstr ""
 msgid "Colocation deleted successfully"
 msgstr ""
 
-#: ../app/controllers/colocations_controller.rb:132 ../app/views/colocations/index.html.haml:7
+#: ../app/controllers/colocations_controller.rb:132 ../app/views/colocations/index.html.erb:4
 msgid "Colocations"
 msgstr ""
 
@@ -715,7 +716,7 @@ msgstr ""
 msgid "The colocation constraint does not exist"
 msgstr ""
 
-#: ../app/controllers/commands_controller.rb:22 ../app/views/commands/index.html.haml:7 ../app/views/shared/_mainnav.html.haml:70
+#: ../app/controllers/commands_controller.rb:22 ../app/views/commands/index.html.erb:4 ../app/views/shared/_mainnav.html.erb:43
 msgid "Command Log"
 msgstr ""
 
@@ -727,7 +728,7 @@ msgstr ""
 msgid "Failed to rename %{A} to %{B}: %{E}"
 msgstr ""
 
-#: ../app/controllers/constraints_controller.rb:101 ../app/views/configs/edit.html.haml:44 ../app/views/constraints/index.html.haml:7 ../app/views/resources/show.html.haml:299 ../app/views/tickets/show.html.haml:154
+#: ../app/controllers/constraints_controller.rb:101 ../app/views/configs/edit.html.erb:25 ../app/views/constraints/index.html.erb:4 ../app/views/resources/show.html.erb:265 ../app/views/tickets/show.html.erb:97
 msgid "Constraints"
 msgstr ""
 
@@ -735,7 +736,7 @@ msgstr ""
 msgid "Configuration updated successfully"
 msgstr ""
 
-#: ../app/controllers/crm_config_controller.rb:46 ../app/views/crm_config/edit.html.haml:5 ../app/views/shared/_mainnav.html.haml:65
+#: ../app/controllers/crm_config_controller.rb:46 ../app/views/crm_config/edit.html.erb:3 ../app/views/shared/_mainnav.html.erb:40
 msgid "Cluster Configuration"
 msgstr ""
 
@@ -743,7 +744,7 @@ msgstr ""
 msgid "Error removing %s: %s"
 msgstr ""
 
-#: ../app/controllers/dashboards_controller.rb:46 ../app/views/dashboards/show.html.haml:12 ../app/views/shared/_mainnav.html.haml:24
+#: ../app/controllers/dashboards_controller.rb:46 ../app/views/dashboards/show.html.erb:7 ../app/views/shared/_mainnav.html.erb:13
 msgid "Dashboard"
 msgstr ""
 
@@ -751,7 +752,7 @@ msgstr ""
 msgid "Cluster Graph"
 msgstr ""
 
-#: ../app/controllers/groups_controller.rb:20 ../app/controllers/groups_controller.rb:31 ../app/views/groups/new.html.haml:7
+#: ../app/controllers/groups_controller.rb:20 ../app/controllers/groups_controller.rb:31 ../app/views/groups/new.html.erb:4
 msgid "Create Group"
 msgstr ""
 
@@ -759,7 +760,7 @@ msgstr ""
 msgid "Group created successfully"
 msgstr ""
 
-#: ../app/controllers/groups_controller.rb:58 ../app/controllers/groups_controller.rb:67 ../app/views/groups/edit.html.haml:7
+#: ../app/controllers/groups_controller.rb:58 ../app/controllers/groups_controller.rb:67 ../app/views/groups/edit.html.erb:4
 msgid "Edit Group"
 msgstr ""
 
@@ -771,7 +772,7 @@ msgstr ""
 msgid "Group deleted successfully"
 msgstr ""
 
-#: ../app/controllers/groups_controller.rb:134 ../app/views/groups/index.html.haml:7
+#: ../app/controllers/groups_controller.rb:134 ../app/views/groups/index.html.erb:4
 msgid "Groups"
 msgstr ""
 
@@ -840,19 +841,19 @@ msgid "Failed to set the node online: %{err}"
 msgstr ""
 
 #: ../app/controllers/nodes_controller.rb:66
-msgid "Failed to set the node standby: %{err}"
-msgstr ""
-
-#: ../app/controllers/nodes_controller.rb:66
 msgid "Set the node state to standby"
 msgstr ""
 
-#: ../app/controllers/nodes_controller.rb:70
-msgid "Failed to set the node state to maintenance: %{err}"
+#: ../app/controllers/nodes_controller.rb:66
+msgid "Failed to set the node standby: %{err}"
 msgstr ""
 
 #: ../app/controllers/nodes_controller.rb:70
 msgid "Set the node state to maintenance"
+msgstr ""
+
+#: ../app/controllers/nodes_controller.rb:70
+msgid "Failed to set the node state to maintenance: %{err}"
 msgstr ""
 
 #: ../app/controllers/nodes_controller.rb:74
@@ -879,7 +880,7 @@ msgstr ""
 msgid "Cleared the node state"
 msgstr ""
 
-#: ../app/controllers/nodes_controller.rb:103 ../app/views/cib/show.html.haml:58 ../app/views/configs/edit.html.haml:52 ../app/views/nodes/index.html.haml:7
+#: ../app/controllers/nodes_controller.rb:103 ../app/views/cib/show.html.erb:33 ../app/views/configs/edit.html.erb:30 ../app/views/nodes/index.html.erb:4
 msgid "Nodes"
 msgstr ""
 
@@ -887,11 +888,11 @@ msgstr ""
 msgid "The node does not exist"
 msgstr ""
 
-#: ../app/controllers/orders_controller.rb:20 ../app/controllers/orders_controller.rb:30 ../app/views/orders/new.html.haml:7
+#: ../app/controllers/orders_controller.rb:20 ../app/controllers/orders_controller.rb:30 ../app/views/orders/new.html.erb:4
 msgid "Create Order"
 msgstr ""
 
-#: ../app/controllers/orders_controller.rb:57 ../app/controllers/orders_controller.rb:66 ../app/views/orders/edit.html.haml:7
+#: ../app/controllers/orders_controller.rb:57 ../app/controllers/orders_controller.rb:66 ../app/views/orders/edit.html.erb:4
 msgid "Edit Order"
 msgstr ""
 
@@ -899,7 +900,7 @@ msgstr ""
 msgid "Order deleted successfully"
 msgstr ""
 
-#: ../app/controllers/orders_controller.rb:133 ../app/views/orders/index.html.haml:7
+#: ../app/controllers/orders_controller.rb:133 ../app/views/orders/index.html.erb:4
 msgid "Orders"
 msgstr ""
 
@@ -911,7 +912,7 @@ msgstr ""
 msgid "Welcome"
 msgstr ""
 
-#: ../app/controllers/pages_controller.rb:21 ../app/views/shared/_usernav.html.haml:27 ../app/views/shared/_usernav.html.haml:27
+#: ../app/controllers/pages_controller.rb:21 ../app/views/shared/_usernav.html.erb:19
 msgid "Help"
 msgstr ""
 
@@ -947,7 +948,7 @@ msgstr ""
 msgid "Preferences updated successfully"
 msgstr ""
 
-#: ../app/controllers/profiles_controller.rb:40 ../app/views/profiles/edit.html.haml:3
+#: ../app/controllers/profiles_controller.rb:40 ../app/views/profiles/edit.html.erb:2
 msgid "Preferences"
 msgstr ""
 
@@ -979,7 +980,7 @@ msgstr ""
 msgid "Error deleting %s"
 msgstr ""
 
-#: ../app/controllers/reports_controller.rb:270 ../app/views/reports/display.html.haml:7 ../app/views/reports/index.html.haml:7 ../app/views/reports/show.html.haml:7
+#: ../app/controllers/reports_controller.rb:270 ../app/views/reports/display.html.erb:4 ../app/views/reports/index.html.erb:4 ../app/views/reports/show.html.erb:4
 msgid "History Explorer"
 msgstr ""
 
@@ -1063,7 +1064,7 @@ msgstr ""
 msgid "Failed to clean up the resource: %{err}"
 msgstr ""
 
-#: ../app/controllers/roles_controller.rb:22 ../app/controllers/roles_controller.rb:31 ../app/views/roles/new.html.haml:7
+#: ../app/controllers/roles_controller.rb:22 ../app/controllers/roles_controller.rb:31 ../app/views/roles/new.html.erb:4
 msgid "Create Role"
 msgstr ""
 
@@ -1071,7 +1072,7 @@ msgstr ""
 msgid "Role created successfully"
 msgstr ""
 
-#: ../app/controllers/roles_controller.rb:63 ../app/views/roles/edit.html.haml:7
+#: ../app/controllers/roles_controller.rb:63 ../app/views/roles/edit.html.erb:4
 msgid "Edit Role"
 msgstr ""
 
@@ -1087,7 +1088,7 @@ msgstr ""
 msgid "ACL is not supported by the cluster"
 msgstr ""
 
-#: ../app/controllers/roles_controller.rb:136 ../app/views/roles/index.html.haml:7 ../app/views/shared/_mainnav.html.haml:86
+#: ../app/controllers/roles_controller.rb:136 ../app/views/roles/index.html.erb:4 ../app/views/shared/_mainnav.html.erb:53
 msgid "Roles"
 msgstr ""
 
@@ -1111,11 +1112,11 @@ msgstr ""
 msgid "Log In"
 msgstr ""
 
-#: ../app/controllers/simulator_controller.rb:163 ../app/views/shared/_simulator.html.haml:77
+#: ../app/controllers/simulator_controller.rb:163 ../app/views/shared/_simulator.html.erb:48
 msgid "Simulator"
 msgstr ""
 
-#: ../app/controllers/tags_controller.rb:20 ../app/controllers/tags_controller.rb:30 ../app/views/tags/new.html.haml:7
+#: ../app/controllers/tags_controller.rb:20 ../app/controllers/tags_controller.rb:30 ../app/views/tags/new.html.erb:4
 msgid "Create Tag"
 msgstr ""
 
@@ -1123,7 +1124,7 @@ msgstr ""
 msgid "Tag created successfully"
 msgstr ""
 
-#: ../app/controllers/tags_controller.rb:57 ../app/controllers/tags_controller.rb:66 ../app/views/tags/edit.html.haml:7
+#: ../app/controllers/tags_controller.rb:57 ../app/controllers/tags_controller.rb:66 ../app/views/tags/edit.html.erb:4
 msgid "Edit Tag"
 msgstr ""
 
@@ -1135,7 +1136,7 @@ msgstr ""
 msgid "Tag deleted successfully"
 msgstr ""
 
-#: ../app/controllers/tags_controller.rb:133 ../app/views/configs/edit.html.haml:60 ../app/views/tags/index.html.haml:7
+#: ../app/controllers/tags_controller.rb:133 ../app/views/configs/edit.html.erb:35 ../app/views/tags/index.html.erb:4
 msgid "Tags"
 msgstr ""
 
@@ -1175,11 +1176,11 @@ msgstr ""
 msgid "The template does not exist"
 msgstr ""
 
-#: ../app/controllers/tickets_controller.rb:33 ../app/controllers/tickets_controller.rb:43 ../app/views/tickets/new.html.haml:7
+#: ../app/controllers/tickets_controller.rb:33 ../app/controllers/tickets_controller.rb:43 ../app/views/tickets/new.html.erb:4
 msgid "Create Ticket"
 msgstr ""
 
-#: ../app/controllers/tickets_controller.rb:70 ../app/controllers/tickets_controller.rb:79 ../app/views/tickets/edit.html.haml:7
+#: ../app/controllers/tickets_controller.rb:70 ../app/controllers/tickets_controller.rb:79 ../app/views/tickets/edit.html.erb:4
 msgid "Edit Ticket"
 msgstr ""
 
@@ -1207,7 +1208,7 @@ msgstr ""
 msgid "Simulator active: Use the ticket controls in the simulator"
 msgstr ""
 
-#: ../app/controllers/tickets_controller.rb:215 ../app/views/cib/show.html.haml:68 ../app/views/tickets/index.html.haml:7
+#: ../app/controllers/tickets_controller.rb:215 ../app/views/cib/show.html.erb:39 ../app/views/tickets/index.html.erb:4
 msgid "Tickets"
 msgstr ""
 
@@ -1215,7 +1216,7 @@ msgstr ""
 msgid "The ticket constraint does not exist"
 msgstr ""
 
-#: ../app/controllers/users_controller.rb:22 ../app/controllers/users_controller.rb:31 ../app/views/users/new.html.haml:7
+#: ../app/controllers/users_controller.rb:22 ../app/controllers/users_controller.rb:31 ../app/views/users/new.html.erb:4
 msgid "Create ACL Target"
 msgstr ""
 
@@ -1223,7 +1224,7 @@ msgstr ""
 msgid "ACL target created successfully"
 msgstr ""
 
-#: ../app/controllers/users_controller.rb:57 ../app/controllers/users_controller.rb:65 ../app/views/users/edit.html.haml:7
+#: ../app/controllers/users_controller.rb:57 ../app/controllers/users_controller.rb:65 ../app/views/users/edit.html.erb:4
 msgid "Edit ACL Target"
 msgstr ""
 
@@ -1280,11 +1281,11 @@ msgid "Profile"
 msgstr ""
 
 #: ../app/helpers/application_helper.rb:223 ../app/helpers/application_helper.rb:229
-msgid "File a Bug Report"
+msgid "Report a bug or request a feature!"
 msgstr ""
 
 #: ../app/helpers/application_helper.rb:223 ../app/helpers/application_helper.rb:229
-msgid "Report a bug or request a feature!"
+msgid "File a Bug Report"
 msgstr ""
 
 #: ../app/helpers/application_helper.rb:224
@@ -1295,20 +1296,20 @@ msgstr ""
 msgid "Release Notes"
 msgstr ""
 
-#: ../app/helpers/application_helper.rb:225
-msgid "Read the most up-to-date documentation at the suse.com website."
-msgstr ""
-
 #: ../app/helpers/application_helper.rb:225 ../app/helpers/application_helper.rb:231
 msgid "Online Documentation"
 msgstr ""
 
-#: ../app/helpers/application_helper.rb:230
-msgid "Visit the Hawk website for information about the latest release."
+#: ../app/helpers/application_helper.rb:225
+msgid "Read the most up-to-date documentation at the suse.com website."
 msgstr ""
 
 #: ../app/helpers/application_helper.rb:230
 msgid "News"
+msgstr ""
+
+#: ../app/helpers/application_helper.rb:230
+msgid "Visit the Hawk website for information about the latest release."
 msgstr ""
 
 #: ../app/helpers/application_helper.rb:231
@@ -1316,11 +1317,11 @@ msgid "Getting Started using Hawk"
 msgstr ""
 
 #: ../app/helpers/application_helper.rb:239
-msgid "Current Configuration Version"
+msgid "Epoch"
 msgstr ""
 
 #: ../app/helpers/application_helper.rb:239
-msgid "Epoch"
+msgid "Current Configuration Version"
 msgstr ""
 
 #: ../app/helpers/application_helper.rb:240
@@ -1359,7 +1360,7 @@ msgstr ""
 msgid "Have Quorum"
 msgstr ""
 
-#: ../app/helpers/application_helper.rb:247 ../app/views/reports/display.html.haml:174
+#: ../app/helpers/application_helper.rb:247 ../app/views/reports/display.html.erb:170
 msgid "Version"
 msgstr ""
 
@@ -1375,7 +1376,7 @@ msgstr ""
 msgid "Stack"
 msgstr ""
 
-#: ../app/helpers/application_helper.rb:260 ../app/helpers/application_helper.rb:265 ../app/views/configs/edit.html.haml:17 ../app/views/configs/show.html.haml:21 ../app/views/graphs/show.html.haml:5 ../app/views/reports/display.html.haml:222
+#: ../app/helpers/application_helper.rb:260 ../app/helpers/application_helper.rb:265 ../app/views/configs/edit.html.erb:9 ../app/views/configs/show.html.erb:13 ../app/views/graphs/show.html.erb:3 ../app/views/reports/display.html.erb:206
 msgid "Graph"
 msgstr ""
 
@@ -1551,7 +1552,7 @@ msgstr ""
 msgid "Changes the behavior of ordering constraints (between clones/masters) so that instances can start/stop as soon as their peer instance has (rather than waiting for every instance of the other clone has)."
 msgstr ""
 
-#: ../app/models/clone.rb:124 ../app/views/clones/_form.html.haml:12 ../app/views/clones/_form.html.haml:17 ../app/views/masters/_form.html.haml:12 ../app/views/masters/_form.html.haml:17
+#: ../app/models/clone.rb:124 ../app/views/clones/_form.html.erb:7 ../app/views/clones/_form.html.erb:10 ../app/views/masters/_form.html.erb:7 ../app/views/masters/_form.html.erb:10
 msgid "Child Resource"
 msgstr ""
 
@@ -1583,7 +1584,7 @@ msgstr ""
 msgid "The score determines the location relationship between the resources."
 msgstr ""
 
-#: ../app/models/colocation.rb:186 ../app/views/colocations/_form.html.haml:79
+#: ../app/models/colocation.rb:186 ../app/views/colocations/_form.html.erb:52
 msgid "Node Attribute"
 msgstr ""
 
@@ -1687,7 +1688,7 @@ msgstr ""
 msgid "Name of a node in the cluster."
 msgstr ""
 
-#: ../app/models/location.rb:243 ../app/views/locations/_form.html.haml:107
+#: ../app/models/location.rb:243 ../app/views/locations/_form.html.erb:77
 msgid "Resource Discovery"
 msgstr ""
 
@@ -1871,7 +1872,7 @@ msgstr ""
 msgid "If true, the intention to perform the operation is recorded so that GUIs and CLI tools can indicate that an operation is in progress."
 msgstr ""
 
-#: ../app/models/template.rb:388 ../app/views/primitives/_form.html.haml:18 ../app/views/primitives/_form.html.haml:36 ../app/views/resources/types.html.haml:78
+#: ../app/models/template.rb:388 ../app/views/primitives/_form.html.erb:11 ../app/views/primitives/_form.html.erb:22 ../app/views/resources/types.html.erb:60
 msgid "Template"
 msgstr ""
 
@@ -1879,7 +1880,7 @@ msgstr ""
 msgid "Resource template to inherit from."
 msgstr ""
 
-#: ../app/models/template.rb:394 ../app/views/primitives/_form.html.haml:21 ../app/views/primitives/_form.html.haml:39
+#: ../app/models/template.rb:394 ../app/views/primitives/_form.html.erb:13 ../app/views/primitives/_form.html.erb:25
 msgid "Class"
 msgstr ""
 
@@ -1887,7 +1888,7 @@ msgstr ""
 msgid "Standard which the resource agent conforms to."
 msgstr ""
 
-#: ../app/models/template.rb:400 ../app/views/primitives/_form.html.haml:23 ../app/views/primitives/_form.html.haml:45
+#: ../app/models/template.rb:400 ../app/views/primitives/_form.html.erb:14 ../app/views/primitives/_form.html.erb:29
 msgid "Provider"
 msgstr ""
 
@@ -1947,627 +1948,635 @@ msgstr ""
 msgid "Requested wizard does not exist"
 msgstr ""
 
-#: ../app/views/agents/show.html.haml:32 ../app/views/primitives/_form.html.haml:102 ../app/views/resources/show.html.haml:76
+#: ../app/views/agents/show.html.erb:20 ../app/views/primitives/_form.html.erb:64 ../app/views/resources/show.html.erb:54
 msgid "Parameters"
 msgstr ""
 
-#: ../app/views/agents/show.html.haml:52
+#: ../app/views/agents/show.html.erb:35
 msgid "Shortdesc"
 msgstr ""
 
-#: ../app/views/agents/show.html.haml:54
+#: ../app/views/agents/show.html.erb:38
 msgid "Longdesc"
 msgstr ""
 
-#: ../app/views/agents/show.html.haml:56
+#: ../app/views/agents/show.html.erb:41
 msgid "Options"
 msgstr ""
 
-#: ../app/views/agents/show.html.haml:83
+#: ../app/views/agents/show.html.erb:68
 msgid "Actions"
 msgstr ""
 
-#: ../app/views/agents/show.html.haml:103 ../app/views/resources/show.html.haml:189
+#: ../app/views/agents/show.html.erb:83 ../app/views/resources/show.html.erb:152
 msgid "Timeout"
 msgstr ""
 
-#: ../app/views/agents/show.html.haml:105 ../app/views/resources/show.html.haml:191
+#: ../app/views/agents/show.html.erb:86 ../app/views/resources/show.html.erb:155
 msgid "Interval"
 msgstr ""
 
-#: ../app/views/agents/show.html.haml:107
+#: ../app/views/agents/show.html.erb:89
 msgid "Depth"
 msgstr ""
 
-#: ../app/views/cib/apply.html.haml:9
+#: ../app/views/cib/apply.html.erb:5
 msgid "Apply Configuration"
 msgstr ""
 
-#: ../app/views/cib/apply.html.haml:31 ../app/views/shared/_simulator.html.haml:160
+#: ../app/views/cib/apply.html.erb:17 ../app/views/shared/_simulator.html.erb:119
 msgid "Calculating list of changes..."
 msgstr ""
 
-#: ../app/views/cib/show.html.haml:24
+#: ../app/views/cib/show.html.erb:13
 msgid "Errors"
 msgstr ""
 
-#: ../app/views/clones/_form.html.haml:24 ../app/views/groups/_form.html.haml:68 ../app/views/masters/_form.html.haml:24 ../app/views/primitives/_form.html.haml:121 ../app/views/resources/show.html.haml:107
+#: ../app/views/clones/_form.html.erb:14 ../app/views/groups/_form.html.erb:47 ../app/views/masters/_form.html.erb:14 ../app/views/primitives/_form.html.erb:75 ../app/views/resources/show.html.erb:82
 msgid "Meta Attributes"
 msgstr ""
 
-#: ../app/views/clones/_form.html.haml:41 ../app/views/clones/_form.html.haml:48 ../app/views/colocations/_form.html.haml:88 ../app/views/colocations/_form.html.haml:95 ../app/views/groups/_form.html.haml:85 ../app/views/groups/_form.html.haml:92 ../app/views/locations/_form.html.haml:125 ../app/views/locations/_form.html.haml:132 ../app/views/masters/_form.html.haml:41 ../app/views/masters/_form.html.haml:48 ../app/views/nodes/_form.html.haml:53 ../app/views/orders/_form.html.haml:74 ../app/views/orders/_form.html.haml:81 ../app/views/primitives/_form.html.haml:82 ../app/views/primitives/_form.html.haml:89 ../app/views/roles/_form.html.haml:60 ../app/views/tags/_form.html.haml:51 ../app/views/tags/_form.html.haml:58 ../app/views/tickets/_form.html.haml:42 ../app/views/tickets/_form.html.haml:49 ../app/views/users/_form.html.haml:29 ../app/views/wizards/create.html.haml:28 ../app/views/wizards/show.html.haml:131 ../app/views/wizards/update.html.haml:108
+#: ../app/views/clones/_form.html.erb:24 ../app/views/clones/_form.html.erb:28 ../app/views/colocations/_form.html.erb:58 ../app/views/colocations/_form.html.erb:62 ../app/views/groups/_form.html.erb:59 ../app/views/groups/_form.html.erb:63 ../app/views/locations/_form.html.erb:89 ../app/views/locations/_form.html.erb:93 ../app/views/masters/_form.html.erb:24 ../app/views/masters/_form.html.erb:28 ../app/views/nodes/_form.html.erb:28 ../app/views/orders/_form.html.erb:51 ../app/views/orders/_form.html.erb:55 ../app/views/primitives/_form.html.erb:51 ../app/views/primitives/_form.html.erb:55 ../app/views/roles/_form.html.erb:39 ../app/views/tags/_form.html.erb:38 ../app/views/tags/_form.html.erb:42 ../app/views/tickets/_form.html.erb:24 ../app/views/tickets/_form.html.erb:28 ../app/views/users/_form.html.erb:18 ../app/views/wizards/create.html.erb:16 ../app/views/wizards/show.html.erb:93 ../app/views/wizards/update.html.erb:90
 msgid "Back"
 msgstr ""
 
-#: ../app/views/clones/edit.html.haml:17 ../app/views/colocations/edit.html.haml:17 ../app/views/groups/edit.html.haml:17 ../app/views/locations/edit.html.haml:17 ../app/views/masters/edit.html.haml:17 ../app/views/orders/edit.html.haml:17 ../app/views/primitives/edit.html.haml:17 ../app/views/reports/display.html.haml:36 ../app/views/roles/edit.html.haml:13 ../app/views/tags/edit.html.haml:17 ../app/views/tickets/edit.html.haml:17 ../app/views/users/edit.html.haml:13
+#: ../app/views/clones/edit.html.erb:9 ../app/views/colocations/edit.html.erb:9 ../app/views/groups/edit.html.erb:9 ../app/views/locations/edit.html.erb:9 ../app/views/masters/edit.html.erb:9 ../app/views/orders/edit.html.erb:9 ../app/views/primitives/edit.html.erb:9 ../app/views/reports/display.html.erb:24 ../app/views/roles/edit.html.erb:7 ../app/views/tags/edit.html.erb:9 ../app/views/tickets/edit.html.erb:9 ../app/views/users/edit.html.erb:7
 msgid "Are you sure you wish to delete %s?"
 msgstr ""
 
-#: ../app/views/colocations/_form.html.haml:35 ../app/views/locations/_form.html.haml:70
+#: ../app/views/colocations/_form.html.erb:23 ../app/views/locations/_form.html.erb:43
 msgid "Always"
 msgstr ""
 
-#: ../app/views/colocations/_form.html.haml:37 ../app/views/locations/_form.html.haml:72
+#: ../app/views/colocations/_form.html.erb:26 ../app/views/locations/_form.html.erb:46
 msgid "Never"
 msgstr ""
 
-#: ../app/views/colocations/_form.html.haml:69 ../app/views/locations/_form.html.haml:37 ../app/views/wizards/show.html.haml:74 ../app/views/wizards/show.html.haml:105
+#: ../app/views/colocations/_form.html.erb:46 ../app/views/locations/_form.html.erb:21 ../app/views/wizards/show.html.erb:50 ../app/views/wizards/show.html.erb:72
 msgid "Advanced"
 msgstr ""
 
-#: ../app/views/commands/index.html.haml:22
+#: ../app/views/commands/index.html.erb:13
 msgid "Lists crm commands recently executed by hawk, most recent first."
 msgstr ""
 
-#: ../app/views/configs/edit.html.haml:7 ../app/views/shared/_mainnav.html.haml:60
+#: ../app/views/configs/edit.html.erb:4 ../app/views/shared/_mainnav.html.erb:37
 msgid "Edit Configuration"
 msgstr ""
 
-#: ../app/views/configs/edit.html.haml:15 ../app/views/configs/show.html.haml:19 ../app/views/graphs/show.html.haml:15
+#: ../app/views/configs/edit.html.erb:8 ../app/views/configs/show.html.erb:11 ../app/views/graphs/show.html.erb:8
 msgid "XML"
 msgstr ""
 
-#: ../app/views/configs/meta.html.haml:19 ../app/views/shared/_footer.html.haml:17
+#: ../app/views/configs/meta.html.erb:11 ../app/views/shared/_footer.html.erb:9
 msgid "Cluster Details"
 msgstr ""
 
-#: ../app/views/configs/meta.html.haml:29 ../app/views/shared/_simulator.html.haml:5
+#: ../app/views/configs/meta.html.erb:17 ../app/views/shared/_simulator.html.erb:4
 msgid "Batch Mode Active"
 msgstr ""
 
-#: ../app/views/configs/show.html.haml:7
+#: ../app/views/configs/show.html.erb:4
 msgid "Show Configuration"
 msgstr ""
 
-#: ../app/views/constraints/rename.html.haml:9
+#: ../app/views/constraints/rename.html.erb:5
 msgid "Rename Constraint"
 msgstr ""
 
-#: ../app/views/constraints/rename.html.haml:36 ../app/views/reports/display.html.haml:55 ../app/views/reports/display.html.haml:64 ../app/views/reports/display.html.haml:73 ../app/views/reports/index.html.haml:39 ../app/views/resources/rename.html.haml:36 ../app/views/resources/show.html.haml:321
+#: ../app/views/constraints/rename.html.erb:21 ../app/views/reports/display.html.erb:50 ../app/views/reports/display.html.erb:63 ../app/views/reports/display.html.erb:76 ../app/views/reports/index.html.erb:25 ../app/views/resources/rename.html.erb:21 ../app/views/resources/show.html.erb:285
 msgid "To"
 msgstr ""
 
-#: ../app/views/constraints/show.html.haml:10
+#: ../app/views/constraints/show.html.erb:5
 msgid "Constraint:"
 msgstr ""
 
-#: ../app/views/constraints/types.html.haml:7 ../app/views/shared/_mainnav.html.haml:50
+#: ../app/views/constraints/types.html.erb:4 ../app/views/shared/_mainnav.html.erb:31
 msgid "Add Constraint"
 msgstr ""
 
-#: ../app/views/constraints/types.html.haml:13 ../app/views/resources/types.html.haml:13
+#: ../app/views/constraints/types.html.erb:7 ../app/views/resources/types.html.erb:7
 msgid "List"
 msgstr ""
 
-#: ../app/views/crm_config/edit.html.haml:24
+#: ../app/views/crm_config/edit.html.erb:13
 msgid "Resource Defaults"
 msgstr ""
 
-#: ../app/views/crm_config/edit.html.haml:41
+#: ../app/views/crm_config/edit.html.erb:22
 msgid "Operation Defaults"
 msgstr ""
 
-#: ../app/views/dashboards/add.html.haml:21 ../app/views/dashboards/show.html.haml:18
+#: ../app/views/dashboards/add.html.erb:13 ../app/views/dashboards/show.html.erb:10
 msgid "Add Cluster"
 msgstr ""
 
-#: ../app/views/dashboards/add.html.haml:32
-msgid "West Coast (example)"
-msgstr ""
-
-#: ../app/views/dashboards/add.html.haml:32
+#: ../app/views/dashboards/add.html.erb:19
 msgid "Cluster name"
 msgstr ""
 
-#: ../app/views/dashboards/add.html.haml:34
+#: ../app/views/dashboards/add.html.erb:19
+msgid "West Coast (example)"
+msgstr ""
+
+#: ../app/views/dashboards/add.html.erb:20
 msgid "node1.west.example.com"
 msgstr ""
 
-#: ../app/views/dashboards/add.html.haml:34
+#: ../app/views/dashboards/add.html.erb:20
 msgid "Hostname of node in cluster"
 msgstr ""
 
-#: ../app/views/dashboards/add.html.haml:36
+#: ../app/views/dashboards/add.html.erb:21
 msgid "Server port to connect to"
 msgstr ""
 
-#: ../app/views/groups/_form.html.haml:34
+#: ../app/views/groups/_form.html.erb:22
 msgid "No children available"
 msgstr ""
 
-#: ../app/views/layouts/authentication.html.haml:55
+#: ../app/views/layouts/authentication.html.erb:25
 msgid "Please ensure Javascript is enabled"
 msgstr ""
 
-#: ../app/views/layouts/authentication.html.haml:62
+#: ../app/views/layouts/authentication.html.erb:29
 msgid "SUSE, LLC"
 msgstr ""
 
-#: ../app/views/layouts/authentication.html.haml:68
+#: ../app/views/layouts/authentication.html.erb:32
 msgid "High Availability Web Konsole"
 msgstr ""
 
-#: ../app/views/locations/_form.html.haml:29
+#: ../app/views/locations/_form.html.erb:16
 msgid "Simple"
 msgstr ""
 
-#: ../app/views/locations/_form.html.haml:74
+#: ../app/views/locations/_form.html.erb:49
 msgid "Advisory"
 msgstr ""
 
-#: ../app/views/locations/edit.html.haml:7
+#: ../app/views/locations/edit.html.erb:4
 msgid "Edit Location"
 msgstr ""
 
-#: ../app/views/locations/index.html.haml:7
+#: ../app/views/locations/index.html.erb:4
 msgid "Locations"
 msgstr ""
 
-#: ../app/views/locations/new.html.haml:7
+#: ../app/views/locations/new.html.erb:4
 msgid "Create Location"
 msgstr ""
 
-#: ../app/views/masters/edit.html.haml:7
+#: ../app/views/masters/edit.html.erb:4
 msgid "Edit Multi-state"
 msgstr ""
 
-#: ../app/views/masters/index.html.haml:7
+#: ../app/views/masters/index.html.erb:4
 msgid "Multi-state Resources"
 msgstr ""
 
-#: ../app/views/masters/new.html.haml:7
+#: ../app/views/masters/new.html.erb:4
 msgid "Create Multi-state"
 msgstr ""
 
-#: ../app/views/nodes/_form.html.haml:18 ../app/views/nodes/show.html.haml:104
+#: ../app/views/nodes/_form.html.erb:9 ../app/views/nodes/show.html.erb:71
 msgid "Attributes"
 msgstr ""
 
-#: ../app/views/nodes/_form.html.haml:34 ../app/views/nodes/show.html.haml:61 ../app/views/primitives/_form.html.haml:140 ../app/views/resources/show.html.haml:139
+#: ../app/views/nodes/_form.html.erb:18 ../app/views/nodes/show.html.erb:39 ../app/views/primitives/_form.html.erb:86 ../app/views/resources/show.html.erb:110
 msgid "Utilization"
 msgstr ""
 
-#: ../app/views/nodes/edit.html.haml:7
+#: ../app/views/nodes/edit.html.erb:4
 msgid "Edit Node"
 msgstr ""
 
-#: ../app/views/nodes/events.html.haml:33 ../app/views/resources/events.html.haml:33
+#: ../app/views/nodes/events.html.erb:12 ../app/views/resources/events.html.erb:12
+msgid "Recent events: %{name}"
+msgstr ""
+
+#: ../app/views/nodes/events.html.erb:20 ../app/views/resources/events.html.erb:20
 msgid "RC"
 msgstr ""
 
-#: ../app/views/nodes/events.html.haml:35 ../app/views/shared/_simulator.html.haml:416
+#: ../app/views/nodes/events.html.erb:23 ../app/views/shared/_simulator.html.erb:284
 msgid "Resource"
 msgstr ""
 
-#: ../app/views/nodes/events.html.haml:37 ../app/views/resources/events.html.haml:37 ../app/views/resources/show.html.haml:270 ../app/views/shared/_simulator.html.haml:433
+#: ../app/views/nodes/events.html.erb:26 ../app/views/resources/events.html.erb:26 ../app/views/resources/show.html.erb:229 ../app/views/shared/_simulator.html.erb:298
 msgid "Operation"
 msgstr ""
 
-#: ../app/views/nodes/events.html.haml:39 ../app/views/resources/events.html.haml:39
+#: ../app/views/nodes/events.html.erb:29 ../app/views/resources/events.html.erb:29
 msgid "Last Change"
 msgstr ""
 
-#: ../app/views/nodes/events.html.haml:41 ../app/views/resources/events.html.haml:41 ../app/views/shared/_simulator.html.haml:368 ../app/views/tickets/show.html.haml:93
+#: ../app/views/nodes/events.html.erb:32 ../app/views/resources/events.html.erb:32 ../app/views/shared/_simulator.html.erb:251 ../app/views/tickets/show.html.erb:58
 msgid "State"
 msgstr ""
 
-#: ../app/views/nodes/events.html.haml:43 ../app/views/resources/events.html.haml:43 ../app/views/resources/show.html.haml:268
+#: ../app/views/nodes/events.html.erb:35 ../app/views/resources/events.html.erb:35 ../app/views/resources/show.html.erb:226
 msgid "Call"
 msgstr ""
 
-#: ../app/views/nodes/events.html.haml:45 ../app/views/resources/events.html.haml:45
+#: ../app/views/nodes/events.html.erb:38 ../app/views/resources/events.html.erb:38
 msgid "Exec"
 msgstr ""
 
-#: ../app/views/nodes/events.html.haml:47 ../app/views/resources/events.html.haml:47
+#: ../app/views/nodes/events.html.erb:41 ../app/views/resources/events.html.erb:41
 msgid "Complete"
 msgstr ""
 
-#: ../app/views/nodes/show.html.haml:30
+#: ../app/views/nodes/show.html.erb:12
+msgid "Node: %{name}"
+msgstr ""
+
+#: ../app/views/nodes/show.html.erb:18
 msgid "Remote node."
 msgstr ""
 
-#: ../app/views/nodes/show.html.haml:95
+#: ../app/views/nodes/show.html.erb:66
 msgid "No utilization defined"
 msgstr ""
 
-#: ../app/views/nodes/show.html.haml:129
+#: ../app/views/nodes/show.html.erb:90
 msgid "No attributes defined"
 msgstr ""
 
-#: ../app/views/orders/_form.html.haml:35
+#: ../app/views/orders/_form.html.erb:23
 msgid "Mandatory"
 msgstr ""
 
-#: ../app/views/orders/_form.html.haml:37
+#: ../app/views/orders/_form.html.erb:26
 msgid "Optional"
 msgstr ""
 
-#: ../app/views/orders/_form.html.haml:39
+#: ../app/views/orders/_form.html.erb:29
 msgid "Serialize"
 msgstr ""
 
-#: ../app/views/orders/_form.html.haml:50
+#: ../app/views/orders/_form.html.erb:38
 msgid "Symmetrical"
 msgstr ""
 
-#: ../app/views/pages/help.html.haml:55
+#: ../app/views/pages/help.html.erb:36
 msgid "HTML"
 msgstr ""
 
-#: ../app/views/pages/help.html.haml:59
+#: ../app/views/pages/help.html.erb:39
 msgid "PDF"
 msgstr ""
 
-#: ../app/views/primitives/_help.html.haml:35 ../app/views/shared/_helpentry.html.haml:15
+#: ../app/views/primitives/_help.html.erb:24 ../app/views/shared/_helpentry.html.erb:13
 msgid "Default"
 msgstr ""
 
-#: ../app/views/primitives/edit.html.haml:13
+#: ../app/views/primitives/edit.html.erb:7
 msgid "Copy"
 msgstr ""
 
-#: ../app/views/reports/display.html.haml:13 ../app/views/reports/index.html.haml:156 ../app/views/reports/show.html.haml:13
+#: ../app/views/reports/display.html.erb:7 ../app/views/reports/index.html.erb:107 ../app/views/reports/show.html.erb:7
 msgid "Reports"
 msgstr ""
 
-#: ../app/views/reports/display.html.haml:78
+#: ../app/views/reports/display.html.erb:83
 msgid "Created"
 msgstr ""
 
-#: ../app/views/reports/display.html.haml:82 ../app/views/reports/display.html.haml:99
+#: ../app/views/reports/display.html.erb:90 ../app/views/reports/display.html.erb:104
 msgid "Transitions"
 msgstr ""
 
-#: ../app/views/reports/display.html.haml:105
+#: ../app/views/reports/display.html.erb:108
 msgid "No transitions in report"
 msgstr ""
 
-#: ../app/views/reports/display.html.haml:125
+#: ../app/views/reports/display.html.erb:120
 msgid "Previous"
 msgstr ""
 
-#: ../app/views/reports/display.html.haml:133
+#: ../app/views/reports/display.html.erb:125
 msgid "Zoom in"
 msgstr ""
 
-#: ../app/views/reports/display.html.haml:135
+#: ../app/views/reports/display.html.erb:128
 msgid "Zoom out"
 msgstr ""
 
-#: ../app/views/reports/display.html.haml:143 ../app/views/wizards/show.html.haml:133
+#: ../app/views/reports/display.html.erb:135 ../app/views/wizards/show.html.erb:94
 msgid "Next"
 msgstr ""
 
-#: ../app/views/reports/display.html.haml:161
+#: ../app/views/reports/display.html.erb:151
 msgid "PE Name"
 msgstr ""
 
-#: ../app/views/reports/display.html.haml:198 ../app/views/shared/_mainnav.html.haml:38
+#: ../app/views/reports/display.html.erb:191 ../app/views/shared/_mainnav.html.erb:25
 msgid "Configuration"
 msgstr ""
 
-#: ../app/views/reports/display.html.haml:206
+#: ../app/views/reports/display.html.erb:196
 msgid "Diff"
 msgstr ""
 
-#: ../app/views/reports/display.html.haml:214
+#: ../app/views/reports/display.html.erb:201
 msgid "Logs"
 msgstr ""
 
-#: ../app/views/reports/display.html.haml:289
+#: ../app/views/reports/display.html.erb:249
 msgid "Node Events"
 msgstr ""
 
-#: ../app/views/reports/display.html.haml:306
+#: ../app/views/reports/display.html.erb:261
 msgid "Resource Events"
 msgstr ""
 
-#: ../app/views/reports/index.html.haml:20
+#: ../app/views/reports/index.html.erb:11
 msgid "Data collection in progress..."
 msgstr ""
 
-#: ../app/views/reports/index.html.haml:79 ../app/views/reports/index.html.haml:124
+#: ../app/views/reports/index.html.erb:51 ../app/views/reports/index.html.erb:78
 msgid "Generate"
 msgstr ""
 
-#: ../app/views/reports/index.html.haml:87
+#: ../app/views/reports/index.html.erb:57
 msgid "Upload"
 msgstr ""
 
-#: ../app/views/reports/show.html.haml:30
+#: ../app/views/reports/show.html.erb:17
 msgid "Loading report..."
 msgstr ""
 
-#: ../app/views/resources/rename.html.haml:9
+#: ../app/views/resources/rename.html.erb:5
 msgid "Rename Resource"
 msgstr ""
 
-#: ../app/views/resources/show.html.haml:57
+#: ../app/views/resources/show.html.erb:39
 msgid "Child"
 msgstr ""
 
-#: ../app/views/resources/show.html.haml:218
+#: ../app/views/resources/show.html.erb:184
 msgid "Instances"
 msgstr ""
 
-#: ../app/views/resources/show.html.haml:250
+#: ../app/views/resources/show.html.erb:212
 msgid "Failed Operations"
 msgstr ""
 
-#: ../app/views/resources/show.html.haml:274
+#: ../app/views/resources/show.html.erb:235
 msgid "Reason"
 msgstr ""
 
-#: ../app/views/resources/types.html.haml:7 ../app/views/shared/_mainnav.html.haml:45
+#: ../app/views/resources/types.html.erb:4 ../app/views/shared/_mainnav.html.erb:28
 msgid "Add Resource"
 msgstr ""
 
-#: ../app/views/resources/types.html.haml:32
+#: ../app/views/resources/types.html.erb:19
 msgid "Primitive"
 msgstr ""
 
-#: ../app/views/roles/_form.html.haml:27
+#: ../app/views/roles/_form.html.erb:16
 msgid "Add a rule below"
 msgstr ""
 
-#: ../app/views/roles/_form.html.haml:29
+#: ../app/views/roles/_form.html.erb:17
 msgid "Remove this rule"
 msgstr ""
 
-#: ../app/views/roles/_form.html.haml:31
+#: ../app/views/roles/_form.html.erb:18
 msgid "Move rule up"
 msgstr ""
 
-#: ../app/views/roles/_form.html.haml:33
+#: ../app/views/roles/_form.html.erb:19
 msgid "Move rule down"
 msgstr ""
 
-#: ../app/views/roles/_form.html.haml:38
+#: ../app/views/roles/_form.html.erb:22
 msgid "Right"
 msgstr ""
 
-#: ../app/views/roles/_form.html.haml:40
+#: ../app/views/roles/_form.html.erb:23
 msgid "XPath"
 msgstr ""
 
-#: ../app/views/roles/_form.html.haml:42
+#: ../app/views/roles/_form.html.erb:24
 msgid "Object Type"
 msgstr ""
 
-#: ../app/views/roles/_form.html.haml:44
+#: ../app/views/roles/_form.html.erb:25
 msgid "Reference"
 msgstr ""
 
-#: ../app/views/roles/_form.html.haml:47
+#: ../app/views/roles/_form.html.erb:27
 msgid "Attribute"
 msgstr ""
 
-#: ../app/views/roles/index.html.haml:9 ../app/views/users/index.html.haml:9
+#: ../app/views/roles/index.html.erb:6 ../app/views/users/index.html.erb:6
 msgid "Access Control Lists"
 msgstr ""
 
-#: ../app/views/sessions/new.html.haml:7
+#: ../app/views/sessions/new.html.erb:4
 msgid "Login"
 msgstr ""
 
-#: ../app/views/shared/_mainnav.html.haml:10
+#: ../app/views/shared/_mainnav.html.erb:6
 msgid "Manage"
 msgstr ""
 
-#: ../app/views/shared/_mainnav.html.haml:31
+#: ../app/views/shared/_mainnav.html.erb:18
 msgid "History"
 msgstr ""
 
-#: ../app/views/shared/_mainnav.html.haml:55 ../app/views/wizards/index.html.haml:7
+#: ../app/views/shared/_mainnav.html.erb:34 ../app/views/wizards/index.html.erb:4
 msgid "Wizards"
 msgstr ""
 
-#: ../app/views/shared/_mainnav.html.haml:79
+#: ../app/views/shared/_mainnav.html.erb:50
 msgid "Access Control"
 msgstr ""
 
-#: ../app/views/shared/_mainnav.html.haml:92 ../app/views/users/index.html.haml:7
+#: ../app/views/shared/_mainnav.html.erb:56 ../app/views/users/index.html.erb:4
 msgid "Targets"
 msgstr ""
 
-#: ../app/views/shared/_simulator.html.haml:15
+#: ../app/views/shared/_simulator.html.erb:11
 msgid "Any pending changes to the configuration will be lost - do you wish to proceed?"
 msgstr ""
 
-#: ../app/views/shared/_simulator.html.haml:17
+#: ../app/views/shared/_simulator.html.erb:12
 msgid "Discard"
 msgstr ""
 
-#: ../app/views/shared/_simulator.html.haml:52
+#: ../app/views/shared/_simulator.html.erb:32
 msgid "Batch Mode"
 msgstr ""
 
-#: ../app/views/shared/_simulator.html.haml:82 ../app/views/shared/_simulator.html.haml:184
+#: ../app/views/shared/_simulator.html.erb:52 ../app/views/shared/_simulator.html.erb:135
 msgid "Summary"
 msgstr ""
 
-#: ../app/views/shared/_simulator.html.haml:84 ../app/views/shared/_simulator.html.haml:215
+#: ../app/views/shared/_simulator.html.erb:55 ../app/views/shared/_simulator.html.erb:154
 msgid "CIB (in)"
 msgstr ""
 
-#: ../app/views/shared/_simulator.html.haml:86 ../app/views/shared/_simulator.html.haml:246
+#: ../app/views/shared/_simulator.html.erb:58 ../app/views/shared/_simulator.html.erb:173
 msgid "CIB (out)"
 msgstr ""
 
-#: ../app/views/shared/_simulator.html.haml:88 ../app/views/shared/_simulator.html.haml:277
+#: ../app/views/shared/_simulator.html.erb:61 ../app/views/shared/_simulator.html.erb:192
 msgid "Transition Graph"
 msgstr ""
 
-#: ../app/views/shared/_simulator.html.haml:90
+#: ../app/views/shared/_simulator.html.erb:64
 msgid "Transition"
 msgstr ""
 
-#: ../app/views/shared/_simulator.html.haml:101
+#: ../app/views/shared/_simulator.html.erb:72
 msgid "Inject"
 msgstr ""
 
-#: ../app/views/shared/_simulator.html.haml:107
+#: ../app/views/shared/_simulator.html.erb:77
 msgid "Node Event"
 msgstr ""
 
-#: ../app/views/shared/_simulator.html.haml:110
+#: ../app/views/shared/_simulator.html.erb:82
 msgid "Resource Event"
 msgstr ""
 
-#: ../app/views/shared/_simulator.html.haml:113
+#: ../app/views/shared/_simulator.html.erb:87
 msgid "Ticket Event"
 msgstr ""
 
-#: ../app/views/shared/_simulator.html.haml:308
+#: ../app/views/shared/_simulator.html.erb:211
 msgid "Transition (XML)"
 msgstr ""
 
-#: ../app/views/shared/_simulator.html.haml:341
+#: ../app/views/shared/_simulator.html.erb:231
 msgid "Inject Node Event"
 msgstr ""
 
-#: ../app/views/shared/_simulator.html.haml:406
+#: ../app/views/shared/_simulator.html.erb:278
 msgid "Inject Resource Event"
 msgstr ""
 
-#: ../app/views/shared/_simulator.html.haml:450
+#: ../app/views/shared/_simulator.html.erb:312
 msgid "Interval (ms)"
 msgstr ""
 
-#: ../app/views/shared/_simulator.html.haml:480
+#: ../app/views/shared/_simulator.html.erb:334
 msgid "Result"
 msgstr ""
 
-#: ../app/views/shared/_simulator.html.haml:518
+#: ../app/views/shared/_simulator.html.erb:361
 msgid "Inject Ticket Event"
 msgstr ""
 
-#: ../app/views/shared/_simulator.html.haml:545
+#: ../app/views/shared/_simulator.html.erb:381
 msgid "Action"
 msgstr ""
 
-#: ../app/views/shared/_usernav.html.haml:6
+#: ../app/views/shared/_usernav.html.erb:5
 msgid "Batch Configuration Changes"
 msgstr ""
 
-#: ../app/views/shared/_usernav.html.haml:6 ../app/views/shared/_usernav.html.haml:14
+#: ../app/views/shared/_usernav.html.erb:5 ../app/views/shared/_usernav.html.erb:10
 msgid "Batch"
 msgstr ""
 
-#: ../app/views/shared/_usernav.html.haml:33 ../app/views/shared/_usernav.html.haml:33
+#: ../app/views/shared/_usernav.html.erb:22
 msgid "Logout"
 msgstr ""
 
-#: ../app/views/shared/_usernav.html.haml:39
+#: ../app/views/shared/_usernav.html.erb:25
 msgid "Menu"
 msgstr ""
 
-#: ../app/views/tags/_form.html.haml:10 ../app/views/tags/_form.html.haml:15
+#: ../app/views/tags/_form.html.erb:6 ../app/views/tags/_form.html.erb:10
 msgid "Tag ID"
 msgstr ""
 
-#: ../app/views/tags/_form.html.haml:34
+#: ../app/views/tags/_form.html.erb:22
 msgid "No objects available"
 msgstr ""
 
-#: ../app/views/tickets/_form.html.haml:16
+#: ../app/views/tickets/_form.html.erb:10
 msgid "Ticket ID"
 msgstr ""
 
-#: ../app/views/tickets/_form.html.haml:18 ../app/views/tickets/show.html.haml:63
+#: ../app/views/tickets/_form.html.erb:11 ../app/views/tickets/show.html.erb:38
 msgid "Loss Policy"
 msgstr ""
 
-#: ../app/views/tickets/show.html.haml:9
+#: ../app/views/tickets/show.html.erb:5
 msgid "Ticket:"
 msgstr ""
 
-#: ../app/views/tickets/show.html.haml:26
+#: ../app/views/tickets/show.html.erb:14
 msgid "Properties"
 msgstr ""
 
-#: ../app/views/tickets/show.html.haml:69
+#: ../app/views/tickets/show.html.erb:42
 msgid "None"
 msgstr ""
 
-#: ../app/views/tickets/show.html.haml:106
+#: ../app/views/tickets/show.html.erb:66
 msgid "Leader"
 msgstr ""
 
-#: ../app/views/tickets/show.html.haml:119
+#: ../app/views/tickets/show.html.erb:74
 msgid "Expires"
 msgstr ""
 
-#: ../app/views/tickets/show.html.haml:132
+#: ../app/views/tickets/show.html.erb:82
 msgid "Commit"
 msgstr ""
 
-#: ../app/views/tickets/show.html.haml:189
+#: ../app/views/tickets/show.html.erb:124
 msgid "Sites"
 msgstr ""
 
-#: ../app/views/tickets/show.html.haml:224
+#: ../app/views/tickets/show.html.erb:155
 msgid "Arbitrators"
 msgstr ""
 
-#: ../app/views/users/_form.html.haml:10 ../app/views/users/_form.html.haml:13
+#: ../app/views/users/_form.html.erb:6 ../app/views/users/_form.html.erb:8
 msgid "Target ID"
 msgstr ""
 
-#: ../app/views/wizards/create.html.haml:21
+#: ../app/views/wizards/create.html.erb:12
 msgid "Verifying parameters..."
 msgstr ""
 
-#: ../app/views/wizards/create.html.haml:26 ../app/views/wizards/show.html.haml:129 ../app/views/wizards/update.html.haml:106
+#: ../app/views/wizards/create.html.erb:15 ../app/views/wizards/show.html.erb:92 ../app/views/wizards/update.html.erb:89
 msgid "Do you really want to cancel the wizard setup?"
 msgstr ""
 
-#: ../app/views/wizards/create.html.haml:30
+#: ../app/views/wizards/create.html.erb:17
 msgid "Do you really want to apply the current wizard?"
 msgstr ""
 
-#: ../app/views/wizards/show.html.haml:56
+#: ../app/views/wizards/show.html.erb:37
 msgid "Enable this step"
 msgstr ""
 
-#: ../app/views/wizards/show.html.haml:123
+#: ../app/views/wizards/show.html.erb:87
 msgid "This wizard takes no parameters."
 msgstr ""
 
-#: ../app/views/wizards/show.html.haml:135
+#: ../app/views/wizards/show.html.erb:95
 msgid "Verify"
 msgstr ""
 
-#: ../app/views/wizards/update.html.haml:50
+#: ../app/views/wizards/update.html.erb:32
 msgid "Verify and apply"
 msgstr ""
 
-#: ../app/views/wizards/update.html.haml:87
+#: ../app/views/wizards/update.html.erb:74
 msgid "To apply the changes, Hawk requires root access, and password-less SSH access must be configured. See the Hawk documentation for more information."
 msgstr ""
 
-#: ../app/views/wizards/update.html.haml:94
+#: ../app/views/wizards/update.html.erb:79
 msgid "Root password"
 msgstr ""
 

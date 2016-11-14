@@ -1,0 +1,38 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="<%= I18n.locale.to_s.gsub('-', '_') %>">
+  <%= render partial: "shared/header" %>
+  <body  <%= body_attrs %> >
+    <div class="<%= navbar_background_class %> navbar navbar-fixed-top" role="navigation">
+      <div class="container-fluid" style="white-space: nobreak;">
+        <div class="navbar-header">
+          <%= link_to image_tag("head/white.png", size: "160x30", style: "padding-top: 7px"), root_path, class: "navbar-brand" %>
+        </div>
+        <div class="navbar-right" id="navbar">
+          <%= render partial: "shared/usernav" %>
+        </div>
+      </div>
+    </div>
+    <% if current_cib.sim? %>
+      <%= render partial: "shared/simulator" %>
+    <% end %>
+    <div class="nav-wrapper">
+      <div class="sidebar-wrapper" id="sidebar">
+        <%= render partial: "shared/mainnav" %>
+      </div>
+      <div class="page-content-wrapper">
+        <div class="page-content container-fluid">
+          <div class="row">
+            <div class="col-sm-12" id="middle">
+              <div class="container-fluid">
+                <%= render partial: "shared/flash", locals: { flash: flash } %>
+              </div>
+              <%= yield %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <%= render partial: "shared/footer" %>
+    <%= render partial: "shared/modal" %>
+  </body>
+</html>

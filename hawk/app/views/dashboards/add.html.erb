@@ -1,0 +1,30 @@
+<% if request.xhr? %>
+  <%= form_for(@cluster, url: {action: "add"}, horizontal: true, bootstrap: true, remote: true) do |f| %>
+    <div class="modal-header">
+      <button class="close" type="button" data-dismiss="modal">
+        <span aria-hidden="true">
+          &times;
+        </span>
+        <span class="sr-only">
+          <%= _("Close") %>
+        </span>
+      </button>
+      <h3 class="modal-title">
+        <%= icon_text "server", _("Add Cluster"), class: "page" %>
+      </h3>
+    </div>
+    <div class="modal-body">
+      <%= errors_for @cluster %>
+      <div class="form-errors"></div>
+      <%= f.text_field :name, placeholder: _("West Coast (example)"), label: _("Cluster name") %>
+      <%= f.text_field :host, placeholder: _("node1.west.example.com"), label: _("Hostname of node in cluster") %>
+      <%= f.text_field :port, label: _("Server port to connect to") %>
+    </div>
+    <div class="modal-footer">
+      <%= add_button(f, @cluster) %>
+    </div>
+    <script>
+      dashboardSetupAddClusterForm();
+    </script>
+  <% end %>
+<% end %>
