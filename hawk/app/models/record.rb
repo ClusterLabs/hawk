@@ -8,7 +8,7 @@ class Record < Tableless
 
   validates :id,
     presence: { message: _("ID is required") },
-    format: { with: /\A[a-zA-Z0-9_-]+\z/, message: _("Invalid ID") }
+    format: { with: /\A[a-zA-Z0-9_.-]+\z/, message: _("Invalid ID") }
 
   class << self
     # Check whether anything with the given ID exists, or for a specific element
