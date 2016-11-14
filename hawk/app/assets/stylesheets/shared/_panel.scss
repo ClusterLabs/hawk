@@ -27,7 +27,8 @@
         display: inline-block;
         float: none;
         margin: 0 8px;
-        &.btn-circle{
+
+        &.btn-circle {
           .fa-exclamation-triangle {
             line-height: 1.5em;
           }
@@ -41,10 +42,8 @@
     }
     
     .nav-pills {
-      .active {
-        a {
-          background: #089E5F;
-        }
+      .active a {
+        background: $theme-green;
       }
     }
   }

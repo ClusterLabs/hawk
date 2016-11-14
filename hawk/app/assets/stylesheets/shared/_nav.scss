@@ -9,7 +9,7 @@
   &.nav-bighelp {
 
     li {
-      @include tablist-background(#fdfdfd, #ececec);
+      @include tablist-background($tablist-light-gray, $tablist-dark-gray);
       font-size: 1.2em;
       margin-bottom: 20px;
       padding: 15px 20px;
@@ -91,9 +91,9 @@
         }
       }
       &:hover {
-        @include tablist-background(#DCDCDC, #EAEAEA);
+        @include tablist-background($tablist-dark-gray-hover, $tablist-light-gray-hover);
         border-color: $tablist-border-hover;
-        color: #000;      
+        color: $black;
       }
     }
   }
