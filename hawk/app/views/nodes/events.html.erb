@@ -13,7 +13,7 @@
     </h3>
   </div>
   <div class="modal-body">
-    <table id="node-events" data-toggle="table" data-url="<%= cib_ops_path('*,#{@node.name}', cib_id: current_cib, format: 'json') %>" data-sortable="true" data-sort-name="last_rc_change" data-sort-order="desc" data-row-style="eventsRowStyle">
+    <table id="node-events" data-toggle="table" data-url="<%= cib_ops_path('*,'+@node.name, cib_id: current_cib, format: 'json') %>" data-sortable="true" data-sort-name="last_rc_change" data-sort-order="desc" data-row-style="eventsRowStyle">
       <thead>
         <tr>
           <th data-field="rc" data-sortable="true" data-formatter="eventsRC">
