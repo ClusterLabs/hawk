@@ -35,6 +35,11 @@
               <%= _("Tags") %>
             </a>
           </li>
+          <li role="presentation">
+            <a data-toggle="tab" href="#alerts" role="tab" aria-controls="alerts">
+              <%= _("Alerts") %>
+            </a>
+          </li>
         </ul>
       </div>
       <div class="panel-body">
@@ -50,6 +55,9 @@
           </div>
           <div class="tab-pane" id="tags" role="tabpanel">
             <table class="table table-striped tags"></table>
+          </div>
+          <div class="tab-pane" id="alerts" role="tabpanel">
+            <table class="table table-striped alerts"></table>
           </div>
         </div>
       </div>
