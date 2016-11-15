@@ -3,30 +3,115 @@
 // to rebrand the UI
 
 
+/* roboto-300 - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 300;
+  src: url('roboto-v15-latin-300.eot'); /* IE9 Compat Modes */
+  src: local('Roboto Light'), local('Roboto-Light'),
+       url('roboto-v15-latin-300.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('roboto-v15-latin-300.woff2') format('woff2'), /* Super Modern Browsers */
+       url('roboto-v15-latin-300.woff') format('woff'), /* Modern Browsers */
+       url('roboto-v15-latin-300.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('roboto-v15-latin-300.svg#Roboto') format('svg'); /* Legacy iOS */
+}
+/* roboto-regular - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 400;
+  src: url('roboto-v15-latin-regular.eot'); /* IE9 Compat Modes */
+  src: local('Roboto'), local('Roboto-Regular'),
+       url('roboto-v15-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('roboto-v15-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+       url('roboto-v15-latin-regular.woff') format('woff'), /* Modern Browsers */
+       url('roboto-v15-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('roboto-v15-latin-regular.svg#Roboto') format('svg'); /* Legacy iOS */
+}
+/* roboto-500 - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 500;
+  src: url('roboto-v15-latin-500.eot'); /* IE9 Compat Modes */
+  src: local('Roboto Medium'), local('Roboto-Medium'),
+       url('roboto-v15-latin-500.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('roboto-v15-latin-500.woff2') format('woff2'), /* Super Modern Browsers */
+       url('roboto-v15-latin-500.woff') format('woff'), /* Modern Browsers */
+       url('roboto-v15-latin-500.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('roboto-v15-latin-500.svg#Roboto') format('svg'); /* Legacy iOS */
+}
+/* roboto-700 - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 700;
+  src: url('roboto-v15-latin-700.eot'); /* IE9 Compat Modes */
+  src: local('Roboto Bold'), local('Roboto-Bold'),
+       url('roboto-v15-latin-700.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('roboto-v15-latin-700.woff2') format('woff2'), /* Super Modern Browsers */
+       url('roboto-v15-latin-700.woff') format('woff'), /* Modern Browsers */
+       url('roboto-v15-latin-700.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('roboto-v15-latin-700.svg#Roboto') format('svg'); /* Legacy iOS */
+}
+/* roboto-900 - latin */
+@font-face {
+  font-family: 'Roboto';
+  font-style: normal;
+  font-weight: 900;
+  src: url('roboto-v15-latin-900.eot'); /* IE9 Compat Modes */
+  src: local('Roboto Black'), local('Roboto-Black'),
+       url('roboto-v15-latin-900.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+       url('roboto-v15-latin-900.woff2') format('woff2'), /* Super Modern Browsers */
+       url('roboto-v15-latin-900.woff') format('woff'), /* Modern Browsers */
+       url('roboto-v15-latin-900.ttf') format('truetype'), /* Safari, Android, iOS */
+       url('roboto-v15-latin-900.svg#Roboto') format('svg'); /* Legacy iOS */
+}
+
+
 // ----  basics.scss variables ----
 $body-text-color: #3a3e40;
 $simulator-left: #1fad7a;
 $simulator-right: #80c235;
-
+$body-text:'Roboto', sans-serif;
+$white: #fff;
+$black: #000;
+$theme-green: #00b268;
+$theme-green-border: #089E5F;
+$tablist-border: #E8E8E8;
+$tablist-border-hover: #BFBEBE;
+$error-message-bg: #ECCACA;
+$error-message-border: #f2dede;
+$pre-bg: #F5F5F5;
+$pre-bg-border: #ECECEC;
+$bg-info-bg: #d9edf7;        
+$bg-info-border: #C6E2F1;
+$well-bg: #F5F5F5;
+$tablist-dark-gray: #ececec;
+$tablist-light-gray: #fdfdfd;
+$tablist-dark-gray-hover: #dcdcdc;
+$tablist-light-gray-hover: #eaeaea;
 
 // ----  content.scss variables - login page ----
 $darkbar-bg: #2b2b2b;
-$darkbar-heading-fg:#00b268;
+$darkbar-heading-fg: $theme-green;
 $rightbar-bg: #ebebeb;
 $sidebar-headings-fg: rgb(58, 62, 64);
 $sidebar-headings-font-family: $headings-font-family;
 $sidebar-highlight-fg: #80c235;
-$sidebar-link-hover-fg: darken(#fff, 20.0%);
+$sidebar-link-hover-fg: darken($white, 20.0%);
 $sidebar-separator-fg: #333;
-$sidebar-link-fg: #fff;
-$sidebar-heading-fg: #00b268;
-$sidebar-fg: #fff;
+$sidebar-link-fg: $white;
+$sidebar-heading-fg: $theme-green;
+$sidebar-fg: $white;
 $sidebar-bg: #383c3e;
+
 
 
 //  ----  head.scss variables ----
 $batch-bar-bg: #d35400;
-$batch-control-bar-text: #fff;
+$batch-control-bar-text: $white;
 
 
 // ----  simulator.scss variables ----
@@ -38,24 +123,24 @@ $batch-button-active-fg: #84c66a;
 $diff-sub-bg: #fdd;
 $diff-add-bg: #dfd;
 $diff-chg-bg: #ddf;
-$diff-header-fg: #fff;
+$diff-header-fg: $white;
 $diff-next-bg: #c0c0c0;
 
 
 // ----  nav.scss variables ----
-$nav-bighelp-fg: #000;
-$pull-right-hover: #00b268;
+$nav-bighelp-fg: #444;
+$pull-right-hover: $theme-green;
 
 
 // ----  panel.scss variables ----
 $nav-tabs-lightgray: #ddd;
 $panel-steps-bg: #ccc;
 $panel-default-fg: #777;
-$nav-tabs-active-bg: #fff;
+$nav-tabs-active-bg: $white;
 $nav-tabs-active-fg: #555;
 $dropdown-menu-bg: #f5f5f5;
 $dropdown-menu-active-bg: #555;
-$dropdown-menu-active-fg: #fff;
+$dropdown-menu-active-fg: $white;
 
 
 // ----  mixins ----
@@ -67,6 +152,14 @@ $dropdown-menu-active-fg: #fff;
   background: linear-gradient(to right, $from 0, $to 100%);
   background: -moz-linear-gradient(left, $from 0, $to 100%);
   background: -webkit-gradient(linear, left top, right top, color-stop(0,$from), color-stop(100%,$to));
+}
+
+
+@mixin tablist-background($from, $to) {
+  background: -webkit-linear-gradient(left top, $from, $to); /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(bottom right, $from, $to); /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(bottom right, $from, $to); /* For Firefox 3.6 to 15 */
+  background: linear-gradient(to bottom right, $from, $to); /* Standard syntax */
 }
 
 @mixin footer-theme() {

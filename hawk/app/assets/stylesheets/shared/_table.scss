@@ -3,10 +3,24 @@
 
 .panel {
   .bootstrap-table {
+
+    .table > tbody {
+
+      tr > td {
+        vertical-align: baseline;
+
+        .fa-lg {
+          font-size: 1.1em;
+        }
+      }
+
+      tr.success > td {
+        background-color: transparent;
+      }
+    }
+
     .fixed-table-container {
-      border-radius: 0;
-      border-left: 0;
-      border-right: 0;
+      border-radius: 3px;
     }
 
     .fixed-table-toolbar {
@@ -18,6 +32,11 @@
 
       & > .pagination {
         margin: 10px 0 8px 0;
+
+        .active > a {
+          background: $theme-green;
+          border-color: $theme-green-border;
+        }
       }
 
       .pagination-detail {
@@ -31,6 +50,7 @@
         }
       }
     }
+
     td.col-sm-2 {
         overflow: hidden;
         white-space: nowrap;

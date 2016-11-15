@@ -17,13 +17,13 @@
       <div class="panel-body">
         <div class="pull-right">
           <div class="btn-group" role="group">
-            <a class="show btn btn-success btn-xs" href="<%= display_report_path(id: @report.id) %>" title="<%= _("Show") %>">
+            <a class="show btn btn-default btn-xs" href="<%= display_report_path(id: @report.id) %>" title="<%= _("Show") %>">
               <%= icon_tag("search") %>
             </a>
-            <a class="download btn btn-info btn-xs" href="<%= download_report_path(id: @report.id) %>" title="<%= _("Download") %>">
+            <a class="download btn btn-default btn-xs" href="<%= download_report_path(id: @report.id) %>" title="<%= _("Download") %>">
               <%= icon_tag("download") %>
             </a>
-            <a class="delete btn btn-danger btn-xs" data-method="delete" data-confirm="<%= _('Are you sure you wish to delete %s?') % [@report.name] %>" href="<%= report_path(id: @report.id) %>" title="<%= _("Delete") %>">
+            <a class="delete btn btn-default btn-xs" data-method="delete" data-confirm="<%= _('Are you sure you wish to delete %s?') % [@report.name] %>" href="<%= report_path(id: @report.id) %>" title="<%= _("Delete") %>">
               <%= icon_tag("trash") %>
             </a>
           </div>

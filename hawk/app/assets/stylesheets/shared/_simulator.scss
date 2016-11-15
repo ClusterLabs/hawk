@@ -1,46 +1,47 @@
 .batch-navbar-on {
-    padding-top: 21px;
-    padding-bottom: 19px;
-    color: $batch-button-active-fg;
+  color: $batch-button-active-fg;
+  padding-bottom: 19px;
+  padding-top: 21px;
 }
 
 .batch-control-bar strong {
-    color: $batch-bar-text;
+  color: $batch-bar-text;
+  line-height: 40px;
 }
 
 .batch-transition-graph-data {
-    overflow: auto;
+  overflow: auto;
 }
 
 .batch-transition-data {
-    max-height: 600px;
-    overflow: auto;
-    padding: 4px;
+  max-height: 600px;
+  overflow: auto;
+  padding: 4px;
 }
 
 .batch-cib-in-data {
-    max-height: 600px;
-    overflow: auto;
-    padding: 4px;
+  max-height: 600px;
+  overflow: auto;
+  padding: 4px;
 }
 
 .batch-cib-out-data {
-    max-height: 600px;
-    overflow: auto;
-    padding: 4px;
+  max-height: 600px;
+  overflow: auto;
+  padding: 4px;
 }
 
 .batch-diff-data {
-    max-height: 600px;
-    overflow: auto;
+  max-height: 600px;
+  overflow: auto;
 }
 
 .batch-summary-data {
-    max-height: 600px;
-    overflow: auto;
-    padding: 4px;
+  max-height: 600px;
+  overflow: auto;
+  padding: 4px;
 }
 
 .help-cursor {
-    cursor: help;
+  cursor: help;
 }

@@ -8,15 +8,34 @@ html {
 body {
   cursor: default;
   padding-top: 94px;
+  font-family: $body-text;
+  font-weight: 400;
 }
 
 body.live {
   padding-top: 60px;
 }
 
+h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6 {
+	font-family: $body-text;
+	font-weight: 500;
+}
+
 .fa-pulse-opacity {
     -webkit-animation: pulsate 1s ease-out;
     -webkit-animation-iteration-count: infinite;
+}
+
+.fa-fw {
+  line-height: 1.8em;
+}
+
+.btn {
+  padding: 9px 12px;
+}
+
+.filter .btn {
+  padding: 9px 10px;
 }
 
 @-webkit-keyframes pulsate {

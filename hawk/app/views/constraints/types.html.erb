@@ -11,32 +11,32 @@
   </div>
   <div class="row">
     <ul class="nav nav-pills nav-stacked nav-bighelp nav-topspace" data-help-target="#rightbar .rightbar_help > *">
-      <li>
-        <%= link_to new_cib_location_path(cib_id: current_cib.id), data: { help_filter: ".location" }, class: "btn btn-default btn-lg" do %>
+      <li class="btn btn-default btn-lg">
+        <%= link_to new_cib_location_path(cib_id: current_cib.id), data: { help_filter: ".location" } do %>
           <div class="pull-right">
             <%= icon_tag "plus-circle" %>
           </div>
           <%= icon_text "globe", _("Location") %>
         <% end %>
       </li>
-      <li>
-        <%= link_to new_cib_colocation_path(cib_id: current_cib.id), data: { help_filter: ".colocation" }, class: "btn btn-default btn-lg" do %>
+      <li class="btn btn-default btn-lg">
+        <%= link_to new_cib_colocation_path(cib_id: current_cib.id), data: { help_filter: ".colocation" } do %>
           <div class="pull-right">
             <%= icon_tag "plus-circle" %>
           </div>
           <%= icon_text "tasks", _("Colocation") %>
         <% end %>
       </li>
-      <li>
-        <%= link_to new_cib_order_path(cib_id: current_cib.id), data: { help_filter: ".order" }, class: "btn btn-default btn-lg" do %>
+      <li class="btn btn-default btn-lg">
+        <%= link_to new_cib_order_path(cib_id: current_cib.id), data: { help_filter: ".order" } do %>
           <div class="pull-right">
             <%= icon_tag "plus-circle" %>
           </div>
           <%= icon_text "sort-amount-desc", _("Order") %>
         <% end %>
       </li>
-      <li>
-        <%= link_to new_cib_ticket_path(cib_id: current_cib.id), data: { help_filter: ".ticket" }, class: "btn btn-default btn-lg" do %>
+      <li class="btn btn-default btn-lg">
+        <%= link_to new_cib_ticket_path(cib_id: current_cib.id), data: { help_filter: ".ticket" } do %>
           <div class="pull-right">
             <%= icon_tag "plus-circle" %>
           </div>

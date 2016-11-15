@@ -42,8 +42,7 @@
     ul {
       list-style-type: none;
       line-height: 2.8em;
-      font-weight: lighter;
-      border-bottom: 1px solid $sidebar-separator-fg;
+      font-weight: normal;
       padding: 0 0 10px 0;
       margin: 10px 0 10px 10px;
 
@@ -82,6 +81,14 @@
 #middle {
   & > .container-fluid {
     padding: 10px 30px;
+    .form-horizontal {
+      .form-group {
+        .control-label {
+          color: #444;
+          font-weight: normal;
+        }
+      }
+    }
   }
 
   & > .alert {
@@ -91,20 +98,28 @@
   }
 
   h1 {
-    margin: 20px 0px 20px 0px;
-    font-size: 2em;
-
+    margin: 10px 0px;
+    font-size: 1.4em;
+    line-height: 2.0em;
     .fa.page,
     .circle.page {
-      margin-left: 20px;
-      margin-right: 20px;
+      margin-left: 0px;
+      margin-right: 8px;
+      font-size: 1.3em;
+    }
+    .pull-right {
+      btn-group {
+        .fa {
+          font-size: inherit;
+        }
+      }
+
     }
   }
 
   .panel-default {
     .panel-heading {
       @include panel-heading-bg();
-
       h2 {
         font-family: $sidebar-headings-font-family;
         color: $sidebar-headings-fg;
@@ -121,28 +136,70 @@
   [data-growl="container"] {
     min-width: 250px;
   }
+
+  .softhide {
+    .panel-default {
+      border-color: $error-message-bg;
+      .panel-heading {
+        background: $error-message-border;
+        border-width: 0;
+      }
+      ul li {
+        border-width: 0;
+      }
+    }
+  }
 }
 
 #rightbar {
+  width: 50%;
   background-color: $rightbar-bg;
-
   padding-left: 0;
   padding-right: 0;
 
   & > .container-fluid {
     padding: 50px;
-
+    p {
+      color: #555;
+    }
     &:first-child h2 {
       margin-top: 0;
+      font-size: 1.6em;
+    }
+    h3 {
+      font-size: 1.3em;
     }
   }
 }
 
-#modal {
-  h3 {
-    .fa.page {
-      margin-left: 20px;
-      margin-right: 20px;
+.modal {
+  .modal-header{
+    h3 {
+      font-size: 1.3em;
+      .fa.page {
+        margin-left: 0px;
+        margin-right: 7px;
+      }
+    }
+  }
+  .modal-body {
+    .panel-group .panel-heading .pull-right .caret {
+      margin-top: 6px;
+    }
+  }
+  .help .media-list {
+    .media-body {
+      color: #444;
+      h4 {
+        font-size: 1.1em;
+        .pull-right a {
+          padding: 9px 8px;
+          .fa-fw {
+            font-size: 18px;
+            line-height: 1.0em;
+          }
+        }
+      }
     }
   }
 }
