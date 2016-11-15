@@ -44,18 +44,18 @@
         </li>
       </ul>
     </li>
-  <% end %>
-  <% if Util.has_feature? :acl_support %>
-    <li>
-      <%= _("Access Control") %>
-      <ul>
-        <li class="<%= active_menu_with(:roles) %>">
-          <%= link_to _("Roles"), cib_roles_path(cib_id: current_cib.id) %>
-        </li>
-        <li class="<%= active_menu_with(:users) %>">
-          <%= link_to _("Targets"), cib_users_path(cib_id: current_cib.id) %>
-        </li>
-      </ul>
-    </li>
+    <% if Util.has_feature? :acl_support %>
+      <li>
+        <%= _("Access Control") %>
+        <ul>
+          <li class="<%= active_menu_with(:roles) %>">
+            <%= link_to _("Roles"), cib_roles_path(cib_id: current_cib.id) %>
+          </li>
+          <li class="<%= active_menu_with(:users) %>">
+            <%= link_to _("Targets"), cib_users_path(cib_id: current_cib.id) %>
+          </li>
+        </ul>
+      </li>
+    <% end %>
   <% end %>
 </ul>

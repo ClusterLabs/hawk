@@ -1,5 +1,7 @@
 # Copyright (c) 2009-2015 Tim Serong <tserong@suse.com>
 # See COPYING for license.
+require 'securerandom'
+
 
 class SessionsController < ApplicationController
 
@@ -25,6 +27,12 @@ class SessionsController < ApplicationController
       if @session.valid?
         reset_session
         session[:username] = @session.username
+
+        # generate random value, store in attrd_updater
+        value = SecureRandom.hex[0,12]
+        system("attrd_updater -R -p -n \"hawk_session_#{@session.username}\" -U \"#{value}\"")
+        cookies['hawk_remember_me_id'] = {:value => @session.username, :expires => 30.days.from_now}
+        cookies['hawk_remember_me_key'] = {:value => value, :expires => 30.days.from_now}
 
         format.html do
           redirect_back root_url
@@ -53,6 +61,8 @@ class SessionsController < ApplicationController
       end
     end
 
+    cookies.delete :hawk_remember_me_id
+    cookies.delete :hawk_remember_me_key
     session[:username] = nil
     reset_session
 

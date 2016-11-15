@@ -63,11 +63,6 @@ default_attributes({
         "ipaddress" => "10.13.37.12",
         "fqdn" => "node2.hawk.suse.com",
         "aliases" => %w(node2)
-      },
-      {
-        "ipaddress" => "10.13.37.13",
-        "fqdn" => "node3.hawk.suse.com",
-        "aliases" => %w(node3)
       }
     ]
   }

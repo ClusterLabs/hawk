@@ -26,6 +26,8 @@ class Profile < Tableless
 
   attribute :language, String, default: I18n.locale
 
+  attribute :stonithwarning, Boolean, default: true
+
   validates :language,
     presence: {
       message: _('is required')

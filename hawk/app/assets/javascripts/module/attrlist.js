@@ -160,6 +160,7 @@
         e.preventDefault();
 
         var key = $(e.currentTarget).parents('.addition').find('.select .newentry').val();
+        console.log("add key:", key);
 
         if (key !== '') {
           if (!(key in self.mapping)) {

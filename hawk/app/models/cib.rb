@@ -62,6 +62,7 @@ class Cib
   attr_reader :resource_count
   attr_reader :tickets
   attr_reader :tags
+  attr_reader :alerts
   attr_reader :resources_by_id
   attr_reader :booth
   attr_reader :constraints
@@ -164,12 +165,12 @@ class Cib
           result[:resources][rsc[:id]] = node_state_of_resource(rsc)
         end
 
-        current_nodes.each do |node|
+        nodes.each do |node|
           result[:nodes][node[:uname]] = node[:state]
           result[:remote_nodes][node[:uname]] = node[:state] if node[:remote]
         end
 
-        current_tickets.each do |key, values|
+        tickets.each do |key, values|
           result[:tickets][key] = values[:state]
         end
 
@@ -183,32 +184,11 @@ class Cib
         result[:nodes] = nodes
         result[:tickets] = tickets
         result[:tags] = tags
+        result[:alerts] = alerts
         result[:constraints] = constraints
         result[:resource_count] = resource_count
       end
     end
-  end
-
-  def current_resources
-    resources_by_id.select do |_, values|
-      values[:instances]
-    end
-  end
-
-  def current_nodes
-    nodes
-  end
-
-  def current_tickets
-    tickets
-  end
-
-  def current_tags
-    tags
-  end
-
-  def current_constraints
-    constraints
   end
 
   def primitives
@@ -512,7 +492,7 @@ class Cib
     @meta[:status] = cluster_status unless @meta.nil?
   end
 
-  def initialize(id, user, use_file = false)
+  def initialize(id, user, use_file = false, stonithwarning = false)
     Rails.logger.debug "Cib.initialize #{id}, #{user}, #{use_file}"
 
     if use_file
@@ -702,6 +682,38 @@ class Cib
         running_on: {},
         refs: t.elements.collect('obj_ref') { |ref| ref.attributes['id'] }
       }
+    end
+
+    @alerts = []
+    @xml.elements.each('cib/configuration/alerts/alert') do |a|
+      ret = {
+        id: a.attributes['id'],
+        path: a.attributes['path'],
+        meta: {},
+        attributes: {},
+        recipients: a.elements.collect('recipient') do |rec|
+          ret = {
+            id: rec.attributes['id'],
+            value: rec.attributes['value'],
+            meta: {},
+            attributes: {}
+          }
+          rec.elements.each('meta_attributes/nvpair/') do |nv|
+            ret[:meta][nv.attributes["name"]] = nv.attributes["value"]
+          end
+          rec.elements.each('instance_attributes/nvpair/') do |nv|
+            ret[:attributes][nv.attributes["name"]] = nv.attributes["value"]
+          end
+          ret
+        end
+      }
+      a.elements.each('meta_attributes/nvpair/') do |nv|
+        ret[:meta][nv.attributes["name"]] = nv.attributes["value"]
+      end
+      a.elements.each('instance_attributes/nvpair/') do |nv|
+        ret[:attributes][nv.attributes["name"]] = nv.attributes["value"]
+      end
+      @alerts << ret
     end
 
     # Iterate nodes in cib order here which makes the faked up clone & ms instance
@@ -945,7 +957,7 @@ class Cib
       if n.key? :crm_feature_set
         fs = n[:crm_feature_set]
         feature_sets[fs] ||= []
-        feature_sets[fs] << n
+        feature_sets[fs] << n[:name]
       end
     end
     if feature_sets.count > 1
@@ -1073,7 +1085,7 @@ class Cib
       _("STONITH is disabled. For normal cluster operation, STONITH is required."),
       :warning,
       link: edit_cib_crm_config_path(cib_id: @id)
-    ) unless @crm_config[:stonith_enabled]
+    ) unless @crm_config[:stonith_enabled] || !stonithwarning
   end
 
   def init_offline_cluster(id, user, use_file)

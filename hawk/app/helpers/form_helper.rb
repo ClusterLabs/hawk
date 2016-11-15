@@ -28,10 +28,9 @@ module FormHelper
   end
 
   def errors_for(record)
-    content_tag(
-      :div,
-      simple_format(record.errors[:base].first), class: "alert alert-danger", role: "alert"
-    ) unless record.errors[:base].empty? || record.errors[:base].first.nil?
+    safe_join(record.errors.full_messages_for(:base).map do |err|
+      content_tag(:div, simple_format(err), class: "alert alert-danger", role: "alert")
+    end)
   end
 
   def form_for(record, options, &proc)

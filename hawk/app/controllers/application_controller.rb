@@ -61,7 +61,7 @@ class ApplicationController < ActionController::Base
           params[:mini] = "true"
           params[:cib_id] = production_cib
         end
-        Cib.new(params[:cib_id] || production_cib, current_user, params[:debug] == "file")
+        Cib.new(params[:cib_id] || production_cib, current_user, params[:debug] == "file", cookies[:stonithwarning].nil? || cookies[:stonithwarning] == true)
       end
     end
   end
@@ -172,7 +172,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    @current_user ||= session[:username]
+    @current_user ||= session[:username] || login_from_cookie
   end
 
   def is_god?
@@ -189,6 +189,14 @@ class ApplicationController < ActionController::Base
 
   def god_required
     permission_denied unless is_god?
+  end
+
+  def login_from_cookie
+    user = cookies['hawk_remember_me_id']
+    return if user.nil?
+    # read from attrd
+    values = %x[attrd_updater -R -Q -A -n "hawk_session_#{user}"].scan(/value=\"(.*)\"/).flatten(1)
+    user if values.include? cookies['hawk_remember_me_key']
   end
 
   def permission_denied

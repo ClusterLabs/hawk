@@ -5,7 +5,7 @@ def host_bind_address
   ENV['VAGRANT_INSECURE_FORWARDS'] =~ /^(y(es)?|true|on)$/i ? '*' : '127.0.0.1'
 end
 
-$shared_disk = '.vagrant/_shared_disk'
+$shared_disk = '_shared_disk'
 $shared_disk_size = 128 # MB
 
 # Create and attach shared SBD/OCFS2 disk for VirtualBox
@@ -38,7 +38,7 @@ def configure_machine(machine, idx, roles, memory)
     chef.cookbooks_path = ["chef/cookbooks"]
     chef.roles_path = ["chef/roles"]
     chef.custom_config_path = "chef/solo.rb"
-    chef.synced_folder_type = "rsync"
+    #chef.synced_folder_type = "rsync"
     roles.each do |role|
       chef.add_role role
     end
@@ -54,7 +54,7 @@ def configure_machine(machine, idx, roles, memory)
     provider.memory = memory
     provider.cpus = 1
     provider.graphics_port = 9200 + idx
-    provider.storage :file, path: "#{$shared_disk}.raw", size: "#{$shared_disk_size}M", type: 'raw', :bus=> 'scsi', :device=>'sdb', cache: 'none', allow_existing: true
+    provider.storage :file, path: "#{$shared_disk}.raw", size: "#{$shared_disk_size}M", type: 'raw', cache: 'none', allow_existing: true, shareable: true
   end
 end
 
@@ -73,13 +73,13 @@ Vagrant.configure("2") do |config|
     machine.vm.hostname = "webui"
     machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 3000, host: 3000
     machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 8808, host: 8808
-    configure_machine machine, 0, ["base", "webui"], 1024
+    configure_machine machine, 0, ["base", "webui"], 1536
   end
 
   1.upto(2).each do |i|
     config.vm.define "node#{i}", autostart: true do |machine|
       machine.vm.hostname = "node#{i}"
-      configure_machine machine, i, ["base", "node"], 512
+      configure_machine machine, i, ["base", "node"], 1536
     end
   end
 
