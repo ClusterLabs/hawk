@@ -84,6 +84,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.provider :libvirt do |provider, override|
+    provider.cpu_mode = 'host-passthrough'
     provider.storage_pool_name = "default"
     provider.management_network_name = "vagrant"
   end
