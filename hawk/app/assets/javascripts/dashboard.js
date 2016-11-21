@@ -576,6 +576,7 @@
       $.growl({ message: __('Cluster added successfully.')}, {type: 'success'});
     }).on("ajax:error", function(e, xhr, status, error) {
       $(e.data).render_form_errors( $.parseJSON(xhr.responseText) );
+      $('#new_cluster').find('.submit').prop('disabled', false);
     });
 
     $.fn.render_form_errors = function(errors){
