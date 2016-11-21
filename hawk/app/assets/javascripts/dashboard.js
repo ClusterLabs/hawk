@@ -580,20 +580,22 @@
 
     $.fn.render_form_errors = function(errors){
       this.clear_previous_errors();
-
-      // show error messages in input form-group help-block
+      // show error messages in input form-group help-block and highlight the input field
       var text = "";
+      var class_name = "";
       $.each(errors, function(field, messages) {
         text += "<div class=\"alert alert-danger\">";
         text += field + ': ' + messages.join(', ');
         text += "</div>";
+        class_name = '#cluster_' + field;
+        $(class_name).closest('.form-group').addClass('has-error');
       });
-
       $('form').find('.form-errors').html(text);
     };
 
     $.fn.clear_previous_errors = function(){
       $('form').find('.form-errors').html('');
+      $('form .form-group').removeClass('has-error');
     }
   };
 
