@@ -283,8 +283,6 @@ $(function() {
       title: __('Operations'),
       sortable: false,
       clickToSelect: false,
-      align: 'right',
-      halign: 'right',
       class: 'col-sm-2',
       events: {
         'click .start': function (e, value, row, index) {
@@ -338,7 +336,7 @@ $(function() {
           if (dest == "menu") {
             dropdowns.push([
               '<li>',
-                '<a href="', path, '"class="', path_class, ' p-y-4">',
+                '<a href="', path, '"class="', path_class, '">',
                   '<i class="fa fa-fw fa-', icon_class, '"></i> ',
                   text,
                 '</a>',
@@ -346,7 +344,7 @@ $(function() {
             ].join(''));
           } else if (dest == "button") {
             operations.push([
-              '<a href="', path, '" class="', path_class, ' p-y-4 btn btn-default btn-xs" title="', text, '">',
+              '<a href="', path, '" class="', path_class, ' btn btn-default btn-xs" title="', text, '">',
                 '<i class="fa fa-', icon_class, '"></i>',
               '</a> '
             ].join(''));
@@ -400,7 +398,7 @@ $(function() {
 
         operations.push([
           '<div class="btn-group" role="group">',
-            '<button class="btn btn-default btn-xs dropdown-toggle p-y-4" type="button" data-toggle="dropdown" data-container="body" aria-haspopup="true" aria-expanded="true">',
+            '<button class="btn btn-default btn-xs dropdown-toggle " type="button" data-toggle="dropdown" data-container="body" aria-haspopup="true" aria-expanded="true">',
               '<i class="fa fa-caret-down" aria-hidden="true"></i>',
             '</button>',
             '<ul class="dropdown-menu">',
@@ -412,7 +410,7 @@ $(function() {
         operations.push([
           '<a href="',
           Routes.cib_resource_path($('body').data('cib'), row.id),
-          '"class="details btn btn-default btn-xs p-y-4" title="',
+          '"class="details btn btn-default btn-xs " title="',
           __('Details'),
           '" data-toggle="modal" data-target="#modal">',
           '<i class="fa fa-search"></i>',
@@ -705,8 +703,6 @@ $(function() {
         sortable: false,
         clickToSelect: false,
         class: 'col-sm-2',
-        align: 'right',
-        halign: 'right',
         events: {
           'click .delete': function (e, value, row, index) {
             e.preventDefault();

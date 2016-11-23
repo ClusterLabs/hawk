@@ -86,10 +86,6 @@
             font-size: 1.3em;
           }
         }
-
-        &:last-child a {
-          margin-bottom: 0;
-        }
       }
       &:hover {
         @include tablist-background($tablist-dark-gray-hover, $tablist-light-gray-hover);
