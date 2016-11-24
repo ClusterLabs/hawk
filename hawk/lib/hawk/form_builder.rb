@@ -310,7 +310,6 @@ module Hawk
     def errors_for(field)
       if has_error_on? field
         @template.icon_tag(
-          'exclamation',
           class: 'fa-lg form-control-feedback',
           title: @object.errors.messages[field].first,
           data: {

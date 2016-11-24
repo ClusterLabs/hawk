@@ -54,7 +54,7 @@ $(function() {
             .end();
 
         $(element)
-          .after('<i class="fa fa-exclamation fa-lg form-control-feedback"></i>');
+          .after('<i class="fa fa-lg form-control-feedback"></i>');
       }
     },
     unhighlight: function(element, errorClass, validClass) {
@@ -70,7 +70,7 @@ $(function() {
             .end();
 
         $(element)
-          .after('<i class="fa fa-check fa-lg form-control-feedback"></i>');
+          .after('<i class="fa fa-lg form-control-feedback"></i>');
       }
     },
     errorPlacement: function(error, element) {

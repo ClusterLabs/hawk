@@ -93,8 +93,6 @@ $(function() {
         }, {
           field: 'maintenance',
           title: __('Maintenance'),
-          align: 'right',
-          halign: 'right',
           sortable: false,
           clickToSelect: false,
           class: 'col-sm-1',
@@ -123,7 +121,7 @@ $(function() {
                   $('body').data('cib'),
                   row.id
                 ),
-                '" class="ready btn btn-default btn-xs p-y-4" title="',
+                '" class="ready btn btn-default btn-xs" title="',
                 __('Switch to ready'),
                 '">',
                 '<i class="fa fa-toggle-on text-danger"></i>',
@@ -136,7 +134,7 @@ $(function() {
                   $('body').data('cib'),
                   row.id
                 ),
-                '"class="maintenance btn btn-default btn-xs p-y-4" title="',
+                '"class="maintenance btn btn-default btn-xs" title="',
                 __('Switch to maintenance'),
                 '">',
                 '<i class="fa fa-toggle-off text-success"></i>',
@@ -150,8 +148,6 @@ $(function() {
           sortable: false,
           clickToSelect: false,
           class: 'col-sm-1',
-          align: 'right',
-          halign: 'right',
           events: {
             'click .online': function (e, value, row, index) {
               e.preventDefault();
@@ -176,7 +172,7 @@ $(function() {
                   $('body').data('cib'),
                   row.id
                 ),
-                '" class="online btn btn-default btn-xs p-y-4" title="',
+                '" class="online btn btn-default btn-xs" title="',
                 __('Switch to online'),
                 '">',
                 '<i class="fa fa-toggle-on text-danger"></i>',
@@ -189,7 +185,7 @@ $(function() {
                   $('body').data('cib'),
                   row.id
                 ),
-                '"class="standby btn btn-default btn-xs p-y-4" title="',
+                '"class="standby btn btn-default btn-xs" title="',
                 __('Switch to standby'),
                 '">',
                 '<i class="fa fa-toggle-off text-success"></i>',
@@ -202,8 +198,6 @@ $(function() {
           title: __('Operations'),
           sortable: false,
           clickToSelect: false,
-          align: 'right',
-          halign: 'right',
           class: 'col-sm-2',
           events: {
             'click .fence': function (e, value, row, index) {
@@ -229,7 +223,7 @@ $(function() {
               if (dest == "menu") {
                 dropdowns.push([
                   '<li>',
-                    '<a href="', path, '" class="', path_class, ' p-y-4">',
+                    '<a href="', path, '" class="', path_class, ' ">',
                       '<i class="fa fa-fw fa-', icon_class, '"></i> ',
                       text,
                     '</a>',
@@ -237,7 +231,7 @@ $(function() {
                 ].join(''));
               } else if (dest == "button") {
                 operations.push([
-                  '<a href="', path, '" class="', path_class, ' p-y-4 btn btn-default btn-xs" title="', text, '">',
+                  '<a href="', path, '" class="', path_class, ' btn btn-default btn-xs" title="', text, '">',
                     '<i class="fa fa-', icon_class, '"></i>',
                   '</a> '
                 ].join(''));
@@ -255,7 +249,7 @@ $(function() {
             if (dropdowns.length > 0) {
               operations.push([
                 '<div class="btn-group" role="group">',
-                '<button class="btn btn-default btn-xs dropdown-toggle p-y-4" type="button" data-toggle="dropdown" data-container="body" aria-haspopup="true" aria-expanded="true">',
+                '<button class="btn btn-default btn-xs dropdown-toggle " type="button" data-toggle="dropdown" data-container="body" aria-haspopup="true" aria-expanded="true">',
                 '<i class="fa fa-caret-down" aria-hidden="true"></i>',
                 '</button>',
                 '<ul class="dropdown-menu">',
@@ -268,7 +262,7 @@ $(function() {
             operations.push([
               '<a href="',
               Routes.events_cib_node_path($('body').data('cib'), row.id),
-              '"class="events btn btn-default btn-xs p-y-4" title="',
+              '"class="events btn btn-default btn-xs" title="',
               __('Recent events'),
               '" data-toggle="modal" data-target="#modal-lg">',
               '<i class="fa fa-history"></i>',
@@ -278,7 +272,7 @@ $(function() {
             operations.push([
               '<a href="',
               Routes.cib_node_path($('body').data('cib'), row.id),
-              '"class="details btn btn-default btn-xs p-y-4" title="',
+              '"class="details btn btn-default btn-xs" title="',
               __('Details'),
               '" data-toggle="modal" data-target="#modal">',
               '<i class="fa fa-search"></i>',
@@ -333,8 +327,6 @@ $(function() {
         sortable: false,
         clickToSelect: false,
         class: 'col-sm-2',
-        align: 'right',
-        halign: 'right',
         events: {
         },
         formatter: function(value, row, index) {
@@ -343,7 +335,7 @@ $(function() {
           operations.push([
             '<a href="',
              Routes.edit_cib_node_path($('body').data('cib'), row.id),
-              '" class="edit btn btn-default btn-xs p-y-4" title="',
+              '" class="edit btn btn-default btn-xs" title="',
               __('Edit'),
             '">',
               '<i class="fa fa-pencil"></i>',

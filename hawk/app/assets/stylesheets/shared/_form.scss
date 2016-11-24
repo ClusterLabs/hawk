@@ -60,11 +60,8 @@
     .form-control-feedback {
       line-height: 37px;
       z-index: 500;
+      i { display: none;}
     }
-  }
-  .content .form-group .input-group .input-group-btn .fa-lg {
-    font-size: 1.0em;
-    line-height: 1.0em;
   }
 
   .modal-header {
@@ -145,12 +142,6 @@
 .multiselect-container .input-group .form-control:not(:first-child):not(:last-child) {
   border-bottom-left-radius: 0px;
   border-top-left-radius: 0px; 
-}
-
-.file-caption,
-.form-control-static {
-  padding-top: 9px;
-  min-height: 40px;
 }
 
 .btn-primary.disabled, .btn-primary.disabled:active, .btn-primary.disabled:focus,

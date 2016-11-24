@@ -19,6 +19,7 @@
       a {
         padding: 0;
         color: #444;
+        background: transparent;
         &:hover {
           background: none;
         }
@@ -84,10 +85,6 @@
           .pull-right {
             font-size: 1.3em;
           }
-        }
-
-        &:last-child a {
-          margin-bottom: 0;
         }
       }
       &:hover {

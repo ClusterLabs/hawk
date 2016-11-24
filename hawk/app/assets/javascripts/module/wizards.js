@@ -52,7 +52,7 @@ $(function() {
     $('.form-group').each(function () { $(this).removeClass('has-success'); });
     $('.form-group').each(function () { $(this).removeClass('has-error'); });
     $('.form-group').each(function () { $(this).removeClass('has-feedback'); });
-    $('.form-control-feedback').each(function () { $(this).remove(); });
+    $('.form-control-feedbacks').each(function () { $(this).remove(); });
   });
 
   var verify = $(".wizard-verify");
