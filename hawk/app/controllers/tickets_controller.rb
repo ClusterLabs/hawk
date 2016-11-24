@@ -244,7 +244,7 @@ class TicketsController < ApplicationController
   end
 
   def default_base_layout
-    if ["index", "types", "edit", "new"].include? params[:action]
+    if ["index", "types", "edit", "new", "create"].include? params[:action]
       "withrightbar"
     else
       if params[:action] == "show"
