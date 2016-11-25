@@ -30,7 +30,7 @@ class AlertsController < ApplicationController
     @title = _("Create Alert")
 
     alertdata = params[:alert]
-    alertdata["recipients"] = alertdata["recipients"].values
+    alertdata["recipients"] = alertdata["recipients"].values unless alertdata["recipients"].nil?
     @alert = Alert.new alertdata
 
     respond_to do |format|
