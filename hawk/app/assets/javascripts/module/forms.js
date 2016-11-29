@@ -24,7 +24,6 @@ $(function() {
         error = group.find('.error-block').html();
       }
 
-      group.find('.form-control-feedback').tooltip({title: error }).tooltip('show');
     })
     .on('blur', '.form-group.has-error .form-control', function(e) {
       var group = $(this).closest('.form-group');

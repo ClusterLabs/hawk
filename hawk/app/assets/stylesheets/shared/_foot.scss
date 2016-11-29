@@ -2,29 +2,27 @@
 // See COPYING for license.
 
 footer {
-  display: none;
-
-  @include footer-theme();
-
   position:absolute;
-  bottom:-60px;
-  height:60px;
+  bottom: 61px;
   width:100%;
   overflow: hidden;
   z-index: 1025;
+  border-top: 1px solid #5A5A5A;
 
-  .container-fluid {
-    .row {
-      .copyright {
-        text-align: left;
-        vertical-align: middle;
-        height: 30px;
-        line-height: 30px;
-      }
-
-      .metadata {
-        text-align: right;
+  .row {
+    .copyright {
+      text-align: left;
+      vertical-align: middle;
+      line-height: 23px;
+      padding: 15px 30px;
+      span {
+        font-size: 0.9em;
+        color: #999;
+        display: block;
       }
     }
+  }
+  .metadata {
+    text-align: right;
   }
 }
