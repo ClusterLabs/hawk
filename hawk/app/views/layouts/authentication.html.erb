@@ -34,15 +34,6 @@
       <%= render partial: "shared/flash", locals: { flash: flash } %>
       <%= yield %>
     </div>
-    <footer>
-      <div class="container-fluid">
-        <div class="col-lg-12 copyright">
-          <p>
-            <%= branding_config[:provider].html_safe %>
-          </p>
-        </div>
-      </div>
-    </footer>
     <%= render partial: "shared/modal" %>
   </body>
 </html>
