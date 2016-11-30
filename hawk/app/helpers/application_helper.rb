@@ -173,6 +173,7 @@ module ApplicationHelper
       },
       {
         title: "Installation and Setup Quick Start",
+        html: docs_path.join("installation-and-setup-quick-start", "index.html"),
         pdf: docs_path.join(
           "sle-ha-install-quick_en-pdf",
           "sle-ha-install-quick_en.pdf"
