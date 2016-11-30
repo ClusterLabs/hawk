@@ -37,7 +37,7 @@
         box-shadow: none;
         -webkit-box-shadow:none;
       }
-      label { 
+      label {
         margin-bottom: 0;
       }
       .help-block {
@@ -45,10 +45,10 @@
         text-align: right;
       }
     }
-    .no-bottom-border { 
+    .no-bottom-border {
       border-bottom: 0px;
     }
-    label { 
+    label {
       font-weight: normal;
       line-height: 2.4em;
     }
@@ -78,7 +78,7 @@
       font-weight: normal;
       line-height: 1.4em;
 
-      .pull-right .caret { 
+      .pull-right .caret {
         margin-top: 5px;
       }
     }
@@ -121,7 +121,7 @@
   .locations legend,
   #rules legend {
     padding-bottom: 5px;
-    .pull-right .fa {    
+    .pull-right .fa {
       font-size: 0.8em;
       font-weight: normal;
       padding: 3px 5px;
@@ -141,7 +141,7 @@
 
 .multiselect-container .input-group .form-control:not(:first-child):not(:last-child) {
   border-bottom-left-radius: 0px;
-  border-top-left-radius: 0px; 
+  border-top-left-radius: 0px;
 }
 
 .btn-primary.disabled, .btn-primary.disabled:active, .btn-primary.disabled:focus,
@@ -155,7 +155,7 @@ fieldset[disabled], fieldset[disabled]:active, fieldset[disabled]:focus,
     border-color: $theme-green-border;
   }
   &:active, &:focus, .active, &:active:focus {
-    @extend .btn-primary;
+    // @extend .btn-primary;
     &:hover {
       background: $theme-green;
       border-color: $theme-green-border;
