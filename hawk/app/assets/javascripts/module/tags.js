@@ -45,8 +45,6 @@ $(function() {
         sortable: false,
         clickToSelect: false,
         class: 'col-sm-2',
-        align: 'right',
-        halign: 'right',
         events: {
           'click .delete': function (e, value, row, index) {
             e.preventDefault();
