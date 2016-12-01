@@ -1,30 +1,22 @@
 // Copyright (c) 2009-2015 Tim Serong <tserong@suse.com>
 // See COPYING for license.
 
-footer {
-  display: none;
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 5px 10px 30px 10px;
+  border-top: $footer-border;
+  color: $white;
+  
+  span {
+    color: $copyright-fg;
+    display: block;
+    font-size: 0.9em;
+    line-height: 2.2em;
+  }
 
-  @include footer-theme();
-
-  position:absolute;
-  bottom:-60px;
-  height:60px;
-  width:100%;
-  overflow: hidden;
-  z-index: 1025;
-
-  .container-fluid {
-    .row {
-      .copyright {
-        text-align: left;
-        vertical-align: middle;
-        height: 30px;
-        line-height: 30px;
-      }
-
-      .metadata {
-        text-align: right;
-      }
-    }
+  .metadata {
+    text-align: right;
   }
 }

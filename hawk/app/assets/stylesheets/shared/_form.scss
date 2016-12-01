@@ -9,6 +9,7 @@
   .panel-body {
     .list-group .list-group-item {
       padding: 15px 15px 7px 15px;
+
       h4.list-group-item-heading{
         margin-top: 0;
         margin-bottom: 15px;
@@ -17,7 +18,7 @@
       }
       pre {
         background-color: $pre-bg;
-        border: 1px solid $pre-bg-border;
+        border: 1px solid $pre-border;
         margin-left: 15px;
       }
       .bg-info {
@@ -26,9 +27,6 @@
       }
     }
     .tab-content {
-      legend {
-        font-size: 1.2em;
-      }
       .well{
         color: #666;
         font-size: 1.0em;
@@ -94,12 +92,12 @@
       }
       .pull-right {
         .label {
-          padding: .5em .6em .5em;
+          padding: 4px;
           position: static;
           z-index: 2;
         }
         .btn-xs {
-          padding: 0px 3px;
+          padding: 2px 3px 1px;
         }
       }
     }
@@ -121,7 +119,12 @@
   .locations legend,
   #rules legend {
     padding-bottom: 5px;
+<<<<<<< HEAD
     .pull-right .fa {
+=======
+
+    .pull-right .fa {
+>>>>>>> fca5fcf00fa66ba0b0b5e2ed1f09d75d860a68ef
       font-size: 0.8em;
       font-weight: normal;
       padding: 3px 5px;
@@ -155,7 +158,6 @@ fieldset[disabled], fieldset[disabled]:active, fieldset[disabled]:focus,
     border-color: $theme-green-border;
   }
   &:active, &:focus, .active, &:active:focus {
-    // @extend .btn-primary;
     &:hover {
       background: $theme-green;
       border-color: $theme-green-border;
@@ -165,7 +167,7 @@ fieldset[disabled], fieldset[disabled]:active, fieldset[disabled]:focus,
 
 .daterangepicker .ranges li {
   color: #666;
-  }
+}
 
 .daterangepicker td.active, .daterangepicker td.active:hover,
 .daterangepicker .ranges li.active, .daterangepicker .ranges li:hover{
