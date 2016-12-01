@@ -9,6 +9,7 @@
   .panel-body {
     .list-group .list-group-item {
       padding: 15px 15px 7px 15px;
+
       h4.list-group-item-heading{
         margin-top: 0;
         margin-bottom: 15px;
@@ -91,12 +92,12 @@
       }
       .pull-right {
         .label {
-          padding: 4px 4px;
+          padding: 4px;
           position: static;
           z-index: 2;
         }
         .btn-xs {
-          padding: 2px 3px 1px 3px;
+          padding: 2px 3px 1px;
         }
       }
     }
@@ -118,7 +119,7 @@
   .locations legend,
   #rules legend {
     padding-bottom: 5px;
-    
+
     .pull-right .fa {    
       font-size: 0.8em;
       font-weight: normal;

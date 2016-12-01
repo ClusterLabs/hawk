@@ -87,13 +87,14 @@
   }
 
   .cluster-status {
-    color: white;
-    text-transform: initial;
-    margin: 18px 0 0px 0;
-    line-height: 1.3em;
+    color: $white;
     font-size: 1.1em;
+    line-height: 1.3em;
+    margin: 18px 0px 0px;
+    text-transform: initial;
+
     span {
-      color: #fff;
+      color: $white;
       width: 18px;
       height: 18px;
       border-radius: 9px;

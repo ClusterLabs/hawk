@@ -6,13 +6,13 @@
   bottom: 0;
   width: 100%;
   padding: 5px 10px 30px 10px;
-  border-top: 1px solid #666;
-  color: #fff;
+  border-top: $footer-border;
+  color: $white;
   
   span {
+    color: $copyright-fg;
     display: block;
     font-size: 0.9em;
-    color: #999;
     line-height: 2.2em;
   }
 
