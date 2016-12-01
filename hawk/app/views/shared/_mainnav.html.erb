@@ -1,6 +1,11 @@
 <ul class="nav sidebar-nav">
   <li>
-    <ul></ul>
+    <div class="metadata">
+      <div class="cluster-status" role="group">
+        <span data-link="class{statusbuttonclass:meta.status}" title="<%= _("Cluster Details") %>"></span> Cluster Status
+      </div>
+      <a class="cluster-details-btn" data-toggle="modal" data-target="#modal" href="<%= meta_cib_config_path(cib_id: current_cib.id) %>" title="<%= _("Cluster Details") %>" type="<button">View Cluster Configuration</a>
+    </div>
   </li>
   <li>
     <%= _("Manage") %>
@@ -59,3 +64,6 @@
     <% end %>
   <% end %>
 </ul>
+<div class="footer">
+  <%= branding_config[:provider].html_safe %>
+</div>

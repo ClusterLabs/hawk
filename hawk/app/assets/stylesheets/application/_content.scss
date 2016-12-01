@@ -76,6 +76,37 @@
       }
     }
   }
+
+  .cluster-details-btn {
+    padding: 5px 8px;
+    border: 1px solid #00b268;
+    color: #00b268;
+    display: inline-block;
+    text-transform: capitalize;
+    margin: 10px 0 20px 0;
+  }
+
+  .cluster-status {
+    color: $white;
+    font-size: 1.1em;
+    line-height: 1.3em;
+    margin: 18px 0px 0px;
+    text-transform: initial;
+
+    span {
+      color: $white;
+      width: 18px;
+      height: 18px;
+      border-radius: 9px;
+      padding: 0;
+      vertical-align: top;
+      margin-right: 5px;
+      cursor: default;
+      &:hover {
+        text-decoration: none;
+      }
+    }
+  }
 }
 
 #middle {
