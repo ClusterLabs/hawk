@@ -118,6 +118,7 @@
   .locations legend,
   #rules legend {
     padding-bottom: 5px;
+    
     .pull-right .fa {    
       font-size: 0.8em;
       font-weight: normal;
@@ -152,7 +153,8 @@ fieldset[disabled], fieldset[disabled]:active, fieldset[disabled]:focus,
     border-color: $theme-green-border;
   }
   &:active, &:focus, .active, &:active:focus {
-    @extend .btn-primary;
+    background: $theme-green;
+    border-color: $theme-green-border;
     &:hover {
       background: $theme-green;
       border-color: $theme-green-border;
