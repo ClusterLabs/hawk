@@ -1,10 +1,10 @@
 <ul class="nav sidebar-nav">
   <li>
-    <div class="metadata">
-      <div class="cluster-status" role="group">
-        <span data-link="class{statusbuttonclass:meta.status}" title="<%= _("Cluster Details") %>"></span> Cluster Status
+    <div class="metadata status-btn">
+      <div class="<%= status_class_for(@cib.meta[:status]) %> circle circle-small">
+        <%= status_icon_for(@cib.meta[:status]) %>
       </div>
-      <a class="cluster-details-btn" data-toggle="modal" data-target="#modal" href="<%= meta_cib_config_path(cib_id: current_cib.id) %>" title="<%= _("Cluster Details") %>" type="<button">View Cluster Configuration</a>
+      <a class="cluster-details-btn" data-toggle="modal" data-target="#modal" href="<%= meta_cib_config_path(cib_id: current_cib.id) %>" title="<%= _("Cluster Details") %>" type="<button">View Cluster Details</a>
     </div>
   </li>
   <li>
