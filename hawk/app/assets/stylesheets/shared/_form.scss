@@ -169,3 +169,7 @@ fieldset[disabled], fieldset[disabled]:active, fieldset[disabled]:focus,
   background: $theme-green;
   border-color: $theme-green-border;
 }
+
+.tab-pane .form-group { 
+  overflow: auto;
+}
