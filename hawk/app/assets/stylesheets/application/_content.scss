@@ -77,18 +77,18 @@
   }
 
   .status-btn {
-    margin: 15px 0 15px 0;
+    margin: 15px 0;
   }
 
   .cluster-details-btn {
-    padding: 4px 8px;
     border: 1px solid $white;
-    color: $white;
-    display: inline-block;
-    text-transform: capitalize;
     border-top-right-radius: 3px;
     border-bottom-right-radius: 3px;
     border-left: 0;
+    color: $white;
+    display: inline-block;
+    padding: 4px 8px;
+    text-transform: capitalize;
     &:hover {
       text-decoration: none;
     }

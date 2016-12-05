@@ -4,13 +4,12 @@
 .circle {
   border-radius: 3px;
   border-width: 0px;
-  text-align: center;
-  vertical-align: middle;
+  border-bottom-right-radius: 0px;
+  border-top-right-radius: 0px;
   display: block;
   float: left;
-  border-top-right-radius: 0px;
-  border-bottom-right-radius: 0px;
-
+  text-align: center;
+  vertical-align: middle;
   //box-shadow: inset -10px -10px 100px #000, 10px 10px 20px black, inset 0px 0px 10px black;
 
   /*&::after {
@@ -70,8 +69,8 @@
   }
 
   > .fa {
+    color: $white;
     font-size: 18px;
     line-height: 30px;
-    color: white;
   }
 }
