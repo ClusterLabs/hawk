@@ -28,7 +28,6 @@
 #sidebar {
   background-color: $sidebar-bg;
   color: $sidebar-fg;
-
   padding-left: 0;
   padding-right: 0;
 
@@ -41,10 +40,10 @@
 
     ul {
       list-style-type: none;
-      line-height: 2.8em;
+      line-height: 2.5em;
       font-weight: normal;
       padding: 0 0 10px 0;
-      margin: 10px 0 10px 10px;
+      margin: 0px 0 10px 10px;
 
       li {
         text-transform: none;
@@ -173,7 +172,6 @@
 }
 
 #rightbar {
-  width: 50%;
   background-color: $rightbar-bg;
   padding-left: 0;
   padding-right: 0;
