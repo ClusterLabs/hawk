@@ -33,10 +33,10 @@
             <h4 class="media-heading">
               <div class="btn-group pull-right">
                 <% if doc[:html].exist? %>
-                  <%= link_to icon_text('file-image-o', _('HTML')), docs_link(doc, :html), target: '_blank', class: 'btn btn-default btn-xs' %>
+                  <%= link_to icon_tag("anchor fa-fw fa-lg"), docs_link(doc, :html), target: '_blank', class: 'btn btn-info btn-lg' %>
                 <% end %>
                 <% if doc[:pdf].exist? %>
-                  <%= link_to icon_text('file-pdf-o', _('PDF')), docs_link(doc, :pdf), target: '_blank', class: 'btn btn-default btn-xs' %>
+                  <%= link_to icon_tag("book fa-fw fa-lg"), docs_link(doc, :pdf), target: '_blank', class: 'btn btn-success btn-lg' %>
                 <% end %>
               </div>
               <%= doc[:title] %>
