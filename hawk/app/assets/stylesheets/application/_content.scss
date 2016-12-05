@@ -28,7 +28,6 @@
 #sidebar {
   background-color: $sidebar-bg;
   color: $sidebar-fg;
-
   padding-left: 0;
   padding-right: 0;
 
@@ -41,10 +40,10 @@
 
     ul {
       list-style-type: none;
-      line-height: 2.8em;
+      line-height: 2.4em;
       font-weight: normal;
       padding: 0 0 10px 0;
-      margin: 10px 0 10px 10px;
+      margin: 0px 0 10px 10px;
 
       li {
         text-transform: none;
@@ -77,34 +76,24 @@
     }
   }
 
-  .cluster-details-btn {
-    padding: 5px 8px;
-    border: 1px solid #00b268;
-    color: #00b268;
-    display: inline-block;
-    text-transform: capitalize;
-    margin: 10px 0 20px 0;
+  .status-btn {
+    margin: 15px 0;
   }
 
-  .cluster-status {
+  .cluster-details-btn {
+    border: 1px solid $white;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+    border-left: 0;
     color: $white;
-    font-size: 1.1em;
-    line-height: 1.3em;
-    margin: 18px 0px 0px;
-    text-transform: initial;
-
-    span {
-      color: $white;
-      width: 18px;
-      height: 18px;
-      border-radius: 9px;
-      padding: 0;
-      vertical-align: top;
-      margin-right: 5px;
-      cursor: default;
-      &:hover {
-        text-decoration: none;
-      }
+    display: inline-block;
+    padding: 4px 8px;
+    text-transform: capitalize;
+    &:hover {
+      text-decoration: none;
+    }
+    &:focus {
+      text-decoration: none;
     }
   }
 }
@@ -183,7 +172,6 @@
 }
 
 #rightbar {
-  width: 50%;
   background-color: $rightbar-bg;
   padding-left: 0;
   padding-right: 0;
