@@ -41,14 +41,14 @@ $(function() {
   var resize = function() {
     var navHeight = $('.navbar-fixed-top').outerHeight();
     var footHeight = $('footer').show().outerHeight();
-    var winHeight = $(window).outerHeight() - navHeight - footHeight;
+    var winHeight = $(window).outerHeight() - navHeight;
     var maxHeight = Math.max.apply(
       null,
-      $('#sidebar, #middle, #rightbar').map(function() {
+      $('#middle, #rightbar').map(function() {
         return $(this).height('auto').outerHeight();
       }).get()
     );
-    $('#sidebar, #middle, #rightbar').height(
+    $('#middle, #rightbar').height(
       winHeight > maxHeight ? winHeight : maxHeight
     );
   };
