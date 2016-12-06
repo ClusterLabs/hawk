@@ -3,6 +3,7 @@
 
 .navbar-fixed-top {
   margin-bottom: 0;
+  min-height:50px;
 
   &.navbar-inverse {
     border: 0;
@@ -10,6 +11,11 @@
 
   .navbar-header {
     float: left;
+
+    .navbar-brand {
+      height: auto;
+      padding: 15px 15px 15px 20px;
+    }
   }
 
   .navbar-nav {
@@ -20,8 +26,8 @@
       float: left;
 
       a {
-        padding-top: 20px;
-        padding-bottom: 20px;
+        padding-top: 15px;
+        padding-bottom: 15px;
       }
     }
   }
