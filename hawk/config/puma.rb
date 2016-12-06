@@ -7,7 +7,7 @@ def set_config(*args)
 end
 
 if ENV["HAWK_ENV"] == "development"
-  set_config("development", 16, 1, "0.0.0.0", "3000", "/vagrant/hawk/tmp/hawk.key",
+  set_config("development", 4, 2, "0.0.0.0", "3000", "/vagrant/hawk/tmp/hawk.key",
              "/etc/hawk/hawk.pem")
   bind "tcp://#{@listen}:#{@port}"
 else
