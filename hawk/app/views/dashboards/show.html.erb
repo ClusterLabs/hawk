@@ -1,7 +1,7 @@
 <%= content_for :javascripts do %>
   <%= javascript_include_tag "dashboard" %>
 <% end %>
-<div class="container-fluid">
+<div class="container-fluid" id="dashboard-container">
   <div class="row">
     <h1>
       <%= icon_text "dashboard", _("Dashboard"), class: "page" %>
@@ -16,14 +16,25 @@
   <% # passing null as name and host means to fetch local cluster information %>
   <% unless current_cib.offline? %>
     <script>
-
       dashboardAddCluster({"name":null, "host":null, "port":null, https:null, "interval":10});
-
-
     </script>
   <% end %>
   <script>
     <%=raw javascript_for_clusters @clusters %>
   </script>
+
+<!-- TODO (matirx2table): To be removed: -->
   <div id="cib-status-matrix-details"></div>
+
+  <div id="status-table">
+
+  </div>
+
+  <script id="status-table-template" type="text/x-jsrender">
+      Number of resources: {^{:resources.length}}
+  </script>
+
+
+
+
 </div>
