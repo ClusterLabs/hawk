@@ -7,21 +7,26 @@
 // TODO (matirx2table) rename this file to statusTable and replace it in other files
 // (function(){
   var statusTable = {
+    status: [],
     init: function(status_summary){
+      this.cacheData(status_summary);
       this.cacheDom();
-      this.printLog(status_summary); // TODO (matirx2table): to be removed (just for testing)
-      this.render(status_summary);
+      this.render();
+      this.printLog(); // TODO (matirx2table): to be removed (just for testing)
+    },
+    cacheData: function(status_summary) {
+      this.status = status_summary;
     },
     cacheDom: function() {
       this.$container = $('#dashboard-container');
       this.$table = this.$container.find("#status-table");
       this.$template = $.templates("#status-table-template");
     },
-    render: function(status_summary) {
-      this.$template.link(this.$table, status_summary);
+    render: function() {
+      this.$template.link(this.$table, this.status);
     },
-    printLog: function(status_summary) { // TODO (matirx2table): to be removed (just for testing)
-      console.log(JSON.stringify(status_summary));
+    printLog: function() { // TODO (matirx2table): to be removed (just for testing)
+      console.log(JSON.stringify(this.status));
     }
   };
   // TODO (matirx2table): Maybe you can initialize this module in a selt executing anonymos
