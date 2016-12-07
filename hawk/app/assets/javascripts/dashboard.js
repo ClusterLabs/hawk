@@ -195,8 +195,10 @@
     if (tag.data('hash') != cs) {
       tag.html(text);
       tag.data('hash', cs);
-
+      // TODO (matirx2table): To be removed with the related code
       tag.find('canvas').cibStatusMatrix(status_summary);
+      // TODO (matirx2table): Needs extensive testing especially for creating multiple tables
+      statusTable.init(status_summary);
 
     }
 

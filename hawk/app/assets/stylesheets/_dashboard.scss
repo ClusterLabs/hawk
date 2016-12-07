@@ -69,3 +69,35 @@ table.status-matrix-wrapper {
 .dash-cell {
   text-align: left;
 }
+
+////////////////////////////////////////////////////////
+// TODO (matirx2table)
+//////////////////////////////////////////////////////
+
+table tr td {
+  text-align: center;
+  position: relative;
+}
+
+table tr th {
+  text-align: center;
+}
+
+table tr th span {
+  display: block;
+  color: #666;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.text-success { color: #00c081;}
+.text-warning { color: #fc9a2b;}
+.text-danger { color: #a52700;}
+
+table tr td:hover .fa-circle:before{
+  content: "\f0ad";
+  color: black;
+}
+
+////////////////////// END TODO (matirx2table) ///////////////////////
+// TODO (matirx2table) Remove any styles related to the old grid once finished

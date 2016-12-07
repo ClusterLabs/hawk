@@ -3,7 +3,35 @@
 
 // render canvas-based visualizations for cluster status.
 
+// TODO (matirx2table)
+// TODO (matirx2table) rename this file to statusTable and replace it in other files
+// (function(){
+  var statusTable = {
+    init: function(status_summary){
+      this.cacheDom();
+      this.printLog(status_summary); // TODO (matirx2table): to be removed (just for testing)
+      this.render(status_summary);
+    },
+    cacheDom: function() {
+      this.$container = $('#dashboard-container');
+      this.$table = this.$container.find("#status-table");
+      this.$template = $.templates("#status-table-template");
+    },
+    render: function(status_summary) {
+      this.$template.link(this.$table, status_summary);
+    },
+    printLog: function(status_summary) { // TODO (matirx2table): to be removed (just for testing)
+      console.log(JSON.stringify(status_summary));
+    }
+  };
+  // TODO (matirx2table): Maybe you can initialize this module in a selt executing anonymos
+  // function here and wrap the whole module with (function(){ })();
+  // refactor dashboard.js
+// })();
 
+
+// TODO (matirx2table): Remove all the code used with append and replace it with JsRender
+// TODO (matirx2table): Clean up the code below and remove all what's related to the old grid
 $(function() {
   $.fn.cibStatusMatrix = function(status, options) {
 
