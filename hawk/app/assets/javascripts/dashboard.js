@@ -161,6 +161,7 @@
     text += '<div class="col-md-12 text-center dash-cluster-content">';
 
     var status_summary = {
+      cluster_name: cib.meta.update_user, // TODO to be changed to the cluster_name, since the cib object which is fetched from "/cib/live?mini=true&format=json" does not contain that, should be fetched from "/cib/live?format=json", see function "clusterRefresh"
       nodes: [],
       resources: [],
       tickets: []
@@ -195,9 +196,7 @@
     if (tag.data('hash') != cs) {
       tag.html(text);
       tag.data('hash', cs);
-      // TODO (matirx2table): To be removed with the related code
       tag.find('canvas').cibStatusMatrix(status_summary);
-      // TODO (matirx2table): Needs extensive testing especially for creating multiple tables
       statusTable.init(status_summary);
 
     }

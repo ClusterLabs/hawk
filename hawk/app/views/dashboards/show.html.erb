@@ -23,18 +23,26 @@
     <%=raw javascript_for_clusters @clusters %>
   </script>
 
-<!-- TODO (matirx2table): To be removed: -->
   <div id="cib-status-matrix-details"></div>
 
-  <div id="status-table">
-
-  </div>
+  <div id="status-table"></div>
 
   <script id="status-table-template" type="text/x-jsrender">
-      Number of resources: {^{:resources.length}}
+      <table class="table table-bordered">
+        <tbody>
+          {{for nodes}}
+              <tr>
+                  <th class="col-sm-1"></th>
+                  <th>{{:name}} <span>{{>~root.cluster_name}}</span></th>
+              </tr>
+              {{for ~root.resources}}
+                <tr>
+                    <td class="text-left">{{:name}}</td>
+                    <td><i class="fa fa-circle fa-lg text-success" title="Started"></i></td>
+                </tr>
+              {{/for}}
+          {{/for}}
+        </tbody>
+      </table>
   </script>
-
-
-
-
 </div>
