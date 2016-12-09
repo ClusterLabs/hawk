@@ -28,21 +28,29 @@
   <div id="status-table"></div>
 
   <script id="status-table-template" type="text/x-jsrender">
-      <table class="table table-bordered">
-        <tbody>
-          {{for nodes}}
-              <tr>
-                  <th class="col-sm-1"></th>
-                  <th>{{:name}} <span>{{>~root.cluster_name}}</span></th>
-              </tr>
-              {{for ~root.resources}}
-                <tr>
-                    <td class="text-left">{{:name}}</td>
-                    <td><i class="fa fa-circle fa-lg text-success" title="Started"></i></td>
-                </tr>
+    <table class="table table-bordered">
+      <tbody>
+        <tr>
+          <th class="col-sm-1"></th>
+          {{for nodes}}<th>{{:name}}<span>TODO: cluster name (optional) + Green background(online), gray(offline) and labels if remote</span></th>{{/for}}
+        </tr>
+        {{for resources}}
+        <tr>
+          <td class="text-left">{{:name}}</td>
+          {{for ~root.nodes}}
+            <td>
+              {{for #parent.parent.data.instances }}
+                {{if #parent.parent.data.state === "offline" }}
+                  "the node is offline, gray background"
+                  {{else (node === #parent.parent.data.name) && (state === "started")}}
+                  <i class="fa fa-circle fa-lg text-success" title="Started"></i>
+                {{/if}}
               {{/for}}
+            </td>
           {{/for}}
-        </tbody>
+        </tr>
+        {{/for}}
+      </tbody>
       </table>
   </script>
 </div>
