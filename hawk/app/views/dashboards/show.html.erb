@@ -30,26 +30,38 @@
   <script id="status-table-template" type="text/x-jsrender">
     <table class="table table-bordered">
       <tbody>
+
         <tr>
           <th class="col-sm-1"></th>
-          {{for nodes}}<th>{{:name}}<span>TODO: cluster name (optional) + Green background(online), gray(offline) and labels if remote</span></th>{{/for}}
-        </tr>
-        {{for resources}}
-        <tr>
-          <td class="text-left">{{:name}}</td>
           {{for ~root.nodes}}
-            <td>
-              {{for #parent.parent.data.instances }}
-                {{if #parent.parent.data.state === "offline" }}
-                  "the node is offline, gray background"
-                  {{else (node === #parent.parent.data.name) && (state === "started")}}
-                  <i class="fa fa-circle fa-lg text-success" title="Started"></i>
-                {{/if}}
-              {{/for}}
-            </td>
+          <th>{{:name}}<span>{{:~root.cluster_name}}</span></th>
           {{/for}}
         </tr>
+
+        {{for ~root.resources}}
+        <tr>
+
+          <td class="text-left">{{:name}}</td>
+
+          {{for ~root.nodes}}
+          <td>
+          {{if #parent.parent.data.instances.length == 0}} {{!-- if the resource is note running on any node--}}
+              <i class="fa fa-circle fa-lg text-danger" title="Started"></i>
+          {{else}} {{!-- if the resource is running on at least one node--}}
+            {{for #parent.parent.parent.data.instances }} {{!-- loop throw the instances and compare the instance(node where the resource is running) and the node itself --}}
+              {{if #parent.parent.parent.data.state === "offline" }}
+                "TODO: the node is offline, gray background"
+              {{else (node === #parent.parent.parent.data.name) && (state === "started")}}
+                <i class="fa fa-circle fa-lg text-success" title="Started"></i>
+              {{/if}}
+            {{/for}}
+          {{/if}}
+          </td>
+          {{/for}}
+
+        </tr>
         {{/for}}
+
       </tbody>
       </table>
   </script>

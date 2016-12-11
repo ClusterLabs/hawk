@@ -161,7 +161,7 @@
     text += '<div class="col-md-12 text-center dash-cluster-content">';
 
     var status_summary = {
-      cluster_name: cib.meta.update_user, // TODO to be changed to the cluster_name, since the cib object which is fetched from "/cib/live?mini=true&format=json" does not contain that, should be fetched from "/cib/live?format=json", see function "clusterRefresh"
+      cluster_name: $('body').data('content').crm_config.cluster_name, // TODO to be changed to the cluster_name, since the cib object which is fetched from "/cib/live?mini=true&format=json" does not contain that, should be fetched from "/cib/live?format=json", see function "clusterRefresh"
       nodes: [],
       resources: [],
       tickets: []
