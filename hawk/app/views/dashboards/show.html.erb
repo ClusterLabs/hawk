@@ -64,6 +64,7 @@
               <td class="text-left">{{:name}} {{!-- RESOURCE NAME CELL --}}
               {{!-- WE COULD SHOW HERE SOME INFO ALSO --}}
                 {{if _stopped == true}}<div><small>"Error: this resource is stopped" (background, sign or label)/ entire row?</small></div>{{/if}} {{!-- IF RESOURCE IS STOPPED (OK)--}}
+                {{if instances.length != 0}}<div><small>"This resource is working fine on at least one node (background, sign or label)/ entire row?"</small></div>{{/if}} {{!-- IF RESOURCE IS RUNNING ON ATLEAST ONE NODE (OK)--}}
               </td>
 
 
@@ -75,9 +76,9 @@
                       <div><small><i><em>"Error1: The node is in an unclean state"</em></i></small></div>
                   {{/if}}
 
+
                   {{if #parent.parent.data.instances.length == 0}} {{!-- IF THE RESOURCE IS NOTE RUNNING ON ANY NODE (OK)--}}
                         <div><small><i><em>'Error 2: This resource is not runnin on any node <br>(red circle in every cell in this row) <br>However, this should not be a problem (maybe if we leave it blank or choose another color is better)'</em></i></small></div>
-
 
                   {{else}} {{!-- IF THE RESOURCE IS RUNNING ON ATLEAST ONE NODE--}}
                         {{for #parent.parent.parent.data.instances }} {{!-- LOOP THROW THE INSTANCES AND COMPARE THE INSTANCE :NODE WHERE THE RESOURCE IS RUNNING: AND THE NODE ITSELF --}}
