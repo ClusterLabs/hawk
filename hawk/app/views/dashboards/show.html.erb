@@ -31,36 +31,72 @@
     <table class="table table-bordered">
       <tbody>
 
+
+        {{!-- NODES (OK)--}}
         <tr>
-          <th class="col-sm-1"></th>
-          {{for ~root.nodes}}
-          <th>{{:name}}<span>{{:~root.cluster_name}}</span></th>
-          {{/for}}
-        </tr>
+            <th class="col-sm-1"></th>
+            {{for ~root.nodes}}
+                <th>{{:name}}<span>{{:~root.cluster_name}}</span>
+                    {{if state === "unclean"}}
+                        <div><small><i><em>This node is in an unclean state <br>should be a problem (background, label, sign)<br> it applies to all cells underneath</em></i></small></div>
+                    {{else state === "online"}}
+                        <div><small><i><em>This node is online! should be ok (background, label, sign) </em></i></small></div>
+                    {{else state === "offline"}}
+                        <div><small><i><em>This node is offline!Should be ok but we should show that (background, label, sign)</em></i></small></div>
+                    {{/if}}
 
-        {{for ~root.resources}}
-        <tr>
+                    {{if remote == true}}
+                        <div><small><i><em>This node is offline!Should be ok but we should show that (label, sign)</em></i></small></div>
+                    {{/if}}
+                    {{if maintenance == true}}
+                        <div><small><i><em>This node is in maintenance mode (label or a sign for that)</em></i></small></div>
+                    {{/if}}
 
-          <td class="text-left">{{:name}}</td>
-
-          {{for ~root.nodes}}
-          <td>
-          {{if #parent.parent.data.instances.length == 0}} {{!-- if the resource is note running on any node--}}
-              <i class="fa fa-circle fa-lg text-danger" title="Started"></i>
-          {{else}} {{!-- if the resource is running on at least one node--}}
-            {{for #parent.parent.parent.data.instances }} {{!-- loop throw the instances and compare the instance(node where the resource is running) and the node itself --}}
-              {{if #parent.parent.parent.data.state === "offline" }}
-                "TODO: the node is offline, gray background"
-              {{else (node === #parent.parent.parent.data.name) && (state === "started")}}
-                <i class="fa fa-circle fa-lg text-success" title="Started"></i>
-              {{/if}}
+                </th>
             {{/for}}
-          {{/if}}
-          </td>
-          {{/for}}
-
         </tr>
+        {{!-- END NODES (OK) --}}
+
+
+        {{!-- RESOURCES --}}
+        {{for ~root.resources}}
+            <tr>
+              <td class="text-left">{{:name}} {{!-- RESOURCE NAME CELL --}}
+              {{!-- WE COULD SHOW HERE SOME INFO ALSO --}}
+                {{if _stopped == true}}<div><small>"Error: this resource is stopped" (background, sign or label)/ entire row?</small></div>{{/if}} {{!-- IF RESOURCE IS STOPPED (OK)--}}
+              </td>
+
+
+              {{for ~root.nodes}}
+                  <td>
+
+                  {{if state === "unclean" }} {{!-- IF THE NODE IS UNCLEAN, EVRY CELL SHOULD BE MARKED (OK)--}}
+                      <i class="fa fa-circle fa-lg text-danger" title="Started"></i>
+                      <div><small><i><em>"Error1: The node is in an unclean state"</em></i></small></div>
+                  {{/if}}
+
+                  {{if #parent.parent.data.instances.length == 0}} {{!-- IF THE RESOURCE IS NOTE RUNNING ON ANY NODE (OK)--}}
+                        <div><small><i><em>'Error 2: This resource is not runnin on any node <br>(red circle in every cell in this row) <br>However, this should not be a problem (maybe if we leave it blank or choose another color is better)'</em></i></small></div>
+
+
+                  {{else}} {{!-- IF THE RESOURCE IS RUNNING ON ATLEAST ONE NODE--}}
+                        {{for #parent.parent.parent.data.instances }} {{!-- LOOP THROW THE INSTANCES AND COMPARE THE INSTANCE :NODE WHERE THE RESOURCE IS RUNNING: AND THE NODE ITSELF --}}
+
+                          {{if #parent.parent.parent.data.state === "offline" }}
+                            "TODO: the node is offline, gray background"
+                          {{else #parent.parent.parent.data.state === "unclean" }}
+                              "TEST"
+                          {{else (node === #parent.parent.parent.data.name) && (state === "started")}}
+                            <i class="fa fa-circle fa-lg text-success" title="Started"></i>
+                          {{/if}}
+                        {{/for}}
+                  {{/if}}
+                  </td>
+              {{/for}}
+
+            </tr>
         {{/for}}
+        {{!-- END RESOURCES --}}
 
       </tbody>
       </table>
