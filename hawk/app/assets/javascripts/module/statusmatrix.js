@@ -3,7 +3,6 @@
 
 // render canvas-based visualizations for cluster status.
 
-// (function(){
   var statusTable = {
     status: [],
     init: function(status_summary){
