@@ -33,14 +33,15 @@
         {{!-- NODES ROW --}}
         <tr>
             <th class="col-sm-1"></th>
-            {{for ~root.nodes itemVar="~node"}}
-                <th>{{:name}}<span>{{:~root.cluster_name}}</span>
-                    {{if ~node.state === "unclean"}}
-                        <div><small><i><em>"This node is in an unclean state"</em></i></small></div>
-                    {{else ~node.state === "online"}}
-                        <div><small><i><em>"This node is online"</em></i></small></div>
-                    {{else ~node.state === "offline"}}
-                        <div><small><i><em>"This node is offline"</em></i></small></div>
+            {{for ~root.nodes}}
+                <th id={{:name}}>{{:name}}<span>{{:~root.cluster_name}}</span>
+                    {{if state === "unclean"}}
+                        <div><small><i><em>This node is in an unclean state <br>should be a problem (background, label, sign)<br> it applies to all cells underneath</em></i></small></div>
+                    {{else state === "online"}}
+                        <div><small><i><em>This node is online! should be ok (background, label, sign) </em></i></small></div>
+                        {{:~registerIds(name, "succes")}}
+                    {{else state === "offline"}}
+                        <div><small><i><em>This node is offline!Should be ok but we should show that (background, label, sign)</em></i></small></div>
                     {{/if}}
                     {{if ~node.remote == true}}
                         <div><small><i><em>"This node is Remote"</em></i></small></div>
