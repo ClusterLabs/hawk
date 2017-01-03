@@ -107,7 +107,7 @@
             <dl class="dl-horizontal">
               <dt><%= _("PE Name") %></dt>
               <dd><%= link_to @transition[:basename], pefile_report_path(id: params[:id], transition: current_transition) %></dd>
-              <dt><%= _("Node") %></dt>
+              <dt><%= _("DC") %></dt>
               <dd><%= @transition[:node] %></dd>
               <dt><%= _("Time") %></dt>
               <dd><%= format_date @transition[:timestamp] %></dd>

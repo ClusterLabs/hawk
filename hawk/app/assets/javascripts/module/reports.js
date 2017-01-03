@@ -416,7 +416,7 @@ $(function() {
             "<dl>",
             "<dt>", __("Time"),  "</dt>",
             "<dd>", moment(item.timestamp).format(time_format_string),  "</dd>",
-            "<dt>", __("Node"),  "</dt>",
+            "<dt>", __("DC"),  "</dt>",
             "<dd>", item.node,  "</dd>",
             "</dl>"
           ].join(""));
