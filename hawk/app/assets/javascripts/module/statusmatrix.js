@@ -5,20 +5,18 @@
 
 ////////////////////////////////////////////////////////////////////////////////
   var statusTable = {
-    status: [],
-    nodeErrors: [],
-    nodeSuccesses: [],
-    nodeWarnings: [],
-    init: function(status_summary) {
-      this.cacheData(status_summary);
+    cibData: [],
+    tableStatus: {"nodes": [], "resources": []},
+    init: function(data) {
+      this.cacheData(data);
       this.cacheDom();
       this.initHelpers();
       this.render();
       this.highlightBackground();
       this.printLog();
     },
-    cacheData: function(status_summary) {
-      this.status = status_summary;
+    cacheData: function(data) {
+      this.cibData = data;
     },
     cacheDom: function() {
       this.$container = $('#dashboard-container');
@@ -26,30 +24,30 @@
     },
     render: function() {
       $.templates('myTmpl', { markup: "#status-table-template", allowCode: true });
-      this.$table.html( $.render.myTmpl(this.status)).show();
+      this.$table.html( $.render.myTmpl(this.cibData)).show();
     },
     initHelpers: function() {
-      // Using $.proxy to correctly pass the context to registerIds:
-      $.views.helpers({ registerIds: $.proxy(this.registerIds, this) });
+      // Using $.proxy to correctly pass the context to saveState:
+      $.views.helpers({ saveState: $.proxy(this.saveState, this) });
     },
     // Helper methods (called from the template in dashboards/show.html.erb):
-    registerIds: function(element, state) {
-      switch(state) {
-        case "error":
-        this.nodeErrors.push("#" + element);
+    saveState: function(type, id, className) {
+      var attributes = {"id": id, "className": className};
+      switch(type) {
+        case "node":
+          this.tableStatus.nodes.push(attributes);
           break;
-        case "warning":
-        this.nodeWarnings.push("#" + element);
-          break;
-        case "succes":
-        this.nodeSuccesses.push("#" + element);
+        case "resource":
+          this.tableStatus.resources.push(attributes);
       }
     },
     highlightBackground: function() {
-       $(this.nodeSuccesses[0]).attr("style", "color: green;");
+       $.each(this.tableStatus.nodes, function(index, element){
+        $(element.id).attr("class", element.className)
+       });
     },
     printLog: function() {
-      console.log(JSON.stringify(this.status));
+      console.log(JSON.stringify(this.cibData));
     },
   };
 
