@@ -59,6 +59,7 @@
       item_width: 14,
       item_offset: 2,
       item_slot_x: -100,
+      displayUTC: false
     }, options);
 
     this.element = element;
@@ -323,6 +324,12 @@
     var maj_unit = 24*3600*1000;
     var min_unit = null;
 
+    var format_time = self.settings.displayUTC ? function(t, fmt) {
+      return moment.utc(t).format(fmt);
+    } : function(t, fmt) {
+      return moment(t).format(fmt);
+    };
+
 
     if (self.timespan >= 6*24*3600*1000) {
       min_unit = null;
@@ -392,7 +399,7 @@
         ts = minor[i];
         xoffs = span * (ts - min_time_ms);
         addtick(xoffs, 1, self.items_h + 1 + self.markers_h);
-        addlabel('ec-label', xoffs + 1, self.items_h + 1, moment(ts).format(minor_fmt));
+        addlabel('ec-label', xoffs + 1, self.items_h + 1, format_time(ts, minor_fmt));
       }
     } else {
       for (i = 0; i < major.length; i++) {
@@ -414,7 +421,7 @@
           l = 2;
         }
       }
-      addlabel('ec-region-label', l + 1, self.items_h + self.markers_h - 14, moment(ts).format(major_fmt));
+      addlabel('ec-region-label', l + 1, self.items_h + self.markers_h - 14, format_time(ts, major_fmt));
     }
 
     for (i = tick_idx; i < existing_ticks.length; i++) {

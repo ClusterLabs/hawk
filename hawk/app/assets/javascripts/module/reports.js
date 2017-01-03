@@ -410,6 +410,7 @@ $(function() {
 
     $('#reports #eventcontrol').EventControl({
       data: transitions,
+      displayUTC: true,
       onhover: function(item, element, event, inout) {
         if (inout == 'in') {
           element.data('title', item.basename);
