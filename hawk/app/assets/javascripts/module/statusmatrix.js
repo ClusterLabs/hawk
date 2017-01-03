@@ -6,7 +6,7 @@
 ////////////////////////////////////////////////////////////////////////////////
   var statusTable = {
     cibData: [],
-    tableStatus: {"nodes": [], "resources": []},
+    tableStatus: [],  // the structure of this JSON object should be like this: [{"type": "node", "id": "#webui", "className": "success"}.., {"type": "resource", "id": "base-clone", "className": "warning"}...]
     init: function(data) {
       this.cacheData(data);
       this.cacheDom();
@@ -32,17 +32,11 @@
     },
     // Helper methods (called from the template in dashboards/show.html.erb):
     saveState: function(type, id, className) {
-      var attributes = {"id": id, "className": className};
-      switch(type) {
-        case "node":
-          this.tableStatus.nodes.push(attributes);
-          break;
-        case "resource":
-          this.tableStatus.resources.push(attributes);
-      }
+      var objects = {"type": type, "id": id, "className": className};
+      this.tableStatus.push(objects);
     },
     highlightBackground: function() {
-       $.each(this.tableStatus.nodes, function(index, element){
+       $.each(this.tableStatus, function(index, element){
         $(element.id).attr("class", element.className)
        });
     },
