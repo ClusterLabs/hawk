@@ -2,13 +2,14 @@
 // See COPYING for license.
 
 $(function() {
-  var time_format_string = 'YYYY-MM-DD HH:mm Z';
+  var time_format_string = 'YYYY-MM-DD HH:mm:ss ZZ';
+  var utc_format_string = 'YYYY-MM-DD HH:mm:ss [UTC]';
   var REFRESH_INTERVAL = 5000;
   var running_timeout = null;
 
   var build_running = function(start, end) {
-    $('#reports #running-from-time').val(moment(start).format(time_format_string));
-    $('#reports #running-to-time').val(moment(end).format(time_format_string));
+    $('#reports #running-from-time').val(moment.utc(start).format(utc_format_string));
+    $('#reports #running-to-time').val(moment.utc(end).format(utc_format_string));
     $('#reports #report-running').removeClass('hidden');
     $('#reports #report-tabs').addClass('hidden');
   };
@@ -286,7 +287,7 @@ $(function() {
             if (moment(row.from_time).isSame(row.to_time)) {
               return "";
             } else {
-              return moment(value).format(time_format_string);
+              return moment.utc(value).format(utc_format_string);
             }
           }
         }, {
@@ -296,7 +297,7 @@ $(function() {
           switchable: false,
           clickToSelect: true,
           formatter: function(value, row, index) {
-            return moment(value).format(time_format_string);
+            return moment.utc(value).format(utc_format_string);
           }
         }, {
           field: 'operate',
@@ -415,7 +416,7 @@ $(function() {
           element.data('content', [
             "<dl>",
             "<dt>", __("Time"),  "</dt>",
-            "<dd>", moment(item.timestamp).format(time_format_string),  "</dd>",
+            "<dd>", moment.utc(item.timestamp).format(utc_format_string),  "</dd>",
             "<dt>", __("DC"),  "</dt>",
             "<dd>", item.node,  "</dd>",
             "</dl>"

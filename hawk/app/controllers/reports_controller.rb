@@ -373,13 +373,13 @@ class ReportsController < ApplicationController
     if t.nil?
       ''
     else
-      t.strftime('%F %R %Z')
+      t.utc.strftime('%F %T %Z')
     end
   end
 
   def parse_time(t, errors)
     begin
-      DateTime.parse(t).iso8601
+      DateTime.parse(t).utc.iso8601
     rescue Exception => e
       errors << _("must be a valid datetime")
       nil

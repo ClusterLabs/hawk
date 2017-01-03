@@ -65,7 +65,7 @@ class Report
           else
             version = nil
           end
-          peinputs.push(timestamp: File.mtime(path).iso8601,
+          peinputs.push(timestamp: File.mtime(path).utc.iso8601,
                         basename: File.basename(path, ".bz2"),
                         filename: File.basename(path),
                         path: path.sub("#{hb_report.path}/", ''),
