@@ -2,17 +2,20 @@
 // See COPYING for license.
 
 // render canvas-based visualizations for cluster status.
+
+////////////////////////////////////////////////////////////////////////////////
   var statusTable = {
     status: [],
-    errorArray: [], // append ids
-    sucessArray: [],
-    warningArray: [],
+    nodeErrors: [],
+    nodeSuccesses: [],
+    nodeWarnings: [],
     init: function(status_summary) {
       this.cacheData(status_summary);
       this.cacheDom();
       this.initHelpers();
       this.render();
-      this.printLog(); // TODO To be removed (just for testing)
+      this.highlightBackground();
+      this.printLog();
     },
     cacheData: function(status_summary) {
       this.status = status_summary;
@@ -21,39 +24,33 @@
       this.$container = $('#dashboard-container');
       this.$table = this.$container.find("#status-table");
     },
-    initHelpers: function() {
-      $.views.helpers({ registerIds: this.registerIds });
-    },
     render: function() {
       $.templates('myTmpl', { markup: "#status-table-template", allowCode: true });
       this.$table.html( $.render.myTmpl(this.status)).show();
     },
-    printLog: function() {
-      console.log(JSON.stringify(this.status));
+    initHelpers: function() {
+      // Using $.proxy to correctly pass the context to registerIds:
+      $.views.helpers({ registerIds: $.proxy(this.registerIds, this) });
     },
-    // Helper methods:
+    // Helper methods (called from the template in dashboards/show.html.erb):
     registerIds: function(element, state) {
-      element = "#" + element
       switch(state) {
         case "error":
-        errorArray.push(element);
-          // $("#" + element).attr('class',"something");
+        this.nodeErrors.push("#" + element);
           break;
         case "warning":
-        warningArray.push(element);
-          // $("#" + element).attr('class',"something");
+        this.nodeWarnings.push("#" + element);
           break;
         case "succes":
-        sucessArray.push(element);
-          // $(window).on('load', function() {
-          //   $("th").attr("class", "something");
-          // });
+        this.nodeSuccesses.push("#" + element);
       }
     },
     highlightBackground: function() {
-      alert(sucessArray[0]);
-    }
-    // End Helper methods:
+       $(this.nodeSuccesses[0]).attr("style", "color: green;");
+    },
+    printLog: function() {
+      console.log(JSON.stringify(this.status));
+    },
   };
 
 ////////////////////////////////////////////////////////////////////////////////
