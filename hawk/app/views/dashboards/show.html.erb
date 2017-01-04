@@ -36,17 +36,17 @@
           {{for ~root.nodes itemVar="~node"}}
             <th id="node-{{:name}}">{{:name}}<span>{{:~root.cluster_name}}</span>
               {{if ~node.state === "unclean"}}
-                {{:~saveState("node" ,"#node-" + name, "status-error")}}
+                {{:~saveAttrs("node" ,"#node-" + name, "status-error")}}
               {{else ~node.state === "online"}}
-                {{:~saveState("node" ,"#node-" + name, "status-success")}}
+                {{:~saveAttrs("node" ,"#node-" + name, "status-success")}}
               {{else ~node.state === "offline"}}
-                {{:~saveState("node" ,"#node-" + name, "status-offline")}}
+                {{:~saveAttrs("node" ,"#node-" + name, "status-offline")}}
               {{/if}}
               {{if ~node.remote == true}}
-                {{:~saveState("node" ,"#node-" + name, "status-remote")}}
+                {{:~saveAttrs("node" ,"#node-" + name, "status-remote")}}
               {{/if}}
               {{if ~node.maintenance == true}}
-                {{:~saveState("node" ,"#node-" + name, "status-maintenance")}}
+                {{:~saveAttrs("node" ,"#node-" + name, "status-maintenance")}}
               {{/if}}
             </th>
           {{/for}}
@@ -58,10 +58,10 @@
             <tr>
               <td class="text-left" id="resource-{{:name}}">{{:name}}
                 {{if ~resource._stopped == true}}
-                  {{:~saveState("resource" ,"#resource-" + name, "status-error")}}
+                  {{:~saveAttrs("resource" ,"#resource-" + name, "status-error")}}
                 {{/if}}
                 {{if ~resource.instances.length != 0}}
-                  {{:~saveState("resource" ,"#resource-" + name, "status-success")}}
+                  {{:~saveAttrs("resource" ,"#resource-" + name, "status-success")}}
                 {{/if}}
               </td>
               {{for ~root.nodes itemVar="~node"}}

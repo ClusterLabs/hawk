@@ -1,22 +1,17 @@
-// Copyright (c) 2015 Kristoffer Gronlund <kgronlund@suse.com>
-// See COPYING for license.
-
-// render canvas-based visualizations for cluster status.
-
 ////////////////////////////////////////////////////////////////////////////////
   var statusTable = {
-    cibData: [],
-    tableStatus: [],  // the structure of this JSON object should be like this: [{"type": "node", "id": "#webui", "className": "success"}.., {"type": "resource", "id": "base-clone", "className": "warning"}...]
-    init: function(data) {
-      this.cacheData(data);
-      this.cacheDom();
-      this.initHelpers();
-      this.render();
-      this.highlightBackground();
-      this.printLog();
+    tableData: [], // An Array that will contain JSON data fetched from the cib, see cacheData()
+    tableAttrs: [], // JSON data that Contains attributes like id and classes for specific elements in the table
+    init: function(cibData) { // init function called from "assets/javascripts/dashboard.js"
+      this.cacheData(cibData);  // Cache data fetched from server
+      this.cacheDom(); // Cache Dom elements to maximize performance
+      this.initHelpers(); // Triggers saveAttrs, the latter helper method is used inside the template in "dashboards/show.html.erb to save ids and classes in tableAttrs
+      this.render(); // Renders the table using the template in "dashboards/show.html.erb"
+      this.applyStyles(); // Set the appropriate classes after rendering the table (using tableAttrs)
+      this.printLog(); // Testing
     },
-    cacheData: function(data) {
-      this.cibData = data;
+    cacheData: function(cibData) {
+      this.tableData = cibData;
     },
     cacheDom: function() {
       this.$container = $('#dashboard-container');
@@ -24,28 +19,34 @@
     },
     render: function() {
       $.templates('myTmpl', { markup: "#status-table-template", allowCode: true });
-      this.$table.html( $.render.myTmpl(this.cibData)).show();
+      this.$table.html( $.render.myTmpl(this.tableData)).show();
     },
     initHelpers: function() {
-      // Using $.proxy to correctly pass the context to saveState:
-      $.views.helpers({ saveState: $.proxy(this.saveState, this) });
+      // Using $.proxy to correctly pass the context to saveAttrs:
+      $.views.helpers({ saveAttrs: $.proxy(this.saveAttrs, this) });
     },
     // Helper methods (called from the template in dashboards/show.html.erb):
-    saveState: function(type, id, className) {
+    saveAttrs: function(type, id, className) {
       var objects = {"type": type, "id": id, "className": className};
-      this.tableStatus.push(objects);
+      this.tableAttrs.push(objects);
     },
-    highlightBackground: function() {
-       $.each(this.tableStatus, function(index, element){
+    applyStyles: function() {
+       $.each(this.tableAttrs, function(index, element){
         $(element.id).attr("class", element.className)
        });
     },
     printLog: function() {
-      console.log(JSON.stringify(this.cibData));
+      console.log(JSON.stringify(this.tableData));
     },
   };
 
+
 ////////////////////////////////////////////////////////////////////////////////
+
+
+// Copyright (c) 2015 Kristoffer Gronlund <kgronlund@suse.com>
+// See COPYING for license.
+// render canvas-based visualizations for cluster status.
 
 $(function() {
   $.fn.cibStatusMatrix = function(status, options) {
