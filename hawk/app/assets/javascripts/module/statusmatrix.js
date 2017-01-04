@@ -1,11 +1,11 @@
 ////////////////////////////////////////////////////////////////////////////////
   var statusTable = {
-    tableData: [], // An Array that will contain JSON data fetched from the cib, see cacheData()
-    tableAttrs: [], // JSON data that Contains attributes like id and classes for specific elements in the table
-    init: function(cibData) { // init function called from "assets/javascripts/dashboard.js"
+    tableData: [], // An Array that contains JSON data fetched from the cib, see cacheData()
+    tableAttrs: [], // JSON data that Contains attributes like ids and classes for specific elements in the table
+    init: function(cibData) { // init function called using: "statusTable.init(fetchedData);"
       this.cacheData(cibData);  // Cache data fetched from server
       this.cacheDom(); // Cache Dom elements to maximize performance
-      this.initHelpers(); // Triggers saveAttrs, the latter helper method is used inside the template in "dashboards/show.html.erb to save ids and classes in tableAttrs
+      this.initHelpers(); // Intialize helper methods for using them inside the template in "dashboards/show.html.erb
       this.render(); // Renders the table using the template in "dashboards/show.html.erb"
       this.applyStyles(); // Set the appropriate classes after rendering the table (using tableAttrs)
       this.printLog(); // Testing
