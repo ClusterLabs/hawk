@@ -168,7 +168,7 @@
     };
 
     $.each(cib.nodes, function(n, v) {
-      status_summary.nodes.push({ name: n, state: v, remote: isRemote(cib, n) });
+      // status_summary.nodes.push({ name: n, state: v, remote: isRemote(cib, n) });  //TODO
     });
 
     $.each(cib.resources, function(n, v) {
@@ -332,19 +332,19 @@
   function clusterRefresh(clusterId, clusterInfo) {
     indicator(clusterId, "refresh");
 
-    ajaxQuery({
-      url: baseUrl(clusterInfo) + "/cib/live?mini=true&format=json",
-      type: "GET",
-      data: { _method: 'show' },
-      crossDomain: clusterInfo.host != null,
-      success: function(data) {
-        $.each(data.nodes, function(node, _state) {
-          if (!isRemote(data, node)) {
-            if ($.inArray(clusterInfo.reconnections, node) === -1) {
-              clusterInfo.reconnections.push(node);
-            }
-          }
-        });
+        ajaxQuery({
+          url: baseUrl(clusterInfo) + "/cib/live?format=json",
+          type: "GET",
+          data: { _method: 'show' },
+          crossDomain: clusterInfo.host != null,
+          success: function(data) {
+            $.each(data.nodes, function(node, node_values) {
+              if (!isRemote(data, node_values.uname)) {
+                if ($.inArray(clusterInfo.reconnections, node_values.uname) === -1) {
+                  clusterInfo.reconnections.push(node_values.uname);
+                }
+              }
+            });
         displayClusterStatus(clusterId, data);
         $("#" + clusterId).data('epoch', data.meta.epoch);
         clusterUpdate(clusterId, clusterInfo);

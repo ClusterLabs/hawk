@@ -175,6 +175,7 @@ class Cib
         end
 
       else
+        result[:remote_nodes] = {}
         result[:crm_config] = crm_config
         result[:rsc_defaults] = rsc_defaults
         result[:op_defaults] = op_defaults
@@ -187,6 +188,9 @@ class Cib
         result[:alerts] = alerts
         result[:constraints] = constraints
         result[:resource_count] = resource_count
+        nodes.each do |node|
+          result[:remote_nodes][node[:uname]] = node[:state] unless node[:remote]
+        end
       end
     end
   end
