@@ -34,7 +34,7 @@
         <tr id="nodes-table-row">
           <th class="col-sm-1"></th>
           {{for ~root.nodes itemVar="~node"}}
-            <th id="node-{{:name}}">{{:name}}<span>{{:~root.cluster_name}}</span>
+            <th id="node-{{:name}}">{{:name}}<span>{{:~root.crm_config.cluster_name}}</span>
               {{if ~node.state === "unclean"}}
                 {{:~saveAttrs("node" ,"#node-" + name, "status-error")}}
               {{else ~node.state === "online"}}
@@ -56,12 +56,12 @@
         <div id="resources-table-rows">
           {{for ~root.resources itemVar="~resource"}}
             <tr>
-              <td class="text-left" id="resource-{{:name}}">{{:name}}
-                {{if ~resource._stopped == true}}
-                  {{:~saveAttrs("resource" ,"#resource-" + name, "status-error")}}
+              <td class="text-left" id="resource-{{:id}}">{{:id}}
+                {{if ~resource.state == "stopped"}} {{!-- to test --}}
+                  {{:~saveAttrs("resource" ,"#resource-" + id, "status-error")}}
                 {{/if}}
-                {{if ~resource.instances.length != 0}}
-                  {{:~saveAttrs("resource" ,"#resource-" + name, "status-success")}}
+                {{if ~resource.running_on.length != 0}}
+                  {{:~saveAttrs("resource" ,"#resource-" + id, "status-success")}}
                 {{/if}}
               </td>
               {{for ~root.nodes itemVar="~node"}}
@@ -69,15 +69,15 @@
                 {{if ~node.state === "unclean" }}
                   <i class="fa fa-circle fa-lg text-danger"></i>
                 {{/if}}
-                {{if ~resource.instances.length == 0}}
+                {{if ~resource.running_on.length == 0}}
                   {{!-- Todo --}}
                 {{else}}
-                  {{for ~resource.instances itemVar="~instance"}}
+                  {{for ~resource.running_on itemVar="~nodeWhereTheResourceRun"}}
                     {{if ~node.state === "offline" }}
                       {{!-- Todo: the node is offline, gray background --}}
                     {{else ~node.state === "unclean" }}
                       {{!-- Todo: the node is an unclean state, error --}}
-                    {{else (~instance.node === ~node.name) && (~instance.state === "started")}}
+                    {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "started")}}
                       <i class="fa fa-circle fa-lg text-success" title="Started"></i>
                     {{/if}}
                   {{/for}}

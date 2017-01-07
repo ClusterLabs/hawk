@@ -36,7 +36,8 @@
        });
     },
     printLog: function() {
-      console.log(JSON.stringify(this.tableData));
+      console.log("\n\n\n\n" + Array(100).join("=") + "\n\n dashboard.js (after modification in displayClusterStatus and stored in status_summary) \n\n" + JSON.stringify(this.tableData) + "\n\n\n\n" + Array(100).join("=") + "\n\n\n\n"); // to remove (just for testing)
+      // console.log(JSON.stringify(this.tableData));
     },
   };
 
