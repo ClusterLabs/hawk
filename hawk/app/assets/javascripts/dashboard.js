@@ -160,46 +160,46 @@
     text += '<div class="row">';
     text += '<div class="col-md-12 text-center dash-cluster-content">';
 
-    var status_summary = {
-      cluster_name: $('body').data('content').crm_config.cluster_name, // TODO to be changed to the cluster_name, since the cib object which is fetched from "/cib/live?mini=true&format=json" does not contain that, should be fetched from "/cib/live?format=json", see function "clusterRefresh"
-      nodes: [],
-      resources: [],
-      tickets: []
-    };
+    // var status_summary = {
+    //   cluster_name: $('body').data('content').crm_config.cluster_name, // TODO to be changed to the cluster_name, since the cib object which is fetched from "/cib/live?mini=true&format=json" does not contain that, should be fetched from "/cib/live?format=json", see function "clusterRefresh"
+    //   nodes: [],
+    //   resources: [],
+    //   tickets: []
+    // };
+    //
+    // $.each(cib.nodes, function(n, v) {
+    //   // status_summary.nodes.push({ name: n, state: v, remote: isRemote(cib, n) });  //TODO
+    // });
+    //
+    // $.each(cib.resources, function(n, v) {
+    //   var rsc = {name: n, instances: []};
+    //   $.each(v, function(nn, vv) {
+    //     rsc.instances.push({node: nn, state: vv});
+    //   });
+    //   status_summary.resources.push(rsc);
+    // });
+    //
+    // $.each(cib.tickets, function(n, v) {
+    //   status_summary.tickets.push({name: n, state: v});
+    // });
 
-    $.each(cib.nodes, function(n, v) {
-      // status_summary.nodes.push({ name: n, state: v, remote: isRemote(cib, n) });  //TODO
-    });
+    // var cwidth = Math.min(cib.nodes.length * 36 + 36, 360) + 20;
+    // var cheight = cib.resources.length * 24 + cib.tickets.length * 24;
 
-    $.each(cib.resources, function(n, v) {
-      var rsc = {name: n, instances: []};
-      $.each(v, function(nn, vv) {
-        rsc.instances.push({node: nn, state: vv});
-      });
-      status_summary.resources.push(rsc);
-    });
+    // text += '<canvas width="' + cwidth + '" height="' + cheight + '"></canvas>';
 
-    $.each(cib.tickets, function(n, v) {
-      status_summary.tickets.push({name: n, state: v});
-    });
+    // text += '</div>';
+    // text += '</div>';
 
-    var cwidth = Math.min(status_summary.nodes.length * 36 + 36, 360) + 20;
-    var cheight = status_summary.resources.length * 24 + status_summary.tickets.length * 24;
+    // var cs = checksum(text + JSON.stringify(cib));
 
-    text += '<canvas width="' + cwidth + '" height="' + cheight + '"></canvas>';
+    // if (tag.data('hash') != cs) {
+      // tag.html(text);
+      // tag.data('hash', cs);
+      // tag.find('canvas').cibStatusMatrix(cib);
+      statusTable.init(cib);
 
-    text += '</div>';
-    text += '</div>';
-
-    var cs = checksum(text + JSON.stringify(status_summary));
-
-    if (tag.data('hash') != cs) {
-      tag.html(text);
-      tag.data('hash', cs);
-      tag.find('canvas').cibStatusMatrix(status_summary);
-      statusTable.init(status_summary);
-
-    }
+    // }
 
   }
 
@@ -338,6 +338,7 @@
           data: { _method: 'show' },
           crossDomain: clusterInfo.host != null,
           success: function(data) {
+            console.log("\n\n\n\n" + Array(100).join("=") + "\n\n dashboard.js (before modification) \n\n" + JSON.stringify(data) + "\n\n\n\n" + Array(100).join("=") + "\n\n\n\n"); // to remove (just for testing)
             $.each(data.nodes, function(node, node_values) {
               if (!isRemote(data, node_values.uname)) {
                 if ($.inArray(clusterInfo.reconnections, node_values.uname) === -1) {
