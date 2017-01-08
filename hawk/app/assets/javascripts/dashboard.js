@@ -1,8 +1,8 @@
 // Copyright (c) 2009-2015 Tim Serong <tserong@suse.com>
-// Copyright (c) 2015 Kristoffer Gronlund <kgronlund@suse.com>
+// Copyright (c) 2015-2016 Kristoffer Gronlund <kgronlund@suse.com>
+// Copyright (c) 2016 Ayoub Belarbi <abelarbi@suse.com>
 // See COPYING for license.
 
-// https://<host>:7630/cib/mini.json
 ;(function($) {
   var checksum = function(s) {
     var hash = 0, i, chr, len;
@@ -83,24 +83,6 @@
       return '<i class="fa fa-plug text"></i>';
     } else {
       return '<i class="fa fa-question text"></i>';
-    }
-  }
-
-  function plural(word, count) {
-    if (count > 1) {
-      return word + "s";
-    } else {
-      return word;
-    }
-  }
-
-  function listGroupClassForState(state) {
-    if (state == "online" || state == "granted" || state == "master" || state == "slave" || state == "started") {
-      return "list-group-item-success";
-    } else if (state == "offline" || state == "unclean" || state == "failed" || state == "stopped") {
-      return "list-group-item-danger";
-    } else {
-      return "list-group-item-warning";
     }
   }
 
