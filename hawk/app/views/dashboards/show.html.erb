@@ -16,7 +16,7 @@
   <% # passing null as name and host means to fetch local cluster information %>
   <% unless current_cib.offline? %>
     <script>
-      dashboardAddCluster({"name":null, "host":null, "port":null, https:null, "interval":10});
+      dashboardAddCluster({"name":null, "host":null, "port":null, https:null, "interval":10, "status_format": "canvas&table"}); // Possible values for status_format: "table", "canvas" and "canvas&table" 
     </script>
   <% end %>
   <script>
