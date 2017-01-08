@@ -1,3 +1,8 @@
+// Copyright (c) 2015-2016 Kristoffer Gronlund <kgronlund@suse.com>
+// Copyright (c) 2016 Ayoub Belarbi <abelarbi@suse.com>
+// See COPYING for license.
+
+// render table-based visualizations for cluster status (Using JsRender).
 var statusTable = {
     tableData: [], // An Array that contains JSON data fetched from the cib, see cacheData()
     tableAttrs: [], // JSON data that Contains attributes like ids and classes for specific elements in the table
@@ -40,26 +45,16 @@ var statusTable = {
   };
 
 
-
-
-// Copyright (c) 2015 Kristoffer Gronlund <kgronlund@suse.com>
-// See COPYING for license.
 // render canvas-based visualizations for cluster status.
-
 $(function() {
   $.fn.cibStatusMatrix = function(status, options) {
-    alert(JSON.stringify(status));
     var firstelement = null;
     if (status.resources.length == 0 && status.tickets.length == 0) {
-      alert("1");
       return;
     } else if (status.resources.length == 0) {
-      alert("2");
       firstelement = status.tickets[0];
     } else {
-
       firstelement = status.resources[0];
-      alert(firstelement);
     }
     firstelement = ['<th class="status-matrix-element status-matrix-resource">',
                     firstelement.name,
