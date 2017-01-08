@@ -179,7 +179,6 @@ class Cib
         result[:crm_config] = crm_config
         result[:rsc_defaults] = rsc_defaults
         result[:op_defaults] = op_defaults
-
         result[:resources] = resources
         result[:resources_by_id] = resources_by_id
         result[:nodes] = nodes
