@@ -1,5 +1,4 @@
-////////////////////////////////////////////////////////////////////////////////
-  var statusTable = {
+var statusTable = {
     tableData: [], // An Array that contains JSON data fetched from the cib, see cacheData()
     tableAttrs: [], // JSON data that Contains attributes like ids and classes for specific elements in the table
     init: function(cibData) { // init function called using: "statusTable.init(fetchedData);"
@@ -36,13 +35,11 @@
        });
     },
     printLog: function() {
-      console.log("\n\n\n\n" + Array(100).join("=") + "\n\n dashboard.js (after modification in displayClusterStatus and stored in status_summary) \n\n" + JSON.stringify(this.tableData) + "\n\n\n\n" + Array(100).join("=") + "\n\n\n\n"); // to remove (just for testing)
-      // console.log(JSON.stringify(this.tableData));
+      console.log(JSON.stringify(this.tableData));
     },
   };
 
 
-////////////////////////////////////////////////////////////////////////////////
 
 
 // Copyright (c) 2015 Kristoffer Gronlund <kgronlund@suse.com>
@@ -51,14 +48,18 @@
 
 $(function() {
   $.fn.cibStatusMatrix = function(status, options) {
-
+    alert(JSON.stringify(status));
     var firstelement = null;
     if (status.resources.length == 0 && status.tickets.length == 0) {
+      alert("1");
       return;
     } else if (status.resources.length == 0) {
+      alert("2");
       firstelement = status.tickets[0];
     } else {
+
       firstelement = status.resources[0];
+      alert(firstelement);
     }
     firstelement = ['<th class="status-matrix-element status-matrix-resource">',
                     firstelement.name,
