@@ -72,7 +72,7 @@
                 {{if ~resource.running_on.length == 0}}
                   {{!-- Todo --}}
                 {{else}}
-                  {{for ~resource.running_on itemVar="~nodeWhereTheResourceRun"}}
+                  {{props ~resource.running_on itemVar="~nodeWhereTheResourceRun"}}
                     {{if ~node.state === "offline" }}
                       {{!-- Todo: the node is offline, gray background --}}
                     {{else ~node.state === "unclean" }}
@@ -80,7 +80,7 @@
                     {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "started")}}
                       <i class="fa fa-circle fa-lg text-success" title="Started"></i>
                     {{/if}}
-                  {{/for}}
+                  {{/props}}
                 {{/if}}
                 </td>
               {{/for}}
