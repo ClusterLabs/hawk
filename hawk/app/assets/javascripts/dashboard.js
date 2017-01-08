@@ -121,7 +121,8 @@
     }
   }
 
-  function displayClusterStatus(clusterId, cib) {
+  function displayClusterStatus(clusterId, cib, mini) {
+    mini = typeof(mini) !== 'undefined' ? mini : false; // Set default values to fetch mini data
     if (cib.meta.status == "ok") {
       indicator(clusterId, "ok");
     } else {
@@ -160,50 +161,54 @@
     text += '<div class="row">';
     text += '<div class="col-md-12 text-center dash-cluster-content">';
 
-    // var status_summary = {
-    //   cluster_name: $('body').data('content').crm_config.cluster_name, // TODO to be changed to the cluster_name, since the cib object which is fetched from "/cib/live?mini=true&format=json" does not contain that, should be fetched from "/cib/live?format=json", see function "clusterRefresh"
-    //   nodes: [],
-    //   resources: [],
-    //   tickets: []
-    // };
-    //
-    // $.each(cib.nodes, function(n, v) {
-    //   // status_summary.nodes.push({ name: n, state: v, remote: isRemote(cib, n) });  //TODO
-    // });
-    //
-    // $.each(cib.resources, function(n, v) {
-    //   var rsc = {name: n, instances: []};
-    //   $.each(v, function(nn, vv) {
-    //     rsc.instances.push({node: nn, state: vv});
-    //   });
-    //   status_summary.resources.push(rsc);
-    // });
-    //
-    // $.each(cib.tickets, function(n, v) {
-    //   status_summary.tickets.push({name: n, state: v});
-    // });
+    // BEGIN TESTING
+    if(mini) {
+      var status_summary = {
+        nodes: [],
+        resources: [],
+        tickets: []
+      };
 
-    // var cwidth = Math.min(cib.nodes.length * 36 + 36, 360) + 20;
-    // var cheight = cib.resources.length * 24 + cib.tickets.length * 24;
+      $.each(cib.nodes, function(n, v) {
+        status_summary.nodes.push({ name: n, state: v, remote: isRemote(cib, n) });
+      });
 
-    // text += '<canvas width="' + cwidth + '" height="' + cheight + '"></canvas>';
+      $.each(cib.resources, function(n, v) {
+        var rsc = {name: n, instances: []};
+        $.each(v, function(nn, vv) {
+          rsc.instances.push({node: nn, state: vv});
+        });
+        status_summary.resources.push(rsc);
+      });
 
-    // text += '</div>';
-    // text += '</div>';
+      $.each(cib.tickets, function(n, v) {
+        status_summary.tickets.push({name: n, state: v});
+      });
 
-    // var cs = checksum(text + JSON.stringify(cib));
+      var cwidth = Math.min(status_summary.nodes.length * 36 + 36, 360) + 20;
+      var cheight = status_summary.resources.length * 24 + status_summary.tickets.length * 24;
 
-    // if (tag.data('hash') != cs) {
-      // tag.html(text);
-      // tag.data('hash', cs);
-      // tag.find('canvas').cibStatusMatrix(cib);
+      text += '<canvas width="' + cwidth + '" height="' + cheight + '"></canvas>';
+
+      text += '</div>';
+      text += '</div>';
+
+      var cs = checksum(text + JSON.stringify(status_summary));
+
+      if (tag.data('hash') != cs) {
+        tag.html(text);
+        tag.data('hash', cs);
+        tag.find('canvas').cibStatusMatrix(status_summary);
+      }
+    } else {
       statusTable.init(cib);
-
-    // }
+    }
+    // END TESTING
 
   }
 
-  function clusterConnectionError(clusterId, clusterInfo, xhr, status, error, cb) {
+  function clusterConnectionError(clusterId, clusterInfo, xhr, status, error, cb, mini) {
+    mini = typeof(mini) !== 'undefined' ? mini : false; // Set default values to fetch mini data
     if (window.userIsNavigatingAway)
       return;
     var msg = "";
@@ -273,7 +278,7 @@
       tag.html(basicCreateBody(clusterId, clusterInfo));
 
       if (clusterInfo.host == null) {
-        clusterRefresh(clusterId, clusterInfo);
+        clusterRefresh(clusterId, clusterInfo, mini);
       } else {
         tag.find("button.btn").click(function() {
           var username = tag.find("input[name=username]").val();
@@ -282,7 +287,7 @@
           tag.find('input').attr('disabled', true);
           clusterInfo.username = username;
           clusterInfo.password = password;
-          startRemoteConnect(clusterId, clusterInfo);
+          startRemoteConnect(clusterId, clusterInfo, mini);
         });
       }
     });
@@ -329,26 +334,38 @@
     });
   }
 
-  function clusterRefresh(clusterId, clusterInfo) {
+  function clusterRefresh(clusterId, clusterInfo, mini) {
+    mini = typeof(mini) !== 'undefined' ? mini : false; // Set default values to fetch mini data
+    data_url = mini ? "/cib/live?mini=true&format=json" : "/cib/live?format=json";
     indicator(clusterId, "refresh");
 
         ajaxQuery({
-          url: baseUrl(clusterInfo) + "/cib/live?format=json",
+          url: baseUrl(clusterInfo) + data_url,
           type: "GET",
           data: { _method: 'show' },
           crossDomain: clusterInfo.host != null,
           success: function(data) {
             console.log("\n\n\n\n" + Array(100).join("=") + "\n\n dashboard.js (before modification) \n\n" + JSON.stringify(data) + "\n\n\n\n" + Array(100).join("=") + "\n\n\n\n"); // to remove (just for testing)
-            $.each(data.nodes, function(node, node_values) {
-              if (!isRemote(data, node_values.uname)) {
-                if ($.inArray(clusterInfo.reconnections, node_values.uname) === -1) {
-                  clusterInfo.reconnections.push(node_values.uname);
+            if (mini){
+              $.each(data.nodes, function(node, _state) {
+                if (!isRemote(data, node)) {
+                  if ($.inArray(clusterInfo.reconnections, node) === -1) {
+                    clusterInfo.reconnections.push(node);
+                  }
                 }
-              }
-            });
-        displayClusterStatus(clusterId, data);
+              });
+            } else {
+              $.each(data.nodes, function(node, node_values) {
+                if (!isRemote(data, node_values.uname)) {
+                  if ($.inArray(clusterInfo.reconnections, node_values.uname) === -1) {
+                    clusterInfo.reconnections.push(node_values.uname);
+                  }
+                }
+              });
+            }
+        displayClusterStatus(clusterId, data, mini);
         $("#" + clusterId).data('epoch', data.meta.epoch);
-        clusterUpdate(clusterId, clusterInfo);
+        clusterUpdate(clusterId, clusterInfo, mini);
       },
       error: function(xhr, status, error) {
         var tag = $('#' + clusterId + ' div.panel-body');
@@ -363,12 +380,12 @@
             tag.find('input').attr('disabled', true);
             clusterInfo.username = username;
             clusterInfo.password = password;
-            startRemoteConnect(clusterId, clusterInfo);
+            startRemoteConnect(clusterId, clusterInfo, mini);
           });
         } else {
           clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
             if (clusterInfo.host == null) {
-              clusterRefresh(clusterId, clusterInfo);
+              clusterRefresh(clusterId, clusterInfo, mini);
             } else if (("reconnections" in clusterInfo) && clusterInfo.reconnections.length > 1) {
               var currHost = clusterInfo.host;
               var currFirst = clusterInfo.reconnections[0];
@@ -376,20 +393,21 @@
               clusterInfo.reconnections.push(currHost);
               clusterInfo.host = currFirst;
               if (currFirst == null) {
-                clusterRefresh(clusterId, clusterInfo);
+                clusterRefresh(clusterId, clusterInfo, mini);
               } else {
-                startRemoteConnect(clusterId, clusterInfo);
+                startRemoteConnect(clusterId, clusterInfo, mini);
               }
             } else {
-              clusterRefresh(clusterId, clusterInfo);
+              clusterRefresh(clusterId, clusterInfo, mini);
             }
-          });
+          }, mini);
         }
       }
     });
   }
 
-  function clusterUpdate(clusterId, clusterInfo) {
+  function clusterUpdate(clusterId, clusterInfo, mini) {
+    mini = typeof(mini) !== 'undefined' ? mini : false; // Set default values to fetch mini data
     var current_epoch = $("#" + clusterId).data('epoch');
     ajaxQuery({
       url: baseUrl(clusterInfo) + "/monitor.json",
@@ -399,27 +417,28 @@
       crossDomain: clusterInfo.host != null,
       success: function(data) {
         if (data.epoch != current_epoch) {
-          clusterRefresh(clusterId, clusterInfo);
+          clusterRefresh(clusterId, clusterInfo, mini);
         } else {
-          clusterUpdate(clusterId, clusterInfo);
+          clusterUpdate(clusterId, clusterInfo, mini);
         }
       },
       error: function(xhr, status, error) {
         clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
-          clusterRefresh(clusterId, clusterInfo);
-        });
+          clusterRefresh(clusterId, clusterInfo, mini);
+        }, mini);
       }
     });
   }
 
-  function startRemoteConnect(clusterId, clusterInfo) {
+  function startRemoteConnect(clusterId, clusterInfo, mini) {
+    mini = typeof(mini) !== 'undefined' ? mini : false; // Set default values to fetch mini data
     indicator(clusterId, "refresh");
 
     var username = clusterInfo.username || "hacluster";
     var password = clusterInfo.password;
 
     if (password === null) {
-      clusterConnectionError(clusterId, clusterInfo, { readyState: 1, status: 0 }, "error", "", function() {});
+      clusterConnectionError(clusterId, clusterInfo, { readyState: 1, status: 0 }, "error", "", function() {}, mini);
       return;
     }
 
@@ -429,7 +448,7 @@
       type: "POST",
       data: {"session": {"username": username, "password": password } },
       success: function(data) {
-        clusterRefresh(clusterId, clusterInfo);
+        clusterRefresh(clusterId, clusterInfo, mini);
       },
       error: function(xhr, status, error) {
         clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
@@ -441,11 +460,11 @@
             clusterInfo.host = currFirst;
           }
           if (clusterInfo.host == null) {
-            clusterRefresh(clusterId, clusterInfo);
+            clusterRefresh(clusterId, clusterInfo, mini);
           } else {
-            startRemoteConnect(clusterId, clusterInfo);
+            startRemoteConnect(clusterId, clusterInfo, mini);
           }
-        });
+        }, mini);
       }
     });
   }
@@ -556,7 +575,8 @@
 
     updateLayout();
 
-    clusterRefresh(clusterId, data);
+    clusterRefresh(clusterId, data, true); // Change mini here
+    clusterRefresh(clusterId, data, false); // Change mini here
   };
 
   window.dashboardSetupAddClusterForm = function() {
