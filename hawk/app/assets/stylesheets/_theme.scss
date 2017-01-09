@@ -77,10 +77,10 @@ $simulator-right: #80c235;
 $body-text:'Roboto', sans-serif;
 $white: #fff;
 $black: #000;
-$theme-green: #00b268;
+$theme-green: #00c081;
 $theme-green-border: #089E5F;
-$tablist-border: #E8E8E8;
-$tablist-border-hover: #BFBEBE;
+$tablist-border: #ddd;
+$tablist-border-hover: #E0E0E0;
 $error-message-bg: #ECCACA;
 $error-message-border: #f2dede;
 $pre-bg: #F5F5F5;
@@ -88,12 +88,11 @@ $pre-border: #ECECEC;
 $bg-info-bg: #d9edf7;        
 $bg-info-border: #C6E2F1;
 $well-bg: #F5F5F5;
-$tablist-dark-gray: #ececec;
-$tablist-light-gray: #fdfdfd;
+$tablist-dark-gray: #f3f3f3;
 $tablist-dark-gray-hover: #dcdcdc;
 $tablist-light-gray-hover: #eaeaea;
 $copyright-fg: #999;
-$footer-border: 1px solid #666;
+$footer-border: 1px solid #445C6F;
 
 // ----  content.scss variables - login page ----
 $darkbar-bg: #2b2b2b;
@@ -101,13 +100,13 @@ $darkbar-heading-fg: $theme-green;
 $rightbar-bg: #ebebeb;
 $sidebar-headings-fg: rgb(58, 62, 64);
 $sidebar-headings-font-family: $headings-font-family;
-$sidebar-highlight-fg: #80c235;
+$sidebar-highlight-fg: $theme-green;
 $sidebar-link-hover-fg: darken($white, 20.0%);
 $sidebar-separator-fg: #333;
 $sidebar-link-fg: $white;
 $sidebar-heading-fg: $theme-green;
 $sidebar-fg: $white;
-$sidebar-bg: #383c3e;
+$sidebar-bg: #013157;
 
 
 
