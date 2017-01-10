@@ -30,7 +30,7 @@
           text-align: center;
           background: #EAEAEA;
           margin-right: 10px;
-          border-right: 1px solid #ddd;
+          border-right: 1px solid $tablist-border;
         }
 
         .pull-right {
@@ -66,7 +66,7 @@
           text-align: center;
           background: #EAEAEA;
           margin-right: 10px;
-          border-right: 1px solid #ddd;
+          border-right: 1px solid $tablist-border;
         }
       }
 
@@ -75,17 +75,18 @@
         margin: 20px 15px 0;
 
         li {
+          border-radius: 4px;
           margin: 0;
           padding: 0;
-          border-radius: 4px;
+          
           a {
+            background: $white;
+            border: 1px solid $tablist-border;
             color: $nav-bighelp-fg;
             font-size: 15px;
             margin: 0;
-            padding: 10px 10px;
-            border: 1px solid #ddd;
             margin-bottom: 14px;
-            background: $white;
+            padding: 10px;
 
             .pull-right {
               font-size: 20px;
@@ -93,14 +94,12 @@
               padding: 0;
 
               .fa {
-                font-size: 1.0em;
-              }
-              &:hover{
-                color: $pull-right-hover;
+                font-size: 1em;
               }
             }
             &:hover {
               @include tablist-background($white, $tablist-border-hover);
+              
               .pull-right {
                 color: $pull-right-hover;
               }
@@ -115,7 +114,8 @@
           font-size: 1.3em;
         }
       }
-      &:hover{
+
+      &:hover {
         background: none;
       }
     }
