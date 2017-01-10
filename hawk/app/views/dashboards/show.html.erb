@@ -16,7 +16,7 @@
   <% # passing null as name and host means to fetch local cluster information %>
   <% unless current_cib.offline? %>
     <script>
-      dashboardAddCluster({"name":null, "host":null, "port":null, https:null, "interval":10, "status_format": "canvas&table"}); // Possible values for status_format: "table", "canvas" and "canvas&table" 
+      dashboardAddCluster({"name":null, "host":null, "port":null, https:null, "interval":10, "status_format": "canvas&table"}); // Possible values for status_format: "table", "canvas" and "canvas&table"
     </script>
   <% end %>
   <script>
@@ -28,13 +28,13 @@
   <div id="status-table"></div>
 
   <script id="status-table-template" type="text/x-jsrender">
-    <table class="table table-bordered">
+    <table id="table-template" class="table table-bordered">
       <tbody>
         {{!-- NODES ROW--}}
         <tr id="nodes-table-row">
-          <th class="col-sm-1"></th>
+          <th class="col-sm-1"><span id="table-cluster-name">{{:~root.crm_config.cluster_name}}</span></th>
           {{for ~root.nodes itemVar="~node"}}
-            <th id="node-{{:name}}">{{:name}}<span>{{:~root.crm_config.cluster_name}}</span>
+            <th id="node-{{:name}}">{{:name}}
               {{if ~node.state === "unclean"}}
                 {{:~saveAttrs("node" ,"#node-" + name, "status-error")}}
               {{else ~node.state === "online"}}
