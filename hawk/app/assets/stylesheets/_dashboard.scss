@@ -80,7 +80,7 @@ table tr th {
   text-align: center;
 }
 
-table tr th span {
+.cluster-name {
   display: block;
   color: #666;
   font-size: 12px;
@@ -113,12 +113,4 @@ table tr td:hover .fa-circle:before{
 
 .status-offline {
   color: gray;
-}
-
-.status-maintenance {
-  color: orange;
-}
-
-.status-remote {
-  color: #00aeef;
 }

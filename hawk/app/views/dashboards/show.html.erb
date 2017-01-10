@@ -32,21 +32,26 @@
       <tbody>
         {{!-- NODES ROW--}}
         <tr id="nodes-table-row">
-          <th class="col-sm-1"><span id="table-cluster-name">{{:~root.crm_config.cluster_name}}</span></th>
+          <th class="col-sm-1 cluster-name">
+            <span id="table-cluster-name">{{:~root.crm_config.cluster_name}}</span>
+          </th>
           {{for ~root.nodes itemVar="~node"}}
-            <th id="node-{{:name}}">{{:name}}
+            <th><span id="node-{{:name}}">{{:name}}</span>
               {{if ~node.state === "unclean"}}
                 {{:~saveAttrs("node" ,"#node-" + name, "status-error")}}
+                <span class="label label-danger">Unclean</span><
               {{else ~node.state === "online"}}
                 {{:~saveAttrs("node" ,"#node-" + name, "status-success")}}
+                <span class="label label-success">Online</span>
               {{else ~node.state === "offline"}}
                 {{:~saveAttrs("node" ,"#node-" + name, "status-offline")}}
+                <span class="label label-default">Offline</span>
               {{/if}}
               {{if ~node.remote == true}}
-                {{:~saveAttrs("node" ,"#node-" + name, "status-remote")}}
+                <i class="fa fa-cloud" aria-hidden="true" title="Remote node"></i>
               {{/if}}
               {{if ~node.maintenance == true}}
-                {{:~saveAttrs("node" ,"#node-" + name, "status-maintenance")}}
+              <i class="fa fa-user-md" aria-hidden="true" title="This node is in maintenance mode"></i>
               {{/if}}
             </th>
           {{/for}}
