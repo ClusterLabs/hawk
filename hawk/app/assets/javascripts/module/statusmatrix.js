@@ -12,6 +12,7 @@ var statusTable = {
       this.initHelpers(); // Intialize helper methods for using them inside the template in "dashboards/show.html.erb
       this.render(); // Renders the table using the template in "dashboards/show.html.erb"
       this.applyStyles(); // Set the appropriate classes after rendering the table (using tableAttrs)
+      this.FormatClusterName(); // Set the title attribute for the cluster name to show cluster details
       this.printLog(); // Testing
     },
     cacheData: function(cibData) {
@@ -19,7 +20,8 @@ var statusTable = {
     },
     cacheDom: function() {
       this.$container = $('#dashboard-container');
-      this.$table = this.$container.find("#status-table");
+      this.$table = this.$container.find("#status-table"); // this.$table is the div where the table will be rendred
+      this.$template = this.$container.find("#status-table-template");
     },
     render: function() {
       $.templates('myTmpl', { markup: "#status-table-template", allowCode: true });
@@ -36,8 +38,19 @@ var statusTable = {
     },
     applyStyles: function() {
        $.each(this.tableAttrs, function(index, element){
-        $(element.id).attr("class", element.className)
+         $(element.id).attr("class", element.className);
        });
+    },
+    FormatClusterName: function(){
+      // Adding title to cluster name cell in the table and adding the information icon next to it
+      var meta = this.tableData.meta;
+      var title_value = "Status:\b" + meta.status +
+                        "\nEpoch:\b" + meta.epoch +
+                        "\nUpdate Origin:\b" + meta.update_origin +
+                        "\nUpdate User:\b" + meta.update_user +
+                        "\nStack:\b" + meta.stack;
+      var info_icon = '&nbsp;<i class="fa fa-info-circle" aria-hidden="true"></i>';
+      this.$table.find("#table-cluster-name").attr("title", title_value).append(info_icon);
     },
     printLog: function() {
       console.log(JSON.stringify(this.tableData));
