@@ -9,88 +9,114 @@
   &.nav-bighelp {
 
     li {
-      @include tablist-background($tablist-light-gray, $tablist-dark-gray);
       font-size: 1.2em;
       margin-bottom: 20px;
-      padding: 15px 20px;
+      padding: 0px;
       color: $nav-bighelp-fg;
       text-align: left;
       border-color: $tablist-border;
+      border-radius: 3px;
+      
       a {
-        padding: 0;
+        @include tablist-background($white, $tablist-dark-gray);
+        padding: 0px 20px 0px 0px;
         color: #444;
-        background: transparent;
-        &:hover {
-          background: none;
-        }
+        
         & > i {
           padding-right: 10px;
-          font-size: 1.0em;
+          font-size: 1.1em;
+          padding: 18px 0;
+          width: 56px;
+          text-align: center;
+          background: #EAEAEA;
+          margin-right: 10px;
+          border-right: 1px solid $tablist-border;
         }
 
         .pull-right {
           font-size: 1.3em;
+          margin-top: 17px;
         }
+
         &:hover {
+          @include tablist-background($white, $tablist-border-hover);
           .pull-right {
             color: $pull-right-hover;
           }
         }
       }
+    }
 
-      &.toggable {
-        span {
-          .pull-right {
-            font-size: 1.3em;
-          }
-          & > i {
-            padding-right: 10px;
-          }
+    .toggable {
+      span {
+        @include tablist-background($white, $tablist-dark-gray);
+        padding: 0px 20px 0px 0px;
+        color: #444;
+
+        .pull-right {
+          font-size: 1.3em;
+          margin-top: 17px;
         }
+        
+        & > i {
+          padding-right: 10px;
+          font-size: 1.1em;
+          padding: 18px 0;
+          width: 56px;
+          text-align: center;
+          background: #EAEAEA;
+          margin-right: 10px;
+          border-right: 1px solid $tablist-border;
+        }
+      }
 
-        ul {
-          margin-top: 20px;
 
-          li {
+      ul {
+        margin: 20px 15px 0;
+
+        li {
+          border-radius: 4px;
+          margin: 0;
+          padding: 0;
+          
+          a {
+            background: $white;
+            border: 1px solid $tablist-border;
+            color: $nav-bighelp-fg;
+            font-size: 15px;
             margin: 0;
-            padding: 0;
-            border-radius: 4px;
-            a {
-              color: $nav-bighelp-fg;
-              font-size: 15px;
+            margin-bottom: 14px;
+            padding: 10px;
+
+            .pull-right {
+              font-size: 20px;
               margin: 0;
-              padding: 10px 10px;
-              border: 1px solid #ddd;
-              margin-bottom: 14px;
-              background: $white;
+              padding: 0;
 
+              .fa {
+                font-size: 1em;
+              }
+            }
+            &:hover {
+              @include tablist-background($white, $tablist-border-hover);
+              
               .pull-right {
-                font-size: 20px;
-                margin: 0;
-                padding: 0;
-
-                .fa {
-                  font-size: 1.0em;
-                }
-                &:hover{
-                  color: $pull-right-hover;
-                }
+                color: $pull-right-hover;
               }
             }
           }
         }
+      }
 
-        & > span {
-          display: block;
-          .pull-right {
-            font-size: 1.3em;
-          }
+      & > span {
+        display: block;
+        .pull-right {
+          font-size: 1.3em;
         }
       }
+
       &:hover {
-        @include tablist-background($tablist-dark-gray-hover, $tablist-light-gray-hover);
-        border-color: $tablist-border-hover;
-        color: $black;
+        background: none;
       }
     }
   }
