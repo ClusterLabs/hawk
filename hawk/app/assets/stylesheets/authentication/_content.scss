@@ -13,15 +13,14 @@
   .alert {
     margin: 20px 15px 0 15px;
     background: transparent;
-    border-color: #d35353;
-    color: #6F4D4D;
+    border-color: $login-alert-border;
 
     p {
-      color: #ff9696;
+      color: $login-alert-fg;
     }
 
     button.close {
-      color: #ff9696;
+      color: $login-alert-fg;
       opacity:1;
       text-shadow: none;
     }
@@ -44,17 +43,17 @@
     position: relative;
     margin: 0 0 50px;
     font-weight: lighter;
-    color: #00c286;
+    color: $theme-green;
   }
 
   p {
-    color: #fff;
+    color: $white;
     font-weight: 400;
   }
 
   h3 {
     font-size: 30px;
-    color: #fff;
+    color: $white;
     margin: 0 0 10px 0;
     font-weight: lighter;
     font-family: $body-text;
@@ -67,17 +66,17 @@
     input.form-control:-webkit-autofill:focus,
     input.form-control:-webkit-autofill:hover,
     input.form-control:-webkit-autofill:active {
-      -webkit-box-shadow: 0 0 0px 1000px #002644 inset;
-      -webkit-text-fill-color: #a7a9ac !important;
-      border-color: #02477e;
+      -webkit-box-shadow: 0 0 0px 1000px $login-input-bg inset;
+      -webkit-text-fill-color: $login-input-fg !important;
+      border-color: $login-input-border;
     }
 
     input.form-control {
-      background-color: #002644;
-      border-color: #02477e;
-      box-shadow:0px 1px 0px 0px #004981, 0px 1px 0px 0px #001b2f inset;
-      -webkit-box-shadow: 0px 1px 0px 0px #004981, 0px 1px 0px 0px #001b2f inset;
-      -moz-box-shadow: 0px 1px 0px 0px #004981, 0px 1px 0px 0px #001b2f inset;
+      background-color: $login-input-fg;
+      border-color: $login-input-border;
+      -moz-box-shadow: 0 0 0px 1000px $login-input-bg inset;
+      -webkit-box-shadow: 0 0 0px 1000px $login-input-bg inset;
+      box-shadow:0 0 0px 1000px $login-input-bg inset;
     }
   }
 }
