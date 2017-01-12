@@ -12,7 +12,7 @@ html {
 }
 
 body {
-  background: #013157;
+  background: $sidebar-bg;
   font-family: $body-text;
   color: $body-text-color;
   height: 100%;
@@ -24,4 +24,9 @@ body {
 
 header {
   background: $header-bg;
+
+  .navbar-brand {
+    padding: 20px 15px 17px 15px;
+    height: auto;
+  }
 }

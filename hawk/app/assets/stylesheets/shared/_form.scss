@@ -145,20 +145,17 @@
 .btn-primary.disabled, .btn-primary.disabled:active, .btn-primary.disabled:focus,
 .btn-primary[disabled], .btn-primary[disabled]:active, .btn-primary[disabled]:focus,
 fieldset[disabled], fieldset[disabled]:active, fieldset[disabled]:focus,
-.btn-primary {
+.btn-primary, .btn-primary:active, .btn-primary.active, .btn-primary:active:focus,
+.btn-primary:focus, .btn-primary.focus {
   background: $theme-green;
   border-color: $theme-green-border;
+  
   &:hover {
-    background: $theme-green;
+    background: darken( $theme-green, 5% );
     border-color: $theme-green-border;
   }
-  &:active, &:focus, .active, &:active:focus {
-    &:hover {
-      background: $theme-green;
-      border-color: $theme-green-border;
-    }
-  }
 }
+
 
 .daterangepicker .ranges li {
   color: #666;

@@ -9,7 +9,7 @@ footer {
   z-index: 950;
 
   .copyright{
-    color: #ccc;
+    color: $copyright-fg;
   }
   .logo {
     text-align: right;
@@ -17,7 +17,7 @@ footer {
 
   .bottom-line {
     height: 12px;
-    background: #00c081;
+    background: $theme-green;
     margin-top: 12px;
   }
 }
