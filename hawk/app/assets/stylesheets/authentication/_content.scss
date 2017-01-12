@@ -2,7 +2,7 @@
 // See COPYING for license.
 
 #content {
-  width: 300px;
+  padding-top: 10em;
 
   &.darkbar {
     background-color: $darkbar-bg;
@@ -25,24 +25,46 @@
   }
 
   h2 {
-    font-size: 30px;
+    font-size: 52px;
+    font-family: $body-text;
     display: block;
     position: relative;
-    text-align: center;
-    margin: 50px 20px 55px 20px;
-
-    a {
-      color: $darkbar-heading-fg;
-      text-decoration: none;
-
-      &:hover {
-        color: $darkbar-heading-fg;
-        text-decoration: none;
-      }
-    }
+    margin: 0 0 50px;
+    font-weight: lighter;
+    color: #00c286;
   }
 
-  form {
-    margin: 15px 10px 30px 10px;
+  p {
+    color: #fff;
+    font-weight: 400;
+  }
+
+  h3 {
+    font-size: 30px;
+    color: #fff;
+    margin: 0 0 10px 0;
+    font-weight: lighter;
+    font-family: $body-text;
+  }
+
+  #new_session {
+    margin: 15px 10px 30px 0px;
+    
+    input.form-control:-webkit-autofill,
+    input.form-control:-webkit-autofill:focus,
+    input.form-control:-webkit-autofill:hover,
+    input.form-control:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0px 1000px #002644 inset;
+      -webkit-text-fill-color: #a7a9ac !important;
+      border-color: #02477e;
+    }
+
+    input.form-control {
+      background-color: #002644;
+      border-color: #02477e;
+      box-shadow:0px 1px 0px 0px #004981, 0px 1px 0px 0px #001b2f inset;
+      -webkit-box-shadow: 0px 1px 0px 0px #004981, 0px 1px 0px 0px #001b2f inset;
+      -moz-box-shadow: 0px 1px 0px 0px #004981, 0px 1px 0px 0px #001b2f inset;
+    }
   }
 }

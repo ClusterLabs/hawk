@@ -12,12 +12,16 @@ html {
 }
 
 body {
-  @include horizontal-gradient-background($simulator-left, $simulator-right);
-  font-family: $font-family-base;
+  background: #013157;
+  font-family: $body-text;
   color: $body-text-color;
   height: 100%;
   cursor: default;
   margin-bottom: 80px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+header {
+  background: $header-bg;
 }
