@@ -46,6 +46,9 @@
               {{else ~node.state === "offline"}}
                 {{:~saveAttrs("node" ,"#node-" + name, "status-offline")}}
                 <span class="label label-default">Offline</span>
+              {{else ~node.state === "standby"}}
+                {{:~saveAttrs("node" ,"#node-" + name, "status-standby")}}
+                <span class="label label-default">Standby</span>
               {{/if}}
               {{if ~node.remote == true}}
                 <i class="fa fa-cloud" aria-hidden="true" title="Remote node"></i>
