@@ -19,21 +19,50 @@
     -->
   </head>
   <body id="<%= controller_name %>">
-    <div class="container darkbar" id="content">
-      <noscript>
-        <div class="alert alert-warning" role="alert">
-          <%= _("Please ensure Javascript is enabled") %>
+    <header>
+      <div class="container">
+        <div class="row">
+          <div class="navbar-header" role="navigation">
+            <%= link_to image_tag("head/white.png"), root_path, class: "navbar-brand" %>
+          </div>
         </div>
-      </noscript>
-      <p class="logo">
-        <%= image_tag "logo/white.png", alt: _("SUSE, LLC") %>
-      </p>
-      <h2>
-        <%= link_to _("High Availability Web Konsole"), login_path %>
-      </h2>
-      <%= render partial: "shared/flash", locals: { flash: flash } %>
-      <%= yield %>
-    </div>
-    <%= render partial: "shared/modal" %>
+      </div>
+    </header>
+
+    <section>
+      <div class="container" id="content">
+        <div class="row">
+
+          <div class="col-sm-6 hidden-xs">
+             <h2>
+              SUSE <span>High Availability Web konsole</span>
+            </h2>
+            <p>Hawk is a web interface for the HA Pacemaker stack in Linux.
+              With Hawk, the management and configuration of HA clusters is greatly simplified.
+            </p>
+          </div>
+          <div class="col-sm-4 col-sm-offset-1">
+            <h3>Sign in</h3>
+            <%= render partial: "shared/flash", locals: { flash: flash } %>
+            <%= yield %>
+          </div>
+        </div>
+      </div>
+    </section>
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="col-sm-9">
+            <div class="copyright">Copyright © 2009-2017. SUSE, LLC</div>
+          </div>
+          <div class="col-sm-3">
+            <div class="logo">
+              <%= image_tag "logo/white.png", alt: _("SUSE, LLC") %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-line"></div>
+    </footer>
   </body>
 </html>

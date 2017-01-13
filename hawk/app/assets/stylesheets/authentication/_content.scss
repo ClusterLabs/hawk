@@ -2,7 +2,7 @@
 // See COPYING for license.
 
 #content {
-  width: 300px;
+  padding-top: 10em;
 
   &.darkbar {
     background-color: $darkbar-bg;
@@ -11,7 +11,19 @@
   }
 
   .alert {
-    margin: 20px 10px 0 10px;
+    margin: 20px 15px 0 15px;
+    background: transparent;
+    border-color: $login-alert-border;
+
+    p {
+      color: $login-alert-fg;
+    }
+
+    button.close {
+      color: $login-alert-fg;
+      opacity:1;
+      text-shadow: none;
+    }
   }
 
   .logo {
@@ -25,24 +37,53 @@
   }
 
   h2 {
-    font-size: 30px;
+    font-size: 52px;
+    font-family: $body-text;
     display: block;
     position: relative;
-    text-align: center;
-    margin: 50px 20px 55px 20px;
-
-    a {
-      color: $darkbar-heading-fg;
-      text-decoration: none;
-
-      &:hover {
-        color: $darkbar-heading-fg;
-        text-decoration: none;
-      }
+    margin: 0 0 50px;
+    font-weight: lighter;
+    color: $theme-green;
+    
+    span {    
+      display: block;
+      font-size: 40px;
+      font-weight: lighter;
     }
   }
 
-  form {
-    margin: 15px 10px 30px 10px;
+  p {
+    color: $login-text-fg;
+    font-weight: 400;
+    font-size: 16px;
+  }
+
+  h3 {
+    font-size: 30px;
+    color: $white;
+    margin: 0 0 10px 0;
+    font-weight: lighter;
+    font-family: $body-text;
+  }
+
+  #new_session {
+    margin: 15px 0px 30px 0px;
+    
+    input.form-control:-webkit-autofill,
+    input.form-control:-webkit-autofill:focus,
+    input.form-control:-webkit-autofill:hover,
+    input.form-control:-webkit-autofill:active {
+      -webkit-box-shadow: 0 0 0px 1000px $login-input-bg inset;
+      -webkit-text-fill-color: $login-input-fg !important;
+      border-color: $login-input-border;
+    }
+
+    input.form-control {
+      background-color: $login-input-fg;
+      border-color: $login-input-border;
+      -moz-box-shadow: 0 0 0px 1000px $login-input-bg inset;
+      -webkit-box-shadow: 0 0 0px 1000px $login-input-bg inset;
+      box-shadow:0 0 0px 1000px $login-input-bg inset;
+    }
   }
 }
