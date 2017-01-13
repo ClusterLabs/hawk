@@ -32,6 +32,8 @@
   padding-right: 0;
 
   ul {
+    margin-top: 30px;
+
     & > li {
       text-transform: uppercase;
       padding: 0 0 0 20px;
@@ -48,7 +50,7 @@
       li {
         text-transform: none;
         padding: 0;
-        margin-left: 20px;
+        margin-left: 10px;
 
         a {
           color: $sidebar-link-fg;
@@ -73,27 +75,6 @@
         border-bottom: 0;
         margin-bottom: 0;
       }
-    }
-  }
-
-  .status-btn {
-    margin: 15px 0;
-  }
-
-  .cluster-details-btn {
-    border: 1px solid $white;
-    border-top-right-radius: 3px;
-    border-bottom-right-radius: 3px;
-    border-left: 0;
-    color: $white;
-    display: inline-block;
-    padding: 4px 8px;
-    text-transform: capitalize;
-    &:hover {
-      text-decoration: none;
-    }
-    &:focus {
-      text-decoration: none;
     }
   }
 }
