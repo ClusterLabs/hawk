@@ -10,7 +10,7 @@
   float: left;
   text-align: center;
   vertical-align: middle;
-  //box-shadow: inset -10px -10px 100px #000, 10px 10px 20px black, inset 0px 0px 10px black;
+  /* box-shadow: inset -10px -10px 100px #000, 10px 10px 20px black, inset 0px 0px 10px black; */
 
   /*&::after {
     background-color: rgba(255, 255, 255, 0.3);
@@ -24,7 +24,7 @@
   }*/
 
   &.circle-success {
-    background-color: darken($alert-success-bg, 30%);
+    background-color: $theme-green;
     border-color: $alert-success-border;
     color: darken($alert-success-text, 10%);
   }
@@ -64,13 +64,14 @@
   &.circle-small {
     font-size: 14px;
     line-height: 20px;
-    height: 30px;
-    width: 30px;
+    height: 26px;
+    width: 26px;
+    border-radius: 13px
   }
 
   > .fa {
     color: $white;
-    font-size: 18px;
-    line-height: 30px;
+    font-size: 16px;
+    line-height: 27px;
   }
 }

@@ -3,11 +3,29 @@
 
 .navbar-fixed-top {
   margin-bottom: 0;
-  min-height:50px;
+  min-height:53px;
 
   &.navbar-inverse {
     border: 0;
     background: #01233e;
+  }
+
+  .status-btn {
+    margin: 14px 0 0 60px;
+    float: left;
+  }
+
+  .cluster-details-btn {
+    color: $white;
+    display: inline-block;
+    padding: 4px 8px;
+    text-transform: capitalize;
+    &:hover {
+      text-decoration: none;
+    }
+    &:focus {
+      text-decoration: none;
+    }
   }
 
   .navbar-header {
@@ -15,7 +33,7 @@
 
     .navbar-brand {
       height: auto;
-      padding: 15px 15px 10px 20px;
+      padding: 15px 15px 0 20px;
     }
   }
 
@@ -27,7 +45,7 @@
       float: left;
 
       a {
-        padding-top: 18px;
+        padding-top: 15px;
         padding-bottom: 15px;
       }
     }

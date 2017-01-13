@@ -7,6 +7,12 @@
         <div class="navbar-header">
           <%= link_to image_tag("head/white.png"), root_path, class: "navbar-brand" %>
         </div>
+        <div class="metadata status-btn">
+          <div  class="circle circle-small">
+            <i data-link="class{statusbuttonclass:meta.status}"></i>
+          </div>
+          <a class="cluster-details-btn" data-toggle="modal" data-target="#modal" href="<%= meta_cib_config_path(cib_id: current_cib.id) %>" title="<%= _("Cluster Details") %>" type="<button">View Cluster Details</a>
+        </div>
         <div class="navbar-right" id="navbar">
           <%= render partial: "shared/usernav" %>
         </div>
