@@ -44,11 +44,18 @@
     margin: 0 0 50px;
     font-weight: lighter;
     color: $theme-green;
+    
+    span {    
+      display: block;
+      font-size: 40px;
+      font-weight: lighter;
+    }
   }
 
   p {
-    color: $white;
+    color: $login-text-fg;
     font-weight: 400;
+    font-size: 16px;
   }
 
   h3 {
