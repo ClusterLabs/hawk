@@ -36,7 +36,7 @@
             <span id="table-cluster-name">{{:~root.crm_config.cluster_name}}</span>
           </th>
           {{for ~root.nodes itemVar="~node"}}
-            <th><span id="node-{{:name}}">{{:name}}</span>
+            <th><span id="node-{{:name}}" title="Node id: {{:~node.id}}">{{:name}}</span>
               {{if ~node.state === "unclean"}}
                 {{:~saveAttrs("node" ,"#node-" + name, "status-error")}}
                 <span class="label label-danger">Unclean</span><
