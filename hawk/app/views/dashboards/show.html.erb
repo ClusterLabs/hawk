@@ -54,7 +54,10 @@
                 <i class="fa fa-cloud" aria-hidden="true" title="Remote node"></i>
               {{/if}}
               {{if ~node.maintenance == true}}
-              <i class="fa fa-user-md" aria-hidden="true" title="This node is in maintenance mode"></i>
+                <i class="fa fa-user-md" aria-hidden="true" title="This node is in maintenance mode"></i>
+              {{/if}}
+              {{if ~node.fence_history !== ""}}
+                <i class="fa fa-refresh text-warning" title='{{:~node.fence_history}}'></i>
               {{/if}}
             </th>
           {{/for}}
