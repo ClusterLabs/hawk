@@ -39,7 +39,7 @@
             <th><span id="node-{{:name}}" title="Node id: {{:~node.id}}">{{:name}}</span>
               {{if ~node.state === "unclean"}}
                 {{:~saveAttrs("node" ,"#node-" + name, "status-error")}}
-                <span class="label label-danger">Unclean</span><
+                <span class="label label-danger">Unclean</span>
               {{else ~node.state === "online"}}
                 {{:~saveAttrs("node" ,"#node-" + name, "status-success")}}
                 <span class="label label-success">Online</span>
@@ -67,12 +67,16 @@
         <div id="resources-table-rows">
           {{for ~root.resources itemVar="~resource"}}
             <tr>
-              <td class="text-left" id="resource-{{:id}}">{{:id}}
-                {{if ~resource.state == "stopped"}} {{!-- to test --}}
+              <td class="text-left">
+                <span id="resource-{{:id}}">{{:id}}</span>
+                {{if ~resource.state === "stopped"}}
                   {{:~saveAttrs("resource" ,"#resource-" + id, "status-error")}}
-                {{/if}}
-                {{if ~resource.running_on.length != 0}}
+                  <h6><span class="label label-danger">Stopped</span></h6>
+                {{else ~resource.running_on.length != 0}}
                   {{:~saveAttrs("resource" ,"#resource-" + id, "status-success")}}
+                {{/if}}
+                {{if ~resource.maintenance == true}}
+                  <i class="fa fa-user-md" aria-hidden="true" title="This resource is in maintenance mode"></i>
                 {{/if}}
               </td>
               {{for ~root.nodes itemVar="~node"}}
