@@ -28,7 +28,11 @@
       <%= text_field_tag(param_id, sanitize_value(param.value), opts) %>
     <% end %>
   </div>
-  <div class="col-sm-5 help-block">
-    <%= param.shortdesc %>
+  <div class="form-group error-msg">
+    <div class="col-sm-5"></div>
+    <div class="col-sm-7 help-block">
+      <%= param.shortdesc %>
+    </div>
   </div>
 </div>
+
