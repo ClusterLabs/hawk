@@ -155,6 +155,10 @@ fieldset[disabled], fieldset[disabled]:active, fieldset[disabled]:focus,
   }
 }
 
+.btn:focus, .btn:active, .btn:active:focus {
+  outline: 0;
+}
+
 .daterangepicker .ranges li {
   color: #666;
 }
