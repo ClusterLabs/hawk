@@ -29,4 +29,39 @@ header {
     padding: 20px 15px 17px 15px;
     height: auto;
   }
+
+  .language-btn {
+    margin-top: 15px;
+    
+    .btn, .btn-default.dropdown-toggle {
+      background: none;
+      color: #ccc;
+      border: 0;
+       &:hover, :active:focus {
+        background: #004271;
+       }
+
+      .caret{
+        color: $theme-green;
+      }
+    }
+    .btn-default.dropdown-toggle:visited,
+    .btn-default.dropdown-toggle:hover, 
+    .btn-default.dropdown-toggle:focus { 
+      background: #004271;
+      color: #ccc;
+    }
+
+    .dropdown-menu {
+      background: $header-bg;
+
+      li a {
+        color: #bbb;
+        &:hover {
+          background:none;
+          color: $theme-green;
+        }
+      }
+    }
+  }
 }
