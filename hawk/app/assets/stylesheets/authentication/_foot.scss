@@ -8,8 +8,37 @@ footer {
   padding: 20px 0 0;
   z-index: 950;
 
+  .other-links {
+    display: block;
+    a {
+      color: $footer-icon-bg;
+      margin: 0 10px 7px 0;
+      float: left;
+
+      .circle {
+        width: 25px;
+        height: 25px;
+        background: $footer-icon-bg;
+        border-radius: 15px;
+
+        .fa {
+          color: $sidebar-bg;
+          font-size: 14px;
+        }
+
+        &:hover {
+          background: $theme-green;
+        }
+      }
+      &:hover {
+        color: $theme-green;
+      }
+    }
+  }
+
   .copyright {
     color: $copyright-fg;
+    clear: both;
   }
 
   .logo {
