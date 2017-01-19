@@ -47,14 +47,19 @@
                 {{:~saveAttrs("node" ,"#node-" + name, "status-offline")}}
                 <span class="label label-default">Offline</span>
               {{else ~node.state === "standby"}}
-                {{:~saveAttrs("node" ,"#node-" + name, "status-standby")}}
+                {{:~saveAttrs("node" ,"#node-" + name, "status-success")}}
+                <span class="label label-success">Online</span>
                 <span class="label label-default">Standby</span>
+              {{else ~node.state === "pending"}}
+                {{:~saveAttrs("node" ,"#node-" + name, "status-success")}}
+                <span class="label label-success">Online</span>
+                <span class="label label-warning">Pending</span>
               {{/if}}
               {{if ~node.remote == true}}
                 <i class="fa fa-cloud" aria-hidden="true" title="Remote node"></i>
               {{/if}}
               {{if ~node.maintenance == true}}
-                <i class="fa fa-user-md" aria-hidden="true" title="This node is in maintenance mode"></i>
+              <span class="label label-info">Maintenance</span>
               {{/if}}
               {{if ~node.fence_history !== ""}}
                 <i class="fa fa-refresh text-warning" title='{{:~node.fence_history}}'></i>
@@ -78,6 +83,9 @@
                 {{if ~resource.maintenance == true}}
                   <i class="fa fa-user-md" aria-hidden="true" title="This resource is in maintenance mode"></i>
                 {{/if}}
+                {{if ~resource["type"] === "master"}}
+                  <h6><span class="label label-primary">Multi-state</span></h6>
+                {{/if}}
               </td>
               {{for ~root.nodes itemVar="~node"}}
                 <td>
@@ -94,6 +102,12 @@
                       {{!-- Todo: the node is an unclean state, error --}}
                     {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "started")}}
                       <i class="fa fa-circle fa-lg text-success" title="Started"></i>
+                    {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "slave")}}
+                        <i class="fa fa-circle fa-lg text-success" title="Started"></i>
+                        <span class="label label-warning">Slave</span>
+                    {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "master")}}
+                        <i class="fa fa-circle fa-lg text-success" title="Started"></i>
+                        <span class="label label-info">Master</span>
                     {{/if}}
                   {{/props}}
                 {{/if}}

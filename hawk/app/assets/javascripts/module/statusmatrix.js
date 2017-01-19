@@ -261,7 +261,7 @@ $(function() {
             }
           }
 
-          if (rsc.instances.length == 0 && !("_stopped" in rsc)) {
+          if (rsc.instances.length == 0 && !("_stopped" in rsc)) { // stopped state
             rsc._stopped = true;
             var srsc = {name: rsc.name, state: "stopped"};
             stopped.row[row] = srsc;
