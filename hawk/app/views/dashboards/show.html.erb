@@ -59,7 +59,7 @@
                 <i class="fa fa-cloud" aria-hidden="true" title="Remote node"></i>
               {{/if}}
               {{if ~node.maintenance == true}}
-              <span class="label label-info">Maintenance</span>
+                <span class="label label-info">Maintenance</span>
               {{/if}}
               {{if ~node.fence_history !== ""}}
                 <i class="fa fa-refresh text-warning" title='{{:~node.fence_history}}'></i>
@@ -74,19 +74,28 @@
             <tr>
               <td class="text-left">
                 <span id="resource-{{:id}}">{{:id}}</span>
-                {{if ~resource.state === "stopped"}}
+                {{if ~resource.state === "stopped" && ~resource["attributes"]["target-role"] === "Stopped"}}
+                  {{:~saveAttrs("resource" ,"#resource-" + id, "status-offline")}}
+                  <h6><span class="label label-default">Disabled</span></h6>
+                {{else ~resource.state === "stopped"}}
                   {{:~saveAttrs("resource" ,"#resource-" + id, "status-error")}}
                   <h6><span class="label label-danger">Stopped</span></h6>
-                {{else ~resource.running_on.length != 0}}
+                {{/if}}
+
+
+                {{if ~resource.state !== "stopped"}}
                   {{:~saveAttrs("resource" ,"#resource-" + id, "status-success")}}
                 {{/if}}
+
                 {{if ~resource.maintenance == true}}
-                  <i class="fa fa-user-md" aria-hidden="true" title="This resource is in maintenance mode"></i>
+                  <span class="label label-info">Maintenance</span>
                 {{/if}}
+
                 {{if ~resource["type"] === "master"}}
                   <h6><span class="label label-primary">Multi-state</span></h6>
                 {{/if}}
               </td>
+
               {{for ~root.nodes itemVar="~node"}}
                 <td>
                 {{if ~node.state === "unclean" }}
