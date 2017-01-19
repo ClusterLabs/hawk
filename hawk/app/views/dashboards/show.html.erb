@@ -85,6 +85,7 @@
 
                 {{if ~resource.state !== "stopped"}}
                   {{:~saveAttrs("resource" ,"#resource-" + id, "status-success")}}
+                  <h6><span class="label label-success">Started</span></h6>
                 {{/if}}
 
                 {{if ~resource.maintenance == true}}
@@ -100,16 +101,13 @@
                 <td>
                 {{if ~node.state === "unclean" }}
                   <i class="fa fa-circle fa-lg text-danger"></i>
-                {{/if}}
-                {{if ~resource.running_on.length == 0}}
-                  {{!-- Todo --}}
+                {{else ~resource.state === "stopped"}}
+                  <i class="fa fa-circle fa-lg text-danger"></i>
+                {{else ~node.state === "offline" }}
+                  <i class="fa fa-circle fa-lg text-offline"></i>
                 {{else}}
                   {{props ~resource.running_on itemVar="~nodeWhereTheResourceRun"}}
-                    {{if ~node.state === "offline" }}
-                      {{!-- Todo: the node is offline, gray background --}}
-                    {{else ~node.state === "unclean" }}
-                      {{!-- Todo: the node is an unclean state, error --}}
-                    {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "started")}}
+                    {{if (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "started")}}
                       <i class="fa fa-circle fa-lg text-success" title="Started"></i>
                     {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "slave")}}
                         <i class="fa fa-circle fa-lg text-success" title="Started"></i>
@@ -117,6 +115,8 @@
                     {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "master")}}
                         <i class="fa fa-circle fa-lg text-success" title="Started"></i>
                         <span class="label label-info">Master</span>
+                    {{else}}
+                        <i class="fa fa-circle fa-lg text-offline"></i>
                     {{/if}}
                   {{/props}}
                 {{/if}}
