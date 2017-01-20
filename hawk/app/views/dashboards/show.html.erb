@@ -81,8 +81,6 @@
                   {{:~saveAttrs("resource" ,"#resource-" + id, "status-error")}}
                   <h6><span class="label label-danger">Stopped</span></h6>
                 {{/if}}
-
-
                 {{if ~resource.state !== "stopped"}}
                   {{:~saveAttrs("resource" ,"#resource-" + id, "status-success")}}
                   <h6><span class="label label-success">Started</span></h6>
@@ -91,7 +89,6 @@
                 {{if ~resource.maintenance == true}}
                   <span class="label label-info">Maintenance</span>
                 {{/if}}
-
                 {{if ~resource["type"] === "master"}}
                   <h6><span class="label label-primary">Multi-state</span></h6>
                 {{/if}}
