@@ -111,11 +111,11 @@
                       <i class="fa fa-circle fa-lg text-success" title="Started"></i>
                     {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "slave")}}
                         <i class="fa fa-circle fa-lg text-success" title="Started"></i>
-                        <span class="label label-warning">Slave</span>
+                        <h5><span class="label label-warning">Slave</span></h5>
                     {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "master")}}
                         <i class="fa fa-circle fa-lg text-success" title="Started"></i>
-                        <span class="label label-info">Master</span>
-                    {{else}}
+                        <h5><span class="label label-info">Master</span></h5>
+                    {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "not_running")}}
                         <i class="fa fa-circle fa-lg text-offline"></i>
                     {{/if}}
                   {{/props}}

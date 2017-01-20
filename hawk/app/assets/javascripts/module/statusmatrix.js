@@ -7,13 +7,23 @@ var statusTable = {
     tableData: [], // An Array that contains JSON data fetched from the cib, see cacheData()
     tableAttrs: [], // JSON data that Contains attributes like ids and classes for specific elements in the table
     init: function(cibData) { // init function called using: "statusTable.init(fetchedData);"
-      this.cacheData(cibData);  // Cache data fetched from server
+      this.alterData(cibData); // Specify which nodes the resources are not running on: e.g {running_on: {node1: "started". node2: "slave", webui: "not_running"}}.
+      this.cacheData(cibData);  // Cache data fetched from server, so it won't be necessary to pass the reference of the object each time
       this.cacheDom(); // Cache Dom elements to maximize performance
       this.initHelpers(); // Intialize helper methods for using them inside the template in "dashboards/show.html.erb
       this.render(); // Renders the table using the template in "dashboards/show.html.erb"
       this.applyStyles(); // Set the appropriate classes after rendering the table (using tableAttrs)
       this.FormatClusterName(); // Set the title attribute for the cluster name to show cluster details
       this.printLog(); // Testing
+    },
+    alterData: function(cibData) {
+      $.each(cibData.nodes, function(node_key, node_value) {
+        $.each(cibData.resources, function(resource_key, resource_value){
+          if(!(node_value.name in resource_value.running_on)){
+            cibData.resources[resource_key]["running_on"][node_value.name] = "not_running";
+          };
+        });
+      });
     },
     cacheData: function(cibData) {
       this.tableData = cibData;
