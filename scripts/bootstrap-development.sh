@@ -9,6 +9,8 @@ if grep 'VERSION="Tumbleweed"' < /etc/os-release >/dev/null 2>&1; then
 	sudo zypper ar http://download.opensuse.org/repositories/Virtualization/openSUSE_Factory/ Virtualization
 elif grep 'VERSION="42.1"' < /etc/os-release >/dev/null 2>&1; then
 	sudo zypper ar http://download.opensuse.org/repositories/Virtualization/openSUSE_Leap_42.1/ Virtualization
+elif grep 'VERSION="42.2"' < /etc/os-release >/dev/null 2>&1; then
+	sudo zypper ar http://download.opensuse.org/repositories/Virtualization/openSUSE_Leap_42.2/ Virtualization
 else
 	osver="$(grep 'VERSION=' < /etc/os-release)"
 	echo "Unknown OS version $osver"
