@@ -23,7 +23,7 @@ class ConfigsController < ApplicationController
         end
       end
       format.json do
-        render json: current_cib.status(params[:id] == "mini" || params[:mini] == "true")
+        render json: current_cib.status()
       end
       format.xml do
         out, err, rc = Invoker.instance.no_log do |invoker|

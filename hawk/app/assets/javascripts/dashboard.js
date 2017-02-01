@@ -280,19 +280,19 @@
 
   function clusterRefresh(clusterId, clusterInfo) {
     indicator(clusterId, "refresh");
-        ajaxQuery({
-          url: baseUrl(clusterInfo) + "/cib/live?format=json",
-          type: "GET",
-          data: { _method: 'show' },
-          crossDomain: clusterInfo.host != null,
-          success: function(data) {
-            $.each(data.nodes, function(node, node_values) {
-              if (!isRemote(data, node_values.uname)) {
-                if ($.inArray(clusterInfo.reconnections, node_values.uname) === -1) {
-                  clusterInfo.reconnections.push(node_values.uname);
-                }
+      ajaxQuery({
+        url: baseUrl(clusterInfo) + "/cib/live?format=json",
+        type: "GET",
+        data: { _method: 'show' },
+        crossDomain: clusterInfo.host != null,
+        success: function(data) {
+          $.each(data.nodes, function(node, node_values) {
+            if (!isRemote(data, node_values.uname)) {
+              if ($.inArray(clusterInfo.reconnections, node_values.uname) === -1) {
+                clusterInfo.reconnections.push(node_values.uname);
               }
-            });
+            }
+          });
         displayClusterStatus(clusterId, data);
         $("#" + clusterId).data('epoch', data.meta.epoch);
         clusterUpdate(clusterId, clusterInfo);
