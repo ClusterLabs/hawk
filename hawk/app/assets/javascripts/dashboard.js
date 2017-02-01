@@ -279,7 +279,6 @@
   }
 
   function clusterRefresh(clusterId, clusterInfo) {
-    indicator(clusterId, "refresh");
       ajaxQuery({
         url: baseUrl(clusterInfo) + "/cib/live?format=json",
         type: "GET",
