@@ -181,7 +181,6 @@
       if (tag.data('hash') != cs) {
         tag.html(text);
         tag.data('hash', cs);
-        tag.find('canvas').cibStatusMatrix(status_summary);
       }
       // END Canvas rendering
     } else {
