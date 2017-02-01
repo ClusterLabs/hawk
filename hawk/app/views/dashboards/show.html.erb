@@ -55,6 +55,9 @@
                 <span class="label label-success">Online</span>
                 <span class="label label-warning">Pending</span>
               {{/if}}
+              {{if ~node.name === ~root.meta.dc}}
+                <i class="fa fa-home" aria-hidden="true" title="Designated coordinator"></i>
+              {{/if}}
               {{if ~node.remote == true}}
                 <i class="fa fa-cloud" aria-hidden="true" title="Remote node"></i>
               {{/if}}
