@@ -31,11 +31,14 @@ class DashboardsController < ApplicationController
   def remove
     if request.post?
       name = params[:name]
+      clusterId =  params[:clusterId]
       out, err, rc = Cluster.remove(name)
       if rc == 0
-        render json: {"name" => name }
+        flash[:success] = _('Cluster removed successfully.')
+        render js: "location.reload();"
       else
-        render json: { error: _("Error removing %s: %s") % [name, err] }, status: :unprocessable_entity
+        flash[:alert] = _('Error removing cluster.')
+        render js: "location.reload();"
       end
     end
   end
