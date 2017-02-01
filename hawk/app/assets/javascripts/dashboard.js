@@ -286,10 +286,10 @@
           data: { _method: 'show' },
           crossDomain: clusterInfo.host != null,
           success: function(data) {
-            $.each(data.nodes, function(node, _state) {
-              if (!isRemote(data, node)) {
-                if ($.inArray(clusterInfo.reconnections, node) === -1) {
-                  clusterInfo.reconnections.push(node);
+            $.each(data.nodes, function(node, node_values) {
+              if (!isRemote(data, node_values.uname)) {
+                if ($.inArray(clusterInfo.reconnections, node_values.uname) === -1) {
+                  clusterInfo.reconnections.push(node_values.uname);
                 }
               }
             });
@@ -502,7 +502,7 @@
     $("#clusters").append(text);
 
     updateLayout();
-    clusterRefresh(clusterId, data, false);
+    clusterRefresh(clusterId, data);
 
   };
 
