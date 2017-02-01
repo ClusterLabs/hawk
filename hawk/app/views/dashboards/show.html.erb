@@ -126,6 +126,31 @@
           {{/for}}
         </div>
         {{!-- END RESOURCES --}}
+        {{!-- TICKETS ROWS --}}
+        {{if ~root.tickets}}
+          <div id="tickets-table-rows">
+            {{props ~root.tickets itemVar="~ticket"}}
+              <tr>
+                <td class="text-left">
+                  <b>{{:~ticket.prop.id}}</b>
+                </td>
+                <td colspan="100%">
+                  {{if ~ticket.prop.state === "granted"}}
+                    <h5><span class="label label-success">Ticket granted</span></h5>
+                  {{else ~ticket.prop.state === "revoked"}}
+                    <h5><span class="label label-default">Ticket revoked</span></h5>
+                  {{else ~ticket.prop.state === "elsewhere"}}
+                    <h5><span class="label label-warning">Ticket granted elsewhere</span></h5>
+                  {{/if}}
+                  {{if ~ticket.prop.standby === true}}
+                    <h5><span class="label label-default">Standby</span></h5>
+                  {{/if}}
+                </td>
+              </tr>
+            {{/props}}
+          </div>
+        {{/if}}
+        {{!-- END TICKETS --}}
       </tbody>
       </table>
   </script>
