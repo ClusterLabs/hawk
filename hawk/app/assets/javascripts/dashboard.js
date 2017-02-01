@@ -103,8 +103,7 @@
     }
   }
 
-  function displayClusterStatus(clusterId, cib, cib_mini_version) {
-    cib_mini_version = typeof(cib_mini_version) !== 'undefined' ? cib_mini_version : false; // Set default values to fetch data (Default: cib_mini_version == false)
+  function displayClusterStatus(clusterId, cib) {
     if (cib.meta.status == "ok") {
       indicator(clusterId, "ok");
     } else {
@@ -143,56 +142,17 @@
     text += '<div class="row">';
     text += '<div class="col-md-12 text-center dash-cluster-content">';
 
-
-    if(cib_mini_version) {
-      // Canvas rendering:
-      var status_summary = {
-        nodes: [],
-        resources: [],
-        tickets: []
-      };
-
-      $.each(cib.nodes, function(n, v) {
-        status_summary.nodes.push({ name: n, state: v, remote: isRemote(cib, n) });
-      });
-
-      $.each(cib.resources, function(n, v) {
-        var rsc = {name: n, instances: []};
-        $.each(v, function(nn, vv) {
-          rsc.instances.push({node: nn, state: vv});
-        });
-        status_summary.resources.push(rsc);
-      });
-
-      $.each(cib.tickets, function(n, v) {
-        status_summary.tickets.push({name: n, state: v});
-      });
-
-      var cwidth = Math.min(status_summary.nodes.length * 36 + 36, 360) + 20;
-      var cheight = status_summary.resources.length * 24 + status_summary.tickets.length * 24;
-
-      text += '<canvas width="' + cwidth + '" height="' + cheight + '"></canvas>';
-
-      text += '</div>';
-      text += '</div>';
-
-      var cs = checksum(text + JSON.stringify(status_summary));
+      var cs = checksum(text + JSON.stringify(cib));
 
       if (tag.data('hash') != cs) {
         tag.html(text);
         tag.data('hash', cs);
+        // Table rendering:
+        statusTable.init(cib);
       }
-      // END Canvas rendering
-    } else {
-      // Table rendering:
-      statusTable.init(cib);
-    }
-
-
   }
 
-  function clusterConnectionError(clusterId, clusterInfo, xhr, status, error, cb, cib_mini_version) {
-    cib_mini_version = typeof(cib_mini_version) !== 'undefined' ? cib_mini_version : false; // Set default values to fetch data (Default: cib_mini_version == false)
+  function clusterConnectionError(clusterId, clusterInfo, xhr, status, error, cb) {
     if (window.userIsNavigatingAway)
       return;
     var msg = "";
@@ -262,7 +222,7 @@
       tag.html(basicCreateBody(clusterId, clusterInfo));
 
       if (clusterInfo.host == null) {
-        clusterRefresh(clusterId, clusterInfo, cib_mini_version);
+        clusterRefresh(clusterId, clusterInfo);
       } else {
         tag.find("button.btn").click(function() {
           var username = tag.find("input[name=username]").val();
@@ -271,7 +231,7 @@
           tag.find('input').attr('disabled', true);
           clusterInfo.username = username;
           clusterInfo.password = password;
-          startRemoteConnect(clusterId, clusterInfo, cib_mini_version);
+          startRemoteConnect(clusterId, clusterInfo);
         });
       }
     });
@@ -318,37 +278,24 @@
     });
   }
 
-  function clusterRefresh(clusterId, clusterInfo, cib_mini_version) {
-    cib_mini_version = typeof(cib_mini_version) !== 'undefined' ? cib_mini_version : false; // Set default values to fetch data (Default: cib_mini_version == false)
-    data_url = cib_mini_version ? "/cib/live?mini=true&format=json" : "/cib/live?format=json"; // Fetch data depending on cib_mini_version value
+  function clusterRefresh(clusterId, clusterInfo) {
     indicator(clusterId, "refresh");
-
         ajaxQuery({
-          url: baseUrl(clusterInfo) + data_url,
+          url: baseUrl(clusterInfo) + "/cib/live?format=json",
           type: "GET",
           data: { _method: 'show' },
           crossDomain: clusterInfo.host != null,
           success: function(data) {
-            if (cib_mini_version){
-              $.each(data.nodes, function(node, _state) {
-                if (!isRemote(data, node)) {
-                  if ($.inArray(clusterInfo.reconnections, node) === -1) {
-                    clusterInfo.reconnections.push(node);
-                  }
+            $.each(data.nodes, function(node, _state) {
+              if (!isRemote(data, node)) {
+                if ($.inArray(clusterInfo.reconnections, node) === -1) {
+                  clusterInfo.reconnections.push(node);
                 }
-              });
-            } else {
-              $.each(data.nodes, function(node, node_values) {
-                if (!isRemote(data, node_values.uname)) {
-                  if ($.inArray(clusterInfo.reconnections, node_values.uname) === -1) {
-                    clusterInfo.reconnections.push(node_values.uname);
-                  }
-                }
-              });
-            }
-        displayClusterStatus(clusterId, data, cib_mini_version);
+              }
+            });
+        displayClusterStatus(clusterId, data);
         $("#" + clusterId).data('epoch', data.meta.epoch);
-        clusterUpdate(clusterId, clusterInfo, cib_mini_version);
+        clusterUpdate(clusterId, clusterInfo);
       },
       error: function(xhr, status, error) {
         var tag = $('#' + clusterId + ' div.panel-body');
@@ -363,12 +310,12 @@
             tag.find('input').attr('disabled', true);
             clusterInfo.username = username;
             clusterInfo.password = password;
-            startRemoteConnect(clusterId, clusterInfo, cib_mini_version);
+            startRemoteConnect(clusterId, clusterInfo);
           });
         } else {
           clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
             if (clusterInfo.host == null) {
-              clusterRefresh(clusterId, clusterInfo, cib_mini_version);
+              clusterRefresh(clusterId, clusterInfo);
             } else if (("reconnections" in clusterInfo) && clusterInfo.reconnections.length > 1) {
               var currHost = clusterInfo.host;
               var currFirst = clusterInfo.reconnections[0];
@@ -376,21 +323,20 @@
               clusterInfo.reconnections.push(currHost);
               clusterInfo.host = currFirst;
               if (currFirst == null) {
-                clusterRefresh(clusterId, clusterInfo, cib_mini_version);
+                clusterRefresh(clusterId, clusterInfo);
               } else {
-                startRemoteConnect(clusterId, clusterInfo, cib_mini_version);
+                startRemoteConnect(clusterId, clusterInfo);
               }
             } else {
-              clusterRefresh(clusterId, clusterInfo, cib_mini_version);
+              clusterRefresh(clusterId, clusterInfo);
             }
-          }, cib_mini_version);
+          });
         }
       }
     });
   }
 
-  function clusterUpdate(clusterId, clusterInfo, cib_mini_version) {
-    cib_mini_version = typeof(cib_mini_version) !== 'undefined' ? cib_mini_version : false; // Set default values to fetch data (Default: cib_mini_version == false)
+  function clusterUpdate(clusterId, clusterInfo) {
     var current_epoch = $("#" + clusterId).data('epoch');
     ajaxQuery({
       url: baseUrl(clusterInfo) + "/monitor.json",
@@ -400,28 +346,27 @@
       crossDomain: clusterInfo.host != null,
       success: function(data) {
         if (data.epoch != current_epoch) {
-          clusterRefresh(clusterId, clusterInfo, cib_mini_version);
+          clusterRefresh(clusterId, clusterInfo);
         } else {
-          clusterUpdate(clusterId, clusterInfo, cib_mini_version);
+          clusterUpdate(clusterId, clusterInfo);
         }
       },
       error: function(xhr, status, error) {
         clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
-          clusterRefresh(clusterId, clusterInfo, cib_mini_version);
-        }, cib_mini_version);
+          clusterRefresh(clusterId, clusterInfo);
+        });
       }
     });
   }
 
-  function startRemoteConnect(clusterId, clusterInfo, cib_mini_version) {
-    cib_mini_version = typeof(cib_mini_version) !== 'undefined' ? cib_mini_version : false; // Set default values to fetch data (Default: cib_mini_version == false)
+  function startRemoteConnect(clusterId, clusterInfo) {
     indicator(clusterId, "refresh");
 
     var username = clusterInfo.username || "hacluster";
     var password = clusterInfo.password;
 
     if (password === null) {
-      clusterConnectionError(clusterId, clusterInfo, { readyState: 1, status: 0 }, "error", "", function() {}, cib_mini_version);
+      clusterConnectionError(clusterId, clusterInfo, { readyState: 1, status: 0 }, "error", "", function() {});
       return;
     }
 
@@ -431,7 +376,7 @@
       type: "POST",
       data: {"session": {"username": username, "password": password } },
       success: function(data) {
-        clusterRefresh(clusterId, clusterInfo, cib_mini_version);
+        clusterRefresh(clusterId, clusterInfo);
       },
       error: function(xhr, status, error) {
         clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
@@ -443,11 +388,11 @@
             clusterInfo.host = currFirst;
           }
           if (clusterInfo.host == null) {
-            clusterRefresh(clusterId, clusterInfo, cib_mini_version);
+            clusterRefresh(clusterId, clusterInfo);
           } else {
-            startRemoteConnect(clusterId, clusterInfo, cib_mini_version);
+            startRemoteConnect(clusterId, clusterInfo);
           }
-        }, cib_mini_version);
+        });
       }
     });
   }
@@ -517,7 +462,6 @@
   };
 
   window.dashboardAddCluster = function(data) {
-    data.status_format = typeof(data.status_format) !== 'undefined' ? data.status_format : "table"; // Set default values of the status format to render (Default: data.status_format == "table")
     var clusterId = newClusterId();
     var title = data.name || __("Local Status");
     data.conntry = null;
@@ -558,14 +502,7 @@
     $("#clusters").append(text);
 
     updateLayout();
-    if (data.status_format === "canvas&table") {
-      clusterRefresh(clusterId, data, true);
-      clusterRefresh(clusterId, data, false);
-    } else if(data.status_format === "canvas") {
-      clusterRefresh(clusterId, data, true);
-    } else {
-      clusterRefresh(clusterId, data, false);
-    }
+    clusterRefresh(clusterId, data, false);
 
   };
 
