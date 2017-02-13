@@ -19,12 +19,13 @@ class FencingController < ApplicationController
   def edit
     if request.post?
       Rails.logger.debug "Params: #{params[:fencing]}"
-      fencing = params[:fencing]
+      fencing = params[:fencing] or []
       n = -1
 
       # convert to xml
       txt = "<fencing-topology>"
       fencing.each do |level|
+        Rails.logger.debug "#{fencing}: #{level}"
         id_ = "fencing" if n < 0
         id_ = "fencing-#{n}" unless n < 0
         id_ = id_.encode(xml: :attr)
@@ -43,6 +44,7 @@ class FencingController < ApplicationController
       end
       txt += "</fencing-topology>"
       begin
+        Invoker.instance.cibadmin_modify '<cib><configuration><fencing-topology/></configuration></cib>' if current_cib.fencing_topology.length == 0
         Invoker.instance.cibadmin_replace_xpath "/cib/configuration/fencing-topology", txt
         respond_to do |format|
           format.html do
@@ -57,7 +59,7 @@ class FencingController < ApplicationController
           end
         end
       rescue RuntimeError => err
-        Rails.logger.debug "cibadmin error #{rc}: #{err}"
+        Rails.logger.debug "cibadmin error: #{err}"
         respond_to do |format|
           format.html do
             flash[:alert] = _('Failed to edit fencing topology: %{msg}') % { msg: err }

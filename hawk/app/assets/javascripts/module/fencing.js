@@ -89,8 +89,8 @@ $(function() {
         if (level.type == "attribute" && !level.value) {
           err(idx, __("Expected value for attribute"));
         }
-        if (level.index < 0) {
-          err(idx, __("Expected non-negative index"));
+        if (level.index < 1 || level.index > 9) {
+          err(idx, __("Index must be between 1 and 9"));
         }
         $.each(level.devices, function(_, dev) {
           var isFencingDevice = false;
