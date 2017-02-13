@@ -1,0 +1,80 @@
+<div class="container-fluid">
+  <div class="row">
+    <h1>
+      <%= icon_text "plug", _("Edit Fencing Topology"), class: "page" %>
+    </h1>
+  </div>
+  <div data-fencingeditor></div>
+</div>
+<%= render partial: "shared/helpsidebar", locals: { category: :resources, help: :fencing, mapping: nil } %>
+
+<script id="fencing-level-template" type="text/x-jsrender">
+  <li id="{{:_id}}" data-sort-index="{{:_sort_index}}" class="panel panel-default fencing-level">
+      <div class="panel-heading">
+        <button id="fl-up" type="button" class="btn btn-default btn-sm" {{:_up?"":"disabled"}}><i class="fa fa-arrow-up"></i></button>
+        <button id="fl-down" type="button" class="btn btn-default btn-sm" {{:_down?"":"disabled"}}><i class="fa fa-arrow-down"></i></button>
+        <button id="fl-delete" type="button" class="close"
+                aria-label="Close"><span aria-hidden="true">&times;</span></button>
+      </div>
+      <div class="panel-body">
+        <form class="form-horizontal">
+          <div class="form-group">
+            <label for="target" class="col-sm-3 control-label"><%= _("Target") %></label>
+            <div class="col-sm-9">
+              <div class="input-group">
+                <div class="input-group-btn">
+                  <button id="fl-target-type" type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">{{:_typename}} <span class="caret"></span></button>
+                  <ul class="dropdown-menu">
+                    {{if type !== "node"}}<li><a id="fl-sel-node"><%= _("Node") %></a></li>{{/if}}
+                    {{if type !== "pattern"}}<li><a id="fl-sel-pattern"><%= _("Pattern") %></a></li>{{/if}}
+                    {{if type !== "attribute"}}<li><a id="fl-sel-attribute"><%= _("Attribute") %></a></li>{{/if}}
+                  </ul>
+                </div>
+                <input class="form-control" id="fl-target" value="{{attr:target}}"></input>
+              </div>
+            </div>
+          </div>
+          {{if type === "attribute"}}
+            <div class="form-group">
+              <label for="index" class="col-sm-3 control-label"><%= _("Value") %></label>
+              <div class="col-sm-9">
+                <input type="text" class="form-control" id="fl-value" value="{{attr:value}}"></input>
+              </div>
+            </div>
+          {{/if}}
+          <div class="form-group">
+            <label for="index" class="col-sm-3 control-label"><%= _("Index") %></label>
+            <div class="col-sm-9">
+              <input type="number" class="form-control" id="fl-index" value="{{attr:index}}"></input>
+            </div>
+          </div>
+          <div class="form-group">      
+            <label for="devices" class="col-sm-3 control-label"><%= _("Devices") %></label>
+            <div class="col-sm-9">
+              <input type="text" class="form-control" id="fl-devices" value="{{attr:devices}}"></input>
+            </div>
+          </div>
+        </form>
+      </div>
+    </li>
+</script>
+
+<script id="fencing-controls-template" type="text/x-jsrender">
+  <div class="row">
+    <div class="col-sm-12">
+    <button id="fl-add-level" type="button" class="btn btn-default btn-info"><i class="fa fa-plus"></i>
+      <%= _("Add Level") %></button>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="col-sm-offset-5 col-sm-7">
+          <button id="fl-apply" type="button" class="btn btn-primary" disabled><%= _("Apply") %></button>
+          <%= link_to _("Back"), cib_fencing_path(cib_id: current_cib.id), class: "btn btn-default back" %>
+        </div>
+      </div>
+    </div>
+  </div>
+</script>
