@@ -215,6 +215,10 @@ $(function() {
     return !($.isEmptyObject(val));
   });
 
+  $.views.converters("capitalize", function(val) {
+    return val.replace(/(\b\w)/gi,function(m){return m.toUpperCase();});
+  });
+
   $.hawkRunOperation = function(confirmMsg, route) {
     $.hawkAsyncConfirm(confirmMsg, function() {
       $.ajax({
