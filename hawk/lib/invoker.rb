@@ -103,6 +103,11 @@ class Invoker
     cibadmin '-p', '--replace', '--xpath', xpath, stdin_data: xml
   end
 
+  def cibadmin_modify(xml)
+    CrmEvents.instance.push "cibadmin -p -c --modify <<EOF\n#{xml}\nEOF" unless @no_log
+    cibadmin '-p', '-c', '--modify', stdin_data: xml
+  end
+
   # Used by the simulator
   def crm_simulate(*cmd)
     run_as current_user, 'crm_simulate', *cmd
