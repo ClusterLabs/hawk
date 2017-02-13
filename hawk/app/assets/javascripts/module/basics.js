@@ -190,8 +190,10 @@ $(function() {
     var modal = $(html.join(''));
     modal.css('z-index', 100000);
     modal.find('.commit').on('click', function() {
+      var dia = $('#confirmationDialog');
+      dia.find('.modal-content').html('<p class="text-center"><i class="fa fa-cog fa-spin fa-3x" aria-hidden="true"></i></p>');
       on_ok();
-      $('#confirmationDialog').modal('hide');
+      dia.modal('hide');
       return true;
     });
 
