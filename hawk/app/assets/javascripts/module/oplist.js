@@ -333,6 +333,8 @@
     };
 
     tgtnode.on('keyup change', 'input, select', function(e) {
+      // Trigger the plus sign programmatically
+      $('.addition .setter .create').click();
       $(e.delegateTarget)
         .parents('form')
         .find('[name="revert"]')
