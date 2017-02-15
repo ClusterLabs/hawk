@@ -18,14 +18,14 @@ class FencingController < ApplicationController
 
   def edit
     if request.post?
-      Rails.logger.debug "Params: #{params[:fencing]}"
-      fencing = params[:fencing] or []
+      fencing = params[:fencing]
+      fencing = fencing["fencing"] if fencing.is_a? Hash
+      fencing = [] if fencing.nil?
       n = -1
 
       # convert to xml
       txt = "<fencing-topology>"
       fencing.each do |level|
-        Rails.logger.debug "#{fencing}: #{level}"
         id_ = "fencing" if n < 0
         id_ = "fencing-#{n}" unless n < 0
         id_ = id_.encode(xml: :attr)
