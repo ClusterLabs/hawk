@@ -72,7 +72,7 @@
       <div class="panel-body">
         <div class="col-sm-offset-5 col-sm-7">
           <button id="fl-apply" type="button" class="btn btn-primary" disabled><%= _("Apply") %></button>
-          <%= link_to _("Back"), cib_fencing_path(cib_id: current_cib.id), class: "btn btn-default back" %>
+          <%= link_to _("Back"), edit_cib_config_path(cib_id: current_cib.id, anchor: "fencing"), class: "btn btn-default back" %>
         </div>
       </div>
     </div>
