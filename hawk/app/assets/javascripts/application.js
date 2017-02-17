@@ -44,11 +44,11 @@ $(function() {
     var winHeight = $(window).outerHeight() - navHeight;
     var maxHeight = Math.max.apply(
       null,
-      $('#middle, #rightbar').map(function() {
+      $('#middle, #rightbar, #sidebar').map(function() {
         return $(this).height('auto').outerHeight();
       }).get()
     );
-    $('#middle, #rightbar').height(
+    $('#middle, #rightbar, #sidebar').height(
       winHeight > maxHeight ? winHeight : maxHeight
     );
   };

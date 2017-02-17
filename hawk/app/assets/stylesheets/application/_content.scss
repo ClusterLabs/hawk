@@ -162,12 +162,13 @@
   padding-right: 0;
 
   & > .container-fluid {
-    padding: 50px;
+    padding: 20px 50px 50px 50px;
+    position: inherit;
     p {
       color: #555;
     }
     &:first-child h2 {
-      margin-top: 0;
+      margin-top: 20px;
       font-size: 1.6em;
     }
     h3 {
