@@ -8,6 +8,9 @@ end
 $shared_disk = '_shared_disk'
 $shared_disk_size = 128 # MB
 
+$drbd_disk = '_drbd_disk'
+$drbd_disk_size = 256 # MB
+
 # Create and attach shared SBD/OCFS2 disk for VirtualBox
 class VagrantPlugins::ProviderVirtualBox::Action::SetName
   alias_method :original_call, :call
@@ -23,6 +26,16 @@ class VagrantPlugins::ProviderVirtualBox::Action::SetName
     end
     ui.info "Attaching '#{disk_file}'..."
     driver.execute('storageattach', uuid, '--storagectl', "SATA Controller", '--port', "1", '--device', "0", '--type', 'hdd', '--medium', disk_file)
+
+    name = env[:machine].provider_config.name
+    disk_file = "#{$drbd_disk}_#{name}.vdi"
+    if !File.exist?(disk_file)
+      ui.info "Creating storage file '#{disk_file}'..."
+      driver.execute('createhd', "--filename", disk_file, "--size", "#{$shared_disk_size}", '--variant', 'fixed')
+    end
+    ui.info "Attaching '#{disk_file}'..."
+    driver.execute('storageattach', uuid, '--storagectl', "SATA Controller", '--port', "2", '--device', "0", '--type', 'hdd', '--medium', disk_file)
+
     original_call(env)
   end
 end
@@ -55,6 +68,7 @@ def configure_machine(machine, idx, roles, memory)
     provider.cpus = 1
     provider.graphics_port = 9200 + idx
     provider.storage :file, path: "#{$shared_disk}.raw", size: "#{$shared_disk_size}M", type: 'raw', cache: 'none', allow_existing: true, shareable: true
+    provider.storage :file, path: "#{$drbd_disk}-#{machine.vm.hostname}.raw", size: "#{$drbd_disk_size}M", type: 'raw', allow_existing: true
   end
 end
 
