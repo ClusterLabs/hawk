@@ -26,7 +26,10 @@ default["hawk"]["node"]["packages"] = [
   "haproxy",
 
   # debug stonith agents
-  "libglue-devel"
+  "libglue-devel",
+
+  "drbd",
+  "drbd-utils"
 ]
 
 default["hawk"]["node"]["haproxy_cfg"] = "/etc/haproxy/haproxy.cfg"

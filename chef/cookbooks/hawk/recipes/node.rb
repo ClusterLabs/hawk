@@ -131,6 +131,31 @@ ruby_block "webui_check" do
   action :run
 end
 
+template "/etc/drbd.d/global_common.conf" do
+  source "global_common.conf.erb"
+  owner "root"
+  group "root"
+  mode 0644
+end
+
+template "/etc/drbd.d/r0.res" do
+  source "r0.res.erb"
+  owner "root"
+  group "root"
+  mode 0644
+end
+
+bash "DRBD disk creation" do
+  user "root"
+
+  code <<-EOF
+drbdadm dump all
+drbdadm create-md r0
+drbdadm up r0
+drbdadm new-current-uuid --clear-bitmap r0/0
+EOF
+end
+
 bash "hawk_join" do
   user "root"
   cwd "/vagrant"

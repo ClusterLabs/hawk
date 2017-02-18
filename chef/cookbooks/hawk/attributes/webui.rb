@@ -53,7 +53,10 @@ default["hawk"]["webui"]["packages"] = [
   "libpacemaker-devel",
 
   # debug stonith agents
-  "libglue-devel"
+  "libglue-devel",
+
+  "drbd",
+  "drbd-utils"
 ]
 
 default["hawk"]["webui"]["targets"] = %w(
