@@ -38,7 +38,7 @@ class FencingController < ApplicationController
         elsif level["type"] == "pattern"
           txt += "<fencing-level devices=#{devs} index=#{idx} target-pattern=#{tgt} id=#{id_} />"
         else
-          val = level["value"].encode(:xml => :attr)
+          val = level["value"].encode(xml: :attr)
           txt += "<fencing-level devices=#{devs} index=#{idx} target-attribute=#{tgt} target-value=#{val} id=#{id_} />"
         end
       end
