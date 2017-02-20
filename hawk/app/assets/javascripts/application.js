@@ -28,6 +28,7 @@
 //= require module/tickets
 //= require module/roles
 //= require module/users
+//= require module/fencing
 //= require module/profiles
 //= require module/monitor
 //= require module/status
