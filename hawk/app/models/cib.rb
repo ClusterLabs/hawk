@@ -134,59 +134,26 @@ class Cib
     !File.exist?('/var/lib/pacemaker')
   end
 
-  def node_state_of_resource(rsc)
-    nodestate = {}
-    rsc[:instances].each do |_, attrs|
-      [:master, :slave, :started, :failed, :pending].each do |rstate|
-        attrs[rstate].each do |n|
-          nodestate[n[:node]] = rstate
-        end if attrs[rstate]
-      end
-    end if rsc.key? :instances
-    rsc[:children].each do |child|
-      nodestate = nodestate.merge(node_state_of_resource(child))
-    end if rsc.key? :children
-    nodestate
-  end
-
-  def status(minimal = false)
+  def status()
     {
       meta: meta,
       errors: errors,
       booth: booth
     }.tap do |result|
-      if minimal
-        result[:resources] = {}
-        result[:nodes] = {}
-        result[:remote_nodes] = {}
-        result[:tickets] = {}
-
-        resources.each do |rsc|
-          result[:resources][rsc[:id]] = node_state_of_resource(rsc)
-        end
-
-        nodes.each do |node|
-          result[:nodes][node[:uname]] = node[:state]
-          result[:remote_nodes][node[:uname]] = node[:state] if node[:remote]
-        end
-
-        tickets.each do |key, values|
-          result[:tickets][key] = values[:state]
-        end
-
-      else
-        result[:crm_config] = crm_config
-        result[:rsc_defaults] = rsc_defaults
-        result[:op_defaults] = op_defaults
-
-        result[:resources] = resources
-        result[:resources_by_id] = resources_by_id
-        result[:nodes] = nodes
-        result[:tickets] = tickets
-        result[:tags] = tags
-        result[:alerts] = alerts
-        result[:constraints] = constraints
-        result[:resource_count] = resource_count
+      result[:remote_nodes] = {}
+      result[:crm_config] = crm_config
+      result[:rsc_defaults] = rsc_defaults
+      result[:op_defaults] = op_defaults
+      result[:resources] = resources
+      result[:resources_by_id] = resources_by_id
+      result[:nodes] = nodes
+      result[:tickets] = tickets
+      result[:tags] = tags
+      result[:alerts] = alerts
+      result[:constraints] = constraints
+      result[:resource_count] = resource_count
+      nodes.each do |node|
+        result[:remote_nodes][node[:uname]] = node[:state] unless node[:remote]
       end
     end
   end

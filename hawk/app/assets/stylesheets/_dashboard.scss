@@ -7,40 +7,11 @@ $matrix-details-bg: #f5f5f5;
 $matrix-details-text: #222;
 
 
-#cib-status-matrix-details {
-  display: none;
-  position: fixed;
-  z-index: 10000;
-  width: auto !important;
-  padding: 1em;
 
-  background-color: $matrix-details-bg;
-  color: $matrix-details-text;
-  border: 1px solid $details-border;
-  border-radius: 4px;
-  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  background-clip: padding-box;
-}
 
-#cib-status-matrix-details:after {
-    box-sizing: border-box;
-    display: inline;
-    font-size: 14px;
-    width: 100%;
-    line-height: 1;
-    color: $details-border;
-    position: absolute;
-    pointer-events: none;
-}
 
-#cib-status-matrix-details:after {
-    content: "\25B2";
-    margin: 0 0 1px 0;
-    top: -12px;
-    right: 12px;
-    text-align: right;
-}
+
+
 
 table.status-matrix-wrapper {
   margin-left: auto;
@@ -58,9 +29,7 @@ table.status-matrix-wrapper {
   padding-right: 10px;
 }
 
-#cib-status-matrix-details canvas {
-  vertical-align: middle;
-}
+
 
 .dash-cluster-content {
   overflow: auto;
@@ -68,4 +37,50 @@ table.status-matrix-wrapper {
 
 .dash-cell {
   text-align: left;
+}
+
+
+table tr td {
+  text-align: center;
+  position: relative;
+}
+
+table tr th {
+  text-align: center;
+}
+
+.cluster-name {
+  display: block;
+  color: #666;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.text-success { color: #00c081;}
+.text-warning { color: #fc9a2b;}
+.text-danger { color: #a52700;}
+.text-offline {color: #777777}
+
+table tr td:hover .fa-circle:before{
+  content: "\f0ad";
+  color: black;
+}
+
+
+////////////////////////////////////////////////////////////////////////////////
+
+.status-success {
+  color: green;
+}
+
+.status-pending {
+  color: orange;
+}
+
+.status-error {
+  color: red;
+}
+
+.status-offline {
+  color: gray;
 }
