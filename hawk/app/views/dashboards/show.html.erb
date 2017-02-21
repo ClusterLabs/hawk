@@ -38,20 +38,20 @@
             <th>
               {{if ~node.state === "unclean"}}
                 {{:~saveAttrs("node" ,"#node-" + name)}}
-                <span class="label status-bar label-danger">Unclean</span>
+                <span class="label status-bar label-danger"></span>
               {{else ~node.state === "online"}}
                 {{:~saveAttrs("node" ,"#node-" + name)}} 
                 <span class="label status-bar label-success"></span>
               {{else ~node.state === "offline"}}
                 {{:~saveAttrs("node" ,"#node-" + name)}}
-                <span class="label status-bar label-default">Offline</span>
+                <span class="label status-bar label-default"></span>
               {{else ~node.state === "standby"}}
                 {{:~saveAttrs("node" ,"#node-" + name)}}
                 <span class="label status-bar label-default"></span>
               {{else ~node.state === "pending"}}
                 {{:~saveAttrs("node" ,"#node-" + name)}}
-                <span class="label status-bar label-success">Online</span>
-                <span class="label status-bar label-warning">Pending</span>
+                <span class="label status-bar label-success"></span>
+                <span class="label status-bar label-warning"></span>
               {{/if}}
 
               <span id="node-{{:name}}" class="node-title" title="Node id: {{:~node.id}}">{{:name}}</span>
