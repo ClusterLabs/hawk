@@ -31,29 +31,31 @@
       <tbody>
         {{!-- NODES ROW--}}
         <tr id="nodes-table-row">
-          <th class="col-sm-1 cluster-name">
+          <th colspan="2" class="col-sm-2 cluster-name">
             <span id="table-cluster-name">{{:~root.crm_config.cluster_name}}</span>
           </th>
           {{for ~root.nodes itemVar="~node"}}
-            <th><span id="node-{{:name}}" title="Node id: {{:~node.id}}">{{:name}}</span>
+            <th>
               {{if ~node.state === "unclean"}}
-                {{:~saveAttrs("node" ,"#node-" + name, "status-error")}}
-                <span class="label label-danger">Unclean</span>
+                {{:~saveAttrs("node" ,"#node-" + name)}}
+                <span class="label status-bar label-danger">Unclean</span>
               {{else ~node.state === "online"}}
-                {{:~saveAttrs("node" ,"#node-" + name, "status-success")}}
-                <span class="label label-success">Online</span>
+                {{:~saveAttrs("node" ,"#node-" + name)}} 
+                <span class="label status-bar label-success"></span>
               {{else ~node.state === "offline"}}
-                {{:~saveAttrs("node" ,"#node-" + name, "status-offline")}}
-                <span class="label label-default">Offline</span>
+                {{:~saveAttrs("node" ,"#node-" + name)}}
+                <span class="label status-bar label-default">Offline</span>
               {{else ~node.state === "standby"}}
-                {{:~saveAttrs("node" ,"#node-" + name, "status-success")}}
-                <span class="label label-success">Online</span>
-                <span class="label label-default">Standby</span>
+                {{:~saveAttrs("node" ,"#node-" + name)}}
+                <span class="label status-bar label-default"></span>
               {{else ~node.state === "pending"}}
-                {{:~saveAttrs("node" ,"#node-" + name, "status-success")}}
-                <span class="label label-success">Online</span>
-                <span class="label label-warning">Pending</span>
+                {{:~saveAttrs("node" ,"#node-" + name)}}
+                <span class="label status-bar label-success">Online</span>
+                <span class="label status-bar label-warning">Pending</span>
               {{/if}}
+
+              <span id="node-{{:name}}" class="node-title" title="Node id: {{:~node.id}}">{{:name}}</span>
+
               {{if ~node.name === ~root.meta.dc}}
                 <i class="fa fa-home" aria-hidden="true" title="Designated coordinator"></i>
               {{/if}}
@@ -61,7 +63,7 @@
                 <i class="fa fa-cloud" aria-hidden="true" title="Remote node"></i>
               {{/if}}
               {{if ~node.maintenance == true}}
-                <span class="label label-info">Maintenance</span>
+                <span class="label maintenance-label label-info"><i class="fa fa-maxcdn" aria-hidden="true"></i></span>
               {{/if}}
               {{if ~node.fence_history !== ""}}
                 <i class="fa fa-refresh text-warning" title='{{:~node.fence_history}}'></i>
@@ -74,26 +76,29 @@
         <div id="resources-table-rows">
           {{for ~root.resources itemVar="~resource"}}
             <tr>
-              <td class="text-left">
-                <span id="resource-{{:id}}">{{:id}}</span>
-                {{if ~resource.state === "stopped" && ~resource["attributes"]["target-role"] === "Stopped"}}
-                  {{:~saveAttrs("resource" ,"#resource-" + id, "status-offline")}}
-                  <h6><span class="label label-default">Disabled</span></h6>
-                {{else ~resource.state === "stopped"}}
-                  {{:~saveAttrs("resource" ,"#resource-" + id, "status-error")}}
-                  <h6><span class="label label-danger">Stopped</span></h6>
-                {{/if}}
-                {{if ~resource.state !== "stopped"}}
-                  {{:~saveAttrs("resource" ,"#resource-" + id, "status-success")}}
-                  <h6><span class="label label-success">Started</span></h6>
-                {{/if}}
-
+              <td class="border-style">
                 {{if ~resource.maintenance == true}}
-                  <span class="label label-info">Maintenance</span>
+                  <span class="label maintenance-label label-info"><i class="fa fa-maxcdn" aria-hidden="true"></i></span>
                 {{/if}}
                 {{if ~resource["type"] === "master"}}
-                  <h6><span class="label label-primary">Multi-state</span></h6>
+                  <i class="fa fa-asterisk" aria-hidden="true"></i>
                 {{/if}}
+              </td>
+              <td class="text-left">
+                {{if ~resource.state === "stopped" && ~resource["attributes"]["target-role"] === "Stopped"}}
+                  {{:~saveAttrs("resource" ,"#resource-" + id )}}
+                  <span class="label status-bar label-default"></span>
+                {{else ~resource.state === "stopped"}}
+                  {{:~saveAttrs("resource" ,"#resource-" + id )}}
+                  <span class="label status-bar label-danger"></span>
+                {{/if}}
+                {{if ~resource.state !== "stopped"}}
+                  {{:~saveAttrs("resource" ,"#resource-" + id )}}
+                  <span class="label status-bar label-success"></span>
+                {{/if}}
+                
+                <span id="resource-{{:id}}">{{:id}}</span>
+                
               </td>
 
               {{for ~root.nodes itemVar="~node"}}

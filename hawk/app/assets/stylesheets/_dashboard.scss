@@ -8,11 +8,6 @@ $matrix-details-text: #222;
 
 
 
-
-
-
-
-
 table.status-matrix-wrapper {
   margin-left: auto;
   margin-right: auto;
@@ -61,13 +56,38 @@ table tr th {
 .text-danger { color: #a52700;}
 .text-offline {color: #777777}
 
-table tr td:hover .fa-circle:before{
-  content: "\f0ad";
-  color: black;
-}
-
 
 ////////////////////////////////////////////////////////////////////////////////
+
+.node-title {
+  margin-right: 5px;
+  color: #333;
+  font-weight: normal
+}
+
+.table-bordered > tbody > tr > td.border-style{
+  border-right-color: #fff;
+  padding-right: 0;
+  vertical-align: middle;
+}
+
+.label:empty {
+  display: inline-block;
+}
+
+.status-bar {
+  height: 24px;
+  font-size: 5px;
+  border-radius: 0;
+  vertical-align: middle;
+}
+
+.maintenance-label {
+  background-color: transparent;
+  font-size: 16px;
+  color: #444;
+  padding: 0;
+}
 
 .status-success {
   color: green;
