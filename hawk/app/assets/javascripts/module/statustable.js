@@ -12,7 +12,7 @@ var statusTable = {
     this.cacheDom(); // Cache Dom elements to maximize performance
     this.initHelpers(); // Intialize helper methods for using them inside the template in "dashboards/show.html.erb
     this.render(); // Renders the table using the template in "dashboards/show.html.erb"
-    this.applyStyles(); // Set the appropriate classes after rendering the table (using tableAttrs)
+    //this.applyStyles(); // Set the appropriate classes after rendering the table (using tableAttrs)
     this.FormatClusterName(); // Set the title attribute for the cluster name to show cluster details
     this.printLog(); // Testing
   },
@@ -39,18 +39,18 @@ var statusTable = {
   },
   initHelpers: function() {
     // Using $.proxy to correctly pass the context to saveAttrs:
-    $.views.helpers({ saveAttrs: $.proxy(this.saveAttrs, this) });
+    // $.views.helpers({ saveAttrs: $.proxy(this.saveAttrs, this) });
   },
   // Helper methods (called from the template in dashboards/show.html.erb):
-  saveAttrs: function(type, id, className) {
-    var objects = {"type": type, "id": id, "className": className};
-    this.tableAttrs.push(objects);
-  },
-  applyStyles: function() {
-     $.each(this.tableAttrs, function(index, element){
-       $(element.id).attr("class", element.className);
-     });
-  },
+  // saveAttrs: function(type, id, className) {
+  //   var objects = {"type": type, "id": id, "className": className};
+  //   this.tableAttrs.push(objects);
+  // },
+  // applyStyles: function() {
+  //    $.each(this.tableAttrs, function(index, element){
+  //      $(element.id).attr("class", element.className);
+  //    });
+  // },
   FormatClusterName: function(){
     // Adding title to cluster name cell in the table and adding the information icon next to it
     var meta = this.tableData.meta;
@@ -60,7 +60,7 @@ var statusTable = {
                       "\nUpdate User:\b" + meta.update_user +
                       "\nStack:\b" + meta.stack;
     var info_icon = '&nbsp;<i class="fa fa-info-circle" aria-hidden="true"></i>';
-    this.$table.find("#table-cluster-name").attr("title", title_value).append(info_icon);
+    this.$table.find(".table-cluster-name").attr("title", title_value).append(info_icon);
   },
   printLog: function() {
     console.log(JSON.stringify(this.tableData));
