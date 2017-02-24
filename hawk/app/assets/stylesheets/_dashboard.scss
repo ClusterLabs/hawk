@@ -123,15 +123,13 @@ table tr th {
   display: inline-block;
 }
 
-.resource-name {
+.resource-name, .ticket-name {
   display: inline-block;
 }
 
-.slave-master {
+.table-label{
   border-radius: 3px;
-  background: #fc9a2b;
   padding: 0px 1px;
-  color: #fff;
   font-size: 10px;
   display: block;
   width: 40px;
@@ -139,6 +137,11 @@ table tr th {
   margin-top: 3px;
   line-height: 13px;
 }
+
+.slave-master {background: #fc9a2b;color: #fff;}
+.ticket-granted {background: #00c081;color: #fff;}
+.ticket-revoked, .ticket-standby{background: #777;color: #fff;}
+.ticket-elsewhere {background: #fc9a2b;color: #fff;}
 
 .node-circle {
   border-radius: 8px;

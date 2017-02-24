@@ -122,9 +122,9 @@
                     {{if (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "started")}}
                       <div class="node-circle status-success" title="Started"></div>
                     {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "slave")}}
-                      <div class="node-circle status-success" title="Started"></div><span class="slave-master">Slave</span>
+                      <div class="node-circle status-success" title="Started"></div><span class="table-label slave-master">Slave</span>
                     {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "master")}}
-                      <div class="node-circle status-success" title="Started"></div><span class="slave-master">Master</span>
+                      <div class="node-circle status-success" title="Started"></div><span class="table-label slave-master">Master</span>
                     {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "not_running")}}
                       <div class="node-circle status-default"></div>
                     {{/if}}
@@ -141,19 +141,20 @@
           <div id="tickets-table-rows">
             {{props ~root.tickets itemVar="~ticket"}}
               <tr>
-                <td class="text-left">
-                  <b>{{:~ticket.prop.id}}</b>
+                <td class="text-left no-left-border">
+                <span class="status-bar status-success"></span>
+                  <span id="ticket-{{:~ticket.prop.id}}" class="ticket-name"><b>{{:~ticket.prop.id}}</b></span>
                 </td>
-                <td colspan="100%">
+                <td colspan="100%" class="no-left-border">
                   {{if ~ticket.prop.state === "granted"}}
-                    <h5><span class="label label-success">Ticket granted</span></h5>
+                  <span class="table-label ticket-granted">Ticket granted</span>
                   {{else ~ticket.prop.state === "revoked"}}
-                    <h5><span class="label label-default">Ticket revoked</span></h5>
+                    <span class="table-label ticket-revoked">Ticket revoked</span>
                   {{else ~ticket.prop.state === "elsewhere"}}
-                    <h5><span class="label label-warning">Ticket granted elsewhere</span></h5>
+                    <span class="table-label ticket-elsewhere">Ticket granted elsewhere</span>
                   {{/if}}
                   {{if ~ticket.prop.standby === true}}
-                    <h5><span class="label label-default">Standby</span></h5>
+                    <span class="table-label ticket-standby">Standby</span>
                   {{/if}}
                 </td>
               </tr>
