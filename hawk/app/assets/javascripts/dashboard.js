@@ -1,8 +1,8 @@
 // Copyright (c) 2009-2015 Tim Serong <tserong@suse.com>
-// Copyright (c) 2015 Kristoffer Gronlund <kgronlund@suse.com>
+// Copyright (c) 2015-2016 Kristoffer Gronlund <kgronlund@suse.com>
+// Copyright (c) 2016 Ayoub Belarbi <abelarbi@suse.com>
 // See COPYING for license.
 
-// https://<host>:7630/cib/mini.json
 ;(function($) {
   var checksum = function(s) {
     var hash = 0, i, chr, len;
@@ -86,24 +86,6 @@
     }
   }
 
-  function plural(word, count) {
-    if (count > 1) {
-      return word + "s";
-    } else {
-      return word;
-    }
-  }
-
-  function listGroupClassForState(state) {
-    if (state == "online" || state == "granted" || state == "master" || state == "slave" || state == "started") {
-      return "list-group-item-success";
-    } else if (state == "offline" || state == "unclean" || state == "failed" || state == "stopped") {
-      return "list-group-item-danger";
-    } else {
-      return "list-group-item-warning";
-    }
-  }
-
   function isRemote(cib, node) {
     return ("remote_nodes" in cib) && (node in cib["remote_nodes"]);
   }
@@ -160,46 +142,14 @@
     text += '<div class="row">';
     text += '<div class="col-md-12 text-center dash-cluster-content">';
 
-    var status_summary = {
-      nodes: [],
-      resources: [],
-      tickets: []
-    };
+      var cs = checksum(text + JSON.stringify(cib));
 
-    $.each(cib.nodes, function(n, v) {
-      status_summary.nodes.push({ name: n, state: v, remote: isRemote(cib, n) });
-    });
-
-    $.each(cib.resources, function(n, v) {
-      var rsc = {name: n, instances: []};
-      $.each(v, function(nn, vv) {
-        rsc.instances.push({node: nn, state: vv});
-      });
-      status_summary.resources.push(rsc);
-    });
-
-    $.each(cib.tickets, function(n, v) {
-      status_summary.tickets.push({name: n, state: v});
-    });
-
-    var cwidth = Math.min(status_summary.nodes.length * 36 + 36, 360) + 20;
-    var cheight = status_summary.resources.length * 24 + status_summary.tickets.length * 24;
-
-    text += '<canvas width="' + cwidth + '" height="' + cheight + '"></canvas>';
-
-    text += '</div>';
-    text += '</div>';
-
-    var cs = checksum(text + JSON.stringify(status_summary));
-
-    if (tag.data('hash') != cs) {
-      tag.html(text);
-      tag.data('hash', cs);
-
-      tag.find('canvas').cibStatusMatrix(status_summary);
-
-    }
-
+      if (tag.data('hash') != cs) {
+        tag.html(text);
+        tag.data('hash', cs);
+        // Table rendering:
+        statusTable.init(cib);
+      }
   }
 
   function clusterConnectionError(clusterId, clusterInfo, xhr, status, error, cb) {
@@ -329,21 +279,19 @@
   }
 
   function clusterRefresh(clusterId, clusterInfo) {
-    indicator(clusterId, "refresh");
-
-    ajaxQuery({
-      url: baseUrl(clusterInfo) + "/cib/live?mini=true&format=json",
-      type: "GET",
-      data: { _method: 'show' },
-      crossDomain: clusterInfo.host != null,
-      success: function(data) {
-        $.each(data.nodes, function(node, _state) {
-          if (!isRemote(data, node)) {
-            if ($.inArray(clusterInfo.reconnections, node) === -1) {
-              clusterInfo.reconnections.push(node);
+      ajaxQuery({
+        url: baseUrl(clusterInfo) + "/cib/live?format=json",
+        type: "GET",
+        data: { _method: 'show' },
+        crossDomain: clusterInfo.host != null,
+        success: function(data) {
+          $.each(data.nodes, function(node, node_values) {
+            if (!isRemote(data, node_values.uname)) {
+              if ($.inArray(clusterInfo.reconnections, node_values.uname) === -1) {
+                clusterInfo.reconnections.push(node_values.uname);
+              }
             }
-          }
-        });
+          });
         displayClusterStatus(clusterId, data);
         $("#" + clusterId).data('epoch', data.meta.epoch);
         clusterUpdate(clusterId, clusterInfo);
@@ -553,8 +501,8 @@
     $("#clusters").append(text);
 
     updateLayout();
-
     clusterRefresh(clusterId, data);
+
   };
 
   window.dashboardSetupAddClusterForm = function() {
