@@ -19,7 +19,7 @@
         <div class="content"></div>
       </fieldset>
 
-      <fieldset data-attrlist"<%= alert.params.to_json %>" data-attrlist-mapping="<%= alert.mapping[:params].to_json %>" data-attrlist-prefix="alert[params]" data-attrlist-target=".content" data-attrlist-freeform="yes">
+      <fieldset data-attrlist="<%= alert.params.to_json %>" data-attrlist-mapping="<%= alert.mapping[:params].to_json %>" data-attrlist-prefix="alert[params]" data-attrlist-target=".content" data-attrlist-freeform="yes">
         <legend>
           <%= _("Instance Attributes") %>
           <span class="pull-right toggleable">
@@ -29,7 +29,7 @@
         <div class="content"></div>
       </fieldset>
 
-      <fieldset data-attrlist"<%= alert.meta.to_json %>" data-attrlist-mapping="<%= alert.mapping[:meta].to_json %>" data-attrlist-prefix="alert[meta]" data-attrlist-target=".content">
+      <fieldset data-attrlist="<%= alert.meta.to_json %>" data-attrlist-mapping="<%= alert.mapping[:meta].to_json %>" data-attrlist-prefix="alert[meta]" data-attrlist-target=".content">
         <legend>
           <%= _("Meta Attributes") %>
           <span class="pull-right toggleable">
@@ -46,7 +46,7 @@
         <% else %>
           <%= apply_button(main_form, alert) %>
           <%= revert_button(main_form, alert) %>
-          <%= link_to _("Back"), edit_cib_config_path(cib_id: cib.id), class: "btn btn-default back" %>
+          <%= link_to _("Back"), edit_cib_config_path(cib_id: cib.id, anchor: "alerts"), class: "btn btn-default back" %>
         <% end %>
       <% end %>
     <% end %>

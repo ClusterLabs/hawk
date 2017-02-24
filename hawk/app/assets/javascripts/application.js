@@ -6,7 +6,7 @@
 //= require module/basics
 //= require module/help
 //= require module/forms
-//= require module/statusmatrix
+//= require module/statustable
 //= require module/oplist
 //= require module/attrlist
 //= require module/wizattrlist
@@ -28,6 +28,7 @@
 //= require module/tickets
 //= require module/roles
 //= require module/users
+//= require module/fencing
 //= require module/profiles
 //= require module/monitor
 //= require module/status
@@ -44,11 +45,11 @@ $(function() {
     var winHeight = $(window).outerHeight() - navHeight;
     var maxHeight = Math.max.apply(
       null,
-      $('#middle, #rightbar').map(function() {
+      $('#middle, #rightbar, #sidebar').map(function() {
         return $(this).height('auto').outerHeight();
       }).get()
     );
-    $('#middle, #rightbar').height(
+    $('#middle, #rightbar, #sidebar').height(
       winHeight > maxHeight ? winHeight : maxHeight
     );
   };

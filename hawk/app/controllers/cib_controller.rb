@@ -12,7 +12,7 @@ class CibController < ApplicationController
     respond_to do |format|
       format.html
       format.json do
-        render json: current_cib.status(params[:mini] == "true")
+        render json: current_cib.status()
       end
     end
   rescue ArgumentError => e

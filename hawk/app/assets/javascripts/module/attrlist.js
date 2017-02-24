@@ -147,6 +147,8 @@
       content
     )
       .on('keyup change', 'input, select', function(e) {
+        // Trigger the plus sign programmatically
+        $('.addition .select .create').click();
         $(e.delegateTarget)
           .parents('form')
             .find('[name="revert"]')

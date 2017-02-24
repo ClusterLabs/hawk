@@ -40,6 +40,11 @@
               <%= _("Alerts") %>
             </a>
           </li>
+          <li role="presentation">
+            <a data-toggle="tab" href="#fencing" role="tab" aria-controls="fencing">
+              <%= _("Fencing") %>
+            </a>
+          </li>
         </ul>
       </div>
       <div class="panel-body">
@@ -58,6 +63,20 @@
           </div>
           <div class="tab-pane" id="alerts" role="tabpanel">
             <table class="table table-striped alerts"></table>
+          </div>
+          <div class="tab-pane" id="fencing" role="tabpanel">
+            <div class="row">
+              <div class="col-md-12">
+                <div class="pull-right">
+                  <div class="btn-group" role="group">
+                    <%= link_to icon_text("pencil", _("Edit")),
+                        cib_fencing_edit_path, class: "btn btn-default btn-sm" %>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <br>
+            <%= render partial: "fencing/table", locals: { fencing_topology: current_cib.fencing_topology } %>
           </div>
         </div>
       </div>

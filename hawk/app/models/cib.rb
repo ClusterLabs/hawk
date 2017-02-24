@@ -66,6 +66,7 @@ class Cib
   attr_reader :resources_by_id
   attr_reader :booth
   attr_reader :constraints
+  attr_reader :fencing_topology
 
   def persisted?
     true
@@ -134,59 +135,27 @@ class Cib
     !File.exist?('/var/lib/pacemaker')
   end
 
-  def node_state_of_resource(rsc)
-    nodestate = {}
-    rsc[:instances].each do |_, attrs|
-      [:master, :slave, :started, :failed, :pending].each do |rstate|
-        attrs[rstate].each do |n|
-          nodestate[n[:node]] = rstate
-        end if attrs[rstate]
-      end
-    end if rsc.key? :instances
-    rsc[:children].each do |child|
-      nodestate = nodestate.merge(node_state_of_resource(child))
-    end if rsc.key? :children
-    nodestate
-  end
-
-  def status(minimal = false)
+  def status()
     {
       meta: meta,
       errors: errors,
       booth: booth
     }.tap do |result|
-      if minimal
-        result[:resources] = {}
-        result[:nodes] = {}
-        result[:remote_nodes] = {}
-        result[:tickets] = {}
-
-        resources.each do |rsc|
-          result[:resources][rsc[:id]] = node_state_of_resource(rsc)
-        end
-
-        nodes.each do |node|
-          result[:nodes][node[:uname]] = node[:state]
-          result[:remote_nodes][node[:uname]] = node[:state] if node[:remote]
-        end
-
-        tickets.each do |key, values|
-          result[:tickets][key] = values[:state]
-        end
-
-      else
-        result[:crm_config] = crm_config
-        result[:rsc_defaults] = rsc_defaults
-        result[:op_defaults] = op_defaults
-
-        result[:resources] = resources
-        result[:resources_by_id] = resources_by_id
-        result[:nodes] = nodes
-        result[:tickets] = tickets
-        result[:tags] = tags
-        result[:alerts] = alerts
-        result[:constraints] = constraints
-        result[:resource_count] = resource_count
+      result[:remote_nodes] = {}
+      result[:crm_config] = crm_config
+      result[:rsc_defaults] = rsc_defaults
+      result[:op_defaults] = op_defaults
+      result[:resources] = resources
+      result[:resources_by_id] = resources_by_id
+      result[:nodes] = nodes
+      result[:tickets] = tickets
+      result[:tags] = tags
+      result[:alerts] = alerts
+      result[:constraints] = constraints
+      result[:resource_count] = resource_count
+      result[:fencing_topology] = fencing_topology
+      nodes.each do |node|
+        result[:remote_nodes][node[:uname]] = node[:state] unless node[:remote]
       end
     end
   end
@@ -716,6 +685,29 @@ class Cib
       @alerts << ret
     end
 
+    @fencing_topology = []
+    @xml.elements.each('cib/configuration/fencing-topology/fencing-level') do |f|
+      level = {
+        type: nil,
+        target: nil,
+        value: nil,
+        index: f.attributes['index'],
+        devices: f.attributes['devices'].split(",")
+      }
+      if !f.attributes['target'].nil?
+        level[:target] = f.attributes['target']
+        level[:type] = "node"
+      elsif !f.attributes['target-pattern'].nil?
+        level[:target] = f.attributes['target-pattern']
+        level[:type] = "pattern"
+      elsif !f.attributes['target-attribute'].nil?
+        level[:target] = f.attributes['target-attribute']
+        level[:value] = f.attributes['target-value']
+        level[type] = "attribute"
+      end
+      @fencing_topology << level
+    end
+
     # Iterate nodes in cib order here which makes the faked up clone & ms instance
     # IDs be in the same order as pacemaker
     for node in @nodes
@@ -1112,6 +1104,7 @@ class Cib
     @constraints = []
     @tags = []
     @tickets = []
+    @fencing_topology = []
   end
 
   def update_resource_state(resource, node, instance, state, substate, failed_ops)

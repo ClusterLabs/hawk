@@ -2,12 +2,13 @@
 // See COPYING for license.
 
 .footer {
-  position: absolute;
-  bottom: 60px;
-  width: 100%;
+  position: fixed;
+  bottom: 0px;
+  width: 250px;
   padding: 5px 10px 15px 20px;
   border-top: $footer-border;
   color: $white;
+  background: $sidebar-bg;
   
   span {
     color: $copyright-fg;

@@ -59,7 +59,7 @@
         <% else %>
           <%= apply_button(main_form, colocation) %>
           <%= revert_button(main_form, colocation) %>
-          <%= link_to _("Back"), edit_cib_config_path(cib_id: cib.id), class: "btn btn-default back" %>
+          <%= link_to _("Back"), edit_cib_config_path(cib_id: cib.id, anchor: "constraints"), class: "btn btn-default back" %>
         <% end %>
       <% end %>
     <% end %>

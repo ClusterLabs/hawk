@@ -1,0 +1,18 @@
+<div class="container-fluid">
+  <div class="row">
+    <h1>
+      <%= icon_text "plug", _("Fencing Topology"), class: "page" %>
+      <div class="pull-right">
+        <div class="btn-group" role="group">
+          <%= link_to icon_text("pencil", _("Edit")), cib_fencing_edit_path, class: "btn btn-default" %>
+        </div>
+      </div>
+    </h1>
+  </div>
+  <div class="row">
+    <div class="panel panel-default">
+      <%= render partial: "fencing/table", locals: { fencing_topology: @fencing_topology } %>
+    </div>
+  </div>
+</div>
+<%= render partial: "shared/helpsidebar", locals: { category: :resources, help: :fencing, mapping: nil } %>
