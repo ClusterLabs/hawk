@@ -89,7 +89,7 @@
               '<select class="form-control select" name="temp[value]">',
                 '<option></option>',
                 '{^{props selects}}',
-                  '<option value="{{>key}}">',
+                  '<option value="{{>key}}" {{if key === "Started" || key === "start" }} selected="selected" {{/if}}>',
                     '{{>prop}}',
                   '</option>',
                 '{{/props}}',
@@ -150,6 +150,8 @@
       content
     )
       .on('keyup change', 'input, select', function(e) {
+        // Trigger the plus sign programmatically
+        $('.addition .setter .create').click();
         $(e.delegateTarget)
           .parents('form')
             .find('[name="revert"]')
@@ -189,9 +191,12 @@
             .parents('.addition')
             .find('.select select').val(null);
 
+          // Set default value for the target role's select input (after clicking on the plus sign)
           $(e.currentTarget)
             .parents('.addition')
-            .find('.setter select').val(null);
+              .find('.setter select option')
+                .filter(function(i, e) { return $(e).text() == "Started" || $(e).text() == "Start" })
+                  .prop('selected', true);
         }
 
         self.$el.find('.form-group:first .linker, .form-group:first .unlink, .form-group:first .swaper')

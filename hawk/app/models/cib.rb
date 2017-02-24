@@ -66,6 +66,7 @@ class Cib
   attr_reader :resources_by_id
   attr_reader :booth
   attr_reader :constraints
+  attr_reader :fencing_topology
 
   def persisted?
     true
@@ -152,6 +153,7 @@ class Cib
       result[:alerts] = alerts
       result[:constraints] = constraints
       result[:resource_count] = resource_count
+      result[:fencing_topology] = fencing_topology
       nodes.each do |node|
         result[:remote_nodes][node[:uname]] = node[:state] unless node[:remote]
       end
@@ -683,6 +685,29 @@ class Cib
       @alerts << ret
     end
 
+    @fencing_topology = []
+    @xml.elements.each('cib/configuration/fencing-topology/fencing-level') do |f|
+      level = {
+        type: nil,
+        target: nil,
+        value: nil,
+        index: f.attributes['index'],
+        devices: f.attributes['devices'].split(",")
+      }
+      if !f.attributes['target'].nil?
+        level[:target] = f.attributes['target']
+        level[:type] = "node"
+      elsif !f.attributes['target-pattern'].nil?
+        level[:target] = f.attributes['target-pattern']
+        level[:type] = "pattern"
+      elsif !f.attributes['target-attribute'].nil?
+        level[:target] = f.attributes['target-attribute']
+        level[:value] = f.attributes['target-value']
+        level[type] = "attribute"
+      end
+      @fencing_topology << level
+    end
+
     # Iterate nodes in cib order here which makes the faked up clone & ms instance
     # IDs be in the same order as pacemaker
     for node in @nodes
@@ -1079,6 +1104,7 @@ class Cib
     @constraints = []
     @tags = []
     @tickets = []
+    @fencing_topology = []
   end
 
   def update_resource_state(resource, node, instance, state, substate, failed_ops)

@@ -10,6 +10,10 @@ Rails.application.routes.draw do
     match "/apply", as: :apply, to: 'cib#apply', via: [:get, :post]
     get "/ops/:id", to: "cib#ops", as: :ops
 
+    get "/fencing", to: "fencing#index"
+    get "/fencing/edit", to: "fencing#edit"
+    post "/fencing/edit", to: 'fencing#edit', defaults: { format: 'json' }
+
     resources :nodes do
       member do
         get :online
