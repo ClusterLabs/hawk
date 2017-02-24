@@ -27,135 +27,139 @@
   <div id="status-table"></div>
 
   <script id="status-table-template" type="text/x-jsrender">
-    <table id="table-template" class="table table-bordered">
-      <tbody>
-        {{!-- NODES ROW--}}
-        <tr id="nodes-table-row">
-          <th colspan="2" class="col-sm-2 cluster-name">
-            <span id="table-cluster-name">{{:~root.crm_config.cluster_name}}</span>
-          </th>
-          {{for ~root.nodes itemVar="~node"}}
-            <th>
-              {{if ~node.state === "unclean"}}
-                {{:~saveAttrs("node" ,"#node-" + name)}}
-                <span class="label status-bar label-danger"></span>
-              {{else ~node.state === "online"}}
-                {{:~saveAttrs("node" ,"#node-" + name)}} 
-                <span class="label status-bar label-success"></span>
-              {{else ~node.state === "offline"}}
-                {{:~saveAttrs("node" ,"#node-" + name)}}
-                <span class="label status-bar label-default"></span>
-              {{else ~node.state === "standby"}}
-                {{:~saveAttrs("node" ,"#node-" + name)}}
-                <span class="label status-bar label-default"></span>
-              {{else ~node.state === "pending"}}
-                {{:~saveAttrs("node" ,"#node-" + name)}}
-                <span class="label status-bar label-success"></span>
-                <span class="label status-bar label-warning"></span>
-              {{/if}}
-
-              <span id="node-{{:name}}" class="node-title" title="Node id: {{:~node.id}}">{{:name}}</span>
-
-              {{if ~node.name === ~root.meta.dc}}
-                <i class="fa fa-home" aria-hidden="true" title="Designated coordinator"></i>
-              {{/if}}
-              {{if ~node.remote == true}}
-                <i class="fa fa-cloud" aria-hidden="true" title="Remote node"></i>
-              {{/if}}
-              {{if ~node.maintenance == true}}
-                <span class="label maintenance-label label-info"><i class="fa fa-maxcdn" aria-hidden="true"></i></span>
-              {{/if}}
-              {{if ~node.fence_history !== ""}}
-                <i class="fa fa-refresh text-warning" title='{{:~node.fence_history}}'></i>
-              {{/if}}
-            </th>
-          {{/for}}
-        </tr>
-        {{!-- END NODES --}}
-        {{!-- RESOURCES ROWS--}}
-        <div id="resources-table-rows">
-          {{for ~root.resources itemVar="~resource"}}
-            <tr>
-              <td class="border-style">
-                {{if ~resource.maintenance == true}}
-                  <span class="label maintenance-label label-info"><i class="fa fa-maxcdn" aria-hidden="true"></i></span>
-                {{/if}}
-                {{if ~resource["type"] === "master"}}
-                  <i class="fa fa-asterisk" aria-hidden="true"></i>
-                {{/if}}
-              </td>
-              <td class="text-left">
-                {{if ~resource.state === "stopped" && ~resource["attributes"]["target-role"] === "Stopped"}}
-                  {{:~saveAttrs("resource" ,"#resource-" + id )}}
-                  <span class="label status-bar label-default"></span>
-                {{else ~resource.state === "stopped"}}
-                  {{:~saveAttrs("resource" ,"#resource-" + id )}}
-                  <span class="label status-bar label-danger"></span>
-                {{/if}}
-                {{if ~resource.state !== "stopped"}}
-                  {{:~saveAttrs("resource" ,"#resource-" + id )}}
-                  <span class="label status-bar label-success"></span>
-                {{/if}}
-                
-                <span id="resource-{{:id}}">{{:id}}</span>
-                
-              </td>
-
-              {{for ~root.nodes itemVar="~node"}}
-                <td>
-                {{if ~node.state === "unclean" }}
-                  <i class="fa fa-circle fa-lg text-danger"></i>
-                {{else ~resource.state === "stopped"}}
-                  <i class="fa fa-circle fa-lg text-danger"></i>
-                {{else ~node.state === "offline" }}
-                  <i class="fa fa-circle fa-lg text-offline"></i>
-                {{else}}
-                  {{props ~resource.running_on itemVar="~nodeWhereTheResourceRun"}}
-                    {{if (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "started")}}
-                      <i class="fa fa-circle fa-lg text-success" title="Started"></i>
-                    {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "slave")}}
-                        <i class="fa fa-circle fa-lg text-success" title="Started"></i>
-                        <h5><span class="label label-warning">Slave</span></h5>
-                    {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "master")}}
-                        <i class="fa fa-circle fa-lg text-success" title="Started"></i>
-                        <h5><span class="label label-info">Master</span></h5>
-                    {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "not_running")}}
-                        <i class="fa fa-circle fa-lg text-offline"></i>
-                    {{/if}}
-                  {{/props}}
-                {{/if}}
-                </td>
-              {{/for}}
-            </tr>
-          {{/for}}
-        </div>
-        {{!-- END RESOURCES --}}
-        {{!-- TICKETS ROWS --}}
-        {{if ~root.tickets}}
-          <div id="tickets-table-rows">
-            {{props ~root.tickets itemVar="~ticket"}}
-              <tr>
-                <td class="text-left">
-                  <b>{{:~ticket.prop.id}}</b>
-                </td>
-                <td colspan="100%">
-                  {{if ~ticket.prop.state === "granted"}}
-                    <h5><span class="label label-success">Ticket granted</span></h5>
-                  {{else ~ticket.prop.state === "revoked"}}
-                    <h5><span class="label label-default">Ticket revoked</span></h5>
-                  {{else ~ticket.prop.state === "elsewhere"}}
-                    <h5><span class="label label-warning">Ticket granted elsewhere</span></h5>
-                  {{/if}}
-                  {{if ~ticket.prop.standby === true}}
-                    <h5><span class="label label-default">Standby</span></h5>
-                  {{/if}}
-                </td>
-              </tr>
-            {{/props}}
+    <!-- TABLE NAVBAR-->
+    <!--
+    <div class="header">
+      <ul class="filter-menu">
+        <li>
+          <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <i class="fa fa-align-justify" aria-hidden="true"></i>
+            </button>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+              <a class="dropdown-item" href="#">Action</a>
+              <a class="dropdown-item" href="#">Another action</a>
+              <a class="dropdown-item" href="#">Something else here</a>
+            </div>
           </div>
-        {{/if}}
-        {{!-- END TICKETS --}}
-      </tbody>
-      </table>
+        </li>
+        <li><i class="fa fa-cog" aria-hidden="true"></i></li>
+      </ul>
+    </div>
+    -->
+    <!-- END TABLE NAVBAR -->
+    <!-- TABLE -->
+    <div class="dashbaord-table">
+      <table id="table-template" class="table">
+          {{!-- NODES ROW--}}
+          <tr id="nodes-table-row" class="no-top-border table-header">
+          <th colspan="2" class="col-sm-2 no-left-border"></th>
+            {{for ~root.nodes itemVar="~node"}}
+              <th {{if #index==0}}class="no-left-border"{{/if}}>
+                {{if ~node.state === "unclean"}}
+                  <span class="status-bar status-danger"></span>
+                {{else ~node.state === "online"}}
+                  <span class="status-bar status-success"></span>
+                {{else ~node.state === "offline"}}
+                  <span class="status-bar status-offline"></span>
+                {{else ~node.state === "standby"}}
+                  <span class="status-bar status-offline"></span>
+                {{else ~node.state === "pending"}}
+                  <span class="status-bar status-success"></span>
+                {{/if}}
+                <div id="node-{{:name}}" class="node-name" title="Node id: {{:~node.id}}">{{:name}} <span id="table-cluster-name">{{:~root.crm_config.cluster_name}}</span></div>
+                {{if ~node.name === ~root.meta.dc}}
+                  <span class="status-icon"><i class="fa fa-home" aria-hidden="true" title="Designated coordinator"></i></span>
+                {{/if}}
+                {{if ~node.remote == true}}
+                  <span class="status-icon"><i class="fa fa-podcast" aria-hidden="true" title="Remote node"></i></span>
+                {{/if}}
+                {{if ~node.maintenance == true}}
+                <span class="status-icon"><i class="fa fa-wrench" aria-hidden="true"></i></span>
+                {{/if}}
+                {{if ~node.fence_history !== ""}}
+                  <i class="fa fa-refresh text-warning" title='{{:~node.fence_history}}'></i>
+                {{/if}}
+              </th>
+            {{/for}}
+          </tr>
+          {{!-- END NODES --}}
+          {{!-- RESOURCES ROWS--}}
+          <div id="resources-table-rows">
+            {{for ~root.resources itemVar="~resource"}}
+              <tr {{if #index==0}}class="no-top-border"{{/if}}>
+                <td class="no-left-border resource-icon">
+                  {{if ~resource.maintenance == true}}
+                    <span class="status-icon"><i class="fa fa-wrench" aria-hidden="true"></i></span>
+                  {{/if}}
+                  {{if ~resource["type"] === "master"}}
+                    <span class="status-icon"><i class="fa fa-asterisk" aria-hidden="true"></i></span>
+                  {{/if}}
+                </td>
+                <td class="text-left no-left-border">
+                  {{if ~resource.state === "stopped" && ~resource["attributes"]["target-role"] === "Stopped"}}
+                    <span class="status-bar status-offline"></span>
+                  {{else ~resource.state === "stopped"}}
+                    <span class="status-bar status-danger"></span>
+                  {{/if}}
+                  {{if ~resource.state !== "stopped"}}
+                    <span class="status-bar status-success"></span>
+                  {{/if}}
+                    <span id="resource-{{:id}}" class="resource-name">{{:id}}</span>
+                </td>
+                {{for ~root.nodes itemVar="~node"}}
+                  <td {{if #index==0}}class="no-left-border"{{/if}}>
+                  {{if ~node.state === "unclean" }}
+                    <div class="node-circle status-danger"></div>
+                  {{else ~resource.state === "stopped"}}
+                    <div class="node-circle status-danger"></div>
+                  {{else ~node.state === "offline" }}
+                    <div class="node-circle status-offline"></div
+                  {{else}}
+                    {{props ~resource.running_on itemVar="~nodeWhereTheResourceRun"}}
+                      {{if (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "started")}}
+                        <div class="node-circle status-success" title="Started"></div>
+                      {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "slave")}}
+                        <div class="node-circle status-success" title="Started"></div><span class="slave-master">Slave</span>
+                      {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "master")}}
+                        <div class="node-circle status-success" title="Started"></div><span class="slave-master">Master</span>
+                      {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "not_running")}}
+                        <div class="node-circle status-default"></div>
+                      {{/if}}
+                    {{/props}}
+                  {{/if}}
+                  </td>
+                {{/for}}
+              </tr>
+            {{/for}}
+          </div>
+          {{!-- END RESOURCES --}}
+          {{!-- TICKETS ROWS --}}
+          {{if ~root.tickets}}
+            <div id="tickets-table-rows">
+              {{props ~root.tickets itemVar="~ticket"}}
+                <tr>
+                  <td class="text-left">
+                    <b>{{:~ticket.prop.id}}</b>
+                  </td>
+                  <td colspan="100%">
+                    {{if ~ticket.prop.state === "granted"}}
+                      <h5><span class="label label-success">Ticket granted</span></h5>
+                    {{else ~ticket.prop.state === "revoked"}}
+                      <h5><span class="label label-default">Ticket revoked</span></h5>
+                    {{else ~ticket.prop.state === "elsewhere"}}
+                      <h5><span class="label label-warning">Ticket granted elsewhere</span></h5>
+                    {{/if}}
+                    {{if ~ticket.prop.standby === true}}
+                      <h5><span class="label label-default">Standby</span></h5>
+                    {{/if}}
+                  </td>
+                </tr>
+              {{/props}}
+            </div>
+          {{/if}}
+          {{!-- END TICKETS --}}
+        </table>
+      </div>
+      <!-- TABLE -->
   </script>
-</div>

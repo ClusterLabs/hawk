@@ -104,3 +104,135 @@ table tr th {
 .status-offline {
   color: gray;
 }
+
+/* ------- HTML tabl CSS start ------- */
+
+
+
+ul.filter-menu {
+  float: right;
+  margin-bottom: 0;
+
+  li {
+    display: inline-block;
+    margin: 0px 20px 0 0;
+    color: #fff;
+    vertical-align: middle;
+  }
+}
+
+.filter-menu .btn {
+  background: transparent;
+  color: #fff;
+  padding: 0 5px;
+}
+.dropdown-menu {
+  right: 0px;
+  left: inherit;
+}
+.open>.dropdown-menu {
+  padding: 10px;
+  border-radius: 0;
+  border: 0;
+  a {
+    display: block;
+  }
+}
+
+.dashbaord-table {
+  padding: 15px;
+}
+
+.header{
+  background: #013157;
+  float: left;
+  width: 100%;
+  padding:10px 8px;
+  margin-bottom: 14px;
+}
+
+.table>tbody>tr>th,
+.table>tbody>tr>td {
+  border-left: 1px solid #ddd;
+  vertical-align: middle;
+  height: 50px;
+  padding: 0 8px;
+}
+
+.table>tbody>tr.no-top-border>th,
+.table>tbody>tr.no-top-border>td {
+  border-top-color: #fff;
+}
+
+.table>tbody>tr.table-header>th {
+  padding: 20px 5px;
+  text-align: center;
+}
+
+.table>tbody>tr>td.resource-icon {
+  padding-left: 0px;
+  padding-right: 0px;
+  line-height: 28px;
+  text-align: right;
+}
+
+.no-left-border {
+  border-left-color: #fff!important;
+}
+
+.status-bar {
+  width: 5px;
+  height: 25px;
+  display: inline-block;
+  margin-right: 3px;
+}
+
+.node-name {
+  display: inline-block;
+  text-align: left;
+  font-weight: lighter;
+  line-height: 14px;
+  margin-right: 5px;
+  vertical-align: middle;
+  span {
+    font-size: 11px;
+    color: #888;
+    display: block;
+  }
+}
+
+.status-icon {
+  margin-right: 3px;
+  display: inline-block;
+}
+
+.resource-name {
+  display: inline-block;
+}
+
+.slave-master {
+  border-radius: 3px;
+  background: #fc9a2b;
+  padding: 0px 1px;
+  color: #fff;
+  font-size: 10px;
+  display: block;
+  width: 40px;
+  margin: 0 auto;
+  margin-top: 3px;
+  line-height: 13px;
+}
+
+.node-circle {
+  border-radius: 8px;
+  width: 16px;
+  height: 16px;
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.status-success { background-color: #00c081;}
+.status-warning { background-color: #fc9a2b;}
+.status-danger { background-color: #a52700;}
+.status-default { background-color: #fff; border: 1px solid #777;}
+.status-offline { background-color: #555;}
