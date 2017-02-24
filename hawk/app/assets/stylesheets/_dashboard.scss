@@ -6,108 +6,7 @@ $details-border: #80c235;
 $matrix-details-bg: #f5f5f5;
 $matrix-details-text: #222;
 
-
-
-table.status-matrix-wrapper {
-  margin-left: auto;
-  margin-right: auto;
-  table-layout: fixed;
-}
-
-.status-matrix-element {
-  text-align: right;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  font-size: $dashboard-font-size;
-  font-weight: normal;
-  padding-right: 10px;
-}
-
-
-
-.dash-cluster-content {
-  overflow: auto;
-}
-
-.dash-cell {
-  text-align: left;
-}
-
-
-table tr td {
-  text-align: center;
-  position: relative;
-}
-
-table tr th {
-  text-align: center;
-}
-
-.cluster-name {
-  display: block;
-  color: #666;
-  font-size: 12px;
-  font-weight: normal;
-}
-
-.text-success { color: #00c081;}
-.text-warning { color: #fc9a2b;}
-.text-danger { color: #a52700;}
-.text-offline {color: #777777}
-
-
-////////////////////////////////////////////////////////////////////////////////
-
-.node-title {
-  margin-right: 5px;
-  color: #333;
-  font-weight: normal
-}
-
-.table-bordered > tbody > tr > td.border-style{
-  border-right-color: #fff;
-  padding-right: 0;
-  vertical-align: middle;
-}
-
-.label:empty {
-  display: inline-block;
-}
-
-.status-bar {
-  height: 24px;
-  font-size: 5px;
-  border-radius: 0;
-  vertical-align: middle;
-}
-
-.maintenance-label {
-  background-color: transparent;
-  font-size: 16px;
-  color: #444;
-  padding: 0;
-}
-
-.status-success {
-  color: green;
-}
-
-.status-pending {
-  color: orange;
-}
-
-.status-error {
-  color: red;
-}
-
-.status-offline {
-  color: gray;
-}
-
-/* ------- HTML tabl CSS start ------- */
-
-
+/* ------- Table navbar CSS start ------- */
 
 ul.filter-menu {
   float: right;
@@ -151,6 +50,17 @@ ul.filter-menu {
   margin-bottom: 14px;
 }
 
+/* ------- HTML tabl CSS start ------- */
+
+table tr td {
+  text-align: center;
+  position: relative;
+}
+
+table tr th {
+  text-align: center;
+}
+
 .table>tbody>tr>th,
 .table>tbody>tr>td {
   border-left: 1px solid #ddd;
@@ -185,7 +95,14 @@ ul.filter-menu {
   height: 25px;
   display: inline-block;
   margin-right: 3px;
+  vertical-align: middle;
 }
+
+.status-success { background-color: #00c081;}
+.status-warning { background-color: #fc9a2b;}
+.status-danger { background-color: #a52700;}
+.status-default { background-color: #fff; border: 1px solid #777;}
+.status-offline { background-color: #555;}
 
 .node-name {
   display: inline-block;
@@ -230,9 +147,3 @@ ul.filter-menu {
   display: inline-block;
   vertical-align: middle;
 }
-
-.status-success { background-color: #00c081;}
-.status-warning { background-color: #fc9a2b;}
-.status-danger { background-color: #a52700;}
-.status-default { background-color: #fff; border: 1px solid #777;}
-.status-offline { background-color: #555;}

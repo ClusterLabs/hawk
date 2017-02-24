@@ -51,9 +51,10 @@
     <!-- TABLE -->
     <div class="dashbaord-table">
       <table id="table-template" class="table">
-          {{!-- NODES ROW--}}
+        {{!-- NODES ROW--}}
+        <div id="nodes-table-rows">
           <tr id="nodes-table-row" class="no-top-border table-header">
-          <th colspan="2" class="col-sm-2 no-left-border"></th>
+            <th colspan="2" class="col-sm-2 no-left-border"></th>
             {{for ~root.nodes itemVar="~node"}}
               <th {{if #index==0}}class="no-left-border"{{/if}}>
                 {{if ~node.state === "unclean"}}
@@ -83,83 +84,205 @@
               </th>
             {{/for}}
           </tr>
-          {{!-- END NODES --}}
-          {{!-- RESOURCES ROWS--}}
-          <div id="resources-table-rows">
-            {{for ~root.resources itemVar="~resource"}}
-              <tr {{if #index==0}}class="no-top-border"{{/if}}>
-                <td class="no-left-border resource-icon">
-                  {{if ~resource.maintenance == true}}
-                    <span class="status-icon"><i class="fa fa-wrench" aria-hidden="true"></i></span>
+        <div>
+        {{!-- END NODES --}}
+        {{!-- RESOURCES ROWS--}}
+        <div id="resources-table-rows">
+          {{for ~root.resources itemVar="~resource"}}
+            <tr {{if #index==0}}class="no-top-border"{{/if}}>
+              <td class="no-left-border resource-icon">
+                {{if ~resource.maintenance == true}}
+                  <span class="status-icon"><i class="fa fa-wrench" aria-hidden="true"></i></span>
+                {{/if}}
+                {{if ~resource["type"] === "master"}}
+                  <span class="status-icon"><i class="fa fa-asterisk" aria-hidden="true"></i></span>
+                {{/if}}
+              </td>
+              <td class="text-left no-left-border">
+                {{if ~resource.state === "stopped" && ~resource["attributes"]["target-role"] === "Stopped"}}
+                  <span class="status-bar status-offline"></span>
+                {{else ~resource.state === "stopped"}}
+                  <span class="status-bar status-danger"></span>
+                {{/if}}
+                {{if ~resource.state !== "stopped"}}
+                  <span class="status-bar status-success"></span>
+                {{/if}}
+                  <span id="resource-{{:id}}" class="resource-name">{{:id}}</span>
+              </td>
+              {{for ~root.nodes itemVar="~node"}}
+                <td {{if #index==0}}class="no-left-border"{{/if}}>
+                {{if ~node.state === "unclean" }}
+                  <div class="node-circle status-danger"></div>
+                {{else ~resource.state === "stopped"}}
+                  <div class="node-circle status-danger"></div>
+                {{else ~node.state === "offline" }}
+                  <div class="node-circle status-offline"></div
+                {{else}}
+                  {{props ~resource.running_on itemVar="~nodeWhereTheResourceRun"}}
+                    {{if (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "started")}}
+                      <div class="node-circle status-success" title="Started"></div>
+                    {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "slave")}}
+                      <div class="node-circle status-success" title="Started"></div><span class="slave-master">Slave</span>
+                    {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "master")}}
+                      <div class="node-circle status-success" title="Started"></div><span class="slave-master">Master</span>
+                    {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "not_running")}}
+                      <div class="node-circle status-default"></div>
+                    {{/if}}
+                  {{/props}}
+                {{/if}}
+                </td>
+              {{/for}}
+            </tr>
+          {{/for}}
+        </div>
+        {{!-- END RESOURCES --}}
+        {{!-- TICKETS ROWS --}}
+        {{if ~root.tickets}}
+          <div id="tickets-table-rows">
+            {{props ~root.tickets itemVar="~ticket"}}
+              <tr>
+                <td class="text-left">
+                  <b>{{:~ticket.prop.id}}</b>
+                </td>
+                <td colspan="100%">
+                  {{if ~ticket.prop.state === "granted"}}
+                    <h5><span class="label label-success">Ticket granted</span></h5>
+                  {{else ~ticket.prop.state === "revoked"}}
+                    <h5><span class="label label-default">Ticket revoked</span></h5>
+                  {{else ~ticket.prop.state === "elsewhere"}}
+                    <h5><span class="label label-warning">Ticket granted elsewhere</span></h5>
                   {{/if}}
-                  {{if ~resource["type"] === "master"}}
-                    <span class="status-icon"><i class="fa fa-asterisk" aria-hidden="true"></i></span>
+                  {{if ~ticket.prop.standby === true}}
+                    <h5><span class="label label-default">Standby</span></h5>
                   {{/if}}
                 </td>
-                <td class="text-left no-left-border">
-                  {{if ~resource.state === "stopped" && ~resource["attributes"]["target-role"] === "Stopped"}}
-                    <span class="status-bar status-offline"></span>
-                  {{else ~resource.state === "stopped"}}
-                    <span class="status-bar status-danger"></span>
-                  {{/if}}
-                  {{if ~resource.state !== "stopped"}}
-                    <span class="status-bar status-success"></span>
-                  {{/if}}
-                    <span id="resource-{{:id}}" class="resource-name">{{:id}}</span>
-                </td>
-                {{for ~root.nodes itemVar="~node"}}
-                  <td {{if #index==0}}class="no-left-border"{{/if}}>
-                  {{if ~node.state === "unclean" }}
-                    <div class="node-circle status-danger"></div>
-                  {{else ~resource.state === "stopped"}}
-                    <div class="node-circle status-danger"></div>
-                  {{else ~node.state === "offline" }}
-                    <div class="node-circle status-offline"></div
-                  {{else}}
-                    {{props ~resource.running_on itemVar="~nodeWhereTheResourceRun"}}
-                      {{if (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "started")}}
-                        <div class="node-circle status-success" title="Started"></div>
-                      {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "slave")}}
-                        <div class="node-circle status-success" title="Started"></div><span class="slave-master">Slave</span>
-                      {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "master")}}
-                        <div class="node-circle status-success" title="Started"></div><span class="slave-master">Master</span>
-                      {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "not_running")}}
-                        <div class="node-circle status-default"></div>
-                      {{/if}}
-                    {{/props}}
-                  {{/if}}
-                  </td>
-                {{/for}}
               </tr>
-            {{/for}}
+            {{/props}}
           </div>
-          {{!-- END RESOURCES --}}
-          {{!-- TICKETS ROWS --}}
-          {{if ~root.tickets}}
-            <div id="tickets-table-rows">
-              {{props ~root.tickets itemVar="~ticket"}}
-                <tr>
-                  <td class="text-left">
-                    <b>{{:~ticket.prop.id}}</b>
-                  </td>
-                  <td colspan="100%">
-                    {{if ~ticket.prop.state === "granted"}}
-                      <h5><span class="label label-success">Ticket granted</span></h5>
-                    {{else ~ticket.prop.state === "revoked"}}
-                      <h5><span class="label label-default">Ticket revoked</span></h5>
-                    {{else ~ticket.prop.state === "elsewhere"}}
-                      <h5><span class="label label-warning">Ticket granted elsewhere</span></h5>
-                    {{/if}}
-                    {{if ~ticket.prop.standby === true}}
-                      <h5><span class="label label-default">Standby</span></h5>
-                    {{/if}}
-                  </td>
-                </tr>
-              {{/props}}
-            </div>
-          {{/if}}
-          {{!-- END TICKETS --}}
+        {{/if}}
+        {{!-- END TICKETS --}}
         </table>
       </div>
       <!-- TABLE -->
   </script>
+
+
+
+
+  <div class="dashbaord-table">
+    <table class="table">
+      <tr class="no-top-border table-header">
+        <th colspan="2" class="col-sm-2 no-left-border"></th>
+
+        <th class="no-left-border">
+          <span class="status-bar status-offline"></span>
+          <div class="node-name">Node1 <span>Cluster Alpha</span></div>
+          <span class="status-icon"><i class="fa fa-wrench" aria-hidden="true"></i></span>
+          <span class="status-icon"><i class="fa fa-cog" aria-hidden="true"></i></span>
+        </th>
+        <th>
+          <span class="status-bar status-success"></span>
+          <div class="node-name">Node2 <span>Cluster Alpha</span></div>
+        </th>
+        <th>
+          <span class="status-bar status-success"></span>
+          <div class="node-name">Node3 <span>Cluster Alpha</span></div>
+        </th>
+        <th>
+          <span class="status-bar status-danger"></span>
+          <div class="node-name">Node4 <span>Cluster Alpha</span></div>
+        </th>
+        <th>
+          <span class="status-bar status-success"></span>
+          <div class="node-name">Node5 <span>Cluster Alpha</span></div>
+        </th>
+      </tr>
+
+
+
+    <!-- Starts here  -->
+
+      <tr class="no-top-border">
+
+        <td class="no-left-border resource-icon"></td>
+        <td class="text-left no-left-border">
+          <span class="status-bar status-success"></span>
+          <span class="resource-name">stonith-sbd</span>
+        </td>
+
+        <td class="no-left-border"><div class="node-circle status-offline"></div></td>
+        <td><div class="node-circle status-warning"></div></td>
+        <td><div class="node-circle status-default"></div></td>
+        <td><div class="node-circle status-danger"></div></td>
+        <td><div class="node-circle status-success"></div></td>
+      </tr>
+
+      <tr>
+        <td class="no-left-border resource-icon">
+          <span class="status-icon"><i class="fa fa-wrench" aria-hidden="true"></i></span>
+        </td>
+
+        <td class="text-left no-left-border">
+          <span class="status-bar status-success"></span>
+          <span class="resource-name">base-clone</span>
+        </td>
+        <td class="no-left-border"><div class="node-circle status-offline"></div></td>
+        <td><div class="node-circle status-success"></div><span class="slave-master">Slave</span></td>
+        <td><div class="node-circle status-default"></div></td>
+        <td><div class="node-circle status-danger"></div></td>
+        <td><div class="node-circle status-success"></div></td>
+      </tr>
+      <tr>
+        <td class="no-left-border resource-icon">
+          <span class="status-icon"><i class="fa fa-cog" aria-hidden="true"></i></span>
+          <span class="status-icon"><i class="fa fa-wrench" aria-hidden="true"></i></span>
+        </td>
+        <td class="text-left no-left-border">
+          <span class="status-bar status-success"></span>
+          <span class="resource-name">c-clusterfs</span>
+        </td>
+        <td class="no-left-border"><div class="node-circle status-offline"></div></td>
+        <td><div class="node-circle status-success"></div></td>
+        <td><div class="node-circle status-warning"></div></td>
+        <td><div class="node-circle status-danger"></div></td>
+        <td><div class="node-circle status-success"></div></td>
+      </tr>
+      <tr>
+        <td class="no-left-border resource-icon"></td>
+        <td class="text-left no-left-border">
+          <span class="status-bar status-success"></span>
+          <span class="resource-name">g-proxy</span>
+        </td>
+        <td class="no-left-border"><div class="node-circle status-offline"></div></td>
+        <td><div class="node-circle status-success"></div><span class="slave-master">Master</span></td>
+        <td><div class="node-circle status-success"></div><span class="slave-master">Slave</span></td>
+        <td><div class="node-circle status-danger"></div></td>
+        <td><div class="node-circle status-success"></div></td>
+      </tr>
+      <tr>
+        <td class="no-left-border resource-icon"></td>
+        <td class="text-left no-left-border">
+          <span class="status-bar status-success"></span>
+          <span class="resource-name">cl-servers</span>
+        </td>
+        <td class="no-left-border"><div class="node-circle status-offline"></div></td>
+        <td><div class="node-circle status-success"></div></td>
+        <td><div class="node-circle status-success"></div></td>
+        <td><div class="node-circle status-danger"></div></td>
+        <td><div class="node-circle status-success"></div></td>
+      </tr>
+      <tr>
+        <td class="no-left-border resource-icon"></td>
+        <td class="text-left no-left-border">
+          <span class="status-bar status-danger"></span>
+          <span class="resource-name">stonith-sbd-1 </span>
+        </td>
+        <td class="no-left-border"><div class="node-circle status-danger"></div></td>
+        <td><div class="node-circle status-danger"></div></td>
+        <td><div class="node-circle status-danger"></div></td>
+        <td><div class="node-circle status-danger"></div></td>
+        <td><div class="node-circle status-success"></div></td>
+      </tr>
+    </table>
+  </div>
+</div>
