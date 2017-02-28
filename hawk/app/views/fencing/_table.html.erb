@@ -1,0 +1,20 @@
+<table class="table table-striped table-bordered">
+  <tr>
+    <th><%= _("Target") %></th>
+    <th><%= _("Index") %></th>
+    <th><%= _("Devices") %></th>
+  </tr>
+  <% fencing_topology.each do |level| %>
+    <tr>
+      <% if level[:type] == "node" %>
+        <td><%= level[:target] %></td>
+      <% elsif level[:type] == "pattern" %>
+        <td><code><%= level[:target] %></code></td>
+      <% else %>
+        <td><%= level[:target] %>=<%= level[:value] %></td>
+      <% end %>
+      <td><%= level[:index] %></td>  
+      <td><%= level[:devices].join(",") %></td>
+    </tr>
+  <% end %>
+</table>
