@@ -74,7 +74,10 @@
     return '<abbr title="' + desc + '">' + value + '</abbr>';
   }
   function eventsRowStyle(row, index) {
-    if (parseInt(row.rc) != 0) {
+    var status = parseInt(row.rc);
+    if (status == 8) {
+      return { classes: "info" };
+    } else if (status != 0) {
       return { classes: "danger" };
     }
     return {};

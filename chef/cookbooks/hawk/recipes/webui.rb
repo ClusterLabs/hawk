@@ -64,6 +64,33 @@ node["hawk"]["webui"]["targets"].each do |name|
   end
 end
 
+template "/etc/drbd.d/global_common.conf" do
+  source "global_common.conf.erb"
+  owner "root"
+  group "root"
+  mode 0644
+end
+
+template "/etc/drbd.d/r0.res" do
+  source "r0.res.erb"
+  owner "root"
+  group "root"
+  mode 0644
+end
+
+bash "DRBD disk creation" do
+  user "root"
+
+  code <<-EOF
+drbdadm dump all
+drbdadm create-md r0
+drbdadm up r0
+drbdadm new-current-uuid --clear-bitmap r0/0
+drbdadm primary --force r0
+mkfs.ext4 /dev/drbd0
+EOF
+end
+
 bash "hawk_init" do
   user "root"
   cwd "/vagrant"
@@ -148,6 +175,11 @@ end
 execute "crm initial configuration" do
   user "root"
   command "crm configure load update #{node["hawk"]["webui"]["initial_cib"]}"
+end
+
+execute "crm drbd configuration" do
+  user "root"
+  command "crm script run drbd id=DRBD drbd_resource=r0"
 end
 
 template "/etc/systemd/system/hawk-development.service" do

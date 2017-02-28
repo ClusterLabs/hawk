@@ -461,6 +461,10 @@ class Cib
     @meta[:status] = cluster_status unless @meta.nil?
   end
 
+  def warning(msg, additions = {})
+    error(msg, :warning, additions)
+  end
+
   def initialize(id, user, use_file = false, stonithwarning = false)
     Rails.logger.debug "Cib.initialize #{id}, #{user}, #{use_file}"
 
@@ -954,7 +958,7 @@ class Cib
     end
     if feature_sets.count > 1
       details = feature_sets.map { |k, v| "%s = %s" % [v.join(", "), k] }.join("; ")
-      error _('Partial upgrade detected! Nodes report different CRM versions: %s') % details, :warning
+      warning _('Partial upgrade detected! Nodes report different CRM versions: %s') % details
     end
 
     # TODO(should): Can we just use cib attribute dc-uuid?  Or is that not viable
@@ -1067,15 +1071,16 @@ class Cib
 
     error _("Partition without quorum! Fencing and resource management is disabled.") if no_quorum?
 
+    check_drbd_status
+
     @nodes.each do |n|
       if n[:state] == :unclean
         error _('Node "%{node}" is UNCLEAN and needs to be fenced.') % { node: "<strong>#{n[:uname]}</strong>".html_safe }
       end
     end
 
-    error(
+    warning(
       _("STONITH is disabled. For normal cluster operation, STONITH is required."),
-      :warning,
       link: edit_cib_crm_config_path(cib_id: @id)
     ) unless @crm_config[:stonith_enabled] || !stonithwarning
   end
@@ -1173,5 +1178,45 @@ class Cib
     end
 
     resource
+  end
+
+  def check_drbd_status
+    # if there are any running drbd resources on this node and a drbdadm command,
+    # check drbdadm status
+    # do we need sudo to do it?
+    me = Socket.gethostname
+    has_drbd = false
+
+    return unless File.executable? "/sbin/drbdadm"
+
+    warn_diskstates = ["Failed", "Inconsistent", "Outdated", "DUnknown"].to_set
+    warn_connectionstates = ["StandAlone", "Connecting", "Timeout", "BrokenPipe", "NetworkFailure", "ProtocolError"].to_set
+
+    @resources_by_id.each do |_name, r|
+      t = r[:type] == "drbd"
+      active = [:master, :slave, :running].include? r[:running_on][me]
+      has_drbd ||= t && active
+    end
+    if has_drbd
+      status = Util.safe_x("/sbin/drbdadm", "status")
+      curr = nil
+      curr_peer = nil
+      status.each_line do |l|
+        if m = /^(\w+)\s*role:(\w+)$/.match(l)
+          curr = m[1]
+          curr_peer = nil
+        elsif curr
+          if m = /^  disk:(\w+)/.match(l)
+            warning(_("DRBD disk %{d} is %{s} on %{n}") % { d: curr, s: m[1], n: me}) if warn_diskstates.include? m[1]
+          elsif m = /^  (\w+)\s*role:(\w+)$/.match(l)
+            curr_peer = m[1]
+          elsif m = /^    peer-disk:(\w+)$/.match(l)
+            warning(_("DRBD disk %{d} is %{s} on %{n}") % { d: curr, s: m[1], n: curr_peer}) if warn_diskstates.include? m[1]
+          elsif m = /^  (\w+) connection:(\w+)$/.match(l)
+            warning(_("DRBD connection for %{d} to %{n} is %{s}") % { d: curr, s: m[2], n: m[1]}) if warn_connectionstates.include? m[2]
+          end
+        end
+      end
+    end
   end
 end
