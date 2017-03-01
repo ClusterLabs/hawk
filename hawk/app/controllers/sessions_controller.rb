@@ -76,6 +76,19 @@ class SessionsController < ApplicationController
     end
   end
 
+  def lang
+    locale = if params[:lang].to_s.empty?
+      default_locale
+    else
+      params[:lang]
+    end.tr("_", "-")
+    cookies[:locale] = locale
+    I18n.locale = FastGettext.set_locale(
+      locale
+    )
+    redirect_to login_url
+  end
+
   protected
 
   def detect_current_layout

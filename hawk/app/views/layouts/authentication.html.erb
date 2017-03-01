@@ -27,25 +27,12 @@
           </div>
           <div class="btn-group pull-right language-btn">
             <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-              English <span class="caret"></span>
+              <%= Profile.current_language %> <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
-              <li><a href="#">العربية</a></li>
-              <li><a href="#">Čeština</a></li>
-              <li><a href="#">Deutsche</a></li>
-              <li><a href="#">Español</a></li>
-              <li><a href="#">Français</a></li>
-              <li><a href="#">Magyar</a></li>
-              <li><a href="#">Italiano</a></li>
-              <li><a href="#">日本語</a></li>
-              <li><a href="#">Korean</a></li>
-              <li><a href="#">Nederlands</a></li>
-              <li><a href="#">Polskie</a></li>
-              <li><a href="#">Português (Brasil)</a></li>
-              <li><a href="#">Pусский</a></li>
-              <li><a href="#">Svenska</a></li>
-              <li><a href="#">中文（简体）</a></li>
-              <li><a href="#">中文（台湾)</a></li>
+              <% Profile.available_languages.each do |lang, name| %>
+              <li><%= link_to name, login_lang_path(lang: lang) %></li>
+              <% end %>
             </ul>
           </div>
         </div>
@@ -60,13 +47,11 @@
              <h2>
               SUSE <span>High Availability</span>
             </h2>
-             <p>Hawk simplifies the management and configuration of High
-               Availability clusters, making it easy to eliminate downtime and
-               maximizing service availability.
+             <p><%= _("Hawk simplifies the management and configuration of High Availability clusters, making it easy to eliminate downtime and maximizing service availability.") %>
             </p>
           </div>
           <div class="col-sm-4 col-sm-offset-1">
-            <h3>Sign in</h3>
+            <h3><%= _('Sign in') %></h3>
             <%= render partial: "shared/flash", locals: { flash: flash } %>
             <%= yield %>
           </div>

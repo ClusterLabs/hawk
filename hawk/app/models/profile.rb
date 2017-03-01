@@ -22,6 +22,14 @@ class Profile < Tableless
         ActiveSupport::OrderedHash[result]
       end
     end
+
+    def current_language
+      cur = I18n.locale.to_s.dasherize
+      available_languages.each do |lang, name|
+        return name if lang.dasherize == cur
+      end
+      I18n.locale
+    end
   end
 
   attribute :language, String, default: I18n.locale
