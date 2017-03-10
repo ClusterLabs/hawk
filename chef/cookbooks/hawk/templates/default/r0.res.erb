@@ -1,6 +1,10 @@
 resource r0 {
 	device /dev/drbd0;
+<% if node["virtualization"]["system"] == "kvm" %>
 	disk /dev/vdc;
+<% else %>
+	disk /dev/sdc;
+<% end %>
 	meta-disk internal;
 	on webui {
 		address 10.13.37.10:7788;
