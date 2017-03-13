@@ -152,6 +152,7 @@ Rails.application.routes.draw do
 
   get "login" => "sessions#new", :as => :login
   match 'login' => "sessions#create", via: [ :post, :options], :as => :signin
+  get "login/lang/:lang" => "sessions#lang", :as => :login_lang
 
   if Rails.env.production?
     get '*path' => redirect('/404.html') # if nothing else matches
