@@ -73,13 +73,13 @@
       </div>
     </div>
   </div>
-  
+
   <script id="status-table-template" type="text/x-jsrender">
     <div class="inner">
       <div class="dashboard-container">
         <!-- +++++ ++++++++ New Code start ++++++++++++++++++++++++ -->
 
-        <div class="alert alert-danger" role="alert">
+        <div class="alert alert-danger event-section" role="alert">
           <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
           <p>Aliquam tincidunt mauris eu risus.Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Lorem ipsum dolor sit amet, consectetuer adipiscing elit</p>
           <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
@@ -178,41 +178,34 @@
             {{if ~root.tickets}}
               <div id="tickets-table-rows">
                 {{props ~root.tickets itemVar="~ticket"}}
-                  <tr>
+                  <tr class="ticket">
+                    <td class="no-left-border resource-icon"></td>
                     <td class="text-left no-left-border">
-                    <span class="status-bar status-success"></span>
-                      <span id="ticket-{{:~ticket.prop.id}}" class="ticket-name"><b>{{:~ticket.prop.id}}</b></span>
+                      <span class="status-bar status-ticket"></span>
+                      <span id="ticket-{{:~ticket.prop.id}}" class="resource-name">{{:~ticket.prop.id}}</span>
                     </td>
-                    <td colspan="100%" class="no-left-border">
-                      {{if ~ticket.prop.state === "granted"}}
-                      <span class="table-label ticket-granted">Ticket granted</span>
-                      {{else ~ticket.prop.state === "revoked"}}
-                        <span class="table-label ticket-revoked">Ticket revoked</span>
-                      {{else ~ticket.prop.state === "elsewhere"}}
-                        <span class="table-label ticket-elsewhere">Ticket granted elsewhere</span>
-                      {{/if}}
-                      {{if ~ticket.prop.standby === true}}
-                        <span class="table-label ticket-standby">Standby</span>
-                      {{/if}}
+                    <td class="no-left-border" colspan="4">
+                      <div class="ticket-state">
+                        {{if ~ticket.prop.state === "granted"}}
+                          Ticket granted
+                        {{else ~ticket.prop.state === "revoked"}}
+                          Ticket Revoked
+                        {{else ~ticket.prop.state === "elsewhere"}}
+                          Ticket granted elsewhere
+                        {{/if}}
+                        {{if ~ticket.prop.standby === true}}
+                          Standby
+                        {{/if}}
+                      </div>
                     </td>
                   </tr>
                 {{/props}}
               </div>
             {{/if}}
             {{!-- END TICKETS --}}
-            <!-- +++++ ++++++++ New Code start ++++++++++++++++++++++++ -->
-            <tr class="ticket">
-              <td class="no-left-border resource-icon"></td>
-              <td class="text-left no-left-border">
-                <span class="status-bar status-ticket"></span>
-                <span class="resource-name">ticket</span>
-              </td>
-              <td class="no-left-border" colspan="4"><div class="ticket-state">Ticket Revoked</div></td>
-            </tr>
-            <!-- +++++ ++++++++ New Code end ++++++++++++++++++++++++ -->
-            </table>
-          </div>
-          <!-- TABLE -->
+          </table>
+        </div>
+        <!-- TABLE -->
       </div>
     </div>
   </script>
