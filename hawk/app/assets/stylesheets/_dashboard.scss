@@ -1,5 +1,14 @@
 .inner {min-width: 800px;}
 
+.dashboard-container {
+  > .alert {
+    margin: 15px;
+    p {
+      margin: 7px 0;
+    }
+  }
+}
+
 table tr td {
   text-align: center;
   position: relative;
@@ -23,11 +32,11 @@ ul.filter-menu {
  ul.filter-menu li {
   display: inline-block;
   margin: 0px 20px 0 0;
-  color: #fff;
+  color: #444;
   vertical-align: middle;
  }
 
-.filter-menu .btn { background: transparent; color: #fff; padding: 0 5px;}
+.filter-menu .btn { background: transparent; padding: 0 5px;}
 .dropdown-menu { right: 0px; left: inherit;}
 .open>.dropdown-menu { padding: 10px; border-radius: 0; border: 0;}
 .open>.dropdown-menu a { display: block;}

@@ -23,71 +23,68 @@
   <script>
     <%=raw javascript_for_clusters @clusters %>
   </script>
-  <div class="panel panel-default with-nav-tabs" id="report-tabs">
-    <div class="panel-heading">
-      <ul class="nav nav-tabs">
-        <li class="active">
-          <a data-toggle="tab" href="#local-cluster">
-            Locat Cluster
-          </a>
-        </li>
-        <li>
-          <a data-toggle="tab" href="#other-cluster">
-            Cluster
-          </a>
-        </li>
-      </ul>
-    </div>
-    <div class="panel-body">
-      <div class="tab-content">
-        <div class="tab-pane fade in active" id="local-cluster">
-          <div id="status-table"></div>
-        </div>
-        <div class="tab-pane fade" id="other-cluster">
-          tab2
+
+  <div class="row">
+    <div class="panel panel-default with-nav-tabs" id="report-tabs">
+      <div class="panel-heading">
+        <ul class="nav nav-tabs">
+          <li class="active">
+            <a data-toggle="tab" href="#local-cluster">
+              Locat Cluster
+            </a>
+          </li>
+          <li>
+            <a data-toggle="tab" href="#other-cluster">
+              Cluster
+            </a>
+          </li>
+        </ul>
+      </div>
+      <div class="panel-body">
+        <div class="tab-content">
+          <div class="tab-pane fade in active" id="local-cluster">
+            <div class="panel panel-default">
+              <div class="panel-heading">HACluster Alpha
+                <ul class="filter-menu">
+                  <li>
+                    <div class="dropdown">
+                      <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="fa fa-align-justify" aria-hidden="true"></i>
+                      </button>
+                      <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <a class="dropdown-item" href="#">Action</a>
+                        <a class="dropdown-item" href="#">Another action</a>
+                        <a class="dropdown-item" href="#">Something else here</a>
+                      </div>
+                    </div>
+                    </li>
+                    <li><i class="fa fa-cog" aria-hidden="true"></i></li>
+                </ul>
+              </div>
+              <div clas="panel-body">
+                <div id="status-table"></div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="other-cluster">
+            tab2
+          </div>
         </div>
       </div>
     </div>
-  </div> 
-
+  </div>
   
   <script id="status-table-template" type="text/x-jsrender">
     <div class="inner">
       <div class="dashboard-container">
-        <!-- TABLE NAVBAR-->
-        <div class="header">
-          <ul class="error-alert">
-            <li><span class="count status-danger">6</span></li>
-            <li><span class="count status-warning">3</span></li>
-          </ul>
-          <ul class="filter-menu">
-            <li>
-              <div class="dropdown">
-                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  <i class="fa fa-align-justify" aria-hidden="true"></i>
-                </button>
-                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </div>
-            </li>
-            <li><i class="fa fa-cog" aria-hidden="true"></i></li>
-          </ul>
-        </div>
-        <!-- END TABLE NAVBAR -->
         <!-- +++++ ++++++++ New Code start ++++++++++++++++++++++++ -->
-        <div class="error-alert-container">
-          <ol class="list-group vertical-steps">
-            <li class="list-group-item"><span class="text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</span> </li>
-            <li class="list-group-item"><span class="text">Aliquam tincidunt mauris eu risus.Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</span></li>
-            <li class="list-group-item"><span class="text">Vestibulum auctor dapibus neque.Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</span></li>
-            <li class="list-group-item"><span class="text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</span> </li>
-            <li class="list-group-item"><span class="text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</span> </li>
-            <li class="list-group-item"><span class="text">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</span> </li>
-          </ol>
+
+        <div class="alert alert-danger" role="alert">
+          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
+          <p>Aliquam tincidunt mauris eu risus.Lorem ipsum dolor sit amet, consectetuer adipiscing elit.Lorem ipsum dolor sit amet, consectetuer adipiscing elit</p>
+          <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</p>
         </div>
+
         <!-- +++++ ++++++++ New Code end ++++++++++++++++++++++++ -->
         <!-- TABLE -->
         <div class="dashbaord-table">
