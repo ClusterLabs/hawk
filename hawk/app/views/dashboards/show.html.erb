@@ -30,7 +30,6 @@
 
   <div id="status-table"></div>
 
-
   <script id="status-table-template" type="text/x-jsrender">
     <div class="inner row">
       <div class="panel panel-default with-nav-tabs" id="report-tabs">
@@ -50,6 +49,24 @@
                 <!-- +++++++++++++ local status tab heading start +++++++++++++ -->
                 <div class="panel-heading">Local status
                   <ul class="filter-menu">
+                    <li class="dashboard-legend">
+                      <div class="btn-group">
+                        <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Legend <span class="caret"></span>
+                        </button>
+                        <ul class="dropdown-menu">
+                          <li>
+                            <ul class="legend-status">
+                              <li><div class="node-circle status-success"></div>Working resources/nodes</li>
+                              <li><i class="fa fa-podcast" aria-hidden="true" title="Remote node"></i>Remote node</li>
+                              <li><div class="node-circle status-danger"></div>Not working resources/node</li>
+                              <li><i class="fa fa-wrench" aria-hidden="true"></i>Maintenance mode</li>
+                              <li><div class="node-circle status-offline"></div>Offline / stop</li>
+                              <li><i class="fa fa-asterisk" aria-hidden="true"></i>Double state (master/slave)</li>
+                            </ul>
+                          </li>
+                        </ul>
+                      </div>
+                    </li>
                     <li>
                       <div class="dropdown">
                         <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -72,7 +89,6 @@
                     {{for  ~root.errors itemVar="~error"}}
                       {{if ~error.type === "warning"}}
                         <li class="list-group-item list-group-item-warning">{{:~error.msg}}</li>
-                        <li class="list-group-item list-group-item-danger">{{:~error.msg}}</li>
                       {{else}}
                         <li class="list-group-item list-group-item-danger">{{:~error.msg}}</li>
                       {{/if}}

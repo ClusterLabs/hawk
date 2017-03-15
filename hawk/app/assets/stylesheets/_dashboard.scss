@@ -29,12 +29,66 @@ ul.filter-menu {
   margin-bottom: 0;
 }
 
- ul.filter-menu li {
+ul.filter-menu li {
   display: inline-block;
-  margin: 0px 20px 0 0;
+  margin: 0px 7px 0 0;
   color: #444;
   vertical-align: middle;
- }
+}
+
+ul.filter-menu li.dashboard-legend {
+  border-right: 1px solid #ccc;
+  padding-right: 10px;
+  margin-right: 8px;
+  
+  > .btn-group .btn {
+    border: 0;
+
+    &.dropdown-toggle:focus, 
+    &.dropdown-toggle:hover,
+    &.btn:hover,
+    &.btn:focus,
+    &.btn:active { 
+      background: transparent; 
+      box-shadow: none;
+    }
+  }
+
+  .open .dropdown-toggle { background: transparent; box-shadow: none;}
+}
+
+ul.legend-status {
+    width: 420px;
+    padding: 0;
+    margin-left: 10px;
+    margin-right: -25px;
+
+  li {
+    width: 45%;
+    display: inline-block;
+    margin: 5px 18px 5px 0;
+    padding: 0;
+    font-size: 13px;
+    color: #666;
+     
+    > .node-circle {
+      width: 14px;
+      height: 14px;
+      margin-right: 5px;
+      vertical-align: sub;
+    }
+     
+    > .fa {
+      margin-right: 5px;
+      width: 14px;
+    }
+  }
+}
+
+#middle .panel-default .cluster-heading {
+    background-image: none;
+    background-color: #f7f7f7;
+}
 
 .filter-menu .btn { background: transparent; padding: 0 5px;}
 .dropdown-menu { right: 0px; left: inherit;}
