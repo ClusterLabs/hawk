@@ -23,8 +23,8 @@ tools/hawk_monitor
 tools/hawk_invoke
 tools/common.h
 
-# ./hawk
-hawk/.bundle          # Ignore bundler config
-hawk/Gemfile.lock     # Ignore Gemfile.lock
+# ./hawk (bundler config and Gemfile.lock)
+hawk/.bundle
+hawk/Gemfile.lock
 hawk/Gemfile.local
 hawk/.ruby-version
