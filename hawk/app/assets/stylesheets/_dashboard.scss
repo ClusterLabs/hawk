@@ -1,7 +1,9 @@
-.inner {min-width: 800px;}
+.inner {
+  min-width: 800px;
+}
 
 .dashboard-container {
-  
+
   > .alert {
     margin: 15px;
     
@@ -19,16 +21,19 @@
   }
 }
 
-
 #middle .panel-default .cluster-heading {
   background-image: none;
   background-color: #f7f7f7;
-  overflow: inherit;
-  line-height: 26px;
   padding: 8px 15px;
   border-bottom: 1px solid #ddd;
+  float: left;
+  width: 100%;
+  
+  > h3 {
+    float: left;
+    line-height: 25px;
+  }
 }
-
 
 ul.filter-menu {
   float: right;
@@ -72,7 +77,6 @@ ul.filter-menu {
   }
 }
 
-
 ul.legend-status {
   width: 420px;
   padding: 0;
@@ -82,7 +86,7 @@ ul.legend-status {
   li {
     width: 45%;
     display: inline-block;
-    margin: 0px 18px 0px 0;
+    margin: 3px 18px 3px 0;
     padding: 0;
     font-size: 13px;
     color: #666;
@@ -109,7 +113,7 @@ ul.legend-status {
 
 .open > .dropdown-menu {
   padding: 10px;
-  border-radius: 0; 
+  border-radius: 0;
   border: 0;
 
   a { 
@@ -153,8 +157,8 @@ table tr th {
 }
 
 .status-bar { 
-  width: 5px; height: 25px; 
-  display: inline-block; 
+  width: 5px; height: 25px;
+  display: inline-block;
   margin-right: 3px;
 }
 
