@@ -10,16 +10,21 @@
 #*.*#
 .#*
 hawk*.tar.bz2
+.vagrant
+*.vdi
 
+# ./scripts
 scripts/hawk.suse
 scripts/hawk.redhat
 
+# ./tools
 tools/hawk_chkpwd
 tools/hawk_monitor
 tools/hawk_invoke
 tools/common.h
 
-.vagrant
-_shared_disk.vdi
-
-*.vdi
+# ./hawk
+hawk/.bundle          # Ignore bundler config
+hawk/Gemfile.lock     # Ignore Gemfile.lock
+hawk/Gemfile.local
+hawk/.ruby-version
