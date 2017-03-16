@@ -47,7 +47,19 @@
             <div class="panel-body">
               <div class="tab-content">
                 <!-- +++++++++++++ local status tab heading start +++++++++++++ -->
-                <div class="panel-heading cluster-heading">Local status
+                <div class="panel-heading cluster-heading">
+                  <h3 class="panel-title">
+                    {{if ~root.meta.status === "ok"}}
+                      <i class="fa fa-check"></i>
+                    {{else ~root.meta.status === "errors"}}
+                      <i class="fa fa-exclamation-triangle"></i>
+                    {{else ~root.meta.status === "nostonith"}}
+                      <i class="fa fa-plug"></i>
+                    {{else ~root.meta.status === "maintenance"}}
+                      <i class="fa fa-wrench"></i>
+                    {{/if}}
+                    Local status
+                  </h3>
                   <ul class="filter-menu">
                     <li class="dashboard-legend">
                       <div class="btn-group">
