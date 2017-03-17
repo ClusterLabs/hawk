@@ -6,7 +6,7 @@
 
   > .alert {
     margin: 15px;
-    
+
     p {
       margin: 7px 0;
     }
@@ -28,7 +28,7 @@
   border-bottom: 1px solid #ddd;
   float: left;
   width: 100%;
-  
+
   > h3 {
     float: left;
     line-height: 25px;
@@ -90,14 +90,14 @@ ul.legend-status {
     padding: 0;
     font-size: 13px;
     color: #666;
-     
+
     > .node-circle {
       width: 14px;
       height: 14px;
       margin-right: 8px;
       vertical-align: sub;
     }
-     
+
     > .fa {
       margin-right: 8px;
       width: 14px;
@@ -116,7 +116,7 @@ ul.legend-status {
   border-radius: 0;
   border: 0;
 
-  a { 
+  a {
     display: block;
   }
 }
@@ -124,6 +124,7 @@ ul.legend-status {
 .dashboard-table,
 .errors-section {
   padding: 15px;
+  clear: left;
 }
 
 table tr td {
@@ -141,7 +142,7 @@ table tr th {
   }
 
 .table>tbody>tr>th,
-.table>tbody>tr>td { 
+.table>tbody>tr>td {
   border-left: 1px solid #ddd;
   vertical-align: middle;
   height: 50px;
@@ -156,7 +157,7 @@ table tr th {
   padding: 20px 5px;
 }
 
-.status-bar { 
+.status-bar {
   width: 5px; height: 25px;
   display: inline-block;
   margin-right: 3px;
@@ -183,7 +184,7 @@ table tr th {
 }
 
 .resource-name {
-  display: inline-block; 
+  display: inline-block;
   vertical-align: super;
 }
 
