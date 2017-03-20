@@ -1,12 +1,39 @@
-// Copyright (c) 2009-2015 Tim Serong <tserong@suse.com>
-// See COPYING for license.
+.inner {
+  min-width: 800px;
+}
 
-$dashboard-font-size: 12px;
-$details-border: #80c235;
-$matrix-details-bg: #f5f5f5;
-$matrix-details-text: #222;
+.dashboard-container {
 
-/* ------- Table navbar CSS start ------- */
+  > .alert {
+    margin: 15px;
+
+    p {
+      margin: 7px 0;
+    }
+  }
+}
+
+#local-cluster {
+  margin: 15px;
+
+  > .panel-default .panel-body {
+    padding: 0;
+  }
+}
+
+#middle .panel-default .cluster-heading {
+  background-image: none;
+  background-color: #f7f7f7;
+  padding: 8px 15px;
+  border-bottom: 1px solid #ddd;
+  float: left;
+  width: 100%;
+
+  > h3 {
+    float: left;
+    line-height: 25px;
+  }
+}
 
 ul.filter-menu {
   float: right;
@@ -14,43 +41,91 @@ ul.filter-menu {
 
   li {
     display: inline-block;
-    margin: 0px 20px 0 0;
-    color: #fff;
+    margin: 0px 7px 0 0;
+    color: #444;
     vertical-align: middle;
+
+    > .dropdown .btn {
+      background: transparent;
+      padding: 0 5px;
+    }
+
+    &.dashboard-legend {
+      border-right: 1px solid #ccc;
+      padding-right: 10px;
+      margin-right: 8px;
+
+      > .btn-group .btn {
+        border: 0;
+        background: transparent;
+
+        &.dropdown-toggle:focus,
+        &.dropdown-toggle:hover,
+        &.btn:hover,
+        &.btn:focus,
+        &.btn:active {
+          background: transparent;
+          box-shadow: none;
+        }
+      }
+
+      .open .dropdown-toggle {
+        background: transparent;
+        box-shadow: none;
+      }
+    }
   }
 }
 
-.filter-menu .btn {
-  background: transparent;
-  color: #fff;
-  padding: 0 5px;
+ul.legend-status {
+  width: 420px;
+  padding: 0;
+  margin-left: 10px;
+  margin-right: -25px;
+
+  li {
+    width: 45%;
+    display: inline-block;
+    margin: 3px 18px 3px 0;
+    padding: 0;
+    font-size: 13px;
+    color: #666;
+
+    > .node-circle {
+      width: 14px;
+      height: 14px;
+      margin-right: 8px;
+      vertical-align: sub;
+    }
+
+    > .fa {
+      margin-right: 8px;
+      width: 14px;
+      color: #333;
+    }
+  }
 }
+
 .dropdown-menu {
   right: 0px;
   left: inherit;
 }
-.open>.dropdown-menu {
+
+.open > .dropdown-menu {
   padding: 10px;
   border-radius: 0;
   border: 0;
+
   a {
     display: block;
   }
 }
 
-.dashbaord-table {
+.dashboard-table,
+.errors-section {
   padding: 15px;
+  clear: left;
 }
-
-.header{
-  background: #013157;
-  float: left;
-  width: 100%;
-  padding:10px 8px;
-  margin-bottom: 14px;
-}
-
-/* ------- HTML tabl CSS start ------- */
 
 table tr td {
   text-align: center;
@@ -61,6 +136,11 @@ table tr th {
   text-align: center;
 }
 
+.table>tbody>tr.no-top-border>th,
+.table>tbody>tr.no-top-border>td {
+  border-top-color: #fff;
+  }
+
 .table>tbody>tr>th,
 .table>tbody>tr>td {
   border-left: 1px solid #ddd;
@@ -69,40 +149,19 @@ table tr th {
   padding: 0 8px;
 }
 
-.table>tbody>tr.no-top-border>th,
-.table>tbody>tr.no-top-border>td {
-  border-top-color: #fff;
-}
-
-.table>tbody>tr.table-header>th {
-  padding: 20px 5px;
-  text-align: center;
-}
-
-.table>tbody>tr>td.resource-icon {
-  padding-left: 0px;
-  padding-right: 0px;
-  line-height: 28px;
-  text-align: right;
-}
-
 .no-left-border {
   border-left-color: #fff!important;
 }
 
-.status-bar {
-  width: 5px;
-  height: 25px;
-  display: inline-block;
-  margin-right: 3px;
-  vertical-align: middle;
+.table>tbody>tr.table-header>th {
+  padding: 20px 5px;
 }
 
-.status-success { background-color: #00c081;}
-.status-warning { background-color: #fc9a2b;}
-.status-danger { background-color: #a52700;}
-.status-default { background-color: #fff; border: 1px solid #777;}
-.status-offline { background-color: #555;}
+.status-bar {
+  width: 5px; height: 25px;
+  display: inline-block;
+  margin-right: 3px;
+}
 
 .node-name {
   display: inline-block;
@@ -110,7 +169,7 @@ table tr th {
   font-weight: lighter;
   line-height: 14px;
   margin-right: 5px;
-  vertical-align: middle;
+
   span {
     font-size: 11px;
     color: #888;
@@ -121,32 +180,71 @@ table tr th {
 .status-icon {
   margin-right: 3px;
   display: inline-block;
+  vertical-align: super;
 }
 
-.resource-name, .ticket-name {
+.resource-name {
   display: inline-block;
+  vertical-align: super;
 }
 
-.table-label{
+.slave-master {
   border-radius: 3px;
-  padding: 0px 1px;
+  background: #fc9a2b;
+  padding: 1px 1px 0px 1px;
+  color: #fff;
   font-size: 10px;
   display: block;
-  width: 40px;
+  width: 35px;
   margin: 0 auto;
-  margin-top: 3px;
-  line-height: 13px;
+  margin-top: 2px;
 }
-
-.slave-master {background: #fc9a2b;color: #fff;}
-.ticket-granted {background: #00c081;color: #fff;}
-.ticket-revoked, .ticket-standby{background: #777;color: #fff;}
-.ticket-elsewhere {background: #fc9a2b;color: #fff;}
 
 .node-circle {
   border-radius: 8px;
   width: 16px;
   height: 16px;
+  transition:all 0.3s ease;
+  cursor: pointer;
   display: inline-block;
   vertical-align: middle;
+}
+
+.status-success {
+  background-color: #00c081;
+}
+
+.status-warning {
+  background-color: #fc9a2b;
+}
+
+.status-danger {
+  background-color: #a52700;
+}
+
+.status-default {
+  background-color: #fff;
+  border: 1px solid #777;
+}
+
+.status-offline {
+  background-color: #555;
+}
+
+.status-ticket {
+  background-color: #42a1f4;
+}
+
+.ticket-state {
+  background: #ccc;
+  display: inline-block;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+.table>tbody > tr > td.resource-icon {
+  padding-left: 0px;
+  padding-right: 0px;
+  line-height: 28px;
+  text-align: right;
 }
