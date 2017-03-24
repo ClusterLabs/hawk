@@ -122,6 +122,10 @@ class Cib
     id == 'live'
   end
 
+  def cluster_name
+    crm_config[:cluster_name]
+  end
+
   def sim?
     id != 'live'
   end
