@@ -337,6 +337,7 @@
 
   function clusterUpdate(clusterId, clusterInfo) {
     var current_epoch = $("#" + clusterId).data('epoch');
+    alert(current_epoch);
     ajaxQuery({
       url: baseUrl(clusterInfo) + "/monitor.json",
       type: "GET",
@@ -462,7 +463,10 @@
 
   window.dashboardAddCluster = function(wrapper) {
     $(wrapper).find(".status-table").each(function(index, element){
-      var clusterTag = $(element);
+      var clusterTag =$(element);
+      var clusterId = clusterTag.attr("id");
+      var clusterData = clusterTag.data("cluster");
+      // var clusterId = newClusterId();
       var title = clusterData.name || __("Local Status");
       clusterData.conntry = null;
       clusterData.reconnections = [];
@@ -502,7 +506,9 @@
       $("#" + clusterId).append(text);
 
       updateLayout(); // TODO
-      clusterRefresh(clusterId, clusterData);
+      if (clusterData.host != null) { // TODO
+        clusterRefresh(clusterId, clusterData);
+      } // TODO
     });
   };
 
