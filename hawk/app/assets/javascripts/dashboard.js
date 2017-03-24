@@ -143,12 +143,11 @@
     text += '<div class="col-md-12 text-center dash-cluster-content">';
 
       var cs = checksum(text + JSON.stringify(cib));
-
       if (tag.data('hash') != cs) {
         tag.html(text);
         tag.data('hash', cs);
         // Table rendering:
-        statusTable.init(cib);
+        statusTable.init(clusterId, cib);
       }
   }
 
@@ -294,6 +293,7 @@
           });
         displayClusterStatus(clusterId, data);
         $("#" + clusterId).data('epoch', data.meta.epoch);
+        alert($("#" + clusterId).data('epoch'));
         clusterUpdate(clusterId, clusterInfo);
       },
       error: function(xhr, status, error) {
@@ -461,8 +461,8 @@
     }
   };
 
-  window.dashboardAddCluster = function(wrapper) {
-    $(wrapper).find(".status-table").each(function(index, element){ // TODO
+  window.dashboardAddCluster = function(status_wrapper) {
+    $(status_wrapper).find(".status-table").each(function(index, element){ // TODO
       var clusterTag =$(element); // TODO
       var clusterId = clusterTag.attr("id").replace(/[^a-z0-9\s]/gi, ''); // TODO
       var clusterData = clusterTag.data("cluster"); // TODO
@@ -473,13 +473,13 @@
       clusterData.username = null;
       clusterData.password = null;
 
-      var content = '<div class="cluster-errors"></div>';
+      var content = '<div style="background-color: green;" class="cluster-errors"></div>';
 
       var text = [
         '<div id="outer-',
         clusterId,
-        '" class="col-lg-4 col-sm-6 col-xs-12">',
-        '<div id="inner-',  clusterId, '" class="panel panel-default" data-epoch="">', // TODO
+        '" class="row">',
+        '<div id="inner-',  clusterId, '" class="panel panel-default" data-epoch="" style="background-color: red;">', // TODO
         '<div class="panel-heading">',
         '<h3 class="panel-title">',
         '<span id="refresh"></span> ',
@@ -505,9 +505,9 @@
         '</div>';
       $("#clusters").append(text); // TODO
 
-      updateLayout(); // TODO
+      // updateLayout(); // TODO
       // if (clusterData.host != null) { // TODO
-      clusterRefresh("inner-" + clusterId, clusterData);
+      clusterRefresh("inner-" + clusterId, clusterData); // TODO
       // } // TODO
     });
   };
