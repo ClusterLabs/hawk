@@ -460,49 +460,53 @@
     }
   };
 
-  window.dashboardAddCluster = function(data) {
-    var clusterId = newClusterId();
-    var title = data.name || __("Local Status");
-    data.conntry = null;
-    data.reconnections = [];
-    data.username = null;
-    data.password = null;
+  window.dashboardAddCluster = function(wrapper) {
+    $(wrapper).find(".status-table").each(function(index, element){
+      var clusterTag =$(element);
+      var clusterId = clusterTag.attr("id"); alert("clusterID =" + " " + clusterId);
+      var clusterData = clusterTag.data("cluster"); alert("clusterData =" + " " + JSON.stringify(clusterData));
+      // var clusterId = newClusterId();
+      var title = clusterData.name || __("Local Status");
+      clusterData.conntry = null;
+      clusterData.reconnections = [];
+      clusterData.username = null;
+      clusterData.password = null;
 
-    var content = '<div class="cluster-errors"></div>';
+      var content = '<div class="cluster-errors"></div>';
 
-    var text = [
-      '<div id="outer-',
-      clusterId,
-      '" class="col-lg-4 col-sm-6 col-xs-12">',
-      '<div id="',  clusterId, '" class="panel panel-default" data-epoch="">',
-      '<div class="panel-heading">',
-      '<h3 class="panel-title">',
-      '<span id="refresh"></span> ',
-      '<a href="', baseUrl(data), '/">', title, '</a>'
-    ].join('');
+      var text = [
+        '<div id="outer-',
+        clusterId,
+        '" class="col-lg-4 col-sm-6 col-xs-12">',
+        '<div id="',  clusterId, '" class="panel panel-default" data-epoch="">',
+        '<div class="panel-heading">',
+        '<h3 class="panel-title">',
+        '<span id="refresh"></span> ',
+        '<a href="', baseUrl(clusterData), '/">', title, '</a>'
+      ].join('');
 
-    if (data.host != null) {
-      var s_remove = __('Remove cluster _NAME_ from dashboard?').replace('_NAME_', data.name);
+      if (clusterData.host != null) {
+        var s_remove = __('Remove cluster _NAME_ from dashboard?').replace('_NAME_', clusterData.name);
+        text = text +
+          '<form action="/dashboard/remove" method="post" accept-charset="UTF-8" data-remote="true" class="pull-right">' +
+          '<input type="hidden" name="name" value="' + escape(clusterData.name) + '">' +
+          '<button type="submit" class="close" data-confirm="' + s_remove + '"' +
+          ' aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
+          '</form>';
+      }
       text = text +
-        '<form action="/dashboard/remove" method="post" accept-charset="UTF-8" data-remote="true" class="pull-right">' +
-        '<input type="hidden" name="name" value="' + escape(data.name) + '">' +
-        '<button type="submit" class="close" data-confirm="' + s_remove + '"' +
-        ' aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-        '</form>';
-    }
-    text = text +
-      '</h3>' +
-      '</div>' +
-      '<div class="panel-body">' +
-      content +
-      '</div>' +
-      '</div>' +
-      '</div>';
-    $("#clusters").append(text);
+        '</h3>' +
+        '</div>' +
+        '<div class="panel-body">' +
+        content +
+        '</div>' +
+        '</div>' +
+        '</div>';
+      $("#" + clusterId).append(text);
 
-    updateLayout();
-    clusterRefresh(clusterId, data);
-
+      updateLayout();
+      clusterRefresh(clusterId, clusterData);
+    });
   };
 
   window.dashboardSetupAddClusterForm = function() {
