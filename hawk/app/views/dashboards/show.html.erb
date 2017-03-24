@@ -17,18 +17,21 @@
 
   <div class="row" id="clusters"></div>
 
-  <% # passing null as name and host means to fetch local cluster information %>
-  <% unless current_cib.offline? %>
-    <script>
-      dashboardAddCluster({"name":null, "host":null, "port":null, https:null, "interval":10}); // Possible values for status_format: "table", "canvas" and "canvas&table"
-    </script>
-  <% end %>
+  <div class="status-wrapper">
+    <% unless current_cib.offline? %>
+      <!-- passing local_cluster as a cluster data attribute means to fetch local cluster information -->
+      <%= content_tag :div,"" , id: current_cib.cluster_name, class: "status-table", data: {cluster: "local_cluster"} %>
+    <% end %>
+
+    <% @clusters.map do |cluster| %>
+      <!-- Pass the cluster object to the data options helper method . Rails will automatically call to_json, outputting the data into its JSON form. -->
+      <%= content_tag :div,"" ,id: cluster.name, class: "status-table", data: {cluster: cluster} %>
+    <% end %>
+  </div>
 
   <script>
-    <%=raw javascript_for_clusters @clusters %>
+  dashboardAddCluster(".status-wrapper");
   </script>
-
-  <div id="status-table"></div>
 
   <script id="status-table-template" type="text/x-jsrender">
     <div class="inner row">
