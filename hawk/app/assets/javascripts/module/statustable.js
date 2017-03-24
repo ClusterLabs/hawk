@@ -6,10 +6,10 @@
 var statusTable = {
   tableData: [], // An Array that contains JSON data fetched from the cib, see cacheData()
   tableAttrs: [], // JSON data that Contains attributes like ids and classes for specific elements in the table
-  init: function(cibData) { // init function called using: "statusTable.init(fetchedData);"
+  init: function(clusterId, cibData) { // init function called using: "statusTable.init(fetchedData);"
     this.alterData(cibData); // Specify which nodes the resources are not running on: e.g {running_on: {node1: "started". node2: "slave", webui: "not_running"}}.
     this.cacheData(cibData);  // Cache data fetched from server, so it won't be necessary to pass the reference of the object each time
-    this.cacheDom(); // Cache Dom elements to maximize performance
+    this.cacheDom(clusterId); // Cache Dom elements to maximize performance
     this.initHelpers(); // Intialize helper methods for using them inside the template in "dashboards/show.html.erb
     this.render(); // Renders the table using the template in "dashboards/show.html.erb"
     //this.applyStyles(); // Set the appropriate classes after rendering the table (using tableAttrs)
@@ -28,9 +28,9 @@ var statusTable = {
   cacheData: function(cibData) {
     this.tableData = cibData;
   },
-  cacheDom: function() {
+  cacheDom: function(clusterId) {
     this.$container = $('#dashboard-container');
-    this.$table = this.$container.find("#status-table"); // this.$table is the div where the table will be rendred
+    this.$table = this.$container.find("#" + clusterId); // this.$table is the div where the table will be rendred
     this.$template = this.$container.find("#status-table-template");
   },
   render: function() {
