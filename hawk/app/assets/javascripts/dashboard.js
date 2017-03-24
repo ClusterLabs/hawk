@@ -337,7 +337,7 @@
 
   function clusterUpdate(clusterId, clusterInfo) {
     var current_epoch = $("#" + clusterId).data('epoch');
-    alert(current_epoch);
+    // alert(current_epoch); // TODO
     ajaxQuery({
       url: baseUrl(clusterInfo) + "/monitor.json",
       type: "GET",
@@ -462,11 +462,11 @@
   };
 
   window.dashboardAddCluster = function(wrapper) {
-    $(wrapper).find(".status-table").each(function(index, element){
-      var clusterTag =$(element);
-      var clusterId = clusterTag.attr("id");
-      var clusterData = clusterTag.data("cluster");
-      // var clusterId = newClusterId();
+    $(wrapper).find(".status-table").each(function(index, element){ // TODO
+      var clusterTag =$(element); // TODO
+      var clusterId = clusterTag.attr("id").replace(/[^a-z0-9\s]/gi, ''); // TODO
+      var clusterData = clusterTag.data("cluster"); // TODO
+      // var clusterId = newClusterId(); //TODO
       var title = clusterData.name || __("Local Status");
       clusterData.conntry = null;
       clusterData.reconnections = [];
@@ -479,7 +479,7 @@
         '<div id="outer-',
         clusterId,
         '" class="col-lg-4 col-sm-6 col-xs-12">',
-        '<div id="',  clusterId, '" class="panel panel-default" data-epoch="">',
+        '<div id="inner-',  clusterId, '" class="panel panel-default" data-epoch="">', // TODO
         '<div class="panel-heading">',
         '<h3 class="panel-title">',
         '<span id="refresh"></span> ',
@@ -503,12 +503,12 @@
         '</div>' +
         '</div>' +
         '</div>';
-      $("#" + clusterId).append(text);
+      $("#clusters").append(text); // TODO
 
       updateLayout(); // TODO
-      if (clusterData.host != null) { // TODO
-        clusterRefresh(clusterId, clusterData);
-      } // TODO
+      // if (clusterData.host != null) { // TODO
+      clusterRefresh("inner-" + clusterId, clusterData);
+      // } // TODO
     });
   };
 
