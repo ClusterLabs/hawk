@@ -462,10 +462,7 @@
 
   window.dashboardAddCluster = function(wrapper) {
     $(wrapper).find(".status-table").each(function(index, element){
-      var clusterTag =$(element);
-      var clusterId = clusterTag.attr("id"); alert("clusterID =" + " " + clusterId);
-      var clusterData = clusterTag.data("cluster"); alert("clusterData =" + " " + JSON.stringify(clusterData));
-      // var clusterId = newClusterId();
+      var clusterTag = $(element);
       var title = clusterData.name || __("Local Status");
       clusterData.conntry = null;
       clusterData.reconnections = [];
@@ -504,7 +501,7 @@
         '</div>';
       $("#" + clusterId).append(text);
 
-      updateLayout();
+      updateLayout(); // TODO
       clusterRefresh(clusterId, clusterData);
     });
   };
