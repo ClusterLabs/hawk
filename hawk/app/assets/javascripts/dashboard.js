@@ -39,16 +39,6 @@
     }
   };
 
-
-  var newClusterId = (function() {
-    var id=0;
-    return function() {
-      if (arguments[0] === 0)
-        id = 0;
-      return "dashboard_cluster_" + id++;
-    }
-  })();
-
   function indicator(clusterId, state) {
     var tag = $('#' + clusterId + ' .panel-heading .panel-title #refresh');
     if (state == "ok") {
@@ -293,7 +283,6 @@
           });
         displayClusterStatus(clusterId, data);
         $("#" + clusterId).data('epoch', data.meta.epoch);
-        alert($("#" + clusterId).data('epoch'));
         clusterUpdate(clusterId, clusterInfo);
       },
       error: function(xhr, status, error) {
@@ -337,7 +326,6 @@
 
   function clusterUpdate(clusterId, clusterInfo) {
     var current_epoch = $("#" + clusterId).data('epoch');
-    // alert(current_epoch); // TODO
     ajaxQuery({
       url: baseUrl(clusterInfo) + "/monitor.json",
       type: "GET",
@@ -462,11 +450,14 @@
   };
 
   window.dashboardAddCluster = function(status_wrapper) {
-    $(status_wrapper).find(".status-table").each(function(index, element){ // TODO
-      var clusterTag =$(element); // TODO
-      var clusterId = clusterTag.attr("id").replace(/[^a-z0-9\s]/gi, ''); // TODO
-      var clusterData = clusterTag.data("cluster"); // TODO
-      // var clusterId = newClusterId(); //TODO
+
+    // Each element has to have a "status-table" class and a "cluster" data attribute in order for the status table to be displayed.
+    $(status_wrapper).find(".status-table").each(function(index, element){
+
+      // Remove any special characters from the id since it's dynamically generated.
+      var clusterId = $(this).attr("id").replace(/[^a-z0-9\s]/gi, '');
+
+      var clusterData = $(this).data("cluster");
       var title = clusterData.name || __("Local Status");
       clusterData.conntry = null;
       clusterData.reconnections = [];
@@ -479,7 +470,7 @@
         '<div id="outer-',
         clusterId,
         '" class="row">',
-        '<div id="inner-',  clusterId, '" class="panel panel-default" data-epoch="" style="background-color: red;">', // TODO
+        '<div id="inner-',  clusterId, '" class="panel panel-default" data-epoch="" style="background-color: red;">',
         '<div class="panel-heading">',
         '<h3 class="panel-title">',
         '<span id="refresh"></span> ',
@@ -503,12 +494,11 @@
         '</div>' +
         '</div>' +
         '</div>';
-      $("#clusters").append(text); // TODO
+
+      $(this).append(text);
 
       // updateLayout(); // TODO
-      // if (clusterData.host != null) { // TODO
       clusterRefresh("inner-" + clusterId, clusterData); // TODO
-      // } // TODO
     });
   };
 
