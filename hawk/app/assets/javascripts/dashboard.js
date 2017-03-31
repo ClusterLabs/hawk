@@ -268,6 +268,7 @@
   }
 
   function clusterRefresh(clusterId, clusterInfo) {
+      alert("cluster id in clusterRefresh function is:" + " " + clusterId);
       ajaxQuery({
         url: baseUrl(clusterInfo) + "/cib/live?format=json",
         type: "GET",
@@ -282,7 +283,9 @@
             }
           });
         displayClusterStatus(clusterId, data);
+        alert("clusterRefresh: data.meta.epoch:" + " " + data.meta.epoch); // TODO
         $("#" + clusterId).data('epoch', data.meta.epoch);
+        alert("clusterRefresh: # + clusterId.data('epoch')" + " " + $("#" + clusterId).data('epoch')); // TODO
         clusterUpdate(clusterId, clusterInfo);
       },
       error: function(xhr, status, error) {
@@ -326,6 +329,7 @@
 
   function clusterUpdate(clusterId, clusterInfo) {
     var current_epoch = $("#" + clusterId).data('epoch');
+    alert("clusterUpdate: Current_epoch = " + " " + current_epoch); // TODO
     ajaxQuery({
       url: baseUrl(clusterInfo) + "/monitor.json",
       type: "GET",
@@ -433,22 +437,6 @@
     return content;
   }
 
-  var updateLayout = function() {
-    var clusters = $("#clusters").children();
-    var nclusters = clusters.length;
-    if (nclusters == 1) {
-      clusters.removeClass().addClass("col-md-10 col-md-offset-1 col-lg-8 col-lg-offset-2");
-    } else if (nclusters == 2) {
-      clusters.removeClass().addClass("col-md-6");
-    } else if (nclusters == 3) {
-      clusters.removeClass().addClass("col-md-6 col-lg-4");
-    } else if (nclusters == 4) {
-      clusters.removeClass().addClass("col-md-6");
-    } else {
-      clusters.removeClass().addClass("col-md-4");
-    }
-  };
-
   window.dashboardAddCluster = function(status_wrapper) {
 
     // Each element has to have a "status-table" class and a "cluster" data attribute in order for the status table to be displayed.
@@ -464,13 +452,13 @@
       clusterData.username = null;
       clusterData.password = null;
 
-      var content = '<div style="background-color: green;" class="cluster-errors"></div>';
+      var content = '<div class="cluster-errors"></div>';
 
       var text = [
         '<div id="outer-',
         clusterId,
         '" class="row">',
-        '<div id="inner-',  clusterId, '" class="panel panel-default" data-epoch="" style="background-color: red;">',
+        '<div id="inner-',  clusterId, '" class="panel panel-default" data-epoch="">',
         '<div class="panel-heading">',
         '<h3 class="panel-title">',
         '<span id="refresh"></span> ',
@@ -497,8 +485,7 @@
 
       $(this).append(text);
 
-      // updateLayout(); // TODO
-      clusterRefresh("inner-" + clusterId, clusterData); // TODO
+      clusterRefresh("inner-" + clusterId, clusterData);
     });
   };
 
