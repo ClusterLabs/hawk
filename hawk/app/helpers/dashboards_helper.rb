@@ -2,9 +2,15 @@
 # See COPYING for license.
 
 module DashboardsHelper
+
   def javascript_for_clusters(clusters)
     clusters.map do |cluster|
       "dashboardAddCluster(#{cluster.to_json});"
     end.join("\n")
   end
+
+  def escape_cluster_name(cluster_name)
+    cluster_name.gsub(/[^0-9A-Za-z]/, '')
+  end
+
 end

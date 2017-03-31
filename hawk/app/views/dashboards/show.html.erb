@@ -26,7 +26,7 @@
         </li>
         <% @clusters.map do |cluster| %>
         <li role="presentation">
-          <a href="<%='#' + cluster.name + '-tab' %>" role="tab" data-toggle="tab" aria-controls="remote-cluster">
+          <a href="<%='#' + escape_cluster_name(cluster.name) + '-tab' %>" role="tab" data-toggle="tab" aria-controls="remote-cluster">
             <%= cluster.name %>
           </a>
         </li>
@@ -38,13 +38,13 @@
           <% unless current_cib.offline? %>
           <div class="tab-pane active" id="local-cluster-tab" role="tabpanel">
             <!-- passing local_cluster as a cluster data attribute means to fetch local cluster information -->
-            <%= content_tag :div,"" , id: current_cib.cluster_name, class: "status-table", data: {cluster: "local_cluster"} %>
+            <%= content_tag :div,"" , id: escape_cluster_name(current_cib.cluster_name), class: "status-table", data: {cluster: "local_cluster"} %>
           </div>
           <% end %>
         <% @clusters.map do |cluster| %>
-          <div class="tab-pane" id="<%= cluster.name + '-tab' %>" role="tabpanel">
+          <div class="tab-pane" id="<%= escape_cluster_name(cluster.name) + '-tab' %>" role="tabpanel">
             <!-- Pass the cluster object to the data options helper method . Rails will automatically call to_json, outputting the data into its JSON form. -->
-            <%= content_tag :div,"" ,id: cluster.name, class: "status-table", data: {cluster: cluster} %>
+            <%= content_tag :div,"" ,id: escape_cluster_name(cluster.name), class: "status-table", data: {cluster: cluster} %>
           </div>
         <% end %>
       </div>

@@ -441,10 +441,7 @@
 
     // Each element has to have a "status-table" class and a "cluster" data attribute in order for the status table to be displayed.
     $(status_wrapper).find(".status-table").each(function(index, element){
-
-      // Remove any special characters from the id since it's dynamically generated.
-      var clusterId = $(this).attr("id").replace(/[^a-z0-9\s]/gi, '');
-
+      var clusterId = $(this).attr("id");
       var clusterData = $(this).data("cluster");
       var title = clusterData.name || __("Local Status");
       clusterData.conntry = null;
