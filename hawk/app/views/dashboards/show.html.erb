@@ -35,12 +35,12 @@
     </div>
     <div class="panel-body">
       <div class="tab-content">
-          <% unless current_cib.offline? %>
+        <% unless current_cib.offline? %>
           <div class="tab-pane active" id="local-cluster-tab" role="tabpanel">
             <!-- passing local_cluster as a cluster data attribute means to fetch local cluster information -->
             <%= content_tag :div,"" , id: escape_cluster_name(current_cib.cluster_name), class: "status-table", data: {cluster: "local_cluster"} %>
           </div>
-          <% end %>
+        <% end %>
         <% @clusters.map do |cluster| %>
           <div class="tab-pane" id="<%= escape_cluster_name(cluster.name) + '-tab' %>" role="tabpanel">
             <!-- Pass the cluster object to the data options helper method . Rails will automatically call to_json, outputting the data into its JSON form. -->

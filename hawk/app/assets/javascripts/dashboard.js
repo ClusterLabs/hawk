@@ -452,9 +452,7 @@
       var content = '<div class="cluster-errors"></div>';
 
       var text = [
-        '<div id="outer-',
-        clusterId,
-        '" class="row">',
+
         '<div id="inner-',  clusterId, '" class="panel panel-default" data-epoch="">',
         '<div class="panel-heading">',
         '<h3 class="panel-title">',
@@ -476,7 +474,6 @@
         '</div>' +
         '<div class="panel-body">' +
         content +
-        '</div>' +
         '</div>' +
         '</div>';
 
