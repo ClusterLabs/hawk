@@ -45,6 +45,8 @@
       tag.html('<i class="fa fa-check"></i>');
     } else if (state == "refresh") {
       tag.html('<i class="fa fa-refresh fa-pulse-opacity"></i>');
+    } else if (state == "blank") {
+      tag.html('');
     } else if (state == "error") {
       tag.html('<i class="fa fa-exclamation-triangle"></i>');
     }
@@ -268,7 +270,6 @@
   }
 
   function clusterRefresh(clusterId, clusterInfo) {
-      alert("cluster id in clusterRefresh function is:" + " " + clusterId);
       ajaxQuery({
         url: baseUrl(clusterInfo) + "/cib/live?format=json",
         type: "GET",
@@ -283,15 +284,14 @@
             }
           });
         displayClusterStatus(clusterId, data);
-        alert("clusterRefresh: data.meta.epoch:" + " " + data.meta.epoch); // TODO
         $("#" + clusterId).data('epoch', data.meta.epoch);
-        alert("clusterRefresh: # + clusterId.data('epoch')" + " " + $("#" + clusterId).data('epoch')); // TODO
         clusterUpdate(clusterId, clusterInfo);
       },
       error: function(xhr, status, error) {
         var tag = $('#' + clusterId + ' div.panel-body');
         if (clusterInfo.host != null && clusterInfo.password == null) {
           tag.html(basicCreateBody(clusterId, clusterInfo));
+          indicator(clusterId, "blank"); // Remove the refresh icon after creating the connection form.
           var btn = tag.find("button.btn");
           btn.attr("disabled", false);
           btn.click(function() {
@@ -329,7 +329,6 @@
 
   function clusterUpdate(clusterId, clusterInfo) {
     var current_epoch = $("#" + clusterId).data('epoch');
-    alert("clusterUpdate: Current_epoch = " + " " + current_epoch); // TODO
     ajaxQuery({
       url: baseUrl(clusterInfo) + "/monitor.json",
       type: "GET",
@@ -456,7 +455,7 @@
         '<div id="inner-',  clusterId, '" class="panel panel-default" data-epoch="">',
         '<div class="panel-heading">',
         '<h3 class="panel-title">',
-        '<span id="refresh"></span> ',
+        '<span id="refresh"><i class="fa fa-refresh fa-pulse-opacity"></i></span> ',
         '<a href="', baseUrl(clusterData), '/">', title, '</a>'
       ].join('');
 
