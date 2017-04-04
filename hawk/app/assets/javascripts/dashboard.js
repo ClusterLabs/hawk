@@ -4,49 +4,6 @@
 // See COPYING for license.
 
 ;(function($) {
-  window.dashboardAddCluster = function(status_wrapper) {
-    // Each element has to have a "status-table" class and a "cluster" data attribute in order for the status table to be displayed.
-    $(status_wrapper).find(".status-table").each(function(index, element){
-      var clusterId = $(this).attr("id");
-      var clusterData = $(this).data("cluster");
-      var title = clusterData.name || __("Local Status");
-      clusterData.conntry = null;
-      clusterData.reconnections = [];
-      clusterData.username = null;
-      clusterData.password = null;
-
-      var content = '<div class="cluster-errors"></div>';
-
-      var text = [
-        '<div id="inner-',  clusterId, '" class="panel panel-default" data-epoch="">',
-        '<div class="panel-heading">',
-        '<h3 class="panel-title">',
-        '<span id="refresh"><i class="fa fa-refresh fa-pulse-opacity"></i></span> ',
-        '<a href="', statusTable.baseUrl(clusterData), '/">', title, '</a>'
-      ].join('');
-
-      if (clusterData.host != null) {
-        var s_remove = __('Remove cluster _NAME_ from dashboard?').replace('_NAME_', clusterData.name);
-        text = text +
-          '<form action="/dashboard/remove" method="post" accept-charset="UTF-8" data-remote="true" class="pull-right">' +
-          '<input type="hidden" name="name" value="' + escape(clusterData.name) + '">' +
-          '<button type="submit" class="close" data-confirm="' + s_remove + '"' +
-          ' aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-          '</form>';
-      }
-      text = text +
-        '</h3>' +
-        '</div>' +
-        '<div class="panel-body">' +
-        content +
-        '</div>' +
-        '</div>';
-
-      $(this).append(text);
-
-      statusTable.init("inner-" + clusterId, clusterData);
-    });
-  };
 
   window.dashboardSetupAddClusterForm = function() {
     $('#new_cluster').toggleify();
