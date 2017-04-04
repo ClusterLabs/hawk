@@ -20,7 +20,8 @@
     $('#new_cluster').on("ajax:success", function(e, data, status, xhr) {
       $('#modal').modal('hide');
       $('.modal-content').html('');
-      dashboardAddCluster(data);
+      // dashboardAddCluster(data);
+      location.reload();
       $.growl({ message: __('Cluster added successfully.')}, {type: 'success'});
     }).on("ajax:error", function(e, xhr, status, error) {
       $(e.data).render_form_errors( $.parseJSON(xhr.responseText) );
