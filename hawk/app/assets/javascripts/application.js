@@ -49,7 +49,7 @@ $(function() {
         return $(this).height('auto').outerHeight();
       }).get()
     );
-    $('#middle, #rightbar').height(
+    $('#middle').height(
       winHeight > maxHeight ? winHeight : maxHeight
     );
   };
