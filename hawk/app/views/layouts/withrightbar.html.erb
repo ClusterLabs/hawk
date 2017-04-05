@@ -20,13 +20,11 @@
     </div>
     <div class="nav-wrapper">
       <div class="sidebar-wrapper" id="sidebar">
-        <div class="sidebar-inner">
-          <%= render partial: "shared/mainnav" %>
-        </div>
+        <%= render partial: "shared/mainnav" %>
       </div>
       <div class="page-content-wrapper">
         <div class="page-content container-fluid">
-          <div class="row flex">
+          <div class="row">
             <div class="col-xs-12 col-sm-8 col-md-7 col-lg-6" id="middle">
               <div class="container-fluid">
                 <% if current_cib.sim? %>
