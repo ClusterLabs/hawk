@@ -15,228 +15,179 @@
     </h1>
   </div>
 
-  <div class="row" id="clusters"></div>
-
-  <% # passing null as name and host means to fetch local cluster information %>
-  <% unless current_cib.offline? %>
-    <script>
-      dashboardAddCluster({"name":null, "host":null, "port":null, https:null, "interval":10}); // Possible values for status_format: "table", "canvas" and "canvas&table"
-    </script>
-  <% end %>
-
-  <script>
-    <%=raw javascript_for_clusters @clusters %>
-  </script>
-
-  <div id="status-table"></div>
-
-  <script id="status-table-template" type="text/x-jsrender">
-    <div class="inner row">
-      <div class="panel panel-default with-nav-tabs" id="report-tabs">
-        <!-- +++++++++++++ panel heading start +++++++++++++ -->
-        <div class="panel-heading">
-          <ul class="nav nav-tabs">
-            <li class="active"><a data-toggle="tab" href="#local-cluster">hacluster</a></li>
-            {{!-- FOR ADDITIONAL CLUSTERS <li><a data-toggle="tab" href="#other-cluster">hacluster_2</a></li> --}}
-          </ul>
-        </div>
-        <!-- +++++++++++++ panel heading end +++++++++++++ -->
-        <!-- +++++++++++++ tab-pan local cluster start +++++++++++++ -->
-        <div class="tab-pane fade in active" id="local-cluster">
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <div class="tab-content">
-                <!-- +++++++++++++ local status tab heading start +++++++++++++ -->
-                <div class="panel-heading cluster-heading">
-                  <h3 class="panel-title">
-                    {{if ~root.meta.status === "ok"}}
-                      <i class="fa fa-check"></i>
-                    {{else ~root.meta.status === "errors"}}
-                      <i class="fa fa-exclamation-triangle"></i>
-                    {{else ~root.meta.status === "nostonith"}}
-                      <i class="fa fa-plug"></i>
-                    {{else ~root.meta.status === "maintenance"}}
-                      <i class="fa fa-wrench"></i>
-                    {{/if}}
-                    Local status
-                  </h3>
-                  <ul class="filter-menu">
-                    <li class="dashboard-legend">
-                      <div class="btn-group">
-                        <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Legend <span class="caret"></span>
-                        </button>
-                        <ul class="dropdown-menu">
-                          <li>
-                            <ul class="legend-status">
-                              <li><div class="node-circle status-success"></div>Working resources/nodes</li>
-                              <li><i class="fa fa-podcast" aria-hidden="true" title="Remote node"></i>Remote node</li>
-                              <li><div class="node-circle status-danger"></div>Not working resources/node</li>
-                              <li><i class="fa fa-wrench" aria-hidden="true"></i>Maintenance mode</li>
-                              <li><div class="node-circle status-offline"></div>Offline / stop</li>
-                              <li><i class="fa fa-asterisk" aria-hidden="true"></i>Double state (master/slave)</li>
-                            </ul>
-                          </li>
-                        </ul>
-                      </div>
-                    </li>
-                    <li>
-                      <div class="dropdown">
-                        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                          <i class="fa fa-align-justify" aria-hidden="true"></i>
-                        </button>
-                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                          <a class="dropdown-item" href="#">Action</a>
-                          <a class="dropdown-item" href="#">Another action</a>
-                          <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                      </div>
-                      </li>
-                      <li><i class="fa fa-cog" aria-hidden="true"></i></li>
+  <div class="inner row status-wrapper">
+    <div class="panel panel-default with-nav-tabs" id="report-tabs">
+      <div class="panel-heading">
+        <ul class="nav nav-tabs" role="tablist">
+          <li class="active" role="presentation">
+            <a href="#local-cluster-tab" role="tab" data-toggle="tab" aria-controls="local-cluster">
+              <%= current_cib.cluster_name %>
+            </a>
+          </li>
+          <% @clusters.map do |cluster| %>
+          <li role="presentation">
+            <a href="<%='#' + escape_cluster_name(cluster.name) + '-tab' %>" role="tab" data-toggle="tab" aria-controls="remote-cluster">
+              <%= cluster.name %>
+            </a>
+          </li>
+          <% end %>
+          <li class="dashboard-legend pull-right filter-menu">
+            <div class="btn-group">
+              <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Legend <span class="caret"></span>
+              </button>
+              <ul class="dropdown-menu">
+                <li>
+                  <ul class="legend-status">
+                    <li><div class="node-circle status-success"></div>Working resource/node</li>
+                    <li><i class="fa fa-podcast" aria-hidden="true" title="Remote node"></i>Remote node</li>
+                    <li><div class="node-circle status-danger"></div>Failing resource/node</li>
+                    <li><i class="fa fa-wrench" aria-hidden="true"></i>Maintenance mode</li>
+                    <li><div class="node-circle status-offline"></div>Offline/standby mode</li>
+                    <li><i class="fa fa-asterisk" aria-hidden="true"></i>Double state (master/slave)</li>
+                    <li><div class="node-circle status-default"></div>Not working</li>
+                    <li><i class="fa fa-home" aria-hidden="true"></i>Designated coordinator</li>
                   </ul>
-                </div>
-                <!-- +++++++++++++ dashboard table start +++++++++++++ -->
-                <div class="dashboard-container panel-body">
-                  <!-- +++++++++++++ errors section start +++++++++++++ -->
-                  <div class="errors-section" role="alert">
-                    {{for  ~root.errors itemVar="~error"}}
-                      {{if ~error.type === "warning"}}
-                        <li class="list-group-item list-group-item-warning">{{:~error.msg}}</li>
-                      {{else}}
-                        <li class="list-group-item list-group-item-danger">{{:~error.msg}}</li>
-                      {{/if}}
-                    {{/for}}
-                  </div>
-                  <!-- +++++++++++++ errors section end +++++++++++++ -->
-                  <!-- +++++++++++++ dashboard table start +++++++++++++ -->
-                  <div class="dashboard-table">
-                    <table id="table-template" class="table">
-                      <!-- +++++++++++++ nodes row start +++++++++++++ -->
-                      <div id="nodes-table-rows">
-                        <tr id="nodes-table-row" class="no-top-border table-header">
-                          <th colspan="2" class="col-sm-2 no-left-border"></th>
-                          {{for ~root.nodes itemVar="~node"}}
-                            <th {{if #index==0}}class="no-left-border"{{/if}}>
-                              {{if ~node.state === "unclean"}}
-                                <span class="status-bar status-danger"></span>
-                              {{else ~node.state === "online"}}
-                                <span class="status-bar status-success"></span>
-                              {{else ~node.state === "offline"}}
-                                <span class="status-bar status-offline"></span>
-                              {{else ~node.state === "standby"}}
-                                <span class="status-bar status-offline"></span>
-                              {{else ~node.state === "pending"}}
-                                <span class="status-bar status-success"></span>
-                              {{/if}}
-                              <div id="node-{{:name}}" class="node-name" title="Node id: {{:~node.id}}">{{:name}} <span class="table-cluster-name">{{:~root.crm_config.cluster_name}}</span></div>
-                              {{if ~node.name === ~root.meta.dc}}
-                                <span class="status-icon"><i class="fa fa-home" aria-hidden="true" title="Designated coordinator"></i></span>
-                              {{/if}}
-                              {{if ~node.remote == true}}
-                                <span class="status-icon"><i class="fa fa-podcast" aria-hidden="true" title="Remote node"></i></span>
-                              {{/if}}
-                              {{if ~node.maintenance == true}}
-                              <span class="status-icon"><i class="fa fa-wrench" aria-hidden="true"></i></span>
-                              {{/if}}
-                              {{if ~node.fence_history !== ""}}
-                                <i class="fa fa-refresh text-warning" title='{{:~node.fence_history}}'></i>
-                              {{/if}}
-                            </th>
-                          {{/for}}
-                        </tr>
-                      <div>
-                      <!-- +++++++++++++ nodes row end +++++++++++++ -->
-                      <!-- +++++++++++++ resources rows start +++++++++++++ -->
-                      <div id="resources-table-rows">
-                        {{for ~root.resources itemVar="~resource"}}
-                          <tr {{if #index==0}}class="no-top-border"{{/if}}>
-                            <td class="no-left-border resource-icon">
-                              {{if ~resource.maintenance == true}}
-                                <span class="status-icon"><i class="fa fa-wrench" aria-hidden="true"></i></span>
-                              {{/if}}
-                              {{if ~resource["type"] === "master"}}
-                                <span class="status-icon"><i class="fa fa-asterisk" aria-hidden="true"></i></span>
-                              {{/if}}
-                            </td>
-                            <td class="text-left no-left-border">
-                              {{if ~resource.state === "stopped" && ~resource["attributes"]["target-role"] === "Stopped"}}
-                                <span class="status-bar status-offline"></span>
-                              {{else ~resource.state === "stopped"}}
-                                <span class="status-bar status-danger"></span>
-                              {{/if}}
-                              {{if ~resource.state !== "stopped"}}
-                                <span class="status-bar status-success"></span>
-                              {{/if}}
-                                <span id="resource-{{:id}}" class="resource-name">{{:id}}</span>
-                            </td>
-                            {{for ~root.nodes itemVar="~node"}}
-                              <td {{if #index==0}}class="no-left-border"{{/if}}>
-                              {{if ~node.state === "unclean" }}
-                                <div class="node-circle status-danger"></div>
-                              {{else ~resource.state === "stopped"}}
-                                <div class="node-circle status-danger"></div>
-                              {{else ~node.state === "offline" }}
-                                <div class="node-circle status-offline"></div
-                              {{else}}
-                                {{props ~resource.running_on itemVar="~nodeWhereTheResourceRun"}}
-                                  {{if (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "started")}}
-                                    <div class="node-circle status-success" title="Started"></div>
-                                  {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "slave")}}
-                                    <div class="node-circle status-success" title="Started"></div><span class="table-label slave-master">Slave</span>
-                                  {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "master")}}
-                                    <div class="node-circle status-success" title="Started"></div><span class="table-label slave-master">Master</span>
-                                  {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "not_running")}}
-                                    <div class="node-circle status-default"></div>
-                                  {{/if}}
-                                {{/props}}
-                              {{/if}}
-                              </td>
-                            {{/for}}
-                          </tr>
-                        {{/for}}
-                      </div>
-                      <!-- +++++++++++++ resources rows end +++++++++++++ -->
-                      <!-- +++++++++++++ tickets rows start +++++++++++++ -->
-                      {{if ~root.tickets}}
-                        <div id="tickets-table-rows">
-                          {{props ~root.tickets itemVar="~ticket"}}
-                            <tr class="ticket">
-                              <td class="no-left-border resource-icon"></td>
-                              <td class="text-left no-left-border">
-                                <span class="status-bar status-ticket"></span>
-                                <span id="ticket-{{:~ticket.prop.id}}" class="resource-name">{{:~ticket.prop.id}}</span>
-                              </td>
-                              <td class="no-left-border" colspan="4">
-                                <div class="ticket-state">
-                                  {{if ~ticket.prop.state === "granted"}}
-                                    Ticket granted
-                                  {{else ~ticket.prop.state === "revoked"}}
-                                    Ticket Revoked
-                                  {{else ~ticket.prop.state === "elsewhere"}}
-                                    Ticket granted elsewhere
-                                  {{/if}}
-                                  {{if ~ticket.prop.standby === true}}
-                                    Standby
-                                  {{/if}}
-                                </div>
-                              </td>
-                            </tr>
-                          {{/props}}
-                        </div>
-                      {{/if}}
-                      <!-- +++++++++++++ tickets rows end +++++++++++++ -->
-                    </table>
-                  </div>
-                  <!-- +++++++++++++ dashboard table end +++++++++++++ -->
-                </div>
-              </div>
+                </li>
+              </ul>
             </div>
-          </div>
+          </li>
+        </ul>
+      </div>
+      <div class="panel-body">
+        <div class="tab-content">
+          <% unless current_cib.offline? %>
+            <div class="tab-pane active" id="local-cluster-tab" role="tabpanel">
+              <!-- passing local_cluster as a cluster data attribute means to fetch local cluster information -->
+              <%= content_tag :div,"" , id: escape_cluster_name(current_cib.cluster_name), class: "status-table", data: {cluster: "local_cluster"} %>
+            </div>
+          <% end %>
+          <% @clusters.map do |cluster| %>
+            <div class="tab-pane" id="<%= escape_cluster_name(cluster.name) + '-tab' %>" role="tabpanel">
+              <!-- Pass the cluster object to the data options helper method . Rails will automatically call to_json, outputting the data into its JSON form. -->
+              <%= content_tag :div,"" ,id: escape_cluster_name(cluster.name), class: "status-table", data: {cluster: cluster} %>
+            </div>
+          <% end %>
         </div>
-        <!-- +++++ ++++++++ tab-pan local cluster end ++++++++++++++++++++++++ -->
-        <!-- +++++ ++++++++ tab-pan other cluster start ++++++++++++++++++++++++ -->
-        {{!-- FOR ADDITIONAL CLUSTERS <div class="tab-pane fade" id="other-cluster">tab2</div> --}}
-        <!-- +++++ ++++++++ tab-pan other cluster end ++++++++++++++++++++++++ -->
       </div>
     </div>
+  </div>
+
+  <script>
+    statusTable.init(".status-wrapper");
+  </script>
+
+  <script id="status-table-template" type="text/x-jsrender">
+      <div class="dashboard-table">
+        <table id="table-template" class="table">
+          <div id="nodes-table-rows">
+            <tr id="nodes-table-row" class="no-top-border table-header">
+              <th colspan="2" class="col-sm-2 no-left-border"></th>
+              {{for ~root.nodes itemVar="~node"}}
+                <th {{if #index==0}}class="no-left-border"{{/if}}>
+                  {{if ~node.state === "unclean"}}
+                    <span class="status-bar status-danger"></span>
+                  {{else ~node.state === "online"}}
+                    <span class="status-bar status-success"></span>
+                  {{else ~node.state === "offline"}}
+                    <span class="status-bar status-offline"></span>
+                  {{else ~node.state === "standby"}}
+                    <span class="status-bar status-offline"></span>
+                  {{else ~node.state === "pending"}}
+                    <span class="status-bar status-success"></span>
+                  {{/if}}
+                  <div id="node-{{:name}}" class="node-name" title="Node id: {{:~node.id}}">{{:name}} <span class="table-cluster-name">{{:~root.crm_config.cluster_name}}</span></div>
+                  {{if ~node.name === ~root.meta.dc}}
+                    <span class="status-icon"><i class="fa fa-home" aria-hidden="true" title="Designated coordinator"></i></span>
+                  {{/if}}
+                  {{if ~node.remote == true}}
+                    <span class="status-icon"><i class="fa fa-podcast" aria-hidden="true" title="Remote node"></i></span>
+                  {{/if}}
+                  {{if ~node.maintenance == true}}
+                  <span class="status-icon"><i class="fa fa-wrench" aria-hidden="true"></i></span>
+                  {{/if}}
+                  {{if ~node.fence_history !== ""}}
+                    <i class="fa fa-refresh text-warning" title='{{:~node.fence_history}}'></i>
+                  {{/if}}
+                </th>
+              {{/for}}
+            </tr>
+          <div>
+          <div id="resources-table-rows">
+            {{for ~root.resources itemVar="~resource"}}
+              <tr {{if #index==0}}class="no-top-border"{{/if}}>
+                <td class="no-left-border resource-icon">
+                  {{if ~resource.maintenance == true}}
+                    <span class="status-icon"><i class="fa fa-wrench" aria-hidden="true"></i></span>
+                  {{/if}}
+                  {{if ~resource["type"] === "master"}}
+                    <span class="status-icon"><i class="fa fa-asterisk" aria-hidden="true"></i></span>
+                  {{/if}}
+                </td>
+                <td class="text-left no-left-border">
+                  {{if ~resource.state === "stopped" && ~resource["attributes"]["target-role"] === "Stopped"}}
+                    <span class="status-bar status-offline"></span>
+                  {{else ~resource.state === "stopped"}}
+                    <span class="status-bar status-danger"></span>
+                  {{/if}}
+                  {{if ~resource.state !== "stopped"}}
+                    <span class="status-bar status-success"></span>
+                  {{/if}}
+                    <span id="resource-{{:id}}" class="resource-name">{{:id}}</span>
+                </td>
+                {{for ~root.nodes itemVar="~node"}}
+                  <td {{if #index==0}}class="no-left-border"{{/if}}>
+                  {{if ~node.state === "unclean" }}
+                    <div class="node-circle status-danger"></div>
+                  {{else ~resource.state === "stopped"}}
+                    <div class="node-circle status-danger"></div>
+                  {{else ~node.state === "offline" }}
+                    <div class="node-circle status-offline"></div
+                  {{else}}
+                    {{props ~resource.running_on itemVar="~nodeWhereTheResourceRun"}}
+                      {{if (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "started")}}
+                        <div class="node-circle status-success" title="Started"></div>
+                      {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "slave")}}
+                        <div class="node-circle status-success" title="Started"></div><span class="table-label slave-master">Slave</span>
+                      {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "master")}}
+                        <div class="node-circle status-success" title="Started"></div><span class="table-label slave-master">Master</span>
+                      {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "not_running")}}
+                        <div class="node-circle status-default"></div>
+                      {{/if}}
+                    {{/props}}
+                  {{/if}}
+                  </td>
+                {{/for}}
+              </tr>
+            {{/for}}
+          </div>
+          <div id="tickets-table-rows">
+            {{if ~root.tickets}}
+              {{props ~root.tickets itemVar="~ticket"}}
+                <tr class="ticket">
+                  <td class="no-left-border resource-icon"></td>
+                  <td class="text-left no-left-border">
+                    <span class="status-bar status-ticket"></span>
+                    <span id="ticket-{{:~ticket.prop.id}}" class="resource-name">{{:~ticket.prop.id}}</span>
+                  </td>
+                  <td class="no-left-border" colspan="4">
+                    <div class="ticket-state">
+                      {{if ~ticket.prop.state === "granted"}}
+                        Ticket granted
+                      {{else ~ticket.prop.state === "revoked"}}
+                        Ticket Revoked
+                      {{else ~ticket.prop.state === "elsewhere"}}
+                        Ticket granted elsewhere
+                      {{/if}}
+                      {{if ~ticket.prop.standby === true}}
+                        Standby
+                      {{/if}}
+                    </div>
+                  </td>
+                </tr>
+              {{/props}}
+            {{/if}}
+          </div>
+        </table>
+      </div>
   </script>
 </div>
