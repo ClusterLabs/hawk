@@ -43,6 +43,9 @@ $sidebar-width: 250px;
   margin-bottom: 70px;
 }
 
+#sidebar {
+ overflow: auto;
+}
 
 #sidebar::-webkit-scrollbar {
     width: 0px;
