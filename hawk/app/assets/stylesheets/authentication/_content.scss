@@ -79,11 +79,14 @@
     }
 
     input.form-control {
-      background-color: $login-input-fg;
+      color: $login-input-fg;
       border-color: $login-input-border;
       -moz-box-shadow: 0 0 0px 1000px $login-input-bg inset;
       -webkit-box-shadow: 0 0 0px 1000px $login-input-bg inset;
       box-shadow:0 0 0px 1000px $login-input-bg inset;
+      &:focus {
+        color: #fff;
+      }
     }
   }
 }

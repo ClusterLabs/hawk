@@ -5,6 +5,8 @@
 .form-simple {
   .control-label {
     font-weight: normal;
+    padding-top: 0px;
+    margin-top: 7px;
   }
   .panel-body {
     .list-group .list-group-item {
@@ -37,10 +39,7 @@
       }
       label {
         margin-bottom: 0;
-      }
-      .help-block {
-        font-size: 0.9em;
-        text-align: right;
+        margin-top: 7px;
       }
     }
     .no-bottom-border {
@@ -48,7 +47,7 @@
     }
     label {
       font-weight: normal;
-      line-height: 2.4em;
+      /* line-height: 2.4em; */
     }
   }
   legend {
@@ -156,6 +155,10 @@ fieldset[disabled], fieldset[disabled]:active, fieldset[disabled]:focus,
   }
 }
 
+.btn:focus, .btn:active, .btn:active:focus {
+  outline: 0;
+  border-color: #adadad;
+}
 
 .daterangepicker .ranges li {
   color: #666;
@@ -167,6 +170,33 @@ fieldset[disabled], fieldset[disabled]:active, fieldset[disabled]:focus,
   border-color: $theme-green-border;
 }
 
-.tab-pane .form-group {
-  overflow: auto;
+.input-group-sm > .input-group-btn > select.btn {
+  height: 30px;
+  line-height: 30px;
+}
+
+.input-group-btn:not(:first-child):not(:last-child) > .btn { 
+  border-radius: 0;
+  margin-left: -1px;
+}
+
+.input-group .form-control:first-child {
+  border-bottom-right-radius: 0;
+  border-top-right-radius: 0;
+  border-top-left-radius: 3px;
+  border-bottom-left-radius: 3px
+}
+
+.input-group .form-control:last-child { 
+  border-bottom-right-radius: 3px;
+  border-top-right-radius: 3px;
+}
+
+.error-msg{
+  margin-top: -15px;
+  margin-bottom: 0;
+
+  .help-block {
+    font-size: 0.9em;
+  }
 }
