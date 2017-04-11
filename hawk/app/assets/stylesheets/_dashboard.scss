@@ -2,6 +2,17 @@
   min-width: 800px;
 }
 
+.border-color { 
+  border-color: #ddd!important;
+}
+
+.cluster-errors .list-group {
+  border: 1px solid#ddd;
+  border-radius: 3px;
+}
+
+.cluster-errors .list-group .list-group-item { border: 0px; }
+
 .dashboard-container {
 
   > .alert {

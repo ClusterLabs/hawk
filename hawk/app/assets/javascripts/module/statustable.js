@@ -31,7 +31,7 @@ var statusTable = {
 
             var text = [
                 '<div id="inner-', clusterId, '" class="panel panel-default" data-epoch="">',
-                '<div class="panel-heading">',
+                '<div class="border-color panel-heading">',
                 '<h3 class="panel-title">',
                 '<span id="refresh"><i class="fa fa-refresh fa-pulse-opacity"></i></span> ',
                 '<a href="', that.baseUrl(clusterData), '/">', title, '</a>'
@@ -160,11 +160,11 @@ var statusTable = {
         var tag = $('#' + clusterId + ' div.panel-body');
 
         if (cib.meta.status == "maintenance" || cib.meta.status == "nostonith") {
-            $('#' + clusterId).removeClass('panel-default panel-danger').addClass('panel-warning');
+            $('#' + clusterId).removeClass('panel-default panel-danger').addClass('panel-warning border-color');
         } else if (cib.meta.status == "errors") {
-            $('#' + clusterId).removeClass('panel-default panel-warning').addClass('panel-danger');
+            $('#' + clusterId).removeClass('panel-default panel-warning').addClass('panel-danger border-color');
         } else {
-            $('#' + clusterId).removeClass('panel-warning panel-danger').addClass('panel-default');
+            $('#' + clusterId).removeClass('panel-warning panel-danger').addClass('panel-default border-color');
         }
 
         var circle = '<div class="circle circle-medium ' +
