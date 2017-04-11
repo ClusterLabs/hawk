@@ -6,7 +6,7 @@
 //= require module/basics
 //= require module/help
 //= require module/forms
-//= require module/statusmatrix
+//= require module/statustable
 //= require module/oplist
 //= require module/attrlist
 //= require module/wizattrlist
@@ -45,11 +45,11 @@ $(function() {
     var winHeight = $(window).outerHeight() - navHeight;
     var maxHeight = Math.max.apply(
       null,
-      $('#middle, #rightbar, #sidebar').map(function() {
+      $('#middle, #rightbar').map(function() {
         return $(this).height('auto').outerHeight();
       }).get()
     );
-    $('#middle, #rightbar, #sidebar').height(
+    $('#middle').height(
       winHeight > maxHeight ? winHeight : maxHeight
     );
   };

@@ -3,7 +3,6 @@
 
 $(function() {
   $('[data-fencingeditor]').each(function() {
-    var uuidInc = [0];
     var element = $(this);
     var content = $('body').data('content');
     var leveltemplate = $.templates('#fencing-level-template');

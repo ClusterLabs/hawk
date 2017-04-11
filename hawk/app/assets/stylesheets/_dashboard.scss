@@ -1,71 +1,243 @@
-// Copyright (c) 2009-2015 Tim Serong <tserong@suse.com>
-// See COPYING for license.
-
-$dashboard-font-size: 12px;
-$details-border: #80c235;
-$matrix-details-bg: #f5f5f5;
-$matrix-details-text: #222;
-
-
-#cib-status-matrix-details {
-  display: none;
-  position: fixed;
-  z-index: 10000;
-  width: auto !important;
-  padding: 1em;
-
-  background-color: $matrix-details-bg;
-  color: $matrix-details-text;
-  border: 1px solid $details-border;
-  border-radius: 4px;
-  -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.175);
-  background-clip: padding-box;
+.inner {
+  min-width: 800px;
 }
 
-#cib-status-matrix-details:after {
-    box-sizing: border-box;
-    display: inline;
-    font-size: 14px;
-    width: 100%;
-    line-height: 1;
-    color: $details-border;
-    position: absolute;
-    pointer-events: none;
+.dashboard-container {
+
+  > .alert {
+    margin: 15px;
+
+    p {
+      margin: 7px 0;
+    }
+  }
 }
 
-#cib-status-matrix-details:after {
-    content: "\25B2";
-    margin: 0 0 1px 0;
-    top: -12px;
-    right: 12px;
-    text-align: right;
+#local-cluster {
+  margin: 15px;
+
+  > .panel-default .panel-body {
+    padding: 0;
+  }
 }
 
-table.status-matrix-wrapper {
-  margin-left: auto;
-  margin-right: auto;
-  table-layout: fixed;
+#middle .panel-default .cluster-heading {
+  background-image: none;
+  background-color: #f7f7f7;
+  padding: 8px 15px;
+  border-bottom: 1px solid #ddd;
+  float: left;
+  width: 100%;
+
+  > h3 {
+    float: left;
+    line-height: 25px;
+  }
 }
 
-.status-matrix-element {
-  text-align: right;
-  text-overflow: ellipsis;
-  overflow: hidden;
-  white-space: nowrap;
-  font-size: $dashboard-font-size;
-  font-weight: normal;
-  padding-right: 10px;
+li.filter-menu {
+  display: inline-block;
+  margin: 0px 7px 0 0;
+  color: #444;
+  vertical-align: middle;
+
+  > .dropdown .btn {
+    background: transparent;
+    padding: 0 5px;
+  }
+
+  &.dashboard-legend {
+
+    > .btn-group .btn {
+      border: 0;
+      background: transparent;
+
+      &.dropdown-toggle:focus,
+      &.dropdown-toggle:hover,
+      &.btn:hover,
+      &.btn:focus,
+      &.btn:active {
+        background: transparent;
+        box-shadow: none;
+      }
+    }
+
+    .open .dropdown-toggle {
+      background: transparent;
+      box-shadow: none;
+    }
+  }
 }
 
-#cib-status-matrix-details canvas {
+
+ul.legend-status {
+  width: 420px;
+  padding: 0;
+  margin-left: 10px;
+  margin-right: -25px;
+
+  li {
+    width: 45%;
+    display: inline-block;
+    margin: 3px 18px 3px 0;
+    padding: 0;
+    font-size: 13px;
+    color: #666;
+
+    > .node-circle {
+      width: 14px;
+      height: 14px;
+      margin-right: 8px;
+      vertical-align: sub;
+    }
+
+    > .fa {
+      margin-right: 8px;
+      width: 14px;
+      color: #333;
+    }
+  }
+}
+
+.dropdown-menu {
+  right: 0px;
+  left: inherit;
+}
+
+.open > .dropdown-menu {
+  padding: 10px;
+  border-radius: 0;
+  border: 0;
+
+  a {
+    display: block;
+  }
+}
+
+.dashboard-table,
+.errors-section {
+  padding: 15px;
+  clear: left;
+}
+
+table tr td {
+  text-align: center;
+  position: relative;
+}
+
+table tr th {
+  text-align: center;
+}
+
+.table>tbody>tr.no-top-border>th,
+.table>tbody>tr.no-top-border>td {
+  border-top-color: #fff;
+  }
+
+.table>tbody>tr>th,
+.table>tbody>tr>td {
+  border-left: 1px solid #ddd;
+  vertical-align: middle;
+  height: 50px;
+  padding: 0 8px;
+}
+
+.no-left-border {
+  border-left-color: #fff!important;
+}
+
+.table>tbody>tr.table-header>th {
+  padding: 20px 5px;
+}
+
+.status-bar {
+  width: 5px; height: 25px;
+  display: inline-block;
+  margin-right: 3px;
+}
+
+.node-name {
+  display: inline-block;
+  text-align: left;
+  font-weight: lighter;
+  line-height: 14px;
+  margin-right: 5px;
+
+  span {
+    font-size: 11px;
+    color: #888;
+    display: block;
+  }
+}
+
+.status-icon {
+  margin-right: 3px;
+  display: inline-block;
+  vertical-align: super;
+}
+
+.resource-name {
+  display: inline-block;
+  vertical-align: super;
+}
+
+.slave-master {
+  border-radius: 3px;
+  background: #fc9a2b;
+  padding: 1px 1px 0px 1px;
+  color: #fff;
+  font-size: 10px;
+  display: block;
+  width: 35px;
+  margin: 0 auto;
+  margin-top: 2px;
+}
+
+.node-circle {
+  border-radius: 8px;
+  width: 16px;
+  height: 16px;
+  transition:all 0.3s ease;
+  cursor: pointer;
+  display: inline-block;
   vertical-align: middle;
 }
 
-.dash-cluster-content {
-  overflow: auto;
+.status-success {
+  background-color: #00c081;
 }
 
-.dash-cell {
-  text-align: left;
+.status-warning {
+  background-color: #fc9a2b;
+}
+
+.status-danger {
+  background-color: #a52700;
+}
+
+.status-default {
+  background-color: #fff;
+  border: 1px solid #777;
+}
+
+.status-offline {
+  background-color: #555;
+}
+
+.status-ticket {
+  background-color: #42a1f4;
+}
+
+.ticket-state {
+  background: #ccc;
+  display: inline-block;
+  padding: 2px 5px;
+  border-radius: 3px;
+}
+
+.table>tbody > tr > td.resource-icon {
+  padding-left: 0px;
+  padding-right: 0px;
+  line-height: 28px;
+  text-align: right;
 }

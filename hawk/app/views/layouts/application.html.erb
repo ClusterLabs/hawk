@@ -25,11 +25,13 @@
     <% end %>
     <div class="nav-wrapper">
       <div class="sidebar-wrapper" id="sidebar">
-        <%= render partial: "shared/mainnav" %>
+        <div class="sidebar-inner">
+          <%= render partial: "shared/mainnav" %>
+        </div>
       </div>
       <div class="page-content-wrapper">
         <div class="page-content container-fluid">
-          <div class="row">
+          <div class="row flex">
             <div class="col-sm-12" id="middle">
               <div class="container-fluid">
                 <%= render partial: "shared/flash", locals: { flash: flash } %>
