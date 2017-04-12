@@ -2,6 +2,21 @@
   min-width: 800px;
 }
 
+.border-color { 
+  border-color: #ddd!important;
+}
+
+.cluster-errors .list-group {
+  border: 1px solid#ddd;
+  border-radius: 3px;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+}
+
+.cluster-errors .list-group .list-group-item { border: 0px; }
+
 .dashboard-container {
 
   > .alert {
@@ -132,7 +147,14 @@ table tr th {
 .table>tbody>tr.no-top-border>th,
 .table>tbody>tr.no-top-border>td {
   border-top-color: #fff;
+}
+
+.dashboard-table .table>tbody>tr:hover td,  { 
+  background: #f9f9f9;
+  .no-left-border {
+    border-left-color: #f9f9f9!important;
   }
+}
 
 .table>tbody>tr>th,
 .table>tbody>tr>td {
