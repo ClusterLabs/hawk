@@ -114,7 +114,7 @@ ul.legend-status {
   }
 }
 
-.dashboard-table,
+.status-table,
 .errors-section {
   padding: 15px;
   clear: left;
@@ -240,4 +240,12 @@ table tr th {
   padding-right: 0px;
   line-height: 28px;
   text-align: right;
+}
+
+.tab-cluster-status {
+width: 8px;
+height: 8px;
+display: inline-block;
+border-radius: 50%;
+margin-left: 5px;
 }
