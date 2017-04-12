@@ -31,7 +31,7 @@ var statusTable = {
 
             var text = [
                 '<div id="inner-', clusterId, '" class="panel panel-default" data-epoch="">',
-                '<div class="border-color panel-heading">',
+                '<div class="panel-heading">',
                 '<h3 class="panel-title">',
                 '<span id="refresh"><i class="fa fa-refresh fa-pulse-opacity"></i></span> ',
                 '<a href="', that.baseUrl(clusterData), '/">', title, '</a>'
@@ -160,11 +160,11 @@ var statusTable = {
         var tag = $('#' + clusterId + ' div.panel-body');
 
         if (cib.meta.status == "maintenance" || cib.meta.status == "nostonith") {
-            $('#' + clusterId).removeClass('panel-default panel-danger').addClass('panel-warning border-color');
+            $('#' + clusterId).removeClass('panel-default panel-danger').addClass('panel-warning');
         } else if (cib.meta.status == "errors") {
-            $('#' + clusterId).removeClass('panel-default panel-warning').addClass('panel-danger border-color');
+            $('#' + clusterId).removeClass('panel-default panel-warning').addClass('panel-danger');
         } else {
-            $('#' + clusterId).removeClass('panel-warning panel-danger').addClass('panel-default border-color');
+            $('#' + clusterId).removeClass('panel-warning panel-danger').addClass('panel-default');
         }
 
         var circle = '<div class="circle circle-medium ' +
@@ -462,41 +462,32 @@ var statusTable = {
                 '<div class="cluster-errors"></div>',
                 '<form class="form-horizontal" role="form" onsubmit="return false;">',
                 '<div class="form-group">',
-                '<div class="col-sm-2 control-label">',
-                'Hostname of node in cluster',
-                '</div>',
-                '<div class="col-sm-4">',
-                '<div class="dashboard-login">',
+                '<div class="col-sm-12">',
+                '<div class="input-group dashboard-login">',
+                '<span class="input-group-addon"><i class="fa fa-server"></i></span>',
                 '<input type="text" class="form-control" name="host" id="host" readonly="readonly" value="', data.host, '">',
                 '</div>',
                 '</div>',
                 '</div>',
                 '<div class="form-group">',
-                '<div class="col-sm-2 control-label">',
-                'Username',
-                '</div>',
-                '<div class="col-sm-4">',
-                '<div class="dashboard-login">',
+                '<div class="col-sm-12">',
+                '<div class="input-group dashboard-login">',
+                '<span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>',
                 '<input type="text" class="form-control" name="username" id="username" placeholder="', s_username, '" value="', v_username, '">',
                 '</div>',
                 '</div>',
                 '</div>',
                 '<div class="form-group">',
-                '<div class="col-sm-2 control-label">',
-                'Password',
-                '</div>',
-                '<div class="col-sm-4">',
-                '<div class="dashboard-login">',
+                '<div class="col-sm-12">',
+                '<div class="input-group dashboard-login">',
+                '<span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>',
                 '<input type="password" class="form-control" name="password" id="password" placeholder="', s_password, '">',
                 '</div>',
                 '</div>',
                 '</div>',
                 '<div class="form-group">',
-                '<div class="col-sm-2 control-label">',
-                '',
-                '</div>',
-                '<div class="col-sm-4 controls">',
-                '<button type="submit" class="btn btn-primary">',
+                '<div class="col-sm-12 controls">',
+                '<button type="submit" class="btn btn-success">',
                 s_connect,
                 '</button>',
                 '</div>',
@@ -515,7 +506,8 @@ var statusTable = {
         this.initHelpers(); // Intialize helper methods for using them inside the template in "dashboards/show.html.erb
         this.render(); // Renders the table using the template in "dashboards/show.html.erb"
         //this.applyStyles(); // Set the appropriate classes after rendering the table (using tableAttrs)
-        this.FormatClusterName(); // Set the title attribute for the cluster name to show cluster details
+        this.formatClusterName(); // Set the title attribute for the cluster name to show cluster details
+        this.updateTabClass(clusterId); // Update the cluster's status indicator shown next to the cluster name in each tab.
         this.printLog(); // Testing
     },
     alterData: function(cibData) {
@@ -546,7 +538,18 @@ var statusTable = {
         // Using $.proxy to correctly pass the context to saveAttrs:
         // $.views.helpers({ saveAttrs: $.proxy(this.saveAttrs, this) });
     },
-    FormatClusterName: function() {
+    updateTabClass: function(clusterId){
+      if (this.tableData.meta.status == "ok") {
+        $('#' + clusterId.replace('inner-', '') + '-indicator').attr('class', 'tab-cluster-status status-success');
+      } else if (this.tableData.meta.status == "errors") {
+        $('#' + clusterId.replace('inner-', '') + '-indicator').attr('class', 'tab-cluster-status status-danger');
+      } else if ((this.tableData.meta.status == "maintenance")) {
+        $('#' + clusterId.replace('inner-', '') + '-indicator').attr('class', 'tab-cluster-status status-warning');
+      } else {
+        $('#' + clusterId.replace('inner-', '') + '-indicator').attr('class', 'tab-cluster-status status-offline');
+      }
+    },
+    formatClusterName: function() {
         // Adding title to cluster name cell in the table and adding the information icon next to it
         var meta = this.tableData.meta;
         var title_value = "Status:\b" + meta.status +

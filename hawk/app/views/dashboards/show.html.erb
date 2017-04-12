@@ -21,14 +21,14 @@
           <li class="active" role="presentation">
             <a href="#local-cluster-tab" role="tab" data-toggle="tab" aria-controls="local-cluster">
               <%= current_cib.cluster_name %>
-              <span class="tab-cluster-status"></span>
+              <span class="" id="<%= escape_cluster_name(current_cib.cluster_name) + '-indicator' %>"></span>
             </a>
           </li>
           <% @clusters.map do |cluster| %>
           <li role="presentation">
             <a href="<%='#' + escape_cluster_name(cluster.name) + '-tab' %>" role="tab" data-toggle="tab" aria-controls="remote-cluster">
               <%= cluster.name %>
-              <span class="tab-cluster-status"></span>
+              <span class="" id="<%= escape_cluster_name(cluster.name) + '-indicator' %>"></span>
             </a>
           </li>
           <% end %>
@@ -73,12 +73,10 @@
     </div>
   </div>
 
+
   <script>
     statusTable.init(".status-wrapper");
   </script>
-
-
-
 
 
   <script id="status-table-nodes" type="text/x-jsrender">
