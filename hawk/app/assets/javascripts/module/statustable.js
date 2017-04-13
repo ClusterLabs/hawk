@@ -32,9 +32,9 @@ var statusTable = {
             var text = [
                 '<div id="inner-', clusterId, '" class="panel panel-default" data-epoch="">',
                 '<div class="panel-heading">',
-                '<h3 class="panel-title">',
-                '<span id="refresh"><i class="fa fa-refresh fa-pulse-opacity"></i></span> ',
-                '<a href="', that.baseUrl(clusterData), '/">', title, '</a>'
+                // '<h3 class="panel-title">',
+                // '<span id="refresh"><i class="fa fa-refresh fa-pulse-opacity"></i></span> ',
+                // '<a href="', that.baseUrl(clusterData), '/">', title, '</a>',
             ].join('');
 
             if (clusterData.host != null) {
@@ -47,7 +47,7 @@ var statusTable = {
                     '</form>';
             }
             text = text +
-                '</h3>' +
+                // '</h3>' +
                 '</div>' +
                 '<div class="panel-body">' +
                 content +
@@ -99,42 +99,6 @@ var statusTable = {
         }
         return hash;
     },
-    indicator: function(clusterId, state) {
-        var tag = $('#' + clusterId + ' .panel-heading .panel-title #refresh');
-        if (state == "ok") {
-            tag.html('<i class="fa fa-check"></i>');
-        } else if (state == "refresh") {
-            tag.html('<i class="fa fa-refresh fa-pulse-opacity"></i>');
-        } else if (state == "blank") {
-            tag.html('');
-        } else if (state == "error") {
-            tag.html('<i class="fa fa-exclamation-triangle"></i>');
-        }
-    },
-    status_class_for: function(status) {
-        if (status == "ok") {
-            return "circle-success";
-        } else if (status == "errors") {
-            return "circle-danger";
-        } else if (status == "maintenance") {
-            return "circle-info";
-        } else {
-            return "circle-warning";
-        }
-    },
-    status_icon_for: function(status) {
-        if (status == "ok") {
-            return '<i class="fa fa-check text"></i>';
-        } else if (status == "errors") {
-            return '<i class="fa fa-exclamation-triangle text"></i>';
-        } else if (status == "maintenance") {
-            return '<i class="fa fa-wrench text"></i>';
-        } else if (status == "nostonith") {
-            return '<i class="fa fa-plug text"></i>';
-        } else {
-            return '<i class="fa fa-question text"></i>';
-        }
-    },
     isRemote: function(cib, node) {
         return ("remote_nodes" in cib) && (node in cib["remote_nodes"]);
     },
@@ -151,11 +115,6 @@ var statusTable = {
         }
     },
     displayClusterStatus: function(clusterId, cib) {
-        if (cib.meta.status == "ok") {
-            this.indicator(clusterId, "ok");
-        } else {
-            this.indicator(clusterId, "error");
-        }
 
         var tag = $('#' + clusterId + ' div.panel-body');
 
@@ -166,10 +125,6 @@ var statusTable = {
         } else {
             $('#' + clusterId).removeClass('panel-warning panel-danger').addClass('panel-default');
         }
-
-        var circle = '<div class="circle circle-medium ' +
-            this.status_class_for(cib.meta.status) + '">' +
-            this.status_icon_for(cib.meta.status) + '</div>';
 
         var text = "";
 
@@ -243,7 +198,7 @@ var statusTable = {
         if (xhr.status != 0) {
             msg += "<pre> Response: " + xhr.status + " " + xhr.statusText + "</pre>";
         }
-        that.indicator(clusterId, "error");
+        this.updateClusterTab("connectionError", clusterId);
         $('#' + clusterId).removeClass('panel-warning').addClass('panel-danger');
         var tag = $('#' + clusterId + ' div.panel-body');
 
@@ -252,8 +207,6 @@ var statusTable = {
 
         // force a refresh next time
         tag.data('hash', null);
-
-        tag.find('.circle').addClass('circle-danger').removeClass('circle-success circle-info circle-warning').html(that.status_icon_for('errors'));
 
         that.scheduleReconnect(clusterInfo, cb);
 
@@ -346,7 +299,6 @@ var statusTable = {
                 var tag = $('#' + clusterId + ' div.panel-body');
                 if (clusterInfo.host != null && clusterInfo.password == null) {
                     tag.html(that.basicCreateBody(clusterId, clusterInfo));
-                    that.indicator(clusterId, "blank"); // Remove the refresh icon after creating the connection form.
                     var btn = tag.find("button.btn");
                     btn.attr("disabled", false);
                     btn.click(function() {
@@ -406,7 +358,7 @@ var statusTable = {
     },
     startRemoteConnect: function(clusterId, clusterInfo) {
         var that = this;
-        that.indicator(clusterId, "refresh");
+        this.updateClusterTab("refresh", clusterId);
 
         var username = clusterInfo.username || "hacluster";
         var password = clusterInfo.password;
@@ -507,7 +459,7 @@ var statusTable = {
         this.render(); // Renders the table using the template in "dashboards/show.html.erb"
         //this.applyStyles(); // Set the appropriate classes after rendering the table (using tableAttrs)
         this.formatClusterName(); // Set the title attribute for the cluster name to show cluster details
-        this.updateTabClass(clusterId); // Update the cluster's status indicator shown next to the cluster name in each tab.
+        this.updateClusterTab("connected", clusterId); // Update the cluster's status indicator shown next to the cluster name in each tab.
         this.printLog(); // Testing
     },
     alterData: function(cibData) {
@@ -538,15 +490,43 @@ var statusTable = {
         // Using $.proxy to correctly pass the context to saveAttrs:
         // $.views.helpers({ saveAttrs: $.proxy(this.saveAttrs, this) });
     },
-    updateTabClass: function(clusterId){
-      if (this.tableData.meta.status == "ok") {
-        $('#' + clusterId.replace('inner-', '') + '-indicator').attr('class', 'tab-cluster-status status-success');
-      } else if (this.tableData.meta.status == "errors") {
-        $('#' + clusterId.replace('inner-', '') + '-indicator').attr('class', 'tab-cluster-status status-danger');
-      } else if ((this.tableData.meta.status == "maintenance")) {
-        $('#' + clusterId.replace('inner-', '') + '-indicator').attr('class', 'tab-cluster-status status-warning');
-      } else {
-        $('#' + clusterId.replace('inner-', '') + '-indicator').attr('class', 'tab-cluster-status status-offline');
+    updateClusterTab: function(state, clusterId) {
+      if (state == "connected") {
+        if (this.tableData.meta.status == "ok") {
+          $('#' + clusterId.replace('inner-', '') + '-indicator').attr({
+            class: "tab-cluster-status status-success",
+            title: "Status: Ok"
+          }).html('');
+        } else if (this.tableData.meta.status == "errors") {
+          $('#' + clusterId.replace('inner-', '') + '-indicator').attr({
+            class: "tab-cluster-status status-danger",
+            title: "Status: Errors"
+          }).html('');
+        } else if ((this.tableData.meta.status == "maintenance")) {
+          $('#' + clusterId.replace('inner-', '') + '-indicator').attr({
+            class: "",
+            title: "Maintenance mode"
+          }).html('<i class="fa fa-wrench"></i>');
+        } else if ((this.tableData.meta.status == "nostonith")) {
+          $('#' + clusterId.replace('inner-', '') + '-indicator').attr({
+            class: "",
+            title: "Status: nostonith"
+          }).html('<i class="fa fa-plug"></i>');
+        } else {
+          $('#' + clusterId.replace('inner-', '') + '-indicator').attr({
+            class: "tab-cluster-status status-offline"
+          }).html('');
+        }
+      } else if (state == "connectionError"){
+        $('#' + clusterId.replace('inner-', '') + '-indicator').attr({
+          class: "",
+          title: "Status: connection error"
+        }).html('<i class="fa fa-exclamation-triangle"></i>');
+      }
+      else if (state == "refresh"){
+        $('#' + clusterId.replace('inner-', '') + '-indicator').attr({
+          class: ""
+        }).html('<i class="fa fa-refresh fa-pulse-opacity">');
       }
     },
     formatClusterName: function() {

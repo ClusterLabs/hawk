@@ -2,7 +2,7 @@
   min-width: 800px;
 }
 
-.border-color { 
+.border-color {
   border-color: #ddd!important;
 }
 
@@ -149,7 +149,7 @@ table tr th {
   border-top-color: #fff;
 }
 
-.dashboard-table .table>tbody>tr:hover td,  { 
+.dashboard-table .table>tbody>tr:hover td,  {
   background: #f9f9f9;
   .no-left-border {
     border-left-color: #f9f9f9!important;
@@ -271,3 +271,63 @@ display: inline-block;
 border-radius: 50%;
 margin-left: 5px;
 }
+
+
+
+/* ------ Ticket css start --------- */
+
+   ul.filter-menu li.ticket {
+      border-right: 1px solid #ccc;
+      padding-right: 15px;
+   }
+
+   ul.filter-menu li.ticket .notification {
+    width: 15px;
+    height: 15px;
+    border-radius: 7px;
+    background: #ccc;
+    margin-left: 7px;
+    display: inline-block;
+    text-align: center;
+    color: #444;
+    font-size: 11px;
+   }
+
+   .ticket-dropdown {
+    width: 250px;
+    padding: 0;
+   }
+
+    .ticket-name {
+      width: 70%;
+      display: inline-block;
+    }
+
+    .ticket-status {
+      width: 30%;
+      display: inline-block;
+    }
+
+   .ticket-dropdown a {
+      color: #777;
+      margin: 7px 0px;
+      font-size: 13px;
+   }
+
+    .ticket-dropdown a:hover {
+      text-decoration: none;
+    }
+    .ticket-dropdown a.new-ticket {
+      font-weight: bold;
+      color: #000;
+    }
+
+    .ticket-header {
+      border-bottom: 1px solid #ccc;
+      font-weight: bold;
+      color: #666;
+      margin: 0 -10px 5px;
+      padding: 0 10px 3px 10px;
+    }
+
+/* ------ Ticket css end --------- */
