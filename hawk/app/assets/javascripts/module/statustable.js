@@ -458,42 +458,24 @@ var statusTable = {
         $.views.helpers({ printClusterId: $.proxy(this.printClusterId, this) });
     },
     updateClusterTab: function(state) {
+      var tab_id = "#" + this.clusterId + '-indicator';
       if (state == "connected") {
         if (this.tableData.meta.status == "ok") {
-          $('-' + this.clusterId.replace('inner-', '') + '-indicator').attr({
-            class: "tab-cluster-status status-success",
-            title: "Status: Ok"
-          }).html('');
+          $(tab_id).attr({class: "tab-cluster-status status-success", title: "Status: Ok"}).html('');
         } else if (this.tableData.meta.status == "errors") {
-          $('#inner-' + this.clusterId.replace('inner-', '') + '-indicator').attr({
-            class: "tab-cluster-status status-danger",
-            title: "Status: Errors"
-          }).html('');
+          $(tab_id).attr({class: "tab-cluster-status status-danger", title: "Status: Errors"}).html('');
         } else if ((this.tableData.meta.status == "maintenance")) {
-          $('#inner-' + this.clusterId.replace('inner-', '') + '-indicator').attr({
-            class: "",
-            title: "Maintenance mode"
-          }).html('<i class="fa fa-wrench"></i>');
+          $(tab_id).attr({class: "", title: "Maintenance mode"}).html('<i class="fa fa-wrench"></i>');
         } else if ((this.tableData.meta.status == "nostonith")) {
-          $('#inner-' + this.clusterId.replace('inner-', '') + '-indicator').attr({
-            class: "",
-            title: "Status: nostonith"
-          }).html('<i class="fa fa-plug"></i>');
+          $(tab_id).attr({class: "", title: "Status: nostonith"}).html('<i class="fa fa-plug"></i>');
         } else {
-          $('#inner-' + this.clusterId.replace('inner-', '') + '-indicator').attr({
-            class: "tab-cluster-status status-offline"
-          }).html('');
+          $(tab_id).attr({class: "tab-cluster-status status-offline"}).html('');
         }
       } else if (state == "connectionError"){
-        $('#inner-' + this.clusterId.replace('inner-', '') + '-indicator').attr({
-          class: "",
-          title: "Status: connection error"
-        }).html('<i class="fa fa-exclamation-triangle"></i>');
+        $(tab_id).attr({class: "", title: "Status: connection error"}).html('<i class="fa fa-exclamation-triangle"></i>');
       }
       else if (state == "refresh"){
-        $('#inner-' + this.clusterId.replace('inner-', '') + '-indicator').attr({
-          class: ""
-        }).html('<i class="fa fa-refresh fa-pulse-opacity">');
+        $(tab_id).attr({class: ""}).html('<i class="fa fa-refresh fa-pulse-opacity">');
       }
     },
     formatClusterName: function() {
