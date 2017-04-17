@@ -146,6 +146,14 @@
             '</div>',
           '</fieldset>',
         '{{/for}}',
+        '<fieldset>',
+          '<legend>',
+            __('New Rule'),
+            '<div class="pull-right">',
+              '<i class="fa fa-plus rule new"></i> ',
+            '</div>',
+          '</legend>',
+        '</fieldset>',
       ].join('')
     };
 
@@ -216,14 +224,24 @@
           expressions: []
         });
       })
+      .on('click', '.rule.new', function(e) {
+        e.preventDefault();
+
+        $.observable(
+          content['entries']
+        ).insert(content['entries'].length, {
+            score: '-INFINITY',
+            role: '',
+            operator: '',
+            expressions: []
+          });
+      })
       .on('click', '.rule.remove', function(e) {
         e.preventDefault();
 
-        if (content['entries'].length > 1) {
-          $.observable(
-            content['entries']
-          ).remove($.view(this).index);
-        }
+        $.observable(
+          content['entries']
+        ).remove($.view(this).index);
       })
       .on('click', '.expression.remove', function(e) {
         e.preventDefault();
