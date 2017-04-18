@@ -41,8 +41,9 @@ input:-webkit-autofill {
   background-color: #f7f7f7;
   padding: 8px 15px;
   border-bottom: 1px solid #ddd;
-  float: left;
+  overflow: auto;
   width: 100%;
+  min-height: 40px;
 
   > h3 {
     float: left;
@@ -149,12 +150,7 @@ table tr th {
   border-top-color: #fff;
 }
 
-.dashboard-table .table>tbody>tr:hover td,  {
-  background: #f9f9f9;
-  .no-left-border {
-    border-left-color: #f9f9f9!important;
-  }
-}
+
 
 .table>tbody>tr>th,
 .table>tbody>tr>td {
@@ -170,6 +166,15 @@ table tr th {
 
 .table>tbody>tr.table-header>th {
   padding: 20px 5px;
+}
+
+#dashboard-container .table>tbody>tr:hover {
+  td {
+    background: #f9f9f9;
+  }
+  .no-left-border {
+    border-left-color: #f9f9f9!important;
+  }
 }
 
 .status-bar {
