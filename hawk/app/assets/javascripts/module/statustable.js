@@ -27,7 +27,7 @@ var statusTable = {
     // reconnections: array of string
 
     init: function(options) {// Each element has to have a "status-table" class and a "cluster" data attribute in order for the status table to be displayed.
-        var instance = Object.create(this)
+        var instance = Object.create(this);
         Object.keys(options).forEach(function(key){
           instance[key] = options[key];
         });
@@ -195,7 +195,7 @@ var statusTable = {
             that.scheduleReconnect();
             tag.html(that.basicCreateBody());
 
-            if (that.host == null) {
+            if (that.host === null) {
                 that.clusterRefresh();
             } else {
                 tag.find("button.btn").click(function() {
@@ -220,7 +220,7 @@ var statusTable = {
         }
     },
     baseUrl: function() {
-        if (this.host == null) {
+        if (this.host === null) {
             return "";
         } else {
             var transport = this.https ? "https" : "http";
@@ -258,7 +258,7 @@ var statusTable = {
             data: {
                 _method: 'show'
             },
-            crossDomain: that.host != null,
+            crossDomain: that.host !== null,
             success: function(data) {
                 $.each(data.nodes, function(node, node_values) {
                     if (!that.isRemote(data, node_values.uname)) {
@@ -273,7 +273,7 @@ var statusTable = {
             },
             error: function(xhr, status, error) {
                 var tag = $('#inner-' + that.clusterId + ' div.panel-body');
-                if (that.host != null && that.password == null) {
+                if (that.host !== null && that.password === null) {
                     tag.html(that.basicCreateBody());
                     var btn = tag.find("button.btn");
                     btn.attr("disabled", false);
@@ -288,7 +288,7 @@ var statusTable = {
                     });
                 } else {
                     that.clusterConnectionError(xhr, status, error, function() {
-                        if (that.host == null) {
+                        if (that.host === null) {
                             that.clusterRefresh();
                         } else if ((that.reconnections) && that.reconnections.length > 1) {
                             var currHost = that.host;
@@ -296,7 +296,7 @@ var statusTable = {
                             that.reconnections.splice(0, 1);
                             that.reconnections.push(currHost);
                             that.host = currFirst;
-                            if (currFirst == null) {
+                            if (currFirst === null) {
                                 that.clusterRefresh();
                             } else {
                                 that.startRemoteConnect();
@@ -317,7 +317,7 @@ var statusTable = {
             type: "GET",
             data: current_epoch,
             timeout: 90000,
-            crossDomain: that.host != null,
+            crossDomain: that.host !== null,
             success: function(data) {
                 if (data.epoch != current_epoch) {
                     that.clusterRefresh();
@@ -369,7 +369,7 @@ var statusTable = {
                         that.reconnections.push(currHost);
                         that.host = currFirst;
                     }
-                    if (that.host == null) {
+                    if (that.host === null) {
                         that.clusterRefresh();
                     } else {
                         that.startRemoteConnect();
@@ -385,7 +385,7 @@ var statusTable = {
         var s_connect = __('Connect');
         var v_username = $('body').data('user');
         var content = '';
-        if (this.host != null) {
+        if (this.host !== null) {
             content = [
                 '<div class="cluster-errors"></div>',
                 '<form class="form-horizontal" role="form" onsubmit="return false;">',
