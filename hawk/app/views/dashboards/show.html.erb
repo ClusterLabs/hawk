@@ -61,11 +61,11 @@
               <!-- passing local_cluster as a cluster data attribute means to fetch local cluster information -->
               <%= content_tag :div,"" , id: escape_cluster_name(current_cib.cluster_name), class: "status-table", data: {cluster: "local_cluster"} do %>
                 <div id='<%= "inner-" + escape_cluster_name(current_cib.cluster_name) %>' class="panel panel-default" data-epoch="">
-                  <div class="panel-heading">
+                  <div class="panel-heading cluster-heading">
                     <h3 class="panel-title">
-                    <a class="pull-right cluster-url" href="" target="_blank">
-                      <i class="fa fa-external-link" aria-hidden="true"></i>
-                    </a>
+                      <a class="pull-right cluster-url" href="" target="_blank">
+                        <i class="fa fa-external-link" aria-hidden="true"></i>
+                      </a>
                     </h3>
                   </div>
                   <div class="panel-body">
@@ -81,11 +81,17 @@
               <!-- Pass the cluster object to the data options helper method. Rails will automatically call to_json, outputting the data into its JSON form. -->
               <%= content_tag :div,"" ,id: escape_cluster_name(cluster.name), class: "status-table", data: {cluster: cluster} do %>
                 <div id='<%= "inner-" + escape_cluster_name(cluster.name) %>' class="panel panel-default" data-epoch="">
-                  <div class="panel-heading">
+                  <div class="panel-heading cluster-heading">
                     <h3 class="panel-title">
-                    <a class="pull-right cluster-url" href="" target="_blank">
-                      <i class="fa fa-external-link" aria-hidden="true"></i>
-                    </a>
+                      <a class="pull-right cluster-url" href="" target="_blank">
+                        <i class="fa fa-external-link" aria-hidden="true"></i>
+                      </a>
+                      <form action="/dashboard/remove" method="post" accept-charset="UTF-8" data-remote="true" class="pull-right">
+                        <input type="hidden" name="name" value="<%= cluster.name %>">
+                        <button type="submit" class="close" data-confirm="<%= _('Remove cluster %s from dashboard?') % cluster.name %>" aria-label="Close">
+                          <span aria-hidden="true">&times;</span>
+                        </button>
+                      </form>
                     </h3>
                   </div>
                   <div class="panel-body">
