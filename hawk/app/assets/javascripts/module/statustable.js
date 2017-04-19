@@ -14,18 +14,27 @@
 
 var statusTable = {
     tableData: [], // An Array that contains JSON data fetched from the cib, see cacheData()
-    tableAttrs: [], // JSON data that Contains attributes like ids and classes for specific elements in the table
-    clusterId: "",
-    init: function(clusterId) { // init function called using: "statusTable.init(fetchedData);"
-        // Each element has to have a "status-table" class and a "cluster" data attribute in order for the status table to be displayed.
-            this.clusterId = clusterId;
-            var clusterData = $("#" + this.clusterId).data("cluster");
-            var title = clusterData.name || __("Local Status");
-            clusterData.conntry = null;
-            clusterData.reconnections = [];
-            clusterData.username = null;
-            clusterData.password = null;
-            this.clusterRefresh(clusterData);
+    // List of options(passed to init function) and their types:
+    // clusterId: string,
+    // name: string, (optional)
+    // host: string, (optional)
+    // username: string,
+    // password: string,
+    // https: boolean, (optional)
+    // port: integer, (optional)
+    // interval: integer, (optional)
+    // conntry:  ID returned by the corresponding call to setTimeout(),
+    // reconnections: array of string
+
+    init: function(options) {// Each element has to have a "status-table" class and a "cluster" data attribute in order for the status table to be displayed.
+        var instance = Object.create(this)
+        Object.keys(options).forEach(function(key){
+          instance[key] = options[key];
+        });
+        return instance;
+    },
+    create: function() {
+      this.clusterRefresh();
     },
     gettext_translate: function(type, options) {
         typeof(options) === "undefined" ? options = {}: options;
@@ -69,16 +78,16 @@ var statusTable = {
     isRemote: function(cib, node) {
         return ("remote_nodes" in cib) && (node in cib["remote_nodes"]);
     },
-    scheduleReconnect: function(clusterInfo, cb, time) {
-        if (clusterInfo.conntry !== null) {
-            window.clearTimeout(clusterInfo.conntry);
-            clusterInfo.conntry = null;
+    scheduleReconnect: function(cb, time) {
+        if (this.conntry !== null) {
+            window.clearTimeout(this.conntry);
+            this.conntry = null;
         }
         if (cb !== undefined) {
             if (time === undefined) {
                 time = 15000;
             }
-            clusterInfo.conntry = window.setTimeout(cb, time);
+            this.conntry = window.setTimeout(cb, time);
         }
     },
     displayClusterStatus: function(cib) {
@@ -118,7 +127,7 @@ var statusTable = {
             this.displayTable(cib);
         }
     },
-    clusterConnectionError: function(clusterInfo, xhr, status, error, cb) {
+    clusterConnectionError: function(xhr, status, error, cb) {
         var that = this;
         if (window.userIsNavigatingAway)
             return;
@@ -175,7 +184,7 @@ var statusTable = {
         // force a refresh next time
         tag.data('hash', null);
 
-        that.scheduleReconnect(clusterInfo, cb);
+        that.scheduleReconnect(cb);
 
         var btn = tag.find('button.btn')
         btn.text(__('Cancel'));
@@ -183,20 +192,20 @@ var statusTable = {
         btn.removeClass('btn-success').addClass('btn-default');
         btn.attr("disabled", false);
         btn.click(function() {
-            that.scheduleReconnect(clusterInfo);
-            tag.html(that.basicCreateBody(clusterInfo));
+            that.scheduleReconnect();
+            tag.html(that.basicCreateBody());
 
-            if (clusterInfo.host == null) {
-                that.clusterRefresh(clusterInfo);
+            if (that.host == null) {
+                that.clusterRefresh();
             } else {
                 tag.find("button.btn").click(function() {
                     var username = tag.find("input[name=username]").val();
                     var password = tag.find("input[name=password]").val();
                     tag.find('.btn-success').attr('disabled', true);
                     tag.find('input').attr('disabled', true);
-                    clusterInfo.username = username;
-                    clusterInfo.password = password;
-                    that.startRemoteConnect(clusterInfo);
+                    that.username = username;
+                    that.password = password;
+                    that.startRemoteConnect();
                 });
             }
         });
@@ -210,13 +219,13 @@ var statusTable = {
             return null;
         }
     },
-    baseUrl: function(clusterInfo) {
-        if (clusterInfo.host == null) {
+    baseUrl: function() {
+        if (this.host == null) {
             return "";
         } else {
-            var transport = clusterInfo.https ? "https" : "http";
-            var port = clusterInfo.port || "7630";
-            return transport + "://" + clusterInfo.host + ":" + port;
+            var transport = this.https ? "https" : "http";
+            var port = this.port || "7630";
+            return transport + "://" + this.host + ":" + port;
         }
     },
     ajaxQuery: function(spec) {
@@ -241,31 +250,31 @@ var statusTable = {
             error: spec.error || null
         });
     },
-    clusterRefresh: function(clusterInfo) {
+    clusterRefresh: function() {
         var that = this;
         that.ajaxQuery({
-            url: that.baseUrl(clusterInfo) + "/cib/live?format=json",
+            url: that.baseUrl() + "/cib/live?format=json",
             type: "GET",
             data: {
                 _method: 'show'
             },
-            crossDomain: clusterInfo.host != null,
+            crossDomain: that.host != null,
             success: function(data) {
                 $.each(data.nodes, function(node, node_values) {
                     if (!that.isRemote(data, node_values.uname)) {
-                        if ($.inArray(clusterInfo.reconnections, node_values.uname) === -1) {
-                            clusterInfo.reconnections.push(node_values.uname);
+                        if ($.inArray(that.reconnections, node_values.uname) === -1) {
+                            that.reconnections.push(node_values.uname);
                         }
                     }
                 });
                 that.displayClusterStatus(data);
                 $("#inner-" + that.clusterId).data('epoch', data.meta.epoch);
-                that.clusterUpdate(clusterInfo);
+                that.clusterUpdate();
             },
             error: function(xhr, status, error) {
                 var tag = $('#inner-' + that.clusterId + ' div.panel-body');
-                if (clusterInfo.host != null && clusterInfo.password == null) {
-                    tag.html(that.basicCreateBody(clusterInfo));
+                if (that.host != null && that.password == null) {
+                    tag.html(that.basicCreateBody());
                     var btn = tag.find("button.btn");
                     btn.attr("disabled", false);
                     btn.click(function() {
@@ -273,65 +282,65 @@ var statusTable = {
                         var password = tag.find("input[name=password]").val();
                         tag.find('.btn-success').attr('disabled', true);
                         tag.find('input').attr('disabled', true);
-                        clusterInfo.username = username;
-                        clusterInfo.password = password;
-                        that.startRemoteConnect(clusterInfo);
+                        that.username = username;
+                        that.password = password;
+                        that.startRemoteConnect();
                     });
                 } else {
-                    that.clusterConnectionError(clusterInfo, xhr, status, error, function() {
-                        if (clusterInfo.host == null) {
-                            that.clusterRefresh(clusterInfo);
-                        } else if (("reconnections" in clusterInfo) && clusterInfo.reconnections.length > 1) {
-                            var currHost = clusterInfo.host;
-                            var currFirst = clusterInfo.reconnections[0];
-                            clusterInfo.reconnections.splice(0, 1);
-                            clusterInfo.reconnections.push(currHost);
-                            clusterInfo.host = currFirst;
+                    that.clusterConnectionError(xhr, status, error, function() {
+                        if (that.host == null) {
+                            that.clusterRefresh();
+                        } else if ((that.reconnections) && that.reconnections.length > 1) {
+                            var currHost = that.host;
+                            var currFirst = that.reconnections[0];
+                            that.reconnections.splice(0, 1);
+                            that.reconnections.push(currHost);
+                            that.host = currFirst;
                             if (currFirst == null) {
-                                that.clusterRefresh(clusterInfo);
+                                that.clusterRefresh();
                             } else {
-                                that.startRemoteConnect(clusterInfo);
+                                that.startRemoteConnect();
                             }
                         } else {
-                            that.clusterRefresh(clusterInfo);
+                            that.clusterRefresh();
                         }
                     });
                 }
             }
         });
     },
-    clusterUpdate: function(clusterInfo) {
+    clusterUpdate: function() {
         var that = this;
         var current_epoch = $("#inner-" + that.clusterId).data('epoch');
         that.ajaxQuery({
-            url: that.baseUrl(clusterInfo) + "/monitor.json",
+            url: that.baseUrl() + "/monitor.json",
             type: "GET",
             data: current_epoch,
             timeout: 90000,
-            crossDomain: clusterInfo.host != null,
+            crossDomain: that.host != null,
             success: function(data) {
                 if (data.epoch != current_epoch) {
-                    that.clusterRefresh(clusterInfo);
+                    that.clusterRefresh();
                 } else {
-                    that.clusterUpdate(clusterInfo);
+                    that.clusterUpdate();
                 }
             },
             error: function(xhr, status, error) {
-                that.clusterConnectionError(clusterInfo, xhr, status, error, function() {
-                    that.clusterRefresh(clusterInfo);
+                that.clusterConnectionError(xhr, status, error, function() {
+                    that.clusterRefresh();
                 });
             }
         });
     },
-    startRemoteConnect: function(clusterInfo) {
+    startRemoteConnect: function() {
         var that = this;
         this.updateClusterTab("refresh");
 
-        var username = clusterInfo.username || "hacluster";
-        var password = clusterInfo.password;
+        var username = that.username || "hacluster";
+        var password = that.password;
 
         if (password === null) {
-            that.clusterConnectionError(clusterInfo, {
+            that.clusterConnectionError({
                 readyState: 1,
                 status: 0
             }, "error", "", function() {});
@@ -339,7 +348,7 @@ var statusTable = {
         }
 
         that.ajaxQuery({
-            url: that.baseUrl(clusterInfo) + "/login.json",
+            url: that.baseUrl() + "/login.json",
             crossDomain: true,
             type: "POST",
             data: {
@@ -349,34 +358,34 @@ var statusTable = {
                 }
             },
             success: function(data) {
-                that.clusterRefresh(clusterInfo);
+                that.clusterRefresh();
             },
             error: function(xhr, status, error) {
-                that.clusterConnectionError(clusterInfo, xhr, status, error, function() {
-                    if (("reconnections" in clusterInfo) && clusterInfo.reconnections.length > 1) {
-                        var currHost = clusterInfo.host;
-                        var currFirst = clusterInfo.reconnections[0];
-                        clusterInfo.reconnections.splice(0, 1);
-                        clusterInfo.reconnections.push(currHost);
-                        clusterInfo.host = currFirst;
+                that.clusterConnectionError(xhr, status, error, function() {
+                    if ((that.reconnections) && that.reconnections.length > 1) {
+                        var currHost = that.host;
+                        var currFirst = that.reconnections[0];
+                        that.reconnections.splice(0, 1);
+                        that.reconnections.push(currHost);
+                        that.host = currFirst;
                     }
-                    if (clusterInfo.host == null) {
-                        that.clusterRefresh(clusterInfo);
+                    if (that.host == null) {
+                        that.clusterRefresh();
                     } else {
-                        that.startRemoteConnect(clusterInfo);
+                        that.startRemoteConnect();
                     }
                 });
             }
         });
     },
-    basicCreateBody: function(data) {
+    basicCreateBody: function() {
         var s_hostname = __('Hostname');
         var s_username = __('Username');
         var s_password = __('Password');
         var s_connect = __('Connect');
         var v_username = $('body').data('user');
         var content = '';
-        if (data.host != null) {
+        if (this.host != null) {
             content = [
                 '<div class="cluster-errors"></div>',
                 '<form class="form-horizontal" role="form" onsubmit="return false;">',
@@ -384,7 +393,7 @@ var statusTable = {
                 '<div class="col-sm-12">',
                 '<div class="input-group dashboard-login">',
                 '<span class="input-group-addon"><i class="fa fa-server"></i></span>',
-                '<input type="text" class="form-control" name="host" id="host" readonly="readonly" value="', data.host, '">',
+                '<input type="text" class="form-control" name="host" id="host" readonly="readonly" value="', this.host, '">',
                 '</div>',
                 '</div>',
                 '</div>',
@@ -424,9 +433,9 @@ var statusTable = {
         this.cacheDom(); // Cache Dom elements to maximize performance
         this.initHelpers(); // Intialize helper methods for using them inside the template in "dashboards/show.html.erb
         this.render(); // Renders the table using the template in "dashboards/show.html.erb"
-        //this.applyStyles(); // Set the appropriate classes after rendering the table (using tableAttrs)
         this.formatClusterName(); // Set the title attribute for the cluster name to show cluster details
         this.updateClusterTab("connected"); // Update the cluster's status indicator shown next to the cluster name in each tab.
+        this.setClusterUrl();
         this.printLog(); // Testing
     },
     alterData: function(cibData) {
@@ -489,6 +498,9 @@ var statusTable = {
         var info_icon = '&nbsp;<i class="fa fa-info-circle" aria-hidden="true"></i>';
         this.$table.find(".table-cluster-name").attr("title", title_value).append(info_icon);
     },
+    setClusterUrl: function() {
+      $("#" + this.clusterId).find(".cluster-url").attr("href", this.baseUrl());
+    },
     printLog: function() {
         console.log(JSON.stringify(this.tableData));
     },
@@ -496,10 +508,4 @@ var statusTable = {
     printClusterId: function() {
       return this.clusterId;
     }
-    // applyStyles: function() {
-    //    $.each(this.tableAttrs, function(index, element){
-    //      $(element.id).attr("class", element.className);
-    //    });
-    // }
-
 };
