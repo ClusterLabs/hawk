@@ -70,6 +70,15 @@ $(function() {
     vform.find(".submit").prop("disabled", true);
   });
   vform.on("ajax:success", function(e, data, status, xhr) {
+    if (("output" in data) && data.output) {
+      var laststep = vform.find(".actions .list-group-item").last();
+      var laststeptext = laststep.html();
+      laststep.html('<button type="button" class="list-group-item btn-primary" data-toggle="modal" data-target="#modal-lg">' + laststeptext + '</button>');
+      laststep.find('.btn-primary').on('click', function() {
+        var content = $("#modal-lg .modal-content");
+        content.html('<pre>' + $('<div/>').text(data.output).html() + '</pre>');
+      });
+    }
     vform.find(".actions .list-group-item").removeClass("disabled").addClass("list-group-item-success");
     vform.find(".notifications").html('<div class="alert alert-success">' + __("Changes applied successfully.") + '</div>');
   });
