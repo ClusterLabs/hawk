@@ -14,6 +14,7 @@
       </div>
     </h1>
   </div>
+
   <div class="inner row status-wrapper">
     <div class="panel panel-default with-nav-tabs" id="report-tabs">
       <div class="panel-heading">
@@ -34,7 +35,9 @@
           <% end %>
           <li class="dashboard-legend pull-right filter-menu">
             <div class="btn-group">
-              <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Legend <span class="caret"></span>
+              <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Legend
+                <span class="caret"></span>
               </button>
               <ul class="dropdown-menu">
                 <li>
@@ -70,8 +73,8 @@
                   </div>
                   <div class="panel-body">
                     <div class="cluster-errors"></div>
-                    </div>
-                  <div class="status-inner-table"></div>
+                    <div class="status-inner-table"></div>
+                  </div>
                 </div>
               <% end %>
             </div>
@@ -96,8 +99,8 @@
                   </div>
                   <div class="panel-body">
                     <div class="cluster-errors"></div>
-                    </div>
-                  <div class="status-inner-table"></div>
+                    <div class="status-inner-table"></div>
+                  </div>
                 </div>
               <% end %>
             </div>
@@ -106,6 +109,8 @@
       </div>
     </div>
   </div>
+
+
 
   <script id="status-table-nodes" type="text/x-jsrender">
     <div id="nodes-table-rows">
@@ -140,7 +145,7 @@
             </th>
           {{/for}}
       </tr>
-    <div>
+    </div>
   </script>
 
   <script id="status-table-resources" type="text/x-jsrender">
@@ -173,7 +178,7 @@
             {{else ~resource.state === "stopped"}}
               <div class="node-circle status-danger"></div>
             {{else ~node.state === "offline" }}
-              <div class="node-circle status-offline"></div
+              <div class="node-circle status-offline"></div>
             {{else}}
               {{props ~resource.running_on itemVar="~nodeWhereTheResourceRun"}}
                 {{if (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "started")}}
