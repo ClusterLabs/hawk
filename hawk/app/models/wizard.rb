@@ -18,6 +18,7 @@ class Wizard
   attr_accessor :steps
   attr_reader :params
   attr_reader :actions
+  attr_reader :output
   attr_reader :errors
   attr_reader :need_rootpw
 
@@ -34,6 +35,7 @@ class Wizard
     @loaded = false
     @params = nil
     @actions = nil
+    @output = nil
     @errors = nil
     @need_rootpw = false
   end
@@ -100,13 +102,16 @@ class Wizard
     @params = params
     @actions = []
     @errors = []
+    @output = nil
     CrmEvents.instance.push command_string
     CrmScript.run ["run", @name, @params], rootpw do |result, err|
       @errors << err if err
       unless result.nil?
+        Rails.logger.debug "result: #{result}"
         @errors << result["error"] if result.has_key? "error"
         result['text'].gsub!(/\t/, "    ") if result.has_key? "text"
         @actions << result unless result.has_key? "error"
+        @output = result["output"] if result.has_key? "output"
       end
     end
     true

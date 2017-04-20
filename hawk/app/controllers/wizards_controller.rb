@@ -57,7 +57,7 @@ class WizardsController < ApplicationController
         if @wizard.errors.length > 0
           render json: @wizard.errors.to_json, status: :unprocessable_entity
         else
-          render json: @wizard.actions
+          render json: { actions: @wizard.actions, output: @wizard.output }
         end
       end
     end
