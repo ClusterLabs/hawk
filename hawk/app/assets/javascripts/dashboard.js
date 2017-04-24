@@ -3,6 +3,27 @@
 // Copyright (c) 2016 Ayoub Belarbi <abelarbi@suse.com>
 // See COPYING for license.
 
+$( document ).ready(function() {
+  $(".status-wrapper").find(".status-table").each(function(index, element) { // jshint ignore:line
+    var id = $(this).attr("id");
+    var data = $(this).data("cluster");
+    statusTable.init({ // jshint ignore:line
+      clusterId: id,
+      name: data.name || null,
+      host: data.host || null,
+      username: null,
+      password: null,
+      https: data.https || null,
+      port: data.port || null,
+      interval: data.interval || null,
+      conntry: null,
+      reconnections: []
+    }).create();
+  });
+});
+
+
+
 ;(function($) {
 
   window.dashboardSetupAddClusterForm = function() {

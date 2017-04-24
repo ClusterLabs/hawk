@@ -14,51 +14,27 @@
 
 var statusTable = {
     tableData: [], // An Array that contains JSON data fetched from the cib, see cacheData()
-    tableAttrs: [], // JSON data that Contains attributes like ids and classes for specific elements in the table
-    init: function(status_wrapper) { // init function called using: "statusTable.init(fetchedData);"
-        // Each element has to have a "status-table" class and a "cluster" data attribute in order for the status table to be displayed.
-        var that = this;
-        $(status_wrapper).find(".status-table").each(function(index, element) {
-            var clusterId = $(this).attr("id");
-            var clusterData = $(this).data("cluster");
-            var title = clusterData.name || __("Local Status");
-            clusterData.conntry = null;
-            clusterData.reconnections = [];
-            clusterData.username = null;
-            clusterData.password = null;
+    // List of options(passed to init function) and their types:
+    // clusterId: string,
+    // name: string, (optional)
+    // host: string, (optional)
+    // username: string,
+    // password: string,
+    // https: boolean, (optional)
+    // port: integer, (optional)
+    // interval: integer, (optional)
+    // conntry:  ID returned by the corresponding call to setTimeout(),
+    // reconnections: array of string
 
-            var content = '<div class="cluster-errors"></div>';
-
-            var text = [
-                '<div id="inner-', clusterId, '" class="panel panel-default" data-epoch="">',
-                '<div class="panel-heading cluster-heading">',
-                // '<h3 class="panel-title">',
-                // '<span id="refresh"><i class="fa fa-refresh fa-pulse-opacity"></i></span> ',
-                // '<a href="', that.baseUrl(clusterData), '/">', title, '</a>',
-            ].join('');
-
-            if (clusterData.host != null) {
-                var s_remove = __('Remove cluster _NAME_ from dashboard?').replace('_NAME_', clusterData.name);
-                text = text +
-                    '<form action="/dashboard/remove" method="post" accept-charset="UTF-8" data-remote="true" class="pull-right">' +
-                    '<input type="hidden" name="name" value="' + escape(clusterData.name) + '">' +
-                    '<button type="submit" class="close" data-confirm="' + s_remove + '"' +
-                    ' aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-                    '</form>';
-            }
-            text = text +
-                // '</h3>' +
-                '</div>' +
-                '<div class="panel-body">' +
-                content +
-                '</div>' +
-                '<div class="status-inner-table"></div>'
-                '</div>';
-
-            $(this).append(text);
-
-            that.clusterRefresh("inner-" + clusterId, clusterData);
+    init: function(options) {// Each element has to have a "status-table" class and a "cluster" data attribute in order for the status table to be displayed.
+        var instance = Object.create(this);
+        Object.keys(options).forEach(function(key){
+          instance[key] = options[key];
         });
+        return instance;
+    },
+    create: function() {
+      this.clusterRefresh();
     },
     gettext_translate: function(type, options) {
         typeof(options) === "undefined" ? options = {}: options;
@@ -102,28 +78,28 @@ var statusTable = {
     isRemote: function(cib, node) {
         return ("remote_nodes" in cib) && (node in cib["remote_nodes"]);
     },
-    scheduleReconnect: function(clusterInfo, cb, time) {
-        if (clusterInfo.conntry !== null) {
-            window.clearTimeout(clusterInfo.conntry);
-            clusterInfo.conntry = null;
+    scheduleReconnect: function(cb, time) {
+        if (this.conntry !== null) {
+            window.clearTimeout(this.conntry);
+            this.conntry = null;
         }
         if (cb !== undefined) {
             if (time === undefined) {
                 time = 15000;
             }
-            clusterInfo.conntry = window.setTimeout(cb, time);
+            this.conntry = window.setTimeout(cb, time);
         }
     },
-    displayClusterStatus: function(clusterId, cib) {
+    displayClusterStatus: function(cib) {
 
-        var tag = $('#' + clusterId + ' div.panel-body');
+        var tag = $('#inner-' + this.clusterId).find('.cluster-errors');
 
         if (cib.meta.status == "maintenance" || cib.meta.status == "nostonith") {
-            $('#' + clusterId).removeClass('panel-default panel-danger').addClass('panel-warning');
+            $('#inner-' + this.clusterId).removeClass('panel-default panel-danger').addClass('panel-warning');
         } else if (cib.meta.status == "errors") {
-            $('#' + clusterId).removeClass('panel-default panel-warning').addClass('panel-danger');
+            $('#inner-' + this.clusterId).removeClass('panel-default panel-warning').addClass('panel-danger');
         } else {
-            $('#' + clusterId).removeClass('panel-warning panel-danger').addClass('panel-default');
+            $('#inner-' + this.clusterId).removeClass('panel-warning panel-danger').addClass('panel-default');
         }
 
         var text = "";
@@ -148,10 +124,10 @@ var statusTable = {
         if (tag.data('hash') != cs) {
             tag.html(text);
             tag.data('hash', cs);
-            this.displayTable(clusterId, cib);
+            this.displayTable(cib);
         }
     },
-    clusterConnectionError: function(clusterId, clusterInfo, xhr, status, error, cb) {
+    clusterConnectionError: function(xhr, status, error, cb) {
         var that = this;
         if (window.userIsNavigatingAway)
             return;
@@ -198,9 +174,9 @@ var statusTable = {
         if (xhr.status != 0) {
             msg += "<pre> Response: " + xhr.status + " " + xhr.statusText + "</pre>";
         }
-        this.updateClusterTab("connectionError", clusterId);
-        $('#' + clusterId).removeClass('panel-warning').addClass('panel-danger');
-        var tag = $('#' + clusterId + ' div.panel-body');
+        this.updateClusterTab("connectionError");
+        $('#inner-' + this.clusterId).removeClass('panel-warning').addClass('panel-danger');
+        var tag = $('#inner-' + this.clusterId + ' div.panel-body');
 
         var errors = tag.find('.cluster-errors');
         errors.html('<div class="alert alert-danger">' + msg + "</div>");
@@ -208,7 +184,7 @@ var statusTable = {
         // force a refresh next time
         tag.data('hash', null);
 
-        that.scheduleReconnect(clusterInfo, cb);
+        that.scheduleReconnect(cb);
 
         var btn = tag.find('button.btn')
         btn.text(__('Cancel'));
@@ -216,20 +192,20 @@ var statusTable = {
         btn.removeClass('btn-success').addClass('btn-default');
         btn.attr("disabled", false);
         btn.click(function() {
-            that.scheduleReconnect(clusterInfo);
-            tag.html(that.basicCreateBody(clusterId, clusterInfo));
+            that.scheduleReconnect();
+            tag.html(that.basicCreateBody());
 
-            if (clusterInfo.host == null) {
-                that.clusterRefresh(clusterId, clusterInfo);
+            if (that.host === null) {
+                that.clusterRefresh();
             } else {
                 tag.find("button.btn").click(function() {
                     var username = tag.find("input[name=username]").val();
                     var password = tag.find("input[name=password]").val();
                     tag.find('.btn-success').attr('disabled', true);
                     tag.find('input').attr('disabled', true);
-                    clusterInfo.username = username;
-                    clusterInfo.password = password;
-                    that.startRemoteConnect(clusterId, clusterInfo);
+                    that.username = username;
+                    that.password = password;
+                    that.startRemoteConnect();
                 });
             }
         });
@@ -243,13 +219,13 @@ var statusTable = {
             return null;
         }
     },
-    baseUrl: function(clusterInfo) {
-        if (clusterInfo.host == null) {
+    baseUrl: function() {
+        if (this.host === null) {
             return "";
         } else {
-            var transport = clusterInfo.https ? "https" : "http";
-            var port = clusterInfo.port || "7630";
-            return transport + "://" + clusterInfo.host + ":" + port;
+            var transport = this.https ? "https" : "http";
+            var port = this.port || "7630";
+            return transport + "://" + this.host + ":" + port;
         }
     },
     ajaxQuery: function(spec) {
@@ -274,31 +250,31 @@ var statusTable = {
             error: spec.error || null
         });
     },
-    clusterRefresh: function(clusterId, clusterInfo) {
+    clusterRefresh: function() {
         var that = this;
         that.ajaxQuery({
-            url: that.baseUrl(clusterInfo) + "/cib/live?format=json",
+            url: that.baseUrl() + "/cib/live?format=json",
             type: "GET",
             data: {
                 _method: 'show'
             },
-            crossDomain: clusterInfo.host != null,
+            crossDomain: that.host !== null,
             success: function(data) {
                 $.each(data.nodes, function(node, node_values) {
                     if (!that.isRemote(data, node_values.uname)) {
-                        if ($.inArray(clusterInfo.reconnections, node_values.uname) === -1) {
-                            clusterInfo.reconnections.push(node_values.uname);
+                        if ($.inArray(that.reconnections, node_values.uname) === -1) {
+                            that.reconnections.push(node_values.uname);
                         }
                     }
                 });
-                that.displayClusterStatus(clusterId, data);
-                $("#" + clusterId).data('epoch', data.meta.epoch);
-                that.clusterUpdate(clusterId, clusterInfo);
+                that.displayClusterStatus(data);
+                $("#inner-" + that.clusterId).data('epoch', data.meta.epoch);
+                that.clusterUpdate();
             },
             error: function(xhr, status, error) {
-                var tag = $('#' + clusterId + ' div.panel-body');
-                if (clusterInfo.host != null && clusterInfo.password == null) {
-                    tag.html(that.basicCreateBody(clusterId, clusterInfo));
+                var tag = $('#inner-' + that.clusterId + ' div.panel-body');
+                if (that.host !== null && that.password === null) {
+                    tag.html(that.basicCreateBody());
                     var btn = tag.find("button.btn");
                     btn.attr("disabled", false);
                     btn.click(function() {
@@ -306,65 +282,65 @@ var statusTable = {
                         var password = tag.find("input[name=password]").val();
                         tag.find('.btn-success').attr('disabled', true);
                         tag.find('input').attr('disabled', true);
-                        clusterInfo.username = username;
-                        clusterInfo.password = password;
-                        that.startRemoteConnect(clusterId, clusterInfo);
+                        that.username = username;
+                        that.password = password;
+                        that.startRemoteConnect();
                     });
                 } else {
-                    that.clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
-                        if (clusterInfo.host == null) {
-                            that.clusterRefresh(clusterId, clusterInfo);
-                        } else if (("reconnections" in clusterInfo) && clusterInfo.reconnections.length > 1) {
-                            var currHost = clusterInfo.host;
-                            var currFirst = clusterInfo.reconnections[0];
-                            clusterInfo.reconnections.splice(0, 1);
-                            clusterInfo.reconnections.push(currHost);
-                            clusterInfo.host = currFirst;
-                            if (currFirst == null) {
-                                that.clusterRefresh(clusterId, clusterInfo);
+                    that.clusterConnectionError(xhr, status, error, function() {
+                        if (that.host === null) {
+                            that.clusterRefresh();
+                        } else if ((that.reconnections) && that.reconnections.length > 1) {
+                            var currHost = that.host;
+                            var currFirst = that.reconnections[0];
+                            that.reconnections.splice(0, 1);
+                            that.reconnections.push(currHost);
+                            that.host = currFirst;
+                            if (currFirst === null) {
+                                that.clusterRefresh();
                             } else {
-                                that.startRemoteConnect(clusterId, clusterInfo);
+                                that.startRemoteConnect();
                             }
                         } else {
-                            that.clusterRefresh(clusterId, clusterInfo);
+                            that.clusterRefresh();
                         }
                     });
                 }
             }
         });
     },
-    clusterUpdate: function(clusterId, clusterInfo) {
+    clusterUpdate: function() {
         var that = this;
-        var current_epoch = $("#" + clusterId).data('epoch');
+        var current_epoch = $("#inner-" + that.clusterId).data('epoch');
         that.ajaxQuery({
-            url: that.baseUrl(clusterInfo) + "/monitor.json",
+            url: that.baseUrl() + "/monitor.json",
             type: "GET",
             data: current_epoch,
             timeout: 90000,
-            crossDomain: clusterInfo.host != null,
+            crossDomain: that.host !== null,
             success: function(data) {
                 if (data.epoch != current_epoch) {
-                    that.clusterRefresh(clusterId, clusterInfo);
+                    that.clusterRefresh();
                 } else {
-                    that.clusterUpdate(clusterId, clusterInfo);
+                    that.clusterUpdate();
                 }
             },
             error: function(xhr, status, error) {
-                that.clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
-                    that.clusterRefresh(clusterId, clusterInfo);
+                that.clusterConnectionError(xhr, status, error, function() {
+                    that.clusterRefresh();
                 });
             }
         });
     },
-    startRemoteConnect: function(clusterId, clusterInfo) {
+    startRemoteConnect: function() {
         var that = this;
-        this.updateClusterTab("refresh", clusterId);
+        this.updateClusterTab("refresh");
 
-        var username = clusterInfo.username || "hacluster";
-        var password = clusterInfo.password;
+        var username = that.username || "hacluster";
+        var password = that.password;
 
         if (password === null) {
-            that.clusterConnectionError(clusterId, clusterInfo, {
+            that.clusterConnectionError({
                 readyState: 1,
                 status: 0
             }, "error", "", function() {});
@@ -372,7 +348,7 @@ var statusTable = {
         }
 
         that.ajaxQuery({
-            url: that.baseUrl(clusterInfo) + "/login.json",
+            url: that.baseUrl() + "/login.json",
             crossDomain: true,
             type: "POST",
             data: {
@@ -382,34 +358,34 @@ var statusTable = {
                 }
             },
             success: function(data) {
-                that.clusterRefresh(clusterId, clusterInfo);
+                that.clusterRefresh();
             },
             error: function(xhr, status, error) {
-                that.clusterConnectionError(clusterId, clusterInfo, xhr, status, error, function() {
-                    if (("reconnections" in clusterInfo) && clusterInfo.reconnections.length > 1) {
-                        var currHost = clusterInfo.host;
-                        var currFirst = clusterInfo.reconnections[0];
-                        clusterInfo.reconnections.splice(0, 1);
-                        clusterInfo.reconnections.push(currHost);
-                        clusterInfo.host = currFirst;
+                that.clusterConnectionError(xhr, status, error, function() {
+                    if ((that.reconnections) && that.reconnections.length > 1) {
+                        var currHost = that.host;
+                        var currFirst = that.reconnections[0];
+                        that.reconnections.splice(0, 1);
+                        that.reconnections.push(currHost);
+                        that.host = currFirst;
                     }
-                    if (clusterInfo.host == null) {
-                        that.clusterRefresh(clusterId, clusterInfo);
+                    if (that.host === null) {
+                        that.clusterRefresh();
                     } else {
-                        that.startRemoteConnect(clusterId, clusterInfo);
+                        that.startRemoteConnect();
                     }
                 });
             }
         });
     },
-    basicCreateBody: function(clusterId, data) {
+    basicCreateBody: function() {
         var s_hostname = __('Hostname');
         var s_username = __('Username');
         var s_password = __('Password');
         var s_connect = __('Connect');
         var v_username = $('body').data('user');
         var content = '';
-        if (data.host != null) {
+        if (this.host !== null) {
             content = [
                 '<div class="cluster-errors"></div>',
                 '<form class="form-horizontal" role="form" onsubmit="return false;">',
@@ -419,7 +395,7 @@ var statusTable = {
                 '</div>',
                 '<div class="col-sm-4">',
                 '<div class="dashboard-login">',
-                '<input type="text" class="form-control" name="host" id="host" readonly="readonly" value="', data.host, '">',
+                '<input type="text" class="form-control" name="host" id="host" readonly="readonly" value="', this.host, '">',
                 '</div>',
                 '</div>',
                 '</div>',
@@ -460,15 +436,15 @@ var statusTable = {
     },
 
     // Render the table:
-    displayTable: function(clusterId, cibData) {
+    displayTable: function(cibData) {
         this.alterData(cibData); // Specify which nodes the resources are not running on: e.g {running_on: {node1: "started". node2: "slave", webui: "not_running"}}.
         this.cacheData(cibData); // Cache data fetched from server, so it won't be necessary to pass the reference of the object each time
-        this.cacheDom(clusterId); // Cache Dom elements to maximize performance
+        this.cacheDom(); // Cache Dom elements to maximize performance
         this.initHelpers(); // Intialize helper methods for using them inside the template in "dashboards/show.html.erb
         this.render(); // Renders the table using the template in "dashboards/show.html.erb"
-        //this.applyStyles(); // Set the appropriate classes after rendering the table (using tableAttrs)
         this.formatClusterName(); // Set the title attribute for the cluster name to show cluster details
-        this.updateClusterTab("connected", clusterId); // Update the cluster's status indicator shown next to the cluster name in each tab.
+        this.updateClusterTab("connected"); // Update the cluster's status indicator shown next to the cluster name in each tab.
+        this.setClusterUrl();
         this.printLog(); // Testing
     },
     alterData: function(cibData) {
@@ -483,9 +459,10 @@ var statusTable = {
     cacheData: function(cibData) {
         this.tableData = cibData;
     },
-    cacheDom: function(clusterId) {
+    cacheDom: function() {
         this.$container = $('#dashboard-container');
-        this.$table = this.$container.find("#" + clusterId).find(".status-inner-table"); // this.$table is the div where the table will be rendred
+        this.$table = this.$container.find("#inner-" + this.clusterId).find(".status-inner-table"); // this.$table is the div where the table will be rendred
+        alert($(".status-inner-table").length);
         this.$template = this.$container.find("#status-table-template");
     },
     render: function() {
@@ -496,46 +473,28 @@ var statusTable = {
         this.$table.html($.render.myTmpl(this.tableData)).show();
     },
     initHelpers: function() {
-        // Using $.proxy to correctly pass the context to saveAttrs:
-        // $.views.helpers({ saveAttrs: $.proxy(this.saveAttrs, this) });
+        //Using $.proxy to correctly pass the context to printClusterId:
+        $.views.helpers({ printClusterId: $.proxy(this.printClusterId, this) });
     },
-    updateClusterTab: function(state, clusterId) {
+    updateClusterTab: function(state) {
+      var tab_id = "#" + this.clusterId + '-indicator';
       if (state == "connected") {
         if (this.tableData.meta.status == "ok") {
-          $('#' + clusterId.replace('inner-', '') + '-indicator').attr({
-            class: "tab-cluster-status status-success",
-            title: "Status: Ok"
-          }).html('');
+          $(tab_id).attr({class: "tab-cluster-status status-success", title: "Status: Ok"}).html('');
         } else if (this.tableData.meta.status == "errors") {
-          $('#' + clusterId.replace('inner-', '') + '-indicator').attr({
-            class: "tab-cluster-status status-danger",
-            title: "Status: Errors"
-          }).html('');
+          $(tab_id).attr({class: "tab-cluster-status status-danger", title: "Status: Errors"}).html('');
         } else if ((this.tableData.meta.status == "maintenance")) {
-          $('#' + clusterId.replace('inner-', '') + '-indicator').attr({
-            class: "",
-            title: "Maintenance mode"
-          }).html('<i class="fa fa-wrench"></i>');
+          $(tab_id).attr({class: "", title: "Maintenance mode"}).html('<i class="fa fa-wrench"></i>');
         } else if ((this.tableData.meta.status == "nostonith")) {
-          $('#' + clusterId.replace('inner-', '') + '-indicator').attr({
-            class: "",
-            title: "Status: nostonith"
-          }).html('<i class="fa fa-plug"></i>');
+          $(tab_id).attr({class: "", title: "Status: nostonith"}).html('<i class="fa fa-plug"></i>');
         } else {
-          $('#' + clusterId.replace('inner-', '') + '-indicator').attr({
-            class: "tab-cluster-status status-offline"
-          }).html('');
+          $(tab_id).attr({class: "tab-cluster-status status-offline"}).html('');
         }
       } else if (state == "connectionError"){
-        $('#' + clusterId.replace('inner-', '') + '-indicator').attr({
-          class: "",
-          title: "Status: connection error"
-        }).html('<i class="fa fa-exclamation-triangle"></i>');
+        $(tab_id).attr({class: "", title: "Status: connection error"}).html('<i class="fa fa-exclamation-triangle"></i>');
       }
       else if (state == "refresh"){
-        $('#' + clusterId.replace('inner-', '') + '-indicator').attr({
-          class: ""
-        }).html('<i class="fa fa-refresh fa-pulse-opacity">');
+        $(tab_id).attr({class: ""}).html('<i class="fa fa-refresh fa-pulse-opacity">');
       }
     },
     formatClusterName: function() {
@@ -549,18 +508,14 @@ var statusTable = {
         var info_icon = '&nbsp;<i class="fa fa-info-circle" aria-hidden="true"></i>';
         this.$table.find(".table-cluster-name").attr("title", title_value).append(info_icon);
     },
+    setClusterUrl: function() {
+      $("#" + this.clusterId).find(".cluster-url").attr("href", this.baseUrl());
+    },
     printLog: function() {
         console.log(JSON.stringify(this.tableData));
     },
     // Helper methods (called from the template in dashboards/show.html.erb):
-    // saveAttrs: function(type, id, className) {
-    //   var objects = {"type": type, "id": id, "className": className};
-    //   this.tableAttrs.push(objects);
-    // },
-    // applyStyles: function() {
-    //    $.each(this.tableAttrs, function(index, element){
-    //      $(element.id).attr("class", element.className);
-    //    });
-    // },
-
+    printClusterId: function() {
+      return this.clusterId;
+    }
 };
