@@ -462,7 +462,6 @@ var statusTable = {
     cacheDom: function() {
         this.$container = $('#dashboard-container');
         this.$table = this.$container.find("#inner-" + this.clusterId).find(".status-inner-table"); // this.$table is the div where the table will be rendred
-        alert($(".status-inner-table").length);
         this.$template = this.$container.find("#status-table-template");
     },
     render: function() {
