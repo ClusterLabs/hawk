@@ -41,28 +41,14 @@ input:-webkit-autofill {
   background-color: #f7f7f7;
   padding: 8px 15px;
   border-bottom: 1px solid #ddd;
-  overflow: auto;
-  width: 100%;
-  min-height: 40px;
-
+  min-height: 50px;
   > h3 {
     float: left;
     line-height: 25px;
   }
 }
 
-li.filter-menu {
-  display: inline-block;
-  margin: 0px 7px 0 0;
-  color: #444;
-  vertical-align: middle;
-
-  > .dropdown .btn {
-    background: transparent;
-    padding: 0 5px;
-  }
-
-  &.dashboard-legend {
+.dashboard-legend {
 
     > .btn-group .btn {
       border: 0;
@@ -83,7 +69,6 @@ li.filter-menu {
       box-shadow: none;
     }
   }
-}
 
 
 ul.legend-status {
@@ -270,23 +255,54 @@ table tr th {
 }
 
 .tab-cluster-status {
-width: 8px;
-height: 8px;
-display: inline-block;
-border-radius: 50%;
-margin-left: 5px;
+  width: 8px;
+  height: 8px;
+  display: inline-block;
+  border-radius: 50%;
+  margin-left: 5px;
 }
 
 
 
 /* ------ Ticket css start --------- */
 
-   ul.filter-menu li.ticket {
-      border-right: 1px solid #ccc;
-      padding-right: 15px;
+ul.cluster-right-menu {
+  margin-bottom: 0;
+}
+
+ul.cluster-right-menu li {
+  display: inline-block;
+  margin: 0px 6px 0 0;
+  color: #444;
+  vertical-align: middle;
+  .cluster-link, .cluster-close-btn {
+    color: #444; 
+    padding: 4px 8px;
+    opacity: 1;
+  }
+  .btn {
+    background: transparent;
+    padding: 4px 8px;
+    &.btn:active:focus {
+      box-shadow: none;
+      border-color: transparent;
+      outline: none; 
+    }
+  }
+}
+
+   ul.cluster-right-menu li.cluster-hide {
+     padding: 0px 4px;
+     border: 1px solid #ccc;
    }
 
-   ul.filter-menu li.ticket .notification {
+
+  ul.cluster-right-menu li.ticket {
+     border-right: 1px solid #ccc;
+     padding-right: 5px;
+  }
+
+  ul.cluster-right-menu li.ticket .notification {
     width: 15px;
     height: 15px;
     border-radius: 7px;
@@ -296,43 +312,50 @@ margin-left: 5px;
     text-align: center;
     color: #444;
     font-size: 11px;
+    vertical-align: text-bottom;
+  }
+
+  .filter-dropdown {
+     width: 150px;
    }
 
-   .ticket-dropdown {
-    width: 250px;
-    padding: 0;
+  .ticket-dropdown {
+   width: 250px;
+   padding: 0;
+  }
+
+   .ticket-name {
+     width: 70%;
+     display: inline-block;
    }
 
-    .ticket-name {
-      width: 70%;
-      display: inline-block;
-    }
-
-    .ticket-status {
-      width: 30%;
-      display: inline-block;
-    }
-
-   .ticket-dropdown a {
-      color: #777;
-      margin: 7px 0px;
-      font-size: 13px;
+   .ticket-status {
+     width: 30%;
+     display: inline-block;
    }
 
-    .ticket-dropdown a:hover {
-      text-decoration: none;
-    }
-    .ticket-dropdown a.new-ticket {
-      font-weight: bold;
-      color: #000;
-    }
+   .filter-dropdown a,
+  .ticket-dropdown a {
+     color: #777;
+     margin: 7px 0px;
+     font-size: 13px;
+  }
 
-    .ticket-header {
-      border-bottom: 1px solid #ccc;
-      font-weight: bold;
-      color: #666;
-      margin: 0 -10px 5px;
-      padding: 0 10px 3px 10px;
-    }
+   .ticket-dropdown a:hover {
+     text-decoration: none;
+   }
+   .ticket-dropdown a.new-ticket {
+     font-weight: bold;
+     color: #000;
+   }
+
+   .filter-header,
+   .ticket-header {
+     border-bottom: 1px solid #ccc;
+     font-weight: bold;
+     color: #666;
+     margin: 0 -10px 5px;
+     padding: 0 10px 3px 10px;
+   }
 
 /* ------ Ticket css end --------- */

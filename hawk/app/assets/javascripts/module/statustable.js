@@ -32,6 +32,49 @@ var statusTable = {
             var text = [
                 '<div id="inner-', clusterId, '" class="panel panel-default" data-epoch="">',
                 '<div class="panel-heading cluster-heading">',
+                '<ul class="cluster-right-menu pull-right">',
+                '<li class="ticket">',
+                '<div class="dropdown">',
+                '<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' +
+                'Ticket<span class="notification">1</span>' +
+                '</button>',
+                '<div class="ticket-dropdown dropdown-menu" aria-labelledby="dropdownMenu2">',
+                '<div class="ticket-header">',
+                '<div class="ticket-name">Ticket</div>',
+                '<div class="ticket-status">Status</div>',
+                '</div>',
+                '<a class="dropdown-item new-ticket" href="#">',
+                '<div class="ticket-name">New Ticket</div>',
+                '<div class="ticket-status">Revoked</div>',
+                '</a>',
+                '<a class="dropdown-item" href="#">',
+                '<div class="ticket-name">Ha Ticket</div>',
+                '<div class="ticket-status">Granted</div>',
+                '</a>',
+                '<a class="dropdown-item" href="#">',
+                '<div class="ticket-name">Cluster Ticket</div>',
+                '<div class="ticket-status">Granted</div>',
+                '</a>',
+                '</div>',
+                '</div>',
+                '</li>',
+                '<li>',
+                '<div class="dropdown">',
+                '<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">',
+                '<i class="fa fa-filter" aria-hidden="true"></i>',
+                '</button>',
+                '<div class="filter-dropdown dropdown-menu" aria-labelledby="dropdownMenu2">',
+                '<div class="filter-header">',
+                'Show',
+                '</div>',
+                '<a class="dropdown-item" href="#">Only maintenance</a>',
+                '<a class="dropdown-item" href="#">Only not running</a>',
+                '<a class="dropdown-item" href="#">Only standby</a>',
+                '</div>',
+                '</div>',
+                '</li>',
+                '<li><a class="cluster-link" href="#"><i class="fa fa-link" aria-hidden="true"></i></li></a>',
+                '<li>',
                 // '<h3 class="panel-title">',
                 // '<span id="refresh"><i class="fa fa-refresh fa-pulse-opacity"></i></span> ',
                 // '<a href="', that.baseUrl(clusterData), '/">', title, '</a>',
@@ -42,9 +85,11 @@ var statusTable = {
                 text = text +
                     '<form action="/dashboard/remove" method="post" accept-charset="UTF-8" data-remote="true" class="pull-right">' +
                     '<input type="hidden" name="name" value="' + escape(clusterData.name) + '">' +
-                    '<button type="submit" class="close" data-confirm="' + s_remove + '"' +
+                    '<button type="submit" class="close cluster-close-btn" data-confirm="' + s_remove + '"' +
                     ' aria-label="Close"><span aria-hidden="true">&times;</span></button>' +
-                    '</form>';
+                    '</form>',
+                    '</li>',
+                    '</ul>';
             }
             text = text +
                 // '</h3>' +
