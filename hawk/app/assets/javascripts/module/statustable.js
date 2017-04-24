@@ -32,6 +32,9 @@ var statusTable = {
             var text = [
                 '<div id="inner-', clusterId, '" class="panel panel-default" data-epoch="">',
                 '<div class="panel-heading cluster-heading">',
+                '<div class="pull-left search">',
+                '<input type="text" class="form-control" placeholder="Search...">',
+                '</div>',
                 '<ul class="cluster-right-menu pull-right">',
                 '<li class="ticket">',
                 '<div class="dropdown">',
