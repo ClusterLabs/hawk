@@ -1,12 +1,12 @@
 # Copyright (C) 2006 SuSE Linux Products GmbH, Nuernberg
 # This file is distributed under the same license as the package.
-#
+# 
 msgid ""
 msgstr ""
 "Project-Id-Version: hawk\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2016-08-24 18:15+0200\n"
-"PO-Revision-Date: 2016-07-26 14:18\n"
+"POT-Creation-Date: 2017-03-31 09:48+0200\n"
+"PO-Revision-Date: 2017-04-18 14:02\n"
 "Last-Translator: Novell language <language@novell.com>\n"
 "Language-Team: Novell language <language@novell.com>\n"
 "Language: \n"
@@ -15,300 +15,69 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: ../app/models/session.rb:21
-msgid "%s is not executable"
-msgstr "%s 不是可执行文件"
+#: ../app/assets/javascripts/dashboard.js:20
+msgid "Error"
+msgstr "错误"
 
-#: ../app/models/session.rb:16
-msgid "%s is not installed"
-msgstr "%s 未安装"
+#: ../app/assets/javascripts/dashboard.js:23
+msgid "Unexpected server error: _MSG_"
+msgstr "意外的服务器错误：_MSG_"
 
-#: ../app/models/cib.rb:860
-msgid "%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_reason}"
-msgstr "%{fail_start}：对 %{node} 节点上的 %{resource} 资源执行 %{op} 操作失败：调用 ID=%{call_id}，RC 代码=%{rc_mapping} (%{rc_code})，退出原因=%{exit_reason}"
+#: ../app/assets/javascripts/dashboard.js:26
+msgid ""
+"Connection to server failed (server down or network error - will retry every "
+"15 seconds)."
+msgstr "无法连接到服务器（服务器已关机或发生网络错误 - 将每 15 秒重试一次）。"
 
-#: ../app/controllers/users_controller.rb:138
-msgid "ACL Targets"
-msgstr "ACL 目标"
+#: ../app/assets/javascripts/dashboard.js:29
+#: ../app/assets/javascripts/module/monitor.js:71
+msgid "Connection to server timed out - will retry every 15 seconds."
+msgstr "与服务器的连接已超时 - 将每 15 秒重试一次。"
 
-#: ../app/controllers/roles_controller.rb:131
-msgid "ACL is not supported by the cluster"
-msgstr "该群集不支持 ACL"
+#: ../app/assets/javascripts/dashboard.js:32
+#: ../app/assets/javascripts/module/monitor.js:49
+msgid "Connection to server aborted - will retry every 15 seconds."
+msgstr "与服务器的连接已中断 - 将每 15 秒重试一次。"
 
-#: ../app/controllers/users_controller.rb:133
-msgid "ACL is not supported by this cluster."
-msgstr "此群集不支持 ACL。"
+#: ../app/assets/javascripts/dashboard.js:35
+msgid "Permission denied"
+msgstr "权限被拒"
 
-#: ../app/models/user.rb:10
-msgid "ACL target ID is required"
-msgstr "需要指定 ACL 目标 ID"
+#: ../app/assets/javascripts/dashboard.js:38
+msgid "_OP_ failed on _NODE_} (rc=_RC_, reason=_REASON_)"
+msgstr "在 _NODE_ 上执行_OP_失败}（rc=_RC_，原因=_REASON_）"
 
-#: ../app/controllers/users_controller.rb:39
-msgid "ACL target created successfully"
-msgstr "已成功创建 ACL 目标"
+#: ../app/assets/javascripts/dashboard.js:161
+msgid "Permission denied. "
+msgstr "权限被拒。 "
 
-#: ../app/controllers/users_controller.rb:98
-#: ../app/controllers/users_controller.rb:105
-msgid "ACL target deleted successfully"
-msgstr "已成功删除 ACL 目标"
+#: ../app/assets/javascripts/dashboard.js:181
+msgid "Error connecting to server."
+msgstr "连接服务器时出错。"
 
-#: ../app/controllers/users_controller.rb:76
-msgid "ACL target updated successfully"
-msgstr "已成功更新 ACL 目标"
+#: ../app/assets/javascripts/dashboard.js:183
+msgid "Connection to server timed out."
+msgstr "连接服务器超时。"
 
-#: ../app/views/shared/_mainnav.html.erb:50
-msgid "Access Control"
-msgstr "访问控制"
+#: ../app/assets/javascripts/dashboard.js:185
+msgid "Connection to server was aborted."
+msgstr "已中止连接服务器操作。"
 
-#: ../app/views/roles/index.html.erb:6
-#: ../app/views/users/index.html.erb:6
-msgid "Access Control Lists"
-msgstr "访问控制列表"
+#: ../app/assets/javascripts/dashboard.js:187
+msgid "Server returned invalid data."
+msgstr "服务器返回的数据无效。"
 
-#: ../app/views/shared/_simulator.html.erb:381
-msgid "Action"
-msgstr "操作"
+#: ../app/assets/javascripts/dashboard.js:191
+msgid "Unknown error connecting to server."
+msgstr "连接服务器时发生未知错误。"
 
-#: ../app/views/agents/show.html.erb:68
-msgid "Actions"
-msgstr "操作"
+#: ../app/assets/javascripts/dashboard.js:194
+msgid "Retrying every 15 seconds..."
+msgstr "每隔 15 秒重试一次..."
 
-#: ../app/assets/javascripts/module/oplist.js:71
-#: ../app/helpers/form_helper.rb:27
-msgid "Add"
-msgstr "添加"
-
-#: ../app/views/dashboards/add.html.erb:13
-#: ../app/views/dashboards/show.html.erb:10
-msgid "Add Cluster"
-msgstr "添加群集"
-
-#: ../app/views/constraints/types.html.erb:4
-#: ../app/views/shared/_mainnav.html.erb:31
-msgid "Add Constraint"
-msgstr "添加约束"
-
-#: ../app/views/resources/types.html.erb:4
-#: ../app/views/shared/_mainnav.html.erb:28
-msgid "Add Resource"
-msgstr "添加资源"
-
-#: ../app/views/roles/_form.html.erb:16
-msgid "Add a rule below"
-msgstr "在下面添加规则"
-
-#: ../app/views/colocations/_form.html.erb:46
-#: ../app/views/locations/_form.html.erb:21
-#: ../app/views/wizards/show.html.erb:50
-#: ../app/views/wizards/show.html.erb:72
-msgid "Advanced"
-msgstr "高级"
-
-#: ../app/views/locations/_form.html.erb:49
-msgid "Advisory"
-msgstr "建议"
-
-#: ../app/models/template.rb:413
-#: ../app/models/template.rb:419
-msgid "After the specified timeout period, the operation will be treated as failed."
-msgstr "经过指定的超时时间段后，该操作将视为失败。"
-
-#: ../app/controllers/agents_controller.rb:46
-#: ../app/views/resources/show.html.erb:17
-msgid "Agent"
-msgstr "代理"
-
-#: ../app/views/colocations/_form.html.erb:23
-#: ../app/views/locations/_form.html.erb:43
-msgid "Always"
-msgstr "始终"
-
-#: ../app/assets/javascripts/module/basics.js:84
-msgid "An error has occurred"
-msgstr "发生了错误"
-
-#: ../app/assets/javascripts/module/attrlist.js:156
-#: ../app/assets/javascripts/module/constraint.js:159
-#: ../app/assets/javascripts/module/forms.js:14
-#: ../app/assets/javascripts/module/location.js:183
-#: ../app/assets/javascripts/module/oplist.js:342
-#: ../app/assets/javascripts/module/profiles.js:23
-#: ../app/assets/javascripts/module/roles.js:179
-#: ../app/assets/javascripts/module/users.js:135
-#: ../app/assets/javascripts/module/wizattrlist.js:165
-#: ../app/helpers/crm_config_helper.rb:10
-#: ../app/helpers/form_helper.rb:14
-#: ../app/helpers/profile_helper.rb:21
-#: ../app/helpers/role_helper.rb:17
-#: ../app/helpers/user_helper.rb:17
-msgid "Any changes will be lost - do you wish to proceed?"
-msgstr "所有更改都会丢失 - 是否继续？"
-
-#: ../app/views/shared/_simulator.html.erb:11
-msgid "Any pending changes to the configuration will be lost - do you wish to proceed?"
-msgstr "所有等待中的配置更改都会丢失 - 是否继续？"
-
-#: ../app/controllers/cib_controller.rb:51
-msgid "Applied configuration successfully"
-msgstr "已成功应用配置"
-
-#: ../app/assets/javascripts/module/oplist.js:72
-#: ../app/assets/javascripts/module/reports.js:167
-#: ../app/helpers/crm_config_helper.rb:16
-#: ../app/helpers/form_helper.rb:19
-#: ../app/helpers/profile_helper.rb:27
-#: ../app/helpers/role_helper.rb:23
-#: ../app/helpers/user_helper.rb:23
-#: ../app/views/cib/apply.html.erb:27
-#: ../app/views/primitives/_form.html.erb:53
-#: ../app/views/shared/_simulator.html.erb:15
-#: ../app/views/wizards/create.html.erb:17
-#: ../app/views/wizards/update.html.erb:93
-msgid "Apply"
-msgstr "应用"
-
-#: ../app/views/cib/apply.html.erb:5
-msgid "Apply Configuration"
-msgstr "应用配置"
-
-#: ../app/assets/javascripts/module/wizards.js:69
-msgid "Applying configuration changes..."
-msgstr "正在应用配置更改..."
-
-#: ../app/assets/javascripts/module/reports.js:185
-msgid "April"
-msgstr "四月"
-
-#: ../app/views/tickets/show.html.erb:155
-msgid "Arbitrators"
-msgstr "仲裁方"
-
-#: ../app/views/clones/edit.html.erb:9
-#: ../app/views/colocations/edit.html.erb:9
-#: ../app/views/groups/edit.html.erb:9
-#: ../app/views/locations/edit.html.erb:9
-#: ../app/views/masters/edit.html.erb:9
-#: ../app/views/orders/edit.html.erb:9
-#: ../app/views/primitives/edit.html.erb:9
-#: ../app/views/reports/display.html.erb:24
-#: ../app/views/roles/edit.html.erb:7
-#: ../app/views/tags/edit.html.erb:9
-#: ../app/views/tickets/edit.html.erb:9
-#: ../app/views/users/edit.html.erb:7
-msgid "Are you sure you wish to delete %s?"
-msgstr "确实要删除 %s 吗？"
-
-#: ../app/models/user.rb:13
-msgid "At least one role is required"
-msgstr "至少需要指定一个角色"
-
-#: ../app/models/role.rb:8
-msgid "At least one rule is required"
-msgstr "至少需要指定一个规则"
-
-#: ../app/views/roles/_form.html.erb:27
-msgid "Attribute"
-msgstr "特性"
-
-#: ../app/models/location.rb:48
-msgid "Attribute contains both single and double quotes"
-msgstr "属性同时包含单引号和双引号"
-
-#: ../app/views/nodes/_form.html.erb:9
-#: ../app/views/nodes/show.html.erb:71
-msgid "Attributes"
-msgstr "属性"
-
-#: ../app/assets/javascripts/module/reports.js:189
-msgid "August"
-msgstr "八月"
-
-#: ../app/assets/javascripts/module/resources.js:318
-#: ../app/assets/javascripts/module/resources.js:805
-msgid "Away from current node"
-msgstr "离开当前节点"
-
-#: ../app/views/clones/_form.html.erb:24
-#: ../app/views/clones/_form.html.erb:28
-#: ../app/views/colocations/_form.html.erb:58
-#: ../app/views/colocations/_form.html.erb:62
-#: ../app/views/groups/_form.html.erb:59
-#: ../app/views/groups/_form.html.erb:63
-#: ../app/views/locations/_form.html.erb:89
-#: ../app/views/locations/_form.html.erb:93
-#: ../app/views/masters/_form.html.erb:24
-#: ../app/views/masters/_form.html.erb:28
-#: ../app/views/nodes/_form.html.erb:28
-#: ../app/views/orders/_form.html.erb:51
-#: ../app/views/orders/_form.html.erb:55
-#: ../app/views/primitives/_form.html.erb:51
-#: ../app/views/primitives/_form.html.erb:55
-#: ../app/views/roles/_form.html.erb:39
-#: ../app/views/tags/_form.html.erb:38
-#: ../app/views/tags/_form.html.erb:42
-#: ../app/views/tickets/_form.html.erb:24
-#: ../app/views/tickets/_form.html.erb:28
-#: ../app/views/users/_form.html.erb:18
-#: ../app/views/wizards/create.html.erb:16
-#: ../app/views/wizards/show.html.erb:93
-#: ../app/views/wizards/update.html.erb:90
-msgid "Back"
-msgstr "后退"
-
-#: ../app/views/shared/_usernav.html.erb:5
-#: ../app/views/shared/_usernav.html.erb:10
-msgid "Batch"
-msgstr "批"
-
-#: ../app/views/shared/_usernav.html.erb:5
-msgid "Batch Configuration Changes"
-msgstr "批配置更改"
-
-#: ../app/views/shared/_simulator.html.erb:32
-msgid "Batch Mode"
-msgstr "批模式"
-
-#: ../app/views/configs/meta.html.erb:17
-#: ../app/views/shared/_simulator.html.erb:4
-msgid "Batch Mode Active"
-msgstr "批模式活动"
-
-#: ../app/assets/javascripts/module/location.js:54
-msgid "Boolean Operator"
-msgstr "布尔运算符"
-
-#: ../app/views/shared/_simulator.html.erb:55
-#: ../app/views/shared/_simulator.html.erb:154
-msgid "CIB (in)"
-msgstr "CIB（输入）"
-
-#: ../app/views/shared/_simulator.html.erb:58
-#: ../app/views/shared/_simulator.html.erb:173
-msgid "CIB (out)"
-msgstr "CIB（输出）"
-
-#: ../app/helpers/application_helper.rb:242
-msgid "CIB Schema Version"
-msgstr "CIB 纲要版本"
-
-#: ../app/models/cib.rb:523
-msgid "CIB file \"%{path}\" not found"
-msgstr "找不到 CIB 文件“%{path}”"
-
-#: ../app/views/cib/apply.html.erb:17
-#: ../app/views/shared/_simulator.html.erb:119
-msgid "Calculating list of changes..."
-msgstr "正在计算更改列表..."
-
-#: ../app/views/nodes/events.html.erb:35
-#: ../app/views/resources/events.html.erb:35
-#: ../app/views/resources/show.html.erb:226
-msgid "Call"
-msgstr "调用"
-
-#: ../app/assets/javascripts/dashboard.js:266
+#: ../app/assets/javascripts/dashboard.js:216
 #: ../app/assets/javascripts/module/basics.js:182
-#: ../app/assets/javascripts/module/reports.js:168
+#: ../app/assets/javascripts/module/reports.js:169
 #: ../app/assets/javascripts/module/resources.js:42
 #: ../app/views/cib/apply.html.erb:25
 #: ../app/views/constraints/rename.html.erb:30
@@ -320,118 +89,252 @@ msgstr "调用"
 #: ../app/views/shared/_simulator.html.erb:396
 #: ../app/views/wizards/create.html.erb:15
 #: ../app/views/wizards/show.html.erb:92
-#: ../app/views/wizards/update.html.erb:89
+#: ../app/views/wizards/update.html.erb:82
 msgid "Cancel"
 msgstr "取消"
 
-#: ../app/controllers/reports_controller.rb:226
-msgid "Cannot display diff, too few transitions"
-msgstr "无法显示差异，转换次数太少"
+#: ../app/assets/javascripts/dashboard.js:400
+msgid "Hostname"
+msgstr "主机名"
 
-#: ../app/assets/javascripts/module/wizards.js:74
-msgid "Changes applied successfully."
-msgstr "已成功应用更改。"
+#: ../app/assets/javascripts/dashboard.js:401
+#: ../app/views/sessions/new.html.erb:2
+msgid "Username"
+msgstr "用户名"
 
-#: ../app/models/clone.rb:113
-#: ../app/models/master.rb:112
-msgid "Changes the behavior of ordering constraints (between clones/masters) so that instances can start/stop as soon as their peer instance has (rather than waiting for every instance of the other clone has)."
-msgstr "更改（克隆/主资源之间）顺序约束的行为，让实例在其对等实例启动/停止时立即启动/停止（而非等待其余克隆的每个实例都启动/停止）。"
+#: ../app/assets/javascripts/dashboard.js:402
+#: ../app/views/sessions/new.html.erb:3
+msgid "Password"
+msgstr "口令"
 
-#: ../app/views/resources/show.html.erb:39
-msgid "Child"
-msgstr "子项"
+#: ../app/assets/javascripts/dashboard.js:403
+msgid "Connect"
+msgstr "连接"
 
-#: ../app/models/clone.rb:124
-#: ../app/views/clones/_form.html.erb:7
-#: ../app/views/clones/_form.html.erb:10
-#: ../app/views/masters/_form.html.erb:7
-#: ../app/views/masters/_form.html.erb:10
-msgid "Child Resource"
-msgstr "子资源"
+#: ../app/assets/javascripts/dashboard.js:465
+msgid "Local Status"
+msgstr "本地状态"
 
-#: ../app/models/clone.rb:125
-msgid "Child resource to use as clone."
-msgstr "要用作克隆的子资源。"
+#: ../app/assets/javascripts/dashboard.js:485
+msgid "Remove cluster _NAME_ from dashboard?"
+msgstr "是否从仪表板中去除群集 _NAME_？"
 
-#: ../app/assets/javascripts/module/resources.js:687
-#: ../app/views/groups/_form.html.erb:16
-#: ../app/views/resources/show.html.erb:28
-msgid "Children"
-msgstr "子项"
+#: ../app/assets/javascripts/dashboard.js:514
+msgid "Please wait..."
+msgstr "请稍候..."
 
-#: ../app/models/template.rb:394
-#: ../app/views/primitives/_form.html.erb:13
-#: ../app/views/primitives/_form.html.erb:25
-msgid "Class"
-msgstr "类"
+#: ../app/assets/javascripts/dashboard.js:524
+msgid "Cluster added successfully."
+msgstr "已成功添加群集。"
 
-#: ../app/assets/javascripts/module/resources.js:328
-#: ../app/assets/javascripts/module/resources.js:813
-msgid "Clean up on all nodes"
-msgstr "在所有节点上清理"
+#: ../app/assets/javascripts/module/alerts.js:28
+#: ../app/assets/javascripts/module/constraints.js:56
+#: ../app/assets/javascripts/module/nodes.js:89
+#: ../app/assets/javascripts/module/nodes.js:313
+#: ../app/assets/javascripts/module/reports.js:270
+#: ../app/assets/javascripts/module/resources.js:229
+#: ../app/assets/javascripts/module/resources.js:643
+#: ../app/assets/javascripts/module/tags.js:28
+#: ../app/views/agents/show.html.erb:32 ../app/views/agents/show.html.erb:80
+#: ../app/views/nodes/_form.html.erb:6
+#: ../app/views/reports/display.html.erb:32
+#: ../app/views/resources/show.html.erb:149
+msgid "Name"
+msgstr "名称"
 
-#: ../app/assets/javascripts/module/resources.js:812
-msgid "Clean up tagged resources"
-msgstr "清理标记的资源"
+#: ../app/assets/javascripts/module/alerts.js:35
+#: ../app/assets/javascripts/module/clones.js:33
+#: ../app/assets/javascripts/module/colocations.js:33
+#: ../app/assets/javascripts/module/constraints.js:92
+#: ../app/assets/javascripts/module/groups.js:33
+#: ../app/assets/javascripts/module/locations.js:33
+#: ../app/assets/javascripts/module/masters.js:33
+#: ../app/assets/javascripts/module/nodes.js:198
+#: ../app/assets/javascripts/module/nodes.js:326
+#: ../app/assets/javascripts/module/orders.js:33
+#: ../app/assets/javascripts/module/primitives.js:75
+#: ../app/assets/javascripts/module/reports.js:304
+#: ../app/assets/javascripts/module/resources.js:283
+#: ../app/assets/javascripts/module/resources.js:702
+#: ../app/assets/javascripts/module/roles.js:33
+#: ../app/assets/javascripts/module/tags.js:44
+#: ../app/assets/javascripts/module/tickets.js:39
+#: ../app/assets/javascripts/module/tickets.js:232
+#: ../app/assets/javascripts/module/users.js:33
+#: ../app/views/cib/show.html.erb:62
+#: ../app/views/primitives/_form.html.erb:105
+#: ../app/views/resources/show.html.erb:138
+msgid "Operations"
+msgstr "操作"
 
-#: ../app/assets/javascripts/module/resources.js:384
-msgid "Cleanup"
-msgstr "清理"
+#: ../app/assets/javascripts/module/alerts.js:97
+#: ../app/assets/javascripts/module/clones.js:95
+#: ../app/assets/javascripts/module/colocations.js:97
+#: ../app/assets/javascripts/module/constraints.js:213
+#: ../app/assets/javascripts/module/groups.js:95
+#: ../app/assets/javascripts/module/locations.js:95
+#: ../app/assets/javascripts/module/masters.js:95
+#: ../app/assets/javascripts/module/nodes.js:247
+#: ../app/assets/javascripts/module/nodes.js:339
+#: ../app/assets/javascripts/module/oplist.js:67
+#: ../app/assets/javascripts/module/orders.js:95
+#: ../app/assets/javascripts/module/primitives.js:138
+#: ../app/assets/javascripts/module/resources.js:397
+#: ../app/assets/javascripts/module/resources.js:722
+#: ../app/assets/javascripts/module/roles.js:95
+#: ../app/assets/javascripts/module/tags.js:106
+#: ../app/assets/javascripts/module/tickets.js:67
+#: ../app/assets/javascripts/module/users.js:95
+#: ../app/views/cib/show.html.erb:74 ../app/views/configs/edit.html.erb:72
+#: ../app/views/configs/show.html.erb:7 ../app/views/fencing/index.html.erb:7
+#: ../app/views/graphs/show.html.erb:6
+msgid "Edit"
+msgstr "编辑"
 
-#: ../app/assets/javascripts/module/nodes.js:249
-msgid "Clear state"
-msgstr "清除状态"
+#: ../app/assets/javascripts/module/alerts.js:107
+#: ../app/assets/javascripts/module/constraints.js:223
+#: ../app/assets/javascripts/module/resources.js:732
+#: ../app/assets/javascripts/module/tags.js:116
+#: ../app/views/alerts/edit.html.erb:8 ../app/views/clones/edit.html.erb:8
+#: ../app/views/colocations/edit.html.erb:8
+#: ../app/views/constraints/rename.html.erb:13
+#: ../app/views/constraints/rename.html.erb:33
+#: ../app/views/groups/edit.html.erb:8 ../app/views/locations/edit.html.erb:8
+#: ../app/views/masters/edit.html.erb:8 ../app/views/orders/edit.html.erb:8
+#: ../app/views/primitives/edit.html.erb:8
+#: ../app/views/resources/rename.html.erb:13
+#: ../app/views/resources/rename.html.erb:33 ../app/views/tags/edit.html.erb:8
+#: ../app/views/tickets/edit.html.erb:8
+msgid "Rename"
+msgstr "重命名"
 
-#: ../app/controllers/nodes_controller.rb:82
-msgid "Cleared the node state"
-msgstr "已清除节点状态"
+#: ../app/assets/javascripts/module/alerts.js:120
+#: ../app/assets/javascripts/module/clones.js:108
+#: ../app/assets/javascripts/module/colocations.js:110
+#: ../app/assets/javascripts/module/constraints.js:233
+#: ../app/assets/javascripts/module/groups.js:108
+#: ../app/assets/javascripts/module/locations.js:108
+#: ../app/assets/javascripts/module/masters.js:108
+#: ../app/assets/javascripts/module/orders.js:108
+#: ../app/assets/javascripts/module/primitives.js:151
+#: ../app/assets/javascripts/module/reports.js:384
+#: ../app/assets/javascripts/module/resources.js:742
+#: ../app/assets/javascripts/module/roles.js:108
+#: ../app/assets/javascripts/module/tags.js:129
+#: ../app/assets/javascripts/module/tickets.js:77
+#: ../app/assets/javascripts/module/users.js:108
+#: ../app/views/alerts/edit.html.erb:9 ../app/views/clones/edit.html.erb:9
+#: ../app/views/colocations/edit.html.erb:9
+#: ../app/views/groups/edit.html.erb:9 ../app/views/locations/edit.html.erb:9
+#: ../app/views/masters/edit.html.erb:9 ../app/views/orders/edit.html.erb:9
+#: ../app/views/primitives/edit.html.erb:9
+#: ../app/views/reports/display.html.erb:26 ../app/views/roles/edit.html.erb:7
+#: ../app/views/tags/edit.html.erb:9 ../app/views/tickets/edit.html.erb:9
+#: ../app/views/users/edit.html.erb:7
+msgid "Delete"
+msgstr "删除"
 
-#: ../app/assets/javascripts/module/resources.js:268
-#: ../app/assets/javascripts/module/resources.js:270
-#: ../app/assets/javascripts/module/resources.js:662
-#: ../app/views/resources/types.html.erb:35
-msgid "Clone"
-msgstr "复制"
+#: ../app/assets/javascripts/module/attrlist.js:21
+#: ../app/assets/javascripts/module/constraint.js:19
+#: ../app/assets/javascripts/module/location.js:16
+#: ../app/assets/javascripts/module/oplist.js:66
+#: ../app/assets/javascripts/module/wizattrlist.js:20
+#: ../app/helpers/form_helper.rb:23 ../app/helpers/role_helper.rb:31
+#: ../app/helpers/user_helper.rb:31 ../app/views/alerts/edit.html.erb:7
+#: ../app/views/alerts/index.html.erb:7 ../app/views/clones/edit.html.erb:7
+#: ../app/views/clones/index.html.erb:7
+#: ../app/views/colocations/edit.html.erb:7
+#: ../app/views/colocations/index.html.erb:7
+#: ../app/views/constraints/index.html.erb:7
+#: ../app/views/groups/edit.html.erb:7 ../app/views/groups/index.html.erb:7
+#: ../app/views/locations/edit.html.erb:7
+#: ../app/views/locations/index.html.erb:7
+#: ../app/views/masters/edit.html.erb:7 ../app/views/masters/index.html.erb:7
+#: ../app/views/orders/edit.html.erb:7 ../app/views/orders/index.html.erb:7
+#: ../app/views/primitives/_form.html.erb:50
+#: ../app/views/primitives/index.html.erb:7
+#: ../app/views/resources/index.html.erb:7
+#: ../app/views/roles/index.html.erb:10 ../app/views/tags/edit.html.erb:7
+#: ../app/views/tags/index.html.erb:7 ../app/views/tickets/edit.html.erb:7
+#: ../app/views/tickets/index.html.erb:7 ../app/views/users/index.html.erb:10
+msgid "Create"
+msgstr "创建"
 
-#: ../app/assets/javascripts/module/clones.js:27
-#: ../app/views/clones/_form.html.erb:6
-#: ../app/views/clones/_form.html.erb:9
-msgid "Clone ID"
-msgstr "克隆 ID"
+#: ../app/assets/javascripts/module/attrlist.js:22
+#: ../app/assets/javascripts/module/constraint.js:20
+#: ../app/assets/javascripts/module/location.js:17
+#: ../app/assets/javascripts/module/oplist.js:68
+#: ../app/assets/javascripts/module/wizattrlist.js:21
+msgid "Remove"
+msgstr "删除"
 
-#: ../app/models/clone.rb:10
-msgid "Clone ID is required"
-msgstr "需要指定克隆 ID"
+#: ../app/assets/javascripts/module/attrlist.js:23
+#: ../app/assets/javascripts/module/oplist.js:69
+#: ../app/assets/javascripts/module/recipientlist.js:22
+#: ../app/assets/javascripts/module/wizattrlist.js:22
+#: ../app/helpers/form_helper.rb:6 ../app/views/profiles/edit.html.erb:8
+#: ../app/views/tickets/show.html.erb:30
+msgid "Yes"
+msgstr "是"
 
-#: ../app/controllers/clones_controller.rb:40
-msgid "Clone created successfully"
-msgstr "已成功创建克隆"
+#: ../app/assets/javascripts/module/attrlist.js:24
+#: ../app/assets/javascripts/module/oplist.js:70
+#: ../app/assets/javascripts/module/recipientlist.js:23
+#: ../app/assets/javascripts/module/wizattrlist.js:23
+#: ../app/helpers/form_helper.rb:6 ../app/views/profiles/edit.html.erb:8
+#: ../app/views/tickets/show.html.erb:32
+msgid "No"
+msgstr "否"
 
-#: ../app/controllers/clones_controller.rb:100
-#: ../app/controllers/clones_controller.rb:107
-msgid "Clone deleted successfully"
-msgstr "已成功删除克隆"
+#: ../app/assets/javascripts/module/attrlist.js:158
+#: ../app/assets/javascripts/module/constraint.js:161
+#: ../app/assets/javascripts/module/forms.js:14
+#: ../app/assets/javascripts/module/location.js:183
+#: ../app/assets/javascripts/module/oplist.js:344
+#: ../app/assets/javascripts/module/profiles.js:23
+#: ../app/assets/javascripts/module/roles.js:179
+#: ../app/assets/javascripts/module/users.js:135
+#: ../app/assets/javascripts/module/wizattrlist.js:167
+#: ../app/helpers/crm_config_helper.rb:10 ../app/helpers/form_helper.rb:14
+#: ../app/helpers/profile_helper.rb:21 ../app/helpers/role_helper.rb:17
+#: ../app/helpers/user_helper.rb:17
+msgid "Any changes will be lost - do you wish to proceed?"
+msgstr "所有更改都会丢失 - 是否继续？"
 
-#: ../app/controllers/clones_controller.rb:78
-msgid "Clone updated successfully"
-msgstr "已成功更新克隆"
+#: ../app/assets/javascripts/module/basics.js:14 ../app/models/recipient.rb:14
+#: ../app/models/record.rb:11 ../app/models/tag.rb:14
+msgid "Invalid ID"
+msgstr "无效 ID"
 
-#: ../app/controllers/clones_controller.rb:134
-#: ../app/views/clones/index.html.erb:4
-msgid "Clones"
-msgstr "克隆"
+#: ../app/assets/javascripts/module/basics.js:80
+#: ../app/assets/javascripts/module/basics.js:183
+#: ../app/assets/javascripts/module/resources.js:43
+#: ../app/views/shared/_simulator.html.erb:147
+#: ../app/views/shared/_simulator.html.erb:166
+#: ../app/views/shared/_simulator.html.erb:185
+#: ../app/views/shared/_simulator.html.erb:204
+#: ../app/views/shared/_simulator.html.erb:223
+#: ../app/views/shared/_simulator.html.erb:269
+#: ../app/views/shared/_simulator.html.erb:352
+#: ../app/views/shared/_simulator.html.erb:399
+msgid "OK"
+msgstr "确定"
+
+#: ../app/assets/javascripts/module/basics.js:82
+msgid "Maintenance mode"
+msgstr "维护模式"
+
+#: ../app/assets/javascripts/module/basics.js:84
+msgid "An error has occurred"
+msgstr "发生了错误"
 
 #: ../app/assets/javascripts/module/basics.js:171
 #: ../app/assets/javascripts/module/resources.js:17
-#: ../app/views/agents/show.html.erb:117
-#: ../app/views/configs/meta.html.erb:7
+#: ../app/views/agents/show.html.erb:117 ../app/views/configs/meta.html.erb:7
 #: ../app/views/constraints/show.html.erb:15
-#: ../app/views/dashboards/add.html.erb:9
-#: ../app/views/nodes/events.html.erb:8
-#: ../app/views/nodes/events.html.erb:50
-#: ../app/views/nodes/show.html.erb:8
-#: ../app/views/nodes/show.html.erb:96
-#: ../app/views/pages/help.html.erb:8
+#: ../app/views/dashboards/add.html.erb:9 ../app/views/nodes/events.html.erb:8
+#: ../app/views/nodes/events.html.erb:50 ../app/views/nodes/show.html.erb:8
+#: ../app/views/nodes/show.html.erb:96 ../app/views/pages/help.html.erb:8
 #: ../app/views/pages/help.html.erb:52
 #: ../app/views/resources/events.html.erb:8
 #: ../app/views/resources/events.html.erb:50
@@ -443,569 +346,691 @@ msgstr "克隆"
 msgid "Close"
 msgstr "关闭"
 
-#: ../app/helpers/application_helper.rb:248
-msgid "Cluster Communication Stack"
-msgstr "群集通讯堆栈"
+#: ../app/assets/javascripts/module/batch.js:43
+msgid "No configuration changes."
+msgstr "无配置更改。"
 
-#: ../app/controllers/crm_config_controller.rb:46
-#: ../app/views/crm_config/edit.html.erb:3
-#: ../app/views/shared/_mainnav.html.erb:40
-msgid "Cluster Configuration"
-msgstr "群集配置"
+#: ../app/assets/javascripts/module/clones.js:27
+#: ../app/views/clones/_form.html.erb:6 ../app/views/clones/_form.html.erb:9
+msgid "Clone ID"
+msgstr "克隆 ID"
 
-#: ../app/views/configs/meta.html.erb:11
-#: ../app/views/shared/_footer.html.erb:9
-msgid "Cluster Details"
-msgstr "群集细节"
+#: ../app/assets/javascripts/module/colocations.js:27
+#: ../app/assets/javascripts/module/locations.js:27
+#: ../app/assets/javascripts/module/orders.js:27
+#: ../app/models/constraint.rb:48 ../app/views/colocations/_form.html.erb:6
+#: ../app/views/colocations/_form.html.erb:8
+#: ../app/views/locations/_form.html.erb:6
+#: ../app/views/locations/_form.html.erb:8
+#: ../app/views/orders/_form.html.erb:6 ../app/views/orders/_form.html.erb:8
+#: ../app/views/tickets/_form.html.erb:6
+#: ../app/views/tickets/_form.html.erb:8
+msgid "Constraint ID"
+msgstr "约束 ID"
 
-#: ../app/controllers/graphs_controller.rb:49
-msgid "Cluster Graph"
-msgstr "群集图"
+#: ../app/assets/javascripts/module/constraint.js:22
+msgid "Swap with entry above"
+msgstr "与上面的项交换"
 
-#: ../app/assets/javascripts/dashboard.js:584
-msgid "Cluster added successfully."
-msgstr "已成功添加群集。"
+#: ../app/assets/javascripts/module/constraint.js:23
+msgid "Link with entry above"
+msgstr "与上面的项链接"
 
-#: ../app/views/dashboards/add.html.erb:19
-msgid "Cluster name"
-msgstr "群集名称"
+#: ../app/assets/javascripts/module/constraint.js:24
+msgid "Unlink from entry above"
+msgstr "与上面的项解除链接"
 
-#: ../app/assets/javascripts/dashboard.js:548
-msgid "Cluster removed successfully."
-msgstr "已成功去除群集。"
+#: ../app/assets/javascripts/module/constraints.js:63
+#: ../app/assets/javascripts/module/resources.js:257
+#: ../app/assets/javascripts/module/resources.js:650
+#: ../app/models/template.rb:406 ../app/views/primitives/_form.html.erb:15
+#: ../app/views/primitives/_form.html.erb:31
+#: ../app/views/resources/show.html.erb:279
+msgid "Type"
+msgstr "类型"
 
-#: ../app/controllers/wizards_controller.rb:151
-#: ../app/controllers/wizards_controller.rb:156
-msgid "Cluster seems to be offline"
-msgstr "群集似乎已脱机"
-
-#: ../app/models/colocation.rb:187
-msgid "Colocate resources by the given node attribute instead of by node name (the default)."
-msgstr "按给定节点属性而非节点名称（默认值）共置资源。"
+#: ../app/assets/javascripts/module/constraints.js:70
+#: ../app/assets/javascripts/module/resources.js:236
+#: ../app/views/constraints/types.html.erb:19
+msgid "Location"
+msgstr "位置"
 
 #: ../app/assets/javascripts/module/constraints.js:72
 #: ../app/views/constraints/types.html.erb:27
 msgid "Colocation"
 msgstr "共置"
 
-#: ../app/controllers/colocations_controller.rb:99
-#: ../app/controllers/colocations_controller.rb:105
-msgid "Colocation deleted successfully"
-msgstr "已成功删除共置"
+#: ../app/assets/javascripts/module/constraints.js:74
+#: ../app/views/constraints/types.html.erb:35
+msgid "Order"
+msgstr "顺序"
 
-#: ../app/controllers/colocations_controller.rb:132
-#: ../app/views/colocations/index.html.erb:4
-msgid "Colocations"
-msgstr "共置"
+#: ../app/assets/javascripts/module/constraints.js:76
+#: ../app/assets/javascripts/module/tickets.js:33
+#: ../app/assets/javascripts/module/tickets.js:157
+#: ../app/views/constraints/types.html.erb:43
+#: ../app/views/shared/_simulator.html.erb:367
+msgid "Ticket"
+msgstr "票据"
 
-#: ../app/controllers/commands_controller.rb:22
-#: ../app/views/commands/index.html.erb:4
-#: ../app/views/shared/_mainnav.html.erb:43
-msgid "Command Log"
-msgstr "命令日志"
+#: ../app/assets/javascripts/module/constraints.js:83
+#: ../app/controllers/resources_controller.rb:211
+#: ../app/models/location.rb:223 ../app/views/cib/show.html.erb:21
+#: ../app/views/colocations/_form.html.erb:37
+#: ../app/views/configs/edit.html.erb:20 ../app/views/orders/_form.html.erb:41
+#: ../app/views/resources/index.html.erb:4
+#: ../app/views/tickets/_form.html.erb:14
+msgid "Resources"
+msgstr "资源"
 
-#: ../app/views/tickets/show.html.erb:82
-msgid "Commit"
-msgstr "提交"
+#: ../app/assets/javascripts/module/fencing.js:19
+#: ../app/models/location.rb:235 ../app/views/fencing/edit.html.erb:28
+#: ../app/views/locations/_form.html.erb:60
+#: ../app/views/resources/events.html.erb:23
+#: ../app/views/resources/show.html.erb:223
+#: ../app/views/shared/_simulator.html.erb:237
+#: ../app/views/shared/_simulator.html.erb:320
+msgid "Node"
+msgstr "节点"
 
-#: ../app/views/nodes/events.html.erb:41
-#: ../app/views/resources/events.html.erb:41
-msgid "Complete"
-msgstr "完成"
+#: ../app/assets/javascripts/module/fencing.js:21
+#: ../app/views/fencing/edit.html.erb:29
+msgid "Pattern"
+msgstr "软件集"
 
-#: ../app/models/crm_config.rb:70
-#: ../app/models/crm_config.rb:107
-#: ../app/models/template.rb:286
-msgid "Conditions under which the resource can be started."
-msgstr "可以启动资源的条件。"
+#: ../app/assets/javascripts/module/fencing.js:23
+#: ../app/views/fencing/edit.html.erb:30 ../app/views/roles/_form.html.erb:27
+msgid "Attribute"
+msgstr "特性"
 
-#: ../app/views/reports/display.html.erb:191
-#: ../app/views/shared/_mainnav.html.erb:25
-msgid "Configuration"
-msgstr "配置"
+#: ../app/assets/javascripts/module/fencing.js:82
+msgid "Level"
+msgstr "级别"
 
-#: ../app/controllers/crm_config_controller.rb:26
-msgid "Configuration updated successfully"
-msgstr "已成功更新配置"
+#: ../app/assets/javascripts/module/fencing.js:86
+msgid "Expected target"
+msgstr "预期目标"
 
-#: ../app/assets/javascripts/dashboard.js:439
-msgid "Connect"
-msgstr "连接"
+#: ../app/assets/javascripts/module/fencing.js:89
+msgid "Expected value for attribute"
+msgstr "属性的预期值"
 
-#: ../app/assets/javascripts/dashboard.js:32
-#: ../app/assets/javascripts/module/monitor.js:49
-msgid "Connection to server aborted - will retry every 15 seconds."
-msgstr "与服务器的连接已中断 - 将每 15 秒重试一次。"
+#: ../app/assets/javascripts/module/fencing.js:92
+msgid "Index must be between 1 and 9"
+msgstr "索引必须介于 1 到 9 之间"
 
-#: ../app/assets/javascripts/dashboard.js:26
-msgid "Connection to server failed (server down or network error - will retry every 15 seconds)."
-msgstr "无法连接到服务器（服务器已关机或发生网络错误 - 将每 15 秒重试一次）。"
+#: ../app/assets/javascripts/module/fencing.js:136
+#: ../app/assets/javascripts/module/wizards.js:74
+msgid "Changes applied successfully."
+msgstr "已成功应用更改。"
+
+#: ../app/assets/javascripts/module/fencing.js:170
+msgid "Are you sure you wish to delete this level?"
+msgstr "确实要删除此级别吗？"
+
+#: ../app/assets/javascripts/module/groups.js:27
+#: ../app/views/groups/_form.html.erb:6 ../app/views/groups/_form.html.erb:10
+msgid "Group ID"
+msgstr "组 ID"
+
+#: ../app/assets/javascripts/module/location.js:23
+#: ../app/views/roles/_form.html.erb:14
+msgid "Rule"
+msgstr "规则"
+
+#: ../app/assets/javascripts/module/location.js:33
+#: ../app/models/colocation.rb:180 ../app/models/location.rb:229
+#: ../app/views/colocations/_form.html.erb:12
+#: ../app/views/locations/_form.html.erb:32
+#: ../app/views/orders/_form.html.erb:12
+#: ../app/views/resources/show.html.erb:282
+msgid "Score"
+msgstr "分数"
+
+#: ../app/assets/javascripts/module/location.js:41
+#: ../app/models/location.rb:248
+msgid "Role"
+msgstr "角色"
+
+#: ../app/assets/javascripts/module/location.js:54
+msgid "Boolean Operator"
+msgstr "布尔运算符"
+
+#: ../app/assets/javascripts/module/masters.js:27
+#: ../app/views/masters/_form.html.erb:6
+#: ../app/views/masters/_form.html.erb:9
+msgid "Multi-state ID"
+msgstr "多状态 ID"
+
+#: ../app/assets/javascripts/module/monitor.js:64
+msgid "Failed to parse monitor response - Internal server error."
+msgstr "无法分析监视响应 - 内部服务器错误。"
 
 #: ../app/assets/javascripts/module/monitor.js:68
 #: ../app/assets/javascripts/module/status.js:133
 msgid "Connection to server failed - will retry every 15 seconds."
 msgstr "与服务器的连接失败 - 将每隔 15 秒重试一次。"
 
-#: ../app/assets/javascripts/dashboard.js:29
-#: ../app/assets/javascripts/module/monitor.js:71
-msgid "Connection to server timed out - will retry every 15 seconds."
-msgstr "与服务器的连接已超时 - 将每 15 秒重试一次。"
+#: ../app/assets/javascripts/module/nodes.js:43
+#: ../app/assets/javascripts/module/resources.js:190
+#: ../app/assets/javascripts/module/tickets.js:128
+#: ../app/controllers/cib_controller.rb:110
+#: ../app/helpers/application_helper.rb:262 ../app/views/cib/show.html.erb:4
+#: ../app/views/resources/show.html.erb:232
+#: ../app/views/shared/_mainnav.html.erb:8
+msgid "Status"
+msgstr "状态"
 
-#: ../app/assets/javascripts/dashboard.js:233
-msgid "Connection to server timed out."
-msgstr "连接服务器超时。"
+#: ../app/assets/javascripts/module/nodes.js:78
+msgid "Remote"
+msgstr "远程"
 
-#: ../app/assets/javascripts/dashboard.js:235
-msgid "Connection to server was aborted."
-msgstr "已中止连接服务器操作。"
+#: ../app/assets/javascripts/module/nodes.js:95
+#: ../app/assets/javascripts/module/resources.js:371
+msgid "Maintenance"
+msgstr "维护"
 
-#: ../app/assets/javascripts/module/colocations.js:27
-#: ../app/assets/javascripts/module/locations.js:27
-#: ../app/assets/javascripts/module/orders.js:27
-#: ../app/models/constraint.rb:48
-#: ../app/views/colocations/_form.html.erb:6
-#: ../app/views/colocations/_form.html.erb:8
-#: ../app/views/locations/_form.html.erb:6
-#: ../app/views/locations/_form.html.erb:8
-#: ../app/views/orders/_form.html.erb:6
-#: ../app/views/orders/_form.html.erb:8
-#: ../app/views/tickets/_form.html.erb:6
-#: ../app/views/tickets/_form.html.erb:8
-msgid "Constraint ID"
-msgstr "约束 ID"
+#: ../app/assets/javascripts/module/nodes.js:125
+msgid "Switch to ready"
+msgstr "切换为就绪"
 
-#: ../app/models/ticket.rb:18
-msgid "Constraint ID is required"
-msgstr "需要指定约束 ID"
+#: ../app/assets/javascripts/module/nodes.js:138
+msgid "Switch to maintenance"
+msgstr "切换为维护"
 
-#: ../app/controllers/colocations_controller.rb:39
-#: ../app/controllers/locations_controller.rb:57
-#: ../app/controllers/orders_controller.rb:39
-#: ../app/controllers/tickets_controller.rb:52
-msgid "Constraint created successfully"
-msgstr "已成功创建约束"
+#: ../app/assets/javascripts/module/nodes.js:147
+msgid "Standby"
+msgstr "待机"
 
-#: ../app/models/location.rb:23
-msgid "Constraint is too complex - it contains nested rules"
-msgstr "约束过于复杂 - 它包含嵌套规则"
+#: ../app/assets/javascripts/module/nodes.js:176
+msgid "Switch to online"
+msgstr "切换为联机"
 
-#: ../app/models/ticket.rb:27
-msgid "Constraint must consist of at least one separate resources"
-msgstr "约束必须至少包含一个独立资源"
+#: ../app/assets/javascripts/module/nodes.js:189
+msgid "Switch to standby"
+msgstr "切换为待机"
 
-#: ../app/models/colocation.rb:35
-#: ../app/models/order.rb:30
-msgid "Constraint must consist of at least two separate resources"
-msgstr "约束必须包含至少两个独立资源"
+#: ../app/assets/javascripts/module/nodes.js:242
+#: ../app/helpers/ticket_helper.rb:10
+msgid "Fence"
+msgstr "屏蔽"
 
-#: ../app/controllers/colocations_controller.rb:77
-#: ../app/controllers/locations_controller.rb:95
-#: ../app/controllers/orders_controller.rb:77
-#: ../app/controllers/tickets_controller.rb:90
-msgid "Constraint updated successfully"
-msgstr "已成功更新约束"
+#: ../app/assets/javascripts/module/nodes.js:243
+msgid "Clear state"
+msgstr "清除状态"
 
-#: ../app/views/constraints/show.html.erb:5
-msgid "Constraint:"
-msgstr "约束："
+#: ../app/assets/javascripts/module/nodes.js:266
+#: ../app/assets/javascripts/module/resources.js:391
+msgid "Recent events"
+msgstr "最近的事件"
 
-#: ../app/controllers/constraints_controller.rb:101
-#: ../app/views/configs/edit.html.erb:25
-#: ../app/views/constraints/index.html.erb:4
-#: ../app/views/resources/show.html.erb:265
-#: ../app/views/tickets/show.html.erb:97
-msgid "Constraints"
-msgstr "约束"
-
-#: ../app/models/location.rb:244
-msgid "Controls resource discovery for the specified resource on nodes covered by the constraint. always: Always perform resource discovery (default). never: Never perform resource discovery for the specified resource on this node. This option should generally be used with a -INFINITY score. exclusive: Only perform resource discovery for the specified resource on this node."
-msgstr "控制对约束所涵盖节点上的指定资源的资源发现。始终：始终执行资源发现（默认值）。从不：从不对此节点上的指定资源执行资源发现。此选项一般应与 -INFINITY 分数搭配使用。排它：仅对此节点上的指定资源执行资源发现。"
-
-#: ../app/views/primitives/edit.html.erb:7
-msgid "Copy"
-msgstr "复制"
-
-#: ../app/controllers/reports_controller.rb:116
-msgid "Could not cancel report collection"
-msgstr "无法取消收集报告操作"
-
-#: ../app/assets/javascripts/module/attrlist.js:21
-#: ../app/assets/javascripts/module/constraint.js:19
-#: ../app/assets/javascripts/module/location.js:16
-#: ../app/assets/javascripts/module/oplist.js:66
-#: ../app/assets/javascripts/module/wizattrlist.js:20
-#: ../app/helpers/form_helper.rb:23
-#: ../app/helpers/role_helper.rb:31
-#: ../app/helpers/user_helper.rb:31
-#: ../app/views/clones/edit.html.erb:7
-#: ../app/views/clones/index.html.erb:7
-#: ../app/views/colocations/edit.html.erb:7
-#: ../app/views/colocations/index.html.erb:7
-#: ../app/views/constraints/index.html.erb:7
-#: ../app/views/groups/edit.html.erb:7
-#: ../app/views/groups/index.html.erb:7
-#: ../app/views/locations/edit.html.erb:7
-#: ../app/views/locations/index.html.erb:7
-#: ../app/views/masters/edit.html.erb:7
-#: ../app/views/masters/index.html.erb:7
-#: ../app/views/orders/edit.html.erb:7
-#: ../app/views/orders/index.html.erb:7
-#: ../app/views/primitives/_form.html.erb:50
-#: ../app/views/primitives/index.html.erb:7
-#: ../app/views/resources/index.html.erb:7
-#: ../app/views/roles/index.html.erb:10
-#: ../app/views/tags/edit.html.erb:7
-#: ../app/views/tags/index.html.erb:7
-#: ../app/views/tickets/edit.html.erb:7
-#: ../app/views/tickets/index.html.erb:7
-#: ../app/views/users/index.html.erb:10
-msgid "Create"
-msgstr "创建"
-
-#: ../app/controllers/users_controller.rb:22
-#: ../app/controllers/users_controller.rb:31
-#: ../app/views/users/new.html.erb:4
-msgid "Create ACL Target"
-msgstr "创建 ACL 目标"
-
-#: ../app/controllers/clones_controller.rb:20
-#: ../app/controllers/clones_controller.rb:31
-#: ../app/views/clones/new.html.erb:4
-msgid "Create Clone"
-msgstr "创建克隆"
-
-#: ../app/controllers/colocations_controller.rb:20
-#: ../app/controllers/colocations_controller.rb:30
-#: ../app/views/colocations/new.html.erb:4
-msgid "Create Colocation"
-msgstr "创建共置"
-
-#: ../app/controllers/groups_controller.rb:20
-#: ../app/controllers/groups_controller.rb:31
-#: ../app/views/groups/new.html.erb:4
-msgid "Create Group"
-msgstr "创建组"
-
-#: ../app/views/locations/new.html.erb:4
-msgid "Create Location"
-msgstr "创建位置"
-
-#: ../app/controllers/locations_controller.rb:20
-#: ../app/controllers/locations_controller.rb:39
-msgid "Create Location Constraint"
-msgstr "创建位置约束"
-
-#: ../app/views/masters/new.html.erb:4
-msgid "Create Multi-state"
-msgstr "创建多状态"
-
-#: ../app/controllers/masters_controller.rb:20
-#: ../app/controllers/masters_controller.rb:31
-msgid "Create Multi-state resource"
-msgstr "创建多状态资源"
-
-#: ../app/controllers/orders_controller.rb:20
-#: ../app/controllers/orders_controller.rb:30
-#: ../app/views/orders/new.html.erb:4
-msgid "Create Order"
-msgstr "创建顺序"
-
-#: ../app/controllers/primitives_controller.rb:20
-#: ../app/controllers/primitives_controller.rb:35
-#: ../app/controllers/primitives_controller.rb:84
-msgid "Create Primitive"
-msgstr "创建原始资源"
-
-#: ../app/controllers/roles_controller.rb:22
-#: ../app/controllers/roles_controller.rb:31
-#: ../app/views/roles/new.html.erb:4
-msgid "Create Role"
-msgstr "创建角色"
-
-#: ../app/controllers/tags_controller.rb:20
-#: ../app/controllers/tags_controller.rb:30
-#: ../app/views/tags/new.html.erb:4
-msgid "Create Tag"
-msgstr "创建标记"
-
-#: ../app/controllers/templates_controller.rb:23
-#: ../app/controllers/templates_controller.rb:31
-#: ../app/controllers/templates_controller.rb:64
-msgid "Create Template"
-msgstr "创建模板"
-
-#: ../app/controllers/tickets_controller.rb:33
-#: ../app/controllers/tickets_controller.rb:43
-#: ../app/views/tickets/new.html.erb:4
-msgid "Create Ticket"
-msgstr "创建票据"
-
-#: ../app/views/reports/display.html.erb:83
-msgid "Created"
-msgstr "已创建"
-
-#: ../app/controllers/application_controller.rb:160
-msgid "Created a new shadow CIB for %USER%."
-msgstr "为 %USER% 创建新阴影 CIB。"
-
-#: ../app/helpers/application_helper.rb:239
-msgid "Current Configuration Version"
-msgstr "当前配置版本"
-
-#: ../app/assets/javascripts/module/reports.js:171
-msgid "Custom"
-msgstr "自定义"
-
-#: ../app/helpers/application_helper.rb:241
-msgid "DC"
-msgstr "DC"
-
-#: ../app/controllers/dashboards_controller.rb:46
-#: ../app/views/dashboards/show.html.erb:7
-#: ../app/views/shared/_mainnav.html.erb:13
-msgid "Dashboard"
-msgstr "仪表板"
-
-#: ../app/views/reports/index.html.erb:11
-msgid "Data collection in progress..."
-msgstr "正在收集数据..."
-
-#: ../app/assets/javascripts/module/reports.js:193
-msgid "December"
-msgstr "十二月"
-
-#: ../app/views/primitives/_help.html.erb:24
-#: ../app/views/shared/_helpentry.html.erb:13
-msgid "Default"
-msgstr "默认"
-
-#: ../app/models/template.rb:425
-msgid "Define a monitor operation to instruct the cluster to ensure that the resource is still healthy."
-msgstr "定义监视操作，以指示群集确保资源仍处于正常状态。"
-
-#: ../app/assets/javascripts/module/clones.js:108
-#: ../app/assets/javascripts/module/colocations.js:110
-#: ../app/assets/javascripts/module/constraints.js:235
-#: ../app/assets/javascripts/module/groups.js:108
-#: ../app/assets/javascripts/module/locations.js:108
-#: ../app/assets/javascripts/module/masters.js:108
-#: ../app/assets/javascripts/module/orders.js:108
-#: ../app/assets/javascripts/module/primitives.js:151
-#: ../app/assets/javascripts/module/reports.js:383
-#: ../app/assets/javascripts/module/resources.js:746
-#: ../app/assets/javascripts/module/roles.js:108
-#: ../app/assets/javascripts/module/tags.js:131
-#: ../app/assets/javascripts/module/tickets.js:77
-#: ../app/assets/javascripts/module/users.js:108
-#: ../app/views/clones/edit.html.erb:9
-#: ../app/views/colocations/edit.html.erb:9
-#: ../app/views/groups/edit.html.erb:9
-#: ../app/views/locations/edit.html.erb:9
-#: ../app/views/masters/edit.html.erb:9
-#: ../app/views/orders/edit.html.erb:9
-#: ../app/views/primitives/edit.html.erb:9
-#: ../app/views/reports/display.html.erb:24
-#: ../app/views/roles/edit.html.erb:7
-#: ../app/views/tags/edit.html.erb:9
-#: ../app/views/tickets/edit.html.erb:9
-#: ../app/views/users/edit.html.erb:7
-msgid "Delete"
-msgstr "删除"
-
-#: ../app/assets/javascripts/module/resources.js:365
-#: ../app/helpers/order_helper.rb:9
-#: ../app/helpers/ticket_helper.rb:9
-msgid "Demote"
-msgstr "降级"
-
-#: ../app/helpers/rule_helper.rb:10
-msgid "Deny"
-msgstr "拒绝"
-
-#: ../app/views/agents/show.html.erb:89
-msgid "Depth"
-msgstr "深度"
-
-#: ../app/helpers/application_helper.rb:241
-msgid "Designated Coordinator"
-msgstr "指定协调器"
-
-#: ../app/assets/javascripts/module/nodes.js:282
-#: ../app/assets/javascripts/module/resources.js:416
-#: ../app/assets/javascripts/module/statusmatrix.js:88
+#: ../app/assets/javascripts/module/nodes.js:276
+#: ../app/assets/javascripts/module/resources.js:414
 #: ../app/assets/javascripts/module/tickets.js:271
-#: ../app/views/reports/display.html.erb:186
+#: ../app/views/reports/display.html.erb:129
 msgid "Details"
 msgstr "细节"
 
-#: ../app/views/reports/display.html.erb:196
-msgid "Diff"
-msgstr "差异"
+#: ../app/assets/javascripts/module/nodes.js:320
+#: ../app/assets/javascripts/module/tickets.js:27
+#: ../app/views/nodes/_form.html.erb:5 ../app/views/nodes/show.html.erb:30
+#: ../app/views/resources/show.html.erb:276
+msgid "ID"
+msgstr "ID"
 
-#: ../app/assets/javascripts/module/resources.js:375
-msgid "Disable Maintenance Mode"
-msgstr "禁用维护模式"
+#: ../app/assets/javascripts/module/oplist.js:71
+#: ../app/assets/javascripts/module/recipientlist.js:24
+#: ../app/helpers/form_helper.rb:27
+msgid "Add"
+msgstr "添加"
 
-#: ../app/views/shared/_simulator.html.erb:12
-msgid "Discard"
-msgstr "丢弃"
-
+#: ../app/assets/javascripts/module/oplist.js:72
+#: ../app/assets/javascripts/module/recipientlist.js:25
+#: ../app/assets/javascripts/module/reports.js:168
+#: ../app/helpers/crm_config_helper.rb:16 ../app/helpers/form_helper.rb:19
+#: ../app/helpers/profile_helper.rb:27 ../app/helpers/role_helper.rb:23
+#: ../app/helpers/user_helper.rb:23 ../app/views/cib/apply.html.erb:27
+#: ../app/views/fencing/edit.html.erb:74
+#: ../app/views/primitives/_form.html.erb:53
+#: ../app/views/shared/_simulator.html.erb:15
 #: ../app/views/wizards/create.html.erb:17
-msgid "Do you really want to apply the current wizard?"
-msgstr "确实要应用当前向导吗？"
+#: ../app/views/wizards/update.html.erb:86
+msgid "Apply"
+msgstr "应用"
 
-#: ../app/views/wizards/create.html.erb:15
-#: ../app/views/wizards/show.html.erb:92
-#: ../app/views/wizards/update.html.erb:89
-msgid "Do you really want to cancel the wizard setup?"
-msgstr "确实要取消安装向导吗？"
+#: ../app/assets/javascripts/module/oplist.js:281
+msgid "No interval set for monitor operation"
+msgstr "未设置监视操作的间隔"
 
-#: ../app/models/clone.rb:103
-#: ../app/models/master.rb:102
-msgid "Does each copy of the clone perform a different function?"
-msgstr "克隆的每个副本是否都执行不同的功能？"
+#: ../app/assets/javascripts/module/oplist.js:327
+msgid "Replacing previously defined monitor operation with same interval"
+msgstr "正在以相同间隔替换以前定义的监视操作"
 
-#: ../app/assets/javascripts/module/reports.js:371
-#: ../app/views/reports/display.html.erb:21
+#: ../app/assets/javascripts/module/primitives.js:69
+#: ../app/models/resource.rb:127 ../app/views/primitives/_form.html.erb:9
+#: ../app/views/primitives/_form.html.erb:17
+msgid "Resource ID"
+msgstr "资源 ID"
+
+#: ../app/assets/javascripts/module/primitives.js:323
+msgid "Failed to fetch meta attributes"
+msgstr "无法提取元属性"
+
+#: ../app/assets/javascripts/module/recipientlist.js:19
+msgid "Add Recipient"
+msgstr "添加接收人"
+
+#: ../app/assets/javascripts/module/recipientlist.js:20
+msgid "Edit Recipient"
+msgstr "编辑接收人"
+
+#: ../app/assets/javascripts/module/recipientlist.js:21
+msgid "Remove Recipient"
+msgstr "去除接收人"
+
+#: ../app/assets/javascripts/module/recipientlist.js:26
+#: ../app/views/constraints/rename.html.erb:21
+#: ../app/views/reports/display.html.erb:41
+#: ../app/views/reports/display.html.erb:46
+#: ../app/views/reports/display.html.erb:51
+#: ../app/views/reports/index.html.erb:25
+#: ../app/views/resources/rename.html.erb:21
+#: ../app/views/resources/show.html.erb:285
+msgid "To"
+msgstr "到"
+
+#: ../app/assets/javascripts/module/recipientlist.js:27
+#: ../app/views/alerts/_form.html.erb:24
+msgid "Instance Attributes"
+msgstr "实例属性"
+
+#: ../app/assets/javascripts/module/recipientlist.js:28
+#: ../app/views/alerts/_form.html.erb:34 ../app/views/clones/_form.html.erb:14
+#: ../app/views/groups/_form.html.erb:47
+#: ../app/views/masters/_form.html.erb:14
+#: ../app/views/primitives/_form.html.erb:79
+#: ../app/views/resources/show.html.erb:82
+msgid "Meta Attributes"
+msgstr "元属性"
+
+#: ../app/assets/javascripts/module/recipientlist.js:192
+msgid "User-defined attribute."
+msgstr "用户定义的属性。"
+
+#: ../app/assets/javascripts/module/recipientlist.js:203
+#: ../app/models/alert.rb:19
+msgid ""
+"If the alert agent does not complete within this amount of time, it will be "
+"terminated."
+msgstr "如果警报代理在此段时间内未完成，该代理将会终止。"
+
+#: ../app/assets/javascripts/module/recipientlist.js:207
+#: ../app/models/alert.rb:24
+msgid ""
+"Format the cluster will use when sending the event’s timestamp to the agent. "
+"This is a string as used with the date(1) command."
+msgstr ""
+"群集在将事件的时间戳发送给代理时将使用的格式。这也是 date(1) 命令使用的字符"
+"串。"
+
+#: ../app/assets/javascripts/module/reports.js:31
+msgid "Report generation is complete."
+msgstr "已完成生成报告操作。"
+
+#: ../app/assets/javascripts/module/reports.js:48
+msgid "Report generation cancelled."
+msgstr "已取消生成报告操作。"
+
+#: ../app/assets/javascripts/module/reports.js:170
+#: ../app/assets/javascripts/module/reports.js:282
+#: ../app/views/reports/display.html.erb:39
+#: ../app/views/reports/display.html.erb:44
+#: ../app/views/reports/display.html.erb:49
+#: ../app/views/reports/index.html.erb:17
+msgid "From"
+msgstr "从"
+
+#: ../app/assets/javascripts/module/reports.js:171
+#: ../app/assets/javascripts/module/reports.js:295
+msgid "Until"
+msgstr "到"
+
+#: ../app/assets/javascripts/module/reports.js:172
+msgid "Custom"
+msgstr "自定义"
+
+#: ../app/assets/javascripts/module/reports.js:174
+msgid "Su"
+msgstr "日"
+
+#: ../app/assets/javascripts/module/reports.js:175
+msgid "Mo"
+msgstr "一"
+
+#: ../app/assets/javascripts/module/reports.js:176
+msgid "Tu"
+msgstr "二"
+
+#: ../app/assets/javascripts/module/reports.js:177
+msgid "We"
+msgstr "三"
+
+#: ../app/assets/javascripts/module/reports.js:178
+msgid "Th"
+msgstr "四"
+
+#: ../app/assets/javascripts/module/reports.js:179
+msgid "Fr"
+msgstr "五"
+
+#: ../app/assets/javascripts/module/reports.js:180
+msgid "Sa"
+msgstr "六"
+
+#: ../app/assets/javascripts/module/reports.js:183
+msgid "January"
+msgstr "一月"
+
+#: ../app/assets/javascripts/module/reports.js:184
+msgid "February"
+msgstr "二月"
+
+#: ../app/assets/javascripts/module/reports.js:185
+msgid "March"
+msgstr "三月"
+
+#: ../app/assets/javascripts/module/reports.js:186
+msgid "April"
+msgstr "四月"
+
+#: ../app/assets/javascripts/module/reports.js:187
+msgid "May"
+msgstr "五月"
+
+#: ../app/assets/javascripts/module/reports.js:188
+msgid "June"
+msgstr "六月"
+
+#: ../app/assets/javascripts/module/reports.js:189
+msgid "July"
+msgstr "七月"
+
+#: ../app/assets/javascripts/module/reports.js:190
+msgid "August"
+msgstr "八月"
+
+#: ../app/assets/javascripts/module/reports.js:191
+msgid "September"
+msgstr "九月"
+
+#: ../app/assets/javascripts/module/reports.js:192
+msgid "October"
+msgstr "十月"
+
+#: ../app/assets/javascripts/module/reports.js:193
+msgid "November"
+msgstr "十一月"
+
+#: ../app/assets/javascripts/module/reports.js:194
+msgid "December"
+msgstr "十二月"
+
+#: ../app/assets/javascripts/module/reports.js:278
+#: ../app/assets/javascripts/module/reports.js:362
+#: ../app/views/configs/edit.html.erb:7 ../app/views/configs/show.html.erb:9
+#: ../app/views/graphs/show.html.erb:7
+#: ../app/views/reports/display.html.erb:20
+#: ../app/views/shared/_simulator.html.erb:9
+msgid "Show"
+msgstr "显示"
+
+#: ../app/assets/javascripts/module/reports.js:372
+#: ../app/views/reports/display.html.erb:23
 msgid "Download"
 msgstr "下载"
 
-#: ../app/models/location.rb:261
-msgid "Each rule can contain a number of expressions. The results of the expressions are combined based on the rule's boolean operator."
-msgstr "每个规则可以包含多个表达式。表达式的结果根据规则的布尔运算符合并。"
+#: ../app/assets/javascripts/module/reports.js:419
+#: ../app/views/reports/display.html.erb:112
+msgid "Time"
+msgstr "时间"
 
-#: ../app/assets/javascripts/module/clones.js:95
-#: ../app/assets/javascripts/module/colocations.js:97
-#: ../app/assets/javascripts/module/constraints.js:215
-#: ../app/assets/javascripts/module/groups.js:95
-#: ../app/assets/javascripts/module/locations.js:95
-#: ../app/assets/javascripts/module/masters.js:95
-#: ../app/assets/javascripts/module/nodes.js:253
-#: ../app/assets/javascripts/module/nodes.js:347
-#: ../app/assets/javascripts/module/oplist.js:67
-#: ../app/assets/javascripts/module/orders.js:95
-#: ../app/assets/javascripts/module/primitives.js:138
-#: ../app/assets/javascripts/module/resources.js:399
-#: ../app/assets/javascripts/module/resources.js:726
-#: ../app/assets/javascripts/module/roles.js:95
-#: ../app/assets/javascripts/module/tags.js:108
-#: ../app/assets/javascripts/module/tickets.js:67
-#: ../app/assets/javascripts/module/users.js:95
-#: ../app/views/cib/show.html.erb:80
-#: ../app/views/configs/show.html.erb:7
-#: ../app/views/graphs/show.html.erb:6
-msgid "Edit"
-msgstr "编辑"
+#: ../app/assets/javascripts/module/reports.js:421
+#: ../app/helpers/application_helper.rb:265
+#: ../app/views/reports/display.html.erb:110
+msgid "DC"
+msgstr "DC"
 
-#: ../app/controllers/users_controller.rb:57
-#: ../app/controllers/users_controller.rb:65
-#: ../app/views/users/edit.html.erb:4
-msgid "Edit ACL Target"
-msgstr "编辑 ACL 目标"
+#: ../app/assets/javascripts/module/resources.js:200
+msgid "Maintenance Mode"
+msgstr "维护模式"
 
-#: ../app/controllers/clones_controller.rb:58
-#: ../app/controllers/clones_controller.rb:67
-#: ../app/views/clones/edit.html.erb:4
-msgid "Edit Clone"
-msgstr "编辑克隆"
+#: ../app/assets/javascripts/module/resources.js:203
+msgid "Unmanaged"
+msgstr "不受管理"
 
-#: ../app/controllers/colocations_controller.rb:57
-#: ../app/controllers/colocations_controller.rb:66
-#: ../app/views/colocations/edit.html.erb:4
-msgid "Edit Colocation"
-msgstr "编辑共置"
+#: ../app/assets/javascripts/module/resources.js:206
+#: ../app/helpers/colocation_helper.rb:7 ../app/helpers/ticket_helper.rb:19
+msgid "Started"
+msgstr "已启动"
 
-#: ../app/views/configs/edit.html.erb:4
-#: ../app/views/shared/_mainnav.html.erb:37
-msgid "Edit Configuration"
-msgstr "编辑配置"
+#: ../app/assets/javascripts/module/resources.js:209
+msgid "Primary"
+msgstr "主要"
 
-#: ../app/controllers/groups_controller.rb:58
-#: ../app/controllers/groups_controller.rb:67
-#: ../app/views/groups/edit.html.erb:4
-msgid "Edit Group"
-msgstr "编辑组"
+#: ../app/assets/javascripts/module/resources.js:212
+msgid "Secondary"
+msgstr "次要"
 
-#: ../app/views/locations/edit.html.erb:4
-msgid "Edit Location"
-msgstr "编辑位置"
+#: ../app/assets/javascripts/module/resources.js:215
+#: ../app/helpers/colocation_helper.rb:10 ../app/helpers/ticket_helper.rb:22
+msgid "Stopped"
+msgstr "已停止"
 
-#: ../app/controllers/locations_controller.rb:75
-#: ../app/controllers/locations_controller.rb:84
-msgid "Edit Location Constraint"
-msgstr "编辑位置约束"
+#: ../app/assets/javascripts/module/resources.js:263
+#: ../app/assets/javascripts/module/resources.js:656
+#: ../app/views/resources/types.html.erb:27
+msgid "Group"
+msgstr "组"
 
-#: ../app/views/masters/edit.html.erb:4
-msgid "Edit Multi-state"
-msgstr "编辑多状态"
+#: ../app/assets/javascripts/module/resources.js:265
+#: ../app/assets/javascripts/module/resources.js:658
+#: ../app/views/resources/types.html.erb:43
+msgid "Multi-state"
+msgstr "多状态"
 
-#: ../app/controllers/masters_controller.rb:58
-#: ../app/controllers/masters_controller.rb:67
-msgid "Edit Multi-state resource"
-msgstr "编辑多状态资源"
+#: ../app/assets/javascripts/module/resources.js:268
+#: ../app/assets/javascripts/module/resources.js:270
+#: ../app/assets/javascripts/module/resources.js:660
+#: ../app/views/resources/types.html.erb:35
+msgid "Clone"
+msgstr "复制"
 
-#: ../app/views/nodes/edit.html.erb:4
-msgid "Edit Node"
-msgstr "编辑节点"
+#: ../app/assets/javascripts/module/resources.js:273
+#: ../app/assets/javascripts/module/resources.js:662
+#: ../app/views/resources/types.html.erb:51
+msgid "Tag"
+msgstr "标记"
 
-#: ../app/controllers/orders_controller.rb:57
-#: ../app/controllers/orders_controller.rb:66
-#: ../app/views/orders/edit.html.erb:4
-msgid "Edit Order"
-msgstr "编辑顺序"
+#: ../app/assets/javascripts/module/resources.js:316
+#: ../app/assets/javascripts/module/resources.js:801
+msgid "Away from current node"
+msgstr "离开当前节点"
 
-#: ../app/controllers/primitives_controller.rb:76
-#: ../app/controllers/primitives_controller.rb:102
-msgid "Edit Primitive"
-msgstr "编辑原始资源"
+#: ../app/assets/javascripts/module/resources.js:326
+#: ../app/assets/javascripts/module/resources.js:809
+msgid "Clean up on all nodes"
+msgstr "在所有节点上清理"
 
-#: ../app/controllers/roles_controller.rb:63
-#: ../app/views/roles/edit.html.erb:4
-msgid "Edit Role"
-msgstr "编辑角色"
+#: ../app/assets/javascripts/module/resources.js:355
+#: ../app/helpers/order_helper.rb:10 ../app/helpers/ticket_helper.rb:8
+#: ../app/models/template.rb:418 ../app/views/cib/show.html.erb:70
+msgid "Stop"
+msgstr "停止"
 
-#: ../app/controllers/tags_controller.rb:57
-#: ../app/controllers/tags_controller.rb:66
-#: ../app/views/tags/edit.html.erb:4
-msgid "Edit Tag"
-msgstr "编辑标记"
+#: ../app/assets/javascripts/module/resources.js:359
+#: ../app/helpers/order_helper.rb:7 ../app/models/template.rb:412
+#: ../app/views/cib/show.html.erb:67
+msgid "Start"
+msgstr "起始"
 
-#: ../app/controllers/templates_controller.rb:58
-#: ../app/controllers/templates_controller.rb:81
-msgid "Edit Template"
-msgstr "编辑模板"
+#: ../app/assets/javascripts/module/resources.js:363
+#: ../app/helpers/order_helper.rb:9 ../app/helpers/ticket_helper.rb:9
+msgid "Demote"
+msgstr "降级"
 
-#: ../app/controllers/tickets_controller.rb:70
-#: ../app/controllers/tickets_controller.rb:79
-#: ../app/views/tickets/edit.html.erb:4
-msgid "Edit Ticket"
-msgstr "编辑票据"
+#: ../app/assets/javascripts/module/resources.js:367
+#: ../app/helpers/order_helper.rb:8
+msgid "Promote"
+msgstr "升级"
+
+#: ../app/assets/javascripts/module/resources.js:373
+msgid "Disable Maintenance Mode"
+msgstr "禁用维护模式"
+
+#: ../app/assets/javascripts/module/resources.js:378
+msgid "Migrate"
+msgstr "迁移"
+
+#: ../app/assets/javascripts/module/resources.js:380
+msgid "Unmigrate"
+msgstr "取消迁移"
+
+#: ../app/assets/javascripts/module/resources.js:382
+msgid "Cleanup"
+msgstr "清理"
+
+#: ../app/assets/javascripts/module/resources.js:477
+msgid "No child resources"
+msgstr "无子资源"
+
+#: ../app/assets/javascripts/module/resources.js:685
+#: ../app/views/groups/_form.html.erb:16
+#: ../app/views/resources/show.html.erb:28
+msgid "Children"
+msgstr "子项"
+
+#: ../app/assets/javascripts/module/resources.js:781
+msgid "This will start the tagged resources. Do you want to continue?"
+msgstr "这会启动标记的资源。要继续吗？"
+
+#: ../app/assets/javascripts/module/resources.js:784
+msgid "This will stop the tagged resources. Do you want to continue?"
+msgstr "这会停止标记的资源。要继续吗？"
+
+#: ../app/assets/javascripts/module/resources.js:787
+msgid "This will promote the tagged resources. Do you want to continue?"
+msgstr "这会提升标记的资源。要继续吗？"
+
+#: ../app/assets/javascripts/module/resources.js:790
+msgid "This will demote the tagged resources. Do you want to continue?"
+msgstr "这会降级标记的资源。要继续吗？"
+
+#: ../app/assets/javascripts/module/resources.js:793
+msgid ""
+"This will enable maintenance mode for the tagged resources. Do you want to "
+"continue?"
+msgstr "这会对标记的资源启用维护模式。要继续吗？"
+
+#: ../app/assets/javascripts/module/resources.js:796
+msgid ""
+"This will disable maintenance mode for the tagged resources. Do you want to "
+"continue?"
+msgstr "这会对标记的资源禁用维护模式。要继续吗？"
+
+#: ../app/assets/javascripts/module/resources.js:800
+msgid "Migrate tagged resources"
+msgstr "迁移标记的资源"
+
+#: ../app/assets/javascripts/module/resources.js:804
+msgid "This will unmigrate the tagged resources. Do you want to continue?"
+msgstr "这会取消迁移标记的资源。要继续吗？"
+
+#: ../app/assets/javascripts/module/resources.js:808
+msgid "Clean up tagged resources"
+msgstr "清理标记的资源"
+
+#: ../app/assets/javascripts/module/roles.js:27
+#: ../app/views/roles/_form.html.erb:6 ../app/views/roles/_form.html.erb:8
+msgid "Role ID"
+msgstr "角色 ID"
+
+#: ../app/assets/javascripts/module/tags.js:35
+#: ../app/views/tags/_form.html.erb:16
+msgid "Objects"
+msgstr "对象"
+
+#: ../app/assets/javascripts/module/tickets.js:137
+#: ../app/assets/javascripts/module/tickets.js:169
+#: ../app/views/tickets/show.html.erb:26
+msgid "Granted"
+msgstr "已授予"
 
 #: ../app/assets/javascripts/module/tickets.js:143
 msgid "Elsewhere"
 msgstr "其他位置"
 
-#: ../app/views/wizards/show.html.erb:37
-msgid "Enable this step"
-msgstr "启用此步骤"
+#: ../app/assets/javascripts/module/tickets.js:149
+msgid "Revoked"
+msgstr "已撤消"
 
-#: ../app/helpers/application_helper.rb:239
-msgid "Epoch"
-msgstr "时期"
+#: ../app/assets/javascripts/module/tickets.js:163
+#: ../app/views/tickets/show.html.erb:50
+msgid "Last Granted"
+msgstr "上次授予"
 
-#: ../app/assets/javascripts/dashboard.js:20
-msgid "Error"
-msgstr "错误"
+#: ../app/assets/javascripts/module/tickets.js:213
+msgid "Grant"
+msgstr "授予"
 
-#: ../app/assets/javascripts/dashboard.js:231
-msgid "Error connecting to server."
-msgstr "连接服务器时出错。"
+#: ../app/assets/javascripts/module/tickets.js:223
+#: ../app/assets/javascripts/module/tickets.js:260
+msgid "Revoke"
+msgstr "撤消"
 
-#: ../app/controllers/reports_controller.rb:257
-#: ../app/controllers/reports_controller.rb:261
-msgid "Error deleting %s"
-msgstr "删除 %s 时出错"
+#: ../app/assets/javascripts/module/users.js:27
+msgid "User ID"
+msgstr "用户 ID"
 
+#: ../app/assets/javascripts/module/wizards.js:12
+msgid "Must be a valid resource ID"
+msgstr "必须为有效资源 ID"
+
+#: ../app/assets/javascripts/module/wizards.js:69
+msgid "Applying configuration changes..."
+msgstr "正在应用配置更改..."
+
+#: ../app/controllers/agents_controller.rb:46
+#: ../app/views/resources/show.html.erb:17
+msgid "Agent"
+msgstr "代理"
+
+#: ../app/controllers/alerts_controller.rb:20
+#: ../app/controllers/alerts_controller.rb:30
+#: ../app/views/alerts/new.html.erb:4
+msgid "Create Alert"
+msgstr "创建警报"
+
+#: ../app/controllers/alerts_controller.rb:41
+msgid "Alert created successfully"
+msgstr "已成功创建警报"
+
+#: ../app/controllers/alerts_controller.rb:59
+#: ../app/controllers/alerts_controller.rb:68
+#: ../app/views/alerts/edit.html.erb:4
+msgid "Edit Alert"
+msgstr "编辑警报"
+
+#: ../app/controllers/alerts_controller.rb:81
+msgid "Alert updated successfully"
+msgstr "已成功更新警报"
+
+#: ../app/controllers/alerts_controller.rb:103
+#: ../app/controllers/alerts_controller.rb:110
+msgid "Alert deleted successfully"
+msgstr "已成功删除警报"
+
+#: ../app/controllers/alerts_controller.rb:115
+#: ../app/controllers/alerts_controller.rb:119
 #: ../app/controllers/clones_controller.rb:112
 #: ../app/controllers/clones_controller.rb:116
 #: ../app/controllers/colocations_controller.rb:110
@@ -1033,138 +1058,301 @@ msgstr "删除 %s 时出错"
 msgid "Error deleting %s: %s"
 msgstr "删除 %s 时出错：%s"
 
-#: ../app/controllers/tickets_controller.rb:161
-#: ../app/controllers/tickets_controller.rb:165
-msgid "Error granting the ticket"
-msgstr "授予票据时出错"
+#: ../app/controllers/alerts_controller.rb:137
+#: ../app/views/alerts/index.html.erb:4 ../app/views/configs/edit.html.erb:40
+msgid "Alerts"
+msgstr "警报"
 
-#: ../app/models/cib.rb:548
-msgid "Error invoking %{cmd}"
-msgstr "调用 %{cmd} 时出错"
+#: ../app/controllers/alerts_controller.rb:150
+msgid "The alert does not exist"
+msgstr "该警报不存在"
 
-#: ../app/models/cib.rb:558
-msgid "Error invoking %{cmd}: %{msg}"
-msgstr "调用 %{cmd} 时出错：%{msg}"
+#: ../app/controllers/application_controller.rb:155
+msgid "Created a new shadow CIB for %USER%."
+msgstr "为 %USER% 创建新阴影 CIB。"
 
-#: ../lib/invoker.rb:90
-msgid "Error invoking cibadmin %{cmd}: %{msg}"
-msgstr "调用 cibadmin %{cmd} 时出错：%{msg}"
+#: ../app/controllers/application_controller.rb:160
+#: ../app/controllers/application_controller.rb:163
+msgid "Unable to create shadow CIB"
+msgstr "无法创建阴影 CIB"
 
-#: ../app/controllers/dashboards_controller.rb:38
-msgid "Error removing %s: %s"
-msgstr "去除 %s 时出错：%s"
-
-#: ../app/assets/javascripts/dashboard.js:553
-msgid "Error removing cluster."
-msgstr "去除群集时出错。"
-
-#: ../app/controllers/tickets_controller.rb:188
-#: ../app/controllers/tickets_controller.rb:192
-msgid "Error revoking the ticket"
-msgstr "撤消票据时出错"
-
-#: ../app/models/record.rb:295
-msgid "Error updating %{id} (rc=%{rc})"
-msgstr "上载 %{id} 时出错 (rc=%{rc})"
-
-#: ../app/models/report.rb:104
-#: ../app/models/report.rb:133
-msgid "Error:"
-msgstr "错误："
-
-#: ../app/controllers/application_controller.rb:199
-msgid "Error: Not authenticated"
-msgstr "错误：未经过身份验证"
-
-#: ../app/controllers/application_controller.rb:195
+#: ../app/controllers/application_controller.rb:198
 msgid "Error: Permission denied for user (%s)"
 msgstr "错误：用户 (%s) 的权限被拒"
 
-#: ../app/controllers/application_controller.rb:203
+#: ../app/controllers/application_controller.rb:202
+msgid "Error: Not authenticated"
+msgstr "错误：未经过身份验证"
+
+#: ../app/controllers/application_controller.rb:206
 msgid "Error: Record not found"
 msgstr "错误：找不到记录"
-
-#: ../app/views/cib/show.html.erb:13
-msgid "Errors"
-msgstr "错误"
-
-#: ../app/assets/javascripts/module/nodes.js:272
-msgid "Events"
-msgstr "事件"
-
-#: ../app/views/nodes/events.html.erb:38
-#: ../app/views/resources/events.html.erb:38
-msgid "Exec"
-msgstr "Exec"
-
-#: ../app/views/tickets/show.html.erb:74
-msgid "Expires"
-msgstr "失效"
-
-#: ../app/models/location.rb:260
-msgid "Expression"
-msgstr "表达式"
-
-#: ../app/views/resources/show.html.erb:212
-msgid "Failed Operations"
-msgstr "失败的操作"
 
 #: ../app/controllers/cib_controller.rb:46
 msgid "Failed to apply configuration"
 msgstr "无法应用配置"
 
-#: ../app/controllers/resources_controller.rb:147
-msgid "Failed to clean up the resource: %{err}"
-msgstr "无法清理资源：%{err}"
+#: ../app/controllers/cib_controller.rb:51
+msgid "Applied configuration successfully"
+msgstr "已成功应用配置"
 
-#: ../app/controllers/nodes_controller.rb:82
-msgid "Failed to clear the node state: %{err}"
-msgstr "无法清除节点状态：%{err}"
+#: ../app/controllers/clones_controller.rb:20
+#: ../app/controllers/clones_controller.rb:31
+#: ../app/views/clones/new.html.erb:4
+msgid "Create Clone"
+msgstr "创建克隆"
 
-#: ../app/controllers/resources_controller.rb:112
-msgid "Failed to demote the resource: %{err}"
-msgstr "无法将资源降级：%{err}"
+#: ../app/controllers/clones_controller.rb:40
+msgid "Clone created successfully"
+msgstr "已成功创建克隆"
 
-#: ../app/controllers/resources_controller.rb:126
-msgid "Failed to disable maintenance mode for resource: %{err}"
-msgstr "无法对资源禁用维护模式：%{err}"
+#: ../app/controllers/clones_controller.rb:58
+#: ../app/controllers/clones_controller.rb:67
+#: ../app/views/clones/edit.html.erb:4
+msgid "Edit Clone"
+msgstr "编辑克隆"
 
-#: ../app/controllers/nodes_controller.rb:78
-msgid "Failed to fence the node: %{err}"
-msgstr "无法屏蔽节点：%{err}"
+#: ../app/controllers/clones_controller.rb:78
+msgid "Clone updated successfully"
+msgstr "已成功更新克隆"
 
-#: ../app/assets/javascripts/module/primitives.js:323
-msgid "Failed to fetch meta attributes"
-msgstr "无法提取元属性"
+#: ../app/controllers/clones_controller.rb:100
+#: ../app/controllers/clones_controller.rb:107
+msgid "Clone deleted successfully"
+msgstr "已成功删除克隆"
 
-#: ../app/controllers/reports_controller.rb:55
-msgid "Failed to generate"
-msgstr "无法生成"
+#: ../app/controllers/clones_controller.rb:134
+#: ../app/views/clones/index.html.erb:4
+msgid "Clones"
+msgstr "克隆"
 
-#: ../app/controllers/resources_controller.rb:140
-msgid "Failed to migrate the resource: %{err}"
-msgstr "无法迁移资源：%{err}"
+#: ../app/controllers/clones_controller.rb:147
+msgid "The clone does not exist"
+msgstr "该克隆不存在"
 
-#: ../app/assets/javascripts/module/monitor.js:64
-msgid "Failed to parse monitor response - Internal server error."
-msgstr "无法分析监视响应 - 内部服务器错误。"
+#: ../app/controllers/colocations_controller.rb:20
+#: ../app/controllers/colocations_controller.rb:30
+#: ../app/views/colocations/new.html.erb:4
+msgid "Create Colocation"
+msgstr "创建共置"
 
-#: ../app/controllers/resources_controller.rb:105
-msgid "Failed to promote the resource: %{err}"
-msgstr "无法将资源升级：%{err}"
+#: ../app/controllers/colocations_controller.rb:39
+#: ../app/controllers/locations_controller.rb:57
+#: ../app/controllers/orders_controller.rb:39
+#: ../app/controllers/tickets_controller.rb:52
+msgid "Constraint created successfully"
+msgstr "已成功创建约束"
+
+#: ../app/controllers/colocations_controller.rb:57
+#: ../app/controllers/colocations_controller.rb:66
+#: ../app/views/colocations/edit.html.erb:4
+msgid "Edit Colocation"
+msgstr "编辑共置"
+
+#: ../app/controllers/colocations_controller.rb:77
+#: ../app/controllers/locations_controller.rb:95
+#: ../app/controllers/orders_controller.rb:77
+#: ../app/controllers/tickets_controller.rb:90
+msgid "Constraint updated successfully"
+msgstr "已成功更新约束"
+
+#: ../app/controllers/colocations_controller.rb:99
+#: ../app/controllers/colocations_controller.rb:105
+msgid "Colocation deleted successfully"
+msgstr "已成功删除共置"
+
+#: ../app/controllers/colocations_controller.rb:132
+#: ../app/views/colocations/index.html.erb:4
+msgid "Colocations"
+msgstr "共置"
+
+#: ../app/controllers/colocations_controller.rb:145
+msgid "The colocation constraint does not exist"
+msgstr "该共置约束不存在"
+
+#: ../app/controllers/commands_controller.rb:22
+#: ../app/views/commands/index.html.erb:4
+#: ../app/views/shared/_mainnav.html.erb:42
+msgid "Command Log"
+msgstr "命令日志"
+
+#: ../app/controllers/constraints_controller.rb:69
+#: ../app/controllers/resources_controller.rb:165
+msgid "Successfully renamed %{A} to %{B}"
+msgstr "已成功将 %{A} 重命名为 %{B}"
 
 #: ../app/controllers/constraints_controller.rb:78
 #: ../app/controllers/resources_controller.rb:174
 msgid "Failed to rename %{A} to %{B}: %{E}"
 msgstr "无法将 %{A} 重命名为 %{B}：%{E}"
 
+#: ../app/controllers/constraints_controller.rb:101
+#: ../app/views/configs/edit.html.erb:25
+#: ../app/views/constraints/index.html.erb:4
+#: ../app/views/resources/show.html.erb:265
+#: ../app/views/tickets/show.html.erb:97
+msgid "Constraints"
+msgstr "约束"
+
+#: ../app/controllers/crm_config_controller.rb:26
+msgid "Configuration updated successfully"
+msgstr "已成功更新配置"
+
+#: ../app/controllers/crm_config_controller.rb:46
+#: ../app/views/crm_config/edit.html.erb:3
+#: ../app/views/shared/_mainnav.html.erb:39
+msgid "Cluster Configuration"
+msgstr "群集配置"
+
+#: ../app/controllers/dashboards_controller.rb:37
+msgid "Cluster removed successfully."
+msgstr "已成功去除群集。"
+
+#: ../app/controllers/dashboards_controller.rb:40
+msgid "Error removing cluster."
+msgstr "去除群集时出错。"
+
+#: ../app/controllers/dashboards_controller.rb:49
+#: ../app/views/dashboards/show.html.erb:9
+#: ../app/views/shared/_mainnav.html.erb:12
+msgid "Dashboard"
+msgstr "仪表板"
+
+#: ../app/controllers/fencing_controller.rb:51
+#: ../app/controllers/fencing_controller.rb:57
+msgid "Fencing topology updated successfully"
+msgstr "已成功更新屏蔽拓扑"
+
+#: ../app/controllers/fencing_controller.rb:65
+#: ../app/controllers/fencing_controller.rb:69
+msgid "Failed to edit fencing topology: %{msg}"
+msgstr "无法编辑屏蔽拓扑：%{msg}"
+
+#: ../app/controllers/fencing_controller.rb:74
+#: ../app/views/fencing/edit.html.erb:4
+msgid "Edit Fencing Topology"
+msgstr "编辑屏蔽拓扑"
+
+#: ../app/controllers/fencing_controller.rb:86
+#: ../app/views/fencing/index.html.erb:4
+msgid "Fencing Topology"
+msgstr "屏蔽拓扑"
+
+#: ../app/controllers/graphs_controller.rb:49
+msgid "Cluster Graph"
+msgstr "群集图"
+
+#: ../app/controllers/groups_controller.rb:20
+#: ../app/controllers/groups_controller.rb:31
+#: ../app/views/groups/new.html.erb:4
+msgid "Create Group"
+msgstr "创建组"
+
+#: ../app/controllers/groups_controller.rb:40
+msgid "Group created successfully"
+msgstr "已成功创建组"
+
+#: ../app/controllers/groups_controller.rb:58
+#: ../app/controllers/groups_controller.rb:67
+#: ../app/views/groups/edit.html.erb:4
+msgid "Edit Group"
+msgstr "编辑组"
+
+#: ../app/controllers/groups_controller.rb:78
+msgid "Group updated successfully"
+msgstr "已成功更新组"
+
+#: ../app/controllers/groups_controller.rb:100
+#: ../app/controllers/groups_controller.rb:107
+msgid "Group deleted successfully"
+msgstr "已成功删除组"
+
+#: ../app/controllers/groups_controller.rb:134
+#: ../app/views/groups/index.html.erb:4
+msgid "Groups"
+msgstr "组"
+
+#: ../app/controllers/groups_controller.rb:147
+msgid "The group does not exist"
+msgstr "该组不存在"
+
+#: ../app/controllers/locations_controller.rb:20
+#: ../app/controllers/locations_controller.rb:39
+msgid "Create Location Constraint"
+msgstr "创建位置约束"
+
+#: ../app/controllers/locations_controller.rb:75
+#: ../app/controllers/locations_controller.rb:84
+msgid "Edit Location Constraint"
+msgstr "编辑位置约束"
+
+#: ../app/controllers/locations_controller.rb:117
+#: ../app/controllers/locations_controller.rb:124
+msgid "Location deleted successfully"
+msgstr "已成功删除位置"
+
+#: ../app/controllers/locations_controller.rb:151
+msgid "Location Constraints"
+msgstr "位置约束"
+
+#: ../app/controllers/locations_controller.rb:164
+msgid "The location constraint does not exist"
+msgstr "该位置约束不存在"
+
+#: ../app/controllers/masters_controller.rb:20
+#: ../app/controllers/masters_controller.rb:31
+msgid "Create Multi-state resource"
+msgstr "创建多状态资源"
+
+#: ../app/controllers/masters_controller.rb:40
+msgid "Multi-state resource created successfully"
+msgstr "已成功创建多状态资源"
+
+#: ../app/controllers/masters_controller.rb:58
+#: ../app/controllers/masters_controller.rb:67
+msgid "Edit Multi-state resource"
+msgstr "编辑多状态资源"
+
+#: ../app/controllers/masters_controller.rb:78
+msgid "Multi-state resource updated successfully"
+msgstr "已成功更新多状态资源"
+
+#: ../app/controllers/masters_controller.rb:100
+#: ../app/controllers/masters_controller.rb:107
+msgid "Multi-state resource deleted successfully"
+msgstr "已成功删除多状态资源"
+
+#: ../app/controllers/masters_controller.rb:134
+msgid "Multi-state resource"
+msgstr "多状态资源"
+
+#: ../app/controllers/masters_controller.rb:147
+msgid "The multi-state resource does not exist"
+msgstr "该多状态资源不存在"
+
+#: ../app/controllers/nodes_controller.rb:44
+msgid "Node updated successfully"
+msgstr "已成功更新节点"
+
 #: ../app/controllers/nodes_controller.rb:62
 msgid "Failed to set the node online: %{err}"
 msgstr "无法将节点设置为联机：%{err}"
 
+#: ../app/controllers/nodes_controller.rb:62
+msgid "Set the node state to online"
+msgstr "将节点状态设置为联机"
+
 #: ../app/controllers/nodes_controller.rb:66
 msgid "Failed to set the node standby: %{err}"
 msgstr "无法将节点设置为待机：%{err}"
+
+#: ../app/controllers/nodes_controller.rb:66
+msgid "Set the node state to standby"
+msgstr "将节点状态设置为待机"
+
+#: ../app/controllers/nodes_controller.rb:70
+msgid "Set the node state to maintenance"
+msgstr "将节点状态设置为维护"
 
 #: ../app/controllers/nodes_controller.rb:70
 msgid "Failed to set the node state to maintenance: %{err}"
@@ -1174,805 +1362,47 @@ msgstr "无法将节点状态设置为维护：%{err}"
 msgid "Failed to set the node state to ready: %{err}"
 msgstr "无法将节点状态设置为就绪：%{err}"
 
-#: ../app/controllers/resources_controller.rb:119
-msgid "Failed to set the resource in maintenance mode: %{err}"
-msgstr "无法将资源设置为维护模式：%{err}"
-
-#: ../app/controllers/resources_controller.rb:91
-msgid "Failed to start the resource: %{err}"
-msgstr "无法启动资源：%{err}"
-
-#: ../app/controllers/resources_controller.rb:98
-msgid "Failed to stop the resource: %{err}"
-msgstr "无法停止资源：%{err}"
-
-#: ../app/controllers/resources_controller.rb:133
-msgid "Failed to unmigrate the resource: %{err}"
-msgstr "无法取消迁移资源：%{err}"
-
-#: ../app/assets/javascripts/module/reports.js:183
-msgid "February"
-msgstr "二月"
-
-#: ../app/assets/javascripts/module/nodes.js:248
-#: ../app/helpers/ticket_helper.rb:10
-msgid "Fence"
-msgstr "屏蔽"
-
-#: ../app/helpers/application_helper.rb:223
-#: ../app/helpers/application_helper.rb:229
-msgid "File a Bug Report"
-msgstr "创建 Bug 报告"
-
-#: ../app/assets/javascripts/module/reports.js:178
-msgid "Fr"
-msgstr "五"
-
-#: ../app/helpers/ticket_helper.rb:11
-msgid "Freeze"
-msgstr "冻结"
-
-#: ../app/assets/javascripts/module/reports.js:169
-#: ../app/assets/javascripts/module/reports.js:281
-#: ../app/views/reports/display.html.erb:44
-#: ../app/views/reports/display.html.erb:57
-#: ../app/views/reports/display.html.erb:70
-#: ../app/views/reports/index.html.erb:17
-msgid "From"
-msgstr "从"
-
-#: ../app/views/reports/index.html.erb:51
-#: ../app/views/reports/index.html.erb:78
-msgid "Generate"
-msgstr "生成"
-
-#: ../app/helpers/application_helper.rb:231
-msgid "Getting Started using Hawk"
-msgstr "开始使用 Hawk"
-
-#: ../app/assets/javascripts/module/tickets.js:213
-msgid "Grant"
-msgstr "授予"
-
-#: ../app/assets/javascripts/module/tickets.js:137
-#: ../app/assets/javascripts/module/tickets.js:169
-#: ../app/views/tickets/show.html.erb:26
-msgid "Granted"
-msgstr "已授予"
-
-#: ../app/helpers/application_helper.rb:260
-#: ../app/helpers/application_helper.rb:265
-#: ../app/views/configs/edit.html.erb:9
-#: ../app/views/configs/show.html.erb:13
-#: ../app/views/graphs/show.html.erb:3
-#: ../app/views/reports/display.html.erb:206
-msgid "Graph"
-msgstr "示意图"
-
-#: ../app/assets/javascripts/module/resources.js:263
-#: ../app/assets/javascripts/module/resources.js:658
-#: ../app/views/resources/types.html.erb:27
-msgid "Group"
-msgstr "组"
-
-#: ../app/assets/javascripts/module/groups.js:27
-#: ../app/views/groups/_form.html.erb:6
-#: ../app/views/groups/_form.html.erb:10
-msgid "Group ID"
-msgstr "组 ID"
-
-#: ../app/controllers/groups_controller.rb:40
-msgid "Group created successfully"
-msgstr "已成功创建组"
-
-#: ../app/controllers/groups_controller.rb:100
-#: ../app/controllers/groups_controller.rb:107
-msgid "Group deleted successfully"
-msgstr "已成功删除组"
-
-#: ../app/controllers/groups_controller.rb:78
-msgid "Group updated successfully"
-msgstr "已成功更新组"
-
-#: ../app/controllers/groups_controller.rb:134
-#: ../app/views/groups/index.html.erb:4
-msgid "Groups"
-msgstr "组"
-
-#: ../app/views/pages/help.html.erb:36
-msgid "HTML"
-msgstr "HTML"
-
-#: ../app/helpers/application_helper.rb:246
-msgid "Have Quorum"
-msgstr "具有法定票数"
-
-#: ../app/controllers/pages_controller.rb:21
-#: ../app/views/shared/_usernav.html.erb:19
-msgid "Help"
-msgstr "帮助"
-
-#: ../app/views/layouts/authentication.html.erb:32
-msgid "High Availability Web Konsole"
-msgstr "High Availability Web Konsole"
-
-#: ../app/views/shared/_mainnav.html.erb:18
-msgid "History"
-msgstr "历史"
-
-#: ../app/controllers/reports_controller.rb:270
-#: ../app/views/reports/display.html.erb:4
-#: ../app/views/reports/index.html.erb:4
-#: ../app/views/reports/show.html.erb:4
-msgid "History Explorer"
-msgstr "历史记录浏览器"
-
-#: ../app/helpers/application_helper.rb:240
-msgid "Host"
-msgstr "主机"
-
-#: ../app/assets/javascripts/dashboard.js:436
-msgid "Hostname"
-msgstr "主机名"
-
-#: ../app/views/dashboards/add.html.erb:20
-msgid "Hostname of node in cluster"
-msgstr "群集中节点的主机名"
-
-#: ../app/models/template.rb:314
-msgid "How frequently (in seconds) to perform the operation."
-msgstr "执行该操作的频率（秒）。"
-
-#: ../app/models/crm_config.rb:90
-#: ../app/models/template.rb:306
-msgid "How long before a pending guest connection will time out."
-msgstr "等待中的 Guest 连接经过多长时间后将会超时。"
-
-#: ../app/models/template.rb:320
-msgid "How long to wait before declaring the action has failed."
-msgstr "等待多长时间后声明该操作失败。"
-
-#: ../app/models/master.rb:122
-msgid "How many copies of the resource can be promoted to master status on a single node."
-msgstr "在单个节点上，该资源的多少副本可以升级为主资源状态。"
-
-#: ../app/models/master.rb:117
-msgid "How many copies of the resource can be promoted to master status."
-msgstr "该资源的多少副本可以升级为主资源状态。"
-
-#: ../app/models/clone.rb:93
-#: ../app/models/master.rb:92
-msgid "How many copies of the resource can be started on a single node. Defaults to 1."
-msgstr "单个节点上可以启动的资源副本数。默认设为 1。"
-
-#: ../app/models/clone.rb:88
-#: ../app/models/master.rb:87
-msgid "How many copies of the resource to start. Defaults to the number of nodes in the cluster."
-msgstr "要启动的资源副本数。默认设为群集中的节点数。"
-
-#: ../app/models/crm_config.rb:28
-#: ../app/models/template.rb:244
-msgid "How many failures may occur for this resource on a node, before this node is marked ineligible to host this resource. A value of INFINITY indicates that this feature is disabled."
-msgstr "此资源在一个节点上失败多少次后，此节点才会标记为不符合托管此资源的要求。值为“无穷”表示此功能已禁用。"
-
-#: ../app/models/crm_config.rb:44
-#: ../app/models/template.rb:260
-msgid "How many seconds to wait before acting as if the failure had not occurred, and potentially allowing the resource back to the node on which it failed. A value of 0 indicates that this feature is disabled."
-msgstr "等待多少秒钟后将故障视为未发生过，并潜在允许资源回到它之前失败的节点上。值为 0 表示此功能已禁用。"
-
-#: ../app/models/crm_config.rb:49
-#: ../app/models/template.rb:265
-msgid "How much does the resource prefer to stay where it is?"
-msgstr "资源继续保留在所在位置的程度？"
-
-#: ../app/models/location.rb:255
-msgid "How to combine the result of multiple expression objects. Allowed values are and and or."
-msgstr "如何合并多个表达式对象的结果。允许的值为 AND 和 OR。"
-
-#: ../app/assets/javascripts/module/nodes.js:326
-#: ../app/assets/javascripts/module/tickets.js:27
-#: ../app/views/nodes/_form.html.erb:5
-#: ../app/views/nodes/show.html.erb:30
-#: ../app/views/resources/show.html.erb:276
-msgid "ID"
-msgstr "ID"
-
-#: ../app/models/record.rb:10
-msgid "ID is required"
-msgstr "需要 ID"
-
-#: ../app/models/template.rb:335
-msgid "If false, the operation is treated as if it does not exist."
-msgstr "如果为 false，会将该操作视为不存在。"
-
-#: ../app/models/clone.rb:77
-#: ../app/models/crm_config.rb:33
-#: ../app/models/group.rb:68
-#: ../app/models/master.rb:72
-#: ../app/models/template.rb:249
-msgid "If not all resources can be active, the cluster will stop lower priority resources in order to keep higher priority ones active."
-msgstr "如果并非所有资源都可处于活动状态，群集将停止优先级较低的资源，以使优先级较高的资源保持为活动状态。"
-
-#: ../app/models/template.rb:372
-msgid "If true, the intention to perform the operation is recorded so that GUIs and CLI tools can indicate that an operation is in progress."
-msgstr "如果为 true，则记录执行该操作的目的，以便 GUI 和 CLI 工具可以指出某项操作是否正在进行。"
-
-#: ../app/views/shared/_simulator.html.erb:72
-msgid "Inject"
-msgstr "插入"
-
-#: ../app/views/shared/_simulator.html.erb:231
-msgid "Inject Node Event"
-msgstr "插入节点事件"
-
-#: ../app/views/shared/_simulator.html.erb:278
-msgid "Inject Resource Event"
-msgstr "插入资源事件"
-
-#: ../app/views/shared/_simulator.html.erb:361
-msgid "Inject Ticket Event"
-msgstr "插入票据事件"
-
-#: ../app/views/resources/show.html.erb:184
-msgid "Instances"
-msgstr "实例"
-
-#: ../app/views/agents/show.html.erb:86
-#: ../app/views/resources/show.html.erb:155
-msgid "Interval"
-msgstr "间隔"
-
-#: ../app/views/shared/_simulator.html.erb:312
-msgid "Interval (ms)"
-msgstr "间隔（毫秒）"
-
-#: ../app/models/user.rb:11
-msgid "Invalid ACL target ID"
-msgstr "无效的 ACL 目标 ID"
-
-#: ../app/models/clone.rb:11
-msgid "Invalid Clone ID"
-msgstr "无效的克隆 ID"
-
-#: ../app/models/ticket.rb:19
-msgid "Invalid Constraint ID"
-msgstr "无效的约束 ID"
-
-#: ../app/assets/javascripts/module/basics.js:14
-#: ../app/models/record.rb:11
-#: ../app/models/tag.rb:14
-msgid "Invalid ID"
-msgstr "无效 ID"
-
-#: ../app/models/node.rb:26
-msgid "Invalid Node ID"
-msgstr "无效的节点 ID"
-
-#: ../app/models/ticket.rb:23
-msgid "Invalid Ticket ID"
-msgstr "票据 ID 无效"
-
-#: ../app/models/node.rb:30
-msgid "Invalid name"
-msgstr "无效的名称"
-
-#: ../app/models/colocation.rb:30
-msgid "Invalid node attribute"
-msgstr "无效的节点属性"
-
-#: ../app/models/location.rb:18
-msgid "Invalid resource discovery type"
-msgstr "无效的资源发现类型"
-
-#: ../app/models/location.rb:33
-msgid "Invalid score \"%{score}\""
-msgstr "分数“%{score}”无效"
-
-#: ../app/models/colocation.rb:24
-#: ../app/models/order.rb:25
-msgid "Invalid score value"
-msgstr "分数值无效"
-
-#: ../app/models/session.rb:10
-msgid "Invalid username"
-msgstr "无效用户名"
-
-#: ../app/models/session.rb:42
-msgid "Invalid username or password"
-msgstr "用户名或口令无效"
-
-#: ../app/models/clone.rb:67
-#: ../app/models/crm_config.rb:14
-#: ../app/models/group.rb:58
-#: ../app/models/master.rb:62
-#: ../app/models/template.rb:230
-msgid "Is the cluster allowed to start and stop the resource?"
-msgstr "是否允许群集启动和停止该资源？"
-
-#: ../app/assets/javascripts/module/reports.js:182
-msgid "January"
-msgstr "一月"
-
-#: ../app/assets/javascripts/module/reports.js:188
-msgid "July"
-msgstr "七月"
-
-#: ../app/assets/javascripts/module/reports.js:187
-msgid "June"
-msgstr "六月"
-
-#: ../app/views/nodes/events.html.erb:29
-#: ../app/views/resources/events.html.erb:29
-msgid "Last Change"
-msgstr "上次更改"
-
-#: ../app/assets/javascripts/module/tickets.js:163
-#: ../app/views/tickets/show.html.erb:50
-msgid "Last Granted"
-msgstr "上次授予"
-
-#: ../app/helpers/application_helper.rb:243
-msgid "Last Written"
-msgstr "上次写入"
-
-#: ../app/views/tickets/show.html.erb:66
-msgid "Leader"
-msgstr "前导符"
-
-#: ../app/helpers/wizard_helper.rb:92
-msgid "Legacy Wizards"
-msgstr "旧式向导"
-
-#: ../app/models/location.rb:249
-msgid "Limits the rule to apply only when the resource is in the specified role."
-msgstr "限制规则仅在资源属于指定角色时适用。"
-
-#: ../app/assets/javascripts/module/constraint.js:23
-msgid "Link with entry above"
-msgstr "与上面的项链接"
-
-#: ../app/views/constraints/types.html.erb:7
-#: ../app/views/resources/types.html.erb:7
-msgid "List"
-msgstr "列表"
-
-#: ../app/views/commands/index.html.erb:13
-msgid "Lists crm commands recently executed by hawk, most recent first."
-msgstr "列出 hawk 最近执行的 crm 命令，最近的列在最前面。"
-
-#: ../app/views/reports/show.html.erb:17
-msgid "Loading report..."
-msgstr "正在装载报告..."
-
-#: ../app/assets/javascripts/dashboard.js:501
-msgid "Local Status"
-msgstr "本地状态"
-
-#: ../app/assets/javascripts/module/constraints.js:70
-#: ../app/assets/javascripts/module/resources.js:236
-#: ../app/views/constraints/types.html.erb:19
-msgid "Location"
-msgstr "位置"
-
-#: ../app/controllers/locations_controller.rb:151
-msgid "Location Constraints"
-msgstr "位置约束"
-
-#: ../app/controllers/locations_controller.rb:117
-#: ../app/controllers/locations_controller.rb:124
-msgid "Location deleted successfully"
-msgstr "已成功删除位置"
-
-#: ../app/views/locations/index.html.erb:4
-msgid "Locations"
-msgstr "位置"
-
-#: ../app/controllers/sessions_controller.rb:80
-msgid "Log In"
-msgstr "登录"
-
-#: ../app/views/sessions/new.html.erb:4
-msgid "Login"
-msgstr "登录"
-
-#: ../app/views/shared/_usernav.html.erb:22
-msgid "Logout"
-msgstr "注销"
-
-#: ../app/views/reports/display.html.erb:201
-msgid "Logs"
-msgstr "日志"
-
-#: ../app/views/agents/show.html.erb:38
-msgid "Longdesc"
-msgstr "完整描述"
-
-#: ../app/views/tickets/_form.html.erb:11
-#: ../app/views/tickets/show.html.erb:38
-msgid "Loss Policy"
-msgstr "丢失策略"
-
-#: ../app/assets/javascripts/module/nodes.js:95
-#: ../app/assets/javascripts/module/resources.js:373
-msgid "Maintenance"
-msgstr "维护"
-
-#: ../app/assets/javascripts/module/resources.js:200
-msgid "Maintenance Mode"
-msgstr "维护模式"
-
-#: ../app/assets/javascripts/module/basics.js:82
-msgid "Maintenance mode"
-msgstr "维护模式"
-
-#: ../app/views/shared/_mainnav.html.erb:6
-msgid "Manage"
-msgstr "管理"
-
-#: ../app/views/orders/_form.html.erb:23
-msgid "Mandatory"
-msgstr "强制"
-
-#: ../app/assets/javascripts/module/reports.js:184
-msgid "March"
-msgstr "三月"
-
-#: ../app/helpers/colocation_helper.rb:8
-#: ../app/helpers/ticket_helper.rb:20
-msgid "Master"
-msgstr "主"
-
-#: ../app/assets/javascripts/module/reports.js:186
-msgid "May"
-msgstr "五月"
-
-#: ../app/views/shared/_usernav.html.erb:25
-msgid "Menu"
-msgstr "菜单"
-
-#: ../app/views/clones/_form.html.erb:14
-#: ../app/views/groups/_form.html.erb:47
-#: ../app/views/masters/_form.html.erb:14
-#: ../app/views/primitives/_form.html.erb:75
-#: ../app/views/resources/show.html.erb:82
-msgid "Meta Attributes"
-msgstr "元属性"
-
-#: ../app/assets/javascripts/module/resources.js:380
-msgid "Migrate"
-msgstr "迁移"
-
-#: ../app/assets/javascripts/module/resources.js:804
-msgid "Migrate tagged resources"
-msgstr "迁移标记的资源"
-
-#: ../app/assets/javascripts/module/reports.js:174
-msgid "Mo"
-msgstr "一"
-
-#: ../app/models/template.rb:424
-msgid "Monitor"
-msgstr "显示器"
-
-#: ../app/views/roles/_form.html.erb:19
-msgid "Move rule down"
-msgstr "将规则下移"
-
-#: ../app/views/roles/_form.html.erb:18
-msgid "Move rule up"
-msgstr "将规则上移"
-
-#: ../app/assets/javascripts/module/resources.js:265
-#: ../app/assets/javascripts/module/resources.js:660
-#: ../app/views/resources/types.html.erb:43
-msgid "Multi-state"
-msgstr "多状态"
-
-#: ../app/assets/javascripts/module/masters.js:27
-#: ../app/views/masters/_form.html.erb:6
-#: ../app/views/masters/_form.html.erb:9
-msgid "Multi-state ID"
-msgstr "多状态 ID"
-
-#: ../app/views/masters/index.html.erb:4
-msgid "Multi-state Resources"
-msgstr "多状态资源"
-
-#: ../app/controllers/masters_controller.rb:134
-msgid "Multi-state resource"
-msgstr "多状态资源"
-
-#: ../app/controllers/masters_controller.rb:40
-msgid "Multi-state resource created successfully"
-msgstr "已成功创建多状态资源"
-
-#: ../app/controllers/masters_controller.rb:100
-#: ../app/controllers/masters_controller.rb:107
-msgid "Multi-state resource deleted successfully"
-msgstr "已成功删除多状态资源"
-
-#: ../app/controllers/masters_controller.rb:78
-msgid "Multi-state resource updated successfully"
-msgstr "已成功更新多状态资源"
-
-#: ../app/assets/javascripts/module/wizards.js:12
-msgid "Must be a valid resource ID"
-msgstr "必须为有效资源 ID"
-
-#: ../app/assets/javascripts/module/constraints.js:56
-#: ../app/assets/javascripts/module/nodes.js:89
-#: ../app/assets/javascripts/module/nodes.js:319
-#: ../app/assets/javascripts/module/reports.js:269
-#: ../app/assets/javascripts/module/resources.js:229
-#: ../app/assets/javascripts/module/resources.js:645
-#: ../app/assets/javascripts/module/tags.js:28
-#: ../app/views/agents/show.html.erb:32
-#: ../app/views/agents/show.html.erb:80
-#: ../app/views/nodes/_form.html.erb:6
-#: ../app/views/reports/display.html.erb:31
-#: ../app/views/resources/show.html.erb:149
-msgid "Name"
-msgstr "名称"
-
-#: ../app/models/node.rb:29
-msgid "Name is required"
-msgstr "需要指定名称"
-
-#: ../app/models/location.rb:236
-msgid "Name of a node in the cluster."
-msgstr "群集中节点的名称。"
-
-#: ../app/models/node.rb:79
-msgid "Name used to refer to the node in the cluster."
-msgstr "用来指代群集中的节点的名称。"
-
-#: ../app/views/colocations/_form.html.erb:26
-#: ../app/views/locations/_form.html.erb:46
-msgid "Never"
-msgstr "不启动"
-
-#: ../app/helpers/application_helper.rb:230
-msgid "News"
-msgstr "新闻"
-
-#: ../app/views/reports/display.html.erb:135
-#: ../app/views/wizards/show.html.erb:94
-msgid "Next"
-msgstr "下一页"
-
-#: ../app/assets/javascripts/module/attrlist.js:24
-#: ../app/assets/javascripts/module/oplist.js:70
-#: ../app/assets/javascripts/module/wizattrlist.js:23
-#: ../app/helpers/form_helper.rb:6
-#: ../app/views/tickets/show.html.erb:32
-msgid "No"
-msgstr "否"
-
-#: ../app/models/clone.rb:14
-msgid "No Clone child specified"
-msgstr "未指定克隆子项"
-
-#: ../app/models/group.rb:10
-msgid "No Group children specified"
-msgstr "未指定组子项"
-
-#: ../app/models/master.rb:9
-msgid "No Multi-state child specified"
-msgstr "未指定多状态子项"
-
-#: ../app/models/tag.rb:9
-msgid "No Tag resources specified"
-msgstr "未指定标记资源"
-
-#: ../app/views/nodes/show.html.erb:90
-msgid "No attributes defined"
-msgstr "未定义属性"
-
-#: ../app/assets/javascripts/module/resources.js:479
-msgid "No child resources"
-msgstr "无子资源"
-
-#: ../app/views/groups/_form.html.erb:22
-msgid "No children available"
-msgstr "没有可用子项"
-
-#: ../app/assets/javascripts/module/batch.js:42
-msgid "No configuration changes."
-msgstr "无配置更改。"
-
-#: ../app/models/report.rb:103
-#: ../app/models/report.rb:132
-#: ../app/models/report.rb:179
-msgid "No details available"
-msgstr "无可用的细节"
-
-#: ../app/models/location.rb:43
-msgid "No expressions specified"
-msgstr "未指定表达式"
-
-#: ../app/assets/javascripts/module/oplist.js:281
-msgid "No interval set for monitor operation"
-msgstr "未设置监视操作的间隔"
-
-#: ../app/views/tags/_form.html.erb:22
-msgid "No objects available"
-msgstr "无可用的对象"
-
-#: ../app/models/location.rb:10
-msgid "No resource specified"
-msgstr "未指定资源"
-
-#: ../app/models/location.rb:13
-msgid "No rules specified"
-msgstr "未指定规则"
-
-#: ../app/views/reports/display.html.erb:108
-msgid "No transitions in report"
-msgstr "报告中没有转换"
-
-#: ../app/views/nodes/show.html.erb:66
-msgid "No utilization defined"
-msgstr "未定义利用率"
-
-#: ../app/assets/javascripts/module/reports.js:419
-#: ../app/models/location.rb:235
-#: ../app/views/locations/_form.html.erb:60
-#: ../app/views/reports/display.html.erb:157
-#: ../app/views/resources/events.html.erb:23
-#: ../app/views/resources/show.html.erb:223
-#: ../app/views/shared/_simulator.html.erb:237
-#: ../app/views/shared/_simulator.html.erb:320
-msgid "Node"
-msgstr "节点"
-
-#: ../app/models/cib.rb:1068
-msgid "Node \"%{node}\" is UNCLEAN and needs to be fenced."
-msgstr "节点“%{node}”未清理，需要屏蔽。"
-
-#: ../app/models/colocation.rb:186
-#: ../app/views/colocations/_form.html.erb:52
-msgid "Node Attribute"
-msgstr "节点属性"
-
-#: ../app/views/shared/_simulator.html.erb:77
-msgid "Node Event"
-msgstr "节点事件"
-
-#: ../app/views/reports/display.html.erb:249
-msgid "Node Events"
-msgstr "节点事件"
-
-#: ../app/models/node.rb:72
-msgid "Node ID"
-msgstr "节点 ID"
-
-#: ../app/models/node.rb:25
-msgid "Node ID is required"
-msgstr "需要指定节点 ID"
-
-#: ../app/models/node.rb:78
-msgid "Node Name"
-msgstr "节点名称"
-
-#: ../app/controllers/nodes_controller.rb:44
-msgid "Node updated successfully"
-msgstr "已成功更新节点"
-
-#: ../app/views/nodes/show.html.erb:12
-#, fuzzy
-msgid "Node: %{name}"
-msgstr "节点"
+#: ../app/controllers/nodes_controller.rb:74
+msgid "Set the node state to ready"
+msgstr "将节点状态设置为就绪"
+
+#: ../app/controllers/nodes_controller.rb:78
+msgid "Successfully fenced the node"
+msgstr "已成功屏蔽节点"
+
+#: ../app/controllers/nodes_controller.rb:78
+msgid "Failed to fence the node: %{err}"
+msgstr "无法屏蔽节点：%{err}"
+
+#: ../app/controllers/nodes_controller.rb:82
+msgid "Failed to clear the node state: %{err}"
+msgstr "无法清除节点状态：%{err}"
+
+#: ../app/controllers/nodes_controller.rb:82
+msgid "Cleared the node state"
+msgstr "已清除节点状态"
 
 #: ../app/controllers/nodes_controller.rb:103
-#: ../app/views/cib/show.html.erb:33
-#: ../app/views/configs/edit.html.erb:30
+#: ../app/views/cib/show.html.erb:27 ../app/views/configs/edit.html.erb:30
 #: ../app/views/nodes/index.html.erb:4
 msgid "Nodes"
 msgstr "节点"
 
-#: ../app/views/tickets/show.html.erb:42
-msgid "None"
-msgstr "无"
+#: ../app/controllers/nodes_controller.rb:116
+msgid "The node does not exist"
+msgstr "该节点不存在"
 
-#: ../app/models/constraint.rb:37
-msgid "Not a constraint"
-msgstr "不是约束"
+#: ../app/controllers/orders_controller.rb:20
+#: ../app/controllers/orders_controller.rb:30
+#: ../app/views/orders/new.html.erb:4
+msgid "Create Order"
+msgstr "创建顺序"
 
-#: ../app/models/resource.rb:113
-msgid "Not a resource"
-msgstr "不是资源"
-
-#: ../app/assets/javascripts/module/reports.js:192
-msgid "November"
-msgstr "十一月"
-
-#: ../app/assets/javascripts/module/basics.js:80
-#: ../app/assets/javascripts/module/basics.js:183
-#: ../app/assets/javascripts/module/resources.js:43
-#: ../app/views/shared/_simulator.html.erb:147
-#: ../app/views/shared/_simulator.html.erb:166
-#: ../app/views/shared/_simulator.html.erb:185
-#: ../app/views/shared/_simulator.html.erb:204
-#: ../app/views/shared/_simulator.html.erb:223
-#: ../app/views/shared/_simulator.html.erb:269
-#: ../app/views/shared/_simulator.html.erb:352
-#: ../app/views/shared/_simulator.html.erb:399
-msgid "OK"
-msgstr "确定"
-
-#: ../app/views/roles/_form.html.erb:24
-msgid "Object Type"
-msgstr "对象类型"
-
-#: ../app/models/record.rb:28
-msgid "Object not found: %s=%s"
-msgstr "找不到对象：%s=%s"
-
-#: ../app/assets/javascripts/module/tags.js:35
-#: ../app/views/tags/_form.html.erb:16
-msgid "Objects"
-msgstr "对象"
-
-#: ../app/assets/javascripts/module/reports.js:191
-msgid "October"
-msgstr "十月"
-
-#: ../app/helpers/application_helper.rb:225
-#: ../app/helpers/application_helper.rb:231
-msgid "Online Documentation"
-msgstr "联机文档"
-
-#: ../app/views/nodes/events.html.erb:26
-#: ../app/views/resources/events.html.erb:26
-#: ../app/views/resources/show.html.erb:229
-#: ../app/views/shared/_simulator.html.erb:298
-msgid "Operation"
-msgstr "操作"
-
-#: ../app/views/crm_config/edit.html.erb:22
-msgid "Operation Defaults"
-msgstr "默认操作"
-
-#: ../app/assets/javascripts/module/clones.js:33
-#: ../app/assets/javascripts/module/colocations.js:33
-#: ../app/assets/javascripts/module/constraints.js:92
-#: ../app/assets/javascripts/module/groups.js:33
-#: ../app/assets/javascripts/module/locations.js:33
-#: ../app/assets/javascripts/module/masters.js:33
-#: ../app/assets/javascripts/module/nodes.js:202
-#: ../app/assets/javascripts/module/nodes.js:332
-#: ../app/assets/javascripts/module/orders.js:33
-#: ../app/assets/javascripts/module/primitives.js:75
-#: ../app/assets/javascripts/module/reports.js:303
-#: ../app/assets/javascripts/module/resources.js:283
-#: ../app/assets/javascripts/module/resources.js:704
-#: ../app/assets/javascripts/module/roles.js:33
-#: ../app/assets/javascripts/module/tags.js:44
-#: ../app/assets/javascripts/module/tickets.js:39
-#: ../app/assets/javascripts/module/tickets.js:232
-#: ../app/assets/javascripts/module/users.js:33
-#: ../app/views/cib/show.html.erb:68
-#: ../app/views/primitives/_form.html.erb:97
-#: ../app/views/resources/show.html.erb:138
-msgid "Operations"
-msgstr "操作"
-
-#: ../app/models/location.rb:254
-msgid "Operator"
-msgstr "运算符"
-
-#: ../app/views/orders/_form.html.erb:26
-msgid "Optional"
-msgstr "可选"
-
-#: ../app/views/agents/show.html.erb:41
-msgid "Options"
-msgstr "选项"
-
-#: ../app/assets/javascripts/module/constraints.js:74
-#: ../app/views/constraints/types.html.erb:35
-msgid "Order"
-msgstr "顺序"
+#: ../app/controllers/orders_controller.rb:57
+#: ../app/controllers/orders_controller.rb:66
+#: ../app/views/orders/edit.html.erb:4
+msgid "Edit Order"
+msgstr "编辑顺序"
 
 #: ../app/controllers/orders_controller.rb:99
 #: ../app/controllers/orders_controller.rb:106
@@ -1984,1220 +1414,1059 @@ msgstr "已成功删除顺序"
 msgid "Orders"
 msgstr "顺序"
 
-#: ../app/views/pages/help.html.erb:39
-msgid "PDF"
-msgstr "PDF"
+#: ../app/controllers/orders_controller.rb:146
+msgid "The order constraint does not exist"
+msgstr "该顺序约束不存在"
 
-#: ../app/views/reports/display.html.erb:151
-msgid "PE Name"
-msgstr "PE 名称"
+#: ../app/controllers/pages_controller.rb:11
+msgid "Welcome"
+msgstr "欢迎"
 
-#: ../app/helpers/application_helper.rb:247
-msgid "Pacemaker Version"
-msgstr "Pacemaker 版本"
+#: ../app/controllers/pages_controller.rb:21
+#: ../app/views/shared/_usernav.html.erb:19
+msgid "Help"
+msgstr "帮助"
 
-#: ../app/models/cib.rb:533
-msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
-msgstr "似乎没有安装 Pacemaker（未找到 %{cmd}）"
-
-#: ../app/views/agents/show.html.erb:20
-#: ../app/views/primitives/_form.html.erb:64
-#: ../app/views/resources/show.html.erb:54
-msgid "Parameters"
-msgstr "参数"
-
-#: ../app/models/cib.rb:953
-msgid "Partial upgrade detected! Nodes report different CRM versions: %s"
-msgstr "检测到部分升级！多个节点报告了不同的 CRM 版本：%s"
-
-#: ../app/models/cib.rb:1064
-msgid "Partition without quorum! Fencing and resource management is disabled."
-msgstr "分区没有仲裁！已禁用屏蔽和资源管理功能。"
-
-#: ../app/assets/javascripts/dashboard.js:438
-#: ../app/views/sessions/new.html.erb:3
-msgid "Password"
-msgstr "口令"
-
-#: ../app/models/session.rb:31
-msgid "Password not specified"
-msgstr "未指定口令"
-
-#: ../app/assets/javascripts/dashboard.js:35
-msgid "Permission denied"
-msgstr "权限被拒"
-
-#: ../app/controllers/wizards_controller.rb:127
-#: ../app/controllers/wizards_controller.rb:132
-msgid "Permission denied - you do not have write access to the CIB."
-msgstr "权限被拒绝 - 您没有 CIB 的写入权限。"
-
-#: ../app/controllers/sessions_controller.rb:50
-#: ../app/models/cib.rb:554
-#: ../lib/invoker.rb:88
-#: ../lib/invoker.rb:141
-msgid "Permission denied for user %{user}"
-msgstr "用户 %{user} 的权限被拒"
-
-#: ../app/assets/javascripts/dashboard.js:211
-msgid "Permission denied. "
-msgstr "权限被拒。 "
-
-#: ../app/views/layouts/authentication.html.erb:25
-msgid "Please ensure Javascript is enabled"
-msgstr "请确保已启用 Javascript"
-
-#: ../app/controllers/reports_controller.rb:51
-msgid "Please wait while report is generated..."
-msgstr "正在生成报告，请稍候..."
-
-#: ../app/assets/javascripts/dashboard.js:574
-msgid "Please wait..."
-msgstr "请稍候..."
-
-#: ../app/models/crm_config.rb:80
-#: ../app/models/template.rb:296
-msgid "Port to use for the guest connection to pacemaker_remote."
-msgstr "Guest 用于连接 pacemaker_remote 的端口。"
-
-#: ../app/models/location.rb:230
-msgid "Positive values indicate the resources should run on this node. Negative values indicate the resources should not run on this node. Values of +/- INFINITY change \"should\"/\"should not\" to \"must\"/\"must not\"."
-msgstr "正数值表示资源应在此节点上运行。负数值表示资源不应在此节点上运行。值为 +/- INFINITY 将“应”/“不应”变为“必须”/“不得”。"
-
-#: ../app/controllers/profiles_controller.rb:40
-#: ../app/views/profiles/edit.html.erb:2
-msgid "Preferences"
-msgstr "首选项"
-
-#: ../app/controllers/profiles_controller.rb:26
-msgid "Preferences updated successfully"
-msgstr "已成功更新首选项"
-
-#: ../app/views/reports/display.html.erb:120
-msgid "Previous"
-msgstr "上一页"
-
-#: ../app/assets/javascripts/module/resources.js:209
-msgid "Primary"
-msgstr "主要"
-
-#: ../app/views/resources/types.html.erb:19
-msgid "Primitive"
-msgstr "原始资源"
+#: ../app/controllers/primitives_controller.rb:20
+#: ../app/controllers/primitives_controller.rb:35
+#: ../app/controllers/primitives_controller.rb:84
+msgid "Create Primitive"
+msgstr "创建原始资源"
 
 #: ../app/controllers/primitives_controller.rb:52
 msgid "Primitive created successfully"
 msgstr "已成功创建原始资源"
+
+#: ../app/controllers/primitives_controller.rb:76
+#: ../app/controllers/primitives_controller.rb:102
+msgid "Edit Primitive"
+msgstr "编辑原始资源"
+
+#: ../app/controllers/primitives_controller.rb:113
+msgid "Primitive updated successfully"
+msgstr "已成功更新原始资源"
 
 #: ../app/controllers/primitives_controller.rb:135
 #: ../app/controllers/primitives_controller.rb:142
 msgid "Primitive deleted successfully"
 msgstr "已成功删除原始资源"
 
-#: ../app/controllers/primitives_controller.rb:113
-msgid "Primitive updated successfully"
-msgstr "已成功更新原始资源"
-
 #: ../app/controllers/primitives_controller.rb:169
 msgid "Primitives"
 msgstr "原始资源"
 
-#: ../app/helpers/application_helper.rb:37
-msgid "Profile"
-msgstr "配置文件"
+#: ../app/controllers/primitives_controller.rb:182
+msgid "The primitive does not exist"
+msgstr "该原始资源不存在"
 
-#: ../app/assets/javascripts/module/resources.js:369
-#: ../app/helpers/order_helper.rb:8
-msgid "Promote"
-msgstr "升级"
+#: ../app/controllers/profiles_controller.rb:26
+msgid "Preferences updated successfully"
+msgstr "已成功更新首选项"
 
-#: ../app/views/tickets/show.html.erb:14
-msgid "Properties"
-msgstr "属性"
+#: ../app/controllers/profiles_controller.rb:40
+#: ../app/views/profiles/edit.html.erb:2
+msgid "Preferences"
+msgstr "首选项"
 
-#: ../app/models/template.rb:400
-#: ../app/views/primitives/_form.html.erb:14
-#: ../app/views/primitives/_form.html.erb:29
-msgid "Provider"
-msgstr "提供程序"
+#: ../app/controllers/reports_controller.rb:51
+msgid "Please wait while report is generated..."
+msgstr "正在生成报告，请稍候..."
 
-#: ../app/models/node.rb:91
-msgid "Puts the node into standby mode. The specified node is no longer able to host resources. Any resources currently active on the node will be moved to another node."
-msgstr "将节点置于待机模式。指定节点不再可托管资源。节点上当前处于活动状态的任何资源都将移动到另一节点。"
+#: ../app/controllers/reports_controller.rb:55
+msgid "Failed to generate"
+msgstr "无法生成"
 
-#: ../app/views/nodes/events.html.erb:20
-#: ../app/views/resources/events.html.erb:20
-msgid "RC"
-msgstr "RC"
+#: ../app/controllers/reports_controller.rb:73
+msgid "Upload completed."
+msgstr "上载完成。"
 
-#: ../app/helpers/rule_helper.rb:8
-msgid "Read"
-msgstr "读"
+#: ../app/controllers/reports_controller.rb:116
+msgid "Could not cancel report collection"
+msgstr "无法取消收集报告操作"
 
-#: ../app/helpers/application_helper.rb:225
-msgid "Read the most up-to-date documentation at the suse.com website."
-msgstr "阅读 suse.com 网站上的最新文档。"
+#: ../app/controllers/reports_controller.rb:222
+msgid "Cannot display diff for initial transition."
+msgstr "无法显示初始转换的差异。"
 
-#: ../app/helpers/application_helper.rb:224
-msgid "Read the release notes for the SUSE High Availability Extension."
-msgstr "阅读 SUSE High Availability Extension 的发行说明。"
-
-#: ../app/views/resources/show.html.erb:235
-msgid "Reason"
-msgstr "原因"
-
-#: ../app/assets/javascripts/module/resources.js:393
-msgid "Recent events"
-msgstr "最近的事件"
-
-#: ../app/views/nodes/events.html.erb:12
-#: ../app/views/resources/events.html.erb:12
-#, fuzzy
-msgid "Recent events: %{name}"
-msgstr "最近的事件"
-
-#: ../app/views/roles/_form.html.erb:25
-msgid "Reference"
-msgstr "参考"
-
-#: ../app/helpers/application_helper.rb:224
-msgid "Release Notes"
-msgstr "发行说明"
-
-#: ../app/assets/javascripts/module/nodes.js:78
-msgid "Remote"
-msgstr "远程"
-
-#: ../app/views/nodes/show.html.erb:18
-msgid "Remote node."
-msgstr "远程节点。"
-
-#: ../app/assets/javascripts/module/attrlist.js:22
-#: ../app/assets/javascripts/module/constraint.js:20
-#: ../app/assets/javascripts/module/location.js:17
-#: ../app/assets/javascripts/module/oplist.js:68
-#: ../app/assets/javascripts/module/wizattrlist.js:21
-msgid "Remove"
-msgstr "删除"
-
-#: ../app/assets/javascripts/dashboard.js:521
-msgid "Remove cluster _NAME_ from dashboard?"
-msgstr "是否从仪表板中去除群集 _NAME_？"
-
-#: ../app/views/roles/_form.html.erb:17
-msgid "Remove this rule"
-msgstr "去除此规则"
-
-#: ../app/assets/javascripts/module/constraints.js:225
-#: ../app/assets/javascripts/module/resources.js:736
-#: ../app/assets/javascripts/module/tags.js:118
-#: ../app/views/clones/edit.html.erb:8
-#: ../app/views/colocations/edit.html.erb:8
-#: ../app/views/constraints/rename.html.erb:13
-#: ../app/views/constraints/rename.html.erb:33
-#: ../app/views/groups/edit.html.erb:8
-#: ../app/views/locations/edit.html.erb:8
-#: ../app/views/masters/edit.html.erb:8
-#: ../app/views/orders/edit.html.erb:8
-#: ../app/views/primitives/edit.html.erb:8
-#: ../app/views/resources/rename.html.erb:13
-#: ../app/views/resources/rename.html.erb:33
-#: ../app/views/tags/edit.html.erb:8
-#: ../app/views/tickets/edit.html.erb:8
-msgid "Rename"
-msgstr "重命名"
-
-#: ../app/views/constraints/rename.html.erb:5
-msgid "Rename Constraint"
-msgstr "重命名约束"
-
-#: ../app/views/resources/rename.html.erb:5
-msgid "Rename Resource"
-msgstr "重命名资源"
-
-#: ../app/assets/javascripts/module/oplist.js:327
-msgid "Replacing previously defined monitor operation with same interval"
-msgstr "正在以相同间隔替换以前定义的监视操作"
-
-#: ../app/helpers/application_helper.rb:223
-#: ../app/helpers/application_helper.rb:229
-msgid "Report a bug or request a feature!"
-msgstr "报告 Bug 或请求某个功能！"
-
-#: ../app/controllers/reports_controller.rb:246
-#: ../app/controllers/reports_controller.rb:252
+#: ../app/controllers/reports_controller.rb:242
+#: ../app/controllers/reports_controller.rb:248
 msgid "Report deleted successfully"
 msgstr "已成功删除报告"
 
-#: ../app/assets/javascripts/module/reports.js:47
-msgid "Report generation cancelled."
-msgstr "已取消生成报告操作。"
+#: ../app/controllers/reports_controller.rb:253
+#: ../app/controllers/reports_controller.rb:257
+msgid "Error deleting %s"
+msgstr "删除 %s 时出错"
 
-#: ../app/assets/javascripts/module/reports.js:30
-msgid "Report generation is complete."
-msgstr "已完成生成报告操作。"
+#: ../app/controllers/reports_controller.rb:266
+#: ../app/views/reports/display.html.erb:5
+#: ../app/views/reports/index.html.erb:4 ../app/views/reports/show.html.erb:4
+msgid "History Explorer"
+msgstr "历史记录浏览器"
 
-#: ../app/views/reports/display.html.erb:7
-#: ../app/views/reports/index.html.erb:107
-#: ../app/views/reports/show.html.erb:7
-msgid "Reports"
-msgstr "报告"
+#: ../app/controllers/reports_controller.rb:272
+msgid "The report does not exist"
+msgstr "该报告不存在"
 
-#: ../app/models/wizard.rb:150
-msgid "Requested wizard does not exist"
-msgstr "请求的向导不存在"
+#: ../app/controllers/reports_controller.rb:384
+msgid "must be a valid datetime"
+msgstr "必须为有效的日期时间"
 
-#: ../app/helpers/agents_helper.rb:59
-msgid "Required"
-msgstr "必需"
+#: ../app/controllers/resources_controller.rb:90
+msgid "Successfully started the resource"
+msgstr "已成功启动资源"
 
-#: ../app/views/nodes/events.html.erb:23
-#: ../app/views/shared/_simulator.html.erb:284
-msgid "Resource"
-msgstr "资源"
+#: ../app/controllers/resources_controller.rb:91
+msgid "Failed to start the resource: %{err}"
+msgstr "无法启动资源：%{err}"
 
-#: ../app/views/crm_config/edit.html.erb:13
-msgid "Resource Defaults"
-msgstr "默认资源"
+#: ../app/controllers/resources_controller.rb:97
+msgid "Successfully stopped the resource"
+msgstr "已成功停止资源"
 
-#: ../app/models/location.rb:243
-#: ../app/views/locations/_form.html.erb:77
-msgid "Resource Discovery"
-msgstr "资源发现"
+#: ../app/controllers/resources_controller.rb:98
+msgid "Failed to stop the resource: %{err}"
+msgstr "无法停止资源：%{err}"
 
-#: ../app/views/shared/_simulator.html.erb:82
-msgid "Resource Event"
-msgstr "资源事件"
+#: ../app/controllers/resources_controller.rb:104
+msgid "Successfully promoted the resource"
+msgstr "已成功将资源升级"
 
-#: ../app/views/reports/display.html.erb:261
-msgid "Resource Events"
-msgstr "资源事件"
+#: ../app/controllers/resources_controller.rb:105
+msgid "Failed to promote the resource: %{err}"
+msgstr "无法将资源升级：%{err}"
 
-#: ../app/assets/javascripts/module/primitives.js:69
-#: ../app/models/resource.rb:124
-#: ../app/views/primitives/_form.html.erb:9
-#: ../app/views/primitives/_form.html.erb:17
-msgid "Resource ID"
-msgstr "资源 ID"
+#: ../app/controllers/resources_controller.rb:111
+msgid "Successfully demoted the resource"
+msgstr "已成功将资源降级"
 
-#: ../app/models/template.rb:407
-msgid "Resource agent name."
-msgstr "资源代理名称。"
+#: ../app/controllers/resources_controller.rb:112
+msgid "Failed to demote the resource: %{err}"
+msgstr "无法将资源降级：%{err}"
 
-#: ../app/models/template.rb:389
-msgid "Resource template to inherit from."
-msgstr "要继承的资源模板。"
+#: ../app/controllers/resources_controller.rb:118
+msgid "Successfully set the resource in maintenance mode"
+msgstr "已成功将资源设置为维护模式"
 
-#: ../app/assets/javascripts/module/constraints.js:83
-#: ../app/controllers/resources_controller.rb:211
-#: ../app/models/location.rb:223
-#: ../app/views/cib/show.html.erb:27
-#: ../app/views/colocations/_form.html.erb:37
-#: ../app/views/configs/edit.html.erb:20
-#: ../app/views/orders/_form.html.erb:41
-#: ../app/views/resources/index.html.erb:4
-#: ../app/views/tickets/_form.html.erb:14
-msgid "Resources"
-msgstr "资源"
+#: ../app/controllers/resources_controller.rb:119
+msgid "Failed to set the resource in maintenance mode: %{err}"
+msgstr "无法将资源设置为维护模式：%{err}"
 
-#: ../app/models/clone.rb:72
-#: ../app/models/crm_config.rb:19
-#: ../app/models/group.rb:63
-#: ../app/models/master.rb:67
-#: ../app/models/template.rb:235
-msgid "Resources in maintenance mode are not monitored by the cluster."
-msgstr "群集不会监视处于维护模式的资源。"
+#: ../app/controllers/resources_controller.rb:125
+msgid "Successfully disabled maintenance mode for resource"
+msgstr "已成功对资源禁用维护模式"
 
-#: ../app/models/location.rb:224
-msgid "Resources to apply the constraint to."
-msgstr "要对其应用约束的资源。"
+#: ../app/controllers/resources_controller.rb:126
+msgid "Failed to disable maintenance mode for resource: %{err}"
+msgstr "无法对资源禁用维护模式：%{err}"
 
-#: ../app/views/shared/_simulator.html.erb:334
-msgid "Result"
-msgstr "结果"
+#: ../app/controllers/resources_controller.rb:132
+msgid "Successfully unmigrated the resource"
+msgstr "已成功取消迁移资源"
 
-#: ../app/assets/javascripts/dashboard.js:244
-msgid "Retrying every 15 seconds..."
-msgstr "每隔 15 秒重试一次..."
+#: ../app/controllers/resources_controller.rb:133
+msgid "Failed to unmigrate the resource: %{err}"
+msgstr "无法取消迁移资源：%{err}"
 
-#: ../app/helpers/crm_config_helper.rb:7
-#: ../app/helpers/form_helper.rb:11
-#: ../app/helpers/profile_helper.rb:18
-#: ../app/helpers/role_helper.rb:14
-#: ../app/helpers/user_helper.rb:14
-msgid "Revert"
-msgstr "还原"
+#: ../app/controllers/resources_controller.rb:139
+msgid "Successfully migrated the resource"
+msgstr "已成功迁移资源"
 
-#: ../app/assets/javascripts/module/tickets.js:223
-#: ../app/assets/javascripts/module/tickets.js:260
-msgid "Revoke"
-msgstr "撤消"
+#: ../app/controllers/resources_controller.rb:140
+msgid "Failed to migrate the resource: %{err}"
+msgstr "无法迁移资源：%{err}"
 
-#: ../app/assets/javascripts/module/tickets.js:149
-msgid "Revoked"
-msgstr "已撤消"
+#: ../app/controllers/resources_controller.rb:146
+msgid "Successfully cleaned the resource"
+msgstr "已成功清理资源"
 
-#: ../app/views/roles/_form.html.erb:22
-msgid "Right"
-msgstr "右"
+#: ../app/controllers/resources_controller.rb:147
+msgid "Failed to clean up the resource: %{err}"
+msgstr "无法清理资源：%{err}"
 
-#: ../app/assets/javascripts/module/location.js:41
-#: ../app/models/location.rb:248
-msgid "Role"
-msgstr "角色"
-
-#: ../app/assets/javascripts/module/roles.js:27
-#: ../app/views/roles/_form.html.erb:6
-#: ../app/views/roles/_form.html.erb:8
-msgid "Role ID"
-msgstr "角色 ID"
+#: ../app/controllers/roles_controller.rb:22
+#: ../app/controllers/roles_controller.rb:31
+#: ../app/views/roles/new.html.erb:4
+msgid "Create Role"
+msgstr "创建角色"
 
 #: ../app/controllers/roles_controller.rb:39
 msgid "Role created successfully"
 msgstr "已成功创建角色"
+
+#: ../app/controllers/roles_controller.rb:63
+#: ../app/views/roles/edit.html.erb:4
+msgid "Edit Role"
+msgstr "编辑角色"
+
+#: ../app/controllers/roles_controller.rb:74
+msgid "Role updated successfully"
+msgstr "已成功更新角色"
 
 #: ../app/controllers/roles_controller.rb:96
 #: ../app/controllers/roles_controller.rb:103
 msgid "Role deleted successfully"
 msgstr "已成功删除角色"
 
-#: ../app/controllers/roles_controller.rb:74
-msgid "Role updated successfully"
-msgstr "已成功更新角色"
+#: ../app/controllers/roles_controller.rb:131
+msgid "ACL is not supported by the cluster"
+msgstr "该群集不支持 ACL"
 
 #: ../app/controllers/roles_controller.rb:136
 #: ../app/views/roles/index.html.erb:4
-#: ../app/views/shared/_mainnav.html.erb:53
+#: ../app/views/shared/_mainnav.html.erb:51
 msgid "Roles"
 msgstr "角色"
 
-#: ../app/views/wizards/update.html.erb:79
-msgid "Root password"
-msgstr "Root 口令"
+#: ../app/controllers/roles_controller.rb:149
+msgid "The role does not exist"
+msgstr "该角色不存在"
 
-#: ../app/assets/javascripts/module/location.js:23
-#: ../app/views/roles/_form.html.erb:14
-msgid "Rule"
-msgstr "规则"
+#: ../app/controllers/roles_controller.rb:158
+#: ../app/controllers/users_controller.rb:160
+msgid ""
+"To enable ACLs, set \"enable-acl\" in the Cluster Configuration ('Manage > "
+"Configuration')"
+msgstr "要启用 ACL，请在“群集配置”（“管理”>“配置”）中设置“enable-acl”"
 
-#: ../app/models/cib.rb:1073
-msgid "STONITH is disabled. For normal cluster operation, STONITH is required."
-msgstr "STONITH 已禁用。要正常执行群集操作，需要启用 STONITH。"
+#: ../app/controllers/sessions_controller.rb:58 ../app/models/cib.rb:507
+#: ../lib/invoker.rb:88 ../lib/invoker.rb:151
+msgid "Permission denied for user %{user}"
+msgstr "用户 %{user} 的权限被拒"
 
-#: ../app/views/layouts/authentication.html.erb:29
-msgid "SUSE, LLC"
-msgstr "SUSE, LLC"
+#: ../app/controllers/sessions_controller.rb:60
+msgid "You have been logged out"
+msgstr "您已注销"
 
-#: ../app/assets/javascripts/module/reports.js:179
-msgid "Sa"
-msgstr "六"
-
-#: ../app/helpers/application_helper.rb:242
-msgid "Schema"
-msgstr "纲要"
-
-#: ../app/assets/javascripts/module/location.js:33
-#: ../app/models/colocation.rb:180
-#: ../app/models/location.rb:229
-#: ../app/views/colocations/_form.html.erb:12
-#: ../app/views/locations/_form.html.erb:32
-#: ../app/views/orders/_form.html.erb:12
-#: ../app/views/resources/show.html.erb:282
-msgid "Score"
-msgstr "分数"
-
-#: ../app/models/colocation.rb:10
-#: ../app/models/order.rb:10
-msgid "Score is required"
-msgstr "需要指定分数"
-
-#: ../app/assets/javascripts/module/resources.js:212
-msgid "Secondary"
-msgstr "次要"
-
-#: ../app/assets/javascripts/module/reports.js:190
-msgid "September"
-msgstr "九月"
-
-#: ../app/views/orders/_form.html.erb:29
-msgid "Serialize"
-msgstr "串行化"
-
-#: ../app/views/dashboards/add.html.erb:21
-msgid "Server port to connect to"
-msgstr "要连接的服务器端口"
-
-#: ../app/assets/javascripts/dashboard.js:237
-msgid "Server returned invalid data."
-msgstr "服务器返回的数据无效。"
-
-#: ../app/controllers/wizards_controller.rb:47
-msgid "Session has expired"
-msgstr "会话已失效"
-
-#: ../app/controllers/nodes_controller.rb:70
-msgid "Set the node state to maintenance"
-msgstr "将节点状态设置为维护"
-
-#: ../app/controllers/nodes_controller.rb:62
-msgid "Set the node state to online"
-msgstr "将节点状态设置为联机"
-
-#: ../app/controllers/nodes_controller.rb:74
-msgid "Set the node state to ready"
-msgstr "将节点状态设置为就绪"
-
-#: ../app/controllers/nodes_controller.rb:66
-msgid "Set the node state to standby"
-msgstr "将节点状态设置为待机"
-
-#: ../app/models/crm_config.rb:9
-#: ../app/models/template.rb:225
-msgid "Set to true if the resource agent supports the migrate action"
-msgstr "如果资源代理支持迁移操作，则设置为 true"
-
-#: ../app/views/agents/show.html.erb:35
-msgid "Shortdesc"
-msgstr "简要描述"
-
-#: ../app/models/clone.rb:108
-#: ../app/models/master.rb:107
-msgid "Should the copies be started in series (instead of in parallel)?"
-msgstr "副本是否应按序列（而非并行）启动？"
-
-#: ../app/assets/javascripts/module/reports.js:277
-#: ../app/assets/javascripts/module/reports.js:361
-#: ../app/views/configs/edit.html.erb:7
-#: ../app/views/configs/show.html.erb:9
-#: ../app/views/graphs/show.html.erb:7
-#: ../app/views/reports/display.html.erb:18
-#: ../app/views/shared/_simulator.html.erb:9
-msgid "Show"
-msgstr "显示"
-
-#: ../app/views/configs/show.html.erb:4
-msgid "Show Configuration"
-msgstr "显示配置"
-
-#: ../app/views/locations/_form.html.erb:16
-msgid "Simple"
-msgstr "简单"
+#: ../app/controllers/sessions_controller.rb:103
+msgid "Log In"
+msgstr "登录"
 
 #: ../app/controllers/simulator_controller.rb:163
 #: ../app/views/shared/_simulator.html.erb:48
 msgid "Simulator"
 msgstr "模拟器"
 
-#: ../app/controllers/tickets_controller.rb:201
-#: ../app/controllers/tickets_controller.rb:208
-#: ../app/models/ticket.rb:85
-#: ../app/models/ticket.rb:92
-msgid "Simulator active: Use the ticket controls in the simulator"
-msgstr "模拟器为活动状态：在模拟器中使用票据控制"
-
-#: ../app/views/tickets/show.html.erb:124
-msgid "Sites"
-msgstr "站点"
-
-#: ../app/helpers/colocation_helper.rb:9
-#: ../app/helpers/ticket_helper.rb:21
-msgid "Slave"
-msgstr "从"
-
-#: ../app/helpers/application_helper.rb:248
-msgid "Stack"
-msgstr "堆栈"
-
-#: ../app/models/template.rb:395
-msgid "Standard which the resource agent conforms to."
-msgstr "资源代理遵循的标准。"
-
-#: ../app/assets/javascripts/module/nodes.js:149
-msgid "Standby"
-msgstr "待机"
-
-#: ../app/assets/javascripts/module/resources.js:361
-#: ../app/helpers/order_helper.rb:7
-#: ../app/models/template.rb:412
-#: ../app/views/cib/show.html.erb:73
-msgid "Start"
-msgstr "起始"
-
-#: ../app/assets/javascripts/module/resources.js:206
-#: ../app/helpers/colocation_helper.rb:7
-#: ../app/helpers/ticket_helper.rb:19
-msgid "Started"
-msgstr "已启动"
-
-#: ../app/views/nodes/events.html.erb:32
-#: ../app/views/resources/events.html.erb:32
-#: ../app/views/shared/_simulator.html.erb:251
-#: ../app/views/tickets/show.html.erb:58
-msgid "State"
-msgstr "状态"
-
-#: ../app/assets/javascripts/module/nodes.js:43
-#: ../app/assets/javascripts/module/resources.js:190
-#: ../app/assets/javascripts/module/tickets.js:128
-#: ../app/controllers/cib_controller.rb:110
-#: ../app/helpers/application_helper.rb:238
-#: ../app/views/resources/show.html.erb:232
-#: ../app/views/shared/_mainnav.html.erb:9
-msgid "Status"
-msgstr "状态"
-
-#: ../app/assets/javascripts/module/resources.js:357
-#: ../app/helpers/order_helper.rb:10
-#: ../app/helpers/ticket_helper.rb:8
-#: ../app/models/template.rb:418
-#: ../app/views/cib/show.html.erb:76
-msgid "Stop"
-msgstr "停止"
-
-#: ../app/assets/javascripts/module/resources.js:215
-#: ../app/helpers/colocation_helper.rb:10
-#: ../app/helpers/ticket_helper.rb:22
-msgid "Stopped"
-msgstr "已停止"
-
-#: ../app/assets/javascripts/module/reports.js:173
-msgid "Su"
-msgstr "日"
-
-#: ../app/controllers/resources_controller.rb:146
-msgid "Successfully cleaned the resource"
-msgstr "已成功清理资源"
-
-#: ../app/controllers/resources_controller.rb:111
-msgid "Successfully demoted the resource"
-msgstr "已成功将资源降级"
-
-#: ../app/controllers/resources_controller.rb:125
-msgid "Successfully disabled maintenance mode for resource"
-msgstr "已成功对资源禁用维护模式"
-
-#: ../app/controllers/nodes_controller.rb:78
-msgid "Successfully fenced the node"
-msgstr "已成功屏蔽节点"
-
-#: ../app/controllers/tickets_controller.rb:151
-#: ../app/controllers/tickets_controller.rb:155
-msgid "Successfully granted the ticket"
-msgstr "已成功授予票据"
-
-#: ../app/controllers/resources_controller.rb:139
-msgid "Successfully migrated the resource"
-msgstr "已成功迁移资源"
-
-#: ../app/controllers/resources_controller.rb:104
-msgid "Successfully promoted the resource"
-msgstr "已成功将资源升级"
-
-#: ../app/controllers/constraints_controller.rb:69
-#: ../app/controllers/resources_controller.rb:165
-msgid "Successfully renamed %{A} to %{B}"
-msgstr "已成功将 %{A} 重命名为 %{B}"
-
-#: ../app/controllers/tickets_controller.rb:175
-#: ../app/controllers/tickets_controller.rb:181
-msgid "Successfully revoked the ticket"
-msgstr "已成功撤消票据"
-
-#: ../app/controllers/resources_controller.rb:118
-msgid "Successfully set the resource in maintenance mode"
-msgstr "已成功将资源设置为维护模式"
-
-#: ../app/controllers/resources_controller.rb:90
-msgid "Successfully started the resource"
-msgstr "已成功启动资源"
-
-#: ../app/controllers/resources_controller.rb:97
-msgid "Successfully stopped the resource"
-msgstr "已成功停止资源"
-
-#: ../app/controllers/resources_controller.rb:132
-msgid "Successfully unmigrated the resource"
-msgstr "已成功取消迁移资源"
-
-#: ../app/views/shared/_simulator.html.erb:52
-#: ../app/views/shared/_simulator.html.erb:135
-msgid "Summary"
-msgstr "小结"
-
-#: ../app/assets/javascripts/module/constraint.js:22
-msgid "Swap with entry above"
-msgstr "与上面的项交换"
-
-#: ../app/assets/javascripts/module/nodes.js:140
-msgid "Switch to maintenance"
-msgstr "切换为维护"
-
-#: ../app/assets/javascripts/module/nodes.js:180
-msgid "Switch to online"
-msgstr "切换为联机"
-
-#: ../app/assets/javascripts/module/nodes.js:127
-msgid "Switch to ready"
-msgstr "切换为就绪"
-
-#: ../app/assets/javascripts/module/nodes.js:193
-msgid "Switch to standby"
-msgstr "切换为待机"
-
-#: ../app/views/orders/_form.html.erb:38
-msgid "Symmetrical"
-msgstr "对称"
-
-#: ../app/assets/javascripts/module/resources.js:273
-#: ../app/assets/javascripts/module/resources.js:664
-#: ../app/views/resources/types.html.erb:51
-msgid "Tag"
-msgstr "标记"
-
-#: ../app/views/tags/_form.html.erb:6
-#: ../app/views/tags/_form.html.erb:10
-msgid "Tag ID"
-msgstr "标记 ID"
+#: ../app/controllers/tags_controller.rb:20
+#: ../app/controllers/tags_controller.rb:30 ../app/views/tags/new.html.erb:4
+msgid "Create Tag"
+msgstr "创建标记"
 
 #: ../app/controllers/tags_controller.rb:39
 msgid "Tag created successfully"
 msgstr "已成功创建标记"
+
+#: ../app/controllers/tags_controller.rb:57
+#: ../app/controllers/tags_controller.rb:66 ../app/views/tags/edit.html.erb:4
+msgid "Edit Tag"
+msgstr "编辑标记"
+
+#: ../app/controllers/tags_controller.rb:77
+msgid "Tag updated successfully"
+msgstr "已成功更新标记"
 
 #: ../app/controllers/tags_controller.rb:99
 #: ../app/controllers/tags_controller.rb:106
 msgid "Tag deleted successfully"
 msgstr "已成功删除标记"
 
-#: ../app/controllers/tags_controller.rb:77
-msgid "Tag updated successfully"
-msgstr "已成功更新标记"
-
 #: ../app/controllers/tags_controller.rb:133
-#: ../app/views/configs/edit.html.erb:35
-#: ../app/views/tags/index.html.erb:4
+#: ../app/views/configs/edit.html.erb:35 ../app/views/tags/index.html.erb:4
 msgid "Tags"
 msgstr "标记"
 
-#: ../app/views/users/_form.html.erb:6
-#: ../app/views/users/_form.html.erb:8
-msgid "Target ID"
-msgstr "目标 ID"
+#: ../app/controllers/tags_controller.rb:146
+msgid "The tag does not exist"
+msgstr "该标记不存在"
 
-#: ../app/views/shared/_mainnav.html.erb:56
-#: ../app/views/users/index.html.erb:4
-msgid "Targets"
-msgstr "目标"
-
-#: ../app/models/template.rb:388
-#: ../app/views/primitives/_form.html.erb:11
-#: ../app/views/primitives/_form.html.erb:22
-#: ../app/views/resources/types.html.erb:60
-msgid "Template"
-msgstr "模板"
+#: ../app/controllers/templates_controller.rb:23
+#: ../app/controllers/templates_controller.rb:31
+#: ../app/controllers/templates_controller.rb:64
+msgid "Create Template"
+msgstr "创建模板"
 
 #: ../app/controllers/templates_controller.rb:40
 msgid "Template created successfully"
 msgstr "已成功创建模板"
+
+#: ../app/controllers/templates_controller.rb:58
+#: ../app/controllers/templates_controller.rb:81
+msgid "Edit Template"
+msgstr "编辑模板"
+
+#: ../app/controllers/templates_controller.rb:92
+msgid "Template updated successfully"
+msgstr "已成功更新模板"
 
 #: ../app/controllers/templates_controller.rb:114
 #: ../app/controllers/templates_controller.rb:121
 msgid "Template deleted successfully"
 msgstr "已成功删除模板"
 
-#: ../app/controllers/templates_controller.rb:92
-msgid "Template updated successfully"
-msgstr "已成功更新模板"
+#: ../app/controllers/templates_controller.rb:149
+msgid "You have no template feature support"
+msgstr "您没有模板功能支持"
 
 #: ../app/controllers/templates_controller.rb:154
 msgid "Templates"
 msgstr "模板"
 
-#: ../app/assets/javascripts/module/reports.js:177
-msgid "Th"
-msgstr "四"
-
-#: ../app/controllers/users_controller.rb:151
-msgid "The ACL target does not exist"
-msgstr "该 ACL 目标不存在"
-
-#: ../app/models/clone.rb:136
-#: ../app/models/group.rb:89
-#: ../app/models/master.rb:133
-#: ../app/models/node.rb:114
-#: ../app/models/primitive.rb:75
-#: ../app/models/record.rb:285
-#: ../app/models/tag.rb:82
-#: ../app/models/template.rb:439
-msgid "The ID \"%{id}\" does not exist"
-msgstr "ID“%{id}”不存在"
-
-#: ../app/models/record.rb:268
-msgid "The ID \"%{id}\" is already in use"
-msgstr "ID“%{id}”已在使用"
-
-#: ../app/models/crm_config.rb:85
-#: ../app/models/template.rb:301
-msgid "The IP address or hostname to connect to if remote-node's name is not the hostname of the guest."
-msgstr "如果 remote-node 的名称不是 Guest 的主机名，需要连接的 IP 地址或主机名。"
-
-#: ../app/models/template.rb:359
-msgid "The action to take if this action ever fails."
-msgstr "一旦此操作失败，需要执行的操作。"
-
-#: ../app/controllers/clones_controller.rb:147
-msgid "The clone does not exist"
-msgstr "该克隆不存在"
-
-#: ../app/controllers/colocations_controller.rb:145
-msgid "The colocation constraint does not exist"
-msgstr "该共置约束不存在"
-
-#: ../app/controllers/groups_controller.rb:147
-msgid "The group does not exist"
-msgstr "该组不存在"
-
-#: ../app/controllers/locations_controller.rb:164
-msgid "The location constraint does not exist"
-msgstr "该位置约束不存在"
-
-#: ../app/controllers/masters_controller.rb:147
-msgid "The multi-state resource does not exist"
-msgstr "该多状态资源不存在"
-
-#: ../app/models/crm_config.rb:75
-#: ../app/models/template.rb:291
-msgid "The name of the remote-node this resource defines. This both enables the resource as a remote-node and defines the unique name used to identify the remote-node. If no other parameters are set, this value will also be assumed as the hostname to connect to at the port specified by remote-port. WARNING: This value cannot overlap with any resource or node IDs. If not specified, this feature is disabled."
-msgstr "此资源定义的 remote-node 的名称。这可以让资源作为 remote-node，同时又可定义用于标识该 remote-node 的唯一名称。如果未设置其他参数，此值还将用作通过 remote-port 指定的端口来连接的主机名。警告：此值不能与任何资源或节点 ID 重复。如果不指定此值，此功能将会禁用。"
-
-#: ../app/controllers/nodes_controller.rb:116
-msgid "The node does not exist"
-msgstr "该节点不存在"
-
-#: ../lib/invoker.rb:86
-msgid "The object/attribute does not exist (cibadmin %{cmd})"
-msgstr "对象/属性不存在 (cibadmin %{cmd})"
-
-#: ../app/controllers/orders_controller.rb:146
-msgid "The order constraint does not exist"
-msgstr "该顺序约束不存在"
-
-#: ../app/controllers/primitives_controller.rb:182
-msgid "The primitive does not exist"
-msgstr "该原始资源不存在"
-
-#: ../app/controllers/reports_controller.rb:276
-msgid "The report does not exist"
-msgstr "该报告不存在"
-
-#: ../app/controllers/roles_controller.rb:149
-msgid "The role does not exist"
-msgstr "该角色不存在"
-
-#: ../app/models/colocation.rb:181
-msgid "The score determines the location relationship between the resources."
-msgstr "该分数可以确定资源之间的位置关系。"
-
-#: ../app/controllers/tags_controller.rb:146
-msgid "The tag does not exist"
-msgstr "该标记不存在"
-
 #: ../app/controllers/templates_controller.rb:167
 msgid "The template does not exist"
 msgstr "该模板不存在"
 
-#: ../app/controllers/tickets_controller.rb:228
-msgid "The ticket constraint does not exist"
-msgstr "该票据约束不存在"
+#: ../app/controllers/tickets_controller.rb:33
+#: ../app/controllers/tickets_controller.rb:43
+#: ../app/views/tickets/new.html.erb:4
+msgid "Create Ticket"
+msgstr "创建票据"
 
-#: ../app/models/template.rb:346
-msgid "This option only makes sense for recurring operations. It restricts the operation to a specific role. The truely paranoid can even specify role=Stopped which allows the cluster to detect an admin that manually started cluster services."
-msgstr "此选项仅适用于重复操作。它将操作限定为针对特定角色执行。极度多疑的人甚至可以指定 role=Stopped 来允许群集检测手动停止了群集服务的管理员。"
-
-#: ../app/assets/javascripts/module/resources.js:794
-msgid "This will demote the tagged resources. Do you want to continue?"
-msgstr "这会降级标记的资源。要继续吗？"
-
-#: ../app/assets/javascripts/module/resources.js:800
-msgid "This will disable maintenance mode for the tagged resources. Do you want to continue?"
-msgstr "这会对标记的资源禁用维护模式。要继续吗？"
-
-#: ../app/assets/javascripts/module/resources.js:797
-msgid "This will enable maintenance mode for the tagged resources. Do you want to continue?"
-msgstr "这会对标记的资源启用维护模式。要继续吗？"
-
-#: ../app/assets/javascripts/module/resources.js:791
-msgid "This will promote the tagged resources. Do you want to continue?"
-msgstr "这会提升标记的资源。要继续吗？"
-
-#: ../app/assets/javascripts/module/resources.js:785
-msgid "This will start the tagged resources. Do you want to continue?"
-msgstr "这会启动标记的资源。要继续吗？"
-
-#: ../app/assets/javascripts/module/resources.js:788
-msgid "This will stop the tagged resources. Do you want to continue?"
-msgstr "这会停止标记的资源。要继续吗？"
-
-#: ../app/assets/javascripts/module/resources.js:808
-msgid "This will unmigrate the tagged resources. Do you want to continue?"
-msgstr "这会取消迁移标记的资源。要继续吗？"
-
-#: ../app/views/wizards/show.html.erb:87
-msgid "This wizard takes no parameters."
-msgstr "此向导未采用任何参数。"
-
-#: ../app/assets/javascripts/module/constraints.js:76
-#: ../app/assets/javascripts/module/tickets.js:33
-#: ../app/assets/javascripts/module/tickets.js:157
-#: ../app/views/constraints/types.html.erb:43
-#: ../app/views/shared/_simulator.html.erb:367
-msgid "Ticket"
-msgstr "票据"
-
-#: ../app/views/shared/_simulator.html.erb:87
-msgid "Ticket Event"
-msgstr "票据事件"
-
-#: ../app/views/tickets/_form.html.erb:10
-msgid "Ticket ID"
-msgstr "票据 ID"
-
-#: ../app/models/ticket.rb:22
-msgid "Ticket ID is required"
-msgstr "需要指定票据 ID"
+#: ../app/controllers/tickets_controller.rb:70
+#: ../app/controllers/tickets_controller.rb:79
+#: ../app/views/tickets/edit.html.erb:4
+msgid "Edit Ticket"
+msgstr "编辑票据"
 
 #: ../app/controllers/tickets_controller.rb:112
 #: ../app/controllers/tickets_controller.rb:119
 msgid "Ticket deleted successfully"
 msgstr "已成功删除票据"
 
-#: ../app/views/tickets/show.html.erb:5
-msgid "Ticket:"
-msgstr "票据："
+#: ../app/controllers/tickets_controller.rb:151
+#: ../app/controllers/tickets_controller.rb:155
+msgid "Successfully granted the ticket"
+msgstr "已成功授予票据"
+
+#: ../app/controllers/tickets_controller.rb:161
+#: ../app/controllers/tickets_controller.rb:165
+msgid "Error granting the ticket"
+msgstr "授予票据时出错"
+
+#: ../app/controllers/tickets_controller.rb:175
+#: ../app/controllers/tickets_controller.rb:181
+msgid "Successfully revoked the ticket"
+msgstr "已成功撤消票据"
+
+#: ../app/controllers/tickets_controller.rb:188
+#: ../app/controllers/tickets_controller.rb:192
+msgid "Error revoking the ticket"
+msgstr "撤消票据时出错"
+
+#: ../app/controllers/tickets_controller.rb:201
+#: ../app/controllers/tickets_controller.rb:208 ../app/models/ticket.rb:85
+#: ../app/models/ticket.rb:92
+msgid "Simulator active: Use the ticket controls in the simulator"
+msgstr "模拟器为活动状态：在模拟器中使用票据控制"
 
 #: ../app/controllers/tickets_controller.rb:215
-#: ../app/views/cib/show.html.erb:39
-#: ../app/views/tickets/index.html.erb:4
+#: ../app/views/cib/show.html.erb:33 ../app/views/tickets/index.html.erb:4
 msgid "Tickets"
 msgstr "票据"
 
-#: ../app/assets/javascripts/module/reports.js:417
-#: ../app/views/reports/display.html.erb:163
-msgid "Time"
-msgstr "时间"
+#: ../app/controllers/tickets_controller.rb:228
+msgid "The ticket constraint does not exist"
+msgstr "该票据约束不存在"
 
-#: ../app/views/agents/show.html.erb:83
-#: ../app/views/resources/show.html.erb:152
-msgid "Timeout"
-msgstr "超时"
+#: ../app/controllers/users_controller.rb:22
+#: ../app/controllers/users_controller.rb:31
+#: ../app/views/users/new.html.erb:4
+msgid "Create ACL Target"
+msgstr "创建 ACL 目标"
 
-#: ../app/views/constraints/rename.html.erb:21
-#: ../app/views/reports/display.html.erb:50
-#: ../app/views/reports/display.html.erb:63
-#: ../app/views/reports/display.html.erb:76
-#: ../app/views/reports/index.html.erb:25
-#: ../app/views/resources/rename.html.erb:21
-#: ../app/views/resources/show.html.erb:285
-msgid "To"
-msgstr "到"
+#: ../app/controllers/users_controller.rb:39
+msgid "ACL target created successfully"
+msgstr "已成功创建 ACL 目标"
 
-#: ../app/views/wizards/update.html.erb:74
-msgid "To apply the changes, Hawk requires root access, and password-less SSH access must be configured. See the Hawk documentation for more information."
-msgstr "要应用更改，Hawk 需要拥有 root 访问权，并且必须配置无口令 SSH 访问方式。有关详细信息，请参见 Hawk 的相关文档。"
+#: ../app/controllers/users_controller.rb:57
+#: ../app/controllers/users_controller.rb:65
+#: ../app/views/users/edit.html.erb:4
+msgid "Edit ACL Target"
+msgstr "编辑 ACL 目标"
 
-#: ../app/controllers/roles_controller.rb:158
-#: ../app/controllers/users_controller.rb:160
-msgid "To enable ACLs, set \"enable-acl\" in the Cluster Configuration ('Manage > Configuration')"
-msgstr "要启用 ACL，请在“群集配置”（“管理”>“配置”）中设置“enable-acl”"
+#: ../app/controllers/users_controller.rb:76
+msgid "ACL target updated successfully"
+msgstr "已成功更新 ACL 目标"
 
-#: ../app/views/shared/_simulator.html.erb:64
-msgid "Transition"
-msgstr "转换"
+#: ../app/controllers/users_controller.rb:98
+#: ../app/controllers/users_controller.rb:105
+msgid "ACL target deleted successfully"
+msgstr "已成功删除 ACL 目标"
 
-#: ../app/views/shared/_simulator.html.erb:211
-msgid "Transition (XML)"
-msgstr "转换 (XML)"
+#: ../app/controllers/users_controller.rb:133
+msgid "ACL is not supported by this cluster."
+msgstr "此群集不支持 ACL。"
 
-#: ../app/views/shared/_simulator.html.erb:61
-#: ../app/views/shared/_simulator.html.erb:192
-msgid "Transition Graph"
-msgstr "转换图"
+#: ../app/controllers/users_controller.rb:138
+msgid "ACL Targets"
+msgstr "ACL 目标"
 
-#: ../app/views/reports/display.html.erb:90
-#: ../app/views/reports/display.html.erb:104
-msgid "Transitions"
-msgstr "转换"
+#: ../app/controllers/users_controller.rb:151
+msgid "The ACL target does not exist"
+msgstr "该 ACL 目标不存在"
 
-#: ../app/assets/javascripts/module/reports.js:175
-msgid "Tu"
-msgstr "二"
-
-#: ../app/assets/javascripts/module/constraints.js:63
-#: ../app/assets/javascripts/module/resources.js:257
-#: ../app/assets/javascripts/module/resources.js:652
-#: ../app/models/template.rb:406
-#: ../app/views/primitives/_form.html.erb:15
-#: ../app/views/primitives/_form.html.erb:31
-#: ../app/views/resources/show.html.erb:279
-msgid "Type"
-msgstr "类型"
-
-#: ../app/controllers/application_controller.rb:165
-#: ../app/controllers/application_controller.rb:168
-msgid "Unable to create shadow CIB"
-msgstr "无法创建阴影 CIB"
-
-#: ../app/models/record.rb:279
-msgid "Unable to create: %{msg}"
-msgstr "无法创建：%{msg}"
-
-#: ../app/models/cib.rb:539
-msgid "Unable to execute %{cmd}"
-msgstr "无法执行 %{cmd}"
-
-#: ../app/models/cib.rb:527
-msgid "Unable to parse CIB file \"%{path}\""
-msgstr "无法分析 CIB 文件“%{path}”"
-
-#: ../app/assets/javascripts/dashboard.js:23
-msgid "Unexpected server error: _MSG_"
-msgstr "意外的服务器错误：_MSG_"
-
-#: ../app/helpers/agents_helper.rb:60
-msgid "Unique"
-msgstr "唯一"
-
-#: ../app/models/constraint.rb:49
-msgid "Unique identifier for the constraint. May not contain spaces."
-msgstr "约束的唯一标识符。不能包含空格。"
-
-#: ../app/models/node.rb:73
-msgid "Unique identifier for the node."
-msgstr "节点的唯一标识符。"
-
-#: ../app/models/resource.rb:125
-msgid "Unique identifier for the resource. May not contain spaces."
-msgstr "资源的唯一标识符。不能包含空格。"
-
-#: ../app/models/cib.rb:568
-#: ../app/models/cib.rb:569
-#: ../app/models/cib.rb:962
-#: ../app/models/cib.rb:1092
-#: ../app/models/cib.rb:1093
-msgid "Unknown"
-msgstr "未知"
-
-#: ../app/assets/javascripts/dashboard.js:241
-msgid "Unknown error connecting to server."
-msgstr "连接服务器时发生未知错误。"
-
-#: ../app/assets/javascripts/module/constraint.js:24
-msgid "Unlink from entry above"
-msgstr "与上面的项解除链接"
-
-#: ../app/assets/javascripts/module/resources.js:203
-msgid "Unmanaged"
-msgstr "不受管理"
-
-#: ../app/assets/javascripts/module/resources.js:382
-msgid "Unmigrate"
-msgstr "取消迁移"
-
-#: ../app/assets/javascripts/module/reports.js:170
-#: ../app/assets/javascripts/module/reports.js:294
-msgid "Until"
-msgstr "到"
-
-#: ../app/helpers/application_helper.rb:244
-msgid "Update Origin"
-msgstr "更新起源"
-
-#: ../app/helpers/application_helper.rb:245
-msgid "Update User"
-msgstr "更新用户"
-
-#: ../app/views/reports/index.html.erb:57
-msgid "Upload"
-msgstr "上载"
-
-#: ../app/controllers/reports_controller.rb:73
-msgid "Upload completed."
-msgstr "上载完成。"
-
-#: ../app/controllers/wizards_controller.rb:109
-msgid "Use a wizard"
-msgstr "使用向导"
-
-#: ../app/assets/javascripts/module/users.js:27
-msgid "User ID"
-msgstr "用户 ID"
-
-#: ../app/assets/javascripts/dashboard.js:437
-#: ../app/views/sessions/new.html.erb:2
-msgid "Username"
-msgstr "用户名"
-
-#: ../app/models/session.rb:26
-msgid "Username not specified"
-msgstr "未指定用户名"
-
-#: ../app/views/nodes/_form.html.erb:18
-#: ../app/views/nodes/show.html.erb:39
-#: ../app/views/primitives/_form.html.erb:86
-#: ../app/views/resources/show.html.erb:110
-msgid "Utilization"
-msgstr "利用率"
-
-#: ../app/models/location.rb:49
-msgid "Value contains both single and double quotes"
-msgstr "值同时包含单引号和双引号"
-
-#: ../app/models/template.rb:401
-msgid "Vendor or project which provided the resource agent."
-msgstr "提供了资源代理的供应商或项目。"
-
-#: ../app/views/wizards/show.html.erb:95
-msgid "Verify"
-msgstr "校验"
-
-#: ../app/views/wizards/update.html.erb:32
-msgid "Verify and apply"
-msgstr "校验并应用"
-
-#: ../app/views/wizards/create.html.erb:12
-msgid "Verifying parameters..."
-msgstr "正在校验参数..."
-
-#: ../app/helpers/application_helper.rb:247
-#: ../app/views/reports/display.html.erb:170
-msgid "Version"
-msgstr "版本"
-
-#: ../app/helpers/application_helper.rb:230
-msgid "Visit the Hawk website for information about the latest release."
-msgstr "访问 Hawk 网站以了解有关最新版本的信息。"
-
-#: ../app/assets/javascripts/module/reports.js:176
-msgid "We"
-msgstr "三"
-
-#: ../app/controllers/pages_controller.rb:11
-msgid "Welcome"
-msgstr "欢迎"
-
-#: ../app/views/dashboards/add.html.erb:19
-msgid "West Coast (example)"
-msgstr "West Coast（示例）"
-
-#: ../app/models/template.rb:330
-msgid "What conditions need to be satisfied before this action occurs."
-msgstr "需要满足什么条件，才会执行此操作。"
-
-#: ../app/models/crm_config.rb:39
-#: ../app/models/template.rb:255
-msgid "What should the cluster do if it ever finds the resource active on more than one node?"
-msgstr "如果群集发现资源在多个节点上都处于活动状态，应执行什么操作？"
-
-#: ../app/models/clone.rb:83
-#: ../app/models/crm_config.rb:55
-#: ../app/models/group.rb:78
-#: ../app/models/master.rb:82
-#: ../app/models/template.rb:271
-msgid "What state should the cluster attempt to keep this resource in?"
-msgstr "群集应尝试将此资源保持为什么状态？"
-
-#: ../app/models/clone.rb:98
-#: ../app/models/master.rb:97
-msgid "When stopping or starting a copy of the clone, tell all the other copies beforehand and when the action was successful."
-msgstr "停止或启动克隆副本时，事先告知所有其他副本以及操作成功的时间。"
+#: ../app/controllers/wizards_controller.rb:47
+msgid "Session has expired"
+msgstr "会话已失效"
 
 #: ../app/controllers/wizards_controller.rb:54
 msgid "Wizard cannot be applied when the simulator is active"
 msgstr "当模拟器处于活动状态时，无法应用向导"
 
-#: ../app/views/shared/_mainnav.html.erb:34
-#: ../app/views/wizards/index.html.erb:4
-msgid "Wizards"
-msgstr "向导"
+#: ../app/controllers/wizards_controller.rb:109
+msgid "Use a wizard"
+msgstr "使用向导"
+
+#: ../app/controllers/wizards_controller.rb:127
+#: ../app/controllers/wizards_controller.rb:132
+msgid "Permission denied - you do not have write access to the CIB."
+msgstr "权限被拒绝 - 您没有 CIB 的写入权限。"
+
+#: ../app/controllers/wizards_controller.rb:151
+#: ../app/controllers/wizards_controller.rb:156
+msgid "Cluster seems to be offline"
+msgstr "群集似乎已脱机"
+
+#: ../app/helpers/agents_helper.rb:59
+msgid "Required"
+msgstr "必需"
+
+#: ../app/helpers/agents_helper.rb:60
+msgid "Unique"
+msgstr "唯一"
+
+#: ../app/helpers/application_helper.rb:37
+msgid "Profile"
+msgstr "配置文件"
+
+#: ../app/helpers/application_helper.rb:247
+#: ../app/helpers/application_helper.rb:253
+msgid "File a Bug Report"
+msgstr "创建 Bug 报告"
+
+#: ../app/helpers/application_helper.rb:247
+#: ../app/helpers/application_helper.rb:253
+msgid "Report a bug or request a feature!"
+msgstr "报告 Bug 或请求某个功能！"
+
+#: ../app/helpers/application_helper.rb:248
+msgid "Release Notes"
+msgstr "发行说明"
+
+#: ../app/helpers/application_helper.rb:248
+msgid "Read the release notes for the SUSE High Availability Extension."
+msgstr "阅读 SUSE High Availability Extension 的发行说明。"
+
+#: ../app/helpers/application_helper.rb:249
+msgid "Read the most up-to-date documentation at the suse.com website."
+msgstr "阅读 suse.com 网站上的最新文档。"
+
+#: ../app/helpers/application_helper.rb:249
+#: ../app/helpers/application_helper.rb:255
+msgid "Online Documentation"
+msgstr "联机文档"
+
+#: ../app/helpers/application_helper.rb:254
+msgid "Visit the Hawk website for information about the latest release."
+msgstr "访问 Hawk 网站以了解有关最新版本的信息。"
+
+#: ../app/helpers/application_helper.rb:254
+msgid "News"
+msgstr "新闻"
+
+#: ../app/helpers/application_helper.rb:255
+msgid "Getting Started using Hawk"
+msgstr "开始使用 Hawk"
+
+#: ../app/helpers/application_helper.rb:263
+msgid "Epoch"
+msgstr "时期"
+
+#: ../app/helpers/application_helper.rb:263
+msgid "Current Configuration Version"
+msgstr "当前配置版本"
+
+#: ../app/helpers/application_helper.rb:264
+msgid "Host"
+msgstr "主机"
+
+#: ../app/helpers/application_helper.rb:265
+msgid "Designated Coordinator"
+msgstr "指定协调器"
+
+#: ../app/helpers/application_helper.rb:266
+msgid "Schema"
+msgstr "纲要"
+
+#: ../app/helpers/application_helper.rb:266
+msgid "CIB Schema Version"
+msgstr "CIB 纲要版本"
+
+#: ../app/helpers/application_helper.rb:267
+msgid "Last Written"
+msgstr "上次写入"
+
+#: ../app/helpers/application_helper.rb:268
+msgid "Update Origin"
+msgstr "更新起源"
+
+#: ../app/helpers/application_helper.rb:269
+msgid "Update User"
+msgstr "更新用户"
+
+#: ../app/helpers/application_helper.rb:270
+msgid "Have Quorum"
+msgstr "具有法定票数"
+
+#: ../app/helpers/application_helper.rb:271
+#: ../app/views/reports/display.html.erb:115
+msgid "Version"
+msgstr "版本"
+
+#: ../app/helpers/application_helper.rb:271
+msgid "Pacemaker Version"
+msgstr "Pacemaker 版本"
+
+#: ../app/helpers/application_helper.rb:272
+msgid "Cluster Communication Stack"
+msgstr "群集通讯堆栈"
+
+#: ../app/helpers/application_helper.rb:272
+msgid "Stack"
+msgstr "堆栈"
+
+#: ../app/helpers/application_helper.rb:284
+#: ../app/helpers/application_helper.rb:289
+#: ../app/views/configs/edit.html.erb:9 ../app/views/configs/show.html.erb:13
+#: ../app/views/graphs/show.html.erb:3
+#: ../app/views/reports/display.html.erb:149
+msgid "Graph"
+msgstr "示意图"
+
+#: ../app/helpers/colocation_helper.rb:8 ../app/helpers/ticket_helper.rb:20
+msgid "Master"
+msgstr "主"
+
+#: ../app/helpers/colocation_helper.rb:9 ../app/helpers/ticket_helper.rb:21
+msgid "Slave"
+msgstr "从"
+
+#: ../app/helpers/crm_config_helper.rb:7 ../app/helpers/form_helper.rb:11
+#: ../app/helpers/profile_helper.rb:18 ../app/helpers/role_helper.rb:14
+#: ../app/helpers/user_helper.rb:14
+msgid "Revert"
+msgstr "还原"
+
+#: ../app/helpers/rule_helper.rb:8
+msgid "Read"
+msgstr "读"
 
 #: ../app/helpers/rule_helper.rb:9
 msgid "Write"
 msgstr "写"
 
-#: ../app/views/configs/edit.html.erb:8
-#: ../app/views/configs/show.html.erb:11
-#: ../app/views/graphs/show.html.erb:8
-msgid "XML"
-msgstr "XML"
+#: ../app/helpers/rule_helper.rb:10
+msgid "Deny"
+msgstr "拒绝"
 
-#: ../app/views/roles/_form.html.erb:23
-msgid "XPath"
-msgstr "XPath"
+#: ../app/helpers/simulator_helper.rb:19 ../lib/cibtools.rb:105
+msgid "success"
+msgstr "成功"
 
-#: ../app/assets/javascripts/module/attrlist.js:23
-#: ../app/assets/javascripts/module/oplist.js:69
-#: ../app/assets/javascripts/module/wizattrlist.js:22
-#: ../app/helpers/form_helper.rb:6
-#: ../app/views/tickets/show.html.erb:30
-msgid "Yes"
-msgstr "是"
-
-#: ../app/controllers/sessions_controller.rb:52
-msgid "You have been logged out"
-msgstr "您已注销"
-
-#: ../app/controllers/templates_controller.rb:149
-msgid "You have no template feature support"
-msgstr "您没有模板功能支持"
-
-#: ../app/views/reports/display.html.erb:125
-msgid "Zoom in"
-msgstr "放大"
-
-#: ../app/views/reports/display.html.erb:128
-msgid "Zoom out"
-msgstr "缩小"
-
-#: ../app/assets/javascripts/dashboard.js:38
-msgid "_OP_ failed on _NODE_} (rc=_RC_, reason=_REASON_)"
-msgstr "在 _NODE_ 上执行_OP_失败}（rc=_RC_，原因=_REASON_）"
-
-#: ../app/helpers/simulator_helper.rb:25
-#: ../lib/cibtools.rb:117
-msgid "configuration error"
-msgstr "配置错误"
-
-#: ../app/helpers/simulator_helper.rb:28
-#: ../lib/cibtools.rb:123
-msgid "failed (master)"
-msgstr "失败（主资源）"
-
-#: ../app/helpers/simulator_helper.rb:20
-#: ../lib/cibtools.rb:107
+#: ../app/helpers/simulator_helper.rb:20 ../lib/cibtools.rb:107
 msgid "generic error"
 msgstr "一般错误"
 
-#: ../app/helpers/simulator_helper.rb:21
-#: ../lib/cibtools.rb:109
+#: ../app/helpers/simulator_helper.rb:21 ../lib/cibtools.rb:109
 msgid "incorrect arguments"
 msgstr "不正确的自变量"
 
-#: ../app/helpers/simulator_helper.rb:24
-#: ../lib/cibtools.rb:115
-msgid "installation error"
-msgstr "安装错误"
+#: ../app/helpers/simulator_helper.rb:22 ../lib/cibtools.rb:111
+msgid "unimplemented action"
+msgstr "未实施的操作"
 
-#: ../app/helpers/simulator_helper.rb:23
-#: ../lib/cibtools.rb:113
+#: ../app/helpers/simulator_helper.rb:23 ../lib/cibtools.rb:113
 msgid "insufficient permissions"
 msgstr "权限不足"
 
-#: ../app/models/profile.rb:31
+#: ../app/helpers/simulator_helper.rb:24 ../lib/cibtools.rb:115
+msgid "installation error"
+msgstr "安装错误"
+
+#: ../app/helpers/simulator_helper.rb:25 ../lib/cibtools.rb:117
+msgid "configuration error"
+msgstr "配置错误"
+
+#: ../app/helpers/simulator_helper.rb:26 ../lib/cibtools.rb:119
+msgid "not running"
+msgstr "未运行"
+
+#: ../app/helpers/simulator_helper.rb:27 ../lib/cibtools.rb:121
+msgid "running (master)"
+msgstr "正在运行（主资源）"
+
+#: ../app/helpers/simulator_helper.rb:28 ../lib/cibtools.rb:123
+msgid "failed (master)"
+msgstr "失败（主资源）"
+
+#: ../app/helpers/ticket_helper.rb:11
+msgid "Freeze"
+msgstr "冻结"
+
+#: ../app/helpers/wizard_helper.rb:92
+msgid "Legacy Wizards"
+msgstr "旧式向导"
+
+#: ../app/models/alert.rb:10
+msgid "Path is required"
+msgstr "需要指定路径"
+
+#: ../app/models/cib.rb:476
+msgid "CIB file \"%{path}\" not found"
+msgstr "找不到 CIB 文件“%{path}”"
+
+#: ../app/models/cib.rb:480
+msgid "Unable to parse CIB file \"%{path}\""
+msgstr "无法分析 CIB 文件“%{path}”"
+
+#: ../app/models/cib.rb:486
+msgid "Pacemaker does not appear to be installed (%{cmd} not found)"
+msgstr "似乎没有安装 Pacemaker（未找到 %{cmd}）"
+
+#: ../app/models/cib.rb:492
+msgid "Unable to execute %{cmd}"
+msgstr "无法执行 %{cmd}"
+
+#: ../app/models/cib.rb:501
+msgid "Error invoking %{cmd}"
+msgstr "调用 %{cmd} 时出错"
+
+#: ../app/models/cib.rb:511
+msgid "Error invoking %{cmd}: %{msg}"
+msgstr "调用 %{cmd} 时出错：%{msg}"
+
+#: ../app/models/cib.rb:521 ../app/models/cib.rb:522 ../app/models/cib.rb:970
+#: ../app/models/cib.rb:1101 ../app/models/cib.rb:1102
+msgid "Unknown"
+msgstr "未知"
+
+#: ../app/models/cib.rb:868
+msgid ""
+"%{fail_start}: Operation %{op} failed for resource %{resource} on node "
+"%{node}: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason="
+"%{exit_reason}"
+msgstr ""
+"%{fail_start}：对 %{node} 节点上的 %{resource} 资源执行 %{op} 操作失败：调用 "
+"ID=%{call_id}，RC 代码=%{rc_mapping} (%{rc_code})，退出原因=%{exit_reason}"
+
+#: ../app/models/cib.rb:961
+msgid "Partial upgrade detected! Nodes report different CRM versions: %s"
+msgstr "检测到部分升级！多个节点报告了不同的 CRM 版本：%s"
+
+#: ../app/models/cib.rb:1072
+msgid "Partition without quorum! Fencing and resource management is disabled."
+msgstr "分区没有仲裁！已禁用屏蔽和资源管理功能。"
+
+#: ../app/models/cib.rb:1078
+msgid "Node \"%{node}\" is UNCLEAN and needs to be fenced."
+msgstr "节点“%{node}”未清理，需要屏蔽。"
+
+#: ../app/models/cib.rb:1083
+msgid "STONITH is disabled. For normal cluster operation, STONITH is required."
+msgstr "STONITH 已禁用。要正常执行群集操作，需要启用 STONITH。"
+
+#: ../app/models/cib.rb:1210 ../app/models/cib.rb:1214
+msgid "DRBD disk %{d} is %{s} on %{n}"
+msgstr "DRBD 磁盘 %{d} 在 %{n} 上处于 %{s} 状态"
+
+#: ../app/models/cib.rb:1216
+msgid "DRBD connection for %{d} to %{n} is %{s}"
+msgstr "%{d} 到 %{n} 的 DRBD 连接 %{s}"
+
+#: ../app/models/clone.rb:10
+msgid "Clone ID is required"
+msgstr "需要指定克隆 ID"
+
+#: ../app/models/clone.rb:11
+msgid "Invalid Clone ID"
+msgstr "无效的克隆 ID"
+
+#: ../app/models/clone.rb:14
+msgid "No Clone child specified"
+msgstr "未指定克隆子项"
+
+#: ../app/models/clone.rb:67 ../app/models/crm_config.rb:14
+#: ../app/models/group.rb:63 ../app/models/master.rb:62
+#: ../app/models/template.rb:230
+msgid "Is the cluster allowed to start and stop the resource?"
+msgstr "是否允许群集启动和停止该资源？"
+
+#: ../app/models/clone.rb:72 ../app/models/crm_config.rb:19
+#: ../app/models/group.rb:68 ../app/models/master.rb:67
+#: ../app/models/template.rb:235
+msgid "Resources in maintenance mode are not monitored by the cluster."
+msgstr "群集不会监视处于维护模式的资源。"
+
+#: ../app/models/clone.rb:77 ../app/models/crm_config.rb:33
+#: ../app/models/group.rb:73 ../app/models/master.rb:72
+#: ../app/models/template.rb:249
+msgid ""
+"If not all resources can be active, the cluster will stop lower priority "
+"resources in order to keep higher priority ones active."
+msgstr ""
+"如果并非所有资源都可处于活动状态，群集将停止优先级较低的资源，以使优先级较高"
+"的资源保持为活动状态。"
+
+#: ../app/models/clone.rb:83 ../app/models/crm_config.rb:55
+#: ../app/models/group.rb:83 ../app/models/master.rb:82
+#: ../app/models/template.rb:271
+msgid "What state should the cluster attempt to keep this resource in?"
+msgstr "群集应尝试将此资源保持为什么状态？"
+
+#: ../app/models/clone.rb:88 ../app/models/master.rb:87
+msgid ""
+"How many copies of the resource to start. Defaults to the number of nodes in "
+"the cluster."
+msgstr "要启动的资源副本数。默认设为群集中的节点数。"
+
+#: ../app/models/clone.rb:93 ../app/models/master.rb:92
+msgid ""
+"How many copies of the resource can be started on a single node. Defaults to "
+"1."
+msgstr "单个节点上可以启动的资源副本数。默认设为 1。"
+
+#: ../app/models/clone.rb:98 ../app/models/master.rb:97
+msgid ""
+"When stopping or starting a copy of the clone, tell all the other copies "
+"beforehand and when the action was successful."
+msgstr "停止或启动克隆副本时，事先告知所有其他副本以及操作成功的时间。"
+
+#: ../app/models/clone.rb:103 ../app/models/master.rb:102
+msgid "Does each copy of the clone perform a different function?"
+msgstr "克隆的每个副本是否都执行不同的功能？"
+
+#: ../app/models/clone.rb:108 ../app/models/master.rb:107
+msgid "Should the copies be started in series (instead of in parallel)?"
+msgstr "副本是否应按序列（而非并行）启动？"
+
+#: ../app/models/clone.rb:113 ../app/models/master.rb:112
+msgid ""
+"Changes the behavior of ordering constraints (between clones/masters) so "
+"that instances can start/stop as soon as their peer instance has (rather "
+"than waiting for every instance of the other clone has)."
+msgstr ""
+"更改（克隆/主资源之间）顺序约束的行为，让实例在其对等实例启动/停止时立即启动/"
+"停止（而非等待其余克隆的每个实例都启动/停止）。"
+
+#: ../app/models/clone.rb:124 ../app/views/clones/_form.html.erb:7
+#: ../app/views/clones/_form.html.erb:10 ../app/views/masters/_form.html.erb:7
+#: ../app/views/masters/_form.html.erb:10
+msgid "Child Resource"
+msgstr "子资源"
+
+#: ../app/models/clone.rb:125
+msgid "Child resource to use as clone."
+msgstr "要用作克隆的子资源。"
+
+#: ../app/models/clone.rb:136 ../app/models/group.rb:94
+#: ../app/models/master.rb:133 ../app/models/node.rb:120
+#: ../app/models/primitive.rb:75 ../app/models/record.rb:286
+#: ../app/models/tag.rb:82 ../app/models/template.rb:439
+msgid "The ID \"%{id}\" does not exist"
+msgstr "ID“%{id}”不存在"
+
+#: ../app/models/colocation.rb:10 ../app/models/order.rb:10
+msgid "Score is required"
+msgstr "需要指定分数"
+
+#: ../app/models/colocation.rb:24 ../app/models/order.rb:25
+msgid "Invalid score value"
+msgstr "分数值无效"
+
+#: ../app/models/colocation.rb:30
+msgid "Invalid node attribute"
+msgstr "无效的节点属性"
+
+#: ../app/models/colocation.rb:35 ../app/models/order.rb:30
+msgid "Constraint must consist of at least two separate resources"
+msgstr "约束必须包含至少两个独立资源"
+
+#: ../app/models/colocation.rb:181
+msgid "The score determines the location relationship between the resources."
+msgstr "该分数可以确定资源之间的位置关系。"
+
+#: ../app/models/colocation.rb:186 ../app/views/colocations/_form.html.erb:52
+msgid "Node Attribute"
+msgstr "节点属性"
+
+#: ../app/models/colocation.rb:187
+msgid ""
+"Colocate resources by the given node attribute instead of by node name (the "
+"default)."
+msgstr "按给定节点属性而非节点名称（默认值）共置资源。"
+
+#: ../app/models/constraint.rb:37
+msgid "Not a constraint"
+msgstr "不是约束"
+
+#: ../app/models/constraint.rb:49
+msgid "Unique identifier for the constraint. May not contain spaces."
+msgstr "约束的唯一标识符。不能包含空格。"
+
+#: ../app/models/crm_config.rb:9 ../app/models/template.rb:225
+msgid "Set to true if the resource agent supports the migrate action"
+msgstr "如果资源代理支持迁移操作，则设置为 true"
+
+#: ../app/models/crm_config.rb:28 ../app/models/template.rb:244
+msgid ""
+"How many failures may occur for this resource on a node, before this node is "
+"marked ineligible to host this resource. A value of INFINITY indicates that "
+"this feature is disabled."
+msgstr ""
+"此资源在一个节点上失败多少次后，此节点才会标记为不符合托管此资源的要求。值"
+"为“无穷”表示此功能已禁用。"
+
+#: ../app/models/crm_config.rb:39 ../app/models/template.rb:255
+msgid ""
+"What should the cluster do if it ever finds the resource active on more than "
+"one node?"
+msgstr "如果群集发现资源在多个节点上都处于活动状态，应执行什么操作？"
+
+#: ../app/models/crm_config.rb:44 ../app/models/template.rb:260
+msgid ""
+"How many seconds to wait before acting as if the failure had not occurred, "
+"and potentially allowing the resource back to the node on which it failed. A "
+"value of 0 indicates that this feature is disabled."
+msgstr ""
+"等待多少秒钟后将故障视为未发生过，并潜在允许资源回到它之前失败的节点上。值为 "
+"0 表示此功能已禁用。"
+
+#: ../app/models/crm_config.rb:49 ../app/models/template.rb:265
+msgid "How much does the resource prefer to stay where it is?"
+msgstr "资源继续保留在所在位置的程度？"
+
+#: ../app/models/crm_config.rb:70 ../app/models/crm_config.rb:107
+#: ../app/models/template.rb:286
+msgid "Conditions under which the resource can be started."
+msgstr "可以启动资源的条件。"
+
+#: ../app/models/crm_config.rb:75 ../app/models/template.rb:291
+msgid ""
+"The name of the remote-node this resource defines. This both enables the "
+"resource as a remote-node and defines the unique name used to identify the "
+"remote-node. If no other parameters are set, this value will also be assumed "
+"as the hostname to connect to at the port specified by remote-port. WARNING: "
+"This value cannot overlap with any resource or node IDs. If not specified, "
+"this feature is disabled."
+msgstr ""
+"此资源定义的 remote-node 的名称。这可以让资源作为 remote-node，同时又可定义用"
+"于标识该 remote-node 的唯一名称。如果未设置其他参数，此值还将用作通过 remote-"
+"port 指定的端口来连接的主机名。警告：此值不能与任何资源或节点 ID 重复。如果不"
+"指定此值，此功能将会禁用。"
+
+#: ../app/models/crm_config.rb:80 ../app/models/template.rb:296
+msgid "Port to use for the guest connection to pacemaker_remote."
+msgstr "Guest 用于连接 pacemaker_remote 的端口。"
+
+#: ../app/models/crm_config.rb:85 ../app/models/template.rb:301
+msgid ""
+"The IP address or hostname to connect to if remote-node's name is not the "
+"hostname of the guest."
+msgstr ""
+"如果 remote-node 的名称不是 Guest 的主机名，需要连接的 IP 地址或主机名。"
+
+#: ../app/models/crm_config.rb:90 ../app/models/template.rb:306
+msgid "How long before a pending guest connection will time out."
+msgstr "等待中的 Guest 连接经过多长时间后将会超时。"
+
+#: ../app/models/group.rb:14
+msgid "Group cannot be empty, expected at least one child"
+msgstr "组不能为空，至少需有一个子项"
+
+#: ../app/models/location.rb:10
+msgid "No resource specified"
+msgstr "未指定资源"
+
+#: ../app/models/location.rb:13
+msgid "No rules specified"
+msgstr "未指定规则"
+
+#: ../app/models/location.rb:18
+msgid "Invalid resource discovery type"
+msgstr "无效的资源发现类型"
+
+#: ../app/models/location.rb:23
+msgid "Constraint is too complex - it contains nested rules"
+msgstr "约束过于复杂 - 它包含嵌套规则"
+
+#: ../app/models/location.rb:33
+msgid "Invalid score \"%{score}\""
+msgstr "分数“%{score}”无效"
+
+#: ../app/models/location.rb:43
+msgid "No expressions specified"
+msgstr "未指定表达式"
+
+#: ../app/models/location.rb:48
+msgid "Attribute contains both single and double quotes"
+msgstr "属性同时包含单引号和双引号"
+
+#: ../app/models/location.rb:49
+msgid "Value contains both single and double quotes"
+msgstr "值同时包含单引号和双引号"
+
+#: ../app/models/location.rb:224
+msgid "Resources to apply the constraint to."
+msgstr "要对其应用约束的资源。"
+
+#: ../app/models/location.rb:230
+msgid ""
+"Positive values indicate the resources should run on this node. Negative "
+"values indicate the resources should not run on this node. Values of +/- "
+"INFINITY change \"should\"/\"should not\" to \"must\"/\"must not\"."
+msgstr ""
+"正数值表示资源应在此节点上运行。负数值表示资源不应在此节点上运行。值为 +/- "
+"INFINITY 将“应”/“不应”变为“必须”/“不得”。"
+
+#: ../app/models/location.rb:236
+msgid "Name of a node in the cluster."
+msgstr "群集中节点的名称。"
+
+#: ../app/models/location.rb:243 ../app/views/locations/_form.html.erb:77
+msgid "Resource Discovery"
+msgstr "资源发现"
+
+#: ../app/models/location.rb:244
+msgid ""
+"Controls resource discovery for the specified resource on nodes covered by "
+"the constraint. always: Always perform resource discovery (default). never: "
+"Never perform resource discovery for the specified resource on this node. "
+"This option should generally be used with a -INFINITY score. exclusive: Only "
+"perform resource discovery for the specified resource on this node."
+msgstr ""
+"控制对约束所涵盖节点上的指定资源的资源发现。始终：始终执行资源发现（默认"
+"值）。从不：从不对此节点上的指定资源执行资源发现。此选项一般应与 -INFINITY 分"
+"数搭配使用。排它：仅对此节点上的指定资源执行资源发现。"
+
+#: ../app/models/location.rb:249
+msgid ""
+"Limits the rule to apply only when the resource is in the specified role."
+msgstr "限制规则仅在资源属于指定角色时适用。"
+
+#: ../app/models/location.rb:254
+msgid "Operator"
+msgstr "运算符"
+
+#: ../app/models/location.rb:255
+msgid ""
+"How to combine the result of multiple expression objects. Allowed values are "
+"and and or."
+msgstr "如何合并多个表达式对象的结果。允许的值为 AND 和 OR。"
+
+#: ../app/models/location.rb:260
+msgid "Expression"
+msgstr "表达式"
+
+#: ../app/models/location.rb:261
+msgid ""
+"Each rule can contain a number of expressions. The results of the "
+"expressions are combined based on the rule's boolean operator."
+msgstr "每个规则可以包含多个表达式。表达式的结果根据规则的布尔运算符合并。"
+
+#: ../app/models/master.rb:9
+msgid "No Multi-state child specified"
+msgstr "未指定多状态子项"
+
+#: ../app/models/master.rb:117
+msgid "How many copies of the resource can be promoted to master status."
+msgstr "该资源的多少副本可以升级为主资源状态。"
+
+#: ../app/models/master.rb:122
+msgid ""
+"How many copies of the resource can be promoted to master status on a single "
+"node."
+msgstr "在单个节点上，该资源的多少副本可以升级为主资源状态。"
+
+#: ../app/models/node.rb:25
+msgid "Node ID is required"
+msgstr "需要指定节点 ID"
+
+#: ../app/models/node.rb:26
+msgid "Invalid Node ID"
+msgstr "无效的节点 ID"
+
+#: ../app/models/node.rb:29
+msgid "Name is required"
+msgstr "需要指定名称"
+
+#: ../app/models/node.rb:30
+msgid "Invalid name"
+msgstr "无效的名称"
+
+#: ../app/models/node.rb:34
+msgid "No utilization value set!"
+msgstr "未设置利用率值！"
+
+#: ../app/models/node.rb:78
+msgid "Node ID"
+msgstr "节点 ID"
+
+#: ../app/models/node.rb:79
+msgid "Unique identifier for the node."
+msgstr "节点的唯一标识符。"
+
+#: ../app/models/node.rb:84
+msgid "Node Name"
+msgstr "节点名称"
+
+#: ../app/models/node.rb:85
+msgid "Name used to refer to the node in the cluster."
+msgstr "用来指代群集中的节点的名称。"
+
+#: ../app/models/node.rb:97
+msgid ""
+"Puts the node into standby mode. The specified node is no longer able to "
+"host resources. Any resources currently active on the node will be moved to "
+"another node."
+msgstr ""
+"将节点置于待机模式。指定节点不再可托管资源。节点上当前处于活动状态的任何资源"
+"都将移动到另一节点。"
+
+#: ../app/models/profile.rb:41
 msgid "is required"
 msgstr "需要指定"
 
-#: ../app/controllers/reports_controller.rb:388
-msgid "must be a valid datetime"
-msgstr "必须为有效的日期时间"
+#: ../app/models/recipient.rb:13 ../app/models/record.rb:10
+msgid "ID is required"
+msgstr "需要 ID"
+
+#: ../app/models/recipient.rb:16
+msgid "Recipient path is required"
+msgstr "需要指定接收人路径"
+
+#: ../app/models/record.rb:28
+msgid "Object not found: %s=%s"
+msgstr "找不到对象：%s=%s"
+
+#: ../app/models/record.rb:269
+msgid "The ID \"%{id}\" is already in use"
+msgstr "ID“%{id}”已在使用"
+
+#: ../app/models/record.rb:280
+msgid "Unable to create: %{msg}"
+msgstr "无法创建：%{msg}"
+
+#: ../app/models/record.rb:296
+msgid "Error updating %{id} (rc=%{rc})"
+msgstr "上载 %{id} 时出错 (rc=%{rc})"
+
+#: ../app/models/report.rb:103 ../app/models/report.rb:132
+#: ../app/models/report.rb:179
+msgid "No details available"
+msgstr "无可用的细节"
+
+#: ../app/models/report.rb:104 ../app/models/report.rb:133
+msgid "Error:"
+msgstr "错误："
 
 #: ../app/models/report.rb:287
 msgid "must have correct MIME type (was %s)"
@@ -3207,30 +2476,922 @@ msgstr "必须具有正确的 MIME 类型（之前为 %s）"
 msgid "must have correct file extension"
 msgstr "必须具有正确的文件扩展名"
 
+#: ../app/models/resource.rb:116
+msgid "Not a resource"
+msgstr "不是资源"
+
+#: ../app/models/resource.rb:128
+msgid "Unique identifier for the resource. May not contain spaces."
+msgstr "资源的唯一标识符。不能包含空格。"
+
+#: ../app/models/role.rb:8
+msgid "At least one rule is required"
+msgstr "至少需要指定一个规则"
+
+#: ../app/models/session.rb:10
+msgid "Invalid username"
+msgstr "无效用户名"
+
+#: ../app/models/session.rb:16
+msgid "%s is not installed"
+msgstr "%s 未安装"
+
+#: ../app/models/session.rb:21
+msgid "%s is not executable"
+msgstr "%s 不是可执行文件"
+
+#: ../app/models/session.rb:26
+msgid "Username not specified"
+msgstr "未指定用户名"
+
+#: ../app/models/session.rb:31
+msgid "Password not specified"
+msgstr "未指定口令"
+
+#: ../app/models/session.rb:42
+msgid "Invalid username or password"
+msgstr "用户名或口令无效"
+
+#: ../app/models/tag.rb:9
+msgid "No Tag resources specified"
+msgstr "未指定标记资源"
+
+#: ../app/models/template.rb:314
+msgid "How frequently (in seconds) to perform the operation."
+msgstr "执行该操作的频率（秒）。"
+
+#: ../app/models/template.rb:320
+msgid "How long to wait before declaring the action has failed."
+msgstr "等待多长时间后声明该操作失败。"
+
+#: ../app/models/template.rb:330
+msgid "What conditions need to be satisfied before this action occurs."
+msgstr "需要满足什么条件，才会执行此操作。"
+
+#: ../app/models/template.rb:335
+msgid "If false, the operation is treated as if it does not exist."
+msgstr "如果为 false，会将该操作视为不存在。"
+
+#: ../app/models/template.rb:346
+msgid ""
+"This option only makes sense for recurring operations. It restricts the "
+"operation to a specific role. The truely paranoid can even specify "
+"role=Stopped which allows the cluster to detect an admin that manually "
+"started cluster services."
+msgstr ""
+"此选项仅适用于重复操作。它将操作限定为针对特定角色执行。极度多疑的人甚至可以"
+"指定 role=Stopped 来允许群集检测手动停止了群集服务的管理员。"
+
+#: ../app/models/template.rb:359
+msgid "The action to take if this action ever fails."
+msgstr "一旦此操作失败，需要执行的操作。"
+
+#: ../app/models/template.rb:372
+msgid ""
+"If true, the intention to perform the operation is recorded so that GUIs and "
+"CLI tools can indicate that an operation is in progress."
+msgstr ""
+"如果为 true，则记录执行该操作的目的，以便 GUI 和 CLI 工具可以指出某项操作是否"
+"正在进行。"
+
+#: ../app/models/template.rb:388 ../app/views/primitives/_form.html.erb:11
+#: ../app/views/primitives/_form.html.erb:22
+#: ../app/views/resources/types.html.erb:60
+msgid "Template"
+msgstr "模板"
+
+#: ../app/models/template.rb:389
+msgid "Resource template to inherit from."
+msgstr "要继承的资源模板。"
+
+#: ../app/models/template.rb:394 ../app/views/primitives/_form.html.erb:13
+#: ../app/views/primitives/_form.html.erb:25
+msgid "Class"
+msgstr "类"
+
+#: ../app/models/template.rb:395
+msgid "Standard which the resource agent conforms to."
+msgstr "资源代理遵循的标准。"
+
+#: ../app/models/template.rb:400 ../app/views/primitives/_form.html.erb:14
+#: ../app/views/primitives/_form.html.erb:29
+msgid "Provider"
+msgstr "提供程序"
+
+#: ../app/models/template.rb:401
+msgid "Vendor or project which provided the resource agent."
+msgstr "提供了资源代理的供应商或项目。"
+
+#: ../app/models/template.rb:407
+msgid "Resource agent name."
+msgstr "资源代理名称。"
+
+#: ../app/models/template.rb:413 ../app/models/template.rb:419
+msgid ""
+"After the specified timeout period, the operation will be treated as failed."
+msgstr "经过指定的超时时间段后，该操作将视为失败。"
+
+#: ../app/models/template.rb:424
+msgid "Monitor"
+msgstr "显示器"
+
+#: ../app/models/template.rb:425
+msgid ""
+"Define a monitor operation to instruct the cluster to ensure that the "
+"resource is still healthy."
+msgstr "定义监视操作，以指示群集确保资源仍处于正常状态。"
+
+#: ../app/models/ticket.rb:18
+msgid "Constraint ID is required"
+msgstr "需要指定约束 ID"
+
+#: ../app/models/ticket.rb:19
+msgid "Invalid Constraint ID"
+msgstr "无效的约束 ID"
+
+#: ../app/models/ticket.rb:22
+msgid "Ticket ID is required"
+msgstr "需要指定票据 ID"
+
+#: ../app/models/ticket.rb:23
+msgid "Invalid Ticket ID"
+msgstr "票据 ID 无效"
+
+#: ../app/models/ticket.rb:27
+msgid "Constraint must consist of at least one separate resources"
+msgstr "约束必须至少包含一个独立资源"
+
+#: ../app/models/user.rb:10
+msgid "ACL target ID is required"
+msgstr "需要指定 ACL 目标 ID"
+
+#: ../app/models/user.rb:11
+msgid "Invalid ACL target ID"
+msgstr "无效的 ACL 目标 ID"
+
+#: ../app/models/user.rb:13
+msgid "At least one role is required"
+msgstr "至少需要指定一个角色"
+
+#: ../app/models/wizard.rb:150
+msgid "Requested wizard does not exist"
+msgstr "请求的向导不存在"
+
+#: ../app/views/agents/show.html.erb:20
+#: ../app/views/primitives/_form.html.erb:66
+#: ../app/views/resources/show.html.erb:54
+msgid "Parameters"
+msgstr "参数"
+
+#: ../app/views/agents/show.html.erb:35
+msgid "Shortdesc"
+msgstr "简要描述"
+
+#: ../app/views/agents/show.html.erb:38
+msgid "Longdesc"
+msgstr "完整描述"
+
+#: ../app/views/agents/show.html.erb:41
+msgid "Options"
+msgstr "选项"
+
+#: ../app/views/agents/show.html.erb:68
+msgid "Actions"
+msgstr "操作"
+
+#: ../app/views/agents/show.html.erb:83
+#: ../app/views/resources/show.html.erb:152
+msgid "Timeout"
+msgstr "超时"
+
+#: ../app/views/agents/show.html.erb:86
+#: ../app/views/resources/show.html.erb:155
+msgid "Interval"
+msgstr "间隔"
+
+#: ../app/views/agents/show.html.erb:89
+msgid "Depth"
+msgstr "深度"
+
+#: ../app/views/alerts/_form.html.erb:6 ../app/views/alerts/_form.html.erb:8
+msgid "Alert ID"
+msgstr "警报 ID"
+
+#: ../app/views/alerts/_form.html.erb:10
+msgid "Path"
+msgstr "路径"
+
+#: ../app/views/alerts/_form.html.erb:14
+msgid "Recipients"
+msgstr "接收人"
+
+#: ../app/views/alerts/_form.html.erb:45 ../app/views/alerts/_form.html.erb:49
+#: ../app/views/clones/_form.html.erb:24 ../app/views/clones/_form.html.erb:28
+#: ../app/views/colocations/_form.html.erb:58
+#: ../app/views/colocations/_form.html.erb:62
+#: ../app/views/fencing/edit.html.erb:75 ../app/views/groups/_form.html.erb:59
+#: ../app/views/groups/_form.html.erb:63
+#: ../app/views/locations/_form.html.erb:89
+#: ../app/views/locations/_form.html.erb:93
+#: ../app/views/masters/_form.html.erb:24
+#: ../app/views/masters/_form.html.erb:28 ../app/views/nodes/_form.html.erb:28
+#: ../app/views/orders/_form.html.erb:51 ../app/views/orders/_form.html.erb:55
+#: ../app/views/primitives/_form.html.erb:51
+#: ../app/views/primitives/_form.html.erb:55
+#: ../app/views/roles/_form.html.erb:39 ../app/views/tags/_form.html.erb:38
+#: ../app/views/tags/_form.html.erb:42 ../app/views/tickets/_form.html.erb:24
+#: ../app/views/tickets/_form.html.erb:28 ../app/views/users/_form.html.erb:18
+#: ../app/views/wizards/create.html.erb:16
+#: ../app/views/wizards/show.html.erb:93
+#: ../app/views/wizards/update.html.erb:83
+msgid "Back"
+msgstr "后退"
+
+#: ../app/views/alerts/edit.html.erb:9 ../app/views/clones/edit.html.erb:9
+#: ../app/views/colocations/edit.html.erb:9
+#: ../app/views/groups/edit.html.erb:9 ../app/views/locations/edit.html.erb:9
+#: ../app/views/masters/edit.html.erb:9 ../app/views/orders/edit.html.erb:9
+#: ../app/views/primitives/edit.html.erb:9
+#: ../app/views/reports/display.html.erb:26 ../app/views/roles/edit.html.erb:7
+#: ../app/views/tags/edit.html.erb:9 ../app/views/tickets/edit.html.erb:9
+#: ../app/views/users/edit.html.erb:7
+msgid "Are you sure you wish to delete %s?"
+msgstr "确实要删除 %s 吗？"
+
+#: ../app/views/cib/apply.html.erb:5
+msgid "Apply Configuration"
+msgstr "应用配置"
+
+#: ../app/views/cib/apply.html.erb:17
+#: ../app/views/shared/_simulator.html.erb:119
+msgid "Calculating list of changes..."
+msgstr "正在计算更改列表..."
+
+#: ../app/views/cib/show.html.erb:9
+msgid "Errors"
+msgstr "错误"
+
+#: ../app/views/colocations/_form.html.erb:23
+#: ../app/views/locations/_form.html.erb:43
+msgid "Always"
+msgstr "始终"
+
+#: ../app/views/colocations/_form.html.erb:26
+#: ../app/views/locations/_form.html.erb:46
+msgid "Never"
+msgstr "不启动"
+
+#: ../app/views/colocations/_form.html.erb:46
+#: ../app/views/locations/_form.html.erb:21
+#: ../app/views/wizards/show.html.erb:50
+#: ../app/views/wizards/show.html.erb:72
+msgid "Advanced"
+msgstr "高级"
+
+#: ../app/views/commands/index.html.erb:13
+msgid "Lists crm commands recently executed by hawk, most recent first."
+msgstr "列出 hawk 最近执行的 crm 命令，最近的列在最前面。"
+
+#: ../app/views/configs/edit.html.erb:4
+#: ../app/views/shared/_mainnav.html.erb:36
+msgid "Edit Configuration"
+msgstr "编辑配置"
+
+#: ../app/views/configs/edit.html.erb:8 ../app/views/configs/show.html.erb:11
+#: ../app/views/graphs/show.html.erb:8
+msgid "XML"
+msgstr "XML"
+
+#: ../app/views/configs/edit.html.erb:45
+msgid "Fencing"
+msgstr "屏蔽"
+
+#: ../app/views/configs/meta.html.erb:11
+#: ../app/views/layouts/application.html.erb:15
+#: ../app/views/layouts/withrightbar.html.erb:14
+msgid "Cluster Details"
+msgstr "群集细节"
+
+#: ../app/views/configs/meta.html.erb:17
+#: ../app/views/shared/_simulator.html.erb:4
+msgid "Batch Mode Active"
+msgstr "批模式活动"
+
+#: ../app/views/configs/show.html.erb:4
+msgid "Show Configuration"
+msgstr "显示配置"
+
+#: ../app/views/constraints/rename.html.erb:5
+msgid "Rename Constraint"
+msgstr "重命名约束"
+
+#: ../app/views/constraints/show.html.erb:5
+msgid "Constraint:"
+msgstr "约束："
+
+#: ../app/views/constraints/types.html.erb:4
+#: ../app/views/shared/_mainnav.html.erb:30
+msgid "Add Constraint"
+msgstr "添加约束"
+
+#: ../app/views/constraints/types.html.erb:7
+#: ../app/views/resources/types.html.erb:7
+msgid "List"
+msgstr "列表"
+
+#: ../app/views/crm_config/edit.html.erb:13
+msgid "Resource Defaults"
+msgstr "资源默认值"
+
+#: ../app/views/crm_config/edit.html.erb:22
+msgid "Operation Defaults"
+msgstr "操作默认值"
+
+#: ../app/views/dashboards/add.html.erb:13
+#: ../app/views/dashboards/show.html.erb:12
+msgid "Add Cluster"
+msgstr "添加群集"
+
+#: ../app/views/dashboards/add.html.erb:19
+msgid "West Coast (example)"
+msgstr "West Coast（示例）"
+
+#: ../app/views/dashboards/add.html.erb:19
+msgid "Cluster name"
+msgstr "群集名称"
+
+#: ../app/views/dashboards/add.html.erb:20
+msgid "Hostname of node in cluster"
+msgstr "群集中节点的主机名"
+
 #: ../app/views/dashboards/add.html.erb:20
 msgid "node1.west.example.com"
 msgstr "node1.west.example.com"
 
-#: ../app/helpers/simulator_helper.rb:26
-#: ../lib/cibtools.rb:119
-msgid "not running"
-msgstr "未运行"
+#: ../app/views/dashboards/add.html.erb:21
+msgid "Server port to connect to"
+msgstr "要连接的服务器端口"
+
+#: ../app/views/fencing/_table.html.erb:3
+#: ../app/views/fencing/edit.html.erb:22
+msgid "Target"
+msgstr "目标"
+
+#: ../app/views/fencing/_table.html.erb:4
+#: ../app/views/fencing/edit.html.erb:46
+msgid "Index"
+msgstr "索引"
+
+#: ../app/views/fencing/_table.html.erb:5
+#: ../app/views/fencing/edit.html.erb:52
+msgid "Devices"
+msgstr "设备"
+
+#: ../app/views/fencing/edit.html.erb:39
+msgid "Value"
+msgstr "值"
+
+#: ../app/views/fencing/edit.html.erb:66
+msgid "Add Level"
+msgstr "添加级别"
+
+#: ../app/views/groups/_form.html.erb:22
+msgid "No children available"
+msgstr "没有可用子项"
+
+#: ../app/views/layouts/authentication.html.erb:50
+msgid ""
+"Hawk simplifies the management and configuration of High Availability "
+"clusters, making it easy to eliminate downtime and maximizing service "
+"availability."
+msgstr ""
+"Hawk 简化了高可用性群集的管理和配置，让用户可轻松减少停机并最大限度提升服务可"
+"用性。"
+
+#: ../app/views/layouts/authentication.html.erb:54
+msgid "Sign in"
+msgstr "登录"
+
+#: ../app/views/layouts/authentication.html.erb:74
+msgid "SUSE, LLC"
+msgstr "SUSE, LLC"
+
+#: ../app/views/locations/_form.html.erb:16
+msgid "Simple"
+msgstr "简单"
+
+#: ../app/views/locations/_form.html.erb:49
+msgid "Advisory"
+msgstr "建议"
+
+#: ../app/views/locations/edit.html.erb:4
+msgid "Edit Location"
+msgstr "编辑位置"
+
+#: ../app/views/locations/index.html.erb:4
+msgid "Locations"
+msgstr "位置"
+
+#: ../app/views/locations/new.html.erb:4
+msgid "Create Location"
+msgstr "创建位置"
+
+#: ../app/views/masters/edit.html.erb:4
+msgid "Edit Multi-state"
+msgstr "编辑多状态"
+
+#: ../app/views/masters/index.html.erb:4
+msgid "Multi-state Resources"
+msgstr "多状态资源"
+
+#: ../app/views/masters/new.html.erb:4
+msgid "Create Multi-state"
+msgstr "创建多状态"
+
+#: ../app/views/nodes/_form.html.erb:9 ../app/views/nodes/show.html.erb:71
+msgid "Attributes"
+msgstr "属性"
+
+#: ../app/views/nodes/_form.html.erb:18 ../app/views/nodes/show.html.erb:39
+#: ../app/views/primitives/_form.html.erb:92
+#: ../app/views/resources/show.html.erb:110
+msgid "Utilization"
+msgstr "利用率"
+
+#: ../app/views/nodes/edit.html.erb:4
+msgid "Edit Node"
+msgstr "编辑节点"
+
+#: ../app/views/nodes/events.html.erb:12
+#: ../app/views/resources/events.html.erb:12
+msgid "Recent events: %{name}"
+msgstr "最近的事件：%{name}"
+
+#: ../app/views/nodes/events.html.erb:20
+#: ../app/views/resources/events.html.erb:20
+msgid "RC"
+msgstr "RC"
+
+#: ../app/views/nodes/events.html.erb:23
+#: ../app/views/shared/_simulator.html.erb:284
+msgid "Resource"
+msgstr "资源"
+
+#: ../app/views/nodes/events.html.erb:26
+#: ../app/views/resources/events.html.erb:26
+#: ../app/views/resources/show.html.erb:229
+#: ../app/views/shared/_simulator.html.erb:298
+msgid "Operation"
+msgstr "操作"
+
+#: ../app/views/nodes/events.html.erb:29
+#: ../app/views/resources/events.html.erb:29
+msgid "Last Change"
+msgstr "上次更改"
+
+#: ../app/views/nodes/events.html.erb:32
+#: ../app/views/resources/events.html.erb:32
+#: ../app/views/shared/_simulator.html.erb:251
+#: ../app/views/tickets/show.html.erb:58
+msgid "State"
+msgstr "状态"
+
+#: ../app/views/nodes/events.html.erb:35
+#: ../app/views/resources/events.html.erb:35
+#: ../app/views/resources/show.html.erb:226
+msgid "Call"
+msgstr "调用"
+
+#: ../app/views/nodes/events.html.erb:38
+#: ../app/views/resources/events.html.erb:38
+msgid "Exec"
+msgstr "Exec"
+
+#: ../app/views/nodes/events.html.erb:41
+#: ../app/views/resources/events.html.erb:41
+msgid "Complete"
+msgstr "完成"
+
+#: ../app/views/nodes/show.html.erb:12
+msgid "Node: %{name}"
+msgstr "节点：%{name}"
+
+#: ../app/views/nodes/show.html.erb:18
+msgid "Remote node."
+msgstr "远程节点。"
+
+#: ../app/views/nodes/show.html.erb:66
+msgid "No utilization defined"
+msgstr "未定义利用率"
+
+#: ../app/views/nodes/show.html.erb:90
+msgid "No attributes defined"
+msgstr "未定义属性"
+
+#: ../app/views/orders/_form.html.erb:23
+msgid "Mandatory"
+msgstr "强制"
+
+#: ../app/views/orders/_form.html.erb:26
+msgid "Optional"
+msgstr "可选"
+
+#: ../app/views/orders/_form.html.erb:29
+msgid "Serialize"
+msgstr "串行化"
+
+#: ../app/views/orders/_form.html.erb:38
+msgid "Symmetrical"
+msgstr "对称"
+
+#: ../app/views/primitives/_help.html.erb:24
+#: ../app/views/shared/_helpentry.html.erb:13
+msgid "Default"
+msgstr "默认"
+
+#: ../app/views/primitives/edit.html.erb:7
+msgid "Copy"
+msgstr "复制"
+
+#: ../app/views/profiles/edit.html.erb:8
+msgid "Display warning if STONITH is disabled"
+msgstr "如果 STONITH 处于禁用状态，则显示警告"
+
+#: ../app/views/reports/display.html.erb:8
+#: ../app/views/reports/index.html.erb:107
+#: ../app/views/reports/show.html.erb:7
+msgid "Reports"
+msgstr "报告"
+
+#: ../app/views/reports/display.html.erb:54
+msgid "Created"
+msgstr "已创建"
+
+#: ../app/views/reports/display.html.erb:57
+#: ../app/views/reports/display.html.erb:69
+msgid "Transitions"
+msgstr "转换"
+
+#: ../app/views/reports/display.html.erb:71
+msgid "No transitions in report"
+msgstr "报告中没有转换"
+
+#: ../app/views/reports/display.html.erb:82
+msgid "Previous"
+msgstr "上一页"
+
+#: ../app/views/reports/display.html.erb:87
+msgid "Zoom in"
+msgstr "放大"
+
+#: ../app/views/reports/display.html.erb:90
+msgid "Zoom out"
+msgstr "缩小"
+
+#: ../app/views/reports/display.html.erb:97
+#: ../app/views/wizards/show.html.erb:94
+msgid "Next"
+msgstr "下一页"
+
+#: ../app/views/reports/display.html.erb:108
+msgid "PE Name"
+msgstr "PE 名称"
+
+#: ../app/views/reports/display.html.erb:134
+#: ../app/views/shared/_mainnav.html.erb:24
+msgid "Configuration"
+msgstr "配置"
+
+#: ../app/views/reports/display.html.erb:139
+msgid "Diff"
+msgstr "差异"
+
+#: ../app/views/reports/display.html.erb:144
+msgid "Logs"
+msgstr "日志"
+
+#: ../app/views/reports/display.html.erb:193
+msgid "Node Events"
+msgstr "节点事件"
+
+#: ../app/views/reports/display.html.erb:203
+msgid "Resource Events"
+msgstr "资源事件"
+
+#: ../app/views/reports/index.html.erb:11
+msgid "Data collection in progress..."
+msgstr "正在收集数据..."
+
+#: ../app/views/reports/index.html.erb:51
+#: ../app/views/reports/index.html.erb:78
+msgid "Generate"
+msgstr "生成"
+
+#: ../app/views/reports/index.html.erb:57
+msgid "Upload"
+msgstr "上载"
+
+#: ../app/views/reports/show.html.erb:17
+msgid "Loading report..."
+msgstr "正在装载报告..."
+
+#: ../app/views/resources/rename.html.erb:5
+msgid "Rename Resource"
+msgstr "重命名资源"
+
+#: ../app/views/resources/show.html.erb:39
+msgid "Child"
+msgstr "子项"
+
+#: ../app/views/resources/show.html.erb:184
+msgid "Instances"
+msgstr "实例"
+
+#: ../app/views/resources/show.html.erb:212
+msgid "Failed Operations"
+msgstr "失败的操作"
+
+#: ../app/views/resources/show.html.erb:235
+msgid "Reason"
+msgstr "原因"
+
+#: ../app/views/resources/types.html.erb:4
+#: ../app/views/shared/_mainnav.html.erb:27
+msgid "Add Resource"
+msgstr "添加资源"
+
+#: ../app/views/resources/types.html.erb:19
+msgid "Primitive"
+msgstr "原始资源"
+
+#: ../app/views/resources/types.html.erb:69
+msgid "Alert"
+msgstr "警报"
+
+#: ../app/views/roles/_form.html.erb:16
+msgid "Add a rule below"
+msgstr "在下面添加规则"
+
+#: ../app/views/roles/_form.html.erb:17
+msgid "Remove this rule"
+msgstr "去除此规则"
+
+#: ../app/views/roles/_form.html.erb:18
+msgid "Move rule up"
+msgstr "将规则上移"
+
+#: ../app/views/roles/_form.html.erb:19
+msgid "Move rule down"
+msgstr "将规则下移"
+
+#: ../app/views/roles/_form.html.erb:22
+msgid "Right"
+msgstr "右"
+
+#: ../app/views/roles/_form.html.erb:23
+msgid "XPath"
+msgstr "XPath"
+
+#: ../app/views/roles/_form.html.erb:24
+msgid "Object Type"
+msgstr "对象类型"
+
+#: ../app/views/roles/_form.html.erb:25
+msgid "Reference"
+msgstr "参考"
+
+#: ../app/views/roles/index.html.erb:6 ../app/views/users/index.html.erb:6
+msgid "Access Control Lists"
+msgstr "访问控制列表"
+
+#: ../app/views/sessions/new.html.erb:4
+msgid "Login"
+msgstr "登录"
+
+#: ../app/views/shared/_mainnav.html.erb:5
+msgid "Manage"
+msgstr "管理"
+
+#: ../app/views/shared/_mainnav.html.erb:17
+msgid "History"
+msgstr "历史"
+
+#: ../app/views/shared/_mainnav.html.erb:33
+#: ../app/views/wizards/index.html.erb:4
+msgid "Wizards"
+msgstr "向导"
+
+#: ../app/views/shared/_mainnav.html.erb:48
+msgid "Access Control"
+msgstr "访问控制"
+
+#: ../app/views/shared/_mainnav.html.erb:54
+#: ../app/views/users/index.html.erb:4
+msgid "Targets"
+msgstr "目标"
+
+#: ../app/views/shared/_simulator.html.erb:11
+msgid ""
+"Any pending changes to the configuration will be lost - do you wish to "
+"proceed?"
+msgstr "所有等待中的配置更改都会丢失 - 是否继续？"
+
+#: ../app/views/shared/_simulator.html.erb:12
+msgid "Discard"
+msgstr "丢弃"
+
+#: ../app/views/shared/_simulator.html.erb:32
+msgid "Batch Mode"
+msgstr "批模式"
+
+#: ../app/views/shared/_simulator.html.erb:52
+#: ../app/views/shared/_simulator.html.erb:135
+msgid "Summary"
+msgstr "小结"
+
+#: ../app/views/shared/_simulator.html.erb:55
+#: ../app/views/shared/_simulator.html.erb:154
+msgid "CIB (in)"
+msgstr "CIB（输入）"
+
+#: ../app/views/shared/_simulator.html.erb:58
+#: ../app/views/shared/_simulator.html.erb:173
+msgid "CIB (out)"
+msgstr "CIB（输出）"
+
+#: ../app/views/shared/_simulator.html.erb:61
+#: ../app/views/shared/_simulator.html.erb:192
+msgid "Transition Graph"
+msgstr "转换图"
+
+#: ../app/views/shared/_simulator.html.erb:64
+msgid "Transition"
+msgstr "转换"
+
+#: ../app/views/shared/_simulator.html.erb:72
+msgid "Inject"
+msgstr "插入"
+
+#: ../app/views/shared/_simulator.html.erb:77
+msgid "Node Event"
+msgstr "节点事件"
+
+#: ../app/views/shared/_simulator.html.erb:82
+msgid "Resource Event"
+msgstr "资源事件"
+
+#: ../app/views/shared/_simulator.html.erb:87
+msgid "Ticket Event"
+msgstr "票据事件"
+
+#: ../app/views/shared/_simulator.html.erb:211
+msgid "Transition (XML)"
+msgstr "转换 (XML)"
+
+#: ../app/views/shared/_simulator.html.erb:231
+msgid "Inject Node Event"
+msgstr "插入节点事件"
+
+#: ../app/views/shared/_simulator.html.erb:278
+msgid "Inject Resource Event"
+msgstr "插入资源事件"
+
+#: ../app/views/shared/_simulator.html.erb:312
+msgid "Interval (ms)"
+msgstr "间隔（毫秒）"
+
+#: ../app/views/shared/_simulator.html.erb:334
+msgid "Result"
+msgstr "结果"
+
+#: ../app/views/shared/_simulator.html.erb:361
+msgid "Inject Ticket Event"
+msgstr "插入票据事件"
+
+#: ../app/views/shared/_simulator.html.erb:381
+msgid "Action"
+msgstr "操作"
+
+#: ../app/views/shared/_usernav.html.erb:5
+msgid "Batch Configuration Changes"
+msgstr "批配置更改"
+
+#: ../app/views/shared/_usernav.html.erb:5
+#: ../app/views/shared/_usernav.html.erb:10
+msgid "Batch"
+msgstr "批"
+
+#: ../app/views/shared/_usernav.html.erb:22
+msgid "Logout"
+msgstr "注销"
+
+#: ../app/views/shared/_usernav.html.erb:25
+msgid "Menu"
+msgstr "菜单"
+
+#: ../app/views/tags/_form.html.erb:6 ../app/views/tags/_form.html.erb:10
+msgid "Tag ID"
+msgstr "标记 ID"
+
+#: ../app/views/tags/_form.html.erb:22
+msgid "No objects available"
+msgstr "无可用的对象"
+
+#: ../app/views/tickets/_form.html.erb:10
+msgid "Ticket ID"
+msgstr "票据 ID"
+
+#: ../app/views/tickets/_form.html.erb:11
+#: ../app/views/tickets/show.html.erb:38
+msgid "Loss Policy"
+msgstr "丢失策略"
+
+#: ../app/views/tickets/show.html.erb:5
+msgid "Ticket:"
+msgstr "票据："
+
+#: ../app/views/tickets/show.html.erb:14
+msgid "Properties"
+msgstr "属性"
+
+#: ../app/views/tickets/show.html.erb:42
+msgid "None"
+msgstr "无"
+
+#: ../app/views/tickets/show.html.erb:66
+msgid "Leader"
+msgstr "前导符"
+
+#: ../app/views/tickets/show.html.erb:74
+msgid "Expires"
+msgstr "失效"
+
+#: ../app/views/tickets/show.html.erb:82
+msgid "Commit"
+msgstr "提交"
+
+#: ../app/views/tickets/show.html.erb:124
+msgid "Sites"
+msgstr "站点"
+
+#: ../app/views/tickets/show.html.erb:155
+msgid "Arbitrators"
+msgstr "仲裁方"
+
+#: ../app/views/users/_form.html.erb:6 ../app/views/users/_form.html.erb:8
+msgid "Target ID"
+msgstr "目标 ID"
+
+#: ../app/views/wizards/create.html.erb:12
+msgid "Verifying parameters..."
+msgstr "正在校验参数..."
+
+#: ../app/views/wizards/create.html.erb:15
+#: ../app/views/wizards/show.html.erb:92
+#: ../app/views/wizards/update.html.erb:82
+msgid "Do you really want to cancel the wizard setup?"
+msgstr "确实要取消安装向导吗？"
+
+#: ../app/views/wizards/create.html.erb:17
+msgid "Do you really want to apply the current wizard?"
+msgstr "确实要应用当前向导吗？"
+
+#: ../app/views/wizards/show.html.erb:37
+msgid "Enable this step"
+msgstr "启用此步骤"
+
+#: ../app/views/wizards/show.html.erb:87
+msgid "This wizard takes no parameters."
+msgstr "此向导未采用任何参数。"
+
+#: ../app/views/wizards/show.html.erb:95
+msgid "Verify"
+msgstr "校验"
+
+#: ../app/views/wizards/update.html.erb:32
+msgid "Verify and apply"
+msgstr "校验并应用"
+
+#: ../app/views/wizards/update.html.erb:67
+msgid ""
+"To apply the changes, Hawk requires root access, and password-less SSH "
+"access must be configured. See the Hawk documentation for more information."
+msgstr ""
+"要应用更改，Hawk 需要拥有 root 访问权，并且必须配置无口令 SSH 访问方式。有关"
+"详细信息，请参见 Hawk 的相关文档。"
+
+#: ../app/views/wizards/update.html.erb:72
+msgid "Root password"
+msgstr "Root 口令"
 
 #: ../lib/cibtools.rb:125
 msgid "other"
 msgstr "其他"
 
-#: ../app/helpers/simulator_helper.rb:27
-#: ../lib/cibtools.rb:121
-msgid "running (master)"
-msgstr "正在运行（主资源）"
+#: ../lib/invoker.rb:86
+msgid "The object/attribute does not exist (cibadmin %{cmd})"
+msgstr "对象/属性不存在 (cibadmin %{cmd})"
 
-#: ../app/helpers/simulator_helper.rb:19
-#: ../lib/cibtools.rb:105
-msgid "success"
-msgstr "成功"
-
-#: ../app/helpers/simulator_helper.rb:22
-#: ../lib/cibtools.rb:111
-msgid "unimplemented action"
-msgstr "未实施的操作"
+#: ../lib/invoker.rb:90
+msgid "Error invoking cibadmin %{cmd}: %{msg}"
+msgstr "调用 cibadmin %{cmd} 时出错：%{msg}"
