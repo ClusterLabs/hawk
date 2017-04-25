@@ -56,7 +56,7 @@ class ApplicationController < ActionController::Base
   def current_cib
     if current_user
       @current_cib ||= begin
-        Cib.new(production_cib, current_user, params[:debug] == "file", cookies[:stonithwarning].nil? || cookies[:stonithwarning] == true)
+        Cib.new(params[:cib_id] || production_cib, current_user, params[:debug] == "file", cookies[:stonithwarning].nil? || cookies[:stonithwarning] == true)
       end
     end
   end
