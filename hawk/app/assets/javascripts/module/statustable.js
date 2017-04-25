@@ -445,6 +445,7 @@ var statusTable = {
         this.formatClusterName(); // Set the title attribute for the cluster name to show cluster details
         this.updateClusterTab("connected"); // Update the cluster's status indicator shown next to the cluster name in each tab.
         this.setClusterUrl();
+        this.SetTicketNotification();
         this.printLog(); // Testing
     },
     alterData: function(cibData) {
@@ -460,16 +461,21 @@ var statusTable = {
         this.tableData = cibData;
     },
     cacheDom: function() {
-        this.$container = $('#dashboard-container');
-        this.$table = this.$container.find("#inner-" + this.clusterId).find(".status-inner-table"); // this.$table is the div where the table will be rendred
-        this.$template = this.$container.find("#status-table-template");
+        this.$table_container = $("#inner-" + this.clusterId);
+        this.$table_heading = this.$table_container.find(".cluster-heading");
+        this.$table = this.$table_container.find(".status-inner-table");
     },
     render: function() {
-        $.templates('myTmpl', {
+        $.templates('status_table', {
             markup: "#status-table-template",
             allowCode: true
         });
-        this.$table.html($.render.myTmpl(this.tableData)).show();
+        $.templates('status_table_header', {
+            markup: "#status-table-heading",
+            allowCode: true
+        });
+        this.$table.html($.render.status_table(this.tableData)).show();
+        this.$table_heading.html($.render.status_table_header(this.tableData)).show();
     },
     initHelpers: function() {
         //Using $.proxy to correctly pass the context to printClusterId:
@@ -509,6 +515,16 @@ var statusTable = {
     },
     setClusterUrl: function() {
       $("#" + this.clusterId).find(".cluster-url").attr("href", this.baseUrl());
+    },
+    SetTicketNotification: function() {
+      var tickets_count = Object.keys(this.tableData["tickets"]).length - 1;
+      if (tickets_count > 0) {
+        $("#" + this.clusterId).find("#dropdownMenu1").prop('disabled', false).find("span").attr("class", "notification").html(tickets_count);
+      }
+    },
+    createDeleteClusterForm: function() {
+      $("#" + this.clusterId).find("form input").attr("value", "this.name");
+      $("#" + this.clusterId).find("form button").attr("data-confirm", "Remove cluster from dashboard?");
     },
     printLog: function() {
         console.log(JSON.stringify(this.tableData));

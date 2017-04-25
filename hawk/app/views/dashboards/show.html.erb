@@ -33,7 +33,7 @@
             </a>
           </li>
           <% end %>
-          <li class="dashboard-legend pull-right filter-menu">
+          <li class="dashboard-legend pull-right">
             <div class="btn-group">
               <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Legend
@@ -64,13 +64,7 @@
               <!-- passing local_cluster as a cluster data attribute means to fetch local cluster information -->
               <%= content_tag :div,"" , id: escape_cluster_name(current_cib.cluster_name), class: "status-table", data: {cluster: "local_cluster"} do %>
                 <div id='<%= "inner-" + escape_cluster_name(current_cib.cluster_name) %>' class="panel panel-default" data-epoch="">
-                  <div class="panel-heading cluster-heading">
-                    <h3 class="panel-title">
-                      <a class="pull-right cluster-url" href="" target="_blank">
-                        <i class="fa fa-external-link" aria-hidden="true"></i>
-                      </a>
-                    </h3>
-                  </div>
+                  <div class="panel-heading cluster-heading"></div>
                   <div class="panel-body">
                     <div class="cluster-errors"></div>
                     <div class="status-inner-table"></div>
@@ -84,19 +78,7 @@
               <!-- Pass the cluster object to the data options helper method. Rails will automatically call to_json, outputting the data into its JSON form. -->
               <%= content_tag :div,"" ,id: escape_cluster_name(cluster.name), class: "status-table", data: {cluster: cluster} do %>
                 <div id='<%= "inner-" + escape_cluster_name(cluster.name) %>' class="panel panel-default" data-epoch="">
-                  <div class="panel-heading cluster-heading">
-                    <h3 class="panel-title">
-                      <a class="pull-right cluster-url" href="" target="_blank">
-                        <i class="fa fa-external-link" aria-hidden="true"></i>
-                      </a>
-                      <form action="/dashboard/remove" method="post" accept-charset="UTF-8" data-remote="true" class="pull-right">
-                        <input type="hidden" name="name" value="<%= cluster.name %>">
-                        <button type="submit" class="close" data-confirm="<%= _('Remove cluster %s from dashboard?') % cluster.name %>" aria-label="Close">
-                          <span aria-hidden="true">&times;</span>
-                        </button>
-                      </form>
-                    </h3>
-                  </div>
+                  <div class="panel-heading cluster-heading"></div>
                   <div class="panel-body">
                     <div class="cluster-errors"></div>
                     <div class="status-inner-table"></div>
@@ -111,6 +93,38 @@
   </div>
 
 
+  <script id="status-table-heading" type="text/x-jsrender">
+    <div class="pull-left search">
+      <input type="text" class="form-control" placeholder="Search...">
+    </div>
+    <ul class="cluster-right-menu pull-right">
+      {{include tmpl="#status-table-tickets"/}}
+      <li>
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fa fa-filter" aria-hidden="true"></i>
+          </button>
+          <div class="filter-dropdown dropdown-menu" aria-labelledby="dropdownMenu2">
+            <div class="filter-header">
+              Show
+            </div>
+            <a class="dropdown-item" href="#">Only maintenance</a>
+            <a class="dropdown-item" href="#">Only not running</a>
+            <a class="dropdown-item" href="#">Only standby</a>
+          </div>
+        </div>
+      </li>
+      <li><a class="cluster-link cluster-url" href="" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></li></a>
+      <li>
+        <form action="/dashboard/remove" method="post" accept-charset="UTF-8" data-remote="true" class="pull-right">
+          <input type="hidden" name="name" value="<%#= cluster.name %>">
+          <button type="submit" class="close" data-confirm="<%#= _('Remove cluster %s from dashboard?') % cluster.name %>" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </form>
+      </li>
+    </ul>
+  </script>
 
   <script id="status-table-nodes" type="text/x-jsrender">
     <div id="nodes-table-rows">
@@ -200,40 +214,41 @@
   </script>
 
   <script id="status-table-tickets" type="text/x-jsrender">
-    <div id="tickets-table-rows">
-      {{if ~root.tickets}}
-        {{props ~root.tickets itemVar="~ticket"}}
-          <tr class="ticket">
-            <td class="no-left-border resource-icon"></td>
-            <td class="text-left no-left-border">
-              <span class="status-bar status-ticket"></span>
-              <span id="ticket-{{:~ticket.prop.id}}" class="resource-name">{{:~ticket.prop.id}}</span>
-            </td>
-            <td class="no-left-border" colspan="4">
-              <div class="ticket-state">
-                {{if ~ticket.prop.state === "granted"}}
-                  Ticket granted
-                {{else ~ticket.prop.state === "revoked"}}
-                  Ticket Revoked
-                {{else ~ticket.prop.state === "elsewhere"}}
-                  Ticket granted elsewhere
-                {{/if}}
-                {{if ~ticket.prop.standby === true}}
-                  Standby
-                {{/if}}
-              </div>
-            </td>
-          </tr>
-        {{/props}}
-      {{/if}}
-    </div>
+    <li class="ticket">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled>
+          Tickets<span class=""></span>
+        </button>
+        {{if ~root.tickets}}
+          <div class="ticket-dropdown dropdown-menu" aria-labelledby="dropdownMenu2">
+            <div class="ticket-header">
+              <div class="ticket-name">Tickets Status</div>
+            </div>
+            {{props ~root.tickets itemVar="~ticket"}}
+              <a class="dropdown-item new-ticket" href="#">
+                <div class="ticket-name">{{:~ticket.prop.id}}</div>
+                  {{if ~ticket.prop.state === "granted"}}
+                    Granted
+                  {{else ~ticket.prop.state === "revoked"}}
+                    Revoked
+                  {{else ~ticket.prop.state === "elsewhere"}}
+                    Granted elsewhere
+                  {{/if}}
+                  {{if ~ticket.prop.standby === true}}
+                    Standby
+                  {{/if}}
+              </a>
+            {{/props}}
+          </div>
+        {{/if}}
+      </div>
+    </li>
   </script>
 
   <script id="status-table-template" type="text/x-jsrender">
     <table class="table">
       {{include tmpl="#status-table-nodes"/}}
       {{include tmpl="#status-table-resources"/}}
-      {{include tmpl="#status-table-tickets"/}}
     </table>
   </script>
 </div>
