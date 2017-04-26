@@ -97,7 +97,7 @@ var statusTable = {
     },
     displayClusterStatus: function(cib) {
 
-        var tag = $('#inner-' + this.clusterId).find('.cluster-errors');
+        var tag = $('#inner-' + this.clusterId + " div.panel-body");
 
         if (cib.meta.status == "maintenance" || cib.meta.status == "nostonith") {
             $('#inner-' + this.clusterId).removeClass('panel-default panel-danger').addClass('panel-warning');
@@ -110,6 +110,7 @@ var statusTable = {
         var text = "";
 
         if (cib.errors.length > 0) {
+            text += '<div class="cluster-errors">';
             text += '<div class="row">';
             text += '<div class="cluster-errors col-md-12">';
             text += '<ul class="list-group">';
@@ -120,10 +121,10 @@ var statusTable = {
             text += '</ul>';
             text += '</div>';
             text += '</div>';
+            text += '</div>';
         }
 
-        text += '<div class="row">';
-        text += '<div class="col-md-12 text-center dash-cluster-content">';
+        text += '<div class="status-inner-table"></div>';
 
         var cs = this.checksum(text + JSON.stringify(cib));
         if (tag.data('hash') != cs) {
