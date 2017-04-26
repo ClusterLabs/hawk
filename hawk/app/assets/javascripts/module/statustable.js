@@ -110,7 +110,6 @@ var statusTable = {
         var text = "";
 
         if (cib.errors.length > 0) {
-            text += '<div class="cluster-errors">';
             text += '<div class="row">';
             text += '<div class="cluster-errors col-md-12">';
             text += '<ul class="list-group">';
@@ -121,7 +120,8 @@ var statusTable = {
             text += '</ul>';
             text += '</div>';
             text += '</div>';
-            text += '</div>';
+        } else {
+            text += '<div class="cluster-errors"></div>';
         }
 
         text += '<div class="status-inner-table"></div>';
@@ -278,10 +278,10 @@ var statusTable = {
                 that.clusterUpdate();
             },
             error: function(xhr, status, error) {
-                var tag_header = $('#inner-' + that.clusterId + " .panel-heading");
+                // var tag_header = $('#inner-' + that.clusterId + " .panel-heading");
                 var tag_body = $('#inner-' + that.clusterId + " .panel-body");
                 if (that.host !== null && that.password === null) {
-                    tag_header.html(that.basicCreateheader());
+                    // tag_header.html(that.basicCreateheader());
                     tag_body.html(that.basicCreateBody());
                     var btn = tag_body.find("button.btn");
                     btn.attr("disabled", false);
@@ -386,19 +386,6 @@ var statusTable = {
             }
         });
     },
-    basicCreateheader: function() {
-      if (this.host !== null) {
-        content = [
-          '<form action="/dashboard/remove" method="post" accept-charset="UTF-8" data-remote="true" class="pull-right">',
-          '<input type="hidden" name="name" value="',this.name,'">',
-          '<button type="submit" class="close" data-confirm="', __('Remove cluster _CLUSTER_ from dashboard?').replace('_CLUSTER_', this.host),'" aria-label="Close">',
-          '<span aria-hidden="true">&times;</span>',
-          '</button>',
-          '</form>'
-        ].join("");
-      }
-      return content;
-    },
     basicCreateBody: function() {
         var s_hostname = __('Hostname');
         var s_username = __('Username');
@@ -467,7 +454,7 @@ var statusTable = {
         this.updateClusterTab("connected"); // Update the cluster's status indicator shown next to the cluster name in each tab.
         this.setClusterUrl();
         this.SetTicketNotification();
-        this.createDeleteClusterForm();
+        // this.createDeleteClusterForm();
         this.printLog(); // Testing
     },
     alterData: function(cibData) {
@@ -484,7 +471,7 @@ var statusTable = {
     },
     cacheDom: function() {
         this.$table_container = $("#inner-" + this.clusterId);
-        this.$table_heading = this.$table_container.find(".cluster-heading");
+        this.$table_heading_ticket = this.$table_container.find(".cluster-heading .cluster_ticket");
         this.$table = this.$table_container.find(".status-inner-table");
     },
     render: function() {
@@ -492,12 +479,12 @@ var statusTable = {
             markup: "#status-table-template",
             allowCode: true
         });
-        $.templates('status_table_header', {
-            markup: "#status-table-heading",
+        $.templates('status_table_tickets', {
+            markup: "#status-table-tickets",
             allowCode: true
         });
         this.$table.html($.render.status_table(this.tableData)).show();
-        this.$table_heading.html($.render.status_table_header(this.tableData)).show();
+        this.$table_heading_ticket.html($.render.status_table_tickets(this.tableData)).show();
     },
     initHelpers: function() {
         //Using $.proxy to correctly pass the context to printClusterId:
@@ -541,15 +528,7 @@ var statusTable = {
     SetTicketNotification: function() {
       var tickets_count = Object.keys(this.tableData["tickets"]).length - 1;
       if (tickets_count > 0) {
-        $("#" + this.clusterId).find("#dropdownMenu1").prop('disabled', false).find("span").attr("class", "notification").html(tickets_count);
-      }
-    },
-    createDeleteClusterForm: function() {
-      if (this.clusterType !== "local_cluster") {
-        var remove_form = $("#" + this.clusterId).find("form");
-        remove_form.removeAttr("hidden")
-        remove_form.find("input").attr("value", this.host);
-        remove_form.find("button").attr("data-confirm", __('Remove cluster _CLUSTER_ from dashboard?').replace('_CLUSTER_', this.name));
+        $("#" + this.clusterId + " .cluster_ticket").find("#dropdownMenu1").prop('disabled', false).find("span").attr("class", "notification").html(tickets_count);
       }
     },
     printLog: function() {
