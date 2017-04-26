@@ -7,8 +7,10 @@ $( document ).ready(function() {
   $(".status-wrapper").find(".status-table").each(function(index, element) { // jshint ignore:line
     var id = $(this).attr("id");
     var data = $(this).data("cluster");
+    var type = data === "local_cluster" ? "local_cluster" : "remote_cluster";
     statusTable.init({ // jshint ignore:line
       clusterId: id,
+      clusterType: type,
       name: data.name || null,
       host: data.host || null,
       username: null,

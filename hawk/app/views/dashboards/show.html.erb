@@ -116,9 +116,9 @@
       </li>
       <li><a class="cluster-link cluster-url" href="" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></li></a>
       <li>
-        <form action="/dashboard/remove" method="post" accept-charset="UTF-8" data-remote="true" class="pull-right">
-          <input type="hidden" name="name" value="<%#= cluster.name %>">
-          <button type="submit" class="close" data-confirm="<%#= _('Remove cluster %s from dashboard?') % cluster.name %>" aria-label="Close">
+        <form action="/dashboard/remove" method="post" accept-charset="UTF-8" data-remote="true" class="pull-right" hidden>
+          <input type="hidden" name="name" value="">
+          <button type="submit" class="close" data-confirm="" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
         </form>

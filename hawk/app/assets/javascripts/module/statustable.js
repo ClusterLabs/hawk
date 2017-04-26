@@ -16,6 +16,7 @@ var statusTable = {
     tableData: [], // An Array that contains JSON data fetched from the cib, see cacheData()
     // List of options(passed to init function) and their types:
     // clusterId: string,
+    // clusterType: string,
     // name: string, (optional)
     // host: string, (optional)
     // username: string,
@@ -25,6 +26,10 @@ var statusTable = {
     // interval: integer, (optional)
     // conntry:  ID returned by the corresponding call to setTimeout(),
     // reconnections: array of string
+
+
+
+
 
     init: function(options) {// Each element has to have a "status-table" class and a "cluster" data attribute in order for the status table to be displayed.
         var instance = Object.create(this);
@@ -272,16 +277,18 @@ var statusTable = {
                 that.clusterUpdate();
             },
             error: function(xhr, status, error) {
-                var tag = $('#inner-' + that.clusterId + ' div.panel-body');
+                var tag_header = $('#inner-' + that.clusterId + " .panel-heading");
+                var tag_body = $('#inner-' + that.clusterId + " .panel-body");
                 if (that.host !== null && that.password === null) {
-                    tag.html(that.basicCreateBody());
-                    var btn = tag.find("button.btn");
+                    tag_header.html(that.basicCreateheader());
+                    tag_body.html(that.basicCreateBody());
+                    var btn = tag_body.find("button.btn");
                     btn.attr("disabled", false);
                     btn.click(function() {
-                        var username = tag.find("input[name=username]").val();
-                        var password = tag.find("input[name=password]").val();
-                        tag.find('.btn-success').attr('disabled', true);
-                        tag.find('input').attr('disabled', true);
+                        var username = tag_body.find("input[name=username]").val();
+                        var password = tag_body.find("input[name=password]").val();
+                        tag_body.find('.btn-success').attr('disabled', true);
+                        tag_body.find('input').attr('disabled', true);
                         that.username = username;
                         that.password = password;
                         that.startRemoteConnect();
@@ -378,6 +385,19 @@ var statusTable = {
             }
         });
     },
+    basicCreateheader: function() {
+      if (this.host !== null) {
+        content = [
+          '<form action="/dashboard/remove" method="post" accept-charset="UTF-8" data-remote="true" class="pull-right">',
+          '<input type="hidden" name="name" value="',this.name,'">',
+          '<button type="submit" class="close" data-confirm="', __('Remove cluster _CLUSTER_ from dashboard?').replace('_CLUSTER_', this.host),'" aria-label="Close">',
+          '<span aria-hidden="true">&times;</span>',
+          '</button>',
+          '</form>'
+        ].join("");
+      }
+      return content;
+    },
     basicCreateBody: function() {
         var s_hostname = __('Hostname');
         var s_username = __('Username');
@@ -446,6 +466,7 @@ var statusTable = {
         this.updateClusterTab("connected"); // Update the cluster's status indicator shown next to the cluster name in each tab.
         this.setClusterUrl();
         this.SetTicketNotification();
+        this.createDeleteClusterForm();
         this.printLog(); // Testing
     },
     alterData: function(cibData) {
@@ -523,8 +544,12 @@ var statusTable = {
       }
     },
     createDeleteClusterForm: function() {
-      $("#" + this.clusterId).find("form input").attr("value", "this.name");
-      $("#" + this.clusterId).find("form button").attr("data-confirm", "Remove cluster from dashboard?");
+      if (this.clusterType !== "local_cluster") {
+        var remove_form = $("#" + this.clusterId).find("form");
+        remove_form.removeAttr("hidden")
+        remove_form.find("input").attr("value", this.host);
+        remove_form.find("button").attr("data-confirm", __('Remove cluster _CLUSTER_ from dashboard?').replace('_CLUSTER_', this.name));
+      }
     },
     printLog: function() {
         console.log(JSON.stringify(this.tableData));
