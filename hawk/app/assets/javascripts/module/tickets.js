@@ -99,7 +99,7 @@ $(function() {
         }, "success", {}));
         params.complete({}, "success");
       },
-      classes: "table table-hover table-no-bordered",
+      classes: "table table-hover table-striped",
       pagination: false,
       pageSize: 50,
       pageList: [10, 25, 50, 100, 200],
