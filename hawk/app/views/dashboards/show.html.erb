@@ -48,7 +48,7 @@
                     <li><i class="fa fa-wrench" aria-hidden="true"></i>Maintenance mode</li>
                     <li><div class="node-circle status-offline"></div>Offline/standby mode</li>
                     <li><i class="fa fa-asterisk" aria-hidden="true"></i>Double state (master/slave)</li>
-                    <li><div class="node-circle status-default"></div>Not working</li>
+                    <li><div class="node-circle status-default"></div>Not working resource/node</li>
                     <li><i class="fa fa-home" aria-hidden="true"></i>Designated coordinator</li>
                   </ul>
                 </li>
@@ -79,10 +79,9 @@
                             <div class="filter-header">
                               Show
                             </div>
-                            <a class="dropdown-item" href="#">Only maintenance</a>
-                            <a class="dropdown-item" href="#">Only not running</a>
-                            <a class="dropdown-item" href="#">Only standby</a>
-                          </div>
+                            <div class="radio"><label><input type="radio" name="optradio">Only maintenance</label></div>
+                            <div class="radio"><label><input type="radio" name="optradio">Only not running</label></div>
+                            <div class="radio"><label><input type="radio" name="optradio">Only standby</label></div>
                         </div>
                       </li>
                       <li><a class="cluster-link cluster-url" href="" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a></li>
@@ -116,9 +115,9 @@
                             <div class="filter-header">
                               Show
                             </div>
-                            <div class="checkbox"><label><input type="checkbox" value="">Only maintenance</label></div>
-                            <div class="checkbox"><label><input type="checkbox" value="">Only not running</label></div>
-                            <div class="checkbox"><label><input type="checkbox" value="">Only standby</label></div>
+                            <div class="radio"><label><input type="radio" name="optradio">Only maintenance</label></div>
+                            <div class="radio"><label><input type="radio" name="optradio">Only not running</label></div>
+                            <div class="radio"><label><input type="radio" name="optradio">Only standby</label></div>
                           </div>
                         </div>
                       </li>
@@ -187,7 +186,7 @@
   <script id="status-table-resources" type="text/x-jsrender">
     <div id="resources-table-rows">
       {{for ~root.resources itemVar="~resource"}}
-        {{if ~resource.search_filter === "showing"}}
+        {{if ~resource.search_filter === "show"}}
           <tr {{if #index==0}}class="no-top-border"{{/if}}>
             <td class="no-left-border resource-icon">
               {{if ~resource.maintenance == true}}

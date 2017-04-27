@@ -260,12 +260,22 @@ var statusTable = {
         var that = this;
         $.each(that.tableData.nodes, function(node_key, node_value) {
             $.each(that.tableData.resources, function(resource_key, resource_value) {
-                that.tableData.resources[resource_key]["search_filter"] = "showing";
+                that.tableData.resources[resource_key]["search_filter"] = "show";
                 if (!(node_value.name in resource_value.running_on)) {
                     that.tableData.resources[resource_key]["running_on"][node_value.name] = "not_running";
                 };
             });
         });
+    },
+    set_search_filter: function(val){
+      var that = this;
+      $.each(that.tableData.resources, function(resource_key, resource_value) {
+          if (resource_value.id.toUpperCase().indexOf(val) < 0) {
+              that.tableData.resources[resource_key]["search_filter"] = "hide";
+          } else if (resource_value.id.toUpperCase().indexOf(val) > -1){
+              that.tableData.resources[resource_key]["search_filter"] = "show";
+          }
+      });
     },
     clusterRefresh: function() {
         var that = this;
@@ -289,22 +299,12 @@ var statusTable = {
 
                 that.inner_section.find(".search input").keyup(function(){
                   var val = $.trim( this.value ).toUpperCase();
-                  $.each(that.tableData.resources, function(resource_key, resource_value) {
-                      if (resource_value.id.toUpperCase().indexOf(val) < 0) {
-                          that.tableData.resources[resource_key]["search_filter"] = "hiding"
-                      } else if (resource_value.id.toUpperCase().indexOf(val) > -1){
-                          that.tableData.resources[resource_key]["search_filter"] = "showing"
-                      }
-                  });
+                  that.set_search_filter(val);
                   that.displayClusterStatus();
                 });
                 var search_input = that.inner_section.find(".search input").val().trim( this.value ).toUpperCase();
                 if (search_input != "") {
-                  $.each(that.tableData.resources, function(resource_key, resource_value) {
-                      if (resource_value.id.toUpperCase().indexOf(search_input) < 0) {
-                          that.tableData.resources[resource_key]["search_filter"] = "hiding"
-                      }
-                  });
+                  that.set_search_filter(search_input);
                 }
                 that.displayClusterStatus();
                 that.inner_section.data('epoch', that.tableData.meta.epoch);
