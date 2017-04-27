@@ -116,9 +116,9 @@
                             <div class="filter-header">
                               Show
                             </div>
-                            <a class="dropdown-item" href="#">Only maintenance</a>
-                            <a class="dropdown-item" href="#">Only not running</a>
-                            <a class="dropdown-item" href="#">Only standby</a>
+                            <div class="checkbox"><label><input type="checkbox" value="">Only maintenance</label></div>
+                            <div class="checkbox"><label><input type="checkbox" value="">Only not running</label></div>
+                            <div class="checkbox"><label><input type="checkbox" value="">Only standby</label></div>
                           </div>
                         </div>
                       </li>
@@ -245,12 +245,13 @@
         {{if ~root.tickets}}
           <div class="ticket-dropdown dropdown-menu" aria-labelledby="dropdownMenu2">
             <div class="ticket-header">
-              <div class="ticket-name">Tickets Status</div>
+              <div class="ticket-name">Tickets</div>
+              <div class="ticket-status">Status</div>
             </div>
             {{props ~root.tickets itemVar="~ticket"}}
               <a class="dropdown-item new-ticket" href="#">
                 <div class="ticket-name">{{:~ticket.prop.id}}</div>
-                  {{if ~ticket.prop.state === "granted"}}
+                <div class="ticket-status">{{if ~ticket.prop.state === "granted"}}
                     Granted
                   {{else ~ticket.prop.state === "revoked"}}
                     Revoked
@@ -260,6 +261,7 @@
                   {{if ~ticket.prop.standby === true}}
                     Standby
                   {{/if}}
+                </div>
               </a>
             {{/props}}
           </div>
@@ -268,7 +270,7 @@
   </script>
 
   <script id="status-table-template" type="text/x-jsrender">
-    <table class="table">
+    <table class="table table-hover">
       {{include tmpl="#status-table-nodes"/}}
       {{include tmpl="#status-table-resources"/}}
     </table>
