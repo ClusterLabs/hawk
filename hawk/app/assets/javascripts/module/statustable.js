@@ -471,7 +471,7 @@ var statusTable = {
     },
     cacheDom: function() {
         this.$table_container = $("#inner-" + this.clusterId);
-        this.$table_heading_ticket = this.$table_container.find(".cluster-heading .cluster_ticket");
+        this.$table_heading_ticket = this.$table_container.find(".cluster-heading li.ticket");
         this.$table = this.$table_container.find(".status-inner-table");
     },
     render: function() {
@@ -528,7 +528,7 @@ var statusTable = {
     SetTicketNotification: function() {
       var tickets_count = Object.keys(this.tableData["tickets"]).length - 1;
       if (tickets_count > 0) {
-        $("#" + this.clusterId + " .cluster_ticket").find("#dropdownMenu1").prop('disabled', false).find("span").attr("class", "notification").html(tickets_count);
+        $("#" + this.clusterId + " li.ticket").find("#dropdownMenu1").prop('disabled', false).find("span").attr("class", "notification").html(tickets_count);
       }
     },
     printLog: function() {
