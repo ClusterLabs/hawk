@@ -135,14 +135,14 @@ table tr th {
   border-top-color: #fff;
 }
 
-
-
-.table>tbody>tr>th,
-.table>tbody>tr>td {
-  border-left: 1px solid #ddd;
-  vertical-align: middle;
-  height: 50px;
-  padding: 0 8px;
+#dashboard-container {
+  .table>tbody>tr>th,
+  .table>tbody>tr>td {
+    border-left: 1px solid #ddd;
+    vertical-align: middle;
+    height: 50px;
+    padding: 0 8px;
+  }
 }
 
 .no-left-border {
