@@ -27,15 +27,12 @@ var statusTable = {
     // conntry:  ID returned by the corresponding call to setTimeout(),
     // reconnections: array of string
 
-
-
-
-
     init: function(options) {// Each element has to have a "status-table" class and a "cluster" data attribute in order for the status table to be displayed.
         var instance = Object.create(this);
         Object.keys(options).forEach(function(key){
           instance[key] = options[key];
         });
+        instance["inner_section"] = $("#inner-" + instance["clusterId"]);
         return instance;
     },
     create: function() {
@@ -95,25 +92,25 @@ var statusTable = {
             this.conntry = window.setTimeout(cb, time);
         }
     },
-    displayClusterStatus: function(cib) {
+    displayClusterStatus: function() {
 
-        var tag = $('#inner-' + this.clusterId + " div.panel-body");
+        var tag = this.inner_section.find("div.panel-body");
 
-        if (cib.meta.status == "maintenance" || cib.meta.status == "nostonith") {
-            $('#inner-' + this.clusterId).removeClass('panel-default panel-danger').addClass('panel-warning');
-        } else if (cib.meta.status == "errors") {
-            $('#inner-' + this.clusterId).removeClass('panel-default panel-warning').addClass('panel-danger');
+        if (this.tableData.meta.status == "maintenance" || this.tableData.meta.status == "nostonith") {
+            this.inner_section.removeClass('panel-default panel-danger').addClass('panel-warning');
+        } else if (this.tableData.meta.status == "errors") {
+            this.inner_section.removeClass('panel-default panel-warning').addClass('panel-danger');
         } else {
-            $('#inner-' + this.clusterId).removeClass('panel-warning panel-danger').addClass('panel-default');
+            this.inner_section.removeClass('panel-warning panel-danger').addClass('panel-default');
         }
 
         var text = "";
 
-        if (cib.errors.length > 0) {
+        if (this.tableData.errors.length > 0) {
             text += '<div class="row">';
             text += '<div class="cluster-errors col-md-12">';
             text += '<ul class="list-group">';
-            cib.errors.forEach(function(err) {
+            this.tableData.errors.forEach(function(err) {
                 var type = err.type || "danger";
                 text += "<li class=\"list-group-item list-group-item-" + type + "\">" + err.msg + "</li>";
             });
@@ -126,11 +123,11 @@ var statusTable = {
 
         text += '<div class="status-inner-table"></div>';
 
-        var cs = this.checksum(text + JSON.stringify(cib));
+        var cs = this.checksum(text + JSON.stringify(this.tableData));
         if (tag.data('hash') != cs) {
             tag.html(text);
             tag.data('hash', cs);
-            this.displayTable(cib);
+            this.displayTable();
         }
     },
     clusterConnectionError: function(xhr, status, error, cb) {
@@ -181,7 +178,7 @@ var statusTable = {
             msg += "<pre> Response: " + xhr.status + " " + xhr.statusText + "</pre>";
         }
         this.updateClusterTab("connectionError");
-        $('#inner-' + this.clusterId).removeClass('panel-warning').addClass('panel-danger');
+        this.inner_section.removeClass('panel-warning').addClass('panel-danger');
         var tag = $('#inner-' + this.clusterId + ' div.panel-body');
 
         var errors = tag.find('.cluster-errors');
@@ -256,6 +253,20 @@ var statusTable = {
             error: spec.error || null
         });
     },
+    cacheData: function(cibData) {
+        this.tableData = cibData;
+    },
+    alterData: function() {
+        var that = this;
+        $.each(that.tableData.nodes, function(node_key, node_value) {
+            $.each(that.tableData.resources, function(resource_key, resource_value) {
+                that.tableData.resources[resource_key]["search_filter"] = "showing";
+                if (!(node_value.name in resource_value.running_on)) {
+                    that.tableData.resources[resource_key]["running_on"][node_value.name] = "not_running";
+                };
+            });
+        });
+    },
     clusterRefresh: function() {
         var that = this;
         that.ajaxQuery({
@@ -273,8 +284,30 @@ var statusTable = {
                         }
                     }
                 });
-                that.displayClusterStatus(data);
-                $("#inner-" + that.clusterId).data('epoch', data.meta.epoch);
+                that.cacheData(data)
+                that.alterData(); // Specify which nodes the resources are not running on: e.g {running_on: {node1: "started". node2: "slave", webui: "not_running"}}.
+
+                that.inner_section.find(".search input").keyup(function(){
+                  var val = $.trim( this.value ).toUpperCase();
+                  $.each(that.tableData.resources, function(resource_key, resource_value) {
+                      if (resource_value.id.toUpperCase().indexOf(val) < 0) {
+                          that.tableData.resources[resource_key]["search_filter"] = "hiding"
+                      } else if (resource_value.id.toUpperCase().indexOf(val) > -1){
+                          that.tableData.resources[resource_key]["search_filter"] = "showing"
+                      }
+                  });
+                  that.displayClusterStatus();
+                });
+                var search_input = that.inner_section.find(".search input").val().trim( this.value ).toUpperCase();
+                if (search_input != "") {
+                  $.each(that.tableData.resources, function(resource_key, resource_value) {
+                      if (resource_value.id.toUpperCase().indexOf(search_input) < 0) {
+                          that.tableData.resources[resource_key]["search_filter"] = "hiding"
+                      }
+                  });
+                }
+                that.displayClusterStatus();
+                that.inner_section.data('epoch', that.tableData.meta.epoch);
                 that.clusterUpdate();
             },
             error: function(xhr, status, error) {
@@ -319,7 +352,7 @@ var statusTable = {
     },
     clusterUpdate: function() {
         var that = this;
-        var current_epoch = $("#inner-" + that.clusterId).data('epoch');
+        var current_epoch = that.inner_section.data('epoch');
         that.ajaxQuery({
             url: that.baseUrl() + "/monitor.json",
             type: "GET",
@@ -442,11 +475,9 @@ var statusTable = {
         }
         return content;
     },
-
     // Render the table:
-    displayTable: function(cibData) {
-        this.alterData(cibData); // Specify which nodes the resources are not running on: e.g {running_on: {node1: "started". node2: "slave", webui: "not_running"}}.
-        this.cacheData(cibData); // Cache data fetched from server, so it won't be necessary to pass the reference of the object each time
+    displayTable: function() {
+        // this.cacheData(cibData); // Cache data fetched from server, so it won't be necessary to pass the reference of the object each time
         this.cacheDom(); // Cache Dom elements to maximize performance
         this.initHelpers(); // Intialize helper methods for using them inside the template in "dashboards/show.html.erb
         this.render(); // Renders the table using the template in "dashboards/show.html.erb"
@@ -457,22 +488,9 @@ var statusTable = {
         // this.createDeleteClusterForm();
         this.printLog(); // Testing
     },
-    alterData: function(cibData) {
-        $.each(cibData.nodes, function(node_key, node_value) {
-            $.each(cibData.resources, function(resource_key, resource_value) {
-                if (!(node_value.name in resource_value.running_on)) {
-                    cibData.resources[resource_key]["running_on"][node_value.name] = "not_running";
-                };
-            });
-        });
-    },
-    cacheData: function(cibData) {
-        this.tableData = cibData;
-    },
     cacheDom: function() {
-        this.$table_container = $("#inner-" + this.clusterId);
-        this.$table_heading_ticket = this.$table_container.find(".cluster-heading li.ticket");
-        this.$table = this.$table_container.find(".status-inner-table");
+        this.$table_heading_ticket = this.inner_section.find(".cluster-heading li.cluster-ticket");
+        this.$table = this.inner_section.find(".status-inner-table");
     },
     render: function() {
         $.templates('status_table', {
@@ -528,7 +546,7 @@ var statusTable = {
     SetTicketNotification: function() {
       var tickets_count = Object.keys(this.tableData["tickets"]).length - 1;
       if (tickets_count > 0) {
-        $("#" + this.clusterId + " li.ticket").find("#dropdownMenu1").prop('disabled', false).find("span").attr("class", "notification").html(tickets_count);
+        $("#" + this.clusterId + " li.cluster-ticket").find("#dropdownMenu1").prop('disabled', false).find("span").attr("class", "notification").html(tickets_count);
       }
     },
     printLog: function() {

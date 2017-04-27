@@ -69,8 +69,8 @@
                       <input type="text" class="form-control" placeholder="Search...">
                     </div>
                     <ul class="cluster-right-menu pull-right">
-                      <li class="ticket"></li>
-                      <li>
+                      <li class="cluster-ticket"></li>
+                      <li class="cluster-filter">
                         <div class="dropdown">
                           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-filter" aria-hidden="true"></i>
@@ -106,8 +106,8 @@
                       <input type="text" class="form-control" placeholder="Search...">
                     </div>
                     <ul class="cluster-right-menu pull-right">
-                      <li class="ticket"></li>
-                      <li>
+                      <li class="cluster-ticket"></li>
+                      <li class="cluster-filter">
                         <div class="dropdown">
                           <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <i class="fa fa-filter" aria-hidden="true"></i>
@@ -187,50 +187,52 @@
   <script id="status-table-resources" type="text/x-jsrender">
     <div id="resources-table-rows">
       {{for ~root.resources itemVar="~resource"}}
-        <tr {{if #index==0}}class="no-top-border"{{/if}}>
-          <td class="no-left-border resource-icon">
-            {{if ~resource.maintenance == true}}
-              <span class="status-icon"><i class="fa fa-wrench" aria-hidden="true"></i></span>
-            {{/if}}
-            {{if ~resource["type"] === "master"}}
-              <span class="status-icon"><i class="fa fa-asterisk" aria-hidden="true"></i></span>
-            {{/if}}
-          </td>
-          <td class="text-left no-left-border">
-            {{if ~resource.state === "stopped" && ~resource["attributes"]["target-role"] === "Stopped"}}
-              <span class="status-bar status-offline"></span>
-            {{else ~resource.state === "stopped"}}
-              <span class="status-bar status-danger"></span>
-            {{/if}}
-            {{if ~resource.state !== "stopped"}}
-              <span class="status-bar status-success"></span>
-            {{/if}}
-              <span id="resource-{{:id}}" class="resource-name">{{:id}}</span>
-          </td>
-          {{for ~root.nodes itemVar="~node"}}
-            <td {{if #index==0}}class="no-left-border"{{/if}}>
-            {{if ~node.state === "unclean" }}
-              <div class="node-circle status-danger"></div>
-            {{else ~resource.state === "stopped"}}
-              <div class="node-circle status-danger"></div>
-            {{else ~node.state === "offline" }}
-              <div class="node-circle status-offline"></div>
-            {{else}}
-              {{props ~resource.running_on itemVar="~nodeWhereTheResourceRun"}}
-                {{if (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "started")}}
-                  <div class="node-circle status-success" title="Started"></div>
-                {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "slave")}}
-                  <div class="node-circle status-success" title="Started"></div><span class="table-label slave-master">Slave</span>
-                {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "master")}}
-                  <div class="node-circle status-success" title="Started"></div><span class="table-label slave-master">Master</span>
-                {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "not_running")}}
-                  <div class="node-circle status-default"></div>
-                {{/if}}
-              {{/props}}
-            {{/if}}
+        {{if ~resource.search_filter === "showing"}}
+          <tr {{if #index==0}}class="no-top-border"{{/if}}>
+            <td class="no-left-border resource-icon">
+              {{if ~resource.maintenance == true}}
+                <span class="status-icon"><i class="fa fa-wrench" aria-hidden="true"></i></span>
+              {{/if}}
+              {{if ~resource["type"] === "master"}}
+                <span class="status-icon"><i class="fa fa-asterisk" aria-hidden="true"></i></span>
+              {{/if}}
             </td>
-          {{/for}}
-        </tr>
+            <td class="text-left no-left-border">
+              {{if ~resource.state === "stopped" && ~resource["attributes"]["target-role"] === "Stopped"}}
+                <span class="status-bar status-offline"></span>
+              {{else ~resource.state === "stopped"}}
+                <span class="status-bar status-danger"></span>
+              {{/if}}
+              {{if ~resource.state !== "stopped"}}
+                <span class="status-bar status-success"></span>
+              {{/if}}
+                <span id="resource-{{:id}}" class="resource-name">{{:id}}</span>
+            </td>
+            {{for ~root.nodes itemVar="~node"}}
+              <td {{if #index==0}}class="no-left-border"{{/if}}>
+              {{if ~node.state === "unclean" }}
+                <div class="node-circle status-danger"></div>
+              {{else ~resource.state === "stopped"}}
+                <div class="node-circle status-danger"></div>
+              {{else ~node.state === "offline" }}
+                <div class="node-circle status-offline"></div>
+              {{else}}
+                {{props ~resource.running_on itemVar="~nodeWhereTheResourceRun"}}
+                  {{if (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "started")}}
+                    <div class="node-circle status-success" title="Started"></div>
+                  {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "slave")}}
+                    <div class="node-circle status-success" title="Started"></div><span class="table-label slave-master">Slave</span>
+                  {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "master")}}
+                    <div class="node-circle status-success" title="Started"></div><span class="table-label slave-master">Master</span>
+                  {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "not_running")}}
+                    <div class="node-circle status-default"></div>
+                  {{/if}}
+                {{/props}}
+              {{/if}}
+              </td>
+            {{/for}}
+          </tr>
+        {{/if}}
       {{/for}}
     </div>
   </script>
