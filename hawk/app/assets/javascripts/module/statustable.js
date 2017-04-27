@@ -259,6 +259,7 @@ var statusTable = {
     alterData: function() {
         var that = this;
         $.each(that.tableData.nodes, function(node_key, node_value) {
+            that.tableData.nodes[node_key]["search_filter"] = "show";
             $.each(that.tableData.resources, function(resource_key, resource_value) {
                 that.tableData.resources[resource_key]["search_filter"] = "show";
                 if (!(node_value.name in resource_value.running_on)) {
@@ -267,7 +268,34 @@ var statusTable = {
             });
         });
     },
-    set_search_filter: function(val){
+    checkFilterStatus: function(){
+      var that = this;
+      var offline_count = 0, maintenance_count = 0, standby_count = 0;
+      $.each(that.tableData.nodes, function(node_key, node_value) {
+        if(node_value.maintenance === true){
+          maintenance_count++;
+        }
+        if(node_value.state === "offline"){
+          offline_count++;
+        }
+        if(node_value.state === "standby"){
+          standby_count++;
+        }
+      });
+      that.inner_section.find("input[name=optradio]:radio").each(function(){
+        if(offline_count === 0 && $(this).val() === "offline"){
+          $(this).prop("disabled", true).parent().attr("class", "line-through-filter");
+        } else if (maintenance_count === 0 && $(this).val() === "maintenance"){
+          $(this).prop("disabled", true).parent().attr("class", "line-through-filter");
+        } else if (standby_count === 0 && $(this).val() === "standby"){
+          $(this).prop("disabled", true).parent().attr("class", "line-through-filter");
+        } else{
+          $(this).prop("disabled", false).parent().attr("class", "");
+        }
+
+      });
+    },
+    set_search_state: function(val){
       var that = this;
       $.each(that.tableData.resources, function(resource_key, resource_value) {
           if (resource_value.id.toUpperCase().indexOf(val) < 0) {
@@ -297,14 +325,32 @@ var statusTable = {
                 that.cacheData(data)
                 that.alterData(); // Specify which nodes the resources are not running on: e.g {running_on: {node1: "started". node2: "slave", webui: "not_running"}}.
 
+
+                radio_button_filter = that.inner_section.find("input[name=optradio]:radio");
+                radio_button_filter.change(function(){
+                  var val = that.inner_section.find("input[name=optradio]:checked").val();
+                  $.each(that.tableData.nodes, function(node_key, node_value) {
+                    if(val === "show_all"){
+                      that.tableData.nodes[node_key]["search_filter"] = "show";
+                    } else if (val === node_value.state) {
+                      that.tableData.nodes[node_key]["search_filter"] = "show";
+                    } else if (val === "maintenance" && node_value.maintenance === true) {
+                      that.tableData.nodes[node_key]["search_filter"] = "show";
+                    } else {
+                      that.tableData.nodes[node_key]["search_filter"] = "hide";
+                    }
+                  });
+                  that.displayClusterStatus();
+                });
+
                 that.inner_section.find(".search input").keyup(function(){
                   var val = $.trim( this.value ).toUpperCase();
-                  that.set_search_filter(val);
+                  that.set_search_state(val);
                   that.displayClusterStatus();
                 });
                 var search_input = that.inner_section.find(".search input").val().trim( this.value ).toUpperCase();
                 if (search_input != "") {
-                  that.set_search_filter(search_input);
+                  that.set_search_state(search_input);
                 }
                 that.displayClusterStatus();
                 that.inner_section.data('epoch', that.tableData.meta.epoch);
@@ -480,6 +526,7 @@ var statusTable = {
         // this.cacheData(cibData); // Cache data fetched from server, so it won't be necessary to pass the reference of the object each time
         this.cacheDom(); // Cache Dom elements to maximize performance
         this.initHelpers(); // Intialize helper methods for using them inside the template in "dashboards/show.html.erb
+        this.checkFilterStatus();
         this.render(); // Renders the table using the template in "dashboards/show.html.erb"
         this.formatClusterName(); // Set the title attribute for the cluster name to show cluster details
         this.updateClusterTab("connected"); // Update the cluster's status indicator shown next to the cluster name in each tab.

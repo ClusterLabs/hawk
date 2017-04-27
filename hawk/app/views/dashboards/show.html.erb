@@ -79,9 +79,11 @@
                             <div class="filter-header">
                               Show
                             </div>
-                            <div class="radio"><label><input type="radio" name="optradio">Only maintenance</label></div>
-                            <div class="radio"><label><input type="radio" name="optradio">Only not running</label></div>
-                            <div class="radio"><label><input type="radio" name="optradio">Only standby</label></div>
+                            <div class="radio"><label><input value="show_all" type="radio" name="optradio">Show all nodes</label></div>
+                            <div class="radio"><label><input value="online" type="radio" name="optradio">Only Online nodes</label></div>
+                            <div class="radio"><label><input value="offline" type="radio" name="optradio">Only Offline nodes</label></div>
+                            <div class="radio"><label><input value="maintenance" type="radio" name="optradio">Only maintenance nodes</label></div>
+                            <div class="radio"><label><input value="standby" type="radio" name="optradio">Only standby nodes</label></div>
                         </div>
                       </li>
                       <li><a class="cluster-link cluster-url" href="" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a></li>
@@ -115,9 +117,11 @@
                             <div class="filter-header">
                               Show
                             </div>
-                            <div class="radio"><label><input type="radio" name="optradio">Only maintenance</label></div>
-                            <div class="radio"><label><input type="radio" name="optradio">Only not running</label></div>
-                            <div class="radio"><label><input type="radio" name="optradio">Only standby</label></div>
+                            <div class="radio"><label><input value="show_all" type="radio" name="optradio">Show all nodes</label></div>
+                            <div class="radio"><label><input value="online" type="radio" name="optradio">Only Online nodes</label></div>
+                            <div class="radio"><label><input value="offline" type="radio" name="optradio">Only Offline nodes</label></div>
+                            <div class="radio"><label><input value="maintenance" type="radio" name="optradio">Only maintenance nodes</label></div>
+                            <div class="radio"><label><input value="standby" type="radio" name="optradio">Only standby nodes</label></div>
                           </div>
                         </div>
                       </li>
@@ -152,32 +156,34 @@
       <tr id="nodes-table-row" class="no-top-border table-header">
         <th colspan="2" class="col-sm-2 no-left-border"></th>
           {{for ~root.nodes itemVar="~node"}}
-            <th {{if #index==0}}class="no-left-border"{{/if}}>
-              {{if ~node.state === "unclean"}}
-                <span class="status-bar status-danger"></span>
-              {{else ~node.state === "online"}}
-                <span class="status-bar status-success"></span>
-              {{else ~node.state === "offline"}}
-                <span class="status-bar status-offline"></span>
-              {{else ~node.state === "standby"}}
-                <span class="status-bar status-offline"></span>
-              {{else ~node.state === "pending"}}
-                <span class="status-bar status-success"></span>
-              {{/if}}
-              <div id="node-{{:name}}" class="node-name" title="Node id: {{:~node.id}}">{{:name}} <span class="table-cluster-name">{{:~root.crm_config.cluster_name}}</span></div>
-              {{if ~node.name === ~root.meta.dc}}
-                <span class="status-icon"><i class="fa fa-home" aria-hidden="true" title="Designated coordinator"></i></span>
-              {{/if}}
-              {{if ~node.remote == true}}
-                <span class="status-icon"><i class="fa fa-podcast" aria-hidden="true" title="Remote node"></i></span>
-              {{/if}}
-              {{if ~node.maintenance == true}}
-              <span class="status-icon"><i class="fa fa-wrench" aria-hidden="true"></i></span>
-              {{/if}}
-              {{if ~node.fence_history !== ""}}
-                <i class="fa fa-refresh text-warning" title='{{:~node.fence_history}}'></i>
-              {{/if}}
-            </th>
+            {{if ~node.search_filter === "show" ~nodeIndex=#index}}
+              <th {{if ~nodeIndex==0}}class="no-left-border"{{/if}}>
+                {{if ~node.state === "unclean"}}
+                  <span class="status-bar status-danger"></span>
+                {{else ~node.state === "online"}}
+                  <span class="status-bar status-success"></span>
+                {{else ~node.state === "offline"}}
+                  <span class="status-bar status-offline"></span>
+                {{else ~node.state === "standby"}}
+                  <span class="status-bar status-offline"></span>
+                {{else ~node.state === "pending"}}
+                  <span class="status-bar status-success"></span>
+                {{/if}}
+                <div id="node-{{:name}}" class="node-name" title="Node id: {{:~node.id}}">{{:name}} <span class="table-cluster-name">{{:~root.crm_config.cluster_name}}</span></div>
+                {{if ~node.name === ~root.meta.dc}}
+                  <span class="status-icon"><i class="fa fa-home" aria-hidden="true" title="Designated coordinator"></i></span>
+                {{/if}}
+                {{if ~node.remote == true}}
+                  <span class="status-icon"><i class="fa fa-podcast" aria-hidden="true" title="Remote node"></i></span>
+                {{/if}}
+                {{if ~node.maintenance == true}}
+                <span class="status-icon"><i class="fa fa-wrench" aria-hidden="true"></i></span>
+                {{/if}}
+                {{if ~node.fence_history !== ""}}
+                  <i class="fa fa-refresh text-warning" title='{{:~node.fence_history}}'></i>
+                {{/if}}
+              </th>
+            {{/if}}
           {{/for}}
       </tr>
     </div>
@@ -208,7 +214,8 @@
                 <span id="resource-{{:id}}" class="resource-name">{{:id}}</span>
             </td>
             {{for ~root.nodes itemVar="~node"}}
-              <td {{if #index==0}}class="no-left-border"{{/if}}>
+              {{if ~node.search_filter === "show" ~nodeIndex=#index}}
+              <td {{if ~nodeIndex==0}}class="no-left-border"{{/if}}>
               {{if ~node.state === "unclean" }}
                 <div class="node-circle status-danger"></div>
               {{else ~resource.state === "stopped"}}
@@ -229,6 +236,7 @@
                 {{/props}}
               {{/if}}
               </td>
+              {{/if}}
             {{/for}}
           </tr>
         {{/if}}
