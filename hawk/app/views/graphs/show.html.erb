@@ -3,10 +3,11 @@
     <%= icon_text "image", _("Graph"), class: "page" %>
     <div class="pull-right">
       <div class="btn-group" role="group">
-        <%= link_to icon_text("database", _("Edit")), edit_cib_config_path(cib_id: current_cib.id), class: "btn btn-default" %>
-        <%= link_to icon_text("list", _("Show")), cib_config_path(cib_id: current_cib.id), class: "btn btn-default" %>
-        <%= link_to icon_text("file-code-o", _("XML")), cib_config_path(cib_id: current_cib.id, xml: true), class: "btn btn-default" %>
-      </div>
+        <%= link_to icon_text("database", _("Edit")), edit_cib_config_path(cib_id: current_cib.id), class: "btn btn-default", role: :button %>
+        <%= link_to icon_text("list", _("Show")), cib_config_path(cib_id: current_cib.id), class: "btn btn-default", role: :button %>
+        <%= link_to icon_text("file-code-o", _("XML")), cib_config_path(cib_id: current_cib.id, xml: true), class: "btn btn-default", role: :button %>
+        <%= link_to icon_text("file-image-o", _("Graph")), cib_graph_path(cib_id: current_cib.id), class: "btn btn-default", disabled: true, role: :button %>
+     </div>
     </div>
   </h1>
   <div class="panel panel-default">
