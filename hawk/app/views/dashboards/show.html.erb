@@ -2,8 +2,8 @@
 <%= content_for :javascripts do %>
   <%= javascript_include_tag "dashboard" %>
 <% end %>
-<div class="container-fluid" id="dashboard-container">
 
+<div class="container-fluid" id="dashboard-container">
   <div class="row">
     <h1>
       <%= icon_text "dashboard", _("Dashboard"), class: "page" %>
@@ -22,18 +22,22 @@
           <li class="active" role="presentation">
             <a href="#local-cluster-tab" role="tab" data-toggle="tab" aria-controls="local-cluster">
               <%= current_cib.cluster_name %>
+              <span class="" id="<%= escape_cluster_name(current_cib.cluster_name) + '-indicator' %>"></span>
             </a>
           </li>
           <% @clusters.map do |cluster| %>
           <li role="presentation">
             <a href="<%='#' + escape_cluster_name(cluster.name) + '-tab' %>" role="tab" data-toggle="tab" aria-controls="remote-cluster">
               <%= cluster.name %>
+              <span class="" id="<%= escape_cluster_name(cluster.name) + '-indicator' %>"></span>
             </a>
           </li>
           <% end %>
-          <li class="dashboard-legend pull-right filter-menu">
+          <li class="dashboard-legend pull-right">
             <div class="btn-group">
-              <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Legend <span class="caret"></span>
+              <button class="btn btn-default btn-xs dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Legend
+                <span class="caret"></span>
               </button>
               <ul class="dropdown-menu">
                 <li>
@@ -44,7 +48,7 @@
                     <li><i class="fa fa-wrench" aria-hidden="true"></i>Maintenance mode</li>
                     <li><div class="node-circle status-offline"></div>Offline/standby mode</li>
                     <li><i class="fa fa-asterisk" aria-hidden="true"></i>Double state (master/slave)</li>
-                    <li><div class="node-circle status-default"></div>Not working</li>
+                    <li><div class="node-circle status-default"></div>Not working resource/node</li>
                     <li><i class="fa fa-home" aria-hidden="true"></i>Designated coordinator</li>
                   </ul>
                 </li>
@@ -58,13 +62,86 @@
           <% unless current_cib.offline? %>
             <div class="tab-pane active" id="local-cluster-tab" role="tabpanel">
               <!-- passing local_cluster as a cluster data attribute means to fetch local cluster information -->
-              <%= content_tag :div,"" , id: escape_cluster_name(current_cib.cluster_name), class: "status-table", data: {cluster: "local_cluster"} %>
+              <%= content_tag :div,"" , id: escape_cluster_name(current_cib.cluster_name), class: "status-table", data: {cluster: "local_cluster"} do %>
+                <div id='<%= "inner-" + escape_cluster_name(current_cib.cluster_name) %>' class="panel panel-default" data-epoch="">
+                  <div class="panel-heading cluster-heading">
+                    <div class="pull-left search">
+                      <input type="text" class="form-control" placeholder="Search...">
+                    </div>
+                    <ul class="cluster-right-menu pull-right">
+                      <li class="cluster-ticket"></li>
+                      <li class="cluster-filter">
+                        <div class="dropdown">
+                          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-filter" aria-hidden="true"></i>
+                          </button>
+                          <div class="filter-dropdown dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <div class="filter-header">
+                              Show
+                            </div>
+                            <div class="radio"><label><input value="show_all" type="radio" name="optradio">Show all nodes</label></div>
+                            <div class="radio"><label><input value="online" type="radio" name="optradio">Only Online nodes</label></div>
+                            <div class="radio"><label><input value="offline" type="radio" name="optradio">Only Offline nodes</label></div>
+                            <div class="radio"><label><input value="maintenance" type="radio" name="optradio">Only maintenance nodes</label></div>
+                            <div class="radio"><label><input value="standby" type="radio" name="optradio">Only standby nodes</label></div>
+                        </div>
+                      </li>
+                      <li><a class="cluster-link cluster-url" href="" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+                    </ul>
+                  </div>
+                  <div class="panel-body">
+                    <div class="cluster-errors"></div>
+                    <div class="status-inner-table"></div>
+                  </div>
+                </div>
+              <% end %>
             </div>
           <% end %>
           <% @clusters.map do |cluster| %>
             <div class="tab-pane" id="<%= escape_cluster_name(cluster.name) + '-tab' %>" role="tabpanel">
-              <!-- Pass the cluster object to the data options helper method . Rails will automatically call to_json, outputting the data into its JSON form. -->
-              <%= content_tag :div,"" ,id: escape_cluster_name(cluster.name), class: "status-table", data: {cluster: cluster} %>
+              <!-- Pass the cluster object to the data options helper method. Rails will automatically call to_json, outputting the data into its JSON form. -->
+              <%= content_tag :div,"" ,id: escape_cluster_name(cluster.name), class: "status-table", data: {cluster: cluster} do %>
+                <div id='<%= "inner-" + escape_cluster_name(cluster.name) %>' class="panel panel-default" data-epoch="">
+                  <div class="panel-heading cluster-heading">
+                    <div class="pull-left search">
+                      <input type="text" class="form-control" placeholder="Search...">
+                    </div>
+                    <ul class="cluster-right-menu pull-right">
+                      <li class="cluster-ticket"></li>
+                      <li class="cluster-filter">
+                        <div class="dropdown">
+                          <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <i class="fa fa-filter" aria-hidden="true"></i>
+                          </button>
+                          <div class="filter-dropdown dropdown-menu" aria-labelledby="dropdownMenu2">
+                            <div class="filter-header">
+                              Show
+                            </div>
+                            <div class="radio"><label><input value="show_all" type="radio" name="optradio">Show all nodes</label></div>
+                            <div class="radio"><label><input value="online" type="radio" name="optradio">Only Online nodes</label></div>
+                            <div class="radio"><label><input value="offline" type="radio" name="optradio">Only Offline nodes</label></div>
+                            <div class="radio"><label><input value="maintenance" type="radio" name="optradio">Only maintenance nodes</label></div>
+                            <div class="radio"><label><input value="standby" type="radio" name="optradio">Only standby nodes</label></div>
+                          </div>
+                        </div>
+                      </li>
+                      <li><a class="cluster-link cluster-url" href="" target="_blank"><i class="fa fa-link" aria-hidden="true"></i></a></li>
+                      <li>
+                        <form action="/dashboard/remove" method="post" accept-charset="UTF-8" data-remote="true" class="pull-right">
+                          <input type="hidden" name="name" value="<%= cluster.name %>">
+                          <button type="submit" class="close" data-confirm="<%= _('Remove cluster %s from dashboard?') % cluster.name %>" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                          </button>
+                        </form>
+                      </li>
+                    </ul>
+                  </div>
+                  <div class="panel-body">
+                    <div class="cluster-errors"></div>
+                    <div class="status-inner-table"></div>
+                  </div>
+                </div>
+              <% end %>
             </div>
           <% end %>
         </div>
@@ -72,122 +149,137 @@
     </div>
   </div>
 
-  <script>
-    statusTable.init(".status-wrapper");
+
+
+  <script id="status-table-nodes" type="text/x-jsrender">
+    <div id="nodes-table-rows">
+      <tr id="nodes-table-row" class="no-top-border table-header">
+        <th colspan="2" class="col-sm-2 no-left-border"></th>
+          {{for ~root.nodes itemVar="~node"}}
+            {{if ~node.search_filter === "show" ~nodeIndex=#index}}
+              <th {{if ~nodeIndex==0}}class="no-left-border"{{/if}}>
+                {{if ~node.state === "unclean"}}
+                  <span class="status-bar status-danger"></span>
+                {{else ~node.state === "online"}}
+                  <span class="status-bar status-success"></span>
+                {{else ~node.state === "offline"}}
+                  <span class="status-bar status-offline"></span>
+                {{else ~node.state === "standby"}}
+                  <span class="status-bar status-offline"></span>
+                {{else ~node.state === "pending"}}
+                  <span class="status-bar status-success"></span>
+                {{/if}}
+                <div id="node-{{:name}}" class="node-name" title="Node id: {{:~node.id}}">{{:name}} <span class="table-cluster-name">{{:~root.crm_config.cluster_name}}</span></div>
+                {{if ~node.name === ~root.meta.dc}}
+                  <span class="status-icon"><i class="fa fa-home" aria-hidden="true" title="Designated coordinator"></i></span>
+                {{/if}}
+                {{if ~node.remote == true}}
+                  <span class="status-icon"><i class="fa fa-podcast" aria-hidden="true" title="Remote node"></i></span>
+                {{/if}}
+                {{if ~node.maintenance == true}}
+                <span class="status-icon"><i class="fa fa-wrench" aria-hidden="true"></i></span>
+                {{/if}}
+                {{if ~node.fence_history !== ""}}
+                  <i class="fa fa-refresh text-warning" title='{{:~node.fence_history}}'></i>
+                {{/if}}
+              </th>
+            {{/if}}
+          {{/for}}
+      </tr>
+    </div>
+  </script>
+
+  <script id="status-table-resources" type="text/x-jsrender">
+    <div id="resources-table-rows">
+      {{for ~root.resources itemVar="~resource"}}
+        {{if ~resource.search_filter === "show"}}
+          <tr {{if #index==0}}class="no-top-border"{{/if}}>
+            <td class="no-left-border resource-icon">
+              {{if ~resource.maintenance == true}}
+                <span class="status-icon"><i class="fa fa-wrench" aria-hidden="true"></i></span>
+              {{/if}}
+              {{if ~resource["type"] === "master"}}
+                <span class="status-icon"><i class="fa fa-asterisk" aria-hidden="true"></i></span>
+              {{/if}}
+            </td>
+            <td class="text-left no-left-border">
+              {{if ~resource.state === "stopped" && ~resource["attributes"]["target-role"] === "Stopped"}}
+                <span class="status-bar status-offline"></span>
+              {{else ~resource.state === "stopped"}}
+                <span class="status-bar status-danger"></span>
+              {{/if}}
+              {{if ~resource.state !== "stopped"}}
+                <span class="status-bar status-success"></span>
+              {{/if}}
+                <span id="resource-{{:id}}" class="resource-name">{{:id}}</span>
+            </td>
+            {{for ~root.nodes itemVar="~node"}}
+              {{if ~node.search_filter === "show" ~nodeIndex=#index}}
+              <td {{if ~nodeIndex==0}}class="no-left-border"{{/if}}>
+              {{if ~node.state === "unclean" }}
+                <div class="node-circle status-danger"></div>
+              {{else ~resource.state === "stopped"}}
+                <div class="node-circle status-danger"></div>
+              {{else ~node.state === "offline" }}
+                <div class="node-circle status-offline"></div>
+              {{else}}
+                {{props ~resource.running_on itemVar="~nodeWhereTheResourceRun"}}
+                  {{if (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "started")}}
+                    <div class="node-circle status-success" title="Started"></div>
+                  {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "slave")}}
+                    <div class="node-circle status-success" title="Started"></div><span class="table-label slave-master">Slave</span>
+                  {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "master")}}
+                    <div class="node-circle status-success" title="Started"></div><span class="table-label slave-master">Master</span>
+                  {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "not_running")}}
+                    <div class="node-circle status-default"></div>
+                  {{/if}}
+                {{/props}}
+              {{/if}}
+              </td>
+              {{/if}}
+            {{/for}}
+          </tr>
+        {{/if}}
+      {{/for}}
+    </div>
+  </script>
+
+  <script id="status-table-tickets" type="text/x-jsrender">
+      <div class="dropdown">
+        <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" disabled>
+          Tickets<span class=""></span>
+        </button>
+        {{if ~root.tickets}}
+          <div class="ticket-dropdown dropdown-menu" aria-labelledby="dropdownMenu2">
+            <div class="ticket-header">
+              <div class="ticket-name">Tickets</div>
+              <div class="ticket-status">Status</div>
+            </div>
+            {{props ~root.tickets itemVar="~ticket"}}
+              <a class="dropdown-item new-ticket" href="#">
+                <div class="ticket-name">{{:~ticket.prop.id}}</div>
+                <div class="ticket-status">{{if ~ticket.prop.state === "granted"}}
+                    Granted
+                  {{else ~ticket.prop.state === "revoked"}}
+                    Revoked
+                  {{else ~ticket.prop.state === "elsewhere"}}
+                    Granted elsewhere
+                  {{/if}}
+                  {{if ~ticket.prop.standby === true}}
+                    Standby
+                  {{/if}}
+                </div>
+              </a>
+            {{/props}}
+          </div>
+        {{/if}}
+      </div>
   </script>
 
   <script id="status-table-template" type="text/x-jsrender">
-      <div class="dashboard-table">
-        <table id="table-template" class="table">
-          <div id="nodes-table-rows">
-            <tr id="nodes-table-row" class="no-top-border table-header">
-              <th colspan="2" class="col-sm-2 no-left-border"></th>
-              {{for ~root.nodes itemVar="~node"}}
-                <th {{if #index==0}}class="no-left-border"{{/if}}>
-                  {{if ~node.state === "unclean"}}
-                    <span class="status-bar status-danger"></span>
-                  {{else ~node.state === "online"}}
-                    <span class="status-bar status-success"></span>
-                  {{else ~node.state === "offline"}}
-                    <span class="status-bar status-offline"></span>
-                  {{else ~node.state === "standby"}}
-                    <span class="status-bar status-offline"></span>
-                  {{else ~node.state === "pending"}}
-                    <span class="status-bar status-success"></span>
-                  {{/if}}
-                  <div id="node-{{:name}}" class="node-name" title="Node id: {{:~node.id}}">{{:name}} <span class="table-cluster-name">{{:~root.crm_config.cluster_name}}</span></div>
-                  {{if ~node.name === ~root.meta.dc}}
-                    <span class="status-icon"><i class="fa fa-home" aria-hidden="true" title="Designated coordinator"></i></span>
-                  {{/if}}
-                  {{if ~node.remote == true}}
-                    <span class="status-icon"><i class="fa fa-podcast" aria-hidden="true" title="Remote node"></i></span>
-                  {{/if}}
-                  {{if ~node.maintenance == true}}
-                  <span class="status-icon"><i class="fa fa-wrench" aria-hidden="true"></i></span>
-                  {{/if}}
-                  {{if ~node.fence_history !== ""}}
-                    <i class="fa fa-refresh text-warning" title='{{:~node.fence_history}}'></i>
-                  {{/if}}
-                </th>
-              {{/for}}
-            </tr>
-          <div>
-          <div id="resources-table-rows">
-            {{for ~root.resources itemVar="~resource"}}
-              <tr {{if #index==0}}class="no-top-border"{{/if}}>
-                <td class="no-left-border resource-icon">
-                  {{if ~resource.maintenance == true}}
-                    <span class="status-icon"><i class="fa fa-wrench" aria-hidden="true"></i></span>
-                  {{/if}}
-                  {{if ~resource["type"] === "master"}}
-                    <span class="status-icon"><i class="fa fa-asterisk" aria-hidden="true"></i></span>
-                  {{/if}}
-                </td>
-                <td class="text-left no-left-border">
-                  {{if ~resource.state === "stopped" && ~resource["attributes"]["target-role"] === "Stopped"}}
-                    <span class="status-bar status-offline"></span>
-                  {{else ~resource.state === "stopped"}}
-                    <span class="status-bar status-danger"></span>
-                  {{/if}}
-                  {{if ~resource.state !== "stopped"}}
-                    <span class="status-bar status-success"></span>
-                  {{/if}}
-                    <span id="resource-{{:id}}" class="resource-name">{{:id}}</span>
-                </td>
-                {{for ~root.nodes itemVar="~node"}}
-                  <td {{if #index==0}}class="no-left-border"{{/if}}>
-                  {{if ~node.state === "unclean" }}
-                    <div class="node-circle status-danger"></div>
-                  {{else ~resource.state === "stopped"}}
-                    <div class="node-circle status-danger"></div>
-                  {{else ~node.state === "offline" }}
-                    <div class="node-circle status-offline"></div
-                  {{else}}
-                    {{props ~resource.running_on itemVar="~nodeWhereTheResourceRun"}}
-                      {{if (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "started")}}
-                        <div class="node-circle status-success" title="Started"></div>
-                      {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "slave")}}
-                        <div class="node-circle status-success" title="Started"></div><span class="table-label slave-master">Slave</span>
-                      {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "master")}}
-                        <div class="node-circle status-success" title="Started"></div><span class="table-label slave-master">Master</span>
-                      {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "not_running")}}
-                        <div class="node-circle status-default"></div>
-                      {{/if}}
-                    {{/props}}
-                  {{/if}}
-                  </td>
-                {{/for}}
-              </tr>
-            {{/for}}
-          </div>
-          <div id="tickets-table-rows">
-            {{if ~root.tickets}}
-              {{props ~root.tickets itemVar="~ticket"}}
-                <tr class="ticket">
-                  <td class="no-left-border resource-icon"></td>
-                  <td class="text-left no-left-border">
-                    <span class="status-bar status-ticket"></span>
-                    <span id="ticket-{{:~ticket.prop.id}}" class="resource-name">{{:~ticket.prop.id}}</span>
-                  </td>
-                  <td class="no-left-border" colspan="4">
-                    <div class="ticket-state">
-                      {{if ~ticket.prop.state === "granted"}}
-                        Ticket granted
-                      {{else ~ticket.prop.state === "revoked"}}
-                        Ticket Revoked
-                      {{else ~ticket.prop.state === "elsewhere"}}
-                        Ticket granted elsewhere
-                      {{/if}}
-                      {{if ~ticket.prop.standby === true}}
-                        Standby
-                      {{/if}}
-                    </div>
-                  </td>
-                </tr>
-              {{/props}}
-            {{/if}}
-          </div>
-        </table>
-      </div>
+    <table class="table table-hover">
+      {{include tmpl="#status-table-nodes"/}}
+      {{include tmpl="#status-table-resources"/}}
+    </table>
   </script>
 </div>
