@@ -45,7 +45,7 @@ def configure_machine(machine, idx, roles, memory)
   machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 22, host: 3022 + (idx * 100)
   machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 7630, host: 7630 + idx
   machine.vm.network :private_network, ip: "10.13.37.#{10 + idx}"
-  machine.vm.network "public_network", use_dhcp_assigned_default_route: true
+  #machine.vm.network "public_network", use_dhcp_assigned_default_route: true
 
   machine.vm.provision "shell", path: "chef/suse-prepare.sh"
   machine.vm.provision :chef_solo do |chef|
