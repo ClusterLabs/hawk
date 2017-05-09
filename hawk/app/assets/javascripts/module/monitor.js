@@ -99,7 +99,7 @@
 }(jQuery, document, window));
 
 $(function() {
-  $('#cib').monitorCheck();
+  $('body').monitorCheck();
 
   $.updateCib = function() {
     $('body').trigger($.Event('updated.hawk.monitor'));

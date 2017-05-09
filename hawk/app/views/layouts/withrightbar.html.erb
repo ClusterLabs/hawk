@@ -1,7 +1,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html lang="<%= I18n.locale.to_s.gsub("-", "_") %>">
   <%= render partial: "shared/header" %>
-  <body class="<%= current_cib.id %>" id="<%= controller_name %>" data-cib="<%= current_cib.id %>" data-epoch="<%= current_cib.epoch %>" data-god="<%= is_god?.to_s %>" data-user="<%= current_user %>" data-content="<%= current_cib.status.to_json %>">
+  <body <%= body_attrs %> >
     <div class="<%= navbar_background_class %> navbar navbar-fixed-top" role="navigation">
       <div class="container-fluid" style="white-space: nobreak;">
         <div class="navbar-header">
