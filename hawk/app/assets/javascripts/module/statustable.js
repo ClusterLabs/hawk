@@ -49,13 +49,13 @@ var statusTable = {
                 text = __('Unexpected server error: _MSG_').replace('_MSG_', options.error_msg);
                 break;
             case 'err_conn_failed':
-                text = __('Connection to server failed (server down or network error - will retry every 15 seconds).');
+                text = __('Connection to server failed (server down or network error - will retry every 5 seconds).');
                 break;
             case 'err_conn_timeout':
-                text = __('Connection to server timed out - will retry every 15 seconds.');
+                text = __('Connection to server timed out - will retry every 5 seconds.');
                 break;
             case 'err_conn_aborted':
-                text = __('Connection to server aborted - will retry every 15 seconds.');
+                text = __('Connection to server aborted - will retry every 5 seconds.');
                 break;
             case 'err_denied':
                 text = __('Permission denied');
@@ -87,7 +87,7 @@ var statusTable = {
         }
         if (cb !== undefined) {
             if (time === undefined) {
-                time = 15000;
+                time = 5000;
             }
             this.conntry = window.setTimeout(cb, time);
         }
@@ -172,7 +172,7 @@ var statusTable = {
             msg += __("Unknown error connecting to server.");
         }
 
-        msg += " " + __("Retrying every 15 seconds...");
+        msg += " " + __("Retrying every 5 seconds...");
 
         if (xhr.status != 0) {
             msg += "<pre> Response: " + xhr.status + " " + xhr.statusText + "</pre>";
