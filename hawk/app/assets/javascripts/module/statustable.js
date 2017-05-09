@@ -77,9 +77,6 @@ var statusTable = {
         }
         return hash;
     },
-    isRemote: function(cib, node) {
-        return ("remote_nodes" in cib) && (node in cib["remote_nodes"]);
-    },
     scheduleReconnect: function(cb, time) {
         if (this.conntry !== null) {
             window.clearTimeout(this.conntry);
@@ -316,7 +313,7 @@ var statusTable = {
             crossDomain: that.host !== null,
             success: function(data) {
                 $.each(data.nodes, function(node, node_values) {
-                    if (!that.isRemote(data, node_values.uname)) {
+                    if (node_values.remote === false) {
                         if ($.inArray(that.reconnections, node_values.uname) === -1) {
                             that.reconnections.push(node_values.uname);
                         }

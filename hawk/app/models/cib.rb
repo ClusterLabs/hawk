@@ -145,7 +145,6 @@ class Cib
       errors: errors,
       booth: booth
     }.tap do |result|
-      result[:remote_nodes] = {}
       result[:crm_config] = crm_config
       result[:rsc_defaults] = rsc_defaults
       result[:op_defaults] = op_defaults
@@ -158,9 +157,6 @@ class Cib
       result[:constraints] = constraints
       result[:resource_count] = resource_count
       result[:fencing_topology] = fencing_topology
-      nodes.each do |node|
-        result[:remote_nodes][node[:uname]] = node[:state] unless node[:remote]
-      end
     end
   end
 
