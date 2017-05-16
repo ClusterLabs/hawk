@@ -47,6 +47,27 @@ when "suse"
   end
 end
 
+###############################################
+case node["platform_family"]
+when "suse"
+  include_recipe "zypper"
+
+  zypper_repository node["hawk"]["zypper"]["node_alias"] do
+    uri node["hawk"]["zypper"]["node_repo"]
+    key node["hawk"]["zypper"]["key"]
+    title node["hawk"]["zypper"]["node_title"]
+
+    action [:add, :refresh]
+
+    only_if do
+      node["hawk"]["zypper"]["enabled"]
+    end
+  end
+end
+###############################################
+
+
+
 node["hawk"]["webui"]["packages"].each do |name|
   package name do
     action :install
@@ -91,6 +112,12 @@ drbdadm new-current-uuid --clear-bitmap r0/0
 drbdadm primary --force r0
 mkfs.ext4 /dev/drbd0
 EOF
+end
+
+bash "npm_install" do
+    user "root"
+    cwd "/vagrant/hawk"
+    code "npm install -g"
 end
 
 bash "hawk_init" do
