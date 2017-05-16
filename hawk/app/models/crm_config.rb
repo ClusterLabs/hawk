@@ -245,7 +245,8 @@ class CrmConfig < Tableless
             [
               "cluster-infrastructure",
               "dc-version",
-              "expected-quorum-votes"
+              "expected-quorum-votes",
+              "have-watchdog",
             ].each do |key|
               crm_config[key][:readonly] = true if crm_config[key]
             end
