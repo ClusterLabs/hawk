@@ -164,4 +164,3 @@ srpm: archive
 
 rpm: srpm
 	rpmbuild --rebuild $(RPM_ROOT)/*.src.rpm
-
