@@ -118,6 +118,7 @@ ruby_block "webui_check" do
             break
           when exit_code >= 1
             Chef::Log.info "Waiting for webui cluster setup..."
+            break
           end
 
           sleep 10
