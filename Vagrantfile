@@ -78,7 +78,7 @@ Vagrant.configure("2") do |config|
     abort 'Missing bindfs plugin! Please install using vagrant plugin install vagrant-bindfs'
   end
 
-  config.vm.box = "opensuse/openSUSE-42.1-x86_64"
+  config.vm.box = "opensuse/openSUSE-42.2-x86_64"
   config.vm.box_check_update = true
   config.ssh.insert_key = false
   config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ["rw", "noatime", "async"]

@@ -53,6 +53,8 @@ node["hawk"]["webui"]["packages"].each do |name|
   end
 end
 
+ENV['PKG_CONFIG_PATH'] = '/usr/lib64/pkgconfig'
+
 node["hawk"]["webui"]["targets"].each do |name|
   bash "hawk_make_#{name.gsub("/", "_")}" do
     user "root"
