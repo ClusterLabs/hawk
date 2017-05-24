@@ -45,17 +45,12 @@ when "suse"
       node["hawk"]["zypper"]["enabled"]
     end
   end
-end
 
-###############################################
-case node["platform_family"]
-when "suse"
-  include_recipe "zypper"
-
-  zypper_repository node["hawk"]["zypper"]["node_alias"] do
-    uri node["hawk"]["zypper"]["node_repo"]
+  # Add the devel:languages:nodejs and install nodejs's latest version.
+  zypper_repository node["hawk"]["zypper"]["nodejs_repo_alias"] do
+    uri node["hawk"]["zypper"]["nodejs_repo"]
     key node["hawk"]["zypper"]["key"]
-    title node["hawk"]["zypper"]["node_title"]
+    title node["hawk"]["zypper"]["nodejs_repo_title"]
 
     action [:add, :refresh]
 
@@ -63,10 +58,8 @@ when "suse"
       node["hawk"]["zypper"]["enabled"]
     end
   end
+
 end
-###############################################
-
-
 
 node["hawk"]["webui"]["packages"].each do |name|
   package name do
@@ -114,6 +107,7 @@ mkfs.ext4 /dev/drbd0
 EOF
 end
 
+# Install nodejs packages using 'hawk/package.json'
 bash "npm_install" do
     user "root"
     cwd "/vagrant/hawk"
