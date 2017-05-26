@@ -529,7 +529,6 @@ var statusTable = {
         this.updateClusterTab("connected"); // Update the cluster's status indicator shown next to the cluster name in each tab.
         this.setClusterUrl();
         this.SetTicketNotification();
-        // this.createDeleteClusterForm();
         this.printLog(); // Testing
     },
     cacheDom: function() {
