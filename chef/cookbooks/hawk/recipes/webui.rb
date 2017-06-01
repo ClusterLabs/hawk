@@ -100,6 +100,20 @@ mkfs.ext4 /dev/drbd0
 EOF
 end
 
+# Install Yarn globally'
+bash "npm_install" do
+    user "root"
+    cwd "/vagrant/hawk"
+    code "npm install yarn -g"
+end
+
+# Install js modules using Yarn
+bash "yarn" do
+    user "root"
+    cwd "/vagrant/hawk"
+    code "yarn"
+end
+
 bash "hawk_init" do
   user "root"
   cwd "/vagrant"
