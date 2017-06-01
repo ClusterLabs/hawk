@@ -41,7 +41,7 @@ class VagrantPlugins::ProviderVirtualBox::Action::SetName
 end
 
 # Shared configuration for all VMs
-def configure_machine(machine, idx, roles, memory)
+def configure_machine(machine, idx, roles, memory, cpus)
   machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 22, host: 3022 + (idx * 100)
   machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 7630, host: 7630 + idx
   machine.vm.network :private_network, ip: "10.13.37.#{10 + idx}"
@@ -60,13 +60,13 @@ def configure_machine(machine, idx, roles, memory)
 
   machine.vm.provider :virtualbox do |provider, override|
     provider.memory = memory
-    provider.cpus = 1
+    provider.cpus = cpus
     provider.name = "hawk-#{machine.vm.hostname}"
   end
 
   machine.vm.provider :libvirt do |provider, override|
     provider.memory = memory
-    provider.cpus = 1
+    provider.cpus = cpus
     provider.graphics_port = 9200 + idx
     provider.storage :file, path: "#{$shared_disk}.raw", size: "#{$shared_disk_size}M", type: 'raw', cache: 'none', allow_existing: true, shareable: true
     provider.storage :file, path: "#{$drbd_disk}-#{machine.vm.hostname}.raw", size: "#{$drbd_disk_size}M", type: 'raw', allow_existing: true
@@ -88,13 +88,13 @@ Vagrant.configure("2") do |config|
     machine.vm.hostname = "webui"
     machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 3000, host: 3000
     machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 8808, host: 8808
-    configure_machine machine, 0, ["base", "webui"], 1536
+    configure_machine machine, 0, ["base", "webui"], 2608, 2
   end
 
   1.upto(2).each do |i|
     config.vm.define "node#{i}", autostart: true do |machine|
       machine.vm.hostname = "node#{i}"
-      configure_machine machine, i, ["base", "node"], 1536
+      configure_machine machine, i, ["base", "node"], 768, 1
     end
   end
 
