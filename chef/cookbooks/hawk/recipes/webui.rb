@@ -101,10 +101,10 @@ EOF
 end
 
 # Install Yarn globally'
-bash "npm_install" do
+bash "npm_install_yarn" do
     user "root"
     cwd "/vagrant/hawk"
-    code "npm install yarn -g"
+    code "npm install -g yarn"
 end
 
 # Install js modules using Yarn
