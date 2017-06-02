@@ -81,7 +81,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "opensuse/openSUSE-42.2-x86_64"
   config.vm.box_check_update = true
   config.ssh.insert_key = false
-  config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ["rw", "noatime", "async"]
+  config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_udp: false, mount_options: ["rw", "noatime", "async"]
   config.bindfs.bind_folder "/vagrant", "/vagrant", force_user: "hacluster", force_group: "haclient", perms: "u=rwX:g=rwXD:o=rXD", after: :provision
 
   config.vm.define "webui", primary: true do |machine|
