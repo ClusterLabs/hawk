@@ -100,20 +100,6 @@ mkfs.ext4 /dev/drbd0
 EOF
 end
 
-# Install Yarn globally'
-bash "npm_install_yarn" do
-    user "root"
-    cwd "/vagrant/hawk"
-    code "npm install -g yarn"
-end
-
-# Install js modules using Yarn
-bash "yarn" do
-    user "root"
-    cwd "/vagrant/hawk"
-    code "yarn"
-end
-
 bash "hawk_init" do
   user "root"
   cwd "/vagrant"
@@ -212,11 +198,53 @@ template "/etc/systemd/system/hawk-development.service" do
    mode 0644
 end
 
+
+
+# Install nvm'
+execute "nvm" do
+    user "vagrant"
+    group "vagrant"
+    cwd "/home/vagrant"
+    environment ({ 'HOME' => '/home/vagrant', 'USER' => 'vagrant' })
+    command ["curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh -o nvm_install.sh", "bash nvm_install.sh", "source ~/.bashrc"]
+    EOF
+end
+
+# file "/home/vagrant/.bashrc" do
+#   content "source /home/vagrant/.bashrc"
+# end
 file '/home/vagrant/.profile' do
   content <<-EOF
     test -z "$PROFILEREAD" && . /etc/profile || true
     export PATH=/vagrant/hawk/bin:$PATH
   EOF
+end
+
+# Install the latest version of nodejs
+bash "install_nodejs" do
+    user "vagrant"
+    group "vagrant"
+    cwd "/home/vagrant"
+    environment ({ 'HOME' => '/home/vagrant', 'USER' => 'vagrant' })
+    code "nvm install node"
+end
+
+# Install Yarn globally'
+bash "npm_install_yarn" do
+    user "vagrant"
+    group "vagrant"
+    cwd "/home/vagrant"
+    environment ({ 'HOME' => '/home/vagrant', 'USER' => 'vagrant' })
+    code "npm install -g yarn"
+end
+
+# Install js modules using Yarn
+bash "yarn" do
+    user "vagrant"
+    group "vagrant"
+    cwd "/vagrant/hawk"
+    environment ({ 'HOME' => '/home/vagrant', 'USER' => 'vagrant' })
+    code "yarn"
 end
 
 service "hawk-development" do
