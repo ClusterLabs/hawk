@@ -205,7 +205,7 @@ file '/home/vagrant/.profile' do
   EOF
 end
 
-# Install nvm, the latest version of nodejs and Yarn
+# Install nvm, the latest LTS version of nodejs and Yarn
 bash "install_yarn" do
     user "vagrant"
     group "vagrant"
@@ -214,7 +214,7 @@ bash "install_yarn" do
     code <<-EOF
       curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
       source ~/.bashrc
-      nvm install node
+      nvm install --lts
       npm install -g yarn
       yarn
     EOF
