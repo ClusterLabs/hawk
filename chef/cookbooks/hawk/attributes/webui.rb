@@ -40,6 +40,9 @@ default["hawk"]["webui"]["packages"] = [
 
   "git-core",
 
+  # Install java (required for running Selenium server to perform JS testing)
+  "java-1_8_0-openjdk",
+
   "hawk2",
   "fence-agents",
   "ha-cluster-bootstrap",

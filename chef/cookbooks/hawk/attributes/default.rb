@@ -35,4 +35,8 @@ when "suse"
   default["hawk"]["zypper"]["title"] = "Network HA Clustering"
   default["hawk"]["zypper"]["repo"] = "http://download.opensuse.org/repositories/network:/ha-clustering:/Factory/#{repo}/"
   default["hawk"]["zypper"]["key"] = "#{node["hawk"]["zypper"]["repo"]}repodata/repomd.xml.key"
+
+  default["hawk"]["zypper"]["nodejs_repo_alias"] = "devel:languages:nodejs"
+  default["hawk"]["zypper"]["nodejs_repo_title"] = "devel:languages:nodejs"
+  default["hawk"]["zypper"]["nodejs_repo"] = "http://download.opensuse.org/repositories/devel:/languages:/nodejs/#{repo}/"
 end

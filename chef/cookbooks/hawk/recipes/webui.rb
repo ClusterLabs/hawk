@@ -33,14 +33,21 @@ end
 case node["platform_family"]
 when "suse"
   include_recipe "zypper"
-
   zypper_repository node["hawk"]["zypper"]["alias"] do
     uri node["hawk"]["zypper"]["repo"]
     key node["hawk"]["zypper"]["key"]
     title node["hawk"]["zypper"]["title"]
-
     action [:add, :refresh]
-
+    only_if do
+      node["hawk"]["zypper"]["enabled"]
+    end
+  end
+  # Add the devel:languages:nodejs and install nodejs's latest version.
+  zypper_repository node["hawk"]["zypper"]["nodejs_repo_alias"] do
+    uri node["hawk"]["zypper"]["nodejs_repo"]
+    key node["hawk"]["zypper"]["key"]
+    title node["hawk"]["zypper"]["nodejs_repo_title"]
+    action [:add, :refresh]
     only_if do
       node["hawk"]["zypper"]["enabled"]
     end
@@ -196,6 +203,21 @@ file '/home/vagrant/.profile' do
     test -z "$PROFILEREAD" && . /etc/profile || true
     export PATH=/vagrant/hawk/bin:$PATH
   EOF
+end
+
+# Install nvm, the latest LTS version of nodejs and Yarn
+bash "install_yarn" do
+    user "vagrant"
+    group "vagrant"
+    cwd "/vagrant/hawk"
+    environment ({ 'HOME' => '/home/vagrant', 'USER' => 'vagrant' })
+    code <<-EOF
+      curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
+      source ~/.bashrc
+      nvm install --lts
+      npm install -g yarn
+      yarn
+    EOF
 end
 
 service "hawk-development" do
