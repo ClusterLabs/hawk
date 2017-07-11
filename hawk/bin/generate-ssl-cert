@@ -54,10 +54,14 @@ mkdir -p "$(dirname "$cert_file")"
 old_mask=$(umask)
 umask 137
 
+# Set the certificate commonName to something
+# (hopefully) identifiable, but make sure it's
+# not too long
 CN=$(hostname -f)
-
 [ -z "$CN" ] && CN=$(hostname)
 [ -z "$CN" ] && CN=localhost
+[ "${#CN}" -gt 48 ] && CN=$(hostname)
+[ "${#CN}" -gt 48 ] && CN=localhost
 
 $openssl_bin req -x509 -sha256 -nodes -days 1095 -newkey rsa:2048 -batch -config /dev/fd/0 -keyout "$cert_key_file" -out "$cert_file" >"$log_file" 2>&1 <<CONF
 [req]
