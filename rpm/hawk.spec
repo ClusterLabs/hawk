@@ -17,12 +17,12 @@
 
 
 %if 0%{?suse_version}
-%define	www_base	/srv/www
+%define	www_base	/usr/share
 %define	vendor_ruby	vendor_ruby
 %define	init_style	suse
 %define	pkg_group	Productivity/Clustering/HA
 %else
-%define	www_base	/var/www
+%define	www_base	/usr/share
 %define	vendor_ruby	site_ruby
 %define	init_style	redhat
 %define	pkg_group	System Environment/Daemons

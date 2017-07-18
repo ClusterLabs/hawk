@@ -23,7 +23,7 @@ RPM_OPTS = --define "_sourcedir $(RPM_ROOT)"	\
 
 # Override this when invoking make to install elsewhere, e.g.:
 #   make WWW_BASE=/var/www install
-WWW_BASE = /srv/www
+WWW_BASE = /usr/share
 
 # Override this to get a different init script (e.g. "redhat")
 INIT_STYLE = suse
