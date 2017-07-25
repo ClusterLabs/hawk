@@ -33,21 +33,14 @@ end
 case node["platform_family"]
 when "suse"
   include_recipe "zypper"
+
   zypper_repository node["hawk"]["zypper"]["alias"] do
     uri node["hawk"]["zypper"]["repo"]
     key node["hawk"]["zypper"]["key"]
     title node["hawk"]["zypper"]["title"]
+
     action [:add, :refresh]
-    only_if do
-      node["hawk"]["zypper"]["enabled"]
-    end
-  end
-  # Add the devel:languages:nodejs and install nodejs's latest version.
-  zypper_repository node["hawk"]["zypper"]["nodejs_repo_alias"] do
-    uri node["hawk"]["zypper"]["nodejs_repo"]
-    key node["hawk"]["zypper"]["key"]
-    title node["hawk"]["zypper"]["nodejs_repo_title"]
-    action [:add, :refresh]
+
     only_if do
       node["hawk"]["zypper"]["enabled"]
     end
