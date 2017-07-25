@@ -263,7 +263,7 @@ you'll be happy with the outcome!
 # sudo make install
 --------------------------------------
 
-The above will install in +/srv/www/hawk+. To install somewhere else
+The above will install in +/usr/share/hawk+. To install somewhere else
 (e.g.: +/var/www/hawk+) and/or to use a Red Hat-style init script,
 try:
 
@@ -343,7 +343,7 @@ through packages you can reach it through +https://localhost:7630+.
 
 In fact, within the Vagrant environment, there are two instances of the Puma web
 server running. The first one is accessible through +https://localhost:7630+, with
-+/srv/www/hawk+ as the root directory. This instance is launched by default as a
++/usr/share/hawk+ as the root directory. This instance is launched by default as a
 production server when installing hawk through the package manager or when
 launching the vagrant environment. It is used to monitor and manage the cluster
 in the real production environment. Note also that this puma server instance is

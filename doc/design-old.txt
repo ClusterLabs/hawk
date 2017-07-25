@@ -45,7 +45,7 @@ The idea here is to provide an RPM (or other package) with absolutely minimal de
 * The "hawk" rails app lives in the "hawk" directory of the source tree.
 * The toplevel Makefile (outside this directory) is used to:
 ** Run rake to build .mo files, and freeze rails and all other dependent gems (gettext, etc.) into the rails app.
-** Install the rails app to <tt>/srv/www/hawk</tt>, install the init script in <tt>/etc/init.d/hawk</tt>, and install a couple of helper binaries in <tt>/usr/sbin</tt>.
+** Install the rails app to <tt>/usr/share/hawk</tt>, install the init script in <tt>/etc/init.d/hawk</tt>, and install a couple of helper binaries in <tt>/usr/sbin</tt>.
 ** This is all really only done in order to make a sane RPM.
 
 Areas for further work:
@@ -166,4 +166,3 @@ Areas for further work:
 * Change node state ''(not yet implemented)''
 * Edit outcome of resource op ''(not yet implemented)''
 * View transition graphs ''(not yet implemented)''
-
