@@ -93,6 +93,20 @@ mkfs.ext4 /dev/drbd0
 EOF
 end
 
+# Install Yarn globally'
+bash "npm_install_yarn" do
+    user "root"
+    cwd "/vagrant/hawk"
+    code "npm install -g yarn"
+end
+
+# Install js modules using Yarn
+bash "yarn" do
+    user "root"
+    cwd "/vagrant/hawk"
+    code "yarn"
+end
+
 bash "hawk_init" do
   user "root"
   cwd "/vagrant"
@@ -196,21 +210,6 @@ file '/home/vagrant/.profile' do
     test -z "$PROFILEREAD" && . /etc/profile || true
     export PATH=/vagrant/hawk/bin:$PATH
   EOF
-end
-
-# Install nvm, the latest LTS version of nodejs and Yarn
-bash "install_yarn" do
-    user "vagrant"
-    group "vagrant"
-    cwd "/vagrant/hawk"
-    environment ({ 'HOME' => '/home/vagrant', 'USER' => 'vagrant' })
-    code <<-EOF
-      curl -o- https://raw.githubusercontent.com/creationix/nvm/v0.33.2/install.sh | bash
-      source ~/.bashrc
-      nvm install --lts
-      npm install -g yarn
-      yarn
-    EOF
 end
 
 service "hawk-development" do
