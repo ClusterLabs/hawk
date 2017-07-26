@@ -576,11 +576,11 @@ var statusTable = {
     formatClusterName: function() {
         // Adding title to cluster name cell in the table and adding the information icon next to it
         var meta = this.tableData.meta;
-        var title_value = "Status:\b" + meta.status +
-            "\nEpoch:\b" + meta.epoch +
-            "\nUpdate Origin:\b" + meta.update_origin +
-            "\nUpdate User:\b" + meta.update_user +
-            "\nStack:\b" + meta.stack;
+        var title_value = "Status:" + "  " + meta.status +
+            "\nEpoch:" + "  " + meta.epoch +
+            "\nUpdate Origin:" + "  " + meta.update_origin +
+            "\nUpdate User:" + "  " + meta.update_user +
+            "\nStack:" + "  " + meta.stack;
         var info_icon = '&nbsp;<i class="fa fa-info-circle" aria-hidden="true"></i>';
         this.$table.find(".table-cluster-name").attr("title", title_value).append(info_icon);
     },
