@@ -218,10 +218,6 @@ Some dependencies may differ depending on the distribution:
 Hawk is a Ruby on Rails app which runs using the Puma web server
 (http://puma.io/).
 
-There is a special build mode which vendors all the rubygems used by
-Hawk, to create a package which bundles all of the gems. See the
-included RPM spec file in +rpm/hawk.spec+ for details.
-
 For details on the rubygems used by hawk, see the gemfile in
 +hawk/Gemfile+.
 
