@@ -2,8 +2,8 @@
 # See COPYING for license.
 
 class DashboardsController < ApplicationController
-  before_filter :login_required
-  before_filter :set_title
+  before_action :login_required
+  before_action :set_title
 
   def show
     @clusters = Cluster.all

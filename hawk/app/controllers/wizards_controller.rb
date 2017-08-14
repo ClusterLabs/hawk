@@ -2,11 +2,11 @@
 # See COPYING for license.
 
 class WizardsController < ApplicationController
-  before_filter :login_required
-  before_filter :set_title
-  before_filter :set_cib
-  before_filter :cib_writable
-  before_filter :cluster_online
+  before_action :login_required
+  before_action :set_title
+  before_action :set_cib
+  before_action :cib_writable
+  before_action :cluster_online
 
   def index
     @wizards = Wizard.all

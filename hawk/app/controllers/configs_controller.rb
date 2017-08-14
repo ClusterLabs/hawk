@@ -3,8 +3,8 @@
 # See COPYING for license.
 
 class ConfigsController < ApplicationController
-  before_filter :login_required
-  skip_before_filter :verify_authenticity_token
+  before_action :login_required
+  skip_before_action :verify_authenticity_token
 
   def show
     respond_to do |format|

@@ -2,11 +2,11 @@
 # See COPYING for license.
 
 class ReportsController < ApplicationController
-  before_filter :login_required
-  before_filter :god_required
-  before_filter :set_title
-  before_filter :set_record, only: [:show, :destroy, :download, :cache]
-  before_filter :set_transition, only: [:display, :detail, :graph, :logs, :diff, :pefile, :status, :cib]
+  before_action :login_required
+  before_action :god_required
+  before_action :set_title
+  before_action :set_record, only: [:show, :destroy, :download, :cache]
+  before_action :set_transition, only: [:display, :detail, :graph, :logs, :diff, :pefile, :status, :cib]
 
   helper_method :current_transition
   helper_method :prev_transition

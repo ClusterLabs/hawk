@@ -7,15 +7,15 @@ require 'open3'
 class MonitorController < ApplicationController
   include ActionController::Live
 
-  skip_around_filter :inject_current_user
-  skip_around_filter :inject_current_cib
-  skip_before_filter :set_users_locale
-  skip_before_filter :set_current_home
-  skip_before_filter :set_current_title
-  skip_before_filter :set_shadow_cib
-  before_filter :login_required
-  skip_before_filter :verify_authenticity_token
-  skip_after_filter :cors_set_access_control_headers
+  skip_around_action :inject_current_user
+  skip_around_action :inject_current_cib
+  skip_before_action :set_users_locale
+  skip_before_action :set_current_home
+  skip_before_action :set_current_title
+  skip_before_action :set_shadow_cib
+  before_action :login_required
+  skip_before_action :verify_authenticity_token
+  skip_after_action :cors_set_access_control_headers
 
   def monitor
     epoch = request.query_string.to_s.split('&').first || ""

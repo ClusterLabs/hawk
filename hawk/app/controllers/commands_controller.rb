@@ -2,9 +2,9 @@
 # See COPYING for license.
 
 class CommandsController < ApplicationController
-  before_filter :login_required
-  before_filter :set_title
-  before_filter :set_cib
+  before_action :login_required
+  before_action :set_title
+  before_action :set_cib
 
   def index
     @cmds = CrmEvents.instance.cmds

@@ -2,7 +2,7 @@
 # See COPYING for license.
 
 class PagesController < ApplicationController
-  before_filter :login_required
+  before_action :login_required
 
   layout :detect_modal_layout,
     only: [:help]

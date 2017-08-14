@@ -2,11 +2,11 @@
 # See COPYING for license.
 
 class TemplatesController < ApplicationController
-  before_filter :login_required
-  before_filter :feature_support
-  before_filter :set_title
-  before_filter :set_cib
-  before_filter :set_record, only: [:edit, :update, :destroy, :show]
+  before_action :login_required
+  before_action :feature_support
+  before_action :set_title
+  before_action :set_cib
+  before_action :set_record, only: [:edit, :update, :destroy, :show]
 
   def index
     respond_to do |format|

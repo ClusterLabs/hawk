@@ -2,10 +2,10 @@
 # See COPYING for license.
 
 class CrmConfigController < ApplicationController
-  before_filter :login_required
-  before_filter :set_title
-  before_filter :set_cib
-  before_filter :set_record, only: [:edit, :update]
+  before_action :login_required
+  before_action :set_title
+  before_action :set_cib
+  before_action :set_record, only: [:edit, :update]
 
   def edit
     respond_to do |format|

@@ -2,9 +2,9 @@
 # See COPYING for license.
 
 class CibController < ApplicationController
-  before_filter :login_required
-  before_filter :set_title
-  before_filter :set_cib
+  before_action :login_required
+  before_action :set_title
+  before_action :set_cib
 
   skip_before_action :verify_authenticity_token, only: [:show, :apply]
 
