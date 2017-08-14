@@ -28,13 +28,10 @@ WWW_BASE = /usr/share
 # Override this to get a different init script (e.g. "redhat")
 INIT_STYLE = suse
 
-# Set this to true to bundle gems inside rpm
-BUNDLE_GEMS = false
+# Note: ABI version detection is experimental
+RUBY_ABI = "$(echo "puts \"#{Gem.ruby_api_version}\"" | ruby)"
 
-# This should be discoverable in a better way
-RUBY_ABI = 2.1.0
-
-# Set this never to 1, it's used only within vagrant for development
+# Never set this to 1, it's used only within vagrant for development
 WITHIN_VAGRANT = 0
 
 # Base paths for Pacemaker binaries (note: overriding these will change
@@ -46,18 +43,8 @@ SBINDIR = /usr/sbin
 
 .PHONY: all clean tools
 
-all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service scripts/hawk.service.bundle_gems tools
+all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service tools
 	(cd hawk; \
-	 if $(BUNDLE_GEMS) ; then \
-		# Ignore gems from test \
-		export BUNDLE_WITHOUT="test" && \
-		# Generate Gemfile.lock \
-		bundle list && \
-		# Strip unwanted gems from Gemfile.lock \
-		sed -i -e '/\brdoc\b/d' -e '/\brake\b/d' -e '/\bjson\b/d' Gemfile.lock && \
-		# Finally package and install the gems \
-		bundle package && bundle install --local --deployment ; \
-	 fi ; \
 	 TEXTDOMAIN=hawk bin/rake gettext:pack; \
 	 RAILS_ENV=production bin/rake assets:precompile)
 
@@ -110,11 +97,7 @@ base/install:
 	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/tmp || true
 	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/home
 	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/explorer
-ifeq ($(BUNDLE_GEMS),true)
-		install -D -m 0644 scripts/hawk.service.bundle_gems $(DESTDIR)/usr/lib/systemd/system/hawk.service
-else
-		install -D -m 0644 scripts/hawk.service $(DESTDIR)/usr/lib/systemd/system/hawk.service
-endif
+	install -D -m 0644 scripts/hawk.service $(DESTDIR)/usr/lib/systemd/system/hawk.service
 
 tools/install:
 	install -D -m 4750 tools/hawk_chkpwd $(DESTDIR)/usr/sbin/hawk_chkpwd
