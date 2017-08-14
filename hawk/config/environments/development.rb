@@ -12,7 +12,7 @@ Rails.application.configure do
 
 
   config.consider_all_requests_local = true
-  config.serve_static_files = true
+  config.public_file_server.enabled = true
   config.force_ssl = false
   config.autoflush_log = true
 
