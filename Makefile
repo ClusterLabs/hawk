@@ -29,7 +29,7 @@ WWW_BASE = /usr/share
 INIT_STYLE = suse
 
 # Note: ABI version detection is experimental
-RUBY_ABI = "$(echo "puts \"#{Gem.ruby_api_version}\"" | ruby)"
+RUBY_ABI = "2.4.0"
 
 # Never set this to 1, it's used only within vagrant for development
 WITHIN_VAGRANT = 0
