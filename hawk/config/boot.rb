@@ -20,14 +20,14 @@ if File.exist? ENV["BUNDLE_GEMFILE"]
 
   Bundler.require(*Rails.groups)
 else
-  gem "rails", version: "~> 4.2.0"
+  gem "rails", version: "~> 5"
   require "active_model/railtie"
   require "action_controller/railtie"
   require "action_view/railtie"
   require "sprockets/railtie"
   require "rails/test_unit/railtie"
 
-  gem "puma", version: "~> 2.11"
+  gem "puma", version: "~> 3"
   require "puma"
 
   gem "sass-rails", version: "~> 5.0"
@@ -36,24 +36,24 @@ else
   gem "virtus", version: "~> 1.0"
   require "virtus"
 
-  gem "js-routes", version: "~> 1.0"
+  gem "js-routes", version: ">= 1.3.3"
   require "js-routes"
 
-  gem "tilt", version: "~> 1.4"
+  gem "tilt", version: "~> 2.0"
   require "tilt"
 
-  gem "fast_gettext", version: "~> 0.9"
+  gem "fast_gettext", version: "~> 1.4"
   require "fast_gettext"
 
-  gem "gettext_i18n_rails_js", version: "~> 1.0"
-  require "gettext_i18n_rails_js"
-
-  gem "gettext_i18n_rails", version: "~> 1.2"
+  gem "gettext_i18n_rails", version: "~> 1.8"
   require "gettext_i18n_rails"
 
-  gem "sprockets", version: ">= 3.0.0"
+  gem "gettext_i18n_rails_js", version: "~> 1.3"
+  require "gettext_i18n_rails_js"
+
+  gem "sprockets", version: ">= 3.7"
   require "sprockets"
 
-  gem "kramdown", version: ">= 1.3.3"
+  gem "kramdown", version: ">= 1.14"
   require "kramdown"
 end
