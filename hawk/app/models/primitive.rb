@@ -14,7 +14,7 @@ class Primitive < Template
     end
   end
 
-  alias_method_chain :clazz, :template
+  alias_method :clazz, :template
 
   def provider_with_template
     if template.present?
@@ -24,7 +24,7 @@ class Primitive < Template
     end
   end
 
-  alias_method_chain :provider, :template
+  alias_method :provider, :template
 
   def type_with_template
     if template.present?
@@ -34,7 +34,7 @@ class Primitive < Template
     end
   end
 
-  alias_method_chain :type, :template
+  alias_method :type, :template
 
   def template?
     false
