@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
 
         # generate random value, store in attrd_updater
         value = SecureRandom.hex[0,12]
-        system("attrd_updater -R -p -n \"hawk_session_#{@session.username}\" -U \"#{value}\"")
+        system("/usr/sbin/attrd_updater -R -p -n \"hawk_session_#{@session.username}\" -U \"#{value}\"")
         cookies['hawk_remember_me_id'] = {:value => @session.username, :expires => 30.days.from_now}
         cookies['hawk_remember_me_key'] = {:value => value, :expires => 30.days.from_now}
 
