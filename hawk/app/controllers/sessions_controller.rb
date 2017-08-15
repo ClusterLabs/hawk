@@ -21,7 +21,7 @@ class SessionsController < ApplicationController
   end
 
   def create
-    @session = Session.new params[:session]
+    @session = Session.new params[:session].permit!
 
     respond_to do |format|
       if @session.valid?
