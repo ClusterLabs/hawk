@@ -343,7 +343,7 @@ class Template < Resource
                 "Slave",
                 "Master"
               ],
-              longdesc: _("This option only makes sense for recurring operations. It restricts the operation to a specific role. The truely paranoid can even specify role=Stopped which allows the cluster to detect an admin that manually started cluster services.")
+              longdesc: _("This option only makes sense for recurring operations. It restricts the operation to a specific role. The truly paranoid can even specify role=Stopped which allows the cluster to detect an admin that manually started cluster services.")
             },
             "on-fail" => {
               type: "enum",
