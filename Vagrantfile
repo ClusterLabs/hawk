@@ -49,6 +49,7 @@ def configure_machine(machine, idx, roles, memory, cpus)
 
   machine.vm.provision "shell", path: "chef/suse-prepare.sh"
   machine.vm.provision :chef_solo do |chef|
+    chef.version = "12.21.4"
     chef.cookbooks_path = ["chef/cookbooks"]
     chef.roles_path = ["chef/roles"]
     chef.custom_config_path = "chef/solo.rb"
