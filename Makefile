@@ -28,9 +28,6 @@ WWW_BASE = /usr/share
 # Override this to get a different init script (e.g. "redhat")
 INIT_STYLE = suse
 
-# Note: ABI version detection is experimental
-RUBY_ABI = "2.4.0"
-
 # Never set this to 1, it's used only within vagrant for development
 WITHIN_VAGRANT = 0
 
@@ -55,7 +52,6 @@ all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service tools
 		-e 's|@BINDIR@|$(BINDIR)|g' \
 		-e 's|@SBINDIR@|$(SBINDIR)|g' \
 		-e 's|@WITHIN_VAGRANT@|$(WITHIN_VAGRANT)|g' \
-		-e 's|@GEM_PATH@|$(WWW_BASE)/hawk/vendor/bundle/ruby/$(RUBY_ABI)|g' \
 		$< > $@
 
 tools/hawk_chkpwd: tools/hawk_chkpwd.c tools/common.h
