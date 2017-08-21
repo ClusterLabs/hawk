@@ -8,8 +8,7 @@ branches:
     - rails-3_2
 
 rvm:
-  - "2.2.5"
-  - "2.3.0"
+  - "2.4.0"
 
 gemfile: hawk/Gemfile
 script: sh -c 'cd hawk && bin/rake brakeman:run test'
