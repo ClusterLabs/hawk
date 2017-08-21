@@ -30,9 +30,27 @@ when "suse"
     raise "Unsupported SUSE version"
   end
 
-  default["hawk"]["zypper"]["enabled"] = true
-  default["hawk"]["zypper"]["alias"] = "network-ha-clustering"
-  default["hawk"]["zypper"]["title"] = "Network HA Clustering"
-  default["hawk"]["zypper"]["repo"] = "http://download.opensuse.org/repositories/network:/ha-clustering:/Factory/#{repo}/"
-  default["hawk"]["zypper"]["key"] = "#{node["hawk"]["zypper"]["repo"]}repodata/repomd.xml.key"
+  # network:ha-clustering:Factory
+  default["hawk"]["zypper"]["network-ha-clustering"]["enabled"] = true
+  default["hawk"]["zypper"]["network-ha-clustering"]["alias"] = "network-ha-clustering"
+  default["hawk"]["zypper"]["network-ha-clustering"]["title"] = "Network HA Clustering"
+  default["hawk"]["zypper"]["network-ha-clustering"]["repo"] = "http://download.opensuse.org/repositories/network:/ha-clustering:/Factory/#{repo}/"
+  default["hawk"]["zypper"]["network-ha-clustering"]["key"] = "#{node["hawk"]["zypper"]["network-ha-clustering"]["repo"]}repodata/repomd.xml.key"
+
+  # devel:languages:ruby:extensions
+  default["hawk"]["zypper"]["rubyext"]["enabled"] = true
+  default["hawk"]["zypper"]["rubyext"]["alias"] = "rubyext"
+  default["hawk"]["zypper"]["rubyext"]["title"] = "Ruby extensions"
+  default["hawk"]["zypper"]["rubyext"]["repo"] = "http://download.opensuse.org/repositories/devel:/languages:/ruby:/extensions/#{repo}/"
+  default["hawk"]["zypper"]["rubyext"]["key"] = "#{node["hawk"]["zypper"]["rubyext"]["repo"]}repodata/repomd.xml.key"
+
+  # home:darix:apps
+  default["hawk"]["zypper"]["darix"]["enabled"] = true
+  default["hawk"]["zypper"]["darix"]["alias"] = "darix"
+  default["hawk"]["zypper"]["darix"]["title"] = "Darix Repo"
+  default["hawk"]["zypper"]["darix"]["repo"] = "http://download.opensuse.org/repositories/home:/darix:/apps/#{repo}/"
+  default["hawk"]["zypper"]["darix"]["key"] = "#{node["hawk"]["zypper"]["darix"]["repo"]}repodata/repomd.xml.key"
+
+  # List of repos to add
+  default["hawk"]["zypper"]["repo_list"] = ["network-ha-clustering", "rubyext", "darix"]
 end
