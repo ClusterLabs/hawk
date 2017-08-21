@@ -39,7 +39,6 @@ default["hawk"]["webui"]["packages"] = [
   "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-gettext",
 
   "git-core",
-
   "hawk2",
   "fence-agents",
   "ha-cluster-bootstrap",
