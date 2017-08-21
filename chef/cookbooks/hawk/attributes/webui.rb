@@ -19,24 +19,23 @@
 
 default["hawk"]["webui"]["packages"] = [
   # Production dependencies
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-rails-4_2",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-puma",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-fast_gettext",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-gettext_i18n_rails_js",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-gettext_i18n_rails",
-  # "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-haml-rails",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-sass-rails",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-virtus",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-js-routes",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-sprockets",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-tilt-1_4",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-kramdown",
+  "ruby2.4-rubygem-rails-5.1",
+  "ruby2.4-rubygem-puma",
+  "ruby2.4-rubygem-sass-rails-5_0",
+  "ruby2.4-rubygem-virtus",
+  "ruby2.4-rubygem-js-routes",
+  "ruby2.4-rubygem-tilt",
+  "ruby2.4-rubygem-fast_gettext",
+  "ruby2.4-rubygem-gettext_i18n_rails",
+  "ruby2.4-rubygem-gettext_i18n_rails_js",
+  "ruby2.4-rubygem-sprockets",
+  "ruby2.4-rubygem-kramdown",
 
   # Development dependencies
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-web-console",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-spring",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-quiet_assets",
-  "ruby#{node["languages"]["ruby"]["version"].to_f}-rubygem-gettext",
+  "ruby2.4-rubygem-web-console",
+  "ruby2.4-rubygem-spring",
+  "ruby2.4-rubygem-uglifier",
+  "ruby2.4-rubygem-gettext",
 
   "git-core",
 
