@@ -1,4 +1,6 @@
-# Copyright (c) 2009-2015 Tim Serong <tserong@suse.com>
+# Copyright (c) Tim Serong <tserong@suse.com>
+# Copyright (c) Kristoffer Gronlund <kgronlund@suse.com>
+# Copyright (c) Ayoub Belarbi <abelarbi@suse.com>
 # See COPYING for license.
 
 #
@@ -37,13 +39,10 @@ end
 group :test do
   if ENV["RAILS_ENV"] == "test"
     source "https://rubygems.org"
-
     gem "rubocop"
     gem "rake"
     gem "brakeman"
-
     gem "rspec-rails", ">= 3.4.2"
-    gem "capybara", ">= 2.7.1"
     gem "guard-rspec", ">= 4.7.2"
   end
 end

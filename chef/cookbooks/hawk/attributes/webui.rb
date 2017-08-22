@@ -2,7 +2,7 @@
 # Cookbook Name:: hawk
 # Attributes:: webui
 #
-# Copyright 2014, SUSE LLC
+# Copyright 2017, SUSE LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -36,6 +36,12 @@ default["hawk"]["webui"]["packages"] = [
   "ruby2.4-rubygem-spring",
   "ruby2.4-rubygem-uglifier",
   "ruby2.4-rubygem-gettext",
+
+  # Testing dependencies
+  "ruby2.4-rubygem-rubocop",
+  "ruby2.4-rubygem-brakeman",
+  "ruby2.4-rubygem-rspec-rails",
+  "ruby2.4-rubygem-guard-rspec",
 
   "git-core",
 

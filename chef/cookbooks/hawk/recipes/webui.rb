@@ -2,7 +2,7 @@
 # Cookbook Name:: hawk
 # Recipe:: webui
 #
-# Copyright 2014, SUSE LLC
+# Copyright 2017, SUSE LLC
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -30,6 +30,7 @@ template "/etc/modules-load.d/softdog.conf" do
   mode 0644
 end
 
+# Add necessary repositories
 case node["platform_family"]
 when "suse"
   include_recipe "zypper"
@@ -68,7 +69,7 @@ rbenv_rehash 'rehash' do
   user 'vagrant'
 end
 
-
+# Install packages
 node["hawk"]["webui"]["packages"].each do |name|
   package name do
     action :install
