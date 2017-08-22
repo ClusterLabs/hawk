@@ -41,7 +41,6 @@ default["hawk"]["webui"]["packages"] = [
   "ruby2.4-rubygem-rubocop",
   "ruby2.4-rubygem-brakeman",
   "ruby2.4-rubygem-rspec-rails",
-  "ruby2.4-rubygem-guard-rspec",
 
   "git-core",
 
