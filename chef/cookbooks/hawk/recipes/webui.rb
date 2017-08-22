@@ -48,6 +48,27 @@ when "suse"
   end
 end
 
+# Install rbenv for user "vagrant"
+rbenv_user_install 'vagrant'
+
+rbenv_plugin 'ruby-build' do
+  git_url 'https://github.com/rbenv/ruby-build.git'
+  user 'vagrant'
+end
+
+rbenv_ruby '2.4.1' do
+  user 'vagrant'
+end
+
+rbenv_global '2.4.1' do
+  user 'vagrant'
+end
+
+rbenv_rehash 'rehash' do
+  user 'vagrant'
+end
+
+
 node["hawk"]["webui"]["packages"].each do |name|
   package name do
     action :install
