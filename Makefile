@@ -22,8 +22,11 @@ RPM_OPTS = --define "_sourcedir $(RPM_ROOT)"	\
 	   --define "_srcrpmdir	$(RPM_ROOT)"
 
 # Override this when invoking make to install elsewhere, e.g.:
-#   make WWW_BASE=/var/www install
+#   make WWW_BASE=/usr/share WWW_RWDIR=/var/run install
+# WWW_RWDIR is the location where the temporary and log files will be written.
+# if WWW_RWDIR is set, symlinks to that location will need to be created
 WWW_BASE = /usr/share
+WWW_RWDIR = $(WWW_BASE)
 
 # Override this to get a different init script (e.g. "redhat")
 INIT_STYLE = suse
@@ -74,25 +77,23 @@ tools/hawk_invoke: tools/hawk_invoke.c tools/common.h
 tools: tools/hawk_chkpwd tools/hawk_monitor tools/hawk_invoke
 
 base/install:
-	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/log
-	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp
+	mkdir -p $(DESTDIR)$(WWW_RWDIR)/hawk/log
+	mkdir -p $(DESTDIR)$(WWW_RWDIR)/hawk/tmp/cache
+	mkdir -p $(DESTDIR)$(WWW_RWDIR)/hawk/tmp/explorer/uploads
+	mkdir -p $(DESTDIR)$(WWW_RWDIR)/hawk/tmp/pids
+	mkdir -p $(DESTDIR)$(WWW_RWDIR)/hawk/tmp/sessions
+	mkdir -p $(DESTDIR)$(WWW_RWDIR)/hawk/tmp/sockets
+	mkdir -p $(DESTDIR)$(WWW_RWDIR)/hawk/tmp/home
+	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/locale
-	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp
-	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/cache
-	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/explorer
-	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/explorer/uploads
-	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/pids
-	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/sessions
-	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/sockets
-	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/tmp/home
 	# Get rid of cruft from packed gems
 	-find hawk/vendor -name '*bak' -o -name '*~' -o -name '#*#' -delete
 	cp -a hawk/* $(DESTDIR)$(WWW_BASE)/hawk
 	-cp -a hawk/.bundle $(DESTDIR)$(WWW_BASE)/hawk
-	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/log || true
-	-chown -R hacluster.haclient $(DESTDIR)$(WWW_BASE)/hawk/tmp || true
-	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/home
-	-chmod g+w $(DESTDIR)$(WWW_BASE)/hawk/tmp/explorer
+	-chown -R hacluster.haclient $(DESTDIR)$(WWW_RWDIR)/hawk/log || true
+	-chown -R hacluster.haclient $(DESTDIR)$(WWW_RWDIR)/hawk/tmp || true
+	-chmod g+w $(DESTDIR)$(WWW_RWDIR)/hawk/tmp/home
+	-chmod g+w $(DESTDIR)$(WWW_RWDIR)/hawk/tmp/explorer
 	install -D -m 0644 scripts/hawk.service $(DESTDIR)/usr/lib/systemd/system/hawk.service
 
 tools/install:
