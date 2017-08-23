@@ -24,10 +24,6 @@ module Hawk
     config.time_zone = "UTC"
 
     config.app_middleware.delete(
-      "ActiveRecord::ConnectionAdapters::ConnectionManagement"
-    )
-
-    config.app_middleware.delete(
       "ActiveRecord::QueryCache"
     )
 
