@@ -22,13 +22,13 @@ RPM_OPTS = --define "_sourcedir $(RPM_ROOT)"	\
 	   --define "_srcrpmdir	$(RPM_ROOT)"
 
 # Override this when invoking make to install elsewhere, e.g.:
-#   make WWW_BASE=/usr/share WWW_TMP=/var/tmp WWW_LOG=/var/log install
-# log files are written to (WWW_LOG)/hawk/log
-# temp files are written to (WWW_TMP)/hawk/tmp
-# if these are not == (WWW_BASE), symlinks are created
+#   make WWW_BASE=/usr/share WWW_TMP=/var/lib/hawk/tmp WWW_LOG=/var/log/hawk install
+# log files are written to (WWW_LOG)
+# temp files are written to (WWW_TMP)
+# if these are not the defaults, symlinks are created
 WWW_BASE = /usr/share
-WWW_TMP = $(WWW_BASE)
-WWW_LOG = $(WWW_BASE)
+WWW_TMP = $(WWW_BASE)/hawk/tmp
+WWW_LOG = $(WWW_BASE)/hawk/log
 
 # Override this to get a different init script (e.g. "redhat")
 INIT_STYLE = suse
