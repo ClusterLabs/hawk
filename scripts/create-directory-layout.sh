@@ -15,5 +15,5 @@ mkdir -p "$DESTDIR$WWW_TMP/home"
 [ "$WWW_TMP" != "$WWW_BASE/hawk/tmp" ] && ln -rfs "$DESTDIR$WWW_TMP" "$DESTDIR$WWW_BASE/hawk/tmp"
 chown -R hacluster.haclient "$DESTDIR$WWW_LOG" || true
 chown -R hacluster.haclient "$DESTDIR$WWW_TMP" || true
-chmod g+w "$DESTDIR$WWW_TMP/hawk/tmp/home"
-chmod g+w "$DESTDIR$WWW_TMP/hawk/tmp/explorer"
+chmod g+w "$DESTDIR$WWW_TMP/home"
+chmod g+w "$DESTDIR$WWW_TMP/explorer"
