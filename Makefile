@@ -22,11 +22,13 @@ RPM_OPTS = --define "_sourcedir $(RPM_ROOT)"	\
 	   --define "_srcrpmdir	$(RPM_ROOT)"
 
 # Override this when invoking make to install elsewhere, e.g.:
-#   make WWW_BASE=/usr/share WWW_RWDIR=/var/run install
-# WWW_RWDIR is the location where the temporary and log files will be written.
-# if WWW_RWDIR is set, symlinks to that location will need to be created
+#   make WWW_BASE=/usr/share WWW_TMP=/var/tmp WWW_LOG=/var/log install
+# log files are written to (WWW_LOG)/hawk/log
+# temp files are written to (WWW_TMP)/hawk/tmp
+# if these are not == (WWW_BASE), symlinks are created
 WWW_BASE = /usr/share
-WWW_RWDIR = $(WWW_BASE)
+WWW_TMP = $(WWW_BASE)
+WWW_LOG = $(WWW_BASE)
 
 # Override this to get a different init script (e.g. "redhat")
 INIT_STYLE = suse
@@ -76,25 +78,14 @@ tools/hawk_invoke: tools/hawk_invoke.c tools/common.h
 
 tools: tools/hawk_chkpwd tools/hawk_monitor tools/hawk_invoke
 
+
 base/install:
-	mkdir -p $(DESTDIR)$(WWW_RWDIR)/hawk/log
-	mkdir -p $(DESTDIR)$(WWW_RWDIR)/hawk/tmp/cache
-	mkdir -p $(DESTDIR)$(WWW_RWDIR)/hawk/tmp/explorer/uploads
-	mkdir -p $(DESTDIR)$(WWW_RWDIR)/hawk/tmp/pids
-	mkdir -p $(DESTDIR)$(WWW_RWDIR)/hawk/tmp/sessions
-	mkdir -p $(DESTDIR)$(WWW_RWDIR)/hawk/tmp/sockets
-	mkdir -p $(DESTDIR)$(WWW_RWDIR)/hawk/tmp/home
-	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk
-	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/locale
-	# Get rid of cruft from packed gems
+	./scripts/create-directory-layout.sh "$(DESTDIR)" "$(WWW_BASE)" "$(WWW_LOG)" "$(WWW_TMP)"
 	-find hawk/vendor -name '*bak' -o -name '*~' -o -name '#*#' -delete
 	cp -a hawk/* $(DESTDIR)$(WWW_BASE)/hawk
 	-cp -a hawk/.bundle $(DESTDIR)$(WWW_BASE)/hawk
-	-chown -R hacluster.haclient $(DESTDIR)$(WWW_RWDIR)/hawk/log || true
-	-chown -R hacluster.haclient $(DESTDIR)$(WWW_RWDIR)/hawk/tmp || true
-	-chmod g+w $(DESTDIR)$(WWW_RWDIR)/hawk/tmp/home
-	-chmod g+w $(DESTDIR)$(WWW_RWDIR)/hawk/tmp/explorer
 	install -D -m 0644 scripts/hawk.service $(DESTDIR)/usr/lib/systemd/system/hawk.service
+
 
 tools/install:
 	install -D -m 4750 tools/hawk_chkpwd $(DESTDIR)/usr/sbin/hawk_chkpwd
