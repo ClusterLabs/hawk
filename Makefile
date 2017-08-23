@@ -47,7 +47,7 @@ SBINDIR = /usr/sbin
 
 all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service tools
 	(cd hawk; \
-	 TEXTDOMAIN=hawk bin/rake gettext:pack; \
+	 RAILS_ENV=production TEXTDOMAIN=hawk bin/rake gettext:pack; \
 	 RAILS_ENV=production bin/rake assets:precompile)
 
 %:: %.in
@@ -82,6 +82,8 @@ tools: tools/hawk_chkpwd tools/hawk_monitor tools/hawk_invoke
 base/install:
 	./scripts/create-directory-layout.sh "$(DESTDIR)" "$(WWW_BASE)" "$(WWW_LOG)" "$(WWW_TMP)"
 	-find hawk/vendor -name '*bak' -o -name '*~' -o -name '#*#' -delete
+	cp -a hawk/tmp/cache/* $(DESTDIR)$(WWW_BASE)/hawk/tmp/cache
+	rm -rf hawk/tmp hawk/log
 	cp -a hawk/* $(DESTDIR)$(WWW_BASE)/hawk
 	-cp -a hawk/.bundle $(DESTDIR)$(WWW_BASE)/hawk
 	install -D -m 0644 scripts/hawk.service $(DESTDIR)/usr/lib/systemd/system/hawk.service
