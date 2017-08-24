@@ -12,7 +12,7 @@ require "rexml/document"
 
 if File.exist? ENV["BUNDLE_GEMFILE"]
   require "bundler/setup"
-  require "active_record/railtie"
+#  require "active_record/railtie"
   require "active_model/railtie"
   require "action_controller/railtie"
   require "action_view/railtie"
@@ -22,7 +22,7 @@ if File.exist? ENV["BUNDLE_GEMFILE"]
   Bundler.require(*Rails.groups)
 else
   gem "rails", version: "~> 5"
-  require "active_record/railtie"
+#  require "active_record/railtie"
   require "active_model/railtie"
   require "action_controller/railtie"
   require "action_view/railtie"

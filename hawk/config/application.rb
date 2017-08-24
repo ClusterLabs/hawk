@@ -8,7 +8,7 @@ module Hawk
     config.generators do |g|
       g.assets false
       g.helper false
-      g.orm :active_record
+      #g.orm :active_record
       g.template_engine :erb
 
       # g.test_framework :rspec, fixture: true
@@ -23,9 +23,9 @@ module Hawk
     config.encoding = "utf-8"
     config.time_zone = "UTC"
 
-    config.app_middleware.delete(
-      "ActiveRecord::QueryCache"
-    )
+    #config.app_middleware.delete(
+    #  "ActiveRecord::QueryCache"
+    #)
 
     config.active_support.escape_html_entities_in_json = true
 
