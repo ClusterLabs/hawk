@@ -49,7 +49,7 @@ when "suse"
   end
 end
 
-# Install rbenv for user "vagrant"
+# Install rbenv and ruby-build plugin for user "vagrant"
 rbenv_user_install 'vagrant'
 
 rbenv_plugin 'ruby-build' do
@@ -57,17 +57,18 @@ rbenv_plugin 'ruby-build' do
   user 'vagrant'
 end
 
-rbenv_ruby '2.4.1' do
-  user 'vagrant'
-end
-
-rbenv_global '2.4.1' do
-  user 'vagrant'
-end
-
-rbenv_rehash 'rehash' do
-  user 'vagrant'
-end
+# To install a specific version of ruby for testing:
+# rbenv_ruby '2.4.1' do
+#   user 'vagrant'
+# end
+#
+# rbenv_global '2.4.1' do
+#   user 'vagrant'
+# end
+#
+# rbenv_rehash 'rehash' do
+#   user 'vagrant'
+# end
 
 # Install packages
 node["hawk"]["webui"]["packages"].each do |name|
