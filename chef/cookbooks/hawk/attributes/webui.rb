@@ -17,7 +17,7 @@
 # limitations under the License.
 #
 
-default["hawk"]["webui"]["ruby_version"] = "2.4" #Set to node["languages"]["ruby"]["version"] if you want to use default system version
+default["hawk"]["webui"]["ruby_version"] = "2.4" # Set to node["languages"]["ruby"]["version"] if you want to use default system version
 
 default["hawk"]["webui"]["packages"] = [
   # Production dependencies
