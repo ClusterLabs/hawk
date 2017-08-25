@@ -21,3 +21,17 @@ krig_vagrant:
     - user: vagrant
     - source: salt://sshkeys/krig.pub
     - config: '%h/.ssh/authorized_keys'
+
+/root/.ssh/id_rsa:
+  file.managed:
+    - source: salt://sshkeys/vagrant
+    - user: root
+    - group: root
+    - mode: 600
+
+/root/.ssh/id_rsa.pub:
+  file.managed:
+    - source: salt://sshkeys/vagrant.pub
+    - user: root
+    - group: root
+    - mode: 644
