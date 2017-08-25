@@ -27,10 +27,10 @@ class GroupsController < ApplicationController
   end
 
   def create
-    normalize_params! params[:group]
+    normalize_params! params[:group].permit!
     @title = _("Create Group")
 
-    @group = Group.new params[:group]
+    @group = Group.new params[:group].permit!
 
     respond_to do |format|
       if @group.save
@@ -63,7 +63,7 @@ class GroupsController < ApplicationController
   end
 
   def update
-    normalize_params! params[:group]
+    normalize_params! params[:group].permit!
     @title = _("Edit Group")
 
     if params[:revert]
@@ -71,7 +71,7 @@ class GroupsController < ApplicationController
     end
 
     respond_to do |format|
-      if @group.update_attributes(params[:group])
+      if @group.update_attributes(params[:group].permit!)
         post_process_for! @group
 
         format.html do

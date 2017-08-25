@@ -29,7 +29,7 @@ class RolesController < ApplicationController
 
   def create
     @title = _("Create Role")
-    @role = Role.new params[:role]
+    @role = Role.new params[:role].permit!
 
     respond_to do |format|
       if @role.save
@@ -67,7 +67,7 @@ class RolesController < ApplicationController
     end
 
     respond_to do |format|
-      if @role.update_attributes(params[:role])
+      if @role.update_attributes(params[:role].permit!)
         post_process_for! @role
 
         format.html do

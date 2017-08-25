@@ -26,10 +26,10 @@ class OrdersController < ApplicationController
   end
 
   def create
-    normalize_params! params[:order]
+    normalize_params! params[:order].permit!
     @title = _("Create Order")
 
-    @order = Order.new params[:order]
+    @order = Order.new params[:order].permit!
 
     respond_to do |format|
       if @order.save
@@ -62,7 +62,7 @@ class OrdersController < ApplicationController
   end
 
   def update
-    normalize_params! params[:order]
+    normalize_params! params[:order].permit!
     @title = _("Edit Order")
 
     if params[:revert]
@@ -70,7 +70,7 @@ class OrdersController < ApplicationController
     end
 
     respond_to do |format|
-      if @order.update_attributes(params[:order])
+      if @order.update_attributes(params[:order].permit!)
         post_process_for! @order
 
         format.html do

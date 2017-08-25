@@ -31,10 +31,10 @@ class PrimitivesController < ApplicationController
   end
 
   def create
-    normalize_params! params[:primitive]
+    normalize_params! params[:primitive].permit!
     @title = _("Create Primitive")
 
-    @primitive = Primitive.new params[:primitive]
+    @primitive = Primitive.new params[:primitive].permit!
 
     fail CreateFailure, @primitive.errors.full_messages.to_sentence unless @primitive.save
     post_process_for! @primitive
@@ -98,7 +98,7 @@ class PrimitivesController < ApplicationController
   end
 
   def update
-    normalize_params! params[:primitive]
+    normalize_params! params[:primitive].permit!
     @title = _("Edit Primitive")
 
     if params[:revert]
@@ -106,7 +106,7 @@ class PrimitivesController < ApplicationController
     end
 
     respond_to do |format|
-      if @primitive.update_attributes(params[:primitive])
+      if @primitive.update_attributes(params[:primitive].permit!)
         post_process_for! @primitive
 
         format.html do

@@ -35,10 +35,10 @@ class LocationsController < ApplicationController
   end
 
   def create
-    normalize_params! params[:location]
+    normalize_params! params[:location].permit!
     @title = _('Create Location Constraint')
 
-    @location = Location.new params[:location]
+    @location = Location.new params[:location].permit!
 
     if @location.rules.empty?
       @location.rules.push(
@@ -80,7 +80,7 @@ class LocationsController < ApplicationController
   end
 
   def update
-    normalize_params! params[:location]
+    normalize_params! params[:location].permit!
     @title = _('Edit Location Constraint')
 
     if params[:revert]
@@ -88,7 +88,7 @@ class LocationsController < ApplicationController
     end
 
     respond_to do |format|
-      if @location.update_attributes(params[:location])
+      if @location.update_attributes(params[:location].permit!)
         post_process_for! @location
 
         format.html do

@@ -26,10 +26,10 @@ class TagsController < ApplicationController
   end
 
   def create
-    normalize_params! params[:tag]
+    normalize_params! params[:tag].permit!
     @title = _("Create Tag")
 
-    @tag = Tag.new params[:tag]
+    @tag = Tag.new params[:tag].permit!
 
     respond_to do |format|
       if @tag.save
@@ -62,7 +62,7 @@ class TagsController < ApplicationController
   end
 
   def update
-    normalize_params! params[:tag]
+    normalize_params! params[:tag].permit!
     @title = _("Edit Tag")
 
     if params[:revert]
@@ -70,7 +70,7 @@ class TagsController < ApplicationController
     end
 
     respond_to do |format|
-      if @tag.update_attributes(params[:tag])
+      if @tag.update_attributes(params[:tag].permit!)
         post_process_for! @tag
 
         format.html do

@@ -13,8 +13,8 @@ class DashboardsController < ApplicationController
 
   def add
     if request.post?
-      Rails.logger.debug "Creating from #{params[:cluster]}"
-      @cluster = Cluster.new params[:cluster]
+      Rails.logger.debug "Creating from #{params[:cluster].permit!}"
+      @cluster = Cluster.new params[:cluster].permit!
       if @cluster.save
       # flash[:success] = _("Cluster added successfully")
       # redirect_to action: "show"

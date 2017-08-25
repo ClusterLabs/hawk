@@ -27,10 +27,10 @@ class MastersController < ApplicationController
   end
 
   def create
-    normalize_params! params[:master]
+    normalize_params! params[:master].permit!
     @title = _("Create Multi-state resource")
 
-    @master = Master.new params[:master]
+    @master = Master.new params[:master].permit!
 
     respond_to do |format|
       if @master.save
@@ -63,7 +63,7 @@ class MastersController < ApplicationController
   end
 
   def update
-    normalize_params! params[:master]
+    normalize_params! params[:master].permit!
     @title = _("Edit Multi-state resource")
 
     if params[:revert]
@@ -71,7 +71,7 @@ class MastersController < ApplicationController
     end
 
     respond_to do |format|
-      if @master.update_attributes(params[:master])
+      if @master.update_attributes(params[:master].permit!)
         post_process_for! @master
 
         format.html do

@@ -27,10 +27,10 @@ class TemplatesController < ApplicationController
   end
 
   def create
-    normalize_params! params[:template]
+    normalize_params! params[:template].permit!
     @title = _("Create Template")
 
-    @primitive = Template.new params[:template]
+    @primitive = Template.new params[:template].permit!
 
     respond_to do |format|
       if @primitive.save
@@ -77,7 +77,7 @@ class TemplatesController < ApplicationController
   end
 
   def update
-    normalize_params! params[:template]
+    normalize_params! params[:template].permit!
     @title = _("Edit Template")
 
     if params[:revert]
@@ -85,7 +85,7 @@ class TemplatesController < ApplicationController
     end
 
     respond_to do |format|
-      if @primitive.update_attributes(params[:template])
+      if @primitive.update_attributes(params[:template].permit!)
         post_process_for! @primitive
 
         format.html do

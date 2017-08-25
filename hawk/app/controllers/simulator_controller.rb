@@ -19,7 +19,7 @@ class SimulatorController < ApplicationController
     sim_reload_state
 
     injections = []
-    params[:injections].each do |i|
+    params[:injections].permit!.each do |i|
       parts = i.split(/\s+/)
       case parts[0]
       when "node"

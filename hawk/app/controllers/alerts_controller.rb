@@ -26,10 +26,10 @@ class AlertsController < ApplicationController
   end
 
   def create
-    normalize_params! params[:alert]
+    normalize_params! params[:alert].permit!
     @title = _("Create Alert")
 
-    alertdata = params[:alert]
+    alertdata = params[:alert].permit!
     alertdata["recipients"] = alertdata["recipients"].values unless alertdata["recipients"].nil?
     @alert = Alert.new alertdata
 
@@ -64,7 +64,7 @@ class AlertsController < ApplicationController
   end
 
   def update
-    normalize_params! params[:alert]
+    normalize_params! params[:alert].permit!
     @title = _("Edit Alert")
 
     if params[:revert]
@@ -72,7 +72,7 @@ class AlertsController < ApplicationController
     end
 
     respond_to do |format|
-      alertdata = params[:alert]
+      alertdata = params[:alert].permit!
       alertdata["recipients"] = alertdata["recipients"].values
       if @alert.update_attributes(alertdata)
         post_process_for! @alert

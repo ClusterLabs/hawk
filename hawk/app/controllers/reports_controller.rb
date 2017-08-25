@@ -34,6 +34,7 @@ class ReportsController < ApplicationController
 
   def generate
     errors = []
+    params[:report].permit!
     from_time = parse_time params[:report][:from_time], errors
     to_time = parse_time params[:report][:to_time], errors
 

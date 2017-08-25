@@ -14,7 +14,8 @@ class Primitive < Template
     end
   end
 
-  alias_method :clazz, :template
+  alias_method :clazz_without_template, :clazz
+  alias_method :clazz, :clazz_with_template
 
   def provider_with_template
     if template.present?
@@ -24,7 +25,8 @@ class Primitive < Template
     end
   end
 
-  alias_method :provider, :template
+  alias_method :provider_without_template, :provider
+  alias_method :provider, :provider_with_template
 
   def type_with_template
     if template.present?
@@ -34,7 +36,8 @@ class Primitive < Template
     end
   end
 
-  alias_method :type, :template
+  alias_method :type_without_template, :type
+  alias_method :type, :type_with_template
 
   def template?
     false

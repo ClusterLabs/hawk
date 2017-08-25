@@ -39,10 +39,10 @@ class TicketsController < ApplicationController
   end
 
   def create
-    normalize_params! params[:ticket]
+    normalize_params! params[:ticket].permit!
     @title = _("Create Ticket")
 
-    @ticket = Ticket.new params[:ticket]
+    @ticket = Ticket.new params[:ticket].permit!
 
     respond_to do |format|
       if @ticket.save
@@ -75,7 +75,7 @@ class TicketsController < ApplicationController
   end
 
   def update
-    normalize_params! params[:ticket]
+    normalize_params! params[:ticket].permit!
     @title = _("Edit Ticket")
 
     if params[:revert]
@@ -83,7 +83,7 @@ class TicketsController < ApplicationController
     end
 
     respond_to do |format|
-      if @ticket.update_attributes(params[:ticket])
+      if @ticket.update_attributes(params[:ticket].permit!)
         post_process_for! @ticket
 
         format.html do

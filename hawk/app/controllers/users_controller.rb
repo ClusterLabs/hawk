@@ -29,7 +29,7 @@ class UsersController < ApplicationController
 
   def create
     @title = _("Create ACL Target")
-    @user = User.new params[:user]
+    @user = User.new params[:user].permit!
 
     respond_to do |format|
       if @user.save
@@ -69,7 +69,7 @@ class UsersController < ApplicationController
     end
 
     respond_to do |format|
-      if @user.update_attributes(params[:user])
+      if @user.update_attributes(params[:user].permit!)
         post_process_for! @user
 
         format.html do

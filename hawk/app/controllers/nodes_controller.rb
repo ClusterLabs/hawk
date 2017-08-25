@@ -39,7 +39,7 @@ class NodesController < ApplicationController
     return redirect_to edit_cib_node_url(cib_id: @cib.id, id: @node.id) if params[:revert]
 
     respond_to do |format|
-      if @node.update_attributes(params[:node])
+      if @node.update_attributes(params[:node].permit!)
         format.html do
           flash[:success] = _("Node updated successfully")
           redirect_to edit_cib_node_url(cib_id: @cib.id, id: @node.id)

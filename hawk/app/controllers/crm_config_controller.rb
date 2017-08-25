@@ -19,7 +19,7 @@ class CrmConfigController < ApplicationController
     end
 
     respond_to do |format|
-      if @crm_config.update_attributes(params[:crm_config])
+      if @crm_config.update_attributes(params[:crm_config].permit!)
         post_process_for! @crm_config
 
         format.html do

@@ -27,10 +27,10 @@ class ClonesController < ApplicationController
   end
 
   def create
-    normalize_params! params[:clone]
+    normalize_params! params[:clone].permit!
     @title = _("Create Clone")
 
-    @clone = Clone.new params[:clone]
+    @clone = Clone.new params[:clone].permit!
 
     respond_to do |format|
       if @clone.save
@@ -63,7 +63,7 @@ class ClonesController < ApplicationController
   end
 
   def update
-    normalize_params! params[:clone]
+    normalize_params! params[:clone].permit!
     @title = _("Edit Clone")
 
     if params[:revert]
@@ -71,7 +71,7 @@ class ClonesController < ApplicationController
     end
 
     respond_to do |format|
-      if @clone.update_attributes(params[:clone])
+      if @clone.update_attributes(params[:clone].permit!)
         post_process_for! @clone
 
         format.html do

@@ -26,10 +26,10 @@ class ColocationsController < ApplicationController
   end
 
   def create
-    normalize_params! params[:colocation]
+    normalize_params! params[:colocation].permit!
     @title = _("Create Colocation")
 
-    @colocation = Colocation.new params[:colocation]
+    @colocation = Colocation.new params[:colocation].permit!
 
     respond_to do |format|
       if @colocation.save
@@ -62,7 +62,7 @@ class ColocationsController < ApplicationController
   end
 
   def update
-    normalize_params! params[:colocation]
+    normalize_params! params[:colocation].permit!
     @title = _("Edit Colocation")
 
     if params[:revert]
@@ -70,7 +70,7 @@ class ColocationsController < ApplicationController
     end
 
     respond_to do |format|
-      if @colocation.update_attributes(params[:colocation])
+      if @colocation.update_attributes(params[:colocation].permit!)
         post_process_for! @colocation
 
         format.html do

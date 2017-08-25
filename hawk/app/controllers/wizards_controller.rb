@@ -29,7 +29,7 @@ class WizardsController < ApplicationController
 
   def update
     @wizard = Wizard.find params[:id]
-    pa = build_scriptparams(params)
+    pa = build_scriptparams(params.permit!)
     @pa = pa
     Rails.cache.write("#{session.id}-#{params[:id]}", pa, expires_in: 1.hour)
     @wizard.verify(pa)
@@ -40,7 +40,7 @@ class WizardsController < ApplicationController
   end
 
   def submit
-    pa = JSON.parse(params[:pa]) if params[:pa]
+    pa = JSON.parse(params[:pa].permit!) if params[:pa]
     pa = Rails.cache.read("#{session.id}-#{params[:id]}") if pa.nil?
 
     if pa.nil?

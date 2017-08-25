@@ -19,7 +19,7 @@ class ProfilesController < ApplicationController
     end
 
     respond_to do |format|
-      if @profile.update_attributes(params[:profile])
+      if @profile.update_attributes(params[:profile].permit!)
         post_process_for! @profile
 
         format.html do
