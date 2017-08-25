@@ -41,6 +41,3 @@ common_packages:
     - require:
         - pkgrepo: darix
         - pkgrepo: rubyext
-
-        
-        
