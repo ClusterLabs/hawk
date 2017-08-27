@@ -30,6 +30,10 @@ WWW_BASE = /usr/share
 WWW_TMP = $(WWW_BASE)/hawk/tmp
 WWW_LOG = $(WWW_BASE)/hawk/log
 
+# Override this to append a suffix to the puma executable
+# in the systemd service file
+RUBY_SUFFIX =
+
 # Override this to get a different init script (e.g. "redhat")
 INIT_STYLE = suse
 
@@ -56,6 +60,7 @@ all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service tools
 		-e 's|@LIBDIR@|$(LIBDIR)|g' \
 		-e 's|@BINDIR@|$(BINDIR)|g' \
 		-e 's|@SBINDIR@|$(SBINDIR)|g' \
+		-e 's|@RUBY_SUFFIX@|$(RUBY_SUFFIX)|g' \
 		-e 's|@WITHIN_VAGRANT@|$(WITHIN_VAGRANT)|g' \
 		$< > $@
 
