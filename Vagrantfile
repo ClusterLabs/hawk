@@ -61,12 +61,12 @@ def configure_machine(machine, idx, roles, memory, cpus)
       end
     end
   else
-      machine.vm.provision :salt do |salt|
-      salt.minion_config = "salt/etc/minion"
-      salt.run_highstate = true
-      salt.install_type = "git"
-      salt.install_args = "v2017.7"
-      salt.verbose = true
+    machine.vm.provision :salt do |salt|
+    salt.minion_config = "salt/etc/minion"
+    salt.run_highstate = true
+    salt.install_type = "git"
+    salt.install_args = "v2017.7"
+    salt.verbose = true
     end
   end
 
