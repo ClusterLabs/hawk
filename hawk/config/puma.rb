@@ -7,13 +7,13 @@ def set_config(*args)
 end
 
 if ENV["HAWK_ENV"] == "development"
-  set_config("development", 4, 2, "0.0.0.0", "3000", "/vagrant/hawk/tmp/hawk.key",
+  set_config("development", 5, 2, "0.0.0.0", "3000", "/vagrant/hawk/tmp/hawk.key",
              "/etc/hawk/hawk.pem")
   bind "tcp://#{@listen}:#{@port}"
 else
   set_config(ENV["HAWK_ENV"] || "production",
-             ENV["HAWK_THREADS"] || 16,
-             ENV["HAWK_WORKERS"] || 1,
+             ENV["HAWK_THREADS"] || 5,
+             ENV["HAWK_WORKERS"] || 2,
              ENV["HAWK_LISTEN"] || "0.0.0.0",
              ENV["HAWK_PORT"] || "7630",
              ENV["HAWK_KEY"] || "/etc/hawk/hawk.key",
@@ -32,6 +32,13 @@ prune_bundler false
 threads 0, @threads
 
 workers @workers
+
+# Use the `preload_app!` method when specifying a `workers` number.
+# This directive tells Puma to first boot the application and load code
+# before forking the application. This takes advantage of Copy On Write
+# process behavior so workers use less memory.
+preload_app!
+
 worker_timeout 60
 
 pidfile File.join(ROOT, "tmp", "pids", "puma.pid")
