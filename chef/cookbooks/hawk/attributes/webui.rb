@@ -52,6 +52,7 @@ default["hawk"]["webui"]["packages"] = [
   #"ruby#{default["hawk"]["webui"]["ruby_version"].to_f}-rubygem-rspec-rails",
 
   "git-core",
+  "nodejs6",
 
   "hawk2",
   "fence-agents",
