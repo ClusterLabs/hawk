@@ -20,6 +20,10 @@
 default["hawk"]["webui"]["ruby_version"] = "2.4" # Set to node["languages"]["ruby"]["version"] if you want to use default system version
 
 default["hawk"]["webui"]["packages"] = [
+
+  # ruby 2.4 development environment
+  "ruby2.4-devel",
+
   # Production dependencies
   "ruby#{default["hawk"]["webui"]["ruby_version"].to_f}-rubygem-rails-5.1",
   "ruby#{default["hawk"]["webui"]["ruby_version"].to_f}-rubygem-puma",
