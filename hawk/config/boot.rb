@@ -41,9 +41,6 @@ else
   gem "js-routes", version: ">= 1.3.3"
   require "js-routes"
 
-  gem "tilt", version: "~> 2.0"
-  require "tilt"
-
   gem "fast_gettext", version: "~> 1.4"
   require "fast_gettext"
 

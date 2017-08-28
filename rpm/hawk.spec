@@ -92,7 +92,6 @@ BuildRequires:  rubygem(%{rb_ruby_abi}:virtus) >= 1.0.1
 BuildRequires:  distribution-release
 
 BuildRequires:  rubygem(%{rb_ruby_abi}:sprockets) >= 3.7
-BuildRequires:  rubygem(%{rb_ruby_abi}:tilt) >= 2.0
 BuildRequires:  rubygem(%{rb_ruby_abi}:uglifier) >= 3.0
 BuildRequires:  rubygem(%{rb_ruby_abi}:web-console) >= 2.2
 
@@ -106,7 +105,6 @@ Requires:       rubygem(%{rb_ruby_abi}:rails:5)
 Requires:       rubygem(%{rb_ruby_abi}:sass-rails) >= 5.0.1
 Requires:       rubygem(%{rb_ruby_abi}:sass) >= 3.4
 Requires:       rubygem(%{rb_ruby_abi}:sprockets) >= 3.0
-Requires:       rubygem(%{rb_ruby_abi}:tilt) >= 2.0
 Requires:       rubygem(%{rb_ruby_abi}:virtus) >= 1.0
 
 BuildRequires:  %{rubydevel >= 2.4}

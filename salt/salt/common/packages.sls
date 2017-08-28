@@ -28,7 +28,6 @@ common_packages:
         - ruby2.4-rubygem-sass-rails-5_0
         - ruby2.4-rubygem-virtus
         - ruby2.4-rubygem-js-routes
-        - ruby2.4-rubygem-tilt
         - ruby2.4-rubygem-fast_gettext
         - ruby2.4-rubygem-gettext_i18n_rails
         - ruby2.4-rubygem-gettext_i18n_rails_js

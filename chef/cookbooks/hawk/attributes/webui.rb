@@ -30,7 +30,6 @@ default["hawk"]["webui"]["packages"] = [
   "ruby#{default["hawk"]["webui"]["ruby_version"].to_f}-rubygem-sass-rails-5_0",
   "ruby#{default["hawk"]["webui"]["ruby_version"].to_f}-rubygem-virtus",
   "ruby#{default["hawk"]["webui"]["ruby_version"].to_f}-rubygem-js-routes",
-  "ruby#{default["hawk"]["webui"]["ruby_version"].to_f}-rubygem-tilt",
   "ruby#{default["hawk"]["webui"]["ruby_version"].to_f}-rubygem-fast_gettext",
   "ruby#{default["hawk"]["webui"]["ruby_version"].to_f}-rubygem-gettext_i18n_rails",
   "ruby#{default["hawk"]["webui"]["ruby_version"].to_f}-rubygem-gettext_i18n_rails_js",
