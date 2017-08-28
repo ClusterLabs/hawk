@@ -21,7 +21,9 @@ default["hawk"]["webui"]["ruby_version"] = "2.4" # Set to node["languages"]["rub
 
 default["hawk"]["webui"]["packages"] = [
 
-  # ruby 2.4 development environment
+  # ruby 2.4 development environment, needed by bundler to build native gem
+  # extensions for ruby2.4 (not default system default ruby)
+  #
   "ruby2.4-devel",
 
   # Production dependencies
@@ -36,13 +38,15 @@ default["hawk"]["webui"]["packages"] = [
   "ruby#{default["hawk"]["webui"]["ruby_version"].to_f}-rubygem-sprockets",
   "ruby#{default["hawk"]["webui"]["ruby_version"].to_f}-rubygem-kramdown",
 
-  # Development dependencies
-  "ruby#{default["hawk"]["webui"]["ruby_version"].to_f}-rubygem-web-console",
-  "ruby#{default["hawk"]["webui"]["ruby_version"].to_f}-rubygem-spring",
-  "ruby#{default["hawk"]["webui"]["ruby_version"].to_f}-rubygem-uglifier",
-  "ruby#{default["hawk"]["webui"]["ruby_version"].to_f}-rubygem-gettext",
-
-  # Testing dependencies
+  # Testing and Development dependencies
+  # gems in Development and test group in Gemfile are fetched from rubygems.org
+  # Since they are not used in production.
+  # To install these gems, but from rubygems.org, use bundle install
+  #
+  # "ruby#{default["hawk"]["webui"]["ruby_version"].to_f}-rubygem-web-console",
+  # "ruby#{default["hawk"]["webui"]["ruby_version"].to_f}-rubygem-spring",
+  # "ruby#{default["hawk"]["webui"]["ruby_version"].to_f}-rubygem-uglifier",
+  # "ruby#{default["hawk"]["webui"]["ruby_version"].to_f}-rubygem-gettext",
   #"ruby#{default["hawk"]["webui"]["ruby_version"].to_f}-rubygem-rubocop",
   #"ruby#{default["hawk"]["webui"]["ruby_version"].to_f}-rubygem-brakeman",
   #"ruby#{default["hawk"]["webui"]["ruby_version"].to_f}-rubygem-rspec-rails",
