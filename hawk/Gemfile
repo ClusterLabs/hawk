@@ -28,19 +28,21 @@ gem "sprockets", ">= 3.7"
 gem "kramdown", ">= 1.14"
 
 group :development do
-    source "https://rubygems.org"
-    gem "web-console", ">= 3.5"
-    gem "spring", ">= 2.0"
-    gem "uglifier", ">= 3"
-    gem "gettext", ">= 3.2", require: false
+  source "https://rubygems.org"
+  gem "web-console", ">= 3.5"
+  gem "spring", ">= 2.0"
+  gem "uglifier", ">= 3"
+  gem "gettext", ">= 3.2", require: false
 end
 
 group :test do
+  if ENV["RAILS_ENV"] == "test"
     source "https://rubygems.org"
     gem "rubocop"
     gem "rake"
     gem "brakeman"
     gem "rspec-rails", ">= 3.4.2"
+  end
 end
 
 instance_eval(File.read("Gemfile.local")) if File.exist? "Gemfile.local"
