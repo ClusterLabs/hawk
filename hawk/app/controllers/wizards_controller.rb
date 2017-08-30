@@ -40,7 +40,7 @@ class WizardsController < ApplicationController
   end
 
   def submit
-    pa = JSON.parse(params[:pa].permit!) if params[:pa]
+    pa = JSON.parse(params[:pa]) if params[:pa]
     pa = Rails.cache.read("#{session.id}-#{params[:id]}") if pa.nil?
 
     if pa.nil?
