@@ -843,6 +843,7 @@ class Cib
             times = []
             times << op.attributes['last-rc-change'].to_i if op.attributes['last-rc-change']
             times << op.attributes['last-run'].to_i if op.attributes['last-run']
+            real_start = Time.at(times.min).strftime("%Y-%m-%d %H:%M")
             fail_start = fail_end = times.min
             if (fail_start)
               fail_start -= (op.attributes['exec-time'].to_i / 1000) if op.attributes['exec-time']
@@ -856,7 +857,7 @@ class Cib
               fail_end = Time.at(fail_end).strftime("%Y-%m-%d %H:%M")
             end
 
-            failed_ops << {
+            failed_op = {
               node: node[:uname],
               call_id: op.attributes['call-id'],
               op: operation,
@@ -865,6 +866,8 @@ class Cib
               fail_start: fail_start,
               fail_end: fail_end
             }
+            linky = fail_start ? Rails.application.routes.url_helpers.reports_path : ""
+            failed_ops << failed_op
             error(_('%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_reason}') % {
                     node: node[:uname],
                     resource: "<strong>#{rsc_id}</strong>".html_safe,
@@ -872,9 +875,12 @@ class Cib
                     op: "<strong>#{operation}</strong>".html_safe,
                     rc_mapping: CibTools.rc_desc(rc_code),
                     rc_code: rc_code,
-                    exit_reason: exit_reason,
-                    fail_start: fail_start || '0000-00-00 00:00'
-                  })
+                    exit_reason: exit_reason.blank? ? 'none' : exit_reason,
+                    fail_start: real_start || '0000-00-00 00:00'
+                  },
+                  :danger,
+                  link: linky
+)
 
             if ignore_failure
               failed_ops[-1][:ignored] = true
