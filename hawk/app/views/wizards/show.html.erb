@@ -22,9 +22,11 @@
               <%= main_form.fields_for :steps, step do |step_form| %>
                 <div class="tab-pane" id="step<%= index %>" role="tabpanel">
                   <fieldset>
-                    <legend>
-                      <%= step.title %>
-                    </legend>
+                    <% unless index == 0 %>
+                      <legend>
+                         <%= step.title %>
+                      </legend>
+                    <% end %>
                     <% if step.longdesc.strip.length > 0 %>
                       <div class="well">
                         <%= longdesc_format step.longdesc %>
