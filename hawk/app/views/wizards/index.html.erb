@@ -8,13 +8,13 @@
     <ul class="nav nav-pills nav-stacked nav-bighelp nav-topspace" data-help-target="#rightbar > .rightbar_help > *">
       <% wizard_categories(@wizards).each do |category| %>
         <li class="toggable btn btn-default btn-lg">
-          <span data-toggle="collapse" data-parent=".nav-bighelp" href="#<%= category.dehumanize %>">
+          <span data-toggle="collapse" data-parent=".nav-bighelp" href="#<%= category.parameterize(separator: "_")%>">
             <div class="pull-right">
               <%= icon_tag "chevron-down" %>
             </div>
             <%= icon_text wizard_icon(category), wizard_category_title(category) %>
           </span>
-          <ul class="nav nav-pills nav-stacked collapse" id="<%= category.dehumanize %>">
+          <ul class="nav nav-pills nav-stacked collapse" id="<%= category.parameterize(separator: "_")%>">
             <% @wizards.sort_by(&:name).each do |wizard| %>
               <% next unless wizard.category.eql?(category) %>
               <li>
