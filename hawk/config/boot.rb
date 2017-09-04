@@ -21,7 +21,7 @@ if File.exist? ENV["BUNDLE_GEMFILE"]
 
   Bundler.require(*Rails.groups)
 else
-  gem "rails", version: "~> 5"
+  gem "rails", version: "~> 5.1"
 #  require "active_record/railtie"
   require "active_model/railtie"
   require "action_controller/railtie"
