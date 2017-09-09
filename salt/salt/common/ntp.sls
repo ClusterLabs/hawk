@@ -1,11 +1,11 @@
-ntp_package:
+chrony_package:
   pkg.installed:
     - names:
-        - ntp
+        - chrony
 
-ntpd:
+chronyd:
   service.running:
     - enable: True
     - require:
-        - pkg: ntp_package
+        - pkg: chrony_package
 

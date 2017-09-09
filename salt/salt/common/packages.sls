@@ -1,28 +1,7 @@
-devel:languages:ruby:
-  pkgrepo.managed:
-    - humanname: devel:languages:ruby
-    - baseurl: http://download.opensuse.org/repositories/devel:/languages:/ruby/openSUSE_Leap_42.3/
-    - refresh: True
-    - gpgautoimport: True
-
-devel:languages:ruby:extensions:
-  pkgrepo.managed:
-    - humanname: devel:languages:ruby:extensions
-    - baseurl: http://download.opensuse.org/repositories/devel:/languages:/ruby:/extensions/openSUSE_Leap_42.3/
-    - refresh: True
-    - gpgautoimport: True
-
 network:ha-clustering:Factory:
   pkgrepo.managed:
     - humanname: network:ha-clustering:Factory
-    - baseurl: http://download.opensuse.org/repositories/network:/ha-clustering:/Factory/openSUSE_Leap_42.3/
-    - refresh: True
-    - gpgautoimport: True
-
-home:KGronlund:branches:devel:languages:ruby:extensions:
-  pkgrepo.managed:
-    - humanname: home:KGronlund:branches:devel:languages:ruby:extensions
-    - baseurl: http://download.opensuse.org/repositories/home:/KGronlund:/branches:/devel:/languages:/ruby:/extensions/openSUSE_Leap_42.3/
+    - baseurl: http://download.opensuse.org/repositories/network:/ha-clustering:/Factory/openSUSE_Tumbleweed/
     - refresh: True
     - gpgautoimport: True
 
@@ -48,9 +27,8 @@ common_packages:
         - ruby2.4-rubygem-gettext_i18n_rails_js
         - ruby2.4-rubygem-sprockets
         - ruby2.4-rubygem-kramdown
+        - make
+        - gcc
     - require:
         - pkgrepo: network:ha-clustering:Factory
-        - pkgrepo: devel:languages:ruby
-        - pkgrepo: devel:languages:ruby:extensions
-        - pkgrepo: home:KGronlund:branches:devel:languages:ruby:extensions
 
