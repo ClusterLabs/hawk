@@ -27,7 +27,7 @@
     $('.circle').statusCircleFromCIB();
 
     $.ajax({
-      url: Routes.monitor_path(),
+      url: "/monitor.json",
       type: 'GET',
       data: $('body').data('content').meta.epoch,
       dataType: "json",

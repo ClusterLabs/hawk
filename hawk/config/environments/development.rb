@@ -2,14 +2,8 @@
 # See COPYING for license.
 
 Rails.application.configure do
-  # Because we have the /monitor controller, we need
-  # to change some settings here. Unfortunately, it
-  # interferes with the auto-reloading of changed code.
-  config.preload_frameworks = true
-  config.allow_concurrency = true
-  config.cache_classes = true
-  config.eager_load = true
-
+  config.cache_classes = false
+  config.eager_load = false
 
   config.consider_all_requests_local = true
   config.public_file_server.enabled = true
@@ -44,7 +38,7 @@ Rails.application.configure do
   config.assets.manifest = Rails.root.join("public", "assets", "manifest.json")
 
   # Suppress logger output for asset requests.
-  # config.assets.quiet = true
+  config.assets.quiet = true
 
   config.assets.configure do |env|
     if Rails.env.development? || Rails.env.test?
