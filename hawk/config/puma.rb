@@ -2,25 +2,10 @@ require 'fileutils'
 
 ROOT = File.expand_path("../../", __FILE__)
 
-def set_config(*args)
-  @environment, @threads, @workers, @listen, @port, @key, @cert = args
-end
+@environment = ENV["HAWK_ENV"] || "production"
+@bind = ENV["HAWK_BIND"] || "unix:///usr/share/hawk/tmp/hawk.sock"
 
-if ENV["HAWK_ENV"] == "development"
-  set_config("development", 5, 2, "0.0.0.0", "3000", "/vagrant/hawk/tmp/hawk.key",
-             "/etc/hawk/hawk.pem")
-  bind "tcp://#{@listen}:#{@port}"
-else
-  set_config(ENV["HAWK_ENV"] || "production",
-             ENV["HAWK_THREADS"] || 5,
-             ENV["HAWK_WORKERS"] || 2,
-             ENV["HAWK_LISTEN"] || "0.0.0.0",
-             ENV["HAWK_PORT"] || "7630",
-             ENV["HAWK_KEY"] || "/etc/hawk/hawk.key",
-             ENV["HAWK_CERT"] || "/etc/hawk/hawk.pem")
-  ssl_bind @listen, @port, cert: @cert, key: @key, verify_mode: 'none'
-end
-
+bind @bind
 directory ROOT
 environment @environment
 
@@ -29,9 +14,9 @@ tag "hawk"
 daemonize false
 prune_bundler false
 
-threads 0, @threads
+threads 0, 1
 
-workers @workers
+workers 1
 
 # Use the `preload_app!` method when specifying a `workers` number.
 # This directive tells Puma to first boot the application and load code

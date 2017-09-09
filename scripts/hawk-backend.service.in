@@ -1,0 +1,19 @@
+[Unit]
+Description=HA Web Konsole Backend
+After=network.target
+StopWhenUnneeded=true
+
+[Service]
+Type=simple
+KillMode=control-group
+TimeoutSec=300
+TimeoutStopSec=10
+User=hacluster
+Group=haclient
+WorkingDirectory=@WWW_BASE@/hawk
+Environment="HAWK_ENV=production"
+Environment="HAWK_BIND=unix://@WWW_BASE@/hawk/tmp/hawk.sock"
+EnvironmentFile=-/etc/sysconfig/hawk
+ExecStart=/usr/bin/puma@RUBY_SUFFIX@ -C @WWW_BASE@/hawk/config/puma.rb
+ExecStop=/usr/bin/pumactl@RUBY_SUFFIX@ -S @WWW_BASE@/hawk/tmp/pids/puma.state stop
+ExecReload=/usr/bin/pumactl@RUBY_SUFFIX@ -S @WWW_BASE@/hawk/tmp/pids/puma.state restart
