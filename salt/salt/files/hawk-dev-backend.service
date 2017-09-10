@@ -1,0 +1,25 @@
+[Unit]
+Description=HA Web Konsole Development Backend
+After=network.target
+StopWhenUnneeded=true
+
+[Service]
+Type=simple
+KillMode=control-group
+TimeoutSec=300
+TimeoutStopSec=10
+
+User=hacluster
+Group=haclient
+
+WorkingDirectory=/vagrant/hawk
+
+Environment="HAWK_ENV=development"
+Environment="HAWK_BIND=unix:///vagrant/hawk/tmp/hawk.sock"
+
+# Run ExecStartPre with root-permissions
+PermissionsStartOnly=true
+ExecStartPre=/vagrant/hawk/bin/generate-ssl-cert
+ExecStart=/usr/bin/puma.ruby2.4 -C /vagrant/hawk/config/puma.rb
+ExecStop=/usr/bin/pumactl.ruby2.4 -S /vagrant/hawk/tmp/pids/puma.state stop
+ExecReload=/usr/bin/pumactl.ruby2.4 -S /vagrant/hawk/tmp/pids/puma.state restart

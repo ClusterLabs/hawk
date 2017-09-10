@@ -1,0 +1,18 @@
+{
+  "route": [
+    {
+      "handler": "monitor",
+      "path": "/monitor"
+    },
+    {
+      "handler": "file",
+      "path": "/",
+      "target": "/vagrant/hawk/public"
+    },
+    {
+      "handler": "proxy",
+      "path": "/",
+      "target": "unix:///vagrant/hawk/tmp/hawk.sock"
+    }
+  ]
+}
