@@ -14,6 +14,7 @@ common_packages:
         - haproxy
         - hawk-apiserver
         - libglue-devel
+        - libdlm
         - drbd
         - drbd-utils
         - nodejs6
