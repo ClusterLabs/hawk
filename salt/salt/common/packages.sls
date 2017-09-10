@@ -5,6 +5,13 @@ network:ha-clustering:Factory:
     - refresh: True
     - gpgautoimport: True
 
+network:ha-clustering:BuildDep:
+  pkgrepo.managed:
+    - humanname: network:ha-clustering:BuildDep
+    - baseurl: http://download.opensuse.org/repositories/network:/ha-clustering:/BuildDep/openSUSE_Tumbleweed/
+    - refresh: True
+    - gpgautoimport: True
+
 common_packages:
   pkg.installed:
     - names:
@@ -29,8 +36,13 @@ common_packages:
         - ruby2.4-rubygem-gettext_i18n_rails_js
         - ruby2.4-rubygem-sprockets
         - ruby2.4-rubygem-kramdown
+        - ruby2.4-rubygem-web-console
+        - ruby2.4-rubygem-spring
+        - ruby2.4-rubygem-uglifier
+        - ruby2.4-rubygem-gettext
         - make
         - gcc
     - require:
         - pkgrepo: network:ha-clustering:Factory
+        - pkgrepo: network:ha-clustering:BuildDep
 
