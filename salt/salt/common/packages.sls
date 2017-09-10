@@ -15,6 +15,7 @@ common_packages:
         - hawk-apiserver
         - libglue-devel
         - libdlm
+        - drbd-kmp-default
         - drbd
         - drbd-utils
         - nodejs6
