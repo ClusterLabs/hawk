@@ -9,6 +9,8 @@ Type=simple
 User=hacluster
 Group=haclient
 WorkingDirectory=@WWW_BASE@/hawk
+Restart=always
+RestartSec=5
 Environment="HAWK_ENV=production"
 EnvironmentFile=-/etc/sysconfig/hawk
 
