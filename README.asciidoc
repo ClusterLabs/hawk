@@ -6,15 +6,17 @@ image:https://travis-ci.org/ClusterLabs/hawk.svg?branch=master["Build Status", l
 image:https://codeclimate.com/github/ClusterLabs/hawk/badges/gpa.svg["Code Climate", link="https://codeclimate.com/github/ClusterLabs/hawk"]
 image:https://readthedocs.org/projects/hawk-guide/badge/?style=flat["Documentation", link="http://hawk-guide.readthedocs.org/"]
 
-Hawk is a web interface for the Pacemaker High Availability stack. The
-goal of the project is to create a complete interface to the HA
-cluster, including the configuration, management and monitoring of
-cluster resources.
+Hawk provides a web interface for High Availability clusters managed
+by the Pacemaker cluster resource manager. The current goal of the
+project is to provide a complete management interface to the HA
+cluster, both in the form of a flexible REST API as well as a modern
+client frontend using the API.
 
 http://hawk-ui.github.io[http://hawk-ui.github.io]
 
 == Table of contents
 * <<overview>>
+* <<api>>
 * <<documentation>>
 * <<screenshots>>
 * <<features>>
@@ -76,6 +78,15 @@ preferences and log out of the cluster.
 Resource management operations (start, stop, online, standby, etc.)
 can be performed using the menu of operations next to the resource in
 the status view.
+
+== API ==
+
+Hawk is being restructured to provide a cleaner separation between the
+frontend and the backend. As a first step towards this goal, Hawk now
+uses its own small API proxy daemon as a web server, which is
+maintained as a separate project:
+
+* https://github.com/krig/hawk-apiserver[API Server Repository]
 
 == Documentation
 
@@ -185,13 +196,7 @@ configuring constraints, to ensure that the rules work as intended.
 The exact versions specified here may not be accurate. Also, note that
 Hawk also requires the rubygems listed in +hawk/Gemfile+.
 
-* ruby version 1.9.3 or higher
-* libpacemaker-devel
-* pacemaker-libs-devel
-* glib2-devel
-* libxml2-devel >= 2.6.21
-* libxslt-devel
-* openssl-devel
+* ruby >= 2.2
 * pam-devel
 
 
@@ -200,11 +205,13 @@ Hawk also requires the rubygems listed in +hawk/Gemfile+.
 The exact versions specified here may not be accurate. Also, note that
 Hawk also requires the rubygems listed in +hawk/Gemfile+.
 
-* crmsh
+* ruby >= 2.2
+* crmsh >= 3.0.0
 * graphviz
 * graphviz-gd
 * dejavu
 * pacemaker >= 1.1.8
+* bundler
 * iproute2
 
 
