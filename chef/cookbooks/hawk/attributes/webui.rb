@@ -54,6 +54,7 @@ default["hawk"]["webui"]["packages"] = [
   "git-core",
   "nodejs6",
 
+  "hawk-apiserver",
   "hawk2",
   "fence-agents",
   "ha-cluster-bootstrap",
@@ -61,10 +62,7 @@ default["hawk"]["webui"]["packages"] = [
   "apache2",
   "haproxy",
 
-  "glib2-devel",
-  "libxml2-devel",
   "pam-devel",
-  "libpacemaker-devel",
 
   # debug stonith agents
   "libglue-devel",

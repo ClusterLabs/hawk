@@ -1,10 +1,7 @@
 webui_packages:
   pkg.installed:
     - names:
-      - glib2-devel
-      - libxml2-devel
       - pam-devel
-      - libpacemaker-devel
       - libglue-devel
 
     - require:
