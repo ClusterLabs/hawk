@@ -8,7 +8,7 @@ usage() {
 
 hawk_start() {
 	sudo systemctl start hawk-development
-	if [ ! $(systemctl status hawk-development >/dev/null) ]; then
+	if ! systemctl -q is-active hawk-development; then
 		rm -f /vagrant/hawk/Gemfile.lock
 		sudo systemctl start hawk-development
 	fi
@@ -27,12 +27,12 @@ hawk_restart() {
 	hawk_start
 }
 
-hawk_syslog() {
+hawk_apilog() {
 	sudo journalctl -eu hawk-development
 }
 
 hawk_log() {
-	less +F /vagrant/hawk/log/development.log
+	sudo journalctl -eu hawk-dev-backend
 }
 
 hawk_server() {
@@ -64,8 +64,8 @@ case "$1" in
 	status)
 		hawk_status
 		;;
-	syslog)
-		hawk_syslog
+	apilog)
+		hawk_apilog
 		;;
 	log)
 		hawk_log
