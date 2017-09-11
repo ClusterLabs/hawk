@@ -15,6 +15,7 @@ Group=haclient
 WorkingDirectory=/vagrant/hawk
 
 Environment="HAWK_ENV=development"
+Environment="LOGGER=stdout"
 Environment="HAWK_BIND=unix:///vagrant/hawk/tmp/hawk.sock"
 
 # Run ExecStartPre with root-permissions

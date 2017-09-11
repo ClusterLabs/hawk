@@ -52,7 +52,7 @@ Rails.application.configure do
   # Prints Logs to STDOUT when starting the Puma server in development mode with
   # the environment variable LOGGER is set to stdout
   # The default is Rails.root/log/development.log
-  config.logger = Logger.new(STDOUT) if ENV["LOGGER"] == "stdout"
+  config.logger = ActiveSupport::TaggedLogging.new(ActiveSupport::Logger.new(STDOUT)) if ENV["LOGGER"] == "stdout"
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   # config.log_formatter = ::Logger::Formatter.new

@@ -76,7 +76,6 @@ default["hawk"]["webui"]["packages"] = [
 default["hawk"]["webui"]["targets"] = %w(
   clean
   tools/hawk_chkpwd
-  tools/hawk_monitor
   tools/hawk_invoke
   tools/install
 )
