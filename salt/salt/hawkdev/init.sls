@@ -52,3 +52,10 @@ apply_initial_configuration:
     - user: root
     - group: root
     - mode: 644
+
+/etc/systemd/system/hawk-dev-backend.service:
+  file.managed:
+    - source: salt://files/hawk-dev-backend.service
+    - user: root
+    - group: root
+    - mode: 644

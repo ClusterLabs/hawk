@@ -1,0 +1,18 @@
+{
+  "route": [
+    {
+      "handler": "monitor",
+      "path": "/monitor"
+    },
+    {
+      "handler": "file",
+      "path": "/",
+      "target": "@WWW_BASE@/hawk/public"
+    },
+    {
+      "handler": "proxy",
+      "path": "/",
+      "target": "unix://@WWW_BASE@/hawk/tmp/hawk.sock"
+    }
+  ]
+}

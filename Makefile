@@ -49,7 +49,7 @@ SBINDIR = /usr/sbin
 
 .PHONY: all clean tools
 
-all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service tools
+all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service scripts/hawk-backend.service scripts/server.json tools
 	(cd hawk; \
 	 RAILS_ENV=production TEXTDOMAIN=hawk bin/rake gettext:pack; \
 	 RAILS_ENV=production bin/rake assets:precompile)
@@ -92,6 +92,8 @@ base/install:
 	cp -a hawk/* $(DESTDIR)$(WWW_BASE)/hawk
 	-cp -a hawk/.bundle $(DESTDIR)$(WWW_BASE)/hawk
 	install -D -m 0644 scripts/hawk.service $(DESTDIR)/usr/lib/systemd/system/hawk.service
+	install -D -m 0644 scripts/hawk-backend.service $(DESTDIR)/usr/lib/systemd/system/hawk-backend.service
+	install -D -m 0644 scripts/server.json $(DESTDIR)/etc/hawk/server.json
 
 
 tools/install:

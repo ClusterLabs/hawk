@@ -145,7 +145,6 @@ Rails.application.routes.draw do
     end
   end
 
-  match "monitor" => "monitor#monitor", :as => :monitor, via: [:get, :options]
   get "help" => "pages#help", :as => :help
 
   get "logout" => "sessions#destroy", :as => :logout

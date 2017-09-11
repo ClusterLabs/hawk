@@ -1,28 +1,14 @@
-devel:languages:ruby:
-  pkgrepo.managed:
-    - humanname: devel:languages:ruby
-    - baseurl: http://download.opensuse.org/repositories/devel:/languages:/ruby/openSUSE_Leap_42.3/
-    - refresh: True
-    - gpgautoimport: True
-
-devel:languages:ruby:extensions:
-  pkgrepo.managed:
-    - humanname: devel:languages:ruby:extensions
-    - baseurl: http://download.opensuse.org/repositories/devel:/languages:/ruby:/extensions/openSUSE_Leap_42.3/
-    - refresh: True
-    - gpgautoimport: True
-
 network:ha-clustering:Factory:
   pkgrepo.managed:
     - humanname: network:ha-clustering:Factory
-    - baseurl: http://download.opensuse.org/repositories/network:/ha-clustering:/Factory/openSUSE_Leap_42.3/
+    - baseurl: http://download.opensuse.org/repositories/network:/ha-clustering:/Factory/openSUSE_Tumbleweed/
     - refresh: True
     - gpgautoimport: True
 
-home:KGronlund:branches:devel:languages:ruby:extensions:
+network:ha-clustering:BuildDep:
   pkgrepo.managed:
-    - humanname: home:KGronlund:branches:devel:languages:ruby:extensions
-    - baseurl: http://download.opensuse.org/repositories/home:/KGronlund:/branches:/devel:/languages:/ruby:/extensions/openSUSE_Leap_42.3/
+    - humanname: network:ha-clustering:BuildDep
+    - baseurl: http://download.opensuse.org/repositories/network:/ha-clustering:/BuildDep/openSUSE_Tumbleweed/
     - refresh: True
     - gpgautoimport: True
 
@@ -35,6 +21,8 @@ common_packages:
         - haproxy
         - hawk-apiserver
         - libglue-devel
+        - libdlm
+        - drbd-kmp-default
         - drbd
         - drbd-utils
         - nodejs6
@@ -48,9 +36,13 @@ common_packages:
         - ruby2.4-rubygem-gettext_i18n_rails_js
         - ruby2.4-rubygem-sprockets
         - ruby2.4-rubygem-kramdown
+        - ruby2.4-rubygem-web-console
+        - ruby2.4-rubygem-spring
+        - ruby2.4-rubygem-uglifier
+        - ruby2.4-rubygem-gettext
+        - make
+        - gcc
     - require:
         - pkgrepo: network:ha-clustering:Factory
-        - pkgrepo: devel:languages:ruby
-        - pkgrepo: devel:languages:ruby:extensions
-        - pkgrepo: home:KGronlund:branches:devel:languages:ruby:extensions
+        - pkgrepo: network:ha-clustering:BuildDep
 

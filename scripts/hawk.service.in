@@ -1,27 +1,23 @@
 [Unit]
 Description=HA Web Konsole
-After=network.target
+Wants=hawk-backend.service
+After=network.target hawk-backend.service
+PropagatesReloadTo=hawk-backend.service
 
 [Service]
 Type=simple
-KillMode=control-group
-TimeoutSec=300
-TimeoutStopSec=10
-
 User=hacluster
 Group=haclient
-
 WorkingDirectory=@WWW_BASE@/hawk
-
+Restart=always
+RestartSec=5
 Environment="HAWK_ENV=production"
 EnvironmentFile=-/etc/sysconfig/hawk
 
 # Run ExecStartPre with root-permissions
 PermissionsStartOnly=true
 ExecStartPre=@WWW_BASE@/hawk/bin/generate-ssl-cert
-ExecStart=/usr/bin/puma@RUBY_SUFFIX@ -C @WWW_BASE@/hawk/config/puma.rb
-ExecStop=/usr/bin/pumactl@RUBY_SUFFIX@ -S @WWW_BASE@/hawk/tmp/pids/puma.state stop
-ExecReload=/usr/bin/pumactl@RUBY_SUFFIX@ -S @WWW_BASE@/hawk/tmp/pids/puma.state restart
+ExecStart=/usr/sbin/hawk-apiserver -key ${HAWK_KEY} -cert ${HAWK_CERT} -port ${HAWK_PORT} -config /etc/hawk/server.json
 
 [Install]
 WantedBy=multi-user.target
