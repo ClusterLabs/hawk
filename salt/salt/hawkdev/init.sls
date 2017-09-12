@@ -56,3 +56,10 @@ apply_initial_configuration:
     - user: root
     - group: root
     - mode: 644
+
+/usr/bin/hawk:
+  file.managed:
+    - source: /vagrant/hawk/bin/hawk
+    - user: root
+    - group: root
+    - mode: 755

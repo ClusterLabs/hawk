@@ -19,7 +19,7 @@ hawk_stop() {
 }
 
 hawk_status() {
-	systemctl status hawk-development
+	systemctl status hawk-development hawk-dev-backend
 }
 
 hawk_restart() {
