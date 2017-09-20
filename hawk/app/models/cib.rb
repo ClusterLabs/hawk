@@ -1034,6 +1034,14 @@ class Cib
       @xml.elements.each("cib/configuration//primitive[@type='IPaddr2']/instance_attributes/nvpair[@name='ip']") do |elem|
         ip = CibTools.get_xml_attr(elem, "value")
         next unless @booth[:sites].include?(ip)
+
+        # Get actual value of resource after applying
+        # any rule expressions
+        resource_node = REXML::XPath.first(elem, "ancestor::primitive")
+        resource_id = resource_node.attributes["id"]
+        ip = %x[crm_resource -r #{resource_id} -g ip].strip
+        next unless @booth[:sites].include?(ip)
+
         if !@booth[:me]
           @booth[:me] = ip
         else
