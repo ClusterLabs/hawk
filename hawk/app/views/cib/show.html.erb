@@ -2,6 +2,7 @@
   <div class="row">
     <h1>
       <%= icon_text "heartbeat", _("Status"), class: "page" %>
+      <% unless @cib.name.blank? %><small><%= @cib.name %></small><% end %>
     </h1>
     <div class="col-lg-8 errors softhide" data-link="visible{>errors.length > 0}" id="errors">
       <div class="panel panel-default">

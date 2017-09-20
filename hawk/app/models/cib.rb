@@ -94,6 +94,10 @@ class Cib
     end
   end
 
+  def name
+    crm_config[:cluster_name] || ""
+  end
+
   def no_quorum?
       meta[:have_quorum] == "0" && @crm_config[:no_quorum_policy] != "ignore"
   end
