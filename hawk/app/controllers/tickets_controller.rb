@@ -108,11 +108,6 @@ class TicketsController < ApplicationController
     respond_to do |format|
       _out, err, rc = Invoker.instance.crm("--force", "configure", "delete", @ticket.id)
       if rc == 0
-        format.html do
-          flash[:success] = _("Ticket deleted successfully")
-          flash[:warning] = err unless err.blank?
-          redirect_to cib_tickets_url(cib_id: @cib.id)
-        end
         format.json do
           render json: {
             success: true,
@@ -120,10 +115,6 @@ class TicketsController < ApplicationController
           }
         end
       else
-        format.html do
-          flash[:alert] = _("Error deleting %s: %s") % [@ticket.id, err]
-          redirect_to edit_cib_ticket_url(cib_id: @cib.id, id: @ticket.id)
-        end
         format.json do
           render json: { error: _("Error deleting %s: %s") % [@ticket.id, err] }, status: :unprocessable_entity
         end
@@ -145,22 +136,12 @@ class TicketsController < ApplicationController
 
   def grant
     site = @cib.booth[:me]
-    if grant_ticket(params[:ticket], site)
-      respond_to do |format|
-        format.html do
-          flash[:success] = _("Successfully granted the ticket")
-          redirect_to cib_tickets_url(cib_id: @cib.id)
-        end
+    respond_to do |format|
+      if grant_ticket(params[:ticket], site)
         format.json do
           render json: { success: true, message: _("Successfully granted the ticket") }
         end
-      end
-    else
-      respond_to do |format|
-        format.html do
-          flash[:alert] = _("Error granting the ticket")
-          redirect_to cib_tickets_url(cib_id: @cib.id)
-        end
+      else
         format.json do
           render json: { error: _("Error granting the ticket") }, status: :unprocessable_entity
         end
@@ -169,25 +150,15 @@ class TicketsController < ApplicationController
   end
 
   def revoke
-    if revoke_ticket(params[:ticket])
-      respond_to do |format|
-        format.html do
-          flash[:success] = _("Successfully revoked the ticket")
-          redirect_to cib_tickets_url(cib_id: @cib.id)
-        end
+    respond_to do |format|
+      if revoke_ticket(params[:ticket])
         format.json do
           render json: {
             success: true,
             message: _("Successfully revoked the ticket")
           }
         end
-      end
-    else
-      respond_to do |format|
-        format.html do
-          flash[:alert] = _("Error revoking the ticket")
-          redirect_to cib_tickets_url(cib_id: @cib.id)
-        end
+      else
         format.json do
           render json: { error: _("Error revoking the ticket") }, status: :unprocessable_entity
         end
