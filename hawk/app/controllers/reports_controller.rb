@@ -22,6 +22,14 @@ class ReportsController < ApplicationController
   helper_method :history_log_markup
 
   def index
+    if params[:from_time].present? && params[:to_time].present?
+      from_time = params[:from_time]
+      to_time = params[:to_time]
+      @hb_report = HbReport.new make_report_name(from_time, to_time)
+      @hb_report.generate(from_time, to_time)
+      redirect_to reports_url
+    end
+
     @hb_report = HbReport.new
 
     respond_to do |format|
