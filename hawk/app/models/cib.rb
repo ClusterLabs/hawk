@@ -1031,6 +1031,7 @@ class Cib
     # IPaddr2 resource with same IP as a site in booth.conf)
     if !@booth[:sites].empty?
       @booth[:sites].sort!
+      booth_resource_id = nil
       @xml.elements.each("cib/configuration//primitive[@type='IPaddr2']/instance_attributes/nvpair[@name='ip']") do |elem|
         ip = CibTools.get_xml_attr(elem, "value")
         next unless @booth[:sites].include?(ip)
@@ -1038,14 +1039,16 @@ class Cib
         # Get actual value of resource after applying
         # any rule expressions
         resource_node = REXML::XPath.first(elem, "ancestor::primitive")
-        resource_id = resource_node.attributes["id"]
-        ip = %x[crm_resource -r #{resource_id} -g ip].strip
-        next unless @booth[:sites].include?(ip)
+        if booth_resource_id != resource_node.attributes["id"]
+          booth_resource_id = resource_node.attributes["id"]
+          ip = %x[crm_resource -r #{booth_resource_id} -g ip].strip
+          next unless @booth[:sites].include?(ip)
 
-        if !@booth[:me]
-          @booth[:me] = ip
-        else
-          Rails.logger.warn "Multiple booth sites in CIB (first match was #{@booth[:me]}, also found #{ip})"
+          if !@booth[:me]
+            @booth[:me] = ip
+          elsif @booth[:me] != ip
+            Rails.logger.warn "Multiple booth sites in CIB (first match was #{@booth[:me]}, also found #{ip})"
+          end
         end
       end
     end
