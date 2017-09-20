@@ -866,7 +866,7 @@ class Cib
               fail_start: fail_start,
               fail_end: fail_end
             }
-            linky = fail_start ? Rails.application.routes.url_helpers.reports_path : ""
+            linky = fail_start ? Rails.application.routes.url_helpers.reports_path(from_time: fail_start, to_time: fail_end) : ""
             failed_ops << failed_op
             error(_('%{fail_start}: Operation %{op} failed for resource %{resource} on node %{node}: call-id=%{call_id}, rc-code=%{rc_mapping} (%{rc_code}), exit-reason=%{exit_reason}') % {
                     node: node[:uname],
