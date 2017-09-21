@@ -170,6 +170,10 @@ class CrmConfig < Tableless
     self.class.mapping
   end
 
+  def help_text(options)
+    options.map { |key| mapping[key] }.reduce(Hash.new, :merge)
+  end
+
   def new_record?
     false
   end
