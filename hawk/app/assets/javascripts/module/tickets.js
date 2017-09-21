@@ -242,7 +242,7 @@ $(function() {
               return false;
             }
             $.hawkRunOperation(
-              i18n.translate('Revoking ticket %s from this cluster. Do you want to continue?').fetch(row.id),
+              i18n.translate('This will request the ticket %s be revoked. Do you want to continue?').fetch(row.id),
               [$(this).attr('href'), ".json"].join(""));
             return false;
           }
