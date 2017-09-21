@@ -236,12 +236,14 @@ $(function() {
         align: 'right',
         halign: 'right',
         events: {
-          'click .delete': function (e, value, row, index) {
+          'click .revoke': function (e, value, row, index) {
             e.preventDefault();
             if (row.id == null) {
               return false;
             }
-            $.hawkDeleteOperation(row.id, Routes.cib_ticket_path($('body').data('cib'), row.id, { format: 'json' }));
+            $.hawkRunOperation(
+              i18n.translate('Revoking ticket %s from this cluster. Do you want to continue?').fetch(row.id),
+              [$(this).attr('href'), ".json"].join(""));
             return false;
           }
         },
