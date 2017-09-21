@@ -254,7 +254,7 @@ $(function() {
 
           var operations = [];
 
-          if (row.state == "elsewhere") {
+          if (row.state == "elsewhere" || row.state == "granted") {
             operations.push([
               '<a href="',
               Routes.revoke_cib_tickets_path($('body').data('cib'), row.id),
