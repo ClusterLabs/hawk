@@ -22,7 +22,7 @@ class AgentsController < ApplicationController
     else
       @name = params[:id]
     end
-    @agent = Hash.from_xml(Util.safe_x("/usr/sbin/crm_resource", "--show-metadata", @name))
+    @agent = Hash.from_xml(Util.safe_x("/usr/sbin/crm_resource", "--show-metadata", @name).gsub(/type="string"/, 'type="text"'))
 
     if @agent
       respond_to do |format|
