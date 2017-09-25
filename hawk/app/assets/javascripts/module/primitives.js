@@ -256,6 +256,7 @@ $(function() {
               }
               var type = "string";
               var defvalue = "";
+              var required = "0";
               if ("content" in v && v.content) {
                 if ("type" in v.content) {
                   type = v.content.type;
@@ -265,12 +266,14 @@ $(function() {
                 }
               }
               if (v.required == "1") {
+                required = "1";
                 pal[v.name] = defvalue;
               }
               pam[v.name] = {
                 type: type,
                 default: defvalue,
-                longdesc: v.shortdesc + ": " + v.longdesc
+                longdesc: v.shortdesc + ": " + v.longdesc,
+                required: required
               };
               $("#helpentries").append($("#tmpl-helpentry").render({
                 name: name,

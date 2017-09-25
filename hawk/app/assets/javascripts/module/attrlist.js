@@ -58,7 +58,11 @@
                   '{{/if}}',
 
                   '<div class="input-group-btn">',
-                    '<a href="#" class="remove btn btn-default" data-attr="{{:#data}}" title="{{>~root.remove_label}}">',
+                    '{{if ~root.mapping[key]["required"] == "1"}}',
+                      '<a href="#" class="remove btn btn-default disabled", data-attr="{{:#data}}" title="{{>~root.remove_label}}">',
+                    '{{else}}',
+                      '<a href="#" class="remove btn btn-default", data-attr="{{:#data}}" title="{{>~root.remove_label}}">',
+                    '{{/if}}',
                       '<i class="fa fa-minus fa-lg fa-fw"></i>',
                     '</a>',
                   '</div>',
