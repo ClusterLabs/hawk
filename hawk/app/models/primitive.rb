@@ -28,6 +28,16 @@ class Primitive < Template
   alias_method :provider_without_template, :provider
   alias_method :provider, :provider_with_template
 
+  validate :validate_params
+
+  def validate_params
+    params.each do |param, value|
+      if value.blank?
+        errors.add(:base, "In Parameters, #{param}'s value is blank!")
+      end
+    end
+  end
+
   def type_with_template
     if template.present?
       ::Template.find(template).try(:type)
