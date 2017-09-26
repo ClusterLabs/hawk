@@ -80,7 +80,7 @@ class Step
       next unless param.advanced
       m[param.id] = {
         type: param.attrlist_type,
-        default: nil,
+        default: param.example,
         longdesc: param.longdesc.blank? ? param.shortdesc : param.longdesc,
         name: param.name,
         help_id: param.help_id
@@ -94,7 +94,7 @@ class Step
     @parameters.each do |param|
       m[param.id] = {
         type: param.attrlist_type,
-        default: nil,
+        default: param.example,
         longdesc: param.longdesc.blank? ? param.shortdesc : param.longdesc,
         name: param.name,
         help_id: param.help_id
