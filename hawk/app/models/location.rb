@@ -25,12 +25,12 @@ class Location < Constraint
     end
 
     record.rules.each do |rule|
-      rule[:score].strip!
+      rule["score"].strip!
 
-      unless score_types.include? rule[:score].downcase
+      unless score_types.include? rule["score"].downcase
         if record.simple?
-          unless rule[:score].match(/^-?[0-9]+$/)
-            errors.add :base, _('Invalid score "%{score}"') % { :score => rule[:score] }
+          unless rule["score"].match(/^-?[0-9]+$/)
+            errors.add :base, _('Invalid score "%{score}"') % { "score" => rule["score"] }
           end
         else
           # We're allowing any old junk for scores for complex resources,
@@ -114,9 +114,9 @@ class Location < Constraint
           op = rule[:boolean_op]
           op = "and" if op == ""
           cmd.push "rule"
-          cmd.push "$role=#{crm_quote(rule[:role])}" unless rule[:role].empty?
+          cmd.push "$role=#{crm_quote(rule["role"])}" unless rule["role"].empty?
           cmd.push "#{rule[:score]}:"
-          cmd.push rule[:expressions].map {|e|
+          cmd.push rule["expressions"].map {|e|
             if ["defined", "not_defined"].include? e[:operation]
               "#{e[:operation]} #{crm_quote(e[:attribute])}"
             elsif e[:type] == ""
