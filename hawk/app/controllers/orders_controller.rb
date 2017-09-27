@@ -30,6 +30,7 @@ class OrdersController < ApplicationController
     @title = _("Create Order")
 
     @order = Order.new params[:order].permit!
+    @order.resources = Util.map_value(@order.resources)
 
     respond_to do |format|
       if @order.save
