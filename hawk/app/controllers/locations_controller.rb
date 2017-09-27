@@ -48,6 +48,7 @@ class LocationsController < ApplicationController
         expressions: []
       )
     end
+    @location.rules = Util.map_value(@location.rules)
 
     respond_to do |format|
       if @location.save
