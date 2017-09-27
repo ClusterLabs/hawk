@@ -31,8 +31,21 @@ class Primitive < Template
   validate :validate_params
 
   def validate_params
+    res = Hash.from_xml(Util.safe_x("/usr/sbin/crm_resource", "--show-metadata", agent_name).gsub(/type="string"/, 'type="text"'))
+    if res.blank?
+      errors.add(:base, "Can not get #{agent_name}'s metadata!")
+    end
+
+    required_params = []
+    param_res = res["resource_agent"]["parameters"]["parameter"]
+    param_res.each do |items|
+      if items.key?("required") && items["required"] == "1"
+        required_params << items["name"]
+      end
+    end
+
     params.each do |param, value|
-      if value.blank?
+      if value.blank? && required_params.include?(param)
         errors.add(:base, "In Parameters, #{param}'s value is blank!")
       end
     end
