@@ -354,6 +354,16 @@ module Util
   end
   module_function :acl_version
 
+  def get_meta_data(agent)
+    res = safe_x("/usr/sbin/crm_resource", "--show-metadata", agent)
+    sub_map = { 'type="string"' => 'type="text"',
+                '(type="boolean".*)default="(yes|1)"' => '\1default="true"',
+                '(type="boolean".*)default="(no|0)"' => '\1default="false"' }
+    sub_map.each { |k,v| res.gsub!(/#{k}/i, v) }
+    res
+  end
+  module_function :get_meta_data
+
   # get text child of xml element - returns empty string if elem is nil or
   # text child is empty.  trims leading and trailing whitespace
   def get_xml_text(elem)
