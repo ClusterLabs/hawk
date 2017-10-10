@@ -34,6 +34,9 @@ class LocationsController < ApplicationController
     end
   end
 
+  class CreateFailure < RuntimeError
+  end
+
   def create
     normalize_params! params[:location].permit!
     @title = _('Create Location Constraint')
@@ -50,24 +53,27 @@ class LocationsController < ApplicationController
     end
     @location.rules = Util.map_value(@location.rules)
 
-    respond_to do |format|
-      if @location.save
-        post_process_for! @location
+    fail CreateFailure, @location.errors.full_messages.to_sentence unless @location.save
+    post_process_for! @location
 
-        format.html do
-          flash[:success] = _('Constraint created successfully')
-          redirect_to edit_cib_location_url(cib_id: @cib.id, id: @location.id)
-        end
-        format.json do
-          render json: @location, status: :created
-        end
-      else
-        format.html do
-          render action: 'new'
-        end
-        format.json do
-          render json: @location.errors, status: :unprocessable_entity
-        end
+    respond_to do |format|
+      format.html do
+        flash[:success] = _('Constraint created successfully')
+        redirect_to edit_cib_location_url(cib_id: @cib.id, id: @location.id)
+      end
+      format.json do
+        render json: @location, status: :created
+      end
+    end
+
+  rescue CreateFailure => e
+    respond_to do |format|
+      format.html do
+        flash[:danger] = e.to_s
+        render action: "new"
+      end
+      format.json do
+        render json: @location.errors, status: :unprocessable_entity
       end
     end
   end
