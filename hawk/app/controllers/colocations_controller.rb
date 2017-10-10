@@ -31,24 +31,27 @@ class ColocationsController < ApplicationController
 
     @colocation = Colocation.new params[:colocation].permit!
 
-    respond_to do |format|
-      if @colocation.save
-        post_process_for! @colocation
+    fail CreateFailure, @colocation.errors.full_messages.to_sentence unless @colocation.save
+    post_process_for! @colocation
 
-        format.html do
-          flash[:success] = _("Constraint created successfully")
-          redirect_to edit_cib_colocation_url(cib_id: @cib.id, id: @colocation.id)
-        end
-        format.json do
-          render json: @colocation, status: :created
-        end
-      else
-        format.html do
-          render action: "new"
-        end
-        format.json do
-          render json: @colocation.errors, status: :unprocessable_entity
-        end
+    respond_to do |format|
+      format.html do
+        flash[:success] = _("Constraint created successfully")
+        redirect_to edit_cib_colocation_url(cib_id: @cib.id, id: @colocation.id)
+      end
+      format.json do
+        render json: @colocation, status: :created
+      end
+    end
+
+  rescue CreateFailure => e
+    respond_to do |format|
+      format.html do
+        flash[:danger] = e.to_s
+        render action: "new"
+      end
+      format.json do
+        render json: @colocation.errors, status: :unprocessable_entity
       end
     end
   end

@@ -31,24 +31,27 @@ class OrdersController < ApplicationController
 
     @order = Order.new params[:order].permit!
 
-    respond_to do |format|
-      if @order.save
-        post_process_for! @order
+    fail CreateFailure, @order.errors.full_messages.to_sentence unless @order.save
+    post_process_for! @order
 
-        format.html do
-          flash[:success] = _("Constraint created successfully")
-          redirect_to edit_cib_order_url(cib_id: @cib.id, id: @order.id)
-        end
-        format.json do
-          render json: @order, status: :created
-        end
-      else
-        format.html do
-          render action: "new"
-        end
-        format.json do
-          render json: @order.errors, status: :unprocessable_entity
-        end
+    respond_to do |format|
+      format.html do
+        flash[:success] = _("Constraint created successfully")
+        redirect_to edit_cib_order_url(cib_id: @cib.id, id: @order.id)
+      end
+      format.json do
+        render json: @order, status: :created
+      end
+    end
+
+  rescue CreateFailure => e
+    respond_to do |format|
+      format.html do
+        flash[:danger] = e.to_s
+        render action: "new"
+      end
+      format.json do
+        render json: @order.errors, status: :unprocessable_entity
       end
     end
   end
