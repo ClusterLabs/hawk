@@ -7,10 +7,10 @@ class Location < Constraint
   attribute :discovery, String
 
   validates :resources,
-    presence: { message: _("No resource specified") }
+    presence: { message: _("not specified") }
 
   validates :rules,
-    presence: { message: _("No rules specified") }
+    presence: { message: _("not specified") }
 
   validate do |record|
     unless record.discovery.blank?

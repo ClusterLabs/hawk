@@ -7,7 +7,7 @@ class Colocation < Constraint
   attribute :resources, Array[Hash]
 
   validates :score,
-    presence: { message: _("Score is required") }
+    presence: { message: _("is required") }
 
   validate do |record|
     record.score.strip!
@@ -21,7 +21,7 @@ class Colocation < Constraint
       "-infinity"
     ].include? record.score.downcase
       unless record.score.match(/^-?[0-9]+$/)
-        errors.add :score, _("Invalid score value")
+        errors.add :score, _("value is invalid")
       end
     end
 
