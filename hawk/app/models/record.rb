@@ -7,8 +7,8 @@ class Record < Tableless
   attr_accessor :xml
 
   validates :id,
-    presence: { message: _("ID is required") },
-    format: { with: /\A[a-zA-Z0-9_.-]+\z/, message: _("Invalid ID") }
+    presence: { message: _("is required") },
+    format: { with: /\A[a-zA-Z0-9_.-]+\z/, message: _("is invalid") }
 
   class << self
     # Check whether anything with the given ID exists, or for a specific element
