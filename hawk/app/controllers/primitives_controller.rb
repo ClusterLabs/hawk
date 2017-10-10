@@ -27,9 +27,6 @@ class PrimitivesController < ApplicationController
     end
   end
 
-  class CreateFailure < Exception
-  end
-
   def create
     normalize_params! params[:primitive].permit!
     @title = _("Create Primitive")
