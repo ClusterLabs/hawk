@@ -49,7 +49,7 @@ class LocationsController < ApplicationController
       )
     end
 
-    fail CreateFailure, @location.errors.full_messages.to_sentence unless @location.save
+    fail CreateFailure, Util.strip_error_message(@location) unless @location.save
     post_process_for! @location
 
     respond_to do |format|
