@@ -32,24 +32,27 @@ class GroupsController < ApplicationController
 
     @group = Group.new params[:group].permit!
 
-    respond_to do |format|
-      if @group.save
-        post_process_for! @group
+    fail CreateFailure, Util.strip_error_message(@group) unless @group.save
+    post_process_for! @group
 
-        format.html do
-          flash[:success] = _("Group created successfully")
-          redirect_to edit_cib_group_url(cib_id: @cib.id, id: @group.id)
-        end
-        format.json do
-          render json: @group, status: :created
-        end
-      else
-        format.html do
-          render action: "new"
-        end
-        format.json do
-          render json: @group.errors, status: :unprocessable_entity
-        end
+    respond_to do |format|
+      format.html do
+        flash[:success] = _("Group created successfully")
+        redirect_to edit_cib_group_url(cib_id: @cib.id, id: @group.id)
+      end
+      format.json do
+        render json: @group, status: :created
+      end
+    end
+
+  rescue CreateFailure => e
+    respond_to do |format|
+      format.html do
+        flash[:danger] = e.to_s
+        render action: "new"
+      end
+      format.json do
+        render json: @group.errors, status: :unprocessable_entity
       end
     end
   end
