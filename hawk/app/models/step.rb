@@ -27,9 +27,16 @@ class Step
     @required = data["required"] || false
     @parameters = []
     dataparams = data["parameters"] || []
+
+    sub_map = { "(yes|1)" => "true",
+                "(no|0)" => "false" }
     dataparams.each do |param|
+      if param["type"] == "boolean" && param.key?("example")
+        sub_map.each { |k, v| param["example"].gsub!(/#{k}/i, v) }
+      end
       @parameters << StepParameter.new(self, param)
     end
+
     @steps = []
     datasteps = data["steps"] || []
     datasteps.each do |step|
