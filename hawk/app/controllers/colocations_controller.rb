@@ -31,7 +31,7 @@ class ColocationsController < ApplicationController
 
     @colocation = Colocation.new params[:colocation].permit!
 
-    fail CreateFailure, @colocation.errors.full_messages.to_sentence unless @colocation.save
+    fail CreateFailure, Util.strip_error_message(@colocation) unless @colocation.save
     post_process_for! @colocation
 
     respond_to do |format|

@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
     @order = Order.new params[:order].permit!
     @order.resources = Util.map_value(@order.resources)
 
-    fail CreateFailure, @order.errors.full_messages.to_sentence unless @order.save
+    fail CreateFailure, Util.strip_error_message(@order) unless @order.save
     post_process_for! @order
 
     respond_to do |format|
