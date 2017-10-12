@@ -92,6 +92,7 @@ class Colocation < Constraint
       # Have to clone out of @resources, else we've just got references
       # to elements of @resources inside collapsed, which causes @resources
       # to be modified, which we *really* don't want.
+      @resources = Util.map_value(@resources)
       collapsed = [ @resources.first.clone ]
       @resources.last(@resources.length - 1).each do |set|
         if collapsed.last[:sequential] == set[:sequential] &&

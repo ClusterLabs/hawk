@@ -360,4 +360,25 @@ module Util
     elem ? (elem.text.strip || '') : ''
   end
   module_function :get_xml_text
+
+  # https://apidock.com/rails/v4.2.7/Hash/deep_symbolize_keys
+  def symbolize_rescursive(hash)
+    {}.tap do |h|
+      hash.each { |key, value| h[key.to_sym] = map_value(value) }
+    end
+  end
+  module_function :symbolize_rescursive
+
+  # https://apidock.com/rails/v4.2.7/Hash/deep_symbolize_keys
+  def map_value(thing)
+    case thing
+    when Hash
+      symbolize_rescursive(thing)
+    when Array
+      thing.map { |v| map_value(v) }
+    else
+      thing
+    end
+  end
+  module_function :map_value
 end
