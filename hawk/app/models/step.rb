@@ -27,9 +27,16 @@ class Step
     @required = data["required"] || false
     @parameters = []
     dataparams = data["parameters"] || []
+
+    sub_map = { "(yes|1)" => "true",
+                "(no|0)" => "false" }
     dataparams.each do |param|
+      if param["type"] == "boolean" && param.key?("example")
+        sub_map.each { |k, v| param["example"].gsub!(/#{k}/i, v) }
+      end
       @parameters << StepParameter.new(self, param)
     end
+
     @steps = []
     datasteps = data["steps"] || []
     datasteps.each do |step|
@@ -80,7 +87,7 @@ class Step
       next unless param.advanced
       m[param.id] = {
         type: param.attrlist_type,
-        default: nil,
+        default: param.example,
         longdesc: param.longdesc.blank? ? param.shortdesc : param.longdesc,
         name: param.name,
         help_id: param.help_id
@@ -94,7 +101,7 @@ class Step
     @parameters.each do |param|
       m[param.id] = {
         type: param.attrlist_type,
-        default: nil,
+        default: param.example,
         longdesc: param.longdesc.blank? ? param.shortdesc : param.longdesc,
         name: param.name,
         help_id: param.help_id
