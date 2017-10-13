@@ -25,7 +25,7 @@ class CrmConfig < Tableless
     "migration-threshold" => {
       type: "integer",
       default: "0",
-      longdesc: _("How many failures may occur for this resource on a node, before this node is marked ineligible to host this resource. A value of INFINITY indicates that this feature is disabled.")
+      longdesc: _("How many failures may occur for this resource on a node, before this node is marked ineligible to host this resource. A value of 0 indicates that this feature is disabled.")
     },
     "priority" => {
       type: "integer",
