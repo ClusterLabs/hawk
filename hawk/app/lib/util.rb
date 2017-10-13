@@ -329,6 +329,15 @@ module Util
   end
   module_function :has_feature?
 
+  def strip_error_message(inst)
+    error_messages = []
+    inst.errors.messages.each do |k, v|
+      error_messages += v
+    end
+    error_messages.to_sentence
+  end
+  module_function :strip_error_message
+
   def acl_enabled?
     safe_x(
       '/usr/sbin/cibadmin',

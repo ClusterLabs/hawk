@@ -47,6 +47,9 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  class CreateFailure < RuntimeError
+  end
+
   protected
 
   def production_cib

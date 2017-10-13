@@ -27,23 +27,20 @@ class PrimitivesController < ApplicationController
     end
   end
 
-  class CreateFailure < Exception
-  end
-
   def create
     normalize_params! params[:primitive].permit!
     @title = _("Create Primitive")
 
     @primitive = Primitive.new params[:primitive].permit!
 
-    fail CreateFailure, @primitive.errors.full_messages.to_sentence unless @primitive.save
+    fail CreateFailure, Util.strip_error_message(@primitive) unless @primitive.save
     post_process_for! @primitive
 
     unless @primitive.parent.blank?
       parent = Group.find @primitive.parent
       if parent
         parent.children.push @primitive.id
-        fail CreateFailure, parent.errors.full_messages.to_sentence unless parent.save
+        fail CreateFailure, Util.strip_error_message(parent) unless parent.save
       end
     end
 
