@@ -104,7 +104,8 @@ class CrmConfig < Tableless
     },
     "enabled" => {
       type: "boolean",
-      default: "true"
+      default: "true",
+      longdesc: _("If false, the operation is treated as if it does not exist.")
     },
     "role" => {
       type: "enum",
