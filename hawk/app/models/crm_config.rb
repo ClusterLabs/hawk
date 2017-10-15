@@ -18,10 +18,6 @@ class CrmConfig < Tableless
       default: "false",
       longdesc: _("Resources in maintenance mode are not monitored by the cluster.")
     },
-    "interval-origin" => {
-      type: "integer",
-      default: "0"
-    },
     "migration-threshold" => {
       type: "integer",
       default: "0",
@@ -126,7 +122,8 @@ class CrmConfig < Tableless
     },
     "interval-origin" => {
       type: "string",
-      default: "0"
+      default: "",
+      longdesc: _("The start time of action interval. Follow the ISO8601 standard.")
     },
     "record-pending" => {
       type: "boolean",
