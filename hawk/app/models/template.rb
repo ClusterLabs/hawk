@@ -311,7 +311,7 @@ class Template < Resource
             },
             "timeout" => {
               type: "string",
-              default: "0",
+              default: "20",
               required: true,
               longdesc: _("How long to wait before declaring the action has failed.")
             },

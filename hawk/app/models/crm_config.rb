@@ -94,7 +94,8 @@ class CrmConfig < Tableless
     },
     "timeout" => {
       type: "string",
-      default: "20"
+      default: "20",
+      longdesc: _("How long to wait before declaring the action has failed.")
     },
     "requires" => {
       type: "enum",
