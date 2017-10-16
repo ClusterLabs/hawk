@@ -253,6 +253,11 @@
                                self.attr_mapping);
       }
 
+      $.each(attrmapping, function(k) {
+        if (k.match(/jQuery\d+/)) {
+          delete attrmapping[k];
+        }
+      });
       alist.data('attrlist-mapping', attrmapping);
       alist.attrList();
       modal.modal('show');
