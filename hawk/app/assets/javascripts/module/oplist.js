@@ -20,7 +20,7 @@
   $.views.converters("complexOp", function(op) {
     console.log(op);
     if ($.grep(Object.keys(op), function(k) {
-      return k.match(/interval|timeout|name|jQuery\d+/) == null;
+      return k.match(/interval|timeout|name|role|jQuery\d+/) === null;
     }).length > 0) {
       return '<i class="fa fa-ellipsis-h fa-fw text-muted"></i>&nbsp;';
     } else {
@@ -98,6 +98,9 @@
                 '{{/if}}',
                 '{{if op.interval}}',
                   '<span class="label label-info" title="interval" data-toggle="tooltip">{{>op.interval}}</span>&nbsp;',
+                '{{/if}}',
+                '{{if op.role}}',
+                  '<span class="label label-info" title="role" data-toggle="tooltip">{{>op.role[0]}}</span>&nbsp;',
                 '{{/if}}',
                 '{{complexOp:op}}',
                 '<a class="edit btn btn-xs btn-default" title="{{>labels.edit}}" data-attr="{{>id}}" data-name="{{>op.name}}"><i class="fa fa-pencil fa-fw"></i></a>',
