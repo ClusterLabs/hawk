@@ -132,6 +132,11 @@
       self.available.sort();
     }
 
+    var _values = self.values;
+    // for multi-monitor in m/s resource
+    if (self.values instanceof Array) {
+      _values = self.values[0];
+    }
     var content = {
       create_label: self.options.labels.create,
       remove_label: self.options.labels.remove,
@@ -139,7 +144,7 @@
       false_label: self.options.labels.falseish,
 
       prefix: self.prefixes,
-      entries: self.values,
+      entries: _values,
       mapping: self.mapping,
       remaining: self.available,
       select: 'disabled',

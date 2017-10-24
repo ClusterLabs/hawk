@@ -20,7 +20,7 @@
   $.views.converters("complexOp", function(op) {
     console.log(op);
     if ($.grep(Object.keys(op), function(k) {
-      return k.match(/interval|timeout|name|jQuery\d+/) == null;
+      return k.match(/interval|timeout|name|role|jQuery\d+/) === null;
     }).length > 0) {
       return '<i class="fa fa-ellipsis-h fa-fw text-muted"></i>&nbsp;';
     } else {
@@ -37,19 +37,27 @@
     this.prefixes = this.$el.data('oplist-prefix');
 
     var actions = {};
+    var monitor_arr = [];
     $.each(this.$el.data('oplist-actions'), function(i, action) {
-      if (!(action.name in actions)) {
+      if (!(action.name in actions) || action.name == "monitor") {
         var obj = {};
         $.each(action, function(k, v) {
           if (k != "name" && k != "depth") {
             obj[k] = v;
           }
         });
-        if (action.name == "monitor" && (!("interval" in obj) || !obj.interval))
-          obj.interval = "20s";
-        actions[action.name] = obj;
+
+        if (action.name == "monitor") {
+          if (!("interval" in obj) || !obj.interval) {
+            obj.interval = "20s";
+          }
+          monitor_arr.push(obj);
+        } else {
+          actions[action.name] = obj;
+        }
       }
     });
+    actions["monitor"] = monitor_arr;
     this.actions = actions;
 
     this.available = Object.keys(actions);
@@ -90,6 +98,9 @@
                 '{{/if}}',
                 '{{if op.interval}}',
                   '<span class="label label-info" title="interval" data-toggle="tooltip">{{>op.interval}}</span>&nbsp;',
+                '{{/if}}',
+                '{{if op.role}}',
+                  '<span class="label label-info" title="role" data-toggle="tooltip">{{>op.role[0]}}</span>&nbsp;',
                 '{{/if}}',
                 '{{complexOp:op}}',
                 '<a class="edit btn btn-xs btn-default" title="{{>labels.edit}}" data-attr="{{>id}}" data-name="{{>op.name}}"><i class="fa fa-pencil fa-fw"></i></a>',
@@ -192,18 +203,29 @@
     // add default operations
     if (self.options.create) {
       $.each(self.actions, function(name, info) {
-        if (name == "start" || name == "stop" || name == "monitor") {
+        if (name == "start" || name == "stop") {
           var op = { name: name };
           $.each(info, function(key, val) {
             op[key] = val;
           });
           var id = name;
-          if (name == "monitor") {
-            id += "_" + uniquify_interval(op.interval);
-          } else {
-            content.available.splice($.inArray(name, content.available), 1);
-          }
+          content.available.splice($.inArray(name, content.available), 1);
           content.values[id] = op;
+        }
+        if (name == "monitor") {
+          $.each(info, function(i, item){
+            if (info.length > 2 && "role" in item) {
+                return;
+            } else {
+              var op = {name: name};
+              $.each(item, function(key, val) {
+                op[key] = val;
+              });
+              var id = name;
+              id += "_" + uniquify_interval(op.interval);
+              content.values[id] = op;
+            }
+          });
         }
       });
     }
