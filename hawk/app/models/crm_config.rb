@@ -2,140 +2,6 @@
 # See COPYING for license.
 
 class CrmConfig < Tableless
-  RSC_DEFAULTS = {
-    "allow-migrate" => {
-      type: "boolean",
-      default: "false",
-      longdesc: _("Set to true if the resource agent supports the migrate action")
-    },
-    "is-managed" => {
-      type: "boolean",
-      default: "true",
-      longdesc: _("Is the cluster allowed to start and stop the resource?")
-    },
-    "maintenance" => {
-      type: "boolean",
-      default: "false",
-      longdesc: _("Resources in maintenance mode are not monitored by the cluster.")
-    },
-    "migration-threshold" => {
-      type: "integer",
-      default: "0",
-      longdesc: _("How many failures may occur for this resource on a node, before this node is marked ineligible to host this resource. A value of 0 indicates that this feature is disabled.")
-    },
-    "priority" => {
-      type: "integer",
-      default: "0",
-      longdesc: _("If not all resources can be active, the cluster will stop lower priority resources in order to keep higher priority ones active.")
-    },
-    "multiple-active" => {
-      type: "enum",
-      default: "stop_start",
-      values: ["block", "stop_only", "stop_start"],
-      longdesc: _("What should the cluster do if it ever finds the resource active on more than one node?")
-    },
-    "failure-timeout" => {
-      type: "integer",
-      default: "0",
-      longdesc: _("How many seconds to wait before acting as if the failure had not occurred, and potentially allowing the resource back to the node on which it failed. A value of 0 indicates that this feature is disabled.")
-    },
-    "resource-stickiness" => {
-      type: "integer",
-      default: "0",
-      longdesc: _("How much does the resource prefer to stay where it is?")
-    },
-    "target-role" => {
-      type: "enum",
-      default: "Started",
-      values: ["Started", "Stopped", "Master"],
-      longdesc: _("What state should the cluster attempt to keep this resource in?")
-    },
-    "restart-type" => {
-      type: "enum",
-      default: "ignore",
-      values: ["ignore", "restart"]
-    },
-    "description" => {
-      type: "string",
-      default: ""
-    },
-    "requires" => {
-      type: "enum",
-      default: "fencing",
-      values: ["nothing", "quorum", "fencing"],
-      longdesc: _("Conditions under which the resource can be started.")
-    },
-    "remote-node" => {
-      type: "string",
-      default: "",
-      longdesc: _("The name of the remote-node this resource defines. This both enables the resource as a remote-node and defines the unique name used to identify the remote-node. If no other parameters are set, this value will also be assumed as the hostname to connect to at the port specified by remote-port. WARNING: This value cannot overlap with any resource or node IDs. If not specified, this feature is disabled.")
-    },
-    "remote-port" => {
-      type: "integer",
-      default: 3121,
-      longdesc: _("Port to use for the guest connection to pacemaker_remote.")
-    },
-    "remote-addr" => {
-      type: "string",
-      default: "",
-      longdesc: _("The IP address or hostname to connect to if remote-node's name is not the hostname of the guest.")
-    },
-    "remote-connect-timeout" => {
-      type: "string",
-      default: "60s",
-      longdesc: _("How long before a pending guest connection will time out.")
-    }
-  }.freeze
-
-  OP_DEFAULTS = {
-    "interval" => {
-      type: "string",
-      default: 0
-    },
-    "timeout" => {
-      type: "string",
-      default: "20",
-      longdesc: _("How long to wait before declaring the action has failed.")
-    },
-    "requires" => {
-      type: "enum",
-      default: "fencing",
-      values: ["nothing", "quorum", "fencing"],
-      longdesc: _("Conditions under which the resource can be started.")
-    },
-    "enabled" => {
-      type: "boolean",
-      default: "true",
-      longdesc: _("If false, the operation is treated as if it does not exist.")
-    },
-    "role" => {
-      type: "enum",
-      default: "",
-      values: ["Stopped", "Started", "Slave", "Master"]
-    },
-    "on-fail" => {
-      type: "enum",
-      default: "stop",
-      values: ["ignore", "block", "stop", "restart", "standby", "fence"]
-    },
-    "start-delay" => {
-      type: "string",
-      default: "0"
-    },
-    "interval-origin" => {
-      type: "string",
-      default: "",
-      longdesc: _("The start time of action interval. Follow the ISO8601 standard.")
-    },
-    "record-pending" => {
-      type: "boolean",
-      default: "false"
-    },
-    "description" => {
-      type: "string",
-      default: ""
-    }
-  }.freeze
 
   attribute :crm_config, Hash, default: {}
   attribute :rsc_defaults, Hash, default: {}
@@ -185,8 +51,8 @@ class CrmConfig < Tableless
     def mapping
       @mapping ||= begin
         {
-          rsc_defaults: RSC_DEFAULTS,
-          op_defaults: OP_DEFAULTS,
+          rsc_defaults: Tableless::RSC_DEFAULTS,
+          op_defaults: Tableless::OP_DEFAULTS,
           crm_config: {}.tap do |crm_config|
             [
               "pengine",
