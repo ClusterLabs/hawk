@@ -109,7 +109,7 @@ class Ticket < Constraint
     [].tap do |cmd|
       cmd.push "rsc_ticket #{id} #{ticket}:"
 
-      resources.each do |set|
+      Util.map_value(resources).each do |set|
         cmd.push "(" unless set[:sequential] == "true" && set[:sequential]
 
         set[:resources].each do |resource|
