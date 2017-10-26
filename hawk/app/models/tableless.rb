@@ -117,7 +117,7 @@ class Tableless
     },
     "target-role" => {
       type: "enum",
-      default: "Started",
+      default: "Stopped",
       values: ["Started", "Stopped", "Master"],
       longdesc: _("What state should the cluster attempt to keep this resource in?")
     },
