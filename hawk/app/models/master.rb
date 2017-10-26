@@ -73,7 +73,7 @@ class Master < Resource
           },
           "target-role" => {
             type: "enum",
-            default: "Started",
+            default: "Stopped",
             values: [
               "Started",
               "Stopped",
