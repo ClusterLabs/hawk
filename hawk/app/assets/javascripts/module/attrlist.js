@@ -14,7 +14,10 @@
     this.mapping = this.$el.data('attrlist-mapping');
     this.freeform = this.$el.data('attrlist-freeform') == 'yes';
 
-    this.available = Object.keys(this.mapping);
+    this.available = Object.keys(this.mapping).filter(function(attr) {
+      return !attr.match(/jQuery\d+/);
+     });
+
 
     this.defaults = {
       labels: {
