@@ -329,6 +329,15 @@ module Util
   end
   module_function :has_feature?
 
+  def strip_error_message(inst)
+    error_messages = []
+    inst.errors.messages.each do |k, v|
+      error_messages += v
+    end
+    error_messages.to_sentence
+  end
+  module_function :strip_error_message
+
   def acl_enabled?
     safe_x(
       '/usr/sbin/cibadmin',
@@ -354,10 +363,41 @@ module Util
   end
   module_function :acl_version
 
+  def get_meta_data(agent)
+    res = safe_x("/usr/sbin/crm_resource", "--show-metadata", agent)
+    sub_map = { 'type="string"' => 'type="text"',
+                '(type="boolean".*)default="(yes|1)"' => '\1default="true"',
+                '(type="boolean".*)default="(no|0)"' => '\1default="false"' }
+    sub_map.each { |k,v| res.gsub!(/#{k}/i, v) }
+    res
+  end
+  module_function :get_meta_data
+
   # get text child of xml element - returns empty string if elem is nil or
   # text child is empty.  trims leading and trailing whitespace
   def get_xml_text(elem)
     elem ? (elem.text.strip || '') : ''
   end
   module_function :get_xml_text
+
+  # https://apidock.com/rails/v4.2.7/Hash/deep_symbolize_keys
+  def symbolize_rescursive(hash)
+    {}.tap do |h|
+      hash.each { |key, value| h[key.to_sym] = map_value(value) }
+    end
+  end
+  module_function :symbolize_rescursive
+
+  # https://apidock.com/rails/v4.2.7/Hash/deep_symbolize_keys
+  def map_value(thing)
+    case thing
+    when Hash
+      symbolize_rescursive(thing)
+    when Array
+      thing.map { |v| map_value(v) }
+    else
+      thing
+    end
+  end
+  module_function :map_value
 end

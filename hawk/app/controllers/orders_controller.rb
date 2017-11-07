@@ -30,25 +30,29 @@ class OrdersController < ApplicationController
     @title = _("Create Order")
 
     @order = Order.new params[:order].permit!
+    @order.resources = Util.map_value(@order.resources)
+
+    fail CreateFailure, Util.strip_error_message(@order) unless @order.save
+    post_process_for! @order
 
     respond_to do |format|
-      if @order.save
-        post_process_for! @order
+      format.html do
+        flash[:success] = _("Constraint created successfully")
+        redirect_to edit_cib_order_url(cib_id: @cib.id, id: @order.id)
+      end
+      format.json do
+        render json: @order, status: :created
+      end
+    end
 
-        format.html do
-          flash[:success] = _("Constraint created successfully")
-          redirect_to edit_cib_order_url(cib_id: @cib.id, id: @order.id)
-        end
-        format.json do
-          render json: @order, status: :created
-        end
-      else
-        format.html do
-          render action: "new"
-        end
-        format.json do
-          render json: @order.errors, status: :unprocessable_entity
-        end
+  rescue CreateFailure => e
+    respond_to do |format|
+      format.html do
+        flash[:danger] = e.to_s
+        render action: "new"
+      end
+      format.json do
+        render json: @order.errors, status: :unprocessable_entity
       end
     end
   end

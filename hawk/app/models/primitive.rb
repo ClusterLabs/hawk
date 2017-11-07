@@ -28,6 +28,25 @@ class Primitive < Template
   alias_method :provider_without_template, :provider
   alias_method :provider, :provider_with_template
 
+  validate :validate_params
+
+  def validate_params
+    required_params = []
+    res = Hash.from_xml(Util.get_meta_data(agent_name))
+    param_res = res["resource_agent"]["parameters"]["parameter"]
+    param_res.each do |items|
+      if items.key?("required") && items["required"] == "1"
+        required_params << items["name"]
+      end
+    end
+
+    params.each do |param, value|
+      if value.blank? && required_params.include?(param)
+        errors.add(:base, "In Parameters, #{param}'s value is blank!")
+      end
+    end
+  end
+
   def type_with_template
     if template.present?
       ::Template.find(template).try(:type)

@@ -14,7 +14,10 @@
     this.mapping = this.$el.data('attrlist-mapping');
     this.freeform = this.$el.data('attrlist-freeform') == 'yes';
 
-    this.available = Object.keys(this.mapping);
+    this.available = Object.keys(this.mapping).filter(function(attr) {
+      return !attr.match(/jQuery\d+/);
+     });
+
 
     this.defaults = {
       labels: {
@@ -58,7 +61,11 @@
                   '{{/if}}',
 
                   '<div class="input-group-btn">',
-                    '<a href="#" class="remove btn btn-default" data-attr="{{:#data}}" title="{{>~root.remove_label}}">',
+                    '{{if ~root.mapping[key]["required"] == "1"}}',
+                      '<a href="#" class="remove btn btn-default disabled", data-attr="{{:#data}}" title="{{>~root.remove_label}}">',
+                    '{{else}}',
+                      '<a href="#" class="remove btn btn-default", data-attr="{{:#data}}" title="{{>~root.remove_label}}">',
+                    '{{/if}}',
                       '<i class="fa fa-minus fa-lg fa-fw"></i>',
                     '</a>',
                   '</div>',
@@ -128,6 +135,11 @@
       self.available.sort();
     }
 
+    var _values = self.values;
+    // for multi-monitor in m/s resource
+    if (self.values instanceof Array) {
+      _values = self.values[0];
+    }
     var content = {
       create_label: self.options.labels.create,
       remove_label: self.options.labels.remove,
@@ -135,7 +147,7 @@
       false_label: self.options.labels.falseish,
 
       prefix: self.prefixes,
-      entries: self.values,
+      entries: _values,
       mapping: self.mapping,
       remaining: self.available,
       select: 'disabled',

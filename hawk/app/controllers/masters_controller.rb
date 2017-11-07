@@ -32,24 +32,27 @@ class MastersController < ApplicationController
 
     @master = Master.new params[:master].permit!
 
-    respond_to do |format|
-      if @master.save
-        post_process_for! @master
+    fail CreateFailure, Util.strip_error_message(@master) unless @master.save
+    post_process_for! @master
 
-        format.html do
-          flash[:success] = _("Multi-state resource created successfully")
-          redirect_to edit_cib_master_url(cib_id: @cib.id, id: @master.id)
-        end
-        format.json do
-          render json: @master, status: :created
-        end
-      else
-        format.html do
-          render action: "new"
-        end
-        format.json do
-          render json: @master.errors, status: :unprocessable_entity
-        end
+    respond_to do |format|
+      format.html do
+        flash[:success] = _("Multi-state resource created successfully")
+        redirect_to edit_cib_master_url(cib_id: @cib.id, id: @master.id)
+      end
+      format.json do
+        render json: @master, status: :created
+      end
+    end
+
+  rescue CreateFailure => e
+    respond_to do |format|
+      format.html do
+        flash[:danger] = e.to_s
+        render action: "new"
+      end
+      format.json do
+        render json: @master.errors, status: :unprocessable_entity
       end
     end
   end

@@ -34,4 +34,4 @@
     </div>
   </div>
 </div>
-<%= render partial: "shared/helpsidebar", locals: { category: :crm_config, help: :intro, mapping: nil } %>
+<%= render partial: "shared/helpsidebar", locals: { category: :crm_config, help: :intro, mapping: @crm_config.help_text([:crm_config, :rsc_defaults, :op_defaults]) } %>

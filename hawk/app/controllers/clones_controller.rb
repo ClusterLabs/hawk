@@ -32,24 +32,27 @@ class ClonesController < ApplicationController
 
     @clone = Clone.new params[:clone].permit!
 
-    respond_to do |format|
-      if @clone.save
-        post_process_for! @clone
+    fail CreateFailure, Util.strip_error_message(@clone) unless @clone.save
+    post_process_for! @clone
 
-        format.html do
-          flash[:success] = _("Clone created successfully")
-          redirect_to edit_cib_clone_url(cib_id: @cib.id, id: @clone.id)
-        end
-        format.json do
-          render json: @clone, status: :created
-        end
-      else
-        format.html do
-          render action: "new"
-        end
-        format.json do
-          render json: @clone.errors, status: :unprocessable_entity
-        end
+    respond_to do |format|
+      format.html do
+        flash[:success] = _("Clone created successfully")
+        redirect_to edit_cib_clone_url(cib_id: @cib.id, id: @clone.id)
+      end
+      format.json do
+        render json: @clone, status: :created
+      end
+    end
+
+  rescue CreateFailure => e
+    respond_to do |format|
+      format.html do
+        flash[:danger] = e.to_s
+        render action: "new"
+      end
+      format.json do
+        render json: @clone.errors, status: :unprocessable_entity
       end
     end
   end
