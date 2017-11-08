@@ -74,7 +74,7 @@ class ReportsController < ApplicationController
   end
 
   def upload
-    @report = Report::Upload.new params[:report]
+    @report = Report::Upload.new params[:report].permit!
 
     respond_to do |format|
       if @report.save
