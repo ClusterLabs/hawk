@@ -48,11 +48,24 @@ $(function() {
       ignore: ".ignore, :hidden"
     });
   $('#wizards #middle form input').addClass('wizard_check');
+
+
+  function testDataWizardEnable() {
+    $("[data-wizard-enable]").each(function() {
+      var value = $(this).val();
+      var step_id = $(this).parents("[id^=step]").attr('id');
+      $('#'+step_id).find(".form-control").each(function() {
+        $(this).not('[id^="enable:"]').prop('disabled', (value == "false"));
+      });
+    });
+  }
+  testDataWizardEnable();
   $("[data-wizard-enable]").change(function() {
     $('.form-group').each(function () { $(this).removeClass('has-success'); });
     $('.form-group').each(function () { $(this).removeClass('has-error'); });
     $('.form-group').each(function () { $(this).removeClass('has-feedback'); });
     $('.form-control-feedbacks').each(function () { $(this).remove(); });
+    testDataWizardEnable();
   });
 
   var verify = $(".wizard-verify");
