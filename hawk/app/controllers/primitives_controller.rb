@@ -126,7 +126,7 @@ class PrimitivesController < ApplicationController
 
   def destroy
     respond_to do |format|
-      out, err, rc = Invoker.instance.crm("--force", "configure", "delete", @primitive.id)
+      _out, err, rc = Invoker.instance.crm("configure", "delete", @primitive.id)
       if rc == 0
         format.html do
           flash[:success] = _("Primitive deleted successfully")
