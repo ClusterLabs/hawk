@@ -18,6 +18,16 @@ krig_vagrant:
     - user: vagrant
     - source: salt://sshkeys/krig.pub
 
+ayoub_root:
+  ssh_auth.present:
+    - user: root
+    - source: salt://sshkeys/ayoub.pub
+
+ayoub_vagrant:
+  ssh_auth.present:
+    - user: vagrant
+    - source: salt://sshkeys/ayoub.pub
+
 /root/.ssh/id_rsa:
   file.managed:
     - source: salt://sshkeys/vagrant
