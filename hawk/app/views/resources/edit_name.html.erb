@@ -1,0 +1,37 @@
+<div class="container-fluid">
+  <form action="<%= update_name_cib_resource_path(cib_id: @cib.id) %>" class="form-horizontal" id="rename-resource" method="post" role="form">
+    <div class="modal-header">
+      <h3 class="modal-title">
+        <%= _("Rename Resource") %>
+      </h3>
+    </div>
+    <div class="modal-body">
+      <input name="<%= request_forgery_protection_token.to_s %>" type="hidden" value="<%= form_authenticity_token %>"></input>
+      <input name="source" type="hidden" value="<%= @source %>"></input>
+      <div class="form-group">
+        <label class="col-sm-5 control-label" for="from">
+          <%= _("Rename") %>
+        </label>
+        <div class="col-sm-7">
+          <input class="form-control text-field" id="from" name="id" readonly="readonly" type="text" value="<%= @resource.id %>"></input>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="col-sm-5 control-label" for="to">
+          <%= _("To") %>
+        </label>
+        <div class="col-sm-7">
+          <input class="form-control text-field" id="to" name="to" type="text" value="<%= @resource.id %>"></input>
+        </div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-default" data-dismiss="modal" type="button">
+        <%= _("Cancel") %>
+      </button>
+      <button class="btn btn-primary" type="submit">
+        <%= icon_text "save", _("Rename") %>
+      </button>
+    </div>
+  </form>
+</div>

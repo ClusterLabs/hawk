@@ -38,8 +38,8 @@ Rails.application.routes.draw do
         get :migrate
         get :cleanup
         get :events
-        get 'rename(/:to)', as: :rename, to: 'resources#rename'
-        post :rename, to: 'resources#rename'
+        get :edit_name
+        post :update_name
       end
 
       collection do
