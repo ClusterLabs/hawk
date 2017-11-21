@@ -147,45 +147,48 @@ class ResourcesController < ApplicationController
                         _("Failed to clean up the resource: %{err}")
   end
 
-  def rename
+  def edit_name
+    resource_name = params[:id]
+    @source = params[:source] || "edit"
+    @resource = Resource.find resource_name
+      respond_to do |format|
+        format.html
+      end
+  end
+
+  def update_name
     from = params[:id]
     to = params[:to]
     @source = params[:source] || "edit"
     @resource = Resource.find from
 
-    if to.nil?
-      respond_to do |format|
-        format.html
-      end
-    else
-      _out, err, rc = Invoker.instance.crm_configure("rename #{from} #{to}")
+    _out, err, rc = Invoker.instance.crm_configure("rename #{from} #{to}")
 
-      respond_to do |format|
-        if rc == 0
-          msg = _("Successfully renamed %{A} to %{B}") % { A: from, B: to }
-          format.html do
-            flash[:success] = msg
-            redirect_to edit_cib_resource_url(cib_id: @cib.id, id: to)
-          end
-          format.json do
-            render json: { success: true, message: msg }
-          end
-        else
-          msg = _("Failed to rename %{A} to %{B}: %{E}") % { A: from, B: to, E: err }
-          format.html do
-            flash[:danger] = msg
+    respond_to do |format|
+      if rc == 0
+        msg = _("Successfully renamed %{A} to %{B}") % { A: from, B: to }
+        format.html do
+          flash[:success] = msg
+          redirect_to edit_cib_resource_url(cib_id: @cib.id, id: to)
+        end
+        format.json do
+          render json: { success: true, message: msg }
+        end
+      else
+        msg = _("Failed to rename %{A} to %{B}: %{E}") % { A: from, B: to, E: err }
+        format.html do
+          flash[:danger] = msg
 
-            if @source == "resource"
-              redirect_to edit_cib_resource_url(cib_id: @cib.id, id: from)
-            else
-              redirect_to edit_cib_config_url(cib_id: @cib.id)
-            end
+          if @source == "resource"
+            redirect_to edit_cib_resource_url(cib_id: @cib.id, id: from)
+          else
+            redirect_to edit_cib_config_url(cib_id: @cib.id)
           end
-          format.json do
-            render json: {
-              error: msg
-            }, status: :unprocessable_entity
-          end
+        end
+        format.json do
+          render json: {
+            error: msg
+          }, status: :unprocessable_entity
         end
       end
     end
