@@ -134,7 +134,7 @@ $(function() {
     var cib = $('body').data('cib');
     var editRoute = null;
     var destroyRoute = null;
-    var editNameRoute = Routes.edit_name_cib_resource_path(cib, row.id);;
+    var editNameRoute = Routes.edit_name_cib_resource_path(cib, row.id, { source: "edit"});
     switch(row.object_type) {
     case "primitive":
       editRoute = Routes.edit_cib_primitive_path(cib, row.id);
