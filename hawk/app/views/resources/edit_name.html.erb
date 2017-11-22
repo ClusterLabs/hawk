@@ -1,5 +1,5 @@
 <div class="container-fluid">
-  <form action="<%= update_name_cib_resource_path(cib_id: @cib.id) %>" class="form-horizontal" id="rename-resource" method="post" role="form">
+  <form action="<%= update_name_cib_resource_path(cib_id: @cib.id, source: @source) %>" class="form-horizontal" id="rename-resource" method="post" role="form">
     <div class="modal-header">
       <h3 class="modal-title">
         <%= _("Rename Resource") %>
