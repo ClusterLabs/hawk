@@ -133,23 +133,28 @@ $(function() {
   function resourceRoutes(row) {
     var editRoute = null;
     var destroyRoute = null;
+    var editNameRoute = null;
     var cib = $('body').data('cib');
     switch(row.object_type) {
     case "primitive":
       editRoute = Routes.edit_cib_primitive_path(cib, row.id);
       destroyRoute = Routes.cib_primitive_path(cib, row.id);
+      editNameRoute = Routes.edit_name_cib_resource_path(cib, row.id);
       break;
     case "group":
       editRoute = Routes.edit_cib_group_path(cib, row.id);
       destroyRoute = Routes.cib_group_path(cib, row.id);
+      editNameRoute = Routes.edit_name_cib_resource_path(cib, row.id);
       break;
     case "clone":
       editRoute = Routes.edit_cib_clone_path(cib, row.id);
       destroyRoute = Routes.cib_clone_path(cib, row.id);
+      editNameRoute = Routes.edit_name_cib_resource_path(cib, row.id);
       break;
     case "master":
       editRoute = Routes.edit_cib_master_path(cib, row.id);
       destroyRoute = Routes.cib_master_path(cib, row.id);
+      editNameRoute = Routes.edit_name_cib_resource_path(cib, row.id);
       break;
     case "tag":
       editRoute = Routes.edit_cib_tag_path(cib, row.id);
@@ -158,13 +163,14 @@ $(function() {
     case "template":
       editRoute = Routes.edit_cib_template_path(cib, row.id);
       destroyRoute = Routes.cib_template_path(cib, row.id);
+      editNameRoute = Routes.edit_name_cib_resource_path(cib, row.id);
       break;
     default:
       editRoute = Routes.edit_cib_resource_path(cib, row.id);
       destroyRoute = Routes.cib_resource_path(cib, row.id);
       break;
     }
-    return { edit: editRoute, destroy: destroyRoute };
+    return { edit: editRoute, destroy: destroyRoute, editName: editNameRoute };
   }
 
   function startswith(str, prefix) {
@@ -727,7 +733,7 @@ $(function() {
 
           operations.push([
             '<a href="',
-            Routes.rename_cib_resource_path($('body').data('cib'), row.id),
+            rsc_routes.editName,
             '" class="rename btn btn-default btn-xs" title="',
             __('Rename'),
             '" data-toggle="modal" data-target="#modal">',
