@@ -5,7 +5,7 @@
       <div class="pull-right">
         <div class="btn-group" role="group">
           <%= link_to icon_text("plus", _("Create")), new_cib_ticket_path(cib_id: @cib.id), class: "btn btn-default" %>
-          <%= link_to icon_text("font", _("Rename")), rename_cib_constraint_path(cib_id: @cib.id, id: @ticket.id, source: :constraint), class: "btn btn-default", data: { toggle: :modal, target: "#modal" } %>
+          <%= link_to icon_text("font", _("Rename")), edit_name_cib_constraint_path(cib_id: @cib.id, id: @ticket.id, source: :constraint), class: "btn btn-default", data: { toggle: :modal, target: "#modal" } %>
           <%= link_to icon_text("trash", _("Delete")), cib_ticket_path(cib_id: @cib.id, id: @ticket.id), method: "delete", class: "btn btn-default", data: { confirm: _("Are you sure you wish to delete %s?") % @ticket.id } %>
         </div>
       </div>

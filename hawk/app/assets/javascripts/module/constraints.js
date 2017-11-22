@@ -218,7 +218,7 @@ $(function() {
 
           operations.push([
             '<a href="',
-            Routes.rename_cib_constraint_path($('body').data('cib'), row.id),
+            Routes.edit_name_cib_constraint_path($('body').data('cib'), row.id),
             '" class="rename btn btn-default btn-xs" title="',
             __('Rename'),
             '" data-toggle="modal" data-target="#modal">',
