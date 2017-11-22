@@ -151,9 +151,9 @@ class ResourcesController < ApplicationController
     resource_name = params[:id]
     @source = params[:source] || "edit"
     @resource = Resource.find resource_name
-      respond_to do |format|
-        format.html
-      end
+    respond_to do |format|
+      format.html
+    end
   end
 
   def update_name

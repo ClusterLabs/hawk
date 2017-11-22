@@ -62,8 +62,8 @@ Rails.application.routes.draw do
     resources :constraints do
       member do
         get :events
-        get 'rename(/:to)', as: :rename, to: 'constraints#rename'
-        post :rename, to: 'constraints#rename'
+        get :edit_name
+        post :update_name
       end
 
       collection do
