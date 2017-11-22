@@ -131,30 +131,26 @@ $(function() {
   };
 
   function resourceRoutes(row) {
+    var cib = $('body').data('cib');
     var editRoute = null;
     var destroyRoute = null;
-    var editNameRoute = null;
-    var cib = $('body').data('cib');
+    var editNameRoute = Routes.edit_name_cib_resource_path(cib, row.id);;
     switch(row.object_type) {
     case "primitive":
       editRoute = Routes.edit_cib_primitive_path(cib, row.id);
       destroyRoute = Routes.cib_primitive_path(cib, row.id);
-      editNameRoute = Routes.edit_name_cib_resource_path(cib, row.id);
       break;
     case "group":
       editRoute = Routes.edit_cib_group_path(cib, row.id);
       destroyRoute = Routes.cib_group_path(cib, row.id);
-      editNameRoute = Routes.edit_name_cib_resource_path(cib, row.id);
       break;
     case "clone":
       editRoute = Routes.edit_cib_clone_path(cib, row.id);
       destroyRoute = Routes.cib_clone_path(cib, row.id);
-      editNameRoute = Routes.edit_name_cib_resource_path(cib, row.id);
       break;
     case "master":
       editRoute = Routes.edit_cib_master_path(cib, row.id);
       destroyRoute = Routes.cib_master_path(cib, row.id);
-      editNameRoute = Routes.edit_name_cib_resource_path(cib, row.id);
       break;
     case "tag":
       editRoute = Routes.edit_cib_tag_path(cib, row.id);
@@ -163,7 +159,6 @@ $(function() {
     case "template":
       editRoute = Routes.edit_cib_template_path(cib, row.id);
       destroyRoute = Routes.cib_template_path(cib, row.id);
-      editNameRoute = Routes.edit_name_cib_resource_path(cib, row.id);
       break;
     default:
       editRoute = Routes.edit_cib_resource_path(cib, row.id);
