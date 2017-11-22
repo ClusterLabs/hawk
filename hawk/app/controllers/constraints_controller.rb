@@ -73,7 +73,11 @@ class ConstraintsController < ApplicationController
         msg = _("Successfully renamed %{A} to %{B}") % { A: from, B: to }
         format.html do
           flash[:success] = msg
-          redirect_to edit_cib_constraint_url(cib_id: @cib.id, id: to)
+          if @source == "constraint"
+            redirect_to edit_cib_constraint_url(cib_id: @cib.id, id: to)
+          else
+            redirect_to edit_cib_config_url(cib_id: @cib.id)
+          end
         end
         format.json do
           render json: { success: true, message: msg }
