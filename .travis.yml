@@ -1,3 +1,6 @@
+env:
+  - RAILS_ENV: test
+
 sudo: false
 language: ruby
 cache: bundler
@@ -11,7 +14,7 @@ rvm:
   - "2.4.0"
 
 gemfile: hawk/Gemfile
-script: sh -c 'cd hawk && ruby -- ./bin/rake test'
+script: sh -c 'cd hawk && ruby -- ./bin/bundle exec rspec'
 notifications:
   irc:
     channels:
