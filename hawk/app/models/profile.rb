@@ -14,7 +14,7 @@ class Profile < Tableless
 
         result = FastGettext.available_locales.map do |locale|
           [
-            locale.to_s,
+            locale.to_s.dasherize,
             languages[locale]
           ]
         end.sort_by { |v| v.first.to_s }
@@ -26,13 +26,13 @@ class Profile < Tableless
     def current_language
       cur = I18n.locale.to_s.dasherize
       available_languages.each do |lang, name|
-        return name if lang.dasherize == cur
+        return name if lang == cur
       end
       I18n.locale
     end
   end
 
-  attribute :language, String, default: I18n.locale
+  attribute :language, String, default: I18n.locale.to_s.dasherize
 
   attribute :stonithwarning, Boolean, default: true
 

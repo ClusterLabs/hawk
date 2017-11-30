@@ -1,3 +1,4 @@
 #!/bin/sh
 #docker pull krig/hawkbase:latest
-docker run -t -v "$(pwd):/hawk" krig/hawkbase /bin/sh -c "systemctl start dbus; cd /hawk; ./test/_internal_runner.sh $(whoami) $(id -u) $(id -g)"
+mkdir -p .bundler-test-cache
+docker run -t -v "$(pwd):/hawk" -v "$(pwd)/.bundler-test-cache:/bundle" krig/hawkbase /bin/sh -c "systemctl start dbus; cd /hawk; ./test/_internal_runner.sh $(whoami) $(id -u) $(id -g)"
