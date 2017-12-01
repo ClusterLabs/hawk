@@ -157,7 +157,7 @@ class UsersController < ApplicationController
 
   def check_support
     flash.now[:warning] = view_context.link_to(
-      _("To enable ACLs, set \"enable-acl\" in the Cluster Configuration ('Manage > Configuration')"),
+      _("To enable ACLs, set \"enable-acl\" in the Cluster Configuration ('Configuration > Cluster Configuration')"),
       edit_cib_crm_config_path(cib_id: @cib.id)
     ) unless Util.acl_enabled?
   end

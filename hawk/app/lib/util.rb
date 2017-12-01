@@ -344,9 +344,9 @@ module Util
       '-t', '5',
       '-Ql',
       '--xpath',
-      '//configuration//crm_config//nvpair[@name=\'enable-acl\' and @value=\'true\']'.shellescape
+      %Q[//configuration//crm_config//nvpair[@name='enable-acl' and @value='true']] # %Q acts like a double quoted string
     ).chomp.present?
-  end
+    end
   module_function :acl_enabled?
 
   def acl_version
