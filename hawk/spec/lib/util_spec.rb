@@ -1,4 +1,4 @@
-if ENV["CI"] == true
+unless ENV["CI"] == true
   describe Util do
     describe "#acl_enable?" do
 
