@@ -1,3 +1,5 @@
+require "rails_helper"
+
 unless ENV["TRAVIS"]
   describe Util do
     describe "#acl_enable?" do
