@@ -1,4 +1,4 @@
-unless ENV["CI"] == true
+unless ENV["TRAVIS"]
   describe Util do
     describe "#acl_enable?" do
 
