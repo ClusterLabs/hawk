@@ -87,6 +87,7 @@ else
 fi
 
 chown root:haclient "$cert_key_file" "$cert_file"
+chmod u+rw,g+r "$cert_key_file" "$cert_file"
 
 umask "$old_mask"
 exit $rc
