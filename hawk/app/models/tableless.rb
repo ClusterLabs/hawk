@@ -130,12 +130,6 @@ class Tableless
       type: "string",
       default: ""
     },
-    "requires" => {
-      type: "enum",
-      default: "fencing",
-      values: ["nothing", "quorum", "fencing"],
-      longdesc: _("Conditions under which the resource can be started.")
-    },
     "remote-node" => {
       type: "string",
       default: "",
@@ -170,12 +164,6 @@ class Tableless
       default: "20",
       required: true,
       longdesc: _("How long to wait before declaring the action has failed.")
-    },
-    "requires" => {
-      type: "enum",
-      default: "fencing",
-      values: ["nothing", "quorum", "fencing"],
-      longdesc: _("What conditions need to be satisfied before this action occurs.")
     },
     "enabled" => {
       type: "boolean",
