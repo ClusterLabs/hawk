@@ -78,6 +78,10 @@ $(function() {
               ret.push(' <i class="fa fa-cloud fa-status-small text-info" title="', __("Remote"), '"></i>');
             }
 
+            if (row.guest) {
+              ret.push(' <i class="fa fa-cloud fa-status-small text-info" title="', __("Guest"), '"></i>');
+            }
+
             if (row.fence_history) {
               ret.push(' <i class="fa fa-refresh fa-status-small text-warning" title="', row.fence_history, '"></i>');
             }
@@ -89,7 +93,14 @@ $(function() {
           title: __('Name'),
           sortable: false,
           switchable: false,
-          clickToSelect: true
+          clickToSelect: true,
+          formatter: function(value, row, index) {
+            if (row.guest) {
+              return row.name + " @ " + row.guest;
+            } else {
+              return row.name;
+            }
+          }
         }, {
           field: 'maintenance',
           title: __('Maintenance'),
@@ -114,6 +125,9 @@ $(function() {
             }
           },
           formatter: function(value, row, index) {
+            if (row.guest) {
+              return "";
+            }
             if (row.maintenance) {
               return [
                 '<a href="',
@@ -165,6 +179,9 @@ $(function() {
             }
           },
           formatter: function(value, row, index) {
+            if (row.guest) {
+              return "";
+            }
             if (row.standby) {
               return [
                 '<a href="',
@@ -216,6 +233,10 @@ $(function() {
             }
           },
           formatter: function(value, row, index) {
+            if (row.guest) {
+              return '<div class="btn-group" role="group"></div>';
+            }
+
             var operations = [];
             var dropdowns = [];
 

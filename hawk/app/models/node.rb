@@ -17,6 +17,7 @@ class Node < Tableless
   attribute :standby, Boolean
   attribute :ready, Boolean
   attribute :remote, Boolean
+  attribute :guest, String
   attribute :maintenance, Boolean
   attribute :fence, Boolean
   attribute :fence_history, String
@@ -36,7 +37,7 @@ class Node < Tableless
   end
 
   def online!
-    Invoker.instance.no_log { |i| i.crm("-F", "node", "online", name) }
+    Invoker.instance.no_log { |i| i.crm("-F", "node", "online", name) } unless @guest
   end
 
   def online
@@ -44,15 +45,15 @@ class Node < Tableless
   end
 
   def standby!
-    Invoker.instance.no_log { |i| i.crm("-F", "node", "standby", name) }
+    Invoker.instance.no_log { |i| i.crm("-F", "node", "standby", name) } unless @guest
   end
 
   def ready!
-    Invoker.instance.no_log { |i| i.crm("-F", "node", "ready", name) }
+    Invoker.instance.no_log { |i| i.crm("-F", "node", "ready", name) } unless @guest
   end
 
   def maintenance!
-    Invoker.instance.no_log { |i| i.crm("-F", "node", "maintenance", name) }
+    Invoker.instance.no_log { |i| i.crm("-F", "node", "maintenance", name) } unless @guest
   end
 
   def fence!
@@ -146,6 +147,7 @@ class Node < Tableless
       record.standby = state[:standby]
       record.maintenance = state[:maintenance]
       record.remote = state[:remote]
+      record.guest = state[:guest]
       record.fence_history = state[:fence_history]
       record.fence = state[:fence]
 

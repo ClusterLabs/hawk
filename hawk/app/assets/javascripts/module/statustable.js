@@ -313,7 +313,7 @@ var statusTable = {
             crossDomain: that.host !== null,
             success: function(data) {
                 $.each(data.nodes, function(node, node_values) {
-                    if (node_values.remote === false) {
+                    if (node_values.remote === false || node_values.guest) {
                         if ($.inArray(that.reconnections, node_values.uname) === -1) {
                             that.reconnections.push(node_values.uname);
                         }
