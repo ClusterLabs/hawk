@@ -18,6 +18,11 @@
         <%= _("Remote node.") %>
       </div>
     <% end %>
+    <% if @node.guest %>
+      <div class="alert alert-info" role="alert">
+        <%= _("Guest node hosted by resource #{@node.guest}.") %>
+      </div>
+    <% end %>
     <% unless @node.fence_history.blank? %>
       <div class="alert alert-warning" role="warning">
         <%= @node.fence_history %>
