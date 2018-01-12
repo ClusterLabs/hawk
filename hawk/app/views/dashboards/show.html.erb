@@ -43,7 +43,7 @@
                 <li>
                   <ul class="legend-status">
                     <li><div class="node-circle status-success"></div>Working resource/node</li>
-                    <li><i class="fa fa-podcast" aria-hidden="true" title="Remote node"></i>Remote node</li>
+                    <li><i class="fa fa-podcast" aria-hidden="true" title="Remote / Guest node"></i>Remote / Guest node</li>
                     <li><div class="node-circle status-danger"></div>Failing resource/node</li>
                     <li><i class="fa fa-wrench" aria-hidden="true"></i>Maintenance mode</li>
                     <li><div class="node-circle status-offline"></div>Offline/standby mode</li>
@@ -175,6 +175,9 @@
                 {{/if}}
                 {{if ~node.remote == true}}
                   <span class="status-icon"><i class="fa fa-podcast" aria-hidden="true" title="Remote node"></i></span>
+                {{/if}}
+                {{if ~node.guest }}
+                  <span class="status-icon"><i class="fa fa-podcast" aria-hidden="true" title="Guest node"></i></span>
                 {{/if}}
                 {{if ~node.maintenance == true}}
                 <span class="status-icon"><i class="fa fa-wrench" aria-hidden="true"></i></span>
