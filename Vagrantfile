@@ -66,10 +66,6 @@ def configure_machine(machine, idx, roles, memory, cpus)
       salt.run_highstate = true
       salt.verbose = true
       salt.no_minion = true
-      # From github.com/krig/salt-bootstrap
-      #salt.bootstrap_script = "salt/bootstrap-salt.sh"
-      #salt.install_type = :git
-      #salt.install_args = "v2017.7"
     end
   end
 
@@ -94,7 +90,7 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.box = "hawk/tumbleweed-ha"
-  config.vm.box_version = "1.0.5"
+  config.vm.box_version = "1.0.6"
   config.vm.box_check_update = true
   config.ssh.insert_key = false
   config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_udp: false, mount_options: ["rw", "noatime", "async"]
