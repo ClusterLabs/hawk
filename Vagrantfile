@@ -67,7 +67,7 @@ def configure_machine(machine, idx, roles, memory, cpus)
       salt.verbose = true
       salt.no_minion = true
       # From github.com/krig/salt-bootstrap
-      salt.bootstrap_script = "salt/bootstrap-salt.sh"
+      #salt.bootstrap_script = "salt/bootstrap-salt.sh"
       #salt.install_type = :git
       #salt.install_args = "v2017.7"
     end
@@ -93,8 +93,8 @@ Vagrant.configure("2") do |config|
     abort 'Missing bindfs plugin! Please install using vagrant plugin install vagrant-bindfs'
   end
 
-  config.vm.box = "krig/tumbleweed-ha"
-  config.vm.box_version = "1.0.6"
+  config.vm.box = "hawk/tumbleweed-ha"
+  config.vm.box_version = "1.0.5"
   config.vm.box_check_update = true
   config.ssh.insert_key = false
   config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_udp: false, mount_options: ["rw", "noatime", "async"]
