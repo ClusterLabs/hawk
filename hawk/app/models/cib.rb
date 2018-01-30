@@ -597,6 +597,7 @@ class Cib
         standby: standby,
         maintenance: maintenance,
         remote: remote,
+        guest: nil,
         fence: can_fence,
         fence_history: fence_history
       }
@@ -610,14 +611,40 @@ class Cib
       # the resource by the same name
       state = :unknown
       standby = false
+      maintenance = @crm_config[:maintenance_mode] ? true : false
       unless @nodes.any? { |nod| nod[:id] == node_id }
         @nodes << {
+          name: uname || node_id,
           uname: uname,
           state: state,
           id: node_id,
           standby: standby,
           maintenance: maintenance,
-          remote: true
+          remote: true,
+          guest: nil
+        }
+      end
+    end
+
+    # add guest nodes
+    @xml.elements.each('cib/configuration//primitive/meta_attributes/nvpair[@name="remote-node"]') do |guestattr|
+      uname = guestattr.attributes['value']
+      n = guestattr.parent.parent
+      # To determine the state of guest nodes, we need to look at
+      # the resource that hosts it
+      state = :unknown
+      standby = false
+      maintenance = @crm_config[:maintenance_mode] ? true : false
+      unless @nodes.any? { |nod| nod[:uname] == uname }
+        @nodes << {
+          name: uname,
+          uname: uname,
+          state: state,
+          id: uname,
+          standby: standby,
+          maintenance: maintenance,
+          remote: false,
+          guest: n.attributes['id']
         }
       end
     end
@@ -941,10 +968,19 @@ class Cib
     fix_resource_states @resources
     fix_tag_states
 
-    # Now we can patch up the state of remote nodes
+    # Now we can patch up the state of remote and guest nodes
     @nodes.each do |n|
       if n[:remote] && n[:state] != :unclean
         rsc = @resources_by_id[n[:id]]
+        if rsc && [:master, :slave, :started].include?(rsc[:state])
+          n[:state] = :online
+        elsif rsc && [:failed, :pending].include?(rsc[:state])
+          n[:state] = :unclean
+        else
+          n[:state] = :offline
+        end
+      elsif n[:guest] && n[:state] != :unclean
+        rsc = @resources_by_id[n[:guest]]
         if rsc && [:master, :slave, :started].include?(rsc[:state])
           n[:state] = :online
         elsif rsc && [:failed, :pending].include?(rsc[:state])
