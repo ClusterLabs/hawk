@@ -90,9 +90,20 @@ Vagrant.configure("2") do |config|
   end
 
   config.vm.box = "hawk/tumbleweed-ha"
-  config.vm.box_version = "1.0.6"
+  config.vm.box_version = "1.1.3"
   config.vm.box_check_update = true
   config.ssh.insert_key = false
+
+
+
+  # VAGRANT_COMMAND = ARGV[0]
+  # if VAGRANT_COMMAND == "ssh"
+  #   config.ssh.username = "hacluster"
+  #   # config.ssh.password = "linux"
+  # end
+
+
+
   config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_udp: false, mount_options: ["rw", "noatime", "async"]
   config.bindfs.bind_folder "/vagrant", "/vagrant", force_user: "hacluster", force_group: "haclient", perms: "u=rwX:g=rwXD:o=rXD", after: :provision
 
