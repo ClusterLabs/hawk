@@ -4,9 +4,6 @@ webui_packages:
       - pam-devel
       - libglue-devel
 
-    - require:
-      - pkg: common_packages
-
 salt://utils/install_tools.sh:
   cmd.script:
     - require:
