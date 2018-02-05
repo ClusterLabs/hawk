@@ -56,6 +56,7 @@ class Cib
   attr_reader :nodes
   attr_reader :resources
   attr_reader :templates
+  attr_reader :bundles
   attr_reader :crm_config
   attr_reader :rsc_defaults
   attr_reader :op_defaults
@@ -220,6 +221,7 @@ class Cib
 
   protected
 
+  # TODO: Bundles
   def get_resource(elem, is_managed = true, maintenance = false, clone_max = nil, is_ms = false)
     res = {
       id: elem.attributes['id'],
@@ -671,6 +673,16 @@ class Cib
         type: t.attributes['type']
       }
     end if Util.has_feature?(:rsc_template)
+
+    # Bundles deliberately kept separate from resources, exactly
+    # like Templates.
+    @bundles = []
+    @xml.elements.each('cib/configuration/resources/bundle') do |b|
+      @bundles << {
+        id: b.attributes['id']
+        # TODO: bundles
+      }
+    end if Util.has_feature?(:bundle_support)
 
     # TODO(must): fix me
     @constraints = []
@@ -1166,6 +1178,7 @@ class Cib
     @resources_by_id = {}
     @resource_count = 0
     @templates = []
+    @bundles = []
     @constraints = []
     @tags = []
     @tickets = []
