@@ -5,3 +5,4 @@ include:
   - common.cluster
   - common.drbd
   - common.services
+  - common.bundle
