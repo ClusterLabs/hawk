@@ -56,7 +56,6 @@ class Cib
   attr_reader :nodes
   attr_reader :resources
   attr_reader :templates
-  attr_reader :bundles
   attr_reader :crm_config
   attr_reader :rsc_defaults
   attr_reader :op_defaults
@@ -221,7 +220,6 @@ class Cib
 
   protected
 
-  # TODO: Bundles
   def get_resource(elem, is_managed = true, maintenance = false, clone_max = nil, is_ms = false)
     res = {
       id: elem.attributes['id'],
@@ -661,6 +659,37 @@ class Cib
     @xml.elements.each('cib/configuration/resources/*[self::primitive or self::group or self::clone or self::master]') do |r|
       @resources << get_resource(r, is_managed_default && !@crm_config[:maintenance_mode], @crm_config[:maintenance_mode])
     end
+
+    # Todo: Bundle:  check if the bundle feature support all the meta attributes as resources
+    # If yes, maybe it's better to combine the logic in get_resource method (or maybe not)
+    # The bundle should be nested under the resouce object
+    @xml.elements.each('cib/configuration/resources/bundle') do |b|
+      bundle = {
+        id: b.attributes['id'],
+        object_type: b.name,
+        is_managed: true,
+        maintenance: false,
+        attributes: {},
+        state: :unknown
+      }
+
+      b.elements.each("meta_attributes/nvpair/") do |nv|
+        bundle[:attributes][nv.attributes["name"]] = nv.attributes["value"]
+      end
+      if bundle[:attributes].key?("is-managed")
+        bundle[:is_managed] = Util.unstring(bundle[:attributes]["is-managed"], true)
+      end
+      if bundle[:attributes].key?("maintenance")
+        # A resource on maintenance is also flagged as unmanaged
+        bundle[:maintenance] = Util.unstring(bundle[:attributes]["maintenance"], false)
+        bundle[:is_managed] = false if bundle[:maintenance]
+      end
+
+      @resources << bundle
+      @resources_by_id[b.attributes['id']] = bundle
+
+    end if Util.has_feature?(:bundle_support)
+
     # Templates deliberately kept separate from resources, because
     # we need an easy way of listing them separately, and they don't
     # have state we care about.
@@ -673,16 +702,6 @@ class Cib
         type: t.attributes['type']
       }
     end if Util.has_feature?(:rsc_template)
-
-    # Bundles deliberately kept separate from resources, exactly
-    # like Templates.
-    @bundles = []
-    @xml.elements.each('cib/configuration/resources/bundle') do |b|
-      @bundles << {
-        id: b.attributes['id']
-        # TODO: bundles
-      }
-    end if Util.has_feature?(:bundle_support)
 
     # TODO(must): fix me
     @constraints = []
@@ -1178,7 +1197,6 @@ class Cib
     @resources_by_id = {}
     @resource_count = 0
     @templates = []
-    @bundles = []
     @constraints = []
     @tags = []
     @tickets = []
