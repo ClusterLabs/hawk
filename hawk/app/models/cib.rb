@@ -660,17 +660,27 @@ class Cib
       @resources << get_resource(r, is_managed_default && !@crm_config[:maintenance_mode], @crm_config[:maintenance_mode])
     end
 
-    # Todo: Bundle:  check if the bundle feature support all the meta attributes as resources
-    # If yes, maybe it's better to combine the logic in get_resource method (or maybe not)
-    # The bundle should be nested under the resouce object
+    # Todo: Bundle: This should be refactored to call a get_bundle method
     @xml.elements.each('cib/configuration/resources/bundle') do |b|
+
+      # Figure out which type of container
+      b.elements.each('docker' || 'rkt') do |c|
+        # @container_type will be either :docker or :rkt
+        @container_type = c.name.to_s
+      end
+
+      # Basic structure
       bundle = {
         id: b.attributes['id'],
         object_type: b.name,
         is_managed: true,
         maintenance: false,
         attributes: {},
-        state: :unknown
+        state: :unknown,
+        @container_type => {},
+        network: {},
+        storage: {},
+        primitvie: {}
       }
 
       b.elements.each("meta_attributes/nvpair/") do |nv|
