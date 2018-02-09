@@ -680,10 +680,10 @@ class Cib
         state: :unknown,
         @container_type.to_s => {},
         network: {
-          port_mapping: {}
+          port_mapping: []
         },
         storage: {
-          storage_mapping: {}
+          storage_mapping: []
         },
         primitive: {}
       }
@@ -703,19 +703,23 @@ class Cib
         bundle[:network][:control_port] = n.attributes["control-port"]
         bundle[:network][:host_interface] = n.attributes["host-interface"]
         n.elements.each("port-mapping") do |pm|
-          bundle[:network][:port_mapping][:id] = pm.attributes["id"]
-          bundle[:network][:port_mapping][:port] = pm.attributes["port"]
-          bundle[:network][:port_mapping][:internal_port] = pm.attributes["internal-port"]
-          bundle[:network][:port_mapping][:range] = pm.attributes["range"]
+          obj = {}
+          obj[:id] = pm.attributes["id"]
+          obj[:port] = pm.attributes["port"]
+          obj[:internal_port] = pm.attributes["internal-port"]
+          obj[:range] = pm.attributes["range"]
+          bundle[:network][:port_mapping] << obj
         end
       end
       b.elements.each("storage") do |s|
         s.elements.each("storage-mapping") do |sm|
-          bundle[:storage][:storage_mapping][:id] = sm.attributes["id"]
-          bundle[:storage][:storage_mapping][:source_dir] = sm.attributes["source-dir"]
-          bundle[:storage][:storage_mapping][:source_dir_root] = sm.attributes["source-dir-root"]
-          bundle[:storage][:storage_mapping][:target_dir] = sm.attributes["target-dir"]
-          bundle[:storage][:storage_mapping][:options] = sm.attributes["options"]
+          obj = {}
+          obj[:id] = sm.attributes["id"]
+          obj[:source_dir] = sm.attributes["source-dir"]
+          obj[:source_dir_root] = sm.attributes["source-dir-root"]
+          obj[:target_dir] = sm.attributes["target-dir"]
+          obj[:options] = sm.attributes["options"]
+          bundle[:storage][:storage_mapping] << obj
         end
       end
 
