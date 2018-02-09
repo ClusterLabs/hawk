@@ -665,7 +665,7 @@ class Cib
 
       # Figure out which type of container
       b.elements.each('docker' || 'rkt') do |c|
-        # @container_type will be either :docker or :rkt
+        # @container_type will be either "docker" or "rkt"
         @container_type = c.name.to_s
       end
 
@@ -677,11 +677,44 @@ class Cib
         maintenance: false,
         attributes: {},
         state: :unknown,
-        @container_type => {},
-        network: {},
+        @container_type.to_s => {},
+        network: {
+          port_mapping: {}
+        },
         storage: {},
-        primitvie: {}
+        primitive: {}
       }
+
+
+      b.elements.each(@container_type) do |c|
+        bundle[@container_type.to_s][:image] = c.attributes["image"]
+        bundle[@container_type.to_s][:replicas] = c.attributes["replicas"]
+        bundle[@container_type.to_s][:replicas_per_host] = c.attributes["replicas-per-host"]
+        bundle[@container_type.to_s][:masters] = c.attributes["masters"]
+        bundle[@container_type.to_s][:run_command] = c.attributes["run-command"]
+        bundle[@container_type.to_s][:network] = c.attributes["network"]
+        bundle[@container_type.to_s][:options] = c.attributes["options"]
+      end
+      b.elements.each("network") do |n|
+        bundle[:network][:ip_range_start] = n.attributes["ip-range-start"]
+        bundle[:network][:control_port] = n.attributes["control-port"]
+        bundle[:network][:host_interface] = n.attributes["host-interface"]
+        n.elements.each("port-mapping") do |p|
+          bundle[:network][:port_mapping][:id] = p.attributes["id"]
+          bundle[:network][:port_mapping][:port] = p.attributes["port"]
+          bundle[:network][:port_mapping][:internal_port] = p.attributes["internal-port"]
+          bundle[:network][:port_mapping][:range] = p.attributes["range"]
+        end
+      end
+
+
+      b.elements.each("storage") do |s|
+        bundle[:storage][] = s.attributes[]
+      end
+
+      b.elements.each("primitive") do |c|
+        bundle[:storage][] = s.attributes[]
+      end
 
       b.elements.each("meta_attributes/nvpair/") do |nv|
         bundle[:attributes][nv.attributes["name"]] = nv.attributes["value"]
