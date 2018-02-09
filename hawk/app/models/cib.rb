@@ -675,13 +675,16 @@ class Cib
         object_type: b.name,
         is_managed: true,
         maintenance: false,
+        meta: {},
         attributes: {},
         state: :unknown,
         @container_type.to_s => {},
         network: {
           port_mapping: {}
         },
-        storage: {},
+        storage: {
+          storage_mapping: {}
+        },
         primitive: {}
       }
 
@@ -699,21 +702,25 @@ class Cib
         bundle[:network][:ip_range_start] = n.attributes["ip-range-start"]
         bundle[:network][:control_port] = n.attributes["control-port"]
         bundle[:network][:host_interface] = n.attributes["host-interface"]
-        n.elements.each("port-mapping") do |p|
-          bundle[:network][:port_mapping][:id] = p.attributes["id"]
-          bundle[:network][:port_mapping][:port] = p.attributes["port"]
-          bundle[:network][:port_mapping][:internal_port] = p.attributes["internal-port"]
-          bundle[:network][:port_mapping][:range] = p.attributes["range"]
+        n.elements.each("port-mapping") do |pm|
+          bundle[:network][:port_mapping][:id] = pm.attributes["id"]
+          bundle[:network][:port_mapping][:port] = pm.attributes["port"]
+          bundle[:network][:port_mapping][:internal_port] = pm.attributes["internal-port"]
+          bundle[:network][:port_mapping][:range] = pm.attributes["range"]
+        end
+      end
+      b.elements.each("storage") do |s|
+        s.elements.each("storage-mapping") do |sm|
+          bundle[:storage][:storage_mapping][:id] = sm.attributes["id"]
+          bundle[:storage][:storage_mapping][:source_dir] = sm.attributes["source-dir"]
+          bundle[:storage][:storage_mapping][:source_dir_root] = sm.attributes["source-dir-root"]
+          bundle[:storage][:storage_mapping][:target_dir] = sm.attributes["target-dir"]
+          bundle[:storage][:storage_mapping][:options] = sm.attributes["options"]
         end
       end
 
-
-      b.elements.each("storage") do |s|
-        bundle[:storage][] = s.attributes[]
-      end
-
       b.elements.each("primitive") do |c|
-        bundle[:storage][] = s.attributes[]
+        # bundle[:storage][] = s.attributes[]
       end
 
       b.elements.each("meta_attributes/nvpair/") do |nv|
