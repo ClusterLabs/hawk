@@ -603,8 +603,10 @@ class Cib
       }
     end
 
-    # add remote nodes that may not exist in cib/configuration/nodes/node
-    @xml.elements.each("cib/status/node_state[remote_node='true']") do |n|
+
+   # add remote nodes that may not exist in cib/configuration/nodes/node
+   @xml.elements.each("cib/status/node_state") do |n|
+    if n.attributes['remote_node']
       uname = n.attributes['uname']
       node_id = n.attributes['id']
       # To determine the state of remote nodes, we need to look at
@@ -625,6 +627,7 @@ class Cib
         }
       end
     end
+  end
 
     # add guest nodes
     @xml.elements.each('cib/configuration//primitive/meta_attributes/nvpair[@name="remote-node"]') do |guestattr|
