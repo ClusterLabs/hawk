@@ -723,8 +723,8 @@ class Cib
         end
       end
 
-      b.elements.each("primitive") do |c|
-        # bundle[:storage][] = s.attributes[]
+      b.elements.each("primitive") do |p|
+        bundle[:primitive] = get_resource(p, is_managed_default && !@crm_config[:maintenance_mode], @crm_config[:maintenance_mode])
       end
 
       b.elements.each("meta_attributes/nvpair/") do |nv|
@@ -999,7 +999,7 @@ class Cib
                   },
                   :danger,
                   link: linky
-)
+                )
 
             if ignore_failure
               failed_ops[-1][:ignored] = true
