@@ -1093,6 +1093,24 @@ class Cib
       end
     end
 
+    # Now we can patch up the state of containers
+    @nodes.each do |n|
+      if n[:remote] && n[:state] != :unclean
+        @resources_by_id.each do |key, value|
+          if value[:object_type] == "bundle"
+            rsc = value
+            if rsc && [:master, :slave, :started].include?(rsc[:state])
+              n[:state] = :online
+            elsif rsc && [:failed, :pending].include?(rsc[:state])
+              n[:state] = :unclean
+            else
+              n[:state] = :offline
+            end
+          end
+        end
+      end
+    end
+
     # Now we can sort the node array
     @nodes.sort!{|a,b| a[:uname].natcmp(b[:uname], true)}
 
