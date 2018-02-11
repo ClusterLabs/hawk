@@ -375,6 +375,20 @@ class Cib
         end
       end
 
+      # Set the state of the primitive running inside the bundle and then the bundle itself
+      if resource[:object_type] == 'bundle'
+        # Store the primitive in an array so rsclist.each doesn't raise an exception
+        res_array = []
+        res_array << resource[:primitive]
+        # Set the state of the primitive inside the bundle
+        fix_resource_states(res_array)
+        # Set the state of the bundle
+        rstate = resource[:primitive][:state]
+        resource[:state] = rstate if (prio[rstate] || 0) > (prio[resource[:state]] || 0)
+        resource[:running_on].merge! resource[:primitive][:running_on]
+      end
+
+
       resource[:state] = :unmanaged unless resource[:is_managed]
       resource[:state] = :maintenance if resource[:maintenance] == true
     end
