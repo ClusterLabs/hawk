@@ -1,6 +1,10 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+# Force vagrant to download boxes from vagrant cloud instead of atlas
+# workaround for older versions of vagrant
+Vagrant::DEFAULT_SERVER_URL.replace('https://vagrantcloud.com')
+
 def host_bind_address
   ENV['VAGRANT_INSECURE_FORWARDS'] =~ /^(y(es)?|true|on)$/i ? '*' : '127.0.0.1'
 end
