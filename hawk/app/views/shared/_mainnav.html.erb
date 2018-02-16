@@ -50,21 +50,22 @@
         <li class="<%= active_menu_with(:crm_config) %>">
           <%= link_to _("Cluster Configuration"), edit_cib_crm_config_path(cib_id: current_cib.id) %>
         </li>
+        <li class="access-control">
+          <%= _("Access Control") %>
+           <% if Util.has_feature? :acl_support %>
+           <ul>
+              <li class="<%= active_menu_with(:roles) %> submenu">
+                <%= link_to _("Roles"), cib_roles_path(cib_id: current_cib.id) %>
+              </li>
+              <li class="<%= active_menu_with(:users) %> submenu">
+                <%= link_to _("Targets"), cib_users_path(cib_id: current_cib.id) %>
+            </li>
+        </ul>
+        <% end %>
+        </li>
+       
       </ul>
     </li>
-    <% if Util.has_feature? :acl_support %>
-      <li class="panel panel-default">
-        <a data-toggle="collapse" data-parent="#accordion" href="#accessControlMenu"><%= _("Access Control") %></a>
-        <ul class="collapse-menu panel-collapse collapse" id="accessControlMenu">
-          <li class="<%= active_menu_with(:roles) %>">
-            <%= link_to _("Roles"), cib_roles_path(cib_id: current_cib.id) %>
-          </li>
-          <li class="<%= active_menu_with(:users) %>">
-            <%= link_to _("Targets"), cib_users_path(cib_id: current_cib.id) %>
-          </li>
-        </ul>
-      </li>
-    <% end %>
   <% end %>
 </ul>
 </div>
