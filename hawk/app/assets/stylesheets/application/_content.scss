@@ -67,7 +67,6 @@
         }
       }
 
-
       li:last-of-type {
         ul {
           border-bottom: 0;
@@ -103,6 +102,20 @@
 
         a:hover {
           color: $sidebar-link-hover-fg;
+        }
+        &.access-control {
+          font-weight: bold;
+          margin-top: 7px;
+          font-size: 14px;
+          color: #00c081;
+          > ul {
+            margin-top: 0px;
+            padding-left: 10px;
+
+            li {
+              font-weight: normal;
+            }
+          }
         }
       }
     }
