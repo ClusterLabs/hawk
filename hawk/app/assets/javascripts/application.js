@@ -73,7 +73,6 @@ $(function() {
         var href = $(this).attr("href");
         var finalpath = path.substring(0,href.length);
         if(finalpath === href ){
-          console.log("same " )
           $("#accordion li ul").removeClass('in');
           $(this).closest('ul').addClass('in');
         }
