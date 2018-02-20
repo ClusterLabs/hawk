@@ -1,31 +1,40 @@
-<ul class="nav sidebar-nav">
+<div class="nav sidebar-nav collapse navbar-collapse">
+<ul class="panel-group" id="accordion">
   <% unless current_cib.live? %>
     <li>&nbsp;</li>
   <% end %>
     <li>
     </li>
-    <li>
-    <%= _("Manage") %>
-    <ul>
-      <li class="<%= active_menu_with(:cib) %>">
-        <%= link_to _("Status"), cib_path(cib_id: current_cib.id) %>
-      </li>
-      <% if current_cib.live? %>
-        <li class="<%= active_menu_with(:dashboards) %>">
-          <%= link_to _("Dashboard"), dashboard_path %>
+    <li class="panel panel-default">
+      <a data-toggle="collapse" data-parent="#accordion" href="#monitoringMenu"><i class="fa fa-desktop" aria-hidden="true"></i><%= _("Monitoring") %></a>
+      <ul class="collapse-menu panel-collapse collapse" id="monitoringMenu">
+        <li class="<%= active_menu_with(:cib) %>">
+          <%= link_to _("Status"), cib_path(cib_id: current_cib.id) %>
         </li>
-      <% end %>
-      <% if current_cib.live? %>
-        <li class="<%= active_menu_with(:reports) %>">
-          <%= link_to _("History"), reports_path %>
-        </li>
-      <% end %>
-    </ul>
-  </li>
+        <% if current_cib.live? %>
+          <li class="<%= active_menu_with(:dashboards) %>">
+            <%= link_to _("Dashboard"), dashboard_path %>
+          </li>
+        <% end %>
+      </ul>
+    </li>
   <% unless current_cib.offline? %>
-    <li>
-      <%= _("Configuration") %>
-      <ul>
+    <li class="panel panel-default">
+      <a data-toggle="collapse" data-parent="#accordion" href="#troubleshootMenu"><i class="fa fa-wrench" aria-hidden="true"></i><%= _("Troubleshooting") %></a>
+      <ul class="collapse-menu panel-collapse collapse" id="troubleshootMenu">
+        <% if current_cib.live? %>
+          <li class="<%= active_menu_with(:reports) %>">
+            <%= link_to _("History"), reports_path %>
+          </li>
+        <% end %>
+        <li class="<%= active_menu_with(:commands) %>">
+          <%= link_to _("Command Log"), cib_commands_path(cib_id: current_cib.id) %>
+        </li>
+      </ul>
+    </li>
+    <li class="panel panel-default">
+      <a data-toggle="collapse" data-parent="#accordion" href="#configurationMenu"><i class="fa fa-cog" aria-hidden="true"></i><%= _("Configuration") %></a>
+      <ul class="collapse-menu panel-collapse collapse" id="configurationMenu">
         <li class="<%= active_menu_with(:resources, :primitives, :clones, :masters, :templates, :tags) %>">
           <%= link_to _("Add Resource"), types_cib_resources_path(cib_id: current_cib.id) %>
         </li>
@@ -41,26 +50,22 @@
         <li class="<%= active_menu_with(:crm_config) %>">
           <%= link_to _("Cluster Configuration"), edit_cib_crm_config_path(cib_id: current_cib.id) %>
         </li>
-        <li class="<%= active_menu_with(:commands) %>">
-          <%= link_to _("Command Log"), cib_commands_path(cib_id: current_cib.id) %>
+        <li class="sub-heading">
+           <%= _("Access Control") %>
         </li>
-      </ul>
-    </li>
-    <% if Util.has_feature? :acl_support %>
-      <li>
-        <%= _("Access Control") %>
-        <ul>
-          <li class="<%= active_menu_with(:roles) %>">
-            <%= link_to _("Roles"), cib_roles_path(cib_id: current_cib.id) %>
+          <% if Util.has_feature? :acl_support %>
+        <li class="<%= active_menu_with(:roles) %> submenu">
+          <%= link_to _("Roles"), cib_roles_path(cib_id: current_cib.id) %>
           </li>
-          <li class="<%= active_menu_with(:users) %>">
+          <li class="<%= active_menu_with(:users) %> submenu">
             <%= link_to _("Targets"), cib_users_path(cib_id: current_cib.id) %>
           </li>
-        </ul>
-      </li>
-    <% end %>
+        <% end %>
+      </ul>
+    </li>
   <% end %>
 </ul>
+</div>
 <div class="footer">
   <%= branding_config[:provider].html_safe %>
 </div>

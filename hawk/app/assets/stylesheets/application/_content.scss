@@ -45,37 +45,28 @@
 
       & > li {
         text-transform: uppercase;
-        padding: 0 0 0 20px;
-        color: $sidebar-heading-fg;
-      }
+        padding: 0px;
+        list-style: none;
+        margin-bottom: 20px;
 
-      ul {
-        list-style-type: none;
-        line-height: 2.4em;
-        font-weight: normal;
-        padding: 0 0 10px 0;
-        margin: 0px 0 10px 10px;
-
-        li {
-          text-transform: none;
+        & > a{
+          color: $sidebar-heading-fg;
           padding: 0;
-          margin-left: 10px;
-
-          a {
-            color: $sidebar-link-fg;
+          .fa {
+            margin-right: 10px; 
+          }
+          &:hover {
+            background: none;
             text-decoration: none;
-            display: inline-block;
-            width: 100%;
           }
-
-          &.active a,
-          a:hover {
-            border-right: 5px solid $sidebar-highlight-fg;
+          &:focus {
+            background: none;
+            text-decoration: none;
           }
-
-          a:hover {
-            color: $sidebar-link-hover-fg;
-          }
+        }
+        &.panel {
+          background-color: transparent;
+          border: 0;  
         }
       }
 
@@ -83,6 +74,44 @@
         ul {
           border-bottom: 0;
           margin-bottom: 0;
+        }
+      }
+    }
+
+    ul.collapse-menu {
+      list-style-type: none;
+      line-height: 2.4em;
+      font-weight: normal;
+      padding: 0;
+      margin: 0 0 0 10px;
+
+      li {
+        text-transform: none;
+        padding: 0;
+        margin-left: 10px;
+        margin-bottom: 0px;
+
+        a {
+          color: $sidebar-link-fg;
+          text-decoration: none;
+          display: inline-block;
+          width: 100%;
+        }
+
+        &.active a,
+        a:hover {
+          border-right: 5px solid $sidebar-highlight-fg;
+        }
+
+        a:hover {
+          color: $sidebar-link-hover-fg;
+        }
+        &.sub-heading {
+          color: $sidebar-heading-fg;
+        }
+        &.submenu {
+          padding-left: 15px;
+          font-size: 14px;
         }
       }
     }

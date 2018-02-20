@@ -37,6 +37,22 @@
 //= require module/batch
 //= require module/location
 
+$( document ).ready(function() {
+  var path = window.location.pathname;
+  path = path.replace(/\/$/, "");
+  path = decodeURIComponent(path);
+
+  $("#accordion li a").each(function (){
+    var href = $(this).attr("href");
+    var finalpath = path.substring(0,href.length);
+    if(finalpath === href ){
+      $("#accordion li ul").removeClass('in');
+      $(this).closest('ul').addClass('in');
+    }
+  })
+});
+
+
 $(function() {
 
   var resize = function() {
