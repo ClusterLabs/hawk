@@ -52,6 +52,9 @@
         & > a{
           color: $sidebar-heading-fg;
           padding: 0;
+          .fa {
+            margin-right: 10px; 
+          }
           &:hover {
             background: none;
             text-decoration: none;
@@ -103,11 +106,8 @@
         a:hover {
           color: $sidebar-link-hover-fg;
         }
-        &.access-control {
-          font-weight: bold;
-          margin-top: 7px;
-          font-size: 14px;
-          color: #00c081;
+        &.sub-heading {
+          color: $sidebar-heading-fg;
         }
         &.submenu {
           padding-left: 15px;

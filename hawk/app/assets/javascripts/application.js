@@ -37,6 +37,22 @@
 //= require module/batch
 //= require module/location
 
+$( document ).ready(function() {
+  var path = window.location.pathname;
+  path = path.replace(/\/$/, "");
+  path = decodeURIComponent(path);
+
+  $("#accordion li a").each(function (){
+    var href = $(this).attr("href");
+    var finalpath = path.substring(0,href.length);
+    if(finalpath === href ){
+      $("#accordion li ul").removeClass('in');
+      $(this).closest('ul').addClass('in');
+    }
+  })
+});
+
+
 $(function() {
 
   var resize = function() {
@@ -64,20 +80,6 @@ $(function() {
     var config = { childList: true, attributes: true, characterData: false, subtree: true };
     observer.observe(target, config);
   };
-  var setNavigation = function() {
-    var path = window.location.pathname;
-      path = path.replace(/\/$/, "");
-      path = decodeURIComponent(path);
-
-      $("#accordion li a").each(function (){
-        var href = $(this).attr("href");
-        var finalpath = path.substring(0,href.length);
-        if(finalpath === href ){
-          $("#accordion li ul").removeClass('in');
-          $(this).closest('ul').addClass('in');
-        }
-      })
-  }
 
   $(window).on(
     'load resize',
@@ -86,7 +88,6 @@ $(function() {
 
   $(window).on(
     'load',
-    createMutationObserver,
-    setNavigation
+    createMutationObserver
   );
 });

@@ -6,8 +6,8 @@
     <li>
     </li>
     <li class="panel panel-default">
-      <a data-toggle="collapse" data-parent="#accordion" href="#manageMenu"><%= _("Manage") %></a>
-      <ul class="collapse-menu panel-collapse collapse" id="manageMenu">
+      <a data-toggle="collapse" data-parent="#accordion" href="#monitoringMenu"><i class="fa fa-desktop" aria-hidden="true"></i><%= _("Monitoring") %></a>
+      <ul class="collapse-menu panel-collapse collapse" id="monitoringMenu">
         <li class="<%= active_menu_with(:cib) %>">
           <%= link_to _("Status"), cib_path(cib_id: current_cib.id) %>
         </li>
@@ -20,7 +20,7 @@
     </li>
   <% unless current_cib.offline? %>
     <li class="panel panel-default">
-      <a data-toggle="collapse" data-parent="#accordion" href="#troubleshootMenu"><%= _("Troubleshooting") %></a>
+      <a data-toggle="collapse" data-parent="#accordion" href="#troubleshootMenu"><i class="fa fa-wrench" aria-hidden="true"></i><%= _("Troubleshooting") %></a>
       <ul class="collapse-menu panel-collapse collapse" id="troubleshootMenu">
         <% if current_cib.live? %>
           <li class="<%= active_menu_with(:reports) %>">
@@ -33,7 +33,7 @@
       </ul>
     </li>
     <li class="panel panel-default">
-      <a data-toggle="collapse" data-parent="#accordion" href="#configurationMenu"><%= _("Configuration") %></a>
+      <a data-toggle="collapse" data-parent="#accordion" href="#configurationMenu"><i class="fa fa-cog" aria-hidden="true"></i><%= _("Configuration") %></a>
       <ul class="collapse-menu panel-collapse collapse" id="configurationMenu">
         <li class="<%= active_menu_with(:resources, :primitives, :clones, :masters, :templates, :tags) %>">
           <%= link_to _("Add Resource"), types_cib_resources_path(cib_id: current_cib.id) %>
@@ -50,8 +50,8 @@
         <li class="<%= active_menu_with(:crm_config) %>">
           <%= link_to _("Cluster Configuration"), edit_cib_crm_config_path(cib_id: current_cib.id) %>
         </li>
-        <li class="access-control">
-          <%= _("Access Control") %>
+        <li class="sub-heading">
+           <%= _("Access Control") %>
         </li>
           <% if Util.has_feature? :acl_support %>
         <li class="<%= active_menu_with(:roles) %> submenu">
