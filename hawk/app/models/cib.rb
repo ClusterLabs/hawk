@@ -375,6 +375,20 @@ class Cib
         end
       end
 
+      # Set the state of the primitive running inside the bundle and then the bundle itself
+      if resource[:object_type] == 'bundle'
+        # Store the primitive in an array so rsclist.each doesn't raise an exception
+        res_array = []
+        res_array << resource[:primitive]
+        # Set the state of the primitive inside the bundle
+        fix_resource_states(res_array)
+        # Set the state of the bundle
+        rstate = resource[:primitive][:state]
+        resource[:state] = rstate if (prio[rstate] || 0) > (prio[resource[:state]] || 0)
+        resource[:running_on].merge! resource[:primitive][:running_on]
+      end
+
+
       resource[:state] = :unmanaged unless resource[:is_managed]
       resource[:state] = :maintenance if resource[:maintenance] == true
     end
@@ -659,6 +673,91 @@ class Cib
     @xml.elements.each('cib/configuration/resources/*[self::primitive or self::group or self::clone or self::master]') do |r|
       @resources << get_resource(r, is_managed_default && !@crm_config[:maintenance_mode], @crm_config[:maintenance_mode])
     end
+
+    # Todo: Bundle: This should be refactored to call a get_bundle method
+    @xml.elements.each('cib/configuration/resources/bundle') do |b|
+
+      # Figure out which type of container
+      b.elements.each('docker' || 'rkt') do |c|
+        # @container_type will be either "docker" or "rkt"
+        @container_type = c.name.to_s
+      end
+
+      # Basic structure
+      bundle = {
+        id: b.attributes['id'],
+        object_type: b.name,
+        is_managed: true,
+        maintenance: false,
+        meta: {},
+        attributes: {},
+        state: :unknown,
+        @container_type.to_s => {},
+        network: {
+          port_mapping: []
+        },
+        storage: {
+          storage_mapping: []
+        },
+        primitive: {}
+      }
+
+
+      b.elements.each(@container_type) do |c|
+        bundle[@container_type.to_s][:image] = c.attributes["image"]
+        bundle[@container_type.to_s][:replicas] = c.attributes["replicas"]
+        bundle[@container_type.to_s][:replicas_per_host] = c.attributes["replicas-per-host"]
+        bundle[@container_type.to_s][:masters] = c.attributes["masters"]
+        bundle[@container_type.to_s][:run_command] = c.attributes["run-command"]
+        bundle[@container_type.to_s][:network] = c.attributes["network"]
+        bundle[@container_type.to_s][:options] = c.attributes["options"]
+      end
+      b.elements.each("network") do |n|
+        bundle[:network][:ip_range_start] = n.attributes["ip-range-start"]
+        bundle[:network][:control_port] = n.attributes["control-port"]
+        bundle[:network][:host_interface] = n.attributes["host-interface"]
+        n.elements.each("port-mapping") do |pm|
+          obj = {}
+          obj[:id] = pm.attributes["id"]
+          obj[:port] = pm.attributes["port"]
+          obj[:internal_port] = pm.attributes["internal-port"]
+          obj[:range] = pm.attributes["range"]
+          bundle[:network][:port_mapping] << obj
+        end
+      end
+      b.elements.each("storage") do |s|
+        s.elements.each("storage-mapping") do |sm|
+          obj = {}
+          obj[:id] = sm.attributes["id"]
+          obj[:source_dir] = sm.attributes["source-dir"]
+          obj[:source_dir_root] = sm.attributes["source-dir-root"]
+          obj[:target_dir] = sm.attributes["target-dir"]
+          obj[:options] = sm.attributes["options"]
+          bundle[:storage][:storage_mapping] << obj
+        end
+      end
+
+      b.elements.each("primitive") do |p|
+        bundle[:primitive] = get_resource(p, is_managed_default && !@crm_config[:maintenance_mode], @crm_config[:maintenance_mode])
+      end
+
+      b.elements.each("meta_attributes/nvpair/") do |nv|
+        bundle[:attributes][nv.attributes["name"]] = nv.attributes["value"]
+      end
+      if bundle[:attributes].key?("is-managed")
+        bundle[:is_managed] = Util.unstring(bundle[:attributes]["is-managed"], true)
+      end
+      if bundle[:attributes].key?("maintenance")
+        # A resource on maintenance is also flagged as unmanaged
+        bundle[:maintenance] = Util.unstring(bundle[:attributes]["maintenance"], false)
+        bundle[:is_managed] = false if bundle[:maintenance]
+      end
+
+      @resources << bundle
+      @resources_by_id[b.attributes['id']] = bundle
+
+    end if Util.has_feature?(:bundle_support)
+
     # Templates deliberately kept separate from resources, because
     # we need an easy way of listing them separately, and they don't
     # have state we care about.
@@ -914,7 +1013,7 @@ class Cib
                   },
                   :danger,
                   link: linky
-)
+                )
 
             if ignore_failure
               failed_ops[-1][:ignored] = true
@@ -990,6 +1089,24 @@ class Cib
           n[:state] = :unclean
         else
           n[:state] = :offline
+        end
+      end
+    end
+
+    # Now we can patch up the state of containers
+    @nodes.each do |n|
+      if n[:remote] && n[:state] != :unclean
+        @resources_by_id.each do |key, value|
+          if value[:object_type] == "bundle"
+            rsc = value
+            if rsc && [:master, :slave, :started].include?(rsc[:state])
+              n[:state] = :online
+            elsif rsc && [:failed, :pending].include?(rsc[:state])
+              n[:state] = :unclean
+            else
+              n[:state] = :offline
+            end
+          end
         end
       end
     end

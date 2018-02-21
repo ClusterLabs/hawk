@@ -323,6 +323,11 @@ module Util
         %x[/usr/sbin/cibadmin -t 5 -Ql -A /cib/configuration/tags >/dev/null 2>&1]
         $?.exitstatus == 0
       }
+    when :bundle_support
+      Rails.cache.fetch(:has_bundle_support) {
+        %x[/usr/sbin/crm configure help bundle >/dev/null 2>&1]
+        $?.exitstatus == 0
+      }
     else
       false
     end
