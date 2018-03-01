@@ -122,6 +122,8 @@ class Node < Tableless
       return false
     end
 
+    return false if xml.nil?
+
     merge_nvpairs("instance_attributes", params)
 
     merge_nvpairs("utilization", utilization)
@@ -140,9 +142,9 @@ class Node < Tableless
   class << self
     def instantiate(xml, state)
       record = allocate
-      record.id = xml.attributes['id']
+      record.id = state[:id]
       record.xml = xml
-      record.name = xml.attributes['uname'] || xml.attributes['id'] || ''
+      record.name = state[:name]
       record.state = state[:state]
       record.standby = state[:standby]
       record.maintenance = state[:maintenance]
@@ -151,7 +153,7 @@ class Node < Tableless
       record.fence_history = state[:fence_history]
       record.fence = state[:fence]
 
-      record.params = if xml.elements['instance_attributes']
+      record.params = if xml && xml.elements['instance_attributes']
         vals = xml.elements['instance_attributes'].elements.collect do |e|
           [e.attributes['name'], e.attributes['value']]
         end
@@ -163,7 +165,7 @@ class Node < Tableless
 
       record.utilization_details = {}
       record.utilization = {}.tap do |util|
-        if xml.elements['utilization']
+        if xml && xml.elements['utilization']
           xml.elements['utilization'].elements.each do |e|
             val = e.attributes['value'].to_i
             util[e.attributes['name']] = val
@@ -225,6 +227,7 @@ class Node < Tableless
   end
 
   def merge_nvpairs(list, attrs)
+    return if xml.nil?
     if attrs.empty?
       # No attributes to set, get rid of the list (if it exists)
       xml.elements[list].remove if xml.elements[list]
