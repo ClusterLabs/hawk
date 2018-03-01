@@ -272,6 +272,8 @@ $(function() {
           }
         } else if (row.object_type == "tag") {
           return __("Tag");
+        } else if (row.object_type == "bundle") {
+          return __("Bundle");
         } else if ("template" in row || ("class" in row && "provider" in row && "type" in row)) {
           return agentLinkForResource(row);
         } else {
@@ -661,6 +663,8 @@ $(function() {
             return __("Clone");
           } else if (row.object_type == "tag") {
             return __("Tag");
+          } else if (row.object_type == "bundle") {
+            return __("Bundle");
           } else if (row.template && row.template.length > 0) {
             return '<a href="' + Routes.cib_agent_path($('body').data('cib'), encodeURIComponent("@" + row.template)) + '" data-toggle="modal" data-target="#modal-lg">' + value + '</a>';
           } else if ("clazz" in row && "provider" in row && "type" in row) {

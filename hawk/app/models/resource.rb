@@ -45,6 +45,11 @@ class Resource < Record
     end
   end
 
+  def editable?
+    return false if @xml.name == 'bundle'
+    true
+  end
+
   def state
     cib_by_id(id)[:state] || :unknown
   end
