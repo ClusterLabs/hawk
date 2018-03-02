@@ -179,31 +179,27 @@ class Cib
   end
 
   def find_node(node_id)
-    fail(RecordNotFound, node_id) if @xml.nil?
+    fail(RecordNotFound, _('CIB offline: %s=%s') % ["id", node_id]) if @xml.nil?
 
     state = @nodes.select { |n| n[:id] == node_id || n[:uname] == node_id }
-    fail(RecordNotFound, node_id) if state.blank?
+    fail(RecordNotFound, _('Node state not found: %s=%s') % ["id", node_id]) if state.blank?
 
     node = @xml.elements["cib/configuration/nodes/node[@uname=\"#{node_id}\"]"]
     if node
       Node.instantiate(node, state.first)
     else
       node = @xml.elements["cib/configuration/nodes/node[@id=\"#{node_id}\"]"]
-      if node
-        Node.instantiate(node, state.first)
-      else
-        fail RecordNotFound, node_id
-      end
+      Node.instantiate(node, state.first)
     end
   end
 
   def nodes_ordered
     ret = []
     return ret if @xml.nil?
-    @xml.elements.each('cib/configuration/nodes/node') do |xml|
-      node_id = xml.attributes['id']
-      state = @nodes.select { |n| n[:id] == node_id }
-      ret << Node.instantiate(xml, state[0])
+    @nodes.each do |state|
+      xmls = @xml.elements.select { |xml| xml.attributes['id'] == state[:id] }
+      xml = xmls.first if xmls
+      ret << Node.instantiate(xml, state)
     end
     ret
   end

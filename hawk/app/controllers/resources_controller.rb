@@ -151,6 +151,10 @@ class ResourcesController < ApplicationController
     resource_name = params[:id]
     @source = params[:source] || "edit"
     @resource = Resource.find resource_name
+    unless @resource.editable?
+      head :no_content
+      return
+    end
     respond_to do |format|
       format.html
     end
@@ -201,15 +205,25 @@ class ResourcesController < ApplicationController
   def new
     # redirect depending on type of resource
     resource = Resource.find params[:id]
-    new_url = "new_cib_#{resource.object_type}_url".to_sym
-    redirect_to send(new_url, cib_id: @cib.id, id: params[:id])
+    if resource.editable?
+      new_url = "new_cib_#{resource.object_type}_url".to_sym
+      redirect_to send(new_url, cib_id: @cib.id, id: params[:id])
+    else
+      head :no_content
+      return
+    end
   end
 
   def edit
     # redirect depending on type of resource
     resource = Resource.find params[:id]
-    edit_url = "edit_cib_#{resource.object_type}_url".to_sym
-    redirect_to send(edit_url, cib_id: @cib.id, id: params[:id])
+    if resource.editable?
+      edit_url = "edit_cib_#{resource.object_type}_url".to_sym
+      redirect_to send(edit_url, cib_id: @cib.id, id: params[:id])
+    else
+      head :no_content
+      return
+    end
   end
 
   protected
