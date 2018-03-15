@@ -5,8 +5,8 @@ module ColocationHelper
   def available_colocation_roles
     {
       "Started" => _("Started"),
-      "Master" => _("Master"),
-      "Slave" => _("Slave"),
+      "Master" => _("Promoted"),
+      "Slave" => _("Promotable"),
       "Stopped" => _("Stopped")
     }
   end

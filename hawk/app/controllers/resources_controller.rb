@@ -129,8 +129,8 @@ class ResourcesController < ApplicationController
   def unmigrate
     @resource = Resource.find params[:id]
     run_resource_action @resource.unmigrate!,
-                        _("Successfully unmigrated the resource"),
-                        _("Failed to unmigrate the resource: %{err}")
+                        _("Successfully cleared any resource migration constraints"),
+                        _("Failed to clear any resource migration constraints: %{err}")
   end
 
   def migrate
