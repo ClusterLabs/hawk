@@ -118,9 +118,9 @@ module CibTools
     when 7
       _('not running')
     when 8
-      _('running (master)')
+      _('promoted')
     when 9
-      _('failed (master)')
+      _('failed (promoted)')
     else
       _('other')
     end

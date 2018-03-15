@@ -13,7 +13,7 @@ happen to the resources if the ticket is revoked. The attribute
 * `fence`: Fence the nodes that are running the relevant resources.
 * `stop`: Stop the relevant resources.
 * `freeze`: Do nothing to the relevant resources.
-* `demote`: Demote relevant resources that are running in master mode to slave mode.
+* `demote`: Demote relevant promoted resources.
 
 An example for a ticket constraint would be a primitive resource
 `rsc1` that depends on `ticketA`. If you set `loss-policy="fence"`,

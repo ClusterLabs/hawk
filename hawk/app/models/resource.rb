@@ -99,7 +99,7 @@ class Resource < Record
   end
 
   def unmigrate!
-    Invoker.instance.no_log { |i| i.crm("-F", "resource", "unmigrate", id) }
+    Invoker.instance.no_log { |i| i.crm("-F", "resource", "clear", id) }
   end
 
   def migrate!(node = nil)
