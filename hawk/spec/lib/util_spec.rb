@@ -1,7 +1,7 @@
 require "rails_helper"
 
 unless ENV["TRAVIS"]
-  describe Util do
+  describe Util, :cluster_env do
     describe "#acl_enable?" do
 
       before do
