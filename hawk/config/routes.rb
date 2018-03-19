@@ -153,6 +153,27 @@ Rails.application.routes.draw do
   match 'login' => "sessions#create", via: [ :post, :options], :as => :signin
   get "login/lang/:lang" => "sessions#lang", :as => :login_lang
 
+  # API routes (verion 1)
+  # /api/v1/status
+  # /api/v1/cluster
+  # /api/v1/resources
+  # /api/v1/resources/:id
+  # /api/v1/nodes
+  # /api/v1/nodes/:id
+
+  namespace :api do
+    namespace :v1 do
+      resources :status, only: :index do
+      end
+      resources :cluster, only: :index do
+      end
+      resources :resources, only: [:index, :show] do
+      end
+      resources :nodes, only: [:index, :show] do
+      end
+    end
+  end
+
   if Rails.env.production?
     get '*path' => redirect('/404.html') # if nothing else matches
   end
