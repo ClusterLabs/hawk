@@ -17,7 +17,7 @@ class MastersController < ApplicationController
   end
 
   def new
-    @title = _("Create Multi-state resource")
+    @title = _("Create Promotable resource")
     @master = Master.new
     @master.meta["target-role"] = "Stopped" if @cib.id == "live"
 
@@ -28,7 +28,7 @@ class MastersController < ApplicationController
 
   def create
     normalize_params! params[:master].permit!
-    @title = _("Create Multi-state resource")
+    @title = _("Create Promotable resource")
 
     @master = Master.new params[:master].permit!
 
@@ -37,7 +37,7 @@ class MastersController < ApplicationController
 
     respond_to do |format|
       format.html do
-        flash[:success] = _("Multi-state resource created successfully")
+        flash[:success] = _("Promotable resource created successfully")
         redirect_to edit_cib_master_url(cib_id: @cib.id, id: @master.id)
       end
       format.json do
@@ -58,7 +58,7 @@ class MastersController < ApplicationController
   end
 
   def edit
-    @title = _("Edit Multi-state resource")
+    @title = _("Edit Promotable resource")
 
     respond_to do |format|
       format.html
@@ -67,7 +67,7 @@ class MastersController < ApplicationController
 
   def update
     normalize_params! params[:master].permit!
-    @title = _("Edit Multi-state resource")
+    @title = _("Edit Promotable resource")
 
     if params[:revert]
       return redirect_to edit_cib_master_url(cib_id: @cib.id, id: @master.id)
@@ -78,7 +78,7 @@ class MastersController < ApplicationController
         post_process_for! @master
 
         format.html do
-          flash[:success] = _("Multi-state resource updated successfully")
+          flash[:success] = _("Promotable resource updated successfully")
           redirect_to edit_cib_master_url(cib_id: @cib.id, id: @master.id)
         end
         format.json do
@@ -100,14 +100,14 @@ class MastersController < ApplicationController
       out, err, rc = Invoker.instance.crm("--force", "configure", "delete", @master.id)
       if rc == 0
         format.html do
-          flash[:success] = _("Multi-state resource deleted successfully")
+          flash[:success] = _("Promotable resource deleted successfully")
           flash[:warning] = err unless err.blank?
           redirect_to types_cib_resources_path(cib_id: @cib.id)
         end
         format.json do
           render json: {
             success: true,
-            message: _("Multi-state resource deleted successfully")
+            message: _("Promotable resource deleted successfully")
           }
         end
       else
@@ -134,7 +134,7 @@ class MastersController < ApplicationController
   protected
 
   def set_title
-    @title = _("Multi-state resource")
+    @title = _("Promotable resource")
   end
 
   def set_cib
@@ -147,7 +147,7 @@ class MastersController < ApplicationController
     unless @master
       respond_to do |format|
         format.html do
-          flash[:alert] = _("The multi-state resource does not exist")
+          flash[:alert] = _("The Promotable resource (%s) does not exist") % [params[:id]]
           redirect_to types_cib_resources_path(cib_id: @cib.id)
         end
       end

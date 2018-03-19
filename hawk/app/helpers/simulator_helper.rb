@@ -24,8 +24,8 @@ module SimulatorHelper
       5 => _('installation error'),
       6 => _('configuration error'),
       7 => _('not running'),
-      8 => _('running (master)'),
-      9 => _('failed (master)')
+      8 => _('promoted'),
+      9 => _('failed (promoted)')
     }
   end
 

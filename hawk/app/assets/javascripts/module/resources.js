@@ -320,7 +320,7 @@ $(function() {
         },
         'click .unmigrate': function (e, value, row, index) {
           e.preventDefault();
-          return executeAction($(this), i18n.translate('This will unmigrate the resource %s. Do you want to continue?').fetch(row.id));
+          return executeAction($(this), i18n.translate('This will remove any migration constraints for the resource %s. Do you want to continue?').fetch(row.id));
         },
         'click .cleanup': function (e, value, row, index) {
           e.preventDefault();
@@ -380,7 +380,7 @@ $(function() {
 
         add_operation("menu", Routes.migrate_cib_resource_path($('body').data('cib'), row.id), 'migrate', 'arrows', __('Migrate'));
         if (resourceMigrationConstraints(row.id).length > 0) {
-          add_operation("menu", Routes.unmigrate_cib_resource_path($('body').data('cib'), row.id), 'unmigrate', 'chain-broken', __('Unmigrate'));
+          add_operation("menu", Routes.unmigrate_cib_resource_path($('body').data('cib'), row.id), 'unmigrate', 'chain-broken', __('Clear'));
         }
         add_operation("menu", Routes.cleanup_cib_resource_path($('body').data('cib'), row.id), 'cleanup', 'eraser', __('Cleanup'));
 
@@ -806,7 +806,7 @@ $(function() {
                                         __("Away from current node"));
     }).on('click', '.unmigrate', function(e) {
       e.preventDefault();
-      return executeAction($(this), __('This will unmigrate the tagged resources. Do you want to continue?'));
+      return executeAction($(this), __('This will remove any migration constraints for the tagged resources. Do you want to continue?'));
     }).on('click', '.cleanup', function(e) {
       e.preventDefault();
       return executeNodeSelectionAction($(this),

@@ -17,8 +17,8 @@ module TicketHelper
   def available_ticket_roles
     {
       "Started" => _("Started"),
-      "Master" => _("Master"),
-      "Slave" => _("Slave"),
+      "Master" => _("Promoted"),
+      "Slave" => _("Promotable"),
       "Stopped" => _("Stopped")
     }
   end

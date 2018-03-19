@@ -1,11 +1,12 @@
-### Multi-state
+### Promotable Resource
 
-Multi-state resources are a specialization of clones. They allow the
-instances to be in one of two operating modes (called
-`active/passive`, `primary/secondary`, or `master/slave`).
+Promotable resources are a specialization of clones. They allow the
+instances to be in one of two operating modes. When first starting up,
+the resource is considered `promotable`. A subset of instances can
+subsequently be `promoted`.
 
-To create a multi-state resource, define an ID and select the child
-resource that you want to use for the multi-state resource.
+To create a promotable resource, define an ID and select the child
+resource that you want to use for the promotable resource.
 
-An example of a multi-state resource is `ocf:linbit:drbd` for the
+An example of a promotable resource is `ocf:linbit:drbd` for the
 configuration of DRBD.

@@ -47,7 +47,7 @@
                     <li><div class="node-circle status-danger"></div>Failing resource/node</li>
                     <li><i class="fa fa-wrench" aria-hidden="true"></i>Maintenance mode</li>
                     <li><div class="node-circle status-offline"></div>Offline/standby mode</li>
-                    <li><i class="fa fa-asterisk" aria-hidden="true"></i>Double state (master/slave)</li>
+                    <li><i class="fa fa-asterisk" aria-hidden="true"></i>Promotable clone</li>
                     <li><div class="node-circle status-default"></div>Not working resource/node</li>
                     <li><i class="fa fa-home" aria-hidden="true"></i>Designated coordinator</li>
                   </ul>
@@ -230,9 +230,9 @@
                   {{if (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "started")}}
                     <div class="node-circle status-success" title="Started"></div>
                   {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "slave")}}
-                    <div class="node-circle status-success" title="Started"></div><span class="table-label slave-master">Slave</span>
+                    <div class="node-circle status-success" title="Started"></div><span class="table-label slave-master">Running</span>
                   {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "master")}}
-                    <div class="node-circle status-success" title="Started"></div><span class="table-label slave-master">Master</span>
+                    <div class="node-circle status-success" title="Started"></div><span class="table-label slave-master">Promoted</span>
                   {{else (~nodeWhereTheResourceRun.key === ~node.name) && (~nodeWhereTheResourceRun.prop === "not_running")}}
                     <div class="node-circle status-default"></div>
                   {{/if}}
