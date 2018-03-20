@@ -1,6 +1,6 @@
 module Api
   module V1
-    class NodesController < ActionController::API
+    class NodesController < ApiController
 
       def index
         render json: { testing_routes: "nodes index"}
