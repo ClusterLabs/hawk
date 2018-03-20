@@ -1,6 +1,6 @@
 module Api
   module V1
-    class StatusController < ApplicationController
+    class StatusController < ApiController
       def index
         render json: { testing_routes: "status index"}
       end

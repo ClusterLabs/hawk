@@ -1,6 +1,6 @@
 module Api
   module V1
-    class ResourcesController < ApplicationController
+    class ResourcesController < ApiController
 
       def index
         render json: { testing_routes: "resources index"}
