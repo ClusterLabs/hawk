@@ -846,6 +846,7 @@ class Cib
     for node in @nodes
       @xml.elements.each("cib/status/node_state[@uname='#{node[:uname]}']/lrm/lrm_resources/lrm_resource") do |lrm_resource|
         rsc_id = lrm_resource.attributes['id']
+
         # logic derived somewhat from pacemaker/lib/pengine/unpack.c:unpack_rsc_op()
         state = :unknown
         substate = nil
@@ -907,10 +908,8 @@ class Cib
           # TODO(should): Can we handle this better?  When is it valid for the transition
           # key to not be there?
           expected = rc_code
-          graph_number = nil
           if op.attributes.key?('transition-key')
             k = op.attributes['transition-key'].split(':')
-            graph_number = k[1].to_i
             expected = k[2].to_i
           end
 
@@ -1043,6 +1042,15 @@ class Cib
               state = :started
             end
           end
+
+          # check for guest nodes
+          if state == :master || state == :started
+            on_node = op.attributes['on_node']
+            @nodes.select { |n| n[:uname] == rsc_id }.each do |guest|
+              guest[:guest] = node[:uname]
+              guest[:remote] = false
+            end unless on_node.nil?
+          end
         end
 
 
@@ -1068,42 +1076,22 @@ class Cib
 
     # Now we can patch up the state of remote and guest nodes
     @nodes.each do |n|
-      if n[:remote] && n[:state] != :unclean
-        rsc = @resources_by_id[n[:id]]
-        if rsc && [:master, :slave, :started].include?(rsc[:state])
-          n[:state] = :online
-        elsif rsc && [:failed, :pending].include?(rsc[:state])
-          n[:state] = :unclean
-        else
-          n[:state] = :offline
-        end
-      elsif n[:guest] && n[:state] != :unclean
-        rsc = @resources_by_id[n[:guest]]
-        if rsc && [:master, :slave, :started].include?(rsc[:state])
-          n[:state] = :online
-        elsif rsc && [:failed, :pending].include?(rsc[:state])
-          n[:state] = :unclean
-        else
-          n[:state] = :offline
-        end
+      next if n[:state] == :unclean
+      next unless n[:remote] || n[:guest]
+      rsc = @resources_by_id[n[:id]]
+      if rsc
+        rsc_state = rsc[:state]
+      elsif n[:guest]
+        rsc_state = CibTools.rsc_state_from_lrm_rsc_op(@xml, n[:guest], n[:id])
       end
-    end
-
-    # Now we can patch up the state of containers
-    @nodes.each do |n|
-      if n[:remote] && n[:state] != :unclean
-        @resources_by_id.each do |key, value|
-          if value[:object_type] == "bundle"
-            rsc = value
-            if rsc && [:master, :slave, :started].include?(rsc[:state])
-              n[:state] = :online
-            elsif rsc && [:failed, :pending].include?(rsc[:state])
-              n[:state] = :unclean
-            else
-              n[:state] = :offline
-            end
-          end
-        end
+      # node has a matching resource:
+      # get state from resource.rb
+      if [:master, :slave, :started].include?(rsc_state)
+        n[:state] = :online
+      elsif rsc && [:failed].include?(rsc_state)
+        n[:state] = :unclean
+      elsif rsc_state != :pending
+        n[:state] = :offline
       end
     end
 
