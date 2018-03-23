@@ -126,4 +126,140 @@ module CibTools
     end
   end
   module_function :rc_desc
+
+  def rsc_state_from_lrm_rsc_op(xml, node_uname, rsc_id)
+    xml.elements.each("cib/status/node_state[@uname='#{node_uname}']/lrm/lrm_resources/lrm_resource[@id='#{rsc_id}']") do |lrm_resource|
+      # logic derived somewhat from pacemaker/lib/pengine/unpack.c:unpack_rsc_op()
+      state = :unknown
+      ops = []
+      lrm_resource.elements.each('lrm_rsc_op') do |op|
+        ops << op
+      end
+      ops.sort{|a,b|
+        if a.attributes['call-id'].to_i != -1 && b.attributes['call-id'].to_i != -1
+          # Normal case, neither op is pending, call-id wins
+          a.attributes['call-id'].to_i <=> b.attributes['call-id'].to_i
+        elsif a.attributes['operation'].starts_with?('migrate_') || b.attributes['operation'].starts_with?('migrate_')
+          # Special case for pending migrate ops, beacuse stale ops hang around
+          # in the CIB (see lf#2481).  There's a couple of things to do here:
+          a_key = a.attributes['transition-key'].split(':')
+          b_key = b.attributes['transition-key'].split(':')
+          if a.attributes['transition-key'] == b.attributes['transition-key']
+            # 1) if the transition keys match, newer call-id wins (ensures bogus
+            # pending ops lose to immediately subsequent start/stop).
+            a.attributes['call-id'].to_i <=> b.attributes['call-id'].to_i
+          elsif a_key[3] == b_key[3]
+            # 2) if the transition keys don't match but the transitioner UUIDs
+            # *do* match, the migrate is either old (predating a start/stop that
+            # occurred after a migrate's regular start/stop), or new (the current
+            # pending op), in which case we assume the larger graph number is the
+            # most recent op (this will break if uint64_t ever wraps).
+            a_key[1].to_i <=> b_key[1].to_i
+          else
+            # If the transitioner UUIDs *don't* match (different instances
+            # of crmd), we make the pending op most recent (reverse sort
+            # call id), because experiment seems to indicate this is the
+            # least-worst choice.  Pending migrate ops for a node evaporate
+            # if Pacemaker is stopped on that node, so after a UUID change,
+            # there should be at most one outstanding pending migrate op
+            # that doesn't hit one of the other rules above - if this is
+            # the case, this pending migrate op is what's happening right
+            # *now*
+            b.attributes['call-id'].to_i <=> a.attributes['call-id'].to_i
+          end
+        elsif a.attributes['operation'] == b.attributes['operation'] &&
+              a.attributes['transition-key'] == b.attributes['transition-key']
+          # Same operation, same transition key, and one op is allegedly pending.
+          # This is a lie (see bnc#879034), so make newer call-id win hand have
+          # bogus pending op lose (similar to above special case for migrate ops)
+          a.attributes['call-id'].to_i <=> b.attributes['call-id'].to_i
+        elsif a.attributes['call-id'].to_i == -1
+          1                                         # make pending start/stop op most recent
+        elsif b.attributes['call-id'].to_i == -1
+          -1                                        # likewise
+        else
+          Rails.logger.error "Inexplicable op sort error (this can't happen)"
+          a.attributes['call-id'].to_i <=> b.attributes['call-id'].to_i
+        end
+      }.each do |op|
+        operation = op.attributes['operation']
+        rc_code = op.attributes['rc-code'].to_i
+        # Cope with missing transition key (e.g.: in multi1.xml CIB from pengine/test10)
+        # TODO(should): Can we handle this better?  When is it valid for the transition
+        # key to not be there?
+        expected = rc_code
+        if op.attributes.key?('transition-key')
+          k = op.attributes['transition-key'].split(':')
+          expected = k[2].to_i
+        end
+
+        # skip notifies, deletes, cancels
+        next if operation == 'notify' || operation == 'delete' || operation == 'cancel'
+
+        # skip allegedly pending "last_failure" ops (hack to fix bnc#706755)
+        # TODO(should): see if we can remove this in future
+        next if op.attributes.key?('id') &&
+          op.attributes['id'].end_with?("_last_failure_0") && op.attributes['call-id'].to_i == -1
+
+        if op.attributes['call-id'].to_i == -1
+          # Don't do any further processing for pending ops, but only set
+          # resource state to "pending" if it's not a pending monitor
+          # TODO(should): Look at doing this by "whitelist"? i.e. explicitly
+          # notice pending start, stop, promote, demote, migrate_*..?
+          # This would allow us to say "Staring", "Stopping", etc. in the UI.
+          state = :pending if operation != "monitor"
+          next
+        end
+
+        is_probe = operation == 'monitor' && op.attributes['interval'].to_i == 0
+        # Report failure if rc_code != expected, unless it's a probe,
+        # in which case we only report failure when rc_code is not
+        # 0 (running), 7 (not running) or 8 (running master), i.e. is
+        # some error value.
+        if rc_code != expected && (!is_probe || (rc_code != 0 && rc_code != 7 && rc_code != 8))
+
+          # if on-fail == ignore for this op, pretend it succeeded for the purposes of state calculation
+          ignore_failure = false
+          @xml.elements.each("cib/configuration//primitive[@id='#{rsc_id.split(":")[0]}']/operations/op[@name='#{operation}']") do |e|
+            next unless e.attributes["on-fail"] && e.attributes["on-fail"] == "ignore"
+            # TODO(must): Verify interval is correct
+            ignore_failure = true
+          end
+
+          if ignore_failure
+            rc_code = expected
+          else
+            if operation == "stop"
+              # We have a failed stop, the resource is failed (bnc#879034)
+              state = :failed
+            end
+          end
+        end
+
+        # TODO(should): evil magic numbers!
+        # The operation and RC code tells us the state of the resource on this node
+        # when rc=0, anything other than a stop means we're running
+        # (might be slave after a demote)
+        # TODO(must): verify this demote business
+        case rc_code
+        when 7
+          state = :stopped
+        when 8
+          state = :master
+        when 0
+          if operation == 'stop' || operation == 'migrate_to'
+            state = :stopped
+          elsif operation == 'promote'
+            state = :master
+          else
+            state = :started
+          end
+        end
+      end
+
+      return state
+    end
+    :unknown
+  end
+  module_function :rsc_state_from_lrm_rsc_op
 end
