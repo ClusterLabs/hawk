@@ -59,7 +59,7 @@ in any of the tests.
 . Verify both nodes show online, and all resources show started.
   The Promotable resource should be promoted on one node.
 . Go to https://SERVER:7630/main/status?cib_file=all-resource-types-demoted.xml
-  and verify both instances of the Promotable resources are promotable resources.
+  and verify none of the instances of the Promotable clones are promoted.
 . Go to https://SERVER:7630/main/status?cib_file=all-resource-types-failed-child.xml
   and verify the resource panel expands automatically to show the
   non-running filesys resource, and there is a Failed op reported
@@ -94,7 +94,7 @@ We assume everything is running at the start of this test.
   op disappears.
 . Verify children of the group can be started and stopped, but the
   Move and Drop Relocation Rule ops are not available.
-. Demote the promotable set, verify all instances are promotable resources.
+. Demote the promotable set, verify all instances are no longer promoted.
 . Promote the promotable set, verify one instance becomes promoted.
 . Verify the instances of the promotable set and clone don't have
   op menus.
