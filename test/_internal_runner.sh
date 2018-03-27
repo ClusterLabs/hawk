@@ -15,9 +15,9 @@ export RAILS_ENV=test
 
 echo "**** Install ruby dependencies ****"
 cd /hawk/hawk || exit
-bundle.ruby2.4 config --global silence_root_warning 1
-bundle.ruby2.4 install
+bundle.ruby2.5 config --global silence_root_warning 1
+bundle.ruby2.5 install
 
 
 echo "**** Run tests ****"
-su $oname -c "ruby.ruby2.4 -- ./bin/bundle exec rspec"
+su $oname -c "ruby.ruby2.5 -- ./bin/bundle exec rspec"

@@ -30,9 +30,9 @@
 %define www_tmp  %{_localstatedir}/lib/hawk/tmp
 %define www_log  %{_localstatedir}/log/hawk
 
-%define rb_build_versions ruby24
-%define rb_ruby_abi ruby:2.4.0
-%define rb_ruby_suffix ruby2.4
+%define rb_build_versions ruby25
+%define rb_ruby_abi ruby:2.5.0
+%define rb_ruby_suffix ruby2.5
 
 %define	gname		haclient
 %define	uname		hacluster
