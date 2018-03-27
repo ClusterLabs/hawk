@@ -61,6 +61,6 @@ apply_initial_configuration:
     - group: root
     - mode: 755
 
-salt://utils/configure_bundle_crm.sh:
-  cmd.script:
-    - runas: root
+# salt://utils/configure_bundle_crm.sh:
+#   cmd.script:
+#     - runas: root
