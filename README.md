@@ -93,8 +93,8 @@ maintained as a separate project:
 
 ## Screenshots
 
-![Status](/screens/status.png)
-![Wizard](/screens/wizard.png)
+![Status](/screens/hawk_status.png)
+![Wizard](/screens/hawk_wizards.png)
 
 ## Features
 
