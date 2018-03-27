@@ -27,7 +27,7 @@ cd "$(dirname "$BASE")" || exit
 
 if [ ! -d "$BASE" ]; then
 	echo "*** Clone hawk repository to $BASE..."
-	git clone --recursive git@github.com:ClusterLabs/hawk "$BASE"
+	git clone git@github.com:ClusterLabs/hawk "$BASE"
 fi
 
 cd "$BASE" || exit
