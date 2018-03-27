@@ -75,8 +75,9 @@ Vagrant.configure("2") do |config|
     abort 'Missing bindfs plugin! Please install using vagrant plugin install vagrant-bindfs'
   end
 
-  config.vm.box = "krig/tumbleweed-ha"
-  config.vm.box_version = "1.0.5"
+
+  config.vm.box = "hawk/tumbleweed-ha"
+  config.vm.box_version = "1.1.12"
   config.vm.box_check_update = true
   config.ssh.insert_key = false
   config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_udp: false, mount_options: ["rw", "noatime", "async"]
