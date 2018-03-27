@@ -1,8 +1,8 @@
 # HA Web Konsole (Hawk)
 
 <a href="https://travis-ci.org/ClusterLabs/hawk">![Build Status](https://travis-ci.org/ClusterLabs/hawk.svg?branch=master)</a>
-<a href="https://codeclimate.com/github/ClusterLabs/hawk">![Code Climate](https://codeclimate.com/github/ClusterLabs/hawk/badges/gpa.svg)
-<a href="http://hawk-guide.readthedocs.org/">![Documentation](https://readthedocs.org/projects/hawk-guide/badge/?style=flat)
+<a href="https://codeclimate.com/github/ClusterLabs/hawk">![Code Climate](https://codeclimate.com/github/ClusterLabs/hawk/badges/gpa.svg)</a>
+<a href="http://hawk-guide.readthedocs.org/">![Documentation](https://readthedocs.org/projects/hawk-guide/badge/?style=flat)</a>
 
 Hawk provides a web interface for High Availability clusters managed
 by the Pacemaker cluster resource manager. The current goal of the
@@ -14,32 +14,32 @@ http://hawk-ui.github.io
 
 ## Table of contents
 
-* [Overview](#Overview)
-* [API](#API)
-* [Documentation](#Documentation)
-* [Screenshots](#Screenshots)
-* [Features](#Features)
-  * [Resource Managment](#Resource Managment)
-  * [Multi-cluster Dashboard](#Multi-cluster Dashboard)
-  * [History Explorer](#History Explorer)
-  * [Configuration](#Configuration)
-  * [Wizards](#Wizards)
-  * [View Configuration and Graph](#View Configuration and Graph)
-  * [Command Log](#Command Log)
-  * [Access Control Lists](#Access Control Lists)
-  * [Simulator](#Simulator)
-* [Build Dependencies](#Build Dependencies)
-  * [Dependencies](#Dependencies)
-* [Installation](#Installation)
-  * [Installing the Easy Way](#Installing The Easy Way)
-  * [Packaging Notes](#Packaging Notes)
-* [A Note on SSL Certificates](#A Note on SSL Certificates)
-* [Hacking Hawk](#Hacking Hawk)
-  * [Preconfigured Vagrant environment](#Preconfigured Vagrant environment)
-  * [Web server instances](#Web server instances)
-  * [Puma server configuration](#Puma server configuration)
-  * [Hacking hawk tools](#Hacking hawk tools)
-* [Questions, Feedback, etc.](#Questions, Feedback, etc.)
+* [Overview](#overview)
+* [API](#api)
+* [Documentation](#documentation)
+* [Screenshots](#screenshots)
+* [Features](#features)
+  * [Resource Managment](#resource-managment)
+  * [Multi-cluster Dashboard](#multi-cluster-dashboard)
+  * [History Explorer](#history-explorer)
+  * [Configuration](#configuration)
+  * [Wizards](#wizards)
+  * [View Configuration and Graph](#view-configuration-and-graph)
+  * [Command Log](#command-log)
+  * [Access Control Lists](#access-control-lists)
+  * [Simulator](#simulator)
+* [Build Dependencies](#build-dependencies)
+  * [Dependencies](#dependencies)
+* [Installation](#installation)
+  * [Installing the Easy Way](#installing-the-easy-way)
+  * [Packaging Notes](#packaging-notes)
+* [A Note on SSL Certificates](#a-note-on-ssl-certificates)
+* [Hacking Hawk](#hacking-hawk)
+  * [Preconfigured Vagrant environment](#preconfigured-vagrant-environment)
+  * [Web server instances](#web-server-instances)
+  * [Puma server configuration](#puma-server-configuration)
+  * [Hacking hawk tools](#hacking-hawk-tools)
+* [Questions, Feedback, etc.](#questions-feedback-etc)
 
 ## Overview
 
