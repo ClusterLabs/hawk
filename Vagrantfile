@@ -47,30 +47,12 @@ def configure_machine(machine, idx, roles, memory, cpus)
   machine.vm.network :private_network, ip: "10.13.37.#{10 + idx}"
   #machine.vm.network "public_network", use_dhcp_assigned_default_route: true
 
-  # "PROVISION=chef vagrant up" to use Chef scripts (default salt)
-  if ENV['PROVISION'] == "chef"
-    machine.vm.provision "shell", path: "chef/suse-prepare.sh"
-    machine.vm.provision :chef_solo do |chef|
-      chef.version = "12.21.4"
-      chef.cookbooks_path = ["chef/cookbooks"]
-      chef.roles_path = ["chef/roles"]
-      chef.custom_config_path = "chef/solo.rb"
-      #chef.synced_folder_type = "rsync"
-      roles.each do |role|
-        chef.add_role role
-      end
-    end
-  else
-    machine.vm.provision :salt do |salt|
-      salt.minion_config = "salt/etc/minion"
-      salt.run_highstate = true
-      salt.verbose = true
-      salt.no_minion = true
-      # From github.com/krig/salt-bootstrap
-      salt.bootstrap_script = "salt/bootstrap-salt.sh"
-      #salt.install_type = :git
-      #salt.install_args = "v2017.7"
-    end
+
+  machine.vm.provision :salt do |salt|
+    salt.minion_config = "salt/etc/minion"
+    salt.run_highstate = true
+    salt.verbose = true
+    salt.no_minion = true
   end
 
   machine.vm.provider :virtualbox do |provider, override|
