@@ -13,14 +13,13 @@
     </h3>
   </div>
   <div class="modal-body">
-    <% if @node.remote %>
+    <% if @node.host %>
+      <div class="alert alert-info" role="alert">
+        <%= _("Guest node") + " @ #{@node.host}." %>
+      </div>
+    <% elsif @node.remote %>
       <div class="alert alert-info" role="alert">
         <%= _("Remote node.") %>
-      </div>
-    <% end %>
-    <% if @node.guest %>
-      <div class="alert alert-info" role="alert">
-        <%= _("Guest node hosted by resource #{@node.guest}.") %>
       </div>
     <% end %>
     <% unless @node.fence_history.blank? %>
