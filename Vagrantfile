@@ -77,7 +77,7 @@ Vagrant.configure("2") do |config|
 
 
   config.vm.box = "hawk/tumbleweed-ha"
-  config.vm.box_version = "1.1.12"
+  config.vm.box_version = "1.1.14"
   config.vm.box_check_update = true
   config.ssh.insert_key = false
   config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_udp: false, mount_options: ["rw", "noatime", "async"]
