@@ -25,7 +25,7 @@ class NodesController < ApplicationController
       format.html
       format.json do
         if params[:remote] == "false"
-          render json: @cib.nodes_ordered.select { |n| !n.remote }.to_json
+          render json: @cib.nodes_ordered.reject(&:remote).to_json
         else
           render json: @cib.nodes_ordered.to_json
         end
