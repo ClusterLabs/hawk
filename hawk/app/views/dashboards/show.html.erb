@@ -173,11 +173,10 @@
                 {{if ~node.name === ~root.meta.dc}}
                   <span class="status-icon"><i class="fa fa-home" aria-hidden="true" title="Designated coordinator"></i></span>
                 {{/if}}
-                {{if ~node.remote == true}}
+                {{if ~node.host }}
+                  <span class="status-icon"><i class="fa fa-podcast" aria-hidden="true" title="Guest node @ {{:~node.host}}"></i></span>
+                {{else ~node.remote == true}}
                   <span class="status-icon"><i class="fa fa-podcast" aria-hidden="true" title="Remote node"></i></span>
-                {{/if}}
-                {{if ~node.guest }}
-                  <span class="status-icon"><i class="fa fa-podcast" aria-hidden="true" title="Guest node"></i></span>
                 {{/if}}
                 {{if ~node.maintenance == true}}
                 <span class="status-icon"><i class="fa fa-wrench" aria-hidden="true"></i></span>
