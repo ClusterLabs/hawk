@@ -74,12 +74,10 @@ $(function() {
             }
             var ret = ['<i class="', icon.join(' '), '" title="', title, '"></i>'];
 
-            if (row.remote) {
+            if (row.host) {
+              ret.push(' <i class="fa fa-cloud fa-status-small text-info" title="', __("Guest") + " @ " + row.host, '"></i>');
+            } else if (row.remote) {
               ret.push(' <i class="fa fa-cloud fa-status-small text-info" title="', __("Remote"), '"></i>');
-            }
-
-            if (row.guest) {
-              ret.push(' <i class="fa fa-cloud fa-status-small text-info" title="', __("Guest"), '"></i>');
             }
 
             if (row.fence_history) {
@@ -95,8 +93,8 @@ $(function() {
           switchable: false,
           clickToSelect: true,
           formatter: function(value, row, index) {
-            if (row.guest) {
-              return row.name + " @ " + row.guest;
+            if (row.host) {
+              return row.name + " @ " + row.host;
             } else {
               return row.name;
             }
@@ -125,7 +123,7 @@ $(function() {
             }
           },
           formatter: function(value, row, index) {
-            if (row.guest) {
+            if (row.host) {
               return "";
             }
             if (row.maintenance) {
@@ -179,7 +177,7 @@ $(function() {
             }
           },
           formatter: function(value, row, index) {
-            if (row.guest) {
+            if (row.host) {
               return "";
             }
             if (row.standby) {
@@ -233,10 +231,6 @@ $(function() {
             }
           },
           formatter: function(value, row, index) {
-            if (row.guest) {
-              return '<div class="btn-group" role="group"></div>';
-            }
-
             var operations = [];
             var dropdowns = [];
 
@@ -265,7 +259,9 @@ $(function() {
               dropdowns.push(['<li role="separator" class="divider"></li>'].join(''));
             }
 
-            add_operation("menu", Routes.edit_cib_node_path($('body').data('cib'), row.id), 'edit', 'pencil', __('Edit'));
+            if (!row.remote) {
+              add_operation("menu", Routes.edit_cib_node_path($('body').data('cib'), row.id), 'edit', 'pencil', __('Edit'));
+            }
 
             if (dropdowns.length > 0) {
               operations.push([
@@ -314,7 +310,7 @@ $(function() {
       method: 'get',
       url: Routes.cib_nodes_path(
         $('body').data('cib'),
-        { format: 'json' }
+        { remote: false, format: 'json' }
       ),
       pagination: true,
       pageSize: 25,
