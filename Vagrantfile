@@ -55,6 +55,9 @@ def configure_machine(machine, idx, roles, memory, cpus)
     salt.no_minion = true
   end
 
+  # Change hacluster user's shell from nologin to /bin/bash to avoid issues with bindfs
+  machine.vm.provision "shell", inline: "chsh -s /bin/bash hacluster"
+
   machine.vm.provider :virtualbox do |provider, override|
     provider.memory = memory
     provider.cpus = cpus
