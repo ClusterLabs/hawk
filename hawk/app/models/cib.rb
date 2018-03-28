@@ -216,6 +216,10 @@ class Cib
 
   protected
 
+  def query_remote_node_container(node)
+    @xml.elements.collect("cib/status/node_state/lrm/lrm_resources/lrm_resource[@id=\"#{node}\"]") { |x| x.attributes["container"] }.first
+  end
+
   def get_resource(elem, is_managed = true, maintenance = false, clone_max = nil, is_ms = false)
     res = {
       id: elem.attributes['id'],
@@ -607,7 +611,7 @@ class Cib
         standby: standby,
         maintenance: maintenance,
         remote: remote,
-        guest: nil,
+        host: nil,
         fence: can_fence,
         fence_history: fence_history
       }
@@ -633,7 +637,7 @@ class Cib
           standby: standby,
           maintenance: maintenance,
           remote: true,
-          guest: nil
+          host: nil
         }
       end
     end
@@ -657,7 +661,7 @@ class Cib
           standby: standby,
           maintenance: maintenance,
           remote: false,
-          guest: n.attributes['id']
+          host: n.attributes['id']
         }
       end
     end
@@ -1047,8 +1051,8 @@ class Cib
           if state == :master || state == :started
             on_node = op.attributes['on_node']
             @nodes.select { |n| n[:uname] == rsc_id }.each do |guest|
-              guest[:guest] = node[:uname]
-              guest[:remote] = false
+              guest[:host] = node[:uname]
+              guest[:remote] = true
             end unless on_node.nil?
           end
         end
@@ -1062,9 +1066,9 @@ class Cib
         if @resources_by_id[rsc_id] && @resources_by_id[rsc_id][:instances]
           update_resource_state @resources_by_id[rsc_id], node, instance, state, substate, failed_ops
           # NOTE: Do *not* add any more keys here without adjusting the renamer above
-        else
-          # It's an orphan
-          Rails.logger.debug "Ignoring orphaned resource #{rsc_id + (instance ? ':' + instance : '')}"
+        #else
+        #  # It's an orphan - guest nodes / bundles create a bunch of these
+        #  # Rails.logger.debug "Ignoring orphaned resource #{rsc_id + (instance ? ':' + instance : '')}"
         end
       end
     end
@@ -1077,12 +1081,12 @@ class Cib
     # Now we can patch up the state of remote and guest nodes
     @nodes.each do |n|
       next if n[:state] == :unclean
-      next unless n[:remote] || n[:guest]
+      next unless n[:remote] || n[:host]
       rsc = @resources_by_id[n[:id]]
       if rsc
         rsc_state = rsc[:state]
-      elsif n[:guest]
-        rsc_state = CibTools.rsc_state_from_lrm_rsc_op(@xml, n[:guest], n[:id])
+      elsif n[:host]
+        rsc_state = CibTools.rsc_state_from_lrm_rsc_op(@xml, n[:host], n[:id])
       end
       # node has a matching resource:
       # get state from resource.rb
