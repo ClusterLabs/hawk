@@ -83,15 +83,6 @@ Vagrant.configure("2") do |config|
   config.ssh.insert_key = false
 
 
-
-  # VAGRANT_COMMAND = ARGV[0]
-  # if VAGRANT_COMMAND == "ssh"
-  #   config.ssh.username = "hacluster"
-  #   # config.ssh.password = "linux"
-  # end
-
-
-
   config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_udp: false, mount_options: ["rw", "noatime", "async"]
   config.bindfs.bind_folder "/vagrant", "/vagrant", force_user: "hacluster", force_group: "haclient", perms: "u=rwX:g=rwXD:o=rXD", after: :provision
 
