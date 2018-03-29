@@ -2,9 +2,12 @@ module Api
   module V1
     class ApiController < ActionController::API
       HAWK_CHKPWD = "/usr/sbin/hawk_chkpwd"
+      require 'yaml/store'
       include ActionController::HttpAuthentication::Token::ControllerMethods
 
       before_action :authenticate, except: [ :register ]
+
+      ApiTokenEntry = Struct.new :username, :api_token, :expires
 
       def register
         if authenticate_user_with_pam(params[:username], params[:password])
@@ -47,7 +50,14 @@ module Api
 
         def generate_and_store_token_for_user(username)
           api_token = SecureRandom.hex[0,12]
-          # Store the username, token and expiry date
+          # Store the username, token and expiry date in a yaml store
+	  api_token_entry = ApiTokenEntry.new(username, api_token, 1.month.from_now)
+	  store = YAML::Store.new "api_token_entries.store" 
+	  store.transaction do
+  	    # Save the data to the store.
+  	    store[:api_token_entries] = username 
+            store.abort if # Toek token already existing
+          end
 	  return api_token
         end
 
