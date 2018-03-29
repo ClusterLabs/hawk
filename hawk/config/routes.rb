@@ -163,6 +163,7 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
+      post '/register', to: "api#register"
       resources :status, only: :index do
       end
       resources :cluster, only: :index do
