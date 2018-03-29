@@ -7,8 +7,9 @@ module Api
       before_action :authenticate, except: [ :register ]
 
       def register
-        if authenticate_user(params[:username], params[:password])
-          render json: { "token": '1'}
+        if authenticate_user_with_pam(params[:username], params[:password])
+          token_value = generate_and_store_token_for_user(params[:username])
+          render json: { "token": token_value}
         else
           render_unauthorized
         end
@@ -17,10 +18,10 @@ module Api
       protected
 
         def authenticate
-          authenticate_token || render_unauthorized
+          authenticate_user_with_token || render_unauthorized
         end
 
-        def authenticate_token
+        def authenticate_user_with_token
           authenticate_with_http_token do |token, options|
             true if token == '1'
           end
@@ -31,7 +32,7 @@ module Api
           render json: 'Bad credentials', status: 401
         end
 
-        def authenticate_user(username, password)
+        def authenticate_user_with_pam(username, password)
           # Check the username and password
           return false unless File.exists? HAWK_CHKPWD
           return false unless File.executable? HAWK_CHKPWD
@@ -42,6 +43,12 @@ module Api
             pipe.close_write
           end
           $?.exitstatus == 0
+        end
+
+        def generate_and_store_token_for_user(username)
+          api_token = SecureRandom.hex[0,12]
+          # Store the username, token and expiry date
+	  return api_token
         end
 
     end
