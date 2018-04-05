@@ -26,7 +26,16 @@ module Api
 
         def authenticate_user_with_token
           authenticate_with_http_token do |token, options|
-            true if token == '1'
+            @token_exists = false
+            store = YAML.load_file("api_token_entries.store")
+            store.each do | key, value |
+              @api_token = value["api_token"]
+              # Use secure compare to prevent timing attacks
+              if ActiveSupport::SecurityUtils.secure_compare(token, @api_token)
+                @token_exists = true
+              end
+            end
+            true if @token_exists
           end
         end
 
