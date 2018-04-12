@@ -16,14 +16,14 @@ RSpec.describe Api::V1::ClusterController do
 
 
 
-  context 'with a valid token' do
+  context 'with a fake token' do
     before do
       @request.headers['Authorization'] = "Token token_string"
       get 'index'
     end
 
-    it 'it returns a response with 200 status code' do
-      expect(response).to have_http_status 200
+    it 'it returns a response with 401 status code' do
+      expect(response).to have_http_status 401
     end
   end
 
