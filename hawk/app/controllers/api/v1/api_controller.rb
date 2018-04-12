@@ -26,7 +26,16 @@ module Api
 
         def authenticate_user_with_token
           authenticate_with_http_token do |token, options|
-            true if token == '1'
+            @token_exists = false
+            store = YAML.load_file("api_token_entries.store")
+            store.each do | key, value |
+              @api_token = value["api_token"]
+              # Use secure compare to prevent timing attacks
+              if ActiveSupport::SecurityUtils.secure_compare(token, @api_token)
+                @token_exists = true
+              end
+            end
+            true if @token_exists
           end
         end
 
@@ -51,14 +60,29 @@ module Api
         def generate_and_store_token_for_user(username)
           api_token = SecureRandom.hex[0,12]
           # Store the username, token and expiry date in a yaml store
-	  api_token_entry = ApiTokenEntry.new(username, api_token, 1.month.from_now)
-	  store = YAML::Store.new "api_token_entries.store" 
-	  store.transaction do
-  	    # Save the data to the store.
-  	    store[:api_token_entries] = username 
-            store.abort if # Toek token already existing
+	        api_token_entry = ApiTokenEntry.new(username, api_token, 1.month.from_now)
+          # Check if yaml store already exists and the user already
+          # own's an api token
+          if File.exists? ("#{Rails.root}/api_token_entries.store")
+            store = YAML.load_file("api_token_entries.store")
+            if store != false && store.has_key?(username)
+              return store.dig(username, :api_token)
+            else
+              store = YAML::Store.new "api_token_entries.store"
+              store.transaction do
+                #Save the data to the store.
+                store[username] = api_token_entry
+              end
+              return api_token
+            end
+          else
+            store = YAML::Store.new "api_token_entries.store"
+	          store.transaction do
+  	          #Save the data to the store.
+  	          store[username] = api_token_entry
+            end
+	          return api_token
           end
-	  return api_token
         end
 
     end
