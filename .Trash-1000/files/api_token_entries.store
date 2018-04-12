@@ -1,0 +1,9 @@
+---
+hacluster: !ruby/struct:Api::V1::ApiController::ApiTokenEntry
+  username: hacluster
+  api_token: bf2e832fc17g
+  expires: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2018-05-12 17:03:36.452469572 Z
+    zone: !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
