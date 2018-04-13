@@ -20,6 +20,10 @@ module Api
 
       protected
 
+        def expired(expiry_date)
+          DateTime.now >= expiry_date
+        end
+
         def authenticate
           authenticate_user_with_token || render_unauthorized
         end
@@ -31,8 +35,10 @@ module Api
               store = YAML.load_file("api_token_entries.store")
               store.each do | key, value |
                 @api_token = value["api_token"]
+                @expiry_date = value["expires"]
                 # Use secure compare to prevent timing attacks
-                if ActiveSupport::SecurityUtils.secure_compare(token, @api_token)
+                if ActiveSupport::SecurityUtils.secure_compare(token, @api_token) &&
+                !expired(@expiry_date)
                   @token_exists = true
                 end
               end
