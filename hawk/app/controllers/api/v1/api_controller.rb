@@ -25,31 +25,46 @@ module Api
         end
 
         def authenticate
-          authenticate_user_with_token || render_unauthorized
-        end
-
-        def authenticate_user_with_token
           authenticate_with_http_token do |token, options|
-            @token_exists = false
             if File.exists? ("#{Rails.root}/api_token_entries.store")
               store = YAML.load_file("api_token_entries.store")
               store.each do | key, value |
-                @api_token = value["api_token"]
-                @expiry_date = value["expires"]
-                # Use secure compare to prevent timing attacks
-                if ActiveSupport::SecurityUtils.secure_compare(token, @api_token) &&
-                !expired(@expiry_date)
-                  @token_exists = true
+                api_token = value["api_token"]
+                expiry_date = value["expires"]
+                if api_token && expiry_date && ActiveSupport::SecurityUtils.secure_compare(token, api_token) # Use secure compare to prevent timing attacks
+                  if expired(expiry_date)
+                    render_expired # Prevent access when the token is expired
+                  else
+                    return true # Authenticated successfully
+                  end
+                else
+                  render_invalid_token # Token invalid, or store is invalid
                 end
               end
+            else
+              render_registration_required # The client needs to register (no store is found)
             end
-            return @token_exists
           end
         end
 
         def render_unauthorized
           self.headers["WWW-Authenticate"] = 'Token realm="Application"'
-          render json: 'Bad credentials', status: 401
+          render json: 'bad_credentials', status: 401
+        end
+
+        def render_invalid_token
+          self.headers["WWW-Authenticate"] = 'Token realm="Application"'
+          render json: 'invalid_token', status: 401
+        end
+
+        def render_expired
+          self.headers["WWW-Authenticate"] = 'Token realm="Application"'
+          render json: 'token_expired', status: 401
+        end
+
+        def render_registration_required
+          self.headers["WWW-Authenticate"] = 'Token realm="Application"'
+          render json: 'registration_required', status: 401
         end
 
         def authenticate_user_with_pam(username, password)
