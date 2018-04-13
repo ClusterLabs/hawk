@@ -25,6 +25,10 @@ module Api
         end
 
         def authenticate
+          authenticate_user_with_token || render_missing_token
+        end
+
+        def authenticate_user_with_token
           authenticate_with_http_token do |token, options|
             if File.exists? ("#{Rails.root}/api_token_entries.store")
               store = YAML.load_file("api_token_entries.store")
@@ -38,7 +42,7 @@ module Api
                     return true # Authenticated successfully
                   end
                 else
-                  render_invalid_or_absent_token # Token invalid or absent, or store is invalid (TODO)
+                  render_invalid_token # Token invalid, or store is invalid (TODO)
                 end
               end
             else
@@ -47,14 +51,22 @@ module Api
           end
         end
 
+
+
         def render_unauthorized
           self.headers["WWW-Authenticate"] = 'Token realm="Application"'
           render json: 'bad_credentials', status: 401
         end
 
-        def render_invalid_or_absent_token
+        def render_invalid_token
           self.headers["WWW-Authenticate"] = 'Token realm="Application"'
-          render json: 'invalid_or_absent_token', status: 401
+          render json: 'invalid_token', status: 401
+        end
+
+
+        def render_missing_token
+          self.headers["WWW-Authenticate"] = 'Token realm="Application"'
+          render json: 'missing_token', status: 401
         end
 
         def render_expired
