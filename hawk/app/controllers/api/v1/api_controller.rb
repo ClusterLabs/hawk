@@ -38,7 +38,7 @@ module Api
                     return true # Authenticated successfully
                   end
                 else
-                  render_invalid_token # Token invalid, or store is invalid
+                  render_invalid_or_absent_token # Token invalid or absent, or store is invalid (TODO)
                 end
               end
             else
@@ -52,9 +52,9 @@ module Api
           render json: 'bad_credentials', status: 401
         end
 
-        def render_invalid_token
+        def render_invalid_or_absent_token
           self.headers["WWW-Authenticate"] = 'Token realm="Application"'
-          render json: 'invalid_token', status: 401
+          render json: 'invalid_or_absent_token', status: 401
         end
 
         def render_expired
