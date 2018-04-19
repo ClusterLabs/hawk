@@ -7,7 +7,7 @@ module Api
 
       before_action :authenticate, except: [ :register ]
 
-      ApiTokenEntry = Struct.new :username, :api_token, :expires
+      ApiTokenEntry = Struct.new  "ApiToken" ,:username, :api_token, :expires
 
       def register
         if authenticate_user_with_pam(params[:username], params[:password])
