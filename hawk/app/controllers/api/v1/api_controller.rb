@@ -21,7 +21,7 @@ module Api
       protected
 
         def expired(expiry_date)
-          DateTime.now >= expiry_date
+          DateTime.now.to_i >= expiry_date
         end
 
         def authenticate
@@ -94,7 +94,7 @@ module Api
 
         def generate_and_store_token_for_user(username)
           api_token = SecureRandom.hex[0,12]
-          expiry_date = 1.month.from_now
+          expiry_date = 1.month.from_now.to_i
           # Store the username, token and expiry date in a yaml store
           api_token_entry = ApiTokenEntry.new(username, api_token, expiry_date)
           # Check if yaml store already exists and the user already
