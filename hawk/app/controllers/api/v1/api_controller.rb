@@ -11,8 +11,8 @@ module Api
 
       def register
         if authenticate_user_with_pam(params[:username], params[:password])
-          token_value = generate_and_store_token_for_user(params[:username])
-          render json: { "token": token_value}
+          token_and_expiry_values = generate_and_store_token_for_user(params[:username])
+          render json: token_and_expiry_values.to_json
         else
           render_unauthorized
         end
@@ -94,8 +94,9 @@ module Api
 
         def generate_and_store_token_for_user(username)
           api_token = SecureRandom.hex[0,12]
+          expiry_date = 1.month.from_now
           # Store the username, token and expiry date in a yaml store
-	        api_token_entry = ApiTokenEntry.new(username, api_token, 1.month.from_now)
+          api_token_entry = ApiTokenEntry.new(username, api_token, expiry_date)
           # Check if yaml store already exists and the user already
           # own's an api token
           if File.exists? ("#{Rails.root}/api_token_entries.store")
@@ -116,7 +117,7 @@ module Api
   	          #Save the data to the store.
   	          store[username] = api_token_entry
             end
-	          return api_token
+	          return {api_token: api_token, expiry_date: expiry_date}
           end
         end
 
