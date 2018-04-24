@@ -20,7 +20,7 @@ module Api
 
       protected
 
-        def expired(expiry_date)
+        def expired?(expiry_date)
           DateTime.now.to_i >= expiry_date
         end
 
