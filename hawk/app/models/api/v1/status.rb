@@ -6,7 +6,19 @@ module Api
   module V1
     class Status < Api
 
+      attr_accessor :state
+      attr_accessor :events
+
       def initialize(user="hacluster")
+        @cib = get_cib(user)
+        @events = []
+        @state = "unknown"
+        @state = "offline" if cib.mode == :offline
+        @state = "online" if cib.mode == :online
+      end
+
+
+      def get_cib(user)
         @mode = :none
         @xml = nil
         cmd = "/usr/sbin/cibadmin"
@@ -55,6 +67,24 @@ module Api
         @xml if @mode == :online
       end
 
+      def root
+        {
+          version: version,
+          cluster: cluster,
+          tasks: @tasks,
+          nodes: nodes,
+          resources: resources,
+          tickets: tickets
+        }
+      end
+
+      def cluster
+        {
+          state: @state,
+          events: @events
+        }
+      end
+
       def nodes
         return [] if @xml.nil?
         @xml.elements.collect("/cib/configuration/nodes/node") do |xml|
@@ -68,6 +98,22 @@ module Api
           ResourceState.new @xml, xml.attributes['id']
         end
       end
+
+    # TODO:
+    # Get list of tickets and ticket status
+    # from booth
+    # def tickets
+    #   return [] if @xml.nil?
+    #   []
+    # end
+
+    def error(message)
+      @events << {
+        message: message,
+        type: "error",
+        id: []
+      }
+    end
 
     end
   end
