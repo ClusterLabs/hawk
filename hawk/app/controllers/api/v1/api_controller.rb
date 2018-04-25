@@ -33,6 +33,7 @@ module Api
             if File.exists? ("#{Rails.root}/api_token_entries.store")
               store = YAML.load_file("api_token_entries.store")
               store.each do | key, value |
+                @current_user = value["username"]
                 api_token = value["api_token"]
                 expiry_date = value["expires"]
                 if api_token && expiry_date && ActiveSupport::SecurityUtils.secure_compare(token, api_token) # Use secure compare to prevent timing attacks
