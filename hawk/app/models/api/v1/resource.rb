@@ -4,7 +4,7 @@ require 'rexml/xpath' unless defined? REXML::XPath
 
 module Api
   module V1
-    class Resource < Api
+    class Resource
 
       def initialize(root, id)
         @id = id

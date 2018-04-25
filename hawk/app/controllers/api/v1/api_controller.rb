@@ -37,7 +37,7 @@ module Api
                 api_token = value["api_token"]
                 expiry_date = value["expires"]
                 if api_token && expiry_date && ActiveSupport::SecurityUtils.secure_compare(token, api_token) # Use secure compare to prevent timing attacks
-                  if expired(expiry_date)
+                  if expired?(expiry_date)
                     render_expired # Prevent access when the token is expired
                   else
                     return true # Authenticated successfully

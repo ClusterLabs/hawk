@@ -4,17 +4,17 @@ require 'rexml/xpath' unless defined? REXML::XPath
 
 module Api
   module V1
-    class Status < Api
+    class Status
 
       attr_accessor :state
       attr_accessor :events
 
       def initialize(user="hacluster")
-        @cib = get_cib(user)
+        get_cib(user)
         @events = []
         @state = "unknown"
-        @state = "offline" if cib.mode == :offline
-        @state = "online" if cib.mode == :online
+        @state = "offline" if mode == :offline
+        @state = "online" if mode == :online
       end
 
 
@@ -71,10 +71,8 @@ module Api
         {
           version: version,
           cluster: cluster,
-          tasks: @tasks,
           nodes: nodes,
           resources: resources,
-          tickets: tickets
         }
       end
 
@@ -88,15 +86,15 @@ module Api
       def nodes
         return [] if @xml.nil?
         @xml.elements.collect("/cib/configuration/nodes/node") do |xml|
-          NodeState.new @xml, xml.attributes['uname'] || xml.attributes['id']
+          Node.new @xml, xml.attributes['uname'] || xml.attributes['id']
         end
       end
 
       def resources
-        return [] if @xml.nil?
-        @xml.elements.collect("/cib/configuration//primitive") do |xml|
-          ResourceState.new @xml, xml.attributes['id']
-        end
+        return [] # if @xml.nil?
+        # @xml.elements.collect("/cib/configuration//primitive") do |xml|
+        #   Resource.new @xml, xml.attributes['id']
+        # end
       end
 
     # TODO:
