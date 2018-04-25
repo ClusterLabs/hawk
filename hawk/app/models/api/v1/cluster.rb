@@ -4,7 +4,7 @@ require 'rexml/xpath' unless defined? REXML::XPath
 
 module Api
   module V1
-    class Cluster < Api
+    class Cluster
 
       def initialize(user="hacluster")
         @mode = :none
