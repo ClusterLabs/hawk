@@ -5,6 +5,7 @@ RSpec.describe Api::V1::ResourcesController do
 
   context 'without a valid token' do
     before do
+      pass_fake_yaml_store
       @request.headers['Authorization'] = ""
       get 'index'
     end
@@ -18,6 +19,7 @@ RSpec.describe Api::V1::ResourcesController do
 
   context 'with a fake token' do
     before do
+      pass_fake_yaml_store
       @request.headers['Authorization'] = "Token token_string"
       get 'index'
     end
@@ -31,8 +33,7 @@ RSpec.describe Api::V1::ResourcesController do
 
   context 'with a valid token' do
     before do
-      fake_yaml_store = YAML.load_file(file_fixture("api_token_dummy.store"))
-      allow(File).to receive(:open).and_return(fake_yaml_store)
+      pass_fake_yaml_store
       @request.headers['Authorization'] = "Token a123456789"
       get 'index'
     end
