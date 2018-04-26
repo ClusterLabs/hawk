@@ -26,6 +26,7 @@ module Api
         :local
       end
 
+      # Implicite conversion to hash
       def to_hash
         { id: id, state: state, type: type }
       end

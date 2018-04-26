@@ -44,6 +44,7 @@ module Api
          @instances
       end
 
+      # Implicite conversion to hash
       def to_hash
         { id: id, type: type, state: state, maintenance: maintenance, location: location }
       end
