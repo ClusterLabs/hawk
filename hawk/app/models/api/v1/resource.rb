@@ -10,7 +10,7 @@ module Api
           node_state = lrm_resource.parent.parent.parent
           {
             node: node_state.attributes["uname"] || node_state.attributes["id"],
-            state: CibTools.determine_resource_state(lrm_resource)
+            state: CibTools.rsc_state_from_lrm_rsc_op(root, node_state.attributes["uname"] || node_state.attributes["id"], @id)
           }
         end
       end
