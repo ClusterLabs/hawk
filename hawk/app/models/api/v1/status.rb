@@ -29,25 +29,30 @@ module Api
 
       def root
         {
-          cluster: cluster,
+          state: state,
           resources: resources,
           nodes: nodes,
-          errors: errors
         }
       end
 
-      def cluster
+      def state
         {
           version: version,
           state: @state
         }
       end
 
+      def cluster
+        return [] if @xml.nil?
+        Cluster.new @xml
+      end
+
+
       def resources
-        return [] # if @xml.nil?
-        # @xml.elements.collect("/cib/configuration//primitive") do |xml|
-        #   Resource.new @xml, xml.attributes['id']
-        # end
+        return [] if @xml.nil?
+        @xml.elements.collect("/cib/configuration//primitive") do |xml|
+          Resource.new @xml, xml.attributes['id']
+        end
       end
 
       def nodes
@@ -55,18 +60,6 @@ module Api
         @xml.elements.collect("/cib/configuration/nodes/node") do |xml|
           Node.new @xml, xml.attributes['uname'] || xml.attributes['id']
         end
-      end
-
-      def errors
-        @errors ||= []
-      end
-
-      def error(message)
-        @errors << {
-          message: message,
-          type: "error",
-          id: []
-        }
       end
 
     end
