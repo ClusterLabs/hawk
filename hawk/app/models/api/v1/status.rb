@@ -27,7 +27,7 @@ module Api
         @xml if @mode == :online
       end
 
-      def to_hash
+      def root
         {
           cluster: cluster,
           resources: resources,
