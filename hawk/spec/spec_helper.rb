@@ -42,7 +42,7 @@ RSpec.configure do |config|
     mocks.verify_partial_doubles = true
   end
 
-  # Include the api helpers to all of our api rspecs
+  # Include the api helpers to all of our specs
   config.include Helpers::ApiHelpers
 
 # The settings below are suggested to provide a good initial experience

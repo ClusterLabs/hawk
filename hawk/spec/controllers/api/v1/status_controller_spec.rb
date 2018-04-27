@@ -31,7 +31,7 @@ RSpec.describe Api::V1::StatusController do
 
 
 
-  context 'with a valid token' do
+  context 'with a valid token', :cluster_env do
     before do
       pass_fake_yaml_store
       @request.headers['Authorization'] = "Token a123456789"
