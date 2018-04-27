@@ -1,2 +1,8 @@
 --color
 --require spec_helper
+
+# Tags
+#   cluster_env: This test needs a cluster environment
+
+# Skip all tests tagged with "cluster_env"
+--tag ~cluster_env
