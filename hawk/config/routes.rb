@@ -4,17 +4,19 @@
 Rails.application.routes.draw do
   root to: "pages#index"
 
+  regex_safe_id = /[^\^\/\[\]"<>#%{}|\\~`;?:@=&]+/
+
   resources :cib, only: [] do
     get "/", via: [:get, :post, :options], to: "cib#show", as: ""
     match "/", via: [:options], to: "cib#show"
     match "/apply", as: :apply, to: 'cib#apply', via: [:get, :post]
-    get "/ops/:id", to: "cib#ops", as: :ops
+    get "/ops/:id", to: "cib#ops", as: :ops, constraints: {id: regex_safe_id }
 
     get "/fencing", to: "fencing#index"
     get "/fencing/edit", to: "fencing#edit"
     post "/fencing/edit", to: 'fencing#edit', defaults: { format: 'json' }
 
-    resources :nodes do
+    resources :nodes, constraints: {id: regex_safe_id } do
       member do
         get :online
         get :standby
@@ -26,7 +28,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :resources do
+    resources :resources, constraints: {id: regex_safe_id } do
       member do
         get :start
         get :stop
@@ -48,18 +50,18 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :primitives do
+    resources :primitives, constraints: {id: regex_safe_id } do
       member do
         get :copy
       end
     end
-    resources :templates do
+    resources :templates, constraints: {id: regex_safe_id } do
       member do
         get :copy
       end
     end
 
-    resources :constraints do
+    resources :constraints, constraints: {id: regex_safe_id } do
       member do
         get :events
         get :edit_name
@@ -72,25 +74,25 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :tickets do
+    resources :tickets, constraints: {id: regex_safe_id } do
       collection do
         get 'grant/:ticket', as: :grant, to: 'tickets#grant'
         get 'revoke/:ticket', as: :revoke, to: 'tickets#revoke'
       end
     end
 
-    resources :clones
-    resources :masters
-    resources :locations
-    resources :colocations
-    resources :orders
-    resources :groups
-    resources :roles
-    resources :users
-    resources :tags
-    resources :alerts
+    resources :clones, constraints: {id: regex_safe_id }
+    resources :masters, constraints: {id: regex_safe_id }
+    resources :locations, constraints: {id: regex_safe_id }
+    resources :colocations, constraints: {id: regex_safe_id }
+    resources :orders, constraints: {id: regex_safe_id }
+    resources :groups, constraints: {id: regex_safe_id }
+    resources :roles, constraints: {id: regex_safe_id }
+    resources :users, constraints: {id: regex_safe_id }
+    resources :tags, constraints: {id: regex_safe_id }
+    resources :alerts, constraints: {id: regex_safe_id }
 
-    resources :wizards do
+    resources :wizards, constraints: {id: regex_safe_id } do
       member do
         post :submit
       end
@@ -112,7 +114,7 @@ Rails.application.routes.draw do
     resources :commands, only: [:index]
   end
 
-  resources :reports, only: [:index, :destroy, :show] do
+  resources :reports, only: [:index, :destroy, :show], constraints: {id: regex_safe_id } do
     collection do
       post :generate
       post :upload
@@ -134,7 +136,7 @@ Rails.application.routes.draw do
 
   post '/sim/run', as: :sim_run, to: 'simulator#run', defaults: { format: 'json' }
   get '/sim/result', as: :sim_result, to: 'simulator#result', defaults: { format: 'json' }
-  get '/sim/intervals/:id', as: :sim_intervals, to: 'simulator#intervals', defaults: { format: 'json' }
+  get '/sim/intervals/:id', as: :sim_intervals, to: 'simulator#intervals', defaults: { format: 'json' }, constraints: {id: regex_safe_id }
   get '/sim/help', as: :sim_help, to: 'simulator#help'
 
   resource :dashboard, only: [:show, :add, :remove] do
@@ -168,9 +170,9 @@ Rails.application.routes.draw do
       end
       resources :cluster, only: :index do
       end
-      resources :resources, only: [:index, :show] do
+      resources :resources, only: [:index, :show], constraints: {id: regex_safe_id } do
       end
-      resources :nodes, only: [:index, :show] do
+      resources :nodes, only: [:index, :show], constraints: {id: regex_safe_id } do
       end
     end
   end
