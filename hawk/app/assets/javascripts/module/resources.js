@@ -711,7 +711,7 @@ $(function() {
         events: {
           'click .delete': function (e, value, row, index) {
             e.preventDefault();
-            $.hawkDeleteOperation(row.id, [$(this).attr('href'), ".json"].join(""));
+            $.hawkDeleteOperation(row.id, $(this).attr('href'));
             return false;
           }
         },
