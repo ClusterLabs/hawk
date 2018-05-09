@@ -48,8 +48,7 @@ $(function() {
                 },
                 url: Routes.cib_location_path(
                   $('body').data('cib'),
-                  row.id,
-                  { format: 'json' }
+                  row.id
                 ),
 
                 success: function(data) {
