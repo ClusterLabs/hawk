@@ -105,9 +105,8 @@ $(function() {
                   _method: 'delete'
                 },
                 url: [
-                  $self.attr('href'),
-                  ".json"
-                ].join(""),
+                  $self.attr('href')
+                ],
 
                 success: function(data) {
                   if (data.success) {

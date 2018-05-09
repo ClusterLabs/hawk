@@ -50,8 +50,7 @@ $(function() {
                 },
                 url: Routes.cib_alert_path(
                   $('body').data('cib'),
-                  row.id,
-                  { format: 'json' }
+                  row.id
                 ),
 
                 success: function(data) {

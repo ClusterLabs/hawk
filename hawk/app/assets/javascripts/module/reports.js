@@ -318,8 +318,7 @@ $(function() {
                     _method: 'delete'
                   },
                   url: Routes.report_path(
-                    row.id,
-                    { format: 'json' }
+                    row.id
                   ),
 
                   success: function(data) {
