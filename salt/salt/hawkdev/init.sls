@@ -40,9 +40,6 @@ apply_initial_configuration:
       - file: /root/initial.crm
       - cmd: "salt://utils/configure_drbd.sh"
 
-# salt://utils/configure_bundle_crm.sh:
-#   cmd.script:
-#     - runas: root
 
 /etc/systemd/system/hawk-development.service:
   file.managed:
