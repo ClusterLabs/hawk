@@ -21,6 +21,6 @@ Environment="HAWK_BIND=unix:///vagrant/hawk/tmp/hawk.sock"
 # Run ExecStartPre with root-permissions
 PermissionsStartOnly=true
 ExecStartPre=/vagrant/hawk/bin/generate-ssl-cert
-ExecStart=/usr/bin/puma.ruby2.5 -C /vagrant/hawk/config/puma.rb
-ExecStop=/usr/bin/pumactl.ruby2.5 -S /vagrant/hawk/tmp/pids/puma.state stop
-ExecReload=/usr/bin/pumactl.ruby2.5 -S /vagrant/hawk/tmp/pids/puma.state restart
+ExecStart=/usr/bin/puma.ruby2.1 -C /vagrant/hawk/config/puma.rb
+ExecStop=/usr/bin/pumactl.ruby2.1 -S /vagrant/hawk/tmp/pids/puma.state stop
+ExecReload=/usr/bin/pumactl.ruby2.1 -S /vagrant/hawk/tmp/pids/puma.state restart
