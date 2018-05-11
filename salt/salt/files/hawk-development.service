@@ -1,0 +1,20 @@
+[Unit]
+Description=HA Web Konsole Development
+Wants=hawk-dev-backend.service
+After=network.target hawk-dev-backend.service
+PropagatesReloadTo=hawk-dev-backend.service
+
+[Service]
+Type=simple
+User=hacluster
+Group=haclient
+WorkingDirectory=/vagrant/hawk
+Environment="HAWK_ENV=development"
+
+# Run ExecStartPre with root-permissions
+PermissionsStartOnly=true
+ExecStartPre=/vagrant/hawk/bin/generate-ssl-cert
+ExecStart=/usr/sbin/hawk-apiserver -key /etc/hawk/hawk.key -cert /etc/hawk/hawk.pem -port 3000 -config /vagrant/scripts/dev-server.json
+
+[Install]
+WantedBy=multi-user.target

@@ -47,15 +47,11 @@ def configure_machine(machine, idx, roles, memory)
   machine.vm.network :private_network, ip: "10.13.37.#{10 + idx}"
   #machine.vm.network "public_network", use_dhcp_assigned_default_route: true
 
-  machine.vm.provision "shell", path: "chef/suse-prepare.sh"
-  machine.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = ["chef/cookbooks"]
-    chef.roles_path = ["chef/roles"]
-    chef.custom_config_path = "chef/solo.rb"
-    #chef.synced_folder_type = "rsync"
-    roles.each do |role|
-      chef.add_role role
-    end
+  machine.vm.provision :salt do |salt|
+    salt.minion_config = "salt/etc/minion"
+    salt.run_highstate = true
+    salt.verbose = true
+    salt.no_minion = true
   end
 
   machine.vm.provider :virtualbox do |provider, override|
@@ -78,7 +74,7 @@ Vagrant.configure("2") do |config|
     abort 'Missing bindfs plugin! Please install using vagrant plugin install vagrant-bindfs'
   end
 
-  config.vm.box = "opensuse/openSUSE-42.1-x86_64"
+  config.vm.box = "hawk/leap-42.3-ha"
   config.vm.box_check_update = true
   config.ssh.insert_key = false
   config.vm.synced_folder ".", "/vagrant", type: "nfs", mount_options: ["rw", "noatime", "async"]
