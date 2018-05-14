@@ -28,6 +28,7 @@ class ReportsController < ApplicationController
       @hb_report = HbReport.new make_report_name(from_time, to_time)
       @hb_report.generate(from_time, to_time)
       redirect_to reports_url
+      return
     end
 
     @hb_report = HbReport.new
