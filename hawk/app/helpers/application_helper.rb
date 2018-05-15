@@ -245,8 +245,8 @@ and the user of SBD on shared storage as a fencing mechanism.
     if Rails.configuration.x.hawk_is_sles
       [
         { icon: "bug", style: "danger", title: _("File a Bug Report"), desc: _("Report a bug or request a feature!"), url: "https://bugzilla.suse.com/enter_bug.cgi?classification=SUSE%20Linux%20Enterprise%20High%20Availability%20Extension" },
-        { icon: "newspaper-o", style: "success", title: _("Release Notes"), desc: _("Read the release notes for the SUSE High Availability Extension."), url: "https://www.suse.com/releasenotes/x86_64/SLE-HA/12-SP2/" },
-        { icon: "book", style: "success", title: _("Online Documentation"), desc: _("Read the most up-to-date documentation at the suse.com website."), url: "https://www.suse.com/documentation/sle-ha-12/" },
+        { icon: "newspaper-o", style: "success", title: _("Release Notes"), desc: _("Read the release notes for the SUSE High Availability Extension."), url: "https://www.suse.com/releasenotes/x86_64/SLE-HA/15/" },
+        { icon: "book", style: "success", title: _("Online Documentation"), desc: _("Read the most up-to-date documentation at the suse.com website."), url: "https://www.suse.com/documentation/sle-ha-15/" },
       ]
     else
       [
