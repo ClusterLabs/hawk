@@ -196,7 +196,7 @@ class ReportsController < ApplicationController
     cib = @report.cib(@hb_report, @transition[:path])
     respond_to do |format|
       format.html do
-        render text: ['<pre><code class="hljs crmsh">', cib, '</code></pre>'].join("")
+        render html: ['<pre><code class="hljs crmsh">', cib, '</code></pre>'].join("").html_safe
       end
       format.json do
         render json: {cib: cib}
@@ -212,7 +212,7 @@ class ReportsController < ApplicationController
         unless logs_err.empty?
           txt.concat(['<pre>', history_text_markup(logs_err), '</pre>'])
         end
-        render text: txt.join("")
+        render html: txt.join("").html_safe
       end
       format.json do
         @transition[:logs] = logs
@@ -234,7 +234,7 @@ class ReportsController < ApplicationController
 
     respond_to do |format|
       format.html do
-        render text: @transition[:diff]
+        render html: @transition[:diff].html_safe
       end
       format.json do
         render json: @transition
