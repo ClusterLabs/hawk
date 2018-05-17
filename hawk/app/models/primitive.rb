@@ -34,9 +34,11 @@ class Primitive < Template
     required_params = []
     res = Hash.from_xml(Util.get_meta_data(agent_name))
     param_res = res["resource_agent"]["parameters"]["parameter"]
-    param_res.each do |items|
-      if items.key?("required") && items["required"] == "1"
-        required_params << items["name"]
+    if param_res
+      param_res.each do |items|
+        if items.key?("required") && items["required"] == "1"
+          required_params << items["name"]
+        end
       end
     end
 
@@ -85,10 +87,6 @@ class Primitive < Template
     end
   end
 
-  def agent_name
-    return super if template.blank?
-    "@#{template}"
-  end
 
   protected
 
