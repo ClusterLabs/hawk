@@ -8,6 +8,9 @@ class Constraint < Record
   attribute :object_type, Symbol
 
   validate do |record|
+    if record.is_a? Colocation
+      colocation_validation(record)
+    end
     # to validate a new record:
     # try making the shell form and running verify;commit in a temporary shadow cib in crm
     # if it fails, report errors
@@ -19,6 +22,37 @@ class Constraint < Record
       err.lines.each do |l|
         record.errors.add :base, l[7..-1] if l.start_with? "ERROR:"
       end if rc != 0
+    end
+  end
+
+  def colocation_validation(record)
+    record.score.strip!
+
+    unless [
+      "mandatory",
+      "advisory",
+      "inf",
+      "-inf",
+      "infinity",
+      "-infinity"
+    ].include? record.score.downcase
+      unless record.score.match(/^-?[0-9]+$/)
+        errors.add :score, _("Invalid score value")
+      end
+    end
+
+    if record.score.to_s.strip.empty?
+      errors.add :score, _("Score is required")
+    end
+
+    unless record.node_attr.blank?
+      unless record.node_attr.match(/\A[a-zA-Z0-9_-]+\z/)
+        errors.add :node_attr, _("Invalid node attribute")
+      end
+    end
+
+    if record.resources.length < 2
+      errors.add :base, _("Constraint must consist of at least two separate resources")
     end
   end
 
