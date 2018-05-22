@@ -347,7 +347,7 @@ module Util
         '-t', '5',
         '-Ql',
         '--xpath',
-        '/cib[@validate-with]'.shellescape).lines.first.to_s.match(/validate-with=\"pacemaker-([0-9.]+)\"/)
+        '/cib[@validate-with]').lines.first.to_s.match(/validate-with=\"pacemaker-([0-9.]+)\"/)
       return m.captures[0].to_f if m
       2.0
     end
