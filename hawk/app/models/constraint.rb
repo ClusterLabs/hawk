@@ -2,10 +2,13 @@
 # See COPYING for license.
 
 class Constraint < Record
+  include ActiveModel::Validations
   class CommandError < StandardError
   end
 
   attribute :object_type, Symbol
+  validates_with ColocationValidator, if: Proc.new { |a| a.is_a? Colocation }
+  validates_with OrderValidator, if: Proc.new { |a| a.is_a? Order } 
 
   validate do |record|
     # to validate a new record:
