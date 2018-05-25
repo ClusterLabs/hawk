@@ -22,6 +22,7 @@ class Colocation < Constraint
     end
   end
 
+
   protected
 
   def shell_syntax
