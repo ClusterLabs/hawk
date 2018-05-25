@@ -6,31 +6,6 @@ class Order < Constraint
   attribute :symmetrical, Boolean
   attribute :resources, Array[Hash]
 
-  validates :score,
-    presence: { message: _("Score is required") }
-
-  validate do |record|
-    record.score.strip!
-
-    unless [
-      "mandatory",
-      "optional",
-      "serialize",
-      "inf",
-      "-inf",
-      "infinity",
-      "-infinity"
-    ].include? record.score.downcase
-      unless record.score.match(/^-?[0-9]+$/)
-        errors.add :score, _("Invalid score value")
-      end
-    end
-
-    if record.resources.length < 2
-      errors.add :base, _("Constraint must consist of at least two separate resources")
-    end
-  end
-
   def resources
     @resources ||= []
   end
