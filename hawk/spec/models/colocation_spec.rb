@@ -7,6 +7,7 @@ describe Colocation do
       record.score = ""
       record.valid? #run validation
       record.errors[:score].should include("Score is required")
+      record.errors[:score].should_not include("Invalid score value")
     end
     it 'with invalid score' do
       record = Colocation.new
@@ -55,9 +56,17 @@ describe Colocation do
     it 'with ID' do
       record = Colocation.new
       record.id = "foo"
-      record.score = "infinity"
       record.valid?
       record.errors[:id].should_not include("ID is required")
+      record.errors[:score].should include("Score is required")
     end
+    it 'provide everything' do
+      record = Colocation.new
+      record.id = "foo"
+      record.score = "infinity"
+      record.resources = [{"resources"=>["test01"], "sequential"=>"true", "action"=>"Started"},
+      {"resources"=>["test02"], "sequential"=>"true", "action"=>"Started"}]
+      expect(record.errors.blank?).to eq(true)
+    end    
   end
 end
