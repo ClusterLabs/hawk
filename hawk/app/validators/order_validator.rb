@@ -1,22 +1,22 @@
 class OrderValidator < ActiveModel::Validator
     
   def validate(record)
-    record.score.strip!
-    unless [
-      "mandatory",
-      "optional",
-      "serialize",
-      "inf",
-      "-inf",
-      "infinity",
-      "-infinity"
-    ].include? record.score.downcase
-      unless record.score.match(/^-?[0-9]+$/)
-        record.errors[:score] << _("Invalid score value")
+    unless record.score.blank?
+      record.score.strip!
+      unless [
+        "mandatory",
+        "optional",
+        "serialize",
+        "inf",
+        "-inf",
+        "infinity",
+        "-infinity"
+      ].include? record.score.downcase
+        unless record.score.match(/^-?[0-9]+$/)
+          record.errors[:score] << _("Invalid score value")
+        end
       end
-    end
-
-    if record.score.to_s.strip.empty?
+    else
       record.errors[:score] << _("Score is required")
     end
 
