@@ -6,36 +6,6 @@ class Colocation < Constraint
   attribute :node_attr, String
   attribute :resources, Array[Hash]
 
-  validates :score,
-    presence: { message: _("Score is required") }
-
-  validate do |record|
-    record.score.strip!
-
-    unless [
-      "mandatory",
-      "advisory",
-      "inf",
-      "-inf",
-      "infinity",
-      "-infinity"
-    ].include? record.score.downcase
-      unless record.score.match(/^-?[0-9]+$/)
-        errors.add :score, _("Invalid score value")
-      end
-    end
-
-    unless record.node_attr.blank?
-      unless record.node_attr.match(/\A[a-zA-Z0-9_-]+\z/)
-        errors.add :node_attr, _("Invalid node attribute")
-      end
-    end
-
-    if record.resources.length < 2
-      errors.add :base, _("Constraint must consist of at least two separate resources")
-    end
-  end
-
   def resources
     @resources ||= []
   end
@@ -51,6 +21,7 @@ class Colocation < Constraint
       end
     end
   end
+
 
   protected
 
