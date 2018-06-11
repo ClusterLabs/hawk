@@ -10,6 +10,7 @@ module CibTools
 
   # Roughly equivalent to crm_element_value() in Pacemaker
   def get_xml_attr(elem, name, default = nil)
+    return nil if elem.nil?
     Util.unstring(elem.attributes[name], default)
   end
   module_function :get_xml_attr
