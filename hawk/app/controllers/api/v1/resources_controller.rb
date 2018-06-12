@@ -7,9 +7,11 @@ module Api
         render json: @status.resources.to_json
       end
 
-      # def show
-      #   render json: { testing_routes: "resources show"}
-      # end
+      def show
+        @status.resources.each do |res_inst|
+          render json: res_inst.to_json if params[:id] == res_inst.id
+        end
+      end
 
       private
 
