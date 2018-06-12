@@ -38,17 +38,8 @@ module Api
       end
 
        # Implicite conversion to hash
-       def to_hash
-        {
-          cluster_infrastructure: cluster[:cluster_infrastructure],
-          dc_version: cluster[:dc_version],
-          stonith_enabled: cluster[:stonith_enabled],
-          symmetric_cluster: cluster[:symmetric_cluster],
-          no_quorum_policy: cluster[:no_quorum_policy],
-          epoch: cluster[:epoch],
-          dc: cluster[:dc],
-          host: cluster[:host]
-        }
+      def to_hash
+        cluster
       end
 
     end
