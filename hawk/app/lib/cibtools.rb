@@ -255,7 +255,7 @@ module CibTools
 
           # if on-fail == ignore for this op, pretend it succeeded for the purposes of state calculation
           ignore_failure = false
-          @xml.elements.each("cib/configuration//primitive[@id='#{rsc_id.split(":")[0]}']/operations/op[@name='#{operation}']") do |e|
+          xml.elements.each("cib/configuration//primitive[@id='#{rsc_id.split(":")[0]}']/operations/op[@name='#{operation}']") do |e|
             next unless e.attributes["on-fail"] && e.attributes["on-fail"] == "ignore"
             # TODO(must): Verify interval is correct
             ignore_failure = true
