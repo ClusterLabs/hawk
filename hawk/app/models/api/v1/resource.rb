@@ -29,7 +29,7 @@ module Api
       def state
         state = :stopped
         @instances.each do |instance|
-          state = :running if state == :stopped && instance[:state] == :running
+          state = :running if state == :stopped && instance[:state] == :started
           state = :failed if instance[:state] == :failed
         end
         state
