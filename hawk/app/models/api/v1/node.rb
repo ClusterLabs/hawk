@@ -3,11 +3,17 @@ module Api
     class Node < Cib
 
       def initialize(root, name)
+        query_str = "uname"
+        node = REXML::XPath.match(root, "/cib/configuration/nodes/node[@uname='#{name}']")
+        query_str = "id" if node.nil?
+        node_path = "/cib/configuration/nodes/node[@#{query_str}='#{name}']"
+        node_state_path = "/cib/status/node_state[@#{query_str}='#{name}']"
+
         @id = name
-        @node = REXML::XPath.first(root, "/cib/configuration/nodes/node[@uname='#{name}']")
-        @node = REXML::XPath.first(root, "/cib/configuration/nodes/node[@id='#{name}']") if @node.nil?
-        @statenode = REXML::XPath.first(root, "/cib/status/node_state[@uname='#{name}']")
-        @statenode = REXML::XPath.first(root, "/cib/status/node_state[@id='#{name}']") if @statenode.nil?
+        @node = REXML::XPath.first(root, node_path.to_s)
+        @node_attributes = REXML::XPath.match(root, "#{node_path}/instance_attributes/nvpair")
+        @node_utilization = REXML::XPath.match(root, "#{node_path}/utilization/nvpair")
+        @statenode = REXML::XPath.first(root, node_state_path.to_s)
       end
 
       def id
@@ -26,9 +32,21 @@ module Api
         :local
       end
 
+      def attributes(attrs)
+        attrs.map do |item|
+          { "#{item.attributes['name']}":item.attributes['value'] }
+        end
+      end
+
       # Implicite conversion to hash
       def to_hash
-        { id: id, state: state, type: type }
+        {
+          id: id,
+          state: state,
+          type: type,
+          attributes: attributes(@node_attributes),
+          utilization: attributes(@node_utilization)
+        }
       end
 
     end
