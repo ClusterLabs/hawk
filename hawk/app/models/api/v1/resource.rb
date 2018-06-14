@@ -42,9 +42,23 @@ module Api
          @instances
       end
 
+      def belong
+        type = @config.parent.name
+        if ["clone", "master", "group"].include?(type)
+          { id: @config.parent.attributes['id'], type: type }
+        end
+      end
+
       # Implicite conversion to hash
       def to_hash
-        { id: id, type: type, state: state, maintenance: maintenance, location: location }
+        {
+          id: id,
+          type: type,
+          state: state,
+          maintenance: maintenance,
+          location: location,
+          belong: belong
+        }
       end
 
     end
