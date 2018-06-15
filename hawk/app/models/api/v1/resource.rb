@@ -20,8 +20,6 @@ module Api
       end
 
       def type
-        return :clone if @config.parent.name == "clone"
-        return :multistate if @config.parent.name == "master"
         :primitive
       end
 
