@@ -5,7 +5,7 @@ module Api
       require 'yaml/store'
       include ActionController::HttpAuthentication::Token::ControllerMethods
 
-      before_action :authenticate, except: [ :register ]
+      before_action :cors_preflight_check, :authenticate, except: [ :register ]
 
       ApiTokenEntry = Struct.new  "ApiToken" ,:username, :api_token, :expires
 
@@ -19,6 +19,16 @@ module Api
       end
 
       protected
+        
+        def cors_preflight_check
+          if request.method == "OPTIONS"
+            headers['Access-Control-Allow-Origin'] = '*'
+            headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
+            headers['Access-Control-Allow-Headers'] = 'Authorization, Access-Control-Allow-Origin'
+            headers['Access-Control-Max-Age'] = '1728000'
+            render :text => '', :content_type => 'text/plain'
+          end
+        end
 
         def expired?(expiry_date)
           DateTime.now.to_i >= expiry_date
@@ -51,8 +61,6 @@ module Api
             end
           end
         end
-
-
 
         def render_unauthorized
           self.headers["WWW-Authenticate"] = 'Token realm="Application"'
