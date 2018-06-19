@@ -23,6 +23,14 @@ module Api
         :primitive
       end
 
+      def script
+        {
+          class: @config.attributes['class'],
+          provider: @config.attributes['provider'] || nil,
+          type: @config.attributes['type']
+        }
+      end
+
       # TODO
       def state
         state = :stopped
@@ -54,6 +62,7 @@ module Api
         {
           id: id,
           type: type,
+          script: script,
           state: state,
           maintenance: maintenance,
           location: location,
