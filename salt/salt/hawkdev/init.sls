@@ -61,6 +61,19 @@ apply_initial_configuration:
     - group: root
     - mode: 644
 
+
+hawk-development:
+  service.running:
+    - enable: True
+
+hawk-dev-backend:
+  service.running:
+    - reload: True
+
+restart-hawk-dev-backend:
+  cmd.run:
+    - name: systemctl restart hawk-dev-backend
+
 /usr/bin/hawk:
   file.managed:
     - source: /vagrant/hawk/bin/hawk
