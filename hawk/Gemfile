@@ -33,6 +33,7 @@ group :development do
   gem "spring", ">= 2.0"
   gem "uglifier", ">= 3"
   gem "gettext", ">= 3.2", require: false
+  gem "byebug"
 end
 
 group :test do
