@@ -7,11 +7,11 @@ usage() {
 }
 
 hawk_start() {
-	sudo systemctl start hawk-development
 	if ! systemctl -q is-active hawk-development; then
 		rm -f /vagrant/hawk/Gemfile.lock
 		sudo systemctl start hawk-development
 	fi
+	HAWK_ENV=development LOGGER=stdout HAWK_BIND=unix:///vagrant/hawk/tmp/hawk.sock /usr/bin/puma.ruby2.5 -C /vagrant/hawk/config/puma.rb
 }
 
 hawk_stop() {
