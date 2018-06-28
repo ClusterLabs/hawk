@@ -66,13 +66,9 @@ hawk-development:
   service.running:
     - enable: True
 
-hawk-dev-backend:
-  service.running:
-    - reload: True
-
-restart-hawk-dev-backend:
-  cmd.run:
-    - name: systemctl restart hawk-dev-backend
+# hawk-dev-backend:
+#   service.running:
+#     - reload: True
 
 /usr/bin/hawk:
   file.managed:
