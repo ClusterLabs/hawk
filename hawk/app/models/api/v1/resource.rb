@@ -23,6 +23,30 @@ module Api
         :primitive
       end
 
+      def script
+        {
+          class: @config.attributes['class'],
+          provider: @config.attributes['provider'] || nil,
+          type: @config.attributes['type']
+        }
+      end
+
+      def attributes(root, path)
+        attrs = REXML::XPath.match(root, path)
+        type = File.basename(path)
+        if type == "nvpair"
+          attrs.map do |item|
+            { "#{item.attributes['name']}": item.attributes['value'] }
+          end
+        else
+          attrs.map do |item|
+            item.attributes.each do |key, value|
+              { "#{key}": value }
+            end
+          end
+        end
+      end
+
       # TODO
       def state
         state = :stopped
@@ -55,6 +79,10 @@ module Api
           id: id,
           type: type,
           state: state,
+          script: script,
+          param: attributes(@config, "instance_attributes/nvpair"),
+          meta: attributes(@config, "meta_attributes/nvpair"),
+          op: attributes(@config, "operations/op"),
           maintenance: maintenance,
           location: location,
           belong: belong
