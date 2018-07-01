@@ -2,16 +2,19 @@ module Api
   module V1
     class Resource < Cib
 
-      def initialize(root, id)
+      def initialize(root, id, type)
         @id = id
-        @config = REXML::XPath.first(root, "/cib/configuration//primitive[@id='#{id}']")
-        lrm_resources = REXML::XPath.match(root, "/cib/status/node_state/lrm/lrm_resources/lrm_resource[@id='#{id}']")
-        @instances = lrm_resources.map do |lrm_resource|
-          node_state = lrm_resource.parent.parent.parent
-          {
-            node: node_state.attributes["uname"] || node_state.attributes["id"],
-            state: CibTools.rsc_state_from_lrm_rsc_op(root, node_state.attributes["uname"] || node_state.attributes["id"], @id)
-          }
+        @type = type
+        @config = REXML::XPath.first(root, "/cib/configuration//#{type}[@id='#{id}']")
+        if @type == "primitive"
+          lrm_resources = REXML::XPath.match(root, "/cib/status/node_state/lrm/lrm_resources/lrm_resource[@id='#{id}']")
+          @instances = lrm_resources.map do |lrm_resource|
+            node_state = lrm_resource.parent.parent.parent
+            {
+              node: node_state.attributes["uname"] || node_state.attributes["id"],
+              state: CibTools.rsc_state_from_lrm_rsc_op(root, node_state.attributes["uname"] || node_state.attributes["id"], @id)
+            }
+          end
         end
       end
 
@@ -20,7 +23,14 @@ module Api
       end
 
       def type
-        :primitive
+        @type
+      end
+
+      def includes(root)
+        arr = REXML::XPath.match(root, "primitive")
+        arr.map do |xml|
+          xml.attributes['id']
+        end
       end
 
       def script
@@ -75,18 +85,27 @@ module Api
 
       # Implicite conversion to hash
       def to_hash
-        {
+        base = {
           id: id,
-          type: type,
-          state: state,
-          script: script,
-          param: attributes(@config, "instance_attributes/nvpair"),
-          meta: attributes(@config, "meta_attributes/nvpair"),
-          op: attributes(@config, "operations/op"),
-          maintenance: maintenance,
-          location: location,
-          belong: belong
+          type: type
         }
+        if @type == "primitive"
+          add_on = {
+            state: state,
+            script: script,
+            param: attributes(@config, "instance_attributes/nvpair"),
+            meta: attributes(@config, "meta_attributes/nvpair"),
+            op: attributes(@config, "operations/op"),
+            maintenance: maintenance,
+            location: location,
+            belong: belong
+          }
+        else
+          add_on = {
+            includes: includes(@config)
+          }
+        end
+        base.merge! add_on
       end
 
     end
