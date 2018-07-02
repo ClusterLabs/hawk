@@ -165,27 +165,27 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      post '/register', to: "api#register"
+      match "/register", to: 'api#register', via: [:post, :options]
       resources :status, only: :index do
         collection do
-          match '', via: :options, action: 'index'      
+          match '', via: :options, action: 'index'
         end
       end
       resources :cluster, only: :index do
         collection do
-          match '', via: :options, action: 'index'      
+          match '', via: :options, action: 'index'
         end
       end
       resources :resources, only: [:index, :show], constraints: {id: regex_safe_id } do
         collection do
           match '', via: :options, action: 'index'
-          match '', via: :options, action: 'show'     
+          match '', via: :options, action: 'show'
         end
       end
       resources :nodes, only: [:index, :show], constraints: {id: regex_safe_id } do
         collection do
           match '', via: :options, action: 'index'
-          match '', via: :options, action: 'show'     
+          match '', via: :options, action: 'show'
         end
       end
     end
