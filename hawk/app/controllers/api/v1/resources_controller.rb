@@ -2,7 +2,8 @@ module Api
   module V1
     class ResourcesController < ApiController
       before_action :get_status
-
+      attr_reader :current_user
+      
       def index
         render json: @status.resources.to_json
       end

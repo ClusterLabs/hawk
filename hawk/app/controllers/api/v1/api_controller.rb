@@ -9,6 +9,10 @@ module Api
 
       ApiTokenEntry = Struct.new  "ApiToken" ,:username, :api_token, :expires
 
+      def initialize
+        @current_user
+      end
+      
       def register
         if authenticate_user_with_pam(params[:username], params[:password])
           token_and_expiry_values = generate_and_store_token_for_user(params[:username])
