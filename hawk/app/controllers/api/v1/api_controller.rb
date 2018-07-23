@@ -6,6 +6,7 @@ module Api
       include ActionController::HttpAuthentication::Token::ControllerMethods
 
       before_action :cors_preflight_check, :authenticate, except: [ :register ]
+      after_action :cors_set_access_control_headers
 
       ApiTokenEntry = Struct.new  "ApiToken" ,:username, :api_token, :expires
 
@@ -19,6 +20,14 @@ module Api
       end
 
       protected
+
+        #TODO: Work on duplication of cors preflight check in application.rb
+        def cors_set_access_control_headers
+          headers['Access-Control-Allow-Origin'] = '*'
+          headers['Access-Control-Allow-Methods'] = 'POST, GET, OPTIONS'
+          headers['Access-Control-Allow-Headers'] = 'Origin, Content-Type, Authorization'
+          headers['Access-Control-Max-Age'] = "1728000"
+        end
         
         def cors_preflight_check
           if request.method == "OPTIONS"
