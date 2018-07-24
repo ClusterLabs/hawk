@@ -50,9 +50,15 @@ module Api
 
       def resources
         return [] if @xml.nil?
-        @xml.elements.collect("/cib/configuration//primitive") do |xml|
-          Resource.new @xml, xml.attributes['id']
+
+        res_arry = []
+        resource_types = ["primitive", "group", "clone", "master", "bundle"]
+        resource_types.each do |res_type|
+          res_arry += @xml.elements.collect("/cib/configuration//#{res_type}") do |xml|
+            Resource.new @xml, xml.attributes['id'], xml.name
+          end
         end
+        return res_arry
       end
 
       def nodes
