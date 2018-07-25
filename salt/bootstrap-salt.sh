@@ -9,7 +9,11 @@
 #
 #          BUGS: https://github.com/saltstack/salt-bootstrap/issues
 #
+<<<<<<< HEAD
 #     COPYRIGHT: (c) 2012-2017 by the SaltStack Team, see AUTHORS.rst for more
+=======
+#     COPYRIGHT: (c) 2012-2018 by the SaltStack Team, see AUTHORS.rst for more
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 #                details.
 #
 #       LICENSE: Apache 2.0
@@ -18,7 +22,11 @@
 #======================================================================================================================
 set -o nounset                              # Treat unset variables as an error
 
+<<<<<<< HEAD
 __ScriptVersion="2017.08.17"
+=======
+__ScriptVersion="2018.04.25"
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 __ScriptName="bootstrap-salt.sh"
 
 __ScriptFullName="$0"
@@ -43,10 +51,13 @@ __ScriptArgs="$*"
 #======================================================================================================================
 
 
+<<<<<<< HEAD
 #======================================================================================================================
 #  LET THE BLACK MAGIC BEGIN!!!!
 #======================================================================================================================
 
+=======
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 # Bootstrap script truth values
 BS_TRUE=1
 BS_FALSE=0
@@ -60,12 +71,22 @@ __DEFAULT_SLEEP=3
 #----------------------------------------------------------------------------------------------------------------------
 _COLORS=${BS_COLORS:-$(tput colors 2>/dev/null || echo 0)}
 __detect_color_support() {
+<<<<<<< HEAD
     if [ $? -eq 0 ] && [ "$_COLORS" -gt 2 ]; then
         RC="\033[1;31m"
         GC="\033[1;32m"
         BC="\033[1;34m"
         YC="\033[1;33m"
         EC="\033[0m"
+=======
+    # shellcheck disable=SC2181
+    if [ $? -eq 0 ] && [ "$_COLORS" -gt 2 ]; then
+        RC='\033[1;31m'
+        GC='\033[1;32m'
+        BC='\033[1;34m'
+        YC='\033[1;33m'
+        EC='\033[0m'
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     else
         RC=""
         GC=""
@@ -82,7 +103,11 @@ __detect_color_support
 #   DESCRIPTION:  Echo errors to stderr.
 #----------------------------------------------------------------------------------------------------------------------
 echoerror() {
+<<<<<<< HEAD
     printf "${RC} * ERROR${EC}: %s\n" "$@" 1>&2;
+=======
+    printf "${RC} * ERROR${EC}: %s\\n" "$@" 1>&2;
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 }
 
 #---  FUNCTION  -------------------------------------------------------------------------------------------------------
@@ -90,15 +115,26 @@ echoerror() {
 #   DESCRIPTION:  Echo information to stdout.
 #----------------------------------------------------------------------------------------------------------------------
 echoinfo() {
+<<<<<<< HEAD
     printf "${GC} *  INFO${EC}: %s\n" "$@";
+=======
+    printf "${GC} *  INFO${EC}: %s\\n" "$@";
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 }
 
 #---  FUNCTION  -------------------------------------------------------------------------------------------------------
 #          NAME:  echowarn
+<<<<<<< HEAD
 #   DESCRIPTION:  Echo warning informations to stdout.
 #----------------------------------------------------------------------------------------------------------------------
 echowarn() {
     printf "${YC} *  WARN${EC}: %s\n" "$@";
+=======
+#   DESCRIPTION:  Echo warning information to stdout.
+#----------------------------------------------------------------------------------------------------------------------
+echowarn() {
+    printf "${YC} *  WARN${EC}: %s\\n" "$@";
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 }
 
 #---  FUNCTION  -------------------------------------------------------------------------------------------------------
@@ -107,7 +143,11 @@ echowarn() {
 #----------------------------------------------------------------------------------------------------------------------
 echodebug() {
     if [ "$_ECHO_DEBUG" -eq $BS_TRUE ]; then
+<<<<<<< HEAD
         printf "${BC} * DEBUG${EC}: %s\n" "$@";
+=======
+        printf "${BC} * DEBUG${EC}: %s\\n" "$@";
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     fi
 }
 
@@ -249,7 +289,10 @@ _CURL_ARGS=${BS_CURL_ARGS:-}
 _FETCH_ARGS=${BS_FETCH_ARGS:-}
 _GPG_ARGS=${BS_GPG_ARGS:-}
 _WGET_ARGS=${BS_WGET_ARGS:-}
+<<<<<<< HEAD
 _ENABLE_EXTERNAL_ZMQ_REPOS=${BS_ENABLE_EXTERNAL_ZMQ_REPOS:-$BS_FALSE}
+=======
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 _SALT_MASTER_ADDRESS=${BS_SALT_MASTER_ADDRESS:-null}
 _SALT_MINION_ID="null"
 # _SIMPLIFY_VERSION is mostly used in Solaris based distributions
@@ -290,7 +333,10 @@ __usage() {
                           for packages available at repo.saltstack.com
     - stable [version]    Install a specific version. Only supported for
                           packages available at repo.saltstack.com
+<<<<<<< HEAD
     - daily               Ubuntu specific: configure SaltStack Daily PPA
+=======
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     - testing             RHEL-family specific: configure EPEL testing repo
     - git                 Install from the head of the develop branch
     - git [ref]           Install from any git ref (such as a branch, tag, or
@@ -299,6 +345,7 @@ __usage() {
   Examples:
     - ${__ScriptName}
     - ${__ScriptName} stable
+<<<<<<< HEAD
     - ${__ScriptName} stable 2016.3
     - ${__ScriptName} stable 2016.3.1
     - ${__ScriptName} daily
@@ -306,6 +353,14 @@ __usage() {
     - ${__ScriptName} git
     - ${__ScriptName} git 2016.3
     - ${__ScriptName} git v2016.3.1
+=======
+    - ${__ScriptName} stable 2017.7
+    - ${__ScriptName} stable 2017.7.2
+    - ${__ScriptName} testing
+    - ${__ScriptName} git
+    - ${__ScriptName} git 2017.7
+    - ${__ScriptName} git v2017.7.2
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     - ${__ScriptName} git 06f249901a2e2f1ed310d58ea3921a129f214358
 
   Options:
@@ -338,7 +393,11 @@ __usage() {
     -U  If set, fully upgrade the system prior to bootstrapping Salt
     -I  If set, allow insecure connections while downloading any files. For
         example, pass '--no-check-certificate' to 'wget' or '--insecure' to
+<<<<<<< HEAD
         'curl'. On Debian and Ubuntu, using this option with -U allows to obtain
+=======
+        'curl'. On Debian and Ubuntu, using this option with -U allows obtaining
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         GnuPG archive keys insecurely if distro has changed release signatures.
     -F  Allow copied files to overwrite existing (config, init.d, etc)
     -K  If set, keep the temporary files in the temporary directories specified
@@ -352,11 +411,17 @@ __usage() {
     -i  Pass the salt-minion id. This will be stored under
         \${BS_SALT_ETC_DIR}/minion_id
     -p  Extra-package to install while installing Salt dependencies. One package
+<<<<<<< HEAD
         per -p flag. You're responsible for providing the proper package name.
     -H  Use the specified HTTP proxy for all download URLs (including https://).
         For example: http://myproxy.example.com:3128
     -Z  Enable additional package repository for newer ZeroMQ
         (only available for RHEL/CentOS/Fedora/Ubuntu based distributions)
+=======
+        per -p flag. You are responsible for providing the proper package name.
+    -H  Use the specified HTTP proxy for all download URLs (including https://).
+        For example: http://myproxy.example.com:3128
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     -b  Assume that dependencies are already installed and software sources are
         set up. If git is selected, git tree is still checked out as dependency
         step.
@@ -388,6 +453,7 @@ __usage() {
         no ".bak" file will be created as either of those options will force
         a complete overwrite of the file.
     -q  Quiet salt installation from git (setup.py install -q)
+<<<<<<< HEAD
     -x  Changes the python version used to install a git version of salt. Currently
         this is considered experimental and has only been tested on Centos 6. This
         only works for git installations.
@@ -396,6 +462,16 @@ __usage() {
         ius repo on the box if disable repo is false. This must be used in conjunction
         with -x <pythonversion>.  For example:
             sh bootstrap.sh -P -y -x python2.7 git v2016.11.3
+=======
+    -x  Changes the Python version used to install Salt. Currently, this is only
+        supported on CentOS 7, Debian 9, Ubuntu 16 and CentOS 6. The CentOS 6
+        option only works with git installations.
+    -y  Installs a different python version on host. Currently this has only been
+        tested with CentOS 6 and is considered experimental. This will install the
+        ius repo on the box if disable repo is false. This must be used in conjunction
+        with -x <pythonversion>.  For example:
+            sh bootstrap.sh -P -y -x python2.7 git v2017.7.2
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         The above will install python27 and install the git version of salt using the
         python2.7 executable. This only works for git and pip installations.
 
@@ -403,7 +479,11 @@ EOT
 }   # ----------  end of function __usage  ----------
 
 
+<<<<<<< HEAD
 while getopts ':hvnDc:g:Gyx:wk:s:MSNXCPFUKIA:i:Lp:dH:ZbflV:J:j:rR:aq' opt
+=======
+while getopts ':hvnDc:g:Gyx:wk:s:MSNXCPFUKIA:i:Lp:dH:bflV:J:j:rR:aq' opt
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 do
   case "${opt}" in
 
@@ -438,7 +518,10 @@ do
     p )  _EXTRA_PACKAGES="$_EXTRA_PACKAGES $OPTARG"     ;;
     d )  _DISABLE_SALT_CHECKS=$BS_TRUE                  ;;
     H )  _HTTP_PROXY="$OPTARG"                          ;;
+<<<<<<< HEAD
     Z )  _ENABLE_EXTERNAL_ZMQ_REPOS=$BS_TRUE            ;;
+=======
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     b )  _NO_DEPS=$BS_TRUE                              ;;
     f )  _FORCE_SHALLOW_CLONE=$BS_TRUE                  ;;
     l )  _DISABLE_SSL=$BS_TRUE                          ;;
@@ -466,11 +549,20 @@ shift $((OPTIND-1))
 # Define our logging file and pipe paths
 LOGFILE="/tmp/$( echo "$__ScriptName" | sed s/.sh/.log/g )"
 LOGPIPE="/tmp/$( echo "$__ScriptName" | sed s/.sh/.logpipe/g )"
+<<<<<<< HEAD
 
 # Create our logging pipe
 # On FreeBSD we have to use mkfifo instead of mknod
 mknod "$LOGPIPE" p >/dev/null 2>&1 || mkfifo "$LOGPIPE" >/dev/null 2>&1
 if [ $? -ne 0 ]; then
+=======
+# Ensure no residual pipe exists
+rm "$LOGPIPE" 2>/dev/null
+
+# Create our logging pipe
+# On FreeBSD we have to use mkfifo instead of mknod
+if ! (mknod "$LOGPIPE" p >/dev/null 2>&1 || mkfifo "$LOGPIPE" >/dev/null 2>&1); then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     echoerror "Failed to create the named pipe required to log"
     exit 1
 fi
@@ -571,7 +663,11 @@ if [ "$#" -gt 0 ];then
 fi
 
 # Check installation type
+<<<<<<< HEAD
 if [ "$(echo "$ITYPE" | egrep '(stable|testing|daily|git)')" = "" ]; then
+=======
+if [ "$(echo "$ITYPE" | grep -E '(stable|testing|git)')" = "" ]; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     echoerror "Installation type \"$ITYPE\" is not known..."
     exit 1
 fi
@@ -593,6 +689,7 @@ elif [ "$ITYPE" = "stable" ]; then
     if [ "$#" -eq 0 ];then
         STABLE_REV="latest"
     else
+<<<<<<< HEAD
         if [ "$(echo "$1" | egrep '^(latest|1\.6|1\.7|2014\.1|2014\.7|2015\.5|2015\.8|2016\.3|2016\.11|2017\.7)$')" != "" ]; then
             STABLE_REV="$1"
             shift
@@ -601,6 +698,16 @@ elif [ "$ITYPE" = "stable" ]; then
             shift
         else
             echo "Unknown stable version: $1 (valid: 1.6, 1.7, 2014.1, 2014.7, 2015.5, 2015.8, 2016.3, 2016.11, 2017.7, latest, \$MAJOR.\$MINOR.\$PATCH)"
+=======
+        if [ "$(echo "$1" | grep -E '^(latest|1\.6|1\.7|2014\.1|2014\.7|2015\.5|2015\.8|2016\.3|2016\.11|2017\.7|2018\.3)$')" != "" ]; then
+            STABLE_REV="$1"
+            shift
+        elif [ "$(echo "$1" | grep -E '^([0-9]*\.[0-9]*\.[0-9]*)$')" != "" ]; then
+            STABLE_REV="archive/$1"
+            shift
+        else
+            echo "Unknown stable version: $1 (valid: 1.6, 1.7, 2014.1, 2014.7, 2015.5, 2015.8, 2016.3, 2016.11, 2017.7, 2018.3, latest, \$MAJOR.\$MINOR.\$PATCH)"
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
             exit 1
         fi
     fi
@@ -661,6 +768,25 @@ if [ "$_CUSTOM_MINION_CONFIG" != "null" ]; then
     fi
 fi
 
+<<<<<<< HEAD
+=======
+# Check if we're installing via a different Python executable and set major version variables
+if [ -n "$_PY_EXE" ]; then
+    _PY_PKG_VER=$(echo "$_PY_EXE" | sed -r "s/\\.//g")
+
+    _PY_MAJOR_VERSION=$(echo "$_PY_PKG_VER" | cut -c 7)
+    if [ "$_PY_MAJOR_VERSION" != 3 ] && [ "$_PY_MAJOR_VERSION" != 2 ]; then
+        echoerror "Detected -x option, but Python major version is not 2 or 3."
+        echoerror "The -x option must be passed as python2, python27, or python2.7 (or use the Python '3' versions of examples)."
+        exit 1
+    fi
+
+    echoinfo "Detected -x option. Using $_PY_EXE to install Salt."
+else
+    _PY_PKG_VER=""
+fi
+
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 # If the configuration directory or archive does not exist, error out
 if [ "$_TEMP_CONFIG_DIR" != "null" ]; then
     _TEMP_CONFIG_DIR="$(__check_config_dir "$_TEMP_CONFIG_DIR")"
@@ -779,8 +905,12 @@ __fetch_verify() {
     test "$(stat --format=%s "$fetch_verify_tmpf")" -eq "$fetch_verify_size" && \
     test "$(md5sum "$fetch_verify_tmpf" | awk '{ print $1 }')" = "$fetch_verify_sum" && \
     cat "$fetch_verify_tmpf" && \
+<<<<<<< HEAD
     rm -f "$fetch_verify_tmpf"
     if [ $? -eq 0 ]; then
+=======
+    if rm -f "$fetch_verify_tmpf"; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         return 0
     fi
     echo "Failed verification of $fetch_verify_url"
@@ -879,6 +1009,10 @@ __derive_debian_numeric_version() {
 #   DESCRIPTION:  Strip single or double quotes from the provided string.
 #----------------------------------------------------------------------------------------------------------------------
 __unquote_string() {
+<<<<<<< HEAD
+=======
+    # shellcheck disable=SC1117
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     echo "$*" | sed -e "s/^\([\"\']\)\(.*\)\1\$/\2/g"
 }
 
@@ -911,7 +1045,11 @@ __sort_release_files() {
     secondary_release_files=""
     # Sort know VS un-known files first
     for release_file in $(echo "${@}" | sed -r 's:[[:space:]]:\n:g' | sort -f | uniq); do
+<<<<<<< HEAD
         match=$(echo "$release_file" | egrep -i "${KNOWN_RELEASE_FILES}")
+=======
+        match=$(echo "$release_file" | grep -E -i "${KNOWN_RELEASE_FILES}")
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         if [ "${match}" != "" ]; then
             primary_release_files="${primary_release_files} ${release_file}"
         else
@@ -920,17 +1058,28 @@ __sort_release_files() {
     done
 
     # Now let's sort by know files importance, max important goes last in the max_prio list
+<<<<<<< HEAD
     max_prio="redhat-release centos-release oracle-release"
     for entry in $max_prio; do
         if [ "$(echo "${primary_release_files}" | grep "$entry")" != "" ]; then
             primary_release_files=$(echo "${primary_release_files}" | sed -e "s:\(.*\)\($entry\)\(.*\):\2 \1 \3:g")
+=======
+    max_prio="redhat-release centos-release oracle-release fedora-release"
+    for entry in $max_prio; do
+        if [ "$(echo "${primary_release_files}" | grep "$entry")" != "" ]; then
+            primary_release_files=$(echo "${primary_release_files}" | sed -e "s:\\(.*\\)\\($entry\\)\\(.*\\):\\2 \\1 \\3:g")
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         fi
     done
     # Now, least important goes last in the min_prio list
     min_prio="lsb-release"
     for entry in $min_prio; do
         if [ "$(echo "${primary_release_files}" | grep "$entry")" != "" ]; then
+<<<<<<< HEAD
             primary_release_files=$(echo "${primary_release_files}" | sed -e "s:\(.*\)\($entry\)\(.*\):\1 \3 \2:g")
+=======
+            primary_release_files=$(echo "${primary_release_files}" | sed -e "s:\\(.*\\)\\($entry\\)\\(.*\\):\\1 \\3 \\2:g")
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         fi
     done
 
@@ -949,6 +1098,11 @@ __gather_linux_system_info() {
 
     # Let's test if the lsb_release binary is available
     rv=$(lsb_release >/dev/null 2>&1)
+<<<<<<< HEAD
+=======
+
+    # shellcheck disable=SC2181
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     if [ $? -eq 0 ]; then
         DISTRO_NAME=$(lsb_release -si)
         if [ "${DISTRO_NAME}" = "Scientific" ]; then
@@ -963,6 +1117,10 @@ __gather_linux_system_info() {
             [ "$n" = "$DISTRO_NAME" ] && DISTRO_NAME="" || DISTRO_NAME="$n"
         elif [ "${DISTRO_NAME}" = "openSUSE project" ]; then
             # lsb_release -si returns "openSUSE project" on openSUSE 12.3
+<<<<<<< HEAD
+=======
+            # lsb_release -si returns "openSUSE" on openSUSE 15.n
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
             DISTRO_NAME="opensuse"
         elif [ "${DISTRO_NAME}" = "SUSE LINUX" ]; then
             if [ "$(lsb_release -sd | grep -i opensuse)" != "" ]; then
@@ -1019,11 +1177,19 @@ __gather_linux_system_info() {
         v=$(__parse_version_string "$rv")
         case $shortname in
             redhat             )
+<<<<<<< HEAD
                 if [ "$(egrep 'CentOS' /etc/${rsource})" != "" ]; then
                     n="CentOS"
                 elif [ "$(egrep 'Scientific' /etc/${rsource})" != "" ]; then
                     n="Scientific Linux"
                 elif [ "$(egrep 'Red Hat Enterprise Linux' /etc/${rsource})" != "" ]; then
+=======
+                if [ "$(grep -E 'CentOS' /etc/${rsource})" != "" ]; then
+                    n="CentOS"
+                elif [ "$(grep -E 'Scientific' /etc/${rsource})" != "" ]; then
+                    n="Scientific Linux"
+                elif [ "$(grep -E 'Red Hat Enterprise Linux' /etc/${rsource})" != "" ]; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
                     n="<R>ed <H>at <E>nterprise <L>inux"
                 else
                     n="<R>ed <H>at <L>inux"
@@ -1035,7 +1201,11 @@ __gather_linux_system_info() {
             debian             ) n="Debian"         ;;
             ubuntu             ) n="Ubuntu"         ;;
             fedora             ) n="Fedora"         ;;
+<<<<<<< HEAD
             suse               ) n="SUSE"           ;;
+=======
+            suse|opensuse      ) n="SUSE"           ;;
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
             mandrake*|mandriva ) n="Mandriva"       ;;
             gentoo             ) n="Gentoo"         ;;
             slackware          ) n="Slackware"      ;;
@@ -1077,10 +1247,21 @@ __gather_linux_system_info() {
                         n="Debian"
                         v=$(__derive_debian_numeric_version "$v")
                         ;;
+<<<<<<< HEAD
                     sles        )
                         n="SUSE"
                         v="${rv}"
                         ;;
+=======
+                    sles  )
+                        n="SUSE"
+                        v="${rv}"
+                        ;;
+                    opensuse-leap  )
+                        n="opensuse"
+                        v="${rv}"
+                        ;;
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
                     *           )
                         n=${nn}
                         ;;
@@ -1106,9 +1287,13 @@ __install_python() {
         exit 1
     fi
 
+<<<<<<< HEAD
     PY_PKG_V=$(echo "$_PY_EXE" | sed -r "s/\.//g")
     __PACKAGES="${PY_PKG_V}"
 
+=======
+    __PACKAGES="$_PY_PKG_VER"
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 
     if [ ${_DISABLE_REPOS} -eq ${BS_FALSE} ]; then
         echoinfo "Attempting to install a repo to help provide a separate python package"
@@ -1149,25 +1334,41 @@ __gather_sunos_system_info() {
             case "$line" in
                 *OpenIndiana*oi_[0-9]*)
                     DISTRO_NAME="OpenIndiana"
+<<<<<<< HEAD
                     DISTRO_VERSION=$(echo "$line" | sed -nr "s/OpenIndiana(.*)oi_([[:digit:]]+)(.*)/\2/p")
+=======
+                    DISTRO_VERSION=$(echo "$line" | sed -nr "s/OpenIndiana(.*)oi_([[:digit:]]+)(.*)/\\2/p")
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
                     break
                     ;;
                 *OpenSolaris*snv_[0-9]*)
                     DISTRO_NAME="OpenSolaris"
+<<<<<<< HEAD
                     DISTRO_VERSION=$(echo "$line" | sed -nr "s/OpenSolaris(.*)snv_([[:digit:]]+)(.*)/\2/p")
+=======
+                    DISTRO_VERSION=$(echo "$line" | sed -nr "s/OpenSolaris(.*)snv_([[:digit:]]+)(.*)/\\2/p")
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
                     break
                     ;;
                 *Oracle*Solaris*[0-9]*)
                     DISTRO_NAME="Oracle Solaris"
+<<<<<<< HEAD
                     DISTRO_VERSION=$(echo "$line" | sed -nr "s/(Oracle Solaris) ([[:digit:]]+)(.*)/\2/p")
+=======
+                    DISTRO_VERSION=$(echo "$line" | sed -nr "s/(Oracle Solaris) ([[:digit:]]+)(.*)/\\2/p")
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
                     break
                     ;;
                 *Solaris*)
                     DISTRO_NAME="Solaris"
                     # Let's make sure we not actually on a Joyent's SmartOS VM since some releases
                     # don't have SmartOS in `/etc/release`, only `Solaris`
+<<<<<<< HEAD
                     uname -v | grep joyent >/dev/null 2>&1
                     if [ $? -eq 0 ]; then
+=======
+                    if uname -v | grep joyent >/dev/null 2>&1; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
                         DISTRO_NAME="SmartOS"
                     fi
                     break
@@ -1262,7 +1463,11 @@ __ubuntu_derivatives_translation() {
     neon_16_ubuntu_base="16.04"
 
     # Translate Ubuntu derivatives to their base Ubuntu version
+<<<<<<< HEAD
     match=$(echo "$DISTRO_NAME_L" | egrep ${UBUNTU_DERIVATIVES})
+=======
+    match=$(echo "$DISTRO_NAME_L" | grep -E ${UBUNTU_DERIVATIVES})
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 
     if [ "${match}" != "" ]; then
         case $match in
@@ -1331,10 +1536,17 @@ __check_dpkg_architecture() {
     if [ "${error_msg}" != "" ]; then
         echoerror "${error_msg}"
         if [ "$ITYPE" != "git" ]; then
+<<<<<<< HEAD
             echoerror "You can try git installation mode, i.e.: sh ${__ScriptName} git v2016.11.5."
             echoerror "It may be necessary to use git installation mode with pip and disable the SaltStack apt repository."
             echoerror "For example:"
             echoerror "    sh ${__ScriptName} -r -P git v2016.11.5"
+=======
+            echoerror "You can try git installation mode, i.e.: sh ${__ScriptName} git v2017.7.2."
+            echoerror "It may be necessary to use git installation mode with pip and disable the SaltStack apt repository."
+            echoerror "For example:"
+            echoerror "    sh ${__ScriptName} -r -P git v2017.7.2"
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         fi
     fi
 
@@ -1372,6 +1584,7 @@ __ubuntu_codename_translation() {
             DISTRO_CODENAME="trusty"
             ;;
         "16")
+<<<<<<< HEAD
             if [ "$_april" ]; then
                 DISTRO_CODENAME="xenial"
             else
@@ -1382,6 +1595,12 @@ __ubuntu_codename_translation() {
             if [ "$_april" ]; then
                 DISTRO_CODENAME="zesty"
             fi
+=======
+            DISTRO_CODENAME="xenial"
+            ;;
+        "18")
+            DISTRO_CODENAME="bionic"
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
             ;;
         *)
             DISTRO_CODENAME="trusty"
@@ -1401,17 +1620,30 @@ __debian_derivatives_translation() {
     # If the file does not exist, return
     [ ! -f /etc/os-release ] && return
 
+<<<<<<< HEAD
     DEBIAN_DERIVATIVES="(cumulus_.+|kali|linuxmint|raspbian)"
     # Mappings
     cumulus_2_debian_base="7.0"
     cumulus_3_debian_base="8.0"
+=======
+    DEBIAN_DERIVATIVES="(cumulus_.+|devuan|kali|linuxmint|raspbian)"
+    # Mappings
+    cumulus_2_debian_base="7.0"
+    cumulus_3_debian_base="8.0"
+    devuan_1_debian_base="8.0"
+    devuan_2_debian_base="9.0"
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     kali_1_debian_base="7.0"
     linuxmint_1_debian_base="8.0"
     raspbian_8_debian_base="8.0"
     raspbian_9_debian_base="9.0"
 
     # Translate Debian derivatives to their base Debian version
+<<<<<<< HEAD
     match=$(echo "$DISTRO_NAME_L" | egrep ${DEBIAN_DERIVATIVES})
+=======
+    match=$(echo "$DISTRO_NAME_L" | grep -E ${DEBIAN_DERIVATIVES})
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 
     if [ "${match}" != "" ]; then
         case $match in
@@ -1419,6 +1651,13 @@ __debian_derivatives_translation() {
                 _major=$(echo "$DISTRO_VERSION" | sed 's/^\([0-9]*\).*/\1/g')
                 _debian_derivative="cumulus"
                 ;;
+<<<<<<< HEAD
+=======
+            devuan)
+                _major=$(echo "$DISTRO_VERSION" | sed 's/^\([0-9]*\).*/\1/g')
+                _debian_derivative="devuan"
+                ;;
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
             kali)
                 _major=$(echo "$DISTRO_VERSION" | sed 's/^\([0-9]*\).*/\1/g')
                 _debian_derivative="kali"
@@ -1439,6 +1678,10 @@ __debian_derivatives_translation() {
             echodebug "Detected Debian $_debian_version derivative"
             DISTRO_NAME_L="debian"
             DISTRO_VERSION="$_debian_version"
+<<<<<<< HEAD
+=======
+            DISTRO_MAJOR_VERSION="$(echo "$DISTRO_VERSION" | sed 's/^\([0-9]*\).*/\1/g')"
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         fi
     fi
 }
@@ -1493,9 +1736,18 @@ __check_end_of_life_versions() {
             #  < 14.04
             #  = 14.10
             #  = 15.04, 15.10
+<<<<<<< HEAD
             if [ "$DISTRO_MAJOR_VERSION" -lt 14 ] || \
                 [ "$DISTRO_MAJOR_VERSION" -eq 15 ] || \
                 ([ "$DISTRO_MAJOR_VERSION" -lt 16 ] && [ "$DISTRO_MINOR_VERSION" -eq 10 ]); then
+=======
+            #  = 16.10
+            #  = 17.04, 17.10
+            if [ "$DISTRO_MAJOR_VERSION" -lt 14 ] || \
+                [ "$DISTRO_MAJOR_VERSION" -eq 15 ] || \
+                [ "$DISTRO_MAJOR_VERSION" -eq 17 ] || \
+                { [ "$DISTRO_MAJOR_VERSION" -eq 16 ] && [ "$DISTRO_MINOR_VERSION" -eq 10 ]; }; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
                 echoerror "End of life distributions are not supported."
                 echoerror "Please consider upgrading to the next stable. See:"
                 echoerror "    https://wiki.ubuntu.com/Releases"
@@ -1507,9 +1759,15 @@ __check_end_of_life_versions() {
             # openSUSE versions not supported
             #
             #  <= 13.X
+<<<<<<< HEAD
             #  <= 42.1
             if [ "$DISTRO_MAJOR_VERSION" -le 13 ] || \
                 ([ "$DISTRO_MAJOR_VERSION" -eq 42 ] && [ "$DISTRO_MINOR_VERSION" -le 1 ]); then
+=======
+            #  <= 42.2
+            if [ "$DISTRO_MAJOR_VERSION" -lt 15 ] || \
+                { [ "$DISTRO_MAJOR_VERSION" -eq 42 ] && [ "$DISTRO_MINOR_VERSION" -le 2 ]; }; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
                 echoerror "End of life distributions are not supported."
                 echoerror "Please consider upgrading to the next stable. See:"
                 echoerror "    http://en.opensuse.org/Lifetime"
@@ -1520,21 +1778,40 @@ __check_end_of_life_versions() {
         suse)
             # SuSE versions not supported
             #
+<<<<<<< HEAD
             # < 11 SP2
+=======
+            # < 11 SP4
+            # < 12 SP2
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
             SUSE_PATCHLEVEL=$(awk '/PATCHLEVEL/ {print $3}' /etc/SuSE-release )
             if [ "${SUSE_PATCHLEVEL}" = "" ]; then
                 SUSE_PATCHLEVEL="00"
             fi
+<<<<<<< HEAD
             if ([ "$DISTRO_MAJOR_VERSION" -eq 11 ] && [ "$SUSE_PATCHLEVEL" -lt 02 ]) || [ "$DISTRO_MAJOR_VERSION" -lt 11 ]; then
                 echoerror "Versions lower than SuSE 11 SP2 are not supported."
                 echoerror "Please consider upgrading to the next stable"
+=======
+            if [ "$DISTRO_MAJOR_VERSION" -lt 11 ] || \
+                { [ "$DISTRO_MAJOR_VERSION" -eq 11 ] && [ "$SUSE_PATCHLEVEL" -lt 04 ]; } || \
+                { [ "$DISTRO_MAJOR_VERSION" -eq 12 ] && [ "$SUSE_PATCHLEVEL" -lt 02 ]; }; then
+                echoerror "Versions lower than SuSE 11 SP4 or 12 SP2 are not supported."
+                echoerror "Please consider upgrading to the next stable"
+                echoerror "    https://www.suse.com/lifecycle/"
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
                 exit 1
             fi
             ;;
 
         fedora)
+<<<<<<< HEAD
             # Fedora lower than 25 are no longer supported
             if [ "$DISTRO_MAJOR_VERSION" -lt 25 ]; then
+=======
+            # Fedora lower than 27 are no longer supported
+            if [ "$DISTRO_MAJOR_VERSION" -lt 27 ]; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
                 echoerror "End of life distributions are not supported."
                 echoerror "Please consider upgrading to the next stable. See:"
                 echoerror "    https://fedoraproject.org/wiki/Releases"
@@ -1604,7 +1881,12 @@ __check_end_of_life_versions() {
 
         freebsd)
             # FreeBSD versions lower than 9.1 are not supported.
+<<<<<<< HEAD
             if ([ "$DISTRO_MAJOR_VERSION" -eq 9 ] && [ "$DISTRO_MINOR_VERSION" -lt 01 ]) || [ "$DISTRO_MAJOR_VERSION" -lt 9 ]; then
+=======
+            if { [ "$DISTRO_MAJOR_VERSION" -eq 9 ] && [ "$DISTRO_MINOR_VERSION" -lt 01 ]; } || \
+                [ "$DISTRO_MAJOR_VERSION" -lt 9 ]; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
                 echoerror "Versions lower than FreeBSD 9.1 are not supported."
                 exit 1
             fi
@@ -1706,18 +1988,26 @@ elif [ "${DISTRO_NAME_L}" = "debian" ]; then
   __debian_codename_translation
 fi
 
+<<<<<<< HEAD
 # Only Ubuntu has daily packages, let's let users know about that
 if ([ "${DISTRO_NAME_L}" != "ubuntu" ] && [ "$ITYPE" = "daily" ]); then
     echoerror "${DISTRO_NAME} does not have daily packages support"
     exit 1
 elif ([ "$(echo "${DISTRO_NAME_L}" | egrep '(debian|ubuntu|centos|red_hat|oracle|scientific|amazon)')" = "" ] && [ "$ITYPE" = "stable" ] && [ "$STABLE_REV" != "latest" ]); then
+=======
+if [ "$(echo "${DISTRO_NAME_L}" | grep -E '(debian|ubuntu|centos|red_hat|oracle|scientific|amazon)')" = "" ] && [ "$ITYPE" = "stable" ] && [ "$STABLE_REV" != "latest" ]; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     echoerror "${DISTRO_NAME} does not have major version pegged packages support"
     exit 1
 fi
 
 # Only RedHat based distros have testing support
 if [ "${ITYPE}" = "testing" ]; then
+<<<<<<< HEAD
     if [ "$(echo "${DISTRO_NAME_L}" | egrep '(centos|red_hat|amazon|oracle)')" = "" ]; then
+=======
+    if [ "$(echo "${DISTRO_NAME_L}" | grep -E '(centos|red_hat|amazon|oracle)')" = "" ]; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         echoerror "${DISTRO_NAME} does not have testing packages support"
         exit 1
     fi
@@ -1725,13 +2015,21 @@ if [ "${ITYPE}" = "testing" ]; then
 fi
 
 # Only Ubuntu has support for installing to virtualenvs
+<<<<<<< HEAD
 if ([ "${DISTRO_NAME_L}" != "ubuntu" ] && [ "$_VIRTUALENV_DIR" != "null" ]); then
+=======
+if [ "${DISTRO_NAME_L}" != "ubuntu" ] && [ "$_VIRTUALENV_DIR" != "null" ]; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     echoerror "${DISTRO_NAME} does not have -V support"
     exit 1
 fi
 
 # Only Ubuntu has support for pip installing all packages
+<<<<<<< HEAD
 if ([ "${DISTRO_NAME_L}" != "ubuntu" ] && [ $_PIP_ALL -eq $BS_TRUE ]); then
+=======
+if [ "${DISTRO_NAME_L}" != "ubuntu" ] && [ $_PIP_ALL -eq $BS_TRUE ]; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     echoerror "${DISTRO_NAME} does not have -a support"
     exit 1
 fi
@@ -1755,11 +2053,46 @@ __function_defined() {
 
 
 #---  FUNCTION  -------------------------------------------------------------------------------------------------------
+<<<<<<< HEAD
+=======
+#          NAME:  __wait_for_apt
+#   DESCRIPTION:  Check if any apt, apt-get, aptitude, or dpkg processes are running before
+#                 calling these again. This is useful when these process calls are part of
+#                 a boot process, such as on AWS AMIs. This func will wait until the boot
+#                 process is finished so the script doesn't exit on a locked proc.
+#----------------------------------------------------------------------------------------------------------------------
+__wait_for_apt(){
+    echodebug "Checking if apt process is currently running."
+
+    # Timeout set at 15 minutes
+    WAIT_TIMEOUT=900
+
+    while ps -C apt,apt-get,aptitude,dpkg >/dev/null; do
+        sleep 1
+        WAIT_TIMEOUT=$((WAIT_TIMEOUT - 1))
+
+        # If timeout reaches 0, abort.
+        if [ "$WAIT_TIMEOUT" -eq 0 ]; then
+            echoerror "Apt, apt-get, aptitude, or dpkg process is taking too long."
+            echoerror "Bootstrap script cannot proceed. Aborting."
+            return 1
+        fi
+    done
+
+    echodebug "No apt processes are currently running."
+}
+
+#---  FUNCTION  -------------------------------------------------------------------------------------------------------
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 #          NAME:  __apt_get_install_noinput
 #   DESCRIPTION:  (DRY) apt-get install with noinput options
 #    PARAMETERS:  packages
 #----------------------------------------------------------------------------------------------------------------------
 __apt_get_install_noinput() {
+<<<<<<< HEAD
+=======
+    __wait_for_apt
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     apt-get install -y -o DPkg::Options::=--force-confold "${@}"; return $?
 }   # ----------  end of function __apt_get_install_noinput  ----------
 
@@ -1769,6 +2102,10 @@ __apt_get_install_noinput() {
 #   DESCRIPTION:  (DRY) apt-get upgrade with noinput options
 #----------------------------------------------------------------------------------------------------------------------
 __apt_get_upgrade_noinput() {
+<<<<<<< HEAD
+=======
+    __wait_for_apt
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     apt-get upgrade -y -o DPkg::Options::=--force-confold; return $?
 }   # ----------  end of function __apt_get_upgrade_noinput  ----------
 
@@ -1779,6 +2116,10 @@ __apt_get_upgrade_noinput() {
 #    PARAMETERS:  url
 #----------------------------------------------------------------------------------------------------------------------
 __apt_key_fetch() {
+<<<<<<< HEAD
+=======
+    __wait_for_apt
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     url=$1
 
     # shellcheck disable=SC2086
@@ -1895,8 +2236,12 @@ __git_clone_and_checkout() {
         # HEAD; instead it will simply reset to itself.  Check the ref to see
         # if it is a branch name, check out the branch, and pull in the
         # changes.
+<<<<<<< HEAD
         git branch -a | grep -q "${GIT_REV}"
         if [ $? -eq 0 ]; then
+=======
+        if git branch -a | grep -q "${GIT_REV}"; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
             echodebug "Rebasing the cloned repository branch"
             git pull --rebase || return 1
         fi
@@ -1919,8 +2264,12 @@ __git_clone_and_checkout() {
             if [ "$(git clone 2>&1 | grep 'single-branch')" != "" ]; then
                 # The "--single-branch" option is supported, attempt shallow cloning
                 echoinfo "Attempting to shallow clone $GIT_REV from Salt's repository ${_SALT_REPO_URL}"
+<<<<<<< HEAD
                 git clone --depth 1 --branch "$GIT_REV" "$_SALT_REPO_URL" "$__SALT_CHECKOUT_REPONAME"
                 if [ $? -eq 0 ]; then
+=======
+                if git clone --depth 1 --branch "$GIT_REV" "$_SALT_REPO_URL" "$__SALT_CHECKOUT_REPONAME"; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
                     # shellcheck disable=SC2164
                     cd "${_SALT_GIT_CHECKOUT_DIR}"
                     __SHALLOW_CLONE=$BS_TRUE
@@ -2155,7 +2504,11 @@ __overwriteconfig() {
     fi
 
     # Convert json string to a yaml string and write it to config file. Output is dumped into tempfile.
+<<<<<<< HEAD
     $good_python -c "import json; import yaml; jsn=json.loads('$json'); yml=yaml.safe_dump(jsn, line_break='\n', default_flow_style=False); config_file=open('$target', 'w'); config_file.write(yml); config_file.close();" 2>$tempfile
+=======
+    "$good_python" -c "import json; import yaml; jsn=json.loads('$json'); yml=yaml.safe_dump(jsn, line_break='\\n', default_flow_style=False); config_file=open('$target', 'w'); config_file.write(yml); config_file.close();" 2>$tempfile
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 
     # No python errors output to the tempfile
     if [ ! -s "$tempfile" ]; then
@@ -2217,9 +2570,13 @@ __check_services_upstart() {
     echodebug "Checking if service ${servicename} is enabled"
 
     # Check if service is enabled to start at boot
+<<<<<<< HEAD
     initctl list | grep "${servicename}" > /dev/null 2>&1
 
     if [ $? -eq 0 ]; then
+=======
+    if initctl list | grep "${servicename}" > /dev/null 2>&1; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         echodebug "Service ${servicename} is enabled"
         return 0
     else
@@ -2245,7 +2602,11 @@ __check_services_sysvinit() {
     servicename=$1
     echodebug "Checking if service ${servicename} is enabled"
 
+<<<<<<< HEAD
     if [ "$(LC_ALL=C /sbin/chkconfig --list | grep "\<${servicename}\>" | grep '[2-5]:on')" != "" ]; then
+=======
+    if [ "$(LC_ALL=C /sbin/chkconfig --list | grep "\\<${servicename}\\>" | grep '[2-5]:on')" != "" ]; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         echodebug "Service ${servicename} is enabled"
         return 0
     else
@@ -2325,7 +2686,11 @@ __check_services_alpine() {
     echodebug "Checking if service ${servicename} is enabled"
 
     # shellcheck disable=SC2086,SC2046,SC2144
+<<<<<<< HEAD
     if rc-status $(rc-status -r) | tail -n +2 | grep -q "\<$servicename\>"; then
+=======
+    if rc-status $(rc-status -r) | tail -n +2 | grep -q "\\<$servicename\\>"; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         echodebug "Service ${servicename} is enabled"
         return 0
     else
@@ -2359,7 +2724,11 @@ __create_virtualenv() {
 __activate_virtualenv() {
     set +o nounset
     # Is virtualenv empty
+<<<<<<< HEAD
     if [ -z "$VIRTUAL_ENV" ]; then
+=======
+    if [ -z "$_VIRTUALENV_DIR" ]; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         __create_virtualenv || return 1
         # shellcheck source=/dev/null
         . "${_VIRTUALENV_DIR}/bin/activate" || return 1
@@ -2379,7 +2748,11 @@ __activate_virtualenv() {
 __install_pip_pkgs() {
     _pip_pkgs="$1"
     _py_exe="$2"
+<<<<<<< HEAD
     _py_pkg=$(echo "$_py_exe" | sed -r "s/\.//g")
+=======
+    _py_pkg=$(echo "$_py_exe" | sed -r "s/\\.//g")
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     _pip_cmd="${_py_exe} -m pip"
 
     if [ "${_py_exe}" = "" ]; then
@@ -2533,6 +2906,7 @@ __enable_universe_repository() {
 
 __install_saltstack_ubuntu_repository() {
     # Workaround for latest non-LTS ubuntu
+<<<<<<< HEAD
     if [ "$DISTRO_VERSION" = "16.10" ] || [ "$DISTRO_MAJOR_VERSION" -gt 16 ]; then
         echowarn "Non-LTS Ubuntu detected, but stable packages requested. Trying packages from latest LTS release. You may experience problems."
         UBUNTU_VERSION=16.04
@@ -2540,13 +2914,28 @@ __install_saltstack_ubuntu_repository() {
     else
         UBUNTU_VERSION=$DISTRO_VERSION
         UBUNTU_CODENAME=$DISTRO_CODENAME
+=======
+    if [ "$DISTRO_MAJOR_VERSION" -gt 18 ] || \
+        { [ "$DISTRO_MAJOR_VERSION" -eq 18 ] && [ "$DISTRO_MINOR_VERSION" -eq 10 ]; }; then
+        echowarn "Non-LTS Ubuntu detected, but stable packages requested. Trying packages for latest LTS release. You may experience problems."
+        UBUNTU_VERSION=18.04
+        UBUNTU_CODENAME="bionic"
+    else
+        UBUNTU_VERSION=${DISTRO_VERSION}
+        UBUNTU_CODENAME=${DISTRO_CODENAME}
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     fi
 
     __PACKAGES=''
 
     # Install downloader backend for GPG keys fetching
+<<<<<<< HEAD
     if [ "$DISTRO_VERSION" = "16.10" ] || [ "$DISTRO_MAJOR_VERSION" -gt 16 ]; then
         __PACKAGES="${__PACKAGES} gnupg2 dirmngr"
+=======
+    if [ "$DISTRO_MAJOR_VERSION" -gt 16 ]; then
+        __PACKAGES="${__PACKAGES} gnupg dirmngr"
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     else
         __PACKAGES="${__PACKAGES} gnupg-curl"
     fi
@@ -2559,13 +2948,28 @@ __install_saltstack_ubuntu_repository() {
     # shellcheck disable=SC2086,SC2090
     __apt_get_install_noinput ${__PACKAGES} || return 1
 
+<<<<<<< HEAD
     # SaltStack's stable Ubuntu repository:
     SALTSTACK_UBUNTU_URL="${HTTP_VAL}://${_REPO_URL}/apt/ubuntu/${UBUNTU_VERSION}/${__REPO_ARCH}/${STABLE_REV}"
+=======
+    __PY_VERSION_REPO="apt"
+    if [ -n "$_PY_EXE" ] && [ "$_PY_MAJOR_VERSION" -eq 3 ]; then
+        __PY_VERSION_REPO="py3"
+    fi
+
+    # SaltStack's stable Ubuntu repository:
+    SALTSTACK_UBUNTU_URL="${HTTP_VAL}://${_REPO_URL}/${__PY_VERSION_REPO}/ubuntu/${UBUNTU_VERSION}/${__REPO_ARCH}/${STABLE_REV}"
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     echo "deb $SALTSTACK_UBUNTU_URL $UBUNTU_CODENAME main" > /etc/apt/sources.list.d/saltstack.list
 
     __apt_key_fetch "$SALTSTACK_UBUNTU_URL/SALTSTACK-GPG-KEY.pub" || return 1
 
+<<<<<<< HEAD
     apt-get update
+=======
+    __wait_for_apt
+    apt-get update || return 1
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 }
 
 install_ubuntu_deps() {
@@ -2577,7 +2981,12 @@ install_ubuntu_deps() {
 
         __enable_universe_repository || return 1
 
+<<<<<<< HEAD
         apt-get update
+=======
+        __wait_for_apt
+        apt-get update || return 1
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     fi
 
     __PACKAGES=''
@@ -2587,7 +2996,11 @@ install_ubuntu_deps() {
         __PACKAGES="upstart"
     fi
 
+<<<<<<< HEAD
     if [ "$DISTRO_MAJOR_VERSION" -ge 16 ]; then
+=======
+    if [ "$DISTRO_MAJOR_VERSION" -ge 16 ] && [ -z "$_PY_EXE" ]; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         __PACKAGES="${__PACKAGES} python2.7"
     fi
 
@@ -2633,12 +3046,21 @@ install_ubuntu_stable_deps() {
     # No user interaction, libc6 restart services for example
     export DEBIAN_FRONTEND=noninteractive
 
+<<<<<<< HEAD
     apt-get update
+=======
+    __wait_for_apt
+    apt-get update || return 1
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 
     if [ "${_UPGRADE_SYS}" -eq $BS_TRUE ]; then
         if [ "${_INSECURE_DL}" -eq $BS_TRUE ]; then
             __apt_get_install_noinput --allow-unauthenticated debian-archive-keyring &&
+<<<<<<< HEAD
                 apt-key update && apt-get update
+=======
+                apt-key update && apt-get update || return 1
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         fi
 
         __apt_get_upgrade_noinput || return 1
@@ -2652,6 +3074,7 @@ install_ubuntu_stable_deps() {
     install_ubuntu_deps || return 1
 }
 
+<<<<<<< HEAD
 install_ubuntu_daily_deps() {
     install_ubuntu_stable_deps || return 1
 
@@ -2671,6 +3094,11 @@ install_ubuntu_daily_deps() {
 
 install_ubuntu_git_deps() {
     apt-get update
+=======
+install_ubuntu_git_deps() {
+    __wait_for_apt
+    apt-get update || return 1
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 
     if ! __check_command_exists git; then
         __apt_get_install_noinput git-core || return 1
@@ -2700,12 +3128,34 @@ install_ubuntu_git_deps() {
     else
         install_ubuntu_stable_deps || return 1
 
+<<<<<<< HEAD
         __PACKAGES="${__PACKAGES} python-crypto python-jinja2 python-msgpack python-requests"
         __PACKAGES="${__PACKAGES} python-tornado python-yaml python-zmq"
 
         if [ "$_INSTALL_CLOUD" -eq $BS_TRUE ]; then
             # Install python-libcloud if asked to
             __PACKAGES="${__PACKAGES} python-libcloud"
+=======
+        if [ -n "$_PY_EXE" ] && [ "$_PY_MAJOR_VERSION" -eq 3 ]; then
+            PY_PKG_VER=3
+
+            __PACKAGES="${__PACKAGES} python3-setuptools"
+        else
+            PY_PKG_VER=""
+
+            # There is no m2crypto package for Py3 at this time - only install for Py2
+            __PACKAGES="${__PACKAGES} python-m2crypto"
+        fi
+
+        __PACKAGES="${__PACKAGES} python${PY_PKG_VER}-crypto python${PY_PKG_VER}-jinja2"
+        __PACKAGES="${__PACKAGES} python${PY_PKG_VER}-msgpack python${PY_PKG_VER}-requests"
+        __PACKAGES="${__PACKAGES} python${PY_PKG_VER}-tornado python${PY_PKG_VER}-yaml"
+        __PACKAGES="${__PACKAGES} python${PY_PKG_VER}-zmq"
+
+        if [ "$_INSTALL_CLOUD" -eq $BS_TRUE ]; then
+            # Install python-libcloud if asked to
+            __PACKAGES="${__PACKAGES} python${PY_PKG_VER}-libcloud"
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         fi
 
         # shellcheck disable=SC2086
@@ -2743,22 +3193,38 @@ install_ubuntu_stable() {
     return 0
 }
 
+<<<<<<< HEAD
 install_ubuntu_daily() {
     install_ubuntu_stable || return 1
 
     return 0
 }
 
+=======
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 install_ubuntu_git() {
     # Activate virtualenv before install
     if [ "${_VIRTUALENV_DIR}" != "null" ]; then
         __activate_virtualenv || return 1
     fi
 
+<<<<<<< HEAD
     if [ -f "${_SALT_GIT_CHECKOUT_DIR}/salt/syspaths.py" ]; then
         python setup.py --salt-config-dir="$_SALT_ETC_DIR" --salt-cache-dir="${_SALT_CACHE_DIR}" ${SETUP_PY_INSTALL_ARGS} install --install-layout=deb || return 1
     else
         python setup.py ${SETUP_PY_INSTALL_ARGS} install --install-layout=deb || return 1
+=======
+    if [ -n "$_PY_EXE" ]; then
+        _PYEXE=${_PY_EXE}
+    else
+        _PYEXE=python2.7
+    fi
+
+    if [ -f "${_SALT_GIT_CHECKOUT_DIR}/salt/syspaths.py" ]; then
+        ${_PYEXE} setup.py --salt-config-dir="$_SALT_ETC_DIR" --salt-cache-dir="${_SALT_CACHE_DIR}" ${SETUP_PY_INSTALL_ARGS} install --install-layout=deb || return 1
+    else
+        ${_PYEXE} setup.py ${SETUP_PY_INSTALL_ARGS} install --install-layout=deb || return 1
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     fi
 
     return 0
@@ -2780,7 +3246,11 @@ install_ubuntu_stable_post() {
                 /bin/systemctl preset salt-$fname.service > /dev/null 2>&1 &&
                 /bin/systemctl enable salt-$fname.service > /dev/null 2>&1
             )
+<<<<<<< HEAD
             sleep 0.1
+=======
+            sleep 1
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
             /bin/systemctl daemon-reload
         elif [ -f /etc/init.d/salt-$fname ]; then
             update-rc.d salt-$fname defaults
@@ -2806,7 +3276,11 @@ install_ubuntu_git_post() {
             [ $fname = "api" ] && continue
 
             systemctl is-enabled salt-$fname.service || (systemctl preset salt-$fname.service && systemctl enable salt-$fname.service)
+<<<<<<< HEAD
             sleep 0.1
+=======
+            sleep 1
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
             systemctl daemon-reload
         elif [ -f /sbin/initctl ]; then
             _upstart_conf="/etc/init/salt-$fname.conf"
@@ -2864,8 +3338,12 @@ install_ubuntu_restart_daemons() {
         if [ -f /bin/systemctl ] && [ "$DISTRO_MAJOR_VERSION" -ge 16 ]; then
             echodebug "There's systemd support while checking salt-$fname"
             systemctl stop salt-$fname > /dev/null 2>&1
+<<<<<<< HEAD
             systemctl start salt-$fname.service
             [ $? -eq 0 ] && continue
+=======
+            systemctl start salt-$fname.service && continue
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
             # We failed to start the service, let's test the SysV code below
             echodebug "Failed to start salt-$fname using systemd"
         fi
@@ -2873,6 +3351,7 @@ install_ubuntu_restart_daemons() {
         if [ -f /sbin/initctl ]; then
             echodebug "There's upstart support while checking salt-$fname"
 
+<<<<<<< HEAD
             status salt-$fname 2>/dev/null | grep -q running
             if [ $? -eq 0 ]; then
                 stop salt-$fname || (echodebug "Failed to stop salt-$fname" && return 1)
@@ -2880,6 +3359,13 @@ install_ubuntu_restart_daemons() {
 
             start salt-$fname
             [ $? -eq 0 ] && continue
+=======
+            if status salt-$fname 2>/dev/null | grep -q running; then
+                stop salt-$fname || (echodebug "Failed to stop salt-$fname" && return 1)
+            fi
+
+            start salt-$fname && continue
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
             # We failed to start the service, let's test the SysV code below
             echodebug "Failed to start salt-$fname using Upstart"
         fi
@@ -2939,6 +3425,14 @@ __install_saltstack_debian_repository() {
         DEBIAN_CODENAME="$DISTRO_CODENAME"
     fi
 
+<<<<<<< HEAD
+=======
+    __PY_VERSION_REPO="apt"
+    if [ -n "$_PY_EXE" ] && [ "$_PY_MAJOR_VERSION" -eq 3 ]; then
+        __PY_VERSION_REPO="py3"
+    fi
+
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     __PACKAGES=''
 
     # Install downloader backend for GPG keys fetching
@@ -2957,12 +3451,21 @@ __install_saltstack_debian_repository() {
     __apt_get_install_noinput ${__PACKAGES} || return 1
 
     # amd64 is just a part of repository URI, 32-bit pkgs are hosted under the same location
+<<<<<<< HEAD
     SALTSTACK_DEBIAN_URL="${HTTP_VAL}://${_REPO_URL}/apt/debian/${DEBIAN_RELEASE}/${__REPO_ARCH}/${STABLE_REV}"
+=======
+    SALTSTACK_DEBIAN_URL="${HTTP_VAL}://${_REPO_URL}/${__PY_VERSION_REPO}/debian/${DEBIAN_RELEASE}/${__REPO_ARCH}/${STABLE_REV}"
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     echo "deb $SALTSTACK_DEBIAN_URL $DEBIAN_CODENAME main" > "/etc/apt/sources.list.d/saltstack.list"
 
     __apt_key_fetch "$SALTSTACK_DEBIAN_URL/SALTSTACK-GPG-KEY.pub" || return 1
 
+<<<<<<< HEAD
     apt-get update
+=======
+    __wait_for_apt
+    apt-get update || return 1
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 }
 
 install_debian_deps() {
@@ -2973,23 +3476,45 @@ install_debian_deps() {
     # No user interaction, libc6 restart services for example
     export DEBIAN_FRONTEND=noninteractive
 
+<<<<<<< HEAD
     apt-get update
+=======
+    __wait_for_apt
+    apt-get update || return 1
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 
     if [ "${_UPGRADE_SYS}" -eq $BS_TRUE ]; then
         # Try to update GPG keys first if allowed
         if [ "${_INSECURE_DL}" -eq $BS_TRUE ]; then
             __apt_get_install_noinput --allow-unauthenticated debian-archive-keyring &&
+<<<<<<< HEAD
                 apt-key update && apt-get update
+=======
+                apt-key update && apt-get update || return 1
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         fi
 
         __apt_get_upgrade_noinput || return 1
     fi
 
+<<<<<<< HEAD
+=======
+    if [ -n "$_PY_EXE" ] && [ "$_PY_MAJOR_VERSION" -eq 3 ]; then
+        PY_PKG_VER=3
+    else
+        PY_PKG_VER=""
+    fi
+
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     # Additionally install procps and pciutils which allows for Docker bootstraps. See 366#issuecomment-39666813
     __PACKAGES='procps pciutils'
 
     # YAML module is used for generating custom master/minion configs
+<<<<<<< HEAD
     __PACKAGES="${__PACKAGES} python-yaml"
+=======
+    __PACKAGES="${__PACKAGES} python${PY_PKG_VER}-yaml"
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 
     # shellcheck disable=SC2086
     __apt_get_install_noinput ${__PACKAGES} || return 1
@@ -3019,9 +3544,15 @@ install_debian_git_deps() {
 
     __git_clone_and_checkout || return 1
 
+<<<<<<< HEAD
     __PACKAGES="libzmq3 libzmq3-dev lsb-release python-apt python-backports.ssl-match-hostname python-crypto"
     __PACKAGES="${__PACKAGES} python-jinja2 python-msgpack python-requests"
     __PACKAGES="${__PACKAGES} python-tornado python-yaml python-zmq"
+=======
+    __PACKAGES="libzmq3 libzmq3-dev lsb-release python-apt python-backports.ssl-match-hostname"
+    __PACKAGES="${__PACKAGES} python-crypto python-jinja2 python-msgpack python-m2crypto"
+    __PACKAGES="${__PACKAGES} python-requests python-tornado python-yaml python-zmq"
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 
     if [ "$_INSTALL_CLOUD" -eq $BS_TRUE ]; then
         # Install python-libcloud if asked to
@@ -3060,8 +3591,14 @@ install_debian_8_git_deps() {
 
     __git_clone_and_checkout || return 1
 
+<<<<<<< HEAD
     __PACKAGES="libzmq3 libzmq3-dev lsb-release python-apt python-crypto python-jinja2 python-msgpack"
     __PACKAGES="${__PACKAGES} python-requests python-systemd python-yaml python-zmq"
+=======
+    __PACKAGES="libzmq3 libzmq3-dev lsb-release python-apt python-crypto python-jinja2"
+    __PACKAGES="${__PACKAGES} python-m2crypto python-msgpack python-requests python-systemd"
+    __PACKAGES="${__PACKAGES} python-yaml python-zmq"
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 
     if [ "$_INSTALL_CLOUD" -eq $BS_TRUE ]; then
         # Install python-libcloud if asked to
@@ -3070,7 +3607,11 @@ install_debian_8_git_deps() {
 
     __PIP_PACKAGES=''
     if (__check_pip_allowed >/dev/null 2>&1); then
+<<<<<<< HEAD
         __PIP_PACKAGES='tornado'
+=======
+        __PIP_PACKAGES='tornado<5.0'
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         # Install development environment for building tornado Python module
         __PACKAGES="${__PACKAGES} build-essential python-dev"
 
@@ -3085,6 +3626,10 @@ install_debian_8_git_deps() {
                 /etc/apt/sources.list.d/backports.list
         fi
 
+<<<<<<< HEAD
+=======
+        __wait_for_apt
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         apt-get update || return 1
 
         # python-tornado package should be installed from backports repo
@@ -3123,6 +3668,7 @@ install_debian_9_git_deps() {
 
     __git_clone_and_checkout || return 1
 
+<<<<<<< HEAD
     __PACKAGES="libzmq5 lsb-release python-apt python-backports-abc python-crypto"
     __PACKAGES="${__PACKAGES} python-jinja2 python-msgpack python-requests python-systemd"
     __PACKAGES="${__PACKAGES} python-tornado python-yaml python-zmq"
@@ -3130,6 +3676,26 @@ install_debian_9_git_deps() {
     if [ "$_INSTALL_CLOUD" -eq $BS_TRUE ]; then
         # Install python-libcloud if asked to
         __PACKAGES="${__PACKAGES} python-libcloud"
+=======
+    __PACKAGES="libzmq5 lsb-release"
+
+    if [ -n "$_PY_EXE" ] && [ "$_PY_MAJOR_VERSION" -eq 3 ]; then
+        PY_PKG_VER=3
+    else
+        PY_PKG_VER=""
+
+        # These packages are PY2-ONLY
+        __PACKAGES="${__PACKAGES} python-backports-abc python-m2crypto"
+    fi
+
+    __PACKAGES="${__PACKAGES} python${PY_PKG_VER}-apt python${PY_PKG_VER}-crypto python${PY_PKG_VER}-jinja2"
+    __PACKAGES="${__PACKAGES} python${PY_PKG_VER}-msgpack python${PY_PKG_VER}-requests python${PY_PKG_VER}-systemd"
+    __PACKAGES="${__PACKAGES} python${PY_PKG_VER}-tornado python${PY_PKG_VER}-yaml python${PY_PKG_VER}-zmq"
+
+    if [ "$_INSTALL_CLOUD" -eq $BS_TRUE ]; then
+        # Install python-libcloud if asked to
+        __PACKAGES="${__PACKAGES} python${PY_PKG_VER}-libcloud"
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     fi
 
     # shellcheck disable=SC2086
@@ -3187,10 +3753,23 @@ install_debian_9_stable() {
 }
 
 install_debian_git() {
+<<<<<<< HEAD
     if [ -f "${_SALT_GIT_CHECKOUT_DIR}/salt/syspaths.py" ]; then
         python setup.py --salt-config-dir="$_SALT_ETC_DIR" --salt-cache-dir="${_SALT_CACHE_DIR}" ${SETUP_PY_INSTALL_ARGS} install --install-layout=deb || return 1
     else
         python setup.py ${SETUP_PY_INSTALL_ARGS} install --install-layout=deb || return 1
+=======
+    if [ -n "$_PY_EXE" ]; then
+        _PYEXE=${_PY_EXE}
+    else
+        _PYEXE=python
+    fi
+
+    if [ -f "${_SALT_GIT_CHECKOUT_DIR}/salt/syspaths.py" ]; then
+        ${_PYEXE} setup.py --salt-config-dir="$_SALT_ETC_DIR" --salt-cache-dir="${_SALT_CACHE_DIR}" ${SETUP_PY_INSTALL_ARGS} install --install-layout=deb || return 1
+    else
+        ${_PYEXE} setup.py ${SETUP_PY_INSTALL_ARGS} install --install-layout=deb || return 1
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     fi
 }
 
@@ -3221,7 +3800,11 @@ install_debian_git_post() {
         # Configure SystemD for Debian 8 "Jessie" and later
         if [ -f /bin/systemctl ]; then
             if [ ! -f /lib/systemd/system/salt-${fname}.service ] || \
+<<<<<<< HEAD
                 ([ -f /lib/systemd/system/salt-${fname}.service ] && [ $_FORCE_OVERWRITE -eq $BS_TRUE ]); then
+=======
+                { [ -f /lib/systemd/system/salt-${fname}.service ] && [ $_FORCE_OVERWRITE -eq $BS_TRUE ]; }; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
                 if [ -f "${_SALT_GIT_CHECKOUT_DIR}/pkg/salt-${fname}.service" ]; then
                     __copyfile "${_SALT_GIT_CHECKOUT_DIR}/pkg/salt-${fname}.service" /lib/systemd/system
                     __copyfile "${_SALT_GIT_CHECKOUT_DIR}/pkg/salt-${fname}.environment" "/etc/default/salt-${fname}"
@@ -3240,7 +3823,11 @@ install_debian_git_post() {
 
         # Install initscripts for Debian 7 "Wheezy"
         elif [ ! -f "/etc/init.d/salt-$fname" ] || \
+<<<<<<< HEAD
             ([ -f "/etc/init.d/salt-$fname" ] && [ "$_FORCE_OVERWRITE" -eq $BS_TRUE ]); then
+=======
+            { [ -f "/etc/init.d/salt-$fname" ] && [ "$_FORCE_OVERWRITE" -eq $BS_TRUE ]; }; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
             if [ -f "${_SALT_GIT_CHECKOUT_DIR}/pkg/salt-$fname.init" ]; then
                 __copyfile "${_SALT_GIT_CHECKOUT_DIR}/pkg/salt-${fname}.init" "/etc/init.d/salt-${fname}"
                 __copyfile "${_SALT_GIT_CHECKOUT_DIR}/pkg/salt-${fname}.environment" "/etc/default/salt-${fname}"
@@ -3319,6 +3906,7 @@ install_debian_check_services() {
 
 install_fedora_deps() {
 
+<<<<<<< HEAD
     if [ $_DISABLE_REPOS -eq $BS_FALSE ]; then
         if [ "$_ENABLE_EXTERNAL_ZMQ_REPOS" -eq $BS_TRUE ]; then
             __install_saltstack_copr_zeromq_repository || return 1
@@ -3334,6 +3922,10 @@ install_fedora_deps() {
     else
         __PACKAGES="${__PACKAGES} dnf-utils"
     fi
+=======
+    __PACKAGES="dnf-utils libyaml m2crypto PyYAML python-crypto python-jinja2"
+    __PACKAGES="${__PACKAGES} python2-msgpack python2-requests python-zmq"
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 
     # shellcheck disable=SC2086
     dnf install -y ${__PACKAGES} || return 1
@@ -3384,7 +3976,11 @@ install_fedora_stable_post() {
         [ $fname = "syndic" ] && [ "$_INSTALL_SYNDIC" -eq $BS_FALSE ] && continue
 
         systemctl is-enabled salt-$fname.service || (systemctl preset salt-$fname.service && systemctl enable salt-$fname.service)
+<<<<<<< HEAD
         sleep 0.1
+=======
+        sleep 1
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         systemctl daemon-reload
     done
 }
@@ -3445,7 +4041,11 @@ install_fedora_git_post() {
         [ $fname = "api" ] && continue
 
         systemctl is-enabled salt-$fname.service || (systemctl preset salt-$fname.service && systemctl enable salt-$fname.service)
+<<<<<<< HEAD
         sleep 0.1
+=======
+        sleep 1
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         systemctl daemon-reload
     done
 }
@@ -3497,8 +4097,12 @@ __install_epel_repository() {
     fi
 
     # Check if epel repo is already enabled and flag it accordingly
+<<<<<<< HEAD
     yum repolist | grep -q "^[!]\?${_EPEL_REPO}/"
     if [ $? -eq 0 ]; then
+=======
+    if yum repolist | grep -q "^[!]\\?${_EPEL_REPO}/"; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         _EPEL_REPOS_INSTALLED=$BS_TRUE
         return 0
     fi
@@ -3512,6 +4116,7 @@ __install_epel_repository() {
     return 0
 }
 
+<<<<<<< HEAD
 __install_saltstack_copr_zeromq_repository() {
     echoinfo "Installing Zeromq >=4 and PyZMQ>=14 from SaltStack's COPR repository"
     if [ ! -s /etc/yum.repos.d/saltstack-zeromq4.repo ]; then
@@ -3526,6 +4131,8 @@ __install_saltstack_copr_zeromq_repository() {
     return 0
 }
 
+=======
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 __install_saltstack_rhel_repository() {
     if [ "$ITYPE" = "stable" ]; then
         repo_rev="$STABLE_REV"
@@ -3533,6 +4140,7 @@ __install_saltstack_rhel_repository() {
         repo_rev="latest"
     fi
 
+<<<<<<< HEAD
     # Avoid using '$releasever' variable for yum.
     # Instead, this should work correctly on all RHEL variants.
     base_url="${HTTP_VAL}://${_REPO_URL}/yum/redhat/${DISTRO_MAJOR_VERSION}/\$basearch/${repo_rev}/"
@@ -3540,6 +4148,20 @@ __install_saltstack_rhel_repository() {
     repo_file="/etc/yum.repos.d/saltstack.repo"
 
     if [ ! -s "$repo_file" ]; then
+=======
+    __PY_VERSION_REPO="yum"
+    if [ -n "$_PY_EXE" ] && [ "$_PY_MAJOR_VERSION" -eq 3 ]; then
+        __PY_VERSION_REPO="py3"
+    fi
+
+    # Avoid using '$releasever' variable for yum.
+    # Instead, this should work correctly on all RHEL variants.
+    base_url="${HTTP_VAL}://${_REPO_URL}/${__PY_VERSION_REPO}/redhat/${DISTRO_MAJOR_VERSION}/\$basearch/${repo_rev}/"
+    gpg_key="SALTSTACK-GPG-KEY.pub"
+    repo_file="/etc/yum.repos.d/saltstack.repo"
+
+    if [ ! -s "$repo_file" ] || [ "$_FORCE_OVERWRITE" -eq $BS_TRUE ]; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         cat <<_eof > "$repo_file"
 [saltstack]
 name=SaltStack ${repo_rev} Release Channel for RHEL/CentOS \$releasever
@@ -3551,6 +4173,7 @@ enabled=1
 enabled_metadata=1
 _eof
 
+<<<<<<< HEAD
         fetch_url="${HTTP_VAL}://${_REPO_URL}/yum/redhat/${DISTRO_MAJOR_VERSION}/${CPU_ARCH_L}/${repo_rev}/"
         __rpm_import_gpg "${fetch_url}${gpg_key}" || return 1
     fi
@@ -3573,6 +4196,14 @@ __install_saltstack_copr_salt_repository() {
     if [ ! -s "/etc/yum.repos.d/${__REPO_FILENAME}" ]; then
         __fetch_url "/etc/yum.repos.d/${__REPO_FILENAME}" \
             "${HTTP_VAL}://copr.fedorainfracloud.org/coprs/saltstack/salt/repo/${__REPOTYPE}-${DISTRO_MAJOR_VERSION}/${__REPO_FILENAME}" || return 1
+=======
+        fetch_url="${HTTP_VAL}://${_REPO_URL}/${__PY_VERSION_REPO}/redhat/${DISTRO_MAJOR_VERSION}/${CPU_ARCH_L}/${repo_rev}/"
+        __rpm_import_gpg "${fetch_url}${gpg_key}" || return 1
+        yum clean metadata || return 1
+    elif [ "$repo_rev" != "latest" ]; then
+        echowarn "saltstack.repo already exists, ignoring salt version argument."
+        echowarn "Use -F (forced overwrite) to install $repo_rev."
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     fi
 
     return 0
@@ -3583,7 +4214,18 @@ install_centos_stable_deps() {
         yum -y update || return 1
     fi
 
+<<<<<<< HEAD
     if [ $_DISABLE_REPOS -eq $BS_FALSE ]; then
+=======
+    if [ "$_DISABLE_REPOS" -eq "$BS_TRUE" ] && [ -n "$_PY_EXE" ] && [ "$_PY_MAJOR_VERSION" -eq 3 ]; then
+        echoerror "Detected -r or -R option while installing Salt packages for Python 3."
+        echoerror "Python 3 packages for Salt require the EPEL repository to be installed."
+        echoerror "The -r and -R options are incompatible with -x and Python 3 bootstrap installs."
+        return 1
+    fi
+
+    if [ "$_DISABLE_REPOS" -eq "$BS_FALSE" ]; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         __install_epel_repository || return 1
         __install_saltstack_rhel_repository || return 1
     fi
@@ -3595,8 +4237,19 @@ install_centos_stable_deps() {
         __install_saltstack_rhel_repository || return 1
     fi
 
+<<<<<<< HEAD
     # YAML module is used for generating custom master/minion configs
     __PACKAGES="yum-utils chkconfig PyYAML"
+=======
+    __PACKAGES="yum-utils chkconfig"
+
+    # YAML module is used for generating custom master/minion configs
+    if [ -n "$_PY_EXE" ] && [ "$_PY_MAJOR_VERSION" -eq 3 ]; then
+        __PACKAGES="${__PACKAGES} python34-PyYAML"
+    else
+        __PACKAGES="${__PACKAGES} PyYAML"
+    fi
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 
     # shellcheck disable=SC2086
     __yum_install_noinput ${__PACKAGES} || return 1
@@ -3677,6 +4330,7 @@ install_centos_git_deps() {
 
     __git_clone_and_checkout || return 1
 
+<<<<<<< HEAD
     __PACKAGES="python-crypto python-futures python-msgpack python-zmq python-jinja2 python-requests python-tornado"
 
     if [ "$DISTRO_MAJOR_VERSION" -ge 7 ]; then
@@ -3685,6 +4339,31 @@ install_centos_git_deps() {
 
     if [ "$_INSTALL_CLOUD" -eq $BS_TRUE ]; then
         __PACKAGES="${__PACKAGES} python-libcloud"
+=======
+    __PACKAGES="m2crypto"
+
+    if [ -n "$_PY_EXE" ] && [ "$_PY_MAJOR_VERSION" -eq 3 ]; then
+        # Packages are named python34-<whatever>
+        PY_PKG_VER=34
+    else
+        PY_PKG_VER=""
+
+        # Only Py2 needs python-futures
+        __PACKAGES="${__PACKAGES} python-futures"
+
+        # There is no systemd-python3 package as of this writing
+        if [ "$DISTRO_MAJOR_VERSION" -ge 7 ]; then
+            __PACKAGES="${__PACKAGES} systemd-python"
+        fi
+    fi
+
+    __PACKAGES="python${PY_PKG_VER}-crypto python${PY_PKG_VER}-jinja2"
+    __PACKAGES="${__PACKAGES} python${PY_PKG_VER}-msgpack python${PY_PKG_VER}-requests"
+    __PACKAGES="${__PACKAGES} python${PY_PKG_VER}-tornado python${PY_PKG_VER}-zmq"
+
+    if [ "$_INSTALL_CLOUD" -eq $BS_TRUE ]; then
+        __PACKAGES="${__PACKAGES} python${PY_PKG_VER}-libcloud"
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     fi
 
     if [ "${_INSTALL_PY}" -eq "${BS_TRUE}" ]; then
@@ -3692,9 +4371,20 @@ install_centos_git_deps() {
         __install_python || return 1
     fi
 
+<<<<<<< HEAD
     if [ "${_PY_EXE}" != "" ]; then
         # If "-x" is defined, install dependencies with pip based on the Python version given.
         _PIP_PACKAGES="jinja2 msgpack-python pycrypto PyYAML tornado zmq"
+=======
+    if [ "${_PY_EXE}" != "" ] && [ "$_PIP_ALLOWED" -eq "$BS_TRUE" ]; then
+        # If "-x" is defined, install dependencies with pip based on the Python version given.
+        _PIP_PACKAGES="m2crypto jinja2 msgpack-python pycrypto PyYAML tornado<5.0 zmq"
+
+        # install swig and openssl on cent6
+        if [ "$DISTRO_MAJOR_VERSION" -eq 6 ]; then
+            __yum_install_noinput openssl-devel swig || return 1
+        fi
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 
         if [ -f "${_SALT_GIT_CHECKOUT_DIR}/requirements/base.txt" ]; then
             for SINGLE_PACKAGE in $_PIP_PACKAGES; do
@@ -3754,13 +4444,21 @@ install_centos_git_post() {
 
         if [ -f /bin/systemctl ]; then
             if [ ! -f "/usr/lib/systemd/system/salt-${fname}.service" ] || \
+<<<<<<< HEAD
                 ([ -f "/usr/lib/systemd/system/salt-${fname}.service" ] && [ "$_FORCE_OVERWRITE" -eq $BS_TRUE ]); then
+=======
+                { [ -f "/usr/lib/systemd/system/salt-${fname}.service" ] && [ "$_FORCE_OVERWRITE" -eq $BS_TRUE ]; }; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
                 __copyfile "${_SALT_GIT_CHECKOUT_DIR}/pkg/rpm/salt-${fname}.service" /usr/lib/systemd/system
             fi
 
             SYSTEMD_RELOAD=$BS_TRUE
         elif [ ! -f "/etc/init.d/salt-$fname" ] || \
+<<<<<<< HEAD
             ([ -f "/etc/init.d/salt-$fname" ] && [ "$_FORCE_OVERWRITE" -eq $BS_TRUE ]); then
+=======
+            { [ -f "/etc/init.d/salt-$fname" ] && [ "$_FORCE_OVERWRITE" -eq $BS_TRUE ]; }; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
             __copyfile "${_SALT_GIT_CHECKOUT_DIR}/pkg/rpm/salt-${fname}" /etc/init.d
             chmod +x /etc/init.d/salt-${fname}
         fi
@@ -3789,8 +4487,12 @@ install_centos_restart_daemons() {
 
         if [ -f /sbin/initctl ] && [ -f /etc/init/salt-${fname}.conf ]; then
             # We have upstart support and upstart knows about our service
+<<<<<<< HEAD
             /sbin/initctl status salt-$fname > /dev/null 2>&1
             if [ $? -ne 0 ]; then
+=======
+            if ! /sbin/initctl status salt-$fname > /dev/null 2>&1; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
                 # Everything is in place and upstart gave us an error code? Fail!
                 return 1
             fi
@@ -3798,9 +4500,14 @@ install_centos_restart_daemons() {
             # upstart knows about this service.
             # Let's try to stop it, and then start it
             /sbin/initctl stop salt-$fname > /dev/null 2>&1
+<<<<<<< HEAD
             /sbin/initctl start salt-$fname > /dev/null 2>&1
             # Restart service
             if [ $? -ne 0 ]; then
+=======
+            # Restart service
+            if ! /sbin/initctl start salt-$fname > /dev/null 2>&1; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
                 # Failed the restart?!
                 return 1
             fi
@@ -4264,7 +4971,11 @@ install_alpine_linux_stable_deps() {
 install_alpine_linux_git_deps() {
     install_alpine_linux_stable_deps || return 1
 
+<<<<<<< HEAD
     apk -U add python2 py-virtualenv py2-crypto py2-setuptools \
+=======
+    apk -U add python2 py-virtualenv py2-crypto py2-m2crypto py2-setuptools \
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         py2-jinja2 py2-yaml py2-markupsafe py2-msgpack py2-psutil \
         py2-zmq zeromq py2-requests || return 1
 
@@ -4331,6 +5042,10 @@ install_alpine_linux_post() {
             script_url="${_SALTSTACK_REPO_URL%.git}/raw/develop/pkg/alpine/salt-$fname"
             [ -f "/etc/init.d/salt-$fname" ] || __fetch_url "/etc/init.d/salt-$fname" "$script_url"
 
+<<<<<<< HEAD
+=======
+            # shellcheck disable=SC2181
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
             if [ $? -eq 0 ]; then
                 chmod +x "/etc/init.d/salt-$fname"
             else
@@ -4356,6 +5071,10 @@ install_alpine_linux_restart_daemons() {
         # Skip if not meant to be installed
         [ $fname = "master" ] && [ "$_INSTALL_MASTER" -eq $BS_FALSE ] && continue
         [ $fname = "minion" ] && [ "$_INSTALL_MINION" -eq $BS_FALSE ] && continue
+<<<<<<< HEAD
+=======
+        [ $fname = "syndic" ] && [ "$_INSTALL_SYNDIC" -eq $BS_FALSE ] && continue
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 
         # Disable stdin to fix shell session hang on killing tee pipe
         /sbin/rc-service salt-$fname stop < /dev/null > /dev/null 2>&1
@@ -4371,6 +5090,10 @@ install_alpine_linux_check_services() {
         # Skip if not meant to be installed
         [ $fname = "master" ] && [ "$_INSTALL_MASTER" -eq $BS_FALSE ] && continue
         [ $fname = "minion" ] && [ "$_INSTALL_MINION" -eq $BS_FALSE ] && continue
+<<<<<<< HEAD
+=======
+        [ $fname = "syndic" ] && [ "$_INSTALL_SYNDIC" -eq $BS_FALSE ] && continue
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 
         __check_services_alpine salt-$fname || return 1
     done
@@ -4389,6 +5112,10 @@ daemons_running_alpine_linux() {
         # Skip if not meant to be installed
         [ $fname = "minion" ] && [ "$_INSTALL_MINION" -eq $BS_FALSE ] && continue
         [ $fname = "master" ] && [ "$_INSTALL_MASTER" -eq $BS_FALSE ] && continue
+<<<<<<< HEAD
+=======
+        [ $fname = "syndic" ] && [ "$_INSTALL_SYNDIC" -eq $BS_FALSE ] && continue
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 
         # shellcheck disable=SC2009
         if [ "$(ps wwwaux | grep -v grep | grep salt-$fname)" = "" ]; then
@@ -4416,10 +5143,27 @@ install_amazon_linux_ami_deps() {
     _USEAWS=$BS_FALSE
     pkg_append="python"
 
+<<<<<<< HEAD
     repo_rev="$(echo "${STABLE_REV}"  | sed 's|.*\/||g')"
 
     if echo "$repo_rev" | egrep -q '^(latest|2016\.11)$' || \
            ( echo "$repo_rev" | egrep -q '^[0-9]+$' && [ "$(echo "$repo_rev" | cut -c1-4)" -gt 2016 ] ); then
+=======
+    if [ "$ITYPE" = "stable" ]; then
+        repo_rev="$STABLE_REV"
+    else
+        repo_rev="latest"
+    fi
+
+    if echo $repo_rev | grep -E -q '^archive'; then
+        year=$(echo "$repo_rev" | cut -d '/' -f 2 | cut -c1-4)
+    else
+        year=$(echo "$repo_rev" | cut -c1-4)
+    fi
+
+    if echo "$repo_rev" | grep -E -q '^(latest|2016\.11)$' || \
+            [ "$year" -gt 2016 ]; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
        _USEAWS=$BS_TRUE
        pkg_append="python27"
     fi
@@ -4466,7 +5210,12 @@ _eof
 
     # Package python-ordereddict-1.1-2.el6.noarch is obsoleted by python26-2.6.9-2.88.amzn1.x86_64
     # which is already installed
+<<<<<<< HEAD
     __PACKAGES="${pkg_append}-PyYAML ${pkg_append}-crypto ${pkg_append}-msgpack ${pkg_append}-zmq ${pkg_append}-jinja2 ${pkg_append}-requests"
+=======
+    __PACKAGES="m2crypto ${pkg_append}-crypto ${pkg_append}-jinja2 ${pkg_append}-PyYAML"
+    __PACKAGES="${__PACKAGES} ${pkg_append}-msgpack ${pkg_append}-requests ${pkg_append}-zmq"
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 
     # shellcheck disable=SC2086
     __yum_install_noinput ${__PACKAGES} || return 1
@@ -4619,7 +5368,11 @@ install_arch_linux_git_deps() {
     fi
     pacman -R --noconfirm python2-distribute
     pacman -Su --noconfirm --needed python2-crypto python2-setuptools python2-jinja \
+<<<<<<< HEAD
         python2-markupsafe python2-msgpack python2-psutil \
+=======
+        python2-m2crypto python2-markupsafe python2-msgpack python2-psutil \
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         python2-pyzmq zeromq python2-requests python2-systemd || return 1
 
     __git_clone_and_checkout || return 1
@@ -4693,7 +5446,11 @@ install_arch_linux_post() {
                 /usr/bin/systemctl preset salt-$fname.service > /dev/null 2>&1 &&
                 /usr/bin/systemctl enable salt-$fname.service > /dev/null 2>&1
             )
+<<<<<<< HEAD
             sleep 0.1
+=======
+            sleep 1
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
             /usr/bin/systemctl daemon-reload
             continue
         fi
@@ -4721,7 +5478,11 @@ install_arch_linux_git_post() {
                 /usr/bin/systemctl preset salt-${fname}.service > /dev/null 2>&1 &&
                 /usr/bin/systemctl enable salt-${fname}.service > /dev/null 2>&1
             )
+<<<<<<< HEAD
             sleep 0.1
+=======
+            sleep 1
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
             /usr/bin/systemctl daemon-reload
             continue
         fi
@@ -4874,9 +5635,15 @@ install_freebsd_9_stable_deps() {
         __configure_freebsd_pkg_details || return 1
     fi
 
+<<<<<<< HEAD
     # Now install swig
     # shellcheck disable=SC2086
     /usr/local/sbin/pkg install ${FROM_FREEBSD} -y swig || return 1
+=======
+    # Now install swig30
+    # shellcheck disable=SC2086
+    /usr/local/sbin/pkg install ${FROM_FREEBSD} -y swig30 || return 1
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 
     # YAML module is used for generating custom master/minion configs
     # shellcheck disable=SC2086
@@ -4923,7 +5690,11 @@ install_freebsd_git_deps() {
         # We're on the develop branch, install whichever tornado is on the requirements file
         __REQUIRED_TORNADO="$(grep tornado "${_SALT_GIT_CHECKOUT_DIR}/requirements/base.txt")"
         if [ "${__REQUIRED_TORNADO}" != "" ]; then
+<<<<<<< HEAD
              /usr/local/sbin/pkg install -y www/py-tornado || return 1
+=======
+             /usr/local/sbin/pkg install -y www/py-tornado4 || return 1
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         fi
     fi
 
@@ -4941,7 +5712,11 @@ install_freebsd_git_deps() {
     if [ ! -f salt/syspaths.py ]; then
         # We still can't provide the system paths, salt 0.16.x
         # Let's patch salt's source and adapt paths to what's expected on FreeBSD
+<<<<<<< HEAD
         echodebug "Replacing occurrences of '/etc/salt' with \'${_SALT_ETC_DIR}\'"
+=======
+        echodebug "Replacing occurrences of '/etc/salt' with ${_SALT_ETC_DIR}"
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         # The list of files was taken from Salt's BSD port Makefile
         for file in conf/minion conf/master salt/config.py salt/client.py \
                     salt/modules/mysql.py salt/utils/parsers.py salt/modules/tls.py \
@@ -4990,7 +5765,11 @@ install_freebsd_11_stable() {
 install_freebsd_git() {
 
     # /usr/local/bin/python2 in FreeBSD is a symlink to /usr/local/bin/python2.7
+<<<<<<< HEAD
     __PYTHON_PATH=$(readlink -f "$(which python2)")
+=======
+    __PYTHON_PATH=$(readlink -f "$(command -v python2)")
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     __ESCAPED_PYTHON_PATH=$(echo "${__PYTHON_PATH}" | sed 's/\//\\\//g')
 
     # Install from git
@@ -5087,6 +5866,7 @@ install_freebsd_restart_daemons() {
 #   OpenBSD Install Functions
 #
 
+<<<<<<< HEAD
 __choose_openbsd_mirror() {
     OPENBSD_REPO=''
     MINTIME=''
@@ -5115,6 +5895,14 @@ install_openbsd_deps() {
     echoinfo "setting package repository to $OPENBSD_REPO with ping time of $MINTIME"
     [ -n "$OPENBSD_REPO" ] || return 1
     echo "${OPENBSD_REPO}" >>/etc/installurl || return 1
+=======
+install_openbsd_deps() {
+    if [ $_DISABLE_REPOS -eq $BS_FALSE ]; then
+        OPENBSD_REPO='https://cdn.openbsd.org/pub/OpenBSD'
+        echoinfo "setting package repository to $OPENBSD_REPO"
+        echo "${OPENBSD_REPO}" >/etc/installurl || return 1
+    fi
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 
     if [ "${_EXTRA_PACKAGES}" != "" ]; then
         echoinfo "Installing the following extra packages as requested: ${_EXTRA_PACKAGES}"
@@ -5213,7 +6001,11 @@ install_openbsd_restart_daemons() {
 #   SmartOS Install Functions
 #
 install_smartos_deps() {
+<<<<<<< HEAD
     pkgin -y install zeromq py27-crypto py27-msgpack py27-yaml py27-jinja2 py27-zmq py27-requests || return 1
+=======
+    pkgin -y install zeromq py27-crypto py27-m2crypto py27-msgpack py27-yaml py27-jinja2 py27-zmq py27-requests || return 1
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 
     # Set _SALT_ETC_DIR to SmartOS default if they didn't specify
     _SALT_ETC_DIR=${BS_SALT_ETC_DIR:-/opt/local/etc/salt}
@@ -5398,6 +6190,7 @@ install_smartos_restart_daemons() {
 #
 __ZYPPER_REQUIRES_REPLACE_FILES=-1
 
+<<<<<<< HEAD
 __check_and_refresh_suse_pkg_repo() {
     # Check to see if systemsmanagement_saltstack exists
     __zypper repos | grep systemsmanagement_saltstack >/dev/null 2>&1
@@ -5414,10 +6207,42 @@ __set_suse_pkg_repo() {
         suse_pkg_url_base="http://download.opensuse.org/repositories/systemsmanagement:/saltstack"
     else
         suse_pkg_url_base="${HTTP_VAL}://repo.saltstack.com/opensuse"
+=======
+__set_suse_pkg_repo() {
+
+    # Set distro repo variable
+    if [ "${DISTRO_MAJOR_VERSION}" -gt 2015 ]; then
+        DISTRO_REPO="openSUSE_Tumbleweed"
+    elif [ "${DISTRO_MAJOR_VERSION}" -ge 42 ] || [ "${DISTRO_MAJOR_VERSION}" -eq 15 ]; then
+        DISTRO_REPO="openSUSE_Leap_${DISTRO_MAJOR_VERSION}.${DISTRO_MINOR_VERSION}"
+    else
+        DISTRO_REPO="SLE_${DISTRO_MAJOR_VERSION}_SP${SUSE_PATCHLEVEL}"
+    fi
+
+    if [ "$_DOWNSTREAM_PKG_REPO" -eq $BS_TRUE ]; then
+        suse_pkg_url_base="https://download.opensuse.org/repositories/systemsmanagement:/saltstack"
+        suse_pkg_url_path="${DISTRO_REPO}/systemsmanagement:saltstack.repo"
+    else
+        suse_pkg_url_base="${HTTP_VAL}://repo.saltstack.com/opensuse"
+        suse_pkg_url_path="${DISTRO_REPO}/systemsmanagement:saltstack:products.repo"
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     fi
     SUSE_PKG_URL="$suse_pkg_url_base/$suse_pkg_url_path"
 }
 
+<<<<<<< HEAD
+=======
+__check_and_refresh_suse_pkg_repo() {
+    # Check to see if systemsmanagement_saltstack exists
+    __zypper repos | grep -q systemsmanagement_saltstack
+
+    if [ $? -eq 1 ]; then
+        # zypper does not yet know anything about systemsmanagement_saltstack
+        __zypper addrepo --refresh "${SUSE_PKG_URL}" || return 1
+    fi
+}
+
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 __version_lte() {
     if ! __check_command_exists python; then
         zypper zypper --non-interactive install --replacefiles --auto-agree-with-licenses python || \
@@ -5432,6 +6257,16 @@ __version_lte() {
 }
 
 __zypper() {
+<<<<<<< HEAD
+=======
+    # Check if any zypper process is running before calling zypper again.
+    # This is useful when a zypper call is part of a boot process and will
+    # wait until the zypper process is finished, such as on AWS AMIs.
+    while pgrep -l zypper; do
+        sleep 1
+    done
+
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     zypper --non-interactive "${@}"; return $?
 }
 
@@ -5449,6 +6284,7 @@ __zypper_install() {
     fi
 }
 
+<<<<<<< HEAD
 install_opensuse_stable_deps() {
     if [ "${DISTRO_MAJOR_VERSION}" -gt 2015 ]; then
         DISTRO_REPO="openSUSE_Tumbleweed"
@@ -5458,6 +6294,10 @@ install_opensuse_stable_deps() {
         DISTRO_REPO="openSUSE_${DISTRO_MAJOR_VERSION}.${DISTRO_MINOR_VERSION}"
     fi
 
+=======
+__opensuse_prep_install() {
+    # DRY function for common installation preparatory steps for SUSE
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     if [ $_DISABLE_REPOS -eq $BS_FALSE ]; then
         # Is the repository already known
         __set_suse_pkg_repo
@@ -5466,12 +6306,18 @@ install_opensuse_stable_deps() {
     fi
 
     __zypper --gpg-auto-import-keys refresh
+<<<<<<< HEAD
+=======
+
+    # shellcheck disable=SC2181
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     if [ $? -ne 0 ] && [ $? -ne 4 ]; then
         # If the exit code is not 0, and it's not 4 (failed to update a
         # repository) return a failure. Otherwise continue.
         return 1
     fi
 
+<<<<<<< HEAD
     if [ "$DISTRO_MAJOR_VERSION" -eq 12 ] && [ "$DISTRO_MINOR_VERSION" -eq 3 ]; then
         # Because patterns-openSUSE-minimal_base-conflicts conflicts with python, lets remove the first one
         __zypper remove patterns-openSUSE-minimal_base-conflicts
@@ -5500,6 +6346,29 @@ install_opensuse_stable_deps() {
     # Fix for OpenSUSE 13.2 and 2015.8 - gcc should not be required. Work around until package is fixed by SuSE
     _EXTRA_PACKAGES="${_EXTRA_PACKAGES} gcc python-devel libgit2-devel"
 
+=======
+    if [ "$_UPGRADE_SYS" -eq $BS_TRUE ]; then
+        __zypper --gpg-auto-import-keys update || return 1
+    fi
+}
+
+install_opensuse_stable_deps() {
+    __opensuse_prep_install || return 1
+
+    if [ "$DISTRO_MAJOR_VERSION" -eq 12 ] && [ "$DISTRO_MINOR_VERSION" -eq 3 ]; then
+        # Because patterns-openSUSE-minimal_base-conflicts conflicts with python, lets remove the first one
+        __zypper remove patterns-openSUSE-minimal_base-conflicts
+    fi
+
+    # YAML module is used for generating custom master/minion configs
+    # requests is still used by many salt modules
+    # Salt needs python-zypp installed in order to use the zypper module
+    __PACKAGES="python-PyYAML python-requests python-zypp"
+
+    # shellcheck disable=SC2086
+    __zypper_install ${__PACKAGES} || return 1
+
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     if [ "${_EXTRA_PACKAGES}" != "" ]; then
         echoinfo "Installing the following extra packages as requested: ${_EXTRA_PACKAGES}"
         # shellcheck disable=SC2086
@@ -5510,7 +6379,11 @@ install_opensuse_stable_deps() {
 }
 
 install_opensuse_git_deps() {
+<<<<<<< HEAD
     if [ "$_INSECURE_DL" -eq $BS_FALSE ] && [ "${_SALT_REPO_URL%%://*}" = "https" ]; then
+=======
+    if [ "$_INSECURE_DL" -eq $BS_FALSE ] && [ "${_SALT_REPO_URL%%://*}" = "https" ] && ! __check_command_exists update-ca-certificates; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         __zypper_install ca-certificates || return 1
     fi
 
@@ -5524,7 +6397,11 @@ install_opensuse_git_deps() {
 
     __git_clone_and_checkout || return 1
 
+<<<<<<< HEAD
     __PACKAGES=""
+=======
+    __PACKAGES="libzmq5 python-Jinja2 python-m2crypto python-msgpack-python python-pycrypto python-pyzmq python-xml"
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 
     if [ -f "${_SALT_GIT_CHECKOUT_DIR}/requirements/base.txt" ]; then
         # We're on the develop branch, install whichever tornado is on the requirements file
@@ -5589,7 +6466,11 @@ install_opensuse_stable_post() {
 
         if [ -f /bin/systemctl ]; then
             systemctl is-enabled salt-$fname.service || (systemctl preset salt-$fname.service && systemctl enable salt-$fname.service)
+<<<<<<< HEAD
             sleep 0.1
+=======
+            sleep 1
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
             systemctl daemon-reload
             continue
         fi
@@ -5613,7 +6494,11 @@ install_opensuse_git_post() {
         if [ -f /bin/systemctl ]; then
             use_usr_lib=$BS_FALSE
 
+<<<<<<< HEAD
             if [ "${DISTRO_MAJOR_VERSION}" -gt 13 ] || ([ "${DISTRO_MAJOR_VERSION}" -eq 13 ] && [ "${DISTRO_MINOR_VERSION}" -ge 2 ]); then
+=======
+            if [ "${DISTRO_MAJOR_VERSION}" -ge 15 ]; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
                 use_usr_lib=$BS_TRUE
             fi
 
@@ -5689,6 +6574,7 @@ install_opensuse_check_services() {
 
 #######################################################################################################################
 #
+<<<<<<< HEAD
 #   SUSE Enterprise 12
 #
 
@@ -5773,6 +6659,130 @@ install_suse_12_stable_deps() {
         fi
     fi
 
+=======
+#   openSUSE Leap 15
+#
+
+install_opensuse_15_stable_deps() {
+    __opensuse_prep_install || return 1
+
+    # SUSE only packages Salt for Python 3 on Leap 15
+    # Py3 is the default bootstrap install for Leap 15
+    # However, git installs might specify "-x python2"
+    if [ -n "$_PY_EXE" ] && [ "$_PY_MAJOR_VERSION" -eq 2 ]; then
+        PY_PKG_VER=2
+    else
+        PY_PKG_VER=3
+    fi
+
+    # YAML module is used for generating custom master/minion configs
+    # requests is still used by many salt modules
+    __PACKAGES="python${PY_PKG_VER}-PyYAML python${PY_PKG_VER}-requests"
+
+    # shellcheck disable=SC2086
+    __zypper_install ${__PACKAGES} || return 1
+
+    if [ "${_EXTRA_PACKAGES}" != "" ]; then
+        echoinfo "Installing the following extra packages as requested: ${_EXTRA_PACKAGES}"
+        # shellcheck disable=SC2086
+        __zypper_install ${_EXTRA_PACKAGES} || return 1
+    fi
+
+    return 0
+}
+
+install_opensuse_15_git_deps() {
+    install_opensuse_15_stable_deps || return 1
+
+    if ! __check_command_exists git; then
+        __zypper_install git  || return 1
+    fi
+
+    __git_clone_and_checkout || return 1
+
+    # Py3 is the default bootstrap install for Leap 15
+    # However, git installs might specify "-x python2"
+    if [ -n "$_PY_EXE" ] && [ "$_PY_MAJOR_VERSION" -eq 2 ]; then
+        PY_PKG_VER=2
+
+        # This is required by some of the python2 packages below
+        __PACKAGES="libpython2_7-1_0"
+    else
+        PY_PKG_VER=3
+        __PACKAGES=""
+    fi
+
+    __PACKAGES="${__PACKAGES} libzmq5 python${PY_PKG_VER}-Jinja2 python${PY_PKG_VER}-msgpack"
+    __PACKAGES="${__PACKAGES} python${PY_PKG_VER}-pycrypto python${PY_PKG_VER}-pyzmq"
+
+    if [ -f "${_SALT_GIT_CHECKOUT_DIR}/requirements/base.txt" ]; then
+        # We're on the develop branch, install whichever tornado is on the requirements file
+        __REQUIRED_TORNADO="$(grep tornado "${_SALT_GIT_CHECKOUT_DIR}/requirements/base.txt")"
+        if [ "${__REQUIRED_TORNADO}" != "" ]; then
+            __PACKAGES="${__PACKAGES} python${PY_PKG_VER}-tornado"
+        fi
+    fi
+
+    if [ "$_INSTALL_CLOUD" -eq $BS_TRUE ]; then
+        __PACKAGES="${__PACKAGES} python${PY_PKG_VER}-apache-libcloud"
+    fi
+
+    # shellcheck disable=SC2086
+    __zypper_install ${__PACKAGES} || return 1
+
+    # Let's trigger config_salt()
+    if [ "$_TEMP_CONFIG_DIR" = "null" ]; then
+        _TEMP_CONFIG_DIR="${_SALT_GIT_CHECKOUT_DIR}/conf/"
+        CONFIG_SALT_FUNC="config_salt"
+    fi
+
+    return 0
+}
+
+install_opensuse_15_git() {
+
+    # Py3 is the default bootstrap install for Leap 15
+    if [ -n "$_PY_EXE" ]; then
+        _PYEXE=${_PY_EXE}
+    else
+        _PYEXE=python3
+    fi
+
+    ${_PYEXE} setup.py ${SETUP_PY_INSTALL_ARGS} install --prefix=/usr || return 1
+    return 0
+}
+
+#
+#   End of openSUSE Leap 15
+#
+#######################################################################################################################
+
+#######################################################################################################################
+#
+#   SUSE Enterprise 12
+#
+
+install_suse_12_stable_deps() {
+    __opensuse_prep_install || return 1
+
+    # YAML module is used for generating custom master/minion configs
+    # requests is still used by many salt modules
+    # Salt needs python-zypp installed in order to use the zypper module
+    __PACKAGES="python-PyYAML python-requests python-zypp"
+
+    if [ "$_INSTALL_CLOUD" -eq $BS_TRUE ]; then
+        __PACKAGES="${__PACKAGES} python-apache-libcloud"
+    fi
+
+    # shellcheck disable=SC2086,SC2090
+    __zypper_install ${__PACKAGES} || return 1
+
+    # SLES 11 SP3 ships with both python-M2Crypto-0.22.* and python-m2crypto-0.21 and we will be asked which
+    # we want to install, even with --non-interactive.
+    # Let's try to install the higher version first and then the lower one in case of failure
+    __zypper_install 'python-M2Crypto>=0.22' || __zypper_install 'python-M2Crypto>=0.21' || return 1
+
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     if [ "${_EXTRA_PACKAGES}" != "" ]; then
         echoinfo "Installing the following extra packages as requested: ${_EXTRA_PACKAGES}"
         # shellcheck disable=SC2086
@@ -5792,6 +6802,12 @@ install_suse_12_git_deps() {
     __git_clone_and_checkout || return 1
 
     __PACKAGES=""
+<<<<<<< HEAD
+=======
+    # shellcheck disable=SC2089
+    __PACKAGES="${__PACKAGES} libzmq3 python-Jinja2 python-msgpack-python python-pycrypto"
+    __PACKAGES="${__PACKAGES} python-pyzmq python-xml"
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 
     if [ -f "${_SALT_GIT_CHECKOUT_DIR}/requirements/base.txt" ]; then
         # We're on the develop branch, install whichever tornado is on the requirements file
@@ -5818,6 +6834,7 @@ install_suse_12_git_deps() {
 }
 
 install_suse_12_stable() {
+<<<<<<< HEAD
     if [ "$SUSE_PATCHLEVEL" -gt 1 ]; then
         install_opensuse_stable || return 1
     else
@@ -5826,6 +6843,9 @@ install_suse_12_stable() {
         USE_SETUPTOOLS=1 pip install salt || return 1
     fi
 
+=======
+    install_opensuse_stable || return 1
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     return 0
 }
 
@@ -5835,6 +6855,7 @@ install_suse_12_git() {
 }
 
 install_suse_12_stable_post() {
+<<<<<<< HEAD
     if [ "$SUSE_PATCHLEVEL" -gt 1 ]; then
         install_opensuse_stable_post || return 1
     else
@@ -5863,6 +6884,9 @@ install_suse_12_stable_post() {
         done
     fi
 
+=======
+    install_opensuse_stable_post || return 1
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     return 0
 }
 
@@ -5887,6 +6911,7 @@ install_suse_12_restart_daemons() {
 #
 
 install_suse_11_stable_deps() {
+<<<<<<< HEAD
     SUSE_PATCHLEVEL=$(awk '/PATCHLEVEL/ {print $3}' /etc/SuSE-release )
     if [ "${SUSE_PATCHLEVEL}" != "" ]; then
         if [ "${SUSE_PATCHLEVEL}" != "4" ]; then
@@ -5922,10 +6947,17 @@ install_suse_11_stable_deps() {
     else
         __PACKAGES="${__PACKAGES} python-PyYAML"
     fi
+=======
+    __opensuse_prep_install || return 1
+
+    # YAML module is used for generating custom master/minion configs
+    __PACKAGES="python-PyYAML"
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 
     # shellcheck disable=SC2086,SC2090
     __zypper_install ${__PACKAGES} || return 1
 
+<<<<<<< HEAD
     if [ "$SUSE_PATCHLEVEL" -eq 1 ]; then
         # There's no python-PyYaml in SP1, let's install it using pip
         pip install PyYaml || return 1
@@ -5960,6 +6992,12 @@ install_suse_11_stable_deps() {
             done
         fi
     fi
+=======
+    # SLES 11 SP3 ships with both python-M2Crypto-0.22.* and python-m2crypto-0.21 and we will be asked which
+    # we want to install, even with --non-interactive.
+    # Let's try to install the higher version first and then the lower one in case of failure
+    __zypper_install 'python-M2Crypto>=0.22' || __zypper_install 'python-M2Crypto>=0.21' || return 1
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 
     if [ "${_EXTRA_PACKAGES}" != "" ]; then
         echoinfo "Installing the following extra packages as requested: ${_EXTRA_PACKAGES}"
@@ -5980,6 +7018,12 @@ install_suse_11_git_deps() {
     __git_clone_and_checkout || return 1
 
     __PACKAGES=""
+<<<<<<< HEAD
+=======
+    # shellcheck disable=SC2089
+    __PACKAGES="${__PACKAGES} libzmq4 python-Jinja2 python-msgpack-python python-pycrypto"
+    __PACKAGES="${__PACKAGES} python-pyzmq python-xml python-zypp"
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 
     if [ -f "${_SALT_GIT_CHECKOUT_DIR}/requirements/base.txt" ]; then
         # We're on the develop branch, install whichever tornado is on the requirements file
@@ -6006,6 +7050,7 @@ install_suse_11_git_deps() {
 }
 
 install_suse_11_stable() {
+<<<<<<< HEAD
     if [ "$SUSE_PATCHLEVEL" -gt 1 ]; then
         install_opensuse_stable || return 1
     else
@@ -6013,6 +7058,9 @@ install_suse_11_stable() {
         # error: option --single-version-externally-managed not recognized
         USE_SETUPTOOLS=1 pip install salt || return 1
     fi
+=======
+    install_opensuse_stable || return 1
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     return 0
 }
 
@@ -6022,6 +7070,7 @@ install_suse_11_git() {
 }
 
 install_suse_11_stable_post() {
+<<<<<<< HEAD
     if [ "$SUSE_PATCHLEVEL" -gt 1 ]; then
         install_opensuse_stable_post || return 1
     else
@@ -6048,6 +7097,9 @@ install_suse_11_stable_post() {
         done
     fi
 
+=======
+    install_opensuse_stable_post || return 1
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     return 0
 }
 
@@ -6066,6 +7118,11 @@ install_suse_11_restart_daemons() {
 #   End of SUSE Enterprise 11
 #
 #######################################################################################################################
+<<<<<<< HEAD
+=======
+
+#######################################################################################################################
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 #
 # SUSE Enterprise General Functions
 #
@@ -6093,7 +7150,11 @@ install_suse_check_services() {
 }
 
 #
+<<<<<<< HEAD
 # SUSE Enterprise General Functions
+=======
+#   End of SUSE Enterprise General Functions
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 #
 #######################################################################################################################
 
@@ -6508,7 +7569,11 @@ preseed_master() {
     SEED_DEST="$_PKI_DIR/master/minions"
     [ -d "$SEED_DEST" ] || (mkdir -p "$SEED_DEST" && chmod 700 "$SEED_DEST") || return 1
 
+<<<<<<< HEAD
     for keyfile in $_TEMP_KEYS_DIR/*; do
+=======
+    for keyfile in "$_TEMP_KEYS_DIR"/*; do
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         keyfile=$(basename "${keyfile}")
         src_keyfile="${_TEMP_KEYS_DIR}/${keyfile}"
         dst_keyfile="${SEED_DEST}/${keyfile}"
@@ -6568,6 +7633,10 @@ daemons_running() {
 #======================================================================================================================
 
 # Let's get the dependencies install function
+<<<<<<< HEAD
+=======
+DEP_FUNC_NAMES=""
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 if [ ${_NO_DEPS} -eq $BS_FALSE ]; then
     DEP_FUNC_NAMES="install_${DISTRO_NAME_L}${PREFIXED_DISTRO_MAJOR_VERSION}_${ITYPE}_deps"
     DEP_FUNC_NAMES="$DEP_FUNC_NAMES install_${DISTRO_NAME_L}${PREFIXED_DISTRO_MAJOR_VERSION}${PREFIXED_DISTRO_MINOR_VERSION}_${ITYPE}_deps"
@@ -6575,10 +7644,13 @@ if [ ${_NO_DEPS} -eq $BS_FALSE ]; then
     DEP_FUNC_NAMES="$DEP_FUNC_NAMES install_${DISTRO_NAME_L}${PREFIXED_DISTRO_MAJOR_VERSION}${PREFIXED_DISTRO_MINOR_VERSION}_deps"
     DEP_FUNC_NAMES="$DEP_FUNC_NAMES install_${DISTRO_NAME_L}_${ITYPE}_deps"
     DEP_FUNC_NAMES="$DEP_FUNC_NAMES install_${DISTRO_NAME_L}_deps"
+<<<<<<< HEAD
 elif [ "${ITYPE}" = "git" ]; then
     DEP_FUNC_NAMES="__git_clone_and_checkout"
 else
     DEP_FUNC_NAMES=""
+=======
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 fi
 
 DEPS_INSTALL_FUNC="null"
@@ -6713,7 +7785,11 @@ for FUNC_NAME in $(__strip_duplicates "$CHECK_SERVICES_FUNC_NAMES"); do
 done
 echodebug "CHECK_SERVICES_FUNC=${CHECK_SERVICES_FUNC}"
 
+<<<<<<< HEAD
 if [ "$DEPS_INSTALL_FUNC" = "null" ]; then
+=======
+if [ ${_NO_DEPS} -eq $BS_FALSE ] && [ "$DEPS_INSTALL_FUNC" = "null" ]; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
     echoerror "No dependencies installation function found. Exiting..."
     exit 1
 fi
@@ -6723,28 +7799,56 @@ if [ "$INSTALL_FUNC" = "null" ]; then
     exit 1
 fi
 
+<<<<<<< HEAD
 # Install dependencies
 if [ "$_CONFIG_ONLY" -eq $BS_FALSE ]; then
     # Only execute function is not in config mode only
     echoinfo "Running ${DEPS_INSTALL_FUNC}()"
     $DEPS_INSTALL_FUNC
     if [ $? -ne 0 ]; then
+=======
+
+# Install dependencies
+if [ ${_NO_DEPS} -eq $BS_FALSE ] && [ $_CONFIG_ONLY -eq $BS_FALSE ]; then
+    # Only execute function is not in config mode only
+    echoinfo "Running ${DEPS_INSTALL_FUNC}()"
+    if ! ${DEPS_INSTALL_FUNC}; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         echoerror "Failed to run ${DEPS_INSTALL_FUNC}()!!!"
         exit 1
     fi
 fi
 
+<<<<<<< HEAD
+=======
+
+if [ "${ITYPE}" = "git" ] && [ ${_NO_DEPS} -eq ${BS_TRUE} ]; then
+    if ! __git_clone_and_checkout; then
+        echo "Failed to clone and checkout git repository."
+        exit 1
+    fi
+fi
+
+
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 # Triggering config_salt() if overwriting master or minion configs
 if [ "$_CUSTOM_MASTER_CONFIG" != "null" ] || [ "$_CUSTOM_MINION_CONFIG" != "null" ]; then
     if [ "$_TEMP_CONFIG_DIR" = "null" ]; then
         _TEMP_CONFIG_DIR="$_SALT_ETC_DIR"
     fi
 
+<<<<<<< HEAD
     if [ "$_CONFIG_ONLY" -eq $BS_TRUE ]; then
         # Execute function to satisfy dependencies for configuration step
         echoinfo "Running ${DEPS_INSTALL_FUNC}()"
         $DEPS_INSTALL_FUNC
         if [ $? -ne 0 ]; then
+=======
+    if [ ${_NO_DEPS} -eq $BS_FALSE ] && [ $_CONFIG_ONLY -eq $BS_TRUE ]; then
+        # Execute function to satisfy dependencies for configuration step
+        echoinfo "Running ${DEPS_INSTALL_FUNC}()"
+        if ! ${DEPS_INSTALL_FUNC}; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
             echoerror "Failed to run ${DEPS_INSTALL_FUNC}()!!!"
             exit 1
         fi
@@ -6754,8 +7858,12 @@ fi
 # Configure Salt
 if [ "$CONFIG_SALT_FUNC" != "null" ] && [ "$_TEMP_CONFIG_DIR" != "null" ]; then
     echoinfo "Running ${CONFIG_SALT_FUNC}()"
+<<<<<<< HEAD
     $CONFIG_SALT_FUNC
     if [ $? -ne 0 ]; then
+=======
+    if ! ${CONFIG_SALT_FUNC}; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         echoerror "Failed to run ${CONFIG_SALT_FUNC}()!!!"
         exit 1
     fi
@@ -6764,7 +7872,11 @@ fi
 # Drop the master address if passed
 if [ "$_SALT_MASTER_ADDRESS" != "null" ]; then
     [ ! -d "$_SALT_ETC_DIR/minion.d" ] && mkdir -p "$_SALT_ETC_DIR/minion.d"
+<<<<<<< HEAD
     cat <<_eof > $_SALT_ETC_DIR/minion.d/99-master-address.conf
+=======
+    cat <<_eof > "$_SALT_ETC_DIR/minion.d/99-master-address.conf"
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
 master: $_SALT_MASTER_ADDRESS
 _eof
 fi
@@ -6778,8 +7890,12 @@ fi
 # Pre-seed master keys
 if [ "$PRESEED_MASTER_FUNC" != "null" ] && [ "$_TEMP_KEYS_DIR" != "null" ]; then
     echoinfo "Running ${PRESEED_MASTER_FUNC}()"
+<<<<<<< HEAD
     $PRESEED_MASTER_FUNC
     if [ $? -ne 0 ]; then
+=======
+    if ! ${PRESEED_MASTER_FUNC}; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         echoerror "Failed to run ${PRESEED_MASTER_FUNC}()!!!"
         exit 1
     fi
@@ -6789,8 +7905,12 @@ fi
 if [ "$_CONFIG_ONLY" -eq $BS_FALSE ]; then
     # Only execute function is not in config mode only
     echoinfo "Running ${INSTALL_FUNC}()"
+<<<<<<< HEAD
     $INSTALL_FUNC
     if [ $? -ne 0 ]; then
+=======
+    if ! ${INSTALL_FUNC}; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         echoerror "Failed to run ${INSTALL_FUNC}()!!!"
         exit 1
     fi
@@ -6799,8 +7919,12 @@ fi
 # Run any post install function. Only execute function if not in config mode only
 if [ "$POST_INSTALL_FUNC" != "null" ] && [ "$_CONFIG_ONLY" -eq $BS_FALSE ]; then
     echoinfo "Running ${POST_INSTALL_FUNC}()"
+<<<<<<< HEAD
     $POST_INSTALL_FUNC
     if [ $? -ne 0 ]; then
+=======
+    if ! ${POST_INSTALL_FUNC}; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         echoerror "Failed to run ${POST_INSTALL_FUNC}()!!!"
         exit 1
     fi
@@ -6809,8 +7933,12 @@ fi
 # Run any check services function, Only execute function if not in config mode only
 if [ "$CHECK_SERVICES_FUNC" != "null" ] && [ "$_CONFIG_ONLY" -eq $BS_FALSE ]; then
     echoinfo "Running ${CHECK_SERVICES_FUNC}()"
+<<<<<<< HEAD
     $CHECK_SERVICES_FUNC
     if [ $? -ne 0 ]; then
+=======
+    if ! ${CHECK_SERVICES_FUNC}; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         echoerror "Failed to run ${CHECK_SERVICES_FUNC}()!!!"
         exit 1
     fi
@@ -6821,8 +7949,12 @@ if [ "$STARTDAEMONS_INSTALL_FUNC" != "null" ] && [ ${_START_DAEMONS} -eq $BS_TRU
     echoinfo "Running ${STARTDAEMONS_INSTALL_FUNC}()"
     echodebug "Waiting ${_SLEEP} seconds for processes to settle before checking for them"
     sleep ${_SLEEP}
+<<<<<<< HEAD
     $STARTDAEMONS_INSTALL_FUNC
     if [ $? -ne 0 ]; then
+=======
+    if ! ${STARTDAEMONS_INSTALL_FUNC}; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         echoerror "Failed to run ${STARTDAEMONS_INSTALL_FUNC}()!!!"
         exit 1
     fi
@@ -6833,8 +7965,12 @@ if [ "$DAEMONS_RUNNING_FUNC" != "null" ] && [ ${_START_DAEMONS} -eq $BS_TRUE ]; 
     echoinfo "Running ${DAEMONS_RUNNING_FUNC}()"
     echodebug "Waiting ${_SLEEP} seconds for processes to settle before checking for them"
     sleep ${_SLEEP}  # Sleep a little bit to let daemons start
+<<<<<<< HEAD
     $DAEMONS_RUNNING_FUNC
     if [ $? -ne 0 ]; then
+=======
+    if ! ${DAEMONS_RUNNING_FUNC}; then
+>>>>>>> 9c0afe62... Dev: Use latest bootstrap script that support Leap 15
         echoerror "Failed to run ${DAEMONS_RUNNING_FUNC}()!!!"
 
         for fname in api master minion syndic; do

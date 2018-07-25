@@ -50,6 +50,7 @@ def configure_machine(machine, idx, roles, memory, cpus)
 
   machine.vm.provision :salt do |salt|
     salt.minion_config = "salt/etc/minion"
+    salt.bootstrap_script = "salt/bootstrap-salt.sh"
     salt.run_highstate = true
     salt.verbose = true
     salt.no_minion = true
