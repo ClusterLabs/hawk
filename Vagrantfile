@@ -49,6 +49,7 @@ def configure_machine(machine, idx, roles, memory, cpus)
 
 
   machine.vm.provision :salt do |salt|
+    salt.masterless = true
     salt.minion_config = "salt/etc/minion"
     salt.bootstrap_script = "salt/bootstrap-salt.sh"
     salt.run_highstate = true
@@ -79,9 +80,8 @@ Vagrant.configure("2") do |config|
     abort 'Missing bindfs plugin! Please install using vagrant plugin install vagrant-bindfs'
   end
 
-
-  config.vm.box = "hawk/tumbleweed-ha"
-  config.vm.box_version = "1.1.14"
+  config.vm.box = "hawk/leap-15.0-ha"
+  config.vm.box_version = "1.0.7"
   config.vm.box_check_update = true
   config.ssh.insert_key = false
 
