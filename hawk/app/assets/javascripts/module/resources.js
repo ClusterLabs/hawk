@@ -354,12 +354,18 @@ $(function() {
           }
         };
 
-        if (row.state === "started" || row.state === "master" || row.state === "slave") {
-          add_operation(op_destination, Routes.stop_cib_resource_path($('body').data('cib'), row.id), 'stop', 'stop', __('Stop'));
-        }
-
-        if (row.state === "stopped") {
-          add_operation(op_destination, Routes.start_cib_resource_path($('body').data('cib'), row.id), 'start', 'play', __('Start'));
+        if (row.attributes["target-role"]) {
+          if (row.attributes["target-role"] === "Started") {
+            add_operation(op_destination, Routes.stop_cib_resource_path($('body').data('cib'), row.id), 'stop', 'stop', __('Stop'));
+          } else if (row.attributes["target-role"] === "Stopped") {
+            add_operation(op_destination, Routes.start_cib_resource_path($('body').data('cib'), row.id), 'start', 'play', __('Start'));
+          }
+        } else {
+          if (row.state === "started" || row.state === "master" || row.state === "slave") {
+            add_operation(op_destination, Routes.stop_cib_resource_path($('body').data('cib'), row.id), 'stop', 'stop', __('Stop'));
+          } else if (row.state === "stopped") {
+            add_operation(op_destination, Routes.start_cib_resource_path($('body').data('cib'), row.id), 'start', 'play', __('Start'));
+          }
         }
 
         if (row.state === "master") {
