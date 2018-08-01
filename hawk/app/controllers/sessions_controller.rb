@@ -28,11 +28,11 @@ class SessionsController < ApplicationController
         reset_session
         session[:username] = @session.username
 
-        # generate random value, store in attrd_updater
-        value = SecureRandom.hex[0,12]
-        system("attrd_updater -R -p -n \"hawk_session_#{@session.username}\" -U \"#{value}\"")
-        cookies['hawk_remember_me_id'] = {:value => @session.username, :expires => 30.days.from_now}
-        cookies['hawk_remember_me_key'] = {:value => value, :expires => 30.days.from_now}
+        # generate random value, store in attrd_updater (1024 Bits)
+        value = SecureRandom.hex(128)
+        system("/usr/sbin/attrd_updater -R -p -n \"hawk_session_#{@session.username}\" -U \"#{value}\"")
+        cookies['hawk_remember_me_id'] = {:value => @session.username, :expires => 7.days.from_now}
+        cookies['hawk_remember_me_key'] = {:value => value, :expires => 7.days.from_now}
 
         format.html do
           redirect_back root_url
@@ -60,7 +60,9 @@ class SessionsController < ApplicationController
         _('You have been logged out')
       end
     end
-
+    # delete remember-me keys from cluster nodes by overwriting them with a random number
+    random_value = SecureRandom.hex(128)
+    system("/usr/sbin/attrd_updater -R -p -n \"hawk_session_#{cookies['hawk_remember_me_id']}\" -U \"#{random_value}\"")
     cookies.delete :hawk_remember_me_id
     cookies.delete :hawk_remember_me_key
     session[:username] = nil
