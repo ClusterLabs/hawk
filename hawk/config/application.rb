@@ -2,6 +2,8 @@
 # See COPYING for license.
 
 require File.expand_path("../boot", __FILE__)
+require File.expand_path('../../app/lib/hawk/secure_cookies', __FILE__)
+
 
 module Hawk
   class Application < Rails::Application
@@ -30,6 +32,9 @@ module Hawk
     config.active_support.escape_html_entities_in_json = true
 
     config.i18n.enforce_available_locales = false
+
+    # Set the secure flag for all the cookies
+    config.middleware.insert_after ActionDispatch::Static, Hawk::SecureCookies
 
     if Rails.env.development?
       if config.respond_to? :web_console
