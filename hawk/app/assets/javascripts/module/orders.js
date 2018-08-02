@@ -122,6 +122,14 @@ $(function() {
   $('#order_score_group').on('click', '.dropdown-menu a', function() {
     var value = $(this).data('value');
     $('#order_score_group #order_score').val(value);
+
+    // Set symmetrical to False and disable the select input when score is set to Serialize, see #1085515
+    if (value == "Serialize") {
+      $('#order_score_symmetrical').val("false").prop('disabled', 'disabled');
+    } else {
+      $('#order_score_symmetrical').val("true").prop('disabled', false);
+    }
+
   });
 
   // $('#orders #middle form')
