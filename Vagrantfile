@@ -31,7 +31,7 @@ class VagrantPlugins::ProviderVirtualBox::Action::SetName
     disk_file = "#{$drbd_disk}_#{name}.vdi"
     if !File.exist?(disk_file)
       ui.info "Creating storage file '#{disk_file}'..."
-      driver.execute('createhd', "--filename", disk_file, "--size", "#{$shared_disk_size}", '--variant', 'fixed')
+      driver.execute('createhd', "--filename", disk_file, "--size", "#{$drbd_disk_size}", '--variant', 'fixed')
     end
     ui.info "Attaching '#{disk_file}'..."
     driver.execute('storageattach', uuid, '--storagectl', "SATA Controller", '--port', "2", '--device', "0", '--type', 'hdd', '--medium', disk_file)
