@@ -32,6 +32,7 @@ salt://utils/configure_drbd.sh:
 /root/initial.crm:
   file.managed:
     - source: salt://files/crm-initial.conf
+    - template: jinja
 
 apply_initial_configuration:
   cmd.run:
