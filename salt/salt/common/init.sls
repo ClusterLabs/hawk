@@ -2,7 +2,8 @@ include:
   - common.watchdog
   - common.hosts
   - common.ssh
-  - common.update
+  - common.configure_routes
+  # - common.update
   - common.cluster
   - common.drbd
   - common.services

@@ -8,6 +8,7 @@
 /etc/haproxy/haproxy.cfg:
   file.managed:
     - source: salt://files/haproxy.cfg
+    - template: jinja
 
 /etc/apache2/listen.conf:
   file.replace:

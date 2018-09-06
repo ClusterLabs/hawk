@@ -1,11 +1,11 @@
 webui:
   host.present:
-    - ip: 10.13.37.10
+    - ip: {{ pillar['ip_node_0'] }}
 
 node1:
   host.present:
-    - ip: 10.13.37.11
+    - ip: {{ pillar['ip_node_1'] }}
 
 node2:
   host.present:
-    - ip: 10.13.37.12
+    - ip: {{ pillar['ip_node_2'] }}

@@ -1,0 +1,1 @@
+{{ pillar['routes_config'] }}
