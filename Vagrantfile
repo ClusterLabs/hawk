@@ -1,6 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+Vagrant.require_version ">= 2.1.0"
 require_relative './vagrant_config' if File.exists?('vagrant_config.rb')
 
 # Virtual Machine Prefix: Please, include a meaninful name
