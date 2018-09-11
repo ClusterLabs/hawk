@@ -110,7 +110,7 @@ Vagrant.configure("2") do |config|
     salt.no_minion = true
     # Optional: Consume pillar data from the configue file
     if defined?(GC)
-    salt.pillar({
+      salt.pillar({
         "configure_routes" => true,
         "routes_config" => ENV["ROUTES_CONFIG"],
         "ip_node_0" => ENV["IP_NODE_0"],
@@ -119,19 +119,40 @@ Vagrant.configure("2") do |config|
         "ip_vip" => ENV["IP_VIP"],
         "ip_bundle_1" => ENV["IP_BUNDLE_1"],
         "ip_bundle_2" => ENV["IP_BUNDLE_2"]
-    })
+      })
     else
-    salt.pillar({
-      "configure_routes" => false,
-      "routes_config" => "",
-      "ip_node_0" => "10.13.37.10",
-      "ip_node_1" => "10.13.37.11",
-      "ip_node_2" => "10.13.37.12",
-      "ip_vip" => "10.13.37.20",
-      "ip_bundle_1" => "10.13.37.13",
-      "ip_bundle_2" => "10.13.37.100"
-  })
+      salt.pillar({
+        "configure_routes" => false,
+        "routes_config" => "",
+        "ip_node_0" => "10.13.37.10",
+        "ip_node_1" => "10.13.37.11",
+        "ip_node_2" => "10.13.37.12",
+        "ip_vip" => "10.13.37.20",
+        "ip_bundle_1" => "10.13.37.13",
+        "ip_bundle_2" => "10.13.37.100"
+      })
     end
+
+    if defined?(GC)
+      config.trigger.after :up, :provision do |trigger|
+        trigger.warn = "Saving this machine public ip in #{ENV['VM_PREFIX_NAME']}_public_ip"
+        trigger.run_remote = { inline: "echo $(hostname): $(ip addr show eth2 | grep \"inet\\b\" | head -n1 | awk '{print $2}' | cut -d/ -f1) >> /vagrant/#{ENV['VM_PREFIX_NAME']}_public_ip" }
+        trigger.on_error = :continue
+      end
+      config.trigger.before :destroy do |trigger|
+        $script = <<-SCRIPT
+        if [ -s /vagrant/#{ENV['VM_PREFIX_NAME']}_public_ip ];then
+          sed -i \"/$(hostname)/d\" /vagrant/#{ENV['VM_PREFIX_NAME']}_public_ip
+        else
+          rm -f /vagrant/#{ENV["VM_PREFIX_NAME"]}_public_ip
+        fi
+        SCRIPT
+        trigger.warn = "Deleting this machine public ip from #{ENV['VM_PREFIX_NAME']}_public_ip"
+        trigger.run_remote = { inline: $script }
+        trigger.on_error = :continue
+      end
+    end
+
  end
 
   config.vm.define "webui", primary: true do |machine|
