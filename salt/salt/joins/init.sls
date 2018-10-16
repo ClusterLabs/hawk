@@ -6,3 +6,5 @@ salt://utils/join_cluster.sh:
 salt://utils/nagios_nrpe.sh:
   cmd.script:
     - runas: root
+    - template: jinja
+
