@@ -8,3 +8,5 @@ salt://utils/configure_nagios_client.sh:
     - runas: root
     - template: jinja
 
+
+

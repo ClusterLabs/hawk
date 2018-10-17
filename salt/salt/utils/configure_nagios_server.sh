@@ -37,12 +37,9 @@ make install-webconf
 
 # Fix Apache error: “Could not reliably determine the server's fully qualified domain name”
 echo "ServerName localhost" | tee /etc/apache2/conf.d/fqdn.conf
-systemctl enable apache2.service
 
 # Create an Apache user account to be able to log into Nagios. (you will be prompted to provide a password for the account.)
 htpasswd2 -b -c /usr/local/nagios/etc/htpasswd.users nagiosadmin nagios
-systemctl start apache2.service
-systemctl start nagios.service
 
 # Downloading the nagios plugins Source
 wget --no-check-certificate -O nagios-plugins.tar.gz https://github.com/nagios-plugins/nagios-plugins/archive/release-2.2.1.tar.gz
@@ -75,6 +72,4 @@ EOT
 # Add the cluster_api.cfg to nagios config file
 sed -i '/cfg_file=\/usr\/local\/nagios\/etc\/objects\/templates.cfg/a cfg_file=\/usr\/local\/nagios\/etc\/objects\/cluster_api.cfg' /usr/local/nagios/etc/nagios.cfg
 
-# Restart the apache2 and nagios services
-systemctl restart nagios
-systemctl restart apache2
+apachectl -k stop
