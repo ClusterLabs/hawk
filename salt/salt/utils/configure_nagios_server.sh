@@ -92,9 +92,6 @@ EOT
 # add this to /usr/local/nagios/etc/nagios.cfg (see the other jinja file)
 sed -i '/cfg_file=\/usr\/local\/nagios\/etc\/objects\/templates.cfg/a cfg_file=\/usr\/local\/nagios\/etc\/objects\/cluster_api.cfg' /usr/local/nagios/etc/nagios.cfg
 
-
-
-
-
-
-
+# restart the apache2 and nagios services
+systemctl restart nagios
+systemctl restart apache2
