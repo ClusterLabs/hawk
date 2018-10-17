@@ -75,10 +75,9 @@ hawk-development:
     - group: root
     - mode: 755
 
-salt://utils/install_nagios_plugins.sh:
+salt://utils/configure_nagios_server.sh:
   cmd.script:
     - runas: root
-
 
 /usr/local/nagios/etc/objects/cluster_api.cfg:
   file.managed:
