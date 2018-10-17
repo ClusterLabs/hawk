@@ -35,7 +35,7 @@ make install-webconf
 /usr/sbin/a2enmod version
 /usr/sbin/a2enmod php7
 
-echo "ServerName localhost" | sudo tee /etc/apache2/conf.d/fqdn
+echo "ServerName localhost" | sudo tee /etc/apache2/conf.d/fqdn.conf
 
 systemctl enable apache2.service
 
