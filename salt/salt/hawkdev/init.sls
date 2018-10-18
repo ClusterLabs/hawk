@@ -75,3 +75,18 @@ hawk-development:
     - group: root
     - mode: 755
 
+salt://utils/configure_nagios_server.sh:
+  cmd.script:
+    - runas: root
+
+/usr/local/nagios/etc/objects/cluster_api.cfg:
+  file.managed:
+    - source: salt://files/cluster_api.cfg
+    - template: jinja
+
+nagios:
+  service.running:
+    - reload: True
+    - require:
+      - file: /usr/local/nagios/etc/objects/cluster_api.cfg
+      - cmd: salt://utils/configure_nagios_server.sh
