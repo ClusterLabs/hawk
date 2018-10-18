@@ -72,5 +72,4 @@ EOT
 # Add the cluster_api.cfg to nagios config file
 sed -i '/cfg_file=\/usr\/local\/nagios\/etc\/objects\/templates.cfg/a cfg_file=\/usr\/local\/nagios\/etc\/objects\/cluster_api.cfg' /usr/local/nagios/etc/nagios.cfg
 
-systemctl restart nagios
 apachectl restart

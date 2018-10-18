@@ -83,3 +83,10 @@ salt://utils/configure_nagios_server.sh:
   file.managed:
     - source: salt://files/cluster_api.cfg
     - template: jinja
+
+nagios:
+  service.running:
+    - reload: True
+    - require:
+      - file: /usr/local/nagios/etc/objects/cluster_api.cfg
+      - cmd: salt://utils/configure_nagios_server.sh
