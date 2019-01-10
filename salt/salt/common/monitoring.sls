@@ -31,3 +31,38 @@ monitoring_packages:
 /etc/profile.d/go.sh:
   file.managed:
     - source: salt://files/go.sh
+
+'source /etc/profile.d/go.sh':
+  cmd.run
+
+gobin:
+   environ.setenv:
+     - name: GOBIN
+     - value: /usr/bin
+     - update_minion: True
+
+'curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh':
+  cmd.run
+
+prometheus:
+  service.running:
+    - enable: True
+
+prometheus-node_exporter:
+  service.running:
+    - enable: True
+
+salt://utils/pacemaker_exporter.sh:
+  cmd.script:
+    - runas: root
+
+/etc/systemd/system/pacemaker-exporter.service:
+  file.managed:
+    - source: salt://files/pacemaker-exporter.service
+    - user: root
+    - group: root
+    - mode: 644
+
+pacemaker-exporter:
+  service.running:
+    - enable: True
