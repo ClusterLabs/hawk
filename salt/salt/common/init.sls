@@ -8,4 +8,5 @@ include:
   - common.cluster
   - common.drbd
   - common.services
+  - common.monitoring
   # - common.bundle
