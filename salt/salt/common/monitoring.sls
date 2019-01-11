@@ -44,6 +44,13 @@ gobin:
 'curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh':
   cmd.run
 
+/etc/prometheus/prometheus.yml:
+  file.managed:
+    - source: salt://files/prometheus.yml
+    - user: root
+    - group: root
+    - mode: 644
+
 prometheus:
   service.running:
     - enable: True
