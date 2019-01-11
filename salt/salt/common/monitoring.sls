@@ -41,8 +41,11 @@ gobin:
      - value: /usr/bin
      - update_minion: True
 
-'curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh':
-  cmd.run
+install_godep:
+  cmd.run:
+    - name: curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
+    - require:
+      - environ: gobin
 
 /etc/prometheus/prometheus.yml:
   file.managed:
@@ -54,6 +57,8 @@ gobin:
 prometheus:
   service.running:
     - enable: True
+    - require:
+      - file: /etc/prometheus/prometheus.yml
 
 prometheus-node_exporter:
   service.running:
@@ -77,3 +82,19 @@ pacemaker-exporter:
     - watch:
       - /etc/systemd/system/pacemaker-exporter.service
     - enable: True
+
+change_grafana_http_port:
+  cmd.run:
+    - name: sed -i 's/;http_port = 3000/http_port = 3999/g' /etc/grafana/grafana.ini
+
+change_grafana_root_url:
+  cmd.run:
+    - name: sed -i 's@;root_url = http://localhost:3000@root_url = http://localhost:3999@g' /etc/grafana/grafana.ini
+
+grafana-server:
+  service.running:
+    - enable: True
+    - require:
+      - cmd: change_grafana_http_port
+      - cmd: change_grafana_root_url
+
