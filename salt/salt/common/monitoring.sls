@@ -65,4 +65,8 @@ salt://utils/pacemaker_exporter.sh:
 
 pacemaker-exporter:
   service.running:
+    - require:
+      - file: /etc/systemd/system/pacemaker-exporter.service
+    - watch:
+      - /etc/systemd/system/pacemaker-exporter.service
     - enable: True

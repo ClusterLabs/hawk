@@ -1,7 +1,6 @@
 [Unit]
 Description=Pacemaker exporter
 After=network.target
-StopWhenUnneeded=true
 
 [Service]
 Type=simple
@@ -10,7 +9,7 @@ TimeoutSec=300
 TimeoutStopSec=10
 User=hacluster
 Group=haclient
-ExecStart=$GOPATH/src/github.com/hawk-ui/pacemaker_exporter/pacemaker_exporter
+ExecStart=/usr/share/go/1.10/contrib/src/github.com/hawk-ui/pacemaker_exporter/pacemaker_exporter
 Restart=on-failure
 
 [Install]
