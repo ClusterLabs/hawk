@@ -30,12 +30,26 @@ scrape_configs:
     static_configs:
       - targets: ['localhost:9090']
 
-  - job_name: node
-    # If prometheus-node-exporter is installed, grab stats about the local
-    # machine by default.
+  - job_name: node_exporter_webui
     static_configs:
-      - targets: ['localhost:9100']
+      - targets: ['{{ pillar['ip_node_0'] }}:9100']
 
-  - job_name: pacemaker-exporter
+  - job_name: node_exporter_node1
     static_configs:
-      - targets: ['localhost:9356']
+      - targets: ['{{ pillar['ip_node_1'] }}:9100']
+
+  - job_name: node_exporter_node2
+    static_configs:
+      - targets: ['{{ pillar['ip_node_2'] }}:9100']
+
+  - job_name: pacemaker_exporter_webui
+    static_configs:
+      - targets: ['{{ pillar['ip_node_0'] }}:9356']
+
+  - job_name: pacemaker_exporter_node1
+    static_configs:
+      - targets: ['{{ pillar['ip_node_1'] }}:9356']
+
+  - job_name: pacemaker_exporter_node2
+    static_configs:
+      - targets: ['{{ pillar['ip_node_2'] }}:9356']

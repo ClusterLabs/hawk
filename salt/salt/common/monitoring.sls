@@ -50,6 +50,7 @@ install_godep:
 /etc/prometheus/prometheus.yml:
   file.managed:
     - source: salt://files/prometheus.yml
+    - template: jinja
     - user: root
     - group: root
     - mode: 644
