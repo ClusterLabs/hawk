@@ -17,7 +17,7 @@
  * that it's unable to get the password from the shadow file
  * because it doesn't have sufficient permissions.
  *
- * Copyright (C) 2002 SuSE Linux AG
+ * Copyright (C) 2002 SUSE LLC
  *
  * Written by okir@suse.de, loosely based on unix_chkpwd
  * by Andrew Morgan.
