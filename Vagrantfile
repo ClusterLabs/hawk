@@ -87,10 +87,12 @@ def configure_triggers(machine, idx)
   machine.trigger.after :up, :provision do |trigger|
     trigger.warn = "Saving this machine public ip in #{ENV['VM_PREFIX_NAME']}_public_ip"
     trigger.run_remote = { inline: "echo $(hostname): $(ip addr show eth2 | grep \"inet\\b\" | head -n1 | awk '{print $2}' | cut -d/ -f1) >> /vagrant/#{ENV['VM_PREFIX_NAME']}_public_ip" }
+    trigger.on_error = :continue
   end
   machine.trigger.before :destroy do |trigger|
     trigger.warn = "Deleting this machine public ip from #{ENV['VM_PREFIX_NAME']}_public_ip"
     trigger.run = { inline: "sed -i \"/#{idx}/d\" #{ENV['VM_PREFIX_NAME']}_public_ip" }
+    trigger.on_error = :continue
   end
 
 end
