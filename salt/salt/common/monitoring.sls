@@ -92,10 +92,20 @@ change_grafana_root_url:
   cmd.run:
     - name: sed -i 's@;root_url = http://localhost:3000@root_url = http://localhost:3999@g' /etc/grafana/grafana.ini
 
+/etc/grafana/provisioning/datasources/datasource.yaml:
+  file.managed:
+    - source: salt://files/datasource.yaml
+    - template: jinja
+    - user: root
+    - group: root
+    - mode: 644
+    - makedirs: True
+
 grafana-server:
   service.running:
     - enable: True
     - require:
       - cmd: change_grafana_http_port
       - cmd: change_grafana_root_url
+      - file: /etc/grafana/provisioning/datasources/datasource.yaml
 
