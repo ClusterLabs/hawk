@@ -101,6 +101,23 @@ change_grafana_root_url:
     - mode: 644
     - makedirs: True
 
+/etc/grafana/provisioning/dashboards/ha_dashboard.yaml:
+  file.managed:
+    - source: salt://files/ha_dashboard.yaml
+    - template: jinja
+    - user: root
+    - group: root
+    - mode: 644
+    - makedirs: True
+
+/etc/grafana/dashboards/ha_dashboard.json:
+  file.managed:
+    - source: salt://files/ha_dashboard.json
+    - user: root
+    - group: root
+    - mode: 644
+    - makedirs: True
+
 grafana-server:
   service.running:
     - enable: True

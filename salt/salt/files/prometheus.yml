@@ -46,10 +46,10 @@ scrape_configs:
     static_configs:
       - targets: ['{{ pillar['ip_node_0'] }}:9356']
 
-  - job_name: pacemaker_exporter_node1
-    static_configs:
-      - targets: ['{{ pillar['ip_node_1'] }}:9356']
+  # - job_name: pacemaker_exporter_node1
+  #   static_configs:
+  #     - targets: ['{{ pillar['ip_node_1'] }}:9356']
 
-  - job_name: pacemaker_exporter_node2
-    static_configs:
-      - targets: ['{{ pillar['ip_node_2'] }}:9356']
+  # - job_name: pacemaker_exporter_node2
+  #   static_configs:
+  #     - targets: ['{{ pillar['ip_node_2'] }}:9356']
