@@ -17,38 +17,8 @@ $shared_disk_size = 128 # MB
 $drbd_disk = '_drbd_disk'
 $drbd_disk_size = 256 # MB
 
-# Create and attach shared SBD/OCFS2 disk for VirtualBox
-class VagrantPlugins::ProviderVirtualBox::Action::SetName
-  alias_method :original_call, :call
-  def call(env)
-    disk_file = "#{$shared_disk}.vdi"
-    ui = env[:ui]
-    driver = env[:machine].provider.driver
-    uuid = driver.instance_eval { @uuid }
-    if !File.exist?(disk_file)
-      ui.info "Creating storage file '#{disk_file}'..."
-      driver.execute('createhd', "--filename", disk_file, "--size", "#{$shared_disk_size}", '--variant', 'fixed')
-      driver.execute('modifyhd', disk_file, '--type', 'shareable')
-    end
-    ui.info "Attaching '#{disk_file}'..."
-    driver.execute('storageattach', uuid, '--storagectl', "SATA Controller", '--port', "1", '--device', "0", '--type', 'hdd', '--medium', disk_file)
-
-    name = env[:machine].provider_config.name
-    disk_file = "#{$drbd_disk}_#{name}.vdi"
-    if !File.exist?(disk_file)
-      ui.info "Creating storage file '#{disk_file}'..."
-      driver.execute('createhd', "--filename", disk_file, "--size", "#{$drbd_disk_size}", '--variant', 'fixed')
-    end
-    ui.info "Attaching '#{disk_file}'..."
-    driver.execute('storageattach', uuid, '--storagectl', "SATA Controller", '--port', "2", '--device', "0", '--type', 'hdd', '--medium', disk_file)
-
-    original_call(env)
-  end
-end
-
 # Shared configuration for all VMs
 def configure_machine(machine, idx, roles, memory, cpus)
-
   machine.vm.provider :libvirt do |provider, override|
     provider.default_prefix = VM_PREFIX_NAME
     provider.host = ENV["VM_HOST"] if ENV["VM_HOST"]
@@ -70,8 +40,6 @@ def configure_machine(machine, idx, roles, memory, cpus)
     provider.storage_pool_name = "default"
     provider.management_network_name = "vagrant-libvirt"
   end
-
-  # Port forwarding
   machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 22, host: 3022 + (idx * 100)
   machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 7630, host: 7630 + idx
   if defined?(GC)
@@ -82,21 +50,6 @@ def configure_machine(machine, idx, roles, memory, cpus)
   end
 end
 
-def configure_triggers(machine, idx)
-
-  machine.trigger.after :up, :provision do |trigger|
-    trigger.warn = "Saving this machine public ip in #{ENV['VM_PREFIX_NAME']}_public_ip"
-    trigger.run_remote = { inline: "echo $(hostname): $(ip addr show eth2 | grep \"inet\\b\" | head -n1 | awk '{print $2}' | cut -d/ -f1) >> /vagrant/#{ENV['VM_PREFIX_NAME']}_public_ip" }
-    trigger.on_error = :continue
-  end
-  machine.trigger.before :destroy do |trigger|
-    trigger.warn = "Deleting this machine public ip from #{ENV['VM_PREFIX_NAME']}_public_ip"
-    trigger.run = { inline: "sed -i \"/#{idx}/d\" #{ENV['VM_PREFIX_NAME']}_public_ip" }
-    trigger.on_error = :continue
-  end
-
-end
-
 Vagrant.configure("2") do |config|
   unless Vagrant.has_plugin?("vagrant-bindfs")
     abort 'Missing bindfs plugin! Please install using vagrant plugin install vagrant-bindfs'
@@ -104,27 +57,37 @@ Vagrant.configure("2") do |config|
 
   config.vm.box = "hawk/leap-15.0-ha"
   config.vm.box_version = "1.0.8"
-  config.vm.box_check_update = true
-  config.ssh.insert_key = false
-
   # Change hacluster user's shell from nologin to /bin/bash to avoid issues with bindfs
   config.vm.provision "shell", inline: "chsh -s /bin/bash hacluster"
-
   config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_version: "4", nfs_udp: false, mount_options: ["rw", "noatime", "async"]
   config.bindfs.bind_folder "/vagrant", "/vagrant", force_user: "hacluster", force_group: "haclient", perms: "u=rwX:g=rwXD:o=rXD", after: :provision
 
-  # Provision the machines using Salt
   config.vm.synced_folder "salt/salt", "/srv/salt"
-  config.vm.provision :salt do |salt|
-    salt.masterless = true
-    salt.minion_config = "salt/etc/minion"
+
+  # Master node configuration
+  def configure_master(master_config)
+  master_config.vm.synced_folder "salt/pillar", "/srv/pillar", type: 'rsync'
+
+  # salt-master must be installed this way, as install_master option does not work properly for this distro
+  master_config.vm.provision "shell", inline: "zypper --non-interactive --gpg-auto-import-keys ref"
+  master_config.vm.provision "shell", inline: "zypper --gpg-auto-import-keys in -y --force-resolution -l salt-master; exit 0"
+
+  master_config.vm.provision :salt do |salt|
+    salt.master_config = "salt/etc/master"
+    salt.master_key = "salt/salt/sshkeys/vagrant"
+    salt.master_pub = "salt/salt/sshkeys/vagrant.pub"
+    # Add cluster nodes ssh public keys
+    salt.seed_master = {
+                        "node1" => "salt/salt/sshkeys/vagrant.pub",
+                        "node2" => "salt/salt/sshkeys/vagrant.pub",
+                        "node3" => "salt/salt/sshkeys/vagrant.pub"
+                       }
+
     salt.bootstrap_script = "salt/bootstrap-salt.sh"
-    salt.install_master = false
-    salt.run_highstate = true
+    salt.install_master = true
     salt.verbose = true
     salt.colorize = true
-    salt.no_minion = true
-    # Optional: Consume pillar data from the configue file
+    salt.run_highstate = true
     if defined?(GC)
       salt.pillar({
         "configure_routes" => true,
@@ -148,21 +111,68 @@ Vagrant.configure("2") do |config|
         "ip_bundle_2" => "10.13.37.100"
       })
     end
- end
+  end
+
+  # Change hacluster user's shell from nologin to /bin/bash to avoid issues with bindfs
+  master_config.vm.provision "shell", inline: "chsh -s /bin/bash hacluster"
+
+end
+
+
+# Minoin node configuration
+def configure_minion(minion_config)
+  minion_config.vm.provision :salt do |salt|
+    salt.minion_config = "salt/etc/minion"
+    salt.minion_key = "salt/salt/sshkeys/vagrant"
+    salt.minion_pub = "salt/salt/sshkeys/vagrant.pub"
+    salt.bootstrap_script = "salt/bootstrap-salt.sh"
+    salt.verbose = true
+    salt.colorize = true
+    salt.run_highstate = true
+    if defined?(GC)
+      salt.pillar({
+        "configure_routes" => true,
+        "routes_config" => ENV["ROUTES_CONFIG"],
+        "ip_node_0" => ENV["IP_NODE_0"],
+        "ip_node_1" => ENV["IP_NODE_1"],
+        "ip_node_2" => ENV["IP_NODE_2"],
+        "ip_vip" => ENV["IP_VIP"],
+        "ip_bundle_1" => ENV["IP_BUNDLE_1"],
+        "ip_bundle_2" => ENV["IP_BUNDLE_2"]
+      })
+    else
+      salt.pillar({
+        "configure_routes" => false,
+        "routes_config" => "",
+        "ip_node_0" => "10.13.37.10",
+        "ip_node_1" => "10.13.37.11",
+        "ip_node_2" => "10.13.37.12",
+        "ip_vip" => "10.13.37.20",
+        "ip_bundle_1" => "10.13.37.13",
+        "ip_bundle_2" => "10.13.37.100"
+      })
+    end
+  end
+
+  # Change hacluster user's shell from nologin to /bin/bash to avoid issues with bindfs
+  minion_config.vm.provision "shell", inline: "chsh -s /bin/bash hacluster"
+  minion_config.vm.provision "shell", inline: "zypper rr systemsmanagement-salt"
+
+end
 
   config.vm.define "webui", primary: true do |machine|
     machine.vm.hostname = "webui"
     machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 3000, host: 3000
     machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 8808, host: 8808
     configure_machine machine, 0, ["base", "webui"], ENV["VM_MEM"] || 2608, ENV["VM_CPU"] || 2
-    configure_triggers(machine, "webui") if defined?(GC)
+    configure_master machine
   end
 
   1.upto(2).each do |i|
     config.vm.define "node#{i}", autostart: true do |machine|
       machine.vm.hostname = "node#{i}"
       configure_machine machine, i, ["base", "node"], ENV["VM_MEM"] || 768, ENV["VM_CPU"] || 1
-      configure_triggers(machine, "node#{i}") if defined?(GC)
+      configure_minion machine
     end
   end
 
