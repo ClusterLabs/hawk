@@ -114,7 +114,7 @@ Vagrant.configure("2") do |config|
   config.bindfs.bind_folder "/vagrant", "/vagrant", force_user: "hacluster", force_group: "haclient", perms: "u=rwX:g=rwXD:o=rXD", after: :provision
 
   # Provision the machines using Salt
-  config.vm.synced_folder "salt/salt", "/srv/salt"
+  config.vm.synced_folder "salt/roots", "/srv/salt"
   config.vm.provision :salt do |salt|
     salt.masterless = true
     salt.minion_config = "salt/etc/minion"
