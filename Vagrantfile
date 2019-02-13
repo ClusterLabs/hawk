@@ -115,6 +115,7 @@ Vagrant.configure("2") do |config|
 
   # Provision the machines using Salt
   config.vm.synced_folder "salt/roots", "/srv/salt"
+  config.vm.synced_folder "salt/pillar", "/srv/pillar"
   config.vm.provision :salt do |salt|
     salt.masterless = true
     salt.minion_config = "salt/etc/minion"
