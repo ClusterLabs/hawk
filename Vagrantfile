@@ -51,21 +51,6 @@ def configure_machine(machine, idx, roles, memory, cpus)
   end
 end
 
-def configure_triggers(machine, idx)
-
-  machine.trigger.after :up, :provision do |trigger|
-    trigger.warn = "Saving this machine public ip in #{ENV['VM_PREFIX_NAME']}_public_ip"
-    trigger.run_remote = { inline: "echo $(hostname): $(ip addr show eth2 | grep \"inet\\b\" | head -n1 | awk '{print $2}' | cut -d/ -f1) >> /vagrant/#{ENV['VM_PREFIX_NAME']}_public_ip" }
-    trigger.on_error = :continue
-  end
-  machine.trigger.before :destroy do |trigger|
-    trigger.warn = "Deleting this machine public ip from #{ENV['VM_PREFIX_NAME']}_public_ip"
-    trigger.run = { inline: "sed -i \"/#{idx}/d\" #{ENV['VM_PREFIX_NAME']}_public_ip" }
-    trigger.on_error = :continue
-  end
-
-end
-
 Vagrant.configure("2") do |config|
   unless Vagrant.has_plugin?("vagrant-bindfs")
     abort 'Missing bindfs plugin! Please install using vagrant plugin install vagrant-bindfs'
@@ -124,14 +109,12 @@ Vagrant.configure("2") do |config|
     machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 3000, host: 3000
     machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 8808, host: 8808
     configure_machine machine, 0, ["base", "webui"], ENV["VM_MEM"] || 2608, ENV["VM_CPU"] || 2
-    configure_triggers(machine, "webui") if defined?(GC)
   end
 
   1.upto(2).each do |i|
     config.vm.define "node#{i}", autostart: true do |machine|
       machine.vm.hostname = "node#{i}"
       configure_machine machine, i, ["base", "node"], ENV["VM_MEM"] || 768, ENV["VM_CPU"] || 1
-      configure_triggers(machine, "node#{i}") if defined?(GC)
     end
   end
 
