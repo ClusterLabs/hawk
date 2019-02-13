@@ -5,3 +5,10 @@ file_roots:
 pillar_roots:
   base:
     - /vagrant/salt/pillar
+
+fileserver_backend:
+  - roots
+  - git
+
+gitfs_remotes:
+  - https://github.com/salt-formulas/salt-formula-prometheus.git
