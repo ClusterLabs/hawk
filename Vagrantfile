@@ -71,6 +71,8 @@ Vagrant.configure("2") do |config|
     minion.vm.synced_folder "salt/roots", "/srv/salt", type: "rsync"
     minion.vm.synced_folder "salt/pillar", "/srv/pillar", type: "rsync"
     minion.vm.synced_folder "salt/etc", "/etc/salt", type: "rsync", rsync__exclude: "minion_id"
+    # Necessary packages for using gitfs (remote formulas)
+    minion.vm.provision :shell, :inline => "zypper in -y git-core python3-setuptools python3-pygit2"
     minion.vm.provision :salt do |salt|
       salt.masterless = true
       salt.minion_id = minion_id
