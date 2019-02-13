@@ -68,9 +68,9 @@ Vagrant.configure("2") do |config|
   config.bindfs.bind_folder "/vagrant", "/vagrant", force_user: "hacluster", force_group: "haclient", perms: "u=rwX:g=rwXD:o=rXD", after: :provision
   def provision_minion(minion, minion_id)
     # Provision the machines using Salt
-    minion.vm.synced_folder "salt/roots", "/srv/salt"
-    minion.vm.synced_folder "salt/pillar", "/srv/pillar"
-    minion.vm.synced_folder "salt/etc", "/etc/salt"
+    minion.vm.synced_folder "salt/roots", "/srv/salt", type: "rsync"
+    minion.vm.synced_folder "salt/pillar", "/srv/pillar", type: "rsync"
+    minion.vm.synced_folder "salt/etc", "/etc/salt", type: "rsync", rsync__exclude: "minion_id"
     minion.vm.provision :salt do |salt|
       salt.masterless = true
       salt.minion_id = minion_id
