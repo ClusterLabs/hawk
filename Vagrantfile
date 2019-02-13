@@ -66,55 +66,60 @@ Vagrant.configure("2") do |config|
 
   config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_version: "4", nfs_udp: false, mount_options: ["rw", "noatime", "async"]
   config.bindfs.bind_folder "/vagrant", "/vagrant", force_user: "hacluster", force_group: "haclient", perms: "u=rwX:g=rwXD:o=rXD", after: :provision
-
-  # Provision the machines using Salt
-  config.vm.synced_folder "salt/roots", "/srv/salt"
-  config.vm.synced_folder "salt/pillar", "/srv/pillar"
-  config.vm.synced_folder "salt/etc", "/etc/salt"
-  config.vm.provision :salt do |salt|
-    salt.masterless = true
-    salt.minion_config = "salt/etc/minion"
-    salt.bootstrap_script = "salt/bootstrap-salt.sh"
-    salt.run_highstate = true
-    salt.verbose = true
-    salt.colorize = true
-    # Optional: Consume pillar data from the configue file
-    if defined?(GC)
-      salt.pillar({
-        "configure_routes" => true,
-        "routes_config" => ENV["ROUTES_CONFIG"],
-        "ip_node_0" => ENV["IP_NODE_0"],
-        "ip_node_1" => ENV["IP_NODE_1"],
-        "ip_node_2" => ENV["IP_NODE_2"],
-        "ip_vip" => ENV["IP_VIP"],
-        "ip_bundle_1" => ENV["IP_BUNDLE_1"],
-        "ip_bundle_2" => ENV["IP_BUNDLE_2"]
-      })
-    else
-      salt.pillar({
-        "configure_routes" => false,
-        "routes_config" => "",
-        "ip_node_0" => "10.13.37.10",
-        "ip_node_1" => "10.13.37.11",
-        "ip_node_2" => "10.13.37.12",
-        "ip_vip" => "10.13.37.20",
-        "ip_bundle_1" => "10.13.37.13",
-        "ip_bundle_2" => "10.13.37.100"
-      })
+  def provision_minion(minion, minion_id)
+    # Provision the machines using Salt
+    minion.vm.synced_folder "salt/roots", "/srv/salt"
+    minion.vm.synced_folder "salt/pillar", "/srv/pillar"
+    minion.vm.synced_folder "salt/etc", "/etc/salt"
+    minion.vm.provision :salt do |salt|
+      salt.masterless = true
+      salt.minion_id = minion_id
+      salt.minion_config = "salt/etc/minion"
+      salt.bootstrap_script = "salt/bootstrap-salt.sh"
+      salt.run_highstate = true
+      salt.verbose = true
+      salt.colorize = true
+      # Optional: Consume pillar data from the configue file
+      if defined?(GC)
+        salt.pillar({
+          "configure_routes" => true,
+          "routes_config" => ENV["ROUTES_CONFIG"],
+          "ip_node_0" => ENV["IP_NODE_0"],
+          "ip_node_1" => ENV["IP_NODE_1"],
+          "ip_node_2" => ENV["IP_NODE_2"],
+          "ip_vip" => ENV["IP_VIP"],
+          "ip_bundle_1" => ENV["IP_BUNDLE_1"],
+          "ip_bundle_2" => ENV["IP_BUNDLE_2"]
+        })
+      else
+        salt.pillar({
+          "configure_routes" => false,
+          "routes_config" => "",
+          "ip_node_0" => "10.13.37.10",
+          "ip_node_1" => "10.13.37.11",
+          "ip_node_2" => "10.13.37.12",
+          "ip_vip" => "10.13.37.20",
+          "ip_bundle_1" => "10.13.37.13",
+          "ip_bundle_2" => "10.13.37.100"
+        })
+      end
     end
- end
+  end
 
   config.vm.define "webui", primary: true do |machine|
     machine.vm.hostname = "webui"
     machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 3000, host: 3000
     machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 8808, host: 8808
     configure_machine machine, 0, ["base", "webui"], ENV["VM_MEM"] || 2608, ENV["VM_CPU"] || 2
+    provision_minion machine, "webui"
+
   end
 
   1.upto(2).each do |i|
     config.vm.define "node#{i}", autostart: true do |machine|
       machine.vm.hostname = "node#{i}"
       configure_machine machine, i, ["base", "node"], ENV["VM_MEM"] || 768, ENV["VM_CPU"] || 1
+      provision_minion machine, "node#{i}"
     end
   end
 
