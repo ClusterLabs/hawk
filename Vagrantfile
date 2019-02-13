@@ -43,7 +43,7 @@ def configure_machine(machine, idx, roles, memory, cpus)
   # Port forwarding
   machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 22, host: 3022 + (idx * 100)
   machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 7630, host: 7630 + idx
-  if defined?(GC)
+  if defined?(GCONFIG)
     machine.vm.network :private_network, libvirt__network_name: ENV["LIBVIRT__NETWORK_NAME"], ip: ENV["IP_NODE_#{idx}"]
     machine.vm.network "public_network", :dev => 'br0', :type => 'bridge'
   else
@@ -80,7 +80,7 @@ Vagrant.configure("2") do |config|
       salt.verbose = true
       salt.colorize = true
       # Optional: Consume pillar data from the configue file
-      if defined?(GC)
+      if defined?(GCONFIG)
         salt.pillar({
           "configure_routes" => true,
           "routes_config" => ENV["ROUTES_CONFIG"],
