@@ -116,15 +116,14 @@ Vagrant.configure("2") do |config|
   # Provision the machines using Salt
   config.vm.synced_folder "salt/roots", "/srv/salt"
   config.vm.synced_folder "salt/pillar", "/srv/pillar"
+  config.vm.synced_folder "salt/etc", "/etc/salt"
   config.vm.provision :salt do |salt|
     salt.masterless = true
     salt.minion_config = "salt/etc/minion"
     salt.bootstrap_script = "salt/bootstrap-salt.sh"
-    salt.install_master = false
     salt.run_highstate = true
     salt.verbose = true
     salt.colorize = true
-    salt.no_minion = true
     # Optional: Consume pillar data from the configue file
     if defined?(GC)
       salt.pillar({
