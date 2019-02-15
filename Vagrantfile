@@ -21,8 +21,9 @@ $drbd_disk_size = 256 # MB
 def configure_machine(machine, idx, roles, memory, cpus)
   machine.vm.provider :libvirt do |provider, override|
     provider.default_prefix = VM_PREFIX_NAME
-    provider.host = ENV["VM_HOST"] if ENV["VM_HOST"]
-    provider.connect_via_ssh = true
+    vm_host = ENV["VM_HOST"]
+    provider.host = vm_host if vm_host
+    provider.connect_via_ssh = true if vm_host
     provider.username = ENV["VM_USERNAME"] if ENV["VM_USERNAME"]
     provider.password = ENV["VM_PASSWORD"] if ENV["VM_PASSWORD"]
     provider.driver = "kvm"
