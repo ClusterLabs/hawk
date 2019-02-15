@@ -65,7 +65,8 @@ Vagrant.configure("2") do |config|
   # Change hacluster user's shell from nologin to /bin/bash to avoid issues with bindfs
   config.vm.provision "shell", inline: "chsh -s /bin/bash hacluster"
 
-  config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_version: "4", nfs_udp: false, mount_options: ["rw", "noatime", "async"]
+  #config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_version: "4", nfs_udp: false, mount_options: ["rw", "noatime", "async"]
+  config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_version: "3", nfs_udp: true, mount_options: ["rw", "noatime", "async"]
   config.bindfs.bind_folder "/vagrant", "/vagrant", force_user: "hacluster", force_group: "haclient", perms: "u=rwX:g=rwXD:o=rXD", after: :provision
   def provision_minion(minion, minion_id)
     # Provision the machines using Salt
