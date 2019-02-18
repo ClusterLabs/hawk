@@ -6,15 +6,21 @@ prometheus:
     dir:
       config: /etc/prometheus
       data: /var/lib/prometheus/metrics
+    pkgs_repo:
+      server:monitoring:
+        - humanname: server:monitoring
+        - baseurl: https://download.opensuse.org/repositories/server:/monitoring/openSUSE_Leap_15.0/
+        - refresh: True
+        - gpgautoimport: True
     pkgs:
       prometheus:
         - name: golang-github-prometheus-prometheus
         - version: 2.7.1
-        # repo:
+        - fromrepo: server:monitoring
       promu:
         - name: golang-github-prometheus-promu
         - version: 0.2.0
-        # repo:
+        - fromrepo: server:monitoring
     bind:
       port: 9090
       address: 0.0.0.0
