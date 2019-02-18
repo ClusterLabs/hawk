@@ -1,15 +1,20 @@
 prometheus:
   server:
-    version: 2.0
+    version: 2.7
     enabled: true
     is_container: false
     dir:
       config: /etc/prometheus
       data: /var/lib/prometheus/metrics
     pkgs:
-      - golang-github-prometheus-prometheus
-      - golang-github-prometheus-promu
-      - golang-github-prometheus-node_exporter
+      prometheus:
+        - name: golang-github-prometheus-prometheus
+        - version: 2.7.1
+        # repo:
+      promu:
+        - name: golang-github-prometheus-promu
+        - version: 0.2.0
+        # repo:
     bind:
       port: 9090
       address: 0.0.0.0
