@@ -12,13 +12,9 @@ monitoring_packages:
     - names:
         - git
         - go1.10
-        # - golang-github-prometheus-prometheus
-        # - golang-github-prometheus-promu
-        # - golang-github-prometheus-node_exporter
         - phantomjs
         - grafana
     - require:
-        - pkgrepo: server:monitoring
         - pkgrepo: devel:tools
 
 /etc/profile.d/go.sh:
@@ -39,20 +35,6 @@ install_godep:
     - name: curl https://raw.githubusercontent.com/golang/dep/master/install.sh | sh
     - require:
       - environ: gobin
-
-# /etc/prometheus/prometheus.yml:
-#   file.managed:
-#     - source: salt://files/prometheus.yml
-#     - template: jinja
-#     - user: root
-#     - group: root
-#     - mode: 644
-
-# prometheus:
-#   service.running:
-#     - enable: True
-#     - require:
-#       - file: /etc/prometheus/prometheus.yml
 
 # prometheus-node_exporter:
 #   service.running:
