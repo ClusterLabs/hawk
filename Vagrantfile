@@ -70,8 +70,8 @@ Vagrant.configure("2") do |config|
   config.bindfs.bind_folder "/vagrant", "/vagrant", force_user: "hacluster", force_group: "haclient", perms: "u=rwX:g=rwXD:o=rXD", after: :provision
   def provision_minion(minion, minion_id)
     # Provision the machines using Salt
-    minion.vm.synced_folder "salt/roots", "/srv/salt", type: "rsync"
-    minion.vm.synced_folder "salt/pillar", "/srv/pillar", type: "rsync"
+    minion.vm.synced_folder "salt/roots", "/srv/salt", type: "nfs"
+    minion.vm.synced_folder "salt/pillar", "/srv/pillar", type: "nfs"
     minion.vm.synced_folder "salt/etc", "/etc/salt", type: "rsync", rsync__exclude: "minion_id"
     # Necessary packages for using gitfs (remote formulas)
     minion.vm.provision :shell, :inline => "zypper in -y git-core python3-setuptools python3-pygit2"
@@ -116,7 +116,6 @@ Vagrant.configure("2") do |config|
     machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 8808, host: 8808
     configure_machine machine, 0, ["base", "webui"], ENV["VM_MEM"] || 2608, ENV["VM_CPU"] || 2
     provision_minion machine, "webui"
-
   end
 
   1.upto(2).each do |i|

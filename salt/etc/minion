@@ -1,10 +1,10 @@
 file_client: local
 file_roots:
   base:
-    - /vagrant/salt/roots
+    - /srv/salt
 pillar_roots:
   base:
-    - /vagrant/salt/pillar
+    - /srv/pillar
 
 fileserver_backend:
   - roots
