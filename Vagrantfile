@@ -68,18 +68,27 @@ Vagrant.configure("2") do |config|
   #config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_version: "4", nfs_udp: false, mount_options: ["rw", "noatime", "async"]
   config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_version: "3", nfs_udp: true, mount_options: ["rw", "noatime", "async"]
   config.bindfs.bind_folder "/vagrant", "/vagrant", force_user: "hacluster", force_group: "haclient", perms: "u=rwX:g=rwXD:o=rXD", after: :provision
-  def provision_minion(minion, minion_id)
-    # Provision the machines using Salt
-    minion.vm.synced_folder "salt/roots", "/srv/salt", type: "nfs"
-    minion.vm.synced_folder "salt/pillar", "/srv/pillar", type: "nfs"
-    minion.vm.synced_folder "salt/etc", "/etc/salt", type: "rsync", rsync__exclude: "minion_id"
+
+
+  def provision_master(master, master_id)
+    master.vm.synced_folder "salt/roots", "/srv/salt", type: "nfs"
+    master.vm.synced_folder "salt/pillar", "/srv/pillar", type: "nfs"
+    master.vm.synced_folder "salt/etc", "/etc/salt", type: "rsync", rsync__args: ["--include=master"]
+    master.vm.provision "shell", inline: "zypper --non-interactive --gpg-auto-import-keys ref"
+    master.vm.provision "shell", inline: "zypper --gpg-auto-import-keys in -y --force-resolution -l salt-master; exit 0"
     # Necessary packages for using gitfs (remote formulas)
-    minion.vm.provision :shell, :inline => "zypper in -y git-core python3-setuptools python3-pygit2"
-    minion.vm.provision :salt do |salt|
-      salt.masterless = true
-      salt.minion_id = minion_id
-      salt.minion_config = "salt/etc/minion"
-      salt.bootstrap_script = "salt/bootstrap-salt.sh"
+    master.vm.provision :shell, :inline => "zypper in -y git-core python3-setuptools python3-pygit2"
+    master.vm.provision :salt do |salt|
+      salt.install_master = true
+      salt.master_config = "salt/etc/master"
+      salt.master_key = "salt/roots/sshkeys/vagrant"
+      salt.master_pub = "salt/roots/sshkeys/vagrant.pub"
+      # salt.bootstrap_script = "salt/bootstrap-salt.sh"
+      # Add cluster nodes ssh public keys
+      salt.seed_master = {
+        "node1" => "salt/roots/sshkeys/vagrant.pub",
+        "node2" => "salt/roots/sshkeys/vagrant.pub",
+      }
       salt.run_highstate = true
       salt.verbose = true
       salt.colorize = true
@@ -110,12 +119,29 @@ Vagrant.configure("2") do |config|
     end
   end
 
+  def provision_minion(minion, minion_id)
+    # Provision the machines using Salt
+    minion.vm.synced_folder "salt/roots", "/srv/salt", type: "nfs"
+    minion.vm.synced_folder "salt/pillar", "/srv/pillar", type: "nfs"
+    minion.vm.synced_folder "salt/etc", "/etc/salt", type: "rsync", rsync__args: ["--include=minion"]
+    # Necessary packages for using gitfs (remote formulas)
+    minion.vm.provision :shell, :inline => "zypper in -y git-core python3-setuptools python3-pygit2"
+    minion.vm.provision :salt do |salt|
+      salt.minion_id = minion_id
+      salt.minion_config = "salt/etc/minion"
+      # salt.bootstrap_script = "salt/bootstrap-salt.sh"
+      salt.run_highstate = true
+      salt.verbose = true
+      salt.colorize = true
+    end
+  end
+
   config.vm.define "webui", primary: true do |machine|
     machine.vm.hostname = "webui"
     machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 3000, host: 3000
     machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 8808, host: 8808
     configure_machine machine, 0, ["base", "webui"], ENV["VM_MEM"] || 2608, ENV["VM_CPU"] || 2
-    provision_minion machine, "webui"
+    provision_master machine, "webui"
   end
 
   1.upto(2).each do |i|

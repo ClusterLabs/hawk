@@ -35,7 +35,7 @@ prometheus:
         prometheus:
           enabled: true
           endpoint:
-            - address: {{ salt['pillar.get']({'ip_node_0'}) }}
+            - address: {{  }}
               port: 9090
           # scheme:
           # metrics_path:
@@ -52,16 +52,16 @@ prometheus:
         node_exporter:
           enabled: true
           endpoint:
-            - address: {{ salt['pillar.get']({'ip_node_0'}) }}
+            - address: {{  }}
               port: 9100
-            - address: {{ salt['pillar.get']({'ip_node_1'}) }}
+            - address: {{  }}
               port: 9100
-            - address: {{ salt['pillar.get']({'ip_node_2'}) }}
+            - address: {{  }}
               port: 9100
         pacemaker_exporter:
           enabled: true
           endpoint:
-            - address: {{ salt['pillar.get']({'ip_node_0'}) }}
+            - address: {{  }}
               port: 9356
       # dns:
       #   enabled: true
