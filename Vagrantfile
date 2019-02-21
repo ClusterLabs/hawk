@@ -74,8 +74,6 @@ Vagrant.configure("2") do |config|
     master.vm.synced_folder "salt/roots", "/srv/salt", type: "nfs"
     master.vm.synced_folder "salt/pillar", "/srv/pillar", type: "nfs"
     master.vm.synced_folder "salt/etc", "/etc/salt", type: "rsync", rsync__args: ["--include=master"]
-    master.vm.provision "shell", inline: "zypper --non-interactive --gpg-auto-import-keys ref"
-    master.vm.provision "shell", inline: "zypper --gpg-auto-import-keys in -y --force-resolution -l salt-master; exit 0"
     # Necessary packages for using gitfs (remote formulas)
     master.vm.provision :shell, :inline => "zypper in -y git-core python3-setuptools python3-pygit2"
     master.vm.provision :salt do |salt|
@@ -83,7 +81,7 @@ Vagrant.configure("2") do |config|
       salt.master_config = "salt/etc/master"
       salt.master_key = "salt/roots/sshkeys/vagrant"
       salt.master_pub = "salt/roots/sshkeys/vagrant.pub"
-      # salt.bootstrap_script = "salt/bootstrap-salt.sh"
+      salt.bootstrap_options = "-w"
       # Add cluster nodes ssh public keys
       salt.seed_master = {
         "node1" => "salt/roots/sshkeys/vagrant.pub",
@@ -129,7 +127,6 @@ Vagrant.configure("2") do |config|
     minion.vm.provision :salt do |salt|
       salt.minion_id = minion_id
       salt.minion_config = "salt/etc/minion"
-      # salt.bootstrap_script = "salt/bootstrap-salt.sh"
       salt.run_highstate = true
       salt.verbose = true
       salt.colorize = true
