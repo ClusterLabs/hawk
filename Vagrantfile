@@ -1,12 +1,8 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-Vagrant.require_version ">= 2.1.0"
 require 'yaml'
-vagrant_external_config = YAML.load_file('vagrant_external_config.yml') if File.exists?('vagrant_external_config.yml')
-
-# Virtual Machine Prefix: Please, include a meaninful name
-VM_PREFIX_NAME = ENV["VM_PREFIX_NAME"] || 'hawk'
+File.exists?('vconf.yml') ? VCONF = YAML.load_file('vconf.yml') : VCONF = {}
 
 def host_bind_address
   ENV["VAGRANT_INSECURE_FORWARDS"] =~ /^(y(es)?|true|on)$/i ? '*' : '127.0.0.1'
@@ -21,12 +17,11 @@ $drbd_disk_size = 256 # MB
 # Shared configuration for all VMs
 def configure_machine(machine, idx, roles, memory, cpus)
   machine.vm.provider :libvirt do |provider, override|
-    provider.default_prefix = VM_PREFIX_NAME
-    vm_host = ENV["VM_HOST"]
-    provider.host = vm_host if vm_host
-    provider.connect_via_ssh = true if vm_host
-    provider.username = ENV["VM_USERNAME"] if ENV["VM_USERNAME"]
-    provider.password = ENV["VM_PASSWORD"] if ENV["VM_PASSWORD"]
+    provider.default_prefix = VCONF["vm_prefix_name"] || 'hawk'
+    provider.host = VCONF["vm_host"] if VCONF["vm_host"]
+    provider.connect_via_ssh = true if VCONF["vm_host"]
+    provider.username = VCONF["vm_username"] if VCONF["vm_username"]
+    provider.password = VCONF["vm_password"] if VCONF["vm_password"]
     provider.driver = "kvm"
     provider.disk_bus = 'virtio'
     provider.memory = memory
@@ -45,8 +40,8 @@ def configure_machine(machine, idx, roles, memory, cpus)
   # Port forwarding
   machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 22, host: 3022 + (idx * 100)
   machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 7630, host: 7630 + idx
-  if defined?(GCONFIG)
-    machine.vm.network :private_network, libvirt__network_name: ENV["LIBVIRT__NETWORK_NAME"], ip: ENV["IP_NODE_#{idx}"]
+  unless VCONF.empty?
+    machine.vm.network :private_network, libvirt__network_name: VCONF["vm_libvirt_network_name"], ip: VCONF["ip_node_#{idx}"]
     machine.vm.network "public_network", :dev => 'br0', :type => 'bridge'
   else
     machine.vm.network :private_network, ip: "10.13.37.#{10 + idx}"
@@ -94,30 +89,6 @@ Vagrant.configure("2") do |config|
       salt.run_highstate = true
       salt.verbose = true
       salt.colorize = true
-      # Optional: Consume pillar data from the configue file
-      if defined?(GCONFIG)
-        salt.pillar({
-          "configure_routes" => true,
-          "routes_config" => ENV["ROUTES_CONFIG"],
-          "ip_node_0" => ENV["IP_NODE_0"],
-          "ip_node_1" => ENV["IP_NODE_1"],
-          "ip_node_2" => ENV["IP_NODE_2"],
-          "ip_vip" => ENV["IP_VIP"],
-          "ip_bundle_1" => ENV["IP_BUNDLE_1"],
-          "ip_bundle_2" => ENV["IP_BUNDLE_2"]
-        })
-      else
-        salt.pillar({
-          "configure_routes" => false,
-          "routes_config" => "",
-          "ip_node_0" => "10.13.37.10",
-          "ip_node_1" => "10.13.37.11",
-          "ip_node_2" => "10.13.37.12",
-          "ip_vip" => "10.13.37.20",
-          "ip_bundle_1" => "10.13.37.13",
-          "ip_bundle_2" => "10.13.37.100"
-        })
-      end
     end
   end
 
@@ -141,14 +112,14 @@ Vagrant.configure("2") do |config|
     machine.vm.hostname = "webui"
     machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 3000, host: 3000
     machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 8808, host: 8808
-    configure_machine machine, 0, ["base", "webui"], ENV["VM_MEM"] || 2608, ENV["VM_CPU"] || 2
+    configure_machine machine, 0, ["base", "webui"], VCONF["vm_mem"] || 2608, VCONF["vm_cpu"] || 2
     provision_master machine, "webui"
   end
 
   1.upto(2).each do |i|
     config.vm.define "node#{i}", autostart: true do |machine|
       machine.vm.hostname = "node#{i}"
-      configure_machine machine, i, ["base", "node"], ENV["VM_MEM"] || 768, ENV["VM_CPU"] || 1
+      configure_machine machine, i, ["base", "node"], VCONF["vm_mem"] || 768, VCONF["vm_cpu"] || 1
       provision_minion machine, "node#{i}"
     end
   end
