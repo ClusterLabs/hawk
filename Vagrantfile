@@ -2,7 +2,8 @@
 # vi: set ft=ruby :
 
 Vagrant.require_version ">= 2.1.0"
-require_relative './vagrant_config' if File.exists?('vagrant_config.rb')
+require 'yaml'
+vagrant_external_config = YAML.load_file('vagrant_external_config.yml') if File.exists?('vagrant_external_config.yml')
 
 # Virtual Machine Prefix: Please, include a meaninful name
 VM_PREFIX_NAME = ENV["VM_PREFIX_NAME"] || 'hawk'
