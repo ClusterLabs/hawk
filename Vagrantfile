@@ -4,16 +4,14 @@
 require 'yaml'
 File.exists?('vconf.yml') ? VCONF = YAML.load_file('vconf.yml') : VCONF = {}
 
+SHARED_DISK = '_shared_disk'
+SHARED_DISK_SIZE = 128 # MB
+DRBD_DISK = '_drbd_disk'
+DRBD_DISK_SIZE = 256 # MB
+
 def host_bind_address
   ENV["VAGRANT_INSECURE_FORWARDS"] =~ /^(y(es)?|true|on)$/i ? '*' : '127.0.0.1'
 end
-
-$shared_disk = '_shared_disk'
-$shared_disk_size = 128 # MB
-
-$drbd_disk = '_drbd_disk'
-$drbd_disk_size = 256 # MB
-
 # Shared configuration for all VMs
 def configure_machine(machine, idx, roles, memory, cpus)
   machine.vm.provider :libvirt do |provider, override|
@@ -31,8 +29,8 @@ def configure_machine(machine, idx, roles, memory, cpus)
     provider.graphics_type = "spice"
     provider.watchdog model: "i6300esb", action: "reset"
     provider.graphics_port = 9200 + idx
-    provider.storage :file, path: "#{$shared_disk}.raw", size: "#{$shared_disk_size}M", type: 'raw', cache: 'none', allow_existing: true, shareable: true
-    provider.storage :file, path: "#{$drbd_disk}-#{machine.vm.hostname}.raw", size: "#{$drbd_disk_size}M", type: 'raw', allow_existing: true
+    provider.storage :file, path: "#{SHARED_DISK}.raw", size: "#{SHARED_DISK_SIZE}M", type: 'raw', cache: 'none', allow_existing: true, shareable: true
+    provider.storage :file, path: "#{DRBD_DISK}-#{machine.vm.hostname}.raw", size: "#{DRBD_DISK_SIZE}M", type: 'raw', allow_existing: true
     provider.cpu_mode = 'host-passthrough'
     provider.storage_pool_name = "default"
     provider.management_network_name = "vagrant-libvirt"
