@@ -73,19 +73,22 @@ Vagrant.configure("2") do |config|
   def provision_master(master, master_id)
     master.vm.synced_folder "salt/roots", "/srv/salt", type: "nfs"
     master.vm.synced_folder "salt/pillar", "/srv/pillar", type: "nfs"
-    master.vm.synced_folder "salt/etc", "/etc/salt", type: "rsync", rsync__args: ["--include=master"]
+    master.vm.synced_folder "salt/etc", "/etc/salt", type: "rsync", rsync__args: ["--include=master", "--include=minion"]
     # Necessary packages for using gitfs (remote formulas)
     master.vm.provision :shell, :inline => "zypper in -y git-core python3-setuptools python3-pygit2"
     master.vm.provision :salt do |salt|
       salt.install_master = true
       salt.master_config = "salt/etc/master"
-      salt.master_key = "salt/roots/sshkeys/vagrant"
-      salt.master_pub = "salt/roots/sshkeys/vagrant.pub"
-      salt.bootstrap_options = "-w"
+      salt.minion_id = master_id
+      salt.minion_config = "salt/etc/minion"
+      salt.minion_key  = "salt/roots/sshkeys/webui_master.pem"
+      salt.minion_pub ="salt/roots/sshkeys/webui_master.pub"
+      salt.master_key = "salt/roots/sshkeys/webui_master.pem"
+      salt.master_pub = "salt/roots/sshkeys/webui_master.pub"
+      salt.bootstrap_options = "-r"
       # Add cluster nodes ssh public keys
       salt.seed_master = {
-        "node1" => "salt/roots/sshkeys/vagrant.pub",
-        "node2" => "salt/roots/sshkeys/vagrant.pub",
+        "webui" => "salt/roots/sshkeys/webui_master.pub",
       }
       salt.run_highstate = true
       salt.verbose = true
