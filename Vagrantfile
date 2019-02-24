@@ -2,20 +2,16 @@
 # vi: set ft=ruby :
 
 require 'yaml'
-File.exists?('vconf.yml') ? VCONF = YAML.load_file('vconf.yml') : VCONF = {}
-
-SHARED_DISK = '_shared_disk'
-SHARED_DISK_SIZE = 128 # MB
-DRBD_DISK = '_drbd_disk'
-DRBD_DISK_SIZE = 256 # MB
+File.exists?('vconf.yml') ? VCONF = YAML.load_file('vconf.yml') : abort('Missing vagrant config file!')
 
 def host_bind_address
   ENV["VAGRANT_INSECURE_FORWARDS"] =~ /^(y(es)?|true|on)$/i ? '*' : '127.0.0.1'
 end
+
 # Shared configuration for all VMs
 def configure_machine(machine, idx, roles, memory, cpus)
   machine.vm.provider :libvirt do |provider, override|
-    provider.default_prefix = VCONF["vm_prefix_name"] || 'hawk'
+    provider.default_prefix = VCONF["vm_prefix_name"]
     provider.host = VCONF["vm_host"] if VCONF["vm_host"]
     provider.connect_via_ssh = true if VCONF["vm_host"]
     provider.username = VCONF["vm_username"] if VCONF["vm_username"]
@@ -29,8 +25,8 @@ def configure_machine(machine, idx, roles, memory, cpus)
     provider.graphics_type = "spice"
     provider.watchdog model: "i6300esb", action: "reset"
     provider.graphics_port = 9200 + idx
-    provider.storage :file, path: "#{SHARED_DISK}.raw", size: "#{SHARED_DISK_SIZE}M", type: 'raw', cache: 'none', allow_existing: true, shareable: true
-    provider.storage :file, path: "#{DRBD_DISK}-#{machine.vm.hostname}.raw", size: "#{DRBD_DISK_SIZE}M", type: 'raw', allow_existing: true
+    provider.storage :file, path: "#{VCONF['vm_shared_disk']}.raw", size: "#{VCONF['vm_shared_disk_size']}M", type: 'raw', cache: 'none', allow_existing: true, shareable: true
+    provider.storage :file, path: "#{VCONF['vm_drbd_disk']}-#{machine.vm.hostname}.raw", size: "#{VCONF['vm_drbd_disk_size']}M", type: 'raw', allow_existing: true
     provider.cpu_mode = 'host-passthrough'
     provider.storage_pool_name = "default"
     provider.management_network_name = "vagrant-libvirt"
@@ -38,11 +34,11 @@ def configure_machine(machine, idx, roles, memory, cpus)
   # Port forwarding
   machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 22, host: 3022 + (idx * 100)
   machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 7630, host: 7630 + idx
-  unless VCONF.empty?
+  unless VCONF["vm_mode"] == 'local'
     machine.vm.network :private_network, libvirt__network_name: VCONF["vm_libvirt_network_name"], ip: VCONF["ip_node_#{idx}"]
     machine.vm.network "public_network", :dev => 'br0', :type => 'bridge'
   else
-    machine.vm.network :private_network, ip: "10.13.37.#{10 + idx}"
+    machine.vm.network :private_network, ip: VCONF["ip_node_#{idx}"]
   end
 end
 
@@ -63,43 +59,18 @@ Vagrant.configure("2") do |config|
   config.vm.synced_folder ".", "/vagrant", type: "nfs", nfs_version: "3", nfs_udp: true, mount_options: ["rw", "noatime", "async"]
   config.bindfs.bind_folder "/vagrant", "/vagrant", force_user: "hacluster", force_group: "haclient", perms: "u=rwX:g=rwXD:o=rXD", after: :provision
 
-
-  def provision_master(master, master_id)
-    master.vm.synced_folder "salt/roots", "/srv/salt", type: "nfs"
-    master.vm.synced_folder "salt/pillar", "/srv/pillar", type: "nfs"
-    master.vm.synced_folder "salt/etc", "/etc/salt", type: "rsync", rsync__args: ["--include=master", "--include=minion"]
-    # Necessary packages for using gitfs (remote formulas)
-    master.vm.provision :shell, :inline => "zypper in -y git-core python3-setuptools python3-pygit2"
-    master.vm.provision :salt do |salt|
-      salt.install_master = true
-      salt.master_config = "salt/etc/master"
-      salt.minion_id = master_id
-      salt.minion_config = "salt/etc/minion"
-      salt.minion_key  = "salt/roots/sshkeys/webui_master.pem"
-      salt.minion_pub ="salt/roots/sshkeys/webui_master.pub"
-      salt.master_key = "salt/roots/sshkeys/webui_master.pem"
-      salt.master_pub = "salt/roots/sshkeys/webui_master.pub"
-      salt.bootstrap_options = "-r"
-      # Add cluster nodes ssh public keys
-      salt.seed_master = {
-        "webui" => "salt/roots/sshkeys/webui_master.pub",
-      }
-      salt.run_highstate = true
-      salt.verbose = true
-      salt.colorize = true
-    end
-  end
-
   def provision_minion(minion, minion_id)
     # Provision the machines using Salt
     minion.vm.synced_folder "salt/roots", "/srv/salt", type: "nfs"
-    minion.vm.synced_folder "salt/pillar", "/srv/pillar", type: "nfs"
+    minion.vm.synced_folder "salt/pillar", "/srv/pillar", type: "rsync"
     minion.vm.synced_folder "salt/etc", "/etc/salt", type: "rsync", rsync__args: ["--include=minion"]
     # Necessary packages for using gitfs (remote formulas)
     minion.vm.provision :shell, :inline => "zypper in -y git-core python3-setuptools python3-pygit2"
     minion.vm.provision :salt do |salt|
+      salt.masterless = true
       salt.minion_id = minion_id
       salt.minion_config = "salt/etc/minion"
+      salt.bootstrap_options = "-r"
       salt.run_highstate = true
       salt.verbose = true
       salt.colorize = true
@@ -110,14 +81,14 @@ Vagrant.configure("2") do |config|
     machine.vm.hostname = "webui"
     machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 3000, host: 3000
     machine.vm.network :forwarded_port, host_ip: host_bind_address, guest: 8808, host: 8808
-    configure_machine machine, 0, ["base", "webui"], VCONF["vm_mem"] || 2608, VCONF["vm_cpu"] || 2
-    provision_master machine, "webui"
+    configure_machine machine, 0, ["base", "webui"], VCONF["vm_mem"], VCONF["vm_cpu"]
+    provision_minion machine, "webui"
   end
 
   1.upto(2).each do |i|
     config.vm.define "node#{i}", autostart: true do |machine|
       machine.vm.hostname = "node#{i}"
-      configure_machine machine, i, ["base", "node"], VCONF["vm_mem"] || 768, VCONF["vm_cpu"] || 1
+      configure_machine machine, i, ["base", "node"], VCONF["vm_mem"], VCONF["vm_cpu"]
       provision_minion machine, "node#{i}"
     end
   end
