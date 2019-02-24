@@ -1,3 +1,10 @@
+server:monitor:
+  pkgrepo.managed:
+    - humanname: server:monitoring
+    - baseurl: https://download.opensuse.org/repositories/server:/monitoring/openSUSE_Leap_15.0/
+    - refresh: True
+    - gpgautoimport: True
+
 devel:tools:
   pkgrepo.managed:
     - humanname: devel:tools
