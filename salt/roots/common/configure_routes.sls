@@ -1,5 +1,5 @@
 # Check if running in SUSE's infrastructure
-{% if pillar['configure_routes'] -%}
+{% if pillar['vm_configure_routes'] == true -%}
 # Install the script in /bin so it's available even after reboot (when the nfs directory is not mounted)
 /home/vagrant/bin/configure_routes.sh:
   file.managed:
