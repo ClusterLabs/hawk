@@ -1,8 +1,4 @@
 
-{% import_yaml "vagrant.sls" as vagrant %}
-
-# {% set vagrant_setup = salt['pillar.get']('vagrant_setup', default=vagrant.vagrant_setup, merge=True) %}
-
 prometheus:
   server:
     version: 2.7
@@ -35,7 +31,7 @@ prometheus:
         prometheus:
           enabled: true
           endpoint:
-            - address: {{  }}
+            - address: {{ salt['pillar.get']('ip_node_0') }}
               port: 9090
           # scheme:
           # metrics_path:
@@ -52,16 +48,16 @@ prometheus:
         node_exporter:
           enabled: true
           endpoint:
-            - address: {{  }}
+            - address: {{ salt['pillar.get']('ip_node_0') }}
               port: 9100
-            - address: {{  }}
+            - address: {{ salt['pillar.get']('ip_node_1') }}
               port: 9100
-            - address: {{  }}
+            - address: {{ salt['pillar.get']('ip_node_2') }}
               port: 9100
         pacemaker_exporter:
           enabled: true
           endpoint:
-            - address: {{  }}
+            - address: {{ salt['pillar.get']('ip_node_0') }}
               port: 9356
       # dns:
       #   enabled: true
