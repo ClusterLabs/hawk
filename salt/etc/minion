@@ -1,7 +1,14 @@
-file_client: local
+master: webui
 file_roots:
   base:
-    - /vagrant/salt/salt
+    - /srv/salt
 pillar_roots:
   base:
-    - /vagrant/salt/pillar
+    - /srv/pillar
+
+fileserver_backend:
+  - roots
+  - git
+
+gitfs_remotes:
+  - https://github.com/hawk-ui/salt-formula-prometheus.git

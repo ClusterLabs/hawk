@@ -14,32 +14,36 @@ http://hawk-ui.github.io
 
 ## Table of contents
 
-* [Overview](#overview)
-* [API](#api)
-* [Documentation](#documentation)
-* [Screenshots](#screenshots)
-* [Features](#features)
-  * [Resource Managment](#resource-managment)
-  * [Multi-cluster Dashboard](#multi-cluster-dashboard)
-  * [History Explorer](#history-explorer)
-  * [Configuration](#configuration)
-  * [Wizards](#wizards)
-  * [View Configuration and Graph](#view-configuration-and-graph)
-  * [Command Log](#command-log)
-  * [Access Control Lists](#access-control-lists)
-  * [Simulator](#simulator)
-* [Build Dependencies](#build-dependencies)
-  * [Dependencies](#dependencies)
-* [Installation](#installation)
-  * [Installing the Easy Way](#installing-the-easy-way)
-  * [Packaging Notes](#packaging-notes)
-* [A Note on SSL Certificates](#a-note-on-ssl-certificates)
-* [Hacking Hawk](#hacking-hawk)
-  * [Preconfigured Vagrant environment](#preconfigured-vagrant-environment)
-  * [Web server instances](#web-server-instances)
-  * [Puma server configuration](#puma-server-configuration)
-  * [Hacking hawk tools](#hacking-hawk-tools)
-* [Questions, Feedback, etc.](#questions-feedback-etc)
+- [HA Web Konsole (Hawk)](#ha-web-konsole-hawk)
+  - [Table of contents](#table-of-contents)
+  - [Overview](#overview)
+  - [API](#api)
+  - [Documentation](#documentation)
+  - [Screenshots](#screenshots)
+  - [Features](#features)
+    - [Resource Management](#resource-management)
+    - [Multi-cluster Dashboard](#multi-cluster-dashboard)
+    - [History Explorer](#history-explorer)
+    - [Configuration](#configuration)
+    - [Wizards](#wizards)
+    - [View Configuration and Graph](#view-configuration-and-graph)
+    - [Command Log](#command-log)
+    - [Access Control Lists](#access-control-lists)
+    - [Simulator](#simulator)
+  - [Build Dependencies](#build-dependencies)
+    - [Dependencies](#dependencies)
+  - [Installation](#installation)
+    - [Installing The Easy Way](#installing-the-easy-way)
+    - [Packaging Notes](#packaging-notes)
+  - [A Note on SSL Certificates](#a-note-on-ssl-certificates)
+  - [Hacking Hawk](#hacking-hawk)
+    - [Preconfigured Vagrant environment](#preconfigured-vagrant-environment)
+    - [Changing the Vagrant configuration file](#changing-the-vagrant-configuration-file)
+    - [Web server instances](#web-server-instances)
+    - [Puma server configuration](#puma-server-configuration)
+    - [Hacking hawk tools](#hacking-hawk-tools)
+  - [Questions, Feedback, etc.](#questions-feedback-etc)
+    - [Footnotes](#footnotes)
 
 ## Overview
 
@@ -271,7 +275,7 @@ Install it using the following command:
 vagrant plugin install vagrant-bindfs
 ```
 
-* If you plan to use `libvirt` as provider make sure you have the libvirt-plugin installed:
+* Make sure you have the libvirt-plugin installed:
 
 ```bash
 vagrant plugin install vagrant-libvirt
@@ -279,11 +283,18 @@ vagrant plugin install vagrant-libvirt
 
 This is all you need to prepare initially to set up the vagrant environment,
 now you can simply start the virtual machine with `vagrant up` and start
-an ssh session with `vagrant ssh webui` based on `virtualbox`. To start the
-virtual machines on `libvirt` you have to append `--provider=libvirt` to the
-above commands, e.g. `vagrant up --provider=libvirt`. If you want to access
+an ssh session with `vagrant ssh webui`. If you want to access
 the source within the virtual machine you have to switch to the `/vagrant`
 directory.
+
+### Changing the Vagrant configuration file
+
+Default Vagrant parameters are kept in a separate YAML file `vconf.yml`.
+This file is also read by the Salt provisioner, the values are parsed and
+treated as pillar data. Therefor It's possible to change the
+default behavior of Vagrant and Salt by tweaking `vconf.yml` file, (e.g. running
+on a remote Libvirt server, changing to master/minions setup, changing the ip
+addresses of the nodes, etc).
 
 ### Web server instances
 
