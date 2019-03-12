@@ -1,1 +1,4 @@
-{{ pillar['routes_config'] }}
+#!/bin/bash
+{{ pillar['vm_routes_config'] }}
+
+

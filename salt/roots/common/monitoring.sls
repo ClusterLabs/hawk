@@ -13,9 +13,10 @@ monitoring_packages:
         - git
         - go1.10
         - phantomjs
-        # - grafana
+        - grafana
     - require:
         - pkgrepo: devel:tools
+        - pkgrepo: server:monitoring
 
 /etc/profile.d/go.sh:
   file.managed:
