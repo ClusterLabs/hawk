@@ -52,7 +52,7 @@
   "gnetId": 1860,
   "graphTooltip": 0,
   "id": null,
-  "iteration": 1549356680559,
+  "iteration": 1552477214212,
   "links": [],
   "panels": [
     {
@@ -571,7 +571,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "(((count(count(node_cpu{instance=~\"$node:$port\",job=~\"$job\"}) by (cpu))) - avg(sum by (mode)(irate(node_cpu{mode='idle',instance=~\"$node:$port\",job=~\"$job\"}[5m])))) * 100) / count(count(node_cpu{instance=~\"$node:$port\",job=~\"$job\"}) by (cpu))",
+          "expr": "(((count(count(node_cpu_seconds_total{instance=~\"$node:$port\",job=~\"$job\"}) by (cpu))) - avg(sum by (mode)(irate(node_cpu_seconds_total{mode='idle',instance=~\"$node:$port\",job=~\"$job\"}[5m])))) * 100) / count(count(node_cpu_seconds_total{instance=~\"$node:$port\",job=~\"$job\"}) by (cpu))",
           "format": "time_series",
           "hide": false,
           "instant": false,
@@ -659,7 +659,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "((node_memory_MemTotal{instance=~\"$node:$port\",job=~\"$job\"} - node_memory_MemFree{instance=~\"$node:$port\",job=~\"$job\"}) / (node_memory_MemTotal{instance=~\"$node:$port\",job=~\"$job\"} )) * 100",
+          "expr": "((node_memory_MemTotal_bytes{instance=~\"$node:$port\",job=~\"$job\"} - node_memory_MemFree_bytes{instance=~\"$node:$port\",job=~\"$job\"}) / (node_memory_MemTotal_bytes{instance=~\"$node:$port\",job=~\"$job\"} )) * 100",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -667,7 +667,7 @@
           "step": 900
         },
         {
-          "expr": "100 - ((node_memory_MemAvailable{instance=~\"$node:$port\",job=~\"$job\"} * 100) / node_memory_MemTotal{instance=~\"$node:$port\",job=~\"$job\"})",
+          "expr": "100 - ((node_memory_MemAvailable_bytes{instance=~\"$node:$port\",job=~\"$job\"} * 100) / node_memory_MemTotal_bytes{instance=~\"$node:$port\",job=~\"$job\"})",
           "format": "time_series",
           "hide": true,
           "intervalFactor": 1,
@@ -746,7 +746,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "((node_memory_SwapTotal{instance=~\"$node:$port\",job=~\"$job\"} - node_memory_SwapFree{instance=~\"$node:$port\",job=~\"$job\"}) / (node_memory_SwapTotal{instance=~\"$node:$port\",job=~\"$job\"} )) * 100",
+          "expr": "((node_memory_SwapTotal_bytes{instance=~\"$node:$port\",job=~\"$job\"} - node_memory_SwapFree_bytes{instance=~\"$node:$port\",job=~\"$job\"}) / (node_memory_SwapTotal_bytes{instance=~\"$node:$port\",job=~\"$job\"} )) * 100",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -831,7 +831,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "avg(node_load1{instance=~\"$node:$port\",job=~\"$job\"}) /  count(count(node_cpu{instance=~\"$node:$port\",job=~\"$job\"}) by (cpu)) * 100",
+          "expr": "avg(node_load1{instance=~\"$node:$port\",job=~\"$job\"}) /  count(count(node_cpu_seconds_total{instance=~\"$node:$port\",job=~\"$job\"}) by (cpu)) * 100",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -916,7 +916,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "node_time{instance=~\"$node:$port\",job=~\"$job\"} - node_boot_time{instance=~\"$node:$port\",job=~\"$job\"}",
+          "expr": "node_time_seconds{instance=~\"$node:$port\",job=~\"$job\"} - node_boot_time_seconds{instance=~\"$node:$port\",job=~\"$job\"}",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -1001,7 +1001,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "count(count(node_cpu{instance=~\"$node:$port\",job=~\"$job\"}) by (cpu))",
+          "expr": "count(count(node_cpu_seconds_total{instance=~\"$node:$port\",job=~\"$job\"}) by (cpu))",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -1086,7 +1086,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "node_memory_MemTotal{instance=~\"$node:$port\",job=~\"$job\"}",
+          "expr": "node_memory_MemTotal_bytes{instance=~\"$node:$port\",job=~\"$job\"}",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -1171,7 +1171,7 @@
       "tableColumn": "",
       "targets": [
         {
-          "expr": "node_memory_SwapTotal{instance=~\"$node:$port\",job=~\"$job\"}",
+          "expr": "node_memory_SwapTotal_bytes{instance=~\"$node:$port\",job=~\"$job\"}",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 1,
@@ -1362,7 +1362,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "node_memory_MemTotal{instance=~\"$node:$port\",job=~\"$job\"} - node_memory_MemFree{instance=~\"$node:$port\",job=~\"$job\"} - node_memory_Buffers{instance=~\"$node:$port\",job=~\"$job\"} - node_memory_Cached{instance=~\"$node:$port\",job=~\"$job\"} - node_memory_Slab{instance=~\"$node:$port\",job=~\"$job\"} - node_memory_PageTables{instance=~\"$node:$port\",job=~\"$job\"} - node_memory_SwapCached{instance=~\"$node:$port\",job=~\"$job\"}",
+          "expr": "node_memory_MemTotal_bytes{instance=~\"$node:$port\",job=~\"$job\"} - node_memory_MemFree_bytes{instance=~\"$node:$port\",job=~\"$job\"} - node_memory_Buffers_bytes{instance=~\"$node:$port\",job=~\"$job\"} - node_memory_Cached_bytes{instance=~\"$node:$port\",job=~\"$job\"} - node_memory_Slab_bytes{instance=~\"$node:$port\",job=~\"$job\"} - node_memory_PageTables_bytes{instance=~\"$node:$port\",job=~\"$job\"} - node_memory_SwapCached_bytes{instance=~\"$node:$port\",job=~\"$job\"}",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -1371,7 +1371,7 @@
           "step": 240
         },
         {
-          "expr": "node_memory_PageTables{instance=~\"$node:$port\",job=~\"$job\"}",
+          "expr": "node_memory_PageTables_bytes{instance=~\"$node:$port\",job=~\"$job\"}",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -1380,7 +1380,7 @@
           "step": 240
         },
         {
-          "expr": "node_memory_SwapCached{instance=~\"$node:$port\",job=~\"$job\"}",
+          "expr": "node_memory_SwapCached_bytes{instance=~\"$node:$port\",job=~\"$job\"}",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -1389,7 +1389,7 @@
           "step": 240
         },
         {
-          "expr": "node_memory_Slab{instance=~\"$node:$port\",job=~\"$job\"}",
+          "expr": "node_memory_Slab_bytes{instance=~\"$node:$port\",job=~\"$job\"}",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -1398,7 +1398,7 @@
           "step": 240
         },
         {
-          "expr": "node_memory_Cached{instance=~\"$node:$port\",job=~\"$job\"}",
+          "expr": "node_memory_Cached_bytes{instance=~\"$node:$port\",job=~\"$job\"}",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -1407,7 +1407,7 @@
           "step": 240
         },
         {
-          "expr": "node_memory_Buffers{instance=~\"$node:$port\",job=~\"$job\"}",
+          "expr": "node_memory_Buffers_bytes{instance=~\"$node:$port\",job=~\"$job\"}",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -1416,7 +1416,7 @@
           "step": 240
         },
         {
-          "expr": "node_memory_MemFree{instance=~\"$node:$port\",job=~\"$job\"}",
+          "expr": "node_memory_MemFree_bytes{instance=~\"$node:$port\",job=~\"$job\"}",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -1425,7 +1425,7 @@
           "step": 240
         },
         {
-          "expr": "(node_memory_SwapTotal{instance=~\"$node:$port\",job=~\"$job\"} - node_memory_SwapFree_bytes{instance=~\"$node:$port\",job=~\"$job\"})",
+          "expr": "(node_memory_SwapTotal_bytes{instance=~\"$node:$port\",job=~\"$job\"} - node_memory_SwapFree_bytes{instance=~\"$node:$port\",job=~\"$job\"})",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -1434,7 +1434,7 @@
           "step": 240
         },
         {
-          "expr": "node_memory_HardwareCorrupted{instance=~\"$node:$port\",job=~\"$job\"}",
+          "expr": "node_memory_HardwareCorrupted_bytes{instance=~\"$node:$port\",job=~\"$job\"}",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -1521,7 +1521,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "node_filesystem_avail{instance=~\"$node:$port\",job=~\"$job\",device!~'rootfs'}",
+          "expr": "node_filesystem_avail_bytes{instance=~\"$node:$port\",job=~\"$job\",device!~'rootfs'}",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -1531,7 +1531,7 @@
           "step": 4
         },
         {
-          "expr": "node_filesystem_free{instance=~\"$node:$port\",job=~\"$job\",device!~'rootfs'}",
+          "expr": "node_filesystem_free_bytes{instance=~\"$node:$port\",job=~\"$job\",device!~'rootfs'}",
           "format": "time_series",
           "hide": true,
           "intervalFactor": 2,
@@ -1540,7 +1540,7 @@
           "step": 2
         },
         {
-          "expr": "node_filesystem_size{instance=~\"$node:$port\",job=~\"$job\",device!~'rootfs'}",
+          "expr": "node_filesystem_size_bytes{instance=~\"$node:$port\",job=~\"$job\",device!~'rootfs'}",
           "format": "time_series",
           "hide": true,
           "intervalFactor": 2,
@@ -1630,7 +1630,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "100 - ((node_filesystem_avail{instance=~\"$node:$port\",job=~\"$job\",device!~'rootfs'} * 100) / node_filesystem_size{instance=~\"$node:$port\",job=~\"$job\",device!~'rootfs'})",
+          "expr": "100 - ((node_filesystem_avail_bytes{instance=~\"$node:$port\",job=~\"$job\",device!~'rootfs'} * 100) / node_filesystem_size_bytes{instance=~\"$node:$port\",job=~\"$job\",device!~'rootfs'})",
           "format": "time_series",
           "hide": false,
           "intervalFactor": 2,
@@ -1803,7 +1803,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "irate(node_disk_reads_completed{instance=~\"$node:$port\",job=~\"$job\",device=~\"[a-z]*[a-z]\"}[5m])",
+          "expr": "irate(node_disk_reads_completed_total{instance=~\"$node:$port\",job=~\"$job\",device=~\"[a-z]*[a-z]\"}[5m])",
           "format": "time_series",
           "intervalFactor": 4,
           "legendFormat": "{{device}} - Reads completed",
@@ -1811,7 +1811,7 @@
           "step": 480
         },
         {
-          "expr": "irate(node_disk_writes_completed{instance=~\"$node:$port\",job=~\"$job\",device=~\"[a-z]*[a-z]\"}[5m])",
+          "expr": "irate(node_disk_writes_completed_total{instance=~\"$node:$port\",job=~\"$job\",device=~\"[a-z]*[a-z]\"}[5m])",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{device}} - Writes completed",
@@ -1946,7 +1946,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "irate(node_network_receive_bytes{instance=~\"$node:$port\",job=~\"$job\"}[5m])",
+          "expr": "irate(node_network_receive_bytes_total{instance=~\"$node:$port\",job=~\"$job\"}[5m])",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{device}} - Receive",
@@ -1954,7 +1954,7 @@
           "step": 240
         },
         {
-          "expr": "irate(node_network_transmit_bytes{instance=~\"$node:$port\",job=~\"$job\"}[5m])",
+          "expr": "irate(node_network_transmit_bytes_total{instance=~\"$node:$port\",job=~\"$job\"}[5m])",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{device}} - Transmit",
@@ -2076,7 +2076,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "irate(node_network_receive_packets{instance=~\"$node:$port\",job=~\"$job\"}[5m])",
+          "expr": "irate(node_network_receive_packets_total{instance=~\"$node:$port\",job=~\"$job\"}[5m])",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{device}} - Receive",
@@ -2084,7 +2084,7 @@
           "step": 4
         },
         {
-          "expr": "irate(node_network_transmit_packets{instance=~\"$node:$port\",job=~\"$job\"}[5m])",
+          "expr": "irate(node_network_transmit_packets_total{instance=~\"$node:$port\",job=~\"$job\"}[5m])",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{device}} - Transmit",
@@ -2205,7 +2205,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "irate(node_network_receive_errs{instance=~\"$node:$port\",job=~\"$job\"}[5m])",
+          "expr": "irate(node_network_receive_errs_total{instance=~\"$node:$port\",job=~\"$job\"}[5m])",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{device}} - Receive errors",
@@ -2213,7 +2213,7 @@
           "step": 4
         },
         {
-          "expr": "irate(node_network_transmit_errs{instance=~\"$node:$port\",job=~\"$job\"}[5m])",
+          "expr": "irate(node_network_transmit_errs_total{instance=~\"$node:$port\",job=~\"$job\"}[5m])",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{device}} - Rransmit errors",
@@ -2334,7 +2334,7 @@
       "steppedLine": false,
       "targets": [
         {
-          "expr": "irate(node_network_receive_drop{instance=~\"$node:$port\",job=~\"$job\"}[5m])",
+          "expr": "irate(node_network_receive_drop_total{instance=~\"$node:$port\",job=~\"$job\"}[5m])",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{device}} - Receive drop",
@@ -2342,7 +2342,7 @@
           "step": 4
         },
         {
-          "expr": "irate(node_network_transmit_drop{instance=~\"$node:$port\",job=~\"$job\"}[5m])",
+          "expr": "irate(node_network_transmit_drop_total{instance=~\"$node:$port\",job=~\"$job\"}[5m])",
           "format": "time_series",
           "intervalFactor": 2,
           "legendFormat": "{{device}} - Transmit drop",
@@ -2487,5 +2487,5 @@
   "timezone": "",
   "title": "HA Dashboard",
   "uid": "MZTxnelmk",
-  "version": 9
+  "version": 3
 }
