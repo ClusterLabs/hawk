@@ -57,7 +57,10 @@ class CrmConfig < Tableless
             [
               "pengine",
               "crmd",
-              "cib"
+              "cib",
+              "pacemaker-schedulerd",
+              "pacemaker-controld",
+              "pacemaker-based"
             ].each do |cmd|
               [
                 "/usr/libexec/pacemaker/#{cmd}",
