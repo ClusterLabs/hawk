@@ -10,7 +10,7 @@ module DashboardsHelper
   end
 
   def escape_cluster_name(cluster_name)
-    return "(none)" if cluster_name.blank?
+    return "none" if cluster_name.blank?
     cluster_name.gsub(/[^0-9A-Za-z]/, '')
   end
 
