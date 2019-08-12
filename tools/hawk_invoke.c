@@ -153,6 +153,17 @@ static int allow_root(int argc, char** argv)
 	return 0;
 }
 
+char *env_vars[] = {
+	"HOME",
+	"CIB_shadow",
+	"CIB_user",
+	"CIB_passwd",
+	"CIB_server",
+	"CIB_port",
+	"CIB_encrypted"
+};
+#define ENV_VARS_LEN (sizeof(env_vars)/sizeof(char *))
+
 int main(int argc, char **argv)
 {
 	uid_t uid;
@@ -162,8 +173,7 @@ int main(int argc, char **argv)
 	int i;
 	int found = 0;
 	struct cmd_map *cmd;
-	char *home = NULL;
-	char *cib_shadow = NULL;
+	char **env_list;
 
 	if (argc < 3) {
 		die("Usage: %s <username> <command> [args ...]\n", argv[0]);
@@ -286,23 +296,21 @@ int main(int argc, char **argv)
 	endgrent();
 
 	/* Clean up environment */
-	home = getenv("HOME");
-	if (home != NULL) {
-		home = strdup(home);
-	}
-	cib_shadow = getenv("CIB_shadow");
-	if (cib_shadow != NULL) {
-		cib_shadow = strdup(cib_shadow);
+	env_list = (char **)calloc(ENV_VARS_LEN, sizeof(char *));
+	for (i = 0; i < ENV_VARS_LEN; i++) {
+		char *p = getenv(env_vars[i]);
+		if (p != NULL) {
+			env_list[i] = strdup(p);
+		}
 	}
 	if (clearenv() != 0) {
 		die("ERROR: Can't clear environment");
 	}
 	setenv("PATH", SBINDIR":"BINDIR":/bin", 1);
-	if (home != NULL) {
-		setenv("HOME", home, 1);
-	}
-	if (cib_shadow != NULL) {
-		setenv("CIB_shadow", cib_shadow, 1);
+	for (i = 0; i < ENV_VARS_LEN; i++) {
+		if (env_list[i] != NULL) {
+			setenv(env_vars[i], env_list[i], 1);
+		}
 	}
 
 	/* And away we go... */
