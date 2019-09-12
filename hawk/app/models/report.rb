@@ -281,6 +281,7 @@ class Report
 
     validate do |record|
       unless ["application/gzip",
+              "application/x-gzip",
               "application/x-bzip",
               "application/x-xz",
               "application/x-gz"].include? record.upload.content_type
