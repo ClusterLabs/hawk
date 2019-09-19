@@ -283,6 +283,7 @@ class Report
       unless ["application/gzip",
               "application/x-gzip",
               "application/x-bzip",
+              "application/x-bzip2",
               "application/x-xz",
               "application/x-gz"].include? record.upload.content_type
         errors.add(:upload, _("must have correct MIME type (was %s)") % record.upload.content_type)
