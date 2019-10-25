@@ -46,6 +46,5 @@ module Hawk
 
     config.x.hawk_is_sles = system("cat /etc/os-release | grep 'ID=.*sles' >/dev/null 2>&1")
 
-    ::Sass::Script::Number.precision = [10, ::Sass::Script::Number.precision].max
   end
 end
