@@ -19,7 +19,7 @@ if File.exist? ENV["BUNDLE_GEMFILE"]
   require "sprockets/railtie"
   require "rails/test_unit/railtie"
 
-  Bundler.require(:default, :development, :test)
+  Bundler.require(:default, Rails.env)
 else
   gem "rails", version: "~> 5.1"
 #  require "active_record/railtie"
