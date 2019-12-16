@@ -342,12 +342,7 @@ module Util
 
   def acl_version
     Rails.cache.fetch(:get_acl_version) do
-      m = safe_x(
-        '/usr/sbin/cibadmin',
-        '-t', '5',
-        '-Ql',
-        '--xpath',
-        '/cib[@validate-with]').lines.first.to_s.match(/validate-with=\"pacemaker-([0-9.]+)\"/)
+      m = `/usr/sbin/cibadmin -t 5 -Ql --xpath /cib[@validate-with]`.shellescape.lines.first.to_s.match(/validate-with=\"pacemaker-([0-9.]+)\"/)
       return m.captures[0].to_f if m
       2.0
     end
