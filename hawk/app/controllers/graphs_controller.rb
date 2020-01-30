@@ -10,7 +10,7 @@ class GraphsController < ApplicationController
     respond_to do |format|
       format.html
       format.svg do
-        path = Pathname.new("#{Rails.root}/tmp").join(Dir::Tmpname.make_tmpname(["graph", ".svg"], nil))
+        path = Pathname.new("#{Rails.root}/tmp").join(make_tmpname("graph", ".svg"))
         begin
           _out, err, rc = Invoker.instance.no_log do |invoker|
             invoker.crm("configure", "graph", "dot", path.to_s, "svg")
@@ -51,5 +51,13 @@ END
 
   def set_cib
     @cib = current_cib
+  end
+
+  private
+
+  def make_tmpname(prefix, suffix)
+    timestamp = Time.now.strftime("%Y%m%d")
+    random = rand(0x100000000).to_s(36)
+    "#{prefix}#{timestamp}-#{$$}-#{random}#{suffix}"
   end
 end
