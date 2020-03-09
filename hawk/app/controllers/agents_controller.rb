@@ -22,7 +22,7 @@ class AgentsController < ApplicationController
     else
       @name = params[:id]
     end
-    @agent = Hash.from_xml(Util.get_meta_data(@name))
+    @agent = Util.get_metadata_hash(@name)
 
     if @agent
       respond_to do |format|

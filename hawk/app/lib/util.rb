@@ -363,15 +363,43 @@ module Util
   end
   module_function :acl_version
 
-  def get_meta_data(agent)
-    res = safe_x("/usr/sbin/crm_resource", "--show-metadata", agent)
+  # Hash#dig from Ruby 2.3
+  # https://apidock.com/ruby/Hash/dig
+  def dig_hash(hash, *keys)
+    res = hash
+    keys.each do |key|
+      res = res[key]
+      return nil if res.nil?
+    end
+    res
+  end
+  module_function :dig_hash
+
+  def get_metadata_hash(agent)
     sub_map = { 'type="string"' => 'type="text"',
                 '(type="boolean".*)default="(yes|1)"' => '\1default="true"',
                 '(type="boolean".*)default="(no|0)"' => '\1default="false"' }
-    sub_map.each { |k,v| res.gsub!(/#{k}/i, v) }
+
+    xml = safe_x("/usr/sbin/crm_resource", "--show-metadata", agent)
+    sub_map.each { |k,v| xml.gsub!(/#{k}/i, v) }
+    res = Hash.from_xml(xml)
+
+    # For stonith agents, complete the instance attributes with the ones that
+    # are built into Pacemaker and are available for all stonith-class
+    # resources.
+    if agent.start_with?("stonith:") && res && (res_param = dig_hash(res, "resource_agent", "parameters", "parameter"))
+      stonith_xml = safe_x("#{Rails.configuration.x.crm_daemon_dir}/pacemaker-fenced", "metadata")
+      sub_map.each { |k,v| stonith_xml.gsub!(/#{k}/i, v) }
+      stonith = Hash.from_xml(stonith_xml)
+
+      if stonith && (stonith_param = dig_hash(stonith, "resource_agent", "parameters", "parameter"))
+          res_param.concat(stonith_param)
+      end
+    end
+
     res
   end
-  module_function :get_meta_data
+  module_function :get_metadata_hash
 
   # get text child of xml element - returns empty string if elem is nil or
   # text child is empty.  trims leading and trailing whitespace

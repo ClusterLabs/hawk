@@ -32,7 +32,7 @@ class Primitive < Template
 
   def validate_params
     required_params = []
-    res = Hash.from_xml(Util.get_meta_data(agent_name))
+    res = Util.get_metadata_hash(agent_name)
     param_res = res["resource_agent"]["parameters"]["parameter"]
     if param_res
       param_res.each do |items|
