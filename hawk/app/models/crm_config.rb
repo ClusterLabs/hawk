@@ -194,55 +194,46 @@ class CrmConfig < Tableless
               "crmd",
               "cib"
             ].each do |cmd|
-              [
-                "/usr/libexec/pacemaker/#{cmd}",
-                "/usr/lib64/pacemaker/#{cmd}",
-                "/usr/lib/pacemaker/#{cmd}",
-                "/usr/lib64/heartbeat/#{cmd}",
-                "/usr/lib/heartbeat/#{cmd}"
-              ].each do |path|
-                next unless File.executable? path
+              path = "#{Rails.configuration.x.crm_daemon_dir}/#{cmd}"
+              next unless File.executable? path
 
-                REXML::Document.new(%x[#{path} metadata 2>/dev/null]).tap do |xml|
-                  return unless xml.root
+              REXML::Document.new(%x[#{path} metadata 2>/dev/null]).tap do |xml|
+                return unless xml.root
 
-                  xml.elements.each("//parameter") do |param|
-                    name = param.attributes["name"]
-                    content = param.elements["content"]
-                    shortdesc = param.elements["shortdesc[@lang=\"#{I18n.locale.to_s.gsub("-", "_")}\"]|shortdesc[@lang=\"en\"]"].text || ""
-                    longdesc  = param.elements["longdesc[@lang=\"#{I18n.locale.to_s.gsub("-", "_")}\"]|longdesc[@lang=\"en\"]"].text || ""
+                xml.elements.each("//parameter") do |param|
+                  name = param.attributes["name"]
+                  content = param.elements["content"]
+                  shortdesc = param.elements["shortdesc[@lang=\"#{I18n.locale.to_s.gsub("-", "_")}\"]|shortdesc[@lang=\"en\"]"].text || ""
+                  longdesc  = param.elements["longdesc[@lang=\"#{I18n.locale.to_s.gsub("-", "_")}\"]|longdesc[@lang=\"en\"]"].text || ""
 
-                    type = content.attributes["type"]
-                    default = content.attributes["default"]
+                  type = content.attributes["type"]
+                  default = content.attributes["default"]
 
-                    advanced = shortdesc.match(/advanced use only/i) || longdesc.match(/advanced use only/i)
+                  advanced = shortdesc.match(/advanced use only/i) || longdesc.match(/advanced use only/i)
 
-                    crm_config[name] = {
-                      type: content.attributes["type"],
-                      readonly: false,
-                      shortdesc: shortdesc,
-                      longdesc: longdesc,
-                      advanced: advanced ? true : false,
-                      default: default
-                    }
+                  crm_config[name] = {
+                    type: content.attributes["type"],
+                    readonly: false,
+                    shortdesc: shortdesc,
+                    longdesc: longdesc,
+                    advanced: advanced ? true : false,
+                    default: default
+                  }
 
-                    if type == "enum"
-                      match = longdesc.match(/Allowed values:(.*)/i)
+                  if type == "enum"
+                    match = longdesc.match(/Allowed values:(.*)/i)
 
-                      if match
-                        values = match[1].split(",").map do |value|
-                          value.strip
-                        end.reject do |value|
-                          value.empty?
-                        end
-
-                        crm_config[name][:values] = values unless values.empty?
+                    if match
+                      values = match[1].split(",").map do |value|
+                        value.strip
+                      end.reject do |value|
+                        value.empty?
                       end
+
+                      crm_config[name][:values] = values unless values.empty?
                     end
                   end
                 end
-
-                break
               end
             end
 
