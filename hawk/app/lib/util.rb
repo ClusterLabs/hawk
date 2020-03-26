@@ -388,7 +388,14 @@ module Util
     # are built into Pacemaker and are available for all stonith-class
     # resources.
     if agent.start_with?("stonith:") && res && (res_param = dig_hash(res, "resource_agent", "parameters", "parameter"))
-      stonith_xml = safe_x("#{Rails.configuration.x.crm_daemon_dir}/pacemaker-fenced", "metadata")
+      # by default we assume we are using the latest stonith binary path (sles15sp1 and higher)
+      # if we are using lower version, we adapt the path to other binary old accordingly
+      stonith_bin = "#{Rails.configuration.x.crm_daemon_dir}/pacemaker-fenced"
+      unless File.exists? "#{Rails.configuration.x.crm_daemon_dir}/pacemaker-fenced"
+        stonith_bin = "/usr/lib/pacemaker/stonithd"
+      end
+      # execute binary and collect/append the paramters to the hash which will be visualised
+      stonith_xml = safe_x(stonith_bin, "metadata")
       sub_map.each { |k,v| stonith_xml.gsub!(/#{k}/i, v) }
       stonith = Hash.from_xml(stonith_xml)
 
@@ -400,6 +407,7 @@ module Util
     res
   end
   module_function :get_metadata_hash
+
 
   # get text child of xml element - returns empty string if elem is nil or
   # text child is empty.  trims leading and trailing whitespace
