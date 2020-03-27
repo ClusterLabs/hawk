@@ -20,8 +20,7 @@ http://hawk-ui.github.io
   - [Build Dependencies](#build-dependencies)
     - [Dependencies](#dependencies)
   - [Installation](#installation)
-    - [Installing The Easy Way](#installing-the-easy-way)
-    - [Packaging Notes](#packaging-notes)
+  - [Packaging Notes](#packaging-notes)
   - [A Note on SSL Certificates](#a-note-on-ssl-certificates)
   - [Hacking Hawk](#hacking-hawk)
     - [Hacking hawk tools](#hacking-hawk-tools)
@@ -110,7 +109,7 @@ Hawk is a Ruby on Rails app which runs using the Puma web server
 For details on the rubygems used by hawk, see the gemfile in
 `hawk/Gemfile`.
 
-### Installing The Easy Way
+#### Using Rpms
 
 If you are running openSUSE Tumbleweed, you are in luck. All you have
 to do is install the hawk2 package and then initialize the HA cluster:
