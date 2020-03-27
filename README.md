@@ -115,6 +115,13 @@ crm cluster init
 ```
 Once initialized, go to `https://<IP>:7630/`.
 
+### Deployment:
+
+You can deploy hawk with https://github.com/SUSE/ha-sap-terraform-deployments.
+
+If you want to deploy on containers have look at https://github.com/krig/docker-hawk
+
+
 ### Packaging Notes
 
 * https://build.opensuse.org/package/show/network:ha-clustering:Factory/hawk2
