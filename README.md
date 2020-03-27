@@ -17,15 +17,11 @@ http://hawk-ui.github.io
   - [Overview](#overview)
   - [Documentation](#documentation)
   - [Features](doc/features.md)
-  - [Build Dependencies](#build-dependencies)
-    - [Dependencies](#dependencies)
+  - [Dependencies](#dependencies)
   - [Installation](#installation)
-  - [Packaging Notes](#packaging-notes)
-  - [A Note on SSL Certificates](#a-note-on-ssl-certificates)
+  - [Packaging](#packaging)
   - [Hacking Hawk](#hacking-hawk)
-    - [Hacking hawk tools](#hacking-hawk-tools)
   - [Questions, Feedback, etc.](#questions-feedback-etc)
-    - [Footnotes](#footnotes)
 
 ## Overview
 
@@ -74,18 +70,17 @@ the status view.
 ![Wizard](/doc/screens/hawk_wizards.png)
 
 
-## Build Dependencies
+## Dependencies:
 
 The exact versions specified here may not be accurate. Also, note that
 Hawk also requires the rubygems listed in `hawk/Gemfile`.
 
+Build-deps:
+ 
 * ruby >= 2.2
 * pam-devel
 
-### Dependencies
-
-The exact versions specified here may not be accurate. Also, note that
-Hawk also requires the rubygems listed in `hawk/Gemfile`.
+Other deps:
 
 * ruby >= 2.2
 * crmsh >= 3.0.0
@@ -124,13 +119,7 @@ Once initialized, go to `https://<IP>:7630/`.
 
 * https://build.opensuse.org/package/show/network:ha-clustering:Factory/hawk2
 
-
-## A Note on SSL Certificates
-
-The Hawk init script will automatically generate a self-signed SSL
-certificate, in `/etc/hawk/hawk.pem`.  If you want
-to use your own certificate, replace `hawk.key` and `hawk.pem` with
-your certificate. For browsers to accept this certificate, the node running Hawk will need to be accessed via the domain name specified in the certificate.
+Note that the `master` branch is used to build SLE15 version, and the other branches are per-os version.
 
 ## Hacking Hawk
 

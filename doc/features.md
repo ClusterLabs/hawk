@@ -13,6 +13,15 @@ as a rough guide to the Hawk user interface.
     - [Access Control Lists](#access-control-lists)
     - [Simulator](#simulator)
 
+
+### A Note on SSL Certificates 
+ 
+The Hawk init script will automatically generate a self-signed SSL 
+certificate, in `/etc/hawk/hawk.pem`.  If you want 
+to use your own certificate, replace `hawk.key` and `hawk.pem` with 
+your certificate. For browsers to accept this certificate, the node running Hawk will need to be accessed via the domain name specified in the certificate. 
+ 
+
 ### Resource Management
 
 From the status view of Hawk, you can control the state of individual
