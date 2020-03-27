@@ -15,13 +15,11 @@ http://hawk-ui.github.io
 ## Table of contents
 
   - [Overview](#overview)
-  - [Documentation](#documentation)
   - [Features](doc/features.md)
   - [Dependencies](#dependencies)
   - [Installation](#installation)
   - [Packaging](#packaging)
   - [Hacking Hawk](#hacking-hawk)
-  - [Questions, Feedback, etc.](#questions-feedback-etc)
 
 ## Overview
 
@@ -58,8 +56,7 @@ Resource management operations (start, stop, online, standby, etc.)
 can be performed using the menu of operations next to the resource in
 the status view.
 
-
-## Documentation
+### External links:
 
 * [Website](http://hawk-ui.github.io)
 * [The Hawk Guide](http://hawk-guide.readthedocs.org/en/latest/)
