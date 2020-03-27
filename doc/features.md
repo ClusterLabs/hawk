@@ -3,15 +3,15 @@
 Note that this list of features is not complete, and is intended only
 as a rough guide to the Hawk user interface.
 
-    - [Resource Management](#resource-management)
-    - [Multi-cluster Dashboard](#multi-cluster-dashboard)
-    - [History Explorer](#history-explorer)
-    - [Configuration](#configuration)
-    - [Wizards](#wizards)
-    - [View Configuration and Graph](#view-configuration-and-graph)
-    - [Command Log](#command-log)
-    - [Access Control Lists](#access-control-lists)
-    - [Simulator](#simulator)
+- [Resource Management](#resource-management)
+- [Multi-cluster Dashboard](#multi-cluster-dashboard)
+- [History Explorer](#history-explorer)
+- [Configuration](#configuration)
+- [Wizards](#wizards)
+- [View Configuration and Graph](#view-configuration-and-graph)
+- [Command Log](#command-log)
+- [Access Control Lists](#access-control-lists)
+- [Simulator](#simulator)
 
 
 ### A Note on SSL Certificates 
