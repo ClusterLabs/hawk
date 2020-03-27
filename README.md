@@ -14,12 +14,8 @@ http://hawk-ui.github.io
 
 ## Table of contents
 
-- [HA Web Konsole (Hawk)](#ha-web-konsole-hawk)
-  - [Table of contents](#table-of-contents)
   - [Overview](#overview)
-  - [API](#api)
   - [Documentation](#documentation)
-  - [Screenshots](#screenshots)
   - [Features](doc/features.md)
   - [Build Dependencies](#build-dependencies)
     - [Dependencies](#dependencies)
@@ -67,22 +63,13 @@ Resource management operations (start, stop, online, standby, etc.)
 can be performed using the menu of operations next to the resource in
 the status view.
 
-## API
-
-Hawk is being restructured to provide a cleaner separation between the
-frontend and the backend. As a first step towards this goal, Hawk now
-uses its own small API proxy daemon as a web server, which is
-maintained as a separate project:
-
-* [API Server Repository](https://github.com/krig/hawk-apiserver)
 
 ## Documentation
 
 * [Website](http://hawk-ui.github.io)
 * [The Hawk Guide](http://hawk-guide.readthedocs.org/en/latest/)
 * [SUSE Linux Enterprise High Availability Extension Documentation](http://www.suse.com/documentation/sle_ha/book_sleha/?page=/documentation/sle_ha/book_sleha/data/cha_ha_configuration_hawk.html)
-
-## Screenshots
+* [API Server Repository](https://github.com/ClusterLabs/hawk-apiserver)
 
 ![Status](/doc/screens/hawk_status.png)
 ![Wizard](/doc/screens/hawk_wizards.png)
@@ -136,11 +123,8 @@ Once initialized, go to `https://<IP>:7630/`.
 
 ### Packaging Notes
 
-For anyone looking to package Hawk for distributions, the best approach is probably to look at the RPM packaging at the SUSE Open Build Service and begin from there:
-
 * https://build.opensuse.org/package/show/network:ha-clustering:Factory/hawk2
 
-The main difficulty will probably be deciding how to package the Ruby gems. Hawk used to have an installation mode in which all Ruby gems were bundled into a single RPM package, but for maintainability reasons we decided to split each rubygem into its own package.
 
 ## A Note on SSL Certificates
 
@@ -184,7 +168,3 @@ requests are welcome there.
 
 Please direct comments, feedback, questions etc. to the Clusterlabs
 users mailing list at http://clusterlabs.org/mailman/listinfo/users .
-
-### Footnotes
-
-<a name="footnote1">1</a>: https://github.com/ClusterLabs/booth/

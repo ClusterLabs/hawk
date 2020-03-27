@@ -25,7 +25,7 @@ On the status page you can also manage nodes including setting node
 attributes and displaying recent events related to the specific node.
 
 Additionally, if there are any tickets configured (requires the use of
-geo clustering via booth <sup>[1](#footnote1)</sup>),
+geo clustering via [booth](https://github.com/ClusterLabs/booth)
 these are also displayed in the status view  and can be managed in a
 similar fashion to resources.
 
