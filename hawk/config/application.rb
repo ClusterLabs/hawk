@@ -50,6 +50,25 @@ module Hawk
 
     config.x.hawk_is_sles = system("cat /etc/os-release | grep 'ID=.*sles' >/dev/null 2>&1")
 
+    def lookup_daemon_dir
+      [
+        "/usr/libexec/pacemaker",
+        "/usr/lib64/pacemaker",
+        "/usr/lib/pacemaker",
+        "/usr/lib64/heartbeat",
+        "/usr/lib/heartbeat"
+      ].each do |dir|
+        [
+          "crmd",
+          "pacemaker-controld",
+        ].each do |cmd|
+          return dir if File.executable? "#{dir}/#{cmd}"
+        end
+      end
+      "/usr/libexec/pacemaker"
+    end
+
     ::Sass::Script::Number.precision = [10, ::Sass::Script::Number.precision].max
+    config.x.crm_daemon_dir = lookup_daemon_dir
   end
 end
