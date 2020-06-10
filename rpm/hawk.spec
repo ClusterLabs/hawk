@@ -83,7 +83,7 @@ BuildRequires:  rubygem(%{rb_ruby_abi}:gettext_i18n_rails) >= 1.8
 BuildRequires:  rubygem(%{rb_ruby_abi}:gettext_i18n_rails_js) >= 1.3
 BuildRequires:  rubygem(%{rb_ruby_abi}:js-routes) >= 1.3.3
 BuildRequires:  rubygem(%{rb_ruby_abi}:kramdown) >= 1.14
-BuildRequires:  rubygem(%{rb_ruby_abi}:puma) >= 3
+BuildRequires:  rubygem(%{rb_ruby_abi}:puma) >= 3.12.6
 BuildRequires:  rubygem(%{rb_ruby_abi}:rails:5)
 BuildRequires:  rubygem(%{rb_ruby_abi}:sass) >= 3.4
 BuildRequires:  rubygem(%{rb_ruby_abi}:sass-rails) >= 5.0.1
