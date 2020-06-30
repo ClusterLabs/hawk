@@ -15,9 +15,3 @@ rvm:
 
 gemfile: hawk/Gemfile
 script: sh -c 'cd hawk && ruby -- ./bin/bundle exec rspec'
-notifications:
-  irc:
-    channels:
-      - "chat.freenode.net#clusterlabs-dev"
-    on_success: never
-    on_failure: change
