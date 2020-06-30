@@ -12,192 +12,13 @@ client frontend using the API.
 
 http://hawk-ui.github.io
 
-## Table of contents
-
-- [HA Web Konsole (Hawk)](#ha-web-konsole-hawk)
-  - [Table of contents](#table-of-contents)
-  - [Overview](#overview)
-  - [API](#api)
-  - [Documentation](#documentation)
-  - [Screenshots](#screenshots)
-  - [Features](#features)
-    - [Resource Management](#resource-management)
-    - [Multi-cluster Dashboard](#multi-cluster-dashboard)
-    - [History Explorer](#history-explorer)
-    - [Configuration](#configuration)
-    - [Wizards](#wizards)
-    - [View Configuration and Graph](#view-configuration-and-graph)
-    - [Command Log](#command-log)
-    - [Access Control Lists](#access-control-lists)
-    - [Simulator](#simulator)
+  - [Features](doc/features.md)
   - [Build Dependencies](#build-dependencies)
-    - [Dependencies](#dependencies)
-  - [Installation](#installation)
-    - [Installing The Easy Way](#installing-the-easy-way)
-    - [Packaging Notes](#packaging-notes)
-  - [A Note on SSL Certificates](#a-note-on-ssl-certificates)
-  - [Hacking Hawk](#hacking-hawk)
-    - [Web server instances](#web-server-instances)
-    - [Puma server configuration](#puma-server-configuration)
-    - [Hacking hawk tools](#hacking-hawk-tools)
-  - [Questions, Feedback, etc.](#questions-feedback-etc)
-    - [Footnotes](#footnotes)
-
-## Overview
-
-Hawk runs on every node in the cluster, so that you can just point
-your web browser at any node to access it. E.g.:
-
-https://your-cluster-node:7630/
-
-Hawk is always accessed via HTTPS, and requires users to log in prior
-to providing access to the cluster. The same user privilege rules
-apply as for Pacemaker itself: You need to log in as a user in the
-`haclient` group. The easiest thing to do is to assign a password to
-the `hacluster` user, and then to log in using that account. Note that
-you will need to configure this user account on every node that you
-will use Hawk on.
-
-For more fine-grained control over access to the cluster, you can
-create multiple user accounts and configure Access Control Lists (ACL)
-for those users. These access control rules are available directly
-from the Hawk user interface.
-
-Once logged in, you will see a status view displaying the current
-state of the cluster. All the configured cluster resources are shown
-together with their status, as well as a general state of the cluster
-and a list of recent cluster events (if any).
-
-The navigation menu on the left hand side provides access to the
-additional features of Hawk, such as the history explorer, the
-multi-cluster dashboard and configuration management. On the top right
-of the screen you can enable or disable the simulator, configure user
-preferences and log out of the cluster.
-
-Resource management operations (start, stop, online, standby, etc.)
-can be performed using the menu of operations next to the resource in
-the status view.
-
-## API
-
-Hawk is being restructured to provide a cleaner separation between the
-frontend and the backend. As a first step towards this goal, Hawk now
-uses its own small API proxy daemon as a web server, which is
-maintained as a separate project:
-
-* [API Server Repository](https://github.com/krig/hawk-apiserver)
-
-## Documentation
-
-* [Website](http://hawk-ui.github.io)
-* [The Hawk Guide](http://hawk-guide.readthedocs.org/en/latest/)
-* [SUSE Linux Enterprise High Availability Extension Documentation](http://www.suse.com/documentation/sle_ha/book_sleha/?page=/documentation/sle_ha/book_sleha/data/cha_ha_configuration_hawk.html)
-
-## Screenshots
-
-![Status](/screens/hawk_status.png)
-![Wizard](/screens/hawk_wizards.png)
-
-## Features
-
-Note that this list of features is not complete, and is intended only
-as a rough guide to the Hawk user interface.
-
-### Resource Management
-
-From the status view of Hawk, you can control the state of individual
-resources or resource groups, start / stop / promote / demote. You can
-also migrate resources to and away from specific nodes, clean up
-resources after failure and show a list of recent events for the
-resource.
-
-On the status page you can also manage nodes including setting node
-attributes and displaying recent events related to the specific node.
-
-Additionally, if there are any tickets configured (requires the use of
-geo clustering via booth <sup>[1](#footnote1)</sup>),
-these are also displayed in the status view  and can be managed in a
-similar fashion to resources.
-
-### Multi-cluster Dashboard
-
-The Dashboard can be used to monitor the local cluster, displaying a
-blinkenlights-style overview of all resources as well as any recent
-failures that may have occurred. It is also possible to configure
-access to remote clusters, so that multiple clusters can be monitored
-from a single interface. This can be useful as a HUD in an operations
-center, or when using geo clustering.
-
-Hawk can also run in an **offline mode**, where you run Hawk on a
-non-cluster machine which monitors one or more remote clusters.
-
-### History Explorer
-
-The history explorer is a tool for collecting and downloading cluster
-reports, which include logs and other information for a certain
-timeframe. The history explorer is also useful for analysing such
-cluster reports. You can either upload a previously generated cluster
-report for analysis, or generate one on the fly.
-
-Once uploaded, you can scroll through all of the cluster events that
-took place in the time frame covered by the report. For each event,
-you can see the current cluster configuration, logs from all cluster
-nodes and a transition graph showing exactly what happened and why.
-
-### Configuration
-
-Hawk makes it easy to configure both resources, groups of resources,
-constraints and tags. You can also configure resource templates to be
-reused later, and cloned resources that are active on multiple nodes
-at once.
-
-### Wizards
-
-Cluster wizards are useful for creating more complicated
-configurations in a single process. The wizards vary in complexity
-from simply configuring a single virtual IP address to configuring
-multiple resources together with constraints, in multiple steps and
-including package installation, configuration and setup.
-
-### View Configuration and Graph
-
-From the web interface you can view the current cluster configuration
-in the `crm` shell syntax or as XML. You can also generate a graph
-view of the resources and constraints configured in the cluster.
-
-### Command Log
-
-To make the transition between using the web interface and the command
-line interface easier, Hawk provides a command log showing a list of
-recent commands executed by the web interface. A user who is learning
-to configure a Pacemaker cluster can start by using the web interface,
-and learn how to use the command line in the process.
-
-### Access Control Lists
-
-Pacemaker supports fine-grained access control to the configuration
-based on user roles. These roles can be viewed and configured directly
-from the web interface. Using the ACL rules, you can for example
-create unprivileged user accounts that are able to log in and view the
-state of the cluster, but cannot edit resources.
-
-### Simulator
-
-Hawk features a cluster simulation mode. Once enabled, any changes to
-the cluster are not applied directly. Instead, events such as resource
-failure or node failure can be simulated, and the user can see what
-the resulting cluster response would be. This can be very useful when
-configuring constraints, to ensure that the rules work as intended.
+  - [Release](doc/release.md)
+  - [Installation](#installation-and-deployment)
+  - [Devel notes](#devel)
 
 ## Build Dependencies
-
-The exact versions specified here may not be accurate. Also, note that
-Hawk also requires the rubygems listed in `hawk/Gemfile`.
-
-* ruby >= 2.2
-* pam-devel
-
-### Dependencies
 
 The exact versions specified here may not be accurate. Also, note that
 Hawk also requires the rubygems listed in `hawk/Gemfile`.
@@ -214,20 +35,11 @@ Hawk also requires the rubygems listed in `hawk/Gemfile`.
 
 For details about the Hawk API server, see the separate repository at Github:
 
-* https://github.com/krig/hawk-apiserver
+* https://github.com/ClusterLabs/hawk-apiserver
 
-## Installation
+## Installation and deployment:
 
-Hawk is a Ruby on Rails app which runs using the Puma web server
-(http://puma.io/).
-
-For details on the rubygems used by hawk, see the gemfile in
-`hawk/Gemfile`.
-
-### Installing The Easy Way
-
-If you are running openSUSE Tumbleweed, you are in luck. All you have
-to do is install the hawk2 package and then initialize the HA cluster:
+On openSUSE use following commands:
 
 ```bash
 zypper install hawk2
@@ -235,26 +47,12 @@ crm cluster init
 ```
 Once initialized, go to `https://<IP>:7630/`.
 
-### Packaging Notes
-
-For anyone looking to package Hawk for distributions, the best approach is probably to look at the RPM packaging at the SUSE Open Build Service and begin from there:
-
-* https://build.opensuse.org/package/show/network:ha-clustering:Factory/hawk2
-
-The main difficulty will probably be deciding how to package the Ruby gems. Hawk used to have an installation mode in which all Ruby gems were bundled into a single RPM package, but for maintainability reasons we decided to split each rubygem into its own package.
-
-## A Note on SSL Certificates
-
-The Hawk init script will automatically generate a self-signed SSL
-certificate, in `/etc/hawk/hawk.pem`.  If you want
-to use your own certificate, replace `hawk.key` and `hawk.pem` with
-your certificate. For browsers to accept this certificate, the node running Hawk will need to be accessed via the domain name specified in the certificate.
-
-## Hacking Hawk
-
-# Deploy:
+### Deploy:
 
 use the following project for deploying hawk  https://github.com/SUSE/pacemaker-deploy
+
+
+# Devel
 
 
 ### Puma server configuration
@@ -291,15 +89,3 @@ of Pacemaker CLI tools as another user in order to support Pacemaker's
 ACL feature. It is used by Hawk when performing various management
 tasks.
 
-## Questions, Feedback, etc.
-
-The upstream source repository can be found at
-https://github.com/ClusterLabs/hawk . Issues, questions or pull
-requests are welcome there.
-
-Please direct comments, feedback, questions etc. to the Clusterlabs
-users mailing list at http://clusterlabs.org/mailman/listinfo/users .
-
-### Footnotes
-
-<a name="footnote1">1</a>: https://github.com/ClusterLabs/booth/
