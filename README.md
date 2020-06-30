@@ -37,8 +37,6 @@ http://hawk-ui.github.io
     - [Packaging Notes](#packaging-notes)
   - [A Note on SSL Certificates](#a-note-on-ssl-certificates)
   - [Hacking Hawk](#hacking-hawk)
-    - [Preconfigured Vagrant environment](#preconfigured-vagrant-environment)
-    - [Changing the Vagrant configuration file](#changing-the-vagrant-configuration-file)
     - [Web server instances](#web-server-instances)
     - [Puma server configuration](#puma-server-configuration)
     - [Hacking hawk tools](#hacking-hawk-tools)
@@ -253,91 +251,11 @@ to use your own certificate, replace `hawk.key` and `hawk.pem` with
 your certificate. For browsers to accept this certificate, the node running Hawk will need to be accessed via the domain name specified in the certificate.
 
 ## Hacking Hawk
-### Preconfigured Vagrant environment
 
-To hack on Hawk we recommend to use the vagrant setup. There is a
-Vagrantfile attached, which creates a three-node cluster with a basic
-configuration suitable for development and testing.
+# Deploy:
 
-To be prepared for getting our vagrant setup running you need to follow
-some steps.
+use the following project for deploying hawk  https://github.com/SUSE/pacemaker-deploy
 
-* Install the vagrant package from http://www.vagrantup.com/downloads.html.
-* Install `libvirt` and `kvm` to actually host the Hawk virtual machine.
-
-Out of the box, `vagrant` is configured to synchronize the working
-folder to `/vagrant` in the virtual machines using NFS. For this to
-work properly, the `vagrant-bindfs` plugin is necessary.
-
-Install it using the following command:
-
-```bash
-vagrant plugin install vagrant-bindfs
-```
-
-* Make sure you have the libvirt-plugin installed:
-
-```bash
-vagrant plugin install vagrant-libvirt
-```
-
-This is all you need to prepare initially to set up the vagrant environment,
-now you can simply start the virtual machine with `vagrant up` and start
-an ssh session with `vagrant ssh webui`. If you want to access
-the source within the virtual machine you have to switch to the `/vagrant`
-directory.
-
-### Changing the Vagrant configuration file
-
-Default Vagrant parameters are kept in a separate YAML file `vconf.yml`.
-This file is also read by the Salt provisioner, the values are parsed and
-treated as pillar data. Therefor It's possible to change the
-default behavior of Vagrant and Salt by tweaking `vconf.yml` file, (e.g. running
-on a remote Libvirt server, changing to master/minions setup, changing the ip
-addresses of the nodes, etc).
-
-### Web server instances
-
-You can access the Hawk web interface based on the git source through
-`https://localhost:3000` now. If you want to access the version installed
-through packages you can reach it through `https://localhost:7630`.
-
-In fact, within the Vagrant environment, there are two instances of
-the Hawk interface running. The first one is accessible through
-`https://localhost:7630`, with `/usr/share/hawk` as the root
-directory. This instance is launched by default as a production server
-when installing hawk through the package manager or when launching the
-vagrant environment. It is used to monitor and manage the cluster in
-the real production environment.
-
-The commands used to control this server are:
-
-```bash
-$ vagrant ssh webui
-vagrant@webui:~> sudo systemctl start hawk
-vagrant@webui:~> sudo systemctl stop hawk
-vagrant@webui:~> sudo systemctl restart hawk
-vagrant@webui:~> sudo systemctl status hawk
-```
-
-The other instance is used for development purposes. Its root directory is
-`/vagrant/hawk`. That's because the /vagrant folder is synced with the host
-machine's working folder (the local git repository), so any changes in that folder
-is detected instantly by this server instance in the guest machine.
-This instance is accessible through `https://localhost:3000`.
-Also, You can find installed on the development VM a script called `hawk`
-(hawk/bin/hawk), which can be used to control the development instance of hawk:
-
-```bash
-$ vagrant ssh webui
-vagrant@webui:~> export PATH=/vagrant/hawk/bin:$PATH
-vagrant@webui:~> hawk status
-vagrant@webui:~> hawk log
-vagrant@webui:~> hawk apilog
-vagrant@webui:~> hawk start
-vagrant@webui:~> hawk stop
-vagrant@webui:~> hawk restart
-```
 
 ### Puma server configuration
 
@@ -347,20 +265,15 @@ through environment variables.
 
 Please also note that the Puma server is configured to use a maximum number of
 16 threads withing one worker in clustered mode. This application is thread safe
-and you can customize this through the puma.rb file. You may need to provision
-the vm again with `vagrant provision` in order for this to takes effect in production
-environment.
+and you can customize this through the puma.rb file. 
+
 For further information about threads and workers in Puma, please take a look at
 this great article by Heroku: [Puma web server article](https://devcenter.heroku.com/articles/deploying-rails-applications-with-the-puma-web-server)
 
 ### Hacking hawk tools
 
 Hawk's tools are the programs under the `hawk/tools` folder
-(`hawk_chkpwd` and `hawk_invoke`). If you need to change something
-on these files,  you need to provision the machine again with the command
-`vagrant provision` to get this scripts compiled and copied to the correct
-places, setuid-root and group to haclient in `/usr/bin` again. You should
-end up with something like:
+(`hawk_chkpwd` and `hawk_invoke`). 
 
 ```bash
 ls /usr/sbin/hawk_* -l+ +
