@@ -17,6 +17,7 @@ http://hawk-ui.github.io
   - [Release](doc/release.md)
   - [Installation](#installation-and-deployment)
   - [Devel notes](#devel)
+  - [Testing](#testing)
 
 ## Build Dependencies
 
@@ -89,3 +90,8 @@ of Pacemaker CLI tools as another user in order to support Pacemaker's
 ACL feature. It is used by Hawk when performing various management
 tasks.
 
+# testing:
+
+In addition to unit test we provide End to end test for a Hawk validation.
+
+See e2e_test/README.md for full documentation

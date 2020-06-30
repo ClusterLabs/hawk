@@ -6,24 +6,23 @@ The following tests are executed by openQA during ci regularly.
 
 As developer you can execute them manually when you do an update on hawk.
 
+# Pre-requisites:
+
+* docker
+* 2 Hawk vms running 
+ (normally it is a cluster)
+See https://github.com/SUSE/pacemaker-deploy  for deploying hawk
+
 
 # Quickstart:
 
 1) Create the docker image
 `docker build . -t hawk_test -f Dockerfile.alpine`
 
-
-2) You need 2 virtual-machines where hawk is running. (normally it is a cluster)
-
-See https://github.com/SUSE/pacemaker-deploy  for deploying hawk
-
 ``` docker run --ipc=host -xvfb hawk_test -H 10.162.32.175 -S 10.162.29.122 -t 15 -s linux```
-
 
 Notes:
   - You may want to add `--net=host` if you have problems with DNS resolution.
-
-
 
 ## Dependencies
 
