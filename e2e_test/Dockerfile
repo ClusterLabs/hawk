@@ -19,9 +19,12 @@ RUN	zypper -n install -y --no-recommends \
 		xorg-x11-fonts \
 		xorg-x11-server-Xvfb && \
 	zypper -n clean -a
-
-COPY	geckodriver /usr/local/bin/
-COPY	chromedriver /usr/local/bin/
+         
+RUN	zypper -n install -y --no-recommends  wget tar gzip
+RUN 	zypper -n clean -a
+RUN     wget https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz
+RUN     tar xvf geckodriver-v0.26.0-linux64.tar.gz 
+RUN     mv geckodriver /usr/local/bin
 RUN	chmod +x /usr/local/bin/*
 
 RUN	useradd -l -m -d /test test

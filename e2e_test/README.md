@@ -17,9 +17,9 @@ See https://github.com/SUSE/pacemaker-deploy  for deploying hawk
 # Quickstart:
 
 1) Create the docker image
-`docker build . -t hawk_test -f Dockerfile.alpine`
+`docker build . -t hawk_test `
 
-``` docker run --ipc=host -xvfb hawk_test -H 10.162.32.175 -S 10.162.29.122 -t 15 -s linux```
+``` docker run --ipc=host hawk_test -H 10.162.32.175 -S 10.162.29.122 -t 15 -s linux --xvfb ```
 
 Notes:
   - You may want to add `--net=host` if you have problems with DNS resolution.
