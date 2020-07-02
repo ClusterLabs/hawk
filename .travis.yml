@@ -11,7 +11,7 @@ branches:
     - rails-3_2
 
 rvm:
-  - "2.4.0"
+  - "2.5.0"
 
 gemfile: hawk/Gemfile
 script: sh -c 'cd hawk && ruby -- ./bin/bundle exec rspec'
