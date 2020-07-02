@@ -242,8 +242,8 @@ sane_pam_service(const char *name)
 		if (!isalnum(*sp) && *sp != '_' && *sp != '-')
 			return 0;
 	}
-
-	snprintf(path, sizeof(path), "/etc/pam.d/%s", name);
+        // the conf location has changed, see https://en.opensuse.org/openSUSE:Packaging_UsrEtc#pam.2Fpam-config
+	snprintf(path, sizeof(path), "/usr/etc/pam.d/%s", name);
 	return access(path, R_OK) == 0;
 }
 
