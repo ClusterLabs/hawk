@@ -8,6 +8,7 @@ Actively maintained are:
 
 -  SLE12SP4 and SLES12P3 -> `sles12-sp3 and sp4` github branches.
 
+-  openSUSE factory -> `factory` 
 # Note on sle15 and sles12 branches:
 
 sle15 and sle12 have completely different design and also, the ruby supported is quite different

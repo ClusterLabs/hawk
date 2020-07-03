@@ -31,8 +31,7 @@ INIT_STYLE = suse
 # Set this to true to bundle gems inside rpm
 BUNDLE_GEMS = false
 
-# This should be discoverable in a better way
-RUBY_ABI = 2.1.0
+RUBY_ABI = "$(echo "puts \"#{Gem.ruby_api_version}\"" | ruby)"
 
 # Set this never to 1, it's used only within vagrant for development
 WITHIN_VAGRANT = 0
@@ -53,8 +52,6 @@ all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service scripts/hawk.service.bundle
 		export BUNDLE_WITHOUT="test" && \
 		# Generate Gemfile.lock \
 		bundle list && \
-		# Strip unwanted gems from Gemfile.lock \
-		sed -i -e '/\brdoc\b/d' -e '/\brake\b/d' -e '/\bjson\b/d' Gemfile.lock && \
 		# Finally package and install the gems \
 		bundle package && bundle install --local --deployment ; \
 	 fi ; \
