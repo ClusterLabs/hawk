@@ -1,0 +1,19 @@
+language: python
+
+services:
+  - docker
+
+dist: xenial
+
+python:
+  - "3.5"
+  - "3.6"
+  - "3.7"
+  - "3.8"
+
+install:
+  - pip install -r requirements-test.txt
+
+script:
+  - make test
+  - make test-docker
