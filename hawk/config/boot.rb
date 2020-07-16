@@ -29,7 +29,7 @@ else
   require "sprockets/railtie"
   require "rails/test_unit/railtie"
 
-  gem "puma", version: "~> 3"
+  gem "puma", version: "~> 4.3.5"
   require "puma"
 
   gem "sass-rails", version: ">= 5.0"
