@@ -6,7 +6,9 @@ Actively maintained are:
 
 -  SLE15 and higher -> `master`
 
--  SLE12SP4 and SLES12P3 -> `sles12-sp3 and sp4` github branches.
+-  SLE12 -> `sles12-sp3 and sp4` github branches
+
+-  Factory -> opensuse Tubleweed
 
 # Note on sle15 and sles12 branches:
 
