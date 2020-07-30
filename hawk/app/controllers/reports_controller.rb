@@ -3,7 +3,6 @@
 
 class ReportsController < ApplicationController
   before_filter :login_required
-  before_filter :god_required
   before_filter :set_title
   before_filter :set_record, only: [:show, :destroy, :download, :cache]
   before_filter :set_transition, only: [:display, :detail, :graph, :logs, :diff, :pefile, :status, :cib]
