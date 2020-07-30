@@ -954,7 +954,7 @@ class Cib
           end
 
           # check for guest nodes
-          if state == :master || state == :started
+          if lrm_resource.attributes['container'].nil? && (state == :master || state == :started)
             on_node = op.attributes['on_node']
             @nodes.select { |n| n[:uname] == rsc_id }.each do |guest|
               guest[:host] = node[:uname]
