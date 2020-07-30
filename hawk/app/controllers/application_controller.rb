@@ -185,10 +185,6 @@ class ApplicationController < ActionController::Base
     not_authenticated unless logged_in?
   end
 
-  def god_required
-    permission_denied unless is_god?
-  end
-
   def login_from_cookie
     user = cookies['hawk_remember_me_id']
     return if user.nil?
