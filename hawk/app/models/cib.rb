@@ -983,7 +983,7 @@ class Cib
           state = CibTools.op_rc_to_state operation, rc_code, state
 
           # check for guest nodes
-          if !op.attributes['on_node'].nil? && [:master, :started].include?(state)
+          if !op.attributes['on_node'].nil? && [:master, :started].include?(state) && lrm_resource.attributes['container'].nil? 
             @nodes.select { |n| n[:uname] == rsc_id }.each do |guest|
               guest[:host] = node[:uname]
               guest[:remote] = true
