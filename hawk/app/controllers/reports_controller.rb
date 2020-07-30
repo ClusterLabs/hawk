@@ -3,7 +3,6 @@
 
 class ReportsController < ApplicationController
   before_action :login_required
-  before_action :god_required
   before_action :set_title
   before_action :set_record, only: [:show, :destroy, :download, :cache]
   before_action :set_transition, only: [:display, :detail, :graph, :logs, :diff, :pefile, :status, :cib]
