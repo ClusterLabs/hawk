@@ -21,7 +21,7 @@ if File.exist? ENV["BUNDLE_GEMFILE"]
 
   Bundler.require(:default, Rails.env)
 else
-  gem "rails", version: "~> 5.1"
+  gem "rails", version: "~> 6.0"
 #  require "active_record/railtie"
   require "active_model/railtie"
   require "action_controller/railtie"
@@ -29,7 +29,7 @@ else
   require "sprockets/railtie"
   require "rails/test_unit/railtie"
 
-  gem "puma", version: "~> 3"
+  gem "puma", version: "~> 4"
   require "puma"
 
   gem "sass-rails", version: ">= 5.0"
