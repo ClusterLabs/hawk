@@ -158,7 +158,7 @@ class HawkTestDriver:
         return elem
 
     def verify_success(self):
-        elem = self.find_element(By.CLASS_NAME, 'alert-success', 60)
+        elem = self.find_element(By.CLASS_NAME, 'alert-success', 60 * self.timeout_scale)
         if not elem:
             elem = self.find_element(By.PARTIAL_LINK_TEXT, 'Rename', 5)
             if not elem:
@@ -323,11 +323,12 @@ class HawkTestDriver:
         print("TEST: test_remove_cluster")
         self.click_on('Dashboard')
         self.check_and_click_by_xpath("Click on Dashboard", [Xpath.HREF_DASHBOARD])
-        elem = self.find_element(By.PARTIAL_LINK_TEXT, cluster_name)
-        if not elem:
-            print("ERROR: Couldn't find cluster [%s]. Cannot remove" % cluster_name)
-            return False
-        elem.click()
+        if Version(self.test_version) >= Version('12-SP3'):
+            elem = self.find_element(By.PARTIAL_LINK_TEXT, cluster_name)
+            if not elem:
+                print("ERROR: Couldn't find cluster [%s]. Cannot remove" % cluster_name)
+                return False
+            elem.click()
         time.sleep(2 * self.timeout_scale)
         elem = self.find_element(By.CLASS_NAME, 'close')
         if not elem:
@@ -352,6 +353,13 @@ class HawkTestDriver:
         if self.verify_success():
             print("INFO: Successfully removed cluster: [%s]" % cluster_name)
             return True
+        # HAWK2 version in 12-SP2 doesn't provide AJAX feedback for removal of cluster
+        if Version(self.test_version) < Version('12-SP3'):
+            self.click_on('Dashboard')
+            elem = self.find_element(By.PARTIAL_LINK_TEXT, cluster_name)
+            if not elem:
+                print("INFO: Successfully removed cluster: [%s]" % cluster_name)
+                return True
         print("ERROR: Could not remove cluster [%s]" % cluster_name)
         return False
 
@@ -533,9 +541,17 @@ class HawkTestDriver:
         print("TEST: test_click_around_edit_conf")
         print("TEST: Will click on Constraints, Nodes, Tags, Alerts and Fencing")
         self.check_edit_conf()
-        self.check_and_click_by_xpath("while checking around edit configuration",
-                                      [Xpath.HREF_CONSTRAINTS, Xpath.HREF_NODES, Xpath.HREF_TAGS,
-                                       Xpath.HREF_ALERTS, Xpath.HREF_FENCING])
+
+        click_list = [
+            Xpath.HREF_CONSTRAINTS, Xpath.HREF_NODES, Xpath.HREF_TAGS,
+            Xpath.HREF_ALERTS, Xpath.HREF_FENCING
+        ]
+
+        # HAWK version below 12-SP3 does not provide link to fencing
+        if Version(self.test_version) < Version("12-SP3"):
+            click_list.remove(Xpath.HREF_FENCING)
+
+        self.check_and_click_by_xpath("while checking around edit configuration", click_list)
         return self.test_status
 
     def test_add_virtual_ip(self, virtual_ip):
