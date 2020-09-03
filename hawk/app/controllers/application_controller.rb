@@ -16,6 +16,7 @@ class ApplicationController < ActionController::Base
   before_action :set_current_title
   before_action :set_shadow_cib
   before_action :cors_preflight_check
+  before_action :check_readonly_group, only: [:new, :create ,:edit, :update, :destroy]
   after_action :cors_set_access_control_headers
 
   helper_method :is_god?
@@ -23,6 +24,7 @@ class ApplicationController < ActionController::Base
   helper_method :production_cib
   helper_method :current_cib
   helper_method :current_user
+
 
   rescue_from Cib::CibError do |e|
     respond_to do |format|
@@ -168,6 +170,17 @@ class ApplicationController < ActionController::Base
       end
     end
   end
+
+  # this function check if user is in haclient group and ha-clientreadonly
+  def check_readonly_group
+    cmd = "id #{@current_user}"
+    group =  `#{cmd}`
+    if group.include? "haclient-readonly"
+      Rails.logger.warn "ReadOnly USER"
+      permission_denied
+    end
+  end
+
 
   def current_user
     @current_user ||= session[:username] || login_from_cookie
