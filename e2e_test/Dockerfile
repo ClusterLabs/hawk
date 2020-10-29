@@ -9,7 +9,6 @@ RUN	zypper -n install -y --no-recommends \
 		MozillaFirefox-branding-upstream \
 		chromium \
 		file \
-		python3 \
 		python3-paramiko \
 		python3-PyVirtualDisplay \
 		python3-selenium \
@@ -25,7 +24,7 @@ RUN	zypper -n install -y --no-recommends \
 		tar \
 		wget && \
 	zypper -n clean -a && \
-	wget -O- https://github.com/mozilla/geckodriver/releases/download/v0.26.0/geckodriver-v0.26.0-linux64.tar.gz | tar zxf - -C /usr/local/bin/
+	wget -O- https://github.com/mozilla/geckodriver/releases/download/v0.27.0/geckodriver-v0.27.0-linux64.tar.gz | tar zxf - -C /usr/local/bin/
 
 RUN	chmod +x /usr/local/bin/*
 
