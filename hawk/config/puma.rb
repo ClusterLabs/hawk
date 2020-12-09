@@ -2,18 +2,17 @@ require 'fileutils'
 
 ROOT = File.expand_path("../../", __FILE__)
 
-def set_config(*args)
-  @environment, @threads, @workers, @listen, @port, @key, @cert = args
-end
+@environment = ENV["HAWK_ENV"] || "production"
+@threads =  ENV["HAWK_THREADS"] || 16
+@workers =  ENV["HAWK_WORKERS"] || 1
+@listen  =  ENV["HAWK_LISTEN"] || "0.0.0.0"
+@port =     ENV["HAWK_PORT"] || "7630"
+@key  =      ENV["HAWK_KEY"] || "/etc/hawk/hawk.key"
+@cert =      ENV["HAWK_CERT"] || "/etc/hawk/hawk.pem"
+@no_tlsv1 =  ENV["HAWK_NO_TLSV1"] || false
+@no_tlsv1_1 =  ENV["HAWK_NO_TLSV1_1"] || false
 
-set_config(ENV["HAWK_ENV"] || "production",
-             ENV["HAWK_THREADS"] || 16,
-             ENV["HAWK_WORKERS"] || 1,
-             ENV["HAWK_LISTEN"] || "0.0.0.0",
-             ENV["HAWK_PORT"] || "7630",
-             ENV["HAWK_KEY"] || "/etc/hawk/hawk.key",
-             ENV["HAWK_CERT"] || "/etc/hawk/hawk.pem")
-ssl_bind @listen, @port, cert: @cert, key: @key, verify_mode: 'none'
+ssl_bind @listen, @port, cert: @cert, key: @key, verify_mode: 'none',  no_tlsv1: @no_tlsv1,  no_tlsv1_1: @no_tlsv1_1
 
 directory ROOT
 environment @environment
