@@ -30,7 +30,7 @@ class SessionsController < ApplicationController
 
         # generate random value, store in attrd_updater (1024 Bits)
         value = SecureRandom.hex(128)
-        system("/usr/sbin/attrd_updater -R -p -n \"hawk_session_#{@session.username}\" -U \"#{value}\"")
+        system("/usr/sbin/attrd_updater", "-R", "-p", "-n", "hawk_session_#{@session.username}", "-U", "#{value}")
         cookies['hawk_remember_me_id'] = {:value => @session.username, :expires => 7.days.from_now}
         cookies['hawk_remember_me_key'] = {:value => value, :expires => 7.days.from_now}
 
@@ -62,7 +62,7 @@ class SessionsController < ApplicationController
     end
     # delete remember-me keys from cluster nodes by overwriting them with a random number
     random_value = SecureRandom.hex(128)
-    system("/usr/sbin/attrd_updater -R -p -n \"hawk_session_#{cookies['hawk_remember_me_id']}\" -U \"#{random_value}\"")
+    system("/usr/sbin/attrd_updater", "-R", "-p", "-n", "hawk_session_#{cookies['hawk_remember_me_id']}", "-U", "#{random_value}")
     cookies.delete :hawk_remember_me_id
     cookies.delete :hawk_remember_me_key
     session[:username] = nil
