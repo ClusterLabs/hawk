@@ -185,11 +185,12 @@ class ApplicationController < ActionController::Base
     not_authenticated unless logged_in?
   end
 
+
   def login_from_cookie
     user = cookies['hawk_remember_me_id']
     return if user.nil?
     # read from attrd
-    values = %x[/usr/sbin/attrd_updater -R -Q -A -n "hawk_session_#{user}"].scan(/value=\"(.*)\"/).flatten(1)
+    values = system(attrd_updater, "-R", "-Q","-A", "-n", "hawk_session_#{user}").scan(/value=\"(.*)\"/).flatten(1)
     user if values.include? cookies['hawk_remember_me_key']
   end
 
