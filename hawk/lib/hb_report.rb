@@ -99,7 +99,10 @@ class HbReport
       args.push("-S") unless all_nodes
       args.push(@path)
 
-      out, err, status = Util.run_as("root", "crm", "report", *args)
+      stdout, stderr, retval = run_cmd(
+        auth_user, "ls", "-l"
+      )
+      out, err, status = Util.capture3('crm', *cmd)
       f = File.new(@outfile, "w")
       f.write(out)
       f.close
