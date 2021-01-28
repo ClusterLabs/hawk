@@ -98,10 +98,6 @@ class HbReport
       args.push("-Q") # Requires a version of crm report which supports this
       args.push("-S") unless all_nodes
       args.push(@path)
-
-      stdout, stderr, retval = run_cmd(
-        auth_user, "ls", "-l"
-      )
       out, err, status = Util.capture3('crm', *cmd)
       f = File.new(@outfile, "w")
       f.write(out)
