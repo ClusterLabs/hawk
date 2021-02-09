@@ -196,8 +196,7 @@ class CrmConfig < Tableless
             ].each do |cmd|
               path = "#{Rails.configuration.x.crm_daemon_dir}/#{cmd}"
               next unless File.executable? path
-
-              REXML::Document.new(%x[#{path} metadata 2>/dev/null]).tap do |xml|
+              REXML::Document.new(system("#{path}","metadata", "2>/dev/null")).tap do |xml|
                 return unless xml.root
 
                 xml.elements.each("//parameter") do |param|

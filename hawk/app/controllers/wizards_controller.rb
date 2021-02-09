@@ -141,7 +141,7 @@ class WizardsController < ApplicationController
   end
 
   def cluster_online
-    %x[/usr/sbin/crm_mon -s >/dev/null 2>&1]
+    system("/usr/sbin/crm_mon", "-s", ">/dev/null", "2>&1")
 
     if $?.exitstatus == Errno::ENOTCONN::Errno
       respond_to do |format|
