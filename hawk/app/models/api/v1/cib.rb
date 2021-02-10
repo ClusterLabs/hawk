@@ -18,7 +18,7 @@ module Api
           Rails.logger.error "Unable to execute #{cmd}"
           return
         end
-        out, err, status = Util.run_as(user, File.basename(cmd), '-Ql')
+        out, err, status = Util.capture3(File.basename(cmd), '-Ql')
         case status.exitstatus
         when 0
           @xml = REXML::Document.new(out)

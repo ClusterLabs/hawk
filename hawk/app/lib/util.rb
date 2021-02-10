@@ -110,23 +110,6 @@ module Util
   end
   module_function :ensure_home_for
 
-  # Like capture3, but via /usr/sbin/hawk_invoke
-  def run_as(user, *cmd)
-    Rails.logger.debug "Executing `#{cmd.join(' ').inspect}` through `run_as`"
-    old_home = ensure_home_for(user)
-    # RORSCAN_INL: multi-arg invocation safe from shell injection.
-    ret = capture3('/usr/sbin/hawk_invoke', user, *cmd)
-    # Having invoked a command, reset $HOME to what it was before,
-    # else it sticks, and other (non-invoker) crm invoctiaons, e.g.
-    # has_feature() run the shell as hacluster, which in turn causes
-    # $HOME/.cache and $HOME/.config to revert to 600 with uid hacluster,
-    # which means the *next* call after that will die with permission
-    # problems, and you will spend an entire day debugging it.
-    ENV['HOME'] = old_home
-    ret
-  end
-  module_function :run_as
-
   def diff(a, b)
     # call diff on a and b
     # returns [data, ok?]
