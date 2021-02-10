@@ -15,6 +15,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
 
+BIG_TIMEOUT = 6
+
 # Error messages
 class Error:
     MAINT_TOGGLE_ERR = "Could not find Switch to Maintenance toggle button for node"
@@ -329,7 +331,7 @@ class HawkTestDriver:
                 print("ERROR: Couldn't find cluster [%s]. Cannot remove" % cluster_name)
                 return False
             elem.click()
-        time.sleep(2 * self.timeout_scale)
+        time.sleep(BIG_TIMEOUT)
         elem = self.find_element(By.CLASS_NAME, 'close')
         if not elem:
             print("ERROR: Cannot find cluster remove button")
@@ -381,7 +383,7 @@ class HawkTestDriver:
             # Need to wait here because there are 2 success notices being shown in the GUI: on
             # clicking the Generate report button and on completing the generation. This next
             # sleep() waits for the first notice to disappear before waiting for the second one
-            time.sleep(6)
+            time.sleep(BIG_TIMEOUT)
         if self.verify_success():
             print("INFO: successfully generated report")
             return True
