@@ -24,7 +24,7 @@ RUN	zypper -n install -y --no-recommends \
 		tar \
 		wget && \
 	zypper -n clean -a && \
-	wget -O- https://github.com/mozilla/geckodriver/releases/download/v0.27.0/geckodriver-v0.27.0-linux64.tar.gz | tar zxf - -C /usr/local/bin/
+	wget -O- https://github.com/mozilla/geckodriver/releases/download/v0.29.0/geckodriver-v0.29.0-linux64.tar.gz | tar zxf - -C /usr/local/bin/
 
 RUN	chmod +x /usr/local/bin/*
 
