@@ -296,31 +296,30 @@ module Util
     case feature
     when :crm_history
       Rails.cache.fetch(:has_crm_history) {
-        %x[echo quit | /usr/sbin/crm history 2>&1]
+        Util.safe_x('echo', 'quit', '|', '/usr/sbin/crm history', '2>&1')
         $?.exitstatus == 0
       }
     when :rsc_ticket
       Rails.cache.fetch(:has_rsc_ticket) {
-        %x[/usr/sbin/crm configure help rsc_ticket >/dev/null 2>&1]
+        Util.safe_x('/usr/sbin/crm', 'configure', 'help', 'rsc_ticket', '>/dev/null', '2>&1')
         $?.exitstatus == 0
       }
     when :rsc_template
       Rails.cache.fetch(:has_rsc_template) {
-        %x[/usr/sbin/crm configure help rsc_template >/dev/null 2>&1]
+        Util.safe_x('/usr/sbin/crm', 'configure', 'help', 'rsc_template', '>/dev/null', '2>&1')
         $?.exitstatus == 0
       }
     when :sim_ticket
       Rails.cache.fetch(:has_sim_ticket) {
-        %x[/usr/sbin/crm_simulate -h 2>&1].include?("--ticket-grant")
+        Util.safe_x('/usr/sbin/crm_simulate', '-h', '2>&1').include?("--ticket-grant")
       }
     when :acl_support
       Rails.cache.fetch(:has_acl_support) {
-        %x[/usr/sbin/cibadmin -!].split(/\s+/).include?("acls")
+        Util.safe_x('/usr/sbin/cibadmin', '-!').split(/\s+/).include?("acls")
       }
     when :tags
       Rails.cache.fetch(:has_tags) {
-        # TODO: fix this
-        %x[/usr/sbin/cibadmin -t 5 -Ql -A /cib/configuration/tags >/dev/null 2>&1]
+        Util.safe_x('/usr/sbin/cibadmin', '-t', '5', '-Ql', '-A', '/cib/configuration/tags', '>/dev/null/', '2>&1')
         $?.exitstatus == 0
       }
     else
@@ -342,7 +341,7 @@ module Util
 
   def acl_version
     Rails.cache.fetch(:get_acl_version) do
-      m = `/usr/sbin/cibadmin -t 5 -Ql --xpath /cib[@validate-with]`.shellescape.lines.first.to_s.match(/validate-with=\"pacemaker-([0-9.]+)\"/)
+      m = Util.safe_x('/usr/sbin/cibadmin', '-t', '5', '-Ql', '--xpath', "/cib[@validate-with").shellescape.lines.first.to_s.match(/validate-with=\"pacemaker-([0-9.]+)\"/)
       return m.captures[0].to_f if m
       2.0
     end
@@ -401,4 +400,5 @@ module Util
     elem ? (elem.text.strip || '') : ''
   end
   module_function :get_xml_text
+
 end

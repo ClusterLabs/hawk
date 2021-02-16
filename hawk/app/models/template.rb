@@ -157,7 +157,7 @@ class Template < Resource
     def options
       Rails.cache.fetch(:crm_ra_classes, expires_in: 2.hours) do
         {}.tap do |result|
-          clazzes = %x[/usr/sbin/crm ra classes].split(/\n/)
+          clazzes = Util.safe_x('/usr/sbin/crm', 'ra', 'classes').split(/\n/)
           clazzes.delete("heartbeat") unless File.directory?("/etc/ha.d/resource.d")
 
           clazzes.each do |clazz|

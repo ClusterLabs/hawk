@@ -196,7 +196,7 @@ class CrmConfig < Tableless
             ].each do |cmd|
               path = "#{Rails.configuration.x.crm_daemon_dir}/#{cmd}"
               next unless File.executable? path
-
+              #todo: this doesn't work with safe_x. research why.
               REXML::Document.new(%x[#{path} metadata 2>/dev/null]).tap do |xml|
                 return unless xml.root
 
