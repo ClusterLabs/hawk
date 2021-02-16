@@ -190,7 +190,7 @@ class ApplicationController < ActionController::Base
     user = cookies['hawk_remember_me_id']
     return if user.nil?
     # read from attrd
-    values, _, _ = Util.capture3("/usr/sbin/attrd_updater", "-R", "-Q","-A", "-n", "hawk_session_#{user}").scan(/value=\"(.*)\"/).flatten(1)
+    values = Util.safe_x("/usr/sbin/attrd_updater", "-R", "-Q", "-A", "-n", "hawk_session_#{user}").scan(/value=\"(.*)\"/).flatten(1)
     user if values.include? cookies['hawk_remember_me_key']
   end
 
