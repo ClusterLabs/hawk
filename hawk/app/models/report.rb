@@ -50,7 +50,7 @@ class Report
     source = hb_report.path if File.directory?(hb_report.path)
 
     pcmk_version = nil
-    m = `/usr/sbin/cibadmin -!`.match(/^Pacemaker ([^ ]+) \(Build: ([^)]+)\)/)
+    m = Util.safe_x('/usr/sbin/cibadmin', '-!').match(/^Pacemaker ([^ ]+) \(Build: ([^)]+)\)/)
     pcmk_version = "#{m[1]}-#{m[2]}" if m
 
     [].tap do |peinputs|
@@ -85,7 +85,7 @@ class Report
   end
 
   def peinput_version(path)
-    nvpair = `CIB_file="#{path}" cibadmin -Q --xpath "/cib/configuration//crm_config//nvpair[@name='dc-version']" 2>/dev/null`
+    nvpair = Util.safe_x("CIB_file=\"#{path}\"", 'cibadmin', '-Q', '--xpath', "/cib/configuration//crm_config//nvpair[@name='dc-version']", '2>/dev/null')
     m = nvpair.match(/value="([^"]+)"/)
     return nil unless m
     m[1]
