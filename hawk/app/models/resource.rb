@@ -147,7 +147,7 @@ class Resource < Record
   end
 
   def rsc_constraints
-    outp = %x[/usr/sbin/crm_resource --resource "#{id}" -A 2>/dev/null]
+    outp = Util.safe_x('/usr/sbin/crm_resource', '--resource', "#{id}", '-A', '2>/dev/null')
     info = {}
     outp.each_line do |l|
       l.strip!
