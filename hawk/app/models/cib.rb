@@ -588,7 +588,7 @@ class Cib
 
       # check stonith history
       if can_fence
-        fence_history = %x[/usr/sbin/stonith_admin -H #{uname} 2>/dev/null].strip
+        fence_history = Util.safe_x('/usr/sbin/stonith_admin', '-H', "#{uname}", '2>/dev/null').strip
       else
         fence_history = ""
       end
@@ -1024,7 +1024,7 @@ class Cib
     # TODO(should): Can we just use cib attribute dc-uuid?  Or is that not viable
     # during cluster bringup, given we're using cibadmin -l?
     # Note that crmadmin will wait a long time if the cluster isn't up yet - cap it at 100ms
-    @dc = %x[/usr/sbin/crmadmin -t 100 -D 2>/dev/null].strip
+    @dc = Util.safe_x('/usr/sbin/crmadmin', '-t', '100', '-D', '2>/dev/null').strip
     s = @dc.rindex(' ')
     @dc.slice!(0, s + 1) if s
     @dc = _('Unknown') if @dc.empty?
@@ -1095,7 +1095,7 @@ class Cib
         resource_node = REXML::XPath.first(elem, "ancestor::primitive")
         if booth_resource_id != resource_node.attributes["id"]
           booth_resource_id = resource_node.attributes["id"]
-          ip = %x[crm_resource -r #{booth_resource_id} -g ip].strip
+          ip = Util.safe_x('crm_resource', '-r', "#{booth_resource_id}", '-g', 'ip').strip
           next unless @booth[:sites].include?(ip)
 
           if !@booth[:me]
@@ -1120,7 +1120,7 @@ class Cib
       end
 
       # try to get a bit more ticket info
-      %x[/usr/sbin/booth client list 2>/dev/null].split("\n").each do |line|
+      Util.safe_x('/usr/sbin/booth', 'client', 'list', '2>/dev/null').split("\n").each do |line|
         t = nil
         line.split(",").each do |pair|
           m = pair.match(/(ticket):\s*(.*)/)
