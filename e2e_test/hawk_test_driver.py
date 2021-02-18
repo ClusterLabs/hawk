@@ -17,6 +17,7 @@ from selenium.webdriver.support import expected_conditions as EC
 
 BIG_TIMEOUT = 6
 
+
 # Error messages
 class Error:
     MAINT_TOGGLE_ERR = "Could not find Switch to Maintenance toggle button for node"
