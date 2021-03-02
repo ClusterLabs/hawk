@@ -144,7 +144,7 @@ class Report
     require "tempfile"
     tmpfile = Tempfile.new("hawk_dot")
     tmpfile.close
-    _out, err, status = Util.run_as('hacluster', 'crm_simulate', '-x', tpath.to_s, format == :xml ? "-G" : "-D", tmpfile.path.to_s)
+    _out, err, status = Util.capture3('crm_simulate', '-x', tpath.to_s, format == :xml ? "-G" : "-D", tmpfile.path.to_s)
     rc = status.exitstatus
 
     ret = [false, err]

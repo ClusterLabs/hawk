@@ -81,11 +81,7 @@ tools/hawk_monitor: tools/hawk_monitor.c
 		$(shell pkg-config --libs glib-2.0) \
 		$(shell pkg-config --libs libxml-2.0)
 
-# TODO(must): This is inching towards becoming annoying: want better build infrastructure/deps
-tools/hawk_invoke: tools/hawk_invoke.c tools/common.h
-	gcc -fpie -pie $(CFLAGS) -o $@ $<
-
-tools: tools/hawk_chkpwd tools/hawk_monitor tools/hawk_invoke
+tools: tools/hawk_chkpwd tools/hawk_monitor
 
 base/install:
 	mkdir -p $(DESTDIR)$(WWW_BASE)/hawk/log
@@ -118,10 +114,6 @@ tools/install:
 	-chown root.haclient $(DESTDIR)/usr/sbin/hawk_chkpwd || true
 	-chmod u+s $(DESTDIR)/usr/sbin/hawk_chkpwd
 
-	install -D -m 4750 tools/hawk_invoke $(DESTDIR)/usr/sbin/hawk_invoke
-	-chown root.haclient $(DESTDIR)/usr/sbin/hawk_invoke || true
-	-chmod u+s $(DESTDIR)/usr/sbin/hawk_invoke
-
 	install -D -m 0755 tools/hawk_monitor $(DESTDIR)/usr/sbin/hawk_monitor
 
 # TODO(should): Verify this is really clean (it won't get rid of .mo files,
@@ -132,7 +124,6 @@ clean:
 	rm -f scripts/hawk.{suse,redhat,service}
 	rm -f tools/hawk_chkpwd
 	rm -f tools/hawk_monitor
-	rm -f tools/hawk_invoke
 	rm -f tools/common.h
 
 # Note: chown & chmod here are only necessary if *not* doing an RPM build

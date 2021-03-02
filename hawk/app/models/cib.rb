@@ -501,7 +501,7 @@ class Cib
         init_offline_cluster id, user, use_file
         return
       end
-      out, err, status = Util.run_as(user, 'cibadmin', '-Ql')
+      out, err, status = Util.capture3('cibadmin', '-Ql')
       case status.exitstatus
       when 0
         @xml = REXML::Document.new(out)
