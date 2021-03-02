@@ -45,7 +45,6 @@ module CrmScript
     tmpf = Tempfile.new 'crmscript'
     tmpf.write("script json \"#{cmd}\"")
     tmpf.close
-    File.chmod(0666, tmpf.path)
 
     if rootpw.nil?
       cmdline = ['/usr/sbin/hawk_invoke', user, 'crm', '-f', tmpf.path]

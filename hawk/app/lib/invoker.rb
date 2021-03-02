@@ -62,11 +62,6 @@ class Invoker
     begin
       f << cmd
       f.close
-      # Evil to allow unprivileged user running crm shell to read the file
-      # TODO(should): can we just allow group (probably ok live, but no
-      # good for testing when running as root), or some other alternative
-      # with piping data to crm?
-      File.chmod(0666, f.path)
       CrmEvents.instance.push "crm configure\n#{cmd}\n" unless @no_log
       result = crm '-F', 'configure', 'load', 'update', f.path
     ensure
