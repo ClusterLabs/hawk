@@ -4,10 +4,9 @@
 
 import argparse
 import ipaddress
-import re
-import shutil
 import socket
 import sys
+
 
 from pyvirtualdisplay import Display
 
@@ -38,12 +37,6 @@ def port(string):
     raise argparse.ArgumentTypeError("Invalid port number: %s" % string)
 
 
-def sles_version(string):
-    if re.match(r"\d{2}(?:-SP\d)?$", string):
-        return string
-    raise argparse.ArgumentTypeError("Invalid SLES version: %s" % string)
-
-
 def parse_args():
     parser = argparse.ArgumentParser(description='HAWK GUI interface Selenium test')
     parser.add_argument('-b', '--browser', default='firefox', choices=['firefox', 'chrome', 'chromium'],
@@ -56,10 +49,6 @@ def parse_args():
                         help='Virtual IP address in CIDR notation')
     parser.add_argument('-P', '--port', default='7630', type=port,
                         help='TCP port where HAWK is running')
-    parser.add_argument('-p', '--prefix', default='',
-                        help='Prefix to add to Resources created during the test')
-    parser.add_argument('-t', '--test-version', required=True, type=sles_version,
-                        help='Test SLES Version. Ex: 12-SP3, 12-SP4, 15, 15-SP1')
     parser.add_argument('-s', '--secret',
                         help='root SSH Password of the HAWK node')
     parser.add_argument('-r', '--results',
@@ -73,37 +62,31 @@ def parse_args():
 def main():
     args = parse_args()
 
-    if args.prefix and not args.prefix.isalpha():
-        print("ERROR: Prefix must be alphanumeric", file=sys.stderr)
-        sys.exit(1)
-
-    driver = "geckodriver" if args.browser == "firefox" else "chromedriver"
-    if shutil.which(driver) is None:
-        print("ERROR: Please download %s to a directory in PATH" % driver, file=sys.stderr)
-        sys.exit(1)
-
     if args.xvfb:
         global DISPLAY  # pylint: disable=global-statement
         DISPLAY = Display()
         DISPLAY.start()
 
-    # Create driver instance
-    browser = HawkTestDriver(addr=args.host, port=args.port,
-                             browser=args.browser, headless=args.xvfb,
-                             version=args.test_version.upper())
-
     # Initialize results set
     results = ResultSet()
+    results.add_ssh_tests()
 
     # Establish SSH connection to verify status
     ssh = HawkTestSSH(args.host, args.secret)
-    results.add_ssh_tests()
+
+    # Get version from /etc/os-release
+    test_version = ssh.ssh.exec_command("grep ^VERSION= /etc/os-release")[1].read().decode().strip().split("=")[1].strip('"')
+
+    # Create driver instance
+    browser = HawkTestDriver(addr=args.host, port=args.port,
+                             browser=args.browser, headless=args.xvfb,
+                             version=test_version)
 
     # Resources to create
-    mycluster = args.prefix + 'Anderes'
-    myprimitive = args.prefix + 'cool_primitive'
-    myclone = args.prefix + 'cool_clone'
-    mygroup = args.prefix + 'cool_group'
+    mycluster = 'Anderes'
+    myprimitive = 'cool_primitive'
+    myclone = 'cool_clone'
+    mygroup = 'cool_group'
 
     # Tests to perform
     if args.virtual_ip:
@@ -127,7 +110,7 @@ def main():
     browser.test('test_click_on_command_log', results)
     browser.test('test_click_on_status', results)
     browser.test('test_add_primitive', results, myprimitive)
-    ssh.verify_primitive(myprimitive, args.test_version, results)
+    ssh.verify_primitive(myprimitive, test_version, results)
     browser.test('test_remove_primitive', results, myprimitive)
     ssh.verify_primitive_removed(myprimitive, results)
     browser.test('test_add_clone', results, myclone)
@@ -149,6 +132,9 @@ def main():
 
 
 if __name__ == "__main__":
+    import warnings
+    warnings.filterwarnings(action='ignore', module='.*paramiko.*')
+
     DISPLAY = None
     try:
         sys.exit(main())

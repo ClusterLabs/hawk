@@ -144,7 +144,7 @@ class Report
     require "tempfile"
     tmpfile = Tempfile.new("hawk_dot")
     tmpfile.close
-    _out, err, status = Util.run_as('hacluster', 'crm_simulate', '-x', tpath.to_s, format == :xml ? "-G" : "-D", tmpfile.path.to_s)
+    _out, err, status = Util.capture3('crm_simulate', '-x', tpath.to_s, format == :xml ? "-G" : "-D", tmpfile.path.to_s)
     rc = status.exitstatus
 
     ret = [false, err]
@@ -288,8 +288,8 @@ class Report
         errors.add(:upload, _("must have correct MIME type (was %s)") % record.upload.content_type)
       end
 
-      unless record.upload.original_filename =~ /\.tar\.(bz2|gz|xz)\z/
-        errors.add(:upload, _("must have correct file extension"))
+      unless record.upload.original_filename =~ /^[a-zA-Z0-9_-]+\.tar\.(bz2|gz|xz)\z/
+        errors.add(:upload, _("must have correct file extension or right alphanumeric chars"))
       end
     end
 

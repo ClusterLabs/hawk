@@ -20,7 +20,7 @@ See https://github.com/SUSE/pacemaker-deploy  for deploying hawk
 `docker build . -t hawk_test `
 
 2) Run the tests with:
-``` docker run --ipc=host hawk_test -H 10.162.32.175 -S 10.162.29.122 -t 15 -s linux --xvfb ```
+``` docker run --ipc=host -v /tmp/.X11-unix:/tmp/.X11-unix -e DISPLAY=$DISPLAY hawk_test -H 10.162.32.175 -S 10.162.29.122 -s linux --xvfb ```
 
 Notes:
   - You may want to add `--net=host` if you have problems with DNS resolution.
@@ -52,10 +52,6 @@ Notes:
   -I VIRTUAL_IP, --virtual-ip VIRTUAL_IP
                         Virtual IP address in CIDR notation
   -P PORT, --port PORT  TCP port where HAWK is running
-  -p PREFIX, --prefix PREFIX
-                        Prefix to add to Resources created during the test
-  -t TEST_VERSION, --test-version TEST_VERSION
-                        Test SLES Version. Ex: 12-SP3, 12-SP4, 15, 15-SP1
   -s SECRET, --secret SECRET
                         root SSH Password of the HAWK node
   -r RESULTS, --results RESULTS

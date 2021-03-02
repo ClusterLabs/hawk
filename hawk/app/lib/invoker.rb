@@ -27,7 +27,7 @@ class Invoker
   # cleaned up further)
   # Returns [out, err, exitstatus]
   def run(*cmd)
-    out, err, status = Util.run_as(current_user, *cmd)
+    out, err, status = Util.capture3(*cmd)
     [out, fudge_error(status.exitstatus, err), status.exitstatus]
   end
 
@@ -73,7 +73,7 @@ class Invoker
   # Invoke cibadmin with command line arguments.  Returns stdout as string,
   # Raises NotFoundError, SecurityError or RuntimeError on failure.
   def cibadmin(*cmd)
-    out, err, status = run_as current_user, 'cibadmin', *cmd
+    out, err, status = Util.capture3('cibadmin', *cmd)
     case status.exitstatus
     when 0
       return out
@@ -105,7 +105,7 @@ class Invoker
 
   # Used by the simulator
   def crm_simulate(*cmd)
-    run_as current_user, 'crm_simulate', *cmd
+    Util.capture3('crm_simulate', *cmd)
   end
 
   private
@@ -131,7 +131,8 @@ class Invoker
       end
     end
     cmd << { stdin_data: input }
-    out, err, status = run_as current_user, 'crm', *cmd
+
+    out, err, status = Util.capture3('crm', *cmd)
     [out, fudge_error(status.exitstatus, err), status.exitstatus]
   end
 
