@@ -289,8 +289,8 @@ class Report
         errors.add(:upload, _("must have correct MIME type (was %s)") % record.upload.content_type)
       end
 
-      unless record.upload.original_filename =~ /\.tar\.(bz2|gz|xz)\z/
-        errors.add(:upload, _("must have correct file extension"))
+      unless record.upload.original_filename =~ /^[a-zA-Z0-9_-]+\.tar\.(bz2|gz|xz)\z/
+        errors.add(:upload, _("must have correct file extension or right alphanumeric chars"))
       end
     end
 
