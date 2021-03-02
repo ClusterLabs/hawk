@@ -54,12 +54,8 @@ all: scripts/hawk.$(INIT_STYLE) scripts/hawk.service scripts/hawk-backend.servic
 tools/hawk_chkpwd: tools/hawk_chkpwd.c tools/common.h
 	gcc -fpie -pie $(CFLAGS) -o $@ $< -lpam
 
-# TODO(must): This is inching towards becoming annoying: want better build infrastructure/deps
-tools/hawk_invoke: tools/hawk_invoke.c tools/common.h
-	gcc -fpie -pie $(CFLAGS) -o $@ $<
 
-tools: tools/hawk_chkpwd tools/hawk_invoke
-
+tools: tools/hawk_chkpwd
 
 base/install:
 	./scripts/create-directory-layout.sh "$(DESTDIR)" "$(WWW_BASE)" "$(WWW_LOG)" "$(WWW_TMP)"
@@ -78,10 +74,6 @@ tools/install:
 	-chown root.haclient $(DESTDIR)/usr/sbin/hawk_chkpwd || true
 	-chmod u+s $(DESTDIR)/usr/sbin/hawk_chkpwd
 
-	install -D -m 4750 tools/hawk_invoke $(DESTDIR)/usr/sbin/hawk_invoke
-	-chown root.haclient $(DESTDIR)/usr/sbin/hawk_invoke || true
-	-chmod u+s $(DESTDIR)/usr/sbin/hawk_invoke
-
 # TODO(should): Verify this is really clean (it won't get rid of .mo files,
 # for example
 clean:
@@ -89,7 +81,6 @@ clean:
 	rm -rf hawk/log/*
 	rm -f scripts/hawk.{suse,redhat,service}
 	rm -f tools/hawk_chkpwd
-	rm -f tools/hawk_invoke
 	rm -f tools/common.h
 
 # Note: chown & chmod here are only necessary if *not* doing an RPM build
