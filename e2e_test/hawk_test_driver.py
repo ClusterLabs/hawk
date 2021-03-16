@@ -381,11 +381,8 @@ class HawkTestDriver:
         if self.find_element(By.XPATH, Xpath.GENERATE_REPORT):
             self.check_and_click_by_xpath("Could not find button for Generate report",
                                           [Xpath.GENERATE_REPORT])
-            # Need to wait here because there are 2 success notices being shown in the GUI: on
-            # clicking the Generate report button and on completing the generation. This next
-            # sleep() waits for the first notice to disappear before waiting for the second one
-            time.sleep(BIG_TIMEOUT)
-        if self.verify_success():
+            # Look for actual report
+            self.find_element(By.LINK_TEXT, "hawk")
             print("INFO: successfully generated report")
             return True
         print("ERROR: failed to generate report")
