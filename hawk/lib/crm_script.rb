@@ -45,13 +45,7 @@ module CrmScript
     tmpf = Tempfile.new 'crmscript'
     tmpf.write("script json \"#{cmd}\"")
     tmpf.close
-
-    if rootpw.nil?
-      cmdline = ['/usr/sbin/hawk_invoke', user, 'crm', '-f', tmpf.path]
-    else
-      user = 'root'
-      cmdline = ['/usr/bin/su', user, '--shell=/bin/sh', '-c', "/usr/sbin/crm -f #{tmpf.path}", stdin_data: rootpw.lines.first]
-    end
+    cmdline = ['crm', '-f', tmpf.path]
     old_home = Util.ensure_home_for(user)
     out, err, status = Util.capture3(*cmdline)
     tmpf.unlink
