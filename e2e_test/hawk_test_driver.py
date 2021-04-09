@@ -566,9 +566,17 @@ class HawkTestDriver:
         self.fill_value('virtual-ip.ip', virtual_ip)
         self.fill_value('virtual-ip.cidr_netmask', netmask)
         self.fill_value('virtual-ip.broadcast', broadcast)
-        self.find_element(By.NAME, 'submit').click()
+        elem = self.find_element(By.NAME, 'submit')
+        if not elem:
+            print("ERROR: Couldn't find [Verify] button on Virtual IP Wizard")
+            return False
+        elem.click()
         time.sleep(3)
-        self.find_element(By.NAME, 'submit').click()
+        elem = self.find_element(By.NAME, 'submit')
+        if not elem:
+            print("ERROR: Couldn't find [Apply] button on Virtual IP Wizard")
+            return False
+        elem.click()
         time.sleep(3)
         # Check that we can connect to the Wizard on the virtual IP
         old_addr = self.addr
@@ -588,8 +596,7 @@ class HawkTestDriver:
     def test_remove_virtual_ip(self):
         print("TEST: test_remove_virtual_ip: Remove virtual IP")
         self.click_if_major_version("15", 'configuration')
-        self.remove_rsc("vip")
-        return True
+        return self.remove_rsc("vip")
 
     def test_fencing(self):
         print("TEST: test_fencing")
