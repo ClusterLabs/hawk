@@ -587,9 +587,12 @@ class HawkTestDriver:
         try:
             self._do_login()
         except WebDriverException:
-            print("ERROR: Error while adding virtual IP")
+            print("ERROR: Could not connect to virtual IP")
+            # Reset address to old_addr so remaining tests can connect to HAWK
+            self.addr = old_addr
             return False
         print("INFO: Successfully added virtual IP")
+        # Reset address to old_addr
         self.addr = old_addr
         return True
 
