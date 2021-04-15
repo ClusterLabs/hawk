@@ -23,7 +23,7 @@ module Api
           end
 
           @cluster[:epoch] = CibTools.epoch_string xml.root
-          @dc - Util.safe_x('/usr/sbin/crmadmin', '-t', '100', '-D', '2>/dev/null').strip
+          @dc = Util.safe_x('/usr/sbin/crmadmin', '-t', '100', '-D', '2>/dev/null').strip
           s = @dc.rindex(' ')
           @dc.slice!(0, s + 1) if s
           @dc = _('Unknown') if @dc.empty?
