@@ -21,7 +21,7 @@ class ResultSet:
             auxd = {'name': test, 'test_index': 0, 'outcome': 'failed'}
             self.results_set['tests'].append(auxd)
         self.results_set['info']['timestamp'] = time.time()
-        with open('/etc/os-release') as file:
+        with open('/etc/os-release', encoding="utf-8") as file:
             lines = file.read().splitlines()
         osrel = {k: v[1:-1] for (k, v) in [line.split('=') for line in lines if '=' in line]}
         self.results_set['info']['distro'] = osrel['PRETTY_NAME']
@@ -39,7 +39,7 @@ class ResultSet:
         self.results_set['summary']['num_tests'] = len(self.my_tests)
 
     def logresults(self, filename):
-        with open(filename, "w") as resfh:
+        with open(filename, "w", encoding="utf-8") as resfh:
             resfh.write(json.dumps(self.results_set))
 
     def set_test_status(self, testname, status):

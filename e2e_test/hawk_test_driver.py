@@ -24,7 +24,6 @@ class Error:
     PRIMITIVE_TARGET_ROLE_ERR = "Couldn't find value [Started] for primitive target-role"
     STONITH_ERR = "Couldn't find stonith-sbd menu to place it in maintenance mode"
     STONITH_ERR_OFF = "Could not find Disable Maintenance Mode button for stonith-sbd"
-    XPATH_ERR_FMT = "check_and_click_by_xpath requires a list of xpath strings. Got [%s]"
 
 
 # XPATH constants
@@ -34,18 +33,19 @@ class Xpath:
     CLONE_CHILD = '//select[contains(@data-help-filter, ".row.resource") and contains(@name, "clone[child]")]'
     CLONE_DATA_HELP_FILTER = '//a[contains(@data-help-filter, ".clone")]'
     COMMIT_BTN_DANGER = '//button[contains(@class, "btn-danger") and contains(@class, "commit")]'
-    CONFIG_EDIT = '//a[contains(@href, "config/edit")]'
     DISMISS_MODAL = '//*[@id="modal"]/div/div/div[3]/button'
-    DROP_DOWN_FORMAT = '//*[@id="resources"]/div[1]/div[2]/div[2]/table/tbody/tr[%d]/td[6]/div/div'
+    DROP_DOWN_FORMAT = '//*[@id="resources"]/div[1]/div[2]/div[2]/table/tbody/tr[{}]/td[6]/div/div'
     EDIT_MONITOR_TIMEOUT = '//*[@id="oplist"]/fieldset/div/div[1]/div[3]/div[2]/div/div/a[1]'
     EDIT_START_TIMEOUT = '//*[@id="oplist"]/fieldset/div/div[1]/div[1]/div[2]/div/div/a[1]'
     EDIT_STOP_TIMEOUT = '//*[@id="oplist"]/fieldset/div/div[1]/div[2]/div[2]/div/div/a[1]'
     GENERATE_REPORT = '//*[@id="generate"]/form/div/div[2]/button'
     GROUP_DATA_FILTER = '//a[contains(@data-help-filter, ".group")]'
     HREF_ALERTS = '//a[contains(@href, "#alerts")]'
+    HREF_CONFIGURATION = '//a[contains(@href, "#configurationMenu")]'
+    HREF_CONFIG_EDIT = '//a[contains(@href, "config/edit")]'
     HREF_CONSTRAINTS = '//a[contains(@href, "#constraints")]'
     HREF_DASHBOARD = '//a[contains(@href, "/dashboard")]'
-    HREF_DELETE_FORMAT = '//a[contains(@href, "%s") and contains(@title, "Delete")]'
+    HREF_DELETE_FORMAT = '//a[contains(@href, "{}") and contains(@title, "Delete")]'
     HREF_FENCING = '//a[contains(@href, "#fencing")]'
     HREF_NODES = '//a[contains(@href, "#nodes")]'
     HREF_REPORTS = '//a[contains(@href, "/reports")]'
@@ -65,7 +65,7 @@ class Xpath:
     STONITH_CHKBOX = '//input[contains(@type, "checkbox") and contains(@value, "stonith-sbd")]'
     STONITH_MAINT_OFF = '//a[contains(@href, "stonith-sbd") and contains(@title, "Disable Maintenance Mode")]'
     STONITH_MAINT_ON = '//a[contains(@href, "stonith-sbd/maintenance_on")]'
-    TARGET_ROLE_FORMAT = '//select[contains(@class, "form-control") and contains(@name, "%s[meta][target-role]")]'
+    TARGET_ROLE_FORMAT = '//select[contains(@class, "form-control") and contains(@name, "{}[meta][target-role]")]'
     TARGET_ROLE_STARTED = '//option[contains(@value, "tarted")]'
     WIZARDS_BASIC = '//span[contains(@href, "basic")]'
 
@@ -110,7 +110,7 @@ class HawkTestDriver:
         results.set_test_status(testname, status)
 
     def _do_login(self):
-        mainlink = 'https://%s:%s' % (self.addr, self.port)
+        mainlink = f'https://{self.addr}:{self.port}'
         self.driver.get(mainlink)
         elem = self.find_element(By.NAME, "session[username]")
         if not elem:
@@ -131,14 +131,14 @@ class HawkTestDriver:
     # equal than the version to check
     def click_if_major_version(self, version_to_check, text):
         if Version(self.test_version) >= Version(version_to_check):
-            self.find_element(By.XPATH, "//*[text()='%s']" % text.capitalize()).click()
+            self.find_element(By.XPATH, f"//*[text()='{text.capitalize()}']").click()
 
     # Internal support function click_on partial link test. Sets test_status to False on failure
     def click_on(self, text):
-        print("INFO: Main page. Click on %s" % text)
+        print(f"INFO: Main page. Click on {text}")
         elem = self.find_element(By.PARTIAL_LINK_TEXT, text)
         if not elem:
-            print("ERROR: Couldn't find element '%s'" % text)
+            print(f"ERROR: Couldn't find element '{text}'")
             self.test_status = False
             return False
         try:
@@ -155,8 +155,7 @@ class HawkTestDriver:
             elem = WebDriverWait(self.driver,
                                  tout).until(EC.presence_of_element_located((bywhat, texto)))
         except TimeoutException:
-            print("INFO: %d seconds timeout while looking for element [%s] by [%s]" %
-                  (tout, texto, bywhat))
+            print(f"INFO: {tout} seconds timeout while looking for element [{texto}] by [{bywhat}]")
             return False
         return elem
 
@@ -171,19 +170,21 @@ class HawkTestDriver:
     def fill_value(self, field, tout):
         elem = self.find_element(By.NAME, field)
         if not elem:
-            print("ERROR: couldn't find element [%s]." % field)
+            print(f"ERROR: couldn't find element [{field}].")
             return
         elem.clear()
-        elem.send_keys("%s" % tout)
+        elem.send_keys(f"{tout}")
 
     def submit_operation_params(self, errmsg):
         self.check_and_click_by_xpath(errmsg, [Xpath.CLICK_OK_SUBMIT])
 
     def check_edit_conf(self):
         print("INFO: Check edit configuration")
-        self.click_if_major_version("15", 'configuration')
-        self.click_on('Edit Configuration')
-        self.check_and_click_by_xpath("Couldn't find Edit Configuration element", [Xpath.CONFIG_EDIT])
+        time.sleep(1)
+        if Version(self.test_version) >= Version("15"):
+            self.check_and_click_by_xpath("Couldn't find Configuration element", [Xpath.HREF_CONFIGURATION])
+        time.sleep(1)
+        self.check_and_click_by_xpath("Couldn't find Edit Configuration element", [Xpath.HREF_CONFIG_EDIT])
 
     # Internal support function to find element(s) by xpath and click them
     # Sets test_status to False on failure.
@@ -191,16 +192,16 @@ class HawkTestDriver:
         for xpath in xpath_exps:
             elem = self.find_element(By.XPATH, xpath)
             if not elem:
-                print("ERROR: Couldn't find element by xpath [%s] %s" % (xpath, errmsg))
+                print(f"ERROR: Couldn't find element by xpath [{xpath}] {errmsg}")
                 self.test_status = False
                 return
+            time.sleep(1)
             try:
                 elem.click()
             except ElementNotInteractableException:
                 # Element is obscured. Wait and click again
-                time.sleep(2 * self.timeout_scale)
+                time.sleep(5 * self.timeout_scale)
                 elem.click()
-            time.sleep(2 * self.timeout_scale)
 
     # Generic function to perform the tests
     def test(self, testname, results, *extra):
@@ -212,7 +213,7 @@ class HawkTestDriver:
                 self.set_test_status(results, testname, 'passed')
             else:
                 self.set_test_status(results, testname, 'failed')
-                self.driver.save_screenshot('%s.png' % testname)
+                self.driver.save_screenshot(f'{testname}.png')
         self._close()
 
     # Set STONITH/sbd in maintenance. Assumes stonith-sbd resource is the last one listed on the
@@ -224,7 +225,7 @@ class HawkTestDriver:
             if not totalrows:
                 totalrows = 1
             print("TEST: test_set_stonith_maintenance: Placing stonith-sbd in maintenance")
-            self.check_and_click_by_xpath(Error.STONITH_ERR, [Xpath.DROP_DOWN_FORMAT % totalrows,
+            self.check_and_click_by_xpath(Error.STONITH_ERR, [Xpath.DROP_DOWN_FORMAT.format(totalrows),
                                                               Xpath.STONITH_MAINT_ON, Xpath.COMMIT_BTN_DANGER])
         if self.verify_success():
             print("INFO: stonith-sbd successfully placed in maintenance mode")
@@ -289,7 +290,7 @@ class HawkTestDriver:
         print("ERROR: failed to switch node to ready mode")
         return False
 
-    def test_add_new_cluster(self, cluster_name):
+    def test_add_new_cluster(self, cluster):
         print("TEST: test_add_new_cluster")
         self.click_on('Dashboard')
         self.check_and_click_by_xpath("Click on Dashboard", [Xpath.HREF_DASHBOARD])
@@ -302,7 +303,7 @@ class HawkTestDriver:
         if not elem:
             print("ERROR: Couldn't find element [cluster[name]]. Cannot add cluster")
             return False
-        elem.send_keys(cluster_name)
+        elem.send_keys(cluster)
         elem = self.find_element(By.NAME, "cluster[host]")
         if not elem:
             print("ERROR: Couldn't find element [cluster[host]]. Cannot add cluster")
@@ -322,14 +323,14 @@ class HawkTestDriver:
                 time.sleep(1 + self.timeout_scale)
         return False
 
-    def test_remove_cluster(self, cluster_name):
+    def test_remove_cluster(self, cluster):
         print("TEST: test_remove_cluster")
         self.click_on('Dashboard')
         self.check_and_click_by_xpath("Click on Dashboard", [Xpath.HREF_DASHBOARD])
         if Version(self.test_version) >= Version('12-SP3'):
-            elem = self.find_element(By.PARTIAL_LINK_TEXT, cluster_name)
+            elem = self.find_element(By.PARTIAL_LINK_TEXT, cluster)
             if not elem:
-                print("ERROR: Couldn't find cluster [%s]. Cannot remove" % cluster_name)
+                print(f"ERROR: Couldn't find cluster [{cluster}]. Cannot remove")
                 return False
             elem.click()
         time.sleep(BIG_TIMEOUT)
@@ -341,7 +342,7 @@ class HawkTestDriver:
         time.sleep(2 * self.timeout_scale)
         elem = self.find_element(By.CLASS_NAME, 'cancel')
         if not elem:
-            print("ERROR: No cancel button while removing cluster [%s]" % cluster_name)
+            print(f"ERROR: No cancel button while removing cluster [{cluster}]")
         else:
             elem.click()
         time.sleep(self.timeout_scale)
@@ -350,20 +351,20 @@ class HawkTestDriver:
         time.sleep(2 * self.timeout_scale)
         elem = self.find_element(By.CLASS_NAME, 'btn-danger')
         if not elem:
-            print("ERROR: No OK button found while removing cluster [%s]" % cluster_name)
+            print(f"ERROR: No OK button found while removing cluster [{cluster}]")
         else:
             elem.click()
         if self.verify_success():
-            print("INFO: Successfully removed cluster: [%s]" % cluster_name)
+            print(f"INFO: Successfully removed cluster: [{cluster}]")
             return True
         # HAWK2 version in 12-SP2 doesn't provide AJAX feedback for removal of cluster
         if Version(self.test_version) < Version('12-SP3'):
             self.click_on('Dashboard')
-            elem = self.find_element(By.PARTIAL_LINK_TEXT, cluster_name)
+            elem = self.find_element(By.PARTIAL_LINK_TEXT, cluster)
             if not elem:
-                print("INFO: Successfully removed cluster: [%s]" % cluster_name)
+                print(f"INFO: Successfully removed cluster: [{cluster}]")
                 return True
-        print("ERROR: Could not remove cluster [%s]" % cluster_name)
+        print(f"ERROR: Could not remove cluster [{cluster}]")
         return False
 
     def test_click_on_history(self):
@@ -399,8 +400,8 @@ class HawkTestDriver:
         print("TEST: test_click_on_status")
         return self.click_on('Status')
 
-    def test_add_primitive(self, priminame):
-        print("TEST: test_add_primitive: Add Resources: Primitive %s" % priminame)
+    def test_add_primitive(self, primitive):
+        print(f"TEST: test_add_primitive: Add Resources: Primitive {primitive}")
         self.click_if_major_version("15", 'configuration')
         self.click_on('Resource')
         self.check_and_click_by_xpath("Click on Add Resource", [Xpath.RESOURCES_TYPES])
@@ -408,22 +409,19 @@ class HawkTestDriver:
         # Fill the primitive
         elem = self.find_element(By.NAME, 'primitive[id]')
         if not elem:
-            print("ERROR: Couldn't find element [primitive[id]]. Cannot add primitive [%s]." %
-                  priminame)
+            print(f"ERROR: Couldn't find element [primitive[id]]. Cannot add primitive [{primitive}].")
             return False
-        elem.send_keys(priminame)
+        elem.send_keys(primitive)
         elem = self.find_element(By.NAME, 'primitive[clazz]')
         if not elem:
-            print("ERROR: Couldn't find element [primitive[clazz]]. Cannot add primitive [%s]" %
-                  priminame)
+            print(f"ERROR: Couldn't find element [primitive[clazz]]. Cannot add primitive [{primitive}]")
             return False
         elem.click()
         self.check_and_click_by_xpath("Couldn't find value [ocf] for primitive class",
                                       [Xpath.OCF_OPT_LIST])
         elem = self.find_element(By.NAME, 'primitive[type]')
         if not elem:
-            print("ERROR: Couldn't find element [primitive[type]]. Cannot add primitive [%s]." %
-                  priminame)
+            print(f"ERROR: Couldn't find element [primitive[type]]. Cannot add primitive [{primitive}].")
             return False
         elem.click()
         self.check_and_click_by_xpath("Couldn't find value [anything] for primitive type",
@@ -454,87 +452,94 @@ class HawkTestDriver:
         elem = self.find_element(By.NAME, 'primitive[meta][target-role]')
         if not elem:
             print("ERROR: Couldn't find element [primitive[meta][target-role]]. "
-                  "Cannot add primitive [%s]." % priminame)
+                  f"Cannot add primitive [{primitive}].")
             return False
+        time.sleep(1)
         elem.click()
         self.check_and_click_by_xpath(Error.PRIMITIVE_TARGET_ROLE_ERR, [Xpath.TARGET_ROLE_STARTED])
         elem = self.find_element(By.NAME, 'submit')
         if not elem:
-            print("ERROR: Couldn't find submit button for primitive [%s] creation." % priminame)
+            print(f"ERROR: Couldn't find submit button for primitive [{primitive}] creation.")
         else:
             elem.click()
         status = self.verify_success()
         if status:
-            print("INFO: Successfully added primitive [%s] of class [ocf:heartbeat:anything]" % priminame)
+            print(f"INFO: Successfully added primitive [{primitive}] of class [ocf:heartbeat:anything]")
         else:
-            print("ERROR: Could not create primitive [%s]" % priminame)
+            print(f"ERROR: Could not create primitive [{primitive}]")
         return status
 
     def remove_rsc(self, name):
-        print("INFO: Remove Resource: %s" % name)
+        print(f"INFO: Remove Resource: {name}")
         self.check_edit_conf()
-        self.check_and_click_by_xpath("Cannot edit or remove resource [%s]" % name,
-                                      [Xpath.HREF_DELETE_FORMAT % name, Xpath.COMMIT_BTN_DANGER, Xpath.CONFIG_EDIT])
+        # resources list does load again after edit configuration page is loaded
+        time.sleep(5)
+        self.check_and_click_by_xpath(f"Cannot delete resource [{name}]", [Xpath.HREF_DELETE_FORMAT.format(name)])
+        time.sleep(2)
+        self.check_and_click_by_xpath(f"Cannot confirm delete of resource [{name}]", [Xpath.COMMIT_BTN_DANGER])
+        time.sleep(2)
+        self.check_and_click_by_xpath("Couldn't find Edit Configuration element", [Xpath.HREF_CONFIG_EDIT])
+        time.sleep(3)
         if not self.test_status:
-            print("ERROR: One of the elements required to remove resource [%s] wasn't found" % name)
+            print(f"ERROR: One of the elements required to remove resource [{name}] wasn't found")
             return False
-        elem = self.find_element(By.XPATH, Xpath.HREF_DELETE_FORMAT % name, 5)
+        elem = self.find_element(By.XPATH, Xpath.HREF_DELETE_FORMAT.format(name), 5)
         if not elem:
-            print("INFO: Successfully removed resource [%s]" % name)
+            print(f"INFO: Successfully removed resource [{name}]")
             return True
-        print("ERROR: Failed to remove resource [%s]" % name)
+        print(f"ERROR: Failed to remove resource [{name}]")
         return False
 
-    def test_remove_primitive(self, name):
-        print("TEST: test_remove_primitive: Remove Primitive: %s" % name)
-        return self.remove_rsc(name)
+    def test_remove_primitive(self, primitive):
+        print(f"TEST: test_remove_primitive: Remove Primitive: {primitive}")
+        return self.remove_rsc(primitive)
 
     def test_remove_clone(self, clone):
-        print("TEST: test_remove_clone: Remove Clone: %s" % clone)
+        print(f"TEST: test_remove_clone: Remove Clone: {clone}")
         return self.remove_rsc(clone)
 
     def test_remove_group(self, group):
-        print("TEST: test_remove_group: Remove Group: %s" % group)
+        print(f"TEST: test_remove_group: Remove Group: {group}")
         return self.remove_rsc(group)
 
     def test_add_clone(self, clone):
-        print("TEST: test_add_clone: Adding clone [%s]" % clone)
+        print(f"TEST: test_add_clone: Adding clone [{clone}]")
         self.click_if_major_version("15", 'configuration')
         self.click_on('Resource')
         self.check_and_click_by_xpath("Click on Add Resource", [Xpath.RESOURCES_TYPES])
-        self.check_and_click_by_xpath("on Create Clone [%s]" % clone, [Xpath.CLONE_DATA_HELP_FILTER])
+        self.check_and_click_by_xpath(f"on Create Clone [{clone}]", [Xpath.CLONE_DATA_HELP_FILTER])
         elem = self.find_element(By.NAME, 'clone[id]')
         if not elem:
             print("ERROR: Couldn't find element [clone[id]]. No text-field where to type clone id")
             return False
         elem.send_keys(clone)
-        self.check_and_click_by_xpath("while adding clone [%s]" % clone,
-                                      [Xpath.CLONE_CHILD, Xpath.OPT_STONITH, Xpath.TARGET_ROLE_FORMAT % 'clone',
+        self.check_and_click_by_xpath(f"while adding clone [{clone}]",
+                                      [Xpath.CLONE_CHILD, Xpath.OPT_STONITH, Xpath.TARGET_ROLE_FORMAT.format('clone'),
                                        Xpath.TARGET_ROLE_STARTED, Xpath.RSC_OK_SUBMIT])
         if self.verify_success():
-            print("INFO: Successfully added clone [%s] of [stonith-sbd]" % clone)
+            print(f"INFO: Successfully added clone [{clone}] of [stonith-sbd]")
             return True
-        print("ERROR: Could not create clone [%s]" % clone)
+        print(f"ERROR: Could not create clone [{clone}]")
         return False
 
     def test_add_group(self, group):
-        print("TEST: test_add_group: Adding group [%s]" % group)
+        print(f"TEST: test_add_group: Adding group [{group}]")
         self.click_if_major_version("15", 'configuration')
         self.click_on('Resource')
         self.check_and_click_by_xpath("Click on Add Resource", [Xpath.RESOURCES_TYPES])
-        self.check_and_click_by_xpath("while adding group [%s]" % group, [Xpath.GROUP_DATA_FILTER])
+        self.check_and_click_by_xpath(f"while adding group [{group}]", [Xpath.GROUP_DATA_FILTER])
         elem = self.find_element(By.NAME, 'group[id]')
         if not elem:
             print("ERROR: Couldn't find text-field [group[id]] to input group id")
             return False
         elem.send_keys(group)
-        self.check_and_click_by_xpath("while adding group [%s]" % group,
-                                      [Xpath.STONITH_CHKBOX, Xpath.TARGET_ROLE_FORMAT % 'group',
+        self.check_and_click_by_xpath(f"while adding group [{group}]",
+                                      [Xpath.STONITH_CHKBOX, Xpath.TARGET_ROLE_FORMAT.format('group'),
                                        Xpath.TARGET_ROLE_STARTED, Xpath.RSC_OK_SUBMIT])
         if self.verify_success():
-            print("INFO: Successfully added group [%s] of [stonith-sbd]" % group)
+            print(f"INFO: Successfully added group [{group}] of [stonith-sbd]")
             return True
-        print("ERROR: Could not create group [%s]" % group)
+        print(f"ERROR: Could not create group [{group}]")
         return False
 
     def test_click_around_edit_conf(self):
@@ -598,7 +603,6 @@ class HawkTestDriver:
 
     def test_remove_virtual_ip(self):
         print("TEST: test_remove_virtual_ip: Remove virtual IP")
-        self.click_if_major_version("15", 'configuration')
         return self.remove_rsc("vip")
 
     def test_fencing(self):
