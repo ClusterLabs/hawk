@@ -20,21 +20,21 @@ def hostname(string):
         socket.getaddrinfo(string, 1)
         return string
     except socket.gaierror:
-        raise argparse.ArgumentTypeError("Unknown host: %s" % string)
+        raise argparse.ArgumentTypeError(f"Unknown host: {string}")  # pylint: disable=raise-missing-from
 
 
 def cidr_address(string):
     try:
         ipaddress.ip_network(string, False)
         return string
-    except ValueError:
-        raise argparse.ArgumentTypeError("Invalid CIDR address: %s" % string)
+    except ValueError as exc:
+        raise argparse.ArgumentTypeError(f"Invalid CIDR address: {string}") from exc
 
 
 def port(string):
     if string.isdigit() and 1 <= int(string) <= 65535:
         return string
-    raise argparse.ArgumentTypeError("Invalid port number: %s" % string)
+    raise argparse.ArgumentTypeError(f"Invalid port number: {string}") from ValueError
 
 
 def parse_args():
@@ -83,10 +83,10 @@ def main():
                              version=test_version)
 
     # Resources to create
-    mycluster = 'Anderes'
-    myprimitive = 'cool_primitive'
-    myclone = 'cool_clone'
-    mygroup = 'cool_group'
+    cluster = 'Anderes'
+    primitive = 'cool_primitive'
+    clone = 'cool_clone'
+    group = 'cool_group'
 
     # Tests to perform
     if args.virtual_ip:
@@ -103,20 +103,20 @@ def main():
     browser.test('test_set_first_node_maintenance', results)
     ssh.verify_node_maintenance(results)
     browser.test('test_disable_maintenance_first_node', results)
-    browser.test('test_add_new_cluster', results, mycluster)
-    browser.test('test_remove_cluster', results, mycluster)
+    browser.test('test_add_new_cluster', results, cluster)
+    browser.test('test_remove_cluster', results, cluster)
     browser.test('test_click_on_history', results)
     browser.test('test_generate_report', results)
     browser.test('test_click_on_command_log', results)
     browser.test('test_click_on_status', results)
-    browser.test('test_add_primitive', results, myprimitive)
-    ssh.verify_primitive(myprimitive, test_version, results)
-    browser.test('test_remove_primitive', results, myprimitive)
-    ssh.verify_primitive_removed(myprimitive, results)
-    browser.test('test_add_clone', results, myclone)
-    browser.test('test_remove_clone', results, myclone)
-    browser.test('test_add_group', results, mygroup)
-    browser.test('test_remove_group', results, mygroup)
+    browser.test('test_add_primitive', results, primitive)
+    ssh.verify_primitive(primitive, test_version, results)
+    browser.test('test_remove_primitive', results, primitive)
+    ssh.verify_primitive_removed(primitive, results)
+    browser.test('test_add_clone', results, clone)
+    browser.test('test_remove_clone', results, clone)
+    browser.test('test_add_group', results, group)
+    browser.test('test_remove_group', results, group)
     browser.test('test_click_around_edit_conf', results)
     if args.slave:
         browser.addr = args.slave
