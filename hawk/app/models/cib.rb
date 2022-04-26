@@ -878,9 +878,6 @@ class Cib
           # skip notifies, deletes, cancels
           next if ['notify', 'delete', 'cancel'].include? operation
 
-          # set crm_feature_set in node information
-          node[:crm_feature_set] = op.attributes['crm_feature_set'] if operation == 'monitor'
-
           # skip allegedly pending "last_failure" ops (hack to fix bnc#706755)
           # TODO(should): see if we can remove this in future
           next if !id.nil? && id.end_with?("_last_failure_0") && call_id == -1
@@ -1036,12 +1033,17 @@ class Cib
     # Now we can sort the node array
     @nodes.sort!{|a,b| a[:uname].natcmp(b[:uname], true)}
 
+    # Check CRM feature set of all nodes for consistency
     feature_sets = {}
     @nodes.each do |n|
-      if n.key? :crm_feature_set
-        fs = n[:crm_feature_set]
-        feature_sets[fs] ||= []
-        feature_sets[fs] << n[:name]
+      next unless n[:state] == :online && !(n[:remote] || n[:host])
+      if @xml.elements.each("cib/status/node_state[@uname='#{n[:uname]}']/transient_attributes/instance_attributes/nvpair[@name='#feature-set']") do |fs_node|
+        fs = fs_node.attributes['value']
+        (feature_sets[fs] ||= []) << n[:name]
+      end.empty?
+        # The feature set attribute is present since 3.15.1. If it is missing
+        # then the node must be running an earlier version.
+        (feature_sets['<3.15.1'] ||= []) << n[:name]
       end
     end
     if feature_sets.count > 1
