@@ -17,7 +17,7 @@ module Hawk
           next if cookie.blank?
           next if cookie =~ /;\s*secure/i
 
-          cookie << '; Secure'
+          cookie << '; Secure ; HttpOnly'
         end
 
         headers['Set-Cookie'] = cookies.join(COOKIE_SEPARATOR)
