@@ -1,0 +1,2844 @@
+-------------------------------------------------------------------
+Thu Mar 17 17:16:39 UTC 2022 - aburlakov@suse.com
+
+- Update to version 2.6.4+git.1647533259.f86e005f:
+  * Update ruby 2.5 --> 3.1
+  * e2e_test: Reset connection address unconditionally
+  * e2e_test: Fixes
+  * Fix wizards ui
+  * e2e_test: Drop timeout and look for report instead
+  * Remove hawk_invoke and run_as command
+  * Check filename alphanumeric
+  * Remove unnecessary chmod
+
+-------------------------------------------------------------------
+Thu Mar 17 17:13:44 UTC 2022 - aburlakov@suse.com
+
+- Update to version 2.6.4+git.1647533259.f86e005f:
+  * Update ruby 2.5 --> 3.1
+  * e2e_test: Reset connection address unconditionally
+  * e2e_test: Fixes
+  * Fix wizards ui
+  * e2e_test: Drop timeout and look for report instead
+  * Remove hawk_invoke and run_as command
+  * Check filename alphanumeric
+  * Remove unnecessary chmod
+
+Fri Apr 09 08:19:39 UTC 2021 - dmaiocchi@suse.com
+
+- Update to version 2.6.4:
+  * Fix wizards ui (bsc#1184274)
+
+-------------------------------------------------------------------
+Wed Mar 03 10:45:50 UTC 2021 - dmaiocchi@suse.com
+
+- Update to version 2.6.3:
+  * Remove hawk_invoke and use capture3 instead of runas (bsc#1179999)(CVE-2020-35459)
+  * Remove unnecessary chmod (bsc#1182166)(CVE-2021-25314) 
+  * Sanitize filename to contains whitelist of alphanumeric (bsc#1182165)
+
+-------------------------------------------------------------------
+Thu Feb 18 13:37:56 UTC 2021 - dmaiocchi@suse.com
+
+- Update to version 2.6.0:
+  * Use fullpath of binary (bsc#1181436)
+  * remove %x (bsc#1182163)
+
+-------------------------------------------------------------------
+Wed Jan 20 13:54:20 UTC 2021 - dmaiocchi@suse.com
+
+- Update to version 2.4.0+git.1611141202.2fe6369e:
+  * Improve further mechanism of controllers to system commands.
+  * drop patch 0001-Improve-controllers.patch since merged upstream
+   (CVE-2020-35458)
+
+-------------------------------------------------------------------
+Tue Dec 15 17:28:43 UTC 2020 - Dario Maiocchi <dmaiocchi@suse.com>
+
+- Update to version 2.3.0+git.1603969748
+ * fix bsc#1179998. Handle better input on app controllers (CVE-2020-35458)
+
+-------------------------------------------------------------------
+Mon Nov 09 18:24:07 UTC 2020 - dmaiocchi@suse.com
+
+- Update to version 2.2.0+git.1603969748.10468582:
+  * Fix server error after authentication if a resource has the same name as a node (bsc#1163381)
+  * Allow also users in haclient to view history explorer (jsc#SLE-7358)
+
+-------------------------------------------------------------------
+Thu Jul 16 08:20:11 UTC 2020 - Dario Maiocchi <dmaiocchi@suse.com>
+- Update to version 2.1.2+git.1594886920.d00b94aa:
+  * update puma rubygem to 4.3.5 requirement for for disabling TLSv1.0 and TLSv1.1 (jsc#SLE-6965)
+  * add functional tests in docker
+  * various refactoring and cleanup
+
+-------------------------------------------------------------------
+Thu Mar 26 15:15:23 UTC 2020 - dmaiocchi@suse.com
+
+- Update to version 2.1.1+git.1585233369.bea4326a:
+  * drop patch 0001-Fix-nameless-cluster-display-bsc-1137891.patch
+  * drop patch 0002-Fix-acl_version-check-bsc-1089802.patch
+  * drop patch 0003-Fix-cib.xml-parsing-for-acl_version-bsc-1158681.patch
+  * drop patch hawk2-nodev.patch
+  * Implement mechanism to switch binaries in case (bsc#1165587)
+  * Low: Fix omission of built-in stonith attributes (bsc#1165587)
+  * Refactor: Obtain the Pacemaker daemon directory during initialization
+  * Work around the removal of Dir::Tmpname#make_tmpname (bsc#1162221)
+  * Fix cib.xml parsing for acl_version (bsc#1158681)
+  * Fix boot.rb
+  * Fix Rails.groups issue when requiring the Gemfile
+  * Remove Number Precision since it's handled by sassc-rails
+  * Dev: Fix sass-rails version
+  * Add application/x-bzip2 mime type (bsc#1098637)
+  * Fix Sass version for Travis build
+  * Fix mime type issue in MS windows (bsc#1098637)
+  * preserve CIB_server et al environment variables (connect to remote)
+  * Fix nameless cluster display (bsc#1137891)
+  * High: Enable invoking new daemon names via hawk_invoke
+  * High: Handle new daemon names in CrmConfig
+  * Dev: Update Dashboard and fix compatibility issue
+  * Dev: Fix provisioning on remote libvirt
+  * Dev: Disable Nagios client provisioning
+  * Dev: Update Readme
+  * Dev: Add webui keys for testing masterless
+  * Dev: Fix loading yaml from the pillars
+  * Dev: Clean up the yaml config
+  * Dev: skip installing grafana for now
+  * Dev: get pillars from vagrant.sls
+  * Dev: Fix missing dep
+  * Dev: Read pillars from vconf.yml
+  * Dev: Fix master config
+  * Dev: Allow configuring vagrant through external conf
+  * Dev: avoid using global variables
+  * Dev: Clean up config
+  * Dev: Change to yaml config
+  * Dev: Fix Master config
+  * Dev: Install master using bootstrap script
+  * Dev: Update Vagrantfile
+  * Dev: accept all  incoming public keys from minions
+  * Dev: instruct the minion to look for a master
+  * Dev: Update to working bootstrap script
+  * Dev: Create pillar defaults
+  * Dev: Sync salt root and pillar with nfs and fix path in salt/etc/minion
+  * dev: Use Prometheus Formula for configuring prometheus.yml
+  * Dev: Configure installation repo using the Formula
+  * Dev: Adapt Pillar data to changes in Formula
+  * Dev: install prometheus server packages
+  * Dev: Disable legacy provisioning
+  * Have to use NFS v3 over UDP for it to work
+  * connect_via_ssh only if VM_HOST is set
+  * Dev: Fixing the prometheus Pillar
+  * Dev: Disabling Nagios provisioning
+  * Dev: Change to forked Prometheus formula
+  * Dev: Use the Prometheus formula and configure it using pillars
+  * Dev: configure salt to use Gitfs backend
+  * Dev: Install necessary packages for gitfs
+  * Dev: Fix constant name conflict
+  * Dev: exclude minion_id file from sync
+  * Dev: Add configure_minion method and use minion_id
+  * Dev: Remove vagrant triggers from Vagrantfile
+  * Dev: Remove Virtualbox provider config
+  * Dev: Fix minion config file paths
+  * Dev: Sync Pillar directory
+  * Dev: Rename salt directory to avoid confusion
+  * Dev: Deploy Grafana's Datasource and HA Dashboard
+  * Dev: Configure Grafana datasource
+  * Dev: Disable bundler-audit
+  * Dev: Continue when errors with Vagrant Triggers
+  * Update SUSE's Copyright
+  * Dev: Scrap data from all the nodes and not only localhost
+  * Dev: Configure Grafana and change serving port
+  * Dev: Configure prometheus for using pacemaker-exporter
+  * Dev: fix pacemaker-exporter systemd issue
+  * Dev: Install godep and fix pacemaker_exporter build
+  * Dev: Install packages and configure go
+  * Dev: Use requisites for managing dependencies
+  * Dev: Use Salt to configure public ip for nagios
+  * Dev: Restart apache using apachectl
+  * Dev: Remove accidental log file addition
+  * Dev: Restart gracefully nagios and apache2 services
+  * Dev: Clean up Nagios scripts
+  * Dev: Restart Nagios and apache2 after config
+  * Dev: Fix typo in configure_nagios_server.sh
+  * Dev: Rename Nagios scripts
+  * Dev: Configure the before destroy trigger to run on the host instead of the guest
+  * Dev: Fix Nagios server local hostname
+  * Dev: Parse nagios_nrpe script with Jinja
+  * Dev: Salt config for Nagios
+  * Dev: require vagrant 2.1.0
+  * Dev: Add public_ip files to .gitignore
+  * Dev: Save guests public ips
+  * Dev: Disable firewalld using Salt
+  * Dev: Support external config for vagrant and Salt
+  * Doc: Add Lukas Krause to Authors list and sort Alphabetically
+  * Dev: Fix incorrect disk size for DRBD disk
+  * High: Set secure flag to enforce https (bsc#1090657)
+  * Medium: Improve hawk-server side cookie handling (bsc#1090667)
+  * Medium: Set Symmetrical to False when score is Serialize (bsc#1085515)
+  * Medium: Make resource stop/start icon dependent on target-role (bsc#1076421)
+  * Dev: Update box to leap 15.0 version 1.0.7
+  * Dev: Use latest bootstrap script that support Leap 15
+  * Api: Fix  undefined method `get_cib' for #<Api::V1::Status> error
+  * Api: Add necessary headers for cross-origin resource sharing
+  * Api: Add the options method to the /register endpoint
+  * Api: Add advance resource type(group|clone|master|bundle) in resource route(fate#323437)
+  * Dev: Ignore byebug_history file
+  * Dev: Start server using hawk binary instead
+  * Dev: Load byebug in dev env
+  * Dev: Install byebug by default
+  * Dev: Disable hawk-dev-backend service
+  * Dev: Enabling hawk dev services
+  * Dev: Update dev env using salt
+  * Api: Add 'param/meta/op' in resource return value(fate#323437)          To show the parameters/attributes/operations of this ra
+  * Api: Add 'script' in resource return value(fate#323437)      To show the class/provider/type of this ra
+  * Api: Add 'belong' in resource return value(fate#323437)
+  * Api: primitive resource's type should always be primitive(fate#323437)
+  * Api: Add 'attributes' and 'utilization' in node return value(fate#323437)
+  * Api: Add cors preflight check and enable options method in routes(fate#323437)
+  * Api: instance variable should not use here(fate#323437)      will cause NoMethodError
+  * Api: get right status when resource is started(fate#323437)
+  * Api: change to_hash function more dynamic(fate#323437)
+  * Api: implement show method in controller(fate#323437)
+  * Api: return nil if elem is nil(fate#323437)      in some case, param in determine_online_status_fencing is nil,      this will cause NoMethodError
+  * Testing: Add validation test for order model
+  * Testing: Enhance colocation validation tests a little
+  * Dev: Prevent error through strip! method on empty score
+  * Testing: Add ID to colocation validation test
+  * Testing: Add validation test for colocation model
+  * Dev: Create validation class for colocation and order model
+  * Medium: Fix acl_version check (bsc#1089802)
+  * Dev: Move colocation validation to constraint model
+  * High: Fetch correct meta data (bsc#1092122)
+  * Medium: Fix history explorer views (bsc#1093420)
+  * High: Update links to release notes and documentation (bsc#1089709)
+  * High: Return after redirect in reports (bsc#1090562)
+  * Dev: Remove json extension from javascript delete operations
+  * Medium: Comply routes' id with resources' ID (bsc#1092108)
+  * Testing: Add tag to tests where cluster env is needed
+  * Testing: Create helper for dummy yaml store
+  * Testing: Add rspec fixtures and test api endpoints with valid token
+  * Api: Implement basic structure for each endpoint (fate#323437)
+  * Api: Fix typo (fate#323437)
+  * Api: Clean up status structure (fate#323437)
+  * Api: Create models' super class (fate#323437)
+  * Api: Render basic response from /status (fate#323437)
+  * Api: Refactor status.rb (fate#323437)
+  * Api: Refactor api models (fate#323437)
+  * Api: Set current_user during authentication (fate#323437)
+  * Api: Implement models' logic (fate#323437)
+  * Api: Add models' structure (fate#323437)
+  * Api: Refactor checking expiry method (fate#323437)
+  * Api: Fix Struct class name (fate#323437)
+  * Api: convert expiry date to unix timestamp (fate#323437)
+  * Api: Send back the expiry date as well (fate#323437)
+  * Api: Fix missing token issue (fate#323437)
+  * Api: Improve error response (fate#323437)
+  * Api: Handle authentication cases (fate#323437)
+  * Api: Add expiration check for api tokens (fate#323437)
+  * Dev: Ignore VS code trash folder
+  * Api: Ignore the api_token_entries.store (fate#323437)
+  * Testing: Test fake authentication token
+  * Api: Check if the store exists when auth (fate#323437)
+  * Api: Use Yaml store for now (fate#323437)
+  * Api: clean up api controller (fate#323437)
+  * Api: Add register action (fate#323437)
+  * Api: Add registration route (fate#323437)
+  * Testing: Test authentication token
+  * Api: Implement the structure of http token auth (fate#323437)
+  * Api: Create api_controller.rb (fate#323437)
+  * Testing: testing the api endpoints routing
+  * Testing: Add a cluster_env tag
+  * Api: Create the actions for each controller (fate#323437)
+  * Api: Create the Api file structure (fate#323437)
+  * Api: Add the status resource routes (fate#323437)
+  * Api: Add basic api token comparison for authentication (fate#323437)
+  * Api: Add validation for existing yaml store and api tokens
+  * Low: Update copyright year in branding
+  * Api: Use Yaml store for now (fate#323437)
+  * Api: clean up api controller (fate#323437)
+  * Api: Add register action (fate#323437)
+  * Api: Add registration route (fate#323437)
+  * Dev: Clean up vagrant file and hawkdev state file
+  * Dev: Change hacluster user's shell in Vagrantfile
+  * Dev: Bump version Vagrant box to 1.1.14
+  * High: Replace Promoted/Running in dashboard with asterisk icon to avoid overflow issues
+  * Dev: Some minor style nits
+  * High: Better guest node detection / display (bsc#1074856)
+  * High: Calculate guest node state correctly (bsc#1074856)
+  * Doc: Fix syntax errors in README
+  * Doc: Update screenshots in README
+  * Doc: Translate README from asciidoc to markdown
+  * Dev: Disable bundle feature configuration using Salt
+  * Dev: Update ruby to 2.5
+  * Dev: update Hawk's readme
+  * Dev: Remove Chef provisioning scripts
+  * Testing: Test authentication token
+  * Api: Implement the structure of http token auth (fate#323437)
+  * Api: Create api_controller.rb (fate#323437)
+  * Testing: testing the api endpoints routing
+  * Testing: Add a cluster_env tag
+  * Api: Create the actions for each controller (fate#323437)
+  * Api: Create the Api file structure (fate#323437)
+  * Api: Add the status resource routes (fate#323437)
+  * Dev: Remove vagrant cloud url since it's fetched correctly in Vagrant 2
+  * Dev: Bump Vagrant box version to 1.1.12
+  * Dev: Clarify wording in testing doc
+  * Use Promotable etc. (bsc#1085318) (bsc#1085343)
+  * Enable node events for remote/guest nodes (fate#324558)
+  * Low: Drop errors heading in status to align with dashboard
+  * Add minimal bundle model object (fate#324558)
+  * UI: Implement icons in left navigation and modify js code
+  * UI: Remove test code
+  * UI: Implement code for active tab based on the current URl
+  * UI: Merge access control menu into configuration menu
+  * UI: Implement collapsible side navebar
+  * Dev: Force vagrant to download boxes from vagrant cloud instead of atlas
+  * High: Fix remote nodes iteration (bsc#1080439)
+  * Dev: Fix the state of containers
+  * Dev: Fix the state of bundle resources
+  * Dev: fetch primitive resource for bundles
+  * Dev: append port-mapping and storage-mappping to arrays instead of objects
+  * Dev: Fetch the storage element from the cib
+  * Dev: Fetch the docker/rkt, network elements from the cib
+  * Dev: Define the basic JSON structure for the bundle
+  * Dev: Nest the bundle object inside resources
+  * Dev: Configure a dummy resource for testing bundle feature
+  * Dev: Fix apparmor issue for apache bundle
+  * Dev: Add the bundle support in the cib's model
+  * Dev: Check if the feature is supported by the current pacemaker version
+  * Dev: Configure the bundle using crmsh on the webui machine
+  * Dev: Configure the docker host for testing the bundle feature
+  * Dev: Fix remote nodes iteration (bsc#1080439)
+  * Dev: update the box version with the latest build by packer
+  * Dev: solve broken requirement in hawkdev/init.sls
+  * Remove non-used state files from init.sls
+  * Dev: Remove state files used by packed to build the base image
+  * Dev: remove accidentally created files
+  * Dev-env: Remove Salt bootstrap scripts since Salt is already installed
+  * Dev-env: Update the vagrant box with the image built with packer
+  * Dev: Update salt bootstrap script
+  * High: Support guest nodes (bsc#1074856)
+  * dev: Move to box 1.0.6
+  * Ensure certificate/key is group readable (bsc#1071481)
+  * Test: fix yet another typo
+  * Test: Check for the Travis env variable
+  * Dev: Fix typo
+  * Dev: Skip running the test for #acl_enabled? in Travis
+  * Test: Add test suit for (bsc#1069296)
+  * Dev: Fix acl_enabled? (bsc#1069296)
+  * Dev: Correct path to Cluster configuration page
+  * Test: run rspec tests in Travis
+  * Test: Run rspec tests in test container
+  * Dasherize available languages map
+  * Test: Add model test for Profile
+  * Dev: Add scripts for running the test suite in a container
+  * Dev: Dev: Handle redirection correctly after renaming resources (bsc#1068942)
+  * Dev: Handle redirection correctly after renaming constraints (bsc#1068942)
+  * Dev: Dev: split rename action for constraints to edit/update (bsc#1068942)
+  * Dev: Refactor resouces.js (bsc#1068942)
+  * Dev: Change the rename path for resources (#bsc#1068942)
+  * Dev: split rename action to edit/update (bsc#1068942)
+  * Fix node/resource event injection in simulator (bsc#1069217)
+  * Dev: Add public key to the vagrant env
+  * Dev: Check data-wizard-enable to disable/enable related options
+  * Dev: disabled click when wizard apply successfully
+  * Permit parameter conversion in history upload dialog
+  * Dev: Use /bin/bash in shebang for generate-ssl-cert script
+  * Dev: Set target-role default value to Stopped
+  * Dev: Remove the jQuery element's key from the attlist-mapping
+  * Dev: Convert string keys to symboles in Ticket's creation page.
+  * Dev: Move RSC_DEFAULTS/OP_DEFAULTS to tableless.rb for maintain purpose
+  * Dev: Use "overflow: inherit" to avoid dropdown creates scrollbar
+  * Dev: Use 'M'/'S' tooltip stand for Master/Slave role
+  * Dev: Change monitor in oplist for Master/Slave resource
+  * Dev: add default value and longdesc for timeout option
+  * Dev: add longdesc for enabled in operation defaults
+  * Dev: interval-origin should just in operation defaults
+  * Dev: 0 instead of INFINITY means disabled for migration-threshold
+  * Dev: In wizards, replace chaotic boolean value of params
+  * Dev: Let error message shown in group/clone/master page
+  * Dev: Strip redundant error messages(from errors.messages[:id])
+  * Dev: Let error message shown in location/colocation/order page
+  * Dev: Convert hash's key to symbol
+  * Dev: Make sure no errors before crm configure verify
+  * Dev: Required param's value shouldn't be blank
+  * Dev: Move get_meta_data function to util and do some replaces
+  * Dev: Wizards resource params missing default value
+  * Dev: Required param should not be removed
+  * Dev: Replace type="string" to 'type="text" in ra's meta-data   If don't do this, the default value of params will lost after from xml to json
+  * Dev: Check whether param's value is blank
+  * Show descriptions in cluster config (bsc#1054027)
+
+-------------------------------------------------------------------
+Tue Dec 17 10:57:54 UTC 2019 - Ayoub Belarbi <abelarbi@suse.de>
+
+- Added patches:
+  - Fix the acl_version method when parsing the cib.xml (bsc#1158681)
+    * 0003-Fix-cib.xml-parsing-for-acl_version-bsc-1158681.patch 
+
+-------------------------------------------------------------------
+Mon Jul 15 10:22:28 UTC 2019 - Ayoub Belarbi <abelarbi@suse.de>
+
+- Added patches:
+  - Fix display in case of nameless cluster (bsc#1137891)
+    * 0001-Fix-nameless-cluster-display-bsc-1137891.patch
+  - Fix utility method for checking ACL version in Hawk (bsc#1089802)
+    * 0002-Fix-acl_version-check-bsc-1089802.patch
+
+- Added build dependency nodejs10
+
+-------------------------------------------------------------------
+Fri May 18 10:20:12 UTC 2018 - opensuse-packaging@opensuse.org
+
+- Update to version 2.1.0+git.1526638315.05cdaf9d:
+  * High: Return after redirect in reports (bsc#1090562)
+  * Medium: Comply routes' id with resources' ID (bsc#1092108)
+  * High: Update links to release notes and documentation (bsc#1089709)
+  * Medium: Fix history explorer views (bsc#1093420)
+  * High: Fetch correct meta data (bsc#1092122)
+
+-------------------------------------------------------------------
+Mon Apr 30 10:38:34 UTC 2018 - opensuse-packaging@opensuse.org
+
+- Update to version 2.1.0+git.1525082027.af7afec4:
+  * Low: Update copyright year in branding
+  * Medium: Implement Hawk's cluster API (fate#323437)
+
+-------------------------------------------------------------------
+Wed Mar 28 22:56:49 UTC 2018 - kgronlund@suse.com
+
+- Update to version 2.1.0+git.1522277768.8e5a2060:
+  * High: Better guest node detection / display (bsc#1074856)
+  * High: Calculate guest node state correctly (bsc#1074856)
+  * Use Promotable etc. (bsc#1085318) (bsc#1085343)
+  * Enable node events for remote/guest nodes (fate#324558)
+  * Add minimal bundle model object (fate#324558)
+  * Low: Drop errors heading in status to align with dashboard
+
+-------------------------------------------------------------------
+Wed Feb 21 16:22:24 UTC 2018 - abelarbi@suse.de
+
+- Update to version 2.1.0+git.1519229624.7c397acb:
+  * Medium: Support Pacemaker Container Bundle feature (fate#324558)
+  * Medium: Improved navigational structure in Hawk 2 (fate#323418)
+
+-------------------------------------------------------------------
+Wed Feb 14 06:47:17 UTC 2018 - kgronlund@suse.com
+
+- Update to version 2.1.0+git.1518590724.856b089e:
+  * High: Fix remote nodes iteration (bsc#1080439)
+
+-------------------------------------------------------------------
+Fri Jan 12 16:50:09 UTC 2018 - kgronlund@suse.com
+
+- Update to version 2.1.0+git.1515768475.ff6e103b:
+  * High: Support guest nodes (bsc#1074856)
+
+-------------------------------------------------------------------
+Wed Dec 06 11:16:19 UTC 2017 - kgronlund@suse.com
+
+- Update to version 2.1.0+git.1512558762.84542abc:
+  * Ensure certificate/key is group readable (bsc#1071481)
+
+-------------------------------------------------------------------
+Fri Dec 01 14:57:40 UTC 2017 - opensuse-packaging@opensuse.org
+
+- Update to version 2.1.0+git.1512139291.a886c8b1:
+  * Disabled click when wizard apply successfully
+  * Check data-wizard-enable to disable/enable related options
+  * Correct path to Cluster configuration page
+  * Fix acl_enabled? (bsc#1069296)
+
+-------------------------------------------------------------------
+Wed Nov 29 16:01:07 UTC 2017 - kgronlund@suse.com
+
+- Fix incorrect virtus dependency 
+
+-------------------------------------------------------------------
+Thu Nov 23 15:54:33 UTC 2017 - rbrown@suse.com
+
+- Replace references to /var/adm/fillup-templates with new 
+  %_fillupdir macro (boo#1069468)
+
+-------------------------------------------------------------------
+Thu Nov 23 12:33:05 UTC 2017 - opensuse-packaging@opensuse.org
+
+- Update to version 2.1.0+git.1511437564.94d31646:
+  * Fix resources and constraints renaming (bsc#1068942)
+  * Fix node/resource event injection in simulator (bsc#1069217)
+
+-------------------------------------------------------------------
+Wed Nov 15 10:42:00 UTC 2017 - kgronlund@suse.com
+
+- Update to version 2.1.0+git.1510742499.03cc2be8:
+  * Switch to ruby 2.5 (bsc#1068183)
+  * Permit parameter conversion in history upload dialog
+
+-------------------------------------------------------------------
+Tue Nov 07 10:39:17 UTC 2017 - kgronlund@suse.com
+
+- Update to version 2.1.0+git.1510051134.341d508e:
+  * Show descriptions in cluster config (bsc#1054027)
+  * Fix systemd installation for hawk-backend.service
+
+-------------------------------------------------------------------
+Thu Sep 21 07:26:18 UTC 2017 - kgronlund@suse.com
+
+- Update to version 2.1.0+git.1505978451.64a32626:
+  * Link error to report creation (bsc#1056483)
+  * Low: Show cluster name in status title
+  * Show revoke action for locally granted tickets (bsc#1059662)
+
+-------------------------------------------------------------------
+Wed Sep 20 10:11:37 UTC 2017 - kgronlund@suse.com
+
+- Update to version 2.1.0+git.1505902130.031a9f76:
+  * Medium: Get post-expression value of ip resource for booth (bsc#1059492)
+  * Only trigger attrlist click if paired with a SELECT element (bsc#1053456)
+
+-------------------------------------------------------------------
+Mon Sep 18 14:41:42 UTC 2017 - kgronlund@suse.com
+
+- Require timezone data to be present during build 
+
+-------------------------------------------------------------------
+Mon Sep 18 10:18:44 UTC 2017 - kgronlund@suse.com
+
+- Loosen BR for nodejs to enable nodejs8 
+
+-------------------------------------------------------------------
+Thu Sep 14 12:58:37 UTC 2017 - mrueckert@suse.de
+
+- add some BR to help the scheduler
+
+-------------------------------------------------------------------
+Thu Sep 14 11:52:10 UTC 2017 - kgronlund@suse.com
+
+- Update to version 2.1.0+git.1505201925.7f077708:
+  * Use hawk-apiserver as proxy
+  * Remove hawk_monitor and related dependencies
+
+-------------------------------------------------------------------
+Tue Sep 12 15:53:12 UTC 2017 - mrueckert@suse.de
+
+- minimize the packages we really need for this package:
+  - adds hawk2-nodev.patch
+  - use %{rubygem } syntax for BuildRequires/Requires
+  - reorder requires to match the Gemfile
+  - drop unused BR for nokogiri
+  - run "bundle.%{rb_ruby_suffix} exec bin/rails version"
+    to verify that we have everything needed for the Gemfile
+
+-------------------------------------------------------------------
+Fri Sep 08 13:19:13 UTC 2017 - kgronlund@suse.com
+
+- Update to version 2.1.0+git.1504876724.75e1a8b2:
+  * Require Rails 5.1
+
+-------------------------------------------------------------------
+Thu Aug 31 09:30:33 UTC 2017 - kgronlund@suse.com
+
+- Require hawk-apiserver (fate#323437) 
+
+-------------------------------------------------------------------
+Wed Aug 30 19:55:12 UTC 2017 - kgronlund@suse.com
+
+- Update to version 2.1.0+git.1504122466.88c339b3:
+  * Upgrade to Rails 5
+  * Drop support for bundling rubygems (fate#321115)
+  * Move hawk data files out of /srv/www (fate#321020)
+  * Remove the Strange char in Dashboard (bsc#1037430)
+  * Add have-watchdog to list of readonly options
+  * UI: Move sidebar down slightly when batch mode is enabled
+  * UI: Fix typo in template.rb
+  * Low: tools: crmd and pengine executables have moved to %_libdir/pacemaker
+  * Medium: Don't offset failure time by 10 minutes in notification (bsc#1056483)
+
+- Remove 0001-Don-t-drop-any-gems-from-bundle.patch
+- Remove json-1.8.1.gem
+- Remove rake-10.1.0.gem
+- Remove rake-10.4.2.gem
+
+-------------------------------------------------------------------
+Mon Jul 24 11:20:59 UTC 2017 - kgronlund@suse.com
+
+- Update to version 2.1.0+git.1500894042.99eca950:
+  * generate-ssl-cert: Make sure commonName isn't too long (bsc#1046820)
+
+-------------------------------------------------------------------
+Fri Jun 02 11:46:01 UTC 2017 - kgronlund@suse.com
+
+- Update to version 2.1.0+git.1496403895.2d3dbf1f:
+  * Add have-watchdog to list of readonly options (bsc#1042361)
+  * UI: Move sidebar down slightly when batch mode is enabled (bsc#1042360)
+
+-------------------------------------------------------------------
+Wed May 10 07:58:26 UTC 2017 - kgronlund@suse.com
+
+- Update to version 2.1.0+git.1494403016.19b2aada:
+  * Fix systemd usage (bsc#1038400)
+
+-------------------------------------------------------------------
+Fri Apr 28 10:14:57 UTC 2017 - kgronlund@suse.com
+
+- Update to version 2.1.0+git.1493374455.0363b9be:
+  * UI: Improve layout of Show/Edit/Graph buttons (bsc#1036761)
+
+-------------------------------------------------------------------
+Fri Apr 28 08:43:33 UTC 2017 - kgronlund@suse.com
+
+- Update to version 2.1.0+git.1493367682.5e6c2dc5:
+  * UI: Add filter, link and ticket buttons. (bsc#1036738)
+  * UI: Add search box for cluster table (bsc#1036738)
+
+-------------------------------------------------------------------
+Tue Apr 25 12:31:05 UTC 2017 - kgronlund@suse.com
+
+- Update to version 2.1.0+git.1493122558.004910fa:
+  * Bug: Use cib_id parameter if provided (bsc#1029532)
+  * Update translations
+
+-------------------------------------------------------------------
+Thu Apr 20 12:21:41 UTC 2017 - kgronlund@suse.com
+
+- Update to version 2.1.0+git.1492690749.6147693e:
+  * UI: Display output from wizard in modal (fate#320866)
+
+-------------------------------------------------------------------
+Tue Apr 11 06:51:06 UTC 2017 - kgronlund@suse.com
+
+- Update to version 2.1.0+git.1491892871.5d65a24d:
+  * Updated multi-cluster dashboard (bsc#1029532)
+  * Fix sidebar in low resolutions (bsc#1031816)
+
+-------------------------------------------------------------------
+Fri Mar 31 08:59:48 UTC 2017 - kgronlund@suse.com
+
+- Update to version 2.1.0+git.1490950724.558e8212:
+  * Escape body attrs correctly (bsc#1031822)
+
+-------------------------------------------------------------------
+Wed Mar 15 07:59:50 UTC 2017 - kgronlund@suse.com
+
+- Update to version 2.1.0+git.1489564721.15ee423b:
+  * UI: Remove trailing brackets (bsc#1029271)
+  * UI: Implement language list button and documentation, github and website link in footer
+
+-------------------------------------------------------------------
+Tue Feb 28 10:14:40 UTC 2017 - kgronlund@suse.com
+
+- Update to version 2.1.0+git.1488276154.57dd3268:
+  * Add fencing topology support (fate#321133)
+  * Add documentation for fencing topology (fate#321133)
+  * UI: Revise copy for login screen
+  * UI: Anchor backlinks to correct tab
+  * UI: Fix footer position issues
+  * UI: Fix missing alerts attribute controls
+  * Check and warn re: DRBD disk/connection status (fate#322043)
+  * UI: Show recent event = running (master) as info, not danger
+  * Increase size of eventcontrol markers (bsc#1001357)
+  * Show transition node as DC for clarity (bsc#1010843)
+  * Reports: Display times as UTC as consistently as possible (bsc#1010831)
+
+-------------------------------------------------------------------
+Mon Feb  6 13:39:30 UTC 2017 - kgronlund@suse.com
+
+- Always bundle gems for hawk 
+- Add 0001-Don-t-drop-any-gems-from-bundle.patch
+
+-------------------------------------------------------------------
+Mon Dec 05 12:21:15 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1480940121.2c59e4e:
+  * Doc: Add missing link to HA quick guide
+  * UI: Show local doc links as large buttons
+
+-------------------------------------------------------------------
+Wed Nov 30 16:31:44 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1480523437.b6a234a:
+  * UI: Every help entry needs a :html entry as well
+
+-------------------------------------------------------------------
+Thu Nov 17 09:05:29 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1479373464.68754a3:
+  * Dashboard: Try persisted session before login (bsc#1009880)
+  * Group: Don't duplicate object list on errors (bsc#1009748)
+  * Reports: Show diff from the past, not to the future (bsc#1010602)
+
+-------------------------------------------------------------------
+Sat Nov 12 17:32:53 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1478971272.e716a0b:
+  * UI: Fix typos in RC description for m/s (bsc#1009867)
+  * UI: Hide ACL in mainnav if offline (bsc#1009869)
+  * Batch Mode: Handle CSRF token (bsc#1009866)
+  * Persist session across cluster nodes using attrd_updater (bsc#1009880)
+  * Installation and Setup Quick Start (bsc#1006831)
+
+-------------------------------------------------------------------
+Thu Nov 03 13:32:12 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1478179791.a7b6c5e:
+  * UI: Use Recent events for both resources and nodes (bsc#1008268)
+  * Cib: Add only node name to feature set map (bsc#1008321)
+
+-------------------------------------------------------------------
+Wed Nov 02 17:34:20 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1478101560.4ab8817:
+  * High: Catch div by 0 when utilization attribute has no value set (bsc#1008104)
+  * UI: Clearer error when creating group with no children (bsc#1006169)
+  * UI: Fix issues with larger markers (bsc#1001357)
+
+-------------------------------------------------------------------
+Mon Oct 10 07:19:30 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1476083916.a1e9463:
+  * Allow use of spring 2.0.0
+
+-------------------------------------------------------------------
+Tue Oct 04 12:29:38 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1475584027.541506e:
+  * Add preference to disable STONITH warning
+  * Support for configuring event-based alerts (fate#321118)
+  * Increase size of eventcontrol markers (bsc#1001357)
+  * Fix crash when redirecting after editing missing object for tags and templates
+  * Fix crash when creating alert with recipients (fate#321118)
+  * Fix incorrect paths in systemd script
+  * Install sysconfig script for hawk
+  * Don't try to start hawk via bundle unless gems are bundled
+  * Set verify_mode: none to workaround puma bug in 3.6.0 (bsc#1002369)
+
+-------------------------------------------------------------------
+Mon Aug 22 13:37:40 UTC 2016 - kgronlund@suse.com
+
+- Detect service status before upgrade (bsc#993055) 
+
+-------------------------------------------------------------------
+Fri Aug 19 06:59:39 UTC 2016 - kgronlund@suse.com
+
+- Enable hawk service if upgrading from Hawk 1 (bsc#993055) 
+
+-------------------------------------------------------------------
+Tue Aug 16 14:21:16 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1471356649.a5ecac4:
+  * Skip authenticity token for cib#show to enable dashboard (bsc#989794)
+
+-------------------------------------------------------------------
+Fri Aug 12 06:58:00 UTC 2016 - kgronlund@suse.com
+
+- Be stricter about requiring web-console 2, not 3 
+
+-------------------------------------------------------------------
+Tue Aug 09 06:16:02 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1470723261.8166faf:
+  * Update translations (bsc#984336)
+
+-------------------------------------------------------------------
+Sat Jul 30 23:23:43 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1469920946.db7b726:
+  * Expose OPTIONS route for /cib/<ID> (bsc#989794)
+  * DOC: Update README and generate table of content (#69)
+  * Run puma via bundle exec to locate gems correctly
+
+-------------------------------------------------------------------
+Wed Jul 13 16:49:25 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1468428505.0135e38:
+  * Don't use Rails titleize method in wizards (bsc#987696)
+  * Update translations (bsc#984336)
+  * Pass correct context to grant/revoke popup (bsc#987860)
+
+-------------------------------------------------------------------
+Tue Jul 12 13:02:14 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1468326669.6b3a189:
+- Drop merged patches:
+  * Remove 0001-Set-Content-Security-Policy-to-frame-ancestors-self-.patch
+  * Remove 0002-Call-correct-method-to-revoke-ticket-bsc-987860.patch
+
+-------------------------------------------------------------------
+Tue Jul 12 08:50:09 UTC 2016 - kgronlund@suse.com
+
+- Call correct method to revoke ticket (bsc#987860)
+- Add 0002-Call-correct-method-to-revoke-ticket-bsc-987860.patch 
+
+-------------------------------------------------------------------
+Tue Jul  5 17:24:09 UTC 2016 - kgronlund@suse.com
+
+- Set Content-Security-Policy to frame-ancestors 'self' (bsc#984619)
+- Add 0001-Set-Content-Security-Policy-to-frame-ancestors-self-.patch
+
+-------------------------------------------------------------------
+Sun Jun 12 18:36:42 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1465754567.b838c7a:
+  * Update translations (bsc#984336)
+
+-------------------------------------------------------------------
+Wed Jun 08 05:00:43 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1465200752.ce534f0:
+  * Cib: Fix broken instance assignment (bsc#983202)
+  * UI: Make configuration graph clickable (bsc#983169)
+  * UI: Make clicking a graph open it in a separate tab/window (bsc#983169)
+  * UI: Fix tabs in edit view
+  * UI: Show child count and clone type in status Type column
+  * UI: Format tabs in location constraints like status / edit configuration pages
+  * UI: Fix incorrect overflows on panels
+
+-------------------------------------------------------------------
+Fri Jun 03 13:08:26 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1464959248.4c8523a:
+  * Handle agent names containing underscores (bsc#982503)
+  * UI: Fix hidden language selector (bsc#982582)
+  * Cib: Fix crash when adding resource failures (bsc#983028)
+  * Add links to help screen
+  * Change circle in status page to medium
+  * UI: Reduce movement when switching agent
+  * UI: Nicer formatting in command log
+  * UI: Reports: Add buttons to zoom in and out of the event timeline
+  * UI: Fix broken tabs after adding zoom in/out buttons
+  * UI: Add titles to prev/next transition buttons
+  * UI: Show node in transition popup
+
+-------------------------------------------------------------------
+Wed Jun 01 08:28:56 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1464769312.daad221:
+  * Wizard: Fix wizard listing when running as less privileged user (bsc#981583)
+
+-------------------------------------------------------------------
+Fri May 27 06:56:44 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1464213601.5005ce3:
+  + Controller: Fix 500 error when create fails
+  + UI: Highlight master instances in location list
+  + UI: Limit tag operations to those that actually work on tags
+  + Set per-resource maintenance instead of is-managed (bsc#981659)
+
+-------------------------------------------------------------------
+Wed May 25 09:25:59 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1464164578.80eba76:
+  + UI: Show resource / node count in status tabs
+  + UI: Fix tickets display in status view (bsc#981552)
+  + Group: Enforce target-role after create/update (bsc#968876)
+
+-------------------------------------------------------------------
+Mon May 23 08:28:17 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1463943986.78a1933:
+  + Dashboard: Cycle through node list if credentials are set
+  + Dashboard: Improved display of multiple errors
+  + Cib: Show error if in partition without quorum (bsc#980919)
+  + Cib: Show quorum error before fencing errors
+  + Cib: Update cluster status when pushing errors
+  + UI: Move panels in Edit Configuration into proper tabs
+  + UI: Show which node is DC
+  + UI: Status: Pagination and smartDisplay
+  + UI: Remove Hawk icon from navbar
+  + UI: Status: Remove sort and search controls since they are broken (bsc#980993)
+  + UI: Fix font weight in dashboard
+  + UI: Allow renaming constraints (bsc#981006)
+  + UI: Allow renaming tags (bsc#981006)
+  + UI: Show resource type in Edit Resource view
+  + UI: Add tabs in Status view for each tag
+  + UI: Fix outdated title formatting
+  + UI: Clean up and fix column sorting in Edit Configuration (bsc#979311)
+  + UI: Fix ugly footer on small screens
+  + UI: Status: No title even when no errors
+
+-------------------------------------------------------------------
+Mon May 09 11:52:45 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1462794622.796a8a6:
+  + Cib: Warn if partial cluster upgrade detected (fate#320759)
+  + Change title from Simulator to Batch Mode
+  + Try to use fonts available on Linux by default
+  + Dashboard: Improved responsive grid layout
+
+-------------------------------------------------------------------
+Fri Apr 22 11:04:30 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1461322965.7f27886:
+  + UI: Revised primitive attribute loading to avoid ugly bounce
+  + UI: Avoid using spinner placeholders
+  + Call correct rake when running gettext:pack / assets:precompile
+ 
+-------------------------------------------------------------------
+Thu Apr 07 11:17:23 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1460021004.dc75922:
+  + UI: Correct font-awesome icon asset paths (bsc#974435)
+  + Improved hawk 1 package obsoletion statement
+
+-------------------------------------------------------------------
+Sat Apr 02 20:43:22 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1459616683.31efac7:
+  + Reports: Allow generating reports on offline nodes
+  + UI: Add clear state operation for nodes
+  + UI: Status: Always show migrate option
+  + Model: Fix missing fence operation for nodes (bsc#973722)
+  + UI: Status: Refresh CIB after user changes (bsc#973723)
+  + UI: Fix partial CIB refresh by removing monitor epoch (bsc#973723)
+  + UI: Only overwrite CIB if epoch is newer
+
+-------------------------------------------------------------------
+Thu Mar 31 05:22:46 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1459374052.159281a:
+  + Cib: Save fence history in node data (bsc#968055)
+  + Wizard: Need admin rights if non-local call
+  + UI: Status: Display constraints for resource
+  + UI: Status: Display migration status for resources
+  + UI: Status: Make remote node indicator a small icon
+  + Remove use of Hashie
+
+-------------------------------------------------------------------
+Mon Mar 21 08:18:40 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1458543074.dc9aa66:
+  + UI: Updated EventControl (bsc#970280)
+  + History: Show timezone for report dates
+  + History: Fix tab memory between transitions
+
+-------------------------------------------------------------------
+Fri Mar 18 12:21:08 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1458303640.7745849:
+  + UI: Use EventControl in history explorer (bsc#970280)
+  + Wizard: Fix broken file system category by dehumanizing category names for ids
+  + Wizard: Allow more actions without requiring admin access
+  + Simulator: Ignore error RC from crm_simulate if nothing is written to stderr
+  + Wizard: Nicer category icons
+  + Reports: Less verbose version string
+  + Deflate assets in production
+
+-------------------------------------------------------------------
+Wed Mar 09 13:47:44 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1457531142.ac2dc9f:
+  + UI: Fix broken dashboard remove button (bsc#970289)
+
+-------------------------------------------------------------------
+Thu Mar 03 09:43:33 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1456998191.16a7222:
+  + Enable use of Puma 3+
+
+-------------------------------------------------------------------
+Wed Mar 02 14:26:09 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1456913361.8ae2d27:
+  + Load reports in the background to enable cancel (bsc#878819)
+  + Cib: Avoid crash if corosync is offline (bsc#968239)
+  + Wizard: Avoid printing login message if set (bsc#969069)
+  + Wizard: Don't require password for an extended set of crm commands
+  + Reports: Add Download/Delete buttons to report view
+  + UI: Update favicon
+
+-------------------------------------------------------------------
+Tue Feb 23 11:32:17 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1456226540.23c625f:
+  + UI: Fix spurious error after creating resources
+  + Model: Override child meta attributes correctly (bsc#967800)
+  + UI: Calculate CIB hash correctly
+
+-------------------------------------------------------------------
+Mon Feb 22 09:04:02 UTC 2016 - kgronlund@suse.com
+
+- Replace hawk with hawk2 (fate#320561) 
+
+-------------------------------------------------------------------
+Fri Feb 19 09:00:24 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1455729634.14c4a76:
+  + Replace Simulator with Batch Mode (fate#318298) (fate#317834) (fate#318314)
+  + Add copy shortcut to Primitive/Template
+  + UI: Create primitive in group directly (fate#318318)
+  + UI: Remove any use of external fonts
+  + UI: Fix broken confirmation dialogs
+  + UI: Fix batch mode resetting when opening dialog
+  + UI: Don't set background when highlighting
+  + UI: Add disconnect status
+  + UI: Better navigation buttons for edit/show/graph pages
+
+-------------------------------------------------------------------
+Mon Feb 08 15:17:18 UTC 2016 - kgronlund@suse.com
+
+- Update to version 2.0.0+git.1454943728.a962a79:
+  + Release v2.0.0
+  + UI: Use title case in sidebar menu
+  + UI: Add Rename and drop List from edit pages (fate#318316)
+
+-------------------------------------------------------------------
+Sat Feb 06 14:41:46 UTC 2016 - kgronlund@suse.com
+
+- Update to version 1.0.1+git.1454694176.4f9f2b5:
+  + UI: Add option to show CIB as XML (fate#319665)
+  + Node utilization edit support (fate#320420)
+  + Resource utilization edit support (fate#320420)
+  + UI: Improved show/hide tickets in status
+  + UI: Improved dashboard mouse over popup
+  + UI: Clean up some detail views
+  + Doc: Updated README
+  + Don't spam command log with show xml calls
+  + Switch icon for command log
+
+-------------------------------------------------------------------
+Tue Feb 02 09:32:00 UTC 2016 - kgronlund@suse.com
+
+- Update to version 1.0.1+git.1453970823.70b8dcb:
+  + UI: Update font awesome to 4.5.0
+  + Enable migrate/cleanup with node argument (bsc#958386)
+  + Skip broken wizards without crashing
+
+-------------------------------------------------------------------
+Sat Dec 05 13:15:33 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.1+git.1449317258.6ecc8dd:
+  + UI: Fix missing info about extra operation values and help text (bsc#957992) (bsc#957997)
+
+-------------------------------------------------------------------
+Thu Dec 03 11:35:23 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.1+git.1449142434.d79ea19:
+  + UI: Prevent default action on deleting constraint (bsc#957760)
+  + UI: Fix failed submit from wizard
+
+-------------------------------------------------------------------
+Wed Dec 02 10:37:38 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.1+git.1449052401.725ce5f:
+  + UI: Link constraint edit form back buttons to the Add constraint page
+  + UI: Make colocation advanced section toggleable
+  + UI: Wizard: Add advanced params with value
+  + UI: Fix wizard tabs markup and remove confusing verify pill
+  + UI: Retain param values when going back from verify in wizard
+  + UI: Wizard: Validate resource IDs
+  + UI: Keep group children in defined order when displaying (bsc#957169)
+  + Model: Enable saving changes to group children (bsc#957169)
+  + Reports: Add cancel button to report collection UI (bsc#878819)
+  + UI: Improved colocation and order constraint editors
+  + UI: Fix lost parameters after failed validation in create primitive (bsc#956452)
+  + Model: Basic validation for new resources/constraints using a temporary shadow CIB
+  + UI: Show error message as graph image if generation fails
+  + UI: Unify rightbar help display across all pages
+  + UI: Keep boolean style depending on configured value
+  + Fix UI glitches from low decimal precision in Sass
+  + UI: Dashboard: Replace Advanced config with port only
+  + UI: Add simple mode for location constraint editor (bsc#953829)
+  + UI: Fall back to english text if no translation is available
+  + Command Log: Add timestamp to each log entry
+  + Model: Unified common ID handling for records
+  + UI: Add improved help text for Primitive / Template
+  + UI: Fix incorrect layout for ticket new/edit
+  + Fix missing flash after edit of group/clone/ms resources
+  + UI: Separated meta attribute mappings from general form help text
+  + Precompile and minify assets when packaging (bsc#951364)
+  + Model: Prefer uname over id to avoid making illegal numeric ids
+  + UI: Use node ID in URI, not name
+  + UI: Handle missing information for tickets
+  + Events: Get rid of moment.js deprecation warning
+  + Cib: Add listing of remote nodes to mini output
+  + Status: Revised status view and confirmation dialogs
+  + Status (nodes): Use body CIB for node list
+  + Status: Update tables at the correct time
+  + UI: Single ajax update on status change (bsc#951364)
+  + UI: Implement ticket listing using ajax (bsc#951364)
+  + Status: Better handling of long resource names in status view
+  + Status: Cleaned up and improved detail views
+  + Status: Fix broken confirmation dialogs
+  + Status: Show ticket status even if no local constraint is defined
+  + Cib: Implement running_on for resources in model
+  + Status: Show more details for tickets
+  + Add elsewhere status for tickets (bsc#952861)
+  + Layout: Put simulator and flashes in container
+  + Modified simulator styling
+  + Status: Clean up URLs in ticket UI
+  + Add Cib meta and edit routes
+  + Model: List all children in Resource.all
+  + Model: Enable editing node attributes
+  + UI: Revised footer / meta data display
+  + UI: Add new Cib edit and show views
+  + UI: Add new node edit view
+  + Clearer titles for ACL Roles and Targets pages
+  + UI: Fix non-circular status circle
+  + UI: Reorganize sidebar
+  + Controller: Include templates in complete resource listing
+  + UI: Link back button in edit forms to Cib edit view
+  + UI: Link graph view to Cib edit view
+  + UI: Add templates to the add a resource screen
+  + Cib: Add more Cib metadata to details pane
+  + Cib: Cleaned up constraints data in cib
+  + Status: Revised status UI
+  + Status: Fix case of template listing
+  + Colocation: Re-enable configuring node attribute for colocations
+  + Cib: Clean up old-style ruby code
+  + Controller: Clean up TicketsController
+  + CibController: Return error message for json
+  + Cib: Fix bug in previous clean-up
+  + Status: Don't include constraints in tags
+  + Status: Handle multiple levels of nesting in resources
+  + Status: Filter out tags without resources from status
+  + UI: Fix simulator header for rightbar layout
+  + Cib: Find current cib even if parameter name is :id, not :cib_id
+  + UI: Improved modal for agent info
+  + Routing: Reorganize UI to fix routing issues
+  + Command Log: Log simulator commands into separate command log (bsc#950618)
+  + UI: Add create shortcut to resource/constraint edit screens
+  + Status: Add Recent events for nodes and resources
+  + Status: Include children in recent events
+  + UI: Better icons for configuration edit screens
+  + UI: Add hawk logo to top bar
+  + UI: Hide timeout warning if user is navigating away
+  + Fix hang checking schema version
+  + UI: Fix issue with agents that have no description (bsc#956463)
+
+-------------------------------------------------------------------
+Wed Nov 25 12:30:36 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.1+git.1448454104.9e71083:
+  + Model: Require Invoker properly (bsc#956446)
+  + Fix 'illegal argument Symbol to Attribute constructor' error (bsc#956446)
+  + Location: Fix constraint bug after error (bsc#953847)
+  + Show name of currently logged in user
+  + Clean up command log entries
+  + ACL: Fix ACL enabled check
+  + Dashboard: Update epoch tracking correctly
+  + Colocation: Don't crash on missing node-attr
+  + Model: Fix removal of last item in attrlist
+  + Cib: Support optional mini query parameter
+
+-------------------------------------------------------------------
+Thu Nov 19 14:08:17 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.1+git.1447941962.3d88e5f:
+  + Enable 404 page in production (bsc#953846)
+  + Location: Fix crash on empty create (bsc#953847)
+  + Status: Rename name column to ID (bsc#953158)
+  + Location: Add support for resource-discovery (bsc#952191)
+
+-------------------------------------------------------------------
+Tue Nov 17 12:40:19 UTC 2015 - kgronlund@suse.com
+
+- Disable rubygem bundling 
+
+-------------------------------------------------------------------
+Mon Nov 16 17:02:17 UTC 2015 - kgronlund@suse.com
+
+- Clean up package description (bsc#952794) 
+
+-------------------------------------------------------------------
+Mon Nov 09 02:34:56 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.1+git.1447036244.df8e574:
+  + Update translations
+  + Enable access logging (bsc#950572)
+  + Wizard: GFS2 is supported in SLE12+
+  + Swap certificate and private key if inverted (bsc#954159)
+  + Fix back link in templates
+  + Reflect actual language choice in profile view
+  + Calling crm script would fail for users other than hacluster
+  + Narrow the range of commands hawk_invoke accepts
+  + redirect unknown routes to root
+  + properly format form error messages
+  + disable showColumns for all bootstrap-tables
+  + Handle cloned groups when calculating resource locations
+  + Dashboard: More resilient cluster copy
+  + Dashboard: Force a refresh after a connection failure
+  + Cib: Link to configuration screen from STONITH error message
+  + Status: Don't show error when leaving status page
+  + Show node ID on details pane
+  + Wizard: Parameter example is not a placeholder value
+  + Dashboard: Revised rendering with resource labels
+  + Status: Escape quotes in tooltip
+
+-------------------------------------------------------------------
+Wed Nov 04 06:52:41 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.1+git.1446573432.048f37e:
+  + Cib: Handle multiple nest levels in mini (bsc#953417)
+  + Location: Fix rule_elem typo (bsc#953419)
+  + Fix RecordNotFound error
+
+-------------------------------------------------------------------
+Fri Oct 30 09:38:24 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.1+git.1446137442.d9c6c0e:
+  + Simulator: Fix ticket simulation (bsc#952489)
+
+-------------------------------------------------------------------
+Wed Oct 28 16:15:17 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.1+git.1446048276.98c4de1 (bsc#952441):
+  + Fix help text for clone / multi-state (bsc#952439)
+  + Dashboard: Fix ownership of dashboard config (bsc#952442)
+  + Dashboard: Fix bad error message
+
+-------------------------------------------------------------------
+Tue Oct 27 07:19:42 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.0~alpha1+git.1445930333.51d3703:
+  + Report: Enable uploading gzipped archives (bsc#952136)
+
+-------------------------------------------------------------------
+Thu Oct 22 21:51:52 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.0~alpha1+git.1445537620.7637b7f:
+  + Dashboard: Blinkenlights display for dashboard (bsc#951584)
+  + Command Log: Tag simulated commands (bsc#950618)
+
+-------------------------------------------------------------------
+Wed Oct 21 16:03:52 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.0~alpha1+git.1445441661.907341b:
+  + View: Fix overlapping growl notifications (bsc#950626)
+  + Cib: Patch remote node state from resource (bsc#949240)
+  + Cib: Don't try to read CIB XML if cluster is not running
+  + Dashboard: Fix adding/removing clusters
+  + Status: Show unclean status as error
+
+-------------------------------------------------------------------
+Mon Oct 19 16:15:14 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.0~alpha1+git.1445271072.1114d0a:
+  + Wizard: Disable apply button correctly (bsc#950617)
+  + Wizard: Allow resubmit if password is edited (bsc#950605)
+  + Wizard: Strip Password: prompt from stderr output (bsc#950605)
+  + Ticket: Use correct ID and disable ticket grant/revoke in simulator (bsc#950624) (bsc#950630)
+  + Ticket: Display Ticket ID in tables (bsc#950624)
+  + Ticket: Add Details pane for tickets
+  + Status: Add edit link to resources and tickets (bsc#950599)
+  + Wizard: Only allow CIB-only wizards in simulator mode (bsc#950630)
+  + Add wizard application to command log (bsc#950588)
+  + View: Show validation tooltip (bsc#950465)
+  + Improved quoting for wizard parameters in command log (bsc#950588)
+
+-------------------------------------------------------------------
+Thu Oct 15 22:35:34 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.0~alpha1+git.1444948199.57048c0:
+  + Add missing descriptions for clone/multistate resource options
+  + Require fast_gettext >= 0.9.2
+
+-------------------------------------------------------------------
+Thu Oct 15 06:40:58 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.0~alpha1+git.1444890849.7fa23f3:
+  + Don't insert nil as error in Record, and don't crash if error is nil (bsc#950325)
+  + Command Log: Hide some invocations from log (bsc#950329)
+  + New favicon
+
+-------------------------------------------------------------------
+Tue Oct 13 07:20:01 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.0~alpha1+git.1444693784.7d65d43:
+  + Don't crash if tagged resource is stateless (bsc#950072)
+  + Status: Filter out tagged records that aren't resources (bsc#950072)
+  + Rails complains if we don't skip the CORS after_filter (bsc#950070)
+  + after-filters don't work on live controllers (bsc#950070)
+  + Add missing OPTIONS route for /monitor (bsc#950070)
+
+-------------------------------------------------------------------
+Mon Oct 12 12:12:21 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.0~alpha1+git.1444651897.824bd0b:
+  + Status: Fix state calculation for multi-state resources (fate#318288)
+  + Status: Display resource action dropdown above table
+  + Status: Fix promote/demote actions
+  + Relax gettext_i18n_rails dependency
+
+-------------------------------------------------------------------
+Mon Oct 12 09:15:29 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.0~alpha1+git.1444641059.112bbcf:
+  + Status: Fixed nested resources view (fate#318286)
+  + Fix bug in parameter shortdesc display for certain agents
+  + Status: Fix display of tag resources (fate#318288)
+  + Status: Fix state calculation for tags
+  + Status: Display clones in resources list
+  + Status: Fixed display of state for m/s
+
+-------------------------------------------------------------------
+Thu Oct 08 21:49:38 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.0~alpha1+git.1444318089.6dd31cf:
+  + Cib: More informative error message when node is unclean (fate#318287)
+  + Cib: Make standby a separate state variable so the indicators work properly
+    (fate#318297) (fate#318296) (fate#318288)
+  + Report: Show last diff on last transition
+  + Report: diff: Don't show error unless there actually was an error
+  + Resources: Fix agent link for non-templates
+  + Resources: Use running_on property to determine location
+  + Resources: Show instance and failure information on resource details page
+    (fate#318287)
+  + Status: Disable pagination for tickets and nodes (fate#318295)
+  + Status: Hide tickets table when there are no tickets
+  + Node: Split utilization lines correctly (#58)
+
+-------------------------------------------------------------------
+Wed Oct 07 18:49:09 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.0~alpha1+git.1444236681.45aa654:
+  + move simulator panel to the top
+  + rearrange input elements in simulator panel
+  + remember state of simulator toggle on page reloads
+  + Report: Convert problematic characters to _ for download
+  + Report: Better graph styling with img-thumbnail
+  + Report: Handle report filenames containing spaces
+
+-------------------------------------------------------------------
+Wed Oct  7 12:23:17 UTC 2015 - kgronlund@suse.com
+
+- Make gem bundling conditional on SLE or openSUSE (bsc#949046)
+
+-------------------------------------------------------------------
+Wed Oct 07 08:29:47 UTC 2015 - kgronlund@suse.com
+
+- Bundle gems in SLE 12 SP1 (bsc#949046)
+- Remove build dependency on quiet_assets 
+- Update to version 1.0.0~alpha1+git.1444137703.9beb93e:
+  + Update ACL enablement message (bsc#946041)
+  + Fix possible race condition in CrmEvents
+  + enable view for editing location constraints
+  + Changelog: Fix incorrect bug reference (bnc#917428)
+  + Location rules: Score quoting and extra space in <type>:<operation>
+  + Record: Better escaping for fetching xml records
+  + Resource: Include tags in listing
+  + Cib: Inject cib into record
+  + Status: Removed tabs, added tickets and removed constraints
+  + Resources: Cleaned help texts and removed backups
+  + Ticket: Added standby and granted attributes
+  + Resource: Added state and managed attributes
+  + Resource: Added nested resources for status view
+  + Footer: Partial fix for ui glitch
+  + Dashboard: Don't redundantly show tickets as info notices
+  + Simulator: Fix ticket name listing after Cib change
+  + Reimplement /monitor as a Live controller (bsc#947748)
+  + History: Don't crash on reports with no transitions
+  + Report: Improved from/to date inference
+  + Location: Initialize with an empty rule
+  + Fix issues with running hawk in offline mode (bsc#947818)
+  + Reports: Improved available information for reports
+  + Report: Dropdown lists in transition navigation
+  + Cib: Fix bug in offline?
+  + Location: operator must be set
+  + CrmEvents: Preserve log if not too big
+  + Report: Don't confuse errors with transitions
+  + Report: Fix incorrect nesting of node/resource events
+  + Location: Fix destroy action without content
+  + Location: Better defaults for new/empty rule
+  + Invoker: Slightly less inscrutable error message
+  + Monitor: Implement /monitor as live controller (bsc#947748)
+  + Service: 16 threads, 1 process, SIGKILL after timeout
+  + Monitor: Refresh on monitor event
+  + Dashboard: Use /monitor for great success
+  + Resource: Added actions for the resources
+  + Resource: Made the node for migrate and cleanup optional
+  + Colocation: Hide node attribute option (bsc#943591)
+  + ACLs: Small tweak to the enabled? message (bsc#946041)
+  + Refer to ACL Targets, not Users (bsc#946085)
+  + Add help text for ACL Role/Target
+  + Fixed ACL handling (bsc#946229) (bsc#946247)
+  + Cib: all resources now have a :state
+  + Updated crmsh mode for highlight.js
+  + Resource: Cleanup managed
+  + Model: Use the current_cib in resources as much as possible
+  + Invoker: Make logged load updates actual shell commands
+  + Log cibadmin --replace to command log
+  + Basic help text for Cluster Configuration
+  + use MutationObserver to fix the footer issue
+  + Fix the simulator creation redirect flow
+  + Status: Update status circle
+  + fix pull_right icon_tags next to icon_texts in FF
+  + Resource: Added all required actions
+  + Tag: Use validates...presence for array attributes
+  + make the footer on login page sticky
+
+-------------------------------------------------------------------
+Fri Sep 18 13:05:00 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.0~alpha1+git.1442580882.11cc227:
+  + Status: Some reordering and sizing of list items
+  + Reports: Implement generating, uploading, downloading and deleting reports
+  + Report: Show timestamp for transition in tooltip (fate#318281)
+  + Update note on bindfs in README
+  + Sort roles before users (bsc#946053)
+  + Reports: Fix null derefence
+  + Fall back to session storage if cache is disabled (may hit 4k limit)
+  + Change /agent route to handle agents with colon or slash in the name
+  + Fix potential null dereference in wizattrlist
+  + Implement operation editing for primitives and templates (fate#318281)
+  + Redirect to templates list after deleting a template
+
+-------------------------------------------------------------------
+Tue Sep 15 08:56:15 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.0~alpha1+git.1442306372.6b81608:
+  + Primitive: Display template clazz, provider and type correctly
+  + CrmConfig: Default value in help text [fix translation] (bsc#889767)
+  + Commands: Hide command log when shadow CIB is active
+  + Relax version requirement for spring
+
+-------------------------------------------------------------------
+Mon Sep 14 07:36:59 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.0~alpha1+git.1442143739.2d5ab0e:
+  + Simulator: Implement result dialog and simulator controller
+  + Vendor: Add highlight.js
+  + hawk_invoke: Allow simulator to run as hacluster
+  + Stylesheets: Fixed bootstrap imports
+  + Stylesheets: Updated to latest bootstrap-table version
+  + Views: Added listings and fixed confirm dialogs
+  + Added kramdown markdown processor
+  + Listings: Integrated listings for resources and constraints
+  + Attrlist: Removed value preselection
+  + Wizards: Redesigned wizard selection
+  + Assets: Fixed confirm dialogs
+  + Wizards: Fixed stylesheets for general listing
+  + Help: Moved help texts around
+  + Template: Added more flexible attributes and parameters
+  + Primitives: Integrated template behavior into primitives
+  + WIP: Add /commands view (fate#318290)
+  + Explorer: Default to last hour
+  + View: Tags: Fix tags listing
+
+-------------------------------------------------------------------
+Mon Sep  7 15:17:57 UTC 2015 - kgronlund@suse.com
+
+- Add dependency on kramdown for parsing markdown (bsc#944755) 
+
+-------------------------------------------------------------------
+Fri Sep 04 08:10:05 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.0~alpha1+git.1441319582.8c8d426:
+  + Integrate documentation for add resource
+  + Template: Fix broken implementation of crm ra classes
+  + add steps to README Hacking section
+  + Revert broken rewrite in Template
+  + Add agents view to display information about resource agents
+  + Enable showing agent for appropriate resources in resource view
+  + Details view for resources
+  + Add help text for resource templates (bsc#944043)
+  + Add help text for meta attributes
+  + Minor fixes to the wizard param view
+  + CrmConfig: Show default value (if any)
+
+-------------------------------------------------------------------
+Mon Aug 31 06:42:57 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.0~alpha1+git.1441003128.fa0ca82:
+  + Order: Fix validation of score/kind
+  + Colocation: Fix shell_syntax generation for colocation constraints (bsc#940194)
+  + Location: Fix CLI syntax generation for location constraints (bsc#940194)
+  + location: fix validation for location rules
+  + Fix more references to Multi-state resources (bsc#940193)
+  + One more reference to Multi-state (bsc#940193)
+  + Template: Don't include hidden clazz/providers in list
+  + Primitive/Template: Fix class/provider/type selector
+  + Update to Bootstrap 3.3.5 to fix modal page shift bug (twbs/bootstrap#13103)
+  + Graph: Show loading placeholder while generating graph
+  + Constraints: Show score as separate column
+  + Constraints: Fix display of tickets
+  + Wizard: cache list of wizards with 2 hour expiry
+  + Clearer category for legacy wizards (fate#318211)
+  + Dashboard: Set panel frame color based on status
+
+-------------------------------------------------------------------
+Wed Aug 26 22:03:39 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.0~alpha1+git.1440623163.e6e2342:
+  + Primitive: Remove debug inspect (bsc#940194)
+  + CrmScript: error output is not line-by-line, report as a single error notification
+
+-------------------------------------------------------------------
+Wed Aug 26 16:13:00 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.0~alpha1+git.1440604736.8fb27d9:
+  + Dashboard: Add details pane, now at feature parity with old UI (bsc#808703)
+  + Cib: Remove tags and constraints from mini CIB
+  + Status: Show tickets in constraints list
+  + Stylesheets: Fixed multiple alert boxes
+  + CrmScript: Pass data to crm via tempfile
+  + CrmScript: Handle output from script correctly
+  + Wizard: Implemented views for wizards (fate#318482) (fate#318211) (fate#318281)
+  + Status: Clone resources may not have a default instance (bsc#938798)
+
+-------------------------------------------------------------------
+Tue Aug 25 10:39:26 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.0~alpha1+git.1440497150.ec9656c:
+  + Wizard: html-escape descriptions since they may contain <, >, etc., and simple_format would strip them
+  + Wizard: @loaded should not be an accessible attribute
+  + Wizard: Reworked wizard model structure
+  + Wizard: Improved client-side validation for wizards
+  + Wizard: Fix styling of generated form controls
+  + Wizard: Improved handling for substeps
+  + Config: Require fileutils in puma.rb
+  + Create Node model objects via Cib to get correct node state (fate#318281)
+  + Node: Hide fence control if STONITH is disabled
+  + View: Very basic implementation of resources and constraints tabs in status display
+  + Show all resources, not just groups
+  + Don't hide the help text on mouseleave
+  + Explorer: Report::Upload now saves report correctly
+  + Render graph as svg instead of png
+- Add provides for ha-cluster-webui (bsc#942723)
+
+-------------------------------------------------------------------
+Fri Aug 14 11:30:50 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.0~alpha1+git.1439476251.f3c7344:
+  + Wizard: Better formatting for longdesc
+  + Wizard: Improved help display
+  + Model: Fix display of operation errors (bsc#938702)
+  + Model: Show description of rc for failed operation
+  + CrmScript: Fix invocation of splitline
+
+-------------------------------------------------------------------
+Wed Aug 12 06:12:14 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.0~alpha1+git.1439303419.9ae3a70:
+  + hawk_invoke: Allow hawk to invoke crm report (bsc#941308)
+
+-------------------------------------------------------------------
+Thu Aug 06 06:51:54 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.0~alpha1+git.1438843863.671db31:
+  + Relax requirement for js-routes
+
+-------------------------------------------------------------------
+Wed Aug  5 11:15:20 UTC 2015 - kgronlund@suse.com
+
+- Provide new hawk UI as a new package (bsc#940628) 
+
+-------------------------------------------------------------------
+Wed Aug 05 11:10:57 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.0~alpha1+git.1438696250.7574201:
+  + Util: Remove PerRequestCache, use Rails.cache instead
+  + Don't cache ACL enabled check (possibly slower, but safer)
+
+-------------------------------------------------------------------
+Tue Aug 04 09:00:34 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.0~alpha1+git.1438678796.97668bf:
+  + hawk_invoke: Fix bug in allow_root call (fate#318281)
+  + Gemfile: Relax web-console requirement
+  + Gemfile: Relax puma version requirement
+  + View: Add well with step description
+  + Naming of master/slave resources (switch to "multi-state resources") (bsc#940193) (bsc#940205)
+
+-------------------------------------------------------------------
+Fri Jul 10 10:19:39 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.0~alpha1+git.1436521428.f08859d:
+  + Add a :nostonith status code
+  + Config: Enable gzip compression
+  + Model: New Wizard model
+  + Model: Don't use PTY to implement wizard backend, add support for running as root (fate#318281)
+  + Status: Started to rebuild the status page
+  + Status: Display error messages on status page correctly
+  + Status: Synced icons correct with previous commits
+  + Nodes: Moved the actions to a proper place within table view
+  + Navigation: Reordered menu entries
+  + Assets: Stretch responsive image to full width
+  + Dashboard: Add multi-cluster dashboard
+  + CrmScript: Utility for executing cluster scripts.
+  + Monitor: Only update on epoch change
+  + Views: Removed development navigation
+  + View: Cleaner page render by setting image size
+  + View: Add categories for wizards (fate#318211)
+  + View: In-progress view for new wizards
+  + View: 4-3-2 layout in dashboard
+  + View: Fix location of flash in withrightbar layout
+  + View: Rebalance withrightbar layout
+  + View: Rebalance large screen layout to match withrightbar
+  + View: Display indicators for verify / apply steps
+
+-------------------------------------------------------------------
+Fri Jul 03 16:48:59 UTC 2015 - kgronlund@suse.com
+
+- Update to version 1.0.0~alpha1+git.1435942029.3ca7b05:
+  + New redesigned user interface (fate#318281)
+  + Redesigned status page (fate#318296)
+  + Search for resources (fate#318295)
+  + Manage resources directly on status screen (fate#318288)
+  + Improved error message handling (fate#318287)
+  + Redesigned navigation structure (fate#318285)
+  + Redesigned login page (fate#318282)
+  + Model: Updated and integrated model for tags (fate#318319)
+  + Model: Add Cluster model for dashboard (bsc#808703)
+  + Initial version of revamped cluster dashboard using new UI (fate#318281)
+  + Dashboard: Better status display (including tickets)
+  + Locale: Just forget the browser locale settings
+  + Config: Hawk is not thread-safe: Configure a single thread by default (bsc#934749)
+  + Scripts: Send SIGINT to stop puma
+  + Scripts: Update the sysvinit scripts for hawk to use puma
+
+-------------------------------------------------------------------
+Fri Jun 26 08:25:29 UTC 2015 - kgronlund@suse.com
+
+- Require dejavu so graphviz works correctly (bsc#931950) 
+
+-------------------------------------------------------------------
+Thu Jun 11 14:46:38 UTC 2015 - kgronlund@suse.com
+
+- Update to version 0.7.0+git.1434033948.69e3e11:
+  + Build: Reduce ruby_parser requirement to be >= 3.6.6, < 4.0
+  + Service: Reduce number of threads to 1 since the old app is not thread safe (bsc#934749)
+
+-------------------------------------------------------------------
+Thu Jun 11 00:26:00 UTC 2015 - kgronlund@suse.com
+
+- Update to version 0.7.0+git.1433982319.3b31e49:
+  + Build: Fix GEM_PATH
+
+-------------------------------------------------------------------
+Mon Jun 08 15:06:38 UTC 2015 - kgronlund@suse.com
+
+- Update to version 0.7.0+git.1433775810.76d9c05:
+  + Build: Update Gemfile to include dependencies for new UI
+  + Reports: use crm report to generate and pass -Q for improved generation speed
+  + Controller: Always render graph png and but show errors as flash (bsc#931837)
+
+-------------------------------------------------------------------
+Fri May 15 20:49:10 UTC 2015 - kgronlund@suse.com
+
+- Require rake only in openSUSE 13.1 and earlier 
+
+-------------------------------------------------------------------
+Sun May  3 08:43:56 UTC 2015 - kgronlund@suse.com
+
+- Make more transitive gem requires explicit to resolve ambiguities
+
+-------------------------------------------------------------------
+Fri May 01 13:48:25 UTC 2015 - opensuse-packaging@opensuse.org
+
+- Update to version 0.7.0+git.1430487883.d57df13:
+  + Wizard: Split cLVM wizard in two (bsc#924420)
+  + Build: Add --local flag to bundle install when bundling gems
+  + Build: Require mail 2.6 to resolve build ambiguity
+
+-------------------------------------------------------------------
+Sun Apr 26 19:57:09 UTC 2015 - kgronlund@suse.com
+
+- Update to version 0.7.0+git.1430078135.9e13c3c:
+  + Controller: Use sanitize() to enable HTML in the primitive editing flash
+  + Model: Fix use of @errors before it is created in CibObject
+  + Model: Add model object for CIB tags
+  + Model: Add @tags list in Cib object, feature check for tags support
+  + Model: Store template reference and node id in Cib elements
+  + Wizard: First version of MariaDB wizard (fate#318550)
+  + Model: No need to feature-check when getting tags from CIB
+  + Model: Improving the Tag model object
+  + CibController: Add tags to output
+  + Wizard: Remove GFS2 wizard (bsc#923964)
+  + Wizard: Reorder wizards in the UI
+  + Gemfile: Require sprockets ~> 3.0
+  + Vagrant: Install a dummy index.html for the clustered web servers
+
+-------------------------------------------------------------------
+Thu Apr 02 06:05:17 UTC 2015 - kgronlund@suse.com
+
+- Update to version 0.7.0+git.1427954675.b847dc9:
+  + GUI: Fix error display css
+  + GUI: Redirect to new after creating, add link to edit created resource (bsc#921762)
+  + Wizard: Add sbd_device as explicit parameter (bsc#924407)
+  + Wizard: Remove cmirrord from cLVM wizard (bsc#924414)
+  + Wizard: Fix check for CIB write access (bsc#924429)
+
+-------------------------------------------------------------------
+Wed Mar 25 13:51:08 UTC 2015 - kgronlund@suse.com
+
+- Depend strictly on supported versions of rubygems 
+
+-------------------------------------------------------------------
+Wed Mar 25 10:19:31 UTC 2015 - kgronlund@suse.com
+
+- Depend on exact tilt version required (1.4) 
+
+-------------------------------------------------------------------
+Thu Mar 19 13:12:14 UTC 2015 - kgronlund@suse.com
+
+- Add build dependency on git 
+
+-------------------------------------------------------------------
+Thu Mar 19 09:02:38 UTC 2015 - kgronlund@suse.com
+
+- Update to version 0.7.0+git.1426755371.189d4a2:
+  + Rely on hawk to pull in production dependencies
+  + Reorder dependency install to avoid tilt trap
+  + Rails 4: Fix use of @errors hash vs. array
+
+-------------------------------------------------------------------
+Wed Mar 18 12:58:59 UTC 2015 - kgronlund@suse.com
+
+- Update to version 0.7.0+git.1426677126.2ef8f08:
+  + Vagrant: Increase development worker:thread count to 2:2
+  + Build: Update rpm/hawk.spec
+
+-------------------------------------------------------------------
+Wed Mar 18 11:10:54 UTC 2015 - kgronlund@suse.com
+
+- Make dependency on tilt >= 1.4, < 2.0
+
+-------------------------------------------------------------------
+Tue Mar 17 15:26:48 UTC 2015 - kgronlund@suse.com
+
+- Update to version 0.7.0+git.1426603924.3cb835b:
+  + Vagrant: Reduce number of workers in dev mode
+  + Misc: Reduce number of server workers/threads
+  + Chef: Fix spelling
+  + Vagrant: retain insecure key
+
+-------------------------------------------------------------------
+Tue Mar 17 13:05:14 UTC 2015 - tboerger@suse.com
+
+- Extended _service file to get changes generated as well
+- Update to version 0.7.0+git.1426595507.808c2cc:
+  + Removed active record related files
+  + Fixed paths in systemd service template
+  + We don't want to load all rails components
+  + Fixed error messages within forms
+  + Removed redundant repo addition
+  + Updated submodule references
+
+-------------------------------------------------------------------
+Mon Mar 16 11:35:04 UTC 2015 - tboerger@suse.com
+
+- Removed filter-requires.sh as it's not used anymore
+- Create the sysconfig directory for the SSL certs
+- Get rid of hawk_ruby_abi in favor of default ruby abi
+
+-------------------------------------------------------------------
+Wed Mar 11 14:44:27 UTC 2015 - kgronlund@suse.com
+
+- Update to git#25ecd9f
+  - Misc: Run ExecStartPre= as root to generate certificate 
+
+-------------------------------------------------------------------
+Fri Mar  6 09:39:57 UTC 2015 - kgronlund@suse.com
+
+- Update to git#4717cb9
+  - Misc: Correct path to SSL certificate 
+
+-------------------------------------------------------------------
+Thu Mar  5 14:11:29 UTC 2015 - kgronlund@suse.com
+
+- Update to git#ecf0fd4
+  - Build: Allow bundling web-console 2.1.0 
+
+-------------------------------------------------------------------
+Thu Mar  5 07:29:49 UTC 2015 - kgronlund@suse.com
+
+- Update to git#062915d
+  - Fixed path for pregenerating ssl certs
+  - Build: Add a fillup template for hawk
+  - Integrated puma as a lighttpd replacement (fate#317078)
+  - Moved monitor functionality into a controller
+  - Build: Update spec file
+
+-------------------------------------------------------------------
+Thu Feb 19 15:05:17 UTC 2015 - kgronlund@suse.com
+
+- Update to git#eb17098
+  - Wizard: Fix incorrect step index display (bnc#889907)
+  - GUI: Refer to peinputs by the full name to avoid confusion with pe-warn files (bnc#917131)
+  - GUI: Handle uncompressed peinput files correctly (bnc#917131)
+  - Restructuring for rails upgrade to version 4.2.0
+  - Disable forgery protection, else gettext wont work
+  - Added quiet_assets to development
+  - Moved rpm related stuff into subfolder
+  - Misc: Remove references to individual rubygems in the README (rather than trying to keep the list up-to-date)
+  - Build: Update spec file for Rails 4
+  - Wizard: Detect missing secret key base
+  - Tools: Drop extraneous groups when becoming haclient in hawk_invoke
+
+-------------------------------------------------------------------
+Fri Jan 16 05:18:53 UTC 2015 - kgronlund@suse.com
+
+- Wizard: Clarify netmask format
+- Wizard: Fix bug in virtual-ip workflow
+- Wizard: Fix bug in sbd workflow
+- Wizard: Fix bug in filesystem workflow
+- Wizard: Fix bugs in SAP workflows
+
+-------------------------------------------------------------------
+Fri Jan  9 09:02:07 UTC 2015 - kgronlund@suse.com
+
+- Wizard: Initial workflow for Oracle DB (fate#318152)
+- Wizard: Create workflow for creating a Virtual IP resource.
+- Wizard: Create workflow for creating a filesystem resource.
+- Wizard: Add initial DRBD workflow
+- Wizard: Translate crmsh clvm template to hawk wizard
+- Wizard: Add initial GFS2 wizard
+- Wizard: Initial workflow for SBD
+- Wizard: Add initial DB2 HADR wizard (fate#318155)
+- Wizard: Initial workflow for DB2 (fate#318154)
+- Wizard: More modern example filesystems
+- Misc: application_controller: rescue_action_without_handler is deprecated 
+
+-------------------------------------------------------------------
+Wed Sep 10 13:50:46 UTC 2014 - mrueckert@suse.de
+
+- move away from package name dependencies
+
+-------------------------------------------------------------------
+Tue Sep  9 10:12:31 UTC 2014 - kgronlund@suse.com
+
+- Update dependency on rubygem(bundler) (bnc#895646) 
+
+-------------------------------------------------------------------
+Fri Sep  5 07:42:12 UTC 2014 - kgronlund@suse.com
+
+- Wizard: Indicate progress through wizard (bnc#889907)
+- GUI: status: Add support for exit-reason (bnc#889914)
+- Upstream version cs:1344649
+
+-------------------------------------------------------------------
+Fri Aug 29 09:46:38 UTC 2014 - kgronlund@suse.com
+
+- ACLs: Implement support for Pacemaker ACL schema 2.0 (bnc#894012)
+- GUI: Detect and disable ACLs if CIB schema version is < 2.0
+- Upstream version cs:2af06a0 
+
+-------------------------------------------------------------------
+Wed Jul 30 09:59:29 UTC 2014 - kgronlund@suse.com
+
+- Wizard: nfsserver: Enable and start service (bnc#888581)
+- Misc: Update translations
+- Upstream version cs:f13164c
+
+-------------------------------------------------------------------
+Fri Jul  4 09:06:06 UTC 2014 - tserong@suse.com
+
+- Misc: Update translations
+- Misc: invoker: Add case insensitive error check in fudge_error
+- Misc: invoker: ruby 1.8.7 compatiblity for splat in invoke_crm
+- Upstream version cs:1f54873
+- Removed patch:
+  + always-unpack-resource-state.patch (upstream)
+
+-------------------------------------------------------------------
+Fri Jun 20 16:27:13 UTC 2014 - tserong@suse.com
+
+- Unpack resource state even for offline nodes (ensures pending stops are
+  visible when node goes on standby, bnc#883517)
+  + always-unpack-resource-state.patch
+
+-------------------------------------------------------------------
+Tue Jun  3 14:18:25 UTC 2014 - tserong@suse.com
+
+- GUI: Add Help to Tools menu (links to SLE HA docs, bnc#877337)
+- Misc: Replace popen3 invocations with capture3 to avoid deadlocks when
+  dealing with excessively large STDERR output (bnc#878597)
+- Misc: Cib model: Correctly show node as unclean/offline if no node
+  state in CIB
+- Misc: Theme 404, 422 and 500 error pages (bnc#872655)
+- Build: Regenerate POT file
+- Upstream version cs:1323d43
+
+-------------------------------------------------------------------
+Mon Jun  2 10:21:46 UTC 2014 - tserong@suse.com
+
+- GUI: status: Display resources as unmanaged if per-resource maintenance
+  mode set (bnc#863071)
+- GUI: dashboard: Use gettext for "Geo Site" string
+- GUI: dashboard: Don't put cluster in geoset if booth.me not set
+- GUI: dashboard: Add info tooltip listing geo sites and arbitrators
+- Misc: Cib model: Remove spurious `crm_mon -s` invocation
+- Misc: routes: Add manage/unmanage to resource API
+- Misc: Lock session_secret during initial creation to prevent obscure race
+- Misc: ApplicationController: Fix exit code check in cluster_online()
+- Misc: Use "Cluster Configuration" intead of "Properties" for configuration
+  tab toolip
+- Build: Regenerate POT file
+- Upstream version cs:74516b0
+
+-------------------------------------------------------------------
+Tue May 27 12:03:27 UTC 2014 - tserong@suse.com
+
+- GUI: status: Flag when booth inaccessible or out of sync (bnc#874168)
+- GUI: status: Add 'elsewhere' state for tickets not granted to current
+  site (bnc#877482)
+- GUI: status: Always show tickets defined in booth config
+- GUI: status: Use yyyy-mm-dd hh:mm:ss format for ticket last granted
+- GUI: status: Show resources with failed stop as 'failed', in red
+  (bnc#879034)
+- Misc: Cib model: Only try `booth client list` if @booth[:me] set
+- Misc: Cib model: Handle unquoted strings in booth.conf (bnc#879604)
+- Misc: Cib model: Handle stale pending stop ops (bnc#879034)
+- Misc: Cib model: Flag node as unclean on failed stop
+- Build: Regenerate POT file
+- Upstream version cs:d14ab42
+
+-------------------------------------------------------------------
+Tue May 20 11:18:29 UTC 2014 - tserong@suse.com
+
+- GUI: status: Ensure monitor requests aren't cached (bnc#854423)
+- Upstream version cs:dbf4123
+
+-------------------------------------------------------------------
+Mon May 19 12:10:06 UTC 2014 - tserong@suse.com
+
+- Misc: explorer: Handle exceptions when user supplies invalid date string
+- Misc: explorer: Redirect to display page once hb_report run complete
+- Build: Regenerate POT file
+- Upstream version cs:f9b08ae
+
+-------------------------------------------------------------------
+Tue May  6 08:41:34 UTC 2014 - tserong@suse.com
+
+- GUI: Resource editor: Expose OCF_CHECK_LEVEL (bnc#866460)
+- Misc: Util: Fix has_feature? test for rsc_ticket and rsc_template
+- Build: Regenerate POT file
+- Upstream version cs:01065c2
+
+-------------------------------------------------------------------
+Mon May  5 11:28:17 UTC 2014 - tserong@suse.com
+
+- GUI: status: Show booth leader, expiry on tickets if available (bnc#874168)
+- GUI: Add Preferences dialog to allow choosing UI language
+- GUI: explorer: Hide upload field when displaying cached report
+- GUI: hb_report: Fix localization of close button
+- Build: Regenerate POT file
+- Upstream version cs:2b8fb86
+
+-------------------------------------------------------------------
+Thu Apr 10 05:25:35 UTC 2014 - tserong@suse.com
+
+- GUI: Prompt before deleting resources, constraints, etc.
+- GUI: Use --force when deleting resources, constraints, etc. (bnc#872290)
+- GUI: Linebreak crmsh error output when manipulating resources (bnc#872287)
+- Misc: Drop explicit "commit" from crmsh invocations (removes duplicate
+  warnings, bnc#872287)
+- Misc: wizard: Ensure hawk creates the crm state file (bnc#871636)
+- Build: Regenerate POT file
+- Upstream version cs:c645421
+
+-------------------------------------------------------------------
+Mon Mar 31 10:40:48 UTC 2014 - tserong@suse.com
+
+- Misc: crm_config editor: Don't create empty property sets (bnc#871098)
+- Build: Regenerate POT file
+- Upstream version cs:de633bb
+
+-------------------------------------------------------------------
+Fri Mar 28 11:13:37 UTC 2014 - tserong@suse.com
+
+- GUI: explorer: Show filename instead of time range when viewing uploaded report
+- GUI: explorer: Fix links to peinput for uploaded reports
+- Build: Ensure tmp/explorer/uploads directory exists
+- Build: Regenerate POT file, update copyright date in footer
+- Upstream version cs:cfa7477
+
+-------------------------------------------------------------------
+Mon Mar 17 04:23:08 UTC 2014 - tserong@suse.com
+
+- Reinstate /usr/sbin/rchawk compatibility symlink
+
+-------------------------------------------------------------------
+Fri Mar 14 07:24:57 UTC 2014 - tserong@suse.com
+
+- GUI: Location constraint editor: Support resource sets (bnc#867881)
+- GUI: panel_view: Show managed indicator when viewing by type
+- GUI: panel_view: Show error indicator for failed resources when viewing by type
+- GUI: panel_view: Don't show "undefined" for stopped resources when viewing by type
+- Misc: Add systemd service file (bnc#863249)
+- Build: Regenerate POT file
+- Upstream version cs:79cf929
+
+-------------------------------------------------------------------
+Mon Mar  3 10:20:39 UTC 2014 - tserong@suse.com
+
+- GUI: wizard: Add NFS Server workflow (fate#315163)
+- GUI: panel_view: Add "view by type" toggle (fate#316303)
+- GUI: status: Show resource class:provider:type in mouseover
+- Build: Regenerate POT file
+- Upstream version cs:910a788
+
+-------------------------------------------------------------------
+Fri Feb 14 11:57:39 UTC 2014 - tserong@suse.com
+
+- GUI: dashboard: Add display of Geo cluster sites (fate#316119)
+- GUI: Add ability to grant/revoke tickets via booth (fate#316119)
+- GUI: wizard: Prevent access if CIB not writable by user (fate#316465)
+- GUI: wizard: Remove O2CB from OCFS2 templates (bnc#862757)
+- Build: Regenerate POT file
+- Upstream version:47ad90f
+
+-------------------------------------------------------------------
+Mon Jan 27 07:26:42 UTC 2014 - tserong@suse.com
+
+- GUI: Add ACL editor (fate#310170)
+- GUI: explorer: Add ability to upload hb_reports (fate#313354)
+- Build: Set xgettext options (ensures POT file keeps comments)
+- Build: Regenerate POT file
+- Upstream version cs:6af5e14
+
+-------------------------------------------------------------------
+Thu Dec 19 13:10:51 UTC 2013 - tserong@suse.com
+
+- GUI: explorer: Warn if transition from different Pacemaker version
+  (fate#314392)
+- GUI: explorer: Show diff link on every line
+- Upstream version cs:5cd8197
+
+-------------------------------------------------------------------
+Fri Dec  6 12:13:34 UTC 2013 - tserong@suse.com
+
+- GUI: ui.popupmenu: Ensure menu appears over simulator dialog
+- Misc: hb_report: Catch ArgumentError when parsing hb_report output
+  (bnc#854060)
+- Misc: Use crm_simulate instead of ptest (bnc#854050)
+- Misc: Node model: Find nodes by uname (bnc#854039)
+- Build: Various minor cleanup for travis-ci integration
+- Build: Use brakeman instead of scanny for security testing
+- Build: Bump spec file version to 0.6.2
+- Upstream version cs:d28c6e8
+
+-------------------------------------------------------------------
+Fri Nov 15 11:09:20 UTC 2013 - tserong@suse.com
+
+- Build: Set TEXTDOMAIN=hawk (needed by gettext 3.x)
+- Misc: crm_config: check properties exist before flagging readonly
+- Upstream version cs:b11f8c7
+
+-------------------------------------------------------------------
+Mon Sep 30 08:37:19 UTC 2013 - tserong@suse.com
+
+- Build: Require rubypick for FC19+
+- Misc: wizard: Allow multiple instances of the same template (fate#314396)
+- Doc: wizard: Add information about template name/type to wizard.txt
+- Upstream version cs:6917434
+
+-------------------------------------------------------------------
+Tue Aug 20 10:16:45 UTC 2013 - tserong@suse.com
+
+- Misc: Primitive model: Use crm_resource --show-metadata rather than
+  lrmd_test for extrating RA metadata
+- Upstream version cs:ab692f7
+
+-------------------------------------------------------------------
+Tue Aug 20 08:30:44 UTC 2013 - tserong@suse.com
+
+- Misc: Cib model: Ensure orphaned resources with same ID as clone parent
+  are ignored (bnc#834198)
+- Upstream version cs:4ed4047
+- Add _service file to automatically pull from git.   It can be invoked
+  locally by "osc service disabledrun"
+
+-------------------------------------------------------------------
+Tue Jul 23 10:57:18 UTC 2013 - tserong@suse.com
+
+- Rails3: Set random secret_token instead of deprecated cookie_secret
+  (bnc#827940)
+- Build: Require rails 3.2+, but < 4.0
+- Upstream version cs:34291c6
+
+-------------------------------------------------------------------
+Wed Jun 26 10:05:10 UTC 2013 - tserong@suse.com
+
+- GUI: Fix broken French translation of node status (bnc#825949)
+- Build: Only Bundle Gems on SLES 11
+- Build: Don't ship Gemfile when not using Bundler
+- Build: Ensure BUILD_TAG is from current branch
+- Misc: Don't require rails-i18n
+- Upstream version cs:2ded20b
+
+-------------------------------------------------------------------
+Thu Jun 20 13:34:25 UTC 2013 - tserong@suse.com
+
+- GUI: Primitive editor: Fix default list of resource types
+- Misc: Primitive model: Use PerRequestCache for classes and providers
+- Misc: Use String#ord in fcgi.rb for ruby 1.9 compatibility
+- Misc: Ensure "fcgi" is required after paths are set up properly in
+  dispatch.fcgi
+- Misc: Add /usr/libexec/pacemaker to paths to check for pacemaker binaries
+- Misc: Fix IP address detection in init script (change awk to print fifth
+  field from `ip` instead of last field)
+- Build: Add explicit -lqb to hawk_monitor
+- Build: hawk_monitor: Define cib_diff_notify for build against pcmk 1.1.8
+- Build: Reformat spec file a bit
+- Upstream version cs:ccc67af
+- Remove rails-i18n from Gemfile on Fedora
+  + fc-remove-rails-i18n.patch
+- Allow build to go out to rubygems.org when building for non-SUSE distros
+  + fc-bundler.patch
+
+-------------------------------------------------------------------
+Tue May 28 06:03:51 UTC 2013 - tserong@suse.com
+
+- Remove rdoc from Gemfile.lock
+
+-------------------------------------------------------------------
+Fri May 24 10:20:10 UTC 2013 - tserong@suse.com
+
+- Update bundler.patch to exclude rake & json correctly to fix build
+- Add locale directories explicitly to spec file as find-lang now only
+  picks up .mo files, not the parent directories
+
+-------------------------------------------------------------------
+Wed May 22 09:33:28 UTC 2013 - tserong@suse.com
+
+- Add required libraries explicitly
+  + add-explicit-libs.patch
+
+-------------------------------------------------------------------
+Fri May 10 05:39:55 UTC 2013 - tserong@suse.com
+
+- Build: Bump spec file version to 0.6.1
+- Upstream version cs:334688c
+
+-------------------------------------------------------------------
+Thu May  9 14:05:40 UTC 2013 - tserong@suse.com
+
+- GUI: ui.oplist: Fix duplicate monitor op with 's' suffix in IE
+- Upstream version cs:b7aac5f
+
+-------------------------------------------------------------------
+Wed May  8 08:20:21 UTC 2013 - tserong@suse.com
+
+- Rails3: Fix "unexpected server error 200" deleting resources & constraints
+- Misc: invoker: Don't treat 'crm resource migrate' warning as error
+- Upstream version cs:68ef343
+
+-------------------------------------------------------------------
+Tue May  7 13:28:36 UTC 2013 - tserong@suse.com
+
+- GUI: ui.attrlist, ui.oplist: Allow new row to be added on apply,
+  without having to hit '+' first (bnc#806985)
+- GUI: ui.oplist: Detect duplicate monitor ops when 's' suffix missing
+  from interval
+- GUI: ui.oplist: Fix JS error when editing new non-monitor op
+- GUI: wizard: Remove unused attrlist.js & css from header
+- Upstream version cs:d81f780
+
+-------------------------------------------------------------------
+Mon May  6 09:36:25 UTC 2013 - tserong@suse.com
+
+- Misc: Update translations (bnc#807745)
+- Upstream version cs:358e9a9
+
+-------------------------------------------------------------------
+Fri May  3 05:31:14 UTC 2013 - tserong@suse.com
+
+- GUI: simulator: Ensure inject ticket button appears if tickets available
+- GUI: simulator: Make inject dialog draggable
+- GUI: simulator: Remember injected state when leaving/returning to status
+  screen
+- GUI: wizard: Fix mismatched </form> and </div> tags
+- Misc: Move json2.js include from dashboard to main layout
+- Upstream version cs:9b93b8f
+
+-------------------------------------------------------------------
+Wed May  1 06:03:03 UTC 2013 - tserong@suse.com
+
+- GUI: dashboard: Show correct error message if adding cluster fails in IE
+- GUI: dashboard: Cycle to next node on 500 server error (e.g.: hawk running
+  but cluster down)
+- Build: Add .travis.yml, tweak Gemfile etc. for travis-ci.org testing
+- Upstream version cs:09b798c
+
+-------------------------------------------------------------------
+Mon Apr 29 05:51:35 UTC 2013 - tserong@suse.com
+
+- GUI: panel_view: Show tickets in tree view (bnc#809988)
+- Upstream version cs:ae5c2af
+
+-------------------------------------------------------------------
+Fri Apr 26 13:50:34 UTC 2013 - tserong@suse.com
+
+- GUI: summary_view: Ensure rsc_defaults resource-stickiness is reflected
+  in summary
+- GUI: panel_view: Add rsc_defaults and op_defaults to crm config panel
+- Misc: Cib model: Expose rsc_defaults and op_defaults
+- Misc: Cib model: Don't include default-resource-stickiness if not set
+- Rails3: Move ActionDispatch rescue_responses handling to
+  config/application.rb
+- Upstream version cs:d4baa2f
+
+-------------------------------------------------------------------
+Fri Apr 19 11:49:50 UTC 2013 - tserong@suse.com
+
+- GUI: Status: Auto expand resource details dialog to fit contents
+  (bnc#813458)
+- GUI: simulator: Cancel monitor interval request on inject op dialog close
+- GUI: simulator: Include complete transition summary in details window
+- GUI: dashboard: Support FQDNs
+- GUI: dashboard: Ensure stale requests don't survive after removing a cluster
+- GUI: Ensure cluster diagram isn't stale/cached
+- GUI: ui.location, ui.expression: Trigger dirty event on keyup in
+  select fields
+- Misc: Cib model: Call determine_online_status_fencing if
+  stonith-enabled true
+- Build: Bump spec file version to 0.6.0
+- Build: Regenerate POT file
+- Upstream version cs:e22916b
+
+-------------------------------------------------------------------
+Tue Apr 16 13:46:38 UTC 2013 - tserong@suse.com
+
+- Misc: hawk_monitor: Fix segfault on exit (bnc#812972)
+- Misc: Fix Hawk URL display with >1 defualt route in init script (bnc#811102)
+- Rails3: Clean up rpmlint warnings
+- Upstream version cs:5610216
+
+-------------------------------------------------------------------
+Thu Mar 28 08:31:23 UTC 2013 - tserong@suse.com
+
+- GUI: status: Allow summary panel to stretch to handle long strings
+  (bnc#809991)
+- Upstream version cs:8406e5b
+
+-------------------------------------------------------------------
+Thu Mar 28 04:46:14 UTC 2013 - tserong@suse.com
+
+- GUI: status: Add ability to take nodes on and off maintenance mode
+- GUI: simulator: Make "Run" button restart from current cluster state,
+  not from post-simulate state (bnc#799523)
+- GUI: simulator: Make simulator item in tools menu return to status
+  screen if sim already active
+- GUI: simulator: Divert to status page if simulator activated on explorer
+  page
+- GUI: simulator: Don't allow adding state before cib loaded
+- GUI: Resources, Constraints: Use white for row highligh when simulator
+  active
+- GUI: explorer: remove line numbers & link columns from PE diff display
+  (bnc#807503)
+- Upstream version cs:a32f381
+
+-------------------------------------------------------------------
+Wed Mar 20 09:26:55 UTC 2013 - tserong@suse.com
+
+- GUI: status: Clarify connection failed error messages (bnc#763385)
+- Upstream version cs:d3d683b
+
+-------------------------------------------------------------------
+Mon Mar 18 08:30:27 UTC 2013 - tserong@suse.com
+
+- GUI: status: Show maintenance mode icon for nodes and unmanaged icon
+  for resources (bnc#804898)
+- Upstream version cs:204eaea
+
+-------------------------------------------------------------------
+Thu Mar 14 08:36:45 UTC 2013 - tserong@suse.com
+
+- GUI: Status: Add op timings and history to resource details (bnc#799526)
+- GUI: Status: Center node and resource details dialogs after load
+- Upstream version cs:fd5ff39
+
+-------------------------------------------------------------------
+Wed Mar 13 08:45:23 UTC 2013 - tserong@suse.com
+
+- GUI: Status: Show fail counts for clone instances (bnc#808047)
+- Misc: Fix Czech translation of "simulator" (bnc#807737)
+- Misc: Cib model: Use Util.numeric? for selecting instances
+- Upstream version cs:96dddec
+
+-------------------------------------------------------------------
+Mon Mar 11 14:16:22 UTC 2013 - lmb@suse.com
+
+- Remove news.md installed by gettext from build.
+
+-------------------------------------------------------------------
+Fri Mar  8 10:17:59 UTC 2013 - tserong@suse.com
+
+- GUI: dashboard: Require authentication for monitored clusters (bnc#804345)
+- GUI: dashboard: Clean up error messages and style (bnc#804338)
+- GUI: dashboard: Show spinner when initially loading cluster status
+- GUI: dashboard: Handle monitor timeouts
+- Misc: Persist login cookie for 10 days, rather than just browser session
+- Misc: Cib controller: Prevent unauthenticated R/O access to mini cib
+- Upstream version cs:b21ebfd
+
+-------------------------------------------------------------------
+Tue Mar  5 08:40:02 UTC 2013 - tserong@suse.com
+
+- GUI: dashboard: Don't allow adding the same cluster twice (bnc#806076)
+- GUI: dashboard: Allow ENTER to trigger OK button when adding cluster
+- GUI: status: Record current status page in long-lived cookie (bnc#710931)
+- GUI: explorer: Default to last 24 hours if no times specified (bnc#795796)
+- GUI: Resources, Constraints: Highlight row under mouse cursor (bnc#763801)
+- GUI: ui.expression: Ensure no linebreaks between parens in expression type
+- GUI: ui.attrlist: Clear "keypress_hack" attr_name when adding attribute
+  (bnc#806986)
+- GUI: Add warning to login screen if JavaScript disabled
+- Misc: Update copyright dates (bnc#804726)
+- Misc: Cib model, invoker: Handle EACCES (-13) for permission denied
+  (bnc#797149)
+- Misc: ApplicationController: Default to browser locale (don't use cookie,
+  bnc#806371)
+- Misc: Set lighttpd max-procs=2 (handle simultaneous requests better,
+  bnc#804924)
+- Upstream version cs:2e8607b
+
+-------------------------------------------------------------------
+Sun Feb 24 12:47:29 UTC 2013 - tserong@suse.com
+
+- GUI: status: Add "parent" context menu item for resources (fate#314388)
+- GUI: ui.oplist: Add "Edit" button to new op row (fate#314390)
+- Misc: Cib model: Synthesize clone & ms instance IDs (bnc#799000)
+- Upstream version cs:00d7fbf
+
+-------------------------------------------------------------------
+Mon Feb 11 05:04:46 UTC 2013 - tserong@suse.com
+
+- GUI: status, dashboard: Add state icons for resources, nodes, tickets,
+  error messages (fate#312928)
+- GUI: status: Fix display of error messages without explorer links
+- Upstream version cs:6932c65
+
+-------------------------------------------------------------------
+Sat Feb  9 13:11:10 UTC 2013 - tserong@suse.com
+
+- GUI: explorer: Add "full log" link for more details (fate#314395)
+- Upstream version cs:6283a62
+
+-------------------------------------------------------------------
+Sat Feb  9 10:48:40 UTC 2013 - tserong@suse.com
+
+- GUI: explorer: Add ability to diff between the PE inputs (fate#314389)
+- GUI: explorer: Open detail links in dialog instead of inline
+- Upstream version cs:b141ab6
+
+-------------------------------------------------------------------
+Sat Feb  9 03:55:36 UTC 2013 - tserong@suse.com
+
+- GUI: Status: Link status messages to history explorer (fate#312929)
+- Upstream version cs:c33dc8c
+
+-------------------------------------------------------------------
+Wed Feb  6 13:06:21 UTC 2013 - tserong@suse.com
+
+- GUI: Add dashboard to view status of multiple clusters (fate#310306)
+- GUI: crm_config editor: Expose op_defaults and rsc_defaults (fate#314386)
+- GUI: Add ability to view cluster diagram (fate#313718)
+- Misc: explorer: Fix report deletion, don't run "crm history" as root
+  (bnc#799525)
+- Misc: explorer: Save reports in #{Rails.root}/tmp/explorer
+- Monkey patch for https://github.com/rubygems/rubygems/issues/171
+  (Gem::all_load_paths method is broken in rubygems 1.8.15)
+- GUI: Status: Add "View Details" to resource menu, show fail counts
+  (fate#314391)
+- GUI: Status: Add resource attributes to View Details popup (fate#314387)
+- GUI: Status: Differentiate pending states (fate#314385)
+- GUI: explorer: Add ability to remove old reports (fate#314394)
+- GUI: Simulator: allow regular configuration changes (fate#314393)
+- GUI: Simulator: invoke crm_simulate with -S, not -R (fixes odd final
+  state, bnc#781207)
+- Misc: Workaround deprecated Gem::SourceIndex#add_spec (required to
+  work with rubygems 1.8)
+- Upstream version cs:fc7f5a6
+
+-------------------------------------------------------------------
+Sat Jan 26 13:10:47 UTC 2013 - nkrinner@suse.com
+
+- Added ruby-devel to the BuildRequires to enable building
+- Updated hawk-rpmlintrc to get rid of build errors 
+
+-------------------------------------------------------------------
+Sat Dec 22 05:32:25 UTC 2012 - tserong@suse.com
+
+- Port to rails 3
+
+-------------------------------------------------------------------
+Mon Dec 10 04:42:52 UTC 2012 - tserong@suse.com
+
+- Misc: Cib model: Ignore 'ha' field from node state (dropped in pacemaker)
+- Misc: Invoker: Handle new value of cib_NOTEXISTS (was -22, now -6)
+- Misc: CibObject: Handle emtpy cibadmin output when object doesn't exist
+- Misc: Primitive model: Use new lrmd_test for RA metadata if present
+- Misc: Set sensible default $HOME in ApplicationController
+
+-------------------------------------------------------------------
+Mon Dec 10 03:29:46 UTC 2012 - tserong@suse.com
+
+- Misc: Util: Use user's real $HOME with fallback to per-user temp (bnc#780973)
+- GUI: Constraints: Use !empty? instead of String#any? (ruby 1.9 support)
+- Upstream version cs:c9cfa96
+
+-------------------------------------------------------------------
+Mon Jul  9 07:47:18 UTC 2012 - tserong@suse.com
+
+- GUI: jQuery: Fix AJAX memory leak in IE8 (bnc#764273)
+- GUI: summary_view: Fix IE JS error on detail pane update (bnc#765625)
+- GUI: Primitive editor: Handle RA metadata with missing longdesc (bnc#769724)
+- Upstream version cs:abfe94a
+
+-------------------------------------------------------------------
+Tue Jun 19 08:58:48 UTC 2012 - tserong@suse.com
+
+- Misc: main_controller: Drop ':' from 'when' (ruby 1.9 support)
+- Misc: Primitve, Template models: Fix op hash construction (ruby 1.9 support)
+- Add rubygem-rack-1_1 to requires for openSUSE 12.2
+
+-------------------------------------------------------------------
+Wed Jun 13 08:37:50 UTC 2012 - tserong@suse.com
+
+- Don't try to pack rubygems and ruby-fcgi for openSUSE 12.2
+
+-------------------------------------------------------------------
+Thu Mar 29 07:46:46 UTC 2012 - lmb@novell.com
+
+- Requite appropriate version of pacemaker package for ticket support
+  (bnc#752242, bnc#752241)
+
+-------------------------------------------------------------------
+Tue Mar 27 08:58:52 UTC 2012 - tserong@suse.com
+
+- GUI: summary_view, simulator: Support standby/activate tickets (bnc#752242)
+- GUI: simulator: Sort ticket names in inject dialog
+- Misc: Cib model: Look for ticket state in "/cib/status/tickets/ticket_state"
+- Build: Bump spec file version to 0.5.2
+- Upstream version cs:aca681a3c2fb
+
+-------------------------------------------------------------------
+Fri Mar 16 04:31:20 UTC 2012 - tserong@suse.com
+
+- GUI: summary_view: show last granted time for tickets
+- GUI: summary_view: Allow viewing details of all tickets, nodes,
+  resources simultaneously
+- GUI: summary_view: Right align item counts
+- GUI: simulator: Support granting/revoking tickets
+- GUI: Constraints: Add arrows to ticket constraint display, show
+  loss policy in constraint list
+- Misc: Cib model: Pick up tickets from rsc_ticket constraints in
+  addition to status section
+- Upstream version cs:d1abac6f90da
+
+-------------------------------------------------------------------
+Mon Mar  5 08:32:33 UTC 2012 - tserong@suse.com
+
+- GUI: summary_view: Show ticket status
+- GUI: Add ability to configure ticket constraints
+- Misc: Cib model: Skip pending monitor ops
+- Misc: Update copyright date in footer
+- Upstream version cs:3eff1782dc83
+
+-------------------------------------------------------------------
+Fri Feb 24 06:56:18 UTC 2012 - tserong@suse.com
+
+- Build: Actually die if "rake makemo" fails
+- Misc: Remove obsolete .hu msgids
+- Misc: Workaround deprecated Gem.all_load_paths error
+- Misc: Suppress ror-sec-scanner false positives
+- Upstream version cs:5957498b0c95
+
+-------------------------------------------------------------------
+Fri Feb  3 10:26:24 UTC 2012 - tserong@suse.com
+
+- Misc: hb_report: strip tar timestamp warnings from stderr (bnc#735672)
+- Misc: Colocation model: Don't modify resource list when generating
+  shell command
+- GUI: Primitive editor: Disable "use template" checkbox when editing
+  existing resources
+- Upstream version cs:a5fdb745d8e9
+
+-------------------------------------------------------------------
+Mon Dec 12 10:53:42 UTC 2011 - tserong@suse.com
+
+- GUI: Fix constraint tab when logged in as regular user (was bound to
+  hb_report, bnc#734447)
+- GUI: Constraints: Allow templates in order/colocation (bnc#732277)
+- Misc: Cib model: Add failed probes (OCF_ERR_INSTALLED etc.) to failed_ops
+- Misc: explorer, hb_report: Handle stale pidfiles (bnc#731282)
+- Upstream version cs:ca6df475621b
+
+-------------------------------------------------------------------
+Tue Nov 15 02:34:50 UTC 2011 - tserong@suse.com
+
+- Misc: Primitive model: Fix string interpolation when creating
+  resources (bnc#730136)
+
+-------------------------------------------------------------------
+Mon Nov  7 12:02:47 UTC 2011 - tserong@suse.com
+
+- GUI: Add top-level tab bar for navigation (bnc#723679)
+- GUI: Add top-level resource list/editor
+- GUI: status: Move errorbar to content div, theme to match jquery ui errors
+- GUI: Add support for resource templates
+- GUI: simulator, explorer: show graphs, details etc. in dialog (bnc#726612)
+- GUI: status: Display error if server down or network fault during
+  refresh (bnc#723125)
+- Misc: Fix delay running "/etc/init.d/hawk start" when DNS unavailable
+- Misc: hb_report: strip broken pipe from stderr (bnc#726611)
+- Build: Bump spec file version to 0.5.1
+- Upstream version cs:4ace058c2e06
+
+-------------------------------------------------------------------
+Mon Oct 24 05:27:44 UTC 2011 - tserong@suse.com
+
+- GUI: explorer, hb_report: Better error reporting for "successful" hb_report
+  runs (bnc#723336)
+- GUI: hb_report: Invoke with -Z (remove destination directories)
+- Misc: Refactor: Consolidate hb_report generation from explorer & hb_reports
+  controllers
+- Misc: Update translations
+- Upstream version cs:8ea83e79cded
+
+-------------------------------------------------------------------
+Tue Oct 18 14:16:36 UTC 2011 - tserong@suse.com
+
+- GUI: Simulator: Don't link to empty transition graphs (bnc#723401)
+- GUI: Simulator: Auto-fill monitor interval when injecting ops (bnc#723401)
+- GUI: Simulator: Default node to where resource running when injecting ops
+- GUI: Simulator: More natural control order when injecting ops (resource
+  first)
+- GUI: Simulator: Ensure ENTER doesn't close simulator when injecting ops
+- GUI: Simulator: Handle dialog close event (e.g.: when clicking 'x' in
+  title bar)
+- GUI: Simulator: explicitly hide error bar when (de)activating simulator
+  (bnc#723333)
+- Misc: Cib model: Handle case in simulator CIB where lrm_rsc_op has no
+  id attribute
+- Misc: hawk_{invoke,chkpwd}: Handle case where user's GID has no name
+  so login fails (bnc#723512)
+- Upstream version cs:35b82f1ce6e4
+
+-------------------------------------------------------------------
+Mon Oct 10 04:42:06 UTC 2011 - tserong@suse.com
+
+- Misc: Fix bogus "ra class does not support provider" error when
+  creating STONITH primitives
+- Misc: Update Czech translations (bnc#720098)
+- Upstream version cs:ac1fe14f3564
+
+-------------------------------------------------------------------
+Tue Sep 20 13:56:15 UTC 2011 - tserong@suse.com
+
+- Build: Update package version to 0.5.0
+- GUI: Add cluster history explorer (fate#303620)
+- GUI: Add ability to explore failure scenarios (fate#310186)
+- GUI: Add ability to view recent node and resource events (fate#303620)
+- GUI: Add ability to generate hb_report (fate#310187)
+- GUI: Add setup wizard with web server & OCFS2 templates (fate#310190)
+- GUI: Add summary view, table view (fate#309100)
+- GUI: Add ability to see node utilization/load (fate#310135)
+- GUI: Add alert icon to resources with failed ops (fate#310359)
+- GUI: Base total resource count on number of configured instances
+- GUI: Add overflow:auto to content DIV to prevent floats running over
+  footer
+- Misc: Cib model: Skip delete and cancel ops when determining resource state
+- Misc: Update translations
+- Misc: Cib model: Reset rc_code to expected for ignored failed ops
+  (bnc#711002)
+- Misc: Invoker: Map permission denied error to localized messages
+  (bnc#713917)
+- Misc: Invoker: Consolidate crm functions, pick up errors even when
+  rc=0 (bnc#713922)
+- Misc: Cib model: Internally rename running clone instances if necessary
+- Remove workaround for 'String#unpack("V") busted on s390x' (bnc#581578)
+- Misc: Cib model: Ignore orphaned non-clone resource instance in
+  clones (bnc#711180)
+- Misc: Fix localization of >2 plurals (cs, pl, ru) for node and resource
+  labels (bnc#708328)
+- Misc: Add Hawk favicon.ico
+- Misc: Show hawk URL when running /etc/init.d/hawk start|status (bnc#708318)
+- Misc: Cib model: Skip allegedly pending "last_failure" ops when determining
+  resource state (bnc#706755)
+- Misc: Cib model: Strip stopped clone instances outside 0..clone_max
+- Upstream version cs:d32e171be055
+
+-------------------------------------------------------------------
+Mon Aug 29 04:46:23 UTC 2011 - tserong@suse.com
+
+- Build: Fix glib & libxml order for hawk_monitor build
+
+-------------------------------------------------------------------
+Wed Jul 13 14:31:12 UTC 2011 - tserong@novell.com
+
+- Build hawk_invoke and hawk_chkpwd as position independent executables
+- Fix missing %dir tags in spec file and an assortment of rpmlint warnings
+
+-------------------------------------------------------------------
+Mon Jun 20 03:35:11 UTC 2011 - tserong@novell.com
+
+- GUI: ui.location, Location model: Don't fold back to simple constraint
+  when role specified
+- GUI: Handle unknown DC version during cluster bringup
+- Misc: Include CSRF token with AJAX requests (required for rails 2.3.11)
+- Upstream version cs:3641a9e29036
+
+-------------------------------------------------------------------
+Wed May 18 05:59:29 UTC 2011 - tserong@novell.com
+
+- Build: Update package version to 0.4.1
+- Upstream version cs:398ae27386e1
+
+-------------------------------------------------------------------
+Fri May 13 16:19:13 UTC 2011 - tserong@novell.com
+
+- GUI: Add ability to add and edit location, colocation and
+  order constraints (fate#310189)
+- GUI: ui.popupmenu: Ensure popup menus at extreme right/bottom
+  stay onscreen
+- GUI: Move dialog, JSON functions from status.js to application.js
+- Misc: CibObject refactor
+- Upstream version cs:2fffe6364b97
+
+-------------------------------------------------------------------
+Mon Apr 18 13:38:22 UTC 2011 - tserong@novell.com
+
+- Build: Update package version to 0.4.0
+- Upstream version cs:676ddcaa6d80
+
+-------------------------------------------------------------------
+Thu Apr 14 12:52:57 UTC 2011 - tserong@novell.com
+
+- GUI: Don't show orphaned default instances for clones created from
+  running primitives (bnc#679724)
+- Build: Use pkg-config libxml-2.0 when building hawk_monitor
+- Build: Force global scope for Locale when freezing locale_rails gem
+  (workaround for rhbz#623697)
+- Upstream version cs:5afd70c4277a
+
+-------------------------------------------------------------------
+Tue Apr  5 16:01:48 UTC 2011 - tserong@novell.com
+
+- GUI: Primitive editor: Add online help
+- GUI: Primitive editor: Support multiple monitor ops
+- GUI: Primitive editor: Set default interval for monitor op if not
+  specified in metadata
+- GUI: Primitive editor: Don't delete ops before changing Type
+- GUI: Default to target-role=Stopped when creating new resources
+- GUI: Don't show 'heartbeat' resource class if /etc/ha.d/resource.d
+  doesn't exist
+- GUI: Confirm before 'Back' or 'Revert' is clicked on resource and
+  crm_config editor screens if anything has changed
+- GUI: Remove unnecessary outer border from resource and crm_config
+  editor screens
+- GUI: ui.attrlist: Trim whitespace from text field values
+- GUI: ui.oplist: Ensure old set ops are deleted when reinitializing
+- GUI: ui.oplist: Remove spurious " character in hidden field ID
+- GUI: Don't cache RA class/provider/type in static variable (it never
+  gets reloaded)
+- GUI: Use panels instead of scrolling divs for resource params, ops,
+  meta attrs
+- GUI: Link Hawk logo back to main status page
+- GUI: Refactor: Turn popup menus and panels into jQuery UI widgets
+- Upstream version cs:4818d39a5435
+
+-------------------------------------------------------------------
+Wed Mar 23 07:28:36 UTC 2011 - tserong@novell.com
+
+- GUI: Add ability to create primitives, groups, clones, master
+  resources (fate#310188)
+- GUI: Refactor: make core of crm_config editor a jQuery UI widget
+  ("add new property" field at bottom of form for consistency with
+  resource editor).
+- Misc: hawk_invoke: Add /bin to path (required for some crm shell
+  invocations)
+- Misc: Unset ENV['TERM'] to avoid curses junk in crm shell output
+- Upstream version cs:494df5a76ab5
+
+-------------------------------------------------------------------
+Sun Feb 13 11:07:15 UTC 2011 - tserong@novell.com
+
+- GUI: Show all currently set properties in cluster configuration panel
+- GUI: Add crm_config property editor (accessible from summary panel)
+- GUI: Allow expand/contract of summary panel (consistency with other panels)
+- GUI: Fix auto-expand of panels with stopped resources
+- Misc: Update copyright dates
+- GUI: Move DC info from summary panel to footer
+- Misc: use crm_attribute instead of deprecated crm_standby
+- Misc: Add hawk_invoke binary to setuid for CIB ACL support
+- GUI: Display code refactor: Use jQuery instead of Prototype
+- GUI: Handle permission denied errors when logged out user updates status
+  or performs op
+- GUI: Hide status on fatal error, don't show duplicate connection failures
+- GUI: Ignore lrm state for resources on down nodes
+- Misc: Ensure Util.popen3 doesn't block
+- Misc: Set $HOME to rails tmp dir, so crm shell can save help index
+- Misc: Pass current user to cibadmin etc. for CIB ACL support (fate#310168)
+- GUI: Fix broken resource panel render when resource state is unknown
+- GUI: Add ability to load static CIB files for testing purposes
+- Misc: Add test CIBs for all resource types
+- GUI: Show suitable error if the Ajax request in update_cib() fails
+- Misc: Use relative path for images, requests in JavaScript
+- GUI: Show pending ops as "Pending" (bnc#593015, lf#2423)
+- GUI: Correctly display failed "stop" ops
+- GUI: Show clone instances when clone-max > node count
+- GUI: Handle gaps in clone ID sequences
+- GUI: Request status update periodically if server is down
+- GUI: Treat completed migrate_from as stop when determining resource state
+- GUI: Display code refactor (HTML for status display generated client-side)
+- Upstream version cs:6d8f69f28ddc
+
+-------------------------------------------------------------------
+Thu Sep  9 06:25:53 UTC 2010 - tserong@novell.com
+
+- Require rack version (1.1.0), to build on systems with rack 1.2 installed
+  (see https://rails.lighthouseapp.com/projects/8994-ruby-on-rails/tickets/5146)
+
+-------------------------------------------------------------------
+Tue Aug 10 04:50:19 UTC 2010 - tserong@novell.com
+
+- GUI: Refresh status display automatically on cluster state change (bnc#593013)
+- Upstream version cs:443ba6917308
+
+-------------------------------------------------------------------
+Wed Jun 30 04:26:05 UTC 2010 - tserong@novell.com
+
+- Allow default rack version (1.1.0) to build against Rails 2.3.8
+
+-------------------------------------------------------------------
+Mon May 10 05:14:13 UTC 2010 - tserong@novell.com
+
+- Misc: Update translations
+- Upstream version cs:2a79e0d9cb43
+
+-------------------------------------------------------------------
+Fri Apr 23 10:17:10 UTC 2010 - tserong@novell.com
+
+- GUI: Fixed inability to click menu button for M/S sets in Internet Explorer
+- Upstream version cs:067bef4c4f72
+
+-------------------------------------------------------------------
+Fri Apr 23 04:16:11 UTC 2010 - tserong@novell.com
+
+- GUI: Use absolute (instead of fixed) position in confirmation dialogs on Android (bnc#596052)
+- GUI: Add ability to promote/demote master/slave resource sets (bnc#593019)
+- GUI: Show children of Master/Slave sets correctly as either Master or Slave (not just "Started")
+- GUI: Use "Move" instead of "Migrate" in menus, dialogs
+- Upstream version cs:fd621b9c8595
+
+-------------------------------------------------------------------
+Mon Apr 19 13:43:17 UTC 2010 - tserong@novell.com
+
+- Revert to unix2_chkpwd instead of hawk_chkpwd (interim measure)
+
+-------------------------------------------------------------------
+Fri Apr 16 12:30:40 UTC 2010 - tserong@novell.com
+
+- Misc: Use hawk_chkpwd helper binary for user authentication (instead of unix2_chkpwd)
+- Upstream version cs:86861933b048
+
+-------------------------------------------------------------------
+Mon Apr 12 04:45:31 UTC 2010 - tserong@novell.com
+
+- Show Master/Slave sets (but just shows children as "started", not yet M/S)
+- Upstream version cs:033fd682b8f3
+
+-------------------------------------------------------------------
+Fri Apr  9 10:08:01 UTC 2010 - tserong@novell.com
+
+- Specify rack version 1.0.1 to ensure compatibility with ActionPack 2.3.5
+
+-------------------------------------------------------------------
+Fri Apr  9 09:46:55 UTC 2010 - tserong@novell.com
+
+- Misc: Port number is now 7630 (registered with IANA)
+- Misc: Update zh_TW translation
+- GUI: Add confirmation prompt for node ops (bnc#593003)
+- GUI: Add confirmation prompt for resource ops
+- GUI: Allow resource mgmt ops on groups (in addition to resources *in* groups)
+- GUI: Add ability to migrate resources (bnc#593005)
+- Upstream version cs:3675f11f3448
+
+-------------------------------------------------------------------
+Mon Mar 29 05:32:25 UTC 2010 - tserong@novell.com
+
+- Misc: Add translations for ar, cs, de, es, fr, hu, it, ja, ko, nl, pl, pt_BR, ru, sv, zh_CN, zh_TW
+- GUI: Invoke "crm" for resource ops, report invocation errors in UI (bnc#583605 again)
+- GUI: Add mgmt buttons for new resources that appear via JSON update (bnc#590037)
+- GUI: Fix blank login page on first load in IE, and auto-focus input fields
+- Upstream version cs:f1369a200773
+
+-------------------------------------------------------------------
+Wed Mar  3 14:56:10 UTC 2010 - tserong@novell.com
+
+- Upstream version cs:13717d154bbc
+- GUI: Add login screen (user must be in 'haclient' group, same as python GUI)
+- GUI: Fix "start/stop clone-of-group has no effect" (bnc#583605)
+
+-------------------------------------------------------------------
+Mon Feb 22 14:27:25 UTC 2010 - tserong@novell.com
+
+- Enable mgmt ops by default
+
+-------------------------------------------------------------------
+Mon Feb 22 13:59:50 UTC 2010 - tserong@novell.com
+
+- Upstream version cs:d7041bcbfbc9
+- GUI: Basic mgmt ops for resource (start/stop/cleanup) and nodes (online/standby/fence)
+- GUI: Borders around nodelist, reslist.  Clones & groups reflect status color of children.
+- GUI: Various IE display fixes
+- GUI: Don't rely on existence of specific properties to render status display
+
+-------------------------------------------------------------------
+Sat Feb 20 09:13:37 UTC 2010 - tserong@novell.com
+
+- Workaround for bnc#579874 (String#unpack("V") broken on s390x)
+
+-------------------------------------------------------------------
+Tue Feb  9 10:29:31 UTC 2010 - tserong@novell.com
+
+- Require startproc respecting -p (bnc#570334)
+
+-------------------------------------------------------------------
+Mon Feb  8 11:53:57 UTC 2010 - tserong@novell.com
+
+- Upstream version cs:cb1b9ee863f1
+- GUI: Auto-refresh handles adding/removing nodes/resources
+- GUI: Auto-refresh error bar & summary info
+
+-------------------------------------------------------------------
+Wed Feb  3 14:33:36 UTC 2010 - tserong@novell.com
+
+- Upstream version cs:a033a52078bb
+- Misc: Use HTTPS instead of HTTP by default
+
+-------------------------------------------------------------------
+Fri Jan 29 04:44:00 UTC 2010 - tserong@novell.com
+
+- Embed rubygems in vendor directory (bnc#574718)
+
+-------------------------------------------------------------------
+Thu Jan 28 13:37:55 UTC 2010 - tserong@novell.com
+
+- Upstream version cs:9be77a99ca2f
+- GUI: sort node list in "natural" order
+- GUI: Get resource state from LRM ops, show "stopped" not "unknown" (bnc#574060) 
+- GUI: Clean up node state logic (derived from pengine/unpack.c) (bnc#574057) 
+- GUI: Add summary of cluster stack, version, DC, options
+
+-------------------------------------------------------------------
+Thu Jan 28 11:38:36 UTC 2010 - tserong@novell.com
+
+- Remove subsequent dependency on FastCGI (filter out libfcgi.so.0)
+
+-------------------------------------------------------------------
+Thu Jan 28 10:50:17 UTC 2010 - tserong@novell.com
+
+- Remove ruby-fcgi dependency (embedded into vendor dir) (bnc#574340)
+
+-------------------------------------------------------------------
+Mon Jan 25 02:36:36 UTC 2010 - tserong@novell.com
+
+- Upstream version cs:bfc8e9919f08
+- Remove dependency on lighttpd-mod_magnet (bnc#572173)
+- Pull in rails, gettext gems etc. at build time (bnc#570334)
+- Include copy of GPL (bnc#571573)
+
+-------------------------------------------------------------------
+Wed Jan 13 14:38:28 UTC 2010 - lmb@novell.com
+
+- Correct directory permissions.
+
+-------------------------------------------------------------------
+Tue Jan 12 12:00:00 UTC 2010 - tserong@novell.com
+
+- Initial checkin
+
