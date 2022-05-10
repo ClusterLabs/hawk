@@ -1,0 +1,47 @@
+name: e2e_test for hawk
+on:
+  push:
+    branches:
+      - 'master'
+  pull_request:
+    branches:
+      - 'master'
+
+env:
+  IP_NODE1: 172.17.0.2
+  IP_NODE2: 172.17.0.3
+
+jobs:
+  functional_test_crm_report_bugs:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Start cluster nodes in containers
+        run: |
+          docker run -d --privileged -h node1 --name node1 --add-host node1:${IP_NODE1} --add-host node2:${IP_NODE2} ghcr.io/aleksei-burlakov/hawk-node
+          docker run -d --privileged -h node2 --name node2 --add-host node1:${IP_NODE1} --add-host node2:${IP_NODE2} ghcr.io/aleksei-burlakov/hawk-node
+      - name: Copy hawk to the nodes
+        run: |
+          cd ..
+          docker cp hawk node1:/
+          docker cp hawk node2:/
+      - name: Compile hawk in the nodes
+        run: |
+          docker exec -i node1 bash -c "cd hawk && make"
+          docker exec -i node2 bash -c "cd hawk && make"
+      - name: Install hawk in the nodes
+        run: |
+          docker exec -i node1 bash -c "cd hawk && make install && cp scripts/sysconfig.hawk /etc/sysconfig/hawk"
+          docker exec -i node2 bash -c "cd hawk && make install && cp scripts/sysconfig.hawk /etc/sysconfig/hawk"
+      - name: Initialize container on the node1
+        run: docker exec node1 crm cluster init -u -n cluster1 -y
+      - name: Join node2 to the cluster
+        run: docker exec node2 crm cluster join -c node1 -y
+      - name: Create a stonith-sbd device
+        run: |
+          docker exec node1 crm configure primitive stonith-sbd stonith:external/ssh params hostlist="node1 node2"
+          docker exec node1 crm conf property stonith-enabled=true
+          docker exec node1 crm conf property have-watchdog=true
+      - name: Run the functional test
+        run: docker run ghcr.io/aleksei-burlakov/hawk-examiner -H ${IP_NODE1} -S ${IP_NODE2} -s linux --xvfb
