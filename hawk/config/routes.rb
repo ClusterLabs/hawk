@@ -192,6 +192,6 @@ Rails.application.routes.draw do
   end
 
   if Rails.env.production?
-    get '*path' => redirect('/404.html') # if nothing else matches
+    match '*path' => 'errors#not_found', via: :all # if nothing else matches
   end
 end
