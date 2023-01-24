@@ -71,7 +71,7 @@ class Xpath:
 
 
 class HawkTestDriver:
-    def __init__(self, addr='localhost', port='7630', browser='firefox', headless=False, version='12-SP2'):
+    def __init__(self, addr='localhost', port='7630', browser='firefox', headless=False, version='15-SP5'):
         self.addr = addr
         self.port = port
         self.driver = None
@@ -327,12 +327,11 @@ class HawkTestDriver:
         print("TEST: test_remove_cluster")
         self.click_on('Dashboard')
         self.check_and_click_by_xpath("Click on Dashboard", [Xpath.HREF_DASHBOARD])
-        if Version(self.test_version) >= Version('12-SP3'):
-            elem = self.find_element(By.PARTIAL_LINK_TEXT, cluster)
-            if not elem:
-                print(f"ERROR: Couldn't find cluster [{cluster}]. Cannot remove")
-                return False
-            elem.click()
+        elem = self.find_element(By.PARTIAL_LINK_TEXT, cluster)
+        if not elem:
+            print(f"ERROR: Couldn't find cluster [{cluster}]. Cannot remove")
+            return False
+        elem.click()
         time.sleep(BIG_TIMEOUT)
         elem = self.find_element(By.CLASS_NAME, 'close')
         if not elem:
@@ -357,13 +356,6 @@ class HawkTestDriver:
         if self.verify_success():
             print(f"INFO: Successfully removed cluster: [{cluster}]")
             return True
-        # HAWK2 version in 12-SP2 doesn't provide AJAX feedback for removal of cluster
-        if Version(self.test_version) < Version('12-SP3'):
-            self.click_on('Dashboard')
-            elem = self.find_element(By.PARTIAL_LINK_TEXT, cluster)
-            if not elem:
-                print(f"INFO: Successfully removed cluster: [{cluster}]")
-                return True
         print(f"ERROR: Could not remove cluster [{cluster}]")
         return False
 
@@ -551,10 +543,6 @@ class HawkTestDriver:
             Xpath.HREF_CONSTRAINTS, Xpath.HREF_NODES, Xpath.HREF_TAGS,
             Xpath.HREF_ALERTS, Xpath.HREF_FENCING
         ]
-
-        # HAWK version below 12-SP3 does not provide link to fencing
-        if Version(self.test_version) < Version("12-SP3"):
-            click_list.remove(Xpath.HREF_FENCING)
 
         self.check_and_click_by_xpath("while checking around edit configuration", click_list)
         return self.test_status
