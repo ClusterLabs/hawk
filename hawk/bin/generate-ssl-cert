@@ -47,7 +47,6 @@ swap_key_certificate
 
 [ -e "$cert_key_file" ] && [ -e "$cert_file" ] && exit 0
 
-echo "No SSL certificate found. Creating one now."
 mkdir -p "$(dirname "$cert_key_file")"
 mkdir -p "$(dirname "$cert_file")"
 
@@ -58,14 +57,16 @@ umask 137
 # (hopefully) identifiable, but make sure it's
 # not too long
 validCommonName() {
-	[ -n "$1" ] && [ "${#1}" -le 48 ]
+  [ -n "$1" ] && [ "${#1}" -le 48 ]
 }
 
 CN=$(hostname -f)
 validCommonName "$CN" || CN=$(hostname)
 validCommonName "$CN" || CN=localhost
 
-$openssl_bin req -x509 -sha256 -nodes -days 1095 -newkey rsa:2048 -batch -config /dev/fd/0 -keyout "$cert_key_file" -out "$cert_file" >"$log_file" 2>&1 <<CONF
+if [ -e "$cert_key_file" ]; then
+  echo "There is private key, but no public key. Creating one now."
+  $openssl_bin req -x509 -sha256 -nodes -days 1095 -key "$cert_key_file" -new -batch -config /dev/fd/0 -out "$cert_file" >"$log_file" 2>&1 <<CONF
 [req]
 distinguished_name = user_dn
 prompt = no
@@ -76,8 +77,22 @@ emailAddress=root@$CN
 organizationName=HA Web Konsole
 organizationalUnitName=Automatically Generated Certificate
 CONF
+  rc=$?
+else
+  echo "No SSL certificate found. Creating one now."
+  $openssl_bin req -x509 -sha256 -nodes -days 1095 -newkey rsa:2048 -batch -config /dev/fd/0 -keyout "$cert_key_file" -out "$cert_file" >"$log_file" 2>&1 <<CONF
+[req]
+distinguished_name = user_dn
+prompt = no
 
-rc=$?
+[user_dn]
+commonName=$CN
+emailAddress=root@$CN
+organizationName=HA Web Konsole
+organizationalUnitName=Automatically Generated Certificate
+CONF
+  rc=$?
+fi
 
 if [ $rc -eq 0 ]; then
   swap_key_certificate
