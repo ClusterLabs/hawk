@@ -12,7 +12,7 @@ env:
   IP_NODE2: 172.17.0.3
 
 jobs:
-  functional_test_crm_report_bugs:
+  functional_test_hawk:
     runs-on: ubuntu-latest
     steps:
       - name: Check out repository code
