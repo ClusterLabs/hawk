@@ -32,7 +32,7 @@ else
   gem "puma", version: "~> 4.3.5"
   require "puma"
 
-  gem "sass-rails", version: ">= 5.0"
+  gem "sass-rails", version: "~> 5.0"
   require "sass-rails"
 
   gem "virtus", version: "~> 1.0"
