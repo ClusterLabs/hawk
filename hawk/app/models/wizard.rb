@@ -28,7 +28,9 @@ class Wizard
 
   def initialize(name, category, shortdesc, longdesc)
     @name = name
-    @category = category
+    my_subs = { '/' => ' ', '\\' => ' ', ':' => ' ' }
+    # no special symbols are allowed in the category
+    @category = category.split('').map{|i| my_subs[i] || i}.join
     @shortdesc = shortdesc
     @longdesc = longdesc
     @steps = []
