@@ -12,7 +12,7 @@ class Session < Tableless
   validate do |record|
     first_checks_valid = true
 
-    unless File.exists? HAWK_CHKPWD
+    unless File.exist? HAWK_CHKPWD
       record.errors[:base] << _("%s is not installed") % HAWK_CHKPWD
       first_checks_valid = false
     end

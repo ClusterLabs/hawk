@@ -6,7 +6,7 @@
 require 'util'
 
 
-module CibTools
+module Cibtools
 
   # Roughly equivalent to crm_element_value() in Pacemaker
   def get_xml_attr(elem, name, default = nil)
@@ -18,7 +18,7 @@ module CibTools
 
   # Format the epoch string "admin_epoch:epoch:num_updates"
   def epoch_string(elem)
-    "#{CibTools.get_xml_attr(elem, 'admin_epoch', '0')}:#{CibTools.get_xml_attr(elem, 'epoch', '0')}:#{CibTools.get_xml_attr(elem, 'num_updates', '0')}";
+    "#{Cibtools.get_xml_attr(elem, 'admin_epoch', '0')}:#{Cibtools.get_xml_attr(elem, 'epoch', '0')}:#{Cibtools.get_xml_attr(elem, 'num_updates', '0')}";
   end
   module_function :epoch_string
 
@@ -215,7 +215,7 @@ module CibTools
       lrm_resource.elements.each('lrm_rsc_op') do |op|
         ops << op
       end
-      ops.sort { |a, b| CibTools.sort_ops(a, b) }.each do |op|
+      ops.sort { |a, b| Cibtools.sort_ops(a, b) }.each do |op|
         operation = op.attributes['operation']
         id = op.attributes['id']
         call_id = op.attributes['call-id'].to_i
@@ -269,7 +269,7 @@ module CibTools
           end
         end
 
-        state = CibTools.op_rc_to_state operation, rc_code, state
+        state = Cibtools.op_rc_to_state operation, rc_code, state
       end
 
       return state

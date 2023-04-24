@@ -31,7 +31,7 @@ class HbReport
       @outfile = tmpbase.join("report.stdout").to_s
       @errfile = tmpbase.join("report.stderr").to_s
     end
-    @lastexit = File.exists?(@exitfile) ? File.new(@exitfile).read.to_i : nil
+    @lastexit = File.exist?(@exitfile) ? File.new(@exitfile).read.to_i : nil
   end
 
   def running?
@@ -51,7 +51,7 @@ class HbReport
   # Returns [from_time, to_time], as strings.  Note that to_time might be
   # an empty string, if no to_time was specified when calling generate.
   def lasttime
-    File.exists?(@timefile) ? File.new(@timefile).read.split(",", -1) : nil
+    File.exist?(@timefile) ? File.new(@timefile).read.split(",", -1) : nil
   end
 
   # contents of errfile as array
@@ -61,7 +61,7 @@ class HbReport
       File.new(@errfile).read.split(/\n/).each do |e|
         next if e.empty?
         err << e
-      end if File.exists?(@errfile)
+      end if File.exist?(@errfile)
     rescue ArgumentError => e
       # This will catch 'invalid byte sequence in UTF-8' (bnc#854060)
       err << "ArgumentError: #{e.message}"
@@ -84,7 +84,7 @@ class HbReport
   # format (e.g.: iso8601)
   def generate(from_time, to_time, all_nodes = true)
     [@outfile, @errfile, @exitfile, @timefile].each do |fn|
-      File.unlink(fn) if File.exists?(fn)
+      File.unlink(fn) if File.exist?(fn)
     end
     @lastexit = nil
 

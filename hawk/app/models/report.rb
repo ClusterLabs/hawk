@@ -44,7 +44,7 @@ class Report
     # TODO(fix this)
     # Have to blow this away if it exists (i.e. is a cached report), else
     # prior cibadmin calls on individual PE inputs will have wrecked their mtimes.
-    # FileUtils.remove_entry_secure(hb_report.path) if File.exists?(hb_report.path)
+    # FileUtils.remove_entry_secure(hb_report.path) if File.exist?(hb_report.path)
 
     source = archive
     source = hb_report.path if File.directory?(hb_report.path)

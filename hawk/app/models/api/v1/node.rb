@@ -23,7 +23,7 @@ module Api
       # TODO: check if fencing is enabled and call appropriate
       # version
       def state
-        CibTools.determine_online_status_fencing(@statenode)
+        Cibtools.determine_online_status_fencing(@statenode)
       end
 
       def type

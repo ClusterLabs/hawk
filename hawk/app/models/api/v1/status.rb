@@ -13,7 +13,7 @@ module Api
 
       def version
         if @mode == :online
-          CibTools.epoch_string @xml.root
+          Cibtools.epoch_string @xml.root
         else
           "0:0:0"
         end
