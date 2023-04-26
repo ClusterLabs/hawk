@@ -10,7 +10,7 @@ module Api
         @mode = :none
         @xml = nil
         cmd = "/usr/sbin/cibadmin"
-        unless File.exists?(cmd)
+        unless File.exist?(cmd)
           Rails.logger.error "Pacemaker does not appear to be installed (#{cmd} not found)"
           return
         end

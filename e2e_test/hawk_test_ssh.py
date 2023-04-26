@@ -39,8 +39,9 @@ class HawkTestSSH:
 
     def verify_stonith_in_maintenance(self, results):
         print("TEST: verify_stonith_in_maintenance")
-        if self.check_cluster_conf_ssh("crm status | grep stonith-sbd", "unmanaged"):
-            print("INFO: stonith-sbd is unmanaged")
+        if self.check_cluster_conf_ssh("crm status | grep stonith-sbd", "unmanaged") or \
+            self.check_cluster_conf_ssh("crm status | grep stonith-sbd", "maintenance"):
+            print("INFO: stonith-sbd is unmanaged/maintenance")
             self.set_test_status(results, 'verify_stonith_in_maintenance', 'passed')
             return True
         print("ERROR: stonith-sbd is not unmanaged but should be")

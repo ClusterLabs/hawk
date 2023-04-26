@@ -75,7 +75,7 @@ def main():
     ssh = HawkTestSSH(args.host, args.secret)
 
     # Get version from /etc/os-release
-    test_version = ssh.ssh.exec_command("grep ^VERSION= /etc/os-release")[1].read().decode().strip().split("=")[1].strip('"')
+    test_version = ssh.ssh.exec_command("grep VERSION= /etc/os-release")[1].read().decode().strip().split("=")[1].strip('"')
 
     # Create driver instance
     browser = HawkTestDriver(addr=args.host, port=args.port,

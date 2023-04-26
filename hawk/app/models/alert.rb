@@ -101,7 +101,7 @@ class Alert < Resource
   protected
 
   def path_must_exist
-    unless File.exists?(path) or File.symlink?(path)
+    unless File.exist?(path) or File.symlink?(path)
       errors.add(:path, "Path must be an existing file: File not found")
     end
   end

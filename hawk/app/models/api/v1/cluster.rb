@@ -1,5 +1,5 @@
 require 'util'
-require 'natcmp'
+require 'string'
 
 module Api
   module V1
@@ -19,10 +19,10 @@ module Api
                 }
 
           xml.elements.each('cib/configuration/crm_config//nvpair') do |p|
-            @cluster[p.attributes['name'].underscore.to_sym] = CibTools.get_xml_attr(p, 'value')
+            @cluster[p.attributes['name'].underscore.to_sym] = Cibtools.get_xml_attr(p, 'value')
           end
 
-          @cluster[:epoch] = CibTools.epoch_string xml.root
+          @cluster[:epoch] = Cibtools.epoch_string xml.root
           @dc = Util.safe_x('/usr/sbin/crmadmin', '-t', '100', '-D', '2>/dev/null').strip
           s = @dc.rindex(' ')
           @dc.slice!(0, s + 1) if s

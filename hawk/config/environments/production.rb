@@ -19,8 +19,6 @@ Rails.application.configure do
   # config.action_mailer.raise_delivery_errors = false
   # config.action_mailer.delivery_method = :smtp
 
-  config.action_view.raise_on_missing_translations = false
-
   config.active_support.deprecation = :notify
 
   # config.active_record.migration_error = :page_load
@@ -32,7 +30,7 @@ Rails.application.configure do
 
   config.assets.debug = false
   config.assets.raise_runtime_errors = false
-  config.assets.js_compressor = :uglifier
+  config.assets.js_compressor = Uglifier.new(harmony: true)
   config.assets.css_compressor = :sass
   config.assets.compile = true
   config.assets.digest = true

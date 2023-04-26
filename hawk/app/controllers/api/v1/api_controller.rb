@@ -53,7 +53,7 @@ module Api
 
         def authenticate_user_with_token
           authenticate_with_http_token do |token, options|
-            if File.exists? ("#{Rails.root}/api_token_entries.store")
+            if File.exist? ("#{Rails.root}/api_token_entries.store")
               store = YAML.load_file("api_token_entries.store")
               store.each do | key, value |
                 @current_user = value["username"]
@@ -103,7 +103,7 @@ module Api
 
         def authenticate_user_with_pam(username, password)
           # Check the username and password
-          return false unless File.exists? HAWK_CHKPWD
+          return false unless File.exist? HAWK_CHKPWD
           return false unless File.executable? HAWK_CHKPWD
           return false if username.blank?
           return false if password.blank?
@@ -121,7 +121,7 @@ module Api
           api_token_entry = ApiTokenEntry.new(username, api_token, expiry_date)
           # Check if yaml store already exists and the user already
           # own's an api token
-          if File.exists? ("#{Rails.root}/api_token_entries.store")
+          if File.exist? ("#{Rails.root}/api_token_entries.store")
             store = YAML.load_file("api_token_entries.store")
             if store != false && store.has_key?(username)
               return store.dig(username, :api_token)

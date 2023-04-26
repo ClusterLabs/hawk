@@ -11,7 +11,6 @@ environment @environment
 
 tag "hawk"
 
-daemonize false
 prune_bundler false
 
 threads 0, 1

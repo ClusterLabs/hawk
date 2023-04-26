@@ -93,14 +93,14 @@ module Util
       # return an empty string so the existence test below fails
       ''
     end
-    unless File.exists?(ENV['HOME'])
+    unless File.exist?(ENV['HOME'])
       # crm shell always wants to open/generate help index, so if the
       # user has no actual home directory, set it to a subdirectory
       # inside tmp/home, but make sure it's 0770, because it'll be
       # created with uid hacluster, but the user we become (in the
       # haclient group) also needs to be able to write as *that* user.
       ENV['HOME'] = File.join(Rails.root, 'tmp', 'home', user)
-      unless File.exists?(ENV['HOME'])
+      unless File.exist?(ENV['HOME'])
         umask = File.umask(0002)
         Dir.mkdir(ENV['HOME'], 0770)
         File.umask(umask)
@@ -180,7 +180,7 @@ module Util
   # pidfile if child has gone away unexpectedly.
   def child_active(pidfile)
     active = false
-    if File.exists?(pidfile)
+    if File.exist?(pidfile)
       pid = File.new(pidfile).read.to_i
       if pid > 0
         begin
@@ -373,7 +373,7 @@ module Util
       # by default we assume we are using the latest stonith binary path (sles15sp1 and higher)
       # if we are using lower version, we adapt the path to other binary old accordingly
       stonith_bin = "#{Rails.configuration.x.crm_daemon_dir}/pacemaker-fenced"
-      unless File.exists? "#{Rails.configuration.x.crm_daemon_dir}/pacemaker-fenced"
+      unless File.exist? "#{Rails.configuration.x.crm_daemon_dir}/pacemaker-fenced"
         stonith_bin = "/usr/lib/pacemaker/stonithd"
       end
       # execute binary and collect/append the paramters to the hash which will be visualised
