@@ -483,7 +483,7 @@ class Cib
     error(msg, :warning, additions)
   end
 
-  def initialize(id, user, use_file = false, stonithwarning = false)
+  def initialize(id, user, pass, use_file = false, stonithwarning = false)
     Rails.logger.debug "Cib.initialize #{id}, #{user}, #{use_file}"
 
     if use_file
@@ -511,7 +511,7 @@ class Cib
         init_offline_cluster id, user, use_file
         return
       end
-      out, err, status = Util.capture3('cibadmin', '-Ql')
+      out, err, status = Util.run_as(user, pass, 'cibadmin', '-Ql')
       case status.exitstatus
       when 0
         @xml = REXML::Document.new(out)
