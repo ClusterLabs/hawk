@@ -279,6 +279,11 @@ class Report
     attribute :upload, ActionDispatch::Http::UploadedFile
 
     validate do |record|
+      # Windows doens't understand bzip2 and sends them as octet-stream,
+      # so let's make an exception for bzip2 and let them be octet-stream.
+      if record.upload.content_type == "application/octet-stream"
+          next if record.upload.original_filename =~ /^[a-zA-Z0-9_-]+\.tar\.bz2\z/
+      end
       unless ["application/gzip",
               "application/x-gzip",
               "application/x-bzip",
