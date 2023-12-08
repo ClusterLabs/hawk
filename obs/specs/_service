@@ -1,0 +1,26 @@
+<services>
+  <service name="tar_scm" mode="disabled">
+    <param name="url">https://github.com/aleksei-burlakov/hawk.git</param>
+    <param name="scm">git</param>
+    <param name="exclude">.git</param>
+    <param name="exclude">.github</param>
+    <param name="extract">hawk/Gemfile</param>
+    <param name="extract">obs/specs/Gemfile.lock</param>
+    <param name="filename">hawk2</param>
+    <param name="versionformat">2.6.4+git.%ct.%h</param>
+    <param name="revision">master</param>
+    <param name="changesgenerate">enable</param>
+  </service>
+
+  <service name="bundle_gems" mode="disabled"/>
+  <service name="download_files" mode="disabled"/>
+
+  <service name="recompress" mode="disabled">
+    <param name="file">hawk2*.tar</param>
+    <param name="compression">bz2</param>
+  </service>
+
+  <service name="set_version" mode="disabled">
+    <param name="basename">hawk2</param>
+  </service>
+</services>

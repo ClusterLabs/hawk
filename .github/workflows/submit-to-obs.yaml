@@ -1,0 +1,43 @@
+name: GitHub Actions Demo
+on: [push]
+
+env:
+  PACKAGE_NAME: hawk2
+  OBS_USER: ${{ secrets.BOT_USERNAME }}
+  OBS_PASS: ${{ secrets.BOT_PASSWORD }}
+  OBS_PROJECT: home:aburlakov:simple-build
+
+jobs:
+  submit-to-obs:
+    runs-on: ubuntu-20.04
+    container:
+      image: ghcr.io/trento-project/continuous-delivery:master
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v2
+      - name: Install osc prerequisites
+        run: zypper in -y vim
+      - name: Install osc services
+        run: |
+          zypper --gpg-auto-import-keys refresh
+          zypper in -y obs-service-bundle_gems
+          #sudo cp -r obs/services/* /usr/lib/obs/service/
+          cat /etc/os-release
+      - name: configure OSC
+        run: |
+          /scripts/init_osc_creds.sh
+          mkdir -p $HOME/.config/osc
+          cp /root/.config/osc/oscrc $HOME/.config/osc
+      - name: Run the obs services
+        run: |
+          ls -la $HOME/.config/osc/
+          cat $HOME/.config/osc/oscrc
+          osc co $OBS_PROJECT hawk2
+          cd ${OBS_PROJECT}/hawk2
+          osc rm *
+          cp ../../obs/specs/* .
+          osc service dr
+          rm -rf hawk
+          ls -la
+          osc add *
+          osc commit -m "New development version of $PACKAGE_NAME released"

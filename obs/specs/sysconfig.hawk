@@ -1,0 +1,59 @@
+## Path:            Cluster/Hawk
+## Description:     Mode of operation
+## Type:            string(production,development,test)
+## Default:         production
+## ServiceRestart:  hawk
+# Hawk can run in production, development or test mode. Normally, this
+# determines which database is used, but it may also have other
+# implications.
+HAWK_ENV="production"
+
+## Path:            Cluster/Hawk
+## Description:     Maximum number of threads
+## Type:            integer
+## Default:         1
+## ServiceRestart:  hawk
+# Sets the maximum number of threads used by the web server.
+HAWK_THREADS="16"
+
+## Path:            Cluster/Hawk
+## Description:     Maximum number of worker processes
+## Type:            integer
+## Default:         2
+## ServiceRestart:  hawk
+# Sets the maximum number of separate worker processes spawned by the
+# web server.
+HAWK_WORKERS="1"
+
+## Path:            Cluster/Hawk
+## Description:     Listen address
+## Type:            ip
+## Default:         0.0.0.0
+## ServiceRestart:  hawk
+# Network address which Hawk listens to for connections.
+HAWK_LISTEN="0.0.0.0"
+
+## Path:            Cluster/Hawk
+## Description:     Port
+## Type:            integer(0:65565)
+## Default:         7630
+## ServiceRestart:  hawk
+# Port which Hawk listens to.
+HAWK_PORT="7630"
+
+## Path:            Cluster/Hawk
+## Description:     SSL key used by the web server
+## Type:            string
+## Default:         /etc/hawk/hawk.key
+## ServiceRestart:  hawk
+# Configures an SSL key that the Hawk web server presents.
+HAWK_KEY="/etc/hawk/hawk.key"
+
+## Path:            Cluster/Hawk
+## Description:     SSL certificate used by the web server
+## Type:            string
+## Default:         /etc/hawk/hawk.pem
+## ServiceRestart:  hawk
+# Configures an SSL certificate that the Hawk web server presents.
+HAWK_CERT="/etc/hawk/hawk.pem"
+
