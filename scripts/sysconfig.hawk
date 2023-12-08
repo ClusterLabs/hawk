@@ -57,3 +57,13 @@ HAWK_KEY="/etc/hawk/hawk.key"
 # Configures an SSL certificate that the Hawk web server presents.
 HAWK_CERT="/etc/hawk/hawk.pem"
 
+## Path:            Cluster/Hawk
+## Description:     CORS Access-Control-Allow-Origin
+## Type:            string
+## Default:         request.headers["Origin"], i.e. the one who sends request
+## ServiceRestart:  hawk
+# This value will is used for Access-Control-Allow-Origin
+# when generation response header when loging into hawk.
+# When the value is not defined the request.headers["Origin"] is used.
+# Here we explicitely forbid origins.
+HAWK_ACCESS_CONTROL_ALLOW_ORIGIN=""

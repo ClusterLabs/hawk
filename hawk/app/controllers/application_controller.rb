@@ -113,7 +113,7 @@ class ApplicationController < ActionController::Base
   def cors_set_access_control_headers
     response.headers['Content-Security-Policy'] = "frame-ancestors 'self'"
     if request.headers['Origin']
-      response.headers['Access-Control-Allow-Origin'] = request.headers["Origin"]
+      response.headers['Access-Control-Allow-Origin'] = ENV["HAWK_ACCESS_CONTROL_ALLOW_ORIGIN"] || request.headers["Origin"]
       response.headers['Access-Control-Allow-Credentials'] = 'true'
       response.headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE, OPTIONS'
       response.headers['Access-Control-Allow-Headers'] = 'Origin, Content-Type, Accept, Authorization, X-CSRF-Token, Token'
@@ -123,7 +123,7 @@ class ApplicationController < ActionController::Base
 
   def cors_preflight_check
     if request.method == 'OPTIONS' && request.headers['Origin']
-      response.headers["Access-Control-Allow-Origin"] = request.headers["Origin"]
+      response.headers['Access-Control-Allow-Origin'] = ENV["HAWK_ACCESS_CONTROL_ALLOW_ORIGIN"] || request.headers["Origin"]
       response.headers['Access-Control-Allow-Credentials'] = 'true'
       response.headers['Access-Control-Allow-Methods'] = 'POST, GET, PUT, DELETE, OPTIONS'
       response.headers['Access-Control-Allow-Headers'] = 'X-Requested-With, X-Prototype-Version, X-CSRF-Token, Token'
