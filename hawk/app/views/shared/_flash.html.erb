@@ -9,7 +9,7 @@
           <%= _("Close") %>
         </span>
       </button>
-      <%= simple_format message %>
+      <%= simple_format message, {}, sanitize: false %>
     </div>
   <% end %>
 </div>

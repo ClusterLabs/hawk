@@ -19,7 +19,7 @@ module Util
   # DON'T USE THIS FUNCTION DIRECTLY - it's subject to deadlocks e.g.:
   # http://coldattic.info/shvedsky/pro/blogs/a-foo-walks-into-a-bar/posts/63
   # Rather you should prefer capture3.
-  def popen3(*cmd)
+  def popen3(user, *cmd)
     raise SecurityError, "Util::popen3 called with < 2 args" if cmd.length < 2
     pw = IO::pipe   # pipe[0] for read, pipe[1] for write
     pr = IO::pipe
@@ -39,8 +39,13 @@ module Util
       STDERR.reopen(pe[1])
       pe[1].close
 
-      # RORSCAN_INL: cmd always has > 1 elem, so safe from shell injection
-      exec(*cmd)
+      if user.to_s.strip.empty? or user == "hacluster" or user == "root"
+        # RORSCAN_INL: cmd always has > 1 elem, so safe from shell injection
+        exec(*cmd)
+      else
+        command = ['su', '-', user, 'sh', '-c', "#{cmd.join(" ")}"]
+        exec(*command)
+      end
     }
     wait_thr = Process.detach(pid)
 
@@ -73,7 +78,7 @@ module Util
     end
     Rails.logger.debug "Executing `#{cmd.join(' ').inspect}` through `capture3`"
     stdin_data = opts.delete(:stdin_data) || ''
-    Util.popen3(*cmd) {|i, o, e, t|
+    Util.popen3(nil, *cmd) {|i, o, e, t|
       out_reader = Thread.new { o.read }
       err_reader = Thread.new { e.read }
       i.write stdin_data
@@ -82,6 +87,28 @@ module Util
     }
   end
   module_function :capture3
+
+  def run_as(user, pass, *cmd)
+    if Hash === cmd.last
+      opts = cmd.pop.dup
+    else
+      opts = {}
+    end
+    Rails.logger.debug "Executing `#{cmd.join(' ').inspect}` as `#{user}` through `run_as`"
+    stdin_data = opts.delete(:stdin_data) || ''
+    Util.popen3(user, *cmd) {|i, o, e, t|
+      out_reader = Thread.new { o.read }
+      err_reader = Thread.new { e.read }
+      if not user.to_s.strip.empty? and user != "hacluster" and user != "root"
+        i.write pass
+        i.write "\n"
+      end
+      i.write stdin_data
+      i.close
+      [out_reader.value, err_reader.value, t.value]
+    }
+  end
+  module_function :run_as
 
   def ensure_home_for(user)
     old_home = ENV['HOME']
@@ -298,7 +325,13 @@ module Util
       }
     when :acl_support
       Rails.cache.fetch(:has_acl_support) {
-        Util.safe_x('/usr/sbin/cibadmin', '-!').split(/\s+/).include?("acls")
+        # full string is like "Pacemaker 2.1.5+20221208.a3f44794f-150500.6.5.8 (Build: 2.1.5+20221208.a3f44794f): agent-manpages cibsecrets ..."
+        spl = Util.safe_x('/usr/sbin/cibadmin', '-!').split(/\s+/)
+        return true if spl.include?("acls")
+        
+        # pacemaker > 2.1.0 always supports acls (though doesn't display the acls flag)
+        short_version = spl[1].split('+')[0]
+        Gem::Version.new(short_version) >= Gem::Version.new('2.1.0')
       }
     when :tags
       Rails.cache.fetch(:has_tags) {
