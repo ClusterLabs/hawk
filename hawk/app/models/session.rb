@@ -39,7 +39,7 @@ class Session < Tableless
       end
 
       unless $?.exitstatus == 0
-        record.errors[:base] << _("Invalid username or password")
+        record.errors.add(:base, :blank, message: "Invalid username or password")
       end
     end
   end
