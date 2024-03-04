@@ -43,7 +43,11 @@ class SessionsController < ApplicationController
         end
       else
         format.html do
-          flash.now[:alert] = @session.errors.first.last
+          if Gem.loaded_specs['rails'].version >= Gem::Version.new("6.1")
+            flash.now[:alert] = @session.errors.first.message
+          else
+            flash.now[:alert] = @session.errors.first.last
+          end
           render action: 'new'
         end
         format.json do

@@ -231,10 +231,17 @@ in_haclient_grp(const char *user)
 }
 
 static int
+pam_service_exists_in(const char *path, const char* name)
+{
+	char    full_path[128];
+	snprintf(full_path, sizeof(full_path), "%s%s", path, name);
+	return access(full_path, R_OK) == 0;
+}
+
+static int
 sane_pam_service(const char *name)
 {
 	const char *sp;
-	char	path[128];
 
 	if (strlen(name) > 32)
 		return 0;
@@ -243,8 +250,9 @@ sane_pam_service(const char *name)
 			return 0;
 	}
 
-	snprintf(path, sizeof(path), "/etc/pam.d/%s", name);
-	return access(path, R_OK) == 0;
+	return pam_service_exists_in("/etc/pam.d/", name)
+		|| pam_service_exists_in("/usr/bin/", name)
+		|| pam_service_exists_in("/usr/sbin/", name);
 }
 
 int
