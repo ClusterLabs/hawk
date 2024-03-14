@@ -48,60 +48,71 @@ class CrmConfig < Tableless
   end
 
   class << self
+    def get_parameters_from(crm_config, cmd)
+      #todo: this doesn't work with safe_x. research why.
+      REXML::Document.new(%x[#{cmd} 2>/dev/null]).tap do |xml|
+        return unless xml.root
+
+        xml.elements.each("//parameter") do |param|
+          name = param.attributes["name"]
+          content = param.elements["content"]
+          shortdesc = param.elements["shortdesc[@lang=\"#{I18n.locale.to_s.gsub("-", "_")}\"]|shortdesc[@lang=\"en\"]"].text || ""
+          longdesc  = param.elements["longdesc[@lang=\"#{I18n.locale.to_s.gsub("-", "_")}\"]|longdesc[@lang=\"en\"]"].text || ""
+
+          type = content.attributes["type"]
+          default = content.attributes["default"]
+
+          advanced = param.attributes["advanced"] || shortdesc.match(/advanced use only/i) || longdesc.match(/advanced use only/i)
+
+          crm_config[name] = {
+            type: content.attributes["type"],
+            readonly: false,
+            shortdesc: shortdesc,
+            longdesc: longdesc,
+            advanced: (advanced and (advanced=="1")) ? true : false,
+            default: default
+          }
+
+          if type == "enum"
+            match = longdesc.match(/Allowed values:(.*)/i)
+
+            if match
+              values = match[1].split(",").map do |value|
+                value.strip
+              end.reject do |value|
+                value.empty?
+              end
+
+              crm_config[name][:values] = values unless values.empty?
+            end
+          end
+        end
+      end
+    end
     def mapping
       @mapping ||= begin
         {
           rsc_defaults: Tableless::RSC_DEFAULTS,
           op_defaults: Tableless::OP_DEFAULTS,
           crm_config: {}.tap do |crm_config|
-            [
-              "pengine",
-              "crmd",
-              "cib",
-              "pacemaker-schedulerd",
-              "pacemaker-controld",
-              "pacemaker-based"
-            ].each do |cmd|
-              path = "#{Rails.configuration.x.crm_daemon_dir}/#{cmd}"
-              next unless File.executable? path
-              #todo: this doesn't work with safe_x. research why.
-              REXML::Document.new(%x[#{path} metadata 2>/dev/null]).tap do |xml|
-                return unless xml.root
-
-                xml.elements.each("//parameter") do |param|
-                  name = param.attributes["name"]
-                  content = param.elements["content"]
-                  shortdesc = param.elements["shortdesc[@lang=\"#{I18n.locale.to_s.gsub("-", "_")}\"]|shortdesc[@lang=\"en\"]"].text || ""
-                  longdesc  = param.elements["longdesc[@lang=\"#{I18n.locale.to_s.gsub("-", "_")}\"]|longdesc[@lang=\"en\"]"].text || ""
-
-                  type = content.attributes["type"]
-                  default = content.attributes["default"]
-
-                  advanced = shortdesc.match(/advanced use only/i) || longdesc.match(/advanced use only/i)
-
-                  crm_config[name] = {
-                    type: content.attributes["type"],
-                    readonly: false,
-                    shortdesc: shortdesc,
-                    longdesc: longdesc,
-                    advanced: advanced ? true : false,
-                    default: default
-                  }
-
-                  if type == "enum"
-                    match = longdesc.match(/Allowed values:(.*)/i)
-
-                    if match
-                      values = match[1].split(",").map do |value|
-                        value.strip
-                      end.reject do |value|
-                        value.empty?
-                      end
-
-                      crm_config[name][:values] = values unless values.empty?
-                    end
-                  end
-                end
+            # The crm_attribute --list-options is only available since pacemaker 2.1.8
+            # Let's try crm_attribute first, and if fails,
+            # then do as before (with pengine, crmd, ..., pacemaker-based)
+            cmd = "crm_attribute --list-options=cluster --all --output-as=xml"
+            get_parameters_from(crm_config, cmd)
+            if crm_config.empty?
+              [
+                "pengine",
+                "crmd",
+                "cib",
+                "pacemaker-schedulerd",
+                "pacemaker-controld",
+                "pacemaker-based"
+              ].each do |binary|
+                path = "#{Rails.configuration.x.crm_daemon_dir}/#{binary}"
+                next unless File.executable? path
+                cmd = "#{path} metadata"
+                get_parameters_from(crm_config, cmd)
               end
             end
 
