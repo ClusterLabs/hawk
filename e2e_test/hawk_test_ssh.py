@@ -13,10 +13,18 @@ class HawkTestSSH:
         self.ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy)
         self.ssh.connect(hostname=hostname.lower(), username="root", password=secret)
 
-    def check_cluster_conf_ssh(self, command, mustmatch, anycheck=False):
+    def is_valid_command(self, command):
         _, out, err = self.ssh.exec_command(command)
         out, err = map(lambda f: f.read().decode().rstrip('\n'), (out, err))
-        print(f"INFO: ssh command [{command}] got output [{out}] and error [{err}]")
+        if err:
+            return False
+        return True
+
+    def check_cluster_conf_ssh(self, command, mustmatch, silent=False, anycheck=False):
+        _, out, err = self.ssh.exec_command(command)
+        out, err = map(lambda f: f.read().decode().rstrip('\n'), (out, err))
+        if not silent:
+            print(f"INFO: ssh command [{command}] got output [{out}] and error [{err}]")
         if err:
             print(f"ERROR: got an error over SSH: [{err}]")
             return False
@@ -36,7 +44,7 @@ class HawkTestSSH:
 
     def verify_stonith_in_maintenance(self, results):
         print("TEST: verify_stonith_in_maintenance")
-        if self.check_cluster_conf_ssh("crm status | grep stonith-sbd", ["unmanaged", "maintenance"], True):
+        if self.check_cluster_conf_ssh("crm status | grep stonith-sbd", ["unmanaged", "maintenance"], anycheck=True):
             print("INFO: stonith-sbd is unmanaged/maintenance")
             self.set_test_status(results, 'verify_stonith_in_maintenance', 'passed')
             return True
