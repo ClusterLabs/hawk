@@ -14,6 +14,8 @@ from selenium.common.exceptions import ElementNotInteractableException
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 
+from hawk_test_ssh import HawkTestSSH
+
 
 BIG_TIMEOUT = 6
 
@@ -24,6 +26,7 @@ class Error:
     PRIMITIVE_TARGET_ROLE_ERR = "Couldn't find value [Started] for primitive target-role"
     STONITH_ERR = "Couldn't find stonith-sbd menu to place it in maintenance mode"
     STONITH_ERR_OFF = "Could not find Disable Maintenance Mode button for stonith-sbd"
+    CRM_CONFIG_ADVANCED_ATTRIBUTES = "crm_config dropdown box shows the advanced attributes, but shouldn't"
 
 
 # XPATH constants
@@ -43,6 +46,7 @@ class Xpath:
     HREF_ALERTS = '//a[contains(@href, "#alerts")]'
     HREF_CONFIGURATION = '//a[contains(@href, "#configurationMenu")]'
     HREF_CONFIG_EDIT = '//a[contains(@href, "config/edit")]'
+    HREF_CRM_CONFIG_EDIT = '//a[contains(@href, "crm_config/edit")]'
     HREF_CONSTRAINTS = '//a[contains(@href, "#constraints")]'
     HREF_DASHBOARD = '//a[contains(@href, "/dashboard")]'
     HREF_DELETE_FORMAT = '//a[contains(@href, "{}") and contains(@title, "Delete")]'
@@ -68,6 +72,18 @@ class Xpath:
     TARGET_ROLE_FORMAT = '//select[contains(@class, "form-control") and contains(@name, "{}[meta][target-role]")]'
     TARGET_ROLE_STARTED = '//option[contains(@value, "tarted")]'
     WIZARDS_BASIC = '//span[contains(@href, "basic")]'
+
+# Move out long strings just to make the code neater
+class LongLiterals:
+    RSC_DEFAULT_ATTRIBUTES='allow-migrate\ndescription\nfailure-timeout\nis-managed\nmaintenance\nmigration-threshold\nmultiple-active\n\
+priority\nremote-addr\nremote-connect-timeout\nremote-node\nremote-port\nrequires\nresource-stickiness\nrestart-type\ntarget-role'
+    OP_DEFAULT_ATTRIBUTES='description\nenabled\ninterval\ninterval-origin\non-fail\nrequires\nrole\nstart-delay'
+    CRM_CONFIG_ATTRIBUTES='batch-limit\ncluster-delay\ncluster-ipc-limit\ncluster-name\ncluster-recheck-interval\nconcurrent-fencing\n\
+dc-deadtime\nenable-acl\nenable-startup-probes\nfence-reaction\nload-threshold\nmaintenance-mode\nmigration-limit\nno-quorum-policy\n\
+node-action-limit\nnode-health-base\nnode-health-green\nnode-health-red\nnode-health-strategy\nnode-health-yellow\nnode-pending-timeout\n\
+pe-error-series-max\npe-input-series-max\npe-warn-series-max\nplacement-strategy\npriority-fencing-delay\nremove-after-stop\nshutdown-lock\n\
+shutdown-lock-limit\nstart-failure-is-fatal\nstonith-action\nstonith-max-attempts\nstonith-timeout\nstonith-watchdog-timeout\nstop-all-resources\n\
+stop-orphan-actions\nstop-orphan-resources\nsymmetric-cluster'
 
 
 class HawkTestDriver:
@@ -533,6 +549,58 @@ class HawkTestDriver:
             return True
         print(f"ERROR: Could not create group [{group}]")
         return False
+
+    def test_check_cluster_configuration(self, ssh):
+        print(f"TEST: test_check_cluster_configuration: Check crm options")
+        self.click_if_major_version("15", 'configuration')
+        self.check_and_click_by_xpath("Click on Cluster Configuration", [Xpath.HREF_CRM_CONFIG_EDIT])
+
+        # The rsc_defaults and op_defaults are hardcoded in app/models/tableless.rb
+        elem = self.find_element(By.NAME, 'temp_crm_config[rsc_defaults]')
+        if not elem:
+            print(f"ERROR: Couldn't find element temp_crm_config[rsc_defaults]")
+            return False
+        if elem.text != LongLiterals.RSC_DEFAULT_ATTRIBUTES:
+            print(f"ERROR: temp_crm_config[rsc_defaults] has WRONG values")
+            return False
+
+        elem = self.find_element(By.NAME, 'temp_crm_config[op_defaults]')
+        if not elem:
+            print(f"ERROR: Couldn't find element temp_crm_config[op_defaults]")
+            return False
+        if elem.text != LongLiterals.OP_DEFAULT_ATTRIBUTES:
+            print(f"ERROR: temp_crm_config[op_defaults] has WRONG values")
+            return False
+
+        # The crm_config is trickier. We should get those attribute from the crm_attribute
+        # in the newer versions of pacemaker.If it's an older version of pacemaker
+        # let's simply compare with a literal.
+        elem = self.find_element(By.NAME, 'temp_crm_config[crm_config]')
+        if not elem:
+            print(f"ERROR: Couldn't find element temp_crm_config[crm_config]")
+            return False
+
+        lst = elem.text.split('\n')
+        for a in ['cluster-name', 'stonith-timeout']:
+            if a not in lst:
+                lst.append(a)
+        lst.sort()
+
+        # First try to get the values from the crm_attribute
+        if ssh.is_valid_command("crm_attribute --list-options=cluster --all --output-as=xml"):
+            if not ssh.check_cluster_conf_ssh("crm_attribute --list-options=cluster --all --output-as=xml | grep 'advanced=\"0\"' | sed 's/.*name=\"*\\([^\\\"]*\\)\".*/\\1/'", lst, silent=True, anycheck=False):
+                print(f'ERROR: {Error.CRM_CONFIG_ADVANCED_ATTRIBUTES}')
+                return False
+        # If the crm_attribute too old for this
+        else:
+            for a in lst:
+                if a not in LongLiterals.CRM_CONFIG_ATTRIBUTES:
+                    print(f'ERROR: {Error.CRM_CONFIG_ADVANCED_ATTRIBUTES}, attr: {a}')
+                    return False
+
+        time.sleep(self.timeout_scale)
+        return self.test_status
+
 
     def test_click_around_edit_conf(self):
         print("TEST: test_click_around_edit_conf")
