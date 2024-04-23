@@ -117,6 +117,7 @@ def main():
     browser.test('test_remove_clone', results, clone)
     browser.test('test_add_group', results, group)
     browser.test('test_remove_group', results, group)
+    browser.test('test_check_cluster_configuration', results, ssh)
     browser.test('test_click_around_edit_conf', results)
     if args.slave:
         browser.addr = args.slave
