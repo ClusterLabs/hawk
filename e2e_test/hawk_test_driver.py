@@ -195,12 +195,12 @@ class HawkTestDriver:
                 print(f"ERROR: Couldn't find element by xpath [{xpath}] {errmsg}")
                 self.test_status = False
                 return
-            time.sleep(1)
+            time.sleep(5)
             try:
                 elem.click()
             except ElementNotInteractableException:
                 # Element is obscured. Wait and click again
-                time.sleep(5 * self.timeout_scale)
+                time.sleep(10 * self.timeout_scale)
                 elem.click()
 
     # Generic function to perform the tests
@@ -465,7 +465,7 @@ class HawkTestDriver:
         print(f"INFO: Remove Resource: {name}")
         self.check_edit_conf()
         # resources list does load again after edit configuration page is loaded
-        time.sleep(5)
+        time.sleep(10)
         self.check_and_click_by_xpath(f"Cannot delete resource [{name}]", [Xpath.HREF_DELETE_FORMAT.format(name)])
         time.sleep(2)
         self.check_and_click_by_xpath(f"Cannot confirm delete of resource [{name}]", [Xpath.COMMIT_BTN_DANGER])
