@@ -36,7 +36,7 @@
 
               '<div class="col-sm-7">',
                 '<div class="input-group">',
-                  '{^{if ~root.mapping[key]["type"] == "enum"}}',
+                  '{^{if (~root.mapping[key]["type"] == "enum" || ~root.mapping[key]["type"] == "select" )}}',
                     '<select class="form-control select" name="{{>~root.prefix}}[{{>key}}]" id="{{>key}}" data-link="prop">',
                       '<option></option>',
                       '{^{for ~root.mapping[key]["values"]}}',

@@ -62,28 +62,38 @@ class CrmConfig < Tableless
           type = content.attributes["type"]
           default = content.attributes["default"]
 
-          advanced = param.attributes["advanced"] || shortdesc.match(/advanced use only/i) || longdesc.match(/advanced use only/i)
+          advanced = false
+          advanced = true if param.attributes["advanced"] && (param.attributes["advanced"]=="1")
+          advanced = true if shortdesc.match(/advanced use only/i) || longdesc.match(/advanced use only/i)
 
           crm_config[name] = {
             type: content.attributes["type"],
             readonly: false,
             shortdesc: shortdesc,
             longdesc: longdesc,
-            advanced: (advanced and (advanced=="1")) ? true : false,
+            advanced: advanced,
             default: default
           }
 
-          if type == "enum"
-            match = longdesc.match(/Allowed values:(.*)/i)
+          if type == "enum" or type == "select"
 
-            if match
-              values = match[1].split(",").map do |value|
-                value.strip
-              end.reject do |value|
-                value.empty?
+            # First try to get options from the content section
+            crm_config[name][:values] = []
+            content.each_element("option") do |opt|
+              crm_config[name][:values] << opt.attributes["value"]
+            end
+
+            # If didn't find then try to get them from the long description
+            if crm_config[name][:values].empty?
+              match = longdesc.match(/Allowed values:(.*)/i)
+              if match
+                values = match[1].split(",").map do |value|
+                  value.strip
+                end.reject do |value|
+                  value.empty?
+                end
+                crm_config[name][:values] = values unless values.empty?
               end
-
-              crm_config[name][:values] = values unless values.empty?
             end
           end
         end
@@ -201,7 +211,7 @@ class CrmConfig < Tableless
       new_value, old_value = change
 
       if new_value.nil? || new_value.empty?
-        Invoker.instance.run("crm_attribute", "--attr-name", key, "--delete-attr")
+        Invoker.instance.run("crm_attribute", "--attr-name", key, "--delete-attr", key)
       else
         writer[:crm_config][key] = new_value
       end
