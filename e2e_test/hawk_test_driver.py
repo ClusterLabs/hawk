@@ -47,6 +47,11 @@ class Xpath:
     HREF_CONFIGURATION = '//a[contains(@href, "#configurationMenu")]'
     HREF_CONFIG_EDIT = '//a[contains(@href, "config/edit")]'
     HREF_CRM_CONFIG_EDIT = '//a[contains(@href, "crm_config/edit")]'
+    HREF_CRM_CONFIG_FENCE_REACTION = '//option[contains(@value, "fence-reaction")]'
+    HREF_CRM_CONFIG_NO_QUORUM_POLICY = '//option[contains(@value, "no-quorum-policy")]'
+    HREF_CRM_CONFIG_STONITH_ACTION = '//option[contains(@value, "stonith-action")]'
+    HREF_CRM_CONFIG_NODE_HEALTH_STRATEGY = '//option[contains(@value, "node-health-strategy")]'
+    HREF_CRM_CONFIG_NODE_PLACEMENT_STRATEGY = '//option[contains(@value, "placement-strategy")]'
     HREF_CONSTRAINTS = '//a[contains(@href, "#constraints")]'
     HREF_DASHBOARD = '//a[contains(@href, "/dashboard")]'
     HREF_DELETE_FORMAT = '//a[contains(@href, "{}") and contains(@title, "Delete")]'
@@ -77,7 +82,7 @@ class Xpath:
 class LongLiterals:
     RSC_DEFAULT_ATTRIBUTES='allow-migrate\ndescription\nfailure-timeout\nis-managed\nmaintenance\nmigration-threshold\nmultiple-active\n\
 priority\nremote-addr\nremote-connect-timeout\nremote-node\nremote-port\nrequires\nresource-stickiness\nrestart-type\ntarget-role'
-    OP_DEFAULT_ATTRIBUTES='description\nenabled\ninterval\ninterval-origin\non-fail\nrequires\nrole\nstart-delay'
+    OP_DEFAULT_ATTRIBUTES='timeout\nrecord-pending\ndescription\nenabled\ninterval\ninterval-origin\non-fail\nrequires\nrole\nstart-delay'
     CRM_CONFIG_ATTRIBUTES='batch-limit\ncluster-delay\ncluster-ipc-limit\ncluster-name\ncluster-recheck-interval\nconcurrent-fencing\n\
 dc-deadtime\nenable-acl\nenable-startup-probes\nfence-reaction\nload-threshold\nmaintenance-mode\nmigration-limit\nno-quorum-policy\n\
 node-action-limit\nnode-health-base\nnode-health-green\nnode-health-red\nnode-health-strategy\nnode-health-yellow\nnode-pending-timeout\n\
@@ -551,30 +556,55 @@ class HawkTestDriver:
         return False
 
     def test_check_cluster_configuration(self, ssh):
+        """
+        The test does two things.
+        First, it checks that the available resources are correct.
+        Second, that the options of select-type resources are correct.
+        The test doesn't create those resources.
+        """
         print(f"TEST: test_check_cluster_configuration: Check crm options")
         self.click_if_major_version("15", 'configuration')
         self.check_and_click_by_xpath("Click on Cluster Configuration", [Xpath.HREF_CRM_CONFIG_EDIT])
 
+        ### 1.
         # The rsc_defaults and op_defaults are hardcoded in app/models/tableless.rb
         elem = self.find_element(By.NAME, 'temp_crm_config[rsc_defaults]')
         if not elem:
             print(f"ERROR: Couldn't find element temp_crm_config[rsc_defaults]")
             return False
-        if elem.text != LongLiterals.RSC_DEFAULT_ATTRIBUTES:
-            print(f"ERROR: temp_crm_config[rsc_defaults] has WRONG values")
+        lst = elem.text.split('\n')
+        for a in ['migration-threshold']:
+            if a not in lst:
+                lst.append(a)
+        lst.sort()
+        lst2 = LongLiterals.RSC_DEFAULT_ATTRIBUTES.split('\n')
+        lst2.sort()
+        if lst != lst2:
+            print(f"ERROR: temp_crm_config[rsc_defaults] has WRONG values.")
+            print(f"       Expected: {lst}")
+            print(f"       Exist:    {lst2}")
             return False
 
         elem = self.find_element(By.NAME, 'temp_crm_config[op_defaults]')
         if not elem:
             print(f"ERROR: Couldn't find element temp_crm_config[op_defaults]")
             return False
-        if elem.text != LongLiterals.OP_DEFAULT_ATTRIBUTES:
+        lst = elem.text.split('\n')
+        for a in ['timeout', 'record-pending']:
+            if a not in lst:
+                lst.append(a)
+        lst.sort()
+        lst2 = LongLiterals.OP_DEFAULT_ATTRIBUTES.split('\n')
+        lst2.sort()
+        if lst != lst2:
             print(f"ERROR: temp_crm_config[op_defaults] has WRONG values")
+            print(f"       Expected: {lst}")
+            print(f"       Exist:    {lst2}")
             return False
 
-        # The crm_config is trickier. We should get those attribute from the crm_attribute
-        # in the newer versions of pacemaker.If it's an older version of pacemaker
-        # let's simply compare with a literal.
+        # The crm_config is trickier. We should get those attributes from the crm_attribute
+        # in the newer versions of pacemaker. If it's an older version of pacemaker
+        # let's simply compare it against LongLiterals.CRM_CONFIG_ATTRIBUTES.
         elem = self.find_element(By.NAME, 'temp_crm_config[crm_config]')
         if not elem:
             print(f"ERROR: Couldn't find element temp_crm_config[crm_config]")
@@ -597,6 +627,40 @@ class HawkTestDriver:
                 if a not in LongLiterals.CRM_CONFIG_ATTRIBUTES:
                     print(f'ERROR: {Error.CRM_CONFIG_ADVANCED_ATTRIBUTES}, attr: {a}')
                     return False
+        print(f"INFO: Available resources are correct")
+
+        ### 2.
+        # Show out all but fence-reaction select-type resources
+        # (fence-reaction is a string the pacemaker-controld
+        # and a select in the crm_attribute. Let's not overengineer.)
+        elem.click()
+        for xref in [Xpath.HREF_CRM_CONFIG_NO_QUORUM_POLICY,
+                    Xpath.HREF_CRM_CONFIG_STONITH_ACTION,
+                    Xpath.HREF_CRM_CONFIG_NODE_HEALTH_STRATEGY,
+                    Xpath.HREF_CRM_CONFIG_NODE_PLACEMENT_STRATEGY]:
+            self.check_and_click_by_xpath(f'Couldn\'t find {xref} resource in the drop-down list',
+                                    [xref])
+            time.sleep(1)
+
+        # ["<resource name>", ["<option1>", "<option2>,..."]]
+        for check_options in [ ["no-quorum-policy", ["stop", "freeze", "ignore", "demote", "suicide"]],
+                            ["stonith-action", ["reboot", "off", "poweroff"]],
+                            ["node-health-strategy", ["none", "migrate-on-red", "only-green", "progressive", "custom"]],
+                            ["placement-strategy", ["default", "utilization", "minimal", "balanced"]]]:
+            elem = self.find_element(By.NAME, f'crm_config[crm_config][{check_options[0]}]')
+            if not elem:
+                print(f'ERROR: Couldn\'t find {check_options[0]}')
+                return False
+
+            lst = elem.text.split('\n')
+            lst.sort()
+            check_options[1].sort()
+            if lst != check_options[1]:
+                print(f'ERROR: {check_options[0]} has WRONG options.')
+                print(f"       Expected: {lst}")
+                print(f"       Exist: {check_options[1]}")
+                return False
+        print(f"INFO: Resource options are correct")
 
         time.sleep(self.timeout_scale)
         return self.test_status
