@@ -35,7 +35,7 @@ module Cibtools
     expected_up = get_xml_attr(ns, 'shutdown', '0') == 0
 
     state = :unclean
-    if in_ccm && crm_state == 'online'
+    if in_ccm && (crm_state == 'online' || Util.numeric?(crm_state) && crm_state.to_i > 0)
       case join_state
       when 'member'         # rock 'n' roll (online)
         state = :online
@@ -52,6 +52,8 @@ module Cibtools
       state = :offline      # not online, but cleanly
     elsif expected_up
       state = :unclean      # expected to be up, mark it unclean
+    elsif in_ccm && Util.numeric?(crm_state) && crm_state.to_i == 0
+      state = :offline      # offline (explicitely)
     else
       state = :offline      # offline
     end
@@ -73,7 +75,7 @@ module Cibtools
     state = :unclean
     if !in_ccm
       state = :offline
-    elsif crm_state == 'online'
+    elsif crm_state == 'online' || Util.numeric?(crm_state) && crm_state.to_i > 0
       if join_state == 'member'
         state = :online
       else
