@@ -1,4 +1,4 @@
-# Copyright (c) 2018 Kristoffer Gronlund <kgronlund@suse.com>
+# Copyright (c) 2024 Kristoffer Gronlund <kgronlund@suse.com>
 # See COPYING for license.
 require 'invoker'
 
