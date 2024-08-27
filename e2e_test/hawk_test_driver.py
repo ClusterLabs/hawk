@@ -92,7 +92,19 @@ stop-orphan-actions\nstop-orphan-resources\nsymmetric-cluster'
 
 
 class HawkTestDriver:
+    '''
+    Hawk Test driver main class
+    '''
     def __init__(self, addr='localhost', port='7630', browser='firefox', headless=False, version='15-SP5'):
+        '''
+        Constructor function to initialize parameters
+        Args:
+            addr (str):           target hostname, default is localhost
+            port (str):           port number, default is 7630
+            browser (str):        browser for testing, default is firefox
+            headless (boolean):   headless mode, default is False
+            version (str):        OS version, default is 15-SP5
+        '''
         self.addr = addr
         self.port = port
         self.driver = None
@@ -106,6 +118,11 @@ class HawkTestDriver:
             self.timeout_scale = 1
 
     def _connect(self):
+        '''
+        Private method: initialize webdriver basing on browser type
+        Returns:
+            Instance of webdriver
+        '''
         if self.browser in ['chrome', 'chromium']:
             options = webdriver.ChromeOptions()
             options.add_argument('--no-sandbox')
@@ -123,14 +140,28 @@ class HawkTestDriver:
         return self.driver
 
     def _close(self):
+        '''
+        Private method: Send logout action and quit webdriver
+        '''
         self.click_on('Logout')
         self.driver.quit()
 
     @staticmethod
     def set_test_status(results, testname, status):
+        '''
+        Static method: set test status
+        Args:
+            testname (str): test name
+            status (str): status
+        '''
         results.set_test_status(testname, status)
 
     def _do_login(self):
+        '''
+        Private method: handle login action
+        Returns:
+            boolean: True or False
+        '''
         mainlink = f'https://{self.addr}:{self.port}'
         self.driver.get(mainlink)
         elem = self.find_element(By.NAME, "session[username]")
@@ -148,14 +179,27 @@ class HawkTestDriver:
         elem.send_keys(Keys.RETURN)
         return True
 
-    # Clicks on element identified by clicker if major version from the test is greater or
-    # equal than the version to check
     def click_if_major_version(self, version_to_check, text):
+        '''
+        Clicks on element identified by clicker if major version from the test is greater or
+        equal than the version to check
+        Args:
+           version_to_check (str): version
+           text (str): target text and click it
+        '''
         if Version(self.test_version) >= Version(version_to_check):
             self.find_element(By.XPATH, f"//*[text()='{text.capitalize()}']").click()
 
-    # Internal support function click_on partial link test. Sets test_status to False on failure
     def click_on(self, text):
+        '''
+        Internal support function click_on partial link test. Sets test_status to False on failure
+        Args:
+            text (str): target text
+        Returns:
+            boolean: True or False
+        Raises:
+            ElementNotInteractableException
+        '''
         print(f"INFO: Main page. Click on {text}")
         elem = self.find_element(By.PARTIAL_LINK_TEXT, text)
         if not elem:
@@ -172,6 +216,17 @@ class HawkTestDriver:
         return True
 
     def find_element(self, bywhat, texto, tout=60):
+        '''
+        Function to find element
+        Args:
+            bywhat (str): 'By.' elements
+            texto  (str):  element name
+            tout   (int):  timeout number, default is 60
+        Returns:
+            boolean: False for failure or element if found
+        Raises:
+            TimeoutException
+        '''
         try:
             elem = WebDriverWait(self.driver,
                                  tout).until(EC.presence_of_element_located((bywhat, texto)))
@@ -181,6 +236,11 @@ class HawkTestDriver:
         return elem
 
     def verify_success(self):
+        '''
+        Function to find alert-success element on the UI
+        Returns:
+            boolean: True if found
+        '''
         elem = self.find_element(By.CLASS_NAME, 'alert-success', 60 * self.timeout_scale)
         if not elem:
             elem = self.find_element(By.PARTIAL_LINK_TEXT, 'Rename', 5)
@@ -189,6 +249,14 @@ class HawkTestDriver:
         return True
 
     def fill_value(self, field, tout):
+        '''
+        Function to find an input element in the UI by its field name, and fill in a value
+        Args:
+            field (str) : target field
+            tout  (str) : text to input
+        Returns:
+            None
+        '''
         elem = self.find_element(By.NAME, field)
         if not elem:
             print(f"ERROR: couldn't find element [{field}].")
@@ -197,9 +265,17 @@ class HawkTestDriver:
         elem.send_keys(f"{tout}")
 
     def submit_operation_params(self, errmsg):
+        '''
+        Function to submit and click OK
+        Args:
+            errmsg (str) : error message if element is not found
+        '''
         self.check_and_click_by_xpath(errmsg, [Xpath.CLICK_OK_SUBMIT])
 
     def check_edit_conf(self):
+        '''
+        Function to check and edit configuration
+        '''
         print("INFO: Check edit configuration")
         time.sleep(1)
         if Version(self.test_version) >= Version("15"):
@@ -207,9 +283,16 @@ class HawkTestDriver:
         time.sleep(1)
         self.check_and_click_by_xpath("Couldn't find Edit Configuration element", [Xpath.HREF_CONFIG_EDIT])
 
-    # Internal support function to find element(s) by xpath and click them
-    # Sets test_status to False on failure.
     def check_and_click_by_xpath(self, errmsg, xpath_exps):
+        '''
+        Internal support function to find element(s) by xpath and click them
+        Sets test_status to False on failure.
+        Args:
+           errmsg (str): error message
+           xpath_exps (str): xpath expression
+        Returns:
+           None
+        '''
         for xpath in xpath_exps:
             elem = self.find_element(By.XPATH, xpath)
             if not elem:
@@ -226,6 +309,18 @@ class HawkTestDriver:
 
     # Generic function to perform the tests
     def test(self, testname, results, *extra):
+        '''
+        Main test caller. This is essentially a wrapper to call each specific test.
+        Each test performs different actions, but this function will wrap around
+        them to perform common actions which are required by all tests such
+        as connecting to the webUI, authenticating, setting the test result and
+        disconnecting from the UI.
+        Args:
+            testname (str): test name
+            results :       result object
+            *extra  :       extra parameters required by
+                            some of the specific tests which this function calls
+        '''
         self.test_status = True    # Clear internal test status before testing
         self._connect()
         if self._do_login():
@@ -237,9 +332,13 @@ class HawkTestDriver:
                 self.driver.save_screenshot(f'{testname}.png')
         self._close()
 
-    # Set STONITH/sbd in maintenance. Assumes stonith-sbd resource is the last one listed on the
-    # resources table
     def test_set_stonith_maintenance(self):
+        '''
+        Set STONITH/sbd in maintenance. Assumes stonith-sbd resource is the last one listed on the
+        resources table
+        Returns:
+            boolean: True if successful or False if failed
+        '''
         # wait for page to fully load
         if self.find_element(By.XPATH, Xpath.RSC_ROWS):
             totalrows = len(self.driver.find_elements_by_xpath(Xpath.RSC_ROWS))
@@ -255,6 +354,11 @@ class HawkTestDriver:
         return False
 
     def test_disable_stonith_maintenance(self):
+        '''
+        Disable maintenance in STONITH/sbd
+        Returns:
+            boolean: True if successful or False if failed
+        '''
         print("TEST: test_disable_stonith_maintenance: Re-activating stonith-sbd")
         self.check_and_click_by_xpath(Error.STONITH_ERR_OFF, [Xpath.STONITH_MAINT_OFF, Xpath.COMMIT_BTN_DANGER])
         if self.verify_success():
@@ -264,6 +368,11 @@ class HawkTestDriver:
         return False
 
     def test_view_details_first_node(self):
+        '''
+        Checking details of first cluster node
+        Returns:
+            boolean: test_status
+        '''
         print("TEST: test_view_details_first_node: Checking details of first cluster node")
         self.click_on('Nodes')
         self.check_and_click_by_xpath("Click on Nodes", [Xpath.HREF_NODES])
@@ -274,6 +383,11 @@ class HawkTestDriver:
         return self.test_status
 
     def test_clear_state_first_node(self):
+        '''
+        Clear state for first node
+        Returns:
+            boolean: True for successful and False for failure
+        '''
         print("TEST: test_clear_state_first_node")
         self.click_on('Nodes')
         self.check_and_click_by_xpath("Click on Nodes", [Xpath.HREF_NODES])
@@ -290,6 +404,11 @@ class HawkTestDriver:
         return False
 
     def test_set_first_node_maintenance(self):
+        '''
+        Switch the first node to maintenance
+        Returns:
+            boolean: True for successful and False for failure
+        '''
         print("TEST: test_set_first_node_maintenance: switching node to maintenance")
         self.click_on('Nodes')
         self.check_and_click_by_xpath("Click on Nodes", [Xpath.HREF_NODES])
@@ -301,6 +420,11 @@ class HawkTestDriver:
         return False
 
     def test_disable_maintenance_first_node(self):
+        '''
+        Switch the first node to ready (disable maintenance)
+        Returns:
+            boolean: True for successful and False for failure
+        '''
         print("TEST: test_disable_maintenance_first_node: switching node to ready")
         self.click_on('Nodes')
         self.check_and_click_by_xpath("Click on Nodes", [Xpath.HREF_NODES])
@@ -312,6 +436,13 @@ class HawkTestDriver:
         return False
 
     def test_add_new_cluster(self, cluster):
+        '''
+        Add new cluster
+        Args:
+            cluster (str): cluster name
+        Returns:
+            boolean: True for successful and False for failure
+        '''
         print("TEST: test_add_new_cluster")
         self.click_on('Dashboard')
         self.check_and_click_by_xpath("Click on Dashboard", [Xpath.HREF_DASHBOARD])
@@ -345,6 +476,13 @@ class HawkTestDriver:
         return False
 
     def test_remove_cluster(self, cluster):
+        '''
+        Remove cluster
+        Args:
+            cluster (str): cluster
+        Returns:
+            boolean: True for successful and False for failure
+        '''
         print("TEST: test_remove_cluster")
         self.click_on('Dashboard')
         self.check_and_click_by_xpath("Click on Dashboard", [Xpath.HREF_DASHBOARD])
@@ -381,6 +519,11 @@ class HawkTestDriver:
         return False
 
     def test_click_on_history(self):
+        '''
+        Click on history
+        Returns:
+            boolean: True for successful and False for failure
+        '''
         print("TEST: test_click_on_history")
         self.click_if_major_version("15", 'troubleshooting')
         if not self.test_status:
@@ -388,6 +531,11 @@ class HawkTestDriver:
         return self.click_on('History')
 
     def test_generate_report(self):
+        '''
+        Click on Generate report
+        Returns:
+            boolean: True for successful and False for failure
+        '''
         print("TEST: test_generate_report: click on Generate report")
         self.click_if_major_version("15", 'troubleshooting')
         self.click_on('History')
@@ -403,6 +551,11 @@ class HawkTestDriver:
         return False
 
     def test_click_on_command_log(self):
+        '''
+        Click on command log
+        Returns:
+            boolean: True for successful and False for failure
+        '''
         print("TEST: test_click_on_command_log")
         self.click_if_major_version("15", 'troubleshooting')
         if not self.test_status:
@@ -410,10 +563,22 @@ class HawkTestDriver:
         return self.click_on('Command Log')
 
     def test_click_on_status(self):
+        '''
+        Click on status
+        Returns:
+            boolean: True for successful and False for failure
+        '''
         print("TEST: test_click_on_status")
         return self.click_on('Status')
 
     def test_add_primitive(self, primitive):
+        '''
+        Add primitive resources
+        Args:
+            primitive (str): primitive
+        Returns:
+            boolean: True for successful and False for failure
+        '''
         print(f"TEST: test_add_primitive: Add Resources: Primitive {primitive}")
         self.click_if_major_version("15", 'configuration')
         self.click_on('Resource')
@@ -483,6 +648,13 @@ class HawkTestDriver:
         return status
 
     def remove_rsc(self, name):
+        '''
+        Remove resources
+        Args:
+            name (str): name
+        Returns:
+            boolean: True for successful and False for failure
+        '''
         print(f"INFO: Remove Resource: {name}")
         self.check_edit_conf()
         # resources list does load again after edit configuration page is loaded
@@ -504,18 +676,46 @@ class HawkTestDriver:
         return False
 
     def test_remove_primitive(self, primitive):
+        '''
+        Remove primitive resources
+        Args:
+            primitive (str): primitive
+        Returns:
+            boolean: True for successful and False for failure
+        '''
         print(f"TEST: test_remove_primitive: Remove Primitive: {primitive}")
         return self.remove_rsc(primitive)
 
     def test_remove_clone(self, clone):
+        '''
+        Remove clone resources
+        Args:
+            clone (str): clone
+        Returns:
+            boolean: True for successful and False for failure
+        '''
         print(f"TEST: test_remove_clone: Remove Clone: {clone}")
         return self.remove_rsc(clone)
 
     def test_remove_group(self, group):
+        '''
+        Remove group resources
+        Args:
+            group (str): group
+        Returns:
+            boolean: True for successful and False for failure
+        '''
         print(f"TEST: test_remove_group: Remove Group: {group}")
         return self.remove_rsc(group)
 
     def test_add_clone(self, clone):
+        '''
+        Add clone resources
+        Args:
+            clone (str): clone
+        Returns:
+            boolean: True for successful and False for failure
+        '''
         print(f"TEST: test_add_clone: Adding clone [{clone}]")
         self.click_if_major_version("15", 'configuration')
         self.click_on('Resource')
@@ -536,6 +736,13 @@ class HawkTestDriver:
         return False
 
     def test_add_group(self, group):
+        '''
+        Add group resources
+        Args:
+            group (str): group
+        Returns:
+            boolean: True for successful and False for failure
+        '''
         print(f"TEST: test_add_group: Adding group [{group}]")
         self.click_if_major_version("15", 'configuration')
         self.click_on('Resource')
@@ -556,12 +763,16 @@ class HawkTestDriver:
         return False
 
     def test_check_cluster_configuration(self, ssh):
-        """
+        '''
         The test does two things.
         First, it checks that the available resources are correct.
         Second, that the options of select-type resources are correct.
         The test doesn't create those resources.
-        """
+        Args:
+            ssh (object): HawkTestSSH instance
+        Returns:
+            boolean: True for successful and False for failure
+        '''
         print(f"TEST: test_check_cluster_configuration: Check crm options")
         self.click_if_major_version("15", 'configuration')
         self.check_and_click_by_xpath("Click on Cluster Configuration", [Xpath.HREF_CRM_CONFIG_EDIT])
@@ -667,6 +878,11 @@ class HawkTestDriver:
 
 
     def test_click_around_edit_conf(self):
+        '''
+        Click around edit conf
+        Returns:
+            boolean: True for successful and False for failure
+        '''
         print("TEST: test_click_around_edit_conf")
         print("TEST: Will click on Constraints, Nodes, Tags, Alerts and Fencing")
         self.check_edit_conf()
@@ -680,6 +896,13 @@ class HawkTestDriver:
         return self.test_status
 
     def test_add_virtual_ip(self, virtual_ip):
+        '''
+        Add virtual IP from the Wizard
+        Args:
+            virtual_ip (str): IP address
+        Returns:
+            boolean: True for successful and False for failure
+        '''
         print("TEST: test_add_virtual_ip: Add virtual IP from the Wizard")
         self.click_if_major_version("15", 'configuration')
         broadcast = str(ipaddress.IPv4Network(virtual_ip, False).broadcast_address)
@@ -722,10 +945,20 @@ class HawkTestDriver:
         return True
 
     def test_remove_virtual_ip(self):
+        '''
+        Remove virtual IP
+        Returns:
+            boolean: True for successful and False for failure
+        '''
         print("TEST: test_remove_virtual_ip: Remove virtual IP")
         return self.remove_rsc("vip")
 
     def test_fencing(self):
+        '''
+        Fence first node
+        Returns:
+            boolean: True for successful and False for failure
+        '''
         print("TEST: test_fencing")
         self.click_on('Nodes')
         self.check_and_click_by_xpath("Click on Nodes", [Xpath.OPERATIONS])

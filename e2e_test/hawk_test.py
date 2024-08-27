@@ -16,6 +16,15 @@ from hawk_test_ssh import HawkTestSSH
 
 
 def hostname(string):
+    '''
+    Check if the input string as hostname is reachable
+    Args:
+        string (str): input destination
+    Return:
+        string (str) or None
+    Raises:
+        ArgumentTypeError: via socket.gaierror: [Errno -2] Name or service not known
+    '''
     try:
         socket.getaddrinfo(string, 1)
         return string
@@ -24,6 +33,15 @@ def hostname(string):
 
 
 def cidr_address(string):
+    '''
+    Check if the input string is IP address format
+    Args:
+       string (str): input destination
+    Return:
+       string (str) or None
+    Raises:
+       ArgumentTypeError: via ValueError if address does not represent a valid IPv4 or IPv6 address
+    '''
     try:
         ipaddress.ip_network(string, False)
         return string
@@ -32,12 +50,26 @@ def cidr_address(string):
 
 
 def port(string):
+    '''
+    Check if the input string is digit and valid port number
+    Args:
+        string (str): input port number
+    Return:
+        string (str)
+    Raises:
+        ArgumentTypeError: via ValueError
+    '''
     if string.isdigit() and 1 <= int(string) <= 65535:
         return string
     raise argparse.ArgumentTypeError(f"Invalid port number: {string}") from ValueError
 
 
 def parse_args():
+    '''
+    Set arguments for ArgumentParser
+    Return:
+         argparse.Namespace object
+    '''
     parser = argparse.ArgumentParser(description='HAWK GUI interface Selenium test')
     parser.add_argument('-b', '--browser', default='firefox', choices=['firefox', 'chrome', 'chromium'],
                         help='Browser to use in the test')
@@ -60,6 +92,9 @@ def parse_args():
 
 
 def main():
+    '''
+    Main test functions
+    '''
     args = parse_args()
 
     if args.xvfb:
