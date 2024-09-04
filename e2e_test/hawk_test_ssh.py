@@ -128,7 +128,7 @@ class HawkTestSSH:
                 False when configuration is not defined in configuration
         '''
         print(f"TEST: verify_primitive: check primitive [{primitive}] exists")
-        matches = [f"{primitive} anything", "binfile=file", "op start timeout=35s",
+        matches = [f"{primitive} Dummy", "op start timeout=35s",
                    "op monitor timeout=9s interval=13s", "meta target-role=Started"]
         if Version(version) < Version('15'):
             matches.append("op stop timeout=15s")
@@ -154,7 +154,7 @@ class HawkTestSSH:
                 False when configuration is not removed
         '''
         print(f"TEST: verify_primitive_removed: check primitive [{primitive}] is removed")
-        if self.check_cluster_conf_ssh("crm resource status | grep ocf::heartbeat:anything", ''):
+        if self.check_cluster_conf_ssh("crm resource status | grep ocf::heartbeat:Dummy", ''):
             print("INFO: primitive successfully removed")
             self.set_test_status(results, 'verify_primitive_removed', 'passed')
             return True

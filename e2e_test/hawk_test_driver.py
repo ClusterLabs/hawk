@@ -31,7 +31,7 @@ class Error:
 
 # XPATH constants
 class Xpath:
-    ANYTHING_OPT_LIST = '//option[contains(@value, "anything")]'
+    DUMMY_OPT_LIST = '//option[contains(@value, "Dummy")]'
     CLICK_OK_SUBMIT = '//*[@id="modal"]/div/div/form/div[3]/input'
     CLONE_CHILD = '//select[contains(@data-help-filter, ".row.resource") and contains(@name, "clone[child]")]'
     CLONE_DATA_HELP_FILTER = '//a[contains(@data-help-filter, ".clone")]'
@@ -602,13 +602,8 @@ class HawkTestDriver:
             print(f"ERROR: Couldn't find element [primitive[type]]. Cannot add primitive [{primitive}].")
             return False
         elem.click()
-        self.check_and_click_by_xpath("Couldn't find value [anything] for primitive type",
-                                      [Xpath.ANYTHING_OPT_LIST])
-        elem = self.find_element(By.NAME, 'primitive[params][binfile]')
-        if not elem:
-            print("ERROR: Couldn't find element [primitive[params][binfile]]")
-            return False
-        elem.send_keys("file")
+        self.check_and_click_by_xpath("Couldn't find value [Dummy] for primitive type",
+                                      [Xpath.DUMMY_OPT_LIST])
         # Set start timeout value in 35s
         self.check_and_click_by_xpath("Couldn't find edit button for start operation",
                                       [Xpath.EDIT_START_TIMEOUT, Xpath.MODAL_TIMEOUT])
@@ -642,7 +637,7 @@ class HawkTestDriver:
             elem.click()
         status = self.verify_success()
         if status:
-            print(f"INFO: Successfully added primitive [{primitive}] of class [ocf:heartbeat:anything]")
+            print(f"INFO: Successfully added primitive [{primitive}] of class [ocf:heartbeat:Dummy]")
         else:
             print(f"ERROR: Could not create primitive [{primitive}]")
         return status
@@ -662,7 +657,7 @@ class HawkTestDriver:
         self.check_and_click_by_xpath(f"Cannot delete resource [{name}]", [Xpath.HREF_DELETE_FORMAT.format(name)])
         time.sleep(2)
         self.check_and_click_by_xpath(f"Cannot confirm delete of resource [{name}]", [Xpath.COMMIT_BTN_DANGER])
-        time.sleep(2)
+        time.sleep(20)
         self.check_and_click_by_xpath("Couldn't find Edit Configuration element", [Xpath.HREF_CONFIG_EDIT])
         time.sleep(3)
         if not self.test_status:
