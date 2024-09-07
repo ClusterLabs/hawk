@@ -22,6 +22,7 @@ class AgentsController < ApplicationController
     else
       @name = params[:id]
     end
+    @name = CGI.unescape(@name)
     @agent = Util.get_metadata_hash(@name)
 
     if @agent
