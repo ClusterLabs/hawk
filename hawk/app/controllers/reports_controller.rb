@@ -109,7 +109,8 @@ class ReportsController < ApplicationController
         @hb_report = HbReport.new
         running = @hb_report.running?
         t = running ? @hb_report.lasttime : nil
-        render json: { running: running, time: (t || ["", ""]) }
+        rc = @hb_report.report_generated?
+        render json: { running: running, time: (t || ["", ""]), report_generated: rc[:code], msg: rc[:msg] }
       end
     end
   end
