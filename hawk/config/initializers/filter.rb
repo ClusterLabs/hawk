@@ -3,7 +3,6 @@
 
 Rails.application.config.tap do |config|
   config.filter_parameters += [
-    :password,
-    :rootpw
+    :password
   ]
 end

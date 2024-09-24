@@ -39,7 +39,7 @@ module CrmScript
   end
   module_function :cleanerr
 
-  def run(jsondata, rootpw)
+  def run(jsondata)
     user = current_user
     cmd = crmsh_escape(JSON.dump(jsondata))
     tmpf = Tempfile.new 'crmscript'

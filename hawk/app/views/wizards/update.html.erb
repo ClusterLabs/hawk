@@ -61,22 +61,6 @@
                 <% end %>
               </ul>
             </div>
-            <% if @wizard.need_rootpw %>
-              <div class="alert alert-warning">
-                <p>
-                  <%= _("To apply the changes, Hawk requires root access, and password-less SSH access must be configured. See the Hawk documentation for more information.") %>
-                </p>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-5 text-right">
-                  <%= label_tag(:rootpw, _("Root password")) %>
-                </div>
-                <div class="col-sm-7">
-                  <%= password_field_tag :rootpw, nil, class: "form-control", required: true %>
-                </div>
-                <div class="col-sm-5 help-block"></div>
-              </div>
-            <% end %>
           </fieldset>
           <%= main_form.button_group class: "wizard" do %>
             <%= link_to _("Cancel"), cib_wizards_path(cib_id: current_cib.id), class: "btn btn-default", data: { confirm: _("Do you really want to cancel the wizard setup?") } %>
