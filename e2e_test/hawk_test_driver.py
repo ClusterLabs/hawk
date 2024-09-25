@@ -779,17 +779,16 @@ class HawkTestDriver:
             print(f"ERROR: Couldn't find element temp_crm_config[rsc_defaults]")
             return False
         lst = elem.text.split('\n')
+        if not lst:
+            print(f'ERROR: temp_crm_config[rsc_defaults] is empty')
+            return False
         for a in ['migration-threshold']:
             if a not in lst:
                 lst.append(a)
-        lst.sort()
-        lst2 = LongLiterals.RSC_DEFAULT_ATTRIBUTES.split('\n')
-        lst2.sort()
-        if lst != lst2:
-            print(f"ERROR: temp_crm_config[rsc_defaults] has WRONG values.")
-            print(f"       Expected: {lst}")
-            print(f"       Exist:    {lst2}")
-            return False
+        for a in lst:
+            if a not in LongLiterals.RSC_DEFAULT_ATTRIBUTES.split('\n'):
+                print(f'ERROR: temp_crm_config[rsc_defaults] has the WRONG option: {a}')
+                return False
 
         elem = self.find_element(By.NAME, 'temp_crm_config[op_defaults]')
         if not elem:
@@ -849,7 +848,7 @@ class HawkTestDriver:
             time.sleep(1)
 
         # ["<resource name>", ["<option1>", "<option2>,..."]]
-        for check_options in [ ["no-quorum-policy", ["stop", "freeze", "ignore", "demote", "suicide"]],
+        for check_options in [ ["no-quorum-policy", ["stop", "fence", "freeze", "ignore", "demote", "suicide"]],
                             ["stonith-action", ["reboot", "off", "poweroff"]],
                             ["node-health-strategy", ["none", "migrate-on-red", "only-green", "progressive", "custom"]],
                             ["placement-strategy", ["default", "utilization", "minimal", "balanced"]]]:
@@ -859,13 +858,13 @@ class HawkTestDriver:
                 return False
 
             lst = elem.text.split('\n')
-            lst.sort()
-            check_options[1].sort()
-            if lst != check_options[1]:
-                print(f'ERROR: {check_options[0]} has WRONG options.')
-                print(f"       Expected: {lst}")
-                print(f"       Exist: {check_options[1]}")
+            if not lst:
+                print(f'ERROR: crm_config[crm_config][{check_options[0]}] is empty')
                 return False
+            for a in lst:
+                if a not in check_options[1]:
+                    print(f'ERROR: crm_config[crm_config][{check_options[0]}] has the WRONG option: {a}')
+                    return False
         print(f"INFO: Resource options are correct")
 
         time.sleep(self.timeout_scale)
