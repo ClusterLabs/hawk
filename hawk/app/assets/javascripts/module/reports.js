@@ -28,7 +28,11 @@ $(function() {
             clearInterval(running_timeout);
             running_timeout = null;
           }
-          $.growl({ message: __("Report generation is complete.") }, { type: 'success' });
+          if (state.report_generated) {
+            $.growl({ message: __("Report generation is complete.") }, { type: 'success' });
+          } else {
+            $.growl({ message: __("Failed to create the report: " + state.msg ) }, { type: 'danger' });
+          }
           $('#reports #middle table.reports').bootstrapTable('refresh');
           build_tabs();
         }

@@ -38,6 +38,23 @@ class HbReport
     Util.child_active(@pidfile)
   end
 
+  def report_generated?
+    return { code: false, msg: '' } if !File.exist?(@exitfile) || !File.exist?(@timefile)
+
+    rc = File.read(@exitfile).to_i
+    return { code: true, msg: '' } if rc==0
+
+    lt = lasttime
+    errfile = Rails.root.join('tmp', 'reports', "hawk-#{lt[0]}-#{lt[1]}.stderr").to_s
+    # .stderr file must exist even if there was no error
+    return { code: false, msg: '' } if !File.exist?(errfile)
+
+    err_text = File.read(errfile).split("\n")
+    err_msg = '<br>' + err_text[0]
+    err_msg += '<br>...<br>' + err_text[-1] if err_text.length() > 1
+    return { code: false, msg: err_msg }
+  end
+
   def cancel!
     pid = File.new(@pidfile).read.to_i
     return 0 if pid <= 0
