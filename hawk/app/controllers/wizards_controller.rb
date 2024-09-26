@@ -50,10 +50,10 @@ class WizardsController < ApplicationController
       @wizard.verify(pa)
       if @wizard.errors.length > 0
         render json: @wizard.errors.to_json, status: :unprocessable_entity
-      elsif current_cib.sim? && @wizard.need_rootpw
+      elsif current_cib.sim?
         render json: [_("Wizard cannot be applied when the simulator is active")], status: :unprocessable_entity
       else
-        @wizard.run(pa, params[:rootpw])
+        @wizard.run(pa)
         if @wizard.errors.length > 0
           render json: @wizard.errors.to_json, status: :unprocessable_entity
         else

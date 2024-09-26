@@ -20,7 +20,6 @@ class Wizard
   attr_reader :actions
   attr_reader :output
   attr_reader :errors
-  attr_reader :need_rootpw
 
   def persisted?
     true
@@ -39,7 +38,6 @@ class Wizard
     @actions = nil
     @output = nil
     @errors = nil
-    @need_rootpw = false
   end
 
   def id
@@ -63,25 +61,13 @@ class Wizard
     @params = params
     @actions = []
     @errors = []
-    CrmScript.run ["verify", @name, params], nil do |action, err|
+    CrmScript.run ["verify", @name, params] do |action, err|
       @errors << err if err
       unless action.nil?
         @errors << action["error"] if action.key? "error"
         action['text'].gsub!(/\t/, "    ") if action.key? "text"
         @actions << action unless action.key? "error"
       end
-    end
-
-    @need_rootpw = @errors.empty? && @actions.any? do |action|
-      return false if action['name'] == 'cib'
-      if action['name'] == 'crm'
-        t = (action['text'] || '').split.first || ''
-        return false if ['configure', 'resource', 'cib'].any? { |c| c == t }
-      end
-      if action['name'] == 'call' && action['sudo'].nil? && action['nodes'] == 'local'
-        return false
-      end
-      true
     end
   end
 
@@ -99,14 +85,14 @@ class Wizard
     base.join(" ")
   end
 
-  def run(params, rootpw=nil)
+  def run(params)
     # TODO: live-update frontend
     @params = params
     @actions = []
     @errors = []
     @output = nil
     CrmEvents.instance.push command_string
-    CrmScript.run ["run", @name, @params], rootpw do |result, err|
+    CrmScript.run ["run", @name, @params] do |result, err|
       @errors << err if err
       unless result.nil?
         Rails.logger.debug "result: #{result}"
@@ -152,7 +138,7 @@ class Wizard
 
     def find(name)
       w = nil
-      CrmScript.run ["show", name], nil do |item, err|
+      CrmScript.run ["show", name] do |item, err|
         Rails.logger.error "Wizard.find: #{err}" unless err.nil?
         raise Cib::RecordNotFound, _("Requested wizard does not exist") unless err.nil?
         w = Wizard.parse_full(item) unless item.nil?
@@ -178,7 +164,7 @@ class Wizard
     def all
       Rails.cache.fetch(:all_wizards, expires_in: 2.hours) do
         [].tap do |wizards|
-          CrmScript.run ["list"], nil do |item, err|
+          CrmScript.run ["list"] do |item, err|
             Rails.logger.debug "Error listing scripts: #{err}" unless err.blank?
             wizards.push Wizard.parse_brief(item) if wizard_ok(item)
           end
