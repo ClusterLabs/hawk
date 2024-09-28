@@ -112,6 +112,10 @@ def main():
     # Get version from /etc/os-release
     test_version = ssh.ssh.exec_command("grep VERSION= /etc/os-release")[1].read().decode().strip().split("=")[1].strip('"')
 
+    # Compare pacemaker version with 2.1.8 accroding to https://github.com/ClusterLabs/hawk/pull/276
+    # zypper vcmp return 1 for smaller than 2.1.8, otherwise equal or larger than 2.1.8
+    pacemaker_version_comp = ssh.ssh.exec_command("zypper -t vcmp 2.1.8 $(rpm -q --queryformat '%{VERSION}' pacemaker)")[1].read().decode().strip()
+
     # Create driver instance
     browser = HawkTestDriver(addr=args.host, port=args.port,
                              browser=args.browser, headless=args.xvfb,
@@ -152,7 +156,10 @@ def main():
     browser.test('test_remove_clone', results, clone)
     browser.test('test_add_group', results, group)
     browser.test('test_remove_group', results, group)
-    browser.test('test_check_cluster_configuration', results, ssh)
+    if pacemaker_version_comp == "1":
+        results.set_test_status('test_check_cluster_configuration', 'skipped')
+    else:
+        browser.test('test_check_cluster_configuration', results, ssh)
     browser.test('test_click_around_edit_conf', results)
     if args.slave:
         browser.addr = args.slave
