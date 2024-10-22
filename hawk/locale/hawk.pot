@@ -237,7 +237,7 @@ msgid "Rule"
 msgstr ""
 
 #: ../app/assets/javascripts/module/location.js:33 ../app/models/colocation.rb:180 ../app/models/location.rb:229 ../app/views/colocations/_form.html.erb:12 ../app/views/locations/_form.html.erb:32 ../app/views/orders/_form.html.erb:12 ../app/views/resources/show.html.erb:282
-msgid "Score"
+msgid "Kind"
 msgstr ""
 
 #: ../app/assets/javascripts/module/location.js:41 ../app/models/location.rb:248
@@ -1565,11 +1565,11 @@ msgid "The ID \"%{id}\" does not exist"
 msgstr ""
 
 #: ../app/models/colocation.rb:10 ../app/models/order.rb:10
-msgid "Score is required"
+msgid "Kind is required"
 msgstr ""
 
 #: ../app/models/colocation.rb:24 ../app/models/order.rb:25
-msgid "Invalid score value"
+msgid "Invalid kind value"
 msgstr ""
 
 #: ../app/models/colocation.rb:30
@@ -1581,7 +1581,7 @@ msgid "Constraint must consist of at least two separate resources"
 msgstr ""
 
 #: ../app/models/colocation.rb:181
-msgid "The score determines the location relationship between the resources."
+msgid "The kind determines the location relationship between the resources."
 msgstr ""
 
 #: ../app/models/colocation.rb:186 ../app/views/colocations/_form.html.erb:52
@@ -1661,7 +1661,7 @@ msgid "Constraint is too complex - it contains nested rules"
 msgstr ""
 
 #: ../app/models/location.rb:33
-msgid "Invalid score \"%{score}\""
+msgid "Invalid kind \"%{score}\""
 msgstr ""
 
 #: ../app/models/location.rb:43

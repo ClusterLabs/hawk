@@ -484,7 +484,7 @@ msgstr "規則"
 #: ../app/views/locations/_form.html.erb:32
 #: ../app/views/orders/_form.html.erb:12
 #: ../app/views/resources/show.html.erb:282
-msgid "Score"
+msgid "Kind"
 msgstr "分數"
 
 #: ../app/assets/javascripts/module/location.js:41
@@ -2175,11 +2175,11 @@ msgid "The ID \"%{id}\" does not exist"
 msgstr "ID「%{id}」不存在"
 
 #: ../app/models/colocation.rb:10 ../app/models/order.rb:10
-msgid "Score is required"
+msgid "Kind is required"
 msgstr "需要指定分數"
 
 #: ../app/models/colocation.rb:24 ../app/models/order.rb:25
-msgid "Invalid score value"
+msgid "Invalid kind value"
 msgstr "分數值無效"
 
 #: ../app/models/colocation.rb:30
@@ -2191,7 +2191,7 @@ msgid "Constraint must consist of at least two separate resources"
 msgstr "條件約束必須至少包含兩個獨立的資源"
 
 #: ../app/models/colocation.rb:181
-msgid "The score determines the location relationship between the resources."
+msgid "The kind determines the location relationship between the resources."
 msgstr "該分數可用於判斷資源間的位置關係。"
 
 #: ../app/models/colocation.rb:186 ../app/views/colocations/_form.html.erb:52
@@ -2299,7 +2299,7 @@ msgid "Constraint is too complex - it contains nested rules"
 msgstr "條件約束過於複雜，它含有巢狀規則"
 
 #: ../app/models/location.rb:33
-msgid "Invalid score \"%{score}\""
+msgid "Invalid kind \"%{score}\""
 msgstr "分數「%{score}」無效"
 
 #: ../app/models/location.rb:43

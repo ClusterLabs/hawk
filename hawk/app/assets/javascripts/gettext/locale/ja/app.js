@@ -657,11 +657,11 @@ var locales = locales || {}; locales['ja'] = {
         null,
         "無効なパスワード"
       ],
-      "Invalid score": [
+      "Invalid kind": [
         null,
         "無効なスコア"
       ],
-      "Invalid score \\\"%{score}\\\"": [
+      "Invalid kind \\\"%{score}\\\"": [
         null,
         "無効なスコア「%{score}」"
       ],
@@ -1089,7 +1089,7 @@ var locales = locales || {}; locales['ja'] = {
         null,
         ""
       ],
-      "Score": [
+      "Kind": [
         null,
         "スコア"
       ],

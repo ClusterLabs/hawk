@@ -490,7 +490,7 @@ msgstr "Szabály"
 #: ../app/views/locations/_form.html.erb:32
 #: ../app/views/orders/_form.html.erb:12
 #: ../app/views/resources/show.html.erb:282
-msgid "Score"
+msgid "Kind"
 msgstr "Pontszám"
 
 #: ../app/assets/javascripts/module/location.js:41
@@ -2206,11 +2206,11 @@ msgid "The ID \"%{id}\" does not exist"
 msgstr "A(z) \"%{id}\" azonosító nem létezik"
 
 #: ../app/models/colocation.rb:10 ../app/models/order.rb:10
-msgid "Score is required"
+msgid "Kind is required"
 msgstr "A pontszám megadása kötelező"
 
 #: ../app/models/colocation.rb:24 ../app/models/order.rb:25
-msgid "Invalid score value"
+msgid "Invalid kind value"
 msgstr "Érvénytelen pontszámérték"
 
 #: ../app/models/colocation.rb:30
@@ -2222,7 +2222,7 @@ msgid "Constraint must consist of at least two separate resources"
 msgstr "A szabálynak legalább két különböző erőforrást kell tartalmaznia"
 
 #: ../app/models/colocation.rb:181
-msgid "The score determines the location relationship between the resources."
+msgid "The kind determines the location relationship between the resources."
 msgstr "A pontszám határozza meg az erőforrások közötti helykapcsolatot."
 
 #: ../app/models/colocation.rb:186 ../app/views/colocations/_form.html.erb:52
@@ -2342,7 +2342,7 @@ msgid "Constraint is too complex - it contains nested rules"
 msgstr "Túl komplex szabály - beágyazott szabályok vannak"
 
 #: ../app/models/location.rb:33
-msgid "Invalid score \"%{score}\""
+msgid "Invalid kind \"%{score}\""
 msgstr "Érvénytelen pontszám \"%{score}\""
 
 #: ../app/models/location.rb:43

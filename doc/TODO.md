@@ -2,7 +2,7 @@
 
 * Controls for all resources: stop all, start all, ... ?
 
-* Display allocation scores and blocked status
+* Display allocation kinds and blocked status
 
 * Show if a resource has failcounts
 

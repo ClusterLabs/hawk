@@ -30,7 +30,7 @@
 
             '<div class="form-group" data-help-filter=".row.score">',
               '<label class="col-sm-5 control-label">',
-                __('Score'),
+                __('Kind'),
               '</label>',
               '<div class="col-sm-7">',
                 '<input class="form-control text-field" type="text" name="{{>~root.prefix}}[{{>#getIndex()}}][score]" data-link="score" />',
