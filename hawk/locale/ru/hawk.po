@@ -491,7 +491,7 @@ msgstr "Правило"
 #: ../app/views/locations/_form.html.erb:32
 #: ../app/views/orders/_form.html.erb:12
 #: ../app/views/resources/show.html.erb:282
-msgid "Score"
+msgid "Kind"
 msgstr "Оценка"
 
 #: ../app/assets/javascripts/module/location.js:41
@@ -2199,11 +2199,11 @@ msgid "The ID \"%{id}\" does not exist"
 msgstr "ИД \"%{id}\" не существует"
 
 #: ../app/models/colocation.rb:10 ../app/models/order.rb:10
-msgid "Score is required"
+msgid "Kind is required"
 msgstr "Требуется оценка"
 
 #: ../app/models/colocation.rb:24 ../app/models/order.rb:25
-msgid "Invalid score value"
+msgid "Invalid kind value"
 msgstr "Недопустимое значение оценки"
 
 #: ../app/models/colocation.rb:30
@@ -2215,7 +2215,7 @@ msgid "Constraint must consist of at least two separate resources"
 msgstr "Ограничение должно состоять как минимум из двух отдельных ресурсов"
 
 #: ../app/models/colocation.rb:181
-msgid "The score determines the location relationship between the resources."
+msgid "The kind determines the location relationship between the resources."
 msgstr "Показатель определяет отношение расположений между ресурсами."
 
 #: ../app/models/colocation.rb:186 ../app/views/colocations/_form.html.erb:52
@@ -2340,7 +2340,7 @@ msgid "Constraint is too complex - it contains nested rules"
 msgstr "Слишком сложное ограничение - содержит вложенные правила"
 
 #: ../app/models/location.rb:33
-msgid "Invalid score \"%{score}\""
+msgid "Invalid kind \"%{score}\""
 msgstr "Недопустимая оценка: \"%{score}\""
 
 #: ../app/models/location.rb:43

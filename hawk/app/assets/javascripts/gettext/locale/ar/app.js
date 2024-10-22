@@ -659,11 +659,11 @@ var locales = locales || {}; locales['ar'] = {
         null,
         "كلمة السر غير صالحة"
       ],
-      "Invalid score": [
+      "Invalid kind": [
         null,
         "نتيجة غير صحيحة"
       ],
-      "Invalid score \\\"%{score}\\\"": [
+      "Invalid kind \\\"%{score}\\\"": [
         null,
         "نتيجة غير صحيحة \\\"%{score}\\\""
       ],
@@ -1091,7 +1091,7 @@ var locales = locales || {}; locales['ar'] = {
         null,
         ""
       ],
-      "Score": [
+      "Kind": [
         null,
         "النتيجة"
       ],

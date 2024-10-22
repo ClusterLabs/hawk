@@ -489,7 +489,7 @@ msgstr "Regla"
 #: ../app/views/locations/_form.html.erb:32
 #: ../app/views/orders/_form.html.erb:12
 #: ../app/views/resources/show.html.erb:282
-msgid "Score"
+msgid "Kind"
 msgstr "Puntuación"
 
 #: ../app/assets/javascripts/module/location.js:41
@@ -2215,11 +2215,11 @@ msgid "The ID \"%{id}\" does not exist"
 msgstr "El ID \"%{id}\" no existe."
 
 #: ../app/models/colocation.rb:10 ../app/models/order.rb:10
-msgid "Score is required"
+msgid "Kind is required"
 msgstr "Se requiere la puntuación."
 
 #: ../app/models/colocation.rb:24 ../app/models/order.rb:25
-msgid "Invalid score value"
+msgid "Invalid kind value"
 msgstr "Valor de puntuación no válido"
 
 #: ../app/models/colocation.rb:30
@@ -2231,7 +2231,7 @@ msgid "Constraint must consist of at least two separate resources"
 msgstr "La restricción debe consistir en al menos dos recursos independientes"
 
 #: ../app/models/colocation.rb:181
-msgid "The score determines the location relationship between the resources."
+msgid "The kind determines the location relationship between the resources."
 msgstr "La puntuación determina la relación de ubicación entre los recursos."
 
 #: ../app/models/colocation.rb:186 ../app/views/colocations/_form.html.erb:52
@@ -2354,7 +2354,7 @@ msgid "Constraint is too complex - it contains nested rules"
 msgstr "La restricción es demasiado compleja, contiene reglas anidadas"
 
 #: ../app/models/location.rb:33
-msgid "Invalid score \"%{score}\""
+msgid "Invalid kind \"%{score}\""
 msgstr "Puntuación no válida %{score}"
 
 #: ../app/models/location.rb:43
