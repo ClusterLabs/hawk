@@ -62,7 +62,7 @@ class Invoker
     begin
       f << cmd
       f.close
-      CrmEvents.instance.push "crm configure\n#{cmd}\n" unless @no_log
+      CrmEvents.instance.push "/usr/sbin/crm configure\n#{cmd}\n" unless @no_log
       result = crm '-F', 'configure', 'load', 'update', f.path
     ensure
       f.unlink
@@ -73,7 +73,7 @@ class Invoker
   # Invoke cibadmin with command line arguments.  Returns stdout as string,
   # Raises NotFoundError, SecurityError or RuntimeError on failure.
   def cibadmin(*cmd)
-    out, err, status = Util.run_as(current_user, current_pass, 'cibadmin', *cmd)
+    out, err, status = Util.run_as(current_user, current_pass, '/usr/sbin/cibadmin', *cmd)
     case status.exitstatus
     when 0
       return out
@@ -89,23 +89,23 @@ class Invoker
 
   # Invoke "cibadmin -p --replace"
   def cibadmin_replace(xml)
-    CrmEvents.instance.push "cibadmin -p --replace <<EOF\n#{xml}\nEOF" unless @no_log
+    CrmEvents.instance.push "/usr/sbin/cibadmin -p --replace <<EOF\n#{xml}\nEOF" unless @no_log
     cibadmin '-p', '--replace', stdin_data: xml
   end
 
   def cibadmin_replace_xpath(xpath, xml)
-    CrmEvents.instance.push "cibadmin -p --replace --xpath #{xpath} <<EOF\n#{xml}\nEOF" unless @no_log
+    CrmEvents.instance.push "/usr/sbin/cibadmin -p --replace --xpath #{xpath} <<EOF\n#{xml}\nEOF" unless @no_log
     cibadmin '-p', '--replace', '--xpath', xpath, stdin_data: xml
   end
 
   def cibadmin_modify(xml)
-    CrmEvents.instance.push "cibadmin -p -c --modify <<EOF\n#{xml}\nEOF" unless @no_log
+    CrmEvents.instance.push "/usr/sbin/cibadmin -p -c --modify <<EOF\n#{xml}\nEOF" unless @no_log
     cibadmin '-p', '-c', '--modify', stdin_data: xml
   end
 
   # Used by the simulator
   def crm_simulate(*cmd)
-    Util.run_as(current_user, current_pass, 'crm_simulate', *cmd)
+    Util.run_as(current_user, current_pass, '/usr/sbin/crm_simulate', *cmd)
   end
 
   private
@@ -132,7 +132,7 @@ class Invoker
     end
     cmd << { stdin_data: input }
 
-    out, err, status = Util.run_as(current_user, current_pass, 'crm', *cmd)
+    out, err, status = Util.run_as(current_user, current_pass, '/usr/sbin/crm', *cmd)
     [out, fudge_error(status.exitstatus, err), status.exitstatus]
   end
 

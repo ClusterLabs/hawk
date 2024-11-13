@@ -102,7 +102,7 @@ class Cluster < Tableless
       fname = "#{Rails.root}/tmp/dashboard.js"
       File.open(fname, "w") { |f| f.write(JSON.pretty_generate(clusters)) }
       File.chmod(0660, fname)
-      out, err, rc = Util.capture3("crm", "cluster", "copy", fname)
+      out, err, rc = Util.capture3("/usr/sbin/crm", "cluster", "copy", fname)
       Rails.logger.debug "Copy: #{out} #{err} #{rc}"
       # always succeed here: we don't really care that much if the copy succeeded or not
       true

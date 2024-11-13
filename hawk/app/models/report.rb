@@ -85,7 +85,7 @@ class Report
   end
 
   def peinput_version(path)
-    nvpair = Util.safe_x("CIB_file=\"#{path}\"", 'cibadmin', '-Q', '--xpath', "/cib/configuration//crm_config//nvpair[@name='dc-version']", '2>/dev/null')
+    nvpair = Util.safe_x("CIB_file=\"#{path}\"", '/usr/sbin/cibadmin', '-Q', '--xpath', "/cib/configuration//crm_config//nvpair[@name='dc-version']", '2>/dev/null')
     m = nvpair.match(/value="([^"]+)"/)
     return nil unless m
     m[1]
@@ -144,7 +144,7 @@ class Report
     require "tempfile"
     tmpfile = Tempfile.new("hawk_dot")
     tmpfile.close
-    _out, err, status = Util.capture3('crm_simulate', '-x', tpath.to_s, format == :xml ? "-G" : "-D", tmpfile.path.to_s)
+    _out, err, status = Util.capture3('/usr/sbin/crm_simulate', '-x', tpath.to_s, format == :xml ? "-G" : "-D", tmpfile.path.to_s)
     rc = status.exitstatus
 
     ret = [false, err]

@@ -45,7 +45,7 @@ module CrmScript
     tmpf = Tempfile.new 'crmscript'
     tmpf.write("script json \"#{cmd}\"")
     tmpf.close
-    cmdline = ['crm', '-f', tmpf.path]
+    cmdline = ['/usr/sbin/crm', '-f', tmpf.path]
     old_home = Util.ensure_home_for(user)
     out, err, status = Util.capture3(*cmdline)
     tmpf.unlink
