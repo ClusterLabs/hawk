@@ -511,7 +511,7 @@ class Cib
         init_offline_cluster id, user, use_file
         return
       end
-      out, err, status = Util.run_as(user, pass, 'cibadmin', '-Ql')
+      out, err, status = Util.run_as(user, pass, '/usr/sbin/cibadmin', '-Ql')
       case status.exitstatus
       when 0
         @xml = REXML::Document.new(out)
@@ -1125,7 +1125,7 @@ class Cib
         resource_node = REXML::XPath.first(elem, "ancestor::primitive")
         if booth_resource_id != resource_node.attributes["id"]
           booth_resource_id = resource_node.attributes["id"]
-          ip = Util.safe_x('crm_resource', '-r', "#{booth_resource_id}", '-g', 'ip').strip
+          ip = Util.safe_x('/usr/sbin/crm_resource', '-r', "#{booth_resource_id}", '-g', 'ip').strip
           next unless @booth[:sites].include?(ip)
 
           if !@booth[:me]

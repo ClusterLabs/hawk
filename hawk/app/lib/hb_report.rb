@@ -115,7 +115,7 @@ class HbReport
       args.push("-Q") # Requires a version of crm report which supports this
       args.push("-S") unless all_nodes
       args.push(@path)
-      out, err, status = Util.capture3('crm', "report", *args)
+      out, err, status = Util.capture3('/usr/sbin/crm', "report", *args)
       f = File.new(@outfile, "w")
       f.write(out)
       f.close

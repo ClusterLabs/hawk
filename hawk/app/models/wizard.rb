@@ -72,7 +72,7 @@ class Wizard
   end
 
   def command_string
-    base = ["crm", "script", "run", @name]
+    base = ["/usr/sbin/crm", "script", "run", @name]
     @params.each do |k, v|
       if v.is_a? Hash
         v.each do |kk, vv|
