@@ -8,7 +8,7 @@ Rails.root.join("tmp", "session_secret").tap do |secret_file|
   # If you change this key, all old signed cookies will become invalid!
   # Make sure the secret is at least 30 characters and all random,
   # no regular words or you"ll be exposed to dictionary attacks.
-  Rails.application.secrets.secret_key_base = secret_file.open(
+  key_base = secret_file.open(
     File::RDWR | File::CREAT,
     0600
   ) do |f|
@@ -28,5 +28,11 @@ Rails.root.join("tmp", "session_secret").tap do |secret_file|
     end
 
     secret
+  end
+  if Gem.loaded_specs['rails'].version >= Gem::Version.new("7.2")
+    Rails.application.credentials.secret_key_base = key_base
+  else
+    # deprecated
+    Rails.application.secrets.secret_key_base = key_base
   end
 end
