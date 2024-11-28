@@ -139,7 +139,7 @@ Rails.application.routes.draw do
   get '/sim/intervals/:id', as: :sim_intervals, to: 'simulator#intervals', defaults: { format: 'json' }, constraints: {id: regex_safe_id }
   get '/sim/help', as: :sim_help, to: 'simulator#help'
 
-  resource :dashboard, only: [:show, :add, :remove] do
+  resource :dashboard, only: [:show] do
     member do
       get :add
       post :add
