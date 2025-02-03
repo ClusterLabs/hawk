@@ -83,11 +83,11 @@ class Colocation < Constraint
         end
       else
         collapsed.each do |set2|
-          cmd.push " ( " unless set2[:sequential]
+          cmd.push " ( " if set2[:sequential] == false or set2[:sequential] == "false"
           set2[:resources].reverse_each do |r|
             cmd.push r + (set2[:action].blank? ? "" : ":#{set2[:action]}")
           end
-          cmd.push " )" unless set2[:sequential]
+          cmd.push " )" if set2[:sequential] == false or set2[:sequential] == "false"
         end
       end
 
