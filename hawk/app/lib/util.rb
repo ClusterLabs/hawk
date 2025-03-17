@@ -43,7 +43,7 @@ module Util
         # RORSCAN_INL: cmd always has > 1 elem, so safe from shell injection
         exec(*cmd)
       else
-        command = ['su', '-', user, 'sh', '-c', "#{cmd.join(" ")}"]
+        command = ['su', '-', user.shellescape, 'sh', '-c', cmd.shelljoin]
         exec(*command)
       end
     }
