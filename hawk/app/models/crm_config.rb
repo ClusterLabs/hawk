@@ -49,8 +49,7 @@ class CrmConfig < Tableless
 
   class << self
     def get_parameters_from(crm_config, cmd)
-      #todo: this doesn't work with safe_x. research why.
-      REXML::Document.new(%x[#{cmd} 2>/dev/null]).tap do |xml|
+      REXML::Document.new(Util.safe_x(*cmd)).tap do |xml|
         return unless xml.root
 
         xml.elements.each("//parameter") do |param|
@@ -108,7 +107,7 @@ class CrmConfig < Tableless
             # The crm_attribute --list-options is only available since pacemaker 2.1.8
             # Let's try crm_attribute first, and if fails,
             # then do as before (with pengine, crmd, ..., pacemaker-based)
-            cmd = "crm_attribute --list-options=cluster --all --output-as=xml"
+            cmd = ["crm_attribute", "--list-options=cluster", "--all", "--output-as=xml"]
             get_parameters_from(crm_config, cmd)
             if crm_config.empty?
               [
@@ -121,7 +120,7 @@ class CrmConfig < Tableless
               ].each do |binary|
                 path = "#{Rails.configuration.x.crm_daemon_dir}/#{binary}"
                 next unless File.executable? path
-                cmd = "#{path} metadata"
+                cmd = ["#{path}", "metadata"]
                 get_parameters_from(crm_config, cmd)
               end
             end
