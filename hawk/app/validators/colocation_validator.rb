@@ -12,11 +12,11 @@ class ColocationValidator < ActiveModel::Validator
         "-infinity"
       ].include? record.score.downcase
         unless record.score.match(/^-?[0-9]+$/)
-          record.errors[:score] << _("Invalid score value")
+          record.errors[:score] << _("Invalid kind value")
         end
       end
     else
-      record.errors[:score] << _("Score is required")
+      record.errors[:score] << _("Kind is required")
     end
 
     unless record.node_attr.blank?

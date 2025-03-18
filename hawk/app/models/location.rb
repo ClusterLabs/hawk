@@ -30,7 +30,7 @@ class Location < Constraint
       unless score_types.include? rule[:score].downcase
         if record.simple?
           unless rule[:score].match(/^-?[0-9]+$/)
-            errors.add :base, _('Invalid score "%{score}"') % { :score => rule[:score] }
+            errors.add :base, _('Invalid kind "%{score}"') % { :score => rule[:score] }
           end
         else
           # We're allowing any old junk for scores for complex resources,
@@ -226,7 +226,7 @@ class Location < Constraint
         },
         "score" => {
           type: "string",
-          shortdesc: _("Score"),
+          shortdesc: _("Kind"),
           longdesc: _('Positive values indicate the resources should run on this node. Negative values indicate the resources should not run on this node. Values of +/- INFINITY change "should"/"should not" to "must"/"must not".'),
           default: "INFINITY",
         },

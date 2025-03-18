@@ -657,11 +657,11 @@ var locales = locales || {}; locales['ko'] = {
         null,
         "잘못된 비밀번호"
       ],
-      "Invalid score": [
+      "Invalid kind": [
         null,
         "잘못된 점수"
       ],
-      "Invalid score \\\"%{score}\\\"": [
+      "Invalid kind \\\"%{score}\\\"": [
         null,
         "점수 \\\"%{score}\\\"이(가) 잘못되었습니다."
       ],
@@ -1089,7 +1089,7 @@ var locales = locales || {}; locales['ko'] = {
         null,
         ""
       ],
-      "Score": [
+      "Kind": [
         null,
         "점수"
       ],
