@@ -63,6 +63,8 @@ class ResourcesController < ApplicationController
   end
 
   def types
+    flash[:success] = _("Primitive deleted successfully") if params[:flash] == "deleted"
+
     respond_to do |format|
       format.html
     end

@@ -48,7 +48,7 @@ class PrimitivesController < ApplicationController
       format.html do
         flash[:success] = _("Primitive created successfully")
         if @primitive.parent.blank?
-          redirect_to edit_cib_primitive_url(cib_id: @cib.id, id: @primitive.id)
+          redirect_to edit_cib_primitive_url(cib_id: @cib.id, id: @primitive.id, flash: "created")
         else
           redirect_to edit_cib_group_url(cib_id: @cib.id, id: @primitive.parent)
         end
@@ -108,7 +108,7 @@ class PrimitivesController < ApplicationController
 
         format.html do
           flash[:success] = _("Primitive updated successfully")
-          redirect_to edit_cib_primitive_url(cib_id: @cib.id, id: @primitive.id)
+          redirect_to edit_cib_primitive_url(cib_id: @cib.id, id: @primitive.id, flash: "updated")
         end
         format.json do
           render json: @primitive, status: :updated
