@@ -191,6 +191,8 @@ Rails.application.routes.draw do
     end
   end
 
+  get "/internal/auth", to: "internal_auth#show"
+
   if Rails.env.production?
     match '*path' => 'errors#not_found', via: :all # if nothing else matches
   end
