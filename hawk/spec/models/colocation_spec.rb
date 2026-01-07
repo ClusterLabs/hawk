@@ -2,19 +2,19 @@ require "rails_helper"
 
 describe Colocation do
   context 'with invalid values' do
-    it 'with blank score' do
+    it 'with blank kind' do
       record = Colocation.new
       record.score = ""
       record.valid? #run validation
-      record.errors[:score].should include("Score is required")
-      record.errors[:score].should_not include("Invalid score value")
+      record.errors[:score].should include("Kind is required")
+      record.errors[:score].should_not include("Invalid kind value")
     end
-    it 'with invalid score' do
+    it 'with invalid kind' do
       record = Colocation.new
       record.score = "lol"
       record.valid?
-      record.errors[:score].should include("Invalid score value")
-      record.errors[:score].should_not include("Score is required")
+      record.errors[:score].should include("Invalid kind value")
+      record.errors[:score].should_not include("Kind is required")
     end
     it 'with blank resources' do
       record = Colocation.new
@@ -43,7 +43,7 @@ describe Colocation do
       record = Colocation.new
       record.score = "infinity"
       record.valid?
-      record.errors[:score].should_not include("Invalid score value", "Score is required")
+      record.errors[:score].should_not include("Invalid kind value", "Kind is required")
     end
     it 'with valid resources' do
       record = Colocation.new
@@ -58,7 +58,7 @@ describe Colocation do
       record.id = "foo"
       record.valid?
       record.errors[:id].should_not include("ID is required")
-      record.errors[:score].should include("Score is required")
+      record.errors[:score].should include("Kind is required")
     end
     it 'provide everything' do
       record = Colocation.new

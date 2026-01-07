@@ -487,7 +487,7 @@ msgstr "Pravidlo"
 #: ../app/views/locations/_form.html.erb:32
 #: ../app/views/orders/_form.html.erb:12
 #: ../app/views/resources/show.html.erb:282
-msgid "Score"
+msgid "Kind"
 msgstr "Skóre"
 
 #: ../app/assets/javascripts/module/location.js:41
@@ -2198,11 +2198,11 @@ msgid "The ID \"%{id}\" does not exist"
 msgstr "ID %{id} neexistuje."
 
 #: ../app/models/colocation.rb:10 ../app/models/order.rb:10
-msgid "Score is required"
+msgid "Kind is required"
 msgstr "Je požadováno skóre."
 
 #: ../app/models/colocation.rb:24 ../app/models/order.rb:25
-msgid "Invalid score value"
+msgid "Invalid kind value"
 msgstr "Hodnota skóre není platná."
 
 #: ../app/models/colocation.rb:30
@@ -2214,7 +2214,7 @@ msgid "Constraint must consist of at least two separate resources"
 msgstr "Omezení musí obsahovat alespoň dva samostatné prostředky"
 
 #: ../app/models/colocation.rb:181
-msgid "The score determines the location relationship between the resources."
+msgid "The kind determines the location relationship between the resources."
 msgstr "Skóre určuje vzájemné umístění prostředků."
 
 #: ../app/models/colocation.rb:186 ../app/views/colocations/_form.html.erb:52
@@ -2337,7 +2337,7 @@ msgid "Constraint is too complex - it contains nested rules"
 msgstr "Omezení je příliš složité – obsahuje vnořená pravidla"
 
 #: ../app/models/location.rb:33
-msgid "Invalid score \"%{score}\""
+msgid "Invalid kind \"%{score}\""
 msgstr "Neplatné skóre „%{score}“"
 
 #: ../app/models/location.rb:43
