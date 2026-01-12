@@ -2,7 +2,7 @@
 #!BuildTag: hawk_test
 # Use the repositories defined in OBS for installing packages
 #!UseOBSRepositories
-FROM	registry.opensuse.org/opensuse/leap:15.4
+FROM	registry.opensuse.org/opensuse/leap:15.5
 
 RUN	zypper -n install -y --no-recommends \
 		MozillaFirefox \
@@ -31,9 +31,9 @@ RUN	useradd -l -m -d /test test
 
 COPY	*.py /
 
-ENV     PYTHONPATH /
-ENV	PYTHONUNBUFFERED 1
-ENV	DBUS_SESSION_BUS_ADDRESS /dev/null
+ENV     PYTHONPATH=/
+ENV	PYTHONUNBUFFERED=1
+ENV	DBUS_SESSION_BUS_ADDRESS=/dev/null
 
 WORKDIR	/test
 
