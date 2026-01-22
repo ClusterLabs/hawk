@@ -659,11 +659,11 @@ var locales = locales || {}; locales['fr'] = {
         null,
         "Mot de passe non valide"
       ],
-      "Invalid score": [
+      "Invalid kind": [
         null,
         "Score non valide"
       ],
-      "Invalid score \\\"%{score}\\\"": [
+      "Invalid kind \\\"%{score}\\\"": [
         null,
         "Score \\\"%{score}\\\" non valide"
       ],
@@ -1091,9 +1091,9 @@ var locales = locales || {}; locales['fr'] = {
         null,
         ""
       ],
-      "Score": [
+      "Kind": [
         null,
-        "Score"
+        "Kind"
       ],
       "Show Rule Editor": [
         null,

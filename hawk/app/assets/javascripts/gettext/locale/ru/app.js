@@ -661,11 +661,11 @@ var locales = locales || {}; locales['ru'] = {
         null,
         "Неверный пароль"
       ],
-      "Invalid score": [
+      "Invalid kind": [
         null,
         "Недопустимая оценка"
       ],
-      "Invalid score \\\"%{score}\\\"": [
+      "Invalid kind \\\"%{score}\\\"": [
         null,
         "Недопустимая оценка: \\\"%{score}\\\""
       ],
@@ -1093,7 +1093,7 @@ var locales = locales || {}; locales['ru'] = {
         null,
         ""
       ],
-      "Score": [
+      "Kind": [
         null,
         "Оценка"
       ],

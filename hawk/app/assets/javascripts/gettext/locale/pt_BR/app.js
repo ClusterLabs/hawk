@@ -659,11 +659,11 @@ var locales = locales || {}; locales['pt-BR'] = {
         null,
         "Senha inválida"
       ],
-      "Invalid score": [
+      "Invalid kind": [
         null,
         "Pontuação inválida"
       ],
-      "Invalid score \\\"%{score}\\\"": [
+      "Invalid kind \\\"%{score}\\\"": [
         null,
         "Pontuação \\\"%{score}\\\" inválida"
       ],
@@ -1091,7 +1091,7 @@ var locales = locales || {}; locales['pt-BR'] = {
         null,
         ""
       ],
-      "Score": [
+      "Kind": [
         null,
         "Pontuação"
       ],

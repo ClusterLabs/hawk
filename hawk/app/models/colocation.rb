@@ -149,8 +149,8 @@ class Colocation < Constraint
       super.merge(
         "score" => {
           type: "string",
-          shortdesc: _("Score"),
-          longdesc: _('The score determines the location relationship between the resources.'),
+          shortdesc: _("Kind"),
+          longdesc: _('The kind determines the location relationship between the resources.'),
           default: ""
         },
         "node-attribute" => {
