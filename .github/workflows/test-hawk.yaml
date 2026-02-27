@@ -1,4 +1,4 @@
-name: e2e_test for hawk
+name: e2e_test for hawk on leap15.6 and leap16.0
 on:
   push:
     branches:
@@ -12,47 +12,151 @@ env:
   IP_NODE2: 172.17.0.3
 
 jobs:
-  functional_test_hawk:
+  build_examiner:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out repository code
-        uses: actions/checkout@v2
-      - name: Build hawk-node image
-        run: |
-          docker build -t hawk-node -f .github/docker/hawk-node.Dockerfile .
+      - uses: actions/checkout@v4
       - name: Build hawk-examiner image
         run: |
           docker build -t hawk-examiner -f e2e_test/Dockerfile e2e_test
+
+      - name: Export hawk-examiner image
+        run: |
+          docker save hawk-examiner:latest -o hawk-examiner.tar
+
+      - name: Upload hawk-examiner image artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: hawk-examiner-image
+          path: hawk-examiner.tar
+
+  test_leap156:
+    runs-on: ubuntu-latest
+    needs: build_examiner
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Download hawk-examiner image artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: hawk-examiner-image
+
+      - name: Load hawk-examiner image
+        run: |
+          docker load -i hawk-examiner.tar
+
+      - name: Build hawk-node leap-15.6 image
+        run: |
+          docker build -t hawk-node -f .github/docker/hawk-node.leap156/Dockerfile .github/docker/hawk-node.leap156/
+
       - name: Start cluster nodes in containers
         run: |
           docker run -d --privileged -h node1 --name node1 --add-host node1:${IP_NODE1} --add-host node2:${IP_NODE2} hawk-node
           docker run -d --privileged -h node2 --name node2 --add-host node1:${IP_NODE1} --add-host node2:${IP_NODE2} hawk-node
+
       - name: Copy hawk to the nodes
         run: |
           docker cp "$GITHUB_WORKSPACE" node1:/
           docker cp "$GITHUB_WORKSPACE" node2:/
+
       - name: Compile hawk in the nodes
         run: |
           docker exec -i node1 bash -c "cd hawk && make"
           docker exec -i node2 bash -c "cd hawk && make"
+
       - name: Install hawk in the nodes
         run: |
           docker exec -i node1 bash -c "cd hawk && make install && cp scripts/sysconfig.hawk /etc/sysconfig/hawk"
           docker exec -i node2 bash -c "cd hawk && make install && cp scripts/sysconfig.hawk /etc/sysconfig/hawk"
+
       - name: Workaround to run hawk as root (ok for tests)
         run: |
           docker exec node1 sed -i '/^User=/d' /usr/lib/systemd/system/hawk-backend.service
           docker exec node1 sed -i '/^Group=/d' /usr/lib/systemd/system/hawk-backend.service
           docker exec node2 sed -i '/^User=/d' /usr/lib/systemd/system/hawk-backend.service
           docker exec node2 sed -i '/^Group=/d' /usr/lib/systemd/system/hawk-backend.service
+
       - name: Initialize container on the node1
-        run: docker exec node1 crm cluster init -u -n cluster1 -y
+        run: |
+          docker exec node1 crm cluster init -u -n cluster1 -y
+
       - name: Join node2 to the cluster
-        run: docker exec node2 crm cluster join -c node1 -y
+        run: |
+          docker exec node2 crm cluster join -c node1 -y
+
       - name: Create a stonith-sbd device
         run: |
           docker exec node1 crm configure primitive stonith-sbd stonith:external/ssh params hostlist="node1 node2"
           docker exec node1 crm conf property stonith-enabled=true
           docker exec node1 crm conf property have-watchdog=true
+
       - name: Run the functional test
-        run: docker run hawk-examiner -H ${IP_NODE1} -S ${IP_NODE2} -s linux --xvfb
+        run: |
+          docker run --rm hawk-examiner -H ${IP_NODE1} -S ${IP_NODE2} -s linux --xvfb
+
+      - name: Cleanup
+        if: always()
+        run: |
+          docker rm -f node1 node2 || true
+
+  test_leap160:
+    runs-on: ubuntu-latest
+    needs: build_examiner
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Download hawk-examiner image artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: hawk-examiner-image
+
+      - name: Load hawk-examiner image
+        run: |
+          docker load -i hawk-examiner.tar
+
+      - name: Build hawk-node leap-16.0 image
+        run: |
+          docker build -t hawk-node -f .github/docker/hawk-node.leap160/Dockerfile .github/docker/hawk-node.leap160/
+
+      - name: Start cluster nodes in containers
+        run: |
+          docker run -d --privileged -h node1 --name node1 --add-host node1:${IP_NODE1} --add-host node2:${IP_NODE2} hawk-node
+
+      - name: Copy hawk to the nodes
+        run: |
+          docker cp "$GITHUB_WORKSPACE" node1:/
+
+      - name: Apply patches and replace Gemfiles
+        run: |
+          docker exec -i node1 bash -c "cd hawk && git apply ../*.patch && cp /Gemfile* hawk"
+
+      - name: Compile hawk in the nodes
+        run: |
+          docker exec -i node1 bash -c "cd hawk && make"
+
+      - name: Install hawk in the nodes
+        run: |
+          docker exec -i node1 bash -c "cd hawk && make install && cp scripts/sysconfig.hawk /etc/sysconfig/hawk"
+
+      - name: Initialize container on the node1
+        run: |
+          docker exec node1 crm cluster init -n cluster2 -y
+
+      - name: Check status of hawk
+        run: |
+          docker exec node1 systemctl status hawk hawk-backend
+
+      - name: Create a stonith-sbd device
+        run: |
+          docker exec node1 crm configure primitive stonith-sbd ocf:pacemaker:Dummy
+
+      - name: Run the functional test
+        run: |
+          docker run --rm hawk-examiner -H ${IP_NODE1} -s linux --xvfb
+
+      - name: Cleanup
+        if: always()
+        run: |
+          docker rm -f node1 || true

@@ -1,0 +1,39 @@
+diff --git a/hawk/config/application.rb b/hawk/config/application.rb
+--- a/hawk/config/application.rb
++++ b/hawk/config/application.rb
+@@ -44,6 +44,11 @@ module Hawk
+       config.middleware.use Rack::Deflater
+     end
+ 
++    JsRoutes.setup do |config|
++      config.module_type = nil
++      config.namespace = "Routes"
++    end
++
+     config.x.hawk_is_sles = system("cat /etc/os-release | grep 'ID=.*sles' >/dev/null 2>&1")
+ 
+     def lookup_daemon_dir
+diff --git a/hawk/config/boot.rb b/hawk/config/boot.rb
+--- a/hawk/config/boot.rb
++++ b/hawk/config/boot.rb
+@@ -38,7 +38,7 @@ else
+   gem "virtus", version: "~> 1.0"
+   require "virtus"
+ 
+-  gem "js-routes", version: ">= 1.3.3"
++  gem "js-routes", version: ">= 2.0.0"
+   require "js-routes"
+ 
+   gem "fast_gettext", version: "~> 1.4"
+diff --git a/hawk/config/environments/development.rb b/hawk/config/environments/development.rb
+--- a/hawk/config/environments/development.rb
++++ b/hawk/config/environments/development.rb
+@@ -27,7 +27,7 @@ Rails.application.configure do
+ 
+   config.cache_store = :memory_store
+ 
+-  config.assets.debug = true
++  config.assets.debug = false
+   config.assets.raise_runtime_errors = true
+   config.assets.js_compressor = nil
+   config.assets.css_compressor = nil

@@ -1,0 +1,21 @@
+diff --git a/scripts/hawk-backend.service.in b/scripts/hawk-backend.service.in
+index aafcadb7..143d6f66 100644
+--- a/scripts/hawk-backend.service.in
++++ b/scripts/hawk-backend.service.in
+@@ -8,12 +8,11 @@ Type=simple
+ KillMode=control-group
+ TimeoutSec=300
+ TimeoutStopSec=10
+-User=hacluster
+-Group=haclient
+ WorkingDirectory=@WWW_BASE@/hawk
+ Environment="HAWK_ENV=production"
++Environment="GEM_HOME=/usr/libexec/hawk/vendor/"
+ Environment="HAWK_BIND=unix://@WWW_BASE@/hawk/tmp/hawk.sock"
+ EnvironmentFile=-/etc/sysconfig/hawk
+-ExecStart=/usr/bin/puma@RUBY_SUFFIX@ -C @WWW_BASE@/hawk/config/puma.rb
+-ExecStop=/usr/bin/pumactl@RUBY_SUFFIX@ -S @WWW_BASE@/hawk/tmp/pids/puma.state stop
+-ExecReload=/usr/bin/pumactl@RUBY_SUFFIX@ -S @WWW_BASE@/hawk/tmp/pids/puma.state restart
++ExecStart=/usr/libexec/hawk/vendor/bin/puma@RUBY_SUFFIX@ -C @WWW_BASE@/hawk/config/puma.rb
++ExecStop=/usr/libexec/hawk/vendor/bin/pumactl@RUBY_SUFFIX@ -S @WWW_BASE@/hawk/tmp/pids/puma.state stop
++ExecReload=/usr/libexec/hawk/vendor/bin/pumactl@RUBY_SUFFIX@ -S @WWW_BASE@/hawk/tmp/pids/puma.state restart
