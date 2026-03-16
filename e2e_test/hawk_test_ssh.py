@@ -36,35 +36,22 @@ class HawkTestSSH:
             return False
         return True
 
-    def check_cluster_conf_ssh(self, command, mustmatch, silent=False, anycheck=False):
+    def get_cluster_conf_ssh_output(self, command):
         '''
         Execute command via SSH connection and compare if its output matches expectation
         Args:
             command (str): input command
-            mustmatch (object): expected string or list
-            silent (boolean): print info or not
-            anycheck (boolean): if match at least one element in the list
-        Raises:
-            ValueError: No value matches expected string or list
         Return:
-            boolean or matched value
+            The stdout of SSH command when no error detected
+            Else False (0)
         '''
         _, out, err = self.ssh.exec_command(command)
         out, err = map(lambda f: f.read().decode().rstrip('\n'), (out, err))
-        if not silent:
-            print(f"INFO: ssh command [{command}] got output [{out}] and error [{err}]")
+        print(f"INFO: ssh command [{command}] got output [{out}] and error [{err}]")
         if err:
             print(f"ERROR: got an error over SSH: [{err}]")
             return False
-        if isinstance(mustmatch, str):
-            return mustmatch in out
-        if isinstance(mustmatch, list) and anycheck:
-            # Output has to match at least one element in the list
-            return any(_ in out for _ in mustmatch)
-        if isinstance(mustmatch, list) and not anycheck:
-            # Output has to match all elements in list
-            return all(_ in out for _ in mustmatch)
-        raise ValueError("check_cluster_conf_ssh: mustmatch must be str or list")
+        return out
 
     @staticmethod
     def set_test_status(results, test, status):
@@ -88,7 +75,8 @@ class HawkTestSSH:
                 False when stonith-sbd is not unmanaged nor in maintenance
         '''
         print("TEST: verify_stonith_in_maintenance")
-        if self.check_cluster_conf_ssh("crm status | grep stonith-sbd", ["unmanaged", "maintenance"], anycheck=True):
+        out = self.get_cluster_conf_ssh_output("crm status | grep stonith-sbd")
+        if any(_ in out for _ in ('unmanaged', 'maintenance')):
             print("INFO: stonith-sbd is unmanaged/maintenance")
             self.set_test_status(results, 'verify_stonith_in_maintenance', 'passed')
             return True
@@ -107,7 +95,8 @@ class HawkTestSSH:
                 False when node is in maintenance mode
         '''
         print("TEST: verify_node_maintenance: check cluster node is in maintenance mode")
-        if self.check_cluster_conf_ssh("crm status | grep -i node", "maintenance"):
+        out = self.get_cluster_conf_ssh_output("crm status | grep -i node")
+        if "maintenance" in out:
             print("INFO: cluster node set successfully in maintenance mode")
             self.set_test_status(results, 'verify_node_maintenance', 'passed')
             return True
@@ -134,7 +123,8 @@ class HawkTestSSH:
             matches.append("op stop timeout=15s")
         else:
             matches.append("op stop timeout=15s on-fail=stop")
-        if self.check_cluster_conf_ssh("crm configure show", matches):
+        out = self.get_cluster_conf_ssh_output("crm configure show")
+        if all(_ in out for _ in matches):
             print(f"INFO: primitive [{primitive}] correctly defined in the cluster configuration")
             self.set_test_status(results, 'verify_primitive', 'passed')
             return True
@@ -154,7 +144,8 @@ class HawkTestSSH:
                 False when configuration is not removed
         '''
         print(f"TEST: verify_primitive_removed: check primitive [{primitive}] is removed")
-        if self.check_cluster_conf_ssh("crm resource status | grep ocf::heartbeat:Dummy", ''):
+        out = self.get_cluster_conf_ssh_output("crm resource status | grep ocf::heartbeat:Dummy")
+        if out == '':
             print("INFO: primitive successfully removed")
             self.set_test_status(results, 'verify_primitive_removed', 'passed')
             return True

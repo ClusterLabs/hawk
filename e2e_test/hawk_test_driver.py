@@ -954,7 +954,8 @@ class HawkTestDriver:
 
         # First try to get the values from the crm_attribute
         if ssh.is_valid_command("crm_attribute --list-options=cluster --all --output-as=xml"):
-            if not ssh.check_cluster_conf_ssh("crm_attribute --list-options=cluster --all --output-as=xml | grep 'advanced=\"0\"' | sed 's/.*name=\"*\\([^\\\"]*\\)\".*/\\1/'", lst, silent=True, anycheck=False):
+            out = ssh.get_cluster_conf_ssh_output("crm_attribute --list-options=cluster --all --output-as=xml | grep 'advanced=\"0\"' | sed 's/.*name=\"*\\([^\\\"]*\\)\".*/\\1/'")
+            if not all(_ in out for _ in lst):
                 print(f'ERROR: {Error.CRM_CONFIG_ADVANCED_ATTRIBUTES}')
                 return False
         # If the crm_attribute too old for this
