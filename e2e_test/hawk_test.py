@@ -109,8 +109,15 @@ def main():
     # Establish SSH connection to verify status
     ssh = HawkTestSSH(args.host, args.secret)
 
-    # Get version from /etc/os-release
-    test_version = ssh.ssh.exec_command("grep VERSION= /etc/os-release")[1].read().decode().strip().split("=")[1].strip('"')
+    # Get VERSION_ID from /etc/os-release
+    _, out, err = ssh.ssh.exec_command('cat /etc/os-release')
+    lines = out.read().decode('utf-8').splitlines()
+    osrel = {k: v[1:-1] for (k, v) in [line.split('=') for line in lines if '=' in line]}
+    if 'VERSION_ID' in osrel:
+        test_version = osrel['VERSION_ID']
+    else:
+        raise ValueError("Unkown OS version")
+    print(f"Test OS Version is {test_version}")
 
     # Create driver instance
     browser = HawkTestDriver(addr=args.host, port=args.port,
