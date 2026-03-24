@@ -102,7 +102,7 @@ class HawkTestDriver:
     '''
     Hawk Test driver main class
     '''
-    def __init__(self, addr='localhost', port='7630', browser='firefox', headless=False, version='15-SP5'):
+    def __init__(self, addr='localhost', port='7630', browser='firefox', headless=False, version='15.5'):
         '''
         Constructor function to initialize parameters
         Args:
@@ -110,7 +110,7 @@ class HawkTestDriver:
             port (str):           port number, default is 7630
             browser (str):        browser for testing, default is firefox
             headless (boolean):   headless mode, default is False
-            version (str):        OS version, default is 15-SP5
+            version (str):        OS version, default is 15.5
         '''
         self.addr = addr
         self.port = port
