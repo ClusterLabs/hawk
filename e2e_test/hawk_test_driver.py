@@ -699,12 +699,12 @@ class HawkTestDriver:
                                                                     Xpath.COMMIT_BTN_DANGER])
 
             # Second, click on Edit
-            time.sleep(2)
+            time.sleep(BIG_TIMEOUT)
             self.check_and_click_by_xpath(Error.HOT_PRIMITIVE_ERR, [Xpath.DROP_DOWN_FORMAT.format(resource_number_from_top),
                                                                      Xpath.HOT_PRIMITIVE_EDIT])
 
             # Third, rename the cool_primitive to hot_primitive
-            time.sleep(2) # wait the redirect finishes
+            time.sleep(BIG_TIMEOUT) # wait the redirect finishes
             # try to find '<a>Rename</a>' for 10 seconds (Ruby hawk),
             # if none --> look for '<button name="rename"> (Go hawk)
             rename_btn = self.find_element(By.LINK_TEXT, "Rename", 10) or self.find_element(By.NAME, "rename")
