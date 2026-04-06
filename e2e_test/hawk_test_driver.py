@@ -139,11 +139,14 @@ class HawkTestDriver:
             options.add_argument("--disable-dev-shm-usage")
             self.driver = webdriver.Chrome(options=options)
         else:
+            # Set geckodriver path to avoid Seleniums automatic lookup feature
+            # And raise error: Problem reading geckodriver versions
+            service = webdriver.FirefoxService(executable_path="/usr/local/bin/geckodriver")
             options = webdriver.FirefoxOptions()
             options.set_capability("acceptInsecureCerts", True)
             if self.headless:
                 options.add_argument("-headless")
-            self.driver = webdriver.Firefox(options=options)
+            self.driver = webdriver.Firefox(options=options,service=service)
 
         self.driver.maximize_window()
         return self.driver
