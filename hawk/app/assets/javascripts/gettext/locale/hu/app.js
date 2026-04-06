@@ -659,11 +659,11 @@ var locales = locales || {}; locales['hu'] = {
         null,
         "Érvénytelen jelszó"
       ],
-      "Invalid score": [
+      "Invalid kind": [
         null,
         "Érvénytelen pontszám"
       ],
-      "Invalid score \\\"%{score}\\\"": [
+      "Invalid kind \\\"%{score}\\\"": [
         null,
         "Érvénytelen pontszám \\\"%{score}\\\""
       ],
@@ -1091,7 +1091,7 @@ var locales = locales || {}; locales['hu'] = {
         null,
         ""
       ],
-      "Score": [
+      "Kind": [
         null,
         "Pontszám"
       ],

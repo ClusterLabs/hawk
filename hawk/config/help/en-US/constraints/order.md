@@ -4,9 +4,9 @@ Ordering constraints define the order in which resources are started
 and stopped.
 
 To create an order constraint, specify an ID, select the resources
-between which to define the constraint, and add a score. The score
+between which to define the constraint, and add a kind. The kind
 determines the location relationship between the resources: The
-constraint is mandatory if the score is greater than zero, otherwise
+constraint is mandatory if the kind is greater than zero, otherwise
 it is only a suggestion. The default value is INFINITY. Keeping the
 option `Symmetrical` set to `Yes` (default) defines that the resources
 are stopped in reverse order.

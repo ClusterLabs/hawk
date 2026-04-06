@@ -490,8 +490,8 @@ msgstr "Regel"
 #: ../app/views/locations/_form.html.erb:32
 #: ../app/views/orders/_form.html.erb:12
 #: ../app/views/resources/show.html.erb:282
-msgid "Score"
-msgstr "Score"
+msgid "Kind"
+msgstr "Kind"
 
 #: ../app/assets/javascripts/module/location.js:41
 #: ../app/models/location.rb:248
@@ -2213,11 +2213,11 @@ msgid "The ID \"%{id}\" does not exist"
 msgstr "Id \"%{id}\" bestaat niet"
 
 #: ../app/models/colocation.rb:10 ../app/models/order.rb:10
-msgid "Score is required"
+msgid "Kind is required"
 msgstr "Score is vereist"
 
 #: ../app/models/colocation.rb:24 ../app/models/order.rb:25
-msgid "Invalid score value"
+msgid "Invalid kind value"
 msgstr "Ongeldige scorewaarde"
 
 #: ../app/models/colocation.rb:30
@@ -2229,7 +2229,7 @@ msgid "Constraint must consist of at least two separate resources"
 msgstr "Beperking moet uit minimaal twee afzonderlijke bronnen bestaan"
 
 #: ../app/models/colocation.rb:181
-msgid "The score determines the location relationship between the resources."
+msgid "The kind determines the location relationship between the resources."
 msgstr "De score bepaalt de relatie tussen de locaties van de resources."
 
 #: ../app/models/colocation.rb:186 ../app/views/colocations/_form.html.erb:52
@@ -2356,7 +2356,7 @@ msgid "Constraint is too complex - it contains nested rules"
 msgstr "Beperking is te complex: deze bevat geneste regels"
 
 #: ../app/models/location.rb:33
-msgid "Invalid score \"%{score}\""
+msgid "Invalid kind \"%{score}\""
 msgstr "Ongeldige score \"%{score}\""
 
 #: ../app/models/location.rb:43

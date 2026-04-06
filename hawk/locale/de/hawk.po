@@ -488,7 +488,7 @@ msgstr "Regel"
 #: ../app/views/locations/_form.html.erb:32
 #: ../app/views/orders/_form.html.erb:12
 #: ../app/views/resources/show.html.erb:282
-msgid "Score"
+msgid "Kind"
 msgstr "Note"
 
 #: ../app/assets/javascripts/module/location.js:41
@@ -2218,11 +2218,11 @@ msgid "The ID \"%{id}\" does not exist"
 msgstr "Die ID \"%{id}\" ist nicht vorhanden"
 
 #: ../app/models/colocation.rb:10 ../app/models/order.rb:10
-msgid "Score is required"
+msgid "Kind is required"
 msgstr "Note erforderlich"
 
 #: ../app/models/colocation.rb:24 ../app/models/order.rb:25
-msgid "Invalid score value"
+msgid "Invalid kind value"
 msgstr "Ungültige Note"
 
 #: ../app/models/colocation.rb:30
@@ -2234,7 +2234,7 @@ msgid "Constraint must consist of at least two separate resources"
 msgstr "Die Einschränkung muss mindestens zwei separate Ressourcen enthalten"
 
 #: ../app/models/colocation.rb:181
-msgid "The score determines the location relationship between the resources."
+msgid "The kind determines the location relationship between the resources."
 msgstr "Die Note bestimmt die Standortbeziehung zwischen den Ressourcen."
 
 #: ../app/models/colocation.rb:186 ../app/views/colocations/_form.html.erb:52
@@ -2358,7 +2358,7 @@ msgid "Constraint is too complex - it contains nested rules"
 msgstr "Die Einschränkung ist zu komplex - sie enthält verschachtelte Regeln"
 
 #: ../app/models/location.rb:33
-msgid "Invalid score \"%{score}\""
+msgid "Invalid kind \"%{score}\""
 msgstr "Ungültige Note \"%{score}\""
 
 #: ../app/models/location.rb:43

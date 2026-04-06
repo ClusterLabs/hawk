@@ -657,11 +657,11 @@ var locales = locales || {}; locales['zh-TW'] = {
         null,
         "密碼無效"
       ],
-      "Invalid score": [
+      "Invalid kind": [
         null,
         "無效的分數"
       ],
-      "Invalid score \\\"%{score}\\\"": [
+      "Invalid kind \\\"%{score}\\\"": [
         null,
         "分數「%{score}」無效"
       ],
@@ -1089,7 +1089,7 @@ var locales = locales || {}; locales['zh-TW'] = {
         null,
         ""
       ],
-      "Score": [
+      "Kind": [
         null,
         "分數"
       ],
