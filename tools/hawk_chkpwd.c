@@ -128,6 +128,11 @@ _converse(int num_msg, const struct pam_message **msg,
 				pass[npass] = '\0';
 			}
 			reply[num].resp = strdup(pass);
+			if (reply[num].resp == NULL) {
+				_log_err(LOG_ERR, "strdup failed");
+				free(reply);
+				return PAM_CONV_ERR;
+			}
 			break;
 		case PAM_TEXT_INFO:
 		case PAM_ERROR_MSG:
@@ -193,8 +198,7 @@ getuidname(uid_t uid)
 	if (pw == NULL)
 		return NULL;
 
-	strncpy(username, pw->pw_name, sizeof(username));
-	username[sizeof(username) - 1] = '\0';
+	snprintf(username, sizeof(username), "%s", pw->pw_name);
 
 	endpwent();
 	return username;
