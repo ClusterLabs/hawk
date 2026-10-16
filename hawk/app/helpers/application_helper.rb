@@ -242,11 +242,18 @@ and the user of SBD on shared storage as a fencing mechanism.
   end
 
   def base_docs
-    if Rails.configuration.x.hawk_is_sles
+    os_major_version = Rails.configuration.x.hawk_os_version.to_s.split(".").first
+    if Rails.configuration.x.hawk_is_sles && os_major_version == "16"
+      [
+        { icon: "bug", style: "danger", title: _("File a Bug Report"), desc: _("Report a bug or request a feature!"), url: "https://bugzilla.suse.com/enter_bug.cgi?classification=SUSE%20Linux%20Enterprise%20High%20Availability%20Extension" },
+        { icon: "newspaper-o", style: "success", title: _("Release Notes"), desc: _("Read the release notes for the SUSE High Availability Extension."), url: "https://www.suse.com/releasenotes/x86_64/SLE-HA/16/" },
+        { icon: "book", style: "success", title: _("Online Documentation"), desc: _("Read the most up-to-date documentation at the suse.com website."), url: "https://documentation.suse.com/sle-ha/16/" },
+      ]
+    elsif Rails.configuration.x.hawk_is_sles && os_major_version == "15"
       [
         { icon: "bug", style: "danger", title: _("File a Bug Report"), desc: _("Report a bug or request a feature!"), url: "https://bugzilla.suse.com/enter_bug.cgi?classification=SUSE%20Linux%20Enterprise%20High%20Availability%20Extension" },
         { icon: "newspaper-o", style: "success", title: _("Release Notes"), desc: _("Read the release notes for the SUSE High Availability Extension."), url: "https://www.suse.com/releasenotes/x86_64/SLE-HA/15/" },
-        { icon: "book", style: "success", title: _("Online Documentation"), desc: _("Read the most up-to-date documentation at the suse.com website."), url: "https://www.suse.com/documentation/sle-ha-15/" },
+        { icon: "book", style: "success", title: _("Online Documentation"), desc: _("Read the most up-to-date documentation at the suse.com website."), url: "https://documentation.suse.com/sle-ha/15/" },
       ]
     else
       [

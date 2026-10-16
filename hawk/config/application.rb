@@ -44,7 +44,9 @@ module Hawk
       config.middleware.use Rack::Deflater
     end
 
-    config.x.hawk_is_sles = system("cat /etc/os-release | grep 'ID=.*sles' >/dev/null 2>&1")
+    os_release = File.readable?("/etc/os-release") ? File.read("/etc/os-release") : ""
+    config.x.hawk_is_sles = os_release[/^ID=["']?([^"'\s]+)["']?$/, 1] == "sles"
+    config.x.hawk_os_version = os_release[/^VERSION_ID=["']?([^"'\s]+)["']?$/, 1]
 
     def lookup_daemon_dir
       [
