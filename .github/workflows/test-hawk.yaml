@@ -138,7 +138,11 @@ jobs:
 
       - name: Install hawk in the nodes
         run: |
-          docker exec -i node1 bash -c "cd hawk && make install && cp scripts/sysconfig.hawk /etc/sysconfig/hawk"
+          docker exec -i node1 bash -c "cd hawk && make install"
+
+      - name: Restore the /usr/share/hawk permissions
+        run: |
+          docker exec -i node1 bash -c "restorecon -R /usr/share/hawk"
 
       - name: Initialize container on the node1
         run: |

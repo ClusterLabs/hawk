@@ -5,7 +5,7 @@ FROM docker.io/opensuse/leap:16.0
 RUN zypper -n refresh \
  && zypper -n install --no-recommends \
       systemd openssh-server \
-      make gcc pam-devel hawk2 nodejs git \
+      make gcc pam-devel hawk2 nodejs git policycoreutils \
  && zypper -n clean -a
 
 # allow root password login (specifically for the tests)
@@ -26,11 +26,15 @@ RUN systemctl enable sshd
 # backup the Gemfiles
 RUN cp /usr/share/hawk/Gemfile* /
 
-# no need for the hawk itself, it should be copied in the git workflow
-RUN rm -rf /usr/share/hawk /etc/sysconfig/hawk
+# we need a clean /usr/share/hawk, later we will 'make install' in here
+RUN rm -rf /usr/share/hawk
+
+# rm -rf /usr/share/hawk also removes some of the hawk-apiserver, so let's recover them
+RUN zypper -n install --no-recommends -f hawk-apiserver
 
 COPY *.patch /
 
-ENV GEM_HOME=/usr/libexec/hawk/vendor/
+# Make packaged gems available during compilation while retaining system gems.
+ENV GEM_PATH=/usr/libexec/hawk/vendor
 
 CMD ["/usr/lib/systemd/systemd", "--system"]
