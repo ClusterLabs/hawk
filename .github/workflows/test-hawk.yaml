@@ -1,4 +1,4 @@
-name: e2e_test for hawk on leap15.6 and leap16.0
+name: e2e_test for hawk on leap15.6, leap16.0 and tumbleweed
 on:
   push:
     branches:
@@ -140,13 +140,135 @@ jobs:
         run: |
           docker exec -i node1 bash -c "cd hawk && make install"
 
-      - name: Restore the /usr/share/hawk permissions
+      - name: Restore the /usr/share/hawk permissions (16.x - specific, no need in tumbleweed)
         run: |
           docker exec -i node1 bash -c "restorecon -R /usr/share/hawk"
 
       - name: Initialize container on the node1
         run: |
           docker exec node1 crm cluster init -n cluster2 -y
+
+      - name: Check status of hawk
+        run: |
+          docker exec node1 systemctl status hawk hawk-backend
+
+      - name: Create a stonith-sbd device
+        run: |
+          docker exec node1 crm configure primitive fencing-sbd ocf:pacemaker:Dummy
+
+      - name: Run the functional test
+        run: |
+          docker run --rm hawk-examiner -H ${IP_NODE1} -s linux --xvfb
+
+      - name: Cleanup
+        if: always()
+        run: |
+          docker rm -f node1 || true
+
+  test_leap161:
+    runs-on: ubuntu-latest
+    needs: build_examiner
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Download hawk-examiner image artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: hawk-examiner-image
+
+      - name: Load hawk-examiner image
+        run: |
+          docker load -i hawk-examiner.tar
+
+      - name: Build hawk-node leap-16.1 image
+        run: |
+          docker build -t hawk-node -f .github/docker/hawk-node.leap161/Dockerfile .github/docker/hawk-node.leap161/
+
+      - name: Start cluster nodes in containers
+        run: |
+          docker run -d --privileged -h node1 --name node1 --add-host node1:${IP_NODE1} --add-host node2:${IP_NODE2} hawk-node
+
+      - name: Copy hawk to the nodes
+        run: |
+          docker cp "$GITHUB_WORKSPACE" node1:/
+
+      - name: Apply patches and replace Gemfiles
+        run: |
+          docker exec -i node1 bash -c "cd hawk && git apply ../*.patch && cp /Gemfile* hawk"
+
+      - name: Compile hawk in the nodes
+        run: |
+          docker exec -i node1 bash -c "cd hawk && make"
+
+      - name: Install hawk in the nodes
+        run: |
+          docker exec -i node1 bash -c "cd hawk && make install"
+
+      - name: Initialize container on the node1
+        run: |
+          docker exec node1 crm cluster init -n cluster3 -y
+
+      - name: Check status of hawk
+        run: |
+          docker exec node1 systemctl status hawk hawk-backend
+
+      - name: Create a stonith-sbd device
+        run: |
+          docker exec node1 crm configure primitive fencing-sbd ocf:pacemaker:Dummy
+
+      - name: Run the functional test
+        run: |
+          docker run --rm hawk-examiner -H ${IP_NODE1} -s linux --xvfb
+
+      - name: Cleanup
+        if: always()
+        run: |
+          docker rm -f node1 || true
+
+  test_factory:
+    runs-on: ubuntu-latest
+    needs: build_examiner
+    steps:
+      - name: Check out repository code
+        uses: actions/checkout@v4
+
+      - name: Download hawk-examiner image artifact
+        uses: actions/download-artifact@v4
+        with:
+          name: hawk-examiner-image
+
+      - name: Load hawk-examiner image
+        run: |
+          docker load -i hawk-examiner.tar
+
+      - name: Build hawk-node tumbleweed image
+        run: |
+          docker build -t hawk-node -f .github/docker/hawk-node.factory/Dockerfile .github/docker/hawk-node.factory/
+
+      - name: Start cluster nodes in containers
+        run: |
+          docker run -d --privileged -h node1 --name node1 --add-host node1:${IP_NODE1} --add-host node2:${IP_NODE2} hawk-node
+
+      - name: Copy hawk to the nodes
+        run: |
+          docker cp "$GITHUB_WORKSPACE" node1:/
+
+      - name: Apply patches and replace Gemfiles
+        run: |
+          docker exec -i node1 bash -c "cd hawk && git apply ../*.patch && cp /Gemfile* hawk"
+
+      - name: Compile hawk in the nodes
+        run: |
+          docker exec -i node1 bash -c "cd hawk && make"
+
+      - name: Install hawk in the nodes
+        run: |
+          docker exec -i node1 bash -c "cd hawk && make install"
+
+      - name: Initialize container on the node1
+        run: |
+          docker exec node1 crm cluster init -n cluster4 -y
 
       - name: Check status of hawk
         run: |
