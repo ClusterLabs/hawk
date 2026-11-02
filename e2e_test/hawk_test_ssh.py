@@ -3,6 +3,7 @@
 """Define SSH related functions to test the HAWK GUI"""
 
 from packaging.version import Version
+import re
 import paramiko
 
 
@@ -119,15 +120,17 @@ class HawkTestSSH:
                 False when configuration is not defined in configuration
         '''
         print(f"TEST: verify_primitive: check primitive [{primitive}] exists")
-        matches = [f"{primitive} Dummy", "op start timeout=35s",
-                   "op monitor timeout=9s interval=13s", "meta target-role=Started"]
+        matches = [re.escape(f"{primitive} Dummy"),
+                   r"op start\b[^\n]*\btimeout=35s\b",
+                   r"op monitor\b(?=[^\n]*\btimeout=9s\b)(?=[^\n]*\binterval=13s\b)",
+                   "meta target-role=Started"]
         if Version(version) < Version('15'):
-            matches.append("op stop timeout=15s")
+            matches.append(r"op stop\b[^\n]*\btimeout=15s\b")
         else:
-            matches.append("op stop timeout=15s on-fail=stop")
+            matches.append(r"op stop\b(?=[^\n]*\btimeout=15s\b)(?=[^\n]*\bon-fail=stop\b)")
         # ignore `WARNING: "stonith-enabled" is deprecated, please consider using "fencing-enabled"`
         out = self.get_cluster_conf_ssh_output("crm configure show", ignore_warning=True)
-        if all(_ in out for _ in matches):
+        if all(re.search(pattern, out) for pattern in matches):
             print(f"INFO: primitive [{primitive}] correctly defined in the cluster configuration")
             self.set_test_status(results, 'verify_primitive', 'passed')
             return True
