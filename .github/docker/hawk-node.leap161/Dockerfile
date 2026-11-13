@@ -1,12 +1,8 @@
 FROM docker.io/opensuse/leap:16.1
 
-# WORKAROUD: this repo is required only for a newer hawk-apiserver, remove it later when hawk-apiserver is updated
-RUN zypper ar -p1 \
-  https://download.opensuse.org/repositories/home:/aburlakov:/branches:/openSUSE:/Factory:/GITHUB/16.1/home:aburlakov:branches:openSUSE:Factory:GITHUB.repo
-
 # install deps (hawk2 will pull all the gems, but uglifier)
 # libglue-devel is for stonith:external/ssh params hostlist
-RUN zypper -n --gpg-auto-import-keys refresh \
+RUN zypper -n refresh \
  && zypper -n install --no-recommends \
       systemd openssh-server \
       make gcc pam-devel hawk2 nodejs git policycoreutils \
