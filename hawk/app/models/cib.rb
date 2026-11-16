@@ -1183,7 +1183,7 @@ class Cib
     warning(
       _("FENCING is disabled. For normal cluster operation, FENCING is required."),
       link: edit_cib_crm_config_path(cib_id: @id)
-    ) unless @crm_config[:stonith_enabled] || !stonithwarning
+    ) if stonithwarning && (@crm_config[:stonith_enabled] == false || @crm_config[:fencing_enabled] == false)
   end
 
   def init_offline_cluster(id, user, use_file)
